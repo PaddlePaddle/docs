@@ -1,20 +1,10 @@
 # Linux 下的 PIP 安装
 
+[The Python Package Index(PyPI)](https://pypi.org/)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式，飞桨提供的 PyPI 安装包支持分布式训练（多机多卡）、TensorRT 推理功能。
+
 ## 一、环境准备
 
-### 1.1 目前飞桨支持的环境
-
-* **Linux 版本 (64 bit)**
-
-  * **CentOS 7 (GPU 版本支持 CUDA 10.1/10.2/11.2)**
-  * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2)**
-  * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2)**
-
-* **Python 版本 3.7/3.8/3.9/3.10 (64 bit)**
-
-* **pip 或 pip3 版本 20.2.2 或更高版本 (64 bit)**
-
-### 1.2 如何查看您的环境
+### 1.1 如何查看您的环境
 
 * 可以使用以下命令查看本机的操作系统和位数信息：
 
@@ -26,10 +16,10 @@
 
 * 确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python
 
-  * 根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
+  * 根据您的环境您可能需要将说明中所有命令行中的 python3 替换为具体的 Python 路径
 
     ```
-    which python
+    which python3
     ```
 
 
@@ -37,56 +27,64 @@
 
   * 使用以下命令确认是 3.7/3.8/3.9/3.10
 
-        python --version
+        python3 --version
 
 * 需要确认 pip 的版本是否满足要求，要求 pip 版本为 20.2.2 或更高版本
 
     ```
-    python -m ensurepip
+    python3 -m ensurepip
     ```
 
     ```
-    python -m pip --version
+    python3 -m pip --version
     ```
 
 
 
-* 需要确认 Python 和 pip 是 64bit，并且处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构，目前 PaddlePaddle 不支持 arm64 架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64"、"x64"或"AMD64"即可：
+* 需要确认 Python 和 pip 是 64bit，并且处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64"、"x64"或"AMD64"即可：
 
 
     ```
-    python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+    python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
 
 
 
 * 默认提供的安装包需要计算机支持 MKL
 
-* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/docs/blob/develop/docs/install/install_script.md)。
+* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md)。
 
 
 
 ## 二、开始安装
 
-本文档为您介绍 pip 安装方式
-
-### 首先请您选择您的版本
+### 首先请选择您的版本
 
 * 如果您的计算机没有 NVIDIA® GPU，请安装[CPU 版的 PaddlePaddle](#cpu)
 
-* 如果您的计算机有 NVIDIA® GPU，请确保满足以下条件并且安装[GPU 版 PaddlePaddle](#gpu)
+* 如果您的计算机有 NVIDIA® GPU，请确保满足以下条件并且安装[GPU 版 PaddlePaddle](#gpu)，依赖库环境版本要求如下：
 
-  * **CUDA 工具包 10.1/10.2 配合 cuDNN v7.6+(如需多卡支持，需配合 NCCL2.7 及更高)**
+  * **CUDA 工具包 10.2 配合 cuDNN v7.6.5, 如需使用 PaddleTensorRT 推理，需配合 TensorRT7.0.0.11**
 
-  * **CUDA 工具包 11.2 配合 cuDNN v8.1.1(如需多卡支持，需配合 NCCL2.7 及更高)**
+  * **CUDA 工具包 11.2 配合 cuDNN v8.2.1, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.0.3.4**
+
+  * **CUDA 工具包 11.6 配合 cuDNN v8.4.0, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.4.0.6**
+
+  * **CUDA 工具包 11.7 配合 cuDNN v8.4.1, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.4.2.4**
+
+  * **CUDA 工具包 11.8 配合 cuDNN v8.6.0, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.5.1.7**
+
+  * **CUDA 工具包 12.0 配合 cuDNN v8.9.1, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.6.1.6**
+
+  * **如需使用分布式多卡环境，需配合 NCCL>=2.7**
 
   * **GPU 运算能力超过 3.5 的硬件设备**
 
-    您可参考 NVIDIA 官方文档了解 CUDA 和 CUDNN 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+    您可参考 NVIDIA 官方文档了解 CUDA、CUDNN 和 TensorRT 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/tensorrt)
 
-* 如果您需要使用多卡环境请确保您已经正确安装 nccl2，或者按照以下指令安装 nccl2（这里提供的是 CUDA9，cuDNN7 下 nccl2 的安装指令，更多版本的安装信息请参考 NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
+* 如果您需要使用多卡环境请确保您已经正确安装 nccl2，或者按照以下指令安装 nccl2（这里提供的是 CUDA10.2，cuDNN7 下 nccl2 的安装指令，更多版本的安装信息请参考 NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
-  * **CentOS 系统可以参考以下命令**
+  * **Centos 系统可以参考以下命令**
 
         wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
 
@@ -99,7 +97,7 @@
     ```
 
     ```
-    yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+    yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
     ```
 
   * **Ubuntu 系统可以参考以下命令**
@@ -113,74 +111,141 @@
     ```
 
     ```
-    sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+    sudo apt install -y libnccl2=2.7.8-1+cuda10.2 libnccl-dev=2.7.8-1+cuda10.2
     ```
 
 
-#### 2.1 CPU 版的 PaddlePaddle
+#### 2.1 <span id="cpu">CPU 版的 PaddlePaddle</span>
 
 
   ```
-  python -m pip install paddlepaddle==0.0.0 -f https://www.paddlepaddle.org.cn/whl/linux/cpu-mkl/develop.html
-  ```
-
-
-
-#### 2.2 GPU 版的 PaddlePaddle
-
-
-
-2.2.1 CUDA10.1 的 PaddlePaddle
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post101 -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
+  python3 -m pip install paddlepaddle==2.5.0 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
 
-2.2.2 CUDA10.2 的 PaddlePaddle
+#### 2.2 <span id="gpu">GPU 版的 PaddlePaddle</span>
+
+
+
+2.2.1 CUDA10.2 的 PaddlePaddle
 
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
-  ```
-
-2.2.3 CUDA11.0 的 PaddlePaddle
-
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
-  ```
-
-2.2.4 CUDA11.1 的 PaddlePaddle
-
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post111 -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
+  python3 -m pip install paddlepaddle-gpu==2.5.0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
-2.2.5 CUDA11.2 的 PaddlePaddle
+     CUDA10.2 包含 cuDNN 动态链接库的 PaddlePaddle
 
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post112 -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
+  python3 -m pip install paddlepaddle-gpu==2.5.0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  ```
+
+
+2.2.2 CUDA11.2 的 PaddlePaddle
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.5.0 -i https://mirror.baidu.com/pypi/simple
+  ```
+
+
+     CUDA11.2 包含 cuDNN 动态链接库的 PaddlePaddle，需要先使用如下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
+
+
+  ```
+  python3 -m pip download paddlepaddle-gpu==2.5.0 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html  --no-index --no-deps
+  ```
+
+
+2.2.3 CUDA11.6 的 PaddlePaddle
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.5.0.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  ```
+
+
+     CUDA11.6 包含 cuDNN 动态链接库的 PaddlePaddle
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.5.0.post116 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  ```
+
+
+2.2.4 CUDA11.7 的 PaddlePaddle
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.5.0.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  ```
+
+
+     CUDA11.7 包含 cuDNN 动态链接库的 PaddlePaddle
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.5.0.post117 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  ```
+
+
+2.2.5 CUDA11.8 的 PaddlePaddle
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.5.0.post118 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  ```
+
+
+     CUDA11.8 包含 cuDNN 动态链接库的 PaddlePaddle
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.5.0.post118 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  ```
+
+
+2.2.6 CUDA12.0 的 PaddlePaddle
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.5.0.post120 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  ```
+
+
+     CUDA12.0 包含 cuDNN 动态链接库的 PaddlePaddle
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.5.0.post120 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
   ```
 
 
 
 注：
 
-* 如果你使用的是安培架构的 GPU，推荐使用 CUDA11.2。如果你使用的是非安培架构的 GPU，推荐使用 CUDA10.2，性能更优。请参考: [GPU 架构对照表](https://www.paddlepaddle.org.cn/documentation/docs/zh/install/Tables.html#nvidia-gpu)
+* 如果你使用的是安培架构的 GPU，推荐使用 CUDA11 以上。如果你使用的是非安培架构的 GPU，推荐使用 CUDA10.2，性能更优。
 
-* 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为 python3 或者替换为具体的 Python 路径。
+* 飞桨对于主流各 python 版本均提供了对应的安装包，而您环境中可能有多个 Python，请确认你想使用的 python 版本并下载对应的 paddlepaddle 安装包。例如您想使用 python3.7 的环境，则安装命令为 python3.7 -m pip install paddlepaddle。
 
+* 上述命令默认安装`avx`、`mkl`的包。判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`。飞桨不再支持`noavx`指令集的安装包。
+  ```
+  cat /proc/cpuinfo | grep -i avx
+  ```
 
+* 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
+
+  ```
+  python3 -m pip download paddlepaddle==2.5.0 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
+  ```
 
 
 ## **三、验证安装**
 
-安装完成后您可以使用 `python` 或 `python3` 进入 python 解释器，输入`import paddle` ，再输入
+安装完成后您可以使用 `python3` 进入 python 解释器，输入`import paddle` ，再输入
  `paddle.utils.run_check()`
 
 如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。
@@ -190,6 +255,6 @@
 
 请使用以下命令卸载 PaddlePaddle：
 
-* **CPU 版本的 PaddlePaddle**: `python -m pip uninstall paddlepaddle`
+* **CPU 版本的 PaddlePaddle**: `python3 -m pip uninstall paddlepaddle`
 
-* **GPU 版本的 PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu`
+* **GPU 版本的 PaddlePaddle**: `python3 -m pip uninstall paddlepaddle-gpu`
