@@ -16,7 +16,7 @@ paddle.distribution.ChainTransform(transforms)
 
 ### 参数映射
 
-| PyTorch    | PaddlePaddle | 备注                                             |
-| ---------- | ------------ | ------------------------------------------------ |
-| parts      | transforms   | 输入的变换序列，仅参数名不一致。                 |
-| cache_size | -            | 表示 cache 大小，Paddle 无此参数，暂无转写方式。 |
+| PyTorch    | PaddlePaddle | 备注                                                                       |
+| ---------- | ------------ | -------------------------------------------------------------------------- |
+| parts      | transforms   | 输入的变换序列，仅参数名不一致。                                           |
+| cache_size | -            | 表示 cache 大小，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |

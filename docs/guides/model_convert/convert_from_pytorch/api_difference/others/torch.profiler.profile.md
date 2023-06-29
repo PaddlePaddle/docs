@@ -40,19 +40,25 @@ with torch.profiler.profile(
     activities=[
         torch.profiler.ProfilerActivity.CPU,
         torch.profiler.ProfilerActivity.CUDA,
-    ]
+    ],
+    schedule=torch.profiler.schedule(
+        wait=1,
+        warmup=1,
+        active=2),
+    on_trace_ready=torch.profiler.tensorboard_trace_handler('./log')
 ) as p:
-    code_to_profile()
-print(p.key_averages().table(
-    sort_by="self_cuda_time_total", row_limit=-1))
+    for iter in range(10):
+        p.step()
 
 # Paddle 写法:
- import paddle.profiler as profiler
- with profiler.Profiler(
-         targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
-         scheduler = (2, 5),
-         on_trace_ready = profiler.export_chrome_tracing('./log')) as p:
-     for iter in range(10):
-         #train()
-         p.step()
+with paddle.profiler.Profiler(
+    targets=[
+        paddle.profiler.ProfilerTarget.CPU,
+        paddle.profiler.ProfilerTarget.GPU
+    ],
+    scheduler=(2, 5),
+    on_trace_ready = paddle.profiler.export_chrome_tracing('./log')
+) as p:
+    for iter in range(10):
+        p.step()
 ```
