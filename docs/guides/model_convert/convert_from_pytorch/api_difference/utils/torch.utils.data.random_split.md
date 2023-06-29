@@ -20,22 +20,22 @@ paddle.io.random_split(dataset,
 | PyTorch       | PaddlePaddle | 备注                                                                  |
 | ------------- | ------------ |---------------------------------------------------------------------|
 | dataset          | dataset            | 表示可迭代数据集。                                                           |
-| lengths         | lengths         | PyTorch:总和为原数组长度或 1.0，子集合长度或总长度比例数组。PaddlePaddle: 总和为原数组长度的，子集合长度数组。 |
+| lengths         | lengths         | PyTorch:可为子集合长度列表，列表总和为原数组长度。也可为子集合所占比例列表，列表总和为 1.0。PaddlePaddle: 子集合长度列表，列表总和为原数组长度 |
 | generator         | generator         | 指定采样 data_source 的采样器。默认值为 None。                                    |
 
 ### 转写示例
-当参数 lenghts 为总长度的比例数组时，转写如下:
+lenghts: 子集合长度列表
 ```python
 # Pytorch 写法
 lengths = [0.3, 0.3, 0.4]
 datasets = torch.utils.data.random_split(dataset,
                                         lengths,
-                                        generator=torch.Generator().manual_seed(0))
+                                        generator=torch.manual_seed(0))
 
 # Paddle 写法
 lengths = [0.3, 0.3, 0.4]
-lengths = [length * dataset.__len__() for length in lengths]
+lengths = [length * len(dataset) for length in lengths]
 datasets = paddle.io.random_split(dataset,
                                   lengths,
-                                  generator=paddle.fluid.core.default_cpu_generator().manual_seed(0))
+                                  generator=paddle.seed(0))
 ```
