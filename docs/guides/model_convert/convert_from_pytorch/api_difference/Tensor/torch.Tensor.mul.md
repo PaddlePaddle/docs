@@ -3,7 +3,7 @@
 ### [torch.Tensor.mul](https://pytorch.org/docs/1.13/generated/torch.Tensor.mul.html)
 
 ```python
-torch.Tensor.mul(value)
+torch.Tensor.mul(other)
 ```
 
 ### [paddle.Tensor.multiply](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#multiply-y-axis-1-name-none)
@@ -19,5 +19,5 @@ Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                    |
 | ------------- | ------------ | ------------------------------------------------------- |
-| value         | y            | 相乘的矩阵，仅参数名不一致。                               |
+| other         | y            | 相乘的矩阵，仅参数名不一致。                               |
 | -             | axis         | 计算的维度， PyTorch 无此参数， Paddle 保持默认即可。       |
