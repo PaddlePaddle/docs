@@ -13,7 +13,7 @@ TranslatedLayer
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.jit.translated_layer.TranslatedLayer
+COPY-FROM: paddle.jit.TranslatedLayer
 
 方法
 ::::::::::::
@@ -30,4 +30,4 @@ program(method_name='forward'):
 Program
 
 **代码示例**
-COPY-FROM: paddle.jit.translated_layer.TranslatedLayer.program
+COPY-FROM: paddle.jit.TranslatedLayer.program

@@ -31,10 +31,10 @@ TranslatedLayer，一个能够执行存储模型的 ``Layer`` 对象。
 
 1. 载入由接口 ``paddle.jit.save`` 存储的模型进行预测推理及 fine-tune 训练。
 
-COPY-FROM: paddle.jit.api.load:code-example1
+COPY-FROM: paddle.jit.load:code-example1
 
 
 
 2. 兼容载入由接口 ``paddle.fluid.io.save_inference_model`` 存储的模型进行预测推理及 fine-tune 训练。
 
-COPY-FROM: paddle.jit.api.load:code-example2
+COPY-FROM: paddle.jit.load:code-example2

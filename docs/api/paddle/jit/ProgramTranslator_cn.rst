@@ -19,7 +19,7 @@ ProgramTranslator 单例对象。
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.jit.dy2static.program_translator.ProgramTranslator
+COPY-FROM: paddle.jit.ProgramTranslator
 
 方法
 ::::::::::::
@@ -38,7 +38,7 @@ None。
 
 **代码示例**
 
-COPY-FROM: paddle.jit.dy2static.program_translator.ProgramTranslator.enable
+COPY-FROM: paddle.jit.ProgramTranslator.enable
 
 get_output(dygraph_func, *args, **kwargs)
 '''''''''
@@ -56,7 +56,7 @@ get_output(dygraph_func, *args, **kwargs)
 
 **代码示例**
 
-COPY-FROM: paddle.jit.dy2static.program_translator.ProgramTranslator.get_output
+COPY-FROM: paddle.jit.ProgramTranslator.get_output
 
 get_func(dygraph_func)
 '''''''''
@@ -73,7 +73,7 @@ get_func(dygraph_func)
 
 **代码示例**
 
-COPY-FROM: paddle.jit.dy2static.program_translator.ProgramTranslator.get_func
+COPY-FROM: paddle.jit.ProgramTranslator.get_func
 
 get_program(dygraph_func, *args, **kwargs)
 '''''''''
@@ -96,7 +96,7 @@ get_program(dygraph_func, *args, **kwargs)
 
 **代码示例**
 
-COPY-FROM: paddle.jit.dy2static.program_translator.ProgramTranslator.get_program
+COPY-FROM: paddle.jit.ProgramTranslator.get_program
 
 get_code(dygraph_func)
 '''''''''
@@ -113,7 +113,7 @@ get_code(dygraph_func)
 
 **代码示例**
 
-COPY-FROM: paddle.jit.dy2static.program_translator.ProgramTranslator.get_code
+COPY-FROM: paddle.jit.ProgramTranslator.get_code
 
 
 get_program_cache()
@@ -127,4 +127,4 @@ ProgramTranslator 中的 ProgramCache。
 
 **代码示例**
 
-COPY-FROM: paddle.jit.dy2static.program_translator.ProgramTranslator.get_program_cache
+COPY-FROM: paddle.jit.ProgramTranslator.get_program_cache
