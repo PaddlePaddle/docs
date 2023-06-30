@@ -11,7 +11,7 @@ PyLayerContext
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.autograd.py_layer.PyLayerContext
+COPY-FROM: paddle.autograd.PyLayerContext
 
 
 方法
@@ -35,7 +35,7 @@ None
 
 **代码示例**
 
-COPY-FROM: paddle.autograd.py_layer.PyLayerContext.save_for_backward
+COPY-FROM: paddle.autograd.PyLayerContext.save_for_backward
 
 
 saved_tensor()
@@ -50,7 +50,7 @@ saved_tensor()
 
 **代码示例**
 
-COPY-FROM: paddle.autograd.py_layer.PyLayerContext.saved_tensor
+COPY-FROM: paddle.autograd.PyLayerContext.saved_tensor
 
 
 mark_not_inplace(self, *tensors)
@@ -73,7 +73,7 @@ None
 
 **代码示例**
 
-COPY-FROM: paddle.autograd.py_layer.PyLayerContext.mark_not_inplace
+COPY-FROM: paddle.autograd.PyLayerContext.mark_not_inplace
 
 mark_non_differentiable(self, *tensors)
 '''''''''
@@ -97,7 +97,7 @@ None
 
 **代码示例**
 
-COPY-FROM: paddle.autograd.py_layer.PyLayerContext.mark_non_differentiable
+COPY-FROM: paddle.autograd.PyLayerContext.mark_non_differentiable
 
 set_materialize_grads(self, value)
 '''''''''
@@ -120,4 +120,4 @@ None
 
 **代码示例**
 
-COPY-FROM: paddle.autograd.py_layer.PyLayerContext.set_materialize_grads
+COPY-FROM: paddle.autograd.PyLayerContext.set_materialize_grads

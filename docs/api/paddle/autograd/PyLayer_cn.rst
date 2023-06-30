@@ -19,7 +19,7 @@ Paddle 通过创建 ``PyLayer`` 子类的方式实现 Python 端自定义算子�
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.autograd.py_layer.PyLayer
+COPY-FROM: paddle.autograd.PyLayer
 
 
 方法
@@ -40,7 +40,7 @@ Tensor 或至少包含一个 Tensor 的 list/tuple
 
 **代码示例**
 
-COPY-FROM: paddle.autograd.py_layer.PyLayer.forward
+COPY-FROM: paddle.autograd.PyLayer.forward
 
 
 backward(ctx, *args, **kwargs)
@@ -59,7 +59,7 @@ backward(ctx, *args, **kwargs)
 
 **代码示例**
 
-COPY-FROM: paddle.autograd.py_layer.PyLayer.backward
+COPY-FROM: paddle.autograd.PyLayer.backward
 
 
 apply(cls, *args, **kwargs)
@@ -78,4 +78,4 @@ Tensor 或至少包含一个 Tensor 的 list/tuple
 
 **代码示例**
 
-COPY-FROM: paddle.autograd.py_layer.PyLayer
+COPY-FROM: paddle.autograd.PyLayer
