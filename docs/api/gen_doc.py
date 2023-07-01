@@ -1159,7 +1159,7 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
         code_blocks.append(
             {
                 'codes': strip_ps_from_codeblock(
-                    inspect.cleandoc("\n".join(cb_info['cb_cur']))
+                    inspect.cleandoc("\n" + "\n".join(cb_info['cb_cur']))
                 ),
                 'name': cb_info['cb_cur_name'],
                 'id': cb_info['cb_cur_seq_id'],
