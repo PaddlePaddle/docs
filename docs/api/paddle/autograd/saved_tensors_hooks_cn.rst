@@ -21,4 +21,4 @@ saved_tensors_hooks 用于动态图，注册一对 pack / unpack hook，用于�
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.autograd.saved_tensors_hooks.saved_tensors_hooks
+COPY-FROM: paddle.autograd.saved_tensors_hooks
