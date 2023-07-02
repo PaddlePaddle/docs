@@ -22,11 +22,11 @@ program_guard
 代码示例 1
 ::::::::::::
 
-COPY-FROM: paddle.static.program_guard:code-example1
+COPY-FROM: paddle.static.program_guard:code-example-1
 
 例如，当组的网不需要 startup_program 初始化各变量时，可以传入一个临时的 program。
 
 代码示例 2
 ::::::::::::
 
-COPY-FROM: paddle.static.program_guard:code-example2
+COPY-FROM: paddle.static.program_guard:code-example-2

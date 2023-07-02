@@ -18,7 +18,7 @@ PaddlePaddle 里 Tensor 的嵌套结构是指一个 Tensor，或者 Tensor 的�
     2. 本接口在动态图和静态图模式下都可以运行，在动态图情况下就只会按 ``pred`` 条件运行其中一支分支。
     3. 静态图模式下，因为各个分支都要参与组网，因此不论运行哪个分支，在 ``true_fn`` 和 ``false_fn`` 内外创建的 Tensor 和 Op 都会组网，即 PaddlePaddle 并不是惰性语法（lazy semantics）。例如
 
-       COPY-FROM: paddle.static.nn.cond:code-example1
+       COPY-FROM: paddle.static.nn.cond:code-example-1
 
        不管 ``a < b`` 是否成立，``c = a * b`` 都会被组网且运行，``a + c`` 和 ``b * b`` 都会参与组网，只是组网后运行时只会运行条件对应的分支。
 
@@ -36,4 +36,4 @@ Tensor|list(Tensor)|tuple(Tensor)，如果 ``pred`` 是 ``True``，该 API 返�
 
 代码示例
 :::::::::
-COPY-FROM: paddle.static.nn.cond:code-example2
+COPY-FROM: paddle.static.nn.cond:code-example-2

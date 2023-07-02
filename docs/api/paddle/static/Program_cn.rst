@@ -63,7 +63,7 @@ clone(for_test=False)
 
 **代码示例**
 
-COPY-FROM: paddle.static.Program.clone:code-example1
+COPY-FROM: paddle.static.Program.clone:code-example-1
 
 **参数**
 
@@ -79,7 +79,7 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
 .. note::
     Program 在 clone 后的顺序可能不同，这不会影响的训练或测试进程。在下面的示例中，我们提供了一个简单的方法 print_prog（Program）来打印程序描述，以确保 clone 后仍能得到同样的打印结果：
 
-COPY-FROM: paddle.static.Program.clone:code-example2
+COPY-FROM: paddle.static.Program.clone:code-example-2
 
 1. 克隆一个 Program，示例代码如下。
 
