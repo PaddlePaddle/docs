@@ -35,7 +35,7 @@ to_string(throw_on_error, with_details=False)
 **参数**
 
  - **throw_on_error** (bool) - 是否在没有设置必需字段时抛出异常。
- - **with_details** (bool) - 值为 true 时，打印更多关于变量和参数的信息，如 ``trainable``, ``optimize_attr`` 等。
+ - **with_details** (bool) - 值为 true 时，打印更多关于变量和参数的信息，如 ``trainable``， ``optimize_attr`` 等。
 
 **返回**
 
