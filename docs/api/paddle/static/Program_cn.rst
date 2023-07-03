@@ -83,11 +83,11 @@ COPY-FROM: paddle.static.Program.clone:code-example-2
 
 1. 克隆一个 Program，示例代码如下。
 
-COPY-FROM: paddle.static.Program.clone:code-example3
+COPY-FROM: paddle.static.Program.clone:code-example-3
 
 2. 如果分别运行 train Program 和 test Program，则可以不使用 clone。
 
-COPY-FROM: paddle.static.Program.clone:code-example4
+COPY-FROM: paddle.static.Program.clone:code-example-4
 
 上边两个代码片段生成和打印的 Program 是一样的。
 
