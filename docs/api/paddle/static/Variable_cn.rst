@@ -23,13 +23,13 @@ Variable
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.static.VariableMetaClass.Variable:code-example-1
+COPY-FROM: paddle.static.Variable:code-example-1
 
 在动态图模型中：
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.static.VariableMetaClass.Variable:code-example-2
+COPY-FROM: paddle.static.Variable:code-example-2
 
 方法
 ::::::::::::
