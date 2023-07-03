@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.Tensor.mul_
+## [ 功能缺失 ] torch.Tensor.mul_
 ### [torch.Tensor.mul_](https://pytorch.org/docs/1.13/generated/torch.Tensor.mul_.html?highlight=mul_)
 
 ```python
@@ -13,7 +13,7 @@ paddle.Tensor.multiply(y,
                 name=None)
 ```
 
-Paddle 相比 PyTorch 支持更多其他参数，具体如下：
+其中，Paddle 相比 PyTorch 支持更多其他参数，且不支持原地操作，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                    |
