@@ -22,5 +22,5 @@ paddle.distributed.spawn(func, args=(), nprocs=- 1, join=True, daemon=False, **o
 | args       | args           | 函数 func 的输入参数。                                              |
 | nprocs            | nprocs            | 启动进程的数目。 与 Pytorch 默认值不同， Paddle 应设置为 `1`。                                          |
 | join | join            | 对所有启动的进程执行阻塞的 join，等待进程执行结束。                                   |
-| start_method       | -            | 启动方式。 Pytorch 已弃用， Paddle 无此参数。可直接忽略。 |
+| start_method       | -            | 启动方式。 Pytorch 已弃用， Paddle 无此参数。可直接删除。 |
 | -       | options           | 其他初始化并行执行环境的配置选项。 Pytorch 无此参数， Paddle 保持默认即可。 |
