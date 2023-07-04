@@ -31,6 +31,7 @@ paddle.nn.functional.unfold(x,
 | stride        | strides      | 步长大小，PyTorch 支持 int、tuple(int)或者 list(int)，Paddle 仅支持 int 或者 list(int)|
 
 ### 转写示例
+#### kernel_size: 卷积核大小
 ``` python
 # PyTorch 写法
 unfold = nn.functional.unfold(input,kernel_size=(2, 3))

@@ -36,6 +36,7 @@ paddle.nn.Embedding(num_embeddings,
 
 
 ### 转写示例
+#### padding_idx: 是否填充
 ```python
 torch.nn.Embedding(4, 3)
 
