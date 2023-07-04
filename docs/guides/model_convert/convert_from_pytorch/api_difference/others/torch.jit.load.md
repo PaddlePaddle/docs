@@ -18,15 +18,14 @@ paddle.jit.load(path, **configs)
 
 | PyTorch       | PaddlePaddle | 备注                                                                |
 | ------------- | ------------ | ------------------------------------------------------------------- |
-| f             | -            | 文件操作对象，Paddle 无此参数，暂无转写方式。                       |
+| f             | path         | Pytorch 为文件对象或文件名包含后缀，Paddle 为文件名不包含后缀，读取 .pdiparams，.pdmodel 等后缀文件。                       |
 | map_location  | -            | 存储位置，Paddle 无此参数，暂无转写方式。                           |
 | \_extra_files | -            | 额外加载的文件，Paddle 无此参数，暂无转写方式。                     |
-| -             | path         | 载入模型的路径前缀，PyTorch 无此参数，暂无转写方式。                |
 | -             | configs      | 其他用于兼容的载入配置选项，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 ### 转写示例
 
-#### 参数用法不同
+#### f 参数用法不同
 
 ```python
 # PyTorch 写法:

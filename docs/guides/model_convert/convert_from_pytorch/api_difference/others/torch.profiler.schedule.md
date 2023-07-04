@@ -1,4 +1,4 @@
-## [参数不一致]torch.profiler.schedule
+## [仅参数名不一致]torch.profiler.schedule
 
 ### [torch.profiler.schedule](https://pytorch.org/docs/1.13/profiler.html#torch.profiler.schedule)
 
