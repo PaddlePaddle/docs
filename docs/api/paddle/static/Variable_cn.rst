@@ -19,19 +19,17 @@ Variable
 
 如果您希望创建一个 :ref:`api_guide_Variable` 那么可以参考如下示例：
 
+在静态图模型中：
+
 代码示例
 ::::::::::::
-  .. code-block:: python
+COPY-FROM: paddle.static.Variable:code-example-1
 
-      import paddle
+在动态图模型中：
 
-      paddle.enable_static()
-
-      cur_program = paddle.static.Program()
-      cur_block = cur_program.current_block()
-      new_variable = cur_block.create_var(name="X",
-                                          shape=[-1, 23, 48],
-                                          dtype='float32')
+代码示例
+::::::::::::
+COPY-FROM: paddle.static.Variable:code-example-2
 
 方法
 ::::::::::::
@@ -51,21 +49,7 @@ to_string(throw_on_error, with_details=True)
 
 
 **代码示例**
-  .. code-block:: python
-
-        import paddle
-
-        paddle.enable_static()
-
-        cur_program = paddle.static.Program()
-        cur_block = cur_program.current_block()
-        new_variable = cur_block.create_var(name="X",
-                                            shape=[-1, 23, 48],
-                                            dtype='float32')
-
-        print(new_variable.to_string(True))
-        print("\n=============with detail===============\n")
-        print(new_variable.to_string(True, True))
+COPY-FROM: paddle.static.Variable.to_string
 
 
 clone(self)
@@ -78,17 +62,7 @@ clone(self)
 复制的新 ``Variable``。
 
 **代码示例**
-  .. code-block:: python
-
-      import paddle
-
-      paddle.enable_static()
-
-      # create a static Variable
-      x = paddle.static.data(name='x', shape=[3, 2, 1])
-
-      # create a cloned Variable
-      y = x.clone()
+COPY-FROM: paddle.static.Variable.clone
 
 
 detach(self)
@@ -118,21 +92,8 @@ astype(self, dtype)
 **返回**
 一个全新的转换了 ``Dtype`` 的 :ref:`api_guide_Variable`。
 
-
-
 **代码示例**
-  .. code-block:: python
-
-      import paddle
-
-      paddle.enable_static()
-
-      startup_prog = paddle.static.Program()
-      main_prog = paddle.static.Program()
-      with paddle.static.program_guard(startup_prog, main_prog):
-          original_variable = paddle.static.data(name = "new_variable", shape=[2,2], dtype='float32')
-          new_variable = original_variable.astype('int64')
-          print("new var's dtype is: {}".format(new_variable.dtype))
+COPY-FROM: paddle.static.Variable.astype
 
 
 get_value(scope=None)
@@ -149,34 +110,7 @@ get_value(scope=None)
 Tensor， :ref:`api_guide_Variable` 的值。
 
 **代码示例**
-
-.. code-block:: python
-
-      import paddle
-      import paddle.static as static
-      import numpy as np
-
-      paddle.enable_static()
-
-      x = static.data(name="x", shape=[10, 10], dtype='float32')
-
-      y = static.nn.fc(x, 10, name='fc')
-      place = paddle.CPUPlace()
-      exe = static.Executor(place)
-      prog = paddle.static.default_main_program()
-      exe.run(static.default_startup_program())
-      inputs = np.ones((10, 10), dtype='float32')
-      exe.run(prog, feed={'x': inputs}, fetch_list=[y, ])
-      path = 'temp/tensor_'
-      for var in prog.list_vars():
-          if var.persistable:
-              t = var.get_value()
-              paddle.save(t, path+var.name+'.pdtensor')
-
-      for var in prog.list_vars():
-          if var.persistable:
-              t_load = paddle.load(path+var.name+'.pdtensor')
-              var.set_value(t_load)
+COPY-FROM: paddle.static.Variable.get_value
 
 
 set_value(value, scope=None)
@@ -195,33 +129,7 @@ set_value(value, scope=None)
 
 **代码示例**
 
-.. code-block:: python
-
-      import paddle
-      import paddle.static as static
-      import numpy as np
-
-      paddle.enable_static()
-
-      x = static.data(name="x", shape=[10, 10], dtype='float32')
-
-      y = static.nn.fc(x, 10, name='fc')
-      place = paddle.CPUPlace()
-      exe = static.Executor(place)
-      prog = paddle.static.default_main_program()
-      exe.run(static.default_startup_program())
-      inputs = np.ones((10, 10), dtype='float32')
-      exe.run(prog, feed={'x': inputs}, fetch_list=[y, ])
-      path = 'temp/tensor_'
-      for var in prog.list_vars():
-          if var.persistable:
-              t = var.get_value()
-              paddle.save(t, path+var.name+'.pdtensor')
-
-      for var in prog.list_vars():
-          if var.persistable:
-              t_load = paddle.load(path+var.name+'.pdtensor')
-              var.set_value(t_load)
+COPY-FROM: paddle.static.Variable.set_value
 
 
 size(self)
@@ -232,7 +140,6 @@ size(self)
 **返回**
 
 ``Variable``：单元元素数量。
-
 
 **代码示例**
 COPY-FROM: paddle.static.Variable.size
@@ -248,15 +155,7 @@ ndimension(self)
 ``Variable`` 的维度。
 
 **代码示例**
-  .. code-block:: python
-
-      import paddle
-
-      paddle.enable_static()
-
-      x = paddle.static.data(name="x", shape=[10, 10], dtype='float32')
-      print("Variable's number of dimension: ", x.ndimension())
-      # Variable's number of dimension: 2
+COPY-FROM: paddle.static.Variable.ndimension
 
 
 dim(self)
@@ -268,15 +167,7 @@ dim(self)
 ``Variable`` 的维度。
 
 **代码示例**
-  .. code-block:: python
-
-      import paddle
-
-      paddle.enable_static()
-
-      x = paddle.static.data(name="x", shape=[10, 10], dtype='float32')
-      print("Variable's number of dim: ", x.dim())
-      # Variable's number of dim: 2
+COPY-FROM: paddle.static.Variable.dim
 
 
 属性
