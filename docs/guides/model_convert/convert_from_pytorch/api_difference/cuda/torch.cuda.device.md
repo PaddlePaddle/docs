@@ -26,15 +26,15 @@ paddle.CUDAPlace(id)
 
 ```python
 # Pytorch 写法
-torch.cuda.device(torch.device('cuda').index)
+torch.cuda.device(torch.device('cuda'))
 
 # Paddle 写法
 paddle.CUDAPlace(0)
 
 # 增加 index
 # Pytorch 写法
-torch.cuda.device(torch.device('cuda', index=1).index)
+torch.cuda.device(torch.device('cuda', index=index))
 
 # Paddle 写法
-paddle.CUDAPlace(1)
+paddle.CUDAPlace(index)
 ```
