@@ -24,7 +24,7 @@ paddle.io.random_split(dataset,
 | generator         | generator         | 指定采样 data_source 的采样器。默认值为 None。                                    |
 
 ### 转写示例
-lenghts: 子集合长度列表
+#### lenghts: 子集合长度列表
 ```python
 # Pytorch 写法
 lengths = [0.3, 0.3, 0.4]
