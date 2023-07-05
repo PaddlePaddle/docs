@@ -25,13 +25,13 @@ Recall
 
 独立使用示例
 
-COPY-FROM paddle.metric.Recall:code-standalone-example
+COPY-FROM: paddle.metric.Recall:code-standalone-example
 
 代码示例 2
 ::::::::::::
 在 Model API 中的示例
 
-COPY-FROM paddle.metric.Recall:code-model-api-example
+COPY-FROM: paddle.metric.Recall:code-model-api-example
 
 方法
 ::::::::::::

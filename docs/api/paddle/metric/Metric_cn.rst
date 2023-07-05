@@ -51,14 +51,14 @@ Python/NumPy，这样可以加速计算。`update` 接口将 `compute` 的输出
 可以在 `compute` 中计算每个样本的 top-5 得分，正确预测的矩阵的 shape 是[N, 5]。
 
 
-COPY-FROM paddle.metric.Metric:code-compute-example
+COPY-FROM: paddle.metric.Metric:code-compute-example
 
 代码示例 2
 ::::::::::::
 
 在 `compute` 中的计算，使用内置的算子(可以跑在 GPU 上，使得速度更快)。作为 `update` 的输入，该接口计算如下：
 
-COPY-FROM paddle.metric.Metric:code-update-example
+COPY-FROM: paddle.metric.Metric:code-update-example
 
 方法
 ::::::::::::

@@ -26,14 +26,14 @@ Auc
 
 独立使用示例
 
-COPY-FROM paddle.metric.Auc:code-standalone-example
+COPY-FROM: paddle.metric.Auc:code-standalone-example
 
 代码示例 2
 ::::::::::::
 
 在 Model API 中的示例
 
-COPY-FROM paddle.metric.Auc:code-model-api-example
+COPY-FROM: paddle.metric.Auc:code-model-api-example
 
 方法
 ::::::::::::
