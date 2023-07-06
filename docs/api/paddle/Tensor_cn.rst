@@ -2447,7 +2447,7 @@ is_integer()
 
 请参考 :ref:`cn_api_paddle_is_integer`
 
-take_along_axis(arr, index, axis)
+take_along_axis(arr, indices, axis)
 :::::::::
 
 基于输入索引矩阵，沿着指定 axis 从 arr 矩阵里选取 1d 切片。索引矩阵必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
@@ -2458,10 +2458,10 @@ take_along_axis(arr, index, axis)
 
 请参考 :ref:`cn_api_paddle_tensor_take_along_axis`
 
-put_along_axis(arr, index, value, axis, reduce="assign")
+put_along_axis(arr, indices, value, axis, reduce="assign")
 :::::::::
 
-基于输入 index 矩阵，将输入 value 沿着指定 axis 放置入 arr 矩阵。索引矩阵和 value 必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
+基于输入 indices 矩阵，将输入 value 沿着指定 axis 放置入 arr 矩阵。索引矩阵和 value 必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
 
 返回：计算后的 Tensor
 
@@ -2616,7 +2616,7 @@ pca_lowrank(x, q=None, center=True, niter=2, name=None)
 
 cummax(x, axis=None, dtype='int64', name=None)
 :::::::::
-沿给定 axis 计算 Tensor x 的累计最大值。
+沿给定 axis 计算 Tensor x 的累积最大值。
 
 返回：计算后的 Tensor 和对应索引 Indices。
 
@@ -2626,7 +2626,7 @@ cummax(x, axis=None, dtype='int64', name=None)
 
 cummin(x, axis=None, dtype='int64', name=None)
 :::::::::
-沿给定 axis 计算 Tensor x 的累计最小值。
+沿给定 axis 计算 Tensor x 的累积最小值。
 
 返回：计算后的 Tensor 和对应索引 Indices。
 

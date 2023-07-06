@@ -1,4 +1,4 @@
-## [torch 参数更多 ]torch.min
+## [ 参数不一致 ]torch.min
 输入一个 Tensor 对应 paddle.min，输入两个 Tensor 对应 paddle.minimum，因此有两组差异分析，分别如下：
 
 --------------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ paddle.min(x,
            name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+其中 Pytorch 与 Paddle 指定 `dim` 后返回值不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -29,6 +29,7 @@ paddle.min(x,
 | dim           | axis         | 求最小值运算的维度， 仅参数名不一致。                                      |
 | keepdim       | keepdim      | 是否在输出 Tensor 中保留减小的维度。  |
 | out           | -            | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。               |
+| 返回值           | 返回值            | 表示返回结果，当指定 dim 后，PyTorch 会返回比较结果和元素索引， Paddle 不会返回元素索引，需要进行转写。               |
 
 ### 转写示例
 #### out：指定输出
@@ -41,6 +42,14 @@ torch.min(a, out=y)
 
 # Paddle 写法
 paddle.assign(paddle.min(a), y)
+```
+#### 指定 dim 后的返回值
+```python
+# Pytorch 写法
+result = torch.min(a, dim=1)
+
+# Paddle 写法
+result = torch.min(a, dim=1), torch.argmin(a, dim=1)
 ```
 
 --------------------------------------------------------------------------------------------------
