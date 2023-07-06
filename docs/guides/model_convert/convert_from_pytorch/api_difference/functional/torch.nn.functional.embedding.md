@@ -31,14 +31,3 @@ paddle.nn.functional.embedding(x,
 | norm_type     | -            | 为 maxnorm 选项计算 p-范数的 p。默认值 2，Paddle 无此功能，暂无转写方式。  |
 | scale_grad_by_freq | -       | 是否根据单词在 mini-batch 中出现的频率，对梯度进行放缩，Paddle 无此功能，暂无转写方式。  |
 | sparse     | sparse            | 表示是否使用稀疏更新。  |
-
-### 转写示例
-```python
-torch.nn.functional.embedding(x,embedding_matrix)
-
-# paddle 写法
-paddle.nn.functional.embedding(x,embedding_matrix)
-
-# 当 PyTorch 使用 max_norm、norm_type、scale_grad_by_freq 任意参数时，暂不支持转写
-torch.nn.functional.embedding(x,embedding_matrix，max_norm=2.0)
-```

@@ -33,22 +33,3 @@ paddle.nn.Embedding(num_embeddings,
 | scale_grad_by_freq | -       | 是否根据单词在 mini-batch 中出现的频率，对梯度进行放缩，Paddle 无此功能，暂无转写方式。  |
 | sparse     | sparse            | 表示是否使用稀疏更新。  |
 | -             | weight_attr  | 指定权重参数属性的对象，Pytorch 无此参数，Paddle 保持默认即可。  |
-
-
-### 转写示例
-#### padding_idx: 是否填充
-```python
-torch.nn.Embedding(4, 3)
-
-# paddle 写法
-paddle.nn.Embedding(4，3)
-
-
-torch.nn.Embedding(4, 3,padding_idx=0)
-
-# paddle 写法
-paddle.nn.Embedding(4, 3,padding_idx=0)
-
-# 当 PyTorch 使用 max_norm、norm_type、scale_grad_by_freq 任意参数时，暂不支持转写
-torch.nn.Embedding(4, 3,padding_idx=padding_idx,max_norm=2.0)
-```

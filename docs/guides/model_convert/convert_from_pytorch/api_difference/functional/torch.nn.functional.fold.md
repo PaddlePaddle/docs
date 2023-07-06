@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.nn.functional.fold
+## [ 参数不一致 ]torch.nn.functional.fold
 
 ### [torch.nn.functional.fold](https://pytorch.org/docs/stable/generated/torch.nn.functional.fold.html?highlight=functional+fold#torch.nn.functional.fold)
 
