@@ -13,12 +13,3 @@ paddle.is_grad_enabled()
 ```
 
 功能一致，无参数。
-
-### 转写示例
-```python
-# Pytorch 写法
-torch.is_grad_enabled()
-
-# Paddle 写法
-paddle.is_grad_enabled()
-```

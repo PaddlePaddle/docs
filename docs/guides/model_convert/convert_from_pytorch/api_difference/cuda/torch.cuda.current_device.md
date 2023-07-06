@@ -13,12 +13,3 @@ paddle.framework._current_expected_place()
 ```
 
 功能一致，无参数。
-
-### 转写示例
-```python
-# Pytorch 写法
-torch.cuda.current_device()
-
-# Paddle 写法
-paddle.framework._current_expected_place()
-```

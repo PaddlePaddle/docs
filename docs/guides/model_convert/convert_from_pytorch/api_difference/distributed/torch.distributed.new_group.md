@@ -22,14 +22,3 @@ paddle.distributed.new_group(ranks=None, backend=None)
 | timeout    | -            | 进程组执行超时时间，Paddle 无此参数，暂无转写方式。 |
 | backend    | backend      | 用于新建通信组的后端支持。                |
 | pg_options | -            | 进程组选项，Paddle 无此参数，暂无转写方式。         |
-
-
-### 转写示例
-#### timeout 和 pg_options 不支持转写
-```python
-# Pytorch 写法
-torch.distributed.new_group(ranks=[2,3,4])
-
-# Paddle 写法
-paddle.distributed.new_group(ranks=[2,3,4])
-```
