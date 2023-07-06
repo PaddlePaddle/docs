@@ -1,4 +1,4 @@
-## [仅 Paddle 参数更多]torch.cholesky_solve
+## [仅参数名不一致]torch.cholesky_solve
 
 ### [torch.cholesky_solve](https://pytorch.org/docs/2.0/generated/torch.cholesky_solve.html?highlight=cholesky#torch.cholesky_solve)
 
@@ -12,7 +12,7 @@ torch.cholesky_solve(input,input2,upper=False,*,out=None)
 paddle.linalg.cholesky_solve(x,y,upper=False,name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：：
 
 ### 参数映射
 |PyTorch|PaddlePaddle|备注|
