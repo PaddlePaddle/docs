@@ -24,13 +24,3 @@ paddle.amp.auto_cast(enable=True, custom_white_list=None, custom_black_list=None
 | -             | custom_white_list | 自定义算子白名单，PyTorch 无此参数，Paddle 保持默认即可。    |
 | -             | custom_black_list | 自定义算子黑名单，PyTorch 无此参数，Paddle 保持默认即可。    |
 | -             | level             | 混合精度训练模式，PyTorch 无此参数，Paddle 保持默认即可。    |
-
-### 转写示例
-
-```python
-# Pytorch 写法
-torch.cuda.amp.autocast(enabled=False)
-
-# Paddle 写法
-paddle.amp.auto_cast(enable=False)
-```

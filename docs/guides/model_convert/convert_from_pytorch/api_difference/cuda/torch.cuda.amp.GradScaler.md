@@ -25,14 +25,3 @@ paddle.amp.GradScaler(enable=True, init_loss_scaling=32768.0, incr_ratio=2.0, de
 | enabled         | enable                  | 是否使用 loss scaling。                                      |
 | -               | decr_every_n_nan_or_inf  | 累计出现 n 个 steps 的梯度为 nan 或者 inf 时，减小 loss scaling，PyTorch 无此参数，Paddle 保持默认即可。 |
 | -               | use_dynamic_loss_scaling | 是否使用动态的 loss scaling，PyTorch 无此参数，Paddle 保持默认即可。 |
-
-
-### 转写示例
-
-```python
-# Pytorch 写法
-torch.cuda.amp.GradScaler(init_scale=32768,growth_interval=1000)
-
-# Paddle 写法
-paddle.amp.GradScaler(init_loss_scaling=32768, incr_every_n_steps=1000)
-```
