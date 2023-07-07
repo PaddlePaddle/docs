@@ -41,19 +41,7 @@ Adadelta 优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
-    linear = paddle.nn.Linear(10, 10)
-    out = linear(inp)
-    loss = paddle.mean(out)
-    adadelta = paddle.optimizer.Adadelta(learning_rate=0.0003, epsilon=1e-06, rho=0.95,
-            parameters=linear.parameters())
-    out.backward()
-    adadelta.step()
-    adadelta.clear_grad()
+COPY-FROM: paddle.optimizer.Adadelta
 
 
 方法
@@ -73,20 +61,7 @@ step()
 
 
 
-**代码示例**
-
-.. code-block:: python
-
-    import paddle
-    value = paddle.arange(26, dtype='float32')
-    a = paddle.reshape(value, [2, 13])
-    linear = paddle.nn.Linear(13, 5)
-    adadelta = paddle.optimizer.Adadelta(learning_rate=0.0003, epsilon=1e-06, rho=0.95,
-                                parameters = linear.parameters())
-    out = linear(a)
-    out.backward()
-    adadelta.step()
-    adadelta.clear_grad()
+COPY-FROM: paddle.optimizer.Adadelta.step
 
 minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 '''''''''
@@ -107,23 +82,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
-    linear = paddle.nn.Linear(10, 10)
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    beta1 = paddle.to_tensor([0.9], dtype="float32")
-    beta2 = paddle.to_tensor([0.99], dtype="float32")
-
-    adadelta = paddle.optimizer.Adadelta(learning_rate=0.0003, epsilon=1e-06, rho=0.95,
-            parameters=linear.parameters())
-    out.backward()
-    adadelta.minimize(loss)
-    adadelta.clear_grad()
+COPY-FROM: paddle.optimizer.Adadelta.minimize
 
 clear_grad()
 '''''''''
@@ -137,19 +96,7 @@ clear_grad()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    value = paddle.arange(26, dtype='float32')
-    a = paddle.reshape(value, [2, 13])
-    linear = paddle.nn.Linear(13, 5)
-    optimizer = paddle.optimizer.Adadelta(learning_rate=0.0003, epsilon=1e-06, rho=0.95,
-                                     parameters=linear.parameters())
-    out = linear(a)
-    out.backward()
-    optimizer.step()
-    optimizer.clear_grad()
+COPY-FROM: paddle.optimizer.Adadelta.clear_grad
 
 set_lr(value)
 '''''''''
@@ -170,26 +117,7 @@ set_lr(value)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    linear = paddle.nn.Linear(10, 10)
-
-    adadelta = paddle.optimizer.Adadelta(weight_decay=0.01,
-                                 learning_rate=0.1, parameters=linear.parameters())
-
-    # set learning rate manually by python float value
-    lr_list = [0.2, 0.3, 0.4, 0.5, 0.6]
-    for i in range(5):
-        adadelta.set_lr(lr_list[i])
-        lr = adadelta.get_lr()
-        print("current lr is {}".format(lr))
-    # Print:
-    #    current lr is 0.2
-    #    current lr is 0.3
-    #    current lr is 0.4
-    #    current lr is 0.5
-    #    current lr is 0.6
+COPY-FROM: paddle.optimizer.Adadelta.set_lr
 
 get_lr()
 '''''''''
@@ -207,37 +135,4 @@ float，当前步骤的学习率。
 
 **代码示例**
 
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-    # example1: _LRScheduler is not used, return value is all the same
-    emb = paddle.nn.Embedding(10, 10, sparse=False)
-    adadelta = paddle.optimizer.Adadelta(learning_rate=0.001, parameters = emb.parameters(),weight_decay=0.01)
-    lr = adadelta.get_lr()
-    print(lr) # 0.001
-
-    # example2: PiecewiseDecay is used, return the step learning rate
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
-    linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    bd = [2, 4, 6, 8]
-    value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    scheduler = paddle.optimizer.lr.PiecewiseDecay(bd, value, 0)
-    adadelta = paddle.optimizer.Adadelta(scheduler,
-                           parameters=linear.parameters(),
-                           weight_decay=0.01)
-
-    # first step: learning rate is 0.2
-    np.allclose(adadelta.get_lr(), 0.2, rtol=1e-06, atol=0.0) # True
-
-    # learning rate for different steps
-    ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
-    for i in range(12):
-        adadelta.step()
-        lr = adadelta.get_lr()
-        scheduler.step()
-        np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
+COPY-FROM: paddle.optimizer.Adadelta.get_lr
