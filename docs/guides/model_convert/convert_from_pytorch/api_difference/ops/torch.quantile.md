@@ -12,7 +12,7 @@ torch.quantile(input,
                out=None)
 ```
 
-### [paddle.quantile](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nextafter_cn.html)
+### [paddle.quantile](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/quantile_cn.html)
 
 ```python
 paddle.quantile(x,
