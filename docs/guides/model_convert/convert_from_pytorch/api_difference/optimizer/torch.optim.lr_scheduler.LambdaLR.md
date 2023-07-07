@@ -4,21 +4,21 @@
 
 ```python
 torch.optim.lr_scheduler.LambdaLR(optimizer,
-                            lr_lambda,
-                            last_epoch=-1,
-                            verbose=False)
+                                lr_lambda,
+                                last_epoch=-1,
+                                verbose=False)
 ```
 
 ### [paddle.optimizer.lr.LambdaDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/lr/LambdaDecay_cn.html)
 
 ```python
 paddle.optimizer.lr.LambdaDecay(learning_rate,
-                          lr_lambda,
-                          last_epoch=-1,
-                          verbose=False)
+                                lr_lambda,
+                                last_epoch=-1,
+                                verbose=False)
 ```
 
-其中功能一致, 参数用法不一致，具体如下：
+两者 API 功能一致, 参数用法不一致，具体如下：
 
 ### 参数映射
 

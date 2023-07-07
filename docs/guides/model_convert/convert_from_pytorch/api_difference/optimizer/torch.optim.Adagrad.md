@@ -31,12 +31,12 @@ paddle.optimizer.Adagrad(learning_rate,
 
 | PyTorch                             | PaddlePaddle | 备注                                                                    |
 | ----------------------------------- | ------------ | ----------------------------------------------------------------------- |
-| params     | parameters           | 表示指定优化器需要优化的参数，仅参数名不一致。                         |
+| params     | parameters           | 表示指定优化器需要优化的参数，仅参数名不同。                      |
 | lr     | learning_rate       | 学习率，用于参数更新的计算。参数默认值不一致, Pytorch 默认为`0.01`， Paddle 为必选参数。                          |
 | weight_decay           | weight_decay     | 表示权重衰减系数，参数默认值不一致, Pytorch 默认为`0`， Paddle 默认为`None`。         |
 | initial_accumulator_value   | initial_accumulator_value   | 表示 moment 累加器的初始值，参数默认值一致。                       |
 | eps       | epsilon        | 保持数值稳定性的短浮点类型值，参数默认值不一致, Pytorch 默认为`1e-10`， Paddle 为`1e-6`。                           |
-| lr_decay           | -     | 学习率衰减系数。Paddle 无此参数，可直接删除。         |
+| lr_decay           | -     | 学习率衰减系数。Paddle 无此参数，暂无转写方式。         |
 | maximize           | -     | 根据目标最大化参数，而不是最小化。Paddle 无此参数，可直接删除。         |
 | differentiable      | -     | 是否应通过训练中的优化器步骤进行自动微分。Paddle 无此参数，可直接删除。         |
 | -          | grad_clip            | 梯度裁剪的策略。 PyTorch 无此参数，Paddle 保持默认即可。       |
