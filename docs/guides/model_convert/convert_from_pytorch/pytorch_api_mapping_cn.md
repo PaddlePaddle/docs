@@ -15,7 +15,6 @@
 | [torch.nn.functional.XX](#id3) | 主要为`torch.nn.functional.XX`类 API |
 | [torch.nn.init.XX](#id4) | 主要为`torch.nn.init.XX`类 API |
 | [torch.nn.utils.XX](#id5) | 主要为`torch.nn.utils.XX`类 API |
-| [torch.nn.Module.XX](#id15) | 主要为`torch.nn.Module.XX`类 API |
 | [torch.Tensor.XX](#id6) | 主要为`torch.Tensor.XX`类 API |
 | [torch.cuda.XX](#id7) | 主要为`torch.cuda.XX`类 API |
 | [torch.distributed.XX](#id8) | 主要为`torch.distributed.XX`类 API |
@@ -654,18 +653,6 @@
 | 12   |  [torch.utils.data.random_split](https://pytorch.org/docs/1.13/data.html?highlight=torch+utils+data+random_split#torch.utils.data.random_split)  |  [paddle.io.random_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/random_split_cn.html)  |    功能一致, 参数完全一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.random_split.md)  |
 | 13   |  [torch.utils.dlpack.from_dlpack](https://pytorch.org/docs/1.13/dlpack.html?highlight=torch+utils+dlpack+from_dlpack#torch.utils.dlpack.from_dlpack)  |  [paddle.utils.dlpack.from_dlpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/dlpack/from_dlpack_cn.html)  |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.dlpack.from_dlpack.md)  |
 | 14   |  [torch.utils.dlpack.to_dlpack](https://pytorch.org/docs/1.13/dlpack.html?highlight=torch+utils+dlpack+to_dlpack#torch.utils.dlpack.to_dlpack)  |  [paddle.utils.dlpack.to_dlpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/dlpack/to_dlpack_cn.html)  |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.dlpack.to_dlpack.md)  |
-
-
-***持续更新...***
-
-## torch.nn.Module.XX API 映射列表
-梳理了`torch.nn.Module.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
-
-| 序号 | PyTorch API | PaddlePaddle API | 备注 |
- |--- | --- | --- | --- |
-| 1   |  [torch.nn.Module.cpu](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.cpu)  |   |    功能缺失  |
-| 2   |  [torch.nn.Module.cuda](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.cuda)  |   |    功能缺失  |
-| 3   |  [torch.nn.Module.xpu](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.xpu)  |   |    功能缺失  |
 
 
 ***持续更新...***
