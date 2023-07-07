@@ -12,14 +12,14 @@ torch.nn.RNNBase(mode: str, input_size: int, hidden_size: int,
 paddle.nn.layer.rnn.RNNBase(mode, input_size, hidden_size,
         num_layers=1, direction="forward", time_major=False,
         dropout=0.0, weight_ih_attr=None, weight_hh_attr=None,
-        bias_ih_attr=None, bias_hh_attr=None,)
+        bias_ih_attr=None, bias_hh_attr=None)
 ```
 
 两者功能一致但参数不一致，部分参数名不同，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| mode          | mode         | 表示 `RNN` 模型的类型,torch 取值为 `'LSTM', 'GRU', 'RNN_TANH', 'RNN_RELU`，paddle 取值为 `'SimpleRNN', 'LSTM', 'GRU`，需要转写。|
+| mode          | mode         | 表示 `RNN` 模型的类型,torch 取值为 `'LSTM', 'GRU', 'RNN_TANH', 'RNN_RELU`，paddle 取值为 `'LSTM', 'GRU'`，需要转写。|
 | input_size          | input_size            | 表示输入 x 的大小。  |
 | hidden_size          | hidden_size            | 表示隐藏状态 h 大小。  |
 | num_layers          | num_layers            | 表示循环网络的层数。  |
