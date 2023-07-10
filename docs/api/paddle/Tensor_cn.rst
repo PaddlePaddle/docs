@@ -183,11 +183,7 @@ shape
 
 **代码示例**
 
-    .. code-block:: python
-
-        import paddle
-        print("Tensor's shape: ", paddle.to_tensor([[1, 2], [3, 4]]).shape)
-        # Tensor's shape: [2, 2]
+COPY-FROM: paddle.shape
 
 stop_gradient
 :::::::::
@@ -625,14 +621,8 @@ cosh(name=None)
 请参考 :ref:`cn_api_fluid_layers_cosh`
 
 **代码示例**
-    .. code-block:: python
 
-        import paddle
-
-        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-        out = paddle.cosh(x)
-        print(out)
-        # [1.08107237 1.02006674 1.00500417 1.04533851]
+COPY-FROM: paddle.cosh
 
 count_nonzero(axis=None, keepdim=False, name=None)
 :::::::::
@@ -2034,14 +2024,8 @@ sinh(name=None)
 对该 Tensor 中逐个元素求双曲正弦。
 
 **代码示例**
-    .. code-block:: python
 
-        import paddle
-
-        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-        out = x.sinh()
-        print(out)
-        # [-0.41075233 -0.201336    0.10016675  0.30452029]
+COPY-FROM: paddle.sinh
 
 size()
 :::::::::
