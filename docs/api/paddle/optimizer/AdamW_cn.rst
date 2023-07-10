@@ -225,6 +225,42 @@ set_lr(value)
     #    current lr is 0.5
     #    current lr is 0.6
 
+set_lr_scheduler(scheduler)
+'''''''''
+
+.. note::
+  该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+
+手动设置当前 ``optimizer`` 的学习率为 LRScheduler 类。
+
+**参数**
+
+    scheduler (LRScheduler) - 需要设置的学习率的 LRScheduler 类。
+
+**返回**
+
+无。
+
+**代码示例**
+
+.. code-block:: python
+    import paddle
+    linear = paddle.nn.Linear(10, 10)
+    adam = paddle.optimizer.AdamW(weight_decay=0.01,
+                                 learning_rate=0.1, parameters=linear.parameters())
+    # set learning rate manually by class LRScheduler
+    scheduler = paddle.optimizer.lr.MultiStepDecay(learning_rate=0.5, milestones=[2,4,6], gamma=0.8)
+    adam.set_lr_scheduler(scheduler)
+    lr = adam.get_lr()
+    print("current lr is {}".format(lr))
+    #    current lr is 0.5
+    # set learning rate manually by another LRScheduler
+    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.1, step_size=5, gamma=0.6)
+    adam.set_lr_scheduler(scheduler)
+    lr = adam.get_lr()
+    print("current lr is {}".format(lr))
+    #    current lr is 0.1
+
 get_lr()
 '''''''''
 

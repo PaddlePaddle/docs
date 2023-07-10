@@ -149,7 +149,7 @@ list/string
 server_num()
 '''''''''
 
-**注意：**
+.. note::
 
   **该参数只在 ParameterServer 模式下生效**
 
@@ -172,7 +172,7 @@ server_index()
 '''''''''
 
 
-**注意：**
+.. note::
 
   **该参数只在 ParameterServer 模式下生效**
 
@@ -196,7 +196,7 @@ server_endpoints(to_string=False)
 '''''''''
 
 
-**注意：**
+.. note::
 
   **该参数只在 ParameterServer 模式下生效**
 
@@ -219,7 +219,7 @@ is_server()
 '''''''''
 
 
-**注意：**
+.. note::
 
   **该参数只在 ParameterServer 模式下生效**
 
@@ -422,7 +422,7 @@ distributed_optimizer(optimizer, strategy=None)
 distributed_model(model)
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -487,7 +487,7 @@ distributed_model(model)
 state_dict()
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -525,7 +525,7 @@ dict，当前 ``optimizer`` 使用的所有 Tensor。
 set_state_dict(state_dict)
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -566,7 +566,7 @@ None
 set_lr(value)
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -616,10 +616,57 @@ None
     #    current lr is 0.6
 
 
+set_lr_scheduler(scheduler)
+'''''''''
+
+.. note::
+
+  **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+手动设置当前 ``optimizer`` 的学习率为 LRScheduler 类。
+
+**参数**
+
+    scheduler (LRScheduler) - 需要设置的学习率的 LRScheduler 类。
+
+**返回**
+None
+
+
+**代码示例**
+
+.. code-block:: python
+    # 这个示例需要由 fleetrun 启动，用法为：
+    # fleetrun --gpus=0,1 example.py
+    # 脚本 example.py 中的代码是下面这个示例。
+    import numpy as np
+    import paddle
+    from paddle.distributed import fleet
+    fleet.init(is_collective=True)
+    value = np.arange(26).reshape(2, 13).astype("float32")
+    a = paddle.to_tensor(value)
+    layer = paddle.nn.Linear(13, 5)
+    adam = paddle.optimizer.Adam(learning_rate=0.01, parameters=layer.parameters())
+    adam = fleet.distributed_optimizer(adam)
+    dp_layer = fleet.distributed_model(layer)
+    # set learning rate manually by class LRScheduler
+    scheduler = paddle.optimizer.lr.MultiStepDecay(learning_rate=0.5, milestones=[2,4,6], gamma=0.8)
+    adam.set_lr_scheduler(scheduler)
+    lr = adam.get_lr()
+    print("current lr is {}".format(lr))
+    #    current lr is 0.5
+    # set learning rate manually by another LRScheduler
+    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.1, step_size=5, gamma=0.6)
+    adam.set_lr_scheduler(scheduler)
+    lr = adam.get_lr()
+    print("current lr is {}".format(lr))
+    #    current lr is 0.1
+
+
 get_lr()
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -660,7 +707,7 @@ float，当前步骤的学习率。
 step()
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -721,7 +768,7 @@ None。
 clear_grad()
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
