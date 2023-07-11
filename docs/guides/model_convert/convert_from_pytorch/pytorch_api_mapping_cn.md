@@ -20,6 +20,7 @@
 | [torch.distributed.XX](#id8) | 主要为`torch.distributed.XX`类 API |
 | [torch.distributions.XX](#id9)    | 主要为`torch.distributions.XX`类 API |
 | [torch.fft.XX](#id10)    | 主要为`torch.fft.XX`类 API |
+| [torch.hub.XX](#id14)    | 主要为`torch.hub.XX`类 API |
 | [torch.linalg.XX](#id11)    | 主要为`torch.linalg.XX`类 API |
 | [torch.sparse.XX](#id12)    | 主要为`torch.sparse.XX`类 API |
 | [其他](#id13)    | 其他 API |
@@ -713,6 +714,17 @@
 | 4   |  [torch.fft.hfftn](https://pytorch.org/docs/1.13/generated/torch.fft.hfftn.html?highlight=torch+fft+hfftn#torch.fft.hfftn)  |  [paddle.fft.hfftn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/hfftn_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/fft/torch.fft.hfftn.md)  |
 | 5   |  [torch.fft.ihfft2](https://pytorch.org/docs/1.13/generated/torch.fft.ihfft2.html?highlight=torch+fft+ihfft2#torch.fft.ihfft2)  |  [paddle.fft.ihfft2](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/ihfft2_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/fft/torch.fft.ihfft2.md)  |
 | 6   |  [torch.fft.ihfftn](https://pytorch.org/docs/1.13/generated/torch.fft.ihfftn.html?highlight=torch+fft+ihfftn#torch.fft.ihfftn)  |  [paddle.fft.ihfftn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/ihfftn_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/fft/torch.fft.ihfftn.md)  |
+
+
+***持续更新...***
+
+## torch.hub.XX API 映射列表
+梳理了`torch.hub.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
+
+| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 1    | [torch.hub.get_dir](https://pytorch.org/docs/stable/hub.html?highlight=torch+hub+get_dir#torch.hub.get_dir) |  | 功能缺失        |
+| 2    | [torch.hub.set_dir](https://pytorch.org/docs/stable/hub.html?highlight=torch+hub+get_dir#torch.hub.set_dir) |  | 功能缺失        |
 
 
 ***持续更新...***
