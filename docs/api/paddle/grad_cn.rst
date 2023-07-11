@@ -31,7 +31,6 @@ tuple(Tensor)，其长度等于 `inputs` 中的变量个数，且第 i 个返回
 代码示例 1
 :::::::::
 COPY-FROM: paddle.grad:code-example-1
-
 代码示例 2
 :::::::::
 COPY-FROM: paddle.grad:code-example-2

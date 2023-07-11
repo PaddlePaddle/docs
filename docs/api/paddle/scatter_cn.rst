@@ -28,5 +28,4 @@ Tensor，与 x 有相同形状和数据类型。
 
 代码示例
 :::::::::
-
 COPY-FROM: paddle.scatter
