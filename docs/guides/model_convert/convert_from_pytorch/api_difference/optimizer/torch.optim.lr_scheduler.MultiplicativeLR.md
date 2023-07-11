@@ -1,18 +1,18 @@
-## [ 组合替代实现 ]torch.optim.lr_scheduler.LambdaLR
+## [ 组合替代实现 ]torch.optim.lr_scheduler.MultiplicativeLR
 
-### [torch.optim.lr_scheduler.LambdaLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.LambdaLR.html)
+### [torch.optim.lr_scheduler.MultiplicativeLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.MultiplicativeLR.html)
 
 ```python
-torch.optim.lr_scheduler.LambdaLR(optimizer,
+torch.optim.lr_scheduler.MultiplicativeLR(optimizer,
                                 lr_lambda,
                                 last_epoch=-1,
                                 verbose=False)
 ```
 
-### [paddle.optimizer.lr.LambdaDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/lr/LambdaDecay_cn.html)
+### [paddle.optimizer.lr.MultiplicativeDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/lr/MultiplicativeDecay_cn.html)
 
 ```python
-paddle.optimizer.lr.LambdaDecay(learning_rate,
+paddle.optimizer.lr.MultiplicativeDecay(learning_rate,
                                 lr_lambda,
                                 last_epoch=-1,
                                 verbose=False)
@@ -34,11 +34,11 @@ paddle.optimizer.lr.LambdaDecay(learning_rate,
 # Pytorch 写法
 linear = torch.nn.Linear(10, 10)
 sgd = torch.optimizer.SGD(lr=0.5, parameters=linear.parameters())
-scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer=sgd, lr_lambda=lambda x:0.95**x)
+scheduler = torch.optim.lr_scheduler.MultiplicativeLR(optimizer=sgd, lr_lambda=lambda x:0.95**x)
 
 # Paddle 写法
 linear = paddle.nn.linear(10, 10)
 sgd = paddle.optimizer.SGD(learning_rate=0.5, parameters=linear.parameters())
-scheduler = paddle.optimizer.lr.LambdaDecay(learning_rate=0.5, lr_lambda=lambda x:0.95**x)
+scheduler = paddle.optimizer.lr.MultiplicativeDecay(learning_rate=0.5, lr_lambda=lambda x:0.95**x)
 sgd.set_lr_scheduler(scheduler)
 ```
