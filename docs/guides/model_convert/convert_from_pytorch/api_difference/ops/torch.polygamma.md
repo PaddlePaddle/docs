@@ -30,7 +30,7 @@ paddle.polygamma(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.polygamma(torch.tensor([1, 0.5]), 1, out=y)
+torch.polygamma(1, torch.tensor([1, 0.5]), out=y)
 
 # Paddle 写法
 paddle.assign(paddle.polygamma(paddle.to_tensor([1, 0.5]), 1), y)

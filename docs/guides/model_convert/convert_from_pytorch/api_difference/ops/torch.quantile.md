@@ -38,7 +38,7 @@ paddle.quantile(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.quantile(torch.tensor([0., 1., 2., 3.]), 0.6, out=y)
+torch.quantile(torch.tensor([0., 1., 2., 3.]), 0.6, interpolation='linear', out=y)
 
 # Paddle 写法
 paddle.assign(paddle.quantile(paddle.to_tensor([0., 1., 2., 3.]), 0.6), y)
