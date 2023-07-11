@@ -49,15 +49,15 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
 
 **参数**
 
-  - **program** (Program|CompiledProgram) – 该参数为被执行的 Program 或 CompiledProgram，如果未提供该参数，即该参数为 None，在该接口内，main_program 将被设置为 paddle.static.default_main_program()。默认为：None。
-  - **feed** (list|dict) – 该参数表示模型的输入变量。如果是单卡训练，``feed`` 为 ``dict`` 类型，如果是多卡训练，参数 ``feed`` 可以是 ``dict`` 或者 ``list`` 类型变量，如果该参数类型为 ``dict`` ，feed 中的数据将会被分割(split)并分送给多个设备（CPU/GPU），即输入数据被均匀分配到不同设备上；如果该参数类型为 ``list``，则列表中的各个元素都会直接分别被拷贝到各设备中。默认为：None。
-  - **fetch_list** (list) – 该参数表示模型运行之后需要返回的变量。默认为：None。
-  - **feed_var_name** (str) – 该参数表示数据输入算子(feed operator)的输入变量名称。默认为："feed"。
-  - **fetch_var_name** (str) – 该参数表示结果获取算子(fetch operator)的输出变量名称。默认为："fetch"。
-  - **scope** (Scope) – 该参数表示执行当前 program 所使用的作用域，用户可以为不同的 program 指定不同的作用域。默认值：paddle.static.global_scope()。
-  - **return_numpy** (bool) – 该参数表示是否将返回的计算结果（fetch list 中指定的变量）转化为 numpy；如果为 False，则每个变量返回的类型为 Tensor，否则返回变量的类型为 numpy.ndarray。默认为：True。
-  - **use_program_cache** (bool) – 该参数表示是否对输入的 Program 进行缓存。如果该参数为 True，在以下情况时，模型运行速度可能会更快：输入的 program 为 ``paddle.static.Program``，并且模型运行过程中，调用该接口的参数（program、 feed 变量名和 fetch_list 变量）名始终不变。默认为：False。
-  - **use_prune** (bool) - 该参数表示输入 Program 是否会被裁剪。如果该参数为 True，会根据 feed 和 fetch_list 裁剪 Program，这意味着对生成 fetch_list 没有必要的算子和变量会被裁剪掉。默认为 False，即算子和变量在运行过程不会被裁剪。注意如果 Optimizer.minimize()返回的 tuple 被作为 fetch_list 参数，那么 use_prune 会被重载为 True 并且 Program 会被裁剪。
+  - **program** (Program|CompiledProgram，可选) – 该参数为被执行的 Program 或 CompiledProgram，如果未提供该参数，即该参数为 None，在该接口内，main_program 将被设置为 paddle.static.default_main_program()。默认为：None。
+  - **feed** (list|dict，可选) – 该参数表示模型的输入变量。如果是单卡训练，``feed`` 为 ``dict`` 类型，如果是多卡训练，参数 ``feed`` 可以是 ``dict`` 或者 ``list`` 类型变量，如果该参数类型为 ``dict`` ，feed 中的数据将会被分割(split)并分送给多个设备（CPU/GPU），即输入数据被均匀分配到不同设备上；如果该参数类型为 ``list``，则列表中的各个元素都会直接分别被拷贝到各设备中。默认为：None。
+  - **fetch_list** (list，可选) – 该参数表示模型运行之后需要返回的变量。默认为：None。
+  - **feed_var_name** (str，可选) – 该参数表示数据输入算子(feed operator)的输入变量名称。默认为："feed"。
+  - **fetch_var_name** (str，可选) – 该参数表示结果获取算子(fetch operator)的输出变量名称。默认为："fetch"。
+  - **scope** (Scope，可选) – 该参数表示执行当前 program 所使用的作用域，用户可以为不同的 program 指定不同的作用域。默认值：paddle.static.global_scope()。
+  - **return_numpy** (bool，可选) – 该参数表示是否将返回的计算结果（fetch list 中指定的变量）转化为 numpy；如果为 False，则每个变量返回的类型为 Tensor，否则返回变量的类型为 numpy.ndarray。默认为：True。
+  - **use_program_cache** (bool，可选) – 该参数表示是否对输入的 Program 进行缓存。如果该参数为 True，在以下情况时，模型运行速度可能会更快：输入的 program 为 ``paddle.static.Program``，并且模型运行过程中，调用该接口的参数（program、 feed 变量名和 fetch_list 变量）名始终不变。默认为：False。
+  - **use_prune** (bool，可选) - 该参数表示输入 Program 是否会被裁剪。如果该参数为 True，会根据 feed 和 fetch_list 裁剪 Program，这意味着对生成 fetch_list 没有必要的算子和变量会被裁剪掉。默认为 False，即算子和变量在运行过程不会被裁剪。注意如果 Optimizer.minimize()返回的 tuple 被作为 fetch_list 参数，那么 use_prune 会被重载为 True 并且 Program 会被裁剪。
 
 **返回**
 
@@ -83,15 +83,15 @@ infer_from_dataset 的文档与 train_from_dataset 几乎完全相同，只是�
 
 **参数**
 
-  - **program** (Program|CompiledProgram) – 需要执行的 program，如果没有给定那么默认使用 default_main_program (未编译的)。
-  - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查 Dataset 文件。默认为 None。
-  - **scope** (Scope) – 执行这个 program 的域，用户可以指定不同的域。默认为全局域。
-  - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为 min(Dataset.thread_num, thread)，如果 thread > 0，默认为 0。
-  - **debug** (bool) – 是否开启 debug 模式，默认为 False。
-  - **fetch_list** (Tensor List) – 返回变量列表，每个变量都会在预测过程中被打印出来，默认为 None。
-  - **fetch_info** (String List) – 每个变量的打印信息，默认为 None。
-  - **print_period** (int) – 每两次打印之间间隔的 mini-batches 的数量，默认为 100。
-  - **fetch_handler** (FetchHandler) - 获取用户定义的输出类。
+  - **program** (Program|CompiledProgram，可选) – 需要执行的 program，如果没有给定那么默认使用 default_main_program (未编译的)。
+  - **dataset** (paddle.fluid.Dataset，可选) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查 Dataset 文件。默认为 None。
+  - **scope** (Scope，可选) – 执行这个 program 的域，用户可以指定不同的域。默认为全局域。
+  - **thread** (int，可选) – 用户想要在这个函数中运行的线程数量。线程的实际数量为 min(Dataset.thread_num, thread)，如果 thread > 0，默认为 0。
+  - **debug** (bool，可选) – 是否开启 debug 模式，默认为 False。
+  - **fetch_list** (Tensor List，可选) – 返回变量列表，每个变量都会在预测过程中被打印出来，默认为 None。
+  - **fetch_info** (String List，可选) – 每个变量的打印信息，默认为 None。
+  - **print_period** (int，可选) – 每两次打印之间间隔的 mini-batches 的数量，默认为 100。
+  - **fetch_handler** (FetchHandler，可选) - 获取用户定义的输出类。
 
 **返回**
 
@@ -111,15 +111,15 @@ train_from_dataset 将销毁每次运行在 executor 中创建的所有资源。
 
 **参数**
 
-  - **program** (Program|CompiledProgram) – 需要执行的 program，如果没有给定那么默认使用 default_main_program (未编译的)。
-  - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查 Dataset 文件。默认为 None。
-  - **scope** (Scope) – 执行这个 program 的域，用户可以指定不同的域。默认为全局域。
-  - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为 min(Dataset.thread_num, thread)，如果 thread > 0，默认为 0。
-  - **debug** (bool) – 是否开启 debug 模式，默认为 False。
-  - **fetch_list** (Tensor List) – 返回变量列表，每个变量都会在训练过程中被打印出来，默认为 None。
-  - **fetch_info** (String List) – 每个变量的打印信息，默认为 None。
-  - **print_period** (int) – 每两次打印之间间隔的 mini-batches 的数量，默认为 100。
-  - **fetch_handler** (FetchHandler) - 获取用户定义的输出类。
+  - **program** (Program|CompiledProgram，可选) – 需要执行的 program，如果没有给定那么默认使用 default_main_program (未编译的)。
+  - **dataset** (paddle.fluid.Dataset，可选) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查 Dataset 文件。默认为 None。
+  - **scope** (Scope，可选) – 执行这个 program 的域，用户可以指定不同的域。默认为全局域。
+  - **thread** (int，可选) – 用户想要在这个函数中运行的线程数量。线程的实际数量为 min(Dataset.thread_num, thread)，如果 thread > 0，默认为 0。
+  - **debug** (bool，可选) – 是否开启 debug 模式，默认为 False。
+  - **fetch_list** (Tensor List，可选) – 返回变量列表，每个变量都会在训练过程中被打印出来，默认为 None。
+  - **fetch_info** (String List，可选) – 每个变量的打印信息，默认为 None。
+  - **print_period** (int，可选) – 每两次打印之间间隔的 mini-batches 的数量，默认为 100。
+  - **fetch_handler** (FetchHandler，可选) - 获取用户定义的输出类。
 
 **返回**
 

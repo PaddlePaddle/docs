@@ -37,6 +37,7 @@ to_string(throw_on_error, with_details=False)
  - **throw_on_error** (bool) - 是否在没有设置必需字段时抛出异常。
  - **with_details** (bool) - 值为 true 时，打印更多关于变量和参数的信息，如 ``trainable``， ``optimize_attr`` 等。
 
+
 **返回**
 
 str，由 Program 转换得到的字符串。
@@ -67,7 +68,7 @@ COPY-FROM: paddle.static.Program.clone:code-example-1
 
 **参数**
 
-    - **for_test** (bool) – 取值为 True 时，clone 方法内部会把 operator 的属性 ``is_test`` 设置为 True，并裁剪反向 OP 和参数优化 OP，默认值为 False。
+    - **for_test** (bool，可选) – 取值为 True 时，clone 方法内部会把 operator 的属性 ``is_test`` 设置为 True，并裁剪反向 OP 和参数优化 OP，默认值为 False。
 
 **返回**
 

@@ -5,7 +5,7 @@ fftfreq
 
 .. py:function:: paddle.fft.fftfreq(n, d=1.0, dtype=None, name=None)
 
-返回离散傅里叶变换的频率窗口(frequency bins)中心序列，以 "循环/采样间隔" 为单位。例如，采
+返回离散傅里叶变换的频率窗口（frequency bins）中心序列，以 "循环/采样间隔" 为单位。例如，采
 样间隔以秒为单位，则频率的单位是 "循环/秒"。
 
 对于窗口长度 n 和采样间隔 d，输出的频率序列 f 排布如下：
