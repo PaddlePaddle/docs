@@ -18,4 +18,4 @@ paddle.nn.Layer.clear_gradients()
 
 | PyTorch     | PaddlePaddle | 备注                                             |
 | ----------- | ------------ | ------------------------------------------------ |
-| set_to_none | -            | 是否设置为 None，Paddle 无此参数，暂无转写方式。 |
+| set_to_none | -            | 是否设置为 None，Paddle 默认 set_to_none=False，set_to_none=True 时，暂无转写方式。 |

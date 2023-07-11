@@ -27,7 +27,7 @@ paddle.nn.Layer.to(dtype="float64")
 ```python
 # PyTorch 写法:
 module = torch.nn.Module()
-module.float()
+module.double()
 
 # Paddle 写法:
 module = paddle.nn.Layer()
