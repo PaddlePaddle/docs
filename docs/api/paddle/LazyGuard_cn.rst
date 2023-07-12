@@ -12,4 +12,4 @@ LazyGuard 是一个用于设置模型（继承自 ``paddle.nn.Layer`` ） 中参
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.LazyGuard
+COPY-FROM: paddle.LazyGuard.__enter__
