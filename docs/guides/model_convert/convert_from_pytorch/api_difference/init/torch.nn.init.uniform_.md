@@ -28,7 +28,7 @@ paddle.nn.initializer.Uniform(low=-1.0,
 ### 转写示例
 ```python
 # Pytorch 写法
-conv = torch.nn.Conv2D(4, 6, (3, 3))
+conv = torch.nn.Conv2d(4, 6, (3, 3))
 torch.nn.init.uniform_(conv.weight)
 
 # Paddle 写法
