@@ -6,7 +6,7 @@ vander
 .. py:function:: paddle.vander(x, n=None, increasing=False, name=None)
 生成范德蒙德矩阵。
 
-输出矩阵的每一列都是输入向量的幂。 幂的顺序由递增的布尔参数确定。 具体而言，当递增为 “false” 时，第 i 个输出列是输入向量元素顺序的升序，其幂为 N-i-1。 每行都有等比级数的这样一个矩阵称为 Alexandre-Theophile Vandermonde 矩阵。
+输出矩阵的每一列都是输入向量的幂。 幂的顺序由递增的布尔参数确定。 具体而言，当递增为 ``false`` 时，第 i 个输出列是输入向量元素顺序的升序，其幂为 N-i-1。 每行都有等比级数的这样一个矩阵称为 Alexandre-Theophile Vandermonde 矩阵。
 
 参数
 ::::::::::
