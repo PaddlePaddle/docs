@@ -44,17 +44,3 @@ paddle.nn.TransformerDecoderLayer(d_model,
 | dtype         | -            | 参数类型，PaddlePaddle 无此参数。需要转写         |
 | -             | weight_attr  | 指定权重参数的属性，PyTorch 无此参数，Paddle 保持默认即可。 |
 | -             | bias_attr    | 指定偏置参数的属性, PyTorch 无此参数，Paddle 保持默认即可。 |
-
-
-### 转写示例
-#### norm_first:是否 normalization
-```python
-norm_first=True 时，表示对每个子层的输入进行层标准化：
-
-# PyTorch 写法
-decoder_layer = torch.nn.TransformerDecoderLayer(128, 2, 512,norm_first=True)
-
-# Paddle 写法
-decoder_layer = paddle.nn.TransformerDecoderLayer(128, 2, 512,normalize_before=True)
-
-```
