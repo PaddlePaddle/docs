@@ -38,8 +38,8 @@ paddle.nn.TransformerDecoderLayer(d_model,
 | dropout      | dropout            | dropout 值。  |
 | activation     | activation           | 前馈神经网络的激活函数。  |
 | layer_norm_eps | -       | eps 值，PaddlePaddle 无此参数，暂无转写方式。  |
-| batch_first     | -            | 输入和输出 tensor 的格式，PaddlePaddle 无此参数，暂无转写方式  |
-| norm_first             | normalize_before  | 设置对每个子层的输入输出的处理。如果为 True，则对每个子层的输入进行层标准化（Layer Normalization），对每个子层的输出进行 dropout 和残差连接（residual connection）。否则（即为 False），则对每个子层的输入不进行处理，只对每个子层的输出进行 dropout、残差连接（residual connection）和层标准化（Layer Normalization）。默认值：False  |
+| batch_first     | -            | 输入和输出 tensor 的 shape，PaddlePaddle 无此参数，暂无转写方式  |
+| norm_first             | normalize_before  | 设置对每个子层的输入输出的处理。如果为 True，则对每个子层的输入进行层标准化（Layer Normalization），对每个子层的输出进行 dropout 和残差连接（residual connection）。否则（即为 False），则对每个子层的输入不进行处理，只对每个子层的输出进行 dropout、残差连接（residual connection）和层标准化（Layer Normalization）。默认值：False。  仅参数名不一致|
 | device        | -            | 设备类型，PaddlePaddle 无此参数。可直接删除。         |
 | dtype         | -            | 参数类型，PaddlePaddle 无此参数。需要转写         |
 | -             | weight_attr  | 指定权重参数的属性，PyTorch 无此参数，Paddle 保持默认即可。 |
