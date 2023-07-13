@@ -47,9 +47,9 @@ paddle.optimizer.lr.OneCycleLR(max_learning_rate,
 | epochs     | -       | 训练的 epochs 数。若 PyTorch 的 total_steps 参数为 None，则此参数用来计算 total_steps。PyTorch 默认值为 None，Paddle 无默认值。           |
 | pct_start     | phase_pct       | 表示学习率从初始学习率增长到最大学习率所需迭代数占总迭代数的比例。参数默认值一致。             |
 | anneal_strategy     | anneal_strategy       | 调整学习率的策略。必须是 ( cos , linear )其中之一。参数默认值一致。             |
-| cycle_momentum     | -       | 如果“True”，动量反向循环 'base_momentum' 和 'max_momentum' 之间的学习率。Paddle 无对应参数。             |
-| base_momentum     | -       | 每个参数组的循环中的动量下边界。Paddle 无对应参数。             |
-| max_momentum     | -       | 每个参数组的循环中的动量上边界。Paddle 无对应参数。             |
+| cycle_momentum     | -       | 如果“True”，动量反向循环 'base_momentum' 和 'max_momentum' 之间的学习率。Paddle 无对应参数，暂无转写方式。             |
+| base_momentum     | -       | 每个参数组的循环中的动量下边界。Paddle 无对应参数，暂无转写方式。             |
+| max_momentum     | -       | 每个参数组的循环中的动量上边界。Paddle 无对应参数，暂无转写方式。             |
 | div_factor     | divide_factor       | 该参数用于推断初始学习率，公式为 initial_learning_rate = max_learning_rate / divide_factor。参数默认值一致。             |
 | final_div_factor     | -       | 通过 min_lr = initial_lr/final_div_factor 确定最小学习率。Paddle 无对应参数。             |
 | -     | end_learning_rate       | 最小学习率，学习率变化的下边界。PyTorch 无对应参数，可通过公式：min_lr = max_lr/(div_factor * final_div_factor) 计算得出。             |
