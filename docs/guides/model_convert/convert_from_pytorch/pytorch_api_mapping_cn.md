@@ -22,6 +22,7 @@
 | [torch.fft.XX](#id10)    | 主要为`torch.fft.XX`类 API |
 | [torch.hub.XX](#id14)    | 主要为`torch.hub.XX`类 API |
 | [torch.linalg.XX](#id11)    | 主要为`torch.linalg.XX`类 API |
+| [torch.onnx.XX](#id15)    | 主要为`torch.onnx.XX`类 API |
 | [torch.sparse.XX](#id12)    | 主要为`torch.sparse.XX`类 API |
 | [其他](#id13)    | 其他 API |
 
@@ -744,6 +745,16 @@
 | 8   |  [torch.linalg.eigvals](https://pytorch.org/docs/1.13/generated/torch.linalg.eigvals.html?highlight=torch+linalg+eigvals#torch.linalg.eigvals)  |  [paddle.linalg.eigvals](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/eigvals_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.eigvals.md)  |
 | 9   |  [torch.linalg.eig](https://pytorch.org/docs/1.13/generated/torch.linalg.eig.html?highlight=torch+linalg+eig#torch.linalg.eig)  |  [paddle.linalg.eig](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/eig_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.eig.md)  |
 | 10   |  [torch.linalg.multi_dot](https://pytorch.org/docs/1.13/generated/torch.linalg.multi_dot.html?highlight=torch+linalg+multi_dot#torch.linalg.multi_dot)  |  [paddle.linalg.multi_dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/multi_dot_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.multi_dot.md)  |
+
+***持续更新...***
+
+## torch.onnx.XX API 映射列表
+梳理了`torch.onnx.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
+
+| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 1    | [torch.onnx.enable_log](https://pytorch.org/docs/1.13/onnx.html#torch.onnx.enable_log) |  | 功能缺失        |
+| 2    | [torch.onnx.disable_log](https://pytorch.org/docs/1.13/onnx.html#torch.onnx.disable_log) |  | 功能缺失        |
 
 ***持续更新...***
 
