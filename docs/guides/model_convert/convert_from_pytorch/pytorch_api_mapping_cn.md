@@ -286,6 +286,7 @@
 | 254   |  [torch.take_along_dim](https://pytorch.org/docs/1.13/generated/torch.take_along_dim.html?highlight=torch+take_along_dim#torch.take_along_dim)  |  [paddle.take_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/take_along_axis_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.take_along_dim.md)  |
 | 254   |  [torch.geqrf](https://pytorch.org/docs/stable/generated/torch.geqrf.html?highlight=geqrf#torch.geqrf)  |   |    功能缺失  |
 | 255   |  [torch.bitwise_right_shift](https://pytorch.org/docs/1.13/generated/torch.bitwise_right_shift.html#torch.bitwise_right_shift)  |  | 功能缺失        |
+| 256   |  [torch.is_conj](https://pytorch.org/docs/1.13/generated/torch.is_conj.html#torch.is_conj)  |  | 功能缺失        |
 
 ***持续更新...***
 
@@ -624,6 +625,7 @@
 | 166   |  [torch.Tensor.all](https://pytorch.org/docs/1.13/generated/torch.Tensor.all.html?highlight=torch+tensor+all#torch.Tensor.all)  |  [paddle.Tensor.all](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#all-axis-none-keepdim-false-name-none)  |    功能一致, 参数不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.all.md)  |
 | 167   |  [torch.Tensor.any](https://pytorch.org/docs/1.13/generated/torch.Tensor.any.html?highlight=torch+tensor+any#torch.Tensor.any)  |  [paddle.Tensor.any](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#any-axis-none-keepdim-false-name-none)  |    功能一致, 参数不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.any.md)  |
 | 168   |  [torch.Tensor.bitwise_right_shift](https://pytorch.org/docs/1.13/generated/torch.Tensor.bitwise_right_shift.html#torch.Tensor.bitwise_right_shift)  |  | 功能缺失        |
+| 169   |  [torch.Tensor.is_conj](https://pytorch.org/docs/1.13/generated/torch.Tensor.is_conj.html#torch.Tensor.is_conj)  |  | 功能缺失        |
 
 ***持续更新...***
 
