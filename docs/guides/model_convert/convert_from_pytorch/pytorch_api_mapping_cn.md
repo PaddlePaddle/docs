@@ -287,6 +287,12 @@
 | 254   |  [torch.geqrf](https://pytorch.org/docs/stable/generated/torch.geqrf.html?highlight=geqrf#torch.geqrf)  |   |    功能缺失  |
 | 255   |  [torch.bitwise_right_shift](https://pytorch.org/docs/1.13/generated/torch.bitwise_right_shift.html#torch.bitwise_right_shift)  |  | 功能缺失        |
 | 256   |  [torch.is_conj](https://pytorch.org/docs/1.13/generated/torch.is_conj.html#torch.is_conj)  |  | 功能缺失        |
+| 257   |  [torch.diagonal_scatter](https://pytorch.org/docs/1.13/generated/torch.diagonal_scatter.html#torch.diagonal_scatter)  |  | 功能缺失        |
+| 258   |  [torch.select_scatter](https://pytorch.org/docs/1.13/generated/torch.select_scatter.html#torch.select_scatter)  |  | 功能缺失        |
+| 259   |  [torch.slice_scatter](https://pytorch.org/docs/1.13/generated/torch.slice_scatter.html#torch.slice_scatter)  |  | 功能缺失        |
+| 260   |  [torch.scatter_reduce](https://pytorch.org/docs/1.13/generated/torch.scatter_reduce.html#torch.scatter_reduce)  |  | 功能缺失        |
+| 261   |  [torch.set_deterministic_debug_mode](https://pytorch.org/docs/1.13/generated/torch.set_deterministic_debug_mode.html#torch.set_deterministic_debug_mode)  |  | 功能缺失        |
+| 262   |  [torch.get_deterministic_debug_mode](https://pytorch.org/docs/1.13/generated/torch.get_deterministic_debug_mode.html#torch.get_deterministic_debug_mode)  |  | 功能缺失        |
 
 ***持续更新...***
 
@@ -626,6 +632,10 @@
 | 167   |  [torch.Tensor.any](https://pytorch.org/docs/1.13/generated/torch.Tensor.any.html?highlight=torch+tensor+any#torch.Tensor.any)  |  [paddle.Tensor.any](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#any-axis-none-keepdim-false-name-none)  |    功能一致, 参数不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.any.md)  |
 | 168   |  [torch.Tensor.bitwise_right_shift](https://pytorch.org/docs/1.13/generated/torch.Tensor.bitwise_right_shift.html#torch.Tensor.bitwise_right_shift)  |  | 功能缺失        |
 | 169   |  [torch.Tensor.is_conj](https://pytorch.org/docs/1.13/generated/torch.Tensor.is_conj.html#torch.Tensor.is_conj)  |  | 功能缺失        |
+| 170   |  [torch.Tensor.diagonal_scatter](https://pytorch.org/docs/1.13/generated/torch.Tensor.diagonal_scatter.html#torch.Tensor.diagonal_scatter)  |  | 功能缺失        |
+| 171   |  [torch.Tensor.scatter_reduce](https://pytorch.org/docs/1.13/generated/torch.Tensor.scatter_reduce.html#torch.Tensor.scatter_reduce)  |  | 功能缺失        |
+| 172   |  [torch.Tensor.select_scatter](https://pytorch.org/docs/1.13/generated/torch.Tensor.select_scatter.html#torch.Tensor.select_scatter)  |  | 功能缺失        |
+| 173   |  [torch.Tensor.slice_scatter](https://pytorch.org/docs/1.13/generated/torch.Tensor.slice_scatter.html#torch.Tensor.slice_scatter)  |  | 功能缺失        |
 
 ***持续更新...***
 
