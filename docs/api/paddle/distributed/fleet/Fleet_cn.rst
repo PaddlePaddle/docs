@@ -419,6 +419,53 @@ distributed_optimizer(optimizer, strategy=None)
     optimizer = fleet.distributed_optimizer(optimizer, strategy=strategy)
 
 
+qat_init(place, scope, test_program=None)
+'''''''''
+
+基于 distributed_optimizer 中的 QAT 策略做初始化。
+
+**参数**
+
+ - **place**  (CUDAPlace) – 初始化参数的存储位置。
+ - **scope**  (Scope) – 执行这个 program 的域，用户可以指定不同的域。默认为全局域。
+ - **test_program**  (Program) – 基于 distributed_optimizer 的测试 program。
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+    import paddle.nn.functional as F
+    paddle.enable_static()
+
+    def run_example_code():
+        place = paddle.CUDAPlace(0)
+        exe = paddle.static.Executor(place)
+        # 1. Define the train program
+        data = paddle.static.data(name='X', shape=[None, 1, 28, 28], dtype='float32')
+        conv2d = paddle.static.nn.conv2d(input=data, num_filters=6, filter_size=3)
+        bn = paddle.static.nn.batch_norm(input=conv2d, act="relu")
+        pool = F.max_pool2d(bn, kernel_size=2, stride=2)
+        hidden = paddle.static.nn.fc(pool, size=10)
+        loss = paddle.mean(hidden)
+        # 2. Create the distributed optimizer and set qat config to True.
+        optimizer = paddle.optimizer.Momentum(learning_rate=0.01, multi_precision=True)
+        strategy = fleet.DistributedStrategy()
+        strategy.qat = True
+        optimizer = fleet.distributed_optimizer(optimizer, strategy=strategy)
+        # 3. Apply the strategies by distributed optimizer
+        # If you don't use the default_startup_program(), you sholud pass
+        # your defined `startup_program` into `minimize`.
+        optimizer.minimize(loss)
+        exe.run(paddle.static.default_startup_program())
+        # 4. Use `qat_init` to do FP32 parameters initialization.
+        # If you want to perform the testing process, you should pass `test_program` into `qat_init`.
+        optimizer.qat_init(place, paddle.static.global_scope())
+
+    if paddle.is_compiled_with_cuda() and len(paddle.static.cuda_places()) > 0:
+        run_example_code()
+
+
 distributed_model(model)
 '''''''''
 
