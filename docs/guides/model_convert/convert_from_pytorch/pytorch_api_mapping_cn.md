@@ -293,6 +293,8 @@
 | 260   |  [torch.scatter_reduce](https://pytorch.org/docs/1.13/generated/torch.scatter_reduce.html#torch.scatter_reduce)  |  | 功能缺失        |
 | 261   |  [torch.set_deterministic_debug_mode](https://pytorch.org/docs/1.13/generated/torch.set_deterministic_debug_mode.html#torch.set_deterministic_debug_mode)  |  | 功能缺失        |
 | 262   |  [torch.get_deterministic_debug_mode](https://pytorch.org/docs/1.13/generated/torch.get_deterministic_debug_mode.html#torch.get_deterministic_debug_mode)  |  | 功能缺失        |
+| 263   |  [torch.vsplit](https://pytorch.org/docs/1.13/generated/torch.vsplit.html#torch.vsplit)  |  | 功能缺失        |
+| 264   |  [torch.hsplit](https://pytorch.org/docs/1.13/generated/torch.hsplit.html#torch.hsplit)  |  | 功能缺失        |
 
 ***持续更新...***
 
@@ -636,6 +638,9 @@
 | 171   |  [torch.Tensor.scatter_reduce](https://pytorch.org/docs/1.13/generated/torch.Tensor.scatter_reduce.html#torch.Tensor.scatter_reduce)  |  | 功能缺失        |
 | 172   |  [torch.Tensor.select_scatter](https://pytorch.org/docs/1.13/generated/torch.Tensor.select_scatter.html#torch.Tensor.select_scatter)  |  | 功能缺失        |
 | 173   |  [torch.Tensor.slice_scatter](https://pytorch.org/docs/1.13/generated/torch.Tensor.slice_scatter.html#torch.Tensor.slice_scatter)  |  | 功能缺失        |
+| 174   |  [torch.Tensor.hsplit](https://pytorch.org/docs/1.13/generated/torch.Tensor.hsplit.html#torch.Tensor.hsplit)  |  | 功能缺失        |
+| 175   |  [torch.Tensor.vsplit](https://pytorch.org/docs/1.13/generated/torch.Tensor.vsplit.html#torch.Tensor.vsplit)  |  | 功能缺失        |
+| 176   |  [torch.Tensor.dsplit](https://pytorch.org/docs/1.13/generated/torch.Tensor.dsplit.html#torch.Tensor.dsplit)  |  | 功能缺失        |
 
 ***持续更新...***
 
