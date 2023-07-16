@@ -1030,6 +1030,7 @@ def _hasprefix(line, prefixes):
     return any(line == p or line.startswith(p + ' ') for p in prefixes)
 
 
+# TODO(megemini): skip test with PS1/PS2 when Paddle CI xdoctest finished.
 def strip_ps_from_codeblock(codeblock):
     """strip PS1(>>> ) and PS2(... ) from codeblock
 
