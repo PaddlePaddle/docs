@@ -1159,9 +1159,7 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
         # nonlocal code_blocks, cb_cur, cb_cur_name, cb_cur_seq_id, cb_required
         code_blocks.append(
             {
-                'codes': strip_ps_from_codeblock(
-                    inspect.cleandoc("\n" + "\n".join(cb_info['cb_cur']))
-                ),
+                'codes': inspect.cleandoc("\n" + "\n".join(cb_info['cb_cur'])),
                 'name': cb_info['cb_cur_name'],
                 'id': cb_info['cb_cur_seq_id'],
                 'required': cb_info['cb_required'],
@@ -1281,7 +1279,7 @@ def extract_sample_codes_into_dir():
                         )
                     else:
                         header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = ""\n\n'
-                    cb = cb_info['codes']
+                    cb = strip_ps_from_codeblock(cb_info['codes'])
                     last_future_line_end = find_last_future_line_end(cb)
                     if last_future_line_end:
                         f.write(cb[:last_future_line_end])
