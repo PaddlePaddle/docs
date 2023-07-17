@@ -42,6 +42,6 @@ scheduler = torch.optim.lr_scheduler.StepLR(optimizer=sgd, step_size=2)
 # Paddle 写法
 linear = paddle.nn.linear(10, 10)
 sgd = paddle.optimizer.SGD(learning_rate=0.5, parameters=linear.parameters())
-scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.5, step_size=2)
+scheduler = paddle.optimizer.lr.StepDecay(learning_rate=sgd.get_lr(), step_size=2)
 sgd.set_lr_scheduler(scheduler)
 ```

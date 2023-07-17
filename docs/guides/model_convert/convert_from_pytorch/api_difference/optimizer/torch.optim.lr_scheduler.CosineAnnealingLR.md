@@ -42,6 +42,6 @@ scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer=sgd, T_max=10)
 # Paddle 写法
 linear = paddle.nn.linear(10, 10)
 sgd = paddle.optimizer.SGD(learning_rate=0.5, parameters=linear.parameters())
-scheduler = paddle.optimizer.lr.CosineAnnealingDecay(learning_rate=0.5, T_max=10)
+scheduler = paddle.optimizer.lr.CosineAnnealingDecay(learning_rate=sgd.get_lr(), T_max=10)
 sgd.set_lr_scheduler(scheduler)
 ```

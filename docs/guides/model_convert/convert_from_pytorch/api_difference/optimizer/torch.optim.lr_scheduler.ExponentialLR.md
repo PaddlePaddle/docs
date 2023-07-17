@@ -39,6 +39,6 @@ scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer=sgd, gamma=0.5)
 # Paddle 写法
 linear = paddle.nn.linear(10, 10)
 sgd = paddle.optimizer.SGD(learning_rate=0.5, parameters=linear.parameters())
-scheduler = paddle.optimizer.lr.ExponentialDecay(learning_rate=0.5, gamma=0.5)
+scheduler = paddle.optimizer.lr.ExponentialDecay(learning_rate=sgd.get_lr(), gamma=0.5)
 sgd.set_lr_scheduler(scheduler)
 ```

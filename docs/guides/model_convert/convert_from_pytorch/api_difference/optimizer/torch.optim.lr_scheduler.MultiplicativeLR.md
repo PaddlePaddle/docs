@@ -39,6 +39,6 @@ scheduler = torch.optim.lr_scheduler.MultiplicativeLR(optimizer=sgd, lr_lambda=l
 # Paddle 写法
 linear = paddle.nn.linear(10, 10)
 sgd = paddle.optimizer.SGD(learning_rate=0.5, parameters=linear.parameters())
-scheduler = paddle.optimizer.lr.MultiplicativeDecay(learning_rate=0.5, lr_lambda=lambda x:0.95**x)
+scheduler = paddle.optimizer.lr.MultiplicativeDecay(learning_rate=sgd.get_lr(), lr_lambda=lambda x:0.95**x)
 sgd.set_lr_scheduler(scheduler)
 ```

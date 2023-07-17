@@ -42,6 +42,6 @@ scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer=sgd, milestones=[2,4,
 # Paddle 写法
 linear = paddle.nn.linear(10, 10)
 sgd = paddle.optimizer.SGD(learning_rate=0.5, parameters=linear.parameters())
-scheduler = paddle.optimizer.lr.MultiStepDecay(learning_rate=0.5, milestones=[2,4,6])
+scheduler = paddle.optimizer.lr.MultiStepDecay(learning_rate=sgd.get_lr(), milestones=[2,4,6])
 sgd.set_lr_scheduler(scheduler)
 ```

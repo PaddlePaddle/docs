@@ -41,6 +41,6 @@ scheduler = torch.optim.lr_scheduler.ConstantLR(optimizer=sgd, factor=0.5, total
 # Paddle 写法
 linear = paddle.nn.linear(10, 10)
 sgd = paddle.optimizer.SGD(learning_rate=0.5, parameters=linear.parameters())
-scheduler = paddle.optimizer.lr.PiecewiseDecay(values=[0.5*0.5, 0.5], boundaries=[3])
+scheduler = paddle.optimizer.lr.PiecewiseDecay(values=[0.5*sgd.get_lr(), sgd.get_lr()], boundaries=[3])
 sgd.set_lr_scheduler(scheduler)
 ```
