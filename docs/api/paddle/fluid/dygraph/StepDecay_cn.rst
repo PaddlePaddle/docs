@@ -25,9 +25,9 @@ StepDecay
 参数
 ::::::::::::
 
-    - **learning_rate** (float|int) - 初始化的学习率。可以是Python的float或int。
+    - **learning_rate** (float|int) - 初始化的学习率。可以是 Python 的 float 或 int。
     - **step_size** (int) - 学习率每衰减一次的间隔。
-    - **decay_rate** (float, optional) - 学习率的衰减率。``new_lr = origin_lr * decay_rate``。其值应该小于1.0。默认：0.1。
+    - **decay_rate** (float，可选) - 学习率的衰减率。``new_lr = origin_lr * decay_rate``。其值应该小于 1.0。默认：0.1。
 
 返回
 ::::::::::::
@@ -37,7 +37,7 @@ StepDecay
 ::::::::::::
 
     .. code-block:: python
-            
+
         import paddle.fluid as fluid
         import numpy as np
         with fluid.dygraph.guard():
@@ -50,7 +50,7 @@ StepDecay
                 for batch_id in range(5):
                     out = linear(input)
                     loss = fluid.layers.reduce_mean(out)
-                    adam.minimize(loss)  
+                    adam.minimize(loss)
                 scheduler.epoch()
                 print("epoch:{}, current lr is {}" .format(epoch, adam.current_step_lr()))
                 # epoch:0, current lr is 0.5
@@ -71,7 +71,7 @@ epoch(epoch=None)
 
 **参数**
 
-  - **epoch** (int|float，可选) - 类型：int或float。指定当前的epoch数。默认：无，此时将会自动累计epoch数。
+  - **epoch** (int|float，可选) - 类型：int 或 float。指定当前的 epoch 数。默认：无，此时将会自动累计 epoch 数。
 
 **返回**
 
