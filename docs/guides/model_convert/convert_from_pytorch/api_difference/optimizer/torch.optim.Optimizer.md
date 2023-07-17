@@ -18,7 +18,7 @@ paddle.optimizer.Optimizer(learning_rate=0.001,
                         name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，一般只会转写 API 名称，不会转写参数。
+其中 Pytorch 相比 Paddle 支持更多其他参数，其 `defaults` 可以支持各种参数，但一般只会转写 API 名称，不会转写参数。
 
 ### 参数映射
 

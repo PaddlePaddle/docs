@@ -20,17 +20,17 @@ paddle.optimizer.lr.MultiStepDecay(learning_rate,
                                 verbose=False)
 ```
 
-两者 API 功能一致, 参数用法不一致，具体如下：
+两者 API 功能一致, 参数用法不一致，PyTorch 的 optimizer 参数是 torch.optim.Optimizer 类，Paddle 使用 paddle.optimizer.Optimizer.set_lr_scheduler 方法将 paddle.optimizer.Optimizer 和 paddle.optimizer.lr.LRScheduler 绑定，具体如下：
 
 ### 参数映射
 
 | PyTorch | PaddlePaddle | 备注                                                                                       |
 | ------- | ------------ | ------------------------------------------------------------------------------------------ |
-| optimizer     | learning_rate       | PyTorch 的是 torch.optim.Optimize 类，Paddle 是 float 类。 |
-| milestones     | milestones       | 表示轮数下标列表，必须递增。         |
-| gamma     | gamma       | 表示学习率衰减率。参数默认值一致。             |
-| last_epoch     | last_epoch       | 上一轮的轮数，重启训练时设置为上一轮的 epoch 数。参数默认值一致。       |
-| verbose     | verbose       | 如果是 True，则在每一轮更新时在标准输出 stdout 输出一条信息。参数默认值一致。  |
+| optimizer     | learning_rate       | PyTorch 的是 torch.optim.Optimizer 类，Paddle 是 float 类。 |
+| milestones     | milestones       | 表示轮数下标列表，必须递增。参数完全一致。         |
+| gamma     | gamma       | 表示学习率衰减率。参数完全一致。             |
+| last_epoch     | last_epoch       | 上一轮的轮数，重启训练时设置为上一轮的 epoch 数。参数完全一致。       |
+| verbose     | verbose       | 如果是 True，则在每一轮更新时在标准输出 stdout 输出一条信息。参数完全一致。  |
 
 ### 转写示例
 ```python

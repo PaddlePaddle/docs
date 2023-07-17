@@ -37,11 +37,11 @@ paddle.optimizer.LBFGS(learning_rate=1.0,
 | ----------------------------------- | ------------ | ----------------------------------------------------------------------- |
 | params     | parameters           | 表示指定优化器需要优化的参数，仅参数名不同。                      |
 | lr     | learning_rate       | 学习率，用于参数更新的计算。仅参数名不同。                          |
-| max_iter   | max_iter   | 每个优化单步的最大迭代次数。参数名和默认值均一致。                       |
-| max_eval       | max_eval     | 每次优化单步中函数计算的最大数量。参数名和默认值均一致。                           |
-| tolerance_grad       | tolerance_grad    |  当梯度的范数小于该值时，终止迭代。参数名和默认值均一致。         |
-| tolerance_change       | tolerance_change    |  当函数值/x 值/其他参数 两次迭代的改变量小于该值时，终止迭代。参数名和默认值均一致。         |
-| history_size       | history_size    |  指定储存的向量对{si,yi}数量。参数名和默认值均一致。         |
-| line_search_fn      | line_search_fn    |  指定要使用的线搜索方法。参数名和默认值均一致。         |
+| max_iter   | max_iter   | 每个优化单步的最大迭代次数。参数完全一致。                       |
+| max_eval       | max_eval     | 每次优化单步中函数计算的最大数量。参数完全一致。                           |
+| tolerance_grad       | tolerance_grad    |  当梯度的范数小于该值时，终止迭代。参数完全一致。         |
+| tolerance_change       | tolerance_change    |  当函数值/x 值/其他参数 两次迭代的改变量小于该值时，终止迭代。参数完全一致。         |
+| history_size       | history_size    |  指定储存的向量对{si,yi}数量。参数完全一致。         |
+| line_search_fn      | line_search_fn    |  指定要使用的线搜索方法。参数完全一致。         |
 | -           | weight_decay     | 表示权重衰减系数。PyTorch 无此参数，Paddle 保持默认即可。         |
 | -          | grad_clip            | 梯度裁剪的策略。 PyTorch 无此参数，Paddle 保持默认即可。       |
