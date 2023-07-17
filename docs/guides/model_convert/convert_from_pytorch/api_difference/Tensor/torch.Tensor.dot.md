@@ -3,7 +3,7 @@
 ### [torch.Tensor.dot](https://pytorch.org/docs/stable/generated/torch.Tensor.dot.html?highlight=dot#torch.Tensor.dot)
 
 ```python
-torch.Tensor.dot(other)
+torch.Tensor.dot(tensor)
 ```
 
 ### [paddle.Tensor.dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#dot-y-name-none)
@@ -18,4 +18,4 @@ paddle.Tensor.dot(y, name=None)
 
 | PyTorch | PaddlePaddle | 备注                        |
 | ------- | ------------ | --------------------------- |
-| other   | y            | 输入 Tensor，仅参数名不同。 |
+| tensor   | y            | 输入 Tensor，仅参数名不同。 |

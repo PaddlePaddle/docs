@@ -59,6 +59,6 @@ After the data is split, you can define a file_dispatcher function that determin
         trainer_id = int(os.getenv("PADDLE_TRAINER_ID", "0"))
         files_pattern = "cluster/housing.data.*"
 
-        my_files = file_dispatcher(files_pattern, triners, trainer_id)
+        my_files = file_dispatcher(files_pattern, trainers, trainer_id)
 
 In the example above, `files_pattern` is a `glob expression <https://docs.python.org/2.7/library/glob.html>`_ of the training file and can generally be represented by a wildcard.

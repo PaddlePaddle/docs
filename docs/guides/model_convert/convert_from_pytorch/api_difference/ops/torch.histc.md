@@ -1,4 +1,4 @@
-## [ torch 参数更多]torch.histc
+## [ 参数不一致 ]torch.histc
 
 ### [torch.histc](https://pytorch.org/docs/1.13/generated/torch.histc.html#torch-histc)
 
@@ -12,7 +12,7 @@ torch.histc(input, bins=100, min=0, max=0, *, out=None)
 paddle.histogram(input, bins=100, min=0, max=0, name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+其中 PyTorch 与 Paddle 的返回值类型不一致，具体如下：
 
 ### 参数映射
 
@@ -23,6 +23,7 @@ paddle.histogram(input, bins=100, min=0, max=0, name=None)
 | min     | min          | 表示范围的下边界。                                  |
 | max     | max          | 表示范围的上边界。                                  |
 | out     | -            | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。 |
+| 返回值     | 返回值           | 表示返回值，PyTorch 的返回值类型为 float32，Paddle 的返回值类型为 int64 ， 需要进行转写。 |
 
 ### 转写示例
 
@@ -33,5 +34,5 @@ paddle.histogram(input, bins=100, min=0, max=0, name=None)
 torch.histc(x, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.histogram(x), y)
+paddle.assign(paddle.histogram(x).astype('float32'), y)
 ```

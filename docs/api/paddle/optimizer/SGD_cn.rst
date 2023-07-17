@@ -79,10 +79,10 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 **参数**
 
-    - **loss** (Tensor) – 需要最小化的损失值变量。
-    - **startup_program** (Program，可选) – 用于初始化 parameters 中参数的 :ref:`cn_api_fluid_Program`，默认值为 None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
-    - **parameters** (list，可选) – 待更新的 Parameter 或者 Parameter.name 组成的列表，默认值为 None，此时将更新所有的 Parameter。
-    - **no_grad_set** (set，可选) – 不需要更新的 Parameter 或者 Parameter.name 组成的集合，默认值为 None。
+    - **loss** (Tensor) - 需要最小化的损失值变量。
+    - **startup_program** (Program，可选) - 用于初始化 parameters 中参数的 :ref:`cn_api_fluid_Program`，默认值为 None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
+    - **parameters** (list，可选) - 待更新的 Parameter 或者 Parameter.name 组成的列表，默认值为 None，此时将更新所有的 Parameter。
+    - **no_grad_set** (set，可选) - 不需要更新的 Parameter 或者 Parameter.name 组成的集合，默认值为 None。
 
 **返回**
 
@@ -135,6 +135,13 @@ clear_grad()
     optimizer.clear_grad()
 
 set_lr(value)
+'''''''''
+
+.. note::
+
+该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+
+set_lr_scheduler(scheduler)
 '''''''''
 
 .. note::
