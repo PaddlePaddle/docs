@@ -1,4 +1,4 @@
-## torch.meshgrid
+## [torch 参数更多]torch.meshgrid
 ### [torch.meshgrid](https://pytorch.org/docs/stable/generated/torch.meshgrid.html?highlight=meshgrid#torch.meshgrid)
 
 ```python
@@ -15,8 +15,8 @@ paddle.meshgrid(*args, **kargs)
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| tensors       | args         | 输入的 Tensor 列表                                      |
-| indexing      | -            | tensor 的组合模式                                        |
+| tensors       | args         | 输入的 Tensor 列表，仅参数名不一致。                                      |
+| indexing      | -            | tensor 的组合模式。Paddle 无此参数，需要进行转写。                                        |
 
 ### 转写示例
 #### indexing：tensor 的组合模式

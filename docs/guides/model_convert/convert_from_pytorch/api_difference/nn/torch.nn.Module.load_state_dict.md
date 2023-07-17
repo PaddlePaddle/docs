@@ -15,14 +15,5 @@ paddle.nn.Layer.set_state_dict(state_dict, use_structured_name=True)
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| state_dict         | state_dict        | 包含所有参数和可持久性 buffers 的 dict 。     |
-| strict           | use_structured_name        | 设置所加载参数字典的 key 是否能够严格匹配 。     |
-
-### 转写示例
-```python
-# Pytorch 写法
-model.load_state_dict(x, strict=True)
-
-# Paddle 写法
-model.set_state_dict(x, use_structured_name=True))
-```
+| state_dict         | state_dict        | 包含所有参数和可持久性 buffers 的 dict。     |
+| strict           | use_structured_name        | 设置所加载参数字典的 key 是否能够严格匹配，仅参数名不一致。     |
