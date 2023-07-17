@@ -19,12 +19,17 @@ paddle.meshgrid(*args, **kargs)
 | indexing      | -            | tensor 的组合模式                                        |
 
 ### 转写示例
+#### indexing：tensor 的组合模式
 ```python
-# 当 indexing 为‘ij’时，torch 写法
+# Pytorch 写法 (indexing 为‘ij’时)
 torch.meshgrid(x, y, indexing='ij')
 
 # Paddle 写法
 paddle.meshgrid(x, y)
 
-# 当 indexing 不是‘ij’时，暂时无法转写
+# Pytorch 写法 (indexing 为‘xy’时)
+torch.meshgrid(x, y, indexing='xy')
+
+# Paddle 写法
+list([i.T for i in paddle.meshgrid(x, y)])
 ```
