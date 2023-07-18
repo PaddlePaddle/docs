@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributions.transforms.StackTransform
 
-### [torch.distributions.transforms.StackTransform](https://pytorch.org/docs/1.13/distributions.html#torch.distributions.transforms.StackTransform)
+### [torch.distributions.transforms.StackTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.StackTransform)
 
 ```python
 torch.distributions.transforms.StackTransform(tseq, dim=0, cache_size=0)

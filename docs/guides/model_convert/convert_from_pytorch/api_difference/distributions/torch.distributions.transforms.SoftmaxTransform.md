@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributions.transforms.SoftmaxTransform
 
-### [torch.distributions.transforms.SoftmaxTransform](https://pytorch.org/docs/1.13/distributions.html#torch.distributions.transforms.SoftmaxTransform)
+### [torch.distributions.transforms.SoftmaxTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.SoftmaxTransform)
 
 ```python
 torch.distributions.transforms.SoftmaxTransform(cache_size=0)

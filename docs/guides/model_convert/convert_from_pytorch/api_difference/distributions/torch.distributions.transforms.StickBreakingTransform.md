@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributions.transforms.StickBreakingTransform
 
-### [torch.distributions.transforms.StickBreakingTransform](https://pytorch.org/docs/1.13/distributions.html#torch.distributions.transforms.StickBreakingTransform)
+### [torch.distributions.transforms.StickBreakingTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.StickBreakingTransform)
 
 ```python
 torch.distributions.transforms.StickBreakingTransform(cache_size=0)
