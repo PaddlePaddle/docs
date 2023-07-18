@@ -5,9 +5,9 @@ ihfft2
 
 .. py:function:: paddle.fft.ihfft2(x, s=None, axes=(-2, -1), norm="backward", name=None)
 
-二维厄米特(Hermitian)傅里叶变换的逆变换。
+二维厄米特（Hermitian）傅里叶变换的逆变换。
 
-使用快速傅里叶变换(FFT)算法来对 M 维 Tensor 中的某两维计算厄米特(Hermitian)傅里叶变换
+使用快速傅里叶变换（FFT）算法来对 M 维 Tensor 中的某两维计算厄米特（Hermitian）傅里叶变换
 的逆变换，默认取最后两维作为傅里叶变换的轴。
 
 

@@ -39,5 +39,6 @@ paddle.kthvalue(x,
 torch.kthvalue(x, 2, 1, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.kthvalue(x, 2, 1), y)
+out0, out1 = paddle.kthvalue(x, 2, 1)
+paddle.assign(out0, y[0]), paddle.assign(out1, y[1])
 ```

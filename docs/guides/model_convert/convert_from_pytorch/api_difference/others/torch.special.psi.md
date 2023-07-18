@@ -23,7 +23,7 @@ paddle.digamma(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.special.psi(input), out=y)
+torch.special.psi(input, out=y)
 
 # Paddle 写法
 paddle.assign(paddle.digamma(input), y)
