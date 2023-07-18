@@ -18,7 +18,7 @@ paddle.logit(x, eps=None, name=None)
 
 | PyTorch | PaddlePaddle | 备注                                               |
 | ------- | ------------ | -------------------------------------------------- |
-| input   | x            | 表示输入的 Tensor，仅参数名不一致。                |
+| input   | x            | 输入的 Tensor，仅参数名不一致。                |
 | eps     | eps          | 传入该参数后可将 x 的范围控制在 [eps,1−eps]。      |
 | out     | -            | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。 |
 
