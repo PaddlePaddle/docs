@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.special.erfinv
 
-### [torch.special.erfinv](https://pytorch.org/docs/1.13/special.html#torch.special.erfinv)
+### [torch.special.erfinv](https://pytorch.org/docs/stable/special.html#torch.special.erfinv)
 
 ```python
 torch.special.erfinv(input, *, out=None)
