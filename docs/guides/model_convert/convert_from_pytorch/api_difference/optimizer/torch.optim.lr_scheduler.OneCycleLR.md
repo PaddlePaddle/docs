@@ -34,7 +34,7 @@ paddle.optimizer.lr.OneCycleLR(max_learning_rate,
                             verbose=False)
 ```
 
-两者 API 功能一致, 参数用法不一致，PyTorch 的 optimizer 参数是 torch.optim.Optimizer 类，Paddle 使用 paddle.optimizer.Optimizer.set_lr_scheduler 方法将 paddle.optimizer.Optimizer 和 paddle.optimizer.lr.LRScheduler 绑定，具体如下：
+两者 API 功能一致, 参数用法不一致，Pytorch 是 Scheduler 实例持有 Optimizer 实例，Paddle 是 Optimizer 实例持有 Scheduler 实例。由于持有关系相反，因此 Paddle 使用 Optimizer.set_lr_scheduler 来设置这种持有关系。具体如下：
 
 ### 参数映射
 
@@ -42,9 +42,9 @@ paddle.optimizer.lr.OneCycleLR(max_learning_rate,
 | ------- | ------------ | ------------------------------------------------------------------------------------------ |
 | optimizer     | -       | PyTorch 的是 torch.optim.Optimizer 类，Paddle 无对应参数。 |
 | max_lr     | max_learning_rate       | 表示最大学习率。参数完全一致。           |
-| total_steps     | total_steps       | 训练过程中总的迭代数。PyTorch 默认值为 None，Paddle 无默认值。           |
-| steps_per_epoch     | -       | 每个 epoch 训练的步数。若 PyTorch 的 total_steps 参数为 None，则此参数用来计算 total_steps。PyTorch 默认值为 None。Paddle 无此参数。           |
-| epochs     | -       | 训练的 epochs 数。若 PyTorch 的 total_steps 参数为 None，则此参数用来计算 total_steps。PyTorch 默认值为 None，Paddle 无默认值。           |
+| total_steps     | total_steps       | 训练过程中总的迭代数。PyTorch 默认值为 None，Paddle 无默认值。若 PyTorch 设置为 None，Paddle 需要从 PyTorch 的参数 steps_per_epoch 和 epochs 计算得出此参数，计算公式为：total_steps=steps_per_epoch*epochs。           |
+| steps_per_epoch     | -       | 每个 epoch 训练的步数。若 PyTorch 的 total_steps 参数为 None，则此参数用来计算 total_steps。PyTorch 默认值为 None，Paddle 无此参数，可直接删除。           |
+| epochs     | -       | 训练的 epochs 数。若 PyTorch 的 total_steps 参数为 None，则此参数用来计算 total_steps。PyTorch 默认值为 None，Paddle 无此参数，可直接删除。           |
 | pct_start     | phase_pct       | 表示学习率从初始学习率增长到最大学习率所需迭代数占总迭代数的比例。仅参数名不同。             |
 | anneal_strategy     | anneal_strategy       | 调整学习率的策略。必须是 ( cos , linear )其中之一。参数完全一致。             |
 | cycle_momentum     | -       | 如果“True”，动量反向循环 'base_momentum' 和 'max_momentum' 之间的学习率。Paddle 无对应参数，暂无转写方式。             |

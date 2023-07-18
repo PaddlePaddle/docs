@@ -34,7 +34,7 @@ paddle.optimizer.lr.CyclicLR(base_learning_rate,
                             verbose=False)
 ```
 
-两者 API 功能一致, 参数用法不一致，PyTorch 的 optimizer 参数是 torch.optim.Optimizer 类，Paddle 使用 paddle.optimizer.Optimizer.set_lr_scheduler 方法将 paddle.optimizer.Optimizer 和 paddle.optimizer.lr.LRScheduler 绑定，具体如下：
+两者 API 功能一致, 参数用法不一致，Pytorch 是 Scheduler 实例持有 Optimizer 实例，Paddle 是 Optimizer 实例持有 Scheduler 实例。由于持有关系相反，因此 Paddle 使用 Optimizer.set_lr_scheduler 来设置这种持有关系。具体如下：
 
 ### 参数映射
 
@@ -43,7 +43,7 @@ paddle.optimizer.lr.CyclicLR(base_learning_rate,
 | optimizer     | -       | PyTorch 的是 torch.optim.Optimizer 类，Paddle 无对应参数。 |
 | base_lr     | base_learning_rate       | 表示初始学习率，也是学习率变化的下边界。仅参数名不同。           |
 | max_lr     | max_learning_rate       | 表示最大学习率。仅参数名不同。           |
-| step_size_up     | step_size_up       | 表示学习率从初始学习率增长到最大学习率所需步数。PyTorch 默认值为 2000，Paddle 无默认值。             |
+| step_size_up     | step_size_up       | 表示学习率从初始学习率增长到最大学习率所需步数。PyTorch 默认值为 2000，Paddle 无默认值，Paddle 需保持与 Pytorch 一致。             |
 | step_size_down     | step_size_down       | 表示学习率从最大学习率下降到初始学习率所需步数。若未指定，则其值默认等于 step_size_up。参数完全一致。             |
 | mode     | mode       |  可以是 triangular、triangular2 或者 exp_range。参数完全一致。             |
 | gamma     | exp_gamma       | 表示缩放函数中的常量。仅参数名不同。             |

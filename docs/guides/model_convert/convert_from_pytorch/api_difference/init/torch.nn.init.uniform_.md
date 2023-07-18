@@ -22,7 +22,7 @@ paddle.nn.initializer.Uniform(low=-1.0,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensor        | -          | n 维 tensor。Paddle 无此参数，因为是通过调用类的 __call__ 函数来进行 tensor 的初始化。    |
-| a           |  low          | 均匀分布的下界，参数默认值不一致, Pytorch 默认为`0.0`，Paddle 为`-1.0`。               |
+| a           |  low          | 均匀分布的下界，参数默认值不一致, Pytorch 默认为`0.0`，Paddle 为`-1.0`，Paddle 需保持与 Pytorch 一致。               |
 | b           |  high         | 均匀分布的上界，仅参数名不一致。               |
 
 ### 转写示例
