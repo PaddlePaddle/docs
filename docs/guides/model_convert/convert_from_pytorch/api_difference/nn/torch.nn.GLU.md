@@ -1,6 +1,6 @@
 ## [仅参数名不一致]torch.nn.GLU
 
-### [torch.nn.GLU](https://pytorch.org/docs/1.13/generated/torch.nn.GLU.html#torch.nn.GLU)
+### [torch.nn.GLU](https://pytorch.org/docs/stable/generated/torch.nn.GLU.html#torch.nn.GLU)
 
 ```python
 torch.nn.GLU(dim=-1)

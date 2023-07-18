@@ -1,6 +1,6 @@
 ## [仅 paddle 参数更多]torch.Tensor.corrcoef
 
-### [torch.Tensor.corrcoef](https://pytorch.org/docs/1.13/generated/torch.Tensor.corrcoef.html#torch.Tensor.corrcoef)
+### [torch.Tensor.corrcoef](https://pytorch.org/docs/stable/generated/torch.Tensor.corrcoef.html#torch.Tensor.corrcoef)
 
 ```python
 torch.Tensor.corrcoef()
