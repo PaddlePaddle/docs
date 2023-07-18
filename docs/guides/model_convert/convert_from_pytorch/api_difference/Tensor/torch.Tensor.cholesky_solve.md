@@ -17,7 +17,6 @@ paddle.linalg.cholesky_solve(x,y,upper=False,name=None)
 ### 参数映射
 |PyTorch|PaddlePaddle|备注|
 | ------- | ------- | ------- |
-|input|x|线性方程中的 B 矩阵|
-|input2|y|线性方程中 A 矩阵的 Cholesky 分解矩阵 u，上三角或者下三角矩阵|
-|upper|upper|输入 x 是否是上三角矩阵，True 为上三角矩阵，False 为下三角矩阵。默认值 False|
-|-|name|一般无需设置，默认值为 None。|
+|input|x|表示线性方程中的 B 矩阵。仅参数名不一致|
+|input2|y|表示线性方程中 A 矩阵的 Cholesky 分解矩阵 u。仅参数名不一致|
+|upper|upper|表示输入 x 是否是上三角矩阵，True 为上三角矩阵，False 为下三角矩阵。仅参数名不一致|
