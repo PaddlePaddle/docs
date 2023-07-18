@@ -44,3 +44,6 @@ paddle.nn.TransformerDecoderLayer(d_model,
 | dtype         | -            | 参数类型，PaddlePaddle 无此参数。暂无转写方式。         |
 | -             | weight_attr  | 指定权重参数的属性，PyTorch 无此参数，Paddle 保持默认即可。 |
 | -             | bias_attr    | 指定偏置参数的属性, PyTorch 无此参数，Paddle 保持默认即可。 |
+
+
+

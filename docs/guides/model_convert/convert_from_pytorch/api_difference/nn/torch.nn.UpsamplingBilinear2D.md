@@ -1,6 +1,6 @@
-## [ 仅 paddle 参数更多 ]torch.nn.UpsamplingBilinear2D
+## [ 仅 paddle 参数更多 ]torch.nn.UpsamplingBilinear2d
 
-### [torch.nn.UpsamplingBilinear2D](https://pytorch.org/docs/stable/generated/torch.nn.UpsamplingBilinear2d.html?highlight=upsamplingbilinear2d#torch.nn.UpsamplingBilinear2d)
+### [torch.nn.UpsamplingBilinear2d](https://pytorch.org/docs/stable/generated/torch.nn.UpsamplingBilinear2d.html?highlight=upsamplingbilinear2d#torch.nn.UpsamplingBilinear2d)
 
 ```python
 torch.nn.UpsamplingBilinear2d(size=None, scale_factor=None)
