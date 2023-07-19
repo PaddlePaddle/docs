@@ -6,10 +6,10 @@
 torch.Tensor.corrcoef()
 ```
 
-### [paddle.linalg.corrcoef](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/corrcoef_cn.html#paddle.linalg.corrcoef)
+### [paddle.Tensor.corrcoef]()
 
 ```python
-paddle.linalg.corrcoef(x, rowvar=True, name=None)
+paddle.Tensor.corrcoef(rowvar=True)
 ```
 
 仅 paddle 参数更多，具体如下：
