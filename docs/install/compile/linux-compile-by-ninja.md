@@ -1,4 +1,4 @@
-# **Linux 下使用ninja从源码编译**
+# **Linux 下使用 ninja 从源码编译**
 
 ## 环境准备
 
@@ -145,7 +145,7 @@ mkdir -p /paddle/build && cd /paddle/build
 
 #### 8. 使用以下命令安装相关依赖：
 
-- 安装 protobuf和ninja。
+- 安装 protobuf 和 ninja。
 
 ```
 pip3.7 install protobuf ninja
@@ -447,7 +447,7 @@ uname -m && cat /etc/*release
         mkvirtualenv paddle-venv
         ```
 
-#### 6. 进入虚环境并安装ninja：
+#### 6. 进入虚环境并安装 ninja：
 
 ```
 workon paddle-venv
