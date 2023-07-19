@@ -396,6 +396,7 @@
 | 88   |  [torch.nn.NLLLoss](https://pytorch.org/docs/1.13/generated/torch.nn.NLLLoss.html?highlight=nllloss#torch.nn.NLLLoss)  |  [paddle.nn.NLLLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/NLLLoss_cn.html#nllloss)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.NLLLoss.md)  |
 | 89   |  [torch.nn.SoftMarginLoss](https://pytorch.org/docs/1.13/generated/torch.nn.SoftMarginLoss.html#torch.nn.SoftMarginLoss)  |  [paddle.nn.SoftMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/SoftMarginLoss_cn.html#softmarginloss)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.SoftMarginLoss.md)  |
 | 90   |  [troch.nn.Mish](https://pytorch.org/docs/1.13/generated/torch.nn.Mish.html?highlight=troch+nn+mish)  |  [paddle.nn.Mish](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Mish_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Mish.md)  |
+| 91   |  [troch.nn.GLU](https://pytorch.org/docs/stable/generated/torch.nn.GLU.html#torch.nn.GLU)  |  | 功能缺失        |
 
 
 
