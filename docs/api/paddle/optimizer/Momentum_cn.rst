@@ -37,18 +37,7 @@ Momentum
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
-    linear = paddle.nn.Linear(10, 10)
-    out = linear(inp)
-    loss = paddle.mean(out)
-    momentum = paddle.optimizer.Momentum(learning_rate=0.1, parameters=linear.parameters(), weight_decay=0.01)
-    out.backward()
-    momentum.step()
-    momentum.clear_grad()
+COPY-FROM: paddle.optimizer.Momentum
 
 
 方法
@@ -69,17 +58,7 @@ step()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    value = paddle.arange(26, dtype='float32')
-    a = paddle.reshape(value, [2, 13])
-    linear = paddle.nn.Linear(13, 5)
-    momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
-    out = linear(a)
-    out.backward()
-    momentum.step()
-    momentum.clear_grad()
+COPY-FROM: paddle.optimizer.Momentum.step
 
 minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 '''''''''
@@ -100,22 +79,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
-    linear = paddle.nn.Linear(10, 10)
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    beta1 = paddle.to_tensor([0.9], dtype="float32")
-    beta2 = paddle.to_tensor([0.99], dtype="float32")
-
-    momentum = paddle.optimizer.Momentum(learning_rate=0.1, parameters=linear.parameters(), weight_decay=0.01)
-    out.backward()
-    momentum.minimize(loss)
-    momentum.clear_grad()
+COPY-FROM: paddle.optimizer.Momentum.minimize
 
 clear_grad()
 '''''''''
@@ -129,18 +93,7 @@ clear_grad()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    value = paddle.arange(26, dtype='float32')
-    a = paddle.reshape(value, [2, 13])
-    linear = paddle.nn.Linear(13, 5)
-    optimizer = paddle.optimizer.Momentum(learning_rate=0.1, parameters=linear.parameters(), weight_decay=0.01)
-    out = linear(a)
-    out.backward()
-    optimizer.step()
-    optimizer.clear_grad()
+COPY-FROM: paddle.optimizer.Momentum.clear_grad
 
 set_lr(value)
 '''''''''

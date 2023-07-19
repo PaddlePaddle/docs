@@ -56,34 +56,7 @@ LRScheduler
 代码示例
 ::::::::::::
 
-这里提供了重载基类 ``LRScheduler`` 并实现 ``StepLR`` 的示例，你可以根据你的需求来实现任意子类。
-
-.. code-block:: python
-
-    import paddle
-    from paddle.optimizer.lr import LRScheduler
-
-    class StepDecay(LRScheduler):
-        def __init__(self,
-                    learning_rate,
-                    step_size,
-                    gamma=0.1,
-                    last_epoch=-1,
-                    verbose=False):
-            if not isinstance(step_size, int):
-                raise TypeError(
-                    "The type of 'step_size' must be 'int', but received %s." %
-                    type(step_size))
-            if gamma >= 1.0:
-                raise ValueError('gamma should be < 1.0.')
-
-            self.step_size = step_size
-            self.gamma = gamma
-            super().__init__(learning_rate, last_epoch, verbose)
-
-        def get_lr(self):
-            i = self.last_epoch // self.step_size
-            return self.base_lr * (self.gamma**i)
+COPY-FROM: paddle.optimizer.lr.LRScheduler
 
 方法
 ::::::::::::
@@ -102,27 +75,7 @@ step 函数需要在优化器的 `optimizer.step()` 函数之后调用，调用�
 
 **代码示例**
 
-请参考 ``基类 LRScheduler`` 的任意子类实现，这里以 ``StepLR`` 为例进行了示例：
-
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    x = np.random.uniform(-1, 1, [10, 10]).astype("float32")
-    linear = paddle.nn.Linear(10, 10)
-    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.5, step_size=5, gamma=0.8, verbose=True)
-    sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameters=linear.parameters())
-    for epoch in range(20):
-        for batch_id in range(2):
-            x = paddle.to_tensor(x)
-            out = linear(x)
-            loss = paddle.mean(out)
-            loss.backward()
-            sgd.step()
-            sgd.clear_gradients()
-            scheduler.step()    # If you update learning rate each step
-      # scheduler.step()        # If you update learning rate each epoch
+COPY-FROM: paddle.optimizer.lr.LRScheduler.step
 
 get_lr()
 '''''''''

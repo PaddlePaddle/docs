@@ -28,20 +28,7 @@ SGD
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
-    linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
-    out = linear(inp)
-    loss = paddle.mean(out)
-    sgd = paddle.optimizer.SGD(learning_rate=0.1, parameters=linear.parameters(), weight_decay=0.01)
-    out.backward()
-    sgd.step()
-    sgd.clear_grad()
-
+COPY-FROM: paddle.optimizer.SGD
 
 方法
 ::::::::::::
@@ -60,17 +47,7 @@ step()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    value = paddle.arange(26, dtype='float32')
-    a = paddle.reshape(value, [2, 13])
-    linear = paddle.nn.Linear(13, 5)
-    sgd = paddle.optimizer.SGD(learning_rate=0.0003, parameters = linear.parameters())
-    out = linear(a)
-    out.backward()
-    sgd.step()
-    sgd.clear_grad()
+COPY-FROM: paddle.optimizer.SGD.step
 
 minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 '''''''''
@@ -91,22 +68,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
-    linear = paddle.nn.Linear(10, 10)
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    beta1 = paddle.to_tensor([0.9], dtype="float32")
-    beta2 = paddle.to_tensor([0.99], dtype="float32")
-
-    sgd = paddle.optimizer.SGD(learning_rate=0.0003, parameters=linear.parameters())
-    out.backward()
-    sgd.minimize(loss)
-    sgd.clear_grad()
+COPY-FROM: paddle.optimizer.SGD.minimize
 
 clear_grad()
 '''''''''
@@ -120,19 +82,7 @@ clear_grad()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    value = paddle.arange(26, dtype='float32')
-    a = paddle.reshape(value, [2, 13])
-    linear = paddle.nn.Linear(13, 5)
-    optimizer = paddle.optimizer.SGD(learning_rate=0.0003,
-                                     parameters=linear.parameters())
-    out = linear(a)
-    out.backward()
-    optimizer.step()
-    optimizer.clear_grad()
+COPY-FROM: paddle.optimizer.SGD.clear_grad
 
 set_lr(value)
 '''''''''
