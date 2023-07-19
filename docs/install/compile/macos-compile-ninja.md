@@ -1,4 +1,4 @@
-# **macOS 下使用ninja从源码编译**
+# **macOS 下使用 ninja 从源码编译**
 
 ## 环境准备
 
@@ -100,7 +100,7 @@ mkdir -p /paddle/build && cd /paddle/build
 
 #### 9. 使用以下命令安装相关依赖：
 
-- 安装 protobuf 3.1.0和ninja。
+- 安装 protobuf 3.1.0 和 ninja。
 
 ```
 pip3.7 install protobuf==3.1.0 ninja

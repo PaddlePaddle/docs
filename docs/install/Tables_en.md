@@ -411,6 +411,13 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.5.0 </code> will i
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.5.0/linux-cinn/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.5.0-cp39-cp39-linux_x86_64.whl"> paddlepaddle_gpu-2.5.0-cp39-cp39-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.5.0/linux-cinn/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.5.0-cp310-cp310-linux_x86_64.whl"> paddlepaddle_gpu-2.5.0-cp310-cp310-linux_x86_64.whl</a></td>
     </tr>
+    <tr>
+        <td> linux-cuda11.2-cudnn8-mkl-gcc8.2-avx-pascal </td>
+        <td> - </td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.5.0/linux-pascal/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.5.0-cp38-cp38-linux_x86_64.whl"> paddlepaddle_gpu-2.5.0-cp38-cp38-linux_x86_64.whl</a> </td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.5.0/linux-pascal/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.5.0-cp39-cp39-linux_x86_64.whl"> paddlepaddle_gpu-2.5.0-cp39-cp39-linux_x86_64.whl</a> </td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.5.0/linux-pascal/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.5.0-cp310-cp310-linux_x86_64.whl"> paddlepaddle_gpu-2.5.0-cp310-cp310-linux_x86_64.whl</a> </td>
+    </tr>
     </tbody>
 </table>
 </p>
