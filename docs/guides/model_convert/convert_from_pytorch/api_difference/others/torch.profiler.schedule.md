@@ -1,6 +1,6 @@
 ## [仅参数名不一致]torch.profiler.schedule
 
-### [torch.profiler.schedule](https://pytorch.org/docs/1.13/profiler.html#torch.profiler.schedule)
+### [torch.profiler.schedule](https://pytorch.org/docs/stable/profiler.html#torch.profiler.schedule)
 
 ```python
 torch.profiler.schedule(*, wait, warmup, active, repeat=0, skip_first=0)

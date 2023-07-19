@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.cosh
-### [torch.cosh](https://pytorch.org/docs/1.13/generated/torch.cosh.html#torch.cosh)
+### [torch.cosh](https://pytorch.org/docs/stable/generated/torch.cosh.html#torch.cosh)
 
 ```python
 torch.cosh(input,

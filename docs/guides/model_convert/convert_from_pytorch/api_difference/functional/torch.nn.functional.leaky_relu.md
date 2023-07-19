@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.functional.leaky_relu
 
-### [torch.nn.functional.leaky_relu](https://pytorch.org/docs/1.13/generated/torch.nn.functional.leaky_relu.html#torch.nn.functional.leaky_relu)
+### [torch.nn.functional.leaky_relu](https://pytorch.org/docs/stable/generated/torch.nn.functional.leaky_relu.html#torch.nn.functional.leaky_relu)
 
 ```python
 torch.nn.functional.leaky_relu(input, negative_slope=0.01, inplace=False)

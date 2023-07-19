@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributions.multinomial.Multinomial
 
-### [torch.distributions.multinomial.Multinomial](https://pytorch.org/docs/1.13/distributions.html#torch.distributions.multinomial.Multinomial)
+### [torch.distributions.multinomial.Multinomial](https://pytorch.org/docs/stable/distributions.html#torch.distributions.multinomial.Multinomial)
 
 ```python
 torch.distributions.multinomial.Multinomial(total_count=1, probs=None, logits=None, validate_args=None)

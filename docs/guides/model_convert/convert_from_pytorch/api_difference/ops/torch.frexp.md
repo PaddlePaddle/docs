@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.frexp
 
-### [torch.frexp](https://pytorch.org/docs/1.13/generated/torch.frexp.html?highlight=frexp#torch.frexp)
+### [torch.frexp](https://pytorch.org/docs/stable/generated/torch.frexp.html?highlight=frexp#torch.frexp)
 
 ```python
 torch.frexp(input,

@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.linalg.eigh
 
-### [torch.linalg.eigh](https://pytorch.org/docs/1.13/generated/torch.linalg.eigh.html#torch.linalg.eigh)
+### [torch.linalg.eigh](https://pytorch.org/docs/stable/generated/torch.linalg.eigh.html#torch.linalg.eigh)
 
 ```python
 torch.linalg.eigh(A, UPLO='L', *, out=None)

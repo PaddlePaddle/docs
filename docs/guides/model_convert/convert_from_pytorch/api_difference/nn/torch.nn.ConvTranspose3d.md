@@ -1,5 +1,5 @@
 ## [ 参数不一致 ]torch.nn.ConvTranspose3d
-### [torch.nn.ConvTranspose3d](https://pytorch.org/docs/1.13/generated/torch.nn.ConvTranspose3d.html?highlight=convtranspose3d#torch.nn.ConvTranspose3d)
+### [torch.nn.ConvTranspose3d](https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose3d.html?highlight=convtranspose3d#torch.nn.ConvTranspose3d)
 ```python
 torch.nn.ConvTranspose3d(in_channels,
                          out_channels,

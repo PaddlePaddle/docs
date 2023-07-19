@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.deg2rad
-### [torch.deg2rad](https://pytorch.org/docs/1.13/generated/torch.deg2rad.html#torch-deg2rad)
+### [torch.deg2rad](https://pytorch.org/docs/stable/generated/torch.deg2rad.html#torch-deg2rad)
 
 ```python
 torch.deg2rad(input,

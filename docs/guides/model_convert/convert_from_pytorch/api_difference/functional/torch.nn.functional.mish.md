@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.nn.functional.mish
 
-### [torch.nn.functional.mish](https://pytorch.org/docs/1.13/generated/torch.nn.functional.mish.html?highlight=torch+nn+functional+mish#torch.nn.functional.mish)
+### [torch.nn.functional.mish](https://pytorch.org/docs/stable/generated/torch.nn.functional.mish.html?highlight=torch+nn+functional+mish#torch.nn.functional.mish)
 
 ```python
 torch.nn.functional.mish(input,

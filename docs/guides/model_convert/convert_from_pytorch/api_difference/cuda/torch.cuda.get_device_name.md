@@ -1,6 +1,6 @@
 ## [ 参数不一致 ]torch.cuda.get_device_name
 
-### [torch.cuda.get_device_name](https://pytorch.org/docs/1.13/generated/torch.cuda.get_device_name.html)
+### [torch.cuda.get_device_name](https://pytorch.org/docs/stable/generated/torch.cuda.get_device_name.html)
 
 ```python
 torch.cuda.get_device_name(device=None)

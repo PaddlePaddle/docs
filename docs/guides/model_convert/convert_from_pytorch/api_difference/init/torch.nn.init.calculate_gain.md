@@ -1,6 +1,6 @@
 ## [ 参数完全一致 ] torch.nn.init.calculate_gain
 
-### [torch.nn.init.calculate_gain](https://pytorch.org/docs/1.13/nn.init.html?highlight=gain#torch.nn.init.calculate_gain)
+### [torch.nn.init.calculate_gain](https://pytorch.org/docs/stable/nn.init.html?highlight=gain#torch.nn.init.calculate_gain)
 
 ```python
 torch.nn.init.calculate_gain(nonlinearity, param=None)

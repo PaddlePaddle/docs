@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.Threshold
 
-### [torch.nn.Threshold](https://pytorch.org/docs/1.13/generated/torch.nn.Threshold.html#torch.nn.Threshold)
+### [torch.nn.Threshold](https://pytorch.org/docs/stable/generated/torch.nn.Threshold.html#torch.nn.Threshold)
 
 ```python
 torch.nn.Threshold(threshold, value, inplace=False)

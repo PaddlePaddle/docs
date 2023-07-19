@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributions.dirichlet.Dirichlet
 
-### [torch.distributions.dirichlet.Dirichlet](https://pytorch.org/docs/1.13/distributions.html#torch.distributions.dirichlet.Dirichlet)
+### [torch.distributions.dirichlet.Dirichlet](https://pytorch.org/docs/stable/distributions.html#torch.distributions.dirichlet.Dirichlet)
 
 ```python
 torch.distributions.dirichlet.Dirichlet(concentration, validate_args=None)

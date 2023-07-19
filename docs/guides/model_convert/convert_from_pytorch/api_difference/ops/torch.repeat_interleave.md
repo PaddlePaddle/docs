@@ -1,6 +1,6 @@
 ## [ torch 参数更多]torch.repeat_interleave
 
-### [torch.repeat_interleave](https://pytorch.org/docs/1.13/generated/torch.repeat_interleave.html#torch-repeat-interleave)
+### [torch.repeat_interleave](https://pytorch.org/docs/stable/generated/torch.repeat_interleave.html#torch-repeat-interleave)
 
 ```python
 torch.repeat_interleave(input, repeats, dim=None, *, output_size=None)

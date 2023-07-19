@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.to
 
-### [torch.Tensor.to](https://pytorch.org/docs/1.13/generated/torch.Tensor.to.html#torch.Tensor.to)
+### [torch.Tensor.to](https://pytorch.org/docs/stable/generated/torch.Tensor.to.html#torch.Tensor.to)
 
 ```python
 torch.Tensor.to(dtype, non_blocking=False, copy=False, memory_format=torch.preserve_format)
@@ -25,7 +25,7 @@ paddle.Tensor.cast(dtype)
 
 ---
 
-### [torch.Tensor.to](https://pytorch.org/docs/1.13/generated/torch.Tensor.to.html#torch.Tensor.to)
+### [torch.Tensor.to](https://pytorch.org/docs/stable/generated/torch.Tensor.to.html#torch.Tensor.to)
 
 ```python
 torch.Tensor.to(device=None, dtype=None, non_blocking=False, copy=False, memory_format=torch.preserve_format)
@@ -64,7 +64,7 @@ y.cpu()
 
 ---
 
-### [torch.Tensor.to](https://pytorch.org/docs/1.13/generated/torch.Tensor.to.html#torch.Tensor.to)
+### [torch.Tensor.to](https://pytorch.org/docs/stable/generated/torch.Tensor.to.html#torch.Tensor.to)
 
 ```python
 torch.Tensor.to(other, non_blocking=False, copy=False)

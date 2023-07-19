@@ -1,6 +1,6 @@
 ## [ torch 参数更多]torch.bmm
 
-### [torch.bmm](https://pytorch.org/docs/1.13/generated/torch.bmm.html?highlight=bmm#torch.bmm)
+### [torch.bmm](https://pytorch.org/docs/stable/generated/torch.bmm.html?highlight=bmm#torch.bmm)
 
 ```python
 torch.bmm(input,mat2,*,out=None)

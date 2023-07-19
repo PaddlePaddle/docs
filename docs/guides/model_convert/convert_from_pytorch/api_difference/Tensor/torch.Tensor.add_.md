@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.add\_
 
-### [torch.Tensor.add\_](https://pytorch.org/docs/1.13/generated/torch.Tensor.add_.html#torch.Tensor.add_)
+### [torch.Tensor.add\_](https://pytorch.org/docs/stable/generated/torch.Tensor.add_.html#torch.Tensor.add_)
 
 ```python
 torch.Tensor.add_(other, *, alpha=1)

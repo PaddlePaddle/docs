@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributions.exp_family.ExponentialFamily
 
-### [torch.distributions.exp_family.ExponentialFamily](https://pytorch.org/docs/1.13/distributions.html#torch.distributions.exp_family.ExponentialFamily)
+### [torch.distributions.exp_family.ExponentialFamily](https://pytorch.org/docs/stable/distributions.html#torch.distributions.exp_family.ExponentialFamily)
 
 ```python
 torch.distributions.exp_family.ExponentialFamily(batch_shape=torch.Size([]), event_shape=torch.Size([]), validate_args=None)

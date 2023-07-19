@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ] torch.fft.ifftshift
 
-### [torch.fft.ifftshift](https://pytorch.org/docs/1.13/generated/torch.fft.ifftshift.html#torch.fft.ifftshift)
+### [torch.fft.ifftshift](https://pytorch.org/docs/stable/generated/torch.fft.ifftshift.html#torch.fft.ifftshift)
 
 ```python
 torch.fft.ifftshift(input, dim=None)

@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributed.scatter
 
-### [torch.distributed.scatter](https://pytorch.org/docs/1.13/distributed.html#torch.distributed.scatter)
+### [torch.distributed.scatter](https://pytorch.org/docs/stable/distributed.html#torch.distributed.scatter)
 
 ```python
 torch.distributed.scatter(tensor, scatter_list=None, src=0, group=None, async_op=False)

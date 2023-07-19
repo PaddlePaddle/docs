@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.TransformerEncoderLayer
 
-### [torch.nn.TransformerEncoderLayer](https://pytorch.org/docs/1.13/generated/torch.nn.TransformerEncoderLayer.html#torch.nn.TransformerEncoderLayer)
+### [torch.nn.TransformerEncoderLayer](https://pytorch.org/docs/stable/generated/torch.nn.TransformerEncoderLayer.html#torch.nn.TransformerEncoderLayer)
 
 ```python
 torch.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward=2048, dropout=0.1, activation=<function relu>, layer_norm_eps=1e-05, batch_first=False, norm_first=False, device=None, dtype=None)

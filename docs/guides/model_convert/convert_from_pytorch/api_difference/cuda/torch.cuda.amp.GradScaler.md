@@ -1,6 +1,6 @@
 ## [paddle 参数更多]torch.cuda.amp.GradScaler
 
-### [torch.cuda.amp.GradScaler](https://pytorch.org/docs/1.13/amp.html#torch.cuda.amp.GradScaler)
+### [torch.cuda.amp.GradScaler](https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.GradScaler)
 
 ```python
 torch.cuda.amp.GradScaler(init_scale=65536.0, growth_factor=2.0, backoff_factor=0.5, growth_interval=2000, enabled=True)

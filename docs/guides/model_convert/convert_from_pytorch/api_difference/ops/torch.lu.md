@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.lu
 
-### [torch.lu](https://pytorch.org/docs/1.13/generated/torch.lu.html?highlight=lu#torch.lu)
+### [torch.lu](https://pytorch.org/docs/stable/generated/torch.lu.html?highlight=lu#torch.lu)
 
 ```python
 torch.lu(A, pivots=True, get_infos=False, *, out)

@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.absolute
 
-### [torch.absolute](https://pytorch.org/docs/1.13/generated/torch.absolute.html?highlight=absolute#torch.absolute)
+### [torch.absolute](https://pytorch.org/docs/stable/generated/torch.absolute.html?highlight=absolute#torch.absolute)
 
 ```python
 torch.absolute(input,

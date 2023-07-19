@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.mul
 
-### [torch.mul](https://pytorch.org/docs/1.13/generated/torch.mul.html?highlight=torch+mul#torch.mul)
+### [torch.mul](https://pytorch.org/docs/stable/generated/torch.mul.html?highlight=torch+mul#torch.mul)
 
 ```python
 torch.mul(input, other, *, out=None)

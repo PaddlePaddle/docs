@@ -1,6 +1,6 @@
 ## [参数不一致]torch.cuda.device
 
-### [torch.cuda.device](https://pytorch.org/docs/1.13/generated/torch.cuda.device.html#torch.cuda.device)
+### [torch.cuda.device](https://pytorch.org/docs/stable/generated/torch.cuda.device.html#torch.cuda.device)
 
 ```python
 torch.cuda.device(device)

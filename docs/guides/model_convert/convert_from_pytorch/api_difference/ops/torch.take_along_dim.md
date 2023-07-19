@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.take_along_dim
 
-### [torch.take_along_dim](https://pytorch.org/docs/1.13/generated/torch.take_along_dim.html?highlight=torch+take_along_dim#torch.take_along_dim)
+### [torch.take_along_dim](https://pytorch.org/docs/stable/generated/torch.take_along_dim.html?highlight=torch+take_along_dim#torch.take_along_dim)
 
 ```python
 torch.take_along_dim(input,

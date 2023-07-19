@@ -1,6 +1,6 @@
 ## [ 参数不一致 ]torch.Tensor.less_equal
 
-### [torch.Tensor.less_equal](https://pytorch.org/docs/1.13/generated/torch.Tensor.less_equal.html)
+### [torch.Tensor.less_equal](https://pytorch.org/docs/stable/generated/torch.Tensor.less_equal.html)
 
 ```python
 torch.Tensor.less_equal(other)

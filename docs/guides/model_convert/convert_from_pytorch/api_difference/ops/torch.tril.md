@@ -1,6 +1,6 @@
 ## [ torch 参数更多]torch.tril
 
-### [torch.tril](https://pytorch.org/docs/1.13/generated/torch.tril.html?highlight=tril#torch.tril)
+### [torch.tril](https://pytorch.org/docs/stable/generated/torch.tril.html?highlight=tril#torch.tril)
 
 ```python
 torch.tril(input,diagonal=0,*,out=None)

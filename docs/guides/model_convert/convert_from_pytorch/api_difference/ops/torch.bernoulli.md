@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.bernoulli
 
-### [torch.bernoulli](https://pytorch.org/docs/1.13/generated/torch.bernoulli.html#torch.bernoulli)
+### [torch.bernoulli](https://pytorch.org/docs/stable/generated/torch.bernoulli.html#torch.bernoulli)
 
 ```python
 torch.bernoulli(input,

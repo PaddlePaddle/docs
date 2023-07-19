@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.jit.load
 
-### [torch.jit.load](https://pytorch.org/docs/1.13/generated/torch.jit.load.html#torch.jit.load)
+### [torch.jit.load](https://pytorch.org/docs/stable/generated/torch.jit.load.html#torch.jit.load)
 
 ```python
 torch.jit.load(f, map_location=None, _extra_files=None)

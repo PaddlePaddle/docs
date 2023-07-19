@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.eye
 
-###  [torch.eye](https://pytorch.org/docs/1.13/generated/torch.eye.html?highlight=eye#torch.eye)
+###  [torch.eye](https://pytorch.org/docs/stable/generated/torch.eye.html?highlight=eye#torch.eye)
 
 ```python
 torch.eye(n,

@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.outer
 
-### [torch.outer](https://pytorch.org/docs/1.13/generated/torch.outer.html#torch.outer)
+### [torch.outer](https://pytorch.org/docs/stable/generated/torch.outer.html#torch.outer)
 
 ```python
 torch.outer(input, vec2, *, out=None)

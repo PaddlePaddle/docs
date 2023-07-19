@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.ceil
 
-### [torch.ceil](https://pytorch.org/docs/1.13/generated/torch.ceil.html#torch.ceil)
+### [torch.ceil](https://pytorch.org/docs/stable/generated/torch.ceil.html#torch.ceil)
 
 ```python
 torch.ceil(input,

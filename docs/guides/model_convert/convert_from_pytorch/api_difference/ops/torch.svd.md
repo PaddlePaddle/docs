@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.svd
 
-### [torch.svd](https://pytorch.org/docs/1.13/generated/torch.svd.html?highlight=torch+svd#torch.svd)
+### [torch.svd](https://pytorch.org/docs/stable/generated/torch.svd.html?highlight=torch+svd#torch.svd)
 
 ```python
 torch.svd(input, some=True, compute_uv=True, *, out=None)

@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.functional.rrelu
 
-### [torch.nn.functional.rrelu](https://pytorch.org/docs/1.13/generated/torch.nn.functional.rrelu.html#torch.nn.functional.rrelu)
+### [torch.nn.functional.rrelu](https://pytorch.org/docs/stable/generated/torch.nn.functional.rrelu.html#torch.nn.functional.rrelu)
 
 ```python
 torch.nn.functional.rrelu(input, lower=1.0 / 8, upper=1.0 / 3, training=False, inplace=False)

@@ -1,6 +1,6 @@
 ## [ 无参数 ]torch.Tensor.sinh
 
-### [torch.Tensor.sinh](https://pytorch.org/docs/1.13/generated/torch.Tensor.sinh.html?highlight=torch+tensor+sinh#torch.Tensor.sinh)
+### [torch.Tensor.sinh](https://pytorch.org/docs/stable/generated/torch.Tensor.sinh.html?highlight=torch+tensor+sinh#torch.Tensor.sinh)
 
 ```python
 torch.Tensor.sinh()

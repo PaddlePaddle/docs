@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.linalg.solve_triangular
 
-### [torch.linalg.solve_triangular](https://pytorch.org/docs/1.13/generated/torch.linalg.solve_triangular.html?highlight=torch+linalg+solve_triangular#torch.linalg.solve_triangular)
+### [torch.linalg.solve_triangular](https://pytorch.org/docs/stable/generated/torch.linalg.solve_triangular.html?highlight=torch+linalg+solve_triangular#torch.linalg.solve_triangular)
 
 ```python
 torch.linalg.solve_triangular(A, B, *, upper, left=True, unitriangular=False, out=None)

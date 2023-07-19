@@ -1,6 +1,6 @@
 ## [ torch 参数更多]torch.logcumsumexp
 
-### [torch.logcumsumexp](https://pytorch.org/docs/1.13/generated/torch.logcumsumexp.html#torch-logcumsumexp)
+### [torch.logcumsumexp](https://pytorch.org/docs/stable/generated/torch.logcumsumexp.html#torch-logcumsumexp)
 
 ```python
 torch.logcumsumexp(input, dim, *, out=None)

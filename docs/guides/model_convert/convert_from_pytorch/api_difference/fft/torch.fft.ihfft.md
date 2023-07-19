@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.fft.ihfft
 
-### [torch.fft.ihfft](https://pytorch.org/docs/1.13/generated/torch.fft.ihfft.html?highlight=ihfft#torch.fft.ihfft)
+### [torch.fft.ihfft](https://pytorch.org/docs/stable/generated/torch.fft.ihfft.html?highlight=ihfft#torch.fft.ihfft)
 
 ```python
 torch.fft.ihfft(input,

@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.linalg.solve
 
-### [torch.linalg.solve](https://pytorch.org/docs/1.13/generated/torch.linalg.solve.html#torch.linalg.solve)
+### [torch.linalg.solve](https://pytorch.org/docs/stable/generated/torch.linalg.solve.html#torch.linalg.solve)
 
 ```python
 torch.linalg.solve(A, B, *, left=True, out=None)

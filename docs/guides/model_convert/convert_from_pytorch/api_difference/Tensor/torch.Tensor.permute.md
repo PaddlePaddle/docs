@@ -1,6 +1,6 @@
 ## [ 参数不一致 ]torch.Tensor.permute
 
-### [torch.Tensor.permute](https://pytorch.org/docs/1.13/generated/torch.Tensor.permute.html)
+### [torch.Tensor.permute](https://pytorch.org/docs/stable/generated/torch.Tensor.permute.html)
 
 ```python
 torch.Tensor.permute(*dims)

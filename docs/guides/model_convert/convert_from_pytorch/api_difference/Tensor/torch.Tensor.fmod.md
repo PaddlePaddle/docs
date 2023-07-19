@@ -1,6 +1,6 @@
 ## [ 参数不一致 ]torch.Tensor.fmod
 
-### [torch.Tensor.fmod](https://pytorch.org/docs/1.13/generated/torch.Tensor.fmod.html#torch.Tensor.fmod)
+### [torch.Tensor.fmod](https://pytorch.org/docs/stable/generated/torch.Tensor.fmod.html#torch.Tensor.fmod)
 
 ```python
 torch.Tensor.fmod(other)

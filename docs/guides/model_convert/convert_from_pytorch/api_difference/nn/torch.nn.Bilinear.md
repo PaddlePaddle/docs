@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.Bilinear
 
-### [torch.nn.Bilinear](https://pytorch.org/docs/1.13/generated/torch.nn.Bilinear.html#torch.nn.Bilinear)
+### [torch.nn.Bilinear](https://pytorch.org/docs/stable/generated/torch.nn.Bilinear.html#torch.nn.Bilinear)
 
 ```python
 torch.nn.Bilinear(in1_features, in2_features, out_features, bias=True, device=None, dtype=None)

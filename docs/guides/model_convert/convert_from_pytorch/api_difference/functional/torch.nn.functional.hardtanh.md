@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.functional.hardtanh
 
-### [torch.nn.functional.hardtanh](https://pytorch.org/docs/1.13/generated/torch.nn.functional.hardtanh.html#torch.nn.functional.hardtanh)
+### [torch.nn.functional.hardtanh](https://pytorch.org/docs/stable/generated/torch.nn.functional.hardtanh.html#torch.nn.functional.hardtanh)
 
 ```python
 torch.nn.functional.hardtanh(input, min_val=- 1.0, max_val=1.0, inplace=False)

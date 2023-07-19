@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ]torch.bitwise_or
 
-### [torch.bitwise_or](https://pytorch.org/docs/1.13/generated/torch.bitwise_or.html#torch-bitwise-or)
+### [torch.bitwise_or](https://pytorch.org/docs/stable/generated/torch.bitwise_or.html#torch-bitwise-or)
 
 ```python
 torch.bitwise_or(input,
