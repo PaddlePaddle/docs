@@ -1,15 +1,15 @@
-## [torch 参数更多]torch.distributed.recv
+## [torch 参数更多]torch.distributed.irecv
 
-### [torch.distributed.recv](https://pytorch.org/docs/2.0/distributed.html?highlight=recv#torch.distributed.recv)
+### [torch.distributed.irecv](https://pytorch.org/docs/2.0/distributed.html?highlight=send#torch.distributed.irecv)
 
 ```python
-torch.distributed.recv(tensor, src=None, group=None, tag=0)
+torch.distributed.irecv(tensor, src=None, group=None, tag=0)
 ```
 
-### [paddle.distributed.recv](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/recv_cn.html)
+### [paddle.distributed.irecv](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/irecv_cn.html)
 
 ```python
-paddle.distributed.recv(tensor, src=0, group=None, sync_op=True)
+paddle.distributed.irecv(tensor, src=0, group=None)
 ```
 
 其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -22,4 +22,3 @@ paddle.distributed.recv(tensor, src=0, group=None, sync_op=True)
 | src     | src             | 表示目标进程的 rank。                                                  |
 | group   | group           | 表示执行该操作的进程组实例。   |
 | tag     | -               | 表示匹配接收标签，Paddle 无此参数，暂无转写方式。   |
-| -       | sync_op | 表示该操作是否为同步操作，PyTorch 无此参数，Paddle 保持默认即可。 |

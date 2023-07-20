@@ -1,15 +1,15 @@
-## [torch 参数更多]torch.distributed.send
+## [torch 参数更多]torch.distributed.isend
 
-### [torch.distributed.send](https://pytorch.org/docs/2.0/distributed.html?highlight=send#torch.distributed.send)
+### [torch.distributed.isend](https://pytorch.org/docs/2.0/distributed.html#torch.distributed.isend)
 
 ```python
-torch.distributed.send(tensor, dst, group=None, tag=0)
+torch.distributed.isend(tensor, dst, group=None, tag=0)
 ```
 
-### [paddle.distributed.send](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/send_cn.html)
+### [paddle.distributed.isend](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/isend_cn.html)
 
 ```python
-paddle.distributed.send(tensor, dst=0, group=None, sync_op=True)
+paddle.distributed.isend(tensor, dst=0, group=None)
 ```
 
 其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -22,4 +22,3 @@ paddle.distributed.send(tensor, dst=0, group=None, sync_op=True)
 | dst     | dst             | 表示目标进程的 rank。                                                  |
 | group   | group           | 表示执行该操作的进程组实例。   |
 | tag     | -               | 表示匹配接收标签，Paddle 无此参数，暂无转写方式。                     |
-| -       | sync_op         | 表示该操作是否为同步操作，PyTorch 无此参数，Paddle 保持默认即可。 |
