@@ -5,7 +5,7 @@
 - 通过预编译的 wheel 包安装
 - 通过源代码编译安装
 
-**说明**：基于对应 DTK 版本的飞桨 wheel 包可在[光合开发者社区 ](https://developer.hpccube.com/tool/#sdk) AI 生态包中进行下载。
+**说明**：基于对应 DTK 版本的飞桨 wheel 包可在[光合开发者社区](https://developer.hpccube.com/tool/#sdk) AI 生态包中进行下载。
 
 ## 安装方式一：通过 wheel 包安装
 
@@ -116,8 +116,8 @@ cd Paddle
 mkdir build && cd build
 
 # 执行 cmake
-cmake .. -DPY_VERSION=3.7 -DWITH_ROCM=ON -DWITH_TESTING=ON -DWITH_DISTRIBUTE=ON \
-         -DWITH_MKL=ON -DCMAKE_BUILD_TYPE=Release
+cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_ROCM=ON -DWITH_TESTING=ON -DWITH_DISTRIBUTE=ON \
+     -DWITH_MKL=ON -DCMAKE_BUILD_TYPE=Release
 
 # 使用以下命令来编译
 make -j$(nproc)
