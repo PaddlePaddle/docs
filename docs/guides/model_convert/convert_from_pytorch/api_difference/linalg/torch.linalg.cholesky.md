@@ -1,6 +1,6 @@
 ## [ torch 参数更多]torch.linalg.cholesky
 
-### [torch.linalg.cholesky](https://pytorch.org/docs/1.13/generated/torch.linalg.cholesky.html?highlight=linalg+cholesky#torch.linalg.cholesky)
+### [torch.linalg.cholesky](https://pytorch.org/docs/stable/generated/torch.linalg.cholesky.html?highlight=linalg+cholesky#torch.linalg.cholesky)
 
 ```python
 torch.linalg.cholesky(A,*,upper=False,out=None)

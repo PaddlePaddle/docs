@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ] torch.sparse.addmm
 
-### [torch.sparse.addmm](https://pytorch.org/docs/1.13/generated/torch.sparse.addmm.html?highlight=addmm#torch.sparse.addmm)
+### [torch.sparse.addmm](https://pytorch.org/docs/stable/generated/torch.sparse.addmm.html?highlight=addmm#torch.sparse.addmm)
 
 ```python
 torch.sparse.addmm(mat, mat1, mat2, beta=1.0, alpha=1.0)

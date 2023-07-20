@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.logical_not
-### [torch.logical_not](https://pytorch.org/docs/1.13/generated/torch.logical_not.html?highlight=logical_not#torch.logical_not)
+### [torch.logical_not](https://pytorch.org/docs/stable/generated/torch.logical_not.html?highlight=logical_not#torch.logical_not)
 
 ```python
 torch.logical_not(input,

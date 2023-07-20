@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.Tensor.double
 
-### [torch.Tensor.double](https://pytorch.org/docs/1.13/generated/torch.Tensor.double.html#torch-Tensor-double)
+### [torch.Tensor.double](https://pytorch.org/docs/stable/generated/torch.Tensor.double.html#torch-Tensor-double)
 
 ```python
 torch.Tensor.double(memory_format=torch.preserve_format)

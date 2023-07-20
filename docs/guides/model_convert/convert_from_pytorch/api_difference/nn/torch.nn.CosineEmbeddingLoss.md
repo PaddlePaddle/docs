@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.CosineEmbeddingLoss
 
-### [torch.nn.CosineEmbeddingLoss](https://pytorch.org/docs/1.13/generated/torch.nn.CosineEmbeddingLoss.html#torch.nn.CosineEmbeddingLoss)
+### [torch.nn.CosineEmbeddingLoss](https://pytorch.org/docs/stable/generated/torch.nn.CosineEmbeddingLoss.html#torch.nn.CosineEmbeddingLoss)
 
 ```python
 torch.nn.CosineEmbeddingLoss(margin=0.0, size_average=None, reduce=None, reduction='mean')

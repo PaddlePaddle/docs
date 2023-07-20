@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.RReLU
 
-### [torch.nn.RReLU](https://pytorch.org/docs/1.13/generated/torch.nn.RReLU.html#torch.nn.RReLU)
+### [torch.nn.RReLU](https://pytorch.org/docs/stable/generated/torch.nn.RReLU.html#torch.nn.RReLU)
 
 ```python
 torch.nn.RReLU(lower=0.125, upper=0.3333333333333333, inplace=False)

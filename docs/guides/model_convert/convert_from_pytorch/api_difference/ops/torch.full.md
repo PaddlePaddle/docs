@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.full
 
-###  [torch.full](https://pytorch.org/docs/1.13/generated/torch.full.html?highlight=ful#torch.full)
+###  [torch.full](https://pytorch.org/docs/stable/generated/torch.full.html?highlight=ful#torch.full)
 
 ```python
 torch.full(size,

@@ -1,5 +1,5 @@
 ## [ 参数不一致 ]torch.nn.Linear
-### [torch.nn.Linear](https://pytorch.org/docs/1.13/generated/torch.nn.Linear.html?highlight=linear#torch.nn.Linear)
+### [torch.nn.Linear](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html?highlight=linear#torch.nn.Linear)
 
 ```python
 torch.nn.Linear(in_features,

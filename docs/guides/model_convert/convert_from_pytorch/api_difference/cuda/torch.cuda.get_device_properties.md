@@ -1,6 +1,6 @@
 ## [参数完全一致]torch.cuda.get_device_properties
 
-### [torch.cuda.get_device_properties](https://pytorch.org/docs/1.13/generated/torch.cuda.get_device_properties.html#torch.cuda.get_device_properties)
+### [torch.cuda.get_device_properties](https://pytorch.org/docs/stable/generated/torch.cuda.get_device_properties.html#torch.cuda.get_device_properties)
 
 ```python
 torch.cuda.get_device_properties(device)

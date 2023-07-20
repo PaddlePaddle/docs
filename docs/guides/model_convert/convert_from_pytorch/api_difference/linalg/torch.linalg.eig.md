@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.linalg.eig
 
-### [torch.linalg.eig](https://pytorch.org/docs/1.13/generated/torch.linalg.eig.html?highlight=torch+linalg+eig#torch.linalg.eig)
+### [torch.linalg.eig](https://pytorch.org/docs/stable/generated/torch.linalg.eig.html?highlight=torch+linalg+eig#torch.linalg.eig)
 
 ```python
 torch.linalg.eig(A,

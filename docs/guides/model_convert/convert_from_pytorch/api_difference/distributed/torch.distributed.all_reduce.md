@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributed.all_reduce
 
-### [torch.distributed.all_reduce](https://pytorch.org/docs/1.13/distributed.html#torch.distributed.all_reduce)
+### [torch.distributed.all_reduce](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_reduce)
 
 ```python
 torch.distributed.all_reduce(tensor, op=<torch.distributed.distributed_c10d.ReduceOp object>, group=None, async_op=False)

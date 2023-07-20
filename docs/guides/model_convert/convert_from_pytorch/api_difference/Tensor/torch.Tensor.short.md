@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.short
 
-### [torch.Tensor.short](https://pytorch.org/docs/1.13/generated/torch.Tensor.short.html#torch.Tensor.short)
+### [torch.Tensor.short](https://pytorch.org/docs/stable/generated/torch.Tensor.short.html#torch.Tensor.short)
 
 ```python
 torch.Tensor.short(memory_format=torch.preserve_format)

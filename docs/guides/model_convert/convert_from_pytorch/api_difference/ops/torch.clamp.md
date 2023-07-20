@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.clamp
-### [torch.clamp](https://pytorch.org/docs/1.13/generated/torch.clamp.html#torch-clamp)
+### [torch.clamp](https://pytorch.org/docs/stable/generated/torch.clamp.html#torch-clamp)
 
 ```python
 torch.clamp(input,

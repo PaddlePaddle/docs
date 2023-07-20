@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributions.uniform.Uniform
 
-### [torch.distributions.uniform.Uniform](https://pytorch.org/docs/1.13/distributions.html#torch.distributions.uniform.Uniform)
+### [torch.distributions.uniform.Uniform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.uniform.Uniform)
 
 ```python
 torch.distributions.uniform.Uniform(low, high, validate_args=None)

@@ -1,6 +1,6 @@
 ## [参数完全一致]torch.cuda.max_memory_reserved
 
-### [torch.cuda.max_memory_reserved](https://pytorch.org/docs/1.13/generated/torch.cuda.max_memory_reserved.html#torch.cuda.max_memory_reserved)
+### [torch.cuda.max_memory_reserved](https://pytorch.org/docs/stable/generated/torch.cuda.max_memory_reserved.html#torch.cuda.max_memory_reserved)
 
 ```python
 torch.cuda.max_memory_reserved(device)

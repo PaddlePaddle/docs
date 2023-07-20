@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.svd_lowrank
 
-### [torch.svd_lowrank](https://pytorch.org/docs/1.13/generated/torch.svd_lowrank.html?highlight=torch+svd_lowrank#torch.svd_lowrank)
+### [torch.svd_lowrank](https://pytorch.org/docs/stable/generated/torch.svd_lowrank.html?highlight=torch+svd_lowrank#torch.svd_lowrank)
 
 ```python
 torch.svd_lowrank(A, q=6, niter=2, M=None)

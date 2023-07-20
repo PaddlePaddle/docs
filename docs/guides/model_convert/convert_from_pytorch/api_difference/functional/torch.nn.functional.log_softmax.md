@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.functional.log_softmax
 
-### [torch.nn.functional.log_softmax](https://pytorch.org/docs/1.13/generated/torch.nn.functional.log_softmax.html#torch.nn.functional.log_softmax)
+### [torch.nn.functional.log_softmax](https://pytorch.org/docs/stable/generated/torch.nn.functional.log_softmax.html#torch.nn.functional.log_softmax)
 
 ```python
 torch.nn.functional.log_softmax(input, dim=None, _stacklevel=3, dtype=None)

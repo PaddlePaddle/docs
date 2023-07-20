@@ -1,6 +1,6 @@
 ## [ torch 参数更多]torch.renorm
 
-### [torch.renorm](https://pytorch.org/docs/1.13/generated/torch.renorm.html#torch-renorm)
+### [torch.renorm](https://pytorch.org/docs/stable/generated/torch.renorm.html#torch-renorm)
 
 ```python
 torch.renorm(input, p, dim, maxnorm, *, out=None)

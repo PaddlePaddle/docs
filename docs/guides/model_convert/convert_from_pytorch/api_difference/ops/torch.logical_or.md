@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.logical_or
-### [torch.logical_or](https://pytorch.org/docs/1.13/generated/torch.logical_or.html?highlight=logical_or#torch.logical_or)
+### [torch.logical_or](https://pytorch.org/docs/stable/generated/torch.logical_or.html?highlight=logical_or#torch.logical_or)
 
 ```python
 torch.logical_or(input,

@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.take_along_dim
-### [torch.Tensor.take_along_dim](https://pytorch.org/docs/1.13/generated/torch.Tensor.take_along_dim.html?highlight=torch+tensor+take_along_dim#torch.Tensor.take_along_dim)
+### [torch.Tensor.take_along_dim](https://pytorch.org/docs/stable/generated/torch.Tensor.take_along_dim.html?highlight=torch+tensor+take_along_dim#torch.Tensor.take_along_dim)
 
 ```python
 torch.Tensor.take_along_dim(indices,

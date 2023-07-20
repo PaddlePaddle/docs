@@ -1,6 +1,6 @@
 ## [ torch 参数更多]torch.lcm
 
-### [torch.lcm](https://pytorch.org/docs/1.13/generated/torch.lcm.html#torch-lcm)
+### [torch.lcm](https://pytorch.org/docs/stable/generated/torch.lcm.html#torch-lcm)
 
 ```python
 torch.lcm(input, other, *, out=None)

@@ -1,6 +1,6 @@
 ## [参数完全一致]torch.einsum
 
-### [torch.einsum](https://pytorch.org/docs/1.13/generated/torch.einsum.html#torch.einsum)
+### [torch.einsum](https://pytorch.org/docs/stable/generated/torch.einsum.html#torch.einsum)
 
 ```python
 torch.einsum(equation, *operands)

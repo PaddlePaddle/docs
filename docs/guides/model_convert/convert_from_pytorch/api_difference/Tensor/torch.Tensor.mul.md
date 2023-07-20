@@ -1,6 +1,6 @@
 ## [ 参数不一致 ] torch.Tensor.mul
 
-### [torch.Tensor.mul](https://pytorch.org/docs/1.13/generated/torch.Tensor.mul.html)
+### [torch.Tensor.mul](https://pytorch.org/docs/stable/generated/torch.Tensor.mul.html)
 
 ```python
 torch.Tensor.mul(other)

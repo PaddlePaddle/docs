@@ -1,6 +1,6 @@
 ## [仅 paddle 参数更多]torch.cuda.get_rng_state_all
 
-### [torch.cuda.get_rng_state_all](https://pytorch.org/docs/1.13/generated/torch.cuda.get_rng_state_all.html#torch.cuda.get_rng_state_all)
+### [torch.cuda.get_rng_state_all](https://pytorch.org/docs/stable/generated/torch.cuda.get_rng_state_all.html#torch.cuda.get_rng_state_all)
 
 ```python
 torch.cuda.get_rng_state_all()

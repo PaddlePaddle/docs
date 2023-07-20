@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.utils.cpp_extension.CUDAExtension
-### [torch.utils.cpp_extension.CUDAExtension](https://pytorch.org/docs/1.13/cpp_extension.html?highlight=torch+utils+cpp_extension+cudaextension#torch.utils.cpp_extension.CUDAExtension)
+### [torch.utils.cpp_extension.CUDAExtension](https://pytorch.org/docs/stable/cpp_extension.html?highlight=torch+utils+cpp_extension+cudaextension#torch.utils.cpp_extension.CUDAExtension)
 
 ```python
 torch.utils.cpp_extension.CUDAExtension(name,

@@ -1,6 +1,6 @@
 ## [参数完全一致]torch.cuda.synchronize
 
-### [torch.cuda.synchronize](https://pytorch.org/docs/1.13/generated/torch.cuda.synchronize.html#torch.cuda.synchronize)
+### [torch.cuda.synchronize](https://pytorch.org/docs/stable/generated/torch.cuda.synchronize.html#torch.cuda.synchronize)
 
 ```python
 torch.cuda.synchronize(device)

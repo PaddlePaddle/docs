@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.empty
 
-###  [torch.empty](https://pytorch.org/docs/1.13/generated/torch.empty.html?highlight=empty#torch.empty)
+###  [torch.empty](https://pytorch.org/docs/stable/generated/torch.empty.html?highlight=empty#torch.empty)
 
 ```python
 torch.empty(*size,

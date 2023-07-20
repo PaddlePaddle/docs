@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributions.transforms.ReshapeTransform
 
-### [torch.distributions.transforms.ReshapeTransform](https://pytorch.org/docs/1.13/distributions.html#torch.distributions.transforms.ReshapeTransform)
+### [torch.distributions.transforms.ReshapeTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.ReshapeTransform)
 
 ```python
 torch.distributions.transforms.ReshapeTransform(in_shape, out_shape, cache_size=0)

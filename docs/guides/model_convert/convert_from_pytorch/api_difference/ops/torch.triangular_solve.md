@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.triangular_solve
 
-### [torch.triangular_solve](https://pytorch.org/docs/1.13/generated/torch.triangular_solve.html#torch.triangular_solve)
+### [torch.triangular_solve](https://pytorch.org/docs/stable/generated/torch.triangular_solve.html#torch.triangular_solve)
 
 ```python
 torch.triangular_solve(b, A, upper=True, transpose=False, unitriangular=False, *, out=None)

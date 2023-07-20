@@ -1,6 +1,6 @@
 ## [ 无参数 ] torch.Tensor.tanh
 
-### [torch.Tensor.tanh](https://pytorch.org/docs/1.13/generated/torch.Tensor.tanh.html#torch.Tensor.tanh)
+### [torch.Tensor.tanh](https://pytorch.org/docs/stable/generated/torch.Tensor.tanh.html#torch.Tensor.tanh)
 
 ```
 torch.Tensor.tanh()

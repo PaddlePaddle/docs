@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.stack
 
-### [torch.stack](https://pytorch.org/docs/1.13/generated/torch.stack.html#torch.stack)
+### [torch.stack](https://pytorch.org/docs/stable/generated/torch.stack.html#torch.stack)
 
 ```python
 torch.stack(tensors,

@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.Tensor.cfloat
 
-### [torch.Tensor.cfloat](https://pytorch.org/docs/1.13/generated/torch.Tensor.cfloat.html?highlight=torch+tensor+cfloat#torch.Tensor.cfloat)
+### [torch.Tensor.cfloat](https://pytorch.org/docs/stable/generated/torch.Tensor.cfloat.html?highlight=torch+tensor+cfloat#torch.Tensor.cfloat)
 
 ```python
 torch.Tensor.cfloat(memory_format=torch.preserve_format)

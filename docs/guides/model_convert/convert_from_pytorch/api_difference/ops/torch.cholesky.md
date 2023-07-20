@@ -1,6 +1,6 @@
 ## [ torch 参数更多]torch.cholesky
 
-### [torch.cholesky](https://pytorch.org/docs/1.13/generated/torch.cholesky.html?highlight=cholesky#torch.cholesky)
+### [torch.cholesky](https://pytorch.org/docs/stable/generated/torch.cholesky.html?highlight=cholesky#torch.cholesky)
 
 ```python
 torch.cholesky(input,upper=False,*,out=None)

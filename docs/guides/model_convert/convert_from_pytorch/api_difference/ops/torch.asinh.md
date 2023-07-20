@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.asinh
-### [torch.asinh](https://pytorch.org/docs/1.13/generated/torch.asinh.html#torch.asinh)
+### [torch.asinh](https://pytorch.org/docs/stable/generated/torch.asinh.html#torch.asinh)
 
 ```python
 torch.asinh(input,

@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ]torch.Tensor.arctan2
 
-### [torch.Tensor.arctan2](https://pytorch.org/docs/1.13/generated/torch.arctan2.html#torch.arctan2)
+### [torch.Tensor.arctan2](https://pytorch.org/docs/stable/generated/torch.arctan2.html#torch.arctan2)
 
 ```python
 torch.Tensor.arctan2(other)

@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributions.categorical.Categorical
 
-### [torch.distributions.categorical.Categorical](https://pytorch.org/docs/1.13/distributions.html#torch.distributions.categorical.Categorical)
+### [torch.distributions.categorical.Categorical](https://pytorch.org/docs/stable/distributions.html#torch.distributions.categorical.Categorical)
 
 ```python
 torch.distributions.categorical.Categorical(probs=None, logits=None, validate_args=None)

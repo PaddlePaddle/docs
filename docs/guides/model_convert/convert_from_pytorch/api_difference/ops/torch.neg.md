@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.neg
 
-### [torch.neg](https://pytorch.org/docs/1.13/generated/torch.neg.html?highlight=neg#torch.neg)
+### [torch.neg](https://pytorch.org/docs/stable/generated/torch.neg.html?highlight=neg#torch.neg)
 
 ```python
 torch.neg(input, *, out=None)

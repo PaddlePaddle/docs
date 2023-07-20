@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.linalg.cond
 
-### [torch.linalg.cond](https://pytorch.org/docs/1.13/generated/torch.linalg.cond.html#torch.linalg.cond)
+### [torch.linalg.cond](https://pytorch.org/docs/stable/generated/torch.linalg.cond.html#torch.linalg.cond)
 
 ```python
 torch.linalg.cond(A, p=None, *, out=None)

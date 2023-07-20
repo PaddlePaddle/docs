@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.quantile
 
-### [torch.Tensor.quantile](https://pytorch.org/docs/1.13/generated/torch.Tensor.quantile.html#torch.Tensor.quantile)
+### [torch.Tensor.quantile](https://pytorch.org/docs/stable/generated/torch.Tensor.quantile.html#torch.Tensor.quantile)
 
 ```python
 torch.Tensor.quantile(q, dim=None, keepdim=False, *, interpolation='linear')

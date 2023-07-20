@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.divide
-### [torch.divide](https://pytorch.org/docs/1.13/generated/torch.divide.html?highlight=torch+divide#torch.divide)
+### [torch.divide](https://pytorch.org/docs/stable/generated/torch.divide.html?highlight=torch+divide#torch.divide)
 ```python
 torch.divide(input,
              other,

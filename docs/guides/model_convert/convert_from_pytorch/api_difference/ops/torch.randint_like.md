@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.randint_like
 
-### [torch.randint_like](https://pytorch.org/docs/1.13/generated/torch.randint_like.html?highlight=randint_like#torch.randint_like)
+### [torch.randint_like](https://pytorch.org/docs/stable/generated/torch.randint_like.html?highlight=randint_like#torch.randint_like)
 
 ```python
 torch.randint_like(input,
