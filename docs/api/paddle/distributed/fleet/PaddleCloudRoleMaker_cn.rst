@@ -12,15 +12,7 @@ PaddleCloudRoleMaker 是基于从环境变量中获取分布式相关信息进�
 代码示例
 ::::::::::::
 
-.. code-block:: text
-
-    import paddle.distributed.fleet as fleet
-    from paddle.distributed.fleet.base.role_maker import Role
-    fleet.UserDefinedRoleMaker(
-        current_id=0,
-        role=Role.SERVER,
-        worker_num=2,
-        server_endpoints=["127.0.0.1:36011", "127.0.0.1:36012"])
+COPY-FROM: paddle.distributed.fleet.PaddleCloudRoleMaker
 
 方法
 ::::::::::::
