@@ -19,5 +19,5 @@ paddle.vander(x, n=None, increasing=False, name=None)
 | PyTorch | PaddlePaddle | 备注                                                  |
 | ------- | ------------ | ----------------------------------------------------- |
 | x       | x            | 输入的 Tensor。                                       |
-| N       | n            | 输出中的列数, 仅参数名大小写不一致。                  |
+| N       | n            | 输出中的列数, 仅参数名不一致。                  |
 | -       | increasing   | 列的幂次顺序，PyTorch 无此参数，Paddle 保持默认即可。 |
