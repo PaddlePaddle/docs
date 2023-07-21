@@ -3,7 +3,7 @@
 shard_tensor
 -------------------------------
 
-.. py:function:: paddle.shard_tensor(data, dtype=None, place=None, stop_gradient=True, dist_attr=None)
+.. py:function:: paddle.distributed.shard_tensor(data, dtype=None, place=None, stop_gradient=True, dist_attr=None)
 
 通过已知的 ``data`` 来创建一个带有分布式信息的 Tensor，Tensor 类型为 ``paddle.Tensor``。
 ``data`` 可以是 scalar，tuple，list，numpy\.ndarray，paddle\.Tensor。
