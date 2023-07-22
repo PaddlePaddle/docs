@@ -737,6 +737,12 @@
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1    | [torch.distributions.kl.kl_divergence](https://pytorch.org/docs/stable/distributions.html?highlight=torch+distributions+kl+kl_divergence#torch.distributions.kl.kl_divergence) | [paddle.distribution.kl_divergence](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/kl_divergence_cn.html) | 功能一致，参数一致， [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.kl.kl_divergence.md)         |
 | 2    | [torch.distributions.kl.register_kl](https://pytorch.org/docs/stable/distributions.html?highlight=register_kl#torch.distributions.kl.register_kl) | [paddle.distribution.register_kl](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/register_kl_cn.html) | 功能一致，仅参数名不一致， [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.kl.register_kl.md)         |
+| 3    | [torch.distributions.binomial.Binomial](https://pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial) |  | 功能缺失        |
+| 4    | [torch.distributions.continuous_bernoulli.ContinuousBernoulli](https://pytorch.org/docs/stable/distributions.html#torch.distributions.continuous_bernoulli.ContinuousBernoulli) |  | 功能缺失        |
+| 5    | [torch.distributions.exponential.Exponential](https://pytorch.org/docs/stable/distributions.html#torch.distributions.exponential.Exponential) |  | 功能缺失        |
+| 6    | [torch.distributions.geometric.Geometric](https://pytorch.org/docs/stable/distributions.html#torch.distributions.geometric.Geometric) |  | 功能缺失        |
+| 7    | [torch.distributions.gumbel.Gumbel](https://pytorch.org/docs/stable/distributions.html#torch.distributions.gumbel.Gumbel) |  | 功能缺失        |
+| 8    | [torch.distributions.one_hot_categorical.OneHotCategorical](https://pytorch.org/docs/stable/distributions.html#torch.distributions.one_hot_categorical.OneHotCategorical) |  | 功能缺失        |
 
 
 ***持续更新...***
