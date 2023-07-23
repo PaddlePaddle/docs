@@ -1,6 +1,6 @@
 ## [参数不一致]torch.nn.GELU
 
-### [torch.nn.GELU](https://pytorch.org/docs/1.13/generated/torch.nn.GELU.html#torch.nn.GELU)
+### [torch.nn.GELU](https://pytorch.org/docs/stable/generated/torch.nn.GELU.html#torch.nn.GELU)
 
 ```python
 torch.nn.GELU(approximate='none')

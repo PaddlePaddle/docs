@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.utils.cpp_extension.CppExtension
-### [torch.utils.cpp_extension.CppExtension](https://pytorch.org/docs/1.13/cpp_extension.html?highlight=torch+utils+cpp_extension+cppextension#torch.utils.cpp_extension.CppExtension)
+### [torch.utils.cpp_extension.CppExtension](https://pytorch.org/docs/stable/cpp_extension.html?highlight=torch+utils+cpp_extension+cppextension#torch.utils.cpp_extension.CppExtension)
 
 ```python
 torch.utils.cpp_extension.CppExtension(name,

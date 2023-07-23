@@ -1,6 +1,6 @@
 ## [ torch 参数更多]torch.triu
 
-### [torch.triu](https://pytorch.org/docs/1.13/generated/torch.triu.html?highlight=triu#torch.triu)
+### [torch.triu](https://pytorch.org/docs/stable/generated/torch.triu.html?highlight=triu#torch.triu)
 
 ```python
 torch.triu(input,diagonal=0,*,out=None)

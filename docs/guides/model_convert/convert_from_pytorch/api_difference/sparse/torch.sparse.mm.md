@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ] torch.sparse.mm
 
-### [torch.sparse.mm](https://pytorch.org/docs/1.13/generated/torch.sparse.mm.html?highlight=torch+sparse+mm#torch.sparse.mm)
+### [torch.sparse.mm](https://pytorch.org/docs/stable/generated/torch.sparse.mm.html?highlight=torch+sparse+mm#torch.sparse.mm)
 
 ```python
 torch.sparse.mm(input, mat2)

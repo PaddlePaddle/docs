@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.nan_to_num
 
-### [torch.nan_to_num](https://pytorch.org/docs/1.13/generated/torch.nan_to_num.html?highlight=nan_to_num#torch.nan_to_num)
+### [torch.nan_to_num](https://pytorch.org/docs/stable/generated/torch.nan_to_num.html?highlight=nan_to_num#torch.nan_to_num)
 
 ```python
 torch.nan_to_num(input, nan=0.0, posinf=None, neginf=None, *, out=None)

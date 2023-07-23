@@ -1,6 +1,6 @@
 ## [ 参数不一致 ]torch.multiply
 
-### [torch.multiply](https://pytorch.org/docs/1.13/generated/torch.multiply.html?highlight=torch+multiply#torch.multiply)
+### [torch.multiply](https://pytorch.org/docs/stable/generated/torch.multiply.html?highlight=torch+multiply#torch.multiply)
 
 ```python
 torch.multiply(input, other, *, out=None)

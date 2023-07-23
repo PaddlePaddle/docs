@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.TransformerDecoderLayer
-### [torch.nn.TransformerDecoderLayer](https://pytorch.org/docs/1.13/generated/torch.nn.TransformerDecoderLayer.html?highlight=transformerdecoderlayer#torch.nn.TransformerDecoderLayer)
+### [torch.nn.TransformerDecoderLayer](https://pytorch.org/docs/stable/generated/torch.nn.TransformerDecoderLayer.html?highlight=transformerdecoderlayer#torch.nn.TransformerDecoderLayer)
 
 ```python
 torch.nn.TransformerDecoderLayer(d_model,

@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.cat
-### [torch.cat](https://pytorch.org/docs/1.13/generated/torch.cat.html?highlight=cat#torch.cat)
+### [torch.cat](https://pytorch.org/docs/stable/generated/torch.cat.html?highlight=cat#torch.cat)
 
 ```python
 torch.cat(input,

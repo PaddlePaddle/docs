@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.atan
-### [torch.atan](https://pytorch.org/docs/1.13/generated/torch.atan.html#torch.atan)
+### [torch.atan](https://pytorch.org/docs/stable/generated/torch.atan.html#torch.atan)
 
 ```python
 torch.atan(input,

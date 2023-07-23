@@ -1,6 +1,6 @@
 ## [仅参数名不一致]torch.Tensor.unsqueeze
 
-### [torch.Tensor.unsqueeze](https://pytorch.org/docs/1.13/generated/torch.Tensor.unsqueeze.html#torch.Tensor.unsqueeze)
+### [torch.Tensor.unsqueeze](https://pytorch.org/docs/stable/generated/torch.Tensor.unsqueeze.html#torch.Tensor.unsqueeze)
 
 ```python
 torch.Tensor.unsqueeze(dim)

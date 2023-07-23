@@ -1,6 +1,6 @@
 ## [ 参数不一致 ]torch.Tensor.ge
 
-### [torch.Tensor.ge](https://pytorch.org/docs/1.13/generated/torch.Tensor.ge.html?highlight=torch+tensor+ge#torch.Tensor.ge)
+### [torch.Tensor.ge](https://pytorch.org/docs/stable/generated/torch.Tensor.ge.html?highlight=torch+tensor+ge#torch.Tensor.ge)
 
 ```python
 torch.Tensor.ge(other)

@@ -1,6 +1,6 @@
 ## [仅参数名不一致]torch.distributed.reduce
 
-### [torch.distributed.reduce](https://pytorch.org/docs/2.0/distributed.html?highlight=reduce#torch.distributed.reduce)
+### [torch.distributed.reduce](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce)
 
 ```python
 torch.distributed.reduce(tensor, dst, op=<RedOpType.SUM: 0>, group=None, async_op=False)

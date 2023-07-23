@@ -1,5 +1,5 @@
 # [torch 参数更多 ]torch.nn.SmoothL1Loss
-### [torch.nn.SmoothL1Loss](https://pytorch.org/docs/1.13/generated/torch.nn.SmoothL1Loss.html?highlight=smoothl1loss#torch.nn.SmoothL1Loss)
+### [torch.nn.SmoothL1Loss](https://pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html?highlight=smoothl1loss#torch.nn.SmoothL1Loss)
 
 ```python
 torch.nn.SmoothL1Loss(size_average=None,

@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nonzero
-### [torch.nonzero](https://pytorch.org/docs/1.13/generated/torch.nonzero.html#torch.nonzero)
+### [torch.nonzero](https://pytorch.org/docs/stable/generated/torch.nonzero.html#torch.nonzero)
 
 ```python
 torch.nonzero(input,

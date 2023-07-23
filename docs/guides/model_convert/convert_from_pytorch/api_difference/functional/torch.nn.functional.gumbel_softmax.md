@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.functional.gumbel_softmax
 
-### [torch.nn.functional.gumbel_softmax](https://pytorch.org/docs/1.13/generated/torch.nn.functional.gumbel_softmax.html#torch.nn.functional.gumbel_softmax)
+### [torch.nn.functional.gumbel_softmax](https://pytorch.org/docs/stable/generated/torch.nn.functional.gumbel_softmax.html#torch.nn.functional.gumbel_softmax)
 
 ```python
 torch.nn.functional.gumbel_softmax(logits, tau=1, hard=False, eps=1e-10, dim=- 1)

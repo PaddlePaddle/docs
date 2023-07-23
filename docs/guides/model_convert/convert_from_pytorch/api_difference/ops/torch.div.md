@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.div
-### [torch.div](https://pytorch.org/docs/1.13/generated/torch.div.html#torch.div)
+### [torch.div](https://pytorch.org/docs/stable/generated/torch.div.html#torch.div)
 ```python
 torch.div(input,
           other,

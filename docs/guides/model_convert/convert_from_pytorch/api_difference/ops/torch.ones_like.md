@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.ones_like
 
-###  [torch.ones_like](https://pytorch.org/docs/1.13/generated/torch.ones_like.html?highlight=ones_like#torch.ones_like)
+###  [torch.ones_like](https://pytorch.org/docs/stable/generated/torch.ones_like.html?highlight=ones_like#torch.ones_like)
 
 ```python
 torch.ones_like(input,

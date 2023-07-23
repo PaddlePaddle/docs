@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.atanh
-### [torch.atanh](https://pytorch.org/docs/1.13/generated/torch.atanh.html#torch.atanh)
+### [torch.atanh](https://pytorch.org/docs/stable/generated/torch.atanh.html#torch.atanh)
 
 ```python
 torch.atanh(input,

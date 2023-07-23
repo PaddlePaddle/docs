@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.asin
-### [torch.asin](https://pytorch.org/docs/1.13/generated/torch.asin.html#torch.asin)
+### [torch.asin](https://pytorch.org/docs/stable/generated/torch.asin.html#torch.asin)
 
 ```python
 torch.asin(input,

@@ -1,6 +1,6 @@
 ## [ 参数不一致 ]torch.Tensor.any
 
-### [torch.Tensor.any](https://pytorch.org/docs/1.13/generated/torch.Tensor.any.html?highlight=torch+tensor+any#torch.Tensor.any)
+### [torch.Tensor.any](https://pytorch.org/docs/stable/generated/torch.Tensor.any.html?highlight=torch+tensor+any#torch.Tensor.any)
 
 ```python
 torch.Tensor.any(dim=None, keepdim=False)

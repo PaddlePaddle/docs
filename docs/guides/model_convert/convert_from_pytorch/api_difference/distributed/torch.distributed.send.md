@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributed.send
 
-### [torch.distributed.send](https://pytorch.org/docs/2.0/distributed.html?highlight=send#torch.distributed.send)
+### [torch.distributed.send](https://pytorch.org/docs/stable/distributed.html#torch.distributed.send)
 
 ```python
 torch.distributed.send(tensor, dst, group=None, tag=0)

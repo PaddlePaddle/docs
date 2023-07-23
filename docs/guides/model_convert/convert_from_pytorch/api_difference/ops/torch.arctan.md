@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.arctan
 
-### [torch.arctan](https://pytorch.org/docs/1.13/generated/torch.arctan.html#torch.arctan)
+### [torch.arctan](https://pytorch.org/docs/stable/generated/torch.arctan.html#torch.arctan)
 
 ```python
 torch.arctan(input,

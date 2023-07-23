@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributions.transforms.IndependentTransform
 
-### [torch.distributions.transforms.IndependentTransform](https://pytorch.org/docs/1.13/distributions.html#torch.distributions.transforms.IndependentTransform)
+### [torch.distributions.transforms.IndependentTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.IndependentTransform)
 
 ```python
 torch.distributions.transforms.IndependentTransform(base_transform, reinterpreted_batch_ndims, cache_size=0)

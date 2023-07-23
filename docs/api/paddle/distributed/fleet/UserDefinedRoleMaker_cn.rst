@@ -12,16 +12,7 @@ UserDefinedRoleMaker 是基于从用户自定义的参数中获取分布式相�
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    from paddle.distributed.fleet.base.role_maker import Role
-
-    fleet.UserDefinedRoleMaker(
-        current_id=0,
-        role=Role.SERVER,
-        worker_num=2,
-        server_endpoints=["127.0.0.1:36011", "127.0.0.1:36012"])
+COPY-FROM: paddle.distributed.fleet.UserDefinedRoleMaker
 
 方法
 ::::::::::::
@@ -38,15 +29,13 @@ string
 
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
     import paddle.distributed.fleet as fleet
     from paddle.distributed.fleet.base.role_maker import Role
-
     role = fleet.UserDefinedRoleMaker(
         current_id=0,
         role=Role.SERVER,
         worker_num=2,
         server_endpoints=["127.0.0.1:36011", "127.0.0.1:36012"])
-
     role.to_string()

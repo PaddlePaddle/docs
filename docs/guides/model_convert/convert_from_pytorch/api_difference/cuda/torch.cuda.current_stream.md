@@ -1,6 +1,6 @@
 ## [参数完全一致]torch.cuda.current_stream
 
-### [torch.cuda.current_stream](https://pytorch.org/docs/1.13/generated/torch.cuda.current_stream.html#torch.cuda.current_stream)
+### [torch.cuda.current_stream](https://pytorch.org/docs/stable/generated/torch.cuda.current_stream.html#torch.cuda.current_stream)
 
 ```python
 torch.cuda.current_stream(device=None)

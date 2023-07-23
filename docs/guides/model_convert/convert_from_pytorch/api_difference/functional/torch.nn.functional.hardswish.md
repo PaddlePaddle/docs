@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.functional.hardswish
 
-### [torch.nn.functional.hardswish](https://pytorch.org/docs/1.13/generated/torch.nn.functional.hardswish.html#torch.nn.functional.hardswish)
+### [torch.nn.functional.hardswish](https://pytorch.org/docs/stable/generated/torch.nn.functional.hardswish.html#torch.nn.functional.hardswish)
 
 ```python
 torch.nn.functional.hardswish(input, inplace=False)

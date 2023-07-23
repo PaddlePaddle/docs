@@ -1,6 +1,6 @@
 ## [paddle 参数更多]torch.cuda.amp.autocast
 
-### [torch.cuda.amp.autocast](https://pytorch.org/docs/1.13/amp.html#torch.cuda.amp.autocast)
+### [torch.cuda.amp.autocast](https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.autocast)
 
 ```python
 torch.cuda.amp.autocast(enabled=True, dtype=torch.float16, cache_enabled=True)

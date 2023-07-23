@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.fft.ihfft2
 
-### [torch.fft.ihfft2](https://pytorch.org/docs/1.13/generated/torch.fft.ihfft2.html?highlight=torch+fft+ihfft2#torch.fft.ihfft2)
+### [torch.fft.ihfft2](https://pytorch.org/docs/stable/generated/torch.fft.ihfft2.html?highlight=torch+fft+ihfft2#torch.fft.ihfft2)
 
 ```python
 torch.fft.ihfft2(input, s=None, dim=(- 2, - 1), norm=None, *, out=None)

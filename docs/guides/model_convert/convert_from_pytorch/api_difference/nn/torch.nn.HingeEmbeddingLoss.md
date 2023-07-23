@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.HingeEmbeddingLoss
 
-### [torch.nn.HingeEmbeddingLoss](https://pytorch.org/docs/1.13/generated/torch.nn.HingeEmbeddingLoss.html#hingeembeddingloss)
+### [torch.nn.HingeEmbeddingLoss](https://pytorch.org/docs/stable/generated/torch.nn.HingeEmbeddingLoss.html#hingeembeddingloss)
 
 ```python
 torch.nn.HingeEmbeddingLoss(margin=1.0,

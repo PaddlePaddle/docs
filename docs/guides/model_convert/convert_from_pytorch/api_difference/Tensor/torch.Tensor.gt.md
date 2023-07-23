@@ -1,6 +1,6 @@
 ## [ 参数不一致 ]torch.Tensor.gt
 
-### [torch.Tensor.gt](https://pytorch.org/docs/1.13/generated/torch.Tensor.gt.html?highlight=torch+tensor+gt#torch.Tensor.gt)
+### [torch.Tensor.gt](https://pytorch.org/docs/stable/generated/torch.Tensor.gt.html?highlight=torch+tensor+gt#torch.Tensor.gt)
 
 ```python
 torch.Tensor.gt(other)

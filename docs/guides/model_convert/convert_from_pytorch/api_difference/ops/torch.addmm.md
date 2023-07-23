@@ -1,6 +1,6 @@
 ## [ torch 参数更多]torch.addmm
 
-### [torch.addmm](https://pytorch.org/docs/1.13/generated/torch.addmm.html?highlight=addmm#torch.addmm)
+### [torch.addmm](https://pytorch.org/docs/stable/generated/torch.addmm.html?highlight=addmm#torch.addmm)
 
 ```python
 torch.addmm(input,mat1,mat2,*,beta=1,alpha=1,out=None)

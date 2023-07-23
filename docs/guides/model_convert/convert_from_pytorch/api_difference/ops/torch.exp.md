@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.exp
-### [torch.exp](https://pytorch.org/docs/1.13/generated/torch.exp.html?highlight=torch+exp#torch.exp)
+### [torch.exp](https://pytorch.org/docs/stable/generated/torch.exp.html?highlight=torch+exp#torch.exp)
 
 ```python
 torch.exp(input,

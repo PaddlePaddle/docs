@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributed.recv
 
-### [torch.distributed.recv](https://pytorch.org/docs/2.0/distributed.html?highlight=recv#torch.distributed.recv)
+### [torch.distributed.recv](https://pytorch.org/docs/stable/distributed.html#torch.distributed.recv)
 
 ```python
 torch.distributed.recv(tensor, src=None, group=None, tag=0)

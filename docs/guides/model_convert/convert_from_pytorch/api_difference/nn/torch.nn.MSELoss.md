@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.nn.MSELoss
-### [torch.nn.MSELoss](https://pytorch.org/docs/1.13/generated/torch.nn.MSELoss.html?highlight=mseloss#torch.nn.MSELoss)
+### [torch.nn.MSELoss](https://pytorch.org/docs/stable/generated/torch.nn.MSELoss.html?highlight=mseloss#torch.nn.MSELoss)
 
 ```python
 torch.nn.MSELoss(size_average=None,

@@ -1,6 +1,6 @@
 ## [ 参数不一致 ]torch.Tensor.lt
 
-### [torch.Tensor.lt](https://pytorch.org/docs/1.13/generated/torch.Tensor.lt.html)
+### [torch.Tensor.lt](https://pytorch.org/docs/stable/generated/torch.Tensor.lt.html)
 
 ```python
 torch.Tensor.lt(other)

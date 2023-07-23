@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.logit
 
-### [torch.logit](https://pytorch.org/docs/1.13/generated/torch.logit.html?highlight=torch+logit#torch.logit)
+### [torch.logit](https://pytorch.org/docs/stable/generated/torch.logit.html?highlight=torch+logit#torch.logit)
 
 ```python
 torch.logit(input, eps=None, *, out=None)

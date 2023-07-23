@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.nn.AdaptiveMaxPool2d
-### [torch.nn.AdaptiveMaxPool2d](https://pytorch.org/docs/1.13/generated/torch.nn.AdaptiveMaxPool2d.html?highlight=adaptivemaxpool2d#torch.nn.AdaptiveMaxPool2d)
+### [torch.nn.AdaptiveMaxPool2d](https://pytorch.org/docs/stable/generated/torch.nn.AdaptiveMaxPool2d.html?highlight=adaptivemaxpool2d#torch.nn.AdaptiveMaxPool2d)
 
 ```python
 class torch.nn.AdaptiveMaxPool2d(output_size,

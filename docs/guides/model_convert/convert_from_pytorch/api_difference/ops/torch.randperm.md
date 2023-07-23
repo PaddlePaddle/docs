@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.randperm
 
-### [torch.randperm](https://pytorch.org/docs/1.13/generated/torch.randperm.html?highlight=rand#torch.randperm)
+### [torch.randperm](https://pytorch.org/docs/stable/generated/torch.randperm.html?highlight=rand#torch.randperm)
 
 ```python
 torch.randperm(n,

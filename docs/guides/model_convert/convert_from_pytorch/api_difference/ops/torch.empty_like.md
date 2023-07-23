@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.empty_like
 
-###  [torch.empty_like](https://pytorch.org/docs/1.13/generated/torch.empty_like.html?highlight=empty_like#torch.empty_like)
+###  [torch.empty_like](https://pytorch.org/docs/stable/generated/torch.empty_like.html?highlight=empty_like#torch.empty_like)
 
 ```python
 torch.empty_like(input,
