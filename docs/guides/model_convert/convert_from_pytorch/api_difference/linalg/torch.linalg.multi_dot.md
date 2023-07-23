@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.linalg.multi_dot
 
-### [torch.linalg.multi_dot](https://pytorch.org/docs/1.13/generated/torch.linalg.multi_dot.html?highlight=torch+linalg+multi_dot#torch.linalg.multi_dot)
+### [torch.linalg.multi_dot](https://pytorch.org/docs/stable/generated/torch.linalg.multi_dot.html?highlight=torch+linalg+multi_dot#torch.linalg.multi_dot)
 
 ```python
 torch.linalg.multi_dot(tensors,

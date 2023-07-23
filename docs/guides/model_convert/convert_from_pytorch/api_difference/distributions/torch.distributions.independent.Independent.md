@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributions.independent.Independent
 
-### [torch.distributions.independent.Independent](https://pytorch.org/docs/1.13/distributions.html#torch.distributions.independent.Independent)
+### [torch.distributions.independent.Independent](https://pytorch.org/docs/stable/distributions.html#torch.distributions.independent.Independent)
 
 ```python
 torch.distributions.independent.Independent(base_distribution, reinterpreted_batch_ndims, validate_args=None)

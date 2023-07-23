@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.matrix_power
-### [torch.matrix_power](https://pytorch.org/docs/1.13/generated/torch.matrix_power.html?highlight=matrix_power)
+### [torch.matrix_power](https://pytorch.org/docs/stable/generated/torch.matrix_power.html?highlight=matrix_power)
 ```python
 torch.matrix_power(input, n, *, out=None)
 ```

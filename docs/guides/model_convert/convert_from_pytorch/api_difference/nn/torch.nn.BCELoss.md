@@ -1,5 +1,5 @@
 # [ torch 参数更多 ]torch.nn.BCELoss
-### [torch.nn.BCELoss](https://pytorch.org/docs/1.13/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss)
+### [torch.nn.BCELoss](https://pytorch.org/docs/stable/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss)
 
 ```python
 torch.nn.BCELoss(weight=None,

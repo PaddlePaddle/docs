@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ]torch.logical_xor
 
-### [torch.logical_xor](https://pytorch.org/docs/1.13/generated/torch.logical_xor.html?highlight=torch+logical_xor#torch.logical_xor)
+### [torch.logical_xor](https://pytorch.org/docs/stable/generated/torch.logical_xor.html?highlight=torch+logical_xor#torch.logical_xor)
 
 ```python
 torch.logical_xor(input, other, *, out=None)

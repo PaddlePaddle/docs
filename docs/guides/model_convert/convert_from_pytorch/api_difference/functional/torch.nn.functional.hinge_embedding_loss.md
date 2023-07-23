@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.functional.hinge_embedding_loss
 
-### [torch.nn.functional.hinge_embedding_loss](https://pytorch.org/docs/1.13/generated/torch.nn.functional.hinge_embedding_loss.html#torch.nn.functional.hinge_embedding_loss)
+### [torch.nn.functional.hinge_embedding_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.hinge_embedding_loss.html#torch.nn.functional.hinge_embedding_loss)
 
 ```python
 torch.nn.functional.hinge_embedding_loss(input, target, margin=1.0, size_average=None, reduce=None, reduction='mean')

@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.acos
 
-### [torch.acos](https://pytorch.org/docs/1.13/generated/torch.acos.html?highlight=acos#torch.acos)
+### [torch.acos](https://pytorch.org/docs/stable/generated/torch.acos.html?highlight=acos#torch.acos)
 
 ```python
 torch.acos(input,

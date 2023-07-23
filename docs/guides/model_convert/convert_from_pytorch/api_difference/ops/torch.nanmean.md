@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.nanmean
 
-### [torch.nanmean](https://pytorch.org/docs/1.13/generated/torch.nanmean.html?highlight=nanmean#torch.nanmean)
+### [torch.nanmean](https://pytorch.org/docs/stable/generated/torch.nanmean.html?highlight=nanmean#torch.nanmean)
 
 ```python
 torch.nanmean(input,

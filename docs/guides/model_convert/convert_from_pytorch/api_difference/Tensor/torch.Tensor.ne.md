@@ -1,5 +1,5 @@
 ## [ 参数不一致 ] torch.Tensor.ne
-### [torch.Tensor.ne](https://pytorch.org/docs/1.13/generated/torch.Tensor.ne.html?highlight=ne)
+### [torch.Tensor.ne](https://pytorch.org/docs/stable/generated/torch.Tensor.ne.html?highlight=ne)
 
 ```python
 torch.Tensor.ne(other)

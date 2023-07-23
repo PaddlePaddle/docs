@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.functional.max_pool3d
 
-### [torch.nn.functional.max_pool3d](https://pytorch.org/docs/1.13/generated/torch.nn.functional.max_pool3d.html#torch.nn.functional.max_pool3d)
+### [torch.nn.functional.max_pool3d](https://pytorch.org/docs/stable/generated/torch.nn.functional.max_pool3d.html#torch.nn.functional.max_pool3d)
 
 ```python
 torch.nn.functional.max_pool3d(input, kernel_size, stride=None, padding=0, dilation=1, ceil_mode=False, return_indices=False)

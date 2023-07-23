@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.autograd.grad
 
-### [torch.autograd.grad](https://pytorch.org/docs/1.13/generated/torch.autograd.grad.html#torch.autograd.grad)
+### [torch.autograd.grad](https://pytorch.org/docs/stable/generated/torch.autograd.grad.html#torch.autograd.grad)
 
 ```python
 torch.autograd.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, is_grads_batched=False)

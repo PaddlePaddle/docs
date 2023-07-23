@@ -1,6 +1,6 @@
 ## [参数完全一致]torch.Tensor.tril
 
-### [torch.Tensor.tril](https://pytorch.org/docs/1.13/generated/torch.Tensor.tril.html#torch.Tensor.tril)
+### [torch.Tensor.tril](https://pytorch.org/docs/stable/generated/torch.Tensor.tril.html#torch.Tensor.tril)
 
 ```python
 torch.Tensor.tril(diagonal=0)

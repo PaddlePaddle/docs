@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.add
 
-### [torch.add](https://pytorch.org/docs/1.13/generated/torch.add.html?highlight=add#torch.add)
+### [torch.add](https://pytorch.org/docs/stable/generated/torch.add.html?highlight=add#torch.add)
 
 ```python
 torch.add(input,

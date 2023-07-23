@@ -1,6 +1,6 @@
 ## [参数完全一致]torch.cuda.manual_seed
 
-### [torch.cuda.manual_seed](https://pytorch.org/docs/1.13/generated/torch.cuda.manual_seed.html#torch.cuda.manual_seed)
+### [torch.cuda.manual_seed](https://pytorch.org/docs/stable/generated/torch.cuda.manual_seed.html#torch.cuda.manual_seed)
 
 ```python
 torch.cuda.manual_seed(seed)

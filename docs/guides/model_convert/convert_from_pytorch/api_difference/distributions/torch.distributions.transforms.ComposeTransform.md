@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributions.transforms.ComposeTransform
 
-### [torch.distributions.transforms.ComposeTransform](https://pytorch.org/docs/1.13/distributions.html#torch.distributions.transforms.ComposeTransform)
+### [torch.distributions.transforms.ComposeTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.ComposeTransform)
 
 ```python
 torch.distributions.transforms.ComposeTransform(parts, cache_size=0)

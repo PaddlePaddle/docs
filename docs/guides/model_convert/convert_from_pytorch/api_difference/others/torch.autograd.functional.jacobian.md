@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.autograd.functional.jacobian
 
-### [torch.autograd.functional.jacobian](https://pytorch.org/docs/1.13/generated/torch.autograd.functional.jacobian.html#torch.autograd.functional.jacobian)
+### [torch.autograd.functional.jacobian](https://pytorch.org/docs/stable/generated/torch.autograd.functional.jacobian.html#torch.autograd.functional.jacobian)
 
 ```python
 torch.autograd.functional.jacobian(func, inputs, create_graph=False, strict=False, vectorize=False, strategy='reverse-mode')

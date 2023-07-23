@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.Tensor.cdouble
 
-### [torch.Tensor.cdouble](https://pytorch.org/docs/1.13/generated/torch.Tensor.cdouble.html?highlight=torch+tensor+cdouble#torch.Tensor.cdouble)
+### [torch.Tensor.cdouble](https://pytorch.org/docs/stable/generated/torch.Tensor.cdouble.html?highlight=torch+tensor+cdouble#torch.Tensor.cdouble)
 
 ```python
 torch.Tensor.cdouble(memory_format=torch.preserve_format)

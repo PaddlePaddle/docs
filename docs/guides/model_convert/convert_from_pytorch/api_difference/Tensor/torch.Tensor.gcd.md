@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ]torch.Tensor.gcd
 
-### [torch.Tensor.gcd](https://pytorch.org/docs/1.13/generated/torch.Tensor.gcd.html?highlight=torch+tensor+gcd#torch.Tensor.gcd)
+### [torch.Tensor.gcd](https://pytorch.org/docs/stable/generated/torch.Tensor.gcd.html?highlight=torch+tensor+gcd#torch.Tensor.gcd)
 
 ```python
 torch.Tensor.gcd(other)

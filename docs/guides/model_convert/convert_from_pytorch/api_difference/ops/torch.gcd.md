@@ -1,6 +1,6 @@
 ## [ torch 参数更多]torch.gcd
 
-### [torch.gcd](https://pytorch.org/docs/1.13/generated/torch.gcd.html#torch-gcd)
+### [torch.gcd](https://pytorch.org/docs/stable/generated/torch.gcd.html#torch-gcd)
 
 ```python
 torch.gcd(input, other, *, out=None)

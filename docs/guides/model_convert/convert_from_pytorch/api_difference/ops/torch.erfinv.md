@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.erfinv
-### [torch.erfinv](https://pytorch.org/docs/1.13/generated/torch.erfinv.html?highlight=torch+erfinv#torch.erfinv)
+### [torch.erfinv](https://pytorch.org/docs/stable/generated/torch.erfinv.html?highlight=torch+erfinv#torch.erfinv)
 
 ```python
 torch.erfinv(input,

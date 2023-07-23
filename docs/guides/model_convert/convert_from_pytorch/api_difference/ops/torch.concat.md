@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.concat
 
-### [torch.concat](https://pytorch.org/docs/1.13/generated/torch.concat.html#torch.concat)
+### [torch.concat](https://pytorch.org/docs/stable/generated/torch.concat.html#torch.concat)
 
 ```python
 torch.concat(tensors, dim=0, *, out=None)

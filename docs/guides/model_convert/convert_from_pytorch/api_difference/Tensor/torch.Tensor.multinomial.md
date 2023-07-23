@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.multinomial
 
-### [torch.Tensor.multinomial](https://pytorch.org/docs/1.13/generated/torch.Tensor.multinomial.html#torch.Tensor.multinomial)
+### [torch.Tensor.multinomial](https://pytorch.org/docs/stable/generated/torch.Tensor.multinomial.html#torch.Tensor.multinomial)
 
 ```python
 torch.Tensor.multinomial(num_samples, replacement=False, *, generator=None)

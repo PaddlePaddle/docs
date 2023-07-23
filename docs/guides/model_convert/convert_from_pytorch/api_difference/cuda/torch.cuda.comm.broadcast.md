@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.cuda.comm.broadcast
 
-### [torch.cuda.comm.broadcast](https://pytorch.org/docs/1.13/generated/torch.cuda.comm.broadcast.html#torch.cuda.comm.broadcast)
+### [torch.cuda.comm.broadcast](https://pytorch.org/docs/stable/generated/torch.cuda.comm.broadcast.html#torch.cuda.comm.broadcast)
 
 ```python
 torch.cuda.comm.broadcast(tensor, devices=None, *, out=None)

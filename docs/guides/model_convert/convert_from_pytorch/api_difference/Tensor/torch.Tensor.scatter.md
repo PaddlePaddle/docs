@@ -1,6 +1,6 @@
 ## [仅 paddle 参数更多]torch.Tensor.scatter
 
-### [torch.Tensor.scatter](https://pytorch.org/docs/1.13/generated/torch.Tensor.scatter.html#torch.Tensor.scatter)
+### [torch.Tensor.scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter.html#torch.Tensor.scatter)
 
 ```python
 torch.Tensor.scatter(dim, index, src)

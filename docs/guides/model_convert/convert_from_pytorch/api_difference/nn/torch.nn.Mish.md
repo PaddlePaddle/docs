@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]troch.nn.Mish
 
-### [troch.nn.Mish](https://pytorch.org/docs/1.13/generated/torch.nn.Mish.html?highlight=troch+nn+mish)
+### [troch.nn.Mish](https://pytorch.org/docs/stable/generated/torch.nn.Mish.html?highlight=troch+nn+mish)
 
 ```python
 troch.nn.Mish(inplace=False)

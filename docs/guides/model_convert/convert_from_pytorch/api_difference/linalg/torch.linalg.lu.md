@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.linalg.lu
 
-### [torch.linalg.lu](https://pytorch.org/docs/1.13/generated/torch.linalg.lu.html?highlight=torch+linalg+lu#torch.linalg.lu)
+### [torch.linalg.lu](https://pytorch.org/docs/stable/generated/torch.linalg.lu.html?highlight=torch+linalg+lu#torch.linalg.lu)
 
 ```python
 torch.linalg.lu(A, *, pivot=True, out=None)

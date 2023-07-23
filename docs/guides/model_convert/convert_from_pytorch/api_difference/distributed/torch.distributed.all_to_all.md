@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributed.all_to_all
 
-### [torch.distributed.all_to_all](https://pytorch.org/docs/1.13/distributed.html#torch.distributed.all_to_all)
+### [torch.distributed.all_to_all](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_to_all)
 
 ```python
 torch.distributed.all_to_all(output_tensor_list, input_tensor_list, group=None, async_op=False)

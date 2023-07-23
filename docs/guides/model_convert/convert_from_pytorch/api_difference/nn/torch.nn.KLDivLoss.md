@@ -1,5 +1,5 @@
 # [torch 参数更多 ]torch.nn.KLDivLoss
-### [torch.nn.KLDivLoss](https://pytorch.org/docs/1.13/generated/torch.nn.KLDivLoss.html?highlight=kldivloss#torch.nn.KLDivLoss)
+### [torch.nn.KLDivLoss](https://pytorch.org/docs/stable/generated/torch.nn.KLDivLoss.html?highlight=kldivloss#torch.nn.KLDivLoss)
 
 ```python
 torch.nn.KLDivLoss(size_average=None,

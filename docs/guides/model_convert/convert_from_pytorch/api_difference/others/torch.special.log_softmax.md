@@ -1,6 +1,6 @@
 ## [参数名不一致]torch.special.log_softmax
 
-### [torch.special.log_softmax](https://pytorch.org/docs/1.13/special.html#torch.special.log_softmax)
+### [torch.special.log_softmax](https://pytorch.org/docs/stable/special.html#torch.special.log_softmax)
 
 ```python
 torch.special.log_softmax(input, dim, *, dtype=None)

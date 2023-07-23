@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.clip
-### [torch.clip](https://pytorch.org/docs/1.13/generated/torch.clip.html#torch.clip)
+### [torch.clip](https://pytorch.org/docs/stable/generated/torch.clip.html#torch.clip)
 
 ```python
 torch.clip(input,

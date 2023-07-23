@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.SELU
 
-### [torch.nn.SELU](https://pytorch.org/docs/1.13/generated/torch.nn.SELU.html#torch.nn.SELU)
+### [torch.nn.SELU](https://pytorch.org/docs/stable/generated/torch.nn.SELU.html#torch.nn.SELU)
 
 ```python
 torch.nn.SELU(inplace=False)

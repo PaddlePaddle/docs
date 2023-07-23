@@ -1,6 +1,6 @@
 ## [参数不一致]torch.broadcast_shapes
 
-### [torch.broadcast_shapes](https://pytorch.org/docs/1.13/generated/torch.broadcast_shapes.html#torch.broadcast_shapes)
+### [torch.broadcast_shapes](https://pytorch.org/docs/stable/generated/torch.broadcast_shapes.html#torch.broadcast_shapes)
 
 ```python
 torch.broadcast_shapes(*shapes)

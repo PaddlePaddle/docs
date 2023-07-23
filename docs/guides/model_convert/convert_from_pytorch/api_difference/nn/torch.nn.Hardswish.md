@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.Hardswish
 
-### [torch.nn.Hardswish](https://pytorch.org/docs/1.13/generated/torch.nn.Hardswish.html#torch.nn.Hardswish)
+### [torch.nn.Hardswish](https://pytorch.org/docs/stable/generated/torch.nn.Hardswish.html#torch.nn.Hardswish)
 
 ```python
 torch.nn.Hardswish(inplace=False)

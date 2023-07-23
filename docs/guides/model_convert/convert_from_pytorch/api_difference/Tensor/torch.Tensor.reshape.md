@@ -1,6 +1,6 @@
 ## [ 参数不一致 ]torch.Tensor.reshape
 
-### [torch.Tensor.reshape](https://pytorch.org/docs/1.13/generated/torch.Tensor.reshape.html)
+### [torch.Tensor.reshape](https://pytorch.org/docs/stable/generated/torch.Tensor.reshape.html)
 
 ```python
 torch.Tensor.reshape(*shape)

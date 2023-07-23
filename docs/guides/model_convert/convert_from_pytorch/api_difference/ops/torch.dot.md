@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.dot
 
-### [torch.dot](https://pytorch.org/docs/1.13/generated/torch.dot.html?highlight=dot#torch.dot)
+### [torch.dot](https://pytorch.org/docs/stable/generated/torch.dot.html?highlight=dot#torch.dot)
 
 ```python
 torch.dot(input, other, *, out=None)

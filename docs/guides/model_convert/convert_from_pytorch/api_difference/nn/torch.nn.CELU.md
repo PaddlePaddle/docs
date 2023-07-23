@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.CELU
 
-### [torch.nn.CELU](https://pytorch.org/docs/1.13/generated/torch.nn.CELU.html#torch.nn.CELU)
+### [torch.nn.CELU](https://pytorch.org/docs/stable/generated/torch.nn.CELU.html#torch.nn.CELU)
 
 ```python
 torch.nn.CELU(alpha=1.0, inplace=False)

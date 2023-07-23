@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.sparse.softmax
 
-### [torch.sparse.softmax](https://pytorch.org/docs/1.13/generated/torch.sparse.softmax.html#torch.sparse.softmax)
+### [torch.sparse.softmax](https://pytorch.org/docs/stable/generated/torch.sparse.softmax.html#torch.sparse.softmax)
 
 ```python
 torch.sparse.softmax(input, dim, dtype=None)

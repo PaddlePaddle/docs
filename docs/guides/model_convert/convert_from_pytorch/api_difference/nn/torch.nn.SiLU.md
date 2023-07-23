@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.SiLU
 
-### [torch.nn.SiLU](https://pytorch.org/docs/1.13/generated/torch.nn.SiLU.html#torch.nn.SiLU)
+### [torch.nn.SiLU](https://pytorch.org/docs/stable/generated/torch.nn.SiLU.html#torch.nn.SiLU)
 
 ```python
 torch.nn.SiLU(inplace=False)

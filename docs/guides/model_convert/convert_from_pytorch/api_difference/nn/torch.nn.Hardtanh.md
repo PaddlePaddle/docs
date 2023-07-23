@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.Hardtanh
 
-### [torch.nn.Hardtanh](https://pytorch.org/docs/1.13/generated/torch.nn.Hardtanh.html#torch.nn.Hardtanh)
+### [torch.nn.Hardtanh](https://pytorch.org/docs/stable/generated/torch.nn.Hardtanh.html#torch.nn.Hardtanh)
 
 ```python
 torch.nn.Hardtanh(min_val=- 1.0, max_val=1.0, inplace=False)

@@ -1,6 +1,6 @@
 ## [ 仅参数默认值不一致 ] torch.linalg.svd
 
-### [torch.linalg.svd](https://pytorch.org/docs/1.13/generated/torch.linalg.svd.html?highlight=svd#torch.linalg.svd)
+### [torch.linalg.svd](https://pytorch.org/docs/stable/generated/torch.linalg.svd.html?highlight=svd#torch.linalg.svd)
 
 ```python
 torch.linalg.svd(A, full_matrices=True)

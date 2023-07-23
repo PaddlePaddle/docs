@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.half
 
-### [torch.Tensor.half](https://pytorch.org/docs/1.13/generated/torch.Tensor.half.html#torch.Tensor.half)
+### [torch.Tensor.half](https://pytorch.org/docs/stable/generated/torch.Tensor.half.html#torch.Tensor.half)
 
 ```python
 torch.Tensor.half(memory_format=torch.preserve_format)

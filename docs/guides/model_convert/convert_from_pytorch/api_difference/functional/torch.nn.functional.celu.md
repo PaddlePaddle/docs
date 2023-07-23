@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.functional.celu
 
-### [torch.nn.functional.celu](https://pytorch.org/docs/1.13/generated/torch.nn.functional.celu.html#torch.nn.functional.celu)
+### [torch.nn.functional.celu](https://pytorch.org/docs/stable/generated/torch.nn.functional.celu.html#torch.nn.functional.celu)
 
 ```python
 torch.nn.functional.celu(input, alpha=1.0, inplace=False)

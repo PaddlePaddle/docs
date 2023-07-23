@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributions.normal.Normal
 
-### [torch.distributions.normal.Normal](https://pytorch.org/docs/1.13/distributions.html#torch.distributions.normal.Normal)
+### [torch.distributions.normal.Normal](https://pytorch.org/docs/stable/distributions.html#torch.distributions.normal.Normal)
 
 ```python
 torch.distributions.normal.Normal(loc, scale, validate_args=None)

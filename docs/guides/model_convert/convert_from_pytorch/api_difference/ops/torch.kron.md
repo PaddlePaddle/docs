@@ -1,6 +1,6 @@
 ## [仅参数名不一致]torch.kron
 
-### [torch.kron](https://pytorch.org/docs/1.13/generated/torch.kron.html#torch-kron)
+### [torch.kron](https://pytorch.org/docs/stable/generated/torch.kron.html#torch-kron)
 
 ```python
 torch.kron(input, other, *, out=None)

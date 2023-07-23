@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.functional.interpolate
 
-### [torch.nn.functional.interpolate](https://pytorch.org/docs/1.13/generated/torch.nn.functional.interpolate.html#torch.nn.functional.interpolate)
+### [torch.nn.functional.interpolate](https://pytorch.org/docs/stable/generated/torch.nn.functional.interpolate.html#torch.nn.functional.interpolate)
 
 ```python
 torch.nn.functional.interpolate(input, size=None, scale_factor=None, mode='nearest', align_corners=None, recompute_scale_factor=None, antialias=False)

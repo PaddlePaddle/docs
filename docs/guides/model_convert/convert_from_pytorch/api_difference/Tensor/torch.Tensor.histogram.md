@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.histogram
 
-### [torch.Tensor.histogram](https://pytorch.org/docs/1.13/generated/torch.Tensor.histogram.html#torch.Tensor.histogram)
+### [torch.Tensor.histogram](https://pytorch.org/docs/stable/generated/torch.Tensor.histogram.html#torch.Tensor.histogram)
 
 ```python
 torch.Tensor.histogram(bins, *, range=None, weight=None, density=False)
