@@ -26,8 +26,8 @@ paddle.log2(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.log2([3, 5], out=y)
+torch.log2(input, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.log2([3, 5]), y)
+paddle.assign(paddle.log2(input), y)
 ```

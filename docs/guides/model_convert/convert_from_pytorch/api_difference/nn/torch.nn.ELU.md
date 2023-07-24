@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.ELU
-### [torch.nn.ELU](https://pytorch.org/docs/1.13/generated/torch.nn.ELU.html?highlight=elu#torch.nn.ELU)
+### [torch.nn.ELU](https://pytorch.org/docs/stable/generated/torch.nn.ELU.html?highlight=elu#torch.nn.ELU)
 
 ```python
 torch.nn.ELU(alpha=1.0,

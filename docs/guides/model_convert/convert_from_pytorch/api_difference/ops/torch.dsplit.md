@@ -1,5 +1,5 @@
 ## [ 仅 paddle 参数更多 ]torch.dsplit
-### [torch.dsplit](https://pytorch.org/docs/1.13/generated/torch.dsplit.html#torch.dsplit)
+### [torch.dsplit](https://pytorch.org/docs/stable/generated/torch.dsplit.html#torch.dsplit)
 
 ```python
 torch.dsplit(input,

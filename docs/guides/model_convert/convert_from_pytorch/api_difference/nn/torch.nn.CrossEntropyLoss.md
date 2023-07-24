@@ -1,5 +1,5 @@
-# [torch 参数更多]torch.nn.CrossEntropyLoss
-### [torch.nn.CrossEntropyLoss](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html?highlight=crossentropyloss#torch.nn.CrossEntropyLoss)
+## [torch 参数更多]torch.nn.CrossEntropyLoss
+### [torch.nn.CrossEntropyLoss](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss)
 
 ```python
 torch.nn.CrossEntropyLoss(weight=None,
@@ -26,27 +26,78 @@ paddle.nn.CrossEntropyLoss(weight=None,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | weight  | weight           | 表示每个类别的权重。  |
-| <font color='red'> size_average </font> | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。  |
+| size_average | -            | PyTorch 已弃用，Paddle 无此参数，需要转写。|
 | ignore_index  | ignore_index            | 表示忽略的一个标签值。  |
-| <font color='red'> reduce </font>       | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。  |
+| reduce       | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。  |
 | reduction  | reduction            | 表示应用于输出结果的计算方式。  |
-| <font color='red'> label_smoothing </font> | -            | 指定计算损失时的平滑量，Paddle 无此功能，暂无转写方式。  |
-| -             | <font color='red'> soft_label </font>  | 指明 label 是否为软标签，Pytorch 无此参数，Paddle 保持默认即可。  |
-| -             | <font color='red'> axis </font>       | 进行 softmax 计算的维度索引，Pytorch 无此参数，Paddle 保持默认即可。   |
+| label_smoothing | -            | 指定计算损失时的平滑量，Paddle 无此功能，暂无转写方式。  |
+| -             | soft_label  | 指明 label 是否为软标签，Pytorch 无此参数，Paddle 保持默认即可。  |
+| -             | axis       | 进行 softmax 计算的维度索引，Pytorch 无此参数，Paddle 保持默认即可。   |
 
 ### 转写示例
 #### size_average
+size_average 为 True
 ```python
-# Pytorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
-if size_average is None:
-    size_average = True
-if reduce is None:
-    reduce = True
+# Pytorch 写法
+torch.nn.CrossEntropyLoss(weight=w, size_average=True)
 
-if size_average and reduce:
-    reduction = 'mean'
-elif reduce:
-    reduction = 'sum'
-else:
-    reduction = 'none'
+# Paddle 写法
+paddle.nn.CrossEntropyLoss(weight=w, reduction='mean')
+
+```
+
+size_average 为 False
+```python
+# Pytorch 写法
+torch.nn.CrossEntropyLoss(weight=w, size_average=False)
+
+# Paddle 写法
+paddle.nn.CrossEntropyLoss(weight=w, reduction='sum')
+```
+
+#### reduce
+reduce 为 True
+```python
+# Pytorch 写法
+torch.nn.CrossEntropyLoss(weight=w, reduce=True)
+
+# Paddle 写法
+paddle.nn.CrossEntropyLoss(weight=w, reduction='mean')
+```
+
+reduce 为 False
+```python
+# Pytorch 写法
+torch.nn.CrossEntropyLoss(weight=w, reduce=False)
+
+# Paddle 写法
+paddle.nn.CrossEntropyLoss(weight=w, reduction='none')
+```
+
+#### reduction
+reduction 为'none'
+```python
+# Pytorch 写法
+torch.nn.CrossEntropyLoss(weight=w, reduction='none')
+
+# Paddle 写法
+paddle.nn.CrossEntropyLoss(weight=w, reduction='none')
+```
+
+reduction 为'mean'
+```python
+# Pytorch 写法
+torch.nn.CrossEntropyLoss(weight=w, reduction='mean')
+
+# Paddle 写法
+paddle.nn.CrossEntropyLoss(weight=w, reduction='mean')
+```
+
+reduction 为'sum'
+```python
+# Pytorch 写法
+torch.nn.CrossEntropyLoss(weight=w, reduction='sum')
+
+# Paddle 写法
+paddle.nn.CrossEntropyLoss(weight=w, reduction='sum')
 ```

@@ -1,4 +1,4 @@
-## torch.Tensor.unique
+## [torch 参数更多] torch.Tensor.unique
 ### [torch.Tensor.unique](https://pytorch.org/docs/stable/generated/torch.Tensor.unique.html?highlight=unique#torch.Tensor.unique)
 
 ```python

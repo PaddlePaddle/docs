@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.arcsinh
 
-### [torch.arcsinh](https://pytorch.org/docs/1.13/generated/torch.arcsinh.html#torch.arcsinh)
+### [torch.arcsinh](https://pytorch.org/docs/stable/generated/torch.arcsinh.html#torch.arcsinh)
 
 ```python
 torch.arcsinh(input,

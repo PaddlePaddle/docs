@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ] torch.distributions.kl.register_kl
 
-### [torch.distributions.kl.register_kl](https://pytorch.org/docs/1.13/distributions.html?highlight=register_kl#torch.distributions.kl.register_kl)
+### [torch.distributions.kl.register_kl](https://pytorch.org/docs/stable/distributions.html?highlight=register_kl#torch.distributions.kl.register_kl)
 
 ```python
 torch.distributions.kl.register_kl(type_p, type_q)

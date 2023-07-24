@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.range
 
-###  [torch.range](https://pytorch.org/docs/1.13/generated/torch.range.html?highlight=range#torch.range)
+###  [torch.range](https://pytorch.org/docs/stable/generated/torch.range.html?highlight=range#torch.range)
 
 ```python
 torch.range(start=0,

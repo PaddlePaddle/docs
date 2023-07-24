@@ -1,6 +1,6 @@
 ## [参数完全一致]torch.cuda.Event
 
-### [torch.cuda.Event](https://pytorch.org/docs/1.13/generated/torch.cuda.Event.html#torch.cuda.Event)
+### [torch.cuda.Event](https://pytorch.org/docs/stable/generated/torch.cuda.Event.html#torch.cuda.Event)
 
 ```python
 torch.cuda.Event(enable_timing=False, blocking=False, interprocess=False)

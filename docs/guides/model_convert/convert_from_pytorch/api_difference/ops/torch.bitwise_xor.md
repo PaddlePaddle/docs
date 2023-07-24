@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ]torch.bitwise_xor
 
-### [torch.bitwise_xor](https://pytorch.org/docs/1.13/generated/torch.bitwise_xor.html)
+### [torch.bitwise_xor](https://pytorch.org/docs/stable/generated/torch.bitwise_xor.html)
 
 ```python
 torch.bitwise_xor(input,

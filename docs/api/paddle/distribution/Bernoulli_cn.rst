@@ -27,25 +27,7 @@ Bernoulli
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    from paddle.distribution import Bernoulli
-
-    # init `probs` with a float
-    rv = Bernoulli(probs=0.3)
-
-    print(rv.mean)
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [0.30000001])
-
-    print(rv.variance)
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [0.21000001])
-
-    print(rv.entropy())
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [0.61086434])
+COPY-FROM: paddle.distribution.Bernoulli
 
 属性
 :::::::::
@@ -86,26 +68,7 @@ Tensor，样本，其维度为 :math:`\text{sample shape} + \text{batch shape} +
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    from paddle.distribution import Bernoulli
-
-    rv = Bernoulli(paddle.full((), 0.3))
-    print(rv.sample([100]).shape)
-    # [100]
-
-    rv = Bernoulli(paddle.to_tensor(0.3))
-    print(rv.sample([100]).shape)
-    # [100, 1]
-
-    rv = Bernoulli(paddle.to_tensor([0.3, 0.5]))
-    print(rv.sample([100]).shape)
-    # [100, 2]
-
-    rv = Bernoulli(paddle.to_tensor([0.3, 0.5]))
-    print(rv.sample([100, 2]).shape)
-    # [100, 2, 2]
+COPY-FROM: paddle.distribution.Bernoulli.sample
 
 rsample(shape, temperature=1.0)
 '''''''''
@@ -132,50 +95,7 @@ Tensor，样本，其维度为 :math:`\text{sample shape} + \text{batch shape} +
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    from paddle.distribution import Bernoulli
-
-    paddle.seed(2023)
-
-    rv = Bernoulli(paddle.full((), 0.3))
-    print(rv.sample([100]).shape)
-    # [100]
-
-    rv = Bernoulli(0.3)
-    print(rv.rsample([100]).shape)
-    # [100, 1]
-
-    rv = Bernoulli(paddle.to_tensor([0.3, 0.5]))
-    print(rv.rsample([100]).shape)
-    # [100, 2]
-
-    rv = Bernoulli(paddle.to_tensor([0.3, 0.5]))
-    print(rv.rsample([100, 2]).shape)
-    # [100, 2, 2]
-
-    # `rsample` has to be followed by a `sigmoid`
-    rv = Bernoulli(0.3)
-    rsample = rv.rsample([3, ])
-    rsample_sigmoid = paddle.nn.functional.sigmoid(rsample)
-    print(rsample, rsample_sigmoid)
-    # Tensor(shape=[3, 1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [[-0.88315082],
-    #         [-0.62347704],
-    #         [-0.31513220]]) Tensor(shape=[3, 1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [[0.29252526],
-    #         [0.34899110],
-    #         [0.42186251]])
-
-    # The smaller the `temperature`, the distribution of `rsample` closer to `sample`, with `probs` of 0.3.
-    print(paddle.nn.functional.sigmoid(rv.rsample([1000, ], temperature=1.0)).sum())
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [361.06829834])
-
-    print(paddle.nn.functional.sigmoid(rv.rsample([1000, ], temperature=0.1)).sum())
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [288.66418457])
+COPY-FROM: paddle.distribution.Bernoulli.rsample
 
 cdf(value)
 '''''''''
@@ -201,15 +121,7 @@ Tensor， ``value`` 的累积分布函数。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    from paddle.distribution import Bernoulli
-
-    rv = Bernoulli(0.3)
-    print(rv.cdf(paddle.to_tensor([1.0])))
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [1.])
+COPY-FROM: paddle.distribution.Bernoulli.cdf
 
 log_prob(value)
 '''''''''
@@ -226,15 +138,7 @@ Tensor， ``value`` 的对数概率密度函数。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    from paddle.distribution import Bernoulli
-
-    rv = Bernoulli(0.3)
-    print(rv.log_prob(paddle.to_tensor([1.0])))
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [-1.20397282])
+COPY-FROM: paddle.distribution.Bernoulli.log_prob
 
 prob(value)
 '''''''''
@@ -259,15 +163,7 @@ Tensor， ``value`` 的概率密度函数。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    from paddle.distribution import Bernoulli
-
-    rv = Bernoulli(0.3)
-    print(rv.prob(paddle.to_tensor([1.0])))
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [0.29999998])
+COPY-FROM: paddle.distribution.Bernoulli.prob
 
 entropy()
 '''''''''
@@ -286,15 +182,7 @@ Tensor，伯努利分布的信息熵。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    from paddle.distribution import Bernoulli
-
-    rv = Bernoulli(0.3)
-    print(rv.entropy())
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [0.61086434])
+COPY-FROM: paddle.distribution.Bernoulli.entropy
 
 kl_divergence(other)
 '''''''''
@@ -317,14 +205,4 @@ Tensor，两个伯努利分布之间的 KL 散度。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    from paddle.distribution import Bernoulli
-
-    rv = Bernoulli(0.3)
-    rv_other = Bernoulli(0.7)
-
-    print(rv.kl_divergence(rv_other))
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [0.33891910])
+COPY-FROM: paddle.distribution.Bernoulli.kl_divergence

@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.mm
-### [torch.mm](https://pytorch.org/docs/stable/generated/torch.mm.html?highlight=mm#torch.mm)
+### [torch.mm](https://pytorch.org/docs/stable/generated/torch.mm.html?highlight=torch+mm#torch.mm)
 
 ```python
 torch.mm(input,

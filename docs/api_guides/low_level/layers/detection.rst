@@ -65,7 +65,7 @@ SSD
 
 * multi_box_head ：得到不同 prior box 的位置和置信度。API Reference 请参考 :ref:`cn_api_fluid_layers_multi_box_head`
 
-* detection_output：对 prioir box 解码，通过多分类 NMS 得到检测结果。API Reference 请参考 :ref:`cn_api_fluid_layers_detection_output`
+* detection_output：对 prior box 解码，通过多分类 NMS 得到检测结果。API Reference 请参考 :ref:`cn_api_fluid_layers_detection_output`
 
 * ssd_loss：通过位置偏移预测值，置信度，检测框位置和真实框位置和标签计算损失。API Reference 请参考 :ref:`cn_api_fluid_layers_ssd_loss`
 

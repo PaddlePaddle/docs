@@ -1,6 +1,6 @@
 ## [ 无参数 ] torch.Tensor.neg
 
-### [torch.Tensor.neg](https://pytorch.org/docs/1.13/generated/torch.Tensor.neg.html?highlight=neg#torch.Tensor.neg)
+### [torch.Tensor.neg](https://pytorch.org/docs/stable/generated/torch.Tensor.neg.html?highlight=neg#torch.Tensor.neg)
 
 ```python
 torch.Tensor.neg()

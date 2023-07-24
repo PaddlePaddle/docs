@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.linspace
 
-###  [torch.linspace](https://pytorch.org/docs/1.13/generated/torch.linspace.html?highlight=linspace#torch.linspace)
+###  [torch.linspace](https://pytorch.org/docs/stable/generated/torch.linspace.html?highlight=linspace#torch.linspace)
 
 ```python
 torch.linspace(start,

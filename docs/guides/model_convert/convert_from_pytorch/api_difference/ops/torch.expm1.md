@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.expm1
-### [torch.expm1](https://pytorch.org/docs/1.13/generated/torch.expm1.html?highlight=torch+expm1#torch.expm1)
+### [torch.expm1](https://pytorch.org/docs/stable/generated/torch.expm1.html?highlight=torch+expm1#torch.expm1)
 
 ```python
 torch.expm1(input,

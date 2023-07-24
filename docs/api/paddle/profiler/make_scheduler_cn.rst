@@ -22,7 +22,7 @@ make_scheduler
 :::::::::
 
     - **closed** (int) - 处于 ProfilerState.CLOSED 状态的 step 数量。
-    - **ready** (int) - 处于 ProfilerState.CLOSED 状态的 step 数量。
+    - **ready** (int) - 处于 ProfilerState.READY 状态的 step 数量。
     - **record** (int) - 处于 ProfilerState.RECORD 状态的 step 数量，record 的最后一个 step 会处于 ProfilerState.RECORD_AND_RETURN 状态。
     - **repeat** (int，可选) - 调度器重复该状态调度过程的次数，默认值为 0，意味着一直重复该调度过程直到性能分析器结束。
     - **skip_first** (int，可选) - 跳过前 skip_first 个 step，不参与状态调度，并处于 ProfilerState.CLOSED 状态，默认值为 0。

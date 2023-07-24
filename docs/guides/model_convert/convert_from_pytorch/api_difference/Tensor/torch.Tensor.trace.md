@@ -1,6 +1,6 @@
 ## [仅 paddle 参数更多]troch.Tensor.trace
 
-### [torch.Tensor.trace](https://pytorch.org/docs/1.13/generated/torch.Tensor.trace.html#torch-tensor-trace)
+### [torch.Tensor.trace](https://pytorch.org/docs/stable/generated/torch.Tensor.trace.html#torch-tensor-trace)
 
 ```python
 torch.Tensor.trace()

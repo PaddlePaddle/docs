@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ] torch.bitwise_not
 
-### [torch.bitwise_not](https://pytorch.org/docs/1.13/generated/torch.bitwise_not.html?highlight=bitwise_not#torch.bitwise_not)
+### [torch.bitwise_not](https://pytorch.org/docs/stable/generated/torch.bitwise_not.html?highlight=bitwise_not#torch.bitwise_not)
 
 ```python
 torch.bitwise_not(input,

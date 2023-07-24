@@ -5,7 +5,7 @@ ihfft
 
 .. py:function:: paddle.fft.ihfft(x, n=None, axis=-1, norm="backward", name=None)
 
-使用快速傅里叶变换(FFT)算法计算一维厄米特(Hermitian)傅里叶变换的逆变换。
+使用快速傅里叶变（FFT）算法计算一维厄米特（Hermitian）傅里叶变换的逆变换。
 
 
 参数

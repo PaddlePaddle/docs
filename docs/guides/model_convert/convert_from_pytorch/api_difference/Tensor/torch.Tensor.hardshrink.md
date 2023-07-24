@@ -1,18 +1,18 @@
 ## [ 仅参数名不一致 ]torch.Tensor.hardshrink
 
-### [torch.Tensor.hardshrink](https://pytorch.org/docs/1.13/generated/torch.Tensor.hardshrink.html?highlight=torch+tensor+hardshrink#torch.Tensor.hardshrink)
+### [torch.Tensor.hardshrink](https://pytorch.org/docs/stable/generated/torch.Tensor.hardshrink.html?highlight=torch+tensor+hardshrink#torch.Tensor.hardshrink)
 
 ```python
 torch.Tensor.hardshrink(lambd=0.5)
 ```
 
-### [paddle.Tensor.hardshrink]()
+### [paddle.nn.functional.hardshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/hardshrink_cn.html#hardshrink)
 
 ```python
-paddle.Tensor.hardshrink(threshold=0.5, name=None)
+paddle.nn.functional.hardshrink(x, threshold=0.5, name=None)
 ```
 
-两者功能一致且参数用法一致。
+仅参数名不一致，具体如下。
 
 ### 参数映射
 

@@ -1,25 +1,3 @@
-## [ 组合替代实现 ]torch.kthvalue
-
-### [torch.kthvalue](https://pytorch.org/docs/stable/generated/torch.kthvalue.html?highlight=kthvalue#torch.kthvalue)
-
-```python
-torch.kthvalue(input, k, dim=None, keepdim=False, out=None)
-```
-### 功能介绍
-用于获取某一维度上第 k 大的数值，PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
-```python
-import paddle
-
-def kthvalue(input, k, dim=None, keepdim=False, out=None):
-    values = paddle.sort(input, axis=dim)
-    indices = paddle.argsort(input, axis=dim)
-    values = paddle.slice(values, axes=[dim], starts=[k-1], ends=[k])
-    indices = paddle.slice(indices, axes=[dim], starts=[k-1], ends=[k])
-    if not keepdim:
-        values = paddle.flatten(values)
-        indices = paddle.flatten(indices)
-    return values, indices
-```
 ## [ 仅参数名不一致 ]torch.kthvalue
 ### [torch.kthvalue](https://pytorch.org/docs/stable/generated/torch.kthvalue.html?highlight=kthvalue#torch.kthvalue)
 
@@ -61,5 +39,6 @@ paddle.kthvalue(x,
 torch.kthvalue(x, 2, 1, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.kthvalue(x, 2, 1), y)
+out0, out1 = paddle.kthvalue(x, 2, 1)
+paddle.assign(out0, y[0]), paddle.assign(out1, y[1])
 ```

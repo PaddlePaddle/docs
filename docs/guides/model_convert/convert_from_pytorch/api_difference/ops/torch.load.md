@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.load
 
-### [torch.load](https://pytorch.org/docs/1.13/generated/torch.load.html?highlight=load#torch.load)
+### [torch.load](https://pytorch.org/docs/stable/generated/torch.load.html?highlight=load#torch.load)
 
 ```python
 torch.load(f,

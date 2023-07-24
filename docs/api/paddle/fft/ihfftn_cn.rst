@@ -5,9 +5,9 @@ ihfftn
 
 .. py:function:: paddle.fft.ihfftn(x, s=None, axes=None, norm="backward", name=None)
 
-N 维厄米特(Hermitian)傅里叶变换的逆变换。
+N 维厄米特（Hermitian）傅里叶变换的逆变换。
 
-使用快速傅里叶变换(FFT)算法对 M 维 Tensor 中的某 N 维计算厄米特(Hermitian)傅里叶变换的逆变
+使用快速傅里叶变换（FFT）算法对 M 维 Tensor 中的某 N 维计算厄米特(Hermitian)傅里叶变换的逆变
 换，沿最后一个轴进行实数变换，其余轴复数变换。
 
 

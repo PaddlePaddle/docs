@@ -48,22 +48,7 @@ Adamax 优化器是参考 `Adam 论文 <https://arxiv.org/abs/1412.6980>`_ 第 7
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
-    linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
-    out = linear(inp)
-    loss = paddle.mean(out)
-    adam = paddle.optimizer.Adamax(learning_rate=0.1,
-            parameters=linear.parameters())
-    out.backward()
-    adam.step()
-    adam.clear_grad()
-
+COPY-FROM: paddle.optimizer.Adamax
 
 方法
 ::::::::::::
@@ -83,20 +68,7 @@ step()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
-    linear = paddle.nn.Linear(13, 5)
-    adam = paddle.optimizer.Adam(learning_rate = 0.01,
-                                parameters = linear.parameters())
-    out = linear(a)
-    out.backward()
-    adam.step()
-    adam.clear_grad()
+COPY-FROM: paddle.optimizer.Adamax.step
 
 minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 '''''''''
@@ -105,10 +77,10 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 **参数**
 
-    - **loss** (Tensor) – 需要最小化的损失值变量。
-    - **startup_program** (Program，可选) – 用于初始化 parameters 中参数的 :ref:`cn_api_fluid_Program`，默认值为 None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
-    - **parameters** (list，可选) – 待更新的 Parameter 或者 Parameter.name 组成的列表，默认值为 None，此时将更新所有的 Parameter。
-    - **no_grad_set** (set，可选) – 不需要更新的 Parameter 或者 Parameter.name 组成集合，默认值为 None。
+    - **loss** (Tensor) - 需要最小化的损失值变量。
+    - **startup_program** (Program，可选) - 用于初始化 parameters 中参数的 :ref:`cn_api_fluid_Program`，默认值为 None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
+    - **parameters** (list，可选) - 待更新的 Parameter 或者 Parameter.name 组成的列表，默认值为 None，此时将更新所有的 Parameter。
+    - **no_grad_set** (set，可选) - 不需要更新的 Parameter 或者 Parameter.name 组成集合，默认值为 None。
 
 **返回**
 
@@ -116,26 +88,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
-    linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    beta1 = paddle.to_tensor([0.9], dtype="float32")
-    beta2 = paddle.to_tensor([0.99], dtype="float32")
-
-    adam = paddle.optimizer.Adamax(learning_rate=0.1,
-            parameters=linear.parameters(),
-            weight_decay=0.01)
-    out.backward()
-    adam.minimize(loss)
-    adam.clear_grad()
+COPY-FROM: paddle.optimizer.Adamax.minimize
 
 
 clear_grad()
@@ -150,20 +103,7 @@ clear_grad()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
-    linear = paddle.nn.Linear(13, 5)
-    optimizer = paddle.optimizer.Adamax(learning_rate=0.02,
-                                     parameters=linear.parameters())
-    out = linear(a)
-    out.backward()
-    optimizer.step()
-    optimizer.clear_grad()
+COPY-FROM: paddle.optimizer.Adamax.clear_grad
 
 set_lr(value)
 '''''''''
@@ -184,26 +124,43 @@ set_lr(value)
 
 **代码示例**
 
+COPY-FROM: paddle.optimizer.Adamax.set_lr
+
+set_lr_scheduler(scheduler)
+'''''''''
+
+.. note::
+
+该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+
+手动设置当前 ``optimizer`` 的学习率为 LRScheduler 类。
+
+**参数**
+
+    scheduler (LRScheduler) - 需要设置的学习率的 LRScheduler 类。
+
+**返回**
+
+无。
+
+**代码示例**
+
 .. code-block:: python
-
     import paddle
-
     linear = paddle.nn.Linear(10, 10)
-
     adam = paddle.optimizer.Adamax(0.1, parameters=linear.parameters())
-
-    # set learning rate manually by python float value
-    lr_list = [0.2, 0.3, 0.4, 0.5, 0.6]
-    for i in range(5):
-        adam.set_lr(lr_list[i])
-        lr = adam.get_lr()
-        print("current lr is {}".format(lr))
-    # Print:
-    #    current lr is 0.2
-    #    current lr is 0.3
-    #    current lr is 0.4
+    # set learning rate manually by class LRScheduler
+    scheduler = paddle.optimizer.lr.MultiStepDecay(learning_rate=0.5, milestones=[2,4,6], gamma=0.8)
+    adam.set_lr_scheduler(scheduler)
+    lr = adam.get_lr()
+    print("current lr is {}".format(lr))
     #    current lr is 0.5
-    #    current lr is 0.6
+    # set learning rate manually by another LRScheduler
+    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.1, step_size=5, gamma=0.6)
+    adam.set_lr_scheduler(scheduler)
+    lr = adam.get_lr()
+    print("current lr is {}".format(lr))
+    #    current lr is 0.1
 
 get_lr()
 '''''''''
@@ -221,37 +178,4 @@ float，当前步骤的学习率。
 
 **代码示例**
 
-.. code-block:: python
-
-
-    import numpy as np
-    import paddle
-    # example1: _LRScheduler is not used, return value is all the same
-    emb = paddle.nn.Embedding(10, 10, sparse=False)
-    adam = paddle.optimizer.Adamax(0.001, parameters = emb.parameters())
-    lr = adam.get_lr()
-    print(lr) # 0.001
-
-    # example2: StepDecay is used, return the step learning rate
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
-    linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    bd = [2, 4, 6, 8]
-    value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.5, step_size=2, gamma=0.1)
-    adam = paddle.optimizer.Adamax(scheduler,
-                           parameters=linear.parameters())
-
-    # first step: learning rate is 0.2
-    np.allclose(adam.get_lr(), 0.2, rtol=1e-06, atol=0.0) # True
-
-    # learning rate for different steps
-    ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
-    for i in range(12):
-        adam.step()
-        lr = adam.get_lr()
-        scheduler.step()
-        np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
+COPY-FROM: paddle.optimizer.Adamax.get_lr
