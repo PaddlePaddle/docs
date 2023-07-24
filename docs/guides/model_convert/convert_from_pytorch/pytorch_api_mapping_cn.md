@@ -726,6 +726,8 @@
 | 1    | [torch.distributed.init_process_group](https://pytorch.org/docs/stable/distributed.html?highlight=init_process#torch.distributed.init_process_group) | [paddle.distributed.init_parallel_env](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/init_parallel_env_cn.html) | 功能一致，torch 参数更多 [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.init_process_group.md)         |
 | 2    | [torch.distributed.barrier](https://pytorch.org/docs/stable/distributed.html?highlight=barrier#torch.distributed.barrier) | [paddle.distributed.barrier](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/barrier_cn.html) | 功能一致，torch 参数更多 [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.barrier.md)         |
 | 3    | [torch.distributed.ReduceOp](https://pytorch.org/docs/stable/distributed.html?highlight=torch+distributed+reduceop#torch.distributed.ReduceOp) | [paddle.distributed.ReduceOp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/ReduceOp_cn.html) | 功能一致，无参数， [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.barrier.md)         |
+| 4   |  [torch.distributed.rpc.WorkerInfo](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.WorkerInfo)  |  | 功能缺失        |
+| 5   |  [torch.distributed.rpc.functions.async_execution](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.functions.async_execution)  |  | 功能缺失        |
 
 
 ***持续更新...***
