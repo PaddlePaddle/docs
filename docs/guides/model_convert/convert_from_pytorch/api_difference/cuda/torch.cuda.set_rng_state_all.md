@@ -1,6 +1,6 @@
 ## [仅 paddle 参数更多]torch.cuda.set_rng_state_all
 
-### [torch.cuda.set_rng_state_all](https://pytorch.org/docs/1.13/generated/torch.cuda.set_rng_state_all.html#torch.cuda.set_rng_state_all)
+### [torch.cuda.set_rng_state_all](https://pytorch.org/docs/stable/generated/torch.cuda.set_rng_state_all.html#torch.cuda.set_rng_state_all)
 
 ```python
 torch.cuda.set_rng_state_all(new_states)

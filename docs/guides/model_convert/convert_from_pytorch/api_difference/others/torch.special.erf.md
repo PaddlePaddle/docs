@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.special.erf
 
-### [torch.special.erf](https://pytorch.org/docs/1.13/special.html?highlight=torch+special+erf#torch.special.erf)
+### [torch.special.erf](https://pytorch.org/docs/stable/special.html?highlight=torch+special+erf#torch.special.erf)
 
 ```python
 torch.special.erf(input,

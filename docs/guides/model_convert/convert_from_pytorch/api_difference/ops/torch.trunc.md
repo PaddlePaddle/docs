@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.trunc
-### [torch.trunc](https://pytorch.org/docs/1.13/generated/torch.trunc.html?highlight=torch+trunc#torch.trunc)
+### [torch.trunc](https://pytorch.org/docs/stable/generated/torch.trunc.html?highlight=torch+trunc#torch.trunc)
 
 ```python
 torch.trunc(input,

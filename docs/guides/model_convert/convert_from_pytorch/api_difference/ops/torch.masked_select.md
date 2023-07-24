@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.masked_select
-### [torch.masked_select](https://pytorch.org/docs/1.13/generated/torch.masked_select.html?highlight=masked_select#torch.masked_select)
+### [torch.masked_select](https://pytorch.org/docs/stable/generated/torch.masked_select.html?highlight=masked_select#torch.masked_select)
 
 ```python
 torch.masked_select(input,

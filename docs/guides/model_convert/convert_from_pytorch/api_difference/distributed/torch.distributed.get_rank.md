@@ -1,6 +1,6 @@
 ## [参数完全一致]torch.distributed.get_rank
 
-### [torch.distributed.get_rank](https://pytorch.org/docs/1.13/distributed.html#torch.distributed.get_rank)
+### [torch.distributed.get_rank](https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_rank)
 
 ```python
 torch.distributed.get_rank(group=None)

@@ -1,5 +1,5 @@
 ## [ 参数不一致 ] torch.Tensor.not_equal
-### [torch.Tensor.not_equal](https://pytorch.org/docs/1.13/generated/torch.Tensor.not_equal.html)
+### [torch.Tensor.not_equal](https://pytorch.org/docs/stable/generated/torch.Tensor.not_equal.html)
 
 ```python
 torch.Tensor.not_equal(other)

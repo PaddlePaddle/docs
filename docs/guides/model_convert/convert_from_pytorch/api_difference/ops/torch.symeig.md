@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.symeig
 
-### [torch.symeig](https://pytorch.org/docs/1.13/generated/torch.symeig.html?highlight=torch+symeig#torch.symeig)
+### [torch.symeig](https://pytorch.org/docs/stable/generated/torch.symeig.html?highlight=torch+symeig#torch.symeig)
 
 ```python
 torch.symeig(input, eigenvectors=False, upper=True, *, out=None)

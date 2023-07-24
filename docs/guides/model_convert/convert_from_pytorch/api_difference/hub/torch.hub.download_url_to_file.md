@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.hub.download_url_to_file
 
-### [torch.hub.download_url_to_file](https://pytorch.org/docs/1.13/hub.html?highlight=download#torch.hub.download_url_to_file)
+### [torch.hub.download_url_to_file](https://pytorch.org/docs/stable/hub.html?highlight=download#torch.hub.download_url_to_file)
 
 ```python
 torch.hub.download_url_to_file(url,

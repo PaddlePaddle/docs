@@ -64,61 +64,9 @@ BFGS 具体原理参考书籍 Jorge Nocedal, Stephen J. Wright, Numerical Optimi
 代码示例 1
 ::::::::::
 
-..  code-block:: python
-
-    import paddle
-
-
-    # 随机模拟一批输入数据
-    inputs = paddle.normal(shape=(100, 1))
-    labels = inputs * 2.0
-
-    # 定义 loss 函数
-    def loss(w):
-        y = w * inputs
-        return paddle.nn.functional.square_error_cost(y, labels).mean()
-
-    # 初始化权重参数
-    w = paddle.normal(shape=(1,))
-
-    # 调用 bfgs 方法求解使得 loss 最小的权重，并更新参数
-    for epoch in range(0, 10):
-        # 调用 bfgs 方法优化 loss，注意返回的第三个参数表示权重
-        w_update= paddle.incubate.optimizer.functional.minimize_bfgs(loss, w)[2]
-        # 使用 paddle.assign，以 inplace 方式更新参数
-        paddle.assign(w_update, w)
-
+COPY-FROM: paddle.incubate.optimizer.functional.minimize_bfgs:code-example1
 
 代码示例 2
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-
-    def flatten(x):
-        return x.flatten()
-
-
-    def unflatten(x):
-        return x.reshape((2,2))
-
-
-    # 假设网络参数超过一维
-    def net(x):
-        assert len(x.shape) > 1
-        return x.square().mean()
-
-
-    # 待优化函数
-    def bfgs_f(flatten_x):
-        return net(unflatten(flatten_x))
-
-
-    x = paddle.rand([2,2])
-    for i in range(0, 10):
-        # 使用 minimize_bfgs 前，先将 x 展平
-        x_update = paddle.incubate.optimizer.functional.minimize_bfgs(bfgs_f, flatten(x))[2]
-        # 将 x_update unflatten，然后更新参数
-        paddle.assign(unflatten(x_update), x)
+COPY-FROM: paddle.incubate.optimizer.functional.minimize_bfgs:code-example2

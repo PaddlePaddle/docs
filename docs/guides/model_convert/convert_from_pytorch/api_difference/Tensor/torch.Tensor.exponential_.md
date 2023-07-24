@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.exponential\_
 
-### [torch.Tensor.exponential\_](https://pytorch.org/docs/1.13/generated/torch.Tensor.exponential_.html#torch.Tensor.exponential_)
+### [torch.Tensor.exponential\_](https://pytorch.org/docs/stable/generated/torch.Tensor.exponential_.html#torch.Tensor.exponential_)
 
 ```python
 torch.Tensor.exponential_(lambd=1, *, generator=None)

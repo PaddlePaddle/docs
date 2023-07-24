@@ -1,6 +1,6 @@
 ## [参数用法不一致]torch.nn.Sequential
 
-### [torch.nn.Sequential](https://pytorch.org/docs/1.13/generated/torch.nn.Sequential.html#torch.nn.Sequential)
+### [torch.nn.Sequential](https://pytorch.org/docs/stable/generated/torch.nn.Sequential.html#torch.nn.Sequential)
 
 ```python
 torch.nn.Sequential(arg: OrderedDict[str, Module])

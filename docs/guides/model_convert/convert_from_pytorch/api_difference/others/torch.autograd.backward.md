@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.autograd.backward
 
-### [torch.autograd.backward](https://pytorch.org/docs/1.13/generated/torch.autograd.backward.html#torch.autograd.backward)
+### [torch.autograd.backward](https://pytorch.org/docs/stable/generated/torch.autograd.backward.html#torch.autograd.backward)
 
 ```python
 torch.autograd.backward(tensors, grad_tensors=None, retain_graph=None, create_graph=False, grad_variables=None, inputs=None)

@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.MaxPool3d
-### [torch.nn.MaxPool3d](https://pytorch.org/docs/1.13/generated/torch.nn.MaxPool3d.html?highlight=maxpool3d#torch.nn.MaxPool3d)
+### [torch.nn.MaxPool3d](https://pytorch.org/docs/stable/generated/torch.nn.MaxPool3d.html?highlight=maxpool3d#torch.nn.MaxPool3d)
 
 ```python
 torch.nn.MaxPool3d(kernel_size,

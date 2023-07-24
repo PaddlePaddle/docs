@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.arcsin
 
-### [torch.arcsin](https://pytorch.org/docs/1.13/generated/torch.arcsin.html#torch.arcsin)
+### [torch.arcsin](https://pytorch.org/docs/stable/generated/torch.arcsin.html#torch.arcsin)
 
 ```python
 torch.arcsin(input,

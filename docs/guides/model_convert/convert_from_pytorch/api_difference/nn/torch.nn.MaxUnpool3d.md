@@ -1,5 +1,5 @@
 ## [仅 paddle 参数更多 ]torch.nn.MaxUnpool3d
-### [torch.nn.MaxUnpool3d](https://pytorch.org/docs/1.13/generated/torch.nn.MaxUnpool3d.html?highlight=maxunpool3d#torch.nn.MaxUnpool3d)
+### [torch.nn.MaxUnpool3d](https://pytorch.org/docs/stable/generated/torch.nn.MaxUnpool3d.html?highlight=maxunpool3d#torch.nn.MaxUnpool3d)
 
 ```python
 torch.nn.MaxUnpool3d(kernel_size,

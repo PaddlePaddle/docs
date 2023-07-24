@@ -1,6 +1,6 @@
 ## [ torch 参数更多]torch.searchsorted
 
-### [torch.searchsorted](https://pytorch.org/docs/1.13/generated/torch.searchsorted.html#torch-searchsorted)
+### [torch.searchsorted](https://pytorch.org/docs/stable/generated/torch.searchsorted.html#torch-searchsorted)
 
 ```python
 torch.searchsorted(sorted_sequence,

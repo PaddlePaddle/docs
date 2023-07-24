@@ -1,6 +1,6 @@
 ## [无参数]torch.cuda.empty_cache
 
-### [torch.cuda.empty_cache](https://pytorch.org/docs/1.13/generated/torch.cuda.empty_cache.html#torch.cuda.empty_cache)
+### [torch.cuda.empty_cache](https://pytorch.org/docs/stable/generated/torch.cuda.empty_cache.html#torch.cuda.empty_cache)
 
 ```python
 torch.cuda.empty_cache()

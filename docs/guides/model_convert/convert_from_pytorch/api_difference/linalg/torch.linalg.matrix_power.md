@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.linalg.matrix_power
-### [torch.linalg.matrix_power](https://pytorch.org/docs/1.13/generated/torch.linalg.matrix_power.html?highlight=torch+linalg+matrix_power#torch.linalg.matrix_power)
+### [torch.linalg.matrix_power](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_power.html?highlight=torch+linalg+matrix_power#torch.linalg.matrix_power)
 
 ```python
 torch.linalg.matrix_power(A,

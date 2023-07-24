@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.arctanh
-### [torch.arctanh](https://pytorch.org/docs/1.13/generated/torch.arctanh.html#torch.arctanh)
+### [torch.arctanh](https://pytorch.org/docs/stable/generated/torch.arctanh.html#torch.arctanh)
 
 ```python
 torch.arctanh(input,

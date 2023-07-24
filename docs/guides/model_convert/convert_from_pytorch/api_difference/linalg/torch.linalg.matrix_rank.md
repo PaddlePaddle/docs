@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.linalg.matrix_rank
-### [torch.linalg.matrix_rank](https://pytorch.org/docs/1.13/generated/torch.linalg.matrix_rank.html?highlight=matrix_rank#torch.linalg.matrix_rank)
+### [torch.linalg.matrix_rank](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_rank.html?highlight=matrix_rank#torch.linalg.matrix_rank)
 ```python
 torch.linalg.matrix_rank(A, tol=None, hermitian=False, *, out=None)
 ```

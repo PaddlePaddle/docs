@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.linalg.matmul
 
-### [torch.linalg.matmul](https://pytorch.org/docs/1.13/generated/torch.linalg.matmul.html#torch.linalg.matmul)
+### [torch.linalg.matmul](https://pytorch.org/docs/stable/generated/torch.linalg.matmul.html#torch.linalg.matmul)
 
 ```python
 torch.linalg.matmul(input, other, *, out=None)

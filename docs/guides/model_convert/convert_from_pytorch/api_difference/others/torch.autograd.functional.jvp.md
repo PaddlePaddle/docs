@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.autograd.functional.jvp
 
-### [torch.autograd.functional.jvp](https://pytorch.org/docs/1.13/generated/torch.autograd.functional.jvp.html#torch.autograd.functional.jvp)
+### [torch.autograd.functional.jvp](https://pytorch.org/docs/stable/generated/torch.autograd.functional.jvp.html#torch.autograd.functional.jvp)
 
 ```python
 torch.autograd.functional.jvp(func, inputs, v=None, create_graph=False, strict=False)

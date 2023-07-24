@@ -1,6 +1,6 @@
 ## [ 参数不一致 ]torch.Tensor.repeat
 
-### [torch.Tensor.repeat](https://pytorch.org/docs/1.13/generated/torch.Tensor.repeat.html)
+### [torch.Tensor.repeat](https://pytorch.org/docs/stable/generated/torch.Tensor.repeat.html)
 
 ```python
 torch.Tensor.repeat(*sizes)

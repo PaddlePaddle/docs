@@ -1,6 +1,6 @@
 ## [ 参数不一致 ]torch.Tensor.greater
 
-### [torch.Tensor.greater](https://pytorch.org/docs/1.13/generated/torch.Tensor.greater.html?highlight=torch+tensor+greater#torch.Tensor.greater)
+### [torch.Tensor.greater](https://pytorch.org/docs/stable/generated/torch.Tensor.greater.html?highlight=torch+tensor+greater#torch.Tensor.greater)
 
 ```python
 torch.Tensor.greater(other)

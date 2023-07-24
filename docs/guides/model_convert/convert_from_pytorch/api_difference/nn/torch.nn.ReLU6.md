@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.ReLU6
 
-### [torch.nn.ReLU6](https://pytorch.org/docs/1.13/generated/torch.nn.ReLU6.html#torch.nn.ReLU6)
+### [torch.nn.ReLU6](https://pytorch.org/docs/stable/generated/torch.nn.ReLU6.html#torch.nn.ReLU6)
 
 ```python
 torch.nn.ReLU6(inplace=False)

@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.logspace
 
-###  [torch.logspace](https://pytorch.org/docs/1.13/generated/torch.logspace.html?highlight=logspace#torch.logspace)
+###  [torch.logspace](https://pytorch.org/docs/stable/generated/torch.logspace.html?highlight=logspace#torch.logspace)
 
 ```python
 torch.logspace(start,

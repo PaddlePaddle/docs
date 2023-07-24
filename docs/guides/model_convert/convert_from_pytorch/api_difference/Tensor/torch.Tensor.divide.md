@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.Tensor.divide
 
-### [torch.Tensor.divide](https://pytorch.org/docs/1.13/generated/torch.Tensor.divide.html#torch.Tensor.divide)
+### [torch.Tensor.divide](https://pytorch.org/docs/stable/generated/torch.Tensor.divide.html#torch.Tensor.divide)
 
 ```python
 torch.Tensor.divide(other, *, rounding_mode=None)

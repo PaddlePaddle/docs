@@ -1,6 +1,6 @@
 ## [ 无参数 ] torch.Tensor.tolist
 
-### [torch.Tensor.tolist](https://pytorch.org/docs/1.13/generated/torch.Tensor.tolist.html#torch.Tensor.tolist)
+### [torch.Tensor.tolist](https://pytorch.org/docs/stable/generated/torch.Tensor.tolist.html#torch.Tensor.tolist)
 
 ```
 torch.Tensor.tolist()

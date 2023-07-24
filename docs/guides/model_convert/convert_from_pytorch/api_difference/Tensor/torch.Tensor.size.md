@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.size
 
-### [torch.Tensor.size](https://pytorch.org/docs/1.13/generated/torch.Tensor.size.html#torch.Tensor.size)
+### [torch.Tensor.size](https://pytorch.org/docs/stable/generated/torch.Tensor.size.html#torch.Tensor.size)
 
 ```python
 torch.Tensor.size(dim=None)

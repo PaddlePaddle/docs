@@ -1,6 +1,6 @@
 ## [仅参数名不一致]torch.Tensor.triangular_solve
 
-### [torch.Tensor.triangular_solve](https://pytorch.org/docs/1.13/generated/torch.Tensor.triangular_solve.html#torch.Tensor.triangular_solve)
+### [torch.Tensor.triangular_solve](https://pytorch.org/docs/stable/generated/torch.Tensor.triangular_solve.html#torch.Tensor.triangular_solve)
 
 ```python
 torch.Tensor.triangular_solve(A, upper=True, transpose=False, unitriangular=False)

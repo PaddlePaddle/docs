@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.zeros_like
 
-###  [torch.zeros_like](https://pytorch.org/docs/1.13/generated/torch.zeros_like.html?highlight=zeros_like#torch.zeros_like)
+###  [torch.zeros_like](https://pytorch.org/docs/stable/generated/torch.zeros_like.html?highlight=zeros_like#torch.zeros_like)
 
 ```python
 torch.zeros_like(input,

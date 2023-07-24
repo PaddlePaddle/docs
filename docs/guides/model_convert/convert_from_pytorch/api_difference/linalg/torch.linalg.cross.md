@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.linalg.cross
 
-### [torch.linalg.cross](https://pytorch.org/docs/1.13/generated/torch.linalg.cross.html?highlight=torch+linalg+cross#torch.linalg.cross)
+### [torch.linalg.cross](https://pytorch.org/docs/stable/generated/torch.linalg.cross.html?highlight=torch+linalg+cross#torch.linalg.cross)
 
 ```python
 torch.linalg.cross(input, other, *, dim=- 1, out=None)

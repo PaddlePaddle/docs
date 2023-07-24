@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.ger
 
-### [torch.ger](https://pytorch.org/docs/1.13/generated/torch.ger.html?highlight=ger#torch.ger)
+### [torch.ger](https://pytorch.org/docs/stable/generated/torch.ger.html?highlight=ger#torch.ger)
 
 ```python
 torch.ger(input, vec2, *, out=None)

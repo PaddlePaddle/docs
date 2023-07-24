@@ -1,6 +1,6 @@
 ## [ 参数不一致 ] torch.Tensor.multiply
 
-### [torch.Tensor.multiply](https://pytorch.org/docs/1.13/generated/torch.Tensor.multiply.html)
+### [torch.Tensor.multiply](https://pytorch.org/docs/stable/generated/torch.Tensor.multiply.html)
 
 ```python
 torch.Tensor.multiply(other)

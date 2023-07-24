@@ -1,6 +1,6 @@
 ## [ torch 参数更多]torch.triu_indices
 
-### [torch.triu_indices](https://pytorch.org/docs/1.13/generated/torch.triu_indices.html?highlight=triu_indices#torch.triu_indices)
+### [torch.triu_indices](https://pytorch.org/docs/stable/generated/torch.triu_indices.html?highlight=triu_indices#torch.triu_indices)
 
 ```python
 torch.triu_indices(row,col,offset=0,*,dtype=torch.long,device='cpu',layout=torch.strided)

@@ -1,6 +1,6 @@
 ## [参数完全一致]torch.distributed.get_world_size
 
-### [torch.distributed.get_world_size](https://pytorch.org/docs/1.13/distributed.html#torch.distributed.get_world_size)
+### [torch.distributed.get_world_size](https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_world_size)
 
 ```python
 torch.distributed.get_world_size(group=None)

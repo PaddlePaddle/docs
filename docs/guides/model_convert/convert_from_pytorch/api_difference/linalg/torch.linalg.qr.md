@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.linalg.qr
 
-### [torch.linalg.qr](https://pytorch.org/docs/1.13/generated/torch.linalg.qr.html#torch.linalg.qr)
+### [torch.linalg.qr](https://pytorch.org/docs/stable/generated/torch.linalg.qr.html#torch.linalg.qr)
 
 ```python
 torch.linalg.qr(A, mode='reduced', *, out=None)

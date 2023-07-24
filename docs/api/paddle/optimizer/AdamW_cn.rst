@@ -49,49 +49,7 @@ AdamW 优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION <https://arxiv.org/
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    linear = paddle.nn.Linear(10, 10)
-    inp = paddle.rand([10,10], dtype="float32")
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    beta1 = paddle.to_tensor([0.9], dtype="float32")
-    beta2 = paddle.to_tensor([0.99], dtype="float32")
-
-    adam = paddle.optimizer.AdamW(learning_rate=0.1,
-            parameters=linear.parameters(),
-            beta1=beta1,
-            beta2=beta2,
-            weight_decay=0.01)
-    out.backward()
-    adam.step()
-    adam.clear_grad()
-
-    # Note that the learning_rate of linear_2 is 0.01.
-    linear_1 = paddle.nn.Linear(10, 10)
-    linear_2 = paddle.nn.Linear(10, 10)
-    inp = paddle.uniform(shape=[10, 10], min=-0.1, max=0.1)
-    out = linear_1(inp)
-    out = linear_2(out)
-    loss = paddle.mean(out)
-    adam = paddle.optimizer.AdamW(
-        learning_rate=0.1,
-        parameters=[{
-            'params': linear_1.parameters()
-        }, {
-            'params': linear_2.parameters(),
-            'weight_decay': 0.001,
-            'learning_rate': 0.1,
-            'beta1': 0.8
-        }],
-        weight_decay=0.01,
-        beta1=0.9)
-    out.backward()
-    adam.step()
-    adam.clear_grad()
+COPY-FROM: paddle.optimizer.AdamW
 
 方法
 ::::::::::::
@@ -110,18 +68,7 @@ step()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    a = paddle.rand(shape=[2,13], dtype="float32")
-    linear = paddle.nn.Linear(13, 5)
-    adam = paddle.optimizer.AdamW(learning_rate = 0.01,
-                                weight_decay = 0.01,
-                                parameters = linear.parameters())
-    out = linear(a)
-    out.backward()
-    adam.step()
-    adam.clear_grad()
+COPY-FROM: paddle.optimizer.AdamW.step
 
 minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 '''''''''
@@ -142,24 +89,7 @@ tuple(optimize_ops, params_grads)，其中 optimize_ops 为参数优化 OP 列�
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    linear = paddle.nn.Linear(10, 10)
-    inp = paddle.randn(shape=[10,10], dtype="float32")
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    beta1 = paddle.to_tensor([0.9], dtype="float32")
-    beta2 = paddle.to_tensor([0.99], dtype="float32")
-
-    adam = paddle.optimizer.AdamW(learning_rate=0.1,
-            parameters=linear.parameters(),
-            weight_decay=0.01)
-    out.backward()
-    adam.minimize(loss)
-    adam.clear_grad()
+COPY-FROM: paddle.optimizer.AdamW.minimize
 
 clear_grad()
 '''''''''
@@ -172,19 +102,7 @@ clear_grad()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    a = paddle.rand(shape=[2,13], dtype="float32")
-    linear = paddle.nn.Linear(13, 5)
-    optimizer = paddle.optimizer.AdamW(weight_decay=0.01,
-                                     learning_rate=0.02,
-                                     parameters=linear.parameters())
-    out = linear(a)
-    out.backward()
-    optimizer.step()
-    optimizer.clear_grad()
+COPY-FROM: paddle.optimizer.AdamW.clear_grad
 
 set_lr(value)
 '''''''''
@@ -204,26 +122,7 @@ set_lr(value)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    linear = paddle.nn.Linear(10, 10)
-
-    adam = paddle.optimizer.AdamW(weight_decay=0.01,
-                                 learning_rate=0.1, parameters=linear.parameters())
-
-    # set learning rate manually by python float value
-    lr_list = [0.2, 0.3, 0.4, 0.5, 0.6]
-    for i in range(5):
-        adam.set_lr(lr_list[i])
-        lr = adam.get_lr()
-        print("current lr is {}".format(lr))
-    # Print:
-    #    current lr is 0.2
-    #    current lr is 0.3
-    #    current lr is 0.4
-    #    current lr is 0.5
-    #    current lr is 0.6
+COPY-FROM: paddle.optimizer.AdamW.set_lr
 
 set_lr_scheduler(scheduler)
 '''''''''
@@ -276,35 +175,4 @@ float，当前步骤的学习率。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    # example1: _LRScheduler is not used, return value is all the same
-    emb = paddle.nn.Embedding(10, 10, sparse=False)
-    adam = paddle.optimizer.AdamW(learning_rate=0.001, parameters = emb.parameters(),weight_decay=0.01)
-    lr = adam.get_lr()
-    print(lr) # 0.001
-
-    # example2: StepDecay is used, return the step learning rate
-    linear = paddle.nn.Linear(10, 10)
-    inp = paddle.randn([10,10], dtype="float32")
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    bd = [2, 4, 6, 8]
-    value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.5, step_size=2, gamma=0.1)
-    adam = paddle.optimizer.AdamW(scheduler,
-                           parameters=linear.parameters(),
-                           weight_decay=0.01)
-
-    # learning rate is 0.2
-    print(adam.get_lr())
-
-    # learning rate for different steps
-    ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
-    for i in range(12):
-        adam.step()
-        lr = adam.get_lr()
-        scheduler.step()
-        print(lr, ret[i])
+COPY-FROM: paddle.optimizer.AdamW.get_lr

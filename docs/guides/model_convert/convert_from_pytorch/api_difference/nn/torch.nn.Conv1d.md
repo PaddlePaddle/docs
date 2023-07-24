@@ -1,5 +1,5 @@
 ## [ 参数不一致 ]torch.nn.Conv1d
-### [torch.nn.Conv1d](https://pytorch.org/docs/1.13/generated/torch.nn.Conv1d.html?highlight=conv1d#torch.nn.Conv1d)
+### [torch.nn.Conv1d](https://pytorch.org/docs/stable/generated/torch.nn.Conv1d.html?highlight=conv1d#torch.nn.Conv1d)
 
 ```python
 torch.nn.Conv1d(in_channels,

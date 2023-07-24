@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.hub.load
 
-### [torch.hub.load](https://pytorch.org/docs/1.13/hub.html?highlight=hub+load#torch.hub.load)
+### [torch.hub.load](https://pytorch.org/docs/stable/hub.html?highlight=hub+load#torch.hub.load)
 
 ```python
 torch.hub.load(repo_or_dir,

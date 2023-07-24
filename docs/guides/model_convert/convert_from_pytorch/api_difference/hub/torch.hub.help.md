@@ -1,6 +1,6 @@
 ## [torch 参数更多] torch.hub.help
 
-### [torch.hub.help](https://pytorch.org/docs/1.13/hub.html?highlight=hub+help#torch.hub.help)
+### [torch.hub.help](https://pytorch.org/docs/stable/hub.html?highlight=hub+help#torch.hub.help)
 
 ```python
 torch.hub.help(github,

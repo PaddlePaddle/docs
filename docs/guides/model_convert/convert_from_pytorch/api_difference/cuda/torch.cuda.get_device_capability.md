@@ -1,6 +1,6 @@
 ## [参数完全一致]torch.cuda.get_device_capability
 
-### [torch.cuda.get_device_capability](https://pytorch.org/docs/1.13/generated/torch.cuda.get_device_capability.html#torch.cuda.get_device_capability)
+### [torch.cuda.get_device_capability](https://pytorch.org/docs/stable/generated/torch.cuda.get_device_capability.html#torch.cuda.get_device_capability)
 
 ```python
 torch.cuda.get_device_capability(device=None)

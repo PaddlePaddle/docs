@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.linalg.pinv
 
-### [torch.linalg.pinv](https://pytorch.org/docs/1.13/generated/torch.linalg.pinv.html#torch.linalg.pinv)
+### [torch.linalg.pinv](https://pytorch.org/docs/stable/generated/torch.linalg.pinv.html#torch.linalg.pinv)
 
 ```python
 torch.linalg.pinv(A, *, atol=None, rtol=None, hermitian=False, out=None)

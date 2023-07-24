@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.norm
 
-### [torch.Tensor.norm](https://pytorch.org/docs/1.13/generated/torch.Tensor.norm.html#torch.Tensor.norm)
+### [torch.Tensor.norm](https://pytorch.org/docs/stable/generated/torch.Tensor.norm.html#torch.Tensor.norm)
 
 ```python
 torch.Tensor.norm(p='fro', dim=None, keepdim=False, dtype=None)

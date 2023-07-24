@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributions.distribution.Distribution
 
-### [torch.distributions.distribution.Distribution](https://pytorch.org/docs/1.13/distributions.html#torch.distributions.distribution.Distribution)
+### [torch.distributions.distribution.Distribution](https://pytorch.org/docs/stable/distributions.html#torch.distributions.distribution.Distribution)
 
 ```python
 torch.distributions.distribution.Distribution(batch_shape=torch.Size([]), event_shape=torch.Size([]), validate_args=None)

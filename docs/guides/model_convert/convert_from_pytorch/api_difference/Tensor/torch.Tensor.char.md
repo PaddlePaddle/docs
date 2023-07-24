@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.Tensor.char
 
-### [torch.Tensor.char](https://pytorch.org/docs/1.13/generated/torch.Tensor.char.html#torch.Tensor.char)
+### [torch.Tensor.char](https://pytorch.org/docs/stable/generated/torch.Tensor.char.html#torch.Tensor.char)
 
 ```python
 torch.Tensor.char(memory_format=torch.preserve_format)

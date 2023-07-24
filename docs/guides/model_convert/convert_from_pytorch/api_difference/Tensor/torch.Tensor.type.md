@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.type
 
-### [torch.Tensor.type](https://pytorch.org/docs/1.13/generated/torch.Tensor.type.html#torch.Tensor.type)
+### [torch.Tensor.type](https://pytorch.org/docs/stable/generated/torch.Tensor.type.html#torch.Tensor.type)
 
 ```python
 torch.Tensor.type(dtype=None, non_blocking=False, **kwargs)

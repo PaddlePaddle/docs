@@ -1,6 +1,6 @@
 ## [ 无参数 ] torch.Tensor.arctanh
 
-### [torch.Tensor.arctanh](https://pytorch.org/docs/1.13/generated/torch.Tensor.arctanh.html#torch.Tensor.arctanh)
+### [torch.Tensor.arctanh](https://pytorch.org/docs/stable/generated/torch.Tensor.arctanh.html#torch.Tensor.arctanh)
 
 ```
 torch.Tensor.arctanh()

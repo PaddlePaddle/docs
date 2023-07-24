@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.multinomial
-### [torch.multinomial](https://pytorch.org/docs/1.13/generated/torch.multinomial.html#torch.multinomial)
+### [torch.multinomial](https://pytorch.org/docs/stable/generated/torch.multinomial.html#torch.multinomial)
 ```python
 torch.multinomial(input,
                   num_samples,

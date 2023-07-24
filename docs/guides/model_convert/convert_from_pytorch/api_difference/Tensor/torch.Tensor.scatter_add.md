@@ -1,6 +1,6 @@
 ## [ 仅 paddle 参数更多 ]torch.Tensor.scatter_add
 
-### [torch.Tensor.scatter_add](https://pytorch.org/docs/1.13/generated/torch.Tensor.scatter_add.html#torch.Tensor.scatter_add)
+### [torch.Tensor.scatter_add](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter_add.html#torch.Tensor.scatter_add)
 
 ```python
 torch.Tensor.scatter_add(dim, index, src)
