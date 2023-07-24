@@ -740,9 +740,7 @@
 | 3    | [torch.distributions.binomial.Binomial](https://pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial) |  | 功能缺失        |
 | 4    | [torch.distributions.continuous_bernoulli.ContinuousBernoulli](https://pytorch.org/docs/stable/distributions.html#torch.distributions.continuous_bernoulli.ContinuousBernoulli) |  | 功能缺失        |
 | 5    | [torch.distributions.exponential.Exponential](https://pytorch.org/docs/stable/distributions.html#torch.distributions.exponential.Exponential) |  | 功能缺失        |
-| 6    | [torch.distributions.geometric.Geometric](https://pytorch.org/docs/stable/distributions.html#torch.distributions.geometric.Geometric) |  | 功能缺失        |
-| 7    | [torch.distributions.gumbel.Gumbel](https://pytorch.org/docs/stable/distributions.html#torch.distributions.gumbel.Gumbel) |  | 功能缺失        |
-| 8    | [torch.distributions.one_hot_categorical.OneHotCategorical](https://pytorch.org/docs/stable/distributions.html#torch.distributions.one_hot_categorical.OneHotCategorical) |  | 功能缺失        |
+| 6    | [torch.distributions.one_hot_categorical.OneHotCategorical](https://pytorch.org/docs/stable/distributions.html#torch.distributions.one_hot_categorical.OneHotCategorical) |  | 功能缺失        |
 
 
 ***持续更新...***
