@@ -1,9 +1,9 @@
-## [ torch 参数更多 ] torch.fft.irfftn
+## [ torch 参数更多 ] torch.fft.ifftn
 
-### [torch.fft.irfftn](https://pytorch.org/docs/stable/generated/torch.fft.irfftn.html?highlight=irfftn#torch.fft.irfftn)
+### [torch.fft.ifftn](https://pytorch.org/docs/stable/generated/torch.fft.ifftn.html?highlight=ifftn#torch.fft.ifftn)
 
 ```python
-torch.fft.irfftn(input,
+torch.fft.ifftn(input,
                 s=None,
                 dim=None,
                 norm='backward',
@@ -11,10 +11,10 @@ torch.fft.irfftn(input,
                 out=None)
 ```
 
-### [paddle.fft.irfftn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/irfftn_cn.html)
+### [paddle.fft.ifftn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/ifftn_cn.html)
 
 ```python
-paddle.fft.irfftn(x,
+paddle.fft.ifftn(x,
                 s=None,
                 axes=None,
                 norm='backward',
@@ -35,8 +35,8 @@ paddle.fft.irfftn(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.fft.irfftn(x, out=y)
+torch.fft.ifftn(x, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.fft.irfftn(x), y)
+paddle.assign(paddle.fft.ifftn(x), y)
 ```

@@ -1,24 +1,15 @@
-## [ torch 参数更多 ] torch.fft.hfft
+## [ torch 参数更多 ] torch.fft.fft
 
-### [torch.fft.hfft](https://pytorch.org/docs/stable/generated/torch.fft.hfft.html?highlight=hfft#torch.fft.hfft)
+### [torch.fft.fft](https://pytorch.org/docs/stable/generated/torch.fft.fft.html?highlight=fft#torch.fft.fft)
 
 ```python
-torch.fft.hfft(input,
-                n=None,
-                dim=- 1,
-                norm='backward',
-                *,
-                out=None)
+torch.fft.fft(input, n=None, dim=- 1, norm='backward', *, out=None)
 ```
 
-### [paddle.fft.hfft](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/hfft_cn.html)
+### [paddle.fft.fft](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/fft_cn.html)
 
 ```python
-paddle.fft.hfft(x,
-                n=None,
-                axis=- 1,
-                norm='backward',
-                name=None)
+paddle.fft.fft(x, n=None, axis=- 1, norm='backward', name=None)
 ```
 
 其中，PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -35,8 +26,8 @@ paddle.fft.hfft(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.fft.hfft(x, n=5, out=y)
+torch.fft.fft(x, s, dim, norm, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.fft.hfft(x), y)
+paddle.assign(paddle.fft.fft(x, s, axes, norm), y)
 ```

@@ -1,15 +1,15 @@
-## [ torch 参数更多 ]torch.fft.hfftn
+## [ torch 参数更多 ]torch.fft.irfft2
 
-### [torch.fft.hfftn](https://pytorch.org/docs/stable/generated/torch.fft.hfftn.html?highlight=torch+fft+hfftn#torch.fft.hfftn)
+### [torch.fft.irfft2](https://pytorch.org/docs/stable/generated/torch.fft.irfft2.html#torch-fft-irfft2)
 
 ```python
-torch.fft.hfftn(input, s=None, dim=None, norm='backward', *, out=None)
+torch.fft.irfft2(input, s=None, dim=(- 2, - 1), norm='backward', *, out=None)
 ```
 
-### [paddle.fft.hfftn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/hfftn_cn.html)
+### [paddle.fft.irfft2](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/irfft2_cn.html#irfft2)
 
 ```python
-paddle.fft.hfftn(x, s=None, axes=None, norm='backward', name=None)
+paddle.fft.irfft2(x, s=None, axes=(- 2, - 1), norm='backward', name=None)
 ```
 
 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -28,8 +28,8 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.fft.hfftn(x, s, dim, norm, out=y)
+torch.fft.irfft2(x, s, dim, norm, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.fft.hfftn(x, s, dim, norm) , y)
+paddle.assign(paddle.fft.irfft2(x, s, dim, norm) , y)
 ```

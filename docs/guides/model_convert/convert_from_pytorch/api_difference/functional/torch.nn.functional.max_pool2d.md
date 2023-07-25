@@ -1,4 +1,4 @@
-## [torch 参数更多]torch.nn.functional.max_pool2d
+## [ torch 参数更多 ]torch.nn.functional.max_pool2d
 
 ### [torch.nn.functional.max_pool2d](https://pytorch.org/docs/stable/generated/torch.nn.functional.max_pool2d.html#torch.nn.functional.max_pool2d)
 
