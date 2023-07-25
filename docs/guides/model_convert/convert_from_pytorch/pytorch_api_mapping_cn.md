@@ -729,6 +729,13 @@
 | 3    | [torch.distributed.ReduceOp](https://pytorch.org/docs/stable/distributed.html?highlight=torch+distributed+reduceop#torch.distributed.ReduceOp) | [paddle.distributed.ReduceOp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/ReduceOp_cn.html) | 功能一致，无参数， [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.barrier.md)         |
 | 4   |  [torch.distributed.rpc.WorkerInfo](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.WorkerInfo)  |  | 功能缺失        |
 | 5   |  [torch.distributed.rpc.functions.async_execution](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.functions.async_execution)  |  | 功能缺失        |
+| 6   |  [torch.distributed.broadcast_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.broadcast_multigpu)  |  | 功能缺失        |
+| 7   |  [torch.distributed.all_reduce_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_reduce_multigpu)  |  | 功能缺失        |
+| 8   |  [torch.distributed.reduce_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_multigpu)  |  | 功能缺失        |
+| 9   |  [torch.distributed.all_gather_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_gather_multigpu)  |  | 功能缺失        |
+| 10   |  [torch.distributed.reduce_scatter_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_scatter_multigpu)  |  | 功能缺失        |
+| 11   |  [torch.distributions.constraints.Constraint](https://pytorch.org/docs/stable/distributions.html#torch.distributions.constraints.Constraint)  |  | 功能缺失        |
+| 12   |  [torch.distributions.constraint_registry.ConstraintRegistry](https://pytorch.org/docs/stable/distributions.html#torch.distributions.constraint_registry.ConstraintRegistry)  |  | 功能缺失        |
 
 
 ***持续更新...***
