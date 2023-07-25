@@ -1,4 +1,4 @@
-## [参数不一致]torch.distributed.scatter_object_list
+## [仅参数名不一致]torch.distributed.scatter_object_list
 
 ### [torch.distributed.scatter_object_list](https://pytorch.org/docs/stable/distributed.html#torch.distributed.scatter_object_list)
 
@@ -12,7 +12,7 @@ torch.distributed.scatter_object_list(scatter_object_output_list, scatter_object
 paddle.distributed.scatter_object_list(out_object_list, in_object_list, src=0, group=None)
 ```
 
-其中 PyTorch 和 Paddle 功能一致，参数用法不一致，具体如下：
+其中 PyTorch 和 Paddle 功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 
