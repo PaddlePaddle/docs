@@ -677,7 +677,9 @@
 | 13   |  [torch.cuda.memory_reserved](https://pytorch.org/docs/1.13/generated/torch.cuda.memory_reserved.html#torch.cuda.memory_reserved)  |  [paddle.device.cuda.memory_reserved](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/cuda/memory_reserved_cn.html)  |    功能一致, 参数完全一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.memory_reserved.md)  |
 | 14   |  [torch.cuda.memory_allocated](https://pytorch.org/docs/1.13/generated/torch.cuda.memory_allocated.html#torch.cuda.memory_allocated)  |  [paddle.device.cuda.memory_allocated](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/cuda/memory_allocated_cn.html)  |    功能一致, 参数完全一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.memory_allocated.md)  |
 | 15   |  [torch.cuda.synchronize](https://pytorch.org/docs/1.13/generated/torch.cuda.synchronize.html#torch.cuda.synchronize)  |  [paddle.device.cuda.synchronize](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/cuda/synchronize_cn.html)  |    功能一致, 参数完全一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.synchronize.md)  |
-
+| 16 | [torch.cuda.default_stream](https://pytorch.org/docs/stable/generated/torch.cuda.default_stream.html?highlight=torch+cuda+default_stream#torch.cuda.default_stream) | | 功能缺失 |
+| 17 | [torch.cuda.get_arch_list](https://pytorch.org/docs/stable/generated/torch.cuda.get_arch_list.html?highlight=torch+cuda+get_arch_list#torch.cuda.get_arch_list) | | 功能缺失 |
+| 18 | [torch.cuda.is_initialized](https://pytorch.org/docs/stable/generated/torch.cuda.is_initialized.html?highlight=torch+cuda+is_initialized#torch.cuda.is_initialized) | | 功能缺失 |
 ***持续更新...***
 
 ## torch.distributed.XX API 映射列表
