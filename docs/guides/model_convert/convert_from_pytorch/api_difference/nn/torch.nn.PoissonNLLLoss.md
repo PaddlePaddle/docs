@@ -20,9 +20,9 @@ class paddle.nn.PoissonNLLLoss(log_input=False, full=False, eps=1e-8, reduction=
 | ------------------ | ------------------ | ---------------------------------------------------------------------------------- |
 | log_input          | log_input          | 输入是否为对数函数映射后结果。                                                       |
 | full               | full               | 是否在损失计算中包括 Stirling 近似项。                                               |
-| size_average       | -                  | 已废弃（可用 `reduction` 代替）。表示是否采用 batch 中各样本 loss 平均值作为最终的 loss。如果置 False，则采用加和作为 loss。默认为 True。    |
+| size_average       | -                  | 已废弃（可用 `reduction` 代替）。表示是否采用 batch 中各样本 loss 平均值作为最终的 loss。如果置 False，则采用加和作为 loss。默认为 True，paddle 需要转写。    |
 | eps                | eps                | 在 `log_input` 为 True 时使用的常数小量。默认值为 1e-8。                            |
-| reduce             | -                  | 已废弃（可用 `reduction` 代替）。表示是否采用输出单个值作为 loss。如果置 False，则每个元素输出一个 loss 并忽略 `size_average`。默认为 True。 |
+| reduce             | -                  | 已废弃（可用 `reduction` 代替）。表示是否采用输出单个值作为 loss。如果置 False，则每个元素输出一个 loss 并忽略 `size_average`。默认为 True，paddle 需要转写。 |
 | reduction          | reduction          | 指定应用于输出结果的计算方式，可选值有 `none`、`mean` 和 `sum`。默认为 `mean`，计算 mini-batch loss 均值。设置为 `sum` 时，计算 mini-batch loss 的总和。设置为 `none` 时，则返回 loss Tensor。默认值下为 `mean`。   |
 
 ### 转写示例
@@ -40,53 +40,19 @@ loss = paddle.nn.PoissonNLLLoss(reduction='sum')
 #### reduce：是否进行规约
 
 ```python
-# Pytorch 写法
-loss = torch.nn.PoissonNLLLoss(reduce=False)
+# Pytorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
+if size_average is None:
+    size_average = True
+if reduce is None:
+    reduce = True
+if size_average and reduce:
+    reduction = 'mean'
+elif reduce:
+    reduction = 'sum'
+else:
+    reduction = 'none'
 
-# Paddle 写法
-loss = paddle.nn.PoissonNLLLoss(reduction='none')
-```
-
-### reduce 覆盖 size_average
-
-```python
-# Pytorch 写法
-loss = torch.nn.PoissonNLLLoss(size_average=False, reduce=False)
-
-# Paddle 写法
-loss = paddle.nn.PoissonNLLLoss(reduction='none')
-```
-
-```python
-# Pytorch 写法
-loss = torch.nn.PoissonNLLLoss(size_average=True, reduce=False)
-
-# Paddle 写法
-loss = paddle.nn.PoissonNLLLoss(reduction='none')
-```
-
-```python
-# Pytorch 写法
-loss = torch.nn.PoissonNLLLoss(size_average=True, reduce=True)
-
-# Paddle 写法
-loss = paddle.nn.PoissonNLLLoss(reduction='mean')
-```
-
-```python
-# Pytorch 写法
-loss = torch.nn.PoissonNLLLoss(size_average=False, reduce=True)
-
-# Paddle 写法
-loss = paddle.nn.PoissonNLLLoss(reduction='sum')
-```
-
-### reduction 覆盖 size_average 和 reduce
-
-```python
-# Pytorch 写法
-loss = torch.nn.PoissonNLLLoss(size_average=False, reduce=True, reduction='mean')
-
-# Paddle 写法
-loss = paddle.nn.PoissonNLLLoss(reduction='mean')
+# 如果 Pytorch 存在 reduction 参数，则直接覆盖
+if 'reduction' not in kwargs:
+    kwargs['reduction'] = reduction
 ```
