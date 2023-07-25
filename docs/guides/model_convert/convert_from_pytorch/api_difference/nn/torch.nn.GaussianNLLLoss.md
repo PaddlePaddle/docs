@@ -6,7 +6,7 @@
 torch.nn.GaussianNLLLoss(*, full=False, eps=1e-06, reduction='mean')
 ```
 
-### [paddle.nn.PoissonNLLLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/PoissonNLLLoss_cn.html)
+### [paddle.nn.GaussianNLLLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/GaussianNLLLoss_cn.html)
 
 ```python
 paddle.nn.GaussianNLLLoss(full=False, epsilon=1e-6, reduction='mean', name=None)
