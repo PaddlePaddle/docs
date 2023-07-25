@@ -1,4 +1,4 @@
-## [组合替代实现]torch.nn.MultiLabelMarginLoss
+## [torch 参数更多]torch.nn.MultiLabelMarginLoss
 
 ### [torch.nn.MultiLabelMarginLoss](https://pytorch.org/docs/stable/generated/torch.nn.MultiLabelMarginLoss)
 
