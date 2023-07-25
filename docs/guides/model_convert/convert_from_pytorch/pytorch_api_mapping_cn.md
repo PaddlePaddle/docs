@@ -644,6 +644,7 @@
 | 174   |  [torch.Tensor.hsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.hsplit.html#torch.Tensor.hsplit)  |  | 功能缺失        |
 | 175   |  [torch.Tensor.vsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.vsplit.html#torch.Tensor.vsplit)  |  | 功能缺失        |
 | 176   |  [torch.Tensor.dsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.dsplit.html#torch.Tensor.dsplit)  |  | 功能缺失        |
+| 177   |  [torch.Tensor.is_coalesced](https://pytorch.org/docs/stable/generated/torch.Tensor.is_coalesced.html#torch.Tensor.is_coalesced)  |  | 功能缺失        |
 
 ***持续更新...***
 
