@@ -6,7 +6,7 @@
 torch.fft.irfftn(input,
                 s=None,
                 dim=None,
-                norm=None,
+                norm='backward',
                 *,
                 out=None)
 ```

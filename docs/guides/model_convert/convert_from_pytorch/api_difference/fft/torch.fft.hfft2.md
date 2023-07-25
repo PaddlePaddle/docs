@@ -3,7 +3,7 @@
 ### [torch.fft.hfft2](https://pytorch.org/docs/stable/generated/torch.fft.hfft2.html?highlight=torch+fft+hfft2#torch.fft.hfft2)
 
 ```python
-torch.fft.hfft2(input, s=None, dim=(- 2, - 1), norm=None, *, out=None)
+torch.fft.hfft2(input, s=None, dim=(- 2, - 1), norm='backward', *, out=None)
 ```
 
 ### [paddle.fft.hfft2](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/hfft2_cn.html)

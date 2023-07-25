@@ -3,7 +3,7 @@
 ### [torch.fft.rfft](https://pytorch.org/docs/stable/generated/torch.fft.rfft.html#torch-fft-rfft)
 
 ```python
-torch.fft.rfft(input, s=None, dim=(- 2, - 1), norm=None, *, out=None)
+torch.fft.rfft(input, s=None, dim=(- 2, - 1), norm='backward', *, out=None)
 ```
 
 ### [paddle.fft.rfft](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/rfft_cn.html#rfft)

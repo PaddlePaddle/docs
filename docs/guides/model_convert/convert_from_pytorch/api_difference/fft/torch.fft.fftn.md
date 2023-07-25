@@ -3,7 +3,7 @@
 ### [torch.fft.fftn](https://pytorch.org/docs/stable/generated/torch.fft.fftn.html?highlight=fftn#torch.fft.fftn)
 
 ```python
-torch.fft.fftn(input, s=None, dim=None, norm=None, *, out=None)
+torch.fft.fftn(input, s=None, dim=None, norm='backward', *, out=None)
 ```
 
 ### [paddle.fft.fftn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/fftn_cn.html)

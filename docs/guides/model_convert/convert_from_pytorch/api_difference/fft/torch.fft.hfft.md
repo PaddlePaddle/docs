@@ -6,7 +6,7 @@
 torch.fft.hfft(input,
                 n=None,
                 dim=- 1,
-                norm=None,
+                norm='backward',
                 *,
                 out=None)
 ```

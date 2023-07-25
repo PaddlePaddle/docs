@@ -1,4 +1,4 @@
-## [ 仅参数默认值不一致 ]torch.Tensor.std
+## [ 仅参数名不一致 ]torch.Tensor.std
 
 ### [torch.Tensor.std](https://pytorch.org/docs/stable/generated/torch.Tensor.std.html?highlight=torch+tensor+std#torch.Tensor.std)
 
