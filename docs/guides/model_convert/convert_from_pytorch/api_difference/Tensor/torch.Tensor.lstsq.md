@@ -1,0 +1,23 @@
+## [ 仅 paddle 参数更多 ]torch.linalg.lstsq
+
+### [torch.Tensor.lstsq](https://pytorch.org/docs/1.9.0/generated/torch.Tensor.lstsq.html?highlight=torch%20tensor%20lstsq#torch.Tensor.lstsq)
+
+```python
+torch.Tensor.lstsq(A)
+```
+
+### [paddle.Tensor.lstsq]()
+
+```python
+paddle.Tensor.lstsq(y, rcond=None, driver=None, name=None)
+```
+
+两者功能一致，仅参数名不一致，具体如下：
+
+### 参数映射
+
+| PyTorch | PaddlePaddle | 备注                                                                        |
+| ------- | ------------ | --------------------------------------------------------------------------- |
+| A       | y            | 表示输入的 Tensor ，仅参数名不一致。                                        |
+| -       | rcond        | 用来决定 x 有效秩的 float 型浮点数。PyTorch 无此参数，Paddle 保持默认即可。 |
+| -       | driver       | 用来指定计算使用的 LAPACK 库方法。PyTorch 无此参数，Paddle 保持默认即可。   |
