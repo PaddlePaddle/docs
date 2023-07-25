@@ -19,3 +19,24 @@ paddle.Tensor.qr(mode='reduced')
 | PyTorch | PaddlePaddle | 备注             |
 |--------|-------------|----------------|
 | mode   | some        | 表示 QR 分解的行为。 需进行转写。 |
+
+
+### 转写示例
+
+```python
+# 当进行完整的 QR 分解时
+# Pytorch 写法
+x = torch.tensor([[1., 2., 3.],[4., 5., 6.,]])
+q, r = x.qr(some=False)
+
+# Paddle 写法
+x = paddle.to_tensor([[1., 2., 3.],[4., 5., 6.,]])
+q, r = x.qr(mode='complete')
+
+#当进行减少的 QR 分解时
+# Pytorch 写法
+q, r = x.qr(some=True)
+
+# Paddle 写法
+q, r = x.qr(mode='reduced')
+```
