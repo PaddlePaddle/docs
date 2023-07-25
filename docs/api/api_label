@@ -45,6 +45,8 @@ paddle.distributed.CountFilterEntry	.. _api_paddle_distributed_CountFilterEntry:
 paddle.distributed.wait	.. _api_paddle_distributed_wait:
 paddle.distributed.get_group	.. _api_paddle_distributed_get_group:
 paddle.distributed.ReduceOp	.. _api_paddle_distributed_ReduceOp:
+paddle.distributed.DistAttr .. _api_distributed_DistAttr:
+paddle.distributed.shard_tensor .. _api_distributed_shard_tensor:
 paddle.distributed.fleet.UserDefinedRoleMaker	.. _api_paddle_distributed_fleet_UserDefinedRoleMaker:
 paddle.distributed.fleet.Role	.. _api_paddle_distributed_fleet_Role:
 paddle.distributed.fleet.HybridCommunicateGroup	.. _api_paddle_distributed_fleet_HybridCommunicateGroup:
