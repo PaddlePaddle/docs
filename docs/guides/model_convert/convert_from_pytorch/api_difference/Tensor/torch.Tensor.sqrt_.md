@@ -9,7 +9,7 @@ torch.Tensor.sqrt_()
 ### [paddle.Tensor.sqrt_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id18)
 
 ```python
-paddle.Tensor.sqrt_(name=None)
+paddle.Tensor.sqrt_()
 ```
 
 两者功能一致,无参数.

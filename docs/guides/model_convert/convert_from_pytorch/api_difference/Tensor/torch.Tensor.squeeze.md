@@ -9,7 +9,7 @@ torch.Tensor.squeeze(dim=None)
 ### [paddle.Tensor.squeeze_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#squeeze-axis-none-name-none)
 
 ```python
-paddle.Tensor.squeeze(axis=None, name=None)
+paddle.Tensor.squeeze(axis=None)
 ```
 两者功能一致，仅参数名不一致，具体如下：
 

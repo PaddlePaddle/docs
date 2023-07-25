@@ -9,7 +9,7 @@ torch.Tensor.absolute()
 ### [paddle.Tensor.abs](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#abs-name-none)
 
 ```python
-paddle.Tensor.abs(name=None)
+paddle.Tensor.abs()
 ```
 
 两者功能完全一致，无参数。

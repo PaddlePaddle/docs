@@ -9,7 +9,7 @@ torch.Tensor.sort(dim=- 1, descending=False)
 ### [paddle.sort](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sort_cn.html#sort)
 
 ```python
-paddle.sort(x, axis=- 1, descending=False, name=None)
+paddle.sort(x, axis=- 1, descending=False)
 ```
 
 两者功能一致，仅参数名不一致，具体如下：

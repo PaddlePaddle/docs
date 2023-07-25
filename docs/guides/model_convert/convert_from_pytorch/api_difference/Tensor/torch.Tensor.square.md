@@ -9,6 +9,6 @@ torch.Tensor.square()
 ### [paddle.Tensor.square](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#square-name-none)
 
 ```python
-paddle.Tensor.square(name=None)
+paddle.Tensor.square()
 ```
-两者功能一致，Pytorch 无参数。
+两者功能一致，均无参数。

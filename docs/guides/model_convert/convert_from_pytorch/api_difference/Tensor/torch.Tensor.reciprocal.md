@@ -9,8 +9,7 @@ torch.Tensor.reciprocal()
 ### [paddle.reciprocal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/reciprocal_cn.html)
 
 ```python
-paddle.reciprocal(x,
-                  name=None)
+paddle.reciprocal(x)
 ```
 
 两者功能完全一致，无参数。

@@ -8,7 +8,7 @@ torch.Tensor.roll(shifts, dims)
 ### [paddle.Tensor.roll](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/roll_cn.html#roll)
 
 ```python
-paddle.Tensor.roll(shifts, axis=None, name=None)
+paddle.Tensor.roll(shifts, axis=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：
