@@ -6,10 +6,10 @@
 torch.Tensor.polygamma(n)
 ```
 
-### [paddle.Tensor.nanquantile](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/polygamma_cn.html#polygamma)
+### [paddle.Tensor.polygamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/polygamma_cn.html#polygamma)
 
 ```python
-paddle.Tensor.nanquantile(n)
+paddle.Tensor.polygamma(n)
 ```
 
 两者功能一致，且参数一致，具体如下：

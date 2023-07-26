@@ -16,9 +16,9 @@ paddle.Tensor.qr(mode='reduced')
 
 ### 参数映射
 
-| PyTorch | PaddlePaddle | 备注             |
-|--------|-------------|----------------|
-| mode   | some        | 表示 QR 分解的行为。 需进行转写。 |
+| PyTorch | PaddlePaddle | 备注                   |
+|---------|--------------|----------------------|
+| some    | mode         | 表示 QR 分解的行为。 需要进行转写。 |
 
 
 ### 转写示例
