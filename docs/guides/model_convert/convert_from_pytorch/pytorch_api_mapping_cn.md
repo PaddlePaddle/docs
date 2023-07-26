@@ -297,6 +297,7 @@
 | 262   |  [torch.get_deterministic_debug_mode](https://pytorch.org/docs/stable/generated/torch.get_deterministic_debug_mode.html#torch.get_deterministic_debug_mode)  |  | 功能缺失        |
 | 263   |  [torch.vsplit](https://pytorch.org/docs/stable/generated/torch.vsplit.html#torch.vsplit)  |  | 功能缺失        |
 | 264   |  [torch.hsplit](https://pytorch.org/docs/stable/generated/torch.hsplit.html#torch.hsplit)  |  | 功能缺失        |
+| 265   |  [torch.histogram](https://pytorch.org/docs/stable/generated/torch.histogram.html#torch.histogram)  |  | 功能缺失        |
 
 ***持续更新...***
 
@@ -644,6 +645,8 @@
 | 174   |  [torch.Tensor.hsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.hsplit.html#torch.Tensor.hsplit)  |  | 功能缺失        |
 | 175   |  [torch.Tensor.vsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.vsplit.html#torch.Tensor.vsplit)  |  | 功能缺失        |
 | 176   |  [torch.Tensor.dsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.dsplit.html#torch.Tensor.dsplit)  |  | 功能缺失        |
+| 177   |  [torch.Tensor.is_coalesced](https://pytorch.org/docs/stable/generated/torch.Tensor.is_coalesced.html#torch.Tensor.is_coalesced)  |  | 功能缺失        |
+| 178   |  [torch.Tensor.histogram](https://pytorch.org/docs/stable/generated/torch.Tensor.histogram.html#torch.Tensor.histogram)  |  | 功能缺失        |
 
 ***持续更新...***
 
