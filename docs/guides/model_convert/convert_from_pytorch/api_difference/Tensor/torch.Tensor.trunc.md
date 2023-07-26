@@ -1,6 +1,6 @@
 ## [无参数]torch.Tensor.trunc
 
-### [torch.Tensor.trunc](https://pytorch.org/docs/1.13/generated/torch.Tensor.trunc.html#torch.Tensor.trunc)
+### [torch.Tensor.trunc](https://pytorch.org/docs/stable/generated/torch.Tensor.trunc.html#torch.Tensor.trunc)
 
 ```python
 torch.Tensor.trunc()

@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.fft.rfftfreq
 
-### [torch.fft.rfftfreq](https://pytorch.org/docs/1.13/generated/torch.fft.rfftfreq.html?highlight=rfftfreq#torch.fft.rfftfreq)
+### [torch.fft.rfftfreq](https://pytorch.org/docs/stable/generated/torch.fft.rfftfreq.html?highlight=rfftfreq#torch.fft.rfftfreq)
 
 ```python
 torch.fft.rfftfreq(n,

@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.functional.ctc_loss
 
-### [torch.nn.functional.ctc_loss](https://pytorch.org/docs/1.13/generated/torch.nn.functional.ctc_loss.html#torch.nn.functional.ctc_loss)
+### [torch.nn.functional.ctc_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.ctc_loss.html#torch.nn.functional.ctc_loss)
 
 ```python
 torch.nn.functional.ctc_loss(log_probs, targets, input_lengths, target_lengths, blank=0, reduction='mean', zero_infinity=False)

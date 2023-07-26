@@ -1,6 +1,6 @@
 ## [参数不一致]torch.cuda.Stream
 
-### [torch.cuda.Stream](https://pytorch.org/docs/1.13/generated/torch.cuda.Stream.html#torch.cuda.Stream)
+### [torch.cuda.Stream](https://pytorch.org/docs/stable/generated/torch.cuda.Stream.html#torch.cuda.Stream)
 
 ```python
 torch.cuda.Stream(device=None, priority=0, **kwargs)

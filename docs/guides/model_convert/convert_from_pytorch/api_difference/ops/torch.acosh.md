@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.acosh
 
-### [torch.acosh](https://pytorch.org/docs/1.13/generated/torch.acosh.html?highlight=acosh#torch.acosh)
+### [torch.acosh](https://pytorch.org/docs/stable/generated/torch.acosh.html?highlight=acosh#torch.acosh)
 
 ```python
 torch.acosh(input,

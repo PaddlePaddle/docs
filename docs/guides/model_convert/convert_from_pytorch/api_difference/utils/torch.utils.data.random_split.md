@@ -1,5 +1,5 @@
 ## [ 参数不一致 ]torch.utils.data.random_split
-### [torch.utils.data.random_split](https://pytorch.org/docs/1.13/data.html?highlight=torch+utils+data+random_split#torch.utils.data.random_split)
+### [torch.utils.data.random_split](https://pytorch.org/docs/stable/data.html?highlight=torch+utils+data+random_split#torch.utils.data.random_split)
 
 ```python
 torch.utils.data.random_split(dataset,

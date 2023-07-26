@@ -1,6 +1,6 @@
 ## [ torch 参数更多]torch.tensordot
 
-### [torch.tensordot](https://pytorch.org/docs/1.13/generated/torch.tensordot.html?highlight=tensordot#torch.tensordot)
+### [torch.tensordot](https://pytorch.org/docs/stable/generated/torch.tensordot.html?highlight=tensordot#torch.tensordot)
 
 ```python
 torch.tensordot(a,b,dims=2,out=None)

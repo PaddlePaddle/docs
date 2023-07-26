@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.lerp
-### [torch.lerp](https://pytorch.org/docs/1.13/generated/torch.lerp.html?highlight=lerp#torch.lerp)
+### [torch.lerp](https://pytorch.org/docs/stable/generated/torch.lerp.html?highlight=lerp#torch.lerp)
 
 ```python
 torch.lerp(input,

@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.logical_and
-### [torch.logical_and](https://pytorch.org/docs/1.13/generated/torch.logical_and.html?highlight=logical_and#torch.logical_and)
+### [torch.logical_and](https://pytorch.org/docs/stable/generated/torch.logical_and.html?highlight=logical_and#torch.logical_and)
 
 ```python
 torch.logical_and(input,

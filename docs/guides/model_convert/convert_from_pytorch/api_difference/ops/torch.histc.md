@@ -1,6 +1,6 @@
 ## [ 参数不一致 ]torch.histc
 
-### [torch.histc](https://pytorch.org/docs/1.13/generated/torch.histc.html#torch-histc)
+### [torch.histc](https://pytorch.org/docs/stable/generated/torch.histc.html#torch-histc)
 
 ```python
 torch.histc(input, bins=100, min=0, max=0, *, out=None)

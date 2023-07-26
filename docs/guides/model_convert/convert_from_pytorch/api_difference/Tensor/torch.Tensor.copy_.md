@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.Tensor.copy_
 
-### [torch.Tensor.copy_](https://pytorch.org/docs/1.13/generated/torch.Tensor.copy_.html#torch.Tensor.copy_)
+### [torch.Tensor.copy_](https://pytorch.org/docs/stable/generated/torch.Tensor.copy_.html#torch.Tensor.copy_)
 
 ```python
 torch.Tensor.copy_(src, non_blocking=False)

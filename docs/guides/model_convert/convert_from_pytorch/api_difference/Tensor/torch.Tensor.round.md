@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.round
 
-### [torch.Tensor.round](https://pytorch.org/docs/1.13/generated/torch.Tensor.round.html#torch.Tensor.round)
+### [torch.Tensor.round](https://pytorch.org/docs/stable/generated/torch.Tensor.round.html#torch.Tensor.round)
 
 ```python
 torch.Tensor.round(decimals=0)

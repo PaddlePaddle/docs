@@ -1,6 +1,6 @@
 ## [ 仅 paddle 参数更多 ]torch.scatter_add
 
-### [torch.scatter_add](https://pytorch.org/docs/1.13/generated/torch.scatter_add.html#torch.scatter_add)
+### [torch.scatter_add](https://pytorch.org/docs/stable/generated/torch.scatter_add.html#torch.scatter_add)
 
 ```python
 torch.scatter_add(input,

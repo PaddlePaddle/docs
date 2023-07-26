@@ -1,5 +1,5 @@
 ## [ 参数不一致 ]torch.nn.AvgPool3d
-### [torch.nn.AvgPool3d](https://pytorch.org/docs/1.13/generated/torch.nn.AvgPool3d.html?highlight=avgpool3d#torch.nn.AvgPool3d)
+### [torch.nn.AvgPool3d](https://pytorch.org/docs/stable/generated/torch.nn.AvgPool3d.html?highlight=avgpool3d#torch.nn.AvgPool3d)
 
 ```python
 torch.nn.AvgPool3d(kernel_size,

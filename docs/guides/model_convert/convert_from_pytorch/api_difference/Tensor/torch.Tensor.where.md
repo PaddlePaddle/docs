@@ -1,6 +1,6 @@
 ## [ 参数不⼀致 ]torch.Tensor.where
 
-### [torch.Tensor.where](https://pytorch.org/docs/1.13/generated/torch.Tensor.where.html#torch.Tensor.where)
+### [torch.Tensor.where](https://pytorch.org/docs/stable/generated/torch.Tensor.where.html#torch.Tensor.where)
 
 ```python
 torch.Tensor.where(condition, y)

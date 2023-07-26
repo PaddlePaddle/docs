@@ -1,6 +1,6 @@
 ## [ 仅 paddle 参数更多 ] torch.Tensor.take
 
-### [torch.Tensor.take](https://pytorch.org/docs/1.13/generated/torch.Tensor.take.html#torch.Tensor.take)
+### [torch.Tensor.take](https://pytorch.org/docs/stable/generated/torch.Tensor.take.html#torch.Tensor.take)
 
 ```
 torch.Tensor.take(indices)

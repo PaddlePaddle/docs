@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.Tensor.div
 
-### [torch.Tensor.div](https://pytorch.org/docs/1.13/generated/torch.Tensor.div.html#torch.Tensor.div)
+### [torch.Tensor.div](https://pytorch.org/docs/stable/generated/torch.Tensor.div.html#torch.Tensor.div)
 
 ```python
 torch.Tensor.div(other, *, rounding_mode=None)

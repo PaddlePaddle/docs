@@ -1,9 +1,9 @@
 ## [ torch 参数更多 ]torch.fft.hfftn
 
-### [torch.fft.hfftn](https://pytorch.org/docs/1.13/generated/torch.fft.hfftn.html?highlight=torch+fft+hfftn#torch.fft.hfftn)
+### [torch.fft.hfftn](https://pytorch.org/docs/stable/generated/torch.fft.hfftn.html?highlight=torch+fft+hfftn#torch.fft.hfftn)
 
 ```python
-torch.fft.hfftn(input, s=None, dim=None, norm=None, *, out=None)
+torch.fft.hfftn(input, s=None, dim=None, norm='backward', *, out=None)
 ```
 
 ### [paddle.fft.hfftn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/hfftn_cn.html)

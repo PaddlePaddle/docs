@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.arange
 
-###  [torch.arange](https://pytorch.org/docs/1.13/generated/torch.arange.html?highlight=arange#torch.arange)
+###  [torch.arange](https://pytorch.org/docs/stable/generated/torch.arange.html?highlight=arange#torch.arange)
 
 ```python
 torch.arange(start=0,

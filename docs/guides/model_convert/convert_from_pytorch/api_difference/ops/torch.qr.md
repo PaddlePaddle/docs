@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.qr
 
-### [torch.qr](https://pytorch.org/docs/1.13/generated/torch.qr.html#torch.qr)
+### [torch.qr](https://pytorch.org/docs/stable/generated/torch.qr.html#torch.qr)
 
 ```python
 torch.qr(input, some=True, *, out=None)

@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.normal
-### [torch.normal](https://pytorch.org/docs/1.13/generated/torch.normal.html#torch.normal)
+### [torch.normal](https://pytorch.org/docs/stable/generated/torch.normal.html#torch.normal)
 ```python
 torch.normal(mean,
              std,

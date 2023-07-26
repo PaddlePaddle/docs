@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.arccos
 
-### [torch.arccos](https://pytorch.org/docs/1.13/generated/torch.arccos.html?highlight=arccos#torch.arccos)
+### [torch.arccos](https://pytorch.org/docs/stable/generated/torch.arccos.html?highlight=arccos#torch.arccos)
 
 ```python
 torch.arccos(input,

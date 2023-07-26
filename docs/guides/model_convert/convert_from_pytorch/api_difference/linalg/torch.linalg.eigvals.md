@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.linalg.eigvals
 
-### [torch.linalg.eigvals](https://pytorch.org/docs/1.13/generated/torch.linalg.eigvals.html?highlight=torch+linalg+eigvals#torch.linalg.eigvals)
+### [torch.linalg.eigvals](https://pytorch.org/docs/stable/generated/torch.linalg.eigvals.html?highlight=torch+linalg+eigvals#torch.linalg.eigvals)
 
 ```python
 torch.linalg.eigvals(A,

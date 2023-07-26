@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.linalg.eigvalsh
 
-### [torch.linalg.eigvalsh](https://pytorch.org/docs/1.13/generated/torch.linalg.eigvalsh.html#torch.linalg.eigvalsh)
+### [torch.linalg.eigvalsh](https://pytorch.org/docs/stable/generated/torch.linalg.eigvalsh.html#torch.linalg.eigvalsh)
 
 ```python
 torch.linalg.eigvalsh(A, UPLO='L', *, out=None)

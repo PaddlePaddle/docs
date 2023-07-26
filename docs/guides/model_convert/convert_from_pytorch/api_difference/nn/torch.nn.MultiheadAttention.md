@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.MultiheadAttention
 
-### [torch.nn.MultiheadAttention](https://pytorch.org/docs/1.13/generated/torch.nn.MultiheadAttention.html#torch.nn.MultiheadAttention)
+### [torch.nn.MultiheadAttention](https://pytorch.org/docs/stable/generated/torch.nn.MultiheadAttention.html#torch.nn.MultiheadAttention)
 
 ```python
 torch.nn.MultiheadAttention(embed_dim, num_heads, dropout=0.0, bias=True, add_bias_kv=False, add_zero_attn=False, kdim=None, vdim=None, batch_first=False, device=None, dtype=None)

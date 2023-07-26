@@ -1,6 +1,6 @@
 ## [仅参数名不一致]torch.Tensor.true_divide
 
-### [torch.Tensor.true_divide](https://pytorch.org/docs/1.13/generated/torch.Tensor.true_divide.html#torch.Tensor.true_divide)
+### [torch.Tensor.true_divide](https://pytorch.org/docs/stable/generated/torch.Tensor.true_divide.html#torch.Tensor.true_divide)
 
 ```python
 torch.Tensor.true_divide(value)

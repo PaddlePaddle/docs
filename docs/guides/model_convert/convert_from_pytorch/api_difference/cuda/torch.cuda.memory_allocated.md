@@ -1,6 +1,6 @@
 ## [参数完全一致]torch.cuda.memory_allocated
 
-### [torch.cuda.memory_allocated](https://pytorch.org/docs/1.13/generated/torch.cuda.memory_allocated.html#torch.cuda.memory_allocated)
+### [torch.cuda.memory_allocated](https://pytorch.org/docs/stable/generated/torch.cuda.memory_allocated.html#torch.cuda.memory_allocated)
 
 ```python
 torch.cuda.memory_allocated(device)

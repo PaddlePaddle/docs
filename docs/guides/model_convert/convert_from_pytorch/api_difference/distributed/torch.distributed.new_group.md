@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributed.new_group
 
-### [torch.distributed.new_group](https://pytorch.org/docs/1.13/distributed.html#torch.distributed.new_group)
+### [torch.distributed.new_group](https://pytorch.org/docs/stable/distributed.html#torch.distributed.new_group)
 
 ```python
 torch.distributed.new_group(ranks=None, timeout=datetime.timedelta(seconds=1800), backend=None, pg_options=None)

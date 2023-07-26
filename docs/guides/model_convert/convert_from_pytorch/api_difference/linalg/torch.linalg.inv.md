@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.linalg.inv
 
-### [torch.linalg.inv](https://pytorch.org/docs/1.13/generated/torch.linalg.inv.html#torch.linalg.inv)
+### [torch.linalg.inv](https://pytorch.org/docs/stable/generated/torch.linalg.inv.html#torch.linalg.inv)
 
 ```python
 torch.linalg.inv(A, *, out=None)

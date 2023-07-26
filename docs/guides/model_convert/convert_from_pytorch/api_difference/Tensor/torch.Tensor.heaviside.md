@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ]torch.Tensor.heaviside
 
-### [torch.Tensor.heaviside](https://pytorch.org/docs/1.13/generated/torch.Tensor.heaviside.html?highlight=torch+tensor+heaviside#torch.Tensor.heaviside)
+### [torch.Tensor.heaviside](https://pytorch.org/docs/stable/generated/torch.Tensor.heaviside.html?highlight=torch+tensor+heaviside#torch.Tensor.heaviside)
 
 ```python
 torch.Tensor.heaviside(values)

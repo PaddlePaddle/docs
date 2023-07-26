@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.TripletMarginLoss
 
-### [torch.nn.TripletMarginLoss](https://pytorch.org/docs/1.13/generated/torch.nn.TripletMarginLoss.html#torch.nn.TripletMarginLoss)
+### [torch.nn.TripletMarginLoss](https://pytorch.org/docs/stable/generated/torch.nn.TripletMarginLoss.html#torch.nn.TripletMarginLoss)
 
 ```python
 torch.nn.TripletMarginLoss(margin=1.0, p=2.0, eps=1e-06, swap=False, size_average=None, reduce=None, reduction='mean')

@@ -1,6 +1,6 @@
 ## [无参数]torch.Tensor.zero_
 
-### [torch.Tensor.zero_](https://pytorch.org/docs/1.13/generated/torch.Tensor.zero_.html#torch.Tensor.zero_)
+### [torch.Tensor.zero_](https://pytorch.org/docs/stable/generated/torch.Tensor.zero_.html#torch.Tensor.zero_)
 
 ```python
 torch.Tensor.zero_()

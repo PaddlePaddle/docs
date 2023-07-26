@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.MultiLabelSoftMarginLoss
 
-### [torch.nn.MultiLabelSoftMarginLoss](https://pytorch.org/docs/1.13/generated/torch.nn.MultiLabelSoftMarginLoss.html#torch.nn.MultiLabelSoftMarginLoss)
+### [torch.nn.MultiLabelSoftMarginLoss](https://pytorch.org/docs/stable/generated/torch.nn.MultiLabelSoftMarginLoss.html#torch.nn.MultiLabelSoftMarginLoss)
 
 ```python
 torch.nn.MultiLabelSoftMarginLoss(weight=None, size_average=None, reduce=None, reduction='mean')

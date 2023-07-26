@@ -1,5 +1,5 @@
 # [ torch 参数更多 ]torch.nn.L1Loss
-### [torch.nn.L1Loss](https://pytorch.org/docs/1.13/generated/torch.nn.L1Loss.html?highlight=l1loss#torch.nn.L1Loss)
+### [torch.nn.L1Loss](https://pytorch.org/docs/stable/generated/torch.nn.L1Loss.html?highlight=l1loss#torch.nn.L1Loss)
 
 ```python
 torch.nn.L1Loss(size_average=None,

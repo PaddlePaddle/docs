@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.AlphaDropout
 
-### [torch.nn.AlphaDropout](https://pytorch.org/docs/1.13/generated/torch.nn.AlphaDropout.html#torch.nn.AlphaDropout)
+### [torch.nn.AlphaDropout](https://pytorch.org/docs/stable/generated/torch.nn.AlphaDropout.html#torch.nn.AlphaDropout)
 
 ```python
 torch.nn.AlphaDropout(p=0.5, inplace=False)

@@ -1,5 +1,5 @@
 ## [torch 参数更多]torch.floor
-### [torch.floor](https://pytorch.org/docs/1.13/generated/torch.floor.html?highlight=torch+floor#torch.floor)
+### [torch.floor](https://pytorch.org/docs/stable/generated/torch.floor.html?highlight=torch+floor#torch.floor)
 
 ```python
 torch.floor(input,

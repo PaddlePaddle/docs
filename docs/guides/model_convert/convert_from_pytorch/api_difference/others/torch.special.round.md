@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.special.round
 
-### [torch.special.round](https://pytorch.org/docs/1.13/special.html#torch.special.round)
+### [torch.special.round](https://pytorch.org/docs/stable/special.html#torch.special.round)
 
 ```python
 torch.special.round(input, *, out=None)

@@ -4,27 +4,25 @@ HDFSClient
 -------------------------------
 
 .. py:class:: paddle.distributed.fleet.utils.HDFSClient
-一个HADOOP文件系统工具类。
+一个 HADOOP 文件系统工具类。
 
 参数
 ::::::::::::
 
-    - **hadoop_home** (str)：HADOOP HOME地址。
-    - **configs** (dict): HADOOP文件系统配置。需包含 `fs.default.name` 和 `hadoop.job.ugi` 这两个字段。
+    - **hadoop_home** (str)：HADOOP HOME 地址。
+    - **configs** (dict): HADOOP 文件系统配置。需包含 `fs.default.name` 和 `hadoop.job.ugi` 这两个字段。
 
 代码示例
 ::::::::::::
 
-.. code-block:: python
+.. code-block:: text
 
     from paddle.distributed.fleet.utils import HDFSClient
     hadoop_home = "/home/client/hadoop-client/hadoop/"
-
     configs = {
         "fs.default.name": "hdfs://xxx.hadoop.com:54310",
         "hadoop.job.ugi": "hello,hello123"
     }
-
     client = HDFSClient(hadoop_home, configs)
     client.ls_dir("hdfs:/test_hdfs_client")
 
@@ -36,24 +34,22 @@ ls_dir(fs_path)
 
 **参数**
 
-    - **fs_path** (str): HADOOP文件路径。
+    - **fs_path** (str): HADOOP 文件路径。
 
 **返回**
 
-    - Tuple，一个包含所有子目录和文件名的2-Tuple，格式形如：([subdirname1, subdirname1, ...], [filename1, filename2, ...])。
+    - Tuple，一个包含所有子目录和文件名的 2-Tuple，格式形如：([subdirname1, subdirname1, ...], [filename1, filename2, ...])。
 
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
     from paddle.distributed.fleet.utils import HDFSClient
-
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
         "fs.default.name": "hdfs://xxx.hadoop.com:54310",
         "hadoop.job.ugi": "hello,hello123"
     }
-
     client = HDFSClient(hadoop_home, configs)
     subdirs, files = client.ls_dir("hdfs:/test_hdfs_client")
 
@@ -63,43 +59,39 @@ mkdirs(fs_path)
 
 **参数**
 
-    - **fs_path** (str): HADOOP文件路径。
+    - **fs_path** (str): HADOOP 文件路径。
 
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
     from paddle.distributed.fleet.utils import HDFSClient
-
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
         "fs.default.name": "hdfs://xxx.hadoop.com:54310",
         "hadoop.job.ugi": "hello,hello123"
     }
-
     client = HDFSClient(hadoop_home, configs)
     client.mkdirs("hdfs:/test_hdfs_client")
 
 delete(fs_path)
 '''''''''
-删除HADOOP文件（或目录）。
+删除 HADOOP 文件（或目录）。
 
 **参数**
 
-    - **fs_path** (str): HADOOP文件路径。
+    - **fs_path** (str): HADOOP 文件路径。
 
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
     from paddle.distributed.fleet.utils import HDFSClient
-
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
         "fs.default.name": "hdfs://xxx.hadoop.com:54310",
         "hadoop.job.ugi": "hello,hello123"
     }
-
     client = HDFSClient(hadoop_home, configs)
     client.delete("hdfs:/test_hdfs_client")
 
@@ -109,7 +101,7 @@ is_file(fs_path)
 
 **参数**
 
-    - **fs_path** (str): HADOOP文件路径。
+    - **fs_path** (str): HADOOP 文件路径。
 
 **返回**
 
@@ -117,16 +109,14 @@ is_file(fs_path)
 
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
     from paddle.distributed.fleet.utils import HDFSClient
-
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
         "fs.default.name": "hdfs://xxx.hadoop.com:54310",
         "hadoop.job.ugi": "hello,hello123"
     }
-
     client = HDFSClient(hadoop_home, configs)
     ret = client.is_file("hdfs:/test_hdfs_client")
 
@@ -136,7 +126,7 @@ is_dir(fs_path)
 
 **参数**
 
-    - **fs_path** (str): HADOOP文件路径。
+    - **fs_path** (str): HADOOP 文件路径。
 
 **返回**
 
@@ -144,16 +134,14 @@ is_dir(fs_path)
 
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
     from paddle.distributed.fleet.utils import HDFSClient
-
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
         "fs.default.name": "hdfs://xxx.hadoop.com:54310",
         "hadoop.job.ugi": "hello,hello123"
     }
-
     client = HDFSClient(hadoop_home, configs)
     ret = client.is_file("hdfs:/test_hdfs_client")
 
@@ -163,7 +151,7 @@ is_exist(fs_path)
 
 **参数**
 
-    - **fs_path** (str): HADOOP文件路径。
+    - **fs_path** (str): HADOOP 文件路径。
 
 **返回**
 
@@ -171,105 +159,97 @@ is_exist(fs_path)
 
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
     from paddle.distributed.fleet.utils import HDFSClient
-
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
         "fs.default.name": "hdfs://xxx.hadoop.com:54310",
         "hadoop.job.ugi": "hello,hello123"
     }
-
     client = HDFSClient(hadoop_home, configs)
     ret = client.is_exist("hdfs:/test_hdfs_client")
 
 upload(local_path, fs_path)
 '''''''''
-上传本地文件至HADOOP文件系统。
+上传本地文件至 HADOOP 文件系统。
 
 **参数**
 
     - **local_path** (str)：本地文件路径。
-    - **fs_path** (str): HADOOP文件路径。
+    - **fs_path** (str): HADOOP 文件路径。
 
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
     from paddle.distributed.fleet.utils import HDFSClient
-
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
         "fs.default.name": "hdfs://xxx.hadoop.com:54310",
         "hadoop.job.ugi": "hello,hello123"
     }
-
     client = HDFSClient(hadoop_home, configs)
     client.upload("test_hdfs_client", "hdfs:/test_hdfs_client")
 
 download(fs_path, local_path)
 '''''''''
-下载HADOOP文件至本地文件系统。
+下载 HADOOP 文件至本地文件系统。
 
 **参数**
 
     - **local_path** (str)：本地文件路径。
-    - **fs_path** (str): HADOOP文件路径。
+    - **fs_path** (str): HADOOP 文件路径。
 
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
     from paddle.distributed.fleet.utils import HDFSClient
-
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
         "fs.default.name": "hdfs://xxx.hadoop.com:54310",
         "hadoop.job.ugi": "hello,hello123"
     }
-
     client = HDFSClient(hadoop_home, configs)
     client.download("hdfs:/test_hdfs_client", "./")
 
 
 touch(fs_path, exist_ok=True)
 '''''''''
-创建一个HADOOP文件。
+创建一个 HADOOP 文件。
 
 **参数**
 
-    - **fs_path** (str): HADOOP文件路径。
+    - **fs_path** (str): HADOOP 文件路径。
     - **exist_ok** (bool)：路径已存在时程序是否报错。若 `exist_ok = True`，则直接返回，反之则抛出文件存在的异常，默认不抛出异常。
 
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
     from paddle.distributed.fleet.utils import HDFSClient
-
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
         "fs.default.name": "hdfs://xxx.hadoop.com:54310",
         "hadoop.job.ugi": "hello,hello123"
     }
-
     client = HDFSClient(hadoop_home, configs)
     client.touch("hdfs:/test_hdfs_client")
 
 mv(fs_src_path, fs_dst_path, overwrite=False)
 '''''''''
-HADOOP系统文件移动。
+HADOOP 系统文件移动。
 
 **参数**
 
     - **fs_src_path** (str)：移动前源文件路径名。
     - **fs_dst_path** (str)：移动后目标文件路径名。
     - **overwrite** (bool)：若目标文件已存在，是否删除进行重写，默认不重写并抛出异常。
- 
+
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
     from paddle.distributed.fleet.utils import HDFSClient
 
@@ -278,17 +258,16 @@ HADOOP系统文件移动。
         "fs.default.name": "hdfs://xxx.hadoop.com:54310",
         "hadoop.job.ugi": "hello,hello123"
     }
-
     client = HDFSClient(hadoop_home, configs)
     client.mv("hdfs:/test_hdfs_client", "hdfs:/test_hdfs_client2")
 
 list_dirs(fs_path)
 '''''''''
-列出HADOOP文件路径下所有的子目录。
+列出 HADOOP 文件路径下所有的子目录。
 
 **参数**
 
-    - **fs_path** (str): HADOOP文件路径。
+    - **fs_path** (str): HADOOP 文件路径。
 
 **返回**
 
@@ -296,18 +275,13 @@ list_dirs(fs_path)
 
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
     from paddle.distributed.fleet.utils import HDFSClient
-
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
         "fs.default.name": "hdfs://xxx.hadoop.com:54310",
         "hadoop.job.ugi": "hello,hello123"
     }
-
     client = HDFSClient(hadoop_home, configs)
     subdirs = client.list_dirs("hdfs:/test_hdfs_client")
-
-
-

@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributed.broadcast
 
-### [torch.distributed.broadcast](https://pytorch.org/docs/1.13/distributed.html#torch.distributed.broadcast)
+### [torch.distributed.broadcast](https://pytorch.org/docs/stable/distributed.html#torch.distributed.broadcast)
 
 ```python
 torch.distributed.broadcast(tensor, src, group=None, async_op=False)

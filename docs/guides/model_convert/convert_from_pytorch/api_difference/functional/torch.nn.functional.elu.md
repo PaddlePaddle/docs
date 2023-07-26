@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.functional.elu
 
-### [torch.nn.functional.elu](https://pytorch.org/docs/1.13/generated/torch.nn.functional.elu.html#torch.nn.functional.elu)
+### [torch.nn.functional.elu](https://pytorch.org/docs/stable/generated/torch.nn.functional.elu.html#torch.nn.functional.elu)
 
 ```python
 torch.nn.functional.elu(input, alpha=1.0, inplace=False)

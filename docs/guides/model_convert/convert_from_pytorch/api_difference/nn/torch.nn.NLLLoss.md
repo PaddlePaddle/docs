@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.NLLLoss
 
-### [torch.nn.NLLLoss](https://pytorch.org/docs/1.13/generated/torch.nn.NLLLoss.html?highlight=nllloss#torch.nn.NLLLoss)
+### [torch.nn.NLLLoss](https://pytorch.org/docs/stable/generated/torch.nn.NLLLoss.html?highlight=nllloss#torch.nn.NLLLoss)
 
 ```python
 torch.nn.NLLLoss(weight=None,

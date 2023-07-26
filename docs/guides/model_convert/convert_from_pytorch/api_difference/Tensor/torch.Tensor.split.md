@@ -1,6 +1,6 @@
 ## [ 参数不一致 ]torch.Tensor.split
 
-### [torch.Tensor.split](https://pytorch.org/docs/1.13/generated/torch.Tensor.split.html)
+### [torch.Tensor.split](https://pytorch.org/docs/stable/generated/torch.Tensor.split.html)
 
 ```python
 torch.Tensor.split(split_size_or_sections, dim=0)
