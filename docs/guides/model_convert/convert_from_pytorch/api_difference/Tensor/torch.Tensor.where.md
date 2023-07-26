@@ -16,7 +16,7 @@ paddle.Tensor.where(x, y, name=None)
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| condition     | -            | condition 为判断条件。在 paddle 中 condition 需要转写。|
+| condition     | -            | condition 为判断条件。Paddle 无此参数，需要进行转写。|
 | -             | x            | 当 condition 为 true 时，选择 x 中元素。|
 | y             | y            | 当 condition 为 false 时，选择 y 中元素。|
 

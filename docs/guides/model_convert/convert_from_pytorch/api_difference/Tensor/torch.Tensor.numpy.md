@@ -20,4 +20,4 @@ paddle.Tensor.numpy()
 
 | PyTorch | PaddlePaddle | 备注                                                             |
 | ------- | ------------ | ---------------------------------------------------------------- |
-| force   | -            | 若 force 为默认，则返回的 ndarray 和 tensor 将共享它们的存储空间 |
+| force   | -            | 若 force 为默认，则返回的 ndarray 和 tensor 将共享它们的存储空间。Paddle 无此参数，可直接删除。|

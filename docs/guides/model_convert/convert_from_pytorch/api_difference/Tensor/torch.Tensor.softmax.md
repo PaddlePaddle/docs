@@ -15,7 +15,7 @@ paddle.nn.functional.softmax(x, axis=-1, dtype=None, name=None)
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| dim           | axis         | 计算 softmax 的轴                                         |
+| dim           | axis         | 计算 softmax 的轴，仅参数名不一致。                                         |
 
 ### 转写示例
 #### dim: 计算 softmax 的轴
