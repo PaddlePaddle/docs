@@ -678,6 +678,8 @@
 | 12   |  [torch.utils.data.random_split](https://pytorch.org/docs/stable/data.html?highlight=torch+utils+data+random_split#torch.utils.data.random_split)  |  [paddle.io.random_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/random_split_cn.html)  |    功能一致, 参数完全一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.random_split.md)  |
 | 13   |  [torch.utils.dlpack.from_dlpack](https://pytorch.org/docs/stable/dlpack.html?highlight=torch+utils+dlpack+from_dlpack#torch.utils.dlpack.from_dlpack)  |  [paddle.utils.dlpack.from_dlpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/dlpack/from_dlpack_cn.html)  |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.dlpack.from_dlpack.md)  |
 | 14   |  [torch.utils.dlpack.to_dlpack](https://pytorch.org/docs/stable/dlpack.html?highlight=torch+utils+dlpack+to_dlpack#torch.utils.dlpack.to_dlpack)  |  [paddle.utils.dlpack.to_dlpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/dlpack/to_dlpack_cn.html)  |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.dlpack.to_dlpack.md)  |
+| 15   |  [torch.utils.cpp_extension.load_inline](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.load_inline)  |   | 功能缺失  |
+| 16   |  [torch.utils.cpp_extension.include_paths](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.include_paths)  |   | 功能缺失  |
 
 
 ***持续更新...***
@@ -732,6 +734,13 @@
 | 3    | [torch.distributed.ReduceOp](https://pytorch.org/docs/stable/distributed.html?highlight=torch+distributed+reduceop#torch.distributed.ReduceOp) | [paddle.distributed.ReduceOp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/ReduceOp_cn.html) | 功能一致，无参数， [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.barrier.md)         |
 | 4   |  [torch.distributed.rpc.WorkerInfo](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.WorkerInfo)  |  | 功能缺失        |
 | 5   |  [torch.distributed.rpc.functions.async_execution](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.functions.async_execution)  |  | 功能缺失        |
+| 6   |  [torch.distributed.broadcast_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.broadcast_multigpu)  |  | 功能缺失        |
+| 7   |  [torch.distributed.all_reduce_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_reduce_multigpu)  |  | 功能缺失        |
+| 8   |  [torch.distributed.reduce_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_multigpu)  |  | 功能缺失        |
+| 9   |  [torch.distributed.all_gather_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_gather_multigpu)  |  | 功能缺失        |
+| 10   |  [torch.distributed.reduce_scatter_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_scatter_multigpu)  |  | 功能缺失        |
+| 11   |  [torch.distributions.constraints.Constraint](https://pytorch.org/docs/stable/distributions.html#torch.distributions.constraints.Constraint)  |  | 功能缺失        |
+| 12   |  [torch.distributions.constraint_registry.ConstraintRegistry](https://pytorch.org/docs/stable/distributions.html#torch.distributions.constraint_registry.ConstraintRegistry)  |  | 功能缺失        |
 
 
 ***持续更新...***
