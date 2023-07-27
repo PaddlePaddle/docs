@@ -8,7 +8,7 @@
 
 #### 1.1.1 安装环境
 
-首先根据具体的 Python 版本创建 Anaconda 虚拟环境，PaddlePaddle 的 Anaconda 安装支持 3.7 - 3.10 版本的 Python 安装环境。
+首先根据具体的 Python 版本创建 Anaconda 虚拟环境，PaddlePaddle 的 Anaconda 安装支持 3.7 - 3.11 版本的 Python 安装环境。
 
 ```
 conda create -n paddle_env python=YOUR_PY_VER
@@ -83,7 +83,7 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
 * 目前在 MacOS 环境仅支持 CPU 版 PaddlePaddle，请参考如下命令安装 Paddle:
 
   ```
-  conda install paddlepaddle==2.5.0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+  conda install paddlepaddle==2.5.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
 ## **三、验证安装**
