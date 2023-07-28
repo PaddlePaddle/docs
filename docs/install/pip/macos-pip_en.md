@@ -24,7 +24,7 @@
 
 * You need to confirm whether the version of Python meets the requirements
 
-  * Use the following command to confirm that it is 3.7/3.8/3.9/3.10
+  * Use the following command to confirm that it is 3.7/3.8/3.9/3.10/3.11
 
         python3 --version
 
@@ -66,7 +66,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 ```
-python3 -m pip install paddlepaddle==2.5.0 -i https://mirror.baidu.com/pypi/simple
+python3 -m pip install paddlepaddle==2.5.1 -i https://mirror.baidu.com/pypi/simple
 ```
 
 Note：

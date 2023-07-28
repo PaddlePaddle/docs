@@ -25,7 +25,7 @@
 
 * 需要确认 python 的版本是否满足要求
 
-  * 使用以下命令确认是 3.7/3.8/3.9/3.10
+  * 使用以下命令确认是 3.7/3.8/3.9/3.10/3.11
 
         python3 --version
 
@@ -119,7 +119,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle==2.5.0 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle==2.5.1 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
@@ -132,7 +132,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.1.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -140,7 +140,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.1.post102 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
   ```
 
 
@@ -148,15 +148,15 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.0 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle-gpu==2.5.1.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
-     CUDA11.2 包含 cuDNN 动态链接库的 PaddlePaddle，需要先使用如下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
+     CUDA11.2 包含 cuDNN 动态链接库的 PaddlePaddle
 
 
   ```
-  python3 -m pip download paddlepaddle-gpu==2.5.0 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html  --no-index --no-deps
+  python3 -m pip install paddlepaddle-gpu==2.5.1.post112 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
   ```
 
 
@@ -164,7 +164,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.0.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.1.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -172,7 +172,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.0.post116 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.1.post116 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
   ```
 
 
@@ -180,7 +180,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.0.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.1.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -188,7 +188,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.0.post117 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.1.post117 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
   ```
 
 
@@ -196,15 +196,16 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.0.post118 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.1 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
-     CUDA11.8 包含 cuDNN 动态链接库的 PaddlePaddle
+     CUDA11.8 包含 cuDNN 动态链接库的 PaddlePaddle，需要先使用如下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.0.post118 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip download paddlepaddle-gpu==2.5.1 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html  --no-index --no-deps
+
   ```
 
 
@@ -212,7 +213,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.0.post120 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.1.post120 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -220,7 +221,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.0.post120 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.1.post120 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
   ```
 
 
@@ -239,7 +240,7 @@
 * 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
   ```
-  python3 -m pip download paddlepaddle==2.5.0 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
+  python3 -m pip download paddlepaddle==2.5.1 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
   ```
 
 
