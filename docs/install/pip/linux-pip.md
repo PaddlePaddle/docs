@@ -152,7 +152,7 @@
   ```
 
 
-     CUDA11.2 包含 cuDNN 动态链接库的 PaddlePaddle，需要先使用如下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
+     CUDA11.2 包含 cuDNN 动态链接库的 PaddlePaddle
 
 
   ```
@@ -200,7 +200,7 @@
   ```
 
 
-     CUDA11.8 包含 cuDNN 动态链接库的 PaddlePaddle
+     CUDA11.8 包含 cuDNN 动态链接库的 PaddlePaddle，需要先使用如下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
 
   ```

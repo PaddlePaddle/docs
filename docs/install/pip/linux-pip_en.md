@@ -156,7 +156,7 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-  CUDA11.2 with cuDNN dynamic library PaddlePaddle, you can use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package)
+  CUDA11.2 with cuDNN dynamic library PaddlePaddle
 
 
   ```
@@ -204,7 +204,7 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-  CUDA11.8 with cuDNN dynamic library PaddlePaddle
+  CUDA11.8 with cuDNN dynamic library PaddlePaddle, you can use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package)
 
 
   ```
