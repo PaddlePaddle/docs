@@ -156,7 +156,7 @@
 
 
   ```
-  python3 -m pip download paddlepaddle-gpu==2.5.1.post112 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html  --no-index --no-deps
+  python3 -m pip install paddlepaddle-gpu==2.5.1.post112 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
   ```
 
 
@@ -204,7 +204,8 @@
 
 
   ```
-  python3 -m pip download paddlepaddle-gpu==2.5.1 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip download paddlepaddle-gpu==2.5.1 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html  --no-index --no-deps
+
   ```
 
 
