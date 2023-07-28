@@ -9,6 +9,7 @@ import inspect
 import ast
 import time
 import configparser
+import re
 
 try:
     import paddle
@@ -359,8 +360,6 @@ def remove_doctest_directives(app, what, name, obj, options, lines):
     """
     Remove `doctest` directives from docstring
     """
-    import re
-
     pattern_doctest = re.compile(r"\s*>>>\s*#\s*doctest:\s*.*")
 
     # Modify the lines inplace
