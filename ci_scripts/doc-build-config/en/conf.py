@@ -355,6 +355,18 @@ def handle_api_aliases():
             exec(f'{oname}.__name__ = "{tn}"')
 
 
+def remove_doctest_directives(app, what, name, obj, options, lines):
+    """
+    Remove `doctest` directives from docstring
+    """
+    import re
+
+    pattern_doctest = re.compile(r"\s*>>>\s*#\s*doctest:\s*.*")
+
+    # Modify the lines inplace
+    lines[:] = [line for line in lines if not pattern_doctest.match(line)]
+
+
 def setup(app):
     # Add hook for building doxygen xml when needed
     # no c++ API for now
@@ -378,3 +390,6 @@ def setup(app):
         True,
     )
     app.add_transform(AutoStructify)
+
+    # remove doctest directives
+    app.connect("autodoc-process-docstring", remove_doctest_directives)
