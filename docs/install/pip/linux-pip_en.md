@@ -200,7 +200,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.1 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.1 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
@@ -208,7 +208,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.1 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip download paddlepaddle-gpu==2.5.1 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
   ```
 
 

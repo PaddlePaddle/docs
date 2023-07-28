@@ -107,7 +107,7 @@
 2.2.5 CUDA11.8 的 PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.5.1 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.5.1 -i https://mirror.baidu.com/pypi/simple
   ```
 
 2.2.6 CUDA12.0 的 PaddlePaddle
