@@ -647,6 +647,7 @@
 | 176   |  [torch.Tensor.dsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.dsplit.html#torch.Tensor.dsplit)  |  | 功能缺失        |
 | 177   |  [torch.Tensor.is_coalesced](https://pytorch.org/docs/stable/generated/torch.Tensor.is_coalesced.html#torch.Tensor.is_coalesced)  |  | 功能缺失        |
 | 178   |  [torch.Tensor.histogram](https://pytorch.org/docs/stable/generated/torch.Tensor.histogram.html#torch.Tensor.histogram)  |  | 功能缺失        |
+| 179   |  [torch.Tensor.geqrf](https://pytorch.org/docs/1.13/generated/torch.Tensor.geqrf.html?highlight=torch+tensor+geqrf#torch.Tensor.geqrf)  |  | 功能缺失        |
 
 ***持续更新...***
 
