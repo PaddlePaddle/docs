@@ -803,6 +803,7 @@
 | 8   |  [torch.linalg.eigvals](https://pytorch.org/docs/stable/generated/torch.linalg.eigvals.html?highlight=torch+linalg+eigvals#torch.linalg.eigvals)  |  [paddle.linalg.eigvals](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/eigvals_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.eigvals.md)  |
 | 9   |  [torch.linalg.eig](https://pytorch.org/docs/stable/generated/torch.linalg.eig.html?highlight=torch+linalg+eig#torch.linalg.eig)  |  [paddle.linalg.eig](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/eig_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.eig.md)  |
 | 10   |  [torch.linalg.multi_dot](https://pytorch.org/docs/stable/generated/torch.linalg.multi_dot.html?highlight=torch+linalg+multi_dot#torch.linalg.multi_dot)  |  [paddle.linalg.multi_dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/multi_dot_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.multi_dot.md)  |
+| 11   |  [torch.linalg.matrix_exp](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_exp.html#torch.linalg.matrix_exp)  |  | 功能缺失        |
 
 ***持续更新...***
 
