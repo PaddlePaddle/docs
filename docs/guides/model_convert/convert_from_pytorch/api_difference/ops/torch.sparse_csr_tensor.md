@@ -12,7 +12,7 @@ torch.sparse_csr_tensor(crow_indices, col_indices, values, size=None, *, dtype=N
 paddle.sparse.sparse_csr_tensor(crows, cols, values, shape, dtype=None, place=None, stop_gradient=True)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -24,8 +24,8 @@ paddle.sparse.sparse_csr_tensor(crows, cols, values, shape, dtype=None, place=No
 | size             | shape         | 稀疏 Tensor 的形状，仅参数名不一致。                           |
 | dtype            | dtype         | 创建 tensor 的数据类型。                                       |
 | device           | place         | 创建 tensor 的设备位置，仅参数名不一致。                       |
-| requires_grad    | stop_gradient | 是否阻断 Autograd 的梯度传导，两者参数功能相反，需要进行转写。 |
-| check_invariants | -             | 是否检查稀疏 Tensor 变量，暂无转写方式。                       |
+| requires_grad    | stop_gradient | 是否阻断 Autograd 的梯度传导，两者参数功能相反，需要转写。 |
+| check_invariants | -             | 是否检查稀疏 Tensor 变量，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 
 ### 转写示例
 

@@ -12,7 +12,7 @@ torch.Tensor.multinomial(num_samples, replacement=False, *, generator=None)
 paddle.multinomial(x, num_samples=1, replacement=False, name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

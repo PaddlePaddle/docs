@@ -43,9 +43,9 @@ paddle.nn.Conv1DTranspose(in_channels,
 | groups          | groups            | 表示分组数。                           |
 | `bias`          | -            | 是否在输出中添加可学习的 bias。                             |
 | dilation          | dilation            | 表示空洞大小。                           |
-| padding_mode  | -            | 填充模式，PaddlePaddle 无此参数，暂无转写方式。                                              |
-| device        | -            | 指定 Tensor 的设备，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。   |
-| dtype         | -            | Tensor 的所需数据类型，PaddlePaddle 无此参数，暂无转写方式。                                  |
+| padding_mode  | -            | 填充模式，Paddle 无此参数，暂无转写方式。                |
+| device        | -            | 指定 Tensor 的设备，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。   |
+| dtype         | -            | Tensor 的所需数据类型，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。       |
 | -             | weight_attr  | 指定权重参数属性的对象，PyTorch 无此参数，Paddle 保持默认即可。 |
 | -             | bias_attr    | 指定偏置参数属性的对象，当`bias_attr`设置为 bool 类型与 PyTorch 的作用一致。 |
 | -             | data_format  | 输入和输出的数据格式，Pytorch 无此参数，Paddle 保持默认即可。                                  |

@@ -12,7 +12,7 @@ torch.nn.RReLU(lower=0.125, upper=0.3333333333333333, inplace=False)
 paddle.nn.RReLU(lower=1. / 8., upper=1. / 3., name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

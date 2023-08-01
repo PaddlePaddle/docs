@@ -22,7 +22,7 @@ paddle.distributed.reduce_scatter(tensor, tensor_list, op=ReduceOp.SUM, group=No
 | input_list | tensor_list  | 将被规约和分发的 tensor 列表，仅参数名不一致。                         |
 | op         | op           | 归约的操作类型。                                                       |
 | group      | group        | 执行该操作的进程组实例。                                               |
-| async_op   | sync_op      | 该操作是否为异步或同步操作，PyTorch 和 Paddle 取值相反，需要进行转写。 |
+| async_op   | sync_op      | 该操作是否为异步或同步操作，PyTorch 和 Paddle 取值相反，需要转写。 |
 
 ### 转写示例
 

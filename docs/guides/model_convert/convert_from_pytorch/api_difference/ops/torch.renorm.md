@@ -12,7 +12,7 @@ torch.renorm(input, p, dim, maxnorm, *, out=None)
 paddle.renorm(input, p, axis, max_norm)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -22,7 +22,7 @@ paddle.renorm(input, p, axis, max_norm)
 | p       | p            | 表示 p-范数计算的 p 值。|
 | dim     | axis         | 表示切分的维度，仅参数名不一致。                                    |
 | maxnorm | max_norm     | 表示子张量的 p-范数最大值，仅参数名不一致。          |
-| out     | -            | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。 |
+| out     | -            | 表示输出的 Tensor，Paddle 无此参数，需要转写。 |
 ### 转写示例
 
 #### out：指定输出

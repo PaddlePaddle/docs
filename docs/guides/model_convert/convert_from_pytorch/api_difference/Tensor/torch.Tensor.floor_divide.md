@@ -18,7 +18,7 @@ paddle.Tensor.floor_divide(y, name=None)
 
 | PyTorch | PaddlePaddle | 备注                        |
 | ------- | ------------ | --------------------------- |
-| other   | y            | 多维 Tensor，PyTorch 支持 Tensor 和 Python Number，Paddle 仅支持 Tensor，需要进行转写。 |
+| other   | y            | 多维 Tensor，PyTorch 支持 Tensor 和 Python Number，Paddle 仅支持 Tensor，需要转写。 |
 
 ### 转写示例
 #### other

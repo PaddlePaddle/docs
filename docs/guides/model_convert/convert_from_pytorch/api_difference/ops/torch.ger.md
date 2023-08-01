@@ -12,14 +12,14 @@ torch.ger(input, vec2, *, out=None)
 paddle.outer(x, y, name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font>         | <font color='red'> x </font>            | 输入的 Tensor ，仅参数名不同。                                     |
-| <font color='red'> vec2 </font>         | <font color='red'> y </font>            | 输入的 Tensor ，仅参数名不同。                                     |
-| <font color='red'> out </font>           | -                                       | 表示输出的 Tensor，PaddlePaddle 无此参数，需要进行转写。              |
+| <font color='red'> input </font>         | <font color='red'> x </font>            | 输入的 Tensor ，仅参数名不一致。                                     |
+| <font color='red'> vec2 </font>         | <font color='red'> y </font>            | 输入的 Tensor ，仅参数名不一致。                                     |
+| <font color='red'> out </font>           | -                                       | 表示输出的 Tensor，Paddle 无此参数，需要转写。              |
 
 
 ### 转写示例

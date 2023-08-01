@@ -17,15 +17,16 @@ paddle.assign(x, output=None)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | src           | x            | 待复制的 tensor，仅参数名不一致。                                         |
-| non_blocking  | -            | 用于控制 cpu 和 gpu 数据的异步复制。Paddle 无此参数，可直接删除。       |
+| non_blocking  | -            | 用于控制 cpu 和 gpu 数据的异步复制。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。       |
+| -             | output       | 输出 Tensor，Pytorch 无此参数，Paddle 需将其设置为调用 copy_类方法的 Tensor 。        |
 
 
 ### 转写示例
 
 ```python
 # torch 写法
-z.copy_(x)
+y.copy_(x)
 
 # paddle 写法
-paddle.assign(x, output=z)
+paddle.assign(x, output=y)
 ```

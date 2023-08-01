@@ -14,10 +14,10 @@ paddle.Tensor.numpy()
 
 两者功能一致，用于将当前 Tensor 转化为 numpy.ndarray。
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
 | PyTorch | PaddlePaddle | 备注                                                             |
 | ------- | ------------ | ---------------------------------------------------------------- |
-| force   | -            | 若 force 为默认，则返回的 ndarray 和 tensor 将共享它们的存储空间。Paddle 无此参数，可直接删除。|
+| force   | -            | 若 force 为默认，则返回的 ndarray 和 tensor 将共享它们的存储空间。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|

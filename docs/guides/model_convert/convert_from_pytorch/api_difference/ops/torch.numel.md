@@ -11,18 +11,14 @@ torch.numel(input)
 paddle.Tensor.size
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数映射
-| PyTorch       | PaddlePaddle | 备注                                                   |
-| ------------- | ------------ | ------------------------------------------------------ |
-| input         | -            | 输入的 Tensor，Paddle 无此参数，需要进行转写。                   |
+Paddle 使用类方法来实现，因此忽略第一个参数，无其他参数。
 
 
 ### 转写示例
 ```python
 # Pytorch 写法
-torch.numel(a)
+torch.numel(x)
 
 # Paddle 写法
-a.size
+x.size
 ```

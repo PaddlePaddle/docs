@@ -12,7 +12,7 @@ torch.nn.PoissonNLLLoss(log_input=True, full=False, size_average=None, eps=1e-08
 paddle.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, reduction='mean', name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

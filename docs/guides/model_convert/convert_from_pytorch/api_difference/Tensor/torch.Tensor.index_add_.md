@@ -19,7 +19,7 @@ paddle.index_add_(x, index, axis, value, name=None)
 | <font color='red'> dim </font> | <font color='red'> axis </font> | 表示进行运算的轴，仅参数名不一致。  |
 | <font color='red'> index </font> | <font color='red'> index </font> | 包含索引下标的 1-D Tensor。  |
 | <font color='red'> source </font> | <font color='red'> value </font> | 被加的 Tensor，仅参数名不一致。  |
-| <font color='red'> alpha </font> | - | source 的 缩放倍数， Paddle 无此参数，需要进行转写。Paddle 应将 alpha 和 source 的乘积作为 value。 |
+| <font color='red'> alpha </font> | - | source 的 缩放倍数， Paddle 无此参数，需要转写。Paddle 应将 alpha 和 source 的乘积作为 value。 |
 
 
 ### 转写示例

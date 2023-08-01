@@ -18,7 +18,7 @@ paddle.nn.Layer.to(dtype=None)
 
 | PyTorch  | PaddlePaddle | 备注                                                                                    |
 | -------- | ------------ | --------------------------------------------------------------------------------------- |
-| dst_type | dtype        | PyTorch 为字符串或 PyTorch 数据类型，Paddle 为 字符串或 Paddle 数据类型，需要进行转写。 |
+| dst_type | dtype        | PyTorch 为字符串或 PyTorch 数据类型，Paddle 为 字符串或 Paddle 数据类型，需要转写。 |
 
 ### 转写示例
 

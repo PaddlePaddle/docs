@@ -12,4 +12,4 @@ torch.Tensor.rad2deg()
 paddle.Tensor.rad2deg()
 ```
 
-两者功能完全一致，无参数。
+两者功能一致，无参数。

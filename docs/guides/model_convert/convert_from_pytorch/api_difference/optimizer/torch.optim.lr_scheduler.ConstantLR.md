@@ -26,8 +26,8 @@ paddle.optimizer.lr.PiecewiseDecay(boundaries,
 | PyTorch | PaddlePaddle | 备注                                                                                       |
 | ------- | ------------ | ------------------------------------------------------------------------------------------ |
 | optimizer     | -       | torch.optim.Optimizer 类，Paddle 无此参数。 |
-| factor     | values       | PyTorch 表示乘以学习率的因子，Paddle 表示学习率列表。需要进行转写，转写思路为：values=[factor*optimizer.lr, optimizer.lr]。         |
-| total_iters     | boundaries      | PyTorch 表示衰减学习率的步数，Paddle 表示指定学习率的边界值列表。需要进行转写，转写思路为：boundaries = [total_iters]。             |
+| factor     | values       | PyTorch 表示乘以学习率的因子，Paddle 表示学习率列表。需要转写，转写思路为：values=[factor*optimizer.lr, optimizer.lr]。         |
+| total_iters     | boundaries      | PyTorch 表示衰减学习率的步数，Paddle 表示指定学习率的边界值列表。需要转写，转写思路为：boundaries = [total_iters]。             |
 | last_epoch     | last_epoch       | 上一轮的轮数，重启训练时设置为上一轮的 epoch 数。参数完全一致。       |
 | verbose     | verbose       | 如果是 True，则在每一轮更新时在标准输出 stdout 输出一条信息。参数完全一致。  |
 

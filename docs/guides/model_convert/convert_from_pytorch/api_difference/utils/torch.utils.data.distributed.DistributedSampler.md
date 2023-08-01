@@ -25,5 +25,5 @@ class paddle.io.DistributedBatchSampler(dataset=None,
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ----- | ---------- | ---------- |
-| seed          | -            | 如果 shuffle=True，则使用随机种子对采样器进行随机排序,此数字在分布式组中的所有进程中应相同，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
+| seed          | -            | 如果 shuffle=True，则使用随机种子对采样器进行随机排序,此数字在分布式组中的所有进程中应相同，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
 | -             | batch_size   | 每 mini-batch 中包含的样本数，PyTorch 无此参数，Paddle 需设置为 1。                   |

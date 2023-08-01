@@ -24,7 +24,7 @@ paddle.optimizer.Adadelta(learning_rate=0.001,
                           name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -36,5 +36,5 @@ paddle.optimizer.Adadelta(learning_rate=0.001,
 | lr     | learning_rate       | 学习率，用于参数更新的计算。参数默认值不一致, Pytorch 默认为`1.0`， Paddle 默认为`0.001`，Paddle 需保持与 Pytorch 一致。                          |
 | weight_decay           | weight_decay     | 表示权重衰减系数，参数默认值不一致, Pytorch 默认为`0`， Paddle 默认为`None`，Paddle 需保持与 Pytorch 一致。         |
 | maximize           | -     | 根据目标最大化参数，而不是最小化。Paddle 无此参数，暂无转写方式。         |
-| differentiable      | -     | 是否应通过训练中的优化器步骤进行自动微分。Paddle 无此参数，可直接删除。         |
+| differentiable      | -     | 是否应通过训练中的优化器步骤进行自动微分。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
 | -          | grad_clip            | 梯度裁剪的策略。 PyTorch 无此参数，Paddle 保持默认即可。       |

@@ -18,5 +18,5 @@ paddle.Tensor.std(axis=None, unbiased=True, keepdim=False, name=None)
 | PyTorch    | PaddlePaddle | 备注 |
 | ---------- | ------------ | ------- |
 | dim      | axis        | 指定对 Tensor 进行计算的轴，仅参数名不一致。 |
-| correction | unbiased   | 是否使用无偏估计来计算标准差，仅参数默认值不一致。PyTorch 的 correction 参数为 int 类型 1 和 0，Paddle 的 unbiased 与 Pytorch 默认值不同，Paddle 设置此参数对应为 True 和 False。 |
-| keepdim | keepdim   | 是否在输出 Tensor 中保留减小的维度。 |
+| correction | unbiased   | 是否使用无偏估计来计算标准差。PyTorch 支持 int 类型，Paddle 支持 bool/int 类型。仅参数名不一致。|
+| keepdim   | keepdim   | 是否在输出 Tensor 中保留减小的维度。 |

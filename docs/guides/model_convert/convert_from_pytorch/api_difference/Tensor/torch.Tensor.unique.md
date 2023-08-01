@@ -15,7 +15,7 @@ paddle.Tensor.unique(return_index=False, return_inverse=False, return_counts=Fal
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| sorted        | -            | 是否返回前进行排序，Paddle 无此参数，需要进行转写。                                     |
+| sorted        | -            | 是否返回前进行排序，Paddle 无此参数，需要转写。                                     |
 | return_inverse| return_inverse        | 是否返回输入 Tensor 的元素对应在独有元素中的索引。        |
 | return_counts | return_counts        | 是否返回每个独有元素在输入 Tensor 中的个数。             |
 | dim           | axis        | 选取的轴，仅参数名不一致。                                                 |
