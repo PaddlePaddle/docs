@@ -15,7 +15,7 @@ paddle.Tensor.stop_gradient = False
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| requires_grad        | -            | 是否计算梯度                                      |
+| requires_grad        | -            | 是否计算梯度，Paddle 无此参数，需要进行转写。                                      |
 
 
 ### 转写示例

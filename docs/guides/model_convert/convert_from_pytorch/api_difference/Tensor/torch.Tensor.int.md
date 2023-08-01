@@ -15,8 +15,8 @@ paddle.Tensor.astype(dtype)
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| memory_format | -            | tensor 存储形式，转写无需考虑                                |
-|-              | dtype        | 转换后的 tensor 类型                                       |
+| memory_format | -            | tensor 存储形式，Paddle 无此参数，可直接删除。                               |
+|-              | dtype        | 转换后的 tensor 类型，PyTorch 无此参数，Paddle 设置为 int32.                                     |
 
 ### 转写示例
 

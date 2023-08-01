@@ -19,14 +19,3 @@ paddle.optimizer.Optimizer.step()
 |  PyTorch   | PaddlePaddle |        备注        |
 |  --------  |  ----------  |  ----------------  |
 | closure |  -  | 重新评估模型并返回损失的闭包, Paddle 无此参数，暂无转写方式。 |
-
-
-### 转写示例
-####
-```python
-# Pytorch 写法
-torch.optim.Optimizer.step()
-
-# Paddle 写法
-paddle.optimizer.Optimizer.step()
-```

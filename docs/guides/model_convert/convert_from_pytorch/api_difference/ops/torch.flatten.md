@@ -21,5 +21,5 @@ paddle.flatten(x,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| <font color='red'> start_dim </font>    | <font color='red'> start_axis </font>  | 表示 flatten 展开的起始维度。            |
-| <font color='red'> end_dim </font>      | <font color='red'> stop_axis </font>    | 表示 flatten 展开的结束维度。            |
+| <font color='red'> start_dim </font>    | <font color='red'> start_axis </font>  | 表示 flatten 展开的起始维度，仅参数名不一致。            |
+| <font color='red'> end_dim </font>      | <font color='red'> stop_axis </font>    | 表示 flatten 展开的结束维度，仅参数名不一致。            |
