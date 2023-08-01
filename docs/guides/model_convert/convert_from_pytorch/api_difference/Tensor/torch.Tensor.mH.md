@@ -7,6 +7,7 @@ torch.Tensor.mH
 ```
 
 Paddle 无此 API，需要组合实现。
+PyTorch 中等于 x.transpose(-2, -1).conj()，Paddle 中 transpose 参数为转换后的维度位置
 
 ### 转写示例
 
@@ -15,7 +16,5 @@ Paddle 无此 API，需要组合实现。
 y = x.mH
 
 # Paddle 写法
-perm = list(range(x.ndim))
-perm[-1], perm[-2] = perm[-2], perm[-1]
-y = paddle.conj(paddle.transpose(x, perm=perm))
+y = x.transpose(perm=[0, 1, 3, 2]).conj()
 ```
