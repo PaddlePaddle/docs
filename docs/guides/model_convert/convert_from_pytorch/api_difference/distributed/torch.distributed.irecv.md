@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributed.irecv
 
-### [torch.distributed.irecv](https://pytorch.org/docs/2.0/distributed.html?highlight=send#torch.distributed.irecv)
+### [torch.distributed.irecv](https://pytorch.org/docs/stable/distributed.html?highlight=send#torch.distributed.irecv)
 
 ```python
 torch.distributed.irecv(tensor, src=None, group=None, tag=0)

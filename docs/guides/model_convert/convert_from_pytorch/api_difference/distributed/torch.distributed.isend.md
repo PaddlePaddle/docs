@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributed.isend
 
-### [torch.distributed.isend](https://pytorch.org/docs/2.0/distributed.html#torch.distributed.isend)
+### [torch.distributed.isend](https://pytorch.org/docs/stable/distributed.html#torch.distributed.isend)
 
 ```python
 torch.distributed.isend(tensor, dst, group=None, tag=0)

@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributed.broadcast_object_list
 
-### [torch.distributed.broadcast_object_list](https://pytorch.org/docs/2.0/distributed.html?highlight=broadcast_object_list#torch.distributed.broadcast_object_list)
+### [torch.distributed.broadcast_object_list](https://pytorch.org/docs/stable/distributed.html?highlight=broadcast_object_list#torch.distributed.broadcast_object_list)
 
 ```python
 torch.distributed.broadcast_object_list(object_list, src=0, group=None, device=None)

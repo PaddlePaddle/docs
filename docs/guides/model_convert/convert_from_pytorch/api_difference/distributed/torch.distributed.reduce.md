@@ -22,4 +22,15 @@ paddle.distributed.reduce(tensor, dst, op=ReduceOp.SUM, group=None, sync_op=True
 | dst      | dst          | 表示目标进程的 rank。                  |
 | op       | op           | 表示归约的具体操作。                              |
 | group    | group        | 表示执行该操作的进程组实例。                            |
-| async_op | sync_op      | 表示是否异步操作，Paddle 参数名不同但表达意义一致，无需进行转写。 |
+| async_op | sync_op      | 表示是否异步操作，Paddle 参数名不同且默认值不同，需要进行转写。 |
+
+
+### 转写示例
+#### async_op：表示该操作是否为异步操作
+```python
+# Pytorch 写法
+torch.distributed.reduce(tensor=tensor, dst=dst, op=<RedOpType.SUM: 0>, group=None, async_op=False)
+
+# Paddle 写法
+paddle.distributed.reduce(tensor=tensor, dst=dst, op=ReduceOp.SUM, group=None, sync_op=True)
+```
