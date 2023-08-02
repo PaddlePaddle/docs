@@ -12,16 +12,16 @@ torch.Tensor.histogram(bins, *, range=None, weight=None, density=False)
 paddle.Tensor.histogram(bins=100, min=0, max=0)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
 | PyTorch | PaddlePaddle | 备注                                                                                               |
 | ------- | ------------ | -------------------------------------------------------------------------------------------------- |
 | bins    | bins         | 直方图 bins(直条)的个数。                                                                          |
-| range   | min, max     | PyTorch 为 bins 的范围，类型为 float，Paddle 为 range 的下边界，上边界，类型为 int，需要进行转写。 |
-| weight  | -            | 权重，Paddle 无此参数，暂无转写方式。                                                              |
-| density | -            | 结果中每个 bin 是否包含权重数，Paddle 无此参数，暂无转写方式。                                     |
+| range   | min, max     | PyTorch 为 bins 的范围，类型为 float，Paddle 为 range 的下边界，上边界，类型为 int，需要转写。 |
+| weight  | -            | 权重，Paddle 无此参数，暂无转写方式。   |
+| density | -            | 结果中每个 bin 是否包含权重数，Paddle 无此参数，暂无转写方式。   |
 
 ### 转写示例
 

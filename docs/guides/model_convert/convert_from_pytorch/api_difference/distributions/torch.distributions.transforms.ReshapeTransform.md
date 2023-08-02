@@ -12,7 +12,7 @@ torch.distributions.transforms.ReshapeTransform(in_shape, out_shape, cache_size=
 paddle.distribution.ReshapeTransform(in_event_shape, out_event_shape)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -20,4 +20,4 @@ paddle.distribution.ReshapeTransform(in_event_shape, out_event_shape)
 | ---------- | --------------- | ------------------------------------------- |
 | in_shape   | in_event_shape  | Reshape 前的事件形状，仅参数名不一致。      |
 | out_shape  | out_event_shape | Reshape 后的事件形状，仅参数名不一致。      |
-| cache_size | -               | cache 大小，Paddle 无此参数，暂无转写方式。 |
+| cache_size | -               | cache 大小，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |

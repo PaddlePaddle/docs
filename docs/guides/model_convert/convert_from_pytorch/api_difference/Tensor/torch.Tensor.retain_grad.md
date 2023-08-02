@@ -12,4 +12,4 @@ torch.Tensor.retain_grad()
 paddle.Tensor.retain_grad()
 ```
 
-两者功能完全一致，无参数。
+两者功能一致，无参数。

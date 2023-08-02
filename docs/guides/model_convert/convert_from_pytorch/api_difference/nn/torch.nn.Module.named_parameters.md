@@ -12,12 +12,12 @@ torch.nn.Module.named_parameters(prefix='', recurse=True, remove_duplicate=True)
 paddle.nn.Layer.named_parameters(prefix='', include_sublayers=True)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
 | PyTorch        | PaddlePaddle | 备注                                                          |
 | -------------- | ------------ | ------------------------------------------------------------- |
 | prefix   | prefix  | 在所有参数名称前加的前缀。                                            |
-| recurse   | include_sublayers  | 生成该模块和所有子模块的参数, 仅参数名不同。                                            |
-| remove_duplicate         | =      | 是否删除结果中的重复参数, PaddlePaddle 无此参数, 暂无转写方式。                                        |
+| recurse   | include_sublayers  | 生成该模块和所有子模块的参数, 仅参数名不一致。                                            |
+| remove_duplicate   | -    | 是否删除结果中的重复参数, Paddle 无此参数, 暂无转写方式。                                        |

@@ -23,9 +23,9 @@ paddle.nn.SimpleRNN(input_size, hidden_size, num_layers=1, activation='tanh', di
 | input_size          | input_size            | 表示输入 x 的大小。  |
 | hidden_size          | hidden_size            | 表示隐藏状态 h 大小。  |
 | num_layers          | num_layers            | 表示循环网络的层数。  |
-| nonlinearity          | activation            | 表示激活函数类型，仅参数名不同。  |
+| nonlinearity          | activation            | 表示激活函数类型，仅参数名不一致。  |
 | bias          | bias_ih_attr, bias_hh_attr  | 是否使用偏置， Paddle 支持自定义偏置属性， torch 不支持，需要转写。   |
-| batch_first   | time_major   | PyTorch 表示 batch size 是否为第一维，PaddlePaddle 表示 time steps 是否为第一维，它们的意义相反。需要进行转写。  |
+| batch_first   | time_major   | PyTorch 表示 batch size 是否为第一维，PaddlePaddle 表示 time steps 是否为第一维，它们的意义相反。需要转写。  |
 | dropout   | dropout   | 表示 dropout 概率。  |
 | bidirectional | direction    | PyTorch 表示是否进行双向 RNN，Paddle 使用字符串表示是双向 RNN（`bidirectional`）还是单向 RNN（`forward`）。 |
 | -             |weight_ih_attr| weight_ih 的参数， PyTorch 无此参数， Paddle 保持默认即可。  |

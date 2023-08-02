@@ -21,13 +21,13 @@ paddle.nn.MaxPool1D(kernel_size,
                     name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | kernel_size          | kernel_size            | 表示池化核大小。                           |
 | stride          | stride            | 表示池化核步长。                           |
 | padding          | padding            | 表示填充大小。                           |
-| dilation      | -            | 设置空洞池化的大小，PaddlePaddle 无此参数，暂无转写方式。               |
+| dilation      | -            | 设置空洞池化的大小，Paddle 无此参数，暂无转写方式。               |
 | return_indices | return_mask  | 是否返回最大值的索引，仅参数名不一致。                                  |
 | ceil_mode | ceil_mode  | 表示是否用 ceil 函数计算输出的 height 和 width 。                                  |

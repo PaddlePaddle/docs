@@ -19,7 +19,7 @@ paddle.Tensor.multiply(y,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                             |
 | ------------- | ------------ | ----------------------------------------------- |
-| other         | y            | 相乘的元素，PyTorch 支持 Tensor 和 Python Number，Paddle 仅支持 Tensor，需要进行转写。                       |
+| other         | y            | 相乘的元素，PyTorch 支持 Tensor 和 Python Number，Paddle 仅支持 Tensor，需要转写。                       |
 | -             | axis         | 计算的维度，PyTorch 无此参数， Paddle 保持默认即可。|
 
 ### 转写示例

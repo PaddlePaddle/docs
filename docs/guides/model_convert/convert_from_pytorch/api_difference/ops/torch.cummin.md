@@ -26,7 +26,7 @@ paddle.cummin(x,
 | input          | x          | 表示输入的 Tensor，仅参数名不一致。                        |
 | dim          | axis         | 用于指定 index 获取输入的维度，仅参数名不一致。             |
 | -        | dtype |  指定输出索引的数据格式，PyTorch 无此参数，Paddle 保持默认即可。 |
-| out        | - |  表示输出的 Tensor，Paddle 无此参数，需要进行转写。 |
+| out        | - |  表示输出的 Tensor，Paddle 无此参数，需要转写。 |
 
 ### 转写示例
 #### out：指定输出

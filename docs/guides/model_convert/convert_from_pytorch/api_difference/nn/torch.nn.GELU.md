@@ -18,7 +18,7 @@ paddle.nn.GELU(approximate=False, name=None)
 
 | PyTorch     | PaddlePaddle | 备注                                                                                 |
 | ----------- | ------------ | ------------------------------------------------------------------------------------ |
-| approximate | approximate  | 是否使用近似计算，PyTorch 取值 none 和 tanh，Paddle 取值为 bool 类型，需要进行转写。 |
+| approximate | approximate  | 是否使用近似计算，PyTorch 取值 none 和 tanh，Paddle 取值为 bool 类型，需要转写。 |
 
 ### 转写示例
 

@@ -22,7 +22,7 @@ paddle.fft.irfft(x, n=None, axis=- 1, norm='backward', name=None)
 | n     | n           | 表示在傅里叶变换轴的长度 。                         |
 | dim       | axis        | 表示进行运算的轴，仅参数名不一致。                           |
 | norm     | norm           | 表示傅里叶变换的缩放模式。                         |
-| out           | -      | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。         |
+| out           | -      | 表示输出的 Tensor ， Paddle 无此参数，需要转写。         |
 
 ###  转写示例
 #### out：指定输出

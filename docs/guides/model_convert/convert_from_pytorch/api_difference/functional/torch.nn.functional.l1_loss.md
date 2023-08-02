@@ -1,4 +1,4 @@
-## [torch 参数更多]torch.nn.functional.l1_loss
+## [torch 参数更多] torch.nn.functional.l1_loss
 
 ### [torch.nn.functional.l1_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.l1_loss.html?highlight=l1_loss#torch.nn.functional.l1_loss)
 
@@ -12,14 +12,15 @@ torch.nn.functional.l1_loss(input, target, size_average=None, reduce=None, reduc
 paddle.nn.functional.l1_loss(input, label, reduction='mean', name=None)
 ```
 
-两者功能一致，torch 参数多，具体如下：
-### 参数差异
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | input        | 表示输入的 Tensor。
 | target        | label        | 标签，和 input 具有相同的维度，仅参数名不一致。                                      |
-| size_average  | -            | 已废弃，和 reduce 组合决定损失计算方式。Paddle 无此参数，需要进行转写。                       |
-| reduce        | -            | 已废弃，和 size_average 组合决定损失计算方式。Paddle 无此参数，需要进行转写。                  |
+| size_average  | -            | 已废弃，和 reduce 组合决定损失计算方式。Paddle 无此参数，需要转写。                       |
+| reduce        | -            | 已废弃，和 size_average 组合决定损失计算方式。Paddle 无此参数，需要转写。                  |
 | reduction     | reduction    | 输出结果的计算方式                                       |
 
 ### 转写示例

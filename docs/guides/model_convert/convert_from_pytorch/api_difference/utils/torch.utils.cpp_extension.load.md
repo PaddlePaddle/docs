@@ -41,7 +41,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | extra_include_paths    | extra_include_paths   |  用于指定编译 cpp 或 cuda 源文件时，额外的头文件搜索目录。                               |
 | build_directory       | build_directory       |    用于指定存放生成动态链接库的目录。                                    |
 | verbose                 | verbose             | 用于指定是否需要输出编译过程中的日志信息，默认为 False。   |
-| with_cuda                 | -                          | 决定是否将 CUDA 头文件和库添加到 build。 PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
-| is_python_module          | -                          | 默认为 True，将生成的共享库作为 Python 模块导入，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
-| is_standalone             | -                          | 默认为 False，将构建的扩展作为一个普通的动态库加载到进程中，如果是 True，则构建一个独立的可执行文件，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
-| keep_intermediates        | -                          | 默认为 True，保留中间文件，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
+| with_cuda                 | -                          | 决定是否将 CUDA 头文件和库添加到 build。 Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
+| is_python_module          | -                          | 默认为 True，将生成的共享库作为 Python 模块导入，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
+| is_standalone             | -                          | 默认为 False，将构建的扩展作为一个普通的动态库加载到进程中，如果是 True，则构建一个独立的可执行文件，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
+| keep_intermediates        | -                          | 默认为 True，保留中间文件，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|

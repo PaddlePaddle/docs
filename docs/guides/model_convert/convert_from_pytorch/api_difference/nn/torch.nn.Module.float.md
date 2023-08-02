@@ -18,7 +18,7 @@ paddle.nn.Layer.to(dtype="float32")
 
 | PyTorch | PaddlePaddle | 备注                                              |
 | ------- | ------------ | ------------------------------------------------- |
-| -       | dtype        | 转换的数据类型，Paddle 为 float32，需要进行转写。 |
+| -       | dtype        | 转换的数据类型，Paddle 为 float32，需要转写。 |
 
 ### 转写示例
 
