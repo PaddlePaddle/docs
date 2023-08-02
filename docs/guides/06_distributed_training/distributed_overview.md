@@ -7,7 +7,7 @@
 在分布式训练技术中，集合通信训练模式和参数服务器训练模式是两种最主要的训练模式。对于网络复杂、参数稠密特点的计算机视觉（CV）\ 自然语言处理（NLP）等类型的模型训练场景，请使用集合通信训练模式；对于拥有庞大的 Embedding 层模型和超大数据量的搜索、推荐模型训练场景，请使用参数服务器训练模式。飞桨分布式训练技术同时支持这两种训练模式，并且经过多年发展，两种训练模式已经分别衍生出了端到端自适应分布式训练、异构多云，以及通用异构参数服务器、超大规模图模型训练架构等领先技术。本节将对这两种分布式训练模式，及其技术原理和领先技术进行简述。
 
 <figure align="center">
-<img src="./images/distributed_overview_01.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_01.png" style="zoom:50%"/>
 <figcaption>图 1 分布式训练模式使用导航</figcaption>
 </figure>
 
@@ -21,7 +21,7 @@
 NLP、CV、多模态、科学计算等领域的模型往往具有模型结构复杂、参数稠密的特点，集合通信（Collective Communications）训练模式可以很好地支持此类模型的训练。该模式每个节点都可以称为 Worker 节点，每个 Worker 负责模型训练的同时还需要掌握当前最新的全局梯度信息。集合通信模式对计算芯片的算力和芯片之间的网络互联要求较高，如高性能计算的 GPU、芯片之间的高速网络互联 NVLink 和 InfiniBand 等，因此非常适合稠密参数、计算密集的训练任务。
 
 <figure align="center">
-<img src="./images/distributed_overview_02.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_02.png" style="zoom:50%"/>
 <figcaption>图 2 集合通信训练</figcaption>
 </figure>
 
@@ -29,7 +29,7 @@ NLP、CV、多模态、科学计算等领域的模型往往具有模型结构复
 搜索、推荐等场景的模型往往数据量巨大，特征维度高且高度稀疏化。参数服务器（Parameter Server，PS）训练模式可以很好地支持此类模型的训练。参数服务器训练模式可以同时做到对数据和模型的并行训练。参数服务器训练模式采用了一种将模型参数中心化管理的方式来实现模型参数的分布式存储和更新，该模式除了有 worker 节点外，还有 Server 节点，其中 Worker 用于执行模型的前向与反向计算，而 Server 则负责从各个 Worker 收集汇总梯度并更新参数，因此对于存储超大规模模型参数的训练场景十分友好，常被用于训练拥有海量稀疏参数的搜索、推荐领域模型。
 
 <figure align="center">
-<img src="./images/distributed_overview_03.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_03.png" style="zoom:50%"/>
 <figcaption>图 3 传统参数服务器</figcaption>
 </figure>
 
@@ -54,7 +54,7 @@ NLP、CV、多模态、科学计算等领域的模型往往具有模型结构复
 由于数据并行训练时各卡只在反向计算后进行一次参数梯度的全局通信，其他部分计算完全独立，因此数据并行可获得很高的加速效率。此外，可进一步配合低精度训练、梯度累加、梯度压缩等策略可进一步降低模型计算效率和通信量，获得更优的分布式训练性能。
 
 <figure align="center">
-<img src="./images/distributed_overview_04.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_04.png" style="zoom:50%"/>
 <figcaption>图 4 数据并行原理</figcaption>
 </figure>
 
@@ -63,7 +63,7 @@ NLP、CV、多模态、科学计算等领域的模型往往具有模型结构复
 > 集合通信原语是集合通信的基础操作的集合，如广播（Broadcast）、收集（Gather）、分散（Scatter）、规约（Reduce）等。其中规约是指将集群内多个节点将数据发送给一个节点，这个节点会使用接收到的数据集中运算，如累加、累积、均值、方差等等。而上文提到的 AllReduce 则是指多对多的规约，即有多个数据发送节点和多个数据接收节点，所有节点的规约运算结果会广播到所有节点上。
 
 <figure align="center">
-<img src="./images/distributed_overview_05.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_05.png" style="zoom:50%"/>
 <figcaption>图 5 多对多规约（累加）示意图</figcaption>
 </figure>
 
@@ -72,12 +72,12 @@ NLP、CV、多模态、科学计算等领域的模型往往具有模型结构复
 纯数据并行的训练模式要求每个卡持有全量的模型参数和优化器状态参数，在十亿乃至百亿等模型上可能会遇到显存瓶颈。 [《ZeRO: Memory Optimizations Toward Training Trillion Parameter Models》](https://arxiv.org/abs/1910.02054) 论文指出在每个 GPU 上都保存一份模型参数和优化器状态副本是冗余的。飞桨的参数切片数据并行技术实现了 ZeRO 论文中的三阶段参数切片技术，可依次将优化器状态、参数梯度和模型参数切分到各个卡上，并在此基础上支持分组混合并行技术（组内参数切片+组间数据并行），显著降低模型的显存占用，支持百亿参数模型高效训练。
 
 <figure align="center">
-<img src="./images/distributed_overview_06.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_06.png" style="zoom:50%"/>
 <figcaption>图 6 参数切片数据并行原理</figcaption>
 </figure>
 
 <figure align="center">
-<img src="./images/distributed_overview_07.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_07.png" style="zoom:50%"/>
 <figcaption>图 7 分组参数切片数据并行原理</figcaption>
 </figure>
 
@@ -91,7 +91,7 @@ $$
 Z = X * W = X * [W_1, W_2] = [X*W_1, X*W_2]
 $$
 <figure align="center">
-<img src="./images/distributed_overview_08.png" style="zoom:40%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_08.png" style="zoom:40%"/>
 <figcaption>图 8 张量按列切分的模型并行计算</figcaption>
 </figure>
 
@@ -101,7 +101,7 @@ $$
 Z = [X_1, X_2] * \begin{bmatrix}W_1\\W_2\end{bmatrix} = X_1*W_1 + X_2*W_2
 $$
 <figure align="center">
-<img src="./images/distributed_overview_09.png" style="zoom:40%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_09.png" style="zoom:40%"/>
 <figcaption>图 9 张量按行切分的模型并行计算</figcaption>
 </figure>
 
@@ -112,21 +112,21 @@ $$
 如下图所示，网络共包含 4 层，我们可以把第 0 层放置在卡 0 上运行，第 1 层和第 2 层放置在卡 1 上运行，第 4 层放置在卡 2 上运行。在训练过程中，卡 0 接收输入数据进行计算，并将计算结果发送给卡 1；卡 1 接收到卡 0 的计算结果后进行计算，并将计算结果发送给卡 2；卡 2 接收到卡 1 的计算结果后进行计算，得到损失函数值，完成前向计算。反向计算逻辑与前向刚好相反。
 
 <figure align="center">
-<img src="./images/distributed_overview_10.png" style="zoom:70%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_10.png" style="zoom:70%"/>
 <figcaption>图 10 流水线并行示意图</figcaption>
 </figure>
 
 下图展示了朴素的流水线并行调度逻辑。无论是前向还是反向计算，每个时刻有且仅有一个设备进行计算，其他设备均处于空闲状态，设备利用率和计算效率较差。
 
 <figure align="center">
-<img src="./images/distributed_overview_11.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_11.png" style="zoom:50%"/>
 <figcaption>图 11 朴素流水线并行</figcaption>
 </figure>
 
 为了优化流水线并行中设备的计算效率，可以进一步将 mini-batch 切分成若干更小粒度的 micro-batch，以提升流水线并行的并发度，进而达到提升设备利用率和计算效率的目的。如下图所示，一个 mini-batch 被切分为 4 个 micro-batch；前向阶段，每个设备依次计算单个 micro-batch 的结果；从而增加了设备间的并发度，降低了流水线并行 bubble 空间比例，提高了计算效率。
 
 <figure align="center">
-<img src="./images/distributed_overview_12.png" style="zoom:30%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_12.png" style="zoom:30%"/>
 <figcaption>图 12 优化后的流水线并行</figcaption>
 </figure>
 
@@ -135,7 +135,7 @@ $$
 当模型规模达到万亿及以上时，上述并行策略无论是计算效率还是显存占用都无法有效实施。飞桨支持了专家并行（Mixture of Experts）的稀疏模型并行训练策略。在专家并行训练过程中，每个 mini-batch 仅有部分的专家网络被激活，从而大大提高计算效率，降低显存占用。目前，专家并行是训练万亿及以上参数规模模型的主要方式。
 
 <figure align="center">
-<img src="./images/distributed_overview_13.png" style="zoom:80%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_13.png" style="zoom:80%"/>
 <figcaption>图 13 专家并行示意图</figcaption>
 </figure>
 
@@ -149,7 +149,7 @@ $$
 - Server 接收到 Worker 发送的参数梯度，进行参数更新。
 
 <figure align="center">
-<img src="./images/distributed_overview_14.png" style="zoom:80%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_14.png" style="zoom:80%"/>
 <figcaption>图 14 传统参数服务器训练流程</figcaption>
 </figure>
 
@@ -169,7 +169,7 @@ $$
 随着 2020 年 GPT-3 1750 亿超大语言预训练模型的提出，语言、视觉、多模态等领域也随即发布多种超大规模预训练模型，不仅模型参数量越来越大，训练数据量和计算量也相应变大。针对大规模稠密参数模型高效训练问题，飞桨于 2021 年初在业内首创 4D 混合并行训练策略，即将数据并行、张量模型并行、流水线并行、分组参数切片并行等策略组合使用，取长补短，发挥各自的优势。简而言之，首先在单机内使用张量模型并行和分组参数切片组合的 2D 策略，原因是这两个策略通信量较大，适合使用机器内的卡间通信；然后为了承载千亿规模模型，再叠加流水线并行策略，使用多台机器共同分担；最后为了做到高效，在外层又叠加了数据并行来增加并发数量，提升整体训练速度。
 
 <figure align="center">
-<img src="./images/distributed_overview_15.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_15.png" style="zoom:50%"/>
 <figcaption>图 15 4D 混合并行策略示意图</figcaption>
 </figure>
 
@@ -178,7 +178,7 @@ $$
 此外，针对大模型训练资源不稳定的问题，还设计了弹性资源调度管理机制。当资源发生变化时，该架构能够自动的感知硬件环境并修正资源视图，重新触发模型切分放置策略选择及异步流水线执行，使得硬件故障下任务恢复可从小时级降至秒级。
 
 <figure align="center">
-<img src="./images/distributed_overview_16.png" style="zoom:80%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_16.png" style="zoom:80%"/>
 <figcaption>图 16 端到端自适应分布式训练架构</figcaption>
 </figure>
 
@@ -189,7 +189,7 @@ $$
 鹏城云脑 II 和百度百舸以这种知识共享方式成功训练了英语-西班牙语翻译模型。预训练大模型也可用于其它模型高质量生产。
 
 <figure align="center">
-<img src="./images/distributed_overview_17.png" style="zoom:80%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_17.png" style="zoom:80%"/>
 <figcaption>图 17 异构多云分布式训练示意图</figcaption>
 </figure>
 
@@ -198,14 +198,14 @@ $$
 参数服务器架构在搜索推荐系统应用非常广泛。飞桨框架 2.0 版本推出业内首个“通用异构参数服务器”技术，可使训练任务对硬件型号不敏感，即可以同时使用不同的硬件混合异构训练。通过异构参数服务器模式，用户可以在异构硬件集群中部署分布式训练任务，目的是对不同算力的芯片高效利用，获得更高吞吐，更低资源消耗的训练能力。异构参数服务器拥有非常高的性价比，如下图所示，仅用两个 CPU 机器加两个 GPU 机器就可以达到与 4 个 GPU 机器相仿的训练速度，而成本至少可以节约 35%。
 
 <figure align="center">
-<img src="./images/distributed_overview_18.png" style="zoom:80%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_18.png" style="zoom:80%"/>
 <figcaption>图 18 异构参数服务器与传统参数服务器性能对比</figcaption>
 </figure>
 
 同时，飞桨在 2.3 版本中进一步提升其扩展性，主要是将其中的基础模块通用化，提升二次开发体验，高效支持产业应用中广泛的定制开发需求。以新增支持昆仑芯 XPU 的参数服务器为例，在复用通用模块的基础上，只需增加三个硬件相关的定制模块，使得开发量从原来的万行减少至千行。再比如，扩展业务场景至 GPU 图神经网络训练，仅需要在存储模块中添加图采样策略即可开发完成 GPU 三级存储图检索引擎，支持 GPU 图分布式训练。
 
 <figure align="center">
-<img src="./images/distributed_overview_19.png" style="zoom:80%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_19.png" style="zoom:80%"/>
 <figcaption>图 19 可高效扩展的参数服务器架构</figcaption>
 </figure>
 
@@ -216,7 +216,7 @@ $$
 PGLBox 在业内率先实现了可同时支持复杂算法、超大图、超大离散模型的一体化图学习方案，基于 PGLBox 的 R-UniMP 模型提速近 10 倍，获得 NeurIPS 2022 大规模 GNN 挑战赛冠军。
 
 <figure align="center">
-<img src="./images/distributed_overview_20.png" style="zoom:80%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_20.png" style="zoom:80%"/>
 <figcaption>图 20 图神经网络训练架构</figcaption>
 </figure>
 
@@ -231,7 +231,7 @@ PGLBox 在业内率先实现了可同时支持复杂算法、超大图、超大�
 本次评测共有 21 个公司和机构参与。百度提出的方法在端到端训练时间和训练吞吐两个指标上均超越了同等 GPU 配置下的所有对手。在同等 GPU 配置下端到端训练收敛时间比其它提交结果快 1% 到 20%，在训练吞吐量上比其他提交结果要快 2% 到 12%。此结果进一步印证了飞桨分布式训练的性能表现。
 
 <figure align="center">
-<img src="./images/distributed_overview_21.png" style="zoom:80%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_21.png" style="zoom:80%"/>
 <figcaption>图 21 MLPerf Training BERT 模型端到端训练收敛时间排名</figcaption>
 </figure>
 
@@ -246,7 +246,7 @@ MLPerf 基准测试上获得的高速度，得益于飞桨框架在分布式训�
 除 MLPerf 打榜之外，飞桨的分布式训练架构在多个场景下得到了验证。
 
 <figure align="center">
-<img src="./images/distributed_overview_22.png" style="zoom:80%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/06_distributed_training/images/distributed_overview_22.png" style="zoom:80%"/>
 <figcaption>图 22 多场景验证了飞桨分布式训练架构的领先性</figcaption>
 </figure>
 
