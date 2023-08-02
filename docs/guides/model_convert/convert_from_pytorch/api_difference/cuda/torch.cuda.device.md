@@ -18,7 +18,7 @@ paddle.CUDAPlace(id)
 
 | PyTorch | PaddlePaddle | 备注                                                                             |
 | ------- | ------------ | -------------------------------------------------------------------------------- |
-| device  | id           | GPU 的设备 ID, Pytorch 支持 torch.device 和 int，Paddle 支持 int，需要进行转写。 |
+| device  | id           | GPU 的设备 ID, Pytorch 支持 torch.device 和 int，Paddle 支持 int，需要转写。 |
 
 ### 转写示例
 

@@ -26,7 +26,7 @@ paddle.nn.functional.kl_div(input,
 | size_average | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。           |
 | reduce       | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。           |
 | reduction    | reduction    | 表示对输出结果的计算方式。                             |
-| log_target   | -            | 指定目标是否为 log 空间，Paddle 无此功能，暂无转写方式。 |
+| log_target   | -            | 指定目标是否为 log 空间，Paddle 无此参数，暂无转写方式。 |
 
 ### 转写示例
 

@@ -12,20 +12,10 @@ torch.Tensor.char(memory_format=torch.preserve_format)
 paddle.Tensor.astype('int8')
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                                                |
 | ------------- | ------------ | ----------------------------------------------------------------------------------- |
-| memory_format | -            | 表示内存格式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。    |
-
-### 转写示例
-
-```python
-# torch 写法
-x.char()
-
-# paddle 写法
-x.astype('int8')
-```
+| memory_format | - |表示内存格式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |

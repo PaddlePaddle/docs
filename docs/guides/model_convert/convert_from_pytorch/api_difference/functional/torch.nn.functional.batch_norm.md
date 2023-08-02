@@ -16,14 +16,14 @@ paddle.nn.functional.batch_norm(x, running_mean, running_var, weight, bias, trai
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| <font color='red'> running_mean </font>   | <font color='red'> running_mean </font>   | 均值的 Tensor               |
-| <font color='red'> running_var </font>   | <font color='red'> running_var </font>   | 方差的 Tensor               |
-| <font color='red'> weight </font>   | <font color='red'> weight </font>   | 权重的 Tensor               |
-| <font color='red'> bias </font>   | <font color='red'> bias </font>   | 偏置的 Tensor               |
-| <font color='red'> eps  </font>         |    <font color='red'> epsilon  </font>         | 为了数值稳定加在分母上的值             |
-| <font color='red'> momentum </font>             | <font color='red'> momentum </font>  | 此值用于计算 moving_mean 和 moving_var, 值的大小 Pytorch = 1 - Paddle，需要进行转写               |
+| <font color='red'> running_mean </font>  | <font color='red'> running_mean </font> | 均值的 Tensor。 |
+| <font color='red'> running_var </font>   | <font color='red'> running_var </font>  | 方差的 Tensor。 |
+| <font color='red'> weight </font>   | <font color='red'> weight </font>   | 权重的 Tensor。          |
+| <font color='red'> bias </font>   | <font color='red'> bias </font>   | 偏置的 Tensor。              |
+| <font color='red'> eps  </font>         |    <font color='red'> epsilon  </font>         | 为了数值稳定加在分母上的值。       |
+| <font color='red'> momentum </font>             | <font color='red'> momentum </font>  | 此值用于计算 moving_mean 和 moving_var, 值的大小 Paddle = 1 - Pytorch，需要转写。      |
 | <font color='red'> training </font>           |  <font color='red'> training </font>            | 是否可训练。 |
-| -           |  <font color='red'> data_format </font>            | 指定输入数据格式。 Pytorch 无此参数。保持默认即可。 |
+| -  |  <font color='red'> data_format </font> | 指定输入数据格式，Pytorch 无此参数，Paddle 保持默认即可。 |
 
 
 ### 转写示例

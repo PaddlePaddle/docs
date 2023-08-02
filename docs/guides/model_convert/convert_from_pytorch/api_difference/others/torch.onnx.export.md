@@ -12,15 +12,15 @@ torch.onnx.export(model, args, f, export_params=True, verbose=False, training=<T
 paddle.onnx.export(layer, path, input_spec=None, opset_version=9, **configs)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
 | PyTorch                     | PaddlePaddle  | 备注                                                                                                                                 |
 | --------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| model                       | layer         | 导出的模型，PyTorch 类型为 torch.nn.Module, torch.jit.ScriptModule 或 torch.jit.ScriptFunction，Paddle 为 Layer 对象，需要进行转写。 |
+| model                       | layer         | 导出的模型，PyTorch 类型为 torch.nn.Module, torch.jit.ScriptModule 或 torch.jit.ScriptFunction，Paddle 为 Layer 对象，需要转写。 |
 | args                        | -             | 模型参数，Paddle 无此参数，暂无转写方式。                                                                                            |
-| f                           | path          | PyTorch 为存储模型路径，Paddle 为存储模型的路径前缀，需要进行转写。                                                                  |
+| f                           | path          | PyTorch 为存储模型路径，Paddle 为存储模型的路径前缀，需要转写。                                                                  |
 | export_params               | -             | 是否导出参数，Paddle 无此参数，暂无转写方式。                                                                                        |
 | verbose                     | -             | 是否输出详细信息，Paddle 无此参数，暂无转写方式。                                                                                    |
 | training                    | -             | 训练模式，Paddle 无此参数，暂无转写方式。                                                                                            |

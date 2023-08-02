@@ -23,9 +23,9 @@ paddle.DataParallel(layers,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | module        | layers       | 需要通过数据并行方式执行的模型。  |
-| device_ids    | -            | 表示训练在哪几块 GPU 上，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
-| output_device | -            | 表示结果输出在哪一块 GPU 上，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
-| dim           | -            | 表示哪一维度上的数据进行划分，PaddlePaddle 无此参数。  |
+| device_ids    | -            | 表示训练在哪几块 GPU 上，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
+| output_device | -            | 表示结果输出在哪一块 GPU 上，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
+| dim           | -            | 表示哪一维度上的数据进行划分，Paddle 无此参数。  |
 | -             | strategy     |  PaddlePaddle 即将废弃参数。 |
 | -             | comm_buffer_size |  它是通信调用（如 NCCLAllReduce）时，参数梯度聚合为一组的内存大小（MB），PyTorch 无此参数，Paddle 保持默认即可。 |
 | -             | last_comm_buffer_size |  它限制通信调用中最后一个缓冲区的内存大小（MB），PyTorch 无此参数，Paddle 保持默认即可。 |

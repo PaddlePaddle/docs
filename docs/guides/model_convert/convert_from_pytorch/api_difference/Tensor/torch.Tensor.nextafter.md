@@ -12,11 +12,11 @@ torch.Tensor.nextafter(other)
 paddle.Tensor.nextafter(y)
 ```
 
-两者功能一致，且参数用法一致，仅参数名不同，具体如下：
+两者功能一致，且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 
 
 | PyTorch | PaddlePaddle | 备注                               |
 | ------- | ------------ | ---------------------------------- |
-| other   | y            | 输⼊第二个 Tensor，仅参数名不同。 |
+| other   | y            | 输⼊第二个 Tensor，仅参数名不一致。 |

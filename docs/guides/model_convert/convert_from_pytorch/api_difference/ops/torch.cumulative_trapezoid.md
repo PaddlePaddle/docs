@@ -12,7 +12,7 @@ torch.cumulative_trapezoid(y, x=None, *, dx=None, dim=-1)
 paddle.cumulative_trapezoid(y, x=None, dx=None, axis=-1, name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 

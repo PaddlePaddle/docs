@@ -18,9 +18,9 @@ paddle.nn.Layer.to(device=None, dtype=None, blocking=None)
 
 | PyTorch      | PaddlePaddle | 备注                                                                                                     |
 | ------------ | ------------ | -------------------------------------------------------------------------------------------------------- |
-| device       | device       | Tensor 设备类型，PyTorch 为 torch.device，Paddle 为字符串 cpu，gpu:x，xpu:x 或 Place 对象，需要进行转写。                    |
-| dtype        | dtype        | Tensor 数据类型，PyTorch 为字符串或 PyTorch 数据类型，Paddle 为 字符串或 Paddle 数据类型，需要进行转写。 |
-| non_blocking | blocking     | 是否同步或异步拷贝，PyTorch 和 Paddle 取值相反，需要进行转写。                                           |
+| device       | device       | Tensor 设备类型，PyTorch 为 torch.device，Paddle 为字符串 cpu，gpu:x，xpu:x 或 Place 对象，需要转写。                    |
+| dtype        | dtype        | Tensor 数据类型，PyTorch 为字符串或 PyTorch 数据类型，Paddle 为 字符串或 Paddle 数据类型，需要转写。 |
+| non_blocking | blocking     | 是否同步或异步拷贝，PyTorch 和 Paddle 取值相反，需要转写。                                           |
 
 ### 转写示例
 
@@ -80,10 +80,10 @@ paddle.nn.Layer.to(device=None, dtype=None, blocking=None)
 
 | PyTorch      | PaddlePaddle | 备注                                                           |
 | ------------ | ------------ | -------------------------------------------------------------- |
-| tensor       | -            | 获取设备和数据类型的 Tensor，Paddle 无此参数，需要进行转写。   |
-| -            | device       | Tensor 设备类型，PyTorch 无此参数，需要进行转写。              |
-| -            | dtype        | Tensor 数据类型，PyTorch 无此参数，需要进行转写。              |
-| non_blocking | blocking     | 是否同步或异步拷贝，PyTorch 和 Paddle 取值相反，需要进行转写。 |
+| tensor       | -            | 获取设备和数据类型的 Tensor，Paddle 无此参数，需要转写。   |
+| -            | device       | Tensor 设备类型，PyTorch 无此参数，需要转写。              |
+| -            | dtype        | Tensor 数据类型，PyTorch 无此参数，需要转写。              |
+| non_blocking | blocking     | 是否同步或异步拷贝，PyTorch 和 Paddle 取值相反，需要转写。 |
 
 ### 转写示例
 

@@ -12,4 +12,4 @@ torch.get_default_dtype()
 paddle.get_default_dtype()
 ```
 
-两者功能完全一致，均无参数。
+两者功能一致，无参数。

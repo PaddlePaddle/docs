@@ -12,4 +12,4 @@ torch.Tensor.dim()
 paddle.Tensor.dim()
 ```
 
-两者功能完全一致，无参数。
+两者功能一致，无参数。
