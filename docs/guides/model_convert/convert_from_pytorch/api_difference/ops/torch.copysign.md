@@ -22,5 +22,3 @@ torch.copysign(input, other, out=y)
 # Paddle 写法
 paddle.assign(paddle.abs(input) * paddle.sign(other), y)
 ```
-
-```
