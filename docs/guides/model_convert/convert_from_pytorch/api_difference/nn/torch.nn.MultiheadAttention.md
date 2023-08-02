@@ -12,7 +12,7 @@ torch.nn.MultiheadAttention(embed_dim, num_heads, dropout=0.0, bias=True, add_bi
 paddle.nn.MultiHeadAttention(embed_dim, num_heads, dropout=0.0, kdim=None, vdim=None, need_weights=False, weight_attr=None, bias_attr=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -27,33 +27,7 @@ paddle.nn.MultiHeadAttention(embed_dim, num_heads, dropout=0.0, kdim=None, vdim=
 | kdim          | kdim         | 键值对中 key 的维度。                                                     |
 | vdim          | vdim         | 键值对中 value 的维度。                                                   |
 | batch_first   | -            | 表示输入数据的第 0 维是否代表 batch_size，Paddle 无此参数，暂无转写方式。 |
-| device        | -            | Tensor 的设备，Paddle 无此参数，需要进行转写。                            |
-| dtype         | -            | Tensor 的数据类型，Paddle 无此参数，需要进行转写。                        |
+| device        | -            | Tensor 的设备，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                            |
+| dtype         | -            | Tensor 的数据类型，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                        |
 | -             | need_weights | 表明是否返回注意力权重，PyTorch 无此参数，Paddle 保持默认即可。           |
 | -             | weight_attr  | 指定权重参数属性的对象，PyTorch 无此参数，Paddle 保持默认即可。           |
-
-### 转写示例
-
-#### device：Tensor 的设备
-
-```python
-# Pytorch 写法
-m = torch.nn.MultiheadAttention(embed_dim, num_heads，device=torch.device('cpu'))
-y = m(x)
-
-# Paddle 写法
-m = paddle.nn.MultiheadAttention(embed_dim, num_heads)
-y = m(x).cpu()
-```
-
-#### dtype：Tensor 的数据类型
-
-```python
-# Pytorch 写法
-m = torch.nn.MultiheadAttention(embed_dim, num_heads，dtype=torch.float32)
-y = m(x)
-
-# Paddle 写法
-m = paddle.nn.MultiheadAttention(embed_dim, num_heads)
-y = m(x).astype(paddle.float32)
-```

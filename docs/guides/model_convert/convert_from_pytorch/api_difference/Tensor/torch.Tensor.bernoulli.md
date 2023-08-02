@@ -12,7 +12,7 @@ torch.Tensor.bernoulli(*, generator=None)
 paddle.bernoulli(x, name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

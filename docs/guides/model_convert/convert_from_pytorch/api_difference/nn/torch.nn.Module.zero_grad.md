@@ -12,10 +12,10 @@ torch.nn.Module.zero_grad(set_to_none=True)
 paddle.nn.Layer.clear_gradients()
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
 | PyTorch     | PaddlePaddle | 备注                                             |
 | ----------- | ------------ | ------------------------------------------------ |
-| set_to_none | -            | 是否设置为 None，Paddle 默认 set_to_none=False，set_to_none=True 时，暂无转写方式。 |
+| set_to_none | -            | 是否设置为 None，Paddle 无此参数，暂无转写方式。 |

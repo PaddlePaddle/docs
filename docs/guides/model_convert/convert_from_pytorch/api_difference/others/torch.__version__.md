@@ -12,4 +12,4 @@ torch.__version__
 paddle.__version__
 ```
 
-两者功能完全一致，均无参数。
+两者功能一致，无参数。

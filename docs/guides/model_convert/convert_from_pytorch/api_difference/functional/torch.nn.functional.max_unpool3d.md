@@ -29,7 +29,7 @@ paddle.nn.functional.max_unpool3d(x,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           | x           | 表示输入的 Tensor 。               |
-| indices           | indices           | 表示索引下标，PyTorch 数据类型为 int64, Paddle 数据类型为 int32，需要进行转写。               |
+| indices           | indices           | 表示索引下标，PyTorch 数据类型为 int64, Paddle 数据类型为 int32，需要转写。               |
 | kernel_size           | kernel_size           | 表示滑动窗口大小。               |
 | stride           | stride           | 表示步长。               |
 | padding           | padding           | 表示填充大小。               |

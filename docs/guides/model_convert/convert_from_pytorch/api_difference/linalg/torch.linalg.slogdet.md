@@ -11,21 +11,35 @@ torch.linalg.slogdet(A, *, out=None)
 paddle.linalg.slogdet(x)
 ```
 
-两者功能一致但参数类型不一致，Pytorch 返回 named tuple，Paddle 返回 Tensor，需要转写。具体如下：
+两者功能一致，返回参数个数不同，具体如下：
+
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> A </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| <font color='red'> out </font> | - | 表示输出的 Tuple ，Paddle 无此参数，暂无转写方式。  |
+| <font color='red'> out </font> | - | 表示输出 Tensor，Paddle 无此参数，需要转写。  |
+| 返回值 | 返回值 | Pytorch 返回两个 Tensor，Paddle 返回一个 Tensor，需要转写。  |
 
 
 ### 转写示例
-#### 返回类型不一致
+
+#### 返回值
 ```python
 # Pytorch 写法
-y = torch.linalg.slogdet(a)
+torch.linalg.slogdet(x)
 
 # Paddle 写法
-result = paddle.linalg.slogdet(a)
-y = tuple([result[0], result[1]])
+y = paddle.linalg.slogdet(x)
+(y[0], y[1])
+```
+
+#### out：输出的 Tensor
+```python
+# Pytorch 写法
+torch.linalg.slogdet(x, out=(y1, y2))
+
+# Paddle 写法
+z = paddle.linalg.slogdet(a)
+paddle.assign(z[0], output=y1)
+paddle.assign(z[1], output=y2)
 ```

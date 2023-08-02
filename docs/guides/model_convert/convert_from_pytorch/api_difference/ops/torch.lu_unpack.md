@@ -11,16 +11,16 @@ torch.lu_unpack(LU_data, LU_pivots, unpack_data=True, unpack_pivots=True, *, out
 paddle.linalg.lu_unpack(x, y, unpack_ludata=True, unpack_pivots=True, name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> LU_data </font>        | <font color='red'> x </font>              | 输入的 Tensor ，仅参数名不同。                                     |
-| <font color='red'> LU_pivots </font>      | <font color='red'> y </font>              | 输入的 Tensor ，仅参数名不同。                                     |
-| <font color='red'> unpack_data </font>    | <font color='red'> unpack_ludata </font>  | 输入的 bool ，仅参数名不同。                                     |
+| <font color='red'> LU_data </font>        | <font color='red'> x </font>              | 输入的 Tensor ，仅参数名不一致。                                     |
+| <font color='red'> LU_pivots </font>      | <font color='red'> y </font>              | 输入的 Tensor ，仅参数名不一致。                                     |
+| <font color='red'> unpack_data </font>    | <font color='red'> unpack_ludata </font>  | 输入的 bool ，仅参数名不一致。                                     |
 | <font color='red'> unpack_pivots </font>  | <font color='red'> unpack_pivots </font>  | 输入的 bool ，参数完全一致。             |
-| <font color='red'> out </font>            | -                                         | 表示输出的 Tensor，PaddlePaddle 无此参数，需要进行转写。              |
+| <font color='red'> out </font>            | -                                         | 表示输出的 Tensor，Paddle 无此参数，需要转写。              |
 
 ### 转写示例
 

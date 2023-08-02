@@ -15,12 +15,12 @@ paddle.nonzero(x,
                as_tuple=False)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input | x | 表示输入的 Tensor ，仅参数名不一致。  |
-|  out  | - | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
+|  out  | - | 表示输出的 Tensor ， Paddle 无此参数，需要转写。    |
 | as_tuple | as_tuple | bool 类型表示输出数据的格式，默认 False 时，输出一个张量，True 时输出一组一维张量。  |
 
 

@@ -18,13 +18,13 @@ paddle.optimizer.Optimizer(learning_rate=0.001,
                         name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，其 `defaults` 可以支持各种参数，但一般只会转写 API 名称，不会转写参数。
+Pytorch 相比 Paddle 支持更多其他参数，其 `defaults` 可以支持各种参数，但一般只会转写 API 名称，不会转写参数。
 
 ### 参数映射
 
 | PyTorch                             | PaddlePaddle | 备注                                                                    |
 | ----------------------------------- | ------------ | ----------------------------------------------------------------------- |
-| params     | parameters           | 表示指定优化器需要优化的参数，仅参数名不同。                      |
+| params     | parameters           | 表示指定优化器需要优化的参数，仅参数名不一致。                      |
 | defaults     | -     | 表示含有优化选项和其默认值的字典，Paddle 无此参数。                      |
 | -     | learning_rate       | 学习率，用于参数更新的计算。Pytorch 无此参数，但 defaults 可含有 lr 与之对应。                          |
 | -     | weight_decay      | 表示权重衰减系数。 Pytorch 无此参数，但 defaults 可含有 weight_decay 与之对应。             |

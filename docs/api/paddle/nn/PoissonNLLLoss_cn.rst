@@ -3,7 +3,7 @@
 PoissonNLLLoss
 -------------------------------
 
-.. py:class:: paddle.nn.PoissonNLLLoss(log_input=False, full=False, eps=1e-8, reduction='mean', name=None)
+.. py:class:: paddle.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, reduction='mean', name=None)
 
 该接口可创建一个 PoissonNLLLoss 可调用类，计算输入 :attr:`input` 和标签 :attr:`label` 间的 `Poisson negative log likelihood loss` 损失。该 loss 适用于真实标签服从于泊松分布时，即
 

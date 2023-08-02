@@ -12,4 +12,4 @@ torch.Tensor.zero_()
 paddle.Tensor.zero_()
 ```
 
-两者功能一致。
+两者功能一致，无参数。

@@ -12,7 +12,7 @@ torch.distributed.send(tensor, dst, group=None, tag=0)
 paddle.distributed.send(tensor, dst=0, group=None, use_calc_stream=True)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
