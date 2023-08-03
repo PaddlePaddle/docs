@@ -2575,6 +2575,239 @@ i1e(x, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_i1e`
 
+nnz()
+:::::::::
+
+.. note::
+   只有 `SparseCooTensor` 、`SparseCsrTensor` 才可调用该方法。
+
+返回：输入稀疏 Tensor 的非 0 元素的个数
+
+返回类型：int
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        indices = [[0, 1, 2], [1, 2, 0]]
+        values = [1.0, 2.0, 3.0]
+        dense_shape = [3, 3]
+        coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape)
+        coo.nnz()
+        # 3
+
+indices()
+:::::::::
+
+.. note::
+   只有 `SparseCooTensor` 才可调用该方法。
+
+返回：输入 SparseCooTensor 的非 0 元素的索引
+
+返回类型：DenseTensor
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        indices = [[0, 1, 2], [1, 2, 0]]
+        values = [1.0, 2.0, 3.0]
+        dense_shape = [3, 3]
+        coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape)
+        coo.indices()
+        # Tensor(shape=[2, 3], dtype=int64, place=Place(gpu:0), stop_gradient=True,
+        #        [[0, 1, 2],
+        #         [1, 2, 0]])
+
+values()
+:::::::::
+
+.. note::
+   只有 `SparseCooTensor` 才可调用该方法。
+
+返回：输入 SparseCooTensor 的非 0 元素的值
+
+返回类型：DenseTensor
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        indices = [[0, 1, 2], [1, 2, 0]]
+        values = [1.0, 2.0, 3.0]
+        dense_shape = [3, 3]
+        coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape)
+        coo.values()
+        # Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
+        #        [1., 2., 3.])
+
+
+crows()
+:::::::::
+
+.. note::
+   只有 `SparseCsrTensor` 才可调用该方法。
+
+返回：输入 SparseCsrTensor 的非 0 元素的压缩行信息
+
+返回类型：DenseTensor
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        crows = [0, 2, 3, 5]
+        cols = [1, 3, 2, 0, 1]
+        values = [1, 2, 3, 4, 5]
+        dense_shape = [3, 4]
+        csr = paddle.sparse.sparse_csr_tensor(crows, cols, values, dense_shape)
+        csr.crows()
+        # Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
+        #        [0, 2, 3, 5])
+
+cols()
+:::::::::
+
+.. note::
+   只有 `SparseCsrTensor` 才可调用该方法。
+
+返回：输入 SparseCsrTensor 的非 0 元素的列信息
+
+返回类型：DenseTensor
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        crows = [0, 2, 3, 5]
+        cols = [1, 3, 2, 0, 1]
+        values = [1, 2, 3, 4, 5]
+        dense_shape = [3, 4]
+        csr = paddle.sparse.sparse_csr_tensor(crows, cols, values, dense_shape)
+        csr.cols()
+        # Tensor(shape=[5], dtype=int64, place=Place(gpu:0), stop_gradient=True,
+        #        [1, 3, 2, 0, 1])
+
+is_sparse()
+:::::::::
+
+当输入 SparseCooTensor/SparseCsrTensor 时，返回 True；当输入 DenseTensor 时，返回 False。
+
+返回：是否为稀疏 Tensor（包括 SparseCooTensor 和 SparseCsrTensor）
+
+返回类型：bool
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        indices = [[0, 1, 2], [1, 2, 0]]
+        values = [1.0, 2.0, 3.0]
+        dense_shape = [3, 3]
+        coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape)
+        coo.is_sparse()
+        # True
+
+is_sparse_coo()
+:::::::::
+
+当输入 SparseCooTensor 时，返回 True；当输入 DenseTensor/SparseCsrTensor 时，返回 False。
+
+返回：是否为 SparseCooTensor
+
+返回类型：bool
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        indices = [[0, 1, 2], [1, 2, 0]]
+        values = [1.0, 2.0, 3.0]
+        dense_shape = [3, 3]
+        coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape)
+        coo.is_sparse_coo()
+        # True
+
+is_sparse_csr()
+:::::::::
+
+当输入 SparseCsrTensor 时，返回 True；当输入 DenseTensor/SparseCooTensor 时，返回 False。
+
+返回：是否为 SparseCsrTensor
+
+返回类型：bool
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        crows = [0, 2, 3, 5]
+        cols = [1, 3, 2, 0, 1]
+        values = [1, 2, 3, 4, 5]
+        dense_shape = [3, 4]
+        csr = paddle.sparse.sparse_csr_tensor(crows, cols, values, dense_shape)
+        csr.is_sparse_csr()
+        # True
+
+
+to_sparse_csr()
+:::::::::
+
+.. note::
+   只有 `DenseTensor` 、`SparseCooTensor` 才可调用该方法。
+
+将输入 Tensor 转换为 SparseCsrTensor。
+
+当输入 SparseCooTensor 时，会将其稀疏格式由 Coo 转换为 Csr；当输入 DenseTensor 时，会将其以 Csr 稀疏格式来存储。
+
+返回：转换为稀疏格式后的 SparseCsrTensor
+
+返回类型：SparseCsrTensor
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        indices = [[0, 1, 2], [1, 2, 0]]
+        values = [1.0, 2.0, 3.0]
+        dense_shape = [3, 3]
+        coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape)
+        coo.to_sparse_csr()
+        # Tensor(shape=[3, 3], dtype=paddle.float32, place=Place(gpu:0), stop_gradient=True,
+        #        crows=[0, 1, 2, 3],
+        #        cols=[1, 2, 0],
+        #        values=[1., 2., 3.])
+
+
+is_same_shape(y)
+:::::::::
+
+返回两个 Tensor 形状比较的结果，判断当前 Tensor 与输入 :attr:`y` 的形状是否相同，支持 DenseTensor、SparseCsrTensor 与 SparseCooTensor 之间任意两种的形状比较。
+
+返回：两个 Tensor 形状比较的结果，相同为 True，不同为 False。
+
+返回类型：bool
+
+请参考 :ref:`cn_api_paddle_sparse_is_same_shape`
+
 polygamma
 :::::::::
 用于计算输入的 Tensor 的多伽马函数。
