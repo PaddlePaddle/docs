@@ -26,7 +26,7 @@ paddle.logspace(start,
                 name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -36,11 +36,11 @@ paddle.logspace(start,
 | end           | stop         | 表示区间结束值以 base 为底的指数，仅参数名不一致。            |
 | steps         | num          | 表示给定区间内需要划分的区间数，仅参数名不一致。             |
 | base          | base         | 表示对数函数的底数。                                         |
-| out           | -            | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。           |
+| out           | -            | 表示输出的 Tensor，Paddle 无此参数，需要转写。           |
 | dtype         | dtype        | 表示输出 Tensor 类型。                                       |
 | layout        | -            | 表示布局方式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
-| device        | -            | 表示 Tensor 存放设备位置，Paddle 无此参数，需要进行转写。    |
-| requires_grad | -            | 表示是否计算梯度，Paddle 无此参数，需要进行转写。            |
+| device        | -            | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。    |
+| requires_grad | -            | 表示是否计算梯度，Paddle 无此参数，需要转写。            |
 
 ### 转写示例
 

@@ -12,4 +12,4 @@ torch.Tensor.arctanh()
 paddle.Tensor.atanh()
 ```
 
-两者函数名不同，功能一致，无参数。
+两者功能一致，无参数。

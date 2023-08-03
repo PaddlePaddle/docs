@@ -23,9 +23,9 @@ paddle.nn.LayerNorm(normalized_shape,
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| elementwise_affine        | -            | 是否进行仿射变换，PaddlePaddle 无此参数。         |
-| device        | -            | 设备类型，PaddlePaddle 无此参数。 |
-| dtype         | -            | 参数类型，PaddlePaddle 无此参数。         |
+| elementwise_affine        | -            | 是否进行仿射变换，Paddle 无此参数，需要转写。         |
+| device        | -            | 设备类型，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
+| dtype         | -            | 参数类型，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
 | eps           | epsilon      | 为了数值稳定加在分母上的值。                                     |
 | -             | weight_attr  | 指定权重参数属性的对象。如果为 False, 则表示每个通道的伸缩固定为 1，不可改变。默认值为 None，表示使用默认的权重参数属性。 |
 | -             | bias_attr    | 指定偏置参数属性的对象。如果为 False, 则表示每一个通道的偏移固定为 0，不可改变。默认值为 None，表示使用默认的偏置参数属性。 |

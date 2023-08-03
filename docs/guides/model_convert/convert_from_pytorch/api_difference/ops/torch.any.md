@@ -20,7 +20,7 @@ paddle.any(x,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input        | x           | 输入的多维 Tensor ，PyTorch 支持布尔和数值类型的输入，Paddle 仅支持布尔类型，需要进行转写。                   |
+| input        | x           | 输入的多维 Tensor ，PyTorch 支持布尔和数值类型的输入，Paddle 仅支持布尔类型，需要转写。                   |
 | dim    |  axis     | 表示运算的维度，仅参数名不一致。        |
 | keepdim    |  keepdim  | 是否在输出 Tensor 中保留减小的维度，参数完全一致。  |
 

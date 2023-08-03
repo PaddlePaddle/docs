@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.linalg.lstsq
+## [ 仅 paddle 参数更多 ]torch.Tensor.lstsq
 
 ### [torch.Tensor.lstsq](https://pytorch.org/docs/1.9.0/generated/torch.Tensor.lstsq.html?highlight=torch%20tensor%20lstsq#torch.Tensor.lstsq)
 
@@ -12,7 +12,7 @@ torch.Tensor.lstsq(A)
 paddle.Tensor.lstsq(y, rcond=None, driver=None, name=None)
 ```
 
-两者功能一致，仅参数名不一致，具体如下：
+两者功能一致，仅 paddle 参数更多，具体如下：
 
 ### 参数映射
 

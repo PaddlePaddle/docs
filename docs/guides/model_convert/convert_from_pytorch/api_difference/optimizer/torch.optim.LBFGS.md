@@ -35,8 +35,8 @@ paddle.optimizer.LBFGS(learning_rate=1.0,
 
 | PyTorch                             | PaddlePaddle | 备注                                                                    |
 | ----------------------------------- | ------------ | ----------------------------------------------------------------------- |
-| params     | parameters           | 表示指定优化器需要优化的参数，仅参数名不同。                      |
-| lr     | learning_rate       | 学习率，用于参数更新的计算。仅参数名不同。                          |
+| params     | parameters           | 表示指定优化器需要优化的参数，仅参数名不一致。                      |
+| lr     | learning_rate       | 学习率，用于参数更新的计算。仅参数名不一致。                          |
 | max_iter   | max_iter   | 每个优化单步的最大迭代次数。参数完全一致。                       |
 | max_eval       | max_eval     | 每次优化单步中函数计算的最大数量。参数完全一致。                           |
 | tolerance_grad       | tolerance_grad    |  当梯度的范数小于该值时，终止迭代。参数完全一致。         |

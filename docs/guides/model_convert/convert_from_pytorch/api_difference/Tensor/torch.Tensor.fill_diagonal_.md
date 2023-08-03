@@ -18,6 +18,6 @@ paddle.Tensor.fill_diagonal_(value, offset=0, wrap=False, name=None)
 
 | PyTorch    | PaddlePaddle | 备注                                                                                                                         |
 | ---------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------- |
-| fill_value | value        | 以输入 value 值修改原始 Tensor 对角线元素，仅参数名不同。                                                                    |
+| fill_value | value        | 以输入 value 值修改原始 Tensor 对角线元素，仅参数名不一致。                                                                    |
 | -          | offset       | 所选取对角线相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为 0。PyTorch 无此参数， Paddle 保持默认即可。 |
 | wrap       | wrap         | 对于 2 维 Tensor，height>width 时是否循环填充，默认为 False。                                                                |

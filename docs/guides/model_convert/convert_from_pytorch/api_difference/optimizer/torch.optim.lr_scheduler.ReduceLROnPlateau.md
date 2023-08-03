@@ -44,7 +44,7 @@ paddle.optimizer.lr.ReduceOnPlateau(learning_rate,
 | threshold_mode     | threshold_mode       | 'rel' 和 'abs' 之一。在 'rel' 模式下，loss 最小变化的阈值是 last_loss * threshold，其中 last_loss 是 loss 在上个 epoch 的值。在 'abs' 模式下，loss 最小变化的阈值是 threshold。参数完全一致。             |
 | cooldown     | cooldown       | 在学习率每次衰减之后，会进入时长为 cooldown 个 step 的冷静期。参数完全一致。             |
 | min_lr     | min_lr       | 最小的学习率。衰减后的学习率最低下界限。参数完全一致。             |
-| eps     | epsilon       |  如果新旧学习率间的差异小于 epsilon，则不会更新。仅参数名不同。             |
+| eps     | epsilon       |  如果新旧学习率间的差异小于 epsilon，则不会更新。仅参数名不一致。             |
 | verbose     | verbose       | 如果是 True，则在每一轮更新时在标准输出 stdout 输出一条信息。参数完全一致。  |
 
 ### 转写示例

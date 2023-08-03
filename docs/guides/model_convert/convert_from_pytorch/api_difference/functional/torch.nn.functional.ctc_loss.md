@@ -12,7 +12,7 @@ torch.nn.functional.ctc_loss(log_probs, targets, input_lengths, target_lengths, 
 paddle.nn.functional.ctc_loss(log_probs, labels, input_lengths, label_lengths, blank=0, reduction='mean')
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

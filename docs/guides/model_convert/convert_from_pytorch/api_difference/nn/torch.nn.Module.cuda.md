@@ -18,7 +18,7 @@ paddle.nn.Layer.to(device="gpu")
 
 | PyTorch | PaddlePaddle | 备注                                                       |
 | ------- | ------------ | ---------------------------------------------------------- |
-| device  | device       | PyTorch 为设备编号，Paddle 为 gpu:设备编号，需要进行转写。 |
+| device  | device       | PyTorch 为设备编号，Paddle 为 gpu:设备编号，需要转写。 |
 
 ### 转写示例
 

@@ -16,4 +16,4 @@ paddle.Tensor.outer(y, name=None)
 ### 参数映射
 | PyTorch                        | PaddlePaddle                 | 备注                                                   |
 |--------------------------------|------------------------------| ------------------------------------------------------ |
-| <font color='red'> vec2 </font> | <font color='red'> y </font> | 输入的 Tensor ，仅参数名不同。                                     |
+| <font color='red'> vec2 </font> | <font color='red'> y </font> | 输入的 Tensor ，仅参数名不一致。                                     |

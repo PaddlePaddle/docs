@@ -19,7 +19,7 @@ paddle.device.cuda.Stream(device=None, priority=None)
 | PyTorch  | PaddlePaddle | 备注                                                                                      |
 | -------- | ------------ | ----------------------------------------------------------------------------------------- |
 | device   | device       | 希望分配 stream 的设备。                                                                  |
-| priority | priority     | stream 的优先级，PyTorch 取值范围为-1、0，Paddle 的取值范围为 1、2，Paddle 需要进行转写。 |
+| priority | priority     | stream 的优先级，PyTorch 取值范围为-1、0，Paddle 的取值范围为 1、2，需要转写。 |
 
 ### 转写示例
 

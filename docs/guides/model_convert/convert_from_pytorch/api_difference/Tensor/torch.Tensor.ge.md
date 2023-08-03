@@ -17,7 +17,7 @@ paddle.Tensor.greater_equal(y, name=None)
 ### 参数映射
 | PyTorch                          | PaddlePaddle                 | 备注                                                   |
 |----------------------------------|------------------------------| ------------------------------------------------------ |
-| other  |  y  | 输入的 Tensor ，PyTorch 支持 Tensor 和 Python Number，Paddle 仅支持 Tensor，需要进行转写。 |
+| other  |  y  | 输入的 Tensor ，PyTorch 支持 Tensor 和 Python Number，Paddle 仅支持 Tensor，需要转写。 |
 
 ### 转写示例
 #### other

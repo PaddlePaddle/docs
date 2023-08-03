@@ -12,7 +12,7 @@ torch.distributed.reduce(tensor, dst, op=<torch.distributed.distributed_c10d.Red
 paddle.distributed.reduce(tensor, dst, op=ReduceOp.SUM, group=0)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
