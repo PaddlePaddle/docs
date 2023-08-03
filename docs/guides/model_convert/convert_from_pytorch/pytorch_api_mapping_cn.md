@@ -24,6 +24,7 @@
 | [torch.hub.XX](#id14)    | 主要为`torch.hub.XX`类 API |
 | [torch.linalg.XX](#id11)    | 主要为`torch.linalg.XX`类 API |
 | [torch.onnx.XX](#id15)    | 主要为`torch.onnx.XX`类 API |
+| [torch.optim.XX](#id22)    | 主要为`torch.optim.XX`类 API |
 | [torch.sparse.XX](#id12)    | 主要为`torch.sparse.XX`类 API |
 | [其他](#id13)    | 其他 API |
 
@@ -815,6 +816,15 @@
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1    | [torch.onnx.enable_log](https://pytorch.org/docs/stable/onnx.html#torch.onnx.enable_log) |  | 功能缺失        |
 | 2    | [torch.onnx.disable_log](https://pytorch.org/docs/stable/onnx.html#torch.onnx.disable_log) |  | 功能缺失        |
+
+***持续更新...***
+
+## torch.optim.XX API 映射列表
+梳理了`torch.optim.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
+
+| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 1    | [torch.optim.lr_scheduler.LinearLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.LinearLR.html#torch.optim.lr_scheduler.LinearLR) |  | 功能缺失        |
 
 ***持续更新...***
 
