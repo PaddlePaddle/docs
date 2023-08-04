@@ -1,9 +1,9 @@
-## [ torch 参数更多 ]troch.nn.Mish
+## [ torch 参数更多 ]torch.nn.Mish
 
-### [troch.nn.Mish](https://pytorch.org/docs/stable/generated/torch.nn.Mish.html?highlight=troch+nn+mish)
+### [torch.nn.Mish](https://pytorch.org/docs/stable/generated/torch.nn.Mish.html?highlight=torch+nn+mish)
 
 ```python
-troch.nn.Mish(inplace=False)
+torch.nn.Mish(inplace=False)
 ```
 
 ### [paddle.nn.Mish](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Mish_cn.html)
