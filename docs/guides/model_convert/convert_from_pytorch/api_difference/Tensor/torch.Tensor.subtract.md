@@ -12,12 +12,12 @@ paddle.Tensor.subtract(y,
                 name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | other         | y            | 表示减数的 Tensor，仅参数名不一致。  |
-| alpha         | -            | 表示`other`的乘数，PaddlePaddle 无此参数，需要进行转写。Paddle 应设置 y = alpha * other。  |
+| alpha         | -            | 表示`other`的乘数，Paddle 无此参数，需要转写。Paddle 应设置 y = alpha * other。  |
 
 
 ### 转写示例

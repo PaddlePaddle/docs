@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributed.recv
 
-### [torch.distributed.recv](https://pytorch.org/docs/1.13/distributed.html#torch.distributed.recv)
+### [torch.distributed.recv](https://pytorch.org/docs/stable/distributed.html#torch.distributed.recv)
 
 ```python
 torch.distributed.recv(tensor, src=None, group=None, tag=0)
@@ -12,7 +12,7 @@ torch.distributed.recv(tensor, src=None, group=None, tag=0)
 paddle.distributed.recv(tensor, src=0, group=None, use_calc_stream=True)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

@@ -1,6 +1,6 @@
 ## [参数不一致]torch.nn.functional.gelu
 
-### [torch.nn.functional.gelu](https://pytorch.org/docs/1.13/generated/torch.nn.functional.gelu.html#torch.nn.functional.gelu)
+### [torch.nn.functional.gelu](https://pytorch.org/docs/stable/generated/torch.nn.functional.gelu.html#torch.nn.functional.gelu)
 
 ```python
 torch.nn.functional.gelu(input, approximate='none')
@@ -19,7 +19,7 @@ paddle.nn.functional.gelu(x, approximate=False, name=None)
 | PyTorch     | PaddlePaddle | 备注                                                                                 |
 | ----------- | ------------ | ------------------------------------------------------------------------------------ |
 | input       | x            | 输入的 Tensor，仅参数名不一致。                                                      |
-| approximate | approximate  | 是否使用近似计算，PyTorch 取值 none 和 tanh，Paddle 取值为 bool 类型，需要进行转写。 |
+| approximate | approximate  | 是否使用近似计算，PyTorch 取值 none 和 tanh，Paddle 取值为 bool 类型，需要转写。 |
 
 ### 转写示例
 

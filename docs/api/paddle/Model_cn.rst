@@ -200,12 +200,12 @@ fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_fr
 
     1. 使用 Dataset 训练，并设置 batch_size 的例子。
 
-    COPY-FROM: paddle.Model.fit:code-example1
+    COPY-FROM: paddle.Model.fit:code-example3
 
 
     2. 使用 Dataloader 训练的例子.
 
-    COPY-FROM: paddle.Model.fit:code-example2
+    COPY-FROM: paddle.Model.fit:code-example4
 
 
 evaluate(eval_data, batch_size=1, log_freq=10, verbose=2, num_workers=0, callbacks=None, num_iters=None)

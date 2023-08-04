@@ -1,6 +1,6 @@
 ## [无参数]torch.cuda.device_count
 
-### [torch.cuda.device_count](https://pytorch.org/docs/1.13/generated/torch.cuda.device_count.html#torch.cuda.device_count)
+### [torch.cuda.device_count](https://pytorch.org/docs/stable/generated/torch.cuda.device_count.html#torch.cuda.device_count)
 
 ```python
 torch.cuda.device_count()

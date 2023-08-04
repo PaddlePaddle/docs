@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.full
 
-###  [torch.full](https://pytorch.org/docs/1.13/generated/torch.full.html?highlight=ful#torch.full)
+###  [torch.full](https://pytorch.org/docs/stable/generated/torch.full.html?highlight=ful#torch.full)
 
 ```python
 torch.full(size,
@@ -22,7 +22,7 @@ paddle.full(shape,
             name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -30,11 +30,11 @@ paddle.full(shape,
 | :------------ | :----------- | :----------------------------------------------------------- |
 | size          | shape        | 表示创建 Tensor 的形状，仅参数名不一致。                     |
 | fill_value    | fill_value   | 表示初始化输出 Tensor 的常量数据的值                         |
-| out           | -            | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。           |
+| out           | -            | 表示输出的 Tensor，Paddle 无此参数，需要转写。           |
 | dtype         | dtype        | 表示输出 Tensor 类型。                                       |
 | layout        | -            | 表示布局方式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
-| device        | -            | 表示 Tensor 存放设备位置，Paddle 无此参数，需要进行转写。    |
-| requires_grad | -            | 表示是否计算梯度，Paddle 无此参数，需要进行转写。            |
+| device        | -            | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。    |
+| requires_grad | -            | 表示是否计算梯度，Paddle 无此参数，需要转写。            |
 
 ### 转写示例
 

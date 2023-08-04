@@ -1,6 +1,6 @@
 ## [ 无参数 ] torch.Tensor.tolist
 
-### [torch.Tensor.tolist](https://pytorch.org/docs/1.13/generated/torch.Tensor.tolist.html#torch.Tensor.tolist)
+### [torch.Tensor.tolist](https://pytorch.org/docs/stable/generated/torch.Tensor.tolist.html#torch.Tensor.tolist)
 
 ```
 torch.Tensor.tolist()
@@ -12,4 +12,4 @@ torch.Tensor.tolist()
 paddle.Tensor.tolist()
 ```
 
-两者函数名不同，功能一致，无参数。
+两者功能一致，无参数。

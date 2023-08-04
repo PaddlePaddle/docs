@@ -11,25 +11,7 @@ PyLayerContext
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    from paddle.autograd import PyLayer
-
-    class cus_tanh(PyLayer):
-        @staticmethod
-        def forward(ctx, x):
-            # ctx is a object of PyLayerContext.
-            y = paddle.tanh(x)
-            ctx.save_for_backward(y)
-            return y
-
-        @staticmethod
-        def backward(ctx, dy):
-            # ctx is a object of PyLayerContext.
-            y, = ctx.saved_tensor()
-            grad = dy * (1 - paddle.square(y))
-            return grad
+COPY-FROM: paddle.autograd.PyLayerContext
 
 
 方法
@@ -53,26 +35,7 @@ None
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    from paddle.autograd import PyLayer
-
-    class cus_tanh(PyLayer):
-        @staticmethod
-        def forward(ctx, x):
-            # ctx is a context object that store some objects for backward.
-            y = paddle.tanh(x)
-            # Pass tensors to backward.
-            ctx.save_for_backward(y)
-            return y
-
-        @staticmethod
-        def backward(ctx, dy):
-            # Get the tensors passed by forward.
-            y, = ctx.saved_tensor()
-            grad = dy * (1 - paddle.square(y))
-            return grad
+COPY-FROM: paddle.autograd.PyLayerContext.save_for_backward
 
 
 saved_tensor()
@@ -87,26 +50,7 @@ saved_tensor()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    from paddle.autograd import PyLayer
-
-    class cus_tanh(PyLayer):
-        @staticmethod
-        def forward(ctx, x):
-            # ctx is a context object that store some objects for backward.
-            y = paddle.tanh(x)
-            # Pass tensors to backward.
-            ctx.save_for_backward(y)
-            return y
-
-        @staticmethod
-        def backward(ctx, dy):
-            # Get the tensors passed by forward.
-            y, = ctx.saved_tensor()
-            grad = dy * (1 - paddle.square(y))
-            return grad
+COPY-FROM: paddle.autograd.PyLayerContext.saved_tensor
 
 
 mark_not_inplace(self, *tensors)
@@ -129,33 +73,7 @@ None
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    class Exp(paddle.autograd.PyLayer):
-        @staticmethod
-        def forward(ctx, x):
-            ctx.mark_not_inplace(x)
-            return x
-
-        @staticmethod
-        def backward(ctx, grad_output):
-            out = grad_output.exp()
-            return out
-
-    x = paddle.randn((1, 1))
-    x.stop_gradient = False
-    attn_layers = []
-    for idx in range(0, 2):
-        attn_layers.append(Exp())
-
-    for step in range(0, 2):
-        a = x
-        for j in range(0,2):
-            a = attn_layers[j].apply(x)
-        a.backward()
-
+COPY-FROM: paddle.autograd.PyLayerContext.mark_not_inplace
 
 mark_non_differentiable(self, *tensors)
 '''''''''
@@ -179,32 +97,7 @@ None
 
 **代码示例**
 
-.. code-block:: python
-
-    import os
-    os.environ['FLAGS_enable_eager_mode'] = '1'
-    import paddle
-    from paddle.autograd import PyLayer
-    import numpy as np
-
-    class Tanh(PyLayer):
-        @staticmethod
-        def forward(ctx, x):
-            a = x + x
-            b = x + x + x
-            ctx.mark_non_differentiable(a)
-            return a, b
-
-        @staticmethod
-        def backward(ctx, grad_a, grad_b):
-            assert np.equal(grad_a.numpy(), paddle.zeros([1]).numpy())
-            assert np.equal(grad_b.numpy(), paddle.ones([1], dtype="float64").numpy())
-            return grad_b
-
-    x = paddle.ones([1], dtype="float64")
-    x.stop_gradient = False
-    a, b = Tanh.apply(x)
-    b.sum().backward()
+COPY-FROM: paddle.autograd.PyLayerContext.mark_non_differentiable
 
 set_materialize_grads(self, value)
 '''''''''
@@ -227,39 +120,4 @@ None
 
 **代码示例**
 
-.. code-block:: python
-
-    import os
-    os.environ['FLAGS_enable_eager_mode'] = '1'
-    import paddle
-    from paddle.autograd import PyLayer
-    import numpy as np
-
-    class Tanh(PyLayer):
-        @staticmethod
-        def forward(ctx, x):
-            return x+x+x, x+x
-
-        @staticmethod
-        def backward(ctx, grad, grad2):
-            assert np.equal(grad2.numpy(), paddle.zeros([1]).numpy())
-            return grad
-
-    class Tanh2(PyLayer):
-        @staticmethod
-        def forward(ctx, x):
-            ctx.set_materialize_grads(False)
-            return x+x+x, x+x
-
-        @staticmethod
-        def backward(ctx, grad, grad2):
-            assert grad2==None
-            return grad
-
-    x = paddle.ones([1], dtype="float64")
-    x.stop_gradient = False
-    Tanh.apply(x)[0].backward()
-
-    x2 = paddle.ones([1], dtype="float64")
-    x2.stop_gradient = False
-    Tanh2.apply(x2)[0].backward()
+COPY-FROM: paddle.autograd.PyLayerContext.set_materialize_grads

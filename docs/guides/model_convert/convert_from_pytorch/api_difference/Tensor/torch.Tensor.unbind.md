@@ -1,6 +1,6 @@
 ## [仅参数名不一致]torch.Tensor.unbind
 
-### [torch.Tensor.unbind](https://pytorch.org/docs/1.13/generated/torch.Tensor.unbind.html#torch.Tensor.unbind)
+### [torch.Tensor.unbind](https://pytorch.org/docs/stable/generated/torch.Tensor.unbind.html#torch.Tensor.unbind)
 
 ```python
 torch.Tensor.unbind(dim=0)

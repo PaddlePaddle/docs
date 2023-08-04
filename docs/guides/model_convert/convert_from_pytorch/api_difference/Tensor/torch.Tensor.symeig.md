@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.symeig
 
-### [torch.Tensor.symeig](https://pytorch.org/docs/1.13/generated/torch.Tensor.symeig.html#torch.Tensor.symeig)
+### [torch.Tensor.symeig](https://pytorch.org/docs/stable/generated/torch.Tensor.symeig.html#torch.Tensor.symeig)
 
 ```python
 torch.Tensor.symeig(eigenvectors=False, upper=True)
@@ -12,7 +12,7 @@ torch.Tensor.symeig(eigenvectors=False, upper=True)
 paddle.linalg.eigh(x, UPLO='L', name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

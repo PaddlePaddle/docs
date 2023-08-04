@@ -81,12 +81,12 @@ cross_entropy
 
 参数
 :::::::::
-    - **input** (Tensor) – 维度为 :math:`[N_1, N_2, ..., N_k, C]` 的多维 Tensor，其中最后一维 C 是类别数目。数据类型为 float32 或 float64。它需要未缩放的 ``input``。该 OP 不应该对 softmax 运算的输出进行操作，否则会产生错误的结果。
-    - **label** (Tensor) – 输入 input 对应的标签值。若 soft_label=False，要求 label 维度为 :math:`[N_1, N_2, ..., N_k]` 或 :math:`[N_1, N_2, ..., N_k, 1]`，数据类型为'int32', 'int64', 'float32', 'float64'，且值必须大于等于 0 且小于 C；若 soft_label=True，要求 label 的维度、数据类型与 input 相同，且每个样本各软标签的总和为 1。
-    - **weight** (Tensor，可选) – 权重 Tensor，需要手动给每个类调整权重，形状是（C）。它的维度与类别相同，数据类型为 float32，float64。默认值为 None。
-    - **ignore_index** (int) – 指定一个忽略的标签值，此标签值不参与计算，负值表示无需忽略任何标签值。仅在 soft_label=False 时有效。默认值为-100。
-    - **reduction** (str，可选) – 指示如何按批次大小平均损失，可选值为"none","mean","sum"，如果选择是"mean"，则返回 reduce 后的平均损失；如果选择是"sum"，则返回 reduce 后的总损失。如果选择是"none"，则返回没有 reduce 的损失。默认值是“mean”。
-    - **soft_label** (bool，可选) – 指明 label 是否为软标签。默认为 False，表示 label 为硬标签；若 soft_label=True 则表示软标签。
+    - **input** (Tensor) - 维度为 :math:`[N_1, N_2, ..., N_k, C]` 的多维 Tensor，其中最后一维 C 是类别数目。数据类型为 float32 或 float64。它需要未缩放的 ``input``。该 OP 不应该对 softmax 运算的输出进行操作，否则会产生错误的结果。
+    - **label** (Tensor) - 输入 input 对应的标签值。若 soft_label=False，要求 label 维度为 :math:`[N_1, N_2, ..., N_k]` 或 :math:`[N_1, N_2, ..., N_k, 1]`，数据类型为'int32', 'int64', 'float32', 'float64'，且值必须大于等于 0 且小于 C；若 soft_label=True，要求 label 的维度、数据类型与 input 相同，且每个样本各软标签的总和为 1。
+    - **weight** (Tensor，可选) - 权重 Tensor，需要手动给每个类调整权重，形状是（C）。它的维度与类别相同，数据类型为 float32，float64。默认值为 None。
+    - **ignore_index** (int) - 指定一个忽略的标签值，此标签值不参与计算，负值表示无需忽略任何标签值。仅在 soft_label=False 时有效。默认值为-100。
+    - **reduction** (str，可选) - 指示如何按批次大小平均损失，可选值为"none","mean","sum"，如果选择是"mean"，则返回 reduce 后的平均损失；如果选择是"sum"，则返回 reduce 后的总损失。如果选择是"none"，则返回没有 reduce 的损失。默认值是“mean”。
+    - **soft_label** (bool，可选) - 指明 label 是否为软标签。默认为 False，表示 label 为硬标签；若 soft_label=True 则表示软标签。
     - **axis** (int，可选) - 进行 softmax 计算的维度索引。它应该在 :math:`[-1，dim-1]` 范围内，而 ``dim`` 是输入 logits 的维度。默认值：-1。
     - **use_softmax** (bool，可选) - 指定是否对 input 进行 softmax 归一化。默认值：True。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

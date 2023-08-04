@@ -1,6 +1,6 @@
 ## [参数不一致]torch.cuda.Stream
 
-### [torch.cuda.Stream](https://pytorch.org/docs/1.13/generated/torch.cuda.Stream.html#torch.cuda.Stream)
+### [torch.cuda.Stream](https://pytorch.org/docs/stable/generated/torch.cuda.Stream.html#torch.cuda.Stream)
 
 ```python
 torch.cuda.Stream(device=None, priority=0, **kwargs)
@@ -19,7 +19,7 @@ paddle.device.cuda.Stream(device=None, priority=None)
 | PyTorch  | PaddlePaddle | 备注                                                                                      |
 | -------- | ------------ | ----------------------------------------------------------------------------------------- |
 | device   | device       | 希望分配 stream 的设备。                                                                  |
-| priority | priority     | stream 的优先级，PyTorch 取值范围为-1、0，Paddle 的取值范围为 1、2，Paddle 需要进行转写。 |
+| priority | priority     | stream 的优先级，PyTorch 取值范围为-1、0，Paddle 的取值范围为 1、2，需要转写。 |
 
 ### 转写示例
 

@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.quantile
 
-### [torch.Tensor.quantile](https://pytorch.org/docs/1.13/generated/torch.Tensor.quantile.html#torch.Tensor.quantile)
+### [torch.Tensor.quantile](https://pytorch.org/docs/stable/generated/torch.Tensor.quantile.html#torch.Tensor.quantile)
 
 ```python
 torch.Tensor.quantile(q, dim=None, keepdim=False, *, interpolation='linear')
@@ -12,7 +12,7 @@ torch.Tensor.quantile(q, dim=None, keepdim=False, *, interpolation='linear')
 paddle.Tensor.quantile(q, axis=None, keepdim=False, name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注                     |

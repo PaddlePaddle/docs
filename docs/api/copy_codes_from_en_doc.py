@@ -87,19 +87,30 @@ def find_codeblock_needed(cf_info):
     if cf_info['src_api'] in api_name_2_id_map:
         api_info = api_info_dict[api_name_2_id_map[cf_info['src_api']]]
         if 'docstring' in api_info:
-            codeblocks = extract_code_blocks_from_docstr(api_info['docstring'])
+            codeblocks = extract_code_blocks_from_docstr(
+                api_info['docstring'], google_style=False
+            )
             if not codeblocks:
                 logger.warning('found none codeblocks for %s', str(cf_info))
                 logger.warning(
                     'and the docstring is: %s', api_info['docstring']
                 )
                 return None
+
             cb_name = cf_info['cb_name']
+
+            # we use `cb_name` first, if not exist, then use the first codeblock `in_examples` as default.
+            example_codeblocks = [
+                codeblock
+                for codeblock in codeblocks
+                if codeblock.get('in_examples')
+            ]
             return (
-                codeblocks[0]
+                example_codeblocks[0]
                 if cb_name is None
                 else find_codeblock_needed_by_name(cb_name, codeblocks)
             )
+
     else:
         logger.warning('%s not in api_name_2_id_map', cf_info['src_api'])
         return None
@@ -111,6 +122,8 @@ def instert_codes_into_cn_rst_if_need(cnrstfilename):
     """
     rst_lines, copy_from_info = read_rst_lines_and_copy_info(cnrstfilename)
     update_needed = False
+    pattern_doctest = re.compile(r"\s*>>>\s*#\s*doctest:\s*.*")
+
     if copy_from_info:
         logger.info(
             "found copy-from for %s: %s", cnrstfilename, str(copy_from_info)
@@ -132,7 +145,9 @@ def instert_codes_into_cn_rst_if_need(cnrstfilename):
         cb_new.append('')
         indent += 4
         for line in cb_need['codes'].splitlines():
-            cb_new.append(' ' * indent + line)
+            if not pattern_doctest.match(line):
+                cb_new.append(' ' * indent + line)
+
         rst_lines[cf_info['lineno']] = "\n".join(cb_new)
         update_needed = True
     if update_needed:

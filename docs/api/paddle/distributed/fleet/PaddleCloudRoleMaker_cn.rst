@@ -12,23 +12,7 @@ PaddleCloudRoleMaker 是基于从环境变量中获取分布式相关信息进�
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import os
-    import paddle.distributed.fleet as fleet
-
-    os.environ["PADDLE_PSERVER_NUMS"] = "2"
-    os.environ["PADDLE_TRAINERS_NUM"] = "2"
-
-    os.environ["POD_IP"] = "127.0.0.1"
-    os.environ["PADDLE_PORT"] = "36001"
-    os.environ["TRAINING_ROLE"] = "PSERVER"
-    os.environ["PADDLE_PSERVERS_IP_PORT_LIST"] = \
-        "127.0.0.1:36001,127.0.0.2:36001"
-
-    os.environ["PADDLE_TRAINER_ID"] = "0"
-
-    fleet.PaddleCloudRoleMaker(is_collective=False)
+COPY-FROM: paddle.distributed.fleet.PaddleCloudRoleMaker
 
 方法
 ::::::::::::
@@ -45,7 +29,7 @@ string
 
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
     import paddle.distributed.fleet as fleet
     role = fleet.PaddleCloudRoleMaker(is_collective=False)

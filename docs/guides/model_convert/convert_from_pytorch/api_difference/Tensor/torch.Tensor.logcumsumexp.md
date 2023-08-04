@@ -18,5 +18,5 @@ paddle.Tensor.logcumsumexp(axis=None, dtype=None, name=None)
 
 | PyTorch | PaddlePaddle | 备注                                                                                                                                           |
 | ------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| dim     | axis         | 指明需要计算的维，仅参数名不同。 paddle 中默认 None。                                                                                          |
-| -       | dtype        | 输出 Tensor 的数据类型，支持 float32、float64。如果指定了，那么在执行操作之前，输入张量将被转换为 dtype，PyTorch 无此参数，Paddle 保持默认即可 |
+| dim     | axis         | 指明需要计算的维，仅参数名不一致。 paddle 中默认 None。                                                                                          |
+| -       | dtype        | 输出 Tensor 的数据类型，支持 float32、float64。如果指定了，那么在执行操作之前，输入张量将被转换为 dtype，PyTorch 无此参数，Paddle 保持默认即可。 |

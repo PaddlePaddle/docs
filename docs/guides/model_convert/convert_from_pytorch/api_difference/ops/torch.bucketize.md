@@ -11,7 +11,7 @@ torch.bucketize(input, boundaries, *, out_int32=False, right=False, out=None)
 paddle.bucketize(x, sorted_sequence, out_int32=False, right=False, name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -19,7 +19,7 @@ paddle.bucketize(x, sorted_sequence, out_int32=False, right=False, name=None)
 | <font color='red'>boundaries</font>| <font color='red'>sorted_sequence</font> | 数据的边界，仅参数名不一致。  |
 | <font color='red'>out_int32</font>| <font color='red'>out_int32</font> | 输出的数据类型是否为 int32。  |
 | <font color='red'>right</font>| <font color='red'>right</font> | 根据给定输入在 sorted_sequence 查找对应的上边界或下边界。  |
-| <font color='red'>out</font> | -  | 表示输出的 Tensor， Paddle 无此参数，需要进行转写。    |
+| <font color='red'>out</font> | -  | 表示输出的 Tensor， Paddle 无此参数，需要转写。    |
 
 
 ### 转写示例

@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.linalg.solve_triangular
 
-### [torch.linalg.solve_triangular](https://pytorch.org/docs/1.13/generated/torch.linalg.solve_triangular.html?highlight=torch+linalg+solve_triangular#torch.linalg.solve_triangular)
+### [torch.linalg.solve_triangular](https://pytorch.org/docs/stable/generated/torch.linalg.solve_triangular.html?highlight=torch+linalg+solve_triangular#torch.linalg.solve_triangular)
 
 ```python
 torch.linalg.solve_triangular(A, B, *, upper, left=True, unitriangular=False, out=None)
@@ -23,7 +23,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | upper       | upper        | 表示对系数 Tensor 取上三角还是下三角。                           |
 | left     | transpose           | 表示是否对系数 Tensor 进行转置 ，仅参数名不一致。                         |
 | unitriangular     | unitriangular           | 表示是否将系数 Tensor 对角线元素假设为 1 来求解方程。                         |
-| out           | -      | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。         |
+| out           | -      | 表示输出的 Tensor ， Paddle 无此参数，需要转写。         |
 
 ###  转写示例
 #### out：指定输出

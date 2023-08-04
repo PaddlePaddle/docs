@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.clip
-### [torch.clip](https://pytorch.org/docs/1.13/generated/torch.clip.html#torch.clip)
+### [torch.clip](https://pytorch.org/docs/stable/generated/torch.clip.html#torch.clip)
 
 ```python
 torch.clip(input,
@@ -18,14 +18,14 @@ paddle.clip(x,
             name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input|      | x              | 表示输入的 Tensor，仅参数名不一致。  |
 | min         | min            | 表示裁剪的最小值。                                      |
 | max         | max            | 表示裁剪的最大值。                                      |
-| out         | -              | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。    |
+| out         | -              | 表示输出的 Tensor，Paddle 无此参数，需要转写。    |
 
 
 ### 转写示例

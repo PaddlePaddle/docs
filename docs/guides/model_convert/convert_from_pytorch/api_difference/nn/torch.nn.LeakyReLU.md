@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.LeakyReLU
-### [torch.nn.LeakyReLU](https://pytorch.org/docs/1.13/generated/torch.nn.LeakyReLU.html?highlight=leakyrelu#torch.nn.LeakyReLU)
+### [torch.nn.LeakyReLU](https://pytorch.org/docs/stable/generated/torch.nn.LeakyReLU.html?highlight=leakyrelu#torch.nn.LeakyReLU)
 
 ```python
 torch.nn.LeakyReLU(negative_slope=0.01,
@@ -13,7 +13,7 @@ paddle.nn.LeakyReLU(negative_slope=0.01,
                     name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

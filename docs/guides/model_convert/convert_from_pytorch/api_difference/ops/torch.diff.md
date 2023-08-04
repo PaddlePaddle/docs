@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.diff
+## [ 参数不一致 ]torch.diff
 ### [torch.diff](https://pytorch.org/docs/stable/generated/torch.diff.html?highlight=diff#torch.diff)
 
 ```python
@@ -20,12 +20,14 @@ paddle.diff(x,
             name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致，但参数 `n` 的支持范围不同，具体如下：
+
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| n           | n         | 表示需要计算前向差值的次数。 |
+| n           | n         | 表示需要计算前向差值的次数。torch 支持 n 为任意值，paddle 仅支持 n=1，暂无转写方式。 |
 | <font color='red'> dim </font> | <font color='red'> axis </font> | 表示进行运算的轴，仅参数名不一致。  |
 | prepend           | prepend         | 表示在计算前向差值之前，沿着指定维度 axis 附加到输入 x 的前面。 |
 | append           | append         | 表示在计算前向差值之前，沿着指定维度 axis 附加到输入 x 的后面。 |

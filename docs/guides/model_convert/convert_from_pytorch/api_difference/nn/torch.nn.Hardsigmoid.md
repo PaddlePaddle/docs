@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.nn.Hardsigmoid
-### [torch.nn.Hardsigmoid](vpytorch.org/docs/1.13/generated/torch.nn.Hardsigmoid.html?highlight=hardsigmoid#torch.nn.Hardsigmoid)
+### [torch.nn.Hardsigmoid](vpytorch.org/docs/stable/generated/torch.nn.Hardsigmoid.html?highlight=hardsigmoid#torch.nn.Hardsigmoid)
 
 ```python
 torch.nn.Hardsigmoid(inplace=False)
@@ -11,7 +11,7 @@ torch.nn.Hardsigmoid(inplace=False)
 paddle.nn.Hardsigmoid(name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

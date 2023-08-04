@@ -1,6 +1,6 @@
 ## [参数完全一致]torch.distributions.kl.kl_divergence
 
-### [torch.distributions.kl.kl_divergence](https://pytorch.org/docs/1.13/distributions.html?highlight=torch+distributions+kl+kl_divergence#torch.distributions.kl.kl_divergence)
+### [torch.distributions.kl.kl_divergence](https://pytorch.org/docs/stable/distributions.html?highlight=torch+distributions+kl+kl_divergence#torch.distributions.kl.kl_divergence)
 
 ```python
 torch.distributions.kl.kl_divergence(p, q)

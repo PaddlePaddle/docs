@@ -20,7 +20,7 @@ paddle.kthvalue(x,
                 name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -29,7 +29,7 @@ paddle.kthvalue(x,
 | k         | k           | 表示需要沿轴查找的第 k 小值。                   |
 | dim         | axis            | 指定对输入 Tensor 进行运算的轴，仅参数名不一致。                   |
 | keepdim         | keepdim            | 是否在输出 Tensor 中保留减小的维度。                   |
-| out         | -            | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写 。                   |
+| out         | -            | 表示输出的 Tensor ， Paddle 无此参数，需要转写 。                   |
 
 ### 转写示例
 
@@ -39,5 +39,6 @@ paddle.kthvalue(x,
 torch.kthvalue(x, 2, 1, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.kthvalue(x, 2, 1), y)
+out0, out1 = paddle.kthvalue(x, 2, 1)
+paddle.assign(out0, y[0]), paddle.assign(out1, y[1])
 ```

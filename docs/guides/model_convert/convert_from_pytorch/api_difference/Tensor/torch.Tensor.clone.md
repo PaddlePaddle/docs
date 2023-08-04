@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.Tensor.clone
 
-### [torch.Tensor.clone](https://pytorch.org/docs/1.13/generated/torch.Tensor.clone.html#torch.Tensor.clone)
+### [torch.Tensor.clone](https://pytorch.org/docs/stable/generated/torch.Tensor.clone.html#torch.Tensor.clone)
 
 ```python
 torch.Tensor.clone(*, memory_format=torch.preserve_format)
@@ -12,7 +12,7 @@ torch.Tensor.clone(*, memory_format=torch.preserve_format)
 paddle.Tensor.clone()
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

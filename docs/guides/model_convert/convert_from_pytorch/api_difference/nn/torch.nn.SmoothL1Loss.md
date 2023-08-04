@@ -1,5 +1,5 @@
 # [torch 参数更多 ]torch.nn.SmoothL1Loss
-### [torch.nn.SmoothL1Loss](https://pytorch.org/docs/1.13/generated/torch.nn.SmoothL1Loss.html?highlight=smoothl1loss#torch.nn.SmoothL1Loss)
+### [torch.nn.SmoothL1Loss](https://pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html?highlight=smoothl1loss#torch.nn.SmoothL1Loss)
 
 ```python
 torch.nn.SmoothL1Loss(size_average=None,
@@ -16,7 +16,7 @@ paddle.nn.SmoothL1Loss(reduction='mean',
                        name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

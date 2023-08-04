@@ -1,6 +1,6 @@
 ## [ 参数完全一致 ] torch.random.manual_seed
 
-### [torch.random.manual_seed](https://pytorch.org/docs/1.13/random.html?highlight=torch+random+manual_seed#torch.random.manual_seed)
+### [torch.random.manual_seed](https://pytorch.org/docs/stable/random.html?highlight=torch+random+manual_seed#torch.random.manual_seed)
 
 ```python
 torch.random.manual_seed(seed)

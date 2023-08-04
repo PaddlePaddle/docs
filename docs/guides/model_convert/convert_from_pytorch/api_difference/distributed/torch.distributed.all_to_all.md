@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.distributed.all_to_all
 
-### [torch.distributed.all_to_all](https://pytorch.org/docs/1.13/distributed.html#torch.distributed.all_to_all)
+### [torch.distributed.all_to_all](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_to_all)
 
 ```python
 torch.distributed.all_to_all(output_tensor_list, input_tensor_list, group=None, async_op=False)
@@ -12,7 +12,7 @@ torch.distributed.all_to_all(output_tensor_list, input_tensor_list, group=None, 
 paddle.distributed.alltoall(in_tensor_list, out_tensor_list, group=None, use_calc_stream=True)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

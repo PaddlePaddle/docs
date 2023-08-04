@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.range
 
-###  [torch.range](https://pytorch.org/docs/1.13/generated/torch.range.html?highlight=range#torch.range)
+###  [torch.range](https://pytorch.org/docs/stable/generated/torch.range.html?highlight=range#torch.range)
 
 ```python
 torch.range(start=0,
@@ -24,7 +24,7 @@ paddle.arange(start=0,
               name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -33,11 +33,11 @@ paddle.arange(start=0,
 | start         | start        | 表示区间起点（且区间包括此值）。                             |
 | end           | end          | 表示区间终点（且通常区间不包括此值）。                       |
 | step          | step         | 表示均匀分割的步长。                                         |
-| out           | -            | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。           |
+| out           | -            | 表示输出的 Tensor，Paddle 无此参数，需要转写。           |
 | dtype         | dtype        | 表示输出 Tensor 类型。                                       |
 | layout        | -            | 表示布局方式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
-| device        | -            | 表示 Tensor 存放设备位置，Paddle 无此参数，需要进行转写。    |
-| requires_grad | -            | 表示是否计算梯度，Paddle 无此参数，需要进行转写。            |
+| device        | -            | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。    |
+| requires_grad | -            | 表示是否计算梯度，Paddle 无此参数，需要转写。            |
 
 ### 转写示例
 

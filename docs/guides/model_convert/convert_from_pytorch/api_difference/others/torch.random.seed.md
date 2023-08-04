@@ -15,5 +15,5 @@ PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 torch.random.seed()
 
 # Paddle 写法
-paddle.get_cuda_rng_state()[0].current_seed()
+paddle.get_rng_state()[0].current_seed()
 ```

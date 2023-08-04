@@ -38,7 +38,7 @@ If you encounter problems with @to_static, or want to learn about debugging skil
 | | [list sort](#8) | No | Lists will be converted to `TensorArray` and `TensorArray` don't support sort|
 | Errors and Exceptions |  assert | Yes | Convert to `Assert` if operand is tensor |
 | Python containers | [list](#8) | Partial support | Lists will be converted to `TensorArray`. Only `append`, `pop`, `index` is supported |
-| | [dict](#8) | Yes | ProgramTranslator will add the Tensors in a dict into PaddlePaddle static graph `Program`, so dict is supported by ProgramTranslator. |
+| | [dict](#8) | Yes | @to_static will add the Tensors in a dict into PaddlePaddle static graph `Program`, so dict is supported by @to_static. |
 | Third party library | numpy | Partial support | We suggest to use PaddlePaddle APIs to replace numpy API in this case. |
 
 ## Details
@@ -222,9 +222,9 @@ def recur_call(x):
 
 #### principle :
 
-1. list: if all elements in a list are Tensors, then ProgramTranslator converts it to TensorArray. PaddlePaddle static graph TensorArray supports append, pop, and modify, other list operations such as sort cannot be supported. When not all elements in a list are Tensors, ProgramTranslator will treat it as normal Python list.
+1. list: if all elements in a list are Tensors, then @to_static converts it to TensorArray. PaddlePaddle static graph TensorArray supports append, pop, and modify, other list operations such as sort cannot be supported. When not all elements in a list are Tensors, @to_static will treat it as normal Python list.
 
-2. dict: ProgramTranslator will add the Tensors in a dict into PaddlePaddle static graph Program, so dict is supported by ProgramTranslator.
+2. dict: @to_static will add the Tensors in a dict into PaddlePaddle static graph Program, so dict is supported by @to_static.
 
 ```
 def list_example(x, y):
@@ -240,7 +240,7 @@ def list_example(x, y):
 
 - multiple nesting
 
-For example: l = [[tensor1, tensor2], [tensor3, tensor4]], because ProgramTranslator transformed a list whose elements are all Tensors into PaddlePaddle static graph TensorArray, but TensorArray doesn’t support multi-dimensions, ProgramTranslator cannot run this case.
+For example: l = [[tensor1, tensor2], [tensor3, tensor4]], because @to_static transformed a list whose elements are all Tensors into PaddlePaddle static graph TensorArray, but TensorArray doesn’t support multi-dimensions, @to_static cannot run this case.
 
 We suggest to use 1-D list at most time, or use PaddlePaddle API create_array, array_read, array_write to control TensorArray.
 

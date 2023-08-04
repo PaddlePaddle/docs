@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.Tensor.stft
 
-### [torch.Tensor.stft](https://pytorch.org/docs/1.13/generated/torch.Tensor.stft.html#torch.Tensor.stft)
+### [torch.Tensor.stft](https://pytorch.org/docs/stable/generated/torch.Tensor.stft.html#torch.Tensor.stft)
 
 ```python
 torch.Tensor.stft(n_fft, hop_length=None, win_length=None, window=None, center=True, pad_mode='reflect', normalized=False, onesided=None, return_complex=None)
@@ -12,7 +12,7 @@ torch.Tensor.stft(n_fft, hop_length=None, win_length=None, window=None, center=T
 paddle.signal.stft(x, n_fft, hop_length=None, win_length=None, window=None, center=True, pad_mode='reflect', normalized=False, onesided=True, name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch    | PaddlePaddle | 备注 |

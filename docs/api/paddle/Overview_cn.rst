@@ -246,7 +246,7 @@ tensor 创建相关
     " :ref:`paddle.complex <cn_api_paddle_complex>` ", "给定实部和虚部，返回一个复数 Tensor"
     " :ref:`paddle.create_parameter <cn_api_fluid_layers_create_parameter>` ", "创建一个参数,该参数是一个可学习的变量, 拥有梯度并且可优化"
     " :ref:`paddle.clone <cn_api_tensor_clone>` ", "对输入 Tensor ``x`` 进行拷贝，并返回一个新的 Tensor，并且该操作提供梯度回传"
-    " :ref:`paddle.batch <cn_api_paddle_batch>` ", "一个 reader 的装饰器。返回的 reader 将输入 reader 的数据打包成指定的 batch_size 大小的批处理数据(不推荐使用)"
+    " :ref:`paddle.batch <cn_api_paddle_batch>` ", "一个 reader 的装饰器。返回的 reader 将输入 reader 的数据打包成指定的 batch_size 大小的批处理数据（不推荐使用）"
     " :ref:`paddle.polar <cn_api_paddle_polar>`", "对于给定的模 ``abs`` 和相位角 ``angle``，返回一个对应复平面上的坐标复数 Tensor"
     " :ref:`paddle.vander <cn_api_paddle_vander>` ", "生成范德蒙德矩阵。"
 
@@ -378,6 +378,10 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.index_add <cn_api_tensor_index_add>` ", "沿着指定轴 axis 将 index 中指定位置的 x 与 value 相加，并写入到结果 Tensor 中的对应位置"
     " :ref:`paddle.index_put <cn_api_tensor_index_put>` ", "构造一个与 x 完全相同的 Tensor，并依据 indices 中指定的索引将 value 的值对应的放置其中，随后输出"
     " :ref:`paddle.unflatten <cn_api_paddle_tensor_unflatten>` ", "将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状"
+    " :ref:`paddle.as_strided <cn_api_paddle_tensor_as_strided>` ", "使用特定的 shape、stride、offset，返回 x 的一个 view Tensor"
+    " :ref:`paddle.view <cn_api_paddle_tensor_view>` ", "使用特定的 shape 或者 dtype，返回 x 的一个 view Tensor"
+    " :ref:`paddle.view_as <cn_api_paddle_tensor_view_as>` ", "使用 other 的 shape，返回 x 的一个 view Tensor"
+    " :ref:`paddle.unfold <cn_api_paddle_tensor_unfold>` ", "返回 x 的一个 view Tensor。以滑动窗口式提取 x 的值"
 
 .. _tensor_manipulation_inplace:
 

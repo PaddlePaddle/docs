@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.symeig
 
-### [torch.symeig](https://pytorch.org/docs/1.13/generated/torch.symeig.html?highlight=torch+symeig#torch.symeig)
+### [torch.symeig](https://pytorch.org/docs/stable/generated/torch.symeig.html?highlight=torch+symeig#torch.symeig)
 
 ```python
 torch.symeig(input, eigenvectors=False, upper=True, *, out=None)
@@ -12,15 +12,15 @@ torch.symeig(input, eigenvectors=False, upper=True, *, out=None)
 paddle.linalg.eigh(x, UPLO='L', name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | x            | 输入的对称 Tensor，仅参数名不一致。                           |
-| eigenvectors          | -            | 表示是否计算特征向量。Paddle 暂无转写方式。                           |
+| eigenvectors   | -            | 表示是否计算特征向量。Paddle 无此参数，暂无转写方式。      |
 | upper          | UPLO            | 表示计算上三角或者下三角矩阵。 需进行转写。                          |
-| out          | -            | 表示输出的 Tensor 元组， Paddle 无此参数，需要进行转写。                           |
+| out          | -            | 表示输出的 Tensor 元组， Paddle 无此参数，需要转写。                           |
 
 ### 转写示例
 #### upper：表示计算上三角或者下三角矩阵

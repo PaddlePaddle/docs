@@ -1,5 +1,5 @@
 # [ torch 参数更多 ]torch.nn.BCEWithLogitsLoss
-### [torch.nn.BCEWithLogitsLoss](https://pytorch.org/docs/1.13/generated/torch.nn.BCEWithLogitsLoss.html#bcewithlogitsloss)
+### [torch.nn.BCEWithLogitsLoss](https://pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html#bcewithlogitsloss)
 
 ```python
 torch.nn.BCEWithLogitsLoss(weight=None,
@@ -18,7 +18,7 @@ paddle.nn.BCEWithLogitsLoss(weight=None,
                             name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

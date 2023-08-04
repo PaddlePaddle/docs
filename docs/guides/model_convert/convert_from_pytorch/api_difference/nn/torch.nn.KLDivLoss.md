@@ -1,5 +1,5 @@
 # [torch 参数更多 ]torch.nn.KLDivLoss
-### [torch.nn.KLDivLoss](https://pytorch.org/docs/1.13/generated/torch.nn.KLDivLoss.html?highlight=kldivloss#torch.nn.KLDivLoss)
+### [torch.nn.KLDivLoss](https://pytorch.org/docs/stable/generated/torch.nn.KLDivLoss.html?highlight=kldivloss#torch.nn.KLDivLoss)
 
 ```python
 torch.nn.KLDivLoss(size_average=None,
@@ -14,14 +14,14 @@ torch.nn.KLDivLoss(size_average=None,
 paddle.nn.KLDivLoss(reduction='mean')
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | size_average  | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。            |
 | reduce        | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。 |
 | reduction        | reduction            | 表示对输出结果的计算方式。  |
-| log_target    | -            | 指定目标是否为日志空间，Paddle 无此功能，暂无转写方式。  |
+| log_target    | -            | 指定目标是否为日志空间，Paddle 无此参数，暂无转写方式。  |
 
 ### 转写示例
 #### size_average
