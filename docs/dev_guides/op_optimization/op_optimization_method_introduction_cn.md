@@ -19,9 +19,9 @@ GPU Kernel 直接影响了算子性能, 我们推荐采用以下等通用优化�
 
 | 通用技巧 |
 | -- |
-| [向量化读写](https://developer.nvidia.com/blog/cuda-pro-tip-increase-performance-with-vectorized-memory-access>)|
-| [协线程操作](https://developer.nvidia.com/blog/cooperative-groups/>) |
-| [Warp 级操作](https://developer.nvidia.com/blog/using-cuda-warp-level-primitives>) |
+| [向量化读写](<https://developer.nvidia.com/blog/cuda-pro-tip-increase-performance-with-vectorized-memory-access>)|
+| [协线程操作](<https://developer.nvidia.com/blog/cooperative-groups/>) |
+| [Warp 级操作](<https://developer.nvidia.com/blog/using-cuda-warp-level-primitives>) |
 | [共享内存操作](<https://developer.nvidia.com/blog/efficient-matrix-transpose-cuda-cc/>) ([注意 Bank Conflicts](https://developer.nvidia.com/blog/using-shared-memory-cuda-cc/)) |
 
 

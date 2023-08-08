@@ -12,11 +12,11 @@ torch.distributed.rpc.shutdown(graceful=True, timeout=0)
 paddle.distributed.rpc.shutdown()
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
 | PyTorch  | PaddlePaddle | 备注                                          |
 | -------- | ------------ | --------------------------------------------- |
 | graceful | -            | 是否优雅关闭，Paddle 无此参数，暂无转写方式。 |
-| timeout  | -            | 操作超时时间，Paddle 无此参数，暂无转写方式。 |
+| timeout  | -            | 操作超时时间，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |

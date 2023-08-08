@@ -18,7 +18,7 @@ paddle.Tensor.equal_all(y, name=None)
 
 | PyTorch | PaddlePaddle | 备注                        |
 | ------- | ------------ | --------------------------- |
-| other   | y            | 输入 Tensor，仅参数名不同。 |
+| other   | y            | 输入 Tensor，仅参数名不一致。 |
 
 ## 转写示例
 ```Python

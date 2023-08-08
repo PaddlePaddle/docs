@@ -20,7 +20,7 @@ paddle.vander(x, n=None, increasing=False, name=None)
 | ------- | ------------ | ------------------------------------------------------------------ |
 | x       | x            | 输入的 Tensor。                                                    |
 | N       | n            | 输出中的列数, 仅参数名不一致。                                     |
-| -       | increasing   | 列的幂次顺序，PyTorch 无此参数，Paddle 设置为 True，需要进行转写。 |
+| -       | increasing   | 列的幂次顺序，PyTorch 无此参数，Paddle 设置为 True，需要转写。 |
 
 ### 转写示例
 

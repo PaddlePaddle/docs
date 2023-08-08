@@ -12,7 +12,7 @@ torch.cuda.comm.broadcast(tensor, devices=None, *, out=None)
 paddle.distributed.broadcast(tensor, src, group=0)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -20,7 +20,7 @@ paddle.distributed.broadcast(tensor, src, group=0)
 | ------- | ------------ | ------------------------------------------------------------ |
 | tensor  | tensor       | 如果当前进程编号是源，那么这个 Tensor 变量将被发送给其他进程。 |
 | devices | src          | 发送源的进程编号。                                           |
-| out     | -            | 表示输出的 Tensor ，Paddle 无此参数，需要进行转写。          |
+| out     | -            | 表示输出的 Tensor ，Paddle 无此参数，需要转写。          |
 | -       | group        | 工作的进程组编号，PyTorch 无此参数，Paddle 保持默认即可。    |
 
 ### 转写示例

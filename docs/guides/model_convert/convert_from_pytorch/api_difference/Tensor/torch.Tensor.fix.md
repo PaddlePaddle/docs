@@ -12,4 +12,4 @@ torch.Tensor.fix()
 paddle.Tensor.trunc(name=None)
 ```
 
-两者功能完全一致，无参数。
+两者功能一致，无参数。

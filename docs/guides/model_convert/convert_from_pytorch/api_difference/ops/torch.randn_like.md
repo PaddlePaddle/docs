@@ -12,9 +12,9 @@ torch.randn_like(input, *, dtype=None, layout=None, device=None, requires_grad=F
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | -            | 表示输入的 Tensor                                   |
 | dtype         | -            | 表示数据类型。               |
-| layout        | -            | 表示布局方式，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。                   |
-| device        | -            | 表示 Tensor 存放位置，PaddlePaddle 无此参数，需要进行转写。                   |
-| requires_grad | stop_gradient            | 表示是否不阻断梯度传导，PaddlePaddle 无此参数，需要进行转写。 |
+| layout        | -            | 表示布局方式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                   |
+| device        | -            | 表示 Tensor 存放位置，Paddle 无此参数，需要转写。                   |
+| requires_grad | stop_gradient            | 表示是否不阻断梯度传导，Paddle 无此参数，需要转写。 |
 | memory_format | -            | 表示内存格式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。               |
 
 PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。

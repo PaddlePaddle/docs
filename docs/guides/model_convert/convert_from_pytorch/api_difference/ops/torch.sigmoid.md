@@ -16,7 +16,7 @@ paddle.nn.functional.sigmoid(x, name=None)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor。                                      |
-| out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
+| out           | -            | 表示输出的 Tensor，Paddle 无此参数。               |
 
 
 ### 转写示例

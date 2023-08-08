@@ -12,4 +12,4 @@ torch.nn.Module.named_children()
 paddle.nn.Layer.named_children()
 ```
 
-两者功能完全一致，无参数。
+两者功能一致，无参数。

@@ -24,6 +24,7 @@
 | [torch.hub.XX](#id14)    | 主要为`torch.hub.XX`类 API |
 | [torch.linalg.XX](#id11)    | 主要为`torch.linalg.XX`类 API |
 | [torch.onnx.XX](#id15)    | 主要为`torch.onnx.XX`类 API |
+| [torch.optim.XX](#id22)    | 主要为`torch.optim.XX`类 API |
 | [torch.sparse.XX](#id12)    | 主要为`torch.sparse.XX`类 API |
 | [其他](#id13)    | 其他 API |
 
@@ -60,7 +61,7 @@
 | 26   |  [torch.chain_matmul](https://pytorch.org/docs/stable/generated/torch.chain_matmul.html?highlight=chain_matmul#torch.chain_matmul)  |    |   [组合替代实现](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.chain_matmul.md)  |
 | 27   |  [torch.cholesky_inverse](https://pytorch.org/docs/stable/generated/torch.cholesky_inverse.html?highlight=cholesky_inverse#torch.cholesky_inverse)  |    |   [组合替代实现](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.cholesky_inverse.md)  |
 | 28   |  [torch.cholesky_solve](https://pytorch.org/docs/stable/generated/torch.cholesky_solve.html?highlight=cholesky_solve#torch.cholesky_solve)  |    |    功能一致, 组合实现 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.cholesky_solve.md)  |
-| 29   |  [torch.chunk](https://pytorch.org/docs/stable/generated/torch.chunk.html?highlight=chunk#torch.chunk)  |  [paddle.chunk](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/chunk_cn.html#chunk)  |    功能一致, 仅参数名不同 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.chunk.md)  |
+| 29   |  [torch.chunk](https://pytorch.org/docs/stable/generated/torch.chunk.html?highlight=chunk#torch.chunk)  |  [paddle.chunk](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/chunk_cn.html#chunk)  |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.chunk.md)  |
 | 30   |  [torch.clamp](https://pytorch.org/docs/stable/generated/torch.clamp.html?highlight=clamp#torch.clamp)  |  [paddle.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/clip_cn.html#clip)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.clamp.md)  |
 | 31   |  [torch.conj](https://pytorch.org/docs/stable/generated/torch.conj.html?highlight=conj#torch.conj)  |  [paddle.conj](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/conj_cn.html#conj)  |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.conj.md)  |
 | 32   |  [torch.corrcoef](https://pytorch.org/docs/stable/generated/torch.corrcoef.html?highlight=corrcoef#torch.corrcoef)  |  [paddle.linalg.corrcoef](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/corrcoef_cn.html#corrcoef)  |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.corrcoef.md)  |
@@ -297,6 +298,7 @@
 | 262   |  [torch.get_deterministic_debug_mode](https://pytorch.org/docs/stable/generated/torch.get_deterministic_debug_mode.html#torch.get_deterministic_debug_mode)  |  | 功能缺失        |
 | 263   |  [torch.vsplit](https://pytorch.org/docs/stable/generated/torch.vsplit.html#torch.vsplit)  |  | 功能缺失        |
 | 264   |  [torch.hsplit](https://pytorch.org/docs/stable/generated/torch.hsplit.html#torch.hsplit)  |  | 功能缺失        |
+| 265   |  [torch.histogram](https://pytorch.org/docs/stable/generated/torch.histogram.html#torch.histogram)  |  | 功能缺失        |
 
 ***持续更新...***
 
@@ -644,6 +646,9 @@
 | 174   |  [torch.Tensor.hsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.hsplit.html#torch.Tensor.hsplit)  |  | 功能缺失        |
 | 175   |  [torch.Tensor.vsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.vsplit.html#torch.Tensor.vsplit)  |  | 功能缺失        |
 | 176   |  [torch.Tensor.dsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.dsplit.html#torch.Tensor.dsplit)  |  | 功能缺失        |
+| 177   |  [torch.Tensor.is_coalesced](https://pytorch.org/docs/stable/generated/torch.Tensor.is_coalesced.html#torch.Tensor.is_coalesced)  |  | 功能缺失        |
+| 178   |  [torch.Tensor.histogram](https://pytorch.org/docs/stable/generated/torch.Tensor.histogram.html#torch.Tensor.histogram)  |  | 功能缺失        |
+| 179   |  [torch.Tensor.geqrf](https://pytorch.org/docs/1.13/generated/torch.Tensor.geqrf.html?highlight=torch+tensor+geqrf#torch.Tensor.geqrf)  |  | 功能缺失        |
 
 ***持续更新...***
 
@@ -675,6 +680,8 @@
 | 12   |  [torch.utils.data.random_split](https://pytorch.org/docs/stable/data.html?highlight=torch+utils+data+random_split#torch.utils.data.random_split)  |  [paddle.io.random_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/random_split_cn.html)  |    功能一致, 参数完全一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.random_split.md)  |
 | 13   |  [torch.utils.dlpack.from_dlpack](https://pytorch.org/docs/stable/dlpack.html?highlight=torch+utils+dlpack+from_dlpack#torch.utils.dlpack.from_dlpack)  |  [paddle.utils.dlpack.from_dlpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/dlpack/from_dlpack_cn.html)  |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.dlpack.from_dlpack.md)  |
 | 14   |  [torch.utils.dlpack.to_dlpack](https://pytorch.org/docs/stable/dlpack.html?highlight=torch+utils+dlpack+to_dlpack#torch.utils.dlpack.to_dlpack)  |  [paddle.utils.dlpack.to_dlpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/dlpack/to_dlpack_cn.html)  |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.dlpack.to_dlpack.md)  |
+| 15   |  [torch.utils.cpp_extension.load_inline](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.load_inline)  |   | 功能缺失  |
+| 16   |  [torch.utils.cpp_extension.include_paths](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.include_paths)  |   | 功能缺失  |
 
 
 ***持续更新...***
@@ -715,7 +722,9 @@
 | 16   |  [torch.cuda.memory_usage](https://pytorch.org/docs/stable/generated/torch.cuda.memory_usage.html#torch.cuda.memory_usage)  |  | 功能缺失        |
 | 17   |  [torch.cuda.mem_get_info](https://pytorch.org/docs/stable/generated/torch.cuda.mem_get_info.html#torch.cuda.mem_get_info)  |  | 功能缺失        |
 | 18   |  [torch.cuda.set_rng_state](https://pytorch.org/docs/stable/generated/torch.cuda.set_rng_state.html#torch.cuda.set_rng_state)  |  | 功能缺失        |
-
+| 19   | [torch.cuda.default_stream](https://pytorch.org/docs/stable/generated/torch.cuda.default_stream.html?highlight=torch+cuda+default_stream#torch.cuda.default_stream) | | 功能缺失 |
+| 20   | [torch.cuda.get_arch_list](https://pytorch.org/docs/stable/generated/torch.cuda.get_arch_list.html?highlight=torch+cuda+get_arch_list#torch.cuda.get_arch_list) | | 功能缺失 |
+| 21   | [torch.cuda.is_initialized](https://pytorch.org/docs/stable/generated/torch.cuda.is_initialized.html?highlight=torch+cuda+is_initialized#torch.cuda.is_initialized) | | 功能缺失 |
 
 ***持续更新...***
 
@@ -729,6 +738,13 @@
 | 3    | [torch.distributed.ReduceOp](https://pytorch.org/docs/stable/distributed.html?highlight=torch+distributed+reduceop#torch.distributed.ReduceOp) | [paddle.distributed.ReduceOp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/ReduceOp_cn.html) | 功能一致，无参数， [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.barrier.md)         |
 | 4   |  [torch.distributed.rpc.WorkerInfo](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.WorkerInfo)  |  | 功能缺失        |
 | 5   |  [torch.distributed.rpc.functions.async_execution](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.functions.async_execution)  |  | 功能缺失        |
+| 6   |  [torch.distributed.broadcast_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.broadcast_multigpu)  |  | 功能缺失        |
+| 7   |  [torch.distributed.all_reduce_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_reduce_multigpu)  |  | 功能缺失        |
+| 8   |  [torch.distributed.reduce_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_multigpu)  |  | 功能缺失        |
+| 9   |  [torch.distributed.all_gather_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_gather_multigpu)  |  | 功能缺失        |
+| 10   |  [torch.distributed.reduce_scatter_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_scatter_multigpu)  |  | 功能缺失        |
+| 11   |  [torch.distributions.constraints.Constraint](https://pytorch.org/docs/stable/distributions.html#torch.distributions.constraints.Constraint)  |  | 功能缺失        |
+| 12   |  [torch.distributions.constraint_registry.ConstraintRegistry](https://pytorch.org/docs/stable/distributions.html#torch.distributions.constraint_registry.ConstraintRegistry)  |  | 功能缺失        |
 
 
 ***持续更新...***
@@ -789,6 +805,7 @@
 | 8   |  [torch.linalg.eigvals](https://pytorch.org/docs/stable/generated/torch.linalg.eigvals.html?highlight=torch+linalg+eigvals#torch.linalg.eigvals)  |  [paddle.linalg.eigvals](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/eigvals_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.eigvals.md)  |
 | 9   |  [torch.linalg.eig](https://pytorch.org/docs/stable/generated/torch.linalg.eig.html?highlight=torch+linalg+eig#torch.linalg.eig)  |  [paddle.linalg.eig](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/eig_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.eig.md)  |
 | 10   |  [torch.linalg.multi_dot](https://pytorch.org/docs/stable/generated/torch.linalg.multi_dot.html?highlight=torch+linalg+multi_dot#torch.linalg.multi_dot)  |  [paddle.linalg.multi_dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/multi_dot_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.multi_dot.md)  |
+| 11   |  [torch.linalg.matrix_exp](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_exp.html#torch.linalg.matrix_exp)  |  | 功能缺失        |
 
 ***持续更新...***
 
@@ -799,6 +816,15 @@
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1    | [torch.onnx.enable_log](https://pytorch.org/docs/stable/onnx.html#torch.onnx.enable_log) |  | 功能缺失        |
 | 2    | [torch.onnx.disable_log](https://pytorch.org/docs/stable/onnx.html#torch.onnx.disable_log) |  | 功能缺失        |
+
+***持续更新...***
+
+## torch.optim.XX API 映射列表
+梳理了`torch.optim.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
+
+| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 1    | [torch.optim.lr_scheduler.LinearLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.LinearLR.html#torch.optim.lr_scheduler.LinearLR) |  | 功能缺失        |
 
 ***持续更新...***
 

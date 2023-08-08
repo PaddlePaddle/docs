@@ -18,7 +18,7 @@ paddle.nn.Layer.to("cpu")
 
 | PyTorch | PaddlePaddle | 备注                              |
 | ------- | ------------ | --------------------------------- |
-| -       | device       | Paddle 设置为 cpu，需要进行转写。 |
+| -       | device       | Paddle 设置为 cpu，需要转写。 |
 
 ### 转写示例
 

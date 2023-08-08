@@ -12,7 +12,7 @@ torch.distributions.transforms.StackTransform(tseq, dim=0, cache_size=0)
 paddle.distribution.StackTransform(transforms, axis=0)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

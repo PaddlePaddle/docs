@@ -20,7 +20,7 @@ paddle.fft.ifft(x, n=None, axis=- 1, norm='backward', name=None)
 | n             | n            |输出 Tensor 在每一个傅里叶变换轴上的长度。               |
 | dim           | axis         |计算快速傅里叶变换的轴。仅参数名不一致。                  |
 | norm           |norm          |傅里叶变换的缩放模式，缩放系数由变换的方向和缩放模式同时决定，完全一致。|
-| out            | -            |输出的 Tensor,Paddle 无此参数，需要进行转写。  |
+| out            | -            |输出的 Tensor,Paddle 无此参数，需要转写。  |
 
 ### 转写示例
 #### out：指定输出

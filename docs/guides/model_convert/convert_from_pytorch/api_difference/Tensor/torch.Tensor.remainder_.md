@@ -17,7 +17,7 @@ paddle.remainder_(x, y)
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| divisor         | y            | 除数，Pytorch 可为 Tensor or Scalar，Paddle 仅可为 Tensor，需要进行转写。   |
+| divisor         | y            | 除数，Pytorch 可为 Tensor or Scalar，Paddle 仅可为 Tensor，需要转写。   |
 
 ### 转写示例
 #### divisor：除数为 Scalar
