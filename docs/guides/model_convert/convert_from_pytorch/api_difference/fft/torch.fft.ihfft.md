@@ -6,7 +6,7 @@
 torch.fft.ihfft(input,
                 n=None,
                 dim=- 1,
-                norm=None,
+                norm='backward',
                 *,
                 out=None)
 ```
@@ -29,7 +29,7 @@ paddle.fft.ihfft(x,
 | n             | n            |傅里叶变换点数。                                   |
 | dim           | axis         |傅里叶变换的轴，如果没有指定，默认使用最后一维，仅参数名不一致。|
 | norm           |norm          |傅里叶变换的缩放模式，缩放系数由变换的方向和缩放模式同时决定，完全一致。|
-| out            | -            |输出的 Tensor,Paddle 无此参数，需要进行转写。              |
+| out            | -            |输出的 Tensor,Paddle 无此参数，需要转写。              |
 
 ### 转写示例
 #### out：指定输出

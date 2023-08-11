@@ -30,12 +30,12 @@ paddle.signal.stft(x,
                    name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 输入的数据，是维度为 1D 或者 2D 的 Tensor， 数据类型可为复数（复信号），仅参数名不同。   |
+| input         | x            | 输入的数据，是维度为 1D 或者 2D 的 Tensor， 数据类型可为复数（复信号），仅参数名不一致。   |
 | n_fft         | n_fft        | 离散傅里叶变换的样本点个数。                                               |
 | hop_length    | hop_length   | 对输入分帧时，相邻两帧偏移的样本点个数。默认为 None（为 n_ff/4）。          |
 | win_length    | win_length   | 信号窗的长度。默认为 None（为 n_fft）。      |

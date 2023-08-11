@@ -18,4 +18,4 @@ paddle.nn.functional.hardshrink(x, threshold=0.5, name=None)
 
 | PyTorch                           | PaddlePaddle                 | 备注                                                   |
 |-----------------------------------|------------------------------| ------------------------------------------------------ |
-| <font color='red'> lambd </font> | <font color='red'> threshold </font> | Hardshrink 阈值，仅参数名不同。                                     |
+| <font color='red'> lambd </font> | <font color='red'> threshold </font> | Hardshrink 阈值，仅参数名不一致。                                     |

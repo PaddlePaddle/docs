@@ -12,7 +12,7 @@ torch.triangular_solve(b, A, upper=True, transpose=False, unitriangular=False, *
 paddle.linalg.triangular_solve(x, y, upper=True, transpose=False, unitriangular=False, name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -23,7 +23,7 @@ paddle.linalg.triangular_solve(x, y, upper=True, transpose=False, unitriangular=
 | upper         | upper         | 对系数矩阵 x 取上三角还是下三角。                           |
 | transpose     | transpose     | 是否对系数矩阵 x 进行转置。                                 |
 | unitriangular | unitriangular | 如果为 True，则将系数矩阵 x 对角线元素假设为 1 来求解方程。 |
-| out           | -             | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。          |
+| out           | -             | 表示输出的 Tensor，Paddle 无此参数，需要转写。          |
 
 ### 转写示例
 

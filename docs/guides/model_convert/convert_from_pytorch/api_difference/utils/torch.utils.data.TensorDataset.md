@@ -18,7 +18,7 @@ paddle 参数和 torch 参数用法不一致，具体如下：
 
 | PyTorch  | PaddlePaddle | 备注                                             |
 |----------|--------------|------------------------------------------------|
-| *tensors | tensors      | 输入的 Tensor， PyTorch 是多个元素， Paddle 是列表或元组，需要进行转写 |
+| *tensors | tensors      | 输入的 Tensor， PyTorch 是多个元素， Paddle 是列表或元组，需要转写 |
 
 ### 转写示例
 

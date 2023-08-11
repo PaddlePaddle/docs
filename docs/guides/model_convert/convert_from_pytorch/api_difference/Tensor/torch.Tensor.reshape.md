@@ -16,7 +16,7 @@ Pytorch 的 `*shape` 相比于 Paddle 的 `shape` 额外支持可变参数的用
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| *shape | shape | torch 支持可变参数或 list/tuple，paddle 仅支持 list/tuple。对于可变参数的用法，需要进行转写。 |
+| *shape | shape | torch 支持可变参数或 list/tuple，paddle 仅支持 list/tuple。对于可变参数的用法，需要转写。 |
 
 ### 转写示例
 #### *shape: 新数组的维度序列，可变参数用法

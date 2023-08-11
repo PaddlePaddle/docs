@@ -12,7 +12,7 @@ torch.distributions.uniform.Uniform(low, high, validate_args=None)
 paddle.distribution.Uniform(low, high, name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -20,4 +20,4 @@ paddle.distribution.Uniform(low, high, name=None)
 | ------------- | ------------ | --------------------------------------------- |
 | low           | low          | 均匀分布的下边界。                            |
 | high          | high         | 均匀分布的上边界。                            |
-| validate_args | -            | 有效参数列表，Paddle 无此参数，暂无转写方式。 |
+| validate_args | -            | 是否添加验证环节。Paddle 无此参数，一般对训练结果影响不大，可直接删除。 |

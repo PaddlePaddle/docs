@@ -12,11 +12,11 @@ torch.Tensor.flatten(start_dim=0, end_dim=- 1)
 paddle.Tensor.flatten(start_axis=0, stop_axis=-1, name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 
 | PyTorch   | PaddlePaddle | 备注                           |
 | --------- | ------------ | ------------------------------ |
-| start_dim | start_axis   | 展开的起始维度，仅参数名不同。 |
-| end_dim   | stop_axis    | 展开的结束维度，仅参数名不同。 |
+| start_dim | start_axis   | 展开的起始维度，仅参数名不一致。 |
+| end_dim   | stop_axis    | 展开的结束维度，仅参数名不一致。 |

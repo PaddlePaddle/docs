@@ -21,9 +21,9 @@ paddle.nn.functional.linear(x,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input          | x         | 表示输入的 Tensor ，仅参数名不一致。                                     |
-| weight          | weight         | 表示权重 Tensor， PyTorch weight 参数的 shape 为 (out_features,in_features)，Paddle weight 参数的 shape 为 (in_features, out_features)，需要进行转写。                                     |
-| bias          | bias         | 表示偏重 Tensor 。                                     |
+| input          | x         | 表示输入的 Tensor ，仅参数名不一致。                         |
+| weight          | weight    | 表示权重 Tensor， PyTorch weight 参数的 shape 为 (out_features,in_features)，Paddle weight 参数的 shape 为 (in_features, out_features)，两者互为转置，需要转写。          |
+| bias          | bias         | 表示偏重 Tensor 。                                      |
 
 ### 转写示例
 #### weight

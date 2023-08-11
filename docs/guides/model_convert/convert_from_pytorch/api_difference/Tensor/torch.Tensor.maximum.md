@@ -1,4 +1,4 @@
-## [ 仅参数名不同 ] torch.Tensor.maximum
+## [ 仅参数名不一致 ] torch.Tensor.maximum
 
 ### [torch.Tensor.maximum](https://pytorch.org/docs/stable/generated/torch.Tensor.maximum.html#torch.Tensor.maximum)
 
@@ -12,8 +12,8 @@ torch.Tensor.maximum(other)
 paddle.Tensor.maximum(y)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 | PyTorch                          | PaddlePaddle                    | 备注                                 |
 |----------------------------------|---------------------------------|------------------------------------|
-|              other               |                 y          | 输⼊第二个 Tensor ，仅参数名不同。              |
+|              other               |                 y          | 输⼊第二个 Tensor ，仅参数名不一致。              |

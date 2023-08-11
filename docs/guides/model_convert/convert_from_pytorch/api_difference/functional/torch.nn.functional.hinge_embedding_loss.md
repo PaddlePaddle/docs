@@ -12,7 +12,7 @@ torch.nn.functional.hinge_embedding_loss(input, target, margin=1.0, size_average
 paddle.nn.functional.hinge_embedding_loss(input, label, margin=1.0, reduction='mean', name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

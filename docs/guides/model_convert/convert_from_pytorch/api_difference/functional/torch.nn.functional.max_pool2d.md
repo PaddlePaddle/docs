@@ -1,4 +1,4 @@
-## [torch 参数更多]torch.nn.functional.max_pool2d
+## [ torch 参数更多 ]torch.nn.functional.max_pool2d
 
 ### [torch.nn.functional.max_pool2d](https://pytorch.org/docs/stable/generated/torch.nn.functional.max_pool2d.html#torch.nn.functional.max_pool2d)
 
@@ -12,7 +12,7 @@ torch.nn.functional.max_pool2d(input, kernel_size, stride=None, padding=0, dilat
 paddle.nn.functional.max_pool2d(x, kernel_size, stride=None, padding=0, ceil_mode=False, return_mask=False, data_format='NCHW', name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

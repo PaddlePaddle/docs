@@ -1,4 +1,4 @@
-## [ 仅参数名不同 ] torch.Tensor.minimum
+## [ 仅参数名不一致 ] torch.Tensor.minimum
 
 ### [torch.Tnsor.,minimum](https://pytorch.org/docs/stable/generated/torch.Tensor.minimum.html)
 
@@ -12,8 +12,8 @@ torch.Tensor.maximum(other)
 paddle.Tensor.minimum(y)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 | PyTorch                          | PaddlePaddle                    | 备注                                 |
 |----------------------------------|---------------------------------|------------------------------------|
-|              other               |                 y          | 输⼊第二个 Tensor ，仅参数名不同。              |
+|              other               |                 y          | 输⼊第二个 Tensor ，仅参数名不一致。              |

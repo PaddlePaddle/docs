@@ -42,7 +42,7 @@ paddle.nn.Conv1D(in_channels,
 | padding          | padding            | 表示填充大小。                           |
 | dilation          | dilation            | 表示空洞大小。                           |
 | groups          | groups            | 表示分组数。                           |
-| `bias`         | -            | 是否在输出中添加可学习的 bias， Paddle 无此参数，需要进行转写。                           |
+| `bias`         | -            | 是否在输出中添加可学习的 bias， Paddle 无此参数，需要转写。                           |
 | padding_mode          | padding_mode            | 表示填充模式。                           |
 | device        | -            | 指定 Tensor 的设备，一般对网络训练结果影响不大，可直接删除。   |
 | dtype         | -            | 指定权重参数属性的对象，一般对网络训练结果影响不大，可直接删除。 |

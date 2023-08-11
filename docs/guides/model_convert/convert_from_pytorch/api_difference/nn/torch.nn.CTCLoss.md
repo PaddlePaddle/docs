@@ -23,4 +23,4 @@ paddle.nn.CTCLoss(blank=0,
 | ------------- | --------- | ------------------------------------------------------------ |
 | blank         | blank     | 空格标记的 ID 值。                                           |
 | reduction     | reduction | 表示应用于输出结果的计算方式。                               |
-| zero_infinity | -         | 是否将无穷大损失及其梯度置 0，Paddle 无此参数，需要转写，paddle 暂无转写方式。 |
+| zero_infinity | -         | 是否将无穷大损失及其梯度置 0，Paddle 无此参数，暂无转写方式。 |

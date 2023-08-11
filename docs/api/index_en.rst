@@ -49,7 +49,7 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 |                               | Dataset, and DataLoader                               |
 +-------------------------------+-------------------------------------------------------+
 | paddle.jit                    | Dynamic graph to static graph APIs, including         |
-|                               | to_static, ProgramTranslator, TracedLayer, etc.       |
+|                               | to_static, not_to_static, save, load, etc.            |
 +-------------------------------+-------------------------------------------------------+
 | paddle.metric                 | APIs related to evaluation computation such as        |
 |                               | Accuracy and Auc.                                     |

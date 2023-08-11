@@ -12,7 +12,7 @@ torch.set_printoptions(precision=None, threshold=None, edgeitems=None, linewidth
 paddle.set_printoptions(precision=None, threshold=None, edgeitems=None, sci_mode=None, linewidth=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -23,7 +23,7 @@ paddle.set_printoptions(precision=None, threshold=None, edgeitems=None, sci_mode
 | edgeitems | edgeitems    | 以缩略形式打印时左右两边的元素个数，默认值为 3。             |
 | linewidth | linewidth    | 每行的字符数，默认值为 80。                                  |
 | sci_mode  | sci_mode     | 是否以科学计数法打印，Pytorch 默认根据网络自动选择， Paddle 默认值为 False。 |
-| profile   | -            | 预设风格，支持 `default`, `short`, `full`。 Paddle 无此参数， 需要进行转写。 |
+| profile   | -            | 预设风格，支持 `default`, `short`, `full`。 Paddle 无此参数， 需要转写。 |
 
 ### 转写示例
 

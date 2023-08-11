@@ -24,7 +24,7 @@ paddle.hub.help(repo_dir,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| github        | repo_dir      |repo 地址，支持 git 地址形式和 local 地址，仅参数名不同。  |
+| github        | repo_dir      |repo 地址，支持 git 地址形式和 local 地址，仅参数名不一致。  |
 | model          | model        |模型的名字。                                           |
 | force_reload   | force_reload |指定是否强制拉取。                       |
 | skip_validation| -            |检查由 github 参数指定的分支或提交是否属于存储库所有者，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
