@@ -21,4 +21,4 @@ paddle.distributed.broadcast_object_list(object_list, src, group=None)
 | object_list  | object_list  | 表示在目标进程上为待广播的 object 列表，在其他进程上为用于接收广播结果的 object 列表。 |
 | src     | src             | 表示目标进程的 rank。                                                  |
 | group   | group           | 表示执行该操作的进程组实例。   |
-| device     | -               | 表示如果不为空，则对象被序列化并转换为 Tensor，Paddle 无此参数，暂无转写方式。   |
+| device     | -               | 表示如果不为空，则对象在被广播之前将被序列化并转换为 Tensor 后移动到设备上，Paddle 无此参数，暂无转写方式。   |

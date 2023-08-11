@@ -1,4 +1,4 @@
-## [仅参数名不一致]torch.distributed.reduce
+## [参数不一致]torch.distributed.reduce
 
 ### [torch.distributed.reduce](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce)
 
@@ -12,7 +12,7 @@ torch.distributed.reduce(tensor, dst, op=<RedOpType.SUM: 0>, group=None, async_o
 paddle.distributed.reduce(tensor, dst, op=ReduceOp.SUM, group=None, sync_op=True)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+两者功能一致但参数不一致，其中 Pytorch 的 async_op 与 Paddle 的 sync_op 用法不一致，具体如下：
 
 ### 参数映射
 
@@ -22,7 +22,7 @@ paddle.distributed.reduce(tensor, dst, op=ReduceOp.SUM, group=None, sync_op=True
 | dst      | dst          | 表示目标进程的 rank。                  |
 | op       | op           | 表示归约的具体操作。                              |
 | group    | group        | 表示执行该操作的进程组实例。                            |
-| async_op | sync_op      | 表示是否异步操作，Paddle 参数名不同且默认值不同，需要进行转写，转写方式为：对 async_op 取反。 |
+| async_op | sync_op      | 表示是否异步或同步操作，两者功能相反，需要转写。 |
 
 
 ### 转写示例
