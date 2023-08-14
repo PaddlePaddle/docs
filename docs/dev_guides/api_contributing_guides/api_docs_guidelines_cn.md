@@ -4,7 +4,7 @@
 2. **API 文档的字段**：API 名称、API 功能描述、API 参数、API 返回、API 代码示例、API 属性（class）、API 方法（methods）等。API 抛出异常的情况，不需要在文档中体现；
 3. **API 功能描述**：请注意，看文档的用户没有和开发同学一样的知识背景。因此，请提示用户在什么场景下使用该 API。请使用深度学习领域通用的词汇和说法。（[深度学习常用术语表](https://github.com/PaddlePaddle/docs/wiki/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B8%B8%E7%94%A8%E6%9C%AF%E8%AF%AD%E8%A1%A8)）；
 4. **API 参数**：写清楚对输入参数的要求，写清楚在不同情况下的行为区别（例默认值时的行为）。同类性质的参数（如：输入 Tensor `x`，每个 API 中的 `name` 参数），可以直接从这里复制内容：**[常用文档写法](https://github.com/PaddlePaddle/docs/blob/develop/docs/templates/common_docs.py)**；
-5. **API 代码示例**：中英文文档当中的代码示例完全一致（注释可不用翻译），中文文档建议使用 [COPY-FROM](https://github.com/PaddlePaddle/docs/wiki/%E4%B8%AD%E6%96%87API%E6%96%87%E6%A1%A3%E5%A4%8D%E5%88%B6%E8%8B%B1%E6%96%87API%E6%96%87%E6%A1%A3%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81) 的方式与英文文档做同步。代码示例使用 2.0 版本中的 API，可运行。尽量不用随机输入，注释形式给出输出值。构造输入数据时，尽量使用 paddle 提供的 API，如:  `paddle.zeros`、`paddle.ones`、`paddle.full`、`paddle.arange`、`paddle.rand`、`paddle.randn`、`paddle.randint`、`paddle.normal`、`paddle.uniform`，尽量不要引入第三方库（如 NumPy）；
+5. **API 代码示例**：中英文文档当中的代码示例完全一致（注释可不用翻译），中文文档建议使用 [COPY-FROM](https://github.com/PaddlePaddle/docs/wiki/%E4%B8%AD%E6%96%87API%E6%96%87%E6%A1%A3%E5%A4%8D%E5%88%B6%E8%8B%B1%E6%96%87API%E6%96%87%E6%A1%A3%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81) 的方式与英文文档做同步。代码示例使用 2.0 版本中的 API，可运行。尽量不用随机输入，并给出输出值。构造输入数据时，尽量使用 paddle 提供的 API，如:  `paddle.zeros`、`paddle.ones`、`paddle.full`、`paddle.arange`、`paddle.rand`、`paddle.randn`、`paddle.randint`、`paddle.normal`、`paddle.uniform`，尽量不要引入第三方库（如 NumPy）；
 6. **其他**：2.0 中的 API，对于 `Variable`、`LodTensor`、`Tensor`，统一使用 `Tensor`。`to_variable` 也统一改为 `to_tensor`；
 7. 对于 `Linear`、`Conv2D`、`L1Loss` 这些 class 形式的 API，需要写清楚当这个 `callable` 被调用时的输入输出的形状（如 `forward` 方法的参数）。位置放在现在的 `Parameters` / `参数`这个 block 后面，具体为：
 
@@ -54,12 +54,14 @@
         Examples:
             .. code-block:: python
 
-                import paddle
+                >>> import paddle
 
-                x = paddle.to_tensor([2, 3, 4], 'float64')
-                y = paddle.to_tensor([1, 5, 2], 'float64')
-                z = paddle.add(x, y)
-                print(z)  # [3., 8., 6. ]
+                >>> x = paddle.to_tensor([2, 3, 4], 'float64')
+                >>> y = paddle.to_tensor([1, 5, 2], 'float64')
+                >>> z = paddle.add(x, y)
+                >>> print(z)
+                Tensor(shape=[3], dtype=float64, place=Place(cpu), stop_gradient=True,
+                [3., 8., 6.])
 
         """
 
@@ -235,56 +237,390 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
 
 ### API 代码示例（重要）
 
-代码示例是 API 文档的核心部分之一，毕竟 talk is cheap，show me the code。所以，在 API 代码示例中，应该对前文描述的 API 使用中的各种场景，尽可能的在一个示例中给出，并用注释给出对应的结果。
-如
+代码示例是 API 文档的核心部分之一，毕竟 talk is cheap，show me the code。所以，在 API 代码示例中，应该对前文描述的 API 使用中的各种场景，尽可能的在一个示例中给出，并给出对应的结果。
+
+**书写规范**
+
+书写示例代码就如同在 python 的标准交互界面 REPL (Read-Eval-Print Loop) 中编程一样。这里同样使用：
+
+- `>>> `
+
+    表示单行语句，如：
+
+    ``` python
+    >>> import paddle
+    >>> x = paddle.to_tensor([[1, 2], [3, 4]])
+    >>> y = paddle.to_tensor([[5, 6], [7, 8]])
+    >>> res = paddle.multiply(x, y)
+    ```
+
+- `... `
+
+    表示 多行/复合 语句，如：
+
+    ``` python
+    >>> from paddle import nn
+    >>> class Mnist(nn.Layer):
+    ...     def __init__(self):
+    ...         super().__init__()
+    ...
+    ```
+
+为了保证示例代码的正确性，CI 环境会对其进行检查，
+
+> 示例检查，请参考：
+> - 将 xdoctest 引入到飞桨框架工作流中, https://github.com/PaddlePaddle/community/blob/master/rfcs/Docs/%E5%B0%86%20xdoctest%20%E5%BC%95%E5%85%A5%E5%88%B0%E9%A3%9E%E6%A1%A8%E6%A1%86%E6%9E%B6%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%B8%AD.md
+> - 将 xdoctest 引入到飞桨框架工作流中（补充） - 详细设计, https://github.com/PaddlePaddle/Paddle/blob/develop/tools/sampcd_processor_readme.md
+> - `doctest`, https://docs.python.org/3/library/doctest.html#module-doctest
+> - `xdoctest`, https://xdoctest.readthedocs.io/en/latest/
+>
+
+因此，请在书写示例代码时遵循以下规范：
+
+1. **显性的输出好于注释**
+
+    请使用 `print` 输出变量的结果。
+
+    如：
+
+    ``` python
+    >>> import paddle
+    >>> x = paddle.to_tensor([[1, 2], [3, 4]])
+    >>> y = paddle.to_tensor([[5, 6], [7, 8]])
+    >>> res = paddle.multiply(x, y)
+    >>> print(res)
+    Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
+    [[5 , 12],
+     [21, 32]])
+    ```
+
+    如无特殊情况，请勿使用 `#` 的注释方式提供输出值。
+
+    如：
+
+    ``` python
+    >>> res = paddle.multiply(x, y) # shape=[2, 2]
+    ```
+
+    ``` python
+    >>> res = paddle.multiply(x, y)
+    # [[5 , 12],
+    #  [21, 32]]
+    ```
+
+    等，都是不建议的输出方式。
+
+    另外，在 书写/拷贝 示例代码时，请注意以下几点：
+
+    - 输出中请 **不要** 留有空行。
+
+        如：
+
+        ``` python
+        >>> import paddle
+        >>> x = paddle.to_tensor([[1, 2], [3, 4]])
+        >>> y = paddle.to_tensor([[5, 6], [7, 8]])
+        >>> res = paddle.multiply(x, y)
+        >>> print(res)
+        Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
+        [[5 , 12],
+
+        [21, 32]])
+        ```
+
+        请改为：
+
+        ``` python
+        >>> import paddle
+        >>> x = paddle.to_tensor([[1, 2], [3, 4]])
+        >>> y = paddle.to_tensor([[5, 6], [7, 8]])
+        >>> res = paddle.multiply(x, y)
+        >>> print(res)
+        Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
+        [[5 , 12],
+         [21, 32]])
+        ```
+
+        另外，代码中的 多行/复合 语句，也 **不要** 留有空行。
+
+        如：
+
+        ``` python
+        >>> class Mnist(nn.Layer):
+        ...     def __init__(self):
+
+        ...         super().__init__()
+        ...
+
+        ```
+
+        请改为：
+
+        ``` python
+        >>> class Mnist(nn.Layer):
+        ...     def __init__(self):
+        ...
+        ...         super().__init__()
+        ...
+        ```
+
+        或者：
+
+        ``` python
+        >>> class Mnist(nn.Layer):
+        ...     def __init__(self):
+        ...         super().__init__()
+        ...
+        ```
+
+    - 输出请统一 **左对齐** 其上方的 `>>> ` 或 `... `。
+
+        如：
+
+        ``` python
+        >>> import paddle
+        >>> x = paddle.to_tensor([[1, 2], [3, 4]])
+        >>> y = paddle.to_tensor([[5, 6], [7, 8]])
+        >>> res = paddle.multiply(x, y)
+        >>> print(res)
+            Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
+            [[5 , 12],
+            [21, 32]])
+        ```
+
+        请改为：
+
+        ``` python
+        >>> import paddle
+        >>> x = paddle.to_tensor([[1, 2], [3, 4]])
+        >>> y = paddle.to_tensor([[5, 6], [7, 8]])
+        >>> res = paddle.multiply(x, y)
+        >>> print(res)
+        Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
+        [[5 , 12],
+         [21, 32]])
+        ```
+
+    - 适度的空格用于美化输出是允许的。
+
+        如：
+
+        ``` python
+        >>> import paddle
+        >>> x = paddle.to_tensor([[1, 2], [3, 4]])
+        >>> y = paddle.to_tensor([[5, 6], [7, 8]])
+        >>> res = paddle.multiply(x, y)
+        >>> print(res)
+        Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
+        [[5 , 12],
+        [21, 32]])
+        ```
+
+        可以对齐其中的方括号为：
+
+
+        ``` python
+        >>> import paddle
+        >>> x = paddle.to_tensor([[1, 2], [3, 4]])
+        >>> y = paddle.to_tensor([[5, 6], [7, 8]])
+        >>> res = paddle.multiply(x, y)
+        >>> print(res)
+        Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
+        [[5 , 12],
+         [21, 32]])
+        ```
+
+    - 对于多行的输出，可以使用 `...` 作为通配符使用。
+
+        如：
+
+        ``` python
+        >>> sampler = MySampler(data_source=RandomDataset(100))
+        >>> for index in sampler:
+        ...     print(index)
+        0
+        1
+        2
+        ...
+        99
+        ```
+
+2. **固定的输出好于随机的输出**
+
+    请尽量保证输出为固定值，对于示例中的随机情况，请设置随机种子。
+
+    如：
+
+    ``` python
+    >>> import paddle
+    >>> paddle.seed(2023)
+    >>> data = paddle.rand(shape=[2, 3])
+    >>> print(data)
+    Tensor(shape=[2, 3], dtype=float32, place=Place(cpu), stop_gradient=True,
+    [[0.86583614, 0.52014720, 0.25960937],
+     [0.90525323, 0.42400089, 0.40641287]])
+    ```
+
+3. **明确的设备好于默认的设备**
+
+    由于 `Tensor` 在 `CPU`、`GPU` 等设备上面的行为可能不同，请写明具体的设备需求。
+
+    如：
+
+    ``` python
+    >>> # doctest: +REQUIRES(env:GPU)
+    >>> import paddle
+    >>> paddle.device.set_device('gpu')
+    >>> count = paddle.device.cuda.device_count()
+    >>> print(count)
+    1
+    ```
+
+    其中：
+
+    - 第 `1` 行是 `doctest` 检查指令。
+    - 第 `3` 行是设备的设置。
+
+    CI 中默认使用 `CPU` 作为检查环境，因此，如无特殊情况，可以 **不用** 写明 `CPU` 环境，如：
+
+    ``` python
+    >>> paddle.device.set_device('cpu') # 可以不写
+    ```
+
+    另外，对于有 `GPU`、`XPU` 等设备需求的情况，需要在代码开头添加 `doctest` 指令，如：
+
+    - 需要 `GPU` 环境
+
+        ``` python
+        >>> # doctest: +REQUIRES(env:GPU)
+        >>> ...
+        ```
+
+    - 需要 `XPU` 环境
+
+        ``` python
+        >>> # doctest: +REQUIRES(env:XPU)
+        >>> ...
+        ```
+
+    - 需要 `GPU`、`XPU` 等多个环境
+
+        ``` python
+        >>> # doctest: +REQUIRES(env:GPU, env:XPU)
+        >>> ...
+        ```
+
+    请注意这里的 **大小写** ！
+
+4. **能够检查好于跳过检查**
+
+    示例代码的检查可以保证其正确性，但并不是所有代码均能够 正常/正确 的在 CI 环境中运行。
+
+    如：
+
+    - 依赖外部资源才能运行，如 `image`、`audio` 等文件。
+    - 代码的随机性由系统决定，如 [os.walk](https://docs.python.org/3/library/os.html#os.walk) 等方法。
+    - 代码不能在 CI 中正常运行，如 `inspect.getsourcelines` 会抛出 `raise OSError('could not get source code')`
+
+    等情况，此时，可以使用 `doctest` 的 `SKIP` 指令跳过检查，如：
+
+    ``` python
+    >>> # doctest: +SKIP('file not exist')
+    >>> with open('cat.jpg') as f:
+    ...     im = load_image_bytes(f.read())
+    ```
+
+    `SKIP` 指令还可以成对使用，如：
+    ``` python
+    >>> # doctest: +SKIP('file not exist')
+    >>> with open('cat.jpg') as f:
+    ...     im = load_image_bytes(f.read())
+    >>> # doctest: -SKIP
+    >>> x = paddle.to_tensor([[1, 2], [3, 4]])
+    >>> ...
+    ```
+
+    其中，
+
+    - `+SKIP` 表示后面的代码要跳过，`-SKIP` 表示恢复检查。
+    - `+SKIP` 可以加上说明，如 `+SKIP('file not exist')`
+
 
 **注意事项**
 
 - 示例代码需要与当前版本及推荐用法保持一致：**develop 分支下 fluid namespace 以外的 API，不能再有 fluid 关键字，只需要提供动态图的示例代码**；
-- 尽量不用随机输入，需要以注释形式给出输出值；
 - 中英文示例代码，不做任何翻译，保持完全一致，中文文档建议使用 [COPY-FROM](https://github.com/PaddlePaddle/docs/wiki/%E4%B8%AD%E6%96%87API%E6%96%87%E6%A1%A3%E5%A4%8D%E5%88%B6%E8%8B%B1%E6%96%87API%E6%96%87%E6%A1%A3%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81) 的方式与英文文档做同步；
 - 原则上，所有提供的 API 都需要提供示例代码，对于 `class member methods`、`abstract API`、`callback` 等情况，可以在提交 PR 时说明相应的使用方法的文档的位置或文档计划后，通过白名单审核机制通过 CI 检查；
 - 对于仅为 GPU 环境提供的 API，当该示例代码在 CPU 上运行时，运行后给出含有 “Not compiled with CUDA” 的错误提示，也可认为该 API 行为正确。
 
-英文 API 代码示例格式规范如下：
 
-    def api():
-      """
-      Examples:
+英文 API 代码示例如下：
+
+``` python
+def api():
+    """
+    Examples:
         .. code-block:: python
 
             示例代码位置
 
+    """
+```
+
+或者
+
+``` python
+def api():
+    """
+    Examples:
         .. code-block:: python
+            :name: example-1
+
+            示例代码位置
+
+        .. code-block:: python
+            :name: example-2
 
             示例代码位置 (存在多个示例代码)
-      """
+    """
+```
 
 英文格式如 `paddle.multiply`：
 
-    def multiply(x, y, axis=-1, name=None):
-      """
-      Examples:
+``` python
+def multiply(x, y, axis=-1, name=None):
+    """
+    Examples:
         .. code-block:: python
 
-                import paddle
+                >>> import paddle
 
-                x = paddle.to_tensor([[1, 2], [3, 4]])
-                y = paddle.to_tensor([[5, 6], [7, 8]])
-                res = paddle.multiply(x, y)
-                print(res) # [[5, 12], [21, 32]]
+                >>> x = paddle.to_tensor([[1, 2], [3, 4]])
+                >>> y = paddle.to_tensor([[5, 6], [7, 8]])
+                >>> res = paddle.multiply(x, y)
+                >>> print(res)
+                Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
+                [[5 , 12],
+                 [21, 32]])
 
-                x = paddle.to_tensor([[[1, 2, 3], [1, 2, 3]]])
-                y = paddle.to_tensor([2])
-                res = paddle.multiply(x, y)
-                print(res) # [[2, 4, 6], [2, 4, 6]]]
+                >>> x = paddle.to_tensor([[[1, 2, 3], [1, 2, 3]]])
+                >>> y = paddle.to_tensor([2])
+                >>> res = paddle.multiply(x, y)
+                >>> print(res)
+                Tensor(shape=[1, 2, 3], dtype=int64, place=Place(cpu), stop_gradient=True,
+                [[[2, 4, 6],
+                  [2, 4, 6]]])
+    """
+```
 
 中文格式如 `paddle.add`：
 
-    代码示例
-    ::::::::::
+``` reStructuredText
+代码示例
+::::::::::
 
-    COPY-FROM: paddle.add
+COPY-FROM: paddle.add
+```
 
 ### API 属性
 
