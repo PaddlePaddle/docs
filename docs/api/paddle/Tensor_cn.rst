@@ -2573,6 +2573,9 @@ i1e(x, name=None)
 
 返回类型：Tensor
 
+**代码示例**
+COPY-FROM: paddle.Tensor.i1e
+
 请参考 :ref:`cn_api_paddle_tensor_i1e`
 
 nnz()
@@ -2586,17 +2589,8 @@ nnz()
 返回类型：int
 
 **代码示例**
+COPY-FROM: paddle.Tensor.nnz
 
-    .. code-block:: python
-
-        import paddle
-
-        indices = [[0, 1, 2], [1, 2, 0]]
-        values = [1.0, 2.0, 3.0]
-        dense_shape = [3, 3]
-        coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape)
-        coo.nnz()
-        # 3
 
 indices()
 :::::::::
