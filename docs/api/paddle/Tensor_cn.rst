@@ -48,6 +48,15 @@ dtype
         x = paddle.to_tensor([1.0, 2.0, 3.0])
         print("tensor's type is: {}".format(x.dtype))
 
+type
+:::::::::
+
+查看一个 Tensor 的类型。
+
+**代码示例**
+COPY-FROM: paddle.type
+
+
 grad
 :::::::::
 
@@ -176,6 +185,14 @@ place
         cpu_tensor = paddle.to_tensor(1, place=paddle.CPUPlace())
         print(cpu_tensor.place)
 
+layout
+:::::::::
+
+查看一个 Tensor 的 layout，layout 是 Tensor 的一个重要的概念，其描述了 tensor 的数据格式。
+
+**代码示例**
+COPY-FROM: paddle.layout
+
 shape
 :::::::::
 
@@ -183,6 +200,24 @@ shape
 
 **代码示例**
 COPY-FROM: paddle.shape
+
+strides
+:::::::::
+
+查看一个 Tensor 的 strides。
+
+**代码示例**
+COPY-FROM: paddle.strides
+
+
+offset
+:::::::::
+
+查看一个 Tensor 的第一个元素数据地址相对于 Tensor 持有的存储空间首地址的偏移量。
+
+**代码示例**
+COPY-FROM: paddle.offset
+
 
 stop_gradient
 :::::::::
@@ -197,6 +232,218 @@ stop_gradient
         import paddle
         print("Tensor's stop_gradient: ", paddle.to_tensor([[1, 2], [3, 4]]).stop_gradient)
         # Tensor's stop_gradient: True
+
+data
+:::::::::
+
+查看或者修改一个 Tensor 的数据。
+
+**代码示例**
+COPY-FROM: paddle.data
+
+
+numpy()
+:::::::::
+
+返回：将 Tensor 转为 numpy 返回
+
+返回类型：numpy\.ndarray
+
+**代码示例**
+COPY-FROM: paddle.numpy
+
+
+
+reconstruct_from_(other)
+:::::::::
+
+返回：使用 other 重新构建当前 Tensor
+
+返回类型：None
+
+**代码示例**
+COPY-FROM: paddle.reconstruct_from_
+
+
+
+clone()
+:::::::::
+
+返回：克隆的新的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+COPY-FROM: paddle.clone
+
+
+
+retain_grads()
+:::::::::
+
+返回：在 backward()时保留该 Tensor 的反向梯度
+
+返回类型：None
+
+**代码示例**
+COPY-FROM: paddle.retain_grads
+
+
+
+clear_gradient(set_to_zero=True)
+:::::::::
+
+清理 Tensor 的反向梯度。
+参数：
+    - **set_to_zero** (bool) - True 表示将梯度值覆盖为 0。False 则释放梯度持有的存储空间。
+
+返回：None
+
+**代码示例**
+COPY-FROM: paddle.clear_gradient
+
+
+
+detach()
+:::::::::
+
+返回：返回一个新的 Tensor，数据与本 Tensor 相等。但新的 Tensor 脱离当前计算图。
+
+返回类型：Tensor
+
+**代码示例**
+COPY-FROM: paddle.detach
+
+
+detach_()
+:::::::::
+
+返回：让当前 Tensor 脱离当前计算图。
+
+返回类型：Tensor
+
+**代码示例**
+COPY-FROM: paddle.detach_
+
+
+get_tensor()
+:::::::::
+
+返回：让当前 Tensor 内部的数据 Tensor，如 DenseTensor、DistTensor。
+
+返回类型：DenseTensor/DistTensor
+
+**代码示例**
+COPY-FROM: paddle.get_tensor
+
+
+
+
+_register_backward_hook()
+:::::::::
+
+返回：为当前 Tensor 注册一个反向 hook，当本 Tensor 的反向梯度完成计算时调用改 hook。
+
+返回类型：None
+
+**代码示例**
+COPY-FROM: paddle._register_backward_hook
+
+
+
+is_dense()
+:::::::::
+
+返回：返回本 Tensor 是否为 DenseTensor。
+
+返回类型：bool
+
+**代码示例**
+COPY-FROM: paddle.is_dense
+
+
+
+is_dist()
+:::::::::
+
+返回：返回本 Tensor 是否为 DistTensor。
+
+返回类型：bool
+
+**代码示例**
+COPY-FROM: paddle.is_dist
+
+
+
+
+_bump_inplace_version()
+:::::::::
+
+Tensor 的 inplace version 加 1。
+
+返回类型：None
+
+**代码示例**
+COPY-FROM: paddle._bump_inplace_version
+
+
+
+
+
+data_ptr()
+:::::::::
+
+返回：返回本 Tensor 第一个元素的数据地址。
+
+返回类型：int
+
+**代码示例**
+COPY-FROM: paddle.data_ptr
+
+
+
+
+
+get_strides()
+:::::::::
+
+返回：返回本 Tensor 的 strides。
+
+返回类型：list
+
+**代码示例**
+COPY-FROM: paddle.get_strides
+
+
+
+
+contiguous()
+:::::::::
+
+返回：将本 Tensor 转为连续的 Tensor 返回。如果本 Tensor 已经是连续的则返回本 Tensor。
+
+返回类型：Tensor。
+
+**代码示例**
+COPY-FROM: paddle.contiguous
+
+
+
+
+is_contiguous()
+:::::::::
+
+返回：本 Tensor 是否为连续的。
+
+返回类型：bool
+
+**代码示例**
+COPY-FROM: paddle.is_contiguous
+
+
+
+
+
 
 abs(name=None)
 :::::::::
