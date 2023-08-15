@@ -256,7 +256,7 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
 
 - `... `
 
-    表示 多行/复合 语句，如：
+    表示多行或复合语句，如：
 
     ``` python
     >>> from paddle import nn
@@ -269,19 +269,19 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
 为了保证示例代码的正确性，CI 环境会对其进行检查，
 
 > 示例检查，请参考：
-> - 将 xdoctest 引入到飞桨框架工作流中, https://github.com/PaddlePaddle/community/blob/master/rfcs/Docs/%E5%B0%86%20xdoctest%20%E5%BC%95%E5%85%A5%E5%88%B0%E9%A3%9E%E6%A1%A8%E6%A1%86%E6%9E%B6%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%B8%AD.md
-> - 将 xdoctest 引入到飞桨框架工作流中（补充） - 详细设计, https://github.com/PaddlePaddle/Paddle/blob/develop/tools/sampcd_processor_readme.md
-> - `doctest`, https://docs.python.org/3/library/doctest.html#module-doctest
-> - `xdoctest`, https://xdoctest.readthedocs.io/en/latest/
+> - [「将 xdoctest 引入到飞桨框架工作流中」 RFC](https://github.com/PaddlePaddle/community/blob/master/rfcs/Docs/%E5%B0%86%20xdoctest%20%E5%BC%95%E5%85%A5%E5%88%B0%E9%A3%9E%E6%A1%A8%E6%A1%86%E6%9E%B6%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%B8%AD.md)
+> - [「将 xdoctest 引入到飞桨框架工作流中」 详细设计](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/sampcd_processor_readme.md)
+> - [「doctest」官方文档 ](https://docs.python.org/3/library/doctest.html#module-doctest)
+> - [ 「xdoctest」官方文档 ](https://xdoctest.readthedocs.io/en/latest/)
 >
 
 因此，请在书写示例代码时遵循以下规范：
 
-1. **显性的输出好于注释**
+1. **显式的输出优于注释**
 
-    请使用 `print` 输出变量的结果。
+    请尽量将用户可能关注的输出，如变量的值、`Tensor` 的 `shape` 等，书写或拷贝至示例中。
 
-    如：
+    可以使用 `print` 输出结果，如：
 
     ``` python
     >>> import paddle
@@ -304,13 +304,13 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
 
     ``` python
     >>> res = paddle.multiply(x, y)
-    # [[5 , 12],
-    #  [21, 32]]
+    >>> # [[5 , 12],
+    >>> #  [21, 32]]
     ```
 
     等，都是不建议的输出方式。
 
-    另外，在 书写/拷贝 示例代码时，请注意以下几点：
+    另外，在书写或拷贝示例代码时，请注意以下几点：
 
     - 输出中请 **不要** 留有空行。
 
@@ -341,7 +341,7 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
          [21, 32]])
         ```
 
-        另外，代码中的 多行/复合 语句，也 **不要** 留有空行。
+        另外，代码中的多行或复合语句，也 **不要** 留有空行。
 
         如：
 
@@ -445,7 +445,7 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
         99
         ```
 
-2. **固定的输出好于随机的输出**
+2. **固定的输出优于随机**
 
     请尽量保证输出为固定值，对于示例中的随机情况，请设置随机种子。
 
@@ -461,13 +461,13 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
      [0.90525323, 0.42400089, 0.40641287]])
     ```
 
-3. **明确的设备好于默认的设备**
+3. **明确的设备优于默认**
 
     由于 `Tensor` 在 `CPU`、`GPU` 等设备上面的行为可能不同，请写明具体的设备需求。
 
     如：
 
-    ``` python
+    ``` text
     >>> # doctest: +REQUIRES(env:GPU)
     >>> import paddle
     >>> paddle.device.set_device('gpu')
@@ -491,30 +491,30 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
 
     - 需要 `GPU` 环境
 
-        ``` python
+        ``` text
         >>> # doctest: +REQUIRES(env:GPU)
         >>> ...
         ```
 
     - 需要 `XPU` 环境
 
-        ``` python
+        ``` text
         >>> # doctest: +REQUIRES(env:XPU)
         >>> ...
         ```
 
     - 需要 `GPU`、`XPU` 等多个环境
 
-        ``` python
+        ``` text
         >>> # doctest: +REQUIRES(env:GPU, env:XPU)
         >>> ...
         ```
 
-    请注意这里的 **大小写** ！
+    请注意这里的 **大小写** ，其中 `doctest` 为小写，`REQUIRES` 为大写，`env` 为小写，`GPU` 为大写。
 
-4. **能够检查好于跳过检查**
+4. **尝试检查优于跳过**
 
-    示例代码的检查可以保证其正确性，但并不是所有代码均能够 正常/正确 的在 CI 环境中运行。
+    示例代码的检查可以保证其正确性，但并不是所有代码均能够正常或正确的在 CI 环境中运行。
 
     如：
 
@@ -524,14 +524,14 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
 
     等情况，此时，可以使用 `doctest` 的 `SKIP` 指令跳过检查，如：
 
-    ``` python
+    ``` text
     >>> # doctest: +SKIP('file not exist')
     >>> with open('cat.jpg') as f:
     ...     im = load_image_bytes(f.read())
     ```
 
     `SKIP` 指令还可以成对使用，如：
-    ``` python
+    ``` text
     >>> # doctest: +SKIP('file not exist')
     >>> with open('cat.jpg') as f:
     ...     im = load_image_bytes(f.read())
