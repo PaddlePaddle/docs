@@ -191,7 +191,7 @@ layout
 查看一个 Tensor 的 layout，layout 是 Tensor 的一个重要的概念，其描述了 tensor 的数据格式。
 
 **代码示例**
-COPY-FROM: paddle.layout
+COPY-FROM: paddle.Tensor.layout
 
 shape
 :::::::::
@@ -199,7 +199,7 @@ shape
 查看一个 Tensor 的 shape，shape 是 Tensor 的一个重要的概念，其描述了 tensor 在每个维度上的元素数量。
 
 **代码示例**
-COPY-FROM: paddle.shape
+COPY-FROM: paddle.Tensor.shape
 
 strides
 :::::::::
@@ -207,7 +207,7 @@ strides
 查看一个 Tensor 的 strides。
 
 **代码示例**
-COPY-FROM: paddle.strides
+COPY-FROM: paddle.Tensor.strides
 
 
 offset
@@ -216,7 +216,7 @@ offset
 查看一个 Tensor 的第一个元素数据地址相对于 Tensor 持有的存储空间首地址的偏移量。
 
 **代码示例**
-COPY-FROM: paddle.offset
+COPY-FROM: paddle.Tensor.offset
 
 
 stop_gradient
@@ -239,7 +239,7 @@ data
 查看或者修改一个 Tensor 的数据。
 
 **代码示例**
-COPY-FROM: paddle.data
+COPY-FROM: paddle.Tensor.data
 
 
 numpy()
@@ -250,7 +250,7 @@ numpy()
 返回类型：numpy\.ndarray
 
 **代码示例**
-COPY-FROM: paddle.numpy
+COPY-FROM: paddle.Tensor.numpy
 
 
 
@@ -262,7 +262,7 @@ reconstruct_from_(other)
 返回类型：None
 
 **代码示例**
-COPY-FROM: paddle.reconstruct_from_
+COPY-FROM: paddle.Tensor.reconstruct_from_
 
 
 
@@ -274,7 +274,7 @@ clone()
 返回类型：Tensor
 
 **代码示例**
-COPY-FROM: paddle.clone
+COPY-FROM: paddle.Tensor.clone
 
 
 
@@ -286,7 +286,7 @@ retain_grads()
 返回类型：None
 
 **代码示例**
-COPY-FROM: paddle.retain_grads
+COPY-FROM: paddle.Tensor.retain_grads
 
 
 
@@ -300,7 +300,7 @@ clear_gradient(set_to_zero=True)
 返回：None
 
 **代码示例**
-COPY-FROM: paddle.clear_gradient
+COPY-FROM: paddle.Tensor.clear_gradient
 
 
 
@@ -312,7 +312,7 @@ detach()
 返回类型：Tensor
 
 **代码示例**
-COPY-FROM: paddle.detach
+COPY-FROM: paddle.Tensor.detach
 
 
 detach_()
@@ -323,7 +323,7 @@ detach_()
 返回类型：Tensor
 
 **代码示例**
-COPY-FROM: paddle.detach_
+COPY-FROM: paddle.Tensor.detach_
 
 
 get_tensor()
@@ -334,20 +334,8 @@ get_tensor()
 返回类型：DenseTensor/DistTensor
 
 **代码示例**
-COPY-FROM: paddle.get_tensor
+COPY-FROM: paddle.Tensor.get_tensor
 
-
-
-
-_register_backward_hook()
-:::::::::
-
-返回：为当前 Tensor 注册一个反向 hook，当本 Tensor 的反向梯度完成计算时调用改 hook。
-
-返回类型：None
-
-**代码示例**
-COPY-FROM: paddle._register_backward_hook
 
 
 
@@ -359,7 +347,7 @@ is_dense()
 返回类型：bool
 
 **代码示例**
-COPY-FROM: paddle.is_dense
+COPY-FROM: paddle.Tensor.is_dense
 
 
 
@@ -371,21 +359,7 @@ is_dist()
 返回类型：bool
 
 **代码示例**
-COPY-FROM: paddle.is_dist
-
-
-
-
-_bump_inplace_version()
-:::::::::
-
-Tensor 的 inplace version 加 1。
-
-返回类型：None
-
-**代码示例**
-COPY-FROM: paddle._bump_inplace_version
-
+COPY-FROM: paddle.Tensor.is_dist
 
 
 
@@ -398,7 +372,7 @@ data_ptr()
 返回类型：int
 
 **代码示例**
-COPY-FROM: paddle.data_ptr
+COPY-FROM: paddle.Tensor.data_ptr
 
 
 
@@ -412,7 +386,7 @@ get_strides()
 返回类型：list
 
 **代码示例**
-COPY-FROM: paddle.get_strides
+COPY-FROM: paddle.Tensor.get_strides
 
 
 
@@ -425,7 +399,7 @@ contiguous()
 返回类型：Tensor。
 
 **代码示例**
-COPY-FROM: paddle.contiguous
+COPY-FROM: paddle.Tensor.contiguous
 
 
 
@@ -438,7 +412,7 @@ is_contiguous()
 返回类型：bool
 
 **代码示例**
-COPY-FROM: paddle.is_contiguous
+COPY-FROM: paddle.Tensor.is_contiguous
 
 
 
