@@ -54,7 +54,7 @@ type
 查看一个 Tensor 的类型。
 
 **代码示例**
-COPY-FROM: paddle.type
+COPY-FROM: paddle.Tensor.type
 
 
 grad
@@ -321,9 +321,6 @@ detach_()
 返回：让当前 Tensor 脱离当前计算图。
 
 返回类型：Tensor
-
-**代码示例**
-COPY-FROM: paddle.Tensor.detach_
 
 
 get_tensor()
