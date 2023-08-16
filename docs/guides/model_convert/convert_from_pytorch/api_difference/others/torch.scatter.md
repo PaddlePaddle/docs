@@ -1,15 +1,15 @@
-## [仅 paddle 参数更多]torch.Tensor.scatter
+## [仅 paddle 参数更多]torch.scatter
 
-### [torch.Tensor.scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter.html#torch.Tensor.scatter)
+### [torch.scatter](https://pytorch.org/docs/2.0/generated/torch.scatter.html?highlight=torch+scatter#torch.scatter)
 
 ```python
-torch.Tensor.scatter(dim, index, src)
+torch.scatter(input,dim, index, src)
 ```
 
-### [paddle.Tensor.put_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#put-along-axis-arr-index-value-axis-reduce-assign)
+### [paddle.put_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/put_along_axis_cn.html#cn-api-paddle-tensor-put-along-axis)
 
 ```python
-paddle.Tensor.put_along_axis(indices, values, axis, reduce="assign")
+paddle.put_along_axis(arr,indices, values, axis, reduce="assign")
 
 ```
 
@@ -18,6 +18,7 @@ paddle.Tensor.put_along_axis(indices, values, axis, reduce="assign")
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注    |
 | ------- | ------------ | ------- |
+| input     | arr         | 表示输入的 Tensor ，仅参数名不一致。 |
 | dim     | axis         | 表示在哪一个维度 scatter ，仅参数名不一致。 |
 | index   | indices        | 表示输入的索引张量，仅参数名不一致。 |
 | src     | values        | 表示需要插入的值，仅参数名不一致。 |
