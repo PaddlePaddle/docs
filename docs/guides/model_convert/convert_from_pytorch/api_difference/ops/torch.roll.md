@@ -7,7 +7,7 @@ torch.roll(input,
            dims=None)
 ```
 
-### [paddle.roll](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/roll_cn.html#roll)
+### [paddle.roll](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/roll_cn.html#roll)
 
 ```python
 paddle.roll(x,

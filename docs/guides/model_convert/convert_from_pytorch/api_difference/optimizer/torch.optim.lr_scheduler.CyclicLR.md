@@ -19,7 +19,7 @@ torch.optim.lr_scheduler.CyclicLR(optimizer,
                                 verbose=False)
 ```
 
-### [paddle.optimizer.lr.CyclicLR](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/lr/CyclicLR_cn.html)
+### [paddle.optimizer.lr.CyclicLR](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/CyclicLR_cn.html)
 
 ```python
 paddle.optimizer.lr.CyclicLR(base_learning_rate,

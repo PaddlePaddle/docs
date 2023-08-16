@@ -5,7 +5,7 @@
 torch.slogdet(input *, out=None)
 ```
 
-### [paddle.linalg.slogdet](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/slogdet_cn.html#slogdet)
+### [paddle.linalg.slogdet](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/slogdet_cn.html#slogdet)
 
 ```python
 paddle.linalg.slogdet(x)

@@ -7,7 +7,7 @@ torch.linalg.eigvals(A,
                      out=None)
 ```
 
-### [paddle.linalg.eigvals](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/eigvals_cn.html)
+### [paddle.linalg.eigvals](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eigvals_cn.html)
 
 ```python
 paddle.linalg.eigvals(x,

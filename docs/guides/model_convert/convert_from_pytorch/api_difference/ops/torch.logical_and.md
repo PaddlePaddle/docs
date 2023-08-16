@@ -8,7 +8,7 @@ torch.logical_and(input,
                   out=None)
 ```
 
-### [paddle.logical_and](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_and_cn.html#logical-and)
+### [paddle.logical_and](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logical_and_cn.html#logical-and)
 
 ```python
 paddle.logical_and(x,

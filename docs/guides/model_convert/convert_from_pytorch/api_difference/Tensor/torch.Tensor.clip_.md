@@ -6,7 +6,7 @@
 torch.Tensor.clip_(min=None, max=None)
 ```
 
-### [paddle.Tensor.clip_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id6)
+### [paddle.Tensor.clip_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id6)
 
 ```python
 paddle.Tensor.clip_(min=None, max=None, name=None)

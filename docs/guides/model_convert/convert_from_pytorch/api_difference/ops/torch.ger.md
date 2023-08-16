@@ -6,7 +6,7 @@
 torch.ger(input, vec2, *, out=None)
 ```
 
-### [paddle.outer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/outer_cn.html)
+### [paddle.outer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/outer_cn.html)
 
 ```python
 paddle.outer(x, y, name=None)

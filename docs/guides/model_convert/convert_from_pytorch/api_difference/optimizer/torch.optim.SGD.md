@@ -13,7 +13,7 @@ torch.optim.SGD(params,
                 differentiable=False)
 ```
 
-### [paddle.optimizer.SGD](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/SGD_cn.html)
+### [paddle.optimizer.SGD](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/SGD_cn.html)
 
 ```python
 paddle.optimizer.SGD(learning_rate=0.001,

@@ -9,7 +9,7 @@ torch.nn.LayerNorm(normalized_shape,
                    dtype=None)
 ```
 
-### [paddle.nn.LayerNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LayerNorm_cn.html#layernorm)
+### [paddle.nn.LayerNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LayerNorm_cn.html#layernorm)
 
 ```python
 paddle.nn.LayerNorm(normalized_shape,

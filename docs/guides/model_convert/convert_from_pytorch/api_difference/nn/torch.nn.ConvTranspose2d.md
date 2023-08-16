@@ -13,7 +13,7 @@ torch.nn.ConvTranspose2d(in_channels,
                          padding_mode='zeros')
 ```
 
-### [paddle.nn.Conv2DTranspose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Conv2DTranspose_cn.html#conv2dtranspose)
+### [paddle.nn.Conv2DTranspose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Conv2DTranspose_cn.html#conv2dtranspose)
 ```python
 paddle.nn.Conv2DTranspose(in_channels,
                           out_channels,

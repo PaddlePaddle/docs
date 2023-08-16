@@ -1,11 +1,11 @@
 ## [torch 参数更多 ]torch.nn.Hardsigmoid
-### [torch.nn.Hardsigmoid](vpytorch.org/docs/stable/generated/torch.nn.Hardsigmoid.html?highlight=hardsigmoid#torch.nn.Hardsigmoid)
+### [torch.nn.Hardsigmoid](https://pytorch.org/docs/stable/generated/torch.nn.Hardsigmoid.html?highlight=hardsigmoid#torch.nn.Hardsigmoid)
 
 ```python
 torch.nn.Hardsigmoid(inplace=False)
 ```
 
-### [paddle.nn.Hardsigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Hardsigmoid_cn.html#hardsigmoid)
+### [paddle.nn.Hardsigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Hardsigmoid_cn.html#hardsigmoid)
 
 ```python
 paddle.nn.Hardsigmoid(name=None)

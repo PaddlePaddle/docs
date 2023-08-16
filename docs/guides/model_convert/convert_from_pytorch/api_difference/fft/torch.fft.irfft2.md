@@ -6,7 +6,7 @@
 torch.fft.irfft2(input, s=None, dim=(- 2, - 1), norm='backward', *, out=None)
 ```
 
-### [paddle.fft.irfft2](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/irfft2_cn.html#irfft2)
+### [paddle.fft.irfft2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/irfft2_cn.html#irfft2)
 
 ```python
 paddle.fft.irfft2(x, s=None, axes=(- 2, - 1), norm='backward', name=None)

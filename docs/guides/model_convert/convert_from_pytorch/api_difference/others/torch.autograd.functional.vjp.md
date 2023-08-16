@@ -6,7 +6,7 @@
 torch.autograd.functional.vjp(func, inputs, v=None, create_graph=False, strict=False)
 ```
 
-### [paddle.incubate.autograd.vjp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/incubate/autograd/vjp_cn.html)
+### [paddle.incubate.autograd.vjp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/incubate/autograd/vjp_cn.html)
 
 ```python
 paddle.incubate.autograd.vjp(func, xs, v=None)

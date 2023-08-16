@@ -6,7 +6,7 @@
 torch.triu_indices(row,col,offset=0,*,dtype=torch.long,device='cpu',layout=torch.strided)
 ```
 
-### [paddle.triu_indices](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/triu_indices_cn.html)
+### [paddle.triu_indices](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/triu_indices_cn.html)
 
 ```python
 paddle.triu_indices(row,col=None,offset=0,dtype='int64')

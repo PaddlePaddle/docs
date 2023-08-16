@@ -6,7 +6,7 @@
 torch.Tensor.double(memory_format=torch.preserve_format)
 ```
 
-### [paddle.Tensor.astype](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#astype-dtype)
+### [paddle.Tensor.astype](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#astype-dtype)
 
 ```python
 paddle.Tensor.astype('float64')

@@ -8,7 +8,7 @@ torch.nn.functional.linear(input,
                            bias=None)
 ```
 
-### [paddle.nn.functional.linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/linear_cn.html)
+### [paddle.nn.functional.linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/linear_cn.html)
 
 ```python
 paddle.nn.functional.linear(x,

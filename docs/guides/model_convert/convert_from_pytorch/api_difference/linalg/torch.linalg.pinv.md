@@ -6,7 +6,7 @@
 torch.linalg.pinv(A, *, atol=None, rtol=None, hermitian=False, out=None)
 ```
 
-### [paddle.linalg.pinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/pinv_cn.html)
+### [paddle.linalg.pinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/pinv_cn.html)
 
 ```python
 paddle.linalg.pinv(x, rcond=1e-15, hermitian=False, name=None)

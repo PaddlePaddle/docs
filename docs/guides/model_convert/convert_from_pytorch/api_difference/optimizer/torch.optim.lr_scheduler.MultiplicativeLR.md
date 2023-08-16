@@ -9,7 +9,7 @@ torch.optim.lr_scheduler.MultiplicativeLR(optimizer,
                                 verbose=False)
 ```
 
-### [paddle.optimizer.lr.MultiplicativeDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/lr/MultiplicativeDecay_cn.html)
+### [paddle.optimizer.lr.MultiplicativeDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/MultiplicativeDecay_cn.html)
 
 ```python
 paddle.optimizer.lr.MultiplicativeDecay(learning_rate,

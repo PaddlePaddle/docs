@@ -20,7 +20,7 @@ torch.optim.lr_scheduler.OneCycleLR(optimizer,
                                     verbose=False)
 ```
 
-### [paddle.optimizer.lr.OneCycleLR](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/lr/OneCycleLR_cn.html)
+### [paddle.optimizer.lr.OneCycleLR](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/OneCycleLR_cn.html)
 
 ```python
 paddle.optimizer.lr.OneCycleLR(max_learning_rate,

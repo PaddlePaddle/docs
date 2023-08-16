@@ -8,7 +8,7 @@ torch.nonzero(input,
               as_tuple=False)
 ```
 
-### [paddle.nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nonzero_cn.html)
+### [paddle.nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nonzero_cn.html)
 
 ```python
 paddle.nonzero(x,

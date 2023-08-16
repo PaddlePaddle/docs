@@ -4,7 +4,7 @@
 ```python
 torch.trace(input)
 ```
-### [paddle.trace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/trace_cn.html)
+### [paddle.trace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/trace_cn.html)
 
 ```python
 paddle.trace(x,

@@ -6,7 +6,7 @@
 torch.distributed.all_to_all(output_tensor_list, input_tensor_list, group=None, async_op=False)
 ```
 
-### [paddle.distributed.alltoall](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/alltoall_cn.html)
+### [paddle.distributed.alltoall](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/alltoall_cn.html)
 
 ```python
 paddle.distributed.alltoall(in_tensor_list, out_tensor_list, group=None, use_calc_stream=True)

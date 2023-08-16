@@ -13,7 +13,7 @@ torch.eye(n,
           requires_grad=False)
 ```
 
-###  [paddle.eye](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/eye_cn.html)
+###  [paddle.eye](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/eye_cn.html)
 
 ```python
 paddle.eye(num_rows,

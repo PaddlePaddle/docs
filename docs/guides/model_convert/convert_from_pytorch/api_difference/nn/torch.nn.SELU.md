@@ -6,7 +6,7 @@
 torch.nn.SELU(inplace=False)
 ```
 
-### [paddle.nn.SELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/SELU_cn.html)
+### [paddle.nn.SELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SELU_cn.html)
 
 ```python
 paddle.nn.SELU(scale=1.0507009873554804934193349852946, alpha=1.6732632423543772848170429916717, name=None)

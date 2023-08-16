@@ -12,7 +12,7 @@ torch.max(input,
           out=None)
 ```
 
-### [paddle.max](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/max_cn.html#max)
+### [paddle.max](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/max_cn.html#max)
 
 ```python
 paddle.max(x,

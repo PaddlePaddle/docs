@@ -15,7 +15,7 @@ torch.nn.Conv1d(in_channels,
                 dtype=None)
 ```
 
-### [paddle.nn.Conv1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Conv1D_cn.html#conv1d)
+### [paddle.nn.Conv1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Conv1D_cn.html#conv1d)
 
 ```python
 paddle.nn.Conv1D(in_channels,

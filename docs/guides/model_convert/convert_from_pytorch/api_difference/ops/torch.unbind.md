@@ -6,7 +6,7 @@ torch.unbind(input,
              dim=0)
 ```
 
-### [paddle.unbind](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/unbind_cn.html#unbind)
+### [paddle.unbind](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/unbind_cn.html#unbind)
 
 ```python
 paddle.unbind(x,

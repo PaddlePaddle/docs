@@ -8,7 +8,7 @@ torch.arccos(input,
              out=None)
 ```
 
-### [paddle.acos](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/acos_cn.html#acos)
+### [paddle.acos](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/acos_cn.html#acos)
 
 ```python
 paddle.acos(x,

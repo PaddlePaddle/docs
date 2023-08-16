@@ -7,7 +7,7 @@ torch.sgn(input,
           out=None)
 ```
 
-### [paddle.sgn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sgn_cn.html)
+### [paddle.sgn](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sgn_cn.html)
 
 ```python
 paddle.sgn(x,

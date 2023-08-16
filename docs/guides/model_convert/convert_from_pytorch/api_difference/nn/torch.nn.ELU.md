@@ -6,7 +6,7 @@ torch.nn.ELU(alpha=1.0,
              inplace=False)
 ```
 
-### [paddle.nn.ELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ELU_cn.html#elu)
+### [paddle.nn.ELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ELU_cn.html#elu)
 
 ```python
 paddle.nn.ELU(alpha=1.0,

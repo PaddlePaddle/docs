@@ -6,7 +6,7 @@
 torch.triangular_solve(b, A, upper=True, transpose=False, unitriangular=False, *, out=None)
 ```
 
-### [paddle.linalg.triangular_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/triangular_solve_cn.html)
+### [paddle.linalg.triangular_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/triangular_solve_cn.html)
 
 ```python
 paddle.linalg.triangular_solve(x, y, upper=True, transpose=False, unitriangular=False, name=None)

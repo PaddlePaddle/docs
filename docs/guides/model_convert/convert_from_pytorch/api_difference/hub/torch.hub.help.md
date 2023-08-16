@@ -10,7 +10,7 @@ torch.hub.help(github,
                 trust_repo=None)
 ```
 
-### [paddle.hub.help](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/hub/help_cn.html)
+### [paddle.hub.help](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hub/help_cn.html)
 
 ```python
 paddle.hub.help(repo_dir,

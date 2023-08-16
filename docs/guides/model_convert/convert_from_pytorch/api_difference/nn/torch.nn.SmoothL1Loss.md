@@ -8,7 +8,7 @@ torch.nn.SmoothL1Loss(size_average=None,
                       beta=1.0)
 ```
 
-### [paddle.nn.SmoothL1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/SmoothL1Loss_cn.html#smoothl1loss)
+### [paddle.nn.SmoothL1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SmoothL1Loss_cn.html#smoothl1loss)
 
 ```python
 paddle.nn.SmoothL1Loss(reduction='mean',

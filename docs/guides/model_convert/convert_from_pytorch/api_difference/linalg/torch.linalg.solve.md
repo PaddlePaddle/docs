@@ -6,7 +6,7 @@
 torch.linalg.solve(A, B, *, left=True, out=None)
 ```
 
-### [paddle.linalg.solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/solve_cn.html)
+### [paddle.linalg.solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/solve_cn.html)
 
 ```python
 paddle.linalg.solve(x, y, name=None)

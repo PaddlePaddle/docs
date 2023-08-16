@@ -1,6 +1,6 @@
 ## [参数不一致] torch.set_rng_state
 
-### [torch.set_rng_state](https://pytorch.org/docs/master/generated/torch.set_rng_state.html#torch.set_rng_state)
+### [torch.set_rng_state](https://pytorch.org/docs/stable/generated/torch.set_rng_state.html#torch.set_rng_state)
 
 ```python
 torch.set_rng_state(new_state)

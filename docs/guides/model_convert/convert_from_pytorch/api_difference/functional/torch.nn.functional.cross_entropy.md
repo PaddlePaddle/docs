@@ -13,7 +13,7 @@ torch.nn.functional.cross_entropy(input,
                                  label_smoothing=0.0)
 ```
 
-### [paddle.nn.functional.cross_entropy](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/cross_entropy_cn.html)
+### [paddle.nn.functional.cross_entropy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/cross_entropy_cn.html)
 
 ```python
 paddle.nn.functional.cross_entropy(input,

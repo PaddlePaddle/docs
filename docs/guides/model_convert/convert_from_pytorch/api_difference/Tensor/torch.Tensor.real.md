@@ -6,7 +6,7 @@
 torch.Tensor.real
 ```
 
-### [paddle.Tensor.real](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#real-name-none)
+### [paddle.Tensor.real](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#real-name-none)
 
 ```python
 paddle.Tensor.real

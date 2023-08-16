@@ -14,7 +14,7 @@ torch.istft(input,
             return_complex=False)
 ```
 
-### [paddle.signal.istft](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/signal/istft_cn.html#istft)
+### [paddle.signal.istft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/signal/istft_cn.html#istft)
 
 ```python
 paddle.signal.istft(x,

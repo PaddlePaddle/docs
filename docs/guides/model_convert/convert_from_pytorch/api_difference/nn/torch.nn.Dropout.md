@@ -5,7 +5,7 @@ torch.nn.Dropout(p=0.5,
                  inplace=False)
 ```
 
-### [paddle.nn.Dropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Dropout_cn.html#dropout)
+### [paddle.nn.Dropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Dropout_cn.html#dropout)
 ```python
 paddle.nn.Dropout(p=0.5,
                   axis=None,

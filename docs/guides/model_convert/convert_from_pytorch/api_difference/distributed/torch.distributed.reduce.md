@@ -6,7 +6,7 @@
 torch.distributed.reduce(tensor, dst, op=<torch.distributed.distributed_c10d.ReduceOp object>, group=None, async_op=False)
 ```
 
-### [paddle.distributed.reduce](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/reduce_cn.html)
+### [paddle.distributed.reduce](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/reduce_cn.html)
 
 ```python
 paddle.distributed.reduce(tensor, dst, op=ReduceOp.SUM, group=0)

@@ -6,7 +6,7 @@ torch.nn.CosineSimilarity(dim=1,
                             eps=1e-08)
 ```
 
-### [paddle.nn.CosineSimilarity](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/CosineSimilarity_cn.html#cosinesimilarity)
+### [paddle.nn.CosineSimilarity](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/CosineSimilarity_cn.html#cosinesimilarity)
 
 ```python
 paddle.nn.CosineSimilarity(axis=1,

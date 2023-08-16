@@ -6,7 +6,7 @@
 torch.logit(input, eps=None, *, out=None)
 ```
 
-### [paddle.logit](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logit_cn.html)
+### [paddle.logit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logit_cn.html)
 
 ```python
 paddle.logit(x, eps=None, name=None)

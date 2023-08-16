@@ -6,7 +6,7 @@
 torch.nn.Module.buffers(recurse=True)
 ```
 
-### [paddle.nn.Layer.buffers](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html#buffers-include-sublayers-true)
+### [paddle.nn.Layer.buffers](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#buffers-include-sublayers-true)
 
 ```python
 paddle.nn.Layer.buffers(include_sublayers=True)

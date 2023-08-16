@@ -6,7 +6,7 @@
 torch.autograd.Function(*args, **kwargs)
 ```
 
-### [paddle.autograd.PyLayer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/autograd/PyLayer_cn.html#paddle.autograd.PyLayer)
+### [paddle.autograd.PyLayer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayer_cn.html#paddle.autograd.PyLayer)
 
 ```python
 paddle.autograd.PyLayer()

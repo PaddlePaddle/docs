@@ -6,7 +6,7 @@
 torch.Tensor.round(decimals=0)
 ```
 
-### [paddle.Tensor.round](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#round-name-none)
+### [paddle.Tensor.round](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#round-name-none)
 
 ```python
 paddle.Tensor.round(name=None)

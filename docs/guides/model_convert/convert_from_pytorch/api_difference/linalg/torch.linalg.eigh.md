@@ -6,7 +6,7 @@
 torch.linalg.eigh(A, UPLO='L', *, out=None)
 ```
 
-### [paddle.linalg.eigh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/eigh_cn.html)
+### [paddle.linalg.eigh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eigh_cn.html)
 
 ```python
 paddle.linalg.eigh(x, UPLO='L', name=None)

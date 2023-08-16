@@ -6,7 +6,7 @@
 torch.nn.Module.to(device=None, dtype=None, non_blocking=False)
 ```
 
-### [paddle.nn.Layer.to](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html#to-device-none-dtype-none-blocking-none)
+### [paddle.nn.Layer.to](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#to-device-none-dtype-none-blocking-none)
 
 ```python
 paddle.nn.Layer.to(device=None, dtype=None, blocking=None)
@@ -68,7 +68,7 @@ module.to(blocking=True)
 torch.nn.Module.to(tensor, non_blocking=False)
 ```
 
-### [paddle.nn.Layer.to](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html#to-device-none-dtype-none-blocking-none)
+### [paddle.nn.Layer.to](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#to-device-none-dtype-none-blocking-none)
 
 ```python
 paddle.nn.Layer.to(device=None, dtype=None, blocking=None)

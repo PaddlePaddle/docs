@@ -6,7 +6,7 @@
 torch.nn.functional.glu(input, dim=- 1)
 ```
 
-### [paddle.nn.functional.glu](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/glu_cn.html)
+### [paddle.nn.functional.glu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/glu_cn.html)
 
 ```python
 paddle.nn.functional.glu(x, axis=- 1, name=None)

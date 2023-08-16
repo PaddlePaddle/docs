@@ -5,7 +5,7 @@
 torch.view_as_complex(input)
 ```
 
-### [paddle.as_complex](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/as_complex_cn.html#as-complex)
+### [paddle.as_complex](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/as_complex_cn.html#as-complex)
 
 ```python
 paddle.as_complex(x,

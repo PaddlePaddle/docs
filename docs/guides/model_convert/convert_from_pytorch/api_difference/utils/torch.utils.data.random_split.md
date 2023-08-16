@@ -7,7 +7,7 @@ torch.utils.data.random_split(dataset,
                             generator=<torch._C.Generator object>)
 ```
 
-### [paddle.io.random_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/random_split_cn.html)
+### [paddle.io.random_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/random_split_cn.html)
 
 ```python
 paddle.io.random_split(dataset,

@@ -7,7 +7,7 @@ torch.nn.L1Loss(size_average=None,
                 reduction='mean')
 ```
 
-### [paddle.nn.L1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/L1Loss_cn.html#l1loss)
+### [paddle.nn.L1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/L1Loss_cn.html#l1loss)
 
 ```python
 paddle.nn.L1Loss(reduction='mean',

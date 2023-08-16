@@ -6,7 +6,7 @@
 torch.Tensor.greater_equal(other)
 ```
 
-### [paddle.Tensor.greater_equal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#greater-equal-y-name-none)
+### [paddle.Tensor.greater_equal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#greater-equal-y-name-none)
 
 ```python
 paddle.Tensor.greater_equal(y, name=None)

@@ -15,7 +15,7 @@ torch.stft(input,
            return_complex=None)
 ```
 
-### [paddle.signal.stft](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/signal/stft_cn.html#paddle.signal.stft)
+### [paddle.signal.stft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/signal/stft_cn.html#paddle.signal.stft)
 
 ```python
 paddle.signal.stft(x,

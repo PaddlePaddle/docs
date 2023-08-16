@@ -6,7 +6,7 @@
 torch.nn.TransformerDecoder(decoder_layer, num_layers, norm=None)
 ```
 
-### [paddle.nn.TransformerDecoder](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/TransformerDecoder_cn.html)
+### [paddle.nn.TransformerDecoder](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/TransformerDecoder_cn.html)
 
 ```python
 paddle.nn.TransformerDecoder(decoder_layer, num_layers, norm=None)

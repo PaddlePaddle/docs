@@ -4,7 +4,7 @@
 torch.linalg.matrix_rank(A, tol=None, hermitian=False, *, out=None)
 ```
 
-### [paddle.linalg.matrix_rank](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/matrix_rank_cn.html)
+### [paddle.linalg.matrix_rank](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/matrix_rank_cn.html)
 ```python
 paddle.linalg.matrix_rank(x, tol=None, hermitian=False, name=None)
 ```

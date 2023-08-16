@@ -6,7 +6,7 @@
 torch.Tensor.less_equal(other)
 ```
 
-### [paddle.Tensor.less_equal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#less-equal-y-name-none)
+### [paddle.Tensor.less_equal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#less-equal-y-name-none)
 
 ```python
 paddle.Tensor.less_equal(y, name=None)

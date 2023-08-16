@@ -8,7 +8,7 @@ torch.nn.DataParallel(module,
                       dim=0)
 ```
 
-### [paddle.DataParallel](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/DataParallel_cn.html#dataparallel)
+### [paddle.DataParallel](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/DataParallel_cn.html#dataparallel)
 
 ```python
 paddle.DataParallel(layers,

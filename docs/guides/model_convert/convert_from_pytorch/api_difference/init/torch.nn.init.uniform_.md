@@ -8,7 +8,7 @@ torch.nn.init.uniform_(tensor,
                         b=1.0)
 ```
 
-### [paddle.nn.initializer.Uniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/initializer/Uniform_cn.html)
+### [paddle.nn.initializer.Uniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/Uniform_cn.html)
 
 ```python
 paddle.nn.initializer.Uniform(low=-1.0,

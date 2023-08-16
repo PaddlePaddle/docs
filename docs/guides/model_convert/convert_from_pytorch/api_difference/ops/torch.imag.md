@@ -6,7 +6,7 @@
 torch.imag(input)
 ```
 
-### [paddle.imag](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/imag_cn.html#imag)
+### [paddle.imag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/imag_cn.html#imag)
 
 ```python
 paddle.imag(x)

@@ -6,7 +6,7 @@
 torch.linalg.eigvalsh(A, UPLO='L', *, out=None)
 ```
 
-### [paddle.linalg.eigvalsh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/eigvalsh_cn.html)
+### [paddle.linalg.eigvalsh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eigvalsh_cn.html)
 
 ```python
 paddle.linalg.eigvalsh(x, UPLO='L', name=None)

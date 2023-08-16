@@ -7,7 +7,7 @@ torch.nn.PairwiseDistance(p=2.0,
                             keepdim=False)
 ```
 
-### [paddle.nn.PairwiseDistance](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/PairwiseDistance_cn.html#pairwisedistance)
+### [paddle.nn.PairwiseDistance](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/PairwiseDistance_cn.html#pairwisedistance)
 
 ```python
 paddle.nn.PairwiseDistance(p=2.,

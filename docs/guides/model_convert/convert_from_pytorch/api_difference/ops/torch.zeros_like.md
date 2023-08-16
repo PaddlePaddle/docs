@@ -12,7 +12,7 @@ torch.zeros_like(input,
                  memory_format=torch.preserve_format)
 ```
 
-###  [paddle.zeros_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/zeros_like_cn.html)
+###  [paddle.zeros_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/zeros_like_cn.html)
 
 ```python
 paddle.zeros_like(x,

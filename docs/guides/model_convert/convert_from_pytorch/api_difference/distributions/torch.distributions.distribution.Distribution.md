@@ -6,7 +6,7 @@
 torch.distributions.distribution.Distribution(batch_shape=torch.Size([]), event_shape=torch.Size([]), validate_args=None)
 ```
 
-### [paddle.distribution.Distribution](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/Distribution_cn.html)
+### [paddle.distribution.Distribution](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Distribution_cn.html)
 
 ```python
 paddle.distribution.Distribution(batch_shape， event_shape)

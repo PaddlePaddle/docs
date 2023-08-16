@@ -6,7 +6,7 @@
 torch.nn.MultiLabelSoftMarginLoss(weight=None, size_average=None, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.MultiLabelSoftMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MultiLabelSoftMarginLoss_cn.html)
+### [paddle.nn.MultiLabelSoftMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MultiLabelSoftMarginLoss_cn.html)
 
 ```python
 paddle.nn.MultiLabelSoftMarginLoss(weight=None, reduction='mean', name=None)

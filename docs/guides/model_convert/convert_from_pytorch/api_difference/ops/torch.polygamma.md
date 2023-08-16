@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.polygamma
 
-### [torch.polygamma](https://pytorch.org/docs/2.0/special.html#torch.special.polygamma)
+### [torch.polygamma](https://pytorch.org/docs/stable/special.html#torch.special.polygamma)
 
 ```python
 torch.polygamma(n,
@@ -9,7 +9,7 @@ torch.polygamma(n,
                 out=None)
 ```
 
-### [paddle.polygamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/polygamma_cn.html)
+### [paddle.polygamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/polygamma_cn.html)
 
 ```python
 paddle.polygamma(x,

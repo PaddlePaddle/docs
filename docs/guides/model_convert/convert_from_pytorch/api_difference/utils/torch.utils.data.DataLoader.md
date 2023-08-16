@@ -20,7 +20,7 @@ torch.utils.data.DataLoader(dataset,
                             pin_memory_device='')
 ```
 
-### [paddle.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/DataLoader_cn.html#dataloader)
+### [paddle.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/DataLoader_cn.html#dataloader)
 ```python
 paddle.io.DataLoader(dataset,
                      feed_list=None,

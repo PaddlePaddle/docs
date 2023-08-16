@@ -6,7 +6,7 @@
 torch.utils.data.TensorDataset(*tensors)
 ```
 
-### [paddle.io.TensorDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/TensorDataset_cn.html)
+### [paddle.io.TensorDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/TensorDataset_cn.html)
 
 ```python
 paddle.io.TensorDataset(tensors)

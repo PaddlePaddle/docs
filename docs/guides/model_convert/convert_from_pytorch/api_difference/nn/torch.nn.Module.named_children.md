@@ -6,7 +6,7 @@
 torch.nn.Module.named_children()
 ```
 
-### [paddle.nn.Layer.named_children](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html#named-children)
+### [paddle.nn.Layer.named_children](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#named-children)
 
 ```python
 paddle.nn.Layer.named_children()

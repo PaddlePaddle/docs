@@ -6,7 +6,7 @@
 torch.nn.functional.elu(input, alpha=1.0, inplace=False)
 ```
 
-### [paddle.nn.functional.elu](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/elu_cn.html)
+### [paddle.nn.functional.elu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/elu_cn.html)
 
 ```python
 paddle.nn.functional.elu(x, alpha=1.0, name=None)

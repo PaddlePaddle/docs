@@ -6,7 +6,7 @@
 torch.Tensor.clone(*, memory_format=torch.preserve_format)
 ```
 
-### [paddle.Tensor.clone](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#clone)
+### [paddle.Tensor.clone](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#clone)
 
 ```python
 paddle.Tensor.clone()

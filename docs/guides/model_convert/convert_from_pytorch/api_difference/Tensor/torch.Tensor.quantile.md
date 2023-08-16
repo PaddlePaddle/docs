@@ -6,7 +6,7 @@
 torch.Tensor.quantile(q, dim=None, keepdim=False, *, interpolation='linear')
 ```
 
-### [paddle.Tensor.quantile](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#quantile-q-axis-none-keepdim-false-name-none)
+### [paddle.Tensor.quantile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#quantile-q-axis-none-keepdim-false-name-none)
 
 ```python
 paddle.Tensor.quantile(q, axis=None, keepdim=False, name=None)

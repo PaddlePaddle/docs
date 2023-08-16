@@ -6,7 +6,7 @@ torch.nn.LeakyReLU(negative_slope=0.01,
                    inplace=False)
 ```
 
-### [paddle.nn.LeakyReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LeakyReLU_cn.html#leakyrelu)
+### [paddle.nn.LeakyReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LeakyReLU_cn.html#leakyrelu)
 
 ```python
 paddle.nn.LeakyReLU(negative_slope=0.01,

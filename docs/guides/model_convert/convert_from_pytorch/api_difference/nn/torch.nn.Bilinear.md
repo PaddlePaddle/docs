@@ -6,7 +6,7 @@
 torch.nn.Bilinear(in1_features, in2_features, out_features, bias=True, device=None, dtype=None)
 ```
 
-### [paddle.nn.Bilinear](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Bilinear_cn.html)
+### [paddle.nn.Bilinear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Bilinear_cn.html)
 
 ```python
 paddle.nn.Bilinear(in1_features, in2_features, out_features, weight_attr=None, bias_attr=None, name=None)

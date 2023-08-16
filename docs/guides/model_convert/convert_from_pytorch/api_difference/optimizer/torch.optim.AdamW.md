@@ -15,7 +15,7 @@ torch.optim.AdamW(params,
                 fused=None)
 ```
 
-### [paddle.optimizer.AdamW](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/AdamW_cn.html)
+### [paddle.optimizer.AdamW](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/AdamW_cn.html)
 
 ```python
 paddle.optimizer.AdamW(learning_rate=0.001,

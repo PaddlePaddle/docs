@@ -6,7 +6,7 @@
 torch.sparse_coo_tensor(indices,values,size=None, * , dtype=None,device=None,requires_grad=False)
 ```
 
-### [paddle.sparse.sparse_coo_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sparse/sparse_coo_tensor_cn.html#sparse-coo-tensor)
+### [paddle.sparse.sparse_coo_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/sparse_coo_tensor_cn.html#sparse-coo-tensor)
 
 ```python
 paddle.sparse.sparse_coo_tensor(indices, values, shape=None, dtype=None, place=None, stop_gradient=True)

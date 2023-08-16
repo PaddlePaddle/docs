@@ -6,7 +6,7 @@ torch.diagflat(input,
                offset=0)
 ```
 
-### [paddle.diagflat](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/diagflat_cn.html#diagflat)
+### [paddle.diagflat](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagflat_cn.html#diagflat)
 
 ```python
 paddle.diagflat(x,

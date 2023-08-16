@@ -6,7 +6,7 @@
 torch.Tensor.deg2rad()
 ```
 
-### [paddle.Tensor.deg2rad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#deg2rad-x-name-none)
+### [paddle.Tensor.deg2rad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#deg2rad-x-name-none)
 
 ```python
 paddle.Tensor.deg2rad(name=None)

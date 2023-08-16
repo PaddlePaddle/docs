@@ -8,7 +8,7 @@ torch.ceil(input,
            out=None)
 ```
 
-### [paddle.ceil](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/ceil_cn.html)
+### [paddle.ceil](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/ceil_cn.html)
 
 ```python
 paddle.ceil(x,

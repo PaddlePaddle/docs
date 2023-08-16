@@ -7,7 +7,7 @@ torch.deg2rad(input,
               out=None)
 ```
 
-### [paddle.deg2rad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/deg2rad_cn.html#paddle.deg2rad)
+### [paddle.deg2rad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/deg2rad_cn.html#paddle.deg2rad)
 
 ```python
 paddle.deg2rad(x,

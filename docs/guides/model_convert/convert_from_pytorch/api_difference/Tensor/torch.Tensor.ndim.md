@@ -6,7 +6,7 @@
 torch.Tensor.ndim
 ```
 
-### [paddle.Tensor.ndim](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#ndim)
+### [paddle.Tensor.ndim](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#ndim)
 
 ```python
 paddle.Tensor.ndim

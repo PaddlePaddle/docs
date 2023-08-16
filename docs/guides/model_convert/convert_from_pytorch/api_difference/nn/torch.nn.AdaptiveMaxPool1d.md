@@ -6,7 +6,7 @@ torch.nn.AdaptiveMaxPool1d(output_size,
                            return_indices=False)
 ```
 
-### [paddle.nn.AdaptiveMaxPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/AdaptiveMaxPool1D_cn.html#adaptivemaxpool1d)
+### [paddle.nn.AdaptiveMaxPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/AdaptiveMaxPool1D_cn.html#adaptivemaxpool1d)
 
 ```python
 paddle.nn.AdaptiveMaxPool1D(output_size,

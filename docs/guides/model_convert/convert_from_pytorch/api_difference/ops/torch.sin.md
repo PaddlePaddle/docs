@@ -7,7 +7,7 @@ torch.sin(input,
           out=None)
 ```
 
-### [paddle.sin](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sin_cn.html#sin)
+### [paddle.sin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sin_cn.html#sin)
 
 ```python
 paddle.sin(x,

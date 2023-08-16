@@ -6,7 +6,7 @@
 torch.Tensor.short(memory_format=torch.preserve_format)
 ```
 
-### [paddle.Tensor.astype](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#put-along-axis-arr-index-value-axis-reduce-assign)
+### [paddle.Tensor.astype](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#put-along-axis-arr-index-value-axis-reduce-assign)
 
 ```python
 paddle.Tensor.astype('int16')

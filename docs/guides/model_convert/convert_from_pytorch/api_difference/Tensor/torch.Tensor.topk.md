@@ -6,7 +6,7 @@
 torch.Tensor.topk(k, dim=None, largest=True, sorted=True)
 ```
 
-### [paddle.Tensor.topk](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#topk-k-axis-none-largest-true-sorted-true-name-none)
+### [paddle.Tensor.topk](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#topk-k-axis-none-largest-true-sorted-true-name-none)
 
 ```
 paddle.Tensor.topk(k, axis=None, largest=True, sorted=True, name=None)

@@ -6,7 +6,7 @@
 torch.distributions.uniform.Uniform(low, high, validate_args=None)
 ```
 
-### [paddle.distribution.Uniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/Uniform_cn.html)
+### [paddle.distribution.Uniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Uniform_cn.html)
 
 ```python
 paddle.distribution.Uniform(low, high, name=None)

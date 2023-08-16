@@ -6,7 +6,7 @@
 torch.Tensor.size(dim=None)
 ```
 
-### [paddle.Tensor.shape](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#shape)
+### [paddle.Tensor.shape](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#shape)
 
 ```python
 paddle.Tensor.shape

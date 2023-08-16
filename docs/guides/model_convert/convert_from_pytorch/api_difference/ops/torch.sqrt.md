@@ -7,7 +7,7 @@ torch.sqrt(input,
            out=None)
 ```
 
-### [paddle.sqrt](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sqrt_cn.html#sqrt)
+### [paddle.sqrt](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sqrt_cn.html#sqrt)
 
 ```python
 paddle.sqrt(x,
