@@ -20,3 +20,4 @@ Paddle 比 PyTorch 支持更多参数，具体如下：
 | ------- | ------------ | ----------------------------------------------------------- |
 | -       | dtype        | Tensor 的数据类型，Pytorch 无此参数，Paddle 需设置为 'int16'。   |
 | -       | place        | Tensor 的设备，Pytorch 无此参数，Paddle 需设置为 'gpu' 。         |
+| -       | stop_gradient        | Tensor 的设备，Pytorch 无此参数，Paddle 保持默认即可。            |

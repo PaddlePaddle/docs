@@ -6,7 +6,7 @@
 torch.cuda.get_device_properties(device)
 ```
 
-### [paddle.device.cuda.get_device_properties](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/cuda/get_device_properties_cn.html)
+### [paddle.device.cuda.get_device_properties](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/get_device_properties_cn.html)
 
 ```python
 paddle.device.cuda.get_device_properties(device)
