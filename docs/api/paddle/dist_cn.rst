@@ -50,8 +50,8 @@ z (4-D Tensor):  8 x 7 x 6 x 5
 参数
 ::::::::::::
 
-  - **x** (Tensor) - 1-D 到 6-D Tensor，数据类型为 float16，float32 或 float64。
-  - **y** (Tensor) - 1-D 到 6-D Tensor，数据类型为 float16，float32 或 float64。
+  - **x** (Tensor) - 1-D 到 6-D Tensor，数据类型为 bfloat16，float16，float32 或 float64。
+  - **y** (Tensor) - 1-D 到 6-D Tensor，数据类型为 bfloat16，float16，float32 或 float64。
   - **p** (float，可选) - 用于设置需要计算的范数，数据类型为 float32 或 float64。默认值为 2。
   - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 
