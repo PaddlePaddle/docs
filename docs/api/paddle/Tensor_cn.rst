@@ -730,31 +730,6 @@ chunk(chunks, axis=0, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_chunk`
 
-clear_gradient()
-:::::::::
-
-清除当前 Tensor 的梯度。
-
-返回：无
-
-**代码示例**
-    .. code-block:: python
-
-        import paddle
-        import numpy as np
-
-        x = np.ones([2, 2], np.float32)
-        inputs2 = []
-        for _ in range(10):
-            tmp = paddle.to_tensor(x)
-            tmp.stop_gradient=False
-            inputs2.append(tmp)
-        ret2 = paddle.add_n(inputs2)
-        loss2 = paddle.sum(ret2)
-        loss2.backward()
-        print(loss2.gradient())
-        loss2.clear_gradient()
-        print("After clear {}".format(loss2.gradient()))
 
 clip(min=None, max=None, name=None)
 :::::::::
@@ -927,24 +902,6 @@ deg2rad(x, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_deg2rad`
 
-detach()
-:::::::::
-
-返回一个新的 Tensor，从当前计算图分离。
-
-返回：与当前计算图分离的 Tensor。
-
-**代码示例**
-    .. code-block:: python
-
-        import paddle
-        import numpy as np
-
-        data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
-        linear = paddle.nn.Linear(32, 64)
-        data = paddle.to_tensor(data)
-        x = linear(data)
-        y = x.detach()
 
 diagonal(offset=0, axis1=0, axis2=1, name=None)
 :::::::::
@@ -1881,25 +1838,6 @@ numel(name=None)
 
 请参考 :ref:`cn_api_tensor_numel`
 
-numpy()
-:::::::::
-
-将当前 Tensor 转化为 numpy\.ndarray。
-
-返回：Tensor 转化成的 numpy\.ndarray。
-返回类型：numpy\.ndarray
-
-**代码示例**
-    .. code-block:: python
-
-        import paddle
-        import numpy as np
-
-        data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
-        linear = paddle.nn.Linear(32, 64)
-        data = paddle.to_tensor(data)
-        x = linear(data)
-        print(x.numpy())
 
 pin_memory(y, name=None)
 :::::::::
