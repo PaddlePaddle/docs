@@ -8,7 +8,7 @@ torch.absolute(input,
                out=None)
 ```
 
-### [paddle.abs](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/abs_cn.html#abs)
+### [paddle.abs](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/abs_cn.html#abs)
 
 ```python
 paddle.abs(x,

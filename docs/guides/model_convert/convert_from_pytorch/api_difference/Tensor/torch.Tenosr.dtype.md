@@ -6,7 +6,7 @@
 torch.Tensor.dtype
 ```
 
-### [paddle.Tensor.dtype](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#dtype)
+### [paddle.Tensor.dtype](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#dtype)
 
 ```python
 paddle.Tensor.dtype

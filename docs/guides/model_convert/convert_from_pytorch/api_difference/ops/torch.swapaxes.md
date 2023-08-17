@@ -1,12 +1,12 @@
 ## [ 参数不⼀致 ] torch.swapaxes
 
-### [torch.swapaxes](https://pytorch.org/docs/master/generated/torch.swapaxes.html#torch.swapaxes)
+### [torch.swapaxes](https://pytorch.org/docs/stable/generated/torch.swapaxes.html#torch.swapaxes)
 
 ```python
 torch.swapaxes(input, axis0, axis1)
 ```
 
-### [paddle.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/transpose_cn.html#transpose)
+### [paddle.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/transpose_cn.html#transpose)
 
 ```python
 paddle.transpose(x,

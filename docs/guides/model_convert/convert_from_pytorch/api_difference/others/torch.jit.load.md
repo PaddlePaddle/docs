@@ -6,7 +6,7 @@
 torch.jit.load(f, map_location=None, _extra_files=None)
 ```
 
-### [paddle.jit.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/jit/load_cn.html)
+### [paddle.jit.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/load_cn.html)
 
 ```python
 paddle.jit.load(path, **configs)

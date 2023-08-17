@@ -12,7 +12,7 @@ torch.ones_like(input,
                  memory_format=torch.preserve_format)
 ```
 
-###  [paddle.ones_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/ones_like_cn.html)
+###  [paddle.ones_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/ones_like_cn.html)
 
 ```python
 paddle.ones_like(x,

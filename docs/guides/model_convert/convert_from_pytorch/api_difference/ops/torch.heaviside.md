@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.heaviside
-### [torch.heaviside](https://pytorch.org/docs/master/generated/torch.heaviside.html#torch.heaviside)
+### [torch.heaviside](https://pytorch.org/docs/stable/generated/torch.heaviside.html#torch.heaviside)
 
 ```python
 torch.heaviside(input, values, *, out=None)

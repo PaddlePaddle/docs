@@ -6,7 +6,7 @@
 torch.tensordot(a,b,dims=2,out=None)
 ```
 
-### [paddle.tensordot](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensordot_cn.html)
+### [paddle.tensordot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/tensordot_cn.html)
 
 ```python
 paddle.tensordot(x,y,axes=2,name=None)

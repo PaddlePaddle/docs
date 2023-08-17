@@ -6,7 +6,7 @@
 torch.nn.PoissonNLLLoss(log_input=True, full=False, size_average=None, eps=1e-08, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.PoissonNLLLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/PoissonNLLLoss_cn.html)
+### [paddle.nn.PoissonNLLLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/PoissonNLLLoss_cn.html)
 
 ```python
 paddle.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, reduction='mean', name=None)

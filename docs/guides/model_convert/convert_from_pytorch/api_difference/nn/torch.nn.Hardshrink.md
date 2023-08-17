@@ -5,7 +5,7 @@
 torch.nn.Hardshrink(lambd=0.5)
 ```
 
-### [paddle.nn.Hardshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Hardshrink_cn.html#hardshrink)
+### [paddle.nn.Hardshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Hardshrink_cn.html#hardshrink)
 
 ```python
 paddle.nn.Hardshrink(threshold=0.5,

@@ -6,7 +6,7 @@
 torch.linalg.norm(input, ord=None, dim=None, keepdim=False, *, out=None, dtype=None)
 ```
 
-### [paddle.linalg.norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/norm_cn.html#norm)
+### [paddle.linalg.norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/norm_cn.html#norm)
 
 ```python
 paddle.linalg.norm(x, p='fro', axis=None, keepdim=False, name=None)

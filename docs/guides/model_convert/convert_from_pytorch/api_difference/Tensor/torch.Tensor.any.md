@@ -6,7 +6,7 @@
 torch.Tensor.any(dim=None, keepdim=False)
 ```
 
-### [paddle.Tensor.any](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#any-axis-none-keepdim-false-name-none)
+### [paddle.Tensor.any](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#any-axis-none-keepdim-false-name-none)
 
 ```python
 paddle.Tensor.any(axis=None,

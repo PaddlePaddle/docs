@@ -8,7 +8,7 @@ torch.arcsin(input,
              out=None)
 ```
 
-### [paddle.asin](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/asin_cn.html#asin)
+### [paddle.asin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/asin_cn.html#asin)
 
 ```python
 paddle.asin(x,

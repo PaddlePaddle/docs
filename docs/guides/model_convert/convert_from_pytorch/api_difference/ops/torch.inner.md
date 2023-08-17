@@ -6,7 +6,7 @@
 torch.inner(input, other, *, out=None)
 ```
 
-### [paddle.inner](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/inner_cn.html)
+### [paddle.inner](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/inner_cn.html)
 
 ```python
 paddle.inner(x, y, name=None)

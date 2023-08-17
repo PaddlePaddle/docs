@@ -10,7 +10,7 @@ torch.nn.functional.grid_sample(input,
                         align_corners=None)
 ```
 
-### [paddle.nn.functional.grid_sample](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/grid_sample_cn.html)
+### [paddle.nn.functional.grid_sample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/grid_sample_cn.html)
 
 ```python
 paddle.nn.functional.grid_sample(x,

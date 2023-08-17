@@ -6,7 +6,7 @@
 torch.distributed.recv(tensor, src=None, group=None, tag=0)
 ```
 
-### [paddle.distributed.recv](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/recv_cn.html)
+### [paddle.distributed.recv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/recv_cn.html)
 
 ```python
 paddle.distributed.recv(tensor, src=0, group=None, use_calc_stream=True)

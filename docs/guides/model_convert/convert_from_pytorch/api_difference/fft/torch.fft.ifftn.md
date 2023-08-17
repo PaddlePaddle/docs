@@ -11,7 +11,7 @@ torch.fft.ifftn(input,
                 out=None)
 ```
 
-### [paddle.fft.ifftn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/ifftn_cn.html)
+### [paddle.fft.ifftn](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/ifftn_cn.html)
 
 ```python
 paddle.fft.ifftn(x,

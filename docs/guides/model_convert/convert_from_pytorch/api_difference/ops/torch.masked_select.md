@@ -8,7 +8,7 @@ torch.masked_select(input,
                    out=None)
 ```
 
-### [paddle.masked_select](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/masked_select_cn.html#masked-select)
+### [paddle.masked_select](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/masked_select_cn.html#masked-select)
 
 ```python
 paddle.masked_select(x,

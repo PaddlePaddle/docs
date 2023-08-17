@@ -6,7 +6,7 @@
 torch.distributed.rpc.shutdown(graceful=True, timeout=0)
 ```
 
-### [paddle.distributed.rpc.shutdown](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/rpc/shutdown_cn.html)
+### [paddle.distributed.rpc.shutdown](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/shutdown_cn.html)
 
 ```python
 paddle.distributed.rpc.shutdown()

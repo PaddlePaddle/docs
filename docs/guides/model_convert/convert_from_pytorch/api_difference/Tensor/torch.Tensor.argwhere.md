@@ -5,7 +5,7 @@
 torch.Tensor.argwhere()
 ```
 
-### [paddle.Tensor.nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#nonzero-as-tuple-false)
+### [paddle.Tensor.nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#nonzero-as-tuple-false)
 
 ```python
 paddle.Tensor.nonzero(as_tuple=False)

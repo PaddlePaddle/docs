@@ -10,7 +10,7 @@ torch.optim.lr_scheduler.MultiStepLR(optimizer,
                                 verbose=False)
 ```
 
-### [paddle.optimizer.lr.MultiStepDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/lr/MultiStepDecay_cn.html)
+### [paddle.optimizer.lr.MultiStepDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/MultiStepDecay_cn.html)
 
 ```python
 paddle.optimizer.lr.MultiStepDecay(learning_rate,

@@ -9,7 +9,7 @@ torch.utils.data.WeightedRandomSampler(weights,
                        generator=None)
 ```
 
-### [paddle.io.WeightedRandomSampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/WeightedRandomSampler_cn.html#paddle.io.WeightedRandomSampler)
+### [paddle.io.WeightedRandomSampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/WeightedRandomSampler_cn.html#paddle.io.WeightedRandomSampler)
 
 ```
 paddle.io.WeightedRandomSampler(weights,

@@ -6,7 +6,7 @@
 torch.distributions.normal.Normal(loc, scale, validate_args=None)
 ```
 
-### [paddle.distribution.Normal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/Normal_cn.html)
+### [paddle.distribution.Normal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Normal_cn.html)
 
 ```python
 paddle.distribution.Normal(loc, scale, name=None)

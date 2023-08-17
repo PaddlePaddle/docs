@@ -6,7 +6,7 @@
 torch.Tensor.reciprocal()
 ```
 
-### [paddle.reciprocal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/reciprocal_cn.html)
+### [paddle.reciprocal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/reciprocal_cn.html)
 
 ```python
 paddle.reciprocal(x)

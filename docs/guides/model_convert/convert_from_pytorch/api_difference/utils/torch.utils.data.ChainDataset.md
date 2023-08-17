@@ -6,7 +6,7 @@
 torch.utils.data.ChainDataset(datasets)
 ```
 
-### [paddle.io.ChainDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/ChainDataset_cn.html)
+### [paddle.io.ChainDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/ChainDataset_cn.html)
 
 ```python
 paddle.io.ChainDataset(datasets)

@@ -6,7 +6,7 @@
 torch.Tensor.neg()
 ```
 
-### [paddle.Tensor.neg](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#neg-name-none)
+### [paddle.Tensor.neg](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#neg-name-none)
 
 ```python
 paddle.Tensor.neg()

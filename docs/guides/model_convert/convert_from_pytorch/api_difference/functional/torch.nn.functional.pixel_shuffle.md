@@ -6,7 +6,7 @@
 torch.nn.functional.pixel_shuffle(input, upscale_factor)
 ```
 
-### [paddle.nn.functional.pixel_shuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/pixel_shuffle_cn.html)
+### [paddle.nn.functional.pixel_shuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/pixel_shuffle_cn.html)
 
 ```python
 paddle.nn.functional.pixel_shuffle(x, upscale_factor, data_format='NCHW', name=None)

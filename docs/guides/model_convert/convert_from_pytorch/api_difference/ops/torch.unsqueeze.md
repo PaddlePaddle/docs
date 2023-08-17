@@ -6,7 +6,7 @@ torch.unsqueeze(input,
                 dim)
 ```
 
-### [paddle.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/unsqueeze_cn.html#unsqueeze)
+### [paddle.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/unsqueeze_cn.html#unsqueeze)
 
 ```python
 paddle.unsqueeze(x,

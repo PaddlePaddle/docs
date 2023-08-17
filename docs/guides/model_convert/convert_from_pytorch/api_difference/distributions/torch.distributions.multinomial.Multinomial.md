@@ -6,7 +6,7 @@
 torch.distributions.multinomial.Multinomial(total_count=1, probs=None, logits=None, validate_args=None)
 ```
 
-### [paddle.distribution.Multinomial](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/Multinomial_cn.html)
+### [paddle.distribution.Multinomial](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Multinomial_cn.html)
 
 ```python
 paddle.distribution.Multinomial(total_count, probs)

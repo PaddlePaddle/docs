@@ -7,7 +7,7 @@ torch.log(input,
           out=None)
 ```
 
-### [paddle.log](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log_cn.html#log)
+### [paddle.log](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/log_cn.html#log)
 
 ```python
 paddle.log(x,

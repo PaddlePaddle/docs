@@ -9,7 +9,7 @@ torch.scatter_add(input,
               src)
 ```
 
-### [paddle.put_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/put_along_axis_cn.html)
+### [paddle.put_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/put_along_axis_cn.html)
 
 ```python
 paddle.put_along_axis(arr,

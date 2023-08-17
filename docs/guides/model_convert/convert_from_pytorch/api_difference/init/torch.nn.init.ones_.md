@@ -6,7 +6,7 @@
 torch.nn.init.ones_(tensor)
 ```
 
-### [paddle.nn.initializer.Constant](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/initializer/Constant_cn.html)
+### [paddle.nn.initializer.Constant](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/Constant_cn.html)
 
 ```python
 paddle.nn.initializer.Constant(value=0.0)

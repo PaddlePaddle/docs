@@ -9,7 +9,7 @@ torch.diff(input,
            append=None)
 ```
 
-### [paddle.diff](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/diff_cn.html#diff)
+### [paddle.diff](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diff_cn.html#diff)
 
 ```python
 paddle.diff(x,

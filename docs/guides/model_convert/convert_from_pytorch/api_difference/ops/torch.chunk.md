@@ -7,7 +7,7 @@ torch.chunk(input,
             dim=0)
 ```
 
-### [paddle.chunk](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/chunk_cn.html#chunk)
+### [paddle.chunk](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/chunk_cn.html#chunk)
 
 ```python
 paddle.chunk(x,

@@ -5,7 +5,7 @@
 torch.argwhere(input)
 ```
 
-### [paddle.nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nonzero_cn.html#nonzero)
+### [paddle.nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nonzero_cn.html#nonzero)
 
 ```python
 paddle.nonzero(x, as_tuple=False)

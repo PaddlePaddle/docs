@@ -6,7 +6,7 @@
 torch.distributions.transforms.ReshapeTransform(in_shape, out_shape, cache_size=0)
 ```
 
-### [paddle.distribution.ReshapeTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/ReshapeTransform_cn.html)
+### [paddle.distribution.ReshapeTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/ReshapeTransform_cn.html)
 
 ```python
 paddle.distribution.ReshapeTransform(in_event_shape, out_event_shape)

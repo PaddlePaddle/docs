@@ -6,7 +6,7 @@
 torch.nn.Module.train()
 ```
 
-### [paddle.nn.Layer.train](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html#train)
+### [paddle.nn.Layer.train](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#train)
 
 ```python
 paddle.nn.Layer.train()

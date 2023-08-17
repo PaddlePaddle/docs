@@ -6,7 +6,7 @@
 torch.nn.functional.hardtanh(input, min_val=- 1.0, max_val=1.0, inplace=False)
 ```
 
-### [paddle.nn.functional.hardtanh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/hardtanh_cn.html)
+### [paddle.nn.functional.hardtanh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/hardtanh_cn.html)
 
 ```python
 paddle.nn.functional.hardtanh(x, min=-1.0, max=1.0, name=None)

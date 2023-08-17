@@ -6,7 +6,7 @@
 torch.distributed.rpc.rpc_sync(to, func, args=None, kwargs=None, timeout=- 1.0)
 ```
 
-### [paddle.distributed.rpc.rpc_sync](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/rpc/rpc_sync_cn.html)
+### [paddle.distributed.rpc.rpc_sync](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/rpc_sync_cn.html)
 
 ```python
 paddle.distributed.rpc.rpc_sync(to, fn, args=None, kwargs=None, timeout=- 1)

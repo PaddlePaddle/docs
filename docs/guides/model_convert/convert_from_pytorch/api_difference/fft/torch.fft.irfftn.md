@@ -11,7 +11,7 @@ torch.fft.irfftn(input,
                 out=None)
 ```
 
-### [paddle.fft.irfftn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/irfftn_cn.html)
+### [paddle.fft.irfftn](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/irfftn_cn.html)
 
 ```python
 paddle.fft.irfftn(x,

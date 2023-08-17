@@ -6,7 +6,7 @@
 torch.profiler.schedule(*, wait, warmup, active, repeat=0, skip_first=0)
 ```
 
-### [paddle.profiler.make_scheduler](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/profiler/make_scheduler_cn.html)
+### [paddle.profiler.make_scheduler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/make_scheduler_cn.html)
 
 ```python
 paddle.profiler.make_scheduler(*, closed, ready, record, repeat=0, skip_first=0)

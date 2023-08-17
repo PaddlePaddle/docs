@@ -6,7 +6,7 @@
 torch.utils.data.Sampler(data_source)
 ```
 
-### [paddle.io.Sampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/Sampler_cn.html)
+### [paddle.io.Sampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/Sampler_cn.html)
 
 ```python
 paddle.io.Sampler(data_source)

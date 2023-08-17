@@ -6,7 +6,7 @@
 torch.Tensor.type(dtype=None, non_blocking=False, **kwargs)
 ```
 
-### [paddle.Tensor.astype](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#astype-dtype)
+### [paddle.Tensor.astype](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#astype-dtype)
 
 ```python
 paddle.Tensor.astype(dtype)

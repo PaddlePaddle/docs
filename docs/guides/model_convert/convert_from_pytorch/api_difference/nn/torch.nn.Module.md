@@ -6,7 +6,7 @@
 torch.nn.Module(*args, **kwargs)
 ```
 
-### [paddle.nn.Layer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html)
+### [paddle.nn.Layer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html)
 
 ```python
 paddle.nn.Layer(name_scope=None, dtype='float32')

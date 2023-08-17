@@ -6,7 +6,7 @@
 torch.Tensor.grad
 ```
 
-### [paddle.Tensor.grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#grad)
+### [paddle.Tensor.grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#grad)
 
 ```python
 paddle.Tensor.grad

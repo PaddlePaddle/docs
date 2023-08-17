@@ -5,7 +5,7 @@
 torch.nn.ReplicationPad1d(padding)
 ```
 
-### [paddle.nn.Pad1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Pad1D_cn.html#pad1d)
+### [paddle.nn.Pad1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Pad1D_cn.html#pad1d)
 
 ```python
 paddle.nn.Pad1D(padding,

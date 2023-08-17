@@ -6,7 +6,7 @@
 torch.negative(input, *, out=None)
 ```
 
-### [paddle.neg](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/neg_cn.html)
+### [paddle.neg](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/neg_cn.html)
 
 ```python
 paddle.neg(x, name=None)

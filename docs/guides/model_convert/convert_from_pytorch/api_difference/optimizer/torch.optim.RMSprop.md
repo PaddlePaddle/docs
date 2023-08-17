@@ -14,7 +14,7 @@ torch.optim.RMSprop(params,
                 differentiable=False)
 ```
 
-### [paddle.optimizer.RMSProp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/RMSProp_cn.html)
+### [paddle.optimizer.RMSProp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/RMSProp_cn.html)
 
 ```python
 paddle.optimizer.RMSProp(learning_rate,

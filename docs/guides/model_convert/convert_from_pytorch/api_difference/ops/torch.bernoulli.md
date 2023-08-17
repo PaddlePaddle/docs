@@ -9,7 +9,7 @@ torch.bernoulli(input,
                 out=None)
 ```
 
-### [paddle.bernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/bernoulli_cn.html)
+### [paddle.bernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bernoulli_cn.html)
 
 ```python
 paddle.bernoulli(x,

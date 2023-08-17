@@ -6,7 +6,7 @@
 torch.Tensor.histogram(bins, *, range=None, weight=None, density=False)
 ```
 
-### [paddle.Tensor.histogram](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#histogram-bins-100-min-0-max-0)
+### [paddle.Tensor.histogram](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#histogram-bins-100-min-0-max-0)
 
 ```python
 paddle.Tensor.histogram(bins=100, min=0, max=0)

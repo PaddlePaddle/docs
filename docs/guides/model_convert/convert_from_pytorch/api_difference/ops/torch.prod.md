@@ -9,7 +9,7 @@ torch.prod(input,
            dtype=None)
 ```
 
-### [paddle.prod](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/prod_cn.html#prod)
+### [paddle.prod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/prod_cn.html#prod)
 
 ```python
 paddle.prod(x,

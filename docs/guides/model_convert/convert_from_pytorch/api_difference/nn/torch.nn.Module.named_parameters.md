@@ -6,7 +6,7 @@
 torch.nn.Module.named_parameters(prefix='', recurse=True, remove_duplicate=True)
 ```
 
-### [paddle.nn.Layer.named_parameters](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html#named-parameters-prefix-include-sublayers-true)
+### [paddle.nn.Layer.named_parameters](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#named-parameters-prefix-include-sublayers-true)
 
 ```python
 paddle.nn.Layer.named_parameters(prefix='', include_sublayers=True)

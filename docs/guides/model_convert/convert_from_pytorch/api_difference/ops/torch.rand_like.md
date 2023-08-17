@@ -1,6 +1,6 @@
 ## [ 组合替代实现 ]torch.rand_like
 
-### [torch.rand_like](https://pytorch.org/docs/master/generated/torch.rand_like.html#torch.rand_like)
+### [torch.rand_like](https://pytorch.org/docs/stable/generated/torch.rand_like.html#torch.rand_like)
 ```python
 torch.rand_like(input, *, dtype=None, layout=None, device=None, requires_grad=False, memory_format=torch.preserve_format)
 ```

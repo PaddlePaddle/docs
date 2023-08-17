@@ -14,7 +14,7 @@ torch.empty(*size,
             memory_format=torch.contiguous_format)
 ```
 
-###  [paddle.empty](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/empty_cn.html)
+###  [paddle.empty](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/empty_cn.html)
 
 ```python
 paddle.empty(shape,

@@ -13,7 +13,7 @@ torch.fft.rfftfreq(n,
                 requires_grad=False)
 ```
 
-### [paddle.fft.rfftfreq](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/rfftfreq_cn.html)
+### [paddle.fft.rfftfreq](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/rfftfreq_cn.html)
 
 ```python
 paddle.fft.rfftfreq(n,

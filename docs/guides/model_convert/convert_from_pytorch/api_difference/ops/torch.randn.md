@@ -12,7 +12,7 @@ torch.randn(*size,
             requires_grad=False)
 ```
 
-### [paddle.randn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/randn_cn.html#randn)
+### [paddle.randn](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/randn_cn.html#randn)
 
 ```python
 paddle.randn(shape,

@@ -6,7 +6,7 @@
 torch.nn.functional.pixel_unshuffle(input, downscale_factor)
 ```
 
-### [paddle.nn.functional.pixel_unshuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/pixel_unshuffle_cn.html)
+### [paddle.nn.functional.pixel_unshuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/pixel_unshuffle_cn.html)
 
 ```python
 paddle.nn.functional.pixel_unshuffle(x, downscale_factor, data_format='NCHW', name=None)

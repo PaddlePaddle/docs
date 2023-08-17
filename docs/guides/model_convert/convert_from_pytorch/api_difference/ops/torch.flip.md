@@ -6,7 +6,7 @@ torch.flip(input,
            dims)
 ```
 
-### [paddle.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/flip_cn.html#flip)
+### [paddle.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/flip_cn.html#flip)
 
 ```python
 paddle.flip(x,

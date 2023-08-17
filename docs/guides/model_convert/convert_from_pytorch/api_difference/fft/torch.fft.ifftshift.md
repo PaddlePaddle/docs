@@ -6,7 +6,7 @@
 torch.fft.ifftshift(input, dim=None)
 ```
 
-### [paddle.fft.ifftshift](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/ifftshift_cn.html)
+### [paddle.fft.ifftshift](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/ifftshift_cn.html)
 
 ```python
 paddle.fft.ifftshift(x, axes=None, name=None)

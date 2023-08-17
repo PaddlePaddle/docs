@@ -6,7 +6,7 @@
 torch.distributed.get_rank(group=None)
 ```
 
-### [paddle.distributed.get_rank](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/get_rank_cn.html)
+### [paddle.distributed.get_rank](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/get_rank_cn.html)
 
 ```python
 paddle.distributed.get_rank(group=None)

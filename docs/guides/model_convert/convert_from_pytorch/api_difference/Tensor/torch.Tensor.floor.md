@@ -6,7 +6,7 @@
 torch.Tensor.floor()
 ```
 
-### [paddle.Tensor.floor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/floor_cn.html#floor)
+### [paddle.Tensor.floor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/floor_cn.html#floor)
 
 ```python
 paddle.Tensor.floor(name=None)

@@ -6,7 +6,7 @@
 torch.nn.Module.add_module(name, module)
 ```
 
-### [paddle.nn.Layer.add_sublayer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html#add-sublayer-name-sublayer)
+### [paddle.nn.Layer.add_sublayer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#add-sublayer-name-sublayer)
 
 ```python
 paddle.nn.Layer.add_sublayer(name, sublayer)

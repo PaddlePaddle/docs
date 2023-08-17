@@ -6,7 +6,7 @@
 torch.nn.ReLU6(inplace=False)
 ```
 
-### [paddle.nn.ReLU6](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ReLU6_cn.html)
+### [paddle.nn.ReLU6](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ReLU6_cn.html)
 
 ```python
 paddle.nn.ReLU6(name=None)

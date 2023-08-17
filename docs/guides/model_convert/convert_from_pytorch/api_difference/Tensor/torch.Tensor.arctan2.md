@@ -6,7 +6,7 @@
 torch.Tensor.arctan2(other)
 ```
 
-### [paddle.atan2](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atan2_cn.html)
+### [paddle.atan2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atan2_cn.html)
 
 ```python
 paddle.atan2(x, y, name=None)

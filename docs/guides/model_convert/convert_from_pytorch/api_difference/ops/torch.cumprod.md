@@ -10,7 +10,7 @@ torch.cumprod(input,
               out=None)
 ```
 
-### [paddle.cumprod](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cumprod_cn.html#cumprod)
+### [paddle.cumprod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cumprod_cn.html#cumprod)
 
 ```python
 paddle.cumprod(x,

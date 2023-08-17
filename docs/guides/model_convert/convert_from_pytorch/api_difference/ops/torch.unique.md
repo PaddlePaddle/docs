@@ -9,7 +9,7 @@ torch.unique(input,
              dim=None)
 ```
 
-### [paddle.unique](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/unique_cn.html#unique)
+### [paddle.unique](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/unique_cn.html#unique)
 
 ```python
 paddle.unique(x,

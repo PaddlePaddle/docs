@@ -6,7 +6,7 @@
 torch.nn.ModuleList(modules=None)
 ```
 
-### [paddle.nn.LayerList](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LayerList_cn.html)
+### [paddle.nn.LayerList](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LayerList_cn.html)
 
 ```python
 paddle.nn.LayerList(sublayers=None)

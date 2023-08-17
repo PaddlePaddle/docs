@@ -6,7 +6,7 @@
 torch.nn.functional.logsigmoid(input)
 ```
 
-### [paddle.nn.functional.log_sigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/log_sigmoid_cn.html)
+### [paddle.nn.functional.log_sigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/log_sigmoid_cn.html)
 
 ```python
 paddle.nn.functional.log_sigmoid(x, name=None)

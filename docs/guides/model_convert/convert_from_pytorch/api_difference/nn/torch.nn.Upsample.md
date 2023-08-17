@@ -8,7 +8,7 @@ torch.nn.Upsample(size=None,
                   align_corners=False)
 ```
 
-### [paddle.nn.Upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Upsample_cn.html#upsample)
+### [paddle.nn.Upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Upsample_cn.html#upsample)
 
 ```python
 paddle.nn.Upsample(size=None,

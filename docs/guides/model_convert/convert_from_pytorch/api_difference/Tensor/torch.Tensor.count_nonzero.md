@@ -5,7 +5,7 @@
 torch.Tensor.count_nonzero(dim=None)
 ```
 
-### [paddle.Tensor.count_nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#count-nonzero-axis-none-keepdim-false-name-none)
+### [paddle.Tensor.count_nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#count-nonzero-axis-none-keepdim-false-name-none)
 
 ```python
 paddle.Tensor.count_nonzero(axis=None, keepdim=False, name=None)

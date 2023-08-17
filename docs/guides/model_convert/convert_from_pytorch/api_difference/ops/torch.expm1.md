@@ -7,7 +7,7 @@ torch.expm1(input,
             out=None)
 ```
 
-### [paddle.expm1](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/expm1_cn.html)
+### [paddle.expm1](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/expm1_cn.html)
 
 ```python
 paddle.expm1(x,

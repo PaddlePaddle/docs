@@ -7,7 +7,7 @@ torch.fix(input,
           out=None)
 ```
 
-### [paddle.trunc](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/trunc_cn.html)
+### [paddle.trunc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/trunc_cn.html)
 
 ```python
 paddle.trunc(input,

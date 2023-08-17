@@ -6,7 +6,7 @@
 torch.tril(input,diagonal=0,*,out=None)
 ```
 
-### [paddle.tril](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tril_cn.html)
+### [paddle.tril](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/tril_cn.html)
 
 ```python
 paddle.tril(input,diagonal=0,name=None)

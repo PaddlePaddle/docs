@@ -9,7 +9,7 @@ torch.bitwise_and(input,
                   out=None)
 ```
 
-### [paddle.bitwise_and](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/bitwise_and_cn.html#bitwise-and)
+### [paddle.bitwise_and](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bitwise_and_cn.html#bitwise-and)
 
 ```python
 paddle.bitwise_and(x,

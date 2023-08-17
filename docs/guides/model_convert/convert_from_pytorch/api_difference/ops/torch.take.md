@@ -5,7 +5,7 @@
 torch.take(input, index)
 ```
 
-### [paddle.take](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/take_cn.html#take)
+### [paddle.take](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/take_cn.html#take)
 
 ```python
 paddle.take(x, index, mode='raise', name=None)

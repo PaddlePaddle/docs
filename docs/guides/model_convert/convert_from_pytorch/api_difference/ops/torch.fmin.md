@@ -6,7 +6,7 @@
 torch.fmin(input, other, *, out=None)
 ```
 
-### [paddle.fmin](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fmin_cn.html)
+### [paddle.fmin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fmin_cn.html)
 
 ```python
 paddle.fmin(x, y, name=None)

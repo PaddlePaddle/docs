@@ -1,6 +1,6 @@
 ## [参数完全一致]torch.nn.HuberLoss
 
-### [torch.nn.HuberLoss](https://pytorch.org/docs/1.13/generated/torch.nn.HuberLoss.html#torch.nn.HuberLoss)
+### [torch.nn.HuberLoss](https://pytorch.org/docs/stable/generated/torch.nn.HuberLoss.html#torch.nn.HuberLoss)
 
 ```python
 torch.nn.HuberLoss(reduction='mean', delta=1.0)

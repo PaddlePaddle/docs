@@ -5,7 +5,7 @@
 torch.numel(input)
 ```
 
-### [paddle.Tensor.size](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#size)
+### [paddle.Tensor.size](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#size)
 
 ```python
 paddle.Tensor.size

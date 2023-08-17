@@ -7,7 +7,7 @@ torch.nn.init.xavier_uniform_(tensor,
                         gain=1.0)
 ```
 
-### [paddle.nn.initializer.XavierUniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/initializer/XavierUniform_cn.html)
+### [paddle.nn.initializer.XavierUniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/XavierUniform_cn.html)
 
 ```python
 paddle.nn.initializer.XavierUniform(fan_in=None,

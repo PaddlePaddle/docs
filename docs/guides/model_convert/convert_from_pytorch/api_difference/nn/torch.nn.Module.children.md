@@ -6,7 +6,7 @@
 torch.nn.Module.children()
 ```
 
-### [paddle.nn.Layer.children](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html#children)
+### [paddle.nn.Layer.children](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#children)
 
 ```python
 paddle.nn.Layer.children()
