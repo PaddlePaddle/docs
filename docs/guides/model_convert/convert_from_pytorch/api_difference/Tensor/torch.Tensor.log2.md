@@ -6,7 +6,7 @@
 torch.Tensor.log2()
 ```
 
-### [paddle.Tensor.log2](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#log2-name-none)
+### [paddle.Tensor.log2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#log2-name-none)
 
 ```python
 paddle.Tensor.log2()

@@ -1,6 +1,6 @@
 ## [ 组合替代实现 ]torch.is_nonzero
 
-### [torch.is_nonzero](https://pytorch.org/docs/master/generated/torch.is_nonzero.html#torch.is_nonzero)
+### [torch.is_nonzero](https://pytorch.org/docs/stable/generated/torch.is_nonzero.html#torch.is_nonzero)
 
 ```python
 torch.is_nonzero(input)

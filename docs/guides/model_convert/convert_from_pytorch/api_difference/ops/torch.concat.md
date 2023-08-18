@@ -6,7 +6,7 @@
 torch.concat(tensors, dim=0, *, out=None)
 ```
 
-### [paddle.concat](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/concat_cn.html)
+### [paddle.concat](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/concat_cn.html)
 
 ```python
 paddle.concat(x, axis=0, name=None)

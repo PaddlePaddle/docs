@@ -6,7 +6,7 @@
 torch.Tensor.logcumsumexp(dim)
 ```
 
-### [paddle.Tensor.logcumsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logcumsumexp_cn.html#logcumsumexp)
+### [paddle.Tensor.logcumsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logcumsumexp_cn.html#logcumsumexp)
 
 ```python
 paddle.Tensor.logcumsumexp(axis=None, dtype=None, name=None)

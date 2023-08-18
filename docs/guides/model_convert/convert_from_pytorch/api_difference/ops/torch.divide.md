@@ -8,7 +8,7 @@ torch.divide(input,
              out=None)
 ```
 
-### [paddle.divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/divide_cn.html)
+### [paddle.divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/divide_cn.html)
 ```python
 paddle.divide(x,
               y,

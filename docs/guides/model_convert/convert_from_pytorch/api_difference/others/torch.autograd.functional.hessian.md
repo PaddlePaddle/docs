@@ -6,7 +6,7 @@
 torch.autograd.functional.hessian(func, inputs, create_graph=False, strict=False, vectorize=False, outer_jacobian_strategy='reverse-mode')
 ```
 
-### [paddle.incubate.autograd.Hessian](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/incubate/autograd/Hessian_cn.html)
+### [paddle.incubate.autograd.Hessian](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/incubate/autograd/Hessian_cn.html)
 
 ```python
 paddle.incubate.autograd.Hessian(func, xs, is_batched=False)

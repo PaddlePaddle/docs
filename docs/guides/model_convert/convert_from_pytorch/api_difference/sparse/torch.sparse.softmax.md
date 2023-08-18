@@ -6,7 +6,7 @@
 torch.sparse.softmax(input, dim, dtype=None)
 ```
 
-### [paddle.sparse.nn.functional.softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sparse/nn/functional/softmax_cn.html)
+### [paddle.sparse.nn.functional.softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/nn/functional/softmax_cn.html)
 
 ```python
 paddle.sparse.nn.functional.softmax(x, axis=-1, name=None)

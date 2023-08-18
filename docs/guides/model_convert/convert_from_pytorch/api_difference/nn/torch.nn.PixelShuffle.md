@@ -5,7 +5,7 @@
 torch.nn.PixelShuffle(upscale_factor)
 ```
 
-### [paddle.nn.PixelShuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/PixelShuffle_cn.html)
+### [paddle.nn.PixelShuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/PixelShuffle_cn.html)
 
 ```python
 paddle.nn.PixelShuffle(upscale_factor,

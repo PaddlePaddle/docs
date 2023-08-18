@@ -6,7 +6,7 @@
 torch.logical_xor(input, other, *, out=None)
 ```
 
-### [paddle.logical_xor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_xor_cn.html)
+### [paddle.logical_xor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logical_xor_cn.html)
 
 ```python
 paddle.logical_xor(x, y, out=None, name=None)

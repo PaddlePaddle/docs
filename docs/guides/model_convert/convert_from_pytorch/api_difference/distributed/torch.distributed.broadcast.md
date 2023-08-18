@@ -6,7 +6,7 @@
 torch.distributed.broadcast(tensor, src, group=None, async_op=False)
 ```
 
-### [paddle.distributed.broadcast](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/broadcast_cn.html)
+### [paddle.distributed.broadcast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/broadcast_cn.html)
 
 ```python
 paddle.distributed.broadcast(tensor, src, group=0)

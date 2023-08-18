@@ -6,7 +6,7 @@
 torch.distributions.kl.register_kl(type_p, type_q)
 ```
 
-### [paddle.distribution.register_kl](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/register_kl_cn.html)
+### [paddle.distribution.register_kl](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/register_kl_cn.html)
 
 ```python
 paddle.distribution.register_kl(cls_p, cls_q)

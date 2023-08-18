@@ -6,7 +6,7 @@
 torch.Tensor.unsqueeze(dim)
 ```
 
-### [paddle.Tensor.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#unsqueeze-axis-name-none)
+### [paddle.Tensor.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#unsqueeze-axis-name-none)
 
 ```
 paddle.Tensor.unsqueeze(axis, name=None)

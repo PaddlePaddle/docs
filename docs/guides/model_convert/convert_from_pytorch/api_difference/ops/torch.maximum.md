@@ -6,7 +6,7 @@
 torch.maximum(input, other, *, out=None)
 ```
 
-### [paddle.maximum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/maximum_cn.html)
+### [paddle.maximum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/maximum_cn.html)
 
 ```python
 paddle.maximum(x, y, name=None)

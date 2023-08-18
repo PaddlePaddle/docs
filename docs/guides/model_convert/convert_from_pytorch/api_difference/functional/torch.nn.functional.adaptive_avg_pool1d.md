@@ -6,7 +6,7 @@
 torch.nn.functional.adaptive_avg_pool1d(input, output_size)
 ```
 
-### [paddle.nn.functional.adaptive_avg_pool1d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/adaptive_avg_pool1d_cn.html)
+### [paddle.nn.functional.adaptive_avg_pool1d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/adaptive_avg_pool1d_cn.html)
 
 ```python
 paddle.nn.functional.adaptive_avg_pool1d(x, output_size, name=None)

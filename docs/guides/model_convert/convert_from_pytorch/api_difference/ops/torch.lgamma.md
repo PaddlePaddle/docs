@@ -7,7 +7,7 @@ torch.lgamma(input,
               out=None)
 ```
 
-### [paddle.lgamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/lgamma_cn.html#lgamma)
+### [paddle.lgamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/lgamma_cn.html#lgamma)
 
 ```python
 paddle.lgamma(x

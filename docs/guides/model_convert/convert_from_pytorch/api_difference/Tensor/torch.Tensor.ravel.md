@@ -5,7 +5,7 @@
 torch.Tensor.ravel()
 ```
 
-### [paddle.Tensor.flatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#flatten-start-axis-0-stop-axis-1-name-none)
+### [paddle.Tensor.flatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#flatten-start-axis-0-stop-axis-1-name-none)
 
 ```python
 paddle.Tensor.flatten(start_axis=0, stop_axis=- 1, name=None)

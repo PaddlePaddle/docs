@@ -6,7 +6,7 @@
 torch.nn.Threshold(threshold, value, inplace=False)
 ```
 
-### [paddle.nn.ThresholdedReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ThresholdedReLU_cn.html)
+### [paddle.nn.ThresholdedReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ThresholdedReLU_cn.html)
 
 ```python
 paddle.nn.ThresholdedReLU(threshold=1.0, name=None)

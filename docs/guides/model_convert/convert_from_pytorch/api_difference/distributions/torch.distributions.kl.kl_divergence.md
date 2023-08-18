@@ -6,7 +6,7 @@
 torch.distributions.kl.kl_divergence(p, q)
 ```
 
-### [paddle.distribution.kl_divergence](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/kl_divergence_cn.html)
+### [paddle.distribution.kl_divergence](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/kl_divergence_cn.html)
 
 ```python
 paddle.distribution.kl_divergence(p, q)

@@ -6,7 +6,7 @@
 torch.Tensor.svd(some=True, compute_uv=True)
 ```
 
-### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/svd_cn.html#svd)
+### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/svd_cn.html#svd)
 ```python
 paddle.linalg.svd(x, full_matrics=False, name=None)
 ```

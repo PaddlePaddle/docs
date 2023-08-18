@@ -6,7 +6,7 @@
 torch.is_tensor(obj)
 ```
 
-### [paddle.is_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/is_tensor_cn.html#is-tensor)
+### [paddle.is_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/is_tensor_cn.html#is-tensor)
 
 ```python
 paddle.is_tensor(x)

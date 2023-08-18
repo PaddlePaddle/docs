@@ -7,7 +7,7 @@ torch.linalg.multi_dot(tensors,
                        out=None)
 ```
 
-### [paddle.linalg.multi_dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/multi_dot_cn.html)
+### [paddle.linalg.multi_dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/multi_dot_cn.html)
 
 ```python
 paddle.linalg.multi_dot(x,

@@ -6,7 +6,7 @@
 torch.Tensor.tolist()
 ```
 
-### [paddle.Tensor.tolist](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#tolist)
+### [paddle.Tensor.tolist](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tolist)
 
 ```
 paddle.Tensor.tolist()

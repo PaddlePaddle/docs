@@ -8,7 +8,7 @@ torch.nn.LocalResponseNorm(size,
                            k=1.0)
 ```
 
-### [paddle.nn.LocalResponseNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LocalResponseNorm_cn.html)
+### [paddle.nn.LocalResponseNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LocalResponseNorm_cn.html)
 
 ```python
 paddle.nn.LocalResponseNorm(size,

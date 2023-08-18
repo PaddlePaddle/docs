@@ -15,7 +15,7 @@ torch.nn.ConvTranspose1d(in_channels,
                          dtype=None)
 ```
 
-### [paddle.nn.Conv1DTranspose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Conv1DTranspose_cn.html#conv1dtranspose)
+### [paddle.nn.Conv1DTranspose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Conv1DTranspose_cn.html#conv1dtranspose)
 ```python
 paddle.nn.Conv1DTranspose(in_channels,
                           out_channels,

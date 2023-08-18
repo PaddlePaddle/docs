@@ -9,7 +9,7 @@ torch.optim.lr_scheduler.LambdaLR(optimizer,
                                 verbose=False)
 ```
 
-### [paddle.optimizer.lr.LambdaDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/lr/LambdaDecay_cn.html)
+### [paddle.optimizer.lr.LambdaDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/LambdaDecay_cn.html)
 
 ```python
 paddle.optimizer.lr.LambdaDecay(learning_rate,

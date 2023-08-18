@@ -6,7 +6,7 @@
 torch.Tensor.cumsum(dim, dtype=None)
 ```
 
-### [paddle.Tensor.cumsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cumsum-axis-none-dtype-none-name-none)
+### [paddle.Tensor.cumsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cumsum-axis-none-dtype-none-name-none)
 
 ```python
 paddle.Tensor.cumsum(axis=None, dtype=None, name=None)

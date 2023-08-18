@@ -11,7 +11,7 @@ torch.nn.functional.kl_div(input,
                log_target=False)
 ```
 
-### [paddle.nn.functional.kl_div](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/kl_div_cn.html)
+### [paddle.nn.functional.kl_div](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/kl_div_cn.html)
 
 ```
 paddle.nn.functional.kl_div(input,

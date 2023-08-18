@@ -6,7 +6,7 @@
 torch.distributions.dirichlet.Dirichlet(concentration, validate_args=None)
 ```
 
-### [paddle.distribution.Dirichlet](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/Dirichlet_cn.html)
+### [paddle.distribution.Dirichlet](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Dirichlet_cn.html)
 
 ```python
 paddle.distribution.Dirichlet(concentration)

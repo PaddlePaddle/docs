@@ -8,7 +8,7 @@ torch.utils.cpp_extension.CUDAExtension(name,
                                     **kwargs)
 ```
 
-### [paddle.utils.cpp_extension.CUDAExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/CUDAExtension_cn.html)
+### [paddle.utils.cpp_extension.CUDAExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/cpp_extension/CUDAExtension_cn.html)
 
 ```python
 paddle.utils.cpp_extension.CUDAExtension(sources,

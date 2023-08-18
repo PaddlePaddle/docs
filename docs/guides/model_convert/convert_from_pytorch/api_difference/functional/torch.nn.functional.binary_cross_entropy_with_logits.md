@@ -6,7 +6,7 @@
 torch.nn.functional.binary_cross_entropy_with_logits(input, target, weight=None, size_average=None, reduce=None, reduction='mean', pos_weight=None)
 ```
 
-### [paddle.nn.functional.binary_cross_entropy_with_logits](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/binary_cross_entropy_with_logits_cn.html)
+### [paddle.nn.functional.binary_cross_entropy_with_logits](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/binary_cross_entropy_with_logits_cn.html)
 
 ```python
 paddle.nn.functional.binary_cross_entropy_with_logits(logit, label, weight=None, reduction='mean', pos_weight=None, name=None)

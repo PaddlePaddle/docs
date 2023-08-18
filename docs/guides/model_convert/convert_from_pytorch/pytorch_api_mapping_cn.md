@@ -17,6 +17,7 @@
 | [torch.nn.utils.XX](#id5) | 主要为`torch.nn.utils.XX`类 API |
 | [torch.nn.Module.XX](#id15) | 主要为`torch.nn.Module.XX`类 API |
 | [torch.Tensor.XX](#id6) | 主要为`torch.Tensor.XX`类 API |
+| [torch.autograd.XX](#id20) | 主要为`torch.autograd.XX`类 API |
 | [torch.cuda.XX](#id7) | 主要为`torch.cuda.XX`类 API |
 | [torch.distributed.XX](#id8) | 主要为`torch.distributed.XX`类 API |
 | [torch.distributions.XX](#id9)    | 主要为`torch.distributions.XX`类 API |
@@ -24,6 +25,8 @@
 | [torch.hub.XX](#id14)    | 主要为`torch.hub.XX`类 API |
 | [torch.linalg.XX](#id11)    | 主要为`torch.linalg.XX`类 API |
 | [torch.onnx.XX](#id15)    | 主要为`torch.onnx.XX`类 API |
+| [torch.profiler.XX](#id21)    | 主要为`torch.profiler.XX`类 API |
+| [torch.optim.XX](#id22)    | 主要为`torch.optim.XX`类 API |
 | [torch.sparse.XX](#id12)    | 主要为`torch.sparse.XX`类 API |
 | [其他](#id13)    | 其他 API |
 
@@ -298,6 +301,8 @@
 | 263   |  [torch.vsplit](https://pytorch.org/docs/stable/generated/torch.vsplit.html#torch.vsplit)  |  | 功能缺失        |
 | 264   |  [torch.hsplit](https://pytorch.org/docs/stable/generated/torch.hsplit.html#torch.hsplit)  |  | 功能缺失        |
 | 265   |  [torch.histogram](https://pytorch.org/docs/stable/generated/torch.histogram.html#torch.histogram)  |  | 功能缺失        |
+| 266    | [torch.gradient](https://pytorch.org/docs/stable/generated/torch.gradient.html#torch.gradient) |  | 功能缺失        |
+| 267    | [torch.positive](https://pytorch.org/docs/stable/generated/torch.positive.html#torch.positive) |  | 功能缺失        |
 
 ***持续更新...***
 
@@ -396,9 +401,11 @@
 | 87   |  [torch.nn.MarginRankingLoss](https://pytorch.org/docs/stable/generated/torch.nn.MarginRankingLoss.html#marginrankingloss)  |  [paddle.nn.MarginRankingLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MarginRankingLoss_cn.html#marginrankingloss)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.MarginRankingLoss.md)  |
 | 88   |  [torch.nn.NLLLoss](https://pytorch.org/docs/stable/generated/torch.nn.NLLLoss.html?highlight=nllloss#torch.nn.NLLLoss)  |  [paddle.nn.NLLLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/NLLLoss_cn.html#nllloss)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.NLLLoss.md)  |
 | 89   |  [torch.nn.SoftMarginLoss](https://pytorch.org/docs/stable/generated/torch.nn.SoftMarginLoss.html#torch.nn.SoftMarginLoss)  |  [paddle.nn.SoftMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/SoftMarginLoss_cn.html#softmarginloss)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.SoftMarginLoss.md)  |
-| 90   |  [troch.nn.Mish](https://pytorch.org/docs/stable/generated/torch.nn.Mish.html?highlight=troch+nn+mish)  |  [paddle.nn.Mish](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Mish_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Mish.md)  |
-| 91   |  [troch.nn.GLU](https://pytorch.org/docs/stable/generated/torch.nn.GLU.html#torch.nn.GLU)  |  | 功能缺失        |
-
+| 90   |  [torch.nn.Mish](https://pytorch.org/docs/stable/generated/torch.nn.Mish.html?highlight=torch+nn+mish)  |  [paddle.nn.Mish](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Mish_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Mish.md)  |
+| 91   |  [torch.nn.GLU](https://pytorch.org/docs/stable/generated/torch.nn.GLU.html#torch.nn.GLU)  |  | 功能缺失        |
+| 92   |  [torch.nn.LazyBatchNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm1d.html#torch.nn.LazyBatchNorm1d)  |  | 功能缺失        |
+| 93   |  [torch.nn.LazyBatchNorm2d](https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm2d.html#torch.nn.LazyBatchNorm2d)  |  | 功能缺失        |
+| 94   |  [torch.nn.LazyBatchNorm3d](https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm3d.html#torch.nn.LazyBatchNorm3d)  |  | 功能缺失        |
 
 
 ***持续更新...***
@@ -461,6 +468,7 @@
 | 51   | [torch.nn.functional.binary_cross_entropy_with_logits](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/binary_cross_entropy_with_logits_cn.html) | [paddle.nn.functional.binary_cross_entropy_with_logits](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/binary_cross_entropy_with_logits_cn.html) | 功能一致，仅参数命名不一致 [差异对比](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.binary_cross_entropy_with_logits.md) |
 | 52   | [torch.nn.functional.l1_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.l1_loss.html?highlight=l1_loss#torch.nn.functional.l1_loss) | [paddle.nn.functional.l1_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/l1_loss_cn.html) | 功能一致，仅参数命名不一致 [差异对比](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.l1_loss.md) |
 | 53   | [torch.nn.functional.mish](https://pytorch.org/docs/stable/generated/torch.nn.functional.mish.html?highlight=torch+nn+functional+mish#torch.nn.functional.mish) | [paddle.nn.functional.mish](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/mish_cn.html) | 功能一致，torch 参数更多 [差异对比](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.mish.md) |
+| 54   | [torch.nn.functional.group_norm](https://pytorch.org/docs/stable/generated/torch.nn.functional.group_norm.html#torch.nn.functional.group_norm) |  | 功能缺失 |
 
 ***持续更新...***
 
@@ -477,7 +485,7 @@
 | 6   |  [torch.Tensor.ndim](https://pytorch.org/docs/stable/generated/torch.Tensor.ndim.html)  |  [paddle.Tensor.ndim](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#ndim)  |    功能一致, 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.ndim.md)  |
 | 7   |  [torch.Tensor.real](https://pytorch.org/docs/stable/generated/torch.Tensor.real.html)  |  [paddle.Tensor.real](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#real-name-none)  |    功能一致, 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.real.md)  |
 | 8   |  [torch.Tensor.shape](https://pytorch.org/docs/stable/generated/torch.Tensor.shape.html)  |  [paddle.Tensor.shape](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#shape)  |    功能一致, 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.shape.md)  |
-| 9   |  [torch.Tensor.T](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.T)  |  [paddle.Tensor.T](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#tensor)  |    功能一致, 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.T.md)  |
+| 9   |  [torch.Tensor.T](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.T)  |  [paddle.Tensor.T](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#tensor)  |    功能一致, 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.T__upper.md)  |
 | 10   | [torch.Tensor.is_contiguous](https://pytorch.org/docs/stable/generated/torch.Tensor.is_contiguous.html?highlight=is_contiguous#torch.Tensor.is_contiguous) | [-] | 无对应 API，可以直接删除，对网络一般无影响 |
 | 11   | [torch.Tensor.contiguous](https://pytorch.org/docs/stable/generated/torch.Tensor.contiguous.html?highlight=contiguous#torch.Tensor.contiguous) | [-] | 无对应 API，可以直接删除，对网络一般无影响 |
 | 12   | [torch.Tensor.float](https://pytorch.org/docs/stable/generated/torch.Tensor.float.html?highlight=float#torch.Tensor.float) | [paddle.Tensor.astype](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#astype-dtype) | 功能一致，torch 参数更多， [差异对比](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.float.md) |
@@ -648,6 +656,8 @@
 | 177   |  [torch.Tensor.is_coalesced](https://pytorch.org/docs/stable/generated/torch.Tensor.is_coalesced.html#torch.Tensor.is_coalesced)  |  | 功能缺失        |
 | 178   |  [torch.Tensor.histogram](https://pytorch.org/docs/stable/generated/torch.Tensor.histogram.html#torch.Tensor.histogram)  |  | 功能缺失        |
 | 179   |  [torch.Tensor.geqrf](https://pytorch.org/docs/1.13/generated/torch.Tensor.geqrf.html?highlight=torch+tensor+geqrf#torch.Tensor.geqrf)  |  | 功能缺失        |
+| 180   |  [torch.Tensor.sparse_resize_](https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_resize_.html#torch.Tensor.sparse_resize_)  |  | 功能缺失        |
+| 181   |  [torch.Tensor.sparse_resize_and_clear_](https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_resize_and_clear_.html#torch.Tensor.sparse_resize_and_clear_)  |  | 功能缺失        |
 
 ***持续更新...***
 
@@ -681,6 +691,7 @@
 | 14   |  [torch.utils.dlpack.to_dlpack](https://pytorch.org/docs/stable/dlpack.html?highlight=torch+utils+dlpack+to_dlpack#torch.utils.dlpack.to_dlpack)  |  [paddle.utils.dlpack.to_dlpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/dlpack/to_dlpack_cn.html)  |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.dlpack.to_dlpack.md)  |
 | 15   |  [torch.utils.cpp_extension.load_inline](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.load_inline)  |   | 功能缺失  |
 | 16   |  [torch.utils.cpp_extension.include_paths](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.include_paths)  |   | 功能缺失  |
+| 17   |  [torch.nn.utils.parametrize.is_parametrized](https://pytorch.org/docs/stable/generated/torch.nn.utils.parametrize.is_parametrized.html#torch.nn.utils.parametrize.is_parametrized)  |   | 功能缺失  |
 
 
 ***持续更新...***
@@ -695,6 +706,16 @@
 | 3   |  [torch.nn.Module.register_full_backward_hook](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_hook)  |   | 功能缺失  |
 | 4   |  [torch.nn.Module.requires_grad_](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.requires_grad_)  |   | 功能缺失  |
 
+
+***持续更新...***
+
+## torch.autograd.XX API 映射列表
+梳理了`torch.autograd.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
+
+| 序号 | PyTorch API | PaddlePaddle API | 备注 |
+ |--- | --- | --- | --- |
+| 1   |  [torch.autograd.profiler.profile.self_cpu_time_total](https://pytorch.org/docs/stable/generated/torch.autograd.profiler.profile.self_cpu_time_total.html#torch.autograd.profiler.profile.self_cpu_time_total)  |   | 功能缺失  |
+| 2   |  [torch.autograd.function.FunctionCtx.mark_dirty](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.mark_dirty.html#torch.autograd.function.FunctionCtx.mark_dirty)  |   | 功能缺失  |
 
 ***持续更新...***
 
@@ -724,6 +745,7 @@
 | 19   | [torch.cuda.default_stream](https://pytorch.org/docs/stable/generated/torch.cuda.default_stream.html?highlight=torch+cuda+default_stream#torch.cuda.default_stream) | | 功能缺失 |
 | 20   | [torch.cuda.get_arch_list](https://pytorch.org/docs/stable/generated/torch.cuda.get_arch_list.html?highlight=torch+cuda+get_arch_list#torch.cuda.get_arch_list) | | 功能缺失 |
 | 21   | [torch.cuda.is_initialized](https://pytorch.org/docs/stable/generated/torch.cuda.is_initialized.html?highlight=torch+cuda+is_initialized#torch.cuda.is_initialized) | | 功能缺失 |
+| 22   | [torch.cuda.StreamContext](https://pytorch.org/docs/stable/generated/torch.cuda.StreamContext.html#torch.cuda.StreamContext) | | 功能缺失 |
 
 ***持续更新...***
 
@@ -805,6 +827,10 @@
 | 9   |  [torch.linalg.eig](https://pytorch.org/docs/stable/generated/torch.linalg.eig.html?highlight=torch+linalg+eig#torch.linalg.eig)  |  [paddle.linalg.eig](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/eig_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.eig.md)  |
 | 10   |  [torch.linalg.multi_dot](https://pytorch.org/docs/stable/generated/torch.linalg.multi_dot.html?highlight=torch+linalg+multi_dot#torch.linalg.multi_dot)  |  [paddle.linalg.multi_dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/multi_dot_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.multi_dot.md)  |
 | 11   |  [torch.linalg.matrix_exp](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_exp.html#torch.linalg.matrix_exp)  |  | 功能缺失        |
+| 12    | [torch.linalg.matrix_norm](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_norm.html#torch.linalg.matrix_norm) |  | 功能缺失        |
+| 13    | [torch.linalg.vector_norm](https://pytorch.org/docs/stable/generated/torch.linalg.vector_norm.html#torch.linalg.vector_norm) |  | 功能缺失        |
+| 14    | [torch.linalg.cholesky_ex](https://pytorch.org/docs/stable/generated/torch.linalg.cholesky_ex.html#torch.linalg.cholesky_ex) |  | 功能缺失        |
+| 15    | [torch.linalg.inv_ex](https://pytorch.org/docs/stable/generated/torch.linalg.inv_ex.html#torch.linalg.inv_ex) |  | 功能缺失        |
 
 ***持续更新...***
 
@@ -815,6 +841,25 @@
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1    | [torch.onnx.enable_log](https://pytorch.org/docs/stable/onnx.html#torch.onnx.enable_log) |  | 功能缺失        |
 | 2    | [torch.onnx.disable_log](https://pytorch.org/docs/stable/onnx.html#torch.onnx.disable_log) |  | 功能缺失        |
+
+***持续更新...***
+
+## torch.optim.XX API 映射列表
+梳理了`torch.optim.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
+
+| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 1    | [torch.optim.lr_scheduler.LinearLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.LinearLR.html#torch.optim.lr_scheduler.LinearLR) |  | 功能缺失        |
+
+***持续更新...***
+
+## torch.profiler.XX API 映射列表
+梳理了`torch.profiler.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
+
+| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 1    | [torch.profiler.ProfilerActivity](https://pytorch.org/docs/stable/profiler.html#torch.profiler.ProfilerActivity) |  | 功能缺失        |
+| 2    | [torch.profiler.ProfilerAction](https://pytorch.org/docs/stable/profiler.html#torch.profiler.ProfilerAction) |  | 功能缺失        |
 
 ***持续更新...***
 
@@ -844,5 +889,6 @@
 | 7   |  [torch.special.expm1](https://pytorch.org/docs/stable/special.html#torch.special.expm1)  |  [paddle.expm1](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/expm1_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.special.expm1.md)  |
 | 8   |  [torch.backends.cudnn.version](https://pytorch.org/docs/stable/backends.html?highlight=torch+backends+cudnn+version#torch.backends.cudnn.version)  |    |    功能缺失  |
 | 9   |  [torch.special.erf](https://pytorch.org/docs/stable/special.html?highlight=torch+special+erf#torch.special.erf)  |  [paddle.erf](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/erf_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.special.erf.md)  |
+| 10    | [torch.special.entr](https://pytorch.org/docs/stable/special.html#torch.special.entr) |  | 功能缺失        |
 
 ***持续更新...***

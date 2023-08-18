@@ -9,7 +9,7 @@ torch.nn.BCEWithLogitsLoss(weight=None,
                            pos_weight=None)
 ```
 
-### [paddle.nn.BCEWithLogitsLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BCEWithLogitsLoss_cn.html#bcewithlogitsloss)
+### [paddle.nn.BCEWithLogitsLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BCEWithLogitsLoss_cn.html#bcewithlogitsloss)
 
 ```python
 paddle.nn.BCEWithLogitsLoss(weight=None,

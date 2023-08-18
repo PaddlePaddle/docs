@@ -7,7 +7,7 @@ torch.frexp(input,
             out=None)
 ```
 
-### [paddle.frexp](暂无对应文档)
+### [paddle.frexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/frexp_cn.html#frexp)
 
 ```python
 paddle.frexp(x,

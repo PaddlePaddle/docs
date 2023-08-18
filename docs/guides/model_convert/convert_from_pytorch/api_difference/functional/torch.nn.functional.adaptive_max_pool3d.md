@@ -8,7 +8,7 @@ torch.nn.functional.adaptive_max_pool3d(input,
                                         return_indices=False)
 ```
 
-### [paddle.nn.functional.adaptive_max_pool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/adaptive_max_pool3d_cn.html)
+### [paddle.nn.functional.adaptive_max_pool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/adaptive_max_pool3d_cn.html)
 
 ```python
 paddle.nn.functional.adaptive_max_pool3d(x,

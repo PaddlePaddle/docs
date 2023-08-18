@@ -6,7 +6,7 @@
 torch.Tensor.gcd(other)
 ```
 
-### [paddle.Tensor.gcd](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#gcd-x-y-name-none)
+### [paddle.Tensor.gcd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#gcd-x-y-name-none)
 
 ```python
 paddle.Tensor.gcd(y, name=None)

@@ -8,7 +8,7 @@ torch.utils.cpp_extension.CppExtension(name,
                                     **kwargs)
 ```
 
-### [paddle.utils.cpp_extension.CppExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/CppExtension_cn.html)
+### [paddle.utils.cpp_extension.CppExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/cpp_extension/CppExtension_cn.html)
 
 ```python
 paddle.utils.cpp_extension.CppExtension(sources,

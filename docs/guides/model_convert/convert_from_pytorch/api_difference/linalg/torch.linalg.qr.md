@@ -6,7 +6,7 @@
 torch.linalg.qr(A, mode='reduced', *, out=None)
 ```
 
-### [paddle.linalg.qr](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/qr_cn.html)
+### [paddle.linalg.qr](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/qr_cn.html)
 
 ```python
 paddle.linalg.qr(x, mode='reduced', name=None)

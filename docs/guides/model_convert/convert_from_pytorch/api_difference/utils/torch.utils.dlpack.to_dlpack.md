@@ -5,7 +5,7 @@
 torch.utils.dlpack.to_dlpack(tensor)
 ```
 
-### [paddle.utils.dlpack.to_dlpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/dlpack/to_dlpack_cn.html)
+### [paddle.utils.dlpack.to_dlpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/dlpack/to_dlpack_cn.html)
 
 ```python
 paddle.utils.dlpack.to_dlpack(x)

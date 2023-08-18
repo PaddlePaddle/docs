@@ -10,7 +10,7 @@ torch.nn.functional.mse_loss(input,
                              reduction='mean')
 ```
 
-### [paddle.nn.functional.mse_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/mse_loss_cn.html)
+### [paddle.nn.functional.mse_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/mse_loss_cn.html)
 
 ```python
 paddle.nn.functional.mse_loss(input,

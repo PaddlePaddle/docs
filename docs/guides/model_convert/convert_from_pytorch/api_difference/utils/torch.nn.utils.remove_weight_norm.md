@@ -6,7 +6,7 @@ torch.nn.utils.remove_weight_norm(module,
                                     name='weight')
 ```
 
-### [paddle.nn.utils.remove_weight_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/utils/remove_weight_norm_cn.html#remove-weight-norm)
+### [paddle.nn.utils.remove_weight_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/utils/remove_weight_norm_cn.html#remove-weight-norm)
 
 ```python
 paddle.nn.utils.remove_weight_norm(layer,

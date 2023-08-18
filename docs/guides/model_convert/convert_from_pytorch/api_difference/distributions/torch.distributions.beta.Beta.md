@@ -6,7 +6,7 @@
 torch.distributions.beta.Beta(concentration1, concentration0, validate_args=None)
 ```
 
-### [paddle.distribution.Beta](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/Beta_cn.html#beta)
+### [paddle.distribution.Beta](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Beta_cn.html#beta)
 
 ```python
 paddle.distribution.Beta(alpha, beta)

@@ -7,7 +7,7 @@ torch.log1p(input,
             out=None)
 ```
 
-### [paddle.log1p](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log1p_cn.html#log1p)
+### [paddle.log1p](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/log1p_cn.html#log1p)
 
 ```python
 paddle.log1p(x,

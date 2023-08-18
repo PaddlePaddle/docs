@@ -6,7 +6,7 @@
 torch.Tensor.subtract_(other, *, alpha=1)
 ```
 
-### [paddle.Tensor.subtract_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id20)
+### [paddle.Tensor.subtract_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id20)
 
 ```python
 paddle.Tensor.subtract_(y, name=None)

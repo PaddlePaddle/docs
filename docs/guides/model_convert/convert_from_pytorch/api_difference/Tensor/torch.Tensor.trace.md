@@ -1,4 +1,4 @@
-## [仅 paddle 参数更多]troch.Tensor.trace
+## [仅 paddle 参数更多]torch.Tensor.trace
 
 ### [torch.Tensor.trace](https://pytorch.org/docs/stable/generated/torch.Tensor.trace.html#torch-tensor-trace)
 
@@ -6,7 +6,7 @@
 torch.Tensor.trace()
 ```
 
-### [paddle.Tensor.trace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#trace-offset-0-axis1-0-axis2-1-name-none)
+### [paddle.Tensor.trace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#trace-offset-0-axis1-0-axis2-1-name-none)
 
 ```python
 paddle.Tensor.trace(offset=0, axis1=0, axis2=1, name=None)

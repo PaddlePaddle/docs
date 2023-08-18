@@ -6,7 +6,7 @@
 torch.nn.functional.gelu(input, approximate='none')
 ```
 
-### [paddle.nn.functional.gelu](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/gelu_cn.html)
+### [paddle.nn.functional.gelu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/gelu_cn.html)
 
 ```python
 paddle.nn.functional.gelu(x, approximate=False, name=None)

@@ -13,7 +13,7 @@ torch.optim.Adagrad(params,
              differentiable=False)
 ```
 
-### [paddle.optimizer.Adagrad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/Adagrad_cn.html)
+### [paddle.optimizer.Adagrad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Adagrad_cn.html)
 
 ```python
 paddle.optimizer.Adagrad(learning_rate,

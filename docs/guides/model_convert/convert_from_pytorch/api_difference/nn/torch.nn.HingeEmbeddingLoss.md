@@ -9,7 +9,7 @@ torch.nn.HingeEmbeddingLoss(margin=1.0,
                             reduction='mean')
 ```
 
-### [paddle.nn.HingeEmbeddingLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/HingeEmbeddingLoss_cn.html#hingeembeddingloss)
+### [paddle.nn.HingeEmbeddingLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/HingeEmbeddingLoss_cn.html#hingeembeddingloss)
 
 ```python
 paddle.nn.HingeEmbeddingLoss(margin=1.0,

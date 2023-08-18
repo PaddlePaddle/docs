@@ -8,7 +8,7 @@ torch.fmod(input,
            out=None)
 ```
 
-### [paddle.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/mod_cn.html#mod)
+### [paddle.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mod_cn.html#mod)
 
 ```python
 paddle.mod(x,

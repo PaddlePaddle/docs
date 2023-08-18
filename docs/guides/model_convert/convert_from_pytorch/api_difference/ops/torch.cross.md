@@ -10,7 +10,7 @@ torch.cross(input,
             out=None)
 ```
 
-### [paddle.cross](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cross_cn.html#cross)
+### [paddle.cross](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cross_cn.html#cross)
 
 ```python
 paddle.cross(x,

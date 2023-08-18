@@ -6,7 +6,7 @@
 torch.unflatten(input, dim, sizes)
 ```
 
-### [paddle.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/reshape_cn.html#reshape)
+### [paddle.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/reshape_cn.html#reshape)
 
 ```python
 paddle.reshape(x, shape, name=None)

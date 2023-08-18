@@ -6,7 +6,7 @@
 torch.histc(input, bins=100, min=0, max=0, *, out=None)
 ```
 
-### [paddle.histogram](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/histogram_cn.html#histogram)
+### [paddle.histogram](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/histogram_cn.html#histogram)
 
 ```python
 paddle.histogram(input, bins=100, min=0, max=0, name=None)

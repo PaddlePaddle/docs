@@ -7,7 +7,7 @@ torch.floor(input,
             out=None)
 ```
 
-### [paddle.floor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/floor_cn.html#floor)
+### [paddle.floor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/floor_cn.html#floor)
 
 ```python
 paddle.floor(x,

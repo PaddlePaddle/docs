@@ -6,7 +6,7 @@
 torch.minimum(input, other, *, out=None)
 ```
 
-### [paddle.minimum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/minimum_cn.html)
+### [paddle.minimum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/minimum_cn.html)
 
 ```python
 paddle.minimum(x, y, name=None)

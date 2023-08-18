@@ -6,7 +6,7 @@
 torch.kron(input, other, *, out=None)
 ```
 
-### [paddle.kron](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/kron_cn.html#kron)
+### [paddle.kron](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/kron_cn.html#kron)
 
 ```python
 paddle.kron(x, y, out=None, name=None)

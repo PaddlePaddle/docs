@@ -5,7 +5,7 @@
 torch.lu_unpack(LU_data, LU_pivots, unpack_data=True, unpack_pivots=True, *, out=None)
 ```
 
-### [paddle.linalg.lu_unpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/lu_unpack_cn.html)
+### [paddle.linalg.lu_unpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_unpack_cn.html)
 
 ```python
 paddle.linalg.lu_unpack(x, y, unpack_ludata=True, unpack_pivots=True, name=None)

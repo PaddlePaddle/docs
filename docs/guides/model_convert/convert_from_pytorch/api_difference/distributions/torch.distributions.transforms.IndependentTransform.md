@@ -6,7 +6,7 @@
 torch.distributions.transforms.IndependentTransform(base_transform, reinterpreted_batch_ndims, cache_size=0)
 ```
 
-### [paddle.distribution.IndependentTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/IndependentTransform_cn.html)
+### [paddle.distribution.IndependentTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/IndependentTransform_cn.html)
 
 ```python
 paddle.distribution.IndependentTransform(base, reinterpreted_batch_rank)

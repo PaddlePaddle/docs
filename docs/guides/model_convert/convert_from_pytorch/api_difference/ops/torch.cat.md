@@ -7,7 +7,7 @@ torch.cat(input,
            out=None)
 ```
 
-### [paddle.concat](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/concat_cn.html#concat)
+### [paddle.concat](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/concat_cn.html#concat)
 
 ```python
 paddle.concat(x,

@@ -1,6 +1,6 @@
 # PaddlePaddle docs
 
-English | [简体中文](./README_cn.md)
+English | [简体中文](./README_cn.md) | [日本語](./README_ja.md)
 
 
 Source files for contents presented at [PaddlePaddle documentation](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html).

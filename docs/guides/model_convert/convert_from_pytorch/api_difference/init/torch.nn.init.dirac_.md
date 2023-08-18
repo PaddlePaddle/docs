@@ -7,7 +7,7 @@ torch.nn.init.dirac_(tensor,
                     groups=1)
 ```
 
-### [paddle.nn.initializer.Dirac](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/initializer/Dirac_cn.html)
+### [paddle.nn.initializer.Dirac](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/Dirac_cn.html)
 
 ```python
 paddle.nn.initializer.Dirac(groups=1,

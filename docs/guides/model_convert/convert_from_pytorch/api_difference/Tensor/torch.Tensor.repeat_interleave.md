@@ -6,7 +6,7 @@
 torch.Tensor.repeat_interleave(repeats, dim=None, *, output_size=None)
 ```
 
-### [paddle.Tensor.repeat_interleave](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#repeat-interleave-repeats-axis-none-name-none)
+### [paddle.Tensor.repeat_interleave](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#repeat-interleave-repeats-axis-none-name-none)
 
 ```python
 paddle.Tensor.repeat_interleave(repeats, axis=None, name=None)

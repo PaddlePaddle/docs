@@ -6,7 +6,7 @@
 torch.vdot(input, other, *, out=None)
 ```
 
-### [paddle.dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/dot_cn.html#dot)
+### [paddle.dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/dot_cn.html#dot)
 
 ```python
 paddle.dot(x, y, name=None)

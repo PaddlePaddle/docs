@@ -114,6 +114,7 @@ fi
 
 # 4 check docs style/format
 cd ${PADDLE_DIR}
+git merge --no-edit upstream/${BRANCH}
 need_check_api_py_files=$(find_all_api_py_files_modified_by_pr)
 cd -
 jsonfn=${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output/api_info_all.json

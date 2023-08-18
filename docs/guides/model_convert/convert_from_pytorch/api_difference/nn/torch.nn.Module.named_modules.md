@@ -6,7 +6,7 @@
 torch.nn.Module.named_modules(memo=None, prefix='', remove_duplicate=True)
 ```
 
-### [paddle.nn.Layer.named_sublayers](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html#named-sublayers-prefix-include-self-false-layers-set-none)
+### [paddle.nn.Layer.named_sublayers](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#named-sublayers-prefix-include-self-false-layers-set-none)
 
 ```python
 paddle.nn.Layer.named_sublayers(prefix='', include_self=False, layers_set=None)

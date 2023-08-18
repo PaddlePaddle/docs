@@ -7,7 +7,7 @@ torch.nn.MSELoss(size_average=None,
                  reduction='mean')
 ```
 
-### [paddle.nn.MSELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MSELoss_cn.html#mseloss)
+### [paddle.nn.MSELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MSELoss_cn.html#mseloss)
 
 ```python
 paddle.nn.MSELoss(reduction='mean')

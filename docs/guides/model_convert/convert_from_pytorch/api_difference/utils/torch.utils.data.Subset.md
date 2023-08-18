@@ -6,7 +6,7 @@
 torch.utils.data.Subset(dataset, indices)
 ```
 
-### [paddle.io.Subset](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/Subset_cn.html)
+### [paddle.io.Subset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/Subset_cn.html)
 
 ```python
 paddle.io.Subset(dataset, indices)

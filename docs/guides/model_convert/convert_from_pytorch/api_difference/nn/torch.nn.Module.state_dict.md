@@ -5,7 +5,7 @@
 torch.nn.Module.state_dict(*, destination, prefix, keep_vars)
 ```
 
-### [paddle.nn.Layer.state_dict](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html#state-dict-destination-none-include-sublayers-true-use-hook-true)
+### [paddle.nn.Layer.state_dict](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#state-dict-destination-none-include-sublayers-true-use-hook-true)
 
 ```python
 paddle.nn.Layer.state_dict(destination=None, include_sublayers=True, use_hook=True)

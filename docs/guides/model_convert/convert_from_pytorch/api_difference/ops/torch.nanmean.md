@@ -10,7 +10,7 @@ torch.nanmean(input,
               out=None)
 ```
 
-### [paddle.nanmean](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nanmean_cn.html)
+### [paddle.nanmean](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nanmean_cn.html)
 
 ```python
 paddle.nanmean(x,

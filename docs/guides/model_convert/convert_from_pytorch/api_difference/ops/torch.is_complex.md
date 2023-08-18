@@ -5,7 +5,7 @@
 torch.is_complex(input)
 ```
 
-### [paddle.is_complex](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/is_complex_cn.html#is-complex)
+### [paddle.is_complex](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/is_complex_cn.html#is-complex)
 
 ```python
 paddle.is_complex(x)

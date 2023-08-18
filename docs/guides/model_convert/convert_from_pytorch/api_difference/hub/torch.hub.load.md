@@ -14,7 +14,7 @@ torch.hub.load(repo_or_dir,
                 **kwargs)
 ```
 
-### [paddle.hub.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/hub/load_cn.html)
+### [paddle.hub.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hub/load_cn.html)
 
 ```python
 paddle.hub.load(repo_dir,

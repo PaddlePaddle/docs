@@ -5,7 +5,7 @@
 torch.isfinite(input)
 ```
 
-### [paddle.isfinite](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/isfinite_cn.html#isfinite)
+### [paddle.isfinite](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isfinite_cn.html#isfinite)
 
 ```python
 paddle.isfinite(x,

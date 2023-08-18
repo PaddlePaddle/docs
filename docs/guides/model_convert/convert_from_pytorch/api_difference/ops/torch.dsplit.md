@@ -6,7 +6,7 @@ torch.dsplit(input,
         indices_or_sections)
 ```
 
-### [paddle.split](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/split_cn.html)
+### [paddle.split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/split_cn.html)
 
 ```python
 paddle.split(x,

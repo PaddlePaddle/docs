@@ -9,7 +9,7 @@ torch.lerp(input,
           out=None)
 ```
 
-### [paddle.lerp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/lerp_cn.html#lerp)
+### [paddle.lerp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/lerp_cn.html#lerp)
 
 ```python
 paddle.lerp(x,

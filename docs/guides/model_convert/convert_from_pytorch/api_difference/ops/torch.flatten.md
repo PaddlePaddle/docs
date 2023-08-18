@@ -7,7 +7,7 @@ torch.flatten(input,
               end_dim=-1)
 ```
 
-### [paddle.flatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/flatten_cn.html#flatten)
+### [paddle.flatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/flatten_cn.html#flatten)
 
 ```python
 paddle.flatten(x,

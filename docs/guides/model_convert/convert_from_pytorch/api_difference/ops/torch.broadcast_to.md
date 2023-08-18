@@ -7,7 +7,7 @@ torch.broadcast_to(input,
                    shape)
 ```
 
-### [paddle.broadcast_to](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/broadcast_to_cn.html#broadcast-to)
+### [paddle.broadcast_to](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/broadcast_to_cn.html#broadcast-to)
 
 ```python
 paddle.broadcast_to(x,

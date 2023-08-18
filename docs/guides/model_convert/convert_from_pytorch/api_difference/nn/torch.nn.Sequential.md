@@ -6,7 +6,7 @@
 torch.nn.Sequential(arg: OrderedDict[str, Module])
 ```
 
-### [paddle.nn.Sequential](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Sequential_cn.html)
+### [paddle.nn.Sequential](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Sequential_cn.html)
 
 ```python
 paddle.nn.Sequential(*layers)

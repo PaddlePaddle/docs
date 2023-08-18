@@ -5,7 +5,7 @@
 torch.Tensor.requires_grad_(requires_grad=True)
 ```
 
-### [paddle.Tensor.stop_gradient](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#stop-gradient)
+### [paddle.Tensor.stop_gradient](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#stop-gradient)
 
 ```python
 paddle.Tensor.stop_gradient = False

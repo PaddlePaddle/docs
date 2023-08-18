@@ -6,7 +6,7 @@
 torch.Tensor.norm(p='fro', dim=None, keepdim=False, dtype=None)
 ```
 
-### [paddle.Tensor.norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#norm-p-fro-axis-none-keepdim-false-name-none)
+### [paddle.Tensor.norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#norm-p-fro-axis-none-keepdim-false-name-none)
 
 ```python
 paddle.Tensor.norm(p='fro', axis=None, keepdim=False, name=None)

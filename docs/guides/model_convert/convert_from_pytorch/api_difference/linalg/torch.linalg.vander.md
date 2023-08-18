@@ -1,6 +1,6 @@
 ## [仅 Paddle 参数更多]torch.linalg.vander
 
-### [torch.linalg.vander](https://pytorch.org/docs/1.13/generated/torch.linalg.vander.html#torch.linalg.vander)
+### [torch.linalg.vander](https://pytorch.org/docs/stable/generated/torch.linalg.vander.html#torch.linalg.vander)
 
 ```python
 torch.linalg.vander(x, N=None)

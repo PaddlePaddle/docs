@@ -6,7 +6,7 @@
 torch.Tensor.vdot(other)
 ```
 
-### [paddle.Tensor.dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#dot-y-name-none)
+### [paddle.Tensor.dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#dot-y-name-none)
 
 ```python
 paddle.Tensor.dot(y, name=None)

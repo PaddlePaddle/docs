@@ -12,7 +12,7 @@ torch.nn.functional.nll_loss(input,
                     reduction='mean')
 ```
 
-### [paddle.nn.functional.nll_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/nll_loss_cn.html#nll-loss)
+### [paddle.nn.functional.nll_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/nll_loss_cn.html#nll-loss)
 
 ```python
 paddle.nn.functional.nll_loss(input,

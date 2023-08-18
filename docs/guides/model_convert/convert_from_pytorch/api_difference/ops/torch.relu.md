@@ -3,7 +3,7 @@
 ### [torch.relu]()
 
 ```python
-torch..relu(input)
+torch.relu(input)
 ```
 
 ### [paddle.nn.functional.relu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/relu_cn.html#relu)

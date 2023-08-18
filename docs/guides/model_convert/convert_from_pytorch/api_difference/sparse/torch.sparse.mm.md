@@ -6,7 +6,7 @@
 torch.sparse.mm(input, mat2)
 ```
 
-### [paddle.sparse.matmul](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sparse/matmul_cn.html)
+### [paddle.sparse.matmul](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/matmul_cn.html)
 
 ```python
 paddle.sparse.matmul(x, y, name=None)

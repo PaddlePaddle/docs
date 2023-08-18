@@ -6,7 +6,7 @@
 torch.nn.Hardswish(inplace=False)
 ```
 
-### [paddle.nn.Hardswish](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Hardswish_cn.html)
+### [paddle.nn.Hardswish](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Hardswish_cn.html)
 
 ```python
 paddle.nn.Hardswish(name=None)

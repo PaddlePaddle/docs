@@ -10,7 +10,7 @@ torch.cumsum(input,
              out=None)
 ```
 
-### [paddle.cumsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cumsum_cn.html#cumsum)
+### [paddle.cumsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cumsum_cn.html#cumsum)
 
 ```python
 paddle.cumsum(x,

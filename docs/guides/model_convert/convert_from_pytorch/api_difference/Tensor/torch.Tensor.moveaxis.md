@@ -6,7 +6,7 @@
 torch.Tensor.moveaxis(source, destination)
 ```
 
-### [paddle.Tensor.moveaxis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/moveaxis_cn.html)
+### [paddle.Tensor.moveaxis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/moveaxis_cn.html)
 
 ```python
 paddle.Tensor.moveaxis(source, destination,name = None)

@@ -5,7 +5,7 @@
 torch.nn.Softmax(dim=None)
 ```
 
-### [paddle.nn.Softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Softmax_cn.html#softmax)
+### [paddle.nn.Softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Softmax_cn.html#softmax)
 
 ```python
 paddle.nn.Softmax(axis=- 1,

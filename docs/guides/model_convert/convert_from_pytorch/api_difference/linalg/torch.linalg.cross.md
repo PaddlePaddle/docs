@@ -6,7 +6,7 @@
 torch.linalg.cross(input, other, *, dim=- 1, out=None)
 ```
 
-### [paddle.cross](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cross_cn.html)
+### [paddle.cross](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cross_cn.html)
 
 ```python
 paddle.cross(x, y, axis=None, name=None)

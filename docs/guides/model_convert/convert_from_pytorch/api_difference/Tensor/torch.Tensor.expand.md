@@ -5,7 +5,7 @@
 torch.Tensor.expand(*size)
 ```
 
-### [paddle.Tensor.expand](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#expand-shape-name-none)
+### [paddle.Tensor.expand](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#expand-shape-name-none)
 
 ```python
 paddle.Tensor.expand(shape, name=None)

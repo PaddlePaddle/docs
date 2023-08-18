@@ -6,7 +6,7 @@
 torch.distributed.send(tensor, dst, group=None, tag=0)
 ```
 
-### [paddle.distributed.send](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/send_cn.html)
+### [paddle.distributed.send](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/send_cn.html)
 
 ```python
 paddle.distributed.send(tensor, dst=0, group=None, use_calc_stream=True)

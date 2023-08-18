@@ -7,7 +7,7 @@ torch.erfinv(input,
              out=None)
 ```
 
-### [paddle.erfinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/erfinv_cn.html)
+### [paddle.erfinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/erfinv_cn.html)
 
 ```python
 paddle.erfinv(x,
