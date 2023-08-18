@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.Tensor.qr
 
-### [torch.Tensor.qr](https://pytorch.org/docs/stable/generated/torch.linalg.qr.html?highlight=qr#torch.linalg.qr)
+### [torch.Tensor.qr](https://pytorch.org/docs/stable/generated/torch.Tensor.qr.html?highlight=torch+tensor+qr#torch.Tensor.qr)
 
 ```python
 torch.Tensor.qr(some=True)
@@ -26,12 +26,11 @@ paddle.Tensor.qr(mode='reduced')
 ```python
 # 当进行完整的 QR 分解时
 # Pytorch 写法
-x = torch.tensor([[1., 2., 3.],[4., 5., 6.,]])
 q, r = x.qr(some=False)
 
 # Paddle 写法
-x = paddle.to_tensor([[1., 2., 3.],[4., 5., 6.,]])
 q, r = x.qr(mode='complete')
+
 
 #当进行减少的 QR 分解时
 # Pytorch 写法

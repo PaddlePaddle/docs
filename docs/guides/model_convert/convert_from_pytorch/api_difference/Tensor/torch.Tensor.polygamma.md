@@ -1,6 +1,6 @@
 ## [ 参数完全一致 ] torch.Tensor.polygamma
 
-### [torch.Tensor.polygamma](https://pytorch.org/docs/stable/generated/torch.polygamma.html?highlight=polygamma#torch.polygamma)
+### [torch.Tensor.polygamma](https://pytorch.org/docs/stable/generated/torch.Tensor.polygamma.html?highlight=tensor+polygamma#torch.Tensor.polygamma)
 
 ```python
 torch.Tensor.polygamma(n)
