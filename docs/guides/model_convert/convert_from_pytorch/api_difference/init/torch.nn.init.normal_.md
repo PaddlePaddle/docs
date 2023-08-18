@@ -8,7 +8,7 @@ torch.nn.init.normal_(tensor,
                         std=1.0)
 ```
 
-### [paddle.nn.initializer.Normal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/initializer/Normal_cn.html)
+### [paddle.nn.initializer.Normal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/Normal_cn.html)
 
 ```python
 paddle.nn.initializer.Normal(mean=0.0,

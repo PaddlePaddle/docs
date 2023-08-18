@@ -6,7 +6,7 @@
 torch.nn.MultiheadAttention(embed_dim, num_heads, dropout=0.0, bias=True, add_bias_kv=False, add_zero_attn=False, kdim=None, vdim=None, batch_first=False, device=None, dtype=None)
 ```
 
-### [paddle.nn.MultiHeadAttention](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MultiHeadAttention_cn.html)
+### [paddle.nn.MultiHeadAttention](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MultiHeadAttention_cn.html)
 
 ```python
 paddle.nn.MultiHeadAttention(embed_dim, num_heads, dropout=0.0, kdim=None, vdim=None, need_weights=False, weight_attr=None, bias_attr=None)

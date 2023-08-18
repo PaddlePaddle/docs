@@ -9,7 +9,7 @@ torch.nn.Fold(output_size,
                 stride=1)
 ```
 
-### [paddle.nn.Fold](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Fold_cn.html#fold)
+### [paddle.nn.Fold](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Fold_cn.html#fold)
 
 ```python
 paddle.nn.Fold(output_sizes,

@@ -8,7 +8,7 @@ torch.unique_consecutive(input,
                          dim=None)
 ```
 
-### [paddle.unique_consecutive](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/unique_consecutive_cn.html#unique-consecutive)
+### [paddle.unique_consecutive](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/unique_consecutive_cn.html#unique-consecutive)
 
 ```python
 paddle.unique_consecutive(x,

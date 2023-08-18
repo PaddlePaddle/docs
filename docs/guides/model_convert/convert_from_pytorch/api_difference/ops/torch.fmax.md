@@ -6,7 +6,7 @@
 torch.fmax(input, other, *, out=None)
 ```
 
-### [paddle.fmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fmax_cn.html)
+### [paddle.fmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fmax_cn.html)
 
 ```python
 paddle.fmax(x, y, name=None)

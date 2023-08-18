@@ -6,7 +6,7 @@
 torch.Tensor.prod(dim, keepdim=False, *, dtype=None)
 ```
 
-### [paddle.Tensor.prod](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/prod_cn.html)
+### [paddle.Tensor.prod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/prod_cn.html)
 
 ```python
 paddle.Tensor.prod(axis=None, keepdim=False, dtype=None, name=None)

@@ -6,7 +6,7 @@
 torch.Tensor.add_(other, *, alpha=1)
 ```
 
-### [paddle.Tensor.add\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id3)
+### [paddle.Tensor.add\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id3)
 
 ```python
 paddle.Tensor.add_(y, name=None)

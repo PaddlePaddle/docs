@@ -5,7 +5,7 @@
 torch.nn.ZeroPad2d(padding)
 ```
 
-### [paddle.nn.ZeroPad2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ZeroPad2D_cn.html)
+### [paddle.nn.ZeroPad2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ZeroPad2D_cn.html)
 
 ```python
 paddle.nn.ZeroPad2D(padding,

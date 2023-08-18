@@ -8,7 +8,7 @@ torch.cov(input,
           aweights=None)
 ```
 
-### [paddle.linalg.cov](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/cov_cn.html#cov)
+### [paddle.linalg.cov](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/cov_cn.html#cov)
 
 ```python
 paddle.linalg.cov(x,

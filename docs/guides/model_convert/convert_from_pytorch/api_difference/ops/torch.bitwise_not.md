@@ -8,7 +8,7 @@ torch.bitwise_not(input,
                   out=None)
 ```
 
-### [paddle.bitwise_not](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/bitwise_not_cn.html)
+### [paddle.bitwise_not](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bitwise_not_cn.html)
 
 ```python
 paddle.bitwise_not(x,

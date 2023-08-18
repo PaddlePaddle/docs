@@ -6,7 +6,7 @@
 torch.linalg.matmul(input, other, *, out=None)
 ```
 
-### [paddle.matmul](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/matmul_cn.html)
+### [paddle.matmul](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/matmul_cn.html)
 
 ```python
 paddle.matmul(x, y, transpose_x=False, transpose_y=False, name=None)

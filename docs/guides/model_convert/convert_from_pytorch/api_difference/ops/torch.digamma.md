@@ -6,7 +6,7 @@ torch.digamma(input,
               out=None)
 ```
 
-### [paddle.digamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/digamma_cn.html)
+### [paddle.digamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/digamma_cn.html)
 ```python
 paddle.digamma(x,
                name=None)

@@ -6,7 +6,7 @@
 torch.distributions.transforms.ComposeTransform(parts, cache_size=0)
 ```
 
-### [paddle.distribution.ChainTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/ChainTransform_cn.html)
+### [paddle.distribution.ChainTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/ChainTransform_cn.html)
 
 ```python
 paddle.distribution.ChainTransform(transforms)

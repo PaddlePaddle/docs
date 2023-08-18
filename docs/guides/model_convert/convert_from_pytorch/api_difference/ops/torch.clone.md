@@ -8,7 +8,7 @@ torch.clone(input,
             memory_format=torch.preserve_format)
 ```
 
-### [paddle.clone](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/clone_cn.html#clone)
+### [paddle.clone](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/clone_cn.html#clone)
 
 ```python
 paddle.clone(x,

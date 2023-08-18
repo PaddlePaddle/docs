@@ -5,7 +5,7 @@
 torch.corrcoef(input)
 ```
 
-### [paddle.linalg.corrcoef](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/corrcoef_cn.html#corrcoef)
+### [paddle.linalg.corrcoef](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/corrcoef_cn.html#corrcoef)
 
 ```python
 paddle.linalg.corrcoef(x,

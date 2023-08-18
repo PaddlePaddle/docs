@@ -15,7 +15,7 @@ torch.logspace(start,
                requires_grad=False)
 ```
 
-###  [paddle.logspace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logspace_cn.html)
+###  [paddle.logspace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logspace_cn.html)
 
 ```python
 paddle.logspace(start,

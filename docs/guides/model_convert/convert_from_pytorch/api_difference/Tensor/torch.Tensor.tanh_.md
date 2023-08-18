@@ -6,7 +6,7 @@
 torch.Tensor.tanh_()
 ```
 
-### [paddle.Tensor.tanh_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id21)
+### [paddle.Tensor.tanh_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id21)
 
 ```
 paddle.Tensor.tanh_()

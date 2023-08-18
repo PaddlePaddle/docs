@@ -5,7 +5,7 @@
 class torch.nn.ParameterList(values=None)
 ```
 
-### [paddle.nn.ParameterList](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ParameterList_cn.html#parameterlist)
+### [paddle.nn.ParameterList](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ParameterList_cn.html#parameterlist)
 
 ```python
 class paddle.nn.ParameterList(parameters=None)

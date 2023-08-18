@@ -6,7 +6,7 @@
 torch.optim.Optimizer.step(closure)
 ```
 
-### [paddle.optimizer.Optimizer.step](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/Optimizer_cn.html#step)
+### [paddle.optimizer.Optimizer.step](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Optimizer_cn.html#step)
 
 ```python
 paddle.optimizer.Optimizer.step()

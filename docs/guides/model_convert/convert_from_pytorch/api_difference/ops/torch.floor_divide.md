@@ -8,7 +8,7 @@ torch.floor_divide(input,
                    out=None)
 ```
 
-### [paddle.floor_divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/floor_divide_cn.html#floor-divide)
+### [paddle.floor_divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/floor_divide_cn.html#floor-divide)
 
 ```python
 paddle.floor_divide(x,

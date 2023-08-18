@@ -9,7 +9,7 @@ torch.take_along_dim(input,
                      out=None)
 ```
 
-### [paddle.take_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/take_along_axis_cn.html)
+### [paddle.take_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/take_along_axis_cn.html)
 
 ```python
 paddle.take_along_axis(arr,

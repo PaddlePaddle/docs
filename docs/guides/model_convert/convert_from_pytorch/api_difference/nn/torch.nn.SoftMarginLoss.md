@@ -8,7 +8,7 @@ torch.nn.SoftMarginLoss(size_average=None,
                         reduction='mean')
 ```
 
-### [paddle.nn.SoftMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/SoftMarginLoss_cn.html#softmarginloss)
+### [paddle.nn.SoftMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SoftMarginLoss_cn.html#softmarginloss)
 
 ```python
 paddle.nn.SoftMarginloss(reduction='mean',

@@ -9,7 +9,7 @@ torch.ne(input,
          out=None)
 ```
 
-### [paddle.not_equal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/not_equal_cn.html#not_equal)
+### [paddle.not_equal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/not_equal_cn.html#not_equal)
 
 ```python
 paddle.not_equal(x,

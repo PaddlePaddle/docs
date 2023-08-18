@@ -12,7 +12,7 @@ torch.optim.Adamax(params,
                 differentiable=False)
 ```
 
-### [paddle.optimizer.Adamax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/Adamax_cn.html)
+### [paddle.optimizer.Adamax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Adamax_cn.html)
 
 ```python
 paddle.optimizer.Adamax(learning_rate=0.001,

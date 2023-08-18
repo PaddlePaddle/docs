@@ -7,7 +7,7 @@ torch.frac(input,
             out=None)
 ```
 
-### [paddle.frac](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/frac_cn.html#frac)
+### [paddle.frac](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/frac_cn.html#frac)
 
 ```python
 paddle.frac(x,

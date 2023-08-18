@@ -6,7 +6,7 @@
 torch.distributions.geometric.Geometric(probs=None, logits=None, validate_args=None)
 ```
 
-### [paddle.distribution.Geometric](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/Geometric_cn.html#geometric)
+### [paddle.distribution.Geometric](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Geometric_cn.html#geometric)
 
 ```python
 paddle.distribution.Geometric(probs)

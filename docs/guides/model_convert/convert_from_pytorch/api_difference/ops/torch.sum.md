@@ -8,7 +8,7 @@ torch.sum(input,
           dtype=None)
 ```
 
-### [paddle.sum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sum_cn.html#sum)
+### [paddle.sum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sum_cn.html#sum)
 
 ```python
 paddle.sum(x,

@@ -6,7 +6,7 @@
 torch.linalg.lu(A, *, pivot=True, out=None)
 ```
 
-### [paddle.linalg.lu](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/lu_cn.html)
+### [paddle.linalg.lu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_cn.html)
 
 ```python
 paddle.linalg.lu(x, pivot=True, get_infos=False, name=None)

@@ -6,7 +6,7 @@
 torch.Tensor.trace()
 ```
 
-### [paddle.Tensor.trace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#trace-offset-0-axis1-0-axis2-1-name-none)
+### [paddle.Tensor.trace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#trace-offset-0-axis1-0-axis2-1-name-none)
 
 ```python
 paddle.Tensor.trace(offset=0, axis1=0, axis2=1, name=None)

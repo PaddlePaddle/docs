@@ -6,7 +6,7 @@
 torch.Tensor.T
 ```
 
-### [paddle.Tensor.T](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#tensor)
+### [paddle.Tensor.T](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tensor)
 
 ```python
 paddle.Tensor.T

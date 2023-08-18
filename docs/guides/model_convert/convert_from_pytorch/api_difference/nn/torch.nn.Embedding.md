@@ -10,7 +10,7 @@ torch.nn.Embedding(num_embeddings,
                    scale_grad_by_freq=False,
                    sparse=False)
 ```
-### [paddle.nn.Embedding](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Embedding_cn.html#embedding)
+### [paddle.nn.Embedding](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Embedding_cn.html#embedding)
 
 ```python
 paddle.nn.Embedding(num_embeddings,

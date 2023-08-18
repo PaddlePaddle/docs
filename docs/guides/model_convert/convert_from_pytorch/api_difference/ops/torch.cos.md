@@ -7,7 +7,7 @@ torch.cos(input,
           out=None)
 ```
 
-### [paddle.cos](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cos_cn.html#cos)
+### [paddle.cos](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cos_cn.html#cos)
 
 ```python
 paddle.cos(x,

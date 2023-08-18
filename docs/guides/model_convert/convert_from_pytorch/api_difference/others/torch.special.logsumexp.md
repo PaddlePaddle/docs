@@ -5,7 +5,7 @@
 torch.special.logsumexp(input, dim, keepdim=False, *, out=None)
 ```
 
-### [paddle.logsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logsumexp_cn.html)
+### [paddle.logsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logsumexp_cn.html)
 
 ```python
 paddle.logsumexp(x, axis=None, keepdim=False, name=None)

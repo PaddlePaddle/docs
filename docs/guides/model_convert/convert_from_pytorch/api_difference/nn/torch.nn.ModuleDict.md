@@ -6,7 +6,7 @@
 class torch.nn.ModuleDict(modules=None)
 ```
 
-### [paddle.nn.LayerDict](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LayerDict_cn.html)
+### [paddle.nn.LayerDict](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LayerDict_cn.html)
 
 ```python
 class paddle.nn.LayerDict(sublayers=None)

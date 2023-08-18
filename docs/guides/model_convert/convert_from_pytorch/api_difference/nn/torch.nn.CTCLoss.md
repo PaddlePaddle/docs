@@ -8,7 +8,7 @@ torch.nn.CTCLoss(blank=0,
                  zero_infinity=False)
 ```
 
-### [paddle.nn.CTCLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/CTCLoss_cn.html#ctcloss)
+### [paddle.nn.CTCLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/CTCLoss_cn.html#ctcloss)
 
 ```python
 paddle.nn.CTCLoss(blank=0,

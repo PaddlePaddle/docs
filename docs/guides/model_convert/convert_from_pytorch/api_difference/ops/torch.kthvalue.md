@@ -10,7 +10,7 @@ torch.kthvalue(input,
                out=None)
 ```
 
-### [paddle.kthvalue](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/kthvalue_cn.html)
+### [paddle.kthvalue](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/kthvalue_cn.html)
 
 ```python
 paddle.kthvalue(x,

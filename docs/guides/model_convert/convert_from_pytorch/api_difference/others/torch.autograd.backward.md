@@ -6,7 +6,7 @@
 torch.autograd.backward(tensors, grad_tensors=None, retain_graph=None, create_graph=False, grad_variables=None, inputs=None)
 ```
 
-### [paddle.autograd.backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/autograd/backward_cn.html)
+### [paddle.autograd.backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/backward_cn.html)
 
 ```python
 paddle.autograd.backward(tensors, grad_tensors=None, retain_graph=False)

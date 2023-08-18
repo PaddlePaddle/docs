@@ -6,7 +6,7 @@
 torch.broadcast_shapes(*shapes)
 ```
 
-### [paddle.broadcast_shape](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/broadcast_shape_cn.html)
+### [paddle.broadcast_shape](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/broadcast_shape_cn.html)
 
 ```python
 paddle.broadcast_shape(x_shape, y_shape)

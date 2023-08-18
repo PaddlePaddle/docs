@@ -12,7 +12,7 @@ torch.topk(input,
            out=None)
 ```
 
-### [paddle.topk](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/topk_cn.html#paddle.topk)
+### [paddle.topk](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/topk_cn.html#paddle.topk)
 
 ```python
 paddle.topk(x,

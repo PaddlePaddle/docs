@@ -8,7 +8,7 @@ torch.multinomial(input,
                   generator=None,
                   out=None)
 ```
-### [paddle.multinomial](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/multinomial_cn.html)
+### [paddle.multinomial](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/multinomial_cn.html)
 ```python
 paddle.multinomial(x,
                    num_samples=1,

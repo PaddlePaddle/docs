@@ -12,7 +12,7 @@ torch.full_like(input,
                 memory_format=torch.preserve_format)
 ```
 
-### [paddle.full_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/full_like_cn.html#full-like)
+### [paddle.full_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/full_like_cn.html#full-like)
 
 ```python
 paddle.full_like(x,

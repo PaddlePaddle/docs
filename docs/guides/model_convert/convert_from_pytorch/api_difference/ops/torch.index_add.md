@@ -5,7 +5,7 @@
 torch.index_add(input, dim, index, source, *, alpha=1, out=None)
 ```
 
-### [paddle.index_add](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/index_add_cn.html#index-add)
+### [paddle.index_add](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/index_add_cn.html#index-add)
 
 ```python
 paddle.index_add(x, index, axis, value, name=None)

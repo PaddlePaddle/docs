@@ -6,7 +6,7 @@
 torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=None, size_average=None, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.MultiMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MultiMarginLoss_cn.html)
+### [paddle.nn.MultiMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MultiMarginLoss_cn.html)
 
 ```python
 paddle.nn.MultiMarginLoss(p: int = 1, margin: float = 1.0, weight=None, reduction: str = 'mean', name: str = None)

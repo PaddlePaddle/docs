@@ -6,7 +6,7 @@
 torch.Tensor.mm(mat2)
 ```
 
-### [paddle.Tensor.mm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#mm-mat2-name-none)
+### [paddle.Tensor.mm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#mm-mat2-name-none)
 
 ```python
 paddle.Tensor.mm(mat2, name=None)

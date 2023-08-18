@@ -9,7 +9,7 @@ torch.nn.functional.pad(input,
                             value=None)
 ```
 
-### [paddle.nn.functional.pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/pad_cn.html#pad)
+### [paddle.nn.functional.pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/pad_cn.html#pad)
 
 ```python
 paddle.nn.functional.pad(x,

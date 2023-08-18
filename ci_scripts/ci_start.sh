@@ -108,6 +108,7 @@ if [ $? -ne 0 ];then
     EXIT_CODE=1
 fi
 
+git merge --no-edit upstream/${BRANCH}
 need_check_cn_doc_files=$(find_all_cn_api_files_modified_by_pr)
 echo $need_check_cn_doc_files
 # 4 Chinese api docs check

@@ -6,7 +6,7 @@
 torch.Tensor.fmod(other)
 ```
 
-### [paddle.Tensor.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#mod-y-name-none)
+### [paddle.Tensor.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#mod-y-name-none)
 
 ```python
 paddle.Tensor.mod(y, name=None)

@@ -87,7 +87,7 @@ function install_paddle() {
 }
 
 function build_paddle() {
-    git clone --depth=1 https://github.com/PaddlePaddle/Paddle.git
+    git clone --depth=200 https://github.com/PaddlePaddle/Paddle.git
     mkdir Paddle/build
     cd Paddle/build
 

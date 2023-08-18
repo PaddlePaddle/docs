@@ -8,7 +8,7 @@ torch.nn.functional.softplus(input,
                              threshold=20)
 ```
 
-### [paddle.nn.functional.softplus](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/softplus_cn.html)
+### [paddle.nn.functional.softplus](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/softplus_cn.html)
 
 ```python
 paddle.nn.functional.softplus(x,

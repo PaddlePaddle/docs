@@ -6,7 +6,7 @@
 torch.Tensor.logical_or(other)
 ```
 
-### [paddle.Tensor.logical_or](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#logical-or-y-out-none-name-none)
+### [paddle.Tensor.logical_or](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#logical-or-y-out-none-name-none)
 
 ```python
 paddle.Tensor.logical_or(y,

@@ -6,7 +6,7 @@
 torch.nn.functional.instance_norm(input, running_mean=None, running_var=None, weight=None, bias=None, use_input_stats=True, momentum=0.1, eps=1e-05)
 ```
 
-### [paddle.nn.functional.instance_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/instance_norm_cn.html#instance-norm)
+### [paddle.nn.functional.instance_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/instance_norm_cn.html#instance-norm)
 ```python
 paddle.nn.functional.instance_norm(x, running_mean=None, running_var=None, weight=None, bias=None, training=False, eps=1e-05, momentum=0.9, use_input_stats=True, data_format='NCHW', name=None)
 ```

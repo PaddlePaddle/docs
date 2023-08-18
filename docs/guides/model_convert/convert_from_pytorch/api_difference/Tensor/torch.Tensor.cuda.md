@@ -6,7 +6,7 @@
 torch.Tensor.cuda(device=None, non_blocking=False, memory_format=torch.preserve_format)
 ```
 
-### [paddle.Tensor.cuda](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cuda-device-id-none-blocking-false)
+### [paddle.Tensor.cuda](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cuda-device-id-none-blocking-false)
 
 ```python
 paddle.Tensor.cuda(device_id=None, blocking=False)

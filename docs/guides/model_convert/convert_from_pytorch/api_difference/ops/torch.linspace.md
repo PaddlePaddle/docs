@@ -14,7 +14,7 @@ torch.linspace(start,
                requires_grad=False)
 ```
 
-###  [paddle.linspace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linspace_cn.html)
+###  [paddle.linspace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linspace_cn.html)
 
 ```python
 paddle.linspace(start,

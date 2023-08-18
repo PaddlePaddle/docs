@@ -6,7 +6,7 @@
 torch.nn.functional.l1_loss(input, target, size_average=None, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.functional.l1_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/l1_loss_cn.html)
+### [paddle.nn.functional.l1_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/l1_loss_cn.html)
 
 ```python
 paddle.nn.functional.l1_loss(input, label, reduction='mean', name=None)

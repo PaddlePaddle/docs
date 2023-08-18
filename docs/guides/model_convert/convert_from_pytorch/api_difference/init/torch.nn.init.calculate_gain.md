@@ -6,7 +6,7 @@
 torch.nn.init.calculate_gain(nonlinearity, param=None)
 ```
 
-### [paddle.nn.initializer.calculate_gain](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/initializer/calculate_gain_cn.html)
+### [paddle.nn.initializer.calculate_gain](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/calculate_gain_cn.html)
 
 ```python
 paddle.nn.initializer.calculate_gain(nonlinearity, param=None)

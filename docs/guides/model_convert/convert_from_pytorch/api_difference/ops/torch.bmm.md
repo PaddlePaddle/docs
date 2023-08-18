@@ -6,7 +6,7 @@
 torch.bmm(input,mat2,*,out=None)
 ```
 
-### [paddle.bmm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/bmm_cn.html)
+### [paddle.bmm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bmm_cn.html)
 
 ```python
 paddle.bmm(x,y,name=None)

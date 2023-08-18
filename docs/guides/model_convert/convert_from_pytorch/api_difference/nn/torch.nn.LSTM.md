@@ -12,7 +12,7 @@ torch.nn.LSTM(input_size,
               proj_size=0)
 ```
 
-### [paddle.nn.LSTM](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LSTM_cn.html#lstm)
+### [paddle.nn.LSTM](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LSTM_cn.html#lstm)
 
 ```python
 paddle.nn.LSTM(input_size,

@@ -5,7 +5,7 @@
 torch.linalg.lstsq(A, B, rcond=None, *, driver=None)
 ```
 
-### [paddle.linalg.lstsq](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/lstsq_cn.html)
+### [paddle.linalg.lstsq](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lstsq_cn.html)
 
 ```python
 paddle.linalg.lstsq(x, y, rcond=None, driver=None, name=None)

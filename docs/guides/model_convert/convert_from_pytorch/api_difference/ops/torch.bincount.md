@@ -8,7 +8,7 @@ torch.bincount(input,
                minlength=0)
 ```
 
-### [paddle.bincount](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/bincount_cn.html#bincount)
+### [paddle.bincount](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bincount_cn.html#bincount)
 
 ```python
 paddle.bincount(x,

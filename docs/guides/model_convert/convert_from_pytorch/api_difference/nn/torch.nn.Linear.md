@@ -7,7 +7,7 @@ torch.nn.Linear(in_features,
                 bias=True)
 ```
 
-### [paddle.nn.Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Linear_cn.html#linear)
+### [paddle.nn.Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Linear_cn.html#linear)
 
 ```python
  paddle.nn.Linear(in_features,

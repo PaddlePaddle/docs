@@ -10,7 +10,7 @@ torch.optim.lr_scheduler.StepLR(optimizer,
                                 verbose=False)
 ```
 
-### [paddle.optimizer.lr.StepDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/lr/StepDecay_cn.html)
+### [paddle.optimizer.lr.StepDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/StepDecay_cn.html)
 
 ```python
 paddle.optimizer.lr.StepDecay(learning_rate,

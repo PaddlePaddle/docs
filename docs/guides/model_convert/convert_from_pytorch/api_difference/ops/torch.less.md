@@ -6,7 +6,7 @@
 torch.less(input, other, *, out=None)
 ```
 
-### [paddle.less_than](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/less_than_cn.html)
+### [paddle.less_than](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/less_than_cn.html)
 
 ```python
 paddle.less_than(x, y, name=None)

@@ -6,7 +6,7 @@
 torch.Tensor.logical_and(other)
 ```
 
-### [paddle.Tensor.logical_and](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#logical-and-y-out-none-name-none)
+### [paddle.Tensor.logical_and](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#logical-and-y-out-none-name-none)
 
 ```python
 paddle.Tensor.logical_and(y,

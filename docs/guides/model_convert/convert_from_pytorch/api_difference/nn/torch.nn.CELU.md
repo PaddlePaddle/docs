@@ -6,7 +6,7 @@
 torch.nn.CELU(alpha=1.0, inplace=False)
 ```
 
-### [paddle.nn.CELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/CELU_cn.html)
+### [paddle.nn.CELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/CELU_cn.html)
 
 ```python
 paddle.nn.CELU(alpha=1.0, name=None)

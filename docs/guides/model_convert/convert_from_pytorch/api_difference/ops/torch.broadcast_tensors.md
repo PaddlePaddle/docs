@@ -6,7 +6,7 @@
 torch.broadcast_tensors(*tensors)
 ```
 
-### [paddle.broadcast_tensors](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/broadcast_tensors_cn.html#broadcast-tensors)
+### [paddle.broadcast_tensors](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/broadcast_tensors_cn.html#broadcast-tensors)
 
 ```python
 paddle.broadcast_tensors(inputs,

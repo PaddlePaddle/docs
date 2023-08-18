@@ -6,7 +6,7 @@
 torch.distributed.rpc.get_worker_info(worker_name=None)
 ```
 
-### [paddle.distributed.rpc.get_worker_info](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/rpc/get_worker_info_cn.html#cn-api-distributed-rpc-get-worker-info)
+### [paddle.distributed.rpc.get_worker_info](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/get_worker_info_cn.html#cn-api-distributed-rpc-get-worker-info)
 
 ```python
 paddle.distributed.rpc.get_worker_info(name)

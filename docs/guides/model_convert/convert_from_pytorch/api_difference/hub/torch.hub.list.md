@@ -9,7 +9,7 @@ torch.hub.list(github,
                 trust_repo=None)
 ```
 
-### [paddle.hub.list](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/hub/list_cn.html)
+### [paddle.hub.list](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hub/list_cn.html)
 
 ```python
 paddle.hub.list(repo_dir,

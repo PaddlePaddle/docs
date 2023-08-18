@@ -9,7 +9,7 @@ torch.hub.download_url_to_file(url,
                                 progress=True)
 ```
 
-### [paddle.hub.download_url_to_file](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/download/get_weights_path_from_url_cn.html)
+### [paddle.hub.download_url_to_file](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/download/get_weights_path_from_url_cn.html)
 
 ```python
 paddle.utils.download.get_weights_path_from_url(url,

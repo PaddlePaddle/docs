@@ -15,7 +15,7 @@ torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer,
                                         verbose=False)
 ```
 
-### [paddle.optimizer.lr.ReduceOnPlateau](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/lr/ReduceOnPlateau_cn.html)
+### [paddle.optimizer.lr.ReduceOnPlateau](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/ReduceOnPlateau_cn.html)
 
 ```python
 paddle.optimizer.lr.ReduceOnPlateau(learning_rate,

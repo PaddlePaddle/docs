@@ -6,7 +6,7 @@
 torch.triu(input,diagonal=0,*,out=None)
 ```
 
-### [paddle.triu](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/triu_cn.html)
+### [paddle.triu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/triu_cn.html)
 
 ```python
 paddle.triu(input,diagonal=0,name=None)

@@ -10,7 +10,7 @@ torch.nn.GroupNorm(num_groups,
                    dtype=None)
 ```
 
-### [paddle.nn.GroupNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/GroupNorm_cn.html#groupnorm)
+### [paddle.nn.GroupNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GroupNorm_cn.html#groupnorm)
 
 ```python
 paddle.nn.GroupNorm(num_groups,

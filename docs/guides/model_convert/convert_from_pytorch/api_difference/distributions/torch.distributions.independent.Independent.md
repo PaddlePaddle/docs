@@ -6,7 +6,7 @@
 torch.distributions.independent.Independent(base_distribution, reinterpreted_batch_ndims, validate_args=None)
 ```
 
-### [paddle.distribution.Independent](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/Independent_cn.html)
+### [paddle.distribution.Independent](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Independent_cn.html)
 
 ```python
 paddle.distribution.Independent(base, reinterpreted_batch_rank)

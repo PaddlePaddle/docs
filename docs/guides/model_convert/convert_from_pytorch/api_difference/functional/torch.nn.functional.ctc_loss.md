@@ -6,7 +6,7 @@
 torch.nn.functional.ctc_loss(log_probs, targets, input_lengths, target_lengths, blank=0, reduction='mean', zero_infinity=False)
 ```
 
-### [paddle.nn.functional.ctc_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/ctc_loss_cn.html)
+### [paddle.nn.functional.ctc_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/ctc_loss_cn.html)
 
 ```python
 paddle.nn.functional.ctc_loss(log_probs, labels, input_lengths, label_lengths, blank=0, reduction='mean')

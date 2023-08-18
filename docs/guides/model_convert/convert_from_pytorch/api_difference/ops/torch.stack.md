@@ -9,7 +9,7 @@ torch.stack(tensors,
             out=None)
 ```
 
-### [paddle.stack](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/stack_cn.html)
+### [paddle.stack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/stack_cn.html)
 
 ```python
 paddle.stack(x,

@@ -16,7 +16,7 @@ torch.optim.Adam(params,
                 name=None)
 ```
 
-### [paddle.optimizer.Adam](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/Adam_cn.html)
+### [paddle.optimizer.Adam](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Adam_cn.html)
 
 ```python
 paddle.optimizer.Adam(learning_rate=0.001,

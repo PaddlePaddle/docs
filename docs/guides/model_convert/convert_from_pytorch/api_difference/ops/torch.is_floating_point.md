@@ -6,7 +6,7 @@
 torch.is_floating_point(input)
 ```
 
-### [paddle.is_floating_point](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/is_floating_point_cn.html#is-floating-point)
+### [paddle.is_floating_point](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/is_floating_point_cn.html#is-floating-point)
 
 ```python
 paddle.is_floating_point(x)

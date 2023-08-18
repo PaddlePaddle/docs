@@ -7,7 +7,7 @@ torch.moveaxis(input,
                destination)
 ```
 
-### [paddle.moveaxis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/moveaxis_cn.html#moveaxis)
+### [paddle.moveaxis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/moveaxis_cn.html#moveaxis)
 
 ```python
 paddle.moveaxis(x,

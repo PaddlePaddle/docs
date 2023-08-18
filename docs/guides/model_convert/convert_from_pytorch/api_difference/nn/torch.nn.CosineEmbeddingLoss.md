@@ -6,7 +6,7 @@
 torch.nn.CosineEmbeddingLoss(margin=0.0, size_average=None, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.CosineEmbeddingLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/CosineEmbeddingLoss_cn.html)
+### [paddle.nn.CosineEmbeddingLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/CosineEmbeddingLoss_cn.html)
 
 ```python
 paddle.nn.CosineEmbeddingLoss(margin=0, reduction='mean', name=None)

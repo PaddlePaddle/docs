@@ -10,7 +10,7 @@ torch.nn.GRU(input_size,
              bidirectional=False)
 ```
 
-### [paddle.nn.GRU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/GRU_cn.html#gru)
+### [paddle.nn.GRU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GRU_cn.html#gru)
 ```python
 paddle.nn.GRU(input_size,
               hidden_size,

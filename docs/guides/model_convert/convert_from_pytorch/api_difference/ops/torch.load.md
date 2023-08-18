@@ -11,7 +11,7 @@ torch.load(f,
            **pickle_load_args)
 ```
 
-### [paddle.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/load_cn.html#load)
+### [paddle.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/load_cn.html#load)
 
 ```python
 paddle.load(path,

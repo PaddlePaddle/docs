@@ -10,7 +10,7 @@ torch.add(input,
           out=None)
 ```
 
-### [paddle.add](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/add_cn.html#add)
+### [paddle.add](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/add_cn.html#add)
 
 ```python
 paddle.add(x,

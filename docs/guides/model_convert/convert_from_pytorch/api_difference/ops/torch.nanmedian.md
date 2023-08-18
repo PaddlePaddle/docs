@@ -9,7 +9,7 @@ torch.nanmedian(input,
                 out=None)
 ```
 
-### [paddle.nanmedian](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nanmedian_cn.html#nanmedian)
+### [paddle.nanmedian](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nanmedian_cn.html#nanmedian)
 
 ```python
 paddle.nanmedian(x,

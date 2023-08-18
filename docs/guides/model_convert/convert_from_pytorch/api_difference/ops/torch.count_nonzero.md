@@ -5,7 +5,7 @@
 torch.count_nonzero(input, dim=None)
 ```
 
-### [paddle.count_nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/count_nonzero_cn.html#count-nonzero)
+### [paddle.count_nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/count_nonzero_cn.html#count-nonzero)
 
 ```python
 paddle.count_nonzero(x,

@@ -9,7 +9,7 @@ torch.optim.lr_scheduler.ExponentialLR(optimizer,
                                 verbose=False)
 ```
 
-### [paddle.optimizer.lr.ExponentialDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/lr/ExponentialDecay_cn.html)
+### [paddle.optimizer.lr.ExponentialDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/ExponentialDecay_cn.html)
 
 ```python
 paddle.optimizer.lr.ExponentialDecay(learning_rate,

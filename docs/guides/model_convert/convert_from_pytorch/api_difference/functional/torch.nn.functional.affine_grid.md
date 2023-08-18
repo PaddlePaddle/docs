@@ -8,7 +8,7 @@ torch.nn.functional.affine_grid(theta,
             align_corners=None)
 ```
 
-### [paddle.nn.functional.affine_grid](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/affine_grid_cn.html)
+### [paddle.nn.functional.affine_grid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/affine_grid_cn.html)
 
 ```python
 paddle.nn.functional.affine_grid(theta,

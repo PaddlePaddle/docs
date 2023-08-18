@@ -5,7 +5,7 @@
 torch.Tensor.mv(vec)
 ```
 
-### [paddle.Tensor.mv](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#mv-vec-name-none)
+### [paddle.Tensor.mv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#mv-vec-name-none)
 
 ```python
 paddle.Tensor.mv(vec)
