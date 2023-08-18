@@ -25,7 +25,7 @@ paddle.utils.download.get_weights_path_from_url(url,
 |url            |url           |下载的链接。|
 |model_dir            |-             |指定文件保存的绝对路径，例如：/tmp/temporary_file，Paddle 无此参数，暂无转写方式|
 |map_location    |-             |指定如何重新映射存储位置的函数或 dict，默认为 None，Paddle 无此参数，暂无转写方式。|
-|progress       |-             |是否显示进度条，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
-|check_hash       |-             |指定下载的 SHA256 文件的前缀，默认为 None，Paddle 无此参数，暂无转写方式。|
+|progress       |-             |是否显示进度条，Paddle 无此参数，一般对结果影响不大，可直接删除。|
+|check_hash       |-             |指定下载的 SHA256 文件的前缀，默认为 None，Paddle 无此参数，一般对结果影响不大，可直接删除。|
 |file_name       |-             |下载文件的名称。如果未设置，将使用 url 中的文件名，默认为 None，Paddle 无此参数，暂无转写方式。|
 |-              |md5sum        |下载文件的 md5 值。Pytorch 无此参数，Paddle 保持默认即可。|
