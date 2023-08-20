@@ -126,4 +126,5 @@ CrossEntropyLoss
 :::::::::
 
 COPY-FROM: paddle.nn.CrossEntropyLoss:code-example1
+
 COPY-FROM: paddle.nn.CrossEntropyLoss:code-example2
