@@ -6,7 +6,7 @@
 torch.all(input, dim=None, keepdim=False, *, out=None)
 ```
 
-### [paddle.all](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/all_cn.html#all)
+### [paddle.all](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/all_cn.html#all)
 
 ```python
 paddle.all(x,

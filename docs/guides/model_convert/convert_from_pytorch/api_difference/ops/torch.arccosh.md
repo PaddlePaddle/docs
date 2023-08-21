@@ -8,7 +8,7 @@ torch.arccosh(input,
              out=None)
 ```
 
-### [paddle.acosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/acosh_cn.html#acos)
+### [paddle.acosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/acosh_cn.html#acos)
 
 ```python
 paddle.acosh(x,

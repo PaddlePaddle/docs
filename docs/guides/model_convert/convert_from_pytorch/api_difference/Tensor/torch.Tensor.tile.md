@@ -6,7 +6,7 @@
 torch.Tensor.tile(*reps)
 ```
 
-### [paddle.Tensor.tile](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#tile-repeat-times-name-none)
+### [paddle.Tensor.tile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tile-repeat-times-name-none)
 
 ```
 paddle.Tensor.tile(repeat_times, name=None)

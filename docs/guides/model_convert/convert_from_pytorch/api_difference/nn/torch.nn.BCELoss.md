@@ -8,7 +8,7 @@ torch.nn.BCELoss(weight=None,
                  reduction='mean')
 ```
 
-### [paddle.nn.BCELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BCELoss_cn.html#bceloss)
+### [paddle.nn.BCELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BCELoss_cn.html#bceloss)
 
 ```python
 paddle.nn.BCELoss(weight=None,

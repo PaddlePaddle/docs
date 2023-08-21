@@ -6,7 +6,7 @@
 torch.nn.functional.layer_norm(input, normalized_shape, weight=None, bias=None, eps=1e-05)
 ```
 
-### [paddle.nn.functional.layer_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/layer_norm_cn.html#layer-norm)
+### [paddle.nn.functional.layer_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/layer_norm_cn.html#layer-norm)
 ```python
 paddle.nn.functional.layer_norm(x, normalized_shape, weight=None, bias=None, epsilon=1e-05, name=None)
 ```

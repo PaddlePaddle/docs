@@ -6,7 +6,7 @@
 torch.Tensor.exponential_(lambd=1, *, generator=None)
 ```
 
-### [paddle.Tensor.exponential\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#exponential-lam-1-0-name-none)
+### [paddle.Tensor.exponential\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#exponential-lam-1-0-name-none)
 
 ```python
 paddle.Tensor.exponential_(lam=1.0, name=None)

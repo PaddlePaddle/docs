@@ -7,7 +7,7 @@ torch.logical_not(input,
                   out=None)
 ```
 
-### [paddle.logical_not](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_not_cn.html#logical-not)
+### [paddle.logical_not](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logical_not_cn.html#logical-not)
 
 ```python
 paddle.logical_not(x,

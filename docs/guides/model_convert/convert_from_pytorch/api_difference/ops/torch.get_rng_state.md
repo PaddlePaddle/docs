@@ -1,6 +1,6 @@
 ## [参数不一致] torch.get_rng_state
 
-### [torch.get_rng_state](https://pytorch.org/docs/master/generated/torch.get_rng_state.html#torch.get_rng_state)
+### [torch.get_rng_state](https://pytorch.org/docs/stable/generated/torch.get_rng_state.html#torch.get_rng_state)
 
 ```python
 torch.get_rng_state()

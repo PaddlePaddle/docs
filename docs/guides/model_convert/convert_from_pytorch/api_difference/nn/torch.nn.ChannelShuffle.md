@@ -6,7 +6,7 @@
 torch.nn.ChannelShuffle(groups)
 ```
 
-### [paddle.nn.ChannelShuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ChannelShuffle_cn.html)
+### [paddle.nn.ChannelShuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ChannelShuffle_cn.html)
 
 ```python
 paddle.nn.ChannelShuffle(groups, data_format='NCHW', name=None)

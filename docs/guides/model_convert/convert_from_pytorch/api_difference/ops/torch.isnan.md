@@ -5,7 +5,7 @@
 torch.isnan(input)
 ```
 
-### [paddle.isnan](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/isnan_cn.html#isnan)
+### [paddle.isnan](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isnan_cn.html#isnan)
 
 ```python
 paddle.isnan(x,

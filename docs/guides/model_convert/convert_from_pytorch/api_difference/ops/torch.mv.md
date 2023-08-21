@@ -4,7 +4,7 @@
 torch.mv(input, vec, out=None)
 ```
 
-### [paddle.mv](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/mv_cn.html)
+### [paddle.mv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mv_cn.html)
 
 ```python
 paddle.mv(x, vec, name=None)

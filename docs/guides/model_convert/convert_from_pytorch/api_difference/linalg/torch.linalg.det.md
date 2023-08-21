@@ -5,7 +5,7 @@
 torch.linalg.det(A, *, out=None)
 ```
 
-### [paddle.linalg.det](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/det_cn.html#det)
+### [paddle.linalg.det](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/det_cn.html#det)
 
 ```python
 paddle.linalg.det(x)

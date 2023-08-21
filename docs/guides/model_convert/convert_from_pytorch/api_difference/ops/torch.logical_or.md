@@ -8,7 +8,7 @@ torch.logical_or(input,
                  out=None)
 ```
 
-### [paddle.logical_or](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_or_cn.html#logical-or)
+### [paddle.logical_or](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logical_or_cn.html#logical-or)
 
 ```python
 paddle.logical_or(x,

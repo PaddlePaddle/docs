@@ -5,7 +5,7 @@
 torch.Tensor.istft(n_fft, hop_length=None, win_length=None, window=None, center=True, normalized=False, onesided=None, length=None, return_complex=False)
 ```
 
-### [paddle.signal.istft](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/signal/istft_cn.html#istft)
+### [paddle.signal.istft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/signal/istft_cn.html#istft)
 
 ```python
 paddle.signal.istft(x,

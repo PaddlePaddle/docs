@@ -6,7 +6,7 @@
 torch.distributed.scatter(tensor, scatter_list=None, src=0, group=None, async_op=False)
 ```
 
-### [paddle.distributed.scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/scatter_cn.html)
+### [paddle.distributed.scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/scatter_cn.html)
 
 ```python
 paddle.distributed.scatter(tensor, tensor_list=None, src=0, group=0)

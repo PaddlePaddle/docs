@@ -6,7 +6,7 @@
 torch.le(input, other, *, out=None)
 ```
 
-### [paddle.less_equal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/less_equal_cn.html)
+### [paddle.less_equal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/less_equal_cn.html)
 
 ```python
 paddle.less_equal(x, y, name=None)

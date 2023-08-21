@@ -6,7 +6,7 @@
 torch.Tensor.to(dtype, non_blocking=False, copy=False, memory_format=torch.preserve_format)
 ```
 
-### [paddle.Tensor.cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cast-dtype)
+### [paddle.Tensor.cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cast-dtype)
 
 ```python
 paddle.Tensor.cast(dtype)
@@ -31,7 +31,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.Tensor.to(device=None, dtype=None, non_blocking=False, copy=False, memory_format=torch.preserve_format)
 ```
 
-### [paddle.Tensor.cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cast-dtype)
+### [paddle.Tensor.cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cast-dtype)
 
 ```python
 paddle.Tensor.cast(dtype)
@@ -70,7 +70,7 @@ y.cpu()
 torch.Tensor.to(other, non_blocking=False, copy=False)
 ```
 
-### [paddle.Tensor.cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cast-dtype)
+### [paddle.Tensor.cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cast-dtype)
 
 ```python
 paddle.Tensor.cast(dtype)

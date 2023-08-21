@@ -6,7 +6,7 @@
 torch.nn.Module.bfloat16()
 ```
 
-### [paddle.nn.Layer.to](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html#to-device-none-dtype-none-blocking-none)
+### [paddle.nn.Layer.to](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#to-device-none-dtype-none-blocking-none)
 
 ```python
 paddle.nn.Layer.to(dtype=paddle.bfloat16)

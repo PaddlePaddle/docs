@@ -6,7 +6,7 @@
 torch.autograd.Function.forward(ctx, *args, **kwargs)
 ```
 
-### [paddle.autograd.PyLayer.forward](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/autograd/PyLayer_cn.html#forward-ctx-args-kwargs)
+### [paddle.autograd.PyLayer.forward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayer_cn.html#forward-ctx-args-kwargs)
 
 ```python
 paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)

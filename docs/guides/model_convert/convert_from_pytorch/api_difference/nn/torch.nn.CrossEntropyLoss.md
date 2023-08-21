@@ -10,7 +10,7 @@ torch.nn.CrossEntropyLoss(weight=None,
                           label_smoothing=0.0)
 ```
 
-### [paddle.nn.CrossEntropyLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/CrossEntropyLoss_cn.html#crossentropyloss)
+### [paddle.nn.CrossEntropyLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/CrossEntropyLoss_cn.html#crossentropyloss)
 
 ```python
 paddle.nn.CrossEntropyLoss(weight=None,

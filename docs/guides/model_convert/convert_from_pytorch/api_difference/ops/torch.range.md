@@ -14,7 +14,7 @@ torch.range(start=0,
             requires_grad=False)
 ```
 
-###  [paddle.arange](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/arange_cn.html)
+###  [paddle.arange](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/arange_cn.html)
 
 ```python
 paddle.arange(start=0,

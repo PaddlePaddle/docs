@@ -6,7 +6,7 @@
 torch.Tensor.maximum(other)
 ```
 
-### [paddle.Tensor.minimum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#minimum-y-axis-1-name-none)
+### [paddle.Tensor.minimum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#minimum-y-axis-1-name-none)
 
 ```python
 paddle.Tensor.minimum(y)

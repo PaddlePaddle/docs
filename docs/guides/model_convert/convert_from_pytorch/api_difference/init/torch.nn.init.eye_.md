@@ -6,7 +6,7 @@
 torch.nn.init.eye_(tensor)
 ```
 
-### [paddle.nn.initializer.Assign](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/initializer/Assign_cn.html)
+### [paddle.nn.initializer.Assign](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/Assign_cn.html)
 
 ```python
 paddle.nn.initializer.Assign(value,

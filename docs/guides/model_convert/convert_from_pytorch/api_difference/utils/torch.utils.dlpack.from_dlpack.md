@@ -5,7 +5,7 @@
 torch.utils.dlpack.from_dlpack(ext_tensor)
 ```
 
-### [paddle.utils.dlpack.from_dlpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/dlpack/from_dlpack_cn.html)
+### [paddle.utils.dlpack.from_dlpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/dlpack/from_dlpack_cn.html)
 
 ```python
 paddle.utils.dlpack.from_dlpack(dlpack)

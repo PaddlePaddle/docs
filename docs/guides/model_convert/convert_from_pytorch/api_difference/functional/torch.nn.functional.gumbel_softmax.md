@@ -6,7 +6,7 @@
 torch.nn.functional.gumbel_softmax(logits, tau=1, hard=False, eps=1e-10, dim=- 1)
 ```
 
-### [paddle.nn.functional.gumbel_softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/gumbel_softmax_cn.html)
+### [paddle.nn.functional.gumbel_softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/gumbel_softmax_cn.html)
 
 ```python
 paddle.nn.functional.gumbel_softmax(x, temperature=1.0, hard=False, axis=- 1, name=None)

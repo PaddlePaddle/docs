@@ -6,7 +6,7 @@
 torch.nn.Module.eval()
 ```
 
-### [paddle.nn.Layer.eval](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html#eval)
+### [paddle.nn.Layer.eval](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#eval)
 
 ```python
 paddle.nn.Layer.eval()

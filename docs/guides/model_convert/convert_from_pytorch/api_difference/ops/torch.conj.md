@@ -5,7 +5,7 @@
 torch.conj(input)
 ```
 
-### [paddle.conj](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/conj_cn.html#conj)
+### [paddle.conj](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/conj_cn.html#conj)
 
 ```python
 paddle.conj(x,

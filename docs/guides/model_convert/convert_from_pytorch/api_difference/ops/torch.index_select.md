@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.index_select
-### [torch.index_select](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/index_select_cn.html#index-select)
+### [torch.index_select](https://www.paddlepaddle.org.cn/documentation/docs/stable/develop/api/paddle/index_select_cn.html#index-select)
 
 ```python
 torch.index_select(input,
@@ -9,7 +9,7 @@ torch.index_select(input,
                    out=None)
 ```
 
-### [paddle.index_select](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/index_select_cn.html#index-select)
+### [paddle.index_select](https://www.paddlepaddle.org.cn/documentation/docs/stable/develop/api/paddle/index_select_cn.html#index-select)
 
 ```python
 paddle.index_select(x,

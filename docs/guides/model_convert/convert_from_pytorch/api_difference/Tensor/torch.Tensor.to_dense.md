@@ -6,7 +6,7 @@
 torch.Tensor.to_dense()
 ```
 
-### [paddle.Tensor.to_dense](https://www.paddlepaddle.org.cn/documentation/docs/en/api/paddle/Tensor/to_dense_en.html#to-dense)
+### [paddle.Tensor.to_dense](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/to_dense_en.html#to-dense)
 
 ```python
 paddle.Tensor.to_dense()

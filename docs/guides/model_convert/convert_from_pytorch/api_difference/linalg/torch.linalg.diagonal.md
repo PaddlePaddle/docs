@@ -5,7 +5,7 @@
 torch.linalg.diagonal(A, *, offset=0, dim1=-2, dim2=-1)
 ```
 
-### [paddle.diagonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/diagonal_cn.html#diagonal)
+### [paddle.diagonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagonal_cn.html#diagonal)
 
 ```python
 paddle.diagonal(x,

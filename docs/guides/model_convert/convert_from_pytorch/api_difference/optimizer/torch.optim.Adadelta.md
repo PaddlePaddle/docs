@@ -12,7 +12,7 @@ torch.optim.Adadelta(params,
              differentiable=False)
 ```
 
-### [paddle.optimizer.Adadelta](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/Adadelta_cn.html#cn-api-paddle-optimizer-adadelta)
+### [paddle.optimizer.Adadelta](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Adadelta_cn.html#cn-api-paddle-optimizer-adadelta)
 
 ```python
 paddle.optimizer.Adadelta(learning_rate=0.001,

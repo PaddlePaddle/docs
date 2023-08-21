@@ -5,7 +5,7 @@
 torch.view_as_real(input)
 ```
 
-### [paddle.as_real](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/as_real_cn.html#as-real)
+### [paddle.as_real](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/as_real_cn.html#as-real)
 
 ```python
 paddle.as_real(x,

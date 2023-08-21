@@ -7,7 +7,7 @@ torch.optim.Optimizer(params,
                     defaults)
 ```
 
-### [paddle.optimizer.Optimizer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/Optimizer_cn.html)
+### [paddle.optimizer.Optimizer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Optimizer_cn.html)
 
 ```python
 paddle.optimizer.Optimizer(learning_rate=0.001,

@@ -5,7 +5,7 @@
 torch.Tensor.sgn()
 ```
 
-### [paddle.Tensor.sgn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#sgn-name-none)
+### [paddle.Tensor.sgn](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#sgn-name-none)
 
 ```python
 paddle.Tensor.sgn()

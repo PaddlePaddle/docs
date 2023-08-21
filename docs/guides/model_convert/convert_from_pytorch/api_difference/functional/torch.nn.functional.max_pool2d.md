@@ -6,7 +6,7 @@
 torch.nn.functional.max_pool2d(input, kernel_size, stride=None, padding=0, dilation=1, ceil_mode=False, return_indices=False)
 ```
 
-### [paddle.nn.functional.max_pool2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/max_pool2d_cn.html)
+### [paddle.nn.functional.max_pool2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/max_pool2d_cn.html)
 
 ```python
 paddle.nn.functional.max_pool2d(x, kernel_size, stride=None, padding=0, ceil_mode=False, return_mask=False, data_format='NCHW', name=None)

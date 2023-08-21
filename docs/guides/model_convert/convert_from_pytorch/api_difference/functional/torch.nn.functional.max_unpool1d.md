@@ -11,7 +11,7 @@ torch.nn.functional.max_unpool1d(input,
                                  output_size=None)
 ```
 
-### [paddle.nn.functional.max_unpool1d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/max_unpool1d_cn.html)
+### [paddle.nn.functional.max_unpool1d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/max_unpool1d_cn.html)
 
 ```python
 paddle.nn.functional.max_unpool1d(x,

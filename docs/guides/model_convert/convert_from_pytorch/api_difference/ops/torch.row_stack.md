@@ -1,6 +1,6 @@
 ## [ 组合替代实现 ]torch.row_stack
 
-### [torch.row_stack](https://pytorch.org/docs/master/generated/torch.row_stack.html#torch.row_stack)
+### [torch.row_stack](https://pytorch.org/docs/stable/generated/torch.row_stack.html#torch.row_stack)
 
 ```python
 torch.row_stack(tensors, *, out=None)

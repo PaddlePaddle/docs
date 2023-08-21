@@ -6,7 +6,7 @@
 torch.nn.SiLU(inplace=False)
 ```
 
-### [paddle.nn.Silu](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Silu_cn.html)
+### [paddle.nn.Silu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Silu_cn.html)
 
 ```python
 paddle.nn.Silu(name=None)

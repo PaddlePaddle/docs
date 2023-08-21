@@ -10,7 +10,7 @@ torch.nn.functional.soft_margin_loss(input,
                              reduction='mean')
 ```
 
-### [paddle.nn.functional.soft_margin_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/soft_margin_loss_cn.html)
+### [paddle.nn.functional.soft_margin_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/soft_margin_loss_cn.html)
 
 ```python
 paddle.nn.functional.soft_margin_loss(input,

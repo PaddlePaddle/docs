@@ -6,7 +6,7 @@ torch.nn.Flatten(start_dim=1,
                 end_dim=-1)
 ```
 
-### [paddle.nn.Flatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Flatten_cn.html#flatten)
+### [paddle.nn.Flatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Flatten_cn.html#flatten)
 
 ```python
 paddle.nn.Flatten(start_axis=1,

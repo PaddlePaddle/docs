@@ -7,7 +7,7 @@ torch.square(input,
              out=None)
 ```
 
-### [paddle.square](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/square_cn.html)
+### [paddle.square](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/square_cn.html)
 
 ```python
 paddle.square(x,

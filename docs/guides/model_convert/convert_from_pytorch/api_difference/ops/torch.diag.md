@@ -8,7 +8,7 @@ torch.diag(input,
            out=None)
 ```
 
-### [paddle.diag](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/diag_cn.html)
+### [paddle.diag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diag_cn.html)
 
 ```python
 paddle.diag(x,

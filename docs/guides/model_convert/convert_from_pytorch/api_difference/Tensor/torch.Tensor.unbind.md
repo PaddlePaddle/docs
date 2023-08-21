@@ -6,7 +6,7 @@
 torch.Tensor.unbind(dim=0)
 ```
 
-### [paddle.Tensor.unbind](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#unbind-axis-0)
+### [paddle.Tensor.unbind](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#unbind-axis-0)
 
 ```python
 paddle.Tensor.unbind(axis=0)

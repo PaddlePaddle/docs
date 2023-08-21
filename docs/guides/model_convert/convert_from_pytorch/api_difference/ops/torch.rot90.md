@@ -7,7 +7,7 @@ torch.rot90(input,
             dims=[0, 1])
 ```
 
-### [paddle.rot90](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/rot90_cn.html#rot90)
+### [paddle.rot90](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/rot90_cn.html#rot90)
 
 ```python
 paddle.rot90(x,

@@ -7,7 +7,7 @@ torch.nn.functional.one_hot(tensor,
                             num_classes=- 1)
 ```
 
-### [paddle.nn.functional.one_hot](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/one_hot_cn.html)
+### [paddle.nn.functional.one_hot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/one_hot_cn.html)
 
 ```python
 paddle.nn.functional.one_hot(x,

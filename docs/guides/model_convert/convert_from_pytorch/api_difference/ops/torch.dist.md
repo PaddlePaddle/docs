@@ -7,7 +7,7 @@ torch.dist(input,
            p=2)
 ```
 
-### [paddle.dist](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/dist_cn.html#dist)
+### [paddle.dist](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/dist_cn.html#dist)
 
 ```python
 paddle.dist(x,

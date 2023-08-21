@@ -5,7 +5,7 @@
 torch.meshgrid(*tensors, indexing=None)
 ```
 
-### [paddle.meshgrid](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/meshgrid_cn.html#meshgrid)
+### [paddle.meshgrid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/meshgrid_cn.html#meshgrid)
 
 ```python
 paddle.meshgrid(*args, **kargs)

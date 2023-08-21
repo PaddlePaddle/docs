@@ -6,7 +6,7 @@
 torch.Tensor.cumprod(dim, dtype=None)
 ```
 
-### [paddle.Tensor.cumprod](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cumprod_cn.html#cumprod)
+### [paddle.Tensor.cumprod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cumprod_cn.html#cumprod)
 
 ```python
 paddle.Tensor.cumprod(dim=None, dtype=None, name=None)

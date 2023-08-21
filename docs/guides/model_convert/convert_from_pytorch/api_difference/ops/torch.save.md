@@ -9,7 +9,7 @@ torch.save(obj,
            _use_new_zipfile_serialization=True)
 ```
 
-### [paddle.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/save_cn.html#save)
+### [paddle.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/save_cn.html#save)
 
 ```python
 paddle.save(obj,

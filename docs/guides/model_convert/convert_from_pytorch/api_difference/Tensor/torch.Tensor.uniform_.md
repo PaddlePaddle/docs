@@ -6,7 +6,7 @@
 torch.Tensor.uniform_(from=0, to=1)
 ```
 
-### [paddle.Tensor.uniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#uniform-min-1-0-max-1-0-seed-0-name-none)
+### [paddle.Tensor.uniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#uniform-min-1-0-max-1-0-seed-0-name-none)
 
 ```python
 paddle.Tensor.uniform(min=- 1.0, max=1.0, seed=0, name=None)

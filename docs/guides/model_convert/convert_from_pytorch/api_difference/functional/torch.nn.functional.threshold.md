@@ -6,7 +6,7 @@
 torch.nn.functional.threshold(input, threshold, value, inplace=False)
 ```
 
-### [paddle.nn.functional.thresholded_relu](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/thresholded_relu_cn.html)
+### [paddle.nn.functional.thresholded_relu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/thresholded_relu_cn.html)
 
 ```python
 paddle.nn.functional.thresholded_relu(x, threshold=1.0, name=None)

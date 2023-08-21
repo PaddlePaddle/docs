@@ -7,7 +7,7 @@ torch.nn.functional.prelu(input,
                           weight)
 ```
 
-### [paddle.nn.functional.prelu](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/prelu_cn.html)
+### [paddle.nn.functional.prelu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/prelu_cn.html)
 
 ```python
 paddle.nn.functional.prelu(x,

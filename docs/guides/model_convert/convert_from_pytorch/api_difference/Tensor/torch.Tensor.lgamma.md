@@ -6,7 +6,7 @@
 torch.Tensor.lgamma()
 ```
 
-### [paddle.Tensor.lgamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/lgamma_cn.html)
+### [paddle.Tensor.lgamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/lgamma_cn.html)
 
 ```python
 paddle.Tensor.lgamma()

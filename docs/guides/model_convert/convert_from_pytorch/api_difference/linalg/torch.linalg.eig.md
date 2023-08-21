@@ -7,7 +7,7 @@ torch.linalg.eig(A,
                  out=None)
 ```
 
-### [paddle.linalg.eig](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/eig_cn.html)
+### [paddle.linalg.eig](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eig_cn.html)
 
 ```python
 paddle.linalg.eig(x,

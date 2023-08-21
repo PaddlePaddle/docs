@@ -9,7 +9,7 @@ torch.subtract(input,
                out=None)
 ```
 
-### [paddle.subtract](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/subtract_cn.html#subtract)
+### [paddle.subtract](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/subtract_cn.html#subtract)
 
 ```python
 paddle.subtract(x,

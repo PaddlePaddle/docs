@@ -6,7 +6,7 @@
 torch.fft.ihfft2(input, s=None, dim=(- 2, - 1), norm='backward', *, out=None)
 ```
 
-### [paddle.fft.ihfft2](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/ihfft2_cn.html)
+### [paddle.fft.ihfft2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/ihfft2_cn.html)
 
 ```python
 paddle.fft.ihfft2(x, s=None, axes=(- 2, - 1), norm='backward', name=None)

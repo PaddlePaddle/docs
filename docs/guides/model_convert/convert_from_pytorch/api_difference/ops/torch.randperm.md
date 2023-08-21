@@ -14,7 +14,7 @@ torch.randperm(n,
                pin_memory=False)
 ```
 
-### [paddle.randperm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/randperm_cn.html#randperm)
+### [paddle.randperm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/randperm_cn.html#randperm)
 
 ```python
 paddle.randperm(n,

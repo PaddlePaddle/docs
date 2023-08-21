@@ -6,7 +6,7 @@
 torch.nn.functional.upsample_nearest(input, size=None, scale_factor=None)
 ```
 
-### [paddle.nn.functional.upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/upsample_cn.html#upsample)
+### [paddle.nn.functional.upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/upsample_cn.html#upsample)
 
 ```python
 paddle.nn.functional.upsample(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format='NCHW', name=None)

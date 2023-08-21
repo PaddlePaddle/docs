@@ -6,7 +6,7 @@
 torch.Tensor.cosh()
 ```
 
-### [paddle.Tensor.cosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cosh-name-none)
+### [paddle.Tensor.cosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cosh-name-none)
 
 ```python
 paddle.Tensor.cosh(name=None)

@@ -8,7 +8,7 @@ torch.round(input,
             out=None)
 ```
 
-### [paddle.round](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/round_cn.html#round)
+### [paddle.round](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/round_cn.html#round)
 
 ```python
 paddle.round(x,

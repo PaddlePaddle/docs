@@ -12,7 +12,7 @@ torch.min(input,
           out=None)
 ```
 
-### [paddle.min](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/min_cn.html#min)
+### [paddle.min](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/min_cn.html#min)
 
 ```python
 paddle.min(x,

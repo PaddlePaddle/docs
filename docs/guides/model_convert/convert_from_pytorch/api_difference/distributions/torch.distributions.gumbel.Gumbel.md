@@ -6,7 +6,7 @@
 torch.distributions.gumbel.Gumbel(loc, scale, validate_args=None)
 ```
 
-### [paddle.distribution.Gumbel](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/Gumbel_cn.html#gumbel)
+### [paddle.distribution.Gumbel](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Gumbel_cn.html#gumbel)
 
 ```python
 paddle.distribution.Gumbel(loc, scale)

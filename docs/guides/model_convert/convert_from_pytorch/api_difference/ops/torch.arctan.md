@@ -8,7 +8,7 @@ torch.arctan(input,
              out=None)
 ```
 
-### [paddle.atan](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atan_cn.html#atan)
+### [paddle.atan](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atan_cn.html#atan)
 
 ```python
 paddle.atan(x,

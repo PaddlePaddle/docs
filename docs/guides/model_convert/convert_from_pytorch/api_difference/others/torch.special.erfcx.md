@@ -1,6 +1,6 @@
-## [ 组合替代实现 ]torch.linalg.erfcx
+## [ 组合替代实现 ]torch.special.erfcx
 
-### [torch.linalg.erfcx](https://pytorch.org/docs/stable/special.html#torch.special.erfcx)
+### [torch.special.erfcx](https://pytorch.org/docs/stable/special.html#torch.special.erfcx)
 
 ```python
 torch.special.erfcx(input, *, out=None)

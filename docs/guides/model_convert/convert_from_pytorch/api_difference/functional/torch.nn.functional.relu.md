@@ -6,7 +6,7 @@
 torch.nn.functional.relu(input, inplace=False)
 ```
 
-### [paddle.nn.functional.relu](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/relu_cn.html)
+### [paddle.nn.functional.relu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/relu_cn.html)
 
 ```python
 paddle.nn.functional.relu(x, name=None)

@@ -6,7 +6,7 @@
 torch.distributions.exp_family.ExponentialFamily(batch_shape=torch.Size([]), event_shape=torch.Size([]), validate_args=None)
 ```
 
-### [paddle.distribution.ExponentialFamily](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/ExponentialFamily_cn.html)
+### [paddle.distribution.ExponentialFamily](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/ExponentialFamily_cn.html)
 
 ```python
 paddle.distribution.ExponentialFamily(batch_shape， event_shape)

@@ -7,7 +7,7 @@ torch.exp(input,
           out=None)
 ```
 
-### [paddle.exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/exp_cn.html#exp)
+### [paddle.exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/exp_cn.html#exp)
 
 ```python
 paddle.exp(x,

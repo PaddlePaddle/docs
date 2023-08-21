@@ -9,7 +9,7 @@ torch.nn.MarginRankingLoss(margin=0.0,
                            reduction='mean')
 ```
 
-### [paddle.nn.MarginRankingLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MarginRankingLoss_cn.html#marginrankingloss)
+### [paddle.nn.MarginRankingLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MarginRankingLoss_cn.html#marginrankingloss)
 
 ```python
 paddle.nn.MarginRankingLoss(margin=0.0,

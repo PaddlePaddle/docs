@@ -6,7 +6,7 @@
 torch.addmm(input,mat1,mat2,*,beta=1,alpha=1,out=None)
 ```
 
-### [paddle.addmm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/addmm_cn.html)
+### [paddle.addmm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/addmm_cn.html)
 
 ```python
 paddle.addmm(input,x,y,alpha=1.0,beta=1.0,name=None)

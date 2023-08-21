@@ -10,7 +10,7 @@ torch.allclose(input,
                equal_nan=False)
 ```
 
-### [paddle.allclose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/allclose_cn.html#allclose)
+### [paddle.allclose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/allclose_cn.html#allclose)
 
 ```python
 paddle.allclose(x,

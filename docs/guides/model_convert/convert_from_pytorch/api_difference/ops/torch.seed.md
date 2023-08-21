@@ -1,6 +1,6 @@
 ## [ 组合替代实现 ]torch.seed
 
-### [torch.seed](https://pytorch.org/docs/master/generated/torch.seed.html#torch.seed)
+### [torch.seed](https://pytorch.org/docs/stable/generated/torch.seed.html#torch.seed)
 ```python
 torch.seed()
 ```

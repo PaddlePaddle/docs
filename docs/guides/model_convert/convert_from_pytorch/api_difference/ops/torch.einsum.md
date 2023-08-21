@@ -6,7 +6,7 @@
 torch.einsum(equation, *operands)
 ```
 
-### [paddle.einsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/einsum_cn.html)
+### [paddle.einsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/einsum_cn.html)
 
 ```python
 paddle.einsum(equation, *operands)

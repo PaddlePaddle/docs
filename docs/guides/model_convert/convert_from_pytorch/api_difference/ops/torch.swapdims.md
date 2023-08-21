@@ -1,6 +1,6 @@
 ## [ 参数不⼀致 ] torch.swapdims
 
-### [torch.swapdims](https://pytorch.org/docs/master/generated/torch.swapdims.html#torch.swapdims)
+### [torch.swapdims](https://pytorch.org/docs/stable/generated/torch.swapdims.html#torch.swapdims)
 
 ```python
 torch.swapdims(input,
@@ -8,7 +8,7 @@ torch.swapdims(input,
                 dim1)
 ```
 
-### [paddle.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/transpose_cn.html#transpose)
+### [paddle.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/transpose_cn.html#transpose)
 
 ```python
 paddle.transpose(x,

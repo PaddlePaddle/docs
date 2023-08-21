@@ -12,7 +12,7 @@ torch.empty_like(input,
                  memory_format=torch.preserve_format)
 ```
 
-###  [paddle.empty_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/empty_like_cn.html)
+###  [paddle.empty_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/empty_like_cn.html)
 
 ```python
 paddle.empty_like(x,

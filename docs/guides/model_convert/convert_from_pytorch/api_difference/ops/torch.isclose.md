@@ -9,7 +9,7 @@ torch.isclose(input,
               equal_nan=False)
 ```
 
-### [paddle.isclose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/isclose_cn.html#isclose)
+### [paddle.isclose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isclose_cn.html#isclose)
 
 ```python
 paddle.isclose(x,

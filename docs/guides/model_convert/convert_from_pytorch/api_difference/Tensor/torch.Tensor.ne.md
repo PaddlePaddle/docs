@@ -5,7 +5,7 @@
 torch.Tensor.ne(other)
 ```
 
-### [paddle.Tensor.not_equal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#not-equal-y-name-none)
+### [paddle.Tensor.not_equal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#not-equal-y-name-none)
 
 ```python
 paddle.Tensor.not_equal(y)

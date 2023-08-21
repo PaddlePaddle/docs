@@ -5,7 +5,7 @@
 torch.nn.PixelUnshuffle(downscale_factor)
 ```
 
-### [paddle.nn.PixelUnshuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/PixelUnshuffle_cn.html)
+### [paddle.nn.PixelUnshuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/PixelUnshuffle_cn.html)
 
 ```python
 paddle.nn.PixelUnshuffle(downscale_factor,

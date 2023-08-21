@@ -6,7 +6,7 @@
 torch.linalg.inv(A, *, out=None)
 ```
 
-### [paddle.linalg.inv](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/inv_cn.html)
+### [paddle.linalg.inv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/inv_cn.html)
 
 ```python
 paddle.linalg.inv(x, name=None)

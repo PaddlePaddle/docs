@@ -1,6 +1,6 @@
 ## [仅参数名不一致]torch.nn.functional.huber_loss
 
-### [torch.nn.functional.huber_loss](https://pytorch.org/docs/1.13/generated/torch.nn.functional.huber_loss.html#torch.nn.functional.huber_loss)
+### [torch.nn.functional.huber_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.huber_loss.html#torch.nn.functional.huber_loss)
 
 ```python
 torch.nn.functional.huber_loss(input, target, reduction='mean', delta=1.0)

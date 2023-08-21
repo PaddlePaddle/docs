@@ -6,7 +6,7 @@
 torch.distributed.rpc.rpc_async(to, func, args=None, kwargs=None, timeout=- 1.0)
 ```
 
-### [paddle.distributed.rpc.rpc_async](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/rpc/rpc_async_cn.html#rpc-async)
+### [paddle.distributed.rpc.rpc_async](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/rpc_async_cn.html#rpc-async)
 
 ```python
 paddle.distributed.rpc.rpc_async(to, fn, args=None, kwargs=None, timeout=- 1)
