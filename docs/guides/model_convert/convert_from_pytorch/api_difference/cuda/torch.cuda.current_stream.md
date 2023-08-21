@@ -6,7 +6,7 @@
 torch.cuda.current_stream(device=None)
 ```
 
-### [paddle.device.cuda.current_stream](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/cuda/current_stream_cn.html)
+### [paddle.device.cuda.current_stream](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/current_stream_cn.html)
 
 ```python
 paddle.device.cuda.current_stream(device=None)

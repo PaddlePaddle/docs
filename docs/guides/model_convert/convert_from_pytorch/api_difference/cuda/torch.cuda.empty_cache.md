@@ -6,7 +6,7 @@
 torch.cuda.empty_cache()
 ```
 
-### [paddle.device.cuda.empty_cache](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/cuda/empty_cache_cn.html)
+### [paddle.device.cuda.empty_cache](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/empty_cache_cn.html)
 
 ```python
 paddle.device.cuda.empty_cache()

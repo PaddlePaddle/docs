@@ -6,7 +6,7 @@
 torch.cuda.stream(stream)
 ```
 
-### [paddle.device.cuda.stream_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/cuda/stream_guard_cn.html)
+### [paddle.device.cuda.stream_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/stream_guard_cn.html)
 
 ```python
 paddle.device.cuda.stream_guard(stream)
