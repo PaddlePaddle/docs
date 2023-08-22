@@ -8,7 +8,7 @@ torch.remainder(input,
                 out=None)
 ```
 
-### [paddle.remainder](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/remainder_cn.html#remainder)
+### [paddle.remainder](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/remainder_cn.html#remainder)
 
 ```python
 paddle.remainder(x,

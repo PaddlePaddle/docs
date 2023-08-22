@@ -6,7 +6,7 @@
 torch.gcd(input, other, *, out=None)
 ```
 
-### [paddle.gcd](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/gcd_cn.html#gcd)
+### [paddle.gcd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/gcd_cn.html#gcd)
 
 ```python
 paddle.gcd(x, y, name=None)

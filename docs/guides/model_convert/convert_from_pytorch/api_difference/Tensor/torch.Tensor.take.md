@@ -6,7 +6,7 @@
 torch.Tensor.take(indices)
 ```
 
-### [paddle.Tensor.take](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#take-index-mode-raise-name-none)
+### [paddle.Tensor.take](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#take-index-mode-raise-name-none)
 
 ```
 paddle.Tensor.take(index, mode='raise', name=None)

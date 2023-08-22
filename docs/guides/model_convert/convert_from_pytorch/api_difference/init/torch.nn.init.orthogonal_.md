@@ -7,7 +7,7 @@ torch.nn.init.orthogonal_(tensor,
                         gain=1)
 ```
 
-### [paddle.nn.initializer.Orthogonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/initializer/Orthogonal_cn.html)
+### [paddle.nn.initializer.Orthogonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/Orthogonal_cn.html)
 
 ```python
 paddle.nn.initializer.Orthogonal(gain=1.0,

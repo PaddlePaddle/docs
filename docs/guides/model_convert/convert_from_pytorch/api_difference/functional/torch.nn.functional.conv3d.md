@@ -12,7 +12,7 @@ torch.nn.functional.conv3d(input,
                            groups=1)
 ```
 
-### [paddle.nn.functional.conv3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/conv3d_cn.html)
+### [paddle.nn.functional.conv3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/conv3d_cn.html)
 
 ```python
 paddle.nn.functional.conv3d(x,

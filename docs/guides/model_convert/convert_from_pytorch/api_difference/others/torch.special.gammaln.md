@@ -6,7 +6,7 @@
 torch.special.gammaln(input, *, out=None)
 ```
 
-### [paddle.lgamma](https://pytorch.org/docs/stable/special.html#torch.special.gammaln)
+### [paddle.lgamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/lgamma_cn.html#lgamma)
 
 ```python
 paddle.lgamma(x, name=None)

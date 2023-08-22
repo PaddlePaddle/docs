@@ -1,6 +1,6 @@
 ## [无参数]torch.cuda.nvtx.range_pop
 
-### [torch.cuda.nvtx.range_pop](https://pytorch.org/docs/1.13/generated/torch.cuda.nvtx.range_pop.html#torch.cuda.nvtx.range_pop)
+### [torch.cuda.nvtx.range_pop](https://pytorch.org/docs/stable/generated/torch.cuda.nvtx.range_pop.html#torch.cuda.nvtx.range_pop)
 
 ```python
 torch.cuda.nvtx.range_pop()

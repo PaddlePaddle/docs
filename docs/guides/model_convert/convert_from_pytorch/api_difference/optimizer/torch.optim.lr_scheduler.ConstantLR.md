@@ -10,7 +10,7 @@ torch.optim.lr_scheduler.ConstantLR(optimizer,
                                 verbose=False)
 ```
 
-### [paddle.optimizer.lr.PiecewiseDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/lr/PiecewiseDecay_cn.html)
+### [paddle.optimizer.lr.PiecewiseDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/PiecewiseDecay_cn.html)
 
 ```python
 paddle.optimizer.lr.PiecewiseDecay(boundaries,

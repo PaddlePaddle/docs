@@ -8,7 +8,7 @@ torch.narrow(input,
 ```
 
 
-### [paddle.slice](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/slice_cn.html#slice)
+### [paddle.slice](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/slice_cn.html#slice)
 ```python
 paddle.slice(input,
              axes,

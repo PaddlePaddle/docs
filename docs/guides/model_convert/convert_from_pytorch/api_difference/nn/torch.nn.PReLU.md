@@ -8,7 +8,7 @@ torch.nn.PReLU(num_parameters=1,
                dtype=None)
 ```
 
-### [paddle.nn.PReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/PReLU_cn.html#prelu)
+### [paddle.nn.PReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/PReLU_cn.html#prelu)
 
 ```python
 paddle.nn.PReLU(num_parameters=1,

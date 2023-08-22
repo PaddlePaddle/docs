@@ -6,7 +6,7 @@
 torch.Tensor.true_divide(value)
 ```
 
-### [paddle.Tensor.divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#divide-y-name-none)
+### [paddle.Tensor.divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#divide-y-name-none)
 
 ```python
 paddle.Tensor.divide(y, name=None)

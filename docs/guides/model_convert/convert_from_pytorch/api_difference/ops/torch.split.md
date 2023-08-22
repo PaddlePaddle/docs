@@ -7,7 +7,7 @@ torch.split(tensor,
             dim=0)
 ```
 
-### [paddle.split](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/split_cn.html#split)
+### [paddle.split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/split_cn.html#split)
 
 ```python
 paddle.split(x,

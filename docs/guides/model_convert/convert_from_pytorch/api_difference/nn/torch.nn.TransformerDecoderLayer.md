@@ -13,7 +13,7 @@ torch.nn.TransformerDecoderLayer(d_model,
                                  device=None,
                                  dtype=None)
 ```
-### [paddle.nn.TransformerDecoderLayer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/TransformerDecoderLayer_cn.html#transformerdecoderlayer)
+### [paddle.nn.TransformerDecoderLayer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/TransformerDecoderLayer_cn.html#transformerdecoderlayer)
 
 ```python
 paddle.nn.TransformerDecoderLayer(d_model,

@@ -7,7 +7,7 @@ torch.argmin(input,
              keepdim=False)
 ```
 
-### [paddle.argmin](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/argmin_cn.html#argmin)
+### [paddle.argmin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/argmin_cn.html#argmin)
 
 ```python
 paddle.argmin(x,

@@ -6,7 +6,7 @@
 torch.nn.utils.parameters_to_vector(parameters)
 ```
 
-### [paddle.nn.utils.parameters_to_vector](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/utils/parameters_to_vector_cn.html#parameters-to-vector)
+### [paddle.nn.utils.parameters_to_vector](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/utils/parameters_to_vector_cn.html#parameters-to-vector)
 
 ```python
 paddle.nn.utils.parameters_to_vector(parameters, name=None)

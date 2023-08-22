@@ -7,7 +7,7 @@ torch.erf(input,
           out=None)
 ```
 
-### [paddle.erf](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/erf_cn.html#erf)
+### [paddle.erf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/erf_cn.html#erf)
 
 ```python
 paddle.erf(x,

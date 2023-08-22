@@ -6,7 +6,7 @@
 torch.fft.ifft(input, n=None, dim=- 1, norm='backward', *, out=None)
 ```
 
-### [paddle.fft.ifft](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/ifft_cn.html)
+### [paddle.fft.ifft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/ifft_cn.html)
 
 ```python
 paddle.fft.ifft(x, n=None, axis=- 1, norm='backward', name=None)

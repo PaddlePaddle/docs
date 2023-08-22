@@ -6,7 +6,7 @@
 torch.Tensor.gt(other)
 ```
 
-### [paddle.Tensor.greater_than](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#greater-than-y-name-none)
+### [paddle.Tensor.greater_than](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#greater-than-y-name-none)
 
 ```python
 paddle.Tensor.greater_than(y, name=None)

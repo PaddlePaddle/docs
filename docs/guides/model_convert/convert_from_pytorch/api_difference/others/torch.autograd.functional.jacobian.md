@@ -6,7 +6,7 @@
 torch.autograd.functional.jacobian(func, inputs, create_graph=False, strict=False, vectorize=False, strategy='reverse-mode')
 ```
 
-### [paddle.incubate.autograd.Jacobian](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/incubate/autograd/Jacobian_cn.html)
+### [paddle.incubate.autograd.Jacobian](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/incubate/autograd/Jacobian_cn.html)
 
 ```python
 paddle.incubate.autograd.Jacobian(func, xs, is_batched=False)

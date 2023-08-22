@@ -14,7 +14,7 @@ torch.randint_like(input,
                    memory_format=torch.preserve_format)
 ```
 
-### [paddle.randint_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/randint_like_cn.html)
+### [paddle.randint_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/randint_like_cn.html)
 
 ```python
 paddle.randint_like(x,

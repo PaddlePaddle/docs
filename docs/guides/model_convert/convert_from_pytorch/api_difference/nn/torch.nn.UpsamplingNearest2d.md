@@ -6,7 +6,7 @@
 torch.nn.UpsamplingNearest2d(size=None, scale_factor=None)
 ```
 
-### [paddle.nn.UpsamplingNearest2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/UpsamplingNearest2D_cn.html)
+### [paddle.nn.UpsamplingNearest2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/UpsamplingNearest2D_cn.html)
 
 ```python
 paddle.nn.UpsamplingNearest2D(size=None,scale_factor=None, data_format='NCHW',name=None)

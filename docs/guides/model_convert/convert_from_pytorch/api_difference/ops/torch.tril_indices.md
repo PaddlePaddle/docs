@@ -6,7 +6,7 @@
 torch.tril_indices(row,col,offset=0,*,dtype=torch.long,device='cpu',layout=torch.strided)
 ```
 
-### [paddle.tril_indices](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tril_indices_cn.html)
+### [paddle.tril_indices](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/tril_indices_cn.html)
 
 ```python
 paddle.tril_indices(row,col,offset=0,dtype='int64')

@@ -6,7 +6,7 @@
 torch.Tensor.triangular_solve(A, upper=True, transpose=False, unitriangular=False)
 ```
 
-### [paddle.Tensor.triangular_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#triangular-solve-b-upper-true-transpose-false-unitriangular-false-name-none)
+### [paddle.Tensor.triangular_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#triangular-solve-b-upper-true-transpose-false-unitriangular-false-name-none)
 
 ```python
 paddle.Tensor.triangular_solve(b, upper=True, transpose=False, unitriangular=False, name=None)

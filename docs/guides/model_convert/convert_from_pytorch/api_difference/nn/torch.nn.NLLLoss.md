@@ -10,7 +10,7 @@ torch.nn.NLLLoss(weight=None,
                  reduction='mean')
 ```
 
-### [paddle.nn.NLLLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/NLLLoss_cn.html#nllloss)
+### [paddle.nn.NLLLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/NLLLoss_cn.html#nllloss)
 
 ```python
 paddle.nn.NLLLoss(weight=None,

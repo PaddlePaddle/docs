@@ -9,7 +9,7 @@ torch.clip(input,
            out=None)
 ```
 
-### [paddle.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/clip_cn.html#clip)
+### [paddle.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/clip_cn.html#clip)
 
 ```python
 paddle.clip(x,

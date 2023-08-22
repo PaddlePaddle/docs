@@ -6,7 +6,7 @@
 torch.linalg.cholesky(A,*,upper=False,out=None)
 ```
 
-### [paddle.linalg.cholesky](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/cholesky_cn.html)
+### [paddle.linalg.cholesky](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/cholesky_cn.html)
 
 ```python
 paddle.linalg.cholesky(x,upper=False,name=None)

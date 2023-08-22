@@ -9,7 +9,7 @@ torch.bitwise_xor(input,
                   out=None)
 ```
 
-### [paddle.bitwise_xor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/bitwise_xor_cn.html)
+### [paddle.bitwise_xor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bitwise_xor_cn.html)
 
 ```python
 paddle.bitwise_xor(x,

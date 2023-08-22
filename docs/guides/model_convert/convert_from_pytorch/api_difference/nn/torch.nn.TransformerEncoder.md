@@ -6,7 +6,7 @@
 torch.nn.TransformerEncoder(encoder_layer, num_layers, norm=None, enable_nested_tensor=True, mask_check=True)
 ```
 
-### [paddle.nn.TransformerEncoder](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/TransformerEncoder_cn.html)
+### [paddle.nn.TransformerEncoder](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/TransformerEncoder_cn.html)
 
 ```python
 paddle.nn.TransformerEncoder(encoder_layer, num_layers, norm=None)

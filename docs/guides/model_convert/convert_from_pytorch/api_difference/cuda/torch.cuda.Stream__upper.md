@@ -6,7 +6,7 @@
 torch.cuda.Stream(device=None, priority=0, **kwargs)
 ```
 
-### [paddle.device.cuda.Stream](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/cuda/Stream_cn.html)
+### [paddle.device.cuda.Stream](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/Stream_cn.html)
 
 ```python
 paddle.device.cuda.Stream(device=None, priority=None)

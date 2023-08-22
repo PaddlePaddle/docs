@@ -1,4 +1,4 @@
-## [仅 paddle 参数更多]torch.cuda.set_rng_state_all
+## [参数不一致]torch.cuda.set_rng_state_all
 
 ### [torch.cuda.set_rng_state_all](https://pytorch.org/docs/stable/generated/torch.cuda.set_rng_state_all.html#torch.cuda.set_rng_state_all)
 
@@ -9,7 +9,7 @@ torch.cuda.set_rng_state_all(new_states)
 ### [paddle.set_rng_state]()
 
 ```python
-paddle.set_rng_state(state_list, device=None)
+paddle.set_rng_state(state_list, device='gpu')
 ```
 
 其中 Pytorch 与 Paddle 的参数类型不一致，具体如下：

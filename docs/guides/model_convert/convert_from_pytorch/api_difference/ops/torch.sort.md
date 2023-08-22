@@ -11,7 +11,7 @@ torch.sort(input,
            out=None)
 ```
 
-### [paddle.sort](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sort_cn.html#paddle.sort)
+### [paddle.sort](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sort_cn.html#paddle.sort)
 
 ```python
 paddle.sort(x,

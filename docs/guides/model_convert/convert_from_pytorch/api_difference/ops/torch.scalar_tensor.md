@@ -10,7 +10,7 @@ torch.scalar_tensor(s,
              pin_memory=False)
 ```
 
-### [paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/to_tensor_cn.html#to-tensor)
+### [paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/to_tensor_cn.html#to-tensor)
 
 ```python
 paddle.to_tensor(data,

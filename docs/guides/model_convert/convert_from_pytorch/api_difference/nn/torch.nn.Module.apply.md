@@ -6,7 +6,7 @@
 torch.nn.Module.apply(fn)
 ```
 
-### [paddle.nn.Layer.apply](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html)
+### [paddle.nn.Layer.apply](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html)
 
 ```python
 paddle.nn.Layer.apply(fn)

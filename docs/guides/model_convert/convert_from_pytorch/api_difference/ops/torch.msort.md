@@ -6,7 +6,7 @@
 torch.msort(input, *, out=None)
 ```
 
-### [paddle.sort](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sort_cn.html#sort)
+### [paddle.sort](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sort_cn.html#sort)
 
 ```python
 paddle.sort(x, axis=- 1, descending=False, name=None)

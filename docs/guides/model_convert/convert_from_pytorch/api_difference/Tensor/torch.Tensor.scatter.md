@@ -6,7 +6,7 @@
 torch.Tensor.scatter(dim, index, src, reduce=None)
 ```
 
-### [paddle.Tensor.put_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#put-along-axis-arr-index-value-axis-reduce-assign)
+### [paddle.Tensor.put_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#put-along-axis-arr-index-value-axis-reduce-assign)
 
 ```python
 paddle.Tensor.put_along_axis(indices, values, axis, reduce="assign")

@@ -6,7 +6,7 @@
 torch.autograd.graph.saved_tensors_hooks(pack_hook, unpack_hook)
 ```
 
-### [paddle.autograd.saved_tensors_hooks](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/autograd/saved_tensors_hooks_cn.html)
+### [paddle.autograd.saved_tensors_hooks](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/saved_tensors_hooks_cn.html)
 
 ```python
 paddle.autograd.saved_tensors_hooks(pack_hook, unpack_hook)

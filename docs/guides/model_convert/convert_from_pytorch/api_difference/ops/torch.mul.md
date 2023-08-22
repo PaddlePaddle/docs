@@ -6,7 +6,7 @@
 torch.mul(input, other, *, out=None)
 ```
 
-### [paddle.multiply](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/multiply_cn.html)
+### [paddle.multiply](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/multiply_cn.html)
 
 ```python
 paddle.multiply(x, y, name=None)

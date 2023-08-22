@@ -10,7 +10,7 @@ torch.optim.lr_scheduler.CosineAnnealingLR(optimizer,
                                 verbose=False)
 ```
 
-### [paddle.optimizer.lr.CosineAnnealingDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/lr/CosineAnnealingDecay_cn.html)
+### [paddle.optimizer.lr.CosineAnnealingDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/CosineAnnealingDecay_cn.html)
 
 ```python
 paddle.optimizer.lr.CosineAnnealingDecay(learning_rate,

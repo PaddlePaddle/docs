@@ -6,7 +6,7 @@
 torch.greater(input, other, *, out=None)
 ```
 
-### [paddle.greater_than](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/greater_than_cn.html)
+### [paddle.greater_than](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/greater_than_cn.html)
 
 ```python
 paddle.greater_than(x, y, name=None)

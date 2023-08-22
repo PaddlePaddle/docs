@@ -13,7 +13,7 @@ torch.full(size,
            requires_grad=False)
 ```
 
-###  [paddle.full](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/full_cn.html)
+###  [paddle.full](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/full_cn.html)
 
 ```python
 paddle.full(shape,

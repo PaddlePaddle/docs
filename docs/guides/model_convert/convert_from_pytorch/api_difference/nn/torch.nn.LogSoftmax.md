@@ -5,7 +5,7 @@
 torch.nn.LogSoftmax(dim=None)
 ```
 
-### [paddle.nn.LogSoftmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LogSoftmax_cn.html#logsoftmax)
+### [paddle.nn.LogSoftmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LogSoftmax_cn.html#logsoftmax)
 
 ```python
 paddle.nn.LogSoftmax(axis=- 1, name=None)

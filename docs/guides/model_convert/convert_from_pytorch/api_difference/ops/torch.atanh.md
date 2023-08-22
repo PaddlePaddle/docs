@@ -7,7 +7,7 @@ torch.atanh(input,
            out=None)
 ```
 
-### [paddle.atanh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atanh_cn.html)
+### [paddle.atanh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atanh_cn.html)
 
 ```python
 paddle.atanh(x,

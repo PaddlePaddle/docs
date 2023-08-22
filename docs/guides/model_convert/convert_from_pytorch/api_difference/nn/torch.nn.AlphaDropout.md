@@ -6,7 +6,7 @@
 torch.nn.AlphaDropout(p=0.5, inplace=False)
 ```
 
-### [paddle.nn.AlphaDropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/AlphaDropout_cn.html)
+### [paddle.nn.AlphaDropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/AlphaDropout_cn.html)
 
 ```python
 paddle.nn.AlphaDropout(p=0.5, name=None)

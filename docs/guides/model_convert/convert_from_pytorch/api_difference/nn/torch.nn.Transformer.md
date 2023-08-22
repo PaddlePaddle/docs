@@ -6,7 +6,7 @@
 torch.nn.Transformer(d_model=512, nhead=8, num_encoder_layers=6, num_decoder_layers=6, dim_feedforward=2048, dropout=0.1, activation=<function relu>, custom_encoder=None, custom_decoder=None, layer_norm_eps=1e-05, batch_first=False, norm_first=False, device=None, dtype=None)
 ```
 
-### [paddle.nn.Transformer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Transformer_cn.html)
+### [paddle.nn.Transformer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Transformer_cn.html)
 
 ```python
 paddle.nn.Transformer(d_model=512, nhead=8, num_encoder_layers=6, num_decoder_layers=6, dim_feedforward=2048, dropout=0.1, activation='relu', attn_dropout=None, act_dropout=None, normalize_before=False, weight_attr=None, bias_attr=None, custom_encoder=None, custom_decoder=None)

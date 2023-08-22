@@ -6,7 +6,7 @@
 torch.nan_to_num(input, nan=0.0, posinf=None, neginf=None, *, out=None)
 ```
 
-### [paddle.nan_to_num]()
+### [paddle.nan_to_num](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nan_to_num_cn.html#nan-to-num)
 
 ```python
 paddle.nan_to_num(x, nan=0.0, posinf=None, neginf=None, name=None)

@@ -7,7 +7,7 @@ torch.argmax(input,
              keepdim=False)
 ```
 
-### [paddle.argmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/argmax_cn.html#argmax)
+### [paddle.argmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/argmax_cn.html#argmax)
 
 ```python
 paddle.argmax(x,

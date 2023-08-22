@@ -9,7 +9,7 @@ torch.nn.functional.bilinear(input1,
                              bias=None)
 ```
 
-### [paddle.nn.functional.bilinear](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/bilinear_cn.html)
+### [paddle.nn.functional.bilinear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/bilinear_cn.html)
 
 ```python
 paddle.nn.functional.bilinear(x1,

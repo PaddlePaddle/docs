@@ -7,7 +7,7 @@ torch.normal(mean,
              generator=None,
              out=None)
 ```
-### [paddle.normal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/normal_cn.html)
+### [paddle.normal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/normal_cn.html)
 ```python
 paddle.normal(mean=0.0,
               std=1.0,

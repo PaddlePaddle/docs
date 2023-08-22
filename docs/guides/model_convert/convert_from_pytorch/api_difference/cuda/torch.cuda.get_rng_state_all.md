@@ -1,4 +1,4 @@
-## [仅 paddle 参数更多]torch.cuda.get_rng_state_all
+## [参数不一致]torch.cuda.get_rng_state_all
 
 ### [torch.cuda.get_rng_state_all](https://pytorch.org/docs/stable/generated/torch.cuda.get_rng_state_all.html#torch.cuda.get_rng_state_all)
 
@@ -9,7 +9,7 @@ torch.cuda.get_rng_state_all()
 ### [paddle.get_rng_state]()
 
 ```python
-paddle.get_rng_state(device=None)
+paddle.get_rng_state(device='gpu')
 ```
 
 paddle 参数更多，并且 torch 与 paddle 的返回参数类型不一致，具体如下：

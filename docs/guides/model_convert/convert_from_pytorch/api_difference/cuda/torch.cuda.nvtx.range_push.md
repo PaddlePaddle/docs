@@ -1,6 +1,6 @@
 ## [仅参数名不一致]torch.cuda.nvtx.range_push
 
-### [torch.cuda.nvtx.range_push](https://pytorch.org/docs/1.13/generated/torch.cuda.nvtx.range_push.html#torch.cuda.nvtx.range_push)
+### [torch.cuda.nvtx.range_push](https://pytorch.org/docs/stable/generated/torch.cuda.nvtx.range_push.html?highlight=range_push#torch.cuda.nvtx.range_push)
 
 ```python
 torch.cuda.nvtx.range_push(msg)

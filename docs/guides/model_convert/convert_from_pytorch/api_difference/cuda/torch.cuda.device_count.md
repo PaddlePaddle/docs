@@ -6,7 +6,7 @@
 torch.cuda.device_count()
 ```
 
-### [paddle.device.cuda.device_count](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/cuda/device_count_cn.html)
+### [paddle.device.cuda.device_count](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/device_count_cn.html)
 
 ```python
 paddle.device.cuda.device_count()

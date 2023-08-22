@@ -6,7 +6,7 @@
 torch.Tensor.copy_(src, non_blocking=False)
 ```
 
-### [paddle.assign](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/assign_cn.html#assign)
+### [paddle.assign](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/assign_cn.html#assign)
 
 ```python
 paddle.assign(x, output=None)

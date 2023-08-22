@@ -6,7 +6,7 @@
 torch.Tensor.mul(other)
 ```
 
-### [paddle.Tensor.multiply](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#multiply-y-axis-1-name-none)
+### [paddle.Tensor.multiply](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#multiply-y-axis-1-name-none)
 
 ```python
 paddle.Tensor.multiply(y,

@@ -6,7 +6,7 @@ torch.tile(input,
            dims)
 ```
 
-### [paddle.tile](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tile_cn.html#tile)
+### [paddle.tile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/tile_cn.html#tile)
 
 ```python
 paddle.tile(x,

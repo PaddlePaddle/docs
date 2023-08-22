@@ -6,7 +6,7 @@
 torch.autograd.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, is_grads_batched=False)
 ```
 
-### [paddle.grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/grad_cn.html)
+### [paddle.grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/grad_cn.html)
 
 ```python
 paddle.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None)

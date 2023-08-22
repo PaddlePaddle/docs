@@ -6,7 +6,7 @@
 torch.Tensor.reshape(*shape)
 ```
 
-### [paddle.Tensor.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#reshape-shape-name-none)
+### [paddle.Tensor.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#reshape-shape-name-none)
 
 ```python
 paddle.Tensor.reshape(shape, name=None)

@@ -7,7 +7,7 @@ torch.nn.init.xavier_normal_(tensor,
                         gain=1.0)
 ```
 
-### [paddle.nn.initializer.XavierNormal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/initializer/XavierNormal_cn.html)
+### [paddle.nn.initializer.XavierNormal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/XavierNormal_cn.html)
 
 ```python
 paddle.nn.initializer.XavierNormal(fan_in=None,

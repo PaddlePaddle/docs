@@ -5,7 +5,7 @@
 torch.Tensor.pinverse()
 ```
 
-### [paddle.linalg.pinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/pinv_cn.html#pinv)
+### [paddle.linalg.pinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/pinv_cn.html#pinv)
 
 ```python
 paddle.linalg.pinv(x,

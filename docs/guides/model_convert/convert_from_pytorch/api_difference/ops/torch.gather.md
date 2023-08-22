@@ -10,7 +10,7 @@ torch.gather(input,
              out=None)
 ```
 
-### [paddle.take_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/take_along_axis_cn.html#take-along-axis)
+### [paddle.take_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/take_along_axis_cn.html#take-along-axis)
 
 ```python
 paddle.take_along_axis(arr,

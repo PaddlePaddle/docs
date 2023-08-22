@@ -9,7 +9,7 @@ torch.nn.BatchNorm3d(num_features,
                      track_running_stats=True)
 ```
 
-### [paddle.nn.BatchNorm3D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BatchNorm3D_cn.html#batchnorm3d)
+### [paddle.nn.BatchNorm3D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BatchNorm3D_cn.html#batchnorm3d)
 
 ```python
 paddle.nn.BatchNorm3D(num_features,

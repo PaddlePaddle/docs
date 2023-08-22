@@ -6,7 +6,7 @@
 torch.autograd.Function.backward(ctx, *grad_outputs)
 ```
 
-### [paddle.autograd.PyLayer.backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/autograd/PyLayer_cn.html#backward-ctx-args-kwargs)
+### [paddle.autograd.PyLayer.backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayer_cn.html#backward-ctx-args-kwargs)
 
 ```python
 paddle.autograd.PyLayer.backward(ctx, *args, **kwargs)

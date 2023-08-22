@@ -6,7 +6,7 @@
 torch.linalg.svdvals(A, *, driver=None, out=None)
 ```
 
-### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/svd_cn.html)
+### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/svd_cn.html)
 
 ```python
 paddle.linalg.svd(x, full_matrices=False, name=None)

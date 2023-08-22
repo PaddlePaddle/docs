@@ -9,7 +9,7 @@ torch.nn.init.kaiming_normal_(tensor,
                         nonlinearity='leaky_relu')
 ```
 
-### [paddle.nn.initializer.KaimingNormal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/initializer/KaimingNormal_cn.html)
+### [paddle.nn.initializer.KaimingNormal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/KaimingNormal_cn.html)
 
 ```python
 paddle.nn.initializer.KaimingNormal(fan_in=None,

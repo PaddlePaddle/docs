@@ -5,7 +5,7 @@
 torch.isinf(input)
 ```
 
-### [paddle.isinf](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/isinf_cn.html#isinf)
+### [paddle.isinf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isinf_cn.html#isinf)
 
 ```python
 paddle.isinf(x,

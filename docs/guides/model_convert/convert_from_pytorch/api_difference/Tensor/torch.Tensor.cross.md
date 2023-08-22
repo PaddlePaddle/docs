@@ -6,7 +6,7 @@
 torch.Tensor.cross(other, dim=None)
 ```
 
-### [paddle.Tensor.cross](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cross-y-axis-none-name-none)
+### [paddle.Tensor.cross](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cross-y-axis-none-name-none)
 
 ```python
 paddle.Tensor.cross(y, axis=None, name=None)

@@ -5,7 +5,7 @@
 torch.poisson(input,
               generator=None)
 ```
-### [paddle.poisson](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/poisson_cn.html)
+### [paddle.poisson](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/poisson_cn.html)
 ```python
 paddle.poisson(x,
                name=None)

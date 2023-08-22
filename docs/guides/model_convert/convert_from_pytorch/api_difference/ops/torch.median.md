@@ -9,7 +9,7 @@ torch.median(input,
              out=None)
 ```
 
-### [paddle.median](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/median_cn.html#median)
+### [paddle.median](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/median_cn.html#median)
 
 ```python
 paddle.median(x,

@@ -6,7 +6,7 @@
 torch.lcm(input, other, *, out=None)
 ```
 
-### [paddle.lcm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/lcm_cn.html#lcm)
+### [paddle.lcm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/lcm_cn.html#lcm)
 
 ```python
 paddle.lcm(x, y, name=None)

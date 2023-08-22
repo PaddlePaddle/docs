@@ -5,7 +5,7 @@
 torch.nn.ReLU(inplace=False)
 ```
 
-### [paddle.nn.ReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ReLU_cn.html#relu)
+### [paddle.nn.ReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ReLU_cn.html#relu)
 
 ```python
 paddle.nn.ReLU(name=None)

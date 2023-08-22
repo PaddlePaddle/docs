@@ -6,7 +6,7 @@
 torch.distributed.new_group(ranks=None, timeout=datetime.timedelta(seconds=1800), backend=None, pg_options=None)
 ```
 
-### [paddle.distributed.new_group](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/new_group_cn.html)
+### [paddle.distributed.new_group](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/new_group_cn.html)
 
 ```python
 paddle.distributed.new_group(ranks=None, backend=None)

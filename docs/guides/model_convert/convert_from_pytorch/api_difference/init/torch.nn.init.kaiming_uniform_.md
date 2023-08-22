@@ -9,7 +9,7 @@ torch.nn.init.kaiming_uniform_(tensor,
                         nonlinearity='leaky_relu')
 ```
 
-### [paddle.nn.initializer.KaimingUniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/initializer/KaimingUniform_cn.html)
+### [paddle.nn.initializer.KaimingUniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/KaimingUniform_cn.html)
 
 ```python
 paddle.nn.initializer.KaimingUniform(fan_in=None,

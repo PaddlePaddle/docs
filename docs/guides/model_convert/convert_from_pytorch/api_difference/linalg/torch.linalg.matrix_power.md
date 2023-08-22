@@ -8,7 +8,7 @@ torch.linalg.matrix_power(A,
                         out=None)
 ```
 
-### [paddle.linalg.matrix_power](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/matrix_power_cn.html)
+### [paddle.linalg.matrix_power](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/matrix_power_cn.html)
 
 ```python
 paddle.linalg.matrix_power(x,

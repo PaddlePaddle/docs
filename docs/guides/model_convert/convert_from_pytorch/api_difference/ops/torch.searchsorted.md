@@ -13,7 +13,7 @@ torch.searchsorted(sorted_sequence,
                    sorter=None)
 ```
 
-### [paddle.searchsorted](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/searchsorted_cn.html#searchsorted)
+### [paddle.searchsorted](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/searchsorted_cn.html#searchsorted)
 
 ```python
 paddle.searchsorted(sorted_sequence,

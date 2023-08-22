@@ -6,7 +6,7 @@
 torch.trapezoid(y, x=None, *, dx=None, dim=- 1)
 ```
 
-### [paddle.trapezoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/trapezoid_cn.html#trapezoid)
+### [paddle.trapezoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/trapezoid_cn.html#trapezoid)
 
 ```python
 paddle.trapezoid(y, x=None, dx=None, axis=- 1, name=None)

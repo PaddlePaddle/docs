@@ -6,7 +6,7 @@
 torch.nn.UpsamplingBilinear2d(size=None, scale_factor=None)
 ```
 
-### [paddle.nn.UpsamplingBilinear2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/UpsamplingBilinear2D_cn.html)
+### [paddle.nn.UpsamplingBilinear2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/UpsamplingBilinear2D_cn.html)
 
 ```python
 paddle.nn.UpsamplingBilinear2D(size=None,scale_factor=None, data_format='NCHW',name=None)

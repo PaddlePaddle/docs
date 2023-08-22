@@ -6,7 +6,7 @@
 torch.nn.functional.avg_pool1d(input, kernel_size, stride=None, padding=0, ceil_mode=False, count_include_pad=True)
 ```
 
-### [paddle.nn.functional.avg_pool1d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/avg_pool1d_cn.html#avg-pool1d)
+### [paddle.nn.functional.avg_pool1d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/avg_pool1d_cn.html#avg-pool1d)
 ```python
 paddle.nn.functional.avg_pool1d(x, kernel_size, stride=None, padding=0, exclusive=True, ceil_mode=False, name=None)
 ```

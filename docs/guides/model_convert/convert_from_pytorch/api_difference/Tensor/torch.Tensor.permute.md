@@ -6,7 +6,7 @@
 torch.Tensor.permute(*dims)
 ```
 
-### [paddle.Tensor.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#transpose-perm-name-none)
+### [paddle.Tensor.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#transpose-perm-name-none)
 
 ```python
 paddle.Tensor.transpose(perm, name=None)

@@ -6,7 +6,7 @@
 torch.repeat_interleave(input, repeats, dim=None, *, output_size=None)
 ```
 
-### [paddle.repeat_interleave](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/repeat_interleave_cn.html#repeat-interleave)
+### [paddle.repeat_interleave](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/repeat_interleave_cn.html#repeat-interleave)
 
 ```python
 paddle.repeat_interleave(x, repeats, axis=None, name=None)

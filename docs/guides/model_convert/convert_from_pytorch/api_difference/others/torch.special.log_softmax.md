@@ -6,7 +6,7 @@
 torch.special.log_softmax(input, dim, *, dtype=None)
 ```
 
-### [paddle.nn.functional.log_softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/log_softmax_cn.html)
+### [paddle.nn.functional.log_softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/log_softmax_cn.html)
 
 ```python
 paddle.nn.functional.log_softmax(x, axis=- 1, dtype=None, name=None)

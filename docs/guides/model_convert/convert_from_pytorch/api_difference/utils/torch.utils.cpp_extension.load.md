@@ -16,7 +16,7 @@ torch.utils.cpp_extension.load(name,
                             keep_intermediates=True)
 ```
 
-### [paddle.utils.cpp_extension.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/load_cn.html)
+### [paddle.utils.cpp_extension.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/cpp_extension/load_cn.html)
 
 ```python
 paddle.utils.cpp_extension.load(name,

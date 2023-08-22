@@ -303,6 +303,9 @@
 | 265   |  [torch.histogram](https://pytorch.org/docs/stable/generated/torch.histogram.html#torch.histogram)  |  | 功能缺失        |
 | 266    | [torch.gradient](https://pytorch.org/docs/stable/generated/torch.gradient.html#torch.gradient) |  | 功能缺失        |
 | 267    | [torch.positive](https://pytorch.org/docs/stable/generated/torch.positive.html#torch.positive) |  | 功能缺失        |
+| 268    | [torch.resolve_neg](https://pytorch.org/docs/stable/generated/torch.resolve_neg.html#torch.resolve_neg) |  | 功能缺失        |
+| 269    | [torch.bitwise_left_shift](https://pytorch.org/docs/stable/generated/torch.bitwise_left_shift.html#torch.bitwise_left_shift) |  | 功能缺失        |
+| 270    | [torch.isin](https://pytorch.org/docs/stable/generated/torch.isin.html#torch.isin) |  | 功能缺失        |
 
 ***持续更新...***
 
@@ -406,6 +409,9 @@
 | 92   |  [torch.nn.LazyBatchNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm1d.html#torch.nn.LazyBatchNorm1d)  |  | 功能缺失        |
 | 93   |  [torch.nn.LazyBatchNorm2d](https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm2d.html#torch.nn.LazyBatchNorm2d)  |  | 功能缺失        |
 | 94   |  [torch.nn.LazyBatchNorm3d](https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm3d.html#torch.nn.LazyBatchNorm3d)  |  | 功能缺失        |
+| 95   |  [torch.nn.LazyInstanceNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm1d.html#torch.nn.LazyInstanceNorm1d)  |  | 功能缺失        |
+| 96   |  [torch.nn.LazyInstanceNorm2d](https://pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm2d.html#torch.nn.LazyInstanceNorm2d)  |  | 功能缺失        |
+| 97   |  [torch.nn.LazyInstanceNorm3d](https://pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm3d.html#torch.nn.LazyInstanceNorm3d)  |  | 功能缺失        |
 
 
 ***持续更新...***
@@ -658,6 +664,9 @@
 | 179   |  [torch.Tensor.geqrf](https://pytorch.org/docs/1.13/generated/torch.Tensor.geqrf.html?highlight=torch+tensor+geqrf#torch.Tensor.geqrf)  |  | 功能缺失        |
 | 180   |  [torch.Tensor.sparse_resize_](https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_resize_.html#torch.Tensor.sparse_resize_)  |  | 功能缺失        |
 | 181   |  [torch.Tensor.sparse_resize_and_clear_](https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_resize_and_clear_.html#torch.Tensor.sparse_resize_and_clear_)  |  | 功能缺失        |
+| 182   |  [torch.Tensor.bitwise_left_shift](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_left_shift.html#torch.Tensor.bitwise_left_shift)  |  | 功能缺失        |
+| 183   |  [torch.Tensor.resolve_conj](https://pytorch.org/docs/stable/generated/torch.Tensor.resolve_conj.html#torch.Tensor.resolve_conj)  |  | 功能缺失        |
+| 184   |  [torch.Tensor.resolve_neg](https://pytorch.org/docs/stable/generated/torch.Tensor.resolve_neg.html#torch.Tensor.resolve_neg)  |  | 功能缺失        |
 
 ***持续更新...***
 

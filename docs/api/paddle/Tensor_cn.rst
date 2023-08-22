@@ -48,6 +48,15 @@ dtype
         x = paddle.to_tensor([1.0, 2.0, 3.0])
         print("tensor's type is: {}".format(x.dtype))
 
+type
+:::::::::
+
+查看一个 Tensor 的类型。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.type
+
+
 grad
 :::::::::
 
@@ -176,13 +185,39 @@ place
         cpu_tensor = paddle.to_tensor(1, place=paddle.CPUPlace())
         print(cpu_tensor.place)
 
+layout
+:::::::::
+
+查看一个 Tensor 的 layout，layout 是 Tensor 的一个重要的概念，其描述了 tensor 的数据格式。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.layout
+
 shape
 :::::::::
 
 查看一个 Tensor 的 shape，shape 是 Tensor 的一个重要的概念，其描述了 tensor 在每个维度上的元素数量。
 
 **代码示例**
-COPY-FROM: paddle.shape
+COPY-FROM: paddle.Tensor.shape
+
+strides
+:::::::::
+
+查看一个 Tensor 的 strides。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.strides
+
+
+offset
+:::::::::
+
+查看一个 Tensor 的第一个元素数据地址相对于 Tensor 持有的存储空间首地址的偏移量。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.offset
+
 
 stop_gradient
 :::::::::
@@ -197,6 +232,189 @@ stop_gradient
         import paddle
         print("Tensor's stop_gradient: ", paddle.to_tensor([[1, 2], [3, 4]]).stop_gradient)
         # Tensor's stop_gradient: True
+
+data
+:::::::::
+
+查看或者修改一个 Tensor 的数据。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.data
+
+
+numpy()
+:::::::::
+
+返回：将 Tensor 转为 numpy 返回
+
+返回类型：numpy\.ndarray
+
+**代码示例**
+COPY-FROM: paddle.Tensor.numpy
+
+
+
+reconstruct_from_(other)
+:::::::::
+
+返回：使用 other 重新构建当前 Tensor
+
+返回类型：None
+
+**代码示例**
+COPY-FROM: paddle.Tensor.reconstruct_from_
+
+
+
+clone()
+:::::::::
+
+返回：克隆的新的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+COPY-FROM: paddle.Tensor.clone
+
+
+
+retain_grads()
+:::::::::
+
+返回：在 backward()时保留该 Tensor 的反向梯度
+
+返回类型：None
+
+**代码示例**
+COPY-FROM: paddle.Tensor.retain_grads
+
+
+
+clear_gradient(set_to_zero=True)
+:::::::::
+
+清理 Tensor 的反向梯度。
+参数：
+    - **set_to_zero** (bool) - True 表示将梯度值覆盖为 0。False 则释放梯度持有的存储空间。
+
+返回：None
+
+**代码示例**
+COPY-FROM: paddle.Tensor.clear_gradient
+
+
+
+detach()
+:::::::::
+
+返回：返回一个新的 Tensor，数据与本 Tensor 相等。但新的 Tensor 脱离当前计算图。
+
+返回类型：Tensor
+
+**代码示例**
+COPY-FROM: paddle.Tensor.detach
+
+
+detach_()
+:::::::::
+
+返回：让当前 Tensor 脱离当前计算图。
+
+返回类型：Tensor
+
+
+get_tensor()
+:::::::::
+
+返回：让当前 Tensor 内部的数据 Tensor，如 DenseTensor、DistTensor。
+
+返回类型：DenseTensor/DistTensor
+
+**代码示例**
+COPY-FROM: paddle.Tensor.get_tensor
+
+
+
+
+is_dense()
+:::::::::
+
+返回：返回本 Tensor 是否为 DenseTensor。
+
+返回类型：bool
+
+**代码示例**
+COPY-FROM: paddle.Tensor.is_dense
+
+
+
+is_dist()
+:::::::::
+
+返回：返回本 Tensor 是否为 DistTensor。
+
+返回类型：bool
+
+**代码示例**
+COPY-FROM: paddle.Tensor.is_dist
+
+
+
+
+data_ptr()
+:::::::::
+
+返回：返回本 Tensor 第一个元素的数据地址。
+
+返回类型：int
+
+**代码示例**
+COPY-FROM: paddle.Tensor.data_ptr
+
+
+
+
+
+get_strides()
+:::::::::
+
+返回：返回本 Tensor 的 strides。
+
+返回类型：list
+
+**代码示例**
+COPY-FROM: paddle.Tensor.get_strides
+
+
+
+
+contiguous()
+:::::::::
+
+返回：将本 Tensor 转为连续的 Tensor 返回。如果本 Tensor 已经是连续的则返回本 Tensor。
+
+返回类型：Tensor。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.contiguous
+
+
+
+
+is_contiguous()
+:::::::::
+
+返回：本 Tensor 是否为连续的。
+
+返回类型：bool
+
+**代码示例**
+COPY-FROM: paddle.Tensor.is_contiguous
+
+
+
+
+
 
 abs(name=None)
 :::::::::
@@ -512,31 +730,6 @@ chunk(chunks, axis=0, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_chunk`
 
-clear_gradient()
-:::::::::
-
-清除当前 Tensor 的梯度。
-
-返回：无
-
-**代码示例**
-    .. code-block:: python
-
-        import paddle
-        import numpy as np
-
-        x = np.ones([2, 2], np.float32)
-        inputs2 = []
-        for _ in range(10):
-            tmp = paddle.to_tensor(x)
-            tmp.stop_gradient=False
-            inputs2.append(tmp)
-        ret2 = paddle.add_n(inputs2)
-        loss2 = paddle.sum(ret2)
-        loss2.backward()
-        print(loss2.gradient())
-        loss2.clear_gradient()
-        print("After clear {}".format(loss2.gradient()))
 
 clip(min=None, max=None, name=None)
 :::::::::
@@ -709,24 +902,6 @@ deg2rad(x, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_deg2rad`
 
-detach()
-:::::::::
-
-返回一个新的 Tensor，从当前计算图分离。
-
-返回：与当前计算图分离的 Tensor。
-
-**代码示例**
-    .. code-block:: python
-
-        import paddle
-        import numpy as np
-
-        data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
-        linear = paddle.nn.Linear(32, 64)
-        data = paddle.to_tensor(data)
-        x = linear(data)
-        y = x.detach()
 
 diagonal(offset=0, axis1=0, axis2=1, name=None)
 :::::::::
@@ -1663,25 +1838,6 @@ numel(name=None)
 
 请参考 :ref:`cn_api_tensor_numel`
 
-numpy()
-:::::::::
-
-将当前 Tensor 转化为 numpy\.ndarray。
-
-返回：Tensor 转化成的 numpy\.ndarray。
-返回类型：numpy\.ndarray
-
-**代码示例**
-    .. code-block:: python
-
-        import paddle
-        import numpy as np
-
-        data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
-        linear = paddle.nn.Linear(32, 64)
-        data = paddle.to_tensor(data)
-        x = linear(data)
-        print(x.numpy())
 
 pin_memory(y, name=None)
 :::::::::

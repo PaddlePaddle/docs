@@ -7,7 +7,7 @@ torch.sign(input,
            out=None)
 ```
 
-### [paddle.sign](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sign_cn.html#sign)
+### [paddle.sign](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sign_cn.html#sign)
 
 ```python
 paddle.sign(x,

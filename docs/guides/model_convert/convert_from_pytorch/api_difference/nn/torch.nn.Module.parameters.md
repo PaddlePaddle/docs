@@ -5,7 +5,7 @@
 torch.nn.Module.parameters(recurse=True)
 ```
 
-### [paddle.nn.Layer.parameters](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html#parameters-include-sublayers-true)
+### [paddle.nn.Layer.parameters](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#parameters-include-sublayers-true)
 
 ```python
 paddle.nn.Layer.parameters(include_sublayers=True)

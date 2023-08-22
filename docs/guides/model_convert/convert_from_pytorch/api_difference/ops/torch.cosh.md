@@ -7,7 +7,7 @@ torch.cosh(input,
            out=None)
 ```
 
-### [paddle.cosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cosh_cn.html#cosh)
+### [paddle.cosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cosh_cn.html#cosh)
 
 ```python
 paddle.cosh(x,
