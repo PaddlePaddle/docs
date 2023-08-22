@@ -25,6 +25,7 @@ CrossEntropyLoss
         其中，N 是样本数，C 是类别数。
 
     1.2. 当 use_softmax=False 时
+
         .. math::
           \\loss_j=-\log\left({P}_{label_j}\right) , j = 1,...,N
 
