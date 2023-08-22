@@ -18,4 +18,4 @@
     ./error_message_writing_specification_cn.md
     ../git_guides/codestyle_check_guide_cn.md
     ../git_guides/paddle_ci_manual_cn.md
-    ./code_example_writing_specification_cn.md
+    code_example_writing_specification_cn.md
