@@ -27,7 +27,7 @@
 >>> print(res)
 Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
 [[5 , 12],
-    [21, 32]])
+ [21, 32]])
 ```
 
 如无特殊情况，请勿使用 `#` 的注释方式提供输出值。
@@ -74,7 +74,7 @@ Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
     >>> print(res)
     Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
     [[5 , 12],
-        [21, 32]])
+     [21, 32]])
     ```
 
     对于代码中的多行或复合语句，也 **不要** 留有空行。
@@ -134,7 +134,7 @@ Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
     >>> print(res)
     Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
     [[5 , 12],
-        [21, 32]])
+     [21, 32]])
     ```
 
 - 适度的空格用于美化输出是允许的。
@@ -163,7 +163,7 @@ Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
     >>> print(res)
     Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
     [[5 , 12],
-        [21, 32]])
+     [21, 32]])
     ```
 
 - 对于多行的输出，可以使用 `...` 作为通配符使用。
@@ -194,7 +194,7 @@ Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
 >>> print(data)
 Tensor(shape=[2, 3], dtype=float32, place=Place(cpu), stop_gradient=True,
 [[0.86583614, 0.52014720, 0.25960937],
-    [0.90525323, 0.42400089, 0.40641287]])
+ [0.90525323, 0.42400089, 0.40641287]])
 ```
 
 如果示例中涉及 `Python`、`Numpy` 随机数等情况，也需要进行随机种子的设置。
