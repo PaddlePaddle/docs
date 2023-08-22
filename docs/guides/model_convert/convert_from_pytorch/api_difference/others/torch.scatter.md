@@ -3,7 +3,7 @@
 ### [torch.scatter](https://pytorch.org/docs/2.0/generated/torch.scatter.html?highlight=torch+scatter#torch.scatter)
 
 ```python
-torch.scatter(input,dim, index, src)
+torch.scatter(input,dim, index, src, reduce=None)
 ```
 
 ### [paddle.put_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/put_along_axis_cn.html#cn-api-paddle-tensor-put-along-axis)
