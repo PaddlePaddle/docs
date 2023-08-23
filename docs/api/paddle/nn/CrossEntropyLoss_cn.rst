@@ -3,11 +3,13 @@
 CrossEntropyLoss
 -------------------------------
 
-.. py:function:: paddle.nn.CrossEntropyLoss(weight=None, ignore_index=-100, reduction='mean', soft_label=False, axis=-1, name=None)
+.. py:function:: paddle.nn.CrossEntropyLoss(weight=None, ignore_index=-100, reduction='mean', soft_label=False, axis=-1, use_softmax=True, name=None)
 
-默认情况下， CrossEntropyLoss 使用 softmax 实现（即 :use_softmax=True ）。该函数结合了 softmax 操作的计算和交叉熵损失函数，以提供更稳定的数值计算。
+默认情况下， CrossEntropyLoss 使用 softmax 实现（即 use_softmax=True ）。该函数结合了 softmax 操作的计算和交叉熵损失函数，以提供更稳定的数值计算。
 
-当 use_softmax=False 时，仅计算交叉熵损失函数而不使用 softmax。默认情况下，计算结果的平均值。可以使用 reduction 参数来影响默认行为。请参考参数部分了解详情。
+当 use_softmax=False 时，仅计算交叉熵损失函数而不使用 softmax。
+
+默认情况下，计算结果的平均值。可以使用 reduction 参数来影响默认行为。请参考参数部分了解详情。
 
 可以用于计算带有 soft labels 和 hard labels 的 softmax 交叉熵损失。其中，hard labels 表示实际的标签值，例如 0、1、2 等。而 soft labels 表示实际标签的概率，例如 0.6、0.8、0.2 等。
 
