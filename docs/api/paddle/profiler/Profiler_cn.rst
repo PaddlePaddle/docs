@@ -143,4 +143,4 @@ summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_un
 
 **代码示例**
 
-COPY-FROM: paddle.profiler.Profiler.summary:code-example8
+COPY-FROM: paddle.profiler.Profiler.summary
