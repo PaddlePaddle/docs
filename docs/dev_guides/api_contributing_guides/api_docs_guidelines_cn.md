@@ -318,23 +318,23 @@ def multiply(x, y, axis=-1, name=None):
     Examples:
         .. code-block:: python
 
-                >>> import paddle
+            >>> import paddle
 
-                >>> x = paddle.to_tensor([[1, 2], [3, 4]])
-                >>> y = paddle.to_tensor([[5, 6], [7, 8]])
-                >>> res = paddle.multiply(x, y)
-                >>> print(res)
-                Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
-                [[5 , 12],
-                 [21, 32]])
+            >>> x = paddle.to_tensor([[1, 2], [3, 4]])
+            >>> y = paddle.to_tensor([[5, 6], [7, 8]])
+            >>> res = paddle.multiply(x, y)
+            >>> print(res)
+            Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
+            [[5 , 12],
+                [21, 32]])
 
-                >>> x = paddle.to_tensor([[[1, 2, 3], [1, 2, 3]]])
-                >>> y = paddle.to_tensor([2])
-                >>> res = paddle.multiply(x, y)
-                >>> print(res)
-                Tensor(shape=[1, 2, 3], dtype=int64, place=Place(cpu), stop_gradient=True,
-                [[[2, 4, 6],
-                  [2, 4, 6]]])
+            >>> x = paddle.to_tensor([[[1, 2, 3], [1, 2, 3]]])
+            >>> y = paddle.to_tensor([2])
+            >>> res = paddle.multiply(x, y)
+            >>> print(res)
+            Tensor(shape=[1, 2, 3], dtype=int64, place=Place(cpu), stop_gradient=True,
+            [[[2, 4, 6],
+              [2, 4, 6]]])
     """
 ```
 
