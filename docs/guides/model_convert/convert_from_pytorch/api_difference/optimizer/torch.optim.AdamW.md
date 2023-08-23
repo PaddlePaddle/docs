@@ -10,6 +10,7 @@ torch.optim.AdamW(params,
                 weight_decay=0.01,
                 amsgrad=False,
                 maximize=False,
+                foreach=None,
                 capturable=False,
                 differentiable=False,
                 fused=None)
@@ -45,6 +46,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | weight_decay           | weight_decay     | 表示权重衰减系数。参数名和默认值均一致。         |
 | amsgrad   | -    | 是否使用该算法的 AMSGrad 变体。Paddle 无此参数，暂无转写方式。                       |
 | maximize           | -     | 根据目标最大化参数，而不是最小化。Paddle 无此参数，暂无转写方式。         |
+| foreach           | -     | 是否使用优化器的 foreach 实现。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
 | capturable           | -     | 在 CUDA 图中捕获此实例是否安全。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
 | differentiable      | -     | 是否应通过训练中的优化器步骤进行自动微分。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。    |
 | fused      | -     | 是否使用融合实现（仅限 CUDA）。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。       |
