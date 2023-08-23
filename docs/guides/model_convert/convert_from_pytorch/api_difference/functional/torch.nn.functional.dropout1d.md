@@ -12,6 +12,7 @@ torch.nn.functional.dropout1d(input, p=0.5, training=True, inplace=False)
 paddle.nn.functional.dropout(x, p=0.5, axis=None, training=True, mode='upscale_in_train', name=None)
 ```
 
+PyTorch 对于 dropout1d/dropout2d/dropout3d，是将某个 Channel 以一定概率全部置 0，Paddle 是所有元素以一定概率置 0，但该差异一般不影响网络训练效果。
 其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch  | PaddlePaddle | 备注                                                                                                            |
