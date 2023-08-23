@@ -96,7 +96,7 @@ CrossEntropyLoss
 
         其中，N 是样本数，C 是类别数。
 
-        2.3.2. 如果“weight”参数不为“None”，则返回之前结果的加权平均值
+        2.3.2. 如果 ``weight`` 参数不为 ``None``，则返回之前结果的加权平均值
 
         1. Hard labels (soft_label = False)
 
