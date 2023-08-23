@@ -755,6 +755,7 @@
 | 20   | [torch.cuda.get_arch_list](https://pytorch.org/docs/stable/generated/torch.cuda.get_arch_list.html?highlight=torch+cuda+get_arch_list#torch.cuda.get_arch_list) | | 功能缺失 |
 | 21   | [torch.cuda.is_initialized](https://pytorch.org/docs/stable/generated/torch.cuda.is_initialized.html?highlight=torch+cuda+is_initialized#torch.cuda.is_initialized) | | 功能缺失 |
 | 22   | [torch.cuda.StreamContext](https://pytorch.org/docs/stable/generated/torch.cuda.StreamContext.html#torch.cuda.StreamContext) | | 功能缺失 |
+| 23   | [torch.cuda.is_current_stream_capturing](https://pytorch.org/docs/stable/generated/torch.cuda.is_current_stream_capturing.html#torch.cuda.is_current_stream_capturing) | | 功能缺失 |
 
 ***持续更新...***
 
@@ -790,6 +791,8 @@
 | 4    | [torch.distributions.continuous_bernoulli.ContinuousBernoulli](https://pytorch.org/docs/stable/distributions.html#torch.distributions.continuous_bernoulli.ContinuousBernoulli) |  | 功能缺失        |
 | 5    | [torch.distributions.exponential.Exponential](https://pytorch.org/docs/stable/distributions.html#torch.distributions.exponential.Exponential) |  | 功能缺失        |
 | 6    | [torch.distributions.one_hot_categorical.OneHotCategorical](https://pytorch.org/docs/stable/distributions.html#torch.distributions.one_hot_categorical.OneHotCategorical) |  | 功能缺失        |
+| 7    | [torch.distributions.transforms.CumulativeDistributionTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.CumulativeDistributionTransform) |  | 功能缺失        |
+| 8    | [torch.distributions.transforms.SoftplusTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.SoftplusTransform) |  | 功能缺失        |
 
 
 ***持续更新...***
