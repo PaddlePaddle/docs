@@ -1,7 +1,5 @@
 import paddle
 import os
-import shutil
-import time
 import pkgutil
 import types
 import contextlib
@@ -13,9 +11,6 @@ import ast
 import logging
 import importlib
 import re
-import subprocess
-import multiprocessing
-import platform
 import extract_api_from_docs
 from queue import Queue
 
@@ -30,10 +25,6 @@ DISPLAY_DOC_LIST_FILENAME = "./display_doc_list"
 CALLED_APIS_IN_THE_DOCS = (
     './called_apis_from_docs.json'  # in the guides and tutorials documents
 )
-SAMPLECODE_TEMPDIR = './sample-codes'
-RUN_ON_DEVICE = "cpu"
-EQUIPPED_DEVICES = set(['cpu'])
-GPU_ID = 0
 
 # key = id(api), value = dict of api_info{
 #   "id":id,
@@ -1153,19 +1144,6 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
     return code_blocks
 
 
-def get_all_equippted_devices():
-    ENV_KEY = 'TEST_ENVIRONMENT_EQUIPEMNT'
-    if ENV_KEY in os.environ:
-        for r in os.environ[ENV_KEY].split(','):
-            rr = r.strip().lower()
-            if r:
-                EQUIPPED_DEVICES.add(rr)
-    if 'cpu' not in EQUIPPED_DEVICES:
-        EQUIPPED_DEVICES.add('cpu')
-
-    EQUIPPED_DEVICES.add(RUN_ON_DEVICE)
-
-
 def reset_api_info_dict():
     global api_info_dict, parsed_mods
     api_info_dict = {}
@@ -1189,22 +1167,6 @@ arguments = [
         True,
         'generate English api reST files. If "all" in attr, only for "all".',
     ],
-    [
-        '--extract-sample-codes-dir',
-        'sample_codes_dir',
-        str,
-        None,
-        'if setted, the sample-codes will be extracted into the dir. If "all" in attr, only for "all".',
-    ],
-    ['--gpu_id', 'gpu_id', int, 0, 'GPU device id to use [0]'],
-    ['--run-on-device', 'run_on_device', str, 'cpu', 'run on device'],
-    [
-        '--threads',
-        'threads',
-        int,
-        1,
-        'number of subprocesseses for running the all sample codes.',
-    ],
 ]
 
 
@@ -1217,12 +1179,6 @@ def parse_args():
         description='generate the api_info json and generate the English api_doc reST files.'
     )
     parser.add_argument('--debug', dest='debug', action="store_true")
-    parser.add_argument(
-        '--run-sample-codes',
-        dest='run_sample_codes',
-        action="store_true",
-        help='run all the smaple codes',
-    )
     for item in arguments:
         parser.add_argument(
             item[0], dest=item[1], help=item[4], type=item[2], default=item[3]
@@ -1244,24 +1200,6 @@ if __name__ == "__main__":
             )
         )
         logger.addHandler(logfHandler)
-    if args.run_on_device.lower() == 'gpu':
-        RUN_ON_DEVICE = 'gpu'
-        GPU_ID = args.gpu_id
-
-    get_all_equippted_devices()
-    need_run_sample_codes = False
-    if args.run_sample_codes or (
-        'RUN_SAMPLE_CODES' in os.environ
-        and os.environ['RUN_SAMPLE_CODES'].lower() in ['yes', '1', 'on']
-    ):
-        need_run_sample_codes = True
-    if args.threads == 1 and (
-        'RUN_SAMPLE_CODES_THREADS' in os.environ
-        and int(os.environ['RUN_SAMPLE_CODES_THREADS']) > 1
-    ):
-        args.threads = int(os.environ['RUN_SAMPLE_CODES_THREADS'])
-    if args.sample_codes_dir:
-        SAMPLECODE_TEMPDIR = args.sample_codes_dir
 
     if 'VERSIONSTR' in os.environ and os.environ['VERSIONSTR'] == '1.8':
         # 1.8 not used
@@ -1281,6 +1219,7 @@ if __name__ == "__main__":
             logger.warning("unknown value in attr: %s", attr)
             continue
         realattrs.append(realattr)
+
     for realattr in realattrs:
         jsonfn = None
         if realattr == '__all__':
@@ -1304,10 +1243,7 @@ if __name__ == "__main__":
             if args.gen_rst:
                 gen_en_files()
                 check_cn_en_match()
-            if need_run_sample_codes:
-                logger.info(
-                    "DEPRECATION: Sample codes test removed from docs. Please check Paddle CI `PR-CI-Static-Check `."
-                )
+
         filter_out_object_of_api_info_dict()
         json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
 
