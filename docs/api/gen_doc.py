@@ -1025,83 +1025,6 @@ def filter_out_object_of_api_info_dict():
             del api_info_dict[id_api]['object']
 
 
-def _hasprefix(line, prefixes):
-    """helper prefix test"""
-    return any(line == p or line.startswith(p + ' ') for p in prefixes)
-
-
-# TODO(megemini): skip test with PS1/PS2 when Paddle CI xdoctest finished.
-def strip_ps_from_codeblock(codeblock):
-    """strip PS1(>>> ) and PS2(... ) from codeblock
-
-    Note:
-        These two functions should be updated simultaneously:
-        `docs/docs/api/gen_doc.py :: strip_ps_from_codeblock`
-        `docs/ci_scripts/chinese_samplecode_processor.py :: strip_ps_from_codeblock`
-    """
-    match_obj = re.search(r"\n>>>\s?", "\n" + codeblock)
-    if match_obj is None:
-        return codeblock
-
-    TEXT = 'text'  # text of codeblock
-    CODE_PS1 = 'code_ps1'  # PS1(>>> ) of codeblock
-    CODE_PS2 = 'code_ps2'  # PS2(... ) of codeblock
-
-    previous_state = TEXT
-    current_state = None
-
-    codeblock_clean = []
-    for line in codeblock.splitlines():
-        strip_line = line.strip()
-
-        if previous_state == TEXT:
-            # text transitions to source whenever a PS1 line is encountered
-            if _hasprefix(strip_line, ('>>>',)):
-                current_state = CODE_PS1
-            else:
-                current_state = TEXT
-
-        elif previous_state in {CODE_PS1, CODE_PS2}:
-            if len(strip_line) == 0:
-                current_state = TEXT
-
-            # allow source to continue with either PS1 or PS2
-            elif _hasprefix(strip_line, ('>>>', '...')):
-                if strip_line == '...':
-                    if previous_state == CODE_PS2:
-                        current_state = CODE_PS2
-                    else:
-                        current_state = TEXT
-                else:
-                    if _hasprefix(strip_line, ('...',)):
-                        current_state = CODE_PS2
-                    else:
-                        current_state = CODE_PS1
-            else:
-                current_state = TEXT
-        else:
-            raise AssertionError(
-                'Unknown state previous_state={}'.format(previous_state)
-            )
-
-        lstrip_line = line.lstrip()
-        if current_state in {CODE_PS1, CODE_PS2}:
-            match_obj = re.match(r"^\.\.\.\s?|^>>>\s?", lstrip_line)
-            codeblock_clean.append(lstrip_line[match_obj.end() :])
-
-        elif current_state == TEXT:
-            codeblock_clean.append("# {}".format(line))
-
-        else:
-            raise AssertionError(
-                'Unknown state current_state={}'.format(current_state)
-            )
-
-        previous_state = current_state
-
-    return "\n".join(codeblock_clean)
-
-
 def extract_code_blocks_from_docstr(docstr, google_style=True):
     """
     extract code-blocks from the given docstring.
@@ -1230,109 +1153,6 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
     return code_blocks
 
 
-def find_last_future_line_end(cbstr):
-    pat = re.compile('__future__.*\n')
-    lastmo = None
-    it = re.finditer(pat, cbstr)
-    while True:
-        try:
-            lastmo = next(it)
-        except StopIteration:
-            break
-    if lastmo:
-        return lastmo.end()
-    else:
-        return None
-
-
-def extract_sample_codes_into_dir():
-    if os.path.exists(SAMPLECODE_TEMPDIR):
-        if not os.path.isdir(SAMPLECODE_TEMPDIR):
-            os.remove(SAMPLECODE_TEMPDIR)
-            os.mkdir(SAMPLECODE_TEMPDIR)
-    else:
-        os.mkdir(SAMPLECODE_TEMPDIR)
-    for id_api in api_info_dict:
-        if (
-            'docstring' in api_info_dict[id_api]
-            and 'full_name' in api_info_dict[id_api]
-        ):
-            code_blocks = extract_code_blocks_from_docstr(
-                api_info_dict[id_api]['docstring']
-            )
-            for cb_info in code_blocks:
-                fn = os.path.join(
-                    SAMPLECODE_TEMPDIR,
-                    '{}.sample-code-{}.py'.format(
-                        api_info_dict[id_api]['full_name'], cb_info['id']
-                    ),
-                )
-                requires = cb_info['required']
-                if not is_required_match(requires, fn):
-                    continue
-                with open(fn, 'w') as f:
-                    header = None
-                    # TODO: xpu, distribted
-                    if 'gpu' in requires:
-                        header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = "{}"\n\n'.format(
-                            GPU_ID
-                        )
-                    else:
-                        header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = ""\n\n'
-                    cb = strip_ps_from_codeblock(cb_info['codes'])
-                    last_future_line_end = find_last_future_line_end(cb)
-                    if last_future_line_end:
-                        f.write(cb[:last_future_line_end])
-                        f.write(header)
-                        f.write(cb[last_future_line_end:])
-                    else:
-                        f.write(header)
-                        f.write(cb)
-                    f.write(
-                        '\nprint("{} sample code is executed successfully!")'.format(
-                            fn
-                        )
-                    )
-
-
-def is_required_match(requires, cbtitle=''):
-    """
-    search the required instruction in the code-block, and check it match the current running environment.
-
-    environment values of equipped: cpu, gpu, xpu, distributed, skip
-    the 'skip' is the special flag to skip the test, so is_required_match will return False directly.
-    """
-    if 'skip' in requires:
-        logger.info('%s: skipped', cbtitle)
-        return False
-
-    if all([k in EQUIPPED_DEVICES for k in requires]):
-        return True
-
-    logger.info(
-        '%s: the equipments [%s] not match the required [%s].',
-        cbtitle,
-        ','.join(EQUIPPED_DEVICES),
-        ','.join(requires),
-    )
-    return False
-
-
-def get_requires_of_code_block(cbstr):
-    requires = set(['cpu'])
-    pat = re.compile(r'#\s*require[s|d]\s*:\s*(.*)')
-    mo = re.search(pat, cbstr)
-    if mo is None:
-        # treat is as required: cpu
-        return requires
-
-    for r in mo.group(1).split(','):
-        rr = r.strip().lower()
-        if rr:
-            requires.add(rr)
-    return requires
-
-
 def get_all_equippted_devices():
     ENV_KEY = 'TEST_ENVIRONMENT_EQUIPEMNT'
     if ENV_KEY in os.environ:
@@ -1344,66 +1164,6 @@ def get_all_equippted_devices():
         EQUIPPED_DEVICES.add('cpu')
 
     EQUIPPED_DEVICES.add(RUN_ON_DEVICE)
-
-
-def run_a_sample_code(sc_filename):
-    succ = True
-    cmd = None
-    retstr = None
-    if platform.python_version()[0] == "2":
-        cmd = ["python", sc_filename]
-    elif platform.python_version()[0] == "3":
-        cmd = ["python3", sc_filename]
-    else:
-        retstr = 'Error: fail to parse python version!'
-        logger.warning(retstr)
-        succ = False
-    subprc = subprocess.Popen(
-        cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-    )
-    output, error = subprc.communicate()
-    msg = "".join(output.decode(encoding='utf-8'))
-    err = "".join(error.decode(encoding='utf-8'))
-    if subprc.returncode != 0:
-        retstr = """{} return code number {}.
-stderr:
-{}
-stdout:
-{}
-""".format(
-            sc_filename, subprc.returncode, err, msg
-        )
-        succ = False
-    return succ, retstr
-
-
-def run_all_sample_codes(threads=1):
-    po = multiprocessing.Pool(threads)
-    sc_files = os.listdir(SAMPLECODE_TEMPDIR)
-    logger.info('there are %d sample codes to run', len(sc_files))
-    mpresults = po.map_async(
-        run_a_sample_code,
-        [os.path.join(SAMPLECODE_TEMPDIR, fn) for fn in sc_files],
-    )
-    po.close()
-    po.join()
-    results = mpresults.get()
-
-    err_files = []
-    for i, fn in enumerate(sc_files):
-        if not results[i][0]:
-            err_files.append(fn)
-            logger.warning(results[i][1])
-    if len(err_files):
-        logger.info(
-            'there are %d sample codes run error.\n%s',
-            len(err_files),
-            "\n".join(err_files),
-        )
-        return False
-    else:
-        logger.info('all sample codes run successfully')
-    return True
 
 
 def reset_api_info_dict():
@@ -1545,15 +1305,10 @@ if __name__ == "__main__":
                 gen_en_files()
                 check_cn_en_match()
             if need_run_sample_codes:
-                extract_sample_codes_into_dir()
+                logger.info(
+                    "DEPRECATION: Sample codes test removed from docs. Please check Paddle CI `PR-CI-Static-Check `."
+                )
         filter_out_object_of_api_info_dict()
         json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
-
-    if need_run_sample_codes:
-        for package in ['scipy', 'paddle2onnx']:
-            subprocess.check_call(
-                [sys.executable, "-m", "pip", "install", package]
-            )
-        run_all_sample_codes(args.threads)
 
     logger.info("done")
