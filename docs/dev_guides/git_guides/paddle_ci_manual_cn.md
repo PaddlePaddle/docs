@@ -166,7 +166,7 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【执行脚本】** `bash tools/cinn/build.sh gpu_on ci`
 - **【触发条件】**
   - `PR-CI-Clone`通过后自动触发。
-  - 必须修改下面路径中文件才会触发
+  - 必须修改下面路径中的文件才会触发
     ```bash  CMakeLists.txt
         cmake
         paddle/cinn
@@ -185,7 +185,7 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【执行脚本】** `bash tools/cinn/build.sh gpu_on cudnn_off ci`
 - **【触发条件】**
   - `PR-CI-Clone`通过后自动触发。
-  - 必须修改下面路径中文件才会触发
+  - 必须修改下面路径中的文件才会触发
     ```bash  CMakeLists.txt
         cmake
         paddle/cinn
@@ -204,7 +204,7 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【执行脚本】** `bash tools/cinn/build.sh ci`
 - **【触发条件】**
   - `PR-CI-Clone`通过后自动触发。
-  - 必须修改下面路径中文件才会触发
+  - 必须修改下面路径中的文件才会触发
     ```bash  CMakeLists.txt
         cmake
         paddle/cinn
