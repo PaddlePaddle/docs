@@ -160,6 +160,64 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【触发条件】** `PR-CI-Clone`通过后自动触发。
 - **【注意事项】** 在其他 CI 项通过前，无需过多关注该 CI，其他 CI 通过后飞桨相关开发者会进行审批。
 
+#### PR-CI-CINN-GPU
+
+- **【条目描述】** 检测当前 PR 在 Linux GPU 环境下编译与单测是否通过，不同于 PR-CI-CINN，该 CI 只编译 CINN，并且只测试 CINN 模块的单测，不会测试 PaddleWithCINN 相关单测。
+- **【执行脚本】** `bash tools/cinn/build.sh gpu_on ci`
+- **【触发条件】**
+  - `PR-CI-Clone`通过后自动触发。
+  - 必须修改下面路径中的文件才会触发
+    ```bash  CMakeLists.txt
+        cmake
+        paddle/cinn
+        python/cinn
+        python/CMakeLists.txt
+        python/setup_cinn.py.in
+        test/CMakeLists.txt
+        test/cinn
+        test/cpp/cinn
+        tools/cinn
+    ```
+
+#### PR-CI-CINN-GPU-CUDNN-OFF
+
+- **【条目描述】** 检测当前 PR 在 Linux GPU 环境下编译与单测是否通过，编译时不会依赖 CUDNN 库。不同于 PR-CI-CINN，该 CI 只编译 CINN，并且只测试 CINN 模块的单测，不会测试 PaddleWithCINN 相关单测。
+- **【执行脚本】** `bash tools/cinn/build.sh gpu_on cudnn_off ci`
+- **【触发条件】**
+  - `PR-CI-Clone`通过后自动触发。
+  - 必须修改下面路径中的文件才会触发
+    ```bash  CMakeLists.txt
+        cmake
+        paddle/cinn
+        python/cinn
+        python/CMakeLists.txt
+        python/setup_cinn.py.in
+        test/CMakeLists.txt
+        test/cinn
+        test/cpp/cinn
+        tools/cinn
+    ```
+
+#### PR-CI-CINN-X86
+
+- **【条目描述】** 检测当前 PR 在 Linux X86 环境下编译与单测是否通过，不同于 PR-CI-CINN ，该 CI 只编译 CINN ，并且只测试 CINN 模块的单测，不会测试 PaddleWithCINN 相关单测。
+- **【执行脚本】** `bash tools/cinn/build.sh ci`
+- **【触发条件】**
+  - `PR-CI-Clone`通过后自动触发。
+  - 必须修改下面路径中的文件才会触发
+    ```bash  CMakeLists.txt
+        cmake
+        paddle/cinn
+        python/cinn
+        python/CMakeLists.txt
+        python/setup_cinn.py.in
+        test/CMakeLists.txt
+        test/cinn
+        test/cpp/cinn
+        tools/cinn
+    ```
+
+
 ### MAC 平台测试项
 
 #### PR-CI-Mac-Python3
