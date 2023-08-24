@@ -370,7 +370,8 @@ def setup(app):
     # Add hook for building doxygen xml when needed
     # no c++ API for now
     try:
-        handle_api_aliases()
+        ...
+        # handle_api_aliases()
         # paddle.device.cuda.Event.__module__ = 'paddle.device.cuda'
         # paddle.device.cuda.Stream.__module__ = 'paddle.device.cuda'
     except Exception as e:
