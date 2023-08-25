@@ -915,22 +915,21 @@ def get_shortest_api(api_list):
     find the shortest api name (suggested name) in list.
 
     Problems:
-    1. fuild - if there is any apis don't contain 'fluid' in name, use them.
-    2. core vs core_avx - using the 'core'.
+
+    fluid - if there is any apis don't contain 'fluid' in name, use them.
     """
     if len(api_list) == 1:
         return api_list[0]
     # try to find shortest path of api as the real api
     api_info = (
         []
-    )  # {'name': name, 'fluid_in_name': True/False, 'core_avx_in_name': True/Flase', 'len': len}
+    )  # {'name': name, 'fluid_in_name': True/False, 'len': len}
     for api in api_list:
         fields = api.split('.')
         api_info.append(
             {
                 'name': api,
                 'fluid_in_name': 'fluid' in fields,
-                'core_avx_in_name': 'core_avx' in fields,
                 'len': len(fields),
             }
         )
@@ -943,11 +942,9 @@ def get_shortest_api(api_list):
         api_info.sort(key=lambda ele: ele.get('len'))
         return api_info[0].get('name')
 
-    if not all([api.get('fuild_in_name') for api in api_info]):
+    if not all([api.get('fluid_in_name') for api in api_info]):
         api_info = [api for api in api_info if not api.get('fluid_in_name')]
-    sn = shortest([api for api in api_info if not api.get('core_avx_in_name')])
-    if sn is None:
-        sn = shortest(api_info)
+    sn = shortest(api_info)
     return sn
 
 
@@ -955,7 +952,6 @@ def insert_suggested_names():
     """
     add suggested_name field, updte the doc_filename, and sort the all_names and api_sketch_names.
     """
-    pat = re.compile(r'paddle\.fluid\.core_[\w\d]+\.(.*)$')
 
     def sort_name_list(api_names):
         """
@@ -983,13 +979,6 @@ def insert_suggested_names():
             api_info_dict[id_api]["all_names"].add(
                 api_info_dict[id_api]["full_name"]
             )
-        for n in list(api_info_dict[id_api]["all_names"]):
-            # paddle.fluid.core_avx.* -> paddle.fluid.core.*
-            mo = pat.match(n)
-            if mo:
-                api_info_dict[id_api]["all_names"].add(
-                    'paddle.fluid.core.' + mo.group(1)
-                )
         api_info_dict[id_api]["all_names"] = sort_name_list(
             api_info_dict[id_api]["all_names"]
         )
