@@ -356,7 +356,7 @@ Reverse: [8 7 6 5 4 3 2 1 0]
 
 ```python
 #报错：
-TypeError: 'paddle.fluid.core_avx.VarBase' object does not support item assignment
+TypeError: 'paddle.fluid.libpaddle.VarBase' object does not support item assignment
 #代码如下：    
 # pytorch code
 Pred_boxes[:, 0] = pred_ctr_x - 0.5 * pred_w
