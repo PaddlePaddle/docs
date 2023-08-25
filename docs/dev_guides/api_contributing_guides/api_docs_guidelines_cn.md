@@ -326,7 +326,7 @@ def multiply(x, y, axis=-1, name=None):
             >>> print(res)
             Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
             [[5 , 12],
-                [21, 32]])
+             [21, 32]])
 
             >>> x = paddle.to_tensor([[[1, 2, 3], [1, 2, 3]]])
             >>> y = paddle.to_tensor([2])
