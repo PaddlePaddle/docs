@@ -921,9 +921,7 @@ def get_shortest_api(api_list):
     if len(api_list) == 1:
         return api_list[0]
     # try to find shortest path of api as the real api
-    api_info = (
-        []
-    )  # {'name': name, 'fluid_in_name': True/False, 'len': len}
+    api_info = []  # {'name': name, 'fluid_in_name': True/False, 'len': len}
     for api in api_list:
         fields = api.split('.')
         api_info.append(
