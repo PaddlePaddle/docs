@@ -18,7 +18,7 @@ paddle.amp.auto_cast(enable=True, custom_white_list=None, custom_black_list=None
 
 | PyTorch       | PaddlePaddle      | 备注                                                                                                                                                                                  |
 | ------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| device_type   | -                 | 设备类型，Paddle 无此参数，暂无转写方式。                                                                                                                                                  |
+| device_type   | -                 | 设备类型，Paddle 不区分设备，可直接删除。                                                                                                                                                  |
 | enabled       | enable            | 是否开启自动混合精度。                                                                                                                                                                |
 | dtype         | dtype             | 使用的数据类型。                                                                                                                                                                      |
 | cache_enabled | -                 | 是否启用权重缓存，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                                                                                                           |
