@@ -91,12 +91,10 @@ paddle.fluid.framework.is_compiled_with_xpu	.. _api_paddle_fluid_framework_is_co
 paddle.fluid.input.one_hot	.. _api_paddle_fluid_input_one_hot:
 paddle.static.program_guard	.. _api_paddle_static_program_guard:
 paddle.static.name_scope	.. _api_paddle_static_name_scope:
-paddle.fluid.core_avx.LoDTensor	.. _api_paddle_fluid_core_avx_LoDTensor:
 paddle.static.ParallelExecutor	.. _api_paddle_static_ParallelExecutor:
 paddle.fluid.data	.. _api_paddle_fluid_data:
 paddle.fluid.data_feeder.DataFeeder	.. _api_paddle_fluid_data_feeder_DataFeeder:
 paddle.static.cuda_places	.. _api_paddle_static_cuda_places:
-paddle.fluid.core_avx.LoDTensorArray	.. _api_paddle_fluid_core_avx_LoDTensorArray:
 paddle.static.WeightNormParamAttr	.. _api_paddle_static_WeightNormParamAttr:
 paddle.static.gradients	.. _api_paddle_static_gradients:
 paddle.static.Executor	.. _api_paddle_static_Executor:
@@ -283,7 +281,6 @@ paddle.static.global_scope	.. _api_paddle_static_global_scope:
 paddle.utils.require_version	.. _api_paddle_utils_require_version:
 paddle.fluid.transpiler.distribute_transpiler.DistributeTranspilerConfig	.. _api_paddle_fluid_transpiler_distribute_transpiler_DistributeTranspilerConfig:
 paddle.CPUPlace	.. _api_paddle_CPUPlace:
-paddle.fluid.core_avx.XPUPlace	.. _api_paddle_fluid_core_avx_XPUPlace:
 paddle.fluid.transpiler.distribute_transpiler.DistributeTranspiler	.. _api_paddle_fluid_transpiler_distribute_transpiler_DistributeTranspiler:
 paddle.static.ExecutionStrategy	.. _api_paddle_static_ExecutionStrategy:
 paddle.fluid.lod_tensor.create_random_int_lodtensor	.. _api_paddle_fluid_lod_tensor_create_random_int_lodtensor:
