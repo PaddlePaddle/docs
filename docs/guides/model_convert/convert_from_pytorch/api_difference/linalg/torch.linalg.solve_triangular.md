@@ -3,7 +3,8 @@
 ### [torch.linalg.solve_triangular](https://pytorch.org/docs/stable/generated/torch.linalg.solve_triangular.html?highlight=torch+linalg+solve_triangular#torch.linalg.solve_triangular)
 
 ```python
-torch.linalg.solve_triangular(A, B, *, upper, left=True, unitriangular=False, out=None)
+# Pytorch 文档有误，测试第一个参数为 input
+torch.linalg.solve_triangular(input, B, *, upper, left=True, unitriangular=False, out=None)
 ```
 
 ### [paddle.linalg.triangular_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/triangular_solve_cn.html)
