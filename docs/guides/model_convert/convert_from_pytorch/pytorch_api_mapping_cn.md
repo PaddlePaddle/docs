@@ -667,7 +667,10 @@
 | 182   |  [torch.Tensor.bitwise_left_shift](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_left_shift.html#torch.Tensor.bitwise_left_shift)  |  | 功能缺失        |
 | 183   |  [torch.Tensor.resolve_conj](https://pytorch.org/docs/stable/generated/torch.Tensor.resolve_conj.html#torch.Tensor.resolve_conj)  |  | 功能缺失        |
 | 184   |  [torch.Tensor.resolve_neg](https://pytorch.org/docs/stable/generated/torch.Tensor.resolve_neg.html#torch.Tensor.resolve_neg)  |  | 功能缺失        |
-| 185   |  [torch.Tensor.dequantize](https://pytorch.org/docs/1.13/generated/torch.Tensor.dequantize.html?highlight=torch+tensor+dequantize#torch.Tensor.dequantize)  |  | 功能缺失        |
+| 185   |  [torch.Tensor.copysign](https://pytorch.org/docs/1.13/generated/torch.Tensor.copysign.html?highlight=torch+tensor+copysign#torch.Tensor.copysign)  |  | 功能缺失        |
+| 186   |  [torch.Tensor.dequantize](https://pytorch.org/docs/1.13/generated/torch.Tensor.dequantize.html?highlight=torch+tensor+dequantize#torch.Tensor.dequantize)  |  | 功能缺失        |
+| 187   |  [torch.Tensor.geqrf](https://pytorch.org/docs/1.13/generated/torch.Tensor.geqrf.html?highlight=torch+tensor+geqrf#torch.Tensor.geqrf)  |  | 功能缺失        |
+
 
 ***持续更新...***
 
