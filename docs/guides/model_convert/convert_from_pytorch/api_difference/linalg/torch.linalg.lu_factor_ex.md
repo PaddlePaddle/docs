@@ -21,21 +21,10 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | A            | x            | 表示需要进行 LU 分解的输入 Tensor ，仅参数名不一致。                              |
 | pivot        | pivot        | 表示 LU 分解时是否进行旋转。                                                      |
 | -            | get_infos    | 表示是否返回分解状态信息 ，PyTorch 返回 infos 信息，Paddle 需要设置为 True。          |
-| check_errors | -            | 检查 infos 的内容，如果为非 0 抛出错误， Paddle 无此参数，Pytorch 为 True 时，需要转写。 |
+| check_errors | -            | 检查 infos 的内容，如果为非 0 抛出错误， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | out          | -            | 表示输出的 Tensor 元组 ，Paddle 无此参数，需要转写。                              |
 
 ### 转写示例
-
-#### check_errors：检查 infos 的内容
-
-```python
-# Pytorch 写法，设置为 True
-torch.linalg.lu_factor_ex(A, check_errors=True)
-
-# Paddle 写法
-LU, P, info = paddle.linalg.lu(A, get_infos=True)
-assert info.item == 0
-```
 
 #### out：指定输出
 
