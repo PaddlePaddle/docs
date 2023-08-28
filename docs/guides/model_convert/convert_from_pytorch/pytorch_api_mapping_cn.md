@@ -802,6 +802,7 @@
 | 6    | [torch.distributions.one_hot_categorical.OneHotCategorical](https://pytorch.org/docs/stable/distributions.html#torch.distributions.one_hot_categorical.OneHotCategorical) |  | 功能缺失        |
 | 7    | [torch.distributions.transforms.CumulativeDistributionTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.CumulativeDistributionTransform) |  | 功能缺失        |
 | 8    | [torch.distributions.transforms.SoftplusTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.SoftplusTransform) |  | 功能缺失        |
+| 9    | [torch.distributions.transforms.CatTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.CatTransform) |  | 功能缺失        |
 
 
 ***持续更新...***
