@@ -11,7 +11,7 @@ minimum
 等式是：
 
 .. math::
-        out = min(x, y)
+        out = \min(x, y)
 
 .. note::
    ``paddle.minimum`` 遵守 broadcasting，如你想了解更多，请参见 `Tensor 介绍`_ .

@@ -11,7 +11,7 @@ maximum
 等式是：
 
 .. math::
-        out = max(x, y)
+        out = \max(x, y)
 
 .. note::
    ``paddle.maximum`` 遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .

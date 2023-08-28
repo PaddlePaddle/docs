@@ -7,7 +7,7 @@ ReLU
 稀疏 ReLU 激活层，创建一个可调用对象以计算输入 `x` 的 `ReLU` 。
 
 .. math::
-    ReLU(x) = max(x, 0)
+    ReLU(x) = \max(x, 0)
 
 其中，:math:`x` 为输入的 Tensor。
 

@@ -9,7 +9,7 @@ relu 激活层（Rectified Linear Unit）。计算公式如下：
 
 .. math::
 
-    relu(x) = max(0, x)
+    relu(x) = \max(0, x)
 
 其中，:math:`x` 为输入的 Tensor。
 

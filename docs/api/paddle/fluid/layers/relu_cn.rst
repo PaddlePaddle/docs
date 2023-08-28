@@ -10,7 +10,7 @@ relu
 
 ReLU（Rectified Linear Unit）激活函数
 
-.. math:: Out=max(0,x)
+.. math:: Out=\max(0,x)
 
 
 参数

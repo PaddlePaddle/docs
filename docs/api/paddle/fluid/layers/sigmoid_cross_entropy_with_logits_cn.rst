@@ -13,22 +13,22 @@ sigmoid_cross_entropy_with_logits
 logistic loss 可通过下式计算：
 
 .. math::
-    loss = -Labels * log(sigma(X)) - (1 - Labels) * log(1 - sigma(X))
+    loss = -Labels * \log(\sigma(X)) - (1 - Labels) * \log(1 - \sigma(X))
 
 已知：
 
 .. math::
-    sigma(X) = \frac{1}{1 + exp(-X)}
+    \sigma(X) = \frac{1}{1 + \exp(-X)}
 
 代入上方计算 logistic loss 公式中：
 
 .. math::
-    loss = X - X * Labels + log(1 + exp(-X))
+    loss = X - X * Labels + \log(1 + \exp(-X))
 
-为了计算稳定性，防止 :math:`exp(-X)` 溢出，当 :math:`X<0` 时，loss 将采用以下公式计算：
+为了计算稳定性，防止 :math:`\exp(-X)` 溢出，当 :math:`X<0` 时，loss 将采用以下公式计算：
 
 .. math::
-    loss = max(X, 0) - X * Labels + log(1 + exp(-|X|))
+    loss = \max(X, 0) - X * Labels + \log(1 + \exp(-|X|))
 
 输入 ``X`` 和 ``label`` 都可以携带 LoD 信息。然而输出仅采用输入 ``X`` 的 LoD。
 
