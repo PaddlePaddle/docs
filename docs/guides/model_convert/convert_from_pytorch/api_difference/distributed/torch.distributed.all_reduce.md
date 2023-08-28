@@ -21,4 +21,4 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | tensor   | tensor       | 操作的输入 Tensor。                           |
 | op       | op           | 归约的具体操作。                              |
 | group    | group        | 工作的进程组编号。                            |
-| async_op | -            | 是否异步操作，Paddle 无此参数，暂无转写方式。 |
+| async_op | sync_op      | torch 为是否异步操作，Paddle 为是否同步操作，转写方式取反即可。 |
