@@ -10,7 +10,7 @@ dtensor_from_fn
 参数
 :::::::::
 
-    - **fn**  - paddle公开的可创建Tensor的API。例如:'paddle.empty'_、'paddle.ones'_、'paddle.zeros'_等paddle API
+    - **fn**  - paddle公开的可创建Tensor的API。例如:`paddle.empty`_、`paddle.ones`_、`paddle.zeros`_等paddle API
     .. _paddle.empty:https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py
     .. _paddle.ones:https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py
     .. _paddle.zeros:https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py
