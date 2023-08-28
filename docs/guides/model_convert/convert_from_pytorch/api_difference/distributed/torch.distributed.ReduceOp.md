@@ -1,7 +1,20 @@
 ## [class]torch.distributed.ReduceOp
 
-### [torch.distributed.ReduceOp](https://pytorch.org/docs/1.13/distributed.html?highlight=torch+distributed+reduceop#torch.distributed.ReduceOp)
+### [torch.distributed.ReduceOp](https://pytorch.org/docs/stable/distributed.html?highlight=torch+distributed+reduceop#torch.distributed.ReduceOp)
 
-### [paddle.distributed.ReduceOp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/ReduceOp_cn.html)
+### [paddle.distributed.ReduceOp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/ReduceOp_cn.html)
 
 两者功能一致。
+
+其中，规约操作对应如下：
+
+|  torch   | paddle  |
+|  ----  | ----  |
+| SUM  | SUM |
+| PRODUCT  | PROD |
+| MIN | MIN |
+| MAX | MAX |
+| BAND | - |
+| BOR | - |
+| BXOR | - |
+| PREMUL_SUM | -  |

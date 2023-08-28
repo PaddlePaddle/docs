@@ -6,7 +6,7 @@
 torch.nn.functional.tanhshrink(input)
 ```
 
-### [paddle.nn.functional.tanhshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/tanhshrink_cn.html)
+### [paddle.nn.functional.tanhshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/tanhshrink_cn.html)
 
 ```python
 paddle.nn.functional.tanhshrink(x,

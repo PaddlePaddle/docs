@@ -1,15 +1,15 @@
 ## [参数不一致] torch.set_rng_state
 
-### [torch.set_rng_state](https://pytorch.org/docs/master/generated/torch.set_rng_state.html#torch.set_rng_state)
+### [torch.set_rng_state](https://pytorch.org/docs/stable/generated/torch.set_rng_state.html#torch.set_rng_state)
 
 ```python
 torch.set_rng_state(new_state)
 ```
 
-### [paddle.set_cuda_rng_state](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/set_cuda_rng_state_cn.html#set-cuda-rng-state)
+### [paddle.set_rng_state]()
 
 ```python
-paddle.set_cuda_rng_state(state_list)
+paddle.set_rng_state(state_list)
 ```
 
 其中 Pytorch 与 Paddle 的输入参数类型不一致
@@ -29,5 +29,5 @@ paddle.set_cuda_rng_state(state_list)
 torch.set_rng_state(x)
 
 # Paddle 写法
-paddle.set_cuda_rng_state(x)
+paddle.set_rng_state(x)
 ```

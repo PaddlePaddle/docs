@@ -5,7 +5,7 @@
 torch.sigmoid(input, *, out=None)
 ```
 
-### [paddle.nn.functional.sigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/sigmoid_cn.html#sigmoid)
+### [paddle.nn.functional.sigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/sigmoid_cn.html#sigmoid)
 
 ```python
 paddle.nn.functional.sigmoid(x, name=None)
@@ -16,7 +16,7 @@ paddle.nn.functional.sigmoid(x, name=None)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor。                                      |
-| out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
+| out           | -            | 表示输出的 Tensor，Paddle 无此参数。               |
 
 
 ### 转写示例

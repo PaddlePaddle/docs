@@ -1,6 +1,6 @@
 ## [torch 参数更多]torch.nn.NLLLoss
 
-### [torch.nn.NLLLoss](https://pytorch.org/docs/1.13/generated/torch.nn.NLLLoss.html?highlight=nllloss#torch.nn.NLLLoss)
+### [torch.nn.NLLLoss](https://pytorch.org/docs/stable/generated/torch.nn.NLLLoss.html?highlight=nllloss#torch.nn.NLLLoss)
 
 ```python
 torch.nn.NLLLoss(weight=None,
@@ -10,7 +10,7 @@ torch.nn.NLLLoss(weight=None,
                  reduction='mean')
 ```
 
-### [paddle.nn.NLLLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/NLLLoss_cn.html#nllloss)
+### [paddle.nn.NLLLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/NLLLoss_cn.html#nllloss)
 
 ```python
 paddle.nn.NLLLoss(weight=None,

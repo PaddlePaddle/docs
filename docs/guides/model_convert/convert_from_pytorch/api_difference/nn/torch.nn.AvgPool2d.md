@@ -1,5 +1,5 @@
 ## [ 参数不一致 ]torch.nn.AvgPool2d
-### [torch.nn.AvgPool2d](https://pytorch.org/docs/1.13/generated/torch.nn.AvgPool2d.html?highlight=avgpool2d#torch.nn.AvgPool2d)
+### [torch.nn.AvgPool2d](https://pytorch.org/docs/stable/generated/torch.nn.AvgPool2d.html?highlight=avgpool2d#torch.nn.AvgPool2d)
 
 ```python
 torch.nn.AvgPool2d(kernel_size,
@@ -10,7 +10,7 @@ torch.nn.AvgPool2d(kernel_size,
                    divisor_override=None)
 ```
 
-### [paddle.nn.AvgPool2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/AvgPool2D_cn.html#avgpool2d)
+### [paddle.nn.AvgPool2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/AvgPool2D_cn.html#avgpool2d)
 
 ```python
 paddle.nn.AvgPool2D(kernel_size,

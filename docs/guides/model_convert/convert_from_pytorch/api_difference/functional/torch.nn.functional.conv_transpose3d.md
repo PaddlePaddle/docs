@@ -13,7 +13,7 @@ torch.nn.functional.conv_transpose3d(input,
                                     dilation=1)
 ```
 
-### [paddle.nn.functional.conv3d_transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/conv3d_transpose_cn.html)
+### [paddle.nn.functional.conv3d_transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/conv3d_transpose_cn.html)
 
 ```python
 paddle.nn.functional.conv3d_transpose(x,

@@ -8,7 +8,7 @@ torch.remainder(input,
                 out=None)
 ```
 
-### [paddle.remainder](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/remainder_cn.html#remainder)
+### [paddle.remainder](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/remainder_cn.html#remainder)
 
 ```python
 paddle.remainder(x,
@@ -16,13 +16,13 @@ paddle.remainder(x,
                  name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 被除数，Pytorch 可为 Tensor or Scalar，Paddle 仅可为 Tensor。  |
 | other         | y            | 除数，Pytorch 可为 Tensor or Scalar，Paddle 仅可为 Tensor。   |
-| out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数，需要进行转写。               |
+| out           | -            | 表示输出的 Tensor，Paddle 无此参数，需要转写。               |
 
 
 ### 转写示例

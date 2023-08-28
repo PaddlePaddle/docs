@@ -1,12 +1,12 @@
 ## [ 仅参数名不一致 ]torch.logical_xor
 
-### [torch.logical_xor](https://pytorch.org/docs/1.13/generated/torch.logical_xor.html?highlight=torch+logical_xor#torch.logical_xor)
+### [torch.logical_xor](https://pytorch.org/docs/stable/generated/torch.logical_xor.html?highlight=torch+logical_xor#torch.logical_xor)
 
 ```python
 torch.logical_xor(input, other, *, out=None)
 ```
 
-### [paddle.logical_xor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_xor_cn.html)
+### [paddle.logical_xor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logical_xor_cn.html)
 
 ```python
 paddle.logical_xor(x, y, out=None, name=None)

@@ -6,10 +6,10 @@
 torch.Tensor.arccosh()
 ```
 
-### [paddle.Tensor.acosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/acosh_cn.html#acosh)
+### [paddle.Tensor.acosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/acosh_cn.html#acosh)
 
 ```python
 paddle.Tensor.acosh(name=None)
 ```
 
-两者功能完全一致，无参数。
+两者功能一致，无参数。

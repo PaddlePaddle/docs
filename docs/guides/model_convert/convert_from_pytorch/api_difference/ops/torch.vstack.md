@@ -1,6 +1,6 @@
 ## [ 组合替代实现 ]torch.vstack
 
-### [torch.vstack](https://pytorch.org/docs/master/generated/torch.vstack.html#torch.vstack)
+### [torch.vstack](https://pytorch.org/docs/stable/generated/torch.vstack.html#torch.vstack)
 
 ```python
 torch.vstack(tensors, *, out=None)

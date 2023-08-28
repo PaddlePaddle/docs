@@ -1,23 +1,23 @@
 ## [torch 参数更多]torch.Tensor.size
 
-### [torch.Tensor.size](https://pytorch.org/docs/1.13/generated/torch.Tensor.size.html#torch.Tensor.size)
+### [torch.Tensor.size](https://pytorch.org/docs/stable/generated/torch.Tensor.size.html#torch.Tensor.size)
 
 ```python
 torch.Tensor.size(dim=None)
 ```
 
-### [paddle.Tensor.shape](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#shape)
+### [paddle.Tensor.shape](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#shape)
 
 ```python
 paddle.Tensor.shape
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | ------- |
-| dim     | -            | 表示获取大小的轴，Paddle 无此参数，需要进行转写。 |
+| dim     | -            | 表示获取大小的轴，Paddle 无此参数，需要转写。 |
 
 ### 转写示例
 

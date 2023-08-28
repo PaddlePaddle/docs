@@ -1,5 +1,5 @@
 # [ torch 参数更多 ]torch.nn.BCELoss
-### [torch.nn.BCELoss](https://pytorch.org/docs/1.13/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss)
+### [torch.nn.BCELoss](https://pytorch.org/docs/stable/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss)
 
 ```python
 torch.nn.BCELoss(weight=None,
@@ -8,7 +8,7 @@ torch.nn.BCELoss(weight=None,
                  reduction='mean')
 ```
 
-### [paddle.nn.BCELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BCELoss_cn.html#bceloss)
+### [paddle.nn.BCELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BCELoss_cn.html#bceloss)
 
 ```python
 paddle.nn.BCELoss(weight=None,
@@ -16,7 +16,7 @@ paddle.nn.BCELoss(weight=None,
                   name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

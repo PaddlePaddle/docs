@@ -1,12 +1,12 @@
 ## [参数不一致]torch.nn.GELU
 
-### [torch.nn.GELU](https://pytorch.org/docs/1.13/generated/torch.nn.GELU.html#torch.nn.GELU)
+### [torch.nn.GELU](https://pytorch.org/docs/stable/generated/torch.nn.GELU.html#torch.nn.GELU)
 
 ```python
 torch.nn.GELU(approximate='none')
 ```
 
-### [paddle.nn.GELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/GELU_cn.html)
+### [paddle.nn.GELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GELU_cn.html)
 
 ```python
 paddle.nn.GELU(approximate=False, name=None)
@@ -18,7 +18,7 @@ paddle.nn.GELU(approximate=False, name=None)
 
 | PyTorch     | PaddlePaddle | 备注                                                                                 |
 | ----------- | ------------ | ------------------------------------------------------------------------------------ |
-| approximate | approximate  | 是否使用近似计算，PyTorch 取值 none 和 tanh，Paddle 取值为 bool 类型，需要进行转写。 |
+| approximate | approximate  | 是否使用近似计算，PyTorch 取值 none 和 tanh，Paddle 取值为 bool 类型，需要转写。 |
 
 ### 转写示例
 

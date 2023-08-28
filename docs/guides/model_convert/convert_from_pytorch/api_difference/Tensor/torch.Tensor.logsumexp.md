@@ -8,7 +8,7 @@ torch.Tensor.logsumexp(dim,
                        keepdim=False)
 ```
 
-### [paddle.Tensor.logsumexp](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#logsumexp-axis-none-keepdim-false-name-none)
+### [paddle.Tensor.logsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#logsumexp-axis-none-keepdim-false-name-none)
 
 ```python
 paddle.Tensor.logsumexp(axis=None,
@@ -16,7 +16,7 @@ paddle.Tensor.logsumexp(axis=None,
                         name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 

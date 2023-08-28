@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ]torch.bitwise_and
 
-### [torch.bitwise_and](https://pytorch.org/docs/1.13/generated/torch.bitwise_and.html#torch.bitwise_and)
+### [torch.bitwise_and](https://pytorch.org/docs/stable/generated/torch.bitwise_and.html#torch.bitwise_and)
 
 ```python
 torch.bitwise_and(input,
@@ -9,7 +9,7 @@ torch.bitwise_and(input,
                   out=None)
 ```
 
-### [paddle.bitwise_and](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/bitwise_and_cn.html#bitwise-and)
+### [paddle.bitwise_and](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bitwise_and_cn.html#bitwise-and)
 
 ```python
 paddle.bitwise_and(x,

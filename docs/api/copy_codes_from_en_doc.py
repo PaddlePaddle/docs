@@ -5,10 +5,10 @@ copy code-blocks from en api doc-strings.
 import os
 import sys
 import argparse
+import inspect
 import re
 import json
 import logging
-from gen_doc import extract_code_blocks_from_docstr
 
 api_info_dict = {}
 api_name_2_id_map = {}
@@ -70,6 +70,126 @@ def read_rst_lines_and_copy_info(cnrstfilename):
     return rst_lines, copy_from_info
 
 
+def extract_code_blocks_from_docstr(docstr, google_style=True):
+    """
+    extract code-blocks from the given docstring.
+    DON'T include the multiline-string definition in code-blocks.
+    The *Examples* section must be the last.
+    Args:
+        docstr(str): docstring
+        google_style(bool): if not use google_style, the code blocks will be extracted from all the parts of docstring.
+    Return:
+        code_blocks: A list of code-blocks, indent removed.
+                     element {'name': the code-block's name, 'id': sequence id.
+                              'codes': codes, 'in_examples': bool, code block in `Examples` or not,}
+    """
+    code_blocks = []
+
+    mo = re.search(r"Examples?:", docstr)
+
+    if google_style and mo is None:
+        return code_blocks
+
+    example_start = len(docstr) if mo is None else mo.start()
+    docstr_describe = docstr[:example_start].splitlines()
+    docstr_examples = docstr[example_start:].splitlines()
+
+    docstr_list = []
+    if google_style:
+        example_lineno = 0
+        docstr_list = docstr_examples
+    else:
+        example_lineno = len(docstr_describe)
+        docstr_list = docstr_describe + docstr_examples
+
+    lastlineindex = len(docstr_list) - 1
+
+    cb_start_pat = re.compile(r"code-block::\s*python")
+    cb_param_pat = re.compile(r"^\s*:(\w+):\s*(\S*)\s*$")
+
+    cb_info = {}
+    cb_info['cb_started'] = False
+    cb_info['cb_cur'] = []
+    cb_info['cb_cur_indent'] = -1
+    cb_info['cb_cur_name'] = None
+    cb_info['cb_cur_seq_id'] = 0
+
+    def _cb_started():
+        # nonlocal cb_started, cb_cur_name, cb_cur_seq_id
+        cb_info['cb_started'] = True
+        cb_info['cb_cur_seq_id'] += 1
+        cb_info['cb_cur_name'] = None
+
+    def _append_code_block(in_examples):
+        # nonlocal code_blocks, cb_cur, cb_cur_name, cb_cur_seq_id
+        code_blocks.append(
+            {
+                'codes': inspect.cleandoc("\n" + "\n".join(cb_info['cb_cur'])),
+                'name': cb_info['cb_cur_name'],
+                'id': cb_info['cb_cur_seq_id'],
+                'in_examples': in_examples,
+            }
+        )
+
+    for lineno, linecont in enumerate(docstr_list):
+        if re.search(cb_start_pat, linecont):
+            if not cb_info['cb_started']:
+                _cb_started()
+                continue
+            else:
+                # cur block end
+                if len(cb_info['cb_cur']):
+                    _append_code_block(lineno > example_lineno)
+                _cb_started()  # another block started
+                cb_info['cb_cur_indent'] = -1
+                cb_info['cb_cur'] = []
+        else:
+            if cb_info['cb_started']:
+                # handle the code-block directive's options
+                mo_p = cb_param_pat.match(linecont)
+                if mo_p:
+                    if mo_p.group(1) == 'name':
+                        cb_info['cb_cur_name'] = mo_p.group(2)
+                    continue
+                # docstring end
+                if lineno == lastlineindex:
+                    mo = re.search(r"\S", linecont)
+                    if (
+                        mo is not None
+                        and cb_info['cb_cur_indent'] <= mo.start()
+                    ):
+                        cb_info['cb_cur'].append(linecont)
+                    if len(cb_info['cb_cur']):
+                        _append_code_block(lineno > example_lineno)
+                    break
+                # check indent for cur block start and end.
+                if cb_info['cb_cur_indent'] < 0:
+                    mo = re.search(r"\S", linecont)
+                    if mo is None:
+                        continue
+                    # find the first non empty line
+                    cb_info['cb_cur_indent'] = mo.start()
+                    cb_info['cb_cur'].append(linecont)
+                else:
+                    mo = re.search(r"\S", linecont)
+                    if mo is None:
+                        cb_info['cb_cur'].append(linecont)
+                        continue
+                    if cb_info['cb_cur_indent'] <= mo.start():
+                        cb_info['cb_cur'].append(linecont)
+                    else:
+                        if linecont[mo.start()] == '#':
+                            continue
+                        else:
+                            # block end
+                            if len(cb_info['cb_cur']):
+                                _append_code_block(lineno > example_lineno)
+                            cb_info['cb_started'] = False
+                            cb_info['cb_cur_indent'] = -1
+                            cb_info['cb_cur'] = []
+    return code_blocks
+
+
 def find_codeblock_needed_by_name(cb_name, codeblocks):
     for cb in codeblocks:
         if cb_name == cb.get('name', None):
@@ -122,6 +242,8 @@ def instert_codes_into_cn_rst_if_need(cnrstfilename):
     """
     rst_lines, copy_from_info = read_rst_lines_and_copy_info(cnrstfilename)
     update_needed = False
+    pattern_doctest = re.compile(r"\s*>>>\s*#\s*doctest:\s*.*")
+
     if copy_from_info:
         logger.info(
             "found copy-from for %s: %s", cnrstfilename, str(copy_from_info)
@@ -143,7 +265,9 @@ def instert_codes_into_cn_rst_if_need(cnrstfilename):
         cb_new.append('')
         indent += 4
         for line in cb_need['codes'].splitlines():
-            cb_new.append(' ' * indent + line)
+            if not pattern_doctest.match(line):
+                cb_new.append(' ' * indent + line)
+
         rst_lines[cf_info['lineno']] = "\n".join(cb_new)
         update_needed = True
     if update_needed:

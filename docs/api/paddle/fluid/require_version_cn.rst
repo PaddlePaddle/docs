@@ -13,7 +13,7 @@ require_version
 ::::::::::::
 
     - **min_version** (str) - 指定所需要的最低版本（如‘1.4.0’）
-    - **max_version** (str, optional) – 指定可接受的最高版本（如‘1.7.0’），默认值None，表示任意大于等于 ``min_version`` 的版本都可以接受。
+    - **max_version** (str，可选) – 指定可接受的最高版本（如‘1.7.0’），默认值 None，表示任意大于等于 ``min_version`` 的版本都可以接受。
 
 返回
 ::::::::::::
@@ -23,10 +23,10 @@ require_version
 ::::::::::::
 
 
-  - ``TypeError`` – ``min_version`` 的类型不是str。
-  - ``TypeError`` – ``max_version`` 的类型不是str或type(None)。
+  - ``TypeError`` – ``min_version`` 的类型不是 str。
+  - ``TypeError`` – ``max_version`` 的类型不是 str 或 type(None)。
   - ``ValueError`` – ``min_version`` 的值不是正常的版本号格式。
-  - ``ValueError`` – ``max_version`` 的值不是正常的版本号格式或None。
+  - ``ValueError`` – ``max_version`` 的值不是正常的版本号格式或 None。
   - ``Exception`` – 已安装的版本低于 ``min_version`` 或者高于 ``max_version`` 。
 
 

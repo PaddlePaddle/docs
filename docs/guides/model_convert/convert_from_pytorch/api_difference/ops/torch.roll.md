@@ -7,7 +7,7 @@ torch.roll(input,
            dims=None)
 ```
 
-### [paddle.roll](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/roll_cn.html#roll)
+### [paddle.roll](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/roll_cn.html#roll)
 
 ```python
 paddle.roll(x,
@@ -16,7 +16,7 @@ paddle.roll(x,
             name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

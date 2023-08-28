@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ]torch.bitwise_xor
 
-### [torch.bitwise_xor](https://pytorch.org/docs/1.13/generated/torch.bitwise_xor.html)
+### [torch.bitwise_xor](https://pytorch.org/docs/stable/generated/torch.bitwise_xor.html)
 
 ```python
 torch.bitwise_xor(input,
@@ -9,7 +9,7 @@ torch.bitwise_xor(input,
                   out=None)
 ```
 
-### [paddle.bitwise_xor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/bitwise_xor_cn.html)
+### [paddle.bitwise_xor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bitwise_xor_cn.html)
 
 ```python
 paddle.bitwise_xor(x,

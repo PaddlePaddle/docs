@@ -6,7 +6,7 @@
 torch.Tensor.flipud()
 ```
 
-### [paddle.Tensor.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#flip-axis-name-none)
+### [paddle.Tensor.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#flip-axis-name-none)
 
 ```python
 paddle.Tensor.flip(axis, name=None)

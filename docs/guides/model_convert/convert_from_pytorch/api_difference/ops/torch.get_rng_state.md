@@ -1,15 +1,15 @@
 ## [参数不一致] torch.get_rng_state
 
-### [torch.get_rng_state](https://pytorch.org/docs/master/generated/torch.get_rng_state.html#torch.get_rng_state)
+### [torch.get_rng_state](https://pytorch.org/docs/stable/generated/torch.get_rng_state.html#torch.get_rng_state)
 
 ```python
 torch.get_rng_state()
 ```
 
-### [paddle.get_cuda_rng_state](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/get_cuda_rng_state_cn.html#get-cuda-rng-state)
+### [paddle.get_rng_state]()
 
 ```python
-paddle.get_cuda_rng_state()
+paddle.get_rng_state()
 ```
 
 其中 Pytorch 与 Paddle 的返回参数类型不一致
@@ -28,5 +28,5 @@ paddle.get_cuda_rng_state()
 x = torch.get_rng_state()
 
 # Paddle 写法
-x = paddle.get_cuda_rng_state()
+x = paddle.get_rng_state()
 ```

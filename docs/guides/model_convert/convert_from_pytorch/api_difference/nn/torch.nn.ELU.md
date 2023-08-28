@@ -1,19 +1,19 @@
 ## [ torch 参数更多 ]torch.nn.ELU
-### [torch.nn.ELU](https://pytorch.org/docs/1.13/generated/torch.nn.ELU.html?highlight=elu#torch.nn.ELU)
+### [torch.nn.ELU](https://pytorch.org/docs/stable/generated/torch.nn.ELU.html?highlight=elu#torch.nn.ELU)
 
 ```python
 torch.nn.ELU(alpha=1.0,
              inplace=False)
 ```
 
-### [paddle.nn.ELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ELU_cn.html#elu)
+### [paddle.nn.ELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ELU_cn.html#elu)
 
 ```python
 paddle.nn.ELU(alpha=1.0,
               name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

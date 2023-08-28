@@ -1,5 +1,5 @@
 ## [ 参数不一致 ]torch.nn.Conv3d
-### [torch.nn.Conv3d](https://pytorch.org/docs/1.13/generated/torch.nn.Conv3d.html?highlight=conv3d#torch.nn.Conv3d)
+### [torch.nn.Conv3d](https://pytorch.org/docs/stable/generated/torch.nn.Conv3d.html?highlight=conv3d#torch.nn.Conv3d)
 
 ```python
 torch.nn.Conv3d(in_channels,
@@ -15,7 +15,7 @@ torch.nn.Conv3d(in_channels,
                 dtype=None)
 ```
 
-### [paddle.nn.Conv3D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Conv3D_cn.html#conv3d)
+### [paddle.nn.Conv3D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Conv3D_cn.html#conv3d)
 
 ```python
 paddle.nn.Conv3D(in_channels,

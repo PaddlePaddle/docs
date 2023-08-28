@@ -5,7 +5,7 @@
 torch.ravel(input)
 ```
 
-### [paddle.flatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/flatten_cn.html)
+### [paddle.flatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/flatten_cn.html)
 
 ```python
 paddle.flatten(x, start_axis=0, stop_axis=- 1, name=None)

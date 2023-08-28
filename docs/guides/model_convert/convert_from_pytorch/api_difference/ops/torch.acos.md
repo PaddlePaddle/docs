@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.acos
 
-### [torch.acos](https://pytorch.org/docs/1.13/generated/torch.acos.html?highlight=acos#torch.acos)
+### [torch.acos](https://pytorch.org/docs/stable/generated/torch.acos.html?highlight=acos#torch.acos)
 
 ```python
 torch.acos(input,
@@ -8,7 +8,7 @@ torch.acos(input,
            out=None)
 ```
 
-### [paddle.acos](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/acos_cn.html#acos)
+### [paddle.acos](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/acos_cn.html#acos)
 
 ```python
 paddle.acos(x,
@@ -22,7 +22,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | PyTorch | PaddlePaddle | 备注                                                     |
 | ------- | :----------- | -------------------------------------------------------- |
 | input   | x            | 表示输入的 Tensor ，仅参数名不一致。                     |
-| out     | -            | 表示输出的 Tensor，PaddlePaddle 无此参数，需要进行转写。 |
+| out     | -            | 表示输出的 Tensor，Paddle 无此参数，需要转写。 |
 
 ### 转写示例
 

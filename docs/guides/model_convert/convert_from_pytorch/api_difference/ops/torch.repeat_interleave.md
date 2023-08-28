@@ -1,18 +1,18 @@
 ## [ torch 参数更多]torch.repeat_interleave
 
-### [torch.repeat_interleave](https://pytorch.org/docs/1.13/generated/torch.repeat_interleave.html#torch-repeat-interleave)
+### [torch.repeat_interleave](https://pytorch.org/docs/stable/generated/torch.repeat_interleave.html#torch-repeat-interleave)
 
 ```python
 torch.repeat_interleave(input, repeats, dim=None, *, output_size=None)
 ```
 
-### [paddle.repeat_interleave](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/repeat_interleave_cn.html#repeat-interleave)
+### [paddle.repeat_interleave](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/repeat_interleave_cn.html#repeat-interleave)
 
 ```python
 paddle.repeat_interleave(x, repeats, axis=None, name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注                                                |

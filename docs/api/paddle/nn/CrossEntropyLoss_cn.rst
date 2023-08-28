@@ -3,22 +3,110 @@
 CrossEntropyLoss
 -------------------------------
 
-.. py:function:: paddle.nn.CrossEntropyLoss(weight=None, ignore_index=-100, reduction='mean', soft_label=False, axis=-1, name=None)
+.. py:function:: paddle.nn.CrossEntropyLoss(weight=None, ignore_index=-100, reduction='mean', soft_label=False, axis=-1, use_softmax=True, name=None)
 
-计算输入 input 和标签 label 间的交叉熵损失，它结合了 `LogSoftmax` 和 `NLLLoss` 的函数计算，可用于训练一个 `n` 类分类器。
+默认情况下， CrossEntropyLoss 使用 softmax 实现（即 use_softmax=True ）。该函数结合了 softmax 操作的计算和交叉熵损失函数，以提供更稳定的数值计算。
 
-如果提供 `weight` 参数的话，它是一个 `1-D` 的 tensor，每个值对应每个类别的权重。
-该损失函数的数学计算公式如下：
+当 use_softmax=False 时，仅计算交叉熵损失函数而不使用 softmax。
 
-    .. math::
-        loss_j =  -\text{input[class]} +
-        \log\left(\sum_{i=0}^{K}\exp(\text{input}_i)\right), j = 1,..., K
+默认情况下，计算结果的平均值。可以使用 reduction 参数来影响默认行为。请参考参数部分了解详情。
 
-当 `weight` 不为 `none` 时，损失函数的数学计算公式为：
+可以用于计算带有 soft labels 和 hard labels 的 softmax 交叉熵损失。其中，hard labels 表示实际的标签值，例如 0、1、2 等。而 soft labels 表示实际标签的概率，例如 0.6、0.8、0.2 等。
 
-    .. math::
-        loss_j =  \text{weight[class]}(-\text{input[class]} +
-        \log\left(\sum_{i=0}^{K}\exp(\text{input}_i)\right)), j = 1,..., K
+计算包括以下两个步骤:
+
+-  **I.softmax 交叉熵**
+
+    1. Hard label (每个样本仅表示为一个类别)
+
+    1.1. 当 use_softmax=True 时
+
+        .. math::
+          \\loss_j=-\text{logits}_{label_j}+\log\left(\sum_{i=0}^{C}\exp(\text{logits}_i)\right) , j = 1,...,N
+
+        其中，N 是样本数，C 是类别数。
+
+    1.2. 当 use_softmax=False 时
+
+        .. math::
+          \\loss_j=-\log\left({P}_{label_j}\right) , j = 1,...,N
+
+        其中，N 是样本数，C 是类别数，P 是输入（softmax 的输出）。
+
+
+    2. Soft label (每个样本为多个类别分配一定的概率，概率和为 1).
+
+    2.1. 当 use_softmax=True 时
+
+        .. math::
+          \\loss_j=-\sum_{i=0}^{C}\text{label}_i\left(\text{logits}_i-\log\left(\sum_{i=0}^{C}\exp(\text{logits}_i)\right)\right) , j = 1,...,N
+
+        其中，N 是样本数，C 是类别数。
+
+    2.2. 当 use_softmax=False 时
+
+        .. math::
+          \\loss_j=-\sum_{j=0}^{C}\left({label}_j*\log\left({P}_{label_j}\right)\right) , j = 1,...,N
+
+        其中，N 是样本数，C 是类别数，P 是输入（softmax 的输出）。
+
+
+
+-  **II.Weight 和 reduction 处理**
+
+    1. Weight
+
+        如果 ``weight`` 参数为 ``None`` , 直接进行下一步.
+
+        如果 ``weight`` 参数不为 ``None`` , 每个样本的交叉熵按权重加权
+        根据 soft_label = False 或 True 如下：
+
+        1.1. Hard labels (soft_label = False)
+
+        .. math::
+            \\loss_j=loss_j*weight[label_j]
+
+
+        1.2. Soft labels (soft_label = True)
+
+         .. math::
+            \\loss_j=loss_j*\sum_{i}\left(weight[label_i]*logits_i\right)
+
+    2. reduction
+
+        2.1 如果 ``reduction`` 参数为 ``none``
+
+        直接返回之前的结果
+
+        2.2 如果 ``reduction`` 参数为 ``sum``
+
+        返回之前结果的和
+
+        .. math::
+           \\loss=\sum_{j}loss_j
+
+        2.3 如果 ``reduction`` 参数为 ``mean`` , 则按照 ``weight`` 参数进行如下处理。
+
+        2.3.1. 如果  ``weight``  参数为 ``None``
+
+        返回之前结果的平均值
+
+         .. math::
+            \\loss=\sum_{j}loss_j/N
+
+        其中，N 是样本数，C 是类别数。
+
+        2.3.2. 如果 ``weight`` 参数不为 ``None``，则返回之前结果的加权平均值
+
+        1. Hard labels (soft_label = False)
+
+         .. math::
+            \\loss=\sum_{j}loss_j/\sum_{j}weight[label_j]
+
+        2. Soft labels (soft_label = True)
+
+         .. math::
+            \\loss=\sum_{j}loss_j/\sum_{j}\left(\sum_{i}weight[label_i]\right)
 
 
 参数
@@ -40,4 +128,6 @@ CrossEntropyLoss
 代码示例
 :::::::::
 
-COPY-FROM: paddle.nn.CrossEntropyLoss
+COPY-FROM: paddle.nn.CrossEntropyLoss:code-example1
+
+COPY-FROM: paddle.nn.CrossEntropyLoss:code-example2

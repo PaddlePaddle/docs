@@ -1,5 +1,5 @@
 ## [仅 paddle 参数更多 ]torch.nn.MaxUnpool1d
-### [torch.nn.MaxUnpool1d](https://pytorch.org/docs/1.13/generated/torch.nn.MaxUnpool1d.html?highlight=maxunpool1d#torch.nn.MaxUnpool1d)
+### [torch.nn.MaxUnpool1d](https://pytorch.org/docs/stable/generated/torch.nn.MaxUnpool1d.html?highlight=maxunpool1d#torch.nn.MaxUnpool1d)
 
 ```python
 torch.nn.MaxUnpool1d(kernel_size,
@@ -7,7 +7,7 @@ torch.nn.MaxUnpool1d(kernel_size,
                      padding=0)
 ```
 
-### [paddle.nn.MaxUnPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MaxUnPool1D_cn.html)
+### [paddle.nn.MaxUnPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MaxUnPool1D_cn.html)
 
 ```python
 paddle.nn.MaxUnPool1D(kernel_size,

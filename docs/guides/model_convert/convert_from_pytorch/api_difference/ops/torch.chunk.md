@@ -1,4 +1,4 @@
-## [ 仅参数名不同 ]torch.chunk
+## [ 仅参数名不一致 ]torch.chunk
 ### [torch.chunk](https://pytorch.org/docs/stable/generated/torch.chunk.html?highlight=chunk#torch.chunk)
 
 ```python
@@ -7,7 +7,7 @@ torch.chunk(input,
             dim=0)
 ```
 
-### [paddle.chunk](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/chunk_cn.html#chunk)
+### [paddle.chunk](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/chunk_cn.html#chunk)
 
 ```python
 paddle.chunk(x,
@@ -16,7 +16,7 @@ paddle.chunk(x,
              name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

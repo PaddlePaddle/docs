@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.nanmean
 
-### [torch.nanmean](https://pytorch.org/docs/1.13/generated/torch.nanmean.html?highlight=nanmean#torch.nanmean)
+### [torch.nanmean](https://pytorch.org/docs/stable/generated/torch.nanmean.html?highlight=nanmean#torch.nanmean)
 
 ```python
 torch.nanmean(input,
@@ -10,7 +10,7 @@ torch.nanmean(input,
               out=None)
 ```
 
-### [paddle.nanmean](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nanmean_cn.html)
+### [paddle.nanmean](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nanmean_cn.html)
 
 ```python
 paddle.nanmean(x,
@@ -27,7 +27,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | dim        | axis      | 表示进行运算的轴，可选项，仅参数名不一致。                |
 | keepdim   | keepdim   | 表示是否保留计算后的维度，可选项。                    |
 | dtype | - | 指定输出数据类型，可选项，Pytorch 默认值为 None，Paddle 无此参数，需要转写。 |
-| out       | -        | 表示输出的 Tensor,可选项，Paddle 无此参数，需要进行转写。 |
+| out       | -        | 表示输出的 Tensor,可选项，Paddle 无此参数，需要转写。 |
 
 ### 转写示例
 

@@ -1,18 +1,18 @@
 ## [torch 参数更多]torch.Tensor.cuda
 
-### [torch.Tensor.cuda](https://pytorch.org/docs/1.13/generated/torch.Tensor.cuda.html#torch.Tensor.cuda)
+### [torch.Tensor.cuda](https://pytorch.org/docs/stable/generated/torch.Tensor.cuda.html#torch.Tensor.cuda)
 
 ```python
 torch.Tensor.cuda(device=None, non_blocking=False, memory_format=torch.preserve_format)
 ```
 
-### [paddle.Tensor.cuda](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cuda-device-id-none-blocking-false)
+### [paddle.Tensor.cuda](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cuda-device-id-none-blocking-false)
 
 ```python
 paddle.Tensor.cuda(device_id=None, blocking=False)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

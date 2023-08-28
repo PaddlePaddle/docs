@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ] torch.bitwise_not
 
-### [torch.bitwise_not](https://pytorch.org/docs/1.13/generated/torch.bitwise_not.html?highlight=bitwise_not#torch.bitwise_not)
+### [torch.bitwise_not](https://pytorch.org/docs/stable/generated/torch.bitwise_not.html?highlight=bitwise_not#torch.bitwise_not)
 
 ```python
 torch.bitwise_not(input,
@@ -8,7 +8,7 @@ torch.bitwise_not(input,
                   out=None)
 ```
 
-### [paddle.bitwise_not](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/bitwise_not_cn.html)
+### [paddle.bitwise_not](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bitwise_not_cn.html)
 
 ```python
 paddle.bitwise_not(x,
@@ -16,7 +16,7 @@ paddle.bitwise_not(x,
                    name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |

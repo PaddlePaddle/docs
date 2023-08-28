@@ -1,12 +1,12 @@
 ## [参数用法不一致]torch.nn.Sequential
 
-### [torch.nn.Sequential](https://pytorch.org/docs/1.13/generated/torch.nn.Sequential.html#torch.nn.Sequential)
+### [torch.nn.Sequential](https://pytorch.org/docs/stable/generated/torch.nn.Sequential.html#torch.nn.Sequential)
 
 ```python
 torch.nn.Sequential(arg: OrderedDict[str, Module])
 ```
 
-### [paddle.nn.Sequential](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Sequential_cn.html)
+### [paddle.nn.Sequential](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Sequential_cn.html)
 
 ```python
 paddle.nn.Sequential(*layers)

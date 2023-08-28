@@ -10,7 +10,7 @@ torch.cumsum(input,
              out=None)
 ```
 
-### [paddle.cumsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cumsum_cn.html#cumsum)
+### [paddle.cumsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cumsum_cn.html#cumsum)
 
 ```python
 paddle.cumsum(x,
@@ -19,15 +19,15 @@ paddle.cumsum(x,
               name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 输入的 Tensor ，仅参数名不同。                          |
-| dim           | axis         | 指明需要累加的维度，仅参数名不同。                       |
+| input         | x            | 输入的 Tensor ，仅参数名不一致。                          |
+| dim           | axis         | 指明需要累加的维度，仅参数名不一致。                       |
 | dtype         | dtype        | 输出 Tensor 的数据类型，默认为 None，参数名相同。        |
-| out           | -            | 表示输出的 Tensor ，Paddle 无此参数，需要进行转写。      |
+| out           | -            | 表示输出的 Tensor ，Paddle 无此参数，需要转写。      |
 
 
 ### 转写示例

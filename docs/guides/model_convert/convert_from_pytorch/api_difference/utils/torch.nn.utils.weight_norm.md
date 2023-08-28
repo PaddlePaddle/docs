@@ -7,7 +7,7 @@ torch.nn.utils.weight_norm(module,
                             dim=0)
 ```
 
-### [paddle.nn.utils.weight_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/utils/weight_norm_cn.html#weight-norm)
+### [paddle.nn.utils.weight_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/utils/weight_norm_cn.html#weight-norm)
 
 ```python
 paddle.nn.utils.weight_norm(layer,

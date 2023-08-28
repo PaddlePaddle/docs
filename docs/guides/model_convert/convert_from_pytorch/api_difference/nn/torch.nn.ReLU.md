@@ -1,17 +1,17 @@
 ## [torch 参数更多 ]torch.nn.ReLU
-### [torch.nn.ReLU](https://pytorch.org/docs/1.13/generated/torch.nn.ReLU.html?highlight=relu#torch.nn.ReLU)
+### [torch.nn.ReLU](https://pytorch.org/docs/stable/generated/torch.nn.ReLU.html?highlight=relu#torch.nn.ReLU)
 
 ```python
 torch.nn.ReLU(inplace=False)
 ```
 
-### [paddle.nn.ReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ReLU_cn.html#relu)
+### [paddle.nn.ReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ReLU_cn.html#relu)
 
 ```python
 paddle.nn.ReLU(name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

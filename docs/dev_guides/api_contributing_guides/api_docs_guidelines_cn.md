@@ -4,7 +4,7 @@
 2. **API 文档的字段**：API 名称、API 功能描述、API 参数、API 返回、API 代码示例、API 属性（class）、API 方法（methods）等。API 抛出异常的情况，不需要在文档中体现；
 3. **API 功能描述**：请注意，看文档的用户没有和开发同学一样的知识背景。因此，请提示用户在什么场景下使用该 API。请使用深度学习领域通用的词汇和说法。（[深度学习常用术语表](https://github.com/PaddlePaddle/docs/wiki/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B8%B8%E7%94%A8%E6%9C%AF%E8%AF%AD%E8%A1%A8)）；
 4. **API 参数**：写清楚对输入参数的要求，写清楚在不同情况下的行为区别（例默认值时的行为）。同类性质的参数（如：输入 Tensor `x`，每个 API 中的 `name` 参数），可以直接从这里复制内容：**[常用文档写法](https://github.com/PaddlePaddle/docs/blob/develop/docs/templates/common_docs.py)**；
-5. **API 代码示例**：中英文文档当中的代码示例完全一致（注释可不用翻译），中文文档建议使用 [COPY-FROM](https://github.com/PaddlePaddle/docs/wiki/%E4%B8%AD%E6%96%87API%E6%96%87%E6%A1%A3%E5%A4%8D%E5%88%B6%E8%8B%B1%E6%96%87API%E6%96%87%E6%A1%A3%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81) 的方式与英文文档做同步。代码示例使用 2.0 版本中的 API，可运行。尽量不用随机输入，注释形式给出输出值。构造输入数据时，尽量使用 paddle 提供的 API，如:  `paddle.zeros`、`paddle.ones`、`paddle.full`、`paddle.arange`、`paddle.rand`、`paddle.randn`、`paddle.randint`、`paddle.normal`、`paddle.uniform`，尽量不要引入第三方库（如 NumPy）；
+5. **API 代码示例**：中英文文档当中的代码示例完全一致（注释可不用翻译），中文文档建议使用 [COPY-FROM](https://github.com/PaddlePaddle/docs/wiki/%E4%B8%AD%E6%96%87API%E6%96%87%E6%A1%A3%E5%A4%8D%E5%88%B6%E8%8B%B1%E6%96%87API%E6%96%87%E6%A1%A3%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81) 的方式与英文文档做同步。代码示例使用 2.0 版本中的 API，可运行。尽量不用随机输入，并给出输出值。构造输入数据时，尽量使用 paddle 提供的 API，如:  `paddle.zeros`、`paddle.ones`、`paddle.full`、`paddle.arange`、`paddle.rand`、`paddle.randn`、`paddle.randint`、`paddle.normal`、`paddle.uniform`，尽量不要引入第三方库（如 NumPy）；
 6. **其他**：2.0 中的 API，对于 `Variable`、`LodTensor`、`Tensor`，统一使用 `Tensor`。`to_variable` 也统一改为 `to_tensor`；
 7. 对于 `Linear`、`Conv2D`、`L1Loss` 这些 class 形式的 API，需要写清楚当这个 `callable` 被调用时的输入输出的形状（如 `forward` 方法的参数）。位置放在现在的 `Parameters` / `参数`这个 block 后面，具体为：
 
@@ -54,12 +54,14 @@
         Examples:
             .. code-block:: python
 
-                import paddle
+                >>> import paddle
 
-                x = paddle.to_tensor([2, 3, 4], 'float64')
-                y = paddle.to_tensor([1, 5, 2], 'float64')
-                z = paddle.add(x, y)
-                print(z)  # [3., 8., 6. ]
+                >>> x = paddle.to_tensor([2, 3, 4], 'float64')
+                >>> y = paddle.to_tensor([1, 5, 2], 'float64')
+                >>> z = paddle.add(x, y)
+                >>> print(z)
+                Tensor(shape=[3], dtype=float64, place=Place(cpu), stop_gradient=True,
+                [3., 8., 6.])
 
         """
 
@@ -235,56 +237,115 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
 
 ### API 代码示例（重要）
 
-代码示例是 API 文档的核心部分之一，毕竟 talk is cheap，show me the code。所以，在 API 代码示例中，应该对前文描述的 API 使用中的各种场景，尽可能的在一个示例中给出，并用注释给出对应的结果。
-如
+代码示例是 API 文档的核心部分之一，毕竟 talk is cheap，show me the code。所以，在 API 代码示例中，应该对前文描述的 API 使用中的各种场景，尽可能的在一个示例中给出，并给出对应的结果。
+
+**书写规范**
+
+书写示例代码就如同在 python 的标准交互界面 REPL (Read-Eval-Print Loop) 中编程一样。这里同样使用：
+
+- `>>> `
+
+    表示单行语句，如：
+
+    ``` python
+    >>> import paddle
+    >>> x = paddle.to_tensor([[1, 2], [3, 4]])
+    >>> y = paddle.to_tensor([[5, 6], [7, 8]])
+    >>> res = paddle.multiply(x, y)
+    ```
+
+- `... `
+
+    表示多行或复合语句，如：
+
+    ``` python
+    >>> from paddle import nn
+    >>> class Mnist(nn.Layer):
+    ...     def __init__(self):
+    ...         super().__init__()
+    ...
+    ```
+
+为了保证示例代码的正确性，CI 环境会对其进行检查。
+
+更多关于示例代码的书写规范，请参考 [Python 文档示例代码书写规范](../style_guide_and_references/code_example_writing_specification_cn.html) 。
+
 
 **注意事项**
 
 - 示例代码需要与当前版本及推荐用法保持一致：**develop 分支下 fluid namespace 以外的 API，不能再有 fluid 关键字，只需要提供动态图的示例代码**；
-- 尽量不用随机输入，需要以注释形式给出输出值；
 - 中英文示例代码，不做任何翻译，保持完全一致，中文文档建议使用 [COPY-FROM](https://github.com/PaddlePaddle/docs/wiki/%E4%B8%AD%E6%96%87API%E6%96%87%E6%A1%A3%E5%A4%8D%E5%88%B6%E8%8B%B1%E6%96%87API%E6%96%87%E6%A1%A3%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81) 的方式与英文文档做同步；
 - 原则上，所有提供的 API 都需要提供示例代码，对于 `class member methods`、`abstract API`、`callback` 等情况，可以在提交 PR 时说明相应的使用方法的文档的位置或文档计划后，通过白名单审核机制通过 CI 检查；
 - 对于仅为 GPU 环境提供的 API，当该示例代码在 CPU 上运行时，运行后给出含有 “Not compiled with CUDA” 的错误提示，也可认为该 API 行为正确。
 
-英文 API 代码示例格式规范如下：
 
-    def api():
-      """
-      Examples:
+英文 API 代码示例如下：
+
+``` python
+def api():
+    """
+    Examples:
         .. code-block:: python
 
             示例代码位置
 
+    """
+```
+
+或者
+
+``` python
+def api():
+    """
+    Examples:
         .. code-block:: python
+            :name: example-1
+
+            示例代码位置
+
+        .. code-block:: python
+            :name: example-2
 
             示例代码位置 (存在多个示例代码)
-      """
+    """
+```
 
 英文格式如 `paddle.multiply`：
 
-    def multiply(x, y, axis=-1, name=None):
-      """
-      Examples:
+``` python
+def multiply(x, y, axis=-1, name=None):
+    """
+    Examples:
         .. code-block:: python
 
-                import paddle
+                >>> import paddle
 
-                x = paddle.to_tensor([[1, 2], [3, 4]])
-                y = paddle.to_tensor([[5, 6], [7, 8]])
-                res = paddle.multiply(x, y)
-                print(res) # [[5, 12], [21, 32]]
+                >>> x = paddle.to_tensor([[1, 2], [3, 4]])
+                >>> y = paddle.to_tensor([[5, 6], [7, 8]])
+                >>> res = paddle.multiply(x, y)
+                >>> print(res)
+                Tensor(shape=[2, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
+                [[5 , 12],
+                 [21, 32]])
 
-                x = paddle.to_tensor([[[1, 2, 3], [1, 2, 3]]])
-                y = paddle.to_tensor([2])
-                res = paddle.multiply(x, y)
-                print(res) # [[2, 4, 6], [2, 4, 6]]]
+                >>> x = paddle.to_tensor([[[1, 2, 3], [1, 2, 3]]])
+                >>> y = paddle.to_tensor([2])
+                >>> res = paddle.multiply(x, y)
+                >>> print(res)
+                Tensor(shape=[1, 2, 3], dtype=int64, place=Place(cpu), stop_gradient=True,
+                [[[2, 4, 6],
+                  [2, 4, 6]]])
+    """
+```
 
 中文格式如 `paddle.add`：
 
-    代码示例
-    ::::::::::
+``` reStructuredText
+代码示例
+::::::::::
 
-    COPY-FROM: paddle.add
+COPY-FROM: paddle.add
+```
 
 ### API 属性
 

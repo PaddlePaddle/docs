@@ -12,11 +12,11 @@ torch.Tensor.dist(other, p=2)
 paddle.Tensor.dist(y, p=2)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 
 | PyTorch | PaddlePaddle | 备注                        |
 | ------- | ------------ | --------------------------- |
-| other   | y            | 输入 Tensor，仅参数名不同。 |
+| other   | y            | 输入 Tensor，仅参数名不一致。 |
 | p       | p            | 需要计算的范数。            |

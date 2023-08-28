@@ -6,7 +6,7 @@ hfft
 
 .. py:function:: paddle.fft.hfft(x, n=None, axis=-1, norm="backward", name=None)
 
-通过快速傅里叶变换(FFT)算法计算一维厄米特(Hermitian)傅里叶变换。
+通过快速傅里叶变换（FFT）算法计算一维厄米特（Hermitian）傅里叶变换。
 
 
 参数
@@ -17,7 +17,7 @@ hfft
   ``n//2+1``，如果输入 Tensor 的长度大于 ``n//2+1``，输入 Tensor 会被截断。如果输入
   Tensor 的长度小于 ``n//2+1``，则输入 Tensor 会被补零。如果 ``n`` 没有被指定，则取
   ``2*(m-1)``，其中，``m`` 是输入 Tensor 在 ``axis`` 维的长度。
-- **axis** (int，optional) - 傅里叶变换的轴。如果没有指定，默认是使用最后一维。
+- **axis** (int，可选) - 傅里叶变换的轴。如果没有指定，默认是使用最后一维。
 - **norm** (str，可选) - 傅里叶变换的缩放模式，缩放系数由变换的方向和缩放模式同时决定。取
   值必须是 "forward", "backward", "ortho" 之一，默认值为 "backward"。三种缩放模式对
   应的行为如下：

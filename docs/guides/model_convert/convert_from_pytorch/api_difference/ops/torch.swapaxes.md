@@ -1,12 +1,12 @@
 ## [ 参数不⼀致 ] torch.swapaxes
 
-### [torch.swapaxes](https://pytorch.org/docs/master/generated/torch.swapaxes.html#torch.swapaxes)
+### [torch.swapaxes](https://pytorch.org/docs/stable/generated/torch.swapaxes.html#torch.swapaxes)
 
 ```python
 torch.swapaxes(input, axis0, axis1)
 ```
 
-### [paddle.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/transpose_cn.html#transpose)
+### [paddle.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/transpose_cn.html#transpose)
 
 ```python
 paddle.transpose(x,
@@ -20,8 +20,8 @@ paddle.transpose(x,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'>input</font>         | <font color='red'>x</font>            | 输入 Tensor。                                       |
-| <font color='red'>axis0</font>          | -            | Pytorch 转置的第一个维度，Paddle 无此参数，需要进行转写。                    |
-| <font color='red'>axis1</font>          | -            | Pytorch 转置的第二个维度，Paddle 无此参数，需要进行转写。                    |
+| <font color='red'>axis0</font>          | -            | Pytorch 转置的第一个维度，Paddle 无此参数，需要转写。                    |
+| <font color='red'>axis1</font>          | -            | Pytorch 转置的第二个维度，Paddle 无此参数，需要转写。                    |
 | -             | <font color='red'>perm</font>         | Paddle 可通过 perm 参数，等价的实现 torch 的 axis0、axis1 的功能。|
 
 

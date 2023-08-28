@@ -9,7 +9,7 @@ torch.nn.functional.cosine_similarity(x1,
                                       eps=1e-08)
 ```
 
-### [paddle.nn.functional.cosine_similarity](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/cosine_similarity_cn.html)
+### [paddle.nn.functional.cosine_similarity](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/cosine_similarity_cn.html)
 
 ```python
 paddle.nn.functional.cosine_similarity(x1,

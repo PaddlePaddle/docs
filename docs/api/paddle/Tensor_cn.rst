@@ -48,6 +48,15 @@ dtype
         x = paddle.to_tensor([1.0, 2.0, 3.0])
         print("tensor's type is: {}".format(x.dtype))
 
+type
+:::::::::
+
+查看一个 Tensor 的类型。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.type
+
+
 grad
 :::::::::
 
@@ -176,18 +185,47 @@ place
         cpu_tensor = paddle.to_tensor(1, place=paddle.CPUPlace())
         print(cpu_tensor.place)
 
+layout
+:::::::::
+
+查看一个 Tensor 的 layout，layout 是 Tensor 的一个重要的概念，其描述了 tensor 的数据格式。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.layout
+
 shape
 :::::::::
 
 查看一个 Tensor 的 shape，shape 是 Tensor 的一个重要的概念，其描述了 tensor 在每个维度上的元素数量。
 
 **代码示例**
+COPY-FROM: paddle.Tensor.shape
 
-    .. code-block:: python
+strides
+:::::::::
 
-        import paddle
-        print("Tensor's shape: ", paddle.to_tensor([[1, 2], [3, 4]]).shape)
-        # Tensor's shape: [2, 2]
+查看一个 Tensor 的 strides。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.strides
+
+dist_attr
+:::::::::
+
+查看一个 Tensor 的 dist_attr，只有分布式 Tensor 才会有 dist_attr 属性，其描述了 tensor 的分布式属性。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.dist_attr
+
+
+offset
+:::::::::
+
+查看一个 Tensor 的第一个元素数据地址相对于 Tensor 持有的存储空间首地址的偏移量。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.offset
+
 
 stop_gradient
 :::::::::
@@ -202,6 +240,189 @@ stop_gradient
         import paddle
         print("Tensor's stop_gradient: ", paddle.to_tensor([[1, 2], [3, 4]]).stop_gradient)
         # Tensor's stop_gradient: True
+
+data
+:::::::::
+
+查看或者修改一个 Tensor 的数据。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.data
+
+
+numpy()
+:::::::::
+
+返回：将 Tensor 转为 numpy 返回
+
+返回类型：numpy\.ndarray
+
+**代码示例**
+COPY-FROM: paddle.Tensor.numpy
+
+
+
+reconstruct_from_(other)
+:::::::::
+
+返回：使用 other 重新构建当前 Tensor
+
+返回类型：None
+
+**代码示例**
+COPY-FROM: paddle.Tensor.reconstruct_from_
+
+
+
+clone()
+:::::::::
+
+返回：克隆的新的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+COPY-FROM: paddle.Tensor.clone
+
+
+
+retain_grads()
+:::::::::
+
+返回：在 backward()时保留该 Tensor 的反向梯度
+
+返回类型：None
+
+**代码示例**
+COPY-FROM: paddle.Tensor.retain_grads
+
+
+
+clear_gradient(set_to_zero=True)
+:::::::::
+
+清理 Tensor 的反向梯度。
+参数：
+    - **set_to_zero** (bool) - True 表示将梯度值覆盖为 0。False 则释放梯度持有的存储空间。
+
+返回：None
+
+**代码示例**
+COPY-FROM: paddle.Tensor.clear_gradient
+
+
+
+detach()
+:::::::::
+
+返回：返回一个新的 Tensor，数据与本 Tensor 相等。但新的 Tensor 脱离当前计算图。
+
+返回类型：Tensor
+
+**代码示例**
+COPY-FROM: paddle.Tensor.detach
+
+
+detach_()
+:::::::::
+
+返回：让当前 Tensor 脱离当前计算图。
+
+返回类型：Tensor
+
+
+get_tensor()
+:::::::::
+
+返回：让当前 Tensor 内部的数据 Tensor，如 DenseTensor、DistTensor。
+
+返回类型：DenseTensor/DistTensor
+
+**代码示例**
+COPY-FROM: paddle.Tensor.get_tensor
+
+
+
+
+is_dense()
+:::::::::
+
+返回：返回本 Tensor 是否为 DenseTensor。
+
+返回类型：bool
+
+**代码示例**
+COPY-FROM: paddle.Tensor.is_dense
+
+
+
+is_dist()
+:::::::::
+
+返回：返回本 Tensor 是否为 DistTensor。
+
+返回类型：bool
+
+**代码示例**
+COPY-FROM: paddle.Tensor.is_dist
+
+
+
+
+data_ptr()
+:::::::::
+
+返回：返回本 Tensor 第一个元素的数据地址。
+
+返回类型：int
+
+**代码示例**
+COPY-FROM: paddle.Tensor.data_ptr
+
+
+
+
+
+get_strides()
+:::::::::
+
+返回：返回本 Tensor 的 strides。
+
+返回类型：list
+
+**代码示例**
+COPY-FROM: paddle.Tensor.get_strides
+
+
+
+
+contiguous()
+:::::::::
+
+返回：将本 Tensor 转为连续的 Tensor 返回。如果本 Tensor 已经是连续的则返回本 Tensor。
+
+返回类型：Tensor。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.contiguous
+
+
+
+
+is_contiguous()
+:::::::::
+
+返回：本 Tensor 是否为连续的。
+
+返回类型：bool
+
+**代码示例**
+COPY-FROM: paddle.Tensor.is_contiguous
+
+
+
+
+
 
 abs(name=None)
 :::::::::
@@ -370,9 +591,9 @@ backward(grad_tensor=None, retain_graph=False)
 从当前 Tensor 开始计算反向的神经网络，传导并计算计算图中 Tensor 的梯度。
 
 参数：
-    - **grad_tensor** (Tensor, optional) - 当前 Tensor 的初始梯度值。如果 ``grad_tensor`` 是 None，当前 Tensor 的初始梯度值将会是值全为 1.0 的 Tensor；如果 ``grad_tensor`` 不是 None，必须和当前 Tensor 有相同的长度。默认值：None。
+    - **grad_tensor** (Tensor, 可选) - 当前 Tensor 的初始梯度值。如果 ``grad_tensor`` 是 None，当前 Tensor 的初始梯度值将会是值全为 1.0 的 Tensor；如果 ``grad_tensor`` 不是 None，必须和当前 Tensor 有相同的长度。默认值：None。
 
-    - **retain_graph** (bool, optional) - 如果为 False，反向计算图将被释放。如果在 backward()之后继续添加 OP，
+    - **retain_graph** (bool, 可选) - 如果为 False，反向计算图将被释放。如果在 backward()之后继续添加 OP，
       需要设置为 True，此时之前的反向计算图会保留。将其设置为 False 会更加节省内存。默认值：False。
 
 返回：无
@@ -517,31 +738,6 @@ chunk(chunks, axis=0, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_chunk`
 
-clear_gradient()
-:::::::::
-
-清除当前 Tensor 的梯度。
-
-返回：无
-
-**代码示例**
-    .. code-block:: python
-
-        import paddle
-        import numpy as np
-
-        x = np.ones([2, 2], np.float32)
-        inputs2 = []
-        for _ in range(10):
-            tmp = paddle.to_tensor(x)
-            tmp.stop_gradient=False
-            inputs2.append(tmp)
-        ret2 = paddle.add_n(inputs2)
-        loss2 = paddle.sum(ret2)
-        loss2.backward()
-        print(loss2.gradient())
-        loss2.clear_gradient()
-        print("After clear {}".format(loss2.gradient()))
 
 clip(min=None, max=None, name=None)
 :::::::::
@@ -625,14 +821,7 @@ cosh(name=None)
 请参考 :ref:`cn_api_fluid_layers_cosh`
 
 **代码示例**
-    .. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-        out = paddle.cosh(x)
-        print(out)
-        # [1.08107237 1.02006674 1.00500417 1.04533851]
+COPY-FROM: paddle.cosh
 
 count_nonzero(axis=None, keepdim=False, name=None)
 :::::::::
@@ -682,8 +871,8 @@ cuda(device_id=None, blocking=False)
 如果当前 Tensor 已经在 GPU 上，且 device_id 为 None，则不会发生任何拷贝。
 
 参数：
-    - **device_id** (int, optional) - 目标 GPU 的设备 Id，默认为 None，此时为当前 Tensor 的设备 Id，如果当前 Tensor 不在 GPU 上，则为 0。
-    - **blocking** (bool, optional) - 如果为 False 并且当前 Tensor 处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。默认为 False。
+    - **device_id** (int, 可选) - 目标 GPU 的设备 Id，默认为 None，此时为当前 Tensor 的设备 Id，如果当前 Tensor 不在 GPU 上，则为 0。
+    - **blocking** (bool, 可选) - 如果为 False 并且当前 Tensor 处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。默认为 False。
 
 返回：拷贝到 GPU 上的 Tensor
 
@@ -721,24 +910,6 @@ deg2rad(x, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_deg2rad`
 
-detach()
-:::::::::
-
-返回一个新的 Tensor，从当前计算图分离。
-
-返回：与当前计算图分离的 Tensor。
-
-**代码示例**
-    .. code-block:: python
-
-        import paddle
-        import numpy as np
-
-        data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
-        linear = paddle.nn.Linear(32, 64)
-        data = paddle.to_tensor(data)
-        x = linear(data)
-        y = x.detach()
 
 diagonal(offset=0, axis1=0, axis2=1, name=None)
 :::::::::
@@ -981,8 +1152,8 @@ fill_diagonal_(x, value, offset=0, wrap=False, name=None)
 参数：
     - **x** (Tensor) - 需要修改对角线元素值的原始 Tensor。
     - **value** (float) - 以输入 value 值修改原始 Tensor 对角线元素。
-    - **offset** (int, optional) - 所选取对角线相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为 0。
-    - **wrap** (bool, optional) - 对于 2 维 Tensor，height>width 时是否循环填充，默认为 False。
+    - **offset** (int，可选) - 所选取对角线相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为 0。
+    - **wrap** (bool，可选) - 对于 2 维 Tensor，height>width 时是否循环填充，默认为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回：修改原始 Tensor x 的对角线元素为 value 以后的新的 Tensor。
@@ -1008,9 +1179,9 @@ fill_diagonal_tensor(x, y, offset=0, dim1=0, dim2=1, name=None)
 参数：
     - **x** (Tensor) - 需要填充局部对角线区域的原始 Tensor。
     - **y** (Tensor) - 需要被填充到原始 Tensor x 对角线区域的输入 Tensor。
-    - **offset** (int, optional) - 选取局部区域对角线位置相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为 0。
-    - **dim1** (int, optional) - 指定对角线所参考第一个维度，默认为 0。
-    - **dim2** (int, optional) - 指定对角线所参考第二个维度，默认为 1。
+    - **offset** (int，可选) - 选取局部区域对角线位置相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为 0。
+    - **dim1** (int，可选) - 指定对角线所参考第一个维度，默认为 0。
+    - **dim2** (int，可选) - 指定对角线所参考第二个维度，默认为 1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回：将 y 的值填充到输入 Tensor x 对角线区域以后所组合成的新 Tensor。
@@ -1675,25 +1846,6 @@ numel(name=None)
 
 请参考 :ref:`cn_api_tensor_numel`
 
-numpy()
-:::::::::
-
-将当前 Tensor 转化为 numpy\.ndarray。
-
-返回：Tensor 转化成的 numpy\.ndarray。
-返回类型：numpy\.ndarray
-
-**代码示例**
-    .. code-block:: python
-
-        import paddle
-        import numpy as np
-
-        data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
-        linear = paddle.nn.Linear(32, 64)
-        data = paddle.to_tensor(data)
-        x = linear(data)
-        print(x.numpy())
 
 pin_memory(y, name=None)
 :::::::::
@@ -2034,14 +2186,7 @@ sinh(name=None)
 对该 Tensor 中逐个元素求双曲正弦。
 
 **代码示例**
-    .. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-        out = x.sinh()
-        print(out)
-        # [-0.41075233 -0.201336    0.10016675  0.30452029]
+COPY-FROM: paddle.sinh
 
 size()
 :::::::::
@@ -2304,9 +2449,9 @@ Inplace 版本的 :ref:`cn_api_tensor_uniform`，返回一个从均匀分布采�
 
 参数：
     - **x** (Tensor) - 待被随机数填充的输入 Tensor。
-    - **min** (float|int, optional) - 生成随机数的下界，min 包含在该范围内。默认为-1.0。
-    - **max** (float|int, optional) - 生成随机数的上界，max 不包含在该范围内。默认为 1.0。
-    - **seed** (int, optional) - 用于生成随机数的随机种子。如果 seed 为 0，将使用全局默认生成器的种子（可通过 paddle.seed 设置）。
+    - **min** (float|int，可选) - 生成随机数的下界，min 包含在该范围内。默认为-1.0。
+    - **max** (float|int，可选) - 生成随机数的上界，max 不包含在该范围内。默认为 1.0。
+    - **seed** (int，可选) - 用于生成随机数的随机种子。如果 seed 为 0，将使用全局默认生成器的种子（可通过 paddle.seed 设置）。
                                  注意如果 seed 不为 0，该操作每次将生成同一个随机值。默认为 0。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
@@ -2447,7 +2592,7 @@ is_integer()
 
 请参考 :ref:`cn_api_paddle_is_integer`
 
-take_along_axis(arr, index, axis)
+take_along_axis(arr, indices, axis)
 :::::::::
 
 基于输入索引矩阵，沿着指定 axis 从 arr 矩阵里选取 1d 切片。索引矩阵必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
@@ -2458,10 +2603,10 @@ take_along_axis(arr, index, axis)
 
 请参考 :ref:`cn_api_paddle_tensor_take_along_axis`
 
-put_along_axis(arr, index, value, axis, reduce="assign")
+put_along_axis(arr, indices, value, axis, reduce="assign")
 :::::::::
 
-基于输入 index 矩阵，将输入 value 沿着指定 axis 放置入 arr 矩阵。索引矩阵和 value 必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
+基于输入 indices 矩阵，将输入 value 沿着指定 axis 放置入 arr 矩阵。索引矩阵和 value 必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
 
 返回：计算后的 Tensor
 
@@ -2594,6 +2739,239 @@ i1e(x, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_i1e`
 
+nnz()
+:::::::::
+
+.. note::
+   只有 `SparseCooTensor` 、`SparseCsrTensor` 才可调用该方法。
+
+返回：输入稀疏 Tensor 的非 0 元素的个数
+
+返回类型：int
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        indices = [[0, 1, 2], [1, 2, 0]]
+        values = [1.0, 2.0, 3.0]
+        dense_shape = [3, 3]
+        coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape)
+        coo.nnz()
+        # 3
+
+indices()
+:::::::::
+
+.. note::
+   只有 `SparseCooTensor` 才可调用该方法。
+
+返回：输入 SparseCooTensor 的非 0 元素的索引
+
+返回类型：DenseTensor
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        indices = [[0, 1, 2], [1, 2, 0]]
+        values = [1.0, 2.0, 3.0]
+        dense_shape = [3, 3]
+        coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape)
+        coo.indices()
+        # Tensor(shape=[2, 3], dtype=int64, place=Place(gpu:0), stop_gradient=True,
+        #        [[0, 1, 2],
+        #         [1, 2, 0]])
+
+values()
+:::::::::
+
+.. note::
+   只有 `SparseCooTensor` 才可调用该方法。
+
+返回：输入 SparseCooTensor 的非 0 元素的值
+
+返回类型：DenseTensor
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        indices = [[0, 1, 2], [1, 2, 0]]
+        values = [1.0, 2.0, 3.0]
+        dense_shape = [3, 3]
+        coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape)
+        coo.values()
+        # Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
+        #        [1., 2., 3.])
+
+
+crows()
+:::::::::
+
+.. note::
+   只有 `SparseCsrTensor` 才可调用该方法。
+
+返回：输入 SparseCsrTensor 的非 0 元素的压缩行信息
+
+返回类型：DenseTensor
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        crows = [0, 2, 3, 5]
+        cols = [1, 3, 2, 0, 1]
+        values = [1, 2, 3, 4, 5]
+        dense_shape = [3, 4]
+        csr = paddle.sparse.sparse_csr_tensor(crows, cols, values, dense_shape)
+        csr.crows()
+        # Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
+        #        [0, 2, 3, 5])
+
+cols()
+:::::::::
+
+.. note::
+   只有 `SparseCsrTensor` 才可调用该方法。
+
+返回：输入 SparseCsrTensor 的非 0 元素的列信息
+
+返回类型：DenseTensor
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        crows = [0, 2, 3, 5]
+        cols = [1, 3, 2, 0, 1]
+        values = [1, 2, 3, 4, 5]
+        dense_shape = [3, 4]
+        csr = paddle.sparse.sparse_csr_tensor(crows, cols, values, dense_shape)
+        csr.cols()
+        # Tensor(shape=[5], dtype=int64, place=Place(gpu:0), stop_gradient=True,
+        #        [1, 3, 2, 0, 1])
+
+is_sparse()
+:::::::::
+
+当输入 SparseCooTensor/SparseCsrTensor 时，返回 True；当输入 DenseTensor 时，返回 False。
+
+返回：是否为稀疏 Tensor（包括 SparseCooTensor 和 SparseCsrTensor）
+
+返回类型：bool
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        indices = [[0, 1, 2], [1, 2, 0]]
+        values = [1.0, 2.0, 3.0]
+        dense_shape = [3, 3]
+        coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape)
+        coo.is_sparse()
+        # True
+
+is_sparse_coo()
+:::::::::
+
+当输入 SparseCooTensor 时，返回 True；当输入 DenseTensor/SparseCsrTensor 时，返回 False。
+
+返回：是否为 SparseCooTensor
+
+返回类型：bool
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        indices = [[0, 1, 2], [1, 2, 0]]
+        values = [1.0, 2.0, 3.0]
+        dense_shape = [3, 3]
+        coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape)
+        coo.is_sparse_coo()
+        # True
+
+is_sparse_csr()
+:::::::::
+
+当输入 SparseCsrTensor 时，返回 True；当输入 DenseTensor/SparseCooTensor 时，返回 False。
+
+返回：是否为 SparseCsrTensor
+
+返回类型：bool
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        crows = [0, 2, 3, 5]
+        cols = [1, 3, 2, 0, 1]
+        values = [1, 2, 3, 4, 5]
+        dense_shape = [3, 4]
+        csr = paddle.sparse.sparse_csr_tensor(crows, cols, values, dense_shape)
+        csr.is_sparse_csr()
+        # True
+
+
+to_sparse_csr()
+:::::::::
+
+.. note::
+   只有 `DenseTensor` 、`SparseCooTensor` 才可调用该方法。
+
+将输入 Tensor 转换为 SparseCsrTensor。
+
+当输入 SparseCooTensor 时，会将其稀疏格式由 Coo 转换为 Csr；当输入 DenseTensor 时，会将其以 Csr 稀疏格式来存储。
+
+返回：转换为稀疏格式后的 SparseCsrTensor
+
+返回类型：SparseCsrTensor
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        indices = [[0, 1, 2], [1, 2, 0]]
+        values = [1.0, 2.0, 3.0]
+        dense_shape = [3, 3]
+        coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape)
+        coo.to_sparse_csr()
+        # Tensor(shape=[3, 3], dtype=paddle.float32, place=Place(gpu:0), stop_gradient=True,
+        #        crows=[0, 1, 2, 3],
+        #        cols=[1, 2, 0],
+        #        values=[1., 2., 3.])
+
+
+is_same_shape(y)
+:::::::::
+
+返回两个 Tensor 形状比较的结果，判断当前 Tensor 与输入 :attr:`y` 的形状是否相同，支持 DenseTensor、SparseCsrTensor 与 SparseCooTensor 之间任意两种的形状比较。
+
+返回：两个 Tensor 形状比较的结果，相同为 True，不同为 False。
+
+返回类型：bool
+
+请参考 :ref:`cn_api_paddle_sparse_is_same_shape`
+
 polygamma
 :::::::::
 用于计算输入的 Tensor 的多伽马函数。
@@ -2616,7 +2994,7 @@ pca_lowrank(x, q=None, center=True, niter=2, name=None)
 
 cummax(x, axis=None, dtype='int64', name=None)
 :::::::::
-沿给定 axis 计算 Tensor x 的累计最大值。
+沿给定 axis 计算 Tensor x 的累积最大值。
 
 返回：计算后的 Tensor 和对应索引 Indices。
 
@@ -2626,10 +3004,62 @@ cummax(x, axis=None, dtype='int64', name=None)
 
 cummin(x, axis=None, dtype='int64', name=None)
 :::::::::
-沿给定 axis 计算 Tensor x 的累计最小值。
+沿给定 axis 计算 Tensor x 的累积最小值。
 
 返回：计算后的 Tensor 和对应索引 Indices。
 
 返回类型：Tensor，包含计算结果和索引。
 
 请参考 :ref:`cn_api_tensor_cn_cummin`
+
+as_strided(x, shape, stride, offset=0, name=None)
+:::::::::
+
+使用特定的 shape、stride、offset，返回 x 的一个 view Tensor。
+
+仅在动态图下可用，返回的 Tensor 和 x 共享内存。
+
+返回：x 的一个 view Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_as_strided`
+
+view(x, shape_or_dtype, name=None)
+:::::::::
+
+使用特定的 shape 或者 dtype，返回 x 的一个 view Tensor。
+
+仅在动态图下可用，返回的 Tensor 和 x 共享内存。
+
+返回：x 的一个 view Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_view`
+
+view_as(x, other, name=None)
+:::::::::
+
+使用 other 的 shape，返回 x 的一个 view Tensor。
+
+仅在动态图下可用，返回的 Tensor 和 x 共享内存。
+
+返回：x 的一个 view Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_view_as`
+
+unfold(x, axis, size, step, name=None)
+:::::::::
+
+返回 x 的一个 view Tensor。以滑动窗口式提取 x 的值。
+
+仅在动态图下可用，返回的 Tensor 和 x 共享内存。
+
+返回：x 的一个 view Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_unfold`

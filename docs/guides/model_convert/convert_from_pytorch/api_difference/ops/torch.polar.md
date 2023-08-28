@@ -1,6 +1,6 @@
 ## [ 组合替代实现 ]torch.polar
 
-### [torch.polar](https://pytorch.org/docs/master/generated/torch.polar.html#torch.polar)
+### [torch.polar](https://pytorch.org/docs/stable/generated/torch.polar.html#torch.polar)
 ```python
 torch.polar(abs, angle, *, out=None)
 ```

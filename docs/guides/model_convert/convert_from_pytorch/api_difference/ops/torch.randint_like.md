@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.randint_like
 
-### [torch.randint_like](https://pytorch.org/docs/1.13/generated/torch.randint_like.html?highlight=randint_like#torch.randint_like)
+### [torch.randint_like](https://pytorch.org/docs/stable/generated/torch.randint_like.html?highlight=randint_like#torch.randint_like)
 
 ```python
 torch.randint_like(input,
@@ -14,7 +14,7 @@ torch.randint_like(input,
                    memory_format=torch.preserve_format)
 ```
 
-### [paddle.randint_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/randint_like_cn.html)
+### [paddle.randint_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/randint_like_cn.html)
 
 ```python
 paddle.randint_like(x,
@@ -35,8 +35,8 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | high          | high         | 表示生成的随机值范围的上限(区间一般不包含)。                 |
 | dtype         | dtype        | 表示数据类型。                                               |
 | layout        | -            | 表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
-| device        | -            | 表示 Tensor 存放设备位置，Paddle 无此参数，需要进行转写。    |
-| requires_grad | -            | 表示是否计算梯度， Paddle 无此参数，需要进行转写。           |
+| device        | -            | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。    |
+| requires_grad | -            | 表示是否计算梯度， Paddle 无此参数，需要转写。           |
 | memory_format | -            | 表示内存格式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 
 

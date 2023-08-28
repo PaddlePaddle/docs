@@ -12,7 +12,7 @@ torch.nn.LSTM(input_size,
               proj_size=0)
 ```
 
-### [paddle.nn.LSTM](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LSTM_cn.html#lstm)
+### [paddle.nn.LSTM](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LSTM_cn.html#lstm)
 
 ```python
 paddle.nn.LSTM(input_size,
@@ -35,10 +35,10 @@ paddle.nn.LSTM(input_size,
 | hidden_size          | hidden_size            | 表示隐藏状态 h 大小。  |
 | num_layers          | num_layers            | 表示循环网络的层数。  |
 | bias          | bias_ih_attr, bias_hh_attr  | 是否使用偏置， Paddle 支持自定义偏置属性， torch 不支持，需要转写。   |
-| batch_first   | time_major   | PyTorch 表示 batch size 是否为第一维，PaddlePaddle 表示 time steps 是否为第一维，它们的意义相反。需要进行转写。 |
+| batch_first   | time_major   | PyTorch 表示 batch size 是否为第一维，PaddlePaddle 表示 time steps 是否为第一维，它们的意义相反。需要转写。 |
 | dropout   | dropout   | 表示 dropout 概率。  |
 | bidirectional | direction    | PyTorch 表示是否进行双向，Paddle 使用字符串表示是双向 LSTM（`bidirectional`）还是单向 LSTM（`forward`）|
-| proj_size     | -            | 表示 LSTM 后将映射到对应的大小，PaddlePaddle 无此功能，暂无转写方式。  |
+| proj_size     | -            | 表示 LSTM 后将映射到对应的大小，Paddle 无此参数，暂无转写方式。  |
 | -             |weight_ih_attr| weight_ih 的参数，Pytorch 无此参数，Paddle 保持默认即可。  |
 | -             |weight_hh_attr| weight_hh 的参数，Pytorch 无此参数，Paddle 保持默认即可。  |
 

@@ -1,18 +1,18 @@
 ## [torch 参数更多]torch.autograd.backward
 
-### [torch.autograd.backward](https://pytorch.org/docs/1.13/generated/torch.autograd.backward.html#torch.autograd.backward)
+### [torch.autograd.backward](https://pytorch.org/docs/stable/generated/torch.autograd.backward.html#torch.autograd.backward)
 
 ```python
 torch.autograd.backward(tensors, grad_tensors=None, retain_graph=None, create_graph=False, grad_variables=None, inputs=None)
 ```
 
-### [paddle.autograd.backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/autograd/backward_cn.html)
+### [paddle.autograd.backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/backward_cn.html)
 
 ```python
 paddle.autograd.backward(tensors, grad_tensors=None, retain_graph=False)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

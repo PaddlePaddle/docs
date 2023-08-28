@@ -6,7 +6,7 @@
 torch.Tensor.pin_memory()
 ```
 
-### [paddle.Tensor.pin_memory](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#pin-memory-y-name-none)
+### [paddle.Tensor.pin_memory](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#pin-memory-y-name-none)
 
 ```python
 paddle.Tensor.pin_memory()

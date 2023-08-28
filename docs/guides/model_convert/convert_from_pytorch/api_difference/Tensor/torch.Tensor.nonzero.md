@@ -6,7 +6,7 @@
 torch.Tensor.nonzero()
 ```
 
-### [paddle.Tensor.nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nonzero_cn.html#cn-api-tensor-search-nonzero)
+### [paddle.Tensor.nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nonzero_cn.html#cn-api-tensor-search-nonzero)
 
 ```python
 paddle.Tensor.nonzero()

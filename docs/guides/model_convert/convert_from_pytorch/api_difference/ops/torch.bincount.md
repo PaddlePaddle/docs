@@ -8,7 +8,7 @@ torch.bincount(input,
                minlength=0)
 ```
 
-### [paddle.bincount](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/bincount_cn.html#bincount)
+### [paddle.bincount](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bincount_cn.html#bincount)
 
 ```python
 paddle.bincount(x,
@@ -17,7 +17,7 @@ paddle.bincount(x,
                 name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

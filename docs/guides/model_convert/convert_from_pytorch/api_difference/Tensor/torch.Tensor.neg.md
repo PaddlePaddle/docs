@@ -1,12 +1,12 @@
 ## [ 无参数 ] torch.Tensor.neg
 
-### [torch.Tensor.neg](https://pytorch.org/docs/1.13/generated/torch.Tensor.neg.html?highlight=neg#torch.Tensor.neg)
+### [torch.Tensor.neg](https://pytorch.org/docs/stable/generated/torch.Tensor.neg.html?highlight=neg#torch.Tensor.neg)
 
 ```python
 torch.Tensor.neg()
 ```
 
-### [paddle.Tensor.neg](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#neg-name-none)
+### [paddle.Tensor.neg](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#neg-name-none)
 
 ```python
 paddle.Tensor.neg()

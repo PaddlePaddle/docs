@@ -1,13 +1,13 @@
 ## [ torch 参数更多 ]torch.nn.functional.mish
 
-### [torch.nn.functional.mish](https://pytorch.org/docs/1.13/generated/torch.nn.functional.mish.html?highlight=torch+nn+functional+mish#torch.nn.functional.mish)
+### [torch.nn.functional.mish](https://pytorch.org/docs/stable/generated/torch.nn.functional.mish.html?highlight=torch+nn+functional+mish#torch.nn.functional.mish)
 
 ```python
 torch.nn.functional.mish(input,
                          inplace=False)
 ```
 
-### [paddle.nn.functional.mish](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/mish_cn.html)
+### [paddle.nn.functional.mish](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/mish_cn.html)
 
 ```python
 paddle.nn.functional.mish(x,

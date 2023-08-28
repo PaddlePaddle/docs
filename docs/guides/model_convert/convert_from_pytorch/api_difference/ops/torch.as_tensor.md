@@ -7,7 +7,7 @@ torch.as_tensor(data,
                 device=None)
 ```
 
-### [paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/to_tensor_cn.html#to-tensor)
+### [paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/to_tensor_cn.html#to-tensor)
 
 ```python
 paddle.to_tensor(data,
@@ -22,5 +22,5 @@ paddle.to_tensor(data,
 | ------------- | ------------ | ------------------------------------------------------ |
 | data          | data         | 表示输入的 Tensor 。                                     |
 | dtype           | dtype            | 表示 Tensor 的数据类型。               |
-| <font color='red'> device </font>           | <font color='red'> place </font>            | 表示 Tensor 的存放位置，仅参数名不同。               |
+| <font color='red'> device </font>           | <font color='red'> place </font>            | 表示 Tensor 的存放位置，仅参数名不一致。               |
 | -           | <font color='red'> stop_gradient </font>            | 表示是否阻断梯度传导， PyTorch 无此参数， Paddle 保持默认即可。             |

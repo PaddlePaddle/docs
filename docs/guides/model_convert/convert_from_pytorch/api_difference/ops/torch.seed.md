@@ -1,6 +1,6 @@
 ## [ 组合替代实现 ]torch.seed
 
-### [torch.seed](https://pytorch.org/docs/master/generated/torch.seed.html#torch.seed)
+### [torch.seed](https://pytorch.org/docs/stable/generated/torch.seed.html#torch.seed)
 ```python
 torch.seed()
 ```
@@ -15,5 +15,5 @@ PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 torch.seed()
 
 # Paddle 写法
-paddle.get_cuda_rng_state()[0].current_seed()
+paddle.get_rng_state()[0].current_seed()
 ```

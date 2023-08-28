@@ -1,18 +1,18 @@
 ## [ torch 参数更多]torch.tensordot
 
-### [torch.tensordot](https://pytorch.org/docs/1.13/generated/torch.tensordot.html?highlight=tensordot#torch.tensordot)
+### [torch.tensordot](https://pytorch.org/docs/stable/generated/torch.tensordot.html?highlight=tensordot#torch.tensordot)
 
 ```python
 torch.tensordot(a,b,dims=2,out=None)
 ```
 
-### [paddle.tensordot](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensordot_cn.html)
+### [paddle.tensordot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/tensordot_cn.html)
 
 ```python
 paddle.tensordot(x,y,axes=2,name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注 |
@@ -20,7 +20,7 @@ paddle.tensordot(x,y,axes=2,name=None)
 | a | x | 表示缩并运算的左张量,仅参数名不一致。 |
 | b | y | 表示缩并运算的右张量，仅参数名不一致。 |
 | dims | axes | 表示对张量做缩并运算的轴，默认值为 2 ，仅参数名不一致。 |
-| out | - | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。 |
+| out | - | 表示输出的 Tensor ， Paddle 无此参数，需要转写。 |
 
 ### 转写示例
 

@@ -45,6 +45,8 @@ paddle.distributed.CountFilterEntry	.. _api_paddle_distributed_CountFilterEntry:
 paddle.distributed.wait	.. _api_paddle_distributed_wait:
 paddle.distributed.get_group	.. _api_paddle_distributed_get_group:
 paddle.distributed.ReduceOp	.. _api_paddle_distributed_ReduceOp:
+paddle.distributed.DistAttr .. _api_distributed_DistAttr:
+paddle.distributed.shard_tensor .. _api_distributed_shard_tensor:
 paddle.distributed.fleet.UserDefinedRoleMaker	.. _api_paddle_distributed_fleet_UserDefinedRoleMaker:
 paddle.distributed.fleet.Role	.. _api_paddle_distributed_fleet_Role:
 paddle.distributed.fleet.HybridCommunicateGroup	.. _api_paddle_distributed_fleet_HybridCommunicateGroup:
@@ -89,12 +91,10 @@ paddle.fluid.framework.is_compiled_with_xpu	.. _api_paddle_fluid_framework_is_co
 paddle.fluid.input.one_hot	.. _api_paddle_fluid_input_one_hot:
 paddle.static.program_guard	.. _api_paddle_static_program_guard:
 paddle.static.name_scope	.. _api_paddle_static_name_scope:
-paddle.fluid.core_avx.LoDTensor	.. _api_paddle_fluid_core_avx_LoDTensor:
 paddle.static.ParallelExecutor	.. _api_paddle_static_ParallelExecutor:
 paddle.fluid.data	.. _api_paddle_fluid_data:
 paddle.fluid.data_feeder.DataFeeder	.. _api_paddle_fluid_data_feeder_DataFeeder:
 paddle.static.cuda_places	.. _api_paddle_static_cuda_places:
-paddle.fluid.core_avx.LoDTensorArray	.. _api_paddle_fluid_core_avx_LoDTensorArray:
 paddle.static.WeightNormParamAttr	.. _api_paddle_static_WeightNormParamAttr:
 paddle.static.gradients	.. _api_paddle_static_gradients:
 paddle.static.Executor	.. _api_paddle_static_Executor:
@@ -281,7 +281,6 @@ paddle.static.global_scope	.. _api_paddle_static_global_scope:
 paddle.utils.require_version	.. _api_paddle_utils_require_version:
 paddle.fluid.transpiler.distribute_transpiler.DistributeTranspilerConfig	.. _api_paddle_fluid_transpiler_distribute_transpiler_DistributeTranspilerConfig:
 paddle.CPUPlace	.. _api_paddle_CPUPlace:
-paddle.fluid.core_avx.XPUPlace	.. _api_paddle_fluid_core_avx_XPUPlace:
 paddle.fluid.transpiler.distribute_transpiler.DistributeTranspiler	.. _api_paddle_fluid_transpiler_distribute_transpiler_DistributeTranspiler:
 paddle.static.ExecutionStrategy	.. _api_paddle_static_ExecutionStrategy:
 paddle.fluid.lod_tensor.create_random_int_lodtensor	.. _api_paddle_fluid_lod_tensor_create_random_int_lodtensor:
@@ -326,7 +325,6 @@ paddle.fluid.dygraph.amp.loss_scaler.AmpScaler	.. _api_paddle_fluid_dygraph_amp_
 paddle.fluid.dygraph.nn.PRelu	.. _api_paddle_fluid_dygraph_nn_PRelu:
 paddle.nn.Flatten	.. _api_paddle_nn_Flatten:
 paddle.fluid.dygraph.nn.InstanceNorm	.. _api_paddle_fluid_dygraph_nn_InstanceNorm:
-paddle.jit.TracedLayer	.. _api_paddle_jit_TracedLayer:
 paddle.fluid.dygraph.nn.Pool2D	.. _api_paddle_fluid_dygraph_nn_Pool2D:
 paddle.fluid.dygraph.nn.Dropout	.. _api_paddle_fluid_dygraph_nn_Dropout:
 paddle.fluid.dygraph.learning_rate_scheduler.PolynomialDecay	.. _api_paddle_fluid_dygraph_learning_rate_scheduler_PolynomialDecay:
@@ -358,7 +356,6 @@ paddle.fluid.dygraph.base.enabled	.. _api_paddle_fluid_dygraph_base_enabled:
 paddle.fluid.dygraph.nn.Conv2D	.. _api_paddle_fluid_dygraph_nn_Conv2D:
 paddle.fluid.dygraph.nn.Conv3DTranspose	.. _api_paddle_fluid_dygraph_nn_Conv3DTranspose:
 paddle.fluid.dygraph.learning_rate_scheduler.LambdaDecay	.. _api_paddle_fluid_dygraph_learning_rate_scheduler_LambdaDecay:
-paddle.jit.ProgramTranslator	.. _api_paddle_jit_ProgramTranslator:
 paddle.fluid.dygraph.nn.Conv3D	.. _api_paddle_fluid_dygraph_nn_Conv3D:
 paddle.fluid.dygraph.nn.Embedding	.. _api_paddle_fluid_dygraph_nn_Embedding:
 paddle.jit.TranslatedLayer	.. _api_paddle_jit_TranslatedLayer:

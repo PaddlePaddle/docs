@@ -7,7 +7,7 @@ torch.rot90(input,
             dims=[0, 1])
 ```
 
-### [paddle.rot90](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/rot90_cn.html#rot90)
+### [paddle.rot90](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/rot90_cn.html#rot90)
 
 ```python
 paddle.rot90(x,
@@ -16,7 +16,7 @@ paddle.rot90(x,
              name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

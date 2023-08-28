@@ -10,7 +10,7 @@ torch.nn.functional.upsample(input,
                         align_corners=None)
 ```
 
-### [paddle.nn.functional.upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/upsample_cn.html#upsample)
+### [paddle.nn.functional.upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/upsample_cn.html#upsample)
 
 ```python
 paddle.nn.functional.upsample(x,

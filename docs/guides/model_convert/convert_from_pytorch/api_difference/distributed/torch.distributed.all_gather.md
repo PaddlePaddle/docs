@@ -1,18 +1,18 @@
 ## [torch 参数更多]torch.distributed.all_gather
 
-### [torch.distributed.all_gather](https://pytorch.org/docs/1.13/distributed.html#torch.distributed.all_gather)
+### [torch.distributed.all_gather](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_gather)
 
 ```python
 torch.distributed.all_gather(tensor_list, tensor, group=None, async_op=False)
 ```
 
-### [paddle.distributed.all_gather](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/all_gather_cn.html)
+### [paddle.distributed.all_gather](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/all_gather_cn.html)
 
 ```python
 paddle.distributed.all_gather(tensor_list, tensor, group=0)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

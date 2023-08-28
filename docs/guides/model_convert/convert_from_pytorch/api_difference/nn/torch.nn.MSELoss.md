@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.nn.MSELoss
-### [torch.nn.MSELoss](https://pytorch.org/docs/1.13/generated/torch.nn.MSELoss.html?highlight=mseloss#torch.nn.MSELoss)
+### [torch.nn.MSELoss](https://pytorch.org/docs/stable/generated/torch.nn.MSELoss.html?highlight=mseloss#torch.nn.MSELoss)
 
 ```python
 torch.nn.MSELoss(size_average=None,
@@ -7,13 +7,13 @@ torch.nn.MSELoss(size_average=None,
                  reduction='mean')
 ```
 
-### [paddle.nn.MSELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MSELoss_cn.html#mseloss)
+### [paddle.nn.MSELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MSELoss_cn.html#mseloss)
 
 ```python
 paddle.nn.MSELoss(reduction='mean')
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

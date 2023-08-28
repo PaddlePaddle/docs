@@ -1,12 +1,12 @@
 ## [参数不一致]torch.broadcast_shapes
 
-### [torch.broadcast_shapes](https://pytorch.org/docs/1.13/generated/torch.broadcast_shapes.html#torch.broadcast_shapes)
+### [torch.broadcast_shapes](https://pytorch.org/docs/stable/generated/torch.broadcast_shapes.html#torch.broadcast_shapes)
 
 ```python
 torch.broadcast_shapes(*shapes)
 ```
 
-### [paddle.broadcast_shape](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/broadcast_shape_cn.html)
+### [paddle.broadcast_shape](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/broadcast_shape_cn.html)
 
 ```python
 paddle.broadcast_shape(x_shape, y_shape)

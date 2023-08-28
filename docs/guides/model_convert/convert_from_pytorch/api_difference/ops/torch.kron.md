@@ -1,12 +1,12 @@
 ## [仅参数名不一致]torch.kron
 
-### [torch.kron](https://pytorch.org/docs/1.13/generated/torch.kron.html#torch-kron)
+### [torch.kron](https://pytorch.org/docs/stable/generated/torch.kron.html#torch-kron)
 
 ```python
 torch.kron(input, other, *, out=None)
 ```
 
-### [paddle.kron](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/kron_cn.html#kron)
+### [paddle.kron](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/kron_cn.html#kron)
 
 ```python
 paddle.kron(x, y, out=None, name=None)

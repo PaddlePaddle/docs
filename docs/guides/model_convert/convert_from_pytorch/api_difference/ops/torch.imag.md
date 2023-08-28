@@ -6,13 +6,13 @@
 torch.imag(input)
 ```
 
-### [paddle.imag](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/imag_cn.html#imag)
+### [paddle.imag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/imag_cn.html#imag)
 
 ```python
 paddle.imag(x)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |

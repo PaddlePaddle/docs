@@ -1,6 +1,6 @@
 ## [仅参数名不一致]torch.Tensor.var
 
-### [torch.Tensor.var](https://pytorch.org/docs/1.13/generated/torch.Tensor.var.html#torch.Tensor.var)
+### [torch.Tensor.var](https://pytorch.org/docs/stable/generated/torch.Tensor.var.html#torch.Tensor.var)
 
 ```python
 torch.Tensor.var(dim, unbiased=True, keepdim=False)
@@ -12,7 +12,7 @@ torch.Tensor.var(dim, unbiased=True, keepdim=False)
 paddle.Tensor.var(axis=None, unbiased=True, keepdim=False, name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |

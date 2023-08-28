@@ -1,18 +1,18 @@
 ## [torch 参数更多]torch.autograd.grad
 
-### [torch.autograd.grad](https://pytorch.org/docs/1.13/generated/torch.autograd.grad.html#torch.autograd.grad)
+### [torch.autograd.grad](https://pytorch.org/docs/stable/generated/torch.autograd.grad.html#torch.autograd.grad)
 
 ```python
 torch.autograd.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, is_grads_batched=False)
 ```
 
-### [paddle.grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/grad_cn.html)
+### [paddle.grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/grad_cn.html)
 
 ```python
 paddle.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

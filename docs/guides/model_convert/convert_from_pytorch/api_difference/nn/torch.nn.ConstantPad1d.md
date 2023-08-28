@@ -1,12 +1,12 @@
 ## [ 仅 paddle 参数更多 ]torch.nn.ConstantPad1d
-### [torch.nn.ConstantPad1d](https://pytorch.org/docs/1.13/generated/torch.nn.ConstantPad1d.html?highlight=constantpad1d#torch.nn.ConstantPad1d)
+### [torch.nn.ConstantPad1d](https://pytorch.org/docs/stable/generated/torch.nn.ConstantPad1d.html?highlight=constantpad1d#torch.nn.ConstantPad1d)
 
 ```python
 torch.nn.ConstantPad1d(padding,
                        value)
 ```
 
-### [paddle.nn.Pad1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Pad1D_cn.html#pad1d)
+### [paddle.nn.Pad1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Pad1D_cn.html#pad1d)
 
 ```python
 paddle.nn.Pad1D(padding,

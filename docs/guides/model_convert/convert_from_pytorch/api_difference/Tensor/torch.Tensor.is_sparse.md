@@ -6,7 +6,7 @@
 torch.Tensor.is_sparse
 ```
 
-### [paddle.Tensor.is_sparse](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html)
+### [paddle.Tensor.is_sparse](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html)
 
 ```python
 paddle.Tensor.is_sparse()

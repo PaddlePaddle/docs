@@ -1,12 +1,12 @@
 ## [仅参数名不一致]torch.Tensor.unbind
 
-### [torch.Tensor.unbind](https://pytorch.org/docs/1.13/generated/torch.Tensor.unbind.html#torch.Tensor.unbind)
+### [torch.Tensor.unbind](https://pytorch.org/docs/stable/generated/torch.Tensor.unbind.html#torch.Tensor.unbind)
 
 ```python
 torch.Tensor.unbind(dim=0)
 ```
 
-### [paddle.Tensor.unbind](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#unbind-axis-0)
+### [paddle.Tensor.unbind](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#unbind-axis-0)
 
 ```python
 paddle.Tensor.unbind(axis=0)

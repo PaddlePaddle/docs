@@ -5,7 +5,7 @@
 torch.nn.ReplicationPad3d(padding)
 ```
 
-### [paddle.nn.Pad3D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Pad3D_cn.html#pad3d)
+### [paddle.nn.Pad3D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Pad3D_cn.html#pad3d)
 
 ```python
 paddle.nn.Pad3D(padding,
@@ -19,7 +19,7 @@ paddle.nn.Pad3D(padding,
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| padding       | padding      | 填充大小，Pytorch 和 Paddle 的 padding 参数的类型分别为 (int/tuple) 和 (int/Tensor/list) ，需要进行转写。  |
+| padding       | padding      | 填充大小，Pytorch 和 Paddle 的 padding 参数的类型分别为 (int/tuple) 和 (int/Tensor/list) ，需要转写。  |
 | -             | mode         | padding 的四种模式，PyTorch 无此参数，Paddle 需设置为`replicate`。  |
 | -             | data_format  | 输入和输出的数据格式，PyTorch 无此参数，Paddle 保持默认即可。  |
 

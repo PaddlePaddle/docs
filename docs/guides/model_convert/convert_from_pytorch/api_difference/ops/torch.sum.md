@@ -8,7 +8,7 @@ torch.sum(input,
           dtype=None)
 ```
 
-### [paddle.sum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sum_cn.html#sum)
+### [paddle.sum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sum_cn.html#sum)
 
 ```python
 paddle.sum(x,
@@ -18,7 +18,7 @@ paddle.sum(x,
            name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

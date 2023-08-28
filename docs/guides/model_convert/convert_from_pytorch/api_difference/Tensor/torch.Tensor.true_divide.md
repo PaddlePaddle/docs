@@ -1,12 +1,12 @@
 ## [仅参数名不一致]torch.Tensor.true_divide
 
-### [torch.Tensor.true_divide](https://pytorch.org/docs/1.13/generated/torch.Tensor.true_divide.html#torch.Tensor.true_divide)
+### [torch.Tensor.true_divide](https://pytorch.org/docs/stable/generated/torch.Tensor.true_divide.html#torch.Tensor.true_divide)
 
 ```python
 torch.Tensor.true_divide(value)
 ```
 
-### [paddle.Tensor.divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#divide-y-name-none)
+### [paddle.Tensor.divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#divide-y-name-none)
 
 ```python
 paddle.Tensor.divide(y, name=None)

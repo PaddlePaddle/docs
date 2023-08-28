@@ -5,7 +5,7 @@
 torch.Tensor.narrow(dim, start, length)
 ```
 
-### [paddle.slice](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/slice_cn.html#slice)
+### [paddle.slice](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/slice_cn.html#slice)
 ```python
 paddle.slice(input,
              axes,
@@ -20,7 +20,7 @@ paddle.slice(input,
 | -           | input         | 表示输入的 Tensor 。                                           |
 | dim           | axes         | 表示切片的轴。                                           |
 | start         | starts       | 表示起始位置。                                           |
-| length        | -            | 到结束位置的长度，Paddle 无此参数，需要进行转写。Paddle 应改写 ends。                                       |
+| length        | -            | 到结束位置的长度，Paddle 无此参数，需要转写。Paddle 应改写 ends。                                       |
 | -             | ends         | 表示结束位置，Pytorch 无此参数，应设为 start + length 。                                         |
 
 ### 转写示例

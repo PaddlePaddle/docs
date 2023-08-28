@@ -1,12 +1,12 @@
 ## [ 仅参数名不一致 ] torch.fft.fftshift
 
-### [torch.fft.fftshift](https://pytorch.org/docs/1.13/generated/torch.fft.fftshift.html#torch.fft.fftshift)
+### [torch.fft.fftshift](https://pytorch.org/docs/stable/generated/torch.fft.fftshift.html#torch.fft.fftshift)
 
 ```python
 torch.fft.fftshift(input, dim=None)
 ```
 
-### [paddle.fft.fftshift](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fft/fftshift_cn.html)
+### [paddle.fft.fftshift](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/fftshift_cn.html)
 
 ```python
 paddle.fft.fftshift(x, axes=None, name=None)

@@ -1,6 +1,6 @@
 ## [ 组合替代实现 ]torch.addcdiv
 
-### [torch.addcdiv](https://pytorch.org/docs/master/generated/torch.addcdiv.html#torch.addcdiv)
+### [torch.addcdiv](https://pytorch.org/docs/stable/generated/torch.addcdiv.html#torch.addcdiv)
 ```python
 torch.addcdiv(input, tensor1, tensor2, *, value=1, out=None)
 ```

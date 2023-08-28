@@ -1,12 +1,12 @@
 ## [ 仅 paddle 参数更多 ]torch.dsplit
-### [torch.dsplit](https://pytorch.org/docs/1.13/generated/torch.dsplit.html#torch.dsplit)
+### [torch.dsplit](https://pytorch.org/docs/stable/generated/torch.dsplit.html#torch.dsplit)
 
 ```python
 torch.dsplit(input,
         indices_or_sections)
 ```
 
-### [paddle.split](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/split_cn.html)
+### [paddle.split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/split_cn.html)
 
 ```python
 paddle.split(x,

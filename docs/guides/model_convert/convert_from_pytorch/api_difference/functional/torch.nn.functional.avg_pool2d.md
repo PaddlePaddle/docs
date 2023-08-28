@@ -6,7 +6,7 @@
 torch.nn.functional.avg_pool2d(input, kernel_size, stride=None, padding=0, ceil_mode=False, count_include_pad=True, divisor_override=None)
 ```
 
-### [paddle.nn.functional.avg_pool2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/avg_pool2d_cn.html#avg-pool2d)
+### [paddle.nn.functional.avg_pool2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/avg_pool2d_cn.html#avg-pool2d)
 ```python
 paddle.nn.functional.avg_pool2d(x, kernel_size, stride=None, padding=0, ceil_mode=False, exclusive=True, divisor_override=None, data_format='NCHW', name=None)
 ```
@@ -22,7 +22,7 @@ paddle.nn.functional.avg_pool2d(x, kernel_size, stride=None, padding=0, ceil_mod
 | <font color='red'> ceil_mode </font>             | <font color='red'> ceil_mode </font>  | 是否用 `ceil` 函数计算输出的 height 和 width，如果设置为 `False`，则使用 `floor` 函数来计算，默认为 `False`            |
 | <font color='red'> divisor_override </font>           | <font color='red'> divisor_override </font>            | 如果指定，它将用作除数，否则根据 `kernel_size` 计算除数。默认 `None`  |
 | -           | <font color='red'> data_format </font>            | 输入和输出的数据格式, Pytorch 无此参数， 保持默认即可。 |
-| <font color='red'> count_include_pad </font>           | <font color='red'> exclusive </font>            | 是否用额外 padding 的值计算平均池化结果，Pytorch 与 Paddle 的功能相反，需要进行转写  |
+| <font color='red'> count_include_pad </font>           | <font color='red'> exclusive </font>            | 是否用额外 padding 的值计算平均池化结果，Pytorch 与 Paddle 的功能相反，需要转写  |
 
 
 ### 转写示例

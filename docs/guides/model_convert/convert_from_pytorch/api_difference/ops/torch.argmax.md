@@ -7,7 +7,7 @@ torch.argmax(input,
              keepdim=False)
 ```
 
-### [paddle.argmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/argmax_cn.html#argmax)
+### [paddle.argmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/argmax_cn.html#argmax)
 
 ```python
 paddle.argmax(x,
@@ -22,7 +22,7 @@ paddle.argmax(x,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'>input</font>         | <font color='red'>x</font>            | 输入的多维 Tensor ，仅参数名不同。                   |
-| <font color='red'> dim </font> | <font color='red'> axis </font>    | 指定进行运算的轴，仅参数名不同。  |
+| <font color='red'>input</font>         | <font color='red'>x</font>            | 输入的多维 Tensor ，仅参数名不一致。                   |
+| <font color='red'> dim </font> | <font color='red'> axis </font>    | 指定进行运算的轴，仅参数名不一致。  |
 | keepdim |  keepdim | 是否在输出 Tensor 中保留减小的维度。  |
 | - | <font color='red'> dtype </font>   | 输出 Tensor 的数据类型， Pytorch 无此参数， Paddle 保持默认即可。  |
