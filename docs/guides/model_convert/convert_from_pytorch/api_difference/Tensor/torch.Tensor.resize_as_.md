@@ -16,5 +16,5 @@ Paddle 无此 API，需要组合实现。
 y = a.resize_as_(b)
 
 # Paddle 写法
-y = paddle.reshape(a, b.shape)
+y = a.reshape_(b.shape)
 ```
