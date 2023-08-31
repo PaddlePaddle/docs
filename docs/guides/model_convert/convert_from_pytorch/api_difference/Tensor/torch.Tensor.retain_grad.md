@@ -6,10 +6,10 @@
 torch.Tensor.retain_grad()
 ```
 
-### [paddle.Tensor.retain_grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Overview_cn.html#paddle)
+### [paddle.Tensor.retain_grads](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Overview_cn.html#paddle)
 
 ```python
-paddle.Tensor.retain_grad()
+paddle.Tensor.retain_grads()
 ```
 
 两者功能一致，无参数。

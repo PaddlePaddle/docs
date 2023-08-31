@@ -306,6 +306,8 @@
 | 268    | [torch.resolve_neg](https://pytorch.org/docs/stable/generated/torch.resolve_neg.html#torch.resolve_neg) |  | 功能缺失        |
 | 269    | [torch.bitwise_left_shift](https://pytorch.org/docs/stable/generated/torch.bitwise_left_shift.html#torch.bitwise_left_shift) |  | 功能缺失        |
 | 270    | [torch.isin](https://pytorch.org/docs/stable/generated/torch.isin.html#torch.isin) |  | 功能缺失        |
+| 271    | [torch.resolve_conj](https://pytorch.org/docs/stable/generated/torch.resolve_conj.html#torch.resolve_conj) |  | 功能缺失        |
+| 277    | [torch.layout](https://pytorch.org/docs/stable/tensor_attributes.html#torch.layout) |  | 功能缺失        |
 
 ***持续更新...***
 
@@ -667,6 +669,9 @@
 | 182   |  [torch.Tensor.bitwise_left_shift](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_left_shift.html#torch.Tensor.bitwise_left_shift)  |  | 功能缺失        |
 | 183   |  [torch.Tensor.resolve_conj](https://pytorch.org/docs/stable/generated/torch.Tensor.resolve_conj.html#torch.Tensor.resolve_conj)  |  | 功能缺失        |
 | 184   |  [torch.Tensor.resolve_neg](https://pytorch.org/docs/stable/generated/torch.Tensor.resolve_neg.html#torch.Tensor.resolve_neg)  |  | 功能缺失        |
+| 185   |  [torch.Tensor.retains_grad](https://pytorch.org/docs/stable/generated/torch.Tensor.retains_grad.html#torch.Tensor.retains_grad)  |  | 功能缺失        |
+| 186   |  [torch.Tensor.bitwise_left_shift_](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_left_shift_.html#torch.Tensor.bitwise_left_shift_)  |  | 功能缺失        |
+| 187   |  [torch.Tensor.bitwise_right_shift_](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_right_shift_.html#torch.Tensor.bitwise_right_shift_)  |  | 功能缺失        |
 
 ***持续更新...***
 
@@ -701,6 +706,8 @@
 | 15   |  [torch.utils.cpp_extension.load_inline](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.load_inline)  |   | 功能缺失  |
 | 16   |  [torch.utils.cpp_extension.include_paths](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.include_paths)  |   | 功能缺失  |
 | 17   |  [torch.nn.utils.parametrize.is_parametrized](https://pytorch.org/docs/stable/generated/torch.nn.utils.parametrize.is_parametrized.html#torch.nn.utils.parametrize.is_parametrized)  |   | 功能缺失  |
+| 18   |  [torch.utils.data.default_convert](https://pytorch.org/docs/stable/data.html#torch.utils.data.default_convert)  |   | 功能缺失  |
+| 19   |  [torch.nn.utils.stateless.functional_call](https://pytorch.org/docs/stable/generated/torch.nn.utils.stateless.functional_call.html#torch.nn.utils.stateless.functional_call)  |   | 功能缺失  |
 
 
 ***持续更新...***
@@ -725,6 +732,7 @@
  |--- | --- | --- | --- |
 | 1   |  [torch.autograd.profiler.profile.self_cpu_time_total](https://pytorch.org/docs/stable/generated/torch.autograd.profiler.profile.self_cpu_time_total.html#torch.autograd.profiler.profile.self_cpu_time_total)  |   | 功能缺失  |
 | 2   |  [torch.autograd.function.FunctionCtx.mark_dirty](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.mark_dirty.html#torch.autograd.function.FunctionCtx.mark_dirty)  |   | 功能缺失  |
+| 3   |  [torch.autograd.Function.jvp](https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch.autograd.Function.jvp)  |   | 功能缺失  |
 
 ***持续更新...***
 
@@ -776,6 +784,7 @@
 | 10   |  [torch.distributed.reduce_scatter_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_scatter_multigpu)  |  | 功能缺失        |
 | 11   |  [torch.distributions.constraints.Constraint](https://pytorch.org/docs/stable/distributions.html#torch.distributions.constraints.Constraint)  |  | 功能缺失        |
 | 12   |  [torch.distributions.constraint_registry.ConstraintRegistry](https://pytorch.org/docs/stable/distributions.html#torch.distributions.constraint_registry.ConstraintRegistry)  |  | 功能缺失        |
+| 13   |  [torch.distributed.monitored_barrier](https://pytorch.org/docs/stable/distributed.html#torch.distributed.monitored_barrier)  |  | 功能缺失        |
 
 
 ***持续更新...***
@@ -793,6 +802,7 @@
 | 6    | [torch.distributions.one_hot_categorical.OneHotCategorical](https://pytorch.org/docs/stable/distributions.html#torch.distributions.one_hot_categorical.OneHotCategorical) |  | 功能缺失        |
 | 7    | [torch.distributions.transforms.CumulativeDistributionTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.CumulativeDistributionTransform) |  | 功能缺失        |
 | 8    | [torch.distributions.transforms.SoftplusTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.SoftplusTransform) |  | 功能缺失        |
+| 9    | [torch.distributions.transforms.CatTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.CatTransform) |  | 功能缺失        |
 
 
 ***持续更新...***
@@ -884,6 +894,7 @@
 | 2   |  [torch.sparse.mm](https://pytorch.org/docs/stable/generated/torch.sparse.mm.html?highlight=torch+sparse+mm#torch.sparse.mm)  |  [paddle.sparse.matmul](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sparse/matmul_cn.html)  |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/sparse/torch.sparse.mm.md)  |
 | 3   |  [torch.sparse.softmax](https://pytorch.org/docs/stable/generated/torch.sparse.softmax.html#torch.sparse.softmax)  |  [paddle.sparse.nn.functional.softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sparse/nn/functional/softmax_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/sparse/torch.sparse.softmax.md)  |
 | 4   |  [torch.sparse.sum](https://pytorch.org/docs/stable/generated/torch.sparse.sum.html?highlight=torch+sparse+sum#torch.sparse.sum)  |    |    功能缺失  |
+| 5   |  [torch.sparse.sampled_addmm](https://pytorch.org/docs/stable/generated/torch.sparse.sampled_addmm.html#torch.sparse.sampled_addmm)  |    |    功能缺失  |
 
 ***持续更新...***
 
@@ -902,5 +913,8 @@
 | 8   |  [torch.backends.cudnn.version](https://pytorch.org/docs/stable/backends.html?highlight=torch+backends+cudnn+version#torch.backends.cudnn.version)  |    |    功能缺失  |
 | 9   |  [torch.special.erf](https://pytorch.org/docs/stable/special.html?highlight=torch+special+erf#torch.special.erf)  |  [paddle.erf](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/erf_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.special.erf.md)  |
 | 10    | [torch.special.entr](https://pytorch.org/docs/stable/special.html#torch.special.entr) |  | 功能缺失        |
+| 11    | [torch.special.multigammaln](https://pytorch.org/docs/stable/special.html#torch.special.multigammaln) |  | 功能缺失        |
+| 12    | [torch.testing.make_tensor](https://pytorch.org/docs/stable/testing.html?highlight=make_tensor#torch.testing.make_tensor) |  | 功能缺失        |
+| 13    | [torch.utils.data.ConcatDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.ConcatDataset) |  | 功能缺失        |
 
 ***持续更新...***
