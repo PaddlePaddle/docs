@@ -915,5 +915,6 @@
 | 10    | [torch.special.entr](https://pytorch.org/docs/stable/special.html#torch.special.entr) |  | 功能缺失        |
 | 11    | [torch.special.multigammaln](https://pytorch.org/docs/stable/special.html#torch.special.multigammaln) |  | 功能缺失        |
 | 12    | [torch.testing.make_tensor](https://pytorch.org/docs/stable/testing.html?highlight=make_tensor#torch.testing.make_tensor) |  | 功能缺失        |
+| 13    | [torch.utils.data.ConcatDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.ConcatDataset) |  | 功能缺失        |
 
 ***持续更新...***
