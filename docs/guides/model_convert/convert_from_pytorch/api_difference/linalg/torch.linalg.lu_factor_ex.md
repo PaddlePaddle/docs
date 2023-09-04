@@ -34,5 +34,6 @@ torch.linalg.lu_factor_ex(A, out=(LU, pivots, info))
 
 # Paddle 写法
 y = paddle.linalg.lu(A, get_infos=True)
+y[2] = paddle.to_tensor(y[2].item(), dtype='int32')
 paddle.assign(y[0], out[0]), paddle.assign(y[1], out[1]), paddle.assign(y[2], out[2])
 ```
