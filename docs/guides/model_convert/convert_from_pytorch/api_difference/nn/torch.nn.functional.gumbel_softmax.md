@@ -23,20 +23,3 @@ paddle.nn.functional.gumbel_softmax(x,temperature=1.0,hard=False,axis=-1,name=No
 | eps    |              | Paddle无此参数，一般对网络训练结果影响不大，可直接删除                       |
 | dim    |axis| 仅参数名不同                         |
 
-### 转写示例
-
-```python
-# Pytorch 写法
-import torch
-logits = torch.randn(20, 32)
-F.gumbel_softmax(logits, eps = 1e-8)
-
-
-# Paddle 写法
- 
-import paddle
-x = paddle.randn(shape=[20, 32])
-paddle.nn.functional.gumbel_softmax(x)
-
-
-```
