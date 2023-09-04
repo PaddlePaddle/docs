@@ -209,6 +209,14 @@ strides
 **代码示例**
 COPY-FROM: paddle.Tensor.strides
 
+dist_attr
+:::::::::
+
+查看一个 Tensor 的 dist_attr，只有分布式 Tensor 才会有 dist_attr 属性，其描述了 tensor 的分布式属性。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.dist_attr
+
 
 offset
 :::::::::

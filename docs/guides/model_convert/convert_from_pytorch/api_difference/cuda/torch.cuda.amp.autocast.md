@@ -24,4 +24,4 @@ paddle.amp.auto_cast(enable=True, custom_white_list=None, custom_black_list=None
 | -             | custom_white_list | 自定义算子白名单，PyTorch 无此参数，Paddle 保持默认即可。    |
 | -             | custom_black_list | 自定义算子黑名单，PyTorch 无此参数，Paddle 保持默认即可。    |
 | -             | level             | 混合精度训练模式，PyTorch 无此参数，Paddle 保持默认即可。    |
-| -             | use_promote       | 当一个算子存在 float32 类型的输入时，按照 Promote to the Widest 原则，选择 float32 数据类型进行计算。仅在 AMP-O2 训练时可配置。默认为 True。，PyTorch 无此参数，Paddle 保持默认即可。    |
+| -             | use_promote       | 当一个算子存在 float32 类型的输入时，按照 Promote to the Widest 原则，选择 float32 数据类型进行计算。仅在 AMP-O2 训练时可配置。默认为 True。PyTorch 无此参数，Paddle 保持默认即可。    |
