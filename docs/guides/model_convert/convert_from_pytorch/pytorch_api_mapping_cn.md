@@ -672,6 +672,8 @@
 | 185   |  [torch.Tensor.retains_grad](https://pytorch.org/docs/stable/generated/torch.Tensor.retains_grad.html#torch.Tensor.retains_grad)  |  | 功能缺失        |
 | 186   |  [torch.Tensor.bitwise_left_shift_](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_left_shift_.html#torch.Tensor.bitwise_left_shift_)  |  | 功能缺失        |
 | 187   |  [torch.Tensor.bitwise_right_shift_](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_right_shift_.html#torch.Tensor.bitwise_right_shift_)  |  | 功能缺失        |
+| 188   |  [torch.Tensor.copysign](https://pytorch.org/docs/1.13/generated/torch.Tensor.copysign.html?highlight=torch+tensor+copysign#torch.Tensor.copysign)  |  | 功能缺失        |
+| 189   |  [torch.Tensor.dequantize](https://pytorch.org/docs/1.13/generated/torch.Tensor.dequantize.html?highlight=torch+tensor+dequantize#torch.Tensor.dequantize)  |  | 功能缺失        |
 
 ***持续更新...***
 
