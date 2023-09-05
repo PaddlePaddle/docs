@@ -1,4 +1,4 @@
-## [ torch 参数不一致 ] torch.Tensor.qr
+## [ 仅参数名不一致 ] torch.Tensor.qr
 
 ### [torch.Tensor.qr](https://pytorch.org/docs/stable/generated/torch.Tensor.qr.html?highlight=torch+tensor+qr#torch.Tensor.qr)
 
@@ -12,7 +12,7 @@ torch.Tensor.qr(some=True)
 paddle.Tensor.qr(mode='reduced')
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+两者功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 
@@ -22,7 +22,7 @@ paddle.Tensor.qr(mode='reduced')
 
 
 ### 转写示例
-
+### some：控制 QR 分解的行为
 ```python
 # 当进行完整的 QR 分解时
 # Pytorch 写法
