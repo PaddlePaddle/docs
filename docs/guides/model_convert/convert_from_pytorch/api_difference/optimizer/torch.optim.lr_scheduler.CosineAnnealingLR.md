@@ -26,7 +26,7 @@ paddle.optimizer.lr.CosineAnnealingDecay(learning_rate,
 
 | PyTorch | PaddlePaddle | 备注                                                                                       |
 | ------- | ------------ | ------------------------------------------------------------------------------------------ |
-| optimizer     | learning_rate       | PyTorch 的是 torch.optim.Optimizer 类，Paddle 是 float 类。 |
+| optimizer     | learning_rate       | PyTorch 的 optimizer 参数是 torch.optim.Optimizer 类，Paddle 的 learning_rate 是 float 类，leaning_rate = optimizer.get_lr() |
 | T_max     | T_max       | 表示训练的上限轮数，是余弦衰减周期的一半。参数完全一致。             |
 | eta_min     | eta_min       | 表示学习率的最小值。参数完全一致。             |
 | last_epoch     | last_epoch       | 上一轮的轮数，重启训练时设置为上一轮的 epoch 数。参数完全一致。       |
