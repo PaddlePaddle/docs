@@ -3,7 +3,7 @@
 dropout2d
 -------------------------------
 
-.. py:function:: paddle.nn.functional.dropout2d(x, p=0.5, training=True, name=None)
+.. py:function:: paddle.nn.functional.dropout2d(x, p=0.5, training=True, data_format='NCHW', name=None)
 
 根据丢弃概率 `p`，在训练过程中随机将某些通道特征图置 0 (对一个形状为 `NCHW` 的 4 维 Tensor，通道特征图指的是其中的形状为 `HW` 的 2 维特征图)。
 
