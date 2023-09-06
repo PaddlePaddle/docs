@@ -9,7 +9,7 @@ torch.Tensor.cumsum_(dim, dtype=None)
 ### [paddle.Tensor.cumsum_]()
 
 ```python
-paddle.Tensor.cumsum_(axis=None, dtype=None, name=None)
+paddle.Tensor.cumsum_(axis=None, dtype=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：

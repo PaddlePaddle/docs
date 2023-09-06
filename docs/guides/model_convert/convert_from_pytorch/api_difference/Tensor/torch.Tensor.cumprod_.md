@@ -9,7 +9,7 @@ torch.Tensor.cumprod_(dim, dtype=None)
 ### [paddle.Tensor.cumprod_]()
 
 ```python
-paddle.Tensor.cumprod_(dim=None, dtype=None, name=None)
+paddle.Tensor.cumprod_(dim=None, dtype=None)
 ```
 
 两者功能一致且参数用法一致， 具体如下：

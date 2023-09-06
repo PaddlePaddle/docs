@@ -9,7 +9,7 @@ torch.nn.functional.hardtanh_(input, min_val=-1, max_val=1)
 ### [paddle.nn.functional.hardtanh_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/hardtanh_cn.html)
 
 ```python
-paddle.nn.functional.hardtanh_(x, min=-1.0, max=1.0, name=None)
+paddle.nn.functional.hardtanh_(x, min=-1.0, max=1.0)
 ```
 
 Pytorch 相比 Paddle 支持更多其他参数，具体如下：

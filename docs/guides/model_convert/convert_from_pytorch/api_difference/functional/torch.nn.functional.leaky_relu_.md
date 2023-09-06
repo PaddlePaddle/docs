@@ -9,7 +9,7 @@ torch.nn.functional.leaky_relu_(input, negative_slope=0.01)
 ### [paddle.nn.functional.leaky_relu_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/leaky_relu_cn.html)
 
 ```python
-paddle.nn.functional.leaky_relu_(x, negative_slope=0.01, name=None)
+paddle.nn.functional.leaky_relu_(x, negative_slope=0.01)
 ```
 
 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
