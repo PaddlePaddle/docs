@@ -30,7 +30,7 @@ logger.setLevel(logging.INFO)
 
 def load_api_info(api_info_json_filename):
     global api_info_dict  # update
-    with open(api_info_json_filename, 'r') as f:
+    with open(api_info_json_filename, 'rb') as f:
         api_info_dict = json.load(f)
     for k, api_info in api_info_dict.items():
         for n in api_info.get('all_names', []):
@@ -45,9 +45,11 @@ def read_rst_lines_and_copy_info(cnrstfilename):
     copy_from_info = []
     rst_lines = None
     pat = re.compile(r"^(\s*)COPY-FROM\s*:\s*(.*)$", flags=re.IGNORECASE)
-    with open(cnrstfilename, 'r') as rstf:
+    with open(cnrstfilename, 'rb') as rstf:
         rst_lines = rstf.readlines()
         for lineno, line in enumerate(rst_lines):
+            lineno = str(lineno)
+            line = str(line)
             mo = pat.match(line)
             if mo:
                 indent = len(mo.group(1))
