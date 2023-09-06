@@ -11,6 +11,7 @@ API 单测的测试点需覆盖以下场景：
 - **计算精度**：需要保证前向计算、反向计算的精度正确性。
    - 前向计算：需要有通过 numpy 或其他数学方法实现的函数的对比结果。
    - 反向计算：需要复用现有单测框架反向计算验证方式保障反向正确性。注意：1）使用 Python 组合方式新增的 API，由于反向计算已经在各组合 API 单测中分别验证了，因此，该 API 的反向计算不要求验证。2）如现有单测框架无法满足要求，需要通过 numpy 推导或函数直接实现反向等方式验证反向计算结果正确性。
+- **维度测试**：Paddle API 支持的最低维度为 0 维，单测中应编写相应的 0 维尺寸测试 case（若该 API 不支持 0 维，则无需编写该 case，但需在设计文档中说明理由）。可参考 [paddle.add 的 0 维尺寸测试 case](https://github.com/PaddlePaddle/Paddle/blob/develop/test/legacy_test/test_elementwise_add_op.py#L113-L133)
 - **异常测试**：需对于参数异常值输入，应该有友好的报错信息及异常反馈。
 - 除了以上，还需注意：
   - [OP 单测必须使用大尺寸输入](https://github.com/PaddlePaddle/Paddle/wiki/OP-test-input-shape-requirements)

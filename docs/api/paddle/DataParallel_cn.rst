@@ -29,7 +29,7 @@ DataParallel
     - **strategy** (ParallelStrategy，可选) - (deprecated) 数据并行的策略，包括并行执行的环境配置。默认为 None。
     - **comm_buffer_size** (int，可选) - 它是通信调用（如 NCCLAllReduce）时，参数梯度聚合为一组的内存大小（MB）。默认值：25。
     - **last_comm_buffer_size** （float，可选）它限制通信调用中最后一个缓冲区的内存大小（MB）。减小最后一个通信缓冲区的大小有助于提高性能。默认值：1。默认值：1
-    - **find_unused_parameters** (bool，可选) 是否在模型 forward 函数的返回值的所有张量中，遍历整个向后图。对于不包括在 loss 计算中的参数，其梯度将被预先标记为 ready 状态用于后续多卡间的规约操作。请注意，模型参数的所有正向输出必须参与 loss 的计算以及后续的梯度计算。否则，将发生严重错误。请注意，将 find_unused_parameters 设置为 True 会影响计算性能，因此，如果确定所有参数都参与了 loss 计算和自动反向图的构建，请将其设置为 False。默认值：False。
+    - **find_unused_parameters** (bool，可选) 是否在模型 forward 函数的返回值的所有 Tensor 中，遍历整个向后图。对于不包括在 loss 计算中的参数，其梯度将被预先标记为 ready 状态用于后续多卡间的规约操作。请注意，模型参数的所有正向输出必须参与 loss 的计算以及后续的梯度计算。否则，将发生严重错误。请注意，将 find_unused_parameters 设置为 True 会影响计算性能，因此，如果确定所有参数都参与了 loss 计算和自动反向图的构建，请将其设置为 False。默认值：False。
 
 返回
 ::::::::::::
@@ -39,7 +39,7 @@ DataParallel
 ::::::::::::
 COPY-FROM: paddle.DataParallel:dp-example
 
-.. Note::
+.. note::
     目前数据并行不支持 PyLayer 自定义算子。如有此类需求，推荐先使用 no_sync 接口暂停多卡通信，然后在优化器前手动实现梯度同步；具体实现过程可参考下述示例。
 
 代码示例

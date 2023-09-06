@@ -3,7 +3,7 @@
 ClipGradByGlobalNorm
 -------------------------------
 
-.. py:class:: paddle.nn.ClipGradByGlobalNorm(clip_norm, group_name='default_group')
+.. py:class:: paddle.nn.ClipGradByGlobalNorm(clip_norm, group_name='default_group', auto_skip_clip=False)
 
 
 
@@ -28,12 +28,15 @@ ClipGradByGlobalNorm
 .. math::
             \\global\_norm=\sqrt{\sum_{i=0}^{n-1}(l2norm(t\_list[i]))^2}\\
 
+.. note::
+   ``ClipGradByGlobalNorm`` 的 ``need_clip`` 方法从 2.0 开始废弃。请在 :ref:`paddle.ParamAttr <cn_api_fluid_ParamAttr>` 中使用 ``need_clip`` 来说明 ``clip`` 范围。
 
 参数
 ::::::::::::
 
- - **clip_norm** (float) - 所允许的范数最大值
- - **group_name** (str, optional) - 剪切的组名
+ - **clip_norm** (float) - 所允许的范数最大值。
+ - **group_name** (str，可选) - 剪切的组名。
+ - **auto_skip_clip** (bool，可选) - 跳过剪切梯度。默认值为 False。
 
 代码示例
 ::::::::::::

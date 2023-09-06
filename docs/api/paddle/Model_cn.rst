@@ -200,12 +200,12 @@ fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_fr
 
     1. 使用 Dataset 训练，并设置 batch_size 的例子。
 
-    COPY-FROM: paddle.Model.fit:code-example1
+    COPY-FROM: paddle.Model.fit:code-example3
 
 
     2. 使用 Dataloader 训练的例子.
 
-    COPY-FROM: paddle.Model.fit:code-example2
+    COPY-FROM: paddle.Model.fit:code-example4
 
 
 evaluate(eval_data, batch_size=1, log_freq=10, verbose=2, num_workers=0, callbacks=None, num_iters=None)
@@ -262,8 +262,8 @@ summary(input_size=None, dtype=None)
 
 **参数**
 
-    - **input_size** (tuple|InputSpec|list[tuple|InputSpec]，可选) - 输入张量的大小。如果网络只有一个输入，那么该值需要设定为 tuple 或 InputSpec。如果模型有多个输入。那么该值需要设定为 list[tuple|InputSpec]，包含每个输入的 shape 。如果该值没有设置，会将 ``self._inputs`` 作为输入。默认值：None。
-    - **dtype** (str，可选) - 输入张量的数据类型，如果没有给定，默认使用 ``float32`` 类型。默认值：None。
+    - **input_size** (tuple|InputSpec|list[tuple|InputSpec]，可选) - 输入 Tensor 的大小。如果网络只有一个输入，那么该值需要设定为 tuple 或 InputSpec。如果模型有多个输入。那么该值需要设定为 list[tuple|InputSpec]，包含每个输入的 shape 。如果该值没有设置，会将 ``self._inputs`` 作为输入。默认值：None。
+    - **dtype** (str，可选) - 输入 Tensor 的数据类型，如果没有给定，默认使用 ``float32`` 类型。默认值：None。
 
 **返回**
 

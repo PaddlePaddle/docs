@@ -6,7 +6,7 @@ save
 .. py:function:: paddle.static.save(program, model_path, protocol=4, **configs)
 
 
-该接口将传入的参数、优化器信息和网络描述保存到 ``model_path`` 。
+将传入的参数、优化器信息和网络描述保存到 ``model_path`` 。
 
 参数包含所有的可训练 :ref:`cn_api_fluid_Variable`，将保存到后缀为 ``.pdparams`` 的文件中。
 

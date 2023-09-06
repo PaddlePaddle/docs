@@ -132,7 +132,7 @@ In principle, recompute is for all kinds of optimizers in Paddle.
 
 **2. Using Recompute in Fleet API**
 
-`Fleet API <https://github.com/PaddlePaddle/FleetX>`_
+`Fleet API <https://github.com/PaddlePaddle/PaddleFleetX>`_
 is a high-level API for distributed training in Fluid. Adding
 RecomputeOptimizer to Fluid takes two steps:
 
@@ -154,7 +154,7 @@ We also post corresponding training speed,
 test results and memory usages of these examples for reference.
 
 
-- Fine-tuning Bert Large model with recomputing:  `source <https://github.com/PaddlePaddle/FleetX/tree/old_develop/deprecated/examples/recompute/bert>`_
+- Fine-tuning Bert Large model with recomputing:  `source <https://github.com/PaddlePaddle/PaddleFleetX/tree/old_develop/deprecated/examples/recompute/bert>`_
 
 - Training object detection models with recomputing：developing.
 
@@ -171,7 +171,7 @@ first-computation and recomputation consistent.
 - **Are there more official examples of Recompute?**
 
   More examples will be updated at `examples <https://github.com/PaddlePaddle/examples/tree/master/community_examples/recompute>`_
-and `Fleet <https://github.com/PaddlePaddle/FleetX>`_ . Feel free to
+and `Fleet <https://github.com/PaddlePaddle/PaddleFleetX>`_ . Feel free to
 raise issues if you get any problem with these examples.
 
 - **How should I set checkpoints?**

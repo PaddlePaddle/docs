@@ -6,7 +6,7 @@ Momentum
 .. py:class:: paddle.optimizer.Momentum(learning_rate=0.001, momentum=0.9, parameters=None, use_nesterov=False, weight_decay=None, grad_clip=None, name=None)
 
 
-该接口实现含有速度状态的 Simple Momentum 优化器。
+含有速度状态的 Simple Momentum 优化器。
 
 该优化器含有牛顿动量标志，公式更新如下：
 
@@ -37,18 +37,7 @@ Momentum
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
-    linear = paddle.nn.Linear(10, 10)
-    out = linear(inp)
-    loss = paddle.mean(out)
-    momentum = paddle.optimizer.Momentum(learning_rate=0.1, parameters=linear.parameters(), weight_decay=0.01)
-    out.backward()
-    momentum.step()
-    momentum.clear_grad()
+COPY-FROM: paddle.optimizer.Momentum
 
 
 方法
@@ -69,17 +58,7 @@ step()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    value = paddle.arange(26, dtype='float32')
-    a = paddle.reshape(value, [2, 13])
-    linear = paddle.nn.Linear(13, 5)
-    momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
-    out = linear(a)
-    out.backward()
-    momentum.step()
-    momentum.clear_grad()
+COPY-FROM: paddle.optimizer.Momentum.step
 
 minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 '''''''''
@@ -88,10 +67,10 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 **参数**
 
-    - **loss** (Tensor) – 需要最小化的损失值变量。
-    - **startup_program** (Program，可选) – 用于初始化 parameters 中参数的 :ref:`cn_api_fluid_Program`，默认值为 None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
-    - **parameters** (list，可选) – 待更新的 Parameter 或者 Parameter.name 组成的列表，默认值为 None，此时将更新所有的 Parameter。
-    - **no_grad_set** (set，可选) – 不需要更新的 Parameter 或者 Parameter.name 组成的集合，默认值为 None。
+    - **loss** (Tensor) - 需要最小化的损失值变量。
+    - **startup_program** (Program，可选) - 用于初始化 parameters 中参数的 :ref:`cn_api_fluid_Program`，默认值为 None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
+    - **parameters** (list，可选) - 待更新的 Parameter 或者 Parameter.name 组成的列表，默认值为 None，此时将更新所有的 Parameter。
+    - **no_grad_set** (set，可选) - 不需要更新的 Parameter 或者 Parameter.name 组成的集合，默认值为 None。
 
 **返回**
 
@@ -100,22 +79,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
-    linear = paddle.nn.Linear(10, 10)
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    beta1 = paddle.to_tensor([0.9], dtype="float32")
-    beta2 = paddle.to_tensor([0.99], dtype="float32")
-
-    momentum = paddle.optimizer.Momentum(learning_rate=0.1, parameters=linear.parameters(), weight_decay=0.01)
-    out.backward()
-    momentum.minimize(loss)
-    momentum.clear_grad()
+COPY-FROM: paddle.optimizer.Momentum.minimize
 
 clear_grad()
 '''''''''
@@ -129,20 +93,16 @@ clear_grad()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    value = paddle.arange(26, dtype='float32')
-    a = paddle.reshape(value, [2, 13])
-    linear = paddle.nn.Linear(13, 5)
-    optimizer = paddle.optimizer.Momentum(learning_rate=0.1, parameters=linear.parameters(), weight_decay=0.01)
-    out = linear(a)
-    out.backward()
-    optimizer.step()
-    optimizer.clear_grad()
+COPY-FROM: paddle.optimizer.Momentum.clear_grad
 
 set_lr(value)
+'''''''''
+
+.. note::
+
+该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+
+set_lr_scheduler(scheduler)
 '''''''''
 
 .. note::

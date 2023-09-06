@@ -3,7 +3,7 @@
 LinearWarmup
 -----------------------------------
 
-.. py:class:: paddle.optimizer.lr.LinearWarmup(learing_rate, warmup_steps, start_lr, end_lr, last_epoch=-1, verbose=False)
+.. py:class:: paddle.optimizer.lr.LinearWarmup(learning_rate, warmup_steps, start_lr, end_lr, last_epoch=-1, verbose=False)
 
 该接口提供一种学习率优化策略-线性学习率热身(warm up)对学习率进行初步调整。在正常调整学习率之前，先逐步增大学习率。
 

@@ -15,12 +15,16 @@ nonzero
 参数
 :::::::::
 
-    - **x** （Tensor）– 输入张量。
-    - **as_tuple** (bool, optinal) - 返回格式。是否以 ``1-D Tensor`` 构成的元组格式返回。
+    - **x** （Tensor）– 输入的 Tensor。
+    - **as_tuple** (bool，可选) - 返回格式。是否以 ``1-D Tensor`` 构成的元组格式返回。
+
+
 
 返回
 :::::::::
     - **Tensor or tuple(1-D Tensor)**，数据类型为 **INT64** 。
+
+
 
 代码示例
 :::::::::

@@ -9,7 +9,7 @@ conv3d
 
 
 
-该 OP 是三维卷积层（convolution3D layer），根据输入、滤波器、步长（stride）、填充（padding）、膨胀比例（dilations）一组参数计算得到输出特征层大小。
+三维卷积层（convolution3D layer），根据输入、滤波器、步长（stride）、填充（padding）、膨胀比例（dilations）一组参数计算得到输出特征层大小。
 
 输入和输出是 NCDHW 或 NDHWC 格式，其中 N 是批尺寸，C 是通道数，D 是特征层深度，H 是特征层高度，W 是特征层宽度。
 

@@ -12,6 +12,19 @@ to_tensor
 如果 ``data`` 已经是一个 Tensor，且 ``dtype`` 、 ``place`` 没有发生变化，将不会发生 Tensor 的拷贝并返回原来的 Tensor。
 否则会创建一个新的 Tensor，且不保留原来计算图。
 
+.. code-block:: text
+
+    我们使用如下规则来进行类型转换：
+
+              保持类型
+    np.number ───────► paddle.Tensor
+                        (0-D Tensor)
+                   paddle 默认类型
+    Python Number ───────────────► paddle.Tensor
+                                    (0-D Tensor)
+                保持类型
+    np.ndarray ─────────► paddle.Tensor
+
 参数
 :::::::::
 

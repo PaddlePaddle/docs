@@ -134,6 +134,7 @@ Padding 层
     " :ref:`paddle.nn.Sigmoid <cn_api_nn_layer_Sigmoid>` ", "Sigmoid 激活层"
     " :ref:`paddle.nn.Silu <cn_api_nn_Silu>` ", "Silu 激活层"
     " :ref:`paddle.nn.Softmax <cn_api_nn_Softmax>` ", "Softmax 激活层"
+    " :ref:`paddle.nn.Softmax2D <cn_api_nn_Softmax2D>` ", "Softmax2D 激活层"
     " :ref:`paddle.nn.Softplus <cn_api_nn_Softplus>` ", "Softplus 激活层"
     " :ref:`paddle.nn.Softshrink <cn_api_nn_Softshrink>` ", "Softshrink 激活层"
     " :ref:`paddle.nn.Softsign <cn_api_nn_Softsign>` ", "Softsign 激活层"
@@ -209,7 +210,7 @@ Transformer 相关
     :header: "API 名称", "API 功能"
 
 
-    " :ref:`paddle.nn.Bilinear <cn_api_nn_Bilinear>` ", "对两个输入执行双线性张量积"
+    " :ref:`paddle.nn.Bilinear <cn_api_nn_Bilinear>` ", "对两个输入执行双线性 Tensor 积"
     " :ref:`paddle.nn.Linear <cn_api_paddle_nn_layer_common_Linear>` ", "线性变换层"
 
 .. _dropout_layers:
@@ -257,11 +258,14 @@ Loss 层
     " :ref:`paddle.nn.MarginRankingLoss <cn_api_nn_loss_MarginRankingLoss>` ", "MarginRankingLoss 层"
     " :ref:`paddle.nn.MSELoss <cn_api_paddle_nn_MSELoss>` ", "均方差误差损失层"
     " :ref:`paddle.nn.NLLLoss <cn_api_nn_loss_NLLLoss>` ", "NLLLoss 层"
+    " :ref:`paddle.nn.GaussianNLLLoss <cn_api_paddle_nn_GaussianNLLLoss>` ", "GaussianNLLLoss 层"
+    " :ref:`paddle.nn.PoissonNLLLoss <cn_api_paddle_nn_PoissonNLLLoss>`", "PoissonNLLLoss 层"
     " :ref:`paddle.nn.SmoothL1Loss <cn_api_paddle_nn_SmoothL1Loss>` ", "平滑 L1 损失层"
     " :ref:`paddle.nn.SoftMarginLoss <cn_api_paddle_nn_SoftMarginLoss>` ", "SoftMarginLoss 层"
     " :ref:`paddle.nn.TripletMarginLoss <cn_api_paddle_nn_TripletMarginLoss>` ", "TripletMarginLoss 层"
     " :ref:`paddle.nn.TripletMarginWithDistanceLoss <cn_api_paddle_nn_TripletMarginWithDistanceLoss>` ", "TripletMarginWithDistanceLoss 层"
     " :ref:`paddle.nn.MultiLabelSoftMarginLoss <cn_api_paddle_nn_MultiLabelSoftMarginLoss>` ", "多标签 Hinge 损失层"
+    " :ref:`paddle.nn.MultiMarginLoss <cn_api_paddle_nn_MultiMarginLoss>` ", "MultiMarginLoss 层"
 
 
 .. _vision_layers:
@@ -309,7 +313,8 @@ Clip 相关
     " :ref:`paddle.nn.PairwiseDistance <cn_api_nn_PairwiseDistance>` ", "计算两组向量两两之间的距离"
     " :ref:`paddle.nn.Identity <cn_api_paddle_nn_layer_common_Identity>` ", "建立等效层，作为输入的 Placeholder"
     " :ref:`paddle.nn.Unfold <cn_api_fluid_layers_unfold>` ", "实现的功能与卷积中用到的 im2col 函数一样，通常也被称作为 im2col 过程"
-    " :ref:`paddle.nn.Fold <cn_api_nn_fold>` ", "该 Op 用于将一个滑动局部块组合成一个大的张量,通常也被称为 col2im 过程"
+    " :ref:`paddle.nn.Fold <cn_api_nn_fold>` ", "该 Op 用于将一个滑动局部块组合成一个大的 Tensor,通常也被称为 col2im 过程"
+    " :ref:`paddle.nn.Unflatten <cn_api_nn_Unflatten>` ", "将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状"
 
 
 .. _convolution_functional:
@@ -429,7 +434,7 @@ Normalization 方法
     :header: "API 名称", "API 功能"
 
 
-    " :ref:`paddle.nn.functional.bilinear <cn_api_nn_functional_bilinear>` ", "对两个输入执行双线性张量积"
+    " :ref:`paddle.nn.functional.bilinear <cn_api_nn_functional_bilinear>` ", "对两个输入执行双线性 Tensor 积"
     " :ref:`paddle.nn.functional.linear <cn_api_paddle_nn_functional_common_linear>` ", "线性变换"
 
 .. _dropout_functional:
@@ -474,11 +479,13 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.dice_loss <cn_api_fluid_layers_dice_loss>` ", "用于比较预测结果跟标签之间的相似度"
     " :ref:`paddle.nn.functional.hsigmoid_loss <cn_api_nn_functional_hsigmoid_loss>` ", "层次 sigmoid 损失函数"
     " :ref:`paddle.nn.functional.l1_loss <cn_paddle_nn_functional_loss_l1>` ", "用于计算 L1 损失"
+    " :ref:`paddle.nn.functional.poisson_nll_loss <cn_api_paddle_nn_functional_poisson_nll_loss>` ", "用于计算泊松分布的负对数似然损失"
     " :ref:`paddle.nn.functional.kl_div <cn_paddle_nn_functional_loss_kl_div>` ", "用于计算 KL 散度损失"
     " :ref:`paddle.nn.functional.log_loss <cn_api_fluid_layers_log_loss>` ", "用于计算负对数损失"
     " :ref:`paddle.nn.functional.margin_ranking_loss <cn_api_nn_cn_margin_ranking_loss>` ", "用于计算 margin rank loss 损失"
     " :ref:`paddle.nn.functional.mse_loss <cn_paddle_nn_functional_mse_loss>` ", "用于计算均方差误差"
     " :ref:`paddle.nn.functional.nll_loss <cn_api_nn_functional_nll_loss>` ", "用于计算 nll 损失"
+    " :ref:`paddle.nn.functional.gaussian_nll_loss <cn_api_paddle_nn_functional_gaussian_nll_loss>` ", "用于计算 gaussiannll 损失"
     " :ref:`paddle.nn.functional.npair_loss <cn_api_fluid_layers_npair_loss>` ", "成对数据损失计算"
     " :ref:`paddle.nn.functional.sigmoid_focal_loss <cn_api_nn_functional_sigmoid_focal_loss>` ", "用于计算分类任务中前景类-背景类数量不均衡问题的损失"
     " :ref:`paddle.nn.functional.smooth_l1_loss <cn_paddle_nn_functional_loss_smooth_l1>` ", "用于计算平滑 L1 损失"
@@ -488,6 +495,7 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.triplet_margin_loss <cn_api_paddle_nn_functional_triplet_margin_loss>` ", "用于计算 TripletMarginLoss"
     " :ref:`paddle.nn.functional.triplet_margin_with_distance_loss <cn_api_paddle_nn_functional_triplet_margin_with_distance_loss>` ", "用户自定义距离函数用于计算 triplet margin loss 损失"
     " :ref:`paddle.nn.functional.multi_label_soft_margin_loss <cn_api_nn_functional_multi_label_soft_margin_loss>` ", "用于计算多分类的 hinge loss 损失函数"
+    " :ref:`paddle.nn.functional.multi_margin_loss <cn_api_paddle_nn_functional_multi_margin_loss>` ", "用于计算 multi margin loss 损失函数"
 
 
 .. _common_functional:
@@ -508,8 +516,8 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.pixel_shuffle <cn_api_nn_functional_pixel_shuffle>` ", "将 Tensor 重新排列"
     " :ref:`paddle.nn.functional.pixel_unshuffle <cn_api_nn_functional_pixel_unshuffle>` ", "将 Tensor 重新排列，是 pixel_shuffle 的逆操作"
     " :ref:`paddle.nn.functional.square_error_cost <cn_api_fluid_layers_square_error_cost>` ", "用于计算预测值和目标值的方差估计"
-    " :ref:`paddle.nn.functional.unfold <cn_api_fluid_layers_unfold>` ", "对每一个卷积核覆盖下的区域，将元素重新排成一列"
-    " :ref:`paddle.nn.functional.fold <cn_api_nn_functional_fold>` ", "该 Op 用于将一个滑动局部块组合成一个大的张量,通常也被称为 col2im。"
+    " :ref:`paddle.nn.functional.unfold <cn_api_nn_functional_unfold>` ", "对每一个卷积核覆盖下的区域，将元素重新排成一列"
+    " :ref:`paddle.nn.functional.fold <cn_api_nn_functional_fold>` ", "用于将一个滑动局部块组合成一个大的 Tensor,通常也被称为 col2im。"
     " :ref:`paddle.nn.functional.gather_tree <cn_api_fluid_layers_gather_tree>` ", "整个束搜索结束后使用,获得每个时间步选择的的候选词 id 及其对应的在搜索树中的 parent 节点"
     " :ref:`paddle.nn.functional.glu <cn_api_nn_cn_glu>` ", "门控线性单元"
     " :ref:`paddle.nn.functional.pairwise_distance <cn_api_nn_functional_pairwise_distance>` ", "计算两组向量两两之间的距离"

@@ -11,7 +11,8 @@ class AliasAPIGen:
         self.api_dict = {}
         self.root_module = paddle
         self.not_display_prefix = set(
-            ["paddle.incubate", "paddle.fluid.contrib"])
+            ["paddle.incubate", "paddle.fluid.contrib"]
+        )
         self.id_api_dict = {}
         self.paddle_root_path = paddle_root_path
 
@@ -23,8 +24,9 @@ class AliasAPIGen:
                 self.api_dict["paddle" + "." + obj.__name__] = id(obj)
 
         for filefiner, name, ispkg in pkgutil.walk_packages(
-                path=self.root_module.__path__,
-                prefix=self.root_module.__name__ + "."):
+            path=self.root_module.__path__,
+            prefix=self.root_module.__name__ + ".",
+        ):
 
             try:
                 m = eval(name)
@@ -67,7 +69,7 @@ class AliasAPIGen:
                 return api
         return max_len_apis[0]
 
-    # try to get the realization of the api by grep "def api_name" or "class api_name" 
+    # try to get the realization of the api by grep "def api_name" or "class api_name"
     def _find_real_api_by_grep_file(self, api_list):
         api_ok = ""
         for api in api_list:
@@ -93,10 +95,13 @@ class AliasAPIGen:
             reg = "def %s(" % api.split(".")[-1]
 
         shell_cmd = "find %s -name '*.py' | xargs grep  \"%s\" " % (
-            self.paddle_root_path, reg)
+            self.paddle_root_path,
+            reg,
+        )
 
         p = subprocess.Popen(
-            shell_cmd, shell=True, stdout=subprocess.PIPE, stderr=None)
+            shell_cmd, shell=True, stdout=subprocess.PIPE, stderr=None
+        )
         retval = p.wait()
         if retval == 0:
             result = list(p.stdout.readlines())
@@ -139,7 +144,7 @@ class AliasAPIGen:
         rec_api = self._choose_recomment_api(api_list)
         api_list.remove(rec_api)
 
-        #sort others api by path length
+        # sort others api by path length
         api_list.sort(key=lambda api: api.count("."))
 
         return [real_api] + [rec_api] + api_list

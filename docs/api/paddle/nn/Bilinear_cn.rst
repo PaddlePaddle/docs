@@ -5,7 +5,7 @@ Bilinear
 
 .. py:function:: paddle.nn.Bilinear(in1_features, in2_features, out_features, weight_attr=None, bias_attr=None, name=None)
 
-该层对两个输入执行双线性张量积。
+该层对两个输入执行双线性 Tensor 积。
 
 例如：
 
@@ -28,9 +28,9 @@ Bilinear
 :::::::::
   - **in1_features** (int)：每个 **x1** 元素的维度。
   - **in2_features** (int)：每个 **x2** 元素的维度。
-  - **out_features** (int)：输出张量的维度。
+  - **out_features** (int)：输出 Tensor 的维度。
   - **weight_attr** (ParamAttr，可选)：指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。
-  - **bias_attr** (ParamAttr，可选)：指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性，此时 bias 的元素会被初始化成 0。如果设置成 False，则不会有 bias 加到 output 结果上。
+  - **bias_attr** (ParamAttr|bool，可选)：指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性，此时 bias 的元素会被初始化成 0。如果设置成 False，则不会有 bias 加到 output 结果上。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 属性
@@ -40,7 +40,7 @@ Bilinear
 
 返回
 :::::::::
-``Tensor``，一个形为 [batch_size, out_features] 的 2-D 张量。
+``Tensor``，一个形为 [batch_size, out_features] 的 2-D Tensor。
 
 代码示例
 :::::::::

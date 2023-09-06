@@ -384,7 +384,9 @@ set_state_dict(state_dict, use_structured_name=True)
     - **use_structured_name** (bool，可选) - 如果设置为 True，将使用 Layer 的结构性变量名作为 dict 的 key，否则将使用 Parameter 或者 Buffer 的变量名作为 key。默认值：True。
 
 **返回**
-无
+    - **missing_keys** (list) - 没有匹配到的参数名列表
+    - **unexpected_keys** (list) - state_dict 传入的无效的参数名列表
+
 
 **代码示例**
 
@@ -404,3 +406,48 @@ to(device=None, dtype=None, blocking=None)
 **代码示例**
 
 COPY-FROM: paddle.nn.Layer.to
+
+float(excluded_layers=None)
+'''''''''
+
+将所有浮点型的参数和通过 ``register_buffers()`` 注册的 Buffer 变量转换为 float 数据类型。
+
+**参数**
+
+    - **excluded_layers** （list|nn.Layer|None，可选） - 不需要转换数据类型的层。如果 ``excluded_layers`` 为 None，则转换所有浮点参数和缓冲区，默认值：None。
+
+**代码示例**
+
+COPY-FROM: paddle.nn.Layer.float
+
+float16(excluded_layers=None)
+'''''''''
+
+将所有浮点型的参数和通过 ``register_buffers()`` 注册的 Buffer 变量转换为 float16 数据类型。
+
+.. note::
+   nn.BatchNorm 不支持 float16 类型的权重，默认不对其权重进行类型转换。
+
+**参数**
+
+    - **excluded_layers** （list|nn.Layer|None，可选） - 不需要转换数据类型的层。如果 ``excluded_layers`` 为 None，则转换除 ``nn.BatchNorm`` 之外的所有浮点参数和缓冲区，默认值：None。
+
+**代码示例**
+
+COPY-FROM: paddle.nn.Layer.float16
+
+bfloat16(excluded_layers=None)
+'''''''''
+
+将所有浮点型的参数和通过 ``register_buffers()`` 注册的 Buffer 变量转换为 bfloat16 数据类型。
+
+.. note::
+   nn.BatchNorm 不支持 bfloat16 类型的权重，默认不对其权重进行类型转换。
+
+**参数**
+
+    - **excluded_layers** （list|nn.Layer|None，可选） - 不需要转换数据类型的层。如果 ``excluded_layers`` 为 None，则转换除 ``nn.BatchNorm`` 之外的所有浮点参数和缓冲区，默认值：None。
+
+**代码示例**
+
+COPY-FROM: paddle.nn.Layer.bfloat16

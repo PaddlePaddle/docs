@@ -15,9 +15,9 @@ prelu 激活层（PRelu Activation Operator）。计算公式如下：
 
 参数
 ::::::::::
-    - x (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
-    - weight (Tensor) - 可训练参数，数据类型同``x`` 一致，形状支持 2 种：[1] 或者 [in]，其中`in`为输入的通道数。
-    - data_format (str，可选) – 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是 "NC", "NCL", "NCHW", "NCDHW", "NLC", "NHWC" 或者 "NDHWC"。默认值："NCHW"。
+    - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
+    - **weight** (Tensor) - 可训练参数，数据类型同``x`` 一致，形状支持：[]、[1] 或者 [in]，其中`in`为输入的通道数。
+    - **data_format** (str，可选) – 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是 "NC", "NCL", "NCHW", "NCDHW", "NLC", "NHWC" 或者 "NDHWC"。默认值："NCHW"。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

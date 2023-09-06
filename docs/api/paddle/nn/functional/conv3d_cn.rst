@@ -57,20 +57,6 @@ conv3d
 ::::::::::::
 Tensor。
 
-抛出异常
-::::::::::::
-
-    - ``ValueError`` - 如果 ``use_cudnn`` 不是 bool 值。
-    - ``ValueError`` - 如果 ``data_format`` 既不是"NCDHW"也不是"NDHWC"。
-    - ``ValueError`` - 如果 ``input`` 的通道数未被明确定义。
-    - ``ValueError`` - 如果 ``padding`` 是字符串，既不是"SAME"也不是"VALID"。
-    - ``ValueError`` - 如果 ``padding`` 含有 5 个二元组，与批尺寸对应维度的值不为 0 或者与通道对应维度的值不为 0。
-    - ``ShapeError`` - 如果输入不是 5-D Tensor。
-    - ``ShapeError`` - 如果输入和卷积核的维度大小不相同。
-    - ``ShapeError`` - 如果输入的维度大小与 ``stride`` 之差不是 2。
-    - ``ShapeError`` - 如果输出的通道数不能被 ``groups`` 整除。
-
-
 代码示例
 ::::::::::::
 

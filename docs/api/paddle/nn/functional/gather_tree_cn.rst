@@ -8,7 +8,7 @@ gather_tree
 
 
 
-该 OP 在整个束搜索(Beam Search)结束后使用。在搜索结束后，可以获得每个时间步选择的的候选词 id 及其对应的在搜索树中的 parent 节点，``ids`` 和 ``parents`` 的形状布局均为 :math:`[max\_time, batch\_size, beam\_size]`，该 OP 从最后一个时间步回溯产生完整的 id 序列。
+在整个束搜索 (Beam Search) 结束后使用。在搜索结束后，可以获得每个时间步选择的的候选词 id 及其对应的在搜索树中的 parent 节点，``ids`` 和 ``parents`` 的形状布局均为 :math:`[max\_time, batch\_size, beam\_size]`，从最后一个时间步回溯产生完整的 id 序列。
 
 
 示例：

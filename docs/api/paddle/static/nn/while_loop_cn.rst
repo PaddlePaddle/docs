@@ -15,7 +15,7 @@ ____________________________________
 参数
 :::::::::
 
-    - **cond** (callable) - 返回 boolean 类型张量的可调用函数，用以判断循环是否继续执行。``cond`` 的参数和 ``loop_vars`` 相对应。
+    - **cond** (callable) - 返回 boolean 类型 Tensor 的可调用函数，用以判断循环是否继续执行。``cond`` 的参数和 ``loop_vars`` 相对应。
     - **body** (callable) - 循环执行的结构体。其返回一个包含 tensor 或 LoDTensorArray 的列表或元组，且这些 tensor 或 LoDTensorArray 的长度，结构，类型和 ``loop_vars`` 中的相同。且``body`` 的参数与 ``loop_vars`` 相对应。
     - **loop_vars** (list|tuple) - 包含 tensor 或 LoDTensorArray 的列表或是元组，将其传入至 ``cond`` 和 ``body`` 中，得到循环条件和输出值。
     - **is_test** (bool，可选) - 用于表明是否在测试阶段执行，默认值为 False。

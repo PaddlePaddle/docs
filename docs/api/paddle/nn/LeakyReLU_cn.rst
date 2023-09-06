@@ -4,7 +4,7 @@ LeakyReLU
 -------------------------------
 .. py:class:: paddle.nn.LeakyReLU(negative_slope=0.01, name=None)
 
-LeakyReLU 激活层
+LeakyReLU 激活层，创建一个可调用对象以计算输入 `x` 的 `LeakReLU` 。
 
 .. math::
 
@@ -16,11 +16,11 @@ LeakyReLU 激活层
         \end{aligned}
         \right. \\
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::
-    - negative_slope (float，可选) - :math:`x < 0` 时的斜率。默认值为 0.01。
+    - **negative_slope** (float，可选) - :math:`x < 0` 时的斜率。默认值为 0.01。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状

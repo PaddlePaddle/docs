@@ -7,7 +7,7 @@ sequence_softmax
 .. py:function:: paddle.static.nn.sequence_softmax(input, use_cudnn=False, name=None)
 
 .. note::
-    该 API 的输入只能是 LoDTensor，如果要处理的输入是 Tensor 类型，请使用 :ref:`paddle.nn.functional.softmax <cn_api_nn_cn_softmax>`。
+    该 API 的输入只能是带有 LoD 信息的 Tensor，如果要处理的输入是 Tensor 类型，请使用 :ref:`paddle.nn.functional.softmax <cn_api_nn_cn_softmax>`。
 
 根据 LoD 信息将输入的第 0 维度进行划分，在划分的每一个区间内部进行运算。
 
@@ -46,13 +46,13 @@ sequence_softmax
 参数
 :::::::::
 
-    - **input** (Tensor) - 维度为 :math:`[N, 1]` 或者 :math:`[N]` 的 LoDTensor，推荐使用 :math:`[N]`。支持的数据类型：float32，float64。
+    - **input** (Tensor) - 维度为 :math:`[N, 1]` 或者 :math:`[N]` 的 Tensor，推荐使用 :math:`[N]`。支持的数据类型：float32，float64。
     - **use_cudnn** (bool，可选) - 是否用 cudnn 核，仅当安装 cudnn 版本的 paddle 库且使用 gpu 训练或推理的时候生效。支持的数据类型：bool 型。默认值为 False。
     - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
-根据区间计算 softmax 之后的 LoDTensor，其维度与 input 的维度一致，数据类型与 input 的数据类型一致。
+根据区间计算 softmax 之后的 Tensor，其维度与 input 的维度一致，数据类型与 input 的数据类型一致。
 
 
 代码示例

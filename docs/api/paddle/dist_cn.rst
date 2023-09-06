@@ -3,9 +3,9 @@
 dist
 -------------------------------
 
-.. py:function:: paddle.dist(x, y, p=2)
+.. py:function:: paddle.dist(x, y, p=2, name=None)
 
-计算 `(x-y)` 的 p 范数（p-norm），需要注意这不是严格意义上的范数，仅作为距离的度量。输入 `x` 和 `y` 的形状（shape）必须是可广播的（broadcastable）。其含义如下，详情请参考 `numpy 的广播概念 <https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html>`_ ：
+计算 `(x-y)` 的 p 范数（p-norm），需要注意这不是严格意义上的范数，仅作为距离的度量。输入 `x` 和 `y` 的形状（shape）必须是可广播的（broadcastable）。其含义如下，详情请参考 `Tensor 的广播机制 <../../guides/beginner/tensor_cn.html#id7>`_ ：
 
 - 每个输入都至少有 1 维
 - 对两个输入的维度从后向前匹配，两个输入每一维的大小需要满足 3 个条件中的任意一个：相等、其中一个为 1 或者其中一个不存在。
@@ -19,6 +19,7 @@ dist
 x (4-D Tensor):  8 x 1 x 6 x 1
 
 y (4-D Tensor):  1 x 7 x 1 x 5
+
 
 (2) 确定输出 `z` 每一维度的大小：从两个输入的维度中选取最大值。
 
@@ -49,13 +50,16 @@ z (4-D Tensor):  8 x 7 x 6 x 5
 参数
 ::::::::::::
 
-  - **x** (Tensor): 1-D 到 6-D Tensor，数据类型为 float32 或 float64。
-  - **y** (Tensor): 1-D 到 6-D Tensor，数据类型为 float32 或 float64。
-  - **p** (float，optional)：用于设置需要计算的范数，数据类型为 float32 或 float64。默认值为 2。
+  - **x** (Tensor) - 1-D 到 6-D Tensor，数据类型为 bfloat16，float16，float32 或 float64。
+  - **y** (Tensor) - 1-D 到 6-D Tensor，数据类型为 bfloat16，float16，float32 或 float64。
+  - **p** (float，可选) - 用于设置需要计算的范数，数据类型为 float32 或 float64。默认值为 2。
+  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
+
+
 
 返回
 ::::::::::::
-张量，`(x-y)` 的 `p` 范数。
+Tensor，`(x-y)` 的 `p` 范数。
 
 代码示例
 ::::::::::::

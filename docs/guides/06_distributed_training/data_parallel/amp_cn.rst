@@ -46,7 +46,7 @@
 二、动态图操作实践
 ---------------------------
 
-使用飞桨框架提供的 API：\ ``paddle.amp.auto_cast``\ 和\ ``paddle.amp.GradScaler``\ 能够实现动态图的自动混合精度训练，即在相关 OP 的计算中，自动选择 FP16 或 FP32 格式计算。开启 AMP 模式后，使用 FP16 与 FP32 进行计算的 OP 列表可以参见\ `AMP 概览 <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/Overview_cn.html>`_\ 。
+使用飞桨框架提供的 API：\ ``paddle.amp.auto_cast``\ 和\ ``paddle.amp.GradScaler``\ 能够实现动态图的自动混合精度训练，即在相关 OP 的计算中，自动选择 FP16 或 FP32 格式计算。开启 AMP 模式后，使用 FP16 与 FP32 进行计算的 OP 列表可以参见 :ref:`cn_overview_amp` 。
 
 2.1 具体示例
 ^^^^^^^^^^^^^^^^^^
@@ -83,7 +83,7 @@
    class SimpleNet(nn.Layer):
 
       def __init__(self, input_size, output_size):
-         super(SimpleNet, self).__init__()
+         super().__init__()
          self.linear1 = nn.Linear(input_size, output_size)
          self.relu1 = nn.ReLU()
          self.linear2 = nn.Linear(input_size, output_size)
@@ -206,4 +206,4 @@
    使用 AMP 模式耗时:
    共计耗时 = 1.222 sec
 
-上述例子存放在：\ `example/amp/amp_dygraph.py <https://github.com/PaddlePaddle/FleetX/blob/old_develop/examples/amp/amp_dygraph.py>`_\ 。
+上述例子存放在：\ `example/amp/amp_dygraph.py <https://github.com/PaddlePaddle/PaddleFleetX/blob/old_develop/examples/amp/amp_dygraph.py>`_\ 。

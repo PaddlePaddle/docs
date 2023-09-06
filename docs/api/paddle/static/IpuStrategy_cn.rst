@@ -24,7 +24,7 @@ COPY-FROM: paddle.static.IpuStrategy
 set_graph_config(self, num_ipus, is_training, micro_batch_size, enable_manual_shard)
 '''''''''
 
-该接口用于向 IpuStrategy 实例传递 IPU 构图的 Graph 配置。
+向 IpuStrategy 实例传递 IPU 构图的 Graph 配置。
 
 **参数**
 
@@ -40,7 +40,7 @@ COPY-FROM: paddle.static.IpuStrategy.set_graph_config
 set_pipelining_config(self, enable_pipelining, batches_per_step, enable_gradient_accumulation, accumulation_factor)
 '''''''''
 
-该接口用于向 IpuStrategy 实例传递 IPU 构图的子图数据流水线配置。
+向 IpuStrategy 实例传递 IPU 构图的子图数据流水线配置。
 
 **参数**
 
@@ -56,7 +56,7 @@ COPY-FROM: paddle.static.IpuStrategy.set_pipelining_config
 set_precision_config(self, enable_fp16)
 '''''''''
 
-该接口用于向 IpuStrategy 实例传递 IPU 构图的精度配置。
+向 IpuStrategy 实例传递 IPU 构图的精度配置。
 
 **参数**
 
@@ -69,7 +69,7 @@ COPY-FROM: paddle.static.IpuStrategy.set_precision_config
 add_custom_op(self, paddle_op, popart_op, domain, version)
 '''''''''
 
-该接口用于向 IpuStrategy 实例传递 PopART 自定义算子的信息。
+向 IpuStrategy 实例传递 PopART 自定义算子的信息。
 
 **参数**
 
@@ -155,7 +155,7 @@ COPY-FROM: paddle.static.IpuStrategy.release_patch
 set_optimizer(self, optimizer)
 '''''''''
 
-该接口用于在 IPU 动转静时向 IpuStrategy 实例设置 optimizer。
+在 IPU 动转静时向 IpuStrategy 实例设置 optimizer。
 
 **参数**
 
@@ -168,7 +168,7 @@ COPY-FROM: paddle.static.IpuStrategy.set_optimizer
 parse_optimizer(self, optimizer)
 '''''''''
 
-该接口用于解析 IPU 动转静所需要的优化器参数，接收优化器实例并返回动转静所需要的优化器属性，当前仅支持解析学习率。
+解析 IPU 动转静所需要的优化器参数，接收优化器实例并返回动转静所需要的优化器属性，当前仅支持解析学习率。
 
 **参数**
 

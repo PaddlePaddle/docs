@@ -5,14 +5,15 @@ Fold
 
 .. py:function:: paddle.nn.Fold(output_sizes, kernel_sizes, dilations=1, paddings=0, strides=1, name=None)
 
-该 Op 用于将一个滑动局部块组合成一个大的张量。通常也被称为 col2im，用于批处理二维图像张量。Fold 通过对所有包含块的值求和来计算结果中的每个大张量的组合值。
+将一个滑动局部块组合成一个大的 Tensor。通常也被称为 col2im，用于批处理二维图像 Tensor。Fold 通过对所有包含块的值求和来计算结果中的每个大 Tensor 的组合值。
 
 对于输入 x，如果形状为[N, C_in, L]，其输出形状[N, C_out, H_out, W_out]，计算过程如下：
+
 .. math::
 
-    H_out &=  output_size[0]
-    W_out &=  output_size[1]
-    C_out &=  C_in / kernel\_sizes[0] / kernel\_sizes[1]
+    H_{out} &= output\_size[0] \\
+    W_{out} &= output\_size[1] \\
+    C_{out} &= \frac{C_{in}}{kernel\_sizes[0]\times kernel\_sizes[1]} \\
 
 .. note::
    对应的 `functional 方法` 请参考：:ref:`cn_api_nn_functional_fold` 。
@@ -31,8 +32,8 @@ Fold
 
 形状
 :::::::::
- - **输入** : 4-D Tensor，形状为[N, C_in, L]，数据类型为 float32 或者 float64
- - **输出**：形状如上面所描述的[N, Cout, H, W]，数据类型与 ``x`` 相同
+ - **输入** ：4-D Tensor，形状为[N, C_in, L]，数据类型为 float32 或者 float64
+ - **输出** ：形状如上面所描述的[N, Cout, H, W]，数据类型与 ``x`` 相同
 
 
 代码示例

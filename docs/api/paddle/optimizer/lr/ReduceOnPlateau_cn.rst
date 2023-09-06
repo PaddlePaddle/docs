@@ -7,7 +7,7 @@ ReduceOnPlateau
 
 `loss` 自适应的学习率衰减策略。默认情况下，当 ``loss`` 停止下降时，降低学习率。其思想是：一旦模型表现不再提升，将学习率降低 2-10 倍对模型的训练往往有益。
 
-`loss` 是传入到该类方法 ``step`` 中的 ``metrics`` 参数，其可以是 float 或者 shape 为[1]的 Tensor 或 numpy\.ndarray。如果 loss 停止下降超过 ``patience`` 个 epoch，学习率将会衰减为 ``learning_rate * factor`` （特殊地，``mode`` 也可以被设置为 ``'max'``，此时逻辑相反）。
+`loss` 是传入到该类方法 ``step`` 中的 ``metrics`` 参数，其可以是 float 或者 shape 为[]的 0-D Tensor 或 numpy\.ndarray。如果 loss 停止下降超过 ``patience`` 个 epoch，学习率将会衰减为 ``learning_rate * factor`` （特殊地，``mode`` 也可以被设置为 ``'max'``，此时逻辑相反）。
 
 此外，每降低一次学习率后，将会进入一个时长为 ``cooldown`` 个 epoch 的冷静期，在冷静期内，将不会监控 ``loss`` 的变化情况，也不会衰减。在冷静期之后，会继续监控 ``loss`` 的上升或下降。
 
@@ -44,7 +44,7 @@ step 函数需要在优化器的 `optimizer.step()` 函数之后调用，其根�
 
 **参数**
 
-  - **metrics** (Tensor|numpy.ndarray|float）- 用来判断是否需要降低学习率。如果 ``loss`` 连续 ``patience`` 个 ``step`` 没有下降，将会降低学习率。可以是 Tensor 或者 numpy.array，但是 shape 必须为[1]，也可以是 Python 的 float 类型。
+  - **metrics** (Tensor|numpy.ndarray|float）- 用来判断是否需要降低学习率。如果 ``loss`` 连续 ``patience`` 个 ``step`` 没有下降，将会降低学习率。可以是 Tensor 或者 numpy.array，但是 shape 必须为[]，也可以是 Python 的 float 类型。
   - **epoch** (int，可选) - 指定具体的 epoch 数。默认值 None，此时将会从-1 自动累加 ``epoch`` 数。
 
 **返回**

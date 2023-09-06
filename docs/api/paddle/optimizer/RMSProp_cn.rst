@@ -5,10 +5,7 @@ RMSProp
 
 .. py:class:: paddle.optimizer.RMSProp(learning_rate, rho=0.95, epsilon=1e-06, momentum=0.0, centered=False, parameters=None, weight_decay=None, grad_clip=None, name=None)
 
-
-
-
-该接口实现均方根传播（RMSProp）法，是一种未发表的，自适应学习率的方法。原演示幻灯片中的第 29 张提出了 `RMSProp <http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf>`_ 。等式如下所示：
+均方根传播（RMSProp）法，是一种未发表的，自适应学习率的方法。原演示幻灯片中的第 29 张提出了 `RMSProp <http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf>`_ 。等式如下所示：
 
 .. math::
     r(w, t) & = \rho r(w, t-1) + (1 - \rho)(\nabla Q_{i}(w))^2\\
@@ -34,11 +31,11 @@ RMSProp
 参数
 ::::::::::::
 
-    - **learning_rate** （float） - 全局学习率。
-    - **rho** （float，可选） - rho 是等式中的 :math:`rho`，默认值 0.95。
-    - **epsilon** （float，可选） - 等式中的 epsilon 是平滑项，避免被零除，默认值 1e-6。
-    - **momentum** （float，可选） - 方程中的β是动量项，默认值 0.0。
-    - **centered** （bool，可选） - 如果为 True，则通过梯度的估计方差，对梯度进行归一化；如果 False，则由未 centered 的第二个 moment 归一化。将此设置为 True 有助于模型训练，但会消耗额外计算和内存资源。默认为 False。
+    - **learning_rate** (float) - 全局学习率。
+    - **rho** (float，可选) - rho 是等式中的 :math:`rho`，默认值 0.95。
+    - **epsilon** (float，可选) - 等式中的 epsilon 是平滑项，避免被零除，默认值 1e-6。
+    - **momentum** (float，可选) - 方程中的β是动量项，默认值 0.0。
+    - **centered** (bool，可选) - 如果为 True，则通过梯度的估计方差，对梯度进行归一化；如果 False，则由未 centered 的第二个 moment 归一化。将此设置为 True 有助于模型训练，但会消耗额外计算和内存资源。默认为 False。
     - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
     - **weight_decay** (float|WeightDecayRegularizer，可选) - 正则化方法。可以是 float 类型的 L2 正则化系数或者正则化策略：:ref:`cn_api_fluid_regularizer_L1Decay` 、
       :ref:`cn_api_fluid_regularizer_L2Decay`。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
@@ -51,21 +48,7 @@ RMSProp
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    inp = paddle.rand([10,10], dtype="float32")
-    linear = paddle.nn.Linear(10, 10)
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    rmsprop = paddle.optimizer.RMSProp(learning_rate=0.1,
-            parameters=linear.parameters(),
-            weight_decay=0.01)
-    out.backward()
-    rmsprop.step()
-    rmsprop.clear_grad()
+COPY-FROM: paddle.optimizer.RMSProp
 
 方法
 ::::::::::::
@@ -85,17 +68,7 @@ step()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    a = paddle.rand([2,13], dtype="float32")
-    linear = paddle.nn.Linear(13, 5)
-    rmsprop = paddle.optimizer.RMSProp(learning_rate = 0.01,
-                                parameters = linear.parameters())
-    out = linear(a)
-    out.backward()
-    rmsprop.step()
-    rmsprop.clear_grad()
+COPY-FROM: paddle.optimizer.RMSProp.step
 
 minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 '''''''''
@@ -104,10 +77,10 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 **参数**
 
-    - **loss** (Tensor) – 需要最小化的损失值变量。
-    - **startup_program** (Program，可选) – 用于初始化 parameters 中参数的 :ref:`cn_api_fluid_Program`，默认值为 None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
-    - **parameters** (list，可选) – 待更新的 Parameter 或者 Parameter.name 组成的列表，默认值为 None，此时将更新所有的 Parameter。
-    - **no_grad_set** (set，可选) – 不需要更新的 Parameter 或者 Parameter.name 组成的集合，默认值为 None。
+    - **loss** (Tensor) - 需要最小化的损失值变量。
+    - **startup_program** (Program，可选) - 用于初始化 parameters 中参数的 :ref:`cn_api_fluid_Program`，默认值为 None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
+    - **parameters** (list，可选) - 待更新的 Parameter 或者 Parameter.name 组成的列表，默认值为 None，此时将更新所有的 Parameter。
+    - **no_grad_set** (set，可选) - 不需要更新的 Parameter 或者 Parameter.name 组成的集合，默认值为 None。
 
 **返回**
 
@@ -116,23 +89,9 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 **代码示例**
 
-.. code-block:: python
+COPY-FROM: paddle.optimizer.RMSProp.minimize
 
-    import paddle
-
-    inp = paddle.rand([10,10], dtype="float32")
-    linear = paddle.nn.Linear(10, 10)
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    rmsprop = paddle.optimizer.RMSProp(learning_rate=0.1,
-            parameters=linear.parameters(),
-            weight_decay=0.01)
-    out.backward()
-    rmsprop.step()
-    rmsprop.clear_grad()
-
-clear_gradients()
+clear_grad(set_to_zero=True)
 '''''''''
 
 .. note::
@@ -144,18 +103,7 @@ clear_gradients()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    a = paddle.rand([2,13], dtype="float32")
-    linear = paddle.nn.Linear(13, 5)
-    rmsprop = paddle.optimizer.RMSProp(learning_rate=0.02,
-                                     parameters=linear.parameters())
-    out = linear(a)
-    out.backward()
-    rmsprop.step()
-    rmsprop.clear_gradients()
+COPY-FROM: paddle.optimizer.RMSProp.clear_grad
 
 set_lr(value)
 '''''''''
@@ -176,26 +124,43 @@ set_lr(value)
 
 **代码示例**
 
+COPY-FROM: paddle.optimizer.RMSProp.set_lr
+
+set_lr_scheduler(scheduler)
+'''''''''
+
+.. note::
+
+该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+
+手动设置当前 ``optimizer`` 的学习率为 LRScheduler 类。
+
+**参数**
+
+    scheduler (LRScheduler) - 需要设置的学习率的 LRScheduler 类。
+
+**返回**
+
+无。
+
+**代码示例**
+
 .. code-block:: python
-
-
     import paddle
-
     linear = paddle.nn.Linear(10, 10)
     rmsprop = paddle.optimizer.RMSProp(0.1, parameters=linear.parameters())
-
-    # set learning rate manually by python float value
-    lr_list = [0.2, 0.3, 0.4, 0.5, 0.6]
-    for i in range(5):
-        rmsprop.set_lr(lr_list[i])
-        lr = rmsprop.get_lr()
-        print("current lr is {}".format(lr))
-    # Print:
-    #    current lr is 0.2
-    #    current lr is 0.3
-    #    current lr is 0.4
+    # set learning rate manually by class LRScheduler
+    scheduler = paddle.optimizer.lr.MultiStepDecay(learning_rate=0.5, milestones=[2,4,6], gamma=0.8)
+    rmsprop.set_lr_scheduler(scheduler)
+    lr = rmsprop.get_lr()
+    print("current lr is {}".format(lr))
     #    current lr is 0.5
-    #    current lr is 0.6
+    # set learning rate manually by another LRScheduler
+    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.1, step_size=5, gamma=0.6)
+    rmsprop.set_lr_scheduler(scheduler)
+    lr = rmsprop.get_lr()
+    print("current lr is {}".format(lr))
+    #    current lr is 0.1
 
 get_lr()
 '''''''''
@@ -213,35 +178,4 @@ float，当前步骤的学习率。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-    # example1: _LRScheduler is not used, return value is all the same
-    emb = paddle.nn.Embedding(10, 10, sparse=False)
-    rmsprop = paddle.optimizer.RMSProp(0.001, parameters = emb.parameters())
-    lr = rmsprop.get_lr()
-    print(lr) # 0.001
-
-    # example2: StepDecay is used, return the step learning rate
-    linear = paddle.nn.Linear(10, 10)
-    inp = paddle.rand([10,10], dtype="float32")
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    bd = [2, 4, 6, 8]
-    value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.5, step_size=2, gamma=0.1)
-    rmsprop = paddle.optimizer.RMSProp(scheduler,
-                           parameters=linear.parameters())
-
-    # first step: learning rate is 0.2
-    np.allclose(rmsprop.get_lr(), 0.2, rtol=1e-06, atol=0.0) # True
-
-    # learning rate for different steps
-    ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
-    for i in range(12):
-        rmsprop.step()
-        lr = rmsprop.get_lr()
-        scheduler.step()
-        np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
+COPY-FROM: paddle.optimizer.RMSProp.get_lr

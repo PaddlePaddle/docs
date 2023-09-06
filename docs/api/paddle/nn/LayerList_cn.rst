@@ -19,22 +19,7 @@ LayerList 用于保存子层列表，它包含的子层将被正确地注册和�
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    class MyLayer(paddle.nn.Layer):
-        def __init__(self):
-            super(MyLayer, self).__init__()
-            self.linears = paddle.nn.LayerList(
-                [paddle.nn.Linear(10, 10) for i in range(10)])
-
-        def forward(self, x):
-            # LayerList can act as an iterable, or be indexed using ints
-            for i, l in enumerate(self.linears):
-                x = self.linears[i // 2](x) + l(x)
-            return x
+COPY-FROM: paddle.nn.LayerList
 
 方法
 ::::::::::::
@@ -49,14 +34,7 @@ append()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    linears = paddle.nn.LayerList([paddle.nn.Linear(10, 10) for i in range(10)])
-    another = paddle.nn.Linear(10, 10)
-    linears.append(another)
-    print(len(linears))  # 11
+COPY-FROM: paddle.nn.LayerList.append
 
 
 insert()
@@ -66,19 +44,12 @@ insert()
 
 **参数**
 
-    - **index ** (int) - 要插入的位置。
+    - **index** (int) - 要插入的位置。
     - **sublayers** (Layer) - 要插入的子层。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    linears = paddle.nn.LayerList([paddle.nn.Linear(10, 10) for i in range(10)])
-    another = paddle.nn.Linear(10, 10)
-    linears.insert(3, another)
-    print(linears[3] is another)  # True
+COPY-FROM: paddle.nn.LayerList.insert
 
 extend()
 '''''''''
@@ -91,12 +62,4 @@ extend()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    linears = paddle.nn.LayerList([paddle.nn.Linear(10, 10) for i in range(10)])
-    another_list = paddle.nn.LayerList([paddle.nn.Linear(10, 10) for i in range(5)])
-    linears.extend(another_list)
-    print(len(linears))  # 15
-    print(another_list[0] is linears[10])  # True
+COPY-FROM: paddle.nn.LayerList.extend

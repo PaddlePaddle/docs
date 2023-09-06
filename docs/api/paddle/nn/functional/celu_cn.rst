@@ -13,14 +13,14 @@ celu 激活层（CELU Activation Operator）
 
     celu(x) = max(0, x) + min(0, \alpha * (e^{x/\alpha} − 1))
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::::
 
 ::::::::::
- - x (Tensor) - 输入的 ``Tensor``，数据类型为：float16、float32、float64。
- - alpha (float，可选) - celu 的 alpha 值，默认值为 1.0。
+ - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float16、float32、float64。
+ - **alpha** (float，可选) - celu 的 alpha 值，默认值为 1.0。
  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

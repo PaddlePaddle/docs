@@ -5,17 +5,30 @@ minimize_lbfgs
 
 .. py:function:: paddle.incubate.optimizer.functional.minimize_lbfgs(objective_func, initial_position, history_size=100, max_iters=50, tolerance_grad=1e-08, tolerance_change=1e-08, initial_inverse_hessian_estimate=None, line_search_fn='strong_wolfe', max_line_search_iters=50, initial_step_length=1.0, dtype='float32', name=None)
 
-使用 L-BFGS 方法求解可微函数 ``objective_func`` 的最小值。L-BFGS 是一种拟牛顿方法，用于解决可微函数上的无约束最优化问题。与之密切相关的是用于最优化的牛顿法，考虑迭代更新公式：
+``minimize_lbfgs`` 使用 L-BFGS 方法求解可微函数 ``objective_func`` 的最小值。
 
-.. math::
-    x_{k+1} = x_{k} + H_k \nabla{f_k}
+L-BFGS 是限制内存的 BFGS 方法，适用于海森矩阵为稠密矩阵、内存开销较大场景。BFGS 参考 :ref:`cn_api_incubate_optimizer_functional_minimize_bfgs` .
 
-如果 :math:`H_k` 是函数 :math:`f` 在 :math:`x_k`的逆海森矩阵，此时就是牛顿法。如果 :math:`H_k` 满足对称性和正定性，用来作为逆海森矩阵的近似，则为高斯-牛顿法。在实际算法中，近似逆海森矩阵是通过整个或部分搜索历史的梯度计算得到，前者对应 BFGS，后者对应于 L-BFGS。
+LBFGS 具体原理参考书籍 Jorge Nocedal, Stephen J. Wright, Numerical Optimization, Second Edition, 2006. pp179: Algorithm 7.5 (L-BFGS).
 
 
-参考
+使用方法
 :::::::::
-    Jorge Nocedal, Stephen J. Wright, Numerical Optimization, Second Edition, 2006. pp179: Algorithm 7.5 (L-BFGS).
+- minimize_bfgs 优化器当前实现为函数形式，与 Paddle 现有 SGD、Adam 优化器等使用略微有些区别。
+  SGD/Adam 等通过调用 backward()计算梯度，并使用 step()更新网络参数，而 minimize_lbfgs 传入
+  loss 函数，并返回优化后参数，返回参数需要通过 :ref:`cn_api_paddle_tensor_creation_assign` 以 inpalce 方式进行更新。具体参考代码示例 1.
+- 由于当前实现上一些限制，当前 minimize_bfgs 要求函数输入为一维 Tensor。当输入参数维度超过一维，
+  可以先将参数展平，使用 minimize_bfgs 计算后，再 reshape 到原有形状，更新参数。具体参考代码示例 2.
+
+
+.. warning::
+  该 API 目前为 Beta 版本，函数签名在未来版本可能发生变化。
+
+.. note::
+  当前仅支持动态图模式下使用。
+
+.. note::
+  当前仅支持 Vector-scalar 形式函数，即目标函数输入为一维 Tensor，输出为只包含一个元素 Tensor。
 
 参数
 :::::::::
@@ -40,6 +53,15 @@ minimize_lbfgs
     - objective_value (Tensor)：迭代终止位置的函数值。
     - objective_gradient (Tensor)：迭代终止位置的梯度。
 
-代码示例
+
+
+代码示例 1：
 ::::::::::
-COPY-FROM: paddle.incubate.optimizer.functional.minimize_lbfgs
+
+COPY-FROM: paddle.incubate.optimizer.functional.minimize_lbfgs:code-example1
+
+
+代码示例 2：输入参数维度超过一维
+::::::::::
+
+COPY-FROM: paddle.incubate.optimizer.functional.minimize_lbfgs:code-example2

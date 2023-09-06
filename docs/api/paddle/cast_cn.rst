@@ -3,7 +3,7 @@
 cast
 -------------------------------
 
-.. py:function:: paddle.cast(x,dtype)
+.. py:function:: paddle.cast(x, dtype)
 
 
 

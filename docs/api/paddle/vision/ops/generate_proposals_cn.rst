@@ -28,7 +28,7 @@ generate_proposals
 ::::::::::::
         - **scores** (Tensor) - Shape 为 ``[N，A，H，W]`` 的 4-D Tensor，表示每个框包含 object 的概率。N 是批大小，A 是 anchor 数，H 和 W 是 feature map 的高度和宽度。数据类型支持 float32。
         - **bbox_deltas** (Tensor)- Shape 为 ``[N，4 * A，H，W]`` 的 4-D Tensor，表示预测出的候选框的位置和 anchor 的位置之间的距离。数据类型支持 float32。
-        - **img_size** (Tensor) - Shape 为 ``[N，2]`` 的 2-D 张量，表示原始图像的大小信息。信息包含原始图像宽、高和 feature map 相对于原始图像缩放的比例。数据类型可为 float32 或 float64。
+        - **img_size** (Tensor) - Shape 为 ``[N，2]`` 的 2-D Tensor，表示原始图像的大小信息。信息包含原始图像宽、高和 feature map 相对于原始图像缩放的比例。数据类型可为 float32 或 float64。
         - **anchors** (Tensor) - Shape 为 ``[H，W，A，4]`` 的 4-D Tensor。H 和 W 是 feature map 的高度和宽度。A 是每个位置的框的数量。每个 anchor 以 ``（xmin，ymin，xmax，ymax）`` 的格式表示，其中， ``xmin`` 和 ``ymin`` 为左上角的坐标， ``xmax`` 和 ``ymax`` 为右下角的坐标。数据类型支持 float32。
         - **variances** (Tensor) - Shape 为 ``[H，W，A，4]`` 的 4-D Tensor，表示 ``anchors`` 的方差。每个 anchor 的方差都是 ``（xcenter，ycenter，w，h）`` 的格式表示。数据类型支持 float32。
         - **pre_nms_top_n** (int，可选) - 每张图在 NMS 操作之前要保留的总框数。默认值为 6000。

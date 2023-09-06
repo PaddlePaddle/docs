@@ -7,6 +7,8 @@ stream_guard
 
 可以切换当前的 CUDA stream 为输入指定的 stream。
 
+.. note::
+    该 API 目前仅支持动态图模式。
 
 参数
 ::::::::::::

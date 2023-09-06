@@ -1,8 +1,8 @@
 # Error Debugging Experience
 
-## 1、Dygraph to Static Graph Error Log
+## 1、Dynamic Graph to Static Graph Error Log
 ### 1.1 How to Read the Error Log
-The following is an example code of Dygraph-to-Static error reporting:
+The following is an example code of Dynamic-to-Static error reporting:
 ```python
 import paddle
 import numpy as np
@@ -28,7 +28,7 @@ The error log can be divided into 4 parts from top to bottom:
 
 - **Native Python error stack**: As shown in the first two lines, it represents a series of subsequent errors caused by the function `train()` called on line 145 of the `/workspace/Paddle/run_dy2stat_error.py` file.
 
-- **The start flag of Dygraph-to-Static error stack**: `In transformed code`, represents the dynamic-to-static error message stack, and refers to the error message when the transformed code is running. In the actual scene, you can directly search for the `In transformed code` keyword, and start from this line and read the error log.
+- **The start flag of Dynamic-to-Static error stack**: `In transformed code`, represents the dynamic-to-static error message stack, and refers to the error message when the transformed code is running. In the actual scene, you can directly search for the `In transformed code` keyword, and start from this line and read the error log.
 
 - **User code error stack**: It hides the useless error message at the framework level, and reports the error stack of the user code. We add a wavy line and HERE indicator under the error code to indicate the specific error location. We also expanded the error line code context to help you quickly locate the error location. As shown in the third part of the above figure, it can be seen that the user code that made the last error is `x = paddle.reshape(x, shape=[1, two])`.
 
@@ -39,8 +39,8 @@ The error log can be divided into 4 parts from top to bottom:
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/revise_suggestion.png" style="zoom:45%" />
 
 ### 1.2 Customized Display of Error Information
-#### 1.2.1 Native error message without being processed by the Dygraph-to-Static error reporting module
-If you want to view Paddle's native error message stack, that is, the error message stack that has not been processed by the Dygraph-to-Static error reporting module, you can set the environment variable `TRANSLATOR_DISABLE_NEW_ERROR=1` to turn off the dynamic-to-static error module. The default value of this environment variable is 0, which means that the module is enabled by default.
+#### 1.2.1 Native error message without being processed by the Dynamic-to-Static error reporting module
+If you want to view Paddle's native error message stack, that is, the error message stack that has not been processed by the Dynamic-to-Static error reporting module, you can set the environment variable `TRANSLATOR_DISABLE_NEW_ERROR=1` to turn off the dynamic-to-static error module. The default value of this environment variable is 0, which means that the module is enabled by default.
 Add the following code to the code in section 1.1 to view the native error message:
 ```python
 import os
@@ -56,7 +56,7 @@ The C++ error stack is hidden by default. You can set the C++ environment variab
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/c%2B%2B_error_log.png" style="zoom:45%" />
 
 ## 2、Debugging Method
-Before debugging, **please ensure that the dynamic graph code before conversion can run successfully**. The following introduces several debugging methods recommended in Dygraph-to-Static.
+Before debugging, **please ensure that the dynamic graph code before conversion can run successfully**. The following introduces several debugging methods recommended in Dynamic-to-Static.
 ### 2.1 Pdb Debugging
 pdb is a module in Python that defines an interactive Pyhton source code debugger. It supports setting breakpoints and single stepping between source lines, listing source code and variables, running Python code, etc.
 #### 2.1.1 Debugging steps
@@ -84,7 +84,7 @@ pdb is a module in Python that defines an interactive Pyhton source code debugge
     (Pdb)
     ```
 
-- step3: Enter l, p and other commands in the pdb interactive mode to view the corresponding code and variables of the static graph after Dygraph-to-Static, and then troubleshoot related problems.
+- step3: Enter l, p and other commands in the pdb interactive mode to view the corresponding code and variables of the static graph after Dynamic-to-Static, and then troubleshoot related problems.
     ```
     > /tmp/tmpm0iw5b5d.py(9)func()
     -> two = paddle.full(shape=[1], fill_value=2, dtype='int32')
@@ -147,7 +147,7 @@ def func(x):
 func(np.ones([1]))
 print(func.code)
 ```
-After running, you can see the static graph code after Dygraph-to-Static:
+After running, you can see the static graph code after Dynamic-to-Static:
 ```python
 def func(x):
     x = paddle.assign(x)
@@ -198,12 +198,12 @@ Variable: assign_0.tmp_0
   - data: [1]
 ```
 ### 2.4 Print Log
-Dygraph-to-Static module records additional debugging information in the log to help you understand whether the function is successfully converted during the Dygraph-to-Static. You can call `paddle.jit.set_verbosity(level=0, also_to_stdout=False)` or set the environment variable `TRANSLATOR_VERBOSITY=level` to set the log detail level and view the log information of different levels. Currently, `level` can take values 0-3:
+Dynamic-to-Static module records additional debugging information in the log to help you understand whether the function is successfully converted during the Dynamic-to-Static. You can call `paddle.jit.set_verbosity(level=0, also_to_stdout=False)` or set the environment variable `TRANSLATOR_VERBOSITY=level` to set the log detail level and view the log information of different levels. Currently, `level` can take values 0-3:
 
 - 0: No log
 - 1: Including the information of the dynamic-to-static conversion process, such as the source code before conversion and the callable object of conversion
 - 2: Including the above information and more detailed function conversion logs
-- 3: Including the above information, as well as a more detailed Dygraph-to-Static log
+- 3: Including the above information, as well as a more detailed Dynamic-to-Static log
 
 > **WARNING:**
 > The log includes source code and other information. Please make sure that it does not contain sensitive information before sharing the log.
@@ -312,7 +312,7 @@ Under the dynamic graph, the following container classes of container are provid
     ```python
     class MyLayer(paddle.nn.Layer):
         def __init__(self, num_stacked_param):
-            super(MyLayer, self).__init__()
+            super().__init__()
 
             w1 = paddle.create_parameter(shape=[2, 2], dtype='float32')
             w2 = paddle.create_parameter(shape=[2], dtype='float32')
@@ -327,7 +327,7 @@ Under the dynamic graph, the following container classes of container are provid
     ```python
     class MyLayer(paddle.nn.Layer):
         def __init__(self):
-            super(MyLayer, self).__init__()
+            super().__init__()
 
             layer1 = paddle.nn.Linear(10, 10)
             layer2 = paddle.nn.Linear(10, 16)

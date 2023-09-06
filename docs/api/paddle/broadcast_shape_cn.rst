@@ -5,13 +5,15 @@ broadcast_shape
 
 .. py:function:: paddle.broadcast_shape(x_shape, y_shape)
 
+.. note::
+    该函数返回对 x_shape 大小的 Tensor 和 y_shape 大小的 Tensor 做 broadcast 操作后得到的 shape，如您想了解更多，请参见 `Tensor 介绍`_ .
 
-该函数返回对 x_shape 大小的张量和 y_shape 大小的张量做 broadcast 操作后得到的 shape，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
+    .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
 参数
 :::::::::
-    - x_shape (list[int]|tuple[int]) - 输入 Tensor 的 shape。
-    - y_shape (list[int]|tuple[int]) - 输入 Tensor 的 shape。
+    - **x_shape** (list[int]|tuple[int]) - 输入 Tensor 的 shape。
+    - **y_shape** (list[int]|tuple[int]) - 输入 Tensor 的 shape。
 
 返回
 :::::::::

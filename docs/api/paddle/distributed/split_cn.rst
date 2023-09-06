@@ -71,14 +71,14 @@ split
 
 参数
 :::::::::
-    - x (Tensor) - 输入 Tensor。Tensor 的数据类型为：float16、float32、float64、int32、int64。
-    - size (list|tuple) - 指定参数形状的列表或元组，包含 2 个元素。
-    - operation (str) - 指定操作名称，当前支持的操作名称为'embedding'或'linear'。
-    - axis (int，可选) - 指定沿哪个维度切分参数。默认值：0。
-    - num_partitions (int，可选) - 指定参数的划分数。默认值：1。
-    - gather_out (bool，可选) - 是否聚合所有设备的计算结果。默认地，聚合所有设备的计算结果。默认值：True。
-    - weight_attr (ParamAttr，可选) - 指定参数的属性。默认值：None。
-    - bias_attr (ParamAttr，可选) - 指定偏置的属性。默认值：None。
+    - **x** (Tensor) - 输入 Tensor。Tensor 的数据类型为：float16、float32、float64、int32、int64。
+    - **size** (list|tuple) - 指定参数形状的列表或元组，包含 2 个元素。
+    - **operation** (str) - 指定操作名称，当前支持的操作名称为'embedding'或'linear'。
+    - **axis** (int，可选) - 指定沿哪个维度切分参数。默认值：0。
+    - **num_partitions** (int，可选) - 指定参数的划分数。默认值：1。
+    - **gather_out** (bool，可选) - 是否聚合所有设备的计算结果。默认地，聚合所有设备的计算结果。默认值：True。
+    - **weight_attr** (ParamAttr，可选) - 指定参数的属性。默认值：None。
+    - **bias_attr** (ParamAttr，可选) - 指定偏置的属性。默认值：None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

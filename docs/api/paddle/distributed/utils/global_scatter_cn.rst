@@ -40,11 +40,11 @@ local_count[3]代表从 x 里取出 0 个 batch 的数据向第 1 张卡的第 1
 
 参数
 :::::::::
-    - x (Tensor) - 输入 Tensor。Tensor 的数据类型必须是 float16、float32、 float64、int32、int64。
-    - local_count (Tensor) - 拥有 n_expert * world_size 个数据的 Tensor，用于表示有多少数据发送。Tensor 的数据类型必须是 int64。
-    - global_count (Tensor) - 拥有 n_expert * world_size 个数据的 Tensor，用于表示有多少数据接收。Tensor 的数据类型必须是 int64。
-    - group (Group，可选) - new_group 返回的 Group 实例，或者设置为 None 表示默认地全局组。默认值：None。
-    - use_calc_stream (bool，可选) - 标识使用计算流还是通信流。默认值：True，表示使用计算流。
+    - **x** (Tensor) - 输入 Tensor。Tensor 的数据类型必须是 float16、float32、 float64、int32、int64。
+    - **local_count** (Tensor) - 拥有 n_expert * world_size 个数据的 Tensor，用于表示有多少数据发送。Tensor 的数据类型必须是 int64。
+    - **global_count** (Tensor) - 拥有 n_expert * world_size 个数据的 Tensor，用于表示有多少数据接收。Tensor 的数据类型必须是 int64。
+    - **group** (Group，可选) - new_group 返回的 Group 实例，或者设置为 None 表示默认地全局组。默认值：None。
+    - **use_calc_stream** (bool，可选) - 标识使用计算流还是通信流。默认值：True，表示使用计算流。
 
 返回
 :::::::::

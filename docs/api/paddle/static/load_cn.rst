@@ -6,7 +6,7 @@ load
 .. py:function:: paddle.static.load(program, model_path, executor=None, var_list=None)
 
 
-该接口从 Program 中过滤出参数和优化器信息，然后从文件中获取相应的值。
+从 Program 中过滤出参数和优化器信息，然后从文件中获取相应的值。
 
 如果 Program 和加载的文件之间参数的维度或数据类型不匹配，将引发异常。
 

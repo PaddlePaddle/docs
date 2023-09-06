@@ -25,6 +25,7 @@ Profiler 功能使用相关的枚举类 API
     " :ref:`ProfilerTarget <cn_api_profiler_profilertarget>` ", "用来指定性能分析的设备"
     " :ref:`ProfilerState <cn_api_profiler_profilerstate>` ", "用来表示性能分析器的状态"
     " :ref:`SortedKeys <cn_api_profiler_sortedkeys>` ", "用来指定表单内数据的排序方式"
+    " :ref:`SummaryView <cn_api_profiler_summaryview>` ", "用来指定数据表单类型"
 
 .. _about_profiler_control:
 
