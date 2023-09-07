@@ -12,7 +12,7 @@ torch.abs_(input)
 paddle.abs_(x)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
