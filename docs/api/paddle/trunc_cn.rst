@@ -1,4 +1,4 @@
-.. _cn_api_tensor_trunc:
+.. _cn_api_paddle_trunc:
 
 trunc
 -------------------------------

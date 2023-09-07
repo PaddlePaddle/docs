@@ -1,4 +1,4 @@
-.. _cn_api_incubate_segment_max:
+.. _cn_api_paddle_incubate_segment_max:
 
 segment_max
 -------------------------------

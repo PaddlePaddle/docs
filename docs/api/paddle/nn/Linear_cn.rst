@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_layer_common_Linear:
+.. _cn_api_paddle_nn_Linear:
 
 Linear
 -------------------------------
@@ -23,8 +23,8 @@ Linear 层只接受一个 Tensor 作为输入，形状为 :math:`[batch\_size, *
 
 - **in_features** (int) – 线性变换层输入单元的数目。
 - **out_features** (int) – 线性变换层输出单元的数目。
-- **weight_attr** (ParamAttr，可选) – 指定权重参数的属性。默认值为 None，表示使用默认的权重参数属性。如果 :math:`ParamAttr` 的初始值未设置，则使用 :math:`Xavier` 初始化参数，具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-- **bias_attr** (ParamAttr|bool，可选) – 指定偏置参数的属性。:math:`bias\_attr` 为 bool 类型且设置为 False 时，表示不会为该层添加偏置。:math:`bias\_attr` 如果设置为 True 或者 None，则表示使用默认的偏置参数属性，将偏置参数初始化为 0。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。默认值为 None。
+- **weight_attr** (ParamAttr，可选) – 指定权重参数的属性。默认值为 None，表示使用默认的权重参数属性。如果 :math:`ParamAttr` 的初始值未设置，则使用 :math:`Xavier` 初始化参数，具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+- **bias_attr** (ParamAttr|bool，可选) – 指定偏置参数的属性。:math:`bias\_attr` 为 bool 类型且设置为 False 时，表示不会为该层添加偏置。:math:`bias\_attr` 如果设置为 True 或者 None，则表示使用默认的偏置参数属性，将偏置参数初始化为 0。具体用法请参见 :ref:`cn_api_paddle_ParamAttr`。默认值为 None。
 - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 属性

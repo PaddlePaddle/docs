@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_gather_tree:
+.. _cn_api_paddle_nn_functional_gather_tree:
 
 gather_tree
 -------------------------------

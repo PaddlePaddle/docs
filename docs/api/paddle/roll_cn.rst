@@ -1,4 +1,4 @@
-.. _cn_api_tensor_manipulation_roll:
+.. _cn_api_paddle_roll:
 
 roll
 -------------------------------

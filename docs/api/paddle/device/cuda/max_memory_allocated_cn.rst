@@ -1,4 +1,4 @@
-.. _cn_api_device_cuda_max_memory_allocated_cn:
+.. _cn_api_paddle_device_cuda_max_memory_allocated:
 
 
 max_memory_allocated

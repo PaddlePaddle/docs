@@ -1,4 +1,4 @@
-.. _cn_api_tensor_sort:
+.. _cn_api_paddle_sort:
 
 sort
 -------------------------------

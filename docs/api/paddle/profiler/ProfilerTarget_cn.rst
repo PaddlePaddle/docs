@@ -1,4 +1,4 @@
-.. _cn_api_profiler_profilertarget:
+.. _cn_api_paddle_profiler_ProfilerTarget:
 
 ProfilerTarget
 ---------------------
@@ -6,7 +6,7 @@ ProfilerTarget
 .. py:class:: paddle.profiler.ProfilerTarget
 
 
-ProfilerTarget 枚举类用来指定 :ref:`性能分析 <cn_api_profiler_profiler>` 的设备。目前仅支持 CPU，GPU 和 MLU。
+ProfilerTarget 枚举类用来指定 :ref:`性能分析 <cn_api_paddle_profiler_Profiler>` 的设备。目前仅支持 CPU，GPU 和 MLU。
 
 设备说明
 ::::::::::::

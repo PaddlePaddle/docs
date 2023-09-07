@@ -1,4 +1,4 @@
-.. _cn_api_tensor_search_index_select:
+.. _cn_api_paddle_index_select:
 
 index_select
 -------------------------------

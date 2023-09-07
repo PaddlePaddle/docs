@@ -1,4 +1,4 @@
-.. _cn_api_tensor_search_nonzero:
+.. _cn_api_paddle_nonzero:
 
 nonzero
 -------------------------------

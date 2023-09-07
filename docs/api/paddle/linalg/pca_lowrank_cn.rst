@@ -1,4 +1,4 @@
-.. _cn_api_linalg_pca_lowrank:
+.. _cn_api_paddle_linalg_pca_lowrank:
 
 pca_lowrank
 -------------------------------

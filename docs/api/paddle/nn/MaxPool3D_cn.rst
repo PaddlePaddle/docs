@@ -1,4 +1,4 @@
-.. _cn_api_nn_MaxPool3D:
+.. _cn_api_paddle_nn_MaxPool3D:
 
 MaxPool3D
 -------------------------------

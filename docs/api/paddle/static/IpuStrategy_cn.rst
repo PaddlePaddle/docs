@@ -1,4 +1,4 @@
-.. _cn_api_fluid_IpuStrategy:
+.. _cn_api_paddle_static_IpuStrategy:
 
 IpuStrategy
 -------------------------------
@@ -7,7 +7,7 @@ IpuStrategy
 .. py:class:: paddle.static.IpuStrategy()
 
 
-``IpuStrategy`` 使用户能更精准地控制 :ref:`cn_api_fluid_IpuCompiledProgram` 中计算图的建造方法。
+``IpuStrategy`` 使用户能更精准地控制 :ref:`cn_api_paddle_static_IpuCompiledProgram` 中计算图的建造方法。
 
 
 返回

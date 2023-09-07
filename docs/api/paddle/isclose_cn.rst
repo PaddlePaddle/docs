@@ -1,4 +1,4 @@
-.. _cn_api_tensor_isclose:
+.. _cn_api_paddle_isclose:
 
 isclose
 -------------------------------

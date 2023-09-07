@@ -1,4 +1,4 @@
-.. _cn_api_static_cn_InputSpec:
+.. _cn_api_paddle_static_InputSpec:
 
 InputSpec
 -------------------------------

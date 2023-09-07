@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_gcd:
+.. _cn_api_paddle_gcd:
 
 gcd
 -------------------------------

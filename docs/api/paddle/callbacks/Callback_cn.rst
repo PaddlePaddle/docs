@@ -5,7 +5,7 @@ Callback
 
 .. py:class:: paddle.callbacks.Callback()
 
- ``Callback`` 是一个基类，用于实现用户自定义的 callback。如果想使用除 :ref:`EarlyStopping <_cn_api_paddle_callbacks_EarlyStopping>` 外的自定义策略终止训练，可以通过在自定义的 callback 类中设置 ``model.stop_training=True`` 来实现。
+ ``Callback`` 是一个基类，用于实现用户自定义的 callback。如果想使用除 :ref:`EarlyStopping <cn_api_paddle_callbacks_EarlyStopping>` 外的自定义策略终止训练，可以通过在自定义的 callback 类中设置 ``model.stop_training=True`` 来实现。
 
 代码示例
 ::::::::::::

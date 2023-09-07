@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_max_unpool2d:
+.. _cn_api_paddle_nn_functional_max_unpool2d:
 
 
 max_unpool2d
@@ -9,7 +9,7 @@ max_unpool2d
 这个 API 实现了 `2D 最大反池化` 操作
 
 .. note::
-   更多细节请参考对应的 `Class` 请参考 :ref:`cn_api_nn_MaxUnPool2D` 。
+   更多细节请参考对应的 `Class` 请参考 :ref:`cn_api_paddle_nn_MaxUnPool2D` 。
 
 
 输入：

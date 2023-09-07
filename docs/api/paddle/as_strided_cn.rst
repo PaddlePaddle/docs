@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_as_strided:
+.. _cn_api_paddle_as_strided:
 
 as_strided
 --------------------------------

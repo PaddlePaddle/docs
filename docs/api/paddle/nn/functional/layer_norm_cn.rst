@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_layer_norm:
+.. _cn_api_paddle_nn_functional_layer_norm:
 
 layer_norm
 -------------------------------
@@ -7,7 +7,7 @@ layer_norm
 
 推荐使用 nn.LayerNorm。
 
-详情见 :ref:`cn_api_nn_LayerNorm` 。
+详情见 :ref:`cn_api_paddle_nn_LayerNorm` 。
 
 参数
 ::::::::::::

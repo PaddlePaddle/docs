@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_meshgrid:
+.. _cn_api_paddle_meshgrid:
 
 meshgrid
 -------------------------------

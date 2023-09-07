@@ -1,4 +1,4 @@
-.. _cn_api_tensor_inner:
+.. _cn_api_paddle_inner:
 
 inner
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_incubate_graph_sample_neighbors:
+.. _cn_api_paddle_incubate_graph_sample_neighbors:
 
 graph_sample_neighbors
 -------------------------------

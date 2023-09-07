@@ -1,4 +1,4 @@
-.. _cn_api_paddle_sparse_lowrank:
+.. _cn_api_paddle_sparse_pca_lowrank:
 
 pca_lowrank
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_cummin:
+.. _cn_api_paddle_cummin:
 
 cummin
 -------------------------------

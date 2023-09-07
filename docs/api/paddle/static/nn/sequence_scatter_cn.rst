@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_sequence_scatter:
+.. _cn_api_paddle_static_nn_sequence_scatter:
 
 sequence_scatter
 -------------------------------

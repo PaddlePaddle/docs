@@ -1,4 +1,4 @@
-.. _cn_api_paddle_framework_is_grad_enabled:
+.. _cn_api_paddle_is_grad_enabled:
 
 is_grad_enabled
 -------------------------------

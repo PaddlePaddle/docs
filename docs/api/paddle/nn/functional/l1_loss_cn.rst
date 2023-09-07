@@ -1,4 +1,4 @@
-.. _cn_paddle_nn_functional_loss_l1:
+.. _cn_api_paddle_nn_functional_l1_loss:
 
 l1_loss
 -------------------------------

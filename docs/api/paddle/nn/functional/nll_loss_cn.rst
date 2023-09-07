@@ -1,10 +1,10 @@
-.. _cn_api_nn_functional_nll_loss:
+.. _cn_api_paddle_nn_functional_nll_loss:
 
 nll_loss
 -------------------------------
 .. py:function:: paddle.nn.functional.nll_loss(input, label, weight=None, ignore_index=-100, reduction='mean', name=None)
 
-返回 `negative log likelihood`。可在 :ref:`cn_api_nn_loss_NLLLoss` 查看详情。
+返回 `negative log likelihood`。可在 :ref:`cn_api_paddle_nn_NLLLoss` 查看详情。
 
 参数
 :::::::::

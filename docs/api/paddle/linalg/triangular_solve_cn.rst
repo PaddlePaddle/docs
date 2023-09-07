@@ -1,4 +1,4 @@
-.. _cn_api_linalg_triangular_solve:
+.. _cn_api_paddle_linalg_triangular_solve:
 
 triangular_solve
 -------------------------------

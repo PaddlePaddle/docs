@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_py_func:
+.. _cn_api_paddle_static_py_func:
 
 py_func
 -------------------------------

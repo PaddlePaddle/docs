@@ -1,4 +1,4 @@
-.. _cn_api_text_datasets_UCIHousing:
+.. _cn_api_paddle_text_UCIHousing:
 
 UCIHousing
 -------------------------------

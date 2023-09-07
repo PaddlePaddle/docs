@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_multiplex:
+.. _cn_api_paddle_multiplex:
 
 multiplex
 -------------------------------

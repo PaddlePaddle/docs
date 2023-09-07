@@ -51,14 +51,16 @@ def extract_code_blocks_from_rst(docstr):
         A list of code-blocks, indent removed.
     """
     code_blocks = []
-    ds_list = docstr.expandtabs(tabsize=4).split("\n")
+    ds_list = docstr.expandtabs(tabsize=4).split(b"\n")
     lastlineindex = len(ds_list) - 1
     cb_started = False
     cb_start_pat = re.compile(r"((code)|(code-block))::\s*i?python[23]?")
     cb_cur = []
     cb_cur_indent = -1
     for lineno, linecont in enumerate(ds_list):
-        if re.search(cb_start_pat, linecont):
+        lineno = str(lineno)
+        linecont = str(linecont)
+        if re.search(cb_start_pat, str(linecont)):
             if not cb_started:
                 cb_started = True
                 continue
@@ -75,18 +77,18 @@ def extract_code_blocks_from_rst(docstr):
                 if lineno == lastlineindex:
                     mo = re.search(r"\S", linecont)
                     if mo is not None and cb_cur_indent <= mo.start():
-                        cb_cur.append(linecont)
+                        cb_cur.append(str(linecont))
                     if len(cb_cur):
                         code_blocks.append(inspect.cleandoc("\n".join(cb_cur)))
                     break
                 if cb_cur_indent < 0:
-                    mo = re.search(r"\S", linecont)
+                    mo = re.search(r"\S", str(linecont))
                     if mo is None:
                         continue
                     cb_cur_indent = mo.start()
-                    cb_cur.append(linecont)
+                    cb_cur.append(str(linecont))
                 else:
-                    mo = re.search(r"\S", linecont)
+                    mo = re.search(r"\S", str(linecont))
                     if mo is None:
                         continue
                     if cb_cur_indent <= mo.start():
@@ -113,7 +115,7 @@ def extract_code_blocks_from_md(docstr):
     """
     code_blocks = []
     pat = re.compile(r"```i?python[23]?(.*?)```", re.MULTILINE + re.DOTALL)
-    for cbit in pat.finditer(docstr):
+    for cbit in pat.finditer(str(docstr)):
         code_blocks.append(inspect.cleandoc(cbit.group()))
     # logger.info('extracted %d code blocks.', len(code_blocks))
     return code_blocks
@@ -123,9 +125,9 @@ def extract_code_blocks_from_file(filename):
     r = os.path.splitext(filename)
     ext = r[1].lower()
     if ext == '.md':
-        return extract_code_blocks_from_md(open(filename, 'r').read())
+        return extract_code_blocks_from_md(open(filename, 'rb').read())
     elif ext == '.rst':
-        return extract_code_blocks_from_rst(open(filename, 'r').read())
+        return extract_code_blocks_from_rst(open(filename, 'rb').read())
     else:
         return []
 
@@ -222,7 +224,7 @@ def extract_rst_title(filename):
         'docinfo_xform': 0,
         'initial_header_level': 2,
     }
-    with open(filename, 'r') as fileobj:
+    with open(filename, 'rb') as fileobj:
         doctree = docutils.core.publish_doctree(
             fileobj.read(), settings_overrides=overrides
         )
@@ -265,7 +267,7 @@ def extract_params_desc_from_rst_file(filename, section_title='参数'):
 
 
 def extract_md_title(filename):
-    with open(filename, 'r') as fileobj:
+    with open(filename, 'rb') as fileobj:
         html = markdown.markdown(fileobj.read())
         mo = re.search(r'<h1>(.*?)</h1>', html)
         if mo:

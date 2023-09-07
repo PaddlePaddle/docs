@@ -1,4 +1,4 @@
-.. _cn_api_fluid_io_DataLoader:
+.. _cn_api_paddle_io_DataLoader:
 
 DataLoader
 -------------------------------

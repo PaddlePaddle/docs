@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_batch_norm:
+.. _cn_api_paddle_nn_functional_batch_norm:
 
 batch_norm
 -------------------------------
@@ -7,7 +7,7 @@ batch_norm
 
 推荐使用 nn.BatchNorm1D，nn.BatchNorm2D, nn.BatchNorm3D，由内部调用此方法。
 
-详情见 :ref:`cn_api_nn_BatchNorm1D` 。
+详情见 :ref:`cn_api_paddle_nn_BatchNorm1D` 。
 
 参数
 ::::::::::::

@@ -1,4 +1,4 @@
-.. _cn_api_text_datasets_Imdb:
+.. _cn_api_paddle_text_Imdb:
 
 Imdb
 -------------------------------

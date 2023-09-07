@@ -1,4 +1,4 @@
-.. _cn_api_incubate_identity_loss:
+.. _cn_api_paddle_incubate_identity_loss:
 
 identity_loss
 -------------------------------

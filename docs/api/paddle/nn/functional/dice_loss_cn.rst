@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_dice_loss:
+.. _cn_api_paddle_nn_functional_dice_loss:
 
 dice_loss
 -------------------------------

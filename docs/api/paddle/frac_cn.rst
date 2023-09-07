@@ -1,4 +1,4 @@
-.. _cn_api_tensor_frac:
+.. _cn_api_paddle_frac:
 
 frac
 -------------------------------

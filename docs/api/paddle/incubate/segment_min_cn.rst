@@ -1,4 +1,4 @@
-.. _cn_api_incubate_segment_min:
+.. _cn_api_paddle_incubate_segment_min:
 
 segment_min
 -------------------------------

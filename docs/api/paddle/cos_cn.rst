@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_cos:
+.. _cn_api_paddle_cos:
 
 cos
 -------------------------------

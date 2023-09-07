@@ -1,4 +1,4 @@
-.. _cn_api_linalg_multi_dot:
+.. _cn_api_paddle_linalg_multi_dot:
 
 multi_dot
 -------------------------------

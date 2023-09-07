@@ -1,4 +1,4 @@
-.. _cn_api_amp_debugging_check_numerics:
+.. _cn_api_paddle_amp_debugging_check_numerics:
 
 check_numerics
 -------------------------------

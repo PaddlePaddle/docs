@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_sequence_softmax:
+.. _cn_api_paddle_static_nn_sequence_softmax:
 
 sequence_softmax
 -------------------------------
@@ -7,7 +7,7 @@ sequence_softmax
 .. py:function:: paddle.static.nn.sequence_softmax(input, use_cudnn=False, name=None)
 
 .. note::
-    该 API 的输入只能是带有 LoD 信息的 Tensor，如果要处理的输入是 Tensor 类型，请使用 :ref:`paddle.nn.functional.softmax <cn_api_nn_cn_softmax>`。
+    该 API 的输入只能是带有 LoD 信息的 Tensor，如果要处理的输入是 Tensor 类型，请使用 :ref:`paddle.nn.functional.softmax <cn_api_paddle_nn_functional_softmax>`。
 
 根据 LoD 信息将输入的第 0 维度进行划分，在划分的每一个区间内部进行运算。
 

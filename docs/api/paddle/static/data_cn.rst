@@ -1,4 +1,4 @@
-.. _cn_api_static_cn_data:
+.. _cn_api_paddle_static_data:
 
 data
 -------------------------------

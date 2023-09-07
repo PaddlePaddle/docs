@@ -1,4 +1,4 @@
-.. _cn_api_tensor_bincount:
+.. _cn_api_paddle_bincount:
 
 bincount
 -------------------------------

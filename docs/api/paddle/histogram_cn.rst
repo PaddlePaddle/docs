@@ -1,4 +1,4 @@
-.. _cn_api_tensor_histogram:
+.. _cn_api_paddle_histogram:
 
 histogram
 -------------------------------

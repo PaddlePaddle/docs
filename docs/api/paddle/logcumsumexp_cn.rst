@@ -1,4 +1,4 @@
-.. _cn_api_tensor_logcumsumexp:
+.. _cn_api_paddle_logcumsumexp:
 
 logcumsumexp
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_fluid_input_embedding:
+.. _cn_api_paddle_static_nn_embedding:
 
 embedding
 -------------------------------

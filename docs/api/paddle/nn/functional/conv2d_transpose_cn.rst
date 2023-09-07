@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_conv2d_transpose:
+.. _cn_api_paddle_nn_functional_conv2d_transpose:
 
 conv2d_transpose
 -------------------------------

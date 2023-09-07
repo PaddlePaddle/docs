@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_stanh:
+.. _cn_api_paddle_stanh:
 
 stanh
 -------------------------------

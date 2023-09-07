@@ -1,4 +1,4 @@
-.. _cn_api_audio_backends_get_current_backend:
+.. _cn_api_paddle_audio_backends_get_current_backend:
 
 get_current_backend
 -------------------------------
