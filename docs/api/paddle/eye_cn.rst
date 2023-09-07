@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_eye:
+.. _cn_api_paddle_eye:
 
 eye
 -------------------------------

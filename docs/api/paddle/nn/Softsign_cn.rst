@@ -1,4 +1,4 @@
-.. _cn_api_nn_Softsign:
+.. _cn_api_paddle_nn_Softsign:
 
 Softsign
 -------------------------------

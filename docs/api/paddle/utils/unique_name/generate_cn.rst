@@ -1,4 +1,4 @@
-.. _cn_api_fluid_unique_name_generate:
+.. _cn_api_paddle_utils_unique_name_generate:
 
 generate
 -------------------------------

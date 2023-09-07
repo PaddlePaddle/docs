@@ -1,4 +1,4 @@
-.. _cn_api_tensor_index_add:
+.. _cn_api_paddle_index_add:
 
 index_add
 -------------------------------

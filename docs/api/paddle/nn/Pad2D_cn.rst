@@ -1,4 +1,4 @@
-.. _cn_api_nn_Pad2D:
+.. _cn_api_paddle_nn_Pad2D:
 
 Pad2D
 -------------------------------

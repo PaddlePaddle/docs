@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_remove_weight_norm:
+.. _cn_api_paddle_nn_utils_remove_weight_norm:
 
 remove_weight_norm
 -------------------------------

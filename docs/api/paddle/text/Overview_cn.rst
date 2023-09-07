@@ -17,13 +17,13 @@ paddle.text 目录是飞桨在文本领域的高层 API。有 Paddle 内置以�
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`Conll05st <cn_api_text_datasets_Conll05st>` ", "Conll05st 数据集"
-    " :ref:`Imdb <cn_api_text_datasets_Imdb>` ", "Imdb 数据集"
-    " :ref:`Imikolov <cn_api_text_datasets_Imikolov>` ", "Imikolov 数据集"
-    " :ref:`Movielens <cn_api_text_datasets_Movielens>` ", "Movielens 数据集"
-    " :ref:`UCIHousing <cn_api_text_datasets_UCIHousing>` ", "UCIHousing 数据集"
-    " :ref:`WMT14 <cn_api_text_datasets_WMT14>` ", "WMT14 数据集"
-    " :ref:`WMT16 <cn_api_text_datasets_WMT16>` ", "WMT16 数据集"
+    " :ref:`Conll05st <cn_api_paddle_text_Conll05st>` ", "Conll05st 数据集"
+    " :ref:`Imdb <cn_api_paddle_text_Imdb>` ", "Imdb 数据集"
+    " :ref:`Imikolov <cn_api_paddle_text_Imikolov>` ", "Imikolov 数据集"
+    " :ref:`Movielens <cn_api_paddle_text_Movielens>` ", "Movielens 数据集"
+    " :ref:`UCIHousing <cn_api_paddle_text_UCIHousing>` ", "UCIHousing 数据集"
+    " :ref:`WMT14 <cn_api_paddle_text_WMT14>` ", "WMT14 数据集"
+    " :ref:`WMT16 <cn_api_paddle_text_WMT16>` ", "WMT16 数据集"
 
 .. _about_paddlenlp:
 

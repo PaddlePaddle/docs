@@ -1,4 +1,4 @@
-.. _cn_api_geometric_sample_neighbors:
+.. _cn_api_paddle_geometric_sample_neighbors:
 
 sample_neighbors
 -------------------------------

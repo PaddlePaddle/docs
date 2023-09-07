@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_creation_assign:
+.. _cn_api_paddle_assign:
 
 assign
 -------------------------------

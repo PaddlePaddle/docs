@@ -1,4 +1,4 @@
-.. _cn_api_tensor_index_put_:
+.. _cn_api_paddle_index_put_:
 
 index_put\_
 -------------------------------

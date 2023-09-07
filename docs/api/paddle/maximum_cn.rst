@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_maximum:
+.. _cn_api_paddle_maximum:
 
 maximum
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_kron:
+.. _cn_api_paddle_kron:
 
 kron
 -------------------------------

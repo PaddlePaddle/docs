@@ -1,4 +1,4 @@
-.. _cn_api_tensor_bitwise_xor:
+.. _cn_api_paddle_bitwise_xor:
 
 bitwise_xor
 -------------------------------

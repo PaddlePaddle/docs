@@ -1,4 +1,4 @@
-.. _cn_api_audio_functional_get_window:
+.. _cn_api_paddle_audio_functional_get_window:
 
 get_window
 -------------------------------

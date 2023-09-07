@@ -1,4 +1,4 @@
-.. _cn_api_amp_debugging_disable_operator_stats_collection:
+.. _cn_api_paddle_amp_debugging_disable_operator_stats_collection:
 
 disable_operator_stats_collection
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_functional_soft_margin_losss:
+.. _cn_api_paddle_nn_functional_soft_margin_loss:
 
 soft_margin_loss
 -------------------------------

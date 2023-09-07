@@ -1,4 +1,4 @@
-.. _cn_api_tensor_clip:
+.. _cn_api_paddle_clip:
 
 clip
 -------------------------------

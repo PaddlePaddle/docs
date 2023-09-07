@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_cummax:
+.. _cn_api_paddle_cummax:
 
 cummax
 -------------------------------

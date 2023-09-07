@@ -1,4 +1,4 @@
-.. _cn_api_tensor_random_randint:
+.. _cn_api_paddle_randint:
 
 randint
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_incubate_softmax_mask_fuse_upper_triangle:
+.. _cn_api_paddle_incubate_softmax_mask_fuse_upper_triangle:
 
 softmax_mask_fuse_upper_triangle
 -------------------------------

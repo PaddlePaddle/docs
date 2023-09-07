@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_grid_sample:
+.. _cn_api_paddle_nn_functional_grid_sample:
 
 grid_sample
 -------------------------------

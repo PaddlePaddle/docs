@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_temporal_shift:
+.. _cn_api_paddle_nn_functional_temporal_shift:
 
 temporal_shift
 -------------------------------

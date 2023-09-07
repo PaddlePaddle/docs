@@ -1,4 +1,4 @@
-.. _cn_api_tensor_broadcast_to:
+.. _cn_api_paddle_broadcast_to:
 
 broadcast_to
 -------------------------------

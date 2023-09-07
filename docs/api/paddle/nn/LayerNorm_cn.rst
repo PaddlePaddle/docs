@@ -1,4 +1,4 @@
-.. _cn_api_nn_LayerNorm:
+.. _cn_api_paddle_nn_LayerNorm:
 
 LayerNorm
 -------------------------------
@@ -28,8 +28,8 @@ LayerNorm
 
     - **normalized_shape** (int|list|tuple) – 需规范化的 shape，期望的输入 shape 为 ``[*, normalized_shape[0], normalized_shape[1], ..., normalized_shape[-1]]``。如果是单个整数，则此模块将在最后一个维度上规范化（此时最后一维的维度需与该参数相同）。
     - **epsilon** (float，可选) - 指明在计算过程中是否添加较小的值到方差中以防止除零。默认值：1e-05。
-    - **weight_attr** (ParamAttr|bool|None，可选) - 指定权重参数属性的对象。如果为 False 固定为 1，不进行学习。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** (ParamAttr|None，可选) - 指定偏置参数属性的对象。如果为 False 固定为 0，不进行学习。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **weight_attr** (ParamAttr|bool|None，可选) - 指定权重参数属性的对象。如果为 False 固定为 1，不进行学习。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **bias_attr** (ParamAttr|None，可选) - 指定偏置参数属性的对象。如果为 False 固定为 0，不进行学习。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状

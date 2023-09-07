@@ -1,4 +1,4 @@
-.. _cn_api_audio_backends_list_available_backends:
+.. _cn_api_paddle_audio_backends_list_available_backends:
 
 list_available_backends
 -------------------------------

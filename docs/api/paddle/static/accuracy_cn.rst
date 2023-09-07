@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_accuracy:
+.. _cn_api_paddle_static_accuracy:
 
 accuracy
 -------------------------------

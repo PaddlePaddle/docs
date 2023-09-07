@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_switch_case:
+.. _cn_api_paddle_static_nn_switch_case:
 
 switch_case
 -------------------------------

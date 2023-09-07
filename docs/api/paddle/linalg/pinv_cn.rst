@@ -1,4 +1,4 @@
-.. _cn_api_linalg_pinv:
+.. _cn_api_paddle_linalg_pinv:
 
 pinv
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_tensor_real:
+.. _cn_api_paddle_real:
 
 real
 ------

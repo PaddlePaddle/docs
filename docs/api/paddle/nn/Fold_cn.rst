@@ -1,4 +1,4 @@
-.. _cn_api_nn_fold:
+.. _cn_api_paddle_nn_Fold:
 
 Fold
 -------------------------------
@@ -16,7 +16,7 @@ Fold
     C_{out} &= \frac{C_{in}}{kernel\_sizes[0]\times kernel\_sizes[1]} \\
 
 .. note::
-   对应的 `functional 方法` 请参考：:ref:`cn_api_nn_functional_fold` 。
+   对应的 `functional 方法` 请参考：:ref:`cn_api_paddle_nn_functional_fold` 。
 
 
 

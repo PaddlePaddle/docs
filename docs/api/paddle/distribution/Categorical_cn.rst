@@ -1,4 +1,4 @@
-.. _cn_api_distribution_Categorical:
+.. _cn_api_paddle_distribution_Categorical:
 
 Categorical
 -------------------------------

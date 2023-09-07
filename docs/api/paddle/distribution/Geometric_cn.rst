@@ -1,4 +1,4 @@
-.. _cn_api_distribution_Geometric:
+.. _cn_api_paddle_distribution_Geometric:
 
 Geometric
 -------------------------------

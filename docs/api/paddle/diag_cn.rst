@@ -1,4 +1,4 @@
-.. _cn_api_paddle_cn_diag:
+.. _cn_api_paddle_diag:
 
 diag
 -------------------------------

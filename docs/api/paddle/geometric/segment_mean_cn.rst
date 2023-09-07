@@ -1,4 +1,4 @@
-.. _cn_api_geometric_segment_mean:
+.. _cn_api_paddle_geometric_segment_mean:
 
 segment_mean
 -------------------------------

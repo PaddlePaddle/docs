@@ -1,4 +1,4 @@
-.. _cn_api_tensor_sum:
+.. _cn_api_paddle_sum:
 
 sum
 -------------------------------

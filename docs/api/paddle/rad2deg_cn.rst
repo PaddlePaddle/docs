@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_rad2deg:
+.. _cn_api_paddle_rad2deg:
 
 rad2deg
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_asinh:
+.. _cn_api_paddle_asinh:
 
 asinh
 -------------------------------

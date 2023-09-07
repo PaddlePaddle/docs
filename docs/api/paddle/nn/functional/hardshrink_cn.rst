@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_hard_shrink:
+.. _cn_api_paddle_nn_functional_hardshrink:
 
 hardshrink
 -------------------------------

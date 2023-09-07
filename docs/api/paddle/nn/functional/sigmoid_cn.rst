@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_sigmoid:
+.. _cn_api_paddle_nn_functional_sigmoid:
 
 sigmoid
 -------------------------------

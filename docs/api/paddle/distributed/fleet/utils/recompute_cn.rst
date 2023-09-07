@@ -1,4 +1,4 @@
-.. _cn_api_distributed_fleet_utils_recompute:
+.. _cn_api_paddle_distributed_fleet_utils_recompute:
 
 recompute
 -------------------------------

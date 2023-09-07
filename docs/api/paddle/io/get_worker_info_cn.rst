@@ -1,4 +1,4 @@
-.. _cn_api_io_cn_get_worker_info:
+.. _cn_api_paddle_io_get_worker_info:
 
 get_worker_info
 -------------------------------

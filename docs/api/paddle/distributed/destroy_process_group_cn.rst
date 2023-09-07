@@ -1,4 +1,4 @@
-.. _cn_api_distributed_destroy_process_group:
+.. _cn_api_paddle_distributed_destroy_process_group:
 
 destroy_process_group
 -------------------------------

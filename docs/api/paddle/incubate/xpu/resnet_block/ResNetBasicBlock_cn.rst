@@ -1,4 +1,4 @@
-.. _cn_api_incubate_xpu_ResNetBasicBlock:
+.. _cn_api_paddle_incubate_xpu_resnet_block_ResNetBasicBlock:
 
 ResNetBasicBlock
 -------------------------------
@@ -25,9 +25,9 @@ ResNetBasicBlock
     - **has_shortcut** (bool，可选) - 设置是否计算第三个 Conv2D 和 BatchNorm。为 True 时计算，否则不进行计算。默认值： ``False`` 。
     - **use_global_stats** (bool，可选) – 指示是否使用全局均值和方差。在预测或测试模式下，将 ``use_global_stats`` 设置为 true 或将 ``is_test`` 设置为 true，这两种行为是等效的。在训练模式中，当设置 ``use_global_stats`` 为 True 时，在训练期间也将使用全局均值和方差。默认值：False。
     - **is_test** (bool，可选) - 指示是否在测试阶段，非训练阶段使用训练过程中统计到的全局均值和全局方差。默认值：False。
-    - **filter_attr** (ParamAttr，可选) - 指定对应 ``Conv2D`` 权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **scale_attr** (ParamAttr，可选) - 指定对应 ``BatchNorm`` 权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** (ParamAttr，可选) - 指定对应 ``BatchNorm`` 偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **filter_attr** (ParamAttr，可选) - 指定对应 ``Conv2D`` 权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **scale_attr** (ParamAttr，可选) - 指定对应 ``BatchNorm`` 权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **bias_attr** (ParamAttr，可选) - 指定对应 ``BatchNorm`` 偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
     - **moving_mean_name** (str，可选) - ``moving_mean`` 的名称，存储全局均值。默认值：None。
     - **moving_var_name** (str，可选) - ``moving_var`` 的名称，存储全局方差。默认值：None。
     - **padding** (int，可选) - 填充大小。为一个整数，padding_height = padding_width = padding。默认值：0。

@@ -1,4 +1,4 @@
-.. _cn_api_amp_debugging_collect_operator_stats:
+.. _cn_api_paddle_amp_debugging_collect_operator_stats:
 
 collect_operator_stats
 -------------------------------

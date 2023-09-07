@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_square_error_cost:
+.. _cn_api_paddle_nn_functional_square_error_cost:
 
 square_error_cost
 -------------------------------

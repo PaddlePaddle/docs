@@ -1,4 +1,4 @@
-.. _cn_api_distributed_is_available:
+.. _cn_api_paddle_distributed_is_available:
 
 is_available
 -------------------------------

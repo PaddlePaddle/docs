@@ -1,4 +1,4 @@
-.. _cn_api_tensor_poisson:
+.. _cn_api_paddle_poisson:
 
 poisson
 -------------------------------

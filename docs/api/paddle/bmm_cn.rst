@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_bmm:
+.. _cn_api_paddle_bmm:
 
 bmm
 -------------------------------

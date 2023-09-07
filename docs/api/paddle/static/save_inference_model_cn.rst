@@ -1,4 +1,4 @@
-.. _cn_api_static_save_inference_model:
+.. _cn_api_paddle_static_save_inference_model:
 
 save_inference_model
 -------------------------------

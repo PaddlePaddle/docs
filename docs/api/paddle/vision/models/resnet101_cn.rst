@@ -17,7 +17,7 @@ resnet101
 返回
 :::::::::
 
-:ref:`cn_api_fluid_dygraph_Layer`，101 层的 ResNet 模型实例。
+:ref:`cn_api_paddle_nn_Layer`，101 层的 ResNet 模型实例。
 
 代码示例
 :::::::::
