@@ -1,4 +1,4 @@
-.. _cn_api_device_cuda_get_device_capability:
+.. _cn_api_paddle_device_cuda_get_device_capability:
 
 get_device_capability
 -------------------------------

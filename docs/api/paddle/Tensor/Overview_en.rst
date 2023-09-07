@@ -1,4 +1,3 @@
-
 .. _en_paddle_Tensor:
 
 paddle.Tensor

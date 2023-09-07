@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_while_loop:
+.. _cn_api_paddle_static_nn_while_loop:
 
 while_loop
 ____________________________________

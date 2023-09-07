@@ -1,4 +1,4 @@
-.. _cn_api_profiler_record_event:
+.. _cn_api_paddle_profiler_RecordEvent:
 
 RecordEvent
 ---------------------
@@ -20,7 +20,7 @@ RecordEvent
 COPY-FROM: paddle.profiler.RecordEvent:code-example1
 
 .. note::
-    RecordEvent 只有在 :ref:`性能分析器 <cn_api_profiler_profiler>` 处于 RECORD 状态才会生效。
+    RecordEvent 只有在 :ref:`性能分析器 <cn_api_paddle_profiler_Profiler>` 处于 RECORD 状态才会生效。
 
 方法
 ::::::::::::

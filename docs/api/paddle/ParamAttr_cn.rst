@@ -1,4 +1,4 @@
-.. _cn_api_fluid_ParamAttr:
+.. _cn_api_paddle_ParamAttr:
 
 
 ParamAttr
@@ -10,7 +10,7 @@ ParamAttr
 
 .. note::
     该类中的 ``gradient_clip`` 属性在 2.0 版本会废弃，推荐使用 ``need_clip`` 来设置梯度裁剪范围，并在初始化 ``optimizer`` 时设置梯度裁剪。
-    共有三种裁剪策略： :ref:`cn_api_fluid_clip_ClipGradByGlobalNorm` 、 :ref:`cn_api_fluid_clip_ClipGradByNorm` 、 :ref:`cn_api_fluid_clip_ClipGradByValue` 。
+    共有三种裁剪策略： :ref:`cn_api_paddle_nn_ClipGradByGlobalNorm` 、 :ref:`cn_api_paddle_nn_ClipGradByNorm` 、 :ref:`cn_api_paddle_nn_ClipGradByValue` 。
 
 创建一个参数属性对象，用户可设置参数的名称、初始化方式、学习率、正则化规则、是否需要训练、梯度裁剪方式、是否做模型平均等属性。
 

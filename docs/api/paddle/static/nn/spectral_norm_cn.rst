@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_spectral_norm:
+.. _cn_api_paddle_static_nn_spectral_norm:
 
 spectral_norm
 -------------------------------

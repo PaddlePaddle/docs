@@ -1,4 +1,4 @@
-.. _cn_api_incubate_softmax_mask_fuse:
+.. _cn_api_paddle_incubate_softmax_mask_fuse:
 
 softmax_mask_fuse
 -------------------------------

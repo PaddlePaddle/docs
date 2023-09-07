@@ -1,4 +1,4 @@
-.. _cn_api_tensor_diagonal:
+.. _cn_api_paddle_diagonal:
 
 diagonal
 -------------------------------

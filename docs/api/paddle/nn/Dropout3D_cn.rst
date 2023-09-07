@@ -1,4 +1,4 @@
-.. _cn_api_nn_Dropout3D:
+.. _cn_api_paddle_nn_Dropout3D:
 
 Dropout3D
 -------------------------------
@@ -10,7 +10,7 @@ Dropout3D
 在动态图模式下，请使用模型的 `eval()` 方法切换至测试阶段。
 
 .. note::
-   对应的 `functional 方法` 请参考：:ref:`cn_api_nn_functional_dropout3d` 。
+   对应的 `functional 方法` 请参考：:ref:`cn_api_paddle_nn_functional_dropout3d` 。
 
 参数
 :::::::::

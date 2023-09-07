@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_lcm:
+.. _cn_api_paddle_lcm:
 
 lcm
 -------------------------------

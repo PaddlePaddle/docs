@@ -1,4 +1,4 @@
-.. _cn_api_device_Event:
+.. _cn_api_paddle_device_Event:
 
 Event
 -------------------------------

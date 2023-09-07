@@ -1,4 +1,4 @@
-.. _cn_api_tensor_bitwise_and:
+.. _cn_api_paddle_bitwise_and:
 
 bitwise_and
 -------------------------------

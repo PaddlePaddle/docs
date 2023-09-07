@@ -1,4 +1,4 @@
-.. _cn_api_tensor_numel:
+.. _cn_api_paddle_numel:
 
 numel
 -------------------------------

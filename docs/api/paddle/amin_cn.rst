@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_amin:
+.. _cn_api_paddle_amin:
 
 amin
 -------------------------------

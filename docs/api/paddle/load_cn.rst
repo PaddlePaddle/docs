@@ -1,4 +1,4 @@
-.. _cn_api_paddle_framework_io_load:
+.. _cn_api_paddle_load:
 
 load
 -----

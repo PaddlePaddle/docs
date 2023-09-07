@@ -1,4 +1,4 @@
-.. _cn_api_profiler_load_profiler_result:
+.. _cn_api_paddle_profiler_load_profiler_result:
 
 load_profiler_result
 -------------------------------

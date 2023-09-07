@@ -1,4 +1,4 @@
-.. _cn_api_tensor_increment:
+.. _cn_api_paddle_increment:
 
 increment
 -------------------------------

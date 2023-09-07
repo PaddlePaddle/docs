@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_unflatten:
+.. _cn_api_paddle_unflatten:
 
 unflatten
 --------------------------------

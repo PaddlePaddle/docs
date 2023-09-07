@@ -1,4 +1,4 @@
-.. _cn_api_fluid_BuildStrategy:
+.. _cn_api_paddle_static_BuildStrategy:
 
 BuildStrategy
 -------------------------------

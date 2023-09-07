@@ -1,4 +1,4 @@
-.. _cn_api_tensor_is_floating_point:
+.. _cn_api_paddle_is_floating_point:
 
 is_floating_point
 -------------------------------

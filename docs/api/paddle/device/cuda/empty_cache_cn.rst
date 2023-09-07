@@ -1,4 +1,4 @@
-.. _cn_api_empty_cache:
+.. _cn_api_paddle_device_cuda_empty_cache:
 
 empty_cache
 -------------------------------

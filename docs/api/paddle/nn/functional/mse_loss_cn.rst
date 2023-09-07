@@ -1,4 +1,4 @@
-.. _cn_paddle_nn_functional_mse_loss:
+.. _cn_api_paddle_nn_functional_mse_loss:
 
 mse_loss
 -------------------------------

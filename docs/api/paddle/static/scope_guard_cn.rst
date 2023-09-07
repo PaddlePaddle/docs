@@ -1,4 +1,4 @@
-.. _cn_api_fluid_executor_scope_guard:
+.. _cn_api_paddle_static_scope_guard:
 
 scope_guard
 -------------------------------

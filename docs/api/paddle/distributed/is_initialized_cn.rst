@@ -1,4 +1,4 @@
-.. _cn_api_distributed_is_initialized:
+.. _cn_api_paddle_distributed_is_initialized:
 
 is_initialized
 -------------------------------

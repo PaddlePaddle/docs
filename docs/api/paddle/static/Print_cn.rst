@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_Print:
+.. _cn_api_paddle_static_Print:
 
 Print
 -------------------------------

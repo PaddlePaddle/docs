@@ -1,4 +1,4 @@
-.. _cn_api_profiler_summaryview:
+.. _cn_api_paddle_profiler_ProfilerSummaryView:
 
 SummaryView
 ---------------------

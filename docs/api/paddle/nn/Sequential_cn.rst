@@ -1,4 +1,4 @@
-.. _cn_api_fluid_dygraph_Sequential:
+.. _cn_api_paddle_nn_Sequential:
 
 Sequential
 -------------------------------

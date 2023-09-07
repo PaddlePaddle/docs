@@ -1,4 +1,4 @@
-.. _cn_api_distributed_gloo_init_parallel_env:
+.. _cn_api_paddle_distributed_gloo_init_parallel_env:
 
 gloo_init_parallel_env
 -----------------

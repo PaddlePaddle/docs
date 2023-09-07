@@ -27,8 +27,8 @@ HSigmoidLoss
 ::::::::::
     - **feature_size** (int) - 输入 Tensor 的特征大尺寸。
     - **num_classes** (int) - 类别总数(字典大小)必须大于等于 2。若使用默认树结构，即当 ``is_custom=False`` 时，必须设置该参数。若使用自定义树结构，即当 ``is_custom=True`` 时，它取值应为自定义树结构的非叶节点的个数，用于指定二分类的类别总数。
-    - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象，若 `bias_attr` 为 bool 类型，如果设置为 False，表示不会为该层添加偏置；如果设置为 True，表示使用默认的偏置参数属性。默认值为 None，表示使用默认的偏置参数属性。默认的偏置参数属性将偏置参数的初始值设为 0。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象，若 `bias_attr` 为 bool 类型，如果设置为 False，表示不会为该层添加偏置；如果设置为 True，表示使用默认的偏置参数属性。默认值为 None，表示使用默认的偏置参数属性。默认的偏置参数属性将偏置参数的初始值设为 0。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
     - **is_custom** (bool，可选) - 是否使用用户自定义二叉树取代默认二叉树结构。如果设置为 True，请务必设置 ``path_table`` ， ``path_code`` ， ``num_classes``，否则必须设置 num_classes。默认值为 False。
     - **is_sparse** (bool，可选) - 是否使用稀疏更新方式。如果设置为 True，W 的梯度和输入梯度将会变得稀疏。默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

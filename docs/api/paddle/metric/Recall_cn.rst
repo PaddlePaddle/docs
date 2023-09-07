@@ -1,4 +1,4 @@
-.. _cn_api_metric_Recall:
+.. _cn_api_paddle_metric_Recall:
 
 Recall
 -------------------------------

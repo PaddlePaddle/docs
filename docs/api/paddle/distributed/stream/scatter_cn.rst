@@ -1,4 +1,4 @@
-.. _cn_api_distributed_stream_scatter:
+.. _cn_api_paddle_distributed_stream_scatter:
 
 scatter
 -------------------------------
@@ -8,7 +8,7 @@ scatter
 
 将一组来自指定进程的 tensor 分发到每个进程。
 
-参见 :ref:`paddle.distributed.scatter<cn_api_distributed_scatter>`。
+参见 :ref:`paddle.distributed.scatter<cn_api_paddle_distributed_scatter>`。
 
 .. note::
   该 API 只支持动态图模式。

@@ -1,4 +1,4 @@
-.. _cn_api_distributed_gloo_release:
+.. _cn_api_paddle_distributed_gloo_release:
 
 gloo_release
 -------------------------------

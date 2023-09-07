@@ -1,4 +1,4 @@
-.. _cn_api_tensor_is_tensor:
+.. _cn_api_paddle_is_tensor:
 
 is_tensor
 -------------------------------

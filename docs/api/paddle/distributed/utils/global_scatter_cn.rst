@@ -1,4 +1,4 @@
-.. _cn_api_distributed_utils_global_scatter:
+.. _cn_api_paddle_distributed_utils_global_scatter:
 
 global_scatter
 -------------------------------

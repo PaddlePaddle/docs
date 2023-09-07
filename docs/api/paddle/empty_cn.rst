@@ -1,4 +1,4 @@
-.. _cn_api_tensor_empty:
+.. _cn_api_paddle_empty:
 
 empty
 -------------------------------

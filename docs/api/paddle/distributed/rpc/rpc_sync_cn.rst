@@ -1,4 +1,4 @@
-.. _cn_api_distributed_rpc_rpc_sync:
+.. _cn_api_paddle_distributed_rpc_rpc_sync:
 
 rpc_sync
 -------------------------------

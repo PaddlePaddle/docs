@@ -1,4 +1,4 @@
-.. _cn_api_tensor_isnan:
+.. _cn_api_paddle_isnan:
 
 isnan
 -----------------------------

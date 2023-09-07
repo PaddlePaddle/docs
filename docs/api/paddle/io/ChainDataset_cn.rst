@@ -1,4 +1,4 @@
-.. _cn_api_io_ChainDataset:
+.. _cn_api_paddle_io_ChainDataset:
 
 ChainDataset
 -------------------------------
@@ -7,7 +7,7 @@ ChainDataset
 
 将多个流式数据集级联的数据集。
 
-用于级联的数据集须都是 :ref:`cn_api_io_cn_IterableDataset` 数据集，将各流式数据集按顺序级联为一个数据集。
+用于级联的数据集须都是 :ref:`cn_api_paddle_io_IterableDataset` 数据集，将各流式数据集按顺序级联为一个数据集。
 
 参数
 ::::::::::::

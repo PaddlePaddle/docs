@@ -1,4 +1,4 @@
-.. _cn_api_tensor_expand_as:
+.. _cn_api_paddle_expand_as:
 
 expand_as
 -------------------------------

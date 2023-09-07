@@ -1,4 +1,4 @@
-.. _cn_api_functional_diag_embed:
+.. _cn_api_paddle_nn_functional_diag_embed:
 
 diag_embed
 -------------------------------

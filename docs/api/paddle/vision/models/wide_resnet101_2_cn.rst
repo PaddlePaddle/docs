@@ -17,7 +17,7 @@ Wide ResNet-101-2 模型，来自论文 `"Wide Residual Networks" <https://arxiv
 返回
 :::::::::
 
-:ref:`cn_api_fluid_dygraph_Layer`，Wide ResNet-101-2 模型实例。
+:ref:`cn_api_paddle_nn_Layer`，Wide ResNet-101-2 模型实例。
 
 代码示例
 :::::::::
