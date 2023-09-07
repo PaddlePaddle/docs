@@ -12,7 +12,7 @@ GoogLeNet（Inception v1）模型，来自论文 `"Going Deeper with Convolution
 :::::::::
 
   - **pretrained** (bool，可选) - 是否加载预训练权重。如果为 True，则返回在 ImageNet 上预训练的模型。默认值为 False。
-  - **\*\*kwargs** (可选) - 附加的关键字参数，具体可选参数请参见 :ref:`GoogLeNet <cn_api_paddle_vision_models_GoogLeNet__upper>`。
+  - **\*\*kwargs** (可选) - 附加的关键字参数，具体可选参数请参见 :ref:`GoogLeNet <cn_api_paddle_vision_models_GoogLeNet>`。
 
 返回
 :::::::::

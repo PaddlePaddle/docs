@@ -1,4 +1,4 @@
-.. _cn_api_paddle_vision_transforms_Resize__upper:
+.. _cn_api_paddle_vision_transforms_Resize:
 
 Resize
 -------------------------------
