@@ -10,7 +10,7 @@ Embedding
 输出的 Tensor 的 shape 是在输入 Tensor shape 的最后一维后面添加了 embedding_dim 的维度。
 
 .. note::
-   input 中的 id 必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出。
+   input 中的 id 必须满足 ``0 <= id < size[0]``，否则程序会抛异常退出。
 
 .. code-block:: text
 
@@ -35,9 +35,9 @@ Embedding
 参数
 ::::::::::::
 
-    - **num_embeddings** (int) - 嵌入字典的大小，input 中的 id 必须满足 ``0 =< id < num_embeddings`` 。
+    - **num_embeddings** (int) - 嵌入字典的大小，input 中的 id 必须满足 ``0 <= id < num_embeddings`` 。
     - **embedding_dim** (int) - 每个嵌入向量的维度。
-    - **padding_idx** (int|long|None，可选) - padding_idx 的配置区间为 ``[-weight.shape[0], weight.shape[0]``，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。
+    - **padding_idx** (int|long|None，可选) - padding_idx 的配置区间为 ``[-weight.shape[0], weight.shape[0]]``，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。
     - **sparse** (bool，可选) - 是否使用稀疏更新，在词嵌入权重较大的情况下，使用稀疏更新能够获得更快的训练速度及更小的内存/显存占用。
     - **weight_attr** (ParamAttr|None，可选) - 指定嵌入向量的配置，包括初始化方法，具体用法请参见 :ref:`api_guide_ParamAttr`，一般无需设置，默认值为 None。
     - **name** (str|None，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
