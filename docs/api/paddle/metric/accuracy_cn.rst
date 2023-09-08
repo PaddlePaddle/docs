@@ -7,7 +7,10 @@ accuracy
 
 accuracy layer。参考 https://en.wikipedia.org/wiki/Precision_and_recall
 
-使用 input 和 label 计算准确率。如果正确的 label 在 top k 个预测值里，则计算结果加 1。注意：输出正确率的类型由 input 的类型决定，input 和 label 的类型可以不一样。
+使用 input 和 label 计算准确率。如果正确的 label 在 top k 个预测值里，则计算结果加 1。
+
+.. note::
+    输出正确率的类型由 input 的类型决定，input 和 label 的类型可以不一样。
 
 参数
 :::::::::
