@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_embedding:
+.. _cn_api_paddle_nn_functional_embedding:
 
 embedding
 -------------------------------

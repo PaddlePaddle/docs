@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_unique:
+.. _cn_api_paddle_unique:
 
 unique
 -------------------------------

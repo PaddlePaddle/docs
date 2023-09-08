@@ -1,4 +1,4 @@
-.. _cn_api_fluid_dygraph_jit_set_verbosity:
+.. _cn_api_paddle_jit_set_verbosity:
 
 set_verbosity
 -----------------

@@ -1,4 +1,4 @@
-.. _cn_api_tensor_allclose:
+.. _cn_api_paddle_allclose:
 
 allclose
 -------------------------------

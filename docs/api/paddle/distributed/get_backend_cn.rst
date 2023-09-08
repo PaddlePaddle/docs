@@ -1,4 +1,4 @@
-.. _cn_api_distributed_get_backend:
+.. _cn_api_paddle_distributed_get_backend:
 
 get_backend
 -------------------------------

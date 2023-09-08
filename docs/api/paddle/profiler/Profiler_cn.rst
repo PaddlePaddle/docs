@@ -1,4 +1,4 @@
-.. _cn_api_profiler_profiler:
+.. _cn_api_paddle_profiler_Profiler:
 
 Profiler
 ---------------------
@@ -10,9 +10,9 @@ Profiler
 参数
 :::::::::
 
-    - **targets** (list，可选) - 指定性能分析所要分析的设备，默认会自动分析所有存在且支持的设备，当前支持 CPU，GPU 和 MLU（可选值见 :ref:`ProfilerState <cn_api_profiler_profilertarget>` )。
-    - **scheduler** (Callable|tuple，可选) - 如果是 Callable 对象，代表是性能分析器状态的调度器，该调度器会接受一个 step_num 参数并返回相应的状态(详情见 :ref:`状态说明 <cn_api_profiler_profilerstate>` ），可以通过 :ref:`make_scheduler <cn_api_profiler_make_scheduler>` 接口生成调度器。如果没有设置这个参数(None)，默认的调度器会一直让性能分析器保持 RECORD 状态到结束。如果是 tuple 类型，有两个值 start_batch 和 end_batch，则会在[start_batch, end_batch)(前闭后开区间)内处于 RECORD 状态进行性能分析。
-    - **on_trace_ready** (Callable，可选) - 处理性能分析器的回调函数，该回调函数接受 Profiler 对象作为参数，提供了一种自定义后处理的方式。当性能分析器处于 RECORD_AND_RETURN 状态或者结束时返回性能数据，将会调用该回调函数进行处理，默认为 :ref:`export_chrome_tracing <cn_api_profiler_export_chrome_tracing>` (./profiler_log/)。
+    - **targets** (list，可选) - 指定性能分析所要分析的设备，默认会自动分析所有存在且支持的设备，当前支持 CPU，GPU 和 MLU（可选值见 :ref:`ProfilerState <cn_api_paddle_profiler_ProfilerTarget>` )。
+    - **scheduler** (Callable|tuple，可选) - 如果是 Callable 对象，代表是性能分析器状态的调度器，该调度器会接受一个 step_num 参数并返回相应的状态(详情见 :ref:`状态说明 <cn_api_paddle_profiler_ProfilerState>` ），可以通过 :ref:`make_scheduler <cn_api_paddle_profiler_make_scheduler>` 接口生成调度器。如果没有设置这个参数(None)，默认的调度器会一直让性能分析器保持 RECORD 状态到结束。如果是 tuple 类型，有两个值 start_batch 和 end_batch，则会在[start_batch, end_batch)(前闭后开区间)内处于 RECORD 状态进行性能分析。
+    - **on_trace_ready** (Callable，可选) - 处理性能分析器的回调函数，该回调函数接受 Profiler 对象作为参数，提供了一种自定义后处理的方式。当性能分析器处于 RECORD_AND_RETURN 状态或者结束时返回性能数据，将会调用该回调函数进行处理，默认为 :ref:`export_chrome_tracing <cn_api_paddle_profiler_export_chrome_tracing>` (./profiler_log/)。
     - **record_shapes** (bool，可选) - 如果设置为 True, 则会开启收集框架算子输入 Tensor 的 shape，默认为 False。
     - **profile_memory** (bool，可选) - 如果设置为 True, 则会开启收集显存分析的数据，默认为 False。
     - **timer_only** (bool，可选) - 如果设置为 True，将只统计模型的数据读取和每一个迭代所消耗的时间，而不进行性能分析。否则，模型将被计时，同时进行性能分析。默认值：False。
@@ -125,7 +125,7 @@ export(path, format="json")
 COPY-FROM: paddle.profiler.Profiler.export:code-example7
 
 
-.. _cn_api_profiler_profiler_summary:
+.. _cn_api_paddle_profiler_Profiler_summary:
 
 summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_unit='ms', views=None)
 '''''''''
@@ -134,7 +134,7 @@ summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_un
 
 **参数**
 
-    - **sorted_by** ( :ref:`SortedKeys <cn_api_profiler_sortedkeys>`，可选) – 表单的数据项排列方式，默认值 SortedKeys.CPUTotal。
+    - **sorted_by** ( :ref:`SortedKeys <cn_api_paddle_profiler_SortedKeys>`，可选) – 表单的数据项排列方式，默认值 SortedKeys.CPUTotal。
     - **op_detail** (bool，可选) – 是否打印算子内各过程的详细信息，默认值 True。
     - **thread_sep** (bool，可选) - 是否分线程打印，默认值 False。
     - **time_unit** (str，可选) - 表单数据的时间单位，默认为'ms'，可选's'、'us'、'ns'。

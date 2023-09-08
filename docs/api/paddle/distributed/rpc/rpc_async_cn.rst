@@ -1,4 +1,4 @@
-.. _cn_api_distributed_rpc_rpc_async:
+.. _cn_api_paddle_distributed_rpc_rpc_async:
 
 rpc_async
 -------------------------------

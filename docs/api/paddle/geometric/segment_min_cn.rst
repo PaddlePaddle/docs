@@ -1,4 +1,4 @@
-.. _cn_api_geometric_segment_min:
+.. _cn_api_paddle_geometric_segment_min:
 
 segment_min
 -------------------------------

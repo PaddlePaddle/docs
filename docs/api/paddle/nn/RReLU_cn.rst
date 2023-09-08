@@ -1,4 +1,4 @@
-.. _cn_api_nn_RReLU:
+.. _cn_api_paddle_nn_RReLU:
 
 RReLU
 -------------------------------

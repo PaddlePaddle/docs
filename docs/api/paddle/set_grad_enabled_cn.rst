@@ -1,4 +1,4 @@
-.. _cn_api_paddle_framework_set_grad_enabled:
+.. _cn_api_paddle_set_grad_enabled:
 
 set_grad_enabled
 -------------------------------

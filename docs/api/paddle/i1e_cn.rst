@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_i1e:
+.. _cn_api_paddle_i1e:
 
 i1e
 -------------------------------

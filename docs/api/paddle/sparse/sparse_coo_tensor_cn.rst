@@ -1,4 +1,4 @@
-.. _cn_api_paddle_sparse_coo_tensor:
+.. _cn_api_paddle_sparse_sparse_coo_tensor:
 
 sparse_coo_tensor
 -------------------------------
@@ -26,7 +26,7 @@ sparse_coo_tensor
     - **dtype** (str|np.dtype，可选) - 创建 tensor 的数据类型，可以是 'bool' ，'float16'，'float32'，
       'float64' ，'int8'，'int16'，'int32'，'int64'，'uint8'，'complex64'，'complex128'。
       默认值为 None，如果 ``values`` 为 python 浮点类型，则从
-      :ref:`cn_api_paddle_framework_get_default_dtype` 获取类型，如果 ``values`` 为其他类型，
+      :ref:`cn_api_paddle_get_default_dtype` 获取类型，如果 ``values`` 为其他类型，
       则会自动推导类型。
     - **place** (CPUPlace|CUDAPinnedPlace|CUDAPlace|str，可选) - 创建 tensor 的设备位置，可以是
       CPUPlace, CUDAPinnedPlace, CUDAPlace。默认值为 None，使用全局的 place。

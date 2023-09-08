@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_sequence_last_step:
+.. _cn_api_paddle_static_nn_sequence_last_step:
 
 sequence_last_step
 -------------------------------

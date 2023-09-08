@@ -1,4 +1,4 @@
-.. _cn_api_fluid_clip_ClipGradByValue:
+.. _cn_api_paddle_nn_ClipGradByValue:
 
 ClipGradByValue
 -------------------------------
@@ -21,7 +21,7 @@ ClipGradByValue
 - 任何大于 ``max`` 的值都被设置为 ``max``
 
 .. note::
-   ``ClipGradByValue`` 的 ``need_clip`` 方法从 2.0 开始废弃。请在 :ref:`paddle.ParamAttr <cn_api_fluid_ParamAttr>` 中使用 ``need_clip`` 来说明 ``clip`` 范围。
+   ``ClipGradByValue`` 的 ``need_clip`` 方法从 2.0 开始废弃。请在 :ref:`paddle.ParamAttr <cn_api_paddle_ParamAttr>` 中使用 ``need_clip`` 来说明 ``clip`` 范围。
 
 参数
 ::::::::::::

@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_var:
+.. _cn_api_paddle_var:
 
 var
 -------------------------------

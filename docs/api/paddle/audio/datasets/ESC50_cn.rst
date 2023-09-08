@@ -1,4 +1,4 @@
-.. _cn_api_audio_datasets_ESC50:
+.. _cn_api_paddle_audio_datasets_ESC50:
 
 ESC50
 -------------------------------
@@ -19,7 +19,7 @@ ESC50
 返回
 :::::::::
 
-:ref:`cn_api_io_cn_Dataset`，ESC50 数据集实例。
+:ref:`cn_api_paddle_io_Dataset`，ESC50 数据集实例。
 
 代码示例
 :::::::::

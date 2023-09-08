@@ -1,4 +1,4 @@
-.. _cn_api_tensor_argmax:
+.. _cn_api_paddle_argmax:
 
 argmax
 -------------------------------

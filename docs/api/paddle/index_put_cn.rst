@@ -1,11 +1,11 @@
-.. _cn_api_tensor_index_put:
+.. _cn_api_paddle_index_put:
 
 index_put
 -------------------------------
 
 .. py:function::  paddle.index_put(x, indices, value, accumulate=False, name=None)
 
-Outplace 版本的 :ref:`cn_api_tensor_index_put_` API
+Outplace 版本的 :ref:`cn_api_paddle_index_put_` API
 
 代码示例
 ::::::::::::

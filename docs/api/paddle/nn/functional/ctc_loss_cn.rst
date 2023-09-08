@@ -1,4 +1,4 @@
-.. _cn_paddle_nn_functional_loss_ctc:
+.. _cn_api_paddle_nn_functional_ctc_loss:
 
 ctc_loss
 -------------------------------

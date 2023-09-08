@@ -1,4 +1,4 @@
-.. _cn_api_tensor_equal_all:
+.. _cn_api_paddle_equal_all:
 
 equal_all
 -------------------------------

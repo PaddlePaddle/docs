@@ -1,4 +1,4 @@
-.. _cn_api_amp_is_float16_supported:
+.. _cn_api_paddle_amp_is_float16_supported:
 
 is_float16_supported
 -------------------------------

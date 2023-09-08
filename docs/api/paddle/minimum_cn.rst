@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_minimum:
+.. _cn_api_paddle_minimum:
 
 minimum
 -------------------------------

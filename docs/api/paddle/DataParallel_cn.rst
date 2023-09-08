@@ -1,4 +1,4 @@
-.. _cn_api_fluid_dygraph_DataParallel:
+.. _cn_api_paddle_DataParallel:
 
 DataParallel
 ------------

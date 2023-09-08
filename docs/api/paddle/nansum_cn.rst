@@ -1,4 +1,4 @@
-.. _cn_api_tensor_math_nansum:
+.. _cn_api_paddle_nansum:
 
 nansum
 -------------------------------

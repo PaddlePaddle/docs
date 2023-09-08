@@ -1,4 +1,4 @@
-.. _cn_api_fluid_CUDAPlace:
+.. _cn_api_paddle_CUDAPlace:
 
 CUDAPlace
 -------------------------------

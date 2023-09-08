@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_clip_grad_norm_:
+.. _cn_api_paddle_nn_utils_clip_grad_norm_:
 
 clip_grad_norm\_
 -------------------------------

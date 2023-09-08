@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_alpha_dropout:
+.. _cn_api_paddle_nn_functional_alpha_dropout:
 
 alpha_dropout
 -------------------------------

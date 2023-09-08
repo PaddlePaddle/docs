@@ -1,4 +1,4 @@
-.. _cn_api_nn_Softmax:
+.. _cn_api_paddle_nn_Softmax:
 
 Softmax
 -------------------------------

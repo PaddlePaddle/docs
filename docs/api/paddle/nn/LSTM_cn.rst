@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_layer_rnn_LSTM:
+.. _cn_api_paddle_nn_LSTM:
 
 LSTM
 -------------------------------

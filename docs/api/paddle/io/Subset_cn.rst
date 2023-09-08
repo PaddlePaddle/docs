@@ -1,4 +1,4 @@
-.. _cn_api_io_Subset:
+.. _cn_api_paddle_io_Subset:
 
 Subset
 -------------------------------

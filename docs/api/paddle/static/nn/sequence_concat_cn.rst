@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_sequence_concat:
+.. _cn_api_paddle_static_nn_sequence_concat:
 
 sequence_concat
 -------------------------------
@@ -7,7 +7,7 @@ sequence_concat
 .. py:function:: paddle.static.nn.sequence_concat(input, name=None)
 
 .. note::
-该 OP 的输入只能是带有 LoD 信息的 Tensor，如果您需要处理的输入是一般的 Tensor 类型，请使用 :ref:`paddle.concat <cn_api_tensor_concat>` 。
+该 OP 的输入只能是带有 LoD 信息的 Tensor，如果您需要处理的输入是一般的 Tensor 类型，请使用 :ref:`paddle.concat <cn_api_paddle_concat>` 。
 
 **该 OP 仅支持带有 LoD 信息的 Tensor**，通过 LoD 信息将输入的多个 Tensor 进行连接（concat），输出连接后的 Tensor。
 

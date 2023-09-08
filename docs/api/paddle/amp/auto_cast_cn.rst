@@ -1,4 +1,4 @@
-.. _cn_api_amp_auto_cast:
+.. _cn_api_paddle_amp_auto_cast:
 
 auto_cast
 -------------------------------

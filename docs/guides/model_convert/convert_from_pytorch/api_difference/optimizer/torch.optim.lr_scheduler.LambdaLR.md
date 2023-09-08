@@ -24,7 +24,7 @@ paddle.optimizer.lr.LambdaDecay(learning_rate,
 
 | PyTorch | PaddlePaddle | 备注                                                                                       |
 | ------- | ------------ | ------------------------------------------------------------------------------------------ |
-| optimizer     | learning_rate       | PyTorch 的是 torch.optim.Optimizer 类，Paddle 是 float 类。 |
+| optimizer     | learning_rate       | PyTorch 的 optimizer 类型是 torch.optim.Optimizer，Paddle 的 learning_rate 类型是 float，两者功能上不直接一致，但可通过设置 leaning_rate = optimizer.get_lr() 来对应一致。  |
 | lr_lambda     | lr_lambda       | 表示 lambda 函数，其通过 epoch 计算出一个因子，该因子会乘以初始学习率。PyTorch 可以是 lambda 函数的列表， Paddle 只能表示 lambda 函数。当 PyTorch 是 lambda 函数的列表时，暂无转写方式。 |
 | last_epoch     | last_epoch       | 上一轮的轮数，重启训练时设置为上一轮的 epoch 数。参数完全一致。       |
 | verbose     | verbose       | 如果是 True，则在每一轮更新时在标准输出 stdout 输出一条信息。参数完全一致。  |

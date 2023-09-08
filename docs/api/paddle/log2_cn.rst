@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_math_log2:
+.. _cn_api_paddle_log2:
 
 log2
 -------------------------------

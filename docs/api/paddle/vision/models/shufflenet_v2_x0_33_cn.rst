@@ -17,7 +17,7 @@ shufflenet_v2_x0_33
 返回
 :::::::::
 
-:ref:`cn_api_fluid_dygraph_Layer`，输出通道缩放比例为 0.33 的 ShuffleNetV2 模型实例。
+:ref:`cn_api_paddle_nn_Layer`，输出通道缩放比例为 0.33 的 ShuffleNetV2 模型实例。
 
 代码示例
 :::::::::
