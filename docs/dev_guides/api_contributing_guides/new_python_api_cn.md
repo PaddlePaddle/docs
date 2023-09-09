@@ -61,7 +61,7 @@ API 作为用户使用飞桨框架的接口，承接着实现用户模型开发�
 - **代码示例**：该 API 的使用示例代码。
 - **函数主体代码**：包括输入参数的检查、调用算子的执行逻辑等内容。
 
-<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/zeros_python_api.png?raw=true" width="900px" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/zeros_python_api_doctest.png?raw=true" width="900px" ></center>
 
 <center>图 1 Python API 代码样例</center>
 
