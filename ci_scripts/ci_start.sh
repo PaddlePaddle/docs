@@ -1,6 +1,6 @@
 #!/bin/bash
 export DIR_PATH=${PWD}
- 
+
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
 set +x
@@ -56,7 +56,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     cd ${SCRIPT_DIR}/..
     git reset --hard && git clean -dfx
     cd ${DIR_PATH}
- 
+
     if [ -n "${BOS_CREDENTIAL_AK}" ] && [ -n "${BOS_CREDENTIAL_SK}" ] ; then
         echo "Ak = ${BOS_CREDENTIAL_AK}" >> ${BCECMD_CONFIG}/credentials
         echo "Sk = ${BOS_CREDENTIAL_SK}" >> ${BCECMD_CONFIG}/credentials
@@ -64,7 +64,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     if [ $xdebug_setted ] ; then
         set -x
     fi
- 
+
     # https://cloud.baidu.com/doc/XLY/s/qjwvy89pc#%E7%B3%BB%E7%BB%9F%E5%8F%82%E6%95%B0%E5%A6%82%E4%B8%8B
     # ${AGILE_PIPELINE_ID}-${AGILE_PIPELINE_BUILD_ID}"
     if [ "${UPLOAD_DOC}" = "true" ] ; then
@@ -82,7 +82,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
         PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: http://${PREVIEW_JOB_NAME}.${PREVIEW_SITE:-preview.paddlepaddle.org}/documentation/docs/zh/api/index_cn.html"
     fi
 fi
- 
+
 check_parameters=OFF
 if [ "${check_parameters}" = "OFF" ] ; then
     #echo "chinese api doc fileslist is empty, skip check."
@@ -100,7 +100,7 @@ else
         exit 1
     fi
 fi
- 
+
 EXIT_CODE=0
 # 3 check code style/format.
 ls ${DIR_PATH}
@@ -108,7 +108,7 @@ ls ${DIR_PATH}
 if [ $? -ne 0 ];then
     EXIT_CODE=1
 fi
- 
+
 git merge --no-edit upstream/${BRANCH}
 need_check_cn_doc_files=$(find_all_cn_api_files_modified_by_pr)
 echo $need_check_cn_doc_files
@@ -121,7 +121,7 @@ else
         EXIT_CODE=1
     fi
 fi
- 
+
 if [ ${EXIT_CODE} -ne 0 ]; then
     set +x
     echo "=========================================================================================="
@@ -130,13 +130,13 @@ if [ ${EXIT_CODE} -ne 0 ]; then
     set -x
     exit ${EXIT_CODE}
 fi
- 
+
 # 5 Approval check
 /bin/bash  ${DIR_PATH}/checkapproval.sh
 if [ $? -ne 0 ];then
     exit 1
 fi
- 
+
 echo "PADDLE_WHL=${PADDLE_WHL}"
 # print preview url
 echo "${PREVIEW_URL_PROMPT}"
