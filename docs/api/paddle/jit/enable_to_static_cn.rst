@@ -5,13 +5,13 @@ enable_to_static
 
 .. py:function:: paddle.jit.enable_to_static
 
-全局启用或禁用 `ProgramTranslator` 从动态图到静态图的转换。
+全局启用或禁用从动态图到静态图的转换。
 
 
 参数
 ::::::::::::
 
-    - **enable_to_static_bool** (bool) - 启用或禁用转换为静态。
+    - **enable_to_static_bool** (bool) - 启用或禁用动转静。
 
 
 代码示例
