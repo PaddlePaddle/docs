@@ -1,12 +1,11 @@
 #!/bin/bash
-
 export DIR_PATH=${PWD}
-
+ 
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
 export OUTPUTDIR=/docs
 export VERSIONSTR=$(echo ${BRANCH} | sed 's@release/@@g')
-
+ 
 # 1 decide PADDLE_WHL if not setted.
 if [ -z "${PADDLE_WHL}" ] ; then
     # docs_pr_info=$(get_repo_pr_info "PaddlePaddle/docs" ${GIT_PR_ID})
@@ -17,7 +16,7 @@ if [ -z "${PADDLE_WHL}" ] ; then
         paddle_pr_info=$(get_repo_pr_info "PaddlePaddle/Paddle" ${paddle_pr_id})
         paddle_pr_latest_commit=${AGILE_REVISION}
         echo "paddle_pr_latest_commit=${paddle_pr_latest_commit}"
-        paddle_whl_tmp="https://xly-devops.bj.bcebos.com/PR/build_whl/${paddle_pr_id}/${paddle_pr_latest_commit}/paddlepaddle_gpu-0.0.0-cp37-cp37m-linux_x86_64.whl"
+        paddle_whl_tmp="https://xly-devops.bj.bcebos.com/PR/build_whl/${paddle_pr_id}/${paddle_pr_latest_commit}/paddlepaddle_gpu-0.0.0-cp310-cp310-linux_x86_64.whl"
         http_code=$(curl -sIL -w "%{http_code}" -o /dev/null -X GET -k ${paddle_whl_tmp})
         if [ "${http_code}" = "200" ] ; then
             PADDLE_WHL=${paddle_whl_tmp}
@@ -39,7 +38,7 @@ if [ -z "${PADDLE_WHL}" ] ; then
 fi
 export PADDLE_WHL
 echo "PADDLE_WHL=${PADDLE_WHL}"
-
+ 
 # 2 build all the Chinese and English docs, and upload them. Controlled with Env BUILD_DOC and UPLOAD_DOC
 PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: None"
 if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
@@ -60,7 +59,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     cd ${SCRIPT_DIR}/..
     git reset --hard && git clean -dfx
     cd ${DIR_PATH}
-
+ 
     if [ -n "${BOS_CREDENTIAL_AK}" ] && [ -n "${BOS_CREDENTIAL_SK}" ] ; then
         echo "Ak = ${BOS_CREDENTIAL_AK}" >> ${BCECMD_CONFIG}/credentials
         echo "Sk = ${BOS_CREDENTIAL_SK}" >> ${BCECMD_CONFIG}/credentials
@@ -86,7 +85,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
         PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: http://${PREVIEW_JOB_NAME}.${PREVIEW_SITE:-preview.paddlepaddle.org}/documentation/docs/en/api/paddle/abs_en.html"
     fi
 fi
-
+ 
 check_parameters=OFF
 if [ "${check_parameters}" = "OFF" ] ; then
     #echo "chinese api doc fileslist is empty, skip check."
@@ -104,14 +103,14 @@ else
         exit 1
     fi
 fi
-
+ 
 EXIT_CODE=0
 # 3 check code style/format.
 /bin/bash  ${DIR_PATH}/check_code.sh
 if [ $? -ne 0 ];then
     EXIT_CODE=1
 fi
-
+ 
 # 4 check docs style/format
 cd ${PADDLE_DIR}
 git merge --no-edit upstream/${BRANCH}
@@ -132,15 +131,15 @@ else
         exit 1
     fi
 fi
-
-
+ 
+ 
 # 5 Approval check
 /bin/bash  ${DIR_PATH}/checkapproval.sh
 if [ $? -ne 0 ];then
     exit 1
 fi
-
-
+ 
+ 
 echo "PADDLE_WHL=${PADDLE_WHL}"
 # print preview url
 echo "${PREVIEW_URL_PROMPT}"
