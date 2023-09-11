@@ -3,7 +3,7 @@
 enable_to_static
 -------------------------------
 
-.. py:function:: paddle.jit.enable_to_static
+.. py:function:: paddle.jit.enable_to_static(enable_to_static_bool)
 
 全局启用或禁用从动态图到静态图的转换。
 
