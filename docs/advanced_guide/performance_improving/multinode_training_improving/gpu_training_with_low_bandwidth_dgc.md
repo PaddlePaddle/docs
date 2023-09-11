@@ -14,7 +14,7 @@ optimizer = fluid.optimizer.DGCMomentumOptimizer(
     learning_rate=0.001, momentum=0.9, rampup_begin_step=0)
 optimizer.minimize(cost)
 ```
-在 fleet 中我们提供了[DGC 的示例](https://github.com/PaddlePaddle/FleetX/tree/old_develop/deprecated/examples/dgc_example)。示例中以数字手写体识别为例，将程序移植为分布式版本（注：DGC 亦支持单机多卡），再加上 DGC 优化器。可参照此示例将单机单卡程序迁移到 DGC。在单机单卡迁移到 DGC 过程中，一般需要先对齐多机 Momentum 的精度，再对齐 DGC 的精度。
+在 fleet 中我们提供了[DGC 的示例](https://github.com/PaddlePaddle/PaddleFleetX/tree/old_develop/deprecated/examples/dgc_example)。示例中以数字手写体识别为例，将程序移植为分布式版本（注：DGC 亦支持单机多卡），再加上 DGC 优化器。可参照此示例将单机单卡程序迁移到 DGC。在单机单卡迁移到 DGC 过程中，一般需要先对齐多机 Momentum 的精度，再对齐 DGC 的精度。
 
 ## 3. 调参&适用场景
 ### 3.1 预热调参

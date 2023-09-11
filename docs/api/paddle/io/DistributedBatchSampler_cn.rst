@@ -1,9 +1,9 @@
-.. _cn_api_io_cn_DistributedBatchSampler:
+.. _cn_api_paddle_io_DistributedBatchSampler:
 
 DistributedBatchSampler
 -------------------------------
 
-.. py:class:: paddle.io.DistributedBatchSampler(dataset=None, batch_size, num_replicas=None, rank=None, shuffle=False, drop_last=False)
+.. py:class:: paddle.io.DistributedBatchSampler(dataset, batch_size, num_replicas=None, rank=None, shuffle=False, drop_last=False)
 
 分布式批采样器加载数据的一个子集。每个进程可以传递给 DataLoader 一个 DistributedBatchSampler 的实例，每个进程加载原始数据的一个子集。
 
@@ -14,12 +14,12 @@ DistributedBatchSampler
 参数
 ::::::::::::
 
-    - **dataset** (paddle.io.Dataset) - 此参数必须是 ``paddle.io.Dataset`` 的一个子类实例或实现了 ``__len__`` 的 Python 对象，用于生成样本下标。默认值为 None。
+    - **dataset** (Dataset) - 此参数必须是 :ref:`cn_api_paddle_io_Dataset` 的一个子类实例或实现了 ``__len__`` 的 Python 对象，用于生成样本下标。
     - **batch_size** (int) - 每 mini-batch 中包含的样本数。
-    - **num_replicas** (int, optional) - 分布式训练时的进程个数。如果是 None，会依据 ``paddle.distributed.ParallenEnv`` 获取值。默认是 None。
-    - **rank** (int, optional) - num_replicas 个进程中的进程序号。如果是 None，会依据 ``paddle.distributed.ParallenEnv`` 获取值。默认是 None。
-    - **shuffle** (bool) - 是否需要在生成样本下标时打乱顺序。默认值为 False。
-    - **drop_last** (bool) - 是否需要丢弃最后无法凑整一个 mini-batch 的样本。默认值为 False。
+    - **num_replicas** (int，可选) - 分布式训练时的进程个数。如果是 None，会依据 :ref:`cn_api_paddle_distributed_ParallelEnv` 获取值。默认是 None。
+    - **rank** (int，可选) - num_replicas 个进程中的进程序号。如果是 None，会依据 :ref:`cn_api_paddle_distributed_ParallelEnv` 获取值。默认是 None。
+    - **shuffle** (bool，可选) - 是否需要在生成样本下标时打乱顺序。默认值为 False。
+    - **drop_last** (bool，可选) - 是否需要丢弃最后无法凑整一个 mini-batch 的样本。默认值为 False。
 
 
 返回
@@ -30,31 +30,7 @@ DistributedBatchSampler，返回样本下标数组的迭代器。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import numpy as np
-
-    from paddle.io import Dataset, DistributedBatchSampler
-
-    # init with dataset
-    class RandomDataset(Dataset):
-        def __init__(self, num_samples):
-            self.num_samples = num_samples
-
-        def __getitem__(self, idx):
-            image = np.random.random([784]).astype('float32')
-            label = np.random.randint(0, 9, (1, )).astype('int64')
-            return image, label
-
-        def __len__(self):
-            return self.num_samples
-
-    dataset = RandomDataset(100)
-    sampler = DistributedBatchSampler(dataset, batch_size=64)
-
-    for data in sampler:
-        # do something
-        break
+COPY-FROM: paddle.io.DistributedBatchSampler
 
 方法
 ::::::::::::
@@ -69,27 +45,4 @@ set_epoch(epoch)
 
 **代码示例**
 
-.. code-block:: python
-
-    import numpy as np
-
-    from paddle.io import Dataset, DistributedBatchSampler
-
-    # init with dataset
-    class RandomDataset(Dataset):
-        def __init__(self, num_samples):
-            self.num_samples = num_samples
-
-        def __getitem__(self, idx):
-            image = np.random.random([784]).astype('float32')
-            label = np.random.randint(0, 9, (1, )).astype('int64')
-            return image, label
-
-        def __len__(self):
-            return self.num_samples
-
-    dataset = RandomDataset(100)
-    sampler = DistributedBatchSampler(dataset, batch_size=64)
-
-    for epoch in range(10):
-        sampler.set_epoch(epoch)
+COPY-FROM: paddle.io.DistributedBatchSampler.set_epoch

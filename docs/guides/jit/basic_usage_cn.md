@@ -105,7 +105,7 @@ class RandomDataset(paddle.io.Dataset):
 
     def __getitem__(self, idx):
         image = np.random.random([IMAGE_SIZE]).astype('float32')
-        label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+        label = np.random.randint(0, CLASS_NUM, (1, )).astype('int64')
         return image, label
 
     def __len__(self):
@@ -113,7 +113,7 @@ class RandomDataset(paddle.io.Dataset):
 
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
     @paddle.jit.to_static       # <----在前向计算 forward 函数前添加一个装饰器
@@ -173,7 +173,7 @@ class RandomDataset(paddle.io.Dataset):
 
     def __getitem__(self, idx):
         image = np.random.random([IMAGE_SIZE]).astype('float32')
-        label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+        label = np.random.randint(0, CLASS_NUM, (1, )).astype('int64')
         return image, label
 
     def __len__(self):
@@ -181,7 +181,7 @@ class RandomDataset(paddle.io.Dataset):
 
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
     def forward(self, x):
@@ -238,7 +238,7 @@ CLASS_NUM = 10
 
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
     @paddle.jit.to_static
@@ -264,7 +264,7 @@ CLASS_NUM = 10
 
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
     # 规范写法，forward 中仅实现预测功能
     @paddle.jit.to_static
@@ -396,7 +396,7 @@ class RandomDataset(paddle.io.Dataset):
 
     def __getitem__(self, idx):
         image = np.random.random([IMAGE_SIZE]).astype('float32')
-        label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+        label = np.random.randint(0, CLASS_NUM, (1, )).astype('int64')
         return image, label
 
     def __len__(self):
@@ -430,7 +430,7 @@ paddle.jit.save(loaded_layer, "fine-tune.model/linear", input_spec=[x])
 
 ##### 3.2.2.2 使用 ``paddle.load`` 加载
 
-``paddle.jit.save`` 同时保存了模型和参数，如果你已有组网代码，只需要从存储结果中载入模型的参数，则可以使用 ``paddle.load`` 接口载入，返回所存储模型的 ``state_dict`` ，并使用 ``set_state_dict`` 方法将模型参数与 Layer 关联。示例如下：
+``paddle.jit.save`` 同时保存了模型和参数，如果已有组网代码，只需要从存储结果中载入模型的参数，则可以使用 ``paddle.load`` 接口载入，返回所存储模型的 ``state_dict`` ，并使用 ``set_state_dict`` 方法将模型参数与 Layer 关联。示例如下：
 
 ```python
 import paddle
@@ -442,7 +442,7 @@ CLASS_NUM = 10
 # 网络定义
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
     @paddle.jit.to_static
@@ -487,7 +487,7 @@ class RandomDataset(paddle.io.Dataset):
 
     def __getitem__(self, idx):
         image = np.random.random([IMAGE_SIZE]).astype('float32')
-        label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+        label = np.random.randint(0, CLASS_NUM, (1, )).astype('int64')
         return image, label
 
     def __len__(self):
@@ -495,7 +495,7 @@ class RandomDataset(paddle.io.Dataset):
 # 定义神经网络
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
     def forward(self, x):
@@ -585,7 +585,7 @@ IMAGE_SIZE = 784
 CLASS_NUM = 10
 
 # 载入 paddle.jit.save 保存的模型
-path = "example.model/linear"
+path = "example.dy_model/linear"
 loaded_layer = paddle.jit.load(path)
 ```
 
@@ -617,7 +617,7 @@ pred = loaded_layer(x)
     # 网络定义
     class LinearNet(nn.Layer):
         def __init__(self):
-            super(LinearNet, self).__init__()
+            super().__init__()
             self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
         # 输入数据是动态输入（shape 中有一个维度是可变的），因此需要添加 InputSpec
         @paddle.jit.to_static(input_spec=[InputSpec(shape=[None, 784], dtype='float32')])
@@ -625,7 +625,7 @@ pred = loaded_layer(x)
             return self._linear(x)
     ```
 
-4. 前文中大多都是用 ``paddle.jit.save`` 保存的 ``Layer.forward`` 类实例，保存内容包括模型结构和参数。当保存单独的一个函数时， ``paddle.jit.save`` 只会保存这个函数对应的静态图模型结构 Program ，不会保存和这个函数相关的参数。如果你必须保存参数，请使用 Layer 类封装这个函数。 示例代码如下：
+4. 前文中大多都是用 ``paddle.jit.save`` 保存的 ``Layer.forward`` 类实例，保存内容包括模型结构和参数。当保存单独的一个函数时， ``paddle.jit.save`` 只会保存这个函数对应的静态图模型结构 Program ，不会保存和这个函数相关的参数。如果必须保存参数，请使用 Layer 类封装这个函数。 示例代码如下：
 
     ```python
     # 定义一个函数
@@ -662,7 +662,7 @@ pred = loaded_layer(x)
 
     class LinearNet(nn.Layer):
         def __init__(self):
-            super(LinearNet, self).__init__()
+            super().__init__()
             self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
             self._linear_2 = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
@@ -782,7 +782,7 @@ from paddle.static import InputSpec
 
 class SimpleNet(Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
     # 在装饰器中调用 InputSpec
     @to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), InputSpec(shape=[3], name='y')])
@@ -793,7 +793,7 @@ class SimpleNet(Layer):
 
 net = SimpleNet()
 
-# save static model for inference directly
+# save static graph mode for inference directly
 paddle.jit.save(net, './simple_net')
 ```
 
@@ -812,7 +812,7 @@ paddle.jit.save(net, './simple_net')
 ```python
 class SimpleNet(Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
     def forward(self, x, y):
@@ -828,7 +828,7 @@ for epoch_id in range(10):
 # 在 paddle.jit.to_static 函数中调用 InputSpec
 net = to_static(net, input_spec=[InputSpec(shape=[None, 10], name='x'), InputSpec(shape=[3], name='y')])
 
-# save static model for inference directly
+# save static graph model for inference directly
 paddle.jit.save(net, './simple_net')
 ```
 
@@ -845,7 +845,7 @@ paddle.jit.save(net, './simple_net')
 
 class SimpleNet(Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
     @to_static(input_spec=[[InputSpec(shape=[None, 10], name='x'), InputSpec(shape=[3], name='y')]])
@@ -863,7 +863,7 @@ class SimpleNet(Layer):
 ```python
 class SimpleNet(Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
     @to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), {'x': InputSpec(shape=[3], name='bias')}])
@@ -884,7 +884,7 @@ class SimpleNet(Layer):
 ```python
 class SimpleNet(Layer):
     def __init__(self, ):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
         self.relu = paddle.nn.ReLU()
 
@@ -917,7 +917,7 @@ paddle.jit.save(net, path='./simple_net')
 
 如下是一个 ResNet50 模型动转静训练时，通过在 ``to_static`` 函数中配置 ``build_strategy`` 参数来开启算子融合 ``fuse_elewise_add_act_ops`` 和 ``enable_addto`` 图优化策略的使用样例。不同的模型可应用的优化策略不同，比如算子融合策略一般与模型中用到的 API 有关系：
 
-+ 若存在 elementwise_ad d 后跟 relu 等激活函数，则可以尝试开启 ``fuse_elewise_add_act_ops``
++ 若存在 elementwise_add 后跟 relu 等激活函数，则可以尝试开启 ``fuse_elewise_add_act_ops``
 
 + 若存在 relu 后跟 depthwise_conv2 函数，则可以尝试开启 ``fuse_relu_depthwise_conv``
 
@@ -929,14 +929,15 @@ paddle.jit.save(net, path='./simple_net')
     import paddle
     import numpy as np
     import paddle.optimizer as opt
+    from paddle import nn
     from paddle.vision.models import resnet50
 
     BATCH_SIZE = 16
     BATCH_NUM = 4
     EPOCH_NUM = 4
 
-    IMAGE_SIZE = 784
-    CLASS_NUM = 10
+    IMAGE_SIZE = 224
+    CLASS_NUM = 1000
 
     # 定义一个随机数数据集
     class RandomDataset(paddle.io.Dataset):
@@ -944,8 +945,8 @@ paddle.jit.save(net, path='./simple_net')
             self.num_samples = num_samples
 
         def __getitem__(self, idx):
-            image = np.random.random([IMAGE_SIZE]).astype('float32')
-            label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+            image = np.random.random([3, IMAGE_SIZE, IMAGE_SIZE]).astype('float32')
+            label = np.random.randint(0, CLASS_NUM, (1, )).astype('int64')
             return image, label
 
         def __len__(self):
@@ -954,30 +955,31 @@ paddle.jit.save(net, path='./simple_net')
     # 定义训练过程
     def train(layer, loader, loss_fn, opt):
         for epoch_id in range(EPOCH_NUM):
-            for batch_id, (image, label) in enumerate(loader()):
-                out = layer(image)
-                loss = loss_fn(out, label)
+            for batch_id, (images, labels) in enumerate(loader()):
+                out = layer(images)
+                loss = loss_fn(out, labels)
                 loss.backward()
                 opt.step()
                 opt.clear_grad()
                 print("Epoch {} batch {}: loss = {}".format(
                     epoch_id, batch_id, np.mean(loss.numpy())))
 
-    def set_build_strategy():
+    def get_build_strategy():
         build_strategy = paddle.static.BuildStrategy()
         # addto 策略常搭配 FLAGS_max_inplace_grad_add 变量使用
         build_strategy.enable_addto = True
-        os.environ['FLAGS_max_inplace_grad_add'] = 8
+        os.environ['FLAGS_max_inplace_grad_add'] = "8"
         build_strategy.fuse_elewise_add_act_ops = True
+        return build_strategy
 
     # 构建神经网络
     model = resnet50()
     # 动转静，并设置计算图优化策略
-    model = paddle.jit.to_static(model, build_strategy=set_build_strategy())
+    model = paddle.jit.to_static(model, build_strategy=get_build_strategy())
     # 设置损失函数
     loss_fn = nn.CrossEntropyLoss()
     # 设置优化器
-    adam = opt.Adam(learning_rate=0.001, parameters=layer.parameters())
+    adam = opt.Adam(learning_rate=0.001, parameters=model.parameters())
 
     # 构建 DataLoader 数据读取器
     dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
@@ -988,7 +990,7 @@ paddle.jit.save(net, path='./simple_net')
         num_workers=2)
 
     # 开始训练
-    train(layer, loader, loss_fn, adam)
+    train(model, loader, loss_fn, adam)
     ```
 
 ### 4.2 动转静训练开启 AMP

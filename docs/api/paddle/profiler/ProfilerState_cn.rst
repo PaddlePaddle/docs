@@ -1,4 +1,4 @@
-.. _cn_api_profiler_profilerstate:
+.. _cn_api_paddle_profiler_ProfilerState:
 
 ProfilerState
 ---------------------
@@ -6,7 +6,7 @@ ProfilerState
 .. py:class:: paddle.profiler.ProfilerState
 
 
-ProfilerState 枚举类用来表示 :ref:`性能分析器 <cn_api_profiler_profiler>` 的状态。
+ProfilerState 枚举类用来表示 :ref:`性能分析器 <cn_api_paddle_profiler_Profiler>` 的状态。
 
 状态说明
 ::::::::::::

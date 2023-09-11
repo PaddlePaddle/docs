@@ -1,4 +1,4 @@
-.. _cn_api_fluid_CPUPlace:
+.. _cn_api_paddle_CPUPlace:
 
 CPUPlace
 -------------------------------

@@ -1,209 +1,318 @@
 .. _cn_overview_paddle_incubate_autograd:
 
 paddle.incubate.autograd
----------------------
+_________________________
 
-paddle.incubate.autograd 目录下包含飞桨框架提供的自动微分相关的一些探索性 API。具体如下：
-
--  :ref:`自动微分机制切换 API <mode_switching_apis>`
--  :ref:`自动微分基础算子与原生算子转换 API <transform_apis>`
--  :ref:`函数式自动微分 API <functional_apis>`
+``paddle.incubate.autograd`` 提供支持高阶的反向及前向自动微分相关 API，是飞桨框架对高阶自动微分进行探索与升级。当前处于孵化状态，API 签名及相关功能可能会发生变化，功能尚不完善，如果想自行实现相关模型、探索自动微分机制，请仔细阅读下述使用方法及使用限制。
 
 
-.. _mode_switching_apis:
+.. _autograd_recommended_usage:
 
-自动微分机制切换 API
-==========================
+推荐用法
+::::::::::::::::::::
+
+第一步：导入依赖。使用 ``paddle.incubate.autograd.enable_prim()`` 打开自动微分开关。
+
+..  code-block:: python
+
+        import numpy as np
+        import paddle
+
+        paddle.enable_static()
+        paddle.incubate.autograd.enable_prim()
+
+
+第二步：编写组网代码。以单层的全联接网络为例，``MyNet`` 继承自 ``paddle.nn.Layer`` ，在 ``__init__`` 方法中初始化网络参数，在 ``forward`` 方法中实现前向运行逻辑。注意，当前自动微分仅支持部分飞桨 API，主要覆盖全联接网络和一些激活函数，当前支持的飞桨 API 列表参考 :ref:`支持的飞桨 API <autograd_supported_api>`。
+
+..  code-block:: python
+
+        class MyNet(paddle.nn.Layer):
+            def __init__(self):
+                super().__init__()
+                self.weight = self.create_parameter(shape=(2,2), dtype='float32', is_bias=False)
+                self.bias = self.create_parameter(shape=(2,2), dtype='float32', is_bias=True)
+                self.add_parameter("weight", self.weight)
+                self.add_parameter("bias", self.bias)
+
+            def forward(self, x):
+                y = paddle.matmul(x, self.weight) + self.bias
+                return paddle.tanh(y)
+
+
+第三步：创建网络及声明输入数据，执行前向计算过程。注意，输入数据目前尚不支持可变形状，即类似 paddle.static.data('x', shape=(None, 2), dtype='float32')写法，如果您的输入数据形状会变化可以参考 :ref:`附 1 <autograd_appendix_1>` 写法。
+
+..  code-block:: python
+
+        x = paddle.static.data('x', shape=(2,2), dtype='float32')
+        net = MyNet()
+        y = net(x)
+
+
+第四步：计算 Loss 并进行优化。为了演示高阶微分用法，此处 Loss 定义中使用了 ``paddle.incubate.autograd.grad`` API 计算 ``y`` 对 ``x`` 二阶微分，使用 L2 norm 归一化，然后用 Adam 优化器进行优化。
+目前已支持高阶的反向微分和前向微分，相关 API 列表参考 :ref:`自动微分 API <autograd_apis>` 。
+
+..  code-block:: python
+
+        grad1 = paddle.incubate.autograd.grad(y, x)
+        grad2 = paddle.incubate.autograd.grad(grad1, x)
+        loss = paddle.norm(grad2, p=2)
+
+        opt = paddle.optimizer.Adam(0.01)
+        opt.minimize(loss)
+
+第五步：创建执行器，加载输入数据，执行网络训练。为了演示训练过程，此处模拟一个长度为 10 的输入数据，迭代执行网络，进行训练，并打印相关结果。
+
+..  code-block:: python
+
+        # 创建执行器
+        exe = paddle.static.Executor()
+        # 执行一次默认 startup program，初始化网络参数
+        exe.run(paddle.static.default_startup_program())
+
+        # 模拟形状固定的长度为 10 的输入数据
+        data = [np.random.rand(2,2).astype(np.float32) for i in range(10)]
+        # feed 网络输入数据，fetch_list 中指定想要 fetch 的结果，迭代执行网络进行训练
+        for i, x in enumerate(data):
+            loss_val, = exe.run(feed={'x': x}, fetch_list=[loss])
+            print("iter: ", i+1, " loss: ", loss_val)
+
+
+.. _autograd_apis:
+
+自动微分 API 列表
+::::::::::::::::::::
+
 
 .. csv-table::
     :header: "API 名称", "API 功能"
 
-    " :ref:`paddle.incubate.autograd.enable_prim <cn_api_paddle_incubate_autograd_enable_prim>` ", "开启基于自动微分基础算子的自动微分机制"
-    " :ref:`paddle.incubate.autograd.disable_prim <cn_api_paddle_incubate_autograd_disable_prim>` ", "关闭基于自动微分基础算子的自动微分机制"
-    " :ref:`paddle.incubate.autograd.prim_enabled <cn_api_paddle_incubate_autograd_prim_enabled>` ", "显示是否开启了基于自动微分基础算子的自动微分机制"
+    " :ref:`paddle.incubate.autograd.grad <cn_api_paddle_incubate_autograd_grad>` ", "反向模式自动微分"
+    " :ref:`paddle.incubate.autograd.forward_grad <cn_api_paddle_incubate_autograd_forward_grad>` ", "前向模式自动微分"
+    " :ref:`paddle.incubate.autograd.Jacobian <cn_api_paddle_incubate_autograd_Jacobian>` ", "一阶微分通用形式"
+    " :ref:`paddle.incubate.autograd.Hessian <cn_api_paddle_incubate_autograd_Hessian>` ", "二阶微分通用形式"
 
-
-.. _transform_apis:
-
-自动微分基础算子与原生算子转换 API
-==========================
+除上述 API 之外，还包含两个开关类 API, 用于打开/关闭自动微分。
 
 .. csv-table::
     :header: "API 名称", "API 功能"
 
-    " :ref:`paddle.incubate.autograd.prim2orig <cn_api_paddle_incubate_autograd_prim2orig>` ", "自动微分基础算子转换为等价功能原生算子"
+    " :ref:`paddle.incubate.autograd.enable_prim <cn_api_paddle_incubate_autograd_enable_prim>` ", "打开自动微分"
+    " :ref:`paddle.incubate.autograd.disable_prim <cn_api_paddle_incubate_autograd_disable_prim>` ", "关闭自动微分"
 
 
-.. _functional_apis:
+使用反向微分 API paddle.incubate.autograd.grad 计算 tanh 高阶导数
 
-函数式自动微分 API
-==========================
+..  code-block:: python
+
+        import paddle
+        import numpy as np
+
+        paddle.enable_static() # 开启静态图
+        paddle.incubate.autograd.enable_prim() # 开启自动微分
+
+        # 组网代码
+        x = paddle.static.data('x', shape=((1, )), dtype=paddle.float32)
+        y = paddle.tanh(x)
+        grad1 = paddle.incubate.autograd.grad(y, x)     # 一阶微分
+        grad2 = paddle.incubate.autograd.grad(grad1, x) # 二阶微分
+        grad3 = paddle.incubate.autograd.grad(grad2, x) # 三阶微分
+
+        feed = {'x': np.ones((1,)).astype(np.float32)}
+        fetch_list = [grad1, grad2, grad3]
+        exe = paddle.static.Executor()
+        grad1, grad2, grad3 = exe.run(feed=feed, fetch_list=fetch_list)
+
+        print(grad1, grad2, grad3)
+        # [0.41997433] [-0.6397] [0.6216267]
+
+
+使用前向微分 paddle.incubate.autograd.forward_grad 计算输出元素数量大于输入情况，前向微分相关概念及使用场景参考 https://en.wikipedia.org/wiki/Automatic_differentiation
+
+..  code-block:: python
+
+        import paddle
+        import numpy as np
+
+        paddle.enable_static() # 开启静态图
+        paddle.incubate.autograd.enable_prim() # 开启自动微分
+
+        # 组网代码
+        def func(x): # 单输入多输出函数
+            return x+x, x*x, paddle.tanh(x)
+
+        x = paddle.static.data('x', shape=((1, )), dtype=paddle.float32)
+        y = func(x)
+        # 前向微分遍历一次计算图可以计算所有输出对一个输入的导数
+        out = paddle.incubate.autograd.forward_grad(y, x)
+
+        exe = paddle.static.Executor()
+        out = exe.run(feed={'x': np.random.rand(1).astype(np.float32)}, fetch_list=[out])
+        print(out)
+
+
+使用 paddle.incubate.autograd.Jacobian 计算 Jacobian 矩阵
+
+..  code-block:: python
+
+        import paddle
+        import numpy as np
+
+        paddle.enable_static() # 开启静态图
+        paddle.incubate.autograd.enable_prim() # 开启自动微分
+
+        # 组网代码
+        x = paddle.static.data('x', shape=((2,8)), dtype=paddle.float32)
+        y = paddle.static.data('y', shape=((2,8)), dtype=paddle.float32)
+        # 创建 Jaocbian 实例，此时并不发生计算，支持 batch
+        J = paddle.incubate.autograd.Jacobian(paddle.multiply, (x,y), is_batched=True)
+        # 惰性计算，有效提升计算速度，减少显存开销
+        row = J[:, 0, :] # 获取第一行数据，并缓存
+        col = J[:, 0:3, :] # 获取前三行，第一行结果上次计算中已经缓存
+        all = J[:] # 获取所有元素，前三行数据已经缓存
+
+
+        feed = {
+        'x': np.random.randn(2,8).astype(np.float32),
+        'y': np.random.randn(2,8).astype(np.float32)
+        }
+        fetch_list = [row, col, all]
+        exe = paddle.static.Executor()
+        row, col, all = exe.run(feed=feed, fetch_list=fetch_list)
+
+
+
+.. _autograd_supported_api:
+
+当前支持的飞桨 API
+::::::::::::::::::::
+
+目前只支持部分飞桨 API，主要覆盖全联接网络和一些激活函数，具体如下：
 
 .. csv-table::
-    :header: "API 名称", "API 功能"
+    :header: "API 路径", "链接"
 
-    " :ref:`paddle.incubate.autograd.jvp <cn_api_paddle_incubate_autograd_jvp>` ", "雅可比矩阵与向量乘积"
-    " :ref:`paddle.incubate.autograd.vjp <cn_api_paddle_incubate_autograd_vjp>` ", "向量与雅可比矩阵乘积"
-    " :ref:`paddle.incubate.autograd.Jacobian <cn_api_paddle_incubate_autograd_Jacobian>` ", "雅可比矩阵"
-    " :ref:`paddle.incubate.autograd.Hessian <cn_api_paddle_incubate_autograd_Hessian>` ", "海森矩阵"
+    " paddle.reshape ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/reshape_cn.html#reshape"
+    " paddle.broadcast_to ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/broadcast_to_cn.html#broadcast-to"
+    " paddle.transpose ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/transpose_cn.html#transpose"
+    " paddle.split ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/split_cn.html#split"
+    " paddle.concat ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/concat_cn.html#concat"
+    " paddle.slice ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/strided_slice_cn.html#strided-slice"
+    " paddle.assign ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/assign_cn.html#assign"
+    " paddle.gather ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/gather_cn.html#gather"
+    " paddle.add ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/add_cn.html#add"
+    " paddle.subtract ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/subtract_cn.html#subtract"
+    " paddle.multiply ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/multiply_cn.html#multiply"
+    " paddle.divide ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/divide_cn.html#divide"
+    " paddle.sqrt ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sqrt_cn.html#sqrt"
+    " paddle.tanh ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tanh_cn.html#tanh"
+    " paddle.matmul ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/matmul_cn.html#matmul"
+    " paddle.sin ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sin_cn.html#sin"
+    " paddle.cos ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cos_cn.html#cos"
+    " paddle.exp ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/exp_cn.html#exp"
+    " paddle.scale ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/scale_cn.html#scale"
+    " paddle.zeros_like ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/zeros_like_cn.html#zeros-like"
+    " paddle.index_select ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/index_select_cn.html#index-select"
+    " paddle.norm/p=2 ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/norm_cn.html#norm"
+    " paddle.optimizer.Adam ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/Adam_cn.html#adam"
+    " paddle.optimizer.SGD ", "https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/SGD_cn.html#sgd"
 
 
-基于自动微分基础算子的自动微分机制
-==========================
+.. _autograd_constraints:
+
+使用限制
+::::::::::::::::::::
+
+- 输入数据不支持可变形状写法，如[None, 1]、[-1, 1]。如果训练数据形状是变化的，一种可行 Workaround 方案是根据不同数据形状创建不同网络，即在组网阶段将形状固定，具体参考附 1 代码。
+- 我们尚未在 windows 平台进行完整验证和支持。
+- 目前只支持使用 default_main_program 和 default_startup_program。
+- boradcast 语意尚未完整支持。
+
+
+.. _autograd_design_details:
+
+设计细节
+::::::::::::::::::::
+
 在传统的深度学习任务中，神经网络的搭建分为前向和反向过程。通过深度学习框架的自动微分机制，对前向网络中的算子求一阶导数可以完成反向过程的搭建。
-在一些复杂的深度学习任务中，有时会使用到高阶导数。在科学计算领域的深度学习任务中，由于引入偏微分方程组，往往需要使用到高阶导数。
-特别地，在输入数量大于输出数量时，反向微分更加高效；在输入数量小于输出数量时，前向微分更加高效.
-在高阶微分计算中，随着阶数的升高，输出数量会越来越多，前向微分重要性也会越来越高。
+在一些复杂的深度学习任务中，有时会使用到高阶导数。如，科学计算领域的深度学习任务中，由于引入偏微分方程组，往往需要使用到高阶导数。特别地，在输入数量大于输出数量时，反向微分更加高效；在输入数量小于输出数量时，前向微分更加高效.
 为了更好地支持这些应用场景，需要深度学习框架具备高阶自动微分的能力，且支持前向和反向两种微分模式。
 
-在框架中增加如下功能：
+整体架构如下图：
 
-- 设计一套自动微分基础算子
-- 定义框架原生算子体系和自动微分基础算子体系之间的转化规则，并实现对应的程序变换
-- 在自动微分基础算子上定义自动微分规则，并实现对应的程序变换
+- 基础算子体系：由初等函数组成，并定义对应的前向（Linearize）和反向（Transpose）规则，且前向和反向规则也基于基础算子实现；
+- 程序变换：输入初始程序，Linearize 变换调用前向规则输出前向计算程序，Transpose 变换基于前向计算程序调用反向规则输出反向计算程序；
+- 自动微分 API：提供前向、反向模式的高阶微分 API；
 
-自动微分基础算子设计：
-自动微分基础算子和原生算子基于同样的数据结构，但是与原生算子体系中的算子不同，这些自动微分基础算子不包含 kernel 实现，只用做表达语义，用于和原生算子体系之间转化规则和自动微分规则的定义，不能直接执行。
+具体执行时，由 PHI 原生算子组成的程序，会拆解为基础算子组成的程序。然后在基础算子组成的程序之上，调用前向和反向规则，进行微分变换，输出前向和反向程序。如果是高阶微分，重复上述微分变换。最终输出的程序交由分布式和编译器进行处理后，由执行器进行执行。
 
-原生算子体系和自动微分基础算子体系之间的转化：
-一方面，原生算子体系中的算子语义往往比较复杂，需要拆分为多个自动微分基础算子的组合。
-另一方面，自动微分基础算子由于没有 kernel 实现，不能直接执行，在进行完自动微分变换之后，需要转化为同语义的原生算子才可以执行。
-通过定义原生算子和自动微分基础算子之间的转化规则，在程序变换 orig2prim 和 prim2orig 中应用对应的规则，分别完成原生算子到自动微分基础算子和自动微分基础算子到原生算子之间的转化。
+.. image:: autograd.png
+    :scale: 50 %
 
-自动微分规则及其对应的程序变换：
-在自动微分基础算子上定义 linearize 和 transpose 规则。
-其中单独使用 linearize 规则可以实现前向自动微分变换，配合使用 linearize 规则和 transpose 规则可以实现反向自动微分变换。
-linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/google/jax>`_ 。
-规则变化具备可组合性，例如在使用 linearize 和 transpose 完成一阶反向自动微分变换之后，可以在生成的计算图上再次使用 linearize 和 transpose 规则得到二阶反向微分计算图，从而实现高阶自动微分功能。
+RoadMap
+::::::::::::::::::::
 
-
-接口设计与使用案例
-==========================
-当前阶段优先在静态图中支持了基于自动微分基础算子的自动微分机制，通过全局切换接口 ``enable_prim`` 和 ``disable_prim`` 可以在这套自动微分机制和原始的自动微分机制之间进行切换。
-
-接口层面，基于 orig2prim，linearize 和 transpose 三种变换改写了 ``paddle.static.gradients`` 接口和优化器中的 ``minimize`` 接口，并且对外提供 ``prim2orig`` 接口, 只需要做很少的改动就可以使用新自动微分机制完成高阶微分的计算。
-
-下边是一个使用示例：
-
-1、首先通过 ``enable_static`` 和 ``enable_prim`` 切换到静态图模式和新自动微分机制。
-
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-    from paddle.incubate.autograd import enable_prim, prim_enabled, prim2orig
-
-    paddle.enable_static()
-    enable_prim()
-
-2、生成输入数据，配置执行器.
-
-.. code-block:: python
-
-    x = np.random.rand(2, 20)
-
-    # Set place and excutor
-    place = paddle.CPUPlace()
-    if paddle.device.is_compiled_with_cuda():
-        place = paddle.CUDAPlace(0)
-    exe = paddle.static.Executor(place)
-
-3、完成 ``program`` 搭建，其中两次调用 ``paddle.static.gradients`` 完成二阶微分运算，调用优化器中的 ``minimize`` 接口完成三阶微分运算，最后调用 ``prim2orig`` 接口将 ``program`` 中的自动微分基础算子转化为等价功能的原生算子。
-
-.. code-block:: python
-
-    # Build program
-    main = paddle.static.Program()
-    startup = paddle.static.Program()
-    with paddle.static.program_guard(main, startup):
-        # Set input and parameter
-        input_x = paddle.static.data('x', [2, 20], dtype='float64')
-        input_x.stop_gradient = False
-        params_w = paddle.static.create_parameter(
-            shape=[20, 2], dtype='float64', is_bias=False)
-        params_bias = paddle.static.create_parameter(
-            shape=[2], dtype='float64', is_bias=True)
-
-        # Build network
-        y = paddle.tanh(paddle.matmul(input_x, params_w) + params_bias)
-        dy_dx, = paddle.static.gradients([y], [input_x])
-        d2y_dx2, = paddle.static.gradients([dy_dx], [input_x])
-        loss = paddle.norm(d2y_dx2, p=2)
-        opt = paddle.optimizer.Adam(0.01)
-        _, p_g = opt.minimize(loss)
-
-        # Do prim2orig transform.
-        if prim_enabled():
-            prim2orig()
-
-4、使用执行器执行 ``program`` 。
-
-.. code-block:: python
-
-    # Run program
-    exe.run(startup)
-    p_g = exe.run(main,
-                  feed={'x': x},
-                  fetch_list=p_g)
-
-完整的示例代码如下：
-
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-    from paddle.incubate.autograd import enable_prim, prim_enabled, prim2orig
-
-    paddle.enable_static()
-    enable_prim()
-
-    x = np.random.rand(2, 20)
-
-    # Set place and excutor
-    place = paddle.CPUPlace()
-    if paddle.device.is_compiled_with_cuda():
-        place = paddle.CUDAPlace(0)
-    exe = paddle.static.Executor(place)
-
-    # Build program
-    main = paddle.static.Program()
-    startup = paddle.static.Program()
-    with paddle.static.program_guard(main, startup):
-        # Set input and parameter
-        input_x = paddle.static.data('x', [2, 20], dtype='float64')
-        input_x.stop_gradient = False
-        params_w = paddle.static.create_parameter(
-            shape=[20, 2], dtype='float64', is_bias=False)
-        params_bias = paddle.static.create_parameter(
-            shape=[2], dtype='float64', is_bias=True)
-
-        # Build network
-        y = paddle.tanh(paddle.matmul(input_x, params_w) + params_bias)
-        dy_dx, = paddle.static.gradients([y], [input_x])
-        d2y_dx2, = paddle.static.gradients([dy_dx], [input_x])
-        loss = paddle.norm(d2y_dx2, p=2)
-        opt = paddle.optimizer.Adam(0.01)
-        _, p_g = opt.minimize(loss)
-
-        # Do prim2orig transform.
-        if prim_enabled():
-            prim2orig()
-
-    # Run program
-    exe.run(startup)
-    p_g = exe.run(main,
-                  feed={'x': x},
-                  fetch_list=p_g)
-
-
-演进计划
-==========================
 目前基于自动微分基础算子的自动微分机制还在积极演进阶段，可预见的工作包括：
 
-- 提供前向微分相关 API
-- 适配函数式自动微分 API
 - 功能覆盖更多的组网 API
 - 支持控制流
+- 支持可变形状
 - 支持动态图模式
+- 调整编程范式和编程使用思路
 
 欢迎持续关注或者参与共建。
+
+
+.. _autograd_appendix_1:
+
+附 1 可变形状的 Workaround 方案
+::::::::::::::::::::
+
+由于当前尚支持声明可变形状数据，当您 feed 到网络的训练数据形状会发生变化时，需要遍历不同形状数据，将确定的数据形状输入到组网代码中，如下述代码中的 20-38 行。
+
+..  code-block:: python
+
+        import numpy as np
+        import paddle
+
+
+        paddle.enable_static()
+        paddle.incubate.autograd.enable_prim()
+
+        class MyNet(paddle.nn.Layer):
+            def __init__(self):
+                super().__init__()
+                self.weight = self.create_parameter(shape=(2,2), dtype='float32', is_bias=False)
+                self.bias = self.create_parameter(shape=(2,), dtype='float32', is_bias=True)
+                self.add_parameter("weight", self.weight)
+                self.add_parameter("bias", self.bias)
+
+            def forward(self, x):
+                y = paddle.matmul(x, self.weight) + self.bias
+                return paddle.tanh(y)
+
+        # 模拟一个形状变化输入数据
+        data = [
+            np.random.rand(3,2).astype(np.float32),
+            np.random.rand(4,2).astype(np.float32),
+            np.random.rand(5,2).astype(np.float32)
+        ]
+
+        # 遍历输入数据，将形状作为 paddle.static.data 参数传入，此时形状是固定的
+        for i, input in enumerate(data):
+            x = paddle.static.data(f'x{i}', shape=input.shape, dtype='float32')
+            net = MyNet()
+            y = net(x)
+
+            grad1 = paddle.incubate.autograd.grad(y, x)
+            grad2 = paddle.incubate.autograd.grad(grad1, x)
+            loss = paddle.norm(grad2, p=2)
+
+            opt = paddle.optimizer.Adam(0.01)
+            opt.minimize(loss)
+
+        exe = paddle.static.Executor()
+        exe.run(paddle.static.default_startup_program())
+
+        for epoch in range(10):
+            loss_val, = exe.run(feed={f'x{i}': x for i, x in enumerate(data)}, fetch_list=[loss])
+            print("epoch: ", epoch+1, " loss: ", loss_val)

@@ -1,4 +1,4 @@
-.. _cn_api_paddle_framework_io_load:
+.. _cn_api_paddle_load:
 
 load
 -----
@@ -31,7 +31,27 @@ load
 :::::::::
 Object，一个可以在 paddle 中使用的对象实例。
 
-代码示例
+代码示例 1
 :::::::::
 
-COPY-FROM: paddle.load
+COPY-FROM: paddle.load:code-example-1
+
+代码示例 2
+:::::::::
+
+COPY-FROM: paddle.load:code-example-2
+
+代码示例 3
+:::::::::
+
+COPY-FROM: paddle.load:code-example-3
+
+代码示例 4
+:::::::::
+
+COPY-FROM: paddle.load:code-example-4
+
+代码示例 5
+:::::::::
+
+COPY-FROM: paddle.load:code-example-5

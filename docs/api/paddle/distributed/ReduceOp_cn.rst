@@ -1,11 +1,11 @@
-.. _cn_api_distributed_ReduceOp:
+.. _cn_api_paddle_distributed_ReduceOp:
 
 ReduceOp
 -------------------------------
 
 .. py:class:: paddle.distributed.ReduceOp()
 
-指定规约类操作的逐元素操作类型，需要是下述值之一：
+指定规约操作的类型，必须是下述值之一：
 
     ReduceOp.SUM
 

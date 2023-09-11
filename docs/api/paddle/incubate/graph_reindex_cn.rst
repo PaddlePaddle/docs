@@ -1,4 +1,4 @@
-.. _cn_api_incubate_graph_reindex:
+.. _cn_api_paddle_incubate_graph_reindex:
 
 graph_reindex
 -------------------------------
@@ -33,12 +33,12 @@ graph_reindex
 
 参数
 :::::::::
-    - x (Tensor) - 输入的中心节点原始编号，数据类型为：int32、int64。
-    - neighbors (Tensor) - 中心节点的邻居节点编号，数据类型为：int32、int64。
-    - count (Tensor) - 中心节点各自的邻居数目，数据类型为：int32。
-    - value_buffer (Tensor，可选) - 用于快速哈希索引的缓存 Tensor，可加速重编号过程。数据类型为 int32，并且应当事先填充为-1。如果 ``flag_buffer_hashtable`` 为 True，则不可为空。默认值为 None。
-    - index_buffer (Tensor，可选) - 用于快速哈希索引的缓存 Tensor，可加速重编号过程。数据类型为 int32，并且应当事先填充为-1。如果 ``flag_buffer_hashtable`` 为 True，则不可为空。默认值为 None。
-    - flag_buffer_hashtable (bool) - 是否采取快速哈希索引，默认为 False。只适用于 GPU 版本的 API。
+    - **x** (Tensor) - 输入的中心节点原始编号，数据类型为：int32、int64。
+    - **neighbors** (Tensor) - 中心节点的邻居节点编号，数据类型为：int32、int64。
+    - **count** (Tensor) - 中心节点各自的邻居数目，数据类型为：int32。
+    - **value_buffer** (Tensor，可选) - 用于快速哈希索引的缓存 Tensor，可加速重编号过程。数据类型为 int32，并且应当事先填充为-1。如果 ``flag_buffer_hashtable`` 为 True，则不可为空。默认值为 None。
+    - **index_buffer** (Tensor，可选) - 用于快速哈希索引的缓存 Tensor，可加速重编号过程。数据类型为 int32，并且应当事先填充为-1。如果 ``flag_buffer_hashtable`` 为 True，则不可为空。默认值为 None。
+    - **flag_buffer_hashtable** (bool) - 是否采取快速哈希索引，默认为 False。只适用于 GPU 版本的 API。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

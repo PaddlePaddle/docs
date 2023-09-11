@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_bilinear_tensor_product:
+.. _cn_api_paddle_static_nn_bilinear_tensor_product:
 
 bilinear_tensor_product
 -------------------------------
@@ -9,7 +9,7 @@ bilinear_tensor_product
 
 
 
-该层对两个输入执行双线性张量积。
+该层对两个输入执行双线性 Tensor 积。
 
 例如：
 
@@ -27,17 +27,17 @@ bilinear_tensor_product
 参数
 ::::::::::::
 
-    - **x** (Variable): 2-D 输入张量，形状为 [batch_size, M]，数据类型为 float32 或 float64。
-    - **y** (Variable): 2-D 输入张量，形状为 [batch_size, N]，数据类型与 **x** 一致。
+    - **x** (Variable): 2-D 输入 Tensor，形状为 [batch_size, M]，数据类型为 float32 或 float64。
+    - **y** (Variable): 2-D 输入 Tensor，形状为 [batch_size, N]，数据类型与 **x** 一致。
     - **size** (int)：此层的维度。
     - **act** (str，可选)：应用到该层输出的激活函数。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **param_attr** (ParamAttr，可选)：指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** (ParamAttr，可选)：指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **param_attr** (ParamAttr，可选)：指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **bias_attr** (ParamAttr，可选)：指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
 
 返回
 ::::::::::::
- Variable，一个形为 [batch_size, size] 的 2-D 张量。
+ Variable，一个形为 [batch_size, size] 的 2-D Tensor。
 
 代码示例
 ::::::::::::

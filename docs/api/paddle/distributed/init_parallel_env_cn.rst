@@ -1,4 +1,4 @@
-.. _cn_api_distributed_init_parallel_env:
+.. _cn_api_paddle_distributed_init_parallel_env:
 
 init_parallel_env
 -----------------

@@ -1,11 +1,11 @@
-.. _cn_api_nn_functional_conv1d:
+.. _cn_api_paddle_nn_functional_conv1d:
 
 conv1d
 -------------------------------
 
 .. py:function:: paddle.nn.functional.conv1d(x, weight, bias=None, stride=1, padding=0, dilation=1, groups=1, data_format="NCL", name=None)
 
-该 OP 是一维卷积层（convolution1d layer），根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilation）一组参数计算输出特征层大小。输入和输出是 NCL 或 NLC 格式，其中 N 是批尺寸，C 是通道数，L 是长度。卷积核是 MCL 格式，M 是输出图像通道数，C 是输入图像通道数，L 是卷积核长度。如果组数(groups)大于 1，C 等于输入图像通道数除以组数的结果。详情请参考 UFLDL's : `卷积 <http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_ 。如果 bias_attr 不为 False，卷积计算会添加偏置项。如果指定了激活函数类型，相应的激活函数会作用在最终结果上。
+一维卷积层（convolution1d layer），根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilation）一组参数计算输出特征层大小。输入和输出是 NCL 或 NLC 格式，其中 N 是批尺寸，C 是通道数，L 是长度。卷积核是 MCL 格式，M 是输出图像通道数，C 是输入图像通道数，L 是卷积核长度。如果组数(groups)大于 1，C 等于输入图像通道数除以组数的结果。详情请参考 UFLDL's : `卷积 <http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_ 。如果 bias_attr 不为 False，卷积计算会添加偏置项。如果指定了激活函数类型，相应的激活函数会作用在最终结果上。
 
 对每个输入 X，有等式：
 
@@ -54,7 +54,7 @@ conv1d
 ::::::::::::
 
     - **x** (Tensor) - 输入是形状为 :math:`[N, C, L]` 或 :math:`[N, L, C]` 的 4-D Tensor，N 是批尺寸，C 是通道数，L 是特征长度，数据类型为 float16, float32 或 float64。
-    - **weight** (Tensor)) - 形状为 :math:`[M, C/g, kL]` 的卷积核。M 是输出通道数，g 是分组的个数，kL 是卷积核的长度度。
+    - **weight** (Tensor) - 形状为 :math:`[M, C/g, kL]` 的卷积核。M 是输出通道数，g 是分组的个数，kL 是卷积核的长度度。
     - **bias** (int|list|tuple，可选) - 偏置项，形状为：:math:`[M,]` 。
     - **stride** (int|list|tuple，可选) - 步长大小。卷积核和输入进行卷积计算时滑动的步长。整数或包含一个整数的列表或元组。默认值：1。
     - **padding** (int|list|tuple|str，可选) - 填充大小。可以是以下三种格式：（1）字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考下述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。（2）整数，表示在输入特征两侧各填充 ``padding`` 大小的 0。（3）包含一个整数的列表或元组，表示在输入特征两侧各填充 ``padding[0]`` 大小的 0。默认值：0。

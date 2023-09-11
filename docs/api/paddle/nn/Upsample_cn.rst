@@ -6,7 +6,7 @@ Upsample
 .. py:class:: paddle.nn.Upsample(size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format='NCHW', name=None)
 
 
-该 OP 用于调整一个 batch 中图片的大小。
+用于调整一个 batch 中图片的大小。
 
 输入为 3-D Tensor 时形状为(num_batches, channels, in_w)，输入为 4-D Tensor 时形状为(num_batches, channels, in_h, in_w)或者(num_batches, in_h, in_w, channels)，输入为 5-D Tensor 时形状为(num_batches, channels, in_d, in_h, in_w)或者(num_batches, in_d, in_h, in_w, channels)，并且调整大小只适用于深度，高度和宽度对应的维度。
 
@@ -23,7 +23,7 @@ Upsample
     BICUBIC：双三次插值
 
 
-最近邻插值是在输入张量的高度和宽度上进行最近邻插值。
+最近邻插值是在输入 Tensor 的高度和宽度上进行最近邻插值。
 
 线性插值是用一条线连接两个已知量来确定两个已知量之间的一个未知量的值的方法。
 
@@ -150,17 +150,17 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 参数
 :::::::::
 
-    - **size** (list|tuple|Variable|None) - 输出 Tensor，输入为 3D 张量时，形状为为(out_w)的 1-D Tensor。输入为 4D 张量时，形状为为(out_h, out_w)的 2-D Tensor。输入为 5-D Tensor 时，形状为(out_d, out_h, out_w)的 3-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为 1。默认值为 None。
-    - **scale_factor** (float|Tensor|list|tuple|None)-输入的高度或宽度的乘数因子。out_shape 和 scale 至少要设置一个。out_shape 的优先级高于 scale。默认值为 None。如果 scale_factor 是一个 list 或 tuple，它必须与输入的 shape 匹配。
+    - **size** (list|tuple|Tensor|None) - 输出 Tensor 的形状，输入为 3D Tensor 时，形状为为(out_w)的 1-D Tensor。输入为 4D Tensor 时，形状为为(out_h, out_w)的 2-D Tensor。输入为 5-D Tensor 时，形状为(out_d, out_h, out_w)的 3-D Tensor。如果 :code:`size` 是列表，每一个元素可以是整数或者形状为[]的 0-D Tensor。如果 :code:`size` 是 Tensor，则其为 1D Tensor。默认值为 None。
+    - **scale_factor** (float|Tensor|list|tuple|None，可选) - 输入的深度、高度或宽度的缩放因子。:code:`size` 和 :code:`scale_factor` 至少要设置一个。:code:`size` 的优先级高于 :code:`scale_factor`。默认值为 None。如果 scale_factor 是一个 list 或 tuple，它必须与输入的 shape 匹配。
     - **mode** (str，可选) - 插值方法。支持"bilinear"或"trilinear"或"nearest"或"bicubic"或"linear"或"area"。默认值为"nearest"。
-    - **align_corners** （bool，可选）- 一个可选的 bool 型参数，如果为 True，则将输入和输出张量的 4 个角落像素的中心对齐，并保留角点像素的值。默认值为 True
-    - **align_mode** （int，可选）- 双线性插值的可选项。可以是 '0' 代表 src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1'，代表 src_idx = scale * dst_index。
-    - **data_format** （str，可选）- 指定输入的数据格式，输出的数据格式将与输入保持一致。对于 3-D Tensor，支持 NCHW(num_batches, channels, width)，对于 4-D Tensor，支持 NCHW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，对于 5-D Tensor，支持 NCDHW(num_batches, channels, depth, height, width)或者 NDHWC(num_batches, depth, height, width, channels)，默认值：'NCHW'。
+    - **align_corners** (bool，可选) - 一个可选的 bool 型参数，如果为 True，则将输入和输出 Tensor 的 4 个角落像素的中心对齐，并保留角点像素的值。默认值为 False。
+    - **align_mode** (int，可选) - 双线性插值的可选项。可以是 '0' 代表 src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1'，代表 src_idx = scale * dst_index。默认值为 0。
+    - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致。对于 3-D Tensor，支持 NCW(num_batches, channels, width)或者 NWC(num_batches, width, channels)，对于 4-D Tensor，支持 NCHW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，对于 5-D Tensor，支持 NCDHW(num_batches, channels, depth, height, width)或者 NDHWC(num_batches, depth, height, width, channels)，默认值：'NCHW'。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
-3-D Tensor，形状为 (num_batches, channels, out_w) ；4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)；或者 5-D Tensor，形状为 (num_batches, channels, out_d, out_h, out_w) 或 (num_batches, out_d, out_h, out_w, channels)。
+3-D Tensor，形状为(num_batches, channels, out_w)或者(num_batches, out_w, channels)；4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)；或者 5-D Tensor，形状为 (num_batches, channels, out_d, out_h, out_w) 或 (num_batches, out_d, out_h, out_w, channels)。
 
 
 代码示例

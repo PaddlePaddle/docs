@@ -173,24 +173,6 @@ cmake .. -DPY_VERSION=3.6 \
 make -j20
 ```
 
-For Python2
-
-```
-cmake .. -DPY_VERSION=2.7 \
-         -DCMAKE_BUILD_TYPE=Release \
-         -DWITH_GPU=OFF \
-         -DWITH_XPU=ON \
-         -DON_INFER=ON \
-         -DWITH_PYTHON=ON \
-         -DWITH_AVX=ON \
-         -DWITH_MKL=ON \
-         -DWITH_MKLDNN=ON \
-         -DWITH_XPU_BKCL=ON \
-         -DWITH_DISTRIBUTE=ON \
-         -DWITH_NCCL=OFF
-
-make -j20
-```
 
 **Phytium CPU+Kunlun XPU+Kylin release V10**
 

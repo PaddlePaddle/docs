@@ -1,4 +1,4 @@
-.. _cn_api_tensor_searchsorted:
+.. _cn_api_paddle_searchsorted:
 
 searchsorted
 -------------------------------

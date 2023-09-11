@@ -1,4 +1,4 @@
-.. _cn_api_io_Subset:
+.. _cn_api_paddle_io_Subset:
 
 Subset
 -------------------------------
@@ -11,8 +11,8 @@ Subset
 参数
 :::::::::
 
-    - **datasets** 原数据集。
-    - **indices** 用于提取子集的原数据集合指标数组。
+    - **datasets** (Dataset) - 原数据集。
+    - **indices** (sequence) - 用于提取子集的原数据集合指标数组。
 
 返回
 :::::::::

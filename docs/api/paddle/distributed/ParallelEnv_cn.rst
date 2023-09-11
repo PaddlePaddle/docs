@@ -1,4 +1,4 @@
-.. _cn_api_fluid_dygraph_ParallelEnv:
+.. _cn_api_paddle_distributed_ParallelEnv:
 
 ParallelEnv
 -------------------------------

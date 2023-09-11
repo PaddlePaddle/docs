@@ -1,4 +1,4 @@
-.. _cn_api_tensor_set_printoptions:
+.. _cn_api_paddle_set_printoptions:
 
 set_printoptions
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_nn_initializer_KaimingUniform:
+.. _cn_api_paddle_nn_initializer_KaimingUniform:
 
 KaimingUniform
 -------------------------------
@@ -8,9 +8,7 @@ KaimingUniform
 
 
 
-该接口实现 Kaiming 均匀分布方式的权重初始化。
-
-该接口为权重初始化函数，方法来自 Kaiming He，Xiangyu Zhang，Shaoqing Ren 和 Jian Sun 所写的论文：`Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification <https://arxiv.org/abs/1502.01852>`_ 。这是一个鲁棒性特别强的初始化方法，并且适应了非线性激活函数（rectifier nonlinearities）。
+Kaiming 均匀分布方式的权重初始化函数，方法来自 Kaiming He，Xiangyu Zhang，Shaoqing Ren 和 Jian Sun 所写的论文：`Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification <https://arxiv.org/abs/1502.01852>`_ 。这是一个鲁棒性特别强的初始化方法，并且适应了非线性激活函数（rectifier nonlinearities）。
 
 在均匀分布中，范围为[-x,x]，其中：
 

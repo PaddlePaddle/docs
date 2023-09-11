@@ -1,4 +1,4 @@
-.. _cn_api_fluid_unique_name_guard:
+.. _cn_api_paddle_utils_unique_name_guard:
 
 guard
 -------------------------------
@@ -8,7 +8,7 @@ guard
 
 
 
-该接口用于更改命名空间，与 with 语句一起使用。使用后，在 with 语句的上下文中使用新的命名空间，调用 generate 接口时相同前缀的名称将从 0 开始重新编号。
+更改命名空间，与 with 语句一起使用。使用后，在 with 语句的上下文中使用新的命名空间，调用 generate 接口时相同前缀的名称将从 0 开始重新编号。
 
 参数
 ::::::::::::

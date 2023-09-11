@@ -1,11 +1,11 @@
-.. _cn_api_nn_AdaptiveAvgPool2D:
+.. _cn_api_paddle_nn_AdaptiveAvgPool2D:
 
 AdaptiveAvgPool2D
 -------------------------------
 
 .. py:function:: paddle.nn.AdaptiveAvgPool2D(output_size, data_format="NCHW", name=None)
 
-该算子根据输入 `x` , `output_size` 等参数对一个输入 Tensor 计算 2D 的自适应平均池化。输入和输出都是 4-D Tensor，
+根据输入 `x` , `output_size` 等参数对一个输入 Tensor 计算 2D 的自适应平均池化。输入和输出都是 4-D Tensor，
 默认是以 `NCHW` 格式表示的，其中 `N` 是 batch size, `C` 是通道数，`H` 是输入特征的高度，`W` 是输入特征的宽度。
 
 计算公式如下：

@@ -1,4 +1,4 @@
-.. _cp_api_device_cuda_stream_guard:
+.. _cn_api_paddle_device_cuda_stream_guard:
 
 stream_guard
 -------------------------------
@@ -7,6 +7,8 @@ stream_guard
 
 可以切换当前的 CUDA stream 为输入指定的 stream。
 
+.. note::
+    该 API 目前仅支持动态图模式。
 
 参数
 ::::::::::::

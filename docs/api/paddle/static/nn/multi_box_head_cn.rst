@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_multi_box_head:
+.. _cn_api_paddle_static_nn_multi_box_head:
 
 multi_box_head
 -------------------------------
@@ -25,7 +25,7 @@ multi_box_head
                   min_sizes = []
                   max_sizes = []
                   step = int(math.floor(((max_ratio - min_ratio)) / (num_layer - 2)))
-                  for ratio in six.moves.range(min_ratio, max_ratio + 1, step):
+                  for ratio in range(min_ratio, max_ratio + 1, step):
                       min_sizes.append(base_size * ratio / 100.)
                       max_sizes.append(base_size * (ratio + step) / 100.)
                       min_sizes = [base_size * .10] + min_sizes

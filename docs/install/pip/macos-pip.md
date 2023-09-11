@@ -6,7 +6,7 @@
 
 * **macOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持 GPU 版本)**
 
-* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python 版本 3.7/3.8/3.9/3.10 (64 bit)**
 
 * **pip 或 pip3 版本 20.2.2 或更高版本 (64 bit)**
 
@@ -33,7 +33,7 @@
 
 * 需要确认 python 的版本是否满足要求
 
-  * 使用以下命令确认是 3.6/3.7/3.8/3.9
+  * 使用以下命令确认是 3.7/3.8/3.9/3.10
 
     ```
     python --version
@@ -62,7 +62,7 @@
 
 * 默认提供的安装包需要计算机支持 MKL
 
-* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md)。
+* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/docs/blob/develop/docs/install/install_script.md)。
 
 
 
@@ -89,7 +89,7 @@
 * macOS 上您需要安装 unrar 以支持 PaddlePaddle，可以使用命令 `brew install rar`
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 * 默认下载最新稳定版的安装包，如需获取开发版安装包，请参考[这里](https://www.paddlepaddle.org.cn/install/quick/zh/1.8.5-windows-pip)
-* 使用 macOS 中自带 Python 可能会导致安装失败。请使用[Python.org](https://www.python.org/downloads/mac-osx/)提供的 python3.6.x、python3.7.x、python3.8.x 或 python3.9.x。
+* 使用 macOS 中自带 Python 可能会导致安装失败。请使用[Python.org](https://www.python.org/downloads/mac-osx/)提供的 python3.7.x、python3.8.x 、python3.9.x 或 python3.10.x。
 
 ## **三、验证安装**
 

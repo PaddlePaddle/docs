@@ -21,11 +21,11 @@
 
 本节将采用推荐领域非常经典的模型 wide_and_deep 为例，介绍如何使用飞桨分布式完成参数服务器训练任务。
 
-参数服务器训练基于飞桨静态图，为方便用户理解，我们准备了一个 wide_and_deep 模型的单机静态图示例：\ `单机静态图示例 <https://github.com/PaddlePaddle/FleetX/tree/old_develop/eval/rec/wide_and_deep_single_static>`_\。
+参数服务器训练基于飞桨静态图，为方便用户理解，我们准备了一个 wide_and_deep 模型的单机静态图示例：\ `单机静态图示例 <https://github.com/PaddlePaddle/PaddleFleetX/tree/old_develop/eval/rec/wide_and_deep_single_static>`_\。
 
-在单机静态图示例基础上，通过 1.2 章节的操作方法，可以将其修改为参数服务器训练示例，本次快速开始的完整示例代码参考：\ `参数服务器完整示例 <https://github.com/PaddlePaddle/FleetX/tree/old_develop/examples/wide_and_deep_dataset>`_\。
+在单机静态图示例基础上，通过 1.2 章节的操作方法，可以将其修改为参数服务器训练示例，本次快速开始的完整示例代码参考：\ `参数服务器完整示例 <https://github.com/PaddlePaddle/PaddleFleetX/tree/old_develop/examples/wide_and_deep_dataset>`_\。
 
-同时，我们在 AIStudio 上建立了一个参数服务器快速开始的项目：\ `参数服务器快速开始 <https://aistudio.baidu.com/aistudio/projectdetail/4189047?channelType=0&channel=0>`_\，用户可以跳转到 AIStudio 上直接运行参数服务器的训练代码。
+同时，我们在 AIStudio 上建立了一个参数服务器快速开始的项目：\ `参数服务器快速开始 <https://aistudio.baidu.com/aistudio/projectdetail/4522337>`_\，用户可以跳转到 AIStudio 上直接运行参数服务器的训练代码。
 
 在编写分布式训练程序之前，用户需要确保已经安装 PaddlePaddle2.3 及以上版本的飞桨开源框架。
 
@@ -270,4 +270,4 @@ InMemoryDataset/QueueDataset 所对应的数据处理脚本参考 examples/wide_
     time: [2022-05-18 11:27:27], batch: [4], loss[1]:[0.703863]
     time: [2022-05-18 11:27:27], batch: [5], loss[1]:[0.670717]
 
-备注：启动相关问题，请参考\ `launch <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/launch_cn.html>`_\。
+备注：启动相关问题，请参考 :ref:`cn_api_distributed_launch` 。

@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_functional_soft_margin_losss:
+.. _cn_api_paddle_nn_functional_soft_margin_loss:
 
 soft_margin_loss
 -------------------------------
@@ -27,7 +27,7 @@ soft_margin_loss
 
 返回
 :::::::::
-    - 输出的结果 Tensor。如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 :math:`[N, *]` ，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[1]` 。
+    - 输出的结果 Tensor。如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 :math:`[N, *]` ，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[]` 。
 
 
 代码示例

@@ -165,7 +165,7 @@ prepare(optimizer=None, loss=None, metrics=None, amp_configs=None)
     - **optimizer** (OOptimizer|None，可选) - 当训练模型的，该参数必须被设定。当评估或测试的时候，该参数可以不设定。默认值：None。
     - **loss** (Loss|Callable|None，可选) - 当训练模型的，该参数必须被设定。默认值：None。
     - **metrics** (Metric|list[Metric]|None，可选) - 当该参数被设定时，所有给定的评估方法会在训练和测试时被运行，并返回对应的指标。默认值：None。
-    - **amp_configs** (str|dict|None，可选) - 混合精度训练的配置，通常是个 dict，也可以是 str。当使用自动混合精度训练或者纯 float16 训练时，``amp_configs`` 的 key ``level`` 需要被设置为 O1 或者 O2，float32 训练时则默认为 O0。除了 ``level`` ，还可以传入更多的和混合精度 API 一致的参数，例如：``init_loss_scaling``、 ``incr_ratio`` 、 ``decr_ratio``、 ``incr_every_n_steps``、 ``decr_every_n_nan_or_inf``、 ``use_dynamic_loss_scaling``、 ``custom_white_list``、 ``custom_black_list`` ，在静态图下还支持传入 ``custom_black_varnames`` 和 ``use_fp16_guard`` 。详细使用方法可以参考参考混合精度 API 的文档 :ref:`auto_cast <cn_api_amp_auto_cast>`  和 :ref:`GradScaler <cn_api_amp_GradScaler>` 。为了方便起见，当不设置其他的配置参数时，也可以直接传入 ``'O1'`` 、``'O2'`` 。在使用 float32 训练时，该参数可以为 None。默认值：None。
+    - **amp_configs** (str|dict|None，可选) - 混合精度训练的配置，通常是个 dict，也可以是 str。当使用自动混合精度训练或者纯 float16 训练时，``amp_configs`` 的 key ``level`` 需要被设置为 O1 或者 O2，float32 训练时则默认为 O0。除了 ``level`` ，还可以传入更多的和混合精度 API 一致的参数，例如：``init_loss_scaling``、 ``incr_ratio`` 、 ``decr_ratio``、 ``incr_every_n_steps``、 ``decr_every_n_nan_or_inf``、 ``use_dynamic_loss_scaling``、 ``custom_white_list``、 ``custom_black_list`` ，在静态图下还支持传入 ``custom_black_varnames`` 和 ``use_fp16_guard`` 。详细使用方法可以参考参考混合精度 API 的文档 :ref:`auto_cast <cn_api_paddle_amp_auto_cast>`  和 :ref:`GradScaler <cn_api_paddle_amp_GradScaler>` 。为了方便起见，当不设置其他的配置参数时，也可以直接传入 ``'O1'`` 、``'O2'`` 。在使用 float32 训练时，该参数可以为 None。默认值：None。
 
 
 fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_freq=10, save_dir=None, save_freq=1, verbose=2, drop_last=False, shuffle=True, num_workers=0, callbacks=None, accumulate_grad_batches=1, num_iters=None)
@@ -200,12 +200,12 @@ fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_fr
 
     1. 使用 Dataset 训练，并设置 batch_size 的例子。
 
-    COPY-FROM: paddle.Model.fit:code-example1
+    COPY-FROM: paddle.Model.fit:code-example3
 
 
     2. 使用 Dataloader 训练的例子.
 
-    COPY-FROM: paddle.Model.fit:code-example2
+    COPY-FROM: paddle.Model.fit:code-example4
 
 
 evaluate(eval_data, batch_size=1, log_freq=10, verbose=2, num_workers=0, callbacks=None, num_iters=None)
@@ -262,8 +262,8 @@ summary(input_size=None, dtype=None)
 
 **参数**
 
-    - **input_size** (tuple|InputSpec|list[tuple|InputSpec]，可选) - 输入张量的大小。如果网络只有一个输入，那么该值需要设定为 tuple 或 InputSpec。如果模型有多个输入。那么该值需要设定为 list[tuple|InputSpec]，包含每个输入的 shape 。如果该值没有设置，会将 ``self._inputs`` 作为输入。默认值：None。
-    - **dtype** (str，可选) - 输入张量的数据类型，如果没有给定，默认使用 ``float32`` 类型。默认值：None。
+    - **input_size** (tuple|InputSpec|list[tuple|InputSpec]，可选) - 输入 Tensor 的大小。如果网络只有一个输入，那么该值需要设定为 tuple 或 InputSpec。如果模型有多个输入。那么该值需要设定为 list[tuple|InputSpec]，包含每个输入的 shape 。如果该值没有设置，会将 ``self._inputs`` 作为输入。默认值：None。
+    - **dtype** (str，可选) - 输入 Tensor 的数据类型，如果没有给定，默认使用 ``float32`` 类型。默认值：None。
 
 **返回**
 

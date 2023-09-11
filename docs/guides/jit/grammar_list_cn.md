@@ -11,9 +11,9 @@
 3. 当出现不支持的语法时，如何修改源码适配动转静语法
 
 
-若你初次接触动转静功能，或对此功能尚不熟悉，推荐阅读：[使用样例](./basic_usage_cn.html)；
+若初次接触动转静功能，或对此功能尚不熟悉，推荐阅读：[使用样例](./basic_usage_cn.html)；
 
-若你动静转换遇到了问题，或想学习调试的技巧，推荐阅读：[报错调试](./debugging_cn.html)。
+若动静转换遇到了问题，或想学习调试的技巧，推荐阅读：[报错调试](./debugging_cn.html)。
 
 ## 二、语法支持速查列表
 
@@ -151,7 +151,7 @@ def break_usage(x):
 
 - 如果运算符都不是 Tensor，那么使用原始 python 语义。
 
-- 如果一个是 Tensor，那么会走默认的 python 语义（最后还是 tensor 的运算符重载结果）
+- 如果一个是 Tensor，那么会走默认的 python 语义（最后还是 tensor 的运算符重载结果）。
 
 > 注：若按照 paddle 的语义执行，与、或、非不再支持 lazy 模式，意味着两个表达式都会被 eval，而不是按照 x 的值来判断是否对 y 进行 eval。
 
@@ -272,7 +272,7 @@ def sort_list(x, y):
 
 - 【不支持】当直接使用支持改变变量的 shape 后(例如 reshape 操作)调用其 shape 作为 PaddlePaddle API 参数。
 
- 如 `x = reshape(x, shape=shape_tensor) `，再使用 x.shape[0] 的值进行其他操作。这种情况会由于动态图和静态图的本质不同而使得动态图能够运行，但静态图运行失败。其原因是动态图情况下，API 是直接返回运行结果，因此 x.shape 在经过 reshape 运算后是确定的。但是在转化为静态图后，因为静态图 API 只是组网，shape_tensor 的值在组网时是不知道的，所以 reshape 接口组网完，静态图并不知道 x.shape 的值。PaddlePaddle 静态图用-1 表示未知的 shape 值，此时 x 的 shape 每个维度会被设为-1，而不是期望的值。同理，类似 expand 等更改 shape 的 API，其输出 Tensor 再调用 shape 也难以进行动转静。
+ 如 `x = reshape(x, shape=shape_tensor) `，再使用 x.shape[0] 的值进行其他操作。这种情况会由于动态图和静态图的本质不同而使得动态图能够运行，但静态图运行失败。其原因是动态图情况下，API 是直接返回运行结果，因此 x.shape 在经过 reshape 运算后是确定的。但是在转化为静态图后，因为静态图 API 只是组网，shape_tensor 的值在组网时是不知道的，所以 reshape 接口在组网完成后，静态图并不知道 x.shape 的值。PaddlePaddle 静态图用-1 表示未知的 shape 值，此时 x 的 shape 每个维度会被设为-1，而不是期望的值。同理，类似 expand 等更改 shape 的 API，其输出 Tensor 再调用 shape 也难以进行动转静。
 
 **使用样例**：
 

@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_layer_rnn_BiRNN:
+.. _cn_api_paddle_nn_BiRNN:
 
 BiRNN
 -------------------------------
@@ -31,7 +31,7 @@ BiRNN
     - **outputs** (Tensor) - 输出，由前向和后向 cell 的输出拼接得到。如果 time_major 为 False，则 Tensor 的形状为[batch_size,time_steps,cell_fw.hidden_size + cell_bw.hidden_size]，如果 time_major 为 True，则 Tensor 的形状为[time_steps,batch_size,cell_fw.hidden_size + cell_bw.hidden_size]。
     - **final_states** (tuple) - 前向和后向 cell 的最终状态。
 
-.. Note::
+.. note::
     该类是一个封装 rnn cell 的低级 api，用户在使用 forward 函数时须确保 initial_states 满足 cell 的要求。
 
 

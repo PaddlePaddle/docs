@@ -1,4 +1,4 @@
-.. _cn_api_fluid_IPUPlace:
+.. _cn_api_paddle_device_IPUPlace:
 
 IPUPlace
 -------------------------------
