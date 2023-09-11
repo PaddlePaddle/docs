@@ -1,4 +1,4 @@
-.. _cn_api_fluid_name_scope:
+.. _cn_api_paddle_static_name_scope:
 
 name_scope
 -------------------------------

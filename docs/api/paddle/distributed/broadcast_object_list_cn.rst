@@ -1,4 +1,4 @@
-.. _cn_api_distributed_broadcast_object_list:
+.. _cn_api_paddle_distributed_broadcast_object_list:
 
 broadcast_object_list
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_strided_slice:
+.. _cn_api_paddle_strided_slice:
 
 strided_slice
 -------------------------------

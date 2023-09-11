@@ -1,4 +1,4 @@
-.. _cn_api_linalg_inv:
+.. _cn_api_paddle_linalg_inv:
 
 inv
 -------------------------------

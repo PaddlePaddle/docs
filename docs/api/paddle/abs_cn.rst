@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_abs:
+.. _cn_api_paddle_abs:
 
 abs
 -------------------------------

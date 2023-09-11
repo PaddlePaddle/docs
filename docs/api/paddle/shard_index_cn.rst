@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_shard_index:
+.. _cn_api_paddle_shard_index:
 
 shard_index
 -------------------------------

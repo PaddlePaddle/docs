@@ -1,4 +1,4 @@
-.. _cn_api_metric_Auc:
+.. _cn_api_paddle_metric_Auc:
 
 Auc
 -------------------------------

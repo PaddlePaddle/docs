@@ -1,4 +1,4 @@
-.. _cn_api_distributed_new_group:
+.. _cn_api_paddle_distributed_new_group:
 
 new_group
 -------------------------------

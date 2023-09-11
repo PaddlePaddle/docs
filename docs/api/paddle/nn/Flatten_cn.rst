@@ -1,4 +1,4 @@
-.. _cn_api_tensor_Flatten:
+.. _cn_api_paddle_nn_Flatten:
 
 Flatten
 -------------------------------

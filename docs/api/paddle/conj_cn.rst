@@ -1,4 +1,4 @@
-.. _cn_api_tensor_conj:
+.. _cn_api_paddle_conj:
 
 conj
 -------------------------------

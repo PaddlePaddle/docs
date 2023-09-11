@@ -1,4 +1,4 @@
-.. _cn_api_fluid_is_compiled_with_npu:
+.. _cn_api_paddle_device_is_compiled_with_npu:
 
 is_compiled_with_npu
 -------------------------------

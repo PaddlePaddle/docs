@@ -1,4 +1,4 @@
-.. _cn_api_tensor_triu:
+.. _cn_api_paddle_triu:
 
 triu
 -------------------------------

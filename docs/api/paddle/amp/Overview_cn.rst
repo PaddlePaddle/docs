@@ -24,9 +24,9 @@ AMP 相关 API
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`auto_cast <cn_api_amp_auto_cast>` ", "创建 AMP 上下文环境"
-    " :ref:`decorate <cn_api_amp_decorate>` ", "根据选定混合精度训练模式，改写神经网络参数数据类型"
-    " :ref:`GradScaler <cn_api_amp_GradScaler>` ", "控制 loss 的缩放比例"
+    " :ref:`auto_cast <cn_api_paddle_amp_auto_cast>` ", "创建 AMP 上下文环境"
+    " :ref:`decorate <cn_api_paddle_amp_decorate>` ", "根据选定混合精度训练模式，改写神经网络参数数据类型"
+    " :ref:`GradScaler <cn_api_paddle_amp_GradScaler>` ", "控制 loss 的缩放比例"
 
 .. _about_amp_white_list_ops:
 
@@ -72,8 +72,8 @@ Debug 相关辅助类
     :header: "类名称", "辅助类功能"
     :widths: 10, 30
 
-    " :ref:`DebugMode <cn_api_amp_debugging_debugmode>` ", "精度调试模式"
-    " :ref:`TensorCheckerConfig <cn_api_amp_debugging_tensor_checker_config>` ", "精度调试配置类"
+    " :ref:`DebugMode <cn_api_paddle_amp_debugging_DebugMode>` ", "精度调试模式"
+    " :ref:`TensorCheckerConfig <cn_api_paddle_amp_debugging_TensorCheckerConfig>` ", "精度调试配置类"
 
 .. _about_amp_debugging_op_list:
 
@@ -84,8 +84,8 @@ Debug 相关辅助类
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`enable_operator_stats_collection <cn_api_amp_debugging_enable_operator_stats_collection>` ", "启用以收集不同数据类型的算子调用次数"
-    " :ref:`disable_operator_stats_collection <cn_api_amp_debugging_disable_operator_stats_collection>` ", "禁用收集不同数据类型的算子调用次数"
+    " :ref:`enable_operator_stats_collection <cn_api_paddle_amp_debugging_enable_operator_stats_collection>` ", "启用以收集不同数据类型的算子调用次数"
+    " :ref:`disable_operator_stats_collection <cn_api_paddle_amp_debugging_disable_operator_stats_collection>` ", "禁用收集不同数据类型的算子调用次数"
 
 .. _about_amp_debugging_check_api:
 
@@ -96,6 +96,6 @@ Debug 相关辅助类
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`enable_tensor_checker <cn_api_amp_debugging_enable_tensor_checker>` ", "开启模块级别的精度检查"
-    " :ref:`disable_tensor_checker <cn_api_amp_debugging_disable_tensor_checker>` ", "关闭模块级别的精度检查"
-    " :ref:`compare_accuracy <cn_api_amp_debugging_compare_accuracy>` ", "精度比对接口"
+    " :ref:`enable_tensor_checker <cn_api_paddle_amp_debugging_enable_tensor_checker>` ", "开启模块级别的精度检查"
+    " :ref:`disable_tensor_checker <cn_api_paddle_amp_debugging_disable_tensor_checker>` ", "关闭模块级别的精度检查"
+    " :ref:`compare_accuracy <cn_api_paddle_amp_debugging_compare_accuracy>` ", "精度比对接口"

@@ -1,4 +1,4 @@
-.. _cn_api_fluid_io_normalize_program:
+.. _cn_api_paddle_static_normalize_program:
 
 normalize_program
 -------------------------------

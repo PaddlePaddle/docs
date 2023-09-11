@@ -1,4 +1,4 @@
-.. _cn_api_vision_ops_yolo_box:
+.. _cn_api_paddle_vision_ops_yolo_box:
 
 yolo_box
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_fluid_backward_gradients:
+.. _cn_api_paddle_static_gradients:
 
 gradients
 -------------------------------

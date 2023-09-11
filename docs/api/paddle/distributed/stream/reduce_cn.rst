@@ -1,4 +1,4 @@
-.. _cn_api_distributed_stream_reduce:
+.. _cn_api_paddle_distributed_stream_reduce:
 
 reduce
 -------------------------------
@@ -8,7 +8,7 @@ reduce
 
 规约进程组内的一个 tensor，随后将结果发送到指定进程。
 
-参见 :ref:`paddle.distributed.reduce<cn_api_distributed_reduce>`。
+参见 :ref:`paddle.distributed.reduce<cn_api_paddle_distributed_reduce>`。
 
 .. note::
   该 API 只支持动态图模式。

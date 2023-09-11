@@ -1,4 +1,4 @@
-.. _cn_api_paddle_cn_scatter:
+.. _cn_api_paddle_scatter:
 
 scatter
 -------------------------------

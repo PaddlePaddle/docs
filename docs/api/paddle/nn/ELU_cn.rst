@@ -1,4 +1,4 @@
-.. _cn_api_nn_ELU:
+.. _cn_api_paddle_nn_ELU:
 
 ELU
 -------------------------------

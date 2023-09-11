@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_logical_or:
+.. _cn_api_paddle_logical_or:
 
 logical_or
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_audio_functional_fft_frequencies:
+.. _cn_api_paddle_audio_functional_fft_frequencies:
 
 fft_frequencies
 -------------------------------

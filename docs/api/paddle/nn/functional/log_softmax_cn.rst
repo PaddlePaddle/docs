@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_log_softmax:
+.. _cn_api_paddle_nn_functional_log_softmax:
 
 log_softmax
 -------------------------------

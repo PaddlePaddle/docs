@@ -1,4 +1,4 @@
-.. _cn_api_tensor_logit:
+.. _cn_api_paddle_logit:
 
 logit
 -------------------------------

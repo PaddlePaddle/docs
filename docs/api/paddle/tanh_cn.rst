@@ -1,4 +1,4 @@
-.. _cn_api_tensor_tanh:
+.. _cn_api_paddle_tanh:
 
 tanh
 -------------------------------

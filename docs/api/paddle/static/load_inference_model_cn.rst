@@ -1,4 +1,4 @@
-.. _cn_api_fluid_io_load_inference_model:
+.. _cn_api_paddle_static_load_inference_model:
 
 load_inference_model
 -------------------------------

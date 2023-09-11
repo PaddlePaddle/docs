@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_local_response_norm:
+.. _cn_api_paddle_nn_functional_local_response_norm:
 
 local_response_norm
 -------------------------------

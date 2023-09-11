@@ -1,4 +1,4 @@
-.. _cn_api_audio_datasets_TESS:
+.. _cn_api_paddle_audio_datasets_TESS:
 
 TESS
 -------------------------------
@@ -20,7 +20,7 @@ TESS
 返回
 :::::::::
 
-:ref:`cn_api_io_cn_Dataset`，TESS 数据集实例。
+:ref:`cn_api_paddle_io_Dataset`，TESS 数据集实例。
 
 代码示例
 :::::::::

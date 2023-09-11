@@ -1,4 +1,4 @@
-.. _cn_api_distributed_rpc_shutdown:
+.. _cn_api_paddle_distributed_rpc_shutdown:
 
 shutdown
 -------------------------------

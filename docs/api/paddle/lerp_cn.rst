@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_lerp:
+.. _cn_api_paddle_lerp:
 
 lerp
 -------------------------------

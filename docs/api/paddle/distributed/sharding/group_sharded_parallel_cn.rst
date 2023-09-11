@@ -1,4 +1,4 @@
-.. _cn_api_distributed_sharding_group_sharded_parallel:
+.. _cn_api_paddle_distributed_sharding_group_sharded_parallel:
 
 group_sharded_parallel
 -------------------------------

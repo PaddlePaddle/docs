@@ -1,4 +1,4 @@
-.. _cn_api_nn_utils_vector_to_parameters:
+.. _cn_api_paddle_nn_utils_vector_to_parameters:
 
 vector_to_parameters
 -------------------------------

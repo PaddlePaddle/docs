@@ -1,4 +1,4 @@
-.. _cn_api_autograd_saved_tensors_hooks:
+.. _cn_api_paddle_autograd_saved_tensors_hooks:
 
 saved_tensors_hooks
 -------------------------------

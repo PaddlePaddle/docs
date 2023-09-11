@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_sigmoid_focal_loss:
+.. _cn_api_paddle_nn_functional_sigmoid_focal_loss:
 
 sigmoid_focal_loss
 -------------------------------

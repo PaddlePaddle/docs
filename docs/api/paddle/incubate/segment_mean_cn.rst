@@ -1,4 +1,4 @@
-.. _cn_api_incubate_segment_mean:
+.. _cn_api_paddle_incubate_segment_mean:
 
 segment_mean
 -------------------------------

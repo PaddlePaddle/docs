@@ -1,4 +1,4 @@
-.. _cn_api_audio_features_LogMelSpectrogram:
+.. _cn_api_paddle_audio_features_LogMelSpectrogram:
 
 LogMelSpectrogram
 -------------------------------

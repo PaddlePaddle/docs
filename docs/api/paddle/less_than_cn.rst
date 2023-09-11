@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_less_than:
+.. _cn_api_paddle_less_than:
 
 less_than
 -------------------------------

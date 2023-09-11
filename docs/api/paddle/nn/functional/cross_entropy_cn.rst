@@ -1,4 +1,4 @@
-.. _cn_api_paddle_functional_cross_entropy:
+.. _cn_api_paddle_nn_functional_cross_entropy:
 
 cross_entropy
 -------------------------------

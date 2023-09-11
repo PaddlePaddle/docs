@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_layer_rnn_SimpleRNN:
+.. _cn_api_paddle_nn_SimpleRNN:
 
 SimpleRNN
 -------------------------------

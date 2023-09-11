@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_amax:
+.. _cn_api_paddle_amax:
 
 amax
 -------------------------------
