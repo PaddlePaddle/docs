@@ -11,7 +11,7 @@ enable_to_static
 参数
 ::::::::::::
 
-    - **enable_to_static_bool** (bool) - 启用或禁用动转静。
+    - **enable_to_static_bool** (bool) - 启用或禁用动转静。为 `True` 时启用动转静, 为 `False` 时关闭动转静。
 
 
 代码示例
