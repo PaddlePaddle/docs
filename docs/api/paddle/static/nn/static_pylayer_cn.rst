@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_static_pylayer:
+.. _cn_api_paddle_static_nn_static_pylayer:
 
 static_pylayer
 -------------------------------
