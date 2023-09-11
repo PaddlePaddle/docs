@@ -85,7 +85,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
         PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: http://${PREVIEW_JOB_NAME}.${PREVIEW_SITE:-preview.paddlepaddle.org}/documentation/docs/en/api/paddle/abs_en.html"
     fi
 fi
- 
+
 check_parameters=OFF
 if [ "${check_parameters}" = "OFF" ] ; then
     #echo "chinese api doc fileslist is empty, skip check."
