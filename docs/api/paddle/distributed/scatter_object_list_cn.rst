@@ -1,4 +1,4 @@
-.. _cn_api_distributed_scatter_object_list:
+.. _cn_api_paddle_distributed_scatter_object_list:
 
 scatter_object_list
 -------------------------------

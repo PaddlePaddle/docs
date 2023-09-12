@@ -1,4 +1,4 @@
-.. _cn_api_nn_initializer_XavierUniform:
+.. _cn_api_paddle_nn_initializer_XavierUniform:
 
 XavierUniform
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_audio_functional_compute_fbank_matrix:
+.. _cn_api_paddle_audio_functional_compute_fbank_matrix:
 
 compute_fbank_matrix
 -------------------------------

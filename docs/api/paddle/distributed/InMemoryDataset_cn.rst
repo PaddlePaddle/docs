@@ -1,4 +1,4 @@
-.. _cn_api_distributed_InMemoryDataset:
+.. _cn_api_paddle_distributed_InMemoryDataset:
 
 InMemoryDataset
 -------------------------------

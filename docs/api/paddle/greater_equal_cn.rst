@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_greater_equal:
+.. _cn_api_paddle_greater_equal:
 
 greater_equal
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_tensor_bernoulli:
+.. _cn_api_paddle_bernoulli:
 
 bernoulli
 -------------------------------

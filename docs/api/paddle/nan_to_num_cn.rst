@@ -1,4 +1,4 @@
-.. _cn_api_tensor_nan_to_num:
+.. _cn_api_paddle_nan_to_num:
 
 nan_to_num
 -------------------------------

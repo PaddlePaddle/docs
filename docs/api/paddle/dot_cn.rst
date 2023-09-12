@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_linalg_dot:
+.. _cn_api_paddle_dot:
 
 dot
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_static_ExponentialMovingAverage:
+.. _cn_api_paddle_static_ExponentialMovingAverage:
 
 ExponentialMovingAverage
 -------------------------------

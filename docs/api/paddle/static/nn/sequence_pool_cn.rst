@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_sequence_pool:
+.. _cn_api_paddle_static_nn_sequence_pool:
 
 sequence_pool
 -------------------------------
@@ -9,7 +9,7 @@ sequence_pool
 
 
 .. note::
-该 API 的输入只能是带有 LoD 信息的 Tensor，如果您需要处理的输入是 Tensor 类型，请使用 :ref:`paddle.nn.functional.avg_pool2d <cn_api_nn_functional_avg_pool2d>`  或 :ref:`paddle.nn.functional.max_pool2d <cn_api_nn_functional_max_pool2d>` 。
+该 API 的输入只能是带有 LoD 信息的 Tensor，如果您需要处理的输入是 Tensor 类型，请使用 :ref:`paddle.nn.functional.avg_pool2d <cn_api_paddle_nn_functional_avg_pool2d>`  或 :ref:`paddle.nn.functional.max_pool2d <cn_api_paddle_nn_functional_max_pool2d>` 。
 
 对输入的 Tensor 进行指定方式的池化（pooling）操作。通过指定 pool_type 参数，将输入的每个序列（sequence）在最后一层 lod_level 上或时间步（time-step）上对特征进行诸如 sum、average、sqrt 等池化操作。
 

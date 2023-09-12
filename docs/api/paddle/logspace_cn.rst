@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_logspace:
+.. _cn_api_paddle_logspace:
 
 logspace
 -------------------------------

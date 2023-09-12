@@ -9,7 +9,7 @@ Transform
 
 ``Transform`` 表示将一个随机变量，经过一个或一些列可微且可逆的映射后，变换为另一个随机变量，
 并提供变换前后相应概率密度计算方法。主要应用于对一个分布
-:ref:`cn_api_distribution_Distribution` 的随机采样结果进行变换。
+:ref:`cn_api_paddle_distribution_Distribution` 的随机采样结果进行变换。
 
 假设 :math:`X` 为 ``K`` 元随机变量，概率密度为 :math:`p_X(x)`。映射
 :math:`f: x \rightarrow y` 为可微且可逆映射，则 :math:`Y` 的概率密度为
@@ -76,7 +76,7 @@ forward(x)
 
 **参数**
 
-- **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_distribution_Distribution`
+- **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_paddle_distribution_Distribution`
   的随机采样结果。
 
 **返回**

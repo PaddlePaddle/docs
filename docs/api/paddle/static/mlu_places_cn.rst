@@ -1,4 +1,4 @@
-.. _cn_api_fluid_mlu_places:
+.. _cn_api_paddle_static_mlu_places:
 
 mlu_places
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_incubate_ModelAverage:
+.. _cn_api_paddle_incubate_ModelAverage:
 
 ModelAverage
 -------------------------------

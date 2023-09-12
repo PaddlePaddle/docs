@@ -1,4 +1,4 @@
-.. _cn_api_tensor_concat:
+.. _cn_api_paddle_concat:
 
 concat
 -------------------------------

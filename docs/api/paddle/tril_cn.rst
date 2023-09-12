@@ -1,4 +1,4 @@
-.. _cn_api_tensor_tril:
+.. _cn_api_paddle_tril:
 
 tril
 -------------------------------

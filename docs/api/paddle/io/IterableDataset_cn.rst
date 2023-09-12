@@ -1,4 +1,4 @@
-.. _cn_api_io_cn_IterableDataset:
+.. _cn_api_paddle_io_IterableDataset:
 
 IterableDataset
 -------------------------------
@@ -14,7 +14,7 @@ IterableDataset
 .. note::
     迭代式数据集不需要实现 ``__getitem__`` 和 ``__len__``，也不可以调用迭代式数据集的这两个方法。
 
-见 :ref:`cn_api_fluid_io_DataLoader` 。
+见 :ref:`cn_api_paddle_io_DataLoader` 。
 
 代码示例 1
 ::::::::::::

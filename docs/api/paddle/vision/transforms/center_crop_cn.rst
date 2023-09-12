@@ -1,4 +1,4 @@
-.. _cn_api_vision_transforms_center_crop:
+.. _cn_api_paddle_vision_transforms_center_crop:
 
 center_crop
 -------------------------------

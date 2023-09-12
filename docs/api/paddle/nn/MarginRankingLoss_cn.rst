@@ -1,4 +1,4 @@
-.. _cn_api_nn_loss_MarginRankingLoss:
+.. _cn_api_paddle_nn_MarginRankingLoss:
 
 MarginRankingLoss
 -------------------------------

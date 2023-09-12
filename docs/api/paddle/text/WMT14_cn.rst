@@ -1,4 +1,4 @@
-.. _cn_api_text_datasets_WMT14:
+.. _cn_api_paddle_text_WMT14:
 
 WMT14
 -------------------------------

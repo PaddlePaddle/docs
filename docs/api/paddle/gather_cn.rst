@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_gather:
+.. _cn_api_paddle_gather:
 
 gather
 -------------------------------

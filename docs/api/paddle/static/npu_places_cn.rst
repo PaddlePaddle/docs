@@ -1,4 +1,4 @@
-.. _cn_api_fluid_npu_places:
+.. _cn_api_paddle_static_npu_places:
 
 npu_places
 -------------------------------

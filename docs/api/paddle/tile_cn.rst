@@ -1,4 +1,4 @@
-.. _cn_api_tensor_tile:
+.. _cn_api_paddle_tile:
 
 tile
 -------------------------------

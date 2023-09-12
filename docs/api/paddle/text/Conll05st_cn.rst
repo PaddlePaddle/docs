@@ -1,4 +1,4 @@
-.. _cn_api_text_datasets_Conll05st:
+.. _cn_api_paddle_text_Conll05st:
 
 Conll05st
 -------------------------------

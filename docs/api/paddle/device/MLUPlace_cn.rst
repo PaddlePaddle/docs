@@ -1,4 +1,4 @@
-.. _cn_api_fluid_MLUPlace:
+.. _cn_api_paddle_device_MLUPlace:
 
 MLUPlace
 -------------------------------

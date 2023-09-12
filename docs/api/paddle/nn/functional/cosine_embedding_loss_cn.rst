@@ -1,4 +1,4 @@
-.. _cn_paddle_nn_functional_loss_cosine_embedding_loss:
+.. _cn_api_paddle_nn_functional_cosine_embedding_loss:
 
 cosine_embedding_loss
 -------------------------------

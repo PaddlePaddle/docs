@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_instance_norm:
+.. _cn_api_paddle_static_nn_instance_norm:
 
 instance_norm
 -------------------------------

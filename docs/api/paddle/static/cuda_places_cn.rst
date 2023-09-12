@@ -1,4 +1,4 @@
-.. _cn_api_fluid_cuda_places:
+.. _cn_api_paddle_static_cuda_places:
 
 cuda_places
 -------------------------------

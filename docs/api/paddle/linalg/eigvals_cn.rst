@@ -1,4 +1,4 @@
-.. _cn_api_linalg_eigvals:
+.. _cn_api_paddle_linalg_eigvals:
 
 eigvals
 -------------------------------
@@ -8,7 +8,7 @@ eigvals
 
 
 .. note::
-该 API 的反向实现尚未完成，若你的代码需要对其进行反向传播，请使用 ref:`cn_api_linalg_eig`。
+该 API 的反向实现尚未完成，若你的代码需要对其进行反向传播，请使用 ref:`cn_api_paddle_linalg_eig`。
 
 
 参数

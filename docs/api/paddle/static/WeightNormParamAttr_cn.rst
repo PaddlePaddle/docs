@@ -1,4 +1,4 @@
-.. _cn_api_fluid_WeightNormParamAttr:
+.. _cn_api_paddle_static_WeightNormParamAttr:
 
 WeightNormParamAttr
 -------------------------------

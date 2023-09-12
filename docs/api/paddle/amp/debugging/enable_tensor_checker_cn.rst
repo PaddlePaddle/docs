@@ -1,4 +1,4 @@
-.. _cn_api_amp_debugging_enable_tensor_checker:
+.. _cn_api_paddle_amp_debugging_enable_tensor_checker:
 
 enable_tensor_checker
 -------------------------------
@@ -15,7 +15,7 @@ enable_tensor_checker(checker_config) 是开启模型级别的精度检查，与
 :::::::::
 无返回值
 
-.. note:: 
+.. note::
     如果在 backward() 之前调用 disable_tensor_checker()，则不会检查梯度算子；
     如果在 optimizer.step() 之前调用 disable_tensor_checker()，则不会检查优化器和其他与权重更新相关的算子。
 

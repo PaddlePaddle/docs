@@ -1,4 +1,4 @@
-.. _cn_api_fluid_NPUPlace:
+.. _cn_api_paddle_NPUPlace:
 
 NPUPlace
 -------------------------------

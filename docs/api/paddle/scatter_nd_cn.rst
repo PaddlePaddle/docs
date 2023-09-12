@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_scatter_nd:
+.. _cn_api_paddle_scatter_nd:
 
 scatter_nd
 -------------------------------

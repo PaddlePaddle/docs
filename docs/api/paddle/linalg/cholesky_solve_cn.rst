@@ -1,4 +1,4 @@
-.. _cn_api_linalg_cholesky_solve:
+.. _cn_api_paddle_linalg_cholesky_solve:
 
 cholesky_solve
 -------------------------------

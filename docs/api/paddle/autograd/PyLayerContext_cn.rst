@@ -1,11 +1,11 @@
-.. _cn_api_autograd_PyLayerContext:
+.. _cn_api_paddle_autograd_PyLayerContext:
 
 PyLayerContext
 -------------------------------
 
 .. py:class:: paddle.autograd.PyLayerContext
 
-``PyLayerContext`` 对象能够辅助 :ref:`cn_api_autograd_PyLayer` 实现某些功能。
+``PyLayerContext`` 对象能够辅助 :ref:`cn_api_paddle_autograd_PyLayer` 实现某些功能。
 
 
 代码示例

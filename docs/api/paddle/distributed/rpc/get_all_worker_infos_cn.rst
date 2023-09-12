@@ -1,4 +1,4 @@
-.. _cn_api_distributed_rpc_get_all_worker_infos:
+.. _cn_api_paddle_distributed_rpc_get_all_worker_infos:
 
 get_all_worker_infos
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_paddle_nn_functional_loss_kl_div:
+.. _cn_api_paddle_nn_functional_kl_div:
 
 kl_div
 -------------------------------

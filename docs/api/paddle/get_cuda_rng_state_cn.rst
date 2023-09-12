@@ -1,4 +1,4 @@
-.. _cn_api_paddle_cn_get_cuda_rng_state:
+.. _cn_api_paddle_get_cuda_rng_state:
 
 get_cuda_rng_state
 -------------------------------

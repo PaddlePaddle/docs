@@ -1,4 +1,4 @@
-.. _cn_api_distributed_sharding_save_group_sharded_model:
+.. _cn_api_paddle_distributed_sharding_save_group_sharded_model:
 
 save_group_sharded_model
 -------------------------------

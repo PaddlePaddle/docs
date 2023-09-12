@@ -1,11 +1,11 @@
-.. _cn_api_fluid_dygraph_TranslatedLayer:
+.. _cn_api_paddle_jit_TranslatedLayer:
 
 TranslatedLayer
 -------------------------------
 
 .. py:class:: paddle.jit.TranslatedLayer(programs, persistable_vars)
 
-``TranslatedLayer`` 是一个命令式编程模式 :ref:`cn_api_fluid_dygraph_Layer` 的继承类，
+``TranslatedLayer`` 是一个命令式编程模式 :ref:`cn_api_paddle_nn_Layer` 的继承类，
 通过 :ref:`cn_api_paddle_jit_load` 载入构建。能够像一般 ``Layer`` 一样在 train 或者 eval 模式下使用。
 
 .. note::

@@ -1,4 +1,4 @@
-.. _cn_api_fluid_io_save_to_file:
+.. _cn_api_paddle_static_save_to_file:
 
 save_to_file
 -------------------------------

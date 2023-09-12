@@ -1,4 +1,4 @@
-.. _cn_api_nn_MaxUnPool1D:
+.. _cn_api_paddle_nn_MaxUnPool1D:
 
 MaxUnPool1D
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_tensor_sign:
+.. _cn_api_paddle_sign:
 
 sign
 -------------------------------

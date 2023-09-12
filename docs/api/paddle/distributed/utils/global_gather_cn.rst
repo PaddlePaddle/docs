@@ -1,4 +1,4 @@
-.. _cn_api_distributed_utils_global_gather:
+.. _cn_api_paddle_distributed_utils_global_gather:
 
 global_gather
 -------------------------------

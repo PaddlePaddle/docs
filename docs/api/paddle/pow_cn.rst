@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_math_pow:
+.. _cn_api_paddle_pow:
 
 pow
 -------------------------------

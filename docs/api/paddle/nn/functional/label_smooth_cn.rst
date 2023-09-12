@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_functional_common_label_smooth:
+.. _cn_api_paddle_nn_functional_label_smooth:
 
 label_smooth
 -------------------------------

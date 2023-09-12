@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_scale:
+.. _cn_api_paddle_scale:
 
 scale
 -------------------------------

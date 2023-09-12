@@ -1,4 +1,4 @@
-.. _cn_api_tensor_outer:
+.. _cn_api_paddle_outer:
 
 outer
 -------------------------------

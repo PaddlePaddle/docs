@@ -1,4 +1,4 @@
-.. _cn_api_fluid_dygraph_ParameterList:
+.. _cn_api_paddle_nn_ParameterList:
 
 ParameterList
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_tensor_add_n:
+.. _cn_api_paddle_add_n:
 
 add_n
 -------------------------------

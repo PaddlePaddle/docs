@@ -1,4 +1,4 @@
-.. _cn_api_tensor_matmul:
+.. _cn_api_paddle_matmul:
 
 matmul
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_multi_box_head:
+.. _cn_api_paddle_static_nn_multi_box_head:
 
 multi_box_head
 -------------------------------
