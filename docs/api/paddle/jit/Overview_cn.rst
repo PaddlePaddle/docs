@@ -24,6 +24,7 @@ paddle.jit 目录下包含飞桨框架支持动态图转静态图相关的 API�
     " :ref:`load <cn_api_paddle_jit_load>` ", "动转静模型载入接口"
     " :ref:`ignore_module <cn_api_paddle_jit_ignore_module>` ", "增加动转静过程中忽略转写的模块"
     " :ref:`TranslatedLayer <cn_api_paddle_jit_TranslatedLayer>` ", "是一个命令式编程模式 :ref:`cn_api_paddle_nn_Layer` 的继承类"
+    " :ref:`enable_to_static <cn_api_paddle_jit_enable_to_static>` ", "开启模型动转静功能接口"
 
 
 .. _about_debug:
