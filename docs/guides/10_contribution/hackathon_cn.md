@@ -176,7 +176,7 @@
 
 （2）**官方交流群：请扫码添加工作人员企业微信，会拉你进群~**
 
-![](https://github.com/PaddlePaddle/docs/blob/release/2.5/docs/guides/10_contribution/img/QR_code.png?raw=text)
+<img src="https://github.com/PaddlePaddle/docs/blob/release/2.5/docs/guides/10_contribution/img/QR_code.png?raw=text" width = "400" alt="加群二维码"/>
 
 ### 4. 任务开发
 
