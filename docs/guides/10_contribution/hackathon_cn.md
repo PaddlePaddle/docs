@@ -8,7 +8,7 @@
 
 ### 1. 开源贡献个人挑战赛
 
-贡献任务详见 issue：coming soon
+贡献任务详见 issue：https://github.com/PaddlePaddle/Paddle/issues/57262
 
 以开源贡献为核心，发布**xx**个开源项目的**xx**个贡献任务，开源项目包括：飞桨核心框架、飞桨科学计算、飞桨CV套件、飞桨大模型套件、生态伙伴项目等。**开发者使用 GitHub ID 报名，独立完成具有明确验收目标的贡献任务，获得对应的任务奖励。**
 
@@ -89,7 +89,7 @@
 
 ### 3. 飞桨护航计划集训营
 
-集训项目详见 issue：coming soon
+集训项目详见 issue：https://github.com/PaddlePaddle/Paddle/issues/57264
 
 #### 3.1 活动流程
 
@@ -192,10 +192,6 @@
 
 （4）**获取 🌟 数排名前 3 的开发者当选飞桨开源之星，将会受邀参与 WAVE SUMMIT 开发者大会并在大会上领奖。**
 
-### 5. 飞桨黑客松不收取任何报名费用
-
-### 6. 请遵守飞桨开源社区 [Code-of-Conduct](https://github.com/PaddlePaddle/Paddle/blob/develop/CODE_OF_CONDUCT_cn.md)
-
 ## 三、重磅福利
 
 为了帮助大家更快更好的完成任务内容开发，本次活动预计会有 10+ 系列直播同步推出，包括xx等相关项目技术讲解、开源社区贡献等内容，由各研发方向的资深工程师深入讲解，敬请期待。
@@ -208,4 +204,7 @@
 
 ## 五、其他
 
-百度在法律法规许可范围内对本活动规则享有解释权。
+- 飞桨黑客松不收取任何报名费用；
+- 请遵守飞桨开源社区 [Code-of-Conduct](https://github.com/PaddlePaddle/Paddle/blob/develop/CODE_OF_CONDUCT_cn.md)；
+- 百度在法律法规许可范围内对本活动规则享有解释权。
+
