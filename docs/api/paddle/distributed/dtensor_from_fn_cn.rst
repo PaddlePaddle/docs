@@ -11,9 +11,6 @@ dtensor_from_fn
 :::::::::
 
     - **fn**  - paddle 公开的可创建 Tensor 的 API。例如: :ref:`cn_api_paddle_empty` 、 :ref:`cn_api_paddle_ones` 、:ref:`cn_api_paddle_zeros` 等 paddle API。
-    .. _cn_api_paddle_empty:https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/empty_cn.html#empty
-    .. _cn_api_paddle_ones:https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/ones_cn.html#ones
-    .. _cn_api_paddle_zeros:https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/zeros_cn.html#zeros
     - **dist_attr** (paddle.distributed.DistAttr) - 描述 Tensor 在 ProcessMesh 上的分布或切片方式。
     - ***args**  - fn 函数的输入参数( Tuple 形式)
     - ****kwargs**  - fn 函数的输入参数( Dict 形式)
