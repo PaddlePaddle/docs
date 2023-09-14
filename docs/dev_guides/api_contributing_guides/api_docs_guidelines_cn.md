@@ -122,7 +122,7 @@ API api_label 的编写只针对中文 api 文档的编写，需要满足规范�
 **api_label 规范**：
 
 1. 中文 `api_label` 的形成，需要 `cn_` + 英文 `api_label`
-2. 英文 `api_label` 是根据完整的 api 名称，把 `.` 替换成 `_` 构成，然后加上 `api_`
+2. 英文 `api_label` 是根据完整的 api 名称，把 `.` 替换成 `_` 构成，然后开头加上 `api_`
 
 ### API 名称
 
