@@ -18,4 +18,4 @@ paddle.Tensor.pow_(y)
 
 | PyTorch  | PaddlePaddle | 备注                                               |
 | -------- | ------------ | -------------------------------------------------- |
-| exponent | y            | 一个 N 维 Tensor 或者标量 Tensor，仅参数名不一致。 |
+| exponent | y            | 一个标量 Tensor，仅参数名不一致。 |
