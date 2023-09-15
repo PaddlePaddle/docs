@@ -117,7 +117,7 @@
 **如 paddle.add**
 
     .. _cn_api_paddle_add:
-其中中文 `api_label` 是 `cn_api_paddle_add`，上述的 `.. _` 和 `:` 是固定的格式。英文 `api_label` 是 `api_paddle_add`。
+其中 `api_label` 是 `cn_api_paddle_add`，但在中文文档中，需要在标签 `cn_api_paddle_add` 的前面加上 `.. _` 、 后面加上 `:` （固定格式）
 
 **api_label 规范**：
 
