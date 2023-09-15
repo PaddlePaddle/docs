@@ -18,7 +18,7 @@ reshard
 
 返回
 :::::::::
-将输入的 dist_tensor 按照新的方式进行分布/切分的分布式 Tensor。g
+将输入的 dist_tensor 按照新的方式进行分布/切分的分布式 Tensor。
 
 
 代码示例
