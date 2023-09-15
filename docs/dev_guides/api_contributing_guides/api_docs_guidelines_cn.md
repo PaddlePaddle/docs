@@ -110,7 +110,7 @@
 
 ## API 文档各模块写作说明
 
-### API api_label
+### API 标签
 
 API api_label 的编写只针对中文 api 文档的编写，需要满足规范；
 
