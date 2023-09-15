@@ -13,12 +13,12 @@ reshard
 参数
 :::::::::
 
-    - **data** (Tensor) - 具有分布式信息的 Tensor ，为 paddle\.Tensor 类型，
-    - **dist_attr** (paddle.distributed.DistAttr) - Tensor 在 ProcessMesh 上的新的分布/切片方式
+    - **data** (Tensor) - 具有分布式信息的 Tensor ，为 paddle\.Tensor 类型。
+    - **dist_attr** (paddle.distributed.DistAttr) - Tensor 在 ProcessMesh 上的新的分布/切片方式。
 
 返回
 :::::::::
-将输入的 dist_tensor 按照新的方式进行分布/切分的分布式 Tensor。
+将输入的 dist_tensor 按照新的方式进行分布/切分的分布式 Tensor。g
 
 
 代码示例
