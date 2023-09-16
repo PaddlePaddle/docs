@@ -3,7 +3,7 @@
 ### [torch.Tensor.true_divide_](https://pytorch.org/docs/stable/generated/torch.Tensor.true_divide_.html)
 
 ```python
-torch.Tensor.true_divide_(value)
+torch.Tensor.true_divide_(other)
 ```
 
 ### [paddle.Tensor.divide_]()
@@ -18,4 +18,4 @@ paddle.Tensor.divide_(y)
 
 | PyTorch  | PaddlePaddle |               备注               |
 | :------: | :----------: | :------------------------------: |
-| value |      y       | 表示输入的 Tensor，仅参数名不一致。 |
+| other |      y       | 表示输入的 Tensor，仅参数名不一致。 |
