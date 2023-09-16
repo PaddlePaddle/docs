@@ -33,6 +33,6 @@ z2 = x.div_(y, rounding_mode='trunc') # 向零取整
 # paddle 写法
 x = paddle.to_tensor([4, 8, 12], dtype='float32')
 y = paddle.to_tensor([3, 4, 5], dtype='float32')
-z1 = paddle.floor_(x.divide_(y))  # 向下取整，尚未支持
-z2 = paddle.trunc_(x.divide_(y))  # 向零取整，尚未支持
+z1 = x.divide_(y).floor_()  # 向下取整
+z2 = x.divide_(y).trunc_()  # 向零取整
 ```
