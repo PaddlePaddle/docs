@@ -31,8 +31,8 @@ common_args_en = """
     grad_clip (GradientClipBase, optional): Gradient cliping strategy, it's an instance of some derived class of ``GradientClipBase`` . There are three cliping strategies ( :ref:`api_fluid_clip_GradientClipByGlobalNorm` , :ref:`api_fluid_clip_GradientClipByNorm` , :ref:`api_fluid_clip_GradientClipByValue` ). Default is None, meaning there is no gradient clipping.
     num_filters (int): The number of filter. It is as same as the output channals numbers.
     dim (int, optional): A dimension along which to operate. Default is 0.
-    is_sparse (bool, optional): Whether use sparse updating. For more information, please refer to :ref:`api_guide_sparse_update_en` . If it’s True, it will ues sparse updating.
-    place (fluid.CPUPlace()|fluid.CUDAPlace(N)|None): This parameter represents which device the executor runs on, and N means the GPU's id. When this parameter is None, PaddlePaddle will set the default device according to its installation version. If Paddle is CPU version, the default device would be set to CPUPlace(). If Paddle is GPU version, the default device would be set to CUDAPlace(0). Default is None.
+    is_sparse (bool, optional): Whether use sparse updating. For more information, please refer to :ref:`api_guide_sparse_update_en` . If it's True, it will ues sparse updating.
+    place (paddle.CPUPlace()|paddle.CUDAPlace(N)|None): This parameter represents which device the executor runs on, and N means the GPU's id. When this parameter is None, PaddlePaddle will set the default device according to its installation version. If Paddle is CPU version, the default device would be set to CPUPlace(). If Paddle is GPU version, the default device would be set to CUDAPlace(0). Default is None.
     num_filters (int): the number of convolution kernels, is also the number of output channels. 
 """
 
@@ -65,6 +65,6 @@ common_args_cn = """
     num_filters (int) - 卷积核的个数，与输出的通道数相同。
     dim (int，可选) - 指定对输入 Tensor 进行运算的维度。默认值为0。
     is_sparse (bool，可选) - 是否使用稀疏更新的方式，更多信息请参见 :ref:`api_guide_sparse_update` 。默认值为 True，表示使用稀疏更新的方式。
-    place (fluid.CPUPlace()|fluid.CUDAPlace(N)|None) – 该参数表示 Executor 执行所在的设备，这里的 N 为 GPU 对应的 ID。当该参数为 None 时，PaddlePaddle 会根据其安装版本来设置默认设备。当 PaddlePaddle 是 CPU 版时，默认运行设备将会设置为 ``fluid.CPUPlace()`` ；当 PaddlePaddle 是 GPU 版本时，默认执行设备将会设置为 ``fluid.CUDAPlace(0)`` 。默认值为 None。
+    place (paddle.CPUPlace()|paddle.CUDAPlace(N)|None) – 该参数表示 Executor 执行所在的设备，这里的 N 为 GPU 对应的 ID。当该参数为 None 时，PaddlePaddle 会根据其安装版本来设置默认设备。当 PaddlePaddle 是 CPU 版时，默认运行设备将会设置为 ``fluid.CPUPlace()`` ；当 PaddlePaddle 是 GPU 版本时，默认执行设备将会设置为 ``fluid.CUDAPlace(0)`` 。默认值为 None。
     num_filters (int) - 卷积核个数，同时也是输出的通道数。
 """

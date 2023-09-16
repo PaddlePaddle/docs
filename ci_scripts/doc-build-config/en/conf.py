@@ -13,7 +13,6 @@ import re
 
 try:
     import paddle
-    import paddle.fluid as fluid
 except:
     print("import paddle error")
 

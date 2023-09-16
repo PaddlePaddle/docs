@@ -35,6 +35,6 @@ COPY-FROM: paddle.jit.load:code-example1
 
 
 
-2. 兼容载入由接口 ``paddle.fluid.io.save_inference_model`` 存储的模型进行预测推理及 fine-tune 训练。
+2. 兼容载入由接口 ``paddle.static.save_inference_model`` 存储的模型进行预测推理及 fine-tune 训练。
 
 COPY-FROM: paddle.jit.load:code-example2

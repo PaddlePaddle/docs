@@ -6,7 +6,7 @@ Complex Networks
 
 When dealing with complex functions, we usually need to code a lot to build a complex `Neural Network <https://en.wikipedia.org/wiki/Artificial_neural_network>`_ .
 Therefore, in order to make it easier for users to build complex network models, we provide some common basic function modules to simplify the user's code and reduce development costs.
-These modules are usually composed of fine-grained functions combined based on certain logics. For implementation, please refer to `nets <https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/nets.py>`_ .
+These modules are usually composed of fine-grained functions combined based on certain logics. For implementation, please refer to `nets <https://github.com/PaddlePaddle/Paddle/blob/develop/test/legacy_test/nets.py>`_ .
 
 1.simple_img_conv_pool
 ----------------------
