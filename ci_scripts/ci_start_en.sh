@@ -127,7 +127,7 @@ else
     echo 'need check api pyhon file: ', $need_check_api_py_files 
     /bin/bash ${DIR_PATH}/check_api_docs_en.sh ${jsonfn} ${OUTPUTDIR}/en/${VERSIONSTR}/api/ "${need_check_api_py_files}"
     if [ $? -ne 0 ]; then
-        echo 'Docs Stype Check is failed, please check the style in the above docs'
+        echo 'Docs Style Check is failed, please check the style in the above docs'
         exit 1
     fi
 fi
