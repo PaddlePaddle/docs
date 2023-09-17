@@ -1,4 +1,4 @@
-## [参数完全一致]torch.nn.functional.pairwise_distance
+## [仅参数名不一致]torch.nn.functional.pairwise_distance
 
 ### [torch.nn.functional.pairwise_distance](https://pytorch.org/docs/stable/generated/torch.nn.functional.pairwise_distance.html)
 
@@ -12,7 +12,7 @@ torch.nn.functional.pairwise_distance(x1, x2, p=2.0, eps=1e-6, keepdim=False)
 paddle.nn.functional.pairwise_distance(x, y, p=2., epsilon=1e-6, keepdim=False, name=None)
 ```
 
-其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+其中 PyTorch 和 Paddle 仅参数名不一致，具体如下：
 
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注                           |
