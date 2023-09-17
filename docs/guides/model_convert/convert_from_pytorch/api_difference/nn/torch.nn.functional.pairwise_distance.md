@@ -1,15 +1,15 @@
-## [torch 参数更多]torch.nn.functional.gumbel_softmax
+## [参数完全一致]torch.nn.functional.pairwise_distance
 
-### [torch.nn.functional.gumbel_softmax](https://pytorch.org/docs/stable/generated/torch.nn.functional.gumbel_softmax.html?highlight=gumbel_softmax#torch.nn.functional.gumbel_softmax)
+### [torch.nn.functional.pairwise_distance](https://pytorch.org/docs/stable/generated/torch.nn.functional.pairwise_distance.html)
 
 ```python
-torch.nn.functional.gumbel_softmax(logits, tau=1, hard=False, eps=1e-10, dim=- 1)
+torch.nn.functional.pairwise_distance(x1, x2, p=2.0, eps=1e-6, keepdim=False)
 ```
 
-### [paddle.nn.functional.gumbel_softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/gumbel_softmax_cn.html#gumbel-softmax)
+### [paddle.nn.functional.pairwise_distance](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/pairwise_distance_cn.html)
 
 ```python
-paddle.nn.functional.gumbel_softmax(x,temperature=1.0,hard=False,axis=-1,name=None)
+paddle.nn.functional.pairwise_distance(x, y, p=2., epsilon=1e-6, keepdim=False, name=None)
 ```
 
 其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -17,9 +17,9 @@ paddle.nn.functional.gumbel_softmax(x,temperature=1.0,hard=False,axis=-1,name=No
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注                           |
 |--------|--------------|------------------------------|
-| logits | x            | 仅参数名不同                         |
-| tau    | temperature  | 仅参数名不同                        |
-| hard   | hard             | 参数完全相同 |
-| eps    |              | Paddle无此参数，一般对网络训练结果影响不大，可直接删除                       |
-| dim    |axis| 仅参数名不同                         |
+| x1 | x            | 仅参数名不同                         |
+| x2    | y  | 仅参数名不同                        |
+| p   | p             | 参数完全相同 |
+| eps    |epsilon              | 仅参数名不同  |
+| keepdim    |keepdim| 参数完全相同                         |
 
