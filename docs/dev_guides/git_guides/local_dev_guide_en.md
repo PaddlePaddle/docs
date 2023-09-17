@@ -81,7 +81,7 @@ Please refer to [Compile From Source Code](../../../install/compile/fromsource_e
 
 ## Test
 
-Any new unit testing file of the format `test_*.py`  added to the directory `python/paddle/fluid/tests/unittests/` is automatically added to the project to compile.
+Any new unit testing file of the format `test_*.py`  added to the directory `test/legacy_test/` is automatically added to the project to compile.
 
 Remarks:
 

@@ -106,7 +106,7 @@ cd /workspace/Paddle/paddle/phi/kernels
 这类问题的常见报错信息如下:
 
 ```bash
-1066:   File "/public/home/qili93/Paddle/build/python/paddle/fluid/tests/unittests/test_poisson_op.py", line 60, in verify_output
+1066:   File "/public/home/qili93/Paddle/build/test/legacy_test/test_poisson_op.py", line 60, in verify_output
 1066:     "actual: {}, expected: {}".format(hist, prob))
 1066: AssertionError: False is not true : actual: [0.03375816 0.08399963 0.13975811 0.17509079 0.17573357 0.14692497
 1066:  0.10456944 0.06567383 0.03586864], expected: [0.03368973499542734, 0.08422433748856833, 0.14037389581428056, 0.1754673697678507, 0.1754673697678507, 0.1462228081398756, 0.104444862957054, 0.06527803934815875, 0.03626557741564375]

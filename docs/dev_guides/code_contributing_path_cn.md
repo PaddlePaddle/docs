@@ -115,7 +115,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 编译方法请参见 [从源码编译](../../../install/compile/fromsource.html) 章节，推荐使用 Docker 编译的方式。Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机编译更便捷。
 
-> 注意：编译必须打开`WITH_TESTING`选项，以确保新增的单元测试文件（如`python/paddle/fluid/tests/unittests/` 目录下`test_*.py`文件）自动加入工程进行编译。
+> 注意：编译必须打开`WITH_TESTING`选项，以确保新增的单元测试文件（如`test/legacy_test` 目录下`test_*.py`文件）自动加入工程进行编译。
 
 （2）执行单元测试
 

@@ -292,7 +292,7 @@ from .tensor.math import trace
 
 **（1）文件存放路径和命名方式**
 
-在 [python/paddle/fluid/tests/unittests](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle/fluid/tests/unittests) 目录下，一般以 `test_xxx_op.py` 的形式命名（假设算子名为`xxx`），与 Python API 的单元测试文件命名为相同的前缀。
+在 [test/legacy_test](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test) 目录下，一般以 `test_xxx_op.py` 的形式命名（假设算子名为`xxx`），与 Python API 的单元测试文件命名为相同的前缀。
 
 **（2）C++ 算子单元测试的开发指导**
 
@@ -307,7 +307,7 @@ from .tensor.math import trace
 
 **（1）文件存放路径和命名方式**
 
-在 [python/paddle/fluid/tests/unittests](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle/fluid/tests/unittests) 目录下，一般以 `test_xxx.py` 的形式命名（假设算子名为`xxx`）。
+在 [test/legacy_test](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test) 目录下，一般以 `test_xxx.py` 的形式命名（假设算子名为`xxx`）。
 
 如果为这个 API 也开发了对应的 C++ 算子，那么也可以把对 Python API 的单元测试和 C++ 算子的单元测试写在同一个文件中，一般以 `test_xxx_op.py` 的形式命名。
 
@@ -319,7 +319,7 @@ from .tensor.math import trace
 
 **（3）Python API 单元测试的开发指导**
 
-Python API 的单元测试直接继承 Python 内置的 `UnitTest.TestCase` 类，一般来说需要用 NumPy/SciPy 中的对应功能作为参考，如果 NumPy/SciPy 中没有现成的对应函数，可以用 NumPy/SciPy 实现一个作为参考，并以这个为基准对新增的 Python API 进行测试，如 [test_activation_op.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_activation_op.py#L845) 中 paddle.nn.Hardtanh API 的单元测试，代码如下所示。
+Python API 的单元测试直接继承 Python 内置的 `UnitTest.TestCase` 类，一般来说需要用 NumPy/SciPy 中的对应功能作为参考，如果 NumPy/SciPy 中没有现成的对应函数，可以用 NumPy/SciPy 实现一个作为参考，并以这个为基准对新增的 Python API 进行测试，如 [test_activation_op.py](https://github.com/PaddlePaddle/Paddle/blob/develop/test/legacy_test/test_activation_op.py#L845) 中 paddle.nn.Hardtanh API 的单元测试，代码如下所示。
 
 **开发步骤：**
 
@@ -393,7 +393,7 @@ class TestHardtanhAPI(unittest.TestCase):
   - 因为单元测试各个 case 的运行次序是不确定的，为了保证不同的测试 case 运行在正确的运行模式（动态图/静态图）上，常见的做法有：
     - 在每个测试 case 的起始部分，显式切换 paddle 的运行模式，用`paddle.enable_static` 和 `paddle.disable_static` 分别激活和取消静态图模式。如前文代码所示，在 `test_static_api` 和 `test_dygraph_api` 的开头分别切换了状态。
 
-    - 将静态图和动态图测试定义为不以 `test` 开头的函数（如 [test_l1_loss.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_l1_loss.py#L77) 中定义为 `run_imperative`、`run_static` 函数)，然后定义一个 test 开头的函数，切换不同的状态去运行它。
+    - 将静态图和动态图测试定义为不以 `test` 开头的函数（如 [test_l1_loss.py](https://github.com/PaddlePaddle/Paddle/blob/develop/test/legacy_test/test_l1_loss.py#L77) 中定义为 `run_imperative`、`run_static` 函数)，然后定义一个 test 开头的函数，切换不同的状态去运行它。
 
 
       ```python
@@ -408,7 +408,7 @@ class TestHardtanhAPI(unittest.TestCase):
                self.run_static()
       ```
 
-    - 将动态图和静态图的测试 case 分在不同的 Python 文件中，`import paddle` 后在模块级别设置 paddle 的运行模式。比如 [test_rnn_cells.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/rnn/test_rnn_cells.py) 和 [test_rnn_cells_static.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/rnn/test_rnn_cells_static.py) 的做法。
+    - 将动态图和静态图的测试 case 分在不同的 Python 文件中，`import paddle` 后在模块级别设置 paddle 的运行模式。比如 [test_rnn_cells.py](https://github.com/PaddlePaddle/Paddle/blob/develop/test/rnn/test_rnn_cells.py) 和 [test_rnn_cells_static.py](https://github.com/PaddlePaddle/Paddle/blob/develop/test/rnn/test_rnn_cells_static.py) 的做法。
 
     - 在测试模块级别设定 paddle 的运行模式为静态图（一般是在一个模块的开始，而不是写在 `if __name__=="__main__":` 里)。然后在需要使用动态图的 case 里，将动态图部分的代码至于 `dygraph.guard` 上下文管理器内。这是老式的写法，目前不再推荐这么写，但已有的代码库中也存在这样的模式。
 
@@ -421,7 +421,7 @@ class TestHardtanhAPI(unittest.TestCase):
 
 编译方法请参见 [从源码编译](../../install/compile/fromsource.html) 章节，推荐使用 Docker 编译的方式。Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机编译更便捷。
 
-> 注意：编译必须打开 WITH_TESTING 选项（`-DWITH_TESTING=ON`），以确保新增的单元测试文件（python/paddle/fluid/tests/unittests/ 目录下 test_*.py 文件）自动加入工程进行编译。
+> 注意：编译必须打开 WITH_TESTING 选项（`-DWITH_TESTING=ON`），以确保新增的单元测试文件（test/legacy_test/ 目录下 test_*.py 文件）自动加入工程进行编译。
 
 运行单元测试需要在 `build` 目录下，以 `ctest ${test_name}` 的命令运行。其中 `test_name` 指的是所需运行测试 target 的名字，和上述添加的单元测试文件名字相同，但不带 `.py` 后缀。
 
@@ -429,7 +429,7 @@ class TestHardtanhAPI(unittest.TestCase):
 
 编译成功后，在 `build` 目录下执行 `ctest ${test_name}` 命令来运行单元测试，并确保单元测试通过。其中 `test_name` 指的是所需运行测试 `target` 的名字，和上述添加的单元测试文件名字相同，但不带 .py 后缀。
 
-比如运行 `python/paddle/fluid/tests/unittests/test_logsumexp.py` 的命令如下：
+比如运行 `test/legacy_test/test_logsumexp.py` 的命令如下：
 
 ```plain
 ctest -R test_logsumexp
@@ -470,7 +470,7 @@ https://github.com/PaddlePaddle/docs/pull/4418
 
 - 如果你的修改不涉及 C++ 代码，那么一般不需要重新编译就可以重新运行测试，以验证刚发生的修改是否解决了问题。
 
-Paddle 编译过程中，对于 Python 代码的处理方式是，先把它们拷贝到 build 目录，对于 Python API 和 Python 单元测试所在的文件都是如此处理。比如： `Python/paddle/fluid/tests/unittests/test_bmm_op.py` 拷贝到 build 目录后位置是 `build/Python/paddle/fluid/tests/unittests/test_bmm_op.py`。并且通过 `ctest` 运行单元测试时，会把 `build/Python` 这个目录加入 `PYTHONPATH`，因此它所调用的单元测试文件 和 Python API 代码文件也是 build 目录里的那一份。
+Paddle 编译过程中，对于 Python 代码的处理方式是，先把它们拷贝到 build 目录，对于 Python API 和 Python 单元测试所在的文件都是如此处理。比如： `test/legacy_test/test_bmm_op.py` 拷贝到 build 目录后位置是 `build/test/legacy_test/test_bmm_op.py`。并且通过 `ctest` 运行单元测试时，会把 `build/Python` 这个目录加入 `PYTHONPATH`，因此它所调用的单元测试文件 和 Python API 代码文件也是 build 目录里的那一份。
 
 - 如果你的修改没有涉及任何 C++ 文件，那么你也可以直接在 build 目录下修改对应的文件，直到问题解决，然后把文件拷贝回去覆盖 `Paddle` 目录的对应文件。
 
