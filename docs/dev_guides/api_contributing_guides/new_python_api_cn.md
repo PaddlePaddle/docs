@@ -82,8 +82,8 @@ def zeros(shape, dtype=None, name=None):
 ```
 【代码仓库链接】
 
-- [zeros 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py#L612)
-- [fill_constant 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/layers/tensor.py#L718)
+- [zeros 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py#L1051)
+- [fill_constant 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py#L881)
 
 #### 2.2.2 代码示例二（调用 C++ 算子接口）
 
