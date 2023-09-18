@@ -43,4 +43,7 @@ repos:
         entry: python .pre-commit-hooks/convert_markdown_into_html.py
         language: system
         files: .+README(\.cn)?\.md$
-
+-   repo: https://github.com/pycqa/isort
+    rev: 5.11.5
+    hooks:
+    -   id: isort
