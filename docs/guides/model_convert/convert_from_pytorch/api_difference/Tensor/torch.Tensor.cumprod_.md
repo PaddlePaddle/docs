@@ -3,7 +3,7 @@
 ### [torch.Tensor.cumprod_](https://pytorch.org/docs/stable/generated/torch.Tensor.cumprod_.html)
 
 ```python
-torch.Tensor.cumprod_(dim, dtype=None)
+torch.Tensor.cumprod_(dim, *, dtype=None)
 ```
 
 ### [paddle.Tensor.cumprod_]()
