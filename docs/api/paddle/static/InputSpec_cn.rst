@@ -4,7 +4,7 @@ InputSpec
 -------------------------------
 
 
-.. py:class:: paddle.static.InputSpec(shape=None, dtype='float32', name=None)
+.. py:class:: paddle.static.InputSpec(shape, dtype='float32', name=None, stop_gradient=False)
 用于描述模型输入的签名信息，包括 shape、dtype 和 name。
 
 此接口常用于指定高层 API 中模型的输入 Tensor 信息，或动态图转静态图时，指定被 ``paddle.jit.to_static`` 装饰的 forward 函数每个输入参数的 Tensor 信息。
@@ -12,9 +12,10 @@ InputSpec
 参数
 ::::::::::::
 
-  - **shape** (list|tuple)- 声明维度信息的 list 或 tuple，默认值为 None。
+  - **shape** (tuple(integers)|list[integers])- 声明维度信息的 list 或 tuple，你可以对维度设置为" None "或-1，以表示维度可以是任意大小。例如，可以将可更改的批量大小设置为“None”或“-1”。默认值为 None。
   - **dtype** (np.dtype|str，可选)- 数据类型，支持 bool，float16，float32，float64，int8，int16，int32，int64，uint8。默认值为 float32。
-  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 变量的名称，具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **stop_gradient**（） - 不知道咋写
 
 返回
 ::::::::::::
