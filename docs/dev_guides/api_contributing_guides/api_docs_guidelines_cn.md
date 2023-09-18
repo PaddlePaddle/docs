@@ -67,7 +67,8 @@
 
 ## 中文模板
 
-    .. _cn_api_tensor_add:
+    .. _cn_api_paddle_add:
+
     add
     -------------------------------
 
@@ -108,6 +109,20 @@
       中文文档优先使用 COPY-FROM 的方式与英文文档做同步。
 
 ## API 文档各模块写作说明
+
+### API 标签
+
+标签 `api_label` 一般用于文档间的引用。英文 API 文档的标签是自动生成的，而中文 API 文档的标签则需要在文档第一行手动编写。
+
+**如 paddle.add**
+
+    .. _cn_api_paddle_add:
+其中 `api_label` 是 `cn_api_paddle_add`，但在中文文档中，需要在标签 `cn_api_paddle_add` 的前面加上 `.. _` 、 后面加上 `:` （固定格式）
+
+**api_label 设定规范**：
+
+1. 英文 `api_label` ： `api_` + <完整的 API 名称，把 `.` 替换成 `_` >，如 `paddle.add` 对应 `api_paddle_add`
+2. 中文 `api_label` ： `cn_` + 英文 `api_label`，如 `paddle.add` 对应 `cn_api_paddle_add`
 
 ### API 名称
 
