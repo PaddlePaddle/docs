@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_SoftMarginloss:
+.. _cn_api_paddle_nn_SoftMarginLoss:
 
 SoftMarginloss
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_nn_layer_Sigmoid:
+.. _cn_api_paddle_nn_Sigmoid:
 
 Sigmoid
 -------------------------------

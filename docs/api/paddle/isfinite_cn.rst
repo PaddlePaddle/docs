@@ -1,4 +1,4 @@
-.. _cn_api_tensor_isfinite:
+.. _cn_api_paddle_isfinite:
 
 isfinite
 -----------------------------

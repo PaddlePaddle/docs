@@ -1,11 +1,11 @@
-.. _cn_api_paddle_tensor_trapezoid:
+.. _cn_api_paddle_trapezoid:
 
 trapezoid
 --------------------------------
 
 .. py:function:: paddle.trapezoid(y, x=None, dx=None, axis=-1, name=None)
 
-在指定维度上对输入实现 `trapezoid rule <https://en.wikipedia.org/wiki/Trapezoidal_rule>`_  算法。与 :ref:`cn_api_paddle_tensor_cumulative_trapezoid` 的区别是，所用累积求和函数为 sum。
+在指定维度上对输入实现 `trapezoid rule <https://en.wikipedia.org/wiki/Trapezoidal_rule>`_  算法。与 :ref:`cn_api_paddle_cumulative_trapezoid` 的区别是，所用累积求和函数为 sum。
 
 
 参数

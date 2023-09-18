@@ -1,4 +1,4 @@
-.. _cn_api_nn_Softmax2D:
+.. _cn_api_paddle_nn_Softmax2D:
 
 Softmax2D
 -------------------------------
@@ -6,7 +6,7 @@ Softmax2D
 
 Softmax2D 是 Softmax 的变体，其针对 3D 或者 4D 的 ``Tensor`` 在空间维度上计算 Softmax。具体来说，输出的 ``Tensor`` 的每个空间维度 :math:`(channls, h_i, w_j)` 求和为 1。
 
-Softmax 的详细介绍请参考 :ref:`cn_api_nn_Softmax`
+Softmax 的详细介绍请参考 :ref:`cn_api_paddle_nn_Softmax`
 
 参数
 ::::::::::

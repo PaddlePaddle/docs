@@ -17,7 +17,7 @@ ResNeXt-152 64x4d 模型，来自论文 `"Aggregated Residual Transformations fo
 返回
 :::::::::
 
-:ref:`cn_api_fluid_dygraph_Layer`，ResNeXt-152 64x4d 模型实例。
+:ref:`cn_api_paddle_nn_Layer`，ResNeXt-152 64x4d 模型实例。
 
 代码示例
 :::::::::

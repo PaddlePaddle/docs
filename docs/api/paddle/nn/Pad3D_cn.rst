@@ -1,4 +1,4 @@
-.. _cn_api_nn_Pad3D:
+.. _cn_api_paddle_nn_Pad3D:
 
 Pad3D
 -------------------------------

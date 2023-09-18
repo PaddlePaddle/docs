@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_unfold:
+.. _cn_api_paddle_unfold:
 
 unfold
 --------------------------------

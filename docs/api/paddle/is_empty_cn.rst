@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_is_empty:
+.. _cn_api_paddle_is_empty:
 
 is_empty
 -------------------------------

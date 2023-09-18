@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_BeamSearchDecoder:
+.. _cn_api_paddle_nn_BeamSearchDecoder:
 
 BeamSearchDecoder
 -------------------------------
@@ -22,7 +22,7 @@ BeamSearchDecoder
   - **start_token** (int) - 起始标记 id。
   - **end_token** (int) - 结束标记 id。
   - **beam_size** (int) - 在 beam search 中使用的 beam 宽度。
-  - **embedding_fn** (可选) - 处理选中的候选 id 的接口。它通常是一个将词 id 转换为词嵌入的嵌入层，其返回值将作为 :code:`cell.call` 接口的 :code:`input` 参数。**注意**，这里要使用 :ref:`cn_api_nn_Embedding` 而非 :ref:`cn_api_fluid_layers_embedding`，因为选中的 id 的形状是 :math:`[batch\_size, beam\_size]`，如果使用后者则还需要在这里提供 unsqueeze。如果 :code:`embedding_fn` 未提供，则必须在 :code:`cell.call` 中实现词嵌入转换。默认值 None。
+  - **embedding_fn** (可选) - 处理选中的候选 id 的接口。它通常是一个将词 id 转换为词嵌入的嵌入层，其返回值将作为 :code:`cell.call` 接口的 :code:`input` 参数。**注意**，这里要使用 :ref:`cn_api_paddle_nn_Embedding` 而非 :ref:`cn_api_fluid_layers_embedding`，因为选中的 id 的形状是 :math:`[batch\_size, beam\_size]`，如果使用后者则还需要在这里提供 unsqueeze。如果 :code:`embedding_fn` 未提供，则必须在 :code:`cell.call` 中实现词嵌入转换。默认值 None。
   - **output_fn** (可选) - 处理 cell 输出的接口，在计算得分和选择候选标记 id 之前使用。默认值 None。
 
 返回

@@ -1,4 +1,4 @@
-.. _cn_api_fluid_dygraph_enable_grad:
+.. _cn_api_paddle_enable_grad:
 
 enable_grad
 -------------------------------

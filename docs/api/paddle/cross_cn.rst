@@ -1,4 +1,4 @@
-.. _cn_api_tensor_linalg_cross:
+.. _cn_api_paddle_cross:
 
 cross
 -------------------------------

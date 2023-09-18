@@ -17,7 +17,7 @@ Inception v3 模型，来自论文 `"Rethinking the Inception Architecture for C
 返回
 :::::::::
 
-:ref:`cn_api_fluid_dygraph_Layer`，Inception v3 模型实例。
+:ref:`cn_api_paddle_nn_Layer`，Inception v3 模型实例。
 
 代码示例
 :::::::::

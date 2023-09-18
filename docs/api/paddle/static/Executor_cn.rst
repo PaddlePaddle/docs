@@ -1,4 +1,4 @@
-.. _cn_api_fluid_executor:
+.. _cn_api_paddle_static_Executor:
 
 Executor
 -------------------------------

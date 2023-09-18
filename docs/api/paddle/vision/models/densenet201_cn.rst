@@ -17,7 +17,7 @@ densenet201
 返回
 :::::::::
 
-:ref:`cn_api_fluid_dygraph_Layer`，201 层的 DenseNet 模型实例。
+:ref:`cn_api_paddle_nn_Layer`，201 层的 DenseNet 模型实例。
 
 代码示例
 :::::::::

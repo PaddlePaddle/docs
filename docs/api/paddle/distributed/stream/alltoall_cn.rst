@@ -1,4 +1,4 @@
-.. _cn_api_distributed_stream_alltoall:
+.. _cn_api_paddle_distributed_stream_alltoall:
 
 alltoall
 -------------------------------
@@ -8,7 +8,7 @@ alltoall
 
 将一个或一组 tensor 分发到每个进程，随后在每个进程上聚合分发结果。
 
-参见 :ref:`paddle.distributed.alltoall<cn_api_distributed_alltoall>`。
+参见 :ref:`paddle.distributed.alltoall<cn_api_paddle_distributed_alltoall>`。
 
 .. note::
   该 API 只支持动态图模式。

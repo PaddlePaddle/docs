@@ -1,4 +1,4 @@
-.. _cn_api_tensor_empty_like:
+.. _cn_api_paddle_empty_like:
 
 empty_like
 -------------------------------

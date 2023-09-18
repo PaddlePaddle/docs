@@ -1,4 +1,4 @@
-.. _cn_api_vision_ops_read_file:
+.. _cn_api_paddle_vision_ops_read_file:
 
 read_file
 -------------------------------

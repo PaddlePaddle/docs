@@ -1,4 +1,4 @@
-.. _cn_api_tensor_einsum:
+.. _cn_api_paddle_einsum:
 
 einsum
 ------

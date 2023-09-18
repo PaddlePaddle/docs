@@ -1,4 +1,4 @@
-.. _cn_api_text_datasets_Movielens:
+.. _cn_api_paddle_text_Movielens:
 
 Movielens
 -------------------------------

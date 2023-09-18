@@ -1,4 +1,4 @@
-.. _cn_api_nn_Silu:
+.. _cn_api_paddle_nn_Silu:
 
 Silu
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_distributed_gloo_barrier:
+.. _cn_api_paddle_distributed_gloo_barrier:
 
 gloo_barrier
 -------------------------------

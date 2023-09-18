@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_layer_rnn_LSTMCell:
+.. _cn_api_paddle_nn_LSTMCell:
 
 LSTMCell
 -------------------------------
@@ -64,7 +64,7 @@ LSTMCell
     - **new_states** (tuple) - 一个包含两个 Tensor 的元组，每个 Tensor 的形状都为[batch_size, hidden_size]，新一轮的隐藏状态。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}，c_{t}`。
 
 .. note::
-    所有的变换矩阵的权重和偏置都默认初始化为 Uniform(-std, std)，其中 std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_fluid_ParamAttr`。
+    所有的变换矩阵的权重和偏置都默认初始化为 Uniform(-std, std)，其中 std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_paddle_ParamAttr`。
 
 
 代码示例

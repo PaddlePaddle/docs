@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_adaptive_avg_pool2d:
+.. _cn_api_paddle_nn_functional_adaptive_avg_pool2d:
 
 adaptive_avg_pool2d
 -------------------------------

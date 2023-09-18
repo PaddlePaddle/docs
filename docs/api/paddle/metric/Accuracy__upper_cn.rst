@@ -1,4 +1,4 @@
-.. _cn_api_metric_Accuracy:
+.. _cn_api_paddle_metric_Accuracy:
 
 Accuracy
 -------------------------------

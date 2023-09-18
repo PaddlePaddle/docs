@@ -1,4 +1,4 @@
-.. _cn_api_tensor_imag:
+.. _cn_api_paddle_imag:
 
 imag
 ------

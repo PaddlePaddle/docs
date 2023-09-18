@@ -1,4 +1,4 @@
-.. _cn_api_distribution_Uniform:
+.. _cn_api_paddle_distribution_Uniform:
 
 Uniform
 -------------------------------

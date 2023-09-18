@@ -1,4 +1,4 @@
-.. _cn_api_distributed_stream_broadcast:
+.. _cn_api_paddle_distributed_stream_broadcast:
 
 broadcast
 -------------------------------
@@ -8,7 +8,7 @@ broadcast
 
 将一个 tensor 发送到每个进程。
 
-参见 :ref:`paddle.distributed.broadcast<cn_api_distributed_broadcast>`。
+参见 :ref:`paddle.distributed.broadcast<cn_api_paddle_distributed_broadcast>`。
 
 .. note::
   该 API 只支持动态图模式。

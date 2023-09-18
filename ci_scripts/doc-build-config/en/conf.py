@@ -13,7 +13,6 @@ import re
 
 try:
     import paddle
-    import paddle.fluid as fluid
 except:
     print("import paddle error")
 
@@ -363,7 +362,11 @@ def remove_doctest_directives(app, what, name, obj, options, lines):
     pattern_doctest = re.compile(r"\s*>>>\s*#\s*doctest:\s*.*")
 
     # Modify the lines inplace
-    lines[:] = [line for line in lines if not pattern_doctest.match(line)]
+    lines[:] = [
+        line
+        for line in lines
+        if not (pattern_doctest.match(line) or line.strip() == ">>>")
+    ]
 
 
 def setup(app):

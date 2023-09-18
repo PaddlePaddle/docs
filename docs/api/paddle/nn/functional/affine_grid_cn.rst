@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_affine_grid:
+.. _cn_api_paddle_nn_functional_affine_grid:
 
 affine_grid
 -------------------------------

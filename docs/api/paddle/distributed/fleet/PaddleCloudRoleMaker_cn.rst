@@ -1,4 +1,4 @@
-.. _cn_api_distributed_fleet_PaddleCloudRoleMaker:
+.. _cn_api_paddle_distributed_fleet_PaddleCloudRoleMaker:
 
 PaddleCloudRoleMaker
 -------------------------------

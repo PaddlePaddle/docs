@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_bilinear_tensor_product:
+.. _cn_api_paddle_static_nn_bilinear_tensor_product:
 
 bilinear_tensor_product
 -------------------------------
@@ -32,8 +32,8 @@ bilinear_tensor_product
     - **size** (int)：此层的维度。
     - **act** (str，可选)：应用到该层输出的激活函数。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **param_attr** (ParamAttr，可选)：指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** (ParamAttr，可选)：指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **param_attr** (ParamAttr，可选)：指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **bias_attr** (ParamAttr，可选)：指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
 
 返回
 ::::::::::::

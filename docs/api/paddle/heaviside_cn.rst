@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_heaviside:
+.. _cn_api_paddle_heaviside:
 
 heaviside
 -------------------------------

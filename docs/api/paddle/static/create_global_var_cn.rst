@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_create_global_var:
+.. _cn_api_paddle_static_create_global_var:
 
 create_global_var
 -------------------------------

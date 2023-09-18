@@ -1,5 +1,4 @@
 #!/bin/bash
-
 export DIR_PATH=${PWD}
 
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
@@ -17,7 +16,7 @@ if [ -z "${PADDLE_WHL}" ] ; then
         paddle_pr_info=$(get_repo_pr_info "PaddlePaddle/Paddle" ${paddle_pr_id})
         paddle_pr_latest_commit=${AGILE_REVISION}
         echo "paddle_pr_latest_commit=${paddle_pr_latest_commit}"
-        paddle_whl_tmp="https://xly-devops.bj.bcebos.com/PR/build_whl/${paddle_pr_id}/${paddle_pr_latest_commit}/paddlepaddle_gpu-0.0.0-cp37-cp37m-linux_x86_64.whl"
+        paddle_whl_tmp="https://xly-devops.bj.bcebos.com/PR/build_whl/${paddle_pr_id}/${paddle_pr_latest_commit}/paddlepaddle_gpu-0.0.0-cp310-cp310-linux_x86_64.whl"
         http_code=$(curl -sIL -w "%{http_code}" -o /dev/null -X GET -k ${paddle_whl_tmp})
         if [ "${http_code}" = "200" ] ; then
             PADDLE_WHL=${paddle_whl_tmp}
@@ -128,7 +127,7 @@ else
     echo 'need check api pyhon file: ', $need_check_api_py_files 
     /bin/bash ${DIR_PATH}/check_api_docs_en.sh ${jsonfn} ${OUTPUTDIR}/en/${VERSIONSTR}/api/ "${need_check_api_py_files}"
     if [ $? -ne 0 ]; then
-        echo 'Docs Stype Check is failed, please check the style in the above docs'
+        echo 'Docs Style Check is failed, please check the style in the above docs'
         exit 1
     fi
 fi

@@ -1,4 +1,4 @@
-.. _cn_api_tensor_linalg_dist:
+.. _cn_api_paddle_dist:
 
 dist
 -------------------------------

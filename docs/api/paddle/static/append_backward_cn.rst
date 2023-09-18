@@ -1,4 +1,4 @@
-.. _cn_api_fluid_backward_append_backward:
+.. _cn_api_paddle_static_append_backward:
 
 append_backward
 -------------------------------

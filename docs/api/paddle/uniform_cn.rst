@@ -1,4 +1,4 @@
-.. _cn_api_tensor_uniform:
+.. _cn_api_paddle_uniform:
 
 uniform
 -------------------------------

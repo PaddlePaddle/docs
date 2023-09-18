@@ -1,4 +1,4 @@
-.. _cn_api_text_datasets_WMT16:
+.. _cn_api_paddle_text_WMT16:
 
 WMT16
 -------------------------------

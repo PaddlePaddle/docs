@@ -1,4 +1,4 @@
-.. _cn_api_distributed_rpc_init_rpc:
+.. _cn_api_paddle_distributed_rpc_init_rpc:
 
 init_rpc
 -------------------------------

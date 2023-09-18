@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_sequence_conv:
+.. _cn_api_paddle_static_nn_sequence_conv:
 
 sequence_conv
 -------------------------------
@@ -7,7 +7,7 @@ sequence_conv
 .. py:function:: paddle.static.nn.sequence_conv(input, num_filters, filter_size=3, filter_stride=1, padding=True, padding_start=None, bias_attr=None, param_attr=None, act=None, name=None)
 
 .. note::
-1. 该 API 的输入只能是带有 LoD 信息的 Tensor，如果您需要处理的输入是普通的 Tensor 类型，请使用 :ref:`paddle.nn.functional.conv2d <cn_api_nn_functional_conv2d>` 。
+1. 该 API 的输入只能是带有 LoD 信息的 Tensor，如果您需要处理的输入是普通的 Tensor 类型，请使用 :ref:`paddle.nn.functional.conv2d <cn_api_paddle_nn_functional_conv2d>` 。
 2. 参数 ``padding`` 为无用参数，将在未来的版本中被移除。
 
 
@@ -58,8 +58,8 @@ sequence_conv
     - **filter_stride** (int，可选) - 滤波器每次移动的步长。目前只支持取值为 1，默认为 1。
     - **padding** (bool，可选) - **此参数不起任何作用，将在未来的版本中被移除。** 无论 ``padding`` 取值为 False 或者 True，默认地，该函数会自适应地在每个输入序列的两端等长地填充全 0 数据，以确保卷积后的输出序列长度和输入长度一致。默认填充是考虑到输入的序列长度可能会小于卷积核大小，这会导致无正确计算卷积输出。填充为 0 的数据在训练过程中不会被更新。默认为 True。
     - **padding_start** (int，可选) - 表示对输入序列填充时的起始位置，可以为负值。负值表示在每个序列的首端填充 ``|padding_start|`` 个时间步（time_step）的全 0 数据；正值表示对每个序列跳过前 ``padding_start`` 个时间步的数据。同时在末端填充 :math:`filter\_size + padding\_start - 1` 个时间步的全 0 数据，以保证卷积输出序列长度和输入长度一致。如果 ``padding_start`` 为 None，则在每个序列的两端填充 :math:`\frac{filter\_size}{2}` 个时间步的全 0 数据；如果 ``padding_start`` 设置为 0，则只在序列的末端填充 :math:`filter\_size - 1` 个时间步的全 0 数据。默认为 None。
-    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
     - **act** (str，可选) – 应用于输出上的激活函数，如 tanh、softmax、sigmoid，relu 等，支持列表请参考 :ref:`api_guide_activations`，默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

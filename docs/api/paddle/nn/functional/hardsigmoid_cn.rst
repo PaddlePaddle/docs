@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_hardsigmoid:
+.. _cn_api_paddle_nn_functional_hardsigmoid:
 
 hardsigmoid
 -------------------------------

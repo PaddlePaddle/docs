@@ -1,11 +1,11 @@
-.. _cn_api_paddle_tensor_t:
+.. _cn_api_paddle_t:
 
 t
 -------------------------------
 
 .. py:function:: paddle.t(input, name=None)
 
-对小于等于 2 维的 Tensor 进行数据转置。0 维和 1 维 Tensor 返回本身，2 维 Tensor 等价于 perm 设置为 0，1 的 :ref:`cn_api_fluid_layers_transpose` 函数。
+对小于等于 2 维的 Tensor 进行数据转置。0 维和 1 维 Tensor 返回本身，2 维 Tensor 等价于 perm 设置为 0，1 的 :ref:`cn_api_paddle_transpose` 函数。
 
 参数
 ::::::::

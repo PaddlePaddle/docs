@@ -1,4 +1,4 @@
-.. _cn_api_incubate_autotune_set_config:
+.. _cn_api_paddle_incubate_autotune_set_config:
 
 set_config
 ---------------------

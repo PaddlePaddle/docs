@@ -1,4 +1,4 @@
-.. _cn_api_tensor_floor_divide:
+.. _cn_api_paddle_floor_divide:
 
 floor_divide
 -------------------------------

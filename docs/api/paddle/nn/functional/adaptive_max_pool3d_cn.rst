@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_adaptive_max_pool3d:
+.. _cn_api_paddle_nn_functional_adaptive_max_pool3d:
 
 adaptive_max_pool3d
 -------------------------------
@@ -8,7 +8,7 @@ adaptive_max_pool3d
 默认是以 `NCDHW` 格式表示的，其中 `N` 是 batch size, `C` 是通道数，`D` , `H` , `W` 是输入特征的深度，高度，宽度。
 
 .. note::
-   详细请参考对应的 `Class` 请参考：:ref:`cn_api_nn_AdaptiveMaxPool3D` 。
+   详细请参考对应的 `Class` 请参考：:ref:`cn_api_paddle_nn_AdaptiveMaxPool3D` 。
 
 
 参数

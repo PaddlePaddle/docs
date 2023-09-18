@@ -1,4 +1,4 @@
-.. _cn_api_distributed_stream_reduce_scatter:
+.. _cn_api_paddle_distributed_stream_reduce_scatter:
 
 reduce_scatter
 -------------------------------
@@ -8,7 +8,7 @@ reduce_scatter
 
 规约一组 tensor，随后将规约结果分发到每个进程。
 
-参见 :ref:`paddle.distributed.reduce_scatter<cn_api_distributed_reduce_scatter>`。
+参见 :ref:`paddle.distributed.reduce_scatter<cn_api_paddle_distributed_reduce_scatter>`。
 
 .. note::
   该 API 只支持动态图模式。

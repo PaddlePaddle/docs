@@ -1,11 +1,11 @@
-.. _cn_api_profiler_make_scheduler:
+.. _cn_api_paddle_profiler_make_scheduler:
 
 make_scheduler
 ---------------------
 
 .. py:function:: paddle.profiler.make_scheduler(*, closed: int, ready: int, record: int, repeat: int=0, skip_first: int=0)
 
-生成性能分析器状态(详情见 :ref:`状态说明 <cn_api_profiler_profilerstate>` )的调度器函数，可根据设置的参数来调度性能分析器的状态。
+生成性能分析器状态(详情见 :ref:`状态说明 <cn_api_paddle_profiler_ProfilerState>` )的调度器函数，可根据设置的参数来调度性能分析器的状态。
 调度器用于调度如下状态转换过程：
 
 .. code-block:: text

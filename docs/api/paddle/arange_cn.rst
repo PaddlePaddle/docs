@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_arange:
+.. _cn_api_paddle_arange:
 
 arange
 -------------------------------
