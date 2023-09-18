@@ -18,11 +18,7 @@ repos:
 -   repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.1.14
     hooks:
-    -   id: forbid-crlf
-        files: \.md$|\.rst$
     -   id: remove-crlf
-        files: \.md$|\.rst$
-    -   id: forbid-tabs
         files: \.md$|\.rst$
     -   id: remove-tabs
         files: \.md$|\.rst$
