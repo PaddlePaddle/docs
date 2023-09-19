@@ -58,6 +58,7 @@ forward(self, src, tgt, src_mask=None, tgt_mask=None, memory_mask=None)
 
 
 **返回**
+
 Tensor，Transformer 解码器的输出。其形状和数据类型与 ``tgt`` 相同。
 
 
@@ -74,6 +75,7 @@ generate_square_subsequent_mask(self, length)
 
 
 **返回**
+
 Tensor，根据输入的 ``length`` 具体的大小生成的形状为 ``[length, length]`` 方形的掩码。
 
 
