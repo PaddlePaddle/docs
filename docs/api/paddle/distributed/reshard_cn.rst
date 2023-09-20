@@ -7,13 +7,13 @@ reshard
 
 根据新的分布式信息 ``dist_attr`` ，对一个带有分布式信息的 Tensor 进行 reshard 操作，重新进行 Tensor 的分布/切片，返回一个新的分布式 Tensor 。
 
-``data`` 需要是一个具有分布式信息的 paddle\.Tensor。
+``dist_tensor`` 需要是一个具有分布式信息的 paddle\.Tensor。
 
 
 参数
 :::::::::
 
-    - **data** (Tensor) - 具有分布式信息的 Tensor ，为 paddle\.Tensor 类型。
+    - **dist_tensor** (Tensor) - 具有分布式信息的 Tensor ，为 paddle\.Tensor 类型。
     - **dist_attr** (paddle.distributed.DistAttr) - Tensor 在 ProcessMesh 上的新的分布/切片方式。
 
 返回
