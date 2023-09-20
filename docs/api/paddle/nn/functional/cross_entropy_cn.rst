@@ -100,4 +100,6 @@ cross_entropy
 代码示例
 :::::::::
 
-COPY-FROM: paddle.nn.functional.cross_entropy
+COPY-FROM: paddle.nn.functional.cross_entropy:code-example1
+
+COPY-FROM: paddle.nn.functional.cross_entropy:code-example2
