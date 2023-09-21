@@ -19,7 +19,7 @@ Sigmoid
 形状
 ::::::::
 
-  - **x** (Tensor) - N-D Tensor，支持的数据类型是 float16、float32 和 float64。
+  - **x** (Tensor) - N-D Tensor，支持的数据类型是 float16、float32、 float64、complex64、complex128。
 
 返回
 ::::::::
