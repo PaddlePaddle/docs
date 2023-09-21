@@ -414,7 +414,7 @@ float(excluded_layers=None)
 
 **参数**
 
-    - **excluded_layers** （list|nn.Layer|None，可选） - 不需要转换数据类型的层。如果 ``excluded_layers`` 为 None，则转换所有浮点参数和缓冲区，默认值：None。
+    - **excluded_layers** （list|tuple|nn.Layer|None，可选） - 不需要转换数据类型的层。如果 ``excluded_layers`` 为 None，则转换所有浮点参数和缓冲区，默认值：None。
 
 **代码示例**
 
@@ -430,7 +430,7 @@ float16(excluded_layers=None)
 
 **参数**
 
-    - **excluded_layers** （list|nn.Layer|None，可选） - 不需要转换数据类型的层。如果 ``excluded_layers`` 为 None，则转换除 ``nn.BatchNorm`` 之外的所有浮点参数和缓冲区，默认值：None。
+    - **excluded_layers** （list|tuple|nn.Layer|None，可选） - 不需要转换数据类型的层。如果 ``excluded_layers`` 为 None，则转换除 ``nn.BatchNorm`` 之外的所有浮点参数和缓冲区，默认值：None。
 
 **代码示例**
 
@@ -446,7 +446,7 @@ bfloat16(excluded_layers=None)
 
 **参数**
 
-    - **excluded_layers** （list|nn.Layer|None，可选） - 不需要转换数据类型的层。如果 ``excluded_layers`` 为 None，则转换除 ``nn.BatchNorm`` 之外的所有浮点参数和缓冲区，默认值：None。
+    - **excluded_layers** （list|tuple|nn.Layer|None，可选） - 不需要转换数据类型的层。如果 ``excluded_layers`` 为 None，则转换除 ``nn.BatchNorm`` 之外的所有浮点参数和缓冲区，默认值：None。
 
 **代码示例**
 

@@ -14,7 +14,7 @@ all_reduce(input, mode="sum", comm_world="worker")
 
 **参数**
 
-    - **input** (list|numpy.array) – 归约操作的输入。
+    - **input** (list|tuple|numpy.array) – 归约操作的输入。
     - **mode** (str) - 归约操作的模式，包含求和，取最大值和取最小值，默认为求和归约。
     - **comm_world** (str) - 归约操作的通信集合，包含：server 集合(``server``)，worker 集合(``worker``)及所有节点集合(``all``)，默认为 worker 集合。
 
