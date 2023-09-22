@@ -8,7 +8,9 @@ shard_layer
 根据参数 `shard_fn` 将传入的 `paddle.nn.Layer` 所有的参数转换为带有分布式切分信息的 `Tensor`。同时也支持指定 `input_fn` 和 `output_fn` 用于控制输入和输出 `Tensor` 的转换。(具体指的是，将输入转换为带有分布式切分信息的 `Tensor`，将输出转回不带分布式切分信息的 `Tensor`。)
 
 `shard_fn` 的函数签名为：def shard_fn(layer_name, layer, process_mesh) -> None。
+
 `input_fn` 的函数签名为：def input_fn(inputs, process_mesh) -> list(paddle.Tensor)，一般地，`input_fn` 返回值的类型为带有分布式切分信息的 `Tensor`。
+
 `output_fn` 的函数签名为：def output_fn(outputs, process_mesh) -> list(paddle.Tensor)，一般地，`output_fn` 返回值的类型为不带分布式切分信息的 `Tensor`。
 
 
