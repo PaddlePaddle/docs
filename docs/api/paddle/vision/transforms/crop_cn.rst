@@ -1,4 +1,4 @@
-.. _cn_api_vision_transforms_crop:
+.. _cn_api_paddle_vision_transforms_crop:
 
 crop
 -------------------------------
@@ -10,11 +10,11 @@ crop
 参数
 :::::::::
 
-    - img (PIL.Image|np.array) - 用于裁剪的图像。
-    - top (int) - 要裁剪的矩形框左上方的坐标点的垂直方向的值。
-    - left (int) - 要裁剪的矩形框左上方的坐标点的水平方向的值。
-    - height (int) - 要裁剪的矩形框的高度值。
-    - width (int) - 要裁剪的矩形框的宽度值。
+    - **img** (PIL.Image|np.array) - 用于裁剪的图像。
+    - **top** (int) - 要裁剪的矩形框左上方的坐标点的垂直方向的值。
+    - **left** (int) - 要裁剪的矩形框左上方的坐标点的水平方向的值。
+    - **height** (int) - 要裁剪的矩形框的高度值。
+    - **width** (int) - 要裁剪的矩形框的宽度值。
 
 返回
 :::::::::

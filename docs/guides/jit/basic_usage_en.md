@@ -13,7 +13,7 @@ from paddle.jit import to_static
 
 class SimpleNet(paddle.nn.Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
     # 方式一：装饰 forward 函数（支持训练）
@@ -143,7 +143,7 @@ from paddle.jit import to_static
 
 class SimpleNet(paddle.nn.Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
     # 方式一：在函数定义处装饰
@@ -184,7 +184,7 @@ from paddle.jit import to_static
 
 class SimpleNet(paddle.nn.Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
     @to_static
@@ -434,7 +434,7 @@ from paddle.jit import to_static
 
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, mask):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
         # mask value，此处不会保存到预测模型文件中
@@ -454,7 +454,7 @@ class SimpleNet(paddle.nn.Layer):
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, mask):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
         # 此处的 mask 会当做一个 buffer Tensor，保存到 .pdparam 文件

@@ -1,4 +1,4 @@
-.. _cn_api_paddle_static_nn_common_deform_conv2d:
+.. _cn_api_paddle_static_nn_deform_conv2d:
 
 deform_conv2d
 -------------------------------
@@ -21,7 +21,7 @@ deform_conv2d op 对输入 4-D Tensor 计算 2-D 可变形卷积。给定输入 
 
 其中 :math:`\Delta p_k` 和 :math:`\Delta m_k` 分别为第 k 个位置的可学习偏移和调制标量。在 deform_conv2d_v1 中 :math:`\Delta m_k` 为 1。
 
-具体细节可以参考论文：`<<Deformable ConvNets v2: More Deformable, Better Results>> <https://arxiv.org/abs/1811.11168v2>`_ 和 `<<Deformable Convolutional Networks>> <https://arxiv.org/abs/1703.06211>`_ 。
+具体细节可以参考论文：`Deformable ConvNets v2: More Deformable, Better Results <https://arxiv.org/abs/1811.11168v2>`_ 和 `Deformable Convolutional Networks <https://arxiv.org/abs/1703.06211>`_ 。
 
 **示例**
 
@@ -53,7 +53,7 @@ deform_conv2d op 对输入 4-D Tensor 计算 2-D 可变形卷积。给定输入 
 
     - **x** (Tensor) - 形状为 :math:`[N, C, H, W]` 的输入 Tensor，数据类型为 float32 或 float64。
     - **offset** (Tensor) – 可变形卷积层的输入坐标偏移，数据类型为 float32 或 float64。
-    - **mask** (Tensor，可选) – 可变形卷积层的输入掩码，当使用可变形卷积算子 v1 时，请将 mask 设置为 None，数据类型为 float32 或 float64。
+    - **mask** (Tensor) – 可变形卷积层的输入掩码，当使用可变形卷积算子 v1 时，请将 mask 设置为 None，数据类型为 float32 或 float64。
     - **num_filters** (int) – 卷积核数，与输出 Tensor 通道数相同。
     - **filter_size** (int|tuple) – 卷积核大小。如果 filter_size 为元组，则必须包含两个整数(filter_size_H, filter_size_W)。若数据类型为 int，卷积核形状为(filter_size, filter_size)。
     - **stride** (int|tuple，可选) – 步长大小。如果 stride 为元组，则必须包含两个整数(stride_H, stride_W)。否则 stride_H = stride_W = stride。默认值为 1。

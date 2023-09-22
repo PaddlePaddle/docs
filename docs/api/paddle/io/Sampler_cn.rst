@@ -1,4 +1,4 @@
-.. _cn_api_io_cn_Sampler:
+.. _cn_api_paddle_io_Sampler:
 
 Sampler
 -------------------------------

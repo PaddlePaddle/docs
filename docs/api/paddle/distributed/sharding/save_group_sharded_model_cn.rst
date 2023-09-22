@@ -1,4 +1,4 @@
-.. _cn_api_distributed_sharding_save_group_sharded_model:
+.. _cn_api_paddle_distributed_sharding_save_group_sharded_model:
 
 save_group_sharded_model
 -------------------------------
@@ -14,9 +14,9 @@ save_group_sharded_model
 
 参数
 :::::::::
-    - model (Layer) - 使用 group_sharded_parallel 配置后的模型。
-    - output (str) - 输出保存模型和优化器的文件夹路径。
-    - optimizer (Optimizer，可选) - 使用 group_sharded_parallel 配置后的优化器，默认为 None，表示不对优化器状态进行保存。
+    - **model** (Layer) - 使用 group_sharded_parallel 配置后的模型。
+    - **output** (str) - 输出保存模型和优化器的文件夹路径。
+    - **optimizer** (Optimizer，可选) - 使用 group_sharded_parallel 配置后的优化器，默认为 None，表示不对优化器状态进行保存。
 
 返回
 :::::::::

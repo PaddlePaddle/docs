@@ -106,14 +106,6 @@
         <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-jupyter </td>
         <td> 安装了 2.1.0 版本 paddle 的 CPU 镜像，且镜像中预装好了 jupyter，启动 docker 即运行 jupyter 服务 </td>
     </tr>
-    <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda11.2-cudnn8 </td>
-        <td> 安装了 2.1.0 版本 paddle 的 GPU 镜像，cuda 版本为 11.2，cudnn 版本为 8.1 </td>
-    </tr>
-        <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda10.2-cudnn7 </td>
-        <td> 安装了 2.1.0 版本 paddle 的 GPU 镜像，cuda 版本为 10.2，cudnn 版本为 7 </td>
-    </tr>
    </tbody>
 </table>
 </p>

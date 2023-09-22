@@ -1,4 +1,4 @@
-.. _cn_api_linalg_norm:
+.. _cn_api_paddle_linalg_norm:
 
 norm
 -------------------------------
@@ -12,7 +12,7 @@ norm
 
 .. note::
 
-    此 API 与 ``numpy.linalg.norm`` 存在差异。此 API 支持高阶张量（rank>=3）作为输入，输入 ``axis`` 对应的轴就可以计算出 norm 的值。但是 ``numpy.linalg.norm`` 仅支持一维向量和二维矩阵作为输入。特别需要注意的是，此 API 的 P 阶矩阵范数，实际上将矩阵摊平成向量计算。实际计算的是向量范数，而不是真正的矩阵范数。
+    此 API 与 ``numpy.linalg.norm`` 存在差异。此 API 支持高阶 Tensor（rank>=3）作为输入，输入 ``axis`` 对应的轴就可以计算出 norm 的值。但是 ``numpy.linalg.norm`` 仅支持一维向量和二维矩阵作为输入。特别需要注意的是，此 API 的 P 阶矩阵范数，实际上将矩阵摊平成向量计算。实际计算的是向量范数，而不是真正的矩阵范数。
 
 参数
 :::::::::

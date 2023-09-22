@@ -1,4 +1,4 @@
-.. _cn_api_linalg_lu_unpack:
+.. _cn_api_paddle_linalg_lu_unpack:
 
 lu_unpack
 -------------------------------

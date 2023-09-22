@@ -1,4 +1,4 @@
-.. _cn_api_paddle_is_compiled_with_rocm:
+.. _cn_api_paddle_device_is_compiled_with_rocm:
 
 is_compiled_with_rocm
 -------------------------------

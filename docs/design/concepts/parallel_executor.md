@@ -37,7 +37,7 @@ The performance of `ResNeXt152` on `TitanX` which `batch_size=12` is shown below
 
 [Static single assignment form](https://en.wikipedia.org/wiki/Static_single_assignment_form)(`SSA` for short) is a common form for compiler optimization. To implement concurrent execution, we uses an `SSA` graph as an intermedia representation of `ProgramDesc`.
 
-The `Program` is a directed acyclic graph, since a variable can be assigned multiple times. We enforce a variable will be assigned once, by adding version number to varaibles. We parsing the `Program` into a `SSA` graph. Also, ProgramExecutor duplicate `Program` into multi-devices. We also add a device number to varaibles and insert `NCCLAllReduce` into Graph.
+The `Program` is a directed acyclic graph, since a variable can be assigned multiple times. We enforce a variable will be assigned once, by adding version number to variables. We parsing the `Program` into a `SSA` graph. Also, ProgramExecutor duplicate `Program` into multi-devices. We also add a device number to variables and insert `NCCLAllReduce` into Graph.
 
 The data structure of `SSA` graph is:
 
@@ -94,11 +94,11 @@ The `wait` are implemented by two strategies:
 1. Invoke `DeviceContext->Wait()`, It will wait all operators on this device contexts complete.
 2. Uses `cudaStreamWaitEvent` to sending a event to the stream. It is a non-blocking call. The wait operators will be executed in GPU.
 
-Generally, the `cudaStreamWaitEvent` will have a better perforamnce. However, `DeviceContext->Wait()` strategy is easier to debug. The strategy can be changed in runtime.
+Generally, the `cudaStreamWaitEvent` will have a better performance. However, `DeviceContext->Wait()` strategy is easier to debug. The strategy can be changed in runtime.
 
 ## What's next?
 
 * Merging gradient of dense parameters has been done. However, the merging of sparse parameters has not been done.
-* The CPU version of Parallel Executor has not been implemented. The out-of-order logic will make CPU compuatation faster, too.
+* The CPU version of Parallel Executor has not been implemented. The out-of-order logic will make CPU computation faster, too.
 * A better strategy to merge gradients can be introduced. We can shrink the gradients from `float32` to `int8` or `int4` while merging. It will significantly speed up multi-GPUs training without much loss of precision.
-* Combine multi-Nodes implementation. By the benifit of out-of-order, sending and recving operator can be an blocking operator, and the transpiler does not need to concern about the best position of operator.
+* Combine multi-Nodes implementation. By the benefit of out-of-order, sending and receiving operator can be an blocking operator, and the transpiler does not need to concern about the best position of operator.

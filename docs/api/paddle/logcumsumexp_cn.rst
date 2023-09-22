@@ -1,4 +1,4 @@
-.. _cn_api_tensor_logcumsumexp:
+.. _cn_api_paddle_logcumsumexp:
 
 logcumsumexp
 -------------------------------
@@ -20,7 +20,7 @@ logcumsumexp
 :::::::::
     - **x** (Tensor) - 需要进行操作的 Tensor。
     - **axis** (int，可选) - 指明需要计算的维度。-1 代表最后一维。默认：None，将输入展开为一维变量再进行计算。
-    - **dtype** (str，可选) - 输出 Tensor 的数据类型，支持 float32、float64。如果指定了，那么在执行操作之前，输入张量将被转换为 dtype。这对于防止数据类型溢出非常有用。默认为：None。
+    - **dtype** (str，可选) - 输出 Tensor 的数据类型，支持 float16、float32、float64。如果指定了，那么在执行操作之前，输入 Tensor 将被转换为 dtype。这对于防止数据类型溢出非常有用。默认为：None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

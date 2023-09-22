@@ -1,4 +1,4 @@
-.. _cn_api_nn_AlphaDropout:
+.. _cn_api_paddle_nn_AlphaDropout:
 
 AlphaDropout
 -------------------------------
@@ -10,7 +10,7 @@ AlphaDropout 是一种具有自归一化性质的 dropout。均值为 0，方差
 在动态图模式下，请使用模型的 `eval()` 方法切换至测试阶段。
 
 .. note::
-   对应的 `functional 方法` 请参考：:ref:`cn_api_nn_functional_alpha_dropout` 。
+   对应的 `functional 方法` 请参考：:ref:`cn_api_paddle_nn_functional_alpha_dropout` 。
 
 参数
 :::::::::

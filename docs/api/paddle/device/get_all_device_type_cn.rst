@@ -1,4 +1,4 @@
-.. _cn_api_get_all_device_type:
+.. _cn_api_paddle_device_get_all_device_type:
 
 get_all_device_type
 -------------------------------

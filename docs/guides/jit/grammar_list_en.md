@@ -38,7 +38,7 @@ If you encounter problems with @to_static, or want to learn about debugging skil
 | | [list sort](#8) | No | Lists will be converted to `TensorArray` and `TensorArray` don't support sort|
 | Errors and Exceptions |  assert | Yes | Convert to `Assert` if operand is tensor |
 | Python containers | [list](#8) | Partial support | Lists will be converted to `TensorArray`. Only `append`, `pop`, `index` is supported |
-| | [dict](#8) | Yes | ProgramTranslator will add the Tensors in a dict into PaddlePaddle static graph `Program`, so dict is supported by ProgramTranslator. |
+| | [dict](#8) | Yes | @to_static will add the Tensors in a dict into PaddlePaddle static graph `Program`, so dict is supported by @to_static. |
 | Third party library | numpy | Partial support | We suggest to use PaddlePaddle APIs to replace numpy API in this case. |
 
 ## Details
@@ -48,9 +48,9 @@ If you encounter problems with @to_static, or want to learn about debugging skil
 
 #### principle :
 
-While In the dynamic diagram, the code is interpreted and executed line by line,  so the value of condition variables used by `if` are determined,  which means that the logic branch of False will not be executed.
+While in the dynamic graph, the code is interpreted and executed line by line,  so the value of condition variables used by `if` are determined,  which means that the logic branch of False will not be executed.
 
-However,  In the static graph, the control flow is realized through the `cond` operators. Each branch is represented by `true_fn` and `false_fn` respectively .  Under this circumstance, the `false_fn` will be executed to build the computation graph.
+However,  in the static graph, the control flow is realized through the `cond` operators. Each branch is represented by `true_fn` and `false_fn` respectively .  Under this circumstance, the `false_fn` will be executed to build the computation graph.
 
 When the condition variables in `If` are `Tensor`,  `if-else` will be transformed to a `cond` operators.
 
@@ -183,10 +183,10 @@ Most circumstances of python function call is supported. The function calls will
 Some common functions are illustrated:
 
 - `print (x)`
-If the parameter is Tensor, `print(x)` can print the value of x in dynamic graph mode.While in dynamic-to-static model, It will be converted into a `Print` call. If the parameter is not Tensor, it will be executed according to python's print statement.
+If the parameter is Tensor, `print(x)` can print the value of x in dynamic graph mode.While in dynamic-to-static graph model, It will be converted into a `Print` call. If the parameter is not Tensor, it will be executed according to python's print statement.
 
 - `len (x)`
-If the parameter is Tensor, `len(x)` can get the length of the 0th dimension of tensor x. While in dynamic-to-static model, It will be converted into a `control_flow.array_length` call. If the parameter is not Tensor, it will be executed according to python's print statement.
+If the parameter is Tensor, `len(x)` can get the length of the 0th dimension of tensor x. While in dynamic-to-static graph model, It will be converted into a `control_flow.array_length` call. If the parameter is not Tensor, it will be executed according to python's print statement.
 
 - `lambda`
 The `to_static` function will call `convert_call` to convert lambda function as it's a normal function.
@@ -213,7 +213,7 @@ While converting, converted function can’t get value from static tensor.
 def recur_call(x):
     if x > 10:
         return x
-    return recur_call(x * x) # < ------ If x = Tensor([2.0]) ，in dygraph mode the output is Tensor([16])，while in dygraph-to-static mode call stack overflows
+    return recur_call(x * x) # < ------ If x = Tensor([2.0]) ，in dygraph mode the output is Tensor([16])，while in dygraph-to-static graph mode call stack overflows
 ```
 
 ### list / dict
@@ -222,9 +222,9 @@ def recur_call(x):
 
 #### principle :
 
-1. list: if all elements in a list are Tensors, then ProgramTranslator converts it to TensorArray. PaddlePaddle static graph TensorArray supports append, pop, and modify, other list operations such as sort cannot be supported. When not all elements in a list are Tensors, ProgramTranslator will treat it as normal Python list.
+1. list: if all elements in a list are Tensors, then @to_static converts it to TensorArray. PaddlePaddle static graph TensorArray supports append, pop, and modify, other list operations such as sort cannot be supported. When not all elements in a list are Tensors, @to_static will treat it as normal Python list.
 
-2. dict: ProgramTranslator will add the Tensors in a dict into PaddlePaddle static graph Program, so dict is supported by ProgramTranslator.
+2. dict: @to_static will add the Tensors in a dict into PaddlePaddle static graph Program, so dict is supported by @to_static.
 
 ```
 def list_example(x, y):
@@ -240,7 +240,7 @@ def list_example(x, y):
 
 - multiple nesting
 
-For example: l = [[tensor1, tensor2], [tensor3, tensor4]], because ProgramTranslator transformed a list whose elements are all Tensors into PaddlePaddle static graph TensorArray, but TensorArray doesn’t support multi-dimensions, ProgramTranslator cannot run this case.
+For example: l = [[tensor1, tensor2], [tensor3, tensor4]], because @to_static transformed a list whose elements are all Tensors into PaddlePaddle static graph TensorArray, but TensorArray doesn’t support multi-dimensions, @to_static cannot run this case.
 
 We suggest to use 1-D list at most time, or use PaddlePaddle API create_array, array_read, array_write to control TensorArray.
 
@@ -265,7 +265,7 @@ def sort_list(x, y):
 
 - Don't support get shape after a reshape operators. You may get a -1 in shape value.
 
-For example, `x = reshape(x, shape=shape_tensor)` , then use `x.shape[0]` to do other operation. Due to the difference between dygraph and static graph, it is okay in dygraph but it will fail in static graph. The reason is that APIs return computation result in dygraph mode, so x.shape has deterministic value after calling reshape . However, static graph doesn’t have the value shape_tensor during building network, so PaddlePaddle doesn’t know the value of x.shape after calling reshape. PaddlePaddle static graph will set -1 to represent unknown shape value for each dimension of x.shape in this case, not the expected value. Similarily, calling the shape of the output tensor of those APIs which change the shape, such as expend, cannot be converted into static graph properly.
+For example, `x = reshape(x, shape=shape_tensor)` , then use `x.shape[0]` to do other operation. Due to the difference between dynamic and static graph, it is okay in dynamic but it will fail in static graph. The reason is that APIs return computation result in dynamic graph mode, so x.shape has deterministic value after calling reshape . However, static graph doesn’t have the value shape_tensor during building network, so PaddlePaddle doesn’t know the value of x.shape after calling reshape. PaddlePaddle static graph will set -1 to represent unknown shape value for each dimension of x.shape in this case, not the expected value. Similarily, calling the shape of the output tensor of those APIs which change the shape, such as expend, cannot be converted into static graph properly.
 
 #### examples :
 
@@ -278,5 +278,5 @@ def get_shape(x):
 def error_shape(x, y):
     y = y.cast('int32')
     t = x.reshape(y)
-    return t.shape[0] # <------- don't supported ; if x = Tensor([2.0, 1.0])，y = Tensor([2])，in dygraph mode the output is 2，while in dygraph-to-static mode the output is -1.
+    return t.shape[0] # <------- don't supported ; if x = Tensor([2.0, 1.0])，y = Tensor([2])，in dygraph mode the output is 2，while in dygraph-to-static graph mode the output is -1.
 ```

@@ -33,7 +33,6 @@ tasks through different startup commands.
 
 .. code-block:: python
 
-    from __future__ import print_function
     from args import parse_args
     import os
     import sys

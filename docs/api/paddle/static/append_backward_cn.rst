@@ -1,4 +1,4 @@
-.. _cn_api_fluid_backward_append_backward:
+.. _cn_api_paddle_static_append_backward:
 
 append_backward
 -------------------------------
@@ -9,7 +9,7 @@ append_backward
 
 
 
-该接口将向主程序（``main_program``）添加反向部分。
+将向主程序（``main_program``）添加反向部分。
 
 完整的神经网络训练由前向和反向传播两部分组成。但是当我们配置网络时，我们只需要指定其前向部分。
 该接口使用链式法则，能够根据前向部分自动生成反向部分。

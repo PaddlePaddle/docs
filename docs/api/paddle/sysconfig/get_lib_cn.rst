@@ -5,7 +5,7 @@ get_lib
 
 .. py:function:: paddle.sysconfig.get_lib()
 
-获取包含 libpadle_framework 的目录。
+获取包含飞浆 lib 框架的目录。
 
 返回
 ::::::::::

@@ -7,7 +7,10 @@
 在进行 PaddlePaddle 安装之前请确保您的 Anaconda 软件环境已经正确安装。软件下载和安装参见 Anaconda 官网(https://www.anaconda.com/)。在您已经正确安装 Anaconda 的情况下请按照下列步骤安装 PaddlePaddle。
 
 * Windows 7/8/10 专业版/企业版 (64bit)
+* GPU 版本支持 CUDA 10.1/10.2/11.2, 且只支持单卡
 * conda 版本 4.8.3+ (64 bit)
+* Windows 原生暂不支持 NCCL，分布式等相关功能
+* 如果在 WSL2 环境下，推荐根据 Linux 方法安装使用 Paddle
 
 ### 1.1 创建虚拟环境
 

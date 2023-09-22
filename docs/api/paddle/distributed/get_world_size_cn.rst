@@ -1,17 +1,19 @@
-.. _cn_api_distributed_get_world_size:
+.. _cn_api_paddle_distributed_get_world_size:
 
 get_world_size
 ----------------
 
-.. py:function:: paddle.distributed.get_world_size()
+.. py:function:: paddle.distributed.get_world_size(group=None)
 
-返回参与当前任务的进程数。
+返回指定通信组中的进程数，如果没有指定通信组，则默认使用全局通信组。
 
-当前进程数等于环境变量 ``PADDLE_TRAINERS_NUM`` 的值，默认值为 1。
+参数
+:::::::::
+    - **group** (Group，可选) - 指定想在得到哪个通信组下的进程数，如果没有指定，默认使用全局通信组。
 
 返回
 :::::::::
-(int) 参与任务的进程数。
+(int) 返回指定通信组中的进程数，如果当前进程不在该通信组中，则返回-1。
 
 代码示例
 :::::::::

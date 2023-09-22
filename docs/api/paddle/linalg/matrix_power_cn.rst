@@ -1,4 +1,4 @@
-.. _cn_api_linalg_matrix_power:
+.. _cn_api_paddle_linalg_matrix_power:
 
 matrix_power
 -------------------------------

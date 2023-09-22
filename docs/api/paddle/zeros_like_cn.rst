@@ -1,4 +1,4 @@
-.. _cn_api_tensor_zeros_like:
+.. _cn_api_paddle_zeros_like:
 
 zeros_like
 -------------------------------

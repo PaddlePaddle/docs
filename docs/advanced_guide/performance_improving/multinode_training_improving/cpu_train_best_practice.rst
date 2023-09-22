@@ -63,7 +63,7 @@ API 详细使用方法参考 :ref:`cn_api_fluid_ParallelExecutor` ，简单实�
 
 要提高 CPU 分布式的数据 IO 速度，可以首先考虑使用 dataset API 进行数据读取。 dataset 是一种多生产者多消费者模式的数据读取方法，默认情况下耦合数据读取线程与训练线程，在多线程的训练中，dataset 表现出极高的性能优势。
 
-API 接口介绍可以参考：https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dataset_cn/QueueDataset_cn.html
+API 接口介绍可以参考： :ref:`cn_api_distributed_QueueDataset`
 
 结合实际的网络，比如 CTR-DNN 模型，引入的方法可以参考：https://github.com/PaddlePaddle/models/tree/release/1.7/PaddleRec/ctr/dnn
 

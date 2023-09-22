@@ -17,13 +17,13 @@ paddle.text 目录是飞桨在文本领域的高层 API。有 Paddle 内置以�
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`Conll05st <cn_api_text_datasets_Conll05st>` ", "Conll05st 数据集"
-    " :ref:`Imdb <cn_api_text_datasets_Imdb>` ", "Imdb 数据集"
-    " :ref:`Imikolov <cn_api_text_datasets_Imikolov>` ", "Imikolov 数据集"
-    " :ref:`Movielens <cn_api_text_datasets_Movielens>` ", "Movielens 数据集"
-    " :ref:`UCIHousing <cn_api_text_datasets_UCIHousing>` ", "UCIHousing 数据集"
-    " :ref:`WMT14 <cn_api_text_datasets_WMT14>` ", "WMT14 数据集"
-    " :ref:`WMT16 <cn_api_text_datasets_WMT16>` ", "WMT16 数据集"
+    " :ref:`Conll05st <cn_api_paddle_text_Conll05st>` ", "Conll05st 数据集"
+    " :ref:`Imdb <cn_api_paddle_text_Imdb>` ", "Imdb 数据集"
+    " :ref:`Imikolov <cn_api_paddle_text_Imikolov>` ", "Imikolov 数据集"
+    " :ref:`Movielens <cn_api_paddle_text_Movielens>` ", "Movielens 数据集"
+    " :ref:`UCIHousing <cn_api_paddle_text_UCIHousing>` ", "UCIHousing 数据集"
+    " :ref:`WMT14 <cn_api_paddle_text_WMT14>` ", "WMT14 数据集"
+    " :ref:`WMT16 <cn_api_paddle_text_WMT16>` ", "WMT16 数据集"
 
 .. _about_paddlenlp:
 
@@ -47,6 +47,6 @@ PaddleNLP 提供了在文本任务上简洁易用的全流程 API，旨在为飞
 
     " `paddlenlp.datasets <https://paddlenlp.readthedocs.io/zh/latest/data_prepare/dataset_list.html>`_ ", "数据集相关 API，包含自定义数据集，数据集贡献与数据集快速加载等功能", " ``train_ds = paddlenlp.datasets.load_dataset('ptb', splits='train')`` "
     " `paddlenlp.data <https://paddlenlp.readthedocs.io/zh/latest/data_prepare/data_preprocess.html>`_ ", "文本数据处理 Pipeline 的相关 API", "见链接文档"
-    " `paddlenlp.transformers <https://paddlenlp.readthedocs.io/zh/latest/model_zoo/transformers.html>`_ ", "基于 Transformer 结构相关的预训练模型 API，包含 ERNIE, BERT, RoBERTa, Electra 等主流经典结构和下游任务", " ``model = paddlenlp.transformers.BertForSequenceClassification.from_pretrained('bert-wwm-chinese', num_classes=2)`` "
+    " `paddlenlp.transformers <https://paddlenlp.readthedocs.io/zh/latest/source/paddlenlp.transformers.html>`_ ", "基于 Transformer 结构相关的预训练模型 API，包含 ERNIE, BERT, RoBERTa, Electra 等主流经典结构和下游任务", " ``model = paddlenlp.transformers.BertForSequenceClassification.from_pretrained('bert-wwm-chinese', num_classes=2)`` "
     " `paddlenlp.metrics <https://paddlenlp.readthedocs.io/zh/latest/metrics/metrics.html>`_", "提供了文本任务上的一些模型评价指标，例如 Perplexity、GlLUE 中用到的评估器、BLEU、Rouge 等，与飞桨高层 API 兼容", " ``metric = paddlenlp.metrics.AccuracyAndF1()`` "
     " `paddlenlp.embeddings <https://paddlenlp.readthedocs.io/zh/latest/model_zoo/embeddings.html>`_", "词向量相关 API，支持一键快速加载包预训练的中文词向量，VisualDL 高维可视化等功能", " ``token_embedding = paddlenlp.embeddings.TokenEmbedding(embedding_name='fasttext.wiki-news.target.word-word.dim300.en')`` "

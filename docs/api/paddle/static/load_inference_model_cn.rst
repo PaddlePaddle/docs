@@ -1,4 +1,4 @@
-.. _cn_api_fluid_io_load_inference_model:
+.. _cn_api_paddle_static_load_inference_model:
 
 load_inference_model
 -------------------------------
@@ -19,6 +19,7 @@ load_inference_model
   - **kwargs** - 支持的 key 包括 'model_filename', 'params_filename'。(注意：kwargs 主要是用来做反向兼容的)。
 
       - **model_filename** (str) - 自定义 model_filename。
+
       - **params_filename** (str) - 自定义 params_filename。
 
 返回

@@ -40,7 +40,7 @@ istft
   度为 ``win_length`` 幅值为 1 的矩形窗)；
 - **center** (bool，可选) - 选择是否将输入信号进行补长，使得第
   :math:`t \times hop\_length` 个样本点在第 :math:`t` 帧的中心，默认为 ``True``；
-- **normalized** (bool，可选) - 是否将傅里叶变换的结果乘以值为 ``1/sqrt(n)`` 的缩放
+- **normalized** (bool，可选) - 是否将傅里叶变换的结果乘以值为 :math:`1/sqrt(n)` 的缩放
   系数；
 - **onesided** (bool，可选) - 该参数与 ``paddle.signal.stft`` 中的有区别，此处表示
   告知接口输入的 ``x`` 是否为满足共轭对称性的短时傅里叶变换 Tensor 的一半。若满足上述条件，

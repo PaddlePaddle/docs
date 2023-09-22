@@ -71,7 +71,7 @@ def layer.fc(X):
     return operator.add(operator.mul(X, W), b)
 ```
 
-If we don't have `operator.mul` and `operator.add`, the definiton of `layer.fc` would be complicated:
+If we don't have `operator.mul` and `operator.add`, the definition of `layer.fc` would be complicated:
 
 ```python
 def layer.fc(X):

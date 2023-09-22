@@ -62,13 +62,13 @@ out = paddle.add(out, y)
 ```python
 import paddle
 from paddle.jit import to_static
+from paddle.static import InputSpec
 
 class SimpleNet(paddle.nn.Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
-    @to_static
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
@@ -88,12 +88,12 @@ net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])  # 动静转换
 
 
 + 可以指定某些维度为 ``None`` ， 如 ``batch_size`` ，``seq_len`` 维度
-+ 可以指定 Placeholder 的 ``name`` ，方面预测时根据 ``name`` 输入数据
++ 可以指定 Placeholder 的 ``name`` ，方便预测时根据 ``name`` 输入数据
 
 > 注：``InputSpec`` 接口的详细用法，请参见 [InputSpec 的用法介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/basic_usage_cn.html#inputspec)。
 
 
-### 三、动转静代码转写（AST 转写）
+## 三、动转静代码转写（AST 转写）
 ### 3.1 函数转写
 
 在 NLP、CV 领域中，一个模型常包含层层复杂的子函数调用，动转静中是如何实现**只需装饰最外层的 ``forward`` 函数**，就能递归处理所有的函数。
@@ -106,7 +106,7 @@ from paddle.jit import to_static
 
 class SimpleNet(paddle.nn.Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
     @to_static
@@ -180,34 +180,36 @@ def add_two(x, y):
 
 #### 3.2.1 IfElse
 
-无论是否会转写为 ``cond_op`` ，动转静都会首先对代码进行处理，**转写为 ``cond`` 接口可以接受的写法**
+无论是否会转写为 ``cond_op`` ，动转静都会首先对代码进行处理，**转写为 ``cond`` 接口可以接受的写法**。
 
 **示例一：不依赖 Tensor 的控制流**
 
 如下代码样例中的 `if label is not None`, 此判断只依赖于 `label` 是否为 `None`（存在性），并不依赖 `label` 的 Tensor 值（数值性），因此属于**不依赖 Tensor 的控制流**。
 
 ```python
+from paddle.jit import to_static
+
 def not_depend_tensor_if(x, label=None):
     out = x + 1
     if label is not None:              # <----- python bool 类型
         out = paddle.nn.functional.cross_entropy(out, label)
     return out
 
-print(to_static(not_depend_tensor_ifw).code)
+print(to_static(not_depend_tensor_if).code)
 # 转写后的代码：
 """
 def not_depend_tensor_if(x, label=None):
     out = x + 1
 
-    def true_fn_1(label, out):  # true 分支
+    def true_fn_0(label, out):  # true 分支
         out = paddle.nn.functional.cross_entropy(out, label)
         return out
 
-    def false_fn_1(out):        # false 分支
+    def false_fn_0(out):        # false 分支
         return out
 
-    out = paddle.jit.dy2static.convert_ifelse(label is not None, true_fn_1,
-        false_fn_1, (label, out), (out,), (out,))
+    out = paddle.jit.dy2static.convert_ifelse(label is not None, true_fn_0,
+        false_fn_0, (label, out), (out,), (out,))
 
     return out
 """
@@ -219,6 +221,8 @@ def not_depend_tensor_if(x, label=None):
 如下代码样例中的 `if paddle.mean(x) > 5`, 此判断直接依赖 `paddle.mean(x)` 返回的 Tensor 值（数值性），因此属于**依赖 Tensor 的控制流**。
 
 ```python
+from paddle.jit import to_static
+
 def depend_tensor_if(x):
     if paddle.mean(x) > 5.:         # <---- Bool Tensor 类型
         out = x - 1
@@ -230,7 +234,7 @@ print(to_static(depend_tensor_if).code)
 # 转写后的代码：
 """
 def depend_tensor_if(x):
-    out = paddle.jit.dy2static.data_layer_not_check(name='out', shape=[-1],
+    out = paddle.jit.dy2static.data_layer_not_check(name='out_0', shape=[-1],
         dtype='float32')
 
     def true_fn_0(x):      # true 分支
@@ -277,9 +281,12 @@ def convert_ifelse(pred, true_fn, false_fn, true_args, false_args, return_vars):
 ``For/While`` 也会先进行代码层面的规范化，在逐行执行用户代码时，才会决定是否转为 ``while_op``。
 
 **示例一：不依赖 Tensor 的控制流**
+
 如下代码样例中的 `while a < 10`, 此循环条件中的 `a` 是一个 `int` 类型，并不是 Tensor 类型，因此属于**不依赖 Tensor 的控制流**。
 
 ```python
+from paddle.jit import to_static
+
 def not_depend_tensor_while(x):
     a = 1
 
@@ -315,10 +322,12 @@ def not_depend_tensor_while(x):
 如下代码样例中的 `for i in range(bs)`, 此循环条件中的 `bs` 是一个 `paddle.shape` 返回的 Tensor 类型，且将其 Tensor 值作为了循环的终止条件，因此属于**依赖 Tensor 的控制流**。
 
 ```python
+from paddle.jit import to_static
+
 def depend_tensor_while(x):
     bs = paddle.shape(x)[0]
 
-    for i in range(bs):       # <---- bas is a Tensor
+    for i in range(bs):       # <---- bs is a Tensor
         x = x + 1
 
     return x
@@ -344,7 +353,7 @@ def depend_tensor_while(x):
 ```
 
 
-``convert_while_loop`` 的底层的逻辑同样会根据 **判断条件是否为``Tensor``** 来决定是否转为 ``while_op``
+``convert_while_loop`` 的底层的逻辑同样会根据 **判断条件是否为``Tensor``** 来决定是否转为 ``while_op``。
 
 ## 四、 生成静态图的 Program 和 Parameters
 
@@ -430,7 +439,7 @@ class Linear(...):
 + 动态图 ``Tensor`` 转为静态图 ``Variable`` ，并确保编译期的 ``InferShape`` 正确执行
 
 
-### 4.3 Buffer 变量
+### 4.3 Buffers 变量
 
 **什么是 ``Buffers`` 变量？**
 
@@ -447,7 +456,7 @@ from paddle.jit import to_static
 
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, mask):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
         # mask value，此处不会保存到预测模型文件中
@@ -467,7 +476,7 @@ class SimpleNet(paddle.nn.Layer):
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, mask):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
         # 此处的 mask 会当做一个 buffer Tensor，保存到 .pdiparam 文件
@@ -481,6 +490,6 @@ class SimpleNet(paddle.nn.Layer):
 ```
 
 
-总结一下 ``buffers`` 的用法：
+总结一下 ``Buffers`` 的用法：
 
 +  若某个非 ``Tensor`` 数据需要当做 ``Persistable`` 的变量序列化到磁盘，则最好在 ``__init__`` 中调用 ``self.XX= paddle.to_tensor(xx)`` 接口转为 ``buffer`` 变量

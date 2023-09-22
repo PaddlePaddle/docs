@@ -1,4 +1,4 @@
-.. _cn_api_distributed_fleet_DistributedStrategy:
+.. _cn_api_paddle_distributed_fleet_DistributedStrategy:
 
 DistributedStrategy
 -------------------------------
@@ -390,7 +390,7 @@ dgc_configs
 **rampup_step(int):** 使用稀疏预热的时间步长。默认值为 1。例如：如果稀疏度为[0.75,0.9375,0.984375,0.996,0.999]，\
 并且 rampup_step 为 100，则在 0~19 步时使用 0.75，在 20~39 步时使用 0.9375，依此类推。当到达 sparsity 数组末尾时，此后将会使用 0.999。
 
-**sparsity(list[float]):** 从梯度张量中获取 top 个重要元素，比率为（1-当前稀疏度）。默认值为[0.999]。\
+**sparsity(list[float]):** 从梯度 Tensor 中获取 top 个重要元素，比率为（1-当前稀疏度）。默认值为[0.999]。\
 例如：如果 sparsity 为[0.99, 0.999]，则将传输 top [1%, 0.1%]的重要元素。
 
 **代码示例**
@@ -439,25 +439,25 @@ sharding_configs
 
 设置 sharding 策略的参数。
 
-**sharding_segment_strategy(float, optional):** 选择 sharding 中用来将前向反向 program 切 segments 的策略。目前可选策略有："segment_broadcast_MB" 和 "segment_anchors"。 segment 是 sharding 中引入的一个内部概念，目的是用来让通信和计算相互重叠掩盖（overlap）。默认值是 segment_broadcast_MB。
+**sharding_segment_strategy(float，可选):** 选择 sharding 中用来将前向反向 program 切 segments 的策略。目前可选策略有："segment_broadcast_MB" 和 "segment_anchors"。 segment 是 sharding 中引入的一个内部概念，目的是用来让通信和计算相互重叠掩盖（overlap）。默认值是 segment_broadcast_MB。
 
-**segment_broadcast_MB(float, optional):** 根据 sharding 广播通信中的参数量来切 segments，仅当 sharding_segment_strategy = segment_broadcast_MB 时生效。sharding 会在前向和反向中引入参数广播，在该 segment 策略下，每当参数广播量达到 “segment_broadcast_MB”时，在 program 中切出一个 segment。该参数是一个经验值，最优值会受模型大小和网咯拓扑的影响。默认值是 32。
+**segment_broadcast_MB(float，可选):** 根据 sharding 广播通信中的参数量来切 segments，仅当 sharding_segment_strategy = segment_broadcast_MB 时生效。sharding 会在前向和反向中引入参数广播，在该 segment 策略下，每当参数广播量达到 “segment_broadcast_MB”时，在 program 中切出一个 segment。该参数是一个经验值，最优值会受模型大小和网咯拓扑的影响。默认值是 32。
 
 **segment_anchors(list):** 根据用户选定的锚点切割 segments，仅当 sharding_segment_strategy = segment_anchors 生效。该策略可以让用户更精确的控制 program 的切分，目前还在实验阶段。
 
-**sharding_degree(int, optional):** sharding 并行数。sharding_degree=1 时，sharding 策略会被关闭。默认值是 8。
+**sharding_degree(int，可选):** sharding 并行数。sharding_degree=1 时，sharding 策略会被关闭。默认值是 8。
 
-**gradient_merge_acc_step(int, optional):** 梯度累积中的累积步数。gradient_merge_acc_step=1 梯度累积会被关闭。默认值是 1。
+**gradient_merge_acc_step(int，可选):** 梯度累积中的累积步数。gradient_merge_acc_step=1 梯度累积会被关闭。默认值是 1。
 
-**optimize_offload(bool, optional):** 优化器状态卸载开关。开启后会将优化器中的状态(moment) 卸载到 Host 的内存中，以到达节省 GPU 显存、支持更大模型的目的。开启后，优化器状态会在训练的更新阶段经历：预取-计算-卸载（offload）三个阶段，更新阶段耗时会增加。这个策略需要权衡显存节省量和训练速度，仅推荐在开启梯度累积并且累积步数较大时开启。因为累积步数较大时，训练中更新阶段的比例将远小于前向&反向阶段，卸载引入的耗时将不明显。
+**optimize_offload(bool，可选):** 优化器状态卸载开关。开启后会将优化器中的状态(moment) 卸载到 Host 的内存中，以到达节省 GPU 显存、支持更大模型的目的。开启后，优化器状态会在训练的更新阶段经历：预取-计算-卸载（offload）三个阶段，更新阶段耗时会增加。这个策略需要权衡显存节省量和训练速度，仅推荐在开启梯度累积并且累积步数较大时开启。因为累积步数较大时，训练中更新阶段的比例将远小于前向&反向阶段，卸载引入的耗时将不明显。
 
-**dp_degree(int, optional):** 数据并行的路数。当 dp_degree>=2 时，会在内层并行的基础上，再引入 dp_degree 路 数据并行。用户需要保证 global_world_size = mp_degree * sharding_degree * pp_degree * dp_degree。默认值是 1。
+**dp_degree(int，可选):** 数据并行的路数。当 dp_degree>=2 时，会在内层并行的基础上，再引入 dp_degree 路 数据并行。用户需要保证 global_world_size = mp_degree * sharding_degree * pp_degree * dp_degree。默认值是 1。
 
-**mp_degree(int, optional):** [仅在混合并行中使用] megatron 并行数。mp_degree=1 时，mp 策略会被关闭。默认值是 1。
+**mp_degree(int，可选):** [仅在混合并行中使用] megatron 并行数。mp_degree=1 时，mp 策略会被关闭。默认值是 1。
 
-**pp_degree(int, optional):** [仅在混合并行中使用] pipeline 并行数。pp_degree=1 时，pipeline 策略会被关闭。默认值是 1。
+**pp_degree(int，可选):** [仅在混合并行中使用] pipeline 并行数。pp_degree=1 时，pipeline 策略会被关闭。默认值是 1。
 
-**pp_allreduce_in_optimize(bool, optional):** [仅在混合并行中使用] 在开启 pipeline 并行后，将 allreduce 操作从反向阶段移动到更新阶段。根据不同的网络拓扑，该选项会影响训练速度，该策略目前还在实验阶段。默认值是 False。
+**pp_allreduce_in_optimize(bool，可选):** [仅在混合并行中使用] 在开启 pipeline 并行后，将 allreduce 操作从反向阶段移动到更新阶段。根据不同的网络拓扑，该选项会影响训练速度，该策略目前还在实验阶段。默认值是 False。
 
 
 .. code-block:: python
@@ -470,6 +470,6 @@ sharding_configs
       "sharding_segment_strategy": "segment_broadcast_MB",
       "segment_broadcast_MB": 32,
       "sharding_degree": 8,
-      "sharding_degree": 2,
+      "dp_degree": 2,
       "gradient_merge_acc_step": 4,
       }

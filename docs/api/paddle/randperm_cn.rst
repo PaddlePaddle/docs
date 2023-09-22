@@ -1,4 +1,4 @@
-.. _cn_api_tensor_random_randperm:
+.. _cn_api_paddle_randperm:
 
 randperm
 -------------------------------

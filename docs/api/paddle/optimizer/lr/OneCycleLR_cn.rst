@@ -3,9 +3,9 @@
 OneCycleLR
 -----------------------------------
 
-.. py:class:: paddle.optimizer.lr.OneCycleLR(max_learning_rate, total_steps, divide_factor=25., end_learning_rate=0.0001, phase_pct=0.3, anneal_strategy='cos', three_phase=False, last_epoch=-1, verbose=False):
+.. py:class:: paddle.optimizer.lr.OneCycleLR(max_learning_rate, total_steps, divide_factor=25., end_learning_rate=0.0001, phase_pct=0.3, anneal_strategy='cos', three_phase=False, last_epoch=-1, verbose=False)
 
-该接口使用 ``one cycle`` 策略来动态调整学习率。
+使用 ``one cycle`` 策略来动态调整学习率。
 
 该策略将学习率从初始学习率调整到最大学习率，再从最大学习率调整到远小于初始学习率的最小学习率。
 

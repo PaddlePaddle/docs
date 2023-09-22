@@ -30,12 +30,12 @@ API 文档是飞桨框架的 API 文档，包含了飞桨框架 API 的说明介
 
 ### 应用实践
 
-这部分内容分为源代码与官网文档两部分，源代码的部分以 notebook 的形式，存放在 [book/paddle2.0_docs](https://github.com/PaddlePaddle/book/tree/develop/paddle2.0_docs) 目录下，你可以提交你的 notebook 格式的源码于该目录中；在你的 notebook 文件被合入后，我们会将其转为 md 文件，存储在[docs/docs/tutorial](https://github.com/PaddlePaddle/docs/tree/develop/docs/tutorial)中，然后呈现到官网。具体信息请参考：[[Call for Contribution] Tutorials for PaddlePaddle 2.0](https://github.com/PaddlePaddle/book/issues/905).
+这部分内容分为源代码与官网文档两部分，源代码的部分以 notebook 的形式，存放在 [book/paddle2.0_docs](https://github.com/PaddlePaddle/book/tree/develop/paddle2.0_docs) 目录下，你可以提交你的 notebook 格式的源码于该目录中；在你的 notebook 文件被合入后，我们会将其转为 md 文件，存储在 [docs/docs/tutorial](https://github.com/PaddlePaddle/docs/tree/develop/docs/tutorial) 中，然后呈现到官网。具体信息请参考：[[Call for Contribution] Tutorials for PaddlePaddle 2.0](https://github.com/PaddlePaddle/book/issues/905)。
 
 ### API 文档
 
-飞桨框架同时提供中英文 API 文档。其中，英文 API 文档存于[Paddle](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle)源代码中，绝大部分通过官网文档的源代码即可链接到，你可以在此位置对英文文档进行修改；而中文 API 文档存放在[docs/docs/api](https://github.com/PaddlePaddle/docs/tree/develop/docs/api)目录下。你可以针对文档中的任何错误与内容进行修复与完善，或者是新增你认为该文档中所需要的内容，我们非常感谢你对于 API 文档所付出的一切。具体修改方式请参考：[英文 API 文档贡献指南](https://github.com/PaddlePaddle/docs/wiki/%E8%8B%B1%E6%96%87API%E6%96%87%E6%A1%A3%E8%B4%A1%E7%8C%AE%E6%8C%87%E5%8D%97)、[中文 API 文档贡献指南](https://github.com/PaddlePaddle/docs/wiki/%E4%B8%AD%E6%96%87API%E6%96%87%E6%A1%A3%E8%B4%A1%E7%8C%AE%E6%8C%87%E5%8D%97)。
+飞桨框架同时提供中英文 API 文档。其中，英文 API 文档存于 [Paddle](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle) 源代码中，绝大部分通过官网文档的源代码即可链接到，你可以在此位置对英文文档进行修改；而中文 API 文档存放在 [docs/docs/api](https://github.com/PaddlePaddle/docs/tree/develop/docs/api) 目录下。你可以针对文档中的任何错误与内容进行修复与完善，或者是新增你认为该文档中所需要的内容，我们非常感谢你对于 API 文档所付出的一切。具体修改方式请参考：[英文 API 文档贡献指南](https://github.com/PaddlePaddle/docs/wiki/%E8%8B%B1%E6%96%87API%E6%96%87%E6%A1%A3%E8%B4%A1%E7%8C%AE%E6%8C%87%E5%8D%97)、[中文 API 文档贡献指南](https://github.com/PaddlePaddle/docs/wiki/%E4%B8%AD%E6%96%87API%E6%96%87%E6%A1%A3%E8%B4%A1%E7%8C%AE%E6%8C%87%E5%8D%97)。
 
 ## 提交 PR
 
-你对于飞桨文档的任何修改，都应该通过提交 PR 的方式来完成，具体的方法可以参考[提交 PR](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/08_contribution/local_dev_guide.html)
+你对于飞桨文档的任何修改，都应该通过提交 PR 的方式来完成，具体的方法可以参考[提交 PR](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/08_contribution/local_dev_guide.html)。

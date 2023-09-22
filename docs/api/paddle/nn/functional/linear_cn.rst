@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_functional_common_linear:
+.. _cn_api_paddle_nn_functional_linear:
 
 linear
 -------------------------------
@@ -23,9 +23,9 @@ linear 接口可以计算输入 Tensor 与权重矩阵 :math:`W` 的乘积，生
 参数
 :::::::::
 
-- **x** (Tensor) – 输入 Tensor。它的数据类型可以为 float16，float32 或 float64。
-- **weight** (Tensor) – 权重 Tensor。它的数据类型可以为 float16，float32 或 float64。
-- **bias** (Tensor，可选) – 偏置 Tensor。它的数据类型可以为 float16，float32 或 float64。如果不为 None，则将会被加到输出中。默认值为 None。
+- **x** (Tensor) – 输入 Tensor。它的数据类型可以为 bfloat16、 float16、float32 或 float64。
+- **weight** (Tensor) – 权重 Tensor。它的数据类型可以为 bfloat16、 float16、float32 或 float64。
+- **bias** (Tensor，可选) – 偏置 Tensor。它的数据类型可以为 bfloat16、 float16、float32 或 float64。如果不为 None，则将会被加到输出中。默认值为 None。
 - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 

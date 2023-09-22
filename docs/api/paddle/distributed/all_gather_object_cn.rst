@@ -1,25 +1,26 @@
-.. _cn_api_distributed_all_gather_object:
+.. _cn_api_paddle_distributed_all_gather_object:
 
 all_gather_object
 -------------------------------
 
 
-.. py:function:: paddle.distributed.all_gather_object(object_list, object, group=0)
+.. py:function:: paddle.distributed.all_gather_object(object_list, obj, group=None)
 
-进程组内所有进程指定的 picklable 对象进行聚合操作，并返回给所有进程聚合的结果。和 all_gather 类似，但可以传入自定义的 python 对象。
+组聚合，聚合进程组内指定的 picklable 对象，随后将聚合后的对象列表发送到每个进程。
+过程与 ``all_gather`` 类似，但可以传入自定义的 python 对象。
 
-.. warning::
+.. note::
   该 API 只支持动态图模式。
 
 参数
 :::::::::
-    - object_list (list) - 操作的输出 Object 列表。
-    - object (Any) - 操作的输入 Object，需要保证输入自定义的 Object 是 picklable 的。
-    - group (int，可选) - 工作的进程组编号，默认为 0。
+    - **object_list** (List[Any]) - 用于保存聚合结果的列表。
+    - **object** (Any) - 待聚合的对象。需要保证该对象是 picklable 的。
+    - **group** (Group，可选) - 执行该操作的进程组实例（通过 ``new_group`` 创建）。默认为 None，即使用全局默认进程组。
 
 返回
 :::::::::
-无
+无返回值。
 
 代码示例
 :::::::::
