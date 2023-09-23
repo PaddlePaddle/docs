@@ -15,7 +15,7 @@ InputSpec
   - **shape** (tuple(integers)|list[integers])- 声明维度信息的 list 或 tuple，默认值为 None。设置为 ``None`` 或 ``-1`` 时表示维度可以是任意大小。例如，可以将可变的批尺寸（batch size）设置为 ``None`` 或 ``-1`` 。
   - **dtype** (np.dtype|str，可选)- 数据类型，支持 bool，float16，float32，float64，int8，int16，int32，int64，uint8。默认值为 float32。
   - **name** (str，可选) - 变量的名称，具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-  - **stop_gradient**（） - 不知道咋写
+  - **stop_gradient** (bool，可选) - 提示是否应该停止计算梯度，默认值为 False，表示不停止计算梯度。
 
 返回
 ::::::::::::
