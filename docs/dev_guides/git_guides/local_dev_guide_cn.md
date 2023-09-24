@@ -66,7 +66,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 ## 单测
 
-`test/legacy_test/` 目录下新增的 `test_*.py` 单元测试会被自动加入工程进行编译。
+`test/` 目录下新增的 `test_*.py` 单元测试会被自动加入工程进行编译。
 
 注意事项：
 

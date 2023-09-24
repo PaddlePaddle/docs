@@ -319,7 +319,7 @@ from .tensor.math import trace
 
 **（3）Python API 单元测试的开发指导**
 
-Python API 的单元测试直接继承 Python 内置的 `UnitTest.TestCase` 类，一般来说需要用 NumPy/SciPy 中的对应功能作为参考，如果 NumPy/SciPy 中没有现成的对应函数，可以用 NumPy/SciPy 实现一个作为参考，并以这个为基准对新增的 Python API 进行测试，如 [test_activation_op.py](https://github.com/PaddlePaddle/Paddle/blob/develop/test/legacy_test/test_activation_op.py#L845) 中 paddle.nn.Hardtanh API 的单元测试，代码如下所示。
+Python API 的单元测试直接继承 Python 内置的 `UnitTest.TestCase` 类，一般来说需要用 NumPy/SciPy 中的对应功能作为参考，如果 NumPy/SciPy 中没有现成的对应函数，可以用 NumPy/SciPy 实现一个作为参考，并以这个为基准对新增的 Python API 进行测试，如 [test_activation_op.py](https://github.com/PaddlePaddle/Paddle/blob/19a8f0aa263a8d0595f7e328077cc2f48eca547f/test/legacy_test/test_activation_op.py#L1279) 中 paddle.nn.Hardtanh API 的单元测试，代码如下所示。
 
 **开发步骤：**
 
@@ -393,7 +393,7 @@ class TestHardtanhAPI(unittest.TestCase):
   - 因为单元测试各个 case 的运行次序是不确定的，为了保证不同的测试 case 运行在正确的运行模式（动态图/静态图）上，常见的做法有：
     - 在每个测试 case 的起始部分，显式切换 paddle 的运行模式，用`paddle.enable_static` 和 `paddle.disable_static` 分别激活和取消静态图模式。如前文代码所示，在 `test_static_api` 和 `test_dygraph_api` 的开头分别切换了状态。
 
-    - 将静态图和动态图测试定义为不以 `test` 开头的函数（如 [test_l1_loss.py](https://github.com/PaddlePaddle/Paddle/blob/develop/test/legacy_test/test_l1_loss.py#L77) 中定义为 `run_imperative`、`run_static` 函数)，然后定义一个 test 开头的函数，切换不同的状态去运行它。
+    - 将静态图和动态图测试定义为不以 `test` 开头的函数（如 [test_l1_loss.py](https://github.com/PaddlePaddle/Paddle/blob/19a8f0aa263a8d0595f7e328077cc2f48eca547f/test/legacy_test/test_l1_loss.py#L77) 中定义为 `run_imperative`、`run_static` 函数)，然后定义一个 test 开头的函数，切换不同的状态去运行它。
 
 
       ```python
@@ -421,7 +421,7 @@ class TestHardtanhAPI(unittest.TestCase):
 
 编译方法请参见 [从源码编译](../../install/compile/fromsource.html) 章节，推荐使用 Docker 编译的方式。Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机编译更便捷。
 
-> 注意：编译必须打开 WITH_TESTING 选项（`-DWITH_TESTING=ON`），以确保新增的单元测试文件（test/legacy_test/ 目录下 test_*.py 文件）自动加入工程进行编译。
+> 注意：编译必须打开 WITH_TESTING 选项（`-DWITH_TESTING=ON`），以确保新增的单元测试文件（`test/legacy_test/` 目录下 `test_*.py` 文件）自动加入工程进行编译。
 
 运行单元测试需要在 `build` 目录下，以 `ctest ${test_name}` 的命令运行。其中 `test_name` 指的是所需运行测试 target 的名字，和上述添加的单元测试文件名字相同，但不带 `.py` 后缀。
 

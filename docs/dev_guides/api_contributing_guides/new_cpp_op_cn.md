@@ -1095,7 +1095,7 @@ The following device operations are asynchronous with respect to the host:
 
 其它重要的注意事项：
 
-  - 实现 LoD-Based 算子时，需要处理好 LoD 传导的边界情况，例如对长度为零的输入的支持，并完善相应的单测，单测 case 覆盖空序列出现在 batch 开头、中间和末尾等位置的情况，可参考 [test_lstm_op.py](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/test_lstm_op.py#L203-L216)
+  - 实现 LoD-Based 算子时，需要处理好 LoD 传导的边界情况，例如对长度为零的输入的支持，并完善相应的单测，单测 case 覆盖空序列出现在 batch 开头、中间和末尾等位置的情况，可参考 [test_lstm_op.py](https://github.com/PaddlePaddle/Paddle/blob/19a8f0aa263a8d0595f7e328077cc2f48eca547f/test/legacy_test/test_lstm_op.py#L224-L236)
 
   - 对 LoD Level 有明确要求的算子，推荐的做法是在 `InferMeta` 中即完成 LoD Level 的检查，例如 [sequence_pad_op](https://github.com/PaddlePaddle/Paddle/blob/4292bd8687ababc7737cffbddc0d38ead2138c00/paddle/fluid/operators/sequence_ops/sequence_pad_op.cc#L79)。
 

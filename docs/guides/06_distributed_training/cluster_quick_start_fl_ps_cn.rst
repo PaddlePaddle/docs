@@ -239,7 +239,7 @@ FL-PS 训练主要包括如下几个部分：
 参考脚本 `gen_heter_data.py` 写法。
 
 
-备注：本教程主要介绍了横向联邦 PS 的使用方法，关于纵向联邦 PS 的使用，请参考\ `https://github.com/PaddlePaddle/Paddle/blob/develop/test/legacy_test/ps/test_fl_ps.py`_\，使用 1.3.1 节的编译命令，再执行下述命令即可
+备注：本教程主要介绍了横向联邦 PS 的使用方法，关于纵向联邦 PS 的使用，请参考\ `https://github.com/PaddlePaddle/Paddle/blob/develop/test/ps/test_fl_ps.py`_\，使用 1.3.1 节的编译命令，再执行下述命令即可
 
 .. code-block:: bash
     ctest -R test_fl_ps -V
