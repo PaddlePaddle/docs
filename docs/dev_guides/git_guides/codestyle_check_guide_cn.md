@@ -45,7 +45,6 @@ copyright_checker........................................................Passed
 black................................................(no files to check)Skipped
 flake8...............................................(no files to check)Skipped
 ruff.................................................(no files to check)Skipped
-autoflake............................................(no files to check)Skipped
 pylint...............................................(no files to check)Skipped
 clang-format.............................................................Failed
 - hook id: clang-format
