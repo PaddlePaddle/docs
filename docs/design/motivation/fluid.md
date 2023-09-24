@@ -115,7 +115,7 @@ with train_loop.block():
     h[t] = the_step(input[t])
 ```
 
-An actual Fluid example is described  [here](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/test_while_op.py#L50-L58).
+An actual Fluid example is described  [here](https://github.com/PaddlePaddle/Paddle/blob/bde090a97564b9c61a6aaa38b72ccc4889d102d9/python/paddle/fluid/tests/unittests/test_while_op.py#L50-L58).
 
 From the example, the Fluid programs look very similar to their PyTorch equivalent programs, except that Fluid's loop structure, wrapped with Python's `with` statement, could run much faster than just a Python loop.
 
