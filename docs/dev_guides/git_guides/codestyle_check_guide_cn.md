@@ -1,6 +1,6 @@
 # 代码风格检查指南
 
-整洁、规范的代码风格，能够保证代码的可读性、易用性和健壮性。Paddle 使用 [pre-commit](http://pre-commit.com/) 工具进行代码风格检查。它可以帮助检查提交代码的不规范问题并格式化（当前会检查 C++、Python 和 CMake 语言的代码）。诸如 flake8、cpplint 等工具能提前发现代码的潜在静态逻辑错误，提高开发效率。
+整洁、规范的代码风格，能够保证代码的可读性、易用性和健壮性。Paddle 使用 [pre-commit](http://pre-commit.com/) 工具进行代码风格检查。它可以帮助检查提交代码的不规范问题并格式化（当前会检查 C++、Python 和 CMake 语言的代码）。诸如 ruff、cpplint 等工具能提前发现代码的潜在静态逻辑错误，提高开发效率。
 
 在 Paddle CI 中，由 PR-CI-Codestyle-Check 流水线对提交的 PR 进行代码风格检查，若该流水线执行失败，PR 将**无法合入**到 Paddle 仓库。此时需要根据流水线日志的报错信息，在本地修改代码，再次提交。一般情况下，本地使用 `pre-commit` 进行代码风格检查的结果和 PR-CI-Codestyle-Check 流水线结果是一致的。下面介绍 `pre-commit` 的本地安装与使用方法。
 
@@ -44,12 +44,14 @@ Tabs remover (Python)................................(no files to check)Skipped
 copyright_checker........................................................Passed
 black................................................(no files to check)Skipped
 flake8...............................................(no files to check)Skipped
+ruff.................................................(no files to check)Skipped
 autoflake............................................(no files to check)Skipped
 pylint...............................................(no files to check)Skipped
 clang-format.............................................................Failed
 - hook id: clang-format
 - files were modified by this hook
 cpplint..................................................................Passed
+clang-tidy...............................................................Passed
 auto-generate-cmakelists.............................(no files to check)Skipped
 cmake-format.........................................(no files to check)Skipped
 CMake Lint...........................................(no files to check)Skipped
@@ -81,15 +83,16 @@ Date:   xxx
 | 检查工具名称 | 作用 | 当前版本 |
 |---|---|---|
 | [pre-commit](https://github.com/pre-commit/pre-commit) | hook 管理工具 | 2.17.0 |
-| [pre-commit/pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks) | pre-commit 官方支持的 hook，执行一些通用检查 | 4.1.0 |
-| [Lucas-C/pre-commit-hooks](https://github.com/Lucas-C/pre-commit-hooks.git) | 社区维护的一些通用的 hook，含将 CRLF 改为 LF、移除 Tab 等 hook | 1.1.14 |
+| [pre-commit/pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks) | pre-commit 官方支持的 hook，执行一些通用检查 | 4.4.0 |
+| [Lucas-C/pre-commit-hooks](https://github.com/Lucas-C/pre-commit-hooks.git) | 社区维护的一些通用的 hook，含将 CRLF 改为 LF、移除 Tab 等 hook | 1.5.1 |
 | [copyright_checker](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/codestyle/pylint_pre_commit.hook) | Copyright 检查 | 本地脚本 |
-| [black](https://github.com/psf/black) | Python 代码格式化 | 22.8.0 |
-| [flake8](https://github.com/PyCQA/flake8) | Python 代码风格检查 | 4.0.1 |
-| [autoflake](https://github.com/PyCQA/autoflake) | Python Flake8 部分错误码自动修复 | 1.7.7 |
+| [black](https://github.com/psf/black) | Python 代码格式化 | 23.3.0 |
+| [flake8](https://github.com/PyCQA/flake8) | Python 代码风格检查（即将被 Ruff 完全替换） | 5.0.4 |
+| [ruff](https://github.com/astral-sh/ruff) | Python 代码风格检查 | 0.0.289 |
 | [pylint](https://github.com/PyCQA/pylint/) | Python 代码风格检查，目前仅用于检查示例代码 | 2.12.0 |
 | [clang-format](https://github.com/llvm/llvm-project/tree/main/clang/tools/clang-format) | C++ 代码格式化 | 13.0.0 |
 | [cpplint](https://github.com/cpplint/cpplint) | C++ 代码风格检查 | 1.6.0 |
+| [clang-tidy](https://github.com/llvm/llvm-project/tree/main/clang-tools-extra/clang-tidy) | C++ 代码风格检查 | 15.0.2.1 |
 | [cmake-format](https://github.com/cheshirekow/cmake-format-precommit) | CMake 代码格式化 | 0.6.13 |
 | [cmake-lint](https://github.com/cmake-lint/cmake-lint)| CMake 代码风格检查 | 1.4.2 |
 
