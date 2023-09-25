@@ -531,7 +531,7 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
     </tr>
    </tbody>
 </table>
-</p>   
+</p>
 
 ### 表格说明
 
