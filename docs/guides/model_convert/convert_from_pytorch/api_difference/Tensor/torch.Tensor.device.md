@@ -6,7 +6,7 @@
 torch.Tensor.device
 ```
 
-### [paddle.Tensor.place](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#place)
+### [paddle.Tensor.place](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#place)
 
 ```python
 paddle.Tensor.place

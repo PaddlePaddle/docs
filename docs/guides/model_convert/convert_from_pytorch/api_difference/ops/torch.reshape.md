@@ -6,7 +6,7 @@ torch.reshape(input,
               shape)
 ```
 
-### [paddle.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/reshape_cn.html#reshape)
+### [paddle.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/reshape_cn.html#reshape)
 
 ```python
 paddle.reshape(x,
@@ -14,7 +14,7 @@ paddle.reshape(x,
                name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

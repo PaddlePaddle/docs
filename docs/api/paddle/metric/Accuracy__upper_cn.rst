@@ -1,4 +1,4 @@
-.. _cn_api_metric_Accuracy:
+.. _cn_api_paddle_metric_Accuracy:
 
 Accuracy
 -------------------------------
@@ -16,49 +16,15 @@ Accuracy
 代码示例
 :::::::::
 
-**独立使用示例:**
+独立使用示例
 
-    .. code-block:: python
+COPY-FROM: paddle.metric.Accuracy:code-standalone-example
 
-        import numpy as np
-        import paddle
-        x = paddle.to_tensor(np.array([
-            [0.1, 0.2, 0.3, 0.4],
-            [0.1, 0.4, 0.3, 0.2],
-            [0.1, 0.2, 0.4, 0.3],
-            [0.1, 0.2, 0.3, 0.4]]))
-        y = paddle.to_tensor(np.array([[0], [1], [2], [3]]))
-        m = paddle.metric.Accuracy()
-        correct = m.compute(x, y)
-        m.update(correct)
-        res = m.accumulate()
-        print(res) # 0.75
+代码示例 2
+::::::::::::
+在 Model API 中的示例
 
-
-**在 Model API 中的示例**
-
-    .. code-block:: python
-
-        import paddle
-        from paddle.static import InputSpec
-        import paddle.vision.transforms as T
-        from paddle.vision.datasets import MNIST
-
-        input = InputSpec([None, 1, 28, 28], 'float32', 'image')
-        label = InputSpec([None, 1], 'int64', 'label')
-        transform = T.Compose([T.Transpose(), T.Normalize([127.5], [127.5])])
-        train_dataset = MNIST(mode='train', transform=transform)
-
-        model = paddle.Model(paddle.vision.models.LeNet(), input, label)
-        optim = paddle.optimizer.Adam(
-            learning_rate=0.001, parameters=model.parameters())
-        model.prepare(
-            optim,
-            loss=paddle.nn.CrossEntropyLoss(),
-            metrics=paddle.metric.Accuracy())
-
-        model.fit(train_dataset, batch_size=64)
-
+COPY-FROM: paddle.metric.Accuracy:code-model-api-example
 
 compute(pred, label, *args)
 :::::::::

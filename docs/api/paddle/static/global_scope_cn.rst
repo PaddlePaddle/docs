@@ -1,4 +1,4 @@
-.. _cn_api_fluid_executor_global_scope:
+.. _cn_api_paddle_static_global_scope:
 
 global_scope
 -------------------------------

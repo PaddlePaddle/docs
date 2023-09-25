@@ -1,4 +1,4 @@
-.. _cn_api_geometric_reindex_graph:
+.. _cn_api_paddle_geometric_reindex_graph:
 
 reindex_graph
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_distributed_fleet_Fleet:
+.. _cn_api_paddle_distributed_fleet_Fleet:
 
 Fleet
 -------------------------------
@@ -149,7 +149,7 @@ list/string
 server_num()
 '''''''''
 
-**注意：**
+.. note::
 
   **该参数只在 ParameterServer 模式下生效**
 
@@ -172,7 +172,7 @@ server_index()
 '''''''''
 
 
-**注意：**
+.. note::
 
   **该参数只在 ParameterServer 模式下生效**
 
@@ -196,7 +196,7 @@ server_endpoints(to_string=False)
 '''''''''
 
 
-**注意：**
+.. note::
 
   **该参数只在 ParameterServer 模式下生效**
 
@@ -219,7 +219,7 @@ is_server()
 '''''''''
 
 
-**注意：**
+.. note::
 
   **该参数只在 ParameterServer 模式下生效**
 
@@ -419,10 +419,57 @@ distributed_optimizer(optimizer, strategy=None)
     optimizer = fleet.distributed_optimizer(optimizer, strategy=strategy)
 
 
+qat_init(place, scope, test_program=None)
+'''''''''
+
+基于 distributed_optimizer 中的 QAT 策略做初始化。
+
+**参数**
+
+ - **place**  (CUDAPlace) – 初始化参数的存储位置。
+ - **scope**  (Scope) – 执行这个 program 的域，用户可以指定不同的域。默认为全局域。
+ - **test_program**  (Program) – 基于 distributed_optimizer 的测试 program。
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+    import paddle.nn.functional as F
+    paddle.enable_static()
+
+    def run_example_code():
+        place = paddle.CUDAPlace(0)
+        exe = paddle.static.Executor(place)
+        # 1. Define the train program
+        data = paddle.static.data(name='X', shape=[None, 1, 28, 28], dtype='float32')
+        conv2d = paddle.static.nn.conv2d(input=data, num_filters=6, filter_size=3)
+        bn = paddle.static.nn.batch_norm(input=conv2d, act="relu")
+        pool = F.max_pool2d(bn, kernel_size=2, stride=2)
+        hidden = paddle.static.nn.fc(pool, size=10)
+        loss = paddle.mean(hidden)
+        # 2. Create the distributed optimizer and set qat config to True.
+        optimizer = paddle.optimizer.Momentum(learning_rate=0.01, multi_precision=True)
+        strategy = fleet.DistributedStrategy()
+        strategy.qat = True
+        optimizer = fleet.distributed_optimizer(optimizer, strategy=strategy)
+        # 3. Apply the strategies by distributed optimizer
+        # If you don't use the default_startup_program(), you sholud pass
+        # your defined `startup_program` into `minimize`.
+        optimizer.minimize(loss)
+        exe.run(paddle.static.default_startup_program())
+        # 4. Use `qat_init` to do FP32 parameters initialization.
+        # If you want to perform the testing process, you should pass `test_program` into `qat_init`.
+        optimizer.qat_init(place, paddle.static.global_scope())
+
+    if paddle.is_compiled_with_cuda() and len(paddle.static.cuda_places()) > 0:
+        run_example_code()
+
+
 distributed_model(model)
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -487,7 +534,7 @@ distributed_model(model)
 state_dict()
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -525,7 +572,7 @@ dict，当前 ``optimizer`` 使用的所有 Tensor。
 set_state_dict(state_dict)
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -566,7 +613,7 @@ None
 set_lr(value)
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -616,10 +663,57 @@ None
     #    current lr is 0.6
 
 
+set_lr_scheduler(scheduler)
+'''''''''
+
+.. note::
+
+  **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+手动设置当前 ``optimizer`` 的学习率为 LRScheduler 类。
+
+**参数**
+
+    scheduler (LRScheduler) - 需要设置的学习率的 LRScheduler 类。
+
+**返回**
+None
+
+
+**代码示例**
+
+.. code-block:: python
+    # 这个示例需要由 fleetrun 启动，用法为：
+    # fleetrun --gpus=0,1 example.py
+    # 脚本 example.py 中的代码是下面这个示例。
+    import numpy as np
+    import paddle
+    from paddle.distributed import fleet
+    fleet.init(is_collective=True)
+    value = np.arange(26).reshape(2, 13).astype("float32")
+    a = paddle.to_tensor(value)
+    layer = paddle.nn.Linear(13, 5)
+    adam = paddle.optimizer.Adam(learning_rate=0.01, parameters=layer.parameters())
+    adam = fleet.distributed_optimizer(adam)
+    dp_layer = fleet.distributed_model(layer)
+    # set learning rate manually by class LRScheduler
+    scheduler = paddle.optimizer.lr.MultiStepDecay(learning_rate=0.5, milestones=[2,4,6], gamma=0.8)
+    adam.set_lr_scheduler(scheduler)
+    lr = adam.get_lr()
+    print("current lr is {}".format(lr))
+    #    current lr is 0.5
+    # set learning rate manually by another LRScheduler
+    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.1, step_size=5, gamma=0.6)
+    adam.set_lr_scheduler(scheduler)
+    lr = adam.get_lr()
+    print("current lr is {}".format(lr))
+    #    current lr is 0.1
+
+
 get_lr()
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -660,7 +754,7 @@ float，当前步骤的学习率。
 step()
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -721,7 +815,7 @@ None。
 clear_grad()
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 

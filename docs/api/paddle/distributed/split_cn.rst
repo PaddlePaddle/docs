@@ -1,4 +1,4 @@
-.. _cn_api_distributed_split:
+.. _cn_api_paddle_distributed_split:
 
 split
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_nn_loss_NLLLoss:
+.. _cn_api_paddle_nn_NLLLoss:
 
 NLLLoss
 -------------------------------
@@ -41,7 +41,7 @@ NLLLoss
 :::::::::
     - **input** (Tensor) - 输入 `Tensor`，其形状为 :math:`[N, C]`，其中 `C` 为类别数。但是对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_K]`。数据类型为 float32 或 float64。
     - **label** (Tensor) - 输入 `input` 对应的标签值。其形状为 :math:`[N,]` 或者 :math:`[N, d_1, d_2, ..., d_K]`，数据类型为 int64。
-    - **output** (Tensor) - 输入 `input` 和 `label` 间的 `negative log likelihood loss` 损失。如果 `reduction` 为 `'none'`，则输出 Loss 形状为 `[N, *]`。如果 `reduction` 为 `'sum'` 或者 `'mean'`，则输出 Loss 形状为 `'[1]'` 。
+    - **output** (Tensor) - 输入 `input` 和 `label` 间的 `negative log likelihood loss` 损失。如果 `reduction` 为 `'none'`，则输出 Loss 形状为 `[N, *]`。如果 `reduction` 为 `'sum'` 或者 `'mean'`，则输出 Loss 形状为 `'[]'` 。
 
 代码示例
 :::::::::

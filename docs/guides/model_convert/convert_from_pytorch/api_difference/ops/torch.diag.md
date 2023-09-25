@@ -8,7 +8,7 @@ torch.diag(input,
            out=None)
 ```
 
-### [paddle.diag](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/diag_cn.html)
+### [paddle.diag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diag_cn.html)
 
 ```python
 paddle.diag(x,
@@ -17,14 +17,14 @@ paddle.diag(x,
             name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
 | <font color='red'> diagonal </font>      | <font color='red'> offset </font>      | 对角线偏移量。正值表示上对角线，0 表示主对角线，负值表示下对角线。                |
-| <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
+| <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要转写。    |
 | -             | <font color='red'>padding_value</font> | 表示填充指定对角线以外的区域， PyTorch 无此参数， Paddle 保持默认即可 。               |
 
 ### 转写示例
@@ -34,5 +34,5 @@ paddle.diag(x,
 torch.diag(x, out=y)
 
 # Paddle 写法
-y = paddle.diag(x)
+paddle.assign(paddle.diag(x), y)
 ```

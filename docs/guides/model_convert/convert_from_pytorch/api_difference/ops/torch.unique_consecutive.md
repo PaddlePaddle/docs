@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.unique_consecutive
+## [ 仅 paddle 参数更多 ]torch.unique_consecutive
 ### [torch.unique_consecutive](https://pytorch.org/docs/stable/generated/torch.unique_consecutive.html?highlight=unique_consecutive#torch.unique_consecutive)
 
 ```python
@@ -8,7 +8,7 @@ torch.unique_consecutive(input,
                          dim=None)
 ```
 
-### [paddle.unique_consecutive](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/unique_consecutive_cn.html#unique-consecutive)
+### [paddle.unique_consecutive](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/unique_consecutive_cn.html#unique-consecutive)
 
 ```python
 paddle.unique_consecutive(x,

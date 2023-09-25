@@ -1,4 +1,4 @@
-.. _cn_api_io_cn_WeightedRandomSampler:
+.. _cn_api_paddle_io_WeightedRandomSampler:
 
 WeightedRandomSampler
 -------------------------------

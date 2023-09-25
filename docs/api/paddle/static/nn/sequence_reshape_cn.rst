@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_sequence_reshape:
+.. _cn_api_paddle_static_nn_sequence_reshape:
 
 sequence_reshape
 -------------------------------
@@ -8,7 +8,7 @@ sequence_reshape
 
 
 .. note::
-该 API 的输入只能是带有 LoD 信息的 Tensor，如果您需要处理的输入是 Tensor 类型，请使用 :ref:`paddle.reshape <cn_api_fluid_layers_reshape>` 。
+该 API 的输入只能是带有 LoD 信息的 Tensor，如果您需要处理的输入是 Tensor 类型，请使用 :ref:`paddle.reshape <cn_api_paddle_reshape>` 。
 
 在指定 ``new_dim`` 参数下，通过序列原始长度、和原始 shape 计算出新的 shape，以输出包含新维度（new_dim）下的 Tensor。目前仅支持 1-level Tensor，请确保(原长度*原维数)可以除以新的维数，且每个序列没有余数。
 

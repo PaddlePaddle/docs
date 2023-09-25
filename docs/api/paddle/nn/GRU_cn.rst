@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_layer_rnn_GRU:
+.. _cn_api_paddle_nn_GRU:
 
 GRU
 -------------------------------

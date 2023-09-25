@@ -1,12 +1,12 @@
 ## [ 仅参数名不一致 ]torch.nn.AdaptiveMaxPool1d
-### [torch.nn.AdaptiveMaxPool1d](https://pytorch.org/docs/1.13/generated/torch.nn.AdaptiveMaxPool1d.html?highlight=adaptivemaxpool1d#torch.nn.AdaptiveMaxPool1d)
+### [torch.nn.AdaptiveMaxPool1d](https://pytorch.org/docs/stable/generated/torch.nn.AdaptiveMaxPool1d.html?highlight=adaptivemaxpool1d#torch.nn.AdaptiveMaxPool1d)
 
 ```python
 torch.nn.AdaptiveMaxPool1d(output_size,
                            return_indices=False)
 ```
 
-### [paddle.nn.AdaptiveMaxPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/AdaptiveMaxPool1D_cn.html#adaptivemaxpool1d)
+### [paddle.nn.AdaptiveMaxPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/AdaptiveMaxPool1D_cn.html#adaptivemaxpool1d)
 
 ```python
 paddle.nn.AdaptiveMaxPool1D(output_size,
@@ -14,7 +14,7 @@ paddle.nn.AdaptiveMaxPool1D(output_size,
                             name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

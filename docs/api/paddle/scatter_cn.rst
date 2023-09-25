@@ -1,4 +1,4 @@
-.. _cn_api_paddle_cn_scatter:
+.. _cn_api_paddle_scatter:
 
 scatter
 -------------------------------
@@ -7,28 +7,7 @@ scatter
 
 通过基于 ``updates`` 来更新选定索引 ``index`` 上的输入来获得输出。具体行为如下：
 
-    .. code-block:: python
-
-        import paddle
-        #input:
-        x = paddle.to_tensor([[1, 1], [2, 2], [3, 3]], dtype='float32')
-        index = paddle.to_tensor([2, 1, 0, 1], dtype='int64')
-        # shape of updates should be the same as x
-        # shape of updates with dim > 1 should be the same as input
-        updates = paddle.to_tensor([[1, 1], [2, 2], [3, 3], [4, 4]], dtype='float32')
-        overwrite = False
-        # calculation:
-        if not overwrite:
-            for i in range(len(index)):
-                x[index[i]] = paddle.zeros([2])
-        for i in range(len(index)):
-            if (overwrite):
-                x[index[i]] = updates[i]
-            else:
-                x[index[i]] += updates[i]
-        # output:
-        out = paddle.to_tensor([[3, 3], [6, 6], [1, 1]])
-        out.shape # [3, 2]
+COPY-FROM: paddle.scatter:code-example1
 
 **Notice：**
 因为 ``updates`` 的应用顺序是不确定的，因此，如果索引 ``index`` 包含重复项，则输出将具有不确定性。

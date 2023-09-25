@@ -1,4 +1,4 @@
-.. _cn_api_fluid_io_load_program_state:
+.. _cn_api_paddle_static_load_program_state:
 
 load_program_state
 -------------------------------

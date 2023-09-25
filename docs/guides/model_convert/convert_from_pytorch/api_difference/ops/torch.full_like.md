@@ -12,7 +12,7 @@ torch.full_like(input,
                 memory_format=torch.preserve_format)
 ```
 
-### [paddle.full_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/full_like_cn.html#full-like)
+### [paddle.full_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/full_like_cn.html#full-like)
 
 ```python
 paddle.full_like(x,
@@ -21,7 +21,7 @@ paddle.full_like(x,
                  name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -29,8 +29,8 @@ paddle.full_like(x,
 | fill_value  |  fill_value  |  表示填充值。  |
 | dtype | dtype  | 表示数据类型。|
 | <font color='red'> layout </font> | -       | 表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
-| <font color='red'> device </font>     | -       | 表示 Tensor 存放设备位置，Paddle 无此参数，需要进行转写。 |
-| <font color='red'> requires_grad </font> | -       | 表示是否计算梯度， Paddle 无此参数，需要进行转写。 |
+| <font color='red'> device </font>     | -       | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。 |
+| <font color='red'> requires_grad </font> | -       | 表示是否计算梯度， Paddle 无此参数，需要转写。 |
 | <font color='red'> memory_format </font> | -  | 表示内存格式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
 
 

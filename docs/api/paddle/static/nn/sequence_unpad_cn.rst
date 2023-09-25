@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_sequence_unpad:
+.. _cn_api_paddle_static_nn_sequence_unpad:
 
 sequence_unpad
 -------------------------------
@@ -9,7 +9,7 @@ sequence_unpad
 
 
 .. note::
-    该 API 的输入为 Tensor，输出为带有 LoD 信息的 Tensor。用于移除填充元素，与之对应，还存在进行数据填充的 API :ref:`cn_api_fluid_layers_sequence_pad`。
+    该 API 的输入为 Tensor，输出为带有 LoD 信息的 Tensor。用于移除填充元素，与之对应，还存在进行数据填充的 API :ref:`cn_api_paddle_static_nn_sequence_pad`。
 
 根据 length 的信息，将 input 中 padding（填充）元素移除，并且返回一个带有 LoD 信息的 Tensor。
 

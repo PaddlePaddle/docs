@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_quantile:
+.. _cn_api_paddle_quantile:
 
 quantile
 -------------------------------

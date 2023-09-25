@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_hardtanh:
+.. _cn_api_paddle_nn_functional_hardtanh:
 
 hardtanh
 -------------------------------

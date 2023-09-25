@@ -1,11 +1,11 @@
-## [ 仅参数不一致 ]torch.tensor
+## [ 仅参数名不一致 ]torch.tensor
 ### [torch.from_numpy](https://pytorch.org/docs/stable/generated/torch.from_numpy.html?highlight=from_numpy#torch.from_numpy)
 
 ```python
 torch.from_numpy(ndarray)
 ```
 
-### [paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/to_tensor_cn.html#to-tensor)
+### [paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/to_tensor_cn.html#to-tensor)
 
 ```python
 paddle.to_tensor(data,

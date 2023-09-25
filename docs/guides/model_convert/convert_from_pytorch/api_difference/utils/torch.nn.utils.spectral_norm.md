@@ -9,7 +9,7 @@ torch.nn.utils.spectral_norm(module,
                                 dim=None)
 ```
 
-### [paddle.nn.utils.spectral_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/utils/spectral_norm_cn.html#spectral-norm)
+### [paddle.nn.utils.spectral_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/utils/spectral_norm_cn.html#spectral-norm)
 
 ```python
 paddle.nn.utils.spectral_norm(layer,

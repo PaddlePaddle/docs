@@ -1,4 +1,4 @@
-.. _cn_api_nn_CosineSimilarity:
+.. _cn_api_paddle_nn_CosineSimilarity:
 
 CosineSimilarity
 -------------------------------

@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.rand
+## [ 参数不一致 ]torch.rand
 
 ### [torch.rand](https://pytorch.org/docs/stable/generated/torch.rand.html?highlight=rand#torch.rand)
 
@@ -12,7 +12,7 @@ torch.rand(*size,
            requires_grad=False)
 ```
 
-### [paddle.rand](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/rand_cn.html#rand)
+### [paddle.rand](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/rand_cn.html#rand)
 
 ```python
 paddle.rand(shape,
@@ -25,11 +25,11 @@ paddle.rand(shape,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | *size         | shape        | 表示输出形状大小，Pytorch 以可变参数方式传入，Paddle 以 list 或 tuple 的方式传入。                                     |
-| out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
+| out           | -            | 表示输出的 Tensor，Paddle 无此参数。               |
 | dtype           | dtype            | 表示数据类型。               |
-| layout        | -            | 表示布局方式，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。                   |
-| device        | -            | 表示 Tensor 存放位置，PaddlePaddle 无此参数，需要进行转写。                   |
-| requires_grad | -            | 表示是否不阻断梯度传导，PaddlePaddle 无此参数，需要进行转写。 |
+| layout        | -            | 表示布局方式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                   |
+| device        | -            | 表示 Tensor 存放位置，Paddle 无此参数，需要转写。                   |
+| requires_grad | -            | 表示是否不阻断梯度传导，Paddle 无此参数，需要转写。 |
 
 
 ### 转写示例
@@ -48,7 +48,7 @@ paddle.rand([3, 5])
 torch.rand([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.rand([3, 5])
+paddle.assign(paddle.rand([3, 5]), y)
 ```
 
 #### device: Tensor 的设备

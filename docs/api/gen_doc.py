@@ -1,7 +1,5 @@
 import paddle
 import os
-import shutil
-import time
 import pkgutil
 import types
 import contextlib
@@ -13,9 +11,6 @@ import ast
 import logging
 import importlib
 import re
-import subprocess
-import multiprocessing
-import platform
 import extract_api_from_docs
 from queue import Queue
 
@@ -30,10 +25,6 @@ DISPLAY_DOC_LIST_FILENAME = "./display_doc_list"
 CALLED_APIS_IN_THE_DOCS = (
     './called_apis_from_docs.json'  # in the guides and tutorials documents
 )
-SAMPLECODE_TEMPDIR = './sample-codes'
-RUN_ON_DEVICE = "cpu"
-EQUIPPED_DEVICES = set(['cpu'])
-GPU_ID = 0
 
 # key = id(api), value = dict of api_info{
 #   "id":id,
@@ -924,22 +915,19 @@ def get_shortest_api(api_list):
     find the shortest api name (suggested name) in list.
 
     Problems:
-    1. fuild - if there is any apis don't contain 'fluid' in name, use them.
-    2. core vs core_avx - using the 'core'.
+
+    fluid - if there is any apis don't contain 'fluid' in name, use them.
     """
     if len(api_list) == 1:
         return api_list[0]
     # try to find shortest path of api as the real api
-    api_info = (
-        []
-    )  # {'name': name, 'fluid_in_name': True/False, 'core_avx_in_name': True/Flase', 'len': len}
+    api_info = []  # {'name': name, 'fluid_in_name': True/False, 'len': len}
     for api in api_list:
         fields = api.split('.')
         api_info.append(
             {
                 'name': api,
                 'fluid_in_name': 'fluid' in fields,
-                'core_avx_in_name': 'core_avx' in fields,
                 'len': len(fields),
             }
         )
@@ -952,11 +940,9 @@ def get_shortest_api(api_list):
         api_info.sort(key=lambda ele: ele.get('len'))
         return api_info[0].get('name')
 
-    if not all([api.get('fuild_in_name') for api in api_info]):
+    if not all([api.get('fluid_in_name') for api in api_info]):
         api_info = [api for api in api_info if not api.get('fluid_in_name')]
-    sn = shortest([api for api in api_info if not api.get('core_avx_in_name')])
-    if sn is None:
-        sn = shortest(api_info)
+    sn = shortest(api_info)
     return sn
 
 
@@ -964,7 +950,6 @@ def insert_suggested_names():
     """
     add suggested_name field, updte the doc_filename, and sort the all_names and api_sketch_names.
     """
-    pat = re.compile(r'paddle\.fluid\.core_[\w\d]+\.(.*)$')
 
     def sort_name_list(api_names):
         """
@@ -992,13 +977,6 @@ def insert_suggested_names():
             api_info_dict[id_api]["all_names"].add(
                 api_info_dict[id_api]["full_name"]
             )
-        for n in list(api_info_dict[id_api]["all_names"]):
-            # paddle.fluid.core_avx.* -> paddle.fluid.core.*
-            mo = pat.match(n)
-            if mo:
-                api_info_dict[id_api]["all_names"].add(
-                    'paddle.fluid.core.' + mo.group(1)
-                )
         api_info_dict[id_api]["all_names"] = sort_name_list(
             api_info_dict[id_api]["all_names"]
         )
@@ -1025,356 +1003,37 @@ def filter_out_object_of_api_info_dict():
             del api_info_dict[id_api]['object']
 
 
-def extract_code_blocks_from_docstr(docstr):
-    """
-    extract code-blocks from the given docstring.
-    DON'T include the multiline-string definition in code-blocks.
-    The *Examples* section must be the last.
-    Args:
-        docstr(str): docstring
-    Return:
-        code_blocks: A list of code-blocks, indent removed.
-                     element {'name': the code-block's name, 'id': sequence id.
-                              'codes': codes, 'required': 'gpu'}
-    """
-    code_blocks = []
-
-    mo = re.search(r"Examples?:", docstr)
-    if mo is None:
-        return code_blocks
-    ds_list = docstr[mo.start() :].replace("\t", '    ').split("\n")
-    lastlineindex = len(ds_list) - 1
-
-    cb_start_pat = re.compile(r"code-block::\s*python")
-    cb_param_pat = re.compile(r"^\s*:(\w+):\s*(\S*)\s*$")
-    cb_required_pat = re.compile(r"^\s*#\s*require[s|d]\s*:\s*(\S+)\s*$")
-
-    cb_info = {}
-    cb_info['cb_started'] = False
-    cb_info['cb_cur'] = []
-    cb_info['cb_cur_indent'] = -1
-    cb_info['cb_cur_name'] = None
-    cb_info['cb_cur_seq_id'] = 0
-    cb_info['cb_required'] = None
-
-    def _cb_started():
-        # nonlocal cb_started, cb_cur_name, cb_required, cb_cur_seq_id
-        cb_info['cb_started'] = True
-        cb_info['cb_cur_seq_id'] += 1
-        cb_info['cb_cur_name'] = None
-        cb_info['cb_required'] = None
-
-    def _append_code_block():
-        # nonlocal code_blocks, cb_cur, cb_cur_name, cb_cur_seq_id, cb_required
-        code_blocks.append(
-            {
-                'codes': inspect.cleandoc("\n".join(cb_info['cb_cur'])),
-                'name': cb_info['cb_cur_name'],
-                'id': cb_info['cb_cur_seq_id'],
-                'required': cb_info['cb_required'],
-            }
-        )
-
-    for lineno, linecont in enumerate(ds_list):
-        if re.search(cb_start_pat, linecont):
-            if not cb_info['cb_started']:
-                _cb_started()
-                continue
-            else:
-                # cur block end
-                if len(cb_info['cb_cur']):
-                    _append_code_block()
-                _cb_started()  # another block started
-                cb_info['cb_cur_indent'] = -1
-                cb_info['cb_cur'] = []
-        else:
-            if cb_info['cb_started']:
-                # handle the code-block directive's options
-                mo_p = cb_param_pat.match(linecont)
-                if mo_p:
-                    if mo_p.group(1) == 'name':
-                        cb_info['cb_cur_name'] = mo_p.group(2)
-                    continue
-                # read the required directive
-                mo_r = cb_required_pat.match(linecont)
-                if mo_r:
-                    cb_info['cb_required'] = mo_r.group(1)
-                # docstring end
-                if lineno == lastlineindex:
-                    mo = re.search(r"\S", linecont)
-                    if (
-                        mo is not None
-                        and cb_info['cb_cur_indent'] <= mo.start()
-                    ):
-                        cb_info['cb_cur'].append(linecont)
-                    if len(cb_info['cb_cur']):
-                        _append_code_block()
-                    break
-                # check indent for cur block start and end.
-                if cb_info['cb_cur_indent'] < 0:
-                    mo = re.search(r"\S", linecont)
-                    if mo is None:
-                        continue
-                    # find the first non empty line
-                    cb_info['cb_cur_indent'] = mo.start()
-                    cb_info['cb_cur'].append(linecont)
-                else:
-                    mo = re.search(r"\S", linecont)
-                    if mo is None:
-                        cb_info['cb_cur'].append(linecont)
-                        continue
-                    if cb_info['cb_cur_indent'] <= mo.start():
-                        cb_info['cb_cur'].append(linecont)
-                    else:
-                        if linecont[mo.start()] == '#':
-                            continue
-                        else:
-                            # block end
-                            if len(cb_info['cb_cur']):
-                                _append_code_block()
-                            cb_info['cb_started'] = False
-                            cb_info['cb_cur_indent'] = -1
-                            cb_info['cb_cur'] = []
-    return code_blocks
-
-
-def find_last_future_line_end(cbstr):
-    pat = re.compile('__future__.*\n')
-    lastmo = None
-    it = re.finditer(pat, cbstr)
-    while True:
-        try:
-            lastmo = next(it)
-        except StopIteration:
-            break
-    if lastmo:
-        return lastmo.end()
-    else:
-        return None
-
-
-def extract_sample_codes_into_dir():
-    if os.path.exists(SAMPLECODE_TEMPDIR):
-        if not os.path.isdir(SAMPLECODE_TEMPDIR):
-            os.remove(SAMPLECODE_TEMPDIR)
-            os.mkdir(SAMPLECODE_TEMPDIR)
-    else:
-        os.mkdir(SAMPLECODE_TEMPDIR)
-    for id_api in api_info_dict:
-        if (
-            'docstring' in api_info_dict[id_api]
-            and 'full_name' in api_info_dict[id_api]
-        ):
-            code_blocks = extract_code_blocks_from_docstr(
-                api_info_dict[id_api]['docstring']
-            )
-            for cb_info in code_blocks:
-                fn = os.path.join(
-                    SAMPLECODE_TEMPDIR,
-                    '{}.sample-code-{}.py'.format(
-                        api_info_dict[id_api]['full_name'], cb_info['id']
-                    ),
-                )
-                requires = cb_info['required']
-                if not is_required_match(requires, fn):
-                    continue
-                with open(fn, 'w') as f:
-                    header = None
-                    # TODO: xpu, distribted
-                    if 'gpu' in requires:
-                        header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = "{}"\n\n'.format(
-                            GPU_ID
-                        )
-                    else:
-                        header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = ""\n\n'
-                    cb = cb_info['codes']
-                    last_future_line_end = find_last_future_line_end(cb)
-                    if last_future_line_end:
-                        f.write(cb[:last_future_line_end])
-                        f.write(header)
-                        f.write(cb[last_future_line_end:])
-                    else:
-                        f.write(header)
-                        f.write(cb)
-                    f.write(
-                        '\nprint("{} sample code is executed successfully!")'.format(
-                            fn
-                        )
-                    )
-
-
-def is_required_match(requires, cbtitle=''):
-    """
-    search the required instruction in the code-block, and check it match the current running environment.
-
-    environment values of equipped: cpu, gpu, xpu, distributed, skip
-    the 'skip' is the special flag to skip the test, so is_required_match will return False directly.
-    """
-    if 'skip' in requires:
-        logger.info('%s: skipped', cbtitle)
-        return False
-
-    if all([k in EQUIPPED_DEVICES for k in requires]):
-        return True
-
-    logger.info(
-        '%s: the equipments [%s] not match the required [%s].',
-        cbtitle,
-        ','.join(EQUIPPED_DEVICES),
-        ','.join(requires),
-    )
-    return False
-
-
-def get_requires_of_code_block(cbstr):
-    requires = set(['cpu'])
-    pat = re.compile(r'#\s*require[s|d]\s*:\s*(.*)')
-    mo = re.search(pat, cbstr)
-    if mo is None:
-        # treat is as required: cpu
-        return requires
-
-    for r in mo.group(1).split(','):
-        rr = r.strip().lower()
-        if rr:
-            requires.add(rr)
-    return requires
-
-
-def get_all_equippted_devices():
-    ENV_KEY = 'TEST_ENVIRONMENT_EQUIPEMNT'
-    if ENV_KEY in os.environ:
-        for r in os.environ[ENV_KEY].split(','):
-            rr = r.strip().lower()
-            if r:
-                EQUIPPED_DEVICES.add(rr)
-    if 'cpu' not in EQUIPPED_DEVICES:
-        EQUIPPED_DEVICES.add('cpu')
-
-    EQUIPPED_DEVICES.add(RUN_ON_DEVICE)
-
-
-def run_a_sample_code(sc_filename):
-    succ = True
-    cmd = None
-    retstr = None
-    if platform.python_version()[0] == "2":
-        cmd = ["python", sc_filename]
-    elif platform.python_version()[0] == "3":
-        cmd = ["python3", sc_filename]
-    else:
-        retstr = 'Error: fail to parse python version!'
-        logger.warning(retstr)
-        succ = False
-    subprc = subprocess.Popen(
-        cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-    )
-    output, error = subprc.communicate()
-    msg = "".join(output.decode(encoding='utf-8'))
-    err = "".join(error.decode(encoding='utf-8'))
-    if subprc.returncode != 0:
-        retstr = """{} return code number {}.
-stderr:
-{}
-stdout:
-{}
-""".format(
-            sc_filename, subprc.returncode, err, msg
-        )
-        succ = False
-    return succ, retstr
-
-
-def run_all_sample_codes(threads=1):
-    po = multiprocessing.Pool(threads)
-    sc_files = os.listdir(SAMPLECODE_TEMPDIR)
-    logger.info('there are %d sample codes to run', len(sc_files))
-    mpresults = po.map_async(
-        run_a_sample_code,
-        [os.path.join(SAMPLECODE_TEMPDIR, fn) for fn in sc_files],
-    )
-    po.close()
-    po.join()
-    results = mpresults.get()
-
-    err_files = []
-    for i, fn in enumerate(sc_files):
-        if not results[i][0]:
-            err_files.append(fn)
-            logger.warning(results[i][1])
-    if len(err_files):
-        logger.info(
-            'there are %d sample codes run error.\n%s',
-            len(err_files),
-            "\n".join(err_files),
-        )
-        return False
-    else:
-        logger.info('all sample codes run successfully')
-    return True
-
-
 def reset_api_info_dict():
     global api_info_dict, parsed_mods
     api_info_dict = {}
     parsed_mods = {}
 
 
-arguments = [
-    # flags, dest, type, default, help
-    ['--logf', 'logf', str, None, 'file for logging'],
-    [
-        '--attr',
-        'travelled_attr',
-        str,
-        'all,dict',
-        'the attribute for travelling, must be subset of [all,dict], such as "all" or "dict" or "all,dict".',
-    ],
-    [
-        '--gen-rst',
-        'gen_rst',
-        bool,
-        True,
-        'generate English api reST files. If "all" in attr, only for "all".',
-    ],
-    [
-        '--extract-sample-codes-dir',
-        'sample_codes_dir',
-        str,
-        None,
-        'if setted, the sample-codes will be extracted into the dir. If "all" in attr, only for "all".',
-    ],
-    ['--gpu_id', 'gpu_id', int, 0, 'GPU device id to use [0]'],
-    ['--run-on-device', 'run_on_device', str, 'cpu', 'run on device'],
-    [
-        '--threads',
-        'threads',
-        int,
-        1,
-        'number of subprocesseses for running the all sample codes.',
-    ],
-]
-
-
 def parse_args():
     """
     Parse input arguments
     """
-    global arguments
     parser = argparse.ArgumentParser(
         description='generate the api_info json and generate the English api_doc reST files.'
     )
     parser.add_argument('--debug', dest='debug', action="store_true")
     parser.add_argument(
-        '--run-sample-codes',
-        dest='run_sample_codes',
-        action="store_true",
-        help='run all the smaple codes',
+        '--logf', dest='logf', type=str, default=None, help='file for logging'
     )
-    for item in arguments:
-        parser.add_argument(
-            item[0], dest=item[1], help=item[4], type=item[2], default=item[3]
-        )
+    parser.add_argument(
+        '--attr',
+        dest='travelled_attr',
+        type=str,
+        default='all,dict',
+        help='the attribute for travelling, must be subset of [all,dict], such as "all" or "dict" or "all,dict".',
+    )
+    parser.add_argument(
+        '--gen-rst',
+        dest='gen_rst',
+        type=bool,
+        default=True,
+        help='generate English api reST files. If "all" in attr, only for "all".',
+    )
 
     args = parser.parse_args()
     return args
@@ -1392,24 +1051,6 @@ if __name__ == "__main__":
             )
         )
         logger.addHandler(logfHandler)
-    if args.run_on_device.lower() == 'gpu':
-        RUN_ON_DEVICE = 'gpu'
-        GPU_ID = args.gpu_id
-
-    get_all_equippted_devices()
-    need_run_sample_codes = False
-    if args.run_sample_codes or (
-        'RUN_SAMPLE_CODES' in os.environ
-        and os.environ['RUN_SAMPLE_CODES'].lower() in ['yes', '1', 'on']
-    ):
-        need_run_sample_codes = True
-    if args.threads == 1 and (
-        'RUN_SAMPLE_CODES_THREADS' in os.environ
-        and int(os.environ['RUN_SAMPLE_CODES_THREADS']) > 1
-    ):
-        args.threads = int(os.environ['RUN_SAMPLE_CODES_THREADS'])
-    if args.sample_codes_dir:
-        SAMPLECODE_TEMPDIR = args.sample_codes_dir
 
     if 'VERSIONSTR' in os.environ and os.environ['VERSIONSTR'] == '1.8':
         # 1.8 not used
@@ -1429,6 +1070,7 @@ if __name__ == "__main__":
             logger.warning("unknown value in attr: %s", attr)
             continue
         realattrs.append(realattr)
+
     for realattr in realattrs:
         jsonfn = None
         if realattr == '__all__':
@@ -1452,16 +1094,8 @@ if __name__ == "__main__":
             if args.gen_rst:
                 gen_en_files()
                 check_cn_en_match()
-            if need_run_sample_codes:
-                extract_sample_codes_into_dir()
+
         filter_out_object_of_api_info_dict()
         json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
-
-    if need_run_sample_codes:
-        for package in ['scipy', 'paddle2onnx']:
-            subprocess.check_call(
-                [sys.executable, "-m", "pip", "install", package]
-            )
-        run_all_sample_codes(args.threads)
 
     logger.info("done")

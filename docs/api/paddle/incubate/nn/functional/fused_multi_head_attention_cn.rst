@@ -1,4 +1,4 @@
-.. _cn_api_incubate_nn_cn_fused_multi_head_attention:
+.. _cn_api_paddle_incubate_nn_functional_fused_multi_head_attention:
 
 fused_multi_head_attention
 -------------------------------

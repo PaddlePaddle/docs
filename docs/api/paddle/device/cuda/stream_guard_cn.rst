@@ -1,4 +1,4 @@
-.. _cp_api_device_cuda_stream_guard:
+.. _cn_api_paddle_device_cuda_stream_guard:
 
 stream_guard
 -------------------------------

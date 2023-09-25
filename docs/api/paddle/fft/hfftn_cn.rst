@@ -5,7 +5,7 @@ hfftn
 
 .. py:function:: paddle.fft.hfftn(x, s=None, axes=None, norm="backward", name=None)
 
-通过快速傅里叶变换(FFT)算法计算 N 维厄米特(Hermitian)傅里叶变换。
+通过快速傅里叶变换（FFT）算法计算 N 维厄米特（Hermitian）傅里叶变换。
 
 
 参数

@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_adaptive_avg_pool1d:
+.. _cn_api_paddle_nn_functional_adaptive_avg_pool1d:
 
 
 adaptive_avg_pool1d
@@ -9,7 +9,7 @@ adaptive_avg_pool1d
 根据 ``output_size`` 对 Tensor ``x`` 计算 1D 自适应平均池化。
 
 .. note::
-   详细请参考对应的 `Class` 请参考：:ref:`cn_api_nn_AdaptiveAvgPool1D`。
+   详细请参考对应的 `Class` 请参考：:ref:`cn_api_paddle_nn_AdaptiveAvgPool1D`。
 
 
 参数

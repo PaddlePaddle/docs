@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_tan:
+.. _cn_api_paddle_tan:
 
 tan
 -------------------------------
@@ -14,7 +14,7 @@ tan
 参数
 :::::::::
 
-  - **x** (Tensor) – 该 OP 的输入为 Tensor。数据类型为 float32，float64。
+  - **x** (Tensor) – 该 OP 的输入为 Tensor。数据类型为 float32，float64，complex64，complex128。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 

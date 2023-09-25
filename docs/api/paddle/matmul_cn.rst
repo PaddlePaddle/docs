@@ -1,4 +1,4 @@
-.. _cn_api_tensor_matmul:
+.. _cn_api_paddle_matmul:
 
 matmul
 -------------------------------
@@ -30,8 +30,8 @@ matmul
 
 参数
 :::::::::
-    - **x** (Tensor) - 输入变量，类型为 Tensor，数据类型为 float32， float64。
-    - **y** (Tensor) - 输入变量，类型为 Tensor，数据类型为 float32， float64。
+    - **x** (Tensor) - 输入变量，类型为 Tensor，数据类型为 bfloat16， float16， float32， float64。
+    - **y** (Tensor) - 输入变量，类型为 Tensor，数据类型为 bfloat16， float16， float32， float64。
     - **transpose_x** (bool，可选) - 相乘前是否转置 x，默认值为 False。
     - **transpose_y** (bool，可选) - 相乘前是否转置 y，默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

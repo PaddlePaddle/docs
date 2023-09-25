@@ -1,4 +1,4 @@
-.. _cn_api_fluid_disable_signal_handler:
+.. _cn_api_paddle_disable_signal_handler:
 
 disable_signal_handler
 -------------------------------

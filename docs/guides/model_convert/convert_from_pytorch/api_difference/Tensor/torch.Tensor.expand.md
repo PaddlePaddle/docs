@@ -1,11 +1,11 @@
-## torch.Tensor.expand
+## [ 仅参数名不一致 ]torch.Tensor.expand
 ### [torch.Tensor.expand](https://pytorch.org/docs/stable/generated/torch.Tensor.expand.html?highlight=expand#torch.Tensor.expand)
 
 ```python
 torch.Tensor.expand(*size)
 ```
 
-### [paddle.Tensor.expand](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#expand-shape-name-none)
+### [paddle.Tensor.expand](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#expand-shape-name-none)
 
 ```python
 paddle.Tensor.expand(shape, name=None)

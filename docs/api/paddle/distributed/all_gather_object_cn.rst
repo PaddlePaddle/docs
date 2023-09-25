@@ -1,4 +1,4 @@
-.. _cn_api_distributed_all_gather_object:
+.. _cn_api_paddle_distributed_all_gather_object:
 
 all_gather_object
 -------------------------------

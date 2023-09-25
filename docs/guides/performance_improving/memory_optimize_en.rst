@@ -112,7 +112,7 @@ If :code:`FLAGS_eager_delete_tensor_gb<0`, GC Strategy is disabled.
 
 - :code:`FLAGS_memory_fraction_of_eager_deletion`
 
-Variable to control GC Strategy, its data type is double. The default value is 1, range [0,1]. It is only suitable for ParallelExecutor or CompiledProgram+with_data_parallel.
+Variable to control GC Strategy, its data type is double. The default value is 1, range [0,1]. It is only suitable for ParallelExecutor.
 GC will sort the variables in descending order according to the memory space occupied by the variables,
 and only collect the memory space of top :code:`FLAGS_memory_fraction_of_eager_deletion` variables.
 **It is recommended to remain default value**, that is  :code:`FLAGS_memory_fraction_of_eager_deletion=1`.
@@ -136,7 +136,7 @@ Fast GC Strategy will collect the memory garbage immediately instead of waiting 
 The principle of Inplace strategy is that the output of some operators can reuses the memory space of input.
 For example, the output and input of operator :code:`reshape` can reuse the same memory space.
 
-Inplace Strategy is suitable for ParallelExecutor or CompiledProgram+with_data_parallel, which can be set through :code:`BuildStrategy`.
+Inplace Strategy is suitable for ParallelExecutor, which can be set through :code:`BuildStrategy`.
 The Strategy is not suitable for Executor+Program or C++ inference library.
 
 **Since version 1.6+, Inplace Strategy is enabled by default.**
@@ -148,8 +148,7 @@ The specific way of Inplace strategy is:
     build_strategy = fluid.BuildStrategy()
     build_strategy.enable_inplace = True # Enable Inplace Strategy
 
-    compiled_program = fluid.CompiledProgram(train_program)
-                              .with_data_parallel(loss_name=loss.name, build_strategy=build_strategy)
+    compiled_program = fluid.CompiledProgram(train_program, build_strategy=build_strategy)
 
 
 In PaddlePaddle with version < 1.6, due to of some design problems, when the Inplace Strategy is enabled,

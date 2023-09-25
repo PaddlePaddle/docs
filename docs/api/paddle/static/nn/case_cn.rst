@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_case:
+.. _cn_api_paddle_static_nn_case:
 
 case
 -------------------------------
@@ -12,7 +12,7 @@ case
 参数
 ::::::::::::
 
-    - **pred_fn_pairs** (list|tuple) - 一个 list 或者 tuple，元素是二元组(pred, fn)。其中 ``pred`` 是元素个数为 1 的布尔型 Tensor （ 0D Tensor 或者形状为 [1] ），``fn`` 是一个可调用对象。所有的可调用对象都返回相同结构的 Tensor。
+    - **pred_fn_pairs** (list|tuple) - 一个 list 或者 tuple，元素是二元组(pred, fn)。其中 ``pred`` 是元素个数为 1 的布尔型 Tensor （ 0-D Tensor 或者形状为 [1] ），``fn`` 是一个可调用对象。所有的可调用对象都返回相同结构的 Tensor。
     - **default** (callable，可选) - 可调用对象，返回一个或多个 Tensor。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

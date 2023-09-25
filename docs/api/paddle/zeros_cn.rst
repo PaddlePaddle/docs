@@ -1,4 +1,4 @@
-.. _cn_api_tensor_zeros:
+.. _cn_api_paddle_zeros:
 
 zeros
 -------------------------------

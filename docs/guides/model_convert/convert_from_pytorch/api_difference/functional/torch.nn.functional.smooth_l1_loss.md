@@ -1,4 +1,4 @@
-##  [ 参数用法不一致 ]torch.nn.functional.smooth_l1_loss
+##  [ 参数不一致 ]torch.nn.functional.smooth_l1_loss
 
 ### [torch.nn.functional.smooth_l1_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.smooth_l1_loss.html)
 
@@ -11,7 +11,7 @@ torch.nn.functional.smooth_l1_loss(input,
                     beta=1.0)
 ```
 
-### [paddle.nn.functional.smooth_l1_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/smooth_l1_loss_cn.html#smooth-l1-loss)
+### [paddle.nn.functional.smooth_l1_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/smooth_l1_loss_cn.html#smooth-l1-loss)
 
 ```python
 paddle.nn.functional.smooth_l1_loss(input,

@@ -1,4 +1,4 @@
-.. _cn_api_linalg_corrcoef:
+.. _cn_api_paddle_linalg_corrcoef:
 
 corrcoef
 -------------------------------

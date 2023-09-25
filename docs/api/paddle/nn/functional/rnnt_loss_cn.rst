@@ -1,4 +1,4 @@
-.. _cn_paddle_nn_functional_rnnt_ctc:
+.. _cn_api_paddle_nn_functional_rnnt_loss:
 
 rnnt_loss
 -------------------------------
@@ -21,7 +21,7 @@ rnnt_loss
 
 返回
 :::::::::
-``Tensor``，输入 ``input`` 和标签 ``labels`` 间的 `rnnt loss`。如果 :attr:`reduction` 是 ``'none'``，则输出 loss 的维度为 [batch_size]。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出 Loss 的维度为 [1]。数据类型与输入的 ``input`` 一致。
+``Tensor``，输入 ``input`` 和标签 ``labels`` 间的 `rnnt loss`。如果 :attr:`reduction` 是 ``'none'``，则输出 loss 的维度为 [batch_size]。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出 Loss 的维度为 []。数据类型与输入的 ``input`` 一致。
 
 
 代码示例

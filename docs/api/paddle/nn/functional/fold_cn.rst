@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_fold:
+.. _cn_api_paddle_nn_functional_fold:
 
 fold
 -------------------------------
@@ -20,7 +20,7 @@ fold
 
 参数
 :::::::::
-    - **x**  (Tensor) – 输入 3-D Tensor，形状为[N, C, L]，数据类型为 float32 或者 float64
+    - **x**  (Tensor) – 输入 3-D Tensor，形状为[N, C, L]，数据类型为 float32 、 float64 、 complex64 或 complex128
     - **output_sizes**  (int|list|tuple) – 输出尺寸，整数或者整型列表。如为列表类型应包含两个元素 ``[output_size_h, output_size_w]``。如果为整数 o，则输出形状会被认为 ``[o, o]``。
     - **kernel_size** (int|list|tuple) - 卷积核大小，整数或者整型列表。如为列表类型应包含两个元素 ``[k_h, k_w]``。如果为整数 k，则输出形状会被认为 ``[k, k]``。
     - **strides** (int|list|tuple，可选) - 步长大小，整数或者整型列表。如为列表类型应包含两个元素 ``[stride_h, stride_w]``。如果为整数 stride，则输出形状会被认为 ``[sride, stride]``。默认为[1,1]。

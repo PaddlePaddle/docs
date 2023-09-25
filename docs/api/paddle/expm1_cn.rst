@@ -16,7 +16,7 @@ expm1
 参数
 :::::::::
 
-- **x** (Tensor) - 该 OP 的输入为多维 Tensor。数据类型为：float16、float32、float64。
+- **x** (Tensor) - 该 OP 的输入为多维 Tensor。数据类型为：int32、int64、float16、float32、float64、complex64、complex128。
 - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

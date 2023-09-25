@@ -15,8 +15,8 @@ roi_align
     - **boxes_num** (Tensor) - 该 batch 中每一张图所包含的框数量。数据类型为 int32。
     - **output_size** (int|Tuple(int, int)) - 池化后输出的尺寸(H, W)，数据类型为 int32。如果 output_size 是单个 int 类型整数，则 H 和 W 都与其相等。
     - **spatial_scale** (float32，可选) - 空间比例因子，用于将 boxes 中的坐标从其输入尺寸按比例映射到 input 特征图的尺寸。
-    - **sampling_ratio** (int32，可选) – 插值网格中用于计算每个池化输出条柱的输出值的采样点数。如果大于 0，则使用每个条柱的精确采样点。如果小于或等于 0，则使用自适应数量的网格点（计算为 ``ceil(roi_width / output_width)``，高度同理）。默认值：-1。
-    - **aligned** (bool，可选）- 默认值为 True，表示像素移动框将其坐标移动-0.5，以便与两个相邻像素索引更好地对齐。如果为 False，则是使用遗留版本的实现。
+    - **sampling_ratio** (int32，可选) - 插值网格中用于计算每个池化输出条柱的输出值的采样点数。如果大于 0，则使用每个条柱的精确采样点。如果小于或等于 0，则使用自适应数量的网格点（计算为 ``ceil(roi_width / output_width)``，高度同理）。默认值：-1。
+    - **aligned** (bool，可选) - 默认值为 True，表示像素移动框将其坐标移动-0.5，以便与两个相邻像素索引更好地对齐。如果为 False，则是使用遗留版本的实现。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

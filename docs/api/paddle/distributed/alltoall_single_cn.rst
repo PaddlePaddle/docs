@@ -1,4 +1,4 @@
-.. _cn_api_distributed_alltoall_single:
+.. _cn_api_paddle_distributed_alltoall_single:
 
 alltoall_single
 -------------------------------

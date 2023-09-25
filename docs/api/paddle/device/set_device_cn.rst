@@ -1,4 +1,4 @@
-.. _cn_api_set_device:
+.. _cn_api_paddle_device_set_device:
 
 set_device
 -------------------------------

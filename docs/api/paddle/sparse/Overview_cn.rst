@@ -18,8 +18,8 @@ paddle.sparse 目录包含飞桨框架支持稀疏数据存储和计算相关的
 .. csv-table::
     :header: "API 名称", "API 功能"
 
-    " :ref:`paddle.sparse.sparse_coo_tensor <cn_api_paddle_sparse_coo_tensor>` ", "创建一个 COO 格式的 SparseTensor"
-    " :ref:`paddle.sparse.sparse_csr_tensor <cn_api_paddle_sparse_csr_tensor>` ", "创建一个 CSR 格式的 SparseTensor"
+    " :ref:`paddle.sparse.sparse_coo_tensor <cn_api_paddle_sparse_sparse_coo_tensor>` ", "创建一个 COO 格式的 SparseTensor"
+    " :ref:`paddle.sparse.sparse_csr_tensor <cn_api_paddle_sparse_sparse_csr_tensor>` ", "创建一个 CSR 格式的 SparseTensor"
 
 .. _about_sparse_math:
 

@@ -1,4 +1,4 @@
-.. _cn_api_incubate_nn_functional_fused_feedforward:
+.. _cn_api_paddle_incubate_nn_functional_fused_feedforward:
 
 fused_feedforward
 -------------------------------

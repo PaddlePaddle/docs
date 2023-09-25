@@ -1,4 +1,4 @@
-.. _cn_api_nn_BatchNorm3D:
+.. _cn_api_paddle_nn_BatchNorm3D:
 
 BatchNorm3D
 -------------------------------
@@ -41,8 +41,8 @@ BatchNorm3D
     - **num_features** (int) - 指明输入 ``Tensor`` 的通道数量。
     - **epsilon** (float，可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
     - **momentum** (float，可选) - 此值用于计算 ``moving_mean`` 和 ``moving_var``。默认值：0.9。更新公式如上所示。
-    - **weight_attr** (ParamAttr|bool，可选) - 指定权重参数属性的对象。如果为 False，则表示每个通道的伸缩固定为 1，不可改变。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_ParamAttr` 。
-    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。如果为 False，则表示每一个通道的偏移固定为 0，不可改变。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_ParamAttr` 。
+    - **weight_attr** (ParamAttr|bool，可选) - 指定权重参数属性的对象。如果为 False，则表示每个通道的伸缩固定为 1，不可改变。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **bias_attr** (ParamAttr|bool，可选) - 指定偏置参数属性的对象。如果为 False，则表示每一个通道的偏移固定为 0，不可改变。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
     - **data_format** (str，可选) - 指定输入数据格式，数据格式可以为 ``"NCDHW"`` 或 ``"NDHWC"``，其中 N 是批大小，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度。默认值为 ``"NCDHW"``。
     - **use_global_stats** (bool|None，可选) – 指示是否使用全局均值和方差。若设置为 False，则使用一个 mini-batch 的统计数据。若设置为 True 时，将使用全局统计数据。若设置为 None，则会在测试阶段使用全局统计数据，在训练阶段使用一个 mini-batch 的统计数据。默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

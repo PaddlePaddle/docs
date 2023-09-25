@@ -9,7 +9,7 @@ torch.nn.Fold(output_size,
                 stride=1)
 ```
 
-### [paddle.nn.Fold](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Fold_cn.html#fold)
+### [paddle.nn.Fold](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Fold_cn.html#fold)
 
 ```python
 paddle.nn.Fold(output_sizes,
@@ -20,7 +20,7 @@ paddle.nn.Fold(output_sizes,
                 name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

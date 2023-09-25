@@ -1,4 +1,4 @@
-.. _cn_api_tensor_triu_indices:
+.. _cn_api_paddle_triu_indices:
 
 triu_indices
 --------------------------------

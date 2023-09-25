@@ -1,4 +1,4 @@
-## [paddle 参数更多 ]torch.nn.Upsample
+## [ 仅 paddle 参数更多 ]torch.nn.Upsample
 ### [torch.nn.Upsample](https://pytorch.org/docs/stable/generated/torch.nn.Upsample.html?highlight=upsample#torch.nn.Upsample)
 
 ```python
@@ -8,7 +8,7 @@ torch.nn.Upsample(size=None,
                   align_corners=False)
 ```
 
-### [paddle.nn.Upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Upsample_cn.html#upsample)
+### [paddle.nn.Upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Upsample_cn.html#upsample)
 
 ```python
 paddle.nn.Upsample(size=None,

@@ -1,4 +1,4 @@
-## [参数不⼀致] torch.transpose
+## [ 参数不⼀致 ] torch.transpose
 
 ### [torch.transpose](https://pytorch.org/docs/stable/generated/torch.transpose.html?highlight=transpose#torch.transpose)
 
@@ -8,7 +8,7 @@ torch.transpose(input,
                 dim1)
 ```
 
-### [paddle.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/transpose_cn.html#transpose)
+### [paddle.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/transpose_cn.html#transpose)
 
 ```python
 paddle.transpose(x,
@@ -21,9 +21,9 @@ paddle.transpose(x,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'>input</font>input         | <font color='red'>x</font>            | 输入 Tensor。                                       |
-| <font color='red'>dim0</font>          | -            | Pytorch 转置的第一个维度，Paddle 无此参数，需要进行转写。                    |
-| <font color='red'>dim1</font>          | -            | Pytorch 转置的第二个维度，Paddle 无此参数，需要进行转写。                    |
+| <font color='red'>input</font>         | <font color='red'>x</font>            | 输入 Tensor。                                       |
+| <font color='red'>dim0</font>          | -            | Pytorch 转置的第一个维度，Paddle 无此参数，需要转写。                    |
+| <font color='red'>dim1</font>          | -            | Pytorch 转置的第二个维度，Paddle 无此参数，需要转写。                    |
 | -             | <font color='red'>perm</font>         | Paddle 可通过 perm 参数，等价的实现 torch 的 dim0、dim1 的功能。|
 
 

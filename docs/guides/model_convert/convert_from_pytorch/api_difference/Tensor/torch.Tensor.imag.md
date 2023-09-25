@@ -6,7 +6,7 @@
 torch.Tensor.imag
 ```
 
-### [paddle.Tensor.imag](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#imag-name-none)
+### [paddle.Tensor.imag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#imag-name-none)
 
 ```python
 paddle.Tensor.imag

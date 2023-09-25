@@ -1,4 +1,4 @@
-.. _cn_api_tensor_clone:
+.. _cn_api_paddle_clone:
 
 clone
 -------------------------------

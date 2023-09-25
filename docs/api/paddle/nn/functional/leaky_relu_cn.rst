@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_leaky_relu:
+.. _cn_api_paddle_nn_functional_leaky_relu:
 
 leaky_relu
 -------------------------------

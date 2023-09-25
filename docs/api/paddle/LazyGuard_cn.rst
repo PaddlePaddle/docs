@@ -1,4 +1,4 @@
-.. _cn_api_fluid_LazyGuard:
+.. _cn_api_paddle_LazyGuard:
 
 LazyGuard
 -------------------------------
@@ -13,15 +13,4 @@ LazyGuard 是一个用于设置模型（继承自 ``paddle.nn.Layer`` ） 中参
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    from paddle import LazyGuard
-    from paddle.nn import Linear
-
-    with LazyGuard():
-        # w and b are initialized lazily and have no memory.
-        net = Linear(10, 10)
-
-    for param in net.parameters():
-        # Initialize param and allocate memory explicitly.
-        param.initialize()
+COPY-FROM: paddle.LazyGuard

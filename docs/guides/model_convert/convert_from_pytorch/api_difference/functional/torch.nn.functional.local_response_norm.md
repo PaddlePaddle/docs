@@ -10,7 +10,7 @@ torch.nn.functional.local_response_norm(input,
                                         k=1.0)
 ```
 
-### [paddle.nn.functional.local_response_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/local_response_norm_cn.html)
+### [paddle.nn.functional.local_response_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/local_response_norm_cn.html)
 
 ```python
 paddle.nn.functional.local_response_norm(x,

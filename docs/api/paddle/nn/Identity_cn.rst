@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_layer_common_Identity:
+.. _cn_api_paddle_nn_Identity:
 
 Identity
 -------------------------------

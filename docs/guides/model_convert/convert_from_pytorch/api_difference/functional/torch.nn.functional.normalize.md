@@ -10,7 +10,7 @@ torch.nn.functional.normalize(input,
                              out=None)
 ```
 
-### [paddle.nn.functional.normalize](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/normalize_cn.html)
+### [paddle.nn.functional.normalize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/normalize_cn.html)
 
 ```python
 paddle.nn.functional.normalize(x,

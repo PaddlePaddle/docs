@@ -11,6 +11,7 @@ API 单测的测试点需覆盖以下场景：
 - **计算精度**：需要保证前向计算、反向计算的精度正确性。
    - 前向计算：需要有通过 numpy 或其他数学方法实现的函数的对比结果。
    - 反向计算：需要复用现有单测框架反向计算验证方式保障反向正确性。注意：1）使用 Python 组合方式新增的 API，由于反向计算已经在各组合 API 单测中分别验证了，因此，该 API 的反向计算不要求验证。2）如现有单测框架无法满足要求，需要通过 numpy 推导或函数直接实现反向等方式验证反向计算结果正确性。
+- **维度测试**：Paddle API 支持的最低维度为 0 维，单测中应编写相应的 0 维尺寸测试 case（若该 API 不支持 0 维，则无需编写该 case，但需在设计文档中说明理由）。可参考 [paddle.add 的 0 维尺寸测试 case](https://github.com/PaddlePaddle/Paddle/blob/develop/test/legacy_test/test_elementwise_add_op.py#L113-L133)
 - **异常测试**：需对于参数异常值输入，应该有友好的报错信息及异常反馈。
 - 除了以上，还需注意：
   - [OP 单测必须使用大尺寸输入](https://github.com/PaddlePaddle/Paddle/wiki/OP-test-input-shape-requirements)
@@ -34,9 +35,9 @@ API 单测的验收包含两方面，一方面是要验收是否符合上述的�
 - **覆盖率规范**：PR 需要通过所有的 CI 验证，且`PR-CI-Coverage`需要满足新增代码行覆盖率达到 90%以上，覆盖率信息可通过 CI 详情页面查看，如下：
 ![coverage_not_pass.png](./images/coverage_not_pass.png)
 - **耗时规范**：
-   - 新增单测的执行不允许超过 15s，`PR-CI-Coverage`有相应的检查，检查逻辑可见 `tools/check_added_ut.sh`。如果你新增的单测无法在 15s 内执行完成，可以尝试减少数据维度（可见[链接](https://github.com/PaddlePaddle/Paddle/pull/42267/commits/17344408d69f10e9fe5cf3200be1e381bc454694#diff-02f1ef59dfd03557054d7b20c9128ac9828735fc1f8be9e44d0587a96a06f685L236)）或通过在[CMakeLists.txt](https://github.com/PaddlePaddle/Paddle/blob/a1d87776ac500b1a3c3250dd9897f103515909c6/python/paddle/fluid/tests/unittests/CMakeLists.txt#L617-L618)指定该单测的 Timeout 时间。如果你通过修改 Timeout 时间，你需要在 PR 描述中说明原因，同时会有相关同学 review 后进行 approve 后才能合入。原则上 Timeout 设定时间不能超过 120s。
+   - 新增单测的执行不允许超过 15s，`PR-CI-Coverage`有相应的检查，检查逻辑可见 `tools/check_added_ut.sh`。如果你新增的单测无法在 15s 内执行完成，可以尝试减少数据维度（可见[链接](https://github.com/PaddlePaddle/Paddle/pull/42267/commits/17344408d69f10e9fe5cf3200be1e381bc454694#diff-02f1ef59dfd03557054d7b20c9128ac9828735fc1f8be9e44d0587a96a06f685L236)）或通过在[CMakeLists.txt](https://github.com/PaddlePaddle/Paddle/blob/19a8f0aa263a8d0595f7e328077cc2f48eca547f/test/legacy_test/CMakeLists.txt#L564-L565)指定该单测的 Timeout 时间。如果你通过修改 Timeout 时间，你需要在 PR 描述中说明原因，同时会有相关同学 review 后进行 approve 后才能合入。原则上 Timeout 设定时间不能超过 120s。
    ![add_ut.png](./images/add_ut.png)
-   - 现有单测的修改原则上不允许超过 120s，`PR-CI-Coverage`有相应的检查，若有特殊情况可修改[CMakeLists.txt](https://github.com/PaddlePaddle/Paddle/blob/a1d87776ac500b1a3c3250dd9897f103515909c6/python/paddle/fluid/tests/unittests/CMakeLists.txt#L617-L618)文件中该单测的 Timeout 时间，处理逻辑同上诉新增单测超过 15s 一致。
+   - 现有单测的修改原则上不允许超过 120s，`PR-CI-Coverage`有相应的检查，若有特殊情况可修改[CMakeLists.txt](https://github.com/PaddlePaddle/Paddle/blob/19a8f0aa263a8d0595f7e328077cc2f48eca547f/test/legacy_test/CMakeLists.txt#L564-L565)文件中该单测的 Timeout 时间，处理逻辑同上诉新增单测超过 15s 一致。
 - **单测 retry 机制**：为提高单测执行效率，所有的单测均以一定的并发度执行，而这样的策略可能会引起单测随机挂。因此对失败的单测设定了 retry 机制，一共 retry 四次，如果成功率未达到 50%，就认为该单测可能存在问题，CI 失败。
 
 ## 交流与改进

@@ -1,4 +1,4 @@
-.. _cn_api_geometric_send_ue_recv:
+.. _cn_api_paddle_geometric_send_ue_recv:
 
 send_ue_recv
 -------------------------------

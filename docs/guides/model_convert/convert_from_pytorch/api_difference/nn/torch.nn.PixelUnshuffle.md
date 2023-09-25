@@ -1,11 +1,11 @@
-## [paddle 参数更多 ]torch.nn.PixelUnshuffle
+## [ 仅 paddle 参数更多 ]torch.nn.PixelUnshuffle
 ### [torch.nn.PixelUnshuffle](https://pytorch.org/docs/stable/generated/torch.nn.PixelUnshuffle.html?highlight=pixel#torch.nn.PixelUnshuffle)
 
 ```python
 torch.nn.PixelUnshuffle(downscale_factor)
 ```
 
-### [paddle.nn.PixelUnshuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/PixelUnshuffle_cn.html)
+### [paddle.nn.PixelUnshuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/PixelUnshuffle_cn.html)
 
 ```python
 paddle.nn.PixelUnshuffle(downscale_factor,

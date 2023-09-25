@@ -6,7 +6,7 @@ torch.flip(input,
            dims)
 ```
 
-### [paddle.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/flip_cn.html#flip)
+### [paddle.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/flip_cn.html#flip)
 
 ```python
 paddle.flip(x,
@@ -14,7 +14,7 @@ paddle.flip(x,
             name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

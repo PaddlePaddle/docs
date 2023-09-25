@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.logical_and
-### [torch.logical_and](https://pytorch.org/docs/1.13/generated/torch.logical_and.html?highlight=logical_and#torch.logical_and)
+### [torch.logical_and](https://pytorch.org/docs/stable/generated/torch.logical_and.html?highlight=logical_and#torch.logical_and)
 
 ```python
 torch.logical_and(input,
@@ -8,7 +8,7 @@ torch.logical_and(input,
                   out=None)
 ```
 
-### [paddle.logical_and](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_and_cn.html#logical-and)
+### [paddle.logical_and](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logical_and_cn.html#logical-and)
 
 ```python
 paddle.logical_and(x,
@@ -17,7 +17,7 @@ paddle.logical_and(x,
                    name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

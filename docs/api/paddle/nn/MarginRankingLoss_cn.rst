@@ -1,4 +1,4 @@
-.. _cn_api_nn_loss_MarginRankingLoss:
+.. _cn_api_paddle_nn_MarginRankingLoss:
 
 MarginRankingLoss
 -------------------------------
@@ -35,7 +35,7 @@ MarginRankingLoss
     - **input** ：N-D Tensor，维度是[N，*] 其中 N 是 batch size，`*` 是任意数量的额外维度，数据类型为 float32 或 float64。
     - **other** ：与 input 的形状、数据类型相同。
     - **label** ：与 input 的形状、数据类型相同。
-    - **output** ：如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'``，则形状为 :math:`[1]`，否则 shape 和输入 `input` 保持一致。数据类型与 ``input``、 ``other`` 相同。
+    - **output** ：如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'``，则形状为 :math:`[]`，否则 shape 和输入 `input` 保持一致。数据类型与 ``input``、 ``other`` 相同。
 
 返回
 ::::::::

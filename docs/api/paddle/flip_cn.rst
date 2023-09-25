@@ -1,4 +1,4 @@
-.. _cn_api_tensor_flip:
+.. _cn_api_paddle_flip:
 
 flip
 -------------------------------

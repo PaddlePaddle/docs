@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.nn.Unfold
+## [ 参数不一致 ]torch.nn.Unfold
 ### [torch.nn.Unfold](https://pytorch.org/docs/stable/generated/torch.nn.Unfold.html?highlight=nn+unfold#torch.nn.Unfold)
 
 ```python
@@ -8,7 +8,7 @@ torch.nn.Unfold(kernel_size,
                 stride=1)
 ```
 
-### [paddle.nn.Unfold](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Unfold_cn.html#unfold)
+### [paddle.nn.Unfold](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Unfold_cn.html#unfold)
 
 ```python
 paddle.nn.Unfold(kernel_size=[3, 3],

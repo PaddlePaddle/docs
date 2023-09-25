@@ -5,7 +5,7 @@ hfft2
 
 .. py:function:: paddle.fft.hfft2(x, s=None, axes=(-2, -1), norm="backward", name=None)
 
-通过快速傅里叶变换(FFT)算法计算二维厄米特(Hermitian)傅里叶变换。
+通过快速傅里叶变换（FFT）算法计算二维厄米特(Hermitian)傅里叶变换。
 
 
 参数

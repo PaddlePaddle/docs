@@ -20,19 +20,22 @@ paddle.distribution 目录下包含飞桨框架支持的随机变量的概率分
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`Distribution <cn_api_distribution_Distribution>` ", "Distribution 概率分布抽象基类"
-    " :ref:`ExponentialFamily <cn_api_distribution_ExponentialFamily>` ", "ExponentialFamily 指数型分布族基类"
-    " :ref:`Categorical <cn_api_distribution_Categorical>` ", "Categorical 概率分布类"
-    " :ref:`Normal <cn_api_distribution_Normal>` ", "Normal 概率分布类"
-    " :ref:`Uniform <cn_api_distribution_Uniform>` ", "Uniform 概率分布类"
+    " :ref:`Distribution <cn_api_paddle_distribution_Distribution>` ", "Distribution 概率分布抽象基类"
+    " :ref:`ExponentialFamily <cn_api_paddle_distribution_ExponentialFamily>` ", "ExponentialFamily 指数型分布族基类"
+    " :ref:`Bernoulli <cn_api_paddle_distribution_Bernoulli>` ", "Bernoulli 概率分布类"
+    " :ref:`Categorical <cn_api_paddle_distribution_Categorical>` ", "Categorical 概率分布类"
+    " :ref:`Cauchy <cn_api_paddle_distribution_Cauchy>` ", "Cauchy 概率分布类"
+    " :ref:`Normal <cn_api_paddle_distribution_Normal>` ", "Normal 概率分布类"
+    " :ref:`Uniform <cn_api_paddle_distribution_Uniform>` ", "Uniform 概率分布类"
     " :ref:`Beta <cn_api_paddle_distribution_Beta>` ", "Beta 概率分布类"
     " :ref:`Dirichlet <cn_api_paddle_distribution_Dirichlet>` ", "Dirichlet 概率分布类"
     " :ref:`Multinomial <cn_api_paddle_distribution_Multinomial>` ", "Multinomial 概率分布类"
     " :ref:`Independent <cn_api_paddle_distribution_Independent>` ", "Independent 概率分布类"
     " :ref:`TransfomedDistribution <cn_api_paddle_distribution_TransformedDistribution>` ", "TransformedDistribution 概率分布类"
-    " :ref:`Laplace <cn_api_distribution_Laplace>`", "Laplace 概率分布类"
+    " :ref:`Laplace <cn_api_paddle_distribution_Laplace>`", "Laplace 概率分布类"
     " :ref:`LogNormal <cn_api_distribution_LogNormal>` ", "LogNormal 概率分布类"
-    " :ref:`Gumbel <cn_api_distribution_Gumbel>` ", "Gumbel 概率分布类"
+    " :ref:`Gumbel <cn_api_paddle_distribution_Gumbel>` ", "Gumbel 概率分布类"
+    " :ref:`Geometric <cn_api_paddle_distribution_Geometric>` ", "Geometric 概率分布类"
 
 .. _about_distribution_transform:
 

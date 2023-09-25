@@ -39,7 +39,7 @@
 | 算子 InferMeta | [paddle/phi/infermeta](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/infermeta) 目录下的相应文件中 |
 | 算子 Kernel    | [paddle/phi/kernels](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/kernels) 目录下的如下文件：（一般情况）<br/>xxx_kernel.h<br/>xxx_kernel.cc<br/>xxx_grad_kernel.h<br/>xxx_grad_kernel.cc |
 | Python API     | [python/paddle](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle) 目录下的相应子目录中的 .py 文件，遵循相似功能的 API 放在同一文件夹的原则 |
-| 单元测试       | [python/paddle/fluid/tests/unittests](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle/fluid/tests/unittests) 目录下的相应文件中：<br/>test_xxx_op.py |
+| 单元测试       | [test/legacy_test](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test) 目录下的相应文件中：<br/>test_xxx_op.py |
 
 
 用户使用飞桨开发神经网络模型时使用的 Python 接口(如 paddle.add(), paddle.relu()等) 我们一般称都为飞桨的 Python API，每个运算类的 Python API 在框架内部都会对应到一个或者多个 C++ 端算子，每个算子在不同硬件设备上（CPU, GPU 等）实现的运算逻辑代码又被称为 Kernel, 这里主要是由于不同硬件设备提供的编程接口不同，所以虽然同一个算子的不同硬件设备 Kernel 都实现了相同的数学运算逻辑，但在代码实现上却有所差异。算子 InferMeta 函数是在算子 kernel 执行前先将输出结果的维度、数据类型等信息进行处理，由于计算量较小所以可以直接在 CPU 上计算，因此每个算子只需要实现一个 InferMeta 函数，而不必像 Kernel 一样在不同硬件上实现多个。
@@ -64,7 +64,7 @@ Python API 到算子 InferMeta 函数和 Kernel 调用之间的框架调度部�
 | 算子 InferMeta | [paddle/phi/infermeta/unary.cc](https://github.com/PaddlePaddle/Paddle/blob/befa78ea3fa9d0dae096a7de91f626b0c31daee8/paddle/phi/infermeta/unary.cc#L721) |
 | 算子 Kernel    | [paddle/phi/kernels](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/kernels) 目录下的如下文件：<br/>[/trace_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_kernel.h)<br/>[/cpu/trace_kernel.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/trace_kernel.cc)<br/>[/gpu/trace_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_kernel.cu)<br/>[/trace_grad_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_kernel.h)<br/>[/cpu/trace_grad_kernel.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/trace_grad_kernel.cc)<br/>[/gpu/trace_grad_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_grad_kernel.cu) |
 | Python API     | [python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/bd4dc3be34584f9b273ecec07297fb05e1cf4c52/python/paddle/tensor/math.py#L2277) |
-| 单元测试       | [python/paddle/fluid/tests/unittests/test_trace_op.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_trace_op.py) |
+| 单元测试       | [test/legacy_test/test_trace_op.py](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/test_trace_op.py) |
 
 
 ## 三、新增算子描述及定义
@@ -838,15 +838,15 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 
 ## 六、添加单元测试
 
-单测包括对比前向算子不同设备 (CPU、GPU) 的实现、对比反向算子不同设备 (CPU、GPU) 的实现、反向算子的梯度测试。下面介绍 [trace 算子的单元测试](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_trace_op.py)。
+单测包括对比前向算子不同设备 (CPU、GPU) 的实现、对比反向算子不同设备 (CPU、GPU) 的实现、反向算子的梯度测试。下面介绍 [trace 算子的单元测试](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/test_trace_op.py)。
 
-单测文件存放路径和命名方式：在 [python/paddle/fluid/tests/unittests](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle/fluid/tests/unittests) 目录下，一般以 `test_xxx_op.py` 的形式命名（假设算子名为`xxx`），与 Python API 的单元测试文件命名为相同的前缀。
+单测文件存放路径和命名方式：在 [test/legacy_test](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test) 目录下，一般以 `test_xxx_op.py` 的形式命名（假设算子名为`xxx`），与 Python API 的单元测试文件命名为相同的前缀。
 
 > 注意：单测中的测试用例需要尽可能地覆盖 kernel 中的所有分支。
 
 ### 6.1 C++ 算子单元测试
 
-算子单元测试继承自 [OpTest](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/op_test.py#L309)。各项具体的单元测试在`TestTraceOp`里完成。测试算子，需要：
+算子单元测试继承自 [OpTest](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/op_test.py#L309)。各项具体的单元测试在`TestTraceOp`里完成。测试算子，需要：
 
 1. 在`setUp`函数定义输入、输出，以及相关的属性参数，并生成随机的输入数据。
 2. 在 Python 脚本中实现与前向算子相同的计算逻辑，得到输出值，与算子前向计算的输出进行对比。
@@ -900,7 +900,7 @@ class TestTraceOp(OpTest):
     - 第二个参数`'Out'` : 指定前向网络最终的输出目标变量`Out`。
     - 第三个参数`check_eager` : `check_eager=True` 表示开启新动态图（eager 模式）单测，`check_eager` 默认为`False`。
   - 对于存在多个输入的反向算子测试，需要指定只计算部分输入梯度的 case
-    - 例如，[test_elementwise_sub_op.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_elementwise_sub_op.py) 中的`test_check_grad_ingore_x`和`test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况
+    - 例如，[test_elementwise_sub_op.py](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/test_elementwise_sub_op.py) 中的`test_check_grad_ingore_x`和`test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况
     - 此处第三个参数 max_relative_error：指定检测梯度时能容忍的最大错误值。
 
   ```python
@@ -924,7 +924,7 @@ Python API 也需要编写相关的单测进行测试，详见 [开发 API Pytho
 
 ### 6.3 运行单元测试
 
-`python/paddle/fluid/tests/unittests/` 目录下新增的 `test_*.py` 单元测试会被自动加入工程进行编译。
+`test/legacy_test` 目录下新增的 `test_*.py` 单元测试会被自动加入工程进行编译。
 
 请注意，**运行单元测试测时需要编译整个工程**，并且编译时需要打开`WITH_TESTING`。
 
@@ -1095,7 +1095,7 @@ The following device operations are asynchronous with respect to the host:
 
 其它重要的注意事项：
 
-  - 实现 LoD-Based 算子时，需要处理好 LoD 传导的边界情况，例如对长度为零的输入的支持，并完善相应的单测，单测 case 覆盖空序列出现在 batch 开头、中间和末尾等位置的情况，可参考 [test_lstm_op.py](https://github.com/PaddlePaddle/Paddle/blob/4292bd8687ababc7737cffbddc0d38ead2138c00/python/paddle/fluid/tests/unittests/test_lstm_op.py#L203-L216)
+  - 实现 LoD-Based 算子时，需要处理好 LoD 传导的边界情况，例如对长度为零的输入的支持，并完善相应的单测，单测 case 覆盖空序列出现在 batch 开头、中间和末尾等位置的情况，可参考 [test_lstm_op.py](https://github.com/PaddlePaddle/Paddle/blob/19a8f0aa263a8d0595f7e328077cc2f48eca547f/test/legacy_test/test_lstm_op.py#L224-L236)
 
   - 对 LoD Level 有明确要求的算子，推荐的做法是在 `InferMeta` 中即完成 LoD Level 的检查，例如 [sequence_pad_op](https://github.com/PaddlePaddle/Paddle/blob/4292bd8687ababc7737cffbddc0d38ead2138c00/paddle/fluid/operators/sequence_ops/sequence_pad_op.cc#L79)。
 

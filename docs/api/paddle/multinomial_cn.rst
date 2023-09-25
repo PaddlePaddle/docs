@@ -1,4 +1,4 @@
-.. _cn_api_tensor_multinomial:
+.. _cn_api_paddle_multinomial:
 
 multinomial
 -------------------------------

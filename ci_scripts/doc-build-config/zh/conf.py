@@ -15,7 +15,6 @@ import time
 
 try:
     import paddle
-    import paddle.fluid as fluid
 except:
     print("import paddle error")
 breathe_projects = {"PaddlePaddle": "/docs/doxyoutput/xml"}

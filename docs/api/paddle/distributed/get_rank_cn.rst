@@ -1,4 +1,4 @@
-.. _cn_api_distributed_get_rank:
+.. _cn_api_paddle_distributed_get_rank:
 
 get_rank
 ----------

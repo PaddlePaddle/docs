@@ -1,4 +1,4 @@
-.. _cn_api_distribution_ExponentialFamily:
+.. _cn_api_paddle_distribution_ExponentialFamily:
 
 ExponentialFamily
 -------------------------------

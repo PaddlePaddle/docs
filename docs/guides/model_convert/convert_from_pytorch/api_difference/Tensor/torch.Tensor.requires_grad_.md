@@ -5,7 +5,7 @@
 torch.Tensor.requires_grad_(requires_grad=True)
 ```
 
-### [paddle.Tensor.stop_gradient](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#stop-gradient)
+### [paddle.Tensor.stop_gradient](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#stop-gradient)
 
 ```python
 paddle.Tensor.stop_gradient = False
@@ -15,7 +15,7 @@ paddle.Tensor.stop_gradient = False
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| requires_grad        | -            | 是否计算梯度                                      |
+| requires_grad        | -            | 是否计算梯度，Paddle 无此参数，需要转写。                                      |
 
 
 ### 转写示例

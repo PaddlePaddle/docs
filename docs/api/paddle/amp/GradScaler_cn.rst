@@ -1,9 +1,9 @@
-.. _cn_api_amp_GradScaler:
+.. _cn_api_paddle_amp_GradScaler:
 
 GradScaler
 -------------------------------
 
-.. py:class:: paddle.amp.GradScaler(enable=True, init_loss_scaling=32768.0, incr_ratio=2.0, decr_ratio=0.5, incr_every_n_steps=1000, decr_every_n_nan_or_inf=2, use_dynamic_loss_scaling=True)
+.. py:class:: paddle.amp.GradScaler(enable=True, init_loss_scaling=65536.0, incr_ratio=2.0, decr_ratio=0.5, incr_every_n_steps=2000, decr_every_n_nan_or_inf=1, use_dynamic_loss_scaling=True)
 
 
 
@@ -21,11 +21,11 @@ GradScaler 用于动态图模式下的"自动混合精度"的训练。它控制 
 参数
 :::::::::
     - **enable** (bool，可选) - 是否使用 loss scaling。默认值为 True。
-    - **init_loss_scaling** (float，可选) - 初始 loss scaling 因子。默认值为 32768.0。
+    - **init_loss_scaling** (float，可选) - 初始 loss scaling 因子。默认值为 65536.0。
     - **incr_ratio** (float，可选) - 增大 loss scaling 时使用的乘数。默认值为 2.0。
     - **decr_ratio** (float，可选) - 减小 loss scaling 时使用的小于 1 的乘数。默认值为 0.5。
-    - **incr_every_n_steps** (int，可选) - 连续 n 个 steps 的梯度都是有限值时，增加 loss scaling。默认值为 1000。
-    - **decr_every_n_nan_or_inf** (int，可选) - 累计出现 n 个 steps 的梯度为 nan 或者 inf 时，减小 loss scaling。默认值为 2。
+    - **incr_every_n_steps** (int，可选) - 连续 n 个 steps 的梯度都是有限值时，增加 loss scaling。默认值为 2000。
+    - **decr_every_n_nan_or_inf** (int，可选) - 累计出现 n 个 steps 的梯度为 nan 或者 inf 时，减小 loss scaling。默认值为 1。
     - **use_dynamic_loss_scaling** (bool，可选) - 是否使用动态的 loss scaling。如果不使用，则使用固定的 loss scaling；如果使用，则会动态更新 loss scaling。默认值为 True。
 
 返回

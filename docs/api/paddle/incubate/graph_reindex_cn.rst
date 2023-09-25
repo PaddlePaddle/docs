@@ -1,4 +1,4 @@
-.. _cn_api_incubate_graph_reindex:
+.. _cn_api_paddle_incubate_graph_reindex:
 
 graph_reindex
 -------------------------------

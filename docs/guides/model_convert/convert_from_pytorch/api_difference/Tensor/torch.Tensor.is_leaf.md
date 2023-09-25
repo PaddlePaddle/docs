@@ -6,7 +6,7 @@
 torch.Tensor.is_leaf
 ```
 
-### [paddle.Tensor.is_leaf](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#is-leaf)
+### [paddle.Tensor.is_leaf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#is-leaf)
 
 ```python
 paddle.Tensor.is_leaf

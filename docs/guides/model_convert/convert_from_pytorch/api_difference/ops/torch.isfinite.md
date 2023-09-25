@@ -5,14 +5,14 @@
 torch.isfinite(input)
 ```
 
-### [paddle.isfinite](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/isfinite_cn.html#isfinite)
+### [paddle.isfinite](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isfinite_cn.html#isfinite)
 
 ```python
 paddle.isfinite(x,
                 name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

@@ -1,4 +1,4 @@
-.. _cn_api_distributed_get_world_size:
+.. _cn_api_paddle_distributed_get_world_size:
 
 get_world_size
 ----------------

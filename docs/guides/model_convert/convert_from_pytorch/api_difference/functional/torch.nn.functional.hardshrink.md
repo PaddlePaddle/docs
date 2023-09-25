@@ -7,7 +7,7 @@ torch.nn.functional.hardshrink(input,
                                lambd=0.5)
 ```
 
-### [paddle.nn.functional.hardshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/hardshrink_cn.html)
+### [paddle.nn.functional.hardshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/hardshrink_cn.html)
 
 ```python
 paddle.nn.functional.hardshrink(x,

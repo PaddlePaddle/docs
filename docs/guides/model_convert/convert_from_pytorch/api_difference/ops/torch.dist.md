@@ -7,7 +7,7 @@ torch.dist(input,
            p=2)
 ```
 
-### [paddle.dist](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/dist_cn.html#dist)
+### [paddle.dist](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/dist_cn.html#dist)
 
 ```python
 paddle.dist(x,
@@ -15,7 +15,7 @@ paddle.dist(x,
             p=2)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

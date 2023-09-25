@@ -1,4 +1,4 @@
-.. _cn_api_incubate_nn_functional_fused_ec_moe:
+.. _cn_api_paddle_incubate_nn_functional_fused_ec_moe:
 
 fused_ec_moe
 -------------------------------

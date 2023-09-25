@@ -1,4 +1,4 @@
-.. _cn_api_nn_initializer_Constant:
+.. _cn_api_paddle_nn_initializer_Constant:
 
 Constant
 -------------------------------
@@ -13,7 +13,7 @@ Constant
 参数
 ::::::::::::
 
- - **value** (float16|float32，可选) - 用于初始化输入变量的值，默认值为 0。
+ - **value** (float16|float32，可选) - 用于初始化输入变量的值，默认值为 0.0。
 
 返回
 ::::::::::::

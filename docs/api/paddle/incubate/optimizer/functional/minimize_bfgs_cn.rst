@@ -1,4 +1,4 @@
-.. _cn_api_incubate_optimizer_functional_minimize_bfgs:
+.. _cn_api_paddle_incubate_optimizer_functional_minimize_bfgs:
 
 minimize_bfgs
 -------------------------------
@@ -23,7 +23,7 @@ BFGS 具体原理参考书籍 Jorge Nocedal, Stephen J. Wright, Numerical Optimi
 :::::::::
 - minimize_bfgs 优化器当前实现为函数形式，与 Paddle 现有 SGD、Adam 优化器等使用略微有些区别。
   SGD/Adam 等通过调用 backward()计算梯度，并使用 step()更新网络参数。 而 minimize_bfgs 传入
-  loss 函数，并返回优化后参数，返回参数需要通过 :ref:`cn_api_paddle_tensor_creation_assign` 以 inpalce 方式进行更新。具体参考代码示例 1.
+  loss 函数，并返回优化后参数，返回参数需要通过 :ref:`cn_api_paddle_assign` 以 inpalce 方式进行更新。具体参考代码示例 1.
 - 由于当前实现上一些限制，当前 minimize_bfgs 要求函数输入为一维 Tensor。当输入参数维度超过一维，
   可以先将参数展平，使用 minimize_bfgs 计算后，再 reshape 到原有形状，更新参数。具体参考代码示例 2.
 
@@ -64,61 +64,9 @@ BFGS 具体原理参考书籍 Jorge Nocedal, Stephen J. Wright, Numerical Optimi
 代码示例 1
 ::::::::::
 
-..  code-block:: python
-
-    import paddle
-
-
-    # 随机模拟一批输入数据
-    inputs = paddle.normal(shape=(100, 1))
-    labels = inputs * 2.0
-
-    # 定义 loss 函数
-    def loss(w):
-        y = w * inputs
-        return paddle.nn.functional.square_error_cost(y, labels).mean()
-
-    # 初始化权重参数
-    w = paddle.normal(shape=(1,))
-
-    # 调用 bfgs 方法求解使得 loss 最小的权重，并更新参数
-    for epoch in range(0, 10):
-        # 调用 bfgs 方法优化 loss，注意返回的第三个参数表示权重
-        w_update= paddle.incubate.optimizer.functional.minimize_bfgs(loss, w)[2]
-        # 使用 paddle.assign，以 inplace 方式更新参数
-        paddle.assign(w_update, w)
-
+COPY-FROM: paddle.incubate.optimizer.functional.minimize_bfgs:code-example1
 
 代码示例 2
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-
-    def flatten(x):
-        return x.flatten()
-
-
-    def unflatten(x):
-        return x.reshape((2,2))
-
-
-    # 假设网络参数超过一维
-    def net(x):
-        assert len(x.shape) > 1
-        return x.square().mean()
-
-
-    # 待优化函数
-    def bfgs_f(flatten_x):
-        return net(unflatten(flatten_x))
-
-
-    x = paddle.rand([2,2])
-    for i in range(0, 10):
-        # 使用 minimize_bfgs 前，先将 x 展平
-        x_update = paddle.incubate.optimizer.functional.minimize_bfgs(bfgs_f, flatten(x))[2]
-        # 将 x_update unflatten，然后更新参数
-        paddle.assign(unflatten(x_update), x)
+COPY-FROM: paddle.incubate.optimizer.functional.minimize_bfgs:code-example2

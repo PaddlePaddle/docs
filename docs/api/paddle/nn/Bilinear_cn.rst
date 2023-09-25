@@ -1,4 +1,4 @@
-.. _cn_api_nn_Bilinear:
+.. _cn_api_paddle_nn_Bilinear:
 
 Bilinear
 -------------------------------
@@ -30,7 +30,7 @@ Bilinear
   - **in2_features** (int)：每个 **x2** 元素的维度。
   - **out_features** (int)：输出 Tensor 的维度。
   - **weight_attr** (ParamAttr，可选)：指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。
-  - **bias_attr** (ParamAttr，可选)：指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性，此时 bias 的元素会被初始化成 0。如果设置成 False，则不会有 bias 加到 output 结果上。
+  - **bias_attr** (ParamAttr|bool，可选)：指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性，此时 bias 的元素会被初始化成 0。如果设置成 False，则不会有 bias 加到 output 结果上。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 属性

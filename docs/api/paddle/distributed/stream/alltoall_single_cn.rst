@@ -1,4 +1,4 @@
-.. _cn_api_distributed_stream_alltoall_single:
+.. _cn_api_paddle_distributed_stream_alltoall_single:
 
 alltoall_single
 -------------------------------
@@ -8,7 +8,7 @@ alltoall_single
 
 将一个 tensor 分发到每个进程，随后在每个进程上聚合分发结果。与 ``alltoall`` 相比，可以更精细地控制分发过程。
 
-参见 :ref:`paddle.distributed.alltoall_single<cn_api_distributed_alltoall_single>`。
+参见 :ref:`paddle.distributed.alltoall_single<cn_api_paddle_distributed_alltoall_single>`。
 
 .. note::
   该 API 只支持动态图模式。

@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_conv3d_transpose:
+.. _cn_api_paddle_static_nn_conv3d_transpose:
 
 conv3d_transpose
 -------------------------------
@@ -100,8 +100,8 @@ conv3d_transpose
   - **stride** (int|tuple，可选) - 步长 stride 大小。滤波器和输入进行卷积计算时滑动的步长。如果 stride 是一个元组，那么元组的形式为(stride_depth，stride_height，stride_width)。否则，stride_depth = stride_height = stride_width = stride。默认：stride = 1。
   - **dilation** (int|tuple，可选) - 膨胀比例 dilation 大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据 `可视化效果图 <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_ 较好理解。如果膨胀比例 dilation 是一个元组，那么元组的形式为(dilation_depth，dilation_height， dilation_width)。否则，dilation_depth = dilation_height = dilation_width = dilation。默认：dilation= 1。
   - **groups** (int，可选) - 三维转置卷积层的组数。从 Alex Krizhevsky 的 CNN Deep 论文中的群卷积中受到启发，当 group=2 时，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认：group = 1。
-  - **param_attr** (ParamAttr，可选)：指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。conv3d_transpose 算子默认的权重初始化是 Xavier。
-  - **bias_attr** （ParamAttr|False，可选）- 指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。conv3d_transpose 算子默认的偏置初始化是 0.0。
+  - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。conv3d_transpose 算子默认的权重初始化是 Xavier。
+  - **bias_attr** (ParamAttr|False，可选) - 指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。conv3d_transpose 算子默认的偏置初始化是 0.0。
   - **use_cudnn** (bool，可选) - 是否使用 cudnn 内核，只有已安装 cudnn 库时才有效。默认：True。
   - **act** (str，可选) -  激活函数类型，如果设置为 None，则不使用激活函数。默认：None。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

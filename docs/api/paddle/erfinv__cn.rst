@@ -1,11 +1,11 @@
-.. _cn_api_paddle_tensor_erfinv_:
+.. _cn_api_paddle_erfinv_:
 
 erfinv\_
 -------------------------------
 
 .. py:function:: paddle.erfinv_(x)
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_erfinv` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_erfinv` API，对输入 `x` 采用 Inplace 策略。
 
 更多关于 inplace 操作的介绍请参考 `3.1.3 原位（Inplace）操作和非原位操作的区别`_ 了解详情。
 

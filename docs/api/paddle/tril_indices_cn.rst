@@ -1,4 +1,4 @@
-.. _cn_api_tensor_tril_indices:
+.. _cn_api_paddle_tril_indices:
 
 tril_indices
 --------------------------------
