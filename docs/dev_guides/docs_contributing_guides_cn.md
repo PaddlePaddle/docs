@@ -50,8 +50,6 @@ pre-commit 测试是 CI 流水线中测试的一部分，不满足钩子的 PR �
 ➜  pre-commit install
 ```
 
-Paddle 使用 `clang-format` 来调整 C/C++ 源代码格式，请确保 `clang-format` 版本在 13 以上。
-
 **注**：通过 `pip install pre-commit` 和 `conda install -c conda-forge pre-commit` 安装的 pre-commit 稍有不同，Paddle 开发人员使用的是 `pip install pre-commit`。
 
 ## 二、正式修改文档
