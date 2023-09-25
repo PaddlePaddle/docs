@@ -1,4 +1,4 @@
-.. _cn_api_fluid_CUDAPlace:
+.. _cn_api_paddle_CUDAPlace:
 
 CUDAPlace
 -------------------------------
@@ -9,7 +9,7 @@ CUDAPlace
 
 
 
-``CUDAPlace`` 是一个设备描述符，表示一个分配或将要分配 ``Tensor`` 或 ``LoDTensor`` 的 GPU 设备。
+``CUDAPlace`` 是一个设备描述符，表示一个分配或将要分配 ``Tensor`` 的 GPU 设备。
 每个 ``CUDAPlace`` 有一个 ``dev_id`` （设备 id）来表明当前的 ``CUDAPlace`` 所代表的显卡编号，编号从 0 开始。
 ``dev_id`` 不同的 ``CUDAPlace`` 所对应的内存不可相互访问。
 这里编号指的是可见显卡的逻辑编号，而不是显卡实际的编号。
@@ -19,7 +19,7 @@ CUDAPlace
 参数
 ::::::::::::
 
-  - **id** (int，可选) - GPU 的设备 ID。如果为 ``None``，则默认会使用 id 为 0 的设备。默认值为 ``None``。
+  - **id** (int) - GPU 的设备 ID。
 
 代码示例
 ::::::::::::

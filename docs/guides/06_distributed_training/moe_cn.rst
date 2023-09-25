@@ -60,7 +60,7 @@ MoE
 
     class ExpertLayer(Layer):
         def __init__(self, d_model, d_hidden, name=None):
-            super(ExpertLayer, self).__init__()
+            super().__init__()
             self.htoh4 = Linear(d_model, d_hidden)
             self.h4toh = Linear(d_hidden, d_model)
 
@@ -96,7 +96,7 @@ MoE
 
     class Model(Layer):
     def __init__(self, d_model, d_hidden, name=None):
-        super(Model, self).__init__()
+        super().__init__()
         self.linear1 = Linear(d_model, d_model)
         self.moe_layer = MoELayer(d_model = d_model,
                                 experts=experts_list,

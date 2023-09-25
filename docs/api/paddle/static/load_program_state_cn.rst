@@ -1,11 +1,11 @@
-.. _cn_api_fluid_io_load_program_state:
+.. _cn_api_paddle_static_load_program_state:
 
 load_program_state
 -------------------------------
 
 .. py:function:: paddle.static.load_program_state(model_path, var_list=None)
 
-该接口从本地加载 ``Program`` 的参数和优化器的 Tensor 信息到内存中。
+从本地加载 ``Program`` 的参数和优化器的 Tensor 信息到内存中。
 
 参数
 ::::::::::::

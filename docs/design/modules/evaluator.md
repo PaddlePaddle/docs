@@ -20,7 +20,7 @@ Each metric operator needs to caculate the metric statistic and return the batch
 
 
 ```python
-class Evaluator(object):
+class Evaluator:
     """
     Evaluator Base class.
     """

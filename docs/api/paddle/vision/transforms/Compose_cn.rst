@@ -1,4 +1,4 @@
-.. _cn_api_vision_transforms_Compose:
+.. _cn_api_paddle_vision_transforms_Compose:
 
 Compose
 -------------------------------
@@ -10,7 +10,7 @@ Compose
 参数
 :::::::::
 
-    - transforms (list) - 用于组合的数据预处理接口实例列表。
+    - **transforms** (list|tuple) - 用于组合的数据预处理接口实例列表。
 
 返回
 :::::::::

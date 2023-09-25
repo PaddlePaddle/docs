@@ -1,4 +1,4 @@
-.. _cn_api_paddle_optimizer_lr_scheduler_PolynomialDecay:
+.. _cn_api_paddle_optimizer_lr_PolynomialDecay:
 
 PolynomialDecay
 -------------------------------

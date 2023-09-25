@@ -1,29 +1,29 @@
-.. _cn_api_nn_functional_dropout:
+.. _cn_api_paddle_nn_functional_dropout:
 
 dropout
 -------------------------------
 
-.. py:function:: paddle.nn.functional.dropout(x, p=0.5, axis=None, training=True, mode="upscale_in_train”, name=None)
+.. py:function:: paddle.nn.functional.dropout(x, p=0.5, axis=None, training=True, mode="upscale_in_train", name=None)
 
-Dropout 是一种正则化手段，该算子根据给定的丢弃概率 `p`，在训练过程中随机将一些神经元输出设置为 0，通过阻止神经元节点间的相关性来减少过拟合。
+Dropout 是一种正则化手段，可根据给定的丢弃概率 `p`，在训练过程中随机将一些神经元输出设置为 0，通过阻止神经元节点间的相关性来减少过拟合。
 
 参数
 :::::::::
- - **x** (Tensor)：输入的多维 `Tensor`，数据类型为：float32、float64。
- - **p** (float)：将输入节点置 0 的概率，即丢弃概率。默认：0.5。
- - **axis** (int|list)：指定对输入 `Tensor` 进行 dropout 操作的轴。默认：None。
- - **training** (bool)：标记是否为训练阶段。默认：True。
- - **mode** (str)：丢弃单元的方式，有两种'upscale_in_train'和'downscale_in_infer'，默认：'upscale_in_train'。计算方法如下：
+ - **x** (Tensor) - 输入的多维 `Tensor`，数据类型为：float16、float32、float64。
+ - **p** (float，可选) - 将输入节点置 0 的概率，即丢弃概率。默认值为 0.5。
+ - **axis** (int|list，可选) - 指定对输入 `Tensor` 进行 dropout 操作的轴。默认值为 None。
+ - **training** (bool，可选) - 标记是否为训练阶段。默认值为 True。
+ - **mode** (str，可选) - 丢弃单元的方式，有 'upscale_in_train' 和 'downscale_in_infer' 两种可供选择，默认值为 'upscale_in_train'。计算方法如下：
 
-    1. upscale_in_train，在训练时增大输出结果。
+    1. upscale_in_train（默认值），在训练时增大输出结果。
 
-       - train: out = input * mask / ( 1.0 - p )
-       - inference: out = input
+       - 训练时： :math:`out = input \times \frac{mask}{(1.0 - p)}`
+       - 预测时： :math:`out = input`
 
     2. downscale_in_infer，在预测时减小输出结果
 
-       - train: out = input * mask
-       - inference: out = input * (1.0 - p)
+       - 训练时： :math:`out = input \times mask`
+       - 预测时： :math:`out = input \times (1.0 - p)`
 
  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
@@ -33,16 +33,16 @@ Dropout 是一种正则化手段，该算子根据给定的丢弃概率 `p`，�
 
 使用示例 1
 :::::::::
-axis 参数的默认值为 None。当 ``axis=None`` 时，dropout 的功能为：对输入张量 x 中的任意元素，以丢弃概率 p 随机将一些元素输出置 0。这是我们最常见的 dropout 用法。
+axis 参数的默认值为 None。当 ``axis=None`` 时，dropout 的功能为：对输入 Tensor x 中的任意元素，以丢弃概率 p 随机将一些元素输出置 0。这是我们最常见的 dropout 用法。
 
  -  下面以一个示例来解释它的实现逻辑，同时展示其它参数的含义。
 
 ..  code-block:: text
 
-   假定 x 是形状为 2*3 的 2 维张量：
+   假定 x 是形状为 2*3 的 2 维 Tensor：
    [[1 2 3]
     [4 5 6]]
-   在对 x 做 dropout 时，程序会先生成一个和 x 相同形状的 mask 张量，mask 中每个元素的值为 0 或 1。
+   在对 x 做 dropout 时，程序会先生成一个和 x 相同形状的 mask Tensor，mask 中每个元素的值为 0 或 1。
    每个元素的具体值，则是依据丢弃概率从伯努利分布中随机采样得到。
    比如，我们可能得到下面这样一个 2*3 的 mask:
    [[0 1 0]
@@ -68,12 +68,12 @@ axis 参数的默认值为 None。当 ``axis=None`` 时，dropout 的功能为�
 :::::::::
 若参数 axis 不为 None，dropout 的功能为：以一定的概率从图像特征或语音序列中丢弃掉整个通道。
 
- -  axis 应设置为：``[0,1,...,ndim(x)-1]`` 的子集（ndim(x)为输入 x 的维度），例如：
+ -  axis 应设置为：``[0, 1, ... , ndim(x)-1]`` 的子集（ndim(x) 为输入 x 的维度），例如：
 
    - 若 x 的维度为 2，参数 axis 可能的取值有 4 种：``None``, ``[0]``, ``[1]``, ``[0,1]``
    - 若 x 的维度为 3，参数 axis 可能的取值有 8 种：``None``, ``[0]``, ``[1]``, ``[2]``, ``[0,1]``, ``[0,2]``, ``[1,2]``, ``[0,1,2]``
 
- -  下面以维度为 2 的输入张量展示 axis 参数的用法：
+ -  下面以维度为 2 的输入 Tensor 展示 axis 参数的用法：
 
 ..  code-block:: text
 
@@ -103,12 +103,14 @@ axis 参数的默认值为 None。当 ``axis=None`` 时，dropout 的功能为�
       [4 0 6]]
    (3) 若 ``axis=[0, 1]``，则表示在第 0 维和第 1 维上做 dropout。此时与默认设置 ``axis=None`` 的作用一致。
 
-若输入 x 为 4 维张量，形状为 `NCHW`，当设置 ``axis=[0,1]`` 时，则只会在通道 `N` 和 `C` 上做 dropout，通道 `H` 和 `W` 的元素是绑定在一起的，即：``paddle.nn.functional.dropout(x, p, axis=[0,1])``，此时对 4 维张量中的某个 2 维特征图(形状 `HW` )，或者全部置 0，或者全部保留，这便是 dropout2d 的实现。详情参考 :ref:`cn_api_nn_functional_dropout2d` 。
+若输入 x 为 4 维 Tensor，形状为 `NCHW`，其中 N 是批尺寸，C 是通道数，H 是特征高度，W 是特征宽度，当设置 ``axis=[0,1]`` 时，则只会在通道 `N` 和 `C` 上做 dropout，通道 `H` 和 `W` 的元素是绑定在一起的，即：``paddle.nn.functional.dropout(x, p, axis=[0,1])``，此时对 4 维 Tensor 中的某个 2 维特征图（形状为 `HW`），或者全部置 0，或者全部保留，这便是 dropout2d 的实现。详情参考 :ref:`cn_api_paddle_nn_functional_dropout2d` 。
 
-类似的，若输入 x 为 5 维张量，形状为 `NCDHW`，当设置 ``axis=[0,1]`` 时，便可实现 dropout3d。详情参考 :ref:`cn_api_nn_functional_dropout3d` 。
+类似的，若输入 x 为 5 维 Tensor，形状为 `NCDHW`，其中 D 是特征深度，当设置 ``axis=[0,1]`` 时，便可实现 dropout3d。详情参考 :ref:`cn_api_paddle_nn_functional_dropout3d` 。
 
 .. note::
-   关于广播(broadcasting)机制，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
+   关于广播 (broadcasting) 机制，如您想了解更多，请参见 `Tensor 介绍`_ .
+
+   .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
 代码示例
 :::::::::

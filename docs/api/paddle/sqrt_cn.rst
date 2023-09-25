@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_sqrt:
+.. _cn_api_paddle_sqrt:
 
 sqrt
 -------------------------------

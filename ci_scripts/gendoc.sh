@@ -10,6 +10,8 @@ OUTPUTFORMAT=${OUTPUTFORMAT:=html}
 DOCROOT=${FLUIDDOCDIR}/docs/
 APIROOT=${DOCROOT}/api/
 
+export DOCROOT
+
 
 # install paddle if not installed yet.
 # PADDLE_WHL is defined in ci_start.sh

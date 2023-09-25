@@ -1,4 +1,4 @@
-.. _cn_api_fluid_xpu_places:
+.. _cn_api_paddle_static_xpu_places:
 
 xpu_places
 -------------------------------

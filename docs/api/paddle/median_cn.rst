@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_median:
+.. _cn_api_paddle_median:
 
 median
 -------------------------------

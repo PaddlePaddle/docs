@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_put_along_axis:
+.. _cn_api_paddle_put_along_axis:
 
 put_along_axis
 -------------------------------
@@ -18,7 +18,7 @@ put_along_axis
 返回
 :::::::::
 
-- **out** (Tensor) - 输出 Tensor，indeces 矩阵选定的下标会被插入 value，与 ``arr`` 数据类型相同。
+输出 Tensor，indeces 矩阵选定的下标会被插入 value，与 ``arr`` 数据类型相同。
 
 代码示例
 :::::::::

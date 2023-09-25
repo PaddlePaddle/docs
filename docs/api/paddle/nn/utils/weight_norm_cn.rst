@@ -1,11 +1,11 @@
-.. _cn_api_nn_cn_weight_norm:
+.. _cn_api_paddle_nn_utils_weight_norm:
 
 weight_norm
 -------------------------------
 
 .. py:function:: paddle.nn.utils.weight_norm(layer, name='weight', dim=0)
 
-该接口根据以下公式对传入的 ``layer`` 中的权重参数进行归一化：
+根据以下公式对传入的 ``layer`` 中的权重参数进行归一化：
 
 .. math::
     \mathbf{w} = g \dfrac{v}{\|v\|}
@@ -22,7 +22,7 @@ weight_norm
 返回
 ::::::::::::
 
-   ``Layer``，添加了权重归一化 hook 的层
+   ``Layer``，添加了权重归一化 hook 的层。
 
 代码示例
 ::::::::::::

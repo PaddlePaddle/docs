@@ -1,4 +1,4 @@
-.. _cn_api_tensor_random_rand:
+.. _cn_api_paddle_rand:
 
 rand
 ----------------------
@@ -9,7 +9,7 @@ rand
 
 参数
 ::::::::::
-    - **shape** (list|tuple|Tensor) - 生成的随机 Tensor 的形状。如果 ``shape`` 是 list、tuple，则其中的元素可以是 int，或者是形状为[1]且数据类型为 int32、int64 的 Tensor。如果 ``shape`` 是 Tensor，则是数据类型为 int32、int64 的 1-D Tensor。
+    - **shape** (list|tuple|Tensor) - 生成的随机 Tensor 的形状。如果 ``shape`` 是 list、tuple，则其中的元素可以是 int，或者是形状为[]且数据类型为 int32、int64 的 0-D Tensor。如果 ``shape`` 是 Tensor，则是数据类型为 int32、int64 的 1-D Tensor。
     - **dtype** (str|np.dtype，可选) - 输出 Tensor 的数据类型，支持 float32、float64。当该参数值为 None 时，输出 Tensor 的数据类型为 float32。默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

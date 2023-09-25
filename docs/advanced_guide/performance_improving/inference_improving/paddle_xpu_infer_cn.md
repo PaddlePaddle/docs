@@ -73,11 +73,11 @@ def main():
     predictor = create_predictor(config)
 
     input_names = predictor.get_input_names()
-    input_hanlde = predictor.get_input_handle(input_names[0])
+    input_handle = predictor.get_input_handle(input_names[0])
 
     fake_input = np.ones((args.batch_size, 3, 224, 224)).astype("float32")
-    input_hanlde.reshape([args.batch_size, 3, 224, 224])
-    input_hanlde.copy_from_cpu(fake_input)
+    input_handle.reshape([args.batch_size, 3, 224, 224])
+    input_handle.copy_from_cpu(fake_input)
 
     for i in range(args.warmup):
       predictor.run()

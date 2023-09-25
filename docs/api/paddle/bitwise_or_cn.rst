@@ -1,4 +1,4 @@
-.. _cn_api_tensor_bitwise_or:
+.. _cn_api_paddle_bitwise_or:
 
 bitwise_or
 -------------------------------
@@ -11,7 +11,9 @@ bitwise_or
        Out = X | Y
 
 .. note::
-    ``paddle.bitwise_or`` 遵守 broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
+    ``paddle.bitwise_or`` 遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
+
+    .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
 参数
 ::::::::::::

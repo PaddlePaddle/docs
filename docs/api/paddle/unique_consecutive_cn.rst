@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_unique_consecutive:
+.. _cn_api_paddle_unique_consecutive:
 
 unique_consecutive
 -------------------------------

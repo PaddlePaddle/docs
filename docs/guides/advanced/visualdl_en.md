@@ -111,7 +111,6 @@ sudo apt-get install python3-pip python3-dev python-virtualenv
 
 Then create a Virtualenv environment by one of following command:
 ```
-virtualenv ~/vdl  # for Python2.7
 virtualenv -p python3 ~/vdl for Python 3.x
 ```
 

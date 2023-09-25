@@ -5,13 +5,13 @@ binary_cross_entropy_with_logits
 
 .. py:function:: paddle.nn.functional.binary_cross_entropy_with_logits(logit, label, weight=None, reduction='mean', pos_weight=None, name=None)
 
-该 OP 用于计算输入 `logit` 和标签 `label` 间的 `binary cross entropy with logits loss` 损失。
+计算输入 `logit` 和标签 `label` 间的 `binary cross entropy with logits loss` 损失。
 
-该 OP 结合了 `sigmoid` 操作和 :ref:`api_nn_loss_BCELoss` 操作。同时，我们也可以认为该 OP 是 ``sigmoid_cross_entrop_with_logits`` 和一些 `reduce` 操作的组合。
+结合了 `sigmoid` 操作和 :ref:`api_nn_loss_BCELoss` 操作。同时，我们也可以认为这是 ``sigmoid_cross_entrop_with_logits`` 和一些 `reduce` 操作的组合。
 
-在每个类别独立的分类任务中，该 OP 可以计算按元素的概率误差。可以将其视为预测数据点的标签，其中标签不是互斥的。例如，一篇新闻文章可以同时关于政治，科技，体育或者同时不包含这些内容。
+在每个类别独立的分类任务中，可以用于计算按元素的概率误差。可以将其视为预测数据点的标签，其中标签不是互斥的。例如，一篇新闻文章可以同时关于政治，科技，体育或者同时不包含这些内容。
 
-首先，该 OP 可通过下式计算损失函数：
+首先，可通过以下公式计算损失函数：
 
 .. math::
     Out = -Labels * \log(\sigma(Logit)) - (1 - Labels) * \log(1 - \sigma(Logit))
@@ -26,11 +26,11 @@ binary_cross_entropy_with_logits
 .. math::
     Out = \max(Logit, 0) - Logit * Labels + \log(1 + e^{-\|Logit\|})
 
-然后，当 ``weight`` or ``pos_weight`` 不为 None 的时候，该算子会在输出 Out 上乘以相应的权重。张量 ``weight`` 给 Batch 中的每一条数据赋予不同权重，张量 ``pos_weight`` 给每一类的正例添加相应的权重。
+然后，当 ``weight`` 或 ``pos_weight`` 不为 None 的时候，将会在输出 Out 上乘以相应的权重。Tensor ``weight`` 给 Batch 中的每一条数据赋予不同权重，Tensor ``pos_weight`` 给每一类的正例添加相应的权重。
 
-最后，该算子会添加 `reduce` 操作到前面的输出 Out 上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，返回输出的均值 :math:`Out = MEAN(Out)`。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
+最后，将会添加 `reduce` 操作到前面的输出 Out 上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，返回输出的均值 :math:`Out = MEAN(Out)`。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
 
-**注意：因为是二分类任务，所以标签值应该是 0 或者 1。
+**注意：**因为是二分类任务，所以标签值应该是 0 或者 1。
 
 参数
 :::::::::
@@ -43,7 +43,7 @@ binary_cross_entropy_with_logits
 
 返回
 :::::::::
-    - Tensor，输出的 Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]`，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[1]` 。
+    - Tensor，输出的 Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]`，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[]` 。
 
 代码示例
 :::::::::

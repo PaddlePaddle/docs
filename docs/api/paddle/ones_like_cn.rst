@@ -1,4 +1,4 @@
-.. _cn_api_tensor_ones_like:
+.. _cn_api_paddle_ones_like:
 
 ones_like
 -------------------------------

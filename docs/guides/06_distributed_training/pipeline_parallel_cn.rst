@@ -103,7 +103,7 @@
 .. code-block:: python
     class ReshapeHelp(Layer):
         def __init__(self, shape):
-            super(ReshapeHelp, self).__init__()
+            super().__init__()
             self.shape = shape
 
         def forward(self, x):
@@ -139,7 +139,7 @@
                     ReshapeHelp, shape=[-1, 256]),
                 LayerDesc(nn.Linear, 256, self.num_classes),  # classifier
             ]
-            super(AlexNetPipeDesc, self).__init__(
+            super().__init__(
                 layers=decs, loss_fn=nn.CrossEntropyLoss(), **kwargs)
 
 然后初始化分布式环境，这一步主要是构建流水线通信组的拓扑
@@ -193,7 +193,7 @@ fleet.distributed_optimizer(...)：这一步则是为优化器添加分布式属
 
     class ReshapeHelp(Layer):
         def __init__(self, shape):
-            super(ReshapeHelp, self).__init__()
+            super().__init__()
             self.shape = shape
 
         def forward(self, x):
@@ -229,7 +229,7 @@ fleet.distributed_optimizer(...)：这一步则是为优化器添加分布式属
                     ReshapeHelp, shape=[-1, 256]),
                 LayerDesc(nn.Linear, 256, self.num_classes),  # classifier
             ]
-            super(AlexNetPipeDesc, self).__init__(
+            super().__init__(
                 layers=decs, loss_fn=nn.CrossEntropyLoss(), **kwargs)
 
     model = AlexNetPipeDesc(num_stages=pipeline_parallel_size, topology=hcg._topo)
@@ -261,7 +261,7 @@ model.train_batch(...)：这一步主要就是执行 1F1B 的流水线并行方�
   export CUDA_VISIBLE_DEVICES=0,1
   python -m paddle.distributed.launch alexnet_dygraph_pipeline.py # alexnet_dygraph_pipeline.py 是用户运行动态图流水线的 python 文件
 
-基于 AlexNet 的完整的流水线并行动态图代码：`alex <https://github.com/PaddlePaddle/FleetX/tree/old_develop/examples/pipeline>`_。
+基于 AlexNet 的完整的流水线并行动态图代码：`alex <https://github.com/PaddlePaddle/PaddleFleetX/tree/old_develop/examples/pipeline>`_。
 
 控制台输出信息如下：
 

@@ -1,4 +1,4 @@
-.. _cn_api_linalg_lu:
+.. _cn_api_paddle_linalg_lu:
 
 lu
 -------------------------------
@@ -35,9 +35,9 @@ LU 和 pivot 可以通过调用 paddle.linalg.lu_unpack 展开获得 L、U、P �
 返回
 ::::::::::::
 
-    - Tensor LU, LU 分解结果矩阵 LU，由 L、U 拼接组成。
-    - Tensor(dtype=int) Pivots，旋转矩阵对应的旋转序列，详情见说明部分 pivot 部分，对于输入[*,m,n]的 x，Pivots shape 为[*, m]。
-    - Tensor(dtype=int) Infos，矩阵分解状态信息矩阵，对于输入[*,m,n]，Infos shape 为[*]。每个元素表示每组矩阵的 LU 分解是否成功，0 表示分解成功。
+    - Tensor ``LU``, LU 分解结果矩阵 LU，由 L、U 拼接组成。
+    - Tensor(dtype=int) ``Pivots``，旋转矩阵对应的旋转序列，详情见说明部分 pivot 部分，对于输入 ``[*, m, n]`` 的 ``x``，Pivots shape 为 ``[*, m]``。
+    - Tensor(dtype=int) ``Infos``，矩阵分解状态信息矩阵，对于输入 ``[*, m, n]``，Infos shape 为 ``[*]``。每个元素表示每组矩阵的 LU 分解是否成功，0 表示分解成功。
 
 代码示例
 ::::::::::

@@ -1,4 +1,4 @@
-.. _cn_api_incubate_graph_send_recv:
+.. _cn_api_paddle_incubate_graph_send_recv:
 
 graph_send_recv
 -------------------------------
@@ -29,11 +29,11 @@ graph_send_recv
 
 参数
 :::::::::
-    - x (Tensor) - 输入的 Tensor，数据类型为：float32、float64、int32、int64。
-    - src_index (Tensor) - 1-D Tensor，数据类型为：int32、int64。
-    - dst_index (Tensor) - 1-D Tensor，数据类型为：int32、int64。注意：``dst_index`` 的形状应当与 ``src_index`` 一致。
-    - pool_type (str) - scatter 结果的不同处理方式，包括 sum、mean、max、min。默认值为 sum。
-    - out_size (int64，可选) - 可以通过根据实际需求设置 ``out_size`` 来改变实际输出形状。默认值为 None，表示这个参数将不会被使用。注意，``out_size`` 的值必须等于或大于 ``max(dst_index) + 1`` 。
+    - **x** (Tensor) - 输入的 Tensor，数据类型为：float32、float64、int32、int64。
+    - **src_index** (Tensor) - 1-D Tensor，数据类型为：int32、int64。
+    - **dst_index** (Tensor) - 1-D Tensor，数据类型为：int32、int64。注意：``dst_index`` 的形状应当与 ``src_index`` 一致。
+    - **pool_type** (str) - scatter 结果的不同处理方式，包括 sum、mean、max、min。默认值为 sum。
+    - **out_size** (int64，可选) - 可以通过根据实际需求设置 ``out_size`` 来改变实际输出形状。默认值为 None，表示这个参数将不会被使用。注意，``out_size`` 的值必须等于或大于 ``max(dst_index) + 1`` 。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

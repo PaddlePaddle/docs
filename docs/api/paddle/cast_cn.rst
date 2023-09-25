@@ -1,9 +1,9 @@
-.. _cn_api_fluid_layers_cast:
+.. _cn_api_paddle_cast:
 
 cast
 -------------------------------
 
-.. py:function:: paddle.cast(x,dtype)
+.. py:function:: paddle.cast(x, dtype)
 
 
 

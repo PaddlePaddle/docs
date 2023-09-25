@@ -87,7 +87,7 @@ function install_paddle() {
 }
 
 function build_paddle() {
-    git clone --depth=1 https://github.com/PaddlePaddle/Paddle.git
+    git clone --depth=200 https://github.com/PaddlePaddle/Paddle.git
     mkdir Paddle/build
     cd Paddle/build
 
@@ -104,10 +104,21 @@ function find_all_cn_api_files_modified_by_pr() {
     if [ $? -ne 0 ] ; then
         remotename=origin
     fi
-    local need_check_cn_doc_files=`git diff --numstat ${remotename}/${BRANCH} | awk '{print $NF}' | grep "docs/api/paddle/.*_cn.rst" | sed 's#docs/##g'` 
+    local need_check_cn_doc_files=`git diff --name-only --diff-filter=ACMR ${remotename}/${BRANCH} | grep "docs/api/paddle/.*_cn.rst" | sed 's#docs/##g'` 
     if [[ "$__resultvar" ]] ; then
         eval $__resultvar="$need_check_cn_doc_files"
     else
         echo "$need_check_cn_doc_files"
     fi
+}
+
+function find_all_api_py_files_modified_by_pr() {
+    local remotename=upstream
+    git remote | grep ${remotename} > /dev/null
+    if [ $? -ne 0 ] ; then
+        remotename=origin
+    fi
+    
+    local need_check_api_py_files=`git diff --name-only --diff-filter=ACMR ${remotename}/${BRANCH} | grep "python/paddle/.*.py" | sed 's#docs/##g'` 
+    echo "$need_check_api_py_files"
 }

@@ -1,4 +1,4 @@
-.. _cn_api_device_cuda_synchronize:
+.. _cn_api_paddle_device_cuda_synchronize:
 
 synchronize
 -------------------------------

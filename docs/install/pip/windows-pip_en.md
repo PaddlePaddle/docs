@@ -37,7 +37,7 @@
 
 * The installation package provided by default requires computer support for MKL
 * NCCL, distribution are not supported on windows now
-
+* If you are in a WSL2 environment, it is recommended to install using Paddle according to the Linux method
 
 
 ## INSTALLATION
@@ -118,7 +118,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 Note：
 
-* If you are using ampere-based GPU, CUDA 11.2 is recommended; otherwise CUDA 10.2 is recommended for better performance.
+* If you are using ampere-based GPU, CUDA 11.2 is recommended; otherwise CUDA 10.2 is recommended for better performance. please refer to: [GPU architecture comparison table](https://www.paddlepaddle.org.cn/documentation/docs/en/install/Tables.html#nvidia-gpu)
 
 * Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with specific Python path.
 

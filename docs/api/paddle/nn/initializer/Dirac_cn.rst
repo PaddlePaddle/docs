@@ -1,4 +1,4 @@
-.. _cn_api_nn_initializer_Dirac:
+.. _cn_api_paddle_nn_initializer_Dirac:
 
 Dirac
 -------------------------------
@@ -21,7 +21,7 @@ Dirac
 
 参数
 :::::::::
-    - groups (int，可选) - 将参数在 0 维上进行等分为 `groups` 份，每一份执行相同的初始化。默认：1。
+    - **groups** (int，可选) - 将参数在 0 维上进行等分为 `groups` 份，每一份执行相同的初始化。默认：1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

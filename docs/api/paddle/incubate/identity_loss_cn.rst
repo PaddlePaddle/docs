@@ -1,4 +1,4 @@
-.. _cn_api_incubate_identity_loss:
+.. _cn_api_paddle_incubate_identity_loss:
 
 identity_loss
 -------------------------------
@@ -23,7 +23,7 @@ identity_loss
 参数
 ::::::::::::
 
-    - **x** (Variable) - 输入张量。维度为[N, \*]的多维 Tensor，其中 N 是批大小，\*表示任何数量的附加维度。数据类型在 CPU 上为 float32 或 float64，在 IPU 上为 float16 或 float32。
+    - **x** (Variable) - 输入 Tensor。维度为[N, \*]的多维 Tensor，其中 N 是批大小，\*表示任何数量的附加维度。数据类型在 CPU 上为 float32 或 float64，在 IPU 上为 float16 或 float32。
     - **reduction** (str|int，可选) - 指定应用于输出结果的计算方式，可选的 string 值有: ``'sum'``, ``'mean'``, ``'none'`` ，对应的 int 值分别为 0，1，2 。默认为 ``'none'``，直接返回输入 loss 的值。
 
 返回

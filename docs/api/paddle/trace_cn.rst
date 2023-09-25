@@ -1,4 +1,4 @@
-.. _cn_api_tensor_trace:
+.. _cn_api_paddle_trace:
 
 trace
 -------------------------------

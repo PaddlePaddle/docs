@@ -1,11 +1,11 @@
-.. _cn_api_tensor_bincount:
+.. _cn_api_paddle_bincount:
 
 bincount
 -------------------------------
 
-.. py:function:: paddle.bincount(x, weights=None, minlength=0, name=None):
+.. py:function:: paddle.bincount(x, weights=None, minlength=0, name=None)
 
-统计输入张量中每个元素出现的次数，如果传入 weights 张量则每次计数加一时会乘以 weights 张量对应的值
+统计输入 Tensor 中每个元素出现的次数，如果传入 weights Tensor 则每次计数加一时会乘以 weights Tensor 对应的值。
 
 参数
 ::::::::::::
@@ -19,7 +19,7 @@ bincount
 ::::::::::::
 Tensor，维度为 1。
 
-代码示例：
+代码示例
 ::::::::::::
 
 COPY-FROM: paddle.bincount

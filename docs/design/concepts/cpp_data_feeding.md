@@ -163,7 +163,7 @@ while_op(not_completed) {
     } else {
         reset_op(double_buffer_reader)
         increase_op(pass_count)
-        not_completed = less_than_op(pass_count, reqiured_pass_num)
+        not_completed = less_than_op(pass_count, required_pass_num)
     }
 }
 ```

@@ -1,4 +1,4 @@
-.. _cn_api_incubate_segment_max:
+.. _cn_api_paddle_incubate_segment_max:
 
 segment_max
 -------------------------------
@@ -20,8 +20,8 @@ segment_max
 
 参数
 :::::::::
-    - **data** (Tensor) - 张量，数据类型为 float32、float64。
-    - **segment_ids** (Tensor) - 一维张量，与输入数据`data`的第一维大小相同，表示`data`分段位置，单调非减。合法的数据类型为 int32、int64。
+    - **data** (Tensor) - Tensor，数据类型为 float32、float64。
+    - **segment_ids** (Tensor) - 一维 Tensor，与输入数据`data`的第一维大小相同，表示`data`分段位置，单调非减。合法的数据类型为 int32、int64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

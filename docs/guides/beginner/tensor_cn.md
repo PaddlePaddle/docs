@@ -68,7 +68,7 @@ weight:  Tensor(shape=[1], dtype=float32, place=Place(gpu:0), stop_gradient=Fals
 
 与 Numpy 创建数组方式类似，通过给定 Python 序列（如列表 list、元组 tuple），可使用 [paddle.to_tensor](../../../api/paddle/to_tensor_cn.html) 创建任意维度的 Tensor。示例如下：
 
-（1）创建类似向量（vector）的 1 维 Tensor：
+2.1.1 创建类似向量（vector）的 1 维 Tensor：
 ```python
 import paddle # 后面的示例代码默认已导入 paddle 模块
 ndim_1_Tensor = paddle.to_tensor([2.0, 3.0, 4.0])
@@ -90,7 +90,7 @@ paddle.to_tensor([2])
 Tensor(shape=[1], dtype=int64, place=Place(gpu:0), stop_gradient=True,
        [2])
 ```
-（2）创建类似矩阵（matrix）的 2 维 Tensor：
+2.1.2 创建类似矩阵（matrix）的 2 维 Tensor：
 ```python
 ndim_2_Tensor = paddle.to_tensor([[1.0, 2.0, 3.0],
                                   [4.0, 5.0, 6.0]])
@@ -101,7 +101,7 @@ Tensor(shape=[2, 3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
        [[1., 2., 3.],
         [4., 5., 6.]])
 ```
-（3）创建 3 维 Tensor：
+2.1.3 创建 3 维 Tensor：
 ```python
 ndim_3_Tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
                                    [6, 7, 8, 9, 10]],
@@ -132,7 +132,7 @@ ndim_2_Tensor = paddle.to_tensor([[1.0, 2.0],
 
 ```text
 ValueError:
-        Faild to convert input data to a regular ndarray :
+        Failed to convert input data to a regular ndarray :
          - Usually this means the input data contains nested lists with different lengths.
 ```
 > **说明：**
@@ -158,10 +158,10 @@ Tensor(shape=[2, 3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
 
 ### <span id="newtensor3">2.3 指定区间创建</span>
 
-如果要在指定区间内创建 Tensor，可以使用[paddle.arrange](../../../api/paddle/arrange_cn.html)、 [paddle.linspace](../../../api/paddle/linspace_cn.html)  实现。
+如果要在指定区间内创建 Tensor，可以使用[paddle.arange](../../../api/paddle/arange_cn.html)、 [paddle.linspace](../../../api/paddle/linspace_cn.html)  实现。
 ```python
 paddle.arange(start, end, step)  # 创建以步长 step 均匀分隔区间[start, end)的 Tensor
-paddle.linspace(start, end, num) # 创建以元素个数 num 均匀分隔区间[start, end)的 Tensor
+paddle.linspace(start, stop, num) # 创建以元素个数 num 均匀分隔区间[start, stop)的 Tensor
 ```
 示例如下：
 
@@ -255,7 +255,7 @@ Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
 
 ### 3.1 Tensor 的形状（shape）
 
-**（1）形状的介绍**
+**3.1.1 形状的介绍**
 
 形状是  Tensor 的一个重要的基础属性，可以通过  [Tensor.shape](../../../api/paddle/Tensor_cn.html#shape) 查看一个 Tensor 的形状，以下为相关概念：
 
@@ -287,7 +287,7 @@ Shape of Tensor: [2, 3, 4, 5]
 Elements number along axis 0 of Tensor: 2
 Elements number along the last axis of Tensor: 5
 ```
-**（2）重置 Tensor 形状（Reshape） 的方法**
+**3.1.2 重置 Tensor 形状（Reshape） 的方法**
 
 重新设置 Tensor 的 shape 在深度学习任务中比较常见，如一些计算类 API 会对输入数据有特定的形状要求，这时可通过 [paddle.reshape](../../../api/paddle/reshape_cn.html) 接口来改变 Tensor 的 shape，但并不改变 Tensor 的 size 和其中的元素数据。
 
@@ -310,12 +310,13 @@ After reshape: [1, 3]
  * `0` 表示该维度的元素数量与原值相同，因此 shape 中 0 的索引值必须小于 Tensor 的维度（索引值从 0 开始计，如第 1 维的索引值是 0，第二维的索引值是 1）。
 
 通过几个例子来详细了解：
+
 ```text
 origin:[3, 2, 5] reshape:[3, 10]      actual: [3, 10] # 直接指定目标 shape
 origin:[3, 2, 5] reshape:[-1]         actual: [30] # 转换为 1 维，维度根据元素总数推断出来是 3*2*5=30
 origin:[3, 2, 5] reshape:[-1, 5]      actual: [6, 5] # 转换为 2 维，固定一个维度 5，另一个维度根据元素总数推断出来是 30÷5=6
-origin:[3, 2, 5] reshape:[0, -1]         actual: [3, 6] # reshape:[0, -1]中 0 的索引值为 0，按照规则，转换后第 0 维的元素数量与原始 Tensor 第 0 维的元素数量相同，为 3；第 1 维的元素数量根据元素总值计算得出为 30÷3=10。
-origin:[3, 2] reshape:[3, 1, 0]          error： # reshape:[3, 1, 0]中 0 的索引值为 2，但原 Tensor 只有 2 维，无法找到与第 3 维对应的元素数量，因此出错。
+origin:[3, 2, 5] reshape:[0, -1]      actual: [3, 10] # reshape:[0, -1]中 0 的索引值为 0，按照规则，转换后第 0 维的元素数量与原始 Tensor 第 0 维的元素数量相同，为 3；第 1 维的元素数量根据元素总值计算得出为 30÷3=10。
+origin:[3, 2]    reshape:[3, 1, 0]    error： # reshape:[3, 1, 0]中 0 的索引值为 2，但原 Tensor 只有 2 维，无法找到与第 3 维对应的元素数量，因此出错。
 ```
 
 从上面的例子可以看到，通过 reshape:[-1] ，可以很方便地将 Tensor 按其在计算机上的内存分布展平为一维。
@@ -331,9 +332,9 @@ Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 1
 >  * [paddle.squeeze](../../../api/paddle/squeeze_cn.html)，可实现 Tensor 的降维操作，即把 Tensor 中尺寸为 1 的维度删除。
 >  * [paddle.unsqueeze](../../../api/paddle/unsqueeze_cn.html)，可实现 Tensor 的升维操作，即向 Tensor 中某个位置插入尺寸为 1 的维度。
 >  * [paddle.flatten](../../../api/paddle/flatten_cn.html)，将 Tensor 的数据在指定的连续维度上展平。
->  * [transpose](../../../api/paddle/transpose_cn.html)，对 Tensor 的数据进行重排。
+>  * [paddle.transpose](../../../api/paddle/transpose_cn.html)，对 Tensor 的数据进行重排。
 
-**（3）原位（Inplace）操作和非原位操作的区别**
+**3.1.3 原位（Inplace）操作和非原位操作的区别**
 
 飞桨框架的 API 有原位（Inplace）操作和非原位操作之分，原位操作即在原 Tensor 上保存操作结果，输出 Tensor 将与输入 Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。非原位操作则不会修改原 Tensor，而是返回一个新的 Tensor。通过 API 名称区分两者，如 [paddle.reshape](../../../api/paddle/reshape_cn.html) 是非原位操作，[paddle.reshape_](../../../api/paddle/reshape__cn.html) 是原位操作。
 
@@ -353,7 +354,7 @@ same_tensor name:  generated_tensor_0 # 原位操作后产生的 Tensor 与原�
 ```
 
 ### 3.2 Tensor 的数据类型（dtype）
-**（1）指定数据类型的介绍**
+**3.2.1 指定数据类型的介绍**
 
 Tensor 的数据类型 dtype 可以通过  [Tensor.dtype](../../../api/paddle/Tensor_cn.html#dtype) 查看，支持类型包括：`bool`、`float16`、`float32`、`float64`、`uint8`、`int8`、`int16`、`int32`、`int64`、`complex64`、`complex128`。
 
@@ -390,7 +391,7 @@ Tensor(shape=[2, 2], dtype=complex64, place=Place(gpu:0), stop_gradient=True,
        [[(1+1j), (2+2j)],
         [(3+3j), (4+4j)]])
 ```
-**（2）修改数据类型的方法**
+**3.2.2 修改数据类型的方法**
 
 飞桨框架提供了[paddle.cast](../../../api/paddle/cast_cn.html) 接口来改变 Tensor 的 dtype：
 ```python
@@ -481,15 +482,15 @@ Tensor stop_gradient: False
 * 针对一维  Tensor，仅有单个维度上的索引或切片：
 ```python
 ndim_1_Tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
-print("Origin Tensor:", ndim_1_Tensor.numpy()) # 原始 1 维 Tensor
-print("First element:", ndim_1_Tensor[0].numpy()) # 取 Tensor 第一个元素的值？
-print("Last element:", ndim_1_Tensor[-1].numpy())
-print("All element:", ndim_1_Tensor[:].numpy())
-print("Before 3:", ndim_1_Tensor[:3].numpy())
-print("From 6 to the end:", ndim_1_Tensor[6:].numpy())
-print("From 3 to 6:", ndim_1_Tensor[3:6].numpy())
-print("Interval of 3:", ndim_1_Tensor[::3].numpy())
-print("Reverse:", ndim_1_Tensor[::-1].numpy())
+print("Origin Tensor:", ndim_1_Tensor.numpy())          # 原始 1 维 Tensor
+print("First element:", ndim_1_Tensor[0].numpy())       # 取 Tensor 第一个元素的值
+print("Last element:", ndim_1_Tensor[-1].numpy())       # 取 Tensor 最后一个元素的值
+print("All element:", ndim_1_Tensor[:].numpy())         # 取 Tensor 所有元素的值
+print("Before 3:", ndim_1_Tensor[:3].numpy())           # 取 Tensor 前三个元素的值
+print("From 6 to the end:", ndim_1_Tensor[6:].numpy())  # 取 Tensor 第六个以后的值
+print("From 3 to 6:", ndim_1_Tensor[3:6].numpy())       # 取 Tensor 第三个至第六个之间的值
+print("Interval of 3:", ndim_1_Tensor[::3].numpy())     # 取 Tensor 从第一个开始，间距为 3 的下标的值
+print("Reverse:", ndim_1_Tensor[::-1].numpy())          # 取 Tensor 翻转后的值
 ```
 ```text
 Origin Tensor: [0 1 2 3 4 5 6 7 8])
@@ -545,7 +546,7 @@ Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
 
 #### 4.1.2 修改 Tensor
 
-与访问 Tensor 类似，修改 Tensor 可以在单个或多个维度上通过索引或切片操作。同时，支持将多种类型的数据赋值给该 Tensor，当前支持的数据类型有：`int`，`float`，`numpy.ndarray`，`omplex`，`Tensor`。
+与访问 Tensor 类似，修改 Tensor 可以在单个或多个维度上通过索引或切片操作。同时，支持将多种类型的数据赋值给该 Tensor，当前支持的数据类型有：`int`，`float`，`numpy.ndarray`，`complex`，`Tensor`。
 > **注意：**
 >
 > 请慎重通过索引或切片修改 Tensor，该操作会**原地**修改该 Tensor 的数值，且原值不会被保存。如果被修改的 Tensor 参与梯度计算，仅会使用修改后的数值，这可能会给梯度计算引入风险。飞桨框架会自动检测不当的原位（inplace）使用并报错。
@@ -571,8 +572,8 @@ x[1] = paddle.ones([3])       # x : [[1., 2., 3.], [1., 1., 1.]]
 x = paddle.to_tensor([[1.1, 2.2], [3.3, 4.4]], dtype="float64")
 y = paddle.to_tensor([[5.5, 6.6], [7.7, 8.8]], dtype="float64")
 
-print(paddle.add(x, y), "\n") # 方法一
-print(x.add(y), "\n") # 方法二
+print(paddle.add(x, y), "\n") # 方法一：使用 Paddle 的 API
+print(x.add(y), "\n") # 方法二：使用 tensor 类成员函数
 ```
 
 ```text
@@ -625,14 +626,14 @@ x ** y -> x.pow(y)            #逐元素幂运算
 ### 4.3 逻辑运算
 ```python
 x.isfinite()                  #判断 Tensor 中元素是否是有限的数字，即不包括 inf 与 nan
-x.equal_all(y)                #判断两个 Tensor 的全部元素是否相等，并返回形状为[1]的布尔类 Tensor
+x.equal_all(y)                #判断两个 Tensor 的全部元素是否相等，并返回形状为[]的布尔类 0-D Tensor
 x.equal(y)                    #判断两个 Tensor 的每个元素是否相等，并返回形状相同的布尔类 Tensor
 x.not_equal(y)                #判断两个 Tensor 的每个元素是否不相等
 x.less_than(y)                #判断 Tensor x 的元素是否小于 Tensor y 的对应元素
 x.less_equal(y)               #判断 Tensor x 的元素是否小于或等于 Tensor y 的对应元素
 x.greater_than(y)             #判断 Tensor x 的元素是否大于 Tensor y 的对应元素
 x.greater_equal(y)            #判断 Tensor x 的元素是否大于或等于 Tensor y 的对应元素
-x.allclose(y)                 #判断 Tensor x 的全部元素是否与 Tensor y 的全部元素接近，并返回形状为[1]的布尔类 Tensor
+x.allclose(y)                 #判断 Tensor x 的全部元素是否与 Tensor y 的全部元素接近，并返回形状为[]的布尔类 0-D Tensor
 ```
 
 同样地，飞桨框架对 Python 逻辑比较相关的魔法函数进行了重写，以下操作与上述结果相同。
@@ -673,7 +674,7 @@ x.matmul(y)                   #矩阵乘法
 飞桨框架提供的一些 API 支持广播（broadcasting）机制，允许在一些运算时使用不同形状的 Tensor。
 飞桨 Tensor 的广播机制主要遵循如下规则（参考 [Numpy 广播机制](https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting)）：
 
-* 每个 Tensor 至少为一维 Tensor
+* 每个 Tensor 至少为一维 Tensor。
 * 从最后一个维度向前开始比较两个 Tensor 的形状，需要满足如下条件才能进行广播：两个 Tensor 的维度大小相等；或者其中一个 Tensor 的维度等于 1；或者其中一个 Tensor 的维度不存在。
 
 举例如下：
@@ -710,7 +711,7 @@ y = paddle.ones((2, 3, 6))
 # ValueError: (InvalidArgument) Broadcast dimension mismatch.
 ```
 
-在了解两个 Tensor 在什么情况下可以广播的规则后，两个 Tensor 进行广播语义后的结果 Tensor 的形状计算规则如下：
+在了解两个 Tensor 在什么情况下可以广播的规则后，两个 Tensor 进行广播后的结果 Tensor 的形状计算规则如下：
 
 * 如果两个 Tensor 的形状的长度不一致，会在较小长度的形状矩阵前部添加 1，直到两个 Tensor 的形状长度相等。
 * 保证两个 Tensor 形状相等之后，每个维度上的结果维度就是当前维度上的较大值。

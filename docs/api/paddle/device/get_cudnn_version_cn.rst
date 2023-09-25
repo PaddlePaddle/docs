@@ -1,4 +1,4 @@
-.. _cn_api_get_cudnn_version:
+.. _cn_api_paddle_device_get_cudnn_version:
 
 get_cudnn_version
 -------------------------------

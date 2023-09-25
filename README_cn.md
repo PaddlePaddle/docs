@@ -1,6 +1,6 @@
 # PaddlePaddle docs
 
-[English](./README.md) | 简体中文
+[English](./README.md) | 简体中文 | [日本語](./README_ja.md)
 
 docs 是 [PaddlePaddle 官网文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html) 的源文件。
 
@@ -30,7 +30,7 @@ docs 是 [PaddlePaddle 官网文档](https://www.paddlepaddle.org.cn/documentati
     bash docs-build.sh -f absolute_path_docs
     ```
   - step3: preview docs
-  输出的文件会保存在 docs/output 路径下.
+  输出的文件会保存在 docs/output 路径下。
 
 ## 贡献
 

@@ -1,4 +1,4 @@
-.. _cn_api_tensor_not_equal:
+.. _cn_api_paddle_not_equal:
 
 not_equal
 -------------------------------

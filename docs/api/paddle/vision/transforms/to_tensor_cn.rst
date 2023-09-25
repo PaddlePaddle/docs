@@ -1,4 +1,4 @@
-.. _cn_api_vision_transforms_to_tensor:
+.. _cn_api_paddle_vision_transforms_to_tensor:
 
 to_tensor
 -------------------------------
@@ -17,8 +17,8 @@ to_tensor
 参数
 :::::::::
 
-    - pic (PIL.Image|numpy.ndarray) - 输入的图像数据。
-    - data_format (str，可选)：返回的张量的格式，必须为 'HWC' 或 'CHW'。默认值：'CHW'。
+    - **pic** (PIL.Image|numpy.ndarray) - 输入的图像数据。
+    - **data_format** (str，可选) - 返回的 Tensor 的格式，必须为 'HWC' 或 'CHW'。默认值：'CHW'。
 
 返回
 :::::::::
