@@ -65,9 +65,23 @@
 
 请在 **[活动页面](https://aistudio.baidu.com/competition/detail/1073/0/introduction)** 完成报名信息提交，并在 issue 下**按格式**回复报名信息。
 
+**报名格式参考：**
+
+```
+【报名】：1
+【AI Studio uid】：(请填写最终用于提交项目的AI Studio账号UID)
+```
+
 **(2) 项目开发**
 
 开发者以个人或组队的形式参加，基于文心大模型能力完成开发，**在作品提交截止日之前提交可运行的 AI Studio 项目（需公开发布并在活动 issue 下回复项目链接）**。欢迎单支队伍提交多个应用，最终以综合成绩最高的应用作为队伍的最终成绩。鼓励队伍对项目进行外部宣传，但严禁任何数据作弊行为，存在数据异常的队伍将被立即取消资格。
+
+**提交格式参考：**
+
+```
+【提交】：1
+【作品链接】：https://aistudio.baidu.com/projectdetail/1234567
+```
 
 **(3) 答辩评审**
 
@@ -79,7 +93,7 @@
 
 #### 2.2 活动日程
 
-<img src="https://github.com/PaddlePaddle/docs/blob/release/2.5/docs/guides/10_contribution/img/2_timeline.png?raw=text" width = "400" alt="活动日程"/>
+<img src="https://github.com/PaddlePaddle/docs/blob/release/2.5/docs/guides/10_contribution/img/2_timeline.png?raw=text" width = "600" alt="活动日程"/>
 
 | **时间**                   | **日程**                                 |
 | -------------------------- | ---------------------------------------- |
@@ -102,7 +116,7 @@
 
 **报名格式参考：**
 
-```shell
+```
 【报名】：1
 【其他意向】：2、4、6
 不接受调剂
@@ -179,7 +193,7 @@
 
 （2）**官方交流群：请扫码添加工作人员企业微信，会拉你进群~**
 
-<img src="https://github.com/PaddlePaddle/docs/blob/release/2.5/docs/guides/10_contribution/img/QR_code.png?raw=text" width = "400" alt="加群二维码"/>
+<img src="https://github.com/PaddlePaddle/docs/blob/release/2.5/docs/guides/10_contribution/img/QR_code.png?raw=text" width = "300" alt="加群二维码"/>
 
 ### 4. 任务开发
 
