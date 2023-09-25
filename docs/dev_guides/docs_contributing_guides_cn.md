@@ -68,7 +68,7 @@ pre-commit 测试是 CI 流水线中测试的一部分，不满足钩子的 PR �
 ..  toctree::
     :hidden:
 
-    basic_usage_cn.rst
+    basic_usage_cn.md
     principle_cn.md
     grammar_list_cn.md
     case_analysis_cn.md
