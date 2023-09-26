@@ -1,4 +1,4 @@
-## [ 无参数 ] torch.Tensor.view_as
+## [ 参数完全一致 ] torch.Tensor.view_as
 
 ### [torch.Tensor.view_as](https://pytorch.org/docs/stable/generated/torch.Tensor.view_as.html)
 

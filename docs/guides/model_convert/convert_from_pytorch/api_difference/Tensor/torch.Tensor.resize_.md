@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.Tensor.resize_
+## [ torch 参数更多 ]torch.Tensor.resize_
 
 ### [torch.Tensor.resize_](https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html?highlight=resize_#torch.Tensor.resize_)
 
