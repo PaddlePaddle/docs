@@ -1,4 +1,4 @@
-## [ 无参数 ] torch.Tensor.view
+## [ 仅参数名不同 ] torch.Tensor.view
 
 ### [torch.Tensor.view](https://pytorch.org/docs/stable/generated/torch.Tensor.view.html)
 
