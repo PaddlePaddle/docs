@@ -7,7 +7,7 @@ Sequence
 Many problems in the field of deep learning involve the processing of the `sequence <https://en.wikipedia.org/wiki/Sequence>`_.
 From Wiki's definition, sequences can represent a variety of physical meanings, but in deep learning, the most common is still "time sequence" - a sequence containing information of multiple time steps.
 
-In Paddle Fluid, we represent the sequence as :ref:`api_fluid_LoDTensor`.
+In Paddle Fluid, we represent the sequence as ``LoDTensor``.
 Because the general neural network performs computing batch by batch, we use a LoDTensor to store a mini batch of sequences.
 The 0th dimension of a LoDTensor contains all the time steps of all sequences in the mini batch, and LoD is used to record the length of each sequence to distinguish different sequences.
 In the calculation, it is also necessary to split the 0th dimension of a mini batch in the LoDTensor into a number of sequences according to the LoD information. (Please refer to the LoD related documents for details. )
