@@ -14,7 +14,7 @@ load_inference_model
 参数
 ::::::::::::
 
-  - **path_prefix** (str) – 模型的存储目录 + 模型名称（不包含后缀）。如果是 None，表示从内存加载模型。
+  - **path_prefix** (str|None) – 模型的存储目录 + 模型名称（不包含后缀）。如果是 None，表示从内存加载模型。
   - **executor** (Executor) – 运行模型的 ``executor``，详见 :ref:`api_guide_executor` 。
   - **kwargs** - 支持的 key 包括 'model_filename', 'params_filename'。(注意：kwargs 主要是用来做反向兼容的)。
 

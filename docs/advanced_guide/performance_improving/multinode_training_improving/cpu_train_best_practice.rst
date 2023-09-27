@@ -12,7 +12,7 @@
 
 提高 CPU 使用率主要依赖 :code:`ParallelExecutor`，可以充分利用多个 CPU 的计算能力来加速计算。
 
-API 详细使用方法参考 :ref:`cn_api_fluid_ParallelExecutor` ，简单实例用法：
+简单实例用法：
 
 .. code-block:: python
 
