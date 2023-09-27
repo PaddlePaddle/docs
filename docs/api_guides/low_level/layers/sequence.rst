@@ -7,7 +7,7 @@
 在深度学习领域许多问题涉及到对 `序列（sequence） <https://en.wikipedia.org/wiki/Sequence>`_ 的处理。
 从 Wiki 上的释义可知，序列可以表征多种物理意义，但在深度学习中，最常见的仍然是"时间序列"——一个序列包含多个时间步的信息。
 
-在 Paddle Fluid 中，我们将序列表示为 :ref:`cn_api_fluid_LoDTensor` 。
+在 Paddle Fluid 中，我们将序列表示为 ``LoDTensor``。
 因为一般进行神经网络计算时都是一个 batch 一个 batch 地计算，所以我们用一个 LoDTensor 来存储一个 mini batch 的序列。
 一个 LoDTensor 的第 0 维包含该 mini batch 中所有序列的所有时间步，并且用 LoD 来记录各个序列的长度，区分不同序列。
 而在运算时，还需要根据 LoD 信息将 LoDTensor 中一个 mini batch 的第 0 维拆开成多个序列。（具体请参考上述 LoD 相关的文档。）
