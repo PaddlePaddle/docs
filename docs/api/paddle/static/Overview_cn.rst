@@ -42,9 +42,7 @@ Executor 相关 API
 
     " :ref:`BuildStrategy <cn_api_paddle_static_BuildStrategy>` ", "控制 ParallelExecutor 中计算图的建造方法"
     " :ref:`CompiledProgram <cn_api_paddle_static_CompiledProgram>` ", "转化和优化 Program 或 Graph"
-    " :ref:`ExecutionStrategy <cn_api_fluid_ExecutionStrategy>` ", "调整 Executor 执行配置"
     " :ref:`Executor <cn_api_paddle_static_Executor>` ", "执行器"
-    " :ref:`ParallelExecutor <cn_api_fluid_ParallelExecutor>` ", "支持基于数据并行的多节点模型训练和测试的执行器"
 
 .. _about_nn:
 
