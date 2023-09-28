@@ -9,7 +9,7 @@ fused_rms_norm
 
 细节可参考论文 `Root Mean Square Layer Normalization <https://arxiv.org/abs/1910.07467>`_ 。
 
-fused_rms_norm 算子目前只支持在 GPU 下运行，
+fused_rms_norm 算子目前只支持在 GPU 下运行。
 
 参数
 ::::::::::::
