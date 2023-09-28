@@ -19,8 +19,8 @@ fused_layer_norm 算子目前只支持在 GPU 下运行。
     - **epsilon** (float) - 一个小的浮点数，用于避免除以零。
     - **residual_alpha** (float) - 用于残差的缩放因子，默认为 1。
     - **begin_norm_axis** (int) - 归一化的起始轴，默认为 1。
-    - **bias** (可选|Tensor) - 前一层的偏置。
-    - **residual** (可选|Tensor) - 输入的残差。
+    - **bias** (Tensor，可选) - 前一层的偏置。
+    - **residual** (Tensor，可选) - 输入的残差。
     - **quant_scale** (float) - 量化缩放因子。
     - **quant_round_type** (float) - 量化四舍五入类型。
     - **quant_max_bound** (float) - 量化裁剪的最大边界值。
