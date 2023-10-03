@@ -366,6 +366,7 @@
 | 328 | [torch.get_default_dtype](https://pytorch.org/docs/stable/generated/torch.get_default_dtype.html#torch-get-default-dtype)                                                  |[paddle.get_default_dtype](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/get_default_dtype_cn.html#get-default-dtype)| 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.get_default_dtype.md)|
 | 329 | [torch.is_grad_enabled](https://pytorch.org/docs/stable/generated/torch.is_grad_enabled.html?highlight=torch+is_grad_enabled#torch.is_grad_enabled)                        |[paddle.is_grad_enabled](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/is_grad_enabled_cn.html#is-grad-enabled)|无参数, [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.is_grad_enabled.md)|
 | 330 | [torch.manual_seed](https://pytorch.org/docs/stable/generated/torch.manual_seed.html#torch-manual-seed)                                                                    |[paddle.seed](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/seed_cn.html)| 参数完全一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.manual_seed.md)|
+| 331 | [torch.float_power](https://pytorch.org/docs/1.13/generated/torch.float_power.html?highlight=float_power#torch.float_power)| | 功能缺失 |
 
 ***持续更新...***
 
