@@ -3065,3 +3065,14 @@ unfold(x, axis, size, step, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_unfold`
+
+signbit(x, name=None)
+:::::::::
+
+返回 x 的判断值掩码 Tensor，若存在符号位，则输出 True，否则输出 False。
+
+返回：判断值掩码 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_signbit`
