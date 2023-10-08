@@ -244,7 +244,7 @@ tensor 创建相关
     " :ref:`paddle.zeros <cn_api_paddle_zeros>` ", "创建形状为 shape 、数据类型为 dtype 且值全为 0 的 Tensor"
     " :ref:`paddle.zeros_like <cn_api_paddle_zeros_like>` ", "返回一个和 x 具有相同的形状的全零 Tensor，数据类型为 dtype 或者和 x 相同"
     " :ref:`paddle.complex <cn_api_paddle_complex>` ", "给定实部和虚部，返回一个复数 Tensor"
-    " :ref:`paddle.create_parameter <cn_api_fluid_layers_create_parameter>` ", "创建一个参数,该参数是一个可学习的变量, 拥有梯度并且可优化"
+    " :ref:`paddle.create_parameter <cn_api_paddle_create_parameter>` ", "创建一个参数,该参数是一个可学习的变量, 拥有梯度并且可优化"
     " :ref:`paddle.clone <cn_api_paddle_clone>` ", "对输入 Tensor ``x`` 进行拷贝，并返回一个新的 Tensor，并且该操作提供梯度回传"
     " :ref:`paddle.batch <cn_api_paddle_batch>` ", "一个 reader 的装饰器。返回的 reader 将输入 reader 的数据打包成指定的 batch_size 大小的批处理数据（不推荐使用）"
     " :ref:`paddle.polar <cn_api_paddle_polar>`", "对于给定的模 ``abs`` 和相位角 ``angle``，返回一个对应复平面上的坐标复数 Tensor"

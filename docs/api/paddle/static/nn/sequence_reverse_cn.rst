@@ -9,7 +9,7 @@ sequence_reverse
 .. note::
 该 API 仅支持带有 LoD 信息的 Tensor。
 
-输入的 Tensor，在每个序列（sequence）上进行反转。目前仅支持对 LoD 层次(LoD level)为 1 的 Tensor 进行反转。该 OP 在构建反向 :ref:`cn_api_fluid_layers_DynamicRNN` 网络时十分有用。
+输入的 Tensor，在每个序列（sequence）上进行反转。目前仅支持对 LoD 层次(LoD level)为 1 的 Tensor 进行反转。该 OP 在构建反向 :ref:`cn_api_paddle_nn_RNN` 网络时十分有用。
 
 ::
 
