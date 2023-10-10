@@ -17,4 +17,10 @@ reset_excluded_layers
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.incubate.amp.reset_excluded_layers
+1. 动态图模式
+
+COPY-FROM: paddle.incubate.amp.reset_excluded_layers:dynamic_graph
+
+2. 静态图模式
+
+COPY-FROM: paddle.incubate.amp.reset_excluded_layers:static_graph
