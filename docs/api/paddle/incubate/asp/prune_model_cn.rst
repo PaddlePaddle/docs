@@ -1,9 +1,9 @@
-.. _cn_api_paddle_incubate_amp_prune_model:
+.. _cn_api_paddle_incubate_asp_prune_model:
 
 prune_model
 -------------------------------
 
-.. py:function:: paddle.incubate.amp.prune_model(model, n=2, m=4, mask_algo='mask_1d', with_mask=True)
+.. py:function:: paddle.incubate.asp.prune_model(model, n=2, m=4, mask_algo='mask_1d', with_mask=True)
 
 
 使用 mask_algo 指定的掩码生成函数修剪 model 中支持 ASP 的子层参数。使用 with_mask 来控制模型训练和推理，如果 with_mask 是 True ，还有修剪参数相关的 ASP 掩码变量，如果是 False，仅仅裁剪参数。
@@ -19,7 +19,7 @@ prune_model
 - **n** (int, optional) - n:m 稀疏中的 n
 - **m** (int, optional) - n:m 稀疏中的 m
 - **mask_algo** (string, optional) - 生成掩码的函数名。默认值为 mask_1d。有效输入应为 mask_1d ， mask_2d_greedy 和 mask_2d_best 之一。
-- **with_mask** (bool, optional) - 选择是否裁剪参数相关的 AMP 掩码变量，True 是要裁剪，False 就是不裁剪。默认是 True。
+- **with_mask** (bool, optional) - 选择是否裁剪参数相关的 ASP 掩码变量，True 是要裁剪，False 就是不裁剪。默认是 True。
 
 返回
 :::::::::
@@ -31,8 +31,8 @@ prune_model
 
 1. 动态图模式
 
-COPY-FROM: paddle.incubate.amp.prune_model:dynamic_graph
+COPY-FROM: paddle.incubate.asp.prune_model:dynamic_graph
 
 2. 静态图模式
 
-COPY-FROM: paddle.incubate.amp.prune_model:static_graph
+COPY-FROM: paddle.incubate.asp.prune_model:static_graph
