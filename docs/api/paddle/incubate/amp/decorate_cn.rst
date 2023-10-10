@@ -22,4 +22,10 @@ decorate
 代码示例
 :::::::::
 
-COPY-FROM paddle.incubate.amp.decorate
+1. 动态图模式
+
+COPY-FROM: paddle.incubate.amp.decorate:code-example1
+
+2. 静态图模式
+
+COPY-FROM: paddle.incubate.amp.decorate:code-example2
