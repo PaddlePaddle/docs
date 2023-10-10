@@ -24,8 +24,8 @@ decorate
 
 1. 动态图模式
 
-COPY-FROM: paddle.incubate.amp.decorate:code-example1
+COPY-FROM: paddle.incubate.amp.decorate:dynamic_graph
 
 2. 静态图模式
 
-COPY-FROM: paddle.incubate.amp.decorate:code-example2
+COPY-FROM: paddle.incubate.amp.decorate:static_graph

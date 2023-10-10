@@ -31,8 +31,8 @@ prune_model
 
 1. 动态图模式
 
-COPY-FROM: paddle.incubate.amp.prune_model:code-example1
+COPY-FROM: paddle.incubate.amp.prune_model:dynamic_graph
 
 2. 静态图模式
 
-COPY-FROM: paddle.incubate.amp.prune_model:code-example2
+COPY-FROM: paddle.incubate.amp.prune_model:static_graph
