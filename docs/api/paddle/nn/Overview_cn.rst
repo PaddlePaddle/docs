@@ -474,7 +474,7 @@ Embedding 相关函数
 
     " :ref:`paddle.nn.functional.binary_cross_entropy <cn_api_paddle_nn_functional_binary_cross_entropy>` ", "二值交叉熵损失值"
     " :ref:`paddle.nn.functional.binary_cross_entropy_with_logits <cn_api_paddle_nn_functional_binary_cross_entropy_with_logits>` ", "logits 二值交叉熵损失值"
-    " :ref:`paddle.nn.functional.cosine_embedding_loss <cn_paddle_paddle_nn_functional_cosine_embedding_loss>` ", "用于计算余弦相似度损失"
+    " :ref:`paddle.nn.functional.cosine_embedding_loss <cn_api_paddle_nn_functional_cosine_embedding_loss>` ", "用于计算余弦相似度损失"
     " :ref:`paddle.nn.functional.ctc_loss <cn_api_paddle_nn_functional_ctc_loss>` ", "用于计算 ctc 损失"
     " :ref:`paddle.nn.functional.dice_loss <cn_api_paddle_nn_functional_dice_loss>` ", "用于比较预测结果跟标签之间的相似度"
     " :ref:`paddle.nn.functional.hsigmoid_loss <cn_api_paddle_nn_functional_hsigmoid_loss>` ", "层次 sigmoid 损失函数"
