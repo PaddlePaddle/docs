@@ -1,9 +1,9 @@
-.. _cn_api_paddle_incubate_amp_set_excluded_layers:
+.. _cn_api_paddle_incubate_asp_set_excluded_layers:
 
 set_excluded_layers
 -------------------------------
 
-.. py:function:: paddle.incubate.amp.set_excluded_layers(param_names, main_program=None)
+.. py:function:: paddle.incubate.asp.set_excluded_layers(param_names, main_program=None)
 
 
 设置不会被修剪为稀疏权重的 layer 的参数名称。
@@ -19,8 +19,8 @@ set_excluded_layers
 
 1. 动态图模式
 
-COPY-FROM: paddle.incubate.amp.set_excluded_layers:dynamic_graph
+COPY-FROM: paddle.incubate.asp.set_excluded_layers:dynamic_graph
 
 2. 静态图模式
 
-COPY-FROM: paddle.incubate.amp.set_excluded_layers:static_graph
+COPY-FROM: paddle.incubate.asp.set_excluded_layers:static_graph
