@@ -249,7 +249,7 @@ Loss 层
 
     " :ref:`paddle.nn.BCELoss <cn_api_paddle_nn_BCELoss>` ", "BCELoss 层"
     " :ref:`paddle.nn.BCEWithLogitsLoss <cn_api_paddle_nn_BCEWithLogitsLoss>` ", "BCEWithLogitsLoss 层"
-    " :ref:`paddle.nn.CosineEmbeddingLoss <cn_api_paddle_nn_loss_CosineEmbeddingLoss>` ", "CosineEmbeddingLoss 层"
+    " :ref:`paddle.nn.CosineEmbeddingLoss <cn_api_paddle_nn_CosineEmbeddingLoss>` ", "CosineEmbeddingLoss 层"
     " :ref:`paddle.nn.CrossEntropyLoss <cn_api_paddle_nn_CrossEntropyLoss>` ", "交叉熵损失层"
     " :ref:`paddle.nn.CTCLoss <cn_api_paddle_nn_CTCLoss>` ", "CTCLoss 层"
     " :ref:`paddle.nn.HSigmoidLoss <cn_api_paddle_nn_HSigmoidLoss>` ", "层次 sigmoid 损失层"
