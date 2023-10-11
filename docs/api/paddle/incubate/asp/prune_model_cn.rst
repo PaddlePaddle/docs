@@ -24,7 +24,7 @@ prune_model
 返回
 :::::::::
 
-**dictionary** - 一个字典，key 是参数名称，value 是 对应的掩码变量。
+**dictionary** - 一个字典，key 是参数名称，value 是对应的掩码变量。
 
 代码示例
 :::::::::
