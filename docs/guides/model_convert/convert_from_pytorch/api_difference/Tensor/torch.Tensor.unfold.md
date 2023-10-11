@@ -1,4 +1,4 @@
-## [ 参数名不一致 ]torch.Tensor.unfold
+## [ 仅参数名不一致 ]torch.Tensor.unfold
 
 ### [torch.Tensor.unfold](https://pytorch.org/docs/stable/generated/torch.Tensor.unfold.html?highlight=unfold#torch.Tensor.unfold)
 
@@ -17,7 +17,7 @@ paddle.Tensor.unfold(axis,
                 name=None)
 ```
 
-Paddle 相比 PyTorch 支持更多其他参数，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 

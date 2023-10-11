@@ -18,11 +18,11 @@ paddle.as_strided(x,
                 name=None)
 ```
 
-两者功能一致，仅参数名不一致，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | x         | 表示输入的 Tensor 。                                     |
-| size           | shape            | 表示输出 Tensor 的维度。               |
+| size           | shape            | 表示输出 Tensor 的维度, 仅参数名不一致。               |
 | stride           | stride            | 表示输出 Tensor 的 stride。               |
 | storage_offset   | offset            | 表示偏移量    |
