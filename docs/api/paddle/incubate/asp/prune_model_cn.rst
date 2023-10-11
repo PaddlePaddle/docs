@@ -16,8 +16,8 @@ prune_model
 参数
 :::::::::
 - **model** (Program|nn.Layer) - 包含模型定义和参数的 Program ，或者 paddle.nn.Layer 对象
-- **n** (int，可选) - n:m 稀疏中的 n
-- **m** (int，可选) - n:m 稀疏中的 m
+- **n** (int，可选) - n:m 稀疏模式中的 n ，默认值为2。
+- **m** (int，可选) - n:m 稀疏模式中的 m ，默认值为4。
 - **mask_algo** (string，可选) - 生成掩码的函数名。默认值为 mask_1d。有效输入应为 mask_1d ， mask_2d_greedy 和 mask_2d_best 之一。
 - **with_mask** (bool，可选) - 选择是否裁剪参数相关的 ASP 掩码变量，True 是要裁剪，False 就是不裁剪。默认是 True。
 
