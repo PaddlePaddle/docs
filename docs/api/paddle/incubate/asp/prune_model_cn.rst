@@ -10,7 +10,7 @@ prune_model
 
 .. note::
     - 在静态图模式下，使用 `with_mask` 调用函数时，需要先调用 OptimizerWithSparsityGuarantee.minimize 和 exe.run(startup_program) 来成功获取掩码变量。通常情况下训练时（已调用 OptimizerWithSparsityGuarantee.minimize）设置 `with_mask` 为 True。而仅进行推理时，设置 `with_mask` 为 False。 获取 OptimizerWithSparsityGuarantee 请参考 :ref:`paddle.incubate.asp.decoreate <cn_api_paddle_incubate_asp_decoreate>`。
-    - 在动态图模式下，使用 with_mask 调用函数是，需要先调用 paddle.incubate.asp.decorate() 来获取掩码变量。
+    - 在动态图模式下，使用 with_mask 调用函数时，需要先调用 :ref:`paddle.incubate.asp.decoreate <cn_api_paddle_incubate_asp_decoreate>` 来获取掩码变量。
 
 
 参数
