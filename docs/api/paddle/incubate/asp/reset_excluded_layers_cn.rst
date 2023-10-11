@@ -12,7 +12,7 @@ reset_excluded_layers
 参数
 ::::::::::::
 
-- **main_program** (Program，可选) - 包含模型定义及其参数的 Program。如果给出 None，那么这个函数将重置所有 exclusion_layers。 默认为 None。
+- **main_program** (Program，可选) - 包含模型定义及其参数的 Program。如果为 None，那么这个函数将重置所有 exclusion_layers。 默认为 None。
 
 代码示例
 ::::::::::::
