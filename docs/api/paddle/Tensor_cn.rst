@@ -2031,15 +2031,6 @@ reshape_(shape, name=None)
 
 Inplace 版本的 :ref:`cn_api_paddle_reshape` API，对输入 `x` 采用 Inplace 策略
 
-flip(axis, name=None)
-:::::::::
-
-返回：计算后的 Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_paddle_flip`
-
 roll(shifts, axis=None, name=None)
 :::::::::
 
@@ -2189,15 +2180,6 @@ sinh(name=None)
 
 **代码示例**
 COPY-FROM: paddle.sinh
-
-numel()
-:::::::::
-
-返回：计算后的 Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_paddle_numel`
 
 slice(axes, starts, ends)
 :::::::::
