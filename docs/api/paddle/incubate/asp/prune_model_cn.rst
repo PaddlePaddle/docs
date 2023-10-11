@@ -15,7 +15,7 @@ prune_model
 
 参数
 :::::::::
-- **model** (Program|nn.Layer) - 带有模型定义和参数的 Program 或者 paddle.nn.Layer 对象
+- **model** (Program|nn.Layer) - 包含模型定义和参数的 Program ，或者 paddle.nn.Layer 对象
 - **n** (int，可选) - n:m 稀疏中的 n
 - **m** (int，可选) - n:m 稀疏中的 m
 - **mask_algo** (string，可选) - 生成掩码的函数名。默认值为 mask_1d。有效输入应为 mask_1d ， mask_2d_greedy 和 mask_2d_best 之一。
