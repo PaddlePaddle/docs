@@ -212,7 +212,7 @@ lod_level
 .. note::
 该属性是只读属性。
 
-此 :ref:`api_guide_Variable` 的 ``LoD`` 信息，关于 ``LoD`` 可以参考 :ref:`api_fluid_LoDTensor` 相关内容。
+此 :ref:`api_guide_Variable` 的 ``LoD`` 信息。
 
 type
 '''''''''
@@ -220,7 +220,7 @@ type
 .. note::
 该属性是只读属性。
 
-此 :ref:`api_guide_Variable` 的内存模型，例如是：:ref:`api_fluid_LoDTensor`，或者 SelectedRows。
+此 :ref:`api_guide_Variable` 的内存模型，例如是：``LoDTensor``，或者 ``SelectedRows``。
 
 ndim
 '''''''''
