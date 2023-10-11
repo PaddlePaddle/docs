@@ -9,7 +9,7 @@ prune_model
 使用 mask_algo 指定的掩码生成函数修剪 model 中支持 ASP 的子层参数。使用 with_mask 来控制模型训练和推理，如果 with_mask 是 True ，还有修剪参数相关的 ASP 掩码变量，如果是 False，仅仅裁剪参数。
 
 .. note::
-    - 在静态图模式下，使用 with_mask 调用函数时，需要先调用 OptimizerWithSparsityGuarantee.minimize 和 exe.run(startup_program) 来成功获取掩码变量。通常情况下训练时（已调用 OptimizerWithSparsityGuarantee.minimize）设置 with_mask 为 True，而 with_mask 为 False 时只能用于推理。 要获取 OptimizerWithSparsityGuarantee，请参阅 paddle.incubate.asp.decoreate()。
+    - 在静态图模式下，使用 `with_mask` 调用函数时，需要先调用 OptimizerWithSparsityGuarantee.minimize 和 exe.run(startup_program) 来成功获取掩码变量。通常情况下训练时（已调用 OptimizerWithSparsityGuarantee.minimize）设置 `with_mask` 为 True。而仅进行推理时，设置 `with_mask` 为 False。 获取 OptimizerWithSparsityGuarantee 请参考 :ref:`paddle.incubate.asp.decoreate <cn_api_paddle_incubate_asp_decoreate>`。
     - 在动态图模式下，使用 with_mask 调用函数是，需要先调用 paddle.incubate.asp.decorate() 来获取掩码变量。
 
 
