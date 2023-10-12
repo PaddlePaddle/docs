@@ -19,8 +19,8 @@ set_excluded_layers
 
 1. 动态图模式
 
-COPY-FROM: paddle.incubate.asp.set_excluded_layers:dynamic_graph
+COPY-FROM: paddle.incubate.asp.set_excluded_layers:dynamic-graph
 
 2. 静态图模式
 
-COPY-FROM: paddle.incubate.asp.set_excluded_layers:static_graph
+COPY-FROM: paddle.incubate.asp.set_excluded_layers:static-graph
