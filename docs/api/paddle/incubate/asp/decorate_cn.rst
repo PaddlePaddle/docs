@@ -24,8 +24,8 @@ decorate
 
 1. 动态图模式
 
-COPY-FROM: paddle.incubate.asp.decorate:dynamic_graph
+COPY-FROM: paddle.incubate.asp.decorate:dynamic-graph
 
 2. 静态图模式
 
-COPY-FROM: paddle.incubate.asp.decorate:static_graph
+COPY-FROM: paddle.incubate.asp.decorate:static-graph

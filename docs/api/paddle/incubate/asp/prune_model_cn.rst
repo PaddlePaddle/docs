@@ -31,8 +31,8 @@ prune_model
 
 1. 动态图模式
 
-COPY-FROM: paddle.incubate.asp.prune_model:dynamic_graph
+COPY-FROM: paddle.incubate.asp.prune_model:dynamic-graph
 
 2. 静态图模式
 
-COPY-FROM: paddle.incubate.asp.prune_model:static_graph
+COPY-FROM: paddle.incubate.asp.prune_model:static-graph
