@@ -6,7 +6,7 @@ set_excluded_layers
 .. py:function:: paddle.incubate.asp.set_excluded_layers(param_names, main_program=None)
 
 
-设置不会被修剪为稀疏权重的 layer 的参数名称。
+设置不会被裁剪为稀疏权重的 layer 的参数名称。
 
 参数
 :::::::::
