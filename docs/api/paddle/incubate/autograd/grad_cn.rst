@@ -29,4 +29,5 @@ grad
 代码示例
 :::::::::
 
-COPY-FROM: paddle.incubate.autograd.forward_grad
+
+COPY-FROM: paddle.incubate.asp.set_excluded_layers:dynamic-graph
