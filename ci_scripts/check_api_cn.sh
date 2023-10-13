@@ -1,9 +1,11 @@
 #!/bin/bash
 set -x
 
+FLUIDDOCDIR=${FLUIDDOCDIR:=/FluidDoc}
 OUTPUTDIR=${OUTPUTDIR:=/docs}
 VERSIONSTR=${VERSIONSTR:=develop}
 
+DOCROOT=${FLUIDDOCDIR}/docs/
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
 
@@ -40,3 +42,6 @@ if [ $? -ne 0 ];then
     echo "ERROR: Exist COPY-FROM has not been parsed into sample code, please check COPY-FROM in the above files"
     exit 1
 fi
+
+echo "Run API_LABEL Checking"
+python check_api_label_cn.py ${DOCROOT} $need_check_cn_doc_files
