@@ -791,7 +791,7 @@ concat(axis=0, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_concat`
+请参考 :ref:`cn_api_paddle_concat`
 
 conj(name=None)
 :::::::::
@@ -1282,7 +1282,7 @@ gather(index, axis=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_gather`
+请参考 :ref:`cn_api_paddle_gather`
 
 gather_nd(index, name=None)
 :::::::::
@@ -2031,15 +2031,6 @@ reshape_(shape, name=None)
 
 Inplace 版本的 :ref:`cn_api_paddle_reshape` API，对输入 `x` 采用 Inplace 策略
 
-reverse(axis, name=None)
-:::::::::
-
-返回：计算后的 Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_reverse`
-
 roll(shifts, axis=None, name=None)
 :::::::::
 
@@ -2190,15 +2181,6 @@ sinh(name=None)
 **代码示例**
 COPY-FROM: paddle.sinh
 
-size()
-:::::::::
-
-返回：计算后的 Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_size`
-
 slice(axes, starts, ends)
 :::::::::
 
@@ -2224,7 +2206,7 @@ split(num_or_sections, axis=0, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_split`
+请参考 :ref:`cn_api_paddle_split`
 
 vsplit(num_or_sections, name=None)
 :::::::::
@@ -2279,7 +2261,7 @@ stack(axis=0, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_stack`
+请参考 :ref:`cn_api_paddle_stack`
 
 stanh(scale_a=0.67, scale_b=1.7159, name=None)
 :::::::::
@@ -2306,7 +2288,7 @@ strided_slice(axes, starts, ends, strides)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_strided_slice`
+请参考 :ref:`cn_api_paddle_strided_slice`
 
 subtract(y, name=None)
 :::::::::
@@ -2379,7 +2361,7 @@ topk(k, axis=None, largest=True, sorted=True, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_topk`
+请参考 :ref:`cn_api_paddle_topk`
 
 trace(offset=0, axis1=0, axis2=1, name=None)
 :::::::::
@@ -2481,7 +2463,7 @@ unique(return_index=False, return_inverse=False, return_counts=False, axis=None,
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_unique`
+请参考 :ref:`cn_api_paddle_unique`
 
 unsqueeze(axis, name=None)
 :::::::::
@@ -2490,7 +2472,7 @@ unsqueeze(axis, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_unsqueeze`
+请参考 :ref:`cn_api_paddle_unsqueeze`
 
 unsqueeze_(axis, name=None)
 :::::::::
