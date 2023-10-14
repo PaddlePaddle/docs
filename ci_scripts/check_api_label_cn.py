@@ -43,8 +43,8 @@ def find_all_api_labels_in_dir(rootdir):
     all_api_labels = []
     for root, dirs, files in os.walk(rootdir + API):
         for file in files:
-            real_path = os.path.join(root, file)
-            path = real_path.removeprefix(rootdir)
+            real_path = Path(root) / file
+            path = str(real_path).removeprefix(rootdir)
             if should_test(path):
                 for label in find_api_labels_in_one_file(real_path):
                     all_api_labels.append(label)
