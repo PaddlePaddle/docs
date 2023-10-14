@@ -1,86 +1,133 @@
 import sys
 import os
 import re
+import logging
+import argparse
+from pathlib import Path
+
+logger = logging.getLogger()
+if logger.handlers:
+    # we assume the first handler is the one we want to configure
+    console = logger.handlers[0]
+else:
+    console = logging.StreamHandler()
+    logger.addHandler(console)
+console.setFormatter(
+    logging.Formatter(
+        "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s"
+    )
+)
+logger.setLevel(logging.INFO)
 
 # check file's api_label
 def check_api_label(rootdir, file):
-    real_file = rootdir + file
+    real_file = Path(rootdir) / file
     with open(real_file, 'r', encoding='utf-8') as f:
         first_line = f.readline()
-    if first_line == en_label_creater(file):
+    if first_line == generate_en_label_by_path(file):
         return True
     return False
 
 
-# path -> api_label(the fist line 's style)
-def en_label_creater(file):
-    result = re.sub("api/", "", file)
-    result = re.sub("_cn.rst", "", result)
-    result = re.sub('/', "_", result)
-    result = '.. _cn_' + result + ':'
+# path -> api_label (the first line's style)
+def generate_en_label_by_path(file):
+    result = file.removeprefix(API)
+    result = result.removesuffix('_cn.rst')
+    result = result.replace('/', '_')
+    result = f'.. _cn_{result}:'
     return result
 
 
 # traverse doc/api to append api_label in list
-def traverse_api_label(rootdir):
-    list = []
-    for root, dirs, files in os.walk(rootdir + 'api/'):
+def find_all_api_labels_in_dir(rootdir):
+    all_api_labels = []
+    for root, dirs, files in os.walk(rootdir + API):
         for file in files:
             real_path = os.path.join(root, file)
-            path = re.sub(rootdir, "", real_path)
-            if test_ornot(path):
-                for label in get_api_label_list(real_path):
-                    list.append(label)
-    return list
+            path = real_path.removeprefix(rootdir)
+            if should_test(path):
+                for label in find_api_labels_in_one_file(real_path):
+                    all_api_labels.append(label)
+    return all_api_labels
 
 
 # api_labels in a file
-def get_api_label_list(file_path):
-    list = []
+def find_api_labels_in_one_file(file_path):
+    api_labels_in_one_file = []
     with open(file_path, 'r', encoding='utf-8') as f:
         lines = f.readlines()
         for line in lines:
-            if line.startswith(".. _cn"):
-                line = re.sub(".. _", "", line)
-                line = re.sub(":", "", line)
-                list.append(line.rstrip())
-    return list
+            line = re.search(".. _([a-zA-Z_]+)", line)
+            if line:
+                api_labels_in_one_file.append(line.group(1))
+    return api_labels_in_one_file
 
 
 # api doc for checking
-def test_ornot(file):
-    if (
+def should_test(file):
+    return (
         file.endswith("_cn.rst")
         and (file not in ["Overview_cn.rst", "index_cn.rst"])
-        and file.startswith("api")
-    ):
-        return True
-    return False
+        and file.startswith(API)
+    )
 
 
 def pipline(rootdir, files):
     for file in files:
-        if test_ornot(file):
+        if should_test(file):
             if check_api_label(rootdir, file):
                 pass
             else:
                 print("error:", file)
-    list = traverse_api_label(rootdir)
+    valid_api_labels = find_all_api_labels_in_dir(rootdir)
     for file in files:
-        with open(rootdir + file, 'r', encoding='utf-8') as f:
+        with open(Path(rootdir) / file, 'r', encoding='utf-8') as f:
             pattern = f.read()
         matches = re.findall(r":ref:`([^`]+)`", pattern)
-        if matches:
-            for match in matches:
-                if match.startswith('cn'):
-                    if match not in list:
-                        print(rootdir + file, 'ref' + match, 'error')
-                else:
-                    out = re.search("<(.*?)>", match)
-                    if out and out.group(1).startswith("cn"):
-                        if out.group(1) not in list:
-                            print(rootdir + file, 'ref' + match, 'error')
+        for match in matches:
+            api_label = match
+            if api_label_match := re.math(r".+<(?P<api_label>.+?)>", api_label):
+                api_label = api_label_match.group("api_label")
+            if api_label.startwith('cn_') and api_label not in valid_api_labels:
+                logger.error(
+                    f"Found api label {api_label} in {rootdir}/{file}, but it is not a valid api label, please re-check it!"
+                )
+                sys.exit(1)
+
+
+def parse_args():
+    """
+    Parse input arguments
+    """
+    parser = argparse.ArgumentParser(description='cn api_label checking')
+    parser.add_argument(
+        'rootdir',
+        help='the dir DOCROOT',
+        type=str,
+        default='/FluidDoc/docs/',
+    )
+    parser.add_argument(
+        'apiroot',
+        type=str,
+        help='the dir APIROOT',
+        default='/FluidDoc/docs/api/',
+    )
+    parser.add_argument(
+        'need_check_cn_doc_files',
+        type=str,
+        nargs='+',
+        help='files need to check',
+        default='/FluidDoc/docs/api/',
+    )
+    if len(sys.argv) == 2:
+        parser.print_help()
+        sys.exit(1)
+
+    args = parser.parse_args()
+    return args
 
 
 if __name__ == "__main__":
-    pipline(sys.argv[1], sys.argv[2:])
+    args = parse_args()
+    API = args.apiroot.removeprefix(args.rootdir + '/')
+    pipline(args.rootdir, args.need_check_cn_doc_files)

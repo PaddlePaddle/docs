@@ -6,6 +6,8 @@ OUTPUTDIR=${OUTPUTDIR:=/docs}
 VERSIONSTR=${VERSIONSTR:=develop}
 
 DOCROOT=${FLUIDDOCDIR}/docs/
+APIROOT=${DOCROOT}/api/
+
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
 
@@ -44,4 +46,4 @@ if [ $? -ne 0 ];then
 fi
 
 echo "Run API_LABEL Checking"
-python check_api_label_cn.py ${DOCROOT} $need_check_cn_doc_files
+python check_api_label_cn.py ${DOCROOT} ${APIROOT} $need_check_cn_doc_files
