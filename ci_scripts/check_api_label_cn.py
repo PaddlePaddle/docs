@@ -24,9 +24,7 @@ def check_api_label(rootdir, file):
     real_file = Path(rootdir) / file
     with open(real_file, 'r', encoding='utf-8') as f:
         first_line = f.readline()
-    if first_line == generate_en_label_by_path(file):
-        return True
-    return False
+    return first_line == generate_en_label_by_path(file)
 
 
 # path -> api_label (the first line's style)
@@ -45,9 +43,10 @@ def find_all_api_labels_in_dir(rootdir):
         for file in files:
             real_path = Path(root) / file
             path = str(real_path).removeprefix(rootdir)
-            if should_test(path):
-                for label in find_api_labels_in_one_file(real_path):
-                    all_api_labels.append(label)
+            if not should_test(path):
+                continue
+            for label in find_api_labels_in_one_file(real_path):
+                all_api_labels.append(label)
     return all_api_labels
 
 
@@ -58,8 +57,9 @@ def find_api_labels_in_one_file(file_path):
         lines = f.readlines()
         for line in lines:
             line = re.search(".. _([a-zA-Z_]+)", line)
-            if line:
-                api_labels_in_one_file.append(line.group(1))
+            if not line:
+                continue
+            api_labels_in_one_file.append(line.group(1))
     return api_labels_in_one_file
 
 
@@ -74,11 +74,11 @@ def should_test(file):
 
 def pipline(rootdir, files):
     for file in files:
-        if should_test(file):
-            if check_api_label(rootdir, file):
-                pass
-            else:
-                print("error:", file)
+        if should_test(file) and not check_api_label(rootdir, file):
+            logger.error(
+                f"The first line in {rootdir}/{file} is not avaiable, please re-check it!"
+            )
+            sys.exit(1)
     valid_api_labels = find_all_api_labels_in_dir(rootdir)
     for file in files:
         with open(Path(rootdir) / file, 'r', encoding='utf-8') as f:
@@ -119,10 +119,6 @@ def parse_args():
         help='files need to check',
         default='/FluidDoc/docs/api/',
     )
-    if len(sys.argv) == 2:
-        parser.print_help()
-        sys.exit(1)
-
     args = parser.parse_args()
     return args
 
