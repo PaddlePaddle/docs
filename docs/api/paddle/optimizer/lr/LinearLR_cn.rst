@@ -15,7 +15,7 @@ LinearLR
     - **learning_rate** (float) - 基础学习率，用于确定初始学习率和最终学习率。
     - **total_steps** (float) - 学习率从初始学习率线性增长到最终学习率所需要的步数。
     - **start_factor** (float) - 初始学习率因子，通过 `learning_rate * start_factor` 确定。
-    - **end_factor** (float) - 最终学习率因子，通过 `learning_rate * end_factor` 确定。 
+    - **end_factor** (float) - 最终学习率因子，通过 `learning_rate * end_factor` 确定。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的 epoch 数。默认值为 -1，则为初始学习率。
     - **verbose** (bool，可选) - 如果是 ``True``，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
@@ -26,7 +26,8 @@ LinearLR
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.optimizer.lr.LinearLR
+COPY-FROM: paddle.optimizer.lr.LinearLR:code-dynamic
+COPY-FROM: paddle.optimizer.lr.LinearLR:code-static
 
 方法
 ::::::::::::
