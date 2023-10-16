@@ -67,7 +67,7 @@ accumulate()
 
 **返回**
 
-precision 值，一个标量。
+recall 值，一个标量。
 
 
 name()
