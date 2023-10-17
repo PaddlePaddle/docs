@@ -6,10 +6,10 @@
 torch.Tensor.acos_()
 ```
 
-### [paddle.acos_]()
+### [paddle.Tensor.acos_]()
 
 ```python
-paddle.acos_(x)
+paddle.Tensor.acos_()
 ```
 
 两者功能一致，无参数。

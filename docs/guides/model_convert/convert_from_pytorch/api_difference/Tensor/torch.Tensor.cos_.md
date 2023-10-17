@@ -6,10 +6,10 @@
 torch.Tensor.cos_()
 ```
 
-### [paddle.cos_]()
+### [paddle.Tensor.cos_]()
 
 ```python
-paddle.cos_(x)
+paddle.Tensor.cos_()
 ```
 
 两者功能一致，无参数。

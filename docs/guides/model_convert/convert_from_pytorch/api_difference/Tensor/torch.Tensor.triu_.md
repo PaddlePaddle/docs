@@ -6,10 +6,10 @@
 torch.Tensor.triu_(diagonal=0)
 ```
 
-### [paddle.triu_]()
+### [paddle.Tensor.triu_]()
 
 ```python
-paddle.triu_(input, diagonal=0, name=None)
+paddle.Tensor.triu_(diagonal=0)
 ```
 
 两者功能一致且参数用法一致。

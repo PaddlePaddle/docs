@@ -6,10 +6,10 @@
 torch.Tensor.arcsinh_()
 ```
 
-### [paddle.asinh_]()
+### [paddle.Tensor.asinh_]()
 
 ```python
-paddle.asinh_(x)
+paddle.Tensor.asinh_()
 ```
 
 两者功能一致，无参数。

@@ -6,10 +6,10 @@
 torch.Tensor.arctan_()
 ```
 
-### [paddle.atan_]()
+### [paddle.Tensor.atan_]()
 
 ```python
-paddle.atan_(x)
+paddle.Tensor.atan_()
 ```
 
 两者功能一致，无参数。

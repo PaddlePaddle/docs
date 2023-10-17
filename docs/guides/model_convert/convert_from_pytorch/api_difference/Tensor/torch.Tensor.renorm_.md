@@ -6,10 +6,10 @@
 torch.Tensor.renorm_(p, dim, maxnorm)
 ```
 
-### [paddle.renorm_]()
+### [paddle.Tensor.renorm_]()
 
 ```python
-paddle.renorm_(input, p, axis, max_norm)
+paddle.Tensor.renorm_(p, axis, max_norm)
 ```
 
 两者功能一致，仅参数名不一致，具体如下：

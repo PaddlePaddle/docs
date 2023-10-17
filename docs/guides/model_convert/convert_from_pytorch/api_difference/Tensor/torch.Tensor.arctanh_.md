@@ -9,7 +9,7 @@ torch.Tensor.arctanh_()
 ### [paddle.Tensor.atanh_]()
 
 ```
-paddle.Tensor.atanh_(x)
+paddle.Tensor.atanh_()
 ```
 
 两者功能一致,无参数。

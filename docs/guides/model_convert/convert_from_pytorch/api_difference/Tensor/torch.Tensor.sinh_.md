@@ -6,10 +6,10 @@
 torch.Tensor.sinh_()
 ```
 
-### [paddle.sinh_]()
+### [paddle.Tensor.sinh_]()
 
 ```python
-paddle.sinh_(x)
+paddle.Tensor.sinh_()
 ```
 
 两者功能一致，无参数。

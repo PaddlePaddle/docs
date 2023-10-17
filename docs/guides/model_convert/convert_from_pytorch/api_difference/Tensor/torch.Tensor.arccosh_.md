@@ -6,10 +6,10 @@
 torch.Tensor.arccosh_()
 ```
 
-### [paddle.acosh_]()
+### [paddle.Tensor.acosh_]()
 
 ```python
-paddle.acosh_(x)
+paddle.Tensor.acosh_()
 ```
 
 两者功能一致，无参数。

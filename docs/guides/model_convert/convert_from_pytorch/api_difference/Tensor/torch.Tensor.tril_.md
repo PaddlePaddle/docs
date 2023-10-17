@@ -6,10 +6,10 @@
 torch.Tensor.tril_(diagonal=0)
 ```
 
-### [paddle.tril_]()
+### [paddle.Tensor.tril_]()
 
 ```python
-paddle.tril_(input, diagonal=0)
+paddle.Tensor.tril_(diagonal=0)
 ```
 
 两者功能一致且参数用法一致。

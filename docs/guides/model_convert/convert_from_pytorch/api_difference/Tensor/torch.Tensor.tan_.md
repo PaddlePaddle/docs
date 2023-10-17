@@ -6,10 +6,10 @@
 torch.Tensor.tan_()
 ```
 
-### [paddle.tan_]()
+### [paddle.Tensor.tan_]()
 
 ```python
-paddle.tan_(x)
+paddle.Tensor.tan_()
 ```
 
 两者功能一致，无参数。

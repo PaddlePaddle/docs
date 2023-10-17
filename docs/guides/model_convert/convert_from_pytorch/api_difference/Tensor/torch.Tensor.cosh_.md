@@ -6,10 +6,10 @@
 torch.Tensor.cosh_()
 ```
 
-### [paddle.cosh_]()
+### [paddle.Tensor.cosh_]()
 
 ```python
-paddle.cosh_(x)
+paddle.Tensor.cosh_()
 ```
 
 两者功能一致，无参数。

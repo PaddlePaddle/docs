@@ -6,10 +6,10 @@
 torch.Tensor.abs_()
 ```
 
-### [paddle.abs_]()
+### [paddle.Tensor.abs_]()
 
 ```python
-paddle.abs_(x)
+paddle.Tensor.abs_()
 ```
 
 两者功能一致，无参数。
