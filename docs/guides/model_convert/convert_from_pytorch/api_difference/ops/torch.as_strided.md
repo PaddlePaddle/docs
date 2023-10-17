@@ -25,4 +25,4 @@ paddle.as_strided(x,
 | input          | x         | 表示输入的 Tensor 。                                     |
 | size           | shape            | 表示输出 Tensor 的维度, 仅参数名不一致。               |
 | stride           | stride            | 表示输出 Tensor 的 stride。               |
-| storage_offset   | offset            | 表示偏移量    |
+| storage_offset   | offset            | 表示偏移量, 仅参数名不一致。    |
