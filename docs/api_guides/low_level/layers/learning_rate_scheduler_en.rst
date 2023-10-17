@@ -44,3 +44,5 @@ The following content describes the APIs related to the learning rate scheduler:
 * :code:`OneCycleLR`: One cycle decay. That is, the initial learning rate first increases to maximum learning rate, and then it decreases to minimum learning rate which is much less than initial learning rate. For related API Reference please refer to :ref:`cn_api_paddle_optimizer_lr_OneCycleLR`
 
 * :code:`CyclicLR`: Cyclic decay. That is, the learning rate cycles between minimum and maximum learning rate with a constant frequency in specified a scale method. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_CyclicLR`
+
+* :code:`LinearLR`: Linear decay. That is, the learning rate will be firstly multiplied by start_factor and linearly increase to end learning rate. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_LinearLR`
