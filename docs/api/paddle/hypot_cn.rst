@@ -1,6 +1,6 @@
-.. _cn_api_paddle_i0:
+.. _cn_api_paddle_hypot:
 
-i0
+hypot
 -------------------------------
 
 .. py:function:: paddle.hypot(x, y, name=None)
@@ -9,12 +9,12 @@ i0
 `hypot` 函数对于给定直角三角形直角边 `x`, `y` 实现斜边长度求解的计算;
 
 .. math::
-    out= \sqrt{x^2 + y^2} $$
+    out= \sqrt{x^2 + y^2} 
 
 参数
 ::::::::::
-    - **x** (Tensor) – 输入Tensor，它的数据类型可以是 float32，float64, int32, int6。
-    - **x** (Tensor) – 输入 Tensor，它的数据类型可以是 float32，float64,int32, int64。
+    - **x** (Tensor) – 输入Tensor，它的数据类型可以是 float32，float64， int32， int64。
+    - **y** (Tensor) – 输入 Tensor，它的数据类型可以是 float32，float64，int32， int64。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 返回
 ::::::::::
