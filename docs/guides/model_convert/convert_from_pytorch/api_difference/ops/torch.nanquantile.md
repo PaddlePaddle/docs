@@ -30,7 +30,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 |   q   |  q  | 待计算的分位数。  |
 |  dim  | axis| 指定对 x 进行计算的轴，仅参数名不一致。 |
 |keepdim|keepdim| 是否在输出 Tensor 中保留减小的维度。|
-|interpolation|  - | 当所需分位数位于两个数据点之间时使用的插值方法，Paddle 无此参数，需要转写，Paddle 暂无转写方式。|
+|interpolation|  - | 当所需分位数位于两个数据点之间时使用的插值方法，Paddle 无此参数，Paddle 暂无转写方式。|
 |  out  |  -  | 表示输出的 Tensor，Paddle 无此参数，需要转写。    |
 
 
@@ -38,7 +38,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.nanquantile(torch.tensor([float('nan'), 1., 2., 3.]), 0.6, interpolation='linear', out=y)
+torch.nanquantile(torch.tensor([float('nan'), 1., 2., 3.]), 0.6, out=y)
 
 # Paddle 写法
 paddle.assign(paddle.nanquantile(paddle.to_tensor([float('nan'), 1., 2., 3.]), 0.6), y)
