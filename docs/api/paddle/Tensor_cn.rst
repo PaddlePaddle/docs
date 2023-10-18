@@ -231,7 +231,7 @@ stop_gradient
 :::::::::
 
 查看一个 Tensor 是否计算并传播梯度，如果 stop_gradient 为 True，则该 Tensor 不会计算梯度，并会阻绝 Autograd 的梯度传播。
-反之，则会计算梯度并传播梯度。用户自行创建的的 Tensor，默认是 True，模型参数的 stop_gradient 都为 False。
+反之，则会计算梯度并传播梯度。用户自行创建的 Tensor，默认是 True，模型参数的 stop_gradient 都为 False。
 
 **代码示例**
 
