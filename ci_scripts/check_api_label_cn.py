@@ -107,6 +107,7 @@ def parse_args():
         type=str,
         default='/FluidDoc/docs/',
     )
+
     parser.add_argument(
         'apiroot',
         type=str,
@@ -118,7 +119,7 @@ def parse_args():
         type=str,
         nargs='+',
         help='files need to check',
-        default='/FluidDoc/docs/api/',
+        default='',
     )
     args = parser.parse_args()
     return args

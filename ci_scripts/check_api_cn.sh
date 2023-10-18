@@ -45,5 +45,10 @@ if [ $? -ne 0 ];then
     exit 1
 fi
 
+if [ -z ${BRANCH} ]; then
+    BRANCH="develop"
+fi
+
+all_git_files = `git diff --name-only --diff-filter=ACMR upstream/${BRANCH} | sed 's#docs/##g'`
 echo "Run API_LABEL Checking"
-python check_api_label_cn.py ${DOCROOT} ${APIROOT} $need_check_cn_doc_files
+python check_api_label_cn.py ${DOCROOT} ${APIROOT} $all_git_files
