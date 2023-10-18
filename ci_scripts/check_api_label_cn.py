@@ -115,7 +115,7 @@ def parse_args():
         default='/FluidDoc/docs/api/',
     )
     parser.add_argument(
-        'need_check_cn_doc_files',
+        'all_git_files',
         type=str,
         nargs='+',
         help='files need to check',
@@ -128,4 +128,4 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     API = args.apiroot.removeprefix(args.rootdir + '/')
-    pipline(args.rootdir, args.need_check_cn_doc_files)
+    pipline(args.rootdir, args.all_git_files)
