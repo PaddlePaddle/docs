@@ -153,6 +153,7 @@ tensor 数学操作
     " :ref:`paddle.i1 <cn_api_paddle_i1>` ", "对输入 Tensor 每个元素计算第一类一阶修正贝塞尔函数"
     " :ref:`paddle.i1e <cn_api_paddle_i1e>` ", "对输入 Tensor 每个元素计算第一类指数缩放的一阶修正贝塞尔函数"
     " :ref:`paddle.polygamma <cn_api_paddle_polygamma>` ", "对输入 Tensor 每个元素计算多伽马函数"
+    " :ref:`paddle.hypot <cn_api_paddle_hypot>` ", "对输入 直角三角形的直角边 Tensor x, y， 计算其斜边"
 .. _tensor_math_inplace:
 
 tensor 数学操作原位（inplace）版本
@@ -181,6 +182,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.tanh_ <cn_api_paddle_tan_>` ", "Inplace 版本的 tan API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.uniform_ <cn_api_paddle_uniform_>` ", "Inplace 版本的 uniform API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.lerp_ <cn_api_paddle_lerp_>` ", "Inplace 版本的 lerp API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.hypot_ <cn_api_paddle_hypot_>` ", "Inplace 版本的 hypot API，对输入 x 采用 Inplace 策略"
 
 .. _tensor_logic:
 
