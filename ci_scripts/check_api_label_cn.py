@@ -32,7 +32,7 @@ def check_api_label(rootdir, file):
 # path -> api_label (the first line's style)
 def generate_en_label_by_path(file):
     # result = file.removeprefix(API)
-    result = result.removesuffix('_cn.rst')
+    result = file.removesuffix('_cn.rst')
     result = result.replace('/', '_')
     result = f'.. _cn_{result}:'
     return result
