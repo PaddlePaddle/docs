@@ -24,6 +24,8 @@ def check_api_label(rootdir, file):
     real_file = Path(rootdir) / file
     with open(real_file, 'r', encoding='utf-8') as f:
         first_line = f.readline()
+    print(first_line)
+    print(generate_en_label_by_path(file))
     return first_line == generate_en_label_by_path(file)
 
 
