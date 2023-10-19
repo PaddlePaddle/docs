@@ -96,7 +96,7 @@ def pipline(rootdir, files):
             ):
                 api_label = api_label_match.group("api_label")
             if (
-                api_label.startwith('cn_api_paddle')
+                api_label.startswith('cn_api_paddle')
                 and api_label not in valid_api_labels
             ):
                 logger.error(
