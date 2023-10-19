@@ -86,6 +86,8 @@ def pipline(rootdir, files):
             sys.exit(1)
     valid_api_labels = find_all_api_labels_in_dir(rootdir)
     for file in files:
+        if not file.endswith('.rst'):
+            continue
         with open(Path(rootdir) / file, 'r', encoding='utf-8') as f:
             pattern = f.read()
         matches = re.findall(r":ref:`([^`]+)`", pattern)
