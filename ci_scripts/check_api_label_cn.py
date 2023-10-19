@@ -77,7 +77,9 @@ def should_test(file):
 
 def pipline(rootdir, files):
     for file in files:
-        if should_test(file) and not check_api_label(rootdir, file):
+        if not should_test(file):
+            continue
+        if not check_api_label(rootdir, file):
             logger.error(
                 f"The first line in {rootdir}/{file} is not avaiable, please re-check it!"
             )
