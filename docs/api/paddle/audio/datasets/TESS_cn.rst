@@ -20,7 +20,7 @@ TESS
 返回
 :::::::::
 
-:ref:`cn_api_paddle_io_Datase`，TESS 数据集实例。
+:ref:`cn_api_paddle_io_Dataset`，TESS 数据集实例。
 
 代码示例
 :::::::::
