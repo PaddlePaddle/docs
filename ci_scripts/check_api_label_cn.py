@@ -91,7 +91,9 @@ def pipline(rootdir, files):
         matches = re.findall(r":ref:`([^`]+)`", pattern)
         for match in matches:
             api_label = match
-            if api_label_match := re.math(r".+<(?P<api_label>.+?)>", api_label):
+            if api_label_match := re.match(
+                r".+<(?P<api_label>.+?)>", api_label
+            ):
                 api_label = api_label_match.group("api_label")
             if (
                 api_label.startwith('cn_api_paddle')
