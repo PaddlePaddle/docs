@@ -31,7 +31,7 @@ def check_api_label(rootdir, file):
 
 # path -> api_label (the first line's style)
 def generate_en_label_by_path(file):
-    result = file.removeprefix(API)
+    # result = file.removeprefix(API)
     result = result.removesuffix('_cn.rst')
     result = result.replace('/', '_')
     result = f'.. _cn_{result}:'
@@ -91,7 +91,10 @@ def pipline(rootdir, files):
             api_label = match
             if api_label_match := re.math(r".+<(?P<api_label>.+?)>", api_label):
                 api_label = api_label_match.group("api_label")
-            if api_label.startwith('cn_') and api_label not in valid_api_labels:
+            if (
+                api_label.startwith('cn_api_paddle')
+                and api_label not in valid_api_labels
+            ):
                 logger.error(
                     f"Found api label {api_label} in {rootdir}/{file}, but it is not a valid api label, please re-check it!"
                 )
