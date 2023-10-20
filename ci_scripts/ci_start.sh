@@ -122,6 +122,12 @@ else
     fi
 fi
 
+# 5 Chinese api_label check
+/bin/bash -x ${DIR_PATH}/check_api_label_cn.sh
+if [ $? -ne 0];then
+    EXIT_CODE=1
+fi
+
 if [ ${EXIT_CODE} -ne 0 ]; then
     set +x
     echo "=========================================================================================="

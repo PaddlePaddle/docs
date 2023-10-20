@@ -103,6 +103,7 @@ def pipline(rootdir, files):
                     f"Found api label {api_label} in {rootdir}/{file}, but it is not a valid api label, please re-check it!"
                 )
                 sys.exit(1)
+    print("All api_label check success in PR !")
 
 
 def parse_args():
