@@ -5,9 +5,6 @@ FLUIDDOCDIR=${FLUIDDOCDIR:=/FluidDoc}
 OUTPUTDIR=${OUTPUTDIR:=/docs}
 VERSIONSTR=${VERSIONSTR:=develop}
 
-DOCROOT=${FLUIDDOCDIR}/docs/
-APIROOT=${DOCROOT}/api/
-
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
 
@@ -44,12 +41,3 @@ if [ $? -ne 0 ];then
     echo "ERROR: Exist COPY-FROM has not been parsed into sample code, please check COPY-FROM in the above files"
     exit 1
 fi
-
-# if [ -z ${BRANCH} ]; then
-#     BRANCH="develop"
-# fi
-
-# all_git_files=`git diff --name-only --diff-filter=ACMR upstream/${BRANCH} | sed 's#docs/##g'`
-# echo $all_git_files
-# echo "Run API_LABEL Checking"
-# python check_api_label_cn.py ${DOCROOT} ${APIROOT} $all_git_files

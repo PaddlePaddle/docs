@@ -124,7 +124,7 @@ fi
 
 # 5 Chinese api_label check
 /bin/bash -x ${DIR_PATH}/check_api_label_cn.sh
-if [ $? -ne 0];then
+if [ $? -ne 0 ];then
     EXIT_CODE=1
 fi
 
@@ -137,7 +137,7 @@ if [ ${EXIT_CODE} -ne 0 ]; then
     exit ${EXIT_CODE}
 fi
 
-# 5 Approval check
+# 6 Approval check
 /bin/bash  ${DIR_PATH}/checkapproval.sh
 if [ $? -ne 0 ];then
     exit 1
