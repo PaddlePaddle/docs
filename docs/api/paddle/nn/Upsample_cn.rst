@@ -155,7 +155,7 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
     - **mode** (str，可选) - 插值方法。支持"bilinear"或"trilinear"或"nearest"或"bicubic"或"linear"或"area"。默认值为"nearest"。
     - **align_corners** (bool，可选) - 一个可选的 bool 型参数，如果为 True，则将输入和输出 Tensor 的 4 个角落像素的中心对齐，并保留角点像素的值。默认值为 False。
     - **align_mode** (int，可选) - 双线性插值的可选项。可以是 '0' 代表 src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1'，代表 src_idx = scale * dst_index。默认值为 0。
-    - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致。对于 3-D Tensor，支持 NCW(num_batches, channels, width)或者 NWC(num_batches, width, channels)，对于 4-D Tensor，支持 NCHW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，对于 5-D Tensor，支持 NCDHW(num_batches, channels, depth, height, width)或者 NDHWC(num_batches, depth, height, width, channels)，默认值：'NCHW'。
+    - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致。对于 3-D Tensor，支持 NCW(num_batches, channels, width)或者 NWC(num_batches, width, channels)，对于 4-D Tensor，支持 NCW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，对于 5-D Tensor，支持 NCDHW(num_batches, channels, depth, height, width)或者 NDHWC(num_batches, depth, height, width, channels)，默认值：'NCHW'。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

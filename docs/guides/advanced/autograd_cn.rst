@@ -275,10 +275,14 @@ PaddlePaddle 的神经网络核心是自动微分，本篇文章主要为你介�
 
 .. parsed-literal::
 
-    Tensor a's grad is: [20.]
-    Tensor b's grad is: [8.]
-    Tensor c's grad is: [4.]
-    Tensor d's grad is: [10.]
+    Tensor a's grad is: Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=False,
+       [20.])
+    Tensor b's grad is: Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=False,
+       [8.])
+    Tensor c's grad is: Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=False,
+       [4.])
+    Tensor d's grad is: Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=False,
+       [10.])
 
 
 该例子的正向和反向图构建过程即：
