@@ -366,7 +366,7 @@
 | 328 | [torch.get_default_dtype](https://pytorch.org/docs/stable/generated/torch.get_default_dtype.html#torch-get-default-dtype)                                                  |[paddle.get_default_dtype](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/get_default_dtype_cn.html#get-default-dtype)| 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.get_default_dtype.md)|
 | 329 | [torch.is_grad_enabled](https://pytorch.org/docs/stable/generated/torch.is_grad_enabled.html?highlight=torch+is_grad_enabled#torch.is_grad_enabled)                        |[paddle.is_grad_enabled](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/is_grad_enabled_cn.html#is-grad-enabled)|无参数, [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.is_grad_enabled.md)|
 | 330 | [torch.manual_seed](https://pytorch.org/docs/stable/generated/torch.manual_seed.html#torch-manual-seed)                                                                    |[paddle.seed](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/seed_cn.html)| 参数完全一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.manual_seed.md)|
-| 331 | [torch.float_power](https://pytorch.org/docs/1.13/generated/torch.float_power.html?highlight=float_power#torch.float_power)| | 功能缺失 |
+| 331 | [torch.float_power](https://pytorch.org/docs/stable/generated/torch.float_power.html#torch-float-power)| | 组合替代实现 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.copysign.md)|
 
 ***持续更新...***
 
@@ -1074,8 +1074,8 @@
 | 38 |[torch.cuda.ShortTensor](https://pytorch.org/docs/stable/tensors.html)|[paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/to_tensor_cn.html#to-tensor)| 仅 paddle 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.ShortTensor.md)|
 | 39 |[torch.cuda.stream](https://pytorch.org/docs/stable/generated/torch.cuda.stream.html)|[paddle.device.cuda.stream_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/stream_guard_cn.html)|参数完全一致, [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.stream.md)|
 | 40 |[torch.cuda.Stream](https://pytorch.org/docs/stable/generated/torch.cuda.Stream.html#torch.cuda.Stream)|[paddle.device.cuda.Stream](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/Stream_cn.html)|参数不一致, [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.Stream__upper.md)|
-| 42  | [torch.cuda.seed](https://pytorch.org/docs/stable/generated/torch.cuda.seed.html)| | 功能缺失 |
-| 43  | [torch.cuda.seed_all](https://pytorch.org/docs/stable/generated/torch.cuda.seed_all.html)|  | 功能缺失 |
+| 42  | [torch.cuda.seed](https://pytorch.org/docs/stable/generated/torch.cuda.seed.html)| | 功能一致，无参数，[差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.seed.md)|
+| 43  | [torch.cuda.seed_all](https://pytorch.org/docs/stable/generated/torch.cuda.seed_all.html)|  | 功能一致，无参数，[差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.seed_all.md)|
 | 44  | [torch.cuda.comm.scatter](https://pytorch.org/docs/stable/generated/torch.cuda.comm.scatterw.html)| | 功能缺失 |
 | 45  | [torch.cuda.comm.gather](https://pytorch.org/docs/stable/generated/torch.cuda.comm.gather.html)| | 功能缺失|
 
