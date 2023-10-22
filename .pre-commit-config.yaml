@@ -16,16 +16,16 @@ repos:
     -   id: trailing-whitespace
         files: \.md$|\.rst$
 -   repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.14
+    rev: v1.5.1
     hooks:
     -   id: forbid-crlf
-        files: \.md$|\.rst$
+        types: [text]
     -   id: remove-crlf
-        files: \.md$|\.rst$
+        types: [text]
     -   id: forbid-tabs
-        files: \.md$|\.rst$
+        types: [text]
     -   id: remove-tabs
-        files: \.md$|\.rst$
+        types: [text]
 -   repo: https://github.com/ShigureLab/dochooks
     rev: v0.3.0
     hooks:

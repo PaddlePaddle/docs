@@ -60,7 +60,7 @@ body:
   attributes:
     label: 1.导入分布式训练需要的依赖包
     description: |
-      针对 导入分布式训练需要的依赖	这一环节，请回答以下内容
+      针对 导入分布式训练需要的依赖   这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
@@ -74,7 +74,7 @@ body:
   attributes:
     label: 2.初始化分布式训练环境
     description: |
-      针对 初始化分布式训练环境	这一环节，请回答以下内容
+      针对 初始化分布式训练环境 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
@@ -88,7 +88,7 @@ body:
   attributes:
     label: 3.设置分布式训练需要的优化器
     description: |
-      针对 设置分布式训练需要的优化器	这一环节，请回答以下内容
+      针对 设置分布式训练需要的优化器    这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
@@ -115,7 +115,7 @@ body:
 - type: textarea
   id: distributed_dp_eval5
   attributes:
-    label: 5.构建训练代码	
+    label: 5.构建训练代码 
     description: |
       针对 构建训练代码 这一环节，请回答以下内容
     value: |
@@ -197,7 +197,7 @@ body:
   attributes:
     label: 1.导入分布式训练需要的依赖包
     description: |
-      针对 导入分布式训练需要的依赖	这一环节，请回答以下内容
+      针对 导入分布式训练需要的依赖   这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
@@ -211,7 +211,7 @@ body:
   attributes:
     label: 2.初始化分布式训练环境
     description: |
-      针对 初始化分布式训练环境	这一环节，请回答以下内容
+      针对 初始化分布式训练环境 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
@@ -225,7 +225,7 @@ body:
   attributes:
     label: 3.设置分布式训练需要的优化器
     description: |
-      针对 设置分布式训练需要的优化器	这一环节，请回答以下内容
+      针对 设置分布式训练需要的优化器    这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
@@ -252,7 +252,7 @@ body:
 - type: textarea
   id: distributed_dp_eval15
   attributes:
-    label: 5.构建训练代码	
+    label: 5.构建训练代码 
     description: |
       针对 构建训练代码 这一环节，请回答以下内容
     value: |

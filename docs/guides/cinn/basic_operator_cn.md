@@ -99,11 +99,11 @@ $$
 * `sign`：对输入张量逐元素进行正负判断，并将各个位置的正负判断值保存到返回结果中。计算公式如下：
 $$
 output = \begin{cases}
-	     -1 & input \lt 0 \\
-	     -0 & input = -0 \\
-	     NaN & input = NaN \\
-	     +0 & input = +0 \\
-	     1 & input \gt 0
+         -1 & input \lt 0 \\
+         -0 & input = -0 \\
+         NaN & input = NaN \\
+         +0 & input = +0 \\
+         1 & input \gt 0
 \end{cases}
 $$
 * `bitwise_not`：对输入张量逐元素按位取反，并将各个位置的输出元素保存到返回结果中。计算公式为$output =  \sim input$。
