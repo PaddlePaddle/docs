@@ -72,7 +72,7 @@ def should_test(file):
     )
 
 
-def run_cn_api_lable_checking(rootdir, files):
+def run_cn_api_label_checking(rootdir, files):
     for file in files:
         if should_test(file) and not check_api_label(rootdir, file):
             logger.error(
@@ -134,4 +134,4 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     API = args.apiroot.removeprefix(args.rootdir + '/')
-    run_cn_api_lable_checking(args.rootdir, args.all_git_files)
+    run_cn_api_label_checking(args.rootdir, args.all_git_files)
