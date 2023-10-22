@@ -18,11 +18,7 @@ repos:
 -   repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.5.1
     hooks:
-    -   id: forbid-crlf
-        types: [text]
     -   id: remove-crlf
-        types: [text]
-    -   id: forbid-tabs
         types: [text]
     -   id: remove-tabs
         types: [text]
