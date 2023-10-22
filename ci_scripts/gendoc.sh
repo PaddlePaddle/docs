@@ -39,7 +39,7 @@ rm $tmp_fifofile			#清空管道内容
 
 # for循环 往 fifo管道文件中写入$thread个空行
 for ((i=0;i<$thread;i++));do
-  echo 
+  echo
 done >&6
 
 
@@ -54,7 +54,7 @@ for lang in en zh ; do
       if [ "${lang}" = "zh" ] ; then
         INDEXFILE="${OUTPUTDIR}/${lang}/${VERSIONSTR}/index_cn.html"
       fi
-      if [ ! -f ${INDEXFILE} ] ; then 
+      if [ ! -f ${INDEXFILE} ] ; then
         /usr/local/bin/sphinx-build -b ${OUTPUTFORMAT} -j ${sphinx_thread} -d /var/doctrees -c ${CONFIGDIR}/${lang} ${DOCROOT} ${OUTPUTDIR}/${lang}/${VERSIONSTR}
       fi
 

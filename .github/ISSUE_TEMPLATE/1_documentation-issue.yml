@@ -7,7 +7,7 @@ body:
   attributes:
     value: >
       #### 请确认反馈的问题来自PaddlePaddle官网文档：https://www.paddlepaddle.org.cn/ 。
-      
+
       #### Before submitting a Documentation Issue, Please make sure that issue is related to https://www.paddlepaddle.org.cn/.
 
 - type: textarea
@@ -28,16 +28,11 @@ body:
     description: |
       请告诉我们，你希望如何改进这个文档。
       Please tell us how you would like to improve this document.
-      
+
   validations:
     required: false
-    
+
 - type: markdown
   attributes:
     value: >
       感谢你的贡献 🎉！Thanks for your contribution 🎉!
-
-
-
-
-

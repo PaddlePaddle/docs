@@ -12,7 +12,7 @@ common_args_en = """
     bias_attr (ParamAttr, optional): The parameter attribute for learnable bias(Bias) of this layer. For more information, please refer to :ref:`api_fluid_ParamAttr`.
     label (Tensor): The label value corresponding to input, it's data type should be int32, int64.
     learning_rate (Tensor|float): The learning rate, can be a Tensor or a float value. Default is 1e-03.
-    axis (int, optional): The axis along which to operate. Default is 0. 
+    axis (int, optional): The axis along which to operate. Default is 0.
     epsilon (float, optional): Small float added to denominator to avoid dividing by zero. Default is 1e-05.
     is_test (bool, optional): A flag indicating whether execution is in test phase. Default is False, means not in test phase.
     shape (Tensor|tuple|list): Shape of the Tensor. If shape is a list or tuple, the elements of it should be integers or Tensors with shape [1]. If shape is Tensor, it should be an 1-D Tensor .
@@ -20,7 +20,7 @@ common_args_en = """
     filter_size (tuple|list|int): The size of convolving kernel. It can be a single integer or a tuple/list containing two integers, representing the height and width of the convolution window respectively. If it is a single integer, the height and width are equal to the integer.
     padding (tuple|int): The padding size. It can be a single integer or a tuple containing two integers, representing the size of padding added to the height and width of the input. If it is a single integer, the both sides of padding are equal to the integer. Default is 0.
     include_sublayers (bool, optional): Whether include the sublayers. If True, return list includes the sublayers weights. Default is True.
-    stride (tuple|int): The stride size. It can be a single integer or a tuple containing two integers, representing the strides of the convolution along the height and width. If it is a single integer, the height and width are equal to the integer. Default is 1. 
+    stride (tuple|int): The stride size. It can be a single integer or a tuple containing two integers, representing the strides of the convolution along the height and width. If it is a single integer, the height and width are equal to the integer. Default is 1.
     groups (int, optional): The group number of convolution layer. When group=n, the input and convolution kernels are divided into n groups equally, the first group of convolution kernels and the first group of inputs are subjected to convolution calculation, the second group of convolution kernels and the second group of inputs are subjected to convolution calculation, ……, the nth group of convolution kernels and the nth group of inputs perform convolution calculations. Default is 1.
     regularization (WeightDecayRegularizer, optional): The strategy of regularization. There are two method: :ref:`api_fluid_regularizer_L1Decay` 、 :ref:`api_fluid_regularizer_L2Decay` . If a parameter has set regularizer using  :ref:`api_fluid_ParamAttr` already, the regularization setting here in optimizer will be ignored for this parameter. Otherwise, the regularization setting here in optimizer will take effect. Default None, meaning there is no regularization.
     grad_clip (GradientClipBase, optional): Gradient cliping strategy, it's an instance of some derived class of ``GradientClipBase`` . There are three cliping strategies ( :ref:`api_fluid_clip_GradientClipByGlobalNorm` , :ref:`api_fluid_clip_GradientClipByNorm` , :ref:`api_fluid_clip_GradientClipByValue` ). Default None, meaning there is no gradient clipping.
@@ -33,7 +33,7 @@ common_args_en = """
     dim (int, optional): A dimension along which to operate. Default is 0.
     is_sparse (bool, optional): Whether use sparse updating. For more information, please refer to :ref:`api_guide_sparse_update_en` . If it's True, it will ues sparse updating.
     place (paddle.CPUPlace()|paddle.CUDAPlace(N)|None): This parameter represents which device the executor runs on, and N means the GPU's id. When this parameter is None, PaddlePaddle will set the default device according to its installation version. If Paddle is CPU version, the default device would be set to CPUPlace(). If Paddle is GPU version, the default device would be set to CUDAPlace(0). Default is None.
-    num_filters (int): the number of convolution kernels, is also the number of output channels. 
+    num_filters (int): the number of convolution kernels, is also the number of output channels.
 """
 
 common_args_cn = """
