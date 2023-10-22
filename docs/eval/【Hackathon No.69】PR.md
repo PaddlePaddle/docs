@@ -245,7 +245,7 @@ torch.utils.data.DataLoader(dataset,
 
 ------
 
-​		从整体的 API 使用上，感觉 paddle 升级后的 paddle.xxx  （例如：paddle.device  paddle.nn  paddle.vision ）比之前的 padddle.fluid.xxx 好用很多，还有就是新增加的高层 API 个人比较喜欢，一是对初学者比较友好、易用，二是对于开发者可以节省代码量，更简洁直观一些，在（六、动态图单机训练）中进行了代码展示和对比分析。
+​     从整体的 API 使用上，感觉 paddle 升级后的 paddle.xxx  （例如：paddle.device  paddle.nn  paddle.vision ）比之前的 padddle.fluid.xxx 好用很多，还有就是新增加的高层 API 个人比较喜欢，一是对初学者比较友好、易用，二是对于开发者可以节省代码量，更简洁直观一些，在（六、动态图单机训练）中进行了代码展示和对比分析。
 
 与 Pytorch 相比，基础 API 的结构和调用没有太大区别，但是在速度上，paddle 的基础 API 会更快一点，如果是利用了 paddle 高层 API，速度会快很多，在同样 5 次 epoch 的情况下，LeNet 训练高层 API 用 38s 左右,基础 API 得用将近两分钟，所以用高层 API 能减少大约三分之二的训练时间。
 
@@ -750,7 +750,7 @@ test_acc：0.9044666666666666
 
 由于 paddle 文档中提供的数据集下载代码一直报错(已在报错汇总中展示)，故进行了手动下载数据集
 
-​	1、使用高层 API 结果
+​ 1、使用高层 API 结果
 
 ```python
 #附第 5 个 epoch
@@ -869,7 +869,7 @@ step 157/157 [==============================] - loss: 2.9252e-04 - acc: 0.9860 -
 Eval samples: 10000
 ```
 
-​	2、使用基础 API 结果
+​ 2、使用基础 API 结果
 
 ```python
 #附 5 次 epoch
