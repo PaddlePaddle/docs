@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x
 
+FLUIDDOCDIR=${FLUIDDOCDIR:=/FluidDoc}
 OUTPUTDIR=${OUTPUTDIR:=/docs}
 VERSIONSTR=${VERSIONSTR:=develop}
 
