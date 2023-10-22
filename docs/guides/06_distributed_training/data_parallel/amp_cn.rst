@@ -46,7 +46,7 @@
 二、动态图操作实践
 ---------------------------
 
-使用飞桨框架提供的 API：\ ``paddle.amp.auto_cast``\ 和\ ``paddle.amp.GradScaler``\ 能够实现动态图的自动混合精度训练，即在相关 OP 的计算中，自动选择 FP16 或 FP32 格式计算。开启 AMP 模式后，使用 FP16 与 FP32 进行计算的 OP 列表可以参见 :ref:`cn_api_paddle_geometric_reindex_grap` 。
+使用飞桨框架提供的 API：\ ``paddle.amp.auto_cast``\ 和\ ``paddle.amp.GradScaler``\ 能够实现动态图的自动混合精度训练，即在相关 OP 的计算中，自动选择 FP16 或 FP32 格式计算。开启 AMP 模式后，使用 FP16 与 FP32 进行计算的 OP 列表可以参见 :ref:`cn_overview_amp` 。
 
 2.1 具体示例
 ^^^^^^^^^^^^^^^^^^

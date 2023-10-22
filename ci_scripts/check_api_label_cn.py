@@ -24,8 +24,6 @@ def check_api_label(rootdir, file):
     real_file = Path(rootdir) / file
     with open(real_file, 'r', encoding='utf-8') as f:
         first_line = f.readline().strip()
-    print(first_line)
-    print(generate_en_label_by_path(file))
     return first_line == generate_en_label_by_path(file)
 
 
@@ -74,7 +72,7 @@ def should_test(file):
     )
 
 
-def pipline(rootdir, files):
+def run_cn_api_lable_checking(rootdir, files):
     for file in files:
         if should_test(file) and not check_api_label(rootdir, file):
             logger.error(
@@ -136,4 +134,4 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     API = args.apiroot.removeprefix(args.rootdir + '/')
-    pipline(args.rootdir, args.all_git_files)
+    run_cn_api_lable_checking(args.rootdir, args.all_git_files)
