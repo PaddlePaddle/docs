@@ -68,8 +68,8 @@ def find_api_labels_in_one_file(file_path):
 def should_test(file):
     return (
         file.endswith("_cn.rst")
-        and not os.path.split(file)[-1] == "Overview_cn.rst"
-        and not os.path.split(file)[-1] == "index_cn.rst"
+        and not Path(file).name == "Overview_cn.rst"
+        and not Path(file).name == "index_cn.rst"
         and file.startswith(API)
     )
 
