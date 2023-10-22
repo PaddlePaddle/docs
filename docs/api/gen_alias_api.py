@@ -27,7 +27,6 @@ class AliasAPIGen:
             path=self.root_module.__path__,
             prefix=self.root_module.__name__ + ".",
         ):
-
             try:
                 m = eval(name)
             except AttributeError:
