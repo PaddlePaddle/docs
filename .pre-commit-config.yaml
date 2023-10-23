@@ -43,4 +43,8 @@ repos:
         entry: python .pre-commit-hooks/convert_markdown_into_html.py
         language: system
         files: .+README(\.cn)?\.md$
-
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.1
+    hooks:
+    -   id: ruff
+        args: [--fix, --exit-non-zero-on-fix, --no-cache]
