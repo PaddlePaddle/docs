@@ -1,4 +1,4 @@
-digraph { 
+digraph {
  rankdir=LR
   weight=0.5
  concentrate=true
@@ -7,7 +7,7 @@ digraph {
 nodesep=1
 
  node[width=4.4,shape=box]
- 
+
     Node0x490c380 [shape=record,label="SoftmaxMKLDNNKernel::Compute()\l"];
 
     Node0x4ab38f0 [shape=record,label="MKLDNNActivationKernel::Compute()\l"];
@@ -48,6 +48,6 @@ Node0x4b2e4f0 -> Node0x496cfc0
 Node0x4ab38f0 -> Node0x49164c0
 Node0x4ab38f0 -> Dst
 Node0x4ab38f0 -> Node0x491bca0
-Node0x4ab38f0 -> Node0x4b2e4f0[style="bold"] 
+Node0x4ab38f0 -> Node0x4b2e4f0[style="bold"]
 
 }

@@ -46,8 +46,8 @@ F -> A
 
 A5 -> B1
 B1 -> B2 [label="no"]
-B2 -> B3 
+B2 -> B3
 B1 -> B3 [label="yes"]
-B3 -> B4 
+B3 -> B4
 
 }

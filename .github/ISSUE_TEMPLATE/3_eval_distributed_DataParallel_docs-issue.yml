@@ -33,7 +33,7 @@ body:
       - 其他
   validations:
     required: true
-    
+
 - type: markdown
   attributes:
     value: >
@@ -54,7 +54,7 @@ body:
   attributes:
     value: >
       ## 任务一体验评测
-      
+
 - type: textarea
   id: distributed_dp_eval1
   attributes:
@@ -111,7 +111,7 @@ body:
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
-    
+
 - type: textarea
   id: distributed_dp_eval5
   attributes:
@@ -125,7 +125,7 @@ body:
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
-    
+
 - type: textarea
   id: distributed_dp_eval6
   attributes:
@@ -191,7 +191,7 @@ body:
   attributes:
     value: >
       ## 任务二体验评测
-      
+
 - type: textarea
   id: distributed_dp_eval11
   attributes:
@@ -248,7 +248,7 @@ body:
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
-    
+
 - type: textarea
   id: distributed_dp_eval15
   attributes:
@@ -262,7 +262,7 @@ body:
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
-    
+
 - type: textarea
   id: distributed_dp_eval16
   attributes:
@@ -290,7 +290,7 @@ body:
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: false
-    
+
 - type: textarea
   id: distributed_dp_eval18
   attributes:
@@ -314,4 +314,3 @@ body:
   attributes:
     value: >
       感谢你的贡献 🎉！Thanks for your contribution 🎉!
-      

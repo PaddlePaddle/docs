@@ -5,16 +5,16 @@ repos:
     -   id: black
         files: \.py$
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v4.4.0
     hooks:
     -   id: check-merge-conflict
     -   id: check-symlinks
     -   id: detect-private-key
         files: (?!.*paddle)^.*$
     -   id: end-of-file-fixer
-        files: \.md$|\.rst$
+        types: [text]
     -   id: trailing-whitespace
-        files: \.md$|\.rst$
+        types: [text]
 -   repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.5.1
     hooks:
@@ -25,8 +25,6 @@ repos:
 -   repo: https://github.com/ShigureLab/dochooks
     rev: v0.3.0
     hooks:
-    -   id: check-whitespace-between-cn-and-en-char
-        files: \.md$|\.rst$
     -   id: insert-whitespace-between-cn-and-en-char
         files: \.md$|\.rst$
 -   repo: https://github.com/reyoung/pre-commit-hooks-jinja-compile.git
@@ -43,8 +41,3 @@ repos:
         entry: python .pre-commit-hooks/convert_markdown_into_html.py
         language: system
         files: .+README(\.cn)?\.md$
--   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.1
-    hooks:
-    -   id: ruff
-        args: [--fix, --exit-non-zero-on-fix, --no-cache]

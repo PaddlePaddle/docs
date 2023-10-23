@@ -12,7 +12,7 @@ function filter_cn_api_files() {
     local need_check_files=""
     for file in `echo $git_files`;do
         echo "$file" | grep '.*\.rst$' > /dev/null
-        if [ $? -eq 0 ] ;then 
+        if [ $? -eq 0 ] ;then
             need_check_files="${need_check_files} $file"
         fi
     done
