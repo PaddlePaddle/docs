@@ -126,7 +126,7 @@ def parse_args():
     parser.add_argument(
         'all_git_files',
         type=str,
-        nargs='+',
+        nargs='*',
         help='files need to check',
     )
     args = parser.parse_args()
