@@ -43,7 +43,7 @@ body:
   attributes:
     value: >
       ## 任务一体验评测
-      
+
 - type: textarea
   id: distributed_ps_eval1
   attributes:
@@ -100,7 +100,7 @@ body:
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
-    
+
 - type: textarea
   id: distributed_ps_eval5
   attributes:
@@ -114,7 +114,7 @@ body:
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
-    
+
 - type: textarea
   id: distributed_ps_eval6
   attributes:
@@ -128,7 +128,7 @@ body:
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
-    
+
 - type: textarea
   id: distributed_ps_eval7
   attributes:
@@ -167,7 +167,7 @@ body:
   attributes:
     value: >
       ## 任务二体验评测
-      
+
 - type: textarea
   id: distributed_ps_eval11
   attributes:
@@ -224,7 +224,7 @@ body:
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
-    
+
 - type: textarea
   id: distributed_ps_eval15
   attributes:
@@ -238,7 +238,7 @@ body:
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
-    
+
 - type: textarea
   id: distributed_ps_eval16
   attributes:
@@ -276,4 +276,3 @@ body:
   attributes:
     value: >
       感谢你的贡献 🎉！Thanks for your contribution 🎉!
-      

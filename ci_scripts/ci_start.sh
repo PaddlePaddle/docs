@@ -36,7 +36,7 @@ fi
 export PADDLE_WHL
 echo "PADDLE_WHL=${PADDLE_WHL}"
 set -x
- 
+
 # 2 build all the Chinese and English docs, and upload them. Controlled with Env BUILD_DOC and UPLOAD_DOC
 PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: None"
 if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
@@ -46,7 +46,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     if [ $? -ne 0 ];then
         exit 1
     fi
-    
+
     is_shell_attribute_set x
     xdebug_setted=$?
     if [ $xdebug_setted ] ; then

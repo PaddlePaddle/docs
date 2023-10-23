@@ -5,16 +5,16 @@ repos:
     -   id: black
         files: \.py$
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v4.4.0
     hooks:
     -   id: check-merge-conflict
     -   id: check-symlinks
     -   id: detect-private-key
         files: (?!.*paddle)^.*$
     -   id: end-of-file-fixer
-        files: \.md$|\.rst$
+        types: [text]
     -   id: trailing-whitespace
-        files: \.md$|\.rst$
+        types: [text]
 -   repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.5.1
     hooks:
@@ -43,4 +43,3 @@ repos:
         entry: python .pre-commit-hooks/convert_markdown_into_html.py
         language: system
         files: .+README(\.cn)?\.md$
-

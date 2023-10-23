@@ -1,11 +1,11 @@
 #!/bin/bash
- 
-SELFNAME=$0 
+
+SELFNAME=$0
 SHORT=f:p:w:hx:
 LONG=docs-dir:,paddle-dir:,paddle-whl:,https-proxy:
 
 OPTIND=1
- 
+
 show_help() {
   cat <<HELP_HELP_HELP
 $SELFNAME -f <docs-dir> [-p <paddle-dir>]
@@ -19,7 +19,7 @@ Options:
     -x Set https_proxy
 HELP_HELP_HELP
 }
- 
+
 while getopts $SHORT opt; do
     case "$opt" in
         f)
@@ -119,4 +119,3 @@ if ! [ "$PADDLE_DIR" = '' ]; then
     /root/fluiddoc-gendoc.sh /whls/${WHL_FN}
   exit 0
 fi
-
