@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.nn.init.constant_.md
+## [ 组合替代实现 ]torch.nn.init.constant_
 
 ### [torch.nn.init.constant_](https://pytorch.org/docs/stable/nn.init.html?highlight=constant_#torch.nn.init.constant_)
 
