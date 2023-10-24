@@ -83,6 +83,53 @@ def getMetaFromDiffFile(filepath):
     return meta_data
 
 
+def mapping_type_to_description(mapping_type):
+    mapping_type_1 = [
+        '无参数',
+        '参数完全一致',
+        '仅参数名不一致',
+        '仅 paddle 参数更多',
+        '仅参数默认值不一致',
+    ]
+
+    if mapping_type in mapping_type_1:
+        return '功能一致，' + mapping_type
+
+    mapping_type_2 = ['torch 参数更多']
+    if mapping_type in mapping_type_2:
+        return '功能一致，' + mapping_type
+
+    mapping_type_3 = [
+        '返回参数类型不一致',
+        '参数不一致',
+        '参数用法不一致',
+    ]
+    if mapping_type in mapping_type_3:
+        return '功能一致，' + mapping_type
+
+    mapping_type_4 = ['组合替代实现']
+    if mapping_type in mapping_type_4:
+        return '组合替代实现'
+
+    mapping_type_5 = ['用法不同：涉及上下文修改']
+    if mapping_type in mapping_type_5:
+        return '功能一致，' + mapping_type
+
+    mapping_type_6 = ['对应 API 不在主框架']
+    if mapping_type in mapping_type_6:
+        return '对应 API 不在主框架【占位】'
+
+    mapping_type_7 = ['功能缺失']
+    if mapping_type in mapping_type_7:
+        return '功能缺失'
+
+    mapping_type_hidden = ['可删除']
+    if mapping_type in mapping_type_hidden:
+        return '无对应 API，可以直接删除，对网络一般无影响'
+
+    return '【未知类型】'
+
+
 REFERENCE_PATTERN = re.compile(
     r'^\| *REFERENCE-MAPPING-ITEM\( *(?P<torch_api>[^,]+) *, *(?P<diff_url>.+) *\) *\|$'
 )
@@ -111,7 +158,8 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
             paddle_api_column = f'[`{paddle_api}`]({paddle_api_url})'
 
         mapping_type = reference_item['mapping_type']
-        mapping_column = f'{mapping_type}，[差异对比]({diff_url})'
+        mapping_type_s = mapping_type_to_description(mapping_type)
+        mapping_column = f'{mapping_type_s}，[差异对比]({diff_url})'
 
         content = [
             row_idx_s,
