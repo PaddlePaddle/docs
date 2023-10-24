@@ -1,4 +1,4 @@
-## [ 仅参数名不⼀致 ]torch.is_tensor
+## [ 仅参数名不一致 ]torch.is_tensor
 
 ### [torch.is_tensor](https://pytorch.org/docs/stable/generated/torch.is_tensor.html?highlight=is_tensor#torch.is_tensor)
 

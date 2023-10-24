@@ -1,4 +1,4 @@
-## [ Paddle 参数更多 ]torch.optim.LBFGS
+## [ 仅 paddle 参数更多 ]torch.optim.LBFGS
 
 ### [torch.optim.LBFGS](https://pytorch.org/docs/stable/generated/torch.optim.LBFGS.html)
 
