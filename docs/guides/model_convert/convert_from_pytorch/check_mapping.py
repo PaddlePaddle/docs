@@ -116,6 +116,91 @@ def getMetaFromDiffFile(filepath):
     return meta_data
 
 
+# torch api must starts with "torch."
+TABLE_COLUMN_TORCH_API_PATTERN = re.compile(
+    r"^\[ *(?P<torch_api>torch\.[^\]]+) *\](?P<url>\([^\)]*\))$"
+)
+
+# paddle api must starts with "paddle"
+TABLE_COLUMN_PADDLE_API_PATTERN = re.compile(
+    r"^\[ *(?P<paddle_api>paddle[^\]]+) *\](?P<url>\([^\)]*\))$"
+)
+
+TABLE_COLUMN_MAPPING_PATTERN = re.compile(
+    r'^(?P<type>[^\[]*)(\[(?P<diff_name>[^\]]+)\]\((?P<diff_url>[^\)]+)\))?'
+)
+
+MAPPING_DIFF_SOURCE_PATTERN = re.compile(
+    r'^https://github.com/PaddlePaddle/((docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/)|(X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/))'
+)
+
+
+def validate_mapping_table_row(columns, row_idx, line_idx):
+    idx_s, torch_api_s, paddle_api_s, mapping_s = columns
+
+    idx = int(idx_s)
+    if row_idx != idx:
+        raise Exception(
+            f"Table row index [{row_idx}] != {idx} at line {line_idx}."
+        )
+
+    torch_api_match = TABLE_COLUMN_TORCH_API_PATTERN.match(torch_api_s)
+    if torch_api_match:
+        torch_api = torch_api_match['torch_api']
+        torch_api_url = torch_api_match['url'][1:-1]  # remove '(' and ')'
+    else:
+        raise Exception(
+            f"Table row torch api not match: {torch_api_s} at line {line_idx}."
+        )
+
+    paddle_api_match = TABLE_COLUMN_PADDLE_API_PATTERN.match(paddle_api_s)
+    if len(paddle_api_s) > 0:
+        if paddle_api_match:
+            paddle_api = paddle_api_match['paddle_api']
+            paddle_api_url = paddle_api_match['url'][1:-1]  # remove '(' and ')'
+        else:
+            raise Exception(
+                f"Table row paddle api not match: {paddle_api_s} at line {line_idx}."
+            )
+    else:
+        paddle_api = None
+        paddle_api_url = None
+
+    mapping_type_match = TABLE_COLUMN_MAPPING_PATTERN.match(mapping_s)
+    if mapping_type_match:
+        mapping_type = mapping_type_match['type'].strip()
+        mapping_diff_name = mapping_type_match['diff_name']
+        diff_url = mapping_type_match['diff_url']
+
+        if mapping_diff_name != '差异对比' and mapping_diff_name is not None:
+            print(
+                f"Table row mapping diff name not match: {mapping_diff_name} at line {line_idx}."
+            )
+
+        if diff_url is not None and not MAPPING_DIFF_SOURCE_PATTERN.match(
+            diff_url
+        ):
+            raise Exception(
+                f"Table row mapping diff url invalid: {diff_url} at line {line_idx}."
+            )
+        mapping_diff_url = diff_url
+    else:
+        raise Exception(
+            f"Table row mapping type not match: {mapping_s} at line {line_idx}."
+        )
+
+    return {
+        'torch_api': torch_api,
+        'torch_api_url': torch_api_url,
+        'paddle_api': paddle_api,
+        'paddle_api_url': paddle_api_url,
+        'mapping_type': mapping_type,
+        'mapping_diff_name': mapping_diff_name,
+        'mapping_diff_url': mapping_diff_url,
+        'line_idx': line_idx,
+    }
+
+
 def process_mapping_index(filename):
     state = 0
     # -1: error
@@ -135,6 +220,8 @@ def process_mapping_index(filename):
 
     table_row_idx = -1
 
+    output = []
+
     with open(filename, 'r') as f:
         for i, line in enumerate(f.readlines()):
             if state < 0:
@@ -145,7 +232,7 @@ def process_mapping_index(filename):
                 state = 0
                 continue
 
-            columns = content.split('|')
+            columns = [c.strip() for c in content.split('|')]
             if len(columns) <= 2:
                 raise Exception(
                     f'Table column count must > 0, but found {len(columns) - 2} at line {i+1}: {line}'
@@ -159,7 +246,7 @@ def process_mapping_index(filename):
                 if column_names == expect_column_names:
                     state = 2
                     table_row_idx = 1
-                    print(f'process mapping table at line {i+1}.')
+                    # print(f'process mapping table at line {i+1}.')
                 else:
                     state = 1
                     print(f'ignore table with {column_names} at line {i+1}.')
@@ -192,14 +279,11 @@ def process_mapping_index(filename):
                     raise Exception(
                         f"Table content not match at line {i+1}: {line}"
                     )
-                idx_s, torch_api_s, paddle_api_s, mapping_s = columns
 
-                idx = int(idx_s)
-                if table_row_idx != idx:
-                    raise Exception(
-                        f"Table row index [{table_row_idx}] != {idx} at line {i+1}: {line}"
-                    )
+                item = validate_mapping_table_row(columns, table_row_idx, i + 1)
                 table_row_idx += 1
+
+                output.append(item)
 
                 # state = 6
             else:
@@ -215,6 +299,8 @@ def process_mapping_index(filename):
             f"Unexpected End State at {state} in parsing file: {filename}"
         )
 
+    return output
+
 
 if __name__ == '__main__':
     # convert from pytorch basedir
@@ -225,9 +311,8 @@ if __name__ == '__main__':
     if not os.path.exists(mapping_index_file):
         raise Exception(f"Cannot find mapping index file: {mapping_index_file}")
 
-    process_mapping_index(mapping_index_file)
-
-    exit(0)
+    # index_data = process_mapping_index(mapping_index_file)
+    # index_data_dict = {i['torch_api'].replace('\_', '_'): i for i in index_data}
 
     api_difference_basedir = os.path.join(cfp_basedir, 'api_difference')
 
@@ -244,6 +329,7 @@ if __name__ == '__main__':
     )
 
     metas = [getMetaFromDiffFile(f) for f in diff_files]
+    print(f"Total {len(metas)} mapping metas")
 
     for m in metas:
         if m['mapping_type'] not in mapping_type_set:
@@ -252,4 +338,11 @@ if __name__ == '__main__':
                 f"Unknown mapping type: {m['mapping_type']} in {m['source_file']}"
             )
 
-    print(f"Total {len(metas)} mapping metas")
+    meta_dict = {m['torch_api'].replace(r'\_', '_'): m for m in metas}
+
+    # notfound_mappings = set(index_data_dict.keys()) - set(meta_dict.keys())
+
+    # print(f"Total {len(notfound_mappings)} mappings not found.")
+    # for k in notfound_mappings:
+    #     # raise Exception(f"Cannot find meta for {k} in index data.")
+    #     print(f"Cannot find meta for {k} in index data.")
