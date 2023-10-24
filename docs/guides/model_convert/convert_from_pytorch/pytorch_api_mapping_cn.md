@@ -1,5 +1,5 @@
 # PyTorch 1.13 与 Paddle 2.4 API 映射表
-本文档梳理了 PyTorch（v1.13)常用 API 与 PaddlePaddle 2.4.0 API 对应关系与差异分析。通过本文档，帮助开发者快速迁移 PyTorch 使用经验，完成模型的开发与调优。
+本文档梳理了 PyTorch（v1.13）常用 API 与 PaddlePaddle 2.4.0 API 对应关系与差异分析。通过本文档，帮助开发者快速迁移 PyTorch 使用经验，完成模型的开发与调优。
 
 ## 贡献代码
 
