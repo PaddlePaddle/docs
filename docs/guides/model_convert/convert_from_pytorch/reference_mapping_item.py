@@ -100,9 +100,15 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         torch_api_url = reference_item['torch_api_url']
         torch_api_column = f'[`{torch_api}`]({torch_api_url})'
 
-        paddle_api = reference_item['paddle_api']
-        paddle_api_url = reference_item['paddle_api_url']
-        paddle_api_column = f'[`{paddle_api}`]({paddle_api_url})'
+        if 'paddle_api' not in reference_item:
+            print(
+                f"Cannot find paddle_api for torch_api: {torch_api} in line {line_idx}"
+            )
+            paddle_api_column = ''
+        else:
+            paddle_api = reference_item['paddle_api']
+            paddle_api_url = reference_item['paddle_api_url']
+            paddle_api_column = f'[`{paddle_api}`]({paddle_api_url})'
 
         mapping_type = reference_item['mapping_type']
         mapping_column = f'{mapping_type}，[差异对比]({diff_url})'
@@ -207,13 +213,17 @@ def reference_mapping_item(index_path, metadata_dict):
             #     raise Exception(
             #         f"Table content not match at line {i+1}: {line}"
             #     )
+            try:
+                referenced_row = apply_reference_to_row(
+                    line, metadata_dict, table_row_idx, i + 1
+                )
+                table_row_idx += 1
 
-            referenced_row = apply_reference_to_row(
-                line, metadata_dict, table_row_idx, i + 1
-            )
-            table_row_idx += 1
-
-            output.append(referenced_row)
+                output.append(referenced_row)
+            except Exception as e:
+                print(e)
+                print(f"Error at line {i+1}: {line}")
+                output.append(line)
 
             # state = 6
         else:
