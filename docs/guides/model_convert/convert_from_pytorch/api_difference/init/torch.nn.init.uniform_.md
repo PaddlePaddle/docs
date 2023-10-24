@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.nn.init.uniform_.md
+## [ 组合替代实现 ]torch.nn.init.uniform_
 
 ### [torch.nn.init.uniform_](https://pytorch.org/docs/stable/nn.init.html?highlight=uniform_#torch.nn.init.uniform_)
 

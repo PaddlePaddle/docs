@@ -1,4 +1,4 @@
-## [ 参数不⼀致 ] torch.Tensor.swapaxes
+## [ 参数不一致 ] torch.Tensor.swapaxes
 
 ### [torch.Tensor.swapaxes](https://pytorch.org/docs/stable/generated/torch.Tensor.swapaxes.html#torch.Tensor.swapaxes)
 

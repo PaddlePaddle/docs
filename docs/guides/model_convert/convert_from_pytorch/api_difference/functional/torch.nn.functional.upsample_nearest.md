@@ -12,7 +12,7 @@ torch.nn.functional.upsample_nearest(input, size=None, scale_factor=None)
 paddle.nn.functional.upsample(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format='NCHW', name=None)
 ```
 
-仅 Paddle 参数更多，具体区别如下：
+仅 paddle 参数更多，具体区别如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

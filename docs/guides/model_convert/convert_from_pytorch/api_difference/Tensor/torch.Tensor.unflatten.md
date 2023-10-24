@@ -1,4 +1,4 @@
-## [ 参数不⼀致 ] torch.Tensor.unflatten
+## [ 参数不一致 ] torch.Tensor.unflatten
 
 ### [torch.Tensor.unflatten](https://pytorch.org/docs/stable/generated/torch.Tensor.unflatten.html#torch.Tensor.unflatten)
 
