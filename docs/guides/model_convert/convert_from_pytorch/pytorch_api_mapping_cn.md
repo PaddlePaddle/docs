@@ -520,7 +520,7 @@
 梳理了`torch.nn.functional.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | PyTorch API | PaddlePaddle API | 备注 |
- |----| --- | --- | --- |
+|----| --- | --- | --- |
 | 1  |  [torch.nn.functional.adaptive_avg_pool1d](https://pytorch.org/docs/stable/generated/torch.nn.functional.adaptive_avg_pool1d.html?highlight=adaptive_avg_pool1d#torch.nn.functional.adaptive_avg_pool1d)  |  [paddle.nn.functional.adaptive_avg_pool1d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/adaptive_avg_pool1d_cn.html)  |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.adaptive_avg_pool1d.md)  |
 | 2  |  [torch.nn.functional.adaptive_avg_pool2d](https://pytorch.org/docs/stable/generated/torch.nn.functional.adaptive_avg_pool2d.html?highlight=adaptive_avg_pool2d#torch.nn.functional.adaptive_avg_pool2d)  |  [paddle.nn.functional.adaptive_avg_pool2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/adaptive_avg_pool2d_cn.html)  |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.adaptive_avg_pool2d.md)  |
 | 3  |  [torch.nn.functional.adaptive_avg_pool3d](https://pytorch.org/docs/stable/generated/torch.ao.nn.quantized.functional.adaptive_avg_pool3d.html?highlight=adaptive_avg_pool3d#torch.ao.nn.quantized.functional.adaptive_avg_pool3d)  |  [paddle.nn.functional.adaptive_avg_pool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/adaptive_avg_pool3d_cn.html)  |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.adaptive_avg_pool3d.md)  |
@@ -614,7 +614,7 @@
 梳理了`torch.Tensor.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号  | PyTorch API | PaddlePaddle API | 备注 |
- |-----| --- | --- | --- |
+|-----| --- | --- | --- |
 | 1   |  [torch.Tensor.device](https://pytorch.org/docs/stable/generated/torch.Tensor.device.html)  |  [paddle.Tensor.place](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#place)  |    功能一致, 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.device.md)  |
 | 2   |  [torch.Tensor.grad](https://pytorch.org/docs/stable/generated/torch.Tensor.grad.html)  |  [paddle.Tensor.grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#grad)  |    功能一致, 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.grad.md)  |
 | 3   |  [torch.Tensor.imag](https://pytorch.org/docs/stable/generated/torch.Tensor.imag.html)  |  [paddle.Tensor.imag](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#imag-name-none)  |    功能一致, 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.imag.md)  |
@@ -946,7 +946,7 @@
 梳理了`torch.nn.utils.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | PyTorch API                                                                                                                                                                                   | PaddlePaddle API                                                                                                                                                             | 备注 |
- |----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| --- |
+|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| --- |
 | 1  | [torch.nn.utils.clip_grad_value_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_value_.html?highlight=clip_grad_value_#torch.nn.utils.clip_grad_value_)                  | [paddle.nn.ClipGradByValue](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ClipGradByValue_cn.html#clipgradbyvalue)                                     |    功能一致, 用法不同：涉及上下文修改 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.utils.clip_grad_value_.md)  |
 | 2  | [torch.nn.utils.remove_weight_norm](https://pytorch.org/docs/stable/generated/torch.nn.utils.remove_weight_norm.html?highlight=nn+utils+remove_weight_norm#torch.nn.utils.remove_weight_norm) | [paddle.nn.utils.remove_weight_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/utils/remove_weight_norm_cn.html#remove-weight-norm)                |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.utils.remove_weight_norm.md)  |
 | 3  | [torch.nn.utils.spectral_norm](https://pytorch.org/docs/stable/generated/torch.nn.utils.spectral_norm.html?highlight=nn+utils+spectral_norm#torch.nn.utils.spectral_norm)                     | [paddle.nn.utils.spectral_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/utils/spectral_norm_cn.html#spectral-norm)                               |    功能一致, 仅参数名不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.utils.spectral_norm.md)  |
@@ -964,7 +964,7 @@
 梳理了`torch.nn.Module.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | PyTorch API | PaddlePaddle API | 备注 |
- |----| --- | --- | --- |
+|----| --- | --- | --- |
 | 1  |  [torch.nn.Module.to_empty](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.to_empty)  |   | 功能缺失  |
 | 2  |  [torch.nn.Module.register_full_backward_pre_hook](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_pre_hook)  |   | 功能缺失  |
 | 3  |  [torch.nn.Module.register_full_backward_hook](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_hook)  |   | 功能缺失  |
@@ -1009,7 +1009,7 @@
 梳理了`torch.autograd.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | PyTorch API | PaddlePaddle API | 备注 |
- |--- | --- | --- | --- |
+|--- | --- | --- | --- |
 | 1   |  [torch.autograd.profiler.profile.self_cpu_time_total](https://pytorch.org/docs/stable/generated/torch.autograd.profiler.profile.self_cpu_time_total.html#torch.autograd.profiler.profile.self_cpu_time_total)  |   | 功能缺失  |
 | 2   |  [torch.autograd.function.FunctionCtx.mark_dirty](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.mark_dirty.html#torch.autograd.function.FunctionCtx.mark_dirty)  |   | 功能缺失  |
 |3| [torch.autograd.backward](https://pytorch.org/docs/stable/generated/torch.autograd.backward.html#torch.autograd.backward)                                                                                                             |[paddle.autograd.backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/backward_cn.html)|torch 参数更多, [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.autograd.backward.md)|
