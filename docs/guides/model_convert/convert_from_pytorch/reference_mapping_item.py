@@ -91,7 +91,7 @@ REFERENCE_PATTERN = re.compile(
 def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
     reference_match = REFERENCE_PATTERN.match(line)
     if reference_match:
-        torch_api = reference_match['torch_api'].strip('`')
+        torch_api = reference_match['torch_api'].strip('`').replace(r'\_', '_')
         diff_url = reference_match['diff_url']
 
         row_idx_s = str(table_row_idx)
@@ -265,6 +265,6 @@ if __name__ == '__main__':
 
     metas = [getMetaFromDiffFile(f) for f in diff_files]
 
-    meta_dict = {m['torch_api']: m for m in metas}
+    meta_dict = {m['torch_api'].replace(r'\_', '_'): m for m in metas}
 
     output = reference_mapping_item(mapping_index_file, meta_dict)
