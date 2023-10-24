@@ -91,18 +91,18 @@ REFERENCE_PATTERN = re.compile(
 def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
     reference_match = REFERENCE_PATTERN.match(line)
     if reference_match:
-        torch_api = reference_match['torch_api']
+        torch_api = reference_match['torch_api'].strip('`')
         diff_url = reference_match['diff_url']
 
         row_idx_s = str(table_row_idx)
 
         reference_item = metadata_dict.get(torch_api, None)
         torch_api_url = reference_item['torch_api_url']
-        torch_api_column = f'[{torch_api}]({torch_api_url})'
+        torch_api_column = f'[`{torch_api}`]({torch_api_url})'
 
         paddle_api = reference_item['paddle_api']
         paddle_api_url = reference_item['paddle_api_url']
-        paddle_api_column = f'[{paddle_api}]({paddle_api_url})'
+        paddle_api_column = f'[`{paddle_api}`]({paddle_api_url})'
 
         mapping_type = reference_item['mapping_type']
         mapping_column = f'{mapping_type}，[差异对比]({diff_url})'
