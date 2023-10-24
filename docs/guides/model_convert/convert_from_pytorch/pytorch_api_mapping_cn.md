@@ -712,7 +712,7 @@
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.prod`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.prod.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.arcsinh`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.arcsinh.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.asinh`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.asinh.md) |
-| REFERENCE-MAPPING-ITEM(` torch.Tensor.rsqrt`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.rsqrt.md) |
+| REFERENCE-MAPPING-ITEM(`torch.Tensor.rsqrt`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.rsqrt.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.rsqrt_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.rsqrt_.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.select`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.select.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.sigmoid`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.sigmoid.md) |
