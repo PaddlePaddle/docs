@@ -3,7 +3,7 @@
 batch_norm
 -------------------------------
 
-.. py:class:: paddle.nn.functional.batch_norm(x, running_mean, running_var, weight=None, bias=None, training=False, momentum=0.9, epsilon=1e-05, data_format='NCHW', use_global_stats=None, name=None)
+.. py:function:: paddle.nn.functional.batch_norm(x, running_mean, running_var, weight=None, bias=None, training=False, momentum=0.9, epsilon=1e-05, data_format='NCHW', use_global_stats=None, name=None)
 
 推荐使用 nn.BatchNorm1D，nn.BatchNorm2D, nn.BatchNorm3D，由内部调用此方法。
 
