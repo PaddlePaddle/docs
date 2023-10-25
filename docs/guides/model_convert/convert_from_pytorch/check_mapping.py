@@ -4,8 +4,6 @@ import re
 import typing
 from typing import TypedDict
 
-whitelist = set(['torch.Tensor.requires_grad_.md'])
-
 
 mapping_type_set = set(
     [
@@ -324,9 +322,9 @@ if __name__ == '__main__':
             for path, _, file_list in os.walk(api_difference_basedir)
             for filename in file_list
             if mapping_file_pattern.match(filename)
-            and filename not in whitelist
         ]
     )
+    print(f"{len(diff_files)} mapping documents found.")
 
     metas = [getMetaFromDiffFile(f) for f in diff_files]
     print(f"Total {len(metas)} mapping metas")

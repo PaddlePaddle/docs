@@ -2,8 +2,6 @@ import os
 import re
 import typing
 
-whitelist = set(['torch.Tensor.requires_grad_.md'])
-
 
 class DiffMeta(typing.TypedDict):
     torch_api: str
@@ -147,16 +145,6 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         torch_api_url = reference_item['torch_api_url']
         torch_api_column = f'[`{torch_api}`]({torch_api_url})'
 
-        if 'paddle_api' not in reference_item:
-            print(
-                f"Cannot find paddle_api for torch_api: {torch_api} in line {line_idx}"
-            )
-            paddle_api_column = ''
-        else:
-            paddle_api = reference_item['paddle_api']
-            paddle_api_url = reference_item['paddle_api_url']
-            paddle_api_column = f'[`{paddle_api}`]({paddle_api_url})'
-
         mapping_type = reference_item['mapping_type']
         mapping_type_s, show_diff_url = mapping_type_to_description(
             mapping_type
@@ -164,6 +152,17 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         mapping_column = mapping_type_s
         if show_diff_url:
             mapping_column += f'，[差异对比]({diff_url})'
+
+        if 'paddle_api' not in reference_item:
+            if mapping_type != '组合替代实现':
+                print(
+                    f"Cannot find paddle_api for torch_api: {torch_api} in line {line_idx}"
+                )
+            paddle_api_column = ''
+        else:
+            paddle_api = reference_item['paddle_api']
+            paddle_api_url = reference_item['paddle_api_url']
+            paddle_api_column = f'[`{paddle_api}`]({paddle_api_url})'
 
         content = [
             row_idx_s,
@@ -311,7 +310,6 @@ if __name__ == '__main__':
             for path, _, file_list in os.walk(api_difference_basedir)
             for filename in file_list
             if mapping_file_pattern.match(filename)
-            and filename not in whitelist
         ]
     )
 
