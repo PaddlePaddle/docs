@@ -118,6 +118,7 @@ if [ "${need_check_cn_doc_files}" = "" ] ; then
 else
     /bin/bash -x ${DIR_PATH}/check_api_cn.sh "${need_check_cn_doc_files}"
     if [ $? -ne 0 ];then
+        echo "ERROR: Exist COPY-FROM has not been parsed into sample code, please check COPY-FROM in the above files"
         EXIT_CODE=1
     fi
 fi
@@ -125,6 +126,7 @@ fi
 # 5 Chinese api_label check
 /bin/bash -x ${DIR_PATH}/check_api_label_cn.sh
 if [ $? -ne 0 ];then
+    echo "ERROR: api_label is not correct, please check api_label in the above files"
     EXIT_CODE=1
 fi
 
