@@ -5,7 +5,7 @@
 torch.utils.cpp_extension.BuildExtension(*args, **kwargs)
 ```
 
-### [paddle.utils.cpp_extension.BuildExtension]
+### [paddle.utils.cpp_extension.BuildExtension]()
 
 ```python
 paddle.utils.cpp_extension.BuildExtension(*args, **kwargs)

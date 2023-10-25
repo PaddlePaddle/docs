@@ -6,7 +6,7 @@
 torch.set_printoptions(precision=None, threshold=None, edgeitems=None, linewidth=None, profile=None, sci_mode=None)
 ```
 
-### [paddle.set_printoptions][https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/set_printoptions_cn.html]
+### [paddle.set_printoptions](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/set_printoptions_cn.html)
 
 ```python
 paddle.set_printoptions(precision=None, threshold=None, edgeitems=None, sci_mode=None, linewidth=None)
