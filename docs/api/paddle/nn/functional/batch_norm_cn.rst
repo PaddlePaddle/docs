@@ -3,7 +3,7 @@
 batch_norm
 -------------------------------
 
-.. py:class:: paddle.nn.functional.batch_norm(x, running_mean, running_var, weight, bias, training=False, momentum=0.9, epsilon=1e-05, data_format='NCHW', use_global_stats=None, name=None)
+.. py:function:: paddle.nn.functional.batch_norm(x, running_mean, running_var, weight=None, bias=None, training=False, momentum=0.9, epsilon=1e-05, data_format='NCHW', use_global_stats=None, name=None)
 
 推荐使用 nn.BatchNorm1D，nn.BatchNorm2D, nn.BatchNorm3D，由内部调用此方法。
 
@@ -15,8 +15,8 @@ batch_norm
     - **x** (int) - 输入，数据类型为 float32, float64。
     - **running_mean** (Tensor) - 均值的 Tensor。
     - **running_var** (Tensor) - 方差的 Tensor。
-    - **weight** (Tensor) - 权重的 Tensor。
-    - **bias** (Tensor) - 偏置的 Tensor。
+    - **weight** (Tensor，可选) - 权重的 Tensor，默认为 None。
+    - **bias** (Tensor，可选) - 偏置的 Tensor，默认为 None。
     - **training** (bool，可选) – 当该值为 True 时，表示为训练模式（train mode），即使用批数据计算并在训练期间跟踪全局均值和方差。为 False 时，表示使用推理模式（inference mode），即使用训练期间计算出的全局均值及方差计算。默认值为 False。
     - **momentum** (float，可选) - 此值用于计算 ``moving_mean`` 和 ``moving_var``。默认值：0.9。更新公式如上所示。
     - **epsilon** (float，可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
