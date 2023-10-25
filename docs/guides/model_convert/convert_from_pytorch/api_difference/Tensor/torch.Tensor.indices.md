@@ -1,6 +1,6 @@
 ## [ 无参数 ]torch.Tensor.indices
 
-### [torch.Tensor.values](https://pytorch.org/docs/stable/generated/torch.Tensor.indices.html#torch.Tensor.indices)
+### [torch.Tensor.indices](https://pytorch.org/docs/stable/generated/torch.Tensor.indices.html#torch.Tensor.indices)
 
 ```python
 torch.Tensor.indices()

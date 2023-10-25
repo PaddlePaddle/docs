@@ -60,7 +60,6 @@ Executor 相关 API
     " :ref:`conv2d_transpose <cn_api_paddle_static_nn_conv2d_transpose>` ", "二维转置卷积层"
     " :ref:`conv3d <cn_api_paddle_static_nn_conv3d>` ", "三维卷积层"
     " :ref:`conv3d_transpose <cn_api_paddle_static_nn_conv3d_transpose>` ", "三维转置卷积层"
-    " :ref:`crf_decoding <cn_api_paddle_static_nn_crf_decoding>` ", "CRF Decode 层"
     " :ref:`data_norm <cn_api_paddle_static_nn_data_norm>` ", "数据正则化层"
     " :ref:`deform_conv2d <cn_api_paddle_static_nn_deform_conv2d>` ", "可变形卷积层"
     " :ref:`embedding <cn_api_paddle_static_nn_embedding>` ", "嵌入层"

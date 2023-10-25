@@ -1,4 +1,4 @@
-## [ 参数不⼀致 ] torch.unflatten
+## [ 参数不一致 ] torch.unflatten
 
 ### [torch.unflatten](https://pytorch.org/docs/stable/generated/torch.unflatten.html#torch.unflatten)
 

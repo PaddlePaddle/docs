@@ -275,3 +275,5 @@ Methods
     trapezoid
     cumulative_trapezoid
     vander
+    hypot
+    hypot_

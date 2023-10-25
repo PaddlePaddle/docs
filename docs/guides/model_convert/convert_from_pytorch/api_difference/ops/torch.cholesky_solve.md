@@ -1,4 +1,4 @@
-## [组合实现]torch.cholesky_solve
+## [组合替代实现]torch.cholesky_solve
 ### [torch.cholesky_solve](https://pytorch.org/docs/stable/generated/torch.cholesky_solve.html?highlight=cholesky_solve#torch.cholesky_solve)
 ```python
 torch.cholesky_solve(input, input2, upper=False, out=None)

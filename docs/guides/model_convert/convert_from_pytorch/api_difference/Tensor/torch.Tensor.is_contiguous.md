@@ -1,6 +1,6 @@
-## [ 可删除 ]Tensor.is_contiguous
+## [ 可删除 ]torch.Tensor.is_contiguous
 
-### [Tensor.is_contiguous](https://pytorch.org/docs/stable/generated/torch.Tensor.is_contiguous.html#torch-tensor-is-contiguous)
+### [torch.Tensor.is_contiguous](https://pytorch.org/docs/stable/generated/torch.Tensor.is_contiguous.html#torch-tensor-is-contiguous)
 
 ```
 Tensor.is_contiguous(memory_format=torch.contiguous_format)

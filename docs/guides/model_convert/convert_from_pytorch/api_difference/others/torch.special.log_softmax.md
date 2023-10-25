@@ -1,4 +1,4 @@
-## [参数名不一致]torch.special.log_softmax
+## [仅参数名不一致]torch.special.log_softmax
 
 ### [torch.special.log_softmax](https://pytorch.org/docs/stable/special.html#torch.special.log_softmax)
 

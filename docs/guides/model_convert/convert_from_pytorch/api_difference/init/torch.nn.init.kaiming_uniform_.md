@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.nn.init.kaiming_uniform_.md
+## [ 组合替代实现 ]torch.nn.init.kaiming_uniform_
 
 ### [torch.nn.init.kaiming_uniform_](https://pytorch.org/docs/stable/nn.init.html?highlight=kaiming_uniform_#torch.nn.init.kaiming_uniform_)
 

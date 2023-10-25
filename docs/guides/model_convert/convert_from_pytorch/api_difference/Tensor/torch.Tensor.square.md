@@ -1,6 +1,6 @@
 ## [ 无参数 ]torch.Tensor.square
 
-### [torch.Tensor.square]https://pytorch.org/docs/stable/generated/torch.Tensor.square.html#torch-tensor-square)
+### [torch.Tensor.square](https://pytorch.org/docs/stable/generated/torch.Tensor.square.html#torch-tensor-square)
 
 ```python
 torch.Tensor.square()

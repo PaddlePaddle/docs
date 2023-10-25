@@ -12,6 +12,6 @@ input_feed[shape=rectangle,label=<Tensor Input signal<br/>layout=kNCHW<br/><b>NH
 input_feed2[shape=rectangle,label="Tensor Input signal\nlayout=kMKLDNN\nNCHW dim format"]
 filter_feed[shape=rectangle,label="Tensor filter data\nlayout=kNCHW\nNCHW dim format"]
 filter_feed2[shape=rectangle,label="Tensor filter data\nlayout=kMKLDNN\nNCHW dim format"]
-feed_op -> input_feed -> input_feed2 -> conv_mkldnn -> tensor_mkldnn -> pool_mkldnn -> tensor_mkldnn2 -> fetch_op -> tensor_fetch 
+feed_op -> input_feed -> input_feed2 -> conv_mkldnn -> tensor_mkldnn -> pool_mkldnn -> tensor_mkldnn2 -> fetch_op -> tensor_fetch
 feed_op2 -> filter_feed -> filter_feed2 -> conv_mkldnn
 }

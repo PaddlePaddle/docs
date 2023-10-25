@@ -61,3 +61,6 @@
 
 * :code:`CyclicLR`: 学习率根据指定的缩放策略以固定频率在最小和最大学习率之间进行循环。
   相关 API Reference 请参考 :ref:`_cn_api_paddle_optimizer_lr_CyclicLR`
+
+* :code:`LinearLR`: 学习率随 step 数线性增加到指定学习率。
+  相关 API Reference 请参考 :ref:`_cn_api_paddle_optimizer_lr_LinearLR`
