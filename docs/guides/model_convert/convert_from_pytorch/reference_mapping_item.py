@@ -132,6 +132,8 @@ REFERENCE_PATTERN = re.compile(
     r'^\| *REFERENCE-MAPPING-ITEM\( *(?P<torch_api>[^,]+) *, *(?P<diff_url>.+) *\) *\|$'
 )
 
+cnt = 0
+
 
 def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
     reference_match = REFERENCE_PATTERN.match(line)
@@ -174,6 +176,12 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         output = '| ' + ' | '.join(content) + ' |\n'
         return output
     else:
+        global cnt
+        if '功能缺失' in line:
+            print(f'ignore row at [{line_idx}]: {line}')
+        else:
+            cnt += 1
+            print(f'found {cnt}th bad row at [{line_idx}]: {line}')
         return line
 
 
