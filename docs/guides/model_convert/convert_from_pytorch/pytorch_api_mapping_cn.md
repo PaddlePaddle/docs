@@ -1315,11 +1315,11 @@
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 |----| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1  | [torch.utils.data.random_split](https://pytorch.org/docs/stable/data.html?highlight=random_split#torch.utils.data.random_split) | [paddle.io.random_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/random_split_cn.html#random-split) | 功能一致，参数完全一致 |
+| REFERENCE-MAPPING-ITEM(`torch.utils.data.random_split`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.random_split.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.distributed.DistributedSampler`, https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.utils.data.distributed.DistributedSampler.md) |
-| 3  | [torch.utils.data.Dataset](https://pytorch.org/docs/stable/data.html?highlight=torch%20utils%20data%20dataset#torch.utils.data.Dataset) | [paddle.io.Dataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/Dataset_cn.html#dataset) | 功能一致，参数完全一致     |
+| REFERENCE-MAPPING-ITEM(`torch.utils.data.Dataset`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.Dataset.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.BatchSampler`, https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.utils.data.BatchSampler.md) |
-| 5  | [torch.utils.data.Sampler](https://pytorch.org/docs/stable/data.html?highlight=sampler#torch.utils.data.Sampler) | [paddle.io.Sampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/Sampler_cn.html#sampler) | 功能一致，参数完全一致  |
+| REFERENCE-MAPPING-ITEM(`torch.utils.data.Sampler`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.Sampler.md) |
 | REFERENCE-MAPPING-ITEM(`torch.random.manual_seed`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.random.manual_seed.md) |
 | REFERENCE-MAPPING-ITEM(`torch.special.expm1`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.special.expm1.md) |
 | 8  |  [torch.backends.cudnn.version](https://pytorch.org/docs/stable/backends.html?highlight=torch+backends+cudnn+version#torch.backends.cudnn.version)  |    |    功能缺失  |
