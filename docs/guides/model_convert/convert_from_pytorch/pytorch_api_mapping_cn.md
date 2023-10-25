@@ -289,23 +289,23 @@
 | REFERENCE-MAPPING-ITEM(`torch.frexp`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.frexp.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nanmean`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.nanmean.md) |
 | REFERENCE-MAPPING-ITEM(`torch.take_along_dim`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.take_along_dim.md) |
-| 255 | [torch.geqrf](https://pytorch.org/docs/stable/generated/torch.geqrf.html?highlight=geqrf#torch.geqrf)                                                                             |                                                                                                                                                                              |    功能缺失  |
-| 256 | [torch.bitwise_right_shift](https://pytorch.org/docs/stable/generated/torch.bitwise_right_shift.html#torch.bitwise_right_shift)                                                   |                                                                                                                                                                              | 功能缺失        |
-| 257 | [torch.is_conj](https://pytorch.org/docs/stable/generated/torch.is_conj.html#torch.is_conj)                                                                                       |                                                                                                                                                                              | 功能缺失        |
-| 258 | [torch.diagonal_scatter](https://pytorch.org/docs/stable/generated/torch.diagonal_scatter.html#torch.diagonal_scatter)                                                            |                                                                                                                                                                              | 功能缺失        |
-| 259 | [torch.select_scatter](https://pytorch.org/docs/stable/generated/torch.select_scatter.html#torch.select_scatter)                                                                  |                                                                                                                                                                              | 功能缺失        |
-| 260 | [torch.slice_scatter](https://pytorch.org/docs/stable/generated/torch.slice_scatter.html#torch.slice_scatter)                                                                     |                                                                                                                                                                              | 功能缺失        |
-| 261 | [torch.scatter_reduce](https://pytorch.org/docs/stable/generated/torch.scatter_reduce.html#torch.scatter_reduce)                                                                  |                                                                                                                                                                              | 功能缺失        |
-| 262 | [torch.set_deterministic_debug_mode](https://pytorch.org/docs/stable/generated/torch.set_deterministic_debug_mode.html#torch.set_deterministic_debug_mode)                        |                                                                                                                                                                              | 功能缺失        |
-| 263 | [torch.get_deterministic_debug_mode](https://pytorch.org/docs/stable/generated/torch.get_deterministic_debug_mode.html#torch.get_deterministic_debug_mode)                        |                                                                                                                                                                              | 功能缺失        |
-| 264 | [torch.vsplit](https://pytorch.org/docs/stable/generated/torch.vsplit.html#torch.vsplit)                                                                                          |                                                                                                                                                                              | 功能缺失        |
-| 265 | [torch.hsplit](https://pytorch.org/docs/stable/generated/torch.hsplit.html#torch.hsplit)                                                                                          |                                                                                                                                                                              | 功能缺失        |
-| 266 | [torch.histogram](https://pytorch.org/docs/stable/generated/torch.histogram.html#torch.histogram)                                                                                 |                                                                                                                                                                              | 功能缺失        |
-| 267 | [torch.gradient](https://pytorch.org/docs/stable/generated/torch.gradient.html#torch.gradient)                                                                                    |                                                                                                                                                                              | 功能缺失        |
-| 268 | [torch.positive](https://pytorch.org/docs/stable/generated/torch.positive.html#torch.positive)                                                                                    |                                                                                                                                                                              | 功能缺失        |
-| 269 | [torch.resolve_neg](https://pytorch.org/docs/stable/generated/torch.resolve_neg.html#torch.resolve_neg)                                                                           |                                                                                                                                                                              | 功能缺失        |
-| 270 | [torch.bitwise_left_shift](https://pytorch.org/docs/stable/generated/torch.bitwise_left_shift.html#torch.bitwise_left_shift)                                                      |                                                                                                                                                                              | 功能缺失        |
-| 271 | [torch.isin](https://pytorch.org/docs/stable/generated/torch.isin.html#torch.isin)                                                                                                |                                                                                                                                                                              | 功能缺失        |
+| NOT-IMPLEMENTED-ITEM(`torch.geqrf`, https://pytorch.org/docs/stable/generated/torch.geqrf.html?highlight=geqrf#torch.geqrf) |
+| NOT-IMPLEMENTED-ITEM(`torch.bitwise_right_shift`, https://pytorch.org/docs/stable/generated/torch.bitwise_right_shift.html#torch.bitwise_right_shift) |
+| NOT-IMPLEMENTED-ITEM(`torch.is_conj`, https://pytorch.org/docs/stable/generated/torch.is_conj.html#torch.is_conj) |
+| NOT-IMPLEMENTED-ITEM(`torch.diagonal_scatter`, https://pytorch.org/docs/stable/generated/torch.diagonal_scatter.html#torch.diagonal_scatter) |
+| NOT-IMPLEMENTED-ITEM(`torch.select_scatter`, https://pytorch.org/docs/stable/generated/torch.select_scatter.html#torch.select_scatter) |
+| NOT-IMPLEMENTED-ITEM(`torch.slice_scatter`, https://pytorch.org/docs/stable/generated/torch.slice_scatter.html#torch.slice_scatter) |
+| NOT-IMPLEMENTED-ITEM(`torch.scatter_reduce`, https://pytorch.org/docs/stable/generated/torch.scatter_reduce.html#torch.scatter_reduce) |
+| NOT-IMPLEMENTED-ITEM(`torch.set_deterministic_debug_mode`, https://pytorch.org/docs/stable/generated/torch.set_deterministic_debug_mode.html#torch.set_deterministic_debug_mode) |
+| NOT-IMPLEMENTED-ITEM(`torch.get_deterministic_debug_mode`, https://pytorch.org/docs/stable/generated/torch.get_deterministic_debug_mode.html#torch.get_deterministic_debug_mode) |
+| NOT-IMPLEMENTED-ITEM(`torch.vsplit`, https://pytorch.org/docs/stable/generated/torch.vsplit.html#torch.vsplit) |
+| NOT-IMPLEMENTED-ITEM(`torch.hsplit`, https://pytorch.org/docs/stable/generated/torch.hsplit.html#torch.hsplit) |
+| NOT-IMPLEMENTED-ITEM(`torch.histogram`, https://pytorch.org/docs/stable/generated/torch.histogram.html#torch.histogram) |
+| NOT-IMPLEMENTED-ITEM(`torch.gradient`, https://pytorch.org/docs/stable/generated/torch.gradient.html#torch.gradient) |
+| NOT-IMPLEMENTED-ITEM(`torch.positive`, https://pytorch.org/docs/stable/generated/torch.positive.html#torch.positive) |
+| NOT-IMPLEMENTED-ITEM(`torch.resolve_neg`, https://pytorch.org/docs/stable/generated/torch.resolve_neg.html#torch.resolve_neg) |
+| NOT-IMPLEMENTED-ITEM(`torch.bitwise_left_shift`, https://pytorch.org/docs/stable/generated/torch.bitwise_left_shift.html#torch.bitwise_left_shift) |
+| NOT-IMPLEMENTED-ITEM(`torch.isin`, https://pytorch.org/docs/stable/generated/torch.isin.html#torch.isin) |
 | REFERENCE-MAPPING-ITEM(`torch.addbmm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.addbmm.md) |
 | REFERENCE-MAPPING-ITEM(`torch.adjoint`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.adjoint.md) |
 | REFERENCE-MAPPING-ITEM(`torch.aminmax`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.aminmax.md) |
@@ -359,8 +359,8 @@
 | REFERENCE-MAPPING-ITEM(`torch.unflatten`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.unflatten.md) |
 | REFERENCE-MAPPING-ITEM(`torch.vander`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.vander.md) |
 | REFERENCE-MAPPING-ITEM(`torch.vdot`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.vdot.md) |
-| 325 | [torch.resolve_conj](https://pytorch.org/docs/stable/generated/torch.resolve_conj.html#torch.resolve_conj) |  | 功能缺失        |
-| 326 | [torch.layout](https://pytorch.org/docs/stable/tensor_attributes.html#torch.layout) |  | 功能缺失        |
+| NOT-IMPLEMENTED-ITEM(`torch.resolve_conj`, https://pytorch.org/docs/stable/generated/torch.resolve_conj.html#torch.resolve_conj) |
+| NOT-IMPLEMENTED-ITEM(`torch.layout`, https://pytorch.org/docs/stable/tensor_attributes.html#torch.layout) |
 | REFERENCE-MAPPING-ITEM(`torch.testing.assert_close`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.testing.assert_close.md) |
 | REFERENCE-MAPPING-ITEM(`torch.__version__`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.__version__.md) |
 | REFERENCE-MAPPING-ITEM(`torch.get_default_dtype`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.get_default_dtype.md) |
@@ -465,13 +465,13 @@
 | REFERENCE-MAPPING-ITEM(`torch.nn.NLLLoss`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.NLLLoss.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.SoftMarginLoss`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.SoftMarginLoss.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.Mish`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Mish.md) |
-| 91  |  [torch.nn.GLU](https://pytorch.org/docs/stable/generated/torch.nn.GLU.html#torch.nn.GLU)  |  | 功能缺失        |
-| 92  |  [torch.nn.LazyBatchNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm1d.html#torch.nn.LazyBatchNorm1d)  |  | 功能缺失        |
-| 93  |  [torch.nn.LazyBatchNorm2d](https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm2d.html#torch.nn.LazyBatchNorm2d)  |  | 功能缺失        |
-| 94  |  [torch.nn.LazyBatchNorm3d](https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm3d.html#torch.nn.LazyBatchNorm3d)  |  | 功能缺失        |
-| 95  |  [torch.nn.LazyInstanceNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm1d.html#torch.nn.LazyInstanceNorm1d)  |  | 功能缺失        |
-| 96  |  [torch.nn.LazyInstanceNorm2d](https://pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm2d.html#torch.nn.LazyInstanceNorm2d)  |  | 功能缺失        |
-| 97  |  [torch.nn.LazyInstanceNorm3d](https://pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm3d.html#torch.nn.LazyInstanceNorm3d)  |  | 功能缺失        |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.GLU`, https://pytorch.org/docs/stable/generated/torch.nn.GLU.html#torch.nn.GLU) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.LazyBatchNorm1d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm1d.html#torch.nn.LazyBatchNorm1d) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.LazyBatchNorm2d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm2d.html#torch.nn.LazyBatchNorm2d) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.LazyBatchNorm3d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm3d.html#torch.nn.LazyBatchNorm3d) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.LazyInstanceNorm1d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm1d.html#torch.nn.LazyInstanceNorm1d) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.LazyInstanceNorm2d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm2d.html#torch.nn.LazyInstanceNorm2d) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.LazyInstanceNorm3d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm3d.html#torch.nn.LazyInstanceNorm3d) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.AlphaDropout`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.AlphaDropout.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.Bilinear`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Bilinear.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.CELU`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.CELU.md) |
@@ -574,7 +574,7 @@
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.binary_cross_entropy_with_logits`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.binary_cross_entropy_with_logits.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.l1_loss`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.l1_loss.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.mish`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.mish.md) |
-| 54 | [torch.nn.functional.group_norm](https://pytorch.org/docs/stable/generated/torch.nn.functional.group_norm.html#torch.nn.functional.group_norm) |  | 功能缺失 |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.functional.group_norm`, https://pytorch.org/docs/stable/generated/torch.nn.functional.group_norm.html#torch.nn.functional.group_norm) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.avg_pool1d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.avg_pool1d.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.avg_pool2d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.avg_pool2d.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.avg_pool3d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.avg_pool3d.md) |
@@ -721,9 +721,9 @@
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.sinh`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.sinh.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.slogdet`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.slogdet.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.mul`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.mul.md) |
-| 107 |  [torch.Tensor.mul_](https://pytorch.org/docs/stable/generated/torch.Tensor.mul_.html?highlight=mul_)  | |    功能缺失  |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.mul_`, https://pytorch.org/docs/stable/generated/torch.Tensor.mul_.html?highlight=mul_) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.multiply`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.multiply.md) |
-| 109 |  [torch.Tensor.multiply_](https://pytorch.org/docs/stable/generated/torch.Tensor.multiply_.html?highlight=multiply#torch.Tensor.multiply_) | |   功能缺失 |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.multiply_`, https://pytorch.org/docs/stable/generated/torch.Tensor.multiply_.html?highlight=multiply#torch.Tensor.multiply_) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.mv`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.mv.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.nansum`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.nansum.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.ndimension`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.ndimension.md) |
@@ -782,23 +782,23 @@
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.less`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.less.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.all`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.all.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.any`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.any.md) |
-| 168 |  [torch.Tensor.bitwise_right_shift](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_right_shift.html#torch.Tensor.bitwise_right_shift) |  | 功能缺失        |
-| 169 |  [torch.Tensor.is_conj](https://pytorch.org/docs/stable/generated/torch.Tensor.is_conj.html#torch.Tensor.is_conj)  |  | 功能缺失        |
-| 170 |  [torch.Tensor.diagonal_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.diagonal_scatter.html#torch.Tensor.diagonal_scatter) |  | 功能缺失        |
-| 171 |  [torch.Tensor.scatter_reduce](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter_reduce.html#torch.Tensor.scatter_reduce) |  | 功能缺失        |
-| 172 |  [torch.Tensor.select_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.select_scatter.html#torch.Tensor.select_scatter) |  | 功能缺失        |
-| 173 |  [torch.Tensor.slice_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.slice_scatter.html#torch.Tensor.slice_scatter) |  | 功能缺失        |
-| 174 |  [torch.Tensor.hsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.hsplit.html#torch.Tensor.hsplit)  |  | 功能缺失        |
-| 175 |  [torch.Tensor.vsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.vsplit.html#torch.Tensor.vsplit)  |  | 功能缺失        |
-| 176 |  [torch.Tensor.dsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.dsplit.html#torch.Tensor.dsplit)  |  | 功能缺失        |
-| 177 |  [torch.Tensor.is_coalesced](https://pytorch.org/docs/stable/generated/torch.Tensor.is_coalesced.html#torch.Tensor.is_coalesced) |  | 功能缺失        |
-| 178 |  [torch.Tensor.histogram](https://pytorch.org/docs/stable/generated/torch.Tensor.histogram.html#torch.Tensor.histogram) |  | 功能缺失        |
-| 179 |  [torch.Tensor.geqrf](https://pytorch.org/docs/1.13/generated/torch.Tensor.geqrf.html?highlight=torch+tensor+geqrf#torch.Tensor.geqrf) |  | 功能缺失        |
-| 180 |  [torch.Tensor.sparse_resize_](https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_resize_.html#torch.Tensor.sparse_resize_) |  | 功能缺失        |
-| 181 |  [torch.Tensor.sparse_resize_and_clear_](https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_resize_and_clear_.html#torch.Tensor.sparse_resize_and_clear_) |  | 功能缺失        |
-| 182 |  [torch.Tensor.bitwise_left_shift](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_left_shift.html#torch.Tensor.bitwise_left_shift) |  | 功能缺失        |
-| 183 |  [torch.Tensor.resolve_conj](https://pytorch.org/docs/stable/generated/torch.Tensor.resolve_conj.html#torch.Tensor.resolve_conj) |  | 功能缺失        |
-| 184 |  [torch.Tensor.resolve_neg](https://pytorch.org/docs/stable/generated/torch.Tensor.resolve_neg.html#torch.Tensor.resolve_neg) |  | 功能缺失        |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.bitwise_right_shift`, https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_right_shift.html#torch.Tensor.bitwise_right_shift) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.is_conj`, https://pytorch.org/docs/stable/generated/torch.Tensor.is_conj.html#torch.Tensor.is_conj) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.diagonal_scatter`, https://pytorch.org/docs/stable/generated/torch.Tensor.diagonal_scatter.html#torch.Tensor.diagonal_scatter) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.scatter_reduce`, https://pytorch.org/docs/stable/generated/torch.Tensor.scatter_reduce.html#torch.Tensor.scatter_reduce) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.select_scatter`, https://pytorch.org/docs/stable/generated/torch.Tensor.select_scatter.html#torch.Tensor.select_scatter) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.slice_scatter`, https://pytorch.org/docs/stable/generated/torch.Tensor.slice_scatter.html#torch.Tensor.slice_scatter) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.hsplit`, https://pytorch.org/docs/stable/generated/torch.Tensor.hsplit.html#torch.Tensor.hsplit) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.vsplit`, https://pytorch.org/docs/stable/generated/torch.Tensor.vsplit.html#torch.Tensor.vsplit) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.dsplit`, https://pytorch.org/docs/stable/generated/torch.Tensor.dsplit.html#torch.Tensor.dsplit) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.is_coalesced`, https://pytorch.org/docs/stable/generated/torch.Tensor.is_coalesced.html#torch.Tensor.is_coalesced) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.histogram`, https://pytorch.org/docs/stable/generated/torch.Tensor.histogram.html#torch.Tensor.histogram) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.geqrf`, https://pytorch.org/docs/1.13/generated/torch.Tensor.geqrf.html?highlight=torch+tensor+geqrf#torch.Tensor.geqrf) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.sparse_resize_`, https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_resize_.html#torch.Tensor.sparse_resize_) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.sparse_resize_and_clear_`, https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_resize_and_clear_.html#torch.Tensor.sparse_resize_and_clear_) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.bitwise_left_shift`, https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_left_shift.html#torch.Tensor.bitwise_left_shift) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.resolve_conj`, https://pytorch.org/docs/stable/generated/torch.Tensor.resolve_conj.html#torch.Tensor.resolve_conj) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.resolve_neg`, https://pytorch.org/docs/stable/generated/torch.Tensor.resolve_neg.html#torch.Tensor.resolve_neg) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.abs`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.abs.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.absolute`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.absolute.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.add`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.add.md) |
@@ -915,10 +915,10 @@
 | REFERENCE-MAPPING-ITEM(`torch.DoubleTensor`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.DoubleTensor.md) |
 | REFERENCE-MAPPING-ITEM(`torch.HalfTensor`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.HalfTensor.md) |
 | REFERENCE-MAPPING-ITEM(`torch.ShortTensor`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.ShortTensor.md) |
-| 301 |  [torch.Tensor.copysign](https://pytorch.org/docs/1.13/generated/torch.Tensor.copysign.html?highlight=torch+tensor+copysign#torch.Tensor.copysign)  |  | 功能缺失        |
-| 302 |  [torch.Tensor.dequantize](https://pytorch.org/docs/1.13/generated/torch.Tensor.dequantize.html?highlight=torch+tensor+dequantize#torch.Tensor.dequantize)  |  | 功能缺失        |
-| 303 |  [torch.Tensor.sum_to_size](https://pytorch.org/docs/stable/generated/torch.Tensor.sum_to_size.html?highlight=sum_to_size#torch.Tensor.sum_to_size)  |  |    功能缺失  |
-| 304 |  [torch.Tensor.resize_](https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html?highlight=resize#torch.Tensor.resize_)  |  |    功能缺失  |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.copysign`, https://pytorch.org/docs/1.13/generated/torch.Tensor.copysign.html?highlight=torch+tensor+copysign#torch.Tensor.copysign) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.dequantize`, https://pytorch.org/docs/1.13/generated/torch.Tensor.dequantize.html?highlight=torch+tensor+dequantize#torch.Tensor.dequantize) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.sum_to_size`, https://pytorch.org/docs/stable/generated/torch.Tensor.sum_to_size.html?highlight=sum_to_size#torch.Tensor.sum_to_size) |
+| NOT-IMPLEMENTED-ITEM(`torch.Tensor.resize_`, https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html?highlight=resize#torch.Tensor.resize_) |
 ***持续更新...***
 
 ## torch.nn.init.XX API 映射列表
@@ -951,7 +951,7 @@
 | REFERENCE-MAPPING-ITEM(`torch.nn.utils.remove_weight_norm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.utils.remove_weight_norm.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.utils.spectral_norm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.utils.spectral_norm.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.utils.weight_norm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.utils.weight_norm.md) |
-| 5  | [torch.nn.utils.parametrize.is_parametrized](https://pytorch.org/docs/stable/generated/torch.nn.utils.parametrize.is_parametrized.html#torch.nn.utils.parametrize.is_parametrized)            |                                                                                                                                                                              | 功能缺失  |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.utils.parametrize.is_parametrized`, https://pytorch.org/docs/stable/generated/torch.nn.utils.parametrize.is_parametrized.html#torch.nn.utils.parametrize.is_parametrized) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.utils.parameters_to_vector`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.utils.parameters_to_vector.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.utils.vector_to_parameters`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.utils.vector_to_parameters.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.utils.clip_grad_norm_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.utils.clip_grad_norm_.md) |
@@ -965,10 +965,10 @@
 
 | 序号 | PyTorch API | PaddlePaddle API | 备注 |
 |----| --- | --- | --- |
-| 1  |  [torch.nn.Module.to_empty](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.to_empty)  |   | 功能缺失  |
-| 2  |  [torch.nn.Module.register_full_backward_pre_hook](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_pre_hook)  |   | 功能缺失  |
-| 3  |  [torch.nn.Module.register_full_backward_hook](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_hook)  |   | 功能缺失  |
-| 4  |  [torch.nn.Module.requires_grad_](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.requires_grad_)  |   | 功能缺失  |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.Module.to_empty`, https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.to_empty) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.Module.register_full_backward_pre_hook`, https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_pre_hook) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.Module.register_full_backward_hook`, https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_hook) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.Module.requires_grad_`, https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.requires_grad_) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.Module.add_module`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Module.add_module.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.Module.apply`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Module.apply.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.Module.bfloat16`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Module.bfloat16.md) |
@@ -1010,8 +1010,8 @@
 
 | 序号 | PyTorch API | PaddlePaddle API | 备注 |
 |--- | --- | --- | --- |
-| 1   |  [torch.autograd.profiler.profile.self_cpu_time_total](https://pytorch.org/docs/stable/generated/torch.autograd.profiler.profile.self_cpu_time_total.html#torch.autograd.profiler.profile.self_cpu_time_total)  |   | 功能缺失  |
-| 2   |  [torch.autograd.function.FunctionCtx.mark_dirty](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.mark_dirty.html#torch.autograd.function.FunctionCtx.mark_dirty)  |   | 功能缺失  |
+| NOT-IMPLEMENTED-ITEM(`torch.autograd.profiler.profile.self_cpu_time_total`, https://pytorch.org/docs/stable/generated/torch.autograd.profiler.profile.self_cpu_time_total.html#torch.autograd.profiler.profile.self_cpu_time_total) |
+| NOT-IMPLEMENTED-ITEM(`torch.autograd.function.FunctionCtx.mark_dirty`, https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.mark_dirty.html#torch.autograd.function.FunctionCtx.mark_dirty) |
 | REFERENCE-MAPPING-ITEM(`torch.autograd.backward`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.autograd.backward.md) |
 | REFERENCE-MAPPING-ITEM(`torch.autograd.Function.backward`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.autograd.Function.backward.md) |
 | REFERENCE-MAPPING-ITEM(`torch.autograd.Function.forward`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.autograd.Function.forward.md) |
@@ -1049,14 +1049,14 @@
 | REFERENCE-MAPPING-ITEM(`torch.cuda.memory_reserved`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.memory_reserved.md) |
 | REFERENCE-MAPPING-ITEM(`torch.cuda.memory_allocated`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.memory_allocated.md) |
 | REFERENCE-MAPPING-ITEM(`torch.cuda.synchronize`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.synchronize.md) |
-| 16 |  [torch.cuda.memory_usage](https://pytorch.org/docs/stable/generated/torch.cuda.memory_usage.html#torch.cuda.memory_usage)  |  | 功能缺失        |
-| 17 |  [torch.cuda.mem_get_info](https://pytorch.org/docs/stable/generated/torch.cuda.mem_get_info.html#torch.cuda.mem_get_info)  |  | 功能缺失        |
-| 18 |  [torch.cuda.set_rng_state](https://pytorch.org/docs/stable/generated/torch.cuda.set_rng_state.html#torch.cuda.set_rng_state)  |  | 功能缺失        |
-| 19 | [torch.cuda.default_stream](https://pytorch.org/docs/stable/generated/torch.cuda.default_stream.html?highlight=torch+cuda+default_stream#torch.cuda.default_stream) | | 功能缺失 |
-| 20 | [torch.cuda.get_arch_list](https://pytorch.org/docs/stable/generated/torch.cuda.get_arch_list.html?highlight=torch+cuda+get_arch_list#torch.cuda.get_arch_list) | | 功能缺失 |
-| 21 | [torch.cuda.is_initialized](https://pytorch.org/docs/stable/generated/torch.cuda.is_initialized.html?highlight=torch+cuda+is_initialized#torch.cuda.is_initialized) | | 功能缺失 |
-| 22 | [torch.cuda.StreamContext](https://pytorch.org/docs/stable/generated/torch.cuda.StreamContext.html#torch.cuda.StreamContext) | | 功能缺失 |
-| 23 | [torch.cuda.is_current_stream_capturing](https://pytorch.org/docs/stable/generated/torch.cuda.is_current_stream_capturing.html#torch.cuda.is_current_stream_capturing) | | 功能缺失 |
+| NOT-IMPLEMENTED-ITEM(`torch.cuda.memory_usage`, https://pytorch.org/docs/stable/generated/torch.cuda.memory_usage.html#torch.cuda.memory_usage) |
+| NOT-IMPLEMENTED-ITEM(`torch.cuda.mem_get_info`, https://pytorch.org/docs/stable/generated/torch.cuda.mem_get_info.html#torch.cuda.mem_get_info) |
+| NOT-IMPLEMENTED-ITEM(`torch.cuda.set_rng_state`, https://pytorch.org/docs/stable/generated/torch.cuda.set_rng_state.html#torch.cuda.set_rng_state) |
+| NOT-IMPLEMENTED-ITEM(`torch.cuda.default_stream`, https://pytorch.org/docs/stable/generated/torch.cuda.default_stream.html?highlight=torch+cuda+default_stream#torch.cuda.default_stream) |
+| NOT-IMPLEMENTED-ITEM(`torch.cuda.get_arch_list`, https://pytorch.org/docs/stable/generated/torch.cuda.get_arch_list.html?highlight=torch+cuda+get_arch_list#torch.cuda.get_arch_list) |
+| NOT-IMPLEMENTED-ITEM(`torch.cuda.is_initialized`, https://pytorch.org/docs/stable/generated/torch.cuda.is_initialized.html?highlight=torch+cuda+is_initialized#torch.cuda.is_initialized) |
+| NOT-IMPLEMENTED-ITEM(`torch.cuda.StreamContext`, https://pytorch.org/docs/stable/generated/torch.cuda.StreamContext.html#torch.cuda.StreamContext) |
+| NOT-IMPLEMENTED-ITEM(`torch.cuda.is_current_stream_capturing`, https://pytorch.org/docs/stable/generated/torch.cuda.is_current_stream_capturing.html#torch.cuda.is_current_stream_capturing) |
 | REFERENCE-MAPPING-ITEM(`torch.cuda.amp.autocast`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.amp.autocast.md) |
 | REFERENCE-MAPPING-ITEM(`torch.cuda.amp.GradScaler`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.amp.GradScaler.md) |
 | REFERENCE-MAPPING-ITEM(`torch.cuda.comm.broadcast`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.comm.broadcast.md) |
@@ -1085,15 +1085,15 @@
 | REFERENCE-MAPPING-ITEM(`torch.distributed.init_process_group`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.init_process_group.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributed.barrier`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.barrier.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributed.ReduceOp`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.barrier.md) |
-| 4   |  [torch.distributed.rpc.WorkerInfo](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.WorkerInfo)  |  | 功能缺失        |
-| 5   |  [torch.distributed.rpc.functions.async_execution](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.functions.async_execution)  |  | 功能缺失        |
-| 6   |  [torch.distributed.broadcast_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.broadcast_multigpu)  |  | 功能缺失        |
-| 7   |  [torch.distributed.all_reduce_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_reduce_multigpu)  |  | 功能缺失        |
-| 8   |  [torch.distributed.reduce_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_multigpu)  |  | 功能缺失        |
-| 9   |  [torch.distributed.all_gather_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_gather_multigpu)  |  | 功能缺失        |
-| 10   |  [torch.distributed.reduce_scatter_multigpu](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_scatter_multigpu)  |  | 功能缺失        |
-| 11   |  [torch.distributions.constraints.Constraint](https://pytorch.org/docs/stable/distributions.html#torch.distributions.constraints.Constraint)  |  | 功能缺失        |
-| 12   |  [torch.distributions.constraint_registry.ConstraintRegistry](https://pytorch.org/docs/stable/distributions.html#torch.distributions.constraint_registry.ConstraintRegistry)  |  | 功能缺失        |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.rpc.WorkerInfo`, https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.WorkerInfo) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.rpc.functions.async_execution`, https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.functions.async_execution) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.broadcast_multigpu`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.broadcast_multigpu) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.all_reduce_multigpu`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_reduce_multigpu) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.reduce_multigpu`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_multigpu) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.all_gather_multigpu`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_gather_multigpu) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.reduce_scatter_multigpu`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_scatter_multigpu) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributions.constraints.Constraint`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.constraints.Constraint) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributions.constraint_registry.ConstraintRegistry`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.constraint_registry.ConstraintRegistry) |
 | REFERENCE-MAPPING-ITEM(`torch.distributed.all_gather`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.all_gather.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributed.all_gather_object`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.all_gather_object.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributed.all_reduce`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.all_reduce.md) |
@@ -1126,12 +1126,12 @@
 |----| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | REFERENCE-MAPPING-ITEM(`torch.distributions.kl.kl_divergence`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.kl.kl_divergence.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributions.kl.register_kl`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.kl.register_kl.md) |
-| 3  | [torch.distributions.binomial.Binomial](https://pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial) |  | 功能缺失        |
-| 4  | [torch.distributions.continuous_bernoulli.ContinuousBernoulli](https://pytorch.org/docs/stable/distributions.html#torch.distributions.continuous_bernoulli.ContinuousBernoulli) |  | 功能缺失        |
-| 5  | [torch.distributions.exponential.Exponential](https://pytorch.org/docs/stable/distributions.html#torch.distributions.exponential.Exponential) |  | 功能缺失        |
-| 6  | [torch.distributions.one_hot_categorical.OneHotCategorical](https://pytorch.org/docs/stable/distributions.html#torch.distributions.one_hot_categorical.OneHotCategorical) |  | 功能缺失        |
-| 7  | [torch.distributions.transforms.CumulativeDistributionTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.CumulativeDistributionTransform) |  | 功能缺失        |
-| 8  | [torch.distributions.transforms.SoftplusTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.SoftplusTransform) |  | 功能缺失        |
+| NOT-IMPLEMENTED-ITEM(`torch.distributions.binomial.Binomial`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributions.continuous_bernoulli.ContinuousBernoulli`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.continuous_bernoulli.ContinuousBernoulli) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributions.exponential.Exponential`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.exponential.Exponential) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributions.one_hot_categorical.OneHotCategorical`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.one_hot_categorical.OneHotCategorical) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributions.transforms.CumulativeDistributionTransform`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.CumulativeDistributionTransform) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributions.transforms.SoftplusTransform`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.SoftplusTransform) |
 | REFERENCE-MAPPING-ITEM(`torch.distributions.bernoulli.Bernoulli`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.bernoulli.Bernoulli.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributions.beta.Beta`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.beta.Beta.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributions.categorical.Categorical`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.categorical.Categorical.md) |
@@ -1155,7 +1155,7 @@
 | REFERENCE-MAPPING-ITEM(`torch.distributions.transforms.StickBreakingTransform`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.transforms.StickBreakingTransform.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributions.transforms.Transform`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.transforms.Transform.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributions.uniform.Uniform`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.uniform.Uniform.md) |
-| 32 | [torch.distributions.transforms.CatTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.CatTransform) |  | 功能缺失        |
+| NOT-IMPLEMENTED-ITEM(`torch.distributions.transforms.CatTransform`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.CatTransform) |
 
 
 ***持续更新...***
@@ -1195,8 +1195,8 @@
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1    | [torch.hub.get_dir](https://pytorch.org/docs/stable/hub.html?highlight=torch+hub+get_dir#torch.hub.get_dir) |  | 功能缺失        |
-| 2    | [torch.hub.set_dir](https://pytorch.org/docs/stable/hub.html?highlight=torch+hub+get_dir#torch.hub.set_dir) |  | 功能缺失        |
+| NOT-IMPLEMENTED-ITEM(`torch.hub.get_dir`, https://pytorch.org/docs/stable/hub.html?highlight=torch+hub+get_dir#torch.hub.get_dir) |
+| NOT-IMPLEMENTED-ITEM(`torch.hub.set_dir`, https://pytorch.org/docs/stable/hub.html?highlight=torch+hub+get_dir#torch.hub.set_dir) |
 | REFERENCE-MAPPING-ITEM(`torch.hub.download_url_to_file`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/hub/torch.hub.download_url_to_file.md) |
 | REFERENCE-MAPPING-ITEM(`torch.hub.help`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/hub/torch.hub.help.md) |
 | REFERENCE-MAPPING-ITEM(`torch.hub.list`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/hub/torch.hub.list.md) |
@@ -1220,11 +1220,11 @@
 | REFERENCE-MAPPING-ITEM(`torch.linalg.eigvals`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.eigvals.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.eig`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.eig.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.multi_dot`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.multi_dot.md) |
-| 11   |  [torch.linalg.matrix_exp](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_exp.html#torch.linalg.matrix_exp)  |  | 功能缺失        |
-| 12    | [torch.linalg.matrix_norm](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_norm.html#torch.linalg.matrix_norm) |  | 功能缺失        |
-| 13    | [torch.linalg.vector_norm](https://pytorch.org/docs/stable/generated/torch.linalg.vector_norm.html#torch.linalg.vector_norm) |  | 功能缺失        |
-| 14    | [torch.linalg.cholesky_ex](https://pytorch.org/docs/stable/generated/torch.linalg.cholesky_ex.html#torch.linalg.cholesky_ex) |  | 功能缺失        |
-| 15    | [torch.linalg.inv_ex](https://pytorch.org/docs/stable/generated/torch.linalg.inv_ex.html#torch.linalg.inv_ex) |  | 功能缺失        |
+| NOT-IMPLEMENTED-ITEM(`torch.linalg.matrix_exp`, https://pytorch.org/docs/stable/generated/torch.linalg.matrix_exp.html#torch.linalg.matrix_exp) |
+| NOT-IMPLEMENTED-ITEM(`torch.linalg.matrix_norm`, https://pytorch.org/docs/stable/generated/torch.linalg.matrix_norm.html#torch.linalg.matrix_norm) |
+| NOT-IMPLEMENTED-ITEM(`torch.linalg.vector_norm`, https://pytorch.org/docs/stable/generated/torch.linalg.vector_norm.html#torch.linalg.vector_norm) |
+| NOT-IMPLEMENTED-ITEM(`torch.linalg.cholesky_ex`, https://pytorch.org/docs/stable/generated/torch.linalg.cholesky_ex.html#torch.linalg.cholesky_ex) |
+| NOT-IMPLEMENTED-ITEM(`torch.linalg.inv_ex`, https://pytorch.org/docs/stable/generated/torch.linalg.inv_ex.html#torch.linalg.inv_ex) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.cond`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.cond.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.det`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.det.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.diagonal`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.diagonal.md) |
@@ -1247,8 +1247,8 @@
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1    | [torch.onnx.enable_log](https://pytorch.org/docs/stable/onnx.html#torch.onnx.enable_log) |  | 功能缺失        |
-| 2    | [torch.onnx.disable_log](https://pytorch.org/docs/stable/onnx.html#torch.onnx.disable_log) |  | 功能缺失        |
+| NOT-IMPLEMENTED-ITEM(`torch.onnx.enable_log`, https://pytorch.org/docs/stable/onnx.html#torch.onnx.enable_log) |
+| NOT-IMPLEMENTED-ITEM(`torch.onnx.disable_log`, https://pytorch.org/docs/stable/onnx.html#torch.onnx.disable_log) |
 | REFERENCE-MAPPING-ITEM(`torch.onnx.export`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.onnx.export.md) |
 
 ***持续更新...***
@@ -1258,7 +1258,7 @@
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1    | [torch.optim.lr_scheduler.LinearLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.LinearLR.html#torch.optim.lr_scheduler.LinearLR) |  | 功能缺失        |
+| NOT-IMPLEMENTED-ITEM(`torch.optim.lr_scheduler.LinearLR`, https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.LinearLR.html#torch.optim.lr_scheduler.LinearLR) |
 | REFERENCE-MAPPING-ITEM(`torch.optim.Adadelta`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/optimizer/torch.optim.Adadelta.md) |
 | REFERENCE-MAPPING-ITEM(`torch.optim.Adagrad`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/optimizer/torch.optim.Adagrad.md) |
 | REFERENCE-MAPPING-ITEM(`torch.optim.Adam`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/optimizer/torch.optim.Adam.md) |
@@ -1290,8 +1290,8 @@
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1    | [torch.profiler.ProfilerActivity](https://pytorch.org/docs/stable/profiler.html#torch.profiler.ProfilerActivity) |  | 功能缺失        |
-| 2    | [torch.profiler.ProfilerAction](https://pytorch.org/docs/stable/profiler.html#torch.profiler.ProfilerAction) |  | 功能缺失        |
+| NOT-IMPLEMENTED-ITEM(`torch.profiler.ProfilerActivity`, https://pytorch.org/docs/stable/profiler.html#torch.profiler.ProfilerActivity) |
+| NOT-IMPLEMENTED-ITEM(`torch.profiler.ProfilerAction`, https://pytorch.org/docs/stable/profiler.html#torch.profiler.ProfilerAction) |
 | REFERENCE-MAPPING-ITEM(`torch.profiler.profile`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.profiler.profile.md) |
 | REFERENCE-MAPPING-ITEM(`torch.profiler.schedule`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.profiler.schedule.md) |
 
@@ -1305,8 +1305,8 @@
 | REFERENCE-MAPPING-ITEM(`torch.sparse.addmm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/sparse/torch.sparse.addmm.md) |
 | REFERENCE-MAPPING-ITEM(`torch.sparse.mm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/sparse/torch.sparse.mm.md) |
 | REFERENCE-MAPPING-ITEM(`torch.sparse.softmax`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/sparse/torch.sparse.softmax.md) |
-| 4   |  [torch.sparse.sum](https://pytorch.org/docs/stable/generated/torch.sparse.sum.html?highlight=torch+sparse+sum#torch.sparse.sum)  |    |    功能缺失  |
-| 5   |  [torch.sparse.sampled_addmm](https://pytorch.org/docs/stable/generated/torch.sparse.sampled_addmm.html#torch.sparse.sampled_addmm)  |    |    功能缺失  |
+| NOT-IMPLEMENTED-ITEM(`torch.sparse.sum`, https://pytorch.org/docs/stable/generated/torch.sparse.sum.html?highlight=torch+sparse+sum#torch.sparse.sum) |
+| NOT-IMPLEMENTED-ITEM(`torch.sparse.sampled_addmm`, https://pytorch.org/docs/stable/generated/torch.sparse.sampled_addmm.html#torch.sparse.sampled_addmm) |
 
 ***持续更新...***
 
@@ -1322,9 +1322,9 @@
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.Sampler`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.Sampler.md) |
 | REFERENCE-MAPPING-ITEM(`torch.random.manual_seed`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.random.manual_seed.md) |
 | REFERENCE-MAPPING-ITEM(`torch.special.expm1`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.special.expm1.md) |
-| 8  |  [torch.backends.cudnn.version](https://pytorch.org/docs/stable/backends.html?highlight=torch+backends+cudnn+version#torch.backends.cudnn.version)  |    |    功能缺失  |
+| NOT-IMPLEMENTED-ITEM(`torch.backends.cudnn.version`, https://pytorch.org/docs/stable/backends.html?highlight=torch+backends+cudnn+version#torch.backends.cudnn.version) |
 | REFERENCE-MAPPING-ITEM(`torch.special.erf`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.special.erf.md) |
-| 10 | [torch.special.entr](https://pytorch.org/docs/stable/special.html#torch.special.entr) |  | 功能缺失        |
+| NOT-IMPLEMENTED-ITEM(`torch.special.entr`, https://pytorch.org/docs/stable/special.html#torch.special.entr) |
 | REFERENCE-MAPPING-ITEM(`torch.backends.cuda.is_built`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.backends.cuda.is_built.md) |
 | REFERENCE-MAPPING-ITEM(`torch.backends.cudnn.is_available`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.backends.cudnn.is_available.md) |
 | REFERENCE-MAPPING-ITEM(`torch.jit.load`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.jit.load.md) |
@@ -1361,7 +1361,7 @@
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.TensorDataset`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.TensorDataset.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.WeightedRandomSampler`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.WeightedRandomSampler.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.data._utils.collate.default_collate`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data._utils.collate.default_collate.md) |
-| 47 | [torch.utils.data.ConcatDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.ConcatDataset) |  | 功能缺失        |
+| NOT-IMPLEMENTED-ITEM(`torch.utils.data.ConcatDataset`, https://pytorch.org/docs/stable/data.html#torch.utils.data.ConcatDataset) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.IterableDataset`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.IterableDataset.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.BatchSampler`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.BatchSampler.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.DataLoader`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.DataLoader.md) |
@@ -1372,8 +1372,8 @@
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.random_split`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.random_split.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.dlpack.from_dlpack`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.dlpack.from_dlpack.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.dlpack.to_dlpack`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.dlpack.to_dlpack.md) |
-| 58 | [torch.utils.cpp_extension.load_inline](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.load_inline)                                                             |                                                                                                                                                                              | 功能缺失  |
-| 59 | [torch.utils.cpp_extension.include_paths](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.include_paths)                                                         |                                                                                                                                                                              | 功能缺失  |
+| NOT-IMPLEMENTED-ITEM(`torch.utils.cpp_extension.load_inline`, https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.load_inline) |
+| NOT-IMPLEMENTED-ITEM(`torch.utils.cpp_extension.include_paths`, https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.include_paths) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.cpp_extension.BuildExtension.with_options`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.cpp_extension.BuildExtension.with_options.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.cpp_extension.CUDA_HOME`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.cpp_extension.CUDA_HOME.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.cpp_extension.BuildExtension`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.cpp_extension.BuildExtension.md) |

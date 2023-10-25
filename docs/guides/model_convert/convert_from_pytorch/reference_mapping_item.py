@@ -131,17 +131,26 @@ def mapping_type_to_description(mapping_type):
 REFERENCE_PATTERN = re.compile(
     r'^\| *REFERENCE-MAPPING-ITEM\( *(?P<torch_api>[^,]+) *, *(?P<diff_url>.+) *\) *\|$'
 )
-
+NOT_IMPLEMENTED_PATTERN = re.compile(
+    r'^\| *NOT-IMPLEMENTED-ITEM\( *(?P<torch_api>[^,]+) *, *(?P<torch_api_url>.+) *\) *\|$'
+)
 cnt = 0
 
 
 def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
     reference_match = REFERENCE_PATTERN.match(line)
+    not_implemented_match = NOT_IMPLEMENTED_PATTERN.match(line)
+
     if reference_match:
         torch_api = reference_match['torch_api'].strip('`').replace(r'\_', '_')
         diff_url = reference_match['diff_url']
 
         row_idx_s = str(table_row_idx)
+
+        if torch_api not in metadata_dict:
+            raise Exception(
+                f"Cannot find torch_api: {torch_api} in line {line_idx}"
+            )
 
         reference_item = metadata_dict.get(torch_api, None)
         torch_api_url = reference_item['torch_api_url']
@@ -156,7 +165,7 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
             mapping_column += f'，[差异对比]({diff_url})'
 
         if 'paddle_api' not in reference_item:
-            if mapping_type != '组合替代实现':
+            if mapping_type not in set(['组合替代实现', '可删除', '功能缺失']):
                 print(
                     f"Cannot find paddle_api for torch_api: {torch_api} in line {line_idx}"
                 )
@@ -175,13 +184,32 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
 
         output = '| ' + ' | '.join(content) + ' |\n'
         return output
+    elif not_implemented_match:
+        torch_api = (
+            not_implemented_match['torch_api'].strip('`').replace(r'\_', '_')
+        )
+        torch_api_url = not_implemented_match['torch_api_url'].strip()
+
+        row_idx_s = str(table_row_idx)
+
+        torch_api_column = f'[`{torch_api}`]({torch_api_url})'
+
+        paddle_api_column = ''
+        mapping_column = '功能缺失'
+
+        content = [
+            row_idx_s,
+            torch_api_column,
+            paddle_api_column,
+            mapping_column,
+        ]
+
+        output = '| ' + ' | '.join(content) + ' |\n'
+        return output
     else:
         global cnt
-        if '功能缺失' in line:
-            print(f'ignore row at [{line_idx}]: {line}')
-        else:
-            cnt += 1
-            print(f'found {cnt}th bad row at [{line_idx}]: {line}')
+        cnt += 1
+        print(f'found {cnt}th bad row at [{line_idx}]: {line}')
         return line
 
 
