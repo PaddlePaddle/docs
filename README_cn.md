@@ -4,7 +4,7 @@
 
 docs 是 [PaddlePaddle 官网文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html) 的源文件。
 
-注意：英文版 API 文档直接从[PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 的 docstring 中生成，[飞桨其他项目](https://www.paddlepaddle.org.cn/overview)的文档分别在其对应的位置中管理。
+注意：英文版 API 文档直接从[PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 的 docstring中生成，[飞桨其他项目](https://www.paddlepaddle.org.cn/overview)的文档分别在其对应的位置中管理。
 
 ## 仓库结构
 

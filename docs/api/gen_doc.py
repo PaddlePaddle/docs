@@ -266,7 +266,10 @@ def parse_module_file(mod):
                 for node in mod_ast.body:
                     short_names = []
                     if (
-                        isinstance(node, (ast.ClassDef, ast.FunctionDef))
+                        (
+                            isinstance(node, ast.ClassDef)
+                            or isinstance(node, ast.FunctionDef)
+                        )
                         and hasattr(node, 'name')
                         and hasattr(sys.modules[mod_name], node.name)
                         and node.name[0] != '_'
