@@ -70,7 +70,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle==2.5.1 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle==2.5.2 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
@@ -81,38 +81,38 @@ You can choose the following version of PaddlePaddle to start installation:
 2.2.1 If you are using CUDA 10.2
 
   ```
-  python -m pip install paddlepaddle-gpu==2.5.1.post102 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.5.2.post102 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
 2.2.2 If you are using CUDA 11.2
 
   ```
-  python -m pip install paddlepaddle-gpu==2.5.1.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.5.2.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 2.2.3 If you are using CUDA 11.6
 
   ```
-  python -m pip install paddlepaddle-gpu==2.5.1.post116 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.5.2.post116 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 2.2.4 If you are using CUDA 11.7
 
   ```
-  python -m pip install paddlepaddle-gpu==2.5.1.post117 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.5.2.post117 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 2.2.5 If you are using CUDA 11.8
 
   ```
-  python -m pip install paddlepaddle-gpu==2.5.1 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle-gpu==2.5.2 -i https://mirror.baidu.com/pypi/simple
   ```
 
 2.2.6 If you are using CUDA 12.0
 
   ```
-  python -m pip install paddlepaddle-gpu==2.5.1.post120 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.5.2.post120 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 Note：
@@ -127,7 +127,7 @@ Note：
 * If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
 
   ```
-  python -m pip download paddlepaddle==2.5.1 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/avx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle==2.5.2 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/avx/stable.html --no-index --no-deps
   ```
 
 ## Verify installation

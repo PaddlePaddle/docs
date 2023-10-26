@@ -119,7 +119,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle==2.5.1 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle==2.5.2 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
@@ -132,7 +132,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.1.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.2.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -140,7 +140,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.1.post102 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.2.post102 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
   ```
 
 
@@ -148,7 +148,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.1.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.2.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -156,7 +156,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.1.post112 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.2.post112 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
   ```
 
 
@@ -164,7 +164,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.1.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.2.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -172,7 +172,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.1.post116 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.2.post116 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
   ```
 
 
@@ -180,7 +180,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.1.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.2.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -188,7 +188,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.1.post117 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.2.post117 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
   ```
 
 
@@ -196,7 +196,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.1 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle-gpu==2.5.2 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
@@ -204,7 +204,7 @@
 
 
   ```
-  python3 -m pip download paddlepaddle-gpu==2.5.1 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html  --no-index --no-deps
+  python3 -m pip download paddlepaddle-gpu==2.5.2 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html  --no-index --no-deps
 
   ```
 
@@ -213,7 +213,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.1.post120 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.2.post120 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -221,7 +221,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.5.1.post120 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.5.2.post120 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
   ```
 
 
@@ -240,7 +240,7 @@
 * 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
   ```
-  python3 -m pip download paddlepaddle==2.5.1 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
+  python3 -m pip download paddlepaddle==2.5.2 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
   ```
 
 
