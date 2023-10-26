@@ -384,6 +384,7 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.view <cn_api_paddle_view>` ", "使用特定的 shape 或者 dtype，返回 x 的一个 view Tensor"
     " :ref:`paddle.view_as <cn_api_paddle_view_as>` ", "使用 other 的 shape，返回 x 的一个 view Tensor"
     " :ref:`paddle.unfold <cn_api_paddle_unfold>` ", "返回 x 的一个 view Tensor。以滑动窗口式提取 x 的值"
+    " :ref:`paddle.masked_fill <cn_api_paddle_masked_fill>` ", "根据 mask 信息，将 value 中的值填充到 x 中 mask 对应为 True 的位置。"
 
 .. _tensor_manipulation_inplace:
 
