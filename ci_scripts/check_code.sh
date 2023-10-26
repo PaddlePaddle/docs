@@ -17,15 +17,17 @@
 #=================================================
 #                   Utils
 #=================================================
-
 set +x
+
+SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+cd $SCRIPT_DIR/..
 
 # use pre-commit 2.17
 if ! [[ $(pre-commit --version) == *"2.17.0"* ]]; then
     pip install pre-commit==2.17.0 1>nul
 fi
 
-diff_files=$(git diff --name-only --diff-filter=ACMR ${BRANCH} | sed 's/^/..\//')
+diff_files=$(git diff --name-only --diff-filter=ACMR ${BRANCH})
 num_diff_files=$(echo "$diff_files" | wc -l)
 echo -e "diff files between pr and ${BRANCH}:\n${diff_files}"
 
