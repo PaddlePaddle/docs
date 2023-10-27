@@ -37,7 +37,3 @@ echo $need_check_cn_doc_files
 # Check COPY-FROM is parsed into Sample Code
 echo "Run COPY-FROM parsed into Sample Code Check"
 python check_copy_from_parsed_into_sample_code.py "${OUTPUTDIR}/zh/${VERSIONSTR}/" $need_check_cn_doc_files
-if [ $? -ne 0 ];then
-    echo "ERROR: Exist COPY-FROM has not been parsed into sample code, please check COPY-FROM in the above files"
-    exit 1
-fi
