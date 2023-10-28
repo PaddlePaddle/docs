@@ -134,7 +134,6 @@ REFERENCE_PATTERN = re.compile(
 NOT_IMPLEMENTED_PATTERN = re.compile(
     r'^\| *NOT-IMPLEMENTED-ITEM\( *(?P<torch_api>[^,]+) *, *(?P<torch_api_url>.+) *\) *\|$'
 )
-cnt = 0
 
 
 def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
@@ -207,9 +206,7 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         output = '| ' + ' | '.join(content) + ' |\n'
         return output
     else:
-        global cnt
-        cnt += 1
-        print(f'found {cnt}th bad row at [{line_idx}]: {line}')
+        print(f'found manual-maintaining row at line [{line_idx}]: {line}')
         return line
 
 

@@ -4,6 +4,7 @@ import re
 import typing
 from typing import TypedDict
 
+# TODO: 加入 CI 流程检查
 
 mapping_type_set = set(
     [
@@ -337,10 +338,3 @@ if __name__ == '__main__':
             )
 
     meta_dict = {m['torch_api'].replace(r'\_', '_'): m for m in metas}
-
-    # notfound_mappings = set(index_data_dict.keys()) - set(meta_dict.keys())
-
-    # print(f"Total {len(notfound_mappings)} mappings not found.")
-    # for k in notfound_mappings:
-    #     # raise Exception(f"Cannot find meta for {k} in index data.")
-    #     print(f"Cannot find meta for {k} in index data.")
