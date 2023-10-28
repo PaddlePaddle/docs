@@ -1,3 +1,4 @@
+import json
 import os
 import re
 import typing
@@ -346,8 +347,16 @@ if __name__ == '__main__':
         ]
     )
 
-    metas = [getMetaFromDiffFile(f) for f in diff_files]
+    metas = sorted(
+        [getMetaFromDiffFile(f) for f in diff_files],
+        key=lambda x: x['torch_api'],
+    )
 
     meta_dict = {m['torch_api'].replace(r'\_', '_'): m for m in metas}
 
-    output = reference_mapping_item(mapping_index_file, meta_dict)
+    reference_mapping_item(mapping_index_file, meta_dict)
+
+    api_diff_output_path = os.path.join(cfp_basedir, "api_mappings.json")
+
+    with open(api_diff_output_path, 'w', encoding='utf-8') as f:
+        json.dump(metas, f, ensure_ascii=False, indent=4)
