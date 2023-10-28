@@ -9,7 +9,7 @@ from utils import get_parameters, parse_doxygen
 # create_and_write_file 根据指定的语言类型，在指定目录生成对应的文档
 class func_helper(object):
     def __init__(self, function_dict, cpp2py_api_list):
-        super(func_helper, self).__init__()
+        super().__init__()
         self.function_dict = function_dict
         self.cpp2py_api_list = cpp2py_api_list
         self.decode()
@@ -182,7 +182,7 @@ class func_helper(object):
 # create_and_write_file 根据指定的语言类型，在指定目录生成对应的文档
 class class_helper(object):
     def __init__(self, class_dict):
-        super(class_helper, self).__init__()
+        super().__init__()
         self.class_dict = class_dict
         self.decode()
 
