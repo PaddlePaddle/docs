@@ -1,15 +1,15 @@
 # PyTorch 1.13 与 Paddle 2.4 API 映射表
+
 本文档梳理了 PyTorch（v1.13）常用 API 与 PaddlePaddle 2.4.0 API 对应关系与差异分析。通过本文档，帮助开发者快速迁移 PyTorch 使用经验，完成模型的开发与调优。
 
 ## 贡献代码
 
 欢迎你向我们贡献代码，关于如何编写 API 映射关系，为保证文档格式统一性与可读性，请严格参照 [API 映射关系-格式与模板](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/pytorch_api_mapping_format_cn.md) 来编写。
 
-
 ## API 映射表目录
 
-| 类别         | 简介 |
-| ---------- | ------------------------- |
+| 类别 | 简介 |
+| ---- | --- |
 | [torch.XX](#id1) | 主要为`torch.XX`类 API |
 | [torch.nn.XX](#id2) | 主要为`torch.nn.XX`类 API |
 | [torch.nn.functional.XX](#id3) | 主要为`torch.nn.functional.XX`类 API |
@@ -31,10 +31,11 @@
 | [其他](#id13)    | 其他 API |
 
 ## torch.XX API 映射列表
+
 梳理了`torch.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | PyTorch API                                                                                                                                                                       | PaddlePaddle API                                                                                                                                                             | 备注 |
-|-----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| --- |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.abs`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.abs.md) |
 | REFERENCE-MAPPING-ITEM(`torch.absolute`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.absolute.md) |
 | REFERENCE-MAPPING-ITEM(`torch.acos`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.acos.md) |
@@ -185,16 +186,16 @@
 | REFERENCE-MAPPING-ITEM(`torch.zeros_like`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.zeros_like.md) |
 | REFERENCE-MAPPING-ITEM(`torch.meshgrid`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.meshgrid.md) |
 | REFERENCE-MAPPING-ITEM(`torch.sigmoid`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.sigmoid.md) |
-| 151 | [torch.set\_default\_dtype](https://pytorch.org/docs/stable/generated/torch.set_default_dtype.html?highlight=set_default_dtype#torch.set_default_dtype)                           | [paddle.set\_default\_dtype](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/set_default_dtype_cn.html#set-default-dtype)                                   | 功能一致，参数完全一致    |
-| 152 | [torch.get\_default\_dtype](https://pytorch.org/docs/stable/generated/torch.get_default_dtype.html?highlight=get_default_dtype#torch.get_default_dtype)                           | [paddle.get\_default\_dtype](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/get_default_dtype_cn.html#get-default-dtype)                                   | 功能一致，参数完全一致     |
-| 153 | [torch.t](https://pytorch.org/docs/stable/generated/torch.t.html?highlight=t#torch.t)                                                                                             | [paddle.t](paddlepaddle.org.cn/documentation/docs/zh/api/paddle/t_cn.html#t)                                                                                                 | 功能一致，参数完全一致    |
-| 154 | [torch.where](https://pytorch.org/docs/stable/generated/torch.where.html?highlight=where#torch.where)                                                                             | [paddle.where](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/where_cn.html#where)                                                                         | 功能一致，参数完全一致    |
-| 155 | [torch.manual\_seed](https://pytorch.org/docs/stable/generated/torch.manual_seed.html?highlight=manual_seed#torch.manual_seed)                                                    | [paddle.seed](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/seed_cn.html#seed)                                                                            | 功能一致，参数完全一致                                       |
-| 156 | [torch.no\_grad](https://pytorch.org/docs/stable/generated/torch.no_grad.html?highlight=no_grad#torch.no_grad)                                                                    | [paddle.no\_grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/no_grad_cn.html#no-grad)                                                                  | 功能一致，无参数     |
-| 157 | [torch.set\_grad\_enabled](https://pytorch.org/docs/stable/generated/torch.set_grad_enabled.html?highlight=set_grad_enabled#torch.set_grad_enabled)                               | [paddle.set\_grad\_enabled](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/set_grad_enabled_cn.html#set-grad-enabled)                                      | 功能一致，参数完全一致                                       |
-| 158 | [torch.diag\_embed](https://pytorch.org/docs/stable/generated/torch.diag_embed.html?highlight=diag_embed#torch.diag_embed)                                                        | [paddle.nn.functional.diag\_embed](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/diag_embed_cn.html#diag-embed)                             | 功能一致，参数完全一致    |
-| 159 | [torch.is\_grad\_enabled](https://pytorch.org/docs/stable/generated/torch.is_grad_enabled.html?highlight=is_grad_enabled#torch.is_grad_enabled)                                   | [paddle.is\_grad\_enabled](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/is_grad_enabled_cn.html#is-grad-enabled)                                         | 功能一致，无参数   |
-| 160 | [torch.nansum](https://pytorch.org/docs/stable/generated/torch.nansum.html?highlight=nansum#torch.nansum)                                                                         | [paddle.nansum]()                                                                                                                                                            | 功能一致，仅参数名不一致    |
+| REFERENCE-MAPPING-ITEM(`torch.set_default_dtype`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.set_default_dtype.md) |
+| REFERENCE-MAPPING-ITEM(`torch.get_default_dtype`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.get_default_dtype.md) |
+| REFERENCE-MAPPING-ITEM(`torch.t`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.t.md) |
+| REFERENCE-MAPPING-ITEM(`torch.where`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.where.md) |
+| REFERENCE-MAPPING-ITEM(`torch.manual_seed`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.manual_seed.md) |
+| REFERENCE-MAPPING-ITEM(`torch.no_grad`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.no_grad.md) |
+| REFERENCE-MAPPING-ITEM(`torch.set_grad_enabled`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.set_grad_enabled.md) |
+| REFERENCE-MAPPING-ITEM(`torch.diag_embed`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.diag_embed.md) |
+| REFERENCE-MAPPING-ITEM(`torch.is_grad_enabled`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.is_grad_enabled.md) |
+| REFERENCE-MAPPING-ITEM(`torch.nansum`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.nansum.md) |
 | REFERENCE-MAPPING-ITEM(`torch.svd_lowrank`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.svd_lowrank.md) |
 | REFERENCE-MAPPING-ITEM(`torch.symeig`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.symeig.md) |
 | REFERENCE-MAPPING-ITEM(`torch.addcdiv`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.addcdiv.md) |
@@ -373,8 +374,8 @@
 
 梳理了`torch.nn.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | PyTorch API | PaddlePaddle API | 备注 |
-|-----| --- | --- | --- |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.nn.AdaptiveMaxPool1d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.AdaptiveMaxPool1d.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.AdaptiveMaxPool2d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.AdaptiveMaxPool2d.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.AdaptiveMaxPool3d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.AdaptiveMaxPool3d.md) |
@@ -519,8 +520,8 @@
 ## torch.nn.functional.XX API 映射列表
 梳理了`torch.nn.functional.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API | PaddlePaddle API | 备注 |
-|----| --- | --- | --- |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.adaptive_avg_pool1d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.adaptive_avg_pool1d.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.adaptive_avg_pool2d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.adaptive_avg_pool2d.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.adaptive_avg_pool3d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.adaptive_avg_pool3d.md) |
@@ -613,8 +614,8 @@
 ## torch.Tensor.XX API 映射列表
 梳理了`torch.Tensor.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | PyTorch API | PaddlePaddle API | 备注 |
-|-----| --- | --- | --- |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.device`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.device.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.grad`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.grad.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.imag`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.imag.md) |
@@ -924,8 +925,8 @@
 ## torch.nn.init.XX API 映射列表
 梳理了`torch.nn.init.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
-| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.nn.init.calculate_gain`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/init/torch.nn.init.calculate_gain.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.init.constant_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/init/torch.nn.init.constant_.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.init.dirac_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/init/torch.nn.init.dirac_.md) |
@@ -945,8 +946,8 @@
 ## torch.nn.utils.XX API 映射列表
 梳理了`torch.nn.utils.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API                                                                                                                                                                                   | PaddlePaddle API                                                                                                                                                             | 备注 |
-|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| --- |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.nn.utils.clip_grad_value_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.utils.clip_grad_value_.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.utils.remove_weight_norm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.utils.remove_weight_norm.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.utils.spectral_norm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.utils.spectral_norm.md) |
@@ -963,8 +964,8 @@
 ## torch.nn.Module.XX API 映射列表
 梳理了`torch.nn.Module.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API | PaddlePaddle API | 备注 |
-|----| --- | --- | --- |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.Module.to_empty`, https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.to_empty) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.Module.register_full_backward_pre_hook`, https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_pre_hook) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.Module.register_full_backward_hook`, https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_hook) |
@@ -1008,8 +1009,8 @@
 ## torch.autograd.XX API 映射列表
 梳理了`torch.autograd.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API | PaddlePaddle API | 备注 |
-|--- | --- | --- | --- |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | NOT-IMPLEMENTED-ITEM(`torch.autograd.profiler.profile.self_cpu_time_total`, https://pytorch.org/docs/stable/generated/torch.autograd.profiler.profile.self_cpu_time_total.html#torch.autograd.profiler.profile.self_cpu_time_total) |
 | NOT-IMPLEMENTED-ITEM(`torch.autograd.function.FunctionCtx.mark_dirty`, https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.mark_dirty.html#torch.autograd.function.FunctionCtx.mark_dirty) |
 | REFERENCE-MAPPING-ITEM(`torch.autograd.backward`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.autograd.backward.md) |
@@ -1032,8 +1033,8 @@
 ## torch.cuda.XX API 映射列表
 梳理了`torch.cuda.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
-|----| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.cuda.max_memory_allocated`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.max_memory_allocated.md) |
 | REFERENCE-MAPPING-ITEM(`torch.cuda.Event`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.Event.md) |
 | REFERENCE-MAPPING-ITEM(`torch.cuda.current_device`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.current_device.md) |
@@ -1080,8 +1081,8 @@
 ## torch.distributed.XX API 映射列表
 梳理了`torch.distributed.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
-| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.distributed.init_process_group`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.init_process_group.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributed.barrier`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.barrier.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributed.ReduceOp`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.barrier.md) |
@@ -1122,8 +1123,8 @@
 ## torch.distributions.XX API 映射列表
 梳理了`torch.distributions.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
-|----| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.distributions.kl.kl_divergence`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.kl.kl_divergence.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributions.kl.register_kl`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.kl.register_kl.md) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributions.binomial.Binomial`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial) |
@@ -1163,8 +1164,8 @@
 ## torch.fft.XX API 映射列表
 梳理了`torch.fft.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
-|----| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.fft.fftshift`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/fft/torch.fft.fftshift.md) |
 | REFERENCE-MAPPING-ITEM(`torch.fft.ifftshift`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/fft/torch.fft.ifftshift.md) |
 | REFERENCE-MAPPING-ITEM(`torch.fft.hfft2`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/fft/torch.fft.hfft2.md) |
@@ -1193,8 +1194,8 @@
 ## torch.hub.XX API 映射列表
 梳理了`torch.hub.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
-| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | NOT-IMPLEMENTED-ITEM(`torch.hub.get_dir`, https://pytorch.org/docs/stable/hub.html?highlight=torch+hub+get_dir#torch.hub.get_dir) |
 | NOT-IMPLEMENTED-ITEM(`torch.hub.set_dir`, https://pytorch.org/docs/stable/hub.html?highlight=torch+hub+get_dir#torch.hub.set_dir) |
 | REFERENCE-MAPPING-ITEM(`torch.hub.download_url_to_file`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/hub/torch.hub.download_url_to_file.md) |
@@ -1208,8 +1209,8 @@
 ## torch.linalg.XX API 映射列表
 梳理了`torch.linalg.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
-| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.svd`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.svd.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.matrix_power`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.matrix_power.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.cholesky`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.cholesky.md) |
@@ -1245,8 +1246,8 @@
 ## torch.onnx.XX API 映射列表
 梳理了`torch.onnx.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
-| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | NOT-IMPLEMENTED-ITEM(`torch.onnx.enable_log`, https://pytorch.org/docs/stable/onnx.html#torch.onnx.enable_log) |
 | NOT-IMPLEMENTED-ITEM(`torch.onnx.disable_log`, https://pytorch.org/docs/stable/onnx.html#torch.onnx.disable_log) |
 | REFERENCE-MAPPING-ITEM(`torch.onnx.export`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.onnx.export.md) |
@@ -1256,8 +1257,8 @@
 ## torch.optim.XX API 映射列表
 梳理了`torch.optim.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
-| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | NOT-IMPLEMENTED-ITEM(`torch.optim.lr_scheduler.LinearLR`, https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.LinearLR.html#torch.optim.lr_scheduler.LinearLR) |
 | REFERENCE-MAPPING-ITEM(`torch.optim.Adadelta`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/optimizer/torch.optim.Adadelta.md) |
 | REFERENCE-MAPPING-ITEM(`torch.optim.Adagrad`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/optimizer/torch.optim.Adagrad.md) |
@@ -1288,8 +1289,8 @@
 ## torch.profiler.XX API 映射列表
 梳理了`torch.profiler.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
-| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | NOT-IMPLEMENTED-ITEM(`torch.profiler.ProfilerActivity`, https://pytorch.org/docs/stable/profiler.html#torch.profiler.ProfilerActivity) |
 | NOT-IMPLEMENTED-ITEM(`torch.profiler.ProfilerAction`, https://pytorch.org/docs/stable/profiler.html#torch.profiler.ProfilerAction) |
 | REFERENCE-MAPPING-ITEM(`torch.profiler.profile`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.profiler.profile.md) |
@@ -1300,8 +1301,8 @@
 ## torch.sparse.XX API 映射列表
 梳理了`torch.sparse.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
-| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.sparse.addmm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/sparse/torch.sparse.addmm.md) |
 | REFERENCE-MAPPING-ITEM(`torch.sparse.mm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/sparse/torch.sparse.mm.md) |
 | REFERENCE-MAPPING-ITEM(`torch.sparse.softmax`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/sparse/torch.sparse.softmax.md) |
@@ -1313,8 +1314,8 @@
 ## 其他类 API 映射列表
 梳理了其他类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
-|----| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 序号  | PyTorch API | PaddlePaddle API  | 备注 |
+| ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.random_split`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.random_split.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.distributed.DistributedSampler`, https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.utils.data.distributed.DistributedSampler.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.Dataset`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.Dataset.md) |
