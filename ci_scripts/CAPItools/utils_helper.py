@@ -239,7 +239,7 @@ class class_helper:
             returns = ith_function["rtnType"]
             # Note Template 没有仅对class起作用，可能需要同步添加到API中
             template = ""
-            if ith_function['template'] != False:
+            if ith_function['template'] is not False:
                 template = ith_function['template']
 
             # analysis doxygen

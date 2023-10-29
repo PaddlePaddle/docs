@@ -400,16 +400,16 @@ def set_display_attr_of_apis():
     set the display attr
     """
     if os.path.exists(NOT_DISPLAY_DOC_LIST_FILENAME):
-        display_none_apis = set(
-            [line.strip() for line in open(NOT_DISPLAY_DOC_LIST_FILENAME, "r")]
-        )
+        display_none_apis = {
+            line.strip() for line in open(NOT_DISPLAY_DOC_LIST_FILENAME, "r")
+        }
     else:
         logger.warning("file not exists: %s", NOT_DISPLAY_DOC_LIST_FILENAME)
         display_none_apis = set()
     if os.path.exists(DISPLAY_DOC_LIST_FILENAME):
-        display_yes_apis = set(
-            [line.strip() for line in open(DISPLAY_DOC_LIST_FILENAME, "r")]
-        )
+        display_yes_apis = {
+            line.strip() for line in open(DISPLAY_DOC_LIST_FILENAME, "r")
+        }
     else:
         logger.warning("file not exists: %s", DISPLAY_DOC_LIST_FILENAME)
         display_yes_apis = set()
