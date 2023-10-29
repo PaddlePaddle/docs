@@ -1,18 +1,19 @@
-import paddle
+import argparse
+import ast
+import contextlib
+import importlib
+import inspect
+import json
+import logging
 import os
 import pkgutil
-import types
-import contextlib
-import argparse
-import json
-import sys
-import inspect
-import ast
-import logging
-import importlib
 import re
-import extract_api_from_docs
+import sys
+import types
 from queue import Queue
+
+import extract_api_from_docs
+import paddle
 
 """
 generate api_info_dict.json to describe all info about the apis.
