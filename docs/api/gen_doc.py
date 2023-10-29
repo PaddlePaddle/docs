@@ -952,7 +952,7 @@ def insert_suggested_names():
         """
         sort and move paddle.Tensor.* to the end
         """
-        names_sorted = sorted(list(api_names))
+        names_sorted = sorted(api_names)
         cnt = 0  # count of paddle.Tensor.*
         for n in names_sorted:
             if n.startswith('paddle.Tensor.'):
