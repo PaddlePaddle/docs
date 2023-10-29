@@ -95,7 +95,7 @@ def check_system_message_in_doc(doc_file):
 
 if __name__ == '__main__':
     args = parse_args()
-    py_files = [fn for fn in args.py_files.split('\n')]
+    py_files = list(args.py_files.split('\n'))
     # 此处获取的全路径是 python/paddle/amp/auto_cast.py，在 api_info_all.json 中的路径是 /paddle/amp/auto_cast.py
     # 做字符串替换
     for i in range(len(py_files)):
