@@ -24,13 +24,12 @@ def check_copy_from_not_parsed(file):
 def run_copy_from_check(output_path, pr_files):
     print('COPY-FROM check files: ', pr_files, ' in ', output_path)
     all_error_parsed = []
-    error_parsed = []
     if not pr_files:
         print("pr file list is empty, skip COPY-FROM check")
         sys.exit(0)
     for file in pr_files:
         if '_cn.rst' not in file:
-            return error_parsed
+            continue
         # find the Chinese HTML file for PR File
         error_parsed = check_copy_from_not_parsed(
             output_path + file.replace('_cn.rst', '_cn.html')
