@@ -291,7 +291,7 @@ class class_helper:
 
     def create_and_write_file_cn(self, save_dir, language):
         with open(save_dir, 'w', encoding='utf8') as f:
-            head_text = f'.. _{language}_api_{self.class_name}:\n' f'\n'
+            head_text = f'.. _{language}_api_{self.class_name}:\n' + '\n'
             f.write(head_text)
 
             name_and_intro_text = (
@@ -368,7 +368,7 @@ class class_helper:
 
     def create_and_write_file_en(self, save_dir, language):
         with open(save_dir, 'w', encoding='utf8') as f:
-            head_text = f'.. _{language}_api_{self.class_name}:\n' f'\n'
+            head_text = f'.. _{language}_api_{self.class_name}:\n' + '\n'
             f.write(head_text)
 
             name_and_intro_text = (
