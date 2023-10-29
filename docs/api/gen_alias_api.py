@@ -1,8 +1,9 @@
-import paddle
 import inspect
 import pkgutil
-import sys
 import subprocess
+import sys
+
+import paddle
 
 
 class AliasAPIGen:

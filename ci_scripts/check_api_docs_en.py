@@ -1,5 +1,5 @@
-import json
 import argparse
+import json
 import sys
 
 source_to_doc_dict = {}

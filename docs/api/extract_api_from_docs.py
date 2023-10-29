@@ -15,12 +15,13 @@
 Extract used apis from markdown and reStructured documents.
 """
 
-import re
-import inspect
-import os
 import argparse
+import inspect
 import logging
+import os
+import re
 from contextlib import contextmanager
+
 import docutils
 import docutils.core
 import docutils.nodes

@@ -1,13 +1,12 @@
-import sys
-import os
-
-# sys.path.insert(0, os.path.abspath('@PADDLE_BINARY_DIR@/python'))
-from recommonmark import parser, transform
-import inspect
 import ast
-import time
 import configparser
+import inspect
+import os
 import re
+import sys
+import time
+
+from recommonmark import parser, transform
 
 try:
     import paddle  # noqa: F401

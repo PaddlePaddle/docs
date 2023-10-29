@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import json
 import argparse
+import ast
+import inspect
+import json
 import os.path as osp
 import re
 import sys
-import inspect
-import ast
 
 
 def add_path(path):

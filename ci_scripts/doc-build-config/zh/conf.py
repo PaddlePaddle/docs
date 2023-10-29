@@ -1,14 +1,10 @@
-import sys
-import os
-import inspect
 import ast
-
-# sys.setdefaultencoding('utf-8')
-
-# sys.path.insert(0, os.path.abspath('@PADDLE_BINARY_DIR@/python'))
-from recommonmark import parser, transform
-
+import inspect
+import os
+import sys
 import time
+
+from recommonmark import parser, transform
 
 try:
     import paddle  # noqa: F401
