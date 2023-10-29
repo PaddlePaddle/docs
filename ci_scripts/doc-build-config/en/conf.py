@@ -28,9 +28,9 @@ AutoStructify = transform.AutoStructify
 # -- General configuration ------------------------------------------------
 
 # General information about the project.
-project = u'PaddlePaddle'
-author = u'%s developers' % project
-copyright = u'%d, %s' % (time.localtime(time.time()).tm_year, author)
+project = 'PaddlePaddle'
+author = '%s developers' % project
+copyright = '%d, %s' % (time.localtime(time.time()).tm_year, author)
 github_doc_root = 'https://github.com/PaddlePaddle/docs/docs'
 
 # add markdown parser
