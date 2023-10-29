@@ -19,7 +19,6 @@ import re
 import sys
 import inspect
 import ast
-import paddle
 
 
 def add_path(path):
