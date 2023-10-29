@@ -1,6 +1,4 @@
 import sys
-import re
-import os
 
 
 def check_copy_from_not_parsed(file):

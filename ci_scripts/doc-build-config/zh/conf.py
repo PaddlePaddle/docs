@@ -1,20 +1,17 @@
 import sys
 import os
-import subprocess
-import sphinx_rtd_theme
 import inspect
 import ast
 
 # sys.setdefaultencoding('utf-8')
 
 # sys.path.insert(0, os.path.abspath('@PADDLE_BINARY_DIR@/python'))
-import shlex
 from recommonmark import parser, transform
 
 import time
 
 try:
-    import paddle
+    import paddle  # noqa: F401
 except:
     print("import paddle error")
 breathe_projects = {"PaddlePaddle": "/docs/doxyoutput/xml"}

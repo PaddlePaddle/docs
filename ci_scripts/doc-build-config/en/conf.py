@@ -1,8 +1,7 @@
 import sys
-import os, subprocess
+import os
 
 # sys.path.insert(0, os.path.abspath('@PADDLE_BINARY_DIR@/python'))
-import shlex
 from recommonmark import parser, transform
 import sys
 import inspect
@@ -12,7 +11,7 @@ import configparser
 import re
 
 try:
-    import paddle
+    import paddle  # noqa: F401
 except:
     print("import paddle error")
 

@@ -1,7 +1,6 @@
 import paddle
 import inspect
 import pkgutil
-import os
 import sys
 import subprocess
 
