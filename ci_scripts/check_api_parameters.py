@@ -225,6 +225,6 @@ if __name__ == '__main__':
     if api_notfound:
         print(f'check_api_parameters funcname not found in: {api_notfound}')
     if result:
-        exit(0)
+        sys.exit(0)
     else:
-        exit(1)
+        sys.exit(1)
