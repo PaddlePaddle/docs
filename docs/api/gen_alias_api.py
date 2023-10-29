@@ -170,7 +170,7 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Useage:")
         print("python3 gen_alias_api.py path-to-paddle-root")
-        exit(1)
+        sys.exit(1)
     else:
         paddle_root = sys.argv[1]
         alias_gen = AliasAPIGen(paddle_root + "/python/")
