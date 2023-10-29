@@ -72,20 +72,20 @@ class func_helper:
 
             name_and_intro_text = (
                 f'{self.func_name}\n'
-                f'-------------------------------\n'
-                f'\n'
-                f'..cpp: function::{self.api}\n'
-                f'{self.introduction}\n'
-                f'\n'
+                + '-------------------------------\n'
+                + '\n'
+                + f'..cpp: function::{self.api}\n'
+                + f'{self.introduction}\n'
+                + '\n'
             )
             f.write(name_and_intro_text)
 
             if self.func_name in self.cpp2py_api_list:
                 cpp2py_text = (
-                    f'本 API 与 Python API 对齐，详细用法可参考链接：'
-                    f'[paddle.{self.func_name}]'
-                    f'(https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/{self.func_name}_{language}.html)\n'
-                    f'\n'
+                    '本 API 与 Python API 对齐，详细用法可参考链接：'
+                    + f'[paddle.{self.func_name}]'
+                    + f'(https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/{self.func_name}_{language}.html)\n'
+                    + '\n'
                 )
                 f.write(cpp2py_text)
 
@@ -131,20 +131,20 @@ class func_helper:
 
             name_and_intro_text = (
                 f'{self.func_name}\n'
-                f'-------------------------------\n'
-                f'\n'
-                f'..cpp: function::{self.api}\n'
-                f'{self.introduction}\n'
-                f'\n'
+                + '-------------------------------\n'
+                + '\n'
+                + f'..cpp: function::{self.api}\n'
+                + f'{self.introduction}\n'
+                + '\n'
             )
             f.write(name_and_intro_text)
 
             if self.func_name in self.cpp2py_api_list:
                 cpp2py_text = (
-                    f'This API is aligned with Python API, more details are shown in '
-                    f'[paddle.{self.func_name}]'
-                    f'(https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/{self.func_name}_{language}.html)\n'
-                    f'\n'
+                    'This API is aligned with Python API, more details are shown in '
+                    + f'[paddle.{self.func_name}]'
+                    + f'(https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/{self.func_name}_{language}.html)\n'
+                    + '\n'
                 )
                 f.write(cpp2py_text)
 
@@ -296,11 +296,11 @@ class class_helper:
 
             name_and_intro_text = (
                 f'{self.class_name}[源代码](https://github.com/PaddlePaddle/Paddle/blob/{self.branch}/{self.file_path})\n'
-                f'-------------------------------\n'
-                f'\n'
-                f'.. cpp:class:: {self.init_func}\n'
-                f'{self.introduction}\n'
-                f'\n'
+                + '-------------------------------\n'
+                + '\n'
+                + f'.. cpp:class:: {self.init_func}\n'
+                + f'{self.introduction}\n'
+                + '\n'
             )
             f.write(name_and_intro_text)
 
@@ -329,9 +329,9 @@ class class_helper:
                         fun_name_and_intro_text = f'{fun_infor["template"]}\n'
                     fun_name_and_intro_text += (
                         f"{fun_infor['name']}\n"
-                        f"'''''''''''\n"
-                        f"{fun_infor['doxygen']}\n"
-                        f"\n"
+                        + "'''''''''''\n"
+                        + f"{fun_infor['doxygen']}\n"
+                        + "\n"
                     )
                     f.write(fun_name_and_intro_text)
 
@@ -359,10 +359,10 @@ class class_helper:
                         and 'void' not in fun_infor['returns']
                     ):
                         fun_return_text = (
-                            f"**返回**\n"
-                            f"'''''''''''\n"
-                            f"{fun_infor['returns']}\n"
-                            f"\n"
+                            "**返回**\n"
+                            + "'''''''''''\n"
+                            + f"{fun_infor['returns']}\n"
+                            + "\n"
                         )
                         f.write(fun_return_text)
 
@@ -373,11 +373,11 @@ class class_helper:
 
             name_and_intro_text = (
                 f'{self.class_name}[source](https://github.com/PaddlePaddle/Paddle/blob/{self.branch}/{self.file_path})\n'
-                f'-------------------------------\n'
-                f'\n'
-                f'.. cpp:class:: {self.init_func}\n'
-                f'{self.introduction}\n'
-                f'\n'
+                + '-------------------------------\n'
+                + '\n'
+                + f'.. cpp:class:: {self.init_func}\n'
+                + f'{self.introduction}\n'
+                + '\n'
             )
             f.write(name_and_intro_text)
 
@@ -406,9 +406,9 @@ class class_helper:
                         fun_name_and_intro_text = f'{fun_infor["template"]}\n'
                     fun_name_and_intro_text += (
                         f"{fun_infor['name']}\n"
-                        f"'''''''''''\n"
-                        f"{fun_infor['doxygen']}\n"
-                        f"\n"
+                        + "'''''''''''\n"
+                        + f"{fun_infor['doxygen']}\n"
+                        + "\n"
                     )
                     f.write(fun_name_and_intro_text)
 
@@ -436,10 +436,10 @@ class class_helper:
                         and 'void' not in fun_infor['returns']
                     ):
                         fun_return_text = (
-                            f"**Returns**\n"
-                            f"'''''''''''\n"
-                            f"{fun_infor['returns']}\n"
-                            f"\n"
+                            "**Returns**\n"
+                            + "'''''''''''\n"
+                            + f"{fun_infor['returns']}\n"
+                            + "\n"
                         )
                         f.write(fun_return_text)
 
@@ -464,10 +464,10 @@ def generate_overview_cn(overview_list, root_dir, LANGUAGE):
     with open(rst_dir, 'w', encoding='utf8') as f:
         head_text = (
             '# C++ 文档\n'
-            '欢迎使用飞桨框架（PaddlePaddle），PaddlePaddle 是一个易用、高效、灵活、可扩展的深度学习框架，致力于让深度学习技术的创新与应用更简单。\n'
-            '在本版本中，飞桨框架对 C++ 接口做了许多优化，您可以参考下表来了解飞桨框架最新版的 C++ 目录结构与说明。此外，您可参考 PaddlePaddle 的 GitHub 了解详情。\n'
-            '本文档的应用场景为 C++ 训练，并主要在自定义算子开发时使用。本文档内容持续迭代中，在下个版本可能会有不兼容的升级，如果不介意随下一版本升级的话，可以使用，追求稳定的话则不建议使用。\n'
-            '\n'
+            + '欢迎使用飞桨框架（PaddlePaddle），PaddlePaddle 是一个易用、高效、灵活、可扩展的深度学习框架，致力于让深度学习技术的创新与应用更简单。\n'
+            + '在本版本中，飞桨框架对 C++ 接口做了许多优化，您可以参考下表来了解飞桨框架最新版的 C++ 目录结构与说明。此外，您可参考 PaddlePaddle 的 GitHub 了解详情。\n'
+            + '本文档的应用场景为 C++ 训练，并主要在自定义算子开发时使用。本文档内容持续迭代中，在下个版本可能会有不兼容的升级，如果不介意随下一版本升级的话，可以使用，追求稳定的话则不建议使用。\n'
+            + '\n'
         )
         f.write(head_text)
 
@@ -532,10 +532,10 @@ def generate_overview_en(overview_list, root_dir, LANGUAGE):
     with open(rst_dir, 'w', encoding='utf8') as f:
         head_text = (
             '# C++ API Reference\n'
-            'PaddlePaddle (PArallel Distributed Deep LEarning) is an efficient, flexible, and extensible deep learning framework, commits to making the innovation and application of deep learning technology easier.\n'
-            'In this version, PaddlePaddle has made many optimizations to the C++ APIs. You can refer to the following table to understand the C++ API directory structure and description of the latest version of PaddlePaddle. In addition, you can refer to PaddlePaddle’s GitHub for details.\n'
-            'The application scenario of this document is C++training and is mainly used in the development of custom operators. The content of this document is continuously iterating, and there may be incompatible upgrades in the next version. If you don’t mind upgrading with the next version, you can use it. Otherwise, it is not recommended to use it.\n'
-            '\n'
+            + 'PaddlePaddle (PArallel Distributed Deep LEarning) is an efficient, flexible, and extensible deep learning framework, commits to making the innovation and application of deep learning technology easier.\n'
+            + 'In this version, PaddlePaddle has made many optimizations to the C++ APIs. You can refer to the following table to understand the C++ API directory structure and description of the latest version of PaddlePaddle. In addition, you can refer to PaddlePaddle’s GitHub for details.\n'
+            + 'The application scenario of this document is C++training and is mainly used in the development of custom operators. The content of this document is continuously iterating, and there may be incompatible upgrades in the next version. If you don’t mind upgrading with the next version, you can use it. Otherwise, it is not recommended to use it.\n'
+            + '\n'
         )
         f.write(head_text)
 
