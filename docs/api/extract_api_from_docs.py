@@ -396,7 +396,7 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    print(f'{args}')
+    print(args)
     logger.setLevel(logging.DEBUG)
     apis_dict, file_titles = extract_all_infos(args.dir)
     import json
