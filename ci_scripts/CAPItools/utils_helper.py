@@ -66,7 +66,7 @@ class func_helper:
     def create_and_write_file_cn(self, save_dir, language):
         with open(save_dir, 'w', encoding='utf8') as f:
             head_text = (
-                f'.. _{language}_api_{self.namespace}{self.func_name}:\n' f'\n'
+                f'.. _{language}_api_{self.namespace}{self.func_name}:\n' + '\n'
             )
             f.write(head_text)
 
@@ -90,11 +90,14 @@ class func_helper:
                 f.write(cpp2py_text)
 
             if self.note != "":
-                note_text = f'..note::\n' f'\t{self.note}\n' f'\n'
+                note_text = '..note::\n' + f'\t{self.note}\n' + '\n'
                 f.write(note_text)
 
             define_path_text = (
-                f'定义目录\n' f':::::::::::::::::::::\n' f'{self.file_path}\n' f'\n'
+                '定义目录\n'
+                + ':::::::::::::::::::::\n'
+                + f'{self.file_path}\n'
+                + '\n'
             )
             f.write(define_path_text)
 
@@ -114,7 +117,7 @@ class func_helper:
             f.write('\n')
 
             return_text = (
-                f'返回\n' f':::::::::::::::::::::\n' f'{self.returns}' f'\n'
+                '返回\n' + ':::::::::::::::::::::\n' + f'{self.returns}' + '\n'
             )
             if 'void' not in self.returns:
                 f.write(return_text)
@@ -122,7 +125,7 @@ class func_helper:
     def create_and_write_file_en(self, save_dir, language):
         with open(save_dir, 'w', encoding='utf8') as f:
             head_text = (
-                f'.. _{language}_api_{self.namespace}{self.func_name}:\n' f'\n'
+                f'.. _{language}_api_{self.namespace}{self.func_name}:\n' + '\n'
             )
             f.write(head_text)
 
@@ -146,11 +149,14 @@ class func_helper:
                 f.write(cpp2py_text)
 
             if self.note != "":
-                note_text = f'..note::\n' f'\t{self.note}\n' f'\n'
+                note_text = '..note::\n' + f'\t{self.note}\n' + '\n'
                 f.write(note_text)
 
             define_path_text = (
-                f'Path\n' f':::::::::::::::::::::\n' f'{self.file_path}\n' f'\n'
+                'Path\n'
+                + ':::::::::::::::::::::\n'
+                + f'{self.file_path}\n'
+                + '\n'
             )
             f.write(define_path_text)
 
@@ -170,7 +176,10 @@ class func_helper:
             f.write('\n')
 
             return_text = (
-                f'Returns\n' f':::::::::::::::::::::\n' f'{self.returns}' f'\n'
+                'Returns\n'
+                + ':::::::::::::::::::::\n'
+                + f'{self.returns}'
+                + '\n'
             )
             if 'void' not in self.returns:
                 f.write(return_text)
@@ -296,11 +305,14 @@ class class_helper:
             f.write(name_and_intro_text)
 
             if self.note != "":
-                note_text = f'..note::\n' f'\t{self.note}\n' f'\n'
+                note_text = '..note::\n' + f'\t{self.note}\n' + '\n'
                 f.write(note_text)
 
             define_path_text = (
-                f'定义目录\n' f':::::::::::::::::::::\n' f'{self.file_path}\n' f'\n'
+                '定义目录\n'
+                + ':::::::::::::::::::::\n'
+                + f'{self.file_path}\n'
+                + '\n'
             )
             f.write(define_path_text)
 
@@ -317,7 +329,7 @@ class class_helper:
                         fun_name_and_intro_text = f'{fun_infor["template"]}\n'
                     fun_name_and_intro_text += (
                         f"{fun_infor['name']}\n"
-                        f"\'\'\'\'\'\'\'\'\'\'\'\n"
+                        f"'''''''''''\n"
                         f"{fun_infor['doxygen']}\n"
                         f"\n"
                     )
@@ -325,14 +337,12 @@ class class_helper:
 
                     if fun_infor['note'] != "":
                         fun_note_text = (
-                            f'..note::\n' f'\t{fun_infor["note"]}\n' f'\n'
+                            '..note::\n' + f'\t{fun_infor["note"]}\n' + '\n'
                         )
                         f.write(fun_note_text)
 
                     if len(fun_infor['parameter']) != 0:
-                        parameters_text = (
-                            "**参数**\n" + "\'\'\'\'\'\'\'\'\'\'\'\n"
-                        )
+                        parameters_text = "**参数**\n" + "'''''''''''\n"
                         f.write(parameters_text)
                         for param in fun_infor['parameter'].keys():
                             param_text = f"\t- **{param}**"
@@ -350,7 +360,7 @@ class class_helper:
                     ):
                         fun_return_text = (
                             f"**返回**\n"
-                            f"\'\'\'\'\'\'\'\'\'\'\'\n"
+                            f"'''''''''''\n"
                             f"{fun_infor['returns']}\n"
                             f"\n"
                         )
@@ -372,17 +382,20 @@ class class_helper:
             f.write(name_and_intro_text)
 
             if self.note != "":
-                note_text = f'..note::\n' f'\t{self.note}\n' f'\n'
+                note_text = '..note::\n' + f'\t{self.note}\n' + '\n'
                 f.write(note_text)
 
             define_path_text = (
-                f'Path\n' f':::::::::::::::::::::\n' f'{self.file_path}\n' f'\n'
+                'Path\n'
+                + ':::::::::::::::::::::\n'
+                + f'{self.file_path}\n'
+                + '\n'
             )
             f.write(define_path_text)
 
             if self.class_function_number != 0:
                 class_function_head_text = (
-                    'Methods\n' + ':::::::::::::::::::::\n' '\n'
+                    'Methods\n' + ':::::::::::::::::::::\n' + '\n'
                 )
                 f.write(class_function_head_text)
 
@@ -393,7 +406,7 @@ class class_helper:
                         fun_name_and_intro_text = f'{fun_infor["template"]}\n'
                     fun_name_and_intro_text += (
                         f"{fun_infor['name']}\n"
-                        f"\'\'\'\'\'\'\'\'\'\'\'\n"
+                        f"'''''''''''\n"
                         f"{fun_infor['doxygen']}\n"
                         f"\n"
                     )
@@ -401,14 +414,12 @@ class class_helper:
 
                     if fun_infor['note'] != "":
                         fun_note_text = (
-                            f'..note::\n' f'\t{fun_infor["note"]}\n' f'\n'
+                            '..note::\n' + f'\t{fun_infor["note"]}\n' + '\n'
                         )
                         f.write(fun_note_text)
 
                     if len(fun_infor['parameter']) != 0:
-                        parameters_text = (
-                            "**Parameters**\n" + "\'\'\'\'\'\'\'\'\'\'\'\n"
-                        )
+                        parameters_text = "**Parameters**\n" + "'''''''''''\n"
                         f.write(parameters_text)
                         for param in fun_infor['parameter'].keys():
                             param_text = f"\t- **{param}**"
@@ -426,7 +437,7 @@ class class_helper:
                     ):
                         fun_return_text = (
                             f"**Returns**\n"
-                            f"\'\'\'\'\'\'\'\'\'\'\'\n"
+                            f"'''''''''''\n"
                             f"{fun_infor['returns']}\n"
                             f"\n"
                         )
