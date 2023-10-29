@@ -77,7 +77,6 @@ ignore = [
     # need to remove
     "F541",
     "I001",
-    "UP032",
     "F401",
     "UP025",
     "W291",

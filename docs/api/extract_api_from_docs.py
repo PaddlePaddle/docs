@@ -173,7 +173,7 @@ def find_all_paddle_api_from_code_block(cbstr):
             if (sharp_ind < 0 or mo_i.start() < sharp_ind) and mo_i.group(
                 1
             ).startswith('paddle'):
-                api_set.add('{}.{}'.format(mo_i.group(1), mo_i.group(2)))
+                api_set.add(f'{mo_i.group(1)}.{mo_i.group(2)}')
         else:
             mo_n = normal_pat.finditer(line)
             for mo in mo_n:
@@ -396,7 +396,7 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    print('{}'.format(args))
+    print(f'{args}')
     logger.setLevel(logging.DEBUG)
     apis_dict, file_titles = extract_all_infos(args.dir)
     import json
@@ -404,7 +404,7 @@ if __name__ == "__main__":
     with open(args.output, 'w') as f:
         json.dump(apis_dict, f, indent=4)
     r = os.path.splitext(args.output)
-    with open('{}-titles{}'.format(r[0], r[1]), 'w') as f:
+    with open(f'{r[0]}-titles{r[1]}', 'w') as f:
         json.dump(file_titles, f, indent=4)
 
     print('Done')
