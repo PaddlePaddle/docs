@@ -38,7 +38,7 @@ def generate_docs(
         # Note: 操作符仅不生成rst，实际上在Overview列表依然会呈现以提示存在此操作符
         if func_name.startswith('operator'):
             checkwords = func_name.replace('operator', '', 1)
-            if re.search(r"\w", checkwords) == None:
+            if re.search(r"\w", checkwords) is None:
                 continue  # 跳过操作符声明
         rst_dir = os.path.join(save_dir, LANGUAGE, path, func_name + ".rst")
         # avoid a filename such as operate*.rst, only windows
