@@ -933,7 +933,7 @@ def get_shortest_api(api_list):
         api_info.sort(key=lambda ele: ele.get('len'))
         return api_info[0].get('name')
 
-    if not all([api.get('fluid_in_name') for api in api_info]):
+    if not all(api.get('fluid_in_name') for api in api_info):
         api_info = [api for api in api_info if not api.get('fluid_in_name')]
     sn = shortest(api_info)
     return sn
