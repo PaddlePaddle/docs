@@ -7,7 +7,7 @@ from utils import get_parameters, parse_doxygen
 # __init__ 初始化函数，调用decode
 # decode 用于解析CppHeaderParser的解析信息
 # create_and_write_file 根据指定的语言类型，在指定目录生成对应的文档
-class func_helper(object):
+class func_helper:
     def __init__(self, function_dict, cpp2py_api_list):
         super().__init__()
         self.function_dict = function_dict
@@ -180,7 +180,7 @@ class func_helper(object):
 # __init__ 初始化函数，调用decode
 # decode 用于解析CppHeaderParser的解析信息
 # create_and_write_file 根据指定的语言类型，在指定目录生成对应的文档
-class class_helper(object):
+class class_helper:
     def __init__(self, class_dict):
         super().__init__()
         self.class_dict = class_dict

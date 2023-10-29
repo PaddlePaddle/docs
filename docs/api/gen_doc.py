@@ -111,7 +111,7 @@ def insert_api_into_dict(full_name, gen_doc_anno=None):
             api_info_dict[fc_id]["all_names"].add(full_name)
         else:
             api_info_dict[fc_id] = {
-                "all_names": set([full_name]),
+                "all_names": {full_name},
                 "id": fc_id,
                 "object": obj,
                 "type": type(obj).__name__,
@@ -385,9 +385,9 @@ def gen_functions_args_str(node):
                 str_args_list.append('*')
             for kwoarg, d in zip(node.args.kwonlyargs, node.args.kw_defaults):
                 if isinstance(d, ast.Constant):
-                    str_args_list.append("{}={}".format(kwoarg.arg, d.value))
+                    str_args_list.append(f"{kwoarg.arg}={d.value}")
                 elif isinstance(d, ast.Name):
-                    str_args_list.append("{}={}".format(kwoarg.arg, d.id))
+                    str_args_list.append(f"{kwoarg.arg}={d.id}")
         if node.args.kwarg is not None:
             str_args_list.append('**' + node.args.kwarg.arg)
 
@@ -440,7 +440,7 @@ def set_display_attr_of_apis():
                     break
             if not display_yes:
                 api_info_dict[id_api]["display"] = False
-                logger.info("set {} display to False".format(id_api))
+                logger.info(f"set {id_api} display to False")
 
 
 def check_module_in_black_list(module_name):
@@ -543,7 +543,7 @@ def set_api_sketch():
     all_api_found = {}
     for m, apis in alldict.items():
         for api in apis:
-            all_api_found['{}.{}'.format(m, api)] = False
+            all_api_found[f'{m}.{api}'] = False
 
     for api in all_api_found.keys():
         for id_api in api_info_dict.keys():
@@ -653,7 +653,7 @@ def gen_en_files(api_label_file="api_label"):
             ):
                 continue
             elif "display" in api_info and not api_info["display"]:
-                logger.debug("{} display False".format(id_api))
+                logger.debug(f"{id_api} display False")
                 continue
             elif 'type' in api_info and api_info['type'] in [
                 'module',
@@ -672,9 +672,7 @@ def gen_en_files(api_label_file="api_label"):
             ):
                 continue
             elif "doc_filename" not in api_info:
-                logger.debug(
-                    "{} does not have doc_filename field.".format(id_api)
-                )
+                logger.debug(f"{id_api} does not have doc_filename field.")
                 continue
             else:
                 logger.debug(api_info["doc_filename"])
@@ -687,7 +685,7 @@ def gen_en_files(api_label_file="api_label"):
             gen = EnDocGenerator(api_info)
             api_name, api_ref_name = gen()
             if api_name and api_ref_name:
-                api_label.write("{}\t.. {}:\n".format(api_name, api_ref_name))
+                api_label.write(f"{api_name}\t.. {api_ref_name}:\n")
 
 
 def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
@@ -790,7 +788,7 @@ class EnDocGenerator:
         """
         if self.api_name is None:
             return
-        self.stream.write(".. {}:\n\n".format(self.api_ref_name))
+        self.stream.write(f".. {self.api_ref_name}:\n\n")
 
     def _print_header_(self, name, dot, is_title):
         """
@@ -863,12 +861,10 @@ class EnDocGenerator:
         self._print_ref_()
         self._print_header_(self.short_name, dot='-', is_title=False)
         self.stream.write(
-            '''..  autofunction:: {}
+            f'''..  autofunction:: {self.api_name}
     :noindex:
 
-'''.format(
-                self.api_name
-            )
+'''
         )
 
     def __call__(self):
@@ -937,7 +933,7 @@ def get_shortest_api(api_list):
         api_info.sort(key=lambda ele: ele.get('len'))
         return api_info[0].get('name')
 
-    if not all([api.get('fluid_in_name') for api in api_info]):
+    if not all(api.get('fluid_in_name') for api in api_info):
         api_info = [api for api in api_info if not api.get('fluid_in_name')]
     sn = shortest(api_info)
     return sn
