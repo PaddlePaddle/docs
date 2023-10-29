@@ -1,5 +1,6 @@
 import sys
-import os, subprocess
+import os
+import subprocess
 
 # sys.path.insert(0, os.path.abspath('@PADDLE_BINARY_DIR@/python'))
 import shlex
