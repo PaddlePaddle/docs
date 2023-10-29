@@ -99,7 +99,7 @@ class func_helper:
             f.write(define_path_text)
 
             if len(self.parameter_dict) != 0:
-                parameters_text = '参数\n' ':::::::::::::::::::::'
+                parameters_text = '参数\n' + ':::::::::::::::::::::'
                 f.write(parameters_text + '\n')
                 for param in self.parameter_dict.keys():
                     param_text = f"\t- **{param}**"
@@ -155,7 +155,7 @@ class func_helper:
             f.write(define_path_text)
 
             if len(self.parameter_dict) != 0:
-                parameters_text = 'Parameters\n' ':::::::::::::::::::::'
+                parameters_text = 'Parameters\n' + ':::::::::::::::::::::'
                 f.write(parameters_text + '\n')
                 for param in self.parameter_dict.keys():
                     param_text = f"\t- **{param}**"
@@ -305,7 +305,9 @@ class class_helper:
             f.write(define_path_text)
 
             if self.class_function_number != 0:
-                class_function_head_text = '方法\n' ':::::::::::::::::::::\n' '\n'
+                class_function_head_text = (
+                    '方法\n' + ':::::::::::::::::::::\n' + '\n'
+                )
                 f.write(class_function_head_text)
 
                 for fun_infor in self.functions_infor:
@@ -328,7 +330,9 @@ class class_helper:
                         f.write(fun_note_text)
 
                     if len(fun_infor['parameter']) != 0:
-                        parameters_text = "**参数**\n" "\'\'\'\'\'\'\'\'\'\'\'\n"
+                        parameters_text = (
+                            "**参数**\n" + "\'\'\'\'\'\'\'\'\'\'\'\n"
+                        )
                         f.write(parameters_text)
                         for param in fun_infor['parameter'].keys():
                             param_text = f"\t- **{param}**"
@@ -378,7 +382,7 @@ class class_helper:
 
             if self.class_function_number != 0:
                 class_function_head_text = (
-                    'Methods\n' ':::::::::::::::::::::\n' '\n'
+                    'Methods\n' + ':::::::::::::::::::::\n' '\n'
                 )
                 f.write(class_function_head_text)
 
@@ -403,7 +407,7 @@ class class_helper:
 
                     if len(fun_infor['parameter']) != 0:
                         parameters_text = (
-                            "**Parameters**\n" "\'\'\'\'\'\'\'\'\'\'\'\n"
+                            "**Parameters**\n" + "\'\'\'\'\'\'\'\'\'\'\'\n"
                         )
                         f.write(parameters_text)
                         for param in fun_infor['parameter'].keys():
