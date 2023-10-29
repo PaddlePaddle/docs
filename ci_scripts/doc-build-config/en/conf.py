@@ -6,7 +6,6 @@ import re
 import sys
 import time
 
-# sys.path.insert(0, os.path.abspath('@PADDLE_BINARY_DIR@/python'))
 from recommonmark import parser, transform
 
 try:
