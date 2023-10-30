@@ -6,8 +6,6 @@ FLUIDDOCDIR=${FLUIDDOCDIR:=/FluidDoc}
 DOCROOT=${FLUIDDOCDIR}/docs/
 
 
-APIMAPPING_ROOT=${DOCROOT}/guides/model_convert/convert_from_pytorch
-
 ## 1 merge the pytorch to paddle api map tables
 # FILES_ARRAY=("https://raw.githubusercontent.com/PaddlePaddle/X2Paddle/develop/docs/pytorch_project_convertor/API_docs/README.md"
 # "https://raw.githubusercontent.com/PaddlePaddle/X2Paddle/develop/docs/pytorch_project_convertor/API_docs/ops/README.md"
@@ -43,4 +41,6 @@ done
 
 
 ## 3 apply pyTorch-paddle mapping
+APIMAPPING_ROOT=${DOCROOT}/guides/model_convert/convert_from_pytorch
+
 python ${APIMAPPING_ROOT}/apply_reference_from_api_difference.py
