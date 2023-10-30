@@ -6,10 +6,10 @@
 torch.diag_embed(input, offset=0, dim1=-2, dim2=-1)
 ```
 
-### [paddle.nn.functional.diag_embed](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/diag_embed_cn.html)
+### [paddle.diag_embed](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/diag_embed_cn.html)
 
 ```python
-paddle.nn.functional.diag_embed(input, offset=0, dim1=- 2, dim2=- 1)
+paddle.diag_embed(input, offset=0, dim1=- 2, dim2=- 1)
 ```
 
 两者功能一致，参数完全一致，具体如下：

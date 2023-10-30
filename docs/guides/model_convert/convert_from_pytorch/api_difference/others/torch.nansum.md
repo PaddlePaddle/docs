@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ] torch.nansum
+## [ 仅 paddle 参数更多 ] torch.nansum
 
 ### [torch.nansum](https://pytorch.org/docs/stable/generated/torch.nansum.html)
 
