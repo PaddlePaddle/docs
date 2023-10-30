@@ -1,37 +1,35 @@
-import tempfile
 import os
 import re
+import tempfile
 import typing
 from typing import TypedDict
 
 # TODO: 加入 CI 流程检查
 
-mapping_type_set = set(
-    [
-        # type 1
-        '无参数',
-        '参数完全一致',
-        '仅参数名不一致',
-        '仅 paddle 参数更多',
-        '仅参数默认值不一致',
-        # type 2
-        'torch 参数更多',
-        # type 3
-        '返回参数类型不一致',
-        '参数不一致',
-        '参数用法不一致',
-        # type 4
-        '组合替代实现',
-        # type 5
-        '用法不同：涉及上下文修改',
-        # type 6
-        '对应 API 不在主框架',
-        # type 7
-        '功能缺失',
-        # hidden
-        '可删除',
-    ]
-)
+mapping_type_set = {
+    # type 1
+    '无参数',
+    '参数完全一致',
+    '仅参数名不一致',
+    '仅 paddle 参数更多',
+    '仅参数默认值不一致',
+    # type 2
+    'torch 参数更多',
+    # type 3
+    '返回参数类型不一致',
+    '参数不一致',
+    '参数用法不一致',
+    # type 4
+    '组合替代实现',
+    # type 5
+    '用法不同：涉及上下文修改',
+    # type 6
+    '对应 API 不在主框架',
+    # type 7
+    '功能缺失',
+    # hidden
+    '可删除',
+}
 
 
 class DiffMeta(TypedDict):
