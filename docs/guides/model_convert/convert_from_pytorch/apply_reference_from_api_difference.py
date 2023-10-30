@@ -122,8 +122,8 @@ def mapping_type_to_description(mapping_type):
     if mapping_type in mapping_type_7:
         return '功能缺失', False
 
-    mapping_type_hidden = ['可删除']
-    if mapping_type in mapping_type_hidden:
+    mapping_type_delete = ['可删除']
+    if mapping_type in mapping_type_delete:
         return '无对应 API，可以直接删除，对网络一般无影响', False
 
     return '【未知类型】', False

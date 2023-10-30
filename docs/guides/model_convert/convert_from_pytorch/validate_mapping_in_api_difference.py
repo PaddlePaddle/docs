@@ -27,7 +27,7 @@ mapping_type_set = {
     '对应 API 不在主框架',
     # type 7
     '功能缺失',
-    # hidden
+    # delete
     '可删除',
 }
 
