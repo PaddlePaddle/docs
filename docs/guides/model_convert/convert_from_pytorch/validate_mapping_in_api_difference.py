@@ -47,7 +47,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
     print(temp_dir)
 
 
-def getMetaFromDiffFile(filepath):
+def get_meta_from_diff_file(filepath):
     meta_data: DiffMeta = {'source_file': filepath}
     state = 0
     # 0: wait for title
@@ -327,7 +327,7 @@ if __name__ == '__main__':
     )
     print(f"{len(diff_files)} mapping documents found.")
 
-    metas = [getMetaFromDiffFile(f) for f in diff_files]
+    metas = [get_meta_from_diff_file(f) for f in diff_files]
     print(f"Total {len(metas)} mapping metas")
 
     for m in metas:

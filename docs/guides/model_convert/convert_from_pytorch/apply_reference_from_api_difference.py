@@ -13,7 +13,7 @@ class DiffMeta(typing.TypedDict):
     source_file: str
 
 
-def getMetaFromDiffFile(filepath):
+def get_meta_from_diff_file(filepath):
     meta_data: DiffMeta = {'source_file': filepath}
     state = 0
     # 0: wait for title
@@ -348,7 +348,7 @@ if __name__ == '__main__':
     )
 
     metas = sorted(
-        [getMetaFromDiffFile(f) for f in diff_files],
+        [get_meta_from_diff_file(f) for f in diff_files],
         key=lambda x: x['torch_api'],
     )
 
