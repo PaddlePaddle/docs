@@ -1,20 +1,13 @@
-import sys
-import os
-import subprocess
-import sphinx_rtd_theme
-import inspect
 import ast
-
-# sys.setdefaultencoding('utf-8')
-
-# sys.path.insert(0, os.path.abspath('@PADDLE_BINARY_DIR@/python'))
-import shlex
-from recommonmark import parser, transform
-
+import inspect
+import os
+import sys
 import time
 
+from recommonmark import parser, transform
+
 try:
-    import paddle
+    import paddle  # noqa: F401
 except:
     print("import paddle error")
 breathe_projects = {"PaddlePaddle": "/docs/doxyoutput/xml"}
@@ -36,9 +29,9 @@ AutoStructify.default_config = {
 
 templates_path = ["/templates"]
 
-project = u'PaddlePaddle'
-author = u'%s developers' % project
-copyright = u'%d, %s' % (time.localtime(time.time()).tm_year, author)
+project = 'PaddlePaddle'
+author = '%s developers' % project
+copyright = '%d, %s' % (time.localtime(time.time()).tm_year, author)
 github_doc_root = 'https://github.com/PaddlePaddle/docs/docs'
 
 # add markdown parser

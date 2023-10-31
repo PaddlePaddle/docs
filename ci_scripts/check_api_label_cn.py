@@ -1,8 +1,8 @@
-import sys
+import argparse
+import logging
 import os
 import re
-import logging
-import argparse
+import sys
 from pathlib import Path
 
 logger = logging.getLogger()
