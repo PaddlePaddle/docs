@@ -5,7 +5,7 @@ top_p_sampling
 
 .. py:function:: paddle.top_p_sampling(x, ps, threshold=None, seed=None, name=None)
 
-从累计概率超过某一个阈值 ``ps``的词汇中进行采样
+从累计概率超过某一个阈值 ``ps`` 的词汇中进行采样
 
 参数
 :::::::::
