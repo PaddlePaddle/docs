@@ -183,6 +183,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.uniform_ <cn_api_paddle_uniform_>` ", "Inplace 版本的 uniform API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.lerp_ <cn_api_paddle_lerp_>` ", "Inplace 版本的 lerp API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.hypot_ <cn_api_paddle_hypot_>` ", "Inplace 版本的 hypot API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.masked_fill_ <cn_api_paddle_masked_fill_>` ", "Inplace 版本的 masked_fill API，对输入 x 采用 Inplace 策略"
 
 .. _tensor_logic:
 

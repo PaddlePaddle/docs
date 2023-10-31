@@ -3047,3 +3047,38 @@ unfold(x, axis, size, step, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_unfold`
+
+masked_fill(x, mask, value, name=None)
+:::::::::
+根据 mask 信息，将 value 中的值填充到 x 中 mask 对应为 True 的位置。
+
+参数：
+    - **x** (Tensor) - 输入 Tensor，数据类型为 float，double，int，int64_t，float16 或者 bfloat16。
+    - **mask** (Tensor) - 布尔张量，表示要填充的位置。mask 的数据类型必须为 bool。
+    - **value** (Scalar or 0-D Tensor)：用于填充目标张量的值，数据类型为 float，double，int，int64_t，float16 或者 bfloat16。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+返回一个根据 mask 将对应位置填充为 value 的 Tensor。
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.ones((3, 3), dtype="float32")
+        mask = paddle.to_tensor([[True, True, False]])
+        print(mask)
+        # Tensor(shape=[1, 3], dtype=bool, place=Place(gpu:0), stop_gradient=True,
+        #         [[True , True , False]])
+        out = paddle.masked_fill(x, mask, 2)
+        print(out)
+        # Tensor(shape=[3, 3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
+        #            [[2., 2., 1.],
+        #             [2., 2., 1.],
+        #             [2., 2., 1.]])
+
+.. _cn_api_paddle_masked_fill:
+
+masked_fill_(x, mask, value, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`_cn_api_paddle_masked_fill` API，对输入 `x` 采用 Inplace 策略。
