@@ -2,13 +2,13 @@
 '''
 copy code-blocks from en api doc-strings.
 '''
-import os
-import sys
 import argparse
 import inspect
-import re
 import json
 import logging
+import os
+import re
+import sys
 
 api_info_dict = {}
 api_name_2_id_map = {}

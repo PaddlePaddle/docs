@@ -1,4 +1,4 @@
-## [paddle 参数更多]torch.cuda.amp.autocast
+## [仅 paddle 参数更多]torch.cuda.amp.autocast
 
 ### [torch.cuda.amp.autocast](https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.autocast)
 

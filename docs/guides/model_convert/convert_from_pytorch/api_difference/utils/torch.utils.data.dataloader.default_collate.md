@@ -5,7 +5,7 @@
 torch.utils.data.dataloader.default_collate(batch)
 ```
 
-### [paddle.io.dataloader.collate.default_collate_fn]
+### [paddle.io.dataloader.collate.default_collate_fn]()
 
 ```python
 paddle.io.dataloader.collate.default_collate_fn(batch)

@@ -34,7 +34,11 @@ then
 else
     python check_api_parameters.py --rst-files "${need_check_files}" --api-info $2
     if [ $? -ne 0 ];then
+        set +x
+        echo "************************************************************************************"
         echo "api parameters check failed."
+        echo "************************************************************************************"
+        set -x
         exit 5
     fi
 fi

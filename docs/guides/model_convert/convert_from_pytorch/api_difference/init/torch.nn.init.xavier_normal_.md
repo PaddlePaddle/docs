@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.nn.init.xavier_normal_.md
+## [ 组合替代实现 ]torch.nn.init.xavier_normal_
 
 ### [torch.nn.init.xavier_normal_](https://pytorch.org/docs/stable/nn.init.html?highlight=xavier_normal_#torch.nn.init.xavier_normal_)
 

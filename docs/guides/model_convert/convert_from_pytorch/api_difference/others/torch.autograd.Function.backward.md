@@ -1,4 +1,4 @@
-## [仅 Paddle 参数更多]torch.autograd.Function.backward
+## [仅 paddle 参数更多]torch.autograd.Function.backward
 
 ### [torch.autograd.Function.backward](https://pytorch.org/docs/stable/generated/torch.autograd.Function.backward.html#torch.autograd.Function.backward)
 

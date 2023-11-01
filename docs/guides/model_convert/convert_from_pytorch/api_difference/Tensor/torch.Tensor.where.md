@@ -1,4 +1,4 @@
-## [ 参数不⼀致 ]torch.Tensor.where
+## [ 参数不一致 ]torch.Tensor.where
 
 ### [torch.Tensor.where](https://pytorch.org/docs/stable/generated/torch.Tensor.where.html#torch.Tensor.where)
 

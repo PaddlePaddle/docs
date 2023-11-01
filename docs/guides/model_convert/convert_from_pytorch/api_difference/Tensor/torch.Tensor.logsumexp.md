@@ -1,4 +1,4 @@
-## [ 仅参数名不⼀致 ] torch.Tensor.logsumexp
+## [ 仅参数名不一致 ] torch.Tensor.logsumexp
 
 
 ### [torch.Tensor.logsumexp](https://pytorch.org/docs/stable/generated/torch.Tensor.logsumexp.html)

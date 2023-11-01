@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.nn.init.kaiming_normal_.md
+## [ 组合替代实现 ]torch.nn.init.kaiming_normal_
 
 ### [torch.nn.init.kaiming_normal_](https://pytorch.org/docs/stable/nn.init.html?highlight=kaiming_normal_#torch.nn.init.kaiming_normal_)
 

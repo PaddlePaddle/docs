@@ -1,4 +1,4 @@
-## [class]torch.distributed.ReduceOp
+## [torch 参数更多]torch.distributed.ReduceOp
 
 ### [torch.distributed.ReduceOp](https://pytorch.org/docs/stable/distributed.html?highlight=torch+distributed+reduceop#torch.distributed.ReduceOp)
 
