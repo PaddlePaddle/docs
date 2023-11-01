@@ -1115,7 +1115,6 @@
 |31|[torch.distributed.scatter](https://pytorch.org/docs/stable/distributed.html#torch.distributed.scatter)|[paddle.distributed.scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/scatter_cn.html)|torch 参数更多, [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.scatter.md)|
 |32|[torch.distributed.scatter_object_list](https://pytorch.org/docs/stable/distributed.html#torch.distributed.scatter_object_list)|[paddle.distributed.scatter_object_list](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/scatter_object_list_cn.html#scatter-object-list)|仅参数名不一致, [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.scatter_object_list.md)|
 |33|[torch.distributed.send](https://pytorch.org/docs/stable/distributed.html#torch.distributed.send)|[paddle.distributed.send](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/send_cn.html)|torch 参数更多, [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.send.md)|
-|34|[torch.distributed.gather](https://pytorch.org/docs/stable/distributed.html#torch.distributed.gather)| | 功能缺失 |
 
 
 ***持续更新...***
