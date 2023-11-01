@@ -5,7 +5,7 @@
 torch.nn.Module.register_forward_hook(hook, *, prepend=False, with_kwargs=False)
 ```
 
-### [register_forward_post_hook](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#register-forward-post-hook-hook)
+### [paddle.nn.Layer.register_forward_post_hook](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#register-forward-post-hook-hook)
 
 ```python
 paddle.nn.Layer.register_forward_post_hook(hook)
