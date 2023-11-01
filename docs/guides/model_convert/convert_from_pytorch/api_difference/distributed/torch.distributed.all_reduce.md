@@ -9,7 +9,7 @@ torch.distributed.all_reduce(tensor, op=<torch.distributed.distributed_c10d.Redu
 ### [paddle.distributed.all_reduce](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/all_reduce_cn.html)
 
 ```python
-paddle.distributed.all_reduce(tensor, op=ReduceOp.SUM, group=0)
+paddle.distributed.all_reduce(tensor, op=ReduceOp.SUM, group=0, sync_op=True)
 ```
 
 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
