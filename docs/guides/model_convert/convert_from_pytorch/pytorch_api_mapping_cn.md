@@ -1116,7 +1116,6 @@
 | REFERENCE-MAPPING-ITEM(`torch.distributed.scatter`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.scatter.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributed.scatter_object_list`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.scatter_object_list.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributed.send`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.send.md) |
-| [torch.distributed.gather](https://pytorch.org/docs/stable/distributed.html#torch.distributed.gather) | 功能缺失 |
 
 
 ***持续更新...***
