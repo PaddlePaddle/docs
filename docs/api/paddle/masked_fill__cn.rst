@@ -4,7 +4,7 @@ masked_fill\_
 -------------------------------
 
 .. py:function:: paddle.masked_fill_(x)
-Inplace 版本的 :ref:`cn_api_paddle_add` API，对输入 x 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_masked_fill` API，对输入 x 采用 Inplace 策略。
 
 更多关于 inplace 操作的介绍请参考 `3.1.3 原位（Inplace）操作和非原位操作的区别`_ 了解详情。
 

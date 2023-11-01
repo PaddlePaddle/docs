@@ -919,7 +919,7 @@
 | 302 |  [torch.Tensor.dequantize](https://pytorch.org/docs/1.13/generated/torch.Tensor.dequantize.html?highlight=torch+tensor+dequantize#torch.Tensor.dequantize)  |  | 功能缺失        |
 | 303 |  [torch.Tensor.sum_to_size](https://pytorch.org/docs/stable/generated/torch.Tensor.sum_to_size.html?highlight=sum_to_size#torch.Tensor.sum_to_size)  |  |    功能缺失  |
 | 304 |  [torch.Tensor.resize_](https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html?highlight=resize#torch.Tensor.resize_)  |  |    功能缺失  |
-| 305 |  [torch.Tensor.masked_fill_](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_fill_.html?highlight=resize#torch.Tensor.masked_fill_)  |  |    功能缺失  |
+| 305 |  [torch.Tensor.masked_fill_](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_fill_.html?highlight=resize#torch.Tensor.masked_fill_)  |  |    功能完全一致  |
 ***持续更新...***
 
 ## torch.nn.init.XX API 映射列表
