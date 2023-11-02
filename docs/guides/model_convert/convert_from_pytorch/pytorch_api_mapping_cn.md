@@ -516,7 +516,7 @@
 | REFERENCE-MAPPING-ITEM(`torch.nn.TripletMarginLoss`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.TripletMarginLoss.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.parameter.Parameter`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.parameter.Parameter.md) |
 | [torch.nn.MultiLabelMarginLoss](https://pytorch.org/docs/stable/generated/torch.nn.MultiLabelMarginLoss) | 功能缺失 |
-
+| [torch.nn.CTCLoss](https://pytorch.org/docs/stable/generated/torch.nn.CTCLoss.html#torch.nn.CTCLoss) | 功能缺失，torch 的 log_softmax+ctc_loss 相当于 paddle 的 ctc_loss |
 
 ***持续更新...***
 
@@ -612,6 +612,7 @@
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.unfold`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.unfold.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.upsample_bilinear`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.upsample_bilinear.md) |
 | (torch.nn.functional.multilabel_margin_loss)[https://pytorch.org/docs/stable/generated/torch.nn.functional.multilabel_margin_loss.html#torch.nn.functional.multilabel_margin_loss] | 功能缺失 |
+| (torch.nn.functional.ctc_loss)[https://pytorch.org/docs/stable/generated/torch.nn.functional.ctc_loss.html#torch.nn.functional.ctc_loss] | 功能缺失，torch 的 log_softmax+ctc_loss 相当于 paddle 的 ctc_loss |
 
 ***持续更新...***
 
