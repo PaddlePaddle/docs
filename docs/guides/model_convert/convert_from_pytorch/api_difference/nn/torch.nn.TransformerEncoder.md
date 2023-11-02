@@ -21,5 +21,5 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | encoder_layer        | encoder_layer | TransformerEncoderLayer 的一个实例。       |
 | num_layers           | num_layers    | TransformerEncoderLayer 层的叠加数量。     |
 | norm                 | norm          | 层标准化（Layer Normalization）。          |
-| enable_nested_tensor | -             | 是否转为嵌套 Tensor，Paddle 无此参数，暂无转写方式。 |
-| mask_check           | -             | mask_check 参数，Paddle 无此参数，暂无转写方式。     |
+| enable_nested_tensor | -             | 是否转为嵌套 Tensor，Paddle 无此参数，暂无转写方式，一般对网络训练结果影响不大，可直接删除。 |
+| mask_check           | -             | mask_check 参数，Paddle 无此参数，暂无转写方式，一般对网络训练结果影响不大，可直接删除。     |
