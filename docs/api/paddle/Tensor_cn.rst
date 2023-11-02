@@ -3047,3 +3047,16 @@ unfold(x, axis, size, step, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_unfold`
+
+masked_fill(x, mask, value, name=None)
+:::::::::
+根据 mask 信息，将 value 中的值填充到 x 中 mask 对应为 True 的位置。
+
+返回一个根据 mask 将对应位置填充为 value 的 Tensor。
+
+请参考 :ref:`cn_api_paddle_masked_fill`
+
+masked_fill_(x, mask, value, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_masked_fill` API，对输入 `x` 采用 Inplace 策略。
