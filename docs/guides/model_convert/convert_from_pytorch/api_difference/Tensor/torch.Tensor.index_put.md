@@ -5,7 +5,7 @@
 torch.Tensor.index_put(indices, values, accumulate=False)
 ```
 
-### [paddle.Tensor.index_put](https://pytorch.org/docs/stable/generated/torch.Tensor.index_put.html?highlight=index_put#torch.Tensor.index_put)
+### [paddle.Tensor.index_put](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/index_put_cn.html#index-put)
 
 ```python
 paddle.Tensor.index_put(indices, value, accumulate=False, name=None)
