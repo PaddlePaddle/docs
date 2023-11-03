@@ -8,7 +8,7 @@ torch.distributed.barrier(group=None, async_op=False, device_ids=None)
 ### [paddle.distributed.barrier](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/barrier_cn.html)
 
 ```python
-paddle.distributed.barrier(group=0)
+paddle.distributed.barrier(group=None)
 ```
 
 Pytorch 相比 Paddle 支持更多其他参数，具体如下：

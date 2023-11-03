@@ -1,4 +1,4 @@
-## [torch 参数更多]torch.distributed.gather
+## [参数不一致]torch.distributed.gather
 
 ### [torch.distributed.gather](https://pytorch.org/docs/stable/distributed.html#torch.distributed.gather)
 
@@ -12,7 +12,7 @@ torch.distributed.gather(tensor, gather_list=None, dst=0, group=None, async_op=F
 paddle.distributed.gather(tensor, gather_list=None, dst=0, group=None, sync_op=True)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+其中 PyTorch 和 Paddle 功能一致，参数用法不一致，具体如下：
 
 ### 参数映射
 
