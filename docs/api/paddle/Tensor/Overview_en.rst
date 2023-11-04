@@ -277,3 +277,4 @@ Methods
     vander
     hypot
     hypot_
+    combinations
