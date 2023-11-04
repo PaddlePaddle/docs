@@ -65,6 +65,7 @@ paddle.io 目录下包含飞桨框架数据集定义、数据读取相关的 API
     " :ref:`SequenceSampler <cn_api_paddle_io_SequenceSampler>` ", "顺序采样器接口"
     " :ref:`RandomSampler <cn_api_paddle_io_RandomSampler>` ", "随机采样器接口"
     " :ref:`WeightedRandomSampler <cn_api_paddle_io_WeightedRandomSampler>` ", "带权重随机采样器接口"
+    " :ref:`SubesetRandomSampler <cn_api_paddle_io_SubsetRandomSampler>` ", "子集随机随机采样器接口"
 
 .. _about_batch_sampler:
 
