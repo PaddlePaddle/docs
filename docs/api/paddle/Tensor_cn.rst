@@ -3060,3 +3060,11 @@ masked_fill_(x, mask, value, name=None)
 :::::::::
 
 Inplace 版本的 :ref:`cn_api_paddle_masked_fill` API，对输入 `x` 采用 Inplace 策略。
+
+diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
+:::::::::
+根据给定的轴 axis 和偏移量 offset，将张量 y 的值填充到张量 x 中。
+
+返回：张量 y 填充到张量 x 中的结果。
+
+返回类型：Tensor
