@@ -3,15 +3,14 @@
 ### [torch.linalg.eig](https://pytorch.org/docs/stable/generated/torch.linalg.eig.html?highlight=torch+linalg+eig#torch.linalg.eig)
 
 ```python
-torch.linalg.eig(A,
-                 out=None)
+# 测试 Pytorch 文档中输入参数 A 为 input
+torch.linalg.eig(input, *, out=None)
 ```
 
 ### [paddle.linalg.eig](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eig_cn.html)
 
 ```python
-paddle.linalg.eig(x,
-                  name=None)
+paddle.linalg.eig(x, name=None)
 ```
 
 Pytorch 相比 Paddle 支持更多其他参数，具体如下：

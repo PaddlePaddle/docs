@@ -3,7 +3,8 @@
 ### [torch.linalg.eigh](https://pytorch.org/docs/stable/generated/torch.linalg.eigh.html#torch.linalg.eigh)
 
 ```python
-torch.linalg.eigh(A, UPLO='L', *, out=None)
+# 测试 Pytorch 文档中输入参数 A 为 input
+torch.linalg.eigh(input, UPLO='L', *, out=None)
 ```
 
 ### [paddle.linalg.eigh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eigh_cn.html)

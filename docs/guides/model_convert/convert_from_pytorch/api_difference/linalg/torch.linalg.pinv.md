@@ -3,7 +3,8 @@
 ### [torch.linalg.pinv](https://pytorch.org/docs/stable/generated/torch.linalg.pinv.html#torch.linalg.pinv)
 
 ```python
-torch.linalg.pinv(A, *, atol=None, rtol=None, hermitian=False, out=None)
+# 测试 Pytorch 文档中输入参数 A 为 input
+torch.linalg.pinv(input, *, atol=None, rtol=None, hermitian=False, out=None)
 ```
 
 ### [paddle.linalg.pinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/pinv_cn.html)
