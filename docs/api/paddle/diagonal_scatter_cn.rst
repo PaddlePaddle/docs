@@ -1,6 +1,6 @@
 .. _cn_api_paddle_diagonal_scatter:
 
-digagonal_scatter
+diagonal_scatter
 -------------------------------
 
 .. py:function:: paddle.diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
