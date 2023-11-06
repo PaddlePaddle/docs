@@ -27,12 +27,8 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ```python
 # 当 q 为向量时
 # Pytorch 写法
-x = torch.tensor([0., 1., 2., 3.], dtype=torch.float64)
-q = torch.tensor([0.5, 0.1], dtype=torch.float64)
-x.nanquantile(q)
+x.nanquantile(q=torch.tensor([0.5, 0.1], dtype=torch.float64))
 
 # Paddle
-x = paddle.tensor([0., 1., 2., 3.], dtype='float64')
-q = torch.tensor([0.5, 0.1], dtype=torch.float64).tolist()
-x.nanquantile(q)
+x.nanquantile(q=[0.5, 0.1])
 ```
