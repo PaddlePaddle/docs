@@ -1,4 +1,4 @@
-.. _cn_api_distribution_Bernoulli:
+.. _cn_api_paddle_distribution_Bernoulli:
 
 Bernoulli
 -------------------------------

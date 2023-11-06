@@ -1,4 +1,4 @@
-.. _cn_api_distributed_wait:
+.. _cn_api_paddle_distributed_wait:
 
 wait
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_tensor_bitwise_not:
+.. _cn_api_paddle_bitwise_not:
 
 bitwise_not
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_relu6:
+.. _cn_api_paddle_nn_functional_relu6:
 
 relu6
 -------------------------------

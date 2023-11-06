@@ -1,6 +1,6 @@
-digraph sample { 
+digraph sample {
   graph [rankdir=TD]; node [shape=record];
-  op [label="{Operator}"]; 
+  op [label="{Operator}"];
   op_with_kern [label="{OpWithKernel | InferShape()=0\lRun()\l | map&#60;OpKernelKey,OpKernel&#62;kernels_ }"]
   op_kernel [label="{OpKernel | Compute()=0}"]
   op_kernel_key [label="{OpKernelKey| Place place\n...}"]

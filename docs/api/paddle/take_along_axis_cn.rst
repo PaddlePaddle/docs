@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_take_along_axis:
+.. _cn_api_paddle_take_along_axis:
 
 take_along_axis
 -------------------------------

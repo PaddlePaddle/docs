@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_rank:
+.. _cn_api_paddle_rank:
 
 rank
 -------------------------------

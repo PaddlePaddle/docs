@@ -1,4 +1,4 @@
-.. _cn_api_tensor_random_standard_normal:
+.. _cn_api_paddle_standard_normal:
 
 standard_normal
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_distribution_Categorical:
+.. _cn_api_paddle_distribution_Categorical:
 
 Categorical
 -------------------------------
@@ -24,7 +24,7 @@ Categorical
 参数
 ::::::::::::
 
-    - **logits** (list|numpy.ndarray|Tensor) - 类别分布对应的 logits。数据类型为 float32 或 float64。
+    - **logits** (list|tuple|numpy.ndarray|Tensor) - 类别分布对应的 logits。数据类型为 float32 或 float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例

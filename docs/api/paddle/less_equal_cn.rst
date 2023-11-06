@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_less_equal:
+.. _cn_api_paddle_less_equal:
 
 less_equal
 -------------------------------

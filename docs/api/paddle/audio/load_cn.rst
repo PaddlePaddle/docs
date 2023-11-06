@@ -1,4 +1,4 @@
-.. _cn_api_audio_load:
+.. _cn_api_paddle_audio_load:
 
 load
 -------------------------------

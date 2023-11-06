@@ -7,7 +7,7 @@ body:
   attributes:
     value: >
       #### 此模板用于文档评估工作小组成员向飞桨团队反馈文档问题，如非工作小组成员，请使用「📚 文档」模板，感谢配合~
-      
+
       #### This template is used by members of the document evaluation working group to report documentation issues to the Paddle Team. If you are not a member of the working group, please use the "📚 Documentation Issue" template, thank you for your cooperation~
 
 - type: textarea
@@ -38,11 +38,11 @@ body:
     description: |
       请评估本篇文档，是否按API文档推荐的结构书写，并且没有遗漏（无需写的部分可以省略）？
       如有结构问题，请在以下文本框中说明。
-      
+
       API文档推荐的书写结构：API名称、API功能描述、API参数、API返回、API代码示例、API属性(class)、API方法(methods)
   validations:
     required: false
-    
+
 - type: textarea
   id: eval3
   attributes:
@@ -56,7 +56,7 @@ body:
       - 没有死链、错字、错误标点等低级错误。
   validations:
     required: false
-    
+
 - type: textarea
   id: eval4
   attributes:
@@ -79,10 +79,8 @@ body:
       如你已经发现了文档的错误并且判断其容易被修复，欢迎你为[Paddle](https://github.com/PaddlePaddle/Paddle/pulls)与[docs](https://github.com/PaddlePaddle/docs/pulls)提PR，直接修复此文档，并将PR链接贴在以下文本框中~
   validations:
     required: true
-    
+
 - type: markdown
   attributes:
     value: >
       感谢你的贡献 🎉！Thanks for your contribution 🎉!
-
-

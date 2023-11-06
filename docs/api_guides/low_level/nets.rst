@@ -6,7 +6,7 @@
 
 在处理复杂功能时，我们通常需要写大量的代码来构建复杂的 `神经网络 <https://zh.wikipedia.org/wiki/人工神经网络>`_ 。
 因此，为了方便用户更加容易地搭建复杂网络模型，我们提供了一些比较常用的基本函数模块，以此来简化用户的代码量，从而降低开发成本。
-这些模块通常是由细粒度的函数根据一定的逻辑拼接组合而成，实现代码请参考 `nets.py <https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/nets.py>`_ 。
+这些模块通常是由细粒度的函数根据一定的逻辑拼接组合而成，实现代码请参考 `nets.py <https://github.com/PaddlePaddle/Paddle/blob/develop/test/legacy_test/nets.py>`_ 。
 
 1.simple_img_conv_pool
 ----------------------

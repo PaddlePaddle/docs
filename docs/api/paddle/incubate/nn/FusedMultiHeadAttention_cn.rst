@@ -1,4 +1,4 @@
-.. _cn_api_incubate_nn_FusedMultiHeadAttention:
+.. _cn_api_paddle_incubate_nn_FusedMultiHeadAttention:
 
 FusedMultiHeadAttention
 -------------------------------
@@ -29,14 +29,14 @@ FusedMultiHeadAttention
     - **vdim** (int，可选) - 键值对中 value 的维度。如果为 ``None`` 则 ``kdim = embed_dim``。默认值：``None`` 。
     - **normalize_before** (bool，可选) - 是 pre_layer_norm 结构（True）还是 post_layer_norm 结构（False）。pre_layer_norm 结构中，``layer_norm`` 算子位于 multi-head attention 和 ffn 的前面，post_layer_norm 结构中，``layer_norm`` 位于两者的后面。默认值：``False`` 。
     - **need_weights** (bool，可选) - 表明是否返回注意力权重。默认值：``False`` 。
-    - **qkv_weight_attr** (ParamAttr，可选) - 为 Attention 中计算 q, k, v 时的计算指定权重参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **qkv_bias_attr** (ParamAttr，可选) - 为 Attention 中计算 q, k, v 时的计算指定偏置参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **linear_weight_attr** (ParamAttr，可选) - 为 Multi-Head Attention 之后的线性计算指定权重参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **linear_bias_attr** (ParamAttr，可选) - 为 Multi-Head Attention 之后的线性计算指定偏置参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **pre_ln_scale_attr** (ParamAttr，可选) - 为 pre_layer_norm 结构的前置 layer norm 计算指定权重参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **pre_ln_bias_attr** (ParamAttr，可选) - 为 pre_layer_norm 结构的前置 layer norm 计算指定偏置参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **ln_scale_attr** (ParamAttr，可选) - 为 post_layer_norm 结构的后置 layer norm 计算指定权重参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **ln_bias_attr** (ParamAttr，可选) - 为 post_layer_norm 结构的前置 layer norm 计算指定偏置参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **qkv_weight_attr** (ParamAttr，可选) - 为 Attention 中计算 q, k, v 时的计算指定权重参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **qkv_bias_attr** (ParamAttr，可选) - 为 Attention 中计算 q, k, v 时的计算指定偏置参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **linear_weight_attr** (ParamAttr，可选) - 为 Multi-Head Attention 之后的线性计算指定权重参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **linear_bias_attr** (ParamAttr，可选) - 为 Multi-Head Attention 之后的线性计算指定偏置参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **pre_ln_scale_attr** (ParamAttr，可选) - 为 pre_layer_norm 结构的前置 layer norm 计算指定权重参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **pre_ln_bias_attr** (ParamAttr，可选) - 为 pre_layer_norm 结构的前置 layer norm 计算指定偏置参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **ln_scale_attr** (ParamAttr，可选) - 为 post_layer_norm 结构的后置 layer norm 计算指定权重参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **ln_bias_attr** (ParamAttr，可选) - 为 post_layer_norm 结构的前置 layer norm 计算指定偏置参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
     - **epsilon** (float，可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
     - **nranks** (int，可选) - 分布式 tensor parallel 运行下该策略的并行度。默认值：-1，表示不使用 tensor parallel。
     - **ring_id** (int，可选) - 分布式 tensor parallel 运行下通讯所使用的 NCCL id。默认值：-1，表示不使用 tensor parallel。

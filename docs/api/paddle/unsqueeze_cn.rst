@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_unsqueeze:
+.. _cn_api_paddle_unsqueeze:
 
 unsqueeze
 -------------------------------

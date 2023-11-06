@@ -1,4 +1,5 @@
-## torch.Tensor.requires_grad_
+## [组合替代实现]torch.Tensor.requires_grad_
+
 ### [torch.Tensor.requires_grad_](https://pytorch.org/docs/stable/generated/torch.Tensor.requires_grad_.html?highlight=requires_grad_#torch.Tensor.requires_grad_)
 
 ```python

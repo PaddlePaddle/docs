@@ -1,4 +1,4 @@
-.. _cn_api_fluid_program_guard:
+.. _cn_api_paddle_static_program_guard:
 
 program_guard
 -------------------------------

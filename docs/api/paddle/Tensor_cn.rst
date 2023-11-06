@@ -9,8 +9,8 @@ Tensor
 ``Tensor`` 是 Paddle 中最为基础的数据结构，有几种创建 Tensor 的不同方式：
 
 - 用预先存在的 ``data`` 数据创建 1 个 Tensor，请参考 :ref:`cn_api_paddle_to_tensor`
-- 创建一个指定 ``shape`` 的 Tensor，请参考 :ref:`cn_api_tensor_ones` 、 :ref:`cn_api_tensor_zeros`、 :ref:`cn_api_tensor_full`
-- 创建一个与其他 Tensor 具有相同 ``shape`` 与 ``dtype`` 的 Tensor，请参考 :ref:`cn_api_tensor_ones_like` 、 :ref:`cn_api_tensor_zeros_like` 、 :ref:`cn_api_tensor_full_like`
+- 创建一个指定 ``shape`` 的 Tensor，请参考 :ref:`cn_api_paddle_ones` 、 :ref:`cn_api_paddle_zeros`、 :ref:`cn_api_paddle_full`
+- 创建一个与其他 Tensor 具有相同 ``shape`` 与 ``dtype`` 的 Tensor，请参考 :ref:`cn_api_paddle_ones_like` 、 :ref:`cn_api_paddle_zeros_like` 、 :ref:`cn_api_paddle_full_like`
 
 clear_grad
 :::::::::
@@ -231,7 +231,7 @@ stop_gradient
 :::::::::
 
 查看一个 Tensor 是否计算并传播梯度，如果 stop_gradient 为 True，则该 Tensor 不会计算梯度，并会阻绝 Autograd 的梯度传播。
-反之，则会计算梯度并传播梯度。用户自行创建的的 Tensor，默认是 True，模型参数的 stop_gradient 都为 False。
+反之，则会计算梯度并传播梯度。用户自行创建的 Tensor，默认是 True，模型参数的 stop_gradient 都为 False。
 
 **代码示例**
 
@@ -431,7 +431,7 @@ abs(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_abs`
+请参考 :ref:`cn_api_paddle_abs`
 
 angle(name=None)
 :::::::::
@@ -449,7 +449,7 @@ acos(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_acos`
+请参考 :ref:`cn_api_paddle_acos`
 
 add(y, name=None)
 :::::::::
@@ -458,12 +458,12 @@ add(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_add`
+请参考 :ref:`cn_api_paddle_add`
 
 add_(y, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_tensor_add` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_add` API，对输入 `x` 采用 Inplace 策略。
 
 add_n(inputs, name=None)
 :::::::::
@@ -472,7 +472,7 @@ add_n(inputs, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_add_n`
+请参考 :ref:`cn_api_paddle_add_n`
 
 addmm(x, y, beta=1.0, alpha=1.0, name=None)
 :::::::::
@@ -481,7 +481,7 @@ addmm(x, y, beta=1.0, alpha=1.0, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_addmm`
+请参考 :ref:`cn_api_paddle_addmm`
 
 all(axis=None, keepdim=False, name=None)
 :::::::::
@@ -490,7 +490,7 @@ all(axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_all`
+请参考 :ref:`cn_api_paddle_all`
 
 allclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 :::::::::
@@ -499,7 +499,7 @@ allclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_allclose`
+请参考 :ref:`cn_api_paddle_allclose`
 
 isclose(x, y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 :::::::::
@@ -508,7 +508,7 @@ isclose(x, y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_isclose`
+请参考 :ref:`cn_api_paddle_isclose`
 
 any(axis=None, keepdim=False, name=None)
 :::::::::
@@ -517,7 +517,7 @@ any(axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_any`
+请参考 :ref:`cn_api_paddle_any`
 
 argmax(axis=None, keepdim=False, dtype=int64, name=None)
 :::::::::
@@ -526,7 +526,7 @@ argmax(axis=None, keepdim=False, dtype=int64, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_argmax`
+请参考 :ref:`cn_api_paddle_argmax`
 
 argmin(axis=None, keepdim=False, dtype=int64, name=None)
 :::::::::
@@ -535,7 +535,7 @@ argmin(axis=None, keepdim=False, dtype=int64, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_argmin`
+请参考 :ref:`cn_api_paddle_argmin`
 
 argsort(axis=-1, descending=False, name=None)
 :::::::::
@@ -544,7 +544,7 @@ argsort(axis=-1, descending=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_argsort`
+请参考 :ref:`cn_api_paddle_argsort`
 
 asin(name=None)
 :::::::::
@@ -553,7 +553,7 @@ asin(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_asin`
+请参考 :ref:`cn_api_paddle_asin`
 
 astype(dtype)
 :::::::::
@@ -583,7 +583,7 @@ atan(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_atan`
+请参考 :ref:`cn_api_paddle_atan`
 
 backward(grad_tensor=None, retain_graph=False)
 :::::::::
@@ -633,7 +633,7 @@ bincount(weights=None, minlength=0)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_bincount`
+请参考 :ref:`cn_api_paddle_bincount`
 
 bitwise_and(y, out=None, name=None)
 :::::::::
@@ -642,7 +642,7 @@ bitwise_and(y, out=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_bitwise_and`
+请参考 :ref:`cn_api_paddle_bitwise_and`
 
 bitwise_not(out=None, name=None)
 :::::::::
@@ -651,7 +651,7 @@ bitwise_not(out=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_bitwise_not`
+请参考 :ref:`cn_api_paddle_bitwise_not`
 
 bitwise_or(y, out=None, name=None)
 :::::::::
@@ -660,7 +660,7 @@ bitwise_or(y, out=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_bitwise_or`
+请参考 :ref:`cn_api_paddle_bitwise_or`
 
 bitwise_xor(y, out=None, name=None)
 :::::::::
@@ -669,7 +669,7 @@ bitwise_xor(y, out=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_bitwise_xor`
+请参考 :ref:`cn_api_paddle_bitwise_xor`
 
 bmm(y, name=None)
 :::::::::
@@ -678,7 +678,7 @@ bmm(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_bmm`
+请参考 :ref:`cn_api_paddle_bmm`
 
 broadcast_to(shape, name=None)
 :::::::::
@@ -687,7 +687,7 @@ broadcast_to(shape, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_expand` ，API 功能相同。
+请参考 :ref:`cn_api_paddle_expand` ，API 功能相同。
 
 bucketize(sorted_sequence, out_int32=False, right=False, name=None)
 :::::::::
@@ -695,7 +695,7 @@ bucketize(sorted_sequence, out_int32=False, right=False, name=None)
 
 返回类型：Tensor。
 
-请参考 :ref:`cn_api_tensor_bucketize`
+请参考 :ref:`cn_api_paddle_bucketize`
 
 cast(dtype)
 :::::::::
@@ -704,7 +704,7 @@ cast(dtype)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_cast`
+请参考 :ref:`cn_api_paddle_cast`
 
 ceil(name=None)
 :::::::::
@@ -713,12 +713,12 @@ ceil(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_ceil`
+请参考 :ref:`cn_api_paddle_ceil`
 
 ceil_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_ceil` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_ceil` API，对输入 `x` 采用 Inplace 策略。
 
 cholesky(upper=False, name=None)
 :::::::::
@@ -727,7 +727,7 @@ cholesky(upper=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_linalg_cholesky`
+请参考 :ref:`cn_api_paddle_linalg_cholesky`
 
 chunk(chunks, axis=0, name=None)
 :::::::::
@@ -736,7 +736,7 @@ chunk(chunks, axis=0, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_chunk`
+请参考 :ref:`cn_api_paddle_chunk`
 
 
 clip(min=None, max=None, name=None)
@@ -746,12 +746,12 @@ clip(min=None, max=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_clip`
+请参考 :ref:`cn_api_paddle_clip`
 
 clip_(min=None, max=None, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_tensor_clip` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_clip` API，对输入 `x` 采用 Inplace 策略。
 
 clone()
 :::::::::
@@ -791,7 +791,7 @@ concat(axis=0, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_concat`
+请参考 :ref:`cn_api_paddle_concat`
 
 conj(name=None)
 :::::::::
@@ -800,7 +800,7 @@ conj(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_conj`
+请参考 :ref:`cn_api_paddle_conj`
 
 cos(name=None)
 :::::::::
@@ -809,7 +809,7 @@ cos(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_cos`
+请参考 :ref:`cn_api_paddle_cos`
 
 cosh(name=None)
 :::::::::
@@ -818,7 +818,7 @@ cosh(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_cosh`
+请参考 :ref:`cn_api_paddle_cosh`
 
 **代码示例**
 COPY-FROM: paddle.cosh
@@ -830,7 +830,7 @@ count_nonzero(axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_count_nonzero`
+请参考 :ref:`cn_api_paddle_count_nonzero`
 
 cpu()
 :::::::::
@@ -861,7 +861,7 @@ cross(y, axis=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_linalg_cross`
+请参考 :ref:`cn_api_paddle_cross`
 
 cuda(device_id=None, blocking=False)
 :::::::::
@@ -897,7 +897,7 @@ cumsum(axis=None, dtype=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_cumsum`
+请参考 :ref:`cn_api_paddle_cumsum`
 
 deg2rad(x, name=None)
 :::::::::
@@ -908,7 +908,7 @@ deg2rad(x, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_deg2rad`
+请参考 :ref:`cn_api_paddle_deg2rad`
 
 
 diagonal(offset=0, axis1=0, axis2=1, name=None)
@@ -918,7 +918,7 @@ diagonal(offset=0, axis1=0, axis2=1, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_diagonal`
+请参考 :ref:`cn_api_paddle_diagonal`
 
 digamma(name=None)
 :::::::::
@@ -949,7 +949,7 @@ dist(y, p=2)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_linalg_dist`
+请参考 :ref:`cn_api_paddle_dist`
 
 divide(y, name=None)
 :::::::::
@@ -958,7 +958,7 @@ divide(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_divide`
+请参考 :ref:`cn_api_paddle_divide`
 
 dot(y, name=None)
 :::::::::
@@ -967,7 +967,7 @@ dot(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_linalg_dot`
+请参考 :ref:`cn_api_paddle_dot`
 
 diff(x, n=1, axis=-1, prepend=None, append=None, name=None)
 :::::::::
@@ -976,7 +976,7 @@ diff(x, n=1, axis=-1, prepend=None, append=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_diff`
+请参考 :ref:`cn_api_paddle_diff`
 
 element_size()
 :::::::::
@@ -1012,7 +1012,7 @@ equal(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_equal`
+请参考 :ref:`cn_api_paddle_equal`
 
 equal_all(y, name=None)
 :::::::::
@@ -1021,7 +1021,7 @@ equal_all(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_equal_all`
+请参考 :ref:`cn_api_paddle_equal_all`
 
 erf(name=None)
 :::::::::
@@ -1030,7 +1030,7 @@ erf(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_erf`
+请参考 :ref:`cn_api_paddle_erf`
 
 exp(name=None)
 :::::::::
@@ -1039,12 +1039,12 @@ exp(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_exp`
+请参考 :ref:`cn_api_paddle_exp`
 
 exp_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_exp` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_exp` API，对输入 `x` 采用 Inplace 策略。
 
 expand(shape, name=None)
 :::::::::
@@ -1053,7 +1053,7 @@ expand(shape, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_expand`
+请参考 :ref:`cn_api_paddle_expand`
 
 expand_as(y, name=None)
 :::::::::
@@ -1062,7 +1062,7 @@ expand_as(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_expand_as`
+请参考 :ref:`cn_api_paddle_expand_as`
 
 exponential_(lam=1.0, name=None)
 :::::::::
@@ -1102,7 +1102,7 @@ eigvals(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_linalg_eigvals`
+请参考 :ref:`cn_api_paddle_linalg_eigvals`
 
 fill_(x, value, name=None)
 :::::::::
@@ -1170,6 +1170,8 @@ fill_diagonal_(x, value, offset=0, wrap=False, name=None)
         x.fill_diagonal_(2, wrap=True)
         print(x)    #[[2.0, 1.0, 1.0], [1.0, 2.0, 1.0], [1.0, 1.0, 2.0], [1.0, 1.0, 1.0], [2.0, 1.0, 1.0], [1.0, 2.0, 1.0], [1.0, 1.0, 2.0]]
 
+.. _cn_api_paddle_fill_diagonal_tensor:
+
 fill_diagonal_tensor(x, y, offset=0, dim1=0, dim2=1, name=None)
 :::::::::
 将输入 Tensor y 填充到 Tensor x 的以 dim1、dim2 所指定对角线维度作为最后一个维度的局部子 Tensor 中，输入 Tensor x 其余维度作为该局部子 Tensor 的 shape 中的前几个维度。
@@ -1198,7 +1200,7 @@ fill_diagonal_tensor(x, y, offset=0, dim1=0, dim2=1, name=None)
 fill_diagonal_tensor_(x, y, offset=0, dim1=0, dim2=1, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fill_diagonal_tensor` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_fill_diagonal_tensor` API，对输入 `x` 采用 Inplace 策略。
 
 **代码示例**
     .. code-block:: python
@@ -1230,7 +1232,7 @@ flip(axis, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_flip`
+请参考 :ref:`cn_api_paddle_flip`
 
 rot90(k=1, axis=[0, 1], name=None)
 :::::::::
@@ -1239,7 +1241,7 @@ rot90(k=1, axis=[0, 1], name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_rot90`
+请参考 :ref:`cn_api_paddle_rot90`
 
 floor(name=None)
 :::::::::
@@ -1248,12 +1250,12 @@ floor(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_floor`
+请参考 :ref:`cn_api_paddle_floor`
 
 floor_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_floor` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_floor` API，对输入 `x` 采用 Inplace 策略。
 
 floor_divide(y, name=None)
 :::::::::
@@ -1262,7 +1264,7 @@ floor_divide(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_floor_divide`
+请参考 :ref:`cn_api_paddle_floor_divide`
 
 floor_mod(y, name=None)
 :::::::::
@@ -1271,7 +1273,7 @@ floor_mod(y, name=None)
 
 返回类型：Tensor
 
-mod 函数的别名，请参考 :ref:`cn_api_tensor_mod`
+mod 函数的别名，请参考 :ref:`cn_api_paddle_mod`
 
 gather(index, axis=None, name=None)
 :::::::::
@@ -1280,7 +1282,7 @@ gather(index, axis=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_gather`
+请参考 :ref:`cn_api_paddle_gather`
 
 gather_nd(index, name=None)
 :::::::::
@@ -1289,7 +1291,7 @@ gather_nd(index, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_gather_nd`
+请参考 :ref:`cn_api_paddle_gather_nd`
 
 gcd(x, y, name=None)
 :::::::::
@@ -1298,7 +1300,7 @@ gcd(x, y, name=None)
 
 返回：计算后的 Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_gcd`
+请参考 :ref:`cn_api_paddle_gcd`
 
 gradient()
 :::::::::
@@ -1325,7 +1327,7 @@ greater_equal(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_greater_equal`
+请参考 :ref:`cn_api_paddle_greater_equal`
 
 greater_than(y, name=None)
 :::::::::
@@ -1334,7 +1336,7 @@ greater_than(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_greater_than`
+请参考 :ref:`cn_api_paddle_greater_than`
 
 heaviside(y, name=None)
 :::::::::
@@ -1343,7 +1345,7 @@ heaviside(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_heaviside`
+请参考 :ref:`cn_api_paddle_heaviside`
 
 histogram(bins=100, min=0, max=0)
 :::::::::
@@ -1352,7 +1354,7 @@ histogram(bins=100, min=0, max=0)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_histogram`
+请参考 :ref:`cn_api_paddle_histogram`
 
 imag(name=None)
 :::::::::
@@ -1361,7 +1363,7 @@ imag(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_imag`
+请参考 :ref:`cn_api_paddle_imag`
 
 is_floating_point(x)
 :::::::::
@@ -1370,7 +1372,7 @@ is_floating_point(x)
 
 返回类型：bool
 
-请参考 :ref:`cn_api_tensor_is_floating_point`
+请参考 :ref:`cn_api_paddle_is_floating_point`
 
 increment(value=1.0, in_place=True)
 :::::::::
@@ -1379,7 +1381,7 @@ increment(value=1.0, in_place=True)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_increment`
+请参考 :ref:`cn_api_paddle_increment`
 
 index_sample(index)
 :::::::::
@@ -1388,7 +1390,7 @@ index_sample(index)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_search_index_sample`
+请参考 :ref:`cn_api_paddle_index_sample`
 
 index_select(index, axis=0, name=None)
 :::::::::
@@ -1397,7 +1399,7 @@ index_select(index, axis=0, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_search_index_select`
+请参考 :ref:`cn_api_paddle_index_select`
 
 index_add(index, axis, value, name=None)
 :::::::::
@@ -1406,7 +1408,7 @@ index_add(index, axis, value, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_index_add`
+请参考 :ref:`cn_api_paddle_index_add`
 
 index_put(indices, value, accumulate=False, name=None)
 :::::::::
@@ -1415,7 +1417,7 @@ index_put(indices, value, accumulate=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_index_put`
+请参考 :ref:`cn_api_paddle_index_put`
 
 repeat_interleave(repeats, axis=None, name=None)
 :::::::::
@@ -1424,7 +1426,7 @@ repeat_interleave(repeats, axis=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_repeat_interleave`
+请参考 :ref:`cn_api_paddle_repeat_interleave`
 
 inv(name=None)
 :::::::::
@@ -1433,7 +1435,7 @@ inv(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_linalg_inv`
+请参考 :ref:`cn_api_paddle_linalg_inv`
 
 is_empty(cond=None)
 :::::::::
@@ -1442,7 +1444,7 @@ is_empty(cond=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_is_empty`
+请参考 :ref:`cn_api_paddle_is_empty`
 
 isfinite(name=None)
 :::::::::
@@ -1451,7 +1453,7 @@ isfinite(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_isfinite`
+请参考 :ref:`cn_api_paddle_isfinite`
 
 isinf(name=None)
 :::::::::
@@ -1460,7 +1462,7 @@ isinf(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_isinf`
+请参考 :ref:`cn_api_paddle_isinf`
 
 isnan(name=None)
 :::::::::
@@ -1469,7 +1471,7 @@ isnan(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_isnan`
+请参考 :ref:`cn_api_paddle_isnan`
 
 kthvalue(k, axis=None, keepdim=False, name=None)
 :::::::::
@@ -1478,7 +1480,7 @@ kthvalue(k, axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_kthvalue`
+请参考 :ref:`cn_api_paddle_kthvalue`
 
 kron(y, name=None)
 :::::::::
@@ -1487,7 +1489,7 @@ kron(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_kron`
+请参考 :ref:`cn_api_paddle_kron`
 
 lcm(x, y, name=None)
 :::::::::
@@ -1496,7 +1498,7 @@ lcm(x, y, name=None)
 
 返回：计算后的 Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_lcm`
+请参考 :ref:`cn_api_paddle_lcm`
 
 less_equal(y, name=None)
 :::::::::
@@ -1505,7 +1507,7 @@ less_equal(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_less_equal`
+请参考 :ref:`cn_api_paddle_less_equal`
 
 less_than(y, name=None)
 :::::::::
@@ -1514,7 +1516,7 @@ less_than(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_less_than`
+请参考 :ref:`cn_api_paddle_less_than`
 
 lgamma(name=None)
 :::::::::
@@ -1532,7 +1534,7 @@ log(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_log`
+请参考 :ref:`cn_api_paddle_log`
 
 log10(name=None)
 :::::::::
@@ -1541,7 +1543,7 @@ log10(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_math_log10`
+请参考 :ref:`cn_api_paddle_log10`
 
 log2(name=None)
 :::::::::
@@ -1550,7 +1552,7 @@ log2(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_math_log2`
+请参考 :ref:`cn_api_paddle_log2`
 
 log1p(name=None)
 :::::::::
@@ -1559,7 +1561,7 @@ log1p(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_log1p`
+请参考 :ref:`cn_api_paddle_log1p`
 
 logcumsumexp(x, axis=None, dtype=None, name=None)
 :::::::::
@@ -1568,7 +1570,7 @@ logcumsumexp(x, axis=None, dtype=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_logcumsumexp`
+请参考 :ref:`cn_api_paddle_logcumsumexp`
 
 logical_and(y, out=None, name=None)
 :::::::::
@@ -1577,7 +1579,7 @@ logical_and(y, out=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_logical_and`
+请参考 :ref:`cn_api_paddle_logical_and`
 
 logical_not(out=None, name=None)
 :::::::::
@@ -1586,7 +1588,7 @@ logical_not(out=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_logical_not`
+请参考 :ref:`cn_api_paddle_logical_not`
 
 logical_or(y, out=None, name=None)
 :::::::::
@@ -1595,7 +1597,7 @@ logical_or(y, out=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_logical_or`
+请参考 :ref:`cn_api_paddle_logical_or`
 
 logical_xor(y, out=None, name=None)
 :::::::::
@@ -1604,7 +1606,7 @@ logical_xor(y, out=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_logical_xor`
+请参考 :ref:`cn_api_paddle_logical_xor`
 
 logsumexp(axis=None, keepdim=False, name=None)
 :::::::::
@@ -1613,7 +1615,7 @@ logsumexp(axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_math_logsumexp`
+请参考 :ref:`cn_api_paddle_logsumexp`
 
 masked_select(mask, name=None)
 :::::::::
@@ -1622,7 +1624,7 @@ masked_select(mask, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_masked_select`
+请参考 :ref:`cn_api_paddle_masked_select`
 
 matmul(y, transpose_x=False, transpose_y=False, name=None)
 :::::::::
@@ -1631,7 +1633,7 @@ matmul(y, transpose_x=False, transpose_y=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_matmul`
+请参考 :ref:`cn_api_paddle_matmul`
 
 matrix_power(x, n, name=None)
 :::::::::
@@ -1640,7 +1642,7 @@ matrix_power(x, n, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_linalg_matrix_power`
+请参考 :ref:`cn_api_paddle_linalg_matrix_power`
 
 max(axis=None, keepdim=False, name=None)
 :::::::::
@@ -1649,7 +1651,7 @@ max(axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_max`
+请参考 :ref:`cn_api_paddle_max`
 
 amax(axis=None, keepdim=False, name=None)
 :::::::::
@@ -1658,7 +1660,7 @@ amax(axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_amax`
+请参考 :ref:`cn_api_paddle_amax`
 
 maximum(y, axis=-1, name=None)
 :::::::::
@@ -1667,7 +1669,7 @@ maximum(y, axis=-1, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_maximum`
+请参考 :ref:`cn_api_paddle_maximum`
 
 mean(axis=None, keepdim=False, name=None)
 :::::::::
@@ -1676,7 +1678,7 @@ mean(axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_mean`
+请参考 :ref:`cn_api_paddle_mean`
 
 median(axis=None, keepdim=False, name=None)
 :::::::::
@@ -1685,7 +1687,7 @@ median(axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_median`
+请参考 :ref:`cn_api_paddle_median`
 
 nanmedian(axis=None, keepdim=True, name=None)
 :::::::::
@@ -1694,7 +1696,7 @@ nanmedian(axis=None, keepdim=True, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_nanmedian`
+请参考 :ref:`cn_api_paddle_nanmedian`
 
 min(axis=None, keepdim=False, name=None)
 :::::::::
@@ -1703,7 +1705,7 @@ min(axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_min`
+请参考 :ref:`cn_api_paddle_min`
 
 amin(axis=None, keepdim=False, name=None)
 :::::::::
@@ -1712,7 +1714,7 @@ amin(axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_amin`
+请参考 :ref:`cn_api_paddle_amin`
 
 minimum(y, axis=-1, name=None)
 :::::::::
@@ -1721,7 +1723,7 @@ minimum(y, axis=-1, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_minimum`
+请参考 :ref:`cn_api_paddle_minimum`
 
 mm(mat2, name=None)
 :::::::::
@@ -1730,7 +1732,7 @@ mm(mat2, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_mm`
+请参考 :ref:`cn_api_paddle_mm`
 
 mod(y, name=None)
 :::::::::
@@ -1739,7 +1741,7 @@ mod(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_mod`
+请参考 :ref:`cn_api_paddle_mod`
 
 mode(axis=-1, keepdim=False, name=None)
 :::::::::
@@ -1748,7 +1750,7 @@ mode(axis=-1, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_mode`
+请参考 :ref:`cn_api_paddle_mode`
 
 multiplex(index)
 :::::::::
@@ -1757,7 +1759,7 @@ multiplex(index)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_multiplex`
+请参考 :ref:`cn_api_paddle_multiplex`
 
 multiply(y, axis=-1, name=None)
 :::::::::
@@ -1766,7 +1768,7 @@ multiply(y, axis=-1, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_multiply`
+请参考 :ref:`cn_api_paddle_multiply`
 
 mv(vec, name=None)
 :::::::::
@@ -1775,7 +1777,7 @@ mv(vec, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_mv`
+请参考 :ref:`cn_api_paddle_mv`
 
 nan_to_num()
 :::::::::
@@ -1817,7 +1819,7 @@ nonzero(as_tuple=False)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_search_nonzero`
+请参考 :ref:`cn_api_paddle_nonzero`
 
 norm(p=fro, axis=None, keepdim=False, name=None)
 :::::::::
@@ -1826,7 +1828,7 @@ norm(p=fro, axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_linalg_norm`
+请参考 :ref:`cn_api_paddle_linalg_norm`
 
 not_equal(y, name=None)
 :::::::::
@@ -1835,7 +1837,7 @@ not_equal(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_not_equal`
+请参考 :ref:`cn_api_paddle_not_equal`
 
 numel(name=None)
 :::::::::
@@ -1844,7 +1846,7 @@ numel(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_numel`
+请参考 :ref:`cn_api_paddle_numel`
 
 
 pin_memory(y, name=None)
@@ -1875,7 +1877,7 @@ pow(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_math_pow`
+请参考 :ref:`cn_api_paddle_pow`
 
 prod(axis=None, keepdim=False, dtype=None, name=None)
 :::::::::
@@ -1884,7 +1886,7 @@ prod(axis=None, keepdim=False, dtype=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_prod`
+请参考 :ref:`cn_api_paddle_prod`
 
 quantile(q, axis=None, keepdim=False, name=None)
 :::::::::
@@ -1893,7 +1895,7 @@ quantile(q, axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_quantile`
+请参考 :ref:`cn_api_paddle_quantile`
 
 rad2deg(x, name=None)
 :::::::::
@@ -1904,7 +1906,7 @@ rad2deg(x, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_rad2deg`
+请参考 :ref:`cn_api_paddle_rad2deg`
 
 rank()
 :::::::::
@@ -1913,7 +1915,7 @@ rank()
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_rank`
+请参考 :ref:`cn_api_paddle_rank`
 
 real(name=None)
 :::::::::
@@ -1922,7 +1924,7 @@ real(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_real`
+请参考 :ref:`cn_api_paddle_real`
 
 reciprocal(name=None)
 :::::::::
@@ -1931,12 +1933,12 @@ reciprocal(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_reciprocal`
+请参考 :ref:`cn_api_paddle_reciprocal`
 
 reciprocal_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_reciprocal` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_reciprocal` API，对输入 `x` 采用 Inplace 策略。
 
 register_hook(hook)
 :::::::::
@@ -2004,7 +2006,7 @@ remainder(y, name=None)
 
 返回类型：Tensor
 
-mod 函数的别名，请参考 :ref:`cn_api_tensor_remainder`
+mod 函数的别名，请参考 :ref:`cn_api_paddle_remainder`
 
 remainder_(y, name=None)
 :::::::::
@@ -2013,7 +2015,7 @@ remainder_(y, name=None)
 
 返回类型：Tensor
 
-Inplace 版本的 :ref:`cn_api_tensor_remainder` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_remainder` API，对输入 `x` 采用 Inplace 策略。
 
 reshape(shape, name=None)
 :::::::::
@@ -2022,21 +2024,12 @@ reshape(shape, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_reshape`
+请参考 :ref:`cn_api_paddle_reshape`
 
 reshape_(shape, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_reshape` API，对输入 `x` 采用 Inplace 策略
-
-reverse(axis, name=None)
-:::::::::
-
-返回：计算后的 Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_reverse`
+Inplace 版本的 :ref:`cn_api_paddle_reshape` API，对输入 `x` 采用 Inplace 策略
 
 roll(shifts, axis=None, name=None)
 :::::::::
@@ -2045,7 +2038,7 @@ roll(shifts, axis=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_manipulation_roll`
+请参考 :ref:`cn_api_paddle_roll`
 
 round(name=None)
 :::::::::
@@ -2054,12 +2047,12 @@ round(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_round`
+请参考 :ref:`cn_api_paddle_round`
 
 round_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_round` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_round` API，对输入 `x` 采用 Inplace 策略。
 
 rsqrt(name=None)
 :::::::::
@@ -2068,12 +2061,12 @@ rsqrt(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_rsqrt`
+请参考 :ref:`cn_api_paddle_rsqrt`
 
 rsqrt_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_rsqrt` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_rsqrt` API，对输入 `x` 采用 Inplace 策略。
 
 scale(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 :::::::::
@@ -2082,12 +2075,12 @@ scale(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_scale`
+请参考 :ref:`cn_api_paddle_scale`
 
 scale_(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_scale` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_scale` API，对输入 `x` 采用 Inplace 策略。
 
 scatter(index, updates, overwrite=True, name=None)
 :::::::::
@@ -2096,12 +2089,12 @@ scatter(index, updates, overwrite=True, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_cn_scatter`
+请参考 :ref:`cn_api_paddle_scatter`
 
 scatter_(index, updates, overwrite=True, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_cn_scatter` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_scatter` API，对输入 `x` 采用 Inplace 策略。
 
 scatter_nd(updates, shape, name=None)
 :::::::::
@@ -2110,7 +2103,7 @@ scatter_nd(updates, shape, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_scatter_nd`
+请参考 :ref:`cn_api_paddle_scatter_nd`
 
 scatter_nd_add(index, updates, name=None)
 :::::::::
@@ -2119,7 +2112,7 @@ scatter_nd_add(index, updates, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_scatter_nd_add`
+请参考 :ref:`cn_api_paddle_scatter_nd_add`
 
 set_value(value)
 :::::::::
@@ -2150,7 +2143,7 @@ shard_index(index_num, nshards, shard_id, ignore_value=-1)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_shard_index`
+请参考 :ref:`cn_api_paddle_shard_index`
 
 
 sign(name=None)
@@ -2160,7 +2153,7 @@ sign(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_sign`
+请参考 :ref:`cn_api_paddle_sign`
 
 sgn(name=None)
 :::::::::
@@ -2169,7 +2162,7 @@ sgn(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_sgn`
+请参考 :ref:`cn_api_paddle_sgn`
 
 sin(name=None)
 :::::::::
@@ -2178,7 +2171,7 @@ sin(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_sin`
+请参考 :ref:`cn_api_paddle_sin`
 
 sinh(name=None)
 :::::::::
@@ -2187,15 +2180,6 @@ sinh(name=None)
 
 **代码示例**
 COPY-FROM: paddle.sinh
-
-size()
-:::::::::
-
-返回：计算后的 Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_size`
 
 slice(axes, starts, ends)
 :::::::::
@@ -2213,7 +2197,7 @@ sort(axis=-1, descending=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_sort`
+请参考 :ref:`cn_api_paddle_sort`
 
 split(num_or_sections, axis=0, name=None)
 :::::::::
@@ -2222,7 +2206,7 @@ split(num_or_sections, axis=0, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_split`
+请参考 :ref:`cn_api_paddle_split`
 
 vsplit(num_or_sections, name=None)
 :::::::::
@@ -2231,7 +2215,7 @@ vsplit(num_or_sections, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_vsplit`
+请参考 :ref:`cn_api_paddle_vsplit`
 
 sqrt(name=None)
 :::::::::
@@ -2240,12 +2224,12 @@ sqrt(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_sqrt`
+请参考 :ref:`cn_api_paddle_sqrt`
 
 sqrt_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_sqrt` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_sqrt` API，对输入 `x` 采用 Inplace 策略。
 
 square(name=None)
 :::::::::
@@ -2254,7 +2238,7 @@ square(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_square`
+请参考 :ref:`cn_api_paddle_square`
 
 squeeze(axis=None, name=None)
 :::::::::
@@ -2263,12 +2247,12 @@ squeeze(axis=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_squeeze`
+请参考 :ref:`cn_api_paddle_squeeze`
 
 squeeze_(axis=None, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_squeeze` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_squeeze` API，对输入 `x` 采用 Inplace 策略。
 
 stack(axis=0, name=None)
 :::::::::
@@ -2277,7 +2261,7 @@ stack(axis=0, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_stack`
+请参考 :ref:`cn_api_paddle_stack`
 
 stanh(scale_a=0.67, scale_b=1.7159, name=None)
 :::::::::
@@ -2286,7 +2270,7 @@ stanh(scale_a=0.67, scale_b=1.7159, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_stanh`
+请参考 :ref:`cn_api_paddle_stanh`
 
 std(axis=None, unbiased=True, keepdim=False, name=None)
 :::::::::
@@ -2295,7 +2279,7 @@ std(axis=None, unbiased=True, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_std`
+请参考 :ref:`cn_api_paddle_std`
 
 strided_slice(axes, starts, ends, strides)
 :::::::::
@@ -2304,7 +2288,7 @@ strided_slice(axes, starts, ends, strides)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_strided_slice`
+请参考 :ref:`cn_api_paddle_strided_slice`
 
 subtract(y, name=None)
 :::::::::
@@ -2313,12 +2297,12 @@ subtract(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_subtract`
+请参考 :ref:`cn_api_paddle_subtract`
 
 subtract_(y, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_subtract` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_subtract` API，对输入 `x` 采用 Inplace 策略。
 
 sum(axis=None, dtype=None, keepdim=False, name=None)
 :::::::::
@@ -2327,7 +2311,7 @@ sum(axis=None, dtype=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_sum`
+请参考 :ref:`cn_api_paddle_sum`
 
 t(name=None)
 :::::::::
@@ -2336,7 +2320,7 @@ t(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_t`
+请参考 :ref:`cn_api_paddle_t`
 
 tanh(name=None)
 :::::::::
@@ -2345,12 +2329,12 @@ tanh(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_tan`
+请参考 :ref:`cn_api_paddle_tan`
 
 tanh_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_tan` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_tan` API，对输入 `x` 采用 Inplace 策略。
 
 tile(repeat_times, name=None)
 :::::::::
@@ -2359,7 +2343,7 @@ tile(repeat_times, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_tile`
+请参考 :ref:`cn_api_paddle_tile`
 
 tolist()
 :::::::::
@@ -2377,7 +2361,7 @@ topk(k, axis=None, largest=True, sorted=True, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_topk`
+请参考 :ref:`cn_api_paddle_topk`
 
 trace(offset=0, axis1=0, axis2=1, name=None)
 :::::::::
@@ -2386,7 +2370,7 @@ trace(offset=0, axis1=0, axis2=1, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_trace`
+请参考 :ref:`cn_api_paddle_trace`
 
 transpose(perm, name=None)
 :::::::::
@@ -2395,7 +2379,7 @@ transpose(perm, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_transpose`
+请参考 :ref:`cn_api_paddle_transpose`
 
 triangular_solve(b, upper=True, transpose=False, unitriangular=False, name=None)
 :::::::::
@@ -2404,7 +2388,7 @@ triangular_solve(b, upper=True, transpose=False, unitriangular=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_linalg_triangular_solve`
+请参考 :ref:`cn_api_paddle_linalg_triangular_solve`
 
 trunc(name=None)
 :::::::::
@@ -2413,7 +2397,7 @@ trunc(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_trunc`
+请参考 :ref:`cn_api_paddle_trunc`
 
 frac(name=None)
 :::::::::
@@ -2422,7 +2406,7 @@ frac(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_frac`
+请参考 :ref:`cn_api_paddle_frac`
 
 tensordot(y, axes=2, name=None)
 :::::::::
@@ -2440,12 +2424,12 @@ unbind(axis=0)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_unbind`
+请参考 :ref:`cn_api_paddle_unbind`
 
 uniform_(min=-1.0, max=1.0, seed=0, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_tensor_uniform`，返回一个从均匀分布采样的随机数填充的 Tensor。输出 Tensor 将被置于输入 x 的位置。
+Inplace 版本的 :ref:`cn_api_paddle_uniform`，返回一个从均匀分布采样的随机数填充的 Tensor。输出 Tensor 将被置于输入 x 的位置。
 
 参数：
     - **x** (Tensor) - 待被随机数填充的输入 Tensor。
@@ -2479,7 +2463,7 @@ unique(return_index=False, return_inverse=False, return_counts=False, axis=None,
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_unique`
+请参考 :ref:`cn_api_paddle_unique`
 
 unsqueeze(axis, name=None)
 :::::::::
@@ -2488,12 +2472,12 @@ unsqueeze(axis, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_unsqueeze`
+请参考 :ref:`cn_api_paddle_unsqueeze`
 
 unsqueeze_(axis, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_unsqueeze` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_unsqueeze` API，对输入 `x` 采用 Inplace 策略。
 
 unstack(axis=0, num=None)
 :::::::::
@@ -2502,7 +2486,7 @@ unstack(axis=0, num=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_unstack`
+请参考 :ref:`cn_api_paddle_unstack`
 
 var(axis=None, unbiased=True, keepdim=False, name=None)
 :::::::::
@@ -2511,7 +2495,7 @@ var(axis=None, unbiased=True, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cn_var`
+请参考 :ref:`cn_api_paddle_var`
 
 where(x, y, name=None)
 :::::::::
@@ -2527,7 +2511,7 @@ where(x, y, name=None)
 
 示例：`(x>0).where(x, y)`， 其中 x， y 都是数值 `Tensor`。
 
-请参考 :ref:`cn_api_tensor_where`
+请参考 :ref:`cn_api_paddle_where`
 
 multi_dot(x, name=None)
 :::::::::
@@ -2536,7 +2520,7 @@ multi_dot(x, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_linalg_multi_dot`
+请参考 :ref:`cn_api_paddle_linalg_multi_dot`
 
 solve(x, y name=None)
 :::::::::
@@ -2545,7 +2529,7 @@ solve(x, y name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_linalg_solve`
+请参考 :ref:`cn_api_paddle_linalg_solve`
 
 logit(eps=None, name=None)
 :::::::::
@@ -2554,7 +2538,7 @@ logit(eps=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_logit`
+请参考 :ref:`cn_api_paddle_logit`
 
 lerp(x, y, weight, name=None)
 :::::::::
@@ -2565,12 +2549,12 @@ lerp(x, y, weight, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_lerp`
+请参考 :ref:`cn_api_paddle_lerp`
 
 lerp_(y, weight, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_lerp` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_lerp` API，对输入 `x` 采用 Inplace 策略。
 
 
 is_complex()
@@ -2601,7 +2585,7 @@ take_along_axis(arr, indices, axis)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_take_along_axis`
+请参考 :ref:`cn_api_paddle_take_along_axis`
 
 put_along_axis(arr, indices, value, axis, reduce="assign")
 :::::::::
@@ -2612,14 +2596,14 @@ put_along_axis(arr, indices, value, axis, reduce="assign")
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_put_along_axis`
+请参考 :ref:`cn_api_paddle_put_along_axis`
 
 erfinv(x, name=None)
 :::::::::
 
 对输入 x 进行逆误差函数计算
 
-请参考 :ref:`cn_api_paddle_tensor_erfinv`
+请参考 :ref:`cn_api_paddle_erfinv`
 
 take(index, mode='raise', name=None)
 :::::::::
@@ -2628,7 +2612,7 @@ take(index, mode='raise', name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_take`
+请参考 :ref:`cn_api_paddle_take`
 
 frexp(x)
 :::::::::
@@ -2655,7 +2639,7 @@ trapezoid(y, x=None, dx=None, axis=-1, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_trapezoid`
+请参考 :ref:`cn_api_paddle_trapezoid`
 
 cumulative_trapezoid(y, x=None, dx=None, axis=-1, name=None)
 :::::::::
@@ -2666,7 +2650,7 @@ cumulative_trapezoid(y, x=None, dx=None, axis=-1, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_cumulative_trapezoid`
+请参考 :ref:`cn_api_paddle_cumulative_trapezoid`
 
 polar(abs, angle)
 :::::::::
@@ -2697,7 +2681,7 @@ unflatten(axis, shape, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_unflatten`
+请参考 :ref:`cn_api_paddle_unflatten`
 
 i0(x, name=None)
 :::::::::
@@ -2707,7 +2691,7 @@ i0(x, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_i0`
+请参考 :ref:`cn_api_paddle_i0`
 
 i0e(x, name=None)
 :::::::::
@@ -2717,7 +2701,7 @@ i0e(x, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_i0e`
+请参考 :ref:`cn_api_paddle_i0e`
 
 i1(x, name=None)
 :::::::::
@@ -2727,7 +2711,7 @@ i1(x, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_i1`
+请参考 :ref:`cn_api_paddle_i1`
 
 i1e(x, name=None)
 :::::::::
@@ -2737,7 +2721,7 @@ i1e(x, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_i1e`
+请参考 :ref:`cn_api_paddle_i1e`
 
 nnz()
 :::::::::
@@ -2980,7 +2964,7 @@ polygamma
 
 返回类型：tensor
 
-请参考 :ref:`cn_api_paddle_tensor_polygamma`
+请参考 :ref:`cn_api_paddle_polygamma`
 
 pca_lowrank(x, q=None, center=True, niter=2, name=None)
 :::::::::
@@ -2990,7 +2974,7 @@ pca_lowrank(x, q=None, center=True, niter=2, name=None)
 
 返回类型：tuple，包含结果（U，S，V）。
 
-请参考 :ref:`cn_api_linalg_pca_lowrank`
+请参考 :ref:`cn_api_paddle_linalg_pca_lowrank`
 
 cummax(x, axis=None, dtype='int64', name=None)
 :::::::::
@@ -3000,7 +2984,7 @@ cummax(x, axis=None, dtype='int64', name=None)
 
 返回类型：Tensor，包含计算结果和索引。
 
-请参考 :ref:`cn_api_tensor_cn_cummax`
+请参考 :ref:`cn_api_paddle_cummax`
 
 cummin(x, axis=None, dtype='int64', name=None)
 :::::::::
@@ -3010,7 +2994,7 @@ cummin(x, axis=None, dtype='int64', name=None)
 
 返回类型：Tensor，包含计算结果和索引。
 
-请参考 :ref:`cn_api_tensor_cn_cummin`
+请参考 :ref:`cn_api_paddle_cummin`
 
 as_strided(x, shape, stride, offset=0, name=None)
 :::::::::
@@ -3023,7 +3007,7 @@ as_strided(x, shape, stride, offset=0, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_as_strided`
+请参考 :ref:`cn_api_paddle_as_strided`
 
 view(x, shape_or_dtype, name=None)
 :::::::::
@@ -3036,7 +3020,7 @@ view(x, shape_or_dtype, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_view`
+请参考 :ref:`cn_api_paddle_view`
 
 view_as(x, other, name=None)
 :::::::::
@@ -3049,7 +3033,7 @@ view_as(x, other, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_view_as`
+请参考 :ref:`cn_api_paddle_view_as`
 
 unfold(x, axis, size, step, name=None)
 :::::::::
@@ -3062,4 +3046,17 @@ unfold(x, axis, size, step, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_unfold`
+请参考 :ref:`cn_api_paddle_unfold`
+
+masked_fill(x, mask, value, name=None)
+:::::::::
+根据 mask 信息，将 value 中的值填充到 x 中 mask 对应为 True 的位置。
+
+返回一个根据 mask 将对应位置填充为 value 的 Tensor。
+
+请参考 :ref:`cn_api_paddle_masked_fill`
+
+masked_fill_(x, mask, value, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_masked_fill` API，对输入 `x` 采用 Inplace 策略。

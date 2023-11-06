@@ -1,4 +1,4 @@
-.. _cn_api_tensor_where:
+.. _cn_api_paddle_where:
 
 where
 -------------------------------
@@ -18,7 +18,7 @@ where
     \end{cases}.
 
 .. note::
-    ``numpy.where(condition)`` 功能与 ``paddle.nonzero(condition, as_tuple=True)`` 相同，可以参考 :ref:`cn_api_tensor_search_nonzero`。
+    ``numpy.where(condition)`` 功能与 ``paddle.nonzero(condition, as_tuple=True)`` 相同，可以参考 :ref:`cn_api_paddle_nonzero`。
 
 参数
 ::::::::::::

@@ -1,4 +1,4 @@
-.. _cn_api_vision_transforms_Transpose:
+.. _cn_api_paddle_vision_transforms_Transpose:
 
 Transpose
 -------------------------------

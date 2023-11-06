@@ -16,10 +16,11 @@
 '''
 do sth. after the html generated.
 '''
-from bs4 import BeautifulSoup
+import argparse
 import os
 import sys
-import argparse
+
+from bs4 import BeautifulSoup
 
 
 def insert_header_and_anchor_for_method(htmlfile):

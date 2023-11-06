@@ -1,6 +1,6 @@
 ## [组合替代实现]torch.Tensor.normal_
 
-### [torch.Tensor.norm_](https://pytorch.org/docs/stable/generated/torch.Tensor.normal_.html#torch-tensor-normal)
+### [torch.Tensor.normal_](https://pytorch.org/docs/stable/generated/torch.Tensor.normal_.html#torch-tensor-normal)
 
 ```python
 torch.Tensor.normal_(mean=0, std=1, *, generator=None)

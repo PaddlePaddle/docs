@@ -1,4 +1,4 @@
-.. _cn_api_amp_decorate:
+.. _cn_api_paddle_amp_decorate:
 
 decorate
 -------------------------------

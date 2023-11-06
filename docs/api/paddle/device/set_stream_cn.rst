@@ -1,4 +1,4 @@
-.. _cn_api_device_set_stream:
+.. _cn_api_paddle_device_set_stream:
 
 set_stream
 -------------------------------

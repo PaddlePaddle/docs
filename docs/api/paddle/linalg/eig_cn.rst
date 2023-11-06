@@ -1,4 +1,4 @@
-.. _cn_api_linalg_eig:
+.. _cn_api_paddle_linalg_eig:
 
 eig
 -------------------------------
@@ -8,9 +8,9 @@ eig
 计算一般方阵 ``x`` 的的特征值和特征向量。
 
 .. note::
-    - 如果输入矩阵 ``x`` 为 Hermitian 矩阵或实对称阵，请使用更快的 API :ref:`cn_api_linalg_eigh` 。
-    - 如果只计算特征值，请使用 :ref:`cn_api_linalg_eigvals` 。
-    - 如果矩阵 ``x`` 不是方阵，请使用 :ref:`cn_api_linalg_svd` 。
+    - 如果输入矩阵 ``x`` 为 Hermitian 矩阵或实对称阵，请使用更快的 API :ref:`cn_api_paddle_linalg_eigh` 。
+    - 如果只计算特征值，请使用 :ref:`cn_api_paddle_linalg_eigvals` 。
+    - 如果矩阵 ``x`` 不是方阵，请使用 :ref:`cn_api_paddle_linalg_svd` 。
     - 该 API 当前只能在 CPU 上执行。
     - 对于输入是实数和复数类型，输出的数据类型均为复数。
 

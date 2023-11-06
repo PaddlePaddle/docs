@@ -1,4 +1,4 @@
-.. _cn_api_device_guard:
+.. _cn_api_paddle_static_device_guard:
 
 device_guard
 -------------------------------

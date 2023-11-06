@@ -1,4 +1,4 @@
-.. _cn_api_distributed_barrier:
+.. _cn_api_paddle_distributed_barrier:
 
 barrier
 -------------------------------

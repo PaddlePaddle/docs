@@ -3,7 +3,7 @@
 PoissonNLLLoss
 -------------------------------
 
-.. py:class:: paddle.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, reduction='mean', name=None)
+.. py:class:: paddle.nn.PoissonNLLLoss(log_input=True, full=False, epsilon=1e-8, reduction='mean', name=None)
 
 该接口可创建一个 PoissonNLLLoss 可调用类，计算输入 :attr:`input` 和标签 :attr:`label` 间的 `Poisson negative log likelihood loss` 损失。该 loss 适用于真实标签服从于泊松分布时，即
 
@@ -14,9 +14,9 @@ PoissonNLLLoss
 当 `log_input` 设置为 `True` 时，损失函数的数学计算公式为：
 
 .. math::
-    \text{loss}(\text{input}, \text{label}) = \text{input} - \text{label} * \log(\text{input}+\text{eps}) + \log(\text{label!})
+    \text{loss}(\text{input}, \text{label}) = \text{input} - \text{label} * \log(\text{input}+\text{epsilon}) + \log(\text{label!})
 
-其中 `eps` 是 ``True`` 时使用的常数小量，使得 loss 计算过程中不会导致对 0 求对数情况的出现。
+其中 `epsilon` 是 ``True`` 时使用的常数小量，使得 loss 计算过程中不会导致对 0 求对数情况的出现。
 当 `log_input` 设置为 `False` 时，损失函数的数学计算公式为：
 
 .. math::
@@ -33,7 +33,7 @@ PoissonNLLLoss
 :::::::::
     - **log_input** (bool，可选) - 输入是否为对数函数映射后结果，默认值为 ``True``。
     - **full** (bool，可选) - 是否在损失计算中包括 Stirling 近似项。默认值为 ``False``。
-    - **eps** (float，可选) - 在 :attr:`log_input` 为 ``True`` 时使用的常数小量。默认值为 1e-8。
+    - **epsilon** (float，可选) - 在 :attr:`log_input` 为 ``True`` 时使用的常数小量。默认值为 1e-8。
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有 ``none``、``mean`` 和 ``sum``。默认为 ``mean``，计算 ``mini-batch`` loss 均值。设置为 ``sum`` 时，计算 ``mini-batch`` loss 的总和。设置为 ``none`` 时，则返回 loss Tensor。默认值下为 ``mean``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 

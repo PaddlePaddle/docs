@@ -1,4 +1,4 @@
-.. _cn_api_distributed_get_world_size:
+.. _cn_api_paddle_distributed_get_world_size:
 
 get_world_size
 ----------------
@@ -14,6 +14,9 @@ get_world_size
 返回
 :::::::::
 (int) 返回指定通信组中的进程数，如果当前进程不在该通信组中，则返回-1。
+
+.. warning::
+    参数 ``group`` 仅在动态图模式下支持
 
 代码示例
 :::::::::

@@ -1,4 +1,4 @@
-.. _cn_api_fluid_LazyGuard:
+.. _cn_api_paddle_LazyGuard:
 
 LazyGuard
 -------------------------------

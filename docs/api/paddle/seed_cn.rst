@@ -1,4 +1,4 @@
-.. _cn_api_paddle_framework_seed:
+.. _cn_api_paddle_seed:
 
 seed
 -------------------------------

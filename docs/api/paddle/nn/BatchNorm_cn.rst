@@ -1,4 +1,4 @@
-.. _cn_api_fluid_dygraph_BatchNorm:
+.. _cn_api_paddle_nn_BatchNorm:
 
 BatchNorm
 -------------------------------
@@ -45,8 +45,8 @@ BatchNorm
     - **is_test** (bool，可选) - 指示是否在测试阶段，非训练阶段使用训练过程中统计到的全局均值和全局方差。默认值：False。
     - **momentum** (float，可选) - 此值用于计算 ``moving_mean`` 和 ``moving_var``。默认值：0.9。更新公式如上所示。
     - **epsilon** (float，可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
-    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
     - **dtype** (str，可选) - 指明输入 ``Tensor`` 的数据类型，可以为 float32 或 float64。默认值：float32。
     - **data_layout** (str，可选) - 指定输入数据格式，数据格式可以为 ``"NCHW"`` 或 ``"NHWC"``，其中 N 是批大小，C 是通道数，H 是特征高度，W 是特征宽度。默认值为 ``"NCHW"``。
     - **in_place** (bool，可选) - 指示 ``batch_norm`` 的输出是否可以复用输入内存。默认值：False。

@@ -1,4 +1,4 @@
-.. _cn_api_audio_functional_power_to_db:
+.. _cn_api_paddle_audio_functional_power_to_db:
 
 power_to_db
 -------------------------------

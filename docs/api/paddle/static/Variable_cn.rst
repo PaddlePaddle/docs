@@ -1,4 +1,4 @@
-.. _cn_api_fluid_Variable:
+.. _cn_api_paddle_static_Variable:
 
 Variable
 -------------------------------
@@ -9,7 +9,7 @@ Variable
 .. note::
   1. 请不要直接调用 `Variable` 的构造函数，因为这会造成严重的错误发生！
 
-  2. 在静态图形模式下：请使用 `Block.create_var` 创建一个静态的 `Variable`，该静态的 `Variable` 在使用 :ref:`cn_api_fluid_executor` 执行前是没有实际数据的。
+  2. 在静态图形模式下：请使用 `Block.create_var` 创建一个静态的 `Variable`，该静态的 `Variable` 在使用 :ref:`cn_api_paddle_static_Executor` 执行前是没有实际数据的。
 
 在 Paddle 静态图模式中，OP 的每个输入和输出都是 :ref:`api_guide_Variable`。多数情况下，:ref:`api_guide_Variable` 用于保存不同种类的数据或训练标签。
 
@@ -212,7 +212,7 @@ lod_level
 .. note::
 该属性是只读属性。
 
-此 :ref:`api_guide_Variable` 的 ``LoD`` 信息，关于 ``LoD`` 可以参考 :ref:`api_fluid_LoDTensor` 相关内容。
+此 :ref:`api_guide_Variable` 的 ``LoD`` 信息。
 
 type
 '''''''''
@@ -220,7 +220,7 @@ type
 .. note::
 该属性是只读属性。
 
-此 :ref:`api_guide_Variable` 的内存模型，例如是：:ref:`api_fluid_LoDTensor`，或者 SelectedRows。
+此 :ref:`api_guide_Variable` 的内存模型，例如是：``LoDTensor``，或者 ``SelectedRows``。
 
 ndim
 '''''''''

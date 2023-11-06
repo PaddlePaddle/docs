@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.nn.init.xavier_uniform_.md
+## [ 组合替代实现 ]torch.nn.init.xavier_uniform_
 
 ### [torch.nn.init.xavier_uniform_](https://pytorch.org/docs/stable/nn.init.html?highlight=xavier_uniform_#torch.nn.init.xavier_uniform_)
 

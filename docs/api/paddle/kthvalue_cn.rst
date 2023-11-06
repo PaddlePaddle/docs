@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_kthvalue:
+.. _cn_api_paddle_kthvalue:
 
 kthvalue
 -------------------------------

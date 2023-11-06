@@ -1,4 +1,4 @@
-.. _cn_api_tensor_masked_select:
+.. _cn_api_paddle_masked_select:
 
 masked_select
 -------------------------------

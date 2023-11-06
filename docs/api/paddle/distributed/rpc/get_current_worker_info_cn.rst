@@ -1,4 +1,4 @@
-.. _cn_api_distributed_rpc_get_current_worker_info:
+.. _cn_api_paddle_distributed_rpc_get_current_worker_info:
 
 get_current_worker_info
 -------------------------------

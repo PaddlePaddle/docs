@@ -1,4 +1,4 @@
-.. _cn_api_distribution_Gumbel:
+.. _cn_api_paddle_distribution_Gumbel:
 
 Gumbel
 -------------------------------

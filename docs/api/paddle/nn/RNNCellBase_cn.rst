@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_layer_rnn_RNNCellBase:
+.. _cn_api_paddle_nn_RNNCellBase:
 
 RNNCellBase
 -------------------------------

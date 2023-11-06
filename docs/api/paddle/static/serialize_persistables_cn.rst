@@ -1,4 +1,4 @@
-.. _cn_api_fluid_io_serialize_persistables:
+.. _cn_api_paddle_static_serialize_persistables:
 
 serialize_persistables
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_tensor_argmax:
+.. _cn_api_paddle_argmax:
 
 argmax
 -------------------------------
@@ -6,7 +6,7 @@ argmax
 .. py:function:: paddle.argmax(x, axis=None, keepdim=False, dtype='int64', name=None)
 
 
-沿参数``axis`` 计算输入 ``x`` 的最大元素的索引。
+沿参数 ``axis`` 计算输入 ``x`` 的最大元素的索引。
 
 参数
 ::::::::

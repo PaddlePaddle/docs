@@ -1,4 +1,4 @@
-.. _cn_api_metric_Recall:
+.. _cn_api_paddle_metric_Recall:
 
 Recall
 -------------------------------
@@ -67,7 +67,7 @@ accumulate()
 
 **返回**
 
-precision 值，一个标量。
+recall 值，一个标量。
 
 
 name()

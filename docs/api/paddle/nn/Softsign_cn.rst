@@ -1,4 +1,4 @@
-.. _cn_api_nn_Softsign:
+.. _cn_api_paddle_nn_Softsign:
 
 Softsign
 -------------------------------
@@ -18,7 +18,7 @@ Softsign 激活层
 
 形状
 ::::::::::
-    - input：任意形状的 Tensor。
+    - input：任意形状的 Tensor，支持的数据类型是 float32、 float64、complex64、complex128。
     - output：和 input 具有相同形状的 Tensor。
 
 代码示例

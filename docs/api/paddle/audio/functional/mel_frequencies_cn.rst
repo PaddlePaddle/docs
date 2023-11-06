@@ -1,4 +1,4 @@
-.. _cn_api_audio_functional_mel_frequencies:
+.. _cn_api_paddle_audio_functional_mel_frequencies:
 
 mel_frequencies
 -------------------------------

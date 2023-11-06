@@ -1,4 +1,4 @@
-.. _cn_api_distributed_fleet_Fleet:
+.. _cn_api_paddle_distributed_fleet_Fleet:
 
 Fleet
 -------------------------------
@@ -98,7 +98,7 @@ int
 worker_num()
 '''''''''
 
-返回当前全部训练节点中`workjer`节点的个数
+返回当前全部训练节点中`worker`节点的个数
 
 **返回**
 int

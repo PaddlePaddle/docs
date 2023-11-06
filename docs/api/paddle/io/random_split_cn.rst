@@ -1,4 +1,4 @@
-.. _cn_api_io_cn_random_split:
+.. _cn_api_paddle_io_random_split:
 
 random_split
 -------------------------------

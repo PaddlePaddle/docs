@@ -1,4 +1,4 @@
-.. _cn_api_tensor_diff:
+.. _cn_api_paddle_diff:
 
 diff
 -------------------------------

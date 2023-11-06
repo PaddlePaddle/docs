@@ -1,4 +1,4 @@
-.. _cn_api_audio_functional_hz_to_mel:
+.. _cn_api_paddle_audio_functional_hz_to_mel:
 
 hz_to_mel
 -------------------------------

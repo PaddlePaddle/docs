@@ -1,19 +1,15 @@
-import sys
-import os, subprocess
-
-# sys.path.insert(0, os.path.abspath('@PADDLE_BINARY_DIR@/python'))
-import shlex
-from recommonmark import parser, transform
-import sys
-import inspect
 import ast
-import time
 import configparser
+import inspect
+import os
 import re
+import sys
+import time
+
+from recommonmark import parser, transform
 
 try:
-    import paddle
-    import paddle.fluid as fluid
+    import paddle  # noqa: F401
 except:
     print("import paddle error")
 
@@ -29,9 +25,9 @@ AutoStructify = transform.AutoStructify
 # -- General configuration ------------------------------------------------
 
 # General information about the project.
-project = u'PaddlePaddle'
-author = u'%s developers' % project
-copyright = u'%d, %s' % (time.localtime(time.time()).tm_year, author)
+project = 'PaddlePaddle'
+author = '%s developers' % project
+copyright = '%d, %s' % (time.localtime(time.time()).tm_year, author)
 github_doc_root = 'https://github.com/PaddlePaddle/docs/docs'
 
 # add markdown parser
@@ -363,7 +359,11 @@ def remove_doctest_directives(app, what, name, obj, options, lines):
     pattern_doctest = re.compile(r"\s*>>>\s*#\s*doctest:\s*.*")
 
     # Modify the lines inplace
-    lines[:] = [line for line in lines if not pattern_doctest.match(line)]
+    lines[:] = [
+        line
+        for line in lines
+        if not (pattern_doctest.match(line) or line.strip() == ">>>")
+    ]
 
 
 def setup(app):

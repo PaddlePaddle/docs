@@ -1,4 +1,4 @@
-.. _cn_api_fluid_CompiledProgram:
+.. _cn_api_paddle_static_CompiledProgram:
 
 CompiledProgram
 -------------------------------
@@ -7,12 +7,12 @@ CompiledProgram
 .. py:class:: paddle.static.CompiledProgram(program_or_graph, build_strategy=None)
 
 
-CompiledProgram 根据 `build_strategy` 的配置将输入的 Program 或 Graph 进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等，关于 build_strategy 更多信息。请参阅  ``fluid.BuildStrategy`` 。
+CompiledProgram 根据 `build_strategy` 的配置将输入的 Program 或 Graph 进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等，关于 build_strategy 更多信息。请参阅 :ref:`cn_api_paddle_static_BuildStrategy`。
 
 参数
 :::::::::
     - **program_or_graph** (Graph|Program)：该参数为被执行的 Program 或 Graph。
-    - **build_strategy** (BuildStrategy)：通过配置 build_strategy，对计算图进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等。关于 build_strategy 更多信息，请参阅  ``fluid.BuildStrategy``。默认为 None。
+    - **build_strategy** (BuildStrategy)：通过配置 build_strategy，对计算图进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等。关于 build_strategy 更多信息，请参阅 :ref:`cn_api_paddle_static_BuildStrategy`。默认为 None。
 
 返回
 :::::::::

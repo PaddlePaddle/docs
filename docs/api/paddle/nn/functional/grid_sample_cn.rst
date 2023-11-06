@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_grid_sample:
+.. _cn_api_paddle_nn_functional_grid_sample:
 
 grid_sample
 -------------------------------
@@ -35,7 +35,7 @@ step 2：
       |           |           |
       |          d_s          |
       |           |           |
-      ws ------- y_s ------- wn
+      ws ------- y_s ------- es
 
     x_w = floor(x)              // west side x coord
     x_e = x_w + 1               // east side x coord

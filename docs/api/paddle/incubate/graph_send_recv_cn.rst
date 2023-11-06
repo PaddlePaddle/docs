@@ -1,4 +1,4 @@
-.. _cn_api_incubate_graph_send_recv:
+.. _cn_api_paddle_incubate_graph_send_recv:
 
 graph_send_recv
 -------------------------------

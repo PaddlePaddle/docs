@@ -1,4 +1,4 @@
-.. _cn_api_iinfo:
+.. _cn_api_paddle_iinfo:
 
 iinfo
 -------------------------------

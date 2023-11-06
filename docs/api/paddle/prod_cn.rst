@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_prod:
+.. _cn_api_paddle_prod:
 
 prod
 -------------------------------

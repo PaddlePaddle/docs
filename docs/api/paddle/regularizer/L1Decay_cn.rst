@@ -1,4 +1,3 @@
-
 .. _cn_api_paddle_regularizer_L1Decay:
 
 L1Decay

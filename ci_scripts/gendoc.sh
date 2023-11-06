@@ -32,14 +32,14 @@ if [ -f ${FLUIDDOCDIR}/ci_scripts/hooks/pre-doc-compile.sh ] ; then
 fi
 
 thread=2
-tmp_fifofile=/tmp/$$.fifo		#脚本运行的当前进程ID号作为文件名
-mkfifo $tmp_fifofile			#新建一个随机fifo管道文件
-exec 6<>$tmp_fifofile			#定义文件描述符6指向这个fifo管道文件
-rm $tmp_fifofile			#清空管道内容
+tmp_fifofile=/tmp/$$.fifo       # 脚本运行的当前进程ID号作为文件名
+mkfifo $tmp_fifofile            # 新建一个随机fifo管道文件
+exec 6<>$tmp_fifofile           # 定义文件描述符6指向这个fifo管道文件
+rm $tmp_fifofile                # 清空管道内容
 
 # for循环 往 fifo管道文件中写入$thread个空行
 for ((i=0;i<$thread;i++));do
-  echo 
+  echo
 done >&6
 
 
@@ -54,7 +54,7 @@ for lang in en zh ; do
       if [ "${lang}" = "zh" ] ; then
         INDEXFILE="${OUTPUTDIR}/${lang}/${VERSIONSTR}/index_cn.html"
       fi
-      if [ ! -f ${INDEXFILE} ] ; then 
+      if [ ! -f ${INDEXFILE} ] ; then
         /usr/local/bin/sphinx-build -b ${OUTPUTFORMAT} -j ${sphinx_thread} -d /var/doctrees -c ${CONFIGDIR}/${lang} ${DOCROOT} ${OUTPUTDIR}/${lang}/${VERSIONSTR}
       fi
 
@@ -68,8 +68,8 @@ for lang in en zh ; do
   } &
 done
 
-wait			#等到后台的进程都执行完毕
-exec 6>&-		##删除文件描述符6
+wait            # 等到后台的进程都执行完毕
+exec 6>&-       # 删除文件描述符6
 
 if [ -f ${FLUIDDOCDIR}/ci_scripts/hooks/post-doc-compile.sh ] ; then
   ${FLUIDDOCDIR}/ci_scripts/hooks/post-doc-compile.sh ${OUTPUTDIR} ${VERSIONSTR}

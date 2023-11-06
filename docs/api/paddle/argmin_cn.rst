@@ -1,4 +1,4 @@
-.. _cn_api_tensor_argmin:
+.. _cn_api_paddle_argmin:
 
 argmin
 -------------------------------

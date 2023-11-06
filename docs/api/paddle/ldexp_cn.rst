@@ -1,4 +1,4 @@
-.. _cn_api_layers_ldexp:
+.. _cn_api_paddle_ldexp:
 
 ldexp
 -------------------------------

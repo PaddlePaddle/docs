@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_functional_common_linear:
+.. _cn_api_paddle_nn_functional_linear:
 
 linear
 -------------------------------

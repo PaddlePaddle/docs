@@ -1,4 +1,4 @@
-.. _cn_api_paddle_framework_io_save:
+.. _cn_api_paddle_save:
 
 save
 -----

@@ -41,7 +41,7 @@ export PADDLE_INF_NAN_SKIP_VAR="mul:fc_0.tmp_0,mul:fc_0.tmp_1,dropout:new_relati
 `注意`：指定 op 变量检查中，对于 op 只接受精准匹配，对于变量则为模糊匹配，如上述的 mlu op 中的 fc_0.tmp_0 和 fc_0.tmp_1 变量可用 c_0.tmp 进行匹配。
 
 ## <span id="test">试用</span>
-可以使用单测中的[check_nan_inf_base.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/check_nan_inf_base.py)文件进行试用。该脚本已设置 FLAGS_check_nan_inf=1 打开 check nan inf 功能。直接 python check_nan_inf_base.py 执行即可。
+可以使用单测中的[check_nan_inf_base.py](https://github.com/PaddlePaddle/Paddle/blob/develop/test/legacy_test/check_nan_inf_base.py)文件进行试用。该脚本已设置 FLAGS_check_nan_inf=1 打开 check nan inf 功能。直接 python check_nan_inf_base.py 执行即可。
 #### 1. GPU 日志信息
 其中 GPU 的 check nan 信息由于在 GPU 中打印，所以 nan inf 信息会出现在出错信息栈前面。工具中会打印出现 inf、nan 的 op 及 tensor 名称，每个 block 会打印 nan、inf、num 中的 3 个值，并打印各自 block 中 nan、inf、num 的数量。
 ![gpu_nan_inf.png](check_nan_inf_files/gpu_nan_inf.png)

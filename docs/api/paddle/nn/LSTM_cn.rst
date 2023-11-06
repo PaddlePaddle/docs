@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_layer_rnn_LSTM:
+.. _cn_api_paddle_nn_LSTM:
 
 LSTM
 -------------------------------
@@ -9,7 +9,7 @@ LSTM
 
 **长短期记忆网络**
 
-长短期记忆网络（LSTM），根据输出序列和给定的初始状态计算返回输出序列和最终状态。在该网络中的每一层对应输入的 step，每个 step 根据当前时刻输入 :math:`x_{t}` 和上一时刻状态 :math:`h_{t-1}, c_{t-1}` 计算当前时刻输出 :math:`y_{t}` 并更新状态 :math:`h_{t}, c_{t}` 。
+长短期记忆网络（LSTM），根据输入序列和给定的初始状态计算返回输出序列和最终状态。在该网络中的每一层对应输入的 step，每个 step 根据当前时刻输入 :math:`x_{t}` 和上一时刻状态 :math:`h_{t-1}, c_{t-1}` 计算当前时刻输出 :math:`y_{t}` 并更新状态 :math:`h_{t}, c_{t}` 。
 
 状态更新公式如下：
 
@@ -41,7 +41,7 @@ LSTM
     - **num_layers** (int，可选) - 循环网络的层数。例如，将层数设为 2，会将两层 GRU 网络堆叠在一起，第二层的输入来自第一层的输出。默认为 1。
     - **direction** (str，可选) - 网络迭代方向，可设置为 forward 或 bidirect（或 bidirectional）。foward 指从序列开始到序列结束的单向 GRU 网络方向，bidirectional 指从序列开始到序列结束，又从序列结束到开始的双向 GRU 网络方向。默认为 forward。
     - **time_major** (bool，可选) - 指定 input 的第一个维度是否是 time steps。如果 time_major 为 True，则 Tensor 的形状为[time_steps,batch_size,input_size]，否则为[batch_size,time_steps,input_size]。`time_steps` 指输入序列的长度。默认为 False。
-    - **dropout** (float，可选) - dropout 概率，指的是出第一层外每层输入时的 dropout 概率。范围为[0, 1]。默认为 0。
+    - **dropout** (float，可选) - dropout 概率，指的是除第一层外每层输入时的 dropout 概率。范围为[0, 1]。默认为 0。
     - **weight_ih_attr** (ParamAttr，可选) - weight_ih 的参数。默认为 None。
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh 的参数。默认为 None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih 的参数。默认为 None。

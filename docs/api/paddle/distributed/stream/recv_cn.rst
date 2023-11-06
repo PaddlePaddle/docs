@@ -1,4 +1,4 @@
-.. _cn_api_distributed_stream_recv:
+.. _cn_api_paddle_distributed_stream_recv:
 
 recv
 -------------------------------
@@ -8,7 +8,7 @@ recv
 
 接收一个来自指定进程的 tensor。
 
-参见 :ref:`paddle.distributed.recv<cn_api_distributed_recv>`。
+参见 :ref:`paddle.distributed.recv<cn_api_paddle_distributed_recv>`。
 
 .. note::
   该 API 只支持动态图模式。

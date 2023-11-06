@@ -36,7 +36,7 @@ paddle.optimizer.lr.ReduceOnPlateau(learning_rate,
 
 | PyTorch | PaddlePaddle | 备注                                                                                       |
 | ------- | ------------ | ------------------------------------------------------------------------------------------ |
-| optimizer     | learning_rate       | PyTorch 的是 torch.optim.Optimizer 类，Paddle 是 float 类。 |
+| optimizer     | learning_rate       | PyTorch 的 optimizer 类型是 torch.optim.Optimizer，Paddle 的 learning_rate 类型是 float，两者功能上不直接一致，但可通过设置 leaning_rate = optimizer.get_lr() 来对应一致。  |
 | mode     | mode       | 'min' 和 'max' 之一。通常情况下，为 'min'，此时当 loss 停止下降时学习率将衰减。参数完全一致。         |
 | factor     | factor       | 表示学习率衰减的比例。参数完全一致。             |
 | patience     | patience       |  当 loss 连续 patience 个 epoch 没有下降(对应 mode: 'min')或上升(对应 mode: 'max')时，学习率才会衰减。参数完全一致。       |

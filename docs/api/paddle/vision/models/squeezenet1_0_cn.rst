@@ -17,7 +17,7 @@ SqueezeNet v1.0 模型，来自论文 `"SqueezeNet: AlexNet-level accuracy with 
 返回
 :::::::::
 
-:ref:`cn_api_fluid_dygraph_Layer`，SqueezeNet v1.0 模型实例。
+:ref:`cn_api_paddle_nn_Layer`，SqueezeNet v1.0 模型实例。
 
 代码示例
 :::::::::

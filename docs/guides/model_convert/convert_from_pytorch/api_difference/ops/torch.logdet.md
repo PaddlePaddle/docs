@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.logdet(input)
+## [ 组合替代实现 ]torch.logdet
 
 ### [torch.logdet](https://pytorch.org/docs/stable/generated/torch.logdet.html#torch.logdet)
 

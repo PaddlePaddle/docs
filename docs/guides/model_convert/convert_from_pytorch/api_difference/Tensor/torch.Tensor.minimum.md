@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ] torch.Tensor.minimum
 
-### [torch.Tnsor.,minimum](https://pytorch.org/docs/stable/generated/torch.Tensor.minimum.html)
+### [torch.Tensor.minimum](https://pytorch.org/docs/stable/generated/torch.Tensor.minimum.html)
 
 ```python
 torch.Tensor.maximum(other)

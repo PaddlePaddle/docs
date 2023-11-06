@@ -1,4 +1,4 @@
-.. _cn_api_linalg_eigvalsh:
+.. _cn_api_paddle_linalg_eigvalsh:
 
 eigvalsh
 -------------------------------

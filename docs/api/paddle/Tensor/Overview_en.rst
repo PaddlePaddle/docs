@@ -1,4 +1,3 @@
-
 .. _en_paddle_Tensor:
 
 paddle.Tensor
@@ -276,3 +275,5 @@ Methods
     trapezoid
     cumulative_trapezoid
     vander
+    hypot
+    hypot_

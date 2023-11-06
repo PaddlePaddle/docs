@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_view_as:
+.. _cn_api_paddle_view_as:
 
 view_as
 --------------------------------

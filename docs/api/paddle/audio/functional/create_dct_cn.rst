@@ -1,4 +1,4 @@
-.. _cn_api_audio_functional_create_dct:
+.. _cn_api_paddle_audio_functional_create_dct:
 
 create_dct
 -------------------------------

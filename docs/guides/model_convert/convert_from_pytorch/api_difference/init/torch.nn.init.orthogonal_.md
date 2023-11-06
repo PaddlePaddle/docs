@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.nn.init.orthogonal_.md
+## [ 组合替代实现 ]torch.nn.init.orthogonal_
 
 ### [torch.nn.init.orthogonal_](https://pytorch.org/docs/stable/nn.init.html?highlight=orthogonal_#torch.nn.init.orthogonal_)
 

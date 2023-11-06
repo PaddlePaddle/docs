@@ -8,7 +8,7 @@ Adamax
 
 
 
-Adamax 优化器是参考 `Adam 论文 <https://arxiv.org/abs/1412.6980>`_ 第 7 节 Adamax 优化相关内容所实现的。Adamax 算法是基于无穷大范数的 :ref:`Adam <_cn_api_paddle_optimizer_Adam>` 算法的一个变种，使学习率更新的算法更加稳定和简单。
+Adamax 优化器是参考 `Adam 论文 <https://arxiv.org/abs/1412.6980>`_ 第 7 节 Adamax 优化相关内容所实现的。Adamax 算法是基于无穷大范数的 :ref:`Adam <cn_api_paddle_optimizer_Adam>` 算法的一个变种，使学习率更新的算法更加稳定和简单。
 
 其参数更新的计算公式如下：
 
@@ -35,10 +35,10 @@ Adamax 优化器是参考 `Adam 论文 <https://arxiv.org/abs/1412.6980>`_ 第 7
   - **beta2** (float，可选) - 二阶矩估计的指数衰减率，默认值为 0.999。
   - **epsilon** (float，可选) - 保持数值稳定性的短浮点类型值，默认值为 1e-08。
   - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
-  - **weight_decay** (float|WeightDecayRegularizer，可选) - 正则化方法。可以是 float 类型的 L2 正则化系数或者正则化策略：:ref:`cn_api_fluid_regularizer_L1Decay` 、
-    :ref:`cn_api_fluid_regularizer_L2Decay`。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
-    如果没有在 :ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为 None，表示没有正则化。
-  - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_fluid_clip_ClipGradByValue>` 。
+  - **weight_decay** (float|WeightDecayRegularizer，可选) - 正则化方法。可以是 float 类型的 L2 正则化系数或者正则化策略：:ref:`cn_api_paddle_regularizer_L1Decay` 、
+    :ref:`cn_api_paddle_regularizer_L2Decay`。如果一个参数已经在 :ref:`cn_api_paddle_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
+    如果没有在 :ref:`cn_api_paddle_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为 None，表示没有正则化。
+  - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_paddle_nn_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_paddle_nn_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_paddle_nn_ClipGradByValue>` 。
     默认值为 None，此时将不进行梯度裁剪。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
@@ -78,7 +78,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 **参数**
 
     - **loss** (Tensor) - 需要最小化的损失值变量。
-    - **startup_program** (Program，可选) - 用于初始化 parameters 中参数的 :ref:`cn_api_fluid_Program`，默认值为 None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
+    - **startup_program** (Program，可选) - 用于初始化 parameters 中参数的 :ref:`cn_api_paddle_static_Program`，默认值为 None，此时将使用 :ref:`cn_api_paddle_static_default_startup_program`。
     - **parameters** (list，可选) - 待更新的 Parameter 或者 Parameter.name 组成的列表，默认值为 None，此时将更新所有的 Parameter。
     - **no_grad_set** (set，可选) - 不需要更新的 Parameter 或者 Parameter.name 组成集合，默认值为 None。
 

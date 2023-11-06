@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_gumbel_softmax:
+.. _cn_api_paddle_nn_functional_gumbel_softmax:
 
 gumbel_softmax
 -------------------------------
