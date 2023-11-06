@@ -19,11 +19,11 @@ digagonal_scatter
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入张量，张量的维度至少为2维，支持float16、float32、float64、bfloat16、uint8、int8、int32、int64、bool、complex64、complex128数据类型。
-    - **y** (Tensor) - 嵌入张量，将会被嵌入到输入张量中，支持float16、float32、float64、bfloat16、uint8、int8、int32、int64、bool、complex64、complex128数据类型。
-    - **offset** (int, optional) - 偏移的对角线，默认值为0。
-    - **axis1** (int, optional) - 对角线的第一个维度，默认值为0。
-    - **axis2** (int, optional) - 对角线的第二个维度，默认值为1。
+    - **x** (Tensor) - 输入张量，张量的维度至少为 2 维，支持 float16、float32、float64、bfloat16、uint8、int8、int32、int64、bool、complex64、complex128 数据类型。
+    - **y** (Tensor) - 嵌入张量，将会被嵌入到输入张量中，支持 float16、float32、float64、bfloat16、uint8、int8、int32、int64、bool、complex64、complex128 数据类型。
+    - **offset** (int, optional) - 偏移的对角线，默认值为 0。
+    - **axis1** (int, optional) - 对角线的第一个维度，默认值为 0。
+    - **axis2** (int, optional) - 对角线的第二个维度，默认值为 1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
