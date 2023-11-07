@@ -356,14 +356,17 @@ def remove_doctest_directives(app, what, name, obj, options, lines):
     """
     Remove `doctest` directives from docstring
     """
-    pattern_doctest = re.compile(r"\s*>>>\s*#\s*doctest:\s*.*")
-
     # Modify the lines inplace
-    lines[:] = [
-        line
-        for line in lines
-        if not (pattern_doctest.match(line) or line.strip() == ">>>")
-    ]
+    # remove doctest directive
+    pattern_doctest = re.compile(r"\s*>>>\s*#\s*x?doctest:\s*.*")
+    lines[:] = [line for line in lines if not pattern_doctest.match(line)]
+
+    # remove blank ps(`>>>`)
+    lines[:] = [line for line in lines if not line.strip() == ">>>"]
+
+    # make sure there is a blank line at the end
+    if lines and lines[-1]:
+        lines.append('')
 
 
 def setup(app):
@@ -390,5 +393,5 @@ def setup(app):
     )
     app.add_transform(AutoStructify)
 
-    # remove doctest directives
+    # remove doctest directives and blank ps
     app.connect("autodoc-process-docstring", remove_doctest_directives)
