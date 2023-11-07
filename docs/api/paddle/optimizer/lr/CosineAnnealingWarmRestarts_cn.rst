@@ -11,7 +11,7 @@ CosineAnnealingWarmRestarts
         \eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 +
         \cos\left(\frac{T_{cur}}{T_{i}}\pi\right)\right)
 
-:math:`\eta_{max}` 的初始值为 ``learning_rate``， :math:`T_{cur}` 是 SGDR（重启训练 SGD）训练过程中的当前训练轮数。:math:`T_{i}` 是 SGDR 两次重启训练之间epoch的数量
+:math:`\eta_{max}` 的初始值为 ``learning_rate``， :math:`T_{cur}` 是 SGDR（重启训练 SGD）训练过程中的当前训练轮数。:math:`T_{i}` 是 SGDR 两次重启训练之间 epoch 的数量
 
 当 :math:`T_{cur}=T_{i}` ，设 :math:`\eta_t = \eta_{min}` 。当重启后 :math:`T_{cur}=0` ，设 :math:`\eta_t=\eta_{max}` 。
 
