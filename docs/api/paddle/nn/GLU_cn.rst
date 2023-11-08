@@ -9,7 +9,7 @@ GLU 激活层（GLU Activation Operator）
 门控线性单元。输入按照给定的维度二等分，其中第一部分被用作内容，第二部分经过一个 sigmoid 函数之后被用作门限。输出是内容和门限的逐元素乘积。更多细节请参考 `Language Modeling with Gated Convolutional Networks <https://arxiv.org/abs/1612.08083>`_ 。
 
 .. math::
-    GLU(a, b) = a \otimes \sigma(b)
+    \mathrm{GLU}(a, b) = a \otimes \sigma(b)
 
 参数
 ::::::::::
