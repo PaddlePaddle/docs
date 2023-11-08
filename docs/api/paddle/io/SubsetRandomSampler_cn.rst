@@ -3,7 +3,7 @@
 SubsetRandomSampler
 -------------------------------
 
-.. py:class:: paddle.io.SubsetRandomSampler(indices, generator=None)
+.. py:class:: paddle.io.SubsetRandomSampler(indices)
 
 从给定的索引列表中随机采样元素，而不进行替换
 
@@ -11,7 +11,6 @@ SubsetRandomSampler
 :::::::::
 
     - **indices** (tuple|list) - 子集在原数据集中的索引序列，需要是 list 或者 tuple 类型。
-    - **generator** (Generator，可选) - 指定采样 ``data_source`` 的采样器。默认值为 None，不启用。
 
 返回
 :::::::::
