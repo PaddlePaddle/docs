@@ -35,6 +35,8 @@ def load_api_info(api_info_json_filename):
     for k, api_info in api_info_dict.items():
         for n in api_info.get('all_names', []):
             api_name_2_id_map[n] = k
+    logger.info('balabalabala\n')
+    print(api_info_dict)
     logger.info(
         'load %d api_infos from %s', len(api_info_dict), api_info_json_filename
     )
