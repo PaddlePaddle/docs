@@ -29,4 +29,3 @@ torch.broadcast_tensors(x, y)
 # Paddle 写法
 paddle.broadcast_tensors([x, y])
 ```
-‘

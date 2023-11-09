@@ -2,15 +2,15 @@
 # python main.py ../paddle .
 
 
-import CppHeaderParser
 import json
 import os
-import traceback
-import sys
 import re
+import sys
+import traceback
 
-from utils_helper import func_helper, class_helper, generate_overview
+import CppHeaderParser
 from utils import get_PADDLE_API_class, get_PADDLE_API_func
+from utils_helper import class_helper, func_helper, generate_overview
 
 
 # 解析所有的函数, 类, 枚举, 返回一个字典
@@ -38,7 +38,7 @@ def generate_docs(
         # Note: 操作符仅不生成rst，实际上在Overview列表依然会呈现以提示存在此操作符
         if func_name.startswith('operator'):
             checkwords = func_name.replace('operator', '', 1)
-            if re.search(r"\w", checkwords) == None:
+            if re.search(r"\w", checkwords) is None:
                 continue  # 跳过操作符声明
         rst_dir = os.path.join(save_dir, LANGUAGE, path, func_name + ".rst")
         # avoid a filename such as operate*.rst, only windows
@@ -88,8 +88,9 @@ if __name__ == "__main__":
 
     if root_dir == '':
         try:
-            import paddle
             import inspect
+
+            import paddle
 
             root_dir = os.path.dirname(inspect.getsourcefile(paddle))
         except:
