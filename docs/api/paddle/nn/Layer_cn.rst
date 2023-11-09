@@ -407,6 +407,22 @@ to(device=None, dtype=None, blocking=None)
 
 COPY-FROM: paddle.nn.Layer.to
 
+astype(dtype=None)
+:::::::::
+
+将 Layer 的所有 ``parameters`` 和 ``buffers`` 的数据类型转换为 ``dtype``，并返回这个 Layer。
+
+参数：
+    - **dtype** (str | paddle.dtype | numpy.dtype) - 转换后的 dtype，str 类型支持"bool", "bfloat16", "float16", "float32", "float64",
+         "int8", "int16", "int32", "int64", "uint8", "complex64", "complex128"。
+
+返回：类型转换后的 Layer
+
+返回类型：Layer
+
+**代码示例**
+COPY-FROM: paddle.nn.Layer.astype
+
 float(excluded_layers=None)
 '''''''''
 
