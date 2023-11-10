@@ -3,7 +3,6 @@
 ### [torch.linalg.eig](https://pytorch.org/docs/stable/generated/torch.linalg.eig.html?highlight=torch+linalg+eig#torch.linalg.eig)
 
 ```python
-# 测试 Pytorch 文档中输入参数 A 为 input
 torch.linalg.eig(input, *, out=None)
 ```
 

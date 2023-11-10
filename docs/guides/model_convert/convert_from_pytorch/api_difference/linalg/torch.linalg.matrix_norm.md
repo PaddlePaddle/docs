@@ -3,7 +3,6 @@
 ### [torch.linalg.matrix_norm](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_norm.html#torch.linalg.matrix_norm)
 
 ```python
-# 测试 Pytorch 文档中输入参数 A 为 input
 torch.linalg.matrix_norm(input, ord='fro', dim=(-2, -1), keepdim=False, *, dtype=None, out=None)
 ```
 

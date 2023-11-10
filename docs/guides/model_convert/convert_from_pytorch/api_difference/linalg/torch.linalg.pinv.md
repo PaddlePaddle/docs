@@ -3,7 +3,6 @@
 ### [torch.linalg.pinv](https://pytorch.org/docs/stable/generated/torch.linalg.pinv.html#torch.linalg.pinv)
 
 ```python
-# 测试 Pytorch 文档中输入参数 A 为 input
 torch.linalg.pinv(input, *, atol=None, rtol=None, hermitian=False, out=None)
 ```
 
