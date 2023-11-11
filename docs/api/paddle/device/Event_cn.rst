@@ -3,7 +3,7 @@
 Event
 -------------------------------
 
-.. py:class:: paddle.device.Event(device=None, enable_timing=False, blocking=False, interprocess=False)
+.. py:class:: paddle.device.cuda.Event(device=None, enable_timing=False, blocking=False, interprocess=False)
 
 event 的句柄。
 
