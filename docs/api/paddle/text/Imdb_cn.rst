@@ -22,4 +22,4 @@ Imdb
 代码示例
 :::::::::
 
-COPY-FROM: paddle.text.datasets.Imdb
+COPY-FROM: paddle.text.Imdb

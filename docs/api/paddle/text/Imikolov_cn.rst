@@ -25,4 +25,4 @@ Imikolov
 代码示例
 :::::::::
 
-COPY-FROM: paddle.text.datasets.Imikolov
+COPY-FROM: paddle.text.Imikolov
