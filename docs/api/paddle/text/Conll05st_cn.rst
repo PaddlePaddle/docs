@@ -28,4 +28,4 @@ Conll05st
 代码示例
 :::::::::
 
-COPY-FROM: paddle.text.datasets.Conll05st:code-example1
+COPY-FROM: paddle.text.Conll05st:code-example1
