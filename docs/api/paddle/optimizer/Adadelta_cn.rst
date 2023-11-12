@@ -139,6 +139,7 @@ set_lr_scheduler(scheduler)
 **代码示例**
 
 .. code-block:: python
+
     import paddle
     linear = paddle.nn.Linear(10, 10)
     adadelta = paddle.optimizer.Adadelta(weight_decay=0.01,

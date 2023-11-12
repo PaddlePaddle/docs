@@ -146,6 +146,7 @@ set_lr_scheduler(scheduler)
 **代码示例**
 
 .. code-block:: python
+
     import paddle
     linear = paddle.nn.Linear(10, 10)
     adam = paddle.optimizer.Adamax(0.1, parameters=linear.parameters())

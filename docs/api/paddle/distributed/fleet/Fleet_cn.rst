@@ -487,7 +487,6 @@ distributed_model(model)
 
 .. code-block:: python
 
-
     # 这个示例需要由 fleetrun 启动，用法为：
     # fleetrun --gpus=0,1 example.py
     # 脚本 example.py 中的代码是下面这个示例。
@@ -683,6 +682,7 @@ None
 **代码示例**
 
 .. code-block:: python
+
     # 这个示例需要由 fleetrun 启动，用法为：
     # fleetrun --gpus=0,1 example.py
     # 脚本 example.py 中的代码是下面这个示例。
