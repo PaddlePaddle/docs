@@ -118,6 +118,7 @@ Padding 层
     " :ref:`paddle.nn.CELU <cn_api_paddle_nn_CELU>` ", "CELU 激活层"
     " :ref:`paddle.nn.ELU <cn_api_paddle_nn_ELU>` ", "ELU 激活层"
     " :ref:`paddle.nn.GELU <cn_api_paddle_nn_GELU>` ", "GELU 激活层"
+    " :ref:`paddle.nn.GLU <cn_api_paddle_nn_GLU>` ", "GLU 激活层"
     " :ref:`paddle.nn.Hardshrink <cn_api_paddle_nn_Hardshrink>` ", "Hardshrink 激活层"
     " :ref:`paddle.nn.Hardsigmoid <cn_api_paddle_nn_Hardsigmoid>` ", "Hardsigmoid 激活层"
     " :ref:`paddle.nn.Hardswish <cn_api_paddle_nn_Hardswish>` ", "Hardswish 激活层"
