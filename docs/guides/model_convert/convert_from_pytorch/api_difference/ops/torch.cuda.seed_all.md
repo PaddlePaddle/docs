@@ -9,7 +9,12 @@ torch.cuda.seed()
 ### [paddle.seed](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/seed_cn.html#seed)
 
 ```python
-paddle.seed()
+paddle.seed(1024)
 ```
 
-两者功能一致，无参数。
+Paddle 相比 Pytorch 参数更多
+
+### 参数映射
+| PyTorch | Paddle | 备注                                                      |
+| ------- |--------| --------------------------------------------------------- |
+| -       | seed   | seed (int) - 要设置的的随机种子，推荐使用较大的整数 |
