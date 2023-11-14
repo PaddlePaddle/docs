@@ -2355,9 +2355,9 @@ to(*args, **kwargs)
     2. to(device, dtype=None, blocking=True)
     3. to(other, blocking=True)
 
-其中， ``dtype``可以是 ``paddle.dtype``, ``numpy.dtype``类型或者是 ``["bfloat16", "float16", "float32", "float64", "int8", "int16", "int32",
-"int64", "uint8", "complex64", "complex128", "bool"]``中的任意一个 ``str``。 ``device`` 可以是 ``paddle.CPUPlace()``, ``paddle.CUDAPlace()``,
-``paddle.CUDAPinnedPlace()``, ``paddle.XPUPlace()``, ``paddle.CustomPlace()``或者 ``str``。 ``other``需要是 ``Tensor`` 类型。
+其中， ``dtype`` 可以是 ``paddle.dtype``, ``numpy.dtype`` 类型或者是 ``["bfloat16", "float16", "float32", "float64", "int8", "int16", "int32",
+"int64", "uint8", "complex64", "complex128", "bool"]`` 中的任意一个 ``str``。 ``device`` 可以是 ``paddle.CPUPlace()``, ``paddle.CUDAPlace()``,
+``paddle.CUDAPinnedPlace()``, ``paddle.XPUPlace()``, ``paddle.CustomPlace()`` 或者 ``str``。 ``other`` 需要是 ``Tensor`` 类型。
 
 返回：类型转换后的新的 Tensor
 
