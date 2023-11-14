@@ -2364,34 +2364,7 @@ to(*args, **kwargs)
 返回类型：Tensor
 
 **代码示例**
-    .. code-block:: python
-        import paddle
-        tensorx = paddle.to_tensor([1,2,3])
-        print(tensorx)
-        # Tensor(shape=[3], dtype=int64, place=Place(gpu:0), stop_gradient=True,
-        # [1, 2, 3])
-
-        tensorx = tensorx.to("cpu")
-        print(tensorx.place)
-        # Place(cpu)
-
-        tensorx = tensorx.to("float32")
-        print(tensorx.dtype)
-        # paddle.float32
-
-        tensorx = tensorx.to("gpu", "int16")
-        print(tensorx)
-        # Tensor(shape=[3], dtype=int16, place=Place(gpu:0), stop_gradient=True,
-        #     [1, 2, 3])
-
-        tensor2 = paddle.to_tensor([4,5,6])
-        print(tensor2)
-        # Tensor(shape=[3], dtype=int64, place=Place(gpu:0), stop_gradient=True,
-        #     [4, 5, 6])
-        tensor2 = tensor2.to(tensorx)
-        print(tensor2)
-        # Tensor(shape=[3], dtype=int16, place=Place(gpu:0), stop_gradient=True,
-        #     [4, 5, 6])
+COPY-FROM: paddle.Tensor.to
 
 tolist()
 :::::::::
