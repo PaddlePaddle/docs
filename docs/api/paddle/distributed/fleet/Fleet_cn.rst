@@ -29,33 +29,19 @@ None
 
 **代码示例 1**
 
-COPY-FROM: paddle.distributed.fleet.Fleet
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
+COPY-FROM: paddle.distributed.fleet.Fleet.init:code-example1
 
 **代码示例 2**
 
-COPY-FROM: paddle.distributed.fleet.Fleet
-
-    import paddle.distributed.fleet as fleet
-    fleet.init(is_collective=True)
+COPY-FROM: paddle.distributed.fleet.Fleet.init:code-example1
 
 **代码示例 3**
 
-COPY-FROM: paddle.distributed.fleet.Fleet
-
-    import paddle.distributed.fleet as fleet
-    role = fleet.PaddleCloudRoleMaker()
-    fleet.init(role)
+COPY-FROM: paddle.distributed.fleet.Fleet.init:code-example1
 
 **代码示例 4**
 
-COPY-FROM: paddle.distributed.fleet.Fleet
-
-    import paddle.distributed.fleet as fleet
-    strategy = fleet.DistributedStrategy()
-    fleet.init(strategy=strategy)
+COPY-FROM: paddle.distributed.fleet.Fleet.init:code-example1
 
 
 is_first_worker()
@@ -71,11 +57,6 @@ True/False
 
 COPY-FROM: paddle.distributed.fleet.Fleet.is_first_worker
 
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.is_first_worker()
-
-
 
 worker_index()
 '''''''''
@@ -90,10 +71,6 @@ int
 
 COPY-FROM: paddle.distributed.fleet.Fleet.worker_index
 
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.worker_index()
-
 
 worker_num()
 '''''''''
@@ -106,10 +83,6 @@ int
 **代码示例**
 
 COPY-FROM: paddle.distributed.fleet.Fleet.worker_num
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.worker_num()
 
 
 is_worker()
@@ -124,10 +97,6 @@ True/False
 
 COPY-FROM: paddle.distributed.fleet.Fleet.is_worker
 
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.is_worker()
-
 
 worker_endpoints(to_string=False)
 '''''''''
@@ -140,10 +109,6 @@ list/string
 **代码示例**
 
 COPY-FROM: paddle.distributed.fleet.Fleet.worker_endpoints
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.worker_endpoints()
 
 
 server_num()
@@ -162,10 +127,6 @@ int
 **代码示例**
 
 COPY-FROM: paddle.distributed.fleet.Fleet.server_num
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.server_num()
 
 
 server_index()
@@ -187,10 +148,6 @@ int
 
 COPY-FROM: paddle.distributed.fleet.Fleet.server_index
 
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.server_index()
-
 
 server_endpoints(to_string=False)
 '''''''''
@@ -209,10 +166,6 @@ list/string
 **代码示例**
 
 COPY-FROM: paddle.distributed.fleet.Fleet.server_endpoints
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.server_endpoints()
 
 
 is_server()
@@ -233,10 +186,6 @@ True/False
 
 COPY-FROM: paddle.distributed.fleet.Fleet.is_server
 
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.is_server()
-
 
 barrier_worker()
 '''''''''
@@ -250,9 +199,6 @@ barrier_worker()
 
 COPY-FROM: paddle.distributed.fleet.Fleet.barrier_worker
 
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.barrier_worker()
 
 
 init_worker()
@@ -267,10 +213,6 @@ worker 节点在训练前的初始化，包括通信模块，参数同步等
 
 COPY-FROM: paddle.distributed.fleet.Fleet.init_worker
 
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.init_worker()
-
 
 init_server(*args, **kwargs)
 '''''''''
@@ -283,10 +225,6 @@ server 节点的初始化，包括 server 端参数初始化，模型加载等
 **代码示例**
 
 COPY-FROM: paddle.distributed.fleet.Fleet.init_server
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.init_server()
 
 
 run_server()
@@ -301,11 +239,6 @@ server 节点的运行，此命令会将 ParameterServer 的进程启动并常�
 
 COPY-FROM: paddle.distributed.fleet.Fleet.run_server
 
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.init_server()
-    fleet.run_server()
-
 
 stop_worker()
 '''''''''
@@ -318,12 +251,6 @@ stop_worker()
 **代码示例**
 
 COPY-FROM: paddle.distributed.fleet.Fleet.stop_worker
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.init_worker()
-    "..."
-    fleet.stop_worker()
 
 
 save_inference_model(executor, dirname, feeded_var_names, target_vars, main_program=None, export_for_deployment=True)
@@ -350,20 +277,6 @@ save_inference_model(executor, dirname, feeded_var_names, target_vars, main_prog
 
 COPY-FROM: paddle.distributed.fleet.Fleet
 
-    import paddle
-    paddle.enable_static()
-    import paddle.distributed.fleet as fleet
-
-    fleet.init()
-
-    # build net
-    # loss = Net()
-    # fleet.distributed_optimizer(...)
-
-    exe = paddle.static.Executor(paddle.CPUPlace())
-    fleet.save_inference_model(exe, "dirname", ["feed_varname"], [loss], paddle.static.default_main_program())
-
-
 save_persistables(executor, dirname, main_program=None)
 '''''''''
 
@@ -383,19 +296,6 @@ save_persistables(executor, dirname, main_program=None)
 
 COPY-FROM: paddle.distributed.fleet.Fleet.save_persistables
 
-    import paddle
-    paddle.enable_static()
-    import paddle.distributed.fleet as fleet
-
-    fleet.init()
-
-    # build net
-    # fleet.distributed_optimizer(...)
-
-    exe = paddle.static.Executor(paddle.CPUPlace())
-    fleet.save_persistables(exe, "dirname", paddle.static.default_main_program())
-
-
 distributed_optimizer(optimizer, strategy=None)
 '''''''''
 
@@ -409,14 +309,6 @@ distributed_optimizer(optimizer, strategy=None)
 **代码示例**
 
 COPY-FROM: paddle.distributed.fleet.Fleet.distributed_optimizer
-
-    import paddle
-    paddle.enable_static()
-    import paddle.distributed.fleet as fleet
-    fleet.init(is_collective=True)
-    strategy = fleet.DistributedStrategy()
-    optimizer = paddle.optimizer.SGD(learning_rate=0.001)
-    optimizer = fleet.distributed_optimizer(optimizer, strategy=strategy)
 
 
 qat_init(place, scope, test_program=None)
@@ -433,38 +325,6 @@ qat_init(place, scope, test_program=None)
 **代码示例**
 
 COPY-FROM: paddle.distributed.fleet.Fleet.qat_init
-
-    import paddle
-    import paddle.nn.functional as F
-    paddle.enable_static()
-
-    def run_example_code():
-        place = paddle.CUDAPlace(0)
-        exe = paddle.static.Executor(place)
-        # 1. Define the train program
-        data = paddle.static.data(name='X', shape=[None, 1, 28, 28], dtype='float32')
-        conv2d = paddle.static.nn.conv2d(input=data, num_filters=6, filter_size=3)
-        bn = paddle.static.nn.batch_norm(input=conv2d, act="relu")
-        pool = F.max_pool2d(bn, kernel_size=2, stride=2)
-        hidden = paddle.static.nn.fc(pool, size=10)
-        loss = paddle.mean(hidden)
-        # 2. Create the distributed optimizer and set qat config to True.
-        optimizer = paddle.optimizer.Momentum(learning_rate=0.01, multi_precision=True)
-        strategy = fleet.DistributedStrategy()
-        strategy.qat = True
-        optimizer = fleet.distributed_optimizer(optimizer, strategy=strategy)
-        # 3. Apply the strategies by distributed optimizer
-        # If you don't use the default_startup_program(), you sholud pass
-        # your defined `startup_program` into `minimize`.
-        optimizer.minimize(loss)
-        exe.run(paddle.static.default_startup_program())
-        # 4. Use `qat_init` to do FP32 parameters initialization.
-        # If you want to perform the testing process, you should pass `test_program` into `qat_init`.
-        optimizer.qat_init(place, paddle.static.global_scope())
-
-    if paddle.is_compiled_with_cuda() and len(paddle.static.cuda_places()) > 0:
-        run_example_code()
-
 
 distributed_model(model)
 '''''''''
