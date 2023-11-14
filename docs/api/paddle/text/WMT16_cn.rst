@@ -3,7 +3,7 @@
 WMT16
 -------------------------------
 
-.. py:class:: paddle.text.datasets.WMT16()
+.. py:class:: paddle.text.WMT16()
 
 
 该类是对 `WMT16 <http://www.statmt.org/wmt16/>`_ 测试数据集实现。
@@ -32,4 +32,4 @@ http://www.statmt.org/wmt16/multimodal-task.html#task1
 代码示例
 :::::::::
 
-COPY-FROM: paddle.text.datasets.WMT16
+COPY-FROM: paddle.text.WMT16

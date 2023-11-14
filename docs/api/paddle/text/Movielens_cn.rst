@@ -3,7 +3,7 @@
 Movielens
 -------------------------------
 
-.. py:class:: paddle.text.datasets.Movielens()
+.. py:class:: paddle.text.Movielens()
 
 
 该类是对 `Movielens 1-M <https://grouplens.org/datasets/movielens/1m/>`_
@@ -25,4 +25,4 @@ Movielens
 代码示例
 :::::::::
 
-COPY-FROM: paddle.text.datasets.Movielens
+COPY-FROM: paddle.text.Movielens

@@ -3,7 +3,7 @@
 UCIHousing
 -------------------------------
 
-.. py:class:: paddle.text.datasets.UCIHousing()
+.. py:class:: paddle.text.UCIHousing()
 
 
 该类是对 `UCI housing <https://archive.ics.uci.edu/ml/datasets/Housing>`_
@@ -23,4 +23,4 @@ UCIHousing
 代码示例
 :::::::::
 
-COPY-FROM: paddle.text.datasets.UCIHousing
+COPY-FROM: paddle.text.UCIHousing

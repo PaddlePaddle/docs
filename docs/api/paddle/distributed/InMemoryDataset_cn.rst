@@ -4,7 +4,7 @@ InMemoryDataset
 -------------------------------
 
 
-.. py:class:: paddle.distributed.InMemoryDataset()
+.. py:class:: paddle.distributed.fleet.InMemoryDataset()
 
 
 
@@ -13,7 +13,7 @@ InMemoryDataset，它将数据加载到内存中，并在训练前随机整理�
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.distributed.InMemoryDataset
+COPY-FROM: paddle.distributed.fleet.InMemoryDataset
 
 方法
 ::::::::::::
@@ -45,7 +45,7 @@ None。
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.InMemoryDataset.init
+COPY-FROM: paddle.distributed.fleet.InMemoryDataset.init
 
 _init_distributed_settings(**kwargs)
 '''''''''
@@ -74,7 +74,7 @@ None。
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.InMemoryDataset._init_distributed_settings
+COPY-FROM: paddle.distributed.fleet.InMemoryDataset._init_distributed_settings
 
 update_settings(**kwargs)
 '''''''''
@@ -110,7 +110,7 @@ None。
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.InMemoryDataset.update_settings
+COPY-FROM: paddle.distributed.fleet.InMemoryDataset.update_settings
 
 load_into_memory()
 '''''''''
@@ -123,7 +123,7 @@ load_into_memory()
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.InMemoryDataset.load_into_memory
+COPY-FROM: paddle.distributed.fleet.InMemoryDataset.load_into_memory
 
 preload_into_memory(thread_num=None)
 '''''''''
@@ -136,7 +136,7 @@ preload_into_memory(thread_num=None)
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.InMemoryDataset.preload_into_memory
+COPY-FROM: paddle.distributed.fleet.InMemoryDataset.preload_into_memory
 
 wait_preload_done()
 '''''''''
@@ -145,7 +145,7 @@ wait_preload_done()
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.InMemoryDataset.wait_preload_done
+COPY-FROM: paddle.distributed.fleet.InMemoryDataset.wait_preload_done
 
 local_shuffle()
 '''''''''
@@ -154,7 +154,7 @@ local_shuffle()
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.InMemoryDataset.local_shuffle
+COPY-FROM: paddle.distributed.fleet.InMemoryDataset.local_shuffle
 
 global_shuffle(fleet=None, thread_num=12)
 '''''''''
@@ -163,7 +163,7 @@ global_shuffle(fleet=None, thread_num=12)
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.InMemoryDataset.global_shuffle
+COPY-FROM: paddle.distributed.fleet.InMemoryDataset.global_shuffle
 
 **参数**
 
@@ -175,7 +175,7 @@ release_memory()
 
 当数据不再使用时，释放 InMemoryDataset 内存数据。
 
-COPY-FROM: paddle.distributed.InMemoryDataset.release_memory
+COPY-FROM: paddle.distributed.fleet.InMemoryDataset.release_memory
 
 get_memory_data_size(fleet=None)
 '''''''''
@@ -194,7 +194,7 @@ get_memory_data_size(fleet=None)
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.InMemoryDataset.get_memory_data_size
+COPY-FROM: paddle.distributed.fleet.InMemoryDataset.get_memory_data_size
 
 get_shuffle_data_size(fleet=None)
 '''''''''
@@ -213,7 +213,7 @@ shuffle 数据的大小。
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.InMemoryDataset.get_shuffle_data_size
+COPY-FROM: paddle.distributed.fleet.InMemoryDataset.get_shuffle_data_size
 
 slots_shuffle(slots)
 '''''''''
@@ -226,4 +226,4 @@ slots_shuffle(slots)
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.InMemoryDataset.slots_shuffle
+COPY-FROM: paddle.distributed.fleet.InMemoryDataset.slots_shuffle
