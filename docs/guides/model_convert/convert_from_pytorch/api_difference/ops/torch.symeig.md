@@ -3,7 +3,7 @@
 ### [torch.symeig](https://pytorch.org/docs/stable/generated/torch.symeig.html?highlight=torch+symeig#torch.symeig)
 
 ```python
-# python1.9 以上版本不支持
+# pytorch1.9 以上版本不支持
 torch.symeig(input, eigenvectors=False, upper=True, *, out=None)
 ```
 

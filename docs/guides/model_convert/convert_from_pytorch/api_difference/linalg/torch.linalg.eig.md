@@ -17,7 +17,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | PyTorch | PaddlePaddle | 备注                                            |
 | ------- | ------------ | ----------------------------------------------- |
 | input   | x            | 表示输入的 Tensor，仅参数名不一致。            |
-| out     | -            | 表示输出的 tuple， Paddle 无此参数，需要转写。 |
+| out     | -            | 表示输出的 tuple，Paddle 无此参数，需要转写。 |
 
 ### 转写示例
 
@@ -25,7 +25,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ```python
 # Pytorch 写法
-torch.linalg.eig(t,out=(L,V))
+torch.linalg.eig(t, out=(L,V))
 
 # Paddle 写法
 L,V=paddle.linalg.eig(t)

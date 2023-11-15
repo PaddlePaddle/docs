@@ -3,7 +3,7 @@
 ### [torch.Tensor.symeig](https://pytorch.org/docs/stable/generated/torch.Tensor.symeig.html#torch.Tensor.symeig)
 
 ```python
-# python1.9 以上版本不支持
+# pytorch1.9 以上版本不支持
 torch.Tensor.symeig(eigenvectors=False, upper=True)
 ```
 
