@@ -43,7 +43,6 @@ Tabs remover (C++).......................................................Passed
 Tabs remover (Python)................................(no files to check)Skipped
 copyright_checker........................................................Passed
 black................................................(no files to check)Skipped
-isort................................................(no files to check)Skipped
 flake8...............................................(no files to check)Skipped
 ruff.................................................(no files to check)Skipped
 pylint...............................................(no files to check)Skipped
@@ -87,9 +86,8 @@ Date:   xxx
 | [Lucas-C/pre-commit-hooks](https://github.com/Lucas-C/pre-commit-hooks.git) | 社区维护的一些通用的 hook，含将 CRLF 改为 LF、移除 Tab 等 hook | 1.5.1 |
 | [copyright_checker](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/codestyle/pylint_pre_commit.hook) | Copyright 检查 | 本地脚本 |
 | [black](https://github.com/psf/black) | Python 代码格式化 | 23.3.0 |
-| [isort](https://github.com/pycqa/isort) | Python 代码格式化（仅 import 区域） | 5.11.5 |
 | [flake8](https://github.com/PyCQA/flake8) | Python 代码风格检查（即将被 Ruff 完全替换） | 5.0.4 |
-| [ruff](https://github.com/astral-sh/ruff) | Python 代码风格检查 | 0.0.289 |
+| [ruff](https://github.com/astral-sh/ruff) | Python 代码风格检查 | 0.1.5 |
 | [pylint](https://github.com/PyCQA/pylint/) | Python 代码风格检查，目前仅用于检查示例代码 | 2.12.0 |
 | [clang-format](https://github.com/llvm/llvm-project/tree/main/clang/tools/clang-format) | C++ 代码格式化 | 13.0.0 |
 | [cpplint](https://github.com/cpplint/cpplint) | C++ 代码风格检查 | 1.6.0 |
