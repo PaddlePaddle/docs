@@ -3068,3 +3068,5 @@ diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
 返回：张量 y 填充到张量 x 中的结果。
 
 返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_diagonal_scatter`
