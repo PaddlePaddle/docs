@@ -10,14 +10,19 @@ Layer
 
 基于 OOD 实现的动态图 Layer，包含该 Layer 的参数、前序运行的结构等信息。
 
-参数
+**参数**
 ::::::::::::
 
-    - **name_scope** (str，可选) - 为 Layer 内部参数命名而采用的名称前缀。如果前缀为“mylayer”，在一个类名为 MyLayer 的 Layer 中，参数名为“mylayer_0.w_n”，其中 w 是参数的名称，n 为自动生成的具有唯一性的后缀。如果为 None，前缀名将为小写的类名。默认值为 None。
+    - **name_scope** (str，可选) - 为 Layer 内部参数命名而采用的名称前缀。如果前缀为“my_layer”，在一个类名为 MyLayer 的 Layer 中，参数名为“mylayer_0.w_n”，其中 w 是参数的名称，n 为自动生成的具有唯一性的后缀。如果为 None，前缀名将为小写的类名。默认值为 None。
     - **dtype** (str 可选) - Layer 中参数数据类型。如果设置为 str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 "float32"。
 
-方法
-::::::::::::
+**返回**
+无
+
+**代码示例**
+COPY-FROM: paddle.nn.Layer
+
+
 train()
 '''''''''
 
@@ -42,6 +47,21 @@ eval()
 
 COPY-FROM: paddle.nn.Layer.eval
 
+apply(fn)
+'''''''''
+将一个函数 fn 递归地应用到网络的每一个子层(即在函数的 ``.sublayers()`` 中返回的子层)以及模块自身。该方法通常用来初始化一个模型中的参数。
+
+**参数**
+
+    **fn** (function) - 该函数被应用带每一个子层中
+
+**返回**
+Layer (返回网络层)， self (返回自身)
+
+**代码示例**
+
+COPY-FROM: paddle.nn.Layer.
+
 full_name()
 '''''''''
 
@@ -52,7 +72,7 @@ str， Layer 的全名
 
 **代码示例**
 
-COPY-FROM: paddle.nn.Layer.full_name
+COPY-FROM: paddle.nn.Layer.apply
 
 register_forward_pre_hook(hook)
 '''''''''
