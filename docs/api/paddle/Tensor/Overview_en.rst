@@ -252,6 +252,7 @@ Methods
     tanh
     tanh_
     tile
+    to
     tolist
     topk
     trace

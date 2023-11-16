@@ -1554,6 +1554,8 @@
 | REFERENCE-MAPPING-ITEM(`torch.linalg.solve`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.solve.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.svdvals`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.svdvals.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.vander`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.vander.md) |
+| [torch.linalg.cholesky_ex](https://pytorch.org/docs/stable/generated/torch.linalg.cholesky_ex.html#torch.linalg.cholesky_ex) | 功能缺失，paddle 不返回 info 字段 |
+| [torch.linalg.inv_ex](https://pytorch.org/docs/stable/generated/torch.linalg.inv_ex.html#torch.linalg.inv_ex) | 功能缺失，paddle 不返回 info 字段 |
 
 ***持续更新...***
 

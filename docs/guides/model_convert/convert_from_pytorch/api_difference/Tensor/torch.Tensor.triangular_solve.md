@@ -1,4 +1,4 @@
-## [仅参数名不一致]torch.Tensor.triangular_solve
+## [参数不一致]torch.Tensor.triangular_solve
 
 ### [torch.Tensor.triangular_solve](https://pytorch.org/docs/stable/generated/torch.Tensor.triangular_solve.html#torch.Tensor.triangular_solve)
 
