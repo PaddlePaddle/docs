@@ -3,7 +3,7 @@
 WMT14
 -------------------------------
 
-.. py:class:: paddle.text.WMT14()
+.. py:class:: paddle.text.WMT14(data_file = None, mode = 'train', dict_size = -1, download = True)
 
 
 该类是对 `WMT14 <http://www.statmt.org/wmt14/>`_ 测试数据集实现。

@@ -3,7 +3,7 @@
 UCIHousing
 -------------------------------
 
-.. py:class:: paddle.text.UCIHousing()
+.. py:class:: paddle.text.UCIHousing(data_file = None, mode = 'train', download = True)
 
 
 该类是对 `UCI housing <https://archive.ics.uci.edu/ml/datasets/Housing>`_

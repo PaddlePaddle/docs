@@ -3,7 +3,7 @@
 WMT16
 -------------------------------
 
-.. py:class:: paddle.text.WMT16()
+.. py:class:: paddle.text.WMT16(data_file = None, mode = 'train', src_dict_size = -1, trg_dict_size = -1, lang = 'ch', download = True)
 
 
 该类是对 `WMT16 <http://www.statmt.org/wmt16/>`_ 测试数据集实现。

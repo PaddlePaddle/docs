@@ -3,7 +3,7 @@
 Movielens
 -------------------------------
 
-.. py:class:: paddle.text.Movielens()
+.. py:class:: paddle.text.Movielens(data_file = None, mode = 'train', test_ratio = 0.1, rand_seed = 0, download = True)
 
 
 该类是对 `Movielens 1-M <https://grouplens.org/datasets/movielens/1m/>`_
