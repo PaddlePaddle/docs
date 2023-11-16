@@ -6,7 +6,7 @@ diagonal_scatter
 .. py:function:: paddle.diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
 
 
-根据参数 ``offset``、``axis1```、``axis2```，将张量 ``y`` 填充到张量 ``x`` 的对应位置。
+根据参数 ``offset``、``axis1``、``axis2``，将张量 ``y`` 填充到张量 ``x`` 的对应位置。
 
 这个函数将会返回一个新的 ``Tensor``。
 
