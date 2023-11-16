@@ -3,7 +3,7 @@
 Imikolov
 -------------------------------
 
-.. py:class:: paddle.text.datasets.Imikolov()
+.. py:class:: paddle.text.Imikolov()
 
 
 该类是对 imikolov 测试数据集的实现。
