@@ -3,7 +3,7 @@
 Imikolov
 -------------------------------
 
-.. py:class:: paddle.text.Imikolov()
+.. py:class:: paddle.text.Imikolov(data_file=None, data_type='NGRAM', window_size=-1, mode='train', min_word_freq=50, download=True)
 
 
 该类是对 imikolov 测试数据集的实现。
