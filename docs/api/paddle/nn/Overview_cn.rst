@@ -461,7 +461,7 @@ Embedding 相关函数
     :header: "API 名称", "API 功能"
 
 
-    " :ref:`paddle.nn.functional.diag_embed <cn_api_paddle_nn_functional_diag_embed>` ", "对角线 Embedding 方法"
+    " paddle.nn.functional.diag_embed ", "对角线 Embedding 方法，paddle.nn.functional.diag_embed 已废弃，请使用 :ref:`paddle.diag_embed <cn_api_paddle_diag_embed>` "
     " :ref:`paddle.nn.functional.embedding <cn_api_paddle_nn_functional_embedding>` ", "Embedding 方法"
 
 .. _loss_functional:

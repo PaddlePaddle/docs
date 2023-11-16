@@ -43,12 +43,12 @@ paddle.io.DataLoader(dataset,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | sampler       | -            | 表示数据集采集器，Paddle 无此参数。  |
-| pin_memory    | -            | 表示数据最开始是属于锁页内存，Paddle 无此参数。 |
-| multiprocessing_context | -  | ？，Paddle 无此参数。                   |
+| pin_memory    | -            | 表示数据最开始是属于锁页内存，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
+| multiprocessing_context | -  | ？，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                   |
 | generator     | -            | 用于采样的伪随机数生成器，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。   |
 | prefetch_factor | -          | 表示每个 worker 预先加载的数据数量，Paddle 无此参数。  |
-| persistent_workers | -       | 表示数据集使用一次后，数据加载器将会不会关闭工作进程，Paddle 无此参数。  |
-| pin_memory_device  | -       | 数据加载器是否在返回 Tensor 之前将 Tensor 复制到设备固定存储器中，Paddle 无此参数。  |
+| persistent_workers | -       | 表示数据集使用一次后，数据加载器将会不会关闭工作进程，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
+| pin_memory_device  | -       | 数据加载器是否在返回 Tensor 之前将 Tensor 复制到设备固定存储器中，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
 | -             | feed_list    | 表示 feed 变量列表，PyTorch 无此参数。                   |
 | -             | places       | 数据需要放置到的 Place 列表，PyTorch 无此参数。                   |
 | -             | return_list  | 每个设备上的数据是否以 list 形式返回，PyTorch 无此参数。                   |
