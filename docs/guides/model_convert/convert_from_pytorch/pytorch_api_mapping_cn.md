@@ -368,6 +368,9 @@
 | REFERENCE-MAPPING-ITEM(`torch.is_grad_enabled`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.is_grad_enabled.md) |
 | REFERENCE-MAPPING-ITEM(`torch.manual_seed`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.manual_seed.md) |
 | [torch.can_cast](https://pytorch.org/docs/stable/generated/torch.can_cast.html#torch-can-cast)                                                                    | 功能缺失 |
+| REFERENCE-MAPPING-ITEM(`torch.atleast_1d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.atleast_1d.md) |
+| REFERENCE-MAPPING-ITEM(`torch.atleast_2d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.atleast_2d.md) |
+| REFERENCE-MAPPING-ITEM(`torch.atleast_3d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.atleast_3d.md) |
 
 
 ***持续更新...***
@@ -926,6 +929,9 @@
 | 303 |  [torch.Tensor.sum_to_size](https://pytorch.org/docs/stable/generated/torch.Tensor.sum_to_size.html?highlight=sum_to_size#torch.Tensor.sum_to_size)  |  |    功能缺失  |
 | 304 |  [torch.Tensor.resize_](https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html?highlight=resize#torch.Tensor.resize_)  |  |    功能缺失  |
 | 305 |  [torch.Tensor.masked_fill_](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_fill_.html?highlight=resize#torch.Tensor.masked_fill_)  | [paddle.Tensor.masked_fill_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id25) |    功能完全一致  |
+| 306 |   | [paddle.Tensor.atleast_1d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atleast_1d_cn.html#atleast_1d) |  PyTorch 功能缺失  |
+| 307 |   | [paddle.Tensor.atleast_2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atleast_2d_cn.html#atleast_2d) |  PyTorch 功能缺失  |
+| 308 |   | [paddle.Tensor.atleast_3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atleast_3d_cn.html#atleast_3d) |  PyTorch 功能缺失  |
 
 
 | 序号  | PyTorch API | PaddlePaddle API  | 备注 |
@@ -1234,6 +1240,7 @@
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.dequantize`, https://pytorch.org/docs/1.13/generated/torch.Tensor.dequantize.html?highlight=torch+tensor+dequantize#torch.Tensor.dequantize) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.sum_to_size`, https://pytorch.org/docs/stable/generated/torch.Tensor.sum_to_size.html?highlight=sum_to_size#torch.Tensor.sum_to_size) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.resize_`, https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html?highlight=resize#torch.Tensor.resize_) |
+
 ***持续更新...***
 
 ## torch.nn.init.XX API 映射列表

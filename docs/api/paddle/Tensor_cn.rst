@@ -3081,3 +3081,27 @@ masked_fill_(x, mask, value, name=None)
 :::::::::
 
 Inplace 版本的 :ref:`cn_api_paddle_masked_fill` API，对输入 `x` 采用 Inplace 策略。
+
+atleast_1d(name=None)
+:::::::::
+将输入转换为张量并返回至少为 ``1`` 维的视图。 ``1`` 维或更高维的输入会被保留。
+
+返回至少为 ``1`` 维视图的 Tensor 。
+
+请参考 :ref:`cn_api_paddle_atleast_1d`
+
+atleast_2d(name=None)
+:::::::::
+将输入转换为张量并返回至少为 ``2`` 维的视图。 ``2`` 维或更高维的输入会被保留。
+
+返回至少为 ``2`` 维视图的 Tensor 。
+
+请参考 :ref:`cn_api_paddle_atleast_2d`
+
+atleast_3d(name=None)
+:::::::::
+将输入转换为张量并返回至少为 ``3`` 维的视图。 ``3`` 维或更高维的输入会被保留。
+
+返回至少为 ``3`` 维视图的 Tensor 。
+
+请参考 :ref:`cn_api_paddle_atleast_3d`
