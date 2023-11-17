@@ -1,4 +1,4 @@
-## [ 参数完全一致 ] torch.Tensor.diagonal_scatter
+## [ 仅参数名不一致 ] torch.Tensor.diagonal_scatter
 
 ### [torch.Tensor.diagonal_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.diagonal_scatter.html?highlight=diagonal_scatter#torch.Tensor.diagonal_scatter)
 

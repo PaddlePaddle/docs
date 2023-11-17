@@ -277,3 +277,4 @@ Methods
     vander
     hypot
     hypot_
+    diagonal_scatter
