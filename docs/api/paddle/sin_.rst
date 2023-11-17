@@ -1,6 +1,6 @@
 .. _cn_api_paddle_sin_:
 
-sin_
+sin\_
 -------------------------------
 
 .. py:function:: paddle.sin_(x, name=None)
