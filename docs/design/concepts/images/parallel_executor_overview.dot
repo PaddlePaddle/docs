@@ -22,7 +22,7 @@ digraph G {
       scale_loss_0 [label="scale_loss_gradient\nGPU0", shape=box]
       loss_g0 [label="loss_grad\nGPU0"]
       scale_loss_0->loss_g0
-      
+
       fc_g_0 [label="w_grad\nGPU0", shape=box]
       loss0 -> fc_g_0
       loss_g0 -> fc_g_0
@@ -40,7 +40,7 @@ digraph G {
       scale_loss_1 [label="scale_loss_gradient\nGPU1", shape=box]
       loss_g1 [label="loss_grad\nGPU1"]
       scale_loss_1->loss_g1
-      
+
       fc_g_1 [label="w_grad\nGPU1", shape=box]
       loss1 -> fc_g_1
       loss_g1 -> fc_g_1

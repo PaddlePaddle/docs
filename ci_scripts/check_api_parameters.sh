@@ -12,7 +12,7 @@ function filter_cn_api_files() {
     local need_check_files=""
     for file in `echo $git_files`;do
         echo "$file" | grep '.*\.rst$' > /dev/null
-        if [ $? -eq 0 ] ;then 
+        if [ $? -eq 0 ] ;then
             need_check_files="${need_check_files} $file"
         fi
     done
@@ -34,7 +34,11 @@ then
 else
     python check_api_parameters.py --rst-files "${need_check_files}" --api-info $2
     if [ $? -ne 0 ];then
+        set +x
+        echo "************************************************************************************"
         echo "api parameters check failed."
+        echo "************************************************************************************"
+        set -x
         exit 5
     fi
 fi

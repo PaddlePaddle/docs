@@ -1,6 +1,6 @@
-digraph sample { 
+digraph sample {
   graph [rankdir=TD]; node [shape=record];
-  op [label="{Operator| InferShape()=0\lRun()=0\l | map&#60;string, string[]&#62; inputs_\lmap&#60;string, string[]&#62; outputs_ \l AttributeMap attrs_\l}"]; 
+  op [label="{Operator| InferShape()=0\lRun()=0\l | map&#60;string, string[]&#62; inputs_\lmap&#60;string, string[]&#62; outputs_ \l AttributeMap attrs_\l}"];
   op_with_kern [label="{OpWithKernel | InferShape()=0\lRun()\l | map&#60;OpKernelKey,OpKernel&#62;kernels_ }"]
   op_kernel [label="{OpKernel | Compute()=0}"]
   op_kernel_key [label="{OpKernelKey| Place place\n...}"]
@@ -29,7 +29,7 @@ digraph sample {
   mul_kernel [label="template &#60;typename Place&#62;\lclass MulOpKernel\l"]
   op_kernel -> mul_kernel [dir=back, arrowtail=onormal]
   mul_op -> mul_kernel [arrowhead=vee, label="register many"]
-  
+
   {
     rank=same;
     mul_op;

@@ -1,6 +1,6 @@
 ## [ 组合替代实现 ]torch.random.initial_seed
 
-### [torch.initial_seed](https://pytorch.org/docs/stable/random.html#torch.random.initial_seed)
+### [torch.random.initial_seed](https://pytorch.org/docs/stable/random.html#torch.random.initial_seed)
 
 ```python
 torch.random.initial_seed()

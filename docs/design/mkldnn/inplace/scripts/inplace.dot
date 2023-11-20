@@ -3,21 +3,21 @@ digraph G {
   e1[label="relu"]
   e2[label="elementwise_add"]
   e3[label="elementwise_mul"]
-  
+
   a -> e1
   e1 -> b
   b[label="b"]
   e[label="b"]
-  
+
   subgraph cluster_0 {
       label="in-placed"
   b -> e2
   d -> e2
   e2 -> e
   }
-  
-  
+
+
   e -> e3
   f -> e3 -> g
-  
+
 }

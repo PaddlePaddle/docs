@@ -25,4 +25,3 @@ for API_FILE in ${API_FILES[*]}; do
     exit 1
   fi
 done
-

@@ -157,7 +157,7 @@ tools: Godep and Glide.
 
 Here's a brief comparison between Godep and Glide
 : https://github.com/Masterminds/glide/wiki/Go-Package-Manager-Comparison. There are
-also many complaints about using `Godep`. There's also a new "official" pakcage
+also many complaints about using `Godep`. There's also a new "official" package
 management tool has been started at: https://github.com/golang/dep to resolve
 such problems, but it's currently at Alpha stage. So the best choice now is
 glide obviously.

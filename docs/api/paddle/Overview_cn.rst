@@ -153,6 +153,7 @@ tensor 数学操作
     " :ref:`paddle.i1 <cn_api_paddle_i1>` ", "对输入 Tensor 每个元素计算第一类一阶修正贝塞尔函数"
     " :ref:`paddle.i1e <cn_api_paddle_i1e>` ", "对输入 Tensor 每个元素计算第一类指数缩放的一阶修正贝塞尔函数"
     " :ref:`paddle.polygamma <cn_api_paddle_polygamma>` ", "对输入 Tensor 每个元素计算多伽马函数"
+    " :ref:`paddle.hypot <cn_api_paddle_hypot>` ", "对输入 直角三角形的直角边 Tensor x, y， 计算其斜边"
 .. _tensor_math_inplace:
 
 tensor 数学操作原位（inplace）版本
@@ -181,6 +182,9 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.tanh_ <cn_api_paddle_tan_>` ", "Inplace 版本的 tan API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.uniform_ <cn_api_paddle_uniform_>` ", "Inplace 版本的 uniform API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.lerp_ <cn_api_paddle_lerp_>` ", "Inplace 版本的 lerp API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.hypot_ <cn_api_paddle_hypot_>` ", "Inplace 版本的 hypot API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.masked_fill_ <cn_api_paddle_masked_fill_>` ", "Inplace 版本的 masked_fill API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.index_fill_ <cn_api_paddle_index_fill_>` ", "Inplace 版本的 index_fill API，对输入 x 采用 Inplace 策略"
 
 .. _tensor_logic:
 
@@ -382,6 +386,9 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.view <cn_api_paddle_view>` ", "使用特定的 shape 或者 dtype，返回 x 的一个 view Tensor"
     " :ref:`paddle.view_as <cn_api_paddle_view_as>` ", "使用 other 的 shape，返回 x 的一个 view Tensor"
     " :ref:`paddle.unfold <cn_api_paddle_unfold>` ", "返回 x 的一个 view Tensor。以滑动窗口式提取 x 的值"
+    " :ref:`paddle.masked_fill <cn_api_paddle_masked_fill>` ", "根据 mask 信息，将 value 中的值填充到 x 中 mask 对应为 True 的位置。"
+    " :ref:`paddle.diagonal_scatter <cn_api_paddle_diagonal_scatter>` ", "根据给定的轴 axis 和偏移量 offset，将张量 y 的值填充到张量 x 中"
+    " :ref:`paddle.index_fill <cn_api_paddle_index_fill>` ", "沿着指定轴 axis 将 index 中指定位置的 x 的值填充为 value"
 
 .. _tensor_manipulation_inplace:
 

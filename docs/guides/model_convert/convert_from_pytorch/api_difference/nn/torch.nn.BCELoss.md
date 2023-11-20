@@ -1,4 +1,4 @@
-# [ torch 参数更多 ]torch.nn.BCELoss
+## [ torch 参数更多 ]torch.nn.BCELoss
 ### [torch.nn.BCELoss](https://pytorch.org/docs/stable/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss)
 
 ```python

@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.cholesky_inverse
+## [ 组合替代实现 ]torch.Tensor.cholesky_inverse
 
 ### [torch.Tensor.cholesky_inverse](https://pytorch.org/docs/stable/generated/torch.cholesky_inverse.html#torch.cholesky_inverse)
 ```python

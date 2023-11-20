@@ -41,6 +41,8 @@ LRScheduler
 
 * :code:`LinearLR`: 学习率随 step 数线性增加到指定学习率。 请参考 :ref:`cn_api_paddle_optimizer_lr_LinearLR`。
 
+* :code:`CosineAnnealingWarmRestarts`: 余弦退火学习率，即学习率随 step 数变化呈余弦函数周期变化。 请参考 :ref:`cn_api_paddle_optimizer_lr_CosineAnnealingWarmRestarts`。
+
 你可以继承该基类实现任意的学习率策略，导出基类的方法为 ``from paddle.optimizer.lr import LRScheduler`` ，
 必须要重写该基类的 ``get_lr()`` 函数，否则会抛出 ``NotImplementedError`` 异常。
 

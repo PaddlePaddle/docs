@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.nn.init.eye_.md
+## [ 组合替代实现 ]torch.nn.init.eye_
 
 ### [torch.nn.init.eye_](https://pytorch.org/docs/stable/nn.init.html?highlight=eye_#torch.nn.init.eye_)
 

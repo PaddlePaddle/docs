@@ -1,4 +1,4 @@
-# [torch 参数更多]torch.nn.functional.kl_div
+## [torch 参数更多]torch.nn.functional.kl_div
 
 ### [torch.nn.functional.kl_div](https://pytorch.org/docs/stable/generated/torch.nn.functional.kl_div.html?highlight=kl_div#torch.nn.functional.kl_div)
 

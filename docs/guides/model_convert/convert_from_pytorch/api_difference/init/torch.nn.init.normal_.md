@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.nn.init.normal_.md
+## [ 组合替代实现 ]torch.nn.init.normal_
 
 ### [torch.nn.init.normal_](https://pytorch.org/docs/stable/nn.init.html?highlight=normal_#torch.nn.init.normal_)
 

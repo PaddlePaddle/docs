@@ -1,6 +1,6 @@
 ## [ 无参数 ]torch.backends.cuda.is_built
 
-### [torch.backends.cuda.is_built]https://pytorch.org/docs/stable/backends.html?highlight=torch+backends+cudnn+is_available#torch.backends.cuda.is_built)
+### [torch.backends.cuda.is_built](https://pytorch.org/docs/stable/backends.html?highlight=torch+backends+cudnn+is_available#torch.backends.cuda.is_built)
 ```python
 torch.backends.cuda.is_built()
 ```

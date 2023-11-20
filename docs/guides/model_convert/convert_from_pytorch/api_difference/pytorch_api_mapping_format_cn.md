@@ -51,7 +51,7 @@ Paddle API 签名
 
 * 如果 `无参数`，则没有参数映射这一栏。
 
-* 如果 `参数完全一致`，无需转写示例，需要在备注栏里对该参数加一句 `仅参数名不一致`。
+* 如果 `参数完全一致`，无需转写示例。
 
 * 如果 `仅参数名不一致`，无需转写示例，需要在备注栏里对该参数加一句 `仅参数名不一致`。
 
@@ -444,7 +444,7 @@ paddle.nn.ClipGradByValue(max,
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | ---- |
 | parameters |  -  | 表示要操作的 Tensor， Pytorch 属于原位操作， PaddlePaddle ⽆此参数，需要实例化之后在 optimizer 中设置才可以使⽤。需要上下⽂分析与联动修改。|
-| clip_value |  max |  表示裁剪梯度的范围，范围为 [-clip_value, clip_vale] ； PaddlePaddle 的 max 参数可实现该参数功能，直接设置为与 clip_value ⼀致。|
+| clip_value |  max |  表示裁剪梯度的范围，范围为 [-clip_value, clip_vale] ； PaddlePaddle 的 max 参数可实现该参数功能，直接设置为与 clip_value 一致。|
 | - | min | 表示裁剪梯度的最⼩值， PyTorch ⽆此参数， Paddle 保持默认即可。 |
 
 ### 转写示例

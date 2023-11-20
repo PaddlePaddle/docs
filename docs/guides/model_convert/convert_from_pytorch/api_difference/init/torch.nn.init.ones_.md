@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.nn.init.ones_.md
+## [ 组合替代实现 ]torch.nn.init.ones_
 
 ### [torch.nn.init.ones_](https://pytorch.org/docs/stable/nn.init.html?highlight=ones_#torch.nn.init.ones_)
 
