@@ -2345,6 +2345,27 @@ tile(repeat_times, name=None)
 
 请参考 :ref:`cn_api_paddle_tile`
 
+to(*args, **kwargs)
+:::::::::
+
+转换 Tensor 的设备或/和数据类型，并且返回转换后的 Tensor。该函数将会从 ``args`` 以及 ``kwargs`` 中解析出要转换到的目标类型 dtype 以及目标设备 place。
+目前支持一下三种方式调用该方法：
+
+    1. to(dtype, blocking=True)
+    2. to(device, dtype=None, blocking=True)
+    3. to(other, blocking=True)
+
+其中， ``dtype`` 可以是 ``paddle.dtype``, ``numpy.dtype`` 类型或者是 ``["bfloat16", "float16", "float32", "float64", "int8", "int16", "int32",
+"int64", "uint8", "complex64", "complex128", "bool"]`` 中的任意一个 ``str``。 ``device`` 可以是 ``paddle.CPUPlace()``, ``paddle.CUDAPlace()``,
+``paddle.CUDAPinnedPlace()``, ``paddle.XPUPlace()``, ``paddle.CustomPlace()`` 或者 ``str``。 ``other`` 需要是 ``Tensor`` 类型。
+
+返回：类型转换后的新的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+COPY-FROM: paddle.Tensor.to
+
 tolist()
 :::::::::
 
@@ -3060,3 +3081,13 @@ masked_fill_(x, mask, value, name=None)
 :::::::::
 
 Inplace 版本的 :ref:`cn_api_paddle_masked_fill` API，对输入 `x` 采用 Inplace 策略。
+
+diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
+:::::::::
+根据给定的轴 axis 和偏移量 offset，将张量 y 的值填充到张量 x 中。
+
+返回：张量 y 填充到张量 x 中的结果。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_diagonal_scatter`

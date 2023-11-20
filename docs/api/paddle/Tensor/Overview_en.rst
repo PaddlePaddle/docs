@@ -252,6 +252,7 @@ Methods
     tanh
     tanh_
     tile
+    to
     tolist
     topk
     trace
@@ -277,3 +278,4 @@ Methods
     vander
     hypot
     hypot_
+    diagonal_scatter
