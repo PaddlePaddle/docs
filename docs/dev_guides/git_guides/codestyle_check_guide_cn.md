@@ -46,7 +46,6 @@ black................................................(no files to check)Skipped
 isort................................................(no files to check)Skipped
 flake8...............................................(no files to check)Skipped
 ruff.................................................(no files to check)Skipped
-pylint...............................................(no files to check)Skipped
 clang-format.............................................................Failed
 - hook id: clang-format
 - files were modified by this hook
@@ -90,7 +89,6 @@ Date:   xxx
 | [isort](https://github.com/pycqa/isort) | Python 代码格式化（仅 import 区域） | 5.11.5 |
 | [flake8](https://github.com/PyCQA/flake8) | Python 代码风格检查（即将被 Ruff 完全替换） | 5.0.4 |
 | [ruff](https://github.com/astral-sh/ruff) | Python 代码风格检查 | 0.0.289 |
-| [pylint](https://github.com/PyCQA/pylint/) | Python 代码风格检查，目前仅用于检查示例代码 | 2.12.0 |
 | [clang-format](https://github.com/llvm/llvm-project/tree/main/clang/tools/clang-format) | C++ 代码格式化 | 13.0.0 |
 | [cpplint](https://github.com/cpplint/cpplint) | C++ 代码风格检查 | 1.6.0 |
 | [clang-tidy](https://github.com/llvm/llvm-project/tree/main/clang-tools-extra/clang-tidy) | C++ 代码风格检查 | 15.0.2.1 |
