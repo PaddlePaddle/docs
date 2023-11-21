@@ -12,12 +12,12 @@ torch.atleast_3d(*tensors)
 paddle.atleast_3d(*inputs, name=None)
 ```
 
-PyTorch 与 Paddle 参数形式上一致，具体如下：
+PyTorch 与 Paddle 参数不一致，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> tensors </font> | <font color='red'> inputs </font> | 输入的 Tensor ，仅参数名不一致。 |
+| <font color='red'> tensors </font> | <font color='red'> inputs </font> | 输入的 Tensor ，参数不一致。 |
 
 PyTorch 与 Paddle 功能一致，但对于多个 Tensor 输入的处理方式略有不同，具体请看转写示例。
 

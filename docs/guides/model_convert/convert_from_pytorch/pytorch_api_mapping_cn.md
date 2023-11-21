@@ -929,9 +929,6 @@
 | 303 |  [torch.Tensor.sum_to_size](https://pytorch.org/docs/stable/generated/torch.Tensor.sum_to_size.html?highlight=sum_to_size#torch.Tensor.sum_to_size)  |  |    功能缺失  |
 | 304 |  [torch.Tensor.resize_](https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html?highlight=resize#torch.Tensor.resize_)  |  |    功能缺失  |
 | 305 |  [torch.Tensor.masked_fill_](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_fill_.html?highlight=resize#torch.Tensor.masked_fill_)  | [paddle.Tensor.masked_fill_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id25) |    功能完全一致  |
-| 306 |   | [paddle.Tensor.atleast_1d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atleast_1d_cn.html#atleast_1d) |  PyTorch 功能缺失  |
-| 307 |   | [paddle.Tensor.atleast_2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atleast_2d_cn.html#atleast_2d) |  PyTorch 功能缺失  |
-| 308 |   | [paddle.Tensor.atleast_3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atleast_3d_cn.html#atleast_3d) |  PyTorch 功能缺失  |
 
 
 | 序号  | PyTorch API | PaddlePaddle API  | 备注 |
