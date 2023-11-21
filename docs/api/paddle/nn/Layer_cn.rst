@@ -73,7 +73,7 @@ str， Layer 的全名
 
 **代码示例**
 
-COPY-FROM: paddle.nn.Layer.apply_fn
+COPY-FROM: paddle.nn.Layer.full_name
 
 register_forward_pre_hook(hook)
 '''''''''
