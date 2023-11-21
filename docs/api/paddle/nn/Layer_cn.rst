@@ -61,7 +61,7 @@ Layer (返回网络层)， self (返回自身)
 
 **代码示例**
 
-COPY-FROM: paddle.nn.Layer.apply_fn
+COPY-FROM: paddle.nn.Layer.apply
 
 full_name()
 '''''''''
@@ -73,7 +73,7 @@ str， Layer 的全名
 
 **代码示例**
 
-COPY-FROM: paddle.nn.Layer.apply
+COPY-FROM: paddle.nn.Layer.apply_fn
 
 register_forward_pre_hook(hook)
 '''''''''
