@@ -368,7 +368,6 @@
 | REFERENCE-MAPPING-ITEM(`torch.is_grad_enabled`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.is_grad_enabled.md) |
 | REFERENCE-MAPPING-ITEM(`torch.manual_seed`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.manual_seed.md) |
 | [torch.can_cast](https://pytorch.org/docs/stable/generated/torch.can_cast.html#torch-can-cast)                                                                    | 功能缺失 |
-| REFERENCE-MAPPING-ITEM(`torch.float_power`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.float_power.md)                   |
 
 ***持续更新...***
 
