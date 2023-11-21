@@ -20,6 +20,7 @@ Layer
 无
 
 **代码示例**
+
 COPY-FROM: paddle.nn.Layer
 
 
@@ -60,7 +61,7 @@ Layer (返回网络层)， self (返回自身)
 
 **代码示例**
 
-COPY-FROM: paddle.nn.Layer.
+COPY-FROM: paddle.nn.Layer.apply_fn
 
 full_name()
 '''''''''
@@ -441,6 +442,7 @@ astype(dtype=None)
 返回类型：Layer
 
 **代码示例**
+
 COPY-FROM: paddle.nn.Layer.astype
 
 float(excluded_layers=None)
