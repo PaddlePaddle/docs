@@ -118,6 +118,7 @@ Padding 层
     " :ref:`paddle.nn.CELU <cn_api_paddle_nn_CELU>` ", "CELU 激活层"
     " :ref:`paddle.nn.ELU <cn_api_paddle_nn_ELU>` ", "ELU 激活层"
     " :ref:`paddle.nn.GELU <cn_api_paddle_nn_GELU>` ", "GELU 激活层"
+    " :ref:`paddle.nn.GLU <cn_api_paddle_nn_GLU>` ", "GLU 激活层"
     " :ref:`paddle.nn.Hardshrink <cn_api_paddle_nn_Hardshrink>` ", "Hardshrink 激活层"
     " :ref:`paddle.nn.Hardsigmoid <cn_api_paddle_nn_Hardsigmoid>` ", "Hardsigmoid 激活层"
     " :ref:`paddle.nn.Hardswish <cn_api_paddle_nn_Hardswish>` ", "Hardswish 激活层"
@@ -460,7 +461,7 @@ Embedding 相关函数
     :header: "API 名称", "API 功能"
 
 
-    " :ref:`paddle.nn.functional.diag_embed <cn_api_paddle_nn_functional_diag_embed>` ", "对角线 Embedding 方法"
+    " paddle.nn.functional.diag_embed ", "对角线 Embedding 方法，paddle.nn.functional.diag_embed 已废弃，请使用 :ref:`paddle.diag_embed <cn_api_paddle_diag_embed>` "
     " :ref:`paddle.nn.functional.embedding <cn_api_paddle_nn_functional_embedding>` ", "Embedding 方法"
 
 .. _loss_functional:
