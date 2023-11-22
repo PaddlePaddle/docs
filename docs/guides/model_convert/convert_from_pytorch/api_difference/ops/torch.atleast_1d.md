@@ -38,7 +38,7 @@ x = paddle.to_tensor(0.3)
 y = paddle.to_tensor(0.4)
 # 这里只能分别传入
 paddle.atleast_1d(x, y)
-# 下面这种方式会将 (x, y) 经过 broadcast 后作为单个输入
+# 下面这种方式需要 x, y 具有一样的 shape
 paddle.atleast_1d((x, y))
 
 ```
