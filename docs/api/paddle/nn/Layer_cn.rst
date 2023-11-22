@@ -10,7 +10,7 @@ Layer
 
 基于 OOD 实现的动态图 Layer，包含该 Layer 的参数、前序运行的结构等信息。
 
-**参数**
+参数
 ::::::::::::
 
     - **name_scope** (str，可选) - 为 Layer 内部参数命名而采用的名称前缀。如果前缀为“my_layer”，在一个类名为 MyLayer 的 Layer 中，参数名为“mylayer_0.w_n”，其中 w 是参数的名称，n 为自动生成的具有唯一性的后缀。如果为 None，前缀名将为小写的类名。默认值为 None。
@@ -23,14 +23,14 @@ Layer
 
 COPY-FROM: paddle.nn.Layer
 
+方法
+::::::::::::
+
 
 train()
 '''''''''
 
 将此层及其所有子层设置为训练模式。这只会影响某些模块，如 Dropout 和 BatchNorm。
-
-**返回**
-无
 
 **代码示例**
 
@@ -54,7 +54,7 @@ apply(fn)
 
 **参数**
 
-    **fn** (function) - 该函数被应用带每一个子层中
+    -**fn** (function) - 应用到每一个子层的函数
 
 **返回**
 Layer (返回网络层)， self (返回自身)
