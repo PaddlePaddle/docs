@@ -3,7 +3,7 @@
 Conll05st
 -------------------------------
 
-.. py:class:: paddle.text.datasets.Conll05st()
+.. py:class:: paddle.text.Conll05st()
 
 
 该类是对 `Conll05st <https://www.cs.upc.edu/~srlconll/soft.html>`_

@@ -3,7 +3,7 @@
 Stream
 -------------------------------
 
-.. py:class:: paddle.device.Stream(device=None, priority=None, blocking=False)
+.. py:class:: paddle.device.cuda.Stream(device=None, priority=None, blocking=False)
 
 custom device stream 的句柄。
 
