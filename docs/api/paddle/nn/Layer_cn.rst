@@ -429,8 +429,7 @@ to(device=None, dtype=None, blocking=None)
 COPY-FROM: paddle.nn.Layer.to
 
 astype(dtype=None)
-:::::::::
-
+'''''''''
 将 Layer 的所有 ``parameters`` 和 ``buffers`` 的数据类型转换为 ``dtype``，并返回这个 Layer。
 
 **参数**
