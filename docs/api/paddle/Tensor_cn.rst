@@ -12,6 +12,18 @@ Tensor
 - 创建一个指定 ``shape`` 的 Tensor，请参考 :ref:`cn_api_paddle_ones` 、 :ref:`cn_api_paddle_zeros`、 :ref:`cn_api_paddle_full`
 - 创建一个与其他 Tensor 具有相同 ``shape`` 与 ``dtype`` 的 Tensor，请参考 :ref:`cn_api_paddle_ones_like` 、 :ref:`cn_api_paddle_zeros_like` 、 :ref:`cn_api_paddle_full_like`
 
+create_tensor(dtype, name=None, persistable=False)
+:::::::::
+
+根据数据类型 dtype 创建一个 Tensor。
+
+返回：Tensor，数据类型为指定的 dtype。
+
+返回类型：Tensor
+
+**代码示例**
+COPY-FROM: paddle.Tensor.create_tensor
+
 clear_grad
 :::::::::
 
