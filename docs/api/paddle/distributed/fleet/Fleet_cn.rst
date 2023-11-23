@@ -29,19 +29,19 @@ None
 
 **代码示例 1**
 
-COPY-FROM: paddle.distributed.fleet.Fleet.init:code-example1
+COPY-FROM: paddle.distributed.fleet.Fleet.init:code-init-example1
 
 **代码示例 2**
 
-COPY-FROM: paddle.distributed.fleet.Fleet.init:code-example1
+COPY-FROM: paddle.distributed.fleet.Fleet.init:code-init-example2
 
 **代码示例 3**
 
-COPY-FROM: paddle.distributed.fleet.Fleet.init:code-example1
+COPY-FROM: paddle.distributed.fleet.Fleet.init:code-init-example3
 
 **代码示例 4**
 
-COPY-FROM: paddle.distributed.fleet.Fleet.init:code-example1
+COPY-FROM: paddle.distributed.fleet.Fleet.init:code-init-example4
 
 
 is_first_worker()
@@ -275,7 +275,7 @@ save_inference_model(executor, dirname, feeded_var_names, target_vars, main_prog
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.fleet.Fleet
+COPY-FROM: paddle.distributed.fleet.Fleet.save_inference_model
 
 save_persistables(executor, dirname, main_program=None)
 '''''''''
@@ -324,7 +324,36 @@ qat_init(place, scope, test_program=None)
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.fleet.Fleet.qat_init
+.. code-block:: python
+
+    import paddle
+    import paddle.nn.functional as F
+    paddle.enable_static()
+    def run_example_code():
+        place = paddle.CUDAPlace(0)
+        exe = paddle.static.Executor(place)
+        # 1. Define the train program
+        data = paddle.static.data(name='X', shape=[None, 1, 28, 28], dtype='float32')
+        conv2d = paddle.static.nn.conv2d(input=data, num_filters=6, filter_size=3)
+        bn = paddle.static.nn.batch_norm(input=conv2d, act="relu")
+        pool = F.max_pool2d(bn, kernel_size=2, stride=2)
+        hidden = paddle.static.nn.fc(pool, size=10)
+        loss = paddle.mean(hidden)
+        # 2. Create the distributed optimizer and set qat config to True.
+        optimizer = paddle.optimizer.Momentum(learning_rate=0.01, multi_precision=True)
+        strategy = fleet.DistributedStrategy()
+        strategy.qat = True
+        optimizer = fleet.distributed_optimizer(optimizer, strategy=strategy)
+        # 3. Apply the strategies by distributed optimizer
+        # If you don't use the default_startup_program(), you sholud pass
+        # your defined `startup_program` into `minimize`.
+        optimizer.minimize(loss)
+        exe.run(paddle.static.default_startup_program())
+        # 4. Use `qat_init` to do FP32 parameters initialization.
+        # If you want to perform the testing process, you should pass `test_program` into `qat_init`.
+        optimizer.qat_init(place, paddle.static.global_scope())
+    if paddle.is_compiled_with_cuda() and len(paddle.static.cuda_places()) > 0:
+        run_example_code()
 
 distributed_model(model)
 '''''''''
@@ -345,7 +374,7 @@ distributed_model(model)
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.fleet.Fleet.distributed_model
+.. code-block:: python
 
     # 这个示例需要由 fleetrun 启动，用法为：
     # fleetrun --gpus=0,1 example.py
@@ -405,7 +434,7 @@ dict，当前 ``optimizer`` 使用的所有 Tensor。
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.fleet.Fleet.state_dict
+.. code-block:: python
 
     # 这个示例需要由 fleetrun 启动，用法为：
     # fleetrun --gpus=0,1 example.py
@@ -443,7 +472,7 @@ None
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.fleet.Fleet.set_state_dict
+.. code-block:: python
 
     # 这个示例需要由 fleetrun 启动，用法为：
     # fleetrun --gpus=0,1 example.py
@@ -488,7 +517,7 @@ None
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.fleet.Fleet.set_lr
+.. code-block:: python
 
     # 这个示例需要由 fleetrun 启动，用法为：
     # fleetrun --gpus=0,1 example.py
@@ -541,7 +570,7 @@ None
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.fleet.Fleet.set_lr_scheduler
+.. code-block:: python
 
     # 这个示例需要由 fleetrun 启动，用法为：
     # fleetrun --gpus=0,1 example.py
@@ -586,7 +615,7 @@ float，当前步骤的学习率。
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.fleet.Fleet.get_lr
+.. code-block:: python
 
     # 这个示例需要由 fleetrun 启动，用法为：
     # fleetrun --gpus=0,1 example.py
@@ -626,7 +655,7 @@ None。
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.fleet.Fleet.step
+.. code-block:: python
 
     # 这个示例需要由 fleetrun 启动，用法为：
     # fleetrun --gpus=0,1 example.py
@@ -688,7 +717,7 @@ None。
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.fleet.Fleet.clear_grad
+.. code-block:: python
 
     # 这个示例需要由 fleetrun 启动，用法为：
     # fleetrun --gpus=0,1 example.py
