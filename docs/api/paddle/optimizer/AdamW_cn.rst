@@ -142,7 +142,7 @@ set_lr_scheduler(scheduler)
 
 **代码示例**
 
-COPY-FROM: paddle.optimizer.set_lr_scheduler
+COPY-FROM: paddle.optimizer.AdamW.set_lr_scheduler
 
 get_lr()
 '''''''''
