@@ -13,8 +13,8 @@ greater_equal
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入 Tensor，支持的数据类型包括 bool、float16、float32、float64、int32、int64。
-    - **y** (Tensor) - 输入 Tensor，支持的数据类型包括 bool、float16、float32、float64、int32、int64。
+    - **x** (Tensor) - 输入 Tensor，支持的数据类型包括 bool、float16、float32、float64、uint8、int8、int16、int32、int64。
+    - **y** (Tensor) - 输入 Tensor，支持的数据类型包括 bool、float16、float32、float64、uint8、int8、int16、int32、int64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 

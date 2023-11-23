@@ -64,3 +64,6 @@
 
 * :code:`LinearLR`: 学习率随 step 数线性增加到指定学习率。
   相关 API Reference 请参考 :ref:`_cn_api_paddle_optimizer_lr_LinearLR`
+
+* :code:`CosineAnnealingWarmRestarts`: 余弦退火学习率，即学习率随 step 数变化呈余弦函数周期变化。
+  相关 API Reference 请参考 :ref:`cn_api_paddle_optimizer_lr_CosineAnnealingWarmRestarts`
