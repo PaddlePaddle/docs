@@ -48,3 +48,13 @@ paddle.atleast_1d((x, y))
 PyTorch 仍然输出两个 Tensor，而 Paddle 会将 (x, y) 作为一个整体进行处理并输出。
 
 此时需要注意，x 和 y 需要具有相同的 shape，否则无法将两者转换为一个 Tensor。
+
+此时正确的转写方式为:
+
+```python
+# Pytorch 写法
+torch.atleast_1d((x, y))
+
+# Paddle 写法
+paddle.atleast_1d(x, y)
+```
