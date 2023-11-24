@@ -3105,3 +3105,12 @@ atleast_3d(name=None)
 返回至少为 ``3`` 维视图的 Tensor 。
 
 请参考 :ref:`cn_api_paddle_atleast_3d`
+diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
+:::::::::
+根据给定的轴 axis 和偏移量 offset，将张量 y 的值填充到张量 x 中。
+
+返回：张量 y 填充到张量 x 中的结果。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_diagonal_scatter`

@@ -51,6 +51,7 @@ paddle.io 目录下包含飞桨框架数据集定义、数据读取相关的 API
     " :ref:`ComposeDataset <cn_api_paddle_io_ComposeDataset>` ", "数据集字段组合接口"
     " :ref:`Subset <cn_api_paddle_io_Subset>` ", "数据集取子集接口"
     " :ref:`random_split <cn_api_paddle_io_random_split>` ", "给定子集合 dataset 的长度数组，随机切分出原数据集合的非重复子集合"
+    " :ref:`ConcatDataset <cn_api_paddle_io_ConcatDataset>` ", "数据集拼接接口"
 
 .. _about_sampler:
 

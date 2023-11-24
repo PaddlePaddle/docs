@@ -290,10 +290,10 @@
 | REFERENCE-MAPPING-ITEM(`torch.frexp`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.frexp.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nanmean`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.nanmean.md) |
 | REFERENCE-MAPPING-ITEM(`torch.take_along_dim`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.take_along_dim.md) |
+| REFERENCE-MAPPING-ITEM(`torch.diagonal_scatter`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.diagonal_scatter.md) |
 | NOT-IMPLEMENTED-ITEM(`torch.geqrf`, https://pytorch.org/docs/stable/generated/torch.geqrf.html?highlight=geqrf#torch.geqrf) |
 | NOT-IMPLEMENTED-ITEM(`torch.bitwise_right_shift`, https://pytorch.org/docs/stable/generated/torch.bitwise_right_shift.html#torch.bitwise_right_shift) |
 | NOT-IMPLEMENTED-ITEM(`torch.is_conj`, https://pytorch.org/docs/stable/generated/torch.is_conj.html#torch.is_conj) |
-| NOT-IMPLEMENTED-ITEM(`torch.diagonal_scatter`, https://pytorch.org/docs/stable/generated/torch.diagonal_scatter.html#torch.diagonal_scatter) |
 | NOT-IMPLEMENTED-ITEM(`torch.select_scatter`, https://pytorch.org/docs/stable/generated/torch.select_scatter.html#torch.select_scatter) |
 | NOT-IMPLEMENTED-ITEM(`torch.slice_scatter`, https://pytorch.org/docs/stable/generated/torch.slice_scatter.html#torch.slice_scatter) |
 | NOT-IMPLEMENTED-ITEM(`torch.scatter_reduce`, https://pytorch.org/docs/stable/generated/torch.scatter_reduce.html#torch.scatter_reduce) |
@@ -793,7 +793,7 @@
 | 167 |  [torch.Tensor.any](https://pytorch.org/docs/stable/generated/torch.Tensor.any.html?highlight=torch+tensor+any#torch.Tensor.any) |  [paddle.Tensor.any](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#any-axis-none-keepdim-false-name-none)  |    功能一致, 参数不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.any.md)  |
 | 168 |  [torch.Tensor.bitwise_right_shift](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_right_shift.html#torch.Tensor.bitwise_right_shift) |  | 功能缺失        |
 | 169 |  [torch.Tensor.is_conj](https://pytorch.org/docs/stable/generated/torch.Tensor.is_conj.html#torch.Tensor.is_conj)  |  | 功能缺失        |
-| 170 |  [torch.Tensor.diagonal_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.diagonal_scatter.html#torch.Tensor.diagonal_scatter) |  | 功能缺失        |
+| 170 |  [torch.Tensor.diagonal_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.diagonal_scatter.html#torch.Tensor.diagonal_scatter)  | [paddle.Tensor.diagonal_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#diagonal-scatter-x-y-offset-0-axis1-0-axis2-1-name-none) |    功能完全一致，仅参数名不一致 [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.diagonal_scatter.md)  |
 | 171 |  [torch.Tensor.scatter_reduce](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter_reduce.html#torch.Tensor.scatter_reduce) |  | 功能缺失        |
 | 172 |  [torch.Tensor.select_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.select_scatter.html#torch.Tensor.select_scatter) |  | 功能缺失        |
 | 173 |  [torch.Tensor.slice_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.slice_scatter.html#torch.Tensor.slice_scatter) |  | 功能缺失        |
@@ -1100,9 +1100,9 @@
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.less`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.less.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.all`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.all.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.any`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.any.md) |
+| REFERENCE-MAPPING-ITEM(`torch.Tensor.diagonal_scatter`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.diagonal_scatter.md) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.bitwise_right_shift`, https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_right_shift.html#torch.Tensor.bitwise_right_shift) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.is_conj`, https://pytorch.org/docs/stable/generated/torch.Tensor.is_conj.html#torch.Tensor.is_conj) |
-| NOT-IMPLEMENTED-ITEM(`torch.Tensor.diagonal_scatter`, https://pytorch.org/docs/stable/generated/torch.Tensor.diagonal_scatter.html#torch.Tensor.diagonal_scatter) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.scatter_reduce`, https://pytorch.org/docs/stable/generated/torch.Tensor.scatter_reduce.html#torch.Tensor.scatter_reduce) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.select_scatter`, https://pytorch.org/docs/stable/generated/torch.Tensor.select_scatter.html#torch.Tensor.select_scatter) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.slice_scatter`, https://pytorch.org/docs/stable/generated/torch.Tensor.slice_scatter.html#torch.Tensor.slice_scatter) |

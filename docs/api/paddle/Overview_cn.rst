@@ -103,6 +103,7 @@ tensor 数学操作
     " :ref:`paddle.multiplex <cn_api_paddle_multiplex>` ", "从每个输入 Tensor 中选择特定行构造输出 Tensor"
     " :ref:`paddle.multiply <cn_api_paddle_multiply>` ", "逐元素相乘算子"
     " :ref:`paddle.ldexp <cn_api_paddle_ldexp>` ", "计算 x 乘以 2 的 y 次幂"
+    " :ref:`paddle.multigammaln <cn_api_paddle_multigammaln>` ", "计算多元伽马函数的对数"
     " :ref:`paddle.nan_to_num <cn_api_paddle_nan_to_num>` ", "替换 x 中的 NaN、+inf、-inf 为指定值"
     " :ref:`paddle.neg <cn_api_paddle_neg>` ", "计算输入 x 的相反数并返回"
     " :ref:`paddle.nextafter <cn_api_paddle_nextafter>` ", "逐元素将 x 之后的下一个浮点值返回"
@@ -183,6 +184,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.uniform_ <cn_api_paddle_uniform_>` ", "Inplace 版本的 uniform API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.lerp_ <cn_api_paddle_lerp_>` ", "Inplace 版本的 lerp API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.hypot_ <cn_api_paddle_hypot_>` ", "Inplace 版本的 hypot API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.multigammaln_ <cn_api_paddle_multigammaln_>` ", "Inplace 版本的 multigammaln API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.masked_fill_ <cn_api_paddle_masked_fill_>` ", "Inplace 版本的 masked_fill API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.index_fill_ <cn_api_paddle_index_fill_>` ", "Inplace 版本的 index_fill API，对输入 x 采用 Inplace 策略"
 
@@ -390,6 +392,7 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.view_as <cn_api_paddle_view_as>` ", "使用 other 的 shape，返回 x 的一个 view Tensor"
     " :ref:`paddle.unfold <cn_api_paddle_unfold>` ", "返回 x 的一个 view Tensor。以滑动窗口式提取 x 的值"
     " :ref:`paddle.masked_fill <cn_api_paddle_masked_fill>` ", "根据 mask 信息，将 value 中的值填充到 x 中 mask 对应为 True 的位置。"
+    " :ref:`paddle.diagonal_scatter <cn_api_paddle_diagonal_scatter>` ", "根据给定的轴 axis 和偏移量 offset，将张量 y 的值填充到张量 x 中"
     " :ref:`paddle.index_fill <cn_api_paddle_index_fill>` ", "沿着指定轴 axis 将 index 中指定位置的 x 的值填充为 value"
 
 .. _tensor_manipulation_inplace:
