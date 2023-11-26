@@ -13,6 +13,7 @@ LinearWarmup
 
     lr = start\_lr + (end\_lr - start\_lr) * \frac{epoch}{warmup\_steps}
 
+其中 start_lr 是初始学习率，而 end_lr 是最终学习率；
 当训练步数大于等于热身步数（warmup_steps）时，学习率 lr 为：
 
 .. math::
