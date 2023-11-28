@@ -2208,6 +2208,33 @@ split(num_or_sections, axis=0, name=None)
 
 请参考 :ref:`cn_api_paddle_split`
 
+tensor_split(indices_or_sections, axis=0, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_split`
+
+dsplit(num_or_sections, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_dsplit`
+
+hsplit(num_or_sections, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_hsplit`
+
 vsplit(num_or_sections, name=None)
 :::::::::
 

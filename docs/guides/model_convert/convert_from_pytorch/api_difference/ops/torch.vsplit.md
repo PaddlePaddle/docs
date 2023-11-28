@@ -1,15 +1,15 @@
-## [ 参数不一致 ]torch.dsplit
-### [torch.dsplit](https://pytorch.org/docs/stable/generated/torch.dsplit.html#torch.dsplit)
+## [ 参数不一致 ]torch.vsplit
+### [torch.vsplit](https://pytorch.org/docs/stable/generated/torch.vsplit.html#torch.vsplit)
 
 ```python
-torch.dsplit(input,
+torch.vsplit(input,
         indices_or_sections)
 ```
 
-### [paddle.dsplit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/dsplit_cn.html)
+### [paddle.vsplit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vsplit_cn.html)
 
 ```python
-paddle.dsplit(x,
+paddle.vsplit(x,
         num_or_sections,
         name=None)
 ```
@@ -26,14 +26,14 @@ Paddle 相比 PyTorch 用法不一致，具体如下：
 ### 转写示例
 #### 输入为列表的情况
 ```python
-a = np.random.rand(2, 3, 6)
+a = np.random.rand(2, 6)
 indices_or_sections = [1, 4]
 # Pytorch 写法
-torch.dsplit(torch.tensor(a), indices_or_sections)
+torch.vsplit(torch.tensor(a), indices_or_sections)
 
 # Paddle 写法
 num_or_sections = [1, 3, 2]
-paddle.dsplit(paddle.to_tensor(a), num_or_sections)
+paddle.vsplit(paddle.to_tensor(a), num_or_sections)
 
 # 参考转换方法
 def convert_num_or_sections(num_or_sections):
