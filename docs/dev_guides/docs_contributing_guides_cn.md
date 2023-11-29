@@ -120,7 +120,6 @@ Detect Private Key...................................(no files to check)Skipped
 Fix End of Files.........................................................Passed
 clang-format.........................................(no files to check)Skipped
 cpplint..............................................(no files to check)Skipped
-pylint...................................................................Passed
 copyright_checker........................................................Passed
 ```
   全部 Passed 或 Skipped 后，即可进入下一步。如果有 Failed 文件，则需要按照规范，修改出现 Failed 的文件后，重新 `git add` -> `pre-commit`，直至没有 Failed 文件。
@@ -137,12 +136,6 @@ Detect Private Key...................................(no files to check)Skipped
 Fix End of Files.........................................................Passed
 clang-format.........................................(no files to check)Skipped
 cpplint..............................................(no files to check)Skipped
-pylint...................................................................Failed
-- hook id: pylint-doc-string
-- exit code: 127
-
-./tools/codestyle/pylint_pre_commit.hook: line 11: pylint: command not found
-
 copyright_checker........................................................Passed
 ```
 - 填写提交说明：Git 每次提交代码，都需要写提交说明，让其他人知道这次提交做了哪些改变，可以通过 ``git commit`` 完成：
