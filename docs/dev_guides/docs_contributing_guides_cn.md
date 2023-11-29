@@ -112,7 +112,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 每次 `git commit` 都需要写提交说明，方便其他人了解每次提交做了哪些改变，可以通过 `git commit -m "fix docs bugs"` 完成。
 
 ```bash
-➜  pre-commit
+➜  git commit -m "fix docs bugs"
 check for merge conflicts................................................Passed
 check for broken symlinks............................(no files to check)Skipped
 detect private key.......................................................Passed
@@ -125,6 +125,8 @@ convert jinja2 into html.............................(no files to check)Skipped
 convert-markdown-into-html...........................(no files to check)Skipped
 black................................................(no files to check)Skipped
 ruff.................................................(no files to check)Skipped
+[fix1 ee8f4441f] fix docs bugs
+ 1 file changed, 19 insertions(+), 34 deletions(-)
 ```
 
 > 注意：`git commit` 执行后会进行代码预检测，不能出现失败的情况，如果有 failed 的检测项需先处理，才能继续后续步骤。
