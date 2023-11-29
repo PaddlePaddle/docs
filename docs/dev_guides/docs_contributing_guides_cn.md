@@ -125,7 +125,7 @@ convert jinja2 into html.............................(no files to check)Skipped
 convert-markdown-into-html...........................(no files to check)Skipped
 black................................................(no files to check)Skipped
 ruff.................................................(no files to check)Skipped
-[fix1 ee8f4441f] fix docs bugs
+[my-cool-stuff ee8f4441f] fix docs bugs
  1 file changed, 19 insertions(+), 34 deletions(-)
 ```
 

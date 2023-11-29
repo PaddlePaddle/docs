@@ -152,17 +152,29 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 ```bash
 ➜  git commit -m "add a new file test.md"
-CRLF end-lines remover...............................(no files to check)Skipped
-yapf.................................................(no files to check)Skipped
-Check for added large files..............................................Passed
-Check for merge conflicts................................................Passed
-Check for broken symlinks................................................Passed
-Detect Private Key...................................(no files to check)Skipped
-Fix End of Files.....................................(no files to check)Skipped
-clang-formater.......................................(no files to check)Skipped
-[my-cool-stuff c703c041] add test.md file
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 233
+check for added large files..............................................Passed
+check for merge conflicts................................................Passed
+check for broken symlinks............................(no files to check)Skipped
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+sort simple yaml files...............................(no files to check)Skipped
+trim trailing whitespace.................................................Passed
+CRLF end-lines remover...................................................Passed
+Tabs remover (C++)...................................(no files to check)Skipped
+Tabs remover (Python)....................................................Passed
+copyright_checker........................................................Passed
+black....................................................................Passed
+flake8...................................................................Passed
+ruff.....................................................................Passed
+clang-format.........................................(no files to check)Skipped
+cpplint..............................................(no files to check)Skipped
+clang-tidy...........................................(no files to check)Skipped
+auto-generate-cmakelists.............................(no files to check)Skipped
+cmake-format.........................................(no files to check)Skipped
+CMake Lint...........................................(no files to check)Skipped
+sort-txt-file........................................(no files to check)Skipped
+[my-cool-stuff e309f4805e] add a new file test.md
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
 > 注意：`git commit` 执行后会进行代码预检测，不能出现失败的情况，如果有 failed 的检测项需先处理，才能继续后续步骤。
