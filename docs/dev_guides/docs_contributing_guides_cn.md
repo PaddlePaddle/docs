@@ -109,7 +109,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 - commit ：提交本地更改
 
-每次 `git commit` 都需要写提交说明，方便其他人了解每次提交做了哪些改变，可以通过 `git commit -m "fix docs bugs"` 完成。
+每次 `git commit` 都需要写提交说明，方便其他人了解每次提交做了哪些改变，可以通过 `git commit -m <commit_message>` 完成。
 
 ```bash
 ➜  git commit -m "fix docs bugs"

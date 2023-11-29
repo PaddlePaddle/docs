@@ -148,7 +148,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 ➜  git add test.md
 ```
 
-每次 `git commit` 都需要写提交说明，方便其他人了解每次提交做了哪些改变，可以通过 `git commit -m "add a new file test.md"` 完成。
+每次 `git commit` 都需要写提交说明，方便其他人了解每次提交做了哪些改变，可以通过 `git commit -m <commit_message>` 完成。
 
 ```bash
 ➜  git commit -m "add a new file test.md"
