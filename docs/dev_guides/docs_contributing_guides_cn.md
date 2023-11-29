@@ -107,42 +107,27 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
    恢复后重新进行修改并提交文件即可。
 
-- pre-commit：提交修改说明前，需要对本次修改做一些格式化检查：
+- commit ：提交本地更改
 
-```
-➜  pre-commit
-CRLF end-lines remover...............................(no files to check)Skipped
-yapf.....................................................................Passed
-Check for added large files..............................................Passed
-Check for merge conflicts................................................Passed
-Check for broken symlinks................................................Passed
-Detect Private Key...................................(no files to check)Skipped
-Fix End of Files.........................................................Passed
-clang-format.........................................(no files to check)Skipped
-cpplint..............................................(no files to check)Skipped
-copyright_checker........................................................Passed
-```
-  全部 Passed 或 Skipped 后，即可进入下一步。如果有 Failed 文件，则需要按照规范，修改出现 Failed 的文件后，重新 `git add` -> `pre-commit`，直至没有 Failed 文件。
-```
-➜  pre-commit
-CRLF end-lines remover...............................(no files to check)Skipped
-yapf.....................................................................Failed
-- hook id: yapf
-- files were modified by this hook
-Check for added large files..............................................Passed
-Check for merge conflicts................................................Passed
-Check for broken symlinks................................................Passed
-Detect Private Key...................................(no files to check)Skipped
-Fix End of Files.........................................................Passed
-clang-format.........................................(no files to check)Skipped
-cpplint..............................................(no files to check)Skipped
-copyright_checker........................................................Passed
-```
-- 填写提交说明：Git 每次提交代码，都需要写提交说明，让其他人知道这次提交做了哪些改变，可以通过 ``git commit`` 完成：
+每次 `git commit` 都需要写提交说明，方便其他人了解每次提交做了哪些改变，可以通过 `git commit -m "fix docs bugs"` 完成。
 
+```bash
+➜  pre-commit
+check for merge conflicts................................................Passed
+check for broken symlinks............................(no files to check)Skipped
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+trim trailing whitespace.................................................Passed
+CRLF end-lines remover...................................................Passed
+Tabs remover.............................................................Passed
+CN-[whitespace]-EN fixer.................................................Passed
+convert jinja2 into html.............................(no files to check)Skipped
+convert-markdown-into-html...........................(no files to check)Skipped
+black................................................(no files to check)Skipped
+ruff.................................................(no files to check)Skipped
 ```
-➜  git commit -m "fix docs bugs"
-```
+
+> 注意：`git commit` 执行后会进行代码预检测，不能出现失败的情况，如果有 failed 的检测项需先处理，才能继续后续步骤。
 
 ### 3.2 确保本地仓库是最新的
 
