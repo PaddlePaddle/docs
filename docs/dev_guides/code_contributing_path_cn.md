@@ -174,7 +174,8 @@ cmake-format.........................................(no files to check)Skipped
 CMake Lint...........................................(no files to check)Skipped
 sort-txt-file........................................(no files to check)Skipped
 [my-cool-stuff e309f4805e] add a new file test.md
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 233
 ```
 
 > 注意：`git commit` 执行后会进行代码预检测，不能出现失败的情况，如果有 failed 的检测项需先处理，才能继续后续步骤。
