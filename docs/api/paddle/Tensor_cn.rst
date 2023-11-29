@@ -231,7 +231,7 @@ stop_gradient
 :::::::::
 
 查看一个 Tensor 是否计算并传播梯度，如果 stop_gradient 为 True，则该 Tensor 不会计算梯度，并会阻绝 Autograd 的梯度传播。
-反之，则会计算梯度并传播梯度。用户自行创建的的 Tensor，默认是 True，模型参数的 stop_gradient 都为 False。
+反之，则会计算梯度并传播梯度。用户自行创建的 Tensor，默认是 True，模型参数的 stop_gradient 都为 False。
 
 **代码示例**
 
@@ -791,7 +791,7 @@ concat(axis=0, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_concat`
+请参考 :ref:`cn_api_paddle_concat`
 
 conj(name=None)
 :::::::::
@@ -1282,7 +1282,7 @@ gather(index, axis=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_gather`
+请参考 :ref:`cn_api_paddle_gather`
 
 gather_nd(index, name=None)
 :::::::::
@@ -2031,15 +2031,6 @@ reshape_(shape, name=None)
 
 Inplace 版本的 :ref:`cn_api_paddle_reshape` API，对输入 `x` 采用 Inplace 策略
 
-reverse(axis, name=None)
-:::::::::
-
-返回：计算后的 Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_reverse`
-
 roll(shifts, axis=None, name=None)
 :::::::::
 
@@ -2190,15 +2181,6 @@ sinh(name=None)
 **代码示例**
 COPY-FROM: paddle.sinh
 
-size()
-:::::::::
-
-返回：计算后的 Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_size`
-
 slice(axes, starts, ends)
 :::::::::
 
@@ -2224,7 +2206,7 @@ split(num_or_sections, axis=0, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_split`
+请参考 :ref:`cn_api_paddle_split`
 
 vsplit(num_or_sections, name=None)
 :::::::::
@@ -2279,7 +2261,7 @@ stack(axis=0, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_stack`
+请参考 :ref:`cn_api_paddle_stack`
 
 stanh(scale_a=0.67, scale_b=1.7159, name=None)
 :::::::::
@@ -2306,7 +2288,7 @@ strided_slice(axes, starts, ends, strides)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_strided_slice`
+请参考 :ref:`cn_api_paddle_strided_slice`
 
 subtract(y, name=None)
 :::::::::
@@ -2363,6 +2345,27 @@ tile(repeat_times, name=None)
 
 请参考 :ref:`cn_api_paddle_tile`
 
+to(*args, **kwargs)
+:::::::::
+
+转换 Tensor 的设备或/和数据类型，并且返回转换后的 Tensor。该函数将会从 ``args`` 以及 ``kwargs`` 中解析出要转换到的目标类型 dtype 以及目标设备 place。
+目前支持一下三种方式调用该方法：
+
+    1. to(dtype, blocking=True)
+    2. to(device, dtype=None, blocking=True)
+    3. to(other, blocking=True)
+
+其中， ``dtype`` 可以是 ``paddle.dtype``, ``numpy.dtype`` 类型或者是 ``["bfloat16", "float16", "float32", "float64", "int8", "int16", "int32",
+"int64", "uint8", "complex64", "complex128", "bool"]`` 中的任意一个 ``str``。 ``device`` 可以是 ``paddle.CPUPlace()``, ``paddle.CUDAPlace()``,
+``paddle.CUDAPinnedPlace()``, ``paddle.XPUPlace()``, ``paddle.CustomPlace()`` 或者 ``str``。 ``other`` 需要是 ``Tensor`` 类型。
+
+返回：类型转换后的新的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+COPY-FROM: paddle.Tensor.to
+
 tolist()
 :::::::::
 
@@ -2379,7 +2382,7 @@ topk(k, axis=None, largest=True, sorted=True, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_topk`
+请参考 :ref:`cn_api_paddle_topk`
 
 trace(offset=0, axis1=0, axis2=1, name=None)
 :::::::::
@@ -2481,7 +2484,7 @@ unique(return_index=False, return_inverse=False, return_counts=False, axis=None,
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_unique`
+请参考 :ref:`cn_api_paddle_unique`
 
 unsqueeze(axis, name=None)
 :::::::::
@@ -2490,7 +2493,7 @@ unsqueeze(axis, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_fluid_layers_unsqueeze`
+请参考 :ref:`cn_api_paddle_unsqueeze`
 
 unsqueeze_(axis, name=None)
 :::::::::
@@ -3065,6 +3068,52 @@ unfold(x, axis, size, step, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_unfold`
+
+masked_fill(x, mask, value, name=None)
+:::::::::
+根据 mask 信息，将 value 中的值填充到 x 中 mask 对应为 True 的位置。
+
+返回一个根据 mask 将对应位置填充为 value 的 Tensor。
+
+请参考 :ref:`cn_api_paddle_masked_fill`
+
+masked_fill_(x, mask, value, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_masked_fill` API，对输入 `x` 采用 Inplace 策略。
+
+atleast_1d(name=None)
+:::::::::
+将输入转换为张量并返回至少为 ``1`` 维的视图。 ``1`` 维或更高维的输入会被保留。
+
+返回至少为 ``1`` 维视图的 Tensor 。
+
+请参考 :ref:`cn_api_paddle_atleast_1d`
+
+atleast_2d(name=None)
+:::::::::
+将输入转换为张量并返回至少为 ``2`` 维的视图。 ``2`` 维或更高维的输入会被保留。
+
+返回至少为 ``2`` 维视图的 Tensor 。
+
+请参考 :ref:`cn_api_paddle_atleast_2d`
+
+atleast_3d(name=None)
+:::::::::
+将输入转换为张量并返回至少为 ``3`` 维的视图。 ``3`` 维或更高维的输入会被保留。
+
+返回至少为 ``3`` 维视图的 Tensor 。
+
+请参考 :ref:`cn_api_paddle_atleast_3d`
+diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
+:::::::::
+根据给定的轴 axis 和偏移量 offset，将张量 y 的值填充到张量 x 中。
+
+返回：张量 y 填充到张量 x 中的结果。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_diagonal_scatter`
 
 signbit(x, name=None)
 :::::::::

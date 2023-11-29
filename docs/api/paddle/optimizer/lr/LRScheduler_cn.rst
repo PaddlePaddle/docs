@@ -9,7 +9,7 @@ LRScheduler
 
 目前在 paddle 中基于该基类，已经实现了 14 种策略，分别为：
 
-* :code:`NoamDecay`：诺姆衰减，相关算法请参考 `《Attention Is All You Need》 <https://arxiv.org/pdf/1706.03762.pdf>`_ 。请参考 :ref:`cn_api_paddle_optimizer_lr_NoamDecay`。
+* :code:`NoamDecay`：诺姆衰减，相关算法来源于 `《Attention Is All You Need》 <https://arxiv.org/pdf/1706.03762.pdf>`_ 。请参考 :ref:`cn_api_paddle_optimizer_lr_NoamDecay`。
 
 * :code:`ExponentialDecay`：指数衰减，即每次将当前学习率乘以给定的衰减率得到下一个学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_ExponentialDecay`。
 
@@ -38,6 +38,10 @@ LRScheduler
 * :code:`OneCycleLR`: One Cycle 衰减，学习率上升至最大，再下降至最小。请参考 :ref:`cn_api_paddle_optimizer_lr_OneCycleLR`。
 
 * :code:`CyclicLR`: Cyclic 学习率衰减，其将学习率变化的过程视为一个又一个循环，学习率根据固定的频率在最小和最大学习率之间不停变化。请参考 :ref:`cn_api_paddle_optimizer_lr_CyclicLR`。
+
+* :code:`LinearLR`: 学习率随 step 数线性增加到指定学习率。 请参考 :ref:`cn_api_paddle_optimizer_lr_LinearLR`。
+
+* :code:`CosineAnnealingWarmRestarts`: 余弦退火学习率，即学习率随 step 数变化呈余弦函数周期变化。 请参考 :ref:`cn_api_paddle_optimizer_lr_CosineAnnealingWarmRestarts`。
 
 你可以继承该基类实现任意的学习率策略，导出基类的方法为 ``from paddle.optimizer.lr import LRScheduler`` ，
 必须要重写该基类的 ``get_lr()`` 函数，否则会抛出 ``NotImplementedError`` 异常。
@@ -84,10 +88,20 @@ get_lr()
 
 上述给出了实现 ``StepLR`` 的一个简单示例。
 
-_state_keys()
+state_keys()
 '''''''''
 
 该函数通过定义字典 ``self.keys`` 来设置 ``optimizer.state_dict()`` 时的存储对象，默认情况下：``self.keys=['last_epoch', 'last_lr']``，其中 ``last_epoch``
 是当前的 epoch 数，``last_lr`` 是当前的学习率值。
 
 如果需要改变默认的行为，用户需要重写该方法，来重新定义字典 ``self.keys``，一般无需重新设置。
+
+state_dict()
+'''''''''
+
+以 ``dict`` 形式返回调度器的状态。
+
+set_state_dict(state_dict)
+'''''''''
+
+加载调度器状态。

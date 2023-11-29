@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.nn.init.zeros_.md
+## [ 组合替代实现 ]torch.nn.init.zeros_
 
 ### [torch.nn.init.zeros_](https://pytorch.org/docs/stable/nn.init.html?highlight=zeros_#torch.nn.init.zeros_)
 

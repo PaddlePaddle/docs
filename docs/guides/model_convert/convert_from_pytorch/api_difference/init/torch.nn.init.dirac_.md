@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.nn.init.dirac_.md
+## [ 组合替代实现 ]torch.nn.init.dirac_
 
 ### [torch.nn.init.dirac_](https://pytorch.org/docs/stable/nn.init.html?highlight=dirac_#torch.nn.init.dirac_)
 

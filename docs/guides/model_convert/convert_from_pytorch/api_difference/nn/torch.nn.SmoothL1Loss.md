@@ -1,4 +1,4 @@
-# [torch 参数更多 ]torch.nn.SmoothL1Loss
+## [torch 参数更多 ]torch.nn.SmoothL1Loss
 ### [torch.nn.SmoothL1Loss](https://pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html?highlight=smoothl1loss#torch.nn.SmoothL1Loss)
 
 ```python
@@ -23,7 +23,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | size_average  | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。 |
 | reduce        | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。 |
 | reduction        | reduction            | 表示应用于输出结果的计算方式。 |
-| beta          | delta        | SmoothL1Loss 损失的阈值参数。  |
+| beta          | delta        | SmoothL1Loss 损失的阈值参数，beta 不为 1.0 时 Paddle 不支持，暂无转写方式。  |
 
 ### 转写示例
 #### size_average

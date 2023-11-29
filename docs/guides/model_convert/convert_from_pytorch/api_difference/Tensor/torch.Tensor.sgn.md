@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.sgn
+## [ 无参数 ]torch.Tensor.sgn
 ### [torch.Tensor.sgn](https://pytorch.org/docs/stable/generated/torch.Tensor.sgn.html#torch.Tensor.sgn)
 
 ```python

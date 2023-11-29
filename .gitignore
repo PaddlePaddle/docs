@@ -5,6 +5,7 @@
 .idea
 build
 .vscode
+output/
 venv/
 
 *.pyc

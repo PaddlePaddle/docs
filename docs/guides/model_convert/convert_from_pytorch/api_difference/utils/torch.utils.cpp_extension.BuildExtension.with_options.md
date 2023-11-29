@@ -1,10 +1,10 @@
 ## [ 参数完全一致 ]torch.utils.cpp_extension.BuildExtension.with_options
-### [torch.utils.cpp_extension.BuildExtension.with_options]
+### [torch.utils.cpp_extension.BuildExtension.with_options]()
 ```python
 torch.utils.cpp_extension.BuildExtension.with_options(**options)
 ```
 
-### [paddle.utils.cpp_extension.BuildExtension.with_options]
+### [paddle.utils.cpp_extension.BuildExtension.with_options]()
 
 ```python
 paddle.utils.cpp_extension.BuildExtension.with_options(**options)

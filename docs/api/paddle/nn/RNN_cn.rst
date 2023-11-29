@@ -9,13 +9,13 @@ RNN
 
 **循环神经网络**
 
-循环神经网络（RNN）的封装，将输入的 Cell 封装为一个循环神经网络。它能够重复执行 :code:`cell.forward()` 直到遍历完 input 中的所有 Tensor。
+循环神经网络（RNN）的封装，将输入的 Cell 封装为一个循环神经网络。它能够重复执行 :code:`cell.forward()` 直到达到 inputs 的最大长度。
 
 参数
 ::::::::::::
 
     - **cell** (RNNCellBase) - RNNCellBase 类的一个实例。
-    - **is_reverse** (bool，可选) - 指定遍历 input 的方向。默认为 False
+    - **is_reverse** (bool，可选) - 指定遍历 input 的方向。默认为 False。
     - **time_major** (bool，可选) - 指定 input 的第一个维度是否是 time steps。默认为 False。
 
 输入

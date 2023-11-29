@@ -1,4 +1,4 @@
-## [参数名不一致]torch.nn.functional.unfold
+## [仅参数名不一致]torch.nn.functional.unfold
 
 ### [torch.nn.functional.unfold](https://pytorch.org/docs/stable/generated/torch.nn.functional.unfold.html#torch.nn.functional.unfold)
 

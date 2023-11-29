@@ -19,5 +19,3 @@ VERSIONSTR=${2}
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 python ${SCRIPT_DIR}/post_filter_htmls.py ${OUTPUTDIR}/en/${VERSIONSTR}/api/
-
-

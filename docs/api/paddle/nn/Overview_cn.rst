@@ -118,6 +118,7 @@ Padding 层
     " :ref:`paddle.nn.CELU <cn_api_paddle_nn_CELU>` ", "CELU 激活层"
     " :ref:`paddle.nn.ELU <cn_api_paddle_nn_ELU>` ", "ELU 激活层"
     " :ref:`paddle.nn.GELU <cn_api_paddle_nn_GELU>` ", "GELU 激活层"
+    " :ref:`paddle.nn.GLU <cn_api_paddle_nn_GLU>` ", "GLU 激活层"
     " :ref:`paddle.nn.Hardshrink <cn_api_paddle_nn_Hardshrink>` ", "Hardshrink 激活层"
     " :ref:`paddle.nn.Hardsigmoid <cn_api_paddle_nn_Hardsigmoid>` ", "Hardsigmoid 激活层"
     " :ref:`paddle.nn.Hardswish <cn_api_paddle_nn_Hardswish>` ", "Hardswish 激活层"
@@ -159,8 +160,8 @@ Normalization 层
     " :ref:`paddle.nn.BatchNorm3D <cn_api_paddle_nn_BatchNorm3D>` ", "三维 Batch Normalization 层"
     " :ref:`paddle.nn.GroupNorm <cn_api_paddle_nn_GroupNorm>` ", "Group Normalization 层"
     " :ref:`paddle.nn.InstanceNorm1D <cn_api_paddle_nn_InstanceNorm1D>` ", "一维 Instance Normalization 层"
-    " :ref:`paddle.nn.InstanceNorm2D <cn_api_nn_cn_InstanceNorm2D>` ", "二维 Instance Normalization 层"
-    " :ref:`paddle.nn.InstanceNorm3D <cn_api_nn_cn_InstanceNorm3D>` ", "三维 Instance Normalization 层"
+    " :ref:`paddle.nn.InstanceNorm2D <cn_api_paddle_nn_InstanceNorm2D>` ", "二维 Instance Normalization 层"
+    " :ref:`paddle.nn.InstanceNorm3D <cn_api_paddle_nn_InstanceNorm3D>` ", "三维 Instance Normalization 层"
     " :ref:`paddle.nn.LayerNorm <cn_api_paddle_nn_LayerNorm>` ", "用于保存 Normalization 层列表"
     " :ref:`paddle.nn.LocalResponseNorm <cn_api_paddle_nn_LocalResponseNorm>` ", "Local Response Normalization 层"
     " :ref:`paddle.nn.SpectralNorm <cn_api_paddle_nn_SpectralNorm>` ", "Spectral Normalization 层"
@@ -249,7 +250,7 @@ Loss 层
 
     " :ref:`paddle.nn.BCELoss <cn_api_paddle_nn_BCELoss>` ", "BCELoss 层"
     " :ref:`paddle.nn.BCEWithLogitsLoss <cn_api_paddle_nn_BCEWithLogitsLoss>` ", "BCEWithLogitsLoss 层"
-    " :ref:`paddle.nn.CosineEmbeddingLoss <cn_api_nn_loss_CosineEmbeddingLoss>` ", "CosineEmbeddingLoss 层"
+    " :ref:`paddle.nn.CosineEmbeddingLoss <cn_api_paddle_nn_CosineEmbeddingLoss>` ", "CosineEmbeddingLoss 层"
     " :ref:`paddle.nn.CrossEntropyLoss <cn_api_paddle_nn_CrossEntropyLoss>` ", "交叉熵损失层"
     " :ref:`paddle.nn.CTCLoss <cn_api_paddle_nn_CTCLoss>` ", "CTCLoss 层"
     " :ref:`paddle.nn.HSigmoidLoss <cn_api_paddle_nn_HSigmoidLoss>` ", "层次 sigmoid 损失层"
@@ -460,7 +461,7 @@ Embedding 相关函数
     :header: "API 名称", "API 功能"
 
 
-    " :ref:`paddle.nn.functional.diag_embed <cn_api_paddle_nn_functional_diag_embed>` ", "对角线 Embedding 方法"
+    " paddle.nn.functional.diag_embed ", "对角线 Embedding 方法，paddle.nn.functional.diag_embed 已废弃，请使用 :ref:`paddle.diag_embed <cn_api_paddle_diag_embed>` "
     " :ref:`paddle.nn.functional.embedding <cn_api_paddle_nn_functional_embedding>` ", "Embedding 方法"
 
 .. _loss_functional:
@@ -474,7 +475,7 @@ Embedding 相关函数
 
     " :ref:`paddle.nn.functional.binary_cross_entropy <cn_api_paddle_nn_functional_binary_cross_entropy>` ", "二值交叉熵损失值"
     " :ref:`paddle.nn.functional.binary_cross_entropy_with_logits <cn_api_paddle_nn_functional_binary_cross_entropy_with_logits>` ", "logits 二值交叉熵损失值"
-    " :ref:`paddle.nn.functional.cosine_embedding_loss <cn_paddle_nn_functional_cosine_embedding_loss>` ", "用于计算余弦相似度损失"
+    " :ref:`paddle.nn.functional.cosine_embedding_loss <cn_api_paddle_nn_functional_cosine_embedding_loss>` ", "用于计算余弦相似度损失"
     " :ref:`paddle.nn.functional.ctc_loss <cn_api_paddle_nn_functional_ctc_loss>` ", "用于计算 ctc 损失"
     " :ref:`paddle.nn.functional.dice_loss <cn_api_paddle_nn_functional_dice_loss>` ", "用于比较预测结果跟标签之间的相似度"
     " :ref:`paddle.nn.functional.hsigmoid_loss <cn_api_paddle_nn_functional_hsigmoid_loss>` ", "层次 sigmoid 损失函数"
@@ -494,7 +495,7 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.soft_margin_loss <cn_api_paddle_nn_functional_soft_margin_loss>` ", "用于计算 soft margin loss 损失函数"
     " :ref:`paddle.nn.functional.triplet_margin_loss <cn_api_paddle_nn_functional_triplet_margin_loss>` ", "用于计算 TripletMarginLoss"
     " :ref:`paddle.nn.functional.triplet_margin_with_distance_loss <cn_api_paddle_nn_functional_triplet_margin_with_distance_loss>` ", "用户自定义距离函数用于计算 triplet margin loss 损失"
-    " :ref:`paddle.nn.functional.multi_label_soft_margin_loss <cn_api_nn_functional_multi_label_soft_margin_loss>` ", "用于计算多分类的 hinge loss 损失函数"
+    " :ref:`paddle.nn.functional.multi_label_soft_margin_loss <cn_api_paddle_nn_functional_multi_label_soft_margin_loss>` ", "用于计算多分类的 hinge loss 损失函数"
     " :ref:`paddle.nn.functional.multi_margin_loss <cn_api_paddle_nn_functional_multi_margin_loss>` ", "用于计算 multi margin loss 损失函数"
 
 

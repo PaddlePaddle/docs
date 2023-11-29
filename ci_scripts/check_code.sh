@@ -17,46 +17,50 @@
 #=================================================
 #                   Utils
 #=================================================
+set +x
 
-set -ex
+SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+cd $SCRIPT_DIR/..
 
-if [ -z ${BRANCH} ]; then
-    BRANCH="develop"
+# use pre-commit 2.17
+if ! [[ $(pre-commit --version) == *"2.17.0"* ]]; then
+    pip install pre-commit==2.17.0 1>nul
 fi
 
-REPO_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}")/.." && pwd )"
-echo ${REPO_ROOT}
+diff_files=$(git diff --name-only --diff-filter=ACMR ${BRANCH})
+num_diff_files=$(echo "$diff_files" | wc -l)
+echo -e "diff files between pr and ${BRANCH}:\n${diff_files}"
 
-function prepare_env(){
-    pip install pre-commit pylint  # pytest
-}
+echo "Checking code style by pre-commit ..."
+pre-commit run --files ${diff_files};check_error=$?
 
-function abort(){
-    echo "Your change doesn't follow PaddlePaddle's code style." 1>&2
-    echo "Please use pre-commit to check what is wrong." 1>&2
-    exit 1
-}
+if test ! -z "$(git diff)"; then
+    echo -e '\n************************************************************************************'
+    echo -e "These files have been formatted by code format hook. You should use pre-commit to \
+format them before git push."
+    echo -e '************************************************************************************\n'
+    git diff 2>&1
+fi
 
-
-function check_style(){
-    trap 'abort' 0
-    pre-commit install
-    commit_files=on
-    for file_name in `git diff --name-only --diff-filter=ACMR upstream/${BRANCH}`;do
-        if  ! pre-commit run --files ../$file_name ; then
-            git diff
-            commit_files=off
-            echo "Please check the code style of ${file_name}"
-        fi
-    done
-    if [ $commit_files == 'off' ];then
-        echo "======================================================================="
-        echo "Code style check failed! Please check the error info above carefully."
-        echo "======================================================================="
-        exit 1
+echo -e '\n************************************************************************************'
+if [ ${check_error} != 0 ];then
+    echo "Your PR code style check failed."
+    echo "Please install pre-commit locally and set up git hook scripts:"
+    echo ""
+    echo "    pip install pre-commit==2.17.0"
+    echo "    pre-commit install"
+    echo ""
+    if [[ $num_diff_files -le 100 ]];then
+        echo "Then, run pre-commit to check codestyle issues in your PR:"
+        echo ""
+        echo "    pre-commit run --files" $(echo ${diff_files} | tr "\n" " ")
+        echo ""
     fi
-    trap 0
-}
+    echo "For more information, please refer to our codestyle check guide:"
+    echo "https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/git_guides/codestyle_check_guide_cn.html"
+else
+    echo "Your PR code style check passed."
+fi
+echo -e '************************************************************************************\n'
 
-# prepare_env
-check_style
+exit ${check_error}

@@ -36,7 +36,7 @@ fi
 export PADDLE_WHL
 echo "PADDLE_WHL=${PADDLE_WHL}"
 set -x
- 
+
 # 2 build all the Chinese and English docs, and upload them. Controlled with Env BUILD_DOC and UPLOAD_DOC
 PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: None"
 if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
@@ -46,7 +46,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     if [ $? -ne 0 ];then
         exit 1
     fi
-    
+
     is_shell_attribute_set x
     xdebug_setted=$?
     if [ $xdebug_setted ] ; then
@@ -118,8 +118,24 @@ if [ "${need_check_cn_doc_files}" = "" ] ; then
 else
     /bin/bash -x ${DIR_PATH}/check_api_cn.sh "${need_check_cn_doc_files}"
     if [ $? -ne 0 ];then
+        set +x
+        echo "************************************************************************************"
+        echo "ERROR: Exist COPY-FROM has not been parsed into sample code, please check COPY-FROM in the above files"
+        echo "************************************************************************************"
+        set -x
         EXIT_CODE=1
     fi
+fi
+
+# 5 Chinese api_label check
+/bin/bash -x ${DIR_PATH}/check_api_label_cn.sh
+if [ $? -ne 0 ];then
+    set +x
+    echo "************************************************************************************"
+    echo "ERROR: api_label is not correct, please check api_label in the above files"
+    echo "************************************************************************************"
+    set -x
+    EXIT_CODE=1
 fi
 
 if [ ${EXIT_CODE} -ne 0 ]; then
@@ -131,7 +147,7 @@ if [ ${EXIT_CODE} -ne 0 ]; then
     exit ${EXIT_CODE}
 fi
 
-# 5 Approval check
+# 6 Approval check
 /bin/bash  ${DIR_PATH}/checkapproval.sh
 if [ $? -ne 0 ];then
     exit 1

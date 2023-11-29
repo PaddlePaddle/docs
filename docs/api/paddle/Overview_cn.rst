@@ -103,6 +103,7 @@ tensor 数学操作
     " :ref:`paddle.multiplex <cn_api_paddle_multiplex>` ", "从每个输入 Tensor 中选择特定行构造输出 Tensor"
     " :ref:`paddle.multiply <cn_api_paddle_multiply>` ", "逐元素相乘算子"
     " :ref:`paddle.ldexp <cn_api_paddle_ldexp>` ", "计算 x 乘以 2 的 y 次幂"
+    " :ref:`paddle.multigammaln <cn_api_paddle_multigammaln>` ", "计算多元伽马函数的对数"
     " :ref:`paddle.nan_to_num <cn_api_paddle_nan_to_num>` ", "替换 x 中的 NaN、+inf、-inf 为指定值"
     " :ref:`paddle.neg <cn_api_paddle_neg>` ", "计算输入 x 的相反数并返回"
     " :ref:`paddle.nextafter <cn_api_paddle_nextafter>` ", "逐元素将 x 之后的下一个浮点值返回"
@@ -154,6 +155,7 @@ tensor 数学操作
     " :ref:`paddle.i1 <cn_api_paddle_i1>` ", "对输入 Tensor 每个元素计算第一类一阶修正贝塞尔函数"
     " :ref:`paddle.i1e <cn_api_paddle_i1e>` ", "对输入 Tensor 每个元素计算第一类指数缩放的一阶修正贝塞尔函数"
     " :ref:`paddle.polygamma <cn_api_paddle_polygamma>` ", "对输入 Tensor 每个元素计算多伽马函数"
+    " :ref:`paddle.hypot <cn_api_paddle_hypot>` ", "对输入 直角三角形的直角边 Tensor x, y， 计算其斜边"
 .. _tensor_math_inplace:
 
 tensor 数学操作原位（inplace）版本
@@ -182,6 +184,10 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.tanh_ <cn_api_paddle_tan_>` ", "Inplace 版本的 tan API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.uniform_ <cn_api_paddle_uniform_>` ", "Inplace 版本的 uniform API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.lerp_ <cn_api_paddle_lerp_>` ", "Inplace 版本的 lerp API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.hypot_ <cn_api_paddle_hypot_>` ", "Inplace 版本的 hypot API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.multigammaln_ <cn_api_paddle_multigammaln_>` ", "Inplace 版本的 multigammaln API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.masked_fill_ <cn_api_paddle_masked_fill_>` ", "Inplace 版本的 masked_fill API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.index_fill_ <cn_api_paddle_index_fill_>` ", "Inplace 版本的 index_fill API，对输入 x 采用 Inplace 策略"
 
 .. _tensor_logic:
 
@@ -245,7 +251,7 @@ tensor 创建相关
     " :ref:`paddle.zeros <cn_api_paddle_zeros>` ", "创建形状为 shape 、数据类型为 dtype 且值全为 0 的 Tensor"
     " :ref:`paddle.zeros_like <cn_api_paddle_zeros_like>` ", "返回一个和 x 具有相同的形状的全零 Tensor，数据类型为 dtype 或者和 x 相同"
     " :ref:`paddle.complex <cn_api_paddle_complex>` ", "给定实部和虚部，返回一个复数 Tensor"
-    " :ref:`paddle.create_parameter <cn_api_fluid_layers_create_parameter>` ", "创建一个参数,该参数是一个可学习的变量, 拥有梯度并且可优化"
+    " :ref:`paddle.create_parameter <cn_api_paddle_create_parameter>` ", "创建一个参数,该参数是一个可学习的变量, 拥有梯度并且可优化"
     " :ref:`paddle.clone <cn_api_paddle_clone>` ", "对输入 Tensor ``x`` 进行拷贝，并返回一个新的 Tensor，并且该操作提供梯度回传"
     " :ref:`paddle.batch <cn_api_paddle_batch>` ", "一个 reader 的装饰器。返回的 reader 将输入 reader 的数据打包成指定的 batch_size 大小的批处理数据（不推荐使用）"
     " :ref:`paddle.polar <cn_api_paddle_polar>`", "对于给定的模 ``abs`` 和相位角 ``angle``，返回一个对应复平面上的坐标复数 Tensor"
@@ -353,6 +359,9 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.gather <cn_api_paddle_gather>` ", "根据索引 index 获取输入 x 的指定 aixs 维度的条目，并将它们拼接在一起"
     " :ref:`paddle.gather_nd <cn_api_paddle_gather_nd>` ", "paddle.gather 的高维推广"
     " :ref:`paddle.reshape <cn_api_paddle_reshape>` ", "在保持输入 x 数据不变的情况下，改变 x 的形状"
+    " :ref:`paddle.atleast_1d <cn_api_paddle_atleast_1d>` ", "将输入转换为张量并返回至少为 ``1`` 维的视图"
+    " :ref:`paddle.atleast_2d <cn_api_paddle_atleast_2d>` ", "将输入转换为张量并返回至少为 ``2`` 维的视图"
+    " :ref:`paddle.atleast_3d <cn_api_paddle_atleast_3d>` ", "将输入转换为张量并返回至少为 ``3`` 维的视图"
     " :ref:`paddle.roll <cn_api_paddle_roll>` ", "沿着指定维度 axis 对输入 x 进行循环滚动，当元素移动到最后位置时，会从第一个位置重新插入"
     " :ref:`paddle.scatter <cn_api_paddle_distributed_scatter>` ", "通过基于 updates 来更新选定索引 index 上的输入来获得输出"
     " :ref:`paddle.scatter_nd <cn_api_paddle_scatter_nd>` ", "根据 index ，将 updates 添加到一个新的张量中，从而得到输出的 Tensor"
@@ -383,6 +392,9 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.view <cn_api_paddle_view>` ", "使用特定的 shape 或者 dtype，返回 x 的一个 view Tensor"
     " :ref:`paddle.view_as <cn_api_paddle_view_as>` ", "使用 other 的 shape，返回 x 的一个 view Tensor"
     " :ref:`paddle.unfold <cn_api_paddle_unfold>` ", "返回 x 的一个 view Tensor。以滑动窗口式提取 x 的值"
+    " :ref:`paddle.masked_fill <cn_api_paddle_masked_fill>` ", "根据 mask 信息，将 value 中的值填充到 x 中 mask 对应为 True 的位置。"
+    " :ref:`paddle.diagonal_scatter <cn_api_paddle_diagonal_scatter>` ", "根据给定的轴 axis 和偏移量 offset，将张量 y 的值填充到张量 x 中"
+    " :ref:`paddle.index_fill <cn_api_paddle_index_fill>` ", "沿着指定轴 axis 将 index 中指定位置的 x 的值填充为 value"
 
 .. _tensor_manipulation_inplace:
 

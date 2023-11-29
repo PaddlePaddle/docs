@@ -2,16 +2,16 @@ digraph G {
 
   e1[label="softmax\n<oneDNN>"]
   e2[label="layer_norm\n<Paddle CPU>"]
-  
+
   c[label="b"]
   e[label="a"]
-  subgraph cluster_0 {  
+  subgraph cluster_0 {
   label="in-placed"
   a -> e1
   e1 -> c
   }
-  
+
   c -> e2
   e2 -> e
-  
+
 }

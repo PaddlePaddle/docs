@@ -1,4 +1,4 @@
-## [paddle 参数更多]torch.cpu.amp.autocast
+## [仅 paddle 参数更多]torch.cpu.amp.autocast
 
 ### [torch.cpu.amp.autocast](https://pytorch.org/docs/stable/amp.html?highlight=autocast#torch.cpu.amp.autocast)
 

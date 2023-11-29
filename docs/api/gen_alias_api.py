@@ -1,18 +1,16 @@
-import paddle
 import inspect
 import pkgutil
-import os
-import sys
 import subprocess
+import sys
+
+import paddle
 
 
 class AliasAPIGen:
     def __init__(self, paddle_root_path):
         self.api_dict = {}
         self.root_module = paddle
-        self.not_display_prefix = set(
-            ["paddle.incubate", "paddle.fluid.contrib"]
-        )
+        self.not_display_prefix = {"paddle.incubate", "paddle.fluid.contrib"}
         self.id_api_dict = {}
         self.paddle_root_path = paddle_root_path
 
@@ -27,7 +25,6 @@ class AliasAPIGen:
             path=self.root_module.__path__,
             prefix=self.root_module.__name__ + ".",
         ):
-
             try:
                 m = eval(name)
             except AttributeError:
@@ -94,7 +91,7 @@ class AliasAPIGen:
         elif inspect.isfunction(obj):
             reg = "def %s(" % api.split(".")[-1]
 
-        shell_cmd = "find %s -name '*.py' | xargs grep  \"%s\" " % (
+        shell_cmd = "find {} -name '*.py' | xargs grep  \"{}\" ".format(
             self.paddle_root_path,
             reg,
         )
@@ -174,7 +171,7 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Useage:")
         print("python3 gen_alias_api.py path-to-paddle-root")
-        exit(1)
+        sys.exit(1)
     else:
         paddle_root = sys.argv[1]
         alias_gen = AliasAPIGen(paddle_root + "/python/")

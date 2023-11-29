@@ -1,4 +1,4 @@
-# [torch 参数更多 ]torch.nn.LayerNorm
+## [torch 参数更多 ]torch.nn.LayerNorm
 ### [torch.nn.LayerNorm](https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html?highlight=layernorm#torch.nn.LayerNorm)
 
 ```python

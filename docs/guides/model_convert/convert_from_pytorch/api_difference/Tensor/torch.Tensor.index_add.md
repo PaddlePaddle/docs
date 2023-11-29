@@ -26,7 +26,7 @@ paddle.index_add(x, index, axis, value, name=None)
 #### alpha：source 的缩放倍数
 ```python
 # Pytorch 写法
-x.index_add_(dim=1, index=index, source=source, alpha=alpha)
+x.index_add(dim=1, index=index, source=source, alpha=alpha)
 
 # Paddle 写法
 paddle.index_add(x, index=index, axis=1, value=alpha*source)

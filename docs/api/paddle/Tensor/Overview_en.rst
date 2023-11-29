@@ -252,6 +252,7 @@ Methods
     tanh
     tanh_
     tile
+    to
     tolist
     topk
     trace
@@ -275,3 +276,6 @@ Methods
     trapezoid
     cumulative_trapezoid
     vander
+    hypot
+    hypot_
+    diagonal_scatter

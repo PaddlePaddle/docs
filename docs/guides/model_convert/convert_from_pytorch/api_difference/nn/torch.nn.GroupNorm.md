@@ -1,4 +1,4 @@
-# [ torch 参数更多 ]torch.nn.GroupNorm
+## [ torch 参数更多 ]torch.nn.GroupNorm
 ### [torch.nn.GroupNorm](https://pytorch.org/docs/stable/generated/torch.nn.GroupNorm.html?highlight=groupnorm#torch.nn.GroupNorm)
 
 ```python

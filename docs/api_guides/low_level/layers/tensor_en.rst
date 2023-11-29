@@ -9,7 +9,7 @@ There are two data structures used in Fluid to host the data, namely `Tensor and
 Now let's take a closer look at the operations related to these two types of data.
 
 Tensor
-=======
+======
 
 1. create_tensor
 ---------------------
