@@ -58,7 +58,7 @@ auto
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.fleet.DistributedStrategy.distributed_optimizer
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.auto
 
 
 recompute
@@ -68,7 +68,7 @@ recompute
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.fleet.DistributedStrategy.recompute_configs
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.recompute
 
 
 recompute_configs
@@ -115,7 +115,7 @@ gradient_merge
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.fleet.DistributedStrategy.gradient_merge_configs
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.gradient_merge
 
 gradient_merge_configs
 '''''''''
@@ -160,7 +160,7 @@ lamb
 
 **代码示例**
 
-COPY-FROM: paddle.distributed.fleet.DistributedStrategy.lamb_configs
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.lamb
 
 lamb_configs
 '''''''''
@@ -206,13 +206,7 @@ adaptive_localsgd_configs
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.adaptive_localsgd = True
-  strategy.adaptive_localsgd_configs = {"init_k_steps": 1,
-                                        "begin_step": 30}
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.adaptive_localsgd_configs
 
 **init_k_steps(int):** 自适应 localsgd 的初始训练步长。训练后，自适应 localsgd 方法将自动调整步长。默认值 1。
 
@@ -225,11 +219,7 @@ amp
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.amp = True # by default this is false
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.amp_configs
 
 amp_configs
 '''''''''
@@ -254,14 +244,7 @@ amp_configs
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.amp = True
-  strategy.amp_configs = {
-      "init_loss_scaling": 32768,
-      "custom_white_list": ['conv2d']}
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.amp_configs
 
 dgc
 '''''''''
@@ -270,11 +253,7 @@ dgc
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.dgc = True  # by default this is false
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.dgc_configs
 
 dgc_configs
 '''''''''
@@ -291,12 +270,7 @@ dgc_configs
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.dgc = True
-  strategy.dgc_configs = {"rampup_begin_step": 1252}
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.dgc_configs
 
 fp16_allreduce
 '''''''''
@@ -305,12 +279,7 @@ fp16_allreduce
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.fp16_allreduce = True  # by default this is false
-
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.fp16_allreduce
 
 sharding
 '''''''''
@@ -324,11 +293,7 @@ sharding
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.sharding = True
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.sharding_configs
 
 sharding_configs
 '''''''''
@@ -356,16 +321,4 @@ sharding_configs
 **pp_allreduce_in_optimize(bool，可选):** [仅在混合并行中使用] 在开启 pipeline 并行后，将 allreduce 操作从反向阶段移动到更新阶段。根据不同的网络拓扑，该选项会影响训练速度，该策略目前还在实验阶段。默认值是 False。
 
 
-.. code-block:: python
-
-  # sharding-DP, 2 nodes with 8 gpus per node
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.sharding = True
-  strategy.sharding_configs = {
-      "sharding_segment_strategy": "segment_broadcast_MB",
-      "segment_broadcast_MB": 32,
-      "sharding_degree": 8,
-      "dp_degree": 2,
-      "gradient_merge_acc_step": 4,
-      }
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.sharding_configs
