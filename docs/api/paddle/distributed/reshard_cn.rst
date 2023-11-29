@@ -3,7 +3,7 @@
 reshard
 -------------------------------
 
-.. py:function:: paddle.distributed.reshard(dist_tensor, dist_attr)
+.. py:function:: paddle.distributed.reshard(dist_tensor, mesh, placements)
 
 根据新的分布式信息 ``dist_attr`` ，对一个带有分布式信息的 Tensor 进行 reshard 操作，重新进行 Tensor 的分布/切片，返回一个新的分布式 Tensor 。
 
@@ -14,7 +14,8 @@ reshard
 :::::::::
 
     - **dist_tensor** (Tensor) - 具有分布式信息的 Tensor ，为 paddle\.Tensor 类型。
-    - **dist_attr** (paddle.distributed.DistAttr) - Tensor 在 ProcessMesh 上的新的分布/切片方式。
+    - **mesh** (paddle.distributed.ProcessMesh) - 表示进程拓扑信息的 ProcessMesh 对象。
+    - **placements** (list(Placement)) - 分布式 Tensor 的切分表示列表，描述 Tensor 在 mesh 上如何切分。
 
 返回
 :::::::::
