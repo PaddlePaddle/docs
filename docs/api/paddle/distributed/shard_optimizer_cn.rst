@@ -14,7 +14,7 @@ shard_optimizer
 :::::::::
 
     - **optimizer** (paddle.optimizer.Optimizer) - 单卡视角的优化器。
-    - **shard_fn** (Callable) - 用于切分优化器状态函数。如果没有指定，默认地我们将参数的分布式信息传递给对应的优化器状态。
+    - **shard_fn** (Callable，可选) - 用于切分优化器状态函数。如果没有指定，默认地我们将参数的分布式信息传递给对应的优化器状态。
 
 返回
 :::::::::
