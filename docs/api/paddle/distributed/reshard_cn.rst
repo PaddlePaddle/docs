@@ -5,7 +5,7 @@ reshard
 
 .. py:function:: paddle.distributed.reshard(dist_tensor, mesh, placements)
 
-根据新的分布式信息 ``dist_attr`` ，对一个带有分布式信息的 Tensor 进行 reshard 操作，重新进行 Tensor 的分布/切片，返回一个新的分布式 Tensor 。
+根据新的分布式信息 ``placements`` ，对一个带有分布式信息的 Tensor 进行 reshard 操作，重新进行 Tensor 的分布/切片，返回一个新的分布式 Tensor 。
 
 ``dist_tensor`` 需要是一个具有分布式信息的 paddle\.Tensor。
 

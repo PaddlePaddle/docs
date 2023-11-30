@@ -5,7 +5,7 @@ dtensor_from_fn
 
 .. py:class:: paddle.distributed.dtensor_from_fn(fn, mesh, placements, *args, **kwargs)
 
-通过一个 paddle API (一般是 Tensor 创建类的 API )结合分布式属性 dist_attr 创建一个带分布式属性的 Tensor。
+通过一个 paddle API（一般是 Tensor 创建类的 API ）结合分布式属性 placements 创建一个带分布式属性的 Tensor。
 
 参数
 :::::::::

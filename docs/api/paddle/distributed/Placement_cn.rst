@@ -11,15 +11,4 @@ Placement
 代码示例
 :::::::::
 
-    .. code-block:: python
-
-        import paddle.distributed as dist
-        placements = [dist.Replicate(), dist.Shard(0), dist.Partial()]
-        for p in placements:
-            if isinstance(p, dist.Placement):
-                if p.is_replicated():
-                    print("replicate.")
-                elif p.is_shard():
-                    print("shard.")
-                elif p.is_partial():
-                    print("partial.")
+COPY-FROM: paddle.distributed.Placement
