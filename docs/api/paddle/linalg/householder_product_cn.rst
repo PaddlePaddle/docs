@@ -27,7 +27,7 @@ householder_product
 返回
 ::::::::::::
 
-    - Tensor, dtype与输入张量相同, QR分解中的Q, :MATH:`out = q = H_1H_2H_3 ... H_K`
+    - Tensor, dtype 与输入张量相同, QR 分解中的 Q, :MATH:`out = q = H_1H_2H_3 ... H_K`
 
 代码示例
 ::::::::::
