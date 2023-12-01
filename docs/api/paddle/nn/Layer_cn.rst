@@ -50,11 +50,12 @@ COPY-FROM: paddle.nn.Layer.eval
 
 apply(fn)
 '''''''''
+
 将一个函数 fn 递归地应用到网络的每一个子层(即在函数的 ``.sublayers()`` 中返回的子层)以及模块自身。该方法通常用来初始化一个模型中的参数。
 
 **参数**
 
-    -**fn** (function) - 应用到每一个子层的函数
+    - **fn** (function) - 应用到每一个子层的函数
 
 **返回**
 Layer (返回网络层)， self (返回自身)
