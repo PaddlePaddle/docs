@@ -3,7 +3,7 @@
 adaptive_log_softmax_with_loss
 -------------------------------
 
-.. py:class:: paddle.nn.functional.adaptive_log_softmax_with_loss(input, label, head_weight, tail_weights, cutoffs, head_bias=None)
+.. py:function:: paddle.nn.functional.adaptive_log_softmax_with_loss(input, label, head_weight, tail_weights, cutoffs, head_bias=None)
 
 
 计算自适应 logsoftmax 结果以及 input 和 label 之间的负对数似然。参数`head_weight`、`tail_weights`、`cutoffs`和`head_bias`是`AdaptiveLogSoftmaxWithLoss`的内部成员。
