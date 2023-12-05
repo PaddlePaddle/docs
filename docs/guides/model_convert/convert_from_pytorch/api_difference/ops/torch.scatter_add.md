@@ -16,7 +16,9 @@ paddle.put_along_axis(arr,
                       indices,
                       values,
                       axis,
-                      reduce='assign')
+                      reduce='assign',
+                      include_self=True,
+                      broadcast=True)
 ```
 
 其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：

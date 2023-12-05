@@ -9,7 +9,7 @@ torch.scatter(input,dim, index, src, reduce=None,out=None)
 ### [paddle.put_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/put_along_axis_cn.html#cn-api-paddle-tensor-put-along-axis)
 
 ```python
-paddle.put_along_axis(arr,indices, values, axis, reduce="assign")
+paddle.put_along_axis(arr,indices, values, axis, reduce="assign", include_self=True, broadcast=True)
 
 ```
 
