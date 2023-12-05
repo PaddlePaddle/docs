@@ -279,3 +279,4 @@ Methods
     hypot
     hypot_
     diagonal_scatter
+    combinations
