@@ -2597,7 +2597,7 @@ is_integer()
 
 请参考 :ref:`cn_api_paddle_is_integer`
 
-take_along_axis(arr, indices, axis)
+take_along_axis(arr, indices, axis, broadcast=True)
 :::::::::
 
 基于输入索引矩阵，沿着指定 axis 从 arr 矩阵里选取 1d 切片。索引矩阵必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
