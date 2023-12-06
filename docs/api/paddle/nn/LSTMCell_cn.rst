@@ -3,7 +3,7 @@
 LSTMCell
 -------------------------------
 
-.. py:class:: paddle.nn.LSTMCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
+.. py:class:: paddle.nn.LSTMCell(input_size, hidden_size, proj_size=None, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
 
 
 
@@ -37,6 +37,7 @@ LSTMCell
 
     - **input_size** (int) - 输入的大小。
     - **hidden_size** (int) - 隐藏状态大小。
+    - **proj_size** (int，可选) - 。将隐含状态的维度投影到 proj_size 的大小，要求 proj_size < hidden_size。默认为 None。
     - **weight_ih_attr** (ParamAttr，可选) - weight_ih 的参数。默认为 None。
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh 的参数。默认为 None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih 的参数。默认为 None。
@@ -47,7 +48,7 @@ LSTMCell
 ::::::::::::
 
     - **weight_ih** (Parameter) - input 到 hidden 的变换矩阵的权重。形状为（4 * hidden_size, input_size）。对应公式中的 :math:`W_{ii}, W_{if}, W_{ig}, W_{io}`。
-    - **weight_hh** (Parameter) - hidden 到 hidden 的变换矩阵的权重。形状为（4 * hidden_size, hidden_size）。对应公式中的 :math:`W_{hi}, W_{hf}, W_{hg}, W_{ho}`。
+    - **weight_hh** (Parameter) - hidden 到 hidden 的变换矩阵的权重。形状为（4 * hidden_size, hidden_size）。如果指定了 proj_size ，那么对应的形状为（4 * hidden_size, proj_size）。对应公式中的 :math:`W_{hi}, W_{hf}, W_{hg}, W_{ho}`。
     - **bias_ih** (Parameter) - input 到 hidden 的变换矩阵的偏置。形状为（4 * hidden_size, ）。对应公式中的 :math:`b_{ii}, b_{if}, b_{ig}, b_{io}`。
     - **bias_hh** (Parameter) - hidden 到 hidden 的变换矩阵的偏置。形状为（4 * hidden_size, ）。对应公式中的 :math:`b_{hi}, b_{hf}, b_{hg}, b_{ho}`。
 
@@ -61,7 +62,7 @@ LSTMCell
 ::::::::::::
 
     - **outputs** (Tensor) - 输出。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
-    - **new_states** (tuple) - 一个包含两个 Tensor 的元组，每个 Tensor 的形状都为[batch_size, hidden_size]，新一轮的隐藏状态。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}，c_{t}`。
+    - **new_states** (tuple) - 一个包含两个 Tensor 的元组，每个 Tensor 的形状都为[batch_size, hidden_size]，新一轮的隐藏状态。形状为[batch_size, hidden_size]，如果指定了 proj_size，那么第一个元素的形状则变为[batch_size, proj_size]，对应公式中的 :math:`h_{t}，c_{t}`。
 
 .. note::
     所有的变换矩阵的权重和偏置都默认初始化为 Uniform(-std, std)，其中 std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_paddle_ParamAttr`。
