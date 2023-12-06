@@ -1,4 +1,4 @@
-.. _cn_api_fluid_XPUPlace:
+.. _cn_api_paddle_device_XPUPlace:
 
 XPUPlace
 -------------------------------

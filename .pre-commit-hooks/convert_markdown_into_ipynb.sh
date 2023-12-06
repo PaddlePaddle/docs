@@ -6,4 +6,3 @@ for file in $@ ; do
         exit 1
     fi
 done
-

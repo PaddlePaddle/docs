@@ -1,5 +1,5 @@
 digraph G {
-  label = "simple RNN implementation" 
+  label = "simple RNN implementation"
 
   ranksep=2;
 

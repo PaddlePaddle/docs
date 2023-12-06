@@ -1,4 +1,4 @@
-.. _cn_api_vision_transforms_hflip:
+.. _cn_api_paddle_vision_transforms_hflip:
 
 hflip
 -------------------------------
@@ -10,7 +10,7 @@ hflip
 参数
 :::::::::
 
-    - img (PIL.Image|numpy.ndarray) - 输入的图像。
+    - **img** (PIL.Image|numpy.ndarray) - 输入的图像。
 
 返回
 :::::::::

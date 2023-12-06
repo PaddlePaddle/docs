@@ -12,15 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from __future__ import print_function
-import json
 import argparse
+import ast
+import inspect
+import json
 import os.path as osp
 import re
 import sys
-import inspect
-import ast
-import paddle
 
 
 def add_path(path):
@@ -35,10 +33,7 @@ from extract_api_from_docs import extract_params_desc_from_rst_file
 
 arguments = [
     # flags, dest, type, default, help
-    [
-        '--rst-files', 'rst_files', str, None,
-        'api rst files, sperated by space'
-    ],
+    ['--rst-files', 'rst_files', str, None, 'api rst files, sperated by space'],
     ['--api-info', 'api_info_file', str, None, 'api_info_all.json filename'],
 ]
 
@@ -52,7 +47,8 @@ def parse_args():
     parser.add_argument('--debug', dest='debug', action="store_true")
     for item in arguments:
         parser.add_argument(
-            item[0], dest=item[1], help=item[4], type=item[2], default=item[3])
+            item[0], dest=item[1], help=item[4], type=item[2], default=item[3]
+        )
 
     args = parser.parse_args()
     return args
@@ -136,13 +132,14 @@ def check_api_parameters(rstfiles, apiinfo):
     """check function's parameters same as its origin definition.
 
     TODO:
-    1. All the documents of classes are skiped now. As 
+    1. All the documents of classes are skiped now. As
         (1) there ars many class methods in documents, may break the scripts.
         (2) parameters of Class should be checked with its `__init__` method.
     2. Some COMPLICATED annotations may break the scripts.
     """
     pat = re.compile(
-        r'^\.\.\s+py:(method|function|class)::\s+(\S+)\s*\(\s*(.*)\s*\)\s*$')
+        r'^\.\.\s+py:(method|function|class)::\s+(\S+)\s*\(\s*(.*)\s*\)\s*$'
+    )
     check_passed = []
     check_failed = []
     api_notfound = []
@@ -164,8 +161,10 @@ def check_api_parameters(rstfiles, apiinfo):
                     flag = False
                     func_found_in_json = False
                     for apiobj in apiinfo.values():
-                        if 'all_names' in apiobj and funcname in apiobj[
-                                'all_names']:
+                        if (
+                            'all_names' in apiobj
+                            and funcname in apiobj['all_names']
+                        ):
                             func_found_in_json = True
                             if 'args' in apiobj:
                                 if paramstr == apiobj['args']:
@@ -173,26 +172,30 @@ def check_api_parameters(rstfiles, apiinfo):
                                         f'check func:{funcname} in {rstfilename} with {paramstr}'
                                     )
                                     flag = _check_params_in_description(
-                                        rstfilename, paramstr)
+                                        rstfilename, paramstr
+                                    )
                                 else:
                                     print(
                                         f'check func:{funcname} in {rstfilename} with {paramstr}, but different with json\'s {apiobj["args"]}'
                                     )
                                     flag = _check_params_in_description(
-                                        rstfilename, paramstr)
+                                        rstfilename, paramstr
+                                    )
                             else:  # paddle.abs class_method does not have `args` in its json item.
                                 print(
                                     f'check func:{funcname} in {rstfilename} with its FullArgSpec'
                                 )
                                 flag = _check_params_in_description_with_fullargspec(
-                                    rstfilename, funcname)
+                                    rstfilename, funcname
+                                )
                             break
                     if not func_found_in_json:  # may be inner functions
                         print(
                             f'check func:{funcname} in {rstfilename} with its FullArgSpec'
                         )
                         flag = _check_params_in_description_with_fullargspec(
-                            rstfilename, funcname)
+                            rstfilename, funcname
+                        )
                     if flag:
                         check_passed.append(rstfile)
                         print(f'check success: {rstfile}')
@@ -212,7 +215,8 @@ if __name__ == '__main__':
     rstfiles = [fn for fn in args.rst_files.split(' ') if fn]
     apiinfo = json.load(open(args.api_info_file))
     check_passed, check_failed, api_notfound = check_api_parameters(
-        rstfiles=rstfiles, apiinfo=apiinfo)
+        rstfiles=rstfiles, apiinfo=apiinfo
+    )
     result = True
     if check_failed:
         result = False
@@ -220,6 +224,6 @@ if __name__ == '__main__':
     if api_notfound:
         print(f'check_api_parameters funcname not found in: {api_notfound}')
     if result:
-        exit(0)
+        sys.exit(0)
     else:
-        exit(1)
+        sys.exit(1)

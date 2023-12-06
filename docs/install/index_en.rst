@@ -15,6 +15,7 @@
 * Linux system-related packages have been split into two types of packages, avx and noavx (Most machines use the avx instruction set. You can check whether your machine supports it through commands on the `PIP installation under Linux <pip/linux-pip.html>`_ page )
 * Add a CPU image with jupyter pre-installed. Jupyter service will be started after starting the image
 * Added support for Windows Visual Studio 2017 compilation, fully upgraded from VS2015 to VS2017
+* Add support for NVIDIA NGC PaddlePaddle Container
 
 
 ------------------------
@@ -42,7 +43,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 3. Version requirements of python and pip:
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-* Python requires version 3.6/3.7/3.8/3.9
+* Python requires version 3.7/3.8/3.9/3.10
 * Python needs pip, and pip requires version 20.2.2 or above
 * Python and pip requires 64-bit
 
@@ -133,7 +134,7 @@ This section describes how to use pip to install.
 
 4. Check the version of Python
 
-    Confirm the Python is 3.6/3.7/3.8/3.9 using command
+    Confirm the Python is 3.7/3.8/3.9/3.10 using command
     ::
 
         python --version
@@ -202,7 +203,18 @@ This section describes how to use pip to install.
     `install under Windows <pip/windows-pip_en.html>`_
 
 
-The second way to install: compile and install with source code
+
+The second way to install: compile and install with container
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+- We recommend that you use `NVIDIA PaddlePaddle Container <https://www.paddlepaddle.org.cn/documentation/docs/zh/install/install_NGC_PaddlePaddle_ch.html>`_ for your development environment installation.
+- Pros
+    1. Lastest version of CUDA
+    2. Newer verison of Ubuntu OS(18.04)
+    3. Performance and development efficiency have been optimized by NVIDIA
+
+
+The third way to install: compile and install with source code
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 - If you use PaddlePaddle only, we suggest you installation methods **pip** to install.

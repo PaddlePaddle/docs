@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_amax:
+.. _cn_api_paddle_amax:
 
 amax
 -------------------------------
@@ -16,7 +16,7 @@ amax
 :::::::::
    - **x** (Tensor) - Tensor，支持数据类型为 float32、float64、int32、int64，维度不超过 4 维。
    - **axis** (int|list|tuple，可选) - 求最大值运算的维度。如果为 None，则计算所有元素的最大值并返回包含单个元素的 Tensor 变量，否则必须在 :math:`[-x.ndim, x.ndim]` 范围内。如果 :math:`axis[i] <0`，则维度将变为 :math:`x.ndim+axis[i]`，默认值为 None。
-   - **keepdim** (bool，可选)- 是否在输出 Tensor 中保留减小的维度。如果 keepdim 为 False，结果张量的维度将比输入张量的小，默认值为 False。
+   - **keepdim** (bool，可选)- 是否在输出 Tensor 中保留减小的维度。如果 keepdim 为 False，结果 Tensor 的维度将比输入 Tensor 的小，默认值为 False。
    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

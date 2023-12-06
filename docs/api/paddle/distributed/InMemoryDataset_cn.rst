@@ -1,4 +1,4 @@
-.. _cn_api_distributed_InMemoryDataset:
+.. _cn_api_paddle_distributed_InMemoryDataset:
 
 InMemoryDataset
 -------------------------------
@@ -47,34 +47,6 @@ None。
 
 COPY-FROM: paddle.distributed.InMemoryDataset.init
 
-_init_distributed_settings(**kwargs)
-'''''''''
-
-**注意：**
-
-  **1. 该 API 只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
-  **2. 本 api 需要在机大规模参数服务器训练下生效，敬请期待详细使用文档**
-
-对 InMemoryDataset 的实例进行分布式训练相关配置的初始化。
-
-**参数**
-
-    - **kwargs** - 可选的关键字参数，由调用者提供，目前支持以下关键字配置。
-    - **merge_size** (int) - 通过样本 id 来设置合并，相同 id 的样本将会在 shuffle 之后进行合并，你应该在一个 data 生成器里面解析样本 id。merge_size 表示合并的最小数量，默认值为-1，表示不做合并。
-    - **parse_ins_id** (bool) - 是否需要解析每条样的 id，默认值为 False。
-    - **parse_content** (bool) - 是否需要解析每条样本的 content，默认值为 False。
-    - **fleet_send_batch_size** (int) - 设置发送 batch 的大小，默认值为 1024。
-    - **fleet_send_sleep_seconds** (int) - 设置发送 batch 后的睡眠时间，默认值为 0。
-    - **fea_eval** (bool) - 设置特征打乱特征验证模式，来修正特征级别的重要性，特征打乱需要 ``fea_eval`` 被设置为 True。默认值为 False。
-    - **candidate_size** (int) - 特征打乱特征验证模式下，用于随机化特征的候选池大小。默认值为 10000。
-
-**返回**
-None。
-
-
-**代码示例**
-
-COPY-FROM: paddle.distributed.InMemoryDataset._init_distributed_settings
 
 update_settings(**kwargs)
 '''''''''

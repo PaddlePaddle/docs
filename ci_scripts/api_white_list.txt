@@ -1,9 +1,3 @@
-paddle/fluid/transpiler/DistributeTranspiler_cn.rst
-paddle/fluid/transpiler/DistributeTranspilerConfig_cn.rst
-paddle/fluid/transpiler/HashName_cn.rst
-paddle/fluid/transpiler/memory_optimize_cn.rst
-paddle/fluid/transpiler/release_memory_cn.rst
-paddle/fluid/layers/scatter_cn.rst
 paddle/distributed/init_parallel_env_cn.rst
 paddle/distributed/spawn_cn.rst
 paddle/distributed/ReduceOp_cn.rst

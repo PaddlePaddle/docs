@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_floor:
+.. _cn_api_paddle_floor:
 
 floor
 -------------------------------

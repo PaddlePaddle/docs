@@ -1,4 +1,3 @@
-
 .. _en_paddle_Tensor:
 
 paddle.Tensor
@@ -193,6 +192,7 @@ Methods
     multiplex
     multiply
     mv
+    nan_to_num
     ndimension
     neg
     nonzero
@@ -234,6 +234,7 @@ Methods
     solve
     sort
     split
+    vsplit
     sqrt
     sqrt_
     square
@@ -247,9 +248,11 @@ Methods
     subtract_
     sum
     t
+    take
     tanh
     tanh_
     tile
+    to
     tolist
     topk
     trace
@@ -269,3 +272,11 @@ Methods
     zero_
     is_complex
     is_integer
+    frexp
+    trapezoid
+    cumulative_trapezoid
+    vander
+    hypot
+    hypot_
+    diagonal_scatter
+    combinations

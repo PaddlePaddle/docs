@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_margin_ranking_loss:
+.. _cn_api_paddle_nn_functional_margin_ranking_loss:
 
 margin_ranking_loss
 -------------------------------
@@ -33,7 +33,7 @@ margin_ranking_loss
 
 返回
 ::::::::
-Tensor，如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'``，则形状为 :math:`[1]`，否则 shape 和输入 `input` 保持一致。数据类型与 ``input``、 ``other`` 相同。
+Tensor，如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'``，则形状为 :math:`[]`，否则 shape 和输入 `input` 保持一致。数据类型与 ``input``、 ``other`` 相同。
 
 代码示例
 ::::::::

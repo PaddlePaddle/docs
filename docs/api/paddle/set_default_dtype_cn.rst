@@ -1,4 +1,4 @@
-.. _cn_api_paddle_framework_set_default_dtype:
+.. _cn_api_paddle_set_default_dtype:
 
 set_default_dtype
 -------------------------------

@@ -1,4 +1,4 @@
-.. _cn_api_vision_image_image_load:
+.. _cn_api_paddle_vision_image_load:
 
 image_load
 -------------------------------
@@ -10,8 +10,8 @@ image_load
 参数
 :::::::::
 
-    - path (str) - 图像路径。
-    - backend (str，可选)：加载图像的后端。参数必须是 ``cv2``， ``pil``， ``None`` 之一。如果后端为 ``None``，则使用全局的 ``_imread_backend`` 参数，默认值为 ``pil``。这个参数可以使用 ``paddle.vision.set_image_backend`` 指定。默认值：None 。
+    - **path** (str) - 图像路径。
+    - **backend** (str，可选) - 加载图像的后端。参数必须是 ``cv2``， ``pil``， ``None`` 之一。如果后端为 ``None``，则使用全局的 ``_imread_backend`` 参数，默认值为 ``pil``。这个参数可以使用 :ref:`cn_api_paddle_vision_set_image_backend` 指定。默认值：None 。
 
 返回
 :::::::::

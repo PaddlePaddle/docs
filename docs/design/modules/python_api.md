@@ -36,7 +36,7 @@ Please be aware that these Python classes need to maintain some construction-tim
 
 ### Program
 
-A `ProgramDesc` describes a [DL program](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/program.md), which is composed of an array of `BlockDesc`s.  The `BlockDesc`s in a `ProgramDesc` can have a tree-like hierarchical structure. However, the `ProgramDesc` onlys stores a flattened array of `BlockDesc`s. A `BlockDesc` refers to its parent block by its index in the array.  For example, operators in the step block of an RNN operator need to be able to access variables in its ancestor blocks.
+A `ProgramDesc` describes a [DL program](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/program.md), which is composed of an array of `BlockDesc`s.  The `BlockDesc`s in a `ProgramDesc` can have a tree-like hierarchical structure. However, the `ProgramDesc` onlys stores a flattened array of `BlockDesc`s. A `BlockDesc` refers to its parent block by its index in the array.  For example, operators in the step block of an RNN operator need to be able to access variables in its ancestor blocks.
 
 Whenever we create a block, we need to set its parent block to the current block, hence the Python class `Program` needs to maintain a data member `current_block`.
 
@@ -70,7 +70,7 @@ class Program(objects):
 
 ### Block
 
-A [Block](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/block.md) includes
+A [Block](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/block.md) includes
 
 1. a map from variable names to an instance of the Python `Variable` class, and
 1. a list of `Operator` instances.
@@ -111,7 +111,7 @@ class Block(objects):
 The `Operator` class fills in the `OpDesc` message and calls the C++ function `InferShape` to infer the output shapes from the input shapes.
 
 ```python
-class Operator(object):
+class Operator:
     def __init__(self,
                  block,  # Block
                  type,   # string
@@ -133,7 +133,7 @@ class Operator(object):
 Operators take Variables as its inputs and outputs.
 
 ```python
-class Variable(object):
+class Variable:
     def __init__(self,
                  block=None,      # Block
                  name=None,       # string
@@ -166,7 +166,7 @@ class Parameter(Variable):
                  trainable,       # bool
                  initialize_op_attrs,
                  optimize_op_attrs):
-        super(Parameter, self).__init__(block, name, shape, dtype, lod_level)
+        super().__init__(block, name, shape, dtype, lod_level)
         self.trainable = trainable
         self.optimize_op_attrs = optimize_op_attrs
         block.prepend(Operator(block,  # Block
@@ -286,7 +286,7 @@ We not only use the fewer lines of code to write `fc_layer` but also make the co
 We just keep all parameters of a layer function as a dictionary in layer helper as a private data member. Every method of layer helper will look up the dictionary after it is invoked. In that way, we can implement a layer helper for all layer functions even some layer does not contain some operator. For example, The `activation` is used by the FullyConnected layer or convolution layers, but a cross-entropy layer does not use it. The example code of `add_activation` are:
 
 ```python
-class LayerHelper(object):
+class LayerHelper:
   def __init__(self, **kwargs):  # kwargs is short for `keyword arguments`
     self.kwargs = kwargs
 
@@ -322,4 +322,4 @@ executor.run(fetch_list=[hidden.param, hidden.param.grad], ...)
 
 ## Optimizer
 
-[Optimizer Design Doc](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/optimizer.md)
+[Optimizer Design Doc](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/modules/optimizer.md)

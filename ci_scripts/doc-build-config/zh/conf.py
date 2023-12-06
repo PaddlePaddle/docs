@@ -1,21 +1,13 @@
-import sys
-import os
-import subprocess
-import sphinx_rtd_theme
-import inspect
 import ast
-
-# sys.setdefaultencoding('utf-8')
-
-# sys.path.insert(0, os.path.abspath('@PADDLE_BINARY_DIR@/python'))
-import shlex
-from recommonmark import parser, transform
-
+import inspect
+import os
+import sys
 import time
 
+from recommonmark import parser, transform
+
 try:
-    import paddle
-    import paddle.fluid as fluid
+    import paddle  # noqa: F401
 except:
     print("import paddle error")
 breathe_projects = {"PaddlePaddle": "/docs/doxyoutput/xml"}
@@ -37,9 +29,9 @@ AutoStructify.default_config = {
 
 templates_path = ["/templates"]
 
-project = u'PaddlePaddle'
-author = u'%s developers' % project
-copyright = u'%d, %s' % (time.localtime(time.time()).tm_year, author)
+project = 'PaddlePaddle'
+author = '%s developers' % project
+copyright = '%d, %s' % (time.localtime(time.time()).tm_year, author)
 github_doc_root = 'https://github.com/PaddlePaddle/docs/docs'
 
 # add markdown parser
@@ -69,36 +61,33 @@ extensions = [
 # exhale
 exhale_args = {
     # These arguments are required
-    "containmentFolder":
-    "/FluidDoc/docs/inference_api",
-    "rootFileName":
-    "library_root.rst",
-    "rootFileTitle":
-    "Inference API",
-    "doxygenStripFromPath":
-    "..",
-    #"listingExclude": [r"*CMakeLists*", 0],
+    "containmentFolder": "/FluidDoc/docs/inference_api",
+    "rootFileName": "library_root.rst",
+    "rootFileTitle": "Inference API",
+    "doxygenStripFromPath": "..",
+    # "listingExclude": [r"*CMakeLists*", 0],
     # Suggested optional arguments
-    "createTreeView":
-    True,
+    "createTreeView": True,
     # TIP: if using the sphinx-bootstrap-theme, you need
     # "treeViewIsBootstrap": True,
-    "exhaleExecutesDoxygen":
-    True,
-    "exhaleDoxygenStdin":
-    "INPUT=/FluidDoc/docs/inference_api/paddle_include_file\nMACRO_EXPANSION=NO\nSKIP_FUNCTION_MACROS=YES",
-    "verboseBuild":
-    True,
-    "generateBreatheFileDirectives":
-    True
+    "exhaleExecutesDoxygen": True,
+    "exhaleDoxygenStdin": "INPUT=/FluidDoc/docs/inference_api/paddle_include_file\nMACRO_EXPANSION=NO\nSKIP_FUNCTION_MACROS=YES",
+    "verboseBuild": True,
+    "generateBreatheFileDirectives": True,
 }
 
 cpp_id_attributes = [
-    "aligned", "prog_filename,", "packed", "weak", "always_inline", "noinline",
-    "no-unroll-loops", "__attribute__((optimize(3)))"
+    "aligned",
+    "prog_filename,",
+    "packed",
+    "weak",
+    "always_inline",
+    "noinline",
+    "no-unroll-loops",
+    "__attribute__((optimize(3)))",
 ]
 cpp_paren_attributes = ["optimize", "__aligned__", "section", "deprecated"]
-#primary_domain="cpp"
+# primary_domain="cpp"
 
 # nbsphinx
 nbsphinx_execute = 'never'
@@ -110,8 +99,8 @@ mathjax_config = {
     'jax': ['input/TeX', 'output/HTML-CSS'],
     'tex2jax': {
         'inlineMath': [['$', '$'], ["\\(", "\\)"]],
-        'processEscapes': 'false'
-    }
+        'processEscapes': 'false',
+    },
 }
 mathjax_path = "https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js"
 
@@ -153,8 +142,15 @@ version = ''
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 exclude_patterns = [
-    '_build', 'book/*', 'design/*', '**/*_en.rst', '*_en.rst', '**/*hidden.*',
-    '**/*.en*', '*.en*', "**/*CMakeLists**"
+    '_build',
+    'book/*',
+    'design/*',
+    '**/*_en.rst',
+    '*_en.rst',
+    '**/*hidden.*',
+    '**/*.en*',
+    '*.en*',
+    "**/*CMakeLists**",
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
@@ -209,8 +205,11 @@ if 'VERSIONSTR' in os.environ and os.environ['VERSIONSTR'] != 'develop':
         float(os.environ['VERSIONSTR'])
         html_context['github_version'] = 'release/' + os.environ['VERSIONSTR']
     except ValueError:
-        print("os.environ['VERSIONSTR']={} is not releases's name".format(
-            os.environ['VERSIONSTR']))
+        print(
+            "os.environ['VERSIONSTR']={} is not releases's name".format(
+                os.environ['VERSIONSTR']
+            )
+        )
         html_context['github_version'] = os.environ['VERSIONSTR']
 
 # if lang == 'en' and 'pagename' in html_context and html_context['pagename'].startswith('api/'):
@@ -233,7 +232,7 @@ html_theme_options = {
     'sticky_navigation': True,
     'navigation_depth': 10,
     'includehidden': True,
-    'titles_only': True
+    'titles_only': True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -250,17 +249,14 @@ latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
     # 'papersize': 'letterpaper',
-
     # The font size ('10pt', '11pt' or '12pt').
     #
     # 'pointsize': '10pt',
     'fncychap': '',
-
     # Additional stuff for the LaTeX preamble.
     #
     'preamble': r'''\usepackage{ctex}
     ''',
-
     # Latex figure (float) alignment
     #
     # 'figure_align': 'htbp',
@@ -280,8 +276,10 @@ numfig = False
 highlight_language = 'python'
 html_experimental_html5_writer = False
 MARKDOWN_EXTENSIONS = [
-    'markdown.extensions.fenced_code', 'markdown.extensions.tables',
-    'pymdownx.superfences', 'pymdownx.escapeall'
+    'markdown.extensions.fenced_code',
+    'markdown.extensions.tables',
+    'pymdownx.superfences',
+    'pymdownx.escapeall',
 ]
 
 math_numfig = False
@@ -325,22 +323,26 @@ def linkcode_resolve(domain, info):
         if type(api).__name__ == 'module':
             module = os.path.splitext(api.__file__)[0] + '.py'
         else:
-            node_definition = ast.ClassDef if inspect.isclass(
-                api) else ast.FunctionDef
+            node_definition = (
+                ast.ClassDef if inspect.isclass(api) else ast.FunctionDef
+            )
 
             if api.__module__ not in [
-                    'paddle.fluid.core',
-                    'paddle.fluid.layers.layer_function_generator'
+                'paddle.fluid.core',
+                'paddle.fluid.layers.layer_function_generator',
             ]:
-                module = os.path.splitext(
-                    sys.modules[api.__module__].__file__)[0] + '.py'
+                module = (
+                    os.path.splitext(sys.modules[api.__module__].__file__)[0]
+                    + '.py'
+                )
                 with open(module) as module_file:
                     module_ast = ast.parse(module_file.read())
 
                     for node in module_ast.body:
-                        if isinstance(
-                                node,
-                                node_definition) and node.name == api_title:
+                        if (
+                            isinstance(node, node_definition)
+                            and node.name == api_title
+                        ):
                             line_no = node.lineno
                             break
 
@@ -348,14 +350,15 @@ def linkcode_resolve(domain, info):
                     if not line_no:
                         for node in module_ast.body:
                             if isinstance(node, ast.Assign) and api_title in [
-                                    target.id for target in node.targets
+                                target.id for target in node.targets
                             ]:
                                 line_no = node.lineno
                                 break
             else:
                 module = os.path.splitext(current_class.__file__)[0] + '.py'
-        url = GITHUB_REPO_URL + os.path.join(doc_version, 'python',
-                                             module[module.rfind('paddle'):])
+        url = GITHUB_REPO_URL + os.path.join(
+            doc_version, 'python', module[module.rfind('paddle') :]
+        )
         if line_no:
             return url + '#L' + str(line_no)
         return url
@@ -381,7 +384,8 @@ def setup(app):
             'enable_eval_rst': True,
             'enable_auto_doc_ref': True,
             'auto_toc_tree_section': True,
-            'known_url_schemes': ['http', 'https']
+            'known_url_schemes': ['http', 'https'],
         },
-        True)
+        True,
+    )
     app.add_transform(AutoStructify)

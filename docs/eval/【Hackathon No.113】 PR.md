@@ -986,7 +986,7 @@ Test_Dir = './data/data60/test.csv'
 lookid_dir = './data/data60/IdLookupTable.csv'
 
 
-class ImgTransforms(object):
+class ImgTransforms:
     """
     图像预处理工具，用于将图像进行升维(96, 96) => (96, 96, 3)，
     并对图像的维度进行转换从 HWC 变为 CHW

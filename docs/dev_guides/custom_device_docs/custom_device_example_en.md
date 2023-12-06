@@ -270,7 +270,7 @@ add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid separate temporari
 
 ############ Compile plug-ins
 add_library(${PLUGIN_NAME} SHARED runtime.cc add_kernel.cc)
-target_link_libraries(${PLUGIN_NAME} PRIVATE :core_avx.so)  # special name
+target_link_libraries(${PLUGIN_NAME} PRIVATE :libpaddle.so)  # special name
 
 ############ Assembly plug-ins
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/setup.py.in
@@ -379,7 +379,7 @@ ext_modules = [Extension(name='paddle-plugins.libpaddle_custom_cpu',
                          sources=['runtime.cc', 'add_kernel.cc'],
                          include_dirs=['/opt/conda/lib/python3.7/site-packages/paddle/include/'],
                          library_dirs=['/opt/conda/lib/python3.7/site-packages/paddle/fluid/'],
-                         libraries=['core_avx.so'])]
+                         libraries=['libpaddle.so'])]
 
 setup(
     name='paddle-custom_cpu',

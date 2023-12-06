@@ -1,4 +1,4 @@
-.. _cn_api_vision_image_get_image_backend:
+.. _cn_api_paddle_vision_get_image_backend:
 
 get_image_backend
 -------------------------------

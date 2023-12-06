@@ -1,4 +1,4 @@
-.. _cn_api_fluid_backward_gradients:
+.. _cn_api_paddle_static_gradients:
 
 gradients
 -------------------------------
@@ -28,4 +28,4 @@ list[Tensor]，包含与输入对应的梯度。如果一个输入不影响目�
 代码示例
 ::::::::::::
 
-COPY-FROM: <paddle.static.gradients>:<code-example>
+COPY-FROM: paddle.static.gradients

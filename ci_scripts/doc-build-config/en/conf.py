@@ -1,17 +1,15 @@
-import sys
-import os, subprocess
-# sys.path.insert(0, os.path.abspath('@PADDLE_BINARY_DIR@/python'))
-import shlex
-from recommonmark import parser, transform
-import sys
-import inspect
 import ast
-import time
 import configparser
+import inspect
+import os
+import re
+import sys
+import time
+
+from recommonmark import parser, transform
 
 try:
-    import paddle
-    import paddle.fluid as fluid
+    import paddle  # noqa: F401
 except:
     print("import paddle error")
 
@@ -27,9 +25,9 @@ AutoStructify = transform.AutoStructify
 # -- General configuration ------------------------------------------------
 
 # General information about the project.
-project = u'PaddlePaddle'
-author = u'%s developers' % project
-copyright = u'%d, %s' % (time.localtime(time.time()).tm_year, author)
+project = 'PaddlePaddle'
+author = '%s developers' % project
+copyright = '%d, %s' % (time.localtime(time.time()).tm_year, author)
 github_doc_root = 'https://github.com/PaddlePaddle/docs/docs'
 
 # add markdown parser
@@ -57,33 +55,26 @@ extensions = [
 
 exhale_args = {
     # These arguments are required
-    "containmentFolder":
-    "/FluidDoc/docs/inference_api",
-    "rootFileName":
-    "library_root.rst",
-    "rootFileTitle":
-    "Inference API",
-    "doxygenStripFromPath":
-    "..",
-    #"listingExclude": [r"*CMakeLists*", 0],
+    "containmentFolder": "/FluidDoc/docs/inference_api",
+    "rootFileName": "library_root.rst",
+    "rootFileTitle": "Inference API",
+    "doxygenStripFromPath": "..",
+    # "listingExclude": [r"*CMakeLists*", 0],
     # Suggested optional arguments
-    "createTreeView":
-    True,
+    "createTreeView": True,
     # TIP: if using the sphinx-bootstrap-theme, you need
     # "treeViewIsBootstrap": True,
-    "exhaleExecutesDoxygen":
-    True,
-    "exhaleDoxygenStdin":
-    "INPUT=/FluidDoc/docs/inference_api/\nMACRO_EXPANSION=NO\nSKIP_FUNCTION_MACROS=YES",
-    "verboseBuild":
-    True,
-    "generateBreatheFileDirectives":
-    True
+    "exhaleExecutesDoxygen": True,
+    "exhaleDoxygenStdin": "INPUT=/FluidDoc/docs/inference_api/\nMACRO_EXPANSION=NO\nSKIP_FUNCTION_MACROS=YES",
+    "verboseBuild": True,
+    "generateBreatheFileDirectives": True,
 }
 
 MARKDOWN_EXTENSIONS = [
-    'markdown.extensions.fenced_code', 'markdown.extensions.tables',
-    'pymdownx.superfences', 'pymdownx.escapeall'
+    'markdown.extensions.fenced_code',
+    'markdown.extensions.tables',
+    'pymdownx.superfences',
+    'pymdownx.escapeall',
 ]
 
 html_baseurl = 'https://www.paddlepaddle.org.cn/documentation/docs/'
@@ -124,8 +115,14 @@ templates_path = ["/templates"]
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 exclude_patterns = [
-    '_build', '**/*_cn*', 'book/*', 'design/*', '*_cn.rst', '**/*.cn*',
-    '*.cn*', '**/*hidden.*'
+    '_build',
+    '**/*_cn*',
+    'book/*',
+    'design/*',
+    '*_cn.rst',
+    '**/*.cn*',
+    '*.cn*',
+    '**/*hidden.*',
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
@@ -169,8 +166,11 @@ if 'VERSIONSTR' in os.environ and os.environ['VERSIONSTR'] != 'develop':
         float(os.environ['VERSIONSTR'])
         html_context['github_version'] = 'release/' + os.environ['VERSIONSTR']
     except ValueError:
-        print("os.environ['VERSIONSTR']={} is not releases's name".format(
-            os.environ['VERSIONSTR']))
+        print(
+            "os.environ['VERSIONSTR']={} is not releases's name".format(
+                os.environ['VERSIONSTR']
+            )
+        )
         html_context['github_version'] = os.environ['VERSIONSTR']
 
 # if lang == 'en' and 'pagename' in html_context and html_context['pagename'].startswith('api/'):
@@ -193,7 +193,7 @@ html_theme_options = {
     'sticky_navigation': True,
     'navigation_depth': 10,
     'includehidden': True,
-    'titles_only': True
+    'titles_only': True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -210,17 +210,14 @@ latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
     # 'papersize': 'letterpaper',
-
     # The font size ('10pt', '11pt' or '12pt').
     #
     # 'pointsize': '10pt',
     'fncychap': '',
-
     # Additional stuff for the LaTeX preamble.
     #
     'preamble': r'''\usepackage{ctex}
     ''',
-
     # Latex figure (float) alignment
     #
     # 'figure_align': 'htbp',
@@ -268,45 +265,59 @@ def linkcode_resolve(domain, info):
     class_name = info['fullname'].replace('.' + api_title, '')
     if info['module']:
         class_name = info['module']
+        if len(class_names) > 1:
+            class_name = info['module'] + '.' + ''.join(class_names[:-1])
     try:
-        current_class = sys.modules[class_name]
+        # current_class = sys.modules[class_name]
+        current_class = eval(class_name)
         api = getattr(current_class, api_title)
         line_no = None
 
         if type(api).__name__ == 'module':
             module = os.path.splitext(api.__file__)[0] + '.py'
         else:
-            node_definition = ast.ClassDef if inspect.isclass(
-                api) else ast.FunctionDef
-
-            if api.__module__ not in [
+            node_definition = (
+                ast.ClassDef if inspect.isclass(api) else ast.FunctionDef
+            )
+            if type(api).__name__ == 'property':
+                return None
+            else:
+                if api.__module__ not in [
                     'paddle.fluid.core',
-                    'paddle.fluid.layers.layer_function_generator'
-            ]:
-                module = os.path.splitext(
-                    sys.modules[api.__module__].__file__)[0] + '.py'
-                with open(module) as module_file:
-                    module_ast = ast.parse(module_file.read())
+                    'paddle.fluid.layers.layer_function_generator',
+                ]:
+                    module = (
+                        os.path.splitext(sys.modules[api.__module__].__file__)[
+                            0
+                        ]
+                        + '.py'
+                    )
+                    with open(module) as module_file:
+                        module_ast = ast.parse(module_file.read())
 
-                    for node in module_ast.body:
-                        if isinstance(
-                                node,
-                                node_definition) and node.name == api_title:
-                            line_no = node.lineno
-                            break
-
-                    # If we could not find it, we look at assigned objects.
-                    if not line_no:
                         for node in module_ast.body:
-                            if isinstance(node, ast.Assign) and api_title in [
-                                    target.id for target in node.targets
-                            ]:
+                            if (
+                                isinstance(node, node_definition)
+                                and node.name == api_title
+                            ):
                                 line_no = node.lineno
                                 break
-            else:
-                module = os.path.splitext(current_class.__file__)[0] + '.py'
-        url = GITHUB_REPO_URL + os.path.join(doc_version, 'python',
-                                             module[module.rfind('paddle'):])
+
+                        # If we could not find it, we look at assigned objects.
+                        if not line_no:
+                            for node in module_ast.body:
+                                if isinstance(
+                                    node, ast.Assign
+                                ) and api_title in [
+                                    target.id for target in node.targets
+                                ]:
+                                    line_no = node.lineno
+                                    break
+                else:
+                    module = os.path.splitext(current_class.__file__)[0] + '.py'
+        url = GITHUB_REPO_URL + os.path.join(
+            doc_version, 'python', module[module.rfind('paddle') :]
+        )
         if line_no:
             return url + '#L' + str(line_no)
         return url
@@ -319,7 +330,6 @@ def handle_api_aliases():
     """
     因为api定义和导入的各种关系，导致部分api定义的地方和导出的地方不一致被sphinx认为是alias，如paddle.device.cuda.Event等
     对这部分API做单独的重命名处理，而这部分api的列表，就放在 /FluidDoc/docs/api/api_aliases.ini中吧
-
     see https://console.cloud.baidu-int.com/devops/icafe/issue/DLTP-35024/show?source=drawer-header
     see https://stackoverflow.com/a/58982001/1738613
     """
@@ -333,12 +343,30 @@ def handle_api_aliases():
     if language in config:
         for target_name, origin_name in config[language].items():
             print(
-                f'conf.py(en) handle_api_aliases: {target_name}={origin_name}')
+                f'conf.py(en) handle_api_aliases: {target_name}={origin_name}'
+            )
             tname = target_name.strip()
             tmn, tn = tname.rsplit('.', 1)
             oname = origin_name.strip()
             exec(f'{oname}.__module__ = "{tmn}"')
             exec(f'{oname}.__name__ = "{tn}"')
+
+
+def remove_doctest_directives(app, what, name, obj, options, lines):
+    """
+    Remove `doctest` directives from docstring
+    """
+    # Modify the lines inplace
+    # remove doctest directive
+    pattern_doctest = re.compile(r"\s*>>>\s*#\s*x?doctest:\s*.*")
+    lines[:] = [line for line in lines if not pattern_doctest.match(line)]
+
+    # remove blank ps(`>>>`)
+    lines[:] = [line for line in lines if not line.strip() == ">>>"]
+
+    # make sure there is a blank line at the end
+    if lines and lines[-1]:
+        lines.append('')
 
 
 def setup(app):
@@ -359,7 +387,11 @@ def setup(app):
             'enable_eval_rst': True,
             # 'enable_auto_doc_ref': True,
             'auto_toc_tree_section': True,
-            'known_url_schemes': ['http', 'https']
+            'known_url_schemes': ['http', 'https'],
         },
-        True)
+        True,
+    )
     app.add_transform(AutoStructify)
+
+    # remove doctest directives and blank ps
+    app.connect("autodoc-process-docstring", remove_doctest_directives)

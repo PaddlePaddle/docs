@@ -35,7 +35,7 @@ LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器�
   - **beta2** (float，可选) - 第二个动量估计的指数衰减率。默认值为 0.999。
   - **epsilon** (float，可选) - 保持数值稳定性的短浮点类型值，默认值为 1e-06。
   - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
-  - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_fluid_clip_ClipGradByValue>`。默认值为 None，此时将不进行梯度裁剪。
+  - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_paddle_nn_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_paddle_nn_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_paddle_nn_ClipGradByValue>`。默认值为 None，此时将不进行梯度裁剪。
   - **exclude_from_weight_decay_fn** (function) - 当某个参数作为输入该函数返回值为 True 时，为该参数跳过权重衰减。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
@@ -45,20 +45,7 @@ LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器�
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-     import paddle
-
-     inp = paddle.uniform(shape=[10, 10], dtype='float32', min=-0.1, max=0.1)
-     linear = paddle.nn.Linear(10, 10)
-     out = linear(inp)
-     loss = paddle.mean(out)
-     beta1 = paddle.to_tensor([0.9], dtype="float32")
-     beta2 = paddle.to_tensor([0.85], dtype="float32")
-     lamb = paddle.optimizer.Lamb(learning_rate=0.002, parameters=linear.parameters(), lamb_weight_decay=0.01)
-     back = out.backward()
-     lamb.step()
-     lamb.clear_grad()
+COPY-FROM: paddle.optimizer.Lamb
 
 方法
 ::::::::::::
@@ -77,20 +64,7 @@ step()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    value = paddle.arange(26, dtype='float32')
-    value = paddle.reshape(value, [2, 13])
-    a = paddle.to_tensor(value)
-    linear = paddle.nn.Linear(13, 5)
-    lamb = paddle.optimizer.Lamb(learning_rate = 0.01,
-                                 parameters = linear.parameters())
-    out = linear(a)
-    out.backward()
-    lamb.step()
-    lamb.clear_grad()
+COPY-FROM: paddle.optimizer.Lamb.step
 
 minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 '''''''''
@@ -99,10 +73,10 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 **参数**
 
-    - **loss** (Tensor) – 需要最小化的损失值变量。
-    - **startup_program** (Program，可选) – 用于初始化 parameters 中参数的 :ref:`cn_api_fluid_Program`，默认值为 None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
-    - **parameters** (list，可选) – 待更新的 Parameter 或者 Parameter.name 组成的列表，默认值为 None，此时将更新所有的 Parameter。
-    - **no_grad_set** (set，可选) – 不需要更新的 Parameter 或者 Parameter.name 组成集合，默认值为 None。
+    - **loss** (Tensor) - 需要最小化的损失值变量。
+    - **startup_program** (Program，可选) - 用于初始化 parameters 中参数的 :ref:`cn_api_paddle_static_Program`，默认值为 None，此时将使用 :ref:`cn_api_paddle_static_default_startup_program`。
+    - **parameters** (list，可选) - 待更新的 Parameter 或者 Parameter.name 组成的列表，默认值为 None，此时将更新所有的 Parameter。
+    - **no_grad_set** (set，可选) - 不需要更新的 Parameter 或者 Parameter.name 组成集合，默认值为 None。
 
 **返回**
 
@@ -110,26 +84,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    inp = paddle.uniform(shape=[10, 10], dtype="float32", min=-0.1, max=0.1)
-    linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    beta1 = paddle.to_tensor([0.9], dtype="float32")
-    beta2 = paddle.to_tensor([0.99], dtype="float32")
-
-    lamb = paddle.optimizer.Lamb(learning_rate=0.1,
-            lamb_weight_decay=0.01,
-            parameters=linear.parameters())
-    out.backward()
-    lamb.minimize(loss)
-    lamb.clear_grad()
-
+COPY-FROM: paddle.optimizer.Lamb.minimize
 
 clear_grad()
 '''''''''
@@ -142,20 +97,7 @@ clear_grad()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    value = paddle.arange(26, dtype="float32")
-    value = paddle.reshape(value, [2, 13])
-    a = paddle.to_tensor(value)
-    linear = paddle.nn.Linear(13, 5)
-    optimizer = paddle.optimizer.Lamb(learning_rate=0.02,
-                                      parameters=linear.parameters())
-    out = linear(a)
-    out.backward()
-    optimizer.step()
-    optimizer.clear_grad()
+COPY-FROM: paddle.optimizer.Lamb.clear_grad
 
 set_lr(value)
 '''''''''
@@ -176,26 +118,43 @@ set_lr(value)
 
 **代码示例**
 
+COPY-FROM: paddle.optimizer.Lamb.set_lr
+
+set_lr_scheduler(scheduler)
+'''''''''
+
+.. note::
+
+该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+
+手动设置当前 ``optimizer`` 的学习率为 LRScheduler 类。
+
+**参数**
+
+    scheduler (LRScheduler) - 需要设置的学习率的 LRScheduler 类。
+
+**返回**
+
+无。
+
+**代码示例**
+
 .. code-block:: python
-
     import paddle
-
     linear = paddle.nn.Linear(10, 10)
-
     lamb = paddle.optimizer.Lamb(0.1, parameters=linear.parameters())
-
-    # set learning rate manually by python float value
-    lr_list = [0.2, 0.3, 0.4, 0.5, 0.6]
-    for i in range(5):
-        lamb.set_lr(lr_list[i])
-        lr = lamb.get_lr()
-        print("current lr is {}".format(lr))
-    # Print:
-    #    current lr is 0.2
-    #    current lr is 0.3
-    #    current lr is 0.4
+    # set learning rate manually by class LRScheduler
+    scheduler = paddle.optimizer.lr.MultiStepDecay(learning_rate=0.5, milestones=[2,4,6], gamma=0.8)
+    lamb.set_lr_scheduler(scheduler)
+    lr = lamb.get_lr()
+    print("current lr is {}".format(lr))
     #    current lr is 0.5
-    #    current lr is 0.6
+    # set learning rate manually by another LRScheduler
+    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.1, step_size=5, gamma=0.6)
+    lamb.set_lr_scheduler(scheduler)
+    lr = lamb.get_lr()
+    print("current lr is {}".format(lr))
+    #    current lr is 0.1
 
 get_lr()
 '''''''''
@@ -213,38 +172,4 @@ float，当前步骤的学习率。
 
 **代码示例**
 
-.. code-block:: python
-
-
-    import paddle
-    import numpy as np
-
-    # example1: _LRScheduler is not used, return value is all the same
-    emb = paddle.nn.Embedding(10, 10, sparse=False)
-    lamb = paddle.optimizer.Lamb(0.001, parameters = emb.parameters())
-    lr = lamb.get_lr()
-    print(lr) # 0.001
-
-    # example2: StepDecay is used, return the step learning rate
-    inp = paddle.uniform(shape=[10, 10], dtype="float32", min=-0.1, max=0.1)
-    linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    bd = [2, 4, 6, 8]
-    value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.5, step_size=2, gamma=0.1)
-    lamb = paddle.optimizer.Lamb(scheduler,
-                           parameters=linear.parameters())
-
-    # first step: learning rate is 0.2
-    np.allclose(lamb.get_lr(), 0.2, rtol=1e-06, atol=0.0) # True
-
-    # learning rate for different steps
-    ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
-    for i in range(12):
-        lamb.step()
-        lr = lamb.get_lr()
-        scheduler.step()
-        np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
+COPY-FROM: paddle.optimizer.Lamb.get_lr

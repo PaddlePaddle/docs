@@ -1,4 +1,4 @@
-.. _cn_api_distributed_get_group:
+.. _cn_api_paddle_distributed_get_group:
 
 get_group
 -------------------------------
@@ -9,7 +9,7 @@ get_group
 
 参数
 :::::::::
-    - id (int)：通信组 id。默认值为 0。
+    - **id** (int) - 通信组 id。默认值为 0。
 
 返回
 :::::::::

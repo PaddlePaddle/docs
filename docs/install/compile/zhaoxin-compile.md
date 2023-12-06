@@ -4,7 +4,7 @@
 
 * **处理器：ZHAOXIN KaiSheng KH-37800D**
 * **操作系统：centos7**
-* **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **Python 版本 3.7/3.8/3.9/3.10 (64 bit)**
 * **pip 或 pip3 版本 9.0.1+ (64 bit)**
 
 兆芯为 x86 架构，编译方法与[Linux 下从源码编译 cpu 版](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/compile/compile_Linux.html)一致。
@@ -90,10 +90,6 @@
 
     >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
-    For Python2:
-    ```
-    cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON
-    ```
     For Python3:
     ```
     cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_MKL=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON
@@ -110,7 +106,7 @@
 11. 在当前机器或目标机器安装编译好的`.whl`包：
 
     ```
-    python2 -m pip install -U（whl 包的名字）`或`python3 -m pip install -U（whl 包的名字）
+    python3 -m pip install -U（whl 包的名字）
     ```
 
 恭喜，至此您已完成 PaddlePaddle 在 FT 环境下的编译安装。

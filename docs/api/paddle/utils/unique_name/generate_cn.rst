@@ -1,4 +1,4 @@
-.. _cn_api_fluid_unique_name_generate:
+.. _cn_api_paddle_utils_unique_name_generate:
 
 generate
 -------------------------------
@@ -8,7 +8,7 @@ generate
 
 
 
-该接口产生以前缀 key 开头的唯一名称。目前，Paddle 通过从 0 开始的编号对相同前缀 key 的名称进行区分。例如，使用 key=fc 连续调用该接口会产生 fc_0, fc_1, fc_2 等不同名称。
+产生以前缀 key 开头的唯一名称。目前，Paddle 通过从 0 开始的编号对相同前缀 key 的名称进行区分。例如，使用 key=fc 连续调用该接口会产生 fc_0, fc_1, fc_2 等不同名称。
 
 参数
 ::::::::::::

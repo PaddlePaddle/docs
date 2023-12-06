@@ -47,7 +47,7 @@ export PADDLE_INF_NAN_SKIP_VAR="mul:fc_0.tmp_0,mul:fc_0.tmp_1,dropout:new_relati
 For example, the fc_0.tmp_0 and fc_0.tmp_1 variables in mul op mentioned above can be matched by c_0.tmp
 
 ## <span id="test">Test</span>
-You can use the [check_nan_inf_base.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/check_nan_inf_base.py) file for test.
+You can use the [check_nan_inf_base.py](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/check_nan_inf_base.py) file for test.
 The script has set FLAGS_check_nan_inf=1 to enable the nan inf check. Just execute `python check_nan_inf_base.py` to test.
 
 #### 1. GPU log information

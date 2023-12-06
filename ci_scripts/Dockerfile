@@ -18,9 +18,7 @@ scipy\n\
 prettytable\n\
 opencv-python==4.2.0.32\n\
 markdown\n\
-pre-commit\n\
-pylint\n\
-pytest' >requirements && \
+pre-commit' >requirements && \
     pip3 install --no-cache-dir -i https://mirror.baidu.com/pypi/simple -r requirements && \
     rm requirements
 
@@ -28,7 +26,6 @@ pytest' >requirements && \
 RUN echo 'Pillow\n\
 numpy\n\
 gast==0.3.3\n\
-six\n\
 protobuf\n\
 urllib3\n\
 certifi\n\

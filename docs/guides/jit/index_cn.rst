@@ -15,13 +15,16 @@
 
 - `报错调试 <debugging_cn.html>`_ ：介绍了动静转换 @to_static 的调试方法和经验
 
+- `Limitations <limitations_cn.html>`_ ：介绍了动静转换 @to_static 的局限性和修改指南、建议
+
 
 
 ..  toctree::
     :hidden:
 
-    basic_usage_cn.rst
+    basic_usage_cn.md
     principle_cn.md
     grammar_list_cn.md
     case_analysis_cn.md
     debugging_cn.md
+    limitations_cn.md

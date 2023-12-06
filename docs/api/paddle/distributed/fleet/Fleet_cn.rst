@@ -1,4 +1,4 @@
-.. _cn_api_distributed_fleet_Fleet:
+.. _cn_api_paddle_distributed_fleet_Fleet:
 
 Fleet
 -------------------------------
@@ -29,34 +29,19 @@ None
 
 **代码示例 1**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
+COPY-FROM: paddle.distributed.fleet.Fleet.init:code-init-example1
 
 **代码示例 2**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init(is_collective=True)
+COPY-FROM: paddle.distributed.fleet.Fleet.init:code-init-example2
 
 **代码示例 3**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    role = fleet.PaddleCloudRoleMaker()
-    fleet.init(role)
+COPY-FROM: paddle.distributed.fleet.Fleet.init:code-init-example3
 
 **代码示例 4**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    strategy = fleet.DistributedStrategy()
-    fleet.init(strategy=strategy)
-
+COPY-FROM: paddle.distributed.fleet.Fleet.init:code-init-example4
 
 is_first_worker()
 '''''''''
@@ -69,13 +54,7 @@ True/False
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.is_first_worker()
-
-
+COPY-FROM: paddle.distributed.fleet.Fleet.is_first_worker
 
 worker_index()
 '''''''''
@@ -88,28 +67,20 @@ int
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.worker_index()
+COPY-FROM: paddle.distributed.fleet.Fleet.worker_index
 
 
 worker_num()
 '''''''''
 
-返回当前全部训练节点中`workjer`节点的个数
+返回当前全部训练节点中`worker`节点的个数
 
 **返回**
 int
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.worker_num()
+COPY-FROM: paddle.distributed.fleet.Fleet.worker_num
 
 
 is_worker()
@@ -122,11 +93,7 @@ True/False
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.is_worker()
+COPY-FROM: paddle.distributed.fleet.Fleet.is_worker
 
 
 worker_endpoints(to_string=False)
@@ -139,17 +106,13 @@ list/string
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.worker_endpoints()
+COPY-FROM: paddle.distributed.fleet.Fleet.worker_endpoints
 
 
 server_num()
 '''''''''
 
-**注意：**
+.. note::
 
   **该参数只在 ParameterServer 模式下生效**
 
@@ -161,18 +124,14 @@ int
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.server_num()
+COPY-FROM: paddle.distributed.fleet.Fleet.server_num
 
 
 server_index()
 '''''''''
 
 
-**注意：**
+.. note::
 
   **该参数只在 ParameterServer 模式下生效**
 
@@ -185,18 +144,14 @@ int
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.server_index()
+COPY-FROM: paddle.distributed.fleet.Fleet.server_index
 
 
 server_endpoints(to_string=False)
 '''''''''
 
 
-**注意：**
+.. note::
 
   **该参数只在 ParameterServer 模式下生效**
 
@@ -208,18 +163,14 @@ list/string
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.server_endpoints()
+COPY-FROM: paddle.distributed.fleet.Fleet.server_endpoints
 
 
 is_server()
 '''''''''
 
 
-**注意：**
+.. note::
 
   **该参数只在 ParameterServer 模式下生效**
 
@@ -231,11 +182,7 @@ True/False
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.is_server()
+COPY-FROM: paddle.distributed.fleet.Fleet.is_server
 
 
 barrier_worker()
@@ -248,11 +195,7 @@ barrier_worker()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.barrier_worker()
+COPY-FROM: paddle.distributed.fleet.Fleet.barrier_worker
 
 
 init_worker()
@@ -265,11 +208,7 @@ worker 节点在训练前的初始化，包括通信模块，参数同步等
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.init_worker()
+COPY-FROM: paddle.distributed.fleet.Fleet.init_worker
 
 
 init_server(*args, **kwargs)
@@ -282,11 +221,7 @@ server 节点的初始化，包括 server 端参数初始化，模型加载等
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.init_server()
+COPY-FROM: paddle.distributed.fleet.Fleet.init_server
 
 
 run_server()
@@ -299,12 +234,7 @@ server 节点的运行，此命令会将 ParameterServer 的进程启动并常�
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.init_server()
-    fleet.run_server()
+COPY-FROM: paddle.distributed.fleet.Fleet.run_server
 
 
 stop_worker()
@@ -317,13 +247,7 @@ stop_worker()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle.distributed.fleet as fleet
-    fleet.init()
-    fleet.init_worker()
-    "..."
-    fleet.stop_worker()
+COPY-FROM: paddle.distributed.fleet.Fleet.stop_worker
 
 
 save_inference_model(executor, dirname, feeded_var_names, target_vars, main_program=None, export_for_deployment=True)
@@ -348,20 +272,7 @@ save_inference_model(executor, dirname, feeded_var_names, target_vars, main_prog
 
 **代码示例**
 
-.. code-block:: text
-
-    import paddle
-    paddle.enable_static()
-    import paddle.distributed.fleet as fleet
-
-    fleet.init()
-
-    # build net
-    # loss = Net()
-    # fleet.distributed_optimizer(...)
-
-    exe = paddle.static.Executor(paddle.CPUPlace())
-    fleet.save_inference_model(exe, "dirname", ["feed_varname"], [loss], paddle.static.default_main_program())
+COPY-FROM: paddle.distributed.fleet.Fleet.save_inference_model
 
 
 save_persistables(executor, dirname, main_program=None)
@@ -381,19 +292,7 @@ save_persistables(executor, dirname, main_program=None)
 
 **代码示例**
 
-.. code-block:: text
-
-    import paddle
-    paddle.enable_static()
-    import paddle.distributed.fleet as fleet
-
-    fleet.init()
-
-    # build net
-    # fleet.distributed_optimizer(...)
-
-    exe = paddle.static.Executor(paddle.CPUPlace())
-    fleet.save_persistables(exe, "dirname", paddle.static.default_main_program())
+COPY-FROM: paddle.distributed.fleet.Fleet.save_persistables
 
 
 distributed_optimizer(optimizer, strategy=None)
@@ -408,21 +307,60 @@ distributed_optimizer(optimizer, strategy=None)
 
 **代码示例**
 
+COPY-FROM: paddle.distributed.fleet.Fleet.distributed_optimizer
+
+
+qat_init(place, scope, test_program=None)
+'''''''''
+
+基于 distributed_optimizer 中的 QAT 策略做初始化。
+
+**参数**
+
+ - **place**  (CUDAPlace) – 初始化参数的存储位置。
+ - **scope**  (Scope) – 执行这个 program 的域，用户可以指定不同的域。默认为全局域。
+ - **test_program**  (Program) – 基于 distributed_optimizer 的测试 program。
+
+**代码示例**
+
 .. code-block:: python
 
     import paddle
+    import paddle.nn.functional as F
     paddle.enable_static()
-    import paddle.distributed.fleet as fleet
-    fleet.init(is_collective=True)
-    strategy = fleet.DistributedStrategy()
-    optimizer = paddle.optimizer.SGD(learning_rate=0.001)
-    optimizer = fleet.distributed_optimizer(optimizer, strategy=strategy)
+
+    def run_example_code():
+        place = paddle.CUDAPlace(0)
+        exe = paddle.static.Executor(place)
+        # 1. Define the train program
+        data = paddle.static.data(name='X', shape=[None, 1, 28, 28], dtype='float32')
+        conv2d = paddle.static.nn.conv2d(input=data, num_filters=6, filter_size=3)
+        bn = paddle.static.nn.batch_norm(input=conv2d, act="relu")
+        pool = F.max_pool2d(bn, kernel_size=2, stride=2)
+        hidden = paddle.static.nn.fc(pool, size=10)
+        loss = paddle.mean(hidden)
+        # 2. Create the distributed optimizer and set qat config to True.
+        optimizer = paddle.optimizer.Momentum(learning_rate=0.01, multi_precision=True)
+        strategy = fleet.DistributedStrategy()
+        strategy.qat = True
+        optimizer = fleet.distributed_optimizer(optimizer, strategy=strategy)
+        # 3. Apply the strategies by distributed optimizer
+        # If you don't use the default_startup_program(), you sholud pass
+        # your defined `startup_program` into `minimize`.
+        optimizer.minimize(loss)
+        exe.run(paddle.static.default_startup_program())
+        # 4. Use `qat_init` to do FP32 parameters initialization.
+        # If you want to perform the testing process, you should pass `test_program` into `qat_init`.
+        optimizer.qat_init(place, paddle.static.global_scope())
+
+    if paddle.is_compiled_with_cuda() and len(paddle.static.cuda_places()) > 0:
+        run_example_code()
 
 
 distributed_model(model)
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -451,7 +389,7 @@ distributed_model(model)
 
     class LinearNet(nn.Layer):
         def __init__(self):
-            super(LinearNet, self).__init__()
+            super().__init__()
             self._linear1 = nn.Linear(10, 10)
             self._linear2 = nn.Linear(10, 1)
 
@@ -487,7 +425,7 @@ distributed_model(model)
 state_dict()
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -525,7 +463,7 @@ dict，当前 ``optimizer`` 使用的所有 Tensor。
 set_state_dict(state_dict)
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -566,7 +504,7 @@ None
 set_lr(value)
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -616,10 +554,57 @@ None
     #    current lr is 0.6
 
 
+set_lr_scheduler(scheduler)
+'''''''''
+
+.. note::
+
+  **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+手动设置当前 ``optimizer`` 的学习率为 LRScheduler 类。
+
+**参数**
+
+    scheduler (LRScheduler) - 需要设置的学习率的 LRScheduler 类。
+
+**返回**
+None
+
+
+**代码示例**
+
+.. code-block:: python
+    # 这个示例需要由 fleetrun 启动，用法为：
+    # fleetrun --gpus=0,1 example.py
+    # 脚本 example.py 中的代码是下面这个示例。
+    import numpy as np
+    import paddle
+    from paddle.distributed import fleet
+    fleet.init(is_collective=True)
+    value = np.arange(26).reshape(2, 13).astype("float32")
+    a = paddle.to_tensor(value)
+    layer = paddle.nn.Linear(13, 5)
+    adam = paddle.optimizer.Adam(learning_rate=0.01, parameters=layer.parameters())
+    adam = fleet.distributed_optimizer(adam)
+    dp_layer = fleet.distributed_model(layer)
+    # set learning rate manually by class LRScheduler
+    scheduler = paddle.optimizer.lr.MultiStepDecay(learning_rate=0.5, milestones=[2,4,6], gamma=0.8)
+    adam.set_lr_scheduler(scheduler)
+    lr = adam.get_lr()
+    print("current lr is {}".format(lr))
+    #    current lr is 0.5
+    # set learning rate manually by another LRScheduler
+    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.1, step_size=5, gamma=0.6)
+    adam.set_lr_scheduler(scheduler)
+    lr = adam.get_lr()
+    print("current lr is {}".format(lr))
+    #    current lr is 0.1
+
+
 get_lr()
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -660,7 +645,7 @@ float，当前步骤的学习率。
 step()
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -684,7 +669,7 @@ None。
 
     class LinearNet(nn.Layer):
         def __init__(self):
-            super(LinearNet, self).__init__()
+            super().__init__()
             self._linear1 = nn.Linear(10, 10)
             self._linear2 = nn.Linear(10, 1)
 
@@ -721,7 +706,7 @@ None。
 clear_grad()
 '''''''''
 
-**注意：**
+.. note::
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
@@ -746,7 +731,7 @@ None。
 
     class LinearNet(nn.Layer):
         def __init__(self):
-            super(LinearNet, self).__init__()
+            super().__init__()
             self._linear1 = nn.Linear(10, 10)
             self._linear2 = nn.Linear(10, 1)
 

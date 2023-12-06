@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_count_nonzero:
+.. _cn_api_paddle_count_nonzero:
 
 count_nonzero
 -------------------------------

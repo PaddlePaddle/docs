@@ -1,4 +1,4 @@
-.. _cn_api_nn_utils_parameters_to_vector:
+.. _cn_api_paddle_nn_utils_parameters_to_vector:
 
 parameters_to_vector
 -------------------------------
@@ -9,7 +9,7 @@ parameters_to_vector
 
 参数
 :::::::::
-    - parameters (Iterable[Tensor]) - 可迭代的多个 parameter。parameter 为 Layer 中可训练的 Tensor。
+    - **parameters** (Iterable[Tensor]) - 可迭代的多个 parameter。parameter 为 Layer 中可训练的 Tensor。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

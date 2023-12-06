@@ -9,9 +9,10 @@
 Before performing PaddlePaddle installation, please make sure that your Anaconda software environment is properly installed. For software download and installation, see Anaconda's official website (https://www.anaconda.com/). If you have installed Anaconda correctly, follow these steps to install PaddlePaddle.
 
 * Windows 7/8/10 Pro/Enterprise (64bit)
-  * GPU Version supportCUDA 10.1/10.2/11.2，且仅支持单卡
+* GPU Version supportCUDA 10.1/10.2/11.2，and only supports single card
 * conda version 4.8.3+ (64 bit)
-
+* NCCL, distribution are not supported on windows now
+* If you are in a WSL2 environment, it is recommended to install using Paddle according to the Linux method
 
 
 ### 1.1 Create Virtual Environment
@@ -85,7 +86,7 @@ which python
 
 1.2.2 Check the version of Python
 
-Use the following command to confirm it's version is 3.6/3.7/3.8/3.9
+Use the following command to confirm it's version is 3.7/3.8/3.9/3.10
 
 ```
 python --version

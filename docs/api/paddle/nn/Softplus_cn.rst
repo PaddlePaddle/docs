@@ -1,4 +1,4 @@
-.. _cn_api_nn_Softplus:
+.. _cn_api_paddle_nn_Softplus:
 
 Softplus
 -------------------------------
@@ -7,21 +7,24 @@ Softplus
 Softplus 激活层
 
 .. math::
+    softplus(x)=\begin{cases}
+            \frac{1}{\beta} * \log(1 + e^{\beta * x}),&x\leqslant\frac{\varepsilon}{\beta};\\
+            x,&x>\frac{\varepsilon}{\beta}.
+        \end{cases}
 
-    Softplus(x) = \frac{1}{beta} * \log(1 + e^{beta * x}) \\
-    \text{为了保证数值稳定性，当}\,beta * x > threshold\,\text{时，函数转变为线性函数 x}。
-
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::
-    - beta (float，可选) - Softplus 激活计算公式中的 beta 值。默认值为 1。
-    - threshold (float，可选) - Softplus 激活计算公式中的 threshold 值。默认值为 20。
+
+    - **beta** (float，可选) - Softplus 激活计算公式中的 :math:`\beta` 值。默认值为 1。
+    - **threshold** (float，可选) - Softplus 激活计算公式中的 :math:`\varepsilon` 值。默认值为 20。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-形状：
+形状
 ::::::::::
-    - input：任意形状的 Tensor。
+
+    - input：任意形状的 Tensor，支持的数据类型是 float32、 float64、complex64、complex128。
     - output：和 input 具有相同形状的 Tensor。
 
 代码示例

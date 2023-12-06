@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_shape:
+.. _cn_api_paddle_shape:
 
 shape
 -------------------------------
@@ -32,7 +32,7 @@ shape 层。
 参数
 ::::::::::::
 
-        - **input** （Tensor）-  输入的多维 Tensor 或 SelectedRows，数据类型为 float16，float32，float64，int32，int64。如果输入是 SelectedRows 类型，则返回其内部持有 Tensor 的 shape。
+        - **input** （Variable）-  输入的多维 Tensor 或 SelectedRows，数据类型为 bool， bfloat16，float16，float32，float64，int32，int64。如果输入是 SelectedRows 类型，则返回其内部持有 Tensor 的 shape。
 
 
 返回

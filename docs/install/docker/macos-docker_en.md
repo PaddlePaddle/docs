@@ -105,14 +105,6 @@ Now you have successfully used Docker to install PaddlePaddle. For more informat
         <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-jupyter </td>
         <td> CPU image of paddle version 2.1.0 is installed, and jupyter is pre-installed in the image. Start the docker to run the jupyter service </td>
     </tr>
-    <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda11.2-cudnn8 </td>
-        <td> GPU image of paddle version 2.1.0 is installed, cuda version is 11.2, cudnn version is 8.1 </td>
-    </tr>
-        <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda10.2-cudnn7 </td>
-        <td> GPU image of paddle version 2.1.0 is installed, cuda version is 10.2, cudnn version is 7 </td>
-    </tr>
    </tbody>
 </table>
 </p>

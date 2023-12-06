@@ -9,9 +9,9 @@
 -  **反向计算：** 运行反向算子来计算参数(Parameter)的梯度。
 -  **优化：** 应用优化算法以更新参数值 。
 
-在前向计算过程中，前向算子会计算出大量的中间结果，由于这些中间结果是训练数据和算子计算得到的，所以训练数据的 batch bize 越大，中间结果占用的内存也就越大。飞桨核心框架会使用张量来存储这些隐层的中间结果。当模型层数加深时，其中间结果的数量可达数千甚至数万，占据大量的内存。飞桨核心框架的显存回收机制会及时清除无用的中间结果以节省显存，但是有些中间结果是反向计算过程中算子的输入，这些中间结果必须存储在内存中，直到相应的反向算子计算完毕。
+在前向计算过程中，前向算子会计算出大量的中间结果，由于这些中间结果是训练数据和算子计算得到的，所以训练数据的 batch size 越大，中间结果占用的内存也就越大。飞桨核心框架会使用张量来存储这些隐层的中间结果。当模型层数加深时，其中间结果的数量可达数千甚至数万，占据大量的内存。飞桨核心框架的显存回收机制会及时清除无用的中间结果以节省显存，但是有些中间结果是反向计算过程中算子的输入，这些中间结果必须存储在内存中，直到相应的反向算子计算完毕。
 
-对于大小固定的内存来说，如果用户希望使用大 batch bize 的数据进行训练，则将导致单个中间结果占用内存增大，那么就需要减少中间结果的存储数量，FRB 就是基于这种思想设计的。FRB 是将深度学习网络切分为 k 个部分（segments）。对每个 segment 而言：前向计算时，除了小部分必须存储在内存中的张量外，其他中间结果都将被删除；在反向计算中，首先重新计算一遍前向算子，以获得中间结果，再运行反向算子。简而言之，FRB 和普通的网络迭代相比，多计算了一遍前向算子。
+对于大小固定的内存来说，如果用户希望使用大 batch size 的数据进行训练，则将导致单个中间结果占用内存增大，那么就需要减少中间结果的存储数量，FRB 就是基于这种思想设计的。FRB 是将深度学习网络切分为 k 个部分（segments）。对每个 segment 而言：前向计算时，除了小部分必须存储在内存中的张量外，其他中间结果都将被删除；在反向计算中，首先重新计算一遍前向算子，以获得中间结果，再运行反向算子。简而言之，FRB 和普通的网络迭代相比，多计算了一遍前向算子。
 
 具体过程如下图所示：
 
@@ -94,7 +94,7 @@ batch size = seq * seq_max_len
         def __init__(self, input_size=10,
                     recompute_blocks=[1, 3],
                     recompute_kwargs={}):
-            super(Naive_fc_net, self).__init__()
+            super().__init__()
             self.recompute_blocks = recompute_blocks
             self.recompute_kwargs = recompute_kwargs
             self.runfunc0 = get_fc_block(0, input_size, is_last=False)
@@ -171,7 +171,7 @@ batch size = seq * seq_max_len
 
     python recompute_dygraph.py
 
-recompute 动态图代码：`代码示例 <https://github.com/PaddlePaddle/FleetX/tree/old_develop/examples/recompute>`__。
+recompute 动态图代码：`代码示例 <https://github.com/PaddlePaddle/PaddleFleetX/tree/old_develop/examples/recompute>`__。
 
 输出:
 

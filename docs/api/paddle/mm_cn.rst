@@ -1,9 +1,9 @@
-.. _cn_api_tensor_mm:
+.. _cn_api_paddle_mm:
 
 mm
 -------------------------------
 
-.. py:function:: paddle.mm(input, mat2, out=None, name=None)
+.. py:function:: paddle.mm(input, mat2, name=None)
 
 
 
@@ -17,9 +17,8 @@ mm
 参数
 ::::::::::::
 
-    - **input** (Tensor)：输入变量，类型为 Tensor 或 LoDTensor。
-    - **mat2** (Tensor)：输入变量，类型为 Tensor 或 LoDTensor。
-    - **out** (Tensor，可选) – 指定存储运算结果的 Tensor。如果设置为 None 或者不设置，将创建新的 Tensor 存储运算结果，默认值为 None。
+    - **input** (Tensor)：输入变量，类型为 Tensor。
+    - **mat2** (Tensor)：输入变量，类型为 Tensor。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

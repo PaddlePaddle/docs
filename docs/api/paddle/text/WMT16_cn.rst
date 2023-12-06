@@ -1,9 +1,9 @@
-.. _cn_api_text_datasets_WMT16:
+.. _cn_api_paddle_text_WMT16:
 
 WMT16
 -------------------------------
 
-.. py:class:: paddle.text.datasets.WMT16()
+.. py:class:: paddle.text.WMT16(data_file = None, mode = 'train', src_dict_size = -1, trg_dict_size = -1, lang = 'ch', download = True)
 
 
 该类是对 `WMT16 <http://www.statmt.org/wmt16/>`_ 测试数据集实现。
@@ -32,4 +32,4 @@ http://www.statmt.org/wmt16/multimodal-task.html#task1
 代码示例
 :::::::::
 
-COPY-FROM: paddle.text.datasets.WMT16
+COPY-FROM: paddle.text.WMT16

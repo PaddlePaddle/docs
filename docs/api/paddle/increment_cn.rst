@@ -1,4 +1,4 @@
-.. _cn_api_tensor_increment:
+.. _cn_api_paddle_increment:
 
 increment
 -------------------------------
@@ -13,7 +13,7 @@ increment
 参数
 :::::::::
 
-  - **x** (Tensor) – 输入张量，必须始终只有一个元素。支持的数据类型：float32、float64、int32、int64。
+  - **x** (Tensor) – 输入 Tensor，必须始终只有一个元素。支持的数据类型：float32、float64、int32、int64。
   - **value** (float，可选) – ``x`` 的数值增量。默认值为 1.0。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

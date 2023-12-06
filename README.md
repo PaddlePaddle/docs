@@ -1,6 +1,6 @@
 # PaddlePaddle docs
 
-English | [简体中文](./README_cn.md)
+English | [简体中文](./README_cn.md) | [日本語](./README_ja.md)
 
 
 Source files for contents presented at [PaddlePaddle documentation](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html).
@@ -9,11 +9,11 @@ Note: English version API docs are generaly docstrings in [PaddlePaddle/Paddle](
 
 ## Codebase structure
 
-- [docs](docs): PaddlePaddle 2.0 & above docs source file,
-- [docs/api](docs/api): PaddlePaddle API docs
-- [docs/guides](docs/guides): PaddlePaddle guides docs
-- [docs/tutorial](docs/tutorial): PaddlePaddle tutorial docs
-- [ci_scripts](ci_scripts): docs CI scripts
+- [docs](docs): PaddlePaddle 2.0 & above docs source file.
+- [docs/api](docs/api): PaddlePaddle API docs.
+- [docs/guides](docs/guides): PaddlePaddle guides docs.
+- [docs/tutorial](docs/tutorial): PaddlePaddle tutorial docs.
+- [ci_scripts](ci_scripts): docs CI scripts.
 
 ## How to build
 

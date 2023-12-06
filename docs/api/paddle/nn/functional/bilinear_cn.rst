@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_bilinear:
+.. _cn_api_paddle_nn_functional_bilinear:
 
 bilinear
 -------------------------------
@@ -6,8 +6,8 @@ bilinear
 
 .. py:function:: paddle.nn.functional.bilinear(x1, x2, weight, bias=None, name=None)
 
-该层对两个输入执行双线性张量积。
-详细的计算和返回值维度请参见 :ref:`cn_api_nn_Bilinear`
+该层对两个输入执行双线性 Tensor 积。
+详细的计算和返回值维度请参见 :ref:`cn_api_paddle_nn_Bilinear`
 
 参数
 :::::::::
@@ -19,7 +19,7 @@ bilinear
 
 返回
 :::::::::
-``Tensor``，一个形为 [batch_size, out_features] 的 2-D 张量。
+``Tensor``，一个形为 [batch_size, out_features] 的 2-D Tensor。
 
 代码示例
 :::::::::

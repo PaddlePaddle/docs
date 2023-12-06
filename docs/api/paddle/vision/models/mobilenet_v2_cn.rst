@@ -18,7 +18,7 @@ MobileNetV2 模型，来自论文 `"MobileNetV2: Inverted Residuals and Linear B
 返回
 :::::::::
 
-:ref:`cn_api_fluid_dygraph_Layer`，MobileNetV2 模型实例。
+:ref:`cn_api_paddle_nn_Layer`，MobileNetV2 模型实例。
 
 代码示例
 :::::::::

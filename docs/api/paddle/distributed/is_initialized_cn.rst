@@ -1,4 +1,4 @@
-.. _cn_api_distributed_is_initialized:
+.. _cn_api_paddle_distributed_is_initialized:
 
 is_initialized
 -------------------------------
@@ -6,7 +6,7 @@ is_initialized
 
 .. py:function:: paddle.distributed.is_initialized()
 
-检查分布式环境是否已经被初始化
+检查分布式环境是否已经被初始化。
 
 参数
 :::::::::

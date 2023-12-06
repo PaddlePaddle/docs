@@ -1,4 +1,4 @@
-.. _cn_api_paddle_framework_is_grad_enabled:
+.. _cn_api_paddle_is_grad_enabled:
 
 is_grad_enabled
 -------------------------------
@@ -9,7 +9,7 @@ is_grad_enabled
 返回
 :::::::::
 
-当前动态图梯度计算模式。
+bool，判断当前动态图是否启用了计算梯度的模式，若是则为 True，反之为 False。
 
 代码示例
 :::::::::

@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_avg_pool3d:
+.. _cn_api_paddle_nn_functional_avg_pool3d:
 
 
 avg_pool3d
@@ -27,7 +27,7 @@ avg_pool3d
 
 参数
 :::::::::
-    - **x** (Tensor)：形状为 [N,C,D,H,W] 或 [N,D,H,W,C] 的 5-D Tensor，N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度，数据类型为 float32 或 float64。
+    - **x** (Tensor)：形状为 [N,C,D,H,W] 或 [N,D,H,W,C] 的 5-D Tensor，N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度，数据类型为 float16、float32 或 float64。
     - **kernel_size** (int|list|tuple)：池化核大小。如果它是一个元组或列表，它必须包含三个整数值，(pool_size_Depth, pool_size_Height, pool_size_Width)。若为一个整数，则表示 D，H 和 W 维度上均为该值，比如若 pool_size=2，则池化核大小为[2,2,2]。
     - **stride** (int|list|tuple)：池化层的步长。如果它是一个元组或列表，它将包含两个整数，(pool_stride_Height, pool_stride_Width)。若为一个整数，则表示 H 和 W 维度上 stride 均为该值。默认值为 kernel_size。
     - **padding** (string|int|list|tuple) 池化填充。如果它是一个元组或列表，它可以有 3 种格式：(1)包含 3 个整数值：[pad_depth, pad_height, pad_width]；(2)包含 6 个整数值：[pad_depth_front, pad_depth_back, pad_height_top, pad_height_bottom, pad_width_left, pad_width_right]；(3)包含 5 个二元组：当 data_format 为"NCDHW"时为[[0,0], [0,0], [pad_depth_front, pad_depth_back], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right]]，当 data_format 为"NDHWC"时为[[0,0], [pad_depth_front, pad_depth_back], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right], [0,0]]。若为一个整数，则表示 D、H 和 W 维度上均为该值。默认值：0。

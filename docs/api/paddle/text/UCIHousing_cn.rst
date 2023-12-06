@@ -1,9 +1,9 @@
-.. _cn_api_text_datasets_UCIHousing:
+.. _cn_api_paddle_text_UCIHousing:
 
 UCIHousing
 -------------------------------
 
-.. py:class:: paddle.text.datasets.UCIHousing()
+.. py:class:: paddle.text.UCIHousing(data_file = None, mode = 'train', download = True)
 
 
 该类是对 `UCI housing <https://archive.ics.uci.edu/ml/datasets/Housing>`_
@@ -12,9 +12,9 @@ UCIHousing
 参数
 :::::::::
 
-    - data_file（str）- 保存数据的路径，如果参数 :attr:`download`设置为 True，可设置为 None。默认为 None。
-    - mode（str）- 'train'或'test'模式。默认为'train'。
-    - download（bool）- 如果 :attr:`data_file`未设置，是否自动下载数据集。默认为 True。
+    - **data_file** (str) - 保存数据的路径，如果参数 :attr:`download`设置为 True，可设置为 None。默认为 None。
+    - **mode** (str) - 'train' 或 'test' 模式。默认为 'train'。
+    - **download** (bool) - 如果 :attr:`data_file`未设置，是否自动下载数据集。默认为 True。
 
 返回值
 :::::::::
@@ -23,4 +23,4 @@ UCIHousing
 代码示例
 :::::::::
 
-COPY-FROM: paddle.text.datasets.UCIHousing
+COPY-FROM: paddle.text.UCIHousing

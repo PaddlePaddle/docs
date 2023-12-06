@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_conv2d_transpose:
+.. _cn_api_paddle_nn_functional_conv2d_transpose:
 
 conv2d_transpose
 -------------------------------
@@ -45,10 +45,10 @@ conv2d_transpose
 
 .. math::
 
-        & H'_{out} = (H_{in}-1)*strides[0] - pad\_height\_top - pad\_height\_bottom + dilations[0]*(H_f-1)+1\\
-        & W'_{out} = (W_{in}-1)*strides[1]- pad\_width\_left - pad\_width\_right + dilations[1]*(W_f-1)+1 \\
-        & H_{out}\in[H'_{out},H'_{out} + strides[0])\\
-        & W_{out}\in[W'_{out},W'_{out} + strides[1])\\
+        H^\prime_{out} &= (H_{in} - 1) * strides[0] - 2 * paddings[0] + dilations[0] * (H_f - 1) + 1 \\
+        W^\prime_{out} &= (W_{in} - 1) * strides[1] - 2 * paddings[1] + dilations[1] * (W_f - 1) + 1 \\
+        H_{out} &\in [ H^\prime_{out}, H^\prime_{out} + strides[0] ) \\
+        W_{out} &\in [ W^\prime_{out}, W^\prime_{out} + strides[1] ) \\
 
 如果 ``padding`` = "SAME":
 
@@ -62,21 +62,21 @@ conv2d_transpose
     & H'_{out} = (H_{in}-1)*strides[0] + dilations[0]*(H_f-1)+1\\
     & W'_{out} = (W_{in}-1)*strides[1] + dilations[1]*(W_f-1)+1 \\
 
-注意：
+.. note::
 
-如果 output_size 为 None，则 :math:`H_{out}` = :math:`H^\prime_{out}` , :math:`W_{out}` = :math:`W^\prime_{out}`；否则，指定的 output_size_height（输出特征层的高） :math:`H_{out}` 应当介于 :math:`H^\prime_{out}` 和 :math:`H^\prime_{out} + strides[0]` 之间（不包含 :math:`H^\prime_{out} + strides[0]` ），并且指定的 output_size_width（输出特征层的宽） :math:`W_{out}` 应当介于 :math:`W^\prime_{out}` 和 :math:`W^\prime_{out} + strides[1]` 之间（不包含 :math:`W^\prime_{out} + strides[1]` ）。
+   如果 output_size 为 None，则 :math:`H_{out}` = :math:`H^\prime_{out}` , :math:`W_{out}` = :math:`W^\prime_{out}`；否则，指定的 output_size_height（输出特征层的高） :math:`H_{out}` 应当介于 :math:`H^\prime_{out}` 和 :math:`H^\prime_{out} + strides[0]` 之间（不包含 :math:`H^\prime_{out} + strides[0]` ），并且指定的 output_size_width（输出特征层的宽） :math:`W_{out}` 应当介于 :math:`W^\prime_{out}` 和 :math:`W^\prime_{out} + strides[1]` 之间（不包含 :math:`W^\prime_{out} + strides[1]` ）。
 
-由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
+   由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
 参数
 ::::::::::::
 
   - **x** (Tensor) - 输入是形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的 4-D Tensor，N 是批尺寸，C 是通道数，H 是特征高度，W 是特征宽度，数据类型为 float16, float32 或 float64。
   - **weight** (Tensor) - 形状为 :math:`[C, M/g, kH, kW]` 的卷积核（卷积核）。 M 是输出通道数，g 是分组的个数，kH 是卷积核的高度，kW 是卷积核的宽度。
-  - **bias** (int|list|tuple) - 偏置项，形状为：:math:`[M,]` 。
+  - **bias** (int|list|tuple，可选) - 偏置项，形状为：:math:`[M,]` 。
   - **stride** (int|list|tuple，可选) - 步长大小。如果 ``stride`` 为元组，则必须包含两个整型数，分别表示垂直和水平滑动步长。否则，表示垂直和水平滑动步长均为 ``stride``。默认值：1。
   - **padding** (int|list|tuple|str，可选) - 填充大小。如果它是一个字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考上述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。如果它是一个元组或列表，它可以有 3 种格式：(1)包含 4 个二元组：当 ``data_format`` 为"NCHW"时为 [[0,0], [0,0], [padding_height_top, padding_height_bottom], [padding_width_left, padding_width_right]]，当 ``data_format`` 为"NHWC"时为[[0,0], [padding_height_top, padding_height_bottom], [padding_width_left, padding_width_right], [0,0]]；(2)包含 4 个整数值：[padding_height_top, padding_height_bottom, padding_width_left, padding_width_right]；(3)包含 2 个整数值：[padding_height, padding_width]，此时 padding_height_top = padding_height_bottom = padding_height， padding_width_left = padding_width_right = padding_width。若为一个整数，padding_height = padding_width = padding。默认值：0。
-  - **output_padding** (int|list|tuple, optional)：输出形状上一侧额外添加的大小。默认值：0。
+  - **output_padding** (int|list|tuple，可选) - 输出形状上一侧额外添加的大小。默认值：0。
   - **dilation** (int|list|tuple，可选) - 空洞大小。空洞卷积时会使用该参数，卷积核对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息。如果空洞大小为列表或元组，则必须包含两个整型数：（dilation_height,dilation_width）。若为一个整数，dilation_height = dilation_width = dilation。默认值：1。
   - **groups** (int，可选) - 二维卷积层的组数。根据 Alex Krizhevsky 的深度卷积神经网络（CNN）论文中的成组卷积：当 group=n，输入和卷积核分别根据通道数量平均分为 n 组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算，……，第 n 组卷积核和第 n 组输入进行卷积计算。默认值：1。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N 是批尺寸，C 是通道数，H 是特征高度，W 是特征宽度。默认值："NCHW"。

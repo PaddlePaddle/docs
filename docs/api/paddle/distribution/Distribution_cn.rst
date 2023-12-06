@@ -1,4 +1,4 @@
-.. _cn_api_distribution_Distribution:
+.. _cn_api_paddle_distribution_Distribution:
 
 Distribution
 -------------------------------
@@ -36,7 +36,7 @@ log_prob(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量。
+    - **value** (Tensor) - 输入 Tensor。
 
 probs(value)
 '''''''''
@@ -45,7 +45,7 @@ probs(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量。
+    - **value** (Tensor) - 输入 Tensor。
 
 kl_divergence(other)
 '''''''''

@@ -1,4 +1,4 @@
-.. _cn_api_nn_initializer_Orthogonal:
+.. _cn_api_paddle_nn_initializer_Orthogonal:
 
 Orthogonal
 -------------------------------
@@ -25,7 +25,7 @@ Orthogonal
 
 参数
 :::::::::
-    - gain (float，可选) - 参数初始化的增益系数，可通过 :ref:`cn_api_nn_initializer_calculate_gain` 获取推荐的增益系数。默认：1.0
+    - **gain** (float，可选) - 参数初始化的增益系数，可通过 :ref:`cn_api_paddle_nn_initializer_calculate_gain` 获取推荐的增益系数。默认：1.0
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
