@@ -7,6 +7,8 @@
 ![scenario](./images/scenario.png)
 图 1 模型迁移场景概览
 
+
+
 如图所示，模型迁移包括以下几种场景：
 
 * 迁移其他框架到飞桨：
@@ -30,5 +32,5 @@
 * 飞桨框架 2.x：对动态图、API、以及如何用 API 进行模型训练和推理进行简单介绍，方便你快速了解飞桨 2.x 框架。
 * API：通过官网[API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/index_cn.html)了解飞桨各接口的相关信息。
 * 示例文档：你可以在官网[应用实践](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/practices/index_cn.html)栏目内进行在线浏览，也可以下载在这里提供的源代码:
-https://github.com/PaddlePaddle/docs/tree/develop/docs/practices
+<https://github.com/PaddlePaddle/docs/tree/develop/docs/practices>
 * 教程：通过官网[教程](https://aistudio.baidu.com/aistudio/course/introduce/1297)系统掌握如何使用飞桨进行训练、调试、调优、推理。
