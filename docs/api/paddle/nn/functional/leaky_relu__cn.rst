@@ -1,6 +1,6 @@
 .. _cn_api_paddle_nn_functional_leaky_relu_:
 
-leaky_relu_
+leaky_relu\_
 -------------------------------
 
 .. py:function:: paddle.nn.functional.leaky_relu_(x, negative_slope=0.01, name=None)
