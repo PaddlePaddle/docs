@@ -17,7 +17,7 @@
     * **CUDA 工具包配合 cuDNN 8(如需多卡支持，需配合 NCCL2.7 及更高)**
     * **GPU 运算能力超过 5.0 的硬件设备**
 
-        您可参考 NVIDIA 官方文档了解 CUDA 和 CUDNN 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+    您可参考 NVIDIA 官方文档了解 CUDA 和 CUDNN 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 
 ## 安装步骤
@@ -289,7 +289,7 @@ uname -m && cat /etc/*release
     gcc 需要 8.2 以上:
 
     ```
-    wget -q wget -q --no-proxy https://paddle-ci.gz.bcebos.com/gcc-8.2.0.tar.xz && \ 
+    wget -q wget -q --no-proxy https://paddle-ci.gz.bcebos.com/gcc-8.2.0.tar.xz && \
     tar -xvf gcc-8.2.0.tar.xz && \
     cd gcc-8.2.0 && \
     sed -i 's#ftp://gcc.gnu.org/pub/gcc/infrastructure/#https://paddle-ci.gz.bcebos.com/#g' ./contrib/download_prerequisites && \
