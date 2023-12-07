@@ -2,8 +2,8 @@
 
 ## 环境准备
 
-* **macOS 版本 10.x/11.x (64 bit) (不支持 GPU 版本)**
-* **Python 版本 3.7/3.8/3.9/3.10 (64 bit)**
+* **macOS 版本 10.x/11.x/12.x/13.x/14.x (64 bit) (不支持 GPU 版本)**
+* **Python 版本 3.8/3.9/3.10/3.11/3.12 (64 bit)**
 
 ## 选择 CPU/GPU
 
@@ -90,7 +90,7 @@ cd /paddle
 git checkout develop
 ```
 
-注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持, python3.10 版本从 release/2.3 分支开始支持
+paddle 支持 Python 3.8 以上版本
 
 #### 8. 创建并进入/paddle/build 路径下：
 
@@ -100,13 +100,13 @@ mkdir -p /paddle/build && cd /paddle/build
 
 #### 9. 使用以下命令安装相关依赖：
 
-- 安装 protobuf 3.1.0。
+- 安装 protobuf 3.20.2。
 
 ```
-pip3.7 install protobuf==3.1.0
+pip3.10 install protobuf==3.20.2
 ```
 
-注意：以上用 Python3.7 命令来举例，如您的 Python 版本为 3.6/3.8/3.9，请将上述命令中的 pip3.7 改成 pip3.6/pip3.8/pip3.9
+注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12
 
 - 安装 patchelf，PatchELF 是一个小而实用的程序，用于修改 ELF 可执行文件的动态链接器和 RPATH。
 
@@ -119,11 +119,11 @@ apt install patchelf
 *  对于需要编译**CPU 版本 PaddlePaddle**的用户（我们目前不支持 macOS 下 GPU 版本 PaddlePaddle 的编译）：
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF
+    cmake .. -DPY_VERSION=3.10 -DWITH_GPU=OFF
     ```
 - 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
-- 请注意修改参数`-DPY_VERSION`为您希望编译使用的 python 版本,  例如`-DPY_VERSION=3.7`表示 python 版本为 3.7
+- 请注意修改参数`-DPY_VERSION`为您希望编译使用的 python 版本,  例如`-DPY_VERSION=3.10`表示 python 版本为 3.10
 
 #### 11. 执行编译：
 
@@ -148,7 +148,7 @@ pip3.7 install -U [whl 包的名字]
 ```
 
 注意：
-以上用 Python3.7 命令来举例，如您的 Python 版本为 3.6/3.8/3.9，请将上述命令中的 pip3.7 改成 pip3.6/pip3.8/pip3.9。
+以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12。
 
 #### 恭喜，至此您已完成 PaddlePaddle 的编译安装。您只需要进入 Docker 容器后运行 PaddlePaddle，即可开始使用。更多 Docker 使用请参见[Docker 官方文档](https://docs.docker.com)
 
@@ -167,7 +167,7 @@ uname -m
 
 #### 2. 安装 Python 以及 pip：
 
-> **请不要使用 macOS 中自带 Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装 python(对于**Python3**请使用 python[官方下载](https://www.python.org/downloads/mac-osx/)python3.7.x、python3.8、python3.9、python3.10), pip 以及其他的依赖，这将会使您高效编译。
+> **请不要使用 macOS 中自带 Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装 python(对于**Python3**请使用 python[官方下载](https://www.python.org/downloads/mac-osx/)python3.8、python3.9、python3.10、python3.11、python3.12), pip 以及其他的依赖，这将会使您高效编译。
 
 使用 Python 官网安装
 
@@ -217,9 +217,9 @@ uname -m
 
 - a. 这里特别说明一下**CMake**的安装：
 
-    CMake 我们支持 3.15 以上版本,推荐使用 CMake3.16,请根据以下步骤安装：
+    CMake 我们支持 3.18 以上版本,推荐使用 CMake3.18,请根据以下步骤安装：
 
-    1. 从 CMake[官方网站](https://cmake.org/files/v3.16/cmake-3.16.0-Darwin-x86_64.dmg)下载 CMake 镜像并安装
+    1. 从 CMake[官方网站](https://cmake.org/files/v3.18/cmake-3.18.0-Darwin-x86_64.dmg)下载 CMake 镜像并安装
     2. 在控制台输入
         ```
         sudo "/Applications/CMake.app/Contents/bin/cmake-gui" –install
@@ -243,7 +243,7 @@ cd Paddle
 git checkout develop
 ```
 
-注意：python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持, python3.10 版本从 release/2.3 分支开始支持
+paddle 支持 Python 3.8 以上版本
 
 #### 7. 并且请创建并进入一个叫 build 的目录下：
 
@@ -258,11 +258,11 @@ mkdir build && cd build
 *  对于需要编译**CPU 版本 PaddlePaddle**的用户：
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+    cmake .. -DPY_VERSION=3.10 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
     -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF
     ```
 
->`-DPY_VERSION=3.7`请修改为安装环境的 Python 版本
+>`-DPY_VERSION=3.10`请修改为安装环境的 Python 版本
 
 #### 9. 使用以下命令来编译：
 
