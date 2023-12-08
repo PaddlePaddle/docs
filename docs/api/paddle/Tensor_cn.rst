@@ -3126,3 +3126,14 @@ diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_diagonal_scatter`
+
+select_scatter(x, values, axis, index, name=None)
+:::::::::
+
+将 ``values`` 矩阵的值嵌入到 ``x`` 矩阵的第 ``axis`` 维的 ``index`` 列, ``values`` 的形状需要与 ``x`` 矩阵除去第 ``axis`` 维后的形状一致
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_select_scatter`
