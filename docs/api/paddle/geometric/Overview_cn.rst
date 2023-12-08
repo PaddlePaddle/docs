@@ -30,6 +30,7 @@ paddle.geometric 目录下包含飞桨框架支持的图领域的相关 API。�
     :header: "API 名称", "API 功能"
 
     " :ref:`paddle.geometric.sample_neighbors <cn_api_paddle_geometric_sample_neighbors>` ", "无权重邻居采样"
+    " :ref:`paddle.geometric.weighted_sample_neighbors <cn_api_paddle_geometric_weighted_sample_neighbors>` ", "加权近邻采样"
     " :ref:`paddle.geometric.reindex_graph <cn_api_paddle_geometric_reindex_graph>` ", "同构图场景下的子图重编号"
     " :ref:`paddle.geometric.reindex_heter_graph <cn_api_paddle_geometric_reindex_heter_graph>` ", "异构图场景下的子图重编号"
 
