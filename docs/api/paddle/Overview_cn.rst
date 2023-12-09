@@ -155,6 +155,8 @@ tensor 数学操作
     " :ref:`paddle.i1e <cn_api_paddle_i1e>` ", "对输入 Tensor 每个元素计算第一类指数缩放的一阶修正贝塞尔函数"
     " :ref:`paddle.polygamma <cn_api_paddle_polygamma>` ", "对输入 Tensor 每个元素计算多伽马函数"
     " :ref:`paddle.hypot <cn_api_paddle_hypot>` ", "对输入 直角三角形的直角边 Tensor x, y， 计算其斜边"
+    " :ref:`paddle.combinations <cn_api_paddle_combinations>` ", "对输入 Tensor 计算长度为 r 的情况下的所有组合"
+    " :ref:`paddle.select_scatter <cn_api_paddle_select_scatter>` ", "根据 axis 和 index（整数） 填充 value 值至输入 Tensor"
 .. _tensor_math_inplace:
 
 tensor 数学操作原位（inplace）版本
@@ -358,6 +360,9 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.gather <cn_api_paddle_gather>` ", "根据索引 index 获取输入 x 的指定 aixs 维度的条目，并将它们拼接在一起"
     " :ref:`paddle.gather_nd <cn_api_paddle_gather_nd>` ", "paddle.gather 的高维推广"
     " :ref:`paddle.reshape <cn_api_paddle_reshape>` ", "在保持输入 x 数据不变的情况下，改变 x 的形状"
+    " :ref:`paddle.atleast_1d <cn_api_paddle_atleast_1d>` ", "将输入转换为张量并返回至少为 ``1`` 维的视图"
+    " :ref:`paddle.atleast_2d <cn_api_paddle_atleast_2d>` ", "将输入转换为张量并返回至少为 ``2`` 维的视图"
+    " :ref:`paddle.atleast_3d <cn_api_paddle_atleast_3d>` ", "将输入转换为张量并返回至少为 ``3`` 维的视图"
     " :ref:`paddle.roll <cn_api_paddle_roll>` ", "沿着指定维度 axis 对输入 x 进行循环滚动，当元素移动到最后位置时，会从第一个位置重新插入"
     " :ref:`paddle.scatter <cn_api_paddle_distributed_scatter>` ", "通过基于 updates 来更新选定索引 index 上的输入来获得输出"
     " :ref:`paddle.scatter_nd <cn_api_paddle_scatter_nd>` ", "根据 index ，将 updates 添加到一个新的张量中，从而得到输出的 Tensor"

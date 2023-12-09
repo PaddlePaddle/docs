@@ -221,6 +221,23 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
         tools/cinn
     ```
 
+#### PR-CI-SOT
+
+- **【条目描述】** 检测当前 PR CPU、Python3.8-3.11 版本下的 SOT 单测是否通过。
+- **【执行脚本】** `paddle/scripts/paddle_build.sh check_run_sot_ci`
+- **【触发条件】**
+  - `PR-CI-Clone` 通过后自动触发。
+  - 必须修改下面路径中的文件才会触发
+
+    ```bash
+    paddle/fluid/operators/run_program_op.h
+    paddle/fluid/operators/run_program_op.cu
+    paddle/fluid/operators/run_program_op.cc
+    paddle/fluid/eager/to_static
+    paddle/fluid/pybind/
+    python/
+    test/sot
+    ```
 
 ### MAC 平台测试项
 

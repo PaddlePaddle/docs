@@ -33,7 +33,7 @@ mse_loss
 
         - 如果 :attr:`reduction` 是 ``'mean'``，则返回减少的平均损失。
         - 如果 :attr:`reduction` 是 ``'sum'``，则返回减少的总损失。
-        - 如果 :attr: `reduction` 为 `'none'`，返回未减少的损失。默认为 `'mean'`。
+        - 如果 :attr:`reduction` 为 ``'none'``，返回未减少的损失。默认为 ``‘mean’``。
 
     - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

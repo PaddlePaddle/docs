@@ -6,11 +6,23 @@ Tensor
 .. py:class:: paddle.Tensor
 
 
-``Tensor`` 是 Paddle 中最为基础的数据结构，有几种创建 Tensor 的不同方式：
+``Tensor`` 是 Paddle 中最为基础的数据结构，请参考 `Tensor 介绍 <https://www.paddlepaddle.org.cn/documentation/docs/guides/beginner/tensor_cn.html>`_
 
 - 用预先存在的 ``data`` 数据创建 1 个 Tensor，请参考 :ref:`cn_api_paddle_to_tensor`
 - 创建一个指定 ``shape`` 的 Tensor，请参考 :ref:`cn_api_paddle_ones` 、 :ref:`cn_api_paddle_zeros`、 :ref:`cn_api_paddle_full`
 - 创建一个与其他 Tensor 具有相同 ``shape`` 与 ``dtype`` 的 Tensor，请参考 :ref:`cn_api_paddle_ones_like` 、 :ref:`cn_api_paddle_zeros_like` 、 :ref:`cn_api_paddle_full_like`
+
+create_tensor(dtype, name=None, persistable=False)
+:::::::::
+
+根据数据类型 dtype 创建一个 Tensor。
+
+返回：Tensor，数据类型为指定的 dtype。
+
+返回类型：Tensor
+
+**代码示例**
+COPY-FROM: paddle.Tensor.create_tensor
 
 clear_grad
 :::::::::
@@ -3082,6 +3094,29 @@ masked_fill_(x, mask, value, name=None)
 
 Inplace 版本的 :ref:`cn_api_paddle_masked_fill` API，对输入 `x` 采用 Inplace 策略。
 
+atleast_1d(name=None)
+:::::::::
+将输入转换为张量并返回至少为 ``1`` 维的视图。 ``1`` 维或更高维的输入会被保留。
+
+返回至少为 ``1`` 维视图的 Tensor 。
+
+请参考 :ref:`cn_api_paddle_atleast_1d`
+
+atleast_2d(name=None)
+:::::::::
+将输入转换为张量并返回至少为 ``2`` 维的视图。 ``2`` 维或更高维的输入会被保留。
+
+返回至少为 ``2`` 维视图的 Tensor 。
+
+请参考 :ref:`cn_api_paddle_atleast_2d`
+
+atleast_3d(name=None)
+:::::::::
+将输入转换为张量并返回至少为 ``3`` 维的视图。 ``3`` 维或更高维的输入会被保留。
+
+返回至少为 ``3`` 维视图的 Tensor 。
+
+请参考 :ref:`cn_api_paddle_atleast_3d`
 diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
 :::::::::
 根据给定的轴 axis 和偏移量 offset，将张量 y 的值填充到张量 x 中。
@@ -3091,3 +3126,14 @@ diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_diagonal_scatter`
+
+select_scatter(x, values, axis, index, name=None)
+:::::::::
+
+将 ``values`` 矩阵的值嵌入到 ``x`` 矩阵的第 ``axis`` 维的 ``index`` 列, ``values`` 的形状需要与 ``x`` 矩阵除去第 ``axis`` 维后的形状一致
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_select_scatter`
