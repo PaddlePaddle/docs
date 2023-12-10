@@ -21,7 +21,7 @@ fused_linear_activation
 返回
 :::::::::
 
-输出 ``Tensor``
+返回类型为 Tensor，数据类型同输入一致。
 
 
 代码示例
