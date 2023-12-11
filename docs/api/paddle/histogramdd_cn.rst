@@ -1,4 +1,4 @@
-.. _cn_api_paddle_histogram:
+.. _cn_api_paddle_histogramdd:
 
 histogram
 -------------------------------
