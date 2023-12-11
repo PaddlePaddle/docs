@@ -307,7 +307,7 @@ uname -m && cat /etc/*release
 * b. Install pip:
 
 
-    (Please refer to the official Python installation process, and ensure that the pip3 version 20.2.2 and above, please note that in python3.6 and above, pip3 does not necessarily correspond to the python version, such as python3.10 default only Pip3.10)
+    (Please refer to the official Python installation process, and ensure that the pip3 version 20.2.2 and above, please note that in python3.8 and above, pip3 does not necessarily correspond to the python version, such as python3.10 default only Pip3.10)
 
 * c. (Only For Python3) set Python3 related environment variables, here is python3.10 version example, please replace with the version you use (3.8, 3.9, 3.11, 3.12):
 
@@ -458,7 +458,7 @@ mkdir build && cd build
         ```
 
 
-Note: For the command involving Python 3, we use Python 3.10 as an example above, if the version of your Python is 3.8/3.9/3.11/3.12, please change Python3.7 in the commands to Python3.8/Python3.9/Python3.11/Python3.12
+Note: For the command involving Python 3, we use Python 3.10 as an example above, if the version of your Python is 3.8/3.9/3.11/3.12, please change Python3.10 in the commands to Python3.8/Python3.9/Python3.11/Python3.12
 
 
 

@@ -243,7 +243,7 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 6. Switch to develop branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch, python3.10 version started supporting from release/2.3 branch)
+#### 6. Switch to develop branch to compile: (Paddle supports Python version 3.8 and above)
 
 ```
 git checkout develop

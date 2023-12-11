@@ -64,8 +64,7 @@ docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidub
 - `-v：$PWD:/paddle`：将当前目录挂载到 Docker 容器中的/paddle 目录下（Linux 中 PWD 变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）
 - `-it`：与宿主机保持交互状态
 - `registry.baidubce.com/paddlepaddle/paddle:latest-dev`：使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令
-注意：
-请确保至少为 docker 分配 4g 以上的内存，否则编译过程可能因内存不足导致失败。您可以在 docker 用户界面的“Preferences-Resources”中设置容器的内存分配上限。
+注意：请确保至少为 docker 分配 4g 以上的内存，否则编译过程可能因内存不足导致失败。您可以在 docker 用户界面的“Preferences-Resources”中设置容器的内存分配上限。
 #### 6. 进入 Docker 后进入 paddle 目录下：
 ```
 cd /paddle
@@ -109,9 +108,9 @@ cd /paddle/build/python/dist
 ```
 #### 13. 在当前机器或目标机器安装编译好的`.whl`包：
 ```
-pip3.7 install -U [whl 包的名字]
+pip3.10 install -U [whl 包的名字]
 ```
-注意：以上用 Python3.7 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12。
+注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12。
 #### 恭喜，至此您已完成 PaddlePaddle 的编译安装。您只需要进入 Docker 容器后运行 PaddlePaddle，即可开始使用。更多 Docker 使用请参见[Docker 官方文档](https://docs.docker.com)
 <a name="mac_source"></a>
 <br/><br/>
