@@ -1,4 +1,4 @@
-.. _cn_api_paddle_histogramdd:
+.. _cn_api_paddle_histogram:
 
 histogram
 -------------------------------
@@ -14,10 +14,10 @@ histogram
 ::::::::::::
 
     - **input** (Tensor) - 输入多维 Tensor 。
-    - **bins** (Tensor[], int[], or int) - 如果张量数组，则表示所有 bin 边界。如果 int 数组，则表示每个维度中等宽 bin 的数量。如果为 int，则定义所有维度的等宽 bin 数量。
-    - **ranges** (sequence of float, optional) - 定义每个维度中最左边和最右边的 bin 边界。如果为 None ，则将每个尺寸的最小值和最大值设置为最左边和最右边。
-    - **density** (bool，可选) - 如果为 False（默认值），结果将包含每个 bin 中的计数（或权重）。如果为 True，则将每个计数（权重）除以总计数（总权重），然后再除以相关 bin 的宽度。
-    - **weights** (Tensor，可选) - 默认情况下，输入中的每个值的权重为 1。如果传递权重张量，则输入中的每个 N 维坐标将其相关权重贡献给其 bin 的结果。权重张量应具有与输入张量相同的形状，但不包括其最内维度 N。
+    - **bins** (Tensor[]|int[]|int) - 如果为 Tensor 数组，则表示所有 bin 边界。如果为 int 数组，则表示每个维度中等宽 bin 的数量。如果为 int，则表示所有维度的等宽 bin 数量。默认值为 10 ，表示所有维度的等宽 bin 数量为 10 个。
+    - **ranges** (float[], 可选) - 表示每个维度中最左边和最右边的 bin 边界。如果为 None ，则将每个尺寸的最小值和最大值设置为最左边和最右边。
+    - **density** (bool，可选) - 表示是否计算 density ，如果为 False，结果将包含每个 bin 中的计数（或权重）。如果为 True，则将每个计数（权重）除以总计数（总权重），然后再除以相关 bin 的宽度。默认值为 False ，表示不计算 density 。
+    - **weights** (Tensor，可选) - 表示权重。如果传递 Tensor ，则输入中的每个 N 维坐标将其相关权重贡献给其 bin 的结果。权重应具有与输入张量相同的形状，但不包括其最内维度 N。默认情况下，输入中的每个值的权重为 1 。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
