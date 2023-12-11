@@ -3,7 +3,7 @@
 ConcatDataset
 -------------------------------
 
-.. py:class:: paddle.io.ConcatDataset(dataset)
+.. py:class:: paddle.io.ConcatDataset(datasets)
 
 将多个数据集拼接为一个。
 
