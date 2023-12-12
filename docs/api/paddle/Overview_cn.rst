@@ -156,6 +156,7 @@ tensor 数学操作
     " :ref:`paddle.polygamma <cn_api_paddle_polygamma>` ", "对输入 Tensor 每个元素计算多伽马函数"
     " :ref:`paddle.hypot <cn_api_paddle_hypot>` ", "对输入 直角三角形的直角边 Tensor x, y， 计算其斜边"
     " :ref:`paddle.combinations <cn_api_paddle_combinations>` ", "对输入 Tensor 计算长度为 r 的情况下的所有组合"
+    " :ref:`paddle.select_scatter <cn_api_paddle_select_scatter>` ", "根据 axis 和 index（整数） 填充 value 值至输入 Tensor"
 .. _tensor_math_inplace:
 
 tensor 数学操作原位（inplace）版本
@@ -327,6 +328,7 @@ tensor 线性代数相关
     " :ref:`paddle.dist <cn_api_paddle_dist>` ", "计算 (x-y) 的 p 范数（p-norm）"
     " :ref:`paddle.dot <cn_api_paddle_dot>` ", "计算向量的内积"
     " :ref:`paddle.histogram <cn_api_paddle_histogram>` ", "计算输入 Tensor 的直方图"
+    " :ref:`paddle.histogramdd <cn_api_paddle_histogramdd>` ", "计算输入多维 Tensor 的直方图"
     " :ref:`paddle.matmul <cn_api_paddle_matmul>` ", "计算两个 Tensor 的乘积，遵循完整的广播规则"
     " :ref:`paddle.mv <cn_api_paddle_mv>` ", "计算矩阵 x 和向量 vec 的乘积"
     " :ref:`paddle.rank <cn_api_paddle_rank>` ", "计算输入 Tensor 的维度（秩）"
