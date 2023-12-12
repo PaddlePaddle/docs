@@ -1,28 +1,43 @@
-.. _cn_api_paddle_incubate_nn_functional_fused_matmul_bias:
+.. _cn_api_paddle_incubate_nn_FusedLinear:
 
-fused_matmul_bias
+FusedLinear
 -------------------------------
 
-.. py:function:: paddle.incubate.nn.functional.fused_matmul_bias(x, y, bias=None, transpose_x=False, transpose_y=False, name=None)
+.. py:class:: paddle.incubate.nn.FusedLinear(in_features, out_features, weight_attr=None, bias_attr=None, transpose_weight=False, name=None)
 
-应用两个张量的矩阵乘法，然后如果提供了偏置，进行偏置加法。
-
-此方法要求 CUDA 版本不低于 11.6。
+Linear 层只接受一个 Tensor 作为输入，形状为 :math:`[batch\_size, *, in\_features]`，其中 :math:`*` 表示可以为任意个额外的维度。
+该层可以计算输入 Tensor 与权重矩阵 :math:`W` 的乘积，然后生成形状为 :math:`[batch\_size, *, out\_features]` 的输出 Tensor。
+如果 :math:`bias\_attr` 不是 False，则将创建一个偏置参数并将其添加到输出中。
 
 参数
 ::::::::::::
-    - **x** (Tensor) - 第一个输入 ``Tensor``，被乘 ``Tensor``。
-    - **y** (Tensor) - 第二个输入 ``Tensor``，被乘 ``Tensor``。其秩必须为 2。
-    - **bias** (Tensor，可选) - 输入的偏置。如果为 None，则不执行偏置加法。否则，偏置将被加到矩阵乘法结果上。默认：None。
-    - **transpose_x** (bool，可选) - 是否在乘法前转置 :math:`x`。默认：False。
-    - **transpose_y** (bool，可选) - 是否在乘法前转置 :math:`y`。默认：False。
-    - **name** (str，可选) - 具体信息请参阅 :ref:`api_guide_Name`。通常无需设置名称，默认为 None。
+- **in_features** (int) – 线性变换层输入单元的数目。
+- **out_features** (int) – 线性变换层输出单元的数目。
+- **weight_attr** (ParamAttr，可选) - 指定权重参数的属性。默认值为 None，权重将初始化为零。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+- **transpose_weight** (bool) - 在乘积运算前是否转置 `weight` 张量。
+- **bias_attr** (ParamAttr|bool，可选) – 指定偏置参数的属性。:math:`bias\_attr` 为 bool 类型且设置为 False 时，表示不会为该层添加偏置。:math:`bias\_attr` 如果设置为 True 或者 None，则表示使用默认的偏置参数属性，将偏置参数初始化为 0。具体用法请参见 :ref:`cn_api_paddle_ParamAttr`。默认值为 None。
+- **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回
-::::::::::::
-输出 ``Tensor``
+属性
+:::::::::
+
+weight
+'''''''''
+
+本层的可学习参数，类型为 ``Parameter`` 。
+
+bias
+'''''''''
+
+本层的可学习偏置，类型为 ``Parameter`` 。
+
+形状
+:::::::::
+
+- 输入：形状为 :math:`[batch\_size, *, in\_features]` 的多维 Tensor。
+- 输出：形状为 :math:`[batch\_size, *, out\_features]` 的多维 Tensor。
 
 代码示例
-::::::::::::
+:::::::::
 
-COPY-FROM: paddle.incubate.nn.functional.fused_matmul_bias
+COPY-FROM: paddle.incubate.nn.FusedLinear
