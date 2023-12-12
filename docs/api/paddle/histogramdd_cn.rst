@@ -1,6 +1,6 @@
 .. _cn_api_paddle_histogramdd:
 
-histogram
+histogramdd
 -------------------------------
 
 .. py:function:: paddle.histogramdd(x, bins=10, ranges=None, density=False, weights=None, name=None)
