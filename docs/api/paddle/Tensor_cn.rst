@@ -2208,7 +2208,7 @@ split(num_or_sections, axis=0, name=None)
 
 请参考 :ref:`cn_api_paddle_split`
 
-tensor_split(indices_or_sections, axis=0, name=None)
+tensor_split(num_or_indices, axis=0, name=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -2217,7 +2217,7 @@ tensor_split(indices_or_sections, axis=0, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_split`
 
-dsplit(num_or_sections, name=None)
+dsplit(num_or_indices, name=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -2226,7 +2226,7 @@ dsplit(num_or_sections, name=None)
 
 请参考 :ref:`cn_api_paddle_dsplit`
 
-hsplit(num_or_sections, name=None)
+hsplit(num_or_indices, name=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -2235,7 +2235,7 @@ hsplit(num_or_sections, name=None)
 
 请参考 :ref:`cn_api_paddle_hsplit`
 
-vsplit(num_or_sections, name=None)
+vsplit(num_or_indices, name=None)
 :::::::::
 
 返回：计算后的 Tensor

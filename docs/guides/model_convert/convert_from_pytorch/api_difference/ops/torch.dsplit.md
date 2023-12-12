@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.dsplit
+## [ 仅参数名不一致 ]torch.dsplit
 ### [torch.dsplit](https://pytorch.org/docs/stable/generated/torch.dsplit.html#torch.dsplit)
 
 ```python
@@ -10,38 +10,14 @@ torch.dsplit(input,
 
 ```python
 paddle.dsplit(x,
-        num_or_sections,
+        num_or_indices,
         name=None)
 ```
 
-Paddle 相比 PyTorch 用法不一致，具体如下：
+其中 Paddle 相比 Pytorch 仅参数名不一致，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          |  x           | 输入多维 Tensor ，仅参数名不一致。  |
-| indices_or_sections           | num_or_sections         | indices_or_sections 表示数量或切分索引位置，num_or_sections 表示数量或分片长度。 |
-
-
-### 转写示例
-#### 输入为列表的情况
-```python
-a = np.random.rand(2, 3, 6)
-indices_or_sections = [1, 4]
-# Pytorch 写法
-torch.dsplit(torch.tensor(a), indices_or_sections)
-
-# Paddle 写法
-num_or_sections = [1, 3, 2]
-paddle.dsplit(paddle.to_tensor(a), num_or_sections)
-
-# 参考转换方法
-def convert_num_or_sections(num_or_sections):
-    if isinstance(num_or_sections, int):
-        indices_or_sections = num_or_sections
-    else:
-        indices_or_sections = np.cumsum(num_or_sections)[:-1]
-
-    return indices_or_sections
-
-```
+| indices_or_sections           | num_or_indices         | 表示分割的数量或索引，仅参数名不一致。                          |
