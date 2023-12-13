@@ -25,13 +25,13 @@ MultivariateNormal 是一种定义在实数域上的多元连续型概率分布�
 参数
 :::::::::
 
-- **loc** (int|float|np.ndarray|Tensor) - 即上述公式中 :math:`\mu` 参数，是 MultivariateNormal 的均值向量。:attr:`loc` 的数据类型会被转换为 float32 类型。
+- **loc** (int|float|Tensor) - 即上述公式中 :math:`\mu` 参数，是 MultivariateNormal 的均值向量。如果 :attr:`loc` 的输入数据类型是 `int` 或 `float` 则会被转换为数据类型为 paddle 全局默认数据类型的 1-D Tensor。
 
-- **covariance_matrix** (Tensor) - 即上述公式中 :math:`\mu` 参数，是 MultivariateNormal 的协方差矩阵。:attr:`covariance_matrix` 的数据类型会被转换为 float32 类型。
+- **covariance_matrix** (Tensor) - 即上述公式中 :math:`\mu` 参数，是 MultivariateNormal 的协方差矩阵。:attr:`covariance_matrix` 的数据类型会被转换为与 :attr:`loc` 相同的类型。
 
-- **precision_matrix** (Tensor) - 是 MultivariateNormal 协方差矩阵的逆矩阵。:attr:`precision_matrix` 的数据类型会被转换为 float32 类型。
+- **precision_matrix** (Tensor) - 是 MultivariateNormal 协方差矩阵的逆矩阵。:attr:`precision_matrix` 的数据类型会被转换为与 :attr:`loc` 相同的类型。
 
-- **scale_tril** (Tensor) - 是 MultivariateNormal 协方差矩阵的柯列斯基分解的下三角矩阵。:attr:`scale_tril` 的数据类型会被转换为 float32 类型。
+- **scale_tril** (Tensor) - 是 MultivariateNormal 协方差矩阵的柯列斯基分解的下三角矩阵。:attr:`scale_tril` 的数据类型会被转换为与 :attr:`loc` 相同的类型。
 
 
 代码示例
@@ -74,7 +74,7 @@ prob(value)
 
 **返回**
 
-- Tensor: :attr:`value` 的概率。数据类型与 :attr:`value` 相同。
+- Tensor: :attr:`value` 的概率。数据类型与 :attr:`loc` 相同。
 
 
 log_prob(value)
@@ -88,7 +88,7 @@ log_prob(value)
 
 **返回**
 
-- Tensor: :attr:`value` 的对数概率。数据类型与 :attr:`value` 相同。
+- Tensor: :attr:`value` 的对数概率。数据类型与 :attr:`loc` 相同。
 
 
 sample(shape=())
@@ -102,7 +102,7 @@ sample(shape=())
 
 **返回**
 
-- Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape} + \text{event shape}` 。数据类型为 float32 。
+- Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape} + \text{event shape}` 。数据类型为 paddle 全局默认数据类型。
 
 
 rsample(shape=())
@@ -116,7 +116,7 @@ rsample(shape=())
 
 **返回**
 
-- Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape} + \text{event shape}` 。数据类型为 float32 。
+- Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape} + \text{event shape}` 。数据类型为 paddle 全局默认数据类型。
 
 
 entropy()
@@ -130,7 +130,7 @@ entropy()
 
 **返回**
 
-类别分布的信息熵，数据类型为 float32。
+类别分布的信息熵，数据类型为 paddle 全局默认数据类型。
 
 
 kl_divergence(other)
@@ -148,4 +148,4 @@ kl_divergence(other)
 
 **返回**
 
-相对于另一个类别分布的 KL 散度，数据类型为 float32。
+相对于另一个类别分布的 KL 散度，数据类型为 paddle 全局默认数据类型。

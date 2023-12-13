@@ -3,7 +3,7 @@
 ContinuousBernoulli
 -------------------------------
 
-.. py:class:: paddle.distribution.ContinuousBernoulli(probability, eps=1e-4)
+.. py:class:: paddle.distribution.ContinuousBernoulli(probability, eps=0.02)
 
 
 ContinuousBernoulli 是一种定义在 [0，1] 区间上的连续型概率分布，参数 :attr:`probability` 描述了其概率密度函数的形状。它可以被视为连续型的伯努利分布。
@@ -34,11 +34,11 @@ ContinuousBernoulli 是一种定义在 [0，1] 区间上的连续型概率分布
 参数
 :::::::::
 
-- **probability** (int|float|np.ndarray|Tensor) - 即上述公式中 :math:`\lambda` 参数，在 [0, 1] 内，表示事件平均概率，刻画 ContinuousBernoulli 分布的
-  概率密度函数的形状。:attr:`probability` 的数据类型会被转换为 float32 类型。
+- **probability** (int|float|Tensor) - 即上述公式中 :math:`\lambda` 参数，在 [0, 1] 内，刻画 ContinuousBernoulli 分布的
+  概率密度函数的形状。如果 :attr:`probability` 的输入数据类型是 `int` 或 `float` ，则会被转换为数据类型为 paddle 全局默认数据类型的 1-D Tensor。
 
 - **eps** (float) - 表示概率计算非稳定区域的区域宽度，概率计算非稳定区域即为 [0.5 - :attr:`eps`, 0.5 + :attr:`eps`] ，非稳定区域的概率计算使用泰勒展开做近似。
-  默认值为 1e-4。
+  默认值为 0.02。
 
 代码示例
 :::::::::
@@ -80,7 +80,7 @@ prob(value)
 
 **返回**
 
-- Tensor: :attr:`value` 的概率。数据类型与 :attr:`value` 相同。
+- Tensor: :attr:`value` 的概率。数据类型与 :attr:`probability` 相同。
 
 
 log_prob(value)
@@ -94,7 +94,7 @@ log_prob(value)
 
 **返回**
 
-- Tensor: :attr:`value` 的对数概率。数据类型与 :attr:`value` 相同。
+- Tensor: :attr:`value` 的对数概率。数据类型与 :attr:`probability` 相同。
 
 
 cdf(value)
@@ -119,7 +119,7 @@ cdf(value)
 
 **返回**
 
-- Tensor: :attr:`value` 的累积分布函数对应的 quantile 值。数据类型与 :attr:`value` 相同。
+- Tensor: :attr:`value` 的累积分布函数对应的 quantile 值。数据类型与 :attr:`probability` 相同。
 
 
 icdf(value)
@@ -143,7 +143,7 @@ icdf(value)
 
 **返回**
 
-- Tensor: ContinuousBernoulli 随机变量在对应 quantile 下的值。数据类型与 :attr:`value` 相同。
+- Tensor: ContinuousBernoulli 随机变量在对应 quantile 下的值。数据类型与 :attr:`probability` 相同。
 
 
 sample(shape=())
@@ -157,7 +157,7 @@ sample(shape=())
 
 **返回**
 
-- Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape}` 。数据类型为 float32 。
+- Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape}` 。
 
 
 rsample(shape=())
@@ -171,7 +171,7 @@ rsample(shape=())
 
 **返回**
 
-- Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape}` 。数据类型为 float32 。
+- Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape}` 。
 
 
 entropy()
@@ -185,7 +185,7 @@ entropy()
 
 **返回**
 
-类别分布的信息熵，数据类型为 float32。
+类别分布的信息熵。
 
 
 kl_divergence(other)
@@ -203,4 +203,4 @@ kl_divergence(other)
 
 **返回**
 
-相对于另一个类别分布的 KL 散度，数据类型为 float32。
+相对于另一个类别分布的 KL 散度。
