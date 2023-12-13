@@ -2611,7 +2611,7 @@ take_along_axis(arr, indices, axis, broadcast=True)
 put_along_axis(arr, indices, value, axis, reduce="assign", include_self=True, broadcast=True)
 :::::::::
 
-基于输入 indices 矩阵，将输入 value 沿着指定 axis 放置入 arr 矩阵。索引矩阵和 value 必须和 arr 矩阵有相同的维度，如果 ``broadcast``为 ``True``，则需要能够 broadcast 与 arr 矩阵对齐。
+基于输入 indices 矩阵，将输入 value 沿着指定 axis 放置入 arr 矩阵。索引矩阵和 value 必须和 arr 矩阵有相同的维度，如果 ``broadcast`` 为 ``True``，则需要能够 broadcast 与 arr 矩阵对齐。
 
 返回：计算后的 Tensor
 
