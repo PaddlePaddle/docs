@@ -80,7 +80,7 @@ prob(value)
 
 **返回**
 
-- Tensor: :attr:`value` 的概率。数据类型与 :attr:`probability` 相同。
+- Tensor: :attr:`value` 的概率。数据类型与 `self.probability` 相同。
 
 
 log_prob(value)
@@ -94,7 +94,7 @@ log_prob(value)
 
 **返回**
 
-- Tensor: :attr:`value` 的对数概率。数据类型与 :attr:`probability` 相同。
+- Tensor: :attr:`value` 的对数概率。数据类型与 `self.probability` 相同。
 
 
 cdf(value)
@@ -119,7 +119,7 @@ cdf(value)
 
 **返回**
 
-- Tensor: :attr:`value` 的累积分布函数对应的 quantile 值。数据类型与 :attr:`probability` 相同。
+- Tensor: :attr:`value` 的累积分布函数对应的 quantile 值。数据类型与 `self.probability` 相同。
 
 
 icdf(value)
@@ -143,7 +143,7 @@ icdf(value)
 
 **返回**
 
-- Tensor: ContinuousBernoulli 随机变量在对应 quantile 下的值。数据类型与 :attr:`probability` 相同。
+- Tensor: ContinuousBernoulli 随机变量在对应 quantile 下的值。数据类型与 `self.probability` 相同。
 
 
 sample(shape=())

@@ -74,7 +74,7 @@ prob(value)
 
 **返回**
 
-- Tensor: :attr:`value` 的概率。数据类型与 :attr:`loc` 相同。
+- Tensor: :attr:`value` 的概率。数据类型与 `self.loc` 相同。
 
 
 log_prob(value)
@@ -88,7 +88,7 @@ log_prob(value)
 
 **返回**
 
-- Tensor: :attr:`value` 的对数概率。数据类型与 :attr:`loc` 相同。
+- Tensor: :attr:`value` 的对数概率。数据类型与 `self.loc` 相同。
 
 
 sample(shape=())
@@ -102,7 +102,7 @@ sample(shape=())
 
 **返回**
 
-- Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape} + \text{event shape}` 。数据类型为 paddle 全局默认数据类型。
+- Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape} + \text{event shape}` 。数据类型与 `self.loc` 相同。
 
 
 rsample(shape=())
@@ -116,7 +116,7 @@ rsample(shape=())
 
 **返回**
 
-- Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape} + \text{event shape}` 。数据类型为 paddle 全局默认数据类型。
+- Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape} + \text{event shape}` 。数据类型与 `self.loc` 相同。
 
 
 entropy()
@@ -130,7 +130,7 @@ entropy()
 
 **返回**
 
-类别分布的信息熵，数据类型为 paddle 全局默认数据类型。
+类别分布的信息熵，数据类型与 `self.loc` 相同。
 
 
 kl_divergence(other)
@@ -148,4 +148,4 @@ kl_divergence(other)
 
 **返回**
 
-相对于另一个类别分布的 KL 散度，数据类型为 paddle 全局默认数据类型。
+相对于另一个类别分布的 KL 散度，数据类型与 `self.loc` 相同。
