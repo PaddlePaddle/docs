@@ -63,6 +63,7 @@ paddle.linalg 目录下包含飞桨框架支持的线性代数相关 API。具�
     " :ref:`paddle.linalg.lu <cn_api_paddle_linalg_lu>` ", "计算矩阵的 LU 分解"
     " :ref:`paddle.linalg.lu_unpack <cn_api_paddle_linalg_lu_unpack>` ", "对矩阵的 LU 分解结果进行展开得到各单独矩阵"
 
+
 .. _about_solvers:
 
 线性方程求解相关 API
