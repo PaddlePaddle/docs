@@ -301,6 +301,7 @@ tensor random 相关
     :widths: 10, 30
 
     " :ref:`paddle.bernoulli <cn_api_paddle_bernoulli>` ", "以输入 x 为概率，生成一个伯努利分布（0-1 分布）的 Tensor，输出 Tensor 的形状和数据类型与输入 x 相同"
+    " :ref:`paddle.binomial <cn_api_paddle_binomial>` ", "以输入 count 为总实验次数， prob 为实验成功的概率，生成一个二项分布的 Tensor"
     " :ref:`paddle.multinomial <cn_api_paddle_multinomial>` ", "以输入 x 为概率，生成一个多项分布的 Tensor"
     " :ref:`paddle.normal <cn_api_paddle_normal>` ", "返回符合正态分布（均值为 mean ，标准差为 std 的正态随机分布）的随机 Tensor"
     " :ref:`paddle.rand <cn_api_paddle_rand>` ", "返回符合均匀分布的，范围在[0, 1)的 Tensor"
