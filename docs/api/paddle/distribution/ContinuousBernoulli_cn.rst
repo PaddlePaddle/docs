@@ -7,7 +7,7 @@ ContinuousBernoulli
 
 
 ContinuousBernoulli 是一种定义在 [0，1] 区间上的连续型概率分布，参数 :attr:`probability` 描述了其概率密度函数的形状。它可以被视为连续型的伯努利分布。
-出自 [1] Loaiza-Ganem, G., & Cunningham, J. P. The continuous Bernoulli: fixing a pervasive error in variational autoencoders. 2019.
+出自 `The continuous Bernoulli: fixing a pervasive error in variational autoencoders. <https://arxiv.org/abs/1907.06845>`_
 
 其概率密度函数（pdf）为：
 
