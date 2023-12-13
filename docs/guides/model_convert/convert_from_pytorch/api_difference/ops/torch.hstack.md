@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.hstack
+## [ 仅参数名不一致 ]torch.hstack
 
 ### [torch.hstack](https://pytorch.org/docs/stable/generated/torch.hstack.html#torch.hstack)
 
@@ -6,17 +6,16 @@
 torch.hstack(tensors, *, out=None)
 ```
 
-按水平方向拼接张量; Paddle 无此 API，需要组合实现。
-
-### 转写示例
+### [paddle.hstack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hstack_cn.html)
 
 ```python
-# Pytorch 写法
-y = torch.hstack((a, b))
-
-# Paddle 写法
-if a.ndim == 1:
-    y = paddle.concat((a, b), axis=0)
-else:
-    y = paddle.concat((a, b), axis=1)
+paddle.hstack(x, name=None)
 ```
+
+其中 Paddle 相比 Pytorch 仅参数名不一致，具体如下：
+
+### 参数映射
+
+| PyTorch       | PaddlePaddle | 备注                                                    |
+| ------------- | ------------ | ------------------------------------------------------  |
+| tensors         | x            | 表示输入的 Tensor ，仅参数名不一致。                        |
