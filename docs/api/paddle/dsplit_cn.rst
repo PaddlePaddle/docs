@@ -7,7 +7,7 @@ dsplit
 
 
 
-将输入 Tensor 沿着深度轴分割成多个子 Tensor，等价于将 paddle.tensor_split API 的参数 axis 固定为 2。
+将输入 Tensor 沿着深度轴分割成多个子 Tensor，等价于将 :ref:`cn_api_paddle_tensor_split` API 的参数 axis 固定为 2。
 
 参数
 :::::::::
