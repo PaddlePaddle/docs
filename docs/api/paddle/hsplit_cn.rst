@@ -7,7 +7,7 @@ hsplit
 
 
 
-将输入 Tensor 沿着水平轴分割成多个子 Tensor。当 x 的维度大于 1 时等价于将 paddle.tensor_split API 的参数 axis 固定为 1，当 x 的维度等于 1 时等价于将 paddle.tensor_split API 的参数 axis 固定为 0。
+将输入 Tensor 沿着水平轴分割成多个子 Tensor。当 x 的维度大于 1 时等价于将 :ref:`cn_api_paddle_tensor_split` API 的参数 axis 固定为 1，当 x 的维度等于 1 时等价于将 paddle.tensor_split API 的参数 axis 固定为 0。
 
 参数
 :::::::::
