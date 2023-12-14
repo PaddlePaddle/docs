@@ -14,6 +14,7 @@ paddle.tensor_split(num_or_indices, axis=0, name=None)
 其中 Paddle 相比 Pytorch 仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                    |
 | ------------- | ------------ | ------------------------------------------------------  |
 | indices_or_sections           | num_or_indices         | 表示分割的数量或索引，仅参数名不一致。                          |
