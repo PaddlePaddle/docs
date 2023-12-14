@@ -3,7 +3,7 @@
 ContinuousBernoulli
 -------------------------------
 
-.. py:class:: paddle.distribution.ContinuousBernoulli(probs, eps=0.02)
+.. py:class:: paddle.distribution.ContinuousBernoulli(probs, lims=(0.499, 0.501))
 
 
 ContinuousBernoulli 是一种定义在 [0，1] 区间上的连续型概率分布，参数 :attr:`probs` 描述了其概率密度函数的形状。它可以被视为连续型的伯努利分布。
@@ -34,10 +34,10 @@ ContinuousBernoulli 是一种定义在 [0，1] 区间上的连续型概率分布
 参数
 :::::::::
 
-- **probs** (int|float|Tensor) - 即上述公式中 :math:`\lambda` 参数，在 [0, 1] 内，刻画 ContinuousBernoulli 分布的
-  概率密度函数的形状。如果 :attr:`probs` 的输入数据类型是 `int` 或 `float` ，则会被转换为数据类型为 paddle 全局默认数据类型的 1-D Tensor。
+    - **probs** (int|float|Tensor) - 即上述公式中 :math:`\lambda` 参数，在 [0, 1] 内，刻画 ContinuousBernoulli 分布的
+      概率密度函数的形状。如果 :attr:`probs` 的输入数据类型是 `int` 或 `float` ，则会被转换为数据类型为 paddle 全局默认数据类型的 1-D Tensor。
 
-- **lims** (float) - 表示概率计算非稳定区域的区域宽度，非稳定区域的概率计算使用泰勒展开做近似。默认值为 (0.499, 0.501)。
+    - **lims** (tuple) - 表示概率计算非稳定区域的区域宽度，非稳定区域的概率计算使用泰勒展开做近似。默认值为 (0.499, 0.501)。
 
 代码示例
 :::::::::
@@ -75,11 +75,11 @@ prob(value)
 
 **参数**
 
-- **value** (Tensor) - 待计算值。
+    - **value** (Tensor) - 待计算值。
 
 **返回**
 
-- Tensor: :attr:`value` 的概率。数据类型与 `self.probs` 相同。
+Tensor，:attr:`value` 的概率。数据类型与 `self.probs` 相同。
 
 
 log_prob(value)
@@ -89,11 +89,11 @@ log_prob(value)
 
 **参数**
 
-- **value** (Tensor) - 待计算值。
+    - **value** (Tensor) - 待计算值。
 
 **返回**
 
-- Tensor: :attr:`value` 的对数概率。数据类型与 `self.probs` 相同。
+Tensor，:attr:`value` 的对数概率。数据类型与 `self.probs` 相同。
 
 
 cdf(value)
@@ -114,11 +114,11 @@ cdf(value)
 
 **参数**
 
-- **value** (Tensor) - 待计算值。
+    - **value** (Tensor) - 待计算值。
 
 **返回**
 
-- Tensor: :attr:`value` 的累积分布函数对应的 quantile 值。数据类型与 `self.probs` 相同。
+Tensor: :attr:`value` 的累积分布函数对应的 quantile 值。数据类型与 `self.probs` 相同。
 
 
 icdf(value)
@@ -138,11 +138,11 @@ icdf(value)
 
 **参数**
 
-- **value** (Tensor) - 待计算 quantile。
+    - **value** (Tensor) - 待计算 quantile。
 
 **返回**
 
-- Tensor: ContinuousBernoulli 随机变量在对应 quantile 下的值。数据类型与 `self.probs` 相同。
+Tensor，ContinuousBernoulli 随机变量在对应 quantile 下的值。数据类型与 `self.probs` 相同。
 
 
 sample(shape=())
@@ -152,11 +152,11 @@ sample(shape=())
 
 **参数**
 
-- **shape** (Sequence[int]，可选)：采样次数。
+    - **shape** (Sequence[int]，可选)：采样次数。
 
 **返回**
 
-- Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape}` 。
+Tensor，样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape}` 。
 
 
 rsample(shape=())
@@ -166,11 +166,11 @@ rsample(shape=())
 
 **参数**
 
-- **shape** (Sequence[int]，可选)：采样次数。
+    - **shape** (Sequence[int]，可选)：采样次数。
 
 **返回**
 
-- Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape}` 。
+Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape}` 。
 
 
 entropy()
@@ -184,13 +184,13 @@ entropy()
 
 **返回**
 
-类别分布的信息熵。
+连续伯努利分布的信息熵。
 
 
 kl_divergence(other)
 '''''''''
 
-相对于另一个类别分布的 KL 散度，两个分布需要有相同的 :math:`\text{batch shape}`。
+相对于另一个连续伯努利分布的 KL 散度，两个分布需要有相同的 :math:`\text{batch shape}`。
 
 .. math::
 
@@ -198,8 +198,8 @@ kl_divergence(other)
 
 **参数**
 
-    - **other** (ContinuousBernoulli) - 输入的另一个类别分布。
+    - **other** (ContinuousBernoulli) - 输入的另一个连续伯努利分布。
 
 **返回**
 
-相对于另一个类别分布的 KL 散度。
+相对于另一个连续伯努利分布的 KL 散度。
