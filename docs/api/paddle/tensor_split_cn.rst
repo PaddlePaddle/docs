@@ -7,7 +7,7 @@ tensor_split
 
 
 
-将输入 Tensor 沿着轴 ``axis``` 分割成多个子 Tensor，允许进行不等长地分割。
+将输入 Tensor 沿着轴 ``axis`` 分割成多个子 Tensor，允许进行不等长地分割。
 
 参数
 :::::::::
