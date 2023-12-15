@@ -33,8 +33,8 @@
 | 服务端 CPU | ARM | 华为 | 鲲鹏 920 2426SK |  |[源码编译](../../install/compile/arm-compile.html) |  |   |
 | 服务端 CPU | MIPS | 龙芯 | 龙芯 3A4000、3A5000、3C5000L |  |[源码编译](../../install/compile/mips-compile.html#anchor-0) |  |  |
 | 服务端 CPU | x86 | 兆芯 | 全系列 CPU |  |[源码编译](../../install/compile/zhaoxin-compile.html#anchor-1) |  |  |
-| 服务端 CPU | ARM | 海光 | 海光 3000、5000、7000 系列 CPU |  |  |  |  |
-| 服务端 CPU | ARM | 申威 | 申威 SW6A、SW6B |  |  |  |  |
+| 服务端 CPU |  | 海光 | 海光 3000、5000、7000 系列 CPU |  |  |  |  |
+| 服务端 CPU |  | 申威 | 申威 SW6A、SW6B |  |  |  |  |
 
 ## Paddle Lite
 
@@ -59,6 +59,7 @@
 
 ## Paddle2ONNX
 |  分类  | 架构 | 公司 | 型号 | 支持部分模型 |
+|  ----  | ----  | ---- | ---- | ---- |
 |  AI 加速芯片 |   | 登临 | Goldwasser 系列加速卡 | ✔️  |
 |  AI 加速芯片 |   | 墨芯 | Moffett S4 | ✔️  |
 |  AI 加速芯片 |   | 海飞科 | Compass C10 | ✔️  |
