@@ -12,7 +12,7 @@
 | AI 加速芯片 |  | 海光 | 海光 DCU | [安装](./rocm_docs/paddle_install_cn.html#wheel) | [源码编译](./rocm_docs/paddle_install_cn.html#anzhuangfangshier-tongguoyuanmabianyianzhuang) | ✔️ | [支持模型](./rocm_docs/paddle_rocm_cn.html) |
 | AI 加速芯片 | XPU | 百度 | 昆仑 K200、R200 等 | [安装](./xpu_docs/paddle_install_xpu2_cn.html#wheel) | [源码编译](./xpu_docs/paddle_install_xpu2_cn.html#xpu) |  | [支持模型](./xpu_docs/paddle_2.0_xpu2_cn.html) |
 | AI 加速芯片 | IPU | Graphcore | GC200 | | [源码编译](./ipu_docs/paddle_install_cn.html) |  | |
-| AI 加速芯片 | MLU | 寒武纪 | MLU370 系列 | [安装](./mlu_docs/paddle_install_cn.html) | [源码编译](./mlu_docs/paddle_install_cn.html#anzhuangfangshier-tongguoyuanmabianyianzhuang) |  | ✔️ |
+| AI 加速芯片 | MLU | 寒武纪 | MLU370、MLU590 | [安装](./mlu_docs/paddle_install_cn.html) | [源码编译](./mlu_docs/paddle_install_cn.html#anzhuangfangshier-tongguoyuanmabianyianzhuang) |  | ✔️ |
 | AI 加速芯片 |  | 天数智芯 | 天垓 100 |  |  |  | ✔️ |
 | AI 加速芯片 |  | 壁仞 | BR100、BR104 |  |  |  | ✔️ |
 | AI 加速芯片 |  | 燧原 | 云燧 T20 、i20|  |  |  | ✔️ |
@@ -21,7 +21,7 @@
 
 |  分类  | 架构 | 公司 | 型号 | 预编译库 | 源码编译 |  完全支持推理 | 支持部分模型 |
 |  ----  | ----  | ---- | ---- |---- | ---- |---- | ---- |
-| 服务端 CPU | x86 | Intel | 常见 CPU 型号如 Xeon、Core 全系列等 | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
+| 服务端 CPU | x86 | Intel | 常见 CPU 型号如 Xeon、Core 全系列以及NUC | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
 | 服务端 GPU |  | NVIDIA | 常见 GPU 型号如 V100、T4 等 | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
 | 移动端 GPU |  | NVIDIA | Jetson 系列 | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
 | AI 加速芯片 | 达芬奇 | 华为 | 昇腾 910 | 即将提供 | | | |
