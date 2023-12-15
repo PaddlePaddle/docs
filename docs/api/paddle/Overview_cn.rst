@@ -301,6 +301,7 @@ tensor random 相关
     :widths: 10, 30
 
     " :ref:`paddle.bernoulli <cn_api_paddle_bernoulli>` ", "以输入 x 为概率，生成一个伯努利分布（0-1 分布）的 Tensor，输出 Tensor 的形状和数据类型与输入 x 相同"
+    " :ref:`paddle.binomial <cn_api_paddle_binomial>` ", "以输入 count 为总实验次数， prob 为实验成功的概率，生成一个二项分布的 Tensor"
     " :ref:`paddle.multinomial <cn_api_paddle_multinomial>` ", "以输入 x 为概率，生成一个多项分布的 Tensor"
     " :ref:`paddle.normal <cn_api_paddle_normal>` ", "返回符合正态分布（均值为 mean ，标准差为 std 的正态随机分布）的随机 Tensor"
     " :ref:`paddle.rand <cn_api_paddle_rand>` ", "返回符合均匀分布的，范围在[0, 1)的 Tensor"
@@ -371,7 +372,10 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.shard_index <cn_api_paddle_shard_index>` ", "根据分片（shard）的偏移量重新计算分片的索引"
     " :ref:`paddle.slice <cn_api_paddle_slice>` ", "沿多个轴生成 input 的切片"
     " :ref:`paddle.split <cn_api_paddle_split>` ", "将输入 Tensor 分割成多个子 Tensor"
+    " :ref:`paddle.tensor_split <cn_api_paddle_tensor_split>` ", "将输入 Tensor 分割成多个子 Tensor，允许不等分"
+    " :ref:`paddle.hsplit <cn_api_paddle_hsplit>` ", "将输入 Tensor 沿第零个维度分割成多个子 Tensor"
     " :ref:`paddle.vsplit <cn_api_paddle_vsplit>` ", "将输入 Tensor 沿第一个维度分割成多个子 Tensor"
+    " :ref:`paddle.dsplit <cn_api_paddle_dsplit>` ", "将输入 Tensor 沿第二个维度分割成多个子 Tensor"
     " :ref:`paddle.squeeze <cn_api_paddle_squeeze>` ", "删除输入 Tensor 的 Shape 中尺寸为 1 的维度"
     " :ref:`paddle.stack <cn_api_paddle_stack>` ", "沿 axis 轴对输入 x 进行堆叠操作"
     " :ref:`paddle.strided_slice <cn_api_paddle_strided_slice>` ", "沿多个轴生成 x 的切片"

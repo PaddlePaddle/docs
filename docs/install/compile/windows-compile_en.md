@@ -6,7 +6,7 @@
 * **GPU Version support CUDA 11.0 - 12.0, and only support single GPU**
 * **Python version 3.8+/3.9+/3.10+/3.11+/3.12+(64bit)**
 * **pip version 20.2.2 or above (64bit)**
-* **Visual Studio 2019**
+* **Visual Studio 2017(for CPU)/2019(for GPU)**
 
 ## Choose CPU/GPU
 
@@ -110,7 +110,7 @@ There is one compilation methods in Windows system:
         ```
         > 2. If more than one Python are installed, the latest installed Python will be used by default, and you can choose the Python version by `-DPYTHON_EXECUTABLE` . for example:
         ```
-        cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\\Python37\\python.exe  -DWITH_UNITY_BUILD=ON
+        cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\\Python38\\python.exe  -DWITH_UNITY_BUILD=ON
         ```
 
 6. Execute compile:
