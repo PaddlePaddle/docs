@@ -27,11 +27,11 @@ MultivariateNormal 是一种定义在实数域上的多元连续型概率分布�
 
     - **loc** (int|float|Tensor) - 即上述公式中 :math:`\mu` 参数，是 MultivariateNormal 的均值向量。如果 :attr:`loc` 的输入数据类型是 `int` 或 `float` 则会被转换为数据类型为 paddle 全局默认数据类型的 1-D Tensor。
 
-    - **covariance_matrix** (Tensor) - 即上述公式中 :math:`\mu` 参数，是 MultivariateNormal 的协方差矩阵。:attr:`covariance_matrix` 的数据类型会被转换为与 :attr:`loc` 相同的类型。默认值为 None。
+    - **covariance_matrix** (Tensor，可选) - 即上述公式中 :math:`\mu` 参数，是 MultivariateNormal 的协方差矩阵。:attr:`covariance_matrix` 的数据类型会被转换为与 :attr:`loc` 相同的类型。默认值为 None。
 
-    - **precision_matrix** (Tensor) - 是 MultivariateNormal 协方差矩阵的逆矩阵。:attr:`precision_matrix` 的数据类型会被转换为与 :attr:`loc` 相同的类型。默认值为 None。
+    - **precision_matrix** (Tensor，可选) - 是 MultivariateNormal 协方差矩阵的逆矩阵。:attr:`precision_matrix` 的数据类型会被转换为与 :attr:`loc` 相同的类型。默认值为 None。
 
-    - **scale_tril** (Tensor) - 是 MultivariateNormal 协方差矩阵的柯列斯基分解的下三角矩阵。:attr:`scale_tril` 的数据类型会被转换为与 :attr:`loc` 相同的类型。默认值为 None。
+    - **scale_tril** (Tensor，可选) - 是 MultivariateNormal 协方差矩阵的柯列斯基分解的下三角矩阵。:attr:`scale_tril` 的数据类型会被转换为与 :attr:`loc` 相同的类型。默认值为 None。
 
 
 代码示例
