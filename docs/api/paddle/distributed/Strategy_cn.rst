@@ -72,7 +72,7 @@ sharding
 
 
 fused_passes
-'''''''''
+'''''''''''''
 
 计算融合策略，包含以下配置项：
 
@@ -85,6 +85,7 @@ fused_passes
 **代码示例**
 
 .. code-block:: python
+
     import paddle
     import paddle.distributed as dist
 
@@ -95,7 +96,7 @@ fused_passes
 
 
 gradient_merge
-'''''''''
+'''''''''''''''
 
 梯度融合策略，包含以下配置项：
 
@@ -108,6 +109,7 @@ gradient_merge
 **代码示例**
 
 .. code-block:: python
+
     import paddle
     import paddle.distributed as dist
 
@@ -133,6 +135,7 @@ pipeline
 **代码示例**
 
 .. code-block:: python
+
     import paddle
     import paddle.distributed as dist
 
