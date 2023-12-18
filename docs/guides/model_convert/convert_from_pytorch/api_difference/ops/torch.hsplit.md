@@ -1,15 +1,15 @@
-## [ 仅参数名不一致 ]torch.dsplit
-### [torch.dsplit](https://pytorch.org/docs/stable/generated/torch.dsplit.html#torch.dsplit)
+## [ 仅参数名不一致 ]torch.hsplit
+### [torch.hsplit](https://pytorch.org/docs/stable/generated/torch.hsplit.html#torch.hsplit)
 
 ```python
-torch.dsplit(input,
+torch.hsplit(input,
         indices_or_sections)
 ```
 
-### [paddle.dsplit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/dsplit_cn.html)
+### [paddle.hsplit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hsplit_cn.html)
 
 ```python
-paddle.dsplit(x,
+paddle.hsplit(x,
         num_or_indices,
         name=None)
 ```
