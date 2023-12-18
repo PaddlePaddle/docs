@@ -1,15 +1,15 @@
-## [ 仅参数名不一致 ]torch.column_stack
+## [ 仅参数名不一致 ]torch.dstack
 
-### [torch.column_stack](https://pytorch.org/docs/stable/generated/torch.column_stack.html#torch.column_stack)
+### [torch.dstack](https://pytorch.org/docs/stable/generated/torch.dstack.html#torch.dstack)
 
 ```python
-torch.column_stack(tensors, *, out=None)
+torch.dstack(tensors, *, out=None)
 ```
 
-### [paddle.column_stack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/column_stack_cn.html)
+### [paddle.dstack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/dstack_cn.html)
 
 ```python
-paddle.column_stack(x, name=None)
+paddle.dstack(x, name=None)
 ```
 
 其中 Paddle 相比 Pytorch 仅参数名不一致，具体如下：

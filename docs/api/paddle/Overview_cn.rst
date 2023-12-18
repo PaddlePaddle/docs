@@ -401,6 +401,11 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.masked_fill <cn_api_paddle_masked_fill>` ", "根据 mask 信息，将 value 中的值填充到 x 中 mask 对应为 True 的位置。"
     " :ref:`paddle.diagonal_scatter <cn_api_paddle_diagonal_scatter>` ", "根据给定的轴 axis 和偏移量 offset，将张量 y 的值填充到张量 x 中"
     " :ref:`paddle.index_fill <cn_api_paddle_index_fill>` ", "沿着指定轴 axis 将 index 中指定位置的 x 的值填充为 value"
+    " :ref:`paddle.column_stack <cn_api_paddle_column_stack>` ", "沿水平轴堆叠输入 x 中的所有张量。"
+    " :ref:`paddle.row_stack <cn_api_paddle_row_stack>` ", "沿垂直轴堆叠输入 x 中的所有张量。"
+    " :ref:`paddle.hstack <cn_api_paddle_hstack>` ", "沿水平轴堆叠输入 x 中的所有张量。"
+    " :ref:`paddle.vstack <cn_api_paddle_vstack>` ", "沿垂直轴堆叠输入 x 中的所有张量。"
+    " :ref:`paddle.dstack <cn_api_paddle_dstack>` ", "沿深度轴堆叠输入 x 中的所有张量。"
 
 .. _tensor_manipulation_inplace:
 
