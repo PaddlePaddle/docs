@@ -87,6 +87,8 @@ tensor 数学操作
     " :ref:`paddle.bitwise_not <cn_api_paddle_bitwise_not>` ", "逐元素的对 X Tensor 进行按位取反运算"
     " :ref:`paddle.bitwise_or <cn_api_paddle_bitwise_or>` ", "逐元素的对 X 和 Y 进行按位或运算"
     " :ref:`paddle.bitwise_xor <cn_api_paddle_bitwise_xor>` ", "逐元素的对 X 和 Y 进行按位异或运算"
+    " :ref:`paddle.bitwise_left_shift <cn_api_paddle_bitwise_left_shift>` ", "逐元素的对 X 和 Y 进行按位算术(或逻辑)左移"
+    " :ref:`paddle.bitwise_right_shift <cn_api_paddle_bitwise_right_shift>` ", "逐元素的对 X 和 Y 进行按位算术(或逻辑)右移"
     " :ref:`paddle.logsumexp <cn_api_paddle_logsumexp>` ", "沿着 axis 计算 x 的以 e 为底的指数的和的自然对数"
     " :ref:`paddle.max <cn_api_paddle_max>` ", "对指定维度上的 Tensor 元素求最大值运算"
     " :ref:`paddle.amax <cn_api_paddle_max>` ", "对指定维度上的 Tensor 元素求最大值运算"
