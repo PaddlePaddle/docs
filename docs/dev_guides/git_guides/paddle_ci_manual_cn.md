@@ -58,7 +58,7 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 
 #### PR-CI-Auto-Parallel
 
-- **【条目描述】** 检测飞桨自动并行8卡任务的功能、性能和显存。
+- **【条目描述】** 检测飞桨自动并行 8 卡任务的功能、性能和显存。
 - **【触发条件】** 当 PR 修改了 `tools/auto_parallel/target_path_lists.sh` 中的[命中路径](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/auto_parallel/target_path_lists.sh)时触发。
 
 
