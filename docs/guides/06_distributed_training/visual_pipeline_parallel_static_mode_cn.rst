@@ -38,14 +38,14 @@
             exe.run(program, status)
 
 
-其中 `job_schedule_profiler_range` 函数的参数依次为：
+其中 ``job_schedule_profiler_range`` 函数的参数依次为：
 
 - iter_id： 当前迭代的 id，用于区分不同的迭代
 - start_step： 可视化工具的起始时间
 - stop_step： 可视化工具的结束时间
 - exit_after_prof： 是否在可视化工具结束后退出程序，默认为 True
 
-开启性能分析器后，收集到的数据会存储在日志目录 `log_dir` 下，每个设备的数据会存储在 `workerlog.0`, `workerlog.1`, `workerlog.2`, ... 中。
+开启性能分析器后，收集到的数据会存储在日志目录 ``log_dir`` 下，每个设备的数据会存储在 ``workerlog.0``, ``workerlog.1``, ``workerlog.2``, ... 中。
 
 1.3 PaddleNLP 下开启性能分析器
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -116,9 +116,9 @@ PaddleNLP 中为了方便用户运行测试本模型，提供了处理好的 100
         --job_schedule_profiler_start 0 \
         --job_schedule_profiler_end 5 \
 
-其中，`--job_schedule_profiler_start 0` 和 `--job_schedule_profiler_end 5` 用于调控可视化的时间跨度。
+其中，``--job_schedule_profiler_start 0`` 和 ``--job_schedule_profiler_end 5`` 用于调控可视化的时间跨度。
 
-在程序执行完毕后，将在 `log_dir` 目录下生成每个设备的时序图数据，储存在 `workerlog.0`、`workerlog.1`、`workerlog.2`、`workerlog.3` 等文件中。
+在程序执行完毕后，将在 ``log_dir`` 目录下生成每个设备的时序图数据，储存在 ``workerlog.0``、``workerlog.1``、``workerlog.2``、``workerlog.3`` 等文件中。
 
 二、可视化时序图
 -------------------
@@ -126,20 +126,22 @@ PaddleNLP 中为了方便用户运行测试本模型，提供了处理好的 100
 2.1 单机训练下的可视化
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-在 Paddle 目录下有一个 `python/paddle/distributed/auto_parallel/static/profiler_helper_static.py` 脚本，用来可视化时序图。使用方法如下：
+在 Paddle 目录下有一个 ``python/paddle/distributed/auto_parallel/static/profiler_helper_static.py`` 脚本，用来可视化时序图。使用方法如下：
 
 .. code-block:: bash
     python python/paddle/distributed/auto_parallel/static/profiler_helper_static.py --devices 0,1,2,3 --log_dir /home/workspace/PaddleNLP/llm/llama/output/llama_7b_pp2_mp4_st_log
 
-其中 `--devices` 为需要可视化的设备，`--log_dir` 为时序图数据所在的目录。
+其中 ``--devices`` 为需要可视化的设备，``--log_dir`` 为时序图数据所在的目录。
 
 .. image:: images/profiler_helper_static_run_results.png
 
-脚本会生成 `Chrome tracing` 格式的文件，可以使用 Chrome 浏览器打开，也可以使用 [perfetto](https://ui.perfetto.dev/) 打开 `pipeline_profile_perfetto.json`。perfetto 提供了更好看的界面以及更流畅的体验，更推荐使用。
+脚本会生成 ``Chrome tracing`` 格式的文件，可以使用 Chrome 浏览器打开，也可以使用
+`perfetto <https://ui.perfetto.dev/>`__
+打开 ``pipeline_profile_perfetto.json``。perfetto 提供了更好看的界面以及更流畅的体验，更推荐使用。
 
 perfetto 可视化效果如下：
 
-.. image:: perfetto_results.png
+.. image:: images/perfetto_results.png
 
 Chrome Tracing 可视化效果如下：
 
@@ -159,7 +161,7 @@ Chrome Tracing 可视化效果如下：
     │   ├── workerlog.0
     │   └── workerlog.1
 
-然后在任意一台机器上运行可视化脚本并指定 `--log_dir` 参数为 `log_dir` 目录以及开启 `--multi_machine` 参数即可。
+然后在任意一台机器上运行可视化脚本并指定 ``--log_dir`` 参数为 ``log_dir`` 目录以及开启 ``--multi_machine`` 参数即可。
 
 .. code-block:: bash
     python python/paddle/distributed/auto_parallel/static/profiler_helper_static.py --devices 0,1 --log_dir /home/workspace/PaddleNLP/llm/llama/output/llama_7b_pp2_mp4_st_log/multi_machine_logs --multi_machine
@@ -169,7 +171,7 @@ Chrome Tracing 可视化效果如下：
 
 上面已经介绍了如何使用可视化工具，本节将介绍可视化工具的统计信息和呈现。以 perfetto 为例，可视化效果如下：
 
-.. image:: images/0738dff3dc81ad5659c1e54edfbb84836088c9d2f043ef145deba003d7c60447.png
+.. image:: images/perfetto_results-2.png
 
 目前 Timeline 提供以下特性：
 
