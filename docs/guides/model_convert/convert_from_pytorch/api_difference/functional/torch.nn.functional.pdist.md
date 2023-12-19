@@ -12,7 +12,7 @@ torch.nn.functional.pdist(input, p=2)
 paddle.nn.functional.pdist(x, p=2.0)
 ```
 
-两者功能一致，仅参数名不一致，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 
