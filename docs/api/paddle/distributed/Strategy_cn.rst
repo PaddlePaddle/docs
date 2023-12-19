@@ -24,24 +24,7 @@ Strategy
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.distributed as dist
-
-    strategy = dist.Strategy()
-
-    strategy.sharding.enable = True
-    strategy.sharding.stage = 2
-    strategy.sharding.degree = 2
-
-    strategy.gradient_merge.enable = True
-    strategy.gradient_merge.k_steps = 2
-    strategy.gradient_merge.avg = False
-
-    strategy.pipeline.enable = True
-    strategy.pipeline.schedule_mode = "1F1B" # default is "1F1B"
-    strategy.pipeline.micro_batch_size = 2
+COPY-FROM: paddle.distributed.Strategy
 
 
 属性
@@ -60,15 +43,7 @@ sharding
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.distributed as dist
-
-    strategy = dist.Strategy()
-    strategy.sharding.enable = True
-    strategy.sharding.stage = 2
-    strategy.sharding.degree = 2
+COPY-FROM: paddle.distributed.Strategy.sharding
 
 
 fused_passes
@@ -84,15 +59,7 @@ fused_passes
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.distributed as dist
-
-    strategy = dist.Strategy()
-    strategy.fused_passes.enable = True
-    strategy.fused_passes.gemm_spilogue = True
-    strategy.fused_passes.dropout_add = True
+COPY-FROM: paddle.distributed.Strategy.fused_passes
 
 
 gradient_merge
@@ -108,15 +75,7 @@ gradient_merge
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.distributed as dist
-
-    strategy = dist.Strategy()
-    strategy.gradient_merge.enable = True
-    strategy.gradient_merge.k_steps = 2
-    strategy.gradient_merge.avg = True
+COPY-FROM: paddle.distributed.Strategy.gradient_merge
 
 
 pipeline
@@ -134,11 +93,4 @@ pipeline
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.distributed as dist
-
-    strategy = dist.Strategy()
-    strategy.pipeline.enable = True
-    strategy.pipeline.micro_batch_size = 2
+COPY-FROM: paddle.distributed.Strategy.pipeline

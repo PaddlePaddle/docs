@@ -3,7 +3,7 @@
 to_static
 -------------------------------
 
-.. py:function:: def to_static(layer, loader, loss=None, optimizer=None, strategy=None)
+.. py:function:: to_static(layer, loader, loss=None, optimizer=None, strategy=None)
 
 将带有分布式切分信息的动态图 ``layer`` 转换为静态图分布式模型, 可在静态图模式下进行分布式训练；同时将动态图下所使用的数据迭代器 ``loader`` 转换为静态图分布式训练所使用的数据迭代器。
 
