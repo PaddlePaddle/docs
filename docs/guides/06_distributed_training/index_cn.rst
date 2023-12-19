@@ -28,3 +28,5 @@
     pipeline_parallel_cn.rst
     group_sharded_parallel_cn.rst
     moe_cn.rst
+    visual_pipeline_parallel_static_mode_cn.rst
+    visual_pipeline_parallel_static_mode_en.rst
