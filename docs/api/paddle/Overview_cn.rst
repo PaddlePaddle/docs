@@ -115,6 +115,7 @@ tensor 数学操作
     " :ref:`paddle.rsqrt <cn_api_paddle_rsqrt>` ", "rsqrt 激活函数"
     " :ref:`paddle.scale <cn_api_paddle_scale>` ", "缩放算子"
     " :ref:`paddle.sign <cn_api_paddle_sign>` ", "对输入 x 中每个元素进行正负判断"
+    " :ref:`paddle.signbit <cn_api_paddle_signbit>` ", "对输入 x 的每个元素符号位进行判断"
     " :ref:`paddle.sgn <cn_api_paddle_sgn>` ", "对输入 x 中每个元素进行正负判断，对于复数则输出单位向量"
     " :ref:`paddle.sin <cn_api_paddle_sin>` ", "计算输入的正弦值"
     " :ref:`paddle.sinh <cn_api_paddle_sinh>` ", "双曲正弦函数"
@@ -338,6 +339,7 @@ tensor 线性代数相关
     " :ref:`paddle.triu <cn_api_paddle_triu>` ", "返回输入矩阵 input 的上三角部分，其余部分被设为 0"
     " :ref:`paddle.triu_indices <cn_api_paddle_triu_indices>` ", "返回输入矩阵在给定对角线右上三角部分元素坐标"
     " :ref:`paddle.cdist <cn_api_paddle_cdist>` ", "计算两组输入集合 x, y 中每对之间的 p 范数"
+    " :ref:`paddle.pdist <cn_api_paddle_pdist>` ", "计算输入形状为 N x M 的 Tensor 中 N 个向量两两组合(pairwise)的 p 范数"
 
 .. _tensor_manipulation:
 
@@ -401,6 +403,11 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.masked_fill <cn_api_paddle_masked_fill>` ", "根据 mask 信息，将 value 中的值填充到 x 中 mask 对应为 True 的位置。"
     " :ref:`paddle.diagonal_scatter <cn_api_paddle_diagonal_scatter>` ", "根据给定的轴 axis 和偏移量 offset，将张量 y 的值填充到张量 x 中"
     " :ref:`paddle.index_fill <cn_api_paddle_index_fill>` ", "沿着指定轴 axis 将 index 中指定位置的 x 的值填充为 value"
+    " :ref:`paddle.column_stack <cn_api_paddle_column_stack>` ", "沿水平轴堆叠输入 x 中的所有张量。"
+    " :ref:`paddle.row_stack <cn_api_paddle_row_stack>` ", "沿垂直轴堆叠输入 x 中的所有张量。"
+    " :ref:`paddle.hstack <cn_api_paddle_hstack>` ", "沿水平轴堆叠输入 x 中的所有张量。"
+    " :ref:`paddle.vstack <cn_api_paddle_vstack>` ", "沿垂直轴堆叠输入 x 中的所有张量。"
+    " :ref:`paddle.dstack <cn_api_paddle_dstack>` ", "沿深度轴堆叠输入 x 中的所有张量。"
 
 .. _tensor_manipulation_inplace:
 
