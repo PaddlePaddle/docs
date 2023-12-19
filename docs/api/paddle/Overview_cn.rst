@@ -115,6 +115,7 @@ tensor 数学操作
     " :ref:`paddle.rsqrt <cn_api_paddle_rsqrt>` ", "rsqrt 激活函数"
     " :ref:`paddle.scale <cn_api_paddle_scale>` ", "缩放算子"
     " :ref:`paddle.sign <cn_api_paddle_sign>` ", "对输入 x 中每个元素进行正负判断"
+    " :ref:`paddle.signbit <cn_api_paddle_signbit>` ", "对输入 x 的每个元素符号位进行判断"
     " :ref:`paddle.sgn <cn_api_paddle_sgn>` ", "对输入 x 中每个元素进行正负判断，对于复数则输出单位向量"
     " :ref:`paddle.sin <cn_api_paddle_sin>` ", "计算输入的正弦值"
     " :ref:`paddle.sinh <cn_api_paddle_sinh>` ", "双曲正弦函数"
