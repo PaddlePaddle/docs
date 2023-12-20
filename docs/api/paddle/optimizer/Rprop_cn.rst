@@ -7,7 +7,7 @@ Rprop
 
     
 .. note::
-此优化器仅适用于 full-batch 训练。
+    此优化器仅适用于 full-batch 训练。
 
 Rprop算法的优化器。有关详细信息，请参阅：
 
