@@ -23,6 +23,7 @@ paddle.distribution 目录下包含飞桨框架支持的随机变量的概率分
     " :ref:`Distribution <cn_api_paddle_distribution_Distribution>` ", "Distribution 概率分布抽象基类"
     " :ref:`ExponentialFamily <cn_api_paddle_distribution_ExponentialFamily>` ", "ExponentialFamily 指数型分布族基类"
     " :ref:`Bernoulli <cn_api_paddle_distribution_Bernoulli>` ", "Bernoulli 概率分布类"
+    " :ref:`Binomial <cn_api_paddle_distribution_Binomial>` ", "Binomial 概率分布类"
     " :ref:`ContinuousBernoulli <cn_api_paddle_distribution_ContinuousBernoulli>` ", "ContinuousBernoulli 概率分布类"
     " :ref:`Categorical <cn_api_paddle_distribution_Categorical>` ", "Categorical 概率分布类"
     " :ref:`Cauchy <cn_api_paddle_distribution_Cauchy>` ", "Cauchy 概率分布类"
@@ -36,6 +37,7 @@ paddle.distribution 目录下包含飞桨框架支持的随机变量的概率分
     " :ref:`TransfomedDistribution <cn_api_paddle_distribution_TransformedDistribution>` ", "TransformedDistribution 概率分布类"
     " :ref:`Laplace <cn_api_paddle_distribution_Laplace>`", "Laplace 概率分布类"
     " :ref:`LogNormal <cn_api_paddle_distribution_LogNormal>` ", "LogNormal 概率分布类"
+    " :ref:`Poisson <cn_api_paddle_distribution_Poisson>` ", "Poisson 概率分布类"
     " :ref:`Gumbel <cn_api_paddle_distribution_Gumbel>` ", "Gumbel 概率分布类"
     " :ref:`Geometric <cn_api_paddle_distribution_Geometric>` ", "Geometric 概率分布类"
 
