@@ -3165,6 +3165,17 @@ select_scatter(x, values, axis, index, name=None)
 
 请参考 :ref:`cn_api_paddle_select_scatter`
 
+slice_scatter(value, axis=0, start=None, stop=None, step=1, name=None)
+:::::::::
+
+将 ``value`` 矩阵的值嵌入到矩阵的第 ``axis`` 维。返回一个新的 Tensor 而不是试图。
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_slice_scatter`
+
 signbit(x, name=None)
 :::::::::
 
