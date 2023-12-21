@@ -25,6 +25,7 @@ Transformer 解码器层由三个子层组成：多头自注意力机制、编�
     - **normalize_before** (bool，可选) - 设置对每个子层的输入输出的处理。如果为 ``True``，则对每个子层的输入进行层标准化（Layer Normalization），对每个子层的输出进行 dropout 和残差连接（residual connection）。否则（即为 ``False``），则对每个子层的输入不进行处理，只对每个子层的输出进行 dropout、残差连接（residual connection）和层标准化（Layer Normalization）。默认值：``False``。
     - **weight_attr** (ParamAttr|tuple，可选) - 指定权重参数属性的对象。如果是 ``tuple``，多头自注意力机制的权重参数属性使用 ``weight_attr[0]``，编码-解码交叉注意力机制的权重参数属性使用 ``weight_attr[1]``，前馈神经网络的权重参数属性使用 ``weight_attr[2]``。如果该值是 ``ParamAttr``，则多头自注意力机制、编码-解码交叉注意力机制和前馈神经网络的权重参数属性都使用 ``ParamAttr``。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
     - **bias_attr** （ParamAttr|tuple|bool，可选）- 指定偏置参数属性的对象。如果是 ``tuple``，多头自注意力机制的偏置参数属性使用 ``bias_attr[0]``，编码-解码交叉注意力机制的偏置参数属性使用 ``bias_attr[1]``，前馈神经网络的偏置参数属性使用 ``bias_attr[2]``。如果该值是 ``ParamAttr``，则多头自注意力机制、编码-解码交叉注意力机制和前馈神经网络的偏置参数属性都使用 ``ParamAttr``。如果该参数为 ``bool`` 类型，只支持为 ``False``，表示没有偏置参数。默认值：``None``，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
+    - **layer_norm_eps** （float，可选）- transformer decoder 中 layer normalization 层的 eps 参数值。默认是 1e-5。
 
 
 代码示例
