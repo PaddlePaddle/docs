@@ -56,6 +56,12 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 
 ### Linux 平台测试项
 
+#### PR-CI-Auto-Parallel
+
+- **【条目描述】** 检测飞桨自动并行 8 卡任务的功能、性能和显存。
+- **【触发条件】** 当 PR 修改了 `tools/auto_parallel/target_path_lists.sh` 中的[命中路径](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/auto_parallel/target_path_lists.sh)时触发。
+
+
 #### PR-CI-Clone
 
 - **【条目描述】** 将当前 PR 的代码从 GitHub Clone 到 CI 测试执行的机器，方便后续的 CI 直接使用。
@@ -221,6 +227,23 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
         tools/cinn
     ```
 
+#### PR-CI-SOT
+
+- **【条目描述】** 检测当前 PR CPU、Python3.8-3.11 版本下的 SOT 单测是否通过。
+- **【执行脚本】** `paddle/scripts/paddle_build.sh check_run_sot_ci`
+- **【触发条件】**
+  - `PR-CI-Clone` 通过后自动触发。
+  - 必须修改下面路径中的文件才会触发
+
+    ```bash
+    paddle/fluid/operators/run_program_op.h
+    paddle/fluid/operators/run_program_op.cu
+    paddle/fluid/operators/run_program_op.cc
+    paddle/fluid/eager/to_static
+    paddle/fluid/pybind/
+    python/
+    test/sot
+    ```
 
 ### MAC 平台测试项
 

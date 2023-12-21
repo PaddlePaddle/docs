@@ -1,6 +1,68 @@
 <a name="third_party"></a>
 # 附录
 
+<a name="gpu-install"></a>
+
+## **飞桨支持的 Nvidia GPU 架构及安装方式**
+<p align="center">
+<table>
+    <thead>
+    <tr>
+        <th> GPU 架构 </th>
+        <th> Compute Capability </th>
+        <th> 对应 GPU 硬件型号 </th>
+        <th> 请下载以下 CUDA 版本的飞桨安装包 </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td> Pascal </td>
+        <td> sm_60 </td>
+        <td> Quadro GP100, Tesla P100, DGX-1 </td>
+        <td> CUDA10、CUDA11 </td>
+    </tr>
+    <tr>
+        <td> Pascal </td>
+        <td> sm_61 </td>
+        <td> GTX 1080, GTX 1070, GTX 1060, GTX 1050, GTX 1030 (GP108), GT 1010 (GP108) Titan Xp, Tesla P40, Tesla P4 </td>
+        <td> CUDA10、CUDA11 </td>
+    </tr>
+    <tr>
+        <td> Volta </td>
+        <td> sm_70 </td>
+        <td> DGX-1 with Volta, Tesla V100, GTX 1180 (GV104), Titan V, Quadro GV100 </td>
+        <td> CUDA10、CUDA11 </td>
+    </tr>
+    <tr>
+        <td> Turing </td>
+        <td> sm_75 </td>
+        <td> GTX/RTX Turing – GTX 1660 Ti, RTX 2060, RTX 2070, RTX 2080, Titan RTX, Quadro RTX 4000, Quadro RTX 5000, Quadro RTX 6000, Quadro RTX 8000, Quadro T1000/T2000, Tesla T4 </td>
+        <td> CUDA10、CUDA11 </td>
+    </tr>
+    <tr>
+        <td> Ampere </td>
+        <td> sm_80 </td>
+        <td> NVIDIA A100, GA100, NVIDIA DGX-A100 </td>
+        <td> CUDA11 </td>
+    </tr>
+    <tr>
+        <td> Ampere </td>
+        <td> sm_86 </td>
+        <td> Tesla GA10x cards, RTX Ampere – RTX 3080, GA102 – RTX 3090, RTX A2000, A3000, RTX A4000, A5000, A6000, NVIDIA A40, GA106 – RTX 3060, GA104 – RTX 3070, GA107 – RTX 3050, RTX A10, RTX A16, RTX A40, A2 Tensor Core GPU </td>
+        <td> CUDA11、CUDA11.2（推荐） </td>
+    </tr>
+    <tr>
+        <td> Hopper </td>
+        <td> sm_90 </td>
+        <td> NVIDIA H100, H800 </td>
+        <td> CUDA12 </td>
+    </tr>
+    </tbody>
+</table>
+</p>
+
+</br></br>
+
 ## **编译依赖表**
 
 <p align="center">
@@ -16,13 +78,13 @@
     <tbody>
     <tr>
         <td> CMake </td>
-        <td> 3.15, 3.16(推荐),3.17 </td>
+        <td> 3.18, 3.19(推荐) </td>
         <td>  </td>
         <td>  </td>
     </tr>
     <tr>
         <td> GCC (Linux Only) </td>
-        <td> 5.4 / 8.2 </td>
+        <td> 8.2 / 12.2 </td>
         <td>  推荐使用 CentOS 的 devtools2 </td>
         <td>  </td>
     </tr>
@@ -34,8 +96,8 @@
     </tr>
         <tr>
         <td> Python（64 bit） </td>
-        <td> 3.7+ </td>
-        <td> 依赖 libpython3.7+.so </td>
+        <td> 3.8+ </td>
+        <td> 依赖 libpython3.8+.so </td>
         <td> 请访问<a href="https://www.python.org">Python 官网</a></td>
     </tr>
     <tr>
@@ -64,13 +126,13 @@
     </tr>
     <tr>
         <td> numpy </td>
-        <td> >=1.12.0 </td>
+        <td> >=1.13.0 </td>
         <td>  </td>
         <td> <code> pip install numpy </code> </td>
     </tr>
     <tr>
         <td> protobuf </td>
-        <td> >=3.1.0 </td>
+        <td> >=3.20.2 </td>
         <td>  </td>
         <td> <code> pip install protobuf </code> </td>
     </tr>
@@ -94,7 +156,7 @@
     </tr>
     <tr>
         <td> setuptools </td>
-        <td> >= 28.0.0 </td>
+        <td> >= 50.3.2 </td>
         <td> </td>
         <td>  </td>
     </tr>
@@ -233,7 +295,7 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
     </tr>
     <tr>
         <td> paddlepaddle-gpu==[版本号] 例如 paddlepaddle-gpu==2.2.1 </td>
-        <td> 默认安装支持 CUDA 10.2 和 cuDNN 7 的对应[版本号]的 PaddlePaddle 安装包 </td>
+        <td> 默认安装支持 CUDA 11.8 和 cuDNN 8 的对应[版本号]的 PaddlePaddle 安装包 </td>
     </tr>
    </tbody>
 </table>
@@ -242,7 +304,7 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
 您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到 PaddlePaddle-gpu 的各个发行版本。
 > 其中`postXX` 对应的是 CUDA 和 cuDNN 的版本，`postXX`之前的数字代表 Paddle 的版本
 
-需要注意的是，命令中<code> paddlepaddle-gpu==2.2.1 </code> 在 windows 环境下，会默认安装支持 CUDA 10.2 和 cuDNN 7 的对应[版本号]的 PaddlePaddle 安装包
+需要注意的是，命令中<code> paddlepaddle-gpu==2.2.1 </code> 在 windows 环境下，会默认安装支持 CUDA 11.8 和 cuDNN 8 的对应[版本号]的 PaddlePaddle 安装包
 
 <a name="ciwhls-release"></a>
 </br></br>

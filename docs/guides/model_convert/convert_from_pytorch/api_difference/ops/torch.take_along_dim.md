@@ -14,7 +14,8 @@ torch.take_along_dim(input,
 ```python
 paddle.take_along_axis(arr,
                        indices,
-                       axis)
+                       axis,
+                       broadcast=True)
 ```
 
 Pytorch 相比 Paddle 支持更多其他参数，具体如下：

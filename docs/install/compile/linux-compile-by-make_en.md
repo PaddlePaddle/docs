@@ -3,12 +3,10 @@
 ## Environment preparation
 
 * **Linux version (64 bit)**
-    * **CentOS 6 (not recommended, no official support for compilation problems)**
-    * **CentOS 7 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2**
-    * **Ubuntu 14.04 (not recommended, no official support for compilation problems)**
-    * **Ubuntu 16.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2)**
-    * **Ubuntu 18.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2)**
-* **Python version 3.7/3.8/3.9/3.10 (64 bit)**
+    * **CentOS 7 (GPU 版本支持 CUDA 11.0 - 12.0)**
+    * **Ubuntu 18.04 (GPU 版本支持 CUDA 11.0 - 12.0)**
+    * **Ubuntu 20.04 (GPU 版本支持 CUDA 11.0 - 12.0)**
+* **Python 版本 3.8/3.9/3.10/3.11/3.12 (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -16,13 +14,10 @@
 
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
 
-    * **CUDA toolkit 10.1/10.2 with cuDNN 7 (cuDNN version>=7.6.5, for multi card support, NCCL2.7 or higher)**
-    * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.7 or higher)**
-    * **CUDA toolkit 11.1 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
-    * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
-    * **Hardware devices with GPU computing power over 3.5**
+    * **CUDA toolkit with cuDNN cuDNN 8(for multi card support, NCCL2.7 or higher)**
+    * **Hardware devices with GPU computing power over 6.0**
 
-        You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+    You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 
 ## Installation steps
@@ -30,8 +25,8 @@
 There are two compilation methods under Linux system. It's recommended to use Docker to compile.
 The dependencies required for compiling Paddle are pre-installed in the Docker environment, which is simpler than the native compiling environment.
 
-* [Compile with Docker](#compile_from_docker) (no official support for compilation problems under CentOS 6)
-* [Local compilation](#compile_from_host) (no official support for compilation problems under CentOS 6)
+* [Compile with Docker](#compile_from_docker)
+* [Local compilation](#compile_from_host)
 
 <a name="ct_docker"></a>
 ### <span id="compile_from_docker">**Compile with Docker**</span>
@@ -68,7 +63,7 @@ For domestic users, when downloading docker is slow due to network problems, you
 
 * GPU version of PaddlePaddle：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev
+    docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82
     ```
 
 If your machine is not in mainland China, you can pull the image directly from DockerHub:
@@ -80,10 +75,10 @@ If your machine is not in mainland China, you can pull the image directly from D
 
 * GPU version of PaddlePaddle：
     ```
-    docker pull paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev
+    docker pull paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82
     ```
 
-In the above example, `latest-gpu-cuda10.2-cudnn7-dev` is only for illustration, indicating that the GPU version of the image is installed. If you want to install another `cuda/cudnn` version of the image, you can replace it with `latest-dev-cuda11.2-cudnn8-gcc82`, `latest-gpu-cuda10.1-cudnn7-gcc82-dev`, `latest-gpu-cuda10.1-cudnn7-gcc54-dev` etc.
+In the above example, `latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82` is only for illustration, indicating that the GPU version of the image is installed. If you want to install another `cuda/cudnn` version of the image, you can replace it with `latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2` etc.
 
 You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get the image that matches your machine.
 
@@ -112,7 +107,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 * Compile GPU version of PaddlePaddle:
 
     ```
-    nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev /bin/bash
+    nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82 /bin/bash
     ```
 
     - `--name paddle-test`: names the Docker container you created as paddle-test;
@@ -124,7 +119,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `-it`: keeps interaction with the host;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev`: use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
+    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82`: use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
 
 Note:
@@ -141,7 +136,7 @@ cd /paddle
 git checkout develop
 ```
 
-Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch, python3.10 version started supporting from release/2.3 branch
+Paddle supports Python version 3.8 and above
 
 #### 7. Create and enter the /paddle/build path:
 
@@ -151,13 +146,13 @@ mkdir -p /paddle/build && cd /paddle/build
 
 #### 8. Use the following command to install the dependencies:
 
-- Install protobuf 3.1.0
+- Install protobuf 3.20.2
 
 ```
-pip3.7 install protobuf
+pip3.10 install protobuf
 ```
 
-Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9
+Note: We used Python3.10 command as an example above, if the version of your Python is 3.8/3.9/3.11/3.12, please change pip3.10 in the commands to pip3.8/pip3.9/pip3.11/pip3.12
 
 - Installing patchelf, PatchELF is a small and useful program for modifying the dynamic linker and RPATH of ELF executables.
 
@@ -170,17 +165,17 @@ apt install patchelf
 * For users who need to compile the **CPU version PaddlePaddle**:
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF
+    cmake .. -DPY_VERSION=3.10 -DWITH_GPU=OFF
     ```
 
 * For users who need to compile the **GPU version PaddlePaddle**:
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON
+    cmake .. -DPY_VERSION=3.10 -DWITH_GPU=ON
     ```
 
 - For details on the compilation options, see the [compilation options table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile).
 
-- Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.7` means the version of python is 3.7
+- Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.10` means the version of python is 3.10
 
 - We currently do not support the compilation of the GPU version PaddlePaddle under CentOS 6.
 
@@ -204,11 +199,11 @@ cd /paddle/build/python/dist
 
 For Python3:
 ```
-pip3.7 install -U [whl package name]
+pip3.10 install -U [whl package name]
 ```
 
 Note:
-We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9.
+We used Python3.10 command as an example above, if the version of your Python is 3.8/3.9/3.11/3.12, please change pip3.10 in the commands to pip3.8/pip3.9/pip3.11/3.12.
 
 #### Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
@@ -239,67 +234,58 @@ uname -m && cat /etc/*release
 
 #### 3. Install NCCL (optional)
 
-* If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under CUDA10.2 and cuDNN7. For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl)):
+* If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under CUDA11.2 and cuDNN8. For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl)):
 
 
     * **CentOS system can refer to the following commands**
 
         ```
-        wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-        ```
-        ```
-        rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-        ```
-        ```
-        yum update -y
-        ```
-        ```
-        yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
+        rm -f /usr/local/lib/libnccl.so
+        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-2.10.3-1+cuda11.4.x86_64.rpm
+        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-devel-2.10.3-1+cuda11.4.x86_64.rpm
+        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-static-2.10.3-1+cuda11.4.x86_64.rpm
+        rpm -ivh libnccl-2.10.3-1+cuda11.4.x86_64.rpm
+        rpm -ivh libnccl-devel-2.10.3-1+cuda11.4.x86_64.rpm
+        rpm -ivh libnccl-static-2.10.3-1+cuda11.4.x86_64.rpm
         ```
 
-    * **Ubuntu system can refer to the following commands**
-
-        ```
-        wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-        ```
-        ```
-        dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-        ```
-        ```
-        sudo apt install -y libnccl2=2.7.8-1+cuda10.2 libnccl-dev=2.7.8-1+cuda10.2
-        ```
 
 #### 4. Install the necessary tools
 
-* CentOS system
 
     `bzip2` and `make`:
     ```
-    yum install -y bzip2
-    ```
-    ```
-    yum install -y make
+    yum install -y bzip2 make
     ```
 
-    cmake requires version 3.15, we recommend that you use 3.16.0 version:
+    or
 
     ```
-    wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
-    ```
-    ```
-    tar -zxvf cmake-3.16.0-Linux-x86_64.tar.gz
-    ```
-    ```
-    rm cmake-3.16.0-Linux-x86_64.tar.gz
-    ```
-    ```
-    PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
+    apt install -y bzip2 make
     ```
 
-    gcc requires version 5.4, we recommend that you use 8.2.0 version:
+    cmake requires version 3.18, we recommend that you use 3.18.0 version:
 
     ```
-    wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
+    wget -q https://cmake.org/files/v3.18/cmake-3.18.0-Linux-x86_64.tar.gz
+    ```
+
+    ```
+    tar -zxvf cmake-3.18.0-Linux-x86_64.tar.gz
+    ```
+
+    ```
+    rm cmake-3.18.0-Linux-x86_64.tar.gz
+    ```
+
+    ```
+    PATH=/home/cmake-3.18.0-Linux-x86_64/bin:$PATH
+    ```
+
+    gcc requires version 8.2:
+
+    ```
+    wget -q wget -q --no-proxy https://paddle-ci.gz.bcebos.com/gcc-8.2.0.tar.xz && \
     tar -xvf gcc-8.2.0.tar.xz && \
     cd gcc-8.2.0 && \
     sed -i 's#ftp://gcc.gnu.org/pub/gcc/infrastructure/#https://paddle-ci.gz.bcebos.com/#g' ./contrib/download_prerequisites && \
@@ -310,44 +296,6 @@ uname -m && cat /etc/*release
     make -j8 && make install
     ```
 
-* Ubuntu system
-
-    `bzip2` and `make`:
-    ```
-    apt install -y bzip2
-    ```
-    ```
-    apt install -y make
-    ```
-
-    cmake requires version 3.15, we recommend that you use 3.16.0 version:
-
-    ```
-    wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
-    ```
-    ```
-    tar -zxvf cmake-3.16.0-Linux-x86_64.tar.gz
-    ```
-    ```
-    rm cmake-3.16.0-Linux-x86_64.tar.gz
-    ```
-    ```
-    PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
-    ```
-
-    gcc requires version 5.4, we recommend that you use 8.2.0 version:
-
-    ```
-    wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
-    tar -xvf gcc-8.2.0.tar.xz && \
-    cd gcc-8.2.0 && \
-    sed -i 's#ftp://gcc.gnu.org/pub/gcc/infrastructure/#https://paddle-ci.gz.bcebos.com/#g' ./contrib/download_prerequisites && \
-    unset LIBRARY_PATH CPATH C_INCLUDE_PATH PKG_CONFIG_PATH CPLUS_INCLUDE_PATH INCLUDE && \
-    ./contrib/download_prerequisites && \
-    cd .. && mkdir temp_gcc82 && cd temp_gcc82 && \
-    ../gcc-8.2.0/configure --prefix=/usr/local/gcc-8.2 --enable-threads=posix --disable-checking --disable-multilib && \
-    make -j8 && make install
-    ```
 
 #### 5. We support compiling and installing with virtualenv. First, create a virtual environment called `paddle-venv` with the following command:
 
@@ -359,15 +307,15 @@ uname -m && cat /etc/*release
 * b. Install pip:
 
 
-    (Please refer to the official Python installation process, and ensure that the pip3 version 20.2.2 and above, please note that in python3.6 and above, pip3 does not necessarily correspond to the python version, such as python3.7 default only Pip3.7)
+    (Please refer to the official Python installation process, and ensure that the pip3 version 20.2.2 and above, please note that in python3.8 and above, pip3 does not necessarily correspond to the python version, such as python3.10 default only Pip3.10)
 
-* c. (Only For Python3) set Python3 related environment variables, here is python3.7 version example, please replace with the version you use (3.6, 3.8, 3.9):
+* c. (Only For Python3) set Python3 related environment variables, here is python3.10 version example, please replace with the version you use (3.8, 3.9, 3.11, 3.12):
 
     1. First find the path to the Python lib using
         ```
         find `dirname $(dirname $(which python3))` -name "libpython3.so"
         ```
-        If it is 3.7/3.8/3.9/3.10, change `python3` to `python3.7`, `python3.8`, `python3.9`, `python3.10`, then replace [python-lib-path] in the following steps with the file path found.
+        If it is 3.8/3.9/3.10/3.11/3.12, change `python3` to `python3.8`, `python3.9`, `python3.10`, `python3.11`, `python3.12`, then replace [python-lib-path] in the following steps with the file path found.
 
     2. Set PYTHON_LIBRARIES:
         ```
@@ -376,7 +324,7 @@ uname -m && cat /etc/*release
 
     3. Secondly, use
         ```
-        find `dirname $(dirname $(which python3))`/include -name "python3.7m"
+        find `dirname $(dirname $(which python3))`/include -name "python3.10"
         ```
         to find the path to Python Include, please pay attention to the python version, then replace the following [python-include-path] to the file path found.
 
@@ -391,7 +339,7 @@ uname -m && cat /etc/*release
         ```
         (here replace the last two levels content of [python-lib-path] with /bin/)
 
-* d. Install the virtual environment `virtualenv` and `virtualenvwrapper` and create a virtual environment called `paddle-venv`: (please note the pip3 commands corresponding to the python version, such as pip3.6, pip3.7, pip3.8, pip3.9)
+* d. Install the virtual environment `virtualenv` and `virtualenvwrapper` and create a virtual environment called `paddle-venv`: (please note the pip3 commands corresponding to the python version, such as pip3.8, pip3.9, pip3.10, pip3.11, pip3.12)
 
     1. Install `virtualenv`:
         ```
@@ -459,7 +407,7 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 9. Switch to develop branch for compilation (support for Python 3.6 and 3.7 is added from the 1.2 branch, support for Python 3.8 is added from the 1.8 branch, support for Python 3.9 is added from the 2.1 branch,):
+#### 9. Switch to develop branch for compilation (Paddle supports Python version 3.8 and above):
 
 ```
 git checkout develop
@@ -478,7 +426,7 @@ mkdir build && cd build
 * For users who need to compile the **CPU version PaddlePaddle**:
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+    cmake .. -DPY_VERSION=3.10 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
     -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF
     ```
 
@@ -489,19 +437,18 @@ mkdir build && cd build
 
 * For users who need to compile the **GPU version PaddlePaddle**:
 
-    1. Please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is ubuntu 16.04, CUDA10.2, cuDNN7 nccl2 installation instructions, for more information on the installation information please refer to the [NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download)):
+    1. Please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is ubuntu 20.04, CUDA11.2, cuDNN8 nccl2 installation instructions, for more information on the installation information please refer to the [NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download)):
 
         ```
-        wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+        rm -f /usr/local/lib/libnccl.so
+        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-2.10.3-1+cuda11.4.x86_64.rpm
+        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-devel-2.10.3-1+cuda11.4.x86_64.rpm
+        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-static-2.10.3-1+cuda11.4.x86_64.rpm
+        rpm -ivh libnccl-2.10.3-1+cuda11.4.x86_64.rpm
+        rpm -ivh libnccl-devel-2.10.3-1+cuda11.4.x86_64.rpm
+        rpm -ivh libnccl-static-2.10.3-1+cuda11.4.x86_64.rpm
         ```
 
-        ```
-        rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-        ```
-
-        ```
-        yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
-        ```
 
     2. If you have already installed `nccl2` correctly, you can start cmake: *(For Python3: Please configure the correct python version for the PY_VERSION parameter)*
 
@@ -511,7 +458,7 @@ mkdir build && cd build
         ```
 
 
-Note: For the command involving Python 3, we use Python 3.7 as an example above, if the version of your Python is 3.8/3.9, please change Python3.7 in the commands to Python3.8/Python3.9
+Note: For the command involving Python 3, we use Python 3.10 as an example above, if the version of your Python is 3.8/3.9/3.11/3.12, please change Python3.10 in the commands to Python3.8/Python3.9/Python3.11/Python3.12
 
 
 

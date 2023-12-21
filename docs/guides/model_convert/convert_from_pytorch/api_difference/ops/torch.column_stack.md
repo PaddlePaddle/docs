@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.column_stack
+## [ 仅参数名不一致 ]torch.column_stack
 
 ### [torch.column_stack](https://pytorch.org/docs/stable/generated/torch.column_stack.html#torch.column_stack)
 
@@ -6,17 +6,16 @@
 torch.column_stack(tensors, *, out=None)
 ```
 
-按水平方向拼接张量; Paddle 无此 API，需要组合实现。
-
-### 转写示例
+### [paddle.column_stack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/column_stack_cn.html)
 
 ```python
-# Pytorch 写法
-y = torch.column_stack((a, b))
-
-# Paddle 写法
-if a.ndim == 1:
-    y = paddle.stack((a, b), axis=1)
-else:
-    y = paddle.concat((a, b), axis=1)
+paddle.column_stack(x, name=None)
 ```
+
+其中 Paddle 相比 Pytorch 仅参数名不一致，具体如下：
+
+### 参数映射
+
+| PyTorch       | PaddlePaddle | 备注                                                    |
+| ------------- | ------------ | ------------------------------------------------------  |
+| tensors         | x            | 表示输入的 Tensor ，仅参数名不一致。                        |

@@ -6,11 +6,23 @@ Tensor
 .. py:class:: paddle.Tensor
 
 
-``Tensor`` 是 Paddle 中最为基础的数据结构，有几种创建 Tensor 的不同方式：
+``Tensor`` 是 Paddle 中最为基础的数据结构，请参考 `Tensor 介绍 <https://www.paddlepaddle.org.cn/documentation/docs/guides/beginner/tensor_cn.html>`_
 
 - 用预先存在的 ``data`` 数据创建 1 个 Tensor，请参考 :ref:`cn_api_paddle_to_tensor`
 - 创建一个指定 ``shape`` 的 Tensor，请参考 :ref:`cn_api_paddle_ones` 、 :ref:`cn_api_paddle_zeros`、 :ref:`cn_api_paddle_full`
 - 创建一个与其他 Tensor 具有相同 ``shape`` 与 ``dtype`` 的 Tensor，请参考 :ref:`cn_api_paddle_ones_like` 、 :ref:`cn_api_paddle_zeros_like` 、 :ref:`cn_api_paddle_full_like`
+
+create_tensor(dtype, name=None, persistable=False)
+:::::::::
+
+根据数据类型 dtype 创建一个 Tensor。
+
+返回：Tensor，数据类型为指定的 dtype。
+
+返回类型：Tensor
+
+**代码示例**
+COPY-FROM: paddle.Tensor.create_tensor
 
 clear_grad
 :::::::::
@@ -2208,7 +2220,34 @@ split(num_or_sections, axis=0, name=None)
 
 请参考 :ref:`cn_api_paddle_split`
 
-vsplit(num_or_sections, name=None)
+tensor_split(num_or_indices, axis=0, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_split`
+
+dsplit(num_or_indices, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_dsplit`
+
+hsplit(num_or_indices, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_hsplit`
+
+vsplit(num_or_indices, name=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -2597,7 +2636,7 @@ is_integer()
 
 请参考 :ref:`cn_api_paddle_is_integer`
 
-take_along_axis(arr, indices, axis)
+take_along_axis(arr, indices, axis, broadcast=True)
 :::::::::
 
 基于输入索引矩阵，沿着指定 axis 从 arr 矩阵里选取 1d 切片。索引矩阵必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
@@ -2608,10 +2647,10 @@ take_along_axis(arr, indices, axis)
 
 请参考 :ref:`cn_api_paddle_take_along_axis`
 
-put_along_axis(arr, indices, value, axis, reduce="assign")
+put_along_axis(arr, indices, value, axis, reduce="assign", include_self=True, broadcast=True)
 :::::::::
 
-基于输入 indices 矩阵，将输入 value 沿着指定 axis 放置入 arr 矩阵。索引矩阵和 value 必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
+基于输入 indices 矩阵，将输入 value 沿着指定 axis 放置入 arr 矩阵。索引矩阵和 value 必须和 arr 矩阵有相同的维度，如果 ``broadcast`` 为 ``True``，则需要能够 broadcast 与 arr 矩阵对齐。
 
 返回：计算后的 Tensor
 
@@ -3082,6 +3121,42 @@ masked_fill_(x, mask, value, name=None)
 
 Inplace 版本的 :ref:`cn_api_paddle_masked_fill` API，对输入 `x` 采用 Inplace 策略。
 
+masked_scatter(x, mask, value, name=None)
+:::::::::
+根据 mask 信息，将 value 中的值逐个填充到 x 中 mask 对应为 True 的位置。
+
+返回一个根据 mask 将对应位置填充为 value 中元素的 Tensor。
+
+请参考 :ref:`cn_api_paddle_masked_scatter`
+
+masked_scatter_(x, mask, value, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_masked_scatter` API，对输入 `x` 采用 Inplace 策略。
+
+atleast_1d(name=None)
+:::::::::
+将输入转换为张量并返回至少为 ``1`` 维的视图。 ``1`` 维或更高维的输入会被保留。
+
+返回至少为 ``1`` 维视图的 Tensor 。
+
+请参考 :ref:`cn_api_paddle_atleast_1d`
+
+atleast_2d(name=None)
+:::::::::
+将输入转换为张量并返回至少为 ``2`` 维的视图。 ``2`` 维或更高维的输入会被保留。
+
+返回至少为 ``2`` 维视图的 Tensor 。
+
+请参考 :ref:`cn_api_paddle_atleast_2d`
+
+atleast_3d(name=None)
+:::::::::
+将输入转换为张量并返回至少为 ``3`` 维的视图。 ``3`` 维或更高维的输入会被保留。
+
+返回至少为 ``3`` 维视图的 Tensor 。
+
+请参考 :ref:`cn_api_paddle_atleast_3d`
 diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
 :::::::::
 根据给定的轴 axis 和偏移量 offset，将张量 y 的值填充到张量 x 中。
@@ -3091,3 +3166,25 @@ diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_diagonal_scatter`
+
+select_scatter(x, values, axis, index, name=None)
+:::::::::
+
+将 ``values`` 矩阵的值嵌入到 ``x`` 矩阵的第 ``axis`` 维的 ``index`` 列, ``values`` 的形状需要与 ``x`` 矩阵除去第 ``axis`` 维后的形状一致
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_select_scatter`
+
+signbit(x, name=None)
+:::::::::
+
+返回 x 的判断值掩码 Tensor，若存在符号位，则输出 True，否则输出 False。
+
+返回：判断值掩码 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_signbit`

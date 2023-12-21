@@ -2,8 +2,8 @@
 
 ## Environment preparation
 
-* **macOS version 10.x/11.x (64 bit) (not support GPU version)**
-* **Python version 3.7/3.8/3.9/3.10 (64 bit)**
+* **macOS version 10.x/11.x/12.x/13.x/14.x (64 bit) (not support GPU version)**
+* **Python version 3.8/3.9/3.10/3.11/3.12 (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -93,7 +93,7 @@ cd /paddle
 git checkout develop
 ```
 
-Note: python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch, python3.10 version started supporting from release/2.3 branch
+Paddle supports Python version 3.8 and above
 
 #### 8. Create and enter the /paddle/build path:
 
@@ -103,13 +103,13 @@ mkdir -p /paddle/build && cd /paddle/build
 
 #### 9. Use the following command to install the dependencies:
 
-> Install protobuf 3.1.0.
+> Install protobuf 3.20.2.
 
 ```
-pip3.7 install protobuf==3.1.0
+pip3.10 install protobuf==3.20.2
 ```
 
-Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9
+Note: We used Python3.10 command as an example above, if the version of your Python is 3.8/3.9/3.11/3.12, please change pip3.10 in the commands to pip3.8/pip3.9/3.11/3.12
 
 > Installing patchelf, PatchELF is a small and useful program for modifying the dynamic linker and RPATH of ELF executables.
 
@@ -122,11 +122,11 @@ apt install patchelf
 * For users who need to compile the **CPU version PaddlePaddle** (We currently do not support the compilation of the GPU version PaddlePaddle under macOS):
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF
+    cmake .. -DPY_VERSION=3.10 -DWITH_GPU=OFF
     ```
 > For details on the compilation options, see the [compilation options table](/documentation/docs/en/install/Tables_en.html/#Compile).
 
-> Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.7` means the version of python is 3.7
+> Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.10` means the version of python is 3.10
 
 #### 11. Execute compilation:
 
@@ -144,16 +144,16 @@ During the compilation process, you need to download dependencies from github. P
 cd /paddle/build/python/dist
 ```
 
-#### 13. Install the compiled `.whl` package on the current machine or target machine: (For Python3: Please select the pip corresponding to the python version you wish to use, such as pip3.6)
+#### 13. Install the compiled `.whl` package on the current machine or target machine: (For Python3: Please select the pip corresponding to the python version you wish to use, such as pip3.10)
 
 
 For Python3:
 ```
-pip3.7 install -U [whl package name]
+pip3.10 install -U [whl package name]
 ```
 
 Note:
-We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9.
+We used Python3.10 command as an example above, if the version of your Python is 3.8/3.9/3.11/3.12, please change pip3.10 in the commands to pip3.8/pip3.9/pip3.11/pip3.12.
 
 #### Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
@@ -168,7 +168,7 @@ We used Python3.7 command as an example above, if the version of your Python is 
 
 #### 2. Install python and pip:
 
-> **Please do not use the Python initially given by macOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.7.x, python3.8, python3.9, python3.10), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
+> **Please do not use the Python initially given by macOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.8, python3.9, python3.10, python3.11, python3.12), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
 
 Install using Python official website
 
@@ -221,9 +221,9 @@ Install using Python official website
 
 - a. Here is a special description of the installation of **CMake**:
 
-    We support CMake version 3.15 and above, CMake 3.16 is recommended, please follow the steps below to install:
+    We support CMake version 3.18 and above, CMake 3.18 is recommended, please follow the steps below to install:
 
-    1. Download the CMake image from the [official CMake website](https://cmake.org/files/v3.16/cmake-3.16.0-Darwin-x86_64.dmg) and install it.
+    1. Download the CMake image from the [official CMake website](https://cmake.org/files/v3.18/cmake-3.18.0-Darwin-x86_64.dmg) and install it.
 
     2. Enter
         ```
@@ -243,7 +243,7 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 6. Switch to develop branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch, python3.10 version started supporting from release/2.3 branch)
+#### 6. Switch to develop branch to compile: (Paddle supports Python version 3.8 and above)
 
 ```
 git checkout develop
@@ -262,11 +262,11 @@ mkdir build && cd build
 * For users who need to compile the **CPU version PaddlePaddle**:
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+    cmake .. -DPY_VERSION=3.10 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
     -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF
     ```
 
-- ``-DPY_VERSION=3.7`` Please change to the Python version of the installation environment.
+- ``-DPY_VERSION=3.10`` Please change to the Python version of the installation environment.
 
 #### 9. Compile with the following command:
 
