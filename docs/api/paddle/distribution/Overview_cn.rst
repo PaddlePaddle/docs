@@ -38,6 +38,8 @@ paddle.distribution 目录下包含飞桨框架支持的随机变量的概率分
     " :ref:`LogNormal <cn_api_paddle_distribution_LogNormal>` ", "LogNormal 概率分布类"
     " :ref:`Gumbel <cn_api_paddle_distribution_Gumbel>` ", "Gumbel 概率分布类"
     " :ref:`Geometric <cn_api_paddle_distribution_Geometric>` ", "Geometric 概率分布类"
+    " :ref:`Exponential <cn_api_paddle_distribution_Exponential>` ", "Exponential 概率分布类"
+    " :ref:`Gamma <cn_api_paddle_distribution_Gamma>` ", "Gamma 概率分布类"
 
 .. _about_distribution_transform:
 
