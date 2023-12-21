@@ -52,6 +52,7 @@ tensor 数学操作
     " :ref:`paddle.conj <cn_api_paddle_conj>` ", "逐元素计算 Tensor 的共轭运算"
     " :ref:`paddle.cos <cn_api_paddle_cos>` ", "余弦函数"
     " :ref:`paddle.cosh <cn_api_paddle_cosh>` ", "双曲余弦函数"
+    " :ref:`paddle.cosh <cn_api_paddle_copysign>` ", "按照元素计算两个输入 Tensor 的 copysign 大小，由数值和符号组成，其数值部分来自于第一个 Tensor 中的元素，符号部分来自于第二个 Tensor 中的元素。"
     " :ref:`paddle.count_nonzero <cn_api_paddle_count_nonzero>` ", "沿给定的轴 axis 统计非零元素的数量"
     " :ref:`paddle.cumsum <cn_api_paddle_cumsum>` ", "沿给定 axis 计算 Tensor x 的累加和"
     " :ref:`paddle.cummax <cn_api_paddle_cummax>` ", "沿给定 axis 计算 Tensor x 的累计最大值"
