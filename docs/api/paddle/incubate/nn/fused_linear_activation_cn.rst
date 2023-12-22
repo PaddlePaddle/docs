@@ -21,7 +21,7 @@ fused_linear_activation
 返回
 :::::::::
 
-**Tensor** ，变换之后的 Tensor。
+**Tensor**，变换之后的 Tensor。
 
 
 代码示例
