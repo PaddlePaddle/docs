@@ -256,49 +256,49 @@ uname -m && cat /etc/*release
 #### 4. 安装必要的工具
 
 
-    `bzip2`以及`make`：
+`bzip2`以及`make`：
 
-    ```
-    yum install -y bzip2 make
-    ```
+```
+yum install -y bzip2 make
+```
 
-    or
+or
 
-    ```
-    apt install -y bzip2 make
-    ```
+```
+apt install -y bzip2 make
+```
 
-    cmake 需要 3.18 以上:
+cmake 需要 3.18 以上:
 
-    ```
-    wget -q https://cmake.org/files/v3.18/cmake-3.18.0-Linux-x86_64.tar.gz
-    ```
+```
+wget -q https://cmake.org/files/v3.18/cmake-3.18.0-Linux-x86_64.tar.gz
+```
 
-    ```
-    tar -zxvf cmake-3.18.0-Linux-x86_64.tar.gz
-    ```
+```
+tar -zxvf cmake-3.18.0-Linux-x86_64.tar.gz
+```
 
-    ```
-    rm cmake-3.18.0-Linux-x86_64.tar.gz
-    ```
+```
+rm cmake-3.18.0-Linux-x86_64.tar.gz
+```
 
-    ```
-    PATH=/home/cmake-3.18.0-Linux-x86_64/bin:$PATH
-    ```
+```
+PATH=/home/cmake-3.18.0-Linux-x86_64/bin:$PATH
+```
 
-    gcc 需要 8.2 以上:
+gcc 需要 8.2 以上:
 
-    ```
-    wget -q wget -q --no-proxy https://paddle-ci.gz.bcebos.com/gcc-8.2.0.tar.xz && \
-    tar -xvf gcc-8.2.0.tar.xz && \
-    cd gcc-8.2.0 && \
-    sed -i 's#ftp://gcc.gnu.org/pub/gcc/infrastructure/#https://paddle-ci.gz.bcebos.com/#g' ./contrib/download_prerequisites && \
-    unset LIBRARY_PATH CPATH C_INCLUDE_PATH PKG_CONFIG_PATH CPLUS_INCLUDE_PATH INCLUDE && \
-    ./contrib/download_prerequisites && \
-    cd .. && mkdir temp_gcc82 && cd temp_gcc82 && \
-    ../gcc-8.2.0/configure --prefix=/usr/local/gcc-8.2 --enable-threads=posix --disable-checking --disable-multilib && \
-    make -j8 && make install
-    ```
+```
+wget -q --no-proxy https://paddle-ci.gz.bcebos.com/gcc-8.2.0.tar.xz && \
+tar -xvf gcc-8.2.0.tar.xz && \
+cd gcc-8.2.0 && \
+sed -i 's#ftp://gcc.gnu.org/pub/gcc/infrastructure/#https://paddle-ci.gz.bcebos.com/#g' ./contrib/download_prerequisites && \
+unset LIBRARY_PATH CPATH C_INCLUDE_PATH PKG_CONFIG_PATH CPLUS_INCLUDE_PATH INCLUDE && \
+./contrib/download_prerequisites && \
+cd .. && mkdir temp_gcc82 && cd temp_gcc82 && \
+../gcc-8.2.0/configure --prefix=/usr/local/gcc-8.2 --enable-threads=posix --disable-checking --disable-multilib && \
+make -j8 && make install
+```
 
 
 #### 5. 我们支持使用 virtualenv 进行编译安装，首先请使用以下命令创建一个名为`paddle-venv`的虚环境：
