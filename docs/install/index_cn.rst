@@ -203,8 +203,10 @@
     :hidden:
 
     pip/frompip.rst
+    conda/fromconda.rst
+    docker/fromdocker.rst
     compile/fromsource.rst
     install_Kunlun_zh.md
     install_ROCM_zh.md
-    instalL_NGC_PaddlePaddle_ch.rst
+    install_NGC_PaddlePaddle_ch.rst
     Tables.md
