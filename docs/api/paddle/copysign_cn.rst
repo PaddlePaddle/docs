@@ -7,17 +7,14 @@ copysign
 
 
 按照元素计算两个输入 Tensor 的 copysign 大小，由数值和符号组成，其数值部分来自于第一个 Tensor 中的元素，符号部分来自于第二个 Tensor 中的元素。
- 
-.. math::
-    out_{i}=
-    \left\{
-        \begin{array}{lcl}
-        -|input_{i}|&ifother_{i}\le-0.0 \\
-        |input_{i}|&ifother_{i}\ge0.0\
-        \end{array}
-    \right.
 
+Equation:
+    .. math::
 
+        copysign(x,y)=\left\{\begin{matrix}
+        & -|(input_{i})| & if other_{i} <= 0.0\\
+        & |(input_{i})| & if other_{i} > 0.0
+        \end{matrix}\right.
 
 参数
 ::::::::::::
