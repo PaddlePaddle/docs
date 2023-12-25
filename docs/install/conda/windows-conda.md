@@ -102,13 +102,13 @@ conda install paddlepaddle==2.6.0 --channel https://mirrors.tuna.tsinghua.edu.cn
 *  对于 `CUDA 11.2`，需要搭配 cuDNN 8.2.1，安装命令为:
 
   ```
-  conda install paddlepaddle-gpu==2.5.0 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
+  conda install paddlepaddle-gpu==2.6.0 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
   ```
 
 *  对于 `CUDA 11.6`，需要搭配 cuDNN 8.4.0，安装命令为:
 
   ```
-  conda install paddlepaddle-gpu==2.5.0 cudatoolkit=11.6 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
+  conda install paddlepaddle-gpu==2.6.0 cudatoolkit=11.6 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
   ```
 
 *  对于 `CUDA 11.7`，需要搭配 cuDNN 8.4.1，安装命令为:

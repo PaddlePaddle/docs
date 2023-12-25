@@ -334,8 +334,8 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
     </tr>
     <tr>
         <td> cpu-openblas-avx </td>
-        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.0/linux/linux-cpu-openblas-avx/paddlepaddle-2.6.0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.6.0-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> - </td>
         <td> - </td>
         <td> - </td>
         <td> - </td>
@@ -393,7 +393,6 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
         paddlepaddle_gpu-2.6.0-cp312-cp312-linux_x86_64.whl</a></td>
     </tr>
         <td> cuda12.0-cudnn8.9-mkl-gcc12.2-avx </td>
-        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.0/linux/linux-gpu-cuda12.0-cudnn8.9-mkl-gcc12.2-avx/paddlepaddle_gpu-2.6.0.post120-cp38-cp38-linux_x86_64.whl">
         paddlepaddle_gpu-2.6.0.post120-cp38-cp38-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.0/linux/linux-gpu-cuda12.0-cudnn8.9-mkl-gcc12.2-avx/paddlepaddle_gpu-2.6.0.post120-cp39-cp39-linux_x86_64.whl">
@@ -420,7 +419,6 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
     </tr>
     <tr>
         <td> macos-cpu-openblas-m1 </td>
-        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.0/macos/macos-cpu-openblas-m1/paddlepaddle-2.6.0-cp38-cp38-macosx_11_0_arm64.whl">
         paddlepaddle-2.6.0-cp38-cp38-macosx_11_0_arm64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.0/macos/macos-cpu-openblas-m1/paddlepaddle-2.6.0-cp39-cp39-macosx_11_0_arm64.whl">
@@ -442,8 +440,8 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
     </tr>
     <tr>
         <td> win-cpu-openblas-avx </td>
-        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.0/windows/windows-cpu-avx-openblas-vs2017/paddlepaddle-2.6.0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.6.0-cp38-cp38-win_amd64.whl</a></td>
+        <td> - </td>
         <td> - </td>
         <td> - </td>
         <td> - </td>
@@ -495,11 +493,9 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.0/linux-cinn/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.6.0.post112-cp310-cp310-linux_x86_64.whl"> paddlepaddle_gpu-2.6.0.post112-cp310-cp310-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.0/linux-cinn/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.6.0.post112-cp311-cp311-linux_x86_64.whl"> paddlepaddle_gpu-2.6.0.post112-cp311-cp311-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.0/linux-cinn/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.6.0.post112-cp312-cp312-linux_x86_64.whl"> paddlepaddle_gpu-2.6.0.post112-cp312-cp312-linux_x86_64.whl</a></td>
-        <td> - </td>
     </tr>
     <tr>
         <td> linux-cuda11.2-cudnn8-mkl-gcc8.2-avx-pascal </td>
-        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.0/linux-pascal/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.6.0.post112-cp38-cp38-linux_x86_64.whl"> paddlepaddle_gpu-2.6.0-cp38-cp38-linux_x86_64.whl</a> </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.0/linux-pascal/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.6.0.post112-cp39-cp39-linux_x86_64.whl"> paddlepaddle_gpu-2.6.0-cp39-cp39-linux_x86_64.whl</a> </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.0/linux-pascal/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.6.0.post112-cp310-cp310-linux_x86_64.whl"> paddlepaddle_gpu-2.6.0-cp310-cp310-linux_x86_64.whl</a> </td>
@@ -569,8 +565,8 @@ platform tag: 类似 'linux_x86_64', 'any'
     </tr>
     <tr>
         <td> linux-cpu-openblas-avx </td>
-        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/linux/linux-cpu-openblas-avx/paddlepaddle-0.0.0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-latest-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> - </td>
         <td> - </td>
         <td> - </td>
         <td> - </td>
@@ -609,7 +605,6 @@ platform tag: 类似 'linux_x86_64', 'any'
     </tr>
     <tr>
         <td> cuda12.0-cudnn8.9-mkl </td>
-        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/linux/linux-gpu-cuda12.0-cudnn8.9-mkl-gcc12.2-avx/paddlepaddle_gpu-0.0.0.post120-cp38-cp38-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp38-cp38-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/linux/linux-gpu-cuda12.0-cudnn8.9-mkl-gcc12.2-avx/paddlepaddle_gpu-0.0.0.post120-cp39-cp39-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp39-cp39-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/linux/linux-gpu-cuda12.0-cudnn8.9-mkl-gcc12.2-avx/paddlepaddle_gpu-0.0.0.post120-cp310-cp310-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp310-cp310-linux_x86_64.whl</a></td>
@@ -626,7 +621,6 @@ platform tag: 类似 'linux_x86_64', 'any'
     </tr>
     <tr>
         <td> macos-cpu-openblas-m1 </td>
-        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/macos/macos-cpu-openblas-m1/paddlepaddle-0.0.0-cp38-cp38-macosx_11_0_arm64.whl"> paddlepaddle-cp38-cp38-macosx_11_0_arm64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/macos/macos-cpu-openblas-m1/paddlepaddle-0.0.0-cp39-cp39-macosx_11_0_arm64.whl"> paddlepaddle-cp39-cp39-macosx_11_0_arm64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/macos/macos-cpu-openblas-m1/paddlepaddle-0.0.0-cp310-cp310-macosx_11_0_arm64.whl"> paddlepaddle-cp310-cp310-macosx_11_0_arm64.whl</a></td>
@@ -643,8 +637,8 @@ platform tag: 类似 'linux_x86_64', 'any'
     </tr>
     <tr>
         <td> win-cpu-openblas-avx </td>
-        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/windows/cpu-openblas-avx/paddlepaddle-0.0.0-cp38-cp38-win_amd64.whl"> paddlepaddle-latest-cp38-cp38-win_amd64.whl</a></td>
+        <td> - </td>
         <td> - </td>
         <td> - </td>
         <td> - </td>
