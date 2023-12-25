@@ -9,13 +9,8 @@
   Important updates
 ----------------------
 
-* Add support for python3.9, and no longer supports python2.7 and python3.5
-* Add support for CUDA 11.2, and no longer supports CUDA 9.0, CUDA 10.0 and CUDA 11.0
-* Add support for ROCm platform (2.1 Paddle's support for ROCm platform is experimental)
-* Linux system-related packages have been split into two types of packages, avx and noavx (Most machines use the avx instruction set. You can check whether your machine supports it through commands on the `PIP installation under Linux <pip/linux-pip.html>`_ page )
-* Add a CPU image with jupyter pre-installed. Jupyter service will be started after starting the image
-* Added support for Windows Visual Studio 2017 compilation, fully upgraded from VS2015 to VS2017
-* Add support for NVIDIA NGC PaddlePaddle Container
+* Add support for python3.12, and no longer supports python3.7
+* Add support for CUDA 12.0, and no longer supports CUDA 10.2
 
 
 ------------------------
@@ -29,9 +24,9 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 * Windows 7 / 8 / 10, Pro/Enterprise
-* Ubuntu 16.04 / 18.04
+* Ubuntu 18.04 / 20.04
 * CentOS 7
-* MacOS 10.11 / 10.12 / 10.13 / 10.14
+* MacOS 10.x/11.x/12.x/13.x/14.x
 * 64-bit operating system is required
 
 2. Processor requirements:
@@ -43,7 +38,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 3. Version requirements of python and pip:
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-* Python requires version 3.7/3.8/3.9/3.10
+* Python requires version 3.8/3.9/3.10/3.11/3.12
 * Python needs pip, and pip requires version 20.2.2 or above
 * Python and pip requires 64-bit
 
@@ -51,7 +46,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 * Currently, **PaddlePaddle** supports **CUDA** driver of **NVIDIA** graphics card and **ROCm** driver of **AMD** card.
-* You need to install `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ , and version 7.6+ is required(For CUDA10.1/10.2)
+* You need to install `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ , and version 7.6+ is required(For CUDA11)
 * If you need GPU multi-card mode, you need to install `NCCL 2 <https://developer.nvidia.com/nccl/>`_
 
     * Only Ubuntu/CentOS support NCCL 2
@@ -59,22 +54,22 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 
     * Windows install GPU version
 
-        * Windows 7 / 8 / 10 support CUDA 10.1/10.2/11.2 single-card mode, but don't support CUDA 9.1/9.2/10.1
+        * Windows 7 / 8 / 10 support CUDA 11.0/11.2/11.6/11.8/12.0 single-card mode
         * don't support install using **nvidia-docker**
     * Ubuntu install GPU version
 
-        * Ubuntu 16.04 supports CUDA 10.1/10.2/11.2
-        * Ubuntu 18.04 supports CUDA 10.1/10.2/11.2
-        * If you install using **nvidia-docker** , it supports CUDA 10.2/11.2
+        * Ubuntu 18.04 supports CUDA (11.0 - 12.0)
+        * Ubuntu 20.04 supports CUDA (11.0 - 12.0)
+        * If you install using **nvidia-docker** , it supports CUDA 11.2/11.7/12.0
     * CentOS install GPU version
 
         * If you install using native **pip** :
 
-            * CentOS 7 supports CUDA 10.1/10.2/11.2
+            * CentOS 7 supports CUDA (11.0 - 12.0)
         * If you compile and install using native source code:
 
-            * CentOS 7 supports CUDA 10.1/10.2/11.2
-        * If you install using  **nvidia-docker** , CentOS 7 supports CUDA 10.2/11.2
+            * CentOS 7 supports CUDA (11.0 - 12.0)
+        * If you install using  **nvidia-docker** , CentOS 7 supports CUDA 11.2/11.7/12.0
     * MacOS isn't supported: PaddlePaddle has no GPU support in Mac OS platform
 
 Please make sure your environment meets the above conditions. If you have other requirements, please refer to `Appendix <Tables_en.html#ciwhls-release>`_ .
@@ -87,18 +82,17 @@ Please make sure your environment meets the above conditions. If you have other 
     * not support NCCL
 * Support for Ubuntu
 
-    * Ubuntu 16.04:
-
-        * support NCCL v2.4.2-v2.4.8 under CUDA10.1
     * Ubuntu 18.04:
 
-        * support v2.4.2-v2.4.8 under CUDA10.1
+        * support NCCL v2.4.7 / v2.16.5 under CUDA11
+    * Ubuntu 20.04:
+
+        * support v2.4.7 / 2.16.5 under CUDA11
 * Support for CentOS
 
-    * CentOS 6: not support NCCL
     * CentOS 7:
 
-        * support NCCL v2.4.2-v2.4.8 under CUDA10.1
+        * support NCCL v2.4.7-v2.16.5 under CUDA11
 * Support for MacOS
 
     * not support NCCL
@@ -134,7 +128,7 @@ This section describes how to use pip to install.
 
 4. Check the version of Python
 
-    Confirm the Python is 3.7/3.8/3.9/3.10 using command
+    Confirm the Python is 3.8/3.9/3.10/3.11/3.12 using command
     ::
 
         python --version
@@ -147,7 +141,7 @@ This section describes how to use pip to install.
         python -m pip --version
 
 
-6. Confirm that Python and pip is 64 bit，and the processor architecture is x86_64(or called x64、Intel 64、AMD64)architecture. Currently, PaddlePaddle doesn't support arm64 architecture. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64" :
+6. Confirm that Python and pip is 64 bit，and the processor architecture is x86_64(or called x64、Intel 64、AMD64)architecture. Currently. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64" :
 
     ::
 
@@ -161,11 +155,11 @@ This section describes how to use pip to install.
         Command to install CPU version is:
         ::
 
-            python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle==2.6.0 -i https://mirror.baidu.com/pypi/simple
 
             or
 
-            python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle==2.6.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 
     (2). **GPU version** : If you only want to install GPU version, please refer to command below
@@ -175,14 +169,13 @@ This section describes how to use pip to install.
 
             * You need to confirm that your GPU meets the requirements listed above
 
-        Please attention that PaddlePaddle installed through command below only supports CUDA10.2 under Windows、Ubuntu、CentOS:
         ::
 
-            python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle-gpu==2.6.0 -i https://mirror.baidu.com/pypi/simple
 
             or
 
-            python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle-gpu==2.6.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 
     Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.

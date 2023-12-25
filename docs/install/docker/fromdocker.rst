@@ -5,5 +5,6 @@
 ..  toctree::
     :maxdepth: 1
 
-    macos-docker.md
     linux-docker.md
+    macos-docker.md
+    docker_list.md
