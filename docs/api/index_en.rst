@@ -14,11 +14,11 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 | paddle.*                 | The aliases of commonly used APIs are reserved in the         |
 |                          | paddle root directory, which currently include all            |
 |                          | the APIs in the paddle.tensor, paddle.framework and           |
-|                          | paddle.device directories                                     |
+|                          | paddle.device directories.                                    |
 +--------------------------+---------------------------------------------------------------+
 | paddle.tensor            | APIs related to tensor operations such as creating            |
 |                          | zeros, matrix operation matmul, transforming concat,          |
-|                          | computing add, and finding argmax                             |
+|                          | computing add, and finding argmax.                            |
 +--------------------------+---------------------------------------------------------------+
 | paddle.framework         | PaddlePaddle universal APIs and dynamic graph APIs            |
 |                          | such as no_grad, save and load.                               |
@@ -52,10 +52,10 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 +--------------------------+---------------------------------------------------------------+
 | paddle.hub               | Model extension API, including list, load, help, etc.         |
 +--------------------------+---------------------------------------------------------------+
-| paddle.incubate          | APIs for incubating new features                              |
+| paddle.incubate          | APIs for incubating new features.                             |
 +--------------------------+---------------------------------------------------------------+
 | paddle.io                | APIs related to data input and output such as                 |
-|                          | Dataset, and DataLoader                                       |
+|                          | Dataset, and DataLoader.                                      |
 +--------------------------+---------------------------------------------------------------+
 | paddle.inference         | APIs related to inference for predictions.                    |
 +--------------------------+---------------------------------------------------------------+
@@ -74,7 +74,7 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 |                          | export                                                        |
 +--------------------------+---------------------------------------------------------------+
 | paddld.optimizer         | APIs related to optimization algorithms such as SGD,          |
-|                          | Adagrad, and Adam                                             |
+|                          | Adagrad, and Adam.                                            |
 +--------------------------+---------------------------------------------------------------+
 | paddle.optimizer.lr      | APIs related to learning rate decay, such as                  |
 |                          | NoamDecay, StepDecay, PiecewiseDecay, etc.                    |
@@ -83,7 +83,7 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 |                          | providing functionality to display and analyze                |
 |                          | performance for model training and inference processes.       |
 +--------------------------+---------------------------------------------------------------+
-| paddle.quantization      | Quantization related APIs                                     |
+| paddle.quantization      | Quantization related APIs.                                    |
 +--------------------------+---------------------------------------------------------------+
 | paddle.regularizer       | Regularization APIs, including L1Decay, L2Decay, etc.         |
 +--------------------------+---------------------------------------------------------------+
@@ -96,7 +96,7 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 +--------------------------+---------------------------------------------------------------+
 | paddle.static.nn         | Special APIs for networking under static graph such           |
 |                          | as full connect layer fc and control flow                     |
-|                          | while_loop/cond                                               |
+|                          | while_loop/cond.                                              |
 +--------------------------+---------------------------------------------------------------+
 | paddle.sysconfig         | System configuration APIs, such as get_include, get_lib.      |
 +--------------------------+---------------------------------------------------------------+
@@ -107,5 +107,5 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 +--------------------------+---------------------------------------------------------------+
 | paddle.vision            | Vision domain APIs such as datasets Cifar10,                  |
 |                          | data processing ColorJitter, and commonly used models         |
-|                          | like resnet                                                   |
+|                          | like resnet.                                                  |
 +--------------------------+---------------------------------------------------------------+
