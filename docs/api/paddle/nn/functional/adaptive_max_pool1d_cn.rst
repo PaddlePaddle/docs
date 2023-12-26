@@ -1,6 +1,5 @@
 .. _cn_api_paddle_nn_functional_adaptive_max_pool1d:
 
-
 adaptive_max_pool1d
 -------------------------------
 
