@@ -29,7 +29,7 @@ cd Paddle
 mkdir build && cd build
 
 # 执行 cmake
-cmake .. -DPY_VERSION=3.7 -DWITH_ROCM=ON -DWITH_TESTING=ON  \
+cmake .. -DPY_VERSION=3.8 -DWITH_ROCM=ON -DWITH_TESTING=ON  \
          -DWITH_DISTRIBUTE=ON -DWITH_MKL=ON
 
 # 使用以下命令来编译
