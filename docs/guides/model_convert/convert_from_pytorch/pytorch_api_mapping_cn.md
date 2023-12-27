@@ -625,7 +625,7 @@
 梳理了`torch.Tensor.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号  | PyTorch API | PaddlePaddle API | 备注 |
- |-----| --- | --- | --- |
+-----|-----| --- | --- | --- |
 | 1   |  [torch.Tensor.device](https://pytorch.org/docs/stable/generated/torch.Tensor.device.html)  |  [paddle.Tensor.place](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#place)  |    功能一致, 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.device.md)  |
 | 2   |  [torch.Tensor.grad](https://pytorch.org/docs/stable/generated/torch.Tensor.grad.html)  |  [paddle.Tensor.grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#grad)  |    功能一致, 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.grad.md)  |
 | 3   |  [torch.Tensor.imag](https://pytorch.org/docs/stable/generated/torch.Tensor.imag.html)  |  [paddle.Tensor.imag](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#imag-name-none)  |    功能一致, 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.imag.md)  |
@@ -934,7 +934,7 @@
 | 306 |  [torch.Tensor.tensor_split](https://pytorch.org/docs/stable/generated/torch.Tensor.tensor_split.html)  | [paddle.Tensor.tensor_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tensor_split-indices_or_sections-axis-0-name-none) |    功能完全一致，仅参数名不一致 [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.tensor_split.md)  |
 | 307 |  [torch.Tensor.masked_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_scatter.html?highlight=resize#torch.Tensor.masked_scatter)  | [paddle.Tensor.masked_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id25) |    功能完全一致  |
 | 308 |  [torch.Tensor.masked_scatter_](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_scatter_.html?highlight=resize#torch.Tensor.masked_scatter_)  | [paddle.Tensor.masked_scatter_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id25) |    功能完全一致  |
-
+| 309  | [torch.Tensor.apply_](https://pytorch.org/docs/stable/generated/torch.Tensor.apply_.html)                                                      |[paddle.Tensor.apply_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id25)| 参数完全一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.apply_.md)|
 
 | 序号  | PyTorch API | PaddlePaddle API  | 备注 |
 | ----- | ----------- | ----------------- | --- |
