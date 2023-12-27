@@ -3168,7 +3168,7 @@ select_scatter(x, values, axis, index, name=None)
 slice_scatter(value, axes, starts, ends, strides, name=None)
 :::::::::
 
-沿着 `axes` 将 `value` 矩阵的值嵌入到 `x` 矩阵。返回一个新的 Tensor 而不是试图。
+沿着 `axes` 将 `value` 矩阵的值嵌入到 `x` 矩阵。返回一个新的 Tensor 而不是视图。
 
 返回：计算后的 Tensor
 

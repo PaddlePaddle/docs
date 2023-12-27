@@ -5,7 +5,7 @@ slice_scatter
 
 .. py:function:: paddle.slice_scatter(x, value, axes, starts, ends, strides, name=None)
 
-沿着 `axes` 将 `value` 矩阵的值嵌入到 `x` 矩阵。返回一个新的 Tensor 而不是试图。 `axes` 需要与 `starts`, `ends` 和 `strides` 尺寸一致。
+沿着 `axes` 将 `value` 矩阵的值嵌入到 `x` 矩阵。返回一个新的 Tensor 而不是视图。 `axes` 需要与 `starts`, `ends` 和 `strides` 尺寸一致。
 
 参数
 :::::::::
