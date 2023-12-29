@@ -3,7 +3,7 @@
 SubmConv2D
 -------------------------------
 
-.. py:class:: class paddle.sparse.nn.SubmConv2D(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, padding_mode='zeros', key=None, weight_attr=None, bias_attr=None, data_format='NHWC')
+.. py:class:: paddle.sparse.nn.SubmConv2D(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, padding_mode='zeros', key=None, weight_attr=None, bias_attr=None, data_format='NHWC')
 
 **子流形稀疏二维卷积层**
 

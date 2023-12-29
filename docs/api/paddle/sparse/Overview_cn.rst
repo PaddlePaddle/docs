@@ -77,6 +77,7 @@ paddle.sparse 目录包含飞桨框架支持稀疏数据存储和计算相关的
     " :ref:`paddle.sparse.nn.BatchNorm<cn_api_paddle_sparse_nn_BatchNorm>` ", " Batch Normalization 层"
     " :ref:`paddle.sparse.nn.SyncBatchNorm<cn_api_paddle_sparse_nn_SyncBatchNorm>` ", " Synchronized Batch Normalization 层"
     " :ref:`paddle.sparse.nn.MaxPool3D<cn_api_paddle_sparse_nn_MaxPool3D>` ", "三维最大池化层"
+    " :ref:`paddle.sparse.nn.SubmConv2D <cn_api_paddle_sparse_nn_SubmConv2D>` ", "子流形二维卷积层"
 
 .. _about_sparse_nn_functional:
 
