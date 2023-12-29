@@ -375,6 +375,7 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.scatter_nd_add <cn_api_paddle_scatter_nd_add>` ", "通过对 Tensor 中的单个值或切片应用稀疏加法，从而得到输出的 Tensor"
     " :ref:`paddle.shard_index <cn_api_paddle_shard_index>` ", "根据分片（shard）的偏移量重新计算分片的索引"
     " :ref:`paddle.slice <cn_api_paddle_slice>` ", "沿多个轴生成 input 的切片"
+    " :ref:`paddle.slice_scatter <cn_api_paddle_slice_scatter>` ", "沿着 axes 将 value 矩阵的值嵌入到 x 矩阵"
     " :ref:`paddle.split <cn_api_paddle_split>` ", "将输入 Tensor 分割成多个子 Tensor"
     " :ref:`paddle.tensor_split <cn_api_paddle_tensor_split>` ", "将输入 Tensor 分割成多个子 Tensor，允许不等分"
     " :ref:`paddle.hsplit <cn_api_paddle_hsplit>` ", "将输入 Tensor 沿第零个维度分割成多个子 Tensor"

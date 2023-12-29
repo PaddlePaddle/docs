@@ -724,10 +724,10 @@ PD_REGISTER_KERNEL(trace,
 mkdir build && cd build
 ```
 
-执行`cmake`命令，具体选项可参考 [从源码编译](../../install/compile/fromsource.html) 中的介绍，下面的命令为编译 Python3.7，GPU 版本，带测试，Release 版本的 Paddle。
+执行`cmake`命令，具体选项可参考 [从源码编译](../../install/compile/fromsource.html) 中的介绍，下面的命令为编译 Python3.8，GPU 版本，带测试，Release 版本的 Paddle。
 
 ```plain
-cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON -DWITH_TESTING=ON -DCMAKE_BUILD_TYPE=Release
+cmake .. -DPY_VERSION=3.8 -DWITH_GPU=ON -DWITH_TESTING=ON -DCMAKE_BUILD_TYPE=Release
 ```
 
 在`build`目录下，运行下面命令可以进行编译整个 paddle：
