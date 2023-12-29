@@ -10,7 +10,7 @@ gammaln
 参数
 ::::::::::::
 
-    - **x** - 输入 Tensor。数据类型必须为 float16, float32, float64, bfloat16。
+    - **x** - 输入 Tensor。数据类型必须为 float16， float32， float64， bfloat16。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
