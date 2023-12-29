@@ -540,15 +540,7 @@ apply(callable)
 
 返回类型：Tensor
 
-**代码示例**
-    .. code-block:: python
-
-        x = paddle.to_tensor([[0.3, 0.5, 0.1],
-               [0.9, 0.9, 0.7],
-               [0.4, 0.8, 0.2]])
-        f = lambda x: 3*x+2
-        y = x.apply(f)
-        print(y)
+COPY-FROM: paddle.Tensor.apply
 
 apply_(callable)
 :::::::::

@@ -625,7 +625,7 @@
 梳理了`torch.Tensor.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号  | PyTorch API | PaddlePaddle API | 备注 |
------|-----| --- | --- | --- |
+ |-----| --- | --- | --- |
 | 1   |  [torch.Tensor.device](https://pytorch.org/docs/stable/generated/torch.Tensor.device.html)  |  [paddle.Tensor.place](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#place)  |    功能一致, 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.device.md)  |
 | 2   |  [torch.Tensor.grad](https://pytorch.org/docs/stable/generated/torch.Tensor.grad.html)  |  [paddle.Tensor.grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#grad)  |    功能一致, 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.grad.md)  |
 | 3   |  [torch.Tensor.imag](https://pytorch.org/docs/stable/generated/torch.Tensor.imag.html)  |  [paddle.Tensor.imag](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#imag-name-none)  |    功能一致, 无参数 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.imag.md)  |
