@@ -11,7 +11,7 @@ torch.nn.Module.state_dict(*, destination, prefix, keep_vars)
 paddle.nn.Layer.state_dict(destination=None, include_sublayers=True, use_hook=True)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |

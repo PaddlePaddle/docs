@@ -1,4 +1,4 @@
-# Installation on MacOS via Conda
+# Installation on macOS via Conda
 
 [Anaconda](https://www.anaconda.com/)is a free and open source distribution of Python and R for computational science. Anaconda is dedicated to simplifying package management and deployment. Anaconda's packages are managed using the package management system Conda. Conda is an open source package management system and environment management system that runs on Windows, macOS, and Linux.
 
@@ -84,7 +84,7 @@ conda config --set show_channel_urls yes
 
 ### Install the CPU version of PaddlePaddle
 
-* Currently, only the CPU version of PaddlePaddle is supported in the MacOS environment. Please use the following command to install PaddlePaddle：
+* Currently, only the CPU version of PaddlePaddle is supported in the macOS environment. Please use the following command to install PaddlePaddle：
 
   ```
   conda install paddlepaddle==2.6.0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/

@@ -12,7 +12,7 @@ torch.distributions.normal.Normal(loc, scale, validate_args=None)
 paddle.distribution.Normal(loc, scale, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

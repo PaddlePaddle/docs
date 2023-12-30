@@ -12,7 +12,7 @@ torch.Tensor.logcumsumexp(dim)
 paddle.Tensor.logcumsumexp(axis=None, dtype=None, name=None)
 ```
 
-两者功能一致，其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：
+两者功能一致，其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 

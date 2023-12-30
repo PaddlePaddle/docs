@@ -11,7 +11,7 @@ torch.Tensor.is_pinned()
 ### 转写示例
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = a.is_pinned(b)
 
 # Paddle 写法

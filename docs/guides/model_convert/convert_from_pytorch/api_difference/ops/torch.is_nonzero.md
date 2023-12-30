@@ -11,7 +11,7 @@ torch.is_nonzero(input)
 ### 转写示例
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.is_nonzero(x)
 
 # Paddle 写法

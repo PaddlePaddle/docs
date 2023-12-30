@@ -21,4 +21,4 @@ paddle.Tensor.logical_or(y,
 | PyTorch | PaddlePaddle | 备注                                          |
 | ------- | ------------ | --------------------------------------------- |
 | other   | y            | 表示输入的 Tensor ，仅参数名不一致。 |
-| -   | out            | 指定算子输出结果的 Tensor，可以是程序中已经创建的任何 Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。Pytorch 无此参数，Paddle 保持默认即可。|
+| -   | out            | 指定算子输出结果的 Tensor，可以是程序中已经创建的任何 Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。PyTorch 无此参数，Paddle 保持默认即可。|

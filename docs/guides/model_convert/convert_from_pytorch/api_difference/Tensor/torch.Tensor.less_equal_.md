@@ -21,7 +21,7 @@ paddle.Tensor.less_equal_(y)
 ### 转写示例
 #### other：输入为 Number
 ```python
-# Pytorch 写法
+# PyTorch 写法
 result = x.less_equal_(2)
 
 # Paddle 写法

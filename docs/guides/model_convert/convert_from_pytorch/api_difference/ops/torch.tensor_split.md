@@ -11,7 +11,7 @@ torch.tensor_split(input, indices_or_sections, dim=0)
 paddle.tensor_split(x, num_or_indices, axis=0, name=None)
 ```
 
-其中 Paddle 相比 Pytorch 仅参数名不一致，具体如下：
+其中 Paddle 相比 PyTorch 仅参数名不一致，具体如下：
 
 ### 参数映射
 
