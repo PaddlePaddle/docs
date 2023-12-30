@@ -21,13 +21,13 @@ paddle.equal_all(x,
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
 | <font color='red'> other </font> | <font color='red'> y </font> | 表示输入的 Tensor ，仅参数名不一致。  |
 
-注：Pytorch 返回 bool 类型，Paddle 返回 0-D bool Tensor
+注：PyTorch 返回 bool 类型，Paddle 返回 0-D bool Tensor
 
 
 ### 转写示例
 #### 返回值
 ``` python
-# Pytorch 写法
+# PyTorch 写法
 out = torch.equal(x, y)
 
 # Paddle 写法

@@ -18,4 +18,4 @@ paddle.Tensor.corrcoef(rowvar=True)
 
 | PyTorch | PaddlePaddle | 备注                                                              |
 | ------- | ------------ | ----------------------------------------------------------------- |
-| -       | rowvar       | 以行或列作为一个观测变量，Pytorch 无此参数，Paddle 保持默认即可。 |
+| -       | rowvar       | 以行或列作为一个观测变量，PyTorch 无此参数，Paddle 保持默认即可。 |

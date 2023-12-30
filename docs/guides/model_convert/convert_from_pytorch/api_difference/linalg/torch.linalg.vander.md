@@ -12,7 +12,7 @@ torch.linalg.vander(x, N=None)
 paddle.vander(x, n=None, increasing=False, name=None)
 ```
 
-其中 Paddle 相比 Pytorch 支持更多参数，具体如下：
+其中 Paddle 相比 PyTorch 支持更多参数，具体如下：
 
 ### 参数映射
 
@@ -27,7 +27,7 @@ paddle.vander(x, n=None, increasing=False, name=None)
 #### increasing：列的幂次顺序
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.linalg.vander(x)
 
 # Paddle 写法

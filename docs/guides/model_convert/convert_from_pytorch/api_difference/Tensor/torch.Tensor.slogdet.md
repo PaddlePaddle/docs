@@ -12,13 +12,13 @@ torch.Tensor.slogdet()
 paddle.linalg.slogdet(x)
 ```
 
-两者功能一致，返回参数的个数不同，Pytorch 返回两个 Tesnor，Paddle 返回一个 Tensor，具体如下：
+两者功能一致，返回参数的个数不同，PyTorch 返回两个 Tesnor，Paddle 返回一个 Tensor，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> self </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| 返回值 | 返回值 | Pytorch 返回两个 Tesnor，Paddle 返回一个 Tensor，需要转写。 |
+| 返回值 | 返回值 | PyTorch 返回两个 Tesnor，Paddle 返回一个 Tensor，需要转写。 |
 
 
 
@@ -26,7 +26,7 @@ paddle.linalg.slogdet(x)
 
 #### 返回值
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x.slogdet()
 
 # Paddle 写法

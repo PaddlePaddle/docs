@@ -26,7 +26,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 * Windows 7 / 8 / 10, Pro/Enterprise
 * Ubuntu 18.04 / 20.04
 * CentOS 7
-* MacOS 10.x/11.x/12.x/13.x/14.x
+* macOS 10.x/11.x/12.x/13.x/14.x
 * 64-bit operating system is required
 
 2. Processor requirements:
@@ -70,7 +70,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 
             * CentOS 7 supports CUDA (11.0 - 12.0)
         * If you install using  **nvidia-docker** , CentOS 7 supports CUDA 11.2/11.7/12.0
-    * MacOS isn't supported: PaddlePaddle has no GPU support in Mac OS platform
+    * macOS isn't supported: PaddlePaddle has no GPU support in Mac OS platform
 
 Please make sure your environment meets the above conditions. If you have other requirements, please refer to `Appendix <Tables_en.html#ciwhls-release>`_ .
 
@@ -93,7 +93,7 @@ Please make sure your environment meets the above conditions. If you have other 
     * CentOS 7:
 
         * support NCCL v2.4.7-v2.16.5 under CUDA11
-* Support for MacOS
+* Support for macOS
 
     * not support NCCL
 
@@ -119,7 +119,7 @@ This section describes how to use pip to install.
 
             where python
 
-        In the MacOS/Linux environment, the command to output Python path is:
+        In the macOS/Linux environment, the command to output Python path is:
 
         ::
 
@@ -191,7 +191,7 @@ This section describes how to use pip to install.
 
     `install under Ubuntu <pip/linux-pip_en.html>`_
 
-    `install under MacOS <pip/macos-pip_en.html>`_
+    `install under macOS <pip/macos-pip_en.html>`_
 
     `install under Windows <pip/windows-pip_en.html>`_
 

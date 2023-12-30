@@ -27,7 +27,7 @@ Tensor.slice_scatter(value, axes, starts, ends, strides, name=None)
 ### 转写示例
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x.slice_scatter(src, dim=0, start=1, end=5, step=2)
 
 # Paddle 写法

@@ -26,7 +26,7 @@ paddle.lgamma(x, name=None)
 #### out：指定输出
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.special.gammaln(x, out=y)
 
 # Paddle 写法

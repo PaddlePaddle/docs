@@ -18,11 +18,11 @@ paddle.nn.initializer.Constant(value=0.0)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensor        | -          | n 维 tensor。Paddle 无此参数，因为是通过调用类的 __call__ 函数来进行 tensor 的初始化。    |
-| -          |  value          | 用于初始化输入变量的值。Pytorch 无此参数，Paddle 默认值为`0.0`，需设置为`1.0`。   |
+| -          |  value          | 用于初始化输入变量的值。PyTorch 无此参数，Paddle 默认值为`0.0`，需设置为`1.0`。   |
 
 ### 转写示例
 ```python
-# Pytorch 写法
+# PyTorch 写法
 conv = torch.nn.Conv2d(4, 6, (3, 3))
 torch.nn.init.ones_(conv.weight)
 

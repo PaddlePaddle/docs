@@ -12,7 +12,7 @@ torch.distributed.reduce(tensor, dst, op=<RedOpType.SUM: 0>, group=None, async_o
 paddle.distributed.reduce(tensor, dst, op=ReduceOp.SUM, group=None, sync_op=True)
 ```
 
-两者功能一致但参数不一致，其中 Pytorch 的 async_op 与 Paddle 的 sync_op 用法不一致，具体如下：
+两者功能一致但参数不一致，其中 PyTorch 的 async_op 与 Paddle 的 sync_op 用法不一致，具体如下：
 
 ### 参数映射
 
@@ -28,7 +28,7 @@ paddle.distributed.reduce(tensor, dst, op=ReduceOp.SUM, group=None, sync_op=True
 ### 转写示例
 #### async_op：表示该操作是否为异步操作
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.distributed.reduce(tensor=tensor, dst=dst, op=<RedOpType.SUM: 0>, group=None, async_op=False)
 
 # Paddle 写法

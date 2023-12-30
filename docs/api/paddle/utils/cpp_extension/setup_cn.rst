@@ -17,7 +17,7 @@ setup
 
 .. note::
 
-    1. 目前已支持 Linux ，MacOS 和 Windows 平台。
+    1. 目前已支持 Linux ，macOS 和 Windows 平台。
     2. 编译器的 ABI 兼容性是向前兼容的，Linux 下推荐使用 GCC 8.2 高版本作为 ``/usr/bin/cc`` 命令的软链对象，可通过 ``which cc`` 查看 ``cc`` 命令的位置，使用 ``cc --version`` 查看对应的 GCC 版本。
     3. Windows 下需要安装 Visual Studio 2017 及以上版本。
 

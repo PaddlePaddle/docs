@@ -29,4 +29,4 @@ paddle.hub.help(repo_dir,
 | force_reload   | force_reload |指定是否强制拉取。                       |
 | skip_validation| -            |检查由 github 参数指定的分支或提交是否属于存储库所有者，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
 | trust_repo    | -             |在 v1.14 中被移除；Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
-|-              |source         |指定 repo 托管的位置，Pytorch 无此参数，Paddle 保持默认即可|
+|-              |source         |指定 repo 托管的位置，PyTorch 无此参数，Paddle 保持默认即可|

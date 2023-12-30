@@ -24,7 +24,7 @@
 * Windows 7 / 8 / 10，专业版 / 企业版
 * Ubuntu 18.04 / 20.04
 * CentOS 7
-* MacOS 10.x/11.x/12.x/13.x/14.x
+* macOS 10.x/11.x/12.x/13.x/14.x
 * 操作系统要求是 64 位版本
 
 **2. 处理器要求**
@@ -65,7 +65,7 @@
 
             * CentOS 7 支持 CUDA (11.0 - 12.0)
         * 如果您是使用 **nvidia-docker** 安装，在 CentOS 7 下支持 CUDA 11.2/11.7/12.0
-    * MacOS 不支持：MacOS 平台不支持 GPU 安装
+    * macOS 不支持：macOS 平台不支持 GPU 安装
 
 请确保您的环境满足以上条件。如您有其他需求，请参考 `多版本 whl 包安装列表 <Tables.html#ciwhls-release>`_ .
 
@@ -84,7 +84,7 @@
     * CentOS 7：
 
         * 支持 NCCL v2.4.7-v2.16.5
-* MacOS 支持情况
+* macOS 支持情况
 
     * 不支持 NCCL
 
@@ -108,7 +108,7 @@
 
             where python
 
-        在 MacOS/Linux 环境下，输出 Python 路径的命令为：
+        在 macOS/Linux 环境下，输出 Python 路径的命令为：
 
         ::
 
@@ -178,7 +178,7 @@
 
     `Linux 下的 PIP 安装 <pip/linux-pip.html>`_
 
-    `MacOS 下的 PIP 安装 <pip/macos-pip.html>`_
+    `macOS 下的 PIP 安装 <pip/macos-pip.html>`_
 
     `Windows 下的 PIP 安装 <pip/windows-pip.html>`_
 
