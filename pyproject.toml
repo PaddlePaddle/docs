@@ -83,3 +83,4 @@ ignore = [
 
 [tool.ruff.lint.isort]
 combine-as-imports = true
+known-first-party = ["paddle"]
