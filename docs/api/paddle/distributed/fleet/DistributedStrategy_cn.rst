@@ -17,15 +17,7 @@ save_to_prototxt
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.dgc = True
-  strategy.recompute = True
-  strategy.recompute_configs = {"checkpoints": ["x"]}
-  strategy.save_to_prototxt("dist_strategy.prototxt")
-
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.save_to_prototxt
 
 load_from_prototxt
 '''''''''
@@ -34,12 +26,7 @@ load_from_prototxt
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.load_from_prototxt("dist_strategy.prototxt")
-
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.load_from_prototxt
 
 execution_strategy
 '''''''''
@@ -50,17 +37,7 @@ execution_strategy
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle
-  exe_strategy = paddle.static.ExecutionStrategy()
-  exe_strategy.num_threads = 10
-  exe_strategy.num_iteration_per_drop_scope = 10
-  exe_strategy.num_iteration_per_run = 10
-
-  strategy = paddle.distributed.fleet.DistributedStrategy()
-  strategy.execution_strategy = exe_strategy
-
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.execution_strategy
 
 build_strategy
 '''''''''
@@ -69,22 +46,7 @@ build_strategy
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle
-  build_strategy = paddle.static.BuildStrategy()
-  build_strategy.enable_sequential_execution = True
-  build_strategy.fuse_elewise_add_act_ops = True
-  build_strategy.fuse_bn_act_ops = True
-  build_strategy.enable_auto_fusion = True
-  build_strategy.fuse_relu_depthwise_conv = True
-  build_strategy.fuse_broadcast_ops = True
-  build_strategy.fuse_all_optimizer_ops = True
-  build_strategy.enable_inplace = True
-
-  strategy = paddle.distributed.fleet.DistributedStrategy()
-  strategy.build_strategy = build_strategy
-
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.build_strategy
 
 auto
 '''''''''
@@ -93,20 +55,7 @@ auto
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle
-  import paddle.distributed.fleet as fleet
-  paddle.enable_static()
-
-  strategy = fleet.DistributedStrategy()
-  strategy.auto = True
-  # if set other strategy at the same time, auto will not apply
-  # strategy.amp = True
-
-  optimizer = paddle.optimizer.SGD(learning_rate=0.01)
-  optimizer = fleet.distributed_optimizer(optimizer, strategy)
-
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.auto
 
 recompute
 '''''''''
@@ -115,18 +64,7 @@ recompute
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.recompute = True
-  # suppose x and y are names of checkpoint tensors for recomputation
-  strategy.recompute_configs = {
-    "checkpoints": ["x", "y"],
-    "enable_offload": True,
-    "checkpoint_shape": [100, 512, 1024]
-    }
-
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.recompute
 
 recompute_configs
 '''''''''
@@ -147,12 +85,7 @@ pipeline
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.pipeline = True
-
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.pipeline
 
 pipeline_configs
 '''''''''
@@ -163,13 +96,7 @@ pipeline_configs
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.pipeline = True
-  strategy.pipeline_configs = {"micro_batch_size": 12}
-
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.pipeline_configs
 
 gradient_merge
 '''''''''
@@ -181,12 +108,7 @@ gradient_merge
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.gradient_merge = True
-  strategy.gradient_merge_configs = {"k_steps": 4, "avg": True}
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.gradient_merge
 
 gradient_merge_configs
 '''''''''
@@ -208,17 +130,7 @@ lars
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.lars = True
-  strategy.lars_configs = {
-    "lars_coeff": 0.001,
-    "lars_weight_decay": 0.0005,
-    "epsilon": 0,
-    "exclude_from_weight_decay": ["batch_norm", ".b"],
-  }
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.lars_configs
 
 lars_configs
 '''''''''
@@ -241,15 +153,7 @@ lamb
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.lamb = True
-  strategy.lamb_configs = {
-      'lamb_weight_decay': 0.01,
-      'exclude_from_weight_decay': [],
-  }
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.lamb
 
 lamb_configs
 '''''''''
@@ -267,11 +171,7 @@ localsgd
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.localsgd = True # by default this is false
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.localsgd
 
 
 localsgd_configs
@@ -280,13 +180,7 @@ localsgd_configs
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.localsgd = True
-  strategy.localsgd_configs = {"k_steps": 4,
-                                "begin_step": 30}
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.adaptive_localsgd_configs
 
 **k_steps(int):** 训练过程中的全局参数更新间隔，默认值 1。
 
@@ -298,11 +192,7 @@ adaptive_localsgd
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.adaptive_localsgd = True # by default this is false
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.adaptive_localsgd
 
 adaptive_localsgd_configs
 '''''''''
@@ -310,13 +200,7 @@ adaptive_localsgd_configs
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.adaptive_localsgd = True
-  strategy.adaptive_localsgd_configs = {"init_k_steps": 1,
-                                        "begin_step": 30}
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.adaptive_localsgd_configs
 
 **init_k_steps(int):** 自适应 localsgd 的初始训练步长。训练后，自适应 localsgd 方法将自动调整步长。默认值 1。
 
@@ -329,11 +213,7 @@ amp
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.amp = True # by default this is false
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.amp_configs
 
 amp_configs
 '''''''''
@@ -358,14 +238,7 @@ amp_configs
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.amp = True
-  strategy.amp_configs = {
-      "init_loss_scaling": 32768,
-      "custom_white_list": ['conv2d']}
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.amp_configs
 
 dgc
 '''''''''
@@ -374,11 +247,7 @@ dgc
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.dgc = True  # by default this is false
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.dgc_configs
 
 dgc_configs
 '''''''''
@@ -395,12 +264,7 @@ dgc_configs
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.dgc = True
-  strategy.dgc_configs = {"rampup_begin_step": 1252}
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.dgc_configs
 
 fp16_allreduce
 '''''''''
@@ -409,12 +273,7 @@ fp16_allreduce
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.fp16_allreduce = True  # by default this is false
-
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.fp16_allreduce
 
 sharding
 '''''''''
@@ -428,11 +287,7 @@ sharding
 
 **代码示例**
 
-.. code-block:: python
-
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.sharding = True
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.sharding_configs
 
 sharding_configs
 '''''''''
@@ -460,16 +315,4 @@ sharding_configs
 **pp_allreduce_in_optimize(bool，可选):** [仅在混合并行中使用] 在开启 pipeline 并行后，将 allreduce 操作从反向阶段移动到更新阶段。根据不同的网络拓扑，该选项会影响训练速度，该策略目前还在实验阶段。默认值是 False。
 
 
-.. code-block:: python
-
-  # sharding-DP, 2 nodes with 8 gpus per node
-  import paddle.distributed.fleet as fleet
-  strategy = fleet.DistributedStrategy()
-  strategy.sharding = True
-  strategy.sharding_configs = {
-      "sharding_segment_strategy": "segment_broadcast_MB",
-      "segment_broadcast_MB": 32,
-      "sharding_degree": 8,
-      "dp_degree": 2,
-      "gradient_merge_acc_step": 4,
-      }
+COPY-FROM: paddle.distributed.fleet.DistributedStrategy.sharding_configs

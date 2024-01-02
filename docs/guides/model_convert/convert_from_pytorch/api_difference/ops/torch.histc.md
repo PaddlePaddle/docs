@@ -30,7 +30,7 @@ paddle.histogram(input, bins=100, min=0, max=0, name=None)
 #### out：指定输出
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.histc(x, out=y)
 
 # Paddle 写法

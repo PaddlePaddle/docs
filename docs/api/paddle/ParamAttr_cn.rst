@@ -1,6 +1,5 @@
 .. _cn_api_paddle_ParamAttr:
 
-
 ParamAttr
 -------------------------------
 

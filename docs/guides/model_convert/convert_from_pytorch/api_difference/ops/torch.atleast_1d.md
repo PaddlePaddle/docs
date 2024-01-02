@@ -26,7 +26,7 @@ PyTorch 与 Paddle 功能一致，但对于由多个 Tensor 组成 tuple|list �
 #### tensors: 输入为 tuple(Tensor)时
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.atleast_1d((x, y))
 
 # Paddle 写法

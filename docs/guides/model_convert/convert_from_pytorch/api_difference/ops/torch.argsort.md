@@ -11,7 +11,7 @@ torch.argsort(input, dim=- 1, descending=False, stable=False)
 paddle.argsort(x, axis=- 1, descending=False, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |

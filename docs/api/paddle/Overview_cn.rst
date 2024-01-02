@@ -115,6 +115,7 @@ tensor 数学操作
     " :ref:`paddle.rsqrt <cn_api_paddle_rsqrt>` ", "rsqrt 激活函数"
     " :ref:`paddle.scale <cn_api_paddle_scale>` ", "缩放算子"
     " :ref:`paddle.sign <cn_api_paddle_sign>` ", "对输入 x 中每个元素进行正负判断"
+    " :ref:`paddle.signbit <cn_api_paddle_signbit>` ", "对输入 x 的每个元素符号位进行判断"
     " :ref:`paddle.sgn <cn_api_paddle_sgn>` ", "对输入 x 中每个元素进行正负判断，对于复数则输出单位向量"
     " :ref:`paddle.sin <cn_api_paddle_sin>` ", "计算输入的正弦值"
     " :ref:`paddle.sinh <cn_api_paddle_sinh>` ", "双曲正弦函数"
@@ -188,7 +189,9 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.hypot_ <cn_api_paddle_hypot_>` ", "Inplace 版本的 hypot API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.multigammaln_ <cn_api_paddle_multigammaln_>` ", "Inplace 版本的 multigammaln API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.masked_fill_ <cn_api_paddle_masked_fill_>` ", "Inplace 版本的 masked_fill API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.masked_scatter_ <cn_api_paddle_masked_scatter_>` ", "Inplace 版本的 masked_scatter API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.index_fill_ <cn_api_paddle_index_fill_>` ", "Inplace 版本的 index_fill API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.sin_ <cn_api_paddle_sin_>` ", "Inplace 版本的 sin API，对输入 x 采用 Inplace 策略"
 
 .. _tensor_logic:
 
@@ -301,6 +304,7 @@ tensor random 相关
     :widths: 10, 30
 
     " :ref:`paddle.bernoulli <cn_api_paddle_bernoulli>` ", "以输入 x 为概率，生成一个伯努利分布（0-1 分布）的 Tensor，输出 Tensor 的形状和数据类型与输入 x 相同"
+    " :ref:`paddle.binomial <cn_api_paddle_binomial>` ", "以输入 count 为总实验次数， prob 为实验成功的概率，生成一个二项分布的 Tensor"
     " :ref:`paddle.multinomial <cn_api_paddle_multinomial>` ", "以输入 x 为概率，生成一个多项分布的 Tensor"
     " :ref:`paddle.normal <cn_api_paddle_normal>` ", "返回符合正态分布（均值为 mean ，标准差为 std 的正态随机分布）的随机 Tensor"
     " :ref:`paddle.rand <cn_api_paddle_rand>` ", "返回符合均匀分布的，范围在[0, 1)的 Tensor"
@@ -328,6 +332,7 @@ tensor 线性代数相关
     " :ref:`paddle.dist <cn_api_paddle_dist>` ", "计算 (x-y) 的 p 范数（p-norm）"
     " :ref:`paddle.dot <cn_api_paddle_dot>` ", "计算向量的内积"
     " :ref:`paddle.histogram <cn_api_paddle_histogram>` ", "计算输入 Tensor 的直方图"
+    " :ref:`paddle.histogramdd <cn_api_paddle_histogramdd>` ", "计算输入多维 Tensor 的直方图"
     " :ref:`paddle.matmul <cn_api_paddle_matmul>` ", "计算两个 Tensor 的乘积，遵循完整的广播规则"
     " :ref:`paddle.mv <cn_api_paddle_mv>` ", "计算矩阵 x 和向量 vec 的乘积"
     " :ref:`paddle.rank <cn_api_paddle_rank>` ", "计算输入 Tensor 的维度（秩）"
@@ -336,6 +341,7 @@ tensor 线性代数相关
     " :ref:`paddle.triu <cn_api_paddle_triu>` ", "返回输入矩阵 input 的上三角部分，其余部分被设为 0"
     " :ref:`paddle.triu_indices <cn_api_paddle_triu_indices>` ", "返回输入矩阵在给定对角线右上三角部分元素坐标"
     " :ref:`paddle.cdist <cn_api_paddle_cdist>` ", "计算两组输入集合 x, y 中每对之间的 p 范数"
+    " :ref:`paddle.pdist <cn_api_paddle_pdist>` ", "计算输入形状为 N x M 的 Tensor 中 N 个向量两两组合(pairwise)的 p 范数"
 
 .. _tensor_manipulation:
 
@@ -369,8 +375,12 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.scatter_nd_add <cn_api_paddle_scatter_nd_add>` ", "通过对 Tensor 中的单个值或切片应用稀疏加法，从而得到输出的 Tensor"
     " :ref:`paddle.shard_index <cn_api_paddle_shard_index>` ", "根据分片（shard）的偏移量重新计算分片的索引"
     " :ref:`paddle.slice <cn_api_paddle_slice>` ", "沿多个轴生成 input 的切片"
+    " :ref:`paddle.slice_scatter <cn_api_paddle_slice_scatter>` ", "沿着 axes 将 value 矩阵的值嵌入到 x 矩阵"
     " :ref:`paddle.split <cn_api_paddle_split>` ", "将输入 Tensor 分割成多个子 Tensor"
+    " :ref:`paddle.tensor_split <cn_api_paddle_tensor_split>` ", "将输入 Tensor 分割成多个子 Tensor，允许不等分"
+    " :ref:`paddle.hsplit <cn_api_paddle_hsplit>` ", "将输入 Tensor 沿第零个维度分割成多个子 Tensor"
     " :ref:`paddle.vsplit <cn_api_paddle_vsplit>` ", "将输入 Tensor 沿第一个维度分割成多个子 Tensor"
+    " :ref:`paddle.dsplit <cn_api_paddle_dsplit>` ", "将输入 Tensor 沿第二个维度分割成多个子 Tensor"
     " :ref:`paddle.squeeze <cn_api_paddle_squeeze>` ", "删除输入 Tensor 的 Shape 中尺寸为 1 的维度"
     " :ref:`paddle.stack <cn_api_paddle_stack>` ", "沿 axis 轴对输入 x 进行堆叠操作"
     " :ref:`paddle.strided_slice <cn_api_paddle_strided_slice>` ", "沿多个轴生成 x 的切片"
@@ -394,8 +404,14 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.view_as <cn_api_paddle_view_as>` ", "使用 other 的 shape，返回 x 的一个 view Tensor"
     " :ref:`paddle.unfold <cn_api_paddle_unfold>` ", "返回 x 的一个 view Tensor。以滑动窗口式提取 x 的值"
     " :ref:`paddle.masked_fill <cn_api_paddle_masked_fill>` ", "根据 mask 信息，将 value 中的值填充到 x 中 mask 对应为 True 的位置。"
+    " :ref:`paddle.masked_scatter <cn_api_paddle_masked_scatter>` ", "根据 mask 信息，将 value 中的值逐个填充到 x 中 mask 对应为 True 的位置。"
     " :ref:`paddle.diagonal_scatter <cn_api_paddle_diagonal_scatter>` ", "根据给定的轴 axis 和偏移量 offset，将张量 y 的值填充到张量 x 中"
     " :ref:`paddle.index_fill <cn_api_paddle_index_fill>` ", "沿着指定轴 axis 将 index 中指定位置的 x 的值填充为 value"
+    " :ref:`paddle.column_stack <cn_api_paddle_column_stack>` ", "沿水平轴堆叠输入 x 中的所有张量。"
+    " :ref:`paddle.row_stack <cn_api_paddle_row_stack>` ", "沿垂直轴堆叠输入 x 中的所有张量。"
+    " :ref:`paddle.hstack <cn_api_paddle_hstack>` ", "沿水平轴堆叠输入 x 中的所有张量。"
+    " :ref:`paddle.vstack <cn_api_paddle_vstack>` ", "沿垂直轴堆叠输入 x 中的所有张量。"
+    " :ref:`paddle.dstack <cn_api_paddle_dstack>` ", "沿深度轴堆叠输入 x 中的所有张量。"
 
 .. _tensor_manipulation_inplace:
 
