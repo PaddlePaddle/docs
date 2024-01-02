@@ -3,7 +3,7 @@
 gammaln
 -------------------------------
 
-.. py:function:: gammaln(x, name=None)
+.. py:function:: paddle.gammaln(x, name=None)
 
 逐元素计算伽马函数的绝对值的自然对数。
 
