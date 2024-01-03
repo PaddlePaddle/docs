@@ -1,6 +1,6 @@
 .. _cn_api_paddle_quantization_ptq:
 
-ptq
+PTQ
 -------------------------------
 .. py:class:: paddle.quantization.PTQ(Quantization)
 将训练后量化应用到模型上。
