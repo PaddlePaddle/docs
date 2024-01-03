@@ -5,7 +5,11 @@ PTQ
 .. py:class:: paddle.quantization.PTQ(Quantization)
 将训练后量化应用到模型上。
 
-.. py:function:: quantize(self, model: Layer, inplace=False)
+方法
+::::::::::::
+quantize(model: Layer, inplace=False)
+'''''''''
+
 创建一个用于训练后量化的模型。
 
 量化配置将在模型中传播。它将向模型中插入观察者以收集和计算量化参数。
