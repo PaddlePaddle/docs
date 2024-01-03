@@ -16,7 +16,7 @@ quantize(model: Layer, inplace=False)
 
 **参数**
     - **model**(Layer) - 待量化的模型。
-    - **model**(Layer) - 是否对模型进行原地修改
+    - **inplace**(bool) - 是否对模型进行原地修改
 
 **返回**
 为训练后量化准备好的模型。
