@@ -14,8 +14,7 @@ quantize(model: Layer, inplace=False)
 
 量化配置将在模型中传播。它将向模型中插入观察者以收集和计算量化参数。
 
-参数
-:::::::::
+**参数**
     - **model**(Layer) - 待量化的模型。
     - **model**(Layer) - 是否对模型进行原地修改
 
