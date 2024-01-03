@@ -6,7 +6,7 @@ DistModel
 .. py:class:: paddle.distributed.DistModel()
 
 .. note::
-    不推荐直接只用这个 API 生成实例，建议使用 ``paddle.distributed.to_static``。
+    不推荐直接使用这个 API 生成实例，建议使用 ``paddle.distributed.to_static``。
 
 DistModel 是一个由 ``paddle.nn.Layer`` 转换而来的静态图模型，其中的参数是分布式张量。DistModel 包含了一个由 ``paddle.nn.Layer`` 转换而来的静态图，并提供了模型训练、评估和推理的 API。
 
@@ -17,7 +17,7 @@ DistModel 通过自身的 ``__call__`` 方法来执行模型训练、评估和�
 参数
 :::::::::
 
-    - **layer** (paddle.nn.Layer) - 动态图中所使用的 ``paddle.nn.Layer`` 实例，其参数是由 ``paddle.distributed.shard_tensor`` 生成的分布式张量。
+    - **layer** (paddle.nn.Layer) - 动态图中所使用的 ``paddle.nn.Layer`` 实例，其参数包含由 ``paddle.distributed.shard_tensor`` 生成的分布式张量。
 
     - **loader** (paddle.io.DataLoader) - 动态图模式下所使用的 ``paddle.io.DataLoader`` 实例，用于生成静态图训练所需要的 ``DistributedDataloader``。
 
@@ -58,7 +58,7 @@ predict()
 dist_main_program(mode=None)
 '''''''
 
-获取指定 ``mode`` 的分布式 ``main_program``。每个 ``mode`` 都有自己的分布式 ``main_program``，用于执行模型的训练、评估或推理。 ``dist_main_program`` 返回指定 ``mode`` 的对应分布式主程序。
+获取指定 ``mode`` 的分布式 ``main_program``。 ``main_program`` 用于存储模型中变量和计算的描述信息。分布式 ``main_program`` 存储了每个进程上局部模型的描述信息。每个 ``mode`` 都有自己的分布式 ``main_program``，用于执行模型的训练、评估或推理。 ``dist_main_program`` 返回指定 ``mode`` 的对应分布式 ``main_program``。
 
 **参数**
 
@@ -72,7 +72,7 @@ dist_main_program(mode=None)
 dist_startup_program(mode=None)
 '''''''
 
-获取指定 ``mode`` 的分布式 ``startup_program``。 ``startup_program`` 用于初始化模型的参数。
+获取指定 ``mode`` 的分布式 ``startup_program``。 ``startup_program`` 用于存储模型初始化的描述信息。分布式 ``startup_program`` 存储了每个进程上局部模型的初始化操作。每个 ``mode`` 都有自己的分布式 ``startup_program``，用于模型训练、评估或推理时的初始化。
 
 **参数**
 
@@ -86,7 +86,7 @@ dist_startup_program(mode=None)
 serial_main_program(mode=None)
 '''''''
 
-获取指定 ``mode`` 的串行 ``main_program``。串行 ``main_program`` 是完整的计算图，包含了模型的所有参数和算子。
+获取指定 ``mode`` 的串行 ``main_program``。串行 ``main_program`` 是包含了完整模型的变量和计算描述信息。
 
 **参数**
 
