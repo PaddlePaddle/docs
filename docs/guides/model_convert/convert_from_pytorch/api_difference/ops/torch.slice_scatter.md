@@ -28,7 +28,7 @@ paddle.slice_scatter(x, value, axes, starts, ends, strides, name=None)
 ### 转写示例
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.slice_scatter(input, src, dim=0, start=1, end=5, step=2)
 
 # Paddle 写法

@@ -90,9 +90,9 @@
         <td>  </td>
     </tr>
     <tr>
-        <td> Clang (MacOS Only) </td>
+        <td> Clang (macOS Only) </td>
         <td> 9.0 and above </td>
-        <td> Usually use the clang version of MacOS 10.11 and above </td>
+        <td> Usually use the clang version of macOS 10.11 and above </td>
         <td>  </td>
     </tr>
         <tr>
@@ -165,7 +165,7 @@
         <td> unrar </td>
         <td>  </td>
         <td> </td>
-        <td> brew install unrar (For MacOS), apt-get install unrar (For Ubuntu) </td>
+        <td> brew install unrar (For macOS), apt-get install unrar (For Ubuntu) </td>
     </tr>
     </tbody>
 </table>

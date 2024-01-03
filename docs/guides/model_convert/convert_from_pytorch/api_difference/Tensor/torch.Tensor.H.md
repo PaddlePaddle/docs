@@ -13,7 +13,7 @@ PyTorch 中等于 x.transpose(0, 1).conj()，Paddle 中 transpose 参数 perm �
 ### 转写示例
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = x.H
 
 # Paddle 写法

@@ -12,7 +12,7 @@ torch.linalg.pinv(input, *, atol=None, rtol=None, hermitian=False, out=None)
 paddle.linalg.pinv(x, rcond=1e-15, hermitian=False, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

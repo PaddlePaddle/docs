@@ -16,18 +16,18 @@ paddle.nn.initializer.Uniform(low=-1.0,
                             name=None)
 ```
 
-两者用法不同：torch 是 inplace 的用法，paddle 是类设置的。Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+两者用法不同：torch 是 inplace 的用法，paddle 是类设置的。PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensor        | -          | n 维 tensor。Paddle 无此参数，因为是通过调用类的 __call__ 函数来进行 tensor 的初始化。    |
-| a           |  low          | 均匀分布的下界，参数默认值不一致, Pytorch 默认为`0.0`，Paddle 为`-1.0`，Paddle 需保持与 Pytorch 一致。               |
+| a           |  low          | 均匀分布的下界，参数默认值不一致, PyTorch 默认为`0.0`，Paddle 为`-1.0`，Paddle 需保持与 PyTorch 一致。               |
 | b           |  high         | 均匀分布的上界，仅参数名不一致。               |
 
 ### 转写示例
 ```python
-# Pytorch 写法
+# PyTorch 写法
 conv = torch.nn.Conv2d(4, 6, (3, 3))
 torch.nn.init.uniform_(conv.weight)
 

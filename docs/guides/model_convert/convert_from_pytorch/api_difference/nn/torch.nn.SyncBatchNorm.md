@@ -20,7 +20,7 @@ paddle.nn.SyncBatchNorm(num_features, epsilon=1e-5, momentum=0.9, weight_attr=No
 | momentum           | momentum      | 表示归一化函数中的超参数， PyTorch 和 Paddle 公式实现细节不一致，两者正好是相反的，需要转写。                                     |
 | -             | weight_attr  | 指定权重参数属性的对象。如果为 False, 则表示每个通道的伸缩固定为 1，不可改变。默认值为 None，表示使用默认的权重参数属性。 |
 | -             | bias_attr    | 指定偏置参数属性的对象。如果为 False, 则表示每一个通道的偏移固定为 0，不可改变。默认值为 None，表示使用默认的偏置参数属性。 |
-| -             | data_format  | 指定输入数据格式， Pytorch 无此参数，Paddle 保持默认即可。 |
+| -             | data_format  | 指定输入数据格式， PyTorch 无此参数，Paddle 保持默认即可。 |
 | affine        | -            | 是否进行反射变换， Paddle 无此参数，需要转写。         |
 | track_running_stats | use_global_stats | 表示是否已加载的全局均值和方差。         |
 | process_group | -            | 统计信息的同步分别在每个进程组内发生， Paddle 无此参数，暂无转写方式。         |

@@ -12,7 +12,7 @@ torch.tril_indices(row,col,offset=0,*,dtype=torch.long,device='cpu',layout=torch
 paddle.tril_indices(row,col,offset=0,dtype='int64')
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注 |
@@ -29,7 +29,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### device: Tensor 的设备
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.tril_indices(row,col,offset,dtype,device=torch.device('cpu'))
 
 # Paddle 写法

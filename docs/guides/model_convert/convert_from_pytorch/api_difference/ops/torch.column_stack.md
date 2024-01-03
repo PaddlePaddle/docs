@@ -12,7 +12,7 @@ torch.column_stack(tensors, *, out=None)
 paddle.column_stack(x, name=None)
 ```
 
-其中 Paddle 相比 Pytorch 仅参数名不一致，具体如下：
+其中 Paddle 相比 PyTorch 仅参数名不一致，具体如下：
 
 ### 参数映射
 

@@ -9,7 +9,7 @@ Paddle 无此 API，需要组合实现。
 ### 转写示例
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = torch.chain_matmul(a, b, c)
 
 # Paddle 写法

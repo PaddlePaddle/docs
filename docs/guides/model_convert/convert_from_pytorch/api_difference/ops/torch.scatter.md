@@ -32,7 +32,7 @@ paddle.put_along_axis(arr,indices, values, axis, reduce="assign", include_self=T
 
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 index = torch.tensor([[0],[1],[2]])
 input = torch.zeros(3, 5)
 out = torch.zeros(3, 5)
