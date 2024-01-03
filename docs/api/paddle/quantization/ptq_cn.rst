@@ -26,7 +26,9 @@ quantize(model: Layer, inplace=False)
 
 COPY-FROM: paddle.quantization.PTQ.quantize
 
-.. py:function:: convert(model: paddle.nn.layer.layers.Layer, inplace=False, remain_weight=False)
+convert(model: paddle.nn.layer.layers.Layer, inplace=False, remain_weight=False)
+'''''''''
+
 将量化模型转换为ONNX格式。转换后的模型可以通过调用 paddle.jit.save 保存为推理模型。
 参数 model：类型 model：Layer参数 inplace：类型 inplace：bool，可选参数 remain_weight：类型 remain_weight：bool，可选
 
