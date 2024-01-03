@@ -21,8 +21,7 @@ quantize(model: Layer, inplace=False)
 **返回**
 为训练后量化准备好的模型。
 
-代码示例
-::::::::::
+**代码示例**
 
 COPY-FROM: paddle.quantization.PTQ.quantize
 
