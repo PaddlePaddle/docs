@@ -87,3 +87,13 @@ API Reference: :ref:`api_fluid_optimizer_FtrlOptimizer`
 :code:`ModelAverage` Optimizer accumulates history parameters through sliding window during the model training. We use averaged parameters at inference time to upgrade general accuracy of inference.
 
 API Reference: :ref:`api_fluid_optimizer_ModelAverage`
+
+
+
+
+10.Rprop/RpropOptimizer
+-----------------
+
+:code:`Rprop` Optimizer, this method considers that the magnitude of gradients for different weight parameters may vary greatly, making it difficult to find a global learning step size. Therefore, an innovative method is proposed to accelerate the optimization process by dynamically adjusting the learning step size through the use of parameter gradient symbols.
+
+API Reference: :ref:`api_fluid_optimizer_Rprop`

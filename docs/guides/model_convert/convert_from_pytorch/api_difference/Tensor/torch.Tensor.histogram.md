@@ -12,7 +12,7 @@ torch.Tensor.histogram(bins, *, range=None, weight=None, density=False)
 paddle.Tensor.histogram(bins=100, min=0, max=0)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

@@ -12,7 +12,7 @@ torch.distributions.transformed_distribution.TransformedDistribution(base_distri
 paddle.distribution.TransformedDistribution(base, transforms)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

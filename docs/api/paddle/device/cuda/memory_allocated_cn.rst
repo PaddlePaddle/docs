@@ -1,6 +1,5 @@
 .. _cn_api_paddle_device_cuda_memory_allocated:
 
-
 memory_allocated
 -------------------------------
 

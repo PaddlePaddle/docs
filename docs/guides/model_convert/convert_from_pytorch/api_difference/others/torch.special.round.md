@@ -13,7 +13,7 @@ torch.special.round(input, *, decimals=0, out=None)
 paddle.round(x, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -27,7 +27,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 #### decimals：要舍入到的小数位数
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.special.round(x, decimals=2)
 
 # Paddle 写法

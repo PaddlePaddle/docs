@@ -12,7 +12,7 @@ torch.cuda.set_rng_state_all(new_states)
 paddle.set_rng_state(state_list, device='gpu')
 ```
 
-其中 Pytorch 与 Paddle 的参数类型不一致，具体如下：
+其中 PyTorch 与 Paddle 的参数类型不一致，具体如下：
 
 ### 参数映射
 

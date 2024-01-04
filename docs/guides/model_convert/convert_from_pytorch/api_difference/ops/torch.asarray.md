@@ -12,7 +12,7 @@ torch.asarray(obj, *, dtype=None, device=None, copy=None, requires_grad=False)
 paddle.to_tensor(data, dtype=None, place=None, stop_gradient=True)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

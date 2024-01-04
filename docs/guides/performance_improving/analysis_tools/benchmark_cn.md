@@ -67,7 +67,7 @@ NLP 模型的公开且影响力大数据集较少，Bert 和 Transformer 模型�
 测试结果
 ========
 
-本教程对比相同环境下的 Fluid1.4, Pytorch1.1.0 和 TensorFlow1.12.0 的性能表现。
+本教程对比相同环境下的 Fluid1.4, PyTorch1.1.0 和 TensorFlow1.12.0 的性能表现。
 硬件环境为 CPU: Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz, GPU: Tesla v100(volta) 21729MiB x 1, Nvidia-Driver 384.66。
 系统环境为 Ubuntu 16.04.3 LTS, 本文中采用了 docker 环境，系统版本为 nvidia-docker17.05.0-ce。
 测试的 Fluid 版本为[v.1.4.1](https://github.com/PaddlePaddle/Paddle/tree/v1.4.1) 。
