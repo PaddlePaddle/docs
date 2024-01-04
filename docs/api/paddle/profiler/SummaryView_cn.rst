@@ -3,7 +3,7 @@
 SummaryView
 ---------------------
 
-.. py:class:: paddle.profiler.SummaryView
+.. py:class:: paddle.profiler.SummaryView(value)
 
 SummaryView 枚举类用来表示数据表单的类型。
 
