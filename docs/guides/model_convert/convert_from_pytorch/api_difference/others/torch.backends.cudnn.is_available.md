@@ -11,7 +11,7 @@ PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 
 ###  转写示例
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.backends.cudnn.is_available()
 
 # Paddle 写法

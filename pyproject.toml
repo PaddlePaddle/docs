@@ -3,7 +3,10 @@ line-length = 80
 skip-string-normalization = true
 
 [tool.ruff]
-target-version = "py37"
+line-length = 80
+target-version = "py38"
+
+[tool.ruff.lint]
 select = [
     # Pycodestyle
     "E",
@@ -17,6 +20,9 @@ select = [
 
     # Comprehensions
     "C4",
+
+    # Debugger
+    "T100",
 
     # Pyupgrade
     "UP",
@@ -74,3 +80,7 @@ ignore = [
     "UP015",
     "UP038"
 ]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-first-party = ["paddle"]

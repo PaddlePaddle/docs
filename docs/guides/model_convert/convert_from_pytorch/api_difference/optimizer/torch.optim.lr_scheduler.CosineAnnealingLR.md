@@ -20,7 +20,7 @@ paddle.optimizer.lr.CosineAnnealingDecay(learning_rate,
                                 verbose=False)
 ```
 
-两者 API 功能一致, 参数用法不一致，Pytorch 是 Scheduler 实例持有 Optimizer 实例，Paddle 是 Optimizer 实例持有 Scheduler 实例。由于持有关系相反，因此 Paddle 使用 Optimizer.set_lr_scheduler 来设置这种持有关系。具体如下：
+两者 API 功能一致, 参数用法不一致，PyTorch 是 Scheduler 实例持有 Optimizer 实例，Paddle 是 Optimizer 实例持有 Scheduler 实例。由于持有关系相反，因此 Paddle 使用 Optimizer.set_lr_scheduler 来设置这种持有关系。具体如下：
 
 ### 参数映射
 
@@ -34,7 +34,7 @@ paddle.optimizer.lr.CosineAnnealingDecay(learning_rate,
 
 ### 转写示例
 ```python
-# Pytorch 写法
+# PyTorch 写法
 linear = torch.nn.Linear(10, 10)
 sgd = torch.optimizer.SGD(lr=0.5, parameters=linear.parameters())
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer=sgd, T_max=10)

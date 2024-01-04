@@ -1,6 +1,6 @@
 .. _cn_api_paddle_utils_require_version:
 
-paddle.utils.require_version
+require_version
 ---------------------
 
 .. py:function:: paddle.utils.require_version(min_version, max_version=None)

@@ -16,7 +16,7 @@ PaddlePaddle 目前无对应 API，可使用如下代码组合替代实现:
 
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.copysign(input, other, out=y)
 
 # Paddle 写法

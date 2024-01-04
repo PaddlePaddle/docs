@@ -24,7 +24,7 @@ paddle.Tensor.index_fill_(index, axis, value, name=None)
 ### 转写示例
 #### alpha：source 的缩放倍数
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x.index_fill_(dim=1, index=index, value=1)
 
 # Paddle 写法

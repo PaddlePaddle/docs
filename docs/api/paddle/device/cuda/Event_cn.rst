@@ -24,40 +24,5 @@ None
 COPY-FROM: paddle.device.cuda.Event
 
 
-方法
-::::::::::::
-record(CUDAStream=None)
-'''''''''
-
-记录 event 到给定的 stream。
-
-**参数**
-
-    - **stream** (CUDAStream，可选) - CUDA stream 的句柄。如果为 None，stream 为当前的 stream。默认值为 False。
-
-**代码示例**
-
-COPY-FROM: paddle.device.cuda.Event.record
-
-query()
-'''''''''
-
-查询 event 的状态。
-
-**返回**
-
- 一个 boolean 变量，用于标识当前 event 获取的所有任务是否被完成。
-
-**代码示例**
-
-COPY-FROM: paddle.device.cuda.Event.query
-
-
-synchronize()
-'''''''''
-
-等待当前 event 完成。
-
-**代码示例**
-
-COPY-FROM: paddle.device.cuda.Event.synchronize
+.. warning::
+    该 API 未来计划废弃，不推荐使用。
