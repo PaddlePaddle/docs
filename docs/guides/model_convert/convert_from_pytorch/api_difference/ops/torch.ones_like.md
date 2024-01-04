@@ -20,7 +20,7 @@ paddle.ones_like(x,
                  name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -38,7 +38,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### device: Tensor 的设备
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = torch.ones_like(x, device=torch.device('cpu'))
 
 # Paddle 写法
@@ -49,7 +49,7 @@ y.cpu()
 #### requires_grad：是否求梯度
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = torch.ones_like(x, requires_grad=True)
 
 # Paddle 写法

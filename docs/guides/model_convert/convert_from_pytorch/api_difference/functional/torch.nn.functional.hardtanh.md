@@ -12,7 +12,7 @@ torch.nn.functional.hardtanh(input, min_val=- 1.0, max_val=1.0, inplace=False)
 paddle.nn.functional.hardtanh(x, min=-1.0, max=1.0, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

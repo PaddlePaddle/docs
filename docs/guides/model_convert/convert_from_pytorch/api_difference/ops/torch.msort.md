@@ -12,20 +12,20 @@ torch.msort(input, *, out=None)
 paddle.sort(x, axis=- 1, descending=False, name=None)
 ```
 
-其中 Pytorch 与 Paddle 有不同的参数，具体如下：
+其中 PyTorch 与 Paddle 有不同的参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 表示输入的 Tensor ，仅参数名不一致。                   |
-| -         | axis            | 排序的维度，当维度为 0 时，Paddle 与 Pytorch 功能一致。                  |
-| -         | descending            | 设置是否降序排列。Pytorch 无此参数，Paddle 保持默认即可。                  |
+| -         | axis            | 排序的维度，当维度为 0 时，Paddle 与 PyTorch 功能一致。                  |
+| -         | descending            | 设置是否降序排列。PyTorch 无此参数，Paddle 保持默认即可。                  |
 | out         | -            | 表示输出的 Tensor ， Paddle 无此参数，需要转写 。                   |
 
 ### 转写示例
 #### out：表示输出的 Tensor
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.msort(input, out=out)
 
 # Paddle 写法

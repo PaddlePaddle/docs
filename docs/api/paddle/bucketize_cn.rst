@@ -1,6 +1,6 @@
 .. _cn_api_paddle_bucketize:
 
-paddle.bucketize
+bucketize
 -------------------------------
 
 .. py:function:: paddle.bucketize(x, sorted_sequence, out_int32=False, right=False, name=None)

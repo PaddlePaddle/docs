@@ -11,7 +11,7 @@ torch.meshgrid(*tensors, indexing=None)
 paddle.meshgrid(*args, **kargs)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -21,13 +21,13 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 #### indexing：tensor 的组合模式
 ```python
-# Pytorch 写法 (indexing 为‘ij’时)
+# PyTorch 写法 (indexing 为‘ij’时)
 torch.meshgrid(x, y, indexing='ij')
 
 # Paddle 写法
 paddle.meshgrid(x, y)
 
-# Pytorch 写法 (indexing 为‘xy’时)
+# PyTorch 写法 (indexing 为‘xy’时)
 torch.meshgrid(x, y, indexing='xy')
 
 # Paddle 写法

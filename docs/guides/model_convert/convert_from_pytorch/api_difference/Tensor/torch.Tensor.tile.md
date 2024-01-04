@@ -16,16 +16,16 @@ paddle.Tensor.tile(repeat_times, name=None)
 
 ### 参数映射
 
-| Pytorch | PaddlePaddle | 备注                                                         |
+| PyTorch | PaddlePaddle | 备注                                                         |
 | ------- | ------------ | :----------------------------------------------------------- |
-| *reps   | repeat_times | 维度复制次数， Pytorch 参数 reps 既可以是可变参数，也可以是 list/tuple/tensor 的形式， Paddle 参数 repeat_times 为 list/tuple/tensor 的形式。 |
+| *reps   | repeat_times | 维度复制次数， PyTorch 参数 reps 既可以是可变参数，也可以是 list/tuple/tensor 的形式， Paddle 参数 repeat_times 为 list/tuple/tensor 的形式。 |
 
 转写示例
 
 #### ***reps: 维度复制次数**
 
 ```
-# Pytorch 写法
+# PyTorch 写法
 x = torch.tensor([1, 2, 3])
 x.tile(2,3)
 # Paddle 写法

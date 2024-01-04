@@ -14,7 +14,7 @@ paddle.Tensor.numpy()
 
 两者功能一致，用于将当前 Tensor 转化为 numpy.ndarray。
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

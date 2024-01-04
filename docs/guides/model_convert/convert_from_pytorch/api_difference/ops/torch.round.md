@@ -15,7 +15,7 @@ paddle.round(x,
              name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -27,7 +27,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 #### decimals：要舍入到的小数位数
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.round([3.345, 5.774], decimals=2)
 
 # Paddle 写法
@@ -38,7 +38,7 @@ paddle.round(1e2 * [3.345, 5.774]) / 1e2
 
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.round([3, 5], out=y)
 
 # Paddle 写法
