@@ -3,7 +3,7 @@
 Gamma
 -------------------------------
 
-.. py:class:: paddle.distribution.Gamma(rate)
+.. py:class:: paddle.distribution.Gamma(concentration, rate)
 
 伽马分布
 
