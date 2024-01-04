@@ -94,3 +94,4 @@ paddle.sparse 目录包含飞桨框架支持稀疏数据存储和计算相关的
     " :ref:`paddle.sparse.nn.functional.conv3d <cn_api_paddle_sparse_nn_functional_conv3d>` ", "三维卷积函数"
     " :ref:`paddle.sparse.nn.functional.subm_conv3d <cn_api_paddle_sparse_nn_functional_subm_conv3d>` ", "子流形三维卷积函数"
     " :ref:`paddle.sparse.nn.functional.max_pool3d <cn_api_paddle_sparse_nn_functional_max_pool3d>` ", "三维最大池化函数"
+    " :ref:`paddle.sparse.nn.functional.subm_conv2d <cn_api_paddle_sparse_nn_functional_subm_conv2d>` ", "子流形二维卷积函数"
