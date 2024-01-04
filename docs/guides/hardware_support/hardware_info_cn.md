@@ -13,9 +13,9 @@
 | AI 加速芯片 | XPU | 百度 | 昆仑 K200、R200 等 | [安装](./xpu_docs/paddle_install_xpu2_cn.html#wheel) | [源码编译](./xpu_docs/paddle_install_xpu2_cn.html#xpu) |  | [支持模型](./xpu_docs/paddle_2.0_xpu2_cn.html) |
 | AI 加速芯片 | IPU | Graphcore | GC200 | | [源码编译](./ipu_docs/paddle_install_cn.html) |  | |
 | AI 加速芯片 | MLU | 寒武纪 | MLU370、MLU590 | [安装](./mlu_docs/paddle_install_cn.html) | [源码编译](./mlu_docs/paddle_install_cn.html#anzhuangfangshier-tongguoyuanmabianyianzhuang) |  | ✔️ |
-| AI 加速芯片 |  | 天数智芯 | 天垓 100 |  [安装](https://gitee.com/deep-spark/deepsparkhub/blob/master/docker/Iluvatar/README.md) |  |  | ✔️ |
-| AI 加速芯片 |  | 壁仞 | BR100、BR104 |  | [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/biren_gpu/README_cn.md) |  | ✔️ |
-| AI 加速芯片 |  | 燧原 | 云燧 T20 、i20|  | [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/gcu/README_cn.md) |  | ✔️ |
+| AI 加速芯片 |  | 天数智芯 | 天垓 100 |  [安装](https://gitee.com/deep-spark/deepsparkhub/blob/master/docker/Iluvatar/README.md) ||  |  | ✔️ |
+| AI 加速芯片 |  | 壁仞 | BR100、BR104 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/biren_gpu/README_cn.md) |  | ✔️ |
+| AI 加速芯片 |  | 燧原 | 云燧 T20 、i20|  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/gcu/README_cn.md) |  | ✔️ |
 | AI 加速芯片 |  | 太初 | 元碁系列 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleTecoBackend)  |  | ✔️ |
 
 ## Paddle Inference
@@ -23,7 +23,7 @@
 |  分类  | 架构 | 公司 | 型号 | 预编译库 | 源码编译 |  完全支持推理 | 支持部分模型 |
 |  ----  | ----  | ---- | ---- |---- | ---- |---- | ---- |
 | 服务端 CPU | x86 | Intel | 常见 CPU 型号如 Xeon、Core 全系列以及 NUC | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
-| 服务端 GPU |  | NVIDIA | Ada Lovelace、Hopper、 Ampere、Turing、 Volta 架构 | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
+| 服务端 GPU |  | NVIDIA | Ada Lovelace、Hopper、 Ampere、Turing、 Volta 架构  | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
 | 移动端 GPU |  | NVIDIA | Jetson 系列 | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
 | AI 加速芯片 | 达芬奇 | 华为 | 昇腾 910 | 即将提供 | | | |
 | AI 加速芯片 | MLU | 寒武纪 | MLU370 系列 | [预编译库](./mlu_docs/paddle_install_cn.html#wheel) | [源码编译](./mlu_docs/paddle_install_cn.html#anzhuangfangshier-tongguoyuanmabianyianzhuang) | ✔️ | |
@@ -34,8 +34,8 @@
 | 服务端 CPU | ARM | 华为 | 鲲鹏 920 2426SK |  |[源码编译](../../install/compile/arm-compile.html) |  |   |
 | 服务端 CPU | MIPS | 龙芯 | 龙芯 3A4000、3A5000、3C5000L |  |[源码编译](../../install/compile/mips-compile.html#anchor-0) |  |  |
 | 服务端 CPU | x86 | 兆芯 | 全系列 CPU |  |[源码编译](../../install/compile/zhaoxin-compile.html#anchor-1) |  |  |
-| 服务端 CPU |  | 海光 | 海光 3000、5000、7000 系列 CPU |  |   |  |  |
-| 服务端 CPU |  | 申威 | 申威 SW6A、SW6B |  | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/compile_SW.html) |  |  |
+| 服务端 CPU |  | 海光 | 海光 3000、5000、7000 系列 CPU |  |  |  |  |
+| 服务端 CPU |  | 申威 | 申威 SW6A、SW6B |  |[源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/compile_SW.html)  |  |  |
 
 ## Paddle Lite
 
@@ -45,17 +45,15 @@
 | 移动端 GPU |  | ARM | Mali 系列 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/opencl.html) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/introduction/support_model_list.html) |
 | 移动端 GPU |  | 高通 | Adreno 系列 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/opencl.html) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/introduction/support_model_list.html) |
 | AI 加速芯片 |  | 华为 | Kirin 810/990/9000 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_kirin_npu.html#id5) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_kirin_npu.html#id1) |
-| AI 加速芯片 |  | 华为 | 昇腾 310 |  |  [源码编译](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/huawei_ascend_npu.html#id2) |  |  [支持模型](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/huawei_ascend_npu.html#paddle) |
+| AI 加速芯片 |  | 华为 | 昇腾 310 |  | 即将提供 |  |  |
 | AI 加速芯片 |  | 瑞芯微 | RK18xx 系列 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/rockchip_npu.html#id5) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/rockchip_npu.html#id1) |
-| AI 加速芯片 |  | MediaTeK | NeuroPilot APU |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/mediatek_apu.html#id1) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/mediatek_apu.html#id1) |
+| AI 加速芯片 |  | 联发科 | NeuroPilot APU |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/mediatek_apu.html#id1) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/mediatek_apu.html#id1) |
 | AI 加速芯片 |  | Imagination | PowerVR 2NX |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_kirin_npu.html#id5) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_kirin_npu.html#id1) |
 | AI 加速芯片 |  | 百度 | 昆仑 K200、R200 等 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html#id4) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html#id1) |
 | AI 加速芯片 |  | 寒武纪 | 思元系列芯片 |  |  [源码编译](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/cambricon_mlu.html#cankaoshiliyanshi) |   | [支持模型](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/cambricon_mlu.html#paddle)   |
 | AI 加速芯片 |  | 比特大陆 | 算丰 BM16 系列芯片 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/bitmain.html#id5) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/bitmain.html#id1) |
-| AI 加速芯片 |  | 紫光展锐 | T820 |  |  [源码编译](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/android_nnapi.html#android-nnapi-paddle-lite)  |   |  [支持模型](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/android_nnapi.html#paddle)  |
-| AI 加速芯片 |  | 象帝先 | 天钧一号 GPU |  | [源码编译](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/opencl.html#cankaoshiliyanshi)  |  |  |
-| AI 加速芯片 |  | 亿智 | SH506 |  |  [源码编译](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/eeasytech_npu.html#cankaoshiliyanshi)  |   |  [支持模型](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/eeasytech_npu.html#paddle)  |
-| AI 加速芯片 |  | 晶晨 | A311D |  | [源码编译](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/verisilicon_timvx.html#cankaoshiliyanshi)  |   |  [支持模型](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/verisilicon_timvx.html#paddle)  |
+| AI 加速芯片 |  | 紫光展锐 | T820 |  | [源码编译](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/android_nnapi.html#android-nnapi-paddle-lite)  |   |  [支持模型](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/android_nnapi.html#paddle)  |
+| AI 加速芯片 |  | 象帝先 | 天钧一号 GPU |  |[源码编译](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/opencl.html#cankaoshiliyanshi)  |  |  |
 | PFGA |  | Intel | 英特尔 Stratix 系列、Arria 系列、Cyclone 系列 |  |  [源码编译](https://www.paddlepaddle.org.cn/lite/v2.11/demo_guides/intel_fpga.html#cankaoshiliyanshi) |   |  [支持模型](https://www.paddlepaddle.org.cn/lite/v2.11/demo_guides/intel_fpga.html#paddle) |
 | FPGA |  | 百度 | 百度 Edgeboard 开发板 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html#id4) |  | [支持模型](https://ai.baidu.com/ai-doc/HWCE/Qkda68drw) |
 
