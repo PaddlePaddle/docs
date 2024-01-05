@@ -21,7 +21,7 @@ paddle.full_like(x,
                  name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -38,7 +38,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 #### device: Tensor 的设备
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.full_like(x, 1., device=torch.device('cpu'))
 
 # Paddle 写法
@@ -47,7 +47,7 @@ y.cpu()
 
 #### requires_grad：是否需要求反向梯度，需要修改该 Tensor 的 stop_gradient 属性
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x = torch.full_like([3, 5], 1., requires_grad=True)
 
 # Paddle 写法

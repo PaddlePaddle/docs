@@ -6,7 +6,7 @@
 torch.utils.data.SubsetRandomSampler(indices, generator=None)
 ```
 
-### [paddle.io.WeightedRandomSampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/SubsetRandomSampler_cn.html#paddle.io.SubsetRandomSampler)
+### [paddle.io.SubsetRandomSampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/SubsetRandomSampler_cn.html#paddle.io.SubsetRandomSampler)
 
 ```
 paddle.io.SubsetRandomSampler(indices)

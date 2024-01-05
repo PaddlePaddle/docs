@@ -88,3 +88,13 @@ API Reference 请参考 :ref:`cn_api_fluid_optimizer_FtrlOptimizer`
 :code:`ModelAverage` 优化器，在训练中通过窗口来累计历史 parameter，在预测时使用取平均值后的 paramet，整体提高预测的精度。
 
 API Reference 请参考 :ref:`cn_api_fluid_optimizer_ModelAverage`
+
+
+
+
+10.Rprop/RpropOptimizer
+-----------------
+
+:code:`Rprop` 优化器，该方法考虑到不同权值参数的梯度的数量级可能相差很大，因此很难找到一个全局的学习步长。因此创新性地提出靠参数梯度的符号，动态的调节学习步长以加速优化过程的方法。
+
+API Reference 请参考 :ref:`cn_api_fluid_optimizer_Rprop`

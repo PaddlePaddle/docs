@@ -99,7 +99,7 @@ cd Paddle
 mkdir build && cd build
 
 # 执行 cmake
-cmake .. -DPY_VERSION=3.7 -DWITH_IPU=ON -DWITH_MKL=ON \
+cmake .. -DPY_VERSION=3.8 -DWITH_IPU=ON -DWITH_MKL=ON \
          -DPOPLAR_DIR=/opt/poplar -DPOPART_DIR=/opt/popart \
          -DWITH_TESTING=ON -DCMAKE_BUILD_TYPE=Release
 
@@ -113,7 +113,7 @@ make -j$(nproc)
 
 ```bash
 # 安装命令
-python -m pip install -U paddlepaddle_ipu-0.0.0-cp37-cp37m-linux_x86_64.whl
+python -m pip install -U paddlepaddle_ipu-0.0.0-cp38-cp38m-linux_x86_64.whl
 
 # 验证命令
 python -c "import paddle; paddle.utils.run_check()"

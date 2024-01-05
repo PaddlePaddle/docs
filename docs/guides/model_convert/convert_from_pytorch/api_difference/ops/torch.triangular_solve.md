@@ -12,7 +12,7 @@ torch.triangular_solve(b, A, upper=True, transpose=False, unitriangular=False, *
 paddle.linalg.triangular_solve(x, y, upper=True, transpose=False, unitriangular=False, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
