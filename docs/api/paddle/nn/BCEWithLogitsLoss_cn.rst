@@ -7,16 +7,16 @@ BCEWithLogitsLoss
 
 可用于创建一个 BCEWithLogitsLoss 的可调用类，计算输入 `logit` 和标签 `label` 间的 `binary cross entropy with logits loss` 损失。
 
-结合了 `sigmoid` 操作和 :ref:`api_nn_loss_BCELoss` 操作。同时，我们也可以认为这是 ``sigmoid_cross_entrop_with_logits`` 和一些 `reduce` 操作的组合。
+计算方式结合了 `sigmoid` 操作和 :ref:`api_nn_loss_BCELoss` 操作。或者，我们也可以认为计算方式是 ``sigmoid_cross_entrop_with_logits`` 和一些 `reduce` 操作的组合。
 
-在每个类别独立的分类任务中，可以用于计算按元素的概率误差。可以将其视为预测数据点的标签，其中标签不是互斥的。例如，一篇新闻文章可以同时关于政治，科技，体育或者同时不包含这些内容。
+该损失函数衡量了在每个类别相互独立的分类任务中的逐元素概率误差。这可以被视为对数据点进行标签预测，其中标签不是相互排斥的。例如，一篇新闻文章可以同时关于政治，科技，体育或者同时不包含这些内容。
 
 首先，可通过以下公式计算损失函数：
 
 .. math::
     Out = -Labels * \log(\sigma(Logit)) - (1 - Labels) * \log(1 - \sigma(Logit))
 
-其中 :math:`\sigma(Logit) = \frac{1}{1 + e^{-Logit}}`，代入上方计算公式中：
+其中 :math:`\sigma(Logit) = \frac{1}{1 + e^{-Logit}}`，将该等式代入上方计算公式中：
 
 .. math::
     Out = Logit - Logit * Labels + \log(1 + e^{-Logit})
@@ -30,7 +30,8 @@ BCEWithLogitsLoss
 
 最后，将会添加 `reduce` 操作到前面的输出 Out 上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，返回输出的均值 :math:`Out = MEAN(Out)`。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
 
-**注意：**因为是二分类任务，所以标签值应该是 0 或者 1。
+.. note::
+    因为是二分类任务，所以标签值应该是 0 或者 1。
 
 参数
 :::::::::
