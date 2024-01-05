@@ -17,7 +17,7 @@ Paddle 无此 API，需要组合实现。
 ### 转写示例
 ####
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x.type_as(a)
 
 # Paddle 写法

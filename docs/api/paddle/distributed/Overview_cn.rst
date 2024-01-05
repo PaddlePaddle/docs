@@ -11,6 +11,7 @@ paddle.distributed 目录包含的 API 支撑飞桨框架大规模分布式训�
 -  :ref:`集合通信算法 API <04>`
 -  :ref:`Stream 集合通信高级 API <05>`
 -  :ref:`RPC API <06>`
+-  :ref:`自动并行 API <07>`
 
 .. _01:
 
@@ -140,3 +141,21 @@ RPC API
     " :ref:`rpc.get_worker_info <cn_api_paddle_distributed_rpc_get_worker_info>` ", "获取 worker 信息"
     " :ref:`rpc.get_all_worker_infos <cn_api_paddle_distributed_rpc_get_all_worker_infos>` ", "获取所有 worker 的信息"
     " :ref:`rpc.get_current_worker_info <cn_api_paddle_distributed_rpc_get_current_worker_info>` ", "获取当前 worker 的信息"
+
+
+.. _07:
+
+自动并行 API
+::::::::::::::::::::::::::
+
+自动并行降低分布式训练的使用门槛，使用自动并行 API 对组网进行少量改动即可进行分布式训练。
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 20, 50
+
+    " :ref:`shard_tensor <cn_api_paddle_distributed_shard_tensor>` ", "创建带有分布式切分信息的分布式 Tensor"
+    " :ref:`shard_layer <cn_api_paddle_distributed_shard_layer>` ", "按照指定方式将 Layer 中的参数转换为分布式 Tensor"
+    " :ref:`reshard <cn_api_paddle_distributed_reshard>`", "对一个带有分布式信息的 Tensor 重新进行分布/切片"
+    " :ref:`to_static <cn_api_paddle_distributed_to_static>`", "将带有分布式切分信息的动态图模型转换为静态图分布式模型"
+    " :ref:`Strategy <cn_api_paddle_distributed_Strategy>`", "配置静态图分布式训练时所使用的并行策略和优化策略"

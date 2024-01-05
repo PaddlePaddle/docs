@@ -1,6 +1,5 @@
 .. _cn_api_paddle_nn_AvgPool1D:
 
-
 AvgPool1D
 -------------------------------
 

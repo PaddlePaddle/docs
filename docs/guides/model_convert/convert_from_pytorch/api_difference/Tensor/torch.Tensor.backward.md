@@ -12,7 +12,7 @@ torch.Tensor.backward(gradient=None, retain_graph=None, create_graph=False, inpu
 paddle.Tensor.backward(grad_tensor=None, retain_graph=False)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

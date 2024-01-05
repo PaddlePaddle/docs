@@ -13,7 +13,7 @@ PyTorch 中等于 x.transpose(-2, -1).conj()，Paddle 中 transpose 参数 perm 
 
 ```python
 # 假设 x 为 4D
-# Pytorch 写法
+# PyTorch 写法
 y = x.mH
 
 # Paddle 写法

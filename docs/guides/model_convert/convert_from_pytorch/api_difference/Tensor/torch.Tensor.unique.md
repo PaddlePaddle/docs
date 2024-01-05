@@ -19,7 +19,7 @@ paddle.Tensor.unique(return_index=False, return_inverse=False, return_counts=Fal
 | return_inverse| return_inverse        | 是否返回输入 Tensor 的元素对应在独有元素中的索引。        |
 | return_counts | return_counts        | 是否返回每个独有元素在输入 Tensor 中的个数。             |
 | dim           | axis        | 选取的轴，仅参数名不一致。                                                 |
-| -             | return_index| 是否返回独有元素在输入 Tensor 中的索引，Pytorch 无此参数， Paddle 保持默认即可。|
+| -             | return_index| 是否返回独有元素在输入 Tensor 中的索引，PyTorch 无此参数， Paddle 保持默认即可。|
 
 ### 转写示例
 #### sorted：是否对返回值进行排序

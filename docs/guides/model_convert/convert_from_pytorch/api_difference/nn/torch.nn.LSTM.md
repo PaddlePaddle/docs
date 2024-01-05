@@ -39,20 +39,20 @@ paddle.nn.LSTM(input_size,
 | dropout   | dropout   | 表示 dropout 概率。  |
 | bidirectional | direction    | PyTorch 表示是否进行双向，Paddle 使用字符串表示是双向 LSTM（`bidirectional`）还是单向 LSTM（`forward`）|
 | proj_size     | -            | 表示 LSTM 后将映射到对应的大小，Paddle 无此参数，暂无转写方式。  |
-| -             |weight_ih_attr| weight_ih 的参数，Pytorch 无此参数，Paddle 保持默认即可。  |
-| -             |weight_hh_attr| weight_hh 的参数，Pytorch 无此参数，Paddle 保持默认即可。  |
+| -             |weight_ih_attr| weight_ih 的参数，PyTorch 无此参数，Paddle 保持默认即可。  |
+| -             |weight_hh_attr| weight_hh 的参数，PyTorch 无此参数，Paddle 保持默认即可。  |
 
 ### 转写示例
 #### bias：是否使用偏置
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.LSTM(16, 32, bias=True)
 
 # Paddle 写法
 paddle.nn.LSTM(16, 32)
 ```
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.LSTM(16, 32, bias=False)
 
 # Paddle 写法
@@ -61,7 +61,7 @@ paddle.nn.LSTM(16, 32, bias_ih_attr=False, bias_hh_attr=False)
 
 #### batch_first：batch size 是否为第一维
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.LSTM(16, 32, batch_first=True)
 
 # Paddle 写法
@@ -70,14 +70,14 @@ paddle.nn.LSTM(16, 32, time_major=False)
 
 #### bidirectional：是否进行双向
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.LSTM(16, 32, bidirectional=True)
 
 # Paddle 写法
 paddle.nn.LSTM(16, 32, direction='bidirectional')
 ```
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.LSTM(16, 32, bidirectional=False)
 
 # Paddle 写法

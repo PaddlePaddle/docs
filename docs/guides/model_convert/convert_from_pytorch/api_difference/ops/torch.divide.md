@@ -15,7 +15,7 @@ paddle.divide(x,
               name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -28,14 +28,14 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 #### rounding_mode: 舍入模式
 ```python
-# Pytorch 写法 (rounding_mode 参数设置为"trunc")
+# PyTorch 写法 (rounding_mode 参数设置为"trunc")
 x = torch.divide(torch.tensor([2, 3, 4]), torch.tensor([1, 5, 2]), rounding_mode='trunc')
 
 # Paddle 写法
 x = paddle.divide(paddle.to_tensor([2, 3, 4]), paddle.to_tensor([1, 5, 2]))
 x = paddle.trunc(x)
 
-# Pytorch 写法 (rounding_mode 参数设置为"floor")
+# PyTorch 写法 (rounding_mode 参数设置为"floor")
 x = torch.divide(torch.tensor([2, 3, 4]), torch.tensor([1, 5, 2]), rounding_mode='floor')
 
 # Paddle 写法
@@ -45,7 +45,7 @@ x = paddle.floor(x)
 
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.divide(torch.tensor([2, 3, 4]), torch.tensor([1, 5, 2]), out=y)
 
 # Paddle 写法

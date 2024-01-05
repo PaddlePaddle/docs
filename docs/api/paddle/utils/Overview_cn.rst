@@ -33,7 +33,7 @@ paddle.utils 目录下包含飞桨框架工具类的 API。具体如下：
 
 .. csv-table::
     :header: "API 名称", "API 功能"
-    :widths: 10, 30
+    :widths: 12, 30
 
     " :ref:`deprecated <cn_api_paddle_utils_deprecated>` ", "飞桨框架废弃 API 装饰器"
     " :ref:`get_weights_path_from_url <cn_api_paddle_utils_download_get_weights_path_from_url>` ", "从文件夹获取权重"
@@ -45,3 +45,4 @@ paddle.utils 目录下包含飞桨框架工具类的 API。具体如下：
     " :ref:`require_version <cn_api_paddle_utils_require_version>` ", "用于检查已安装的飞桨版本是否介于[min_version, max_version]之间"
     " :ref:`to_dlpack <cn_api_paddle_utils_dlpack_to_dlpack>` ", "用于将 Tensor 对象转换为 DLPack"
     " :ref:`from_dlpack <cn_api_paddle_utils_dlpack_from_dlpack>` ", "用于从 DLPack 中解码出 Tensor 对象"
+    " :ref:`try_import <cn_api_paddle_utils_try_import>` ", "用于尝试导入一个模块并且在失败时提供自定义错误信息"

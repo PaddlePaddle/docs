@@ -23,14 +23,14 @@ paddle.nn.SimpleRNNCell(input_size, hidden_size, activation='tanh', weight_ih_at
 ### 转写示例
 #### bias：是否使用偏置
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.RNNCell(16, 32, bias=True)
 
 # Paddle 写法
 paddle.nn.SimpleRNNCell(16, 32)
 ```
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.RNNCell(16, 32, bias=False)
 
 # Paddle 写法

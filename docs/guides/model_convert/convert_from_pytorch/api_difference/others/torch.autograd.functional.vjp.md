@@ -12,7 +12,7 @@ torch.autograd.functional.vjp(func, inputs, v=None, create_graph=False, strict=F
 paddle.incubate.autograd.vjp(func, xs, v=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

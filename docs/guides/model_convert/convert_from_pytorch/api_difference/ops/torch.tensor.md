@@ -18,7 +18,7 @@ paddle.to_tensor(data,
                  stop_gradient=True)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -32,7 +32,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 #### device: Tensor 的设备
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.tensor(3, device=torch.device('cpu'))
 
 # Paddle 写法
@@ -41,7 +41,7 @@ y = paddle.to_tensor(3, place=paddle.CPUPlace())
 
 #### requires_grad：是否不阻断梯度传导
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x = torch.tensor(3, requires_grad=True)
 
 # Paddle 写法
@@ -50,7 +50,7 @@ x = paddle.to_tensor(3, stop_gradient=False)
 
 #### pin_memory：是否分配到固定内存上
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x = torch.tensor(3, pin_memory=True)
 
 # Paddle 写法

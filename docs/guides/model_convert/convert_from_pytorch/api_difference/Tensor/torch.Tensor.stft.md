@@ -12,7 +12,7 @@ torch.Tensor.stft(n_fft, hop_length=None, win_length=None, window=None, center=T
 paddle.signal.stft(x, n_fft, hop_length=None, win_length=None, window=None, center=True, pad_mode='reflect', normalized=False, onesided=True, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch    | PaddlePaddle | 备注 |
@@ -30,7 +30,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 #### return_complex：是否返回复数
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = torch.rand(512,512).stft(n_fft=512, return_complex=False)
 
 # Paddle 写法

@@ -11,7 +11,7 @@ torch.lu_unpack(LU_data, LU_pivots, unpack_data=True, unpack_pivots=True, *, out
 paddle.linalg.lu_unpack(x, y, unpack_ludata=True, unpack_pivots=True, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -26,7 +26,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.lu_unpack(*torch.lu(torch.tensor([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]])), out=(P, L, U))
 
 # Paddle 写法

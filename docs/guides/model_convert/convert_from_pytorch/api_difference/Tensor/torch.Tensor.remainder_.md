@@ -12,12 +12,12 @@ paddle.remainder_(x, y)
 ```
 
 
-其中 Paddle 与 Pytorch 运算除数参数所支持的类型不一致，具体如下：
+其中 Paddle 与 PyTorch 运算除数参数所支持的类型不一致，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| divisor         | y            | 除数，Pytorch 可为 Tensor or Scalar，Paddle 仅可为 Tensor，需要转写。   |
+| divisor         | y            | 除数，PyTorch 可为 Tensor or Scalar，Paddle 仅可为 Tensor，需要转写。   |
 
 ### 转写示例
 #### divisor：除数为 Scalar

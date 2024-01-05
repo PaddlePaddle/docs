@@ -11,7 +11,7 @@ torch.nn.functional.avg_pool3d(input, kernel_size, stride=None, padding=0, ceil_
 paddle.nn.functional.avg_pool3d(x, kernel_size, stride=None, padding=0, ceil_mode=False, exclusive=True, divisor_override=None, data_format='NCDHW', name=None)
 ```
 
-其中 Pytorch 与 Paddle 参数不一致，具体如下：
+其中 PyTorch 与 Paddle 参数不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -21,14 +21,14 @@ paddle.nn.functional.avg_pool3d(x, kernel_size, stride=None, padding=0, ceil_mod
 | <font color='red'> padding </font>             | <font color='red'> padding </font>  | 池化补零的方式。               |
 | <font color='red'> ceil_mode </font>             | <font color='red'> ceil_mode </font>  | 是否用 `ceil` 函数计算输出的 height 和 width，如果设置为 `False`，则使用 `floor` 函数来计算，默认为 `False`            |
 | <font color='red'> divisor_override </font>           | <font color='red'> divisor_override </font>            | 如果指定，它将用作除数，否则根据 `kernel_size` 计算除数。默认 `None`  |
-| -           | <font color='red'> data_format </font>            | 输入和输出的数据格式, Pytorch 无此参数，保持默认即可。 |
-| <font color='red'> count_include_pad </font>           | <font color='red'> exclusive </font>            | 是否用额外 padding 的值计算平均池化结果，Pytorch 与 Paddle 的功能相反，需要转写  |
+| -           | <font color='red'> data_format </font>            | 输入和输出的数据格式, PyTorch 无此参数，保持默认即可。 |
+| <font color='red'> count_include_pad </font>           | <font color='red'> exclusive </font>            | 是否用额外 padding 的值计算平均池化结果，PyTorch 与 Paddle 的功能相反，需要转写  |
 
 
 ### 转写示例
 #### count_include_pad：是否用额外 padding 的值计算平均池化结果
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.functional.avg_pool3d(input=input, kernel_size=2, stride=2, padding=1, ceil_mode=True, count_include_pad=False)
 
 # Paddle 写法

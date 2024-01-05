@@ -23,7 +23,7 @@ paddle.nn.functional.margin_ranking_loss(input,
                                          name=None)
 ```
 
-其中 Pytorch 相⽐ Paddle ⽀持更多其他参数，具体如下：
+其中 PyTorch 相⽐ Paddle ⽀持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -38,7 +38,7 @@ paddle.nn.functional.margin_ranking_loss(input,
 ### 转写示例
 #### size_average
 ```python
-# Pytorch 的 size_average、 reduce 参数转为 Paddle 的 reduction 参数
+# PyTorch 的 size_average、 reduce 参数转为 Paddle 的 reduction 参数
 if size_average is None:
     size_average = True
 if reduce is None:
