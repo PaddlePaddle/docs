@@ -4,7 +4,7 @@ square\_
 -------------------------------
 
 .. py:function:: paddle.square_(x, name=None)
-Inplace 版本的 :ref:`cn_api_paddle_square` API，对输入 x 采用 Inplace 策略。请参考<https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/paddle/square_en.html#api-paddle-square>
+Inplace 版本的 :ref:`cn_api_paddle_square` API，对输入 x 采用 Inplace 策略。
 
 更多关于 inplace 操作的介绍请参考 `3.1.3 原位（Inplace）操作和非原位操作的区别`_ 了解详情。
 
