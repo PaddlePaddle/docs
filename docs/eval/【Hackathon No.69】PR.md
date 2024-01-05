@@ -27,11 +27,11 @@
 
 4、NumPy 兼容性分析及对比
 
-在动态图模型代码中，所有与组网相关的 numpy 操作都必须用 paddle 的 API 重新实现，所以在模型训练过程中体验 Paddle.API 来感受对比 Pytorch 的表现；分析了 Tensor 兼容 Numpy 数组的同时，优先使用 Tensor 的两种场景。
+在动态图模型代码中，所有与组网相关的 numpy 操作都必须用 paddle 的 API 重新实现，所以在模型训练过程中体验 Paddle.API 来感受对比 PyTorch 的表现；分析了 Tensor 兼容 Numpy 数组的同时，优先使用 Tensor 的两种场景。
 
 5、动态图单机训练
 
-体验控制流和共享权重的使用效果，然后在数据集定义、加载和数据预处理、数据增强方面感受与 Pytorch 使用的区别，最后通过 LeNet 举例说明训练结果，并进行了对比分析
+体验控制流和共享权重的使用效果，然后在数据集定义、加载和数据预处理、数据增强方面感受与 PyTorch 使用的区别，最后通过 LeNet 举例说明训练结果，并进行了对比分析
 
 6、各种 trick 的用法体验
 
@@ -47,7 +47,7 @@
 |   内存   |                  12GB DDR4                   |
 |   GPU    |             NVIDIA GeForce 940MX             |
 | 系统平台 |         Window 10 家庭中文版（64 位）         |
-| 软件环境 | Paddle2.2、 Pytorch3.8、Cuda 10.1、Anaconda3 |
+| 软件环境 | Paddle2.2、 PyTorch3.8、Cuda 10.1、Anaconda3 |
 
 Paddle 环境安装参考： https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/windows-pip.html
 
@@ -55,7 +55,7 @@ Paddle 环境安装参考： https://www.paddlepaddle.org.cn/install/quick?docur
 
 GPU 版本：python -m pip install paddlepaddle-gpu==2.2.2.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
 
-Paddle 与 Pytorch 环境配置使用对比： 在单机安装中，都安装在了 conda 环境，Paddle 安装比较顺利，直接按照文档安装即可，与 Pytorch 安装没有太大区别，单机测试稳定性也都比较良好。
+Paddle 与 PyTorch 环境配置使用对比： 在单机安装中，都安装在了 conda 环境，Paddle 安装比较顺利，直接按照文档安装即可，与 PyTorch 安装没有太大区别，单机测试稳定性也都比较良好。
 
 
 
@@ -63,14 +63,14 @@ Paddle 与 Pytorch 环境配置使用对比： 在单机安装中，都安装在
 
 ## 1、从 PaddlePaddle 的各个 API 目录来对比分析
 
-首先，基础操作类、组网类、Loss 类、工具类、视觉类这五大类从映射 Pytorch 上看，在单机训练中可以满足训练及预测所需的 API 使用类别。
+首先，基础操作类、组网类、Loss 类、工具类、视觉类这五大类从映射 PyTorch 上看，在单机训练中可以满足训练及预测所需的 API 使用类别。
 
 其次，在单机模型训练中对比了一下主要 API 的使用
 
-| 名称    | PaddlePaddle                  | Pytorch                        |
+| 名称    | PaddlePaddle                  | PyTorch                        |
 | ------- | ----------------------------- | ------------------------------ |
 | layer   | nn.Layer                      | nn.Module                      |
-| 各种层  | nn.layer2D(即 paddle 使用大写 D) | nn.layer2d(即 Pytorch 使用小写 d) |
+| 各种层  | nn.layer2D(即 paddle 使用大写 D) | nn.layer2d(即 PyTorch 使用小写 d) |
 | flatten | nn.Flatten                    | var.view(var.size(0), -1)      |
 | concat  | paddle.concat                 | torch.cat                      |
 | optim   | paddle.optimizer              | torch.optim                    |
@@ -115,7 +115,7 @@ torch.load(f,
 在 torch.load 中， pickle_module  表示用于 unpickling 元数据和对象的模块，PaddlePaddle 无此参数。  map_location  表示加载模型的位置，PaddlePaddle 无此参数。
 
 在加载内容上，PyTorch 可以加载 torch.Tensor、torch.nn.Module、优化器等多个类型的数据。
-PaddlePaddle 只能加载 paddle.nn.Layer、优化器这两个类型的数据，这方面 Pytorch 更优一些。
+PaddlePaddle 只能加载 paddle.nn.Layer、优化器这两个类型的数据，这方面 PyTorch 更优一些。
 
 ------
 
@@ -241,13 +241,13 @@ torch.utils.data.DataLoader(dataset,
 
 在 paddle.io.DataLoader 中， feed_list 表示 feed 变量列表，PyTorch 无此参数。  use_shared_memory  表示是否使用共享内存来提升子进程将数据放入进程间队列的速度，PyTorch 无此参数。
 
-在 torch.utils.data.DataLoader 中，prefetch_factor  表示每个 worker 预先加载的数据数量，PaddlePaddle 无此参数；还有就是 PyTorch 可通过设置 sampler 自定义数据采集器，PaddlePaddle 只能自定义一个 DataLoader 来实现该功能，会有些繁琐。总的来说，这部分 Pytorch 的体验更好一些。
+在 torch.utils.data.DataLoader 中，prefetch_factor  表示每个 worker 预先加载的数据数量，PaddlePaddle 无此参数；还有就是 PyTorch 可通过设置 sampler 自定义数据采集器，PaddlePaddle 只能自定义一个 DataLoader 来实现该功能，会有些繁琐。总的来说，这部分 PyTorch 的体验更好一些。
 
 ------
 
 ​     从整体的 API 使用上，感觉 paddle 升级后的 paddle.xxx  （例如：paddle.device  paddle.nn  paddle.vision ）比之前的 padddle.fluid.xxx 好用很多，还有就是新增加的高层 API 个人比较喜欢，一是对初学者比较友好、易用，二是对于开发者可以节省代码量，更简洁直观一些，在（六、动态图单机训练）中进行了代码展示和对比分析。
 
-与 Pytorch 相比，基础 API 的结构和调用没有太大区别，但是在速度上，paddle 的基础 API 会更快一点，如果是利用了 paddle 高层 API，速度会快很多，在同样 5 次 epoch 的情况下，LeNet 训练高层 API 用 38s 左右,基础 API 得用将近两分钟，所以用高层 API 能减少大约三分之二的训练时间。
+与 PyTorch 相比，基础 API 的结构和调用没有太大区别，但是在速度上，paddle 的基础 API 会更快一点，如果是利用了 paddle 高层 API，速度会快很多，在同样 5 次 epoch 的情况下，LeNet 训练高层 API 用 38s 左右,基础 API 得用将近两分钟，所以用高层 API 能减少大约三分之二的训练时间。
 
 总体来说，使用像 paddle.Model、paddle.vision 这样的高级 API 进行封装调用，使用体验比较好，个人感觉在以后深度学习模型普遍使用时，高层 API 会更受欢迎，也会成为模型训练测试中更为流行的一种方法。
 
@@ -408,9 +408,9 @@ feat_size = feat_size.numpy()
 
 **四、Tensor 索引整体体验**
 
-感觉在通过索引或切片修改 Tensor 的整体过程有些冗余，稳定性也会下降。虽然使用指南里说明了修改会导致原值不会被保存，可能会给梯度计算引入风险 ，但是在这点上个人感觉 Pytorch 的体验要好于 Paddle。
+感觉在通过索引或切片修改 Tensor 的整体过程有些冗余，稳定性也会下降。虽然使用指南里说明了修改会导致原值不会被保存，可能会给梯度计算引入风险 ，但是在这点上个人感觉 PyTorch 的体验要好于 Paddle。
 
-总的来说，在模型训练中利用 Tensor 加载数据集等操作上 Pytorch 与 Paddle 的体验并没有太大区别，但整体的感觉 Pytorch 的 Tensor 索引更好一些，个人感觉 Paddle 在修改 Tensor 的部分上可以增加一些文档说明。
+总的来说，在模型训练中利用 Tensor 加载数据集等操作上 PyTorch 与 Paddle 的体验并没有太大区别，但整体的感觉 PyTorch 的 Tensor 索引更好一些，个人感觉 Paddle 在修改 Tensor 的部分上可以增加一些文档说明。
 
 **文档序号错误小提醒：**
 
@@ -418,11 +418,11 @@ feat_size = feat_size.numpy()
 
 # 五、NumPy 兼容性分析及对比
 
-NumPy 在 Paddle 的体验，感觉和 Pytorch 的体验并无区别，但是在阅读使用文档时的体验感较好，内容叙述很详细 （文档链接：https://www.paddlepaddle.org.cn/tutorials/projectdetail/3466356 ）
+NumPy 在 Paddle 的体验，感觉和 PyTorch 的体验并无区别，但是在阅读使用文档时的体验感较好，内容叙述很详细 （文档链接：https://www.paddlepaddle.org.cn/tutorials/projectdetail/3466356 ）
 
 **1、关于 numpy API 的重写**
 
-在 Paddle 动态图单机训练中，所有与组网相关的 numpy 操作都必须用 paddle 的 API 重新实现 ，这一点个人认为需要注意，因为在习惯使用 Pytorch 代码逻辑时，转为 PaddlePaddle 容易出错，下面举例说明：
+在 Paddle 动态图单机训练中，所有与组网相关的 numpy 操作都必须用 paddle 的 API 重新实现 ，这一点个人认为需要注意，因为在习惯使用 PyTorch 代码逻辑时，转为 PaddlePaddle 容易出错，下面举例说明：
 
 ```python
 #下述样例需要将 forward 中的所有的 numpy 操作都转为 Paddle API：
@@ -490,11 +490,11 @@ x_np = x.detach().cpu().numpy() if x.requires_grad else x.cpu().numpy()
 
 建议：这两个场景内容可以增加一些实例，可能会使新手在这部分的理解更为透彻。
 
-总体来说：Tensor 与 Numpy 数组的兼容与转换，Paddle 体验更好一点，兼容性上与 Pytorch 感觉没区别，但是 Paddle 的兼容转换处理上更具有一些前瞻性。
+总体来说：Tensor 与 Numpy 数组的兼容与转换，Paddle 体验更好一点，兼容性上与 PyTorch 感觉没区别，但是 Paddle 的兼容转换处理上更具有一些前瞻性。
 
 # 六、动态图单机训练
 
-（1）使用 Pytorch 完成一个图像分类的动态图单机训练例子（MNIST 数据集）
+（1）使用 PyTorch 完成一个图像分类的动态图单机训练例子（MNIST 数据集）
 
 ```python
 import torch
@@ -687,7 +687,7 @@ test(model)
 
 （3）两个程序的运行结果
 
-一、Pytorch 程序运行结果
+一、PyTorch 程序运行结果
 
 ```python
 #下载数据
@@ -907,7 +907,7 @@ Process finished with exit code 0
 
 这部分简单说就是 Paddle 的高层 API 比基础 API 运行速度快，且简单好用，体验感较好。
 
-与 Pytorch 相比，Paddle 文档中提供的代码下载不了数据集，需要手动下载。
+与 PyTorch 相比，Paddle 文档中提供的代码下载不了数据集，需要手动下载。
 
 # 七、各种 trick 的用法
 
@@ -992,7 +992,7 @@ SystemError: (Fatal) Blocking queue is killed because the data reader raises an 
 [Hint: Expected killed_ != true, but received killed_:1 == true:1.] (at /paddle/paddle/fluid/operators/reader/blocking_queue.h:158)
 ```
 
-原因分析：由于 PaddlePaddle 和 Pytorch 两个框架在这部分并无区别，Paddle 读取数据在这主要用到两个类：paddle.io.Dataset 和 paddle.io.DataLoader，所以查看源代码后发现在 Dataset 类中的__getitem__(self, idx)返回的数据不是 numpy.ndarray 类型
+原因分析：由于 PaddlePaddle 和 PyTorch 两个框架在这部分并无区别，Paddle 读取数据在这主要用到两个类：paddle.io.Dataset 和 paddle.io.DataLoader，所以查看源代码后发现在 Dataset 类中的__getitem__(self, idx)返回的数据不是 numpy.ndarray 类型
 
 解决方案：
 

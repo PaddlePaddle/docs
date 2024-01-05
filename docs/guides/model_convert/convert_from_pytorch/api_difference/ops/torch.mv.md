@@ -10,7 +10,7 @@ torch.mv(input, vec, out=None)
 paddle.mv(x, vec, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -23,7 +23,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.mv(x, vec, out=y)
 
 # Paddle 写法

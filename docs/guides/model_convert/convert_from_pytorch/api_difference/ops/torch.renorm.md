@@ -12,7 +12,7 @@ torch.renorm(input, p, dim, maxnorm, *, out=None)
 paddle.renorm(input, p, axis, max_norm)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -28,7 +28,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### out：指定输出
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.renorm(x, 1, 0, 5, out=output)
 
 # Paddle 写法

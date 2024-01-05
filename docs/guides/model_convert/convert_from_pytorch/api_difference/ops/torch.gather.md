@@ -15,10 +15,11 @@ torch.gather(input,
 ```python
 paddle.take_along_axis(arr,
                        indices,
-                       axis)
+                       axis,
+                       broadcast=True)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

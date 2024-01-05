@@ -22,12 +22,12 @@ paddle.nn.initializer.XavierNormal(fan_in=None,
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensor        | -          | n 维 tensor。Paddle 无此参数，因为是通过调用类的 __call__ 函数来进行 tensor 的初始化。    |
 | gain        | -          |  缩放因子。Paddle 无此参数，暂无转写方式。    |
-| -          |  fan_in          | 用于泽维尔初始化的 fan_in。Pytorch 无此参数，Paddle 保持默认即可。     |
-| -          |  fan_out         | 用于泽维尔初始化的 fan_out。Pytorch 无此参数，Paddle 保持默认即可。        |
+| -          |  fan_in          | 用于泽维尔初始化的 fan_in。PyTorch 无此参数，Paddle 保持默认即可。     |
+| -          |  fan_out         | 用于泽维尔初始化的 fan_out。PyTorch 无此参数，Paddle 保持默认即可。        |
 
 ### 转写示例
 ```python
-# Pytorch 写法
+# PyTorch 写法
 conv = torch.nn.Conv2d(4, 6, (3, 3))
 torch.nn.init.xavier_normal_(conv.weight)
 

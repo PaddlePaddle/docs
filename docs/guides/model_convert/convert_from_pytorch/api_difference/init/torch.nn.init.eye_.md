@@ -19,11 +19,11 @@ paddle.nn.initializer.Assign(value,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensor        | -          | n 维 tensor。Paddle 无此参数，因为是通过调用类的 __call__ 函数来进行 tensor 的初始化。    |
-| -          |  value          | 用于初始化参数的一个 Numpy 数组、Python 列表、Tensor。Pytorch 无此参数。此处 Paddle 应使用 paddle.eye 进行参数设置。             |
+| -          |  value          | 用于初始化参数的一个 Numpy 数组、Python 列表、Tensor。PyTorch 无此参数。此处 Paddle 应使用 paddle.eye 进行参数设置。             |
 
 ### 转写示例
 ```python
-# Pytorch 写法
+# PyTorch 写法
 w = torch.empty(3, 5)
 torch.nn.init.eye_(w)
 

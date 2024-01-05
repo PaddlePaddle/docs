@@ -12,7 +12,7 @@ torch.fft.irfft2(input, s=None, dim=(- 2, - 1), norm='backward', *, out=None)
 paddle.fft.irfft2(x, s=None, axes=(- 2, - 1), norm='backward', name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -27,7 +27,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ###  转写示例
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.fft.irfft2(x, s, dim, norm, out=y)
 
 # Paddle 写法

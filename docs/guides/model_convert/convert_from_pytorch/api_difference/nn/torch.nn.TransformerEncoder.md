@@ -12,7 +12,7 @@ torch.nn.TransformerEncoder(encoder_layer, num_layers, norm=None, enable_nested_
 paddle.nn.TransformerEncoder(encoder_layer, num_layers, norm=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
