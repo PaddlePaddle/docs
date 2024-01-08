@@ -1,6 +1,5 @@
 .. _cn_api_paddle_nn_functional_pixel_unshuffle:
 
-
 pixel_unshuffle
 -------------------------------
 

@@ -12,7 +12,7 @@ torch.profiler.profile(*, activities=None, schedule=None, on_trace_ready=None, r
 paddle.profiler.Profiler(*, targets=None, scheduler=None, on_trace_ready=None, record_shapes=False, profile_memory=False, timer_only=False)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

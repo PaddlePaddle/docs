@@ -13,6 +13,7 @@ import types
 from queue import Queue
 
 import extract_api_from_docs
+
 import paddle
 
 """

@@ -12,7 +12,7 @@ torch.sparse_coo_tensor(indices,values,size=None, * , dtype=None,device=None,req
 paddle.sparse.sparse_coo_tensor(indices, values, shape=None, dtype=None, place=None, stop_gradient=True)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

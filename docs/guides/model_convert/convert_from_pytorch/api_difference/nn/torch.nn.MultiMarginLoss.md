@@ -12,7 +12,7 @@ torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=None, size_average=None, reduce
 paddle.nn.MultiMarginLoss(p: int = 1, margin: float = 1.0, weight=None, reduction: str = 'mean', name: str = None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -28,7 +28,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 
 ```python
-# Pytorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
+# PyTorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
 if size_average is None:
     size_average = True
 if reduce is None:
@@ -40,7 +40,7 @@ elif reduce:
 else:
     reduction = 'none'
 
-# 如果 Pytorch 存在 reduction 参数，则直接覆盖
+# 如果 PyTorch 存在 reduction 参数，则直接覆盖
 if 'reduction' not in kwargs:
     kwargs['reduction'] = reduction
 ```

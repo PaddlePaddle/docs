@@ -12,7 +12,7 @@ torch.distributions.exp_family.ExponentialFamily(batch_shape=torch.Size([]), eve
 paddle.distribution.ExponentialFamily(batch_shape， event_shape)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

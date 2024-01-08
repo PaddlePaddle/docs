@@ -37,7 +37,7 @@ paddle.fft.fftfreq(n,
 ### 转写示例
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.fft.fftfreq(x, out=y)
 
 # Paddle 写法
@@ -46,7 +46,7 @@ paddle.assign(paddle.fft.fftfreq(x),y)
 
 #### requires_grad：是否需要求反向梯度，需要修改该 Tensor 的 stop_gradient 属性
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x = torch.fft.fftfreq(x, requires_grad=True)
 
 # Paddle 写法
@@ -56,7 +56,7 @@ x.stop_gradient = False
 
 #### device: Tensor 的设备
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.fft.fftfreq(x, device=torch.device('cpu'))
 
 # Paddle 写法
