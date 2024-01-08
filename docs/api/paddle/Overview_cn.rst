@@ -66,6 +66,7 @@ tensor 数学操作
     " :ref:`paddle.expm1 <cn_api_paddle_expm1>` ", "逐元素进行 exp(x)-1 运算"
     " :ref:`paddle.floor <cn_api_paddle_floor>` ", "向下取整函数"
     " :ref:`paddle.floor_divide <cn_api_paddle_floor_divide>` ", "逐元素整除算子，输入 x 与输入 y 逐元素整除，并将各个位置的输出元素保存到返回结果中"
+    " :ref:`paddle.gammaln <cn_api_paddle_gammaln>` ", "逐元素计算输入 x 的伽马函数的绝对值的自然对数"
     " :ref:`paddle.greater_equal <cn_api_paddle_greater_equal>` ", "逐元素地返回 x>=y 的逻辑值"
     " :ref:`paddle.greater_than <cn_api_paddle_greater_than>` ", "逐元素地返回 x>y 的逻辑值"
     " :ref:`paddle.heaviside <cn_api_paddle_heaviside>` ", "逐元素地对 x 计算由 y 中的对应元素决定的赫维赛德阶跃函数"
@@ -168,6 +169,7 @@ tensor 数学操作原位（inplace）版本
     :widths: 10, 30
 
     " :ref:`paddle.remainder_ <cn_api_paddle_remainder_>` ", "Inplace 版本的 remainder API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.abs_ <cn_api_paddle_abs_>` ", "Inplace 版本的 abs API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.tanh_ <cn_api_paddle_tanh_>` ", "Inplace 版本的 tanh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.erf_ <cn_api_paddle_erf_>` ", "Inplace 版本的 erf API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.erfinv_ <cn_api_paddle_erfinv_>` ", "Inplace 版本的 erfinv API，对输入 x 采用 Inplace 策略"
@@ -178,6 +180,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.exp_ <cn_api_paddle_exp_>` ", "Inplace 版本的 exp API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.flatten_ <cn_api_paddle_flatten_>` ", "Inplace 版本的 flatten API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.floor_ <cn_api_paddle_floor_>` ", "Inplace 版本的 floor API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.gammaln_ <cn_api_paddle_gammaln_>` ", "Inplace 版本的 gammaln API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.reciprocal_ <cn_api_paddle_reciprocal_>` ", "Inplace 版本的 reciprocal API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.round_ <cn_api_paddle_round_>` ", "Inplace 版本的 round API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.rsqrt_ <cn_api_paddle_rsqrt_>` ", "Inplace 版本的 rsqrt API，对输入 x 采用 Inplace 策略"
