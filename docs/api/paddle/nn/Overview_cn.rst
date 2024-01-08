@@ -411,6 +411,7 @@ Padding 相关函数
     " :ref:`paddle.nn.functional.mish <cn_api_paddle_nn_functional_mish>` ", "mish 激活函数"
     " :ref:`paddle.nn.functional.tanhshrink <cn_api_paddle_nn_functional_tanhshrink>` ", "tanhshrink 激活函数"
     " :ref:`paddle.nn.functional.thresholded_relu <cn_api_paddle_nn_functional_thresholded_relu>` ", "thresholded_relu 激活函数"
+    " :ref:`paddle.nn.functional.thresholded_relu_ <cn_api_paddle_nn_functional_thresholded_relu_>` ", "Inplace 版本的 :ref:`cn_api_paddle_nn_functional_thresholded_relu` API，对输入 x 采用 Inplace 策略"
 
 .. _normalization_functional:
 

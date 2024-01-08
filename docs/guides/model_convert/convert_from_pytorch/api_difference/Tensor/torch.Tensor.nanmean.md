@@ -17,13 +17,13 @@ paddle.Tensor.nanmean(axis=None,
                       name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | dim        | axis      | 表示进行运算的轴，可选项，仅参数名不一致。                |
 | keepdim   | keepdim   | 表示是否保留计算后的维度，可选项。                    |
-| dtype | - | 指定输出数据类型，可选项，Pytorch 默认值为 None，Paddle 无此参数，需要转写。 |
+| dtype | - | 指定输出数据类型，可选项，PyTorch 默认值为 None，Paddle 无此参数，需要转写。 |
 | out       | -        | 表示输出的 Tensor,可选项，Paddle 无此参数，需要转写。 |
 
 ### 转写示例
@@ -31,7 +31,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### dytpe：指定数据类型
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x.nanmean(dim=-1, dtype=torch.float32,out=y)
 
 # Paddle 写法
@@ -42,7 +42,7 @@ paddle.assign(x.nanmean(dim=-1),y)
 #### out：指定输出
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x.nanmean(dim=1，out=y)
 
 # Paddle 写法

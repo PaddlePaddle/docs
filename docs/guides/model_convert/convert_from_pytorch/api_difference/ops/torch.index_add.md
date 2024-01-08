@@ -11,7 +11,7 @@ torch.index_add(input, dim, index, source, *, alpha=1, out=None)
 paddle.index_add(x, index, axis, value, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -26,7 +26,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 #### alpha：source 的缩放倍数
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.index_add(x, dim=1, index=index, source=source, alpha=alpha)
 
 # Paddle 写法
@@ -35,7 +35,7 @@ paddle.index_add(x, index=index, axis=1, value=alpha*source)
 
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.index_add(x, dim=1, index=index, source=source, alpha=alpha, out=y)
 
 # Paddle 写法

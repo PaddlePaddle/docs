@@ -24,7 +24,7 @@ paddle.randn(shape,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| *size         | shape        | 表示输出形状大小，Pytorch 以可变参数方式传入，Paddle 以 list 或 tuple 的方式传入。                                     |
+| *size         | shape        | 表示输出形状大小，PyTorch 以可变参数方式传入，Paddle 以 list 或 tuple 的方式传入。                                     |
 | <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要转写。    |
 | dtype           | dtype            | 表示输出 Tensor 的数据类型。               |
 | <font color='red'> layout </font> | -       | 表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
@@ -36,7 +36,7 @@ paddle.randn(shape,
 ### 转写示例
 #### *size：输出形状大小
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.randn(3, 5)
 
 # Paddle 写法
@@ -45,7 +45,7 @@ paddle.randn([3, 5])
 
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.randn([3, 5], out=y)
 
 # Paddle 写法
@@ -54,7 +54,7 @@ paddle.assign(paddle.randn([3, 5]), y)
 
 #### device: Tensor 的设备
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.randn((2, 2), device=torch.device('cpu'))
 
 # Paddle 写法
@@ -64,7 +64,7 @@ y.cpu()
 
 #### requires_grad：是否需要求反向梯度，需要修改该 Tensor 的 stop_gradient 属性
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x = torch.randn([3, 5], requires_grad=True)
 
 # Paddle 写法

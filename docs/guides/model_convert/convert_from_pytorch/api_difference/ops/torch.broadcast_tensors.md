@@ -17,13 +17,13 @@ paddle.broadcast_tensors(inputs,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> *tensors </font>      | <font color='red'> inputs </font>      | 一组输入 Tensor ， Pytorch 参数 tensors 为可变参, Paddle 参数 inputs 为 list(Tensor) 或 tuple(Tensor) 的形式。   |
+| <font color='red'> *tensors </font>      | <font color='red'> inputs </font>      | 一组输入 Tensor ， PyTorch 参数 tensors 为可变参, Paddle 参数 inputs 为 list(Tensor) 或 tuple(Tensor) 的形式。   |
 
 
 ### 转写示例
 #### *tensors: 一组输入 Tensor
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.broadcast_tensors(x, y)
 
 # Paddle 写法

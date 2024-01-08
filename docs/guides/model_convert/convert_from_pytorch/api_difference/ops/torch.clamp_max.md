@@ -17,12 +17,12 @@ paddle.clip(x,
             name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input       |  x             | 表示输入的 Tensor ，仅参数名不一致。  |
-| -         | min            | 表示裁剪的最小值。Pytorch 无此参数， Paddle 保持默认即可。           |
+| -         | min            | 表示裁剪的最小值。PyTorch 无此参数， Paddle 保持默认即可。           |
 | max         | max            | 表示裁剪的最大值。            |
 |  out        | -              | 表示输出的 Tensor ， Paddle 无此参数，需要转写。    |
 
@@ -30,7 +30,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.clamp_max(input, max=0.5, out=y)
 
 # Paddle 写法

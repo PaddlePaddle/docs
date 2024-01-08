@@ -8,7 +8,7 @@
 
 ### 1.1 支持迁移的源模型
 
-- Pytorch、ONNX、TensorFlow、Caffe 模型，可以通过 X2Paddle 直接完成模型转换，各框架支持的版本请参见下文 [1.4 迁移环境依赖](#requirements)。
+- PyTorch、ONNX、TensorFlow、Caffe 模型，可以通过 X2Paddle 直接完成模型转换，各框架支持的版本请参见下文 [1.4 迁移环境依赖](#requirements)。
 - 其他框架如 MXNet、MindSpore 等，可以先转为 ONNX 格式的模型，再使用 X2Paddle 进行转换。
 
 > 说明：需要模型中用到的算子（OP）X2Paddle 均支持，才能实现转换，如果存在不支持的 OP 转换时会给出报错提示。目前 X2Paddle 支持大部分主流的 CV 和 NLP 模型转换，支持 130 多个 PyTorch OP，90 多个 ONNX OP，90 多个 TensorFlow OP 以及 30 多个 Caffe OP，详见 [X2Paddle 支持 OP 列表](https://github.com/PaddlePaddle/X2Paddle/blob/develop/docs/inference_model_convertor/op_list.md)。
@@ -31,12 +31,12 @@ X2Paddle 是飞桨官方提供的模型转换工具，简洁易用，通过一�
 
 X2Paddle 提供了一组 Python API，支持不同框架的模型迁移：
 
-- Pytorch 模型迁移：[x2paddle.convert.pytorch2paddle](https://github.com/PaddlePaddle/X2Paddle/blob/develop/docs/inference_model_convertor/x2paddle_api.md#4)
+- PyTorch 模型迁移：[x2paddle.convert.pytorch2paddle](https://github.com/PaddlePaddle/X2Paddle/blob/develop/docs/inference_model_convertor/x2paddle_api.md#4)
 - ONNX 模型迁移：[x2paddle.convert.onnx2paddle](https://github.com/PaddlePaddle/X2Paddle/blob/develop/docs/inference_model_convertor/x2paddle_api.md#3)
-- Tensorflow 模型迁移：[x2paddle.convert.tf2paddle](https://github.com/PaddlePaddle/X2Paddle/blob/develop/docs/inference_model_convertor/x2paddle_api.md#1)
+- TensorFlow 模型迁移：[x2paddle.convert.tf2paddle](https://github.com/PaddlePaddle/X2Paddle/blob/develop/docs/inference_model_convertor/x2paddle_api.md#1)
 - Caffe 模型迁移：[x2paddle.convert.caffe2paddle](https://github.com/PaddlePaddle/X2Paddle/blob/develop/docs/inference_model_convertor/x2paddle_api.md#2)
 
-以 x2paddle.convert.pytorch2paddle 为例，迁移 Pytorch 模型的使用方式如下：
+以 x2paddle.convert.pytorch2paddle 为例，迁移 PyTorch 模型的使用方式如下：
 
 ```python
 from x2paddle.convert import pytorch2paddle
@@ -56,18 +56,18 @@ pytorch2paddle(module=torch_module,
 
 **（1）模型迁移配置说明**
 
-Pytorch 模型的迁移主要需要获取 Module 组网，加载模型参数 `state_dict()`，然后切换到 `eval()` 模式进行转换，使用默认参数下将转换为 Paddle Inference 的模型格式，通过 `convert_to_lite` 参数设置是否转换为 Paddle Lite 的模型格式。
+PyTorch 模型的迁移主要需要获取 Module 组网，加载模型参数 `state_dict()`，然后切换到 `eval()` 模式进行转换，使用默认参数下将转换为 Paddle Inference 的模型格式，通过 `convert_to_lite` 参数设置是否转换为 Paddle Lite 的模型格式。
 
 > 说明：
 >
-> - Pytorch 模型迁移需要准备 Module 组网代码和训练好的 `.pth` 模型参数文件；
+> - PyTorch 模型迁移需要准备 Module 组网代码和训练好的 `.pth` 模型参数文件；
 > - ONNX 模型迁移需要准备 `.onnx` 模型文件；
-> - Tensorflow 模型迁移需要准备 `.pb` 模型文件；
+> - TensorFlow 模型迁移需要准备 `.pb` 模型文件；
 > - Caffe 模型迁移需要准备 `.prototxt` 模型文件和 `.caffemodel`模型参数文件。
 
 **（2）模型迁移过程说明**
 
-通常情况下，实际转换过程是先将 Pytorch 模型代码转为 PaddlePaddle 动态图代码（为中间产物，将保存在 `x2paddle_code.py` 文件中）和模型参数文件（`model.pdparams` 文件），然后执行动转静，保存静态图模型到磁盘中（即 `inference_model`文件夹）。
+通常情况下，实际转换过程是先将 PyTorch 模型代码转为 PaddlePaddle 动态图代码（为中间产物，将保存在 `x2paddle_code.py` 文件中）和模型参数文件（`model.pdparams` 文件），然后执行动转静，保存静态图模型到磁盘中（即 `inference_model`文件夹）。
 
 **（3）x2paddle.convert.pytorch2paddle API 参数说明：**
 
@@ -75,7 +75,7 @@ Pytorch 模型的迁移主要需要获取 Module 组网，加载模型参数 `st
 | ----------------- | ------------------------------------------------------------ |
 | module            | PyTorch 的 Module。                                          |
 | save_dir          | 转换后模型保存路径。                                         |
-| jit_type          | 转换方式，对应 Pytorch 中定义的两种模型转换方式 [trace](https://pytorch.org/docs/master/generated/torch.jit.trace.html) 和 [script](https://pytorch.org/docs/master/generated/torch.jit.script.html)。默认为 trace。"trace" 方式生成的代码可读性较强，较为接近原版 PyTorch 代码的组织结构，支持大部分模型，但是不支持模型输入是动态 shape 的情况；"script" 方式不需要知道输入数据的类型和大小即可转换（支持动态 shape），使用上较为方便，但目前 PyTorch 支持的 script 代码方式有所限制，可能存在一些 op 和语法不支持。优先推荐使用 "trace" 方式。 |
+| jit_type          | 转换方式，对应 PyTorch 中定义的两种模型转换方式 [trace](https://pytorch.org/docs/master/generated/torch.jit.trace.html) 和 [script](https://pytorch.org/docs/master/generated/torch.jit.script.html)。默认为 trace。"trace" 方式生成的代码可读性较强，较为接近原版 PyTorch 代码的组织结构，支持大部分模型，但是不支持模型输入是动态 shape 的情况；"script" 方式不需要知道输入数据的类型和大小即可转换（支持动态 shape），使用上较为方便，但目前 PyTorch 支持的 script 代码方式有所限制，可能存在一些 op 和语法不支持。优先推荐使用 "trace" 方式。 |
 | input_examples    | torch.nn. Module 的输入示例，list 的长度必须与输入的长度一致。默认为 None。jit_type 为 "trace" 时，input_examples 不可为 None，转换后自动进行动转静；jit_type 为 "script" 时，当 input_examples 为 None 时，只生成动态图代码；当 input_examples 不为 None 时，才能自动动转静。 |
 | enable_code_optim | 是否对转换后的代码进行优化，默认为 False。对生成的 PaddlePaddle 动态图代码做一定优化，比如模块化处理，以增加生成的代码可读性。无论是否优化，通常不影响动转静后生成的静态图模型，一般使用默认值 False 即可。 |
 | convert_to_lite   | 是否使用 [opt 工具](https://www.paddlepaddle.org.cn/lite/develop/user_guides/model_optimize_tool.html) 转成 Paddle Lite 支持的格式，默认为 False。 |
@@ -84,7 +84,7 @@ Pytorch 模型的迁移主要需要获取 Module 组网，加载模型参数 `st
 
 #### 1.3.3 使用命令行迁移
 
-除了 Python API 方式，X2Paddle 还提供了更加便捷的命令行迁移方式，该方式支持 ONNX、Tensorflow、Caffe 模型迁移，不支持 Pytorch 模型迁移。
+除了 Python API 方式，X2Paddle 还提供了更加便捷的命令行迁移方式，该方式支持 ONNX、TensorFlow、Caffe 模型迁移，不支持 PyTorch 模型迁移。
 
 - **ONNX 模型迁移**
 
@@ -138,10 +138,10 @@ x2paddle --framework=caffe --prototxt=deploy.prototxt --weight=deploy.caffemodel
 
 - Python >= 3.5
 - PaddlePaddle >= 2.0.0 （推荐使用最新版本）
-- Pytorch >= 1.5.0（如需转换 PyTorch 模型）
-  - 其他依赖：使用 Pytorch trace 方式时需安装 pandas、treelib
+- PyTorch >= 1.5.0（如需转换 PyTorch 模型）
+  - 其他依赖：使用 PyTorch trace 方式时需安装 pandas、treelib
 - ONNX >= 1.6.0（如需转换 ONNX 模型）
-- Tensorflow == 1.14（如需转换 TensorFlow 模型）
+- TensorFlow == 1.14（如需转换 TensorFlow 模型）
 - Paddle Lite >= 2.9.0（如需一键转换成 Paddle Lite 支持格式，推荐最新版本）
 - Caffe 若无自定义 Layer，可使用 X2Paddle 自带 caffe_pb2.py，否则需自行将 caffe.proto 编译成 caffe_pb2.py 文件
 
@@ -164,7 +164,7 @@ cd X2Paddle
 python setup.py install
 ```
 
-（3）安装 Pytorch
+（3）安装 PyTorch
 
 ```bash
 pip install torch==1.12.0 torchvision==0.13.0
@@ -185,17 +185,17 @@ pip install onnx==1.11.0
 pip install paddlelite==2.11
 ```
 
-## 二、迁移 Pytorch 模型示例
+## 二、迁移 PyTorch 模型示例
 
-介绍迁移 Pytorch 模型为 Paddle Inference 可部署的模型的示例。
+介绍迁移 PyTorch 模型为 Paddle Inference 可部署的模型的示例。
 
-本示例中，将 Pytorch 图像分类模型 AlexNet 转换为 PaddlePaddle 模型，然后验证并比对转换前后模型的输出误差。
+本示例中，将 PyTorch 图像分类模型 AlexNet 转换为 PaddlePaddle 模型，然后验证并比对转换前后模型的输出误差。
 
 ### 2.1 转换模型
 
-**（1）加载 Pytorch 模型和参数**
+**（1）加载 PyTorch 模型和参数**
 
-> **说明：Pytorch 模型转换需要准备 Module 组网代码和训练好的 `.pth` 模型参数文件。**
+> **说明：PyTorch 模型转换需要准备 Module 组网代码和训练好的 `.pth` 模型参数文件。**
 
 ```python
 from torchvision.models import AlexNet

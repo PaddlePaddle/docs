@@ -17,7 +17,7 @@ paddle.linalg.eigh(x, UPLO='L', name=None)
 paddle.linalg.eigvalsh(x, UPLO='L', name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -31,13 +31,13 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 #### eigenvectors：表示是否计算特征向量
 ```python
-# Pytorch 写法，eigenvectors 为 False
+# PyTorch 写法，eigenvectors 为 False
 e, _ = torch.symeig(x, eigenvectors=False)
 
 # Paddle 写法
 e = paddle.linalg.eigvalsh(x)
 
-# Pytorch 写法，eigenvectors 为 True
+# PyTorch 写法，eigenvectors 为 True
 e, v = torch.symeig(x, eigenvectors=True)
 
 # Paddle 写法
@@ -46,7 +46,7 @@ e, v = paddle.linalg.eigh(x)
 
 #### upper：表示计算上三角或者下三角矩阵
 ```python
-# Pytorch 写法
+# PyTorch 写法
 e, v = torch.symeig(x, upper = False)
 
 # Paddle 写法
@@ -55,7 +55,7 @@ e, v = paddle.linalg.eigh(x, UPLO = 'L')
 
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.symeig(x, out=(e, v) )
 
 # Paddle 写法

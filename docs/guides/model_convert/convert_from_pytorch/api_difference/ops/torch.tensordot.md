@@ -12,7 +12,7 @@ torch.tensordot(a,b,dims=2,out=None)
 paddle.tensordot(x,y,axes=2,name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注 |
@@ -27,7 +27,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### out: 输出的 Tensor
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.tensordot(x,y,axes,out=output)
 
 # Paddle 写法
