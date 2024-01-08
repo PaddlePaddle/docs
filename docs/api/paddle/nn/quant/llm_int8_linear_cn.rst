@@ -7,6 +7,8 @@ llm_int8_linear
 
 应用两个张量的矩阵乘法。若提供了偏置，则进行偏置加法。
 
+细节可参考论文 `LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale <https://arxiv.org/abs/2208.07339>`_ 。
+
 此方法要求 CUDA 版本不低于 11.2。
 
 参数
