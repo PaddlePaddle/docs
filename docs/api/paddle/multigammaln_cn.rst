@@ -3,7 +3,7 @@
 multigammaln
 -------------------------------
 
-.. py:function:: multigammaln(x, p, name=None)
+.. py:function:: paddle.multigammaln(x, p, name=None)
 
 计算多元伽马函数的对数。
 

@@ -12,7 +12,7 @@ torch.Tensor.histc(bins=100, min=0, max=0)
 paddle.Tensor.histogram(bins=100, min=0, max=0, name=None)
 ```
 
-返回 Tensor 的数据类型不一致，Pytorch 返回数据类型与输入 Tensor 一致， Paddle 默认返回 int64 类型。
+返回 Tensor 的数据类型不一致，PyTorch 返回数据类型与输入 Tensor 一致， Paddle 默认返回 int64 类型。
 
 ### 参数映射
 
@@ -25,7 +25,7 @@ paddle.Tensor.histogram(bins=100, min=0, max=0, name=None)
 ### 转写示例
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = a.histc(bins=3, min=2, max=4)
 
 # Paddle 写法

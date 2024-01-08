@@ -72,7 +72,7 @@ $$
 
 
 ```python
-# Pytorch 的 size_average、 reduce 参数转为 Paddle 的 reduction 参数
+# PyTorch 的 size_average、 reduce 参数转为 Paddle 的 reduction 参数
 if size_average is None:
     size_average = True
 if reduce is None:

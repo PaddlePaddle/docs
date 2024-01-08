@@ -12,7 +12,7 @@ torch.Tensor.cuda(device=None, non_blocking=False, memory_format=torch.preserve_
 paddle.Tensor.cuda(device_id=None, blocking=False)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

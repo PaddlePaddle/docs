@@ -23,7 +23,7 @@ torch 参数更多，具体如下：
 #### out：指定输出
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.linalg.det(x, out=y)
 
 # Paddle 写法

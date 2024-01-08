@@ -21,7 +21,7 @@ paddle.min(x,
            name=None)
 ```
 
-其中 Pytorch 与 Paddle 指定 `dim` 后返回值不一致，具体如下：
+其中 PyTorch 与 Paddle 指定 `dim` 后返回值不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -36,7 +36,7 @@ paddle.min(x,
 ```python
 # 对指定维度上的 Tensor 元素求最大值运算
 
-# Pytorch 写法
+# PyTorch 写法
 torch.min(a, out=y)
 # torch 在输入 dim 时，返回 (values, indices)，返回参数类型不一致
 
@@ -45,7 +45,7 @@ paddle.assign(paddle.min(a), y)
 ```
 #### 指定 dim 后的返回值
 ```python
-# Pytorch 写法
+# PyTorch 写法
 result = torch.min(a, dim=1)
 
 # Paddle 写法
@@ -71,7 +71,7 @@ paddle.minimum(x,
                name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -85,7 +85,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ```python
 # 逐元素对比输入的两个 Tensor
 
-# Pytorch 写法
+# PyTorch 写法
 torch.min(a, b, out=y)
 # 在输入 other 时，比较 input 和 other 返回较大值
 

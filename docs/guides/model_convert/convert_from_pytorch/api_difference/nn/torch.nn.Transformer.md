@@ -12,7 +12,7 @@ torch.nn.Transformer(d_model=512, nhead=8, num_encoder_layers=6, num_decoder_lay
 paddle.nn.Transformer(d_model=512, nhead=8, num_encoder_layers=6, num_decoder_layers=6, dim_feedforward=2048, dropout=0.1, activation='relu', attn_dropout=None, act_dropout=None, normalize_before=False, weight_attr=None, bias_attr=None, custom_encoder=None, custom_decoder=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -42,7 +42,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### device：Tensor 的设备
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 m = torch.nn.Transformer(device=torch.device('cpu'))
 y = m(x)
 
@@ -54,7 +54,7 @@ y = m(x).cpu()
 #### dtype：Tensor 的数据类型
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 m = torch.nn.Transformer(dtype=torch.float32)
 y = m(x)
 
