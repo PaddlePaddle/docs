@@ -1,6 +1,5 @@
 .. _cn_api_paddle_nn_functional_avg_pool2d:
 
-
 avg_pool2d
 -------------------------------
 

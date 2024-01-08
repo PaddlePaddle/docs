@@ -22,7 +22,7 @@ paddle.empty(shape,
              name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -42,7 +42,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### size：输出形状大小
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.empty(3, 5)
 
 # Paddle 写法
@@ -52,7 +52,7 @@ paddle.empty([3, 5])
 #### out：指定输出
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.empty((3, 5), out=y)
 
 # Paddle 写法
@@ -62,7 +62,7 @@ paddle.assign(paddle.empty([3, 5]), y)
 #### device: Tensor 的设备
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = torch.empty((3, 5), device=torch.device('cpu'))
 
 # Paddle 写法
@@ -73,7 +73,7 @@ y.cpu()
 #### requires_grad：是否求梯度
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = torch.empty((3, 5), requires_grad=True)
 
 # Paddle 写法
@@ -84,7 +84,7 @@ y.stop_gradient = False
 #### pin_memory：是否分配到固定内存上
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = torch.empty((3, 5), pin_memory=True)
 
 # Paddle 写法

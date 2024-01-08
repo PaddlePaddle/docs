@@ -6,10 +6,10 @@
 torch.nn.Module.type(dst_type)
 ```
 
-### [paddle.nn.Layer.to](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#to-device-none-dtype-none-blocking-none)
+### [paddle.nn.Layer.astype](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#astype-dtype-none)
 
 ```python
-paddle.nn.Layer.to(dtype=None)
+paddle.nn.Layer.astype(dtype=None)
 ```
 
 两者参数用法不一致，具体如下：
@@ -31,5 +31,5 @@ module.type(dst_type=torch.float32)
 
 # Paddle 写法:
 module = paddle.nn.Layer()
-module.to(dtype=paddle.float32)
+module.astype(dtype=paddle.float32)
 ```

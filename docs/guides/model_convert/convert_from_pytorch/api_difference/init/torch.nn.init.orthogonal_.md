@@ -14,7 +14,7 @@ paddle.nn.initializer.Orthogonal(gain=1.0,
                             name=None)
 ```
 
-两者用法不同：torch 是 inplace 的用法，paddle 是类设置的。Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+两者用法不同：torch 是 inplace 的用法，paddle 是类设置的。PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -24,7 +24,7 @@ paddle.nn.initializer.Orthogonal(gain=1.0,
 
 ### 转写示例
 ```python
-# Pytorch 写法
+# PyTorch 写法
 conv = torch.nn.Conv2d(4, 6, (3, 3))
 torch.nn.init.orthogonal_(conv.weight, gain=2)
 
