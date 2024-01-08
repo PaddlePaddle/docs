@@ -14,7 +14,7 @@ weight_only_linear
     - **x** (Tensor) - 第一个输入张量，将被乘以，数据类型为 float16 或 bfloat16。
     - **weight** (Tensor) - 第二个输入张量，将被乘以。其秩必须为 2。
     - **bias** (Tensor|None) - 输入的偏置张量。如果为 None，则不执行偏置加法。否则，偏置将被加到矩阵乘法结果上。
-    - **weight_scale** (Tensor|None) - 提供给权重的输入比例张量，用于去量化。其秩必须为 1。
+    - **weight_scale** (Tensor|None) - 提供给权重的输入比例张量，用于反量化。其秩必须为 1。
     - **weight_dtype** (str) - 权重张量的数据类型，必须是 'int8', 'int4' 之一，默认为 'int8'。
     - **arch** (int) - 针对目标设备的计算架构。例如，A100 为 80，v100 为 70，如果您没有指定架构，我们将从您的设备获取架构，默认为 None。
 
