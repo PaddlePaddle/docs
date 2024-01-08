@@ -5,7 +5,7 @@ weighted_sample_neighbors
 
 .. py:function:: paddle.geometric.weighted_sample_neighbors(row, colptr, edge_weight, input_nodes, sample_size=- 1, eids=None, return_eids=False, name=None)
 
-此 API 主要用于图学习领域，其主要目的是提供图加权采样方法的高性能。例如，我们获取输入图边缘的 CSC（Compressed Sparse Column，压缩列信息），分别对应 ``row`` 和 ``colptr``，从而将图转换为适用于邻居采样的格式，并且输入的 ``edge_weight`` 也应该与 CSC 格式匹配。
+此 API 主要用于图学习领域，其主要目的是提供高性能图加权邻居采样方法。例如，我们获取输入图的 CSC（Compressed Sparse Column，压缩列信息），分别对应 ``row`` 和 ``colptr``，从而将图转换为适用于邻居采样的格式，并且输入的 ``edge_weight`` 也应该与 CSC 格式匹配。
 
 再输入需要进行采样的中心节点 ``input_nodes``，以及采样的邻居个数 ``sample_size``，从而可以获得对应中心节点采样后的邻居。
 
