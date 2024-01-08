@@ -25,7 +25,7 @@ paddle.fft.fftn(x, s=None, axes=None, norm='backward', name=None)
 ### 转写示例
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.fft.fftn(x, s, dim, norm, out=y)
 
 # Paddle 写法

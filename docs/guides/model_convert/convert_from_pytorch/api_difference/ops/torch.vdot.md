@@ -24,7 +24,7 @@ torch 参数更多，具体如下：
 ### 转写示例
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.vdot(x, y, out=out)
 
 # Paddle 写法

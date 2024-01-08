@@ -34,7 +34,7 @@ paddle.fft.ifft2(x,
 ### 转写示例
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.fft.ifft2(x, out=y)
 
 # Paddle 写法

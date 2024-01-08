@@ -9,7 +9,7 @@ torch.linalg.matrix_rank(A, tol=None, hermitian=False, *, out=None)
 paddle.linalg.matrix_rank(x, tol=None, hermitian=False, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -22,7 +22,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.linalg.matrix_rank(torch.ones(3, 4, 5, 5), tol=0.01, hermitian=True, out=y)
 
 # Paddle 写法

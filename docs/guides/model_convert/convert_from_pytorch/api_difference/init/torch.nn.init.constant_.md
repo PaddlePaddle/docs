@@ -13,17 +13,17 @@ torch.nn.init.constant_(tensor,
 paddle.nn.initializer.Constant(value=0.0)
 ```
 
-两者用法不同：torch 是 inplace 的用法，paddle 是类设置的。Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+两者用法不同：torch 是 inplace 的用法，paddle 是类设置的。PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensor        | -          | n 维 tensor。Paddle 无此参数，因为是通过调用类的 __call__ 函数来进行 tensor 的初始化。    |
-| val          |  value          | 用于初始化输入变量的值。Pytorch 无默认值，Paddle 默认值为`0.0`。               |
+| val          |  value          | 用于初始化输入变量的值。PyTorch 无默认值，Paddle 默认值为`0.0`。               |
 
 ### 转写示例
 ```python
-# Pytorch 写法
+# PyTorch 写法
 conv = torch.nn.Conv2d(4, 6, (3, 3))
 torch.nn.init.constant_(conv.weight, val=1.0)
 

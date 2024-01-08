@@ -13,7 +13,7 @@ torch.linalg.cond(input, p=None, *, out=None)
 paddle.linalg.cond(x, p=None, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

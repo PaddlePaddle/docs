@@ -12,7 +12,7 @@ torch.repeat_interleave(input, repeats, dim=None, *, output_size=None)
 paddle.repeat_interleave(x, repeats, axis=None, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注                                                |
