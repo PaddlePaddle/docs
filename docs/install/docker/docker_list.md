@@ -18,6 +18,14 @@
     </thead>
     <tbody>
     <tr>
+        <td> registry.baidubce.com/paddlepaddle/paddle:latest-dev </td>
+        <td> CPU </td>
+        <td>  </td>
+        <td>  </td>
+        <td>  </td>
+        <td> 12.2 </td>
+    </tr>
+    <tr>
         <td> registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82 </td>
         <td> 11.2 </td>
         <td> 8.2 </td>
