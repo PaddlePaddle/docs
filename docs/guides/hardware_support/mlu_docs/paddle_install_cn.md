@@ -115,7 +115,7 @@ make -j$(nproc)
 
 ```bash
 # 安装命令
-python -m pip install -U paddlepaddle_mlu-0.0.0-cp37-cp37-linux_x86_64.whl
+python -m pip install -U paddlepaddle_mlu-0.0.0-cp38-cp38-linux_x86_64.whl
 
 # 验证命令
 python -c "import paddle; paddle.utils.run_check()"
