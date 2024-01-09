@@ -76,8 +76,8 @@ PaddlePaddle is installed successfully! Let's start deep learning with PaddlePad
 # PATH 中存在 GCC/G++ 8.2
 export PATH=/opt/compiler/gcc-8.2/bin:${PATH}
 
-# PATH 中存在 cmake 3.16.0
-export PATH=/opt/cmake-3.16/bin:${PATH}
+# PATH 中存在 cmake 3.18.0
+export PATH=/opt/cmake-3.18/bin:${PATH}
 
 # PATH 与 LD_LIBRARY_PATH 中存在 popart 与 poplar
 export PATH=/opt/popart/bin:/opt/poplar/lib:${PATH}
