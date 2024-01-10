@@ -16,7 +16,7 @@ paddle.to_tensor(data,
                 stop_gradient=True)
 ```
 
-两者功能一致，性能某些用法下比 PyTorch 差（比如如果输入一个 Tensor ， Pytorch 会直接返回， Paddle 会复制后返回）。此外， Paddle 相比 Pytorch 支持更多其他参数，具体如下：
+两者功能一致，性能某些用法下比 PyTorch 差（比如如果输入一个 Tensor ， PyTorch 会直接返回， Paddle 会复制后返回）。此外， Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

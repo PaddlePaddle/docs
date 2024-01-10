@@ -23,7 +23,7 @@ paddle.nn.Softmax(axis=-1)
 ### 转写示例
 
 ```
-# Pytorch 写法
+# PyTorch 写法
 cri = torch.nn.Softmax2d()
 cri(input)
 
