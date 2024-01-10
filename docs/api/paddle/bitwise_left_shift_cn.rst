@@ -55,7 +55,16 @@ int8_t z = x << 2;   //补码为 1010,1000  表示-88
 ::::::::::::
  ``按位算术(逻辑)左移`` 运算后的结果 ``Tensor``，数据类型与 ``x`` 相同。
 
-代码示例
+代码示例1
 ::::::::::::
 
-COPY-FROM: paddle.bitwise_left_shift
+算术左移
+
+COPY-FROM: paddle.bitwise_left_shift:bitwise_left_shift_example1
+
+代码示例2
+::::::::::::
+
+逻辑左移
+
+COPY-FROM: paddle.bitwise_left_shift:bitwise_left_shift_example2
