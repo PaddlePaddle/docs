@@ -10,23 +10,23 @@ copysign
 
 .. math::
 
-    copysign(x{i},y{i})=\left\{\begin{matrix}
-    & -|(x{i})| & if y{i} <= 0.0\\
-    & |(x{i})| & if y{i} > 0.0
+    copysign(x_{i},y_{i})=\left\{\begin{matrix}
+    & -|x_{i}| & if \space y_{i} <= -0.0\\
+    & |x_{i}| & if \space y_{i} >= 0.0
     \end{matrix}\right.
 
 
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入的复数值的 Tensor，数据类型为：bfloat16、float16、float32、float64、uint8、int16、int32、int64。
-    - **x** (Tensor) - 输入的复数值的 Tensor，数据类型为：bfloat16、float16、float32、float64、uint8、int16、int32、int64。
+    - **x** (Tensor) - 输入的复数值的 Tensor，数据类型为：bool, uint8, int8, int16, int32, int64, bfloat16, float16, float32, float64。
+    - **y** (Tensor) - 输入的复数值的 Tensor，数据类型为：bool, uint8, int8, int16, int32, int64, bfloat16, float16, float32, float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
 
-Tensor，若输入 Tensor 的 dtype 不为 float16 或 bfloat16，则输出为 double 的 Tensor。若输入 Tensor 的 dtype 为 bfloat16 或 float16 ，则输出类型与输入类型相同。
+Tensor，输出数据类型与输入数据类型相同。
 
 
 代码示例
