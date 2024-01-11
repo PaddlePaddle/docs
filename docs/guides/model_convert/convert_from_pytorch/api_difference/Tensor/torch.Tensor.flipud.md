@@ -12,13 +12,13 @@ torch.Tensor.flipud()
 paddle.Tensor.flip(axis, name=None)
 ```
 
-两者功能一致，其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：
+两者功能一致，其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 
 | PyTorch | PaddlePaddle | 备注                                                       |
 | ------- | ------------ | ---------------------------------------------------------- |
-| -       | axis         | 指定进行翻转的轴，Pytorch 无此参数，Paddle 中可以指定 `axis=0` 来对应 Pytorch。|
+| -       | axis         | 指定进行翻转的轴，PyTorch 无此参数，Paddle 中可以指定 `axis=0` 来对应 PyTorch。|
 
 ### 转写示例
 

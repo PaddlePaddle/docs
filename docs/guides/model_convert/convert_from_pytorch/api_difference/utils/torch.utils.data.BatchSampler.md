@@ -17,7 +17,7 @@ paddle.io.BatchSampler(dataset=None,
                        drop_last=False)
 ```
 
-其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：
+其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注    |
 | --------- | -------------| ---------- |
@@ -30,7 +30,7 @@ paddle.io.BatchSampler(dataset=None,
 #### sampler(Iterable)：底层取样器
 ```python
 # 若 sampler 为 Iterable 数据类型，则需要按如下方式转写
-# Pytorch 写法
+# PyTorch 写法
 torch.utils.data.BatchSampler(sampler=[1., 2., 3., 4.], 3, False)
 
 # Paddle 写法

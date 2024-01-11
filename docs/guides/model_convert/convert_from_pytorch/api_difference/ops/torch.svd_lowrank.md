@@ -12,7 +12,7 @@ torch.svd_lowrank(A, q=6, niter=2, M=None)
 paddle.linalg.svd(x, full_matrics=False, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |

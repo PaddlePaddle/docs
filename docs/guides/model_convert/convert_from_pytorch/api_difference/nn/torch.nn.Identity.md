@@ -15,7 +15,7 @@ paddle.nn.Identity(*args, **kwargs)
 
 ### 参数映射
 
-| Pytorch    | PaddlePaddle | 备注                                 |
+| PyTorch    | PaddlePaddle | 备注                                 |
 | ---------- | ------------ | ------------------------------------ |
 | args | args   | 任意的参数 |
 |kwargs | kwargs   | 任意的关键字参数 |

@@ -10,7 +10,8 @@ torch.Tensor.take_along_dim(indices,
 
 ```python
 paddle.Tensor.take_along_axis(indices,
-                    axis)
+                    axis,
+                    broadcast=True)
 ```
 
 两者功能一致，参数名不一致，具体如下：

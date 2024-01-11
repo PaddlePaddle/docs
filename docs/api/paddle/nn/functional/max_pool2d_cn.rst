@@ -1,6 +1,5 @@
 .. _cn_api_paddle_nn_functional_max_pool2d:
 
-
 max_pool2d
 -------------------------------
 
