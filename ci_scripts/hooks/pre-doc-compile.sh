@@ -3,7 +3,7 @@
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 FLUIDDOCDIR=${FLUIDDOCDIR:=/FluidDoc}
-DOCROOT=${FLUIDDOCDIR}/docs/
+DOCROOT=${FLUIDDOCDIR}/docs
 
 
 ## 1 merge the pytorch to paddle api map tables
