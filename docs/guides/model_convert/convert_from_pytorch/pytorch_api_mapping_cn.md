@@ -930,11 +930,6 @@
 | 302 |  [torch.Tensor.dequantize](https://pytorch.org/docs/1.13/generated/torch.Tensor.dequantize.html?highlight=torch+tensor+dequantize#torch.Tensor.dequantize)  |  | 功能缺失        |
 | 303 |  [torch.Tensor.sum_to_size](https://pytorch.org/docs/stable/generated/torch.Tensor.sum_to_size.html?highlight=sum_to_size#torch.Tensor.sum_to_size)  |  |    功能缺失  |
 | 304 |  [torch.Tensor.resize_](https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html?highlight=resize#torch.Tensor.resize_)  |  |    功能缺失  |
-| 305 |  [torch.Tensor.masked_fill_](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_fill_.html?highlight=resize#torch.Tensor.masked_fill_)  | [paddle.Tensor.masked_fill_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id25) |    功能完全一致  |
-| 306 |  [torch.Tensor.tensor_split](https://pytorch.org/docs/stable/generated/torch.Tensor.tensor_split.html)  | [paddle.Tensor.tensor_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tensor_split-indices_or_sections-axis-0-name-none) |    功能完全一致，仅参数名不一致 [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.tensor_split.md)  |
-| 307 |  [torch.Tensor.masked_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_scatter.html?highlight=resize#torch.Tensor.masked_scatter)  | [paddle.Tensor.masked_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id25) |    功能完全一致  |
-| 308 |  [torch.Tensor.masked_scatter_](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_scatter_.html?highlight=resize#torch.Tensor.masked_scatter_)  | [paddle.Tensor.masked_scatter_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id25) |    功能完全一致  |
-| 309  | [torch.Tensor.apply_](https://pytorch.org/docs/stable/generated/torch.Tensor.apply_.html)                                                      |[paddle.Tensor.apply_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id25)| 参数完全一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.apply_.md)|
 
 | 序号  | PyTorch API | PaddlePaddle API  | 备注 |
 | ----- | ----------- | ----------------- | --- |
@@ -1243,6 +1238,11 @@
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.dequantize`, https://pytorch.org/docs/1.13/generated/torch.Tensor.dequantize.html?highlight=torch+tensor+dequantize#torch.Tensor.dequantize) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.sum_to_size`, https://pytorch.org/docs/stable/generated/torch.Tensor.sum_to_size.html?highlight=sum_to_size#torch.Tensor.sum_to_size) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.resize_`, https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html?highlight=resize#torch.Tensor.resize_) |
+| REFERENCE-MAPPING-ITEM(`torch.Tensor.masked_fill_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.masked_fill_.md) |
+| REFERENCE-MAPPING-ITEM(`torch.Tensor.tensor_split`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.tensor_split.md) |
+| REFERENCE-MAPPING-ITEM(`torch.Tensor.masked_scatter`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.masked_scatter.md) |
+| REFERENCE-MAPPING-ITEM(`torch.Tensor.masked_scatter_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.masked_scatter_.md) |
+| REFERENCE-MAPPING-ITEM(`torch.Tensor.apply_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.apply_.md) |
 
 ***持续更新...***
 
@@ -1537,7 +1537,7 @@
 | ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.svd`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.svd.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.matrix_power`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.matrix_power.md) |
-| REFERENCE-MAPPING-ITEM(`torch.linalg.matrix_exp`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.matrix_exp.md) |
+| REFERENCE-MAPPING-ITEM(`torch.linalg.matrix_power`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.matrix_exp.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.cholesky`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.cholesky.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.matrix_rank`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.matrix_rank.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.cross`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.cross.md) |
