@@ -3,7 +3,7 @@
 bitwise_left_shift\_
 -------------------------------
 
-.. py:function:: paddle.bitwise_right_shift_(x, y, is_arithmetic=True, out=None, name=None)
+.. py:function:: paddle.bitwise_left_shift_(x, y, is_arithmetic=True, out=None, name=None)
 
 Inplace 版本的 :ref:`cn_api_paddle_bitwise_left_shift` API，对输入 `x` 采用 Inplace 策略。
 
