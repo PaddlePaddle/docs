@@ -5,9 +5,9 @@ BCEWithLogitsLoss
 
 .. py:class:: paddle.nn.BCEWithLogitsLoss(weight=None, reduction='mean', pos_weight=None, name=None)
 
-可用于创建一个 BCEWithLogitsLoss 的可调用类，计算输入 `logit` 和标签 `label` 间的 `binary cross entropy with logits loss` 损失。
+可用于创建一个 BCEWithLogitsLoss 的可调用类，计算输入的预测值 `logit` 和标签 `label` 间的 `binary cross entropy with logits loss` 损失。
 
-计算方式结合了 `sigmoid` 操作和 :ref:`api_nn_loss_BCELoss` 操作。或者，我们也可以认为计算方式是 ``sigmoid_cross_entrop_with_logits`` 和一些 `reduce` 操作的组合。
+计算方式结合了 `sigmoid` 操作和 :ref:`cn_api_paddle_nn_BCELoss` 操作。或者，我们也可以认为计算方式是 ``sigmoid_cross_entrop_with_logits`` 和一些 `reduce` 操作的组合。
 
 该损失函数衡量了在每个类别相互独立的分类任务中的逐元素概率误差。这可以被视为对数据点进行标签预测，其中标签不是相互排斥的。例如，一篇新闻文章可以同时关于政治，科技，体育或者同时不包含这些内容。
 
@@ -35,16 +35,16 @@ BCEWithLogitsLoss
 
 参数
 :::::::::
-    - **weight** (Tensor，可选) - 手动指定每个 batch 二值交叉熵的权重，如果指定的话，维度必须是一个 batch 的数据的维度。数据类型是 float32, float64。默认值是：None。
+    - **weight** (Tensor，可选) - 手动指定每个 batch 二值交叉熵的权重。如果指定的话，维度必须是一个 batch 的数据的维度。数据类型是 float32, float64。默认值是：None。
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有：``'none'``, ``'mean'``, ``'sum'``。默认为 ``'mean'``，计算 `BCELoss` 的均值；设置为 ``'sum'`` 时，计算 `BCELoss` 的总和；设置为 ``'none'`` 时，则返回原始 loss。
     - **pos_weight** (Tensor，可选) - 手动指定正类的权重，必须是与类别数相等长度的向量。数据类型是 float32, float64。默认值是：None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 :::::::::
-    - **logit** (Tensor) - :math:`[N, *]`，其中 N 是 batch_size， `*` 是任意其他维度。输入数据 ``logit`` 一般是线性层的输出，不需要经过 ``sigmoid`` 层。数据类型是 float32、float64。
-    - **label** (Tensor) - :math:`[N, *]`，标签 ``label`` 的维度、数据类型与输入 ``logit`` 相同。
-    - **output** (Tensor) - 输出的 Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]`，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[]` 。
+    - **logit** (Tensor) - 预测值，维度是 :math:`[N, *]`，其中 N 是 batch_size， `*` 是任意其他维度。预测值 ``logit`` 一般是线性层的输出，不需要经过 ``sigmoid`` 层。数据类型是 float32、float64。
+    - **label** (Tensor) - 标签， 维度是 :math:`[N, *]`，标签 ``label`` 的维度，数据类型与预测值 ``logit`` 相同。
+    - **output** (Tensor) - 输出。 如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]`，与 ``logit`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[]` 。
 
 返回
 :::::::::
