@@ -208,8 +208,10 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         output = '| ' + ' | '.join(content) + ' |\n'
         return output
     else:
-        print(f'found manual-maintaining row at line [{line_idx}]: {line}')
-        return line
+        raise ValueError(
+            f'found manual-maintaining row at line [{line_idx}]: {line}'
+        )
+        # return line
 
 
 def reference_mapping_item(index_path, metadata_dict):
