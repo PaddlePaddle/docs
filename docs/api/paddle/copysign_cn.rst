@@ -29,29 +29,29 @@ copysign
 Tensor，输出数据类型与输入数据类型相同。
 
 
-代码示例1
+代码示例 1
 ::::::::::::
 
 COPY-FROM: paddle.copysign:example1
 
 
-代码示例2
+代码示例 2
 ::::::::::::
 
 支持广播机制
 
 COPY-FROM: paddle.copysign:example2
 
-代码示例3
+代码示例 3
 ::::::::::::
 
-y为+0.0时
+y 为+0.0 时
 
 COPY-FROM: paddle.copysign:example_zero1
 
-代码示例4
+代码示例 4
 ::::::::::::
 
-y为-0.0时
+y 为-0.0 时
 
 COPY-FROM: paddle.copysign:example_zero2
