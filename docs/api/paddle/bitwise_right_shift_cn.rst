@@ -27,14 +27,14 @@ bitwise_right_shift
 ::::::::::::
  ``按位算术(逻辑)右移`` 运算后的结果 ``Tensor``，数据类型与 ``x`` 相同。
 
-代码示例1
+代码示例 1
 ::::::::::::
 
 算术右移
 
 COPY-FROM: paddle.bitwise_right_shift:bitwise_right_shift_example1
 
-代码示例2
+代码示例 2
 ::::::::::::
 
 逻辑右移
