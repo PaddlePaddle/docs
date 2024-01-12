@@ -15,7 +15,7 @@ paddle.acosh(x,
             name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -30,7 +30,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### out：指定输出
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.arccosh(torch.tensor([1.3192, 1.9915]), out=y)
 
 # Paddle 写法

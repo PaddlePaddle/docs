@@ -12,7 +12,7 @@ torch.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward=2048, dropout=0
 paddle.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward, dropout=0.1, activation='relu', attn_dropout=None, act_dropout=None, normalize_before=False, weight_attr=None, bias_attr=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -38,7 +38,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### device：Tensor 的设备
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 m = torch.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward，device=torch.device('cpu'))
 y = m(x)
 
@@ -50,7 +50,7 @@ y = m(x).cpu()
 #### dtype：Tensor 的数据类型
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 m = torch.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward，dtype=torch.float32)
 y = m(x)
 

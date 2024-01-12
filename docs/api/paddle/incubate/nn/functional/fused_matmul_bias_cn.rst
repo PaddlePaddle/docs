@@ -20,7 +20,7 @@ fused_matmul_bias
 
 返回
 ::::::::::::
-输出 ``Tensor`
+输出 ``Tensor``
 
 代码示例
 ::::::::::::

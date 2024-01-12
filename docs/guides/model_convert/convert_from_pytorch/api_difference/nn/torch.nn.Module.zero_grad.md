@@ -12,7 +12,7 @@ torch.nn.Module.zero_grad(set_to_none=True)
 paddle.nn.Layer.clear_gradients()
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

@@ -12,7 +12,7 @@ torch.distributions.transforms.ComposeTransform(parts, cache_size=0)
 paddle.distribution.ChainTransform(transforms)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

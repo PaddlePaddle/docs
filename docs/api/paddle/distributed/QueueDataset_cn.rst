@@ -1,6 +1,6 @@
 .. _cn_api_paddle_distributed_QueueDataset:
 
-QueueyDataset
+QueueDataset
 -------------------------------
 
 

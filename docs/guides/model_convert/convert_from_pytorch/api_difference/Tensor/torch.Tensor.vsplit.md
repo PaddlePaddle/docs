@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.Tensor.split_size_or_sections
+## [ 仅参数名不一致 ]torch.Tensor.vsplit
 
 ### [torch.Tensor.vsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.vsplit.html)
 
@@ -12,7 +12,7 @@ torch.Tensor.vsplit(split_size_or_sections)
 paddle.Tensor.vsplit(num_or_indices, name=None)
 ```
 
-其中 Paddle 相比 Pytorch 仅参数名不一致，具体如下：
+其中 Paddle 相比 PyTorch 仅参数名不一致，具体如下：
 
 ### 参数映射
 

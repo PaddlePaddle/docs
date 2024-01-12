@@ -31,7 +31,6 @@ def check_api_label(rootdir, file):
 # path -> api_label (the first line's style)
 def generate_en_label_by_path(file):
     result = file.removesuffix('_cn.rst')
-    result = result.removesuffix('__upper')
     result = '_'.join(Path(result).parts)
     result = f'.. _cn_{result}:'
     return result

@@ -531,6 +531,22 @@ any(axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_any`
 
+apply(callable)
+:::::::::
+
+对当前 Tensor 调用 callable 函数，并且返回该函数计算后返回的值。
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+COPY-FROM: paddle.Tensor.apply
+
+apply_(callable)
+:::::::::
+
+Inplace 版本的 `apply` API，对输入 `x` 采用 Inplace 策略。
+
 argmax(axis=None, keepdim=False, dtype=int64, name=None)
 :::::::::
 
@@ -3121,6 +3137,19 @@ masked_fill_(x, mask, value, name=None)
 
 Inplace 版本的 :ref:`cn_api_paddle_masked_fill` API，对输入 `x` 采用 Inplace 策略。
 
+masked_scatter(x, mask, value, name=None)
+:::::::::
+根据 mask 信息，将 value 中的值逐个填充到 x 中 mask 对应为 True 的位置。
+
+返回一个根据 mask 将对应位置填充为 value 中元素的 Tensor。
+
+请参考 :ref:`cn_api_paddle_masked_scatter`
+
+masked_scatter_(x, mask, value, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_masked_scatter` API，对输入 `x` 采用 Inplace 策略。
+
 atleast_1d(name=None)
 :::::::::
 将输入转换为张量并返回至少为 ``1`` 维的视图。 ``1`` 维或更高维的输入会被保留。
@@ -3164,6 +3193,17 @@ select_scatter(x, values, axis, index, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_select_scatter`
+
+slice_scatter(value, axes, starts, ends, strides, name=None)
+:::::::::
+
+沿着 `axes` 将 `value` 矩阵的值嵌入到 `x` 矩阵。返回一个新的 Tensor 而不是视图。
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_slice_scatter`
 
 signbit(x, name=None)
 :::::::::

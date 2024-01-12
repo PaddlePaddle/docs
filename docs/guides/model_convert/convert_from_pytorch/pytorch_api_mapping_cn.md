@@ -1,6 +1,6 @@
-# Pytorch 2.1.0 与 Paddle develop API 映射表
+# PyTorch 2.1.0 与 Paddle develop API 映射表
 
-本文梳理了 Pytorch 最新发行版（当前 v2.1.0） API 与 PaddlePaddle develop 版本 API 对应关系与差异分析。通过本文档，帮助开发者快速迁移 PyTorch 使用经验，完成模型的开发与调优。
+本文梳理了 PyTorch 最新发行版（当前 v2.1.0） API 与 PaddlePaddle develop 版本 API 对应关系与差异分析。通过本文档，帮助开发者快速迁移 PyTorch 使用经验，完成模型的开发与调优。
 
 ## 贡献代码
 
@@ -292,7 +292,7 @@
 | NOT-IMPLEMENTED-ITEM(`torch.bitwise_right_shift`, https://pytorch.org/docs/stable/generated/torch.bitwise_right_shift.html#torch.bitwise_right_shift) |
 | NOT-IMPLEMENTED-ITEM(`torch.is_conj`, https://pytorch.org/docs/stable/generated/torch.is_conj.html#torch.is_conj) |
 | NOT-IMPLEMENTED-ITEM(`torch.select_scatter`, https://pytorch.org/docs/stable/generated/torch.select_scatter.html#torch.select_scatter) |
-| NOT-IMPLEMENTED-ITEM(`torch.slice_scatter`, https://pytorch.org/docs/stable/generated/torch.slice_scatter.html#torch.slice_scatter) |
+| REFERENCE-MAPPING-ITEM(`torch.slice_scatter`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.slice_scatter.md) |
 | NOT-IMPLEMENTED-ITEM(`torch.scatter_reduce`, https://pytorch.org/docs/stable/generated/torch.scatter_reduce.html#torch.scatter_reduce) |
 | NOT-IMPLEMENTED-ITEM(`torch.set_deterministic_debug_mode`, https://pytorch.org/docs/stable/generated/torch.set_deterministic_debug_mode.html#torch.set_deterministic_debug_mode) |
 | NOT-IMPLEMENTED-ITEM(`torch.get_deterministic_debug_mode`, https://pytorch.org/docs/stable/generated/torch.get_deterministic_debug_mode.html#torch.get_deterministic_debug_mode) |
@@ -802,7 +802,7 @@
 | 170 |  [torch.Tensor.diagonal_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.diagonal_scatter.html#torch.Tensor.diagonal_scatter)  | [paddle.Tensor.diagonal_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#diagonal-scatter-x-y-offset-0-axis1-0-axis2-1-name-none) |    功能完全一致，仅参数名不一致 [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.diagonal_scatter.md)  |
 | 171 |  [torch.Tensor.scatter_reduce](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter_reduce.html#torch.Tensor.scatter_reduce) |  | 功能缺失        |
 | 172 |  [torch.Tensor.select_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.select_scatter.html#torch.Tensor.select_scatter) |  | 功能缺失        |
-| 173 |  [torch.Tensor.slice_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.slice_scatter.html#torch.Tensor.slice_scatter) |  | 功能缺失        |
+| 173 |  [torch.Tensor.slice_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.slice_scatter.html#torch.Tensor.slice_scatter) | [paddle.Tensor.slice_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#slice_scatter-value-axis-0-start-none-stop-none-step-1-name-none) | 功能完全一致，仅参数名不一致 [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.slice_scatter.md) |
 | 174 |  [torch.Tensor.hsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.hsplit.html#torch.Tensor.hsplit)  | [paddle.Tensor.hsplit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#hsplit-num-or-sections-name-none) |    功能完全一致，仅参数名不一致 [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.hsplit.md)  |
 | 175 |  [torch.Tensor.vsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.vsplit.html#torch.Tensor.vsplit)  | [paddle.Tensor.vsplit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#vsplit-num-or-sections-name-none) |    功能完全一致，仅参数名不一致 [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.vsplit.md)  |
 | 176 |  [torch.Tensor.dsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.dsplit.html#torch.Tensor.dsplit)  | [paddle.Tensor.dsplit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#dsplit-num-or-sections-name-none) |    功能完全一致，仅参数名不一致 [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.dsplit.md)  |
@@ -936,7 +936,9 @@
 | 304 |  [torch.Tensor.resize_](https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html?highlight=resize#torch.Tensor.resize_)  |  |    功能缺失  |
 | 305 |  [torch.Tensor.masked_fill_](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_fill_.html?highlight=resize#torch.Tensor.masked_fill_)  | [paddle.Tensor.masked_fill_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id25) |    功能完全一致  |
 | 306 |  [torch.Tensor.tensor_split](https://pytorch.org/docs/stable/generated/torch.Tensor.tensor_split.html)  | [paddle.Tensor.tensor_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tensor_split-indices_or_sections-axis-0-name-none) |    功能完全一致，仅参数名不一致 [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.tensor_split.md)  |
-
+| 307 |  [torch.Tensor.masked_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_scatter.html?highlight=resize#torch.Tensor.masked_scatter)  | [paddle.Tensor.masked_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id25) |    功能完全一致  |
+| 308 |  [torch.Tensor.masked_scatter_](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_scatter_.html?highlight=resize#torch.Tensor.masked_scatter_)  | [paddle.Tensor.masked_scatter_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id25) |    功能完全一致  |
+| 309  | [torch.Tensor.apply_](https://pytorch.org/docs/stable/generated/torch.Tensor.apply_.html)                                                      |[paddle.Tensor.apply_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id25)| 参数完全一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.apply_.md)|
 
 | 序号  | PyTorch API | PaddlePaddle API  | 备注 |
 | ----- | ----------- | ----------------- | --- |
@@ -1112,7 +1114,7 @@
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.is_conj`, https://pytorch.org/docs/stable/generated/torch.Tensor.is_conj.html#torch.Tensor.is_conj) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.scatter_reduce`, https://pytorch.org/docs/stable/generated/torch.Tensor.scatter_reduce.html#torch.Tensor.scatter_reduce) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.select_scatter`, https://pytorch.org/docs/stable/generated/torch.Tensor.select_scatter.html#torch.Tensor.select_scatter) |
-| NOT-IMPLEMENTED-ITEM(`torch.Tensor.slice_scatter`, https://pytorch.org/docs/stable/generated/torch.Tensor.slice_scatter.html#torch.Tensor.slice_scatter) |
+| REFERENCE-MAPPING-ITEM(`torch.Tensor.slice_scatter`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.slice_scatter.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.hsplit`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.hsplit.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.vsplit`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.vsplit.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.dsplit`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.dsplit.md) |
@@ -1539,6 +1541,7 @@
 | ----- | ----------- | ----------------- | --- |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.svd`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.svd.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.matrix_power`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.matrix_power.md) |
+| REFERENCE-MAPPING-ITEM(`torch.linalg.matrix_exp`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.matrix_exp.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.cholesky`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.cholesky.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.matrix_rank`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.matrix_rank.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.cross`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.cross.md) |

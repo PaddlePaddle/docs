@@ -12,7 +12,7 @@ torch.Tensor.to(dtype, non_blocking=False, copy=False, memory_format=torch.prese
 paddle.Tensor.to(dtype, blocking=True)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -28,7 +28,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### non_blocking: cpu 和 gpu 数据的异步复制
 
 ``` python
-# Pytorch 写法
+# PyTorch 写法
 x = torch.tensor([1, 2, 3])
 x.to(dtype, non_blocking=True)
 
@@ -51,7 +51,7 @@ torch.Tensor.to(device=None, dtype=None, non_blocking=False, copy=False, memory_
 paddle.Tensor.to(device, dtype=None, blocking=True)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -68,7 +68,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### non_blocking: cpu 和 gpu 数据的异步复制
 
 ``` python
-# Pytorch 写法
+# PyTorch 写法
 x = torch.tensor([1, 2, 3])
 x.to(device, dtype, non_blocking=True)
 
@@ -91,7 +91,7 @@ torch.Tensor.to(other, non_blocking=False, copy=False)
 paddle.Tensor.to(dtype)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -106,7 +106,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### other: 表示参照 dtype 的 Tensor
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = x.to(x2)
 
 # Paddle 写法
@@ -116,7 +116,7 @@ y = x.to(x2.dtype)
 #### non_blocking: cpu 和 gpu 数据的异步复制
 
 ``` python
-# Pytorch 写法
+# PyTorch 写法
 y = x.to(x2, non_blocking=True)
 
 # Paddle 写法

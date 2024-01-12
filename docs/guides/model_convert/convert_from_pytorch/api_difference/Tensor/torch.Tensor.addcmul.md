@@ -14,7 +14,7 @@ PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 ###  转写示例
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = input.addcmul(tensor1, tensor2, value=value)
 
 # Paddle 写法

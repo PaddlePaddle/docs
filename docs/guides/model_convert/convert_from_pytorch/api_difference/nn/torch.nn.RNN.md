@@ -35,14 +35,14 @@ paddle.nn.SimpleRNN(input_size, hidden_size, num_layers=1, activation='tanh', di
 ### 转写示例
 #### bias：是否使用偏置
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.RNN(16, 32, bias=True)
 
 # Paddle 写法
 paddle.nn.SimpleRNN(16, 32)
 ```
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.RNN(16, 32, bias=False)
 
 # Paddle 写法
@@ -51,7 +51,7 @@ paddle.nn.SimpleRNN(16, 32, bias_ih_attr=False, bias_hh_attr=False)
 
 #### batch_first：batch size 是否为第一维
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.RNN(16, 32, batch_first=True)
 
 # Paddle 写法
@@ -60,14 +60,14 @@ paddle.nn.SimpleRNN(16, 32, time_major=False)
 
 #### bidirectional：是否进行双向
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.RNN(16, 32, bidirectional=True)
 
 # Paddle 写法
 paddle.nn.RNN(16, 32, direction='bidirectional')
 ```
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.RNN(16, 32, bidirectional=False)
 
 # Paddle 写法
