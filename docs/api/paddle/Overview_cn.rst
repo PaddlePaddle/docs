@@ -52,6 +52,7 @@ tensor 数学操作
     " :ref:`paddle.conj <cn_api_paddle_conj>` ", "逐元素计算 Tensor 的共轭运算"
     " :ref:`paddle.cos <cn_api_paddle_cos>` ", "余弦函数"
     " :ref:`paddle.cosh <cn_api_paddle_cosh>` ", "双曲余弦函数"
+    " :ref:`paddle.copysign <cn_api_paddle_copysign>` ", "按照元素计算两个输入 Tensor 的 copysign 大小，由数值和符号组成，其数值部分来自于第一个 Tensor 中的元素，符号部分来自于第二个 Tensor 中的元素。"
     " :ref:`paddle.count_nonzero <cn_api_paddle_count_nonzero>` ", "沿给定的轴 axis 统计非零元素的数量"
     " :ref:`paddle.cumsum <cn_api_paddle_cumsum>` ", "沿给定 axis 计算 Tensor x 的累加和"
     " :ref:`paddle.cummax <cn_api_paddle_cummax>` ", "沿给定 axis 计算 Tensor x 的累计最大值"
@@ -88,6 +89,8 @@ tensor 数学操作
     " :ref:`paddle.bitwise_not <cn_api_paddle_bitwise_not>` ", "逐元素的对 X Tensor 进行按位取反运算"
     " :ref:`paddle.bitwise_or <cn_api_paddle_bitwise_or>` ", "逐元素的对 X 和 Y 进行按位或运算"
     " :ref:`paddle.bitwise_xor <cn_api_paddle_bitwise_xor>` ", "逐元素的对 X 和 Y 进行按位异或运算"
+    " :ref:`paddle.bitwise_left_shift <cn_api_paddle_bitwise_left_shift>` ", "逐元素的对 X 和 Y 进行按位算术(或逻辑)左移"
+    " :ref:`paddle.bitwise_right_shift <cn_api_paddle_bitwise_right_shift>` ", "逐元素的对 X 和 Y 进行按位算术(或逻辑)右移"
     " :ref:`paddle.logsumexp <cn_api_paddle_logsumexp>` ", "沿着 axis 计算 x 的以 e 为底的指数的和的自然对数"
     " :ref:`paddle.max <cn_api_paddle_max>` ", "对指定维度上的 Tensor 元素求最大值运算"
     " :ref:`paddle.amax <cn_api_paddle_max>` ", "对指定维度上的 Tensor 元素求最大值运算"
@@ -177,6 +180,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.put_along_axis_ <cn_api_paddle_put_along_axis_>` ", "Inplace 版本的 put_along_axis API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.ceil_ <cn_api_paddle_ceil_>` ", "Inplace 版本的 ceil API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.clip_ <cn_api_paddle_clip_>` ", "Inplace 版本的 clip API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.copysign_ <cn_api_paddle_copysign_>` ", "Inplace 版本的 copysign API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.exp_ <cn_api_paddle_exp_>` ", "Inplace 版本的 exp API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.flatten_ <cn_api_paddle_flatten_>` ", "Inplace 版本的 flatten API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.floor_ <cn_api_paddle_floor_>` ", "Inplace 版本的 floor API，对输入 x 采用 Inplace 策略"
@@ -198,6 +202,8 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.masked_fill_ <cn_api_paddle_masked_fill_>` ", "Inplace 版本的 masked_fill API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.masked_scatter_ <cn_api_paddle_masked_scatter_>` ", "Inplace 版本的 masked_scatter API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.index_fill_ <cn_api_paddle_index_fill_>` ", "Inplace 版本的 index_fill API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.bitwise_left_shift_ <cn_api_paddle_bitwise_left_shift_>` ", "Inplace 版本的 bitwise_left_shift API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.bitwise_right_shift_ <cn_api_paddle_bitwise_right_shift_>` ", "Inplace 版本的 bitwise_right_shift API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.sin_ <cn_api_paddle_sin_>` ", "Inplace 版本的 sin API，对输入 x 采用 Inplace 策略"
 
 .. _tensor_logic:

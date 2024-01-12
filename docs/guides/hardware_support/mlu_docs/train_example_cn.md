@@ -19,7 +19,7 @@ git clone https://github.com/PaddlePaddle/PaddleClas.git
 
 **第三步**：运行训练
 
-使用飞浆 PaddleXXX 套件运行 MLU 可以通过设置 Global.device 参数为 mlu 来指定设备，其他模型也可以参考该使用方式
+使用飞桨 PaddleXXX 套件运行 MLU 可以通过设置 Global.device 参数为 mlu 来指定设备，其他模型也可以参考该使用方式
 
 ```bash
 export MLU_VISIBLE_DEVICES=0,1,2,3
