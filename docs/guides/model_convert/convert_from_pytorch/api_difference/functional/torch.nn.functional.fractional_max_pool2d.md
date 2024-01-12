@@ -20,12 +20,15 @@ PyTorch 参数更多，具体如下：
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 表示输入的 Tensor ，仅参数名不一致。                        |
 | kernel_size   | kernel_size  | 当 Paddle 不使用此参数时，为 disjoint 模式；当 Paddle 使用此参数时，与 PyTorch 功能一致。 |
+| output_size   | output_size  | 目标输出尺寸。功能一致。                                               |
 | output_ratio  | -            | Paddle 根据 output_size 推算输出比例，不需要此参数。        |
 | return_indices | return_mask | 是否返回最大值索引，仅参数名不一致。                         |
-| _random_samples | random_u   | 随机数，PyTorch 为随机数列表，Paddle 为单个随机数。功能一致。  |
+| _random_samples | random_u   | 随机数，PyTorch 为随机数列表，Paddle 为单个随机数。参数形式不同，功能一致。  |
 
 
 ### 转写示例
+
+#### 转写 kernel_size
 
 ```python
 # Pytorch 写法
@@ -33,4 +36,26 @@ torch.nn.functional.fractional_max_pool2d(input, 2, output_size=[3, 3], return_i
 
 # Paddle 写法
 paddle.nn.functional.fractional_max_pool2d(x, output_size=[3, 3], kernel_size=2, return_mask=True)
+```
+
+#### 转写 output_ratio
+
+```python
+# 假设 intput 的 with=7, height=7，
+# output_ratio = 0.75, 则目标 output 的 width = int(7*0.75) = 5, height = int(7*0.75) = 5
+# Pytorch 写法
+torch.nn.functional.fractional_max_pool2d(input, 2, output_ratio=[0.75, 0.75], return_indices=True)
+
+# Paddle 写法
+paddle.nn.functional.fractional_max_pool2d(x, output_size=[5, 5], kernel_size=2, return_mask=True)
+```
+
+#### 转写 _random_samples
+
+```python
+# Pytorch 写法
+torch.nn.functional.fractional_max_pool2d(input, 2, output_size=[3, 3], return_indices=True, _random_samples=torch.tensor([[[0.3, 0.3]]]))
+
+# Paddle 写法
+paddle.nn.functional.fractional_max_pool2d(x, output_size=[3, 3], kernel_size=2, return_mask=True, random_u=0.3)
 ```
