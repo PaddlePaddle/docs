@@ -45,13 +45,13 @@ COPY-FROM: paddle.copysign:example2
 代码示例 3
 ::::::::::::
 
-y 为+0.0 时
+y 为 +0.0 时
 
 COPY-FROM: paddle.copysign:example_zero1
 
 代码示例 4
 ::::::::::::
 
-y 为-0.0 时
+y 为 -0.0 时
 
 COPY-FROM: paddle.copysign:example_zero2
