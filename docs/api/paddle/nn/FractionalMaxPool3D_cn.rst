@@ -4,7 +4,7 @@
 FractionalMaxPool3D
 -------------------------------
 
-.. py:function:: paddle.nn.FractionalMaxPool3D(output_size, random_u=None, return_mask=False, name=None)
+.. py:function:: paddle.nn.FractionalMaxPool3D(output_size, kernel_size=None, random_u=None, return_mask=False, name=None)
 
 对输入的 Tensor `x` 采取 `2` 维分数阶最大值池化操作，具体可以参考论文：
 
@@ -38,6 +38,7 @@ FractionalMaxPool3D
 :::::::::
 
     - **output_size** (int|list|tuple)：算子输出图的尺寸，其数据类型为 int 或 list，tuple。如果输出为 tuple 或者 list，则必须包含两个元素， `(H, W)` 。 `H` 和 `W` 可以是 `int` ，也可以是 `None` ，表示与输入保持一致。
+    - **kernel_size** (int|list|tuple，可选) - 池化核大小。如果它是一个元组或列表，它必须包含三个整数值，(pool_size_Depth，pool_size_Height, pool_size_Width)。若为一个整数，则表示 D，H 和 W 维度上均为该值，比如若 pool_size=2，则池化核大小为[2,2,2]。默认为 `None`，表示使用 `disjoint` (`non-overlapping`) 模式。
     - **random_u** (float)：分数阶池化操作的浮点随机数，取值范围为 `(0, 1)` 。默认为 `None` ，由框架随机生成，可以使用 `paddle.seed` 设置随机种子。
     - **return_mask** (bool，可选)：如果设置为 `True` ，则会与输出一起返回最大值的索引，默认为 `False`。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 `None`。

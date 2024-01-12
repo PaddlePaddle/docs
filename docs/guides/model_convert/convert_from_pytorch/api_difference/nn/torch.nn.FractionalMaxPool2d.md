@@ -9,7 +9,7 @@ torch.nn.FractionalMaxPool2d(kernel_size, output_size=None, output_ratio=None, r
 ### [paddle.nn.FractionalMaxPool2D](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/paddle/nn/FractionalMaxPool2D_cn.html)
 
 ```python
-paddle.nn.FractionalMaxPool2D(output_size, random_u=None, return_mask=False, name=None)
+paddle.nn.FractionalMaxPool2D(output_size, kernel_size=None, random_u=None, return_mask=False, name=None)
 ```
 
 PyTorch 参数更多，具体如下：
@@ -18,7 +18,7 @@ PyTorch 参数更多，具体如下：
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| kernel_size   | -            | Paddle 内部推算核大小，不需要此参数。                       |
+| kernel_size   | kernel_size  | 当 Paddle 不使用此参数时，为 disjoint 模式；当 Paddle 使用此参数时，与 PyTorch 功能一致。 |
 | output_ratio  | -            | Paddle 根据 output_size 推算输出比例，不需要此参数。        |
 | return_indices | return_mask | 是否返回最大值索引，仅参数名不一致。                         |
 | _random_samples | random_u   | 随机数，PyTorch 为随机数列表，Paddle 为单个随机数。功能一致。  |
@@ -31,5 +31,5 @@ PyTorch 参数更多，具体如下：
 torch.nn.FractionalMaxPool2d(2, output_size=[3, 3], return_indices=True)
 
 # Paddle 写法
-paddle.nn.FractionalMaxPool2D([3, 3], return_mask=True)
+paddle.nn.FractionalMaxPool2D(output_size=[3, 3], kernel_size=2, return_mask=True)
 ```
