@@ -390,6 +390,7 @@ Padding 相关函数
     " :ref:`paddle.nn.functional.hardsigmoid <cn_api_paddle_nn_functional_hardsigmoid>` ", "sigmoid 的分段线性逼近激活函数"
     " :ref:`paddle.nn.functional.hardswish <cn_api_paddle_nn_functional_hardswish>` ", "hardswish 激活函数"
     " :ref:`paddle.nn.functional.hardtanh <cn_api_paddle_nn_functional_hardtanh>` ", "hardtanh 激活函数"
+    " :ref:`paddle.nn.functional.hardtanh_ <cn_api_paddle_nn_functional_hardtanh_>` ", "Inplace 版本的 :ref:`cn_api_paddle_nn_functional_hardtanh` API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.leaky_relu <cn_api_paddle_nn_functional_leaky_relu>` ", "leaky_relu 激活函数"
     " :ref:`paddle.nn.functional.log_sigmoid <cn_api_paddle_nn_functional_log_sigmoid>` ", "log_sigmoid 激活函数"
     " :ref:`paddle.nn.functional.log_softmax <cn_api_paddle_nn_functional_log_softmax>` ", "log_softmax 激活函数"
