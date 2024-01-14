@@ -23,16 +23,16 @@ logger.setLevel(logging.INFO)
 # check file's api_label
 def check_api_label(rootdir, file):
     real_file = Path(rootdir) / file
-    with open(real_file, 'r', encoding='utf-8') as f:
+    with open(real_file, "r", encoding="utf-8") as f:
         first_line = f.readline().strip()
     return first_line == generate_en_label_by_path(file)
 
 
 # path -> api_label (the first line's style)
 def generate_en_label_by_path(file):
-    result = file.removesuffix('_cn.rst')
-    result = '_'.join(Path(result).parts)
-    result = f'.. _cn_{result}:'
+    result = file.removesuffix("_cn.rst")
+    result = "_".join(Path(result).parts)
+    result = f".. _cn_{result}:"
     return result
 
 
@@ -53,7 +53,7 @@ def find_all_api_labels_in_dir(rootdir):
 # api_labels in a file
 def find_api_labels_in_one_file(file_path):
     api_labels_in_one_file = []
-    with open(file_path, 'r', encoding='utf-8') as f:
+    with open(file_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
         for line in lines:
             line = re.search(".. _([a-zA-Z0-9_]+)", line)
@@ -82,9 +82,9 @@ def run_cn_api_label_checking(rootdir, files):
             sys.exit(1)
     valid_api_labels = find_all_api_labels_in_dir(rootdir)
     for file in files:
-        if not file.endswith('.rst'):
+        if not file.endswith(".rst"):
             continue
-        with open(Path(rootdir) / file, 'r', encoding='utf-8') as f:
+        with open(Path(rootdir) / file, "r", encoding="utf-8") as f:
             pattern = f.read()
         matches = re.findall(r":ref:`([^`]+)`", pattern)
         for match in matches:
@@ -94,7 +94,7 @@ def run_cn_api_label_checking(rootdir, files):
             ):
                 api_label = api_label_match.group("api_label")
             if (
-                api_label.startswith('cn_api_paddle')
+                api_label.startswith("cn_api_paddle")
                 and api_label not in valid_api_labels
             ):
                 logger.error(
@@ -108,25 +108,25 @@ def parse_args():
     """
     Parse input arguments
     """
-    parser = argparse.ArgumentParser(description='cn api_label checking')
+    parser = argparse.ArgumentParser(description="cn api_label checking")
     parser.add_argument(
-        'rootdir',
-        help='the dir DOCROOT',
+        "rootdir",
+        help="the dir DOCROOT",
         type=str,
-        default='/FluidDoc/docs/',
+        default="/FluidDoc/docs/",
     )
 
     parser.add_argument(
-        'apiroot',
+        "apiroot",
         type=str,
-        help='the dir APIROOT',
-        default='/FluidDoc/docs/api/',
+        help="the dir APIROOT",
+        default="/FluidDoc/docs/api/",
     )
     parser.add_argument(
-        'all_git_files',
+        "all_git_files",
         type=str,
-        nargs='*',
-        help='files need to check',
+        nargs="*",
+        help="files need to check",
     )
     args = parser.parse_args()
     return args
@@ -134,5 +134,5 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    API = args.apiroot.removeprefix(args.rootdir + '/')
+    API = args.apiroot.removeprefix(args.rootdir + "/")
     run_cn_api_label_checking(args.rootdir, args.all_git_files)
