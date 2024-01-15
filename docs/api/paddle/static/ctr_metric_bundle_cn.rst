@@ -28,10 +28,12 @@ CTR 相关度量层
     - **local_abserr** (Tensor) - 局部绝对误差和
     - **local_prob** (Tensor) - 局部预测 CTR 和
     - **local_q** (Tensor) - 局部 q 值和
+    - **local_pos_num** (Tensor) - 局部正例数
+    - **local_ins_num** (Tensor) - 局部样本数
 
 返回类型
 ::::::::::::
-local_sqrerr(Tensor)
+tuple
 
 代码示例：
 ::::::::::
