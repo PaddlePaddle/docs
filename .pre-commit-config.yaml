@@ -33,13 +33,11 @@ repos:
         language: system
         files: .+README(\.cn)?\.md$
 # For Python files
--   repo: https://github.com/psf/black.git
-    rev: 23.3.0
-    hooks:
-    -   id: black
-        files: \.py$
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.5
+    rev: v0.1.13
     hooks:
     -   id: ruff
         args: [--fix, --exit-non-zero-on-fix, --no-cache]
+        types_or: [ python, pyi ]
+    -   id: ruff-format
+        types_or: [ python, pyi, jupyter ]
