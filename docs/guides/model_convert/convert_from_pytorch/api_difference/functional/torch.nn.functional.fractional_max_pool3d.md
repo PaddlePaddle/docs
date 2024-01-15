@@ -18,27 +18,16 @@ PyTorch 参数更多，具体如下：
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 表示输入的 Tensor ，仅参数名不一致。                        |
-| kernel_size   | kernel_size  | 当 Paddle 不使用此参数时，为 disjoint 模式；当 Paddle 使用此参数时，与 PyTorch 功能一致。 |
-| output_size   | output_size  | 目标输出尺寸。功能一致。                                               |
-| output_ratio  | -            | Paddle 根据 output_size 推算输出比例，不需要此参数。        |
-| return_indices | return_mask | 是否返回最大值索引，仅参数名不一致。                         |
-| _random_samples | random_u   | 随机数，PyTorch 为随机数列表，Paddle 为单个随机数。参数形式不同，功能一致。  |
-
+| input         | x            | 表示输入的 Tensor 。仅参数名不一致。                        |
+| kernel_size   | kernel_size  | 表示核大小。与 PyTorch 默认值不同，（Paddle 可以不设置此参数）。 |
+| output_size   | output_size  | 表示目标输出尺寸。参数完全一致。                                               |
+| output_ratio  | -            | 表示目标输出比例。Paddle 无此参数，需要转写。                |
+| return_indices | return_mask | 表示是否返回最大值索引。仅参数名不一致。                      |
+| _random_samples | random_u   | 表示随机数。PyTorch 以列表形式的 Tensor 方式传入，Paddle 以 float 的方式传入，需要转写。  |
 
 ### 转写示例
 
-#### 转写 kernel_size
-
-```python
-# Pytorch 写法
-torch.nn.functional.fractional_max_pool3d(input, 2, output_size=[3, 3, 3], return_indices=True)
-
-# Paddle 写法
-paddle.nn.functional.fractional_max_pool3d(x, output_size=[3, 3, 3], kernel_size=2, return_mask=True)
-```
-
-#### 转写 output_ratio
+#### output_ratio:目标输出比例
 
 ```python
 # 假设 intput 的 depth=7, with=7, height=7，
@@ -50,7 +39,7 @@ torch.nn.functional.fractional_max_pool3d(input, 2, output_ratio=[0.75, 0.75, 0.
 paddle.nn.functional.fractional_max_pool3d(x, output_size=[5, 5, 5], kernel_size=2, return_mask=True)
 ```
 
-#### 转写 _random_samples
+#### _random_samples:随机数
 
 ```python
 # Pytorch 写法
