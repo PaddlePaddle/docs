@@ -182,6 +182,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.clip_ <cn_api_paddle_clip_>` ", "Inplace 版本的 clip API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.copysign_ <cn_api_paddle_copysign_>` ", "Inplace 版本的 copysign API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.exp_ <cn_api_paddle_exp_>` ", "Inplace 版本的 exp API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.expm1_ <cn_api_paddle_expm1_>` ", "Inplace 版本的 expm1 API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.flatten_ <cn_api_paddle_flatten_>` ", "Inplace 版本的 flatten API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.floor_ <cn_api_paddle_floor_>` ", "Inplace 版本的 floor API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.gammaln_ <cn_api_paddle_gammaln_>` ", "Inplace 版本的 gammaln API，对输入 x 采用 Inplace 策略"
