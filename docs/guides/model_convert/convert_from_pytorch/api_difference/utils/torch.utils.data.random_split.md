@@ -26,7 +26,7 @@ paddle.io.random_split(dataset,
 ### 转写示例
 #### lenghts: 子集合长度列表
 ```python
-# Pytorch 写法
+# PyTorch 写法
 lengths = [0.3, 0.3, 0.4]
 datasets = torch.utils.data.random_split(dataset,
                                         lengths,

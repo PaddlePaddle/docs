@@ -54,7 +54,18 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【触发条件】** 自动触发。
 - **【注意事项】** 通常 10 秒内检查完成，如遇长时间未更新状态，请编辑一下 PR 描述以重新触发。
 
+### PR-CI-Paddle-Doc-Preview
+- **【条目描述】** 构建文档并生成文档的预览。
+- **【触发条件】** 自动触发。
+
+
 ### Linux 平台测试项
+
+#### PR-CI-Auto-Parallel
+
+- **【条目描述】** 检测飞桨自动并行 8 卡任务的功能、性能和显存。
+- **【触发条件】** 当 PR 修改了 `tools/auto_parallel/target_path_lists.sh` 中的[命中路径](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/auto_parallel/target_path_lists.sh)时触发。
+
 
 #### PR-CI-Clone
 
@@ -238,6 +249,14 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
     python/
     test/sot
     ```
+
+#### PR-CI-LLM
+
+- **【条目描述】** 执行 PaddleNLP 中的 LLM CI 测试，从而基于套件中的模型监控当前 PR 的精度。
+- **【执行脚本】** `git clone git@github.com:PaddlePaddle/PaddleNLP.git && cd PaddleNLP && git checkout stable/paddle-ci && pytest ./tests/llm`
+- **【触发条件】** `PR-CI-GpuPS`通过后自动触发。
+- **【注意事项】** 此 CI 的执行代码是在 PaddleNLP 的 repo 中的稳定版本分支`<stable/paddle-ci>`，出现问题请优先在本地自测复现。
+
 
 ### MAC 平台测试项
 

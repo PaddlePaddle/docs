@@ -20,7 +20,7 @@ paddle.nn.functional.normalize(x,
                                name=None)
 ```
 
-其中 Pytorch 相⽐ Paddle ⽀持更多其他参数，具体如下：
+其中 PyTorch 相⽐ Paddle ⽀持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -33,7 +33,7 @@ paddle.nn.functional.normalize(x,
 ### 转写示例
 ####  out: 指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.functional.normalize(x, out=y)
 
 # Paddle 写法

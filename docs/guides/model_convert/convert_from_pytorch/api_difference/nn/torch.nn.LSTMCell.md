@@ -25,14 +25,14 @@ paddle.nn.LSTMCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=
 ### 转写示例
 #### bias：是否使用偏置
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.LSTM(16, 32, bias=True)
 
 # Paddle 写法
 paddle.nn.LSTM(16, 32)
 ```
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.LSTM(16, 32, bias=False)
 
 # Paddle 写法

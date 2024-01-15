@@ -31,6 +31,7 @@ paddle.nn 目录下包含飞桨框架支持的神经网络层和相关函数的�
 -  :ref:`损失函数 <loss_functional>`
 -  :ref:`公用方法 <common_functional>`
 -  :ref:`初始化相关 <about_initializer>`
+-  :ref:`量化压缩 <about_quantization>`
 
 
 
@@ -389,6 +390,7 @@ Padding 相关函数
     " :ref:`paddle.nn.functional.hardsigmoid <cn_api_paddle_nn_functional_hardsigmoid>` ", "sigmoid 的分段线性逼近激活函数"
     " :ref:`paddle.nn.functional.hardswish <cn_api_paddle_nn_functional_hardswish>` ", "hardswish 激活函数"
     " :ref:`paddle.nn.functional.hardtanh <cn_api_paddle_nn_functional_hardtanh>` ", "hardtanh 激活函数"
+    " :ref:`paddle.nn.functional.hardtanh_ <cn_api_paddle_nn_functional_hardtanh_>` ", "Inplace 版本的 :ref:`cn_api_paddle_nn_functional_hardtanh` API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.leaky_relu <cn_api_paddle_nn_functional_leaky_relu>` ", "leaky_relu 激活函数"
     " :ref:`paddle.nn.functional.log_sigmoid <cn_api_paddle_nn_functional_log_sigmoid>` ", "log_sigmoid 激活函数"
     " :ref:`paddle.nn.functional.log_softmax <cn_api_paddle_nn_functional_log_softmax>` ", "log_softmax 激活函数"
@@ -410,6 +412,7 @@ Padding 相关函数
     " :ref:`paddle.nn.functional.mish <cn_api_paddle_nn_functional_mish>` ", "mish 激活函数"
     " :ref:`paddle.nn.functional.tanhshrink <cn_api_paddle_nn_functional_tanhshrink>` ", "tanhshrink 激活函数"
     " :ref:`paddle.nn.functional.thresholded_relu <cn_api_paddle_nn_functional_thresholded_relu>` ", "thresholded_relu 激活函数"
+    " :ref:`paddle.nn.functional.thresholded_relu_ <cn_api_paddle_nn_functional_thresholded_relu_>` ", "Inplace 版本的 :ref:`cn_api_paddle_nn_functional_thresholded_relu` API，对输入 x 采用 Inplace 策略"
 
 .. _normalization_functional:
 
@@ -551,3 +554,15 @@ Embedding 相关函数
     " :ref:`paddle.nn.initializer.Uniform <cn_api_paddle_nn_initializer_Uniform>` ", "随机均匀分布初始化函数"
     " :ref:`paddle.nn.initializer.XavierNormal <cn_api_paddle_nn_initializer_XavierNormal>` ", "实现 Xavier 权重初始化方法（ Xavier weight initializer）"
     " :ref:`paddle.nn.initializer.XavierUniform <cn_api_paddle_nn_initializer_XavierUniform>` ", "实现 Xavier 权重初始化方法（ Xavier weight initializer）"
+
+.. _about_quantization:
+
+量化压缩
+:::::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+
+    " :ref:`paddle.nn.quant.llm_int8_linear <cn_api_paddle_nn_quant_llm_int8_linear>` ", "使用 int8 量化压缩的线性层"
+    " :ref:`paddle.nn.quant.weight_only_linear <cn_api_paddle_nn_quant_weight_only_linear>` ", "使用自定义的类型进行模型的量化压缩"
+    " :ref:`paddle.nn.quant.weight_quantize <cn_api_paddle_nn_quant_weight_quantize>` ", "weight_only 和 llm.int8 权重的量化函数"
