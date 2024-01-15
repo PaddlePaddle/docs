@@ -37,3 +37,6 @@ convert(self, model:layer, inplace=False, remain_weight=False):
 
 **返回**
 转换后的模型
+
+**代码示例**
+COPY-FROM: paddle.quantization.PTQ.quantize
