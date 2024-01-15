@@ -12,7 +12,7 @@ torch.special.logit(input, eps=None, *, out=None)
 paddle.logit(x, eps=None, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -27,7 +27,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### out：指定输出
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.special.logit(x, out=y)
 
 # Paddle 写法

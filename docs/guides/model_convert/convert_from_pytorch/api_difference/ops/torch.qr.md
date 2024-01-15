@@ -12,7 +12,7 @@ torch.qr(input, some=True, *, out=None)
 paddle.linalg.qr(x, mode='reduced', name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -25,14 +25,14 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### some：控制 QR 分解的行为
 ```python
 # 当进行完整的 QR 分解时
-# Pytorch 写法
+# PyTorch 写法
 q, r = torch.qr(x, some=False)
 
 # Paddle 写法
 q, r = paddle.linalg.qr(x, mode='complete')
 
 #当进行减少的 QR 分解时
-# Pytorch 写法
+# PyTorch 写法
 q, r = torch.qr(x, some=True)
 
 # Paddle 写法
@@ -41,7 +41,7 @@ q, r = paddle.linalg.qr(x, mode='reduced')
 
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.qr(x, out = (q, r) )
 
 # Paddle 写法

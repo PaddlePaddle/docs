@@ -12,7 +12,7 @@ torch.nn.Module.named_buffers(prefix='', recurse=True, remove_duplicate=True)
 paddle.nn.Layer.named_buffers(prefix='', include_sublayers=True)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

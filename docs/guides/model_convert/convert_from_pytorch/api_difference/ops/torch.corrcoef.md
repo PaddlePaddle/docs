@@ -18,4 +18,4 @@ paddle.linalg.corrcoef(x,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font>         | <font color='red'> x </font>            | 一个 N(N<=2) 维矩阵，包含多个变量。默认矩阵的每行是一个观测变量，由参数 rowvar 设置。    |
-| -             | <font color='red'> rowvar </font>       | 以行或列作为一个观测变量，  Pytorch 无此参数， Paddle 保持默认即可。    |
+| -             | <font color='red'> rowvar </font>       | 以行或列作为一个观测变量，  PyTorch 无此参数， Paddle 保持默认即可。    |

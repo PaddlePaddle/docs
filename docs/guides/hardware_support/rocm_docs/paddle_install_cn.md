@@ -9,7 +9,7 @@
 
 ## 安装方式一：通过 wheel 包安装
 
-**注意**：当前提供基于 CentOS 7.8 & ROCm 4.0.1 的 docker 镜像，与 Python 3.7 的 wheel 安装包。同时提供基于 CentOS 7.6 & DTK 22.10.1 的 docker 镜像，镜像中包含 Python 3.7 的飞浆 2.3.2 wheel 安装包（ image.sourcefind.cn:5000/dcu/admin/base/paddlepaddle:2.3.2-centos7.6-dtk-22.10.1-py37-latest ）
+**注意**：当前提供基于 CentOS 7.8 & ROCm 4.0.1 的 docker 镜像，与 Python 3.7 的 wheel 安装包。同时提供基于 CentOS 7.6 & DTK 22.10.1 的 docker 镜像，镜像中包含 Python 3.7 的飞桨 2.3.2 wheel 安装包（ image.sourcefind.cn:5000/dcu/admin/base/paddlepaddle:2.3.2-centos7.6-dtk-22.10.1-py37-latest ）
 
 **第一步**：准备 ROCm 4.0.1 运行环境 (推荐使用 Paddle 镜像)
 

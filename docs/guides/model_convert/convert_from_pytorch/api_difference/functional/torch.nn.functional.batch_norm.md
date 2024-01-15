@@ -11,7 +11,7 @@ torch.nn.functional.batch_norm(input, running_mean, running_var, weight=None, bi
 paddle.nn.functional.batch_norm(x, running_mean, running_var, weight, bias, training=False, momentum=0.9, epsilon=1e-05, data_format='NCHW', name=None)
 ```
 
-其中 Pytorch 与 Paddle 参数不一致，具体如下：
+其中 PyTorch 与 Paddle 参数不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -21,15 +21,15 @@ paddle.nn.functional.batch_norm(x, running_mean, running_var, weight, bias, trai
 | <font color='red'> weight </font>   | <font color='red'> weight </font>   | 权重的 Tensor。          |
 | <font color='red'> bias </font>   | <font color='red'> bias </font>   | 偏置的 Tensor。              |
 | <font color='red'> eps  </font>         |    <font color='red'> epsilon  </font>         | 为了数值稳定加在分母上的值。       |
-| <font color='red'> momentum </font>             | <font color='red'> momentum </font>  | 此值用于计算 moving_mean 和 moving_var, 值的大小 Paddle = 1 - Pytorch，需要转写。      |
+| <font color='red'> momentum </font>             | <font color='red'> momentum </font>  | 此值用于计算 moving_mean 和 moving_var, 值的大小 Paddle = 1 - PyTorch，需要转写。      |
 | <font color='red'> training </font>           |  <font color='red'> training </font>            | 是否可训练。 |
-| -  |  <font color='red'> data_format </font> | 指定输入数据格式，Pytorch 无此参数，Paddle 保持默认即可。 |
+| -  |  <font color='red'> data_format </font> | 指定输入数据格式，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 
 ### 转写示例
 #### momentum：此值用于计算 moving_mean 和 moving_var
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.functional.batch_norm(input=input, running_mean=running_mean, running_var=running_var, momentum=0.1)
 
 # Paddle 写法

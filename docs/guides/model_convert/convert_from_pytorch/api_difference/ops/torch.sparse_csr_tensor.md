@@ -12,7 +12,7 @@ torch.sparse_csr_tensor(crow_indices, col_indices, values, size=None, *, dtype=N
 paddle.sparse.sparse_csr_tensor(crows, cols, values, shape, dtype=None, place=None, stop_gradient=True)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

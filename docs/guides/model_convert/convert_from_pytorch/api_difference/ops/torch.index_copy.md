@@ -11,13 +11,13 @@ Paddle 无此 API，需要组合实现。
 ### 转写示例
 
 ```python
-# Pytorch 写法，dim=0
+# PyTorch 写法，dim=0
 y = torch.index_copy(input, 0, index, source)
 
 # Paddle 写法
 y = paddle.scatter(input, index, source)
 
-# Pytorch 写法，dim>0
+# PyTorch 写法，dim>0
 y = torch.index_copy(input, dim, index, source)
 
 # Paddle 写法

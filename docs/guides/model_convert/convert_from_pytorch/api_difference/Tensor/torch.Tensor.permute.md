@@ -12,7 +12,7 @@ torch.Tensor.permute(*dims)
 paddle.Tensor.transpose(perm, name=None)
 ```
 
-Pytorch 的 `*dims` 相比于 paddle 的 `perm` 额外支持可变参数的用法，具体如下：
+PyTorch 的 `*dims` 相比于 paddle 的 `perm` 额外支持可变参数的用法，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

@@ -16,7 +16,7 @@ paddle.floor_divide(x,
                     name=None)
 ```
 
-其中 Pytorch 和 Paddle 的 `other` 参数支持类型不一致，具体如下：
+其中 PyTorch 和 Paddle 的 `other` 参数支持类型不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -28,7 +28,7 @@ paddle.floor_divide(x,
 ### 转写示例
 #### other：输入为 Number
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.floor_divide(torch.tensor([2, 3, 8, 7]), other=2.)
 
 # Paddle 写法
@@ -37,7 +37,7 @@ paddle.floor_divide(paddle.to_tensor([2, 3, 8, 7]), other=paddle.to_tensor(2.))
 
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.floor_divide(torch.tensor([2, 3, 8, 7]), torch.tensor([1, 5, 3, 3]), out=y)
 
 # Paddle 写法

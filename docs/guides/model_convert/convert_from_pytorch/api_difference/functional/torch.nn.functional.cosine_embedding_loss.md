@@ -12,7 +12,7 @@ torch.nn.functional.cosine_embedding_loss(input1, input2, target, margin=0, size
 paddle.nn.functional.cosine_embedding_loss(input1, input2, label, margin=0, reduction='mean', name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -29,7 +29,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 
 ```python
-# Pytorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
+# PyTorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
 if size_average is None:
     size_average = True
 if reduce is None:

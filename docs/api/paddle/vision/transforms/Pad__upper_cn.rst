@@ -1,4 +1,4 @@
-.. _cn_api_paddle_vision_transforms_Pad:
+.. _cn_api_paddle_vision_transforms_Pad__upper:
 
 Pad
 -------------------------------
