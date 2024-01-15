@@ -7,13 +7,13 @@ Conv2D
 
 **稀疏二维卷积层**
 
-二维稀疏卷积层（Sparse convolution2d layer）根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilations）一组参数计算得到输出特征层大小。
+二维稀疏卷积层（Sparse convolution2d layer）根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilations）、组参数（groups）计算得到输出特征。
 
-输入（Input）和输出（Output）是 NHWC 格式。
+输入（Input）和输出（Output）是形状为[N,H,W,C]的多维稀疏坐标格式张量（SparseCooTensors）。
 
 其中 N 是批量大小，C 是通道数，H 是特征的高度，W 是特征层宽度。如果 bias_attr 不为 False，卷积计算会添加偏置项。
 
-对于每个输入 X，方程为：
+对于每个输入 X，计算公式为：
 
 .. math::
 
@@ -22,7 +22,7 @@ Conv2D
 其中：
 
     - :math:`X`：输入值，NHWC 格式的 Tensor
-    - :math:`W`：卷积核值，NHWC 格式的 Tensor
+    - :math:`W`：卷积核值，HWCM 格式的 Tensor
     - :math:`*`：卷积操作
     - :math:`b`：偏置值，1-D Tensor，形为 ``[M]``
     - :math:`Out`：输出值，NHWC 格式的 Tensor，和 ``X`` 的形状可能不同

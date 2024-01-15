@@ -5,9 +5,9 @@ conv2d
 
 .. py:function:: paddle.sparse.nn.functional.conv2d(x, weight, bias=None, stride=1, padding=0, dilation=1, groups=1, data_format='NHWC', name=None)
 
-稀疏二维卷积层（sparse convolution2d），根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilations）一组参数计算得到输出特征层大小。输入和输出是 NHWC 格式，其中 N 是批尺寸，H 是特征的高度，W 是特征层宽度，C 是通道数。如果 bias_attr 不为 False，卷积计算会添加偏置项。
+稀疏二维卷积层（sparse convolution2d），根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilations）、组参数（groups）计算得到输出特征。输入（Input）和输出（Output）是形状为[N,H,W,C]的多维稀疏坐标格式张量（SparseCooTensors）。其中 N 是批尺寸，H 是特征的高度，W 是特征层宽度，C 是通道数。如果 bias_attr 不为 False，卷积计算会添加偏置项。
 
-对于每个输入 X，方程为：
+对于每个输入 X，计算公式为：
 
 .. math::
 
@@ -16,7 +16,7 @@ conv2d
 其中：
 
     - :math:`X` ：输入值，NHWC 格式的 Tensor
-    - :math:`W` ：卷积核值，MCDHW 格式的 Tensor
+    - :math:`W` ：卷积核值，HWCM 格式的 Tensor
     - :math:`*` ：卷积操作
     - :math:`b` ：偏置值，1-D Tensor，形为 ``[M]``
     - :math:`Out` ：输出值， ``Out`` 和 ``X`` 的形状可能不同。
