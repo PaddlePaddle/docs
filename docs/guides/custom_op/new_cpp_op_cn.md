@@ -327,7 +327,7 @@ PADDLE_API Tensor ones(const IntArray& shape, DataType dtype = DataType::FLOAT32
 PADDLE_API Tensor overlap_add(const Tensor& x, int hop_length, int axis = -1);
 PADDLE_API Tensor pixel_shuffle(const Tensor& x, int upscale_factor, const std::string& data_format);
 PADDLE_API Tensor poisson(const Tensor& x);
-PADDLE_API Tensor put_along_axis(const Tensor& arr, const Tensor& indices, const Tensor& values, int axis, const std::string& reduce = "assign");
+PADDLE_API Tensor put_along_axis(const Tensor& arr, const Tensor& indices, const Tensor& values, int axis, const std::string& reduce = "assign", include_self = true);
 PADDLE_API std::tuple<Tensor,Tensor> qr(const Tensor& x, const std::string& mode);
 PADDLE_API Tensor real(const Tensor& x);
 PADDLE_API Tensor reciprocal(const Tensor& x);

@@ -12,7 +12,7 @@ torch.nn.MultiheadAttention(embed_dim, num_heads, dropout=0.0, bias=True, add_bi
 paddle.nn.MultiHeadAttention(embed_dim, num_heads, dropout=0.0, kdim=None, vdim=None, need_weights=False, weight_attr=None, bias_attr=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

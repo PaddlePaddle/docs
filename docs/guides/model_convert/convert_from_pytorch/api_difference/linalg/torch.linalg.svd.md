@@ -12,13 +12,13 @@ torch.linalg.svd(A, full_matrices=True, *, driver=None, out=None)
 paddle.linalg.svd(x, full_matrices=False, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle  | 备注                                                                                           |
 | ------------- | ------------- | ---------------------------------------------------------------------------------------------- |
 | A             | x             | 输入 Tensor，仅参数名不一致。                                                                  |
-| full_matrices | full_matrices | 是否计算完整的 U 和 V 矩阵，Pytorch 为 True，Paddle 为 False，Paddle 需设置为与 Pytorch 一致。 |
+| full_matrices | full_matrices | 是否计算完整的 U 和 V 矩阵，PyTorch 为 True，Paddle 为 False，Paddle 需设置为与 PyTorch 一致。 |
 | driver        | -             | cuSOLVER 方法名，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                     |
 | out           | -             | 表示输出的 Tensor，Paddle 无此参数，需要转写。                                                 |
 

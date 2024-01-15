@@ -25,14 +25,14 @@ paddle.nn.GRUCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=N
 ### 转写示例
 #### bias：是否使用偏置
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.GRU(16, 32, bias=True)
 
 # Paddle 写法
 paddle.nn.GRU(16, 32)
 ```
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.GRU(16, 32, bias=False)
 
 # Paddle 写法

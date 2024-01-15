@@ -5,10 +5,12 @@ sin
 
 .. py:function:: paddle.sin(x, name=None)
 
-
-
-
 计算输入的正弦值。
+
+计算公式为：
+
+.. math::
+    out=sin(x)
 
 参数
 ::::::::::::

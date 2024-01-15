@@ -43,145 +43,145 @@ class func_helper:
 
         # analysis doxygen
         doxygen_dict = parse_doxygen(doxygen)
-        if doxygen_dict['intro'] != "":
-            self.introduction = doxygen_dict['intro']
-        if doxygen_dict['note'] != "":
-            self.note = doxygen_dict['note']
-        if doxygen_dict['returns'] != "":
-            self.returns = doxygen_dict['returns']
-        if doxygen_dict['param_intro'] != {}:
-            for param_name in doxygen_dict['param_intro'].keys():
-                self.parameter_dict[param_name]['intro'] = doxygen_dict[
-                    'param_intro'
+        if doxygen_dict["intro"] != "":
+            self.introduction = doxygen_dict["intro"]
+        if doxygen_dict["note"] != "":
+            self.note = doxygen_dict["note"]
+        if doxygen_dict["returns"] != "":
+            self.returns = doxygen_dict["returns"]
+        if doxygen_dict["param_intro"] != {}:
+            for param_name in doxygen_dict["param_intro"].keys():
+                self.parameter_dict[param_name]["intro"] = doxygen_dict[
+                    "param_intro"
                 ][param_name]
 
     def create_and_write_file(self, save_dir, language):
-        if language == 'cn':
+        if language == "cn":
             self.create_and_write_file_cn(save_dir, language)
-        elif language == 'en':
+        elif language == "en":
             self.create_and_write_file_en(save_dir, language)
         else:
-            print('Error language! ')
+            print("Error language! ")
 
     def create_and_write_file_cn(self, save_dir, language):
-        with open(save_dir, 'w', encoding='utf8') as f:
+        with open(save_dir, "w", encoding="utf8") as f:
             head_text = (
-                f'.. _{language}_api_{self.namespace}{self.func_name}:\n' + '\n'
+                f".. _{language}_api_{self.namespace}{self.func_name}:\n" + "\n"
             )
             f.write(head_text)
 
             name_and_intro_text = (
-                f'{self.func_name}\n'
-                + '-------------------------------\n'
-                + '\n'
-                + f'..cpp: function::{self.api}\n'
-                + f'{self.introduction}\n'
-                + '\n'
+                f"{self.func_name}\n"
+                + "-------------------------------\n"
+                + "\n"
+                + f"..cpp: function::{self.api}\n"
+                + f"{self.introduction}\n"
+                + "\n"
             )
             f.write(name_and_intro_text)
 
             if self.func_name in self.cpp2py_api_list:
                 cpp2py_text = (
-                    '本 API 与 Python API 对齐，详细用法可参考链接：'
-                    + f'[paddle.{self.func_name}]'
-                    + f'(https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/{self.func_name}_{language}.html)\n'
-                    + '\n'
+                    "本 API 与 Python API 对齐，详细用法可参考链接："
+                    + f"[paddle.{self.func_name}]"
+                    + f"(https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/{self.func_name}_{language}.html)\n"
+                    + "\n"
                 )
                 f.write(cpp2py_text)
 
             if self.note != "":
-                note_text = '..note::\n' + f'\t{self.note}\n' + '\n'
+                note_text = "..note::\n" + f"\t{self.note}\n" + "\n"
                 f.write(note_text)
 
             define_path_text = (
-                '定义目录\n'
-                + ':::::::::::::::::::::\n'
-                + f'{self.file_path}\n'
-                + '\n'
+                "定义目录\n"
+                + ":::::::::::::::::::::\n"
+                + f"{self.file_path}\n"
+                + "\n"
             )
             f.write(define_path_text)
 
             if len(self.parameter_dict) != 0:
-                parameters_text = '参数\n' + ':::::::::::::::::::::'
-                f.write(parameters_text + '\n')
+                parameters_text = "参数\n" + ":::::::::::::::::::::"
+                f.write(parameters_text + "\n")
                 for param in self.parameter_dict.keys():
                     param_text = f"\t- **{param}**"
-                    if self.parameter_dict[param]['type'] != "":
+                    if self.parameter_dict[param]["type"] != "":
                         param_text += f" ({self.parameter_dict[param]['type']})"
-                    if self.parameter_dict[param]['intro'] != "":
+                    if self.parameter_dict[param]["intro"] != "":
                         param_text += (
                             f" - {self.parameter_dict[param]['intro']}"
                         )
                     param_text += "\n"
                     f.write(param_text)
-            f.write('\n')
+            f.write("\n")
 
             return_text = (
-                '返回\n' + ':::::::::::::::::::::\n' + f'{self.returns}' + '\n'
+                "返回\n" + ":::::::::::::::::::::\n" + f"{self.returns}" + "\n"
             )
-            if 'void' not in self.returns:
+            if "void" not in self.returns:
                 f.write(return_text)
 
     def create_and_write_file_en(self, save_dir, language):
-        with open(save_dir, 'w', encoding='utf8') as f:
+        with open(save_dir, "w", encoding="utf8") as f:
             head_text = (
-                f'.. _{language}_api_{self.namespace}{self.func_name}:\n' + '\n'
+                f".. _{language}_api_{self.namespace}{self.func_name}:\n" + "\n"
             )
             f.write(head_text)
 
             name_and_intro_text = (
-                f'{self.func_name}\n'
-                + '-------------------------------\n'
-                + '\n'
-                + f'..cpp: function::{self.api}\n'
-                + f'{self.introduction}\n'
-                + '\n'
+                f"{self.func_name}\n"
+                + "-------------------------------\n"
+                + "\n"
+                + f"..cpp: function::{self.api}\n"
+                + f"{self.introduction}\n"
+                + "\n"
             )
             f.write(name_and_intro_text)
 
             if self.func_name in self.cpp2py_api_list:
                 cpp2py_text = (
-                    'This API is aligned with Python API, more details are shown in '
-                    + f'[paddle.{self.func_name}]'
-                    + f'(https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/{self.func_name}_{language}.html)\n'
-                    + '\n'
+                    "This API is aligned with Python API, more details are shown in "
+                    + f"[paddle.{self.func_name}]"
+                    + f"(https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/{self.func_name}_{language}.html)\n"
+                    + "\n"
                 )
                 f.write(cpp2py_text)
 
             if self.note != "":
-                note_text = '..note::\n' + f'\t{self.note}\n' + '\n'
+                note_text = "..note::\n" + f"\t{self.note}\n" + "\n"
                 f.write(note_text)
 
             define_path_text = (
-                'Path\n'
-                + ':::::::::::::::::::::\n'
-                + f'{self.file_path}\n'
-                + '\n'
+                "Path\n"
+                + ":::::::::::::::::::::\n"
+                + f"{self.file_path}\n"
+                + "\n"
             )
             f.write(define_path_text)
 
             if len(self.parameter_dict) != 0:
-                parameters_text = 'Parameters\n' + ':::::::::::::::::::::'
-                f.write(parameters_text + '\n')
+                parameters_text = "Parameters\n" + ":::::::::::::::::::::"
+                f.write(parameters_text + "\n")
                 for param in self.parameter_dict.keys():
                     param_text = f"\t- **{param}**"
-                    if self.parameter_dict[param]['type'] != "":
+                    if self.parameter_dict[param]["type"] != "":
                         param_text += f" ({self.parameter_dict[param]['type']})"
-                    if self.parameter_dict[param]['intro'] != "":
+                    if self.parameter_dict[param]["intro"] != "":
                         param_text += (
                             f" - {self.parameter_dict[param]['intro']}"
                         )
                     param_text += "\n"
                     f.write(param_text)
-            f.write('\n')
+            f.write("\n")
 
             return_text = (
-                'Returns\n'
-                + ':::::::::::::::::::::\n'
-                + f'{self.returns}'
-                + '\n'
+                "Returns\n"
+                + ":::::::::::::::::::::\n"
+                + f"{self.returns}"
+                + "\n"
             )
-            if 'void' not in self.returns:
+            if "void" not in self.returns:
                 f.write(return_text)
 
 
@@ -210,10 +210,10 @@ class class_helper:
         self.note = ""
         # analysis doxygen
         doxygen_dict = parse_doxygen(doxygen)
-        if doxygen_dict['intro'] != "":
-            self.introduction = doxygen_dict['intro']
-        if doxygen_dict['note'] != "":
-            self.note = doxygen_dict['note']
+        if doxygen_dict["intro"] != "":
+            self.introduction = doxygen_dict["intro"]
+        if doxygen_dict["note"] != "":
+            self.note = doxygen_dict["note"]
 
         # 初始化函数
         # 避免空函数解析
@@ -226,7 +226,7 @@ class class_helper:
         for i in range(self.class_function_number):
             ith_function = self.class_dict["methods"]["public"][i]
 
-            function_name = ith_function['debug']
+            function_name = ith_function["debug"]
             # 获取描述
             funcs_doxygen = (
                 ith_function.get("doxygen", "")
@@ -248,33 +248,33 @@ class class_helper:
             returns = ith_function["rtnType"]
             # Note Template 没有仅对class起作用，可能需要同步添加到API中
             template = ""
-            if ith_function['template'] is not False:
-                template = ith_function['template']
+            if ith_function["template"] is not False:
+                template = ith_function["template"]
 
             # analysis doxygen
             doxygen_dict = parse_doxygen(funcs_doxygen)
-            if doxygen_dict['intro'] != "":
-                funcs_intro = doxygen_dict['intro']
-            if doxygen_dict['note'] != "":
-                funcs_note = doxygen_dict['note']
-            if doxygen_dict['returns'] != "":
-                returns = doxygen_dict['returns']
-            if doxygen_dict['param_intro'] != {}:
-                for param_name in doxygen_dict['param_intro'].keys():
+            if doxygen_dict["intro"] != "":
+                funcs_intro = doxygen_dict["intro"]
+            if doxygen_dict["note"] != "":
+                funcs_note = doxygen_dict["note"]
+            if doxygen_dict["returns"] != "":
+                returns = doxygen_dict["returns"]
+            if doxygen_dict["param_intro"] != {}:
+                for param_name in doxygen_dict["param_intro"].keys():
                     # Note: 可能param_name 不同步，需要注意
                     if param_name in parameter_dict.keys():
-                        parameter_dict[param_name]['intro'] = doxygen_dict[
-                            'param_intro'
+                        parameter_dict[param_name]["intro"] = doxygen_dict[
+                            "param_intro"
                         ][param_name]
 
             self.functions_infor.append(
                 {
-                    'name': function_name,
-                    'doxygen': funcs_intro,
-                    'note': funcs_note,
-                    'parameter': parameter_dict,
-                    'returns': returns,
-                    'template': template,
+                    "name": function_name,
+                    "doxygen": funcs_intro,
+                    "note": funcs_note,
+                    "parameter": parameter_dict,
+                    "returns": returns,
+                    "template": template,
                 }
             )
 
@@ -282,48 +282,48 @@ class class_helper:
         #     print('CLASS: ' + self.file_path + ' - ' + self.class_name)
 
     def create_and_write_file(self, save_dir, language):
-        if language == 'cn':
+        if language == "cn":
             self.create_and_write_file_cn(save_dir, language)
-        elif language == 'en':
+        elif language == "en":
             self.create_and_write_file_en(save_dir, language)
         else:
-            print('Error language! ')
+            print("Error language! ")
 
     def create_and_write_file_cn(self, save_dir, language):
-        with open(save_dir, 'w', encoding='utf8') as f:
-            head_text = f'.. _{language}_api_{self.class_name}:\n' + '\n'
+        with open(save_dir, "w", encoding="utf8") as f:
+            head_text = f".. _{language}_api_{self.class_name}:\n" + "\n"
             f.write(head_text)
 
             name_and_intro_text = (
-                f'{self.class_name}[源代码](https://github.com/PaddlePaddle/Paddle/blob/{self.branch}/{self.file_path})\n'
-                + '-------------------------------\n'
-                + '\n'
-                + f'.. cpp:class:: {self.init_func}\n'
-                + f'{self.introduction}\n'
-                + '\n'
+                f"{self.class_name}[源代码](https://github.com/PaddlePaddle/Paddle/blob/{self.branch}/{self.file_path})\n"
+                + "-------------------------------\n"
+                + "\n"
+                + f".. cpp:class:: {self.init_func}\n"
+                + f"{self.introduction}\n"
+                + "\n"
             )
             f.write(name_and_intro_text)
 
             if self.note != "":
-                note_text = '..note::\n' + f'\t{self.note}\n' + '\n'
+                note_text = "..note::\n" + f"\t{self.note}\n" + "\n"
                 f.write(note_text)
 
             define_path_text = (
-                '定义目录\n'
-                + ':::::::::::::::::::::\n'
-                + f'{self.file_path}\n'
-                + '\n'
+                "定义目录\n"
+                + ":::::::::::::::::::::\n"
+                + f"{self.file_path}\n"
+                + "\n"
             )
             f.write(define_path_text)
 
             if self.class_function_number != 0:
                 class_function_head_text = (
-                    '方法\n' + ':::::::::::::::::::::\n' + '\n'
+                    "方法\n" + ":::::::::::::::::::::\n" + "\n"
                 )
                 f.write(class_function_head_text)
 
                 for fun_infor in self.functions_infor:
-                    if fun_infor['template'] == "":
+                    if fun_infor["template"] == "":
                         fun_name_and_intro_text = ""
                     else:
                         fun_name_and_intro_text = f'{fun_infor["template"]}\n'
@@ -335,28 +335,28 @@ class class_helper:
                     )
                     f.write(fun_name_and_intro_text)
 
-                    if fun_infor['note'] != "":
+                    if fun_infor["note"] != "":
                         fun_note_text = (
-                            '..note::\n' + f'\t{fun_infor["note"]}\n' + '\n'
+                            "..note::\n" + f'\t{fun_infor["note"]}\n' + "\n"
                         )
                         f.write(fun_note_text)
 
-                    if len(fun_infor['parameter']) != 0:
+                    if len(fun_infor["parameter"]) != 0:
                         parameters_text = "**参数**\n" + "'''''''''''\n"
                         f.write(parameters_text)
-                        for param in fun_infor['parameter'].keys():
+                        for param in fun_infor["parameter"].keys():
                             param_text = f"\t- **{param}**"
-                            if fun_infor['parameter'][param]['type'] != "":
+                            if fun_infor["parameter"][param]["type"] != "":
                                 param_text += f" ({fun_infor['parameter'][param]['type']})"
-                            if fun_infor['parameter'][param]['intro'] != "":
+                            if fun_infor["parameter"][param]["intro"] != "":
                                 param_text += f" - {fun_infor['parameter'][param]['intro']}"
                             param_text += "\n"
                             f.write(param_text)
-                    f.write('\n')
+                    f.write("\n")
 
                     if (
-                        fun_infor['returns'] != ''
-                        and 'void' not in fun_infor['returns']
+                        fun_infor["returns"] != ""
+                        and "void" not in fun_infor["returns"]
                     ):
                         fun_return_text = (
                             "**返回**\n"
@@ -367,40 +367,40 @@ class class_helper:
                         f.write(fun_return_text)
 
     def create_and_write_file_en(self, save_dir, language):
-        with open(save_dir, 'w', encoding='utf8') as f:
-            head_text = f'.. _{language}_api_{self.class_name}:\n' + '\n'
+        with open(save_dir, "w", encoding="utf8") as f:
+            head_text = f".. _{language}_api_{self.class_name}:\n" + "\n"
             f.write(head_text)
 
             name_and_intro_text = (
-                f'{self.class_name}[source](https://github.com/PaddlePaddle/Paddle/blob/{self.branch}/{self.file_path})\n'
-                + '-------------------------------\n'
-                + '\n'
-                + f'.. cpp:class:: {self.init_func}\n'
-                + f'{self.introduction}\n'
-                + '\n'
+                f"{self.class_name}[source](https://github.com/PaddlePaddle/Paddle/blob/{self.branch}/{self.file_path})\n"
+                + "-------------------------------\n"
+                + "\n"
+                + f".. cpp:class:: {self.init_func}\n"
+                + f"{self.introduction}\n"
+                + "\n"
             )
             f.write(name_and_intro_text)
 
             if self.note != "":
-                note_text = '..note::\n' + f'\t{self.note}\n' + '\n'
+                note_text = "..note::\n" + f"\t{self.note}\n" + "\n"
                 f.write(note_text)
 
             define_path_text = (
-                'Path\n'
-                + ':::::::::::::::::::::\n'
-                + f'{self.file_path}\n'
-                + '\n'
+                "Path\n"
+                + ":::::::::::::::::::::\n"
+                + f"{self.file_path}\n"
+                + "\n"
             )
             f.write(define_path_text)
 
             if self.class_function_number != 0:
                 class_function_head_text = (
-                    'Methods\n' + ':::::::::::::::::::::\n' + '\n'
+                    "Methods\n" + ":::::::::::::::::::::\n" + "\n"
                 )
                 f.write(class_function_head_text)
 
                 for fun_infor in self.functions_infor:
-                    if fun_infor['template'] == "":
+                    if fun_infor["template"] == "":
                         fun_name_and_intro_text = ""
                     else:
                         fun_name_and_intro_text = f'{fun_infor["template"]}\n'
@@ -412,28 +412,28 @@ class class_helper:
                     )
                     f.write(fun_name_and_intro_text)
 
-                    if fun_infor['note'] != "":
+                    if fun_infor["note"] != "":
                         fun_note_text = (
-                            '..note::\n' + f'\t{fun_infor["note"]}\n' + '\n'
+                            "..note::\n" + f'\t{fun_infor["note"]}\n' + "\n"
                         )
                         f.write(fun_note_text)
 
-                    if len(fun_infor['parameter']) != 0:
+                    if len(fun_infor["parameter"]) != 0:
                         parameters_text = "**Parameters**\n" + "'''''''''''\n"
                         f.write(parameters_text)
-                        for param in fun_infor['parameter'].keys():
+                        for param in fun_infor["parameter"].keys():
                             param_text = f"\t- **{param}**"
-                            if fun_infor['parameter'][param]['type'] != "":
+                            if fun_infor["parameter"][param]["type"] != "":
                                 param_text += f" ({fun_infor['parameter'][param]['type']})"
-                            if fun_infor['parameter'][param]['intro'] != "":
+                            if fun_infor["parameter"][param]["intro"] != "":
                                 param_text += f" - {fun_infor['parameter'][param]['intro']}"
                             param_text += "\n"
                             f.write(param_text)
-                    f.write('\n')
+                    f.write("\n")
 
                     if (
-                        fun_infor['returns'] != ''
-                        and 'void' not in fun_infor['returns']
+                        fun_infor["returns"] != ""
+                        and "void" not in fun_infor["returns"]
                     ):
                         fun_return_text = (
                             "**Returns**\n"
@@ -447,12 +447,12 @@ class class_helper:
 # 用于生成Overview页面
 # 根据指定的语言类型，在指定目录生成总览文档
 def generate_overview(overview_list, save_dir, language):
-    if language == 'cn':
+    if language == "cn":
         generate_overview_cn(overview_list, save_dir, language)
-    elif language == 'en':
+    elif language == "en":
         generate_overview_en(overview_list, save_dir, language)
     else:
-        print('Error language! ')
+        print("Error language! ")
 
 
 def generate_overview_cn(overview_list, root_dir, LANGUAGE):
@@ -460,18 +460,18 @@ def generate_overview_cn(overview_list, root_dir, LANGUAGE):
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
 
-    rst_dir = os.path.join(dir_path, 'index.rst')
-    with open(rst_dir, 'w', encoding='utf8') as f:
+    rst_dir = os.path.join(dir_path, "index.rst")
+    with open(rst_dir, "w", encoding="utf8") as f:
         head_text = (
-            '# C++ 文档\n'
-            + '欢迎使用飞桨框架（PaddlePaddle），PaddlePaddle 是一个易用、高效、灵活、可扩展的深度学习框架，致力于让深度学习技术的创新与应用更简单。\n'
-            + '在本版本中，飞桨框架对 C++ 接口做了许多优化，您可以参考下表来了解飞桨框架最新版的 C++ 目录结构与说明。此外，您可参考 PaddlePaddle 的 GitHub 了解详情。\n'
-            + '本文档的应用场景为 C++ 训练，并主要在自定义算子开发时使用。本文档内容持续迭代中，在下个版本可能会有不兼容的升级，如果不介意随下一版本升级的话，可以使用，追求稳定的话则不建议使用。\n'
-            + '\n'
+            "# C++ 文档\n"
+            + "欢迎使用飞桨框架（PaddlePaddle），PaddlePaddle 是一个易用、高效、灵活、可扩展的深度学习框架，致力于让深度学习技术的创新与应用更简单。\n"
+            + "在本版本中，飞桨框架对 C++ 接口做了许多优化，您可以参考下表来了解飞桨框架最新版的 C++ 目录结构与说明。此外，您可参考 PaddlePaddle 的 GitHub 了解详情。\n"
+            + "本文档的应用场景为 C++ 训练，并主要在自定义算子开发时使用。本文档内容持续迭代中，在下个版本可能会有不兼容的升级，如果不介意随下一版本升级的话，可以使用，追求稳定的话则不建议使用。\n"
+            + "\n"
         )
         f.write(head_text)
 
-        f.write('## 头文件索引\n')
+        f.write("## 头文件索引\n")
         namespace_dict = {}  # 用于对齐namespace
 
         for h_dict in overview_list:
@@ -482,7 +482,7 @@ def generate_overview_cn(overview_list, root_dir, LANGUAGE):
             # Note: add url link
             if len(h_dict["class"]) > 0:
                 # write class
-                h_class_text = '#### classes\n'
+                h_class_text = "#### classes\n"
                 f.write(h_class_text)
                 for class_name in h_dict["class"]:
                     class_namespace = class_name["namespace"] + "::"
@@ -490,35 +490,35 @@ def generate_overview_cn(overview_list, root_dir, LANGUAGE):
                     if class_namespace not in namespace_dict.keys():
                         namespace_dict[class_namespace] = []
                     namespace_dict[class_name["namespace"] + "::"].append(
-                        class_name['name'].replace("PADDLE_API", "")
+                        class_name["name"].replace("PADDLE_API", "")
                     )
                     f.write(
-                        '- '
-                        + class_name['name'].replace("PADDLE_API", "")
-                        + '\n'
+                        "- "
+                        + class_name["name"].replace("PADDLE_API", "")
+                        + "\n"
                     )
 
             if len(h_dict["function"]) > 0:
                 # write functions
-                h_function_text = '#### functions\n'
+                h_function_text = "#### functions\n"
                 f.write(h_function_text)
                 for function_name in h_dict["function"]:
                     if function_name["namespace"] not in namespace_dict.keys():
                         namespace_dict[function_name["namespace"]] = []
                     namespace_dict[function_name["namespace"]].append(
-                        function_name['name']
+                        function_name["name"]
                     )
-                    f.write('- ' + function_name['name'] + '\n')
+                    f.write("- " + function_name["name"] + "\n")
 
-            f.write('\n')
+            f.write("\n")
 
         # 根据 namespace 进行分级写入
-        namespace_text = '## 命名空间索引\n'
+        namespace_text = "## 命名空间索引\n"
         for namespace in namespace_dict.keys():
-            namespace_text += f'### {namespace}\n'
+            namespace_text += f"### {namespace}\n"
             for name in namespace_dict[namespace]:
-                namespace_text += f'- {name}\n'
-            namespace_text += '\n'
+                namespace_text += f"- {name}\n"
+            namespace_text += "\n"
         f.write(namespace_text)
 
 
@@ -528,18 +528,18 @@ def generate_overview_en(overview_list, root_dir, LANGUAGE):
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
 
-    rst_dir = os.path.join(dir_path, 'index.rst')
-    with open(rst_dir, 'w', encoding='utf8') as f:
+    rst_dir = os.path.join(dir_path, "index.rst")
+    with open(rst_dir, "w", encoding="utf8") as f:
         head_text = (
-            '# C++ API Reference\n'
-            + 'PaddlePaddle (PArallel Distributed Deep LEarning) is an efficient, flexible, and extensible deep learning framework, commits to making the innovation and application of deep learning technology easier.\n'
-            + 'In this version, PaddlePaddle has made many optimizations to the C++ APIs. You can refer to the following table to understand the C++ API directory structure and description of the latest version of PaddlePaddle. In addition, you can refer to PaddlePaddle’s GitHub for details.\n'
-            + 'The application scenario of this document is C++training and is mainly used in the development of custom operators. The content of this document is continuously iterating, and there may be incompatible upgrades in the next version. If you don’t mind upgrading with the next version, you can use it. Otherwise, it is not recommended to use it.\n'
-            + '\n'
+            "# C++ API Reference\n"
+            + "PaddlePaddle (PArallel Distributed Deep LEarning) is an efficient, flexible, and extensible deep learning framework, commits to making the innovation and application of deep learning technology easier.\n"
+            + "In this version, PaddlePaddle has made many optimizations to the C++ APIs. You can refer to the following table to understand the C++ API directory structure and description of the latest version of PaddlePaddle. In addition, you can refer to PaddlePaddle’s GitHub for details.\n"
+            + "The application scenario of this document is C++training and is mainly used in the development of custom operators. The content of this document is continuously iterating, and there may be incompatible upgrades in the next version. If you don’t mind upgrading with the next version, you can use it. Otherwise, it is not recommended to use it.\n"
+            + "\n"
         )
         f.write(head_text)
 
-        f.write('## Index by header file\n')
+        f.write("## Index by header file\n")
         namespace_dict = {}
 
         for h_dict in overview_list:
@@ -550,39 +550,39 @@ def generate_overview_en(overview_list, root_dir, LANGUAGE):
             # Note: add url link
             if len(h_dict["class"]) > 0:
                 # write class
-                h_class_text = '#### classes\n'
+                h_class_text = "#### classes\n"
                 f.write(h_class_text)
                 for class_name in h_dict["class"]:
                     class_namespace = class_name["namespace"] + "::"
                     if class_namespace not in namespace_dict.keys():
                         namespace_dict[class_namespace] = []
                     namespace_dict[class_name["namespace"] + "::"].append(
-                        class_name['name'].replace("PADDLE_API", "")
+                        class_name["name"].replace("PADDLE_API", "")
                     )
                     f.write(
-                        '- '
-                        + class_name['name'].replace("PADDLE_API", "")
-                        + '\n'
+                        "- "
+                        + class_name["name"].replace("PADDLE_API", "")
+                        + "\n"
                     )
 
             if len(h_dict["function"]) > 0:
                 # write functions
-                h_function_text = '#### functions\n'
+                h_function_text = "#### functions\n"
                 f.write(h_function_text)
                 for function_name in h_dict["function"]:
                     if function_name["namespace"] not in namespace_dict.keys():
                         namespace_dict[function_name["namespace"]] = []
                     namespace_dict[function_name["namespace"]].append(
-                        function_name['name']
+                        function_name["name"]
                     )
-                    f.write('- ' + function_name['name'] + '\n')
+                    f.write("- " + function_name["name"] + "\n")
 
-            f.write('\n')
+            f.write("\n")
 
-        namespace_text = '## Index by namespace\n'
+        namespace_text = "## Index by namespace\n"
         for namespace in namespace_dict.keys():
-            namespace_text += f'### {namespace}\n'
+            namespace_text += f"### {namespace}\n"
             for name in namespace_dict[namespace]:
-                namespace_text += f'- {name}\n'
-            namespace_text += '\n'
+                namespace_text += f"- {name}\n"
+            namespace_text += "\n"
         f.write(namespace_text)

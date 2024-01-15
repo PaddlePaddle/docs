@@ -16,7 +16,7 @@ Paddle 使用类方法来实现，因此忽略第一个参数，无其他参数�
 
 ### 转写示例
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.numel(x)
 
 # Paddle 写法
