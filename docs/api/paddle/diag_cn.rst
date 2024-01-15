@@ -31,9 +31,9 @@ diag
 代码示例 1
 :::::::::
 
-COPY-FROM: paddle.diag:code-example-1
+COPY-FROM: paddle.diag:diag-example-1
 
 代码示例 2
 :::::::::
 
-COPY-FROM: paddle.diag:code-example-2
+COPY-FROM: paddle.diag:diag-example-2
