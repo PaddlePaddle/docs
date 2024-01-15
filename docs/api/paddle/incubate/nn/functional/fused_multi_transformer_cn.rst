@@ -82,8 +82,8 @@ Transformer 层的功能与以下伪代码一致：
                                   - 训练：out = input * mask
                                   - 推理：out = input * (1.0 - p)
     - **trans_qkvw** (bool，可选) - 是否对 qkv 的权重进行转置。
-       如果为 true，则 qkv 的权重形状应为[3, num_head, dim_head, dim_embed]。
-       否则，qkv 的权重形状应为[dim_embed, 3, num_head, dim_head]。默认为 True。
+      如果为 true，则 qkv 的权重形状应为[3, num_head, dim_head, dim_embed]。
+      否则，qkv 的权重形状应为[dim_embed, 3, num_head, dim_head]。默认为 True。
     - **ring_id** (int，可选) - 用于张量模型并行中的分布式前向传播，仅支持 NCCL。默认为-1，表示不使用 mp。
     - **name** (str，可选) - 操作的名称（可选，默认为 None）。更多信息，请参阅 :ref:`api_guide_Name`。
 
