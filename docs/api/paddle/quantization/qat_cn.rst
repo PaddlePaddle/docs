@@ -35,10 +35,14 @@ COPY-FROM: paddle.quantization.QAT.quantize
         
 方法
 ::::::::::::
-convert(model: paddle.nn.layer.layers.Layer, inplace=False, remain_weight=False)
+convert(self, model:layer, inplace=False, remain_weight=False):
 '''''''''
-将量化模型转换为ONNX格式。转换后的模型可以通过调用paddle.jit.save保存为推理模型。:参数模型::类型模型: Layer:原地操作参数:
-:原理类型: bool, optional:剩余权重参数::类型剩余权重: bool, optional
 
+将量化模型转换为ONNX格式。转换后的模型可以通过调用 paddle.jit.save 保存为推理模型。
+
+**参数**
+    - **model**(Layer) - 待量化的模型。
+    - **inplace**(bool, optional) - 是否要对模型进行就地修改，默认为false。
+    - **remain_weight**(bool, optional) - 是否宝石权重为floats，默认为false。
 **返回**
 转换后的模型
