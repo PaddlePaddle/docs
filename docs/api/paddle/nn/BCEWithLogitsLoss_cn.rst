@@ -42,9 +42,9 @@ BCEWithLogitsLoss
 
 形状
 :::::::::
-    - **logit** (Tensor) - 预测值，维度是 :math:`[N, *]`，其中 N 是 batch_size， `*` 是任意其他维度。预测值 ``logit`` 一般是线性层的输出，不需要经过 ``sigmoid`` 层。数据类型是 float32、float64。
-    - **label** (Tensor) - 标签， 维度是 :math:`[N, *]`，标签 ``label`` 的维度，数据类型与预测值 ``logit`` 相同。
-    - **output** (Tensor) - 输出。 如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]`，与 ``logit`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[]` 。
+    - **logit** (Tensor) - 输入的预测值。形状是 :math:`[N, *]`，其中 N 是 batch_size， `*` 是任意其他维度。输入的预测值 ``logit`` 一般是线性层的输出，不需要经过 ``sigmoid`` 层。数据类型是 float32、float64。
+    - **label** (Tensor) - 标签。 形状是 :math:`[N, *]`，标签 ``label`` 的维度、数据类型与输入的预测值 ``logit`` 相同。
+    - **output** (Tensor) - 输出的 Tensor。 如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]`，与输入 ``logit`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[]` 。
 
 返回
 :::::::::
