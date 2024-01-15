@@ -6,7 +6,8 @@ QAT
 .. py:class:: paddle.quantization.QAT(config: paddle.quantization.config.QuantConfig)
 用于为量化感知训练准备模型的工具。
 
-**参数**
+参数
+::::::::::::
     - **config** (QuantConfig) - 量化配置,通常指的是设置和调整模型量化过程中的参数和选项。
 
 **代码示例**
