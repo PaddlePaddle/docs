@@ -29,6 +29,7 @@ convert(self, model:layer, inplace=False, remain_weight=False):
 '''''''''
 
 将量化模型转换为ONNX格式。转换后的模型可以通过调用 paddle.jit.save 保存为推理模型。
+
 **参数**
     - **model**(Layer) - 待量化的模型。
     - **inplace**(bool, optional) - 是否要对模型进行就地修改，默认为false。
