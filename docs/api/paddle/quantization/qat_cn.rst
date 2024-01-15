@@ -1,4 +1,4 @@
-.. _cn_api_paddle_quantization_qat:
+.. _cn_api_paddle_quantization_QAT:
 
 QAT
 -------------------------------
