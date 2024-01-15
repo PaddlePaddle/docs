@@ -33,8 +33,6 @@ quantize(model: Layer, inplace=False)
 
 COPY-FROM: paddle.quantization.QAT.quantize
         
-方法
-::::::::::::
 convert(self, model:layer, inplace=False, remain_weight=False):
 '''''''''
 
