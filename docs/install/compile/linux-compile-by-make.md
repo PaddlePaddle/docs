@@ -37,7 +37,8 @@ Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机�
 
 - 在本地主机上[安装 Docker](https://docs.docker.com/engine/install/)
 
-- 如需在 Linux 开启 GPU 支持，请[安装 nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+- 如需在 Linux 开启 GPU 支持，请[安装 NVIDIA Container Toolkit
+](https://github.com/NVIDIA/nvidia-container-toolkit)
 
 请您按照以下步骤安装：
 
@@ -64,22 +65,22 @@ cd Paddle
 
 * GPU 版的 PaddlePaddle：
     ```
-    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82
+    docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2
     ```
 
-如果您的机器不在中国大陆地区，可以直接从 DockerHub 拉取镜像：
+如果您的机器不在中国大陆地区，可以直接从 [DockerHub 中的 paddle 镜像仓库](https://hub.docker.com/r/paddlepaddle/paddle/tags) 拉取镜像：
 
 * CPU 版的 PaddlePaddle：
     ```
     docker pull paddlepaddle/paddle:latest-dev
     ```
 
-* GPU 版的 PaddlePaddle：
+* GPU 版的 PaddlePaddle(**建议使用较新的镜像,并确保已经成功安装 NVIDIA Container Toolkit**)：
     ```
-    nvidia-docker pull paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82
+    docker pull paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2
     ```
 
-上例中，`latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82` 仅作示意用，表示安装 GPU 版的镜像。如果您还想安装其他 cuda/cudnn 版本的镜像，可以将其替换成`latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`等。
+上例中，`latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2` 仅作示意用，表示安装 GPU 版的镜像。如果您还想安装其他 cuda/cudnn 版本的镜像，可以将其替换成其他版本（建议拉取最新的 GPU 版本）。
 您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
 
 
@@ -87,6 +88,7 @@ cd Paddle
 
 * 编译 CPU 版本的 PaddlePaddle：
 
+    用从百度拉取的镜像创建容器：
     ```
     docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
     ```
@@ -99,11 +101,16 @@ cd Paddle
 
     - `registry.baidubce.com/paddlepaddle/paddle:latest-dev`：使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令。
 
+    若使用的是从 DockerHub 拉取的镜像创建容器，则修改镜像名即可：
+    ```
+    docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev /bin/bash
+    ```
 
 * 编译 GPU 版本的 PaddlePaddle：
 
+    用从百度拉取的镜像创建容器
     ```
-    nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82 /bin/bash
+    docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
     ```
 
     - `--name paddle-test`：为您创建的 Docker 容器命名为 paddle-test;
@@ -112,11 +119,17 @@ cd Paddle
 
     - `-it`： 与宿主机保持交互状态;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82`：使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令。
+    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`：使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令。
 
+    若使用的是从 DockerHub 拉取的镜像创建容器，则修改镜像名即可：
+    ```
+    docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    ```
 
 注意：
 请确保至少为 docker 分配 4g 以上的内存，否则编译过程可能因内存不足导致失败。
+
+**使用 GPU 版本镜像时，请确保成功安装 NVIDIA Container Toolkit ，否则无法在镜像中启用 GPU ，并且建议选择最新的 CPU 或者 GPU 镜像，否则可能会由于代码迭代较快，出现编译相关问题。**
 
 #### 5. 进入 Docker 后进入 paddle 目录下：
 

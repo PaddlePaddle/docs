@@ -9,7 +9,7 @@ In the following Docker installation and use process, a specific version of Padd
 
 - On the local host [Install Docker](https://docs.docker.com/engine/install/)
 
-- To enable GPU support on Linux, please [Install nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+- To enable GPU support on Linux, please [Install NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit)
 
 - Python version in the image is 3.10
 
@@ -29,15 +29,15 @@ For domestic users, when downloading docker is slow due to network problems, you
     docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.0-jupyter
     ```
 
-* GPU version of PaddlePaddle：
+* GPU version of PaddlePaddle(**Latest version of gpu image is recommended， and make sure NVIDIA Container Toolkit is installed successfully**)：
     ```
-    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda11.2-cudnn8.2-trt8.0
-    ```
-    ```
-    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda11.7-cudnn8.4-trt8.4
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda11.2-cudnn8.2-trt8.0
     ```
     ```
-    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda12.0-cudnn8.9-trt8.6
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda11.7-cudnn8.4-trt8.4
+    ```
+    ```
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda12.0-cudnn8.9-trt8.6
     ```
 
 If your machine is not in mainland China, you can pull the image directly from DockerHub:
@@ -52,15 +52,15 @@ If your machine is not in mainland China, you can pull the image directly from D
     docker pull paddlepaddle/paddle:2.6.0-jupyter
     ```
 
-* GPU version of PaddlePaddle：
+* GPU version of PaddlePaddle(**Latest version of gpu image is recommended， and make sure NVIDIA Container Toolkit is installed successfully**)：
     ```
-    nvidia-docker pull paddlepaddle/paddle:2.6.0-gpu-cuda11.2-cudnn8.2-trt8.0
-    ```
-    ```
-    nvidia-docker pull paddlepaddle/paddle:2.6.0-gpu-cuda11.7-cudnn8.4-trt8.4
+    docker pull paddlepaddle/paddle:2.6.0-gpu-cuda11.2-cudnn8.2-trt8.0
     ```
     ```
-    nvidia-docker pull paddlepaddle/paddle:2.6.0-gpu-cuda12.0-cudnn8.9-trt8.6
+    docker pull paddlepaddle/paddle:2.6.0-gpu-cuda11.7-cudnn8.4-trt8.4
+    ```
+    ```
+    docker pull paddlepaddle/paddle:2.6.0-gpu-cuda12.0-cudnn8.9-trt8.6
     ```
 
 You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get more images.
@@ -91,7 +91,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
 
     ```
-    nvidia-docker run --name paddle_docker -it -v $PWD:/paddle registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda12.0-cudnn8.9-trt8.6
+    docker run --name paddle_docker -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
     ```
 
     - `--name paddle_docker`: set name of Docker, `paddle_docker` is name of docker you set;
@@ -102,7 +102,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `-v $PWD:/paddle`: Specifies to mount the current path of the host (PWD variable in Linux will expand to the absolute path of the current path) to the /paddle directory inside the container;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda12.0-cudnn8.9-trt8.6`: Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
+    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`: Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
 
 
 * Use CPU version of PaddlePaddle with jupyter：
