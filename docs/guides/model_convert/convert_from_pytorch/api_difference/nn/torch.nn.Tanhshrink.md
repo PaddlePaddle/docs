@@ -1,4 +1,4 @@
-## [ 参数完全一致 ] torch.nn.Tanhshrink
+## [ 无参数 ] torch.nn.Tanhshrink
 
 ### [torch.nn.Tanhshrink](https://pytorch.org/docs/stable/generated/torch.nn.Tanhshrink.html)
 
@@ -12,4 +12,4 @@ torch.nn.Tanhshrink(*args, **kwargs)
 paddle.nn.Tanhshrink(name=None)
 ```
 
-两者功能一致，参数完全一致。
+两者功能一致，均无参数。

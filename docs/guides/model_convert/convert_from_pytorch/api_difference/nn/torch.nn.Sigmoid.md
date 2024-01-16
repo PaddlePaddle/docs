@@ -1,4 +1,4 @@
-## [ 参数完全一致 ] torch.nn.Sigmoid
+## [ 无参数 ] torch.nn.Sigmoid
 
 ### [torch.nn.Sigmoid](https://pytorch.org/docs/stable/generated/torch.nn.Sigmoid.html)
 
@@ -12,4 +12,4 @@ torch.nn.Sigmoid(*args, **kwargs)
 paddle.nn.Sigmoid(name=None)
 ```
 
-两者功能一致，参数完全一致。
+两者功能一致，均无参数。

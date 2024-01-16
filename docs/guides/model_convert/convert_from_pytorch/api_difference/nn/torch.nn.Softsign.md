@@ -1,4 +1,4 @@
-## [ 参数完全一致 ] torch.nn.Softsign
+## [ 无参数 ] torch.nn.Softsign
 
 ### [torch.nn.Softsign](https://pytorch.org/docs/stable/generated/torch.nn.Softsign.html)
 
@@ -12,4 +12,4 @@ torch.nn.Softsign(*args, **kwargs)
 paddle.nn.Softsign(name=None)
 ```
 
-两者功能一致，参数完全一致。
+两者功能一致，均无参数。
