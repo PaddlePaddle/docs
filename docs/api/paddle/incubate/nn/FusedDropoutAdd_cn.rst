@@ -3,7 +3,7 @@
 FusedDropoutAdd
 -------------------------------
 
-.. py:class::paddle.incubate.nn. FusedDropoutAdd ( p=0.5, mode='upscale_in_train', name=None )
+.. py:class:: paddle.incubate.nn.FusedDropoutAdd ( p=0.5, mode='upscale_in_train', name=None )
 
 实现了 Dropout 和 Add 的融合
 

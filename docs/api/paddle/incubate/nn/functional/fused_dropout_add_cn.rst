@@ -11,10 +11,9 @@ fused_dropout_add
 :::::::::
     - **x** (Tensor): 输入张量。数据类型为 bfloat16, float16, float32 或 float64.
     - **y** (Tensor): 输入张量，数据类型为 bfloat16, float16, float32 或 float64.
-
     - **p** (float|int, 可选): 将单位设置为零的概率。默认值: 0.5。
     - **training** (bool, 可选): 标记是否为训练阶段。默认值: True。
-    - **mode**(str, 可选): ['upscale_in_train'(默认) | 'downscale_in_infer'].
+    - **mode** (str, 可选): ['upscale_in_train'(默认) | 'downscale_in_infer'].
 
             1. upscale_in_train (默认), 在训练时放大输出
 
