@@ -40,7 +40,7 @@ fc
 .. code-block:: text
 
     # Case 1, input is a single tensor:
-    data = [[[0.1, 0.2],
+    x.data = [[[0.1, 0.2],
              [0.3, 0.4]]]
     x.shape = (1, 2, 2) # 1 is batch_size
 
