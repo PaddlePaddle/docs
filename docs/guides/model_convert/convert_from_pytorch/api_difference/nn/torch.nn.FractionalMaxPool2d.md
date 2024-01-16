@@ -18,11 +18,11 @@ PyTorch 参数更多，具体如下：
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| kernel_size   | kernel_size  | 表示核大小。与 PyTorch 默认值不同，（Paddle 可以不设置此参数）。 |
-| output_size   | output_size  | 表示目标输出尺寸。参数完全一致。                                               |
+| kernel_size   | kernel_size  | 表示核大小。参数完全一致。                                 |
+| output_size   | output_size  | 表示目标输出尺寸。参数完全一致。                            |
 | output_ratio  | -            | 表示目标输出比例。Paddle 无此参数，需要转写。                |
 | return_indices | return_mask | 表示是否返回最大值索引。仅参数名不一致。                      |
-| _random_samples | random_u   | 表示随机数。PyTorch 以列表形式的 Tensor 方式传入，Paddle 以 float 的方式传入，需要转写。  |
+| _random_samples | random_u   | 表示随机数。PyTorch 以列表形式的 Tensor 方式传入，Paddle 以 float 的方式传入，如果 PyTorch 的多个随机数相同，需要转写，如果 PyTorch 的多个随机数不同，暂无转写方式。  |
 
 ### 转写示例
 
