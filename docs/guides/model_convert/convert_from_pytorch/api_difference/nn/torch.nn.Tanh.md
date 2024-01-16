@@ -1,4 +1,4 @@
-## [ 参数完全一致 ] torch.nn.Tanh
+## [ 无参数 ] torch.nn.Tanh
 
 ### [torch.nn.Tanh](https://pytorch.org/docs/stable/generated/torch.nn.Tanh.html)
 
@@ -12,4 +12,4 @@ torch.nn.Tanh(*args, **kwargs)
 paddle.nn.Tanh(name=None)
 ```
 
-两者功能一致，参数完全一致。
+两者功能一致，无参数。
