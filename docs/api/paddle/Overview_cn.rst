@@ -165,7 +165,7 @@ tensor 数学操作原位（inplace）版本
 
 .. csv-table::
     :header: "API 名称", "API 功能"
-    :widths: 10, 30
+    :widths: 12, 30
 
     " :ref:`paddle.remainder_ <cn_api_paddle_remainder_>` ", "Inplace 版本的 remainder API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.tanh_ <cn_api_paddle_tanh_>` ", "Inplace 版本的 tanh API，对输入 x 采用 Inplace 策略"
@@ -184,6 +184,8 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.scale_ <cn_api_paddle_scale_>` ", "Inplace 版本的 scale API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.sqrt_ <cn_api_paddle_sqrt_>` ", "Inplace 版本的 sqrt API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.subtract_ <cn_api_paddle_subtract_>` ", "Inplace 版本的 subtract API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.sin_ <cn_api_paddle_sin_>` ", "Inplace 版本的 sin API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.sinh_ <cn_api_paddle_sinh_>` ", "Inplace 版本的 sinh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.tan_ <cn_api_paddle_tan_>` ", "Inplace 版本的 tan API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.cos_ <cn_api_paddle_cos_>` ", "Inplace 版本的 cos API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.atan_ <cn_api_paddle_atan_>` ", "Inplace 版本的 atan API，对输入 x 采用 Inplace 策略"
@@ -195,7 +197,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.masked_fill_ <cn_api_paddle_masked_fill_>` ", "Inplace 版本的 masked_fill API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.masked_scatter_ <cn_api_paddle_masked_scatter_>` ", "Inplace 版本的 masked_scatter API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.index_fill_ <cn_api_paddle_index_fill_>` ", "Inplace 版本的 index_fill API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.sin_ <cn_api_paddle_sin_>` ", "Inplace 版本的 sin API，对输入 x 采用 Inplace 策略"
+
 
 .. _tensor_logic:
 
