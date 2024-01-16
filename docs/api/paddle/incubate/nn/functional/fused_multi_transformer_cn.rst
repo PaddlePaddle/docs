@@ -73,11 +73,11 @@ Transformer 层的功能与以下伪代码一致：
     - **activation** (str，可选) - 激活函数。默认为"gelu"。
     - **training** (bool，可选) - 标志是否处于训练阶段。默认为 False。
     - **mode** (str，可选) - ['upscale_in_train'(默认) | 'downscale_in_infer']
-    
+
                                1. upscale_in_train(默认)，在训练时放大输出
                                   - 训练：out = input * mask / (1.0 - p)
                                   - 推理：out = input
-                                  
+
                                2. downscale_in_infer，推理时减小输出
                                   - 训练：out = input * mask
                                   - 推理：out = input * (1.0 - p)
@@ -90,6 +90,7 @@ Transformer 层的功能与以下伪代码一致：
 返回
 ::::::::::::
     - Tensor|tuple：如果 ``cache_kvs`` 为 None，则返回与 ``x`` 形状和数据类型相同的张量，代表 Transformer 的输出。如果 ``cache_kvs`` 不为 None，则返回元组（output, cache_kvs），其中 output 是 Transformer 的输出，cache_kvs 与输入`cache_kvs`原地更新。
+
 
 代码示例
 :::::::::
