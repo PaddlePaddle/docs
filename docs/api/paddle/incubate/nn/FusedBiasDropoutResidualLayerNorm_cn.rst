@@ -25,7 +25,7 @@ forward(x, residual)
 
 参数
 ::::::::::::
-    - **x** (Tensor) - 输入张量。它是一个形状为 `[batch_size, seq_len, embed_dim]` 的张量。数据类型应为 float32 或 float64。
+    - **x** (Tensor) - 输入张量。它是一个形状为 `[batch_size, seq_len, embed_dim]` 的张量。数据类型应为 float32 或 float64 。
     - **residual** (Tensor，可选) - 残差张量。它是一个形状为 `[batch_size, value_length, vdim]` 的张量。数据类型应为 float32 或 float64。
 
 返回

@@ -20,18 +20,18 @@ fused_bias_dropout_residual_layer_norm 操作符，包含融合偏置、Dropout 
     - **bias** (Tensor，可选) - 线性的偏置。其形状为 `[embed_dim]`。默认为 None。
     - **ln_scale** (Tensor，可选) - 层归一化的权重张量。其形状为 `[embed_dim]`。默认为 None。
     - **ln_bias** (Tensor，可选) - 层归一化的偏置张量。其形状为 `[embed_dim]`。默认为 None。
-    - **dropout_rate** (float，可选) - 在注意力权重上使用的 Dropout 概率，用于在注意力后的 Dropout 过程中丢弃一些注意力目标。0 表示无 Dropout。默认为 0.5。
+    - **dropout_rate** (float，可选) - 在注意力权重上使用的 Dropout 概率，用于在注意力后的 Dropout 过程中丢弃一些注意力目标。0 表示无 Dropout。默认为 0.5 。
     - **ln_epsilon** (float，可选) - 在层归一化的分母中添加的小浮点数，用于避免除以零。默认为 1e-5。
     - **training** (bool，可选) - 表示是否处于训练阶段的标志。默认为 True。
     - **mode** (str，可选) - ['upscale_in_train'(默认) | 'downscale_in_infer']，两种模式分别为：
 
                                  1. upscale_in_train(默认)，在训练时上调输出
-                                 
+
                                     - 训练：out = input * mask / (1.0 - p)
                                     - 推理：out = input
 
                                  2. downscale_in_infer，在推理时下调输出
-                                 
+
                                     - 训练：out = input * mask
                                     - 推理：out = input * (1.0 - p)
     - **name** (str，可选) - 操作的名称（可选，默认为 None）。具体用法请参见 :ref:`api_guide_Name`。
