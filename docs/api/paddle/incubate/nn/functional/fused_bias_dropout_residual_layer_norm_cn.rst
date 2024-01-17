@@ -31,6 +31,7 @@ fused_bias_dropout_residual_layer_norm 操作符，包含融合偏置、Dropout 
                                     - 推理：out = input
 
                                  2. downscale_in_infer，在推理时下调输出
+                                 
                                     - 训练：out = input * mask
                                     - 推理：out = input * (1.0 - p)
     - **name** (str，可选) - 操作的名称（可选，默认为 None）。具体用法请参见 :ref:`api_guide_Name`。
