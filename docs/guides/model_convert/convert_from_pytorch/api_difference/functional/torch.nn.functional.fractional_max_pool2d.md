@@ -27,7 +27,7 @@ PyTorch 参数更多，具体如下：
 
 ### 转写示例
 
-#### output_ratio:目标输出比例
+#### output_size:由 output_ratio 目标输出比例转写
 
 ```python
 # 假设 intput 的 with=7, height=7，
