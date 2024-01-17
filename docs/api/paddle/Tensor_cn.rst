@@ -6,7 +6,7 @@ Tensor
 .. py:class:: paddle.Tensor
 
 
-``Tensor`` 是 Paddle 中最为基础的数据结构，详情请参考:[Tensor 介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/beginner/tensor_cn.html)
+``Tensor`` 是 Paddle 中最为基础的数据结构，请参考 `Tensor 介绍 <https://www.paddlepaddle.org.cn/documentation/docs/guides/beginner/tensor_cn.html>`_
 
 有几种创建 Tensor 的不同方式：
 
