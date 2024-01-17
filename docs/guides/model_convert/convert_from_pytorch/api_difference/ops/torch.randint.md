@@ -22,7 +22,7 @@ paddle.randint(low=0,
                name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -40,7 +40,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.randint(10, (2, 2), out=y)
 
 # Paddle 写法
@@ -50,7 +50,7 @@ paddle.assign(paddle.randint(10, shape=[2, 2]), y)
 
 #### requires_grad：是否求梯度
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x = torch.randint(10, (2, 2), requires_grad=True)
 
 # Paddle 写法
@@ -60,7 +60,7 @@ x.stop_gradient = False
 
 #### device: Tensor 的设备
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.randint(10, (2, 2), device=torch.device('cpu'))
 
 # Paddle 写法

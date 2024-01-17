@@ -11,7 +11,7 @@ torch.Tensor.sub_(other, *, alpha=1)
 paddle.Tensor.subtract_(y)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -22,7 +22,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 #### alpha：表示`other`的乘数
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x.sub_(y, alpha=2)
 
 # Paddle 写法

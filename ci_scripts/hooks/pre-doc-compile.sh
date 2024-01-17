@@ -3,7 +3,7 @@
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 FLUIDDOCDIR=${FLUIDDOCDIR:=/FluidDoc}
-DOCROOT=${FLUIDDOCDIR}/docs/
+DOCROOT=${FLUIDDOCDIR}/docs
 
 
 ## 1 merge the pytorch to paddle api map tables
@@ -44,3 +44,8 @@ done
 APIMAPPING_ROOT=${DOCROOT}/guides/model_convert/convert_from_pytorch
 
 python ${APIMAPPING_ROOT}/apply_reference_from_api_difference.py
+
+if [ $? -ne 0 ]; then
+    echo "Error: API mapping generate script failed, please check changes in ${APIMAPPING_ROOT}"
+    exit 1
+fi

@@ -1,15 +1,15 @@
-# Pytorch 自定义算子转写教程
+# PyTorch 自定义算子转写教程
 
-迁移 Pytorch 自定义算子可以借鉴 torch 的实现代码，在 paddle 和 torch 的不同之处做一些修改即可。修改实现代码中 Pytorch 的 api 为 paddle 的 api，可参考[Pytorch 与 paddle api 映射表](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/model_convert/pytorch_api_mapping_cn.html#api)
+迁移 PyTorch 自定义算子可以借鉴 torch 的实现代码，在 paddle 和 torch 的不同之处做一些修改即可。修改实现代码中 PyTorch 的 api 为 paddle 的 api，可参考[PyTorch 与 paddle api 映射表](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/model_convert/pytorch_api_mapping_cn.html#api)
 
 ## 迁移自定义 C++算子
 
 迁移自定义 C++算子注意事项：
 
-1. 复用 Pytorch 的 kernel 实现代码
+1. 复用 PyTorch 的 kernel 实现代码
 2. 引入 paddle 扩展头文件 ```#include "paddle/extension.h"```
-3. 修改实现代码中涉及到 Pytorch 的代码
-  - 3.1. Pytorch 的 tensor 修改为 paddle 定义的 tensor：``` paddle::Tensor```
+3. 修改实现代码中涉及到 PyTorch 的代码
+  - 3.1. PyTorch 的 tensor 修改为 paddle 定义的 tensor：``` paddle::Tensor```
   - 3.2. paddle Place 的使用：```paddle::GPUPlace()```，详见[paddle 自定义 c++算子文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/custom_op/new_cpp_op_cn.html#shebeileixing)
   - 3.3. paddle 支持的 tensor API，如：empty、full、empty_like、full_like、DataType 等；详见[Tensor API](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/custom_op/new_cpp_op_cn.html#tensor-api)
   - 3.4. 算子实现中需包含前向(forward)实现, 如果需要包括算子梯度计算则需要包含反向(backward)实现, 实现中需要注意:
@@ -33,8 +33,8 @@
 
 迁移自定义 python 算子注意事项：
 
-1. 复用 Pytorch 自定义算子实现，并将算子实现中使用到的 torch api 改为对应的 paddle api, 参考[Pytorch 与 paddle api 映射表](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/model_convert/pytorch_api_mapping_cn.html#api)
-2. Pytorch 中自定义 op 继承自```torch.autograd.Function```改为 paddle 中的```paddle.autograd.PyLayer```
+1. 复用 PyTorch 自定义算子实现，并将算子实现中使用到的 torch api 改为对应的 paddle api, 参考[PyTorch 与 paddle api 映射表](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/model_convert/pytorch_api_mapping_cn.html#api)
+2. PyTorch 中自定义 op 继承自```torch.autograd.Function```改为 paddle 中的```paddle.autograd.PyLayer```
 3. 定义算子的 forward 和 backward 方法
    - 3.1. ```forward()```和```backward()```定义为 staticmethod
    - 3.2. 第一个参数是 PyLayerContext 对象 ctx

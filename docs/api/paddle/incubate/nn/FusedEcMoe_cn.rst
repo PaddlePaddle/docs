@@ -1,6 +1,6 @@
 .. _cn_api_paddle_incubate_nn_FusedEcMoe:
 
-FusedEcMoE
+FusedEcMoe
 -------------------------------
 .. py:class:: paddle.incubate.nn.FusedEcMoe(hidden_size, inter_size, num_experts, act_type, weight_attr=None, bias_attr=None)
 

@@ -12,7 +12,7 @@ torch.distributions.beta.Beta(concentration1, concentration0, validate_args=None
 paddle.distribution.Beta(alpha, beta)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

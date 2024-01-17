@@ -7,7 +7,7 @@ scatter
 
 通过基于 ``updates`` 来更新选定索引 ``index`` 上的输入来获得输出。具体行为如下：
 
-COPY-FROM: paddle.scatter:code-example1
+COPY-FROM: paddle.scatter:scatter-example-1
 
 **Notice：**
 因为 ``updates`` 的应用顺序是不确定的，因此，如果索引 ``index`` 包含重复项，则输出将具有不确定性。
@@ -29,4 +29,4 @@ Tensor，与 x 有相同形状和数据类型。
 代码示例
 :::::::::
 
-COPY-FROM: paddle.scatter
+COPY-FROM: paddle.scatter:scatter-example-2

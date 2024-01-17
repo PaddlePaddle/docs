@@ -9,7 +9,7 @@ torch.Tensor.scatter_(dim, index, src)
 ### [paddle.Tensor.put_along_axis_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/put_along_axis__cn.html#put-along-axis)
 
 ```python
-paddle.Tensor.put_along_axis_(index, value, axis, reduce="assign")
+paddle.Tensor.put_along_axis_(index, value, axis, reduce="assign", include_self=True)
 
 ```
 

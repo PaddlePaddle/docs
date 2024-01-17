@@ -14,14 +14,14 @@ paddle.transpose(x,
                  name=None)
 ```
 
-其中 Pytorch 的 `axis0、axis1` 与 Paddle 用法不一致，具体如下：
+其中 PyTorch 的 `axis0、axis1` 与 Paddle 用法不一致，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'>input</font>         | <font color='red'>x</font>            | 输入 Tensor。                                       |
-| <font color='red'>axis0</font>          | -            | Pytorch 转置的第一个维度，Paddle 无此参数，需要转写。                    |
-| <font color='red'>axis1</font>          | -            | Pytorch 转置的第二个维度，Paddle 无此参数，需要转写。                    |
+| <font color='red'>axis0</font>          | -            | PyTorch 转置的第一个维度，Paddle 无此参数，需要转写。                    |
+| <font color='red'>axis1</font>          | -            | PyTorch 转置的第二个维度，Paddle 无此参数，需要转写。                    |
 | -             | <font color='red'>perm</font>         | Paddle 可通过 perm 参数，等价的实现 torch 的 axis0、axis1 的功能。|
 
 
