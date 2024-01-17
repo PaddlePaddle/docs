@@ -31,9 +31,7 @@ CTR 相关度量层
     - **local_pos_num** (Tensor) - 局部正例数
     - **local_ins_num** (Tensor) - 局部样本数
 
-返回类型
-::::::::::::
-tuple
+    tuple (local_sqrerr, local_abserr, local_prob, local_q, local_pos_num, local_ins_num): 包含局部平方误差和、局部绝对误差和、局部预测 CTR 和、局部 q 值和、局部正例数和局部样本数的元组。
 
 代码示例：
 ::::::::::
