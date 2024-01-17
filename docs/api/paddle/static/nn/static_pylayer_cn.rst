@@ -14,7 +14,7 @@ static_pylayer
 PaddlePaddle 里 Tensor 的嵌套结构是指一个 Tensor，或者 Tensor 的元组（tuple），或者 Tensor 的列表（list）。
 
 .. note::
-    1. 如果 ``backward_fn`` 不为 None，用户需要使 ``forward_fn`` 的输入 Variable 的数量和 ``backward_fn`` 的输出 Variable 的数量相同，``forward_fn`` 的输出 Variable 的数量和 ``backward_fn`` 的输入 Variable 的数量相同。
+    1. 如果 ``backward_fn`` 不为 None，用户需要使 ``forward_fn`` 的输入 Tensor 的数量和 ``backward_fn`` 的输出 Tensor 的数量相同，``forward_fn`` 的输出 Tensor 的数量和 ``backward_fn`` 的输入 Tensor 的数量相同。
     2. 在 ``backward_fn`` 被设置为 ``None`` 的情况下，``inputs`` 里所有 Variable 的 ``stop_gradient`` 属性应该被设为 ``True``，否则可能会在反向传播（backward propagation）中得到意想不到的结果。
     3. 本 API 只能被运行在静态图模式下。
 
