@@ -10,8 +10,8 @@ static_pylayer
 该 API 返回 ``forward_fn(inputs)``，并且根据传入的 ``forward_fn`` 和 ``backward_fn`` 的执行逻辑创建两个 sub_block，
 同时创建 ``pylayer`` 算子，``pylayer`` 算子的属性储存创建的 sub_block ID。
 
-``forward_fn`` 和 ``backward_fn`` 需要返回同样嵌套结构（nest structure）的 Variable。
-PaddlePaddle 里 Variable 的嵌套结构是指一个 Variable，或者 Variable 的元组（tuple），或者 Variable 的列表（list）。
+``forward_fn`` 和 ``backward_fn`` 需要返回同样嵌套结构（nest structure）的 Tensor。
+PaddlePaddle 里 Tensor 的嵌套结构是指一个 Tensor，或者 Tensor 的元组（tuple），或者 Tensor 的列表（list）。
 
 .. note::
     1. 如果 ``backward_fn`` 不为 None，用户需要使 ``forward_fn`` 的输入 Variable 的数量和 ``backward_fn`` 的输出 Variable 的数量相同，``forward_fn`` 的输出 Variable 的数量和 ``backward_fn`` 的输入 Variable 的数量相同。
