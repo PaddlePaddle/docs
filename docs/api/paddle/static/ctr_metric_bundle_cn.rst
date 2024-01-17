@@ -10,10 +10,12 @@ CTR 相关度量层
 此函数用于计算 CTR 相关指标：RMSE（均方根误差）、MAE（平均绝对误差）、predicted_ctr（预测点击率）、q 值。
 
 为了计算这些指标的最终值，我们应该使用总实例数进行以下计算：
-    MAE = local_abserr / 实例数
-    RMSE = sqrt(local_sqrerr / 实例数)
-    predicted_ctr = local_prob / 实例数
-    q = local_q / 实例数
+
+    - MAE = local_abserr / 实例数
+    - RMSE = sqrt(local_sqrerr / 实例数)
+    - predicted_ctr = local_prob / 实例数
+    - q = local_q / 实例数
+    
 注意，如果您正在进行分布式作业，您应该首先对这些指标和实例数进行全局归约。
 
 参数
