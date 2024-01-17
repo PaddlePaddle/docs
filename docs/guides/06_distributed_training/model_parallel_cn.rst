@@ -76,7 +76,7 @@
   :alt: dropout details from the paper Megatron-LM
   :align: center
 
-我们需要注意一下几点：
+我们需要注意以下几点：
 
 - 模型并行下，需要确保模型并行组中各个卡读取相同的数据；
 - 模型并行下，除了被切分的算子对应的输出外，其它所有算子的输出在各个卡上是一致的。

@@ -30,9 +30,9 @@ diagflat
 代码示例 1
 :::::::::
 
-COPY-FROM: paddle.diagflat:code-example-1
+COPY-FROM: paddle.diagflat:diagflat-example-1
 
 代码示例 2
 :::::::::
 
-COPY-FROM: paddle.diagflat:code-example-2
+COPY-FROM: paddle.diagflat:diagflat-example-2
