@@ -4,7 +4,6 @@ fused_linear
 -------------------------------
 
 .. py:function:: paddle.incubate.nn.functional.fused_linear(x, weight, bias=None, trans_x=False, transpose_weight=False, name=None)
-
 全连接线性变换算子。该方法要求 CUDA 版本大于等于 11.6 。
 
 参数
