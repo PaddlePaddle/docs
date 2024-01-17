@@ -12,7 +12,7 @@ torch.distributions.distribution.Distribution(batch_shape=torch.Size([]), event_
 paddle.distribution.Distribution(batch_shape， event_shape)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

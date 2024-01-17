@@ -37,7 +37,7 @@ Compiling PaddlePaddle with Docker，you need:
 
 - On the local host [Install Docker](https://docs.docker.com/engine/install/)
 
-- To enable GPU support on Linux, please [Install nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+- To enable GPU support on Linux, please [Install NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit)
 
 Please follow the steps below to install:
 
@@ -63,7 +63,7 @@ For domestic users, when downloading docker is slow due to network problems, you
 
 * GPU version of PaddlePaddle：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82
+    docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2
     ```
 
 If your machine is not in mainland China, you can pull the image directly from DockerHub:
@@ -75,7 +75,7 @@ If your machine is not in mainland China, you can pull the image directly from D
 
 * GPU version of PaddlePaddle：
     ```
-    docker pull paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82
+    docker pull paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2
     ```
 
 In the above example, `latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82` is only for illustration, indicating that the GPU version of the image is installed. If you want to install another `cuda/cudnn` version of the image, you can replace it with `latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2` etc.
@@ -88,6 +88,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
 * Compile CPU version of PaddlePaddle：
 
+    Using the image pulled from Baidu.
     ```
     docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
     ```
@@ -102,12 +103,17 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `registry.baidubce.com/paddlepaddle/paddle:latest-dev`: use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
+    If you are using the image pulled from DockerHub, just modify the image name.
+    ```
+    docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev /bin/bash
+    ```
 
 
 * Compile GPU version of PaddlePaddle:
 
+    Using the image pulled from Baidu.
     ```
-    nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82 /bin/bash
+    docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
     ```
 
     - `--name paddle-test`: names the Docker container you created as paddle-test;
@@ -119,11 +125,17 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `-it`: keeps interaction with the host;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82`: use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
+    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`: use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
+    If you are using the image pulled from DockerHub, just modify the image name.
+    ```
+    docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    ```
 
 Note:
 Please make sure to allocate at least 4g of memory for docker, otherwise the compilation process may fail due to insufficient memory.
+
+**When using GPU version of image, please make sure the NVIDIA Container Toolkit is successfully installed, or GPU can not be used in docker container. And the latest version of image is recommended, or some compiling error may occur.**
 
 #### 5. After entering Docker, go to the paddle directory:
 ```
@@ -253,48 +265,48 @@ uname -m && cat /etc/*release
 #### 4. Install the necessary tools
 
 
-    `bzip2` and `make`:
-    ```
-    yum install -y bzip2 make
-    ```
+`bzip2` and `make`:
+```
+yum install -y bzip2 make
+```
 
-    or
+or
 
-    ```
-    apt install -y bzip2 make
-    ```
+```
+apt install -y bzip2 make
+```
 
-    cmake requires version 3.18, we recommend that you use 3.18.0 version:
+cmake requires version 3.18, we recommend that you use 3.18.0 version:
 
-    ```
-    wget -q https://cmake.org/files/v3.18/cmake-3.18.0-Linux-x86_64.tar.gz
-    ```
+```
+wget -q https://cmake.org/files/v3.18/cmake-3.18.0-Linux-x86_64.tar.gz
+```
 
-    ```
-    tar -zxvf cmake-3.18.0-Linux-x86_64.tar.gz
-    ```
+```
+tar -zxvf cmake-3.18.0-Linux-x86_64.tar.gz
+```
 
-    ```
-    rm cmake-3.18.0-Linux-x86_64.tar.gz
-    ```
+```
+rm cmake-3.18.0-Linux-x86_64.tar.gz
+```
 
-    ```
-    PATH=/home/cmake-3.18.0-Linux-x86_64/bin:$PATH
-    ```
+```
+PATH=/home/cmake-3.18.0-Linux-x86_64/bin:$PATH
+```
 
-    gcc requires version 8.2:
+gcc requires version 8.2:
 
-    ```
-    wget -q wget -q --no-proxy https://paddle-ci.gz.bcebos.com/gcc-8.2.0.tar.xz && \
-    tar -xvf gcc-8.2.0.tar.xz && \
-    cd gcc-8.2.0 && \
-    sed -i 's#ftp://gcc.gnu.org/pub/gcc/infrastructure/#https://paddle-ci.gz.bcebos.com/#g' ./contrib/download_prerequisites && \
-    unset LIBRARY_PATH CPATH C_INCLUDE_PATH PKG_CONFIG_PATH CPLUS_INCLUDE_PATH INCLUDE && \
-    ./contrib/download_prerequisites && \
-    cd .. && mkdir temp_gcc82 && cd temp_gcc82 && \
-    ../gcc-8.2.0/configure --prefix=/usr/local/gcc-8.2 --enable-threads=posix --disable-checking --disable-multilib && \
-    make -j8 && make install
-    ```
+```
+wget -q --no-proxy https://paddle-ci.gz.bcebos.com/gcc-8.2.0.tar.xz && \
+tar -xvf gcc-8.2.0.tar.xz && \
+cd gcc-8.2.0 && \
+sed -i 's#ftp://gcc.gnu.org/pub/gcc/infrastructure/#https://paddle-ci.gz.bcebos.com/#g' ./contrib/download_prerequisites && \
+unset LIBRARY_PATH CPATH C_INCLUDE_PATH PKG_CONFIG_PATH CPLUS_INCLUDE_PATH INCLUDE && \
+./contrib/download_prerequisites && \
+cd .. && mkdir temp_gcc82 && cd temp_gcc82 && \
+../gcc-8.2.0/configure --prefix=/usr/local/gcc-8.2 --enable-threads=posix --disable-checking --disable-multilib && \
+make -j8 && make install
+```
 
 
 #### 5. We support compiling and installing with virtualenv. First, create a virtual environment called `paddle-venv` with the following command:

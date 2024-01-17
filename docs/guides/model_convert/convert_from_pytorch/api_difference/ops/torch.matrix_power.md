@@ -9,7 +9,7 @@ torch.matrix_power(input, n, *, out=None)
 paddle.linalg.matrix_power(x, n, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -21,7 +21,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.matrix_power(torch.tensor([[1., 2., 3.],[1., 4., 9.],[1., 8., 27.]]), 2, out=y)
 
 # Paddle 写法

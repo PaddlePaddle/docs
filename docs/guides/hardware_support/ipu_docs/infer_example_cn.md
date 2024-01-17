@@ -17,7 +17,7 @@ cd Paddle
 mkdir build && cd build
 
 # 执行 CMake，注意这里需打开预测优化选项 ON_INFER
-cmake .. -DWITH_IPU=ON -DWITH_PYTHON=ON -DPY_VERSION=3.7 -DWITH_MKL=ON -DON_INFER=ON \
+cmake .. -DWITH_IPU=ON -DWITH_PYTHON=ON -DPY_VERSION=3.8 -DWITH_MKL=ON -DON_INFER=ON \
          -DPOPLAR_DIR=/opt/poplar -DPOPART_DIR=/opt/popart -DCMAKE_BUILD_TYPE=Release
 
 # 开始编译

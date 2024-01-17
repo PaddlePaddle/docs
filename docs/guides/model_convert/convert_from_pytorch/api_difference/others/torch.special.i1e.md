@@ -12,7 +12,7 @@ torch.special.i1e(input, *, out=None)
 paddle.i1e(x, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -26,7 +26,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### out：指定输出
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x = torch.tensor([1, 2, 3, 4, 5], dtype=torch.float32)
 torch.special.i1e(x, out=y)
 

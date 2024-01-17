@@ -26,7 +26,7 @@ paddle.device.cuda.Stream(device=None, priority=None)
 #### priority: stream 的优先级
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 high_priority = -1
 default_priority = 0
 y = torch.cuda.Stream(priority=default_priority)

@@ -1,17 +1,9 @@
 .. _cn_api_paddle_static_default_startup_program:
 
-
-
-
 default_startup_program
 -------------------------------
 
 .. py:function:: paddle.static.default_startup_program()
-
-
-
-
-
 
 该函数可以获取默认/全局 startup :ref:`cn_api_paddle_static_Program` (初始化启动程序)。
 

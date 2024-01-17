@@ -16,10 +16,10 @@ paddle.Tensor.take(index, mode='raise', name=None)
 
 ### 参数映射
 
-| Pytorch | PaddlePaddle | 备注                                                         |
+| PyTorch | PaddlePaddle | 备注                                                         |
 | ------- | ------------ | ------------------------------------------------------------ |
 | indices | index        | 表示输入 tensor 的索引，仅参数名不一致。                     |
-| -       | mode         | 指定索引越界的 3 种处理方式，Pytorch 无此参数，Paddle 保持默认即可。 |
+| -       | mode         | 指定索引越界的 3 种处理方式，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 注：
 

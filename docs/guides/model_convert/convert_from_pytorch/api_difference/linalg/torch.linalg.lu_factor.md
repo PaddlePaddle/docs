@@ -12,7 +12,7 @@ torch.linalg.lu_factor(A, *, bool pivot=True, out=None)
 paddle.linalg.lu(x, pivot=True, get_infos=False, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -28,7 +28,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### out：指定输出
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.linalg.lu_factor(A, out=(LU, pivots))
 
 # Paddle 写法

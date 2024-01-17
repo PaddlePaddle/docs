@@ -18,7 +18,7 @@ paddle.Tensor.put_along_axis_(indices,
                               include_self=True)
 ```
 
-其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：
+其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
