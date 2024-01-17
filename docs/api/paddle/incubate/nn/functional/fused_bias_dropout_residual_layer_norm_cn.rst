@@ -26,6 +26,7 @@ fused_bias_dropout_residual_layer_norm 操作符，包含融合偏置、Dropout 
     - **mode** (str，可选) - ['upscale_in_train'(默认) | 'downscale_in_infer']，两种模式分别为：
 
                                  1. upscale_in_train(默认)，在训练时上调输出
+                                 
                                     - 训练：out = input * mask / (1.0 - p)
                                     - 推理：out = input
 
