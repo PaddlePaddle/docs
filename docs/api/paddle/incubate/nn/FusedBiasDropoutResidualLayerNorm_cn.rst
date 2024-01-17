@@ -5,7 +5,7 @@ FusedBiasDropoutResidualLayerNorm
 
 .. py:class:: paddle.incubate.nn.FusedBiasDropoutResidualLayerNorm(embed_dim, dropout_rate=0.5, weight_attr=None, bias_attr=None, epsilon=1e-05, name=None)
 
-应用融合偏置、Dropout 和残差层归一化操作。
+应用 fused_bias_dropout_residual_layer_norm 操作符，包含融合偏置、Dropout 和残差层归一化操作。
 
 参数
 ::::::::::::
@@ -19,9 +19,9 @@ FusedBiasDropoutResidualLayerNorm
 
 COPY-FROM: paddle.incubate.nn.FusedBiasDropoutResidualLayerNorm
 
-forward(src, src_mask=None, cache=None)
+forward(x, residual)
 ::::::::::::
-应用融合偏置、Dropout 和残差层归一化操作。
+应用 fused_bias_dropout_residual_layer_norm 操作符，包含融合偏置、Dropout 和残差层归一化操作。
 
 参数
 ::::::::::::
@@ -30,8 +30,8 @@ forward(src, src_mask=None, cache=None)
 
 返回
 ::::::::::::
-Tensor|tuple：数据类型与 ``x`` 一样。
+Tensor|tuple：与 `x` 具有相同数据类型和形状的张量
 
 extra_repr()
 ::::::::::::
-返回当前层的额外信息。
+当前层的额外表示，您可以自定义实现自己的层。
