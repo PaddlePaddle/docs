@@ -15,7 +15,7 @@ CTR 相关度量层
     - RMSE = sqrt(local_sqrerr / 实例数)
     - predicted_ctr = local_prob / 实例数
     - q = local_q / 实例数
-    
+
 注意，如果您正在进行分布式作业，您应该首先对这些指标和实例数进行全局归约。
 
 参数
@@ -34,6 +34,7 @@ CTR 相关度量层
     - **local_ins_num** (Tensor) - 局部样本数
 
     tuple (local_sqrerr, local_abserr, local_prob, local_q, local_pos_num, local_ins_num): 包含局部平方误差和、局部绝对误差和、局部预测 CTR 和、局部 q 值和、局部正例数和局部样本数的元组。
+
 
 代码示例：
 ::::::::::
