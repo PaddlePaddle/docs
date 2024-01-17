@@ -8,7 +8,7 @@ square
 
 
 
-对输入参数``x``进行逐元素取平方运算。
+对输入参数`x`进行逐元素取平方运算。
 
 .. math::
     out = x^2
@@ -16,7 +16,7 @@ square
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 任意维度的 Tensor，支持的数据类型：float32，float64。
+    - **x** (Tensor) - 任意维度的 Tensor，支持的数据类型：float32，float64，complex64，complex128。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
