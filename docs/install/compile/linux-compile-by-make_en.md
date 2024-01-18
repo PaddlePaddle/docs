@@ -37,7 +37,7 @@ Compiling PaddlePaddle with Docker，you need:
 
 - On the local host [Install Docker](https://docs.docker.com/engine/install/)
 
-- To enable GPU support on Linux, please [Install nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+- To enable GPU support on Linux, please [Install NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit)
 
 Please follow the steps below to install:
 
@@ -63,7 +63,7 @@ For domestic users, when downloading docker is slow due to network problems, you
 
 * GPU version of PaddlePaddle：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82
+    docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2
     ```
 
 If your machine is not in mainland China, you can pull the image directly from DockerHub:
@@ -75,7 +75,7 @@ If your machine is not in mainland China, you can pull the image directly from D
 
 * GPU version of PaddlePaddle：
     ```
-    docker pull paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82
+    docker pull paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2
     ```
 
 In the above example, `latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82` is only for illustration, indicating that the GPU version of the image is installed. If you want to install another `cuda/cudnn` version of the image, you can replace it with `latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2` etc.
@@ -88,6 +88,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
 * Compile CPU version of PaddlePaddle：
 
+    Using the image pulled from Baidu.
     ```
     docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
     ```
@@ -102,12 +103,17 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `registry.baidubce.com/paddlepaddle/paddle:latest-dev`: use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
+    If you are using the image pulled from DockerHub, just modify the image name.
+    ```
+    docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev /bin/bash
+    ```
 
 
 * Compile GPU version of PaddlePaddle:
 
+    Using the image pulled from Baidu.
     ```
-    nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82 /bin/bash
+    docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
     ```
 
     - `--name paddle-test`: names the Docker container you created as paddle-test;
@@ -119,11 +125,17 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `-it`: keeps interaction with the host;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82`: use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
+    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`: use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
+    If you are using the image pulled from DockerHub, just modify the image name.
+    ```
+    docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    ```
 
 Note:
 Please make sure to allocate at least 4g of memory for docker, otherwise the compilation process may fail due to insufficient memory.
+
+**When using GPU version of image, please make sure the NVIDIA Container Toolkit is successfully installed, or GPU can not be used in docker container. And the latest version of image is recommended, or some compiling error may occur.**
 
 #### 5. After entering Docker, go to the paddle directory:
 ```

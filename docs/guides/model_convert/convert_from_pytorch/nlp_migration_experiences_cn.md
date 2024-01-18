@@ -152,9 +152,9 @@ reprod_log 主要功能如下：
 进入文件夹
 cd pipeline/reprod_log_demo
 随机生成矩阵，写入文件中
-python3.7 write_log.py
+python3 write_log.py
 进行文件对比，输出日志
-python3.7 check_log_diff.py
+python3 check_log_diff.py
 ```
 
 

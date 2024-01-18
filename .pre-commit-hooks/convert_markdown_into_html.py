@@ -73,7 +73,7 @@ document.getElementById("context").innerHTML = marked(
 
 def convert_markdown_into_html(argv=None):
     parser = argparse.ArgumentParser()
-    parser.add_argument('filenames', nargs='*', help='Filenames to fix')
+    parser.add_argument("filenames", nargs="*", help="Filenames to fix")
     args = parser.parse_args(argv)
 
     retv = 0
@@ -91,5 +91,5 @@ def convert_markdown_into_html(argv=None):
     return retv
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(convert_markdown_into_html())
