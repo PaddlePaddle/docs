@@ -29,7 +29,7 @@ paddle.Tensor.triangular_solve(b, upper=True, transpose=False, unitriangular=Fal
 #### A：线性方程组系数矩阵
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 A = torch.tensor([[1, 1, 1],
                   [0, 2, 1],
                   [0, 0,-1]], dtype=torch.float64)

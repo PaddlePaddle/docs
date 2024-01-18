@@ -1,6 +1,5 @@
 .. _cn_api_paddle_nn_functional_adaptive_avg_pool1d:
 
-
 adaptive_avg_pool1d
 -------------------------------
 

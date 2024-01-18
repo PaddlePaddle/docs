@@ -1,6 +1,6 @@
 .. _cn_api_paddle_utils_deprecated:
 
-paddle_utils_deprecated
+deprecated
 -------------------------------
 
 .. py:function:: paddle.utils.deprecated(update_to="", since="", reason="")

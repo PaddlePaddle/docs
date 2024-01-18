@@ -1,4 +1,4 @@
-.. _cn_api_paddle_vision_models_GoogLeNet:
+.. _cn_api_paddle_vision_models_GoogLeNet__upper:
 
 GoogLeNet
 -------------------------------

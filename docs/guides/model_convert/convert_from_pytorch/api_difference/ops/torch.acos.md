@@ -15,7 +15,7 @@ paddle.acos(x,
             name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -29,7 +29,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### out：指定输出
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.acos(torch.tensor([0.3348, -0.5889]), out=y)
 
 # Paddle 写法

@@ -19,12 +19,12 @@ paddle.Tensor.view(shape_or_dtype, name=None)
 
 | PyTorch | PaddlePaddle | 备注                           |
 | ------- | ------------ | ------------------------------ |
-| *shape   | shape_or_dtype         | 指定的维度。 Pytorch 参数 shape 既可以是可变参数，也可以是 list/tuple/torch.Size/dtype 的形式， Paddle 参数 shape_or_dtype 为 list/tuple/dtype 的形式。对于可变参数的用法，需要进行转写。 |
+| *shape   | shape_or_dtype         | 指定的维度。 PyTorch 参数 shape 既可以是可变参数，也可以是 list/tuple/torch.Size/dtype 的形式， Paddle 参数 shape_or_dtype 为 list/tuple/dtype 的形式。对于可变参数的用法，需要进行转写。 |
 
 ### 转写示例
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x = torch.randn(4, 4)
 x.view(2, 2, 4)
 

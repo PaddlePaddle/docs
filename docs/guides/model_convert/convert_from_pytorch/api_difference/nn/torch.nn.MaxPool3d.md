@@ -22,7 +22,7 @@ paddle.nn.MaxPool3D(kernel_size,
                     name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -32,4 +32,4 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | dilation      | -            | 设置空洞池化的大小，Paddle 无此参数，暂无转写方式。               |
 | return_indices | return_mask  | 是否返回最大值的索引，仅参数名不一致。                                  |
 | ceil_mode | ceil_mode  | 表示是否用 ceil 函数计算输出的 height 和 width 。                                  |
-| -             | data_format  | 输入和输出的数据格式，Pytorch 无此参数，Paddle 保持默认即可。  |
+| -             | data_format  | 输入和输出的数据格式，PyTorch 无此参数，Paddle 保持默认即可。  |

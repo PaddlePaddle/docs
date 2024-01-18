@@ -29,7 +29,7 @@
 - 1、环境配置，对比 pytorch 环境以及 paddle 环境在曙光超算上的配置
   对曙光超算如何使用 paddle 进行分布式计算进行了介绍
 
-- 2、Fleet API 的使用，对比 Pytorch API 与 Fleet API 的区别
+- 2、Fleet API 的使用，对比 PyTorch API 与 Fleet API 的区别
 
 - 3、分布式动态图的训练，使用 pytorch 和 paddle 完成在曙光超算上的分布式训练
   对文档中代码进行的重写，导入了 paddle.vision 的部分包
@@ -118,7 +118,7 @@ pip install opencv-python -i https://pypi.tuna.tsinghua.edu.cn/simple/
 ```
 
 ## （3）对比两者的易用性与区别
-Pytorch 的分布式环境在曙光平台安装时需要手动编译 torchversion，这一点上 pytorch 比较繁琐。但是 pytorch 的环境在曙光平台比较稳定，而 paddle 环境在曙光平台经常不稳定，有时候能运行，有时候不能运行。
+PyTorch 的分布式环境在曙光平台安装时需要手动编译 torchversion，这一点上 pytorch 比较繁琐。但是 pytorch 的环境在曙光平台比较稳定，而 paddle 环境在曙光平台经常不稳定，有时候能运行，有时候不能运行。
 ![image](https://user-images.githubusercontent.com/102226413/164142960-e956efce-a8fe-40ea-bfba-a83b8f8203c5.png)
 
 上述问题是 rocm 版本问题，需要使用 rocm-4.0.1 版本。 修改 rocm 版本的方法为.  module switch compiler/rocm/4.0.1

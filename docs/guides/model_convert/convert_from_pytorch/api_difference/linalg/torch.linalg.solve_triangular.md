@@ -3,7 +3,7 @@
 ### [torch.linalg.solve_triangular](https://pytorch.org/docs/stable/generated/torch.linalg.solve_triangular.html?highlight=torch+linalg+solve_triangular#torch.linalg.solve_triangular)
 
 ```python
-# Pytorch 文档有误，测试第一个参数为 input
+# PyTorch 文档有误，测试第一个参数为 input
 torch.linalg.solve_triangular(input, B, *, upper, left=True, unitriangular=False, out=None)
 ```
 
@@ -13,7 +13,7 @@ torch.linalg.solve_triangular(input, B, *, upper, left=True, unitriangular=False
 paddle.linalg.triangular_solve(x, y, upper=True, transpose=False, unitriangular=False, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -31,13 +31,13 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### left：表示系数 Tensor 的位置设置
 
 ```python
-# Pytorch 写法, left 为 True
+# PyTorch 写法, left 为 True
 torch.linalg.solve_triangular(input, B, upper, left=True)
 
 # Paddle 写法
 paddle.linalg.triangular_solve(input, B, upper, transpose=False)
 
-# Pytorch 写法, left 为 False
+# PyTorch 写法, left 为 False
 torch.linalg.solve_triangular(input, B, upper, left=False)
 
 # Paddle 写法
@@ -47,7 +47,7 @@ paddle.linalg.triangular_solve(input, B, upper, transpose=True)
 #### out：指定输出
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.linalg.solve_triangular(input, B, upper, left, unitriangular, out=y)
 
 # Paddle 写法

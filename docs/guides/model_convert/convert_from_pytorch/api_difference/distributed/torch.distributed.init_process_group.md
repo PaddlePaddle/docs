@@ -11,7 +11,7 @@ torch.distributed.init_process_group(backend='nccl', init_method=None, timeout=d
 paddle.distributed.init_parallel_env()
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
