@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import sys
 import typing
 
 
@@ -207,8 +208,10 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         output = "| " + " | ".join(content) + " |\n"
         return output
     else:
-        print(f"found manual-maintaining row at line [{line_idx}]: {line}")
-        return line
+        raise ValueError(
+            f"found manual-maintaining row at line [{line_idx}]: {line}"
+        )
+        # return line
 
 
 def reference_mapping_item(index_path, metadata_dict):
@@ -218,6 +221,7 @@ def reference_mapping_item(index_path, metadata_dict):
     with open(mapping_index_file, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
+    ret_code = 0
     state = 0
     # -1: error
     # 0: wait for table header
@@ -309,12 +313,14 @@ def reference_mapping_item(index_path, metadata_dict):
                 print(e)
                 print(f"Error at line {i+1}: {line}")
                 output.append(line)
+                ret_code = 1
 
             # state = 6
         else:
             raise Exception(
                 f"Unexpected State at {state} in processing file: {index_path}"
             )
+            ret_code = 2
 
     if state == 5 or state == 6:
         state = 0
@@ -323,6 +329,9 @@ def reference_mapping_item(index_path, metadata_dict):
         raise Exception(
             f"Unexpected End State at {state} in parsing file: {index_path}"
         )
+
+    if ret_code != 0:
+        sys.exit(ret_code)
 
     with open(mapping_index_file, "w", encoding="utf-8") as f:
         f.writelines(output)
