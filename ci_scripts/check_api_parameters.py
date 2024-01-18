@@ -28,13 +28,13 @@ def add_path(path):
 
 this_dir = osp.dirname(__file__)
 # Add docs/api to PYTHONPATH
-add_path(osp.abspath(osp.join(this_dir, '..', 'docs', 'api')))
+add_path(osp.abspath(osp.join(this_dir, "..", "docs", "api")))
 from extract_api_from_docs import extract_params_desc_from_rst_file
 
 arguments = [
     # flags, dest, type, default, help
-    ['--rst-files', 'rst_files', str, None, 'api rst files, sperated by space'],
-    ['--api-info', 'api_info_file', str, None, 'api_info_all.json filename'],
+    ["--rst-files", "rst_files", str, None, "api rst files, sperated by space"],
+    ["--api-info", "api_info_file", str, None, "api_info_all.json filename"],
 ]
 
 
@@ -43,8 +43,8 @@ def parse_args():
     Parse input arguments
     """
     global arguments
-    parser = argparse.ArgumentParser(description='check api parameters')
-    parser.add_argument('--debug', dest='debug', action="store_true")
+    parser = argparse.ArgumentParser(description="check api parameters")
+    parser.add_argument("--debug", dest="debug", action="store_true")
     for item in arguments:
         parser.add_argument(
             item[0], dest=item[1], help=item[4], type=item[2], default=item[3]
@@ -58,7 +58,7 @@ def _check_params_in_description(rstfilename, paramstr):
     flag = True
     params_intitle = []
     if paramstr:
-        fake_func = ast.parse(f'def fake_func({paramstr}): pass')
+        fake_func = ast.parse(f"def fake_func({paramstr}): pass")
         for arg in fake_func.body[0].args.args:
             params_intitle.append(arg.arg)
 
@@ -67,27 +67,27 @@ def _check_params_in_description(rstfilename, paramstr):
         items = funcdescnode.children[1].children[0].children
         if len(items) != len(params_intitle):
             flag = False
-            print(f'check failed (parammeters description): {rstfilename}')
+            print(f"check failed (parammeters description): {rstfilename}")
         else:
             for i in range(len(items)):
-                pname_intitle = params_intitle[i].split('=')[0].strip()
-                mo = re.match(r'(\w+)\b.*', items[i].children[0].astext())
+                pname_intitle = params_intitle[i].split("=")[0].strip()
+                mo = re.match(r"(\w+)\b.*", items[i].children[0].astext())
                 if mo:
                     pname_indesc = mo.group(1)
                     if pname_indesc != pname_intitle:
                         flag = False
                         print(
-                            f'check failed (parammeters description): {rstfilename}, {pname_indesc} != {pname_intitle}'
+                            f"check failed (parammeters description): {rstfilename}, {pname_indesc} != {pname_intitle}"
                         )
                 else:
                     flag = False
                     print(
-                        f'check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph.'
+                        f"check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph."
                     )
     else:
         if params_intitle:
             print(
-                f'check failed (parameters description not found): {rstfilename}, {params_intitle}.'
+                f"check failed (parameters description not found): {rstfilename}, {params_intitle}."
             )
             flag = False
     return flag
@@ -102,27 +102,27 @@ def _check_params_in_description_with_fullargspec(rstfilename, funcname):
         params_inspec = funcspec.args
         if len(items) != len(params_inspec):
             flag = False
-            print(f'check failed (parammeters description): {rstfilename}')
+            print(f"check failed (parammeters description): {rstfilename}")
         else:
             for i in range(len(items)):
                 pname_intitle = params_inspec[i]
-                mo = re.match(r'(\w+)\b.*', items[i].children[0].astext())
+                mo = re.match(r"(\w+)\b.*", items[i].children[0].astext())
                 if mo:
                     pname_indesc = mo.group(1)
                     if pname_indesc != pname_intitle:
                         flag = False
                         print(
-                            f'check failed (parammeters description): {rstfilename}, {pname_indesc} != {pname_intitle}'
+                            f"check failed (parammeters description): {rstfilename}, {pname_indesc} != {pname_intitle}"
                         )
                 else:
                     flag = False
                     print(
-                        f'check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph.'
+                        f"check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph."
                     )
     else:
         if funcspec.args:
             print(
-                f'check failed (parameters description not found): {rstfilename}, {funcspec.args}.'
+                f"check failed (parameters description not found): {rstfilename}, {funcspec.args}."
             )
             flag = False
     return flag
@@ -138,22 +138,22 @@ def check_api_parameters(rstfiles, apiinfo):
     2. Some COMPLICATED annotations may break the scripts.
     """
     pat = re.compile(
-        r'^\.\.\s+py:(method|function|class)::\s+(\S+)\s*\(\s*(.*)\s*\)\s*$'
+        r"^\.\.\s+py:(method|function|class)::\s+(\S+)\s*\(\s*(.*)\s*\)\s*$"
     )
     check_passed = []
     check_failed = []
     api_notfound = []
     for rstfile in rstfiles:
-        rstfilename = osp.join('../docs', rstfile)
-        print(f'checking : {rstfile}')
-        with open(rstfilename, 'r') as rst_fobj:
+        rstfilename = osp.join("../docs", rstfile)
+        print(f"checking : {rstfile}")
+        with open(rstfilename, "r") as rst_fobj:
             func_found = False
             for line in rst_fobj:
                 mo = pat.match(line)
                 if mo:
                     func_found = True
                     functype = mo.group(1)
-                    if functype not in ('function', 'method'):
+                    if functype not in ("function", "method"):
                         check_passed.append(rstfile)
                         continue
                     funcname = mo.group(2)
@@ -162,14 +162,14 @@ def check_api_parameters(rstfiles, apiinfo):
                     func_found_in_json = False
                     for apiobj in apiinfo.values():
                         if (
-                            'all_names' in apiobj
-                            and funcname in apiobj['all_names']
+                            "all_names" in apiobj
+                            and funcname in apiobj["all_names"]
                         ):
                             func_found_in_json = True
-                            if 'args' in apiobj:
-                                if paramstr == apiobj['args']:
+                            if "args" in apiobj:
+                                if paramstr == apiobj["args"]:
                                     print(
-                                        f'check func:{funcname} in {rstfilename} with {paramstr}'
+                                        f"check func:{funcname} in {rstfilename} with {paramstr}"
                                     )
                                     flag = _check_params_in_description(
                                         rstfilename, paramstr
@@ -183,7 +183,7 @@ def check_api_parameters(rstfiles, apiinfo):
                                     )
                             else:  # paddle.abs class_method does not have `args` in its json item.
                                 print(
-                                    f'check func:{funcname} in {rstfilename} with its FullArgSpec'
+                                    f"check func:{funcname} in {rstfilename} with its FullArgSpec"
                                 )
                                 flag = _check_params_in_description_with_fullargspec(
                                     rstfilename, funcname
@@ -191,28 +191,28 @@ def check_api_parameters(rstfiles, apiinfo):
                             break
                     if not func_found_in_json:  # may be inner functions
                         print(
-                            f'check func:{funcname} in {rstfilename} with its FullArgSpec'
+                            f"check func:{funcname} in {rstfilename} with its FullArgSpec"
                         )
                         flag = _check_params_in_description_with_fullargspec(
                             rstfilename, funcname
                         )
                     if flag:
                         check_passed.append(rstfile)
-                        print(f'check success: {rstfile}')
+                        print(f"check success: {rstfile}")
                     else:
                         check_failed.append(rstfile)
-                        print(f'check failed: {rstfile}')
+                        print(f"check failed: {rstfile}")
                     break
             if not func_found:
                 api_notfound.append(rstfile)
-                print(f'check failed (object not found): {rstfile}')
-            print(f'checking done: {rstfile}')
+                print(f"check failed (object not found): {rstfile}")
+            print(f"checking done: {rstfile}")
     return check_passed, check_failed, api_notfound
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     args = parse_args()
-    rstfiles = [fn for fn in args.rst_files.split(' ') if fn]
+    rstfiles = [fn for fn in args.rst_files.split(" ") if fn]
     apiinfo = json.load(open(args.api_info_file))
     check_passed, check_failed, api_notfound = check_api_parameters(
         rstfiles=rstfiles, apiinfo=apiinfo
@@ -220,9 +220,9 @@ if __name__ == '__main__':
     result = True
     if check_failed:
         result = False
-        print(f'check_api_parameters failed: {check_failed}')
+        print(f"check_api_parameters failed: {check_failed}")
     if api_notfound:
-        print(f'check_api_parameters funcname not found in: {api_notfound}')
+        print(f"check_api_parameters funcname not found in: {api_notfound}")
     if result:
         sys.exit(0)
     else:

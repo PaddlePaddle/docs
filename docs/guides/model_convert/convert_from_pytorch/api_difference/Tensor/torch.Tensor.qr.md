@@ -25,7 +25,7 @@ paddle.Tensor.qr(mode='reduced')
 ### some：控制 QR 分解的行为
 ```python
 # 当进行完整的 QR 分解时
-# Pytorch 写法
+# PyTorch 写法
 q, r = x.qr(some=False)
 
 # Paddle 写法
@@ -33,7 +33,7 @@ q, r = x.qr(mode='complete')
 
 
 #当进行减少的 QR 分解时
-# Pytorch 写法
+# PyTorch 写法
 q, r = x.qr(some=True)
 
 # Paddle 写法

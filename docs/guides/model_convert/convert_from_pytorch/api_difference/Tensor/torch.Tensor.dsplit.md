@@ -1,6 +1,6 @@
-## [ 仅参数名不一致 ]torch.Tensor.split_size_or_sections
+## [ 仅参数名不一致 ]torch.Tensor.dsplit
 
-### [torch.Tensor.的 split](https://pytorch.org/docs/stable/generated/torch.Tensor.dsplit.html)
+### [torch.Tensor.dsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.dsplit.html)
 
 ```python
 torch.Tensor.dsplit(split_size_or_sections)
@@ -12,7 +12,7 @@ torch.Tensor.dsplit(split_size_or_sections)
 paddle.Tensor.dsplit(num_or_indices, name=None)
 ```
 
-其中 Paddle 相比 Pytorch 仅参数名不一致，具体如下：
+其中 Paddle 相比 PyTorch 仅参数名不一致，具体如下：
 
 ### 参数映射
 

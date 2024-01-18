@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.linalg.matrix_exp
-### [torch.linalg.matrix_power](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_exp.html#torch.linalg.matrix_exp)
+### [torch.linalg.matrix_exp](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_exp.html#torch.linalg.matrix_exp)
 
 ```python
 torch.linalg.matrix_exp(A)
@@ -11,7 +11,7 @@ torch.linalg.matrix_exp(A)
 paddle.linalg.matrix_exp(x, name=None)
 ```
 
-Pytorch 相比 Paddle 仅参数名不一致，具体如下：
+PyTorch 相比 Paddle 仅参数名不一致，具体如下：
 
 ### 参数映射
 

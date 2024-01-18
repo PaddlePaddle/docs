@@ -23,7 +23,7 @@ paddle.linalg.svd(x, full_matrics=False, name=None)
 ### 转写示例
 #### some 是否计算完整的 U 和 V 矩阵
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = a.svd(some=False)
 
 # Paddle 写法

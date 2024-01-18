@@ -11,7 +11,7 @@ torch.nn.SyncBatchNorm.convert_sync_batchnorm(module, process_group=None)
 paddle.nn.SyncBatchNorm.convert_sync_batchnorm(layer)
 ```
 
-Pytorch 参数更多，具体如下：
+PyTorch 参数更多，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

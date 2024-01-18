@@ -1,4 +1,4 @@
-# Install on MacOS via PIP
+# Install on macOS via PIP
 
 ## Environmental preparation
 
@@ -55,7 +55,7 @@
 
 ### Choose CPU/GPU
 
-* Currently, only the CPU version of PaddlePaddle is supported in the MacOS environment
+* Currently, only the CPU version of PaddlePaddle is supported in the macOS environment
 
 
 ### Installation Step

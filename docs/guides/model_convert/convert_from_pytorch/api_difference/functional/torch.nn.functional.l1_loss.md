@@ -12,7 +12,7 @@ torch.nn.functional.l1_loss(input, target, size_average=None, reduce=None, reduc
 paddle.nn.functional.l1_loss(input, label, reduction='mean', name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -26,14 +26,14 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 #### size_average：是否对损失进行平均或求和
 ```python
-# Pytorch 写法 (size_average 为‘True’时)
+# PyTorch 写法 (size_average 为‘True’时)
 torch.nn.functional.l1_loss(a, target, size_average=True)
 
 # Paddle 写法
 paddle.nn.functional.l1_loss(logit=a, label=target,
     reduction='mean')
 
-# Pytorch 写法 (size_average 为‘False’时)
+# PyTorch 写法 (size_average 为‘False’时)
 torch.nn.functional.l1_loss(a, target, size_average=False)
 
 # Paddle 写法
@@ -43,14 +43,14 @@ paddle.nn.functional.l1_loss(logit=a, label=target,
 
 #### reduce：是否对损失进行平均或求和
 ```python
-# Pytorch 写法 (reduce 为‘True’时)
+# PyTorch 写法 (reduce 为‘True’时)
 torch.nn.functional.l1_loss(a, target, reduce=True)
 
 # Paddle 写法
 paddle.nn.functional.l1_loss(logit=a, label=target,
     reduction='mean')
 
-# Pytorch 写法 (reduce 为‘False’时)
+# PyTorch 写法 (reduce 为‘False’时)
 torch.nn.functional.l1_loss(a, target, reduce=False)
 
 # Paddle 写法
@@ -60,21 +60,21 @@ paddle.nn.functional.l1_loss(logit=a, label=target,
 
 #### reduction：输出结果的计算方式
 ```python
-# Pytorch 写法 (reduction 为‘none’时)
+# PyTorch 写法 (reduction 为‘none’时)
 torch.nn.functional.l1_loss(a, target, reduction='none')
 
 # Paddle 写法
 paddle.nn.functional.l1_loss(logit=a, label=target,
     reduction='none')
 
-# Pytorch 写法 (reduction 为‘mean’时)
+# PyTorch 写法 (reduction 为‘mean’时)
 torch.nn.functional.l1_loss(a, target, reduction='mean')
 
 # Paddle 写法
 paddle.nn.functional.l1_loss(logit=a, label=target,
     reduction='mean')
 
-# Pytorch 写法 (reduction 为‘sum’时)
+# PyTorch 写法 (reduction 为‘sum’时)
 torch.nn.functional.l1_loss(a, target, reduction='sum')
 
 # Paddle 写法

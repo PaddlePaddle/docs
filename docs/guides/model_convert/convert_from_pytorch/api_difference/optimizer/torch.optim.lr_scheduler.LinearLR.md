@@ -12,7 +12,7 @@ torch.optim.lr_scheduler.LinearLR(optimizer, start_factor=0.3333333333333333, en
 paddle.optimizer.lr.LinearLR(learning_rate, total_steps, start_factor=1. / 3, end_factor=1.0, last_epoch=- 1, verbose=False)
 ```
 
-两者 API 功能一致, 参数用法不一致，Pytorch 是 Scheduler 实例持有 Optimizer 实例，Paddle 是 Optimizer 实例持有 Scheduler 实例。由于持有关系相反，因此 Paddle 使用 Optimizer.set_lr_scheduler 来设置这种持有关系。具体如下：
+两者 API 功能一致, 参数用法不一致，PyTorch 是 Scheduler 实例持有 Optimizer 实例，Paddle 是 Optimizer 实例持有 Scheduler 实例。由于持有关系相反，因此 Paddle 使用 Optimizer.set_lr_scheduler 来设置这种持有关系。具体如下：
 
 ### 参数映射
 
@@ -28,7 +28,7 @@ paddle.optimizer.lr.LinearLR(learning_rate, total_steps, start_factor=1. / 3, en
 ### 转写示例
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 linear = torch.nn.Linear(10, 10)
 sgd = torch.optimizer.SGD(lr=0.5, parameters=linear.parameters())
 scheduler = torch.optim.lr_scheduler.LinearLR(optimizer=sgd)
