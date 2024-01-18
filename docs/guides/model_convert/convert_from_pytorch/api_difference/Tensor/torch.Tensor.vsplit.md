@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.Tensor.split_size_or_sections
+## [ 仅参数名不一致 ]torch.Tensor.vsplit
 
 ### [torch.Tensor.vsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.vsplit.html)
 

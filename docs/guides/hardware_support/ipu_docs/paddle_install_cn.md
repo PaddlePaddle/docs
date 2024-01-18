@@ -7,7 +7,7 @@
 
 ## Docker 镜像方式启动
 
-当前 Docker 镜像包含预编译的飞桨框架 IPU 版，镜像基于 Ubuntu18.04 基础镜像构建，内置的 Python 版本为 Python3.7。
+当前 Docker 镜像包含预编译的飞桨框架 IPU 版，镜像基于 Ubuntu18.04 基础镜像构建，内置的 Python 版本为 Python3.8。
 
 **第一步**：拉取飞桨框架 IPU 版镜像
 
@@ -76,15 +76,15 @@ PaddlePaddle is installed successfully! Let's start deep learning with PaddlePad
 # PATH 中存在 GCC/G++ 8.2
 export PATH=/opt/compiler/gcc-8.2/bin:${PATH}
 
-# PATH 中存在 cmake 3.16.0
-export PATH=/opt/cmake-3.16/bin:${PATH}
+# PATH 中存在 cmake 3.18.0
+export PATH=/opt/cmake-3.18/bin:${PATH}
 
 # PATH 与 LD_LIBRARY_PATH 中存在 popart 与 poplar
 export PATH=/opt/popart/bin:/opt/poplar/lib:${PATH}
 export LD_LIBRARY_PATH=/opt/popart/lib:/opt/poplar/lib:${LD_LIBRARY_PATH}
 
-# PATH 中存在 Python 3.7
-# 注意：镜像中的 python 3.7 通过 miniconda 安装，请通过 conda activate base 命令加载 Python 3.7 环境
+# PATH 中存在 Python 3.8
+# 注意：镜像中的 python 3.8 通过 miniconda 安装，请通过 conda activate base 命令加载 Python 3.8 环境
 export PATH=/opt/conda/bin:${PATH}
 ```
 

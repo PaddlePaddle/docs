@@ -144,7 +144,7 @@
         安装 CPU 版本的命令为：
         ::
 
-            python -m pip install paddlepaddlei==2.6.0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle==2.6.0 -i https://mirror.baidu.com/pypi/simple
 
             或
 

@@ -146,9 +146,9 @@ reprod_log 主要功能如下：
 进入文件夹
 cd pipeline/reprod_log_demo
 随机生成矩阵，写入文件中
-python3.7 write_log.py
+python3 write_log.py
 进行文件对比，输出日志
-python3.7 check_log_diff.py
+python3 check_log_diff.py
 ```
 
 
@@ -1267,7 +1267,7 @@ if paddle.distributed.get_rank() == 0:
 
 ```shell
 export CUDA_VISIBLE_DEVICES=0
-python3.7 train.py \
+python3 train.py \
     --data-path /paddle/data/ILSVRC2012_torch \
     --lr 0.00125 \
     --batch-size 32 \
@@ -1279,7 +1279,7 @@ python3.7 train.py \
 ```shell
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 
-python3.7 -m paddle.distributed.launch \
+python3 -m paddle.distributed.launch \
     --gpus="0,1,2,3,4,5,6,7" \
     train.py \
     --data-path /paddle/data/ILSVRC2012_torch \

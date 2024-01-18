@@ -1,4 +1,4 @@
-.. _cn_api_paddle_vision_models_AlexNet:
+.. _cn_api_paddle_vision_models_AlexNet__upper:
 
 AlexNet
 -------------------------------
