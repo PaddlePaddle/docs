@@ -36,7 +36,7 @@ masked_multihead_attention
 
 形状
 ::::::::::::
-``Tensor``| ``tuple``
+``Tensor`` | ``tuple``
 
 代码示例
 ::::::::::::
