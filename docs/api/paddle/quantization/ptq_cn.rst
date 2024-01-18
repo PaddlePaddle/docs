@@ -29,13 +29,13 @@ COPY-FROM: paddle.quantization.PTQ.quantize
 convert(self, model:layer, inplace=False, remain_weight=False):
 '''''''''
 
-将量化模型转换为ONNX格式。转换后的模型可以通过调用 paddle.jit.save 保存为推理模型。
+将量化模型转换为 ONNX 格式。转换后的模型可以通过调用 paddle.jit.save 保存为推理模型。
 
 **参数**
 
     - **model**(Layer) - 待量化的模型。
-    - **inplace**(bool, optional) - 是否要对模型进行就地修改，默认为false。
-    - **remain_weight**(bool, optional) - 是否宝石权重为floats，默认为false。
+    - **inplace**(bool, optional) - 是否要对模型进行就地修改，默认为 false。
+    - **remain_weight**(bool, optional) - 是否宝石权重为 floats，默认为 false。
 **返回**
 
 转换后的模型
@@ -43,5 +43,3 @@ convert(self, model:layer, inplace=False, remain_weight=False):
 **代码示例**
 
 COPY-FROM: paddle.quantization.PTQ.convert
-
-
