@@ -1,4 +1,4 @@
-.. _cn_api_paddle_quantization_ptq:
+.. _cn_api_paddle_quantization_PTQ:
 
 PTQ
 -------------------------------
