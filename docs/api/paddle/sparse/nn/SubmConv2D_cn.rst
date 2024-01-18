@@ -7,10 +7,10 @@ SubmConv2D
 
 **子流形稀疏二维卷积层**
 
-子流形稀疏卷积 2d 层(submanifold sparse convolution2d layer)根据输入计算输出，卷积核和步长、填充、空洞大小(dilations)、组参数。
+子流形稀疏二维卷积层(submanifold sparse convolution2d layer)根据输入计算输出，卷积核和步长、填充、空洞大小(dilations)一组参数。
 输入(input)和输出(Output)是多维的稀疏张量(Sparse Coo Tensor)，
-形状为:math:[N,H,W,C]其中 N 是批量大小，C 是通道，H 是特征的高度，W 是特征的宽度。
-如果提供了偏见归因，偏置被添加到卷积的输出。
+形状为:math:[N,H,W,C]其中 N 是批尺寸，C 是通道，H 是特征高度，W 是特征宽度。
+如果提供了 bias_attr，则添加偏置项到卷积的输出。
 对于每一个输入 :math:`X`，方程是：
 
 ..  math::
@@ -20,9 +20,9 @@ SubmConv2D
 
     - :math:`X`: 输入值, NDHWC 格式的张量。
     - :math:`W`: 卷积核值, NDHWC 格式的张量。
-    - :math:`\\ast`: 子流形卷积运算, 参考论文: https://arxiv.org/abs/1706.01307.
-    - :math:`b`: 偏置值, 形状为[M]的一维张量.
-    - :math:`Out`: 输出值, :math:`Out` 和 :math:`X` 的形状可能不同.
+    - :math:`\\ast`: 子流形卷积运算, 参考论文: https://arxiv.org/abs/1706.01307。
+    - :math:`b`: 偏置值, 形状为[M]的一维张量。
+    - :math:`Out`: 输出值, :math:`Out` 和 :math:`X` 的形状可能不同。
 
 参数
 ::::::::::::
@@ -31,8 +31,8 @@ SubmConv2D
     - **out_channels**(int): - 卷积产生的输出通道数。
     - **kernel_size**(int|list|tuple): - 卷积核的大小。
                                          可以为单个整数或包含三个整数的元组或列表，分别表示卷积核的深度，高和宽。如果为单个整数，表示卷积核的深度，高和宽都等于该整数。
-    - **stride**(int|list|tuple, 可选): - 步幅大小。如果 stride 是一个列表/元组，它必须包含两个整数，(stride_H, stride_W).
-                                          否则, stride_H = stride_W = stride。默认值为 1.
+    - **stride**(int|list|tuple, 可选): - 步长大小。如果 stride 是一个列表/元组，它必须包含两个整数，(stride_H, stride_W)。
+                                          否则, stride_H = stride_W = stride。默认值为 1。
     - **padding**(int|str|tuple|list, 可选): - 填充大小。应为以下几种格式之一。
 
             1. 如果它是一个字符串，可以是 "VALID" 或者 "SAME"，计算细节可参考上述 ``padding`` = "SAME" 或  ``padding`` = "VALID" 时的计算公式。
@@ -45,10 +45,10 @@ SubmConv2D
     - **dilation**(int|list|tuple, 可选): - 空洞大小。如果 dilation 是列表或元组, 则它必须包含两个整数 (dilation_H, dilation_W)。
                                             否则, dilation_H = dilation_W = dilation。默认值为 1。
     - **groups**(int, 可选): - 二维卷积层的组号。根据 Alex Krizhevsky 的 Deep CNN 论文中的分组卷积:
-                               当 group = 2 时, 滤波器的前半部分仅连接到输入通道的前半部分, 而滤波器的后半部分仅连接到输入通道的后半部分。默认值为 1。
+                               当 group = 2 时, 卷积核的前半部分仅连接到输入通道的前半部分, 而卷积核的后半部分仅连接到输入通道的后半部分。默认值为 1。
     - **padding_mode**(str, 可选): - ``'zeros'``, ``'reflect'``, ``'replicate'`` 或 ``'circular'``。 目前仅支持 ``'zeros'``。
     - **key**(str, 可选): - key 用于保存或使用相同的规则手册，规则手册的定义和作用是指
-                            https://pdfs.semanticscholar.org/5125/a16039cabc6320c908a4764f32596e018ad3.pdf. The
+                            https://pdfs.semanticscholar.org/5125/a16039cabc6320c908a4764f32596e018ad3.pdf。
                             默认值为 None。
     - **weight_attr**(ParamAttr, 可选): - conv2d 的可学习参数/权重的参数属性。
                                           如果设置为 None 或 ParamAttr 的一个属性，则 conv2d 将创建 ParamAttr 作为 param_attr。 如果设置为 None, 则参数初始化为
@@ -65,11 +65,11 @@ SubmConv2D
 
 weight
 '''''''''
-该层滤波器的可学习权重，类型为 ``Parameter``。
+该层卷积核的可学习权重，类型为 ``Parameter``。
 
 bias
 '''''''''
-本层的可学习偏置，类型为 ``Parameter``。
+该层的可学习偏置，类型为 ``Parameter``。
 
 形状
 ::::::::::::
