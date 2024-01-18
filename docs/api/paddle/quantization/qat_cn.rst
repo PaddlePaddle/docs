@@ -53,3 +53,4 @@ convert(self, model:layer, inplace=False, remain_weight=False):
 
 COPY-FROM: paddle.quantization.QAT.convert
 
+
