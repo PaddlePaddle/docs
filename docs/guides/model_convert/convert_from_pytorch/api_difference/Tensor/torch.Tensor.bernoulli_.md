@@ -10,7 +10,7 @@ Paddle 无此 API，需要组合实现。
 ### 转写示例
 #### p：输入概率，类型为 tensor 时
 ```python
-# Pytorch 写法
+# PyTorch 写法
 input.bernoulli_(p=x)
 
 # Paddle 写法
@@ -19,7 +19,7 @@ paddle.assign(paddle.bernoulli(paddle.broadcast_to(x, input.shape)), input)
 
 #### p：输入概率，类型为 float 时
 ```python
-# Pytorch 写法
+# PyTorch 写法
 input.bernoulli_(p=x)
 
 # Paddle 写法

@@ -1,6 +1,5 @@
 .. _cn_api_paddle_device_cuda_get_device_properties:
 
-
 get_device_properties
 -------------------------------
 

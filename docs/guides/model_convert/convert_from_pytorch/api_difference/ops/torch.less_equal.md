@@ -24,7 +24,7 @@ paddle.less_equal(x, y, name=None)
 ### 转写示例
 #### other：输入为 Number
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.less_equal(x, 2)
 
 # Paddle 写法
@@ -33,7 +33,7 @@ paddle.less_equal(x, paddle.to_tensor(2))
 
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.less_equal(x, y, out=output)
 
 # Paddle 写法

@@ -18,7 +18,7 @@ paddle.nn.PReLU(num_parameters=1,
                 name=None)
 ```
 
-其中 Pytorch 与 Paddle 均支持更多其它参数，具体如下：
+其中 PyTorch 与 Paddle 均支持更多其它参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -26,5 +26,5 @@ paddle.nn.PReLU(num_parameters=1,
 | init        | init            | 表示 `weight` 的初始值。  |
 | device        | -            | 指定设备，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
 | dtype         | -            | 指定数据类型，PaddlePaddle 无此功能。  |
-| -             | weight_attr  | 指定权重参数属性的对象，Pytorch 无此参数，Paddle 保持默认即可。  |
+| -             | weight_attr  | 指定权重参数属性的对象，PyTorch 无此参数，Paddle 保持默认即可。  |
 | -             | data_format  | 指定输入的数据格式，PyTorch 无此参数，Paddle 保持默认即可。  |

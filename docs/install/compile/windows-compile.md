@@ -8,7 +8,7 @@
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
 * **Python 版本 3.8/3.9/3.10/3.11/3.12 (64 bit)**
-* **Visual Studio 2019 社区版/专业版/企业版**
+* **Visual Studio 2017/2019 社区版/专业版/企业版**
 
 ## 选择 CPU/GPU
 
@@ -18,7 +18,7 @@
 
 ## 本机编译过程
 
-1. 安装必要的工具 cmake, git, python, Visual studio 2019：
+1. 安装必要的工具 cmake, git, python, Visual studio 2017/2019：
 
     > **cmake**：建议安装 CMake3.17 版本, 官网下载[链接](https://cmake.org/files/v3.17/cmake-3.17.0-win64-x64.msi)。安装时注意勾选 `Add CMake to the system PATH for all users`，将 CMake 添加到环境变量中。
 
@@ -26,7 +26,7 @@
 
     > **python**：官网[链接](https://www.python.org/downloads/windows/)，可选择 3.8/3.9/3.10/3.11/3.12 中任一版本的 Windows installer(64-bit)安装。安装时注意勾选 `Add Python 3.x to PATH`，将 Python 添加到环境变量中。
 
-    > **Visual studio**：建议安装 VS2019。官网[链接](https://visualstudio.microsoft.com/zh-hans/vs/older-downloads/)，需要登录后下载，建议下载 Community 社区版。在安装时需要在工作负荷一栏中勾选 `使用 C++的桌面开发` 和 `通用 Windows 平台开发`，并在语言包一栏中选择 `英语`。
+    > **Visual studio**：VS2017 仅用于 CPU 版编译，建议安装 VS2019。官网[链接](https://visualstudio.microsoft.com/zh-hans/vs/older-downloads/)，需要登录后下载，建议下载 Community 社区版。在安装时需要在工作负荷一栏中勾选 `使用 C++的桌面开发` 和 `通用 Windows 平台开发`，并在语言包一栏中选择 `英语`。
 
 2. 打开 Visual studio 终端：在 Windows 桌面下方的搜索栏中搜索终端，若安装的是 VS2019 版本，则搜索 `x64 Native Tools Command Prompt for VS 2019` 或 `适用于 VS 2019 的 x64 本机工具命令提示符`，然后右键以管理员身份打开终端。后续的命令将在该终端执行。
 

@@ -4,7 +4,7 @@
 def get_PADDLE_API_func(data: dict):
     result = []
     for i in data["functions"]:
-        if 'PADDLE_API' in i['debug']:
+        if "PADDLE_API" in i["debug"]:
             result.append(i)
     return result
 
@@ -32,7 +32,7 @@ def get_parameters(parameters):
     # parameter_api = ""  # 这里解析是给api使用的 (暂时不用)
     parameter_dict = {}
     for i in parameters:
-        parameter_type_tmp = i['type'].replace(" &", "").replace(" *", "")
+        parameter_type_tmp = i["type"].replace(" &", "").replace(" *", "")
         # * 和 & 情况
         # parameter_api += parameter_type_tmp
 
@@ -41,18 +41,18 @@ def get_parameters(parameters):
         if i["pointer"] == 1:
             # parameter_api += "*"
             parameter_type_tmp += "*"
-        if i["constant"] == 1 and not parameter_type_tmp.startswith('const'):
+        if i["constant"] == 1 and not parameter_type_tmp.startswith("const"):
             parameter_type_tmp = "const " + parameter_type_tmp
         # parameter_api += f" {i['name']}, "
-        desc = i.get('desc', '').replace('  ', '')
+        desc = i.get("desc", "").replace("  ", "")
 
         # special progress for none parameter name case
-        if i['name'] == '&':
+        if i["name"] == "&":
             continue
         else:
-            parameter_dict[i['name']] = {
-                'type': parameter_type_tmp,
-                'intro': desc,
+            parameter_dict[i["name"]] = {
+                "type": parameter_type_tmp,
+                "intro": desc,
             }
         # parameter += f"\t- **{i['name']}** ({parameter_type_tmp}) - {desc}\n"
     # 去掉末尾的逗号
@@ -67,27 +67,27 @@ def get_parameters(parameters):
 # 解析后分别将对应关键字后的内容放入字典对应关键字后
 def parse_doxygen(doxygen):
     doxygen_dict = {
-        'intro': '',
-        'returns': '',
-        'param_intro': {},
-        'note': '',
+        "intro": "",
+        "returns": "",
+        "param_intro": {},
+        "note": "",
     }
 
-    if '@' in doxygen:
-        doxygen = doxygen[doxygen.find('@') :]
-        for doxygen_part in doxygen.split('@'):
-            if doxygen_part.startswith('brief '):
-                doxygen_dict['intro'] = doxygen_part.replace('brief ', '', 1)
-            elif doxygen_part.startswith('return '):
-                doxygen_dict['returns'] = doxygen_part.replace('return ', '', 1)
-            elif doxygen_part.startswith('param '):
-                param_intro = doxygen_part.replace('param ', '', 1)
-                param_name = param_intro[: param_intro.find(' ')]
-                doxygen_dict['param_intro'][param_name] = param_intro[
-                    param_intro.find(' ') + 1 :
+    if "@" in doxygen:
+        doxygen = doxygen[doxygen.find("@") :]
+        for doxygen_part in doxygen.split("@"):
+            if doxygen_part.startswith("brief "):
+                doxygen_dict["intro"] = doxygen_part.replace("brief ", "", 1)
+            elif doxygen_part.startswith("return "):
+                doxygen_dict["returns"] = doxygen_part.replace("return ", "", 1)
+            elif doxygen_part.startswith("param "):
+                param_intro = doxygen_part.replace("param ", "", 1)
+                param_name = param_intro[: param_intro.find(" ")]
+                doxygen_dict["param_intro"][param_name] = param_intro[
+                    param_intro.find(" ") + 1 :
                 ]
-            elif doxygen_part.startswith('note '):
-                doxygen_dict['note'] = doxygen_part.replace('note ', '', 1)
+            elif doxygen_part.startswith("note "):
+                doxygen_dict["note"] = doxygen_part.replace("note ", "", 1)
             else:
                 pass
 

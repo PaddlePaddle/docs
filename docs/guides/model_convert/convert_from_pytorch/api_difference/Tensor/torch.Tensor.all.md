@@ -14,7 +14,7 @@ paddle.Tensor.all(axis=None,
            name=None)
 ```
 
-其中 Paddle 与 Pytorch 运算 Tensor 所支持的类型不一致，具体如下：
+其中 Paddle 与 PyTorch 运算 Tensor 所支持的类型不一致，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |

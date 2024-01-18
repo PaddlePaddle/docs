@@ -1,6 +1,5 @@
 .. _cn_api_paddle_nn_AdaptiveMaxPool2D:
 
-
 AdaptiveMaxPool2D
 -------------------------------
 

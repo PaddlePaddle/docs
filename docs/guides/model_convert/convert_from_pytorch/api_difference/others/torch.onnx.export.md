@@ -12,7 +12,7 @@ torch.onnx.export(model, args, f, export_params=True, verbose=False, training=<T
 paddle.onnx.export(layer, path, input_spec=None, opset_version=9, **configs)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

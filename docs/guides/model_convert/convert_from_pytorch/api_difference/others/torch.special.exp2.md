@@ -11,7 +11,7 @@ Paddle 无此 API，需要组合实现。
 ### 转写示例
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = torch.special.exp2(x)
 
 # Paddle 写法
