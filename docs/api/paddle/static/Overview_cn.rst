@@ -150,6 +150,7 @@ io 相关 API
 
     " :ref:`accuracy <cn_api_paddle_static_accuracy>` ", "计算精确率"
     " :ref:`auc <cn_api_paddle_static_auc>` ", "计算 AUC"
+    " :ref:`ctr_metric_bundle <cn_api_paddle_static_ctr_metric_bundle>` ", "计算 CTR 相关指标"
 
 
 .. _about_others:
