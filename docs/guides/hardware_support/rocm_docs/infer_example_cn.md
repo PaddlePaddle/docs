@@ -19,7 +19,7 @@ cd Paddle
 mkdir build && cd build
 
 # 执行 cmake，注意这里需打开预测优化选项 ON_INFER
-cmake .. -DPY_VERSION=3.7 -DWITH_ROCM=ON -DWITH_TESTING=OFF -DON_INFER=ON \
+cmake .. -DPY_VERSION=3.8 -DWITH_ROCM=ON -DWITH_TESTING=OFF -DON_INFER=ON \
          -DWITH_MKL=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
 # 使用以下命令来编译

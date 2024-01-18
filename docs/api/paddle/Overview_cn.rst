@@ -52,6 +52,7 @@ tensor 数学操作
     " :ref:`paddle.conj <cn_api_paddle_conj>` ", "逐元素计算 Tensor 的共轭运算"
     " :ref:`paddle.cos <cn_api_paddle_cos>` ", "余弦函数"
     " :ref:`paddle.cosh <cn_api_paddle_cosh>` ", "双曲余弦函数"
+    " :ref:`paddle.copysign <cn_api_paddle_copysign>` ", "按照元素计算两个输入 Tensor 的 copysign 大小，由数值和符号组成，其数值部分来自于第一个 Tensor 中的元素，符号部分来自于第二个 Tensor 中的元素。"
     " :ref:`paddle.count_nonzero <cn_api_paddle_count_nonzero>` ", "沿给定的轴 axis 统计非零元素的数量"
     " :ref:`paddle.cumsum <cn_api_paddle_cumsum>` ", "沿给定 axis 计算 Tensor x 的累加和"
     " :ref:`paddle.cummax <cn_api_paddle_cummax>` ", "沿给定 axis 计算 Tensor x 的累计最大值"
@@ -66,6 +67,7 @@ tensor 数学操作
     " :ref:`paddle.expm1 <cn_api_paddle_expm1>` ", "逐元素进行 exp(x)-1 运算"
     " :ref:`paddle.floor <cn_api_paddle_floor>` ", "向下取整函数"
     " :ref:`paddle.floor_divide <cn_api_paddle_floor_divide>` ", "逐元素整除算子，输入 x 与输入 y 逐元素整除，并将各个位置的输出元素保存到返回结果中"
+    " :ref:`paddle.gammaln <cn_api_paddle_gammaln>` ", "逐元素计算输入 x 的伽马函数的绝对值的自然对数"
     " :ref:`paddle.greater_equal <cn_api_paddle_greater_equal>` ", "逐元素地返回 x>=y 的逻辑值"
     " :ref:`paddle.greater_than <cn_api_paddle_greater_than>` ", "逐元素地返回 x>y 的逻辑值"
     " :ref:`paddle.heaviside <cn_api_paddle_heaviside>` ", "逐元素地对 x 计算由 y 中的对应元素决定的赫维赛德阶跃函数"
@@ -87,6 +89,8 @@ tensor 数学操作
     " :ref:`paddle.bitwise_not <cn_api_paddle_bitwise_not>` ", "逐元素的对 X Tensor 进行按位取反运算"
     " :ref:`paddle.bitwise_or <cn_api_paddle_bitwise_or>` ", "逐元素的对 X 和 Y 进行按位或运算"
     " :ref:`paddle.bitwise_xor <cn_api_paddle_bitwise_xor>` ", "逐元素的对 X 和 Y 进行按位异或运算"
+    " :ref:`paddle.bitwise_left_shift <cn_api_paddle_bitwise_left_shift>` ", "逐元素的对 X 和 Y 进行按位算术(或逻辑)左移"
+    " :ref:`paddle.bitwise_right_shift <cn_api_paddle_bitwise_right_shift>` ", "逐元素的对 X 和 Y 进行按位算术(或逻辑)右移"
     " :ref:`paddle.logsumexp <cn_api_paddle_logsumexp>` ", "沿着 axis 计算 x 的以 e 为底的指数的和的自然对数"
     " :ref:`paddle.max <cn_api_paddle_max>` ", "对指定维度上的 Tensor 元素求最大值运算"
     " :ref:`paddle.amax <cn_api_paddle_max>` ", "对指定维度上的 Tensor 元素求最大值运算"
@@ -165,9 +169,10 @@ tensor 数学操作原位（inplace）版本
 
 .. csv-table::
     :header: "API 名称", "API 功能"
-    :widths: 10, 30
+    :widths: 12, 30
 
     " :ref:`paddle.remainder_ <cn_api_paddle_remainder_>` ", "Inplace 版本的 remainder API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.abs_ <cn_api_paddle_abs_>` ", "Inplace 版本的 abs API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.tanh_ <cn_api_paddle_tanh_>` ", "Inplace 版本的 tanh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.erf_ <cn_api_paddle_erf_>` ", "Inplace 版本的 erf API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.erfinv_ <cn_api_paddle_erfinv_>` ", "Inplace 版本的 erfinv API，对输入 x 采用 Inplace 策略"
@@ -175,14 +180,20 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.put_along_axis_ <cn_api_paddle_put_along_axis_>` ", "Inplace 版本的 put_along_axis API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.ceil_ <cn_api_paddle_ceil_>` ", "Inplace 版本的 ceil API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.clip_ <cn_api_paddle_clip_>` ", "Inplace 版本的 clip API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.copysign_ <cn_api_paddle_copysign_>` ", "Inplace 版本的 copysign API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.exp_ <cn_api_paddle_exp_>` ", "Inplace 版本的 exp API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.expm1_ <cn_api_paddle_expm1_>` ", "Inplace 版本的 expm1 API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.flatten_ <cn_api_paddle_flatten_>` ", "Inplace 版本的 flatten API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.floor_ <cn_api_paddle_floor_>` ", "Inplace 版本的 floor API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.gammaln_ <cn_api_paddle_gammaln_>` ", "Inplace 版本的 gammaln API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.reciprocal_ <cn_api_paddle_reciprocal_>` ", "Inplace 版本的 reciprocal API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.round_ <cn_api_paddle_round_>` ", "Inplace 版本的 round API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.rsqrt_ <cn_api_paddle_rsqrt_>` ", "Inplace 版本的 rsqrt API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.scale_ <cn_api_paddle_scale_>` ", "Inplace 版本的 scale API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.sqrt_ <cn_api_paddle_sqrt_>` ", "Inplace 版本的 sqrt API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.square_ <cn_api_paddle_square_>` ", "Inplace 版本的 square API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.sin_ <cn_api_paddle_sin_>` ", "Inplace 版本的 sin API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.sinh_ <cn_api_paddle_sinh_>` ", "Inplace 版本的 sinh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.subtract_ <cn_api_paddle_subtract_>` ", "Inplace 版本的 subtract API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.tan_ <cn_api_paddle_tan_>` ", "Inplace 版本的 tan API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.cos_ <cn_api_paddle_cos_>` ", "Inplace 版本的 cos API，对输入 x 采用 Inplace 策略"
@@ -195,7 +206,9 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.masked_fill_ <cn_api_paddle_masked_fill_>` ", "Inplace 版本的 masked_fill API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.masked_scatter_ <cn_api_paddle_masked_scatter_>` ", "Inplace 版本的 masked_scatter API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.index_fill_ <cn_api_paddle_index_fill_>` ", "Inplace 版本的 index_fill API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.sin_ <cn_api_paddle_sin_>` ", "Inplace 版本的 sin API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.bitwise_left_shift_ <cn_api_paddle_bitwise_left_shift_>` ", "Inplace 版本的 bitwise_left_shift API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.bitwise_right_shift_ <cn_api_paddle_bitwise_right_shift_>` ", "Inplace 版本的 bitwise_right_shift API，对输入 x 采用 Inplace 策略"
+
 
 .. _tensor_logic:
 
@@ -460,6 +473,7 @@ framework 相关
     " :ref:`paddle.disable_static <cn_api_paddle_disable_static>` ", "关闭静态图模式"
     " :ref:`paddle.enable_static <cn_api_paddle_enable_static>` ", "开启静态图模式"
     " :ref:`paddle.get_default_dtype <cn_api_paddle_get_default_dtype>` ", "得到当前全局的 dtype"
+    " :ref:`paddle.get_rng_state <cn_api_paddle_get_rng_state>` ", "获取指定设备的随机数生成器的所有随机状态。"
     " :ref:`paddle.grad <cn_api_paddle_grad>` ", "对于每个 inputs ，计算所有 outputs 相对于其的梯度和"
     " :ref:`paddle.in_dynamic_mode <cn_api_paddle_in_dynamic_mode>` ", "查看 paddle 当前是否在动态图模式中运行"
     " :ref:`paddle.load <cn_api_paddle_load>` ", "从指定路径载入可以在 paddle 中使用的对象实例"
@@ -467,6 +481,7 @@ framework 相关
     " :ref:`paddle.ParamAttr <cn_api_paddle_ParamAttr>` ", "创建一个参数属性对象"
     " :ref:`paddle.save <cn_api_paddle_save>` ", "将对象实例 obj 保存到指定的路径中"
     " :ref:`paddle.set_default_dtype <cn_api_paddle_set_default_dtype>` ", "设置默认的全局 dtype。"
+    " :ref:`paddle.set_rng_state <cn_api_paddle_set_rng_state>` ", "设置默认的全局设备生成器状态。"
     " :ref:`paddle.set_grad_enabled <cn_api_paddle_set_grad_enabled>` ", "创建启用或禁用动态图梯度计算的上下文"
     " :ref:`paddle.is_grad_enabled <cn_api_paddle_is_grad_enabled>` ", "判断当前动态图下是否启用了计算梯度模式。"
     " :ref:`paddle.set_printoptions <cn_api_paddle_set_printoptions>` ", "设置 paddle 中 Tensor 的打印配置选项"

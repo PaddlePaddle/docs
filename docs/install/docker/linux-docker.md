@@ -9,7 +9,7 @@
 
 - 在本地主机上[安装 Docker](https://docs.docker.com/engine/install/)
 
-- 如需在 Linux 开启 GPU 支持，请[安装 nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+- 如需在 Linux 开启 GPU 支持，请[安装 NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit)
 
 - 镜像中 Python 版本为 3.10
 
@@ -29,15 +29,15 @@
     docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.0-jupyter
     ```
 
-* GPU 版的 PaddlePaddle：
+* GPU 版的 PaddlePaddle(**建议拉取最新版本镜像，并确保已经成功安装 NVIDIA Container Toolkit**)：
     ```
-    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda11.2-cudnn8.2-trt8.0
-    ```
-    ```
-    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda11.7-cudnn8.4-trt8.4
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda11.2-cudnn8.2-trt8.0
     ```
     ```
-    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda12.0-cudnn8.9-trt8.6
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda11.7-cudnn8.4-trt8.4
+    ```
+    ```
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda12.0-cudnn8.9-trt8.6
     ```
 
 如果您的机器不在中国大陆地区，可以直接从 DockerHub 拉取镜像：
@@ -52,15 +52,15 @@
     docker pull paddlepaddle/paddle:2.6.0-jupyter
     ```
 
-* GPU 版的 PaddlePaddle：
+* GPU 版的 PaddlePaddle(**建议拉取最新版本镜像，并确保已经成功安装 NVIDIA Container Toolkit**)：
     ```
-    nvidia-docker pull paddlepaddle/paddle:2.6.0-gpu-cuda11.2-cudnn8.2-trt8.0
-    ```
-    ```
-    nvidia-docker pull paddlepaddle/paddle:2.6.0-gpu-cuda11.7-cudnn8.4-trt8.4
+    docker pull paddlepaddle/paddle:2.6.0-gpu-cuda11.2-cudnn8.2-trt8.0
     ```
     ```
-    nvidia-docker pull paddlepaddle/paddle:2.6.0-gpu-cuda12.0-cudnn8.9-trt8.6
+    docker pull paddlepaddle/paddle:2.6.0-gpu-cuda11.7-cudnn8.4-trt8.4
+    ```
+    ```
+    docker pull paddlepaddle/paddle:2.6.0-gpu-cuda12.0-cudnn8.9-trt8.6
     ```
 
 您还可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取更多镜像。
@@ -115,18 +115,17 @@
 * 使用 GPU 版本的 PaddlePaddle：
 
     ```
-    nvidia-docker run --name paddle_docker -it -v $PWD:/paddle registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda12.0-cudnn8.9-trt8.6
+    docker run --name paddle_docker -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
     ```
 
     - `--name paddle_docker`：设定 Docker 的名称，`paddle_docker` 是自己设置的名称；
 
 
-    - `-it`：参数说明容器已和本机交互式运行；
+    - `-v $PWD:/paddle`： 将当前目录挂载到 Docker 容器中的/paddle 目录下（Linux 中 PWD 变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185));
 
+    - `-it`： 与宿主机保持交互状态;
 
-    - `-v $PWD:/paddle`：指定将当前路径（PWD 变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
-
-    - `registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda12.0-cudnn8.9-trt8.6`：指定需要使用的 image 名称，如果您希望使用 CUDA 11.2 或 CUDA 11.7 的镜像，也可以将其替换成`registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda11.2-cudnn8.2-trt8.0` 或 `registry.baidubce.com/paddlepaddle/paddle:2.6.0-gpu-cuda11.7-cudnn8.4-trt8.4`。您可以通过`docker images`命令查看镜像。/bin/bash 是在 Docker 中要执行的命令
+    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`：使用名为`registry.baidubce.com/paddlepaddle/paddle`, tag 为`latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令。
 
 
 
