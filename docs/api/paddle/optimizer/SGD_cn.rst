@@ -11,7 +11,7 @@ SGD
             \\param\_out=param-learning\_rate*grad\\
 
 
-为网络添加反向计算过程，并根据反向计算所得的梯度，更新 parameters 中的 Parameters，最小化网络损失值 loss。
+为网络添加反向计算过程，并根据反向计算所得的梯度，更新 parameters（传入 SGD 的变量，一般会是网络中的参数） ，最小化网络损失值 loss。
 
 参数
 ::::::::::::
@@ -52,7 +52,7 @@ COPY-FROM: paddle.optimizer.SGD.step
 minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 '''''''''
 
-为网络添加反向计算过程，并根据反向计算所得的梯度，更新 parameters 中的 Parameters，最小化网络损失值 loss。
+为网络添加反向计算过程，并根据反向计算所得的梯度，更新 parameters（传入 SGD 的变量，一般会是网络中的参数），最小化网络损失值 loss。
 
 **参数**
 

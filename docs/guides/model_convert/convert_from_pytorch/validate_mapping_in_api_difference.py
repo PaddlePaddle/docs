@@ -8,27 +8,27 @@ from typing import TypedDict
 
 mapping_type_set = {
     # type 1
-    '无参数',
-    '参数完全一致',
-    '仅参数名不一致',
-    '仅 paddle 参数更多',
-    '仅参数默认值不一致',
+    "无参数",
+    "参数完全一致",
+    "仅参数名不一致",
+    "仅 paddle 参数更多",
+    "仅参数默认值不一致",
     # type 2
-    'torch 参数更多',
+    "torch 参数更多",
     # type 3
-    '返回参数类型不一致',
-    '参数不一致',
-    '参数用法不一致',
+    "返回参数类型不一致",
+    "参数不一致",
+    "参数用法不一致",
     # type 4
-    '组合替代实现',
+    "组合替代实现",
     # type 5
-    '用法不同：涉及上下文修改',
+    "用法不同：涉及上下文修改",
     # type 6
-    '对应 API 不在主框架',
+    "对应 API 不在主框架",
     # type 7
-    '功能缺失',
+    "功能缺失",
     # delete
-    '可删除',
+    "可删除",
 }
 
 
@@ -46,7 +46,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
 
 
 def get_meta_from_diff_file(filepath):
-    meta_data: DiffMeta = {'source_file': filepath}
+    meta_data: DiffMeta = {"source_file": filepath}
     state = 0
     # 0: wait for title
     # 1: wait for torch api
@@ -60,19 +60,19 @@ def get_meta_from_diff_file(filepath):
         r"^### +\[ *(?P<paddle_api>paddle.[^\]]+)\]\((?P<url>[^\)]+)$"
     )
 
-    with open(filepath, 'r') as f:
+    with open(filepath, "r") as f:
         for line in f.readlines():
-            if not line.startswith('##'):
+            if not line.startswith("##"):
                 continue
 
             if state == 0:
                 title_match = title_pattern.match(line)
                 if title_match:
-                    mapping_type = title_match['type'].strip()
-                    torch_api = title_match['torch_api'].strip()
+                    mapping_type = title_match["type"].strip()
+                    torch_api = title_match["torch_api"].strip()
 
-                    meta_data['torch_api'] = torch_api
-                    meta_data['mapping_type'] = mapping_type
+                    meta_data["torch_api"] = torch_api
+                    meta_data["mapping_type"] = mapping_type
                     state = 1
                 else:
                     raise Exception(f"Cannot parse title: {line} in {filepath}")
@@ -80,14 +80,14 @@ def get_meta_from_diff_file(filepath):
                 torch_match = torch_pattern.match(line)
 
                 if torch_match:
-                    torch_api = torch_match['torch_api'].strip()
-                    torch_url = torch_match['url'] if torch_match['url'] else ''
-                    real_url = torch_url.lstrip('(').rstrip(')')
-                    if meta_data['torch_api'] != torch_api:
+                    torch_api = torch_match["torch_api"].strip()
+                    torch_url = torch_match["url"] if torch_match["url"] else ""
+                    real_url = torch_url.lstrip("(").rstrip(")")
+                    if meta_data["torch_api"] != torch_api:
                         raise Exception(
                             f"torch api not match: {line} != {meta_data['torch_api']} in {filepath}"
                         )
-                    meta_data['torch_api_url'] = real_url
+                    meta_data["torch_api_url"] = real_url
                     state = 2
                 else:
                     raise Exception(
@@ -97,10 +97,10 @@ def get_meta_from_diff_file(filepath):
                 paddle_match = paddle_pattern.match(line)
 
                 if paddle_match:
-                    paddle_api = paddle_match['paddle_api'].strip()
-                    paddle_url = paddle_match['url'].strip()
-                    meta_data['paddle_api'] = paddle_api
-                    meta_data['paddle_api_url'] = paddle_url
+                    paddle_api = paddle_match["paddle_api"].strip()
+                    paddle_url = paddle_match["url"].strip()
+                    meta_data["paddle_api"] = paddle_api
+                    meta_data["paddle_api_url"] = paddle_url
                     state = 3
             else:
                 pass
@@ -124,11 +124,11 @@ TABLE_COLUMN_PADDLE_API_PATTERN = re.compile(
 )
 
 TABLE_COLUMN_MAPPING_PATTERN = re.compile(
-    r'^(?P<type>[^\[]*)(\[(?P<diff_name>[^\]]+)\]\((?P<diff_url>[^\)]+)\))?'
+    r"^(?P<type>[^\[]*)(\[(?P<diff_name>[^\]]+)\]\((?P<diff_url>[^\)]+)\))?"
 )
 
 MAPPING_DIFF_SOURCE_PATTERN = re.compile(
-    r'^https://github.com/PaddlePaddle/((docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/)|(X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/))'
+    r"^https://github.com/PaddlePaddle/((docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/)|(X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/))"
 )
 
 
@@ -143,8 +143,8 @@ def validate_mapping_table_row(columns, row_idx, line_idx):
 
     torch_api_match = TABLE_COLUMN_TORCH_API_PATTERN.match(torch_api_s)
     if torch_api_match:
-        torch_api = torch_api_match['torch_api']
-        torch_api_url = torch_api_match['url'][1:-1]  # remove '(' and ')'
+        torch_api = torch_api_match["torch_api"]
+        torch_api_url = torch_api_match["url"][1:-1]  # remove '(' and ')'
     else:
         raise Exception(
             f"Table row torch api not match: {torch_api_s} at line {line_idx}."
@@ -153,8 +153,8 @@ def validate_mapping_table_row(columns, row_idx, line_idx):
     paddle_api_match = TABLE_COLUMN_PADDLE_API_PATTERN.match(paddle_api_s)
     if len(paddle_api_s) > 0:
         if paddle_api_match:
-            paddle_api = paddle_api_match['paddle_api']
-            paddle_api_url = paddle_api_match['url'][1:-1]  # remove '(' and ')'
+            paddle_api = paddle_api_match["paddle_api"]
+            paddle_api_url = paddle_api_match["url"][1:-1]  # remove '(' and ')'
         else:
             raise Exception(
                 f"Table row paddle api not match: {paddle_api_s} at line {line_idx}."
@@ -165,11 +165,11 @@ def validate_mapping_table_row(columns, row_idx, line_idx):
 
     mapping_type_match = TABLE_COLUMN_MAPPING_PATTERN.match(mapping_s)
     if mapping_type_match:
-        mapping_type = mapping_type_match['type'].strip()
-        mapping_diff_name = mapping_type_match['diff_name']
-        diff_url = mapping_type_match['diff_url']
+        mapping_type = mapping_type_match["type"].strip()
+        mapping_diff_name = mapping_type_match["diff_name"]
+        diff_url = mapping_type_match["diff_url"]
 
-        if mapping_diff_name != '差异对比' and mapping_diff_name is not None:
+        if mapping_diff_name != "差异对比" and mapping_diff_name is not None:
             print(
                 f"Table row mapping diff name not match: {mapping_diff_name} at line {line_idx}."
             )
@@ -187,14 +187,14 @@ def validate_mapping_table_row(columns, row_idx, line_idx):
         )
 
     return {
-        'torch_api': torch_api,
-        'torch_api_url': torch_api_url,
-        'paddle_api': paddle_api,
-        'paddle_api_url': paddle_api_url,
-        'mapping_type': mapping_type,
-        'mapping_diff_name': mapping_diff_name,
-        'mapping_diff_url': mapping_diff_url,
-        'line_idx': line_idx,
+        "torch_api": torch_api,
+        "torch_api_url": torch_api_url,
+        "paddle_api": paddle_api,
+        "paddle_api_url": paddle_api_url,
+        "mapping_type": mapping_type,
+        "mapping_diff_name": mapping_diff_name,
+        "mapping_diff_url": mapping_diff_url,
+        "line_idx": line_idx,
     }
 
 
@@ -213,26 +213,26 @@ def process_mapping_index(filename):
     column_count = -1
     table_seperator_pattern = re.compile(r"^ *\|(?P<group> *-+ *\|)+ *$")
 
-    expect_column_names = ['序号', 'PyTorch API', 'PaddlePaddle API', '备注']
+    expect_column_names = ["序号", "PyTorch API", "PaddlePaddle API", "备注"]
 
     table_row_idx = -1
 
     output = []
 
-    with open(filename, 'r') as f:
+    with open(filename, "r") as f:
         for i, line in enumerate(f.readlines()):
             if state < 0:
                 break
 
             content = line.strip()
-            if len(content) == 0 or content[0] != '|':
+            if len(content) == 0 or content[0] != "|":
                 state = 0
                 continue
 
-            columns = [c.strip() for c in content.split('|')]
+            columns = [c.strip() for c in content.split("|")]
             if len(columns) <= 2:
                 raise Exception(
-                    f'Table column count must > 0, but found {len(columns) - 2} at line {i+1}: {line}'
+                    f"Table column count must > 0, but found {len(columns) - 2} at line {i+1}: {line}"
                 )
             columns = columns[1:-1]
 
@@ -246,7 +246,7 @@ def process_mapping_index(filename):
                     # print(f'process mapping table at line {i+1}.')
                 else:
                     state = 1
-                    print(f'ignore table with {column_names} at line {i+1}.')
+                    print(f"ignore table with {column_names} at line {i+1}.")
             elif state == 1:
                 if (
                     not table_seperator_pattern.match(line)
@@ -299,11 +299,11 @@ def process_mapping_index(filename):
     return output
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # convert from pytorch basedir
     cfp_basedir = os.path.dirname(__file__)
     # pytorch_api_mapping_cn
-    mapping_index_file = os.path.join(cfp_basedir, 'pytorch_api_mapping_cn.md')
+    mapping_index_file = os.path.join(cfp_basedir, "pytorch_api_mapping_cn.md")
 
     if not os.path.exists(mapping_index_file):
         raise Exception(f"Cannot find mapping index file: {mapping_index_file}")
@@ -311,7 +311,7 @@ if __name__ == '__main__':
     # index_data = process_mapping_index(mapping_index_file)
     # index_data_dict = {i['torch_api'].replace('\_', '_'): i for i in index_data}
 
-    api_difference_basedir = os.path.join(cfp_basedir, 'api_difference')
+    api_difference_basedir = os.path.join(cfp_basedir, "api_difference")
 
     mapping_file_pattern = re.compile(r"^torch\.(?P<api_name>.+)\.md$")
     # get all diff files (torch.*.md)
@@ -329,10 +329,10 @@ if __name__ == '__main__':
     print(f"Total {len(metas)} mapping metas")
 
     for m in metas:
-        if m['mapping_type'] not in mapping_type_set:
+        if m["mapping_type"] not in mapping_type_set:
             print(m)
             raise Exception(
                 f"Unknown mapping type: {m['mapping_type']} in {m['source_file']}"
             )
 
-    meta_dict = {m['torch_api'].replace(r'\_', '_'): m for m in metas}
+    meta_dict = {m["torch_api"].replace(r"\_", "_"): m for m in metas}

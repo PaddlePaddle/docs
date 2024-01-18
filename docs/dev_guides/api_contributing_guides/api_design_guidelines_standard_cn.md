@@ -207,26 +207,26 @@
 
 - 在用于 API 命名时，以下建议使用全称，不推荐使用缩写
 
-    | 不规范命名 |   规范命名    |
-    | :-------- | :----------- |
-    |    div     |    divide     |
-    |    mul     |   multiply    |
-    |    sub     |   subtract    |
-    | floor_div  | floor_divide  |
-    |     lr     | learning_rate |
-    |    act     |  activation   |
-    |    eps     |    epsilon    |
-    |    val     |     value     |
-    |    var     |    varible    |
-    |   param    |   parameter   |
-    |    prog    |    program    |
-    |    idx     |     index     |
-    |    exe     |   executor    |
-    |    buf     |    buffer     |
-    |   trans    |   transpose   |
-    |    img     |     image     |
-    |    loc     |   location    |
-    |    len     |    length     |
+   | 不规范命名 |   规范命名    |
+   | :-------- | :----------- |
+   |    div     |    divide     |
+   |    mul     |   multiply    |
+   |    sub     |   subtract    |
+   | floor_div  | floor_divide  |
+   |     lr     | learning_rate |
+   |    act     |  activation   |
+   |    eps     |    epsilon    |
+   |    val     |     value     |
+   |    var     |    varible    |
+   |   param    |   parameter   |
+   |    prog    |    program    |
+   |    idx     |     index     |
+   |    exe     |   executor    |
+   |    buf     |    buffer     |
+   |   trans    |   transpose   |
+   |    img     |     image     |
+   |    loc     |   location    |
+   |    len     |    length     |
 
 
 
@@ -239,21 +239,21 @@
 
 - 常见的数学计算 API 中的逐元素操作不需要加上 elementwise 前缀，按照某一轴操作不需要加上 reduce 前缀，一些例子如下
 
-    |  paddle2.0 之前  | pytorch |  numpy   | tensorflow  |   paddle2.0 之后   |
-    | :------------- | :----- | :------ | :--------- | :--------------- |
-    | elementwise_add |   add   |   add    |     add     |        add        |
-    | elementwise_sub |   sub   | subtract |  subtract   |      subract      |
-    | elementwise_mul |   mul   | multiply |  multiply   |     multiply      |
-    | elementwise_div |   div   |  divide  |   divide    | divide |
-    | elementwise_min |   min   | minimum  |   minimum   |      minimum      |
-    | elementwise_max |   max   | maximum  |   maximum   |      maximum      |
-    |   reduce_sum    |   sum   |   sum    | reduce_sum  |        sum        |
-    |   reduce_prod   |  prod   |   prod   | reduce_prod |       prod        |
-    |   reduce_min    |   min   |   min    | reduce_min  |        min        |
-    |   reduce_max    |   max   |   max    | reduce_max  |        max        |
-    |   reduce_all    |   all   |   all    | reduce_all  |        all        |
-    |   reduce_any    |   any   |   any    | reduce_any  |        any        |
-    |   reduce_mean   |  mean   |   mean   | reduce_mean |       mean        |
+   |  paddle2.0 之前  | pytorch |  numpy   | tensorflow  |   paddle2.0 之后   |
+   | :------------- | :----- | :------ | :--------- | :--------------- |
+   | elementwise_add |   add   |   add    |     add     |        add        |
+   | elementwise_sub |   sub   | subtract |  subtract   |      subract      |
+   | elementwise_mul |   mul   | multiply |  multiply   |     multiply      |
+   | elementwise_div |   div   |  divide  |   divide    | divide |
+   | elementwise_min |   min   | minimum  |   minimum   |      minimum      |
+   | elementwise_max |   max   | maximum  |   maximum   |      maximum      |
+   |   reduce_sum    |   sum   |   sum    | reduce_sum  |        sum        |
+   |   reduce_prod   |  prod   |   prod   | reduce_prod |       prod        |
+   |   reduce_min    |   min   |   min    | reduce_min  |        min        |
+   |   reduce_max    |   max   |   max    | reduce_max  |        max        |
+   |   reduce_all    |   all   |   all    | reduce_all  |        all        |
+   |   reduce_any    |   any   |   any    | reduce_any  |        any        |
+   |   reduce_mean   |  mean   |   mean   | reduce_mean |       mean        |
 
 
 
@@ -261,22 +261,23 @@
 
     目前整除和取余取模运算机器运算符重载在不同的语言和库中对应关系比较复杂混乱（取余运算中余数和被除数同号，取模运算中模和除数同号。取余整除是对商向 0 取整，取模整除是对商向负取整）
 
-    | 库         | 取余整除                 | 取余                  | 取模整除         | 取模                                |
-    | ---------- | :----------------------- | :-------------------- | :--------------- | :---------------------------------- |
-    | tf         | truncatediv              | truncatemod           | //或 floordiv     | %或 floormod                         |
-    | torch      | //或 floor_divide         | fmod                  | 无               | %或 remainder                        |
-    | math       | 无                       | math.fmod             | 无               | math.remainder                      |
-    | python     | 无                       | 无                    | //               | %                                   |
-    | numpy      | 无                       | 无                    | //或 floor_divide | %或 mod remainder                    |
-    | paddle     | //或 elementwise_div(int) | %或 elemtwise_mod(int) | 无               | %或 elemtwise_mod(float)             |
-    | paddle 2.0 | truncate_divide(int)     | %或 truncate_mod(int)  | //或 floor_divide | %或 floor_mod(float)或 mod 或 remainder |
+   | 库         | 取余整除                 | 取余                  | 取模整除         | 取模                                |
+   | ---------- | :----------------------- | :-------------------- | :--------------- | :---------------------------------- |
+   | tf         | truncatediv              | truncatemod           | //或 floordiv     | %或 floormod                         |
+   | torch      | //或 floor_divide         | fmod                  | 无               | %或 remainder                        |
+   | math       | 无                       | math.fmod             | 无               | math.remainder                      |
+   | python     | 无                       | 无                    | //               | %                                   |
+   | numpy      | 无                       | 无                    | //或 floor_divide | %或 mod remainder                    |
+   | paddle     | //或 elementwise_div(int) | %或 elemtwise_mod(int) | 无               | %或 elemtwise_mod(float)             |
+   | paddle 2.0 | truncate_divide(int)     | %或 truncate_mod(int)  | //或 floor_divide | %或 floor_mod(float)或 mod 或 remainder |
 
-    |          | paddle2.0 之前            | torch           | numpy             | tensorflow    | math           | python | paddle2.0 之后                       |
-    | :------: | :----------------------- | :-------------- | :---------------- | :------------ | :------------- | :----- | :---------------------------------- |
-    | 取余整除 | //或 elementwise_div(int) | //或 floor_divid | 无                | truncatediv   | -              | 无     | truncate_divide(int)                |
-    |   取余   | %或 elemtwise_mod(int)    | fmod            | 无                | truncatemod   | math.fmod      | 无     | %或 truncate_mod(int)                |
-    | 取模整除 | -                        | -               | floor_divide      | //或 floordiv- | -              | //     | //或 floor_divide                    |
-    |   取模   | %或 elemtwise_mod(float)  | %或 remainder    | %或 mod 或 remainder | %或 floormod   | math.remainder | %      | %或 floor_mod(float)或 mod 或 remainder |
+
+   |          | paddle2.0 之前            | torch           | numpy             | tensorflow    | math           | python | paddle2.0 之后                       |
+   | :------: | :----------------------- | :-------------- | :---------------- | :------------ | :------------- | :----- | :---------------------------------- |
+   | 取余整除 | //或 elementwise_div(int) | //或 floor_divid | 无                | truncatediv   | -              | 无     | truncate_divide(int)                |
+   |   取余   | %或 elemtwise_mod(int)    | fmod            | 无                | truncatemod   | math.fmod      | 无     | %或 truncate_mod(int)                |
+   | 取模整除 | -                        | -               | floor_divide      | //或 floordiv- | -              | //     | //或 floor_divide                    |
+   |   取模   | %或 elemtwise_mod(float)  | %或 remainder    | %或 mod 或 remainder | %或 floormod   | math.remainder | %      | %或 floor_mod(float)或 mod 或 remainder |
 
 - 常用组网 API 命名规范
 

@@ -29,6 +29,10 @@ fi
 
 if [ -f ${FLUIDDOCDIR}/ci_scripts/hooks/pre-doc-compile.sh ] ; then
   ${FLUIDDOCDIR}/ci_scripts/hooks/pre-doc-compile.sh
+  if [ $? -ne 0 ]; then
+    echo "pre-doc-compile.sh failed."
+    exit 1
+  fi
 fi
 
 thread=2
