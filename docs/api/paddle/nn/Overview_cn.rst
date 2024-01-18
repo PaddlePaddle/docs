@@ -199,6 +199,7 @@ Transformer 相关
 
 
     " :ref:`paddle.nn.MultiHeadAttention <cn_api_paddle_nn_MultiHeadAttention>` ", "多头注意力机制"
+    " :ref:`paddle.nn.functional.scaled_dot_product_attention <cn_api_paddle_nn_functional_scaled_dot_product_attention>` ", "点乘注意力机制，并在此基础上加入了对注意力权重的缩放"
     " :ref:`paddle.nn.Transformer <cn_api_paddle_nn_Transformer>` ", "Transformer 模型"
     " :ref:`paddle.nn.TransformerDecoder <cn_api_paddle_nn_TransformerDecoder>` ", "Transformer 解码器"
     " :ref:`paddle.nn.TransformerDecoderLayer <cn_api_paddle_nn_TransformerDecoderLayer>` ", "Transformer 解码器层"
