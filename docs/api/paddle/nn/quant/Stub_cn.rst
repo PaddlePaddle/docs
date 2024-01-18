@@ -9,20 +9,19 @@ Stub
 参数
 ::::::::::::
 
-    - **observer** (QuanterFactory) - 无。
-    - **none. ** (如果“observer”是 none, 它将使用全局配置来创建 observer) - 无。
+    - **observer** (QuanterFactory) - 定义一个 observer，用于观察和记录模型的参数或激活值。
+    - **none. ** (如果 observer 为 none, 它将使用全局配置来创建 observer) - 表示不使用观察器，也不收集任何关于模型参数或激活的统计数据，仅作为占位符存在。
 
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.nn.quant.Stub
+COPY-FROM: paddle.nn.quant.stub
 
-.. py:function:: forward(input)
-
-定义每次调用时执行的计算。应该被所有子类覆盖。
+forward(input)
+''''''''''''
+定义每次调用时执行的计算。应由所有子类覆盖。
 
 参数
 ::::::::::::
-
     - **input** (tuple) - 解压缩的元组参数。
-    - ****kwargs** (dict) - 解压缩的 dict 参数。
+    - **kwargs** (dict) - 解压缩的 dict 参数。
