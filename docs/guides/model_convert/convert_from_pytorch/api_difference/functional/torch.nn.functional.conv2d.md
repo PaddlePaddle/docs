@@ -3,7 +3,7 @@
 ### [torch.nn.functional.conv2d](https://pytorch.org/docs/stable/generated/torch.nn.functional.conv2d.html?highlight=conv2d#torch.nn.functional.conv2d)
 
 ```python
-torch.nn.functional.conv1d(input,
+torch.nn.functional.conv2d(input,
                            weight,
                            bias=None,
                            stride=1,

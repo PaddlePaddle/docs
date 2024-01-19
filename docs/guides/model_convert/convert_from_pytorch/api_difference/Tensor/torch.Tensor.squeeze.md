@@ -6,7 +6,7 @@
 torch.Tensor.squeeze(dim=None)
 ```
 
-### [paddle.Tensor.squeeze_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#squeeze-axis-none-name-none)
+### [paddle.Tensor.squeeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#squeeze-axis-none-name-none)
 
 ```python
 paddle.Tensor.squeeze(axis=None)

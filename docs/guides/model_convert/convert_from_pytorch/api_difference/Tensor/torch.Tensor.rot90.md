@@ -6,10 +6,10 @@
 torch.Tensor.rot90(k, dims)
 ```
 
-### [paddle.rot90](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/rot90_cn.html)
+### [paddle.Tensor.rot90]()
 
 ```python
-paddle.rot90(x, k=1, axes=[0, 1])
+paddle.Tensor.rot90(k=1, axes=[0, 1])
 ```
 
 两者功能一致，仅参数名不一致，具体如下：
