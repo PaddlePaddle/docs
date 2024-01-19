@@ -44,7 +44,7 @@ convert(self, model:layer, inplace=False, remain_weight=False):
 
     - **model**(Layer) - 待量化的模型。
     - **inplace**(bool, optional) - 是否要对模型进行就地修改，默认为 false。
-    - **remain_weight**(bool, optional) - 是否宝石权重为 floats，默认为 false。
+    - **remain_weight**(bool, optional) - 是否保持权重为 floats，默认为 false。
 **返回**
 
 转换后的模型
