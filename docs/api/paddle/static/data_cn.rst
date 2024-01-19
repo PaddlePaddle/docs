@@ -9,7 +9,7 @@ data
 
 
 
-会在全局 block 中创建变量（Tensor），该全局变量可被计算图中的算子（operator）访问。该变量可作为占位符用于数据输入。例如用执行器（Executor）输入数据进该变量，当 ``dtype`` 为 None 时，``dtype`` 将通过 ``padle.get_default_dtype()`` 获取全局类型。
+会在全局 block 中创建变量（Tensor），该全局变量可被计算图中的算子（operator）访问。该变量可作为占位符用于数据输入。例如用执行器（Executor）输入数据进该变量，当 ``dtype`` 为 None 时，``dtype`` 将通过 ``paddle.get_default_dtype()`` 获取全局类型。
 
 
 参数
