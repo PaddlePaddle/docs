@@ -1388,8 +1388,6 @@
 | REFERENCE-MAPPING-ITEM(`torch.cuda.ShortTensor`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.ShortTensor.md) |
 | REFERENCE-MAPPING-ITEM(`torch.cuda.stream`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.stream.md) |
 | REFERENCE-MAPPING-ITEM(`torch.cuda.Stream`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.Stream__upper.md) |
-| REFERENCE-MAPPING-ITEM(`torch.cuda.seed`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.seed.md) |
-| REFERENCE-MAPPING-ITEM(`torch.cuda.seed_all`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.seed_all.md) |
 | [torch.cuda.comm.scatter](https://pytorch.org/docs/stable/generated/torch.cuda.comm.scatterw.html)| | 功能缺失 |
 | [torch.cuda.comm.gather](https://pytorch.org/docs/stable/generated/torch.cuda.comm.gather.html)| | 功能缺失|
 
