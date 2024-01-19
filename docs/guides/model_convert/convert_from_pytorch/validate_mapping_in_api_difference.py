@@ -1,10 +1,9 @@
+import json
 import os
 import re
-import tempfile
 import typing
+from enum import IntEnum
 from typing import TypedDict
-
-# TODO: 加入 CI 流程检查
 
 mapping_type_set = {
     # type 1
@@ -41,17 +40,29 @@ class DiffMeta(TypedDict):
     source_file: str
 
 
-with tempfile.TemporaryDirectory() as temp_dir:
-    print(temp_dir)
+class ParserState(IntEnum):
+    wait_for_title = 0
+
+    wait_for_torch_api = 1
+    wf_torch_code_begin = 2
+    wf_torch_code = 3
+    wf_torch_code_end = 4
+
+    wait_for_paddle_api = 5
+    wf_paddle_code_begin = 6
+    wf_paddle_code = 7
+    wf_paddle_code_end = 8
+
+    end = 9
+
+
+def unescape_api(api):
+    return api.replace(r"\_", "_")
 
 
 def get_meta_from_diff_file(filepath):
     meta_data: DiffMeta = {"source_file": filepath}
-    state = 0
-    # 0: wait for title
-    # 1: wait for torch api
-    # 2: wait for paddle api
-    # 3: end
+    state = ParserState.wait_for_title
     title_pattern = re.compile(r"^## +\[(?P<type>[^\]]+)\] *(?P<torch_api>.+)$")
     torch_pattern = re.compile(
         r"^### +\[ *(?P<torch_api>torch.[^\]]+)\](?P<url>\([^\)]*\))?$"
@@ -59,13 +70,19 @@ def get_meta_from_diff_file(filepath):
     paddle_pattern = re.compile(
         r"^### +\[ *(?P<paddle_api>paddle.[^\]]+)\]\((?P<url>[^\)]+)$"
     )
+    code_begin_pattern = re.compile(r"^```(python)?$")
+    code_pattern = re.compile(
+        r"^(class )?(?P<api_name>(paddle|torch)[^\(]+)(.*?)$"
+    )
+    code_end_pattern = re.compile(r"^```$")
 
     with open(filepath, "r") as f:
         for line in f.readlines():
-            if not line.startswith("##"):
-                continue
+            # 现在需要考虑内容信息了
+            # if not line.startswith("##"):
+            #     continue
 
-            if state == 0:
+            if state == ParserState.wait_for_title:
                 title_match = title_pattern.match(line)
                 if title_match:
                     mapping_type = title_match["type"].strip()
@@ -73,10 +90,10 @@ def get_meta_from_diff_file(filepath):
 
                     meta_data["torch_api"] = torch_api
                     meta_data["mapping_type"] = mapping_type
-                    state = 1
+                    state = ParserState.wait_for_torch_api
                 else:
                     raise Exception(f"Cannot parse title: {line} in {filepath}")
-            elif state == 1:
+            elif state == ParserState.wait_for_torch_api:
                 torch_match = torch_pattern.match(line)
 
                 if torch_match:
@@ -88,12 +105,8 @@ def get_meta_from_diff_file(filepath):
                             f"torch api not match: {line} != {meta_data['torch_api']} in {filepath}"
                         )
                     meta_data["torch_api_url"] = real_url
-                    state = 2
-                else:
-                    raise Exception(
-                        f"Cannot parse torch api: {line} in {filepath}"
-                    )
-            elif state == 2:
+                    state = ParserState.wf_torch_code_begin
+            elif state == ParserState.wait_for_paddle_api:
                 paddle_match = paddle_pattern.match(line)
 
                 if paddle_match:
@@ -101,11 +114,66 @@ def get_meta_from_diff_file(filepath):
                     paddle_url = paddle_match["url"].strip()
                     meta_data["paddle_api"] = paddle_api
                     meta_data["paddle_api_url"] = paddle_url
-                    state = 3
-            else:
-                pass
+                    state = ParserState.wf_paddle_code_begin
+            elif state in [
+                ParserState.wf_torch_code_begin,
+                ParserState.wf_paddle_code_begin,
+            ]:
+                cb_match = code_begin_pattern.match(line)
 
-    if state < 2:
+                if cb_match:
+                    if state == ParserState.wf_torch_code_begin:
+                        state = ParserState.wf_torch_code
+                    elif state == ParserState.wf_paddle_code_begin:
+                        state = ParserState.wf_paddle_code
+                    else:
+                        raise ValueError(
+                            f"Unexpected state {state} when process {filepath} line: {line}"
+                        )
+            elif state in [
+                ParserState.wf_torch_code,
+                ParserState.wf_paddle_code,
+            ]:
+                code_match = code_pattern.match(line)
+
+                if code_match:
+                    api_name = code_match["api_name"].strip()
+                    if state == ParserState.wf_torch_code:
+                        if api_name != unescape_api(meta_data["torch_api"]):
+                            raise ValueError(
+                                f"Unexpected api code {api_name} != {meta_data['torch_api']} when process {filepath} line: {line}"
+                            )
+                        else:
+                            state = ParserState.wf_torch_code_end
+                    elif state == ParserState.wf_paddle_code:
+                        if api_name != unescape_api(meta_data["paddle_api"]):
+                            raise ValueError(
+                                f"Unexpected api code {api_name} != {meta_data['paddle_api']} when process {filepath} line: {line}"
+                            )
+                        else:
+                            state = ParserState.wf_paddle_code_end
+            elif state in [
+                ParserState.wf_torch_code_end,
+                ParserState.wf_paddle_code_end,
+            ]:
+                ce_match = code_end_pattern.match(line)
+
+                if ce_match:
+                    if state == ParserState.wf_torch_code_end:
+                        state = ParserState.wait_for_paddle_api
+                    elif state == ParserState.wf_paddle_code_end:
+                        state = ParserState.end
+                    else:
+                        raise ValueError(
+                            f"Unexpected state {state} when process {filepath} line: {line}"
+                        )
+            else:
+                raise ValueError(
+                    f"Unexpected state {state} when process {filepath} line: {line}"
+                )
+
+    # 允许的终止状态，解析完了 paddle_api 或者只有 torch_api
+    if state not in [ParserState.end, ParserState.wait_for_paddle_api]:
         raise Exception(
             f"Unexpected End State at {state} in parsing file: {filepath}, current meta: {meta_data}"
         )
@@ -325,7 +393,10 @@ if __name__ == "__main__":
     )
     print(f"{len(diff_files)} mapping documents found.")
 
-    metas = [get_meta_from_diff_file(f) for f in diff_files]
+    metas = sorted(
+        [get_meta_from_diff_file(f) for f in diff_files],
+        key=lambda x: x["torch_api"],
+    )
     print(f"Total {len(metas)} mapping metas")
 
     for m in metas:
@@ -336,3 +407,9 @@ if __name__ == "__main__":
             )
 
     meta_dict = {m["torch_api"].replace(r"\_", "_"): m for m in metas}
+
+    # 该文件用于 PaConvert 的文档对齐工作
+    api_diff_output_path = os.path.join(cfp_basedir, "docs_mappings.json")
+
+    with open(api_diff_output_path, "w", encoding="utf-8") as f:
+        json.dump(metas, f, ensure_ascii=False, indent=4)

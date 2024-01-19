@@ -1,4 +1,3 @@
-import json
 import os
 import re
 import sys
@@ -365,7 +364,4 @@ if __name__ == "__main__":
 
     reference_mapping_item(mapping_index_file, meta_dict)
 
-    api_diff_output_path = os.path.join(cfp_basedir, "api_mappings.json")
-
-    with open(api_diff_output_path, "w", encoding="utf-8") as f:
-        json.dump(metas, f, ensure_ascii=False, indent=4)
+    # 映射关系文件的保存流程移动至 `validate_mapping_in_api_difference.py`
