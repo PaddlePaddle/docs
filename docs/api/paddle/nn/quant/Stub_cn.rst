@@ -9,7 +9,7 @@ Stub
 参数
 ::::::::::::
 
-    - **observer** (QuanterFactory) - 要插入的观察点的配置信息。如果 observer 为 none, 它将使用全局配置来创建 observer) - 表示不使用观察器，也不收集任何关于模型参数或激活的统计数据，仅作为占位符存在。
+    - **observer** (QuanterFactory) - 要插入的观察点的配置信息。如果 observer 为 none, 它将使用全局配置来创建 observer - 表示不使用观察器，也不收集任何关于模型参数或激活的统计数据，仅作为占位符存在。
 
 代码示例
 ::::::::::::
