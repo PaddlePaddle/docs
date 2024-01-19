@@ -76,7 +76,7 @@
   :alt: dropout details from the paper Megatron-LM
   :align: center
 
-我们需要注意一下几点：
+我们需要注意以下几点：
 
 - 模型并行下，需要确保模型并行组中各个卡读取相同的数据；
 - 模型并行下，除了被切分的算子对应的输出外，其它所有算子的输出在各个卡上是一致的。
@@ -161,7 +161,7 @@
    mp_rank = hcg.get_model_parallel_rank() # 模型并行组 rank
 
 
-当结合使用模型并行和数据并行时，我们需要指定 ``dp_dgree`` 参数，设置数据并行的并行度。
+当结合使用模型并行和数据并行时，我们需要指定 ``dp_degree`` 参数，设置数据并行的并行度。
 
 
 如上文所述，对于 Transformer 模型，存在两种类型的 Dropout：全局 Dropout 和局部 Dropout；对于全局 Dropout，需要在模型并行的所有卡上设置相同的种子，对于局部 Dropout，则需要设置不同的种子。我们通过如下代码分别设置全局和局部种子：

@@ -31,6 +31,7 @@ paddle.nn 目录下包含飞桨框架支持的神经网络层和相关函数的�
 -  :ref:`损失函数 <loss_functional>`
 -  :ref:`公用方法 <common_functional>`
 -  :ref:`初始化相关 <about_initializer>`
+-  :ref:`量化压缩 <about_quantization>`
 
 
 
@@ -91,6 +92,8 @@ pooling 层
     " :ref:`paddle.nn.MaxUnPool1D <cn_api_paddle_nn_MaxUnPool1D>` ", "一维最大反池化层"
     " :ref:`paddle.nn.MaxUnPool2D <cn_api_paddle_nn_MaxUnPool2D>` ", "二维最大反池化层"
     " :ref:`paddle.nn.MaxUnPool3D <cn_api_paddle_nn_MaxUnPool3D>` ", "三维最大反池化层"
+    " :ref:`paddle.nn.FractionalMaxPool2D <cn_api_paddle_nn_FractionalMaxPool2D>` ", "二维分数阶最大值池化层"
+    " :ref:`paddle.nn.FractionalMaxPool3D <cn_api_paddle_nn_FractionalMaxPool3D>` ", "三维分数阶最大值池化层"
 
 .. _padding_layers:
 
@@ -196,6 +199,7 @@ Transformer 相关
 
 
     " :ref:`paddle.nn.MultiHeadAttention <cn_api_paddle_nn_MultiHeadAttention>` ", "多头注意力机制"
+    " :ref:`paddle.nn.functional.scaled_dot_product_attention <cn_api_paddle_nn_functional_scaled_dot_product_attention>` ", "点乘注意力机制，并在此基础上加入了对注意力权重的缩放"
     " :ref:`paddle.nn.Transformer <cn_api_paddle_nn_Transformer>` ", "Transformer 模型"
     " :ref:`paddle.nn.TransformerDecoder <cn_api_paddle_nn_TransformerDecoder>` ", "Transformer 解码器"
     " :ref:`paddle.nn.TransformerDecoderLayer <cn_api_paddle_nn_TransformerDecoderLayer>` ", "Transformer 解码器层"
@@ -358,6 +362,8 @@ Pooling 相关函数
     " :ref:`paddle.nn.functional.max_unpool1d <cn_api_paddle_nn_functional_max_unpool1d>` ", "一维最大反池化层"
     " :ref:`paddle.nn.functional.max_unpool1d <cn_api_paddle_nn_functional_max_unpool2d>` ", "二维最大反池化层"
     " :ref:`paddle.nn.functional.max_unpool3d <cn_api_paddle_nn_functional_max_unpool3d>` ", "三维最大反池化层"
+    " :ref:`paddle.nn.functional.fractional_max_pool2d <cn_api_paddle_nn_functional_fractional_max_pool2d>` ", "二维分数阶最大值池化"
+    " :ref:`paddle.nn.functional.fractional_max_pool3d <cn_api_paddle_nn_functional_fractional_max_pool3d>` ", "三维分数阶最大值池化"
 
 .. _padding_functional:
 
@@ -389,7 +395,9 @@ Padding 相关函数
     " :ref:`paddle.nn.functional.hardsigmoid <cn_api_paddle_nn_functional_hardsigmoid>` ", "sigmoid 的分段线性逼近激活函数"
     " :ref:`paddle.nn.functional.hardswish <cn_api_paddle_nn_functional_hardswish>` ", "hardswish 激活函数"
     " :ref:`paddle.nn.functional.hardtanh <cn_api_paddle_nn_functional_hardtanh>` ", "hardtanh 激活函数"
+    " :ref:`paddle.nn.functional.hardtanh_ <cn_api_paddle_nn_functional_hardtanh_>` ", "Inplace 版本的 :ref:`cn_api_paddle_nn_functional_hardtanh` API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.leaky_relu <cn_api_paddle_nn_functional_leaky_relu>` ", "leaky_relu 激活函数"
+    " :ref:`paddle.nn.functional.leaky_relu_ <cn_api_paddle_nn_functional_leaky_relu_>` ", "Inplace 版本的 :ref:`cn_api_paddle_nn_functional_leaky_relu` API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.log_sigmoid <cn_api_paddle_nn_functional_log_sigmoid>` ", "log_sigmoid 激活函数"
     " :ref:`paddle.nn.functional.log_softmax <cn_api_paddle_nn_functional_log_softmax>` ", "log_softmax 激活函数"
     " :ref:`paddle.nn.functional.maxout <cn_api_paddle_nn_functional_maxout>` ", "maxout 激活函数"
@@ -552,3 +560,15 @@ Embedding 相关函数
     " :ref:`paddle.nn.initializer.Uniform <cn_api_paddle_nn_initializer_Uniform>` ", "随机均匀分布初始化函数"
     " :ref:`paddle.nn.initializer.XavierNormal <cn_api_paddle_nn_initializer_XavierNormal>` ", "实现 Xavier 权重初始化方法（ Xavier weight initializer）"
     " :ref:`paddle.nn.initializer.XavierUniform <cn_api_paddle_nn_initializer_XavierUniform>` ", "实现 Xavier 权重初始化方法（ Xavier weight initializer）"
+
+.. _about_quantization:
+
+量化压缩
+:::::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+
+    " :ref:`paddle.nn.quant.llm_int8_linear <cn_api_paddle_nn_quant_llm_int8_linear>` ", "使用 int8 量化压缩的线性层"
+    " :ref:`paddle.nn.quant.weight_only_linear <cn_api_paddle_nn_quant_weight_only_linear>` ", "使用自定义的类型进行模型的量化压缩"
+    " :ref:`paddle.nn.quant.weight_quantize <cn_api_paddle_nn_quant_weight_quantize>` ", "weight_only 和 llm.int8 权重的量化函数"

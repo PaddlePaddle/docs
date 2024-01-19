@@ -231,7 +231,8 @@ PaddlePaddle 的神经网络核心是自动微分，本篇文章主要为你介�
 
 .. parsed-literal::
 
-    Tensor a's grad is: [5.]
+    Tensor a's grad is: Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=False,
+       [5.])
     Tensor b's grad is: None
 
 
