@@ -199,6 +199,7 @@ Transformer 相关
 
 
     " :ref:`paddle.nn.MultiHeadAttention <cn_api_paddle_nn_MultiHeadAttention>` ", "多头注意力机制"
+    " :ref:`paddle.nn.functional.scaled_dot_product_attention <cn_api_paddle_nn_functional_scaled_dot_product_attention>` ", "点乘注意力机制，并在此基础上加入了对注意力权重的缩放"
     " :ref:`paddle.nn.Transformer <cn_api_paddle_nn_Transformer>` ", "Transformer 模型"
     " :ref:`paddle.nn.TransformerDecoder <cn_api_paddle_nn_TransformerDecoder>` ", "Transformer 解码器"
     " :ref:`paddle.nn.TransformerDecoderLayer <cn_api_paddle_nn_TransformerDecoderLayer>` ", "Transformer 解码器层"
@@ -396,6 +397,7 @@ Padding 相关函数
     " :ref:`paddle.nn.functional.hardtanh <cn_api_paddle_nn_functional_hardtanh>` ", "hardtanh 激活函数"
     " :ref:`paddle.nn.functional.hardtanh_ <cn_api_paddle_nn_functional_hardtanh_>` ", "Inplace 版本的 :ref:`cn_api_paddle_nn_functional_hardtanh` API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.leaky_relu <cn_api_paddle_nn_functional_leaky_relu>` ", "leaky_relu 激活函数"
+    " :ref:`paddle.nn.functional.leaky_relu_ <cn_api_paddle_nn_functional_leaky_relu_>` ", "Inplace 版本的 :ref:`cn_api_paddle_nn_functional_leaky_relu` API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.log_sigmoid <cn_api_paddle_nn_functional_log_sigmoid>` ", "log_sigmoid 激活函数"
     " :ref:`paddle.nn.functional.log_softmax <cn_api_paddle_nn_functional_log_softmax>` ", "log_softmax 激活函数"
     " :ref:`paddle.nn.functional.maxout <cn_api_paddle_nn_functional_maxout>` ", "maxout 激活函数"

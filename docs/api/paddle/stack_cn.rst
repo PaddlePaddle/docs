@@ -57,7 +57,7 @@ stack
 
         - **x** (list[Tensor]|tuple[Tensor]) – 输入 x 是多个 Tensor，且这些 Tensor 的维度和数据类型必须相同。支持的数据类型：float32、float64、int32、int64。
 
-        - **axis** (int，可选) – 指定对输入 Tensor 进行堆叠运算的轴，有效 axis 的范围是：[−(R+1),R+1]，R 是输入中第一个 Tensor 的维数。如果 axis < 0，则 axis=axis+R+1。默认值为 0。
+        - **axis** (int，可选) – 指定对输入 Tensor 进行堆叠运算的轴，有效 axis 的范围是：[−(R+1),R+1)，R 是输入中第一个 Tensor 的维数。如果 axis < 0，则 axis=axis+R+1。默认值为 0。
 
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

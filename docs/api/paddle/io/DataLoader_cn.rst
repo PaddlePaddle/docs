@@ -31,7 +31,7 @@ DataLoader 当前支持 ``map-style`` 和 ``iterable-style`` 的数据集，``ma
     - **dataset** (Dataset) - DataLoader 从此参数给定数据集中加载数据，此参数必须是 ``paddle.io.Dataset`` 或 ``paddle.io.IterableDataset`` 的一个子类实例。
     - **feed_list** (list(Tensor)|tuple(Tensor)，可选) - feed 变量列表，由 ``paddle.static.data()`` 创建。当 ``return_list`` 为 False 时，此参数必须设置。默认值为 None。
     - **places** (list(Place)|tuple(Place)，可选) - 数据需要放置到的 Place 列表。在静态图和动态图模式中，此参数均必须设置。在动态图模式中，此参数列表长度必须是 1。默认值为 None。
-    - **return_list** (bool，可选) - 每个设备上的数据是否以 list 形式返回。若 return_list = False，每个设备上的返回数据均是 str -> Tensor 的映射表，其中映射表的 key 是每个输入变量的名称。若 return_list = True，则每个设备上的返回数据均是 list(Tensor)。在动态图模式下，此参数必须为 True。默认值为 False。
+    - **return_list** (bool，可选) - 每个设备上的数据是否以 list 形式返回。若 return_list = False，每个设备上的返回数据均是 str -> Tensor 的映射表，其中映射表的 key 是每个输入变量的名称。若 return_list = True，则每个设备上的返回数据均是 list(Tensor)。在动态图模式下，此参数必须为 True。默认值为 True。
     - **batch_sampler** (BatchSampler，可选) - ``paddle.io.BatchSampler`` 或其子类的实例，DataLoader 通过 ``batch_sampler`` 产生的 mini-batch 索引列表来 ``dataset`` 中索引样本并组成 mini-batch。默认值为 None。
     - **batch_size** (int|None，可选) - 每 mini-batch 中样本个数，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``paddle.io.BatchSampler``。默认值为 1。
     - **shuffle** (bool，可选) - 生成 mini-batch 索引列表时是否对索引打乱顺序，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``paddle.io.BatchSampler``。默认值为 False。
