@@ -524,6 +524,7 @@
 | REFERENCE-MAPPING-ITEM(`torch.nn.parameter.Parameter`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.parameter.Parameter.md) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.MultiLabelMarginLoss`, https://pytorch.org/docs/stable/generated/torch.nn.MultiLabelMarginLoss) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.CTCLoss`, https://pytorch.org/docs/stable/generated/torch.nn.CTCLoss.html#torch.nn.CTCLoss) |
+| [torch.nn.modules.batchnorm._NormBase]([https://pytorch.org/docs/stable/generated/torch.nn.MultiLabelMarginLoss](https://github.com/pytorch/pytorch/blob/a1b3b5748f5b8edfda1ff0fb159037eed3b669f1/torch/nn/modules/batchnorm.py#L17)) | 功能缺失 |
 
 ***持续更新...***
 
