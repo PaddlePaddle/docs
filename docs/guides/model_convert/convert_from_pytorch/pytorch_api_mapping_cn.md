@@ -1308,6 +1308,7 @@
 | REFERENCE-MAPPING-ITEM(`torch.optim.RMSprop`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/optimizer/torch.optim.RMSprop.md) |
 | REFERENCE-MAPPING-ITEM(`torch.optim.SGD`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/optimizer/torch.optim.SGD.md) |
 | REFERENCE-MAPPING-ITEM(`torch.optim.Optimizer.add_param_group`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.optim.Optimizer.add_param_group.md) |
+| REFERENCE-MAPPING-ITEM(`torch.optim.Optimizer.zero_grad`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/optimizer/torch.optim.Optimizer.zero_grad.md) |
 
 ***持续更新...***
 
