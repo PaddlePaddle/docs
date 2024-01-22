@@ -3,7 +3,7 @@
 ### [torch.Tensor.addmm_](https://pytorch.org/docs/stable/generated/torch.Tensor.addmm_.html)
 
 ```python
-torch.Tensor.addmm(mat1, mat2, *, beta=1, alpha=1)
+torch.Tensor.addmm_(mat1, mat2, *, beta=1, alpha=1)
 ```
 
 ### [paddle.Tensor.addmm_]()

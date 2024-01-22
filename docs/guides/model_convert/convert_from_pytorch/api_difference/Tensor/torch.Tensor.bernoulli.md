@@ -6,10 +6,10 @@
 torch.Tensor.bernoulli(*, generator=None)
 ```
 
-### [paddle.bernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bernoulli_cn.html#bernoulli)
+### [paddle.Tensor.bernoulli]()
 
 ```python
-paddle.bernoulli(x, name=None)
+paddle.Tensor.bernoulli(name=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -29,5 +29,5 @@ y = x.bernoulli()
 
 # paddle 写法
 x = paddle.to_tensor([0.2, 0.6, 0.8])
-y = paddle.bernoulli(x)
+y = x.bernoulli()
 ```

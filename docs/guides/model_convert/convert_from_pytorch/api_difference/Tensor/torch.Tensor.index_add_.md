@@ -12,6 +12,7 @@ paddle.Tensor.index_add_(index, axis, value)
 ```
 
 其中 PyTorch 与 Paddle 参数有差异，具体如下：
+
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

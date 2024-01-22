@@ -6,10 +6,10 @@
 torch.Tensor.reciprocal()
 ```
 
-### [paddle.reciprocal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/reciprocal_cn.html)
+### [paddle.Tensor.reciprocal]()
 
 ```python
-paddle.reciprocal(x)
+paddle.Tensor.reciprocal()
 ```
 
 两者功能一致，无参数。

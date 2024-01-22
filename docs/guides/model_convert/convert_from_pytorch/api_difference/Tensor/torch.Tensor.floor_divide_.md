@@ -6,7 +6,7 @@
 torch.Tensor.floor_divide_(other)
 ```
 
-### [paddle.Tesnor.floor_divide_]()
+### [paddle.Tensor.floor_divide_]()
 
 ```python
 paddle.Tensor.floor_divide_(y)

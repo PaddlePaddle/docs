@@ -6,10 +6,10 @@
 torch.Tensor.outer(vec2)
 ```
 
-### [paddle.outer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/outer_cn.html)
+### [paddle.Tensor.outer]()
 
 ```python
-paddle.outer(x, y)
+paddle.Tensor.outer(y)
 ```
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：

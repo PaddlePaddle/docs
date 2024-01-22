@@ -5,12 +5,11 @@
 torch.Tensor.remainder(divisor)
 ```
 
-### [paddle.remainder](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/remainder_cn.html#remainder)
+### [paddle.Tensor.remainder](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#remainder-y-name-none)
 
 ```python
-paddle.remainder(x, y)
+paddle.Tensor.remainder(y, name=None)
 ```
-
 
 其中 Paddle 与 PyTorch 运算除数参数所支持的类型不一致，具体如下：
 
@@ -23,8 +22,8 @@ paddle.remainder(x, y)
 #### divisor：除数为 Scalar
 ```python
 # PyTorch 写法
-y = x.remainder(1)
+x.remainder(1)
 
 # Paddle 写法
-paddle.remainder(x, y=paddle.to_tensor(1))
+x.remainder(y=paddle.to_tensor(1))
 ```
