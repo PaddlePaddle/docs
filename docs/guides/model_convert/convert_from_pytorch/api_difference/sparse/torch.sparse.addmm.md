@@ -7,7 +7,7 @@
 torch.sparse.addmm(input, mat1, mat2, beta=1.0, alpha=1.0)
 ```
 
-### [paddle.sparse.admm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/addmm_cn.html)
+### [paddle.sparse.addmm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/addmm_cn.html)
 
 ```python
 paddle.sparse.addmm(input, x, y, beta=1.0, alpha=1.0, name=None)

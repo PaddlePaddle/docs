@@ -5,11 +5,10 @@
 torch.Tensor.istft(n_fft, hop_length=None, win_length=None, window=None, center=True, normalized=False, onesided=None, length=None, return_complex=False)
 ```
 
-### [paddle.signal.istft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/signal/istft_cn.html#istft)
+### [paddle.Tensor.istft]()
 
 ```python
-paddle.signal.istft(x,
-                    n_fft,
+paddle.Tensor.istft(n_fft,
                     hop_length=None,
                     win_length=None,
                     window=None,
@@ -22,7 +21,9 @@ paddle.signal.istft(x,
 ```
 
 两者功能一致且参数完全一致，具体如下：
+
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | n_fft         | n_fft            | 表示离散傅里叶变换的样本点个数。                   |

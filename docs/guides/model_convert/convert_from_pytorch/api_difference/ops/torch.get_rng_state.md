@@ -12,7 +12,7 @@ torch.get_rng_state()
 paddle.get_rng_state()
 ```
 
-其中 Pytorch 与 Paddle 的返回参数类型不一致
+其中 PyTorch 与 Paddle 的返回参数类型不一致
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -24,7 +24,7 @@ paddle.get_rng_state()
 ### 转写示例
 #### 返回参数类型不同
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x = torch.get_rng_state()
 
 # Paddle 写法

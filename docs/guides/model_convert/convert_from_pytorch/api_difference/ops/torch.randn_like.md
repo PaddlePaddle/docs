@@ -22,7 +22,7 @@ PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 ### 转写示例
 #### input：表示输入的 Tensor
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.randn_like(x)
 
 # Paddle 写法
@@ -31,7 +31,7 @@ paddle.randn(shape=x.shape, dtype=x.dtype)
 
 #### dtype：表示数据类型
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.randn_like(x，dtype=torch.float64)
 
 # Paddle 写法
@@ -40,7 +40,7 @@ paddle.randn(shape=x.shape, dtype=paddle.float64)
 
 #### requires_grad：表示是否不阻断梯度传导
 ```python
-# Pytorch 写法
+# PyTorch 写法
 y = torch.randn_like(x，requires_grad=True)
 
 # Paddle 写法

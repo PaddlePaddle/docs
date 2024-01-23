@@ -6,10 +6,10 @@
 torch.nn.UpsamplingNearest2d(size=None, scale_factor=None)
 ```
 
-### [paddle.nn.UpsamplingNearest2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/UpsamplingNearest2D_cn.html)
+### [paddle.nn.UpsamplingNearest2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/UpsamplingNearest2D_cn.html)
 
 ```python
-paddle.nn.UpsamplingNearest2D(size=None,scale_factor=None, data_format='NCHW',name=None)
+paddle.nn.UpsamplingNearest2D(size=None, scale_factor=None, data_format='NCHW',name=None)
 ```
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：

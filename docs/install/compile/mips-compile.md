@@ -4,7 +4,7 @@
 
 * **处理器：Loongson-3A R4 (Loongson-3A4000)**
 * **操作系统：Loongnix release 1.0**
-* **Python 版本 3.7/3.8/3.9/3.10 (64 bit)**
+* **Python 版本 3.8/3.9/3.10 (64 bit)**
 * **pip 或 pip3 版本 20.2.2+ (64 bit)**
 
 本文以 Loongson-3A4000 为例，介绍 Paddle 在 MIPS 架构下的源码编译。
@@ -28,18 +28,18 @@
     source /opt/rh/devtoolset-7/enable
     ```
 
-2. 龙芯系统自带的 python 都是基于 gcc4.9，在第 1 步时选择使用了 gcc-7.3，此处需要源码安装 Python，此处以 Python3.7 为例。
+2. 龙芯系统自带的 python 都是基于 gcc4.9，在第 1 步时选择使用了 gcc-7.3，此处需要源码安装 Python，此处以 Python3.8 为例。
 
     ```
     sudo yum install libffi-devel.mips64el openssl-devel.mips64el libsqlite3x-devel.mips64el sqlite-devel.mips64el lbzip2-utils.mips64el lzma.mips64el tk.mips64el uuid.mips64el gdbm-devel.mips64el gdbm.mips64el openjpeg-devel.mips64el zlib-devel.mips64el libjpeg-turbo-devel.mips64el openjpeg-devel.mips64el
     ```
 
     ```
-    wget https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tgz && tar xzf Python-3.7.5.tgz && cd Python-3.7.5
+    wget https://www.python.org/ftp/python/3.8.0/Python-3.8.0.tgz && tar xzf Python-3.8.0.tgz && cd Python-3.8.0
     ```
 
     ```
-    ./configure –prefix $HOME/python37–enable−shared
+    ./configure –prefix $HOME/python38–enable−shared
     ```
 
     ```
@@ -50,11 +50,11 @@
     make install
     ```
 
-    设置环境变量，使得 python37 生效
+    设置环境变量，使得 python38 生效
 
     ```
-    export PATH=$HOME/python37/bin:$PATH
-    export LD_LIBRARY_PATH=$HOME/python37/lib:$LD_LIBRARY_PATH
+    export PATH=$HOME/python38/bin:$PATH
+    export LD_LIBRARY_PATH=$HOME/python38/lib:$LD_LIBRARY_PATH
     ```
 
 3. Paddle 依赖 cmake 进行编译构建，需要 cmake 版本>=3.15，龙芯操作系统源提供 cmake 的版本是 3.9，且尝试源码编译 cmake 失败，此处临时的处理方式是修改 Paddle 主目录的`CMakeLists.txt`, `cmake_minimum_required(VERSION 3.15)` 修改为 `cmake_minimum_required(VERSION 3.9)`。等到龙芯系统支持 cmake >= 3.15 后则不需要其它操作。

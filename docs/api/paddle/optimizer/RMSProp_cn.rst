@@ -145,22 +145,7 @@ set_lr_scheduler(scheduler)
 
 **代码示例**
 
-.. code-block:: python
-    import paddle
-    linear = paddle.nn.Linear(10, 10)
-    rmsprop = paddle.optimizer.RMSProp(0.1, parameters=linear.parameters())
-    # set learning rate manually by class LRScheduler
-    scheduler = paddle.optimizer.lr.MultiStepDecay(learning_rate=0.5, milestones=[2,4,6], gamma=0.8)
-    rmsprop.set_lr_scheduler(scheduler)
-    lr = rmsprop.get_lr()
-    print("current lr is {}".format(lr))
-    #    current lr is 0.5
-    # set learning rate manually by another LRScheduler
-    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.1, step_size=5, gamma=0.6)
-    rmsprop.set_lr_scheduler(scheduler)
-    lr = rmsprop.get_lr()
-    print("current lr is {}".format(lr))
-    #    current lr is 0.1
+COPY-FROM: paddle.optimizer.RMSProp.set_lr_scheduler
 
 get_lr()
 '''''''''

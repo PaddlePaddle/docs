@@ -6,7 +6,7 @@
 torch.Tensor.floor_divide(other)
 ```
 
-### [paddle.Tesnor.floor_divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#floor-divide-y-name-none)
+### [paddle.Tensor.floor_divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#floor-divide-y-name-none)
 
 ```python
 paddle.Tensor.floor_divide(y, name=None)

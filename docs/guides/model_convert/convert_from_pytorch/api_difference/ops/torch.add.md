@@ -18,7 +18,7 @@ paddle.add(x,
            name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -35,7 +35,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### alpha：other 的乘数
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.add(torch.tensor([3, 5]), torch.tensor([2, 3]), alpha=2)
 
 # Paddle 写法
@@ -45,7 +45,7 @@ paddle.add(paddle.to_tensor([3, 5]), 2 * paddle.to_tensor( [2, 3]))
 #### out：指定输出
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.add(torch.tensor([3, 5]), torch.tensor([2, 3]), out=y)
 
 # Paddle 写法

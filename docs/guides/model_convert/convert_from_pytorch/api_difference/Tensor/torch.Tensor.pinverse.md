@@ -5,18 +5,19 @@
 torch.Tensor.pinverse()
 ```
 
-### [paddle.linalg.pinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/pinv_cn.html#pinv)
+### [paddle.Tensor.pinv]()
 
 ```python
-paddle.linalg.pinv(x,
-                   rcond=1e-15,
+paddle.Tensor.pinv(rcond=1e-15,
                    hermitian=False,
                    name=None)
 ```
 
-其中 Paddle 相比 Pytorch 支持更多参数，具体如下：
+其中 Paddle 相比 PyTorch 支持更多参数，具体如下：
+
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| -         | rcond        | 奇异值（特征值）被截断的阈值，Pytorch 无此参数，Paddle 保持默认即可。        |
-| -             | hermitian    | 是否为 hermitian 矩阵或者实对称矩阵，Pytorch 无此参数，Paddle 保持默认即可。|
+| -         | rcond        | 奇异值（特征值）被截断的阈值，PyTorch 无此参数，Paddle 保持默认即可。        |
+| -             | hermitian    | 是否为 hermitian 矩阵或者实对称矩阵，PyTorch 无此参数，Paddle 保持默认即可。|

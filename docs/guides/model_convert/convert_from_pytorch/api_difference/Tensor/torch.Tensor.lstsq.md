@@ -22,7 +22,7 @@ paddle.Tensor.lstsq(y, rcond=None, driver=None, name=None)
 | -       | y            | 线性方程组右边的矩阵，Paddle 需要转写。                                                         |
 | -       | rcond        | 用来决定 x 有效秩的 float 型浮点数。PyTorch 无此参数，Paddle 保持默认即可。                     |
 | -       | driver       | 用来指定计算使用的 LAPACK 库方法。PyTorch 无此参数，Paddle 保持默认即可。                       |
-| 返回值  | 返回值       | PyTorch 返回 solution、QR ，Paddle 返回 solution、residuals、rank、 singular_values，Paddle 与 Pytorch 仅第一个返回值相同，其他返回值结果不同，暂无转写方式。 |
+| 返回值  | 返回值       | PyTorch 返回 solution、QR ，Paddle 返回 solution、residuals、rank、 singular_values，Paddle 与 PyTorch 仅第一个返回值相同，其他返回值结果不同，暂无转写方式。 |
 
 ### 转写示例
 

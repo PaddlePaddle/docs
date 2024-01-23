@@ -5,13 +5,13 @@
 torch.nn.SyncBatchNorm.convert_sync_batchnorm(module, process_group=None)
 ```
 
-### [paddle.nn.SyncBatchNorm.convert_sync_batchnorm(layer)](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SyncBatchNorm_cn.html#convert-sync-batchnorm-layer)
+### [paddle.nn.SyncBatchNorm.convert_sync_batchnorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SyncBatchNorm_cn.html#convert-sync-batchnorm-layer)
 
 ```python
 paddle.nn.SyncBatchNorm.convert_sync_batchnorm(layer)
 ```
 
-Pytorch 参数更多，具体如下：
+PyTorch 参数更多，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

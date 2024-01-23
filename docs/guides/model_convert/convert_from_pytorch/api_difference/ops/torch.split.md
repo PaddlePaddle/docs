@@ -16,7 +16,7 @@ paddle.split(x,
              name=None)
 ```
 
-其中 Pytorch 的 `split_size_or_sections` 与 Paddle 的 `num_or_sections` 用法不一致，具体如下：
+其中 PyTorch 的 `split_size_or_sections` 与 Paddle 的 `num_or_sections` 用法不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -30,7 +30,7 @@ paddle.split(x,
 ```python
 split_size = 2
 dim = 1
-# Pytorch 写法
+# PyTorch 写法
 torch.split(a, split_size, dim)
 # 在输入 dim 时，返回 (values, indices)
 
