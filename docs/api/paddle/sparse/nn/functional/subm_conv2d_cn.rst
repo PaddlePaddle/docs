@@ -6,7 +6,7 @@ subm_conv2d
 .. py:function:: paddle.sparse.nn.functional.subm_conv2d(x, weight, bias=None, stride=1, padding=0, dilation=1, groups=1, data_format='NHWC', key=None, name=None)
 
 稀疏子流形二维卷积函数根据输入卷积核计算输出以及步长（stride）、填充（padding）、空洞大小（dilations）一组参数。
-输入(Input)和输出(Output)是多维稀疏张量(SparseCooTensors), 其形状为 :math: `[N, H, W, C]` 。
+输入(Input)和输出(Output)是多维稀疏张量(SparseCooTensors), 其形状为 :math:`[N, H, W, C]` 。
 其中 N 是批次大小, C 是通道数, H 是特征的高度, W 是特征的宽度。
 如果提供了偏差归因，则将偏差添加到卷积的输出中。
 
