@@ -1,4 +1,4 @@
-## [ 功能缺失 ]torch.optim.ASGD
+## [ torch 参数更多 ]torch.optim.ASGD
 
 ### [torch.optim.ASGD](https://pytorch.org/docs/stable/generated/torch.optim.ASGD.html)
 
@@ -40,7 +40,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | t0            | -                   | 开始求平均值的点，可直接删除                                                                                               |
 | weight_decay  | weight_decay        | 权重衰减。参数默认值不一致, Pytorch 默认为 `0`， Paddle 默认为 `None`，Paddle 需保持与 Pytorch 一致                           |
 | foreach       | -                   | 是否使用优化器的 foreach 实现。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除                                         |
-| maximize      | -                   | 根据目标最大化参数，而不是最小化。Paddle 无此参数，可直接删除                                                                 |
+| maximize      | -                   | 根据目标最大化参数，而不是最小化。Paddle 无此参数，暂无转写方式                                                               |
 | differentiable| -                   | 是否应通过训练中的优化器步骤进行自动微分。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除                                |
 | -             | batch_num           | 完成一个 epoch 所需迭代的次数。 PyTorch 无此参数。假设样本总数为 all_size，Paddle 需将 batch_num 设置为 all_size / batch_size |
 | -             | grad_clip           | 梯度裁剪的策略。 PyTorch 无此参数，Paddle 保持默认即可                                                                      |
