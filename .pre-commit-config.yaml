@@ -24,14 +24,6 @@ repos:
     hooks:
     -   id: insert-whitespace-between-cn-and-en-char
         files: \.md$|\.rst$
--   repo: local
-    hooks:
-    -   id: convert-markdown-into-html
-        name: convert-markdown-into-html
-        description: Convert README.md into index.html and README.cn.md into index.cn.html
-        entry: python .pre-commit-hooks/convert_markdown_into_html.py
-        language: system
-        files: .+README(\.cn)?\.md$
 # For Python files
 -   repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.1.13
