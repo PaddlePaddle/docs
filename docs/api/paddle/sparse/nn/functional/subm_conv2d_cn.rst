@@ -18,8 +18,8 @@ subm_conv2d
 
     * :math:`X`: 输入值, NHWC 格式的张量。
     * :math:`W`: 卷积核值, NHWC 格式的张量。
-    * :math:`\\ast`:子流形卷积操作，参考论文: https://arxiv.org/abs/1706.01307.
-    * :math:`b`: 偏置值, 形状为[M]的一维张量.
+    * :math:`\\ast`: 子流形卷积操作，参考论文: https://arxiv.org/abs/1706.01307.
+    * :math:`b`: 偏置值, 形状为[M]的一维张量。
     * :math:`Out`: 输出值, :math:`Out` 的形状可能和 :math:`X` 有不同。
 
 
