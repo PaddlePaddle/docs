@@ -1,4 +1,4 @@
-.. _cn_api_paddle_sparse_nn_functional_subm_conv2d_cn:
+.. _cn_api_paddle_sparse_nn_functional_subm_conv2d:
 
 subm_conv2d
 -------------------------------
