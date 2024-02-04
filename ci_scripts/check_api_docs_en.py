@@ -6,6 +6,7 @@ source_to_doc_dict = {}
 SYSTEM_MESSAGE_WARNING = "System Message: WARNING"
 SYSTEM_MESSAGE_ERROR = "System Message: ERROR"
 EN_HTML_EXTENSION = "_en.html"
+DUMMY_VARIABLE = "dummy variable"
 
 arguments = [
     [
