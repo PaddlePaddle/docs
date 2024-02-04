@@ -5,11 +5,10 @@
 torch.Tensor.cov(*, correction=1, fweights=None, aweights=None)
 ```
 
-### [paddle.linalg.cov](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/cov_cn.html#cov)
+### [paddle.Tensor.cov]()
 
 ```python
-paddle.linalg.cov(x,
-                  rowvar=True,
+paddle.Tensor.cov(rowvar=True,
                   ddof=True,
                   fweights=None,
                   aweights=None,
@@ -17,7 +16,9 @@ paddle.linalg.cov(x,
 ```
 
 仅 paddle 参数更多，具体如下：
+
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> correction </font>    | <font color='red'> ddof </font>          | 样本量和样本自由度之间的差异， 若为 True ，返回无偏估计结果；若为 False ，返回普通平均值计算结果。 |

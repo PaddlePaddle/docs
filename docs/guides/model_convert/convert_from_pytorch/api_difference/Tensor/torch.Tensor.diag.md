@@ -9,7 +9,7 @@ torch.Tensor.diag(diagonal=0)
 ### [paddle.Tensor.diag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diag_cn.html#diag)
 
 ```python
-paddle.diag(x, offset=0, padding_value=0, name=None)
+paddle.Tensor.diag(offset=0, padding_value=0, name=None)
 ```
 
 两者功能一致，仅参数名不一致，具体如下：

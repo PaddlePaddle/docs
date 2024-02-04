@@ -10,8 +10,8 @@ torch.Tensor.multiply(other)
 
 ```python
 paddle.Tensor.multiply(y,
-                axis=-1,
-                name=None)
+                       axis=-1,
+                       name=None)
 ```
 
 其中，Paddle 与 PyTorch 的 `other` 参数所支持类型不一致，具体如下：

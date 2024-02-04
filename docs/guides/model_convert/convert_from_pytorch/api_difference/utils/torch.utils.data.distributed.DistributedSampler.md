@@ -2,23 +2,23 @@
 ### [torch.utils.data.distributed.DistributedSampler](https://pytorch.org/docs/stable/data.html?highlight=distributedsampler#torch.utils.data.distributed.DistributedSampler)
 
 ```python
-class torch.utils.data.distributed.DistributedSampler(dataset,
-                                                      num_replicas=None,
-                                                      rank=None,
-                                                      shuffle=True,
-                                                      seed=0,
-                                                      drop_last=False)
+torch.utils.data.distributed.DistributedSampler(dataset,
+                                                num_replicas=None,
+                                                rank=None,
+                                                shuffle=True,
+                                                seed=0,
+                                                drop_last=False)
 ```
 
 ### [paddle.io.DistributedBatchSampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/DistributedBatchSampler_cn.html#distributedbatchsampler)
 
 ```python
-class paddle.io.DistributedBatchSampler(dataset=None,
-                                        batch_size,
-                                        num_replicas=None,
-                                        rank=None,
-                                        shuffle=False,
-                                        drop_last=False)
+paddle.io.DistributedBatchSampler(dataset=None,
+                                  batch_size,
+                                  num_replicas=None,
+                                  rank=None,
+                                  shuffle=False,
+                                  drop_last=False)
 ```
 
 两者功能一致但参数不一致，具体如下：

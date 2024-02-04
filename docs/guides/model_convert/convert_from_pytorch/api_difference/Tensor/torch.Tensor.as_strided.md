@@ -3,17 +3,17 @@
 
 ```python
 torch.Tensor.as_strided(size,
-                stride,
-                storage_offset=None)
+                        stride,
+                        storage_offset=None)
 ```
 
 ### [paddle.Tensor.as_strided](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#as-strided-x-shape-stride-offset-0-name-none)
 
 ```python
 paddle.Tensor.as_strided(shape,
-                stride,
-                offset=0,
-                name=None)
+                         stride,
+                         offset=0,
+                         name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：

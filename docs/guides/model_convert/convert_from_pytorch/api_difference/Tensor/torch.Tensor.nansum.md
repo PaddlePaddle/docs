@@ -3,16 +3,16 @@
 
 ```python
 torch.Tensor.nansum(dim=None,
-            keepdim=False,
-            dtype=None)
+                    keepdim=False,
+                    dtype=None)
 ```
 
 ### [paddle.Tensor.nansum]()
 
 ```python
 paddle.Tensor.nansum(axis=None,
-            keepdim=False,
-            dtype=None)
+                     keepdim=False,
+                     dtype=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：

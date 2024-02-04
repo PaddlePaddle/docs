@@ -14,7 +14,7 @@ torch.Tensor.scatter_add_(dim,
 paddle.Tensor.put_along_axis_(indices,
                               values,
                               axis,
-                              reduce='assign'，
+                              reduce='assign',
                               include_self=True)
 ```
 
