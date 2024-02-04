@@ -13,6 +13,10 @@ class DiffMeta(typing.TypedDict):
     source_file: str
 
 
+def unescape_api(api):
+    return api.replace(r"\_", "_")
+
+
 def get_meta_from_diff_file(filepath):
     meta_data: DiffMeta = {"source_file": filepath}
     state = 0
@@ -39,7 +43,7 @@ def get_meta_from_diff_file(filepath):
                     mapping_type = title_match["type"].strip()
                     torch_api = title_match["torch_api"].strip()
 
-                    meta_data["torch_api"] = torch_api
+                    meta_data["torch_api"] = unescape_api(torch_api)
                     meta_data["mapping_type"] = mapping_type
                     state = 1
                 else:
@@ -51,7 +55,7 @@ def get_meta_from_diff_file(filepath):
                     torch_api = torch_match["torch_api"].strip()
                     torch_url = torch_match["url"] if torch_match["url"] else ""
                     real_url = torch_url.lstrip("(").rstrip(")")
-                    if meta_data["torch_api"] != torch_api:
+                    if meta_data["torch_api"] != unescape_api(torch_api):
                         raise Exception(
                             f"torch api not match: {line} != {meta_data['torch_api']} in {filepath}"
                         )
