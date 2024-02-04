@@ -586,6 +586,6 @@ Embedding 相关函数
     " :ref:`paddle.nn.utils.clip_grad_value_ <cn_api_paddle_nn_utils_clip_grad_value_>` ", "对一组张量的梯度按值范围进行裁剪"
     " :ref:`paddle.nn.utils.parameters_to_vector <cn_api_paddle_nn_utils_parameters_to_vector>` ", "将参数列表转换成一个一维 Tensor"
     " :ref:`paddle.nn.utils.remove_weight_norm <cn_api_paddle_nn_utils_remove_weight_norm>` ", "移除传入 layer 中的权重归一化"
-    " :ref:`paddle.nn.utils.spectral_norm <_cn_api_paddle_nn_utils_spectral_norm>` ", "层权重谱归一化"
+    " :ref:`paddle.nn.utils.spectral_norm <_cn_api_paddle_nn_utils_spectral_norm>` ", "对传入 layer 中的权重谱归一化"
     " :ref:`paddle.nn.utils.vector_to_parameters <cn_api_paddle_nn_utils_vector_to_parameters>` ", "将一个一维 Tensor 转换成参数列表"
     " :ref:`paddle.nn.utils.weight_norm <cn_api_paddle_nn_utils_weight_norm>` ", "对传入的 layer 中的权重参数进行归一化"
