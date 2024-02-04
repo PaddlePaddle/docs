@@ -166,7 +166,7 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         )
         mapping_column = mapping_type_s
         if show_diff_url:
-            mapping_column += f"，[差异对比]({diff_url})"
+            mapping_column += f"，[详细对比]({diff_url})"
 
         if "paddle_api" not in reference_item:
             if mapping_type not in ["组合替代实现", "可删除", "功能缺失"]:
