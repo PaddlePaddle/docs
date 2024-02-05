@@ -112,6 +112,10 @@ paddle.vision 目录是飞桨在视觉领域的高层 API。具体如下：
     " :ref:`DeformConv2D <cn_api_paddle_vision_ops_DeformConv2D>` ", "计算 2-D 可变形卷积"
     " :ref:`yolo_box <cn_api_paddle_vision_ops_yolo_box>` ", "生成 YOLO 检测框"
     " :ref:`yolo_loss <cn_api_paddle_vision_ops_yolo_loss>` ", "计算 YOLO 损失"
+    " :ref:`prior_box <cn_api_paddle_vision_ops_prior_box>` ", "为 SSD 系列目标检测算法生成候选框"
+    " :ref:`generate_proposals <cn_api_paddle_vision_ops_generate_proposals>` ", "生成候选检测框"
+    " :ref:`distribute_fpn_proposals <cn_api_paddle_vision_ops_distribute_fpn_proposals>` ", "将候选检测框分配到不同的 FPN 层级"
+    " :ref:`box_coder <cn_api_paddle_vision_ops_box_coder>` ", "编码/解码带有先验框信息的目标边界框"
     " :ref:`nms <cn_api_paddle_vision_ops_nms>` ", "计算非极大抑制"
 
 .. _about_transforms:
