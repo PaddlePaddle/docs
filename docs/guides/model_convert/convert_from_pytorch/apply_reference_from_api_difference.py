@@ -244,7 +244,13 @@ def reference_mapping_item(index_path, metadata_dict):
     column_count = -1
     table_seperator_pattern = re.compile(r"^ *\|(?P<group> *-+ *\|)+ *$")
 
-    expect_column_names = ["序号", "PyTorch API", "PaddlePaddle API", "备注"]
+    expect_column_names = [
+        "序号",
+        "PyTorch-2.1",
+        "PaddlePaddle-dev",
+        "映射关系分类",
+        "详细对比",
+    ]
 
     table_row_idx = -1
     output = []
