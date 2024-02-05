@@ -115,8 +115,10 @@
 * 使用 GPU 版本的 PaddlePaddle：
 
     ```
-    docker run --name paddle_docker -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    docker run --gpus all --name paddle_docker -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
     ```
+
+    - `--gpus all`: 在 Docker 容器中允许使用 gpu;
 
     - `--name paddle_docker`：设定 Docker 的名称，`paddle_docker` 是自己设置的名称；
 
