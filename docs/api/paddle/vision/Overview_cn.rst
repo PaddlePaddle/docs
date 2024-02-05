@@ -20,6 +20,8 @@ paddle.vision 目录是飞桨在视觉领域的高层 API。具体如下：
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`DatasetFolder <cn_api_paddle_vision_datasets_DatasetFolder>` ", "通用数据加载方式 DatasetFolder"
+    " :ref:`ImageFolder <cn_api_paddle_vision_datasets_ImageFolder>` ", "通用数据加载方式 ImageFolder"
     " :ref:`Cifar10 <cn_api_paddle_vision_datasets_Cifar10>` ", "Cifar10 数据集"
     " :ref:`Cifar100 <cn_api_paddle_vision_datasets_Cifar100>` ", "Cifar100 数据集"
     " :ref:`FashionMNIST <cn_api_paddle_vision_datasets_FashionMNIST>` ", "FashionMNIST 数据集"
