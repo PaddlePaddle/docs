@@ -91,8 +91,10 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
 
     ```
-    docker run --name paddle_docker -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    docker run --gpus all --name paddle_docker -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
     ```
+
+    - `--gpus all`: gpu resources can be used in Docker container;
 
     - `--name paddle_docker`: set name of Docker, `paddle_docker` is name of docker you set;
 
