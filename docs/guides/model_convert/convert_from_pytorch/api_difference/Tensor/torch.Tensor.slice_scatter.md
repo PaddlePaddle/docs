@@ -3,13 +3,13 @@
 ### [torch.Tensor.slice_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.slice_scatter.html#torch-tensor-slice-scatter)
 
 ```python
-Tensor.slice_scatter(src, dim=0, start=None, end=None, step=1)
+torch.Tensor.slice_scatter(src, dim=0, start=None, end=None, step=1)
 ```
 
 ### [paddle.Tensor.slice_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#slice_scatter-value-axes-starts-ends-strides-name-none)
 
 ```python
-Tensor.slice_scatter(value, axes, starts, ends, strides, name=None)
+paddle.Tensor.slice_scatter(value, axes, starts, ends, strides, name=None)
 ```
 
 两者功能一致，参数不一致，具体如下：

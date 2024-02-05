@@ -1,5 +1,5 @@
-## [ 仅 paddle 参数更多 ]torch.Tenor.cov
-### [torch.Tenor.cov](https://pytorch.org/docs/stable/generated/torch.Tensor.cov.html#torch.Tensor.cov)
+## [ 仅 paddle 参数更多 ]torch.Tensor.cov
+### [torch.Tensor.cov](https://pytorch.org/docs/stable/generated/torch.Tensor.cov.html#torch.Tensor.cov)
 
 ```python
 torch.Tensor.cov(*, correction=1, fweights=None, aweights=None)

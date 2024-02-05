@@ -92,6 +92,8 @@ pooling 层
     " :ref:`paddle.nn.MaxUnPool1D <cn_api_paddle_nn_MaxUnPool1D>` ", "一维最大反池化层"
     " :ref:`paddle.nn.MaxUnPool2D <cn_api_paddle_nn_MaxUnPool2D>` ", "二维最大反池化层"
     " :ref:`paddle.nn.MaxUnPool3D <cn_api_paddle_nn_MaxUnPool3D>` ", "三维最大反池化层"
+    " :ref:`paddle.nn.FractionalMaxPool2D <cn_api_paddle_nn_FractionalMaxPool2D>` ", "二维分数阶最大值池化层"
+    " :ref:`paddle.nn.FractionalMaxPool3D <cn_api_paddle_nn_FractionalMaxPool3D>` ", "三维分数阶最大值池化层"
 
 .. _padding_layers:
 
@@ -197,6 +199,7 @@ Transformer 相关
 
 
     " :ref:`paddle.nn.MultiHeadAttention <cn_api_paddle_nn_MultiHeadAttention>` ", "多头注意力机制"
+    " :ref:`paddle.nn.functional.scaled_dot_product_attention <cn_api_paddle_nn_functional_scaled_dot_product_attention>` ", "点乘注意力机制，并在此基础上加入了对注意力权重的缩放"
     " :ref:`paddle.nn.Transformer <cn_api_paddle_nn_Transformer>` ", "Transformer 模型"
     " :ref:`paddle.nn.TransformerDecoder <cn_api_paddle_nn_TransformerDecoder>` ", "Transformer 解码器"
     " :ref:`paddle.nn.TransformerDecoderLayer <cn_api_paddle_nn_TransformerDecoderLayer>` ", "Transformer 解码器层"
@@ -359,6 +362,8 @@ Pooling 相关函数
     " :ref:`paddle.nn.functional.max_unpool1d <cn_api_paddle_nn_functional_max_unpool1d>` ", "一维最大反池化层"
     " :ref:`paddle.nn.functional.max_unpool1d <cn_api_paddle_nn_functional_max_unpool2d>` ", "二维最大反池化层"
     " :ref:`paddle.nn.functional.max_unpool3d <cn_api_paddle_nn_functional_max_unpool3d>` ", "三维最大反池化层"
+    " :ref:`paddle.nn.functional.fractional_max_pool2d <cn_api_paddle_nn_functional_fractional_max_pool2d>` ", "二维分数阶最大值池化"
+    " :ref:`paddle.nn.functional.fractional_max_pool3d <cn_api_paddle_nn_functional_fractional_max_pool3d>` ", "三维分数阶最大值池化"
 
 .. _padding_functional:
 
@@ -392,6 +397,7 @@ Padding 相关函数
     " :ref:`paddle.nn.functional.hardtanh <cn_api_paddle_nn_functional_hardtanh>` ", "hardtanh 激活函数"
     " :ref:`paddle.nn.functional.hardtanh_ <cn_api_paddle_nn_functional_hardtanh_>` ", "Inplace 版本的 :ref:`cn_api_paddle_nn_functional_hardtanh` API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.leaky_relu <cn_api_paddle_nn_functional_leaky_relu>` ", "leaky_relu 激活函数"
+    " :ref:`paddle.nn.functional.leaky_relu_ <cn_api_paddle_nn_functional_leaky_relu_>` ", "Inplace 版本的 :ref:`cn_api_paddle_nn_functional_leaky_relu` API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.log_sigmoid <cn_api_paddle_nn_functional_log_sigmoid>` ", "log_sigmoid 激活函数"
     " :ref:`paddle.nn.functional.log_softmax <cn_api_paddle_nn_functional_log_softmax>` ", "log_softmax 激活函数"
     " :ref:`paddle.nn.functional.maxout <cn_api_paddle_nn_functional_maxout>` ", "maxout 激活函数"

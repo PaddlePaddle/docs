@@ -1,7 +1,3 @@
-[tool.black]
-line-length = 80
-skip-string-normalization = true
-
 [tool.ruff]
 line-length = 80
 target-version = "py38"
@@ -30,6 +26,7 @@ select = [
     # NumPy-specific rules
     "NPY001",
     "NPY003",
+    "NPY201",
 
     # Bugbear
     "B002",

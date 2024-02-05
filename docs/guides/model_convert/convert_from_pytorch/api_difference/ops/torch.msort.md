@@ -9,7 +9,7 @@ torch.msort(input, *, out=None)
 ### [paddle.sort](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sort_cn.html#sort)
 
 ```python
-paddle.sort(x, axis=- 1, descending=False, name=None)
+paddle.sort(x, axis=-1, descending=False, name=None)
 ```
 
 其中 PyTorch 与 Paddle 有不同的参数，具体如下：

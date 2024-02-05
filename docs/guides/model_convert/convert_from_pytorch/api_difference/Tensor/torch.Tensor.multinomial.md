@@ -6,10 +6,10 @@
 torch.Tensor.multinomial(num_samples, replacement=False, *, generator=None)
 ```
 
-### [paddle.multinomial](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/multinomial_cn.html)
+### [paddle.Tensor.multinomial]()
 
 ```python
-paddle.multinomial(x, num_samples=1, replacement=False, name=None)
+paddle.Tensor.multinomial(num_samples=1, replacement=False, name=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：

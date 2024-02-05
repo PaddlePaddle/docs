@@ -6,10 +6,10 @@
 torch.Tensor.arctan2(other)
 ```
 
-### [paddle.atan2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atan2_cn.html)
+### [paddle.Tensor.atan2]()
 
 ```python
-paddle.atan2(x, y, name=None)
+paddle.Tensor.atan2(y, name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：

@@ -9,7 +9,7 @@ class torch.nn.AdaptiveMaxPool2d(output_size,
 ### [paddle.nn.AdaptiveMaxPool2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/AdaptiveMaxPool2D_cn.html#adaptivemaxpool2d)
 
 ```python
- classpaddle.nn.AdaptiveMaxPool2D(output_size,
+class paddle.nn.AdaptiveMaxPool2D(output_size,
                                   return_mask=False,
                                   name=None)
 ```

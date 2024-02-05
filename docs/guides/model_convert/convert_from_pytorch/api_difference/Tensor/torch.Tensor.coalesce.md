@@ -6,10 +6,10 @@
 torch.Tensor.coalesce()
 ```
 
-### [paddle.sparse.coalesce](paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#chunk-chunks-axis-0-name-none)
+### [paddle.Tensor.coalesce](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/paddle/Tensor/coalesce_en.html)
 
 ```python
-paddle.sparse.coalesce(x)
+paddle.Tensor.coalesce(name=None)
 ```
 
 两者功能一致，无参数。

@@ -6,10 +6,10 @@
 torch.optim.Optimizer.load_state_dict(state_dict)
 ```
 
-### [paddle.optimzier.Optimizer.set_state_dict](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Optimizer_cn.html)
+### [paddle.optimizer.Optimizer.load_state_dict](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Optimizer_cn.html)
 
 ```python
-paddle.optimzier.Optimizer.set_state_dict(state_dict)
+paddle.optimizer.Optimizer.load_state_ dict(state_dict)
 ```
 
 两者功能一致，参数完全一致。

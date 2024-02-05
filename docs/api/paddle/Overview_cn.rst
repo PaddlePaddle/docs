@@ -67,6 +67,8 @@ tensor 数学操作
     " :ref:`paddle.expm1 <cn_api_paddle_expm1>` ", "逐元素进行 exp(x)-1 运算"
     " :ref:`paddle.floor <cn_api_paddle_floor>` ", "向下取整函数"
     " :ref:`paddle.floor_divide <cn_api_paddle_floor_divide>` ", "逐元素整除算子，输入 x 与输入 y 逐元素整除，并将各个位置的输出元素保存到返回结果中"
+    " :ref:`paddle.gammaincc <cn_api_paddle_gammaincc>` ", "计算正则化上不完全伽玛函数"
+    " :ref:`paddle.gammainc <cn_api_paddle_gammainc>` ", "计算正则化下不完全伽玛函数"
     " :ref:`paddle.gammaln <cn_api_paddle_gammaln>` ", "逐元素计算输入 x 的伽马函数的绝对值的自然对数"
     " :ref:`paddle.greater_equal <cn_api_paddle_greater_equal>` ", "逐元素地返回 x>=y 的逻辑值"
     " :ref:`paddle.greater_than <cn_api_paddle_greater_than>` ", "逐元素地返回 x>y 的逻辑值"
@@ -79,7 +81,7 @@ tensor 数学操作
     " :ref:`paddle.log <cn_api_paddle_log>` ", "Log 激活函数（计算自然对数）"
     " :ref:`paddle.log10 <cn_api_paddle_log10>` ", "Log10 激活函数（计算底为 10 的对数）"
     " :ref:`paddle.log2 <cn_api_paddle_log2>` ", "计算 Log1p（加一的自然对数）结果"
-    " :ref:`paddle.logcumsumexp <cn_api_paddle_logsumexp>` ", "计算 x 的指数的前缀和的对数"
+    " :ref:`paddle.logcumsumexp <cn_api_paddle_logcumsumexp>` ", "计算 x 的指数的前缀和的对数"
     " :ref:`paddle.logical_and <cn_api_paddle_logical_and>` ", "逐元素的对 x 和 y 进行逻辑与运算"
     " :ref:`paddle.logical_not <cn_api_paddle_logical_not>` ", "逐元素的对 X Tensor 进行逻辑非运算"
     " :ref:`paddle.logical_or <cn_api_paddle_logical_or>` ", "逐元素的对 X 和 Y 进行逻辑或运算"
@@ -169,7 +171,7 @@ tensor 数学操作原位（inplace）版本
 
 .. csv-table::
     :header: "API 名称", "API 功能"
-    :widths: 10, 30
+    :widths: 12, 30
 
     " :ref:`paddle.remainder_ <cn_api_paddle_remainder_>` ", "Inplace 版本的 remainder API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.abs_ <cn_api_paddle_abs_>` ", "Inplace 版本的 abs API，对输入 x 采用 Inplace 策略"
@@ -182,14 +184,20 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.clip_ <cn_api_paddle_clip_>` ", "Inplace 版本的 clip API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.copysign_ <cn_api_paddle_copysign_>` ", "Inplace 版本的 copysign API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.exp_ <cn_api_paddle_exp_>` ", "Inplace 版本的 exp API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.expm1_ <cn_api_paddle_expm1_>` ", "Inplace 版本的 expm1 API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.flatten_ <cn_api_paddle_flatten_>` ", "Inplace 版本的 flatten API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.floor_ <cn_api_paddle_floor_>` ", "Inplace 版本的 floor API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.gammaincc_ <cn_api_paddle_gammaincc_>` ", "Inplace 版本的 gammaincc API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.gammainc_ <cn_api_paddle_gammainc_>` ", "Inplace 版本的 gammainc API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.gammaln_ <cn_api_paddle_gammaln_>` ", "Inplace 版本的 gammaln API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.reciprocal_ <cn_api_paddle_reciprocal_>` ", "Inplace 版本的 reciprocal API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.round_ <cn_api_paddle_round_>` ", "Inplace 版本的 round API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.rsqrt_ <cn_api_paddle_rsqrt_>` ", "Inplace 版本的 rsqrt API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.scale_ <cn_api_paddle_scale_>` ", "Inplace 版本的 scale API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.sqrt_ <cn_api_paddle_sqrt_>` ", "Inplace 版本的 sqrt API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.square_ <cn_api_paddle_square_>` ", "Inplace 版本的 square API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.sin_ <cn_api_paddle_sin_>` ", "Inplace 版本的 sin API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.sinh_ <cn_api_paddle_sinh_>` ", "Inplace 版本的 sinh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.subtract_ <cn_api_paddle_subtract_>` ", "Inplace 版本的 subtract API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.tan_ <cn_api_paddle_tan_>` ", "Inplace 版本的 tan API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.cos_ <cn_api_paddle_cos_>` ", "Inplace 版本的 cos API，对输入 x 采用 Inplace 策略"
@@ -204,7 +212,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.index_fill_ <cn_api_paddle_index_fill_>` ", "Inplace 版本的 index_fill API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.bitwise_left_shift_ <cn_api_paddle_bitwise_left_shift_>` ", "Inplace 版本的 bitwise_left_shift API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.bitwise_right_shift_ <cn_api_paddle_bitwise_right_shift_>` ", "Inplace 版本的 bitwise_right_shift API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.sin_ <cn_api_paddle_sin_>` ", "Inplace 版本的 sin API，对输入 x 采用 Inplace 策略"
+
 
 .. _tensor_logic:
 

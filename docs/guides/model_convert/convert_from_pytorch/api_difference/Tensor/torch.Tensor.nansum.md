@@ -2,7 +2,7 @@
 ### [torch.Tensor.nansum](https://pytorch.org/docs/stable/generated/torch.Tensor.nansum.html?highlight=nansum#torch.Tensor.nansum)
 
 ```python
-Tensor.nansum(dim=None,
+torch.Tensor.nansum(dim=None,
             keepdim=False,
             dtype=None)
 ```

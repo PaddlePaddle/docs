@@ -16,7 +16,7 @@ from utils_helper import class_helper, func_helper, generate_overview
 # 解析所有的函数, 类, 枚举, 返回一个字典
 # 多线程使用并不安全, 请不要使用多线程
 def analysis_file(path):
-    header = CppHeaderParser.CppHeader(path, encoding='utf8')
+    header = CppHeaderParser.CppHeader(path, encoding="utf8")
     data = json.loads(header.toJSON())
     return data
 
@@ -36,8 +36,8 @@ def generate_docs(
         func_name = item["name"].replace("/", "")
 
         # Note: 操作符仅不生成rst，实际上在Overview列表依然会呈现以提示存在此操作符
-        if func_name.startswith('operator'):
-            checkwords = func_name.replace('operator', '', 1)
+        if func_name.startswith("operator"):
+            checkwords = func_name.replace("operator", "", 1)
             if re.search(r"\w", checkwords) is None:
                 continue  # 跳过操作符声明
         rst_dir = os.path.join(save_dir, LANGUAGE, path, func_name + ".rst")
@@ -47,7 +47,7 @@ def generate_docs(
             helper.create_and_write_file(rst_dir, LANGUAGE)
         except:
             print(traceback.format_exc())
-            print('FAULT GENERATE:' + rst_dir)
+            print("FAULT GENERATE:" + rst_dir)
 
     for item in all_class:
         path = item["filename"].replace("../", "").replace(".h", "")
@@ -62,7 +62,7 @@ def generate_docs(
             helper.create_and_write_file(rst_dir, LANGUAGE)
         except:
             print(traceback.format_exc())
-            print('FAULT GENERATE:' + rst_dir)
+            print("FAULT GENERATE:" + rst_dir)
 
 
 # cpp 对应 python api
@@ -80,13 +80,13 @@ def cpp2py(data: dict):
 # 2. 提取待生成文档的PADDLE_API list
 # 3. 生成文档
 if __name__ == "__main__":
-    root_dir = ''
-    save_dir = '.'  # 默认保存在当前目录
+    root_dir = ""
+    save_dir = "."  # 默认保存在当前目录
     if len(sys.argv) == 3:
         root_dir = sys.argv[1]
         save_dir = sys.argv[2]
 
-    if root_dir == '':
+    if root_dir == "":
         try:
             import inspect
 
@@ -95,8 +95,8 @@ if __name__ == "__main__":
             root_dir = os.path.dirname(inspect.getsourcefile(paddle))
         except:
             # for simple run
-            root_dir = '../paddle'
-            save_dir = '.'  # 默认保存在当前目录
+            root_dir = "../paddle"
+            save_dir = "."  # 默认保存在当前目录
 
     all_funcs = []
     all_class = []
@@ -115,8 +115,8 @@ if __name__ == "__main__":
                 cpp2py_api_list = cpp2py(cpp2py_data).copy()
 
             # 跳过文件中未包含PADDLE_API
-            with open(file_path, encoding='utf-8') as f:
-                if 'PADDLE_API ' not in f.read():
+            with open(file_path, encoding="utf-8") as f:
+                if "PADDLE_API " not in f.read():
                     continue
 
             print("Parsing: ", file_path)
@@ -131,9 +131,9 @@ if __name__ == "__main__":
             all_class.extend(current_class)
             overview_list.append(
                 {
-                    'h_file': file_path,
-                    'class': current_class,
-                    'function': current_func,
+                    "h_file": file_path,
+                    "class": current_class,
+                    "function": current_func,
                 }
             )
 
