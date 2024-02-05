@@ -18,4 +18,4 @@ paddle.Tensor.inner(y, name=None)
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| other   | y            | 计算内积的第二个 Tensor。 |
+| other   | y            | 计算内积的第二个 Tensor，仅参数名不一致。 |

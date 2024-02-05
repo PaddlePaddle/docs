@@ -18,4 +18,4 @@ paddle.Tensor.bmm(y, name=None)
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| mat2    | y            | 输入变量  |
+| mat2    | y            | 输入 Tensor，仅参数名不一致。  |

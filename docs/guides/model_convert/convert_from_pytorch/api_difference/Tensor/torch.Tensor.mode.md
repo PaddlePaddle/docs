@@ -18,5 +18,5 @@ paddle.Tensor.mode(axis=-1, keepdim=False, name=None)
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| dim     | axis         | 指定对输入 Tensor 进行运算的轴。 |
+| dim     | axis         | 指定对输入 Tensor 进行运算的轴，仅参数名不一致。 |
 | keepdim | keepdim      | 是否保留指定的轴。 |

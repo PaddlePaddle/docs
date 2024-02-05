@@ -18,5 +18,5 @@ paddle.Tensor.lerp_(y, weight, name=None)
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| end     | y            | 输入的 Tensor，作为线性插值结束的点。 |
+| end     | y            | 输入的 Tensor，作为线性插值结束的点，仅参数名不一致。 |
 | weight  | weight       | 给定的权重值。 |

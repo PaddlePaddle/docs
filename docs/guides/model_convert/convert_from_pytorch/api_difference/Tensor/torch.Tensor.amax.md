@@ -18,5 +18,5 @@ paddle.Tensor.amax(axis=None, keepdim=False, name=None)
 
 | PyTorch | PaddlePaddle | 备注                               |
 | ------- | ------------ | ------------------                 |
-| dim     | axis         | 求最大值运算的维度。                 |
+| dim     | axis         | 求最大值运算的维度，仅参数名不一致。  |
 | keepdim | keepdim      | 是否在输出 Tensor 中保留减小的维度。 |

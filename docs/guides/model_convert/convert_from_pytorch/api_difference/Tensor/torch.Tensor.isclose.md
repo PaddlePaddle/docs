@@ -18,7 +18,7 @@ paddle.Tensor.isclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 
 | PyTorch   | PaddlePaddle | 备注 |
 | --------- | ------------ | -- |
-| other     | y            | 输入的 Tensor，数据类型为 float16、float32、float64、complex64 或 complex128。 |
-| rtol      | rtol         | 相对容忍误差，默认值为 1e-5。 |
-| atol      | atol         | 绝对容忍误差，默认值为 1e-8。 |
-| equal_nan | equal_nan    |  如果设置为 True，则两个 NaN 数值将被视为相等，默认值为 False。 |
+| other     | y            | 输入的 Tensor，仅参数名不一致。 |
+| rtol      | rtol         | 相对容忍误差。 |
+| atol      | atol         | 绝对容忍误差。 |
+| equal_nan | equal_nan    | 如果设置为 True，则两个 NaN 数值将被视为相等，默认值为 False。 |

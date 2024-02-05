@@ -18,4 +18,4 @@ paddle.Tensor.matmul(y, transpose_x=False, transpose_y=False, name=None)
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| other   | y            |  输入变量。 |
+| other   | y            |  输入变量，仅参数名不一致。 |

@@ -9,7 +9,7 @@ torch.Tensor.erfinv_()
 ### [paddle.Tensor.erfinv\_]()
 
 ```python
-paddle.Tensor.erfinv_(x)
+paddle.Tensor.erfinv_()
 ```
 
 两者功能一致，无参数。

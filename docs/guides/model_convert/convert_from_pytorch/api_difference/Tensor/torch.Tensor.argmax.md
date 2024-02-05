@@ -18,5 +18,5 @@ paddle.Tensor.argmax(axis=None, keepdim=False, dtype=int64, name=None)
 
 | PyTorch | PaddlePaddle | 备注                               |
 | ------- | ------------ | ------------------                 |
-| dim     | axis         | 指定对输入 Tensor 进行运算的轴，axis 的有效范围是\[-R, R），R 是输入 x 的维度个数  |
+| dim     | axis         | 指定对输入 Tensor 进行运算的轴，仅参数名不一致。  |
 | keepdim | keepdim      | 是否在输出 Tensor 中保留减小的维度。 |

@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.mean
+## [ torch 参数更多 ]torch.Tensor.mean
 
 ### [torch.Tensor.mean](https://pytorch.org/docs/stable/generated/torch.Tensor.mean.html)
 
@@ -18,9 +18,9 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| dim     | axis         | 指定对 x 进行计算的轴。 |
+| dim     | axis         | 指定对 x 进行计算的轴，仅参数名不一致。 |
 | keepdim | keepdim      | 是否在输出 Tensor 中保留减小的维度。 |
-| dtype   | -       | 输出 Tensor 的类型，Paddle 无此参数, 需要转写。  |
+| dtype   | -            | 输出 Tensor 的类型，Paddle 无此参数, 需要转写。  |
 
 ### 转写示例
 

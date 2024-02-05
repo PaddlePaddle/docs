@@ -18,5 +18,5 @@ paddle.Tensor.index_select(index, axis=0, name=None)
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| dim     | axis         | 索引轴，若未指定，则默认选取第 0 维。 |
+| dim     | axis         | 索引轴，仅参数名不一致。 |
 | index   | index        | 包含索引下标的 1-D Tensor。 |

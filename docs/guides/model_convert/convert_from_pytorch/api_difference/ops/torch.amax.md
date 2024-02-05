@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.amax
+## [ torch 参数更多 ]torch.amax
 
 ### [torch.amax](https://pytorch.org/docs/stable/generated/torch.amax.html)
 
@@ -18,10 +18,10 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| input   | x            | Tensor，支持数据类型为 float32、float64、int32、int64，维度不超过 4 维。 |
-| dim     | axis         | 求最大值运算的维度。 |
+| input   | x            | 输入 Tensor，仅参数名不一致。 |
+| dim     | axis         | 求最大值运算的维度，仅参数名不一致。 |
 | keepdim | keepdim      | 是否在输出 Tensor 中保留减小的维度。 |
-| out     | -            | 表示输出的 Tensor,可选项，Paddle 无此参数，需要转写。 |
+| out     | -            | 输出 Tensor，Paddle 无此参数，需要转写。 |
 
 ### 转写示例
 

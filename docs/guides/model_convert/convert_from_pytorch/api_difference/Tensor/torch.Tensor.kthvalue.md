@@ -19,5 +19,5 @@ paddle.Tensor.kthvalue(k, axis=None, keepdim=False, name=None)
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
 | k       | k            | 需要沿轴查找的第 k 小，所对应的 k 值。 |
-| dim     | axis         | 指定对输入 Tensor 进行运算的轴，axis 的有效范围是[-R, R），R 是输入 x 的 Rank， axis 为负时与 axis + R 等价。默认值为-1。 |
-| keepdim | keepdim      | 是否保留指定的轴。如果是 True，维度会与输入 x 一致，对应所指定的轴的 size 为 1。否则，由于对应轴被展开，输出的维度会比输入小 1。默认值为 False。 |
+| dim     | axis         | 指定对输入 Tensor 进行运算的轴，仅参数名不一致。 |
+| keepdim | keepdim      | 是否保留指定的轴。 |

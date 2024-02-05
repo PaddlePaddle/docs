@@ -18,4 +18,4 @@ paddle.Tensor.broadcast_to(shape, name=None)
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| size    | shape        | 给定输入 x 扩展后的形状。  |
+| size    | shape        | 给定输入 x 扩展后的形状，仅参数名不一致。  |
