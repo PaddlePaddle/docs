@@ -106,10 +106,13 @@ paddle.vision 目录是飞桨在视觉领域的高层 API。具体如下：
     " :ref:`RoIPool <cn_api_paddle_vision_ops_RoIPool>` ", "兴趣区域的最大池化"
     " :ref:`psroi_pool <cn_api_paddle_vision_ops_psroi_pool>` ", "位置敏感的兴趣区域池化"
     " :ref:`PSRoIPool <cn_api_paddle_vision_ops_PSRoIPool>` ", "位置敏感的兴趣区域池化"
+    " :ref:`roi_align <cn_api_paddle_vision_ops_roi_align>` ", "基于双线性插值的兴趣区域对齐"
+    " :ref:`RoIAlign <cn_api_paddle_vision_ops_RoIAlign>` ", "基于双线性插值的兴趣区域对齐"
     " :ref:`deform_conv2d <cn_api_paddle_vision_ops_deform_conv2d>` ", "计算 2-D 可变形卷积"
     " :ref:`DeformConv2D <cn_api_paddle_vision_ops_DeformConv2D>` ", "计算 2-D 可变形卷积"
     " :ref:`yolo_box <cn_api_paddle_vision_ops_yolo_box>` ", "生成 YOLO 检测框"
     " :ref:`yolo_loss <cn_api_paddle_vision_ops_yolo_loss>` ", "计算 YOLO 损失"
+    " :ref:`nms <cn_api_paddle_vision_ops_nms>` ", "计算非极大抑制"
 
 .. _about_transforms:
 
