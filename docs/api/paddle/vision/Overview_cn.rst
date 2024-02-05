@@ -100,6 +100,8 @@ paddle.vision 目录是飞桨在视觉领域的高层 API。具体如下：
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`read_file <cn_api_paddle_vision_ops_read_file>` ", "读取并输出文件的字节内容（1-D Tensor）"
+    " :ref:`decode_jpeg <cn_api_paddle_vision_ops_decode_jpeg>` ", "将 JPEG 图像解码为三维 RGB Tensor 或者 一维灰度 Tensor"
     " :ref:`deform_conv2d <cn_api_paddle_vision_ops_deform_conv2d>` ", "计算 2-D 可变形卷积"
     " :ref:`DeformConv2D <cn_api_paddle_vision_ops_DeformConv2D>` ", "计算 2-D 可变形卷积"
     " :ref:`yolo_box <cn_api_paddle_vision_ops_yolo_box>` ", "生成 YOLO 检测框"
