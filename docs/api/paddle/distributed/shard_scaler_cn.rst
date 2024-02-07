@@ -11,7 +11,7 @@ shard_scaler
 参数
 :::::::::
 
-    - **scaler** (paddle.amp.GradScaler) - 单卡视角的 `GradScaler`。
+    - **scaler** (paddle.amp.GradScaler) - 单卡视角下的 `GradScaler`。
 返回
 :::::::::
 GradScaler：一个具有分布式视角的 `GradScaler` 对象。
