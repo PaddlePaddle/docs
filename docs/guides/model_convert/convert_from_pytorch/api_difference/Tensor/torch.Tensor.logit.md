@@ -18,5 +18,4 @@ paddle.Tensor.logit(eps=None, name=None)
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| eps     | eps          | 传入该参数后可将 x 的范围控制在 [eps,1−eps]
-，默认值为 None。 |
+| eps     | eps          | 传入该参数后可将 x 的范围控制在 [eps,1−eps]，默认值为 None。 |
