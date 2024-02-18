@@ -34,8 +34,10 @@ mapping_type_set = {
 class DiffMeta(TypedDict):
     torch_api: str
     torch_api_url: typing.Optional[str]
+    torch_signature: typing.Optional[str]
     paddle_api: typing.Optional[str]
     paddle_api_url: typing.Optional[str]
+    paddle_signature: typing.Optional[str]
     mapping_type: str
     source_file: str
 
@@ -60,6 +62,46 @@ def unescape_api(api):
     return api.replace(r"\_", "_")
 
 
+def reformat_signature(code):
+    lines = [l for l in code.split("\n") if len(l.strip()) > 0]
+    assert len(lines) > 0, "code have no lines."
+    buffer = "".join([l.strip() for l in lines])
+
+    first_par_pos = buffer.find("(")
+
+    m = re.match(r"^\s*(?P<api_name>[^\( ]+)(.*?)$", buffer)
+    assert m is not None, f'code first line "{buffer}" not match api pattern.'
+    api_name = m.group("api_name")
+
+    if first_par_pos < 0:
+        # 要是没括号，可能是特殊情况，比如 property
+        return {"api_name": api_name}
+
+    last_par_pos = buffer.rfind(")")
+    assert (
+        last_par_pos > first_par_pos
+    ), f'code first line "{buffer}" not match api pattern.'
+    args_buffer = buffer[first_par_pos + 1 : last_par_pos]
+
+    args = []
+    args_buffer = args_buffer.strip()
+    arg_pattern = re.compile(
+        r"^(?P<arg_name>[^\=]+)(\=(?P<arg_default>[^,]+))?$"
+    )
+
+    arg_buffer_list = [
+        l.strip() for l in args_buffer.split(",") if len(l.strip()) > 0
+    ]
+    for arg_buffer in arg_buffer_list:
+        m = arg_pattern.match(arg_buffer)
+        assert m is not None, f'code arg "{arg_buffer}" not match arg pattern.'
+        arg_name = m.group("arg_name")
+        arg_default = m.group("arg_default")
+        args.append({"arg_name": arg_name, "arg_default": arg_default})
+
+    return {"api_name": api_name, "args": args}
+
+
 def get_meta_from_diff_file(filepath):
     meta_data: DiffMeta = {"source_file": filepath}
     state = ParserState.wait_for_title
@@ -68,13 +110,13 @@ def get_meta_from_diff_file(filepath):
         r"^### +\[ *(?P<torch_api>torch.[^\]]+)\](?P<url>\([^\)]*\))?$"
     )
     paddle_pattern = re.compile(
-        r"^### +\[ *(?P<paddle_api>paddle.[^\]]+)\]\((?P<url>[^\)]+)$"
+        r"^### +\[ *(?P<paddle_api>paddle.[^\]]+)\](?P<url>\([^\)]*\))?$"
     )
     code_begin_pattern = re.compile(r"^```(python)?$")
-    code_pattern = re.compile(
-        r"^(class )?(?P<api_name>(paddle|torch)[^\(]+)(.*?)$"
-    )
+    code_pattern = re.compile(r"^(?P<api_name>(paddle|torch)[^\( ]+)(.*?)$")
     code_end_pattern = re.compile(r"^```$")
+
+    signature_cache = None
 
     with open(filepath, "r") as f:
         for line in f.readlines():
@@ -88,7 +130,7 @@ def get_meta_from_diff_file(filepath):
                     mapping_type = title_match["type"].strip()
                     torch_api = title_match["torch_api"].strip()
 
-                    meta_data["torch_api"] = torch_api
+                    meta_data["torch_api"] = unescape_api(torch_api)
                     meta_data["mapping_type"] = mapping_type
                     state = ParserState.wait_for_torch_api
                 else:
@@ -100,7 +142,7 @@ def get_meta_from_diff_file(filepath):
                     torch_api = torch_match["torch_api"].strip()
                     torch_url = torch_match["url"] if torch_match["url"] else ""
                     real_url = torch_url.lstrip("(").rstrip(")")
-                    if meta_data["torch_api"] != torch_api:
+                    if meta_data["torch_api"] != unescape_api(torch_api):
                         raise Exception(
                             f"torch api not match: {line} != {meta_data['torch_api']} in {filepath}"
                         )
@@ -112,7 +154,7 @@ def get_meta_from_diff_file(filepath):
                 if paddle_match:
                     paddle_api = paddle_match["paddle_api"].strip()
                     paddle_url = paddle_match["url"].strip()
-                    meta_data["paddle_api"] = paddle_api
+                    meta_data["paddle_api"] = unescape_api(paddle_api)
                     meta_data["paddle_api_url"] = paddle_url
                     state = ParserState.wf_paddle_code_begin
             elif state in [
@@ -139,19 +181,27 @@ def get_meta_from_diff_file(filepath):
                 if code_match:
                     api_name = code_match["api_name"].strip()
                     if state == ParserState.wf_torch_code:
-                        if api_name != unescape_api(meta_data["torch_api"]):
+                        if api_name != meta_data["torch_api"]:
                             raise ValueError(
                                 f"Unexpected api code {api_name} != {meta_data['torch_api']} when process {filepath} line: {line}"
                             )
                         else:
                             state = ParserState.wf_torch_code_end
+                        signature_cache = line
                     elif state == ParserState.wf_paddle_code:
-                        if api_name != unescape_api(meta_data["paddle_api"]):
+                        if api_name != meta_data["paddle_api"]:
                             raise ValueError(
                                 f"Unexpected api code {api_name} != {meta_data['paddle_api']} when process {filepath} line: {line}"
                             )
                         else:
                             state = ParserState.wf_paddle_code_end
+                        signature_cache = line
+                else:
+                    # 如果写注释，就先不管了
+                    if line[0] != "#":
+                        raise ValueError(
+                            f"Api code must appear after ```, but not found correct signature when process {filepath} line: {line}."
+                        )
             elif state in [
                 ParserState.wf_torch_code_end,
                 ParserState.wf_paddle_code_end,
@@ -159,18 +209,42 @@ def get_meta_from_diff_file(filepath):
                 ce_match = code_end_pattern.match(line)
 
                 if ce_match:
+                    try:
+                        signature_info = reformat_signature(signature_cache)
+                        signature_cache = None
+                    except AssertionError as e:
+                        raise Exception(
+                            f"Cannot parse signature code in {filepath}"
+                        ) from e
+
                     if state == ParserState.wf_torch_code_end:
+                        meta_data["torch_signature"] = signature_info
                         state = ParserState.wait_for_paddle_api
                     elif state == ParserState.wf_paddle_code_end:
+                        meta_data["paddle_signature"] = signature_info
                         state = ParserState.end
                     else:
                         raise ValueError(
                             f"Unexpected state {state} when process {filepath} line: {line}"
                         )
+                else:
+                    # not match, append line to cache
+                    if state == ParserState.wf_torch_code_end:
+                        signature_cache += line
+                    elif state == ParserState.wf_paddle_code_end:
+                        signature_cache += line
+                    else:
+                        raise ValueError(
+                            f"Unexpected state {state} when process {filepath} line: {line}"
+                        )
+            elif state == ParserState.end:
+                break
             else:
                 raise ValueError(
                     f"Unexpected state {state} when process {filepath} line: {line}"
                 )
+
+    # print(state)
 
     # 允许的终止状态，解析完了 paddle_api 或者只有 torch_api
     if state not in [ParserState.end, ParserState.wait_for_paddle_api]:
@@ -397,7 +471,7 @@ if __name__ == "__main__":
         [get_meta_from_diff_file(f) for f in diff_files],
         key=lambda x: x["torch_api"],
     )
-    print(f"Total {len(metas)} mapping metas")
+    print(f"extracted {len(metas)} mapping metas data.")
 
     for m in metas:
         if m["mapping_type"] not in mapping_type_set:

@@ -10,8 +10,8 @@ torch.Tensor.any(dim=None, keepdim=False)
 
 ```python
 paddle.Tensor.any(axis=None,
-           keepdim=False,
-           name=None)
+                  keepdim=False,
+                  name=None)
 ```
 
 其中 Paddle 与 PyTorch 运算 Tensor 所支持的类型不一致，具体如下：

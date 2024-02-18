@@ -9,7 +9,7 @@ torch.nn.functional.softmax(input, dim=None, _stacklevel=3, dtype=None)
 ### [paddle.nn.functional.softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/softmax_cn.html#softmax)
 
 ```python
-paddle.nn.functional.softmax(x, axis=- 1, dtype=None, name=None)
+paddle.nn.functional.softmax(x, axis=-1, dtype=None, name=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：

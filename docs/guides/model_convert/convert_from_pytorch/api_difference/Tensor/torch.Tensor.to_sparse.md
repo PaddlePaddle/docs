@@ -9,7 +9,7 @@ torch.Tensor.to_sparse(sparseDims)
 ### [paddle.Tensor.to_sparse_coo]()
 
 ```
-paddleTensor.to_sparse_coo(sparseDims)
+paddle.Tensor.to_sparse_coo(sparseDims)
 ```
 
 两者功能一致，参数用法一致，具体如下：

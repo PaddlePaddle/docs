@@ -10,11 +10,11 @@ torch.nn.Linear(in_features,
 ### [paddle.nn.Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Linear_cn.html#linear)
 
 ```python
- paddle.nn.Linear(in_features,
-                  out_features,
-                  weight_attr=None,
-                  bias_attr=None,
-                  name=None)
+paddle.nn.Linear(in_features,
+                 out_features,
+                 weight_attr=None,
+                 bias_attr=None,
+                 name=None)
 ```
 
 其中 PyTorch 的 `bias` 与 Paddle 的 `bias_attr` 用法不一致，具体如下：
