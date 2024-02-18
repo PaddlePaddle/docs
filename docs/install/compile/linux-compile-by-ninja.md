@@ -110,8 +110,10 @@ cd Paddle
 
     用从百度拉取的镜像创建容器
     ```
-    docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    docker run --gpus all --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
     ```
+
+    - `--gpus all`: 在 Docker 容器中允许使用 gpu;
 
     - `--name paddle-test`：为您创建的 Docker 容器命名为 paddle-test;
 
@@ -123,7 +125,7 @@ cd Paddle
 
     若使用的是从 DockerHub 拉取的镜像创建容器，则修改镜像名即可：
     ```
-    docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    docker run --gpus all --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
     ```
 
 注意：
