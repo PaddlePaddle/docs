@@ -20,6 +20,8 @@ paddle.vision 目录是飞桨在视觉领域的高层 API。具体如下：
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`DatasetFolder <cn_api_paddle_vision_datasets_DatasetFolder>` ", "通用数据加载方式 DatasetFolder"
+    " :ref:`ImageFolder <cn_api_paddle_vision_datasets_ImageFolder>` ", "通用数据加载方式 ImageFolder"
     " :ref:`Cifar10 <cn_api_paddle_vision_datasets_Cifar10>` ", "Cifar10 数据集"
     " :ref:`Cifar100 <cn_api_paddle_vision_datasets_Cifar100>` ", "Cifar100 数据集"
     " :ref:`FashionMNIST <cn_api_paddle_vision_datasets_FashionMNIST>` ", "FashionMNIST 数据集"
@@ -98,10 +100,23 @@ paddle.vision 目录是飞桨在视觉领域的高层 API。具体如下：
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`read_file <cn_api_paddle_vision_ops_read_file>` ", "读取并输出文件的字节内容（1-D Tensor）"
+    " :ref:`decode_jpeg <cn_api_paddle_vision_ops_decode_jpeg>` ", "将 JPEG 图像解码为三维 RGB Tensor 或者 一维灰度 Tensor"
+    " :ref:`roi_pool <cn_api_paddle_vision_ops_roi_pool>` ", "兴趣区域的最大池化"
+    " :ref:`RoIPool <cn_api_paddle_vision_ops_RoIPool>` ", "兴趣区域的最大池化"
+    " :ref:`psroi_pool <cn_api_paddle_vision_ops_psroi_pool>` ", "位置敏感的兴趣区域池化"
+    " :ref:`PSRoIPool <cn_api_paddle_vision_ops_PSRoIPool>` ", "位置敏感的兴趣区域池化"
+    " :ref:`roi_align <cn_api_paddle_vision_ops_roi_align>` ", "基于双线性插值的兴趣区域对齐"
+    " :ref:`RoIAlign <cn_api_paddle_vision_ops_RoIAlign>` ", "基于双线性插值的兴趣区域对齐"
     " :ref:`deform_conv2d <cn_api_paddle_vision_ops_deform_conv2d>` ", "计算 2-D 可变形卷积"
     " :ref:`DeformConv2D <cn_api_paddle_vision_ops_DeformConv2D>` ", "计算 2-D 可变形卷积"
     " :ref:`yolo_box <cn_api_paddle_vision_ops_yolo_box>` ", "生成 YOLO 检测框"
     " :ref:`yolo_loss <cn_api_paddle_vision_ops_yolo_loss>` ", "计算 YOLO 损失"
+    " :ref:`prior_box <cn_api_paddle_vision_ops_prior_box>` ", "为 SSD 系列目标检测算法生成候选框"
+    " :ref:`generate_proposals <cn_api_paddle_vision_ops_generate_proposals>` ", "生成候选检测框"
+    " :ref:`distribute_fpn_proposals <cn_api_paddle_vision_ops_distribute_fpn_proposals>` ", "将候选检测框分配到不同的 FPN 层级"
+    " :ref:`box_coder <cn_api_paddle_vision_ops_box_coder>` ", "编码/解码带有先验框信息的目标边界框"
+    " :ref:`nms <cn_api_paddle_vision_ops_nms>` ", "计算非极大抑制"
 
 .. _about_transforms:
 
@@ -138,6 +153,12 @@ paddle.vision 目录是飞桨在视觉领域的高层 API。具体如下：
     " :ref:`Resize <cn_api_paddle_vision_transforms_Resize__upper>` ", "对图像调整大小"
     " :ref:`resize <cn_api_paddle_vision_transforms_resize>` ", "对图像调整大小"
     " :ref:`rotate <cn_api_paddle_vision_transforms_rotate>` ", "对图像随机旋转"
+    " :ref:`perspective <cn_api_paddle_vision_transforms_perspective>` ", "对图像进行透视变换"
+    " :ref:`RandomPerspective <cn_api_paddle_vision_transforms_RandomPerspective>` ", "基于概率对图像进行透视变换"
+    " :ref:`affine <cn_api_paddle_vision_transforms_affine>` ", "对图像进行仿射变换"
+    " :ref:`RandomAffine <cn_api_paddle_vision_transforms_RandomAffine>` ", "基于随机产生的变换矩阵参数，对图像进行仿射变换"
+    " :ref:`erase <cn_api_paddle_vision_transforms_erase>` ", "使用给定的值擦除输入图像选定区域中的像素"
+    " :ref:`RandomErasing <cn_api_paddle_vision_transforms_RandomErasing>` ", "擦除图像中随机选择的矩形区域内的像素"
     " :ref:`SaturationTransform <cn_api_paddle_vision_transforms_SaturationTransform>` ", "调整图像饱和度"
     " :ref:`to_grayscale <cn_api_paddle_vision_transforms_to_grayscale>` ", "对图像进行灰度化"
     " :ref:`to_tensor <cn_api_paddle_vision_transforms_to_tensor>` ", "将`PIL.Image`或`numpy.ndarray`转为`paddle.Tensor`"
