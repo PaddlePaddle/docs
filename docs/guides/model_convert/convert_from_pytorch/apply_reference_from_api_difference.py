@@ -161,12 +161,14 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         torch_api_column = f"[`{torch_api}`]({torch_api_url})"
 
         mapping_type = reference_item["mapping_type"]
-        mapping_type_s, show_diff_url = mapping_type_to_description(
+        mapping_type_column = mapping_type
+
+        _mapping_type_desc, show_diff_url = mapping_type_to_description(
             mapping_type
         )
-        mapping_column = mapping_type_s
+        mapping_url_column = ""
         if show_diff_url:
-            mapping_column += f"，[差异对比]({diff_url})"
+            mapping_url_column = f"[详细对比]({diff_url})"
 
         if "paddle_api" not in reference_item:
             if mapping_type not in ["组合替代实现", "可删除", "功能缺失"]:
@@ -183,7 +185,8 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
             row_idx_s,
             torch_api_column,
             paddle_api_column,
-            mapping_column,
+            mapping_type_column,
+            mapping_url_column,
         ]
 
         output = "| " + " | ".join(content) + " |\n"
@@ -200,12 +203,14 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
 
         paddle_api_column = ""
         mapping_column = "功能缺失"
+        mapping_url_column = ""
 
         content = [
             row_idx_s,
             torch_api_column,
             paddle_api_column,
             mapping_column,
+            mapping_url_column,
         ]
 
         output = "| " + " | ".join(content) + " |\n"
@@ -239,7 +244,13 @@ def reference_mapping_item(index_path, metadata_dict):
     column_count = -1
     table_seperator_pattern = re.compile(r"^ *\|(?P<group> *-+ *\|)+ *$")
 
-    expect_column_names = ["序号", "PyTorch API", "PaddlePaddle API", "备注"]
+    expect_column_names = [
+        "序号",
+        "PyTorch-2.1",
+        "PaddlePaddle-dev",
+        "映射关系分类",
+        "详细对比",
+    ]
 
     table_row_idx = -1
     output = []
