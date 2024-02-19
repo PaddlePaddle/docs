@@ -576,7 +576,7 @@ Embedding 相关函数
 
 .. _about_nn_utils:
 
-实用工具
+工具相关
 :::::::::::::::::::::::
 
 .. csv-table::
