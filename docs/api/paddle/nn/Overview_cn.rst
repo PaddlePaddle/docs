@@ -32,7 +32,7 @@ paddle.nn 目录下包含飞桨框架支持的神经网络层和相关函数的�
 -  :ref:`公用方法 <common_functional>`
 -  :ref:`初始化相关 <about_initializer>`
 -  :ref:`量化压缩 <about_quantization>`
--  :ref:`实用工具 <about_nn_utils>`
+-  :ref:`工具相关 <about_nn_utils>`
 
 
 
