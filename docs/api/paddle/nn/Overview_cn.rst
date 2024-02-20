@@ -32,6 +32,7 @@ paddle.nn 目录下包含飞桨框架支持的神经网络层和相关函数的�
 -  :ref:`公用方法 <common_functional>`
 -  :ref:`初始化相关 <about_initializer>`
 -  :ref:`量化压缩 <about_quantization>`
+-  :ref:`工具相关 <about_nn_utils>`
 
 
 
@@ -572,3 +573,19 @@ Embedding 相关函数
     " :ref:`paddle.nn.quant.llm_int8_linear <cn_api_paddle_nn_quant_llm_int8_linear>` ", "使用 int8 量化压缩的线性层"
     " :ref:`paddle.nn.quant.weight_only_linear <cn_api_paddle_nn_quant_weight_only_linear>` ", "使用自定义的类型进行模型的量化压缩"
     " :ref:`paddle.nn.quant.weight_quantize <cn_api_paddle_nn_quant_weight_quantize>` ", "weight_only 和 llm.int8 权重的量化函数"
+
+.. _about_nn_utils:
+
+工具相关
+:::::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+
+    " :ref:`paddle.nn.utils.clip_grad_norm_ <cn_api_paddle_nn_utils_clip_grad_norm_>` ", "对一组张量的梯度按范数进行裁剪"
+    " :ref:`paddle.nn.utils.clip_grad_value_ <cn_api_paddle_nn_utils_clip_grad_value_>` ", "对一组张量的梯度按值范围进行裁剪"
+    " :ref:`paddle.nn.utils.parameters_to_vector <cn_api_paddle_nn_utils_parameters_to_vector>` ", "将参数列表转换成一个一维 Tensor"
+    " :ref:`paddle.nn.utils.remove_weight_norm <cn_api_paddle_nn_utils_remove_weight_norm>` ", "移除传入 layer 中的权重归一化"
+    " :ref:`paddle.nn.utils.spectral_norm <cn_api_paddle_nn_utils_spectral_norm>` ", "对传入 layer 中的权重谱归一化"
+    " :ref:`paddle.nn.utils.vector_to_parameters <cn_api_paddle_nn_utils_vector_to_parameters>` ", "将一个一维 Tensor 转换成参数列表"
+    " :ref:`paddle.nn.utils.weight_norm <cn_api_paddle_nn_utils_weight_norm>` ", "对传入的 layer 中的权重参数进行归一化"
