@@ -1,4 +1,4 @@
-.. _cn_api_paddle_incubate_distributed_utils_io_idst_save_save_for_auto_inference:
+.. _cn_api_paddle_incubate_distributed_utils_io_dist_save_save_for_auto_inference:
 
 save_for_auto_inference
 -------------------------------
