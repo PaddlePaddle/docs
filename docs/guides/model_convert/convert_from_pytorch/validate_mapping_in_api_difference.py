@@ -128,7 +128,7 @@ def get_meta_from_diff_file(filepath):
                 title_match = title_pattern.match(line)
                 if title_match:
                     mapping_type = title_match["type"].strip()
-                    torch_api = title_match["torch_api"].strip()
+                    torch_api = unescape_api(title_match["torch_api"].strip())
 
                     meta_data["torch_api"] = unescape_api(torch_api)
                     meta_data["mapping_type"] = mapping_type

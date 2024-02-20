@@ -6,10 +6,10 @@
 torch.distributions.log_normal.LogNormal(loc, scale, validate_args=None)
 ```
 
-### [paddle.distribution.Normal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Normal_cn.html#normal)
+### [paddle.distribution.LogNormal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/LogNormal_cn.html#lognormal)
 
 ```python
-paddle.distribution.Normal(loc, scale, name=None)
+paddle.distribution.LogNormal(loc, scale, name=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
