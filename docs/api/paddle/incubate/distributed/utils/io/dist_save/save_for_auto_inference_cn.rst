@@ -13,8 +13,7 @@ save_for_auto_inference
 
 参数
 :::::::::
-    - **path_prefix**:  要保存的路径前缀。如果 `path_preifx` 以路径分隔符结尾, 则路径将作为目录进行处理，参数将保存在其中，并自动命名为 saved_parameters。
-            其他，参数将保存为名称 path_preifx_dist{global_rank}.pdparams 和 path_preifx_dist{global_rank}.pdattrs。
+    - **path_prefix**:  要保存的路径前缀。如果 `path_preifx` 以路径分隔符结尾, 则路径将作为目录进行处理，参数将保存在其中，并自动命名为 saved_parameters。除此之外，参数将保存为名称 path_preifx_dist{global_rank}.pdparams 和 path_preifx_dist{global_rank}.pdattrs。
     - **dist_model**: 分布式模型中的模型。
     - **cvt2cpu**: 在使用 sharding stage3 时将参数移动到 CPU。如果不使用 sharding stage3, 则 var 无效。
 
