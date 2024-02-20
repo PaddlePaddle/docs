@@ -3,12 +3,7 @@
 ### [torch.max\_pool3d](https://pytorch.org/docs/stable/jit_builtin_functions.html#supported-pytorch-functions)
 
 ```python
-torch.max_pool3d(input: Tensor,
-                 kernel_size: List[int],
-                 stride: List[int]=[],
-                 padding: List[int]=[0, 0, 0],
-                 dilation: List[int]=[1, 1, 1],
-                 ceil_mode: bool=False)
+torch.max_pool3d(input, kernel_size, stride=[], padding=[0, 0, 0], dilation=[1, 1, 1], ceil_mode=False)
 ```
 
 ### [paddle.nn.functional.max_pool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/max_pool3d_cn.html)

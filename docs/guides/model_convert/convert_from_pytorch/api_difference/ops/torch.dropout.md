@@ -20,6 +20,6 @@ paddle.nn.functional.dropout(x, p=0.5, axis=None, training=True, mode='upscale_i
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| input   | x            | 输入的多维 Tensor，数据类型为：float16、float32、float64。 |
+| input   | x            | 输入的多维 Tensor，仅参数名不一致。 |
 | p       | p            | 将输入节点置 0 的概率，即丢弃概率。默认值为 0.5。 |
-| train   | training     | 标记是否为训练阶段。默认值为 True。 |
+| train   | training     | 标记是否为训练阶段。默认值为 True，仅参数名不一致。 |

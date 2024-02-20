@@ -20,4 +20,3 @@ paddle.Tensor.argmin(axis=None, keepdim=False, dtype=int64, name=None)
 | ------- | ------------ | ------------------                 |
 | dim     | axis         | 指定对输入 Tensor 进行运算的轴，仅参数名不一致。  |
 | keepdim | keepdim      | 是否在输出 Tensor 中保留减小的维度。 |
-| -       | dtype        | 指定返回类型，PyTorch 无此参数，Paddle 保持默认即可。 |

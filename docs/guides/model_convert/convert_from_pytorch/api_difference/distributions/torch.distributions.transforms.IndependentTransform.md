@@ -16,8 +16,8 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
-| PyTorch                   | PaddlePaddle             | 备注 |
-| ------------------------- | ------------------------ | -- |
-| base_transform            | base                     | 基础变换。 |
-| reinterpreted_batch_ndims | reinterpreted_batch_rank | 被扩展为事件维度的最右侧批维度数量，需大于 0。 |
-| cache_size | -            | 缓存大小，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
+| PyTorch                   | PaddlePaddle             | 备注                     |
+| ------------------------- | ------------------------ | ------------------------ |
+| base_transform            | base                     | 基础变换，仅参数名不一致。 |
+| reinterpreted_batch_ndims | reinterpreted_batch_rank | 被扩展为事件维度的最右侧批维度数量，需大于 0，仅参数名不一致。 |
+| cache_size                | -                        | 缓存大小，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |

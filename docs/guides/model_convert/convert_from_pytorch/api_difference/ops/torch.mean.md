@@ -18,8 +18,8 @@ paddle.mean(x, axis=None, keepdim=False, name=None)
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| input   | x            | 输入 Tensor。  |
-| dim     | axis         | 指定对 x 进行计算的轴。 |
+| input   | x            | 输入 Tensor，仅参数名不一致。  |
+| dim     | axis         | 指定对 x 进行计算的轴，仅参数名不一致。 |
 | keepdim | keepdim      | 是否在输出 Tensor 中保留减小的维度。 |
 | dtype   | -            | 输出 Tensor 的类型，Paddle 无此参数, 需要转写。  |
 | out     | -            | 输出 Tensor，Paddle 无此参数, 需要转写。   |

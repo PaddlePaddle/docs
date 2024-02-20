@@ -18,5 +18,5 @@ paddle.nn.functional.celu(x, alpha=1.0, name=None)
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| input   | x            | 输入的 Tensor。  |
+| input   | x            | 输入的 Tensor，仅参数名不一致。  |
 | alpha   | alpha        | CELU 的 alpha 值，默认值为 1.0。 |
