@@ -8,7 +8,7 @@ Upsample
 
 用于调整一个 batch 中图片的大小。
 
-输入为 3-D Tensor 时形状为(num_batches, channels, in_w)，输入为 4-D Tensor 时形状为(num_batches, channels, in_h, in_w)或者(num_batches, in_h, in_w, channels)，输入为 5-D Tensor 时形状为(num_batches, channels, in_d, in_h, in_w)或者(num_batches, in_d, in_h, in_w, channels)，并且调整大小只适用于深度，高度和宽度对应的维度。
+输入为 3-D Tensor 时形状为(num_batches, channels, in_w)或者(num_batches, in_w, channels)，输入为 4-D Tensor 时形状为(num_batches, channels, in_h, in_w)或者(num_batches, in_h, in_w, channels)，输入为 5-D Tensor 时形状为(num_batches, channels, in_d, in_h, in_w)或者(num_batches, in_d, in_h, in_w, channels)，并且调整大小只适用于深度，高度和宽度对应的维度。
 
 支持的插值方法：
 
@@ -160,7 +160,7 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 
 返回
 ::::::::::::
-3-D，4-D，或 5-D Tensor，数据格式与输入 ``x`` 一致。
+   返回用于计算 Upsample 的可调用对象。
 
 
 代码示例
