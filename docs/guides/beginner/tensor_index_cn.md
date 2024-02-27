@@ -6,7 +6,7 @@
 
 对于一个 Tensor `x`，`index`指明了想要访问的位置。根据`index`的类型不同，可以分为以下类型的索引场景：
 | 场景 | 基础索引 | 高级索引 | 联合索引 |
-| :--- | :---: | :---: | :---: |
+| ------ | ------ | ------ | ------ |
 | 取值(`__getitem__`) | · **y = x[0, 2:4]** <br>等价于: <br>y = paddle.slice(x, [0,1], [0,2], [1,4], decrease_axes=[1]) | · **y = x[[0,1], [2,3]]** <br>等价于：<br>index = paddle.stack([Tensor([0,1]), Tensor([2,3]), axis=1) y = paddle.gather_nd(x, index) | · **y = x[0, [0,2], ..., 2:5:2, None]** <br>等价替换超过 10 行代码 |
 | 赋值(`__setitem__`) | · **x[0, 2:3] = Tensor(1.0)** <br>等价于：<br>paddle.slice_scatter_(x, [0,1], [0,2], [1,4], decrease_axes=[1]) | · **x[[0,1], [2,3]] = Tensor(1.0)** <br>等价于：<br>paddle.index_put_(x, ([Tensor([0,1]), Tensor([2,3]), Tensor(1.0)) | ·  **x[0, [0,2], ..., 2:5:2, None] = 1.0** <br>等价替换超过 10 行代码|
 
