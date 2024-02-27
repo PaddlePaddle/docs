@@ -472,98 +472,12 @@ Tensor stop_gradient: False
 
 ## 四、Tensor 的操作
 
-### 4.1 索引和切片
-通过索引或切片方式可访问或修改 Tensor。飞桨框架使用标准的 Python 索引规则与 Numpy 索引规则，与 [Indexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings) 类似。具有以下特点：
+### 4.1 索引
+通过索引可访问或修改 Tensor。飞桨框架使用标准的 Python 索引规则，与 [Indexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings) 类似，并与 Numpy 等其他框架一样，支持更灵活的索引方式。
 
-1. 基于 0-n 的下标进行索引，如果下标为负数，则从尾部开始计算。
-2. 通过冒号 ``:`` 分隔切片参数，``start:stop:step`` 来进行切片操作，其中 start、stop、step 均可缺省。
-
-#### 4.1.1 访问 Tensor
-* 针对一维  Tensor，仅有单个维度上的索引或切片：
-```python
-ndim_1_Tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
-print("Origin Tensor:", ndim_1_Tensor.numpy())          # 原始 1 维 Tensor
-print("First element:", ndim_1_Tensor[0].numpy())       # 取 Tensor 第一个元素的值
-print("Last element:", ndim_1_Tensor[-1].numpy())       # 取 Tensor 最后一个元素的值
-print("All element:", ndim_1_Tensor[:].numpy())         # 取 Tensor 所有元素的值
-print("Before 3:", ndim_1_Tensor[:3].numpy())           # 取 Tensor 前三个元素的值
-print("From 6 to the end:", ndim_1_Tensor[6:].numpy())  # 取 Tensor 第六个以后的值
-print("From 3 to 6:", ndim_1_Tensor[3:6].numpy())       # 取 Tensor 第三个至第六个之间的值
-print("Interval of 3:", ndim_1_Tensor[::3].numpy())     # 取 Tensor 从第一个开始，间距为 3 的下标的值
-print("Reverse:", ndim_1_Tensor[::-1].numpy())          # 取 Tensor 翻转后的值
-```
-```text
-Origin Tensor: [0 1 2 3 4 5 6 7 8])
-First element: [0]
-Last element: [8]
-All element: [0 1 2 3 4 5 6 7 8]
-Before 3: [0 1 2]
-From 6 to the end: [6 7 8]
-From 3 to 6: [3 4 5]
-Interval of 3: [0 3 6]
-Reverse: [8 7 6 5 4 3 2 1 0]
-```
+详细请参考[Paddle Tensor 索引介绍](./tensor_index_cn.md)
 
 
-* 针对二维及以上的 **Tensor**，则会有多个维度上的索引或切片：
-```python
-ndim_2_Tensor = paddle.to_tensor([[0, 1, 2, 3],
-                                  [4, 5, 6, 7],
-                                  [8, 9, 10, 11]])
-print("Origin Tensor:", ndim_2_Tensor.numpy())
-print("First row:", ndim_2_Tensor[0].numpy())
-print("First row:", ndim_2_Tensor[0, :].numpy())
-print("First column:", ndim_2_Tensor[:, 0].numpy())
-print("Last column:", ndim_2_Tensor[:, -1].numpy())
-print("All element:", ndim_2_Tensor[:].numpy())
-print("First row and second column:", ndim_2_Tensor[0, 1].numpy())
-```
-```text
-Origin Tensor: [[ 0  1  2  3]
-                [ 4  5  6  7]
-                [ 8  9 10 11]]
-First row: [0 1 2 3]
-First row: [0 1 2 3]
-First column: [0 4 8]
-Last column: [ 3  7 11]
-All element: [[ 0  1  2  3]
-              [ 4  5  6  7]
-              [ 8  9 10 11]]
-First row and second column: [1]
-```
-
-索引或切片的第一个值对应第 0 维，第二个值对应第 1 维，依次类推，如果某个维度上未指定索引，则默认为 ``:`` 。例如：
-```python
-ndim_2_Tensor[1]
-ndim_2_Tensor[1, :]
-```
-这两种操作的结果是完全相同的。
-
-```text
-Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
-       [4, 5, 6, 7])
-```
-
-#### 4.1.2 修改 Tensor
-
-与访问 Tensor 类似，修改 Tensor 可以在单个或多个维度上通过索引或切片操作。同时，支持将多种类型的数据赋值给该 Tensor，当前支持的数据类型有：`int`，`float`，`numpy.ndarray`，`complex`，`Tensor`。
-> **注意：**
->
-> 请慎重通过索引或切片修改 Tensor，该操作会**原地**修改该 Tensor 的数值，且原值不会被保存。如果被修改的 Tensor 参与梯度计算，仅会使用修改后的数值，这可能会给梯度计算引入风险。飞桨框架会自动检测不当的原位（inplace）使用并报错。
-
-```python
-import numpy as np
-
-x = paddle.to_tensor(np.ones((2, 3)).astype(np.float32)) # [[1., 1., 1.], [1., 1., 1.]]
-
-x[0] = 0                      # x : [[0., 0., 0.], [1., 1., 1.]]
-x[0:1] = 2.1                  # x : [[2.09999990, 2.09999990, 2.09999990], [1., 1., 1.]]
-x[...] = 3                    # x : [[3., 3., 3.], [3., 3., 3.]]
-
-x[0:1] = np.array([1,2,3])    # x : [[1., 2., 3.], [3., 3., 3.]]
-
-x[1] = paddle.ones([3])       # x : [[1., 2., 3.], [1., 1., 1.]]
-```
 
 ---
 
