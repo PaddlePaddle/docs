@@ -5,10 +5,13 @@
 索引是 Paddle 中针对 Tensor 一个非常重要的操作，它能够实现 Tensor 子元素的访问取值（`__getitem__`方法）和修改（`__setitem__`方法）。飞桨框架支持标准的 Python 索引规则及进一步的扩展，在模型组网中，相比于通过多个一般 API 组合实现，操作能够更简单及直观。
 
 对于一个 Tensor `x`，`index`指明了想要访问的位置。根据`index`的类型不同，可以分为以下类型的索引场景：
+
+
 | 场景 | 基础索引 | 高级索引 | 联合索引 |
 | ------ | ------ | ------ | ------ |
 | 取值(`__getitem__`) | · **y = x[0, 2:4]** <br>等价于: <br>y = paddle.slice(x, [0,1], [0,2], [1,4], decrease_axes=[1]) | · **y = x[[0,1], [2,3]]** <br>等价于：<br>index = paddle.stack([Tensor([0,1]), Tensor([2,3]), axis=1) y = paddle.gather_nd(x, index) | · **y = x[0, [0,2], ..., 2:5:2, None]** <br>等价替换超过 10 行代码 |
 | 赋值(`__setitem__`) | · **x[0, 2:3] = Tensor(1.0)** <br>等价于：<br>paddle.slice_scatter_(x, [0,1], [0,2], [1,4], decrease_axes=[1]) | · **x[[0,1], [2,3]] = Tensor(1.0)** <br>等价于：<br>paddle.index_put_(x, ([Tensor([0,1]), Tensor([2,3]), Tensor(1.0)) | ·  **x[0, [0,2], ..., 2:5:2, None] = 1.0** <br>等价替换超过 10 行代码|
+
 
 **注意：** 与 Numpy 等其他主流框架一致，在 Paddle 中用元组(tuple)来表示打包后的索引对象`index`，元组内部的每个元素分别表示对应轴的索引内容，即：
 ```python
