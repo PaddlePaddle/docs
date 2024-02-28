@@ -85,7 +85,7 @@
     python3 -m pip install -U（whl 包的名字）
     ```
 
-恭喜，至此您已完成 PaddlePaddle 在 FT 环境下的编译安装。
+恭喜，至此您已完成 PaddlePaddle 在 SW 环境下的编译安装。
 
 ## **验证安装**
 安装完成后您可以使用 `python` 或 `python3` 进入 python 解释器，输入`import paddle` ，再输入

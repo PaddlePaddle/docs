@@ -40,7 +40,7 @@ DataLoader 当前支持 ``map-style`` 和 ``iterable-style`` 的数据集，``ma
     - **num_workers** (int，可选) - 用于加载数据的子进程个数，若为 0 即为不开启子进程，在主进程中进行数据加载。默认值为 0。
     - **use_buffer_reader** (bool，可选) - 是否使用缓存读取器。若 ``use_buffer_reader`` 为 True，DataLoader 会异步地预读取一定数量（默认读取下一个）的 mini-batch 的数据，可加速数据读取过程，但同时会占用少量的 CPU/GPU 存储，即一个 batch 输入数据的存储空间。默认值为 True。
     - **prefetch_factor** (int，可选) - 缓存的 mini-batch 的个数。若 ``use_buffer_reader`` 为 True，DataLoader 会异步地预读取 ``prefetch_factor`` 个 mini-batch。默认值为 2。
-    - **use_shared_memory** (bool，可选) - 是否使用共享内存来提升子进程将数据放入进程间队列的速度，该参数尽在多进程模式下有效(即 ``num_workers > 0`` )，请确认机器上有足够的共享内存空间(如 Linux 系统下 ``/dev/shm/`` 目录空间大小)再设置此参数。默认为 True。
+    - **use_shared_memory** (bool，可选) - 是否使用共享内存来提升子进程将数据放入进程间队列的速度，该参数仅在多进程模式下有效(即 ``num_workers > 0`` )，请确认机器上有足够的共享内存空间(如 Linux 系统下 ``/dev/shm/`` 目录空间大小)再设置此参数。默认为 True。
     - **timeout** (int，可选) - 从子进程输出队列获取 mini-batch 数据的超时时间。默认值为 0。
     - **worker_init_fn** (callable，可选) - 子进程初始化函数，此函数会被子进程初始化时被调用，并传递 ``worker id`` 作为参数。默认值为 None。
 

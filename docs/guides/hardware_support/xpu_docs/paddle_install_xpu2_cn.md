@@ -47,7 +47,7 @@ paddle.utils.run_check()
 
 如果出现 PaddlePaddle is installed successfully!，说明您已成功安装。
 
-* 注：支持基于 Kermel Primitive 算子的昆仑 2 代芯片编译 whl 包，[点击这里查看](https://www.kunlunxin.com.cn)。
+* 注：支持基于 Kernel Primitive 算子的昆仑 2 代芯片编译 whl 包，[点击这里查看](https://www.kunlunxin.com.cn)。
 
 ## 安装方式二：从源码编译支持昆仑 XPU 的包
 
