@@ -1,89 +1,16 @@
 import os
 import re
 import sys
-import typing
 
+script_path = os.path.abspath(__file__)
+script_dir = os.path.dirname(__file__)
+sys.path.append(script_dir)
+print(script_dir)
 
-class DiffMeta(typing.TypedDict):
-    torch_api: str
-    torch_api_url: typing.Optional[str]
-    paddle_api: typing.Optional[str]
-    paddle_api_url: typing.Optional[str]
-    mapping_type: str
-    source_file: str
-
-
-def unescape_api(api):
-    return api.replace(r"\_", "_")
-
-
-def get_meta_from_diff_file(filepath):
-    meta_data: DiffMeta = {"source_file": filepath}
-    state = 0
-    # 0: wait for title
-    # 1: wait for torch api
-    # 2: wait for paddle api
-    # 3: end
-    title_pattern = re.compile(r"^## +\[(?P<type>[^\]]+)\] *(?P<torch_api>.+)$")
-    torch_pattern = re.compile(
-        r"^### +\[ *(?P<torch_api>torch.[^\]]+)\](?P<url>\([^\)]*\))?$"
-    )
-    paddle_pattern = re.compile(
-        r"^### +\[ *(?P<paddle_api>paddle.[^\]]+)\](?P<url>\([^\)]*\))$"
-    )
-
-    with open(filepath, "r") as f:
-        for line in f.readlines():
-            if not line.startswith("##"):
-                continue
-
-            if state == 0:
-                title_match = title_pattern.match(line)
-                if title_match:
-                    mapping_type = title_match["type"].strip()
-                    torch_api = title_match["torch_api"].strip()
-
-                    meta_data["torch_api"] = unescape_api(torch_api)
-                    meta_data["mapping_type"] = mapping_type
-                    state = 1
-                else:
-                    raise Exception(f"Cannot parse title: {line} in {filepath}")
-            elif state == 1:
-                torch_match = torch_pattern.match(line)
-
-                if torch_match:
-                    torch_api = torch_match["torch_api"].strip()
-                    torch_url = torch_match["url"] if torch_match["url"] else ""
-                    real_url = torch_url.lstrip("(").rstrip(")")
-                    if meta_data["torch_api"] != unescape_api(torch_api):
-                        raise Exception(
-                            f"torch api not match: {line} != {meta_data['torch_api']} in {filepath}"
-                        )
-                    meta_data["torch_api_url"] = real_url
-                    state = 2
-                else:
-                    raise Exception(
-                        f"Cannot parse torch api: {line} in {filepath}"
-                    )
-            elif state == 2:
-                paddle_match = paddle_pattern.match(line)
-
-                if paddle_match:
-                    paddle_api = paddle_match["paddle_api"].strip()
-                    paddle_url = paddle_match["url"].strip()
-                    real_url = paddle_url.lstrip("(").rstrip(")")
-                    meta_data["paddle_api"] = paddle_api
-                    meta_data["paddle_api_url"] = real_url
-                    state = 3
-            else:
-                pass
-
-    if state < 2:
-        raise Exception(
-            f"Unexpected End State at {state} in parsing file: {filepath}, current meta: {meta_data}"
-        )
-
-    return meta_data
+from validate_mapping_in_api_difference import (
+    get_meta_from_diff_file,
+    process_mapping_index as reference_mapping_item,
+)
 
 
 def mapping_type_to_description(mapping_type):
@@ -222,133 +149,40 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         # return line
 
 
-def reference_mapping_item(index_path, metadata_dict):
-    if not os.path.exists(index_path):
-        raise Exception(f"Cannot find pytorch_api_mapping_cn.md: {index_path}")
+def reference_mapping_item_processer(line, line_idx, state, output, context):
+    if not line.startswith("|"):
+        output.append(line)
+        return True
 
-    with open(mapping_index_file, "r", encoding="utf-8") as f:
-        lines = f.readlines()
+    metadata_dict = context.get("metadata_dict", {})
 
-    ret_code = 0
-    state = 0
-    # -1: error
-    # 0: wait for table header
-
-    # 1: wait for ignore table seperator
-    # 2: wait for expect table content
-
-    # 5: wait for ignore table content
-    # 6: wait for expect table content
-
-    column_names = []
-    column_count = -1
-    table_seperator_pattern = re.compile(r"^ *\|(?P<group> *-+ *\|)+ *$")
-
-    expect_column_names = [
-        "序号",
-        "PyTorch-2.1",
-        "PaddlePaddle-dev",
-        "映射关系分类",
-        "详细对比",
-    ]
-
-    table_row_idx = -1
-    output = []
-
-    for i, line in enumerate(lines):
-        if state < 0:
-            break
-
-        content = line.strip()
-        if not content.startswith("|"):
-            output.append(line)
-            state = 0
-            continue
-
-        columns = [c.strip() for c in content.split("|")]
-        if len(columns) <= 2:
-            raise Exception(
-                f"Table column count must > 0, but found {len(columns) - 2} at line {i+1}: {line}"
-            )
-        columns = columns[1:-1]
-
-        if state == 0:
-            column_names.clear()
-            column_names.extend([c.strip() for c in columns])
-            column_count = len(column_names)
-            if column_names == expect_column_names:
-                state = 2
-                table_row_idx = 1
-                # print(f'process mapping table at line {i+1}.')
-            else:
-                state = 1
-                print(f"ignore table with {column_names} at line {i+1}.")
-            output.append(line)
-        elif state == 1:
-            if (
-                not table_seperator_pattern.match(line)
-                or len(columns) != column_count
-            ):
-                raise Exception(
-                    f"Table seperator not match at line {i+1}: {line}"
-                )
-            state = 5
-            output.append(line)
-        elif state == 2:
-            if (
-                not table_seperator_pattern.match(line)
-                or len(columns) != column_count
-            ):
-                raise Exception(
-                    f"Table seperator not match at line {i+1}: {line}"
-                )
-            state = 6
-            output.append(line)
-        elif state == 5:
-            # if len(columns) != column_count:
-            #     raise Exception(
-            #         f"Table content not match at line {i+1}: {line}"
-            #     )
-            output.append(line)
-            # state = 5
-        elif state == 6:
-            # if len(columns) != column_count:
-            #     raise Exception(
-            #         f"Table content not match at line {i+1}: {line}"
-            #     )
-            try:
-                referenced_row = apply_reference_to_row(
-                    line, metadata_dict, table_row_idx, i + 1
-                )
-                table_row_idx += 1
-
-                output.append(referenced_row)
-            except Exception as e:
-                print(e)
-                print(f"Error at line {i+1}: {line}")
-                output.append(line)
-                ret_code = 1
-
-            # state = 6
-        else:
-            raise Exception(
-                f"Unexpected State at {state} in processing file: {index_path}"
-            )
-            ret_code = 2
-
-    if state == 5 or state == 6:
-        state = 0
-
-    if state != 0:
-        raise Exception(
-            f"Unexpected End State at {state} in parsing file: {index_path}"
+    if state == 0:
+        # check column names in common process
+        output.append(line)
+        return True
+    elif state == 1:
+        # check seperator of table to ignore in common process
+        output.append(line)
+        return True
+    elif state == 2:
+        # check seperator of table to process in common process
+        output.append(line)
+        return True
+    elif state == 5:
+        # check content of table to ignore in common process
+        output.append(line)
+        return True
+    elif state == 6:
+        # check content of table to process in common process
+        referenced_row = apply_reference_to_row(
+            line, metadata_dict, context["table_row_idx"], line_idx + 1
         )
 
-    if ret_code != 0:
-        sys.exit(ret_code)
+        output.append(referenced_row)
+        return True
 
-    with open(mapping_index_file, "w", encoding="utf-8") as f:
-        f.writelines(output)
+    print(state)
+    return False
 
 
 if __name__ == "__main__":
@@ -377,6 +211,16 @@ if __name__ == "__main__":
 
     meta_dict = {m["torch_api"].replace(r"\_", "_"): m for m in metas}
 
-    reference_mapping_item(mapping_index_file, meta_dict)
+    reference_context = {
+        "metadata_dict": meta_dict,
+        "ret_code": 0,
+        "output": [],
+    }
+    ret_code = reference_mapping_item(
+        mapping_index_file, reference_mapping_item_processer, reference_context
+    )
+
+    with open(mapping_index_file, "w", encoding="utf-8") as f:
+        f.writelines(reference_context["output"])
 
     # 映射关系文件的保存流程移动至 `validate_mapping_in_api_difference.py`
