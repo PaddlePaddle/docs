@@ -13,7 +13,3 @@ __pycache__/
 # Build and output directories
 build
 output/
-
-# Specific documentation files
-/doc/fluid/menu.zh.json
-/doc/fluid/menu.en.json
