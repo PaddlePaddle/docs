@@ -223,9 +223,9 @@ FL-PS 训练主要包括如下几个部分：
     1）去 https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/compile/linux-compile.html 找到 develop/Linux/源码编译/CPU/ 的开发镜像，在 docker 中开发
     2）在 Paddle 根目录下，新建 build 目录
     3）cd build
-    4）cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DCMAKE_BUILD_TYPE=Release -DWITH_DISTRIBUTE=ON -DWITH_PSCORE=ON -WITH_AVX=OFF -DWITH_TESTING=OFF -DWITH_FLPS=ON
+    4）cmake .. -DPY_VERSION=3.8 -DWITH_GPU=OFF -DCMAKE_BUILD_TYPE=Release -DWITH_DISTRIBUTE=ON -DWITH_PSCORE=ON -WITH_AVX=OFF -DWITH_TESTING=OFF -DWITH_FLPS=ON
     5) make -j
-    6）python -m pip install python/dist/paddlepaddle-0.0.0-cp37-cp37m-linux_x86_64.whl -U
+    6）python -m pip install python/dist/paddlepaddle-0.0.0-cp38-cp38m-linux_x86_64.whl -U
 
 
 1.3.2 Coordinator 模块
@@ -239,7 +239,7 @@ FL-PS 训练主要包括如下几个部分：
 参考脚本 `gen_heter_data.py` 写法。
 
 
-备注：本教程主要介绍了横向联邦 PS 的使用方法，关于纵向联邦 PS 的使用，请参考\ `https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/ps/test_fl_ps.py`_\，使用 1.3.1 节的编译命令，再执行下述命令即可
+备注：本教程主要介绍了横向联邦 PS 的使用方法，关于纵向联邦 PS 的使用，请参考\ `https://github.com/PaddlePaddle/Paddle/blob/develop/test/ps/test_fl_ps.py`_\，使用 1.3.1 节的编译命令，再执行下述命令即可
 
 .. code-block:: bash
     ctest -R test_fl_ps -V

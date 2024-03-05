@@ -1,9 +1,9 @@
-.. _cn_api_incubate_segment_mean:
+.. _cn_api_paddle_incubate_segment_mean:
 
 segment_mean
 -------------------------------
 
-.. py:function:: paddle.incubate.segment_mean((data, segment_ids, name=None)
+.. py:function:: paddle.incubate.segment_mean(data, segment_ids, name=None)
 
 
 分段求均值函数。

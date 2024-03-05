@@ -1,4 +1,4 @@
-.. _cn_api_vision_transforms_to_tensor:
+.. _cn_api_paddle_vision_transforms_to_tensor:
 
 to_tensor
 -------------------------------

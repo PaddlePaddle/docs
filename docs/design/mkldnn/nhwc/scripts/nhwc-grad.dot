@@ -22,7 +22,7 @@ tensor_mean_grad[shape=rectangle,label="Tensor mean grad op\nlayout=kNHWC\nNHWC 
 tensor_feed[shape=rectangle,label="Tensor feed_op\nlayout=kNCHW\nNHWC dim format"]
 tensor_feed2[shape=rectangle,label="Tensor feed_op\nlayout=kMKLDNN\nNCHW dim format"]
 
-feed_op -> tensor_feed -> tensor_feed2 -> conv_mkldnn -> tensor_mkldnn -> pool_mkldnn -> tensor_mkldnn2 -> tensor_input_mean -> mean_op 
+feed_op -> tensor_feed -> tensor_feed2 -> conv_mkldnn -> tensor_mkldnn -> pool_mkldnn -> tensor_mkldnn2 -> tensor_input_mean -> mean_op
 
 mean_op -> tensor_output_mean
 
@@ -30,7 +30,7 @@ tensor_input_mean -> tensor_mean_grad[xlabel="InferShape", style=dashed]
 
 tensor_output_mean -> mean_grad_op
 
-mean_grad_op -> tensor_mean_grad -> tensor_mean_grad_mkldnn -> pool_grad_mkldnn -> tensor_pool_grad_mkldnn -> conv_grad_mkldnn -> tensor_conv_grad_mkldnn -> fetch_op 
+mean_grad_op -> tensor_mean_grad -> tensor_mean_grad_mkldnn -> pool_grad_mkldnn -> tensor_pool_grad_mkldnn -> conv_grad_mkldnn -> tensor_conv_grad_mkldnn -> fetch_op
 
 {rank="same"  mean_op; mean_grad_op; tensor_output_mean}
 {rank="same"  pool_mkldnn; pool_grad_mkldnn}

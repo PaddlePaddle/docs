@@ -1,4 +1,4 @@
-.. _cn_api_tensor_sign:
+.. _cn_api_paddle_sign:
 
 sign
 -------------------------------
@@ -9,7 +9,7 @@ sign
 
 参数
 ::::::::::::
-    - **x** (Tensor) – 进行正负值判断的多维 Tensor，数据类型为 float16， float32 或 float64。
+    - **x** (Tensor) – 进行正负值判断的多维 Tensor，数据类型为 uint8, int8， int16， int32， int64， float16， float32 或 float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

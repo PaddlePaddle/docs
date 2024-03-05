@@ -1,4 +1,4 @@
-.. _cn_api_metric_Metric:
+.. _cn_api_paddle_metric_Metric:
 
 Metric
 -------------------------------
@@ -51,31 +51,14 @@ Python/NumPy，这样可以加速计算。`update` 接口将 `compute` 的输出
 可以在 `compute` 中计算每个样本的 top-5 得分，正确预测的矩阵的 shape 是[N, 5]。
 
 
-    .. code-block:: python
-
-        def compute(pred, label):
-            # sort prediction and slice the top-5 scores
-            pred = paddle.argsort(pred, descending=True)[:, :5]
-            # calculate whether the predictions are correct
-            correct = pred == label
-            return paddle.cast(correct, dtype='float32')
+COPY-FROM: paddle.metric.Metric:code-compute-example
 
 代码示例 2
 ::::::::::::
 
 在 `compute` 中的计算，使用内置的算子(可以跑在 GPU 上，使得速度更快)。作为 `update` 的输入，该接口计算如下：
 
-    .. code-block:: python
-
-        def update(self, correct):
-            accs = []
-            for i, k in enumerate(self.topk):
-                num_corrects = correct[:, :k].sum()
-                num_samples = len(correct)
-                accs.append(float(num_corrects) / num_samples)
-                self.total[i] += num_corrects
-                self.count[i] += num_samples
-            return accs
+COPY-FROM: paddle.metric.Metric:code-update-example
 
 方法
 ::::::::::::

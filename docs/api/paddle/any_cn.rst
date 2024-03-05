@@ -1,4 +1,4 @@
-.. _cn_api_tensor_any:
+.. _cn_api_paddle_any:
 
 any
 -------------------------------

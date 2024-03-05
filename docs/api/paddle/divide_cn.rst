@@ -1,4 +1,4 @@
-.. _cn_api_tensor_divide:
+.. _cn_api_paddle_divide:
 
 divide
 -------------------------------

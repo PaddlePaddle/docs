@@ -1,4 +1,4 @@
-.. _cn_api_audio_functional_hz_to_mel:
+.. _cn_api_paddle_audio_functional_hz_to_mel:
 
 hz_to_mel
 -------------------------------
@@ -11,12 +11,12 @@ hz_to_mel
 ::::::::::::
 
     - **freq** (Tensor, float) - 输入 tensor。
-    - **htk** (bool) - 是否使用 htk 缩放, 默认 False。
+    - **htk** (bool，可选) - 是否使用 htk 缩放，默认 False。
 
 返回
 :::::::::
 
-``paddle.Tensor 或 float``, mels 值。
+``paddle.Tensor 或 float``，mels 值。
 
 代码示例
 :::::::::

@@ -61,7 +61,7 @@ torch.gather(input, dim, index, *, sparse_grad=False, out=None)
 
 ##### 问题：如何不训练某层的权重？
 
-+ 答复：在`ParamAttr`里设置`learning_rate=0`或`trainable`设置为`False`。具体请[参考文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/param_attr/ParamAttr_cn.html)
++ 答复：在`ParamAttr`里设置`learning_rate=0`或`trainable`设置为`False`。具体请[参考文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/ParamAttr_cn.html#paramattr)
 
 ----------
 

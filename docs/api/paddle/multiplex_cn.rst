@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_multiplex:
+.. _cn_api_paddle_multiplex:
 
 multiplex
 -------------------------------
@@ -35,7 +35,7 @@ multiplex
 参数
 ::::::::::::
 
-  - **inputs** （list） - 为输入 Tensor 列表，列表元素为数据类型为 float32、float64、int32、int64 的多维 Tensor。所有输入 Tensor 的 shape 应相同，秩必须至少为 2。
+  - **inputs** （list） - 为输入 Tensor 列表，列表元素为数据类型为 float32、float64、int32、int64、complex64、complex128 的多维 Tensor。所有输入 Tensor 的 shape 应相同，秩必须至少为 2。
   - **index** （Tensor）- 用来选择输入 Tensor 中的某些行构建输出 Tensor 的索引，为数据类型为 int32 或 int64、shape 为[M, 1]的 2-D Tensor，其中 M 为输入 Tensor 个数。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

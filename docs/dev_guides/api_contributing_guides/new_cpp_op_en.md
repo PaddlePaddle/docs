@@ -289,7 +289,7 @@ Unit tests for an operator include
 
 3. a gradient test for the backward operator.
 
-Here, we introduce the [unit tests for `MulOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_mul_op.py).
+Here, we introduce the [unit tests for `MulOp`](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/test_mul_op.py).
 
 
 <a name="Unit Test for Forward Operators"></a>
@@ -355,7 +355,7 @@ In the backward operator test:
 ### Compiling and Running
 
 
-Any new unit testing file of the format `test_*.py`  added to the directory `python/paddle/fluid/tests/unittests/` is automatically added to the project to compile.
+Any new unit testing file of the format `test_*.py`  added to the directory `test/legacy_test` is automatically added to the project to compile.
 
 Note that **running unit tests requires compiling the entire project** and requires compiling with flag `WITH_TESTING` on i.e. `cmake paddle_dir -DWITH_TESTING=ON`.
 

@@ -1,4 +1,4 @@
-.. _cn_api_nn_LogSoftmax:
+.. _cn_api_paddle_nn_LogSoftmax:
 
 LogSoftmax
 -------------------------------
@@ -21,8 +21,8 @@ LogSoftmax 激活层，计算公式如下：
 形状
 :::::::::
 
-    - input：任意形状的 Tensor。
-    - output：和 input 具有相同形状的 Tensor。
+ - **input** ：任意形状的 Tensor。
+ - **output** ：和 input 具有相同形状的 Tensor。
 
 代码示例
 :::::::::

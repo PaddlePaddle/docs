@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_relu6:
+.. _cn_api_paddle_nn_functional_relu6:
 
 relu6
 -------------------------------
@@ -11,7 +11,7 @@ relu6 激活层
 
     relu6(x) = min(max(0,x), 6)
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::

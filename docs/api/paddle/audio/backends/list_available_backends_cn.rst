@@ -1,4 +1,4 @@
-.. _cn_api_audio_backends_list_available_backends:
+.. _cn_api_paddle_audio_backends_list_available_backends:
 
 list_available_backends
 -------------------------------
@@ -13,7 +13,7 @@ list_available_backends
 返回
 :::::::::
 
-``List[str]``, 可用的音频 I/O 后端集合。
+``List[str]``，可用的音频 I/O 后端集合。
 
 代码示例
 :::::::::

@@ -793,7 +793,7 @@ class SimpleNet(Layer):
 
 net = SimpleNet()
 
-# save static model for inference directly
+# save static graph mode for inference directly
 paddle.jit.save(net, './simple_net')
 ```
 
@@ -828,7 +828,7 @@ for epoch_id in range(10):
 # 在 paddle.jit.to_static 函数中调用 InputSpec
 net = to_static(net, input_spec=[InputSpec(shape=[None, 10], name='x'), InputSpec(shape=[3], name='y')])
 
-# save static model for inference directly
+# save static graph model for inference directly
 paddle.jit.save(net, './simple_net')
 ```
 

@@ -1,4 +1,4 @@
-.. _cn_api_nn_Hardshrink:
+.. _cn_api_paddle_nn_Hardshrink:
 
 Hardshrink
 -------------------------------
@@ -17,7 +17,7 @@ Hardshrink 激活层
         \end{aligned}
         \right.
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::

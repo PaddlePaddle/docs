@@ -1,4 +1,4 @@
-.. _cn_api_distributed_stream_all_reduce:
+.. _cn_api_paddle_distributed_stream_all_reduce:
 
 all_reduce
 -------------------------------
@@ -8,7 +8,7 @@ all_reduce
 
 规约进程组内的一个 tensor，随后将结果发送到每个进程。
 
-参见 :ref:`paddle.distributed.all_reduce<cn_api_distributed_all_reduce>`。
+参见 :ref:`paddle.distributed.all_reduce<cn_api_paddle_distributed_all_reduce>`。
 
 .. note::
   该 API 只支持动态图模式。

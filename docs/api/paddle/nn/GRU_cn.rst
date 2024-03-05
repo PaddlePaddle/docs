@@ -1,9 +1,9 @@
-.. _cn_api_paddle_nn_layer_rnn_GRU:
+.. _cn_api_paddle_nn_GRU:
 
 GRU
 -------------------------------
 
-.. py:class:: paddle.nn.GRU(input_size, hidden_size, num_layers=1, direction="forward", dropout=0., time_major=False, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None)
+.. py:class:: paddle.nn.GRU(input_size, hidden_size, num_layers=1, direction="forward", time_major=False, dropout=0.0, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
 
 
 
@@ -42,6 +42,7 @@ GRU
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh 的参数。默认为 None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih 的参数。默认为 None。
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh 的参数。默认为 None。
+    - **name** (str，可选) - 操作的名称(可选，默认为 None)。欲了解更多信息，请参考 :ref:`api_guide_Name`
 
 输入
 ::::::::::::

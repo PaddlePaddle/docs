@@ -14,114 +14,114 @@
 | ------------ | ------------------------------------------------- | ------------------------------ | -------------------- |
 | 类型     | 选项（选择一项）                                           |  您的选择               |    使用时遇到的问题或建议 |
 | 任务模式     |     单机多卡 or 多机多卡                |    单机多卡             |   - |
-| 运行方式     |     物理机 or docker or AI开发平台       |             docker               |  -        |
+| 运行方式     |     物理机 or docker or AI 开发平台       |             docker               |  -        |
 | 任务类型       |  集合通信（GPU）or 参数服务器（CPU/GPU）             |     集合通信（GPU）                | -        |
-| 分布式训练使用程度 |  成功实践过 or 熟悉基本过程 or 了解基本过程 or 不熟悉        |  成功实践过     |  在使用曙光平台docker创建镜像后难以使用多节点进行分布式训练，建议推出一种可以直接在E-Shell安装的方式，可以使得任务通过队列的方式提交    |
+| 分布式训练使用程度 |  成功实践过 or 熟悉基本过程 or 了解基本过程 or 不熟悉        |  成功实践过     |  在使用曙光平台 docker 创建镜像后难以使用多节点进行分布式训练，建议推出一种可以直接在 E-Shell 安装的方式，可以使得任务通过队列的方式提交    |
 | 分布式策略使用程度       | 使用过调优策略 or 了解部分优化策略 or 没有使用过优化策略       |   了解部分优化策略     |    无      |
 | 分布式数据处理使用程度      |   熟悉 or 了解 or 不清楚        |  熟悉                  |    无      |
 | 分布式模型保存和加载使用程度       |    熟悉 or 了解 or 不清楚    |  熟悉                  |  无        |
-| 遇到问题如何解决（可多选）       |   日志排查 or 社区反馈 or 提Issue or 其他     | 日志排查、社区反馈         |  建议在官方文档中对常见问题进行汇总，便于使用者解决问题     |
+| 遇到问题如何解决（可多选）       |   日志排查 or 社区反馈 or 提 Issue or 其他     | 日志排查、社区反馈         |  建议在官方文档中对常见问题进行汇总，便于使用者解决问题     |
 
 
 # 一、摘要
 
-本评估方案将从以下几个方面对paddle分布式框架进行评估：
-- 1、环境配置，对比pytorch环境以及paddle环境在曙光超算上的配置
-  对曙光超算如何使用paddle进行分布式计算进行了介绍
+本评估方案将从以下几个方面对 paddle 分布式框架进行评估：
+- 1、环境配置，对比 pytorch 环境以及 paddle 环境在曙光超算上的配置
+  对曙光超算如何使用 paddle 进行分布式计算进行了介绍
 
-- 2、Fleet API的使用，对比Pytorch API与Fleet API的区别
+- 2、Fleet API 的使用，对比 PyTorch API 与 Fleet API 的区别
 
-- 3、分布式动态图的训练，使用pytorch和paddle完成在曙光超算上的分布式训练
-  对文档中代码进行的重写，导入了paddle.vision的部分包
+- 3、分布式动态图的训练，使用 pytorch 和 paddle 完成在曙光超算上的分布式训练
+  对文档中代码进行的重写，导入了 paddle.vision 的部分包
   对鲜花数据集加载的代码进行了修改，改为：
 ```python
   train_dataset = paddle.vision.datasets.Flowers(mode='train', transform=transform)
 ```
 ```python
-  optimizer.minimize(avg_loss)改为optimizer.step()
-```    
-   鲜花数据集的label索引是从1开始的，不是从0开始的，需要手工减1。
+  optimizer.minimize(avg_loss)改为 optimizer.step()
+```
+   鲜花数据集的 label 索引是从 1 开始的，不是从 0 开始的，需要手工减 1。
 
-- 4、文档质量评估，对paddle文档质量进行评估
-  文档中的代码有些旧，比如分布式训练快速开始中1.3动态图训练的代码许多API比较旧。
-  鲜花数据集的label索引是从1开始的，不是从0开始的，需要手工减1。在文档质量评估方面，认为文档对错误报告的解决方案不足。
+- 4、文档质量评估，对 paddle 文档质量进行评估
+  文档中的代码有些旧，比如分布式训练快速开始中 1.3 动态图训练的代码许多 API 比较旧。
+  鲜花数据集的 label 索引是从 1 开始的，不是从 0 开始的，需要手工减 1。在文档质量评估方面，认为文档对错误报告的解决方案不足。
 
 - 5、错误汇总
- 
- 
+
+
 #  二、环境配置
 
-## （1）在曙光超算昆山计算服务器部署pytorch分布式环境，给出部署步骤
-- 首先安装anaconda
+## （1）在曙光超算昆山计算服务器部署 pytorch 分布式环境，给出部署步骤
+- 首先安装 anaconda
 ```python
 bash Anaconda3-2020.07-Linux-x86_64.sh –u
-```    
-- 创建并进入python3.6环境
+```
+- 创建并进入 python3.6 环境
 ```python
 conda create -n pytorch-1.9 python=3.6
 conda activate pytorch-1.9
-```    
-- 安装pytorch-1.9（适配rocm-4.0.1及以上）PyTorch1.8和PyTorch1.9安装wheel包在公共目录：
+```
+- 安装 pytorch-1.9（适配 rocm-4.0.1 及以上）PyTorch1.8 和 PyTorch1.9 安装 wheel 包在公共目录：
 ```python
 /public/software/apps/DeepLearning/whl/rocm-4.0.1/
-```    
-- 安装pytorch_1.9-rocm_4.0.1(使用清华源)
+```
+- 安装 pytorch_1.9-rocm_4.0.1(使用清华源)
 ```python
 pip install /public/software/apps/DeepLearning/whl/rocm-4.0.1/torch-1.9.0+rocm4.0.1-cp36-cp36m-linux_x86_64.whl -i https://pypi.tuna.tsinghua.edu.cn/simple/
-```    
-- 对于torchverion的安装不能按照曙光官方给定的方法来，否则在torchversion在运行自定义算子时会出现错误，所以需要进行源码安装，安装方法如下:
+```
+- 对于 torchverion 的安装不能按照曙光官方给定的方法来，否则在 torchversion 在运行自定义算子时会出现错误，所以需要进行源码安装，安装方法如下:
 ```python
-1、本地下载对应的torchvision分支源码包：https://github.com/pytorch/vision上传集群，
-2、进入对应的conda环境，加载对应的rocm（这里rocm4.0.1）版本；
-3、conda install libpng -y 
-4、conda install jpeg -y 
-5、pip3 install numpy pillow matplotlib ninja -i https://pypi.tuna.tsinghua.edu.cn/simple/ 
-6、使用salloc申请计算结点，使用ssh登录至计算节点，并进入对应的conda环境加载rocm（这里rocm4.0.1），执行编译：CC=clang CXX=clang++ python setup.py install
-```    
-## （2）在曙光超算昆山计算服务器部署paddle分布式环境，给出部署步骤
-若在曙光平台不能使用sudo指令，从而导致不能直接使用docker pull方式安装镜像，可以直接使用曙光内置的可视化容器方式安装：
+1、本地下载对应的 torchvision 分支源码包：https://github.com/pytorch/vision 上传集群，
+2、进入对应的 conda 环境，加载对应的 rocm（这里 rocm4.0.1）版本；
+3、conda install libpng -y
+4、conda install jpeg -y
+5、pip3 install numpy pillow matplotlib ninja -i https://pypi.tuna.tsinghua.edu.cn/simple/
+6、使用 salloc 申请计算结点，使用 ssh 登录至计算节点，并进入对应的 conda 环境加载 rocm（这里 rocm4.0.1），执行编译：CC=clang CXX=clang++ python setup.py install
+```
+## （2）在曙光超算昆山计算服务器部署 paddle 分布式环境，给出部署步骤
+若在曙光平台不能使用 sudo 指令，从而导致不能直接使用 docker pull 方式安装镜像，可以直接使用曙光内置的可视化容器方式安装：
 - 1、点击我的服务，计算智能服务
 - 2、点击容器服务
 - 3、点击容器管理添加镜像
 - 4、镜像添加，源镜像名称填：paddlepaddle/paddle，源镜像标签填：latest-dev-rocm4.0-miopen2.11
 - 5、添加完成后添加完成即可添加
 - 6、使用镜像，对镜像进行推送，快速访问选择，是
-- 7、点击AI 服务，点击之前创建的容器
-- 8、点击启动容器，即可启动rocm-4.0.1环境
-- 9、打开容器后，该计算环境不能连接互联网，该环境可以调用此前终端设置的一切文件以及环境（包括conda环境），故需要提取打开命令行（E-Shell）创建一个conda环境安装paddle。
-- 10、曙光服务器conda环境安装方式参考曙光超算官方链接：
+- 7、点击 AI 服务，点击之前创建的容器
+- 8、点击启动容器，即可启动 rocm-4.0.1 环境
+- 9、打开容器后，该计算环境不能连接互联网，该环境可以调用此前终端设置的一切文件以及环境（包括 conda 环境），故需要提取打开命令行（E-Shell）创建一个 conda 环境安装 paddle。
+- 10、曙光服务器 conda 环境安装方式参考曙光超算官方链接：
 ```python
 https://www.hpccube.com/doc/1.0.6/11250/general-handbook/compile/Anaconda.html
-```    
-- 11、激活conda环境并新建一个conda环境，进入该环境
+```
+- 11、激活 conda 环境并新建一个 conda 环境，进入该环境
 ```python
 source activate
 conda create -n paddle python=3.7
 conda activate paddle
-```  
-- 12、在曙光上使用paddle官网给出的安装方式会出现错误。
+```
+- 12、在曙光上使用 paddle 官网给出的安装方式会出现错误。
 ```python
 python -m pip install paddlepaddle-rocm==2.2.2.rocm401.miopen211 -f https://www.paddlepaddle.org.cn/whl/rocm/stable.whl（此方法在曙光无法安装）
-```  
-- 13、故需要提前下载whl文件，下载链接：
+```
+- 13、故需要提前下载 whl 文件，下载链接：
 ```python
 https://www.paddlepaddle.org.cn/whl/rocm/stable.whl
-```  
+```
 - 14、paddlepaddle_rocm-2.2.2-cp37-cp37m-linux_x86_64.whl，版本经过测试可以安装。安装指令:
 ```python
 pip install paddlepaddle_rocm-2.2.2-cp37-cp37m-linux_x86_64.whl -i  https://pypi.tuna.tsinghua.edu.cn/simple/
-```  
-- 15、在安装完上述操作后还需要手动安装两个库opencv-python以及scipy
+```
+- 15、在安装完上述操作后还需要手动安装两个库 opencv-python 以及 scipy
 ```python
 pip install scipy -i https://pypi.tuna.tsinghua.edu.cn/simple/
 pip install opencv-python -i https://pypi.tuna.tsinghua.edu.cn/simple/
-```  
+```
 
 ## （3）对比两者的易用性与区别
-Pytorch的分布式环境在曙光平台安装时需要手动编译torchversion，这一点上pytorch比较繁琐。但是pytorch的环境在曙光平台比较稳定，而paddle环境在曙光平台经常不稳定，有时候能运行，有时候不能运行。
+PyTorch 的分布式环境在曙光平台安装时需要手动编译 torchversion，这一点上 pytorch 比较繁琐。但是 pytorch 的环境在曙光平台比较稳定，而 paddle 环境在曙光平台经常不稳定，有时候能运行，有时候不能运行。
 ![image](https://user-images.githubusercontent.com/102226413/164142960-e956efce-a8fe-40ea-bfba-a83b8f8203c5.png)
 
-上述问题是rocm版本问题，需要使用rocm-4.0.1版本。 修改rocm版本的方法为.  module switch compiler/rocm/4.0.1
+上述问题是 rocm 版本问题，需要使用 rocm-4.0.1 版本。 修改 rocm 版本的方法为.  module switch compiler/rocm/4.0.1
 
 另外有一些问题没办法解决，我们使用的办法是重新开启镜像（多次开启后就会有可以使用的时候）无法解决的问题截图如下：
 ![image](https://user-images.githubusercontent.com/102226413/164143125-70d0e4ff-46d7-4461-8cb0-72c14e98b8e0.png)
@@ -129,53 +129,53 @@ Pytorch的分布式环境在曙光平台安装时需要手动编译torchversion�
 ![image](https://user-images.githubusercontent.com/102226413/164143166-cde2793b-eb06-43a3-92d1-bfa68c2f1558.png)
 
 
-另外，我们在曙光上使用paddle的方法为开启镜像的方式，但是曙光平台对docker镜像的支持不太好，每次镜像保持的时间最多为72小时，而且每次关闭镜像后，无法重新开启原先镜像。为了方便使用，希望能够支持 任务提交方式运行的paddle分布式框架。而且任务提交的方式还方便管理多节点运行。
+另外，我们在曙光上使用 paddle 的方法为开启镜像的方式，但是曙光平台对 docker 镜像的支持不太好，每次镜像保持的时间最多为 72 小时，而且每次关闭镜像后，无法重新开启原先镜像。为了方便使用，希望能够支持 任务提交方式运行的 paddle 分布式框架。而且任务提交的方式还方便管理多节点运行。
 
 
-#  三、Fleet API的使用
-## （1）分析pytorch分布式框架DDP某些API的使用
+#  三、Fleet API 的使用
+## （1）分析 pytorch 分布式框架 DDP 某些 API 的使用
 - 导入必要的分布式训练依赖包
 ```python
 import torch.distributed as dist
-```  
-- 初始化DDP分布式环境，需要指定backend, init_method,world_size, rank四个参数
+```
+- 初始化 DDP 分布式环境，需要指定 backend, init_method,world_size, rank 四个参数
 ```python
 dist.init_process_group(backend=args.dist_backend, init_method=args.dist_url,
                             world_size=args.world_size, rank=args.rank)
-```  
+```
 - 优化器，不需要进行分布式函数的包装
-- 通过DistributedDataParallel获取分布式model，用于支持分布式训练
+- 通过 DistributedDataParallel 获取分布式 model，用于支持分布式训练
 ```python
 model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.local_rank])
-``` 
+```
 
-## （2）按照文档内容使用Fleet API
+## （2）按照文档内容使用 Fleet API
 文档链接如下：https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/06_distributed_training/cluster_quick_start_cn.html
-本次实验测试的Fleet API如下：
+本次实验测试的 Fleet API 如下：
 - 导入必要的分布式训练依赖包
 ```python
 from paddle.distributed import fleet
-```  
-- 初始化Fleet环境
+```
+- 初始化 Fleet 环境
 ```python
 fleet.init(is_collective=True)
-```  
+```
 - 分布式优化器
 ```python
 optimizer = fleet.distributed_optimizer(optimizer)
-``` 
-- 通过Fleet API获取分布式model，用于支持分布式训练
+```
+- 通过 Fleet API 获取分布式 model，用于支持分布式训练
 ```python
 resnet = fleet.distributed_model(resnet)
-``` 
+```
 ## （3）比较
-pytorch和paddle的分布式代码基本相似，pytorch初始化DDP分布式环境，需要指定backend, init_method,world_size, rank四个参数，比较麻烦。
+pytorch 和 paddle 的分布式代码基本相似，pytorch 初始化 DDP 分布式环境，需要指定 backend, init_method,world_size, rank 四个参数，比较麻烦。
 
-# 四、分布式动态图训练 
+# 四、分布式动态图训练
 
-## （1）使用pytorch完成一个图像分类的动态图分布式例子
+## （1）使用 pytorch 完成一个图像分类的动态图分布式例子
 
-DDP分布式代码，测试flower数据集：
+DDP 分布式代码，测试 flower 数据集：
 ```python
 import torch.nn as nn
 import torch.utils.data as D
@@ -248,7 +248,7 @@ def get_world_size():
 
 def reduce_value(value, average=True):
     world_size = get_world_size()
-    if world_size < 2:  # 单GPU的情况
+    if world_size < 2:  # 单 GPU 的情况
         return value
 
     with torch.no_grad():
@@ -257,7 +257,7 @@ def reduce_value(value, average=True):
             value /= world_size
 
         return value
-    
+
 def main():
     # 初始化
     rank = int(os.environ["RANK"])
@@ -270,11 +270,11 @@ def main():
     # 数据增强
     data_transforms = {
         'train': transforms.Compose([
-            transforms.RandomRotation(45),  # 随机旋转，-45到45度之间随机
+            transforms.RandomRotation(45),  # 随机旋转，-45 到 45 度之间随机
             transforms.CenterCrop(224),  # 从中心开始裁剪
             transforms.RandomHorizontalFlip(p=0.5),  # 随机水平翻转 选择一个概率
             transforms.RandomVerticalFlip(p=0.5),  # 随机垂直翻转
-            transforms.ColorJitter(brightness=0.2, contrast=0.1, saturation=0.1, hue=0.1),  # 参数1为亮度，参数2为对比度，参数3为饱和度，参数4为色相
+            transforms.ColorJitter(brightness=0.2, contrast=0.1, saturation=0.1, hue=0.1),  # 参数 1 为亮度，参数 2 为对比度，参数 3 为饱和度，参数 4 为色相
             transforms.ToTensor(),
             transforms.Normalize([0.485, 0.456, 0.406],
                                  [0.229, 0.224, 0.225])  # 均值，标准差
@@ -301,7 +301,7 @@ def main():
     train_loader = torch.utils.data.DataLoader(train_dataset, sampler=train_sampler, batch_size=batch_size)
     # 模型构建
     model = torchvision.models.resnet50(pretrained=False, num_classes=102).to(device)
-    # 构建DDP模型
+    # 构建 DDP 模型
     model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[gpu])
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=0.0001, momentum=0.9)
@@ -336,7 +336,7 @@ def main():
         if int(rank) == 0:
             print('{} Loss: {:.4f} Acc: {:.4f}'.format(
                 'train', epoch_loss, epoch_acc))
-            
+
     if int(rank) == 0:
         print('Training complete Best val Acc: {:4f}'.format(best_acc))
 
@@ -349,25 +349,25 @@ if __name__ == "__main__":
 python -m torch.distributed.launch --nproc_per_node=4 train.py
 ```
 
-## （2）使用paddle完成一个图像分类的分布式例子
+## （2）使用 paddle 完成一个图像分类的分布式例子
 由于文档中提供的代码出现了较多问题，我们对代码进行了重新的编写。修改的部分有：
-- 1、导入了paddle.vision的部分包，
+- 1、导入了 paddle.vision 的部分包，
 - 2、对鲜花数据集加载的代码进行了修改，改为：
 - train_dataset = paddle.vision.datasets.Flowers(mode='train', transform=transform)
 
 官网的代码不能再曙光平台下载鲜花数据集，所以我们需要提取下载离线鲜花数据集报错如下：
 ![image](https://user-images.githubusercontent.com/102226413/164143513-24236f90-975d-47f1-a1db-7e18e6c94c9c.png)
 
-且数据集的保存地址为一个缓存空间，用户在使用的时候可能找不到数据集，如/public/home/username/.cache/paddle/dataset目录。
-而pytorch的加载数据集API会吧数据集加载到当前目录，方便了使用者。
+且数据集的保存地址为一个缓存空间，用户在使用的时候可能找不到数据集，如/public/home/username/.cache/paddle/dataset 目录。
+而 pytorch 的加载数据集 API 会吧数据集加载到当前目录，方便了使用者。
 ![image](https://user-images.githubusercontent.com/102226413/164144065-2fea8ac3-dcf5-48ac-a4c7-05cace99c611.png)
 
 
 
-- 3、optimizer.minimize(avg_loss)改为optimizer.step()
-- 4、鲜花数据集的label索引是从1开始的，不是从0开始的，需要手工减1。
+- 3、optimizer.minimize(avg_loss)改为 optimizer.step()
+- 4、鲜花数据集的 label 索引是从 1 开始的，不是从 0 开始的，需要手工减 1。
 
-train_fleet_dygraph.py重构后的代码： 
+train_fleet_dygraph.py 重构后的代码：
 ```python
 # -*- coding: UTF-8 -*-
 import numpy as np
@@ -413,7 +413,7 @@ def optimizer_setting(parameter_list=None):
 
 # 设置训练函数
 def train_resnet():
-    # 初始化Fleet环境
+    # 初始化 Fleet 环境
     fleet.init(is_collective=True)
 
     # resnet = resnet34(class_dim=class_dim, layers=50)
@@ -422,9 +422,9 @@ def train_resnet():
     optimizer = optimizer_setting(parameter_list=resnet.parameters())
     # 分布式优化器
     optimizer = fleet.distributed_optimizer(optimizer)
-    # 通过Fleet API获取分布式model，用于支持分布式训练
+    # 通过 Fleet API 获取分布式 model，用于支持分布式训练
     resnet = fleet.distributed_model(resnet)
-    # 构建分布式数据集  归一化 / 255 并且转成HWC --> CHW格式
+    # 构建分布式数据集  归一化 / 255 并且转成 HWC --> CHW 格式
     # transform = ToTensor()
     transform = Compose([
         Resize(size=(224, 224)),
@@ -476,16 +476,16 @@ def train_resnet():
 # 启动训练
 if __name__ == '__main__':
     train_resnet()
-``` 
+```
 
 运行方式：
 ```python
 python3 -m paddle.distributed.launch --gpus=0,1,2,3 train_fleet_dygraph.py
-```  
+```
 
 ## （3）两个程序的运行结果
 
-- DDP程序运行结果
+- DDP 程序运行结果
 ```python
 Epoch 7/100
 loss: tensor(4.3571, device='cuda:0', grad_fn=<NllLossBackward>)
@@ -592,10 +592,10 @@ train Loss: 4.3692 Acc: 0.0447
 ```
 
 
-- paddlepaddle运行结果，附了第7、8个epoch
+- paddlepaddle 运行结果，附了第 7、8 个 epoch
 ```python
 launch train in GPU mode!
-INFO 2022-04-02 19:30:53,752 launch_utils.py:510] Local start 4 processes. First process distributed environment info (Only For Debug): 
+INFO 2022-04-02 19:30:53,752 launch_utils.py:510] Local start 4 processes. First process distributed environment info (Only For Debug):
     +=======================================================================================+
     |                        Distributed Envs                      Value                    |
     +---------------------------------------------------------------------------------------+
@@ -647,56 +647,56 @@ Epoch 7, batch 0] loss: 4.30898, acc1: 0.00000, acc5: 0.12500
 [Epoch 8, batch 40] loss: 4.38518, acc1: 0.06250, acc5: 0.25000
 [Epoch 8, batch 45] loss: 4.08105, acc1: 0.12500, acc5: 0.25000
 [Epoch 8, batch 50] loss: 4.33881, acc1: 0.12500, acc5: 0.18750
-```  
+```
 
 # 五、文档质量
-感觉文档中部分代码的版本较老，比如1.3动态图完整代码中：
+感觉文档中部分代码的版本较老，比如 1.3 动态图完整代码中：
 ```python
-from resnet_dygraph import ResNet 
-```  
-上述操作可以使用paddle内置API进行替换
+from resnet_dygraph import ResNet
+```
+上述操作可以使用 paddle 内置 API 进行替换
 ```python
 from paddle.vision.models import ResNet
-```  
-flower数据集在曙光平台不能通过API直接加载得到，需要手动下载。加载鲜花数据集的API也需要进行更新。可以更新为
+```
+flower 数据集在曙光平台不能通过 API 直接加载得到，需要手动下载。加载鲜花数据集的 API 也需要进行更新。可以更新为
 ```python
 train_dataset = paddle.vision.datasets.Flowers(mode='train', transform=transform)
-```  
+```
 对于很多错误，在文档中没有一个很好的提示。可以对常见报错进行一个汇总。
 
 
 # 六、报错查错（问题汇总）
-1、paddle在曙光超算上运行出现libamdhip64.4,，需要指定使用rocm4.0.1环境运行，曙光上rocm-2.9环境不能运行。
+1、paddle 在曙光超算上运行出现 libamdhip64.4,，需要指定使用 rocm4.0.1 环境运行，曙光上 rocm-2.9 环境不能运行。
 ```python
-module rm compiler/rocm/2.9 
+module rm compiler/rocm/2.9
 module load compiler/rocm/4.0.1
-```  
+```
 
 ![image](https://user-images.githubusercontent.com/102226413/164144235-ce808c51-1712-4417-b9bf-99da6362b3f0.png)
 
 
-2、无法下载flower数据集，需要手动加载数据集
-按照文档旧API无法在曙光平台以及移动九天平台加载数据集，需要手动下载数据集。
-且数据集的保存地址为一个缓存空间，用户在使用的时候可能找不到数据集，如/public/home/username/.cache/paddle/dataset目录。
-而pytorch的加载数据集API会吧数据集加载到当前目录，方便了使用者。
+2、无法下载 flower 数据集，需要手动加载数据集
+按照文档旧 API 无法在曙光平台以及移动九天平台加载数据集，需要手动下载数据集。
+且数据集的保存地址为一个缓存空间，用户在使用的时候可能找不到数据集，如/public/home/username/.cache/paddle/dataset 目录。
+而 pytorch 的加载数据集 API 会吧数据集加载到当前目录，方便了使用者。
 
 ![image](https://user-images.githubusercontent.com/102226413/164143513-24236f90-975d-47f1-a1db-7e18e6c94c9c.png)
 
 ![image](https://user-images.githubusercontent.com/102226413/164144065-2fea8ac3-dcf5-48ac-a4c7-05cace99c611.png)
 
-3、安装完paddle后运行该程序会缺少常用两个库：opencv-python以及scipy。
+3、安装完 paddle 后运行该程序会缺少常用两个库：opencv-python 以及 scipy。
 安装方式：
 ```python
 pip install scipy -i https://pypi.tuna.tsinghua.edu.cn/simple/
 pip install opencv-python -i https://pypi.tuna.tsinghua.edu.cn/simple/
-```  
-4、鲜花数据集的label索引是从1开始的，不是从0开始的，需要手工减1。
+```
+4、鲜花数据集的 label 索引是从 1 开始的，不是从 0 开始的，需要手工减 1。
 ```python
 img, label = data
 label = label - 1
 ```
 
-5、未解决问题（无法在曙光上使用paddle 的问题）
+5、未解决问题（无法在曙光上使用 paddle 的问题）
 ![image](https://user-images.githubusercontent.com/102226413/164143125-70d0e4ff-46d7-4461-8cb0-72c14e98b8e0.png)
 
 ![image](https://user-images.githubusercontent.com/102226413/164143166-cde2793b-eb06-43a3-92d1-bfa68c2f1558.png)

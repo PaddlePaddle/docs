@@ -1,9 +1,9 @@
-.. _cn_api_text_datasets_WMT14:
+.. _cn_api_paddle_text_WMT14:
 
 WMT14
 -------------------------------
 
-.. py:class:: paddle.text.datasets.WMT14()
+.. py:class:: paddle.text.WMT14(data_file = None, mode = 'train', dict_size = -1, download = True)
 
 
 该类是对 `WMT14 <http://www.statmt.org/wmt14/>`_ 测试数据集实现。
@@ -32,4 +32,4 @@ http://paddlemodels.bj.bcebos.com/wmt/wmt14.tgz
 代码示例
 :::::::::
 
-COPY-FROM: paddle.text.datasets.WMT14
+COPY-FROM: paddle.text.WMT14

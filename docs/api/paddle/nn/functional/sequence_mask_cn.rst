@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_sequence_mask:
+.. _cn_api_paddle_nn_functional_sequence_mask:
 
 sequence_mask
 -------------------------------

@@ -348,7 +348,7 @@ out = convert_ifelse(paddle.mean(x) > 5.0, true_fn_0, false_fn_0, (x,), (x,), (o
 
 当控制流中，出现了 ``list.append`` 类似语法时，情况会有一点点特殊。
 
-Paddle 框架中的 ``cond_op`` 和 [``while_loop``](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/layers/while_loop_cn.html#cn-api-fluid-layers-while-loop) 对输入和返回类型有一个要求：
+Paddle 框架中的 ``cond_op`` 和 [``while_loop``](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/static/nn/while_loop_cn.html#while-loop) 对输入和返回类型有一个要求：
 > 输入或者返回类型必须是：LoDTensor 或者 LoDTensorArray <br><br>
 > 即：不支持其他非 LoDTensor 类型
 

@@ -34,7 +34,7 @@ multi_margin_loss
 :::::::::
     - **input** (Tensor) - :math:`[N, C ]`，其中 N 是 batch_size，`C` 是类别问题。数据类型是 float32、float64。
     - **label** (Tensor) - :math:`[N, ]`，标签 ``label`` 的数据类型为 int32、int64。
-    - **output** (Tensor) - 输出的 Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, ]`，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[1]` 。
+    - **output** (Tensor) - 输出的 Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, ]`，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[]` 。
 
 返回
 :::::::::

@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_reshape:
+.. _cn_api_paddle_reshape:
 
 reshape
 -------------------------------
@@ -26,8 +26,8 @@ reshape
 参数
 ::::::::::::
 
-  - **x** (Tensor) - N-D ``Tensor``，数据类型为 ``float32``、``float64``、``int32``、``int64`` 或者 ``bool``。
-  - **shape** (list|tuple|Tensor) - 数据类型是 ``int32``。定义目标形状。目标形状最多只能有一个维度为-1。如果 ``shape`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor``。如果 ``shape`` 的类型是 ``Tensor``，则是 1-D 的 ``Tensor``。
+  - **x** (Tensor) - N-D ``Tensor``，数据类型为 ``float16``, ``float32``, ``float64``, ``int16``, ``int32``, ``int64``, ``int8``, ``uint8``, ``complex64``, ``complex128``, ``bfloat16`` 或 ``bool``。
+  - **shape** (list|tuple|Tensor) - 数据类型是 ``int32``。定义目标形状。目标形状最多只能有一个维度为-1。如果 ``shape`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[]的 ``Tensor``。如果 ``shape`` 的类型是 ``Tensor``，则是 1-D 的 ``Tensor``。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

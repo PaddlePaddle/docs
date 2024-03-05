@@ -1,4 +1,4 @@
-.. _cn_api_distributed_reduce_scatter:
+.. _cn_api_paddle_distributed_reduce_scatter:
 
 reduce_scatter
 -------------------------------

@@ -1,5 +1,4 @@
-.. _cn_api_nn_functional_channel_shuffle:
-
+.. _cn_api_paddle_nn_functional_channel_shuffle:
 
 channel_shuffle
 -------------------------------
@@ -8,7 +7,7 @@ channel_shuffle
 将一个形为 [N, C, H, W] 或是 [N, H, W, C] 的 Tensor 按通道分成 g 组，得到形为 [N, g, C/g, H, W] 或 [N, H, W, g, C/g] 的 Tensor，然后转置为 [N, C/g, g, H, W] 或 [N, H, W, C/g, g] 的形状，最后重塑为原来的形状。这样做可以增加通道间的信息流动，提高特征的重用率。详见张祥雨等人在 2017 年发表的论文 `ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices <https://arxiv.org/abs/1707.01083>`_ 。
 
 .. note::
-   详细请参考对应的 `Class` 请参考：:ref:`cn_api_nn_ChannelShuffle`。
+   详细请参考对应的 `Class` 请参考：:ref:`cn_api_paddle_nn_ChannelShuffle`。
 
 参数
 :::::::::

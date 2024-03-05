@@ -270,4 +270,4 @@ InMemoryDataset/QueueDataset 所对应的数据处理脚本参考 examples/wide_
     time: [2022-05-18 11:27:27], batch: [4], loss[1]:[0.703863]
     time: [2022-05-18 11:27:27], batch: [5], loss[1]:[0.670717]
 
-备注：启动相关问题，请参考\ `launch <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/launch_cn.html>`_\。
+备注：启动相关问题，请参考 :ref:`cn_api_distributed_launch` 。

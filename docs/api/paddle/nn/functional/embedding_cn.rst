@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_embedding:
+.. _cn_api_paddle_nn_functional_embedding:
 
 embedding
 -------------------------------
@@ -41,8 +41,8 @@ embedding
 
     - **input** (Tensor) - 存储 id 信息的 Tensor，数据类型必须为：int32/int64。input 中的 id 必须满足 ``0 =< id < size[0]`` 。
     - **weight** (Tensor) - 存储词嵌入权重参数的 Tensor，形状为(num_embeddings, embedding_dim)。
-    - **sparse** (bool，可选) - 是否使用稀疏更新，在词嵌入权重较大的情况下，使用稀疏更新能够获得更快的训练速度及更小的内存/显存占用。
-    - **padding_idx** (int|long|None，可选) - padding_idx 的配置区间为 ``[-weight.shape[0], weight.shape[0]``，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。
+    - **sparse** (bool，可选) - 是否使用稀疏更新，在词嵌入权重较大的情况下，使用稀疏更新（即设置为 True）能够获得更快的训练速度及更小的内存/显存占用。但是一些优化器不支持稀疏更新，例如 :ref:`cn_api_paddle_optimizer_Adadelta` ， :ref:`cn_api_paddle_optimizer_Adamax` ， :ref:`cn_api_paddle_optimizer_Lamb` 。在这些情况下，稀疏必须为 False。默认值：False。
+    - **padding_idx** (int|long|None，可选) - padding_idx 的配置区间为 ``[-weight.shape[0], weight.shape[0]``，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。如果 padding_idx < 0 ，则 padding_idx 将自动转换到 ``weight.shape[0] + padding_idx`` 。如果设置为 "None"，则不会对输出产生影响。默认值：None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 

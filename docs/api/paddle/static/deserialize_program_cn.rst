@@ -1,4 +1,4 @@
-.. _cn_api_fluid_io_deserialize_program:
+.. _cn_api_paddle_static_deserialize_program:
 
 deserialize_program
 -------------------------------

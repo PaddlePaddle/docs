@@ -54,7 +54,18 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【触发条件】** 自动触发。
 - **【注意事项】** 通常 10 秒内检查完成，如遇长时间未更新状态，请编辑一下 PR 描述以重新触发。
 
+### PR-CI-Paddle-Doc-Preview
+- **【条目描述】** 构建文档并生成文档的预览。
+- **【触发条件】** 自动触发。
+
+
 ### Linux 平台测试项
+
+#### PR-CI-Auto-Parallel
+
+- **【条目描述】** 检测飞桨自动并行 8 卡任务的功能、性能和显存。
+- **【触发条件】** 当 PR 修改了 `tools/auto_parallel/target_path_lists.sh` 中的[命中路径](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/auto_parallel/target_path_lists.sh)时触发。
+
 
 #### PR-CI-Clone
 
@@ -67,7 +78,6 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【执行脚本】** `paddle/scripts/paddle_build.sh build_pr_dev`
 - **【触发条件】**
   - `PR-CI-Clone`通过后自动触发。
-  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
 
 #### PR-CE-Framework
 
@@ -91,6 +101,30 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【触发条件】** `PR-CI-Build`通过后自动触发，并且使用`PR-CI-Build`的编译产物，无需单独编译。
 - **【注意事项】** 本条 CI 测试不通过的处理方法可查阅 [PR-CI-OP-benchmark Manual](https://github.com/PaddlePaddle/Paddle/wiki/PR-CI-OP-benchmark-Manual)。
 
+#### PR-CI-CINN-Build
+
+- **【条目描述】** 编译含 CINN（Compiler Infrastructure for Neural Networks，飞桨自研深度学习编译器）的 Paddle。
+- **【执行脚本】** `paddle/scripts/paddle_build.sh build_only`
+- **【触发条件】** `PR-CI-Clone`通过后自动触发。
+
+#### PR-CI-CINN
+
+- **【条目描述】** 运行 Paddle 训练框架与 CINN 对接的单测，保证训练框架进行 CINN 相关开发的正确性。
+- **【执行脚本】** 测试脚本: `paddle/scripts/paddle_build.sh test`
+- **【触发条件】** `PR-CI-CINN-Build`通过后自动触发，并且使用`PR-CI-CINN-Build`的编译产物，无需单独编译。
+
+#### PR-CI-Api-Benchmark
+
+- **【条目描述】** 检测当前 PR 是否会造成 cpu 下动态图 api 调度性能下降。
+- **【执行脚本】**
+  - 拉取 PaddleTest 测试代码: git clone https://github.com/PaddlePaddle/PaddleTest.git
+  - 进入执行目录: cd ./PaddleTest/framework/e2e/api_benchmark_new
+  - 安装 CI 依赖: python -m pip install -r requirement.txt
+  - 执行: python runner_user.py --yaml ./../yaml/ci_api_benchmark_fp32_cuda118_py310.yml
+- **【触发条件】**
+  - `PR-CI-Build`通过后自动触发，并且使用`PR-CI-Build`的编译产物，无需单独编译
+- **【补充说明】** CI 依赖./PaddleTest/framework/e2e/ci_api_benchmark_fp32_cuda118_py310.yml 中的配置文件运行。如果全部 case 运行耗时过长，需要单独调试某几个 api 的 case，可以把 ci_api_benchmark_fp32_cuda118_py310.yml 中，相关 api 的 yaml 配置信息，复制到你自己新建的.yml 配置文件中，使用 python runner_user.py --yaml your_yaml.yml 运行。性能测试需要对比你的 pr 合入前后，api 耗时增加的差异，也就是说需要运行两次进行对比调试。
+
 #### PR-CI-Py3
 
 - **【条目描述】** 检测当前 PR 在 CPU、Python3 版本的编译与单测是否通过。
@@ -108,17 +142,6 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
   - 测试脚本：`paddle/scripts/paddle_build.sh gpu_cicheck_coverage`
 - **【触发条件】**
   - `PR-CI-Clone`通过后自动触发。
-  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
-
-#### PR-CI-CINN
-
-- **【条目描述】** 编译含 CINN（Compiler Infrastructure for Neural Networks，飞桨自研深度学习编译器）的 Paddle，并运行 Paddle 训练框架与 CINN 对接的单测，保证训练框架进行 CINN 相关开发的正确性。
-- **【执行脚本】**
-  - 编译脚本：`paddle/scripts/paddle_build.sh build_only`
-  - 测试脚本：`paddle/scripts/paddle_build.sh test`
-- **【触发条件】**
-  - `PR-CI-Clone`通过后自动触发。
-  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
 
 #### PR-CI-Inference
 
@@ -128,7 +151,6 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
   - 测试脚本：`paddle/scripts/paddle_build.sh gpu_inference`
 - **【触发条件】**
   - `PR-CI-Clone`通过后自动触发。
-  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
 
 #### PR-CI-Static-Check
 
@@ -136,17 +158,7 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【执行脚本】**
   - 编译脚本：`paddle/scripts/paddle_build.sh build_and_check_cpu`
   - 测试脚本：`paddle/scripts/paddle_build.sh build_and_check_gpu`
-- **【触发条件】**
-  - `PR-CI-Clone`通过后自动触发。
-  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
-
-#### PR-CI-GpuPS
-
-- **【条目描述】** 检测 GPUBOX 相关代码合入后编译是否通过。
-- **【执行脚本】** `paddle/scripts/paddle_build.sh build_gpubox`
-- **【触发条件】**
-  - `PR-CI-Clone`通过后自动触发。
-  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
+- **【触发条件】** `PR-CI-Build`通过后自动触发，并且使用`PR-CI-Build`的编译产物，无需单独编译。
 
 #### PR-CI-Codestyle-Check
 
@@ -161,6 +173,89 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【执行脚本】** `paddle/scripts/paddle_build.sh assert_file_approvals`
 - **【触发条件】** `PR-CI-Clone`通过后自动触发。
 - **【注意事项】** 在其他 CI 项通过前，无需过多关注该 CI，其他 CI 通过后飞桨相关开发者会进行审批。
+
+#### PR-CI-CINN-GPU
+
+- **【条目描述】** 检测当前 PR 在 Linux GPU 环境下编译与单测是否通过，不同于 PR-CI-CINN，该 CI 只编译 CINN，并且只测试 CINN 模块的单测，不会测试 PaddleWithCINN 相关单测。
+- **【执行脚本】** `bash tools/cinn/build.sh gpu_on ci`
+- **【触发条件】**
+  - `PR-CI-CINN-Build`通过后自动触发。
+  - 必须修改下面路径中的文件才会触发
+    ```bash  CMakeLists.txt
+        cmake
+        paddle/cinn
+        python/cinn
+        python/CMakeLists.txt
+        python/setup_cinn.py.in
+        test/CMakeLists.txt
+        test/cinn
+        test/cpp/cinn
+        tools/cinn
+    ```
+
+#### PR-CI-CINN-GPU-CUDNN-OFF
+
+- **【条目描述】** 检测当前 PR 在 Linux GPU 环境下编译与单测是否通过，编译时不会依赖 CUDNN 库。不同于 PR-CI-CINN，该 CI 只编译 CINN，并且只测试 CINN 模块的单测，不会测试 PaddleWithCINN 相关单测。
+- **【执行脚本】** `bash tools/cinn/build.sh gpu_on cudnn_off ci`
+- **【触发条件】**
+  - `PR-CI-Clone`通过后自动触发。
+  - 必须修改下面路径中的文件才会触发
+    ```bash  CMakeLists.txt
+        cmake
+        paddle/cinn
+        python/cinn
+        python/CMakeLists.txt
+        python/setup_cinn.py.in
+        test/CMakeLists.txt
+        test/cinn
+        test/cpp/cinn
+        tools/cinn
+    ```
+
+#### PR-CI-CINN-X86
+
+- **【条目描述】** 检测当前 PR 在 Linux X86 环境下编译与单测是否通过，不同于 PR-CI-CINN ，该 CI 只编译 CINN ，并且只测试 CINN 模块的单测，不会测试 PaddleWithCINN 相关单测。
+- **【执行脚本】** `bash tools/cinn/build.sh ci`
+- **【触发条件】**
+  - `PR-CI-Clone`通过后自动触发。
+  - 必须修改下面路径中的文件才会触发
+    ```bash  CMakeLists.txt
+        cmake
+        paddle/cinn
+        python/cinn
+        python/CMakeLists.txt
+        python/setup_cinn.py.in
+        test/CMakeLists.txt
+        test/cinn
+        test/cpp/cinn
+        tools/cinn
+    ```
+
+#### PR-CI-SOT
+
+- **【条目描述】** 检测当前 PR CPU、Python3.8-3.11 版本下的 SOT 单测是否通过。
+- **【执行脚本】** `paddle/scripts/paddle_build.sh check_run_sot_ci`
+- **【触发条件】**
+  - `PR-CI-Clone` 通过后自动触发。
+  - 必须修改下面路径中的文件才会触发
+
+    ```bash
+    paddle/fluid/operators/run_program_op.h
+    paddle/fluid/operators/run_program_op.cu
+    paddle/fluid/operators/run_program_op.cc
+    paddle/fluid/eager/to_static
+    paddle/fluid/pybind/
+    python/
+    test/sot
+    ```
+
+#### PR-CI-Distribute-stable
+
+- **【条目描述】** 该 CI 主要的功能是检查提交代码是否引起编译错误、GPUBOX/LLM/自动并行架构的功能或精度错误
+- **【执行脚本】** `paddle/scripts/paddle_build.sh distribute_test`
+- **【触发条件】** `PR-CI-Clone`通过后自动触发。
+- **【注意事项】** 此 CI 的执行代码是在 PaddleNLP 的 repo 中的稳定版本分支`<stable/paddle-ci>`，出现问题请优先在本地自测复现。
+
 
 ### MAC 平台测试项
 

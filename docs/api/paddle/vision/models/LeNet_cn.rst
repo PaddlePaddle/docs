@@ -16,7 +16,7 @@ LeNet 模型，来自论文 `"Gradient-based learning applied to document recogn
 返回
 :::::::::
 
-:ref:`cn_api_fluid_dygraph_Layer`，LeNet 模型实例。
+:ref:`cn_api_paddle_nn_Layer`，LeNet 模型实例。
 
 代码示例
 :::::::::

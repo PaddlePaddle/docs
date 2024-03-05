@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_temporal_shift:
+.. _cn_api_paddle_nn_functional_temporal_shift:
 
 temporal_shift
 -------------------------------
@@ -31,7 +31,7 @@ temporal_shift
 
 参数
 :::::::::
-  - **x**  (Tensor) – 时移算符的输入 Tensor。维度为 :math:`[N*T，C，H，W]` 的 4-D Tensor。N 为批量大小，T 为时间段数，C 为信道数，H 为特征高度，W 为特征宽度，数据类型为 float32 或 float64。
+  - **x**  (Tensor) – 时移算符的输入 Tensor。维度为 :math:`[N*T，C，H，W]` 的 4-D Tensor。N 为批量大小，T 为时间段数，C 为信道数，H 为特征高度，W 为特征宽度，数据类型为 float16、float32 或 float64。
   - **seg_num**  (int) – 时间段编号，这应该是一个正整数。
   - **shift_ratio**  (float，可选) – 通道的移位比、通道的第一个 ``shift_ratio`` 部分沿时间维度移动-1，通道的第二个 ``shift_ratio`` 部分沿时间维度移动 1，范围须在 [0, 0.5] 内。默认值 0.25
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

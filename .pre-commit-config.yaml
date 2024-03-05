@@ -1,50 +1,35 @@
 repos:
--   repo: https://github.com/psf/black.git
-    rev: 22.8.0
-    hooks:
-    -   id: black
-        files: \.py$
+# Common hooks
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v4.4.0
     hooks:
     -   id: check-merge-conflict
     -   id: check-symlinks
     -   id: detect-private-key
         files: (?!.*paddle)^.*$
     -   id: end-of-file-fixer
-        files: \.md$|\.rst$
+        types: [text]
     -   id: trailing-whitespace
-        files: \.md$|\.rst$
+        types: [text]
 -   repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.14
+    rev: v1.5.1
     hooks:
-    -   id: forbid-crlf
-        files: \.md$|\.rst$
     -   id: remove-crlf
-        files: \.md$|\.rst$
-    -   id: forbid-tabs
-        files: \.md$|\.rst$
+        types: [text]
     -   id: remove-tabs
-        files: \.md$|\.rst$
+        types: [text]
+# Document hooks
 -   repo: https://github.com/ShigureLab/dochooks
     rev: v0.3.0
     hooks:
-    -   id: check-whitespace-between-cn-and-en-char
-        files: \.md$|\.rst$
     -   id: insert-whitespace-between-cn-and-en-char
         files: \.md$|\.rst$
--   repo: https://github.com/reyoung/pre-commit-hooks-jinja-compile.git
-    rev: 4a369cc72a4a2b8d3813ab8cc17abb5f5b21ef6c
+# For Python files
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.2.0
     hooks:
-    -   id: convert-jinja2-into-html
-        # The argument means repleace filename from pattern `.*/([^/]*)\.tmpl` to `\1`
-        args: ['--filename_pattern=.*/([^/]*)\.tmpl', '--filename_repl=\1']
--   repo: local
-    hooks:
-    -   id: convert-markdown-into-html
-        name: convert-markdown-into-html
-        description: Convert README.md into index.html and README.cn.md into index.cn.html
-        entry: python .pre-commit-hooks/convert_markdown_into_html.py
-        language: system
-        files: .+README(\.cn)?\.md$
-
+    -   id: ruff
+        args: [--fix, --exit-non-zero-on-fix, --no-cache]
+        types_or: [ python, pyi ]
+    -   id: ruff-format
+        types_or: [ python, pyi, jupyter ]

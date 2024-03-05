@@ -1,4 +1,4 @@
-.. _cn_api_get_available_device:
+.. _cn_api_paddle_device_get_available_device:
 
 get_available_device
 -------------------------------

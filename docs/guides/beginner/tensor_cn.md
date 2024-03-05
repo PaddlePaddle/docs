@@ -132,7 +132,7 @@ ndim_2_Tensor = paddle.to_tensor([[1.0, 2.0],
 
 ```text
 ValueError:
-        Faild to convert input data to a regular ndarray :
+        Failed to convert input data to a regular ndarray :
          - Usually this means the input data contains nested lists with different lengths.
 ```
 > **说明：**
@@ -626,14 +626,14 @@ x ** y -> x.pow(y)            #逐元素幂运算
 ### 4.3 逻辑运算
 ```python
 x.isfinite()                  #判断 Tensor 中元素是否是有限的数字，即不包括 inf 与 nan
-x.equal_all(y)                #判断两个 Tensor 的全部元素是否相等，并返回形状为[1]的布尔类 Tensor
+x.equal_all(y)                #判断两个 Tensor 的全部元素是否相等，并返回形状为[]的布尔类 0-D Tensor
 x.equal(y)                    #判断两个 Tensor 的每个元素是否相等，并返回形状相同的布尔类 Tensor
 x.not_equal(y)                #判断两个 Tensor 的每个元素是否不相等
 x.less_than(y)                #判断 Tensor x 的元素是否小于 Tensor y 的对应元素
 x.less_equal(y)               #判断 Tensor x 的元素是否小于或等于 Tensor y 的对应元素
 x.greater_than(y)             #判断 Tensor x 的元素是否大于 Tensor y 的对应元素
 x.greater_equal(y)            #判断 Tensor x 的元素是否大于或等于 Tensor y 的对应元素
-x.allclose(y)                 #判断 Tensor x 的全部元素是否与 Tensor y 的全部元素接近，并返回形状为[1]的布尔类 Tensor
+x.allclose(y)                 #判断 Tensor x 的全部元素是否与 Tensor y 的全部元素接近，并返回形状为[]的布尔类 0-D Tensor
 ```
 
 同样地，飞桨框架对 Python 逻辑比较相关的魔法函数进行了重写，以下操作与上述结果相同。

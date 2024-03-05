@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_softsign:
+.. _cn_api_paddle_nn_functional_softsign:
 
 softsign
 -------------------------------
@@ -11,7 +11,7 @@ softsign 激活层
 
     softsign(x) = \frac{x}{1 + |x|}
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::

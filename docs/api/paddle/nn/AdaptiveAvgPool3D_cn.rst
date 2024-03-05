@@ -1,4 +1,4 @@
-.. _cn_api_nn_AdaptiveAvgPool3D:
+.. _cn_api_paddle_nn_AdaptiveAvgPool3D:
 
 AdaptiveAvgPool3D
 -------------------------------

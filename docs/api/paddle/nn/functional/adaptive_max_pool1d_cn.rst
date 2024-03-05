@@ -1,5 +1,4 @@
-.. _cn_api_nn_functional_adaptive_max_pool1d:
-
+.. _cn_api_paddle_nn_functional_adaptive_max_pool1d:
 
 adaptive_max_pool1d
 -------------------------------
@@ -10,7 +9,7 @@ adaptive_max_pool1d
 默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数，`L` 是输入特征的长度。
 
 .. note::
-   详细请参考对应的 `Class` 请参考：:ref:`cn_api_nn_AdaptiveMaxPool1D` 。
+   详细请参考对应的 `Class` 请参考：:ref:`cn_api_paddle_nn_AdaptiveMaxPool1D` 。
 
 
 参数

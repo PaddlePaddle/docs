@@ -222,7 +222,7 @@ C_Status (*xccl_group_end)()
 
 ### 接口说明
 
-结束集合通迅操作聚合。
+停止集合通迅操作聚合。
 
 ## xccl_send 【optional】
 

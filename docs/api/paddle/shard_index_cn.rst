@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_shard_index:
+.. _cn_api_paddle_shard_index:
 
 shard_index
 -------------------------------
@@ -24,7 +24,7 @@ shard_index
     - **index_num** (int) - 用户设置的大于 :attr:`input` 最大值的整型值。
     - **nshards** (int) - 分片数量。
     - **shard_id** (int) - 当前分片 ID。
-    - **ignore_value** (int) - 超出分片范围的默认值。
+    - **ignore_value** (int，可选) - 超出分片索引范围的整数值。默认值为 -1。
 
 返回
 ::::::::::::

@@ -3,21 +3,16 @@
 ## Environment preparation
 
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
-* **GPU Version support CUDA 10.1/10.2/11.0/11.1/11.2, and only support single GPU**
-* **Python version 3.6+/3.7+/3.8+/3.9+(64bit)**
+* **GPU Version support CUDA 11.0 - 12.0, and only support single GPU**
+* **Python version 3.8+/3.9+/3.10+/3.11+/3.12+(64bit)**
 * **pip version 20.2.2 or above (64bit)**
-* **Visual Studio 2017**
+* **Visual Studio 2017(for CPU)/2019(for GPU)**
 
 ## Choose CPU/GPU
 
 * If your computer doesn't have NVIDIA® GPU, please install CPU version of PaddlePaddle
 
-* If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
-    * **CUDA toolkit 10.1/10.2 with cuDNN v7.6.5+**
-    * **CUDA toolkit 11.0 with cuDNN v8.0.2+**
-    * **CUDA toolkit 11.1 with cuDNN v8.1.1+**
-    * **CUDA toolkit 11.2 with cuDNN v8.2.1**
-    * **GPU's computing capability exceeds 3.5**
+* If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended. Suggested installation **CUDA 11.0/11.2/11.6/11.8/12.0**
 
 ## Installation steps
 
@@ -32,9 +27,9 @@ There is one compilation methods in Windows system:
 
 1. Install the necessary tools i.e. cmake, git and python:
 
-    > CMake requires version 3.15 and above, but there are official [Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html) versions of 3.12/3.13/3.14 when the GPU is compiled, we recommend that you use CMake3. 16 version, available on the official website [download] (https://cmake.org/download/), and add to the ring Environment variables.
+    > CMake requires version 3.17 and above, and add to the ring Environment variables.
 
-    > Python requires version 3.6 and above,  which can be downloaded from the [official website](https://www.python.org/downloads/release/python-3610/).
+    > Python requires version 3.8 and above,  which can be downloaded from the [official website](https://www.python.org/downloads/release).
 
     * After installing python, please check whether the python version is the expected version by `python-version`, because you may have more than one python installed on your computer. You can handle conflicts of multiple pythons by changing the order of the environment variables.
 
@@ -71,7 +66,7 @@ There is one compilation methods in Windows system:
     git checkout develop
     ```
 
-    Note: python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1, python3.10 version started supporting from release/2.3 branch
+    Note: Paddle supports Python version 3.8 and above.
 
 4. Create a directory called build and enter it:
 
@@ -107,10 +102,15 @@ There is one compilation methods in Windows system:
         In the above command, change to `-DWITH_GPU=ON` to compile the GPU version Paddle.
 
         > Note:
-        > 1. If more than one CUDA are installed, the latest installed CUDA will be used, and you can't specify CUDA version.
+        > 1. If more than one CUDA are installed, the latest installed CUDA will be used. If you need to specify a CUDA version, you'll need to set environment variables and CMake options. for example:
+        ```
+        set CUDA_TOOLKIT_ROOT_DIR=C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2
+        set PATH=%CUDA_TOOLKIT_ROOT_DIR:/=\%\bin;%CUDA_TOOLKIT_ROOT_DIR:/=\%\libnvvp;%PATH%
+        cmake .. -GNinja -DWITH_GPU=ON -DCUDA_TOOLKIT_ROOT_DIR="%CUDA_TOOLKIT_ROOT_DIR%" -DWITH_UNITY_BUILD=ON
+        ```
         > 2. If more than one Python are installed, the latest installed Python will be used by default, and you can choose the Python version by `-DPYTHON_EXECUTABLE` . for example:
         ```
-        cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe  -DWITH_UNITY_BUILD=ON
+        cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\\Python38\\python.exe  -DWITH_UNITY_BUILD=ON
         ```
 
 6. Execute compile:

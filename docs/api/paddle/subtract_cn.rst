@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_subtract:
+.. _cn_api_paddle_subtract:
 
 subtract
 -------------------------------

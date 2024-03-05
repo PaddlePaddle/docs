@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_softplus:
+.. _cn_api_paddle_nn_functional_softplus:
 
 softplus
 -------------------------------
@@ -13,7 +13,7 @@ softplus 激活层
             x,&x>\frac{\varepsilon}{\beta}.
         \end{cases}
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::::

@@ -1,6 +1,6 @@
 # 使用昆仑预测
 
-百度的昆仑芯⽚是⼀款⾼性能的 AI SoC 芯⽚，⽀持推理和训练。昆仑芯⽚采⽤百度的先进 AI 架构，⾮常适合常⽤的深度学习和机器学习算法的云端计算需求，并能适配诸如⾃然语⾔处理、⼤规模语⾳识别、⾃动驾驶、⼤规模推荐等多种终端场景的计算需求。
+百度的昆仑芯⽚是一款⾼性能的 AI SoC 芯⽚，⽀持推理和训练。昆仑芯⽚采⽤百度的先进 AI 架构，⾮常适合常⽤的深度学习和机器学习算法的云端计算需求，并能适配诸如⾃然语⾔处理、⼤规模语⾳识别、⾃动驾驶、⼤规模推荐等多种终端场景的计算需求。
 
 Paddle Inference 集成了[Paddle-Lite 预测引擎](https://paddle-lite.readthedocs.io/zh/latest/demo_guides/baidu_xpu.html)在昆仑 xpu 上进行预测部署。
 
@@ -73,11 +73,11 @@ def main():
     predictor = create_predictor(config)
 
     input_names = predictor.get_input_names()
-    input_hanlde = predictor.get_input_handle(input_names[0])
+    input_handle = predictor.get_input_handle(input_names[0])
 
     fake_input = np.ones((args.batch_size, 3, 224, 224)).astype("float32")
-    input_hanlde.reshape([args.batch_size, 3, 224, 224])
-    input_hanlde.copy_from_cpu(fake_input)
+    input_handle.reshape([args.batch_size, 3, 224, 224])
+    input_handle.copy_from_cpu(fake_input)
 
     for i in range(args.warmup):
       predictor.run()

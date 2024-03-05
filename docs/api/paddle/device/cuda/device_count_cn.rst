@@ -1,4 +1,4 @@
-.. _cn_api_device_cuda_device_count:
+.. _cn_api_paddle_device_cuda_device_count:
 
 device_count
 -------------------------------

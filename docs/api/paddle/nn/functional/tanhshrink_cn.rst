@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_tanhshrink:
+.. _cn_api_paddle_nn_functional_tanhshrink:
 
 tanhshrink
 -------------------------------
@@ -11,7 +11,7 @@ tanhshrink 激活层
 
     tanhshrink(x) = x - tanh(x)
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::

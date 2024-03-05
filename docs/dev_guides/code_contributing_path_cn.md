@@ -115,7 +115,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 编译方法请参见 [从源码编译](../../../install/compile/fromsource.html) 章节，推荐使用 Docker 编译的方式。Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机编译更便捷。
 
-> 注意：编译必须打开`WITH_TESTING`选项，以确保新增的单元测试文件（如`python/paddle/fluid/tests/unittests/` 目录下`test_*.py`文件）自动加入工程进行编译。
+> 注意：编译必须打开 `WITH_TESTING` 选项，以确保新增的单元测试文件（如 `test/` 目录下 `test_*.py` 文件）自动加入工程进行编译。
 
 （2）执行单元测试
 
@@ -148,19 +148,32 @@ nothing added to commit but untracked files present (use "git add" to track)
 ➜  git add test.md
 ```
 
-每次 `git commit` 都需要写提交说明，方便其他人了解每次提交做了哪些改变，可以通过 `git commit -m "add a new file test.md"` 完成。
+每次 `git commit` 都需要写提交说明，方便其他人了解每次提交做了哪些改变，可以通过 `git commit -m <commit_message>` 完成。
 
 ```bash
 ➜  git commit -m "add a new file test.md"
-CRLF end-lines remover...............................(no files to check)Skipped
-yapf.................................................(no files to check)Skipped
-Check for added large files..............................................Passed
-Check for merge conflicts................................................Passed
-Check for broken symlinks................................................Passed
-Detect Private Key...................................(no files to check)Skipped
-Fix End of Files.....................................(no files to check)Skipped
-clang-formater.......................................(no files to check)Skipped
-[my-cool-stuff c703c041] add test.md file
+check for added large files..............................................Passed
+check for merge conflicts................................................Passed
+check for broken symlinks............................(no files to check)Skipped
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+sort simple yaml files...............................(no files to check)Skipped
+trim trailing whitespace.................................................Passed
+CRLF end-lines remover...................................................Passed
+Tabs remover (C++)...................................(no files to check)Skipped
+Tabs remover (Python)....................................................Passed
+copyright_checker........................................................Passed
+black....................................................................Passed
+flake8...................................................................Passed
+ruff.....................................................................Passed
+clang-format.........................................(no files to check)Skipped
+cpplint..............................................(no files to check)Skipped
+clang-tidy...........................................(no files to check)Skipped
+auto-generate-cmakelists.............................(no files to check)Skipped
+cmake-format.........................................(no files to check)Skipped
+CMake Lint...........................................(no files to check)Skipped
+sort-txt-file........................................(no files to check)Skipped
+[my-cool-stuff e309f4805e] add a new file test.md
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 233
 ```

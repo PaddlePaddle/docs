@@ -33,19 +33,16 @@ paddle.utils 目录下包含飞桨框架工具类的 API。具体如下：
 
 .. csv-table::
     :header: "API 名称", "API 功能"
-    :widths: 10, 30
+    :widths: 12, 30
 
     " :ref:`deprecated <cn_api_paddle_utils_deprecated>` ", "飞桨框架废弃 API 装饰器"
     " :ref:`get_weights_path_from_url <cn_api_paddle_utils_download_get_weights_path_from_url>` ", "从文件夹获取权重"
     " :ref:`run_check <cn_api_paddle_utils_run_check>` ", "检查是否正常安装飞桨框架"
-    " :ref:`generate <cn_api_fluid_unique_name_generate>` ", "产生以前缀开头的唯一名称"
-    " :ref:`guard <cn_api_fluid_unique_name_guard>` ", "更改命名空间"
-    " :ref:`switch <cn_api_fluid_unique_name_switch>` ", "切换命名空间"
-    " :ref:`cuda_profiler <cn_api_fluid_profiler_cuda_profiler>` ", "CUDA 性能分析器"
-    " :ref:`profiler <cn_api_fluid_profiler_profiler>` ", "通用性能分析器"
-    " :ref:`reset_profiler <cn_api_fluid_profiler_reset_profiler>` ", "清除之前的性能分析记录"
-    " :ref:`start_profiler <cn_api_fluid_profiler_start_profiler>` ", "激活使用性能分析器"
-    " :ref:`stop_profiler <cn_api_fluid_profiler_stop_profiler>` ", "停止使用性能分析器"
-    " :ref:`require_version <cn_api_fluid_require_version>` ", "用于检查已安装的飞桨版本是否介于[min_version, max_version]之间"
+    " :ref:`generate <cn_api_paddle_utils_unique_name_generate>` ", "产生以前缀开头的唯一名称"
+    " :ref:`guard <cn_api_paddle_utils_unique_name_guard>` ", "更改命名空间"
+    " :ref:`switch <cn_api_paddle_utils_unique_name_switch>` ", "切换命名空间"
+    " :ref:`Profiler <cn_api_paddle_profiler_Profiler>` ", "通用性能分析器"
+    " :ref:`require_version <cn_api_paddle_utils_require_version>` ", "用于检查已安装的飞桨版本是否介于[min_version, max_version]之间"
     " :ref:`to_dlpack <cn_api_paddle_utils_dlpack_to_dlpack>` ", "用于将 Tensor 对象转换为 DLPack"
     " :ref:`from_dlpack <cn_api_paddle_utils_dlpack_from_dlpack>` ", "用于从 DLPack 中解码出 Tensor 对象"
+    " :ref:`try_import <cn_api_paddle_utils_try_import>` ", "用于尝试导入一个模块并且在失败时提供自定义错误信息"

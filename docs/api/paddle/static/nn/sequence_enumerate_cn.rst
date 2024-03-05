@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_sequence_enumerate:
+.. _cn_api_paddle_static_nn_sequence_enumerate:
 
 sequence_enumerate
 -------------------------------
@@ -29,14 +29,14 @@ sequence_enumerate
 参数
 :::::::::
 
-        - **input** （Variable）- 输入序列，形状为 ``[d_1, 1]`` ，lod level 为 1 的 LodTensor。数据类型支持 int32，int64，float32 或 float64。
-        - **win_size** （int）- 子序列窗口大小。
-        - **pad_value** （int，可选）- 填充值，默认为 0。
+        - **input** (Tensor) - 输入序列，形状为 ``[d_1, 1]`` ，lod level 为 1 的 LodTensor。数据类型支持 int32，int64，float32 或 float64。
+        - **win_size** (int) - 子序列窗口大小。
+        - **pad_value** (int，可选) - 填充值，默认为 0。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
-枚举序列，形状为 ``[d_1, win_size]`` ，lod_level 为 1 的 LoDTensor。数据类型与输入 ``input`` 一致。
+枚举序列，形状为 ``[d_1, win_size]`` ，lod_level 为 1 的 Tensor。数据类型与输入 ``input`` 一致。
 
 
 

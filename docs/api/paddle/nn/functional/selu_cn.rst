@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_selu:
+.. _cn_api_paddle_nn_functional_selu:
 
 selu
 -------------------------------
@@ -15,7 +15,7 @@ selu 激活层
                alpha * e^{x} - alpha, \text{if } x <= 0
              \end{cases}
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::::

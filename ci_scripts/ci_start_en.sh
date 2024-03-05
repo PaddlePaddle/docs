@@ -1,9 +1,10 @@
 #!/bin/bash
-
 export DIR_PATH=${PWD}
 
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
+export OUTPUTDIR=/docs
+export VERSIONSTR=$(echo ${BRANCH} | sed 's@release/@@g')
 
 # 1 decide PADDLE_WHL if not setted.
 if [ -z "${PADDLE_WHL}" ] ; then
@@ -15,7 +16,7 @@ if [ -z "${PADDLE_WHL}" ] ; then
         paddle_pr_info=$(get_repo_pr_info "PaddlePaddle/Paddle" ${paddle_pr_id})
         paddle_pr_latest_commit=${AGILE_REVISION}
         echo "paddle_pr_latest_commit=${paddle_pr_latest_commit}"
-        paddle_whl_tmp="https://xly-devops.bj.bcebos.com/PR/build_whl/${paddle_pr_id}/${paddle_pr_latest_commit}/paddlepaddle_gpu-0.0.0-cp37-cp37m-linux_x86_64.whl"
+        paddle_whl_tmp="https://xly-devops.bj.bcebos.com/PR/build_whl/${paddle_pr_id}/${paddle_pr_latest_commit}/paddlepaddle_gpu-0.0.0-cp310-cp310-linux_x86_64.whl"
         http_code=$(curl -sIL -w "%{http_code}" -o /dev/null -X GET -k ${paddle_whl_tmp})
         if [ "${http_code}" = "200" ] ; then
             PADDLE_WHL=${paddle_whl_tmp}
@@ -41,16 +42,14 @@ echo "PADDLE_WHL=${PADDLE_WHL}"
 # 2 build all the Chinese and English docs, and upload them. Controlled with Env BUILD_DOC and UPLOAD_DOC
 PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: None"
 if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
-    export OUTPUTDIR=/docs
-    export VERSIONSTR=$(echo ${BRANCH} | sed 's@release/@@g')
-    apt update 
-    apt install -y libpython3.7 
+    apt update
+    apt install -y libpython3.7
     apt --fix-broken install -y libssl1.0
     /bin/bash -x ${DIR_PATH}/gendoc.sh
-    if [ $? -ne 0 ];then
+    if [ $? -ne 0 ] ; then
         exit 1
     fi
-    
+
     is_shell_attribute_set x
     xdebug_setted=$?
     if [ $xdebug_setted ] ; then
@@ -68,7 +67,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     if [ $xdebug_setted ] ; then
         set -x
     fi
-    
+
     # https://cloud.baidu.com/doc/XLY/s/qjwvy89pc#%E7%B3%BB%E7%BB%9F%E5%8F%82%E6%95%B0%E5%A6%82%E4%B8%8B
     # ${AGILE_PIPELINE_ID}-${AGILE_PIPELINE_BUILD_ID}"
     if [ "${UPLOAD_DOC}" = "true" ] ; then
@@ -112,7 +111,29 @@ if [ $? -ne 0 ];then
     EXIT_CODE=1
 fi
 
-# 4 Approval check
+# 4 check docs style/format
+cd ${PADDLE_DIR}
+git merge --no-edit upstream/${BRANCH}
+need_check_api_py_files=$(find_all_api_py_files_modified_by_pr)
+cd -
+jsonfn=${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output/api_info_all.json
+if [ ! -f $jsonfn ]; then
+    echo "$jsonfn not exists"
+    exit 1
+fi
+if [ "${need_check_api_py_files}" = "" ] ; then
+    echo "api python file list is empty, skip check system message in docs"
+else
+    echo 'need check api pyhon file: ', $need_check_api_py_files
+    /bin/bash ${DIR_PATH}/check_api_docs_en.sh ${jsonfn} ${OUTPUTDIR}/en/${VERSIONSTR}/api/ "${need_check_api_py_files}"
+    if [ $? -ne 0 ]; then
+        echo 'Docs Style Check is failed, please check the style in the above docs'
+        exit 1
+    fi
+fi
+
+
+# 5 Approval check
 /bin/bash  ${DIR_PATH}/checkapproval.sh
 if [ $? -ne 0 ];then
     exit 1

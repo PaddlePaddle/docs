@@ -9,7 +9,7 @@ export
 
 .. note::
 
-    具体使用案例请参考 :ref:`cn_model_to_onnx`，更多信息请参考：`paddle2onnx <https://github.com/PaddlePaddle/paddle2onnx>`_ 。
+    具体使用案例请参考 `文档 <../../../../guides/advanced/model_to_onnx_cn.html>`_，更多信息请参考：`paddle2onnx <https://github.com/PaddlePaddle/paddle2onnx>`_ 。
 
 参数
 :::::::::

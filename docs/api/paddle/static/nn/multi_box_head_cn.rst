@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_multi_box_head:
+.. _cn_api_paddle_static_nn_multi_box_head:
 
 multi_box_head
 -------------------------------
@@ -18,7 +18,7 @@ multi_box_head
 
         - **inputs** (list(Variable) | tuple(Variable)) - 输入特征的列表，仅支持格式为 NCHW 的 4-D Tensor。
         - **image** (Variable) - 一般是网络输入的图像数据，仅支持 NCHW 格式。
-        - **base_size** (int) - 输入图片的大小，当输入个数 len(inputs) > 2，并且 ``min_size`` 和 ``max_size`` 为 None 时，通过 ``baze_size``, ``min_ratio`` 和 ``max_ratio`` 来计算出 ``min_size`` 和 ``max_size``。计算公式如下：
+        - **base_size** (int) - 输入图片的大小，当输入个数 len(inputs) > 2，并且 ``min_size`` 和 ``max_size`` 为 None 时，通过 ``base_size``, ``min_ratio`` 和 ``max_ratio`` 来计算出 ``min_size`` 和 ``max_size``。计算公式如下：
 
               ..  code-block:: python
 

@@ -1,14 +1,13 @@
-.. _cn_api_nn_functional_pixel_unshuffle:
-
+.. _cn_api_paddle_nn_functional_pixel_unshuffle:
 
 pixel_unshuffle
 -------------------------------
 
 .. py:function:: paddle.nn.functional.pixel_unshuffle(x, downscale_factor, data_format="NCHW", name=None)
-将一个形为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的 Tensor 重新排列成形为 :math:`[N, r^2C, H/r, W/r]` 或 :math:`[N, H/r, W/r, r^2C]` 的 Tensor，这里 :math:`r` 是减小空间分辨率的减小因子。这个算子是 pixel_shuffle 算子（请参考：:ref:`cn_api_nn_functional_pixel_shuffle`）的逆算子。详见施闻哲等人在 2016 年发表的论文 `Real Time Single Image and Video Super Resolution Using an Efficient Sub Pixel Convolutional Neural Network <https://arxiv.org/abs/1609.05158v2>`_ 。
+将一个形为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的 Tensor 重新排列成形为 :math:`[N, r^2C, H/r, W/r]` 或 :math:`[N, H/r, W/r, r^2C]` 的 Tensor，这里 :math:`r` 是减小空间分辨率的减小因子。这个算子是 pixel_shuffle 算子（请参考：:ref:`cn_api_paddle_nn_functional_pixel_shuffle`）的逆算子。详见施闻哲等人在 2016 年发表的论文 `Real Time Single Image and Video Super Resolution Using an Efficient Sub Pixel Convolutional Neural Network <https://arxiv.org/abs/1609.05158v2>`_ 。
 
 .. note::
-   详细请参考对应的 `Class` 请参考：:ref:`cn_api_nn_PixelUnshuffle` 。
+   详细请参考对应的 `Class` 请参考：:ref:`cn_api_paddle_nn_PixelUnshuffle` 。
 
 参数
 :::::::::

@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_var:
+.. _cn_api_paddle_var:
 
 var
 -------------------------------
@@ -9,7 +9,7 @@ var
 
 参数
 ::::::::::
-   - **x** (Tensor) - 输入的 Tensor，数据类型为：float32、float64。
+   - **x** (Tensor) - 输入的 Tensor，数据类型为：float16、float32、float64。
    - **axis** (int|list|tuple，可选) - 指定对 ``x`` 进行计算的轴。``axis`` 可以是 int、list(int)、tuple(int)。
 
       - 如果 ``axis`` 包含多个维度，则沿着 ``axis`` 中的所有轴进行计算。``axis`` 或者其中的元素值应该在范围[-D, D)内，D 是 ``x`` 的维度。

@@ -1,4 +1,4 @@
-.. _cn_api_vision_ops_yolo_box:
+.. _cn_api_paddle_vision_ops_yolo_box:
 
 yolo_box
 -------------------------------
@@ -40,7 +40,7 @@ yolo_box
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **scale_x_y** (float，可选) - 放缩解码边界框的中心点，默认值：1.0。
     - **iou_aware** (bool，可选) - 使用 IoU 置信度，默认值：False。
-    - **iou_aware_factor** (bool，可选) - IoU 置信度因子，默认值：0.5。
+    - **iou_aware_factor** (float，可选) - IoU 置信度因子，默认值：0.5。
 
 返回
 :::::::::

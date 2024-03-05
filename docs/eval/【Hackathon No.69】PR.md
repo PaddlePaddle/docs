@@ -11,27 +11,27 @@
 
 # 一、摘要
 
-相关背景：飞桨框架于 2.0 正式版全面支持了动态图训练，并在2.1、2.2 两个大版本中不断新增了API以及大幅增强了训练功能。希望有人对于飞桨框架动态图下单机训练功能整体的使用感受，可以与其他深度学习框架做功能对比，包括API、Tensor 索引、NumPy Compatibility、报错信息提示、训练性能、以及各种 trick 的用法等，并产出一份对应的评估报告。
+相关背景：飞桨框架于 2.0 正式版全面支持了动态图训练，并在 2.1、2.2 两个大版本中不断新增了 API 以及大幅增强了训练功能。希望有人对于飞桨框架动态图下单机训练功能整体的使用感受，可以与其他深度学习框架做功能对比，包括 API、Tensor 索引、NumPy Compatibility、报错信息提示、训练性能、以及各种 trick 的用法等，并产出一份对应的评估报告。
 
-本评估方案将从以下几个方面对paddle动态图单机训练功能进行体验评估：
+本评估方案将从以下几个方面对 paddle 动态图单机训练功能进行体验评估：
 
 1、环境配置及开启动态图模式
 
-2、API使用及对比
+2、API 使用及对比
 
-调用高层API:如：paddle.Model、paddle.vision，与pytorch框架做对比。并在LeNet、ResNet等网络模型或模型自己组网（Sequential组网、SubClass组网）训练中进行评估。
+调用高层 API:如：paddle.Model、paddle.vision，与 pytorch 框架做对比。并在 LeNet、ResNet 等网络模型或模型自己组网（Sequential 组网、SubClass 组网）训练中进行评估。
 
 3、Tensor 索引
 
-在模型训练中体验了Tensor在数据传递过程中的表现（如：了解索引和 其切片规则、访问与修改Tensor、逻辑相关函数重写规则），并体验了使用指南里有关Tensor的所有基本操作。
+在模型训练中体验了 Tensor 在数据传递过程中的表现（如：了解索引和 其切片规则、访问与修改 Tensor、逻辑相关函数重写规则），并体验了使用指南里有关 Tensor 的所有基本操作。
 
-4、NumPy兼容性分析及对比
+4、NumPy 兼容性分析及对比
 
-在动态图模型代码中，所有与组网相关的 numpy 操作都必须用 paddle 的 API 重新实现，所以在模型训练过程中体验Paddle.API来感受对比Pytorch的表现；分析了Tensor兼容Numpy数组的同时，优先使用Tensor的两种场景。
+在动态图模型代码中，所有与组网相关的 numpy 操作都必须用 paddle 的 API 重新实现，所以在模型训练过程中体验 Paddle.API 来感受对比 PyTorch 的表现；分析了 Tensor 兼容 Numpy 数组的同时，优先使用 Tensor 的两种场景。
 
 5、动态图单机训练
 
-体验控制流和共享权重的使用效果，然后在数据集定义、加载和数据预处理、数据增强方面感受与Pytorch使用的区别，最后通过LeNet举例说明训练结果，并进行了对比分析
+体验控制流和共享权重的使用效果，然后在数据集定义、加载和数据预处理、数据增强方面感受与 PyTorch 使用的区别，最后通过 LeNet 举例说明训练结果，并进行了对比分析
 
 6、各种 trick 的用法体验
 
@@ -46,40 +46,40 @@
 |   CPU    |    Intel(R)Core(TM)i5-7200U CPU @2.50GHz     |
 |   内存   |                  12GB DDR4                   |
 |   GPU    |             NVIDIA GeForce 940MX             |
-| 系统平台 |         Window 10 家庭中文版（64位）         |
-| 软件环境 | Paddle2.2、 Pytorch3.8、Cuda 10.1、Anaconda3 |
+| 系统平台 |         Window 10 家庭中文版（64 位）         |
+| 软件环境 | Paddle2.2、 PyTorch3.8、Cuda 10.1、Anaconda3 |
 
-Paddle环境安装参考： https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/windows-pip.html 
+Paddle 环境安装参考： https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/windows-pip.html
 
-安装CPU版本时候使用到了清华镜像源：pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlepaddle
+安装 CPU 版本时候使用到了清华镜像源：pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlepaddle
 
-GPU版本：python -m pip install paddlepaddle-gpu==2.2.2.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+GPU 版本：python -m pip install paddlepaddle-gpu==2.2.2.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
 
-Paddle与Pytorch环境配置使用对比： 在单机安装中，都安装在了conda环境，Paddle安装比较顺利，直接按照文档安装即可，与Pytorch安装没有太大区别，单机测试稳定性也都比较良好。
+Paddle 与 PyTorch 环境配置使用对比： 在单机安装中，都安装在了 conda 环境，Paddle 安装比较顺利，直接按照文档安装即可，与 PyTorch 安装没有太大区别，单机测试稳定性也都比较良好。
 
 
 
-# 三、API使用及对比
+# 三、API 使用及对比
 
-## 1、从PaddlePaddle的各个API目录来对比分析
+## 1、从 PaddlePaddle 的各个 API 目录来对比分析
 
-首先，基础操作类、组网类、Loss类、工具类、视觉类这五大类从映射Pytorch上看，在单机训练中可以满足训练及预测所需的API使用类别。
+首先，基础操作类、组网类、Loss 类、工具类、视觉类这五大类从映射 PyTorch 上看，在单机训练中可以满足训练及预测所需的 API 使用类别。
 
-其次，在单机模型训练中对比了一下主要API的使用
+其次，在单机模型训练中对比了一下主要 API 的使用
 
-| 名称    | PaddlePaddle                  | Pytorch                        |
+| 名称    | PaddlePaddle                  | PyTorch                        |
 | ------- | ----------------------------- | ------------------------------ |
 | layer   | nn.Layer                      | nn.Module                      |
-| 各种层  | nn.layer2D(即paddle使用大写D) | nn.layer2d(即Pytorch使用小写d) |
+| 各种层  | nn.layer2D(即 paddle 使用大写 D) | nn.layer2d(即 PyTorch 使用小写 d) |
 | flatten | nn.Flatten                    | var.view(var.size(0), -1)      |
 | concat  | paddle.concat                 | torch.cat                      |
 | optim   | paddle.optimizer              | torch.optim                    |
 
-## 2、从具体API的参数设计差异作对比分析
+## 2、从具体 API 的参数设计差异作对比分析
 
-通过训练和测试Paddle的动态图单机模型，就个人体验而言，对模型中常用到的一些API作简要分析，如paddle.to_tensor，paddle.save,paddle.load,paddle.nn.Conv2D , paddle.nn.Linear, paddle.nn.CrossEntropyLoss , paddle.io.DataLoader
+通过训练和测试 Paddle 的动态图单机模型，就个人体验而言，对模型中常用到的一些 API 作简要分析，如 paddle.to_tensor，paddle.save,paddle.load,paddle.nn.Conv2D , paddle.nn.Linear, paddle.nn.CrossEntropyLoss , paddle.io.DataLoader
 
-### 2.1 基础操作类API
+### 2.1 基础操作类 API
 
 ```python
 #paddle.to_tensor
@@ -95,9 +95,9 @@ torch.tensor(data,
              pin_memory=False)
 ```
 
-在paddle.to_tensor中，stop_gradient表示是否阻断梯度传导，PyTorch的requires_grad表示是否不阻断梯度传导。
+在 paddle.to_tensor 中，stop_gradient 表示是否阻断梯度传导，PyTorch 的 requires_grad 表示是否不阻断梯度传导。
 
-在torch.tensor中，pin_memeory表示是否使用锁页内存，而PaddlePaddle却无此参数。
+在 torch.tensor 中，pin_memeory 表示是否使用锁页内存，而 PaddlePaddle 却无此参数。
 
 ------
 
@@ -112,10 +112,10 @@ torch.load(f,
            **pickle_load_args)
 ```
 
-在torch.load中， pickle_module  表示用于unpickling元数据和对象的模块，PaddlePaddle无此参数。  map_location  表示加载模型的位置，PaddlePaddle无此参数。 
+在 torch.load 中， pickle_module  表示用于 unpickling 元数据和对象的模块，PaddlePaddle 无此参数。  map_location  表示加载模型的位置，PaddlePaddle 无此参数。
 
-在加载内容上，PyTorch可以加载torch.Tensor、torch.nn.Module、优化器等多个类型的数据。
-PaddlePaddle只能加载paddle.nn.Layer、优化器这两个类型的数据，这方面Pytorch更优一些。
+在加载内容上，PyTorch 可以加载 torch.Tensor、torch.nn.Module、优化器等多个类型的数据。
+PaddlePaddle 只能加载 paddle.nn.Layer、优化器这两个类型的数据，这方面 PyTorch 更优一些。
 
 ------
 
@@ -130,15 +130,15 @@ torch.save(obj,
            pickle_protocol=2)
 ```
 
-在paddle.save中， path表示存储的路径，这一点比 PyTorch 的f更为清晰一些。
+在 paddle.save 中， path 表示存储的路径，这一点比 PyTorch 的 f 更为清晰一些。
 
-在torch.save中， pickle_module  表示用于pickling元数据和对象的模块，PaddlePaddle无此参数。 
+在 torch.save 中， pickle_module  表示用于 pickling 元数据和对象的模块，PaddlePaddle 无此参数。
 
-还有在存储内容上，跟paddle.load情况类似，PaddlePaddle只能存储paddle.nn.Layer、优化器这两个类型的数据，个人觉得这方面PaddlePaddle有待加强。
+还有在存储内容上，跟 paddle.load 情况类似，PaddlePaddle 只能存储 paddle.nn.Layer、优化器这两个类型的数据，个人觉得这方面 PaddlePaddle 有待加强。
 
 ------
 
-### 2.2 组网类API
+### 2.2 组网类 API
 
 ```python
 #paddle.nn.Conv2D
@@ -165,7 +165,7 @@ torch.nn.Conv2d(in_channels,
                 padding_mode='zeros')
 ```
 
-在paddle.nn.Conv2D中，PaddlePaddle支持NCHW和NHWC两种格式的输入（通过data_format设置）。而PyTorch只支持NCHW的输入，这一点PaddlePaddle更优一些。
+在 paddle.nn.Conv2D 中，PaddlePaddle 支持 NCHW 和 NHWC 两种格式的输入（通过 data_format 设置）。而 PyTorch 只支持 NCHW 的输入，这一点 PaddlePaddle 更优一些。
 
 ------
 
@@ -176,11 +176,11 @@ paddle.nn.Linear(in_features, out_features, weight_attr=None, bias_attr=None, na
 torch.nn.Linear(in_features, out_features, bias=True)
 ```
 
-在paddle.nn.Linear中，weight_attr/bias_attr默认使用默认的权重/偏置参数属性，否则为指定的权重/偏置参数属性，而PyTorch的bias默认为True，表示使用可更新的偏置参数。需要注意的是在PaddlePaddle中，当bias_attr设置为bool类型与PyTorch的作用一致。
+在 paddle.nn.Linear 中，weight_attr/bias_attr 默认使用默认的权重/偏置参数属性，否则为指定的权重/偏置参数属性，而 PyTorch 的 bias 默认为 True，表示使用可更新的偏置参数。需要注意的是在 PaddlePaddle 中，当 bias_attr 设置为 bool 类型与 PyTorch 的作用一致。
 
 ------
 
-### 2.3 Loss类API
+### 2.3 Loss 类 API
 
 ```python
 #paddle.nn.CrossEntropyLoss
@@ -199,11 +199,11 @@ torch.nn.CrossEntropyLoss(weight=None,
                           reduction='mean')
 ```
 
-在paddle.nn.CrossEntropyLoss中， use_softmax  表示在使用交叉熵之前是否计算softmax，PyTorch无此参数；soft_label指明label是否为软标签，PyTorch无此参数；而axis表示进行softmax计算的维度索引，PyTorch无此参数。 在这个API中，个人感觉PaddlePaddle的表现优于PyTorch。
+在 paddle.nn.CrossEntropyLoss 中， use_softmax  表示在使用交叉熵之前是否计算 softmax，PyTorch 无此参数；soft_label 指明 label 是否为软标签，PyTorch 无此参数；而 axis 表示进行 softmax 计算的维度索引，PyTorch 无此参数。 在这个 API 中，个人感觉 PaddlePaddle 的表现优于 PyTorch。
 
 ------
 
-### 2.4 工具类API
+### 2.4 工具类 API
 
 ```python
 #paddle.io.DataLoader
@@ -239,25 +239,25 @@ torch.utils.data.DataLoader(dataset,
                             persistent_workers=False)
 ```
 
-在paddle.io.DataLoader中， feed_list 表示feed变量列表，PyTorch无此参数。  use_shared_memory  表示是否使用共享内存来提升子进程将数据放入进程间队列的速度，PyTorch无此参数。 
+在 paddle.io.DataLoader 中， feed_list 表示 feed 变量列表，PyTorch 无此参数。  use_shared_memory  表示是否使用共享内存来提升子进程将数据放入进程间队列的速度，PyTorch 无此参数。
 
-在torch.utils.data.DataLoader中，prefetch_factor  表示每个worker预先加载的数据数量，PaddlePaddle无此参数；还有就是PyTorch可通过设置sampler自定义数据采集器，PaddlePaddle只能自定义一个DataLoader来实现该功能，会有些繁琐。总的来说，这部分Pytorch的体验更好一些。
+在 torch.utils.data.DataLoader 中，prefetch_factor  表示每个 worker 预先加载的数据数量，PaddlePaddle 无此参数；还有就是 PyTorch 可通过设置 sampler 自定义数据采集器，PaddlePaddle 只能自定义一个 DataLoader 来实现该功能，会有些繁琐。总的来说，这部分 PyTorch 的体验更好一些。
 
 ------
 
-​		从整体的API使用上，感觉paddle升级后的 paddle.xxx  （例如：paddle.device  paddle.nn  paddle.vision ）比之前的 padddle.fluid.xxx 好用很多，还有就是新增加的高层API个人比较喜欢，一是对初学者比较友好、易用，二是对于开发者可以节省代码量，更简洁直观一些，在（六、动态图单机训练）中进行了代码展示和对比分析。
+​     从整体的 API 使用上，感觉 paddle 升级后的 paddle.xxx  （例如：paddle.device  paddle.nn  paddle.vision ）比之前的 padddle.fluid.xxx 好用很多，还有就是新增加的高层 API 个人比较喜欢，一是对初学者比较友好、易用，二是对于开发者可以节省代码量，更简洁直观一些，在（六、动态图单机训练）中进行了代码展示和对比分析。
 
-与Pytorch相比，基础API的结构和调用没有太大区别，但是在速度上，paddle的基础API会更快一点，如果是利用了paddle高层API，速度会快很多，在同样5次epoch的情况下，LeNet训练高层API用38s左右,基础API得用将近两分钟，所以用高层API能减少大约三分之二的训练时间。
+与 PyTorch 相比，基础 API 的结构和调用没有太大区别，但是在速度上，paddle 的基础 API 会更快一点，如果是利用了 paddle 高层 API，速度会快很多，在同样 5 次 epoch 的情况下，LeNet 训练高层 API 用 38s 左右,基础 API 得用将近两分钟，所以用高层 API 能减少大约三分之二的训练时间。
 
-总体来说，使用像paddle.Model、paddle.vision这样的高级API进行封装调用，使用体验比较好，个人感觉在以后深度学习模型普遍使用时，高层API会更受欢迎，也会成为模型训练测试中更为流行的一种方法。
+总体来说，使用像 paddle.Model、paddle.vision 这样的高级 API 进行封装调用，使用体验比较好，个人感觉在以后深度学习模型普遍使用时，高层 API 会更受欢迎，也会成为模型训练测试中更为流行的一种方法。
 
 
 
 # 四、Tensor 索引
 
-在了解Paddle的Tensor索引和其切片规则以及逻辑相关函数重写规则等内容后，结合指南内容（ https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/basic_concept/tensor_introduction_cn.html#id1 ）和模型训练过程中的Tensor索引使用，共有以下几点体验总结：
+在了解 Paddle 的 Tensor 索引和其切片规则以及逻辑相关函数重写规则等内容后，结合指南内容（ https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/basic_concept/tensor_introduction_cn.html#id1 ）和模型训练过程中的 Tensor 索引使用，共有以下几点体验总结：
 
-**一、Paddle可以使用静态数组索引；不可以使用tensor索引。**
+**一、Paddle 可以使用静态数组索引；不可以使用 tensor 索引。**
 示例：广播 (broadcasting)
 1.每个张量至少为一维张量
 
@@ -271,42 +271,42 @@ y = paddle.ones((2, 3, 4))
 z = x + y
 print(z.shape)
 # [2, 3, 4]
- 
+
 x = paddle.ones((2, 3, 1, 5))
 y = paddle.ones((3, 4, 1))
 # 从后向前依次比较：
-# 第一次：y的维度大小是1
-# 第二次：x的维度大小是1
-# 第三次：x和y的维度大小相等
-# 第四次：y的维度不存在
-# 所以 x和y是可以广播的
+# 第一次：y 的维度大小是 1
+# 第二次：x 的维度大小是 1
+# 第三次：x 和 y 的维度大小相等
+# 第四次：y 的维度不存在
+# 所以 x 和 y 是可以广播的
 z = x + y
 print(z.shape)
 # [2, 3, 4, 5]
- 
+
 # 相反
 x = paddle.ones((2, 3, 4))
 y = paddle.ones((2, 3, 6))
-# 此时x和y是不可广播的，因为第一次比较 4不等于6
+# 此时 x 和 y 是不可广播的，因为第一次比较 4 不等于 6
 # z = x + y
 # InvalidArgumentError: Broadcast dimension mismatch.
 ```
 
 **二、两个张量进行广播语义后的结果张量的形状计算规则如下：**
 
-1.如果两个张量的形状的长度不一致，那么需要在较小形状长度的矩阵向前添加1，直到两个张量的形状长度相等。
+1.如果两个张量的形状的长度不一致，那么需要在较小形状长度的矩阵向前添加 1，直到两个张量的形状长度相等。
 
 2.保证两个张量形状相等之后，每个维度上的结果维度就是当前维度上较大的那个。
 
 ```python
 import paddle
- 
+
 x = paddle.ones((2, 1, 4))
 y = paddle.ones((3, 1))
 z = x + y
 print(z.shape)
-# z的形状: [2,3,4]
- 
+# z 的形状: [2,3,4]
+
 
 x = paddle.ones((2, 1, 4))
 y = paddle.ones((3, 2))
@@ -314,26 +314,26 @@ y = paddle.ones((3, 2))
 # ValueError: (InvalidArgument) Broadcast dimension mismatch.
 ```
 
-**三、Paddle 目前支持的Tensor索引规则：**
+**三、Paddle 目前支持的 Tensor 索引规则：**
 
-**Paddle 目前支持的Tensor索引状态：**
+**Paddle 目前支持的 Tensor 索引状态：**
 
 1、基于 0-n 的下标进⾏索引
 2、如果下标为负数，则从尾部开始
 3、通过冒号 : 分隔切⽚参数 start:stop:step 来进⾏切⽚操作，其中 start、stop、step 均可缺省
 
-示例1：索引
+示例 1：索引
 
 ```python
 ndim_1_tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
-print("最初的Tensor: ", ndim_1_tensor.numpy())
+print("最初的 Tensor: ", ndim_1_tensor.numpy())
 print("取⾸端元素:", ndim_1_tensor[0].numpy())
 print("取末端元素:", ndim_1_tensor[-1].numpy())
 print("取所有元素:", ndim_1_tensor[:].numpy())
-print("取索引3之前的所有元素:", ndim_1_tensor[:3].numpy())
-print("取从索引6开始的所有元素:", ndim_1_tensor[6:].numpy())
-print("取从索引3开始到索引6之前的所有元素:", ndim_1_tensor[3:6].numpy())
-print("间隔3取所有元素:", ndim_1_tensor[::3].numpy())
+print("取索引 3 之前的所有元素:", ndim_1_tensor[:3].numpy())
+print("取从索引 6 开始的所有元素:", ndim_1_tensor[6:].numpy())
+print("取从索引 3 开始到索引 6 之前的所有元素:", ndim_1_tensor[3:6].numpy())
+print("间隔 3 取所有元素:", ndim_1_tensor[::3].numpy())
 print("逆序取所有元素:", ndim_1_tensor[::-1].numpy())
 ```
 
@@ -350,20 +350,20 @@ Interval of 3: [0 3 6]
 Reverse: [8 7 6 5 4 3 2 1 0]
 ```
 
-**Paddle 目前不支持的Tensor索引状态：**
+**Paddle 目前不支持的 Tensor 索引状态：**
 
-示例1：不能维度直接赋值
+示例 1：不能维度直接赋值
 
 ```python
 #报错：
-TypeError: 'paddle.fluid.core_avx.VarBase' object does not support item assignment
-#代码如下：    
+TypeError: 'paddle.fluid.libpaddle.VarBase' object does not support item assignment
+#代码如下：
 # pytorch code
 Pred_boxes[:, 0] = pred_ctr_x - 0.5 * pred_w
 pred_boxes[:, 1] = pred_ctr_y - 0.5 * pred_h
 pred_boxes[:, 2] = pred_ctr_x + 0.5 * pred_w
 pred_boxes[:, 3] = pred_ctr_y + 0.5 * pred_h
-    
+
 # paddlepaddle code
 pred_boxes = paddle.layers.concat([
     pred_ctr_x - 0.5 * pred_w,
@@ -376,23 +376,23 @@ pred_boxes = paddle.layers.concat([
 #维度报错:
 
 too many indices (3) for tensor of dimension 2
-#代码如下： 
+#代码如下：
 # pytorch code
-bbox_x[bind, :, np.newaxis ] 
+bbox_x[bind, :, np.newaxis ]
 # paddlepaddle code
 paddle.layers.reshape(bbox_x[bind, :], [1, -1, 1])
 ```
 
-示例2： tensor的值不能直接利用
+示例 2： tensor 的值不能直接利用
 
-报错：paddlepaddle中的value不能直接拿出来用。
+报错：paddlepaddle 中的 value 不能直接拿出来用。
 
 ```python
 TypeError: The type of 'shape' in reshape must be list[int] or tuple(int) in
  Dygraph mode, but received <class 'list'>, which contains Variable.
-#错误代码：其中stack_size, feat_size 为 tensor。
+#错误代码：其中 stack_size, feat_size 为 tensor。
 
-#代码如下： 
+#代码如下：
 # paddlepaddle code
 shift_x1 = paddle.layers.reshape(paddle.dygraph.to_variable(shift_x1), [1, stack_size, feat_size[1]])
 
@@ -408,21 +408,21 @@ feat_size = feat_size.numpy()
 
 **四、Tensor 索引整体体验**
 
-感觉在通过索引或切片修改 Tensor 的整体过程有些冗余，稳定性也会下降。虽然使用指南里说明了修改会导致原值不会被保存，可能会给梯度计算引入风险 ，但是在这点上个人感觉Pytorch的体验要好于Paddle。
+感觉在通过索引或切片修改 Tensor 的整体过程有些冗余，稳定性也会下降。虽然使用指南里说明了修改会导致原值不会被保存，可能会给梯度计算引入风险 ，但是在这点上个人感觉 PyTorch 的体验要好于 Paddle。
 
-总的来说，在模型训练中利用Tensor加载数据集等操作上 Pytorch与 Paddle的体验并没有太大区别，但整体的感觉Pytorch的Tensor 索引更好一些，个人感觉Paddle在修改 Tensor的部分上可以增加一些文档说明。
+总的来说，在模型训练中利用 Tensor 加载数据集等操作上 PyTorch 与 Paddle 的体验并没有太大区别，但整体的感觉 PyTorch 的 Tensor 索引更好一些，个人感觉 Paddle 在修改 Tensor 的部分上可以增加一些文档说明。
 
 **文档序号错误小提醒：**
 
- https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/update_cn.html#tensor 中的“使用Tensor概念表示数据”下的序号应为1、2、；文档中为两个1、1、。
+ https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/update_cn.html#tensor 中的“使用 Tensor 概念表示数据”下的序号应为 1、2、；文档中为两个 1、1、。
 
-# 五、NumPy兼容性分析及对比
+# 五、NumPy 兼容性分析及对比
 
-NumPy在Paddle的体验，感觉和Pytorch的体验并无区别，但是在阅读使用文档时的体验感较好，内容叙述很详细 （文档链接：https://www.paddlepaddle.org.cn/tutorials/projectdetail/3466356 ）
+NumPy 在 Paddle 的体验，感觉和 PyTorch 的体验并无区别，但是在阅读使用文档时的体验感较好，内容叙述很详细 （文档链接：https://www.paddlepaddle.org.cn/tutorials/projectdetail/3466356 ）
 
-**1、关于numpy API的重写**
+**1、关于 numpy API 的重写**
 
-在Paddle动态图单机训练中，所有与组网相关的 numpy 操作都必须用 paddle 的 API 重新实现 ，这一点个人认为需要注意，因为在习惯使用Pytorch代码逻辑时，转为PaddlePaddle容易出错，下面举例说明：
+在 Paddle 动态图单机训练中，所有与组网相关的 numpy 操作都必须用 paddle 的 API 重新实现 ，这一点个人认为需要注意，因为在习惯使用 PyTorch 代码逻辑时，转为 PaddlePaddle 容易出错，下面举例说明：
 
 ```python
 #下述样例需要将 forward 中的所有的 numpy 操作都转为 Paddle API：
@@ -438,11 +438,11 @@ def forward(self, x):
     return out
 ```
 
-注：由于在动态图模型代码中的 numpy 相关的操作不可以转为静态图，所以在动态图单机训练时候，只要与组网相关的 numpy 操作用 paddle 的 API 重新实现即可，所以在numpy API的重写部分，记住以上区别可以防止 Segment Fault 等错误的产生。
+注：由于在动态图模型代码中的 numpy 相关的操作不可以转为静态图，所以在动态图单机训练时候，只要与组网相关的 numpy 操作用 paddle 的 API 重新实现即可，所以在 numpy API 的重写部分，记住以上区别可以防止 Segment Fault 等错误的产生。
 
-**2、关于Tensor 操作的支持**
+**2、关于 Tensor 操作的支持**
 
-在动态图单机训练中，感觉Paddle的Tensor高度兼容Numpy数组（array），发现增加了很多适用于深度学习任务的参数和方法，如反向计算梯度，更灵活的指定运行硬件 ，还有就是Paddle的Tensor可以与Numpy的数组方便的互转 ，比如以下代码展示：
+在动态图单机训练中，感觉 Paddle 的 Tensor 高度兼容 Numpy 数组（array），发现增加了很多适用于深度学习任务的参数和方法，如反向计算梯度，更灵活的指定运行硬件 ，还有就是 Paddle 的 Tensor 可以与 Numpy 的数组方便的互转 ，比如以下代码展示：
 
 ```python
 import paddle
@@ -450,32 +450,32 @@ import numpy as np
 
 tensor_to_convert = paddle.to_tensor([1.,2.])
 
-#通过 Tensor.numpy() 方法，将 Tensor 转化为 Numpy数组
+#通过 Tensor.numpy() 方法，将 Tensor 转化为 Numpy 数组
 tensor_to_convert.numpy()
 
-#通过paddle.to_tensor() 方法，将 Numpy数组 转化为 Tensor
+#通过 paddle.to_tensor() 方法，将 Numpy 数组 转化为 Tensor
 tensor_temp = paddle.to_tensor(np.array([1.0, 2.0]))
 ```
 
-**3、numpy与tensor的转换补充**
+**3、numpy 与 tensor 的转换补充**
 
-numpy操作多样, 简单. 但网络前向只能是tensor类型, 各有优势, 所以需要相互转换补充.
+numpy 操作多样, 简单. 但网络前向只能是 tensor 类型, 各有优势, 所以需要相互转换补充.
 
 ```python
-# convert Tensor x of torch to array y of  numpy: 
+# convert Tensor x of torch to array y of  numpy:
 y = x.numpy();
- 
-# convert array x of  numpy to Tensor y of torch: 
+
+# convert array x of  numpy to Tensor y of torch:
 y = torch.from_numpy(x)
- 
-# 先将数据转换成Tensor, 再使用CUDA函数来将Tensor移动到GPU上加速
-如果想把CUDA tensor格式的数据改成numpy时，需要先将其转换成cpu float-tensor随后再转到numpy格式。
+
+# 先将数据转换成 Tensor, 再使用 CUDA 函数来将 Tensor 移动到 GPU 上加速
+如果想把 CUDA tensor 格式的数据改成 numpy 时，需要先将其转换成 cpu float-tensor 随后再转到 numpy 格式。
 x_np = x.data.numpy()
- 
+
 # 改为：
- 
+
 x_np = x.data.cpu().numpy()
- 
+
 # 或者兼容上面两者的方式
 x_np = x.detach().cpu().numpy() if x.requires_grad else x.cpu().numpy()
 
@@ -483,18 +483,18 @@ x_np = x.detach().cpu().numpy() if x.requires_grad else x.cpu().numpy()
 
 **整体体验：**
 
-感觉对于刚使用Paddle的新手，这部分需要注意的就是 Paddle的Tensor虽然可以与Numpy的数组方便的互相转换 ，但是有两个场景优先使用Paddle的Tensor 比较好:
+感觉对于刚使用 Paddle 的新手，这部分需要注意的就是 Paddle 的 Tensor 虽然可以与 Numpy 的数组方便的互相转换 ，但是有两个场景优先使用 Paddle 的 Tensor 比较好:
 
-- 场景一：在组网程序中，对网络中向量的处理，务必使用Tensor，而不建议转成Numpy的数组。如果在组网过程中转成Numpy的数组，并使用Numpy的函数会拖慢整体性能；
-- 场景二：在数据处理和模型后处理等场景，建议优先使用Tensor，主要是飞桨为AI硬件做了大量的适配和性能优化工作，部分情况下会获得更好的使用体验和性能。
+- 场景一：在组网程序中，对网络中向量的处理，务必使用 Tensor，而不建议转成 Numpy 的数组。如果在组网过程中转成 Numpy 的数组，并使用 Numpy 的函数会拖慢整体性能；
+- 场景二：在数据处理和模型后处理等场景，建议优先使用 Tensor，主要是飞桨为 AI 硬件做了大量的适配和性能优化工作，部分情况下会获得更好的使用体验和性能。
 
 建议：这两个场景内容可以增加一些实例，可能会使新手在这部分的理解更为透彻。
 
-总体来说：Tensor与Numpy数组的兼容与转换，Paddle体验更好一点，兼容性上与Pytorch感觉没区别，但是Paddle的兼容转换处理上更具有一些前瞻性。
+总体来说：Tensor 与 Numpy 数组的兼容与转换，Paddle 体验更好一点，兼容性上与 PyTorch 感觉没区别，但是 Paddle 的兼容转换处理上更具有一些前瞻性。
 
 # 六、动态图单机训练
 
-（1）使用 Pytorch 完成一个图像分类的动态图单机训练例子（MNIST数据集）
+（1）使用 PyTorch 完成一个图像分类的动态图单机训练例子（MNIST 数据集）
 
 ```python
 import torch
@@ -581,7 +581,7 @@ for t in range(epoch):
 print("Done!")
 ```
 
-（2）使用 Paddle 完成一个图像分类的动态图单机训练例子（MNIST数据集）
+（2）使用 Paddle 完成一个图像分类的动态图单机训练例子（MNIST 数据集）
 
 ```python
 import paddle
@@ -589,7 +589,7 @@ from paddle.vision.transforms import Compose, Normalize
 transform = Compose([Normalize(mean=[127.5],
                                std=[127.5],
                                data_format='CHW')])
-# 使用transform对数据集做归一化
+# 使用 transform 对数据集做归一化
 print('download training data and load training data')
 train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=transform)
 test_dataset = paddle.vision.datasets.MNIST(mode='test', transform=transform)
@@ -622,10 +622,10 @@ class LeNet(paddle.nn.Layer):
         x = F.relu(x)
         x = self.linear3(x)
         return x
-    
-#方法一 高层API
+
+#方法一 高层 API
 from paddle.metric import Accuracy
-model = paddle.Model(LeNet())   # 用Model封装模型
+model = paddle.Model(LeNet())   # 用 Model 封装模型
 optim = paddle.optimizer.Adam(learning_rate=0.001, parameters=model.parameters())
 
 # 配置模型
@@ -643,7 +643,7 @@ model.fit(train_dataset,
         )
 model.evaluate(test_dataset, batch_size=64, verbose=1)
 
-#方法2 基础API
+#方法 2 基础 API
 import paddle.nn.functional as F
 train_loader = paddle.io.DataLoader(train_dataset, batch_size=64, shuffle=True)
 # 加载训练集 batch_size 设为 64
@@ -651,7 +651,7 @@ def train(model):
     model.train()
     epochs = 2
     optim = paddle.optimizer.Adam(learning_rate=0.001, parameters=model.parameters())
-    # 用Adam作为优化函数
+    # 用 Adam 作为优化函数
     for epoch in range(epochs):
         for batch_id, data in enumerate(train_loader()):
             x_data = data[0]
@@ -687,33 +687,33 @@ test(model)
 
 （3）两个程序的运行结果
 
-一、Pytorch程序运行结果
+一、PyTorch 程序运行结果
 
 ```python
 #下载数据
 Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
 Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to ./data\MNIST\raw\train-images-idx3-ubyte.gz
-9913344it [00:03, 2813467.92it/s]                             
+9913344it [00:03, 2813467.92it/s]
 Extracting ./data\MNIST\raw\train-images-idx3-ubyte.gz to ./data\MNIST\raw
 
 Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz
 Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to ./data\MNIST\raw\train-labels-idx1-ubyte.gz
-29696it [00:00, 29740700.00it/s]         
+29696it [00:00, 29740700.00it/s]
 Extracting ./data\MNIST\raw\train-labels-idx1-ubyte.gz to ./data\MNIST\raw
 
 Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz
 Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to ./data\MNIST\raw\t10k-images-idx3-ubyte.gz
-1649664it [00:01, 1119159.12it/s]                             
+1649664it [00:01, 1119159.12it/s]
 Extracting ./data\MNIST\raw\t10k-images-idx3-ubyte.gz to ./data\MNIST\raw
 
 Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
 Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to ./data\MNIST\raw\t10k-labels-idx1-ubyte.gz
-5120it [00:00, 5302428.76it/s]          
+5120it [00:00, 5302428.76it/s]
 Extracting ./data\MNIST\raw\t10k-labels-idx1-ubyte.gz to ./data\MNIST\raw
 ```
 
 ```python
-#五次epoch结果
+#五次 epoch 结果
 Epoch 1
 ----------------------
 train_loss：2.301828587023417
@@ -746,14 +746,14 @@ test_loss：0.3223567478398482
 test_acc：0.9044666666666666
 ```
 
-二、Paddle程序运行结果
+二、Paddle 程序运行结果
 
-由于paddle文档中提供的数据集下载代码一直报错(已在报错汇总中展示)，故进行了手动下载数据集
+由于 paddle 文档中提供的数据集下载代码一直报错(已在报错汇总中展示)，故进行了手动下载数据集
 
-​	1、使用高层API结果
+​ 1、使用高层 API 结果
 
 ```python
-#附第5个epoch
+#附第 5 个 epoch
 Epoch 5/5
 step  10/938 [..............................] - loss: 0.0325 - acc: 0.9938 - ETA: 35s - 38ms/step
 step  20/938 [..............................] - loss: 0.0050 - acc: 0.9922 - ETA: 32s - 35ms/step
@@ -791,10 +791,10 @@ step 330/938 [=========>....................] - loss: 0.0060 - acc: 0.9903 - ETA
 step 340/938 [=========>....................] - loss: 0.0587 - acc: 0.9903 - ETA: 16s - 27ms/step
 step 350/938 [==========>...................] - loss: 0.0434 - acc: 0.9904 - ETA: 16s - 27ms/step
 step 360/938 [==========>...................] - loss: 6.9384e-04 - acc: 0.9904 - ETA: 15s - 27ms/step
-step 370/938 [==========>...................] - loss: 0.0134 - acc: 0.9904 - ETA: 15s - 27ms/step    
+step 370/938 [==========>...................] - loss: 0.0134 - acc: 0.9904 - ETA: 15s - 27ms/step
 step 380/938 [===========>..................] - loss: 0.0278 - acc: 0.9903 - ETA: 15s - 27ms/step
 step 390/938 [===========>..................] - loss: 5.5189e-04 - acc: 0.9902 - ETA: 14s - 27ms/step
-step 400/938 [===========>..................] - loss: 0.0023 - acc: 0.9904 - ETA: 14s - 27ms/step    
+step 400/938 [===========>..................] - loss: 0.0023 - acc: 0.9904 - ETA: 14s - 27ms/step
 step 410/938 [============>.................] - loss: 0.0105 - acc: 0.9904 - ETA: 14s - 27ms/step
 step 420/938 [============>.................] - loss: 0.0398 - acc: 0.9901 - ETA: 14s - 27ms/step
 step 430/938 [============>.................] - loss: 0.0169 - acc: 0.9902 - ETA: 13s - 27ms/step
@@ -811,7 +811,7 @@ step 530/938 [===============>..............] - loss: 0.0488 - acc: 0.9900 - ETA
 step 540/938 [================>.............] - loss: 0.0239 - acc: 0.9901 - ETA: 10s - 27ms/step
 step 550/938 [================>.............] - loss: 0.0303 - acc: 0.9900 - ETA: 10s - 27ms/step
 step 560/938 [================>.............] - loss: 0.0287 - acc: 0.9900 - ETA: 10s - 27ms/step
-step 570/938 [=================>............] - loss: 0.0375 - acc: 0.9900 - ETA: 9s - 27ms/step 
+step 570/938 [=================>............] - loss: 0.0375 - acc: 0.9900 - ETA: 9s - 27ms/step
 step 580/938 [=================>............] - loss: 0.0197 - acc: 0.9900 - ETA: 9s - 27ms/step
 step 590/938 [=================>............] - loss: 0.0265 - acc: 0.9900 - ETA: 9s - 27ms/step
 step 600/938 [==================>...........] - loss: 0.0615 - acc: 0.9901 - ETA: 9s - 27ms/step
@@ -819,7 +819,7 @@ step 610/938 [==================>...........] - loss: 0.0036 - acc: 0.9901 - ETA
 step 620/938 [==================>...........] - loss: 0.0079 - acc: 0.9900 - ETA: 8s - 27ms/step
 step 630/938 [===================>..........] - loss: 0.0071 - acc: 0.9901 - ETA: 8s - 27ms/step
 step 640/938 [===================>..........] - loss: 6.9407e-04 - acc: 0.9902 - ETA: 8s - 27ms/step
-step 650/938 [===================>..........] - loss: 0.0024 - acc: 0.9902 - ETA: 7s - 27ms/step    
+step 650/938 [===================>..........] - loss: 0.0024 - acc: 0.9902 - ETA: 7s - 27ms/step
 step 660/938 [====================>.........] - loss: 0.0016 - acc: 0.9902 - ETA: 7s - 27ms/step
 step 670/938 [====================>.........] - loss: 0.0069 - acc: 0.9901 - ETA: 7s - 27ms/step
 step 680/938 [====================>.........] - loss: 0.0023 - acc: 0.9901 - ETA: 6s - 27ms/step
@@ -848,7 +848,7 @@ step 900/938 [===========================>..] - loss: 0.0187 - acc: 0.9897 - ETA
 step 910/938 [============================>.] - loss: 0.0925 - acc: 0.9897 - ETA: 0s - 27ms/step
 step 920/938 [============================>.] - loss: 0.0317 - acc: 0.9898 - ETA: 0s - 27ms/step
 step 930/938 [============================>.] - loss: 0.0448 - acc: 0.9898 - ETA: 0s - 27ms/step
-step 938/938 [==============================] - loss: 0.0140 - acc: 0.9897 - 27ms/step          
+step 938/938 [==============================] - loss: 0.0140 - acc: 0.9897 - 27ms/step
 Eval begin...
 step  10/157 [>.............................] - loss: 0.2273 - acc: 0.9828 - ETA: 1s - 12ms/step
 step  20/157 [==>...........................] - loss: 0.1525 - acc: 0.9773 - ETA: 1s - 11ms/step
@@ -862,17 +862,17 @@ step  90/157 [================>.............] - loss: 0.0439 - acc: 0.9814 - ETA
 step 100/157 [==================>...........] - loss: 0.0033 - acc: 0.9828 - ETA: 0s - 10ms/step
 step 110/157 [====================>.........] - loss: 3.9403e-04 - acc: 0.9837 - ETA: 0s - 10ms/step
 step 120/157 [=====================>........] - loss: 6.5309e-04 - acc: 0.9846 - ETA: 0s - 10ms/step
-step 130/157 [=======================>......] - loss: 0.0735 - acc: 0.9849 - ETA: 0s - 10ms/step    
+step 130/157 [=======================>......] - loss: 0.0735 - acc: 0.9849 - ETA: 0s - 10ms/step
 step 140/157 [=========================>....] - loss: 9.8257e-05 - acc: 0.9856 - ETA: 0s - 10ms/step
-step 150/157 [===========================>..] - loss: 0.0412 - acc: 0.9859 - ETA: 0s - 10ms/step    
-step 157/157 [==============================] - loss: 2.9252e-04 - acc: 0.9860 - 10ms/step      
+step 150/157 [===========================>..] - loss: 0.0412 - acc: 0.9859 - ETA: 0s - 10ms/step
+step 157/157 [==============================] - loss: 2.9252e-04 - acc: 0.9860 - 10ms/step
 Eval samples: 10000
 ```
 
-​	2、使用基础API结果
+​ 2、使用基础 API 结果
 
 ```python
-#附5次epoch
+#附 5 次 epoch
 epoch: 0, batch_id: 0, loss is: [2.9994564], acc is: [0.0625]
 epoch: 0, batch_id: 300, loss is: [0.08384503], acc is: [0.96875]
 epoch: 0, batch_id: 600, loss is: [0.06951822], acc is: [0.984375]
@@ -905,44 +905,44 @@ batch_id: 140, loss is: [0.07646853], acc is: [0.984375]
 Process finished with exit code 0
 ```
 
-这部分简单说就是Paddle的高层API比基础API运行速度快，且简单好用，体验感较好。
+这部分简单说就是 Paddle 的高层 API 比基础 API 运行速度快，且简单好用，体验感较好。
 
-与Pytorch相比，Paddle文档中提供的代码下载不了数据集，需要手动下载。
+与 PyTorch 相比，Paddle 文档中提供的代码下载不了数据集，需要手动下载。
 
 # 七、各种 trick 的用法
 
-PaddlePaddle有丰富的api可以实现各种调参trick，像dropout，batchnormalization，groupnormalization，l2regularization, lr decay等等都可以很轻松地实现。
-另外数据增强则推荐使用PIL库，尝试各种技巧不一定每次都能让模型准确度提升，毕竟训练神经网络是一个多参数配合的过程，只有练得多了才更容易找到最佳的方向。
+PaddlePaddle 有丰富的 api 可以实现各种调参 trick，像 dropout，batchnormalization，groupnormalization，l2regularization, lr decay 等等都可以很轻松地实现。
+另外数据增强则推荐使用 PIL 库，尝试各种技巧不一定每次都能让模型准确度提升，毕竟训练神经网络是一个多参数配合的过程，只有练得多了才更容易找到最佳的方向。
 根据查阅资料，现总结以下几点：
-1、 cuDNN操作的选择
-在 use_cudnn=True 时，框架底层调用的是cuDNN中的卷积操作。
-通常cuDNN库提供的操作具有很好的性能表现，其性能明显优于Paddle原生的CUDA实现，比如 conv2d 。
-但是cuDNN中有些操作的性能较差，比如： conv2d_transpose 在 batch_size=1 时、pool2d 在 global_pooling=True 时等，
-这些情况下，cuDNN实现的性能差于Paddle的CUDA实现，建议手动设置 use_cudnn=False 。
+1、 cuDNN 操作的选择
+在 use_cudnn=True 时，框架底层调用的是 cuDNN 中的卷积操作。
+通常 cuDNN 库提供的操作具有很好的性能表现，其性能明显优于 Paddle 原生的 CUDA 实现，比如 conv2d 。
+但是 cuDNN 中有些操作的性能较差，比如： conv2d_transpose 在 batch_size=1 时、pool2d 在 global_pooling=True 时等，
+这些情况下，cuDNN 实现的性能差于 Paddle 的 CUDA 实现，建议手动设置 use_cudnn=False 。
 
-2、使用融合功能的API
-用户网络配置中使用融合功能的API，通常能取得更好的计算性能。
-例如softmax_with_cross_entropy通常会比softmax cross_entropy分开用好
+2、使用融合功能的 API
+用户网络配置中使用融合功能的 API，通常能取得更好的计算性能。
+例如 softmax_with_cross_entropy 通常会比 softmax cross_entropy 分开用好
 
 3、优化数据准备速度的方法
 为降低训练的整体时间，建议用户使用异步数据读取的方式，并开启 use_double_buffer（默认开）。此外，用户可根据模型的实际情况设置数据队列的大小（capacity）。
-如果数据准备的时间大于模型执行的时间，或者出现了数据队列为空的情况，这时候需要考虑对Python的用户reader进行加速。常用的方法为：使用Python多进程准备数据。
-Python端的数据预处理，都是使用CPU完成。如果Paddle提供了相应功能的API，可将这部分预处理功能写到模型配置中，如此Paddle就可以使用GPU来完成该预处理功能，
-这样也可以减轻CPU预处理数据的负担，提升总体训练速度。
+如果数据准备的时间大于模型执行的时间，或者出现了数据队列为空的情况，这时候需要考虑对 Python 的用户 reader 进行加速。常用的方法为：使用 Python 多进程准备数据。
+Python 端的数据预处理，都是使用 CPU 完成。如果 Paddle 提供了相应功能的 API，可将这部分预处理功能写到模型配置中，如此 Paddle 就可以使用 GPU 来完成该预处理功能，
+这样也可以减轻 CPU 预处理数据的负担，提升总体训练速度。
 
 4、显存优化策略
-GC（Garbage Collection）的原理是在网络运行阶段及时释放无用变量的显存空间，达到节省显存的目的。GC适用于使用Executor，ParallelExecutor做模型训练/预测的场合。
-由于原生的CUDA系统调用 cudaMalloc 和 cudaFree 均是同步操作，非常耗时。因此与许多框架类似，PaddlePaddle采用了显存预分配的策略加速显存分配。
+GC（Garbage Collection）的原理是在网络运行阶段及时释放无用变量的显存空间，达到节省显存的目的。GC 适用于使用 Executor，ParallelExecutor 做模型训练/预测的场合。
+由于原生的 CUDA 系统调用 cudaMalloc 和 cudaFree 均是同步操作，非常耗时。因此与许多框架类似，PaddlePaddle 采用了显存预分配的策略加速显存分配。
 
-5、Inplace策略
-原理是Op的输出复用Op输入的显存空间。
-由于目前设计上的一些问题，在开启Inplace策略后，必须保证后续exe.run中fetch_list的变量是persistable的。
-fetch_list：结果获取表，训练时一般有loss等。
+5、Inplace 策略
+原理是 Op 的输出复用 Op 输入的显存空间。
+由于目前设计上的一些问题，在开启 Inplace 策略后，必须保证后续 exe.run 中 fetch_list 的变量是 persistable 的。
+fetch_list：结果获取表，训练时一般有 loss 等。
 推荐的最佳显存优化策略为：
-开启Inplace策略：设置 build_strategy.enable_inplace = True ，并设置fetch_list中的 var.persistable = True 。
+开启 Inplace 策略：设置 build_strategy.enable_inplace = True ，并设置 fetch_list 中的 var.persistable = True 。
 
-PaddlePaddle在深度学习框架方面，已经覆盖了搜索、图像识别、语音语义识别理解、情感分析、机器翻译、用户画像推荐等多领域的业务和技术。
-基于动态图实现的AlexNet代码如下:
+PaddlePaddle 在深度学习框架方面，已经覆盖了搜索、图像识别、语音语义识别理解、情感分析、机器翻译、用户画像推荐等多领域的业务和技术。
+基于动态图实现的 AlexNet 代码如下:
 
 ```python
 class ConvPoolLayer(nn.Layer):
@@ -981,18 +981,18 @@ class ConvPoolLayer(nn.Layer):
         return x
 ```
 
-PaddlePaddle搭建cnn网络以及进行模型训练预测，可以说PaddlePaddle搭建训练pipeline还是比较方便的。
+PaddlePaddle 搭建 cnn 网络以及进行模型训练预测，可以说 PaddlePaddle 搭建训练 pipeline 还是比较方便的。
 
 # 八、报错汇总
 
-1、 DataLoader报错问题 ：
+1、 DataLoader 报错问题 ：
 
 ```python
 SystemError: (Fatal) Blocking queue is killed because the data reader raises an exception.
 [Hint: Expected killed_ != true, but received killed_:1 == true:1.] (at /paddle/paddle/fluid/operators/reader/blocking_queue.h:158)
 ```
 
-原因分析：由于PaddlePaddle和Pytorch两个框架在这部分并无区别，Paddle读取数据在这主要用到两个类：paddle.io.Dataset和paddle.io.DataLoader，所以查看源代码后发现在Dataset类中的__getitem__(self, idx)返回的数据不是numpy.ndarray类型
+原因分析：由于 PaddlePaddle 和 PyTorch 两个框架在这部分并无区别，Paddle 读取数据在这主要用到两个类：paddle.io.Dataset 和 paddle.io.DataLoader，所以查看源代码后发现在 Dataset 类中的__getitem__(self, idx)返回的数据不是 numpy.ndarray 类型
 
 解决方案：
 
@@ -1014,7 +1014,7 @@ class RandomDataset(Dataset):
         return self.num_samples
 ```
 
-注：还有一种情况是Dataset类的__getitem__(self, idx)返回的数据为字典（Dict） 类型也会报同样的错误，这时可把return改为return {'input': image, 'lb': label}
+注：还有一种情况是 Dataset 类的__getitem__(self, idx)返回的数据为字典（Dict） 类型也会报同样的错误，这时可把 return 改为 return {'input': image, 'lb': label}
 
 
 
@@ -1031,13 +1031,13 @@ SystemError: (Fatal) Blocking queue is killed because the data reader raises an 
 [Hint: Expected killed != true, but received killed_:1 == true:1.] (at /paddle/paddle/fluid/operators/reader/blocking_queue.h:158)
 ```
 
-解决方案：由于自己数据集中有部分图片超过了默认shape的[3, 32, 320]，图片宽度大于了320，所以直接删除或调大shape尺寸即可
+解决方案：由于自己数据集中有部分图片超过了默认 shape 的[3, 32, 320]，图片宽度大于了 320，所以直接删除或调大 shape 尺寸即可
 
 注:使用公开数据集时不会出现此问题
 
 
 
-3、使用paddle.reshape时出现错误
+3、使用 paddle.reshape 时出现错误
 
 ```python
 ValueError: (InvalidArgument) The 'shape' in ReshapeOp is invalid. The input tensor X'size must be equal to the capacity of 'shape'. But received X's shape = [64, 50, 4, 4], X's size = 51200, 'shape' is [1, 800], the capacity of 'shape' is 800.
@@ -1045,18 +1045,18 @@ ValueError: (InvalidArgument) The 'shape' in ReshapeOp is invalid. The input ten
   [operator < reshape2 > error]
 ```
 
-解决方案：在使用forward函数实现MNIST网络的执行逻辑时，忽略了self.pool_2_shape变量的大小，重新设置paddle.reshape为x = paddle.reshape(x, shape=[-1, self.pool_2_shape])即可
+解决方案：在使用 forward 函数实现 MNIST 网络的执行逻辑时，忽略了 self.pool_2_shape 变量的大小，重新设置 paddle.reshape 为 x = paddle.reshape(x, shape=[-1, self.pool_2_shape])即可
 
 
 
-4、tensor的值不能直接利用
+4、tensor 的值不能直接利用
 
-报错：paddlepaddle中的value不能直接拿出来用。
+报错：paddlepaddle 中的 value 不能直接拿出来用。
 
 ```python
 TypeError: The type of 'shape' in reshape must be list[int] or tuple(int) in
  Dygraph mode, but received <class 'list'>, which contains Variable.
-#错误代码：其中stack_size, feat_size 为 tensor。
+#错误代码：其中 stack_size, feat_size 为 tensor。
 
 #改进加入
 # paddlepaddle code
@@ -1066,7 +1066,7 @@ feat_size = feat_size.numpy()
 
 
 
-5、Paddle加载数据集报错，无法下载MNIST数据集，需要手动进行下载，（使用了多台电脑测试，均会出现此情况）
+5、Paddle 加载数据集报错，无法下载 MNIST 数据集，需要手动进行下载，（使用了多台电脑测试，均会出现此情况）
 
 ```python
 File "E:\anaconda\lib\site-packages\paddle\vision\datasets\mnist.py", line 98, in __init__
@@ -1088,8 +1088,8 @@ File "E:\anaconda\lib\site-packages\paddle\vision\datasets\cifar.py", line 122, 
 RuntimeError: Cannot download https://dataset.bj.bcebos.com/cifar/cifar-10-python.tar.gz within retry limit 3
 ```
 
-按照文档提供的'DatasetFolder', 'ImageFolder', 'MNIST', 'FashionMNIST', 'Flowers', 'Cifar10',多种数据集进行了下载测试，均无法在单机上加载数据集，需要手动下载数据集。 
+按照文档提供的'DatasetFolder', 'ImageFolder', 'MNIST', 'FashionMNIST', 'Flowers', 'Cifar10',多种数据集进行了下载测试，均无法在单机上加载数据集，需要手动下载数据集。
 
- 且数据集的保存地址为一个缓存空间，用户在使用的时候可能找不到数据集，如/public/home/username/.cache/paddle/dataset目录。 
+ 且数据集的保存地址为一个缓存空间，用户在使用的时候可能找不到数据集，如/public/home/username/.cache/paddle/dataset 目录。
 
- 而pytorch的加载数据集API会把数据集加载到当前目录，这一点的体验要优于Paddle。 
+ 而 pytorch 的加载数据集 API 会把数据集加载到当前目录，这一点的体验要优于 Paddle。

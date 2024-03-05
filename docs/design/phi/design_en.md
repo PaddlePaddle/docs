@@ -1438,11 +1438,11 @@ Specifically, before calling `OpKernel` for dynamic and static graphs, judge the
               pt_kernel_name, pt_kernel_key)));
 
       if (pt_kernel_->IsValid()) {
-        VLOG(6) << "Static mode ChoosePhiKernel - kernel name: "
+        VLOG(6) << "Static graph mode ChoosePhiKernel - kernel name: "
                 << pt_kernel_name << " | kernel key: " << pt_kernel_key
                 << " | kernel: " << *pt_kernel_;
       } else {
-        VLOG(6) << "Static mode ChoosePhiKernel - kernel `" << pt_kernel_name
+        VLOG(6) << "Static graph mode ChoosePhiKernel - kernel `" << pt_kernel_name
                 << "` not found.";
       }
     }
@@ -1470,7 +1470,7 @@ Specifically, before calling `OpKernel` for dynamic and static graphs, judge the
 
         dev_ctx = pool.Get(platform::CPUPlace());
         if (pt_kernel_->IsValid()) {
-          VLOG(6) << "Static mode PrepareImpl - kernel name: " << pt_kernel_name
+          VLOG(6) << "Static graph mode PrepareImpl - kernel name: " << pt_kernel_name
                   << " | kernel key: " << pt_cpu_kernel_key
                   << " | kernel: " << *pt_kernel_;
           run_phi_kernel_ = true;

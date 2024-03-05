@@ -1,10 +1,9 @@
 #!/bin/bash
-
 export DIR_PATH=${PWD}
 
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
-
+set +x
 # 1 decide PADDLE_WHL if not setted.
 if [ -z "${PADDLE_WHL}" ] ; then
     docs_pr_info=$(get_repo_pr_info "PaddlePaddle/docs" ${GIT_PR_ID})
@@ -12,7 +11,7 @@ if [ -z "${PADDLE_WHL}" ] ; then
     if [ -n "${paddle_pr_id}" ] ; then
         paddle_pr_info=$(get_repo_pr_info "PaddlePaddle/Paddle" ${paddle_pr_id})
         paddle_pr_latest_commit=$(get_latest_commit_from_pr_info ${paddle_pr_info})
-        paddle_whl_tmp="https://xly-devops.bj.bcebos.com/PR/build_whl/${paddle_pr_id}/${paddle_pr_latest_commit}/paddlepaddle_gpu-0.0.0-cp37-cp37m-linux_x86_64.whl"
+        paddle_whl_tmp="https://xly-devops.bj.bcebos.com/PR/build_whl/${paddle_pr_id}/${paddle_pr_latest_commit}/paddlepaddle_gpu-0.0.0-cp310-cp310-linux_x86_64.whl"
         http_code=$(curl -sIL -w "%{http_code}" -o /dev/null -X GET -k ${paddle_whl_tmp})
         if [ "${http_code}" = "200" ] ; then
             PADDLE_WHL=${paddle_whl_tmp}
@@ -22,9 +21,11 @@ if [ -z "${PADDLE_WHL}" ] ; then
     fi
     if [ -z "${PADDLE_WHL}" ] ; then
         # as there are two pipelines now, only change the test pipeline's version to py3.7
-        PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/develop/linux/cpu-mkl/paddlepaddle-0.0.0-cp37-cp37m-linux_x86_64.whl
-        if [ ${BRANCH} = 'release/2.3' ] ; then
-            PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0-cp37-cp37m-linux_x86_64.whl
+        PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/develop/linux/linux-cpu-mkl-avx/paddlepaddle-0.0.0-cp310-cp310-linux_x86_64.whl
+        if [ ${BRANCH} = 'release/2.4' ] ; then
+            PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/2.4.1/linux/linux-cpu-mkl-avx/paddlepaddle-2.4.1-cp37-cp37m-linux_x86_64.whl
+        elif [ ${BRANCH} = 'release/2.3' ] ; then
+            PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/2.3.2/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.2-cp37-cp37m-linux_x86_64.whl
         elif [ ${BRANCH} = 'release/2.2' ] ; then
             PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/2.2.2/linux/linux-cpu-mkl-avx/paddlepaddle-2.2.2-cp37-cp37m-linux_x86_64.whl
         elif [ ${BRANCH} = 'release/2.1' ] ; then
@@ -34,6 +35,7 @@ if [ -z "${PADDLE_WHL}" ] ; then
 fi
 export PADDLE_WHL
 echo "PADDLE_WHL=${PADDLE_WHL}"
+set -x
 
 # 2 build all the Chinese and English docs, and upload them. Controlled with Env BUILD_DOC and UPLOAD_DOC
 PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: None"
@@ -44,7 +46,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     if [ $? -ne 0 ];then
         exit 1
     fi
-    
+
     is_shell_attribute_set x
     xdebug_setted=$?
     if [ $xdebug_setted ] ; then
@@ -101,11 +103,13 @@ fi
 
 EXIT_CODE=0
 # 3 check code style/format.
-/bin/bash  ${DIR_PATH}/check_code.sh
+ls ${DIR_PATH}
+/bin/bash -x  ${DIR_PATH}/check_code.sh
 if [ $? -ne 0 ];then
     EXIT_CODE=1
 fi
 
+git merge --no-edit upstream/${BRANCH}
 need_check_cn_doc_files=$(find_all_cn_api_files_modified_by_pr)
 echo $need_check_cn_doc_files
 # 4 Chinese api docs check
@@ -114,8 +118,24 @@ if [ "${need_check_cn_doc_files}" = "" ] ; then
 else
     /bin/bash -x ${DIR_PATH}/check_api_cn.sh "${need_check_cn_doc_files}"
     if [ $? -ne 0 ];then
+        set +x
+        echo "************************************************************************************"
+        echo "ERROR: Exist COPY-FROM has not been parsed into sample code, please check COPY-FROM in the above files"
+        echo "************************************************************************************"
+        set -x
         EXIT_CODE=1
     fi
+fi
+
+# 5 Chinese api_label check
+/bin/bash -x ${DIR_PATH}/check_api_label_cn.sh
+if [ $? -ne 0 ];then
+    set +x
+    echo "************************************************************************************"
+    echo "ERROR: api_label is not correct, please check api_label in the above files"
+    echo "************************************************************************************"
+    set -x
+    EXIT_CODE=1
 fi
 
 if [ ${EXIT_CODE} -ne 0 ]; then
@@ -127,7 +147,7 @@ if [ ${EXIT_CODE} -ne 0 ]; then
     exit ${EXIT_CODE}
 fi
 
-# 5 Approval check
+# 6 Approval check
 /bin/bash  ${DIR_PATH}/checkapproval.sh
 if [ $? -ne 0 ];then
     exit 1

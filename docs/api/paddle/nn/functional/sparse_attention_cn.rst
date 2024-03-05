@@ -1,4 +1,5 @@
-.. _cn_api_sparse_attention:
+.. _cn_api_paddle_nn_functional_sparse_attention:
+
 sparse_attention
 -------------------------------
 

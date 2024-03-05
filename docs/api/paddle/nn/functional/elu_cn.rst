@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_elu:
+.. _cn_api_paddle_nn_functional_elu:
 
 elu
 -------------------------------
@@ -19,7 +19,7 @@ elu 激活层（ELU Activation Operator）
             \end{array}
         \right.
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::::

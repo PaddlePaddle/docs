@@ -1,4 +1,4 @@
-.. _cn_api_nn_LeakyReLU:
+.. _cn_api_paddle_nn_LeakyReLU:
 
 LeakyReLU
 -------------------------------
@@ -16,7 +16,7 @@ LeakyReLU 激活层，创建一个可调用对象以计算输入 `x` 的 `LeakRe
         \end{aligned}
         \right. \\
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::

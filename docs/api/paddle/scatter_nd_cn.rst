@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_scatter_nd:
+.. _cn_api_paddle_scatter_nd:
 
 scatter_nd
 -------------------------------
@@ -13,7 +13,7 @@ scatter_nd
 参数
 ::::::::::::
 
-    - **index** (Tensor) - 输入的索引 Tensor，数据类型为非负 int32 或非负 int64。它的维度 :code:`index.ndim` 必须大于 1，并且 :code:`index.shape[-1] <= len(shape)`
+    - **index** (Tensor) - 输入的索引 Tensor，数据类型为非负 int32 或非负 int64。它的维度 :code:`index.ndim` 必须大于等于 1，并且 :code:`index.shape[-1] <= len(shape)`
     - **updates** (Tensor) - 输入的更新 Tensor。形状必须是 :code:`index.shape[:-1] + shape[index.shape[-1]:]`。数据类型可以是 float32，float64。
     - **shape** (tuple|list) - 要求输出 Tensor 的形状。类型是 tuple 或者 list。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

@@ -126,5 +126,5 @@ tensor_bias[0] = 10
 
 更多介绍请参考以下 API 文档：
 
-- [paddle.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/framework/io/save_cn.html)
-- [paddle.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/framework/io/load_cn.html)
+- [paddle.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/save_cn.html#save)
+- [paddle.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/load_cn.html#load)

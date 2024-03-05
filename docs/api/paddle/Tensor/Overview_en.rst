@@ -1,4 +1,3 @@
-
 .. _en_paddle_Tensor:
 
 paddle.Tensor
@@ -253,6 +252,7 @@ Methods
     tanh
     tanh_
     tile
+    to
     tolist
     topk
     trace
@@ -273,3 +273,10 @@ Methods
     is_complex
     is_integer
     frexp
+    trapezoid
+    cumulative_trapezoid
+    vander
+    hypot
+    hypot_
+    diagonal_scatter
+    combinations

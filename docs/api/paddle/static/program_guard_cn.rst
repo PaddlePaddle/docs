@@ -1,4 +1,4 @@
-.. _cn_api_fluid_program_guard:
+.. _cn_api_paddle_static_program_guard:
 
 program_guard
 -------------------------------
@@ -22,28 +22,11 @@ program_guard
 代码示例 1
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    paddle.enable_static()
-    main_program = paddle.static.Program()
-    startup_program = paddle.static.Program()
-    with paddle.static.program_guard(main_program, startup_program):
-        data = paddle.static.data(name='image', shape=[None, 784, 784], dtype='float32')
-        hidden = paddle.static.nn.fc(x=data, size=10, activation='relu')
+COPY-FROM: paddle.static.program_guard:code-example-1
 
 例如，当组的网不需要 startup_program 初始化各变量时，可以传入一个临时的 program。
 
 代码示例 2
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    paddle.enable_static()
-    main_program = paddle.static.Program()
-    # does not care about startup program. Just pass a temporary value.
-    with paddle.static.program_guard(main_program, paddle.static.Program()):
-        data = paddle.static.data(name='image', shape=[None, 784, 784], dtype='float32')
+COPY-FROM: paddle.static.program_guard:code-example-2

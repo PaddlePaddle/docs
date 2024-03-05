@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_softmax_with_cross_entropy:
+.. _cn_api_paddle_nn_functional_softmax_with_cross_entropy:
 
 softmax_with_cross_entropy
 -------------------------------

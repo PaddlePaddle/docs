@@ -1,5 +1,4 @@
-.. _cn_api_device_cuda_max_memory_reserved_cn:
-
+.. _cn_api_paddle_device_cuda_max_memory_reserved:
 
 max_memory_reserved
 -------------------------------

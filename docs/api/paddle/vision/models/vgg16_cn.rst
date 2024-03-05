@@ -18,7 +18,7 @@ vgg16
 返回
 :::::::::
 
-:ref:`cn_api_fluid_dygraph_Layer`，16 层的 VGG 模型实例。
+:ref:`cn_api_paddle_nn_Layer`，16 层的 VGG 模型实例。
 
 代码示例
 :::::::::

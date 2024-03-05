@@ -1,4 +1,4 @@
-.. _cn_api_distribution_Normal:
+.. _cn_api_paddle_distribution_LogNormal:
 
 LogNormal
 -------------------------------

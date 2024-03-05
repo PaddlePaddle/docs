@@ -1,4 +1,4 @@
-.. _cn_api_tensor_rot90:
+.. _cn_api_paddle_rot90:
 
 rot90
 -------------------------------

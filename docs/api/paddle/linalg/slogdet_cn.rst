@@ -1,4 +1,4 @@
-.. _cn_api_linalg_slogdet:
+.. _cn_api_paddle_linalg_slogdet:
 
 slogdet
 -------------------------------

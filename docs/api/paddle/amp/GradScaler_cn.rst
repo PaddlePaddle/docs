@@ -1,4 +1,4 @@
-.. _cn_api_amp_GradScaler:
+.. _cn_api_paddle_amp_GradScaler:
 
 GradScaler
 -------------------------------

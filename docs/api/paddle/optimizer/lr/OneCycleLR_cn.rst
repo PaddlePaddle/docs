@@ -3,7 +3,7 @@
 OneCycleLR
 -----------------------------------
 
-.. py:class:: paddle.optimizer.lr.OneCycleLR(max_learning_rate, total_steps, divide_factor=25., end_learning_rate=0.0001, phase_pct=0.3, anneal_strategy='cos', three_phase=False, last_epoch=-1, verbose=False):
+.. py:class:: paddle.optimizer.lr.OneCycleLR(max_learning_rate, total_steps, divide_factor=25., end_learning_rate=0.0001, phase_pct=0.3, anneal_strategy='cos', three_phase=False, last_epoch=-1, verbose=False)
 
 使用 ``one cycle`` 策略来动态调整学习率。
 

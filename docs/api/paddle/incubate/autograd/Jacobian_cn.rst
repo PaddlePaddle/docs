@@ -12,7 +12,7 @@ Jacobian
 
 在计算雅可比矩阵时，输入 Tensor batch 维外的其它维度会被展平，且当输入为 Tensor 序列时，
 所有展平后的 Tensor 会被拼接成一个新的 Tensor。输出按照同样规则进行处理。因此，``Jacobian`` 最终
-的输出为一个二维(不包含 batch)或三维(包含 batch，第零维为 batch)的 Tensor。
+的输出为一个二维（不包含 batch）或三维（包含 batch，第零维为 batch）的 Tensor。
 
 例如，假设 ``is_batched=True``，输入 Tensor 经过展平并拼接后的形状为 ``(B, M)``，输出
 Tensor 经过展平并拼接后的形状为 ``(B, N)``，则最终输出雅可比矩阵形状为 ``(B, M, N)`` 。
@@ -39,7 +39,7 @@ Tensor 经过展平并拼接后的形状为 ``(B, N)``，则最终输出雅可�
 :::::::::
 
 - **func** (Callable) - Python 函数，输入参数为 ``xs``，输出为 Tensor 或 Tensor 序列。
-- **xs** (Tensor|Sequence[Tensor]） - 函数 ``func`` 的输入参数，数据类型为 Tensor 或
+- **xs** (Tensor|Sequence[Tensor]) - 函数 ``func`` 的输入参数，数据类型为 Tensor 或
   Tensor 序列。
 - **is_batched** (bool) - ``True`` 表示包含 batch 维，且默认第零维为 batch 维，``False``
   表示不包含 batch。默认值为 ``False`` 。

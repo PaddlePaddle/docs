@@ -274,7 +274,7 @@ add_definitions(-DPADDLE_WITH_MKLDNN)  # for out MKLDNN compiling
 
 ############ 编译插件
 add_library(${PLUGIN_NAME} SHARED runtime.cc add_kernel.cc)
-target_link_libraries(${PLUGIN_NAME} PRIVATE :core_avx.so)  # special name
+target_link_libraries(${PLUGIN_NAME} PRIVATE :libpaddle.so)  # special name
 
 ############ 打包插件
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/setup.py.in
@@ -397,7 +397,7 @@ ext_modules = [Extension(name='paddle-plugins.libpaddle_custom_cpu',
                          sources=['runtime.cc', 'add_kernel.cc'],
                          include_dirs=include_dirs,
                          library_dirs=['/path/to/site-packages/paddle/fluid/'],
-                         libraries=[':core_avx.so'],
+                         libraries=[':libpaddle.so'],
                          extra_compile_args=extra_compile_args)]
 
 setup(

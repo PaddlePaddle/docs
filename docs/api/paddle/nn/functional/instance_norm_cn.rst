@@ -1,13 +1,11 @@
-.. _cn_api_nn_functional_instance_norm:
+.. _cn_api_paddle_nn_functional_instance_norm:
 
 instance_norm
 -------------------------------
 
-.. py:class:: paddle.nn.functional.instance_norm(x, running_mean=None, running_var=None, weight=None, bias=None, use_input_stats=True, momentum=0.9, eps=1e-05, data_format='NCHW', name=None):
+.. py:class:: paddle.nn.functional.instance_norm(x, running_mean=None, running_var=None, weight=None, bias=None, use_input_stats=True, momentum=0.9, eps=1e-05, data_format='NCHW', name=None)
 
-推荐使用 nn.InstanceNorm1D，nn.InstanceNorm2D，nn.InstanceNorm3D，由内部调用此方法。
-
-详情见 :ref:`cn_api_nn_InstanceNorm1D` 。
+推荐使用 :ref:`cn_api_paddle_nn_InstanceNorm1D`，:ref:`cn_api_paddle_nn_InstanceNorm2D`，:ref:`cn_api_paddle_nn_InstanceNorm3D`，由内部调用此方法。
 
 参数
 ::::::::::::

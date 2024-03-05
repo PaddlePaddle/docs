@@ -1,5 +1,4 @@
-.. _cn_api_nn_AdaptiveMaxPool3D:
-
+.. _cn_api_paddle_nn_AdaptiveMaxPool3D:
 
 AdaptiveMaxPool3D
 -------------------------------

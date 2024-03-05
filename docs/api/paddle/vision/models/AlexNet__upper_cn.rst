@@ -1,4 +1,4 @@
-.. _cn_api_paddle_vision_models_AlexNet:
+.. _cn_api_paddle_vision_models_AlexNet__upper:
 
 AlexNet
 -------------------------------
@@ -16,7 +16,7 @@ AlexNet 模型，来自论文 `"ImageNet Classification with Deep Convolutional 
 返回
 :::::::::
 
-:ref:`cn_api_fluid_dygraph_Layer`，AlexNet 模型实例。
+:ref:`cn_api_paddle_nn_Layer`，AlexNet 模型实例。
 
 代码示例
 :::::::::

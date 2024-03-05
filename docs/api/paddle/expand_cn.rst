@@ -1,4 +1,4 @@
-.. _cn_api_tensor_expand:
+.. _cn_api_paddle_expand:
 
 expand
 -------------------------------
@@ -17,7 +17,7 @@ expand
 
 返回
 :::::::::
-``Tensor``，数据类型与 ``x`` 相同。
+``N-D Tensor``，数据类型与 ``x`` 相同。
 
 代码示例
 :::::::::

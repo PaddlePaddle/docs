@@ -1,9 +1,9 @@
-.. _cn_api_paddle_nn_SoftMarginloss:
+.. _cn_api_paddle_nn_SoftMarginLoss:
 
-SoftMarginloss
+SoftMarginLoss
 -------------------------------
 
-.. py:class:: paddle.nn.SoftMarginloss((reduction='mean', name=None)
+.. py:class:: paddle.nn.SoftMarginLoss(reduction='mean', name=None)
 
 生成一个可以计算输入 `input` 和 `label` 间的二分类损失的类。
 
@@ -26,7 +26,7 @@ SoftMarginloss
 :::::::::
     - **input** (Tensor) - :math:`[N, *]` , 其中 N 是 batch_size， `*` 是任意其他维度。数据类型是 float32、float64。
     - **label** (Tensor) - :math:`[N, *]` ，标签 ``label`` 的维度、数据类型与输入 ``input`` 相同。
-    - **output** (Tensor) - 输出的 Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]`，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[1]` 。
+    - **output** (Tensor) - 输出的 Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]`，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[]` 。
 
 返回
 :::::::::

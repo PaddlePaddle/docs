@@ -1,4 +1,4 @@
-.. _cn_api_fluid_contrib_layers_sparse_embedding:
+.. _cn_api_paddle_static_nn_sparse_embedding:
 
 sparse_embedding
 -------------------------------
@@ -39,14 +39,14 @@ input 中的 id 必须满足 ``0 =< id < size[0]``，否则程序会抛异常退
 
     Case 2:
 
-    input 是 lod level 为 1 的 LoDTensor，且 padding_idx = 0
+    input 是 lod level 为 1 的 Tensor，且 padding_idx = 0
         input.lod = [[2, 3]]
         input.data = [[1], [3], [2], [4], [0]]
         input.shape = [5, 1]
 
     若 size = [128, 16]
 
-    输出为 LoDTensor:
+    输出为 Tensor:
         out.lod = [[2, 3]]
         out.shape = [5, 1, 16]
         out.data = [[[0.129435295, 0.244512452, ..., 0.436322452]],

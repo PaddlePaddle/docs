@@ -1,11 +1,11 @@
-.. _cn_api_fluid_BuildStrategy:
+.. _cn_api_paddle_static_BuildStrategy:
 
 BuildStrategy
 -------------------------------
 
 .. py:class:: paddle.static.BuildStrategy
 
-``BuildStrategy`` 使用户更方便地控制 :ref:`cn_api_fluid_ParallelExecutor` 中计算图的建造方法，可通过设置 ``ParallelExecutor`` 中的 ``BuildStrategy`` 成员来实现此功能。
+``BuildStrategy`` 使用户更方便地控制 ``ParallelExecutor`` 中计算图的建造方法，可通过设置 ``ParallelExecutor`` 中的 ``BuildStrategy`` 成员来实现此功能。
 
 返回
 :::::::::

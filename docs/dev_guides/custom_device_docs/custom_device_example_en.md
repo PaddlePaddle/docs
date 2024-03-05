@@ -251,9 +251,9 @@ project(paddle-custom_cpu CXX C)
 set(PLUGIN_NAME        "paddle_custom_cpu")
 set(PLUGIN_VERSION      "0.0.1")
 
-set(PADDLE_PLUGIN_DIR  "/opt/conda/lib/python3.7/site-packages/paddle-plugins/")
-set(PADDLE_INC_DIR     "/opt/conda/lib/python3.7/site-packages/paddle/include/")
-set(PADDLE_LIB_DIR     "/opt/conda/lib/python3.7/site-packages/paddle/fluid/")
+set(PADDLE_PLUGIN_DIR  "/opt/conda/lib/python3.8/site-packages/paddle-plugins/")
+set(PADDLE_INC_DIR     "/opt/conda/lib/python3.8/site-packages/paddle/include/")
+set(PADDLE_LIB_DIR     "/opt/conda/lib/python3.8/site-packages/paddle/fluid/")
 
 ############ Third-party dependencies
 set(BOOST_INC_DIR      "/path/to/Paddle/build/third_party/boost/src/extern_boost")
@@ -270,7 +270,7 @@ add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid separate temporari
 
 ############ Compile plug-ins
 add_library(${PLUGIN_NAME} SHARED runtime.cc add_kernel.cc)
-target_link_libraries(${PLUGIN_NAME} PRIVATE :core_avx.so)  # special name
+target_link_libraries(${PLUGIN_NAME} PRIVATE :libpaddle.so)  # special name
 
 ############ Assembly plug-ins
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/setup.py.in
@@ -377,9 +377,9 @@ for pkg_dir in ['build/python/paddle-plugins/']:
 
 ext_modules = [Extension(name='paddle-plugins.libpaddle_custom_cpu',
                          sources=['runtime.cc', 'add_kernel.cc'],
-                         include_dirs=['/opt/conda/lib/python3.7/site-packages/paddle/include/'],
-                         library_dirs=['/opt/conda/lib/python3.7/site-packages/paddle/fluid/'],
-                         libraries=['core_avx.so'])]
+                         include_dirs=['/opt/conda/lib/python3.8/site-packages/paddle/include/'],
+                         library_dirs=['/opt/conda/lib/python3.8/site-packages/paddle/base/'],
+                         libraries=['libpaddle.so'])]
 
 setup(
     name='paddle-custom_cpu',
@@ -428,7 +428,7 @@ After the compilation, make a wheel package under the directory of dist.
 Use pip to install a wheel package.
 
 ```
-$ pip install build/dist/paddle_custom_cpu-0.0.1-cp37-cp37m-linux_aarch64.whl
+$ pip install build/dist/paddle_custom_cpu-0.0.1-cp38-cp38-linux_aarch64.whl
 ```
 
 ## Step Four：Load and Use

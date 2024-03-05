@@ -1,9 +1,9 @@
-.. _cn_api_text_datasets_UCIHousing:
+.. _cn_api_paddle_text_UCIHousing:
 
 UCIHousing
 -------------------------------
 
-.. py:class:: paddle.text.datasets.UCIHousing()
+.. py:class:: paddle.text.UCIHousing(data_file = None, mode = 'train', download = True)
 
 
 该类是对 `UCI housing <https://archive.ics.uci.edu/ml/datasets/Housing>`_
@@ -23,4 +23,4 @@ UCIHousing
 代码示例
 :::::::::
 
-COPY-FROM: paddle.text.datasets.UCIHousing
+COPY-FROM: paddle.text.UCIHousing

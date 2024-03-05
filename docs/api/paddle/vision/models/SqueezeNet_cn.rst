@@ -18,7 +18,7 @@ SqueezeNet 模型，来自论文 `"SqueezeNet: AlexNet-level accuracy with 50x f
 返回
 :::::::::
 
-:ref:`cn_api_fluid_dygraph_Layer`，SqueezeNet 模型实例。
+:ref:`cn_api_paddle_nn_Layer`，SqueezeNet 模型实例。
 
 代码示例
 :::::::::

@@ -1,4 +1,4 @@
-.. _cn_api_profiler_export_chrome_tracing:
+.. _cn_api_paddle_profiler_export_chrome_tracing:
 
 export_chrome_tracing
 ---------------------
@@ -23,6 +23,6 @@ export_chrome_tracing
 代码示例
 ::::::::::
 
-用于 :ref:`性能分析器 <cn_api_profiler_profiler>` 的 on_trace_ready 参数。
+用于 :ref:`性能分析器 <cn_api_paddle_profiler_Profiler>` 的 on_trace_ready 参数。
 
 COPY-FROM: paddle.profiler.export_chrome_tracing

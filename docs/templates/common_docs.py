@@ -12,7 +12,7 @@ common_args_en = """
     bias_attr (ParamAttr, optional): The parameter attribute for learnable bias(Bias) of this layer. For more information, please refer to :ref:`api_fluid_ParamAttr`.
     label (Tensor): The label value corresponding to input, it's data type should be int32, int64.
     learning_rate (Tensor|float): The learning rate, can be a Tensor or a float value. Default is 1e-03.
-    axis (int, optional): The axis along which to operate. Default is 0. 
+    axis (int, optional): The axis along which to operate. Default is 0.
     epsilon (float, optional): Small float added to denominator to avoid dividing by zero. Default is 1e-05.
     is_test (bool, optional): A flag indicating whether execution is in test phase. Default is False, means not in test phase.
     shape (Tensor|tuple|list): Shape of the Tensor. If shape is a list or tuple, the elements of it should be integers or Tensors with shape [1]. If shape is Tensor, it should be an 1-D Tensor .
@@ -20,7 +20,7 @@ common_args_en = """
     filter_size (tuple|list|int): The size of convolving kernel. It can be a single integer or a tuple/list containing two integers, representing the height and width of the convolution window respectively. If it is a single integer, the height and width are equal to the integer.
     padding (tuple|int): The padding size. It can be a single integer or a tuple containing two integers, representing the size of padding added to the height and width of the input. If it is a single integer, the both sides of padding are equal to the integer. Default is 0.
     include_sublayers (bool, optional): Whether include the sublayers. If True, return list includes the sublayers weights. Default is True.
-    stride (tuple|int): The stride size. It can be a single integer or a tuple containing two integers, representing the strides of the convolution along the height and width. If it is a single integer, the height and width are equal to the integer. Default is 1. 
+    stride (tuple|int): The stride size. It can be a single integer or a tuple containing two integers, representing the strides of the convolution along the height and width. If it is a single integer, the height and width are equal to the integer. Default is 1.
     groups (int, optional): The group number of convolution layer. When group=n, the input and convolution kernels are divided into n groups equally, the first group of convolution kernels and the first group of inputs are subjected to convolution calculation, the second group of convolution kernels and the second group of inputs are subjected to convolution calculation, ……, the nth group of convolution kernels and the nth group of inputs perform convolution calculations. Default is 1.
     regularization (WeightDecayRegularizer, optional): The strategy of regularization. There are two method: :ref:`api_fluid_regularizer_L1Decay` 、 :ref:`api_fluid_regularizer_L2Decay` . If a parameter has set regularizer using  :ref:`api_fluid_ParamAttr` already, the regularization setting here in optimizer will be ignored for this parameter. Otherwise, the regularization setting here in optimizer will take effect. Default None, meaning there is no regularization.
     grad_clip (GradientClipBase, optional): Gradient cliping strategy, it's an instance of some derived class of ``GradientClipBase`` . There are three cliping strategies ( :ref:`api_fluid_clip_GradientClipByGlobalNorm` , :ref:`api_fluid_clip_GradientClipByNorm` , :ref:`api_fluid_clip_GradientClipByValue` ). Default None, meaning there is no gradient clipping.
@@ -31,9 +31,9 @@ common_args_en = """
     grad_clip (GradientClipBase, optional): Gradient cliping strategy, it's an instance of some derived class of ``GradientClipBase`` . There are three cliping strategies ( :ref:`api_fluid_clip_GradientClipByGlobalNorm` , :ref:`api_fluid_clip_GradientClipByNorm` , :ref:`api_fluid_clip_GradientClipByValue` ). Default is None, meaning there is no gradient clipping.
     num_filters (int): The number of filter. It is as same as the output channals numbers.
     dim (int, optional): A dimension along which to operate. Default is 0.
-    is_sparse (bool, optional): Whether use sparse updating. For more information, please refer to :ref:`api_guide_sparse_update_en` . If it’s True, it will ues sparse updating.
-    place (fluid.CPUPlace()|fluid.CUDAPlace(N)|None): This parameter represents which device the executor runs on, and N means the GPU's id. When this parameter is None, PaddlePaddle will set the default device according to its installation version. If Paddle is CPU version, the default device would be set to CPUPlace(). If Paddle is GPU version, the default device would be set to CUDAPlace(0). Default is None.
-    num_filters (int): the number of convolution kernels, is also the number of output channels. 
+    is_sparse (bool, optional): Whether use sparse updating. For more information, please refer to :ref:`api_guide_sparse_update_en` . If it's True, it will ues sparse updating.
+    place (paddle.CPUPlace()|paddle.CUDAPlace(N)|None): This parameter represents which device the executor runs on, and N means the GPU's id. When this parameter is None, PaddlePaddle will set the default device according to its installation version. If Paddle is CPU version, the default device would be set to CPUPlace(). If Paddle is GPU version, the default device would be set to CUDAPlace(0). Default is None.
+    num_filters (int): the number of convolution kernels, is also the number of output channels.
 """
 
 common_args_cn = """
@@ -48,7 +48,7 @@ common_args_cn = """
     axis (int，可选) - 指定对输入 Tensor 进行运算的轴。默认值为0。
     epsilon (float，可选) - 添加到分母上的值以防止分母除0。默认值为1e-05。
     is_test (bool，可选) - 用于表明是否在测试阶段执行。默认值为 False，表示非测试阶段。
-    shape (Tensor|tuple|list) - Tensor 的形状。如果 shape 是一个列表或元组，则其元素应该是形状为[1]的整数或 Tensor 。 如果 shape 是 Tensor ，则它应该是1-D Tensor。
+    shape (Tensor|tuple|list) - Tensor 的形状。如果 shape 是一个列表或元组，则其元素应该是整数或形状为[]的 0-D Tensor 。 如果 shape 是 Tensor ，则它应该是1-D Tensor。
     keep_dim (bool，可选) - 是否在输出 Tensor 中保留输入的维度。除非 keepdim 为 True，否则输出 Tensor 的维度将比输入 Tensor 小一维，默认值为 False。
     filter_size (tuple|list|int) - 卷积核大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积核的高和宽。如果为单个整数，表示卷积核的高和宽都等于该整数。
     padding (tuple|int) – 填充大小。可以为单个整数或包含两个整数的元组，分别表示对输入高和宽两侧填充的大小。如果为单个整数，表示高和宽的填充都等于该整数。默认值为0。
@@ -65,6 +65,6 @@ common_args_cn = """
     num_filters (int) - 卷积核的个数，与输出的通道数相同。
     dim (int，可选) - 指定对输入 Tensor 进行运算的维度。默认值为0。
     is_sparse (bool，可选) - 是否使用稀疏更新的方式，更多信息请参见 :ref:`api_guide_sparse_update` 。默认值为 True，表示使用稀疏更新的方式。
-    place (fluid.CPUPlace()|fluid.CUDAPlace(N)|None) – 该参数表示 Executor 执行所在的设备，这里的 N 为 GPU 对应的 ID。当该参数为 None 时，PaddlePaddle 会根据其安装版本来设置默认设备。当 PaddlePaddle 是 CPU 版时，默认运行设备将会设置为 ``fluid.CPUPlace()`` ；当 PaddlePaddle 是 GPU 版本时，默认执行设备将会设置为 ``fluid.CUDAPlace(0)`` 。默认值为 None。
+    place (paddle.CPUPlace()|paddle.CUDAPlace(N)|None) – 该参数表示 Executor 执行所在的设备，这里的 N 为 GPU 对应的 ID。当该参数为 None 时，PaddlePaddle 会根据其安装版本来设置默认设备。当 PaddlePaddle 是 CPU 版时，默认运行设备将会设置为 ``fluid.CPUPlace()`` ；当 PaddlePaddle 是 GPU 版本时，默认执行设备将会设置为 ``fluid.CUDAPlace(0)`` 。默认值为 None。
     num_filters (int) - 卷积核个数，同时也是输出的通道数。
 """
