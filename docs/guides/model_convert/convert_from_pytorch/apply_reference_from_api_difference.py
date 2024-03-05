@@ -57,6 +57,9 @@ def mapping_type_to_description(mapping_type):
     if mapping_type in mapping_type_delete:
         return "无对应 API，可以直接删除，对网络一般无影响", False
 
+    raise ValueError(
+        f"Unexpected pyTorch-PaddlePaddle api mapping type {mapping_type}, please check  "
+    )
     return "【未知类型】", False
 
 
