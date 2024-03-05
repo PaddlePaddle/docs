@@ -19,7 +19,7 @@ paddle.nn.functional.upsample(x,
                         mode='nearest',
                         align_corners=False,
                         align_mode=0,
-                        data_format='NCHW',
+                        data_format=None,
                         name=None)
 ```
 

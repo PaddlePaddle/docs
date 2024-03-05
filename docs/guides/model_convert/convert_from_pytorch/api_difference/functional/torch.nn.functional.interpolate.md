@@ -9,7 +9,7 @@ torch.nn.functional.interpolate(input, size=None, scale_factor=None, mode='neare
 ### [paddle.nn.functional.interpolate](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/interpolate_cn.html)
 
 ```python
-paddle.nn.functional.interpolate(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format='NCHW', name=None)
+paddle.nn.functional.interpolate(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format=None, name=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
