@@ -150,7 +150,7 @@
 
 .. code-block:: python
 
-   dist_strategy = paddle.distributed.fleet.DistributedStrategy()
+   strategy = paddle.distributed.fleet.DistributedStrategy()
    strategy.hybrid_configs = {
        "mp_degree": 2,
        "dp_degree": 1,
