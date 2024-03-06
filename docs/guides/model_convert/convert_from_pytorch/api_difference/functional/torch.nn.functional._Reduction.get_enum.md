@@ -15,7 +15,6 @@ Paddle 无此 API，需要组合实现。
 torch.nn.functional._Reduction.get_enum(reduction)
 
 # Paddle 写法
-## paddle_aux
 def get_enum(reduction: str) -> int:
     if reduction == 'none':
         ret = 0
@@ -31,5 +30,5 @@ def get_enum(reduction: str) -> int:
         raise ValueError("{} is not a valid value for reduction".format(reduction))
     return ret
 
-paddle_aux.get_enum(reduction)
+get_enum(reduction)
 ```

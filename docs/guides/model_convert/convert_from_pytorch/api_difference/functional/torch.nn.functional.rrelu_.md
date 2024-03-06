@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.nn.functional.rrelu_
+## [ 仅参数默认值不一致 ]torch.nn.functional.rrelu_
 
 ### [torch.nn.functional.rrelu\_](https://pytorch.org/docs/stable/generated/torch.nn.functional.rrelu_.html)
 
@@ -12,7 +12,7 @@ torch.nn.functional.rrelu_(input, lower=1./8, upper=1./3, training=False)
 paddle.nn.functional.rrelu(x, lower=1./8., upper=1./3., training=True, name=None)
 ```
 
-其中 PyTorch 和 Paddle 功能一致，仅参数名不一致，具体如下：
+其中 PyTorch 和 Paddle 功能一致，参数名与参数默认值不一致，具体如下：
 
 ### 参数映射
 
@@ -21,4 +21,4 @@ paddle.nn.functional.rrelu(x, lower=1./8., upper=1./3., training=True, name=None
 | input    | x            | 输入的 Tensor，仅参数名不一致。                                                                                 |
 | lower    | lower        | 负值斜率的随机值范围下限。                                                                                      |
 | upper    | upper        | 负值斜率的随机值范围上限。                                                                                      |
-| training | training     | 标记是否为训练阶段。                                                                                            |
+| training | training     | 标记是否为训练阶段。参数默认值不一致, PyTorch 默认值为 `False`，Paddle 默认值为 `True`，Paddle 需保持与 PyTorch 一致。                                                                                            |

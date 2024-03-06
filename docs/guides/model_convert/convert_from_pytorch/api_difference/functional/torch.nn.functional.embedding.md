@@ -1,4 +1,4 @@
-## [ torch 参数更多 ]torch.nn.functional.embedding
+## [ 参数不一致 ]torch.nn.functional.embedding
 
 ### [torch.nn.functional.embedding](https://pytorch.org/docs/stable/generated/torch.nn.functional.embedding.html)
 
@@ -21,7 +21,7 @@ paddle.nn.functional.embedding(x, weight, padding_idx=None, sparse=False, name=N
 | input              | x                  | 输入 Tensor，仅参数名不同。   |
 | weight             | weight             | 嵌入矩阵权重。                |
 | padding_idx        | padding_idx        | 视为填充的下标，参数完全一致。 |
-| max_norm           | -                  | 重新归一化的最大范数，        |
-| norm_type          | -                  | Paddle 无此参数，需要转写。                  |
-| scale_grad_by_freq | -                  | 按词频进行梯度缩放的比例，需要转写。 |
+| max_norm           | -                  | 重新归一化的最大范数，参数不一致，暂无转写方式。        |
+| norm_type          | -                  | Paddle 无此参数，参数不一致，暂无转写方式。                  |
+| scale_grad_by_freq | -                  | 按词频进行梯度缩放的比例，参数不一致，暂无转写方式。 |
 | sparse             | sparse             | 是否使用稀疏更新。            |

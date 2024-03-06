@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.nn.functional.alpha_dropout
+## [ torch 参数更多 ]torch.nn.functional.alpha_dropout
 
 ### [torch.nn.functional.alpha\_dropout](https://pytorch.org/docs/stable/generated/torch.nn.functional.alpha_dropout.html)
 
@@ -12,7 +12,7 @@ torch.nn.functional.alpha_dropout(input, p=0.5, training=False, inplace=False)
 paddle.nn.functional.alpha_dropout(x, p=0.5, training=True, name=None)
 ```
 
-其中 PyTorch 和 Paddle 功能一致，仅参数名不一致，具体如下：
+其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

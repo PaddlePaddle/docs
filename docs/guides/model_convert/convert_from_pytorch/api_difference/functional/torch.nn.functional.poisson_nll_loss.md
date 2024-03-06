@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.functional.poisson_nll_loss
+## [ torch 参数更多 ]torch.nn.functional.poisson_nll_loss
 
 ### [torch.nn.functional.poisson\_nll\_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.poisson_nll_loss.html)
 
@@ -12,7 +12,7 @@ torch.nn.functional.poisson_nll_loss(input, target, log_input=True, full=False, 
 paddle.nn.functional.poisson_nll_loss(input, label, log_input=True, full=False, epsilon=1e-8, reduction='mean', name=None)
 ```
 
-其中 PyTorch 和 Paddle 功能一致，仅参数名不一致，具体如下：
+其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -29,7 +29,7 @@ paddle.nn.functional.poisson_nll_loss(input, label, log_input=True, full=False, 
 
 ### 转写示例
 
-#### size_average：做 reduce 的方式
+#### size_average、reduce
 ```python
 # PyTorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
 if size_average is None:

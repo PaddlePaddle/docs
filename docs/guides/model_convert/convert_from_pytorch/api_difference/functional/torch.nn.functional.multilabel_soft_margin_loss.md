@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.nn.functional.multilabel_soft_margin_loss
+## [ torch 参数更多 ]torch.nn.functional.multilabel_soft_margin_loss
 
 ### [torch.nn.functional.multilabel\_soft\_margin\_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.multilabel_soft_margin_loss.html)
 
@@ -27,7 +27,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 转写示例
 
-#### size_average：做 reduce 的方式
+#### size_average、reduce
 ```python
 # PyTorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
 if size_average is None:
