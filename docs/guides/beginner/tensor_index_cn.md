@@ -22,7 +22,7 @@ x[(index_1, index_2, ..., index_n)] == x[index_1, index_2, ..., index_n]
 ### 2.1 简介
 当`index`中的所有元素均属于下列类型时，称为基础索引：
 - 整形或表示整数的 0-D `Tensor/Ndarray`
-- Python `slice`对象，即`:`或`::`
+- Python `slice`对象，即 `start:end` 或 `start:end:step`，如果取所有元素，可以简写为`:`或`::`
 - Python `Ellipsis`对象，即`...`
 - Python `None`类型
 
@@ -172,7 +172,7 @@ Tensor(shape=[2, 1, 4], dtype=int64, place=Place(cpu), stop_gradient=True,
 - Python `bool`
 - 至少包含一个上述类型的 Python `Tuple`
 
-高级索引是主流框架在 Python 原生类型的索引上的进一步扩展，支持更多非均匀选择的场景，具有更高的灵活性。根据索引中数据类型的不同，主要分为**整形索引**和**布尔索引**两类。和基础索引不同的是，在取值场景中，高级索引将会**返回一个全新的 Tensor**，修改该 Tensor 不会影响原始 Tensor。
+高级索引是在 Python 原生类型的索引上的进一步扩展，支持更多非均匀选择的场景，具有更高的灵活性。根据索引中数据类型的不同，主要分为**整形数组索引(Integer array indexing)** 和**布尔索引(Bool indexing)** 两类。和基础索引不同的是，在取值场景中，高级索引将会**返回一个全新的 Tensor**，修改该 Tensor 不会影响原始 Tensor。
 ```python
 >>> a = paddle.ones((2,3))
 >>> a
@@ -195,8 +195,8 @@ Tensor(shape=[2, 3], dtype=float32, place=Place(cpu), stop_gradient=True,
 **注意：**
 在飞桨中，Python `List`类型，或是包含序列的 Python `Tuple`类型，其语义与其对应的`Tensor/Ndarray`一致，在框架内部均会先转换为`Tensor`。
 
-### 3.2 整形索引
-整形索引允许根据给定的`index`，对 Tensor 中的元素进行任意选择并进行组合。这在某些非均匀选择场景下非常有用（如选择出某些特定的 id 对应的 embedding 向量）。
+### 3.2 整形数组索引
+整形数组索引允许根据给定的`index`数组（`List/Ndarray/Tensor`等），对 Tensor 中的元素进行任意选择并进行组合。这在某些非均匀选择场景下非常有用（如选择出某些特定的 id 对应的 embedding 向量）。
 ```python
 >>> a = paddle.arange(8).reshape((4,2))
 >>> a
@@ -226,25 +226,33 @@ Tensor(shape=[2, 1, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
        [[[2, 3]],
 
         [[4, 5]]])
+
+>>> e = a[[2,0,3],[1,0,0]] # select a[2,1], a[0,0] and a[3,0]
+>>> e
+Tensor(shape=[3], dtype=int64, place=Place(cpu), stop_gradient=True,
+       [5, 0, 6])
 ```
 
-在不同轴同时出现整形索引时，将会通过**广播机制（Broadcasting)** 处理，再根据指定的索引值进行选择，即满足：
+在不同轴同时出现整形数组索引时，根据指定的索引值进行组合选择，即满足：
 ```python
 output[i_1, ..., i_m] == x[index_1[i_1, ..., i_m], index_2[i_1, ..., i_m],
                            ..., index_n[i_1, ..., i_m]]
 ```
-其中`index_1, ..., index_n`为各轴上的整形索引，经过广播机制变为同一个形状。`i_1, ..., i_m`为广播后的各轴索引位置。
-在下面的例子中，[0,2,1]和[0]均是整形索引，因此首先将广播成相同形状，即[0,2,1]和[0,0,0]，再逐个选择出 a[0,0]、a[2,0] 和 a[1,0]。
+其中`index_1, ..., index_n`为各轴上的整形数组索引。`i_1, ..., i_m`为各个整形数组索引的内的位置。
+
+如果各轴的整形数组形状不同，将会通过**广播机制（Broadcasting)** 处理，使得各轴上的整形数组索引变为同一个形状。
+
+在下面的例子中，[0,2,1]和[0]均是整形数组索引，因此首先将广播成相同形状，即[0,2,1]和[0,0,0]，再逐个选择出 a[0,0]、a[2,0] 和 a[1,0]。
 ```python
->>> e = a[[0,2,1], [0]]
->>> e
+>>> f = a[[0,2,1], [0]]
+>>> f
 Tensor(shape=[3], dtype=int64, place=Place(cpu), stop_gradient=True,
        [0, 4, 2])
 ```
 
 如果不满足广播机制则会报错。
 ```python
->>> f = a[[0,2,1], [0,1]]  # shape (3,) and (2,) cannot be broadcast together
+>>> g = a[[0,2,1], [0,1]]  # shape (3,) and (2,) cannot be broadcast together
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
   File "/usr/local/lib/python3.8/dist-packages/paddle/base/dygraph/tensor_patch_methods.py", line 992, in __getitem__
@@ -262,7 +270,7 @@ ValueError: (InvalidArgument) Broadcast dimension mismatch. Operands could not b
 - `index`的所有轴均与被索引的 Tensor 在对应维度上大小一致
 
 
-在这个场景下，布尔索引可以通过 nonzero()方法实现与整形索引的转换，即满足：
+在这个场景下，布尔索引可以通过 nonzero()方法实现与整形数组索引的转换，即满足：
 ```python
 # nonzero() returns the index of the non-zero elements on each axis
 x[bool_index] == paddle.gather_nd(x, bool_index.nonzero())
