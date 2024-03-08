@@ -340,7 +340,24 @@ def validate_mapping_table_row(columns, row_idx, line_idx):
     }
 
 
-def process_mapping_index(filename):
+def collect_mapping_item_processor(item, line_idx, state, output, context):
+    if state == 6:
+        table_row_idx = context["table_row_idx"]
+        columns = context["columns"]
+        item = validate_mapping_table_row(columns, table_row_idx, line_idx + 1)
+        output.append(item)
+        return True
+
+    return False
+
+
+def process_mapping_index(index_path, item_processer, context={}):
+    if not os.path.exists(index_path):
+        raise Exception(f"Cannot find pytorch_api_mapping_cn.md: {index_path}")
+
+    with open(index_path, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
     state = 0
     # -1: error
     # 0: wait for table header
@@ -355,90 +372,116 @@ def process_mapping_index(filename):
     column_count = -1
     table_seperator_pattern = re.compile(r"^ *\|(?P<group> *-+ *\|)+ *$")
 
-    expect_column_names = ["序号", "PyTorch API", "PaddlePaddle API", "备注"]
+    expect_column_names = [
+        "序号",
+        "PyTorch-2.1",
+        "PaddlePaddle-dev",
+        "映射关系分类",
+        "详细对比",
+    ]
 
-    table_row_idx = -1
+    context["table_row_idx"] = context.get("table_row_idx", -1)
+    output = context.get("output", [])
 
-    output = []
+    for i, line in enumerate(lines):
+        if state < 0:
+            break
 
-    with open(filename, "r") as f:
-        for i, line in enumerate(f.readlines()):
-            if state < 0:
+        content = line.strip()
+        if not content.startswith("|"):
+            output.append(line)
+            state = 0
+            continue
+
+        columns = [c.strip() for c in content.split("|")]
+        if len(columns) <= 2:
+            raise Exception(
+                f"Table column count must > 0, but found {len(columns) - 2} at line {i+1}: {line}"
+            )
+        columns = columns[1:-1]
+
+        if state == 0:
+            column_names.clear()
+            column_names.extend([c.strip() for c in columns])
+            column_count = len(column_names)
+
+            if not item_processer(line, i, state, output, context):
                 break
 
-            content = line.strip()
-            if len(content) == 0 or content[0] != "|":
-                state = 0
-                continue
-
-            columns = [c.strip() for c in content.split("|")]
-            if len(columns) <= 2:
-                raise Exception(
-                    f"Table column count must > 0, but found {len(columns) - 2} at line {i+1}: {line}"
-                )
-            columns = columns[1:-1]
-
-            if state == 0:
-                column_names.clear()
-                column_names.extend([c.strip() for c in columns])
-                column_count = len(column_names)
-                if column_names == expect_column_names:
-                    state = 2
-                    table_row_idx = 1
-                    # print(f'process mapping table at line {i+1}.')
-                else:
-                    state = 1
-                    print(f"ignore table with {column_names} at line {i+1}.")
-            elif state == 1:
-                if (
-                    not table_seperator_pattern.match(line)
-                    or len(columns) != column_count
-                ):
-                    raise Exception(
-                        f"Table seperator not match at line {i+1}: {line}"
-                    )
-                state = 5
-            elif state == 2:
-                if (
-                    not table_seperator_pattern.match(line)
-                    or len(columns) != column_count
-                ):
-                    raise Exception(
-                        f"Table seperator not match at line {i+1}: {line}"
-                    )
-                state = 6
-            elif state == 5:
-                if len(columns) != column_count:
-                    raise Exception(
-                        f"Table content not match at line {i+1}: {line}"
-                    )
-                # state = 5
-            elif state == 6:
-                if len(columns) != column_count:
-                    raise Exception(
-                        f"Table content not match at line {i+1}: {line}"
-                    )
-
-                item = validate_mapping_table_row(columns, table_row_idx, i + 1)
-                table_row_idx += 1
-
-                output.append(item)
-
-                # state = 6
+            if column_names == expect_column_names:
+                state = 2
+                context["table_row_idx"] = 1
+                # print(f'process mapping table at line {i+1}.')
             else:
+                state = 1
+                print(f"ignore table with {column_names} at line {i+1}.")
+
+        elif state == 1:
+            if (
+                not table_seperator_pattern.match(line)
+                or len(columns) != column_count
+            ):
                 raise Exception(
-                    f"Unexpected State at {state} in parsing file: {filename}"
+                    f"Table seperator not match at line {i+1}: {line}"
                 )
+            if not item_processer(line, i, state, output, context):
+                break
+            state = 5
+        elif state == 2:
+            if (
+                not table_seperator_pattern.match(line)
+                or len(columns) != column_count
+            ):
+                raise Exception(
+                    f"Table seperator not match at line {i+1}: {line}"
+                )
+            if not item_processer(line, i, state, output, context):
+                break
+            state = 6
+        elif state == 5:
+            # if len(columns) != column_count:
+            #     raise Exception(
+            #         f"Table content not match at line {i+1}: {line}"
+            #     )
+            if not item_processer(line, i, state, output, context):
+                break
+            # state = 5
+        elif state == 6:
+            # if len(columns) != column_count:
+            #     raise Exception(
+            #         f"Table content not match at line {i+1}: {line}"
+            #     )
+            try:
+                if not item_processer(line, i, state, output, context):
+                    break
+                context["table_row_idx"] += 1
+            except Exception as e:
+                print(e)
+                print(f"Error at line {i+1}: {line}")
+                ret_code = 1
+
+            # state = 6
+        else:
+            ret_code = 2
+            raise Exception(
+                f"Unexpected State at {state} in processing file: {index_path}"
+            )
 
     if state == 5 or state == 6:
         state = 0
 
     if state != 0:
         raise Exception(
-            f"Unexpected End State at {state} in parsing file: {filename}"
+            f"Unexpected End State at {state} in parsing file: {index_path}"
         )
 
-    return output
+    ret_code = context.get("ret_code", 0xCC)
+    if ret_code != 0:
+        return ret_code
+
+    context["output"] = output
+
+    return 0
 
 
 if __name__ == "__main__":
@@ -450,7 +493,13 @@ if __name__ == "__main__":
     if not os.path.exists(mapping_index_file):
         raise Exception(f"Cannot find mapping index file: {mapping_index_file}")
 
-    # index_data = process_mapping_index(mapping_index_file)
+    index_data = process_mapping_index(
+        mapping_index_file,
+        collect_mapping_item_processor,
+        {
+            "ret_code": 0,
+        },
+    )
     # index_data_dict = {i['torch_api'].replace('\_', '_'): i for i in index_data}
 
     api_difference_basedir = os.path.join(cfp_basedir, "api_difference")
