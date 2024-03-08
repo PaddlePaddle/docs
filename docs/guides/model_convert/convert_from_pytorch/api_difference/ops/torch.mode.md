@@ -18,7 +18,7 @@ paddle.mode(x, axis=-1, keepdim=False, name=None)
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| input   | x            | 输入的多维 Tensor。 |
+| input   | x            | 输入的多维 Tensor，仅参数名不一致。 |
 | dim     | axis         | 指定对输入 Tensor 进行运算的轴，仅参数名不一致。 |
 | keepdim | keepdim      | 是否保留指定的轴。 |
 | out     | -            | 表示输出的 Tensor ， Paddle 无此参数，需要转写。     |
@@ -31,5 +31,5 @@ torch.mode(x, dim, False, out=(a, b))
 
 # Paddle 写法
 out1, out2 = paddle.mode(x, dim, False)
-paddle.assign(out1, (a, b)[0]), paddle.assign(out2, (a, b)[1])
+paddle.assign(out1, a), paddle.assign(out2, b)
 ```

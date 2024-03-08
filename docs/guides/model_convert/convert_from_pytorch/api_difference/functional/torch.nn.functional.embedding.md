@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.functional.embedding
+## [torch 参数]torch.nn.functional.embedding
 
 ### [torch.nn.functional.embedding](https://pytorch.org/docs/stable/generated/torch.nn.functional.embedding.html)
 
@@ -12,7 +12,7 @@ torch.nn.functional.embedding(input, weight, padding_idx=None, max_norm=None, no
 paddle.nn.functional.embedding(x, weight, padding_idx=None, sparse=False, name=None)
 ```
 
-其中 PyTorch 和 Paddle 功能一致，仅参数名不一致，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

@@ -18,7 +18,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch      | PaddlePaddle | 备注 |
 | ------------ | ------------ | -- |
-| input        | input        | 输入 Tensor，仅参数名不一致。 |
+| input        | input        | 输入 Tensor。 |
 | target       | label        | 标签 Tensor，仅参数名不一致。 |
 | p            | p            | 手动指定范数。|
 | margin       | margin       | 手动指定间距。 |
