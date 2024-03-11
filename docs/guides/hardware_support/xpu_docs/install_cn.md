@@ -77,7 +77,7 @@ pip install -U paddlepaddle_xpu-2.6.1-cp39-cp39-linux_x86_64.whl
 ```bash
 # 下载 Paddle 源码
 git clone https://github.com/PaddlePaddle/Paddle.git -b release/2.6
-cd Padde
+cd Paddle
 
 # 创建编译目录
 mkdir build && cd build
