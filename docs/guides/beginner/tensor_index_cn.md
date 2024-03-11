@@ -7,21 +7,22 @@
 对于一个 Tensor `x`，`index`指明了想要访问的位置。根据`index`的类型不同，可以分为以下类型的索引场景：
 
 
-| 场景 | 基础索引 | 高级索引 | 联合索引 |
-| ------ | ------ | ------ | ------ |
-| 取值(`__getitem__`) | · **y = x[0, 2:4]** <br>等价于: <br>y = paddle.slice(x, [0,1], [0,2], [1,4], decrease_axes=[1]) | · **y = x[[0,1], [2,3]]** <br>等价于：<br>index = paddle.stack([Tensor([0,1]), Tensor([2,3]), axis=1) y = paddle.gather_nd(x, index) | · **y = x[0, [0,2], ..., 2:5:2, None]** <br>等价替换超过 10 行代码 |
-| 赋值(`__setitem__`) | · **x[0, 2:3] = Tensor(1.0)** <br>等价于：<br>paddle.slice_scatter_(x, [0,1], [0,2], [1,4], decrease_axes=[1]) | · **x[[0,1], [2,3]] = Tensor(1.0)** <br>等价于：<br>paddle.index_put_(x, ([Tensor([0,1]), Tensor([2,3]), Tensor(1.0)) | ·  **x[0, [0,2], ..., 2:5:2, None] = 1.0** <br>等价替换超过 10 行代码|
+| 场景 |  取值(`__getitem__`) | 赋值(`__setitem__`) |
+| ------ | ------ | ------ |
+| 基础索引 | · **y = x[0, 2:4]** <br>等价于: <br>y = paddle.slice(x, [0,1], [0,2], [1,4], decrease_axes=[1]) | · **x[0, 2:3] = Tensor(1.0)** <br>等价于：<br>paddle.slice_scatter_(x, [0,1], [0,2], [1,4], decrease_axes=[1]) |
+| 高级索引 | · **y = x[[0,1], [2,3]]** <br>等价于：<br>index = paddle.stack([Tensor([0,1]), Tensor([2,3]), axis=1) y = paddle.gather_nd(x, index) | · **x[[0,1], [2,3]] = Tensor(1.0)** <br>等价于：<br>paddle.index_put_(x, ([Tensor([0,1]), Tensor([2,3]), Tensor(1.0)) |
+| 联合索引 | · **y = x[0, [0,2], ..., 2:5:2, None]** <br>等价替换超过 10 行代码 | ·  **x[0, [0,2], ..., 2:5:2, None] = 1.0** <br>等价替换超过 10 行代码 |
 
 
-**注意：** 与 Numpy 等其他主流框架一致，在 Paddle 中用元组(tuple)来表示打包后的索引对象`index`，元组内部的每个元素分别表示对应轴的索引内容，即：
+**注意：** 与 Numpy 等其他主流框架一致，在 Paddle 中用元组(tuple)而**非列表(List)**来表示打包后的索引对象`index`，元组内部的每个元素分别表示对应轴的索引内容，即：
 ```python
-x[(index_1, index_2, ..., index_n)] == x[index_1, index_2, ..., index_n]
+x[(index_1, index_2, ..., index_n)] == x[index_1, index_2, ..., index_n] != x[[index_1, index_2, ..., index_n]]
 ```
 
 ## 2. 基础索引(Basic Index)
 ### 2.1 简介
-当`index`中的所有元素均属于下列类型时，称为基础索引：
-- 整形或表示整数的 0-D `Tensor/Ndarray`
+当所有轴上的索引均属于下列类型时，称为基础索引：
+- 单个整形或整形的 0-D `Tensor/Ndarray`
 - Python `slice`对象，即 `start:end` 或 `start:end:step`，如果取所有元素，可以简写为`:`或`::`
 - Python `Ellipsis`对象，即`...`
 - Python `None`类型
@@ -49,7 +50,7 @@ Tensor(shape=[2, 3], dtype=float32, place=Place(cpu), stop_gradient=True,
         [1. , 1. , 1. ]])
 ```
 
-### 2.2 整形或表示整数的 0-D Tensor/Ndarray
+### 2.2 单个整形或整形的 0-D Tensor/Ndarray
 这个场景与 Python 原生类型的索引规则类似，表示选择对应轴上的具体位置的元素，从 0 开始计数，也可以接收负数作为输入，表示从对应轴的最后开始计数。在取值场景中，由于指定轴仅选择了单个元素，因此该轴对应的维度将被消减。
 ```python
 >>> a = paddle.arange(6).reshape((2,3))
@@ -166,8 +167,8 @@ Tensor(shape=[2, 1, 4], dtype=int64, place=Place(cpu), stop_gradient=True,
 
 ## 3. 高级索引（Advanced Indexing）
 ### 3.1 简介
-当`index`中的所有元素均属于下列类型时，称为高级索引：
-- 整数类型的非 0-D `Tensor/Ndarray`或 Python `List`
+当所有轴上的索引均属于下列类型时，称为高级索引：
+- 整形数组：即非 0-D 的`Tensor/Ndarray`或 Python `List`
 - bool 类型的`Tensor/Ndarray`或 Python `List`
 - Python `bool`
 - 至少包含一个上述类型的 Python `Tuple`
@@ -212,7 +213,7 @@ Tensor(shape=[3, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
         [4, 5],
         [2, 3]])
 
->>> c = a[[0,1,0]]  # row 0 was selected twice
+>>> c = a[np.array([0,1,0])]  # row 0 was selected twice
 >>> c
 Tensor(shape=[3, 2], dtype=int64, place=Place(cpu), stop_gradient=True,
        [[0, 1],

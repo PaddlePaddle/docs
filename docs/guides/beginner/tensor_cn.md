@@ -476,12 +476,11 @@ Tensor stop_gradient: False
 通过索引可访问或修改 Tensor。飞桨框架支持标准的 Python 索引规则（基础索引），与 [Indexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings) 类似，并与 Numpy 等其他框架一样，支持更灵活的索引方式（高级索引、联合索引）。在飞桨中，索引操作均支持在 GPU 等其他设备上运行以实现计算加速，并均支持自动反向梯度计算。
 
 
-
-| 场景 | 基础索引 | 高级索引 | 联合索引 |
-| ------ | ------ | ------ | ------ |
-| 取值(`__getitem__`) | · **y = x[0, 2:4]** <br>等价于: <br>y = paddle.slice(x, [0,1], [0,2], [1,4], decrease_axes=[1]) | · **y = x[[0,1], [2,3]]** <br>等价于：<br>index = paddle.stack([Tensor([0,1]), Tensor([2,3]), axis=1) y = paddle.gather_nd(x, index) | · **y = x[0, [0,2], ..., 2:5:2, None]** <br>等价替换超过 10 行代码 |
-| 赋值(`__setitem__`) | · **x[0, 2:3] = Tensor(1.0)** <br>等价于：<br>paddle.slice_scatter_(x, [0,1], [0,2], [1,4], decrease_axes=[1]) | · **x[[0,1], [2,3]] = Tensor(1.0)** <br>等价于：<br>paddle.index_put_(x, ([Tensor([0,1]), Tensor([2,3]), Tensor(1.0)) | ·  **x[0, [0,2], ..., 2:5:2, None] = 1.0** <br>等价替换超过 10 行代码|
-
+| 场景 |  取值(`__getitem__`) | 赋值(`__setitem__`) |
+| ------ | ------ | ------ |
+| 基础索引 | · **y = x[0, 2:4]** <br>等价于: <br>y = paddle.slice(x, [0,1], [0,2], [1,4], decrease_axes=[1]) | · **x[0, 2:3] = Tensor(1.0)** <br>等价于：<br>paddle.slice_scatter_(x, [0,1], [0,2], [1,4], decrease_axes=[1]) |
+| 高级索引 | · **y = x[[0,1], [2,3]]** <br>等价于：<br>index = paddle.stack([Tensor([0,1]), Tensor([2,3]), axis=1) y = paddle.gather_nd(x, index) | · **x[[0,1], [2,3]] = Tensor(1.0)** <br>等价于：<br>paddle.index_put_(x, ([Tensor([0,1]), Tensor([2,3]), Tensor(1.0)) |
+| 联合索引 | · **y = x[0, [0,2], ..., 2:5:2, None]** <br>等价替换超过 10 行代码 | ·  **x[0, [0,2], ..., 2:5:2, None] = 1.0** <br>等价替换超过 10 行代码 |
 
 
 关于索引规则的详细介绍，请参考[Paddle Tensor 索引介绍](./tensor_index_cn.md)
