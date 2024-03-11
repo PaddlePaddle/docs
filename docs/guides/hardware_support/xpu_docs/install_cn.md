@@ -101,7 +101,7 @@ make TARGET=ARMV8 -j16
 
 # 编译产出在 build/python/dist/ 路径下，使用 pip 安装即可
 pip install paddlepaddle_xpu-2.6.1-cp39-cp39-linux_x86_64.whl # X86 架构
-pip install paddlepaddle_xpu-2.6.1-cp39-cp39-linux_x86_64.whl # ARM 架构
+pip install paddlepaddle_xpu-2.6.1-cp39-cp39-linux_aarch64.whl # ARM 架构
 ```
 
 ## 基础功能检查
