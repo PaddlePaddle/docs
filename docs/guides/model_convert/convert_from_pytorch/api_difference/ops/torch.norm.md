@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.norm
+## [ torch 参数更多 ]torch.norm
 
 ### [torch.norm](https://pytorch.org/docs/stable/generated/torch.norm.html)
 
@@ -12,14 +12,14 @@ torch.norm(input, p='fro', dim=None, keepdim=False, out=None, dtype=None)
 paddle.linalg.norm(x, p='fro', axis=None, keepdim=False, name=None)
 ```
 
-其中 PyTorch 和 Paddle 的 `p` 参数用法不一致，PyTorch 还支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
 | input   | x            | 输入 Tensor，仅参数名不一致。 |
-| p       | p            | 范数(ord)的种类。PyTorch 支持 "nuc", "fro" 与任意数值（包括 inf 和 -inf），Paddle 暂不支持 "nuc"。 |
+| p       | p            | 范数(ord)的种类。 |
 | dim     | axis         | 使用范数计算的轴，仅参数名不一致。 |
 | keepdim | keepdim      | 是否在输出的 Tensor 中保留和输入一样的维度。 |
 | out     | -            | 表示输出的 Tensor，Paddle 无此参数，需要转写。          |
