@@ -17,7 +17,7 @@ median
 
 返回
 ::::::::::
-    ((Tensor, Tensor)，可选)
+    Tensor 或 (Tensor, Tensor)。 
     若 ``mode == 'avg'``，返回值是一个中位数 Tensor；
     若 ``mode == 'min'`` 且 ``axis`` 是 None，返回值是一个中位数 Tensor；
     若 ``mode == 'min'`` 且 ``axis`` 不是 None，返回值是两个 Tensor，第一个是中位数，第二个是中位数对应的下标；
