@@ -42,7 +42,10 @@ PaddleClas/dataset/flowers102
 ### 三、运行四卡训练
 
 ```bash
-# 四卡训练
+# 进入套件目录
+cd PaddleClas/
+
+# 昆仑四卡训练
 python -m paddle.distributed.launch --devices "0,1,2,3" \
        tools/train.py -c ./ppcls/configs/quick_start/ResNet50_vd.yaml \
        -o Arch.pretrained=True \
@@ -52,15 +55,17 @@ python -m paddle.distributed.launch --devices "0,1,2,3" \
 # ppcls INFO: Already save model in ./output/epoch_20
 # ppcls INFO: Already save model in ./output/latest
 
-# 单卡评估 - 使用上一步训练得到的模型进行评估
+# 昆仑单卡评估 - 使用上一步训练得到的模型进行评估
 python tools/eval.py -c ./ppcls/configs/quick_start/ResNet50_vd.yaml \
-       -o Arch.pretrained="output/best_model" \
+       -o Arch.pretrained="output/ResNet50_vd/best_model" \
        -o Global.device=xpu
 # 评估完成之后，预期得到输出如下
 # [Eval][Epoch 0][Avg]CELoss: 0.40787, loss: 0.40787, top1: 0.92059, top5: 0.98333
 ```
 
 ## 推理示例
+
+以 [ResNet50](https://paddle-inference-dist.bj.bcebos.com/Paddle-Inference-Demo/resnet50.tgz) 模型为例，介绍如何使用昆仑 XPU 进行推理。
 
 ### 一、下载推理程序
 
