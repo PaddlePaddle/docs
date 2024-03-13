@@ -18,14 +18,14 @@
 
 ```bash
 # 拉取镜像
-docker pull registry.baidubce.com/device/paddle-xpu:ubuntu18-x86_64-gcc82-py39 # X86 架构
-docker pull registry.baidubce.com/device/paddle-xpu:kylinv10-aarch64-gcc82-py39 # ARM 架构
+docker pull registry.baidubce.com/device/paddle-xpu:ubuntu20-x86_64-gcc84-py310 # X86 架构
+docker pull registry.baidubce.com/device/paddle-xpu:kylinv10-aarch64-gcc82-py310 # ARM 架构
 
 # 参考如下命令，启动容器
 docker run -it --name paddle-xpu-dev -v $(pwd):/work \
   -w=/work --shm-size=128G --network=host --privileged  \
   --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
-  registry.baidubce.com/device/paddle-xpu:ubuntu18-x86_64-gcc82-py39 /bin/bash
+  registry.baidubce.com/device/paddle-xpu:ubuntu20-x86_64-gcc84-py310 /bin/bash
 
 # 检查容器内是否可以正常识别昆仑 XPU 设备
 xpu_smi
@@ -64,10 +64,10 @@ Driver Version: 4.0
 
 ```bash
 # 下载 wheel 包
-wget https://paddle-wheel.bj.bcebos.com/2.6.1/xpu/paddlepaddle_xpu-2.6.1-cp39-cp39-linux_x86_64.whl
+wget https://paddle-wheel.bj.bcebos.com/2.6.1/xpu/paddlepaddle_xpu-2.6.1-cp310-cp310-linux_x86_64.whl
 
 # 安装 wheel 包
-pip install -U paddlepaddle_xpu-2.6.1-cp39-cp39-linux_x86_64.whl
+pip install -U paddlepaddle_xpu-2.6.1-cp310-cp310-linux_x86_64.whl
 ```
 
 ### 安装方式二：源代码编译安装
@@ -84,7 +84,7 @@ mkdir build && cd build
 
 # 如果需要编译 X86 架构的 wheel 包，请参考以下命令
 export PADDLE_VERSION=2.6.1
-cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" \
   -DPY_VERSION=3.9 -DPYTHON_EXECUTABLE=`which python3` -DWITH_CUSTOM_DEVICE=OFF \
   -DWITH_TESTING=OFF -DON_INFER=ON -DWITH_DISTRIBUTE=ON -DWITH_ARM=OFF \
   -DWITH_XPU=ON -DWITH_XPU_BKCL=ON -DWITH_UBUNTU=ON
@@ -92,7 +92,7 @@ make -j16
 
 # 如果需要编译 ARM 架构的 wheel 包，请参考以下命令
 export PADDLE_VERSION=2.6.1
-cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" \
   -DPY_VERSION=3.9 -DPYTHON_EXECUTABLE=`which python3` -DWITH_CUSTOM_DEVICE=OFF \
   -DWITH_TESTING=OFF -DON_INFER=ON -DWITH_DISTRIBUTE=ON -DWITH_ARM=ON \
   -DWITH_XPU=ON -DWITH_XPU_BKCL=ON -DWITH_AARCH64=ON
@@ -100,8 +100,8 @@ cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 make TARGET=ARMV8 -j16
 
 # 编译产出在 build/python/dist/ 路径下，使用 pip 安装即可
-pip install paddlepaddle_xpu-2.6.1-cp39-cp39-linux_x86_64.whl # X86 架构
-pip install paddlepaddle_xpu-2.6.1-cp39-cp39-linux_aarch64.whl # ARM 架构
+pip install paddlepaddle_xpu-2.6.1-cp310-cp310-linux_x86_64.whl # X86 架构
+pip install paddlepaddle_xpu-2.6.1-cp310-cp310-linux_aarch64.whl # ARM 架构
 ```
 
 ## 基础功能检查
@@ -112,7 +112,7 @@ pip install paddlepaddle_xpu-2.6.1-cp39-cp39-linux_aarch64.whl # ARM 架构
 # 检查当前安装版本
 python -c "import paddle; paddle.version.show()"
 # 预期得到输出如下
-commit: 6cea3a27b6c0acf09bb427766ed54c105988e014
+commit: fde63d149d63a9e1d4954416dc2e25cb0d4ff954
 xpu: 20231203
 xpu_xccl: 1.1.6.1
 
