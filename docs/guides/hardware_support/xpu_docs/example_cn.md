@@ -10,7 +10,7 @@
 
 ```bash
 # 下载套件源码
-git clone https://github.com/PaddlePaddle/PaddleClas.git -b release/2.5
+git clone https://github.com/PaddlePaddle/PaddleClas.git
 cd PaddleClas/
 
 # 安装 Python 依赖库
@@ -66,7 +66,7 @@ python tools/eval.py -c ./ppcls/configs/quick_start/ResNet50_vd.yaml \
 
 ```bash
 # 下载 Paddle-Inference-Demo 示例代码，并进入 Python 代码目录
-git clone https://github.com/PaddlePaddle/Paddle-Inference-Demo.git -b release/v2.6
+git clone https://github.com/PaddlePaddle/Paddle-Inference-Demo.git
 ```
 
 ### 二、准备推理模型
