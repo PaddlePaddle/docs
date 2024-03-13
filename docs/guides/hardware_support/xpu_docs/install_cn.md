@@ -102,9 +102,10 @@ pip install paddlepaddle_xpu-0.0.0-cp310-cp310-linux_x86_64.whl
 # 检查当前安装版本
 python -c "import paddle; paddle.version.show()"
 # 预期得到输出如下
-commit: 6cea3a27b6c0acf09bb427766ed54c105988e014
-xpu: 20231203
-xpu_xccl: 1.1.6.1
+commit: 84425362060e126b066a5a0f0d29ae2e2218a834
+xpu: 20240104
+xpu_xccl: 1.1.8.1
+xpu_xhpc: 20240312
 
 # 飞桨基础健康检查
 python -c "import paddle; paddle.utils.run_check()"
