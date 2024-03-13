@@ -6,7 +6,7 @@
 torch.mean(input, dim, keepdim=False, *, dtype=None, out=None)
 ```
 
-### [paddle.mean]((url_placeholder))
+### [paddle.mean](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mean_cn.html#mean)
 
 ```python
 paddle.mean(x, axis=None, keepdim=False, name=None)

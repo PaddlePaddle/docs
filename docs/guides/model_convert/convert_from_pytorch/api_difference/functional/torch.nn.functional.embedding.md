@@ -1,4 +1,4 @@
-## [torch 参数]torch.nn.functional.embedding
+## [torch 参数更多]torch.nn.functional.embedding
 
 ### [torch.nn.functional.embedding](https://pytorch.org/docs/stable/generated/torch.nn.functional.embedding.html)
 
