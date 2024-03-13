@@ -5,6 +5,6 @@
 
 飞桨框架支持基于昆仑 XPU 芯片的训练和推理，请参考以下内容快速体验：
 
-- [昆仑 XPU 安装说明](../guides/hardware_support/xpu_docs/install_cn.html)
-- [昆仑 XPU 运行示例](../guides/hardware_support/xpu_docs/example_cn.html)
-- [昆仑 XPU 支持模型](../guides/hardware_support/xpu_docs/support_cn.html)
+- [昆仑 XPU 安装说明](../guides/hardware_support/xpu/install_cn.html)
+- [昆仑 XPU 运行示例](../guides/hardware_support/xpu/example_cn.html)
+- [昆仑 XPU 支持模型](../guides/hardware_support/xpu/support_cn.html)

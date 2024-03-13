@@ -10,7 +10,7 @@
 | 服务端 GPU |  | NVIDIA | Ada Lovelace、Hopper、 Ampere、Turing、 Volta 架构 | [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/compile/linux-compile.html) | ✔️ |  |
 | AI 加速芯片 | 达芬奇 | 华为 | 昇腾 910 | [安装](./npu_docs/paddle_install_cn.html) | [源码编译](./npu_docs/paddle_install_cn.html#anzhuangfangshi-tongguoyuanmabianyianzhuang) | | ✔️ |
 | AI 加速芯片 |  | 海光 | 海光 DCU | [安装](./rocm_docs/paddle_install_cn.html#wheel) | [源码编译](./rocm_docs/paddle_install_cn.html#anzhuangfangshier-tongguoyuanmabianyianzhuang) | ✔️ | [支持模型](./rocm_docs/paddle_rocm_cn.html) |
-| AI 加速芯片 | XPU | 百度 | 昆仑 K200、R200 等 | [安装](./xpu_docs/paddle_install_xpu2_cn.html#wheel) | [源码编译](./xpu_docs/paddle_install_xpu2_cn.html#xpu) |  | [支持模型](./xpu_docs/paddle_2.0_xpu2_cn.html) |
+| AI 加速芯片 | XPU | 百度 | 昆仑 K200、R200 等 | [安装](./xpu/paddle_install_xpu2_cn.html#wheel) | [源码编译](./xpu/paddle_install_xpu2_cn.html#xpu) |  | [支持模型](./xpu/paddle_2.0_xpu2_cn.html) |
 | AI 加速芯片 | IPU | Graphcore | GC200 | | [源码编译](./ipu_docs/paddle_install_cn.html) |  | |
 | AI 加速芯片 | MLU | 寒武纪 | MLU370、MLU590 | [安装](./mlu_docs/paddle_install_cn.html) | [源码编译](./mlu_docs/paddle_install_cn.html#anzhuangfangshier-tongguoyuanmabianyianzhuang) |  | ✔️ |
 | AI 加速芯片 |  | 天数智芯 | 天垓 100 |  [安装](https://gitee.com/deep-spark/deepsparkhub/blob/master/docker/Iluvatar/README.md) ||  |  | ✔️ |
@@ -29,7 +29,7 @@
 | AI 加速芯片 | MLU | 寒武纪 | MLU370 系列 | [预编译库](./mlu_docs/paddle_install_cn.html#wheel) | [源码编译](./mlu_docs/paddle_install_cn.html#anzhuangfangshier-tongguoyuanmabianyianzhuang) | ✔️ | |
 | AI 加速芯片 | MUSA | 摩尔线程 | MTT S 系列 GPU |  |  |  |  |
 | AI 加速芯片 |  | 海光 | 海光 DCU | [预编译库](./rocm_docs/paddle_install_cn.html) | [源码编译](./rocm_docs/paddle_install_cn.html) | ✔️ | [支持模型](./rocm_docs/paddle_rocm_cn.html) |
-| AI 加速芯片 | XPU | 百度 | 昆仑 K200、R200 等 | [预编译库](./xpu_docs/inference_install_example_cn.html#wheel) | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/09_hardware_support/xpu_docs/install_cn.html#id2) |  | [支持模型](./xpu_docs/paddle_2.0_xpu_cn.html#xunlianzhichi) |
+| AI 加速芯片 | XPU | 百度 | 昆仑 K200、R200 等 | [预编译库](./xpu/inference_install_example_cn.html#wheel) | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/09_hardware_support/xpu/install_cn.html#id2) |  | [支持模型](./xpu/paddle_2.0_xpu_cn.html#xunlianzhichi) |
 | 服务端 CPU | ARM | 飞腾 | FT-2000+/64、S2500 |  |[源码编译](../../install/compile/arm-compile.html#anchor-1) |  |  |
 | 服务端 CPU | ARM | 华为 | 鲲鹏 920 2426SK |  |[源码编译](../../install/compile/arm-compile.html) |  |   |
 | 服务端 CPU | MIPS | 龙芯 | 龙芯 3A4000、3A5000、3C5000L |  |[源码编译](../../install/compile/mips-compile.html#anchor-0) |  |  |

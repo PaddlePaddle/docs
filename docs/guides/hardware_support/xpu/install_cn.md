@@ -55,7 +55,7 @@ Driver Version: 4.0
 
 ## 安装飞桨框架
 
-**注意**：当前飞桨 develop 分支仅支持 X86 架构，如需昆仑 XPU 的 ARM 架构支持，请切换到 [release/2.6](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/guides/hardware_support/xpu_docs/install_cn.html) 分支。
+**注意**：当前飞桨 develop 分支仅支持 X86 架构，如需昆仑 XPU 的 ARM 架构支持，请切换到 [release/2.6](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/guides/hardware_support/xpu/install_cn.html) 分支。
 
 ### 安装方式一：wheel 包安装
 
