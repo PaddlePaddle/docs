@@ -5,7 +5,7 @@
 1. 通过飞桨官网发布的 wheel 包安装
 2. 通过源代码编译安装得到 wheel 包
 
-## 昆仑 XPU 系统要求
+## 寒武纪 MLU 系统要求
 
 | 要求类型 |   要求内容   |
 | --------- | -------- |
@@ -27,7 +27,7 @@ docker run -it --name paddle-mlu-dev -v $(pwd):/work \
   -v /usr/bin/cnmon:/usr/bin/cnmon \
   registry.baidubce.com/device/paddle-mlu:ubuntu20-x86_64-gcc84-py310 /bin/bash
 
-# 检查容器内是否可以正常识别昆仑 XPU 设备
+# 检查容器内是否可以正常识别寒武纪 MLU 设备
 cnmon
 
 # 预期得到输出如下
