@@ -110,7 +110,7 @@ def get_meta_from_diff_file(filepath):
         r"^### +\[ *(?P<torch_api>torch.[^\]]+)\](?P<url>\([^\)]*\))?$"
     )
     paddle_pattern = re.compile(
-        r"^### +\[ *(?P<paddle_api>paddle.[^\]]+)\](?P<url>\([^\)]*\))?$"
+        r"^### +\[ *(?P<paddle_api>paddle.[^\]]+)\](\((?P<url>[^\)]*)\))?$"
     )
     code_begin_pattern = re.compile(r"^```(python)?$")
     code_pattern = re.compile(r"^(?P<api_name>(paddle|torch)[^\( ]+)(.*?)$")
