@@ -91,10 +91,7 @@ class AliasAPIGen:
         elif inspect.isfunction(obj):
             reg = "def %s(" % api.split(".")[-1]
 
-        shell_cmd = "find {} -name '*.py' | xargs grep  \"{}\" ".format(
-            self.paddle_root_path,
-            reg,
-        )
+        shell_cmd = f"find {self.paddle_root_path} -name '*.py' | xargs grep  \"{reg}\" "
 
         p = subprocess.Popen(
             shell_cmd, shell=True, stdout=subprocess.PIPE, stderr=None
