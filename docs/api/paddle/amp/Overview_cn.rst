@@ -72,6 +72,8 @@ Debug 相关辅助类
     :header: "类名称", "辅助类功能"
     :widths: 10, 30
 
+    " :ref:`check_layer_numerics <cn_api_paddle_amp_debugging_check_layer_numerics>` ", "输入输出数据的数值检查"
+    " :ref:`check_numerics <cn_api_paddle_amp_debugging_check_numerics>` ", "精度调试方法"
     " :ref:`DebugMode <cn_api_paddle_amp_debugging_DebugMode>` ", "精度调试模式"
     " :ref:`TensorCheckerConfig <cn_api_paddle_amp_debugging_TensorCheckerConfig>` ", "精度调试配置类"
 
@@ -84,6 +86,7 @@ Debug 相关辅助类
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`collect_operator_stats <cn_api_paddle_amp_debugging_collect_operator_stats>` ", "收集不同数据类型的算子调用次数"
     " :ref:`enable_operator_stats_collection <cn_api_paddle_amp_debugging_enable_operator_stats_collection>` ", "启用以收集不同数据类型的算子调用次数"
     " :ref:`disable_operator_stats_collection <cn_api_paddle_amp_debugging_disable_operator_stats_collection>` ", "禁用收集不同数据类型的算子调用次数"
 
