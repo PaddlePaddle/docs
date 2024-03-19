@@ -18,7 +18,7 @@ nanmedian
 
 返回
 ::::::::::
-    Tensor 或 (Tensor, Tensor)。 若 ``mode == 'min'`` 且 ``axis`` 是 int 类型，结果返回一个元组：(非 NaN 中位数，对应下标)；否则只返回非 NaN 中位数的 Tensor。
+    Tensor 或 (Tensor, Tensor)。 若 ``mode == 'min'`` 且 ``axis`` 是 int 类型，结果返回一个元组：(非 NaN 中位数，对应下标)；否则只返回一个 Tensor （非 NaN 中位数）。
 
 代码示例
 ::::::::::
