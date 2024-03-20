@@ -11,7 +11,7 @@
 | AI 加速芯片 | 达芬奇 | 华为 | 昇腾 910 系列 | [安装](./npu/install_cn.html#wheel) | [源码编译](./npu/install_cn.html) | | ✔️ |
 | AI 加速芯片 |  | 海光 | 海光 DCU | [安装](./rocm_docs/paddle_install_cn.html#wheel) | [源码编译](./rocm_docs/paddle_install_cn.html#anzhuangfangshier-tongguoyuanmabianyianzhuang) | | [支持模型](./rocm_docs/paddle_rocm_cn.html) |
 | AI 加速芯片 | XPU | 百度 | 昆仑 R200、R300 等 | [安装](./xpu/install_cn.html#wheel) | [源码编译](./xpu/install_cn.html#xpu) |  | [支持模型](./xpu/support_cn.html) |
-| AI 加速芯片 | IPU | Graphcore | GC200 | | [源码编译](./ipu_docs/paddle_install_cn.html) |  | |
+| AI 加速芯片 | IPU | Graphcore | GC200 | | | | ✔️ |
 | AI 加速芯片 | MLU | 寒武纪 | MLU370 系列 | [安装](./mlu/install_cn.html#wheel) | [源码编译](./mlu/install_cn.html) |  | [支持模型](./mlu/support_cn.html) |
 | AI 加速芯片 |  | 天数智芯 | 天垓 100 |  [安装](https://gitee.com/deep-spark/deepsparkhub/blob/master/docker/Iluvatar/README.md) ||  |  | ✔️ |
 | AI 加速芯片 |  | 壁仞 | BR100、BR104 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/biren_gpu/README_cn.md) |  | ✔️ |
