@@ -18,20 +18,20 @@
 
 ```bash
 # 昇腾 910A 芯片 - 系统环境下查看 lspci | grep d801 是否有输出
-docker pull registry.baidubce.com/device/paddle-npu:cann701-910A-ubuntu20-x86_64-gcc84-py310 # X86 架构
-docker pull registry.baidubce.com/device/paddle-npu:cann701-910A-ubuntu20-aarch64-gcc84-py310 # ARM 架构
+docker pull registry.baidubce.com/device/paddle-npu:cann701-910A-ubuntu18-x86_64 # X86 架构
+docker pull registry.baidubce.com/device/paddle-npu:cann701-910A-ubuntu18-aarch64 # ARM 架构
 # 昇腾 910B 芯片 - 系统环境下查看 lspci | grep d802 是否有输出
-docker pull registry.baidubce.com/device/paddle-npu:cann701-910B-ubuntu20-x86_64-gcc84-py310 # X86 架构
-docker pull registry.baidubce.com/device/paddle-npu:cann701-910B-ubuntu20-aarch64-gcc84-py310 # ARM 架构
+docker pull registry.baidubce.com/device/paddle-npu:cann701-910B-ubuntu18-x86_64 # X86 架构
+docker pull registry.baidubce.com/device/paddle-npu:cann701-910B-ubuntu18-aarch64 # ARM 架构
 
 # 考如下命令启动容器，ASCEND_RT_VISIBLE_DEVICES 可指定可见的 NPU 卡号
-docker run -it --name paddle-dev -v `pwd`:/work -w=/work \
-    --privileged --network=host --shm-size=128G \
+docker run -it --name paddle-npu-dev -v $(pwd):/work \
+    --privileged --network=host --shm-size=128G -w=/work \
     -v /usr/local/Ascend/driver:/usr/local/Ascend/driver \
     -v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
     -v /usr/local/dcmi:/usr/local/dcmi \
     -e ASCEND_RT_VISIBLE_DEVICES="0,1,2,3,4,5,6,7" \
-    registry.baidubce.com/device/paddle-npu:cann701-910B-ubuntu20-$(uname -m)-gcc84-py310 /bin/bash
+    registry.baidubce.com/device/paddle-npu:cann701-910B-ubuntu18-x86_64 /bin/bash
 
 # 检查容器内是否可以正常识别昇腾 NPU 设备
 npu-smi info
@@ -93,7 +93,7 @@ pip install paddlepaddle==0.0.0 -f https://www.paddlepaddle.org.cn/whl/linux/cpu
 bash tools/compile.sh
 
 # 飞桨 NPU 插件包在 build/dist 路径下，使用 pip 安装即可
-pip install -U paddle_custom_npu-0.0.0-cp310-cp310-linux_x86_64.whl
+pip install -U paddle_custom_npu-0.0.0-cp39-cp39-linux_x86_64.whl
 ```
 
 ## 基础功能检查
@@ -105,7 +105,7 @@ pip install -U paddle_custom_npu-0.0.0-cp310-cp310-linux_x86_64.whl
 python -c "import paddle_custom_device; paddle_custom_device.npu.version()"
 # 预期得到如下输出结果
 version: 0.0.0
-commit: 27a43245e238332c83d97616c5ae88abf623c874
+commit: 7163a1e74066d86c2d4ef48e4affe1f9ad07aa95
 cann: 7.0.1
 ....
 
