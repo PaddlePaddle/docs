@@ -8,8 +8,8 @@
 |  ----  | ----  | ---- | ---- |---- | ---- |---- | ---- |
 | 服务端 CPU | x86 | Intel | 常见 CPU 型号如 Xeon、Core 全系列 | [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/compile/linux-compile.html) | ✔️ |  |
 | 服务端 GPU |  | NVIDIA | Ada Lovelace、Hopper、 Ampere、Turing、 Volta 架构 | [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/compile/linux-compile.html) | ✔️ |  |
-| AI 加速芯片 | 达芬奇 | 华为 | 昇腾 910 | [安装](./npu_docs/paddle_install_cn.html) | [源码编译](./npu_docs/paddle_install_cn.html#anzhuangfangshi-tongguoyuanmabianyianzhuang) | | ✔️ |
-| AI 加速芯片 |  | 海光 | 海光 DCU | [安装](./rocm_docs/paddle_install_cn.html#wheel) | [源码编译](./rocm_docs/paddle_install_cn.html#anzhuangfangshier-tongguoyuanmabianyianzhuang) | ✔️ | [支持模型](./rocm_docs/paddle_rocm_cn.html) |
+| AI 加速芯片 | 达芬奇 | 华为 | 昇腾 910 系列 | [安装](./npu/install_cn.html#wheel) | [源码编译](./npu/install_cn.html) | | ✔️ |
+| AI 加速芯片 |  | 海光 | 海光 DCU | [安装](./rocm_docs/paddle_install_cn.html#wheel) | [源码编译](./rocm_docs/paddle_install_cn.html#anzhuangfangshier-tongguoyuanmabianyianzhuang) | | [支持模型](./rocm_docs/paddle_rocm_cn.html) |
 | AI 加速芯片 | XPU | 百度 | 昆仑 R200、R300 等 | [安装](./xpu/install_cn.html#wheel) | [源码编译](./xpu/install_cn.html#xpu) |  | [支持模型](./xpu/support_cn.html) |
 | AI 加速芯片 | IPU | Graphcore | GC200 | | [源码编译](./ipu_docs/paddle_install_cn.html) |  | |
 | AI 加速芯片 | MLU | 寒武纪 | MLU370 系列 | [安装](./mlu/install_cn.html#wheel) | [源码编译](./mlu/install_cn.html) |  | [支持模型](./mlu/support_cn.html) |
@@ -25,10 +25,10 @@
 | 服务端 CPU | x86 | Intel | 常见 CPU 型号如 Xeon、Core 全系列以及 NUC | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
 | 服务端 GPU |  | NVIDIA | Ada Lovelace、Hopper、 Ampere、Turing、 Volta 架构  | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
 | 移动端 GPU |  | NVIDIA | Jetson 系列 | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
-| AI 加速芯片 | 达芬奇 | 华为 | 昇腾 910 | 即将提供 | | | |
-| AI 加速芯片 | MLU | 寒武纪 | MLU370 系列 | [预编译库](./mlu/install_cn.html#wheel) | [源码编译](./mlu/install_cn.html) | ✔️ | |
+| AI 加速芯片 | 达芬奇 | 华为 | 昇腾 910 系列 | [预编译库](./npu/install_cn.html#wheel) | [源码编译](./npu/install_cn.html) |  | ✔️ |
+| AI 加速芯片 | MLU | 寒武纪 | MLU370 系列 | [预编译库](./mlu/install_cn.html#wheel) | [源码编译](./mlu/install_cn.html) |  | ✔️ |
 | AI 加速芯片 | MUSA | 摩尔线程 | MTT S 系列 GPU |  |  |  |  |
-| AI 加速芯片 |  | 海光 | 海光 DCU | [预编译库](./rocm_docs/paddle_install_cn.html) | [源码编译](./rocm_docs/paddle_install_cn.html) | ✔️ | [支持模型](./rocm_docs/paddle_rocm_cn.html) |
+| AI 加速芯片 |  | 海光 | 海光 DCU | [预编译库](./rocm_docs/paddle_install_cn.html) | [源码编译](./rocm_docs/paddle_install_cn.html) | | [支持模型](./rocm_docs/paddle_rocm_cn.html) |
 | AI 加速芯片 | XPU | 百度 | 昆仑 R200、R300 等 | [预编译库](https://www.paddlepaddle.org.cn/inference/master/guides/hardware_support/xpu_kunlun_cn.html) | [源码编译](https://www.paddlepaddle.org.cn/inference/master/guides/hardware_support/xpu_kunlun_cn.html) |  | [支持模型](./xpu/support_cn.html) |
 | 服务端 CPU | ARM | 飞腾 | FT-2000+/64、S2500 |  |[源码编译](../../install/compile/arm-compile.html#anchor-1) |  |  |
 | 服务端 CPU | ARM | 华为 | 鲲鹏 920 2426SK |  |[源码编译](../../install/compile/arm-compile.html) |  |   |
