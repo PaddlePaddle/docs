@@ -18,7 +18,7 @@ Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 表示输入的 Tensor ，仅参数名不一致。                      |
 | num_groups    | num_groups   | 输入的通道数。                                           |
-| epsilon       | eps          | 为防止方差除零增加的一个很小的值，仅参数名不一致。          |
 | weight        | weight       | 权重的 Tensor。                                         |
 | bias          | bias         | 偏置的 Tensor。                                         |
+| eps           | epsilon      | 为防止方差除零增加的一个很小的值，仅参数名不一致。          |
 | -             | data_format  | 输入的数据格式， PyTorch 无此参数， Paddle 保持默认即可。  |

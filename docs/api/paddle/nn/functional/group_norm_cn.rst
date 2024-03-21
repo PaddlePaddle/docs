@@ -8,13 +8,10 @@ group_norm
 对输入 ``x`` 进行组归一化， 计算公式如下：
 
 .. math::
-    y = \frac{x - E(x)}{\sqrt(Var(x)+\epsilon)} \ast \gamma + \beta
+    y = \frac{x - E(x)}{\sqrt(Var(x)+ epsilon )} \ast weight + bias
 
 - :math::`x`: 形状为 [批大小，通道数，\*]，其中通道数必须是 ``num_groups`` 的整数倍
 - :math::`E(x)`, :math::`Var(x)`: 每一组中 ``x`` 的均值和方差
-- :math::`\epsilon`: 为防止方差除零增加的一个很小的值
-- :math::`\gamma`: 权重，形状为 [通道数]
-- :math::`\beta`: 偏置，形状为 [通道数]
 
 更多详情请参考：`Group Normalization <https://arxiv.org/abs/1803.08494>`_ 。
 
