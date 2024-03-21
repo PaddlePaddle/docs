@@ -3,7 +3,7 @@
 TransformerDecoderLayer
 -------------------------------
 
-.. py:class:: paddle.nn.TransformerDecoderLayer(d_model, nhead, dim_feedforward, dropout=0.1, activation='relu', attn_dropout=None, act_dropout=None, normalize_before=False, weight_attr=None, bias_attr=None)
+.. py:class:: paddle.nn.TransformerDecoderLayer(d_model, nhead, dim_feedforward, dropout=0.1, activation='relu', attn_dropout=None, act_dropout=None, normalize_before=False, weight_attr=None, bias_attr=None, layer_norm_eps=1e-5)
 
 
 
