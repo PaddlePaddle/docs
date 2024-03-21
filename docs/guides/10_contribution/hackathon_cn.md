@@ -12,11 +12,11 @@
 对深度学习感兴趣的你，快来参加活动吧，更有机会获得现金奖励以及来自百度和开源社区技术大咖们的指导与经验分享，更多奖励等你来拿。
 
 > 1. [第六期黑客松活动官网落地页](https://www.paddlepaddle.org.cn/PaddlePaddleHackathon-2024-3)
-> 2. 第六期黑客松 GitHub 表单（待定）
+> 2. [第六期黑客松任务总览](https://github.com/PaddlePaddle/Paddle/issues/62904)
 
 ### 1. 开源贡献个人挑战赛
 
-贡献任务详见 issue： **待定**
+贡献任务详见 issue： **https://github.com/PaddlePaddle/Paddle/issues/62905**
 
 以开源贡献为核心，发布 **5+** 开源项目的 **50+** 贡献任务，开源项目包括：飞桨核心框架、飞桨科学计算、生态伙伴项目等。**开发者使用 GitHub ID 报名，独立完成具有明确验收目标的贡献任务，获得对应的任务奖励。**
 
@@ -68,7 +68,9 @@
 > [!IMPORTANT]
 > 护航计划集训营已于 **2024/01/22** 开放报名，**第二批补招**将于 **2024/03/20** 开放报名。
 
-集训项目详见 issue：https://github.com/PaddlePaddle/Paddle/issues/61006
+集训项目详见 issue：
+- 第一批 https://github.com/PaddlePaddle/Paddle/issues/61006
+- 第二批 https://github.com/PaddlePaddle/Paddle/issues/62906
 
 #### 2.1 活动流程
 
@@ -130,7 +132,7 @@
 
 ### 3. Fundable Projects
 
-贡献任务详见 issue： **待定**
+贡献任务详见 issue： **https://github.com/PaddlePaddle/Paddle/issues/62908**
 
 定位**硬核项目**，要求开发者能够**独立拆解任务需求、梳理开发路径，并且号召社区共同实现某一功能需求**，最终以功能完成度为标准发放奖金。
 
@@ -209,7 +211,7 @@ RFC 通过并合入后形成 Tracking Issue。原则上完成 RFC 的开发者�
 
 ### 4. 优秀稿件征集与传播
 
-贡献任务详见 issue： **待定**
+贡献任务详见 issue： **https://github.com/PaddlePaddle/Paddle/issues/62907**
 
 随着版本的更新，飞桨功能发生了非常大的变化。为了让更多的开发者了解这些信息，帮助飞桨传播正面影响力。本期黑客松新增**优秀稿件征集与传播**赛道，开发者可以撰写【选定知识点内】关于飞桨的任何文章，并通过任意形式进行影响力的传播。
 
@@ -217,7 +219,7 @@ RFC 通过并合入后形成 Tracking Issue。原则上完成 RFC 的开发者�
 
 **阶段 1：撰写命题制的科技稿件**
 
-选手可以写 **【选定知识点内】** 的飞桨学习心得、如何使用飞桨等任意有助于扩大飞桨影响力的文章，内含飞桨知识点数量无限制。需要提 PR 到 [community/rfcs](https://github.com/PaddlePaddle/community/tree/master/rfcs)，经研发审核合入后，可拿到阶段 1 的奖金。请注意：
+选手可以写 **【选定知识点内】** 的飞桨学习心得、如何使用飞桨等任意有助于扩大飞桨影响力的文章，内含飞桨知识点数量无限制。需要提 PR 到 [community/rfcs/Article)](https://github.com/PaddlePaddle/community/tree/master/rfcs/Article)，经研发审核合入后，可拿到阶段 1 的奖金。请注意：
 
 - **截止时间：** 截止 **5 月 15 日**，研发不再审核阶段 1 的稿件 PR；
 - **奖金名额：** 不限制认领人数，一个题目可以有多篇稿件合入。共 20 个奖金名额，每个名额 0.5⭐️，先合入先得；
