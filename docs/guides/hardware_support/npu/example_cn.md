@@ -51,7 +51,7 @@ python -m paddle.distributed.launch --devices "0,1,2,3" \
        -o Arch.pretrained=True \
        -o Global.device=npu
 # 训练完成之后，预期得到输出如下
-# ppcls INFO: [Eval][Epoch 20][best metric: 0.9215686917304993]
+# ppcls INFO: [Eval][Epoch 20][best metric: 0.9245098829269409]
 # ppcls INFO: Already save model in ./output/ResNet50_vd/epoch_20
 # ppcls INFO: Already save model in ./output/ResNet50_vd/latest
 
@@ -60,7 +60,7 @@ python tools/eval.py -c ./ppcls/configs/quick_start/ResNet50_vd.yaml \
        -o Arch.pretrained="output/ResNet50_vd/best_model" \
        -o Global.device=npu
 # 评估完成之后，预期得到输出如下
-# [Eval][Epoch 0][Avg]CELoss: 0.45636, loss: 0.45636, top1: 0.91961, top5: 0.98725
+# [Eval][Epoch 0][Avg]CELoss: 0.41279, loss: 0.41279, top1: 0.92353, top5: 0.98529
 ```
 
 ## 推理示例
