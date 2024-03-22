@@ -426,11 +426,11 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.6.1 </code> will i
     </tr>
     <tr>
         <td> win-cpu-mkl-avx </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.1/windows/windows-cpu-avx-mkl-vs2017/paddlepaddle-2.6.1-cp38-cp38-win_amd64.whl"> paddlepaddle-2.6.1-cp38-cp38-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.1/windows/windows-cpu-avx-mkl-vs2017/paddlepaddle-2.6.1-cp39-cp39-win_amd64.whl"> paddlepaddle-2.6.1-cp39-cp39-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.1/windows/windows-cpu-avx-mkl-vs2017/paddlepaddle-2.6.1-cp310-cp310-win_amd64.whl"> paddlepaddle-2.6.1-cp310-cp310-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.1/windows/windows-cpu-avx-mkl-vs2017/paddlepaddle-2.6.1-cp311-cp311-win_amd64.whl"> paddlepaddle-2.6.1-cp311-cp311-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.1/windows/windows-cpu-avx-mkl-vs2017/paddlepaddle-2.6.1-cp312-cp312-win_amd64.whl"> paddlepaddle-2.6.1-cp312-cp312-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.1/windows/windows-cpu-avx-mkl-vs2019/paddlepaddle-2.6.1-cp38-cp38-win_amd64.whl"> paddlepaddle-2.6.1-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.1/windows/windows-cpu-avx-mkl-vs2019/paddlepaddle-2.6.1-cp39-cp39-win_amd64.whl"> paddlepaddle-2.6.1-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.1/windows/windows-cpu-avx-mkl-vs2019/paddlepaddle-2.6.1-cp310-cp310-win_amd64.whl"> paddlepaddle-2.6.1-cp310-cp310-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.1/windows/windows-cpu-avx-mkl-vs2019/paddlepaddle-2.6.1-cp311-cp311-win_amd64.whl"> paddlepaddle-2.6.1-cp311-cp311-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.6.1/windows/windows-cpu-avx-mkl-vs2019/paddlepaddle-2.6.1-cp312-cp312-win_amd64.whl"> paddlepaddle-2.6.1-cp312-cp312-win_amd64.whl</a></td>
     </tr>
     <tr>
         <td> win-cpu-openblas-avx </td>
@@ -627,11 +627,11 @@ platform tag: similar to 'linux_x86_64', 'any'
     </tr>
     <tr>
         <td> win-cpu-mkl-avx </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/windows/windows-cpu-avx-mkl-vs2017/paddlepaddle-0.0.0-cp38-cp38-win_amd64.whl"> paddlepaddle-latest-cp38-cp38-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/windows/windows-cpu-avx-mkl-vs2017/paddlepaddle-0.0.0-cp39-cp39-win_amd64.whl"> paddlepaddle-latest-cp39-cp39-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/windows/windows-cpu-avx-mkl-vs2017/paddlepaddle-0.0.0-cp310-cp310-win_amd64.whl"> paddlepaddle-latest-cp310-cp310-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/windows/windows-cpu-avx-mkl-vs2017/paddlepaddle-0.0.0-cp311-cp311-win_amd64.whl"> paddlepaddle-latest-cp311-cp311-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/windows/windows-cpu-avx-mkl-vs2017/paddlepaddle-0.0.0-cp312-cp312-win_amd64.whl"> paddlepaddle-latest-cp312-cp312-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/windows/windows-cpu-avx-mkl-vs2019/paddlepaddle-0.0.0-cp38-cp38-win_amd64.whl"> paddlepaddle-latest-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/windows/windows-cpu-avx-mkl-vs2019/paddlepaddle-0.0.0-cp39-cp39-win_amd64.whl"> paddlepaddle-latest-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/windows/windows-cpu-avx-mkl-vs2019/paddlepaddle-0.0.0-cp310-cp310-win_amd64.whl"> paddlepaddle-latest-cp310-cp310-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/windows/windows-cpu-avx-mkl-vs2019/paddlepaddle-0.0.0-cp311-cp311-win_amd64.whl"> paddlepaddle-latest-cp311-cp311-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/windows/windows-cpu-avx-mkl-vs2019/paddlepaddle-0.0.0-cp312-cp312-win_amd64.whl"> paddlepaddle-latest-cp312-cp312-win_amd64.whl</a></td>
     </tr>
     <tr>
         <td> win-cpu-openblas-avx </td>
