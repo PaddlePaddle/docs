@@ -70,7 +70,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle==2.6.0 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle==2.6.1 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
