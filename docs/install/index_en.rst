@@ -220,6 +220,6 @@ The third way to install: compile and install with source code
     conda/fromconda_en.rst
     docker/fromdocker_en.rst
     compile/fromsource_en.rst
-    install_Kunlun_en.md
+    install_xpu_en.md
     install_NGC_PaddlePaddle_en.rst
     Tables_en.md
