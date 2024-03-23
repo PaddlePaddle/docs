@@ -72,8 +72,6 @@ Debug 相关辅助类
     :header: "类名称", "辅助类功能"
     :widths: 10, 30
 
-    " :ref:`check_layer_numerics <cn_api_paddle_amp_debugging_check_layer_numerics>` ", "输入输出数据的数值检查"
-    " :ref:`check_numerics <cn_api_paddle_amp_debugging_check_numerics>` ", "精度调试方法"
     " :ref:`DebugMode <cn_api_paddle_amp_debugging_DebugMode>` ", "精度调试模式"
     " :ref:`TensorCheckerConfig <cn_api_paddle_amp_debugging_TensorCheckerConfig>` ", "精度调试配置类"
 
@@ -102,3 +100,13 @@ Debug 相关辅助类
     " :ref:`enable_tensor_checker <cn_api_paddle_amp_debugging_enable_tensor_checker>` ", "开启模块级别的精度检查"
     " :ref:`disable_tensor_checker <cn_api_paddle_amp_debugging_disable_tensor_checker>` ", "关闭模块级别的精度检查"
     " :ref:`compare_accuracy <cn_api_paddle_amp_debugging_compare_accuracy>` ", "精度比对接口"
+
+数值检查相关 API
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`check_layer_numerics <cn_api_paddle_amp_debugging_check_layer_numerics>` ", "输入输出数据的数值检查"
+    " :ref:`check_numerics <cn_api_paddle_amp_debugging_check_numerics>` ", "调试Tensor数值"
