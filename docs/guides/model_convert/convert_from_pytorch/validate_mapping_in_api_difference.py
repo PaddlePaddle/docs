@@ -247,6 +247,7 @@ def get_meta_from_diff_file(filepath):
     # print(state)
 
     # 允许的终止状态，解析完了 paddle_api 或者只有 torch_api
+    # 这些映射类型必须要有对应的 paddle_api
     if mapping_type in [
         "无参数",
         "参数完全一致",
