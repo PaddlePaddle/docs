@@ -15,8 +15,8 @@ Paddle 无此 API，需要组合实现。
 @torch.inference_mode(False)
 
 # Paddle 写法
-# 当 mode 为 False 时，可以直接删去方法
-# 使用空装饰器保持原有结构
+# 当 mode 为 False 时，可以直接删去
+# 使用空装饰器以便保持原有结构
 @empty_decorator()
 
 
