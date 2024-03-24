@@ -15,7 +15,7 @@ Paddle 无此 API，需要组合实现。
 torch.Size([1])
 
 # Paddle 写法
-tuple([1])
+(1,)
 ```
 
 ```python
@@ -23,5 +23,5 @@ tuple([1])
 torch.Size([2, 3])
 
 # Paddle 写法
-tuple([2, 3])
+(2, 3)
 ```

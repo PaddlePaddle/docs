@@ -20,7 +20,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch       | PaddlePaddle | 备注                                                         |
 | ------------- | ------------ | ------------------------------------------------------------ |
-| *size         | shape        | 表示输出形状大小， PyTorch 是多个元素， Paddle 是列表或元组，需要转写。 |
+| *size         | shape        | 表示输出形状大小， PyTorch 是可变参数用法， Paddle 是列表或元组，需要转写。 |
 | dtype         | dtype        | 表示输出 Tensor 类型。                                       |
 | device        | -            | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。    |
 | requires_grad | -            | 表示是否计算梯度，Paddle 无此参数，需要转写。            |

@@ -15,13 +15,12 @@ Paddle 无此 API，需要组合实现。
 torch.device('cuda', 0)
 
 # Paddle 写法
-str('gpu:0')
+'gpu:0'
 
 
 # PyTorch 写法
 torch.device('cpu')
 
 # Paddle 写法
-str('cpu')
-
+'cpu'
 ```
