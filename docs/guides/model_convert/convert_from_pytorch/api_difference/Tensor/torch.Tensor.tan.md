@@ -2,13 +2,13 @@
 
 ### [torch.Tensor.tan](https://pytorch.org/docs/stable/generated/torch.Tensor.tan.html#torch.Tensor.tan)
 
-```
+```python
 torch.Tensor.tan()
 ```
 
 ### [paddle.Tensor.tan]()
 
-```
+```python
 paddle.Tensor.tan()
 ```
 

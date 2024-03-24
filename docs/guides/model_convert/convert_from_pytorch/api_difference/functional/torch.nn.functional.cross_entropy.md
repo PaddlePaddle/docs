@@ -43,17 +43,19 @@ paddle.nn.functional.cross_entropy(input,
 
 ### 转写示例
 #### size_average
+
 size_average 为 True
+
 ```python
 # PyTorch 写法
 torch.nn.functional.cross_entropy(x,y,size_average=True)
 
 # Paddle 写法
 paddle.nn.functional.cross_entropy(x,y,reduction='mean')
-
 ```
 
 size_average 为 False
+
 ```python
 # PyTorch 写法
 torch.nn.functional.cross_entropy(x,y,size_average=False)
@@ -63,7 +65,9 @@ paddle.nn.functional.cross_entropy(x,y,reduction='sum')
 ```
 
 #### reduce
+
 reduce 为 True
+
 ```python
 # PyTorch 写法
 torch.nn.functional.cross_entropy(x,y,reduce=True)
@@ -73,6 +77,7 @@ paddle.nn.BCEWithLogitsLoss(reduction='mean')
 ```
 
 reduce 为 False
+
 ```python
 # PyTorch 写法
 torch.nn.functional.cross_entropy(x,y,reduce=False)
@@ -82,7 +87,9 @@ paddle.nn.BCEWithLogitsLoss(reduction='none')
 ```
 
 #### reduction
+
 reduction 为'none'
+
 ```python
 # PyTorch 写法
 torch.nn.functional.cross_entropy(x,y,reduction='none')
@@ -92,6 +99,7 @@ paddle.nn.functional.cross_entropy(x,y,reduction='none')
 ```
 
 reduction 为'mean'
+
 ```python
 # PyTorch 写法
 torch.nn.functional.cross_entropy(x,y,reduction='mean')
@@ -101,6 +109,7 @@ paddle.nn.functional.cross_entropy(x,y,reduction='mean')
 ```
 
 reduction 为'sum'
+
 ```python
 # PyTorch 写法
 torch.nn.functional.cross_entropy(x,y,reduction='sum')

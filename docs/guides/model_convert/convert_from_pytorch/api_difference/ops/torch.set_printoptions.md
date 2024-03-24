@@ -29,7 +29,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 #### profile:预设风格，设置为 `default`。
 
-```
+```python
 # PyTorch 写法
 torch.set_printoptions(profile='default')
 
@@ -39,7 +39,7 @@ paddle.set_printoptions(precision=4, threshold=1000, edgeitems=3, linewidth=80)
 
 #### profile:预设风格，设置为 `short`。
 
-```
+```python
 # PyTorch 写法
 torch.set_printoptions(profile='short')
 
@@ -49,7 +49,7 @@ paddle.set_printoptions(precision=2, threshold=1000, edgeitems=2, linewidth=80)
 
 #### profile:预设风格，设置为 `full`。
 
-```
+```python
 # PyTorch 写法
 torch.set_printoptions(profile='full')
 

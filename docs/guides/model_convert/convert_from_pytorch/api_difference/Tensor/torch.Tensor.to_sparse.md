@@ -2,13 +2,13 @@
 
 ### [torch.Tensor.to_sparse](https://pytorch.org/docs/stable/generated/torch.Tensor.to_sparse.html#torch.Tensor.to_sparse)
 
-```
+```python
 torch.Tensor.to_sparse(sparseDims)
 ```
 
 ### [paddle.Tensor.to_sparse_coo]()
 
-```
+```python
 paddle.Tensor.to_sparse_coo(sparseDims)
 ```
 
