@@ -23,13 +23,23 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | ------------ | ----------- | ----------------------------------------------------------- |
 | size          | shape        | 表示创建 Tensor 的形状，仅参数名不一致。                     |
 | fill_value    | fill_value   | 表示初始化输出 Tensor 的常量数据的值                         |
-| dtype         | dtype        | 表示输出 Tensor 类型。                                       |
+| dtype         | dtype        | 表示输出 Tensor 类型，如果没有指定，默认使用当前对象的 dtype，需要转写。    |
 | device        | -            | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。    |
 | requires_grad | -            | 表示是否计算梯度，Paddle 无此参数，需要转写。            |
 | layout        | -            | 表示布局方式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | pin_memory    | -            | 表示是否使用锁页内存， Paddle 无此参数，需要转写。       |
 
 ### 转写示例
+
+#### dtype：数据类型
+
+```python
+# PyTorch 写法
+x.new_full(3, 5, 1.)
+
+# Paddle 写法
+paddle.full([3, 5], 1., dtype=x.dtype)
+```
 
 #### device: Tensor 的设备
 
