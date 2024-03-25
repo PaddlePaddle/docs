@@ -10,8 +10,8 @@ group_norm
 .. math::
     y = \frac{x - E(x)}{\sqrt(Var(x)+ epsilon )} \ast weight + bias
 
-- :math::`x`: 形状为 [批大小，通道数，\*]，其中通道数必须是 ``num_groups`` 的整数倍
-- :math::`E(x)`, :math::`Var(x)`: 每一组中 ``x`` 的均值和方差
+- :math:`x`: 形状为 [批大小，通道数，\*]，其中通道数必须是 ``num_groups`` 的整数倍
+- :math:`E(x)`, :math:`Var(x)`: 每一组中 ``x`` 的均值和方差
 
 更多详情请参考：`Group Normalization <https://arxiv.org/abs/1803.08494>`_ 。
 
