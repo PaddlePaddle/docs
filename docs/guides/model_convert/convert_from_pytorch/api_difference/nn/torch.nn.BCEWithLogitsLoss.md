@@ -37,7 +37,6 @@ torch.nn.BCEWithLogitsLoss(weight=w, size_average=True)
 
 # Paddle 写法
 paddle.nn.BCEWithLogitsLoss(weight=w, reduction='mean')
-
 ```
 
 size_average 为 False
