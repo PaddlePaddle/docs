@@ -101,6 +101,8 @@ Debug 相关辅助类
     " :ref:`disable_tensor_checker <cn_api_paddle_amp_debugging_disable_tensor_checker>` ", "关闭模块级别的精度检查"
     " :ref:`compare_accuracy <cn_api_paddle_amp_debugging_compare_accuracy>` ", "精度比对接口"
 
+.. _about_amp_numerics_check_api:
+
 数值检查相关 API
 ::::::::::::::::::::
 
@@ -109,4 +111,4 @@ Debug 相关辅助类
     :widths: 10, 30
 
     " :ref:`check_layer_numerics <cn_api_paddle_amp_debugging_check_layer_numerics>` ", "输入输出数据的数值检查"
-    " :ref:`check_numerics <cn_api_paddle_amp_debugging_check_numerics>` ", "调试Tensor数值"
+    " :ref:`check_numerics <cn_api_paddle_amp_debugging_check_numerics>` ", "调试 Tensor 数值"
