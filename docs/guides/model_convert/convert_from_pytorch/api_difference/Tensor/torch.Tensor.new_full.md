@@ -31,21 +31,11 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 转写示例
 
-#### out：指定输出
-
-```python
-# PyTorch 写法
-torch.full([3, 5], 1., out=y)
-
-# Paddle 写法
-paddle.assign(paddle.full([3, 5], 1.), y)
-```
-
 #### device: Tensor 的设备
 
 ```python
 # PyTorch 写法
-y = torch.full([3, 5], 1., device=torch.device('cpu'))
+y = x.new_full([3, 5], 1., device=torch.device('cpu'))
 
 # Paddle 写法
 y = paddle.full([3, 5], 1.)
@@ -56,9 +46,19 @@ y.cpu()
 
 ```python
 # PyTorch 写法
-y = torch.full([3, 5], 1., requires_grad=True)
+y = x.new_full([3, 5], 1., requires_grad=True)
 
 # Paddle 写法
 y = paddle.full([3, 5], 1.)
 y.stop_gradient = False
+```
+
+#### pin_memory：是否分配到固定内存上
+
+```python
+# PyTorch 写法
+y = x.new_full((3, 5), 1., pin_memory=True)
+
+# Paddle 写法
+y = paddle.full([3, 5], 1.).pin_memory()
 ```
