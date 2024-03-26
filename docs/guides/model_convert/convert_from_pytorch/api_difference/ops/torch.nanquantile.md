@@ -23,7 +23,7 @@ paddle.nanquantile(x,
                 name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -38,8 +38,13 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 #### out：指定输出
 ```python
+<<<<<<< HEAD
 # Pytorch 写法
 torch.nanquantile(torch.tensor([float('nan'), 1., 2., 3.]), 0.6, interpolation='linear', out=y)
+=======
+# PyTorch 写法
+torch.nanquantile(torch.tensor([float('nan'), 1., 2., 3.]), 0.6, out=y)
+>>>>>>> up/develop
 
 # Paddle 写法
 paddle.assign(paddle.nanquantile(paddle.to_tensor([float('nan'), 1., 2., 3.]), 0.6, interpolation='linear'), y)

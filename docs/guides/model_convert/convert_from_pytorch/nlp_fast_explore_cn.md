@@ -116,12 +116,12 @@ for batch in data_loader:
 
 ### **1.2 迁移任务简介**
 
- Bert 是 NLP 中经典的深度神经网络，有较多开发者关注和复现，因此，本任务以 Bert 为例 。任务目标是参考 Bert 的论文，将 Pytorch 实现的模型迁移为飞桨模型，在 GPU 单卡下通过模型训练、评估和预测，并在相同条件下迁移后的模型训练精度达到预期效果。
+ Bert 是 NLP 中经典的深度神经网络，有较多开发者关注和复现，因此，本任务以 Bert 为例 。任务目标是参考 Bert 的论文，将 PyTorch 实现的模型迁移为飞桨模型，在 GPU 单卡下通过模型训练、评估和预测，并在相同条件下迁移后的模型训练精度达到预期效果。
 
 需要注意的是对于部分网络，使用相同的硬件环境和脚本代码，由于数据增广、模型初始化的随机性，最终达到的收敛精度和性能也可能与原项目的结果有细微差别，这属于正常的波动范围。
 
 - 论文：https://arxiv.org/abs/1810.04805
-- Pytorch 源代码：https://github.com/huggingface/transformers/blob/main/src/transformers/models/bert/modeling_bert.py
+- PyTorch 源代码：https://github.com/huggingface/transformers/blob/main/src/transformers/models/bert/modeling_bert.py
 
 **说明**：
 
@@ -131,7 +131,7 @@ Hugging Face 开发的基于 PyTorch 的 Transformers 项目，是目前 NLP 领
 
 根据模型训练的常规流程，可将整个迁移任务划分为：模型前向对齐、数据读取对齐、评估指标对齐、损失函数对齐、反向梯度对齐、训练精度对齐。
 
-- **模型组网对齐**：PyTorch 的大部分 API 在飞桨中可找到对应 API，可以参考 [PyTorch-PaddlePaddle API 映射表](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/08_api_mapping/pytorch_api_mapping_cn.html)，模型组网部分代码直接进行手动转换即可；为了判断转换后的 飞桨模型组网能获得和 Pytorch 参考实现同样的输出，可将两个模型参数固定，并输入相同伪数据，观察两者的产出差异是否在阈值内。
+- **模型组网对齐**：PyTorch 的大部分 API 在飞桨中可找到对应 API，可以参考 [PyTorch-PaddlePaddle API 映射表](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/08_api_mapping/pytorch_api_mapping_cn.html)，模型组网部分代码直接进行手动转换即可；为了判断转换后的 飞桨模型组网能获得和 PyTorch 参考实现同样的输出，可将两个模型参数固定，并输入相同伪数据，观察两者的产出差异是否在阈值内。
 - **数据读取对齐**：相同的神经网络使用不同的数据训练和测试得到的结果往往会存在较大差异。为了能完全复现原始的模型，需要保证使用的数据完全相同，包括数据集的版本、使用的数据增强方式。
 - **模型训练对齐**：为了验证迁移后的模型能达到相同的精度，需要确保迁移模型使用的评价指标、损失函数与原模型相同，以便原模型与迁移后的模型对比。
   - **评估指标对齐**：飞桨提供了一系列 Metric 计算类，而 PyTorch 中目前可以通过组合的方式实现。应确保使用的指标与原代码含义一致，以便对照精度。
@@ -141,7 +141,7 @@ Hugging Face 开发的基于 PyTorch 的 Transformers 项目，是目前 NLP 领
   - **训练精度对齐**：对比迁移前后模型的训练精度，若二者的差值在可以接受的误差范围内，则精度对齐完成。
   - **训练性能对齐**：在相同的硬件条件下，迁移前后的模型训练速度应接近。若二者差异非常大，则需要排查原因。
 
-为了更方便地对齐验证，飞桨提供了 reprod_log 差异核验工具辅助查看飞桨 和 Pytorch 模型在同样输入下的输出是否相同，这样的查看方式具有标准统一、比较过程方便等优势。
+为了更方便地对齐验证，飞桨提供了 reprod_log 差异核验工具辅助查看飞桨 和 PyTorch 模型在同样输入下的输出是否相同，这样的查看方式具有标准统一、比较过程方便等优势。
 
 **【迁移任务结果】**
 
@@ -177,7 +177,7 @@ PaddlePaddle is installed successfully! Let's start deep learning with PaddlePad
 ```
 
 
-2.安装 Pytorch
+2.安装 PyTorch
 
 对于 PyTorch 的安装，请参阅 [PyTorch 官网](https://pytorch.org/get-started/locally/)，选择操作系统和 CUDA 版本，使用相应的命令安装。
 
@@ -381,10 +381,10 @@ def _init_weights(self, module):
 
 部分 PyTorch 与飞桨 API 对比如下表所示：
 
-| **Pytorch 组网 API**                                         | **飞桨组网 API**                                             | **主要差异说明**                                             |
+| **PyTorch 组网 API**                                         | **飞桨组网 API**                                             | **主要差异说明**                                             |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [torch.nn.Softmax](https://pytorch.org/docs/stable/generated/torch.nn.Softmax.html?highlight=softmax#torch.nn.Softmax) | [paddle.nn.Softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Softmax_cn.html#softmax) | 功能一致，参数名不一致。                                     |
-| [torch.nn.Dropout](https://pytorch.org/docs/stable/generated/torch.nn.Dropout.html?highlight=dropout#torch.nn.Dropout) | [paddle.nn.Dropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Dropout_cn.html#dropout) | Pytorch 有 inplace 参数，表示在不更改变量的内存地址的情况下，直接修改变量的值，飞桨无此参数。 |
+| [torch.nn.Dropout](https://pytorch.org/docs/stable/generated/torch.nn.Dropout.html?highlight=dropout#torch.nn.Dropout) | [paddle.nn.Dropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Dropout_cn.html#dropout) | PyTorch 有 inplace 参数，表示在不更改变量的内存地址的情况下，直接修改变量的值，飞桨无此参数。 |
 | [torch.nn.Linear](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html?highlight=linear#torch.nn.Linear) | [paddle.nn.Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Linear_cn.html#linear) | PyTorch `bias`默认为 True，表示使用可更新的偏置参数。飞桨 `weight_attr`/`bias_attr`默认使用默认的权重/偏置参数属性，否则为指定的权重/偏置参数属性，具体用法参见[ParamAttr](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/ParamAttr_cn.html#paramattr)；当`bias_attr`设置为 bool 类型与 PyTorch 的作用一致。 |
 | [torch.nn.LayerNorm](https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html?highlight=layernorm#torch.nn.LayerNorm) | [paddle.nn.LayerNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LayerNorm_cn.html#layernorm) | 注意参数 epsilon 不同模型参数值，可能不同，对模型精度影响大。  |
 | [torch.nn.Embedding](https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html?highlight=embedding#torch.nn.Embedding) | [paddle.nn.Embedding](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Embedding_cn.html#embedding) | PyTorch：当 max_norm 不为`None`时，如果 Embeddding 向量的范数（范数的计算方式由 norm_type 决定）超过了 max_norm 这个界限，就要再进行归一化。PaddlePaddle：PaddlePaddle 无此要求，因此不需要归一化。PyTorch：若 scale_grad_by_freq 设置为`True`，会根据单词在 mini-batch 中出现的频率，对梯度进行放缩。 PaddlePaddle：PaddlePaddle 无此功能。 |
@@ -467,7 +467,7 @@ def convert_pytorch_checkpoint_to_paddle(
 
 ### 3.3 模型组网正确性验证
 
-为了判断模型组网部分能获得和原论文同样的输出，将两个模型参数固定，并输入相同伪数据，观察飞桨模型产出的 logit 是否和 Pytorch 模型一致。该步骤可使用 reprod_log 工具验证。
+为了判断模型组网部分能获得和原论文同样的输出，将两个模型参数固定，并输入相同伪数据，观察飞桨模型产出的 logit 是否和 PyTorch 模型一致。该步骤可使用 reprod_log 工具验证。
 
 **【验证步骤】**
 
@@ -515,7 +515,7 @@ def gen_fake_data():
 
 2. 保存输出：
 
-- PaddlePaddle/PyTorch：dict，key 为 tensor 的 name（自定义），value 为 tensor 的值。最后将 dict 保存到文件中。将准备好的数据送入 Pytorch 模型获取输出。
+- PaddlePaddle/PyTorch：dict，key 为 tensor 的 name（自定义），value 为 tensor 的值。最后将 dict 保存到文件中。将准备好的数据送入 PyTorch 模型获取输出。
 
 ```bash
 import sys
@@ -733,7 +733,7 @@ def build_paddle_data_pipeline():
 
 数据读取 API 比较可以参考以下表格：
 
-| **Pytorch 数据读取相关 API** | **飞桨数据读取相关 API** | **主要差异说明**                                             | **作用**                                                     |
+| **PyTorch 数据读取相关 API** | **飞桨数据读取相关 API** | **主要差异说明**                                             | **作用**                                                     |
 | ---------------------------- | ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | torch.utils.data.Dataset     | paddle.io.Dataset        | -                                                            | 提供多种已有的数据集用于后续加载，可以理解为官方构建的 Dataset 类 |
 | torch.utils.data.DataLoader  | paddle.io.DataLoader     | 飞桨没有 pin_memory 参数飞桨增加了 use_shared_memory 参数用于选择是否使用共享内存加速数据加载过程 | 进行数据加载，将数据分成批数据，并提供加载过程中的采样方式   |
@@ -972,7 +972,7 @@ if __name__ == "__main__":
 
 **【转换前】**
 
-Pytorch 准确率评估指标使用的是 huggingface 的 datasets 库。
+PyTorch 准确率评估指标使用的是 huggingface 的 datasets 库。
 
 ```python
 import torch
@@ -1125,7 +1125,7 @@ loss = paddle.nn.CrossEntropyLoss(
 
 **【API 对比】**
 
-| **Pytorch**                                                  | **飞桨**                                                     | **主要差异**                                    | **作用**                           |
+| **PyTorch**                                                  | **飞桨**                                                     | **主要差异**                                    | **作用**                           |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ----------------------------------------------- | ---------------------------------- |
 | [torch.nn.CrossEntropyLoss](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html) | [paddle.nn.CrossEntropyLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/CrossEntropyLoss_cn.html#crossentropyloss) | 飞桨提供了对软标签、指定 softmax 计算维度的支持 | 计算预测向量与标签之间的交叉熵损失 |
 
@@ -1256,7 +1256,7 @@ if __name__ == "__main__":
 
 **【转换前】**
 
-Pytorch 实现的[优化器相关代码](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/examples/torch_migration/pipeline/Step5/bert_torch/train.py#L213-L231)：
+PyTorch 实现的[优化器相关代码](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/examples/torch_migration/pipeline/Step5/bert_torch/train.py#L213-L231)：
 
 ```python
 no_decay = ["bias", "LayerNorm.weight"]

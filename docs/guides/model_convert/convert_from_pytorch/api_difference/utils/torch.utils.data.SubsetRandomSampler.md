@@ -2,17 +2,17 @@
 
 ### [torch.utils.data.SubsetRandomSampler](https://pytorch.org/docs/stable/data.html#torch.utils.data.SubsetRandomSampler)
 
-```
+```python
 torch.utils.data.SubsetRandomSampler(indices, generator=None)
 ```
 
-### [paddle.io.WeightedRandomSampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/SubsetRandomSampler_cn.html#paddle.io.SubsetRandomSampler)
+### [paddle.io.SubsetRandomSampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/SubsetRandomSampler_cn.html#paddle.io.SubsetRandomSampler)
 
-```
+```python
 paddle.io.SubsetRandomSampler(indices)
 ```
 
-两者参数完全一致，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

@@ -3,13 +3,13 @@
 ### [torch.nn.ModuleDict](https://pytorch.org/docs/stable/generated/torch.nn.ModuleDict.html?highlight=torch+nn+moduledict#torch.nn.ModuleDict)
 
 ```python
-class torch.nn.ModuleDict(modules=None)
+torch.nn.ModuleDict(modules=None)
 ```
 
 ### [paddle.nn.LayerDict](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LayerDict_cn.html)
 
 ```python
-class paddle.nn.LayerDict(sublayers=None)
+paddle.nn.LayerDict(sublayers=None)
 ```
 
 两者功能一致，参数名不一致，具体如下：

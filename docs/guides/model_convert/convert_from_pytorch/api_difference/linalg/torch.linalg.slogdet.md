@@ -1,7 +1,7 @@
 ## [ 参数不一致 ]torch.linalg.slogdet
 ### [torch.linalg.slogdet](https://pytorch.org/docs/stable/generated/torch.linalg.slogdet.html#torch.linalg.slogdet)
 
-```pythonpa
+```python
 torch.linalg.slogdet(A, *, out=None)
 ```
 
@@ -18,14 +18,14 @@ paddle.linalg.slogdet(x)
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> A </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
 | <font color='red'> out </font> | - | 表示输出 Tensor，Paddle 无此参数，需要转写。  |
-| 返回值 | 返回值 | Pytorch 返回两个 Tensor，Paddle 返回一个 Tensor，需要转写。  |
+| 返回值 | 返回值 | PyTorch 返回两个 Tensor，Paddle 返回一个 Tensor，需要转写。  |
 
 
 ### 转写示例
 
 #### 返回值
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.linalg.slogdet(x)
 
 # Paddle 写法
@@ -35,7 +35,7 @@ y = paddle.linalg.slogdet(x)
 
 #### out：输出的 Tensor
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.linalg.slogdet(x, out=(y1, y2))
 
 # Paddle 写法

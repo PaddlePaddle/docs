@@ -6,10 +6,10 @@
 torch.Tensor.get_device()
 ```
 
-### [paddle.device.get_device]()
+### [paddle.Tensor.place.gpu_device_id]()
 
 ```python
-paddle.device.get_device()
+paddle.Tensor.place.gpu_device_id()
 ```
 
 两者功能一致且无参数。

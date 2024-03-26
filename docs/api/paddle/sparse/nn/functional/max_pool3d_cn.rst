@@ -1,6 +1,5 @@
 .. _cn_api_paddle_sparse_nn_functional_max_pool3d:
 
-
 max_pool3d
 -------------------------------
 

@@ -87,3 +87,23 @@ API Reference: :ref:`api_fluid_optimizer_FtrlOptimizer`
 :code:`ModelAverage` Optimizer accumulates history parameters through sliding window during the model training. We use averaged parameters at inference time to upgrade general accuracy of inference.
 
 API Reference: :ref:`api_fluid_optimizer_ModelAverage`
+
+
+
+
+10.Rprop/RpropOptimizer
+-----------------
+
+:code:`Rprop` Optimizer, this method considers that the magnitude of gradients for different weight parameters may vary greatly, making it difficult to find a global learning step size. Therefore, an innovative method is proposed to accelerate the optimization process by dynamically adjusting the learning step size through the use of parameter gradient symbols.
+
+API Reference: :ref:`api_fluid_optimizer_Rprop`
+
+
+
+
+11.ASGD/ASGDOptimizer
+-----------------
+
+:code:`ASGD` Optimizer, it is a strategy version of SGD that trades space for time, and is a stochastic optimization method with trajectory averaging. On the basis of SGD, ASGD adds a measure of the average value of historical parameters, making the variance of noise in the descending direction decrease in a decreasing trend, so that the algorithm will eventually converge to the optimal value at a linear speed.
+
+API Reference: :ref:`api_fluid_optimizer_ASGD`

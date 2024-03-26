@@ -12,7 +12,7 @@ torch.Tensor.norm(p='fro', dim=None, keepdim=False, dtype=None)
 paddle.Tensor.norm(p='fro', axis=None, keepdim=False, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -28,7 +28,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### dtype 参数：输出数据类型
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x.norm(dim=-1, dtype=torch.float32)
 
 # Paddle 写法

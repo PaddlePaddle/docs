@@ -6,10 +6,10 @@
 torch.Tensor.det()
 ```
 
-### [paddle.linalg.det](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/det_cn.html#det)
+### [paddle.Tensor.det]()
 
 ```python
-paddle.linalg.det(x)
+paddle.Tensor.det(name=None)
 ```
 
 两者功能一致，均无参数。

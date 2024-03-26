@@ -6,10 +6,10 @@
 torch.Tensor.erfinv_()
 ```
 
-### [paddle.erfinv\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/erfinv__cn.html#erfinv)
+### [paddle.Tensor.erfinv\_]()
 
 ```python
-paddle.erfinv_(x)
+paddle.Tensor.erfinv_()
 ```
 
 两者功能一致，无参数。

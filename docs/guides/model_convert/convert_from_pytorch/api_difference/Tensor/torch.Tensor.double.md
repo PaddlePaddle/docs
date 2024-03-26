@@ -12,7 +12,7 @@ torch.Tensor.double(memory_format=torch.preserve_format)
 paddle.Tensor.astype('float64')
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

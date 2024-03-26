@@ -10,14 +10,14 @@ torch.nn.Linear(in_features,
 ### [paddle.nn.Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Linear_cn.html#linear)
 
 ```python
- paddle.nn.Linear(in_features,
-                  out_features,
-                  weight_attr=None,
-                  bias_attr=None,
-                  name=None)
+paddle.nn.Linear(in_features,
+                 out_features,
+                 weight_attr=None,
+                 bias_attr=None,
+                 name=None)
 ```
 
-其中 Pytorch 的 `bias` 与 Paddle 的 `bias_attr` 用法不一致，具体如下：
+其中 PyTorch 的 `bias` 与 Paddle 的 `bias_attr` 用法不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -30,14 +30,14 @@ torch.nn.Linear(in_features,
 ### 转写示例
 #### bias: 是否在输出中添加可学习的 bias
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.Linear(2, 4, bias=True)
 
 # Paddle 写法
 paddle.nn.Linear(2, 4)
 ```
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.nn.Linear(2, 4, bias=False)
 
 # Paddle 写法

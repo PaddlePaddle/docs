@@ -11,11 +11,11 @@ torch.nn.SoftMarginLoss(size_average=None,
 ### [paddle.nn.SoftMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SoftMarginLoss_cn.html#softmarginloss)
 
 ```python
-paddle.nn.SoftMarginloss(reduction='mean',
+paddle.nn.SoftMarginLoss(reduction='mean',
                          name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -30,7 +30,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### size_average
 
 ```python
-# Pytorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
+# PyTorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
 if size_average is None:
     size_average = True
 if reduce is None:

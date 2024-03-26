@@ -9,10 +9,10 @@ torch.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward=2048, dropout=0
 ### [paddle.nn.TransformerEncoderLayer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/TransformerEncoderLayer_cn.html)
 
 ```python
-paddle.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward, dropout=0.1, activation='relu', attn_dropout=None, act_dropout=None, normalize_before=False, weight_attr=None, bias_attr=None)
+paddle.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward, dropout=0.1, activation='relu', attn_dropout=None, act_dropout=None, normalize_before=False, weight_attr=None, bias_attr=None, layer_norm_eps=1e-05)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -23,7 +23,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | dim_feedforward | dim_feedforward  | 前馈神经网络中隐藏层的大小。                                                        |
 | dropout         | dropout          | 对两个子层的输出进行处理的 dropout 值。                                             |
 | activation      | activation       | 前馈神经网络的激活函数。                                                            |
-| layer_norm_eps  | -                | 层 normalization 组件的 eps 值，Paddle 无此参数，暂无转写方式。                     |
+| layer_norm_eps  | layer_norm_eps   | 层 normalization 组件的 eps 值。                                                  |
 | batch_first     | -                | 表示输入数据的第 0 维是否代表 batch_size，Paddle 无此参数，暂无转写方式。           |
 | norm_first      | normalize_before | 是否 LayerNorms 操作在 attention 和 feedforward 前，仅参数名不一致。                |
 | device          | -                | Tensor 的设备，Paddle 无此参数，需要转写。                                      |
@@ -38,7 +38,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### device：Tensor 的设备
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 m = torch.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward，device=torch.device('cpu'))
 y = m(x)
 
@@ -50,7 +50,7 @@ y = m(x).cpu()
 #### dtype：Tensor 的数据类型
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 m = torch.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward，dtype=torch.float32)
 y = m(x)
 

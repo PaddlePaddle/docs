@@ -34,7 +34,7 @@
 ### [pytorch api 全称] (pytorch api 链接)
 
 ```python
-Pytorch API 签名
+PyTorch API 签名
 ```
 
 ### [paddle api 全称] (paddle api 链接)
@@ -57,7 +57,7 @@ Paddle API 签名
 
 * 如果 `仅 paddle 参数更多`，无需转写示例，需要在备注栏加一句 `PyTorch 无此参数，（Paddle 应如何设置此参数）` 。如果默认无影响，则写 `PyTorch 无此参数，Paddle 保持默认即可`。
 
-* 如果 `仅参数默认值不一致`，无需转写示例，需要在备注栏里加一句 `与 Pytorch 默认值不同，（Paddle 应如何设置此参数）` 。
+* 如果 `仅参数默认值不一致`，无需转写示例，需要在备注栏里加一句 `与 PyTorch 默认值不同，（Paddle 应如何设置此参数）` 。
 
 * 如果 `torch 参数更多`，对每个 torch 多的参数都需要转写示例，需要在备注栏里加一句 `Paddle 无此参数，需要转写` ；如确实无法转写，需要在备注里写 `Paddle 无此参数，暂无转写方式` ；若可直接删除，则需要写 `Paddle 无此参数，一般对网络训练结果影响不大，可直接删除` 。
 
@@ -197,9 +197,9 @@ Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch | Paddle        | 备注                                                         |
 | ------- | ------------- | ------------------------------------------------------------ |
-| -       | axis          | 指定进行运算的轴， Pytorch 无此参数， Paddle 保持默认即可。  |
-| -       | keepdim       | 是否在输出 Tensor 中保留减小的维度， Pytorch 无此参数， Paddle 保持默认即可。 |
-| -       | dtype         | 输出 Tensor 的数据类型， Pytorch 无此参数， Paddle 保持默认即可。 |
+| -       | axis          | 指定进行运算的轴， PyTorch 无此参数， Paddle 保持默认即可。  |
+| -       | keepdim       | 是否在输出 Tensor 中保留减小的维度， PyTorch 无此参数， Paddle 保持默认即可。 |
+| -       | dtype         | 输出 Tensor 的数据类型， PyTorch 无此参数， Paddle 保持默认即可。 |
 | -       | dtype         | 表示数据类型， PyTorch 无此参数， Paddle 保持默认即可。      |
 | -       | place         | 表示 Tensor 存放位置， PyTorch 无此参数， Paddle 需设置为 paddle.CPUPlace()。 |
 | -       | stop_gradient | 表示是否阻断梯度传导， PyTorch 无此参数， Paddle 保持默认即可。 |
@@ -228,7 +228,7 @@ paddle.linalg.svd(x, full_matrices=False, name=None)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | A             | x           | 输入 Tensor，仅参数名不一致。               |
-| full_matrices | full_matrices  | 是否计算完整的 U 和 V 矩阵，Pytorch 为 True，Paddle 为 False，Paddle 需设置为与 Pytorch 一致。  |
+| full_matrices | full_matrices  | 是否计算完整的 U 和 V 矩阵，PyTorch 为 True，Paddle 为 False，Paddle 需设置为与 PyTorch 一致。  |
 
 
 ## 模板 6
@@ -250,7 +250,7 @@ paddle.abs(x,
            name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | Paddle | 备注                                                         |
@@ -272,7 +272,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 #### size：输出形状大小
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.empty(3, 5)
 
 # Paddle 写法
@@ -281,7 +281,7 @@ paddle.empty([3, 5])
 
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.abs([-3, -5], out=y)
 
 # Paddle 写法
@@ -290,7 +290,7 @@ paddle.assign(paddle.abs([-3, -5]), y)
 
 #### device: Tensor 的设备
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.zeros_like(x, device=torch.device('cpu'))
 
 # Paddle 写法
@@ -300,7 +300,7 @@ y.cpu()
 
 #### requires_grad：是否求梯度
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x = torch.zeros_like(x, requires_grad=True)
 
 # Paddle 写法
@@ -309,7 +309,7 @@ x.stop_gradient = False
 ```
 #### pin_memory：是否分配到固定内存上
 ```python
-# Pytorch 写法
+# PyTorch 写法
 x = torch.empty_like((2, 3), pin_memory=True)
 
 # Paddle 写法
@@ -318,7 +318,7 @@ x = paddle.empty_like([2, 3]).pin_memory()
 
 #### size_average：做 reduce 的方式
 ```python
-# Pytorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
+# PyTorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
 if size_average is None:
     size_average = True
 if reduce is None:
@@ -353,19 +353,19 @@ paddle.transpose(x,
                  name=None)
 ```
 
-Pytorch 的 `tensors` 参数与 Paddle 的 `inputs` 参数用法不同，具体如下：
+PyTorch 的 `tensors` 参数与 Paddle 的 `inputs` 参数用法不同，具体如下：
 
 ### 参数映射
 | PyTorch | Paddle        | 备注                                                         |
 | ------- | ------------- | ------------------------------------------------------------ |
-|*tensors |  inputs    | 一组输入 Tensor，Pytorch 的 tensors 为可变参数，Paddle 的 inputs 为 list(Tensor) 或 tuple(Tensor) 用法，需要转写。   |
-| 返回值    | 返回值  | 返回参数类型不一致, Pytorch 返回 torch.ByteTensor，Paddle 返回 GeneratorState 对象，暂无转写方式。 |
+|*tensors |  inputs    | 一组输入 Tensor，PyTorch 的 tensors 为可变参数，Paddle 的 inputs 为 list(Tensor) 或 tuple(Tensor) 用法，需要转写。   |
+| 返回值    | 返回值  | 返回参数类型不一致, PyTorch 返回 torch.ByteTensor，Paddle 返回 GeneratorState 对象，暂无转写方式。 |
 
 
 ### 转写示例
 #### *tensors: 一组输入 Tensor，可变参数用法
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.broadcast_tensors(x, y)
 
 # Paddle 写法
@@ -413,7 +413,7 @@ PaddlePaddle 目前无对应 API，可使用如下代码组合替代实现:
 ### 转写示例
 
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.addcmul(input, tensor1, tensor2, value=value)
 
 # Paddle 写法
@@ -438,12 +438,12 @@ paddle.nn.ClipGradByValue(max,
                           min=None)
 ```
 
-其中 Pytorch 与 Paddle 对该 API 的设计思路与⽤法不同，需要分析上下⽂并联动修改：
+其中 PyTorch 与 Paddle 对该 API 的设计思路与⽤法不同，需要分析上下⽂并联动修改：
 
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | ---- |
-| parameters |  -  | 表示要操作的 Tensor， Pytorch 属于原位操作， PaddlePaddle ⽆此参数，需要实例化之后在 optimizer 中设置才可以使⽤。需要上下⽂分析与联动修改。|
+| parameters |  -  | 表示要操作的 Tensor， PyTorch 属于原位操作， PaddlePaddle ⽆此参数，需要实例化之后在 optimizer 中设置才可以使⽤。需要上下⽂分析与联动修改。|
 | clip_value |  max |  表示裁剪梯度的范围，范围为 [-clip_value, clip_vale] ； PaddlePaddle 的 max 参数可实现该参数功能，直接设置为与 clip_value 一致。|
 | - | min | 表示裁剪梯度的最⼩值， PyTorch ⽆此参数， Paddle 保持默认即可。 |
 

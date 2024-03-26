@@ -12,7 +12,7 @@ torch.Tensor.quantile(q, dim=None, keepdim=False, *, interpolation='linear')
 paddle.Tensor.quantile(q, axis=None, keepdim=False, interpolation='linear', name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注                     |

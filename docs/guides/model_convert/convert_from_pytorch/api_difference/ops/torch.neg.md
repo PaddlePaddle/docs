@@ -12,7 +12,7 @@ torch.neg(input, *, out=None)
 paddle.neg(x, name=None)
 ```
 
-Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -24,7 +24,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ###  转写示例
 #### out：指定输出
 ```python
-# Pytorch 写法
+# PyTorch 写法
 torch.neg(x , out=y)
 
 # Paddle 写法

@@ -60,7 +60,7 @@ PaddleSlim 是飞桨深度学习模型压缩工具，Paddle Inference 可联动 
 
 ### 主流、国产操作系统全适配
 
-适配主流操作系统 Linux、Windows、macOS，同时适配麒麟 OS、统信 OS、普华 OS、中科方德等国产操作系统
+适配主流操作系统 Linux、Windows、macOS，同时适配麒麟 OS、统信 OS、普华 OS、中科方德等国产操作系统。
 
 ### 多语言接口支持
 
