@@ -2,13 +2,13 @@
 
 ### [torch.Tensor.topk](https://pytorch.org/docs/stable/generated/torch.Tensor.topk.html#torch.Tensor.topk)
 
-```
+```python
 torch.Tensor.topk(k, dim=None, largest=True, sorted=True)
 ```
 
 ### [paddle.Tensor.topk](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#topk-k-axis-none-largest-true-sorted-true-name-none)
 
-```
+```python
 paddle.Tensor.topk(k, axis=None, largest=True, sorted=True, name=None)
 ```
 

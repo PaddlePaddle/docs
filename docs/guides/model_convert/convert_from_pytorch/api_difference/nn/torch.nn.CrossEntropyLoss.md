@@ -43,7 +43,6 @@ torch.nn.CrossEntropyLoss(weight=w, size_average=True)
 
 # Paddle 写法
 paddle.nn.CrossEntropyLoss(weight=w, reduction='mean')
-
 ```
 
 size_average 为 False

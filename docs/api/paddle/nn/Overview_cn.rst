@@ -435,6 +435,7 @@ Normalization 方法
     " :ref:`paddle.nn.functional.remove_weight_norm <cn_api_paddle_nn_utils_remove_weight_norm>` ", "移除传入 layer 中的权重归一化"
     " :ref:`paddle.nn.functional.weight_norm <cn_api_paddle_nn_utils_weight_norm>` ", "对传入的 layer 中的权重参数进行归一化"
     " :ref:`paddle.nn.functional.spectral_norm <cn_api_paddle_nn_utils_spectral_norm>` ", "对传入的 layer 中的权重参数进行谱归一化"
+    " :ref:`paddle.nn.functional.group_norm <cn_api_paddle_nn_functional_group_norm>` ", "Group Normalization 函数"
 
 .. _linear_functional:
 

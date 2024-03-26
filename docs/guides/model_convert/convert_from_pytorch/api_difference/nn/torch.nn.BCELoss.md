@@ -34,7 +34,6 @@ torch.nn.BCELoss(weight=w, size_average=True)
 
 # Paddle 写法
 paddle.nn.BCELoss(weight=w, reduction='mean')
-
 ```
 
 size_average 为 False
