@@ -3,7 +3,7 @@
 quantile
 -------------------------------
 
-.. py:function:: paddle.quantile(x, q, axis=None, keepdim=False, interpolation='liear', name=None)
+.. py:function:: paddle.quantile(x, q, axis=None, keepdim=False, interpolation='linear', name=None)
 
 沿给定的轴 ``axis`` 计算 ``x`` 中元素的分位数。
 

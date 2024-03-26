@@ -1916,7 +1916,7 @@ prod(axis=None, keepdim=False, dtype=None, name=None)
 
 请参考 :ref:`cn_api_paddle_prod`
 
-quantile(q, axis=None, keepdim=False, interpolation='liner', name=None)
+quantile(q, axis=None, keepdim=False, interpolation='linear', name=None)
 :::::::::
 
 返回：计算后的 Tensor
