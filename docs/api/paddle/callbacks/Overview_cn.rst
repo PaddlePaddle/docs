@@ -23,3 +23,4 @@ paddle.callbacks 目录下包含飞桨框架支持的回调函数相关的 API�
     " :ref:`ProgBarLogger <cn_api_paddle_callbacks_ProgBarLogger>` ", "打印损失和评估指标日志回调类"
     " :ref:`ReduceLROnPlateau <cn_api_paddle_callbacks_ReduceLROnPlateau>` ", "根据评估指标降低学习率回调函数"
     " :ref:`VisualDL <cn_api_paddle_callbacks_VisualDL>` ", "可视化回调函数"
+    " :ref:`WandbCallback <cn_api_paddle_callbacks_WandbCallback>` ", "将为与'best'训练步骤关联的运行设置摘要指标"
