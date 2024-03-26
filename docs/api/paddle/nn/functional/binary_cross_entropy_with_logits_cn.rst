@@ -30,7 +30,8 @@ binary_cross_entropy_with_logits
 
 最后，将会添加 `reduce` 操作到前面的输出 Out 上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，返回输出的均值 :math:`Out = MEAN(Out)`。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
 
-**注意：**因为是二分类任务，所以标签值应该是 0 或者 1。
+.. note::
+    **注意：**因为是二分类任务，所以标签值应该是 0 或者 1。
 
 参数
 :::::::::
