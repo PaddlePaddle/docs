@@ -65,6 +65,14 @@
         <td> 2.17.1 </td>
         <td> 12.2 </td>
     </tr>
+    <tr>
+        <td> registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.3-cudnn9.0-trt8.6-gcc12.2 </td>
+        <td> 12.3 </td>
+        <td> 9.0 </td>
+        <td> 8.6 </td>
+        <td> 2.17.1 </td>
+        <td> 12.2 </td>
+    </tr>
     </tbody>
 </table>
 </p>
