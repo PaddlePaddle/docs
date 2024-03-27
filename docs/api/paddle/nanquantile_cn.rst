@@ -1,11 +1,11 @@
-.. _cn_api_paddle_quantile:
+.. _cn_api_paddle_nanquantile:
 
-quantile
+nanquantile
 -------------------------------
 
-.. py:function:: paddle.quantile(x, q, axis=None, keepdim=False, interpolation='linear', name=None)
+.. py:function:: paddle.nanquantile(x, q, axis=None, keepdim=False, interpolation='linear', name=None)
 
-沿给定的轴 ``axis`` 计算 ``x`` 中元素的分位数。
+沿给定的轴 ``axis`` 计算 ``x`` 中元素的分位数, 忽略元素中的 ``NaN`` 。
 
 参数
 ::::::::::
@@ -23,4 +23,4 @@ quantile
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.quantile
+COPY-FROM: paddle.nanquantile
