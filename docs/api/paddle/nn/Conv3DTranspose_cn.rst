@@ -47,7 +47,7 @@ Conv3DTranspose
   - **dilation** (int|tuple，可选) - 空洞大小。可以为单个整数或包含三个整数的元组或列表，分别表示卷积核中的元素沿着深度，高和宽的空洞。如果为单个整数，表示深度，高和宽的空洞都等于该整数。默认值为 1。
   - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
   - **bias_attr** (ParamAttr|bool，可选) - 指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
-  - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是 "NCHW" 和 "NHWC"。N 是批尺寸，C 是通道数，H 是特征高度，W 是特征宽度。默认值为 "NCDHW"。
+  - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是 "NCDHW" 和 "NDHWC"。N 是批尺寸，C 是通道数，D 为特征深度，H 是特征高度，W 是特征宽度。默认值为 "NCDHW"。
 
 形状
 ::::::::::::
