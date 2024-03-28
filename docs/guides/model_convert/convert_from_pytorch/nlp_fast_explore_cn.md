@@ -393,7 +393,7 @@ def _init_weights(self, module):
 
 **【转换前】**
 
-PyTorc 和 Paddle 都是用套件的形式来进行 Bert 模型组装，在 3.1 通过替换模型组件就可以完成模型网络迁移，而相应的模型权重只需要通过转换脚本就能得到,需要首先下载 Huggingface 的 BERT 预训练模型到该目录下，下载地址为：https://huggingface.co/bert-base-uncased/blob/main/pytorch_model.bin
+PyTorch 和 Paddle 都是用套件的形式来进行 Bert 模型组装，在 3.1 通过替换模型组件就可以完成模型网络迁移，而相应的模型权重只需要通过转换脚本就能得到,需要首先下载 Huggingface 的 BERT 预训练模型到该目录下，下载地址为：https://huggingface.co/bert-base-uncased/blob/main/pytorch_model.bin
 
 **【转换后】**
 
