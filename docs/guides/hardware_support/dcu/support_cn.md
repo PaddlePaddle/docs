@@ -1,7 +1,6 @@
+# 海光 DCU 支持模型
 
-# 飞桨框架 ROCm 版支持模型
-
-目前 Paddle ROCm 版基于海光 CPU(X86)和 DCU 支持以下模型的单机单卡/单机多卡的训练与推理。
+飞桨框架在海光 DCU 上经验证的模型的支持情况如下：
 
 ## 图像分类
 
@@ -123,14 +122,14 @@
 
 模型放置在飞桨模型套件中，各领域套件是 github.com/PaddlePaddle 下的独立 repo，git clone 下载即可获取所需的模型文件：
 
-| 领域        | 套件名称        | 分支/版本        |
-| ----------- | --------------- | ---------------- |
-| 图像分类     | PaddleClas      | release/2.3      |
-| 目标检测     | PaddleDetection | release/2.2      |
-| 图像分割     | PaddleSeg       | release/v2.0     |
-| 自然语言处理  | PaddleNLP       | develop          |
-| 字符识别     | PaddleOCR       | release/2.3      |
-| 推荐系统     | PaddleRec       | release/2.1.0    |
-| 视频分类     | PaddleVideo     | develop          |
-| 语音合成     | Parakeet        | develop          |
-| 生成对抗网络  | PaddleGAN       | develop          |
+| 领域        | 套件名称        |
+| ----------- | --------------- |
+| 图像分类     | PaddleClas      |
+| 目标检测     | PaddleDetection |
+| 图像分割     | PaddleSeg       |
+| 自然语言处理  | PaddleNLP       |
+| 字符识别     | PaddleOCR       |
+| 推荐系统     | PaddleRec       |
+| 视频分类     | PaddleVideo     |
+| 语音合成     | Parakeet        |
+| 生成对抗网络  | PaddleGAN       |
