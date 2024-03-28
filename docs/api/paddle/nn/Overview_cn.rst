@@ -361,7 +361,7 @@ Pooling 相关函数
     " :ref:`paddle.nn.functional.max_pool2d <cn_api_paddle_nn_functional_max_pool2d>` ", "二维最大池化"
     " :ref:`paddle.nn.functional.max_pool3d <cn_api_paddle_nn_functional_max_pool3d>` ", "三维最大池化"
     " :ref:`paddle.nn.functional.max_unpool1d <cn_api_paddle_nn_functional_max_unpool1d>` ", "一维最大反池化层"
-    " :ref:`paddle.nn.functional.max_unpool1d <cn_api_paddle_nn_functional_max_unpool2d>` ", "二维最大反池化层"
+    " :ref:`paddle.nn.functional.max_unpool2d <cn_api_paddle_nn_functional_max_unpool2d>` ", "二维最大反池化层"
     " :ref:`paddle.nn.functional.max_unpool3d <cn_api_paddle_nn_functional_max_unpool3d>` ", "三维最大反池化层"
     " :ref:`paddle.nn.functional.fractional_max_pool2d <cn_api_paddle_nn_functional_fractional_max_pool2d>` ", "二维分数阶最大值池化"
     " :ref:`paddle.nn.functional.fractional_max_pool3d <cn_api_paddle_nn_functional_fractional_max_pool3d>` ", "三维分数阶最大值池化"

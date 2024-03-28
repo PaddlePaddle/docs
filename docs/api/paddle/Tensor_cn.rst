@@ -1708,7 +1708,7 @@ median(axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_median`
 
-nanmedian(axis=None, keepdim=True, name=None)
+nanmedian(axis=None, keepdim=False, name=None)
 :::::::::
 
 返回：沿着 ``axis`` 忽略 NAN 元素进行中位数计算的结果
