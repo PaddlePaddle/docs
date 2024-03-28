@@ -57,9 +57,8 @@
   import os
   import paddle
   from paddle.distributed import fleet
-  from paddle.fluid.dygraph.container import Sequential
+  from paddle.nn import Sequential, Layer
   import paddle.nn as nn
-  from paddle.fluid.dygraph.layers import Layer
   from paddle.distributed.fleet.meta_parallel import LayerDesc, PipelineLayer
   import paddle.nn.functional as F
   import paddle.distributed as dist
