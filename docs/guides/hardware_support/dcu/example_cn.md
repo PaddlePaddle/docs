@@ -51,16 +51,16 @@ python -m paddle.distributed.launch --devices "0,1,2,3" \
        -o Arch.pretrained=True \
        -o Global.device=gpu
 # 训练完成之后，预期得到输出如下
-# ppcls INFO: [Eval][Epoch 20][best metric: 0.9215686917304993]
-# ppcls INFO: Already save model in ./output/epoch_20
-# ppcls INFO: Already save model in ./output/latest
+# ppcls INFO: [Eval][Epoch 20][best metric: 0.9245098829269409]
+# ppcls INFO: Already save model in ./output/ResNet50_vd/epoch_20
+# ppcls INFO: Already save model in ./output/ResNet50_vd/latest
 
 # 单卡评估 - 使用上一步训练得到的模型进行评估
 python tools/eval.py -c ./ppcls/configs/quick_start/ResNet50_vd.yaml \
        -o Arch.pretrained="output/ResNet50_vd/best_model" \
        -o Global.device=gpu
 # 评估完成之后，预期得到输出如下
-# [Eval][Epoch 0][Avg]CELoss: 0.40787, loss: 0.40787, top1: 0.92059, top5: 0.98333
+# [Eval][Epoch 0][Avg]CELoss: 0.51397, loss: 0.51397, top1: 0.91569, top5: 0.98039
 ```
 
 ## 推理示例

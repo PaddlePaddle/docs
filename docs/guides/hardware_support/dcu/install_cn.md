@@ -52,7 +52,7 @@ DCU  Temp   AvgPwr  Fan   Perf  PwrCap  VRAM%  DCU%
 
 ```bash
 # 下载 wheel 包
-wget https://paddle-wheel.bj.bcebos.com/develop/dcu/paddlepaddle_rocm-0.0.0-cp310-cp310-linux_x86_64.whl
+wget https://paddle-device.bj.bcebos.com/0.0.0/dcu/paddlepaddle_rocm-0.0.0-cp310-cp310-linux_x86_64.whl
 
 # 安装 wheel 包
 pip install -U paddlepaddle_rocm-0.0.0-cp310-cp310-linux_x86_64.whl
@@ -73,8 +73,8 @@ mkdir build && cd build
 # cmake 编译命令
 cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" \
   -DPY_VERSION=3.10 -DPYTHON_EXECUTABLE=`which python3` -DWITH_CUSTOM_DEVICE=OFF \
-  -DWITH_TESTING=OFF -DON_INFER=ON -DWITH_DISTRIBUTE=ON -DWITH_ARM=OFF \
-  -DWITH_ROCM=ON -DWITH_RCCL=ON -DWITH_MKL=ON
+  -DWITH_TESTING=OFF -DON_INFER=ON -DWITH_DISTRIBUTE=ON -DWITH_MKL=ON \
+  -DWITH_ROCM=ON -DWITH_RCCL=ON
 
 # make 编译命令
 make -j16
@@ -91,7 +91,7 @@ pip install -U paddlepaddle_rocm-0.0.0-cp310-cp310-linux_x86_64.whl
 # 检查当前安装版本
 python -c "import paddle; paddle.version.show()"
 # 预期得到输出如下
-commit: 38bbcf871a6c127e24ce1c68d1c123f2f44fadff
+commit: d37bd8bcf75cf51f6c1117526f3f67d04946ebb9
 cuda: False
 cudnn: False
 nccl: 0
