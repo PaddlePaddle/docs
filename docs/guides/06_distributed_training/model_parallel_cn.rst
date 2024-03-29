@@ -69,7 +69,7 @@
 :::::::::::::::::::::::::
 
 
-我们观察到，在模型并行模式下，Transformer 的 Attention 组件中存在两种类型的 Dropout 操作，如下图所示[1]。第一类是 softmax 算子后的 Dropout 算子；其输入是按列切分矩阵乘法的部分结果，我们称为局部 Dropout。直观理解，模型并行下，所有卡上的 Dropout 算子构成一个完整的 Dropout 算子，因此我们需要确保不同卡上该类 Dropout 算子的丢弃位置是不同。第二类是图中 g 操作之后的 Dropout 操作，对于此类 Dropout，其输入均为完整且相同的输出，我们需要确保 Dropout 算子的输出也相同，即各个卡上该类 Dropout 算子选择的丢弃位置是相同的。我们称此类 Dropout 为全局 Dropout。我们通常通过设置种子来控制两类 Dropout 的输出。具体地讲，对于局部 Dropout，我们在不同的卡上为他们设置不同的种子，从而确保它们选择的丢弃位置是不同的。而对于全局 Dropout 算子，我们在不同的卡上为它们设置相同的种子，从而确它们在不同卡上选择的丢弃位置是相同的。
+我们观察到，在模型并行模式下，Transformer 的 Attention 组件中存在两种类型的 Dropout 操作，如下图所示[1]。第一类是 softmax 算子后的 Dropout 算子；其输入是按列切分矩阵乘法的部分结果，我们称为局部 Dropout。直观理解，模型并行下，所有卡上的 Dropout 算子构成一个完整的 Dropout 算子，因此我们需要确保不同卡上该类 Dropout 算子的丢弃位置是不同的。第二类是图中 g 操作之后的 Dropout 操作，对于此类 Dropout，其输入均为完整且相同的输出，我们需要确保 Dropout 算子的输出也相同，即各个卡上该类 Dropout 算子选择的丢弃位置是相同的。我们称此类 Dropout 为全局 Dropout。我们通常通过设置种子来控制两类 Dropout 的输出。具体地讲，对于局部 Dropout，我们在不同的卡上为他们设置不同的种子，从而确保它们选择的丢弃位置是不同的。而对于全局 Dropout 算子，我们在不同的卡上为它们设置相同的种子，从而确它们在不同卡上选择的丢弃位置是相同的。
 
 .. image:: ./images/global_local_dropout.png
   :width: 400
