@@ -8,7 +8,7 @@ torch.Tensor.unsqueeze(dim)
 
 ### [paddle.Tensor.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#unsqueeze-axis-name-none)
 
-```
+```python
 paddle.Tensor.unsqueeze(axis, name=None)
 ```
 

@@ -34,5 +34,4 @@ torch.acos(torch.tensor([0.3348, -0.5889]), out=y)
 
 # Paddle 写法
 paddle.assign(paddle.acos(paddle.to_tensor([0.3348, -0.5889])), y)
-
 ```

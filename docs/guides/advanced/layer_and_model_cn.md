@@ -420,9 +420,9 @@ for item in mylayer.named_sublayers():
 ('linear', Linear(in_features=784, out_features=10, dtype=float32))
 ```
 
-可以看到，通过调用 `mylayer.sublayers()` 接口，打印出了前述模型中持有的全部子层(这时模型中只有一个 [paddle.nn.Flatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Flatten_cn.html) 子层)。
+可以看到，通过调用 `mylayer.sublayers()` 接口，打印出了前述模型中持有的全部子层(这时模型中只有一个 [paddle.nn.Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Linear_cn.html) 子层)。
 
-而遍历 `mylayer.named_sublayers()` 时，每一轮循环会拿到一组 ( 子层名称('flatten')，子层对象(paddle.nn.Flatten) )的元组。
+而遍历 `mylayer.named_sublayers()` 时，每一轮循环会拿到一组 ( 子层名称('linear')，子层对象(paddle.nn.Linear) )的元组。
 
 ### 5.2 向模型添加一个子层
 

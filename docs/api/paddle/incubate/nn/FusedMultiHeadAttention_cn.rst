@@ -26,7 +26,7 @@ FusedMultiHeadAttention
     - **dropout_rate** (float，可选) - Multi-Head Attention 后面的 dropout 算子的注意力目标的随机失活率。0 表示进行 dropout 计算。默认值：0.5。
     - **attn_dropout_rate** (float，可选) - Multi-Head Attention 中的 dropout 算子的注意力目标的随机失活率。0 表示不进行 dropout 计算。默认值：0.5。
     - **kdim** (int，可选) - 键值对中 key 的维度。如果为 ``None`` 则 ``kdim = embed_dim``。默认值 ``None`` 。
-    - **vdim** (int，可选) - 键值对中 value 的维度。如果为 ``None`` 则 ``kdim = embed_dim``。默认值：``None`` 。
+    - **vdim** (int，可选) - 键值对中 value 的维度。如果为 ``None`` 则 ``vdim = embed_dim``。默认值：``None`` 。
     - **normalize_before** (bool，可选) - 是 pre_layer_norm 结构（True）还是 post_layer_norm 结构（False）。pre_layer_norm 结构中，``layer_norm`` 算子位于 multi-head attention 和 ffn 的前面，post_layer_norm 结构中，``layer_norm`` 位于两者的后面。默认值：``False`` 。
     - **need_weights** (bool，可选) - 表明是否返回注意力权重。默认值：``False`` 。
     - **qkv_weight_attr** (ParamAttr，可选) - 为 Attention 中计算 q, k, v 时的计算指定权重参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。

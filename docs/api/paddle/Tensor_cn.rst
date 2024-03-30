@@ -221,15 +221,6 @@ strides
 **代码示例**
 COPY-FROM: paddle.Tensor.strides
 
-dist_attr
-:::::::::
-
-查看一个 Tensor 的 dist_attr，只有分布式 Tensor 才会有 dist_attr 属性，其描述了 tensor 的分布式属性。
-
-**代码示例**
-COPY-FROM: paddle.Tensor.dist_attr
-
-
 offset
 :::::::::
 
@@ -1717,7 +1708,7 @@ median(axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_median`
 
-nanmedian(axis=None, keepdim=True, name=None)
+nanmedian(axis=None, keepdim=False, name=None)
 :::::::::
 
 返回：沿着 ``axis`` 忽略 NAN 元素进行中位数计算的结果
@@ -1916,7 +1907,7 @@ prod(axis=None, keepdim=False, dtype=None, name=None)
 
 请参考 :ref:`cn_api_paddle_prod`
 
-quantile(q, axis=None, keepdim=False, name=None)
+quantile(q, axis=None, keepdim=False, interpolation='linear', name=None)
 :::::::::
 
 返回：计算后的 Tensor
