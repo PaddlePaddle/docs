@@ -17,7 +17,7 @@ API 作为用户使用飞桨框架的接口，承接着实现用户模型开发�
 
 - 已签署 [贡献者许可协议（Contributor License Agreement，CLA）](https://cla-assistant.io/PaddlePaddle/Paddle)；
 
-- 已阅读 [代码贡献流程](..\code_contributing_path_cn.html)、[贡献前阅读](read_before_contributing_cn.html) 和相关代码规范；
+- 已阅读 [代码贡献流程](../code_contributing_path_cn.html)、[贡献前阅读](read_before_contributing_cn.html) 和相关代码规范；
 
 - 已根据 [API 设计和命名规范](api_design_guidelines_standard_cn.html) 确定了新增 API 的名称和存放位置；
 
@@ -168,10 +168,10 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
   - 输入参数的检查一般仅在静态图分支中使用。主要原因是静态图下该函数仅在模型组网时执行一次，运行期不会再执行；而动态图下该函数会被多次执行，Python 端过多的输入检查会影响执行效率。并且由于动态图即时执行的优势，如果发生错误也可以通过分析 C++ 端的报错信息定位问题。
   - 示例中输入参数检查的代码逻辑比较复杂但仅用于 `trace` 函数，因此在该函数内定义一个检查输入参数的函数 `__check_input`，代码见下文。
 - **创建输出 Tensor ，添加 OP：**
-  - 先创建 LayerHelper 对象，再使用 LayerHelper 对象创建输出 Tensor（[LayerHelper](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/layer_helper.py) 是一个用于创建 OP 输出变量、向 静态图 Program 中添加 OP 的辅助工具类）。
+  - 先创建 LayerHelper 对象，再使用 LayerHelper 对象创建输出 Tensor（[LayerHelper](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/base/layer_helper.py) 是一个用于创建 OP 输出变量、向 静态图 Program 中添加 OP 的辅助工具类）。
   - 在 `append_op` 添加 `inputs` 和 `outputs` 项，其中的 key 值（静态图中变量名）一般与 Python 接口中定义的输入输出 Tensor 变量名的命名相同。（注意：这里 `trace` 中的 `Input` 没有与 Python 接口中 `x` 命名直接对应是由于为了兼容旧算子体系下 `trace` 算子的定义实现而做了额外的映射，新增算子时无需考虑这种情况。）
 
-输入参数检查的 `__check_input` 函数代码如下所示，其中检测 Tensor 的数据类型可以用 [check_variable_and_dtype](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/data_feeder.py#L80) 或 [check_type](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/data_feeder.py#L128) 函数进行检测。
+输入参数检查的 `__check_input` 函数代码如下所示，其中检测 Tensor 的数据类型可以用 [check_variable_and_dtype](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/base/data_feeder.py#L164) 或 [check_type](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/base/data_feeder.py#L176) 函数进行检测。
 
 ```python
 def __check_input(x, offset, axis1, axis2):
