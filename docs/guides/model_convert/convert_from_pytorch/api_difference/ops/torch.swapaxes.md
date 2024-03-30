@@ -17,6 +17,7 @@ paddle.transpose(x,
 其中 PyTorch 的 `axis0、axis1` 与 Paddle 用法不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'>input</font>         | <font color='red'>x</font>            | 输入 Tensor。                                       |

@@ -13,6 +13,7 @@ paddle.nn.functional.cosine_similarity(x1, x2, axis=1, eps=1e-8)
 
 两者功能一致，仅参数名不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | x1          | x1         | 表示第一个输入的 Tensor 。                                     |

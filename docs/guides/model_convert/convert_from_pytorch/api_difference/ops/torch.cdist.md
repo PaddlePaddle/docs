@@ -14,6 +14,7 @@ paddle.cdist(x, y, p=2.0, compute_mode='use_mm_for_euclid_dist_if_necessary', na
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> x1 </font> | <font color='red'> x </font> | 表示第一个输入的 Tensor ，仅参数名不一致。  |

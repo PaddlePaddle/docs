@@ -14,6 +14,7 @@ paddle.linalg.svd(x, full_matrics=False, name=None)
 两者参数用法不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | some        | full_matrics   | 是否计算完整的 U 和 V 矩阵，两者参数功能相反，需要转写。     |

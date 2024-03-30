@@ -16,6 +16,7 @@ paddle.expm1(x,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          |  x           | 该 OP 的输入为多维 Tensor。数据类型为：float16、float32、float64，仅参数名不一致。  |

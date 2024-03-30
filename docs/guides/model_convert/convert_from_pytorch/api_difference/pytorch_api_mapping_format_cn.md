@@ -441,6 +441,7 @@ paddle.nn.ClipGradByValue(max,
 其中 PyTorch 与 Paddle 对该 API 的设计思路与⽤法不同，需要分析上下⽂并联动修改：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | ---- |
 | parameters |  -  | 表示要操作的 Tensor， PyTorch 属于原位操作， PaddlePaddle ⽆此参数，需要实例化之后在 optimizer 中设置才可以使⽤。需要上下⽂分析与联动修改。|

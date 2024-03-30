@@ -21,6 +21,7 @@ paddle.nn.functional.soft_margin_loss(input,
 
 其中 PyTorch 相⽐ Paddle ⽀持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | input         | 输入 Tensor 。                                    |
