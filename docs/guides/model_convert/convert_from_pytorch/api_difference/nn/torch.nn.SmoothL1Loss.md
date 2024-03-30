@@ -43,7 +43,6 @@ torch.nn.SmoothL1Loss(size_average=True)
 
 # Paddle 写法
 paddle.nn.SmoothL1Loss(reduction='mean')
-
 ```
 
 size_average 为 False

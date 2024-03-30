@@ -112,7 +112,7 @@ def get_meta_from_diff_file(filepath):
     paddle_pattern = re.compile(
         r"^### +\[ *(?P<paddle_api>paddle.[^\]]+)\](\((?P<url>[^\)]*)\))?$"
     )
-    code_begin_pattern = re.compile(r"^```(python)?$")
+    code_begin_pattern = re.compile(r"^```python$")
     code_pattern = re.compile(r"^(?P<api_name>(paddle|torch)[^\( ]+)(.*?)$")
     code_end_pattern = re.compile(r"^```$")
 
@@ -247,10 +247,29 @@ def get_meta_from_diff_file(filepath):
     # print(state)
 
     # 允许的终止状态，解析完了 paddle_api 或者只有 torch_api
-    if state not in [ParserState.end, ParserState.wait_for_paddle_api]:
-        raise Exception(
-            f"Unexpected End State at {state} in parsing file: {filepath}, current meta: {meta_data}"
-        )
+    # 这些映射类型必须要有对应的 paddle_api
+    if mapping_type in [
+        "无参数",
+        "参数完全一致",
+        "仅参数名不一致",
+        "仅 paddle 参数更多",
+        "仅参数默认值不一致",
+        # type 2
+        "torch 参数更多",
+        # type 3
+        "返回参数类型不一致",
+        "参数不一致",
+        "参数用法不一致",
+    ]:
+        if state != ParserState.end:
+            raise Exception(
+                f"Unexpected End State at {state} in parsing file: {filepath}, current meta: {meta_data}"
+            )
+    else:
+        if state not in [ParserState.end, ParserState.wait_for_paddle_api]:
+            raise Exception(
+                f"Unexpected End State at {state} in parsing file: {filepath}, current meta: {meta_data}"
+            )
 
     return meta_data
 

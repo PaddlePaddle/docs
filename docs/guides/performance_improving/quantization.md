@@ -150,13 +150,13 @@ Paddle Lite 可以在 ARM CPU 上部署 PaddleSlim 动态离线量化方法、�
 
 Paddle Lite 部署量化模型的方法和常规非量化模型完全相同，主要包括使用 opt 工具进行模型优化、执行预测。
 
-Paddle Lite 的详细说明，请参考[文档](https://paddle-lite.readthedocs.io/zh/latest/index.html)。
+Paddle Lite 的详细说明，请参考[文档](https://www.paddlepaddle.org.cn/lite)。
 
-Paddle Lite 部署动态离线量化方法产出的量化模型，请参考[文档](https://paddle-lite.readthedocs.io/zh/latest/user_guides/quant_post_dynamic.html)。
+Paddle Lite 部署动态离线量化方法产出的量化模型，请参考[文档](https://www.paddlepaddle.org.cn/lite/develop/user_guides/quant/quant_post_dynamic.html)。
 
-Paddle Lite 部署静态离线量化方法产出的量化模型，请参考[文档](https://paddle-lite.readthedocs.io/zh/latest/user_guides/quant_post_static.html)。
+Paddle Lite 部署静态离线量化方法产出的量化模型，请参考[文档](https://www.paddlepaddle.org.cn/lite/develop/user_guides/quant/quant_post_static.html)。
 
-Paddle Lite 部署量化训练方法产出的量化模型，请参考[文档](https://paddle-lite.readthedocs.io/zh/latest/user_guides/quant_aware.html)。
+Paddle Lite 部署量化训练方法产出的量化模型，请参考[文档](https://www.paddlepaddle.org.cn/lite/develop/user_guides/quant_aware.html)。
 
 **模型量化前后性能对比**
 

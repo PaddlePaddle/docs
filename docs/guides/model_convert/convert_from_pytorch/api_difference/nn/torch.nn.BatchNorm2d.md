@@ -21,7 +21,6 @@ paddle.nn.BatchNorm2D(num_features,
                       data_format='NCHW',
                       use_global_stats=True,
                       name=None)
-
 ```
 
 两者功能一致但参数不一致，部分参数名不同，具体如下：

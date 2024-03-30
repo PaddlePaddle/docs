@@ -10,7 +10,6 @@ torch.Tensor.scatter_(dim, index, src)
 
 ```python
 paddle.Tensor.put_along_axis_(index, value, axis, reduce="assign", include_self=True)
-
 ```
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：

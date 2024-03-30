@@ -2,13 +2,13 @@
 
 ### [torch.Tensor.tile](https://pytorch.org/docs/stable/generated/torch.Tensor.tile.html#torch.Tensor.tile)
 
-```
+```python
 torch.Tensor.tile(*reps)
 ```
 
 ### [paddle.Tensor.tile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tile-repeat-times-name-none)
 
-```
+```python
 paddle.Tensor.tile(repeat_times, name=None)
 ```
 
@@ -24,7 +24,7 @@ paddle.Tensor.tile(repeat_times, name=None)
 
 #### ***reps: 维度复制次数**
 
-```
+```python
 # PyTorch 写法
 x = torch.tensor([1, 2, 3])
 x.tile(2,3)
