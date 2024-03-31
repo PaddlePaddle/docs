@@ -14,6 +14,7 @@ paddle.nn.UpsamplingBilinear2D(size=None,scale_factor=None, data_format='NCHW',n
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | size          | size         | 表示输出 Tensor 的 size 。                                     |

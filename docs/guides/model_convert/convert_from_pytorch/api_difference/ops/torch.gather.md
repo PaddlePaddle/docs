@@ -21,6 +21,7 @@ paddle.take_along_axis(arr,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 表示输入 Tensor ，仅参数名不一致。                                    |

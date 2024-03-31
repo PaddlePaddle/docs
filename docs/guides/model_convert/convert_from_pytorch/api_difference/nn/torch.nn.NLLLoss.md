@@ -22,6 +22,7 @@ paddle.nn.NLLLoss(weight=None,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch      | Paddle       | 备注                                         |
 | ------------ | ------------ | -------------------------------------------- |
 | weight       | weight       | 表示每个类别的权重。                         |

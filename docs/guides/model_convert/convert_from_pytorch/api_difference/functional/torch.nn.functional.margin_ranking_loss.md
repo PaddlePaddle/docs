@@ -25,6 +25,7 @@ paddle.nn.functional.margin_ranking_loss(input,
 
 其中 PyTorch 相⽐ Paddle ⽀持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input1          | input         | 表示第一个输入的 Tensor ，仅参数名不一致。                                     |

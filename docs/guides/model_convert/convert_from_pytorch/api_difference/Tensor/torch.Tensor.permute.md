@@ -14,6 +14,7 @@ paddle.Tensor.transpose(perm, name=None)
 
 PyTorch 的 `*dims` 相比于 paddle 的 `perm` 额外支持可变参数的用法，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | *dims  | perm | torch 支持可变参数或 list/tuple，paddle 仅支持 list/tuple。对于可变参数的用法，需要转写。 |

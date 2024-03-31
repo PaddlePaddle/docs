@@ -15,6 +15,7 @@ paddle.nn.initializer.calculate_gain(nonlinearity, param=None)
 两者参数和用法完全一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | nonlinearity           |  nonlinearity          | 非线性激活函数的名称，两者参数和用法完全一致。               |

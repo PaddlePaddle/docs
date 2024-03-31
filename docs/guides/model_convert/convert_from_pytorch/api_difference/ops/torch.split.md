@@ -18,6 +18,7 @@ paddle.split(x,
 
 其中 PyTorch 的 `split_size_or_sections` 与 Paddle 的 `num_or_sections` 用法不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensor        | x            | 表示输入 Tensor ，仅参数名不一致。                                     |

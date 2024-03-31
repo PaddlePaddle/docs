@@ -20,6 +20,7 @@ paddle.nn.BCEWithLogitsLoss(weight=None,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | weight           | weight      | 表示每个 batch 二值交叉熵的权重。                                     |

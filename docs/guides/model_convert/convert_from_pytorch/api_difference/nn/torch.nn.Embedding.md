@@ -23,6 +23,7 @@ paddle.nn.Embedding(num_embeddings,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | num_embeddings     | num_embeddings            | 表示嵌入字典的大小。  |
