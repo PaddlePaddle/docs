@@ -1,4 +1,4 @@
-## [ 仅参数默认值不一致 ] torch.svd_lowrank
+## [ 仅参数名不一致 ] torch.svd_lowrank
 
 ### [torch.svd_lowrank](https://pytorch.org/docs/stable/generated/torch.svd_lowrank.html?highlight=torch+svd_lowrank#torch.svd_lowrank)
 
@@ -12,12 +12,12 @@ torch.svd_lowrank(A, q=6, niter=2, M=None)
 paddle.linalg.svd_lowrank(x, q=None, niter=2, M=None name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数默认值不一致，具体如下：
+两者功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | A          | x            | 表示输入 Tensor，仅参数名不一致。                           |
-| q          | q            | 表示输入 Tensor 略高估计秩，PyTorch 为 6，Paddle 为 None，Paddle 需设置为与 PyTorch 一致。  |
+| q          | q            | 表示输入 Tensor 略高估计秩。                               |
 | niter      | niter        | 表示子空间进行迭代的数量。                                  |
 | M          | M            | 表示输入 Tensor 的平均值矩阵。                              |
