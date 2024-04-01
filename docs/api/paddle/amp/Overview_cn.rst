@@ -63,6 +63,18 @@ AMP 相关 API
     "cross_entropy", "交叉熵"
     "cross_entropy2", "交叉熵"
 
+.. _about_supported:
+
+AMP 场景下判断设备是否支持特定数据类型
+:::::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`is_bfloat16_supported <cn_api_paddle_amp_is_bfloat16_supported>` ", "判断设备是否支持 bfloat16"
+    " :ref:`is_float16_supported <cn_api_paddle_amp_is_float16_supported>` ", "判断设备是否支持 float16"
+
 .. _about_debugging:
 
 Debug 相关辅助类
