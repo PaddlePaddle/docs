@@ -5,7 +5,7 @@ gather
 
 .. py:function:: paddle.gather(x, index, axis=None, name=None)
 
-根据索引 index 获取输入 ``x`` 的指定 ``aixs`` 维度的条目，并将它们拼接在一起。
+根据索引 index 获取输入 ``x`` 的指定 ``axis`` 维度的条目，并将它们拼接在一起。
 
 .. code-block:: text
 
