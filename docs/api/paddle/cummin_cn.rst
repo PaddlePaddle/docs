@@ -5,7 +5,7 @@ cummin
 
 .. py:function:: paddle.cummin(x, axis=None, dtype='int64', name=None)
 
-沿给定 ``axis`` 计算 Tensor ``x`` 的累积最大值。
+沿给定 ``axis`` 计算 Tensor ``x`` 的累积最小值。
 
 .. note::
     结果的第一个元素和输入的第一个元素相同。
