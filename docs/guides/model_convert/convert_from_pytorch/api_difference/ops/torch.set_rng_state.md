@@ -15,6 +15,7 @@ paddle.set_rng_state(state_list)
 其中 PyTorch 与 Paddle 的输入参数类型不一致
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> new_state </font>         | <font color='red'> state_list </font>            | 表示需要设置的新状态，PyTorch 输入类型为 torch.ByteTensor, Paddle 为 list[GeneratorState]                               |

@@ -14,6 +14,7 @@ paddle.device.cuda.get_device_capability(device=None)
 
 功能一致，参数完全一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle        | 备注                                                   |
 | ------------- |---------------------| ------------------------------------------------------ |
 | device        | device              | 表示希望获取计算能力的设备或者设备 ID。如果 device 为 None（默认），则为当前的设备。 |

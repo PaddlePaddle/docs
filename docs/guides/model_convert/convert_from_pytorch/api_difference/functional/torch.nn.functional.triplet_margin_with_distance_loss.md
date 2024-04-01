@@ -27,6 +27,7 @@ paddle.nn.functional.triplet_margin_with_distance_loss(input,
 
 两者功能一致，仅参数名不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | anchor          | input         | 输入 Tensor，仅参数名不一致。                   |

@@ -23,6 +23,7 @@ paddle.nn.CrossEntropyLoss(weight=None,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | weight  | weight           | 表示每个类别的权重。  |
@@ -43,7 +44,6 @@ torch.nn.CrossEntropyLoss(weight=w, size_average=True)
 
 # Paddle 写法
 paddle.nn.CrossEntropyLoss(weight=w, reduction='mean')
-
 ```
 
 size_average 为 False

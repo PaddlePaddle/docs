@@ -18,6 +18,7 @@ paddle.nn.initializer.XavierUniform(fan_in=None,
 两者用法不同：torch 是 inplace 的用法，paddle 是类设置的，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensor        | -          | n 维 tensor。Paddle 无此参数，因为是通过调用类的 __call__ 函数来进行 tensor 的初始化。    |

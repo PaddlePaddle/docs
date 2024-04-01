@@ -15,6 +15,7 @@ paddle.Tensor.shape
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | ------- |
 | dim     | -            | 表示获取大小的轴，Paddle 无此参数，需要转写。 |

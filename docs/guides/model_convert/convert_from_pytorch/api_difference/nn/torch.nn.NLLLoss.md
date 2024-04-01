@@ -22,6 +22,7 @@ paddle.nn.NLLLoss(weight=None,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch      | Paddle       | 备注                                         |
 | ------------ | ------------ | -------------------------------------------- |
 | weight       | weight       | 表示每个类别的权重。                         |
@@ -41,17 +42,19 @@ paddle.nn.NLLLoss(reduction='mean')
 ```
 
 #### size_average
+
 size_average 为 True
+
 ```python
 # PyTorch 写法
 torch.nn.NLLLoss(weight=w, size_average=True)
 
 # Paddle 写法
 paddle.nn.NLLLoss(weight=w, reduction='mean')
-
 ```
 
 size_average 为 False
+
 ```python
 # PyTorch 写法
 torch.nn.NLLLoss(weight=w, size_average=False)
@@ -61,7 +64,9 @@ paddle.nn.NLLLoss(weight=w, reduction='sum')
 ```
 
 #### reduce
+
 reduce 为 True
+
 ```python
 # PyTorch 写法
 torch.nn.NLLLoss(weight=w, reduce=True)
@@ -71,6 +76,7 @@ paddle.nn.NLLLoss(weight=w, reduction='mean')
 ```
 
 reduce 为 False
+
 ```python
 # PyTorch 写法
 torch.nn.NLLLoss(weight=w, reduce=False)
@@ -80,7 +86,9 @@ paddle.nn.NLLLoss(weight=w, reduction='none')
 ```
 
 #### reduction
+
 reduction 为'none'
+
 ```python
 # PyTorch 写法
 torch.nn.NLLLoss(weight=w, reduction='none')
@@ -90,6 +98,7 @@ paddle.nn.NLLLoss(weight=w, reduction='none')
 ```
 
 reduction 为'mean'
+
 ```python
 # PyTorch 写法
 torch.nn.NLLLoss(weight=w, reduction='mean')
@@ -99,6 +108,7 @@ paddle.nn.NLLLoss(weight=w, reduction='mean')
 ```
 
 reduction 为'sum'
+
 ```python
 # PyTorch 写法
 torch.nn.NLLLoss(weight=w, reduction='sum')

@@ -597,6 +597,7 @@
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.elu`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.elu.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.gaussian_nll_loss`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.gaussian_nll_loss.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.gelu`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.gelu.md) |
+| REFERENCE-MAPPING-ITEM(`torch.nn.functional.group_norm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.group_norm.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.gumbel_softmax`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.gumbel_softmax.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.hardswish`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.hardswish.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.hardtanh`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.hardtanh.md) |

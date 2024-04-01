@@ -14,6 +14,7 @@ paddle.Tensor.subtract(y,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | other         | y            | 表示减数的 Tensor，仅参数名不一致。  |

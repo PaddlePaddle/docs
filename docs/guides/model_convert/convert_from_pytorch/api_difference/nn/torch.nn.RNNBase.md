@@ -17,6 +17,7 @@ paddle.nn.layer.rnn.RNNBase(mode, input_size, hidden_size,
 
 两者功能一致但参数不一致，部分参数名不同，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | mode          | mode         | 表示 `RNN` 模型的类型,torch 取值为 `'LSTM', 'GRU', 'RNN_TANH', 'RNN_RELU`，paddle 取值为 `'LSTM', 'GRU'`，需要转写。|

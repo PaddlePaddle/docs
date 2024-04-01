@@ -13,6 +13,7 @@ paddle.linalg.lstsq(x, y, rcond=None, driver=None, name=None)
 
 两者功能一致，仅参数名不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | A         | x         | 表示输入的 Tensor 。                                     |

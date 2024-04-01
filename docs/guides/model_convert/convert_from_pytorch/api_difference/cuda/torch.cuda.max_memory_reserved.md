@@ -14,6 +14,7 @@ paddle.device.cuda.max_memory_reserved(device)
 
 功能一致，参数完全一致（PyTorch 参数是 PaddlePaddle 参数子集），具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                                    |
 | ------------- | ------------ |-----------------------------------------------------------------------|
 | device        | device            | PyTorch 支持 torch.device 和 int。 PaddlePaddle 支持 paddle.CUDAPlace、int 、str。 |
