@@ -14,6 +14,7 @@ paddle.Tensor.tile(repeat_times, name=None)
 
 PyTorch 的 `*sizes` 相比于 Paddle 的 `repeat_times` 额外支持可变参数的用法，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | *sizes | repeat_times | torch 支持可变参数或 list/tuple，paddle 仅支持 list/tuple。对于可变参数的用法，需要转写。 |

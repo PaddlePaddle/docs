@@ -15,6 +15,7 @@ paddle.nn.functional.binary_cross_entropy_with_logits(logit, label, weight=None,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | logit        | 表示输入的 Tensor。                                       |

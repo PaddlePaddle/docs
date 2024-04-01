@@ -14,6 +14,7 @@ paddle.fft.fftn(x, s=None, axes=None, norm='backward', name=None)
 
 其中，PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入 Tensor，仅参数名不一致。                            |

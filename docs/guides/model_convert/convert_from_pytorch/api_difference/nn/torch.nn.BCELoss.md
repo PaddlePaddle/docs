@@ -18,6 +18,7 @@ paddle.nn.BCELoss(weight=None,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | weight           | weight      | 表示每个 batch 二值交叉熵的权重。                                     |
@@ -34,7 +35,6 @@ torch.nn.BCELoss(weight=w, size_average=True)
 
 # Paddle 写法
 paddle.nn.BCELoss(weight=w, reduction='mean')
-
 ```
 
 size_average 为 False

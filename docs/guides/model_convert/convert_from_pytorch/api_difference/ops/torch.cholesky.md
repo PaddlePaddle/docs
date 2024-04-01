@@ -15,6 +15,7 @@ paddle.linalg.cholesky(x,upper=False,name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------- | ------- |
 | input | x | 表示输入参数为多维 Tensor ，它的维度应该为 [*, M, N]，其中*为零或更大的批次尺寸，并且最里面的两个维度上的矩阵都应为对称的正定矩阵，仅参数名不一致。 |

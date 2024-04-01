@@ -11,6 +11,7 @@ paddle.nn.LSTMCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=
 
 两者功能一致但参数不一，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input_size          | input_size            | 表示输入 x 的大小。  |

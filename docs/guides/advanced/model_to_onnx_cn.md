@@ -148,7 +148,7 @@ ONNXRuntime 的 API 和相关文档请查阅：[ONNXRuntime 文档](https://onnx
 
 ```
 # 安装 ONNXRuntime 用于 ONNX 模型的推理
-pythom -m pip install onnxruntime
+python -m pip install onnxruntime
 # 下载推理用的 infer.py 脚本
 wget https://raw.githubusercontent.com/PaddlePaddle/Paddle2ONNX/develop/model_zoo/classification/infer.py
 # 下载测试用的图片

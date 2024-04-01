@@ -15,6 +15,7 @@ paddle.triu_indices(row,col=None,offset=0,dtype='int64')
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------- | ------- |
 | row | row | 表示输入 Tensor 的行数。 |

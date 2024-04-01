@@ -14,6 +14,7 @@ paddle.linalg.norm(x, p='fro', axis=None, keepdim=False, name=None)
 
 PyTorch 支持更多的参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input | x         | 表示输入的一个 tensor 列表 ，仅参数名不一致。                    |

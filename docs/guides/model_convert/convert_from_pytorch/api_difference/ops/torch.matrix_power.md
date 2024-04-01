@@ -11,6 +11,7 @@ paddle.linalg.matrix_power(x, n, name=None)
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor ，仅参数名不一致。                             |

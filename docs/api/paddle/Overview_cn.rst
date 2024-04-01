@@ -384,7 +384,7 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.flatten <cn_api_paddle_flatten>` ", "根据给定的 start_axis 和 stop_axis 将连续的维度展平"
     " :ref:`paddle.flip <cn_api_paddle_flip>` ", "沿指定轴反转 n 维 tensor"
     " :ref:`paddle.rot90 <cn_api_paddle_rot90>` ", "沿 axes 指定的平面将 n 维 tensor 旋转 90 度 k 次"
-    " :ref:`paddle.gather <cn_api_paddle_gather>` ", "根据索引 index 获取输入 x 的指定 aixs 维度的条目，并将它们拼接在一起"
+    " :ref:`paddle.gather <cn_api_paddle_gather>` ", "根据索引 index 获取输入 x 的指定 axis 维度的条目，并将它们拼接在一起"
     " :ref:`paddle.gather_nd <cn_api_paddle_gather_nd>` ", "paddle.gather 的高维推广"
     " :ref:`paddle.reshape <cn_api_paddle_reshape>` ", "在保持输入 x 数据不变的情况下，改变 x 的形状"
     " :ref:`paddle.atleast_1d <cn_api_paddle_atleast_1d>` ", "将输入转换为张量并返回至少为 ``1`` 维的视图"

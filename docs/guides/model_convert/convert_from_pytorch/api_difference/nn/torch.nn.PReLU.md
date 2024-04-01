@@ -20,6 +20,7 @@ paddle.nn.PReLU(num_parameters=1,
 
 其中 PyTorch 与 Paddle 均支持更多其它参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | num_parameters        | num_parameters            | 表示可训练 `weight` 的数量。  |

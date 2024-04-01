@@ -15,6 +15,7 @@ paddle.nn.MSELoss(reduction='mean')
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | size_average  | -            | 已弃用。  |
@@ -23,6 +24,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 转写示例
 #### size_average
+
 ```python
 # Paddle 写法
 torch.nn.MSELoss(size_average=True)
@@ -32,17 +34,19 @@ paddle.nn.MSELoss(reduction='mean')
 ```
 
 #### size_average
+
 size_average 为 True
+
 ```python
 # PyTorch 写法
 torch.nn.MSELoss(size_average=True)
 
 # Paddle 写法
 paddle.nn.MSELoss(reduction='mean')
-
 ```
 
 size_average 为 False
+
 ```python
 # PyTorch 写法
 torch.nn.MSELoss(size_average=False)
@@ -52,7 +56,9 @@ paddle.nn.MSELoss(reduction='sum')
 ```
 
 #### reduce
+
 reduce 为 True
+
 ```python
 # PyTorch 写法
 torch.nn.MSELoss(reduce=True)
@@ -62,6 +68,7 @@ paddle.nn.MSELoss(reduction='mean')
 ```
 
 reduce 为 False
+
 ```python
 # PyTorch 写法
 torch.nn.MSELoss(reduce=False)
@@ -71,7 +78,9 @@ paddle.nn.MSELoss(reduction='none')
 ```
 
 #### reduction
+
 reduction 为'none'
+
 ```python
 # PyTorch 写法
 torch.nn.MSELoss(reduction='none')
@@ -81,6 +90,7 @@ paddle.nn.MSELoss(reduction='none')
 ```
 
 reduction 为'mean'
+
 ```python
 # PyTorch 写法
 torch.nn.MSELoss(reduction='mean')
@@ -90,6 +100,7 @@ paddle.nn.MSELoss(reduction='mean')
 ```
 
 reduction 为'sum'
+
 ```python
 # PyTorch 写法
 torch.nn.MSELoss(reduction='sum')

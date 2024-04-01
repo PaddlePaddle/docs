@@ -25,6 +25,7 @@ paddle.nn.functional.upsample(x,
 
 两者功能一致，其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           | x           | 表示输入 Tensor，仅参数名不一致。      |

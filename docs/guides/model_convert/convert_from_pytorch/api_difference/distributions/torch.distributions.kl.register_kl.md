@@ -14,6 +14,7 @@ paddle.distribution.register_kl(cls_p, cls_q)
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | type_p           | cls_p           | 实例 p 的分布类型，继承于 Distribution 基类，仅参数名不一致。               |

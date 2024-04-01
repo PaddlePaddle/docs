@@ -14,6 +14,7 @@ paddle.Tensor.split(num_or_sections, axis=0, name=None)
 
 PyTorch 的 `split_size_or_sections` 与 Paddle 的 `num_or_sections` 用法不同，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | dim | axis | 表示需要分割的维度，仅参数名不一致。 |
