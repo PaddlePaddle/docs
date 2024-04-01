@@ -25,6 +25,7 @@ paddle.nn.GroupNorm(num_groups,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | eps           | epsilon      | 为了数值稳定加在分母上的值。                                     |

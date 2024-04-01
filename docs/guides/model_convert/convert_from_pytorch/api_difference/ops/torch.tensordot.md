@@ -15,6 +15,7 @@ paddle.tensordot(x,y,axes=2,name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------- | ------- |
 | a | x | 表示缩并运算的左张量,仅参数名不一致。 |

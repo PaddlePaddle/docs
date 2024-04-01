@@ -19,6 +19,7 @@ paddle.nn.Unfold(kernel_size=[3, 3],
 ```
 其中 Paddle 与 PyTorch 前四个参数所支持的参数类型不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | kernel_size   | kernel_sizes | 卷积核大小， PyTorch 参数类型为 int、tuple(int) 或者 list(int)， Paddle 参数类型为 int 或者 list(int)。   |

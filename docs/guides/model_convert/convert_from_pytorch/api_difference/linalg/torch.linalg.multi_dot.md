@@ -16,6 +16,7 @@ paddle.linalg.multi_dot(x,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensors | x         | 表示输入的一个 tensor 列表 ，仅参数名不一致。                    |

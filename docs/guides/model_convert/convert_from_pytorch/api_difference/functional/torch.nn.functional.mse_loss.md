@@ -21,6 +21,7 @@ paddle.nn.functional.mse_loss(input,
 
 其中 PyTorch 相⽐ Paddle ⽀持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | input         | 表示预测的 Tensor 。                                     |

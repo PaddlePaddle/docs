@@ -27,6 +27,7 @@ paddle.nn.functional.cross_entropy(input,
 ```
 两者功能一致，torch 参数更多，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | input         | 表示预测的 Tensor 。                                     |

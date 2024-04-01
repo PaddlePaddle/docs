@@ -24,6 +24,7 @@ paddle.nn.BatchNorm3D(num_features,
 
 两者功能一致但参数不一致，部分参数名不同，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | num_features           | num_features      | 表示输入 Tensor 通道数。                                     |

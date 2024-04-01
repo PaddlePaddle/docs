@@ -14,6 +14,7 @@ paddle.utils.dlpack.from_dlpack(dlpack)
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | ext_tensor |  dlpack  | 表示输入的带有 dltensor 的 PyCapsule 对象，仅参数名不一致。  |

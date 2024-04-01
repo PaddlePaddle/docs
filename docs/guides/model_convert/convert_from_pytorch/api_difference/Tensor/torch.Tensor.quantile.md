@@ -15,6 +15,7 @@ paddle.Tensor.quantile(q, axis=None, keepdim=False, interpolation='linear', name
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                     |
 | ------- | ------------ | ------------------------ |
 | q       | q            |待计算的分位数。          |

@@ -31,6 +31,7 @@ paddle.nn.TransformerDecoderLayer(d_model,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | d_model     |      d_model       | 表示输入的维度。  |

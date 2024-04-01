@@ -15,6 +15,7 @@ paddle.put_along_axis(arr,indices, values, axis, reduce="assign", include_self=T
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注    |
 | ------- | ------------ | ------- |
 | input     | arr         | 表示输入的 Tensor ，仅参数名不一致。 |

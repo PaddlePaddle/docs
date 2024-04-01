@@ -18,6 +18,7 @@ paddle.utils.cpp_extension.CUDAExtension(sources,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | name          | -            | 参数 name，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |

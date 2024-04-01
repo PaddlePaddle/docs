@@ -14,6 +14,7 @@ paddle.linalg.slogdet(x)
 两者功能一致，返回参数的个数不同，PyTorch 返回两个 Tesnor，Paddle 返回一个 Tensor，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |

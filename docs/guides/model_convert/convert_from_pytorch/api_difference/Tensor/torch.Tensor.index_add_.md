@@ -14,6 +14,7 @@ paddle.Tensor.index_add_(index, axis, value)
 其中 PyTorch 与 Paddle 参数有差异，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> dim </font> | <font color='red'> axis </font> | 表示进行运算的轴，仅参数名不一致。  |

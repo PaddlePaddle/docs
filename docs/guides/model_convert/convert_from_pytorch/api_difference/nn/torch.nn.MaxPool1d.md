@@ -23,6 +23,7 @@ paddle.nn.MaxPool1D(kernel_size,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | kernel_size          | kernel_size            | 表示池化核大小。                           |

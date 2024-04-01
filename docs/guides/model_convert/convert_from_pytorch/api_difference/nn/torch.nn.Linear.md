@@ -19,6 +19,7 @@ paddle.nn.Linear(in_features,
 
 其中 PyTorch 的 `bias` 与 Paddle 的 `bias_attr` 用法不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | in_features          | in_features            | 表示线性变换层输入单元的数目。                             |
