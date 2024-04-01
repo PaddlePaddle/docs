@@ -87,7 +87,7 @@
 
 下面我们将分别介绍如何在动态图模式下使用飞桨框架进行模型并行训练。
 
-动态图中，我们提供了以下接口实现 Embeeding 和矩阵切分：
+动态图中，我们提供了以下接口实现 Embedding 和矩阵切分：
 
 - paddle.distributed.fleet.meta_parallel.VocabParallelEmbedding
 - paddle.distributed.fleet.meta_parallel.ColumnParallelLinear
