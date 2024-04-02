@@ -3,11 +3,14 @@ import re
 import sys
 
 script_path = os.path.abspath(__file__)
-script_dir = os.path.dirname(__file__)
-sys.path.append(script_dir)
-print(script_dir)
+
+# convert from pytorch basedir
+CFP_BASEDIR = os.path.dirname(__file__)
+sys.path.append(CFP_BASEDIR)
+print(CFP_BASEDIR)
 
 from validate_mapping_in_api_difference import (
+    download_file_by_git,
     get_meta_from_diff_file,
     process_mapping_index as reference_mapping_item,
 )
@@ -189,12 +192,14 @@ def reference_mapping_item_processer(line, line_idx, state, output, context):
 
 
 if __name__ == "__main__":
-    # convert from pytorch basedir
-    cfp_basedir = os.path.dirname(__file__)
-    # pytorch_api_mapping_cn
-    mapping_index_file = os.path.join(cfp_basedir, "pytorch_api_mapping_cn.md")
+    api_alias_source = "paconvert/api_alias_mapping.json"
+    # api_alias_mapping.json
+    api_alias_file = download_file_by_git(api_alias_source)
 
-    api_difference_basedir = os.path.join(cfp_basedir, "api_difference")
+    # pytorch_api_mapping_cn
+    mapping_index_file = os.path.join(CFP_BASEDIR, "pytorch_api_mapping_cn.md")
+
+    api_difference_basedir = os.path.join(CFP_BASEDIR, "api_difference")
 
     mapping_file_pattern = re.compile(r"^torch\.(?P<api_name>.+)\.md$")
     # get all diff files (torch.*.md)
