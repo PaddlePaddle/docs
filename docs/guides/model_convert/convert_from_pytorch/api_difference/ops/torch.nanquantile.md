@@ -12,15 +12,15 @@ torch.nanquantile(input,
                out=None)
 ```
 
-### [paddle.nanquantile]()
+### [paddle.nanquantile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nanquantile_cn.html#nanquantile)
 
 ```python
 paddle.nanquantile(x,
-                q,
-                axis=None,
-                keepdim=False,
-                interpolation='linear',
-                name=None)
+                   q,
+                   axis=None,
+                   keepdim=False,
+                   interpolation='linear',
+                   name=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：

@@ -9,7 +9,7 @@ torch.Tensor.nanquantile(q, dim=None, keepdim=False, *, interpolation='linear')
 ### [paddle.Tensor.nanquantile](https://github.com/PaddlePaddle/Paddle/pull/41343)
 
 ```python
-paddle.Tensor.nanquantile(q, axis=None, keepdim=False)
+paddle.Tensor.nanquantile(q, axis=None, keepdim=False, interpolation='linear')
 ```
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
