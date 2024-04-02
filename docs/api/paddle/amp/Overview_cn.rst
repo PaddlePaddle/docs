@@ -8,6 +8,7 @@ paddle.amp 目录下包含飞桨框架支持的动态图自动混合精度(AMP)�
 -  :ref:`AMP 相关 API <about_amp>`
 -  :ref:`开启 AMP 后默认转化为 float16 计算的相关 OP <about_amp_white_list_ops>`
 -  :ref:`开启 AMP 后默认使用 float32 计算的相关 OP <about_amp_black_list_ops>`
+-  :ref:`AMP 场景下判断设备是否支持特定数据类型 <_about_supported>`
 
 paddle.amp 目录下包含 debugging 目录， debugging 目录中存放用于算子模型精度问题定位的 API。具体如下：
 
