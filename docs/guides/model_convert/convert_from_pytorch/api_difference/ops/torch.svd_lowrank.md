@@ -18,6 +18,6 @@ paddle.linalg.svd_lowrank(x, q=None, niter=2, M=None name=None)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | A          | x            | 表示输入 Tensor，仅参数名不一致。                           |
-| q          | q            | 表示输入 Tensor 略高估计秩。                               |
+| q          | q            | 表示输入 Tensor 略高估计秩。                                |
 | niter      | niter        | 表示子空间进行迭代的数量。                                  |
 | M          | M            | 表示输入 Tensor 的平均值矩阵。                              |
