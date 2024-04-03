@@ -43,10 +43,12 @@ paddle.optimizer 目录下包含飞桨框架支持的优化器算法相关的 AP
     :widths: 10, 30
 
     " :ref:`CosineAnnealingDecay <cn_api_paddle_optimizer_lr_CosineAnnealingDecay>` ", "Cosine Annealing 学习率衰减"
+    " :ref:`CosineAnnealingWarmRestarts <cn_api_paddle_optimizer_lr_CosineAnnealingWarmRestarts>` ", "CosineAnnealingWarmRestarts 学习率衰减"
     " :ref:`ExponentialDecay <cn_api_paddle_optimizer_lr_ExponentialDecay>` ", "Exponential 学习率衰减"
     " :ref:`InverseTimeDecay <cn_api_paddle_optimizer_lr_InverseTimeDecay>` ", "Inverse Time 学习率衰减"
     " :ref:`LRScheduler <cn_api_paddle_optimizer_lr_LRScheduler>` ", "学习率衰减的基类"
     " :ref:`LambdaDecay <cn_api_paddle_optimizer_lr_LambdaDecay>` ", "Lambda 学习率衰减"
+    " :ref:`LinearLR <cn_api_paddle_optimizer_lr_LinearLR>` ", "LinearLR 学习率衰减"
     " :ref:`LinearWarmup <cn_api_paddle_optimizer_lr_LinearWarmup>` ", "Linear Warmup 学习率衰减"
     " :ref:`MultiStepDecay <cn_api_paddle_optimizer_lr_MultiStepDecay>` ", "MultiStep 学习率衰减"
     " :ref:`NaturalExpDecay <cn_api_paddle_optimizer_lr_NaturalExpDecay>` ", "NatualExp 学习率衰减"
