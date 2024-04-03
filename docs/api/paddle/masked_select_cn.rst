@@ -13,7 +13,7 @@ masked_select
 ::::::::::::
 
     - **x** (Tensor) - 输入 Tensor，数据类型为 float32，float64，int32 或者 int64。
-    - **mask** (Tensor) - 用于索引的二进制掩码的 Tensor，数据类型为 bool。
+    - **mask** (Tensor) - 二进制掩码的 Tensor，用于索引被选择的元素，数据类型为 bool。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
