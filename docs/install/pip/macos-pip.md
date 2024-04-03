@@ -75,7 +75,6 @@
 
 
 注:
-* macOS 上您需要安装 unrar 以支持 PaddlePaddle，可以使用命令`brew install unrar`
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python3 替换为具体的 Python 路径。
 * 默认下载最新稳定版的安装包，如需获取 develop 版本 nightly build 的安装包，请参考[这里](https://www.paddlepaddle.org.cn/install/quick/zh/1.8.5-windows-pip)
 * 使用 macOS 中自带 Python 可能会导致安装失败。请使用[python 官网](https://www.python.org/downloads/mac-osx/)提供的 python3.8.x、python3.9.x、python3.10.x、python3.11.x、python3.12.x。

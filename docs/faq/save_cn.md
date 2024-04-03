@@ -13,7 +13,7 @@
 
       该接口用于保存推理模型和参数，2.0 的`paddle.static.save_inference_model`保存结果为`*.pdmodel`和`*.pdiparams`两个文件，其中`*.pdmodel`为推理使用的模型 program 描述，`*.pdiparams`为推理用的参数，这里存储格式与`*.pdparams`不同（注意两者后缀差个`i`），`*.pdiparams`为二进制 Tensor 存储格式，不含变量名。1.8 的`fluid.io.save_inference_model`默认保存结果为`__model__`文件，和以参数名为文件名的多个分散参数文件，格式与 2.0 一致。
 
-  3. 关于更多 2.0 动态图模型保存和加载的介绍可以参考教程：[模型存储与载入](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/02_paddle2.0_develop/08_model_save_load_cn.html)
+  3. 关于更多 2.0 动态图模型保存和加载的介绍可以参考教程：[模型保存与加载](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/beginner/model_save_load_cn.html)
 
 ----------
 
@@ -88,10 +88,10 @@ adam.set_state_dict(opti_state_dict)
 + 答复：
 
     1. 在 paddle2.x 可使用``paddle.jit.save``接口以及``paddle.static.save_inference_model``,通过指定``path``来保存成为``path.pdmodel``和``path.pdiparams``,可对应 paddle1.x 中使用``save_inference_model``指定 dirname 和 params_filename 生成``dirname/__model__``和``dirname/params 文件``。paddle2.x 保存模型文件详情可参考:
-    - [paddle.jit.save/load](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/02_paddle2.0_develop/08_model_save_load_cn.html#dongtaitumoxing-canshubaocunzairu-xunliantuili)
-    - [paddle.static.save/load_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/02_paddle2.0_develop/08_model_save_load_cn.html#jingtaitumoxing-canshubaocunzairu-tuilibushu)
+    - [paddle.jit.save/load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/beginner/model_save_load_cn.html#sanyongyutuilibushuchangjing)
+    - [paddle.static.save/load_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/beginner/model_save_load_cn.html#jingtaitumoxingdebaocunyujiazai)
     2. 如果想要在 paddle2.x 中读取 paddle 1.x 中的 model 文件，可参考:
-    - [兼容载入旧格式模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.2rc/guides/01_paddle2.0_introduction/load_old_format_model.html#cn-guides-load-old-format-model)
+    - [兼容载入旧格式模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/load_old_format_model_cn.html)
 
 
 ##### 问题：paddle 如何单独 load 存下来所有模型变量中某一个变量，然后修改变量中的值？

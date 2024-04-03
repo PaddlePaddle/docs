@@ -721,7 +721,7 @@ print("使用 AMP-O2 模式耗时:{:.3f} sec".format(train_time/(epochs*nums_bat
 
     可能原因 1：所用显卡并不支持 AMP 加速，可在训练日志中查看如下 warning 信息：`UserWarning: AMP only support NVIDIA GPU with Compute Capability 7.0 or higher, current GPU is: Tesla K40m, with Compute Capability: 3.5.`；
 
-    可能原因 2：模型是轻计算、重调度的类型，计算负载较大的 matmul、conv 等操作占比较低，可通过 nvidia-smi 实时产看显卡显存利用率（Memory Usage 及 GPU_Util 参数）。
+    可能原因 2：模型是轻计算、重调度的类型，计算负载较大的 matmul、conv 等操作占比较低，可通过 nvidia-smi 实时查看显卡显存利用率（Memory Usage 及 GPU_Util 参数）。
 
     针对上述原因，建议关闭混合精度训练。
 
