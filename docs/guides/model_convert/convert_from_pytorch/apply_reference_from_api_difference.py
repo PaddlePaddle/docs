@@ -81,7 +81,7 @@ def docs_url_to_relative_page(url):
     if not url.startswith(DOCS_REPO_BASEURL):
         return url
 
-    md_path = "." + url[len(DOCS_REPO_BASEURL) :]
+    md_path = url[len(DOCS_REPO_BASEURL) :]
     if md_path.endswith(".md"):
         return md_path[:-3] + ".html"
     return md_path
