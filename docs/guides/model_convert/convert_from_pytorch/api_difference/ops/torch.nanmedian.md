@@ -35,5 +35,5 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.nanmedian(a, -1, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.nanmedian(a, -1), y)
+paddle.assign(paddle.nanmedian(a, -1, mode='min'), y)
 ```
