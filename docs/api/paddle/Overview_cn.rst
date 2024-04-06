@@ -495,7 +495,7 @@ framework 相关
     " :ref:`paddle.get_rng_state <cn_api_paddle_get_rng_state>` ", "获取指定设备的随机数生成器的所有随机状态。"
     " :ref:`paddle.grad <cn_api_paddle_grad>` ", "对于每个 inputs ，计算所有 outputs 相对于其的梯度和"
     " :ref:`paddle.in_dynamic_mode <cn_api_paddle_in_dynamic_mode>` ", "查看 paddle 当前是否在动态图模式中运行"
-    " :ref:`paddle.LazyGuard <cn_api_paddle_LazyGuard>` ", "用于设置模型（继承自 ``paddle.nn.Layer`` ） 中参数延迟初始化的上下文管理器"   
+    " :ref:`paddle.LazyGuard <cn_api_paddle_LazyGuard>` ", "用于设置模型（继承自 ``paddle.nn.Layer`` ） 中参数延迟初始化的上下文管理器"
     " :ref:`paddle.load <cn_api_paddle_load>` ", "从指定路径载入可以在 paddle 中使用的对象实例"
     " :ref:`paddle.no_grad <cn_api_paddle_no_grad>` ", "创建一个上下文来禁用动态图梯度计算"
     " :ref:`paddle.ParamAttr <cn_api_paddle_ParamAttr>` ", "创建一个参数属性对象"
