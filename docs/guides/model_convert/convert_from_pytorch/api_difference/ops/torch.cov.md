@@ -21,6 +21,7 @@ paddle.linalg.cov(x,
 
 仅 paddle 参数更多，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font>         | <font color='red'> x </font>            | 输入的 Tensor 。                   |

@@ -2,7 +2,7 @@
 
 ### [torch.nn.functional.kl_div](https://pytorch.org/docs/stable/generated/torch.nn.functional.kl_div.html?highlight=kl_div#torch.nn.functional.kl_div)
 
-```
+```python
 torch.nn.functional.kl_div(input,
                target,
                size_average=None,
@@ -13,7 +13,7 @@ torch.nn.functional.kl_div(input,
 
 ### [paddle.nn.functional.kl_div](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/kl_div_cn.html)
 
-```
+```python
 paddle.nn.functional.kl_div(input,
                 label,
                 reduction='mean')

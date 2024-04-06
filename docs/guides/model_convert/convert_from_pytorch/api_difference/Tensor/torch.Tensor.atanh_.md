@@ -2,13 +2,13 @@
 
 ### [torch.Tensor.atanh_](https://pytorch.org/docs/stable/generated/torch.Tensor.atanh_.html#torch.Tensor.atanh_)
 
-```
+```python
 torch.Tensor.atanh_()
 ```
 
 ### [paddle.Tensor.atanh_]()
 
-```
+```python
 paddle.Tensor.atanh_()
 ```
 

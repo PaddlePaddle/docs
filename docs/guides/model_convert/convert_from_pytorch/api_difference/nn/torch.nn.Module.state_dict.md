@@ -14,6 +14,7 @@ paddle.nn.Layer.state_dict(destination=None, include_sublayers=True, use_hook=Tr
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | destination         | destination        | 所有参数和可持久性 buffers 都将存放在 destination 中 。     |

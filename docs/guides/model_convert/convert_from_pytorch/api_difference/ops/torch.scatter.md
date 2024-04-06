@@ -10,12 +10,12 @@ torch.scatter(input,dim, index, src, reduce=None,out=None)
 
 ```python
 paddle.put_along_axis(arr,indices, values, axis, reduce="assign", include_self=True, broadcast=True)
-
 ```
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注    |
 | ------- | ------------ | ------- |
 | input     | arr         | 表示输入的 Tensor ，仅参数名不一致。 |
@@ -31,6 +31,7 @@ paddle.put_along_axis(arr,indices, values, axis, reduce="assign", include_self=T
 ### 转写示例
 
 #### out：指定输出
+
 ```python
 # PyTorch 写法
 index = torch.tensor([[0],[1],[2]])

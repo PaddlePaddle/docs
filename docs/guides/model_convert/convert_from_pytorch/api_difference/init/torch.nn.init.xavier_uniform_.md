@@ -12,16 +12,18 @@ torch.nn.init.xavier_uniform_(tensor,
 ```python
 paddle.nn.initializer.XavierUniform(fan_in=None,
                             fan_out=None,
+                            gain=1.0,
                             name=None)
 ```
 
 两者用法不同：torch 是 inplace 的用法，paddle 是类设置的，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensor        | -          | n 维 tensor。Paddle 无此参数，因为是通过调用类的 __call__ 函数来进行 tensor 的初始化。    |
-| gain        | -          |  缩放因子。Paddle 无此参数，暂无转写方式。    |
+| gain        | gain          |  缩放因子。                                              |
 | -          |  fan_in          | 用于泽维尔初始化的 fan_in。PyTorch 无此参数，Paddle 保持默认即可。        |
 | -          |  fan_out         | 用于泽维尔初始化的 fan_out。PyTorch 无此参数，Paddle 保持默认即可。       |
 

@@ -3,9 +3,9 @@
 broadcast_tensors
 -------------------------------
 
-.. py:function:: paddle.broadcast_tensors(inputs, name=None)
+.. py:function:: paddle.broadcast_tensors(input, name=None)
 
-根据 Broadcast 规范对一组输入 ``inputs`` 进行 Broadcast 操作
+根据 Broadcast 规范对一组输入 ``input`` 进行 Broadcast 操作
 输入应符合 Broadcast 规范
 
 .. note::
@@ -15,7 +15,7 @@ broadcast_tensors
 
 参数
 :::::::::
-    - inputs (list(Tensor)|tuple(Tensor)) - 一组输入 Tensor，数据类型为：bool、float32、float64、complex64、complex128、int32 或 int64。所有的输入 Tensor 均需要满足 rank <= 5。
+    - input (list(Tensor)|tuple(Tensor)) - 一组输入 Tensor，数据类型为：bool、float32、float64、complex64、complex128、int32 或 int64。所有的输入 Tensor 均需要满足 rank <= 5。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

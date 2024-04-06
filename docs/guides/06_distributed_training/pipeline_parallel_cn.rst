@@ -29,7 +29,7 @@
   :alt: pipeline_timeline2
   :align: center
 
-如上图所示先进行前向计算，再进行反向计算，这种方式我们称之为 F-the-B 模式。不难看出这种 F-then-B 模式由于缓存了多个 micro-batch 的中间变量和梯度，显存的实际利用率并不高。接下来我们介绍一种前向计算和反向计算交叉进行的方式，即 1F1B 模型。在 1F1B 模式下，前向计算和反向计算交叉进行，可以及时释放不必要的中间变量。我们以下图 1F1B 中 stage4 的 F42（stage4 的第 2 个 micro-batch 的前向计算）为例，F42 在计算前，F41 的反向 B41（stage4 的第 1 个 micro-batch 的反向计算）已经计算结束，即可释放 F41 的中间变量，从而 F42 可以复用 F41 中间变量的显存。1F1B 方式相比 F-then-B 方式峰值显存可以节省 37.5%，对比朴素流水线并行峰值显存明显下降，设备资源利用率显著提升。
+如上图所示先进行前向计算，再进行反向计算，这种方式我们称之为 F-then-B 模式。不难看出这种 F-then-B 模式由于缓存了多个 micro-batch 的中间变量和梯度，显存的实际利用率并不高。接下来我们介绍一种前向计算和反向计算交叉进行的方式，即 1F1B 模型。在 1F1B 模式下，前向计算和反向计算交叉进行，可以及时释放不必要的中间变量。我们以下图 1F1B 中 stage4 的 F42（stage4 的第 2 个 micro-batch 的前向计算）为例，F42 在计算前，F41 的反向 B41（stage4 的第 1 个 micro-batch 的反向计算）已经计算结束，即可释放 F41 的中间变量，从而 F42 可以复用 F41 中间变量的显存。1F1B 方式相比 F-then-B 方式峰值显存可以节省 37.5%，对比朴素流水线并行峰值显存明显下降，设备资源利用率显著提升。
 
 .. image:: ./images/pipeline-4.png
   :width: 600
@@ -57,9 +57,8 @@
   import os
   import paddle
   from paddle.distributed import fleet
-  from paddle.fluid.dygraph.container import Sequential
+  from paddle.nn import Sequential, Layer
   import paddle.nn as nn
-  from paddle.fluid.dygraph.layers import Layer
   from paddle.distributed.fleet.meta_parallel import LayerDesc, PipelineLayer
   import paddle.nn.functional as F
   import paddle.distributed as dist

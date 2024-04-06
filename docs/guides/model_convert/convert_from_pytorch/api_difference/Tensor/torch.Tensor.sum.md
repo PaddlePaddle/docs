@@ -14,6 +14,7 @@ paddle.Tensor.sum(axis=None, dtype=None, keepdim=False, name=None)
 两者功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------|
 | dim           | axis         |  求和运算的维度，仅参数名不一致。                                       |

@@ -15,6 +15,7 @@ paddle.Tensor.repeat_interleave(repeats, axis=None, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                |
 | ------- | ------------ | --------------------------------------------------- |
 | repeats   | repeats    | 表示指定复制次数的 1-D Tensor 或指定的复制次数。           |

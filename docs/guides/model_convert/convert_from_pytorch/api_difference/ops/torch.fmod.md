@@ -18,6 +18,7 @@ paddle.mod(x,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的被除数 ，仅参数名不一致。  |

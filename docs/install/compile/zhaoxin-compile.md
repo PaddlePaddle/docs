@@ -68,10 +68,10 @@
     git checkout develop
     ```
 
-5. 根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装 Python 依赖库。
+5. 根据[requirements.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装 Python 依赖库。
 
     ```
-    pip install -r python/requirments.txt
+    pip install -r python/requirements.txt
     ```
 
 6. 请创建并进入一个叫 build 的目录下：

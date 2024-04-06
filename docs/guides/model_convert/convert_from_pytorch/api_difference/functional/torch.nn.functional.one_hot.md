@@ -18,6 +18,7 @@ paddle.nn.functional.one_hot(x,
 两者功能一致，但 Paddle 的 num_classes 没有指定默认值，需要手动指定，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensor          | x         | 表示输入的 Tensor 。                                     |
