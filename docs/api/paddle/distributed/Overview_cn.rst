@@ -39,6 +39,7 @@ Fleet 分布式高层 API
     " :ref:`UtilBase <cn_api_paddle_distributed_fleet_UtilBase>` ", "分布式训练工具的基类，用户集合通信、文件系统操作"
     " :ref:`utils.HDFSClient <cn_api_paddle_distributed_fleet_utils_HDFSClient>` ", "Hadoop 文件系统查看和管理"
     " :ref:`utils.LocalFS <cn_api_paddle_distributed_fleet_utils_LocalFS>` ", "本地文件系统查看和管理"
+    " :ref:`utils.recompute <cn_api_paddle_distributed_fleet_utils_recompute>` ", "重新计算中间激活函数值来节省显存"
 
 .. _02:
 
@@ -58,6 +59,7 @@ Fleet 分布式高层 API
     " :ref:`new_group <cn_api_paddle_distributed_new_group>` ", "创建分布式通信组"
     " :ref:`destroy_process_group <cn_api_paddle_distributed_destroy_process_group>` ", "销毁分布式通信组"
     " :ref:`get_backend <cn_api_paddle_distributed_get_backend>` ", "获取指定分布式通信组后端的名称"
+    " :ref:`ParallelEnv <cn_api_paddle_distributed_ParallelEnv>` ", "这个类用于获取动态图模型并行执行所需的环境变量值"
 
 .. _03:
 
@@ -100,6 +102,7 @@ Fleet 分布式高层 API
     " :ref:`send <cn_api_paddle_distributed_send>` ", "发送一个 tensor 到指定进程"
     " :ref:`recv <cn_api_paddle_distributed_recv>` ", "接收一个来自指定进程的 tensor"
     " :ref:`barrier <cn_api_paddle_distributed_barrier>` ", "同步路障，阻塞操作以实现组内进程同步"
+    " :ref:`wait <cn_api_paddle_distributed_wait>` ", "同步通信组"
 
 .. _05:
 
@@ -159,3 +162,4 @@ RPC API
     " :ref:`reshard <cn_api_paddle_distributed_reshard>`", "对一个带有分布式信息的 Tensor 重新进行分布/切片"
     " :ref:`to_static <cn_api_paddle_distributed_to_static>`", "将带有分布式切分信息的动态图模型转换为静态图分布式模型"
     " :ref:`Strategy <cn_api_paddle_distributed_Strategy>`", "配置静态图分布式训练时所使用的并行策略和优化策略"
+    " :ref:`split <cn_api_paddle_distributed_split>` ", "切分指定操作的参数到多个设备，并且并行计算得到结果"
