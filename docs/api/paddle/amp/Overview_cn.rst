@@ -110,5 +110,5 @@ Debug 相关辅助类
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`check_layer_numerics <cn_api_paddle_amp_debugging_check_layer_numerics>` ", "输入输出数据的数值检查"
-    " :ref:`check_numerics <cn_api_paddle_amp_debugging_check_numerics>` ", "调试 Tensor 数值"
+    " :ref:`check_layer_numerics <cn_api_paddle_amp_debugging_check_layer_numerics>` ", "Layer 输入、输出数据的数值检查"
+    " :ref:`check_numerics <cn_api_paddle_amp_debugging_check_numerics>` ", "调试 Tensor 数值，检查其异常值(NaN、Inf) 和零元素"
