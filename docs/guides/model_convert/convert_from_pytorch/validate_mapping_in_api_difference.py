@@ -548,6 +548,9 @@ def download_file_by_git(
     except subprocess.CalledProcessError as e:
         print(f"Failed to fetch file by git: {e}")
         sys.exit(-1)
+    except Exception as e:
+        print(f"Unexpected Error: {e}")
+        sys.exit(-2)
     finally:
         shutil.rmtree(temp_dir)
 
