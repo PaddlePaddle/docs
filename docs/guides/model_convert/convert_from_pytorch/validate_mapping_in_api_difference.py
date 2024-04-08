@@ -399,10 +399,10 @@ def process_mapping_index(index_path, item_processer, context={}):
 
     expect_column_names = [
         "序号",
-        "PyTorch-2.1",
-        "PaddlePaddle-dev",
+        "Pytorch 最新 release",
+        "Paddle develop",
         "映射关系分类",
-        "详细对比",
+        "备注",
     ]
 
     context["table_row_idx"] = context.get("table_row_idx", -1)
