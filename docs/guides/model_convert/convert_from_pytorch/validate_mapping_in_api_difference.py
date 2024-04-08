@@ -27,7 +27,7 @@ mapping_type_set = {
     # type 4
     "组合替代实现",
     # type 5
-    "用法不同：涉及上下文修改",
+    "涉及上下文修改",
     # type 6
     "对应 API 不在主框架",
     # type 7
