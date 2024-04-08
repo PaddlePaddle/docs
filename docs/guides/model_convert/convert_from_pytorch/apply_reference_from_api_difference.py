@@ -74,6 +74,19 @@ NOT_IMPLEMENTED_PATTERN = re.compile(
 )
 
 
+DOCS_REPO_BASEURL = "https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/"
+
+
+def docs_url_to_relative_page(url):
+    if not url.startswith(DOCS_REPO_BASEURL):
+        return url
+
+    md_path = url[len(DOCS_REPO_BASEURL) :]
+    if md_path.endswith(".md"):
+        return md_path[:-3] + ".html"
+    return md_path
+
+
 def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
     reference_match = REFERENCE_PATTERN.match(line)
     not_implemented_match = NOT_IMPLEMENTED_PATTERN.match(line)
@@ -81,6 +94,8 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
     if reference_match:
         torch_api = reference_match["torch_api"].strip("`").replace(r"\_", "_")
         diff_url = reference_match["diff_url"]
+
+        diff_page_url = docs_url_to_relative_page(diff_url)
 
         row_idx_s = str(table_row_idx)
 
@@ -101,7 +116,7 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         )
         mapping_url_column = ""
         if show_diff_url:
-            mapping_url_column = f"[详细对比]({diff_url})"
+            mapping_url_column = f"[详细对比]({diff_page_url})"
 
         if "paddle_api" not in reference_item:
             if mapping_type not in ["组合替代实现", "可删除", "功能缺失"]:
