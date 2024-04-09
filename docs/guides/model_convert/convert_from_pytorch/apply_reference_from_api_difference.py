@@ -41,7 +41,7 @@ def mapping_type_to_description(mapping_type):
     if mapping_type in mapping_type_4:
         return "组合替代实现", True
 
-    mapping_type_5 = ["用法不同：涉及上下文修改"]
+    mapping_type_5 = ["涉及上下文修改"]
     if mapping_type in mapping_type_5:
         return "功能一致，" + mapping_type, True
 
