@@ -1,14 +1,14 @@
-## [ 仅参数名不一致 ]torch.tensor_split
-### [torch.tensor_split](https://pytorch.org/docs/stable/generated/torch.Tensor.tensor_split.html)
+## [ 仅参数名不一致 ]torch.Tensor.tensor_split
+### [torch.Tensor.tensor_split](https://pytorch.org/docs/stable/generated/torch.Tensor.tensor_split.html)
 
 ```python
-torch.tensor_split(indices_or_sections, dim=0)
+torch.Tensor.tensor_split(indices_or_sections, dim=0)
 ```
 
-### [paddle.tensor_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tensor_split-num_or_indices-axis-0-name-none)
+### [paddle.Tensor.tensor_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tensor_split-num_or_indices-axis-0-name-none)
 
 ```python
-paddle.tensor_split(num_or_indices, axis=0, name=None)
+paddle.Tensor.tensor_split(num_or_indices, axis=0, name=None)
 ```
 
 其中 Paddle 相比 Pytorch 仅参数名不一致，具体如下：

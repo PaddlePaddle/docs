@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.linalg.matrix_exp
-### [torch.linalg.matrix_power](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_exp.html#torch.linalg.matrix_exp)
+### [torch.linalg.matrix_exp](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_exp.html#torch.linalg.matrix_exp)
 
 ```python
 torch.linalg.matrix_exp(A)
