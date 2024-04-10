@@ -3,14 +3,11 @@ import re
 import sys
 
 script_path = os.path.abspath(__file__)
-
-# convert from pytorch basedir
-CFP_BASEDIR = os.path.dirname(__file__)
-sys.path.append(CFP_BASEDIR)
-print(CFP_BASEDIR)
+script_dir = os.path.dirname(__file__)
+sys.path.append(script_dir)
+print(script_dir)
 
 from validate_mapping_in_api_difference import (
-    download_file_by_git,
     get_meta_from_diff_file,
     process_mapping_index as reference_mapping_item,
 )
@@ -44,7 +41,7 @@ def mapping_type_to_description(mapping_type):
     if mapping_type in mapping_type_4:
         return "组合替代实现", True
 
-    mapping_type_5 = ["用法不同：涉及上下文修改"]
+    mapping_type_5 = ["涉及上下文修改"]
     if mapping_type in mapping_type_5:
         return "功能一致，" + mapping_type, True
 
@@ -74,6 +71,19 @@ NOT_IMPLEMENTED_PATTERN = re.compile(
 )
 
 
+DOCS_REPO_BASEURL = "https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/"
+
+
+def docs_url_to_relative_page(url):
+    if not url.startswith(DOCS_REPO_BASEURL):
+        return url
+
+    md_path = url[len(DOCS_REPO_BASEURL) :]
+    if md_path.endswith(".md"):
+        return md_path[:-3] + ".html"
+    return md_path
+
+
 def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
     reference_match = REFERENCE_PATTERN.match(line)
     not_implemented_match = NOT_IMPLEMENTED_PATTERN.match(line)
@@ -81,6 +91,8 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
     if reference_match:
         torch_api = reference_match["torch_api"].strip("`").replace(r"\_", "_")
         diff_url = reference_match["diff_url"]
+
+        diff_page_url = docs_url_to_relative_page(diff_url)
 
         row_idx_s = str(table_row_idx)
 
@@ -101,7 +113,7 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         )
         mapping_url_column = ""
         if show_diff_url:
-            mapping_url_column = f"[详细对比]({diff_url})"
+            mapping_url_column = f"[详细对比]({diff_page_url})"
 
         if "paddle_api" not in reference_item:
             if mapping_type not in ["组合替代实现", "可删除", "功能缺失"]:
@@ -192,14 +204,12 @@ def reference_mapping_item_processer(line, line_idx, state, output, context):
 
 
 if __name__ == "__main__":
-    api_alias_source = "paconvert/api_alias_mapping.json"
-    # api_alias_mapping.json
-    api_alias_file = download_file_by_git(api_alias_source)
-
+    # convert from pytorch basedir
+    cfp_basedir = os.path.dirname(__file__)
     # pytorch_api_mapping_cn
-    mapping_index_file = os.path.join(CFP_BASEDIR, "pytorch_api_mapping_cn.md")
+    mapping_index_file = os.path.join(cfp_basedir, "pytorch_api_mapping_cn.md")
 
-    api_difference_basedir = os.path.join(CFP_BASEDIR, "api_difference")
+    api_difference_basedir = os.path.join(cfp_basedir, "api_difference")
 
     mapping_file_pattern = re.compile(r"^torch\.(?P<api_name>.+)\.md$")
     # get all diff files (torch.*.md)
