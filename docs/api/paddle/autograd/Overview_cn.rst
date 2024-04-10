@@ -6,7 +6,7 @@ paddle.autograd
 paddle.autograd 目录下包含飞桨框架支持的自动微分相关的 API 和类。具体如下：
 
 -  :ref:`自动微分相关 API <about_autograd>`
--  :ref:`自动微分相关类 <about_autograd_class>`
+-  :ref:`自动微分相关辅助类 <about_autograd_class>`
 
 .. _about_autograd:
 
@@ -24,11 +24,11 @@ paddle.autograd 目录下包含飞桨框架支持的自动微分相关的 API �
 
 
 .. _about_autograd_class:
-自动微分相关类
+自动微分相关辅助类
 ::::::::::::::::::::
 
 .. csv-table::
-    :header: "类名称", "类功能"
+    :header: "类名称", "辅助类功能"
     :widths: 10, 30
 
     " :ref:`PyLayer <cn_api_paddle_autograd_PyLayer>` ", "通过创建 ``PyLayer`` 子类的方式实现 Python 端自定义算子"
