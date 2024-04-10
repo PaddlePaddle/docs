@@ -62,11 +62,8 @@ Driver Version: 4.0
 在启动的 docker 容器中，下载并安装飞桨官网发布的 wheel 包。
 
 ```bash
-# 下载 wheel 包
-wget https://paddle-wheel.bj.bcebos.com/develop/xpu/paddlepaddle_xpu-0.0.0-cp310-cp310-linux_x86_64.whl
-
-# 安装 wheel 包
-pip install -U paddlepaddle_xpu-0.0.0-cp310-cp310-linux_x86_64.whl
+# 下载并安装 wheel 包
+pip install --pre paddlepaddle-xpu -i https://www.paddlepaddle.org.cn/packages/nightly/xpu
 ```
 
 ### 安装方式二：源代码编译安装
