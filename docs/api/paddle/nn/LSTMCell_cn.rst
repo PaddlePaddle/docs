@@ -23,6 +23,10 @@ LSTMCell
         h_{t} &= o_{t} * \tanh (c_{t})\\
         y_{t} &= h_{t}
 
+若设置了 `proj_size`，隐状态 :math:`\h_{t}` 将会被映射到指定维度：
+
+.. math::
+        h_{t} & = h_{t} * W_{proj}
 
 
 其中：
@@ -41,6 +45,7 @@ LSTMCell
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh 的参数。默认为 None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih 的参数。默认为 None。
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh 的参数。默认为 None。
+    - **proj_size** (int，可选) - 若大于 0，则会使用投影层将隐状态隐射到指定大小，其值必须小于 `hidden_size` 。默认为 0。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 变量
@@ -60,8 +65,8 @@ LSTMCell
 输出
 ::::::::::::
 
-    - **outputs** (Tensor) - 输出。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
-    - **new_states** (tuple) - 一个包含两个 Tensor 的元组，每个 Tensor 的形状都为[batch_size, hidden_size]，新一轮的隐藏状态。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}，c_{t}`。
+    - **outputs** (Tensor) - 输出。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`, 当设置了 `proj_size` 时，输出形状会被映射为[batch_size, proj_size]。
+    - **new_states** (tuple) - 一个包含两个 Tensor 的元组，每个 Tensor 的形状都为[batch_size, hidden_size]，新一轮的隐藏状态。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}，c_{t}`。当设置了 `proj_size` 时，:math:`h_{t}` 会被映射为[batch_size, proj_size]。
 
 .. note::
     所有的变换矩阵的权重和偏置都默认初始化为 Uniform(-std, std)，其中 std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_paddle_ParamAttr`。

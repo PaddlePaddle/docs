@@ -3,7 +3,7 @@
 LSTM
 -------------------------------
 
-.. py:class:: paddle.nn.LSTM(input_size, hidden_size, num_layers=1, direction="forward", dropout=0., time_major=False, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
+.. py:class:: paddle.nn.LSTM(input_size, hidden_size, num_layers=1, direction="forward", dropout=0., time_major=False, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, proj_size=0, name=None)
 
 
 
@@ -29,6 +29,10 @@ LSTM
 
         y_{t} & = h_{t}
 
+若设置了 `proj_size`，隐状态 :math:`\h_{t}` 将会被映射到指定维度：
+
+.. math::
+        h_{t} & = h_{t} * W_{proj}
 
 其中：
     - :math:`\sigma` ：sigmoid 激活函数。
@@ -40,12 +44,13 @@ LSTM
     - **hidden_size** (int) - 隐藏状态 :math:`h` 大小。
     - **num_layers** (int，可选) - 循环网络的层数。例如，将层数设为 2，会将两层 GRU 网络堆叠在一起，第二层的输入来自第一层的输出。默认为 1。
     - **direction** (str，可选) - 网络迭代方向，可设置为 forward 或 bidirect（或 bidirectional）。foward 指从序列开始到序列结束的单向 GRU 网络方向，bidirectional 指从序列开始到序列结束，又从序列结束到开始的双向 GRU 网络方向。默认为 forward。
-    - **time_major** (bool，可选) - 指定 input 的第一个维度是否是 time steps。如果 time_major 为 True，则 Tensor 的形状为[time_steps,batch_size,input_size]，否则为[batch_size,time_steps,input_size]。`time_steps` 指输入序列的长度。默认为 False。
+    - **time_major** (bool，可选) - 指定 input 的第一个维度是否是 time steps。如果 time_major 为 True，则 Tensor 的形状为[time_steps, batch_size, input_size]，否则为[batch_size, time_steps, input_size]。`time_steps` 指输入序列的长度。默认为 False。
     - **dropout** (float，可选) - dropout 概率，指的是除第一层外每层输入时的 dropout 概率。范围为[0, 1]。默认为 0。
     - **weight_ih_attr** (ParamAttr，可选) - weight_ih 的参数。默认为 None。
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh 的参数。默认为 None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih 的参数。默认为 None。
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh 的参数。默认为 None。
+    - **proj_size** (int，可选) - 若大于 0，则会使用投影层将隐状态隐射到指定大小，其值必须小于 `hidden_size` 。默认为 0。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 输入
@@ -58,8 +63,9 @@ LSTM
 输出
 ::::::::::::
 
-    - **outputs** (Tensor) - 输出，由前向和后向 cell 的输出拼接得到。如果 time_major 为 True，则 Tensor 的形状为[time_steps,batch_size,num_directions * hidden_size]，如果 time_major 为 False，则 Tensor 的形状为[batch_size,time_steps,num_directions * hidden_size]，当 direction 设置为 bidirectional 时，num_directions 等于 2，否则等于 1。`time_steps` 指输出序列的长度。
-    - **final_states** (tuple) - 最终状态，一个包含 h 和 c 的元组。形状为[num_layers * num_directions, batch_size, hidden_size]，当 direction 设置为 bidirectional 时，num_directions 等于 2，返回值的前向和后向的状态的索引是 0，2，4，6..。和 1，3，5，7...，否则等于 1。
+    - **outputs** (Tensor) - 输出，由前向和后向 cell 的输出拼接得到。如果 time_major 为 True，则 Tensor 的形状为[time_steps, batch_size, num_directions * hidden_size]，当设置了 `proj_size` 时，输出形状会被映射为[time_steps, batch_size, num_directions * proj_size]，如果 time_major 为 False，则 Tensor 的形状为[batch_size,time_steps,num_directions * hidden_size]，当 direction 设置为 bidirectional 时，num_directions 等于 2，否则等于 1。`time_steps` 指输出序列的长度。
+    - **final_states** (tuple) - 最终状态，一个包含 h 和 c 的元组。形状为[num_layers * num_directions, batch_size, hidden_size]，当设置了 `proj_size` 时， h 的形状会被映射为[num_layers * num_directions, batch_size, proj_size]。 当 direction 设置为 bidirectional 时，num_directions 等于 2，返回值的前向和后向的状态的索引是 0，2，4，6..。和 1，3，5，7...，否则等于 1。
+
 
 代码示例
 ::::::::::::
