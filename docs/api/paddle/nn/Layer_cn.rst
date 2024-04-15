@@ -228,10 +228,14 @@ sublayers(include_self=False)
 
 COPY-FROM: paddle.nn.Layer.sublayers
 
-clear_gradients()
+clear_gradients(set_to_zero=True)
 '''''''''
 
 清除该层所有参数的梯度。
+
+**参数**
+
+    - **set_to_zero** (bool，可选) - 是否将可训练参数的梯度设置为 0 ，若为 False 则设为 None。默认值：True。
 
 **返回**
 无
