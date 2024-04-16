@@ -20,6 +20,7 @@ pca_lowrank
     - **x** (Tensor) - 输入的需要进行线性主成分分析的一个或一批方阵，类型为 Tensor。 ``x`` 的形状应为 ``[*, M, N]``，其中 ``*`` 为零或更大的批次维度，数据类型支持 float32， float64。
     - **q** (int，可选) - 对输入 :math:`X` 的秩稍微高估的预估值，默认值是 :math:`q=min(6,N,M)`。
     - **center** (bool，可选) - 是否对输入矩阵进行中心化操作，类型为 bool ，默认为 True。
+    - **niter** (int) - 需要进行的子空间迭代次数。默认值为 2。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

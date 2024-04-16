@@ -8,6 +8,7 @@ paddle.amp 目录下包含飞桨框架支持的动态图自动混合精度(AMP)�
 -  :ref:`AMP 相关 API <about_amp>`
 -  :ref:`开启 AMP 后默认转化为 float16 计算的相关 OP <about_amp_white_list_ops>`
 -  :ref:`开启 AMP 后默认使用 float32 计算的相关 OP <about_amp_black_list_ops>`
+-  :ref:`AMP 场景下判断设备是否支持特定数据类型 <about_supported>`
 
 paddle.amp 目录下包含 debugging 目录， debugging 目录中存放用于算子模型精度问题定位的 API。具体如下：
 
@@ -62,6 +63,18 @@ AMP 相关 API
     "sigmoid_cross_entropy_with_logits", "按元素的概率误差"
     "cross_entropy", "交叉熵"
     "cross_entropy2", "交叉熵"
+
+.. _about_supported:
+
+AMP 场景下判断设备是否支持特定数据类型
+:::::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`is_bfloat16_supported <cn_api_paddle_amp_is_bfloat16_supported>` ", "判断设备是否支持 bfloat16"
+    " :ref:`is_float16_supported <cn_api_paddle_amp_is_float16_supported>` ", "判断设备是否支持 float16"
 
 .. _about_debugging:
 

@@ -25,7 +25,7 @@ reshape
 
 下图展示了第一个例子中的情形——一个形状为[2,4,6]的三维张量通过 reshape 操作转变为形状为[6,8]的二维张量，同时保持了张量中元素的顺序和值不变。通过比较，可以清晰地看到张量形状变化前后各元素的对应关系。
 
-.. image:: ../../images/reshape.png
+.. image:: ../../images/api_legend/reshape.png
    :alt: 图例
 
 参数

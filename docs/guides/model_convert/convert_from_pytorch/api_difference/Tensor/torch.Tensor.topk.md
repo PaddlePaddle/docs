@@ -17,7 +17,7 @@ paddle.Tensor.topk(k, axis=None, largest=True, sorted=True, name=None)
 ### 参数映射
 
 | PyTorch | PaddlePaddle | 备注                             |
-| ------- | ------------ | :------------------------------- |
+| ------- | ------------ | -------------------------------- |
 | k       | k            | 表示前 k 个最大项。              |
 | dim     | axis         | 表示排序的维度，仅参数名不一致。 |
 | largest | largest      | True: 最大值， False: 最小值。   |
