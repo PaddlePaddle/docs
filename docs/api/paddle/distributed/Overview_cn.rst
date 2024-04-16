@@ -102,7 +102,7 @@ Fleet 分布式高层 API
     " :ref:`send <cn_api_paddle_distributed_send>` ", "发送一个 tensor 到指定进程"
     " :ref:`recv <cn_api_paddle_distributed_recv>` ", "接收一个来自指定进程的 tensor"
     " :ref:`barrier <cn_api_paddle_distributed_barrier>` ", "同步路障，阻塞操作以实现组内进程同步"
-    " :ref:`wait <cn_api_paddle_distributed_wait>` ", "同步通信组"
+    " :ref:`wait <cn_api_paddle_distributed_wait>` ", "同步通信组，在指定的通信组中同步特定的 tensor 对象"
 
 .. _05:
 
