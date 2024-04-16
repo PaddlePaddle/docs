@@ -20,7 +20,7 @@ paddle.nn.layer.rnn.RNNBase(mode, input_size, hidden_size,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| mode          | mode         | 表示 `RNN` 模型的类型, 取值为 `'LSTM', 'GRU', 'RNN_TANH', 'RNN_RELU`，二者一致，无需转写。|
+| mode          | mode         | 表示 `RNN` 模型的类型, 取值为 `'LSTM', 'GRU', 'RNN_TANH', 'RNN_RELU`，参数完全一致。|
 | input_size          | input_size            | 表示输入 x 的大小。  |
 | hidden_size          | hidden_size            | 表示隐藏状态 h 大小。  |
 | num_layers          | num_layers            | 表示循环网络的层数。  |
