@@ -219,7 +219,6 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.masked_fill_ <cn_api_paddle_masked_fill_>` ", "Inplace 版本的 masked_fill API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.masked_scatter_ <cn_api_paddle_masked_scatter_>` ", "Inplace 版本的 masked_scatter API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.index_fill_ <cn_api_paddle_index_fill_>` ", "Inplace 版本的 index_fill API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.index_add_ <cn_api_paddle_index_add_>` ", "Inplace 版本的 :ref:`cn_api_paddle_index_add` API，对输入 `x` 采用 Inplace 策略"
     " :ref:`paddle.bitwise_left_shift_ <cn_api_paddle_bitwise_left_shift_>` ", "Inplace 版本的 bitwise_left_shift API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.bitwise_right_shift_ <cn_api_paddle_bitwise_right_shift_>` ", "Inplace 版本的 bitwise_right_shift API，对输入 x 采用 Inplace 策略"
 
@@ -432,7 +431,6 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.repeat_interleave <cn_api_paddle_repeat_interleave>` ", "沿 axis 轴对输入 x 的元素进行复制"
     " :ref:`paddle.index_add <cn_api_paddle_index_add>` ", "沿着指定轴 axis 将 index 中指定位置的 x 与 value 相加，并写入到结果 Tensor 中的对应位置"
     " :ref:`paddle.index_put <cn_api_paddle_index_put>` ", "构造一个与 x 完全相同的 Tensor，并依据 indices 中指定的索引将 value 的值对应的放置其中，随后输出"
-    " :ref:`paddle.index_put_ <cn_api_paddle_index_put_>` ", "依据索引 ``indices`` ，将指定位置的 ``x`` 重新赋值为 ``value`` "
     " :ref:`paddle.unflatten <cn_api_paddle_unflatten>` ", "将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状"
     " :ref:`paddle.as_strided <cn_api_paddle_as_strided>` ", "使用特定的 shape、stride、offset，返回 x 的一个 view Tensor"
     " :ref:`paddle.view <cn_api_paddle_view>` ", "使用特定的 shape 或者 dtype，返回 x 的一个 view Tensor"
@@ -457,6 +455,8 @@ tensor 元素操作相关原位（inplace）版本
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`paddle.index_add_ <cn_api_paddle_index_add_>` ", "Inplace 版本的 :ref:`cn_api_paddle_index_add` API，对输入 `x` 采用 Inplace 策略"
+    " :ref:`paddle.index_put_ <cn_api_paddle_index_put_>` ", "依据索引 ``indices`` ，将指定位置的 ``x`` 重新赋值为 ``value`` "
     " :ref:`paddle.reshape_ <cn_api_paddle_reshape_>` ", "Inplace 版本的 reshape API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.scatter_ <cn_api_paddle_scatter_>` ", "Inplace 版本的 scatter API，对输入 x 采用 Inplace 策略 "
     " :ref:`paddle.squeeze_ <cn_api_paddle_squeeze_>` ", "Inplace 版本的 squeeze API，对输入 x 采用 Inplace 策略"
