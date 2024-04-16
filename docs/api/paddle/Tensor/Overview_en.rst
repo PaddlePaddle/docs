@@ -154,6 +154,9 @@ Methods
     isfinite
     isinf
     isnan
+    isneginf
+    isposinf
+    isreal
     item
     kron
     less_equal

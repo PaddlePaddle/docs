@@ -228,6 +228,9 @@ tensor 逻辑操作
     " :ref:`paddle.isfinite <cn_api_paddle_isfinite>` ", "返回输入 tensor 的每一个值是否为 Finite（既非 +/-INF 也非 +/-NaN ）"
     " :ref:`paddle.isinf <cn_api_paddle_isinf>` ", "返回输入 tensor 的每一个值是否为 +/-INF"
     " :ref:`paddle.isnan <cn_api_paddle_isnan>` ", "返回输入 tensor 的每一个值是否为 +/-NaN"
+    " :ref:`paddle.isposinf <cn_api_paddle_isposinf>` ", "返回输入 tensor 的每一个值是否为 +INF"
+    " :ref:`paddle.isneginf <cn_api_paddle_isneginf>` ", "返回输入 tensor 的每一个值是否为 -INF"
+    " :ref:`paddle.isreal <cn_api_paddle_isreal>` ", "返回输入 tensor 的每一个值是否为实数类型"
 
 .. _tensor_attribute:
 
