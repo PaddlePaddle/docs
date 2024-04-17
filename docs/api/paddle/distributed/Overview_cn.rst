@@ -61,7 +61,7 @@ Fleet 分布式高层 API
     " :ref:`get_group <cn_api_paddle_distributed_get_group>` ", "通过通信组 id 获取通信组实例"
     " :ref:`destroy_process_group <cn_api_paddle_distributed_destroy_process_group>` ", "销毁分布式通信组"
     " :ref:`get_backend <cn_api_paddle_distributed_get_backend>` ", "获取指定分布式通信组后端的名称"
-    " :ref:`gloo_init_parallel <cn_api_paddle_distributed_gloo_init_parallel>` ", "初始化 ``GLOO`` 上下文用于 CPU 间的通信"
+    " :ref:`gloo_init_parallel_env <cn_api_paddle_distributed_gloo_init_parallel_env>` ", "初始化 ``GLOO`` 上下文用于 CPU 间的通信"
     " :ref:`gloo_release <cn_api_paddle_distributed_gloo_release>` ", "释放当前并行环境的 gloo 上下文"
 
 .. _03:
