@@ -42,7 +42,7 @@ COPY-FROM: paddle.distributed.fleet.DistributedStrategy.execution_strategy
 build_strategy
 '''''''''
 
-配置 DistributedStrategy 中的 `BuildStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/BuildStrategy_cn.html>`_
+配置 DistributedStrategy 中的 `BuildStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/BuildStrategy_cn.html>`_
 
 **代码示例**
 
