@@ -177,5 +177,5 @@ Sharding API
     :header: "API 名称", "API 功能"
     :widths: 20, 50
 
-    " :ref:`group_sharded_parallel <an_api_paddle_distributed_group_sharded_parallel>`", "对模型、优化器和 GradScaler 做 group sharded 配置"
-    " :ref:`save_group_sharded_model <an_api_paddle_distributed_save_group_sharded_model>`", "对 group_sharded_parallel 配置后的模型和优化器状态进行保存"
+    " :ref:`group_sharded_parallel <cn_api_paddle_distributed_group_sharded_parallel>`", "对模型、优化器和 GradScaler 做 group sharded 配置"
+    " :ref:`save_group_sharded_model <cn_api_paddle_distributed_save_group_sharded_model>`", "对 group_sharded_parallel 配置后的模型和优化器状态进行保存"
