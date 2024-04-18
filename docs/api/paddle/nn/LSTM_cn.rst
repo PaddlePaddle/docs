@@ -32,7 +32,7 @@ LSTM
 若设置了 `proj_size`，隐状态 :math:`\h_{t}` 将会被映射到指定维度：
 
 .. math::
-        h_{t} & = h_{t} * W_{proj}
+        h_{t} = h_{t} * W_{proj\_size}
 
 其中：
     - :math:`\sigma` ：sigmoid 激活函数。

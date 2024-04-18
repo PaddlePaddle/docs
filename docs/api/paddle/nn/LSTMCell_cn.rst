@@ -3,7 +3,7 @@
 LSTMCell
 -------------------------------
 
-.. py:class:: paddle.nn.LSTMCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
+.. py:class:: paddle.nn.LSTMCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, proj_size=0, name=None)
 
 
 
@@ -26,7 +26,7 @@ LSTMCell
 若设置了 `proj_size`，隐状态 :math:`\h_{t}` 将会被映射到指定维度：
 
 .. math::
-        h_{t} & = h_{t} * W_{proj}
+        h_{t} = h_{t} * W_{proj\_size}
 
 
 其中：
