@@ -23,7 +23,7 @@ LSTMCell
         h_{t} &= o_{t} * \tanh (c_{t})\\
         y_{t} &= h_{t}
 
-若设置了 `proj_size`，隐状态 :math:`\h_{t}` 将会被映射到指定维度：
+若设置了 `proj_size`，隐状态 :math:`h_{t}` 将会被映射到指定维度：
 
 .. math::
         h_{t} = h_{t} * W_{proj\_size}
