@@ -104,7 +104,7 @@
     - `--rm`：关闭容器后删除容器；
 
 
-    - `--env USER_PASSWD="password you set"`：为 jupyter 设置登录密码，`password you set` 是自己设置的密码；
+    - `--env USER_PASSWD="password you set"`：为登入用户 ["jovyan", "paddle"] 设置登录密码，`password you set` 是自己设置的密码；
 
 
     - `-v $PWD:/home/paddle`：指定将当前路径（PWD 变量会展开为当前路径的绝对路径）挂载到容器内部的 /home/paddle 目录；
