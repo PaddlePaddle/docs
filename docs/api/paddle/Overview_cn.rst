@@ -21,6 +21,7 @@ paddle 目录下包含 tensor、device、framework 相关 API 以及某些高层
 -  :ref:`device 相关 <about_device>`
 -  :ref:`高层 API 相关 <about_hapi>`
 -  :ref:`稀疏 API 相关 <about_sparse_api>`
+-  :ref:`环境变量 FLAGS 相关 <about_flags_api>`
 
 
 
@@ -67,6 +68,8 @@ tensor 数学操作
     " :ref:`paddle.expm1 <cn_api_paddle_expm1>` ", "逐元素进行 exp(x)-1 运算"
     " :ref:`paddle.floor <cn_api_paddle_floor>` ", "向下取整函数"
     " :ref:`paddle.floor_divide <cn_api_paddle_floor_divide>` ", "逐元素整除算子，输入 x 与输入 y 逐元素整除，并将各个位置的输出元素保存到返回结果中"
+    " :ref:`paddle.fmax <cn_api_paddle_fmax>` ", "返回 x 与 y 逐元素的最大值构成的新 Tensor，若遇任一 NaN，取另一值；两 NaN 则取首 NaN"
+    " :ref:`paddle.fmin <cn_api_paddle_fmin>` ", "返回 x 与 y 逐元素的最小值构成的新 Tensor，若遇任一 NaN，取另一值；两 NaN 则取首 NaN"
     " :ref:`paddle.gammaincc <cn_api_paddle_gammaincc>` ", "计算正则化上不完全伽玛函数"
     " :ref:`paddle.gammainc <cn_api_paddle_gammainc>` ", "计算正则化下不完全伽玛函数"
     " :ref:`paddle.gammaln <cn_api_paddle_gammaln>` ", "逐元素计算输入 x 的伽马函数的绝对值的自然对数"
@@ -81,12 +84,14 @@ tensor 数学操作
     " :ref:`paddle.log <cn_api_paddle_log>` ", "Log 激活函数（计算自然对数）"
     " :ref:`paddle.log10 <cn_api_paddle_log10>` ", "Log10 激活函数（计算底为 10 的对数）"
     " :ref:`paddle.log2 <cn_api_paddle_log2>` ", "计算 Log1p（加一的自然对数）结果"
+    " :ref:`paddle.logaddexp <cn_api_paddle_logaddexp>` ", "计算 ``x`` 和 ``y`` 的以 e 为底的指数的和的自然对数"
     " :ref:`paddle.logcumsumexp <cn_api_paddle_logcumsumexp>` ", "计算 x 的指数的前缀和的对数"
     " :ref:`paddle.logical_and <cn_api_paddle_logical_and>` ", "逐元素的对 x 和 y 进行逻辑与运算"
     " :ref:`paddle.logical_not <cn_api_paddle_logical_not>` ", "逐元素的对 X Tensor 进行逻辑非运算"
     " :ref:`paddle.logical_or <cn_api_paddle_logical_or>` ", "逐元素的对 X 和 Y 进行逻辑或运算"
     " :ref:`paddle.logical_xor <cn_api_paddle_logical_xor>` ", "逐元素的对 X 和 Y 进行逻辑异或运算"
     " :ref:`paddle.logit <cn_api_paddle_logit>` ", "计算 logit 结果"
+    " :ref:`paddle.logspace <cn_api_paddle_logspace>` ", "返回区间 :math:`[base^{start}, base^{stop}]` 内固定数量的对数均匀分布的值"
     " :ref:`paddle.bitwise_and <cn_api_paddle_bitwise_and>` ", "逐元素的对 x 和 y 进行按位与运算"
     " :ref:`paddle.bitwise_not <cn_api_paddle_bitwise_not>` ", "逐元素的对 X Tensor 进行按位取反运算"
     " :ref:`paddle.bitwise_or <cn_api_paddle_bitwise_or>` ", "逐元素的对 X 和 Y 进行按位或运算"
@@ -111,6 +116,10 @@ tensor 数学操作
     " :ref:`paddle.ldexp <cn_api_paddle_ldexp>` ", "计算 x 乘以 2 的 y 次幂"
     " :ref:`paddle.multigammaln <cn_api_paddle_multigammaln>` ", "计算多元伽马函数的对数"
     " :ref:`paddle.nan_to_num <cn_api_paddle_nan_to_num>` ", "替换 x 中的 NaN、+inf、-inf 为指定值"
+    " :ref:`paddle.quantile <cn_api_paddle_quantile>` ", "沿给定的轴 ``axis`` 计算 ``x`` 中元素的分位数"
+    " :ref:`paddle.nanmean <cn_api_paddle_nanmean>` ", "沿 ``axis`` 计算 ``x`` 的平均值，且忽略掉 ``NaNs`` 值"
+    " :ref:`paddle.nanquantile <cn_api_paddle_nanquantile>` ", "沿给定的轴 ``axis`` 计算 ``x`` 中元素的分位数, 忽略元素中的 ``NaN``"
+    " :ref:`paddle.nansum <cn_api_paddle_nansum>` ", "计算给定轴上的元素之和，并将非数字元素（NaNs）视为 0"
     " :ref:`paddle.neg <cn_api_paddle_neg>` ", "计算输入 x 的相反数并返回"
     " :ref:`paddle.nextafter <cn_api_paddle_nextafter>` ", "逐元素将 x 之后的下一个浮点值返回"
     " :ref:`paddle.not_equal <cn_api_paddle_not_equal>` ", "逐元素地返回 x!=y 的逻辑值"
@@ -259,6 +268,7 @@ tensor 创建相关
 
     " :ref:`paddle.arange <cn_api_paddle_arange>` ", "返回以步长 step 均匀分隔给定数值区间[start, end)的 1-D Tensor，数据类型为 dtype"
     " :ref:`paddle.diag <cn_api_paddle_diag>` ", "如果 x 是向量（1-D Tensor），则返回带有 x 元素作为对角线的 2-D 方阵；如果 x 是矩阵（2-D Tensor），则提取 x 的对角线元素，以 1-D Tensor 返回。"
+    " :ref:`paddle.diag_embed <cn_api_paddle_diag_embed>` ", "创建一个 Tensor，其在指定的 2D 平面（由 ``dim1`` 和 ``dim2`` 指定）上的对角线由输入 ``input`` 填充"
     " :ref:`paddle.diagflat <cn_api_paddle_diagflat>` ", "如果 x 是一维 Tensor，则返回带有 x 元素作为对角线的二维方阵；如果 x 是大于等于二维的 Tensor，则返回一个二维 Tensor，其对角线元素为 x 在连续维度展开得到的一维 Tensor 的元素。"
     " :ref:`paddle.empty <cn_api_paddle_empty>` ", "创建形状大小为 shape 并且数据类型为 dtype 的 Tensor"
     " :ref:`paddle.empty_like <cn_api_paddle_empty_like>` ", "根据 x 的 shape 和数据类型 dtype 创建未初始化的 Tensor"
@@ -296,6 +306,7 @@ tensor 元素查找相关
     " :ref:`paddle.argsort <cn_api_paddle_argsort>` ", "对输入变量沿给定轴进行排序，输出排序好的数据的相应索引，其维度和输入相同"
     " :ref:`paddle.index_sample <cn_api_paddle_index_sample>` ", "对输入 x 中的元素进行批量抽样"
     " :ref:`paddle.index_select <cn_api_paddle_index_select>` ", "沿着指定轴 axis 对输入 x 进行索引"
+    " :ref:`paddle.kthvalue <cn_api_paddle_kthvalue>` ", "在指定的轴上查找第 k 小的元素和其对应所在的索引信息"
     " :ref:`paddle.masked_select <cn_api_paddle_masked_select>` ", "返回一个 1-D 的 Tensor, Tensor 的值是根据 mask 对输入 x 进行选择的"
     " :ref:`paddle.nonzero <cn_api_paddle_nonzero>` ", "返回输入 x 中非零元素的坐标"
     " :ref:`paddle.sort <cn_api_paddle_sort>` ", "对输入变量沿给定轴进行排序，输出排序好的数据，其维度和输入相同"
@@ -359,6 +370,7 @@ tensor 线性代数相关
     " :ref:`paddle.rank <cn_api_paddle_rank>` ", "计算输入 Tensor 的维度（秩）"
     " :ref:`paddle.t <cn_api_paddle_t>` ", "对小于等于 2 维的 Tensor 进行数据转置"
     " :ref:`paddle.tril <cn_api_paddle_tril>` ", "返回输入矩阵 input 的下三角部分，其余部分被设为 0"
+    " :ref:`paddle.tril_indices <cn_api_paddle_tril_indices>` ", "返回行数和列数已知的二维矩阵中下三角矩阵元素的行列坐标"
     " :ref:`paddle.triu <cn_api_paddle_triu>` ", "返回输入矩阵 input 的上三角部分，其余部分被设为 0"
     " :ref:`paddle.triu_indices <cn_api_paddle_triu_indices>` ", "返回输入矩阵在给定对角线右上三角部分元素坐标"
     " :ref:`paddle.cdist <cn_api_paddle_cdist>` ", "计算两组输入集合 x, y 中每对之间的 p 范数"
@@ -443,6 +455,8 @@ tensor 元素操作相关原位（inplace）版本
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`paddle.index_add_ <cn_api_paddle_index_add_>` ", "Inplace 版本的 :ref:`cn_api_paddle_index_add` API，对输入 `x` 采用 Inplace 策略"
+    " :ref:`paddle.index_put_ <cn_api_paddle_index_put_>` ", "依据索引 ``indices`` ，将指定位置的 ``x`` 重新赋值为 ``value`` "
     " :ref:`paddle.reshape_ <cn_api_paddle_reshape_>` ", "Inplace 版本的 reshape API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.scatter_ <cn_api_paddle_scatter_>` ", "Inplace 版本的 scatter API，对输入 x 采用 Inplace 策略 "
     " :ref:`paddle.squeeze_ <cn_api_paddle_squeeze_>` ", "Inplace 版本的 squeeze API，对输入 x 采用 Inplace 策略"
@@ -475,11 +489,13 @@ framework 相关
     " :ref:`paddle.NPUPlace <cn_api_paddle_NPUPlace>` ", "一个设备描述符，指 NCPUPlace 则 Tensor 将被自动分配在该设备上，并且模型将会运行在该设备上"
     " :ref:`paddle.disable_signal_handler <cn_api_paddle_disable_signal_handler>` ", "关闭 Paddle 系统信号处理方法"
     " :ref:`paddle.disable_static <cn_api_paddle_disable_static>` ", "关闭静态图模式"
+    " :ref:`paddle.enable_grad <cn_api_paddle_enable_grad>` ", "创建一个上下文来启用动态图梯度计算"
     " :ref:`paddle.enable_static <cn_api_paddle_enable_static>` ", "开启静态图模式"
     " :ref:`paddle.get_default_dtype <cn_api_paddle_get_default_dtype>` ", "得到当前全局的 dtype"
     " :ref:`paddle.get_rng_state <cn_api_paddle_get_rng_state>` ", "获取指定设备的随机数生成器的所有随机状态。"
     " :ref:`paddle.grad <cn_api_paddle_grad>` ", "对于每个 inputs ，计算所有 outputs 相对于其的梯度和"
     " :ref:`paddle.in_dynamic_mode <cn_api_paddle_in_dynamic_mode>` ", "查看 paddle 当前是否在动态图模式中运行"
+    " :ref:`paddle.LazyGuard <cn_api_paddle_LazyGuard>` ", "用于设置模型（继承自 ``paddle.nn.Layer`` ） 中参数延迟初始化的上下文管理器"
     " :ref:`paddle.load <cn_api_paddle_load>` ", "从指定路径载入可以在 paddle 中使用的对象实例"
     " :ref:`paddle.no_grad <cn_api_paddle_no_grad>` ", "创建一个上下文来禁用动态图梯度计算"
     " :ref:`paddle.ParamAttr <cn_api_paddle_ParamAttr>` ", "创建一个参数属性对象"
@@ -513,3 +529,15 @@ device 相关
     " :ref:`paddle.Model <cn_api_paddle_Model>` ", "一个具备训练、测试、推理的神经网络"
     " :ref:`paddle.summary <cn_api_paddle_summary>` ", "打印网络的基础结构和参数信息"
     " :ref:`paddle.flops <cn_api_paddle_flops>` ", "打印网络的基础结构和参数信息"
+
+.. _about_flags_api:
+
+环境变量 FLAGS 相关
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`paddle.get_flags <cn_api_paddle_get_flags>` ", "获取指定的 Paddle 环境变量 FLAGS 状态。详情请查看 :ref:`cn_guides_flags_flags`"
+    " :ref:`paddle.set_flags <cn_api_paddle_set_flags>` ", "设置 Paddle 环境变量 FLAGS，详情请查看 :ref:`cn_guides_flags_flags`"
