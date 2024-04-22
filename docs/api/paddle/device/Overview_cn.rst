@@ -43,7 +43,7 @@ paddle.device 目录下包含 cuda 目录， cuda 目录中存放CUDA 相关的 
 
     " :ref:`is_compiled_with_cinn <cn_api_paddle_device_is_compiled_with_cinn>` ", "检查 ``whl`` 包是否可以被用来在 CINN 上运行模型"
     " :ref:`is_compiled_with_cuda <cn_api_paddle_device_is_compiled_with_cuda>` ", "检查 ``whl`` 包是否可以被用来在 GPU 上运行模型"
-    " :ref:`is_compiled_with_custom_deviceEdit <cn_api_paddle_device_is_compiled_with_custom_deviceEdit>` ", "检查 ``whl`` 包是否可以被用来在指定类型的自定义新硬件上运行模型"
+    " :ref:`is_compiled_with_custom_device <cn_api_paddle_device_is_compiled_with_custom_device>` ", "检查 ``whl`` 包是否可以被用来在指定类型的自定义新硬件上运行模型"
     " :ref:`is_compiled_with_ipu <cn_api_paddle_device_is_compiled_with_ipu>` ", "检查 ``whl`` 包是否可以被用来在 Graphcore IPU 上运行模型"
     " :ref:`is_compiled_with_mlu <cn_api_paddle_device_is_compiled_with_mlu>` ", "检查 ``whl`` 包是否可以被用来在 Cambricon MLU 上运行模型"
     " :ref:`is_compiled_with_npu <cn_api_paddle_device_is_compiled_with_npu>` ", "检查 ``whl`` 包是否可以被用来在 NPU 上运行模型"
