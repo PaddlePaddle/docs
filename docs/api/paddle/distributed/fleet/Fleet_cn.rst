@@ -9,6 +9,18 @@ Fleet
 Fleet 是飞桨分布式训练统一 API，只需要 import fleet 并简单初始化后即可快速开始使用飞桨大规模分布式训练
 
 
+返回
+:::::::::
+返回一个类型为 Fleet 的实例
+
+**代码示例 1**
+
+COPY-FROM: paddle.distributed.fleet.Fleet:code-example1
+
+**代码示例 2**
+
+COPY-FROM: paddle.distributed.fleet.Fleet:code-example2
+
 方法
 ::::::::::::
 init(role_maker=None, is_collective=False, strategy=None)

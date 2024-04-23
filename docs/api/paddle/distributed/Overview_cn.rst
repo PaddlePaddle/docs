@@ -40,6 +40,7 @@ Fleet 分布式高层 API
     " :ref:`UtilBase <cn_api_paddle_distributed_fleet_UtilBase>` ", "分布式训练工具的基类，用户集合通信、文件系统操作"
     " :ref:`utils.HDFSClient <cn_api_paddle_distributed_fleet_utils_HDFSClient>` ", "Hadoop 文件系统查看和管理"
     " :ref:`utils.LocalFS <cn_api_paddle_distributed_fleet_utils_LocalFS>` ", "本地文件系统查看和管理"
+    " :ref:`utils.recompute <cn_api_paddle_distributed_fleet_utils_recompute>` ", "重新计算中间激活函数值来节省显存"
 
 .. _02:
 
@@ -63,6 +64,7 @@ Fleet 分布式高层 API
     " :ref:`get_backend <cn_api_paddle_distributed_get_backend>` ", "获取指定分布式通信组后端的名称"
     " :ref:`gloo_init_parallel_env <cn_api_paddle_distributed_gloo_init_parallel_env>` ", "初始化 ``GLOO`` 上下文用于 CPU 间的通信"
     " :ref:`gloo_release <cn_api_paddle_distributed_gloo_release>` ", "释放当前并行环境的 gloo 上下文"
+    " :ref:`ParallelEnv <cn_api_paddle_distributed_ParallelEnv>` ", "这个类用于获取动态图模型并行执行所需的环境变量值"
 
 .. _03:
 
@@ -106,6 +108,7 @@ Fleet 分布式高层 API
     " :ref:`recv <cn_api_paddle_distributed_recv>` ", "接收一个来自指定进程的 tensor"
     " :ref:`barrier <cn_api_paddle_distributed_barrier>` ", "同步路障，阻塞操作以实现组内进程同步"
     " :ref:`gloo_barrier <cn_api_paddle_distributed_gloo_barrier>` ", "使用初始化的 gloo 上下文直接调用基于 gloo 封装的 barrier 函数"
+    " :ref:`wait <cn_api_paddle_distributed_wait>` ", "同步通信组，在指定的通信组中同步特定的 tensor 对象"
 
 .. _05:
 
@@ -177,5 +180,6 @@ Sharding API
     :header: "API 名称", "API 功能"
     :widths: 20, 50
 
-    " :ref:`group_sharded_parallel <cn_api_paddle_distributed_group_sharded_parallel>`", "对模型、优化器和 GradScaler 做 group sharded 配置"
-    " :ref:`save_group_sharded_model <cn_api_paddle_distributed_save_group_sharded_model>`", "对 group_sharded_parallel 配置后的模型和优化器状态进行保存"
+    " :ref:`sharding.group_sharded_parallel <cn_api_paddle_distributed_sharding_group_sharded_parallel>`", "对模型、优化器和 GradScaler 做 group sharded 配置"
+    " :ref:`sharding.save_group_sharded_model <cn_api_paddle_distributed_sharding_save_group_sharded_model>`", "对 group_sharded_parallel 配置后的模型和优化器状态进行保存"
+    " :ref:`split <cn_api_paddle_distributed_split>` ", "切分指定操作的参数到多个设备，并且并行计算得到结果"

@@ -24,7 +24,7 @@ max_unpool1d
 
 参数
 :::::::::
-    - **x** (Tensor) - 形状为 `[N,C,L]` 的 3-D Tensor，N 是批尺寸，C 是通道数，L 是特征长度，数据类型为 float32 或 float64。
+    - **x** (Tensor) - 形状为 `[N,C,L]` 的 3-D Tensor，N 是批尺寸，C 是通道数，L 是特征长度，数据类型为 float32， float64 或 int64。
     - **indices** (Tensor) - 形状为 `[N,C,L]` 的 3-D Tensor，N 是批尺寸，C 是通道数，L 是特征长度，数据类型为 int32。
     - **kernel_size** (int|list|tuple) - 反池化的滑动窗口大小。
     - **stride** (int|list|tuple，可选) - 池化层的步长。如果它是一个元组或列表，它必须包含一个整数，(pool_stride_Length)，默认值：None。
