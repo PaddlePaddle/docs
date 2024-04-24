@@ -173,6 +173,7 @@ tensor 数学操作
     " :ref:`paddle.hypot <cn_api_paddle_hypot>` ", "对输入 直角三角形的直角边 Tensor x, y， 计算其斜边"
     " :ref:`paddle.combinations <cn_api_paddle_combinations>` ", "对输入 Tensor 计算长度为 r 的情况下的所有组合"
     " :ref:`paddle.select_scatter <cn_api_paddle_select_scatter>` ", "根据 axis 和 index（整数） 填充 value 值至输入 Tensor"
+    " :ref:`paddle.reduce_as <cn_api_paddle_reduce_as>` ", "对 x 在某些维度上求和，使其结果与 target 的 shape 一致"
 .. _tensor_math_inplace:
 
 tensor 数学操作原位（inplace）版本
