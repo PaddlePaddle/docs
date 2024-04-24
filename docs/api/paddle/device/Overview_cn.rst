@@ -1,7 +1,7 @@
 .. _cn_overview_device:
 
 paddle.device
----------------------
+============================
 
 `paddle.device` 模块提供了一系列与设备相关的 API，用于管理和配置计算设备。具体如下：
 
@@ -11,7 +11,7 @@ paddle.device
 -  :ref:`Stream 与 Event 辅助类 <cn_device_stream_event>`
 -  :ref:`Stream 与 Event 相关 API <cn_device_stream_event_api>`
 
-paddle.device 目录下包含 cuda 目录， cuda 目录中存放CUDA 相关的 API。具体如下：
+paddle.device 目录下包含 cuda 目录， cuda 目录中存放 CUDA 相关的 API。具体如下：
 
 -  :ref:`CUDA 相关 <cn_device_cuda>`
 
@@ -114,5 +114,3 @@ CUDA 相关
     " :ref:`memory_reserved <cn_api_paddle_device_cuda_memory_reserved>` ", "返回给定设备上当前由 Allocator 管理的显存大小"
     " :ref:`stream_guard <cn_api_paddle_device_cuda_stream_guard>` ", "切换当前的 CUDA stream 为输入指定的 stream，该 API 目前仅支持动态图模式"
     " :ref:`synchronize <cn_api_paddle_device_cuda_synchronize>` ", "等待给定的 CUDA 设备上的计算完成"
-
-
