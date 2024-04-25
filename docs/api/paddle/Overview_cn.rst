@@ -377,7 +377,6 @@ tensor 线性代数相关
     " :ref:`paddle.cdist <cn_api_paddle_cdist>` ", "计算两组输入集合 x, y 中每对之间的 p 范数"
     " :ref:`paddle.pdist <cn_api_paddle_pdist>` ", "计算输入形状为 N x M 的 Tensor 中 N 个向量两两组合(pairwise)的 p 范数"
     " :ref:`paddle.renorm <cn_api_paddle_renorm>` ", "计算沿轴的 p 范数"
-    
 
 .. _tensor_manipulation:
 
