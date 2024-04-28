@@ -126,6 +126,7 @@ tensor 数学操作
     " :ref:`paddle.pow <cn_api_paddle_pow>` ", "指数算子，逐元素计算 x 的 y 次幂"
     " :ref:`paddle.prod <cn_api_paddle_prod>` ", "对指定维度上的 Tensor 元素进行求乘积运算"
     " :ref:`paddle.reciprocal <cn_api_paddle_reciprocal>` ", "对输入 Tensor 取倒数"
+    " :ref:`paddle.renorm <cn_api_paddle_renorm>` ", "用于沿指定轴计算 p- 范数，并将每个部分的 p- 范数限制在最大范数值内。"
     " :ref:`paddle.round <cn_api_paddle_round>` ", "将输入中的数值四舍五入到最接近的整数数值"
     " :ref:`paddle.rsqrt <cn_api_paddle_rsqrt>` ", "rsqrt 激活函数"
     " :ref:`paddle.scale <cn_api_paddle_scale>` ", "缩放算子"
