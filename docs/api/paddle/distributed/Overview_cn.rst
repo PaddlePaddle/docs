@@ -170,6 +170,7 @@ RPC API
     " :ref:`Strategy <cn_api_paddle_distributed_Strategy>`", "配置静态图分布式训练时所使用的并行策略和优化策略"
     " :ref:`DistAttr <cn_api_paddle_distributed_DistAttr>` ", "指定 Tensor 在 ProcessMesh 上的分布或切片方式"
     " :ref:`shard_optimizer <cn_api_paddle_distributed_shard_optimizer>` ", "将单卡视角的优化器转变为分布式视角"
+    " :ref:`split <cn_api_paddle_distributed_split>` ", "切分指定操作的参数到多个设备，并且并行计算得到结果"
 
 .. _08:
 
@@ -182,4 +183,3 @@ Sharding API
 
     " :ref:`sharding.group_sharded_parallel <cn_api_paddle_distributed_sharding_group_sharded_parallel>`", "对模型、优化器和 GradScaler 做 group sharded 配置"
     " :ref:`sharding.save_group_sharded_model <cn_api_paddle_distributed_sharding_save_group_sharded_model>`", "对 group_sharded_parallel 配置后的模型和优化器状态进行保存"
-    " :ref:`split <cn_api_paddle_distributed_split>` ", "切分指定操作的参数到多个设备，并且并行计算得到结果"
