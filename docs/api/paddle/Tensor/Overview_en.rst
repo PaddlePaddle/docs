@@ -229,6 +229,8 @@ Methods
     sign
     sgn
     sin
+    sinc
+    sinc_
     sinh
     slice
     solve
