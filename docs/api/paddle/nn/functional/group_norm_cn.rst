@@ -23,7 +23,7 @@ group_norm
     - **epsilon** (float，可选) - 为防止方差除零，增加一个很小的值。默认值：1e-05。
     - **weight** (Tensor，可选) - 权重的 Tensor，形状为 [通道数]，默认为 None。
     - **bias** (Tensor，可选) - 偏置的 Tensor，形状为 [通道数]，默认为 None。
-    - **data_format** (string，可选) - 只支持 “NCHW” [num_batches，channels，height，width] 格式。默认值：“NCHW”。
+    - **data_format** (string，可选) - 支持 “NCL”，“NCHW”，“NCDHW”，“NLC”，“NHWC”，“NDHWC” 格式。默认值：“NCHW”。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
