@@ -6,7 +6,7 @@ rpc_async
 
 .. py:function:: paddle.distributed.rpc.rpc_async(to, fn, args=None, kwargs=None, timeout=-1)
 
-发起一个非阻塞的 RPC 调用，在 to 上运行函数 fn
+发起一个非阻塞的 RPC 调用，在 to 上运行函数 fn。注意：请用户务必在安全的网络环境下使用本功能。
 
 参数
 :::::::::
