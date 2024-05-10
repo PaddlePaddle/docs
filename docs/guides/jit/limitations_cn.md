@@ -557,7 +557,7 @@ class mylayer(paddle.nn.Layer):
         return self.linear(x)
 ```
 
-### 3. 检查 isinstanse 的使用
+### 3. 检查 isinstance 的使用
 
 在动转静中，组网相关的变量有可能被转换为静态图 Tensor，因此使用 isinstance 对变量类型进行判断存在一定风险，请留意下列变量有可能转化为 Tensor：
 
