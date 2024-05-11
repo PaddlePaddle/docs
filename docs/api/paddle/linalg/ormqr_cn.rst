@@ -3,10 +3,10 @@
 ormqr
 -------------------------------
 
-.. py:function:: paddle.linalg.ormqr(x, tau, otherm, left=True, transpose=False)
+.. py:function:: paddle.linalg.ormqr(x, tau, other, left=True, transpose=False)
 
-计算一个普通矩阵与 Householder 矩阵的乘积。计算维度为(m, n)的矩阵 C（由 other 给出）和一个矩阵 Q 的乘积，
-其中 Q 由 Householder 反射系数 (x, tau) 表示。
+计算一个普通矩阵与 Householder 矩阵的乘积。计算维度为(m, n)的矩阵 C（由 :attr:`other` 给出）和一个矩阵 Q 的乘积，
+其中 Q 由 Householder 反射系数 (:attr:`x`, :attr:`tau`) 表示。
 
 参数
 ::::::::::::
@@ -19,7 +19,7 @@ ormqr
 返回
 ::::::::::::
 
-    - Tensor out，输出 Tensor，数据类型与 shape 与 ``other`` 一致。
+    ``Tensor``，维度和数据类型都与 :attr:`other` 一致。
 
 代码示例
 ::::::::::
