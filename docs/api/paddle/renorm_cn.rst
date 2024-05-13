@@ -5,7 +5,7 @@ renorm
 
 .. py:function:: paddle.renorm(x, p, axis, max_norm)
 
-该运算符用于计算沿轴的 p 范数（p-norm），假设轴维度上的输入形状值为 T，则将张量分为 T 部分，应为每个部分计算 p-范数，如果第 i 部分的 p-norm 大于 max-norm，则第 i 部分中的每个元素应以相同的比例重新归一化，以使第 i 部分的 p-norm 完全等于 max-norm，否则第 i 部分保持不变。 
+此操作用于沿指定轴计算 p 范数（p-norm），假设指定轴维度的形状值为 T，则将张量分为 T 个部分，每个部分都计算 p 范数。如果第 i 部分的 p-norm 大于 max-norm，则第 i 部分中的每个元素应以相同的比例重新归一化，以使第 i 部分的 p-norm 完全等于 max-norm；否则，第 i 部分保持不变。 
 
 
 参数 
