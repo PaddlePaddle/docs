@@ -16,9 +16,8 @@ renorm
 - **max-norm** (float) - 最大范数限制。
 
 返回 
-::::::::::::::
-
-Tensor:renorm Tensor
+:::::::::
+``Tensor``，经过 renorm 处理的张量。
 
 代码示例 
 ::::::::::::
