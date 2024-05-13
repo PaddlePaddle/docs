@@ -1492,6 +1492,33 @@ isnan(name=None)
 
 请参考 :ref:`cn_api_paddle_isnan`
 
+isposinf(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_isposinf`
+
+isneginf(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_isneginf`
+
+isreal(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_isreal`
+
 kthvalue(k, axis=None, keepdim=False, name=None)
 :::::::::
 
