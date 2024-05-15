@@ -6,8 +6,8 @@ TruncatedNormal
 .. py:class:: paddle.nn.initializer.TruncatedNormal(mean=0.0, std=1.0, a=-2.0, b=2.0, name=None)
 
 .. note::
-    在参数设置时建议将 `mean` 设为 :math:`a \leq mean \leq b`。
-    若 :math:`mean \le a - 2 \cdot std` 或 :math:`mean \ge b + 2 \cdot std`，采样值的分布可能是有误的。
+    在参数设置时建议将 `mean` 设为 :math:`a \le mean \le b`。
+    若 :math:`mean < a - 2 \cdot std` 或 :math:`mean > b + 2 \cdot std`，采样值的分布可能是有误的。
 
 截断正态分布（高斯分布）初始化方法。
 
