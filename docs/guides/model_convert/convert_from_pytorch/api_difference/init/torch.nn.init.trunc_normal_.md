@@ -40,6 +40,6 @@ torch.nn.init.trunc_normal_(conv.weight)
 
 # Paddle 写法
 conv = nn.Conv2D(in_channels=4, out_channels=6, kernel_size=(3,3))
-init_normal = paddle.nn.initializer.TruncatedNormal()
-init_normal(conv.weight)
+init_trunc_normal = paddle.nn.initializer.TruncatedNormal()
+init_trunc_normal(conv.weight)
 ```
