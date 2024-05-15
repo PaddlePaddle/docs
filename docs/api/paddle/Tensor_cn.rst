@@ -3206,3 +3206,15 @@ signbit(x, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_signbit`
+
+ormqr(x, tau, other, left=True, transpose=False)
+:::::::::
+
+计算维度为(m, n)的矩阵 C（由 :attr:`other` 给出）和一个矩阵 Q 的乘积，
+其中 Q 由 Householder 反射系数 (:attr:`x`, :attr:`tau`) 表示。
+
+返回：乘积 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_linalg_ormqr`
