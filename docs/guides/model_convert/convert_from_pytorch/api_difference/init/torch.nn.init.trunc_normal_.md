@@ -1,4 +1,4 @@
-## [ torch 参数更多 ]torch.nn.init.trunc_normal_
+## [ 组合替代实现 ]torch.nn.init.trunc_normal_
 
 ### [torch.nn.init.trunc_normal_](https://pytorch.org/docs/stable/nn.init.html#torch.nn.init.trunc_normal_)
 
@@ -7,21 +7,20 @@ torch.nn.init.trunc_normal_(tensor,
                             mean=0.0,
                             std=1.0,
                             a=-2.0,
-                            b=2.0,
-                            generator=None)
+                            b=2.0)
 ```
 
 ### [paddle.nn.initializer.TruncatedNormal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/initializer/TruncatedNormal_cn.html)
 
 ```python
-paddle.nn.initializer.Normal(mean=0.0,
-                             std=1.0,
-                             a=-2.0,
-                             b=2.0,
-                             name=None)
+paddle.nn.initializer.TruncatedNormal(mean=0.0,
+                                      std=1.0,
+                                      a=-2.0,
+                                      b=2.0,
+                                      name=None)
 ```
 
-PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+两者用法不同：torch 是 inplace 的用法，paddle 是类设置的，具体如下：
 
 ### 参数映射
 
@@ -32,4 +31,15 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | std           |  std         | 正态分布的标准差。参数名和默认值一致。               |
 | a           |  a         | 截断正态分布的下界。参数名和默认值一致。               |
 | b           |  b         | 截断正态分布的上界。参数名和默认值一致。               |
-| generator     |  -          | PyTorch 用于采样的生成器，默认值为 None。Paddle 无此参数，暂无转写方式。              |
+
+### 转写示例
+```python
+# PyTorch 写法
+conv = torch.nn.Conv2d(4, 6, (3, 3))
+torch.nn.init.trunc_normal_(conv.weight)
+
+# Paddle 写法
+conv = nn.Conv2D(in_channels=4, out_channels=6, kernel_size=(3,3))
+init_normal = paddle.nn.initializer.TruncatedNormal()
+init_normal(conv.weight)
+```
