@@ -1,4 +1,4 @@
-## [ torch 参数更多 ]torch.nn.init.normal_
+## [ torch 参数更多 ]torch.nn.init.trunc_normal_
 
 ### [torch.nn.init.trunc_normal_](https://pytorch.org/docs/stable/nn.init.html#torch.nn.init.trunc_normal_)
 
