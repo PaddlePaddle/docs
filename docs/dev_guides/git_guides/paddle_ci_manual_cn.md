@@ -131,6 +131,12 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【执行脚本】** `paddle/scripts/paddle_build.sh cicheck_py37`
 - **【触发条件】** `PR-CI-Clone`通过后自动触发。
 
+#### PR-CI-Py3-PIR
+
+- **【条目描述】** 检查 PR 在 PIR 模式下单测执行情况（test/deprecated 目录中的单测不进行测试)
+- **【执行脚本】** `paddle/scripts/paddle_build.sh cicheck_py37_pir`
+- **【触发条件】** `PR-CI-Py3`通过后自动触发。
+
 #### PR-CI-Coverage
 
 - **【条目描述】** 检测当前 PR 在 GPU、Python3 版本的编译与单测是否通过，同时增量代码需满足行覆盖率大于 90% 的要求。可在 PR 页面点击该 CI 后的 details 查看覆盖率，如下图所示：
@@ -297,9 +303,15 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【执行脚本】** `paddle/scripts/paddle_build.sh check_xpu_coverage`
 - **【触发条件】** `PR-CI-Clone`通过后自动触发。
 
+#### PR-CI-Kunlun3
+
+- **【条目描述】** 检测 PR 中的修改能否在昆仑芯 XPU 上单测是否通过。
+- **【执行脚本】** `paddle/scripts/paddle_build.sh test`
+- **【触发条件】** `PR-CI-Kunlun-R200`编译成功后自动触发。
+
 ### 海光 DCU 测试项
 
-#### PR-CI-ROCM-Compile
+#### PR-CI-Hygon-DCU
 
 - **【条目描述】** 检测 PR 中的修改能否在海光 DCU 芯片上编译通过。
 - **【执行脚本】** `paddle/scripts/musl_build/build_paddle.sh build_only`
