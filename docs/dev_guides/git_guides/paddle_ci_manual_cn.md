@@ -303,7 +303,7 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【执行脚本】** `paddle/scripts/paddle_build.sh check_xpu_coverage`
 - **【触发条件】** `PR-CI-Clone`通过后自动触发。
 
-#### PR-CI-Kunlun3
+#### PR-CI-Kunlun
 
 - **【条目描述】** 检测 PR 中的修改能否在昆仑芯 XPU 上单测是否通过。
 - **【执行脚本】** `paddle/scripts/paddle_build.sh test`
