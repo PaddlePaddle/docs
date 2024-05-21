@@ -63,7 +63,7 @@ Driver Version: 4.0
 
 ```bash
 # 下载并安装 wheel 包
-pip install --pre paddlepaddle-xpu -i https://www.paddlepaddle.org.cn/packages/nightly/xpu
+pip install paddlepaddle-xpu -i https://www.paddlepaddle.org.cn/packages/nightly/xpu
 ```
 
 ### 安装方式二：源代码编译安装
