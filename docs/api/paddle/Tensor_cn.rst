@@ -654,6 +654,11 @@ bincount(weights=None, minlength=0)
 
 请参考 :ref:`cn_api_paddle_bincount`
 
+bernoulli_(p=0.5, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_bernoulli` API，对输入 `x` 采用 Inplace 策略。
+
 bitwise_and(y, out=None, name=None)
 :::::::::
 
