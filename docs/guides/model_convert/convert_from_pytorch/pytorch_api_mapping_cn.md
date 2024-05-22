@@ -20,21 +20,21 @@
 | [torch.autograd.XX](#id20) | 主要为`torch.autograd.XX`类 API |
 | [torch.cuda.XX](#id7) | 主要为`torch.cuda.XX`类 API |
 | [torch.distributed.XX](#id8) | 主要为`torch.distributed.XX`类 API |
-| [torch.distributions.XX](#id9)    | 主要为`torch.distributions.XX`类 API |
-| [torch.fft.XX](#id10)    | 主要为`torch.fft.XX`类 API |
-| [torch.hub.XX](#id14)    | 主要为`torch.hub.XX`类 API |
-| [torch.linalg.XX](#id11)    | 主要为`torch.linalg.XX`类 API |
-| [torch.onnx.XX](#id15)    | 主要为`torch.onnx.XX`类 API |
-| [torch.profiler.XX](#id21)    | 主要为`torch.profiler.XX`类 API |
-| [torch.optim.XX](#id22)    | 主要为`torch.optim.XX`类 API |
-| [torch.sparse.XX](#id12)    | 主要为`torch.sparse.XX`类 API |
-| [其他](#id13)    | 其他 API |
+| [torch.distributions.XX](#id9)   | 主要为`torch.distributions.XX`类 API |
+| [torch.fft.XX](#id10)   | 主要为`torch.fft.XX`类 API |
+| [torch.hub.XX](#id14)   | 主要为`torch.hub.XX`类 API |
+| [torch.linalg.XX](#id11)   | 主要为`torch.linalg.XX`类 API |
+| [torch.onnx.XX](#id15)   | 主要为`torch.onnx.XX`类 API |
+| [torch.profiler.XX](#id21)   | 主要为`torch.profiler.XX`类 API |
+| [torch.optim.XX](#id22)   | 主要为`torch.optim.XX`类 API |
+| [torch.sparse.XX](#id12)   | 主要为`torch.sparse.XX`类 API |
+| [其他](#id13)   | 其他 API |
 
 ## torch.XX API 映射列表
 
 梳理了`torch.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | REFERENCE-MAPPING-ITEM(`torch.abs`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.abs.md) |
 | REFERENCE-MAPPING-ITEM(`torch.absolute`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.absolute.md) |
@@ -196,8 +196,6 @@
 | REFERENCE-MAPPING-ITEM(`torch.diag_embed`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.diag_embed.md) |
 | REFERENCE-MAPPING-ITEM(`torch.is_grad_enabled`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.is_grad_enabled.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nansum`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.nansum.md) |
-| REFERENCE-MAPPING-ITEM(`torch.svd_lowrank`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.svd_lowrank.md) |
-| REFERENCE-MAPPING-ITEM(`torch.symeig`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.symeig.md) |
 | REFERENCE-MAPPING-ITEM(`torch.addcdiv`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.addcdiv.md) |
 | REFERENCE-MAPPING-ITEM(`torch.addcmul`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.addcmul.md) |
 | REFERENCE-MAPPING-ITEM(`torch.get_rng_state`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.get_rng_state.md) |
@@ -366,9 +364,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.layout`, https://pytorch.org/docs/stable/tensor_attributes.html#torch.layout) |
 | REFERENCE-MAPPING-ITEM(`torch.testing.assert_close`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.testing.assert_close.md) |
 | REFERENCE-MAPPING-ITEM(`torch.__version__`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.__version__.md) |
-| REFERENCE-MAPPING-ITEM(`torch.get_default_dtype`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.get_default_dtype.md) |
-| REFERENCE-MAPPING-ITEM(`torch.is_grad_enabled`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.is_grad_enabled.md) |
-| REFERENCE-MAPPING-ITEM(`torch.manual_seed`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.manual_seed.md) |
 | NOT-IMPLEMENTED-ITEM(`torch.can_cast`, https://pytorch.org/docs/stable/generated/torch.can_cast.html) |
 | REFERENCE-MAPPING-ITEM(`torch.atleast_1d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.atleast_1d.md) |
 | REFERENCE-MAPPING-ITEM(`torch.atleast_2d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.atleast_2d.md) |
@@ -380,7 +375,7 @@
 
 梳理了`torch.nn.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | REFERENCE-MAPPING-ITEM(`torch.nn.AdaptiveMaxPool1d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.AdaptiveMaxPool1d.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.AdaptiveMaxPool2d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.AdaptiveMaxPool2d.md) |
@@ -463,7 +458,6 @@
 | REFERENCE-MAPPING-ITEM(`torch.nn.Softsign`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Softsign.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.Tanh`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Tanh.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.Tanhshrink`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Tanhshrink.md) |
-| REFERENCE-MAPPING-ITEM(`torch.nn.TransformerDecoder`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.TransformerDecoder.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.Identity`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Identity.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.TripletMarginWithDistanceLoss`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.TripletMarginWithDistanceLoss.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.GroupNorm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.GroupNorm.md) |
@@ -521,15 +515,13 @@
 | REFERENCE-MAPPING-ITEM(`torch.nn.TransformerEncoderLayer`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.TransformerEncoderLayer.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.TripletMarginLoss`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.TripletMarginLoss.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.parameter.Parameter`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.parameter.Parameter.md) |
-| NOT-IMPLEMENTED-ITEM(`torch.nn.MultiLabelMarginLoss`, https://pytorch.org/docs/stable/generated/torch.nn.MultiLabelMarginLoss) |
-| NOT-IMPLEMENTED-ITEM(`torch.nn.CTCLoss`, https://pytorch.org/docs/stable/generated/torch.nn.CTCLoss.html#torch.nn.CTCLoss) |
 
 ***持续更新...***
 
 ## torch.nn.functional.XX API 映射列表
 梳理了`torch.nn.functional.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.adaptive_avg_pool1d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.adaptive_avg_pool1d.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.adaptive_avg_pool2d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.adaptive_avg_pool2d.md) |
@@ -582,11 +574,9 @@
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.triplet_margin_loss`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.triplet_margin_loss.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.triplet_margin_with_distance_loss`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.triplet_margin_with_distance_loss.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.upsample`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.upsample.md) |
-| REFERENCE-MAPPING-ITEM(`torch.nn.functional.max_pool2d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.max_pool2d.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.binary_cross_entropy_with_logits`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.binary_cross_entropy_with_logits.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.l1_loss`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.l1_loss.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.mish`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.mish.md) |
-| NOT-IMPLEMENTED-ITEM(`torch.nn.functional.group_norm`, https://pytorch.org/docs/stable/generated/torch.nn.functional.group_norm.html#torch.nn.functional.group_norm) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.avg_pool1d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.avg_pool1d.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.avg_pool2d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.avg_pool2d.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.avg_pool3d`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.avg_pool3d.md) |
@@ -621,14 +611,13 @@
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.unfold`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.unfold.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.functional.upsample_bilinear`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.upsample_bilinear.md) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.functional.multilabel_margin_loss`, https://pytorch.org/docs/stable/generated/torch.nn.functional.multilabel_margin_loss.html#torch.nn.functional.multilabel_margin_loss) |
-| NOT-IMPLEMENTED-ITEM(`torch.nn.functional.ctc_loss`, https://pytorch.org/docs/stable/generated/torch.nn.functional.ctc_loss.html#torch.nn.functional.ctc_loss) |
 
 ***持续更新...***
 
 ## torch.Tensor.XX API 映射列表
 梳理了`torch.Tensor.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.device`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.device.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.grad`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.grad.md) |
@@ -638,13 +627,10 @@
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.ndim`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.ndim.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.real`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.real.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.shape`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.shape.md) |
-| REFERENCE-MAPPING-ITEM(`torch.Tensor.T`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.T__upper.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.is_contiguous`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.is_contiguous.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.contiguous`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.contiguous.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.float`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.float.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.int`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.int.md) |
-| REFERENCE-MAPPING-ITEM(`torch.Tensor.sigmoid`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.sigmoid.md) |
-| REFERENCE-MAPPING-ITEM(`torch.Tensor.copy_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.copy_.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.masked_fill`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.masked_fill.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.fill_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.fill_.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.unique`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.unique.md) |
@@ -892,7 +878,6 @@
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.rot90`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.rot90.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.round`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.round.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.round_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.round_.md) |
-| REFERENCE-MAPPING-ITEM(`torch.Tensor.rsqrt`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.rsqrt.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.scatter`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.scatter.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.scatter_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.scatter_.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.scatter_add`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.scatter_add.md) |
@@ -936,7 +921,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.sum_to_size`, https://pytorch.org/docs/stable/generated/torch.Tensor.sum_to_size.html?highlight=sum_to_size#torch.Tensor.sum_to_size) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.resize_`, https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html?highlight=resize#torch.Tensor.resize_) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.masked_fill_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.masked_fill_.md) |
-| REFERENCE-MAPPING-ITEM(`torch.Tensor.tensor_split`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.tensor_split.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.masked_scatter`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.masked_scatter.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.masked_scatter_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.masked_scatter_.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.apply_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.apply_.md) |
@@ -946,7 +930,7 @@
 ## torch.nn.init.XX API 映射列表
 梳理了`torch.nn.init.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | REFERENCE-MAPPING-ITEM(`torch.nn.init.calculate_gain`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/init/torch.nn.init.calculate_gain.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.init.constant_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/init/torch.nn.init.constant_.md) |
@@ -967,7 +951,7 @@
 ## torch.nn.utils.XX API 映射列表
 梳理了`torch.nn.utils.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | REFERENCE-MAPPING-ITEM(`torch.nn.utils.clip_grad_value_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.utils.clip_grad_value_.md) |
 | REFERENCE-MAPPING-ITEM(`torch.nn.utils.remove_weight_norm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.utils.remove_weight_norm.md) |
@@ -985,7 +969,7 @@
 ## torch.nn.Module.XX API 映射列表
 梳理了`torch.nn.Module.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.Module.to_empty`, https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.to_empty) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.Module.register_full_backward_pre_hook`, https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_full_backward_pre_hook) |
@@ -1030,7 +1014,7 @@
 ## torch.autograd.XX API 映射列表
 梳理了`torch.autograd.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | NOT-IMPLEMENTED-ITEM(`torch.autograd.profiler.profile.self_cpu_time_total`, https://pytorch.org/docs/stable/generated/torch.autograd.profiler.profile.self_cpu_time_total.html#torch.autograd.profiler.profile.self_cpu_time_total) |
 | NOT-IMPLEMENTED-ITEM(`torch.autograd.function.FunctionCtx.mark_dirty`, https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.mark_dirty.html#torch.autograd.function.FunctionCtx.mark_dirty) |
@@ -1054,9 +1038,8 @@
 ## torch.cuda.XX API 映射列表
 梳理了`torch.cuda.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
-| REFERENCE-MAPPING-ITEM(`torch.cuda.max_memory_allocated`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.max_memory_allocated.md) |
 | REFERENCE-MAPPING-ITEM(`torch.cuda.Event`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.Event.md) |
 | REFERENCE-MAPPING-ITEM(`torch.cuda.current_device`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.current_device.md) |
 | REFERENCE-MAPPING-ITEM(`torch.cuda.current_stream`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.current_stream.md) |
@@ -1104,7 +1087,7 @@
 ## torch.distributed.XX API 映射列表
 梳理了`torch.distributed.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | REFERENCE-MAPPING-ITEM(`torch.distributed.init_process_group`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.init_process_group.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributed.barrier`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.barrier.md) |
@@ -1146,7 +1129,7 @@
 ## torch.distributions.XX API 映射列表
 梳理了`torch.distributions.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | REFERENCE-MAPPING-ITEM(`torch.distributions.kl.kl_divergence`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.kl.kl_divergence.md) |
 | REFERENCE-MAPPING-ITEM(`torch.distributions.kl.register_kl`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.kl.register_kl.md) |
@@ -1187,7 +1170,7 @@
 ## torch.fft.XX API 映射列表
 梳理了`torch.fft.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | REFERENCE-MAPPING-ITEM(`torch.fft.fftshift`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/fft/torch.fft.fftshift.md) |
 | REFERENCE-MAPPING-ITEM(`torch.fft.ifftshift`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/fft/torch.fft.ifftshift.md) |
@@ -1217,7 +1200,7 @@
 ## torch.hub.XX API 映射列表
 梳理了`torch.hub.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | NOT-IMPLEMENTED-ITEM(`torch.hub.get_dir`, https://pytorch.org/docs/stable/hub.html?highlight=torch+hub+get_dir#torch.hub.get_dir) |
 | NOT-IMPLEMENTED-ITEM(`torch.hub.set_dir`, https://pytorch.org/docs/stable/hub.html?highlight=torch+hub+get_dir#torch.hub.set_dir) |
@@ -1232,7 +1215,7 @@
 ## torch.linalg.XX API 映射列表
 梳理了`torch.linalg.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.svd`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.svd.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.matrix_power`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.matrix_power.md) |
@@ -1245,7 +1228,6 @@
 | REFERENCE-MAPPING-ITEM(`torch.linalg.eigvals`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.eigvals.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.eig`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.eig.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.multi_dot`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.multi_dot.md) |
-| NOT-IMPLEMENTED-ITEM(`torch.linalg.matrix_exp`, https://pytorch.org/docs/stable/generated/torch.linalg.matrix_exp.html#torch.linalg.matrix_exp) |
 | NOT-IMPLEMENTED-ITEM(`torch.linalg.matrix_norm`, https://pytorch.org/docs/stable/generated/torch.linalg.matrix_norm.html#torch.linalg.matrix_norm) |
 | NOT-IMPLEMENTED-ITEM(`torch.linalg.vector_norm`, https://pytorch.org/docs/stable/generated/torch.linalg.vector_norm.html#torch.linalg.vector_norm) |
 | NOT-IMPLEMENTED-ITEM(`torch.linalg.cholesky_ex`, https://pytorch.org/docs/stable/generated/torch.linalg.cholesky_ex.html#torch.linalg.cholesky_ex) |
@@ -1264,15 +1246,13 @@
 | REFERENCE-MAPPING-ITEM(`torch.linalg.solve`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.solve.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.svdvals`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.svdvals.md) |
 | REFERENCE-MAPPING-ITEM(`torch.linalg.vander`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.vander.md) |
-| NOT-IMPLEMENTED-ITEM(`torch.linalg.cholesky_ex`, https://pytorch.org/docs/stable/generated/torch.linalg.cholesky_ex.html#torch.linalg.cholesky_ex) |
-| NOT-IMPLEMENTED-ITEM(`torch.linalg.inv_ex`, https://pytorch.org/docs/stable/generated/torch.linalg.inv_ex.html#torch.linalg.inv_ex) |
 
 ***持续更新...***
 
 ## torch.onnx.XX API 映射列表
 梳理了`torch.onnx.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | NOT-IMPLEMENTED-ITEM(`torch.onnx.enable_log`, https://pytorch.org/docs/stable/onnx.html#torch.onnx.enable_log) |
 | NOT-IMPLEMENTED-ITEM(`torch.onnx.disable_log`, https://pytorch.org/docs/stable/onnx.html#torch.onnx.disable_log) |
@@ -1283,7 +1263,7 @@
 ## torch.optim.XX API 映射列表
 梳理了`torch.optim.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | NOT-IMPLEMENTED-ITEM(`torch.optim.lr_scheduler.LinearLR`, https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.LinearLR.html#torch.optim.lr_scheduler.LinearLR) |
 | REFERENCE-MAPPING-ITEM(`torch.optim.Adadelta`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/optimizer/torch.optim.Adadelta.md) |
@@ -1315,7 +1295,7 @@
 ## torch.profiler.XX API 映射列表
 梳理了`torch.profiler.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | NOT-IMPLEMENTED-ITEM(`torch.profiler.ProfilerActivity`, https://pytorch.org/docs/stable/profiler.html#torch.profiler.ProfilerActivity) |
 | NOT-IMPLEMENTED-ITEM(`torch.profiler.ProfilerAction`, https://pytorch.org/docs/stable/profiler.html#torch.profiler.ProfilerAction) |
@@ -1327,7 +1307,7 @@
 ## torch.sparse.XX API 映射列表
 梳理了`torch.sparse.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | REFERENCE-MAPPING-ITEM(`torch.sparse.addmm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/sparse/torch.sparse.addmm.md) |
 | REFERENCE-MAPPING-ITEM(`torch.sparse.mm`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/sparse/torch.sparse.mm.md) |
@@ -1340,7 +1320,7 @@
 ## 其他类 API 映射列表
 梳理了其他类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号  | Pytorch 最新 release | Paddle develop  | 映射关系分类 | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.random_split`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.random_split.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.distributed.DistributedSampler`, https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.utils.data.distributed.DistributedSampler.md) |
@@ -1390,13 +1370,10 @@
 | REFERENCE-MAPPING-ITEM(`torch.utils.data._utils.collate.default_collate`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data._utils.collate.default_collate.md) |
 | NOT-IMPLEMENTED-ITEM(`torch.utils.data.ConcatDataset`, https://pytorch.org/docs/stable/data.html#torch.utils.data.ConcatDataset) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.IterableDataset`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.IterableDataset.md) |
-| REFERENCE-MAPPING-ITEM(`torch.utils.data.BatchSampler`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.BatchSampler.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.data.DataLoader`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.DataLoader.md) |
-| REFERENCE-MAPPING-ITEM(`torch.utils.data.distributed.DistributedSampler`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.distributed.DistributedSampler.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.cpp_extension.CUDAExtension`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.cpp_extension.CUDAExtension.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.cpp_extension.CppExtension`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.cpp_extension.CppExtension.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.cpp_extension.load`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.cpp_extension.load.md) |
-| REFERENCE-MAPPING-ITEM(`torch.utils.data.random_split`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.random_split.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.dlpack.from_dlpack`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.dlpack.from_dlpack.md) |
 | REFERENCE-MAPPING-ITEM(`torch.utils.dlpack.to_dlpack`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.dlpack.to_dlpack.md) |
 | NOT-IMPLEMENTED-ITEM(`torch.utils.cpp_extension.load_inline`, https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.load_inline) |

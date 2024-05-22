@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import traceback
 import typing
 from enum import IntEnum
 from typing import TypedDict
@@ -292,80 +293,50 @@ MAPPING_DIFF_SOURCE_PATTERN = re.compile(
     r"^https://github.com/PaddlePaddle/((docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/)|(X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/))"
 )
 
+TABLE_MACRO_ROW_PATTERN = re.compile(
+    r"^(?P<macro_type>[\w-]+)\( *(?P<torch_api>[^,]+) *(, *(?P<diff_url>.+) *)? *\)$"
+)
 
-def validate_mapping_table_row(columns, row_idx, line_idx):
-    idx_s, torch_api_s, paddle_api_s, mapping_s = columns
 
-    idx = int(idx_s)
-    if row_idx != idx:
-        raise Exception(
-            f"Table row index [{row_idx}] != {idx} at line {line_idx}."
-        )
+INDEX_API_SET = set()
 
-    torch_api_match = TABLE_COLUMN_TORCH_API_PATTERN.match(torch_api_s)
-    if torch_api_match:
-        torch_api = torch_api_match["torch_api"]
-        torch_api_url = torch_api_match["url"][1:-1]  # remove '(' and ')'
-    else:
-        raise Exception(
-            f"Table row torch api not match: {torch_api_s} at line {line_idx}."
-        )
 
-    paddle_api_match = TABLE_COLUMN_PADDLE_API_PATTERN.match(paddle_api_s)
-    if len(paddle_api_s) > 0:
-        if paddle_api_match:
-            paddle_api = paddle_api_match["paddle_api"]
-            paddle_api_url = paddle_api_match["url"][1:-1]  # remove '(' and ')'
-        else:
+def validate_mapping_table_macro_row(columns, row_idx, line_idx):
+    assert (
+        len(columns) == 1
+    ), f"Table macro row must have 1 column at line {line_idx}."
+    macro_match = TABLE_MACRO_ROW_PATTERN.match(columns[0])
+
+    if macro_match:
+        macro_type = macro_match["macro_type"]
+        torch_api = macro_match["torch_api"].strip("`")
+        diff_url = macro_match["diff_url"]
+
+        if torch_api in INDEX_API_SET:
             raise Exception(
-                f"Table row paddle api not match: {paddle_api_s} at line {line_idx}."
+                f"Duplicate torch api: {torch_api} at line {line_idx}."
             )
-    else:
-        paddle_api = None
-        paddle_api_url = None
+        INDEX_API_SET.add(torch_api)
 
-    mapping_type_match = TABLE_COLUMN_MAPPING_PATTERN.match(mapping_s)
-    if mapping_type_match:
-        mapping_type = mapping_type_match["type"].strip()
-        mapping_diff_name = mapping_type_match["diff_name"]
-        diff_url = mapping_type_match["diff_url"]
+        return True
 
-        if mapping_diff_name != "差异对比" and mapping_diff_name is not None:
-            print(
-                f"Table row mapping diff name not match: {mapping_diff_name} at line {line_idx}."
-            )
-
-        if diff_url is not None and not MAPPING_DIFF_SOURCE_PATTERN.match(
-            diff_url
-        ):
-            raise Exception(
-                f"Table row mapping diff url invalid: {diff_url} at line {line_idx}."
-            )
-        mapping_diff_url = diff_url
-    else:
-        raise Exception(
-            f"Table row mapping type not match: {mapping_s} at line {line_idx}."
-        )
-
-    return {
-        "torch_api": torch_api,
-        "torch_api_url": torch_api_url,
-        "paddle_api": paddle_api,
-        "paddle_api_url": paddle_api_url,
-        "mapping_type": mapping_type,
-        "mapping_diff_name": mapping_diff_name,
-        "mapping_diff_url": mapping_diff_url,
-        "line_idx": line_idx,
-    }
+    return False
 
 
 def collect_mapping_item_processor(item, line_idx, state, output, context):
+    if state == 0 or state == 1 or state == 5:
+        return True
+
+    if state == 2:
+        return True
     if state == 6:
         table_row_idx = context["table_row_idx"]
         columns = context["columns"]
-        item = validate_mapping_table_row(columns, table_row_idx, line_idx + 1)
+        item = validate_mapping_table_macro_row(
+            columns, table_row_idx, line_idx + 1
+        )
         output.append(item)
-        return True
+        return bool(item)
 
     return False
 
@@ -413,11 +384,12 @@ def process_mapping_index(index_path, item_processer, context={}):
             continue
 
         columns = [c.strip() for c in content.split("|")]
-        if len(columns) <= 2:
-            raise Exception(
-                f"Table column count must > 0, but found {len(columns) - 2} at line {i+1}: {line}"
-            )
-        columns = columns[1:-1]
+        columns = [c for c in columns if len(c) > 0]
+        # if len(columns) <= 2:
+        # raise Exception(
+        #     f"Table column count must > 0, but found {len(columns) - 2} at line {i+1}: {line}"
+        # )
+        # continue
 
         if state == 0:
             column_names.clear()
@@ -471,12 +443,14 @@ def process_mapping_index(index_path, item_processer, context={}):
             #         f"Table content not match at line {i+1}: {line}"
             #     )
             try:
+                context["columns"] = columns
                 if not item_processer(line, i, state, output, context):
                     break
                 context["table_row_idx"] += 1
             except Exception as e:
                 print(e)
                 print(f"Error at line {i+1}: {line}")
+                traceback.print_exc()
                 ret_code = 1
 
             # state = 6
