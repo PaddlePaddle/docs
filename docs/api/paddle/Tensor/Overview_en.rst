@@ -79,6 +79,7 @@ Methods
     astype
     atan
     backward
+    bernoulli_
     bitwise_and
     bitwise_not
     bitwise_or
