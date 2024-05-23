@@ -9,12 +9,12 @@
 飞桨框架支持基于昆仑 XPU 芯片的训练和推理，请参考以下内容快速体验：
 
 - `昆仑 XPU 基于框架的使用指南 <./paddle_tutorial_cn.html>`_ : 昆仑 XPU 基于框架的使用指南
-- `昆仑 XPU 基于套件的使用指南 <./suite_tutorial_cn.html>`_ : 昆仑 XPU 基于框架的使用指南
+- `昆仑 XPU 基于 PaddleClas 训练 ResNet50 <./resnet50_tutorial_cn.html>`_ : 昆仑 XPU 基于 PaddleClas 训练 ResNet50
 - `昆仑 XPU 支持模型 <./support_cn.html>`_ : 昆仑 XPU 支持模型
 
 ..  toctree::
     :hidden:
 
     paddle_tutorial_cn.md
-    suite_tutorial_cn.md
+    resnet50_tutorial_cn.md
     support_cn.md

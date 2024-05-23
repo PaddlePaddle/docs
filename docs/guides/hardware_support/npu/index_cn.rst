@@ -9,12 +9,16 @@
 飞桨框架支持基于昇腾 NPU 芯片的训练和推理，请参考以下内容快速体验：
 
 - `昇腾 NPU 基于框架的使用指南 <./paddle_tutorial_cn.html>`_ : 昇腾 NPU 基于框架的使用指南
-- `昇腾 NPU 基于套件的使用指南 <./suite_tutorial_cn.html>`_ : 昇腾 NPU 基于框架的使用指南
+- `昇腾 NPU 基于 PaddleClas 训练 ResNet50 <./resnet50_tutorial_cn.html>`_ : 昇腾 NPU 基于 PaddleClas 训练 ResNet50
+- `昇腾 NPU 基于 PaddleSeg 训练 DeepLabv3 <./deeplabv3p_tutorial_cn.html>`_ : 昇腾 NPU 基于 PaddleSeg 训练 DeepLabv3
+- `昇腾 NPU 基于 PaddleDetection 训练 PP-YOLOE+ <./ppyoloe_plus_tutorial_cn.html>`_ : 昇腾 NPU 基于 PaddleDetection 训练 PP-YOLOE+
 - `昇腾 NPU 支持模型 <./support_cn.html>`_ : 昇腾 NPU 支持模型
 
 ..  toctree::
     :hidden:
 
     paddle_tutorial_cn.md
-    example_cn.md
+    resnet50_tutorial_cn.md
+    deeplabv3p_tutorial_cn.md
+    ppyoloe_plus_tutorial_cn.md
     support_cn.md
