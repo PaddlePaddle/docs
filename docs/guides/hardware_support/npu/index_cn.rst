@@ -8,11 +8,13 @@
 
 飞桨框架支持基于昇腾 NPU 芯片的训练和推理，请参考以下内容快速体验：
 
-- `昇腾 NPU 安装说明 <./install_cn.html>`_ : 昇腾 NPU 安装说明
-- `昇腾 NPU 运行示例 <./example_cn.html>`_ : 昇腾 NPU 运行示例
+- `昇腾 NPU 基于框架的使用指南 <./paddle_tutorial_cn.html>`_ : 昇腾 NPU 基于框架的使用指南
+- `昇腾 NPU 基于套件的使用指南 <./suite_tutorial_cn.html>`_ : 昇腾 NPU 基于框架的使用指南
+- `昇腾 NPU 支持模型 <./support_cn.html>`_ : 昇腾 NPU 支持模型
 
 ..  toctree::
     :hidden:
 
-    install_cn.md
+    paddle_tutorial_cn.md
     example_cn.md
+    support_cn.md

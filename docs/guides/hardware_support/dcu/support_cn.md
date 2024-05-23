@@ -2,134 +2,345 @@
 
 飞桨框架在海光 DCU 上经验证的模型的支持情况如下：
 
-## 图像分类
-
-| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
-| ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
-| ResNet50  | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/ResNet/ResNet50.yaml) |  动态图  | 支持 | 支持 | 支持 |
-| ResNet101  | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/ResNet/ResNet101.yaml) |  动态图  | 支持 | 支持 | 支持 |
-| SE_ResNet50_vd  | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/SENet/SE_ResNet50_vd.yaml) |  动态图  | 支持 | 支持 | 支持 |
-| VGG16 | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/VGG/VGG16.yaml) |  动态图  | 支持 | 支持 | 支持 |
-| InceptionV4 | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/Inception/InceptionV4.yaml) |  动态图  | 支持 | 支持 | 支持 |
-| GoogleNet | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/Inception/GoogLeNet.yaml) |  动态图  | 支持 | 支持 | 支持 |
-| MobileNetV3 | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/MobileNetV3/MobileNetV3_large_x1_0.yaml) |  动态图  | 支持 | 支持 | 支持 |
-| AlexNet | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/AlexNet/AlexNet.yaml) |  动态图  | 支持 | 支持 | 支持 |
-| DenseNet121 | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/DenseNet/DenseNet121.yaml) |  动态图  | 支持 | 支持 | 支持 |
-
-
-## 目标检测
-
-| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
-| ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
-| YOLOv3  | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/yolov3) |  动态图  | 支持 | 支持 | 支持 |
-| PP-YOLO | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/ppyolo) |  动态图  | 支持 | 支持 | 支持 |
-| SSD | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/ssd) |  动态图  | 支持 | 支持 | 支持 |
-| RetinaNet | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/static/configs/retinanet_r50_fpn_1x.yml) |  静态图  | 支持 | 支持 | 支持 |
-| Faster R-CNN  | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/faster_rcnn) |  动态图  | 支持 | 支持 | 支持 |
-| Faster R-CNN + FPN | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/faster_rcnn) |  动态图  | 支持 | 支持 | 支持 |
-| Cascade Faster R-CNN | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/cascade_rcnn) |  动态图  | 支持 | 支持 | 支持 |
-| Libra R-CNN | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/static/configs/libra_rcnn/README_cn.md) |  静态图  | 支持 | 支持 | 支持 |
-| Mask R-CNN  | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/mask_rcnn) |  动态图  | 支持 | 支持 | 支持 |
-| Mask R-CNN + FPN  | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/mask_rcnn) |  动态图  | 支持 | 支持 | 支持 |
-| Cascade Mask R-CNN | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/cascade_rcnn) |  动态图  | 支持 | 支持 | 支持 |
-| SOLOv2 | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/solov2) |  动态图  | 支持 | 支持 | 支持 |
-| FCOS | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/fcos) |  动态图  | 支持 | 支持 | 支持 |
-| TTFNet | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/ttfnet) |  动态图  | 支持 | 支持 | 支持 |
-| BlazeFace | 人脸检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/face_detection) |  动态图  | 支持 | 支持 | 支持 |
-| FaceBoxes | 人脸检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/static/docs/featured_model/FACE_DETECTION.md) |  静态图  | 支持 | 支持 | 支持 |
-
-## 图像分割
-
-| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
-| ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
-| ANN | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/ann) |  动态图  | 支持 | 不支持 | 支持 |
-| BiSeNetV2 | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/bisenet) |  动态图  | 支持 | 不支持 | 支持 |
-| DANet | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/danet) |  动态图  | 支持 | 不支持 | 支持 |
-| DeepLabV3+ | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/deeplabv3p) |  动态图  | 支持 | 不支持 | 支持 |
-| Fast-SCNN | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/fastscnn) |  动态图  | 支持 | 不支持 | 支持 |
-| FCN | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/fcn) |  动态图  | 支持 | 不支持 | 支持 |
-| GCNet | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/gcnet) |  动态图  | 支持 | 不支持 | 支持 |
-| GSCNN | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/gscnn) |  动态图  | 支持 | 不支持 | 支持 |
-| HarDNet | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/hardnet) |  动态图  | 支持 | 不支持 | 支持 |
-| OCRNet | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/ocrnet) |  动态图  | 支持 | 不支持 | 支持 |
-| U-Net | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/unet) |  动态图  | 支持 | 不支持 | 支持 |
-| DecoupledSegNet | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/decoupled_segnet) |  动态图  | 支持 | 不支持 | 支持 |
-| EMANet | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/emanet) |  动态图  | 支持 | 不支持 | 支持 |
-| ISANet | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/isanet) |  动态图  | 支持 | 不支持 | 支持 |
-| DNLNet | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/dnlnet) |  动态图  | 支持 | 不支持 | 支持 |
-
-## 自然语言处理
-
-| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
-| ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
-| BERT | NLP | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/language_model/bert) |  动态图  | 支持 | 支持 | 支持 |
-| XLNet | NLP | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/language_model/xlnet) |  动态图  | 支持 | 支持 | 支持 |
-| ELECTRA | NLP | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/language_model/electra) |  动态图  | 支持 | 支持 | 支持 |
-| Transformer | NLP | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/machine_translation/transformer) |  动态图  | 支持 | 支持 | 支持 |
-| Seq2Seq | NLP | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/machine_translation/seq2seq) |  动态图  | 支持 | 支持 | 支持 |
-| TextCNN | NLP | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/text_classification/rnn) |  动态图  | 支持 | 支持 | 支持 |
-| Bi-LSTM | NLP | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/text_classification/rnn) |  动态图  | 支持 | 支持 | 支持 |
-| LAC | NLP | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/lexical_analysis) |  动态图  | 支持 | 支持 | 支持 |
-
-## 字符识别
-
-| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
-| ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
-| OCR-DB | 文本检测 | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.3/doc/doc_ch/detection.md) |  动态图  | 支持 | 支持 | 支持 |
-| CRNN-CTC | 文本识别 | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.3/doc/doc_ch/recognition.md) |  动态图  | 支持 | 支持 | 支持 |
-| OCR-Clas | 角度分类 | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.3/doc/doc_ch/angle_class.md) |  动态图  | 支持 | 支持 | 支持 |
-| OCR-E2E | 字符识别 | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.3/doc/doc_ch/pgnet.md) |  动态图  | 支持 | 支持 | 支持 |
-
-## 推荐系统
-
-| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
-| ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
-| DeepFM | 推荐系统 | [模型链接](https://github.com/PaddlePaddle/PaddleRec/tree/release/2.1.0/models/rank/deepfm) |  动态图  | 支持 | 不支持 | 支持 |
-| Wide&Deep | 推荐系统 | [模型链接](https://github.com/PaddlePaddle/PaddleRec/tree/release/2.1.0/models/rank/wide_deep) |  动态图  | 支持 | 不支持 | 支持 |
-| Word2Vec | 推荐系统 | [模型链接](https://github.com/PaddlePaddle/PaddleRec/tree/release/2.1.0/models/recall/word2vec) |  动态图  | 支持 | 不支持 | 支持 |
-| NCF | 推荐系统 | [模型链接](https://github.com/PaddlePaddle/PaddleRec/tree/release/2.1.0/models/recall/ncf) |  动态图  | 支持 | 不支持 | 支持 |
-
-## 视频分类
-
-| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
-| ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
-| SlowFast | 视频分类 | [模型链接](https://github.com/PaddlePaddle/PaddleVideo/blob/develop/docs/zh-CN/model_zoo/recognition/slowfast.md) |  动态图  | 支持 | 支持 | 支持 |
-| TSM | 视频分类 | [模型链接](https://github.com/PaddlePaddle/PaddleVideo/blob/develop/docs/zh-CN/model_zoo/recognition/tsm.md) |  动态图  | 支持 | 支持 | 支持 |
-| TSN | 视频分类 | [模型链接](https://github.com/PaddlePaddle/PaddleVideo/blob/develop/docs/zh-CN/model_zoo/recognition/tsn.md) |  动态图  | 支持 | 支持 | 支持 |
-| Attention-LSTM | 视频分类| [模型链接](https://github.com/PaddlePaddle/PaddleVideo/blob/develop/docs/zh-CN/model_zoo/recognition/attention_lstm.md) |  动态图  | 支持 | 支持 | 支持 |
-| BMN | 视频分类 | [模型链接](https://github.com/PaddlePaddle/PaddleVideo/blob/develop/docs/zh-CN/model_zoo/localization/bmn.md) |  动态图  | 支持 | 支持 | 支持 |
-| StNet | 视频分类 | [模型链接](https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/video/models/stnet) |  动态图  | 支持 | 支持 | 支持 |
-
-## 语音合成
-
-| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
-| ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
-| Transformer TTS | 语音合成 | [模型链接](https://github.com/PaddlePaddle/Parakeet/tree/develop/examples/transformer_tts) |  动态图  | 支持 | 支持 | 支持 |
-| WaveFlow | 语音合成 | [模型链接](https://github.com/PaddlePaddle/Parakeet/tree/develop/examples/waveflow) |  动态图  | 支持 | 支持 | 支持 |
-
-## 生成对抗网络
-
-| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
-| ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
-| Pix2Pix | 风格迁移 | [模型链接](https://github.com/PaddlePaddle/PaddleGAN/blob/develop/docs/zh_CN/tutorials/pix2pix_cyclegan.md) |  动态图  | 支持 | 支持 | 支持 |
-| CycleGAN | 风格迁移 | [模型链接](https://github.com/PaddlePaddle/PaddleGAN/blob/develop/docs/zh_CN/tutorials/pix2pix_cyclegan.md) |  动态图  | 支持 | 支持 | 支持 |
-| StyleGAN V2 | 人脸生成 | [模型链接](https://github.com/PaddlePaddle/PaddleGAN/blob/develop/docs/zh_CN/tutorials/styleganv2.md) |  动态图  | 支持 | 支持 | 支持 |
-| Wav2Lip | 唇形合成 | [模型链接](https://github.com/PaddlePaddle/PaddleGAN/blob/develop/docs/zh_CN/tutorials/wav2lip.md) |  动态图  | 支持 | 支持 | 支持 |
-| ESRGAN | 图像超分 | [模型链接](https://github.com/PaddlePaddle/PaddleGAN/blob/develop/docs/zh_CN/tutorials/single_image_super_resolution.md) |  动态图  | 支持 | 支持 | 支持 |
-| EDVR | 视频超分 | [模型链接](https://github.com/PaddlePaddle/PaddleGAN/blob/develop/docs/zh_CN/tutorials/video_super_resolution.md) |  动态图  | 支持 | 支持 | 支持 |
-
-## 模型套件
-
-模型放置在飞桨模型套件中，各领域套件是 github.com/PaddlePaddle 下的独立 repo，git clone 下载即可获取所需的模型文件：
-
-| 领域        | 套件名称        |
-| ----------- | --------------- |
-| 图像分类     | PaddleClas      |
-| 目标检测     | PaddleDetection |
-| 图像分割     | PaddleSeg       |
-| 自然语言处理  | PaddleNLP       |
-| 字符识别     | PaddleOCR       |
-| 推荐系统     | PaddleRec       |
-| 视频分类     | PaddleVideo     |
-| 语音合成     | Parakeet        |
-| 生成对抗网络  | PaddleGAN       |
+| 模型库 | 模型名称 | 训练 | 推理 |
+| - | - | - | -  |
+| PaddleClas | ResNet50 | √ | √  |
+| PaddleClas | ResNet101 | √ | √  |
+| PaddleClas | SE_ResNet50_vd | √ | √  |
+| PaddleClas | VGG16 | √ | √  |
+| PaddleClas | InceptionV4 | √ | √  |
+| PaddleClas | AlexNet | √ | √  |
+| PaddleClas | DenseNet121 | √ | √  |
+| PaddleClas | CLIP_vit_base_patch16_224 | × | √  |
+| PaddleClas | CSPDarkNet53 | × | √  |
+| PaddleClas | CSWinTransformer_base_224 | × | √  |
+| PaddleClas | CSWinTransformer_base_384 | × | √  |
+| PaddleClas | CSWinTransformer_large_224 | × | √  |
+| PaddleClas | CSWinTransformer_large_384 | × | √  |
+| PaddleClas | CSWinTransformer_small_224 | × | √  |
+| PaddleClas | CSWinTransformer_tiny_224 | × | √  |
+| PaddleClas | ConvNeXt_small | × | √  |
+| PaddleClas | ConvNeXt_tiny | × | √  |
+| PaddleClas | CvT_13_224 | × | √  |
+| PaddleClas | CvT_13_384 | × | √  |
+| PaddleClas | CvT_21_224 | × | √  |
+| PaddleClas | CvT_21_384 | × | √  |
+| PaddleClas | DLA102 | × | √  |
+| PaddleClas | DLA102x | × | √  |
+| PaddleClas | DLA102x2 | × | √  |
+| PaddleClas | DLA169 | × | √  |
+| PaddleClas | DLA34 | × | √  |
+| PaddleClas | DLA46_c | × | √  |
+| PaddleClas | DLA46x_c | × | √  |
+| PaddleClas | DLA60 | × | √  |
+| PaddleClas | DLA60x | × | √  |
+| PaddleClas | DLA60x_c | × | √  |
+| PaddleClas | DPN107 | × | √  |
+| PaddleClas | DPN131 | × | √  |
+| PaddleClas | DPN68 | × | √  |
+| PaddleClas | DPN92 | × | √  |
+| PaddleClas | DPN98 | × | √  |
+| PaddleClas | DSNet_base | × | √  |
+| PaddleClas | DSNet_small | × | √  |
+| PaddleClas | DSNet_tiny | × | √  |
+| PaddleClas | DarkNet53 | × | √  |
+| PaddleClas | DeiT_base_patch16_224 | × | √  |
+| PaddleClas | DeiT_base_patch16_384 | × | √  |
+| PaddleClas | DeiT_small_patch16_224 | × | √  |
+| PaddleClas | DeiT_tiny_patch16_224 | × | √  |
+| PaddleClas | DenseNet161 | × | √  |
+| PaddleClas | DenseNet169 | × | √  |
+| PaddleClas | DenseNet201 | × | √  |
+| PaddleClas | DenseNet264 | × | √  |
+| PaddleClas | DistillationModel | × | √  |
+| PaddleClas | ESNet_x0_25 | × | √  |
+| PaddleClas | ESNet_x0_5 | × | √  |
+| PaddleClas | ESNet_x0_75 | × | √  |
+| PaddleClas | ESNet_x1_0 | × | √  |
+| PaddleClas | EfficientNetB0 | × | √  |
+| PaddleClas | EfficientNetB1 | × | √  |
+| PaddleClas | EfficientNetB2 | × | √  |
+| PaddleClas | EfficientNetB3 | × | √  |
+| PaddleClas | EfficientNetB4 | × | √  |
+| PaddleClas | EfficientNetB5 | × | √  |
+| PaddleClas | EfficientNetB6 | × | √  |
+| PaddleClas | EfficientNetB7 | × | √  |
+| PaddleClas | GeneralRecognitionV2_PPLCNetV2_base_ultra | × | √  |
+| PaddleClas | GhostNet_x0_5 | × | √  |
+| PaddleClas | GhostNet_x1_0 | × | √  |
+| PaddleClas | GhostNet_x1_3 | × | √  |
+| PaddleClas | GoogLeNet | × | √  |
+| PaddleClas | HRNet_W18_C | × | √  |
+| PaddleClas | HRNet_W30_C | × | √  |
+| PaddleClas | HRNet_W32_C | × | √  |
+| PaddleClas | HRNet_W40_C | × | √  |
+| PaddleClas | HRNet_W44_C | × | √  |
+| PaddleClas | HRNet_W48_C | × | √  |
+| PaddleClas | HRNet_W64_C | × | √  |
+| PaddleClas | HarDNet39_ds | × | √  |
+| PaddleClas | HarDNet68 | × | √  |
+| PaddleClas | HarDNet68_ds | × | √  |
+| PaddleClas | HarDNet85 | × | √  |
+| PaddleClas | InceptionV3 | × | √  |
+| PaddleClas | LeViT_128 | × | √  |
+| PaddleClas | LeViT_128S | × | √  |
+| PaddleClas | LeViT_192 | × | √  |
+| PaddleClas | LeViT_256 | × | √  |
+| PaddleClas | LeViT_384 | × | √  |
+| PaddleClas | MetaBIN_ResNet50 | × | √  |
+| PaddleClas | MicroNet_M0 | × | √  |
+| PaddleClas | MicroNet_M1 | × | √  |
+| PaddleClas | MicroNet_M2 | × | √  |
+| PaddleClas | MicroNet_M3 | × | √  |
+| PaddleClas | MixNet_L | × | √  |
+| PaddleClas | MixNet_M | × | √  |
+| PaddleClas | MixNet_S | × | √  |
+| PaddleClas | MobileNeXt_x1_0 | × | √  |
+| PaddleClas | MobileNetV1 | × | √  |
+| PaddleClas | MobileNetV1_x0_25 | × | √  |
+| PaddleClas | MobileNetV1_x0_5 | × | √  |
+| PaddleClas | MobileNetV1_x0_75 | × | √  |
+| PaddleClas | MobileNetV2 | × | √  |
+| PaddleClas | MobileNetV2_x0_25 | × | √  |
+| PaddleClas | MobileNetV2_x0_5 | × | √  |
+| PaddleClas | MobileNetV2_x0_75 | × | √  |
+| PaddleClas | MobileNetV2_x1_5 | × | √  |
+| PaddleClas | MobileNetV2_x2_0 | × | √  |
+| PaddleClas | MobileNetV3_large_x0_35 | × | √  |
+| PaddleClas | MobileNetV3_large_x0_5 | × | √  |
+| PaddleClas | MobileNetV3_large_x0_75 | × | √  |
+| PaddleClas | MobileNetV3_large_x1_0 | × | √  |
+| PaddleClas | MobileNetV3_large_x1_25 | × | √  |
+| PaddleClas | MobileNetV3_small_x0_35 | × | √  |
+| PaddleClas | MobileNetV3_small_x0_5 | × | √  |
+| PaddleClas | MobileNetV3_small_x0_75 | × | √  |
+| PaddleClas | MobileNetV3_small_x1_0 | × | √  |
+| PaddleClas | MobileNetV3_small_x1_25 | × | √  |
+| PaddleClas | MobileViTV2_x0_5 | × | √  |
+| PaddleClas | MobileViTV2_x1_0 | × | √  |
+| PaddleClas | MobileViTV2_x1_5 | × | √  |
+| PaddleClas | MobileViTV2_x2_0 | × | √  |
+| PaddleClas | MobileViTV3_S | × | √  |
+| PaddleClas | MobileViTV3_S_L2 | × | √  |
+| PaddleClas | MobileViTV3_XS | × | √  |
+| PaddleClas | MobileViTV3_XS_L2 | × | √  |
+| PaddleClas | MobileViTV3_XXS | × | √  |
+| PaddleClas | MobileViTV3_XXS_L2 | × | √  |
+| PaddleClas | MobileViTV3_x0_5 | × | √  |
+| PaddleClas | MobileViTV3_x0_75 | × | √  |
+| PaddleClas | MobileViTV3_x1_0 | × | √  |
+| PaddleClas | MobileViT_S | × | √  |
+| PaddleClas | MobileViT_XS | × | √  |
+| PaddleClas | MobileViT_XXS | × | √  |
+| PaddleClas | NextViT_base_224 | × | √  |
+| PaddleClas | NextViT_base_384 | × | √  |
+| PaddleClas | NextViT_large_224 | × | √  |
+| PaddleClas | NextViT_large_384 | × | √  |
+| PaddleClas | NextViT_small_224 | × | √  |
+| PaddleClas | NextViT_small_384 | × | √  |
+| PaddleClas | PPHGNet_small | × | √  |
+| PaddleClas | PPHGNet_tiny | × | √  |
+| PaddleClas | PPLCNetV2_base | × | √  |
+| PaddleClas | PPLCNet_x0_25 | × | √  |
+| PaddleClas | PPLCNet_x0_35 | × | √  |
+| PaddleClas | PPLCNet_x0_5 | × | √  |
+| PaddleClas | PPLCNet_x0_75 | × | √  |
+| PaddleClas | PPLCNet_x1_0 | × | √  |
+| PaddleClas | PPLCNet_x1_5 | × | √  |
+| PaddleClas | PPLCNet_x2_0 | × | √  |
+| PaddleClas | PPLCNet_x2_5 | × | √  |
+| PaddleClas | PVT_V2_B0 | × | √  |
+| PaddleClas | PVT_V2_B1 | × | √  |
+| PaddleClas | PVT_V2_B2 | × | √  |
+| PaddleClas | PVT_V2_B2_Linear | × | √  |
+| PaddleClas | PVT_V2_B3 | × | √  |
+| PaddleClas | PVT_V2_B4 | × | √  |
+| PaddleClas | PVT_V2_B5 | × | √  |
+| PaddleClas | ReXNet_1_0 | × | √  |
+| PaddleClas | ReXNet_1_3 | × | √  |
+| PaddleClas | ReXNet_1_5 | × | √  |
+| PaddleClas | ReXNet_2_0 | × | √  |
+| PaddleClas | ReXNet_3_0 | × | √  |
+| PaddleClas | RepVGG_B3 | × | √  |
+| PaddleClas | Res2Net101_vd_26w_4s | × | √  |
+| PaddleClas | Res2Net200_vd_26w_4s | × | √  |
+| PaddleClas | Res2Net50_14w_8s | × | √  |
+| PaddleClas | Res2Net50_26w_4s | × | √  |
+| PaddleClas | Res2Net50_vd_26w_4s | × | √  |
+| PaddleClas | ResNeSt101 | × | √  |
+| PaddleClas | ResNeSt50 | × | √  |
+| PaddleClas | ResNeSt50_fast_1s1x64d | × | √  |
+| PaddleClas | ResNeXt101_32x4d | × | √  |
+| PaddleClas | ResNeXt101_64x4d | × | √  |
+| PaddleClas | ResNeXt101_vd_32x4d | × | √  |
+| PaddleClas | ResNeXt101_vd_64x4d | × | √  |
+| PaddleClas | ResNeXt152_64x4d | × | √  |
+| PaddleClas | ResNeXt152_vd_32x4d | × | √  |
+| PaddleClas | ResNeXt152_vd_64x4d | × | √  |
+| PaddleClas | ResNeXt50_32x4d | × | √  |
+| PaddleClas | ResNeXt50_64x4d | × | √  |
+| PaddleClas | ResNeXt50_vd_32x4d | × | √  |
+| PaddleClas | ResNeXt50_vd_64x4d | × | √  |
+| PaddleClas | ResNet101_vd | × | √  |
+| PaddleClas | ResNet152 | × | √  |
+| PaddleClas | ResNet152_vd | × | √  |
+| PaddleClas | ResNet18 | × | √  |
+| PaddleClas | ResNet18_vd | × | √  |
+| PaddleClas | ResNet200_vd | × | √  |
+| PaddleClas | ResNet34 | × | √  |
+| PaddleClas | ResNet34_vd | × | √  |
+| PaddleClas | ResNet50_vd | × | √  |
+| PaddleClas | SENet154_vd | × | √  |
+| PaddleClas | SE_ResNeXt101_32x4d | × | √  |
+| PaddleClas | SE_ResNeXt50_32x4d | × | √  |
+| PaddleClas | SE_ResNeXt50_vd_32x4d | × | √  |
+| PaddleClas | SE_ResNet18_vd | × | √  |
+| PaddleClas | SE_ResNet34_vd | × | √  |
+| PaddleClas | ShuffleNetV2_swish | × | √  |
+| PaddleClas | ShuffleNetV2_x0_25 | × | √  |
+| PaddleClas | ShuffleNetV2_x0_33 | × | √  |
+| PaddleClas | ShuffleNetV2_x0_5 | × | √  |
+| PaddleClas | ShuffleNetV2_x1_0 | × | √  |
+| PaddleClas | ShuffleNetV2_x1_5 | × | √  |
+| PaddleClas | ShuffleNetV2_x2_0 | × | √  |
+| PaddleClas | SqueezeNet1_0 | × | √  |
+| PaddleClas | SqueezeNet1_1 | × | √  |
+| PaddleClas | SwinTransformer_base_patch4_window12_384 | × | √  |
+| PaddleClas | SwinTransformer_base_patch4_window7_224 | × | √  |
+| PaddleClas | SwinTransformer_large_patch4_window12_384 | × | √  |
+| PaddleClas | SwinTransformer_large_patch4_window7_224 | × | √  |
+| PaddleClas | SwinTransformer_small_patch4_window7_224 | × | √  |
+| PaddleClas | SwinTransformer_tiny_patch4_window7_224 | × | √  |
+| PaddleClas | TNT_small | × | √  |
+| PaddleClas | TinyNet_A | × | √  |
+| PaddleClas | TinyNet_B | × | √  |
+| PaddleClas | TinyNet_C | × | √  |
+| PaddleClas | TinyNet_D | × | √  |
+| PaddleClas | TinyNet_E | × | √  |
+| PaddleClas | UniFormer_base | × | √  |
+| PaddleClas | UniFormer_base_ls | × | √  |
+| PaddleClas | UniFormer_small | × | √  |
+| PaddleClas | UniFormer_small_plus | × | √  |
+| PaddleClas | UniFormer_small_plus_dim64 | × | √  |
+| PaddleClas | VAN_B0 | × | √  |
+| PaddleClas | VAN_B1 | × | √  |
+| PaddleClas | VGG11 | × | √  |
+| PaddleClas | VGG13 | × | √  |
+| PaddleClas | VGG19 | × | √  |
+| PaddleClas | ViT_base_patch16_224 | × | √  |
+| PaddleClas | ViT_base_patch16_384 | × | √  |
+| PaddleClas | ViT_base_patch32_384 | × | √  |
+| PaddleClas | ViT_large_patch16_224 | × | √  |
+| PaddleClas | ViT_large_patch16_384 | × | √  |
+| PaddleClas | ViT_large_patch32_384 | × | √  |
+| PaddleClas | ViT_small_patch16_224 | × | √  |
+| PaddleClas | Xception41 | × | √  |
+| PaddleClas | Xception41_deeplab | × | √  |
+| PaddleClas | Xception65 | × | √  |
+| PaddleClas | Xception65_deeplab | × | √  |
+| PaddleClas | Xception71 | × | √  |
+| PaddleClas | alt_gvt_base | × | √  |
+| PaddleClas | alt_gvt_large | × | √  |
+| PaddleClas | alt_gvt_small | × | √  |
+| PaddleClas | cae_base_patch16_224 | × | √  |
+| PaddleClas | pcpvt_base | × | √  |
+| PaddleClas | pcpvt_large | × | √  |
+| PaddleClas | pcpvt_small | × | √  |
+| PaddleDetection | RetinaNet | √ | ×  |
+| PaddleDetection | Faster R-CNN | √ | ×  |
+| PaddleDetection | Faster R-CNN + FPN | √ | ×  |
+| PaddleDetection | Mask R-CNN | √ | ×  |
+| PaddleDetection | Mask R-CNN + FPN | √ | ×  |
+| PaddleDetection | Cascade Mask R-CNN | √ | ×  |
+| PaddleDetection | SOLOv2 | √ | √  |
+| PaddleDetection | FCOS | √ | ×  |
+| PaddleDetection | TTFNet | √ | √  |
+| PaddleDetection | dark_hrnet_w32_256x192 | × | √  |
+| PaddleDetection | fairmot_hrnetv2_w18_dlafpn_30e_576x320 | × | √  |
+| PaddleDetection | hrnet_w32_256x192 | × | √  |
+| PaddleDetection | ppyolo_r50vd_dcn_1x_coco | × | √  |
+| PaddleDetection | ppyolov2_r50vd_dcn_365e_coco | × | √  |
+| PaddleDetection | solov2_r50_enhance_coco | × | √  |
+| PaddleDetection | tinypose_128x96 | × | √  |
+| PaddleGAN | msvsr | × | √  |
+| PaddleOCR | CRNN-CTC | √ | ×  |
+| PaddleOCR | ch_PP-OCRv2_det_0 | × | √  |
+| PaddleOCR | ch_PP-OCRv2_rec | × | √  |
+| PaddleOCR | ch_PP-OCRv3_det_0 | × | √  |
+| PaddleOCR | ch_PP-OCRv3_rec | × | √  |
+| PaddleOCR | ch_PP-OCRv4_mobile_det_0 | × | √  |
+| PaddleOCR | ch_PP-OCRv4_server_det_0 | × | √  |
+| PaddleOCR | ch_PP-OCRv4_server_rec | × | √  |
+| PaddleOCR | ch_ppocr_mobile_v2_0_det_0 | × | √  |
+| PaddleOCR | ch_ppocr_mobile_v2_0_rec | × | √  |
+| PaddleOCR | ch_ppocr_server_v2_0_det_0 | × | √  |
+| PaddleOCR | ch_ppocr_server_v2_0_rec | × | √  |
+| PaddleOCR | det_mv3_db_v2_0_0 | × | √  |
+| PaddleOCR | det_r50_db_plusplus_0 | × | √  |
+| PaddleOCR | det_r50_db_v2_0_0 | × | √  |
+| PaddleOCR | en_table_structure | × | √  |
+| PaddleOCR | rec_abinet | × | √  |
+| PaddleOCR | rec_mtb_nrtr | × | √  |
+| PaddleOCR | rec_mv3_none_bilstm_ctc_v2_0 | × | √  |
+| PaddleOCR | rec_mv3_none_none_ctc_v2_0 | × | √  |
+| PaddleOCR | rec_mv3_tps_bilstm_att_v2_0 | × | √  |
+| PaddleOCR | rec_mv3_tps_bilstm_ctc_v2_0 | × | √  |
+| PaddleOCR | rec_r31_sar | × | √  |
+| PaddleOCR | rec_r32_gaspin_bilstm_att | × | √  |
+| PaddleOCR | rec_r34_vd_none_bilstm_ctc_v2_0 | × | √  |
+| PaddleOCR | rec_r34_vd_none_none_ctc_v2_0 | × | √  |
+| PaddleOCR | rec_r34_vd_tps_bilstm_att_v2_0 | × | √  |
+| PaddleOCR | rec_r34_vd_tps_bilstm_ctc_v2_0 | × | √  |
+| PaddleOCR | rec_r50_fpn_vd_none_srn | × | √  |
+| PaddleOCR | rec_resnet_rfl | × | √  |
+| PaddleOCR | rec_svtrnet | × | √  |
+| PaddleOCR | rec_vitstr | × | √  |
+| PaddleOCR | slanet | × | √  |
+| PaddleSeg | DANet | √ | √  |
+| PaddleSeg | DeepLabV3+ | √ | √  |
+| PaddleSeg | FCN | √ | √  |
+| PaddleSeg | GCNet | √ | √  |
+| PaddleSeg | HarDNet | √ | ×  |
+| PaddleSeg | OCRNet | √ | ×  |
+| PaddleSeg | U-Net | √ | √  |
+| PaddleSeg | EMANet | √ | ×  |
+| PaddleSeg | ISANet | √ | ×  |
+| PaddleSeg | DNLNet | √ | ×  |
+| PaddleSeg | bisenetv2 | × | √  |
+| PaddleSeg | deeplabv3p_resnet50_cityscapes | × | √  |
+| PaddleSeg | fcn_hrnetw18 | × | √  |
+| PaddleSeg | fcn_hrnetw18_small | × | √  |
+| PaddleSeg | fcn_uhrnetw18_small | × | √  |
+| PaddleSeg | ocrnet_hrnetw18 | × | √  |
+| PaddleSeg | ocrnet_hrnetw48 | × | √  |
+| PaddleSeg | pfpnnet | × | √  |
+| PaddleSeg | pp_liteseg_stdc1 | × | √  |
+| PaddleSeg | pphumanseg_lite | × | √  |
+| PaddleSeg | pphumanseg_server | × | √  |
+| PaddleSeg | ppmatting | × | √  |
+| PaddleSeg | seaformer_base | × | √  |
+| PaddleSeg | sfnet | × | √  |
+| PaddleVideo | STGCN | × | √  |
+| PaddleVideo | AGCN | × | √  |
+| PaddleVideo | AGCN2s | × | √  |
+| PaddleVideo | BMN | × | √  |
+| PaddleVideo | PP-TSM | × | √  |
+| PaddleVideo | PP-TSN | × | √  |
+| PaddleVideo | SlowFast | × | √  |
+| PaddleVideo | TSN | × | √  |
+| PaddleNLP | BERT | √ | ×  |
+| PaddleNLP | XLNet | √ | ×  |
+| PaddleNLP | ELECTRA | √ | ×  |
+| PaddleNLP | Transformer | √ | ×  |
+| PaddleNLP | Seq2Seq | √ | ×  |
+| PaddleNLP | TextCNN | √ | ×  |
+| PaddleNLP | Bi-LSTM | √ | ×  |
+| PaddleRec | DeepFM | √ | ×  |
+| PaddleRec | Wide&Deep | √ | ×  |
+| PaddleRec | Word2Vec | √ | ×  |
+| PaddleRec | NCF | √ | ×  |
+| PaddleGAN | Pix2Pix | √ | ×  |
+| PaddleGAN | CycleGAN | √ | ×  |
+| PaddleGAN | StyleGAN V2 | √ | ×  |
+| PaddleGAN | ESRGAN | √ | ×  |
+| PaddleGAN | EDVR | √ | ×  |
