@@ -12,7 +12,7 @@ AdaptiveLogSoftmaxWithLoss
 
 对于参数 ``cutoffs``，按升序排序的整数序列。它控制组的数量和目标分配到组的方式。例如，设置 ``cutoffs = [10, 100, 1000]`` 意味着前 10 个目标将分配到 ``AdaptiveLogSoftmaxWithLoss`` 的 ``head``，目标 11, 12, ..., 100 将分配到第一个组，而目标 101, 102, ..., 1000 将分配到第二个组，而目标 1001, 1002, ..., n_classes - 1 将分配到第三个组。
 
-对于参数 ``div_value``，用于计算每个附加组的大小，其值为 :math:`\[ \left\lfloor \frac{\text{in\_features}}{\text{div\_value}^{\text{idx}}} \right\rfloor \]`，其中 ``idx`` 是组索引（对于较不频繁的单词，组索引较大，索引从 :math:`1` 开始）。
+对于参数 ``div_value``，用于计算每个附加组的大小，其值为 :math:` \left\lfloor \frac{\text{in\_features}}{\text{div\_value}^{\text{idx}}} \right\rfloor `，其中 ``idx`` 是组索引（对于较不频繁的单词，组索引较大，索引从 :math:`1` 开始）。
 
 对于参数 ``head_bias``，如果设置为 True，将在 ``AdaptiveLogSoftmaxWithLoss`` 的 ``head`` 上添加偏置项。详细信息请参阅论文：https://arxiv.org/abs/1609.04309 。
 
