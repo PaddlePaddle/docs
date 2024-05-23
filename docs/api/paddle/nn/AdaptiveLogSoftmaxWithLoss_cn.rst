@@ -20,18 +20,18 @@ AdaptiveLogSoftmaxWithLoss
 
 参数
 :::::::::
-    - **in_features** (int): 输入 tensor 的特征数量。
+    - **in_features** (int): 输入 Tensor 的特征数量。
     - **n_classes** (int): 数据集中类型的个数。
-    - **cutoffs** (Sequence): 用于将 label 分配到不同存储桶的截断值。
-    - **div_value** (float, 可选): 用于计算簇大小的指数值. 默认值：4.0。
-    - **head_bias** (bool, 可选): 如果为 ``True``，向自适应 softmax 的头部添加偏置项. 默认值：``False``.
+    - **cutoffs** (Sequence): 用于将 label 分配到不同存储组的截断值。
+    - **div_value** (float, 可选): 用于计算组大小的指数值. 默认值：4.0。
+    - **head_bias** (bool, 可选): 如果为 ``True``， ``AdaptiveLogSoftmaxWithLoss``的头部添加偏置项. 默认值： ``False``.
     - **name** (str, 可选): 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 :::::::::
-    - **input** (Tensor): - 输入 Tensor，形状为[N, in_features]，N 是批尺寸。
-    - **label** (Tensor): - 目标值，形状为[N]。
-    - **output1** (Tensor): - 形状为[N]。
+    - **input** (Tensor): - 输入 Tensor，形状为 ``[N, in_features]``， ``N`` 是批尺寸。
+    - **label** (Tensor): - 目标值，形状为 ``[N]``。
+    - **output1** (Tensor): - 形状为 ``[N]``。
     - **output2** (Scalar): - 标量，无形状
 
 返回
