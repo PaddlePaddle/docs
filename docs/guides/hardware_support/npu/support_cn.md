@@ -3,6 +3,7 @@
 飞桨框架在昇腾 NPU 上经验证的模型的支持情况如下：
 
 | 模型库 | 模型名称 | 训练 | 推理 |
+| - | - | - | - |
 | PaddleClas | ResNet50 | √ | √  |
 | PaddleClas | ResNet18 | √ | √  |
 | PaddleClas | ResNet101 | √ | √  |

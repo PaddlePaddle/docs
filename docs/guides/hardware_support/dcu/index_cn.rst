@@ -10,7 +10,7 @@
 
 - `海光 DCU 基于框架的使用指南 <./paddle_tutorial_cn.html>`_ : 海光 DCU 基于框架的使用指南
 - `海光 DCU 基于 PaddleClas 训练 ResNet50 <./resnet50_tutorial_cn.html>`_ : 海光 DCU 基于 PaddleClas 训练 ResNet50
-- `海光 DCU 基于 PaddleSeg 训练 DeepLabv3+ <./deeplabv3p_tutorial_cn.html>`_ : 海光 DCU 基于 PaddleSeg 训练 DeepLabv3
+- `海光 DCU 基于 PaddleSeg 训练 DeepLabv3+ <./deeplabv3p_tutorial_cn.html>`_ : 海光 DCU 基于 PaddleSeg 训练 DeepLabv3+
 - `海光 DCU 支持模型 <./support_cn.html>`_ : 海光 DCU 支持模型
 
 ..  toctree::
