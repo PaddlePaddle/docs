@@ -86,7 +86,7 @@ python -u -m paddle.distributed.launch --devices 0,1,2,3 tools/train.py \
 
 * export_model.py 执行的是 `动转静` 操作，飞桨框架会对代码进行分析，将动态图代码（灵活易用）转为 静态图模型（高效），以达到更加高效的推理性能
 
-* 该操作会在指定./deploy/models/ResNet50 下生成 inference.pdiparams、inference.pdiparams.info、inference.pdmodel3 个文件
+* 该操作会在指定./deploy/models/ResNet50 下生成 inference.pdiparams、inference.pdiparams.info、inference.pdmodel 3 个文件
 
 ```shell
 python tools/export_model.py \
@@ -116,14 +116,15 @@ python python/predict_cls.py \
 ## 转换 ONNX 模型
 
 如果您有额外的部署需求需要基于 ONNX 实现，我们也提供了专用的工具用于导出 ONNX 模型，参考如下步骤，即可将第一步导出的静态图模型转换为 ONNX 模型：
-  a. 安装环境
+
+a. 安装环境
 
 ```shell
 # 安装 paddle2onnx，该工具支持将 PaddleInference 模型转换为 ONNX 格式
 python -m pip install paddle2onnx
 ```
 
-  b. 模型转换
+b. 模型转换
 
 ```shell
 paddle2onnx --model_dir=./deploy/models/ResNet50/ \

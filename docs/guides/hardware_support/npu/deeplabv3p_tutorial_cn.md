@@ -83,7 +83,7 @@ python -u -m paddle.distributed.launch --devices 0,1,2,3 tools/train.py \
 
 * export.py 执行的是 `动转静` 操作，飞桨框架会对代码进行分析，将动态图代码（灵活易用）转为 静态图模型（高效），以达到更加高效的推理性能
 
-* 该操作会在指定 output/deeplabv3p_resnet50_inference_model 下生成 inference.pdiparams、inference.pdiparams.info、inference.pdmodel3 个文件
+* 该操作会在指定 output/deeplabv3p_resnet50_inference_model 下生成 inference.pdiparams、inference.pdiparams.info、inference.pdmodel 3 个文件
 
 ```shell
 python tools/export.py \
