@@ -13,6 +13,7 @@
 
     install/index_cn.rst
     guides/index_cn.rst
+    hardware_support/index_cn.rst
     practices/index_cn.rst
     api/index_cn.rst
     dev_guides/index_cn.rst
