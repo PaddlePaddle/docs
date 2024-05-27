@@ -201,6 +201,7 @@ Transformer 相关
 
     " :ref:`paddle.nn.MultiHeadAttention <cn_api_paddle_nn_MultiHeadAttention>` ", "多头注意力机制"
     " :ref:`paddle.nn.functional.scaled_dot_product_attention <cn_api_paddle_nn_functional_scaled_dot_product_attention>` ", "点乘注意力机制，并在此基础上加入了对注意力权重的缩放"
+    " :ref:`paddle.nn.functional.sparse_attention <cn_api_paddle_nn_functional_sparse_attention>` ", "稀疏版本的 Attention API，对 Transformer 模块中的 Attention 矩阵进行了稀疏化，从而减少内存消耗和计算量"
     " :ref:`paddle.nn.Transformer <cn_api_paddle_nn_Transformer>` ", "Transformer 模型"
     " :ref:`paddle.nn.TransformerDecoder <cn_api_paddle_nn_TransformerDecoder>` ", "Transformer 解码器"
     " :ref:`paddle.nn.TransformerDecoderLayer <cn_api_paddle_nn_TransformerDecoderLayer>` ", "Transformer 解码器层"
@@ -259,6 +260,7 @@ Loss 层
     " :ref:`paddle.nn.CrossEntropyLoss <cn_api_paddle_nn_CrossEntropyLoss>` ", "交叉熵损失层"
     " :ref:`paddle.nn.CTCLoss <cn_api_paddle_nn_CTCLoss>` ", "CTCLoss 层"
     " :ref:`paddle.nn.HSigmoidLoss <cn_api_paddle_nn_HSigmoidLoss>` ", "层次 sigmoid 损失层"
+    " :ref:`paddle.nn.HingeEmbeddingLoss <cn_api_paddle_nn_HingeEmbeddingLoss>` ", "HingeEmbeddingLoss 损失层"
     " :ref:`paddle.nn.KLDivLoss <cn_api_paddle_nn_KLDivLoss>` ", "Kullback-Leibler 散度损失层"
     " :ref:`paddle.nn.L1Loss <cn_api_paddle_nn_L1Loss>` ", "L1 损失层"
     " :ref:`paddle.nn.MarginRankingLoss <cn_api_paddle_nn_MarginRankingLoss>` ", "MarginRankingLoss 层"
@@ -520,6 +522,7 @@ Embedding 相关函数
 
 
     " :ref:`paddle.nn.functional.affine_grid <cn_api_paddle_nn_functional_affine_grid>` ", "用于生成仿射变换前后的 feature maps 的坐标映射关系"
+    " :ref:`paddle.nn.functional.channel_shuffle <cn_api_paddle_nn_functional_channel_shuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的 Tensor 按通道分成 g 组，得到形为[N, g, C/g, H, W]或[N, H, W, g, C/g]的 Tensor，然后转置为[N, C/g, g, H, W]或[N, H, W, C/g, g]的形状，最后重新排列为原来的形状"
     " :ref:`paddle.nn.functional.cosine_similarity <cn_api_paddle_nn_functional_cosine_similarity>` ", "用于计算 x1 与 x2 沿 axis 维度的余弦相似度"
     " :ref:`paddle.nn.functional.cross_entropy <cn_api_paddle_nn_functional_cross_entropy>` ", "计算输入 input 和标签 label 间的交叉熵"
     " :ref:`paddle.nn.functional.grid_sample <cn_api_paddle_nn_functional_grid_sample>` ", "用于调整一个 batch 中图片的大小"
