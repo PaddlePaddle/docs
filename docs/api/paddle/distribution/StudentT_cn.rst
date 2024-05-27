@@ -6,7 +6,7 @@ StudentT
 .. py:class:: paddle.distribution.StudentT(df, loc, scale, name=None)
 
 
-正态分布
+学生 t 分布
 
 数学公式：
 
@@ -25,9 +25,9 @@ StudentT
 参数
 ::::::::::::
 
-    - **df** (float|Tensor) - t 分布的自由度，需大于 0。若输入类型是 float， :attr:`df` 会被转换成数据类型为 paddle 全局默认数据类型的 1-D tensor。若输入类型是 tensor，则支持的数据类型有 float32 或 float64。
-    - **loc** (float|Tensor) - t 分布的平移变换参数。若输入类型是 float， :attr:`loc` 会被转换成数据类型为 paddle 全局默认数据类型的 1-D tensor。若输入类型是 tensor，则支持的数据类型有 float32 或 float64。
-    - **scale** (float|Tensor) - t 分布的缩放变换参数，需大于 0。若输入类型是 float， :attr:`scale` 会被转换成数据类型为 paddle 全局默认数据类型的 1-D tensor。若输入类型是 tensor，则支持的数据类型有 float32 或 float64。
+    - **df** (float|Tensor) - 学生 t 分布的自由度，需大于 0。若输入类型是 float， :attr:`df` 会被转换成数据类型为 paddle 全局默认数据类型的 1-D tensor。若输入类型是 tensor，则支持的数据类型有 float32 或 float64。
+    - **loc** (float|Tensor) - 学生 t 分布的平移变换参数。若输入类型是 float， :attr:`loc` 会被转换成数据类型为 paddle 全局默认数据类型的 1-D tensor。若输入类型是 tensor，则支持的数据类型有 float32 或 float64。
+    - **scale** (float|Tensor) - 学生 t 分布的缩放变换参数，需大于 0。若输入类型是 float， :attr:`scale` 会被转换成数据类型为 paddle 全局默认数据类型的 1-D tensor。若输入类型是 tensor，则支持的数据类型有 float32 或 float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例
@@ -43,7 +43,7 @@ COPY-FROM: paddle.distribution.StudentT
 mean
 '''''''''
 
-t 分布的均值
+学生 t 分布的均值
 
 **返回**
 
@@ -52,7 +52,7 @@ Tensor，均值
 variance
 '''''''''
 
-t 分布的方差
+学生 t 分布的方差
 
 **返回**
 
@@ -92,7 +92,7 @@ Tensor，value 的对数概率。数据类型与 :attr:`df` 相同。
 sample()
 '''''''''
 
-从 t 分布中生成满足特定形状的样本数据。最终生成样本形状为 ``shape+batch_shape`` 。
+从学生 t 分布中生成满足特定形状的样本数据。最终生成样本形状为 ``shape+batch_shape`` 。
 
 **参数**
 
@@ -105,7 +105,7 @@ Tensor：样本数据。其维度为 :math:`\text{sample shape} + \text{batch sh
 entropy()
 '''''''''
 
-计算 t 分布的信息熵。
+计算学生 t 分布的信息熵。
 
 .. math::
 
@@ -119,4 +119,4 @@ entropy()
 
 **返回**
 
-t 分布的信息熵，数据类型与 :attr:`df` 相同。
+学生 t 分布的信息熵，数据类型与 :attr:`df` 相同。
