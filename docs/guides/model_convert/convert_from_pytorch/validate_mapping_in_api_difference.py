@@ -1,13 +1,13 @@
+import collections
 import json
 import os
 import re
 import traceback
 import typing
 import urllib
+import urllib.parse
 from enum import IntEnum
 from typing import TypedDict
-import collections
-import urllib.parse
 
 PADDLE_DOCS_BASE_URL = "https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/"
 
@@ -124,7 +124,7 @@ def get_meta_from_diff_file(filepath):
 
     signature_cache = None
 
-    with open(filepath, "r", encoding='utf-8') as f:
+    with open(filepath, "r", encoding="utf-8") as f:
         for line in f.readlines():
             # 现在需要考虑内容信息了
             # if not line.startswith("##"):
@@ -303,7 +303,7 @@ TABLE_MACRO_ROW_PATTERN = re.compile(
 )
 
 
-INDEX_ALL_APIS = dict()
+INDEX_ALL_APIS = {}
 INDEX_TABLES_APIS = []
 
 
@@ -334,12 +334,14 @@ def collect_mapping_item_processor(api_name, line_idx, state, output, context):
         return True
 
     if state == 2:
-        INDEX_TABLES_APIS.append(dict())
+        INDEX_TABLES_APIS.append({})
         return True
     if state == 6:
         table_row_idx = context["table_row_idx"]
         columns = context["columns"]
-        assert len(columns) == 1, f"table row must have 1 column at line {line_idx}."
+        assert (
+            len(columns) == 1
+        ), f"table row must have 1 column at line {line_idx}."
         api_name = validate_mapping_table_macro_row(
             columns, table_row_idx, line_idx + 1
         )
@@ -486,67 +488,77 @@ def process_mapping_index(index_path, item_processer, context={}):
     return 0
 
 
-_TABLE_PREFIXES = sorted([
-    "torch.nn.",
-    "torch.nn.functional.",
-    "torch.Tensor.",
-    "torch.nn.init.",
-    "torch.nn.utils.",
-    "torch.nn.Module.",
-    "torch.autograd.",
-    "torch.cuda.",
-    "torch.distributed.",
-    "torch.distributions.",
-    "torch.fft.",
-    "torch.hub.",
-    "torch.linalg.",
-    "torch.onnx.",
-    "torch.optim.",
-    "torch.profiler.",
-    "torch.sparse.",
-    # others
-], key=lambda x: -len(x))
+_TABLE_PREFIXES = sorted(
+    [
+        "torch.nn.",
+        "torch.nn.functional.",
+        "torch.Tensor.",
+        "torch.nn.init.",
+        "torch.nn.utils.",
+        "torch.nn.Module.",
+        "torch.autograd.",
+        "torch.cuda.",
+        "torch.distributed.",
+        "torch.distributions.",
+        "torch.fft.",
+        "torch.hub.",
+        "torch.linalg.",
+        "torch.onnx.",
+        "torch.optim.",
+        "torch.profiler.",
+        "torch.sparse.",
+        # others
+    ],
+    key=lambda x: -len(x),
+)
 
 
 def get_api_type_from_torch_api(torch_api: str) -> str:
     for prefix in _TABLE_PREFIXES:
         if torch_api.startswith(prefix):
-            return prefix + 'XX'
+            return prefix + "XX"
     else:
         if len(torch_api.split(".")) > 2:
             return "others"
         else:
-            return 'torch.XX'
+            return "torch.XX"
     return "untyped"
 
 
 def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
-    target = {k + 'XX': {} for k in _TABLE_PREFIXES}
-    target['torch.XX'] = {}
-    target['others'] = {}
-    
+    target = {k + "XX": {} for k in _TABLE_PREFIXES}
+    target["torch.XX"] = {}
+    target["others"] = {}
+
     for torch_api, column in INDEX_ALL_APIS.items():
         api_type = get_api_type_from_torch_api(torch_api)
         target[api_type][torch_api] = column
-    
+
     filled_count = 0
-    
+
     for torch_api, meta in meta_dict.items():
         api_type = get_api_type_from_torch_api(torch_api)
-        
-        relpath = os.path.relpath(meta['source_file'], basedir).replace('\\', '/')
+
+        relpath = os.path.relpath(meta["source_file"], basedir).replace(
+            "\\", "/"
+        )
         diffurl = urllib.parse.urljoin(PADDLE_DOCS_BASE_URL, relpath)
-        
-        column = f'REFERENCE-MAPPING-ITEM(`{torch_api}`, {diffurl})'
+
+        column = f"REFERENCE-MAPPING-ITEM(`{torch_api}`, {diffurl})"
         if torch_api in target[api_type]:
-            # if conflict, 
+            # if conflict,
             # pass means replace, continue means skip
             if target[api_type][torch_api] != column:
                 # if before is NOT-IMPLEMENTED-ITEM, replace
-                if target[api_type][torch_api].startswith('NOT-IMPLEMENTED-ITEM'):
+                if target[api_type][torch_api].startswith(
+                    "NOT-IMPLEMENTED-ITEM"
+                ):
                     pass
                 # if before is X2Paddle, skip
-                elif 'https://github.com/PaddlePaddle/X2Paddle' in target[api_type][torch_api]:
+                elif (
+                    "https://github.com/PaddlePaddle/X2Paddle"
+                    in target[api_type][torch_api]
+                ):
                     continue
                 else:
                     print(f"Conflict: {torch_api} in {api_type}")
@@ -555,27 +567,26 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
                     continue
             else:
                 continue
-        
+
         filled_count += 1
         target[api_type][torch_api] = column
-        
+
     if filled_count > 0:
         print(f"filled {filled_count} torch apis for ./api_difference")
 
-
-        with open('pytorch_api_mapping_cn.tmp.md', 'w', encoding='utf-8') as f:
+        with open("pytorch_api_mapping_cn.tmp.md", "w", encoding="utf-8") as f:
             for prefix, apis in target.items():
-                f.write(f'## {prefix}\n\n')
+                f.write(f"## {prefix}\n\n")
                 od_apis = collections.OrderedDict(sorted(apis.items()))
                 for api, ref in od_apis.items():
-                    if ref.startswith('REFERENCE-MAPPING-ITEM'):
-                        f.write(f'| {ref} |\n')
+                    if ref.startswith("REFERENCE-MAPPING-ITEM"):
+                        f.write(f"| {ref} |\n")
                 for api, ref in od_apis.items():
-                    if ref.startswith('NOT-IMPLEMENTED-ITEM'):
-                        f.write(f'| {ref} |\n')
-                f.write('\n')
-            
-        print('pytorch_api_mapping_cn.tmp.md generated.')
+                    if ref.startswith("NOT-IMPLEMENTED-ITEM"):
+                        f.write(f"| {ref} |\n")
+                f.write("\n")
+
+        print("pytorch_api_mapping_cn.tmp.md generated.")
 
 
 if __name__ == "__main__":
