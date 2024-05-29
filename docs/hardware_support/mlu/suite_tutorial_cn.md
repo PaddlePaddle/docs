@@ -39,7 +39,7 @@ python -m pip install .
 
 ## 二、数据准备
 
-请根据 [数据说明文档](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.0/docs/zh_CN/tutorials/data.md) 准备 ImageNet1k 数据集，准备完成后解压到 PaddleClas/dataset/目录下，目录结构如下：
+请根据 [数据说明文档](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.5.1/docs/zh_CN/models/ImageNet1k/ResNet.md#32-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87) 准备 ImageNet1k 数据集，准备完成后解压到 PaddleClas/dataset/目录下，目录结构如下：
 ```
 PaddleClas/dataset/ILSVRC2012/
 |_ train/
