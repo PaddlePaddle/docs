@@ -1666,6 +1666,11 @@ logsumexp(axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
+log_normal_(mean=0.0, std=1.0, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_log_normal` API，对输入 `x` 采用 Inplace 策略。
+
 请参考 :ref:`cn_api_paddle_logsumexp`
 
 masked_select(mask, name=None)

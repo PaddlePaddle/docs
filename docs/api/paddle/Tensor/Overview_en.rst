@@ -172,6 +172,8 @@ Methods
     logical_not
     logical_or
     logical_xor
+    log_normal
+    log_normal_
     logsumexp
     masked_select
     matmul
