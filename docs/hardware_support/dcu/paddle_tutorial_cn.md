@@ -39,6 +39,7 @@ from paddle.vision.models import resnet50
 2. 设置运行设备
 
 ```python
+# 注意：为了保持和 GPU 兼容，可以尽量少的修改模型代码，我们在命名上做了兼容处理，dcu 设备的名字同样叫做 gpu
 # 1. 设定运行设备为 gpu
 paddle.set_device("gpu")
 ```

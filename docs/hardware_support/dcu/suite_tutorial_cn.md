@@ -56,6 +56,8 @@ PaddleClas/dataset/ILSVRC2012/
 
 进入 PaddleClas 目录下，执行如下命令启动 4 卡 DCU（0 ~ 3 号卡）训练，其中：
 
+* 参数 `-o Global.device` 指定的是即将运行的设备，为了保持和 GPU 兼容，我们在命名上做了兼容处理，dcu 设备的名字同样叫做 gpu，因此这里需要传入的是 gpu ，通过指定该参数，PaddleSeg 调用飞桨的设备指定接口 `paddle.set_device` 来指定运行设备为 dcu，在进行模型训练时，飞桨将自动调用 dcu 算子用于执行模型计算。关于设备指定的更多细节，可以参考官方 api [paddle.set_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/set_device_cn.html#set-device)。
+
 * 参数 `-c ./ppcls/configs/ImageNet/ResNet/ResNet50.yaml` 表示读取指定目录下的配置文件，配置文件中指定了模型结构，训练超参等所有训练模型需要用到的配置，该文件中指定的模型结构为 `ResNet50`
 
 ```shell
@@ -156,7 +158,7 @@ PaddleSeg/data/cityscapes
 
 进入 PaddleSeg 目录下，执行如下命令启动 4 卡 DCU（0 ~ 3 号卡）训练，其中：
 
-* 参数 `--device` 指定的是即将运行的设备，这里需要传入的是 gpu ，通过指定该参数，PaddleSeg 调用飞桨的设备指定接口 `paddle.set_device` 来指定运行设备为 gpu，在进行模型训练时，飞桨将自动调用 gpu 算子用于执行模型计算。关于设备指定的更多细节，可以参考官方 api [paddle.set_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/set_device_cn.html#set-device)。
+* 参数 `--device` 指定的是即将运行的设备，为了保持和 GPU 兼容，我们在命名上做了兼容处理，dcu 设备的名字同样叫做 gpu，因此这里需要传入的是 gpu ，通过指定该参数，PaddleSeg 调用飞桨的设备指定接口 `paddle.set_device` 来指定运行设备为 dcu，在进行模型训练时，飞桨将自动调用 dcu 算子用于执行模型计算。关于设备指定的更多细节，可以参考官方 api [paddle.set_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/set_device_cn.html#set-device)。
 
 * 参数 `--config configs/deeplabv3p/deeplabv3p_resnet50_os8_cityscapes_1024x512_80k.yml` 表示读取指定目录下的配置文件，配置文件中指定了模型结构，训练超参等所有训练模型需要用到的配置，该文件中指定的模型结构为 DeepLabv3+
 
