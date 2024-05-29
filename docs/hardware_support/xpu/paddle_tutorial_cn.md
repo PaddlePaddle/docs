@@ -14,6 +14,8 @@
 
 *该命令会自动安装飞桨主框架每日自动构建的 nightly-build 版本*
 
+*由于 xpu 代码位于飞桨主框架中，因此我们不需要安装额外的 Custom Device 包*
+
 ```shell
 python -m pip install paddlepaddle-xpu -i https://www.paddlepaddle.org.cn/packages/nightly/xpu/
 ```
