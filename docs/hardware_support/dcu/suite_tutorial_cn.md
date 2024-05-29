@@ -1,6 +1,8 @@
-# 环境准备
+# 海光 DCU 基于套件的使用指南
 
-## 环境说明
+## 环境准备
+
+### 环境说明
 
 * 本教程介绍如何基于海光 DCU 进行 ResNet50 的训练，总共需要 4 卡进行训练
 
@@ -8,7 +10,7 @@
 
   * 镜像链接： registry.baidubce.com/device/paddle-dcu:dtk23.10.1-kylinv10-gcc73-py310
 
-## 环境安装
+### 环境安装
 
 安装 PaddlePaddle
 
@@ -20,9 +22,9 @@
 python -m pip install --pre paddlepaddle-rocm -i https://www.paddlepaddle.org.cn/packages/nightly/dcu/
 ```
 
-# 基于 PaddleClas 训练 ResNet50
+## 基于 PaddleClas 训练 ResNet50
 
-## 一、安装 PaddleClas 代码库
+### 一、安装 PaddleClas 代码库
 
 ```shell
 git clone https://github.com/PaddlePaddle/PaddleClas.git -b release/2.5.1
@@ -31,7 +33,7 @@ python -m pip install -r requirements.txt
 python -m pip install .
 ```
 
-## 二、数据准备
+### 二、数据准备
 
 请根据 [数据说明文档](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.5.1/docs/zh_CN/models/ImageNet1k/ResNet.md#32-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87) 准备 ImageNet1k 数据集，准备完成后解压到 PaddleClas/dataset/目录下，目录结构如下：
 
@@ -54,7 +56,7 @@ PaddleClas/dataset/ILSVRC2012/
 |_ val_list.txt
 ```
 
-## 三、模型训练
+### 三、模型训练
 
 进入 PaddleClas 目录下，执行如下命令启动 4 卡 DCU（0 ~ 3 号卡）训练，其中：
 
@@ -71,9 +73,9 @@ python -u -m paddle.distributed.launch --devices 0,1,2,3 tools/train.py \
 
 上述命令会在 PaddleClas 目录下产生一个 output/ResNet50 目录，该目录会存放训练过程中的模型参数
 
-## 四、模型导出 & 推理
+### 四、模型导出 & 推理
 
-### 模型导出
+#### 模型导出
 
 训练完成后，最后一个 epoch 的权重放在 output/ResNet50/ 目录下的 epoch_120.pdparams 文件中，执行以下命令将模型转成 Paddle 静态图格式存储，以获得更好的推理性能：
 
@@ -89,7 +91,7 @@ python tools/export_model.py \
     -o Global.device=gpu
 ```
 
-### 基于 PaddleInference 推理
+#### 基于 PaddleInference 推理
 
 推理代码位于 PaddleClas/deploy 目录下，执行下列命令进行 DCU 推理：
 
@@ -107,7 +109,7 @@ python python/predict_cls.py \
     -o Global.infer_imgs=./images/ImageNet
 ```
 
-### 转换 ONNX 模型
+#### 转换 ONNX 模型
 
 如果您有额外的部署需求需要基于 ONNX 实现，我们也提供了专用的工具用于导出 ONNX 模型，参考如下步骤，即可将第一步导出的静态图模型转换为 ONNX 模型：
 
@@ -131,9 +133,9 @@ paddle2onnx --model_dir=./deploy/models/ResNet50/ \
 
 该命令会在 deploy/models/ResNet50_onnx 目录下生成 inference.onnx 文件，生成的文件可以基于 ONNX Runtime 进行推理，具体使用方式参考 [ONNX Runtime 官网](https://onnxruntime.ai/)
 
-# 基于 PaddleSeg 训练 DeepLabv3+
+## 基于 PaddleSeg 训练 DeepLabv3+
 
-## 一、安装 PaddleSeg 代码库
+### 一、安装 PaddleSeg 代码库
 
 ```shell
 git clone https://github.com/PaddlePaddle/PaddleSeg -b release/2.9
@@ -142,7 +144,7 @@ python -m pip install -r requirements.txt
 python -m pip install -e .
 ```
 
-## 二、数据准备
+### 二、数据准备
 
 请根据 [数据说明文档](https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.9/docs/data/pre_data_cn.md#cityscapes%E6%95%B0%E6%8D%AE%E9%9B%86) 准备 Cityscapes 数据集，准备完成后解压到 PaddleSeg/data/目录下，目录结构如下：
 
@@ -156,7 +158,7 @@ PaddleSeg/data/cityscapes
 │   ├── val
 ```
 
-## 三、模型训练
+### 三、模型训练
 
 进入 PaddleSeg 目录下，执行如下命令启动 4 卡 DCU（0 ~ 3 号卡）训练，其中：
 
@@ -178,9 +180,9 @@ python -u -m paddle.distributed.launch --devices 0,1,2,3 tools/train.py \
 
 上述命令会在 PaddleSeg 目录下产生一个 output/deeplabv3p_resnet50 目录，该目录会存放训练过程中的模型参数
 
-## 四、模型导出 & 推理
+### 四、模型导出 & 推理
 
-### 模型导出
+#### 模型导出
 
 训练完成后，最优指标对应的权重放在 output/deeplabv3p_resnet50/best_model 目录下，执行以下命令将模型转成 Paddle 静态图格式存储，以获得更好的推理性能：
 
@@ -195,7 +197,7 @@ python tools/export.py \
     --save_dir output/deeplabv3p_resnet50_inference_model
 ```
 
-### 基于 PaddleInference 推理
+#### 基于 PaddleInference 推理
 
 推理代码位于 PaddleSeg/deploy 目录下，执行下列命令进行 DCU 推理：
 

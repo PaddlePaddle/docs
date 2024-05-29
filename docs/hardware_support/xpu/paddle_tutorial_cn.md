@@ -1,6 +1,8 @@
-# 一、环境准备
+# 昆仑 XPU 基于框架的使用指南
 
-## 环境说明
+## 一、环境准备
+
+### 环境说明
 
 * 本教程介绍如何基于昆仑 XPU 进行 ResNet50 的训练，总共需要 1 卡进行训练
 
@@ -8,7 +10,7 @@
 
   * 镜像链接： registry.baidubce.com/device/paddle-xpu:ubuntu20-x86_64-gcc84-py310
 
-## 环境安装
+### 环境安装
 
 安装 PaddlePaddle
 
@@ -20,7 +22,7 @@
 python -m pip install paddlepaddle-xpu -i https://www.paddlepaddle.org.cn/packages/nightly/xpu/
 ```
 
-# 二、运行示例
+## 二、运行示例
 
 飞桨框架集成了经典的视觉模型用于帮助用户快速上手，我们将基于 ResNet50 结构，在 Cifar10 数据集上进行一次快速训练，用于帮助您了解如何基于昆仑 XPU 进行训练（和 GPU 训练代码相比，差异点仅为 `paddle.set_device("xpu")`）
 
