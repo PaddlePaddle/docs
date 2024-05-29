@@ -125,7 +125,7 @@ paddle2onnx --model_dir=./deploy/models/ResNet50/ \
     --enable_onnx_checker=True
 ```
 
-该命令会在 deploy/models/ResNet50_onnx 目录下生成 inference.onnx 文件
+该命令会在 deploy/models/ResNet50_onnx 目录下生成 inference.onnx 文件，生成的文件可以基于 ONNX Runtime 进行推理，具体使用方式参考 [ONNX Runtime 官网](https://onnxruntime.ai/)
 
 # 基于 PaddleSeg 训练 DeepLabv3+
 
