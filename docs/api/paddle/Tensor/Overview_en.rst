@@ -153,6 +153,7 @@ Methods
     is_empty
     is_tensor
     isfinite
+    isin
     isinf
     isnan
     isneginf
