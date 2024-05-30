@@ -2,8 +2,6 @@
 
 基于 2024Q2 devlop版本，飞桨框架在昇腾 NPU 上通过精度验证的模型情况如下：
 
-NOTE - 未标识 √ 的模型训练或推理，表示『未测试』，不代表『测试不通过』。
-
 | 模型库 | 模型名称 | 训练 | 推理 |
 | - | - | - | - |
 | PaddleClas | ResNet50 | √ | √  |
@@ -16,274 +14,274 @@ NOTE - 未标识 √ 的模型训练或推理，表示『未测试』，不代�
 | PaddleClas | MobilenetV2 | √ | √  |
 | PaddleClas | mobilnetv2_x0_5 | √ | √  |
 | PaddleClas | mobilnetv2_x0_25 | √ | √  |
-| PaddleClas | AlexNet |  | √  |
-| PaddleClas | CLIP_vit_base_patch16_224 |  | √  |
-| PaddleClas | CSPDarkNet53 |  | √  |
-| PaddleClas | CSWinTransformer_base_224 |  | √  |
-| PaddleClas | CSWinTransformer_base_384 |  | √  |
-| PaddleClas | CSWinTransformer_large_224 |  | √  |
-| PaddleClas | CSWinTransformer_large_384 |  | √  |
-| PaddleClas | CSWinTransformer_small_224 |  | √  |
-| PaddleClas | CSWinTransformer_tiny_224 |  | √  |
-| PaddleClas | ConvNeXt_small |  | √  |
-| PaddleClas | ConvNeXt_tiny |  | √  |
-| PaddleClas | CvT_13_224 |  | √  |
-| PaddleClas | CvT_13_384 |  | √  |
-| PaddleClas | CvT_21_224 |  | √  |
-| PaddleClas | CvT_21_384 |  | √  |
-| PaddleClas | DLA102 |  | √  |
-| PaddleClas | DLA102x |  | √  |
-| PaddleClas | DLA102x2 |  | √  |
-| PaddleClas | DLA169 |  | √  |
-| PaddleClas | DLA34 |  | √  |
-| PaddleClas | DLA46_c |  | √  |
-| PaddleClas | DLA46x_c |  | √  |
-| PaddleClas | DLA60 |  | √  |
-| PaddleClas | DLA60x |  | √  |
-| PaddleClas | DLA60x_c |  | √  |
-| PaddleClas | DPN107 |  | √  |
-| PaddleClas | DPN131 |  | √  |
-| PaddleClas | DPN68 |  | √  |
-| PaddleClas | DPN92 |  | √  |
-| PaddleClas | DPN98 |  | √  |
-| PaddleClas | DSNet_base |  | √  |
-| PaddleClas | DSNet_tiny |  | √  |
-| PaddleClas | DarkNet53 |  | √  |
-| PaddleClas | DeiT_base_patch16_224 |  | √  |
-| PaddleClas | DeiT_base_patch16_384 |  | √  |
-| PaddleClas | DeiT_small_patch16_224 |  | √  |
-| PaddleClas | DeiT_tiny_patch16_224 |  | √  |
-| PaddleClas | DenseNet121 |  | √  |
-| PaddleClas | DenseNet161 |  | √  |
-| PaddleClas | DenseNet169 |  | √  |
-| PaddleClas | DenseNet201 |  | √  |
-| PaddleClas | DenseNet264 |  | √  |
-| PaddleClas | DistillationModel |  | √  |
-| PaddleClas | ESNet_x0_25 |  | √  |
-| PaddleClas | ESNet_x0_5 |  | √  |
-| PaddleClas | ESNet_x0_75 |  | √  |
-| PaddleClas | ESNet_x1_0 |  | √  |
-| PaddleClas | EfficientNetB0 |  | √  |
-| PaddleClas | EfficientNetB1 |  | √  |
-| PaddleClas | EfficientNetB2 |  | √  |
-| PaddleClas | EfficientNetB3 |  | √  |
-| PaddleClas | EfficientNetB4 |  | √  |
-| PaddleClas | EfficientNetB5 |  | √  |
-| PaddleClas | EfficientNetB6 |  | √  |
-| PaddleClas | EfficientNetB7 |  | √  |
-| PaddleClas | GhostNet_x0_5 |  | √  |
-| PaddleClas | GhostNet_x1_0 |  | √  |
-| PaddleClas | GhostNet_x1_3 |  | √  |
-| PaddleClas | GoogLeNet |  | √  |
-| PaddleClas | HRNet_W18_C |  | √  |
-| PaddleClas | HRNet_W30_C |  | √  |
-| PaddleClas | HRNet_W32_C |  | √  |
-| PaddleClas | HRNet_W40_C |  | √  |
-| PaddleClas | HRNet_W44_C |  | √  |
-| PaddleClas | HRNet_W48_C |  | √  |
-| PaddleClas | HRNet_W64_C |  | √  |
-| PaddleClas | HarDNet39_ds |  | √  |
-| PaddleClas | HarDNet68 |  | √  |
-| PaddleClas | HarDNet68_ds |  | √  |
-| PaddleClas | HarDNet85 |  | √  |
-| PaddleClas | InceptionV3 |  | √  |
-| PaddleClas | InceptionV4 |  | √  |
-| PaddleClas | LeViT_128 |  | √  |
-| PaddleClas | LeViT_128S |  | √  |
-| PaddleClas | LeViT_192 |  | √  |
-| PaddleClas | LeViT_256 |  | √  |
-| PaddleClas | LeViT_384 |  | √  |
-| PaddleClas | MetaBIN_ResNet50 |  | √  |
-| PaddleClas | MixNet_L |  | √  |
-| PaddleClas | MixNet_M |  | √  |
-| PaddleClas | MixNet_S |  | √  |
-| PaddleClas | MobileNeXt_x1_0 |  | √  |
-| PaddleClas | MobileNetV1 |  | √  |
-| PaddleClas | MobileNetV1_x0_25 |  | √  |
-| PaddleClas | MobileNetV1_x0_5 |  | √  |
-| PaddleClas | MobileNetV1_x0_75 |  | √  |
-| PaddleClas | MobileNetV2_x0_75 |  | √  |
-| PaddleClas | MobileNetV2_x1_5 |  | √  |
-| PaddleClas | MobileNetV2_x2_0 |  | √  |
-| PaddleClas | MobileNetV3_large_x0_35 |  | √  |
-| PaddleClas | MobileNetV3_large_x0_5 |  | √  |
-| PaddleClas | MobileNetV3_large_x0_75 |  | √  |
-| PaddleClas | MobileNetV3_large_x1_0 |  | √  |
-| PaddleClas | MobileNetV3_large_x1_25 |  | √  |
-| PaddleClas | MobileNetV3_small_x0_35 |  | √  |
-| PaddleClas | MobileNetV3_small_x0_5 |  | √  |
-| PaddleClas | MobileNetV3_small_x0_75 |  | √  |
-| PaddleClas | MobileNetV3_small_x1_25 |  | √  |
-| PaddleClas | MobileViTV2_x0_5 |  | √  |
-| PaddleClas | MobileViTV2_x1_0 |  | √  |
-| PaddleClas | MobileViTV2_x1_5 |  | √  |
-| PaddleClas | MobileViTV2_x2_0 |  | √  |
-| PaddleClas | MobileViTV3_S |  | √  |
-| PaddleClas | MobileViTV3_S_L2 |  | √  |
-| PaddleClas | MobileViTV3_XS |  | √  |
-| PaddleClas | MobileViTV3_XS_L2 |  | √  |
-| PaddleClas | MobileViTV3_XXS |  | √  |
-| PaddleClas | MobileViTV3_XXS_L2 |  | √  |
-| PaddleClas | MobileViTV3_x0_5 |  | √  |
-| PaddleClas | MobileViTV3_x0_75 |  | √  |
-| PaddleClas | MobileViTV3_x1_0 |  | √  |
-| PaddleClas | MobileViT_S |  | √  |
-| PaddleClas | MobileViT_XS |  | √  |
-| PaddleClas | MobileViT_XXS |  | √  |
-| PaddleClas | NextViT_base_224 |  | √  |
-| PaddleClas | NextViT_base_384 |  | √  |
-| PaddleClas | NextViT_large_224 |  | √  |
-| PaddleClas | NextViT_large_384 |  | √  |
-| PaddleClas | NextViT_small_224 |  | √  |
-| PaddleClas | NextViT_small_384 |  | √  |
-| PaddleClas | PPHGNet_small |  | √  |
-| PaddleClas | PPHGNet_tiny |  | √  |
-| PaddleClas | PPLCNetV2_base |  | √  |
-| PaddleClas | PPLCNet_x0_25 |  | √  |
-| PaddleClas | PPLCNet_x0_35 |  | √  |
-| PaddleClas | PPLCNet_x0_5 |  | √  |
-| PaddleClas | PPLCNet_x0_75 |  | √  |
-| PaddleClas | PPLCNet_x1_0 |  | √  |
-| PaddleClas | PPLCNet_x1_5 |  | √  |
-| PaddleClas | PPLCNet_x2_0 |  | √  |
-| PaddleClas | PPLCNet_x2_5 |  | √  |
-| PaddleClas | PVT_V2_B0 |  | √  |
-| PaddleClas | PVT_V2_B1 |  | √  |
-| PaddleClas | PVT_V2_B2 |  | √  |
-| PaddleClas | PVT_V2_B2_Linear |  | √  |
-| PaddleClas | PVT_V2_B3 |  | √  |
-| PaddleClas | PVT_V2_B4 |  | √  |
-| PaddleClas | PVT_V2_B5 |  | √  |
-| PaddleClas | ReXNet_1_0 |  | √  |
-| PaddleClas | ReXNet_1_3 |  | √  |
-| PaddleClas | ReXNet_1_5 |  | √  |
-| PaddleClas | ReXNet_2_0 |  | √  |
-| PaddleClas | ReXNet_3_0 |  | √  |
-| PaddleClas | RepVGG_B3 |  | √  |
-| PaddleClas | Res2Net101_vd_26w_4s |  | √  |
-| PaddleClas | Res2Net200_vd_26w_4s |  | √  |
-| PaddleClas | Res2Net50_14w_8s |  | √  |
-| PaddleClas | Res2Net50_26w_4s |  | √  |
-| PaddleClas | Res2Net50_vd_26w_4s |  | √  |
-| PaddleClas | ResNeSt101 |  | √  |
-| PaddleClas | ResNeSt50 |  | √  |
-| PaddleClas | ResNeSt50_fast_1s1x64d |  | √  |
-| PaddleClas | ResNeXt101_32x4d |  | √  |
-| PaddleClas | ResNeXt101_64x4d |  | √  |
-| PaddleClas | ResNeXt101_vd_32x4d |  | √  |
-| PaddleClas | ResNeXt101_vd_64x4d |  | √  |
-| PaddleClas | ResNeXt152_64x4d |  | √  |
-| PaddleClas | ResNeXt152_vd_32x4d |  | √  |
-| PaddleClas | ResNeXt152_vd_64x4d |  | √  |
-| PaddleClas | ResNeXt50_32x4d |  | √  |
-| PaddleClas | ResNeXt50_64x4d |  | √  |
-| PaddleClas | ResNeXt50_vd_32x4d |  | √  |
-| PaddleClas | ResNeXt50_vd_64x4d |  | √  |
-| PaddleClas | ResNet101_vd |  | √  |
-| PaddleClas | ResNet152_vd |  | √  |
-| PaddleClas | ResNet18_vd |  | √  |
-| PaddleClas | ResNet200_vd |  | √  |
-| PaddleClas | ResNet34_vd |  | √  |
-| PaddleClas | ResNet50_vd |  | √  |
-| PaddleClas | SENet154_vd |  | √  |
-| PaddleClas | SE_ResNeXt101_32x4d |  | √  |
-| PaddleClas | SE_ResNeXt50_32x4d |  | √  |
-| PaddleClas | SE_ResNeXt50_vd_32x4d |  | √  |
-| PaddleClas | SE_ResNet18_vd |  | √  |
-| PaddleClas | SE_ResNet34_vd |  | √  |
-| PaddleClas | SE_ResNet50_vd |  | √  |
-| PaddleClas | ShuffleNetV2_swish |  | √  |
-| PaddleClas | ShuffleNetV2_x0_25 |  | √  |
-| PaddleClas | ShuffleNetV2_x0_33 |  | √  |
-| PaddleClas | ShuffleNetV2_x0_5 |  | √  |
-| PaddleClas | ShuffleNetV2_x1_0 |  | √  |
-| PaddleClas | ShuffleNetV2_x1_5 |  | √  |
-| PaddleClas | ShuffleNetV2_x2_0 |  | √  |
-| PaddleClas | SqueezeNet1_0 |  | √  |
-| PaddleClas | SqueezeNet1_1 |  | √  |
-| PaddleClas | SwinTransformerV2_base_patch4_window16_256 |  | √  |
-| PaddleClas | SwinTransformerV2_base_patch4_window8_256 |  | √  |
-| PaddleClas | SwinTransformerV2_large_patch4_window16_256 |  | √  |
-| PaddleClas | SwinTransformerV2_small_patch4_window16_256 |  | √  |
-| PaddleClas | SwinTransformerV2_small_patch4_window8_256 |  | √  |
-| PaddleClas | SwinTransformerV2_tiny_patch4_window16_256 |  | √  |
-| PaddleClas | SwinTransformerV2_tiny_patch4_window8_256 |  | √  |
-| PaddleClas | SwinTransformer_base_patch4_window12_384 |  | √  |
-| PaddleClas | SwinTransformer_base_patch4_window7_224 |  | √  |
-| PaddleClas | SwinTransformer_large_patch4_window12_384 |  | √  |
-| PaddleClas | SwinTransformer_large_patch4_window7_224 |  | √  |
-| PaddleClas | SwinTransformer_small_patch4_window7_224 |  | √  |
-| PaddleClas | SwinTransformer_tiny_patch4_window7_224 |  | √  |
-| PaddleClas | TNT_small |  | √  |
-| PaddleClas | TinyNet_A |  | √  |
-| PaddleClas | TinyNet_B |  | √  |
-| PaddleClas | TinyNet_C |  | √  |
-| PaddleClas | TinyNet_D |  | √  |
-| PaddleClas | TinyNet_E |  | √  |
-| PaddleClas | VAN_B0 |  | √  |
-| PaddleClas | VAN_B1 |  | √  |
-| PaddleClas | VGG13 |  | √  |
-| PaddleClas | VGG16 |  | √  |
-| PaddleClas | VGG19 |  | √  |
-| PaddleClas | ViT_base_patch16_224 |  | √  |
-| PaddleClas | ViT_base_patch16_384 |  | √  |
-| PaddleClas | ViT_base_patch32_384 |  | √  |
-| PaddleClas | ViT_large_patch16_224 |  | √  |
-| PaddleClas | ViT_large_patch16_384 |  | √  |
-| PaddleClas | ViT_large_patch32_384 |  | √  |
-| PaddleClas | ViT_small_patch16_224 |  | √  |
-| PaddleClas | Xception41 |  | √  |
-| PaddleClas | Xception41_deeplab |  | √  |
-| PaddleClas | Xception65 |  | √  |
-| PaddleClas | Xception65_deeplab |  | √  |
-| PaddleClas | Xception71 |  | √  |
-| PaddleClas | alt_gvt_base |  | √  |
-| PaddleClas | alt_gvt_large |  | √  |
-| PaddleClas | alt_gvt_small |  | √  |
-| PaddleClas | cae_base_patch16_224 |  | √  |
-| PaddleClas | pcpvt_base |  | √  |
-| PaddleClas | pcpvt_large |  | √  |
-| PaddleClas | pcpvt_small |  | √  |
-| PaddleDetection | ppyoloe_vit_base_csppan_cae_36e_coco |  | √  |
-| PaddleDetection | solov2_r50_enhance_coco |  | √  |
-| PaddleOCR | ch_PP-OCRv2_det_0 |  | √  |
-| PaddleOCR | ch_PP-OCRv2_rec |  | √  |
-| PaddleOCR | ch_PP-OCRv3_det_0 |  | √  |
-| PaddleOCR | ch_PP-OCRv4_mobile_det_0 |  | √  |
-| PaddleOCR | ch_PP-OCRv4_server_det_0 |  | √  |
-| PaddleOCR | ch_PP-OCRv4_server_rec |  | √  |
-| PaddleOCR | ch_ppocr_mobile_v2_0_rec |  | √  |
-| PaddleOCR | ch_ppocr_server_v2_0_rec |  | √  |
-| PaddleOCR | det_mv3_db_v2_0_0 |  | √  |
-| PaddleOCR | det_r50_db_plusplus_0 |  | √  |
-| PaddleOCR | en_table_structure |  | √  |
-| PaddleOCR | rec_mv3_none_bilstm_ctc_v2_0 |  | √  |
-| PaddleOCR | rec_mv3_none_none_ctc_v2_0 |  | √  |
-| PaddleOCR | rec_mv3_tps_bilstm_att_v2_0 |  | √  |
-| PaddleOCR | rec_mv3_tps_bilstm_ctc_v2_0 |  | √  |
-| PaddleOCR | rec_r32_gaspin_bilstm_att |  | √  |
-| PaddleOCR | rec_r34_vd_none_bilstm_ctc_v2_0 |  | √  |
-| PaddleOCR | rec_r34_vd_none_none_ctc_v2_0 |  | √  |
-| PaddleOCR | rec_r34_vd_tps_bilstm_att_v2_0 |  | √  |
-| PaddleOCR | rec_r34_vd_tps_bilstm_ctc_v2_0 |  | √  |
-| PaddleOCR | rec_svtrnet |  | √  |
-| PaddleOCR | rec_vitstr |  | √  |
-| PaddleOCR | slanet |  | √  |
+| PaddleClas | AlexNet | 未测试 | √  |
+| PaddleClas | CLIP_vit_base_patch16_224 | 未测试 | √  |
+| PaddleClas | CSPDarkNet53 | 未测试 | √  |
+| PaddleClas | CSWinTransformer_base_224 | 未测试 | √  |
+| PaddleClas | CSWinTransformer_base_384 | 未测试 | √  |
+| PaddleClas | CSWinTransformer_large_224 | 未测试 | √  |
+| PaddleClas | CSWinTransformer_large_384 | 未测试 | √  |
+| PaddleClas | CSWinTransformer_small_224 | 未测试 | √  |
+| PaddleClas | CSWinTransformer_tiny_224 | 未测试 | √  |
+| PaddleClas | ConvNeXt_small | 未测试 | √  |
+| PaddleClas | ConvNeXt_tiny | 未测试 | √  |
+| PaddleClas | CvT_13_224 | 未测试 | √  |
+| PaddleClas | CvT_13_384 | 未测试 | √  |
+| PaddleClas | CvT_21_224 | 未测试 | √  |
+| PaddleClas | CvT_21_384 | 未测试 | √  |
+| PaddleClas | DLA102 | 未测试 | √  |
+| PaddleClas | DLA102x | 未测试 | √  |
+| PaddleClas | DLA102x2 | 未测试 | √  |
+| PaddleClas | DLA169 | 未测试 | √  |
+| PaddleClas | DLA34 | 未测试 | √  |
+| PaddleClas | DLA46_c | 未测试 | √  |
+| PaddleClas | DLA46x_c | 未测试 | √  |
+| PaddleClas | DLA60 | 未测试 | √  |
+| PaddleClas | DLA60x | 未测试 | √  |
+| PaddleClas | DLA60x_c | 未测试 | √  |
+| PaddleClas | DPN107 | 未测试 | √  |
+| PaddleClas | DPN131 | 未测试 | √  |
+| PaddleClas | DPN68 | 未测试 | √  |
+| PaddleClas | DPN92 | 未测试 | √  |
+| PaddleClas | DPN98 | 未测试 | √  |
+| PaddleClas | DSNet_base | 未测试 | √  |
+| PaddleClas | DSNet_tiny | 未测试 | √  |
+| PaddleClas | DarkNet53 | 未测试 | √  |
+| PaddleClas | DeiT_base_patch16_224 | 未测试 | √  |
+| PaddleClas | DeiT_base_patch16_384 | 未测试 | √  |
+| PaddleClas | DeiT_small_patch16_224 | 未测试 | √  |
+| PaddleClas | DeiT_tiny_patch16_224 | 未测试 | √  |
+| PaddleClas | DenseNet121 | 未测试 | √  |
+| PaddleClas | DenseNet161 | 未测试 | √  |
+| PaddleClas | DenseNet169 | 未测试 | √  |
+| PaddleClas | DenseNet201 | 未测试 | √  |
+| PaddleClas | DenseNet264 | 未测试 | √  |
+| PaddleClas | DistillationModel | 未测试 | √  |
+| PaddleClas | ESNet_x0_25 | 未测试 | √  |
+| PaddleClas | ESNet_x0_5 | 未测试 | √  |
+| PaddleClas | ESNet_x0_75 | 未测试 | √  |
+| PaddleClas | ESNet_x1_0 | 未测试 | √  |
+| PaddleClas | EfficientNetB0 | 未测试 | √  |
+| PaddleClas | EfficientNetB1 | 未测试 | √  |
+| PaddleClas | EfficientNetB2 | 未测试 | √  |
+| PaddleClas | EfficientNetB3 | 未测试 | √  |
+| PaddleClas | EfficientNetB4 | 未测试 | √  |
+| PaddleClas | EfficientNetB5 | 未测试 | √  |
+| PaddleClas | EfficientNetB6 | 未测试 | √  |
+| PaddleClas | EfficientNetB7 | 未测试 | √  |
+| PaddleClas | GhostNet_x0_5 | 未测试 | √  |
+| PaddleClas | GhostNet_x1_0 | 未测试 | √  |
+| PaddleClas | GhostNet_x1_3 | 未测试 | √  |
+| PaddleClas | GoogLeNet | 未测试 | √  |
+| PaddleClas | HRNet_W18_C | 未测试 | √  |
+| PaddleClas | HRNet_W30_C | 未测试 | √  |
+| PaddleClas | HRNet_W32_C | 未测试 | √  |
+| PaddleClas | HRNet_W40_C | 未测试 | √  |
+| PaddleClas | HRNet_W44_C | 未测试 | √  |
+| PaddleClas | HRNet_W48_C | 未测试 | √  |
+| PaddleClas | HRNet_W64_C | 未测试 | √  |
+| PaddleClas | HarDNet39_ds | 未测试 | √  |
+| PaddleClas | HarDNet68 | 未测试 | √  |
+| PaddleClas | HarDNet68_ds | 未测试 | √  |
+| PaddleClas | HarDNet85 | 未测试 | √  |
+| PaddleClas | InceptionV3 | 未测试 | √  |
+| PaddleClas | InceptionV4 | 未测试 | √  |
+| PaddleClas | LeViT_128 | 未测试 | √  |
+| PaddleClas | LeViT_128S | 未测试 | √  |
+| PaddleClas | LeViT_192 | 未测试 | √  |
+| PaddleClas | LeViT_256 | 未测试 | √  |
+| PaddleClas | LeViT_384 | 未测试 | √  |
+| PaddleClas | MetaBIN_ResNet50 | 未测试 | √  |
+| PaddleClas | MixNet_L | 未测试 | √  |
+| PaddleClas | MixNet_M | 未测试 | √  |
+| PaddleClas | MixNet_S | 未测试 | √  |
+| PaddleClas | MobileNeXt_x1_0 | 未测试 | √  |
+| PaddleClas | MobileNetV1 | 未测试 | √  |
+| PaddleClas | MobileNetV1_x0_25 | 未测试 | √  |
+| PaddleClas | MobileNetV1_x0_5 | 未测试 | √  |
+| PaddleClas | MobileNetV1_x0_75 | 未测试 | √  |
+| PaddleClas | MobileNetV2_x0_75 | 未测试 | √  |
+| PaddleClas | MobileNetV2_x1_5 | 未测试 | √  |
+| PaddleClas | MobileNetV2_x2_0 | 未测试 | √  |
+| PaddleClas | MobileNetV3_large_x0_35 | 未测试 | √  |
+| PaddleClas | MobileNetV3_large_x0_5 | 未测试 | √  |
+| PaddleClas | MobileNetV3_large_x0_75 | 未测试 | √  |
+| PaddleClas | MobileNetV3_large_x1_0 | 未测试 | √  |
+| PaddleClas | MobileNetV3_large_x1_25 | 未测试 | √  |
+| PaddleClas | MobileNetV3_small_x0_35 | 未测试 | √  |
+| PaddleClas | MobileNetV3_small_x0_5 | 未测试 | √  |
+| PaddleClas | MobileNetV3_small_x0_75 | 未测试 | √  |
+| PaddleClas | MobileNetV3_small_x1_25 | 未测试 | √  |
+| PaddleClas | MobileViTV2_x0_5 | 未测试 | √  |
+| PaddleClas | MobileViTV2_x1_0 | 未测试 | √  |
+| PaddleClas | MobileViTV2_x1_5 | 未测试 | √  |
+| PaddleClas | MobileViTV2_x2_0 | 未测试 | √  |
+| PaddleClas | MobileViTV3_S | 未测试 | √  |
+| PaddleClas | MobileViTV3_S_L2 | 未测试 | √  |
+| PaddleClas | MobileViTV3_XS | 未测试 | √  |
+| PaddleClas | MobileViTV3_XS_L2 | 未测试 | √  |
+| PaddleClas | MobileViTV3_XXS | 未测试 | √  |
+| PaddleClas | MobileViTV3_XXS_L2 | 未测试 | √  |
+| PaddleClas | MobileViTV3_x0_5 | 未测试 | √  |
+| PaddleClas | MobileViTV3_x0_75 | 未测试 | √  |
+| PaddleClas | MobileViTV3_x1_0 | 未测试 | √  |
+| PaddleClas | MobileViT_S | 未测试 | √  |
+| PaddleClas | MobileViT_XS | 未测试 | √  |
+| PaddleClas | MobileViT_XXS | 未测试 | √  |
+| PaddleClas | NextViT_base_224 | 未测试 | √  |
+| PaddleClas | NextViT_base_384 | 未测试 | √  |
+| PaddleClas | NextViT_large_224 | 未测试 | √  |
+| PaddleClas | NextViT_large_384 | 未测试 | √  |
+| PaddleClas | NextViT_small_224 | 未测试 | √  |
+| PaddleClas | NextViT_small_384 | 未测试 | √  |
+| PaddleClas | PPHGNet_small | 未测试 | √  |
+| PaddleClas | PPHGNet_tiny | 未测试 | √  |
+| PaddleClas | PPLCNetV2_base | 未测试 | √  |
+| PaddleClas | PPLCNet_x0_25 | 未测试 | √  |
+| PaddleClas | PPLCNet_x0_35 | 未测试 | √  |
+| PaddleClas | PPLCNet_x0_5 | 未测试 | √  |
+| PaddleClas | PPLCNet_x0_75 | 未测试 | √  |
+| PaddleClas | PPLCNet_x1_0 | 未测试 | √  |
+| PaddleClas | PPLCNet_x1_5 | 未测试 | √  |
+| PaddleClas | PPLCNet_x2_0 | 未测试 | √  |
+| PaddleClas | PPLCNet_x2_5 | 未测试 | √  |
+| PaddleClas | PVT_V2_B0 | 未测试 | √  |
+| PaddleClas | PVT_V2_B1 | 未测试 | √  |
+| PaddleClas | PVT_V2_B2 | 未测试 | √  |
+| PaddleClas | PVT_V2_B2_Linear | 未测试 | √  |
+| PaddleClas | PVT_V2_B3 | 未测试 | √  |
+| PaddleClas | PVT_V2_B4 | 未测试 | √  |
+| PaddleClas | PVT_V2_B5 | 未测试 | √  |
+| PaddleClas | ReXNet_1_0 | 未测试 | √  |
+| PaddleClas | ReXNet_1_3 | 未测试 | √  |
+| PaddleClas | ReXNet_1_5 | 未测试 | √  |
+| PaddleClas | ReXNet_2_0 | 未测试 | √  |
+| PaddleClas | ReXNet_3_0 | 未测试 | √  |
+| PaddleClas | RepVGG_B3 | 未测试 | √  |
+| PaddleClas | Res2Net101_vd_26w_4s | 未测试 | √  |
+| PaddleClas | Res2Net200_vd_26w_4s | 未测试 | √  |
+| PaddleClas | Res2Net50_14w_8s | 未测试 | √  |
+| PaddleClas | Res2Net50_26w_4s | 未测试 | √  |
+| PaddleClas | Res2Net50_vd_26w_4s | 未测试 | √  |
+| PaddleClas | ResNeSt101 | 未测试 | √  |
+| PaddleClas | ResNeSt50 | 未测试 | √  |
+| PaddleClas | ResNeSt50_fast_1s1x64d | 未测试 | √  |
+| PaddleClas | ResNeXt101_32x4d | 未测试 | √  |
+| PaddleClas | ResNeXt101_64x4d | 未测试 | √  |
+| PaddleClas | ResNeXt101_vd_32x4d | 未测试 | √  |
+| PaddleClas | ResNeXt101_vd_64x4d | 未测试 | √  |
+| PaddleClas | ResNeXt152_64x4d | 未测试 | √  |
+| PaddleClas | ResNeXt152_vd_32x4d | 未测试 | √  |
+| PaddleClas | ResNeXt152_vd_64x4d | 未测试 | √  |
+| PaddleClas | ResNeXt50_32x4d | 未测试 | √  |
+| PaddleClas | ResNeXt50_64x4d | 未测试 | √  |
+| PaddleClas | ResNeXt50_vd_32x4d | 未测试 | √  |
+| PaddleClas | ResNeXt50_vd_64x4d | 未测试 | √  |
+| PaddleClas | ResNet101_vd | 未测试 | √  |
+| PaddleClas | ResNet152_vd | 未测试 | √  |
+| PaddleClas | ResNet18_vd | 未测试 | √  |
+| PaddleClas | ResNet200_vd | 未测试 | √  |
+| PaddleClas | ResNet34_vd | 未测试 | √  |
+| PaddleClas | ResNet50_vd | 未测试 | √  |
+| PaddleClas | SENet154_vd | 未测试 | √  |
+| PaddleClas | SE_ResNeXt101_32x4d | 未测试 | √  |
+| PaddleClas | SE_ResNeXt50_32x4d | 未测试 | √  |
+| PaddleClas | SE_ResNeXt50_vd_32x4d | 未测试 | √  |
+| PaddleClas | SE_ResNet18_vd | 未测试 | √  |
+| PaddleClas | SE_ResNet34_vd | 未测试 | √  |
+| PaddleClas | SE_ResNet50_vd | 未测试 | √  |
+| PaddleClas | ShuffleNetV2_swish | 未测试 | √  |
+| PaddleClas | ShuffleNetV2_x0_25 | 未测试 | √  |
+| PaddleClas | ShuffleNetV2_x0_33 | 未测试 | √  |
+| PaddleClas | ShuffleNetV2_x0_5 | 未测试 | √  |
+| PaddleClas | ShuffleNetV2_x1_0 | 未测试 | √  |
+| PaddleClas | ShuffleNetV2_x1_5 | 未测试 | √  |
+| PaddleClas | ShuffleNetV2_x2_0 | 未测试 | √  |
+| PaddleClas | SqueezeNet1_0 | 未测试 | √  |
+| PaddleClas | SqueezeNet1_1 | 未测试 | √  |
+| PaddleClas | SwinTransformerV2_base_patch4_window16_256 | 未测试 | √  |
+| PaddleClas | SwinTransformerV2_base_patch4_window8_256 | 未测试 | √  |
+| PaddleClas | SwinTransformerV2_large_patch4_window16_256 | 未测试 | √  |
+| PaddleClas | SwinTransformerV2_small_patch4_window16_256 | 未测试 | √  |
+| PaddleClas | SwinTransformerV2_small_patch4_window8_256 | 未测试 | √  |
+| PaddleClas | SwinTransformerV2_tiny_patch4_window16_256 | 未测试 | √  |
+| PaddleClas | SwinTransformerV2_tiny_patch4_window8_256 | 未测试 | √  |
+| PaddleClas | SwinTransformer_base_patch4_window12_384 | 未测试 | √  |
+| PaddleClas | SwinTransformer_base_patch4_window7_224 | 未测试 | √  |
+| PaddleClas | SwinTransformer_large_patch4_window12_384 | 未测试 | √  |
+| PaddleClas | SwinTransformer_large_patch4_window7_224 | 未测试 | √  |
+| PaddleClas | SwinTransformer_small_patch4_window7_224 | 未测试 | √  |
+| PaddleClas | SwinTransformer_tiny_patch4_window7_224 | 未测试 | √  |
+| PaddleClas | TNT_small | 未测试 | √  |
+| PaddleClas | TinyNet_A | 未测试 | √  |
+| PaddleClas | TinyNet_B | 未测试 | √  |
+| PaddleClas | TinyNet_C | 未测试 | √  |
+| PaddleClas | TinyNet_D | 未测试 | √  |
+| PaddleClas | TinyNet_E | 未测试 | √  |
+| PaddleClas | VAN_B0 | 未测试 | √  |
+| PaddleClas | VAN_B1 | 未测试 | √  |
+| PaddleClas | VGG13 | 未测试 | √  |
+| PaddleClas | VGG16 | 未测试 | √  |
+| PaddleClas | VGG19 | 未测试 | √  |
+| PaddleClas | ViT_base_patch16_224 | 未测试 | √  |
+| PaddleClas | ViT_base_patch16_384 | 未测试 | √  |
+| PaddleClas | ViT_base_patch32_384 | 未测试 | √  |
+| PaddleClas | ViT_large_patch16_224 | 未测试 | √  |
+| PaddleClas | ViT_large_patch16_384 | 未测试 | √  |
+| PaddleClas | ViT_large_patch32_384 | 未测试 | √  |
+| PaddleClas | ViT_small_patch16_224 | 未测试 | √  |
+| PaddleClas | Xception41 | 未测试 | √  |
+| PaddleClas | Xception41_deeplab | 未测试 | √  |
+| PaddleClas | Xception65 | 未测试 | √  |
+| PaddleClas | Xception65_deeplab | 未测试 | √  |
+| PaddleClas | Xception71 | 未测试 | √  |
+| PaddleClas | alt_gvt_base | 未测试 | √  |
+| PaddleClas | alt_gvt_large | 未测试 | √  |
+| PaddleClas | alt_gvt_small | 未测试 | √  |
+| PaddleClas | cae_base_patch16_224 | 未测试 | √  |
+| PaddleClas | pcpvt_base | 未测试 | √  |
+| PaddleClas | pcpvt_large | 未测试 | √  |
+| PaddleClas | pcpvt_small | 未测试 | √  |
+| PaddleDetection | ppyoloe_vit_base_csppan_cae_36e_coco | 未测试 | √  |
+| PaddleDetection | solov2_r50_enhance_coco | 未测试 | √  |
+| PaddleOCR | ch_PP-OCRv2_det_0 | 未测试 | √  |
+| PaddleOCR | ch_PP-OCRv2_rec | 未测试 | √  |
+| PaddleOCR | ch_PP-OCRv3_det_0 | 未测试 | √  |
+| PaddleOCR | ch_PP-OCRv4_mobile_det_0 | 未测试 | √  |
+| PaddleOCR | ch_PP-OCRv4_server_det_0 | 未测试 | √  |
+| PaddleOCR | ch_PP-OCRv4_server_rec | 未测试 | √  |
+| PaddleOCR | ch_ppocr_mobile_v2_0_rec | 未测试 | √  |
+| PaddleOCR | ch_ppocr_server_v2_0_rec | 未测试 | √  |
+| PaddleOCR | det_mv3_db_v2_0_0 | 未测试 | √  |
+| PaddleOCR | det_r50_db_plusplus_0 | 未测试 | √  |
+| PaddleOCR | en_table_structure | 未测试 | √  |
+| PaddleOCR | rec_mv3_none_bilstm_ctc_v2_0 | 未测试 | √  |
+| PaddleOCR | rec_mv3_none_none_ctc_v2_0 | 未测试 | √  |
+| PaddleOCR | rec_mv3_tps_bilstm_att_v2_0 | 未测试 | √  |
+| PaddleOCR | rec_mv3_tps_bilstm_ctc_v2_0 | 未测试 | √  |
+| PaddleOCR | rec_r32_gaspin_bilstm_att | 未测试 | √  |
+| PaddleOCR | rec_r34_vd_none_bilstm_ctc_v2_0 | 未测试 | √  |
+| PaddleOCR | rec_r34_vd_none_none_ctc_v2_0 | 未测试 | √  |
+| PaddleOCR | rec_r34_vd_tps_bilstm_att_v2_0 | 未测试 | √  |
+| PaddleOCR | rec_r34_vd_tps_bilstm_ctc_v2_0 | 未测试 | √  |
+| PaddleOCR | rec_svtrnet | 未测试 | √  |
+| PaddleOCR | rec_vitstr | 未测试 | √  |
+| PaddleOCR | slanet | 未测试 | √  |
 | PaddleSeg | Deeplabv3_R50 | √ | √  |
 | PaddleSeg | Deeplabv3_R101 | √ | √  |
 | PaddleSeg | Deeplabv3Plus-R50 | √ | √  |
 | PaddleSeg | Deeplabv3Plus-R101 | √ | √  |
-| PaddleSeg | fcn_hrnetw18 |  | √  |
-| PaddleSeg | fcn_hrnetw18_small |  | √  |
-| PaddleSeg | fcn_uhrnetw18_small |  | √  |
-| PaddleSeg | ocrnet_hrnetw48 |  | √  |
-| PaddleSeg | pfpnnet |  | √  |
-| PaddleSeg | pphumanseg_lite |  | √  |
-| PaddleSeg | pphumanseg_server |  | √  |
-| PaddleSeg | ppmatting |  | √  |
+| PaddleSeg | fcn_hrnetw18 | 未测试 | √  |
+| PaddleSeg | fcn_hrnetw18_small | 未测试 | √  |
+| PaddleSeg | fcn_uhrnetw18_small | 未测试 | √  |
+| PaddleSeg | ocrnet_hrnetw48 | 未测试 | √  |
+| PaddleSeg | pfpnnet | 未测试 | √  |
+| PaddleSeg | pphumanseg_lite | 未测试 | √  |
+| PaddleSeg | pphumanseg_server | 未测试 | √  |
+| PaddleSeg | ppmatting | 未测试 | √  |
 | PaddleNLP | Bert | √ | √  |
 | PaddleTS | DLinear | √ | √  |
 | PaddleTS | RLinear | √ | √  |
 | PaddleTS | NLinear | √ | √  |
-| PaddleVideo | AGCN |  | √  |
-| PaddleVideo | STGCN |  | √  |
+| PaddleVideo | AGCN | 未测试 | √  |
+| PaddleVideo | STGCN | 未测试 | √  |
