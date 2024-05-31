@@ -21,6 +21,18 @@
 
 飞桨的类型提升的支持范围和规则在 Tensor 之间，Tensor 和 Scalar 之间会有所不同，以下将分别展开介绍。
 
+.. code:: ipython3
+
+    import paddle
+
+    a = paddle.rand([3,3], dtype = 'float16')
+    b = paddle.rand([3,3], dtype = 'float32')
+    print (a + b) # 当 a 和 b 均为 Tensor 时，视为 Tensor 之间的计算
+
+    c = 1.0
+    print (a + c) # 当 a 和 c 其中任意一个为 Scalar 时，视为 Tensor 和 Scalar 之间的计算
+
+
 1、 Tensor 之间的隐式类型提升规则介绍
 
 -  由于模型训练中通常不会出现浮点型以外的不同类型之间的计算，为了更方便用户能够快速排查由于类型导致的问题，Tensor 之间的自动类型提升将仅支持浮点型之间的计算，以及复数和实数之间的计算，计算原则为返回两个 Tensor 中更大的数据类型，详情见下表：
@@ -43,16 +55,32 @@ c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c12
 
 -  以 paddle.add(a, b) 为例，上表中行为 a，列为 b。
 
--  特殊规则-逻辑规则： 对于逻辑性 API 来说，支持范围同上表，但结果均返回 bool 值。同时由于复数类型无法直接进行逻辑运算，因此对于逻辑运算的类型提升仅支持在浮点数之间。
-
 .. code:: ipython3
 
     import paddle
-    a = paddle.rand([3,3], dtype = 'float16')
-    b = paddle.rand([3,3], dtype = 'float32') # a、b 均为 Tensor 时，视为 Tensor 之间的计算，支持类型和结构参考上表
-    c = a + b # 此时将自动进行类型提升，将 a 的数据类型 cast 为 float32，不需要用户进行额外操作，输出类型为 float32
 
-    d = a == b # 此时将自动进行类型提升，但由于特殊的逻辑规则，输出 d 为 bool 类型
+    # 浮点间的计算
+    a = paddle.rand([3,3], dtype = 'float16')
+    b = paddle.rand([3,3], dtype = 'float32')
+    c = a + b # 此时将自动进行类型提升，将 a 的数据类型 cast 为 float32，不需要用户进行额外操作
+    print (c.dtype) # 输出类型为 float32
+
+    a = paddle.rand([3,3], dtype = 'bfloat16')
+    b = paddle.rand([3,3], dtype = 'float64')
+    c = a + b # 此时将自动进行类型提升，将 a 的数据类型 cast 为 float64，不需要用户进行额外操作
+    print (c.dtype) # 输出类型为 float64
+
+    # 复数与实数之间的计算
+    a = paddle.ones([3,3], dtype = 'complex64')
+    b = paddle.rand([3,3], dtype = 'float64')
+    c = a + b # 此时将自动进行类型提升，将 a 和 b 的数据类型 cast 为 complex128，不需要用户进行额外操作
+    print (c.dtype) # 输出类型为 complex128
+
+    # 复数之间的计算
+    a = paddle.ones([3,3], dtype = 'complex128')
+    b = paddle.ones([3,3], dtype = 'complex64')
+    c = a + b # 此时将自动进行类型提升，将 b 的数据类型 cast 为 complex128，不需要用户进行额外操作
+    print (c.dtype) # 输出类型为 complex128
 
 
 2、 Tensor 与 Scalar 之间的隐式类型提升规则介绍
@@ -78,17 +106,20 @@ c128 | c128 | c128 | c128 | c128 |
 
 -  对于逻辑性 API 来说，支持范围同上表，但结果均返回 bool 值。
 
--  特殊规则-除法规则：对于特殊 API divide 来说，其不会返回比 float 更小的类型。如 int32 / Scalar 返回 float32 。
-
 .. code:: ipython3
 
     import paddle
-    a = paddle.ones([3,3], dtype = 'int16')
-    b = 1 # 当 a、b 中一个为 Tensor ， 另一个为 Scalar 时，视为 Tensor 和 Scalar 之间的计算，支持类型和结构参考上表
-    c = a + b # 此时将自动进行类型提升，将 Scalar b 的数据类型 cast 为 a 的数据类型 int16，不需要用户进行额外操作，输出类型为 int16
+    # 当 Scalar 在大类型上与 Tensor 类型一致时，结果返回 Tensor 的类型
+    a = paddle.rand([3,3], dtype = 'float16')
+    b = 1.0
+    c = a + b # a 与 b 大类型一致，都为 int 类型，因此将 b 自动 cast 为 float16，不需要用户进行额外操作
+    print (c.dtype) # 输出类型为 float16
 
-    d = a / b # 此时将自动进行类型提升，但由于特殊的除法规则，输出 d 的类型为 float32
-
+    # 当 Scalar 在大类型上与 Tensor 类型不一致时，遵循 Tensor 之间的计算规则
+    a = 1.0
+    b = paddle.ones([3,3], dtype = 'int64')
+    c = a + b # a 与 b 大类型不一致，将 b 自动 cast 为 float32，不需要用户进行额外操作
+    print (c.dtype) # 输出类型为 float32
 
 三、飞桨的隐式类型提升使用方法说明
 ------------------------------
@@ -98,18 +129,20 @@ c128 | c128 | c128 | c128 | c128 |
 .. code:: ipython3
 
     import paddle
-    a = paddle.ones([3,3], dtype = 'float16')
-    b = paddle.ones([3,3], dtype = 'float32')
+    a = paddle.rand([3,3], dtype = 'float16')
+    b = paddle.rand([3,3], dtype = 'float32')
     c = a + b # 此时将自动进行类型提升，将 a 的数据类型 cast 为 float32，不需要用户进行额外操作
     print (c.dtype) # float32
 
     # 符合交换律
     d = b + a
     print (d.dtype) # float32
+    print (paddle.allclose(c, d)) # Tensor(shape=[], dtype=bool, place=Place(gpu:0), stop_gradient=True, True)
 
     # 与二元 API 计算结果一致
     e = paddle.add(a, b)
     print (e.dtype) # float32
+    print (paddle.allclose(c, e)) # Tensor(shape=[], dtype=bool, place=Place(gpu:0), stop_gradient=True, True)
 
     # 与静态图计算结果一致
     paddle.enable_static()
@@ -117,11 +150,13 @@ c128 | c128 | c128 | c128 | c128 |
     train_program = paddle.static.Program()
     startup_program = paddle.static.Program()
     with paddle.static.program_guard(train_program, startup_program):
-        a = paddle.ones([3,3], dtype = 'float16')
-        b = paddle.ones([3,3], dtype = 'float32')
+        a = paddle.rand([3,3], dtype = 'float16')
+        b = paddle.rand([3,3], dtype = 'float32')
         f = paddle.add(a, b)
         res = exe.run(train_program, fetch_list=[f])
     print (res[0].dtype) # float32
+    paddle.disable_static()
+    print (paddle.allclose(paddle.to_tensor(res[0]),c)) # Tensor(shape=[], dtype=bool, place=Place(gpu:0), stop_gradient=True, True)
 
 
 2、对于不支持隐式类型提升的情况
@@ -130,7 +165,7 @@ c128 | c128 | c128 | c128 | c128 |
 
     import paddle
     a = paddle.ones([3,3], dtype = 'int64')
-    b = paddle.ones([3,3], dtype = 'float32')
+    b = paddle.rand([3,3], dtype = 'float32')
     c = a + b # 此时由于不再支持 int 和 float 类型之间的自动类型提升，会报 Type Error
 
     # 对于不支持自动类型提升的情况，建议用户进行手动进行类型提升
@@ -186,7 +221,23 @@ c128 | c128 | c128 | c128 | c128 |
 
 -  特殊规则-除法规则： 对于特殊 API divide 来说，其不会返回比 float 更小的类型。如 int32 / Scalar 返回 float32 。
 
--  特殊规则-逻辑规则： 对于逻辑性 API 来说，支持范围同上表，但结果均返回 bool 值。同时由于复数类型无法直接进行逻辑运算，因此对于逻辑运算的类型提升仅支持在浮点数之间。
+.. code:: ipython3
+
+    import paddle
+    a = paddle.ones([3,3], dtype = 'int16')
+    b = 1
+    c = a / b
+    print (c.dtype) # float32
+
+-  特殊规则-逻辑规则： 对于逻辑性 API 来说，由于复数类型无法直接进行逻辑运算，因此复数相关计算不在类型提升的支持范围内，在支持范围内其结果均返回 bool 值。
+
+.. code:: ipython3
+
+    import paddle
+    a = paddle.rand([3,3], dtype = 'float32')
+    b = paddle.rand([3,3], dtype = 'float16')
+    c = a == b
+    print (c.dtype) # bool
 
 五、总结
 ------------------------
