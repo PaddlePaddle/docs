@@ -157,7 +157,7 @@ c128 | c128 | c128 | c128 | c128 |
         res = exe.run(train_program, fetch_list=[f])
     print (res[0].dtype) # float32
     paddle.disable_static()
-    print (paddle.allclose(paddle.to_tensor(res[0]),c)) # Tensor(shape=[], dtype=bool, place=Place(gpu:0), stop_gradient=True, True)
+    print (paddle.allclose(c, paddle.to_tensor(res[0]))) # Tensor(shape=[], dtype=bool, place=Place(gpu:0), stop_gradient=True, True)
 
 
 2、对于不支持隐式类型提升的情况
