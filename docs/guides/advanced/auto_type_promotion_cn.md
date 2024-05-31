@@ -27,11 +27,11 @@
 
 +/-/* | bf16 | f16 | f32 | f64 | bool | u8 | i8 | i16 | i32 | i64 | c64 | c128 |
 :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
-bool | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
 bf16 | bf16 | f32 | f32 | f64 | - | - | - | - | - | - | c64 | c128 |
 f16 | f32 | f16 | f32 | f64 | - | - | - | - | - | - | c64 | c128 |
 f32 | f32 | f32 | f32 | f64 | - | - | - | - | - | - | c64 | c128 |
 f64 | f64 | f64 | f64 | f64 | - | - | - | - | - | - | c128 | c128 |
+bool | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
 u8 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
 i8 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
 i16 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
@@ -50,7 +50,7 @@ c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c12
     import paddle
     a = paddle.rand([3,3], dtype = 'float16')
     b = paddle.rand([3,3], dtype = 'float32') # a、b 均为 Tensor 时，视为 Tensor 之间的计算，支持类型和结构参考上表
-    c = a + b # 此时将自动进行类型提升，将 a 的数据类型 cast 为 float32，不需要用户进行额外操作
+    c = a + b # 此时将自动进行类型提升，将 a 的数据类型 cast 为 float32，不需要用户进行额外操作，输出类型为 float32
 
     d = a == b # 此时将自动进行类型提升，但由于特殊的逻辑规则，输出 d 为 bool 类型
 
@@ -85,7 +85,7 @@ c128 | c128 | c128 | c128 | c128 |
     import paddle
     a = paddle.ones([3,3], dtype = 'int16')
     b = 1 # 当 a、b 中一个为 Tensor ， 另一个为 Scalar 时，视为 Tensor 和 Scalar 之间的计算，支持类型和结构参考上表
-    c = a + b # 此时将自动进行类型提升，将 Scalar b 的数据类型 cast 为 a 的数据类型 int16，不需要用户进行额外操作
+    c = a + b # 此时将自动进行类型提升，将 Scalar b 的数据类型 cast 为 a 的数据类型 int16，不需要用户进行额外操作，输出类型为 int16
 
     d = a / b # 此时将自动进行类型提升，但由于特殊的除法规则，输出 d 的类型为 float32
 
@@ -101,41 +101,17 @@ c128 | c128 | c128 | c128 | c128 |
     a = paddle.ones([3,3], dtype = 'float16')
     b = paddle.ones([3,3], dtype = 'float32')
     c = a + b # 此时将自动进行类型提升，将 a 的数据类型 cast 为 float32，不需要用户进行额外操作
-    print (c.dtype)
+    print (c.dtype) # float32
 
-
-.. parsed-literal::
-
-    paddle.float32
-
--  符合交换律
-
-.. code:: ipython3
-
+    # 符合交换律
     d = b + a
-    print (d.dtype)
+    print (d.dtype) # float32
 
-.. parsed-literal::
-
-    paddle.float32
-
-
--  与二元 API 计算结果一致
-
-.. code:: ipython3
-
+    # 与二元 API 计算结果一致
     e = paddle.add(a, b)
-    print (e.dtype)
+    print (e.dtype) # float32
 
-.. parsed-literal::
-
-    paddle.float32
-
-
--  与静态图计算结果一致
-
-.. code:: ipython3
-
+    # 与静态图计算结果一致
     paddle.enable_static()
     exe = paddle.static.Executor()
     train_program = paddle.static.Program()
@@ -145,11 +121,7 @@ c128 | c128 | c128 | c128 | c128 |
         b = paddle.ones([3,3], dtype = 'float32')
         f = paddle.add(a, b)
         res = exe.run(train_program, fetch_list=[f])
-    print (res[0].dtype)
-
-.. parsed-literal::
-
-   float32
+    print (res[0].dtype) # float32
 
 
 2、对于不支持隐式类型提升的情况
