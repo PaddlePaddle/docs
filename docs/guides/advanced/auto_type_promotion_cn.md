@@ -133,6 +133,15 @@ c128 | c128 | c128 | c128 | c128 |
     b = paddle.ones([3,3], dtype = 'float32')
     c = a + b # 此时由于不再支持 int 和 float 类型之间的自动类型提升，会报 Type Error
 
+    # 对于不支持自动类型提升的情况，建议用户进行手动进行类型提升
+    # 方法一：使用 astype
+    a = a.astype("float32")
+    a = a.astype(b.dtype)
+
+    # 方法二：使用 cast
+    a = paddle.cast(a, "float32")
+    a = paddle.cast(a, b.dtype)
+
 四、飞桨隐式类型提升的适用范围
 ------------------------------
 
