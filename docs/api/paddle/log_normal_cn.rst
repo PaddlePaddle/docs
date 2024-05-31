@@ -3,7 +3,7 @@
 log\_normal
 -------------------------------
 
-.. py:function:: paddle.log_normal(mean=0.0, std=1.0, shape=None, name=None)
+.. py:function:: paddle.log_normal(mean=1.0, std=2.0, shape=None, name=None)
 
 
 返回符合对数正态分布（对应正态分布的均值为 ``mean``，标准差为 ``std``）的随机 Tensor。
