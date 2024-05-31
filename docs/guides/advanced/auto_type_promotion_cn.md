@@ -29,8 +29,9 @@
     b = paddle.rand([3,3], dtype = 'float32')
     print (a + b) # 当 a 和 b 均为 Tensor 时，视为 Tensor 之间的计算
 
-    c = 1.0
-    print (a + c) # 当 a 和 c 其中任意一个为 Scalar 时，视为 Tensor 和 Scalar 之间的计算
+    a = paddle.rand([3,3], dtype = 'float16')
+    b = 1.0
+    print (a + b) # 当 a 和 b 其中任意一个为 Scalar 时，视为 Tensor 和 Scalar 之间的计算
 
 
 1、 Tensor 之间的隐式类型提升规则介绍
@@ -59,7 +60,7 @@ c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c12
 
     import paddle
 
-    # 浮点间的计算
+    # 浮点数间的计算
     a = paddle.rand([3,3], dtype = 'float16')
     b = paddle.rand([3,3], dtype = 'float32')
     c = a + b # 此时将自动进行类型提升，将 a 的数据类型 cast 为 float32，不需要用户进行额外操作
@@ -104,15 +105,15 @@ f64 | f64 | f64 | f64 | c128 |
 c64 | c64 | c64 | c64 | c64 |
 c128 | c128 | c128 | c128 | c128 |
 
--  对于逻辑性 API 来说，支持范围同上表，但结果均返回 bool 值。
 
 .. code:: ipython3
 
     import paddle
+
     # 当 Scalar 在大类型上与 Tensor 类型一致时，结果返回 Tensor 的类型
     a = paddle.rand([3,3], dtype = 'float16')
     b = 1.0
-    c = a + b # a 与 b 大类型一致，都为 int 类型，因此将 b 自动 cast 为 float16，不需要用户进行额外操作
+    c = a + b # a 与 b 大类型一致，都为 float 类型，因此将 b 自动 cast 为 float16，不需要用户进行额外操作
     print (c.dtype) # 输出类型为 float16
 
     # 当 Scalar 在大类型上与 Tensor 类型不一致时，遵循 Tensor 之间的计算规则
@@ -224,7 +225,7 @@ c128 | c128 | c128 | c128 | c128 |
 .. code:: ipython3
 
     import paddle
-    a = paddle.ones([3,3], dtype = 'int16')
+    a = paddle.ones([3,3], dtype = 'int32')
     b = 1
     c = a / b
     print (c.dtype) # float32
