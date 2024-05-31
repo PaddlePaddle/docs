@@ -23,9 +23,9 @@
 
 1、 Tensor 之间的隐式类型提升规则介绍
 
--  Tensor 之间的自动类型提升仅支持浮点型之间的计算，以及复数和实数之间的计算，计算原则为返回两个 Tensor 中更大的数据类型，详情见下表：
+-  由于模型训练中通常不会出现浮点型以外的不同类型之间的计算，为了更方便用户能够快速排查由于类型导致的问题，Tensor 之间的自动类型提升将仅支持浮点型之间的计算，以及复数和实数之间的计算，计算原则为返回两个 Tensor 中更大的数据类型，详情见下表：
 
-+/-/* | bool | u8 | i8 | i16 | i32 | i64 | bf16 | f16 | f32 | f64 | c64 | c128 |
++/-/* | bf16 | f16 | f32 | f64 | bool | u8 | i8 | i16 | i32 | i64 | c64 | c128 |
 :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
 bool | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
 u8 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
@@ -33,15 +33,27 @@ i8 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
 i16 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
 i32 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
 i64 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
-bf16 | - | - | - | - | - | - | bf16 | f32 | f32 | f64 | c64 | c128 |
-f16 | - | - | - | - | - | - | f32 | f16 | f32 | f64 | c64 | c128 |
-f32 | - | - | - | - | - | - | f32 | f32 | f32 | f64 | c64 | c128 |
-f64 | - | - | - | - | - | - | f64 | f64 | f64 | f64 | c128 | c128 |
+bf16 | bf16 | f32 | f32 | f64 | - | - | - | - | - | - | c64 | c128 |
+f16 | f32 | f16 | f32 | f64 | - | - | - | - | - | - | c64 | c128 |
+f32 | f32 | f32 | f32 | f64 | - | - | - | - | - | - | c64 | c128 |
+f64 | f64 | f64 | f64 | f64 | - | - | - | - | - | - | c128 | c128 |
 c64 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c128 | c64 | c128 |
 c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 |
 
+
 -  以 paddle.add(a, b) 为例，上表中行为 a，列为 b。
--  对于逻辑性 API 来说，支持范围同上表，但结果均返回 bool 值。
+
+-  特殊规则-逻辑规则： 对于逻辑性 API 来说，支持范围同上表，但结果均返回 bool 值。同时由于复数类型无法直接进行逻辑运算，因此对于逻辑运算的类型提升仅支持在浮点数之间。
+
+.. code:: ipython3
+
+    import paddle
+    a = paddle.rand([3,3], dtype = 'float16')
+    b = paddle.rand([3,3], dtype = 'float32') # a、b 均为 Tensor 时，视为 Tensor 之间的计算，支持类型和结构参考上表
+    c = a + b # 此时将自动进行类型提升，将 a 的数据类型 cast 为 float32，不需要用户进行额外操作
+
+    d = a == b # 此时将自动进行类型提升，但由于特殊的逻辑规则，输出 d 为 bool 类型
+
 
 2、 Tensor 与 Scalar 之间的隐式类型提升规则介绍
 
@@ -65,14 +77,26 @@ c64 | c64 | c64 | c64 | c64 |
 c128 | c128 | c128 | c128 | c128 |
 
 -  对于逻辑性 API 来说，支持范围同上表，但结果均返回 bool 值。
--  对于特殊 API divide 来说，其不会返回比 float 更小的类型。如 int32 / Scalar 返回 float32 。
+
+-  特殊规则-除法规则：对于特殊 API divide 来说，其不会返回比 float 更小的类型。如 int32 / Scalar 返回 float32 。
+
+.. code:: ipython3
+
+    import paddle
+    a = paddle.ones([3,3], dtype = 'int16')
+    b = 1 # 当 a、b 中一个为 Tensor ， 另一个为 Scalar 时，视为 Tensor 和 Scalar 之间的计算，支持类型和结构参考上表
+    c = a + b # 此时将自动进行类型提升，将 Scalar b 的数据类型 cast 为 a 的数据类型 int16，不需要用户进行额外操作
+
+    d = a / b # 此时将自动进行类型提升，但由于特殊的除法规则，输出 d 的类型为 float32
+
 
 三、飞桨的隐式类型提升使用方法说明
 ------------------------------
 
+1、对于支持隐式类型提升的情况
+
 .. code:: ipython3
 
-    #加载飞桨和相关类库
     import paddle
     a = paddle.ones([3,3], dtype = 'float16')
     b = paddle.ones([3,3], dtype = 'float32')
@@ -82,12 +106,53 @@ c128 | c128 | c128 | c128 | c128 |
 
 .. parsed-literal::
 
-    <VarType.FP32: 5>
+    paddle.float32
 
+-  符合交换律
+
+.. code:: ipython3
+    d = b + a
+    print (d.dtype)
+
+.. parsed-literal::
+
+    paddle.float32
+
+
+-  与二元 API 计算结果一致
+
+.. code:: ipython3
+    e = paddle.add(a, b)
+    print (e.dtype)
+
+.. parsed-literal::
+
+    paddle.float32
+
+
+-  与静态图计算结果一致
+
+.. code:: ipython3
+    paddle.enable_static()
+    exe = paddle.static.Executor()
+    train_program = paddle.static.Program()
+    startup_program = paddle.static.Program()
+    with paddle.static.program_guard(train_program, startup_program):
+        a = paddle.ones([3,3], dtype = 'float16')
+        b = paddle.ones([3,3], dtype = 'float32')
+        f = paddle.add(a, b)
+        res = exe.run(train_program, fetch_list=[f])
+    print (res[0].dtype)
+
+.. parsed-literal::
+
+   float32
+
+
+2、对于不支持隐式类型提升的情况
 
 .. code:: ipython3
 
-    #加载飞桨和相关类库
     import paddle
     a = paddle.ones([3,3], dtype = 'int64')
     b = paddle.ones([3,3], dtype = 'float32')
@@ -103,18 +168,18 @@ c128 | c128 | c128 | c128 | c128 |
 1 | add | 通用规则 | 通用规则 |
 2 | subtract | 通用规则 | 通用规则 |
 3 | multiply | 通用规则 | 通用规则 |
-4 | divide | 通用规则 | int to float |
+4 | divide | 通用规则 | 除法规则 |
 5 | floor_divide | 通用规则 | 通用规则 |
 6 | pow | 通用规则 | 通用规则 |
-7 | equal | all bool | all bool |
-8 | not_equal | all bool | all bool |
-9 | less_than | all bool | all bool |
-10 | less_equal | all bool | all bool |
-11 | greater_than | all bool | all bool |
-12 | greater_equal | all bool | all bool |
-13 | logical_and | all bool | all bool |
-14 | logical_or | all bool | all bool |
-15 | logical_xor | all bool | all bool |
+7 | equal | 逻辑规则 | 逻辑规则 |
+8 | not_equal | 逻辑规则 | 逻辑规则 |
+9 | less_than | 逻辑规则 | 逻辑规则 |
+10 | less_equal | 逻辑规则 | 逻辑规则 |
+11 | greater_than | 逻辑规则 | 逻辑规则 |
+12 | greater_equal | 逻辑规则 | 逻辑规则 |
+13 | logical_and | 逻辑规则 | 逻辑规则 |
+14 | logical_or | 逻辑规则 | 逻辑规则 |
+15 | logical_xor | 逻辑规则 | 逻辑规则 |
 16 | bitwise_and | - | 通用规则 |
 17 | bitwise_or | - | 通用规则 |
 18 | bitwise_xor | - | 通用规则 |
@@ -132,6 +197,12 @@ c128 | c128 | c128 | c128 | c128 |
 30 | l1_loss | 通用规则 | - |
 31 | huber_loss | 通用规则 | - |
 32 | mse_loss | 通用规则 | - |
+
+上表中存在两种特殊规则：
+
+-  特殊规则-除法规则： 对于特殊 API divide 来说，其不会返回比 float 更小的类型。如 int32 / Scalar 返回 float32 。
+
+-  特殊规则-逻辑规则： 对于逻辑性 API 来说，支持范围同上表，但结果均返回 bool 值。同时由于复数类型无法直接进行逻辑运算，因此对于逻辑运算的类型提升仅支持在浮点数之间。
 
 五、总结
 ------------------------
