@@ -10,12 +10,12 @@ mask_as
 参数
 :::::::::
     - **x** (DenseTensor) - 输入的 DenseTensor。数据类型为 float32，float64，int32，int64，complex64，complex128，int8，int16，float16。
-    - **mask** (SparseTensor) - 输入的稀疏张量，是一个 SparseTensor，可以为 Coo 或 Csr 格式。当其为 SparseCsrTensor 时，应该是 2D 或 3D 的形式。
+    - **mask** (SparseTensor) - 输入的稀疏张量，是一个 SparseTensor，可以为 SparseCooTensor、SparseCsrTensor。当其为 SparseCsrTensor 时，应该是 2D 或 3D 的形式。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
-SparseTensor: 其 Tensor 类型、dtype、shape 均与 `mask` 相同。
+SparseTensor: 其稀疏格式、dtype、shape 均与 `mask` 相同。
 
 
 代码示例
