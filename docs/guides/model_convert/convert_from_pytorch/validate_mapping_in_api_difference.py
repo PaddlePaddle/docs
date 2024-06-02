@@ -571,6 +571,13 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
         filled_count += 1
         target[api_type][torch_api] = column
 
+    alias_filename = "api_alias_mapping.json"
+    if os.path.exists(alias_filename) and os.path.isfile(alias_filename):
+        with open(alias_filename, "r", encoding="utf-8") as f:
+            api_alias = json.load(f)
+            for api_name, alias_name in api_alias.items():
+                pass
+
     if filled_count > 0:
         print(f"filled {filled_count} torch apis for ./api_difference")
 
