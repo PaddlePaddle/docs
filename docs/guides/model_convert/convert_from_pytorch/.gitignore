@@ -1,2 +1,8 @@
-docs_mappings.json
+# temp files used locally
 pytorch_api_mapping_cn.tmp.md
+
+# files will be used in PaConvert
+docs_mappings.json
+
+# files copied from PaConvert
+api_alias_mapping.json
