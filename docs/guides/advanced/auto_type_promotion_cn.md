@@ -57,6 +57,8 @@ c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c12
 
 -  以 paddle.add(a, b) 为例，上表中行为 a，列为 b。
 
+以下是 Tensor 之间类型提升的样例：
+
  ```python
 
     import paddle
@@ -107,6 +109,7 @@ f64 | f64 | f64 | f64 | c128 |
 c64 | c64 | c64 | c64 | c64 |
 c128 | c128 | c128 | c128 | c128 |
 
+以下是 Tensor 与 Scalar 之间类型提升的样例：
 
  ```python
 
