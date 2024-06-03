@@ -12,7 +12,7 @@ torch.Tensor.sparse_mask(mask)
 paddle.sparse.mask_as(x, mask, name=None)
 ```
 
-两者功能一致，但使用方式不一致，前者可以直接访问方法，后者需要调用方法，具体如下：
+两者功能一致，但调用方式不同，torch 通过 Tensor 类方法调用，而 paddle 是直接调用函数，具体如下：
 
 ### 参数映射
 
@@ -24,11 +24,9 @@ paddle.sparse.mask_as(x, mask, name=None)
 ### 转写示例
 
 ```python
-# torch 版本可以直接访问方法
-# x = torch.tensor(123)
-# x.sparse_mask(mask)
+# torch 调用 Tensor 类方法
+x.sparse_mask(mask)
 
-# Paddle 版本需要调用
-x = paddle.to_tensor(123)
+# paddle 直接调用函数
 paddle.sparse.mask_as(x, mask)
 ```
