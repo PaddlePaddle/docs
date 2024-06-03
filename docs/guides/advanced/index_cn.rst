@@ -9,6 +9,7 @@
 - `自定义 Loss、Metric 及 Callback <./customize_cn.html>`_
 - `梯度裁剪 <./gradient_clip_cn.html>`_
 - `模型导出 ONNX 协议 <./model_to_onnx_cn.html>`_
+- `隐式数据类型提升 <./auto_type_promotion_cn.html>`_
 
 ..  toctree::
     :hidden:
@@ -19,3 +20,4 @@
     customize_cn.ipynb
     gradient_clip_cn.rst
     model_to_onnx_cn.md
+    auto_type_promotion_cn.md
