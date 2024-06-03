@@ -25,8 +25,10 @@ paddle.sparse.mask_as(x, mask, name=None)
 
 ```python
 # torch 版本可以直接访问方法
-# torch.sparse_mask(mask)
+# x = torch.tensor(123)
+# x.sparse_mask(mask)
 
 # Paddle 版本需要调用
+x = paddle.to_tensor(123)
 paddle.sparse.mask_as(x, mask)
 ```
