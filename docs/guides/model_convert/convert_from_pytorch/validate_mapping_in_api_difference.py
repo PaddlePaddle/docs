@@ -592,6 +592,10 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
                     )
                     continue
 
+                if alias_name in meta_dict:
+                    # 如果别名和本名都在前面表里，就跳过
+                    continue
+
                 meta_data = meta_dict[api_name]
 
                 paddle_api = meta_data.get("paddle_api", "-")
