@@ -3206,3 +3206,14 @@ signbit(x, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_signbit`
+
+block_diag(inputs, name=None)
+:::::::::
+
+根据 `inputs` 创建对角矩阵。
+
+返回：对角矩阵 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_block_diag`

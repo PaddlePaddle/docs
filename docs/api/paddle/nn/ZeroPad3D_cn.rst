@@ -11,7 +11,7 @@ ZeroPad3D
 参数
 :::::::::
 
-  - **padding** (Tensor | List[int] | int) - 填充大小。如果是 int，则在所有待填充边界使用相同的填充，
+  - **padding** (Tensor | List[int] | int) - 如果输入数据类型为 int，则在所有待填充边界使用相同的填充，
     否则填充的格式为[pad_left, pad_right, pad_top, pad_bottom, pad_front, pad_back]。
   - **data_format** (str)  - 指定输入的 format，可为 ``'NCDHW'`` 或者 ``'NDHWC'``，默认值为 ``'NCDHW'``。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

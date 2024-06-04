@@ -108,7 +108,9 @@ Padding 层
     " :ref:`paddle.nn.Pad1D <cn_api_paddle_nn_Pad1D>` ", "一维填充层"
     " :ref:`paddle.nn.Pad2D <cn_api_paddle_nn_Pad2D>` ", "二维填充层"
     " :ref:`paddle.nn.Pad3D <cn_api_paddle_nn_Pad3D>` ", "三维填充层"
+    " :ref:`paddle.nn.ZeroPad1D <cn_api_paddle_nn_ZeroPad1D>` ", "一维零填充层"
     " :ref:`paddle.nn.ZeroPad2D <cn_api_paddle_nn_ZeroPad2D>` ", "二维零填充层"
+    " :ref:`paddle.nn.ZeroPad3D <cn_api_paddle_nn_ZeroPad3D>` ", "三维零填充层"
 
 .. _activation_layers:
 
