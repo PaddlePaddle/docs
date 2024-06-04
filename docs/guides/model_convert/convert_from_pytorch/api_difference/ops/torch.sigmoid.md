@@ -12,7 +12,7 @@ paddle.nn.functional.sigmoid(x, name=None)
 ```
 
 功能一致，torch 参数更多，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor。                                      |

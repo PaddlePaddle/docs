@@ -1,4 +1,4 @@
-## [torch 参数更多 ]torch.numel
+## [ 组合替代实现 ]torch.numel
 ### [torch.numel](https://pytorch.org/docs/stable/generated/torch.numel.html?highlight=numel#torch.numel)
 
 ```python

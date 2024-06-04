@@ -44,6 +44,7 @@ class DiffMeta(TypedDict):
     paddle_api: typing.Optional[str]
     paddle_api_url: typing.Optional[str]
     paddle_signature: typing.Optional[str]
+    args_mapping: typing.Optional[typing.List[typing.Dict[str, str]]]
     mapping_type: str
     source_file: str
 
@@ -61,7 +62,12 @@ class ParserState(IntEnum):
     wf_paddle_code = 7
     wf_paddle_code_end = 8
 
-    end = 9
+    wait_for_args = 9
+    wf_args_table_title = 10
+    wf_args_table_sep = 11
+    wf_args_table_end = 12
+
+    end = 13
 
 
 def unescape_api(api):
@@ -121,6 +127,9 @@ def get_meta_from_diff_file(filepath):
     code_begin_pattern = re.compile(r"^```python$")
     code_pattern = re.compile(r"^(?P<api_name>(paddle|torch)[^\( ]+)(.*?)$")
     code_end_pattern = re.compile(r"^```$")
+
+    args_pattern = re.compile(r"^### 参数映射$")
+    ARGS_EXPECT_HEADERS = ["PyTorch", "PaddlePaddle", "备注"]
 
     signature_cache = None
 
@@ -228,7 +237,7 @@ def get_meta_from_diff_file(filepath):
                         state = ParserState.wait_for_paddle_api
                     elif state == ParserState.wf_paddle_code_end:
                         meta_data["paddle_signature"] = signature_info
-                        state = ParserState.end
+                        state = ParserState.wait_for_args
                     else:
                         raise ValueError(
                             f"Unexpected state {state} when process {filepath} line: {line}"
@@ -243,6 +252,57 @@ def get_meta_from_diff_file(filepath):
                         raise ValueError(
                             f"Unexpected state {state} when process {filepath} line: {line}"
                         )
+            elif state == ParserState.wait_for_args:
+                args_match = args_pattern.match(line)
+                if args_match:
+                    state = ParserState.wf_args_table_title
+            elif state == ParserState.wf_args_table_title:
+                if line.startswith("|"):
+                    args_table_headers = [
+                        c.strip() for c in line.split("|") if len(c.strip()) > 0
+                    ]
+                    if args_table_headers != ARGS_EXPECT_HEADERS:
+                        raise Exception(
+                            f"Unexpected args table headers: {args_table_headers} in {filepath}"
+                        )
+                    else:
+                        state = ParserState.wf_args_table_sep
+                        meta_data["args_mapping"] = []
+            elif state == ParserState.wf_args_table_sep:
+                if line.startswith("|"):
+                    args_table_seps = [
+                        c.strip() for c in line.split("|") if len(c.strip()) > 0
+                    ]
+                    if len(args_table_seps) == len(ARGS_EXPECT_HEADERS):
+                        state = ParserState.wf_args_table_end
+                    else:
+                        raise Exception(
+                            f"Unexpected args table seps: {args_table_seps} in {filepath}"
+                        )
+                else:
+                    raise Exception(
+                        f"Unexpected args table sep: {line} in {filepath}"
+                    )
+            elif state == ParserState.wf_args_table_end:
+                if line.startswith("|"):
+                    args_table_content = [c.strip() for c in line.split("|")][
+                        1:-1
+                    ]
+                    if len(args_table_content) == len(ARGS_EXPECT_HEADERS):
+                        torch_arg, paddle_arg, note = args_table_content
+                        meta_data["args_mapping"].append(
+                            {
+                                "torch_arg": torch_arg,
+                                "paddle_arg": paddle_arg,
+                                "note": note,
+                            }
+                        )
+                    else:
+                        raise Exception(
+                            f"Unexpected args table end: {args_table_content} in {filepath}"
+                        )
+                else:
+                    state = ParserState.end
             elif state == ParserState.end:
                 break
             else:
@@ -251,6 +311,15 @@ def get_meta_from_diff_file(filepath):
                 )
 
     # print(state)
+
+    # 允许没有参数映射列表
+    if mapping_type in ["无参数", "组合替代实现"]:
+        if state == ParserState.wait_for_args:
+            state = ParserState.end
+    # 必须有参数映射列表，但是可以随时停止
+    else:
+        if state == ParserState.wf_args_table_end:
+            state = ParserState.end
 
     # 允许的终止状态，解析完了 paddle_api 或者只有 torch_api
     # 这些映射类型必须要有对应的 paddle_api
