@@ -6,7 +6,7 @@
 torch.Tensor.numel()
 ```
 
-### [paddle.Tensor.size](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/layers/size_cn.html#cn-api-fluid-layers-size)
+### [paddle.Tensor.size](https://www.paddlepaddle.org.cn/documentation/docs/guides/beginner/tensor_cn.html#tensor-shape)
 
 ```python
 paddle.Tensor.size()
