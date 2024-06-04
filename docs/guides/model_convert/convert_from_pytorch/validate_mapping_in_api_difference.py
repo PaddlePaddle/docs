@@ -592,7 +592,7 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
                     )
                     continue
 
-                if alias_name in meta_dict:
+                if alias_name in INDEX_ALL_APIS:
                     # 如果别名和本名都在前面表里，就跳过
                     continue
 
