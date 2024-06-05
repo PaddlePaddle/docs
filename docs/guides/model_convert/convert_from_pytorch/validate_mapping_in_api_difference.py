@@ -579,7 +579,7 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
         target["alias"] = {}
         with open(alias_filename, "r", encoding="utf-8") as f:
             api_alias = json.load(f)
-            for api_name, alias_name in api_alias.items():
+            for alias_name, api_name in api_alias.items():
                 if api_name in meta_dict:
                     pass
                 elif alias_name in meta_dict:
