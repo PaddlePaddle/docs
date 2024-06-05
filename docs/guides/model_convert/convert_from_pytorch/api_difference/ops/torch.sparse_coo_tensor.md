@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.sparse_coo_tensor
+## [ 输入参数用法不一致 ]torch.sparse_coo_tensor
 
 ### [torch.sparse_coo_tensor](https://pytorch.org/docs/stable/generated/torch.sparse_coo_tensor.html?highlight=torch+sparse_coo_tensor#torch.sparse_coo_tensor)
 

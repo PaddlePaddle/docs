@@ -1,4 +1,4 @@
-## [ 参数不一致 ] torch.sparse.sum
+## [ 返回参数类型不一致 ] torch.sparse.sum
 
 ### [torch.sparse.sum](https://pytorch.org/docs/stable/generated/torch.sparse.sum.html?highlight=sparse+sum#torch.sparse.sum)
 

@@ -30,9 +30,10 @@ def mapping_type_to_description(mapping_type):
         return "功能一致，" + mapping_type, True
 
     mapping_type_3 = [
+        # "参数不一致",
         "返回参数类型不一致",
-        "参数不一致",
-        "参数用法不一致",
+        "输入参数类型不一致",
+        "输入参数用法不一致",
     ]
     if mapping_type in mapping_type_3:
         return "功能一致，" + mapping_type, True

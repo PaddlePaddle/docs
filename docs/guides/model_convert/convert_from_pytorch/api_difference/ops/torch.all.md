@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.all
+## [ 输入参数类型不一致 ]torch.all
 
 ### [torch.all](https://pytorch.org/docs/stable/generated/torch.all.html?highlight=all#torch.all)
 

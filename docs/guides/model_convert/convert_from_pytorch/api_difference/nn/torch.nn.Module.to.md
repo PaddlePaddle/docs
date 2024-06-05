@@ -1,4 +1,4 @@
-## [参数不一致]torch.nn.Module.to
+## [ 输入参数用法不一致 ]torch.nn.Module.to
 
 ### [torch.nn.Module.to](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.to)
 

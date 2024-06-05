@@ -21,9 +21,10 @@ mapping_type_set = {
     # type 2
     "torch 参数更多",
     # type 3
+    # "参数不一致",
     "返回参数类型不一致",
-    "参数不一致",
-    "参数用法不一致",
+    "输入参数类型不一致",
+    "输入参数用法不一致",
     # type 4
     "组合替代实现",
     # type 5
@@ -147,6 +148,12 @@ def get_meta_from_diff_file(filepath):
 
                     meta_data["torch_api"] = unescape_api(torch_api)
                     meta_data["mapping_type"] = mapping_type
+
+                    if mapping_type not in mapping_type_set:
+                        raise ValueError(
+                            f"Unexpected mapping type: {mapping_type} in {filepath}"
+                        )
+
                     state = ParserState.wait_for_torch_api
                 else:
                     raise Exception(f"Cannot parse title: {line} in {filepath}")

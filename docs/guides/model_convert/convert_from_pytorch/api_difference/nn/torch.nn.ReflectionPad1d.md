@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.ReflectionPad1d
+## [ 输入参数类型不一致 ]torch.nn.ReflectionPad1d
 ### [torch.nn.ReflectionPad1d](https://pytorch.org/docs/stable/generated/torch.nn.ReflectionPad1d.html?highlight=pad#torch.nn.ReflectionPad1d)
 
 ```python

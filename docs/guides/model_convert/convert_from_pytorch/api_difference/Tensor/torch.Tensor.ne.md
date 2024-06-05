@@ -1,4 +1,4 @@
-## [ 参数不一致 ] torch.Tensor.ne
+## [ 输入参数类型不一致 ] torch.Tensor.ne
 ### [torch.Tensor.ne](https://pytorch.org/docs/stable/generated/torch.Tensor.ne.html?highlight=ne)
 
 ```python

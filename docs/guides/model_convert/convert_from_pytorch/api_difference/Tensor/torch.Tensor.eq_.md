@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.eq_
+## [ 输入参数类型不一致 ]torch.Tensor.eq_
 
 ### [torch.Tensor.eq_](https://pytorch.org/docs/stable/generated/torch.Tensor.eq_.html)
 

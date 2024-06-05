@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.repeat
+## [ 输入参数用法不一致 ]torch.Tensor.repeat
 
 ### [torch.Tensor.repeat](https://pytorch.org/docs/stable/generated/torch.Tensor.repeat.html)
 
