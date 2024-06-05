@@ -575,9 +575,10 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
         target[api_type][torch_api] = column
 
     alias_filename = "api_alias_mapping.json"
-    if os.path.exists(alias_filename) and os.path.isfile(alias_filename):
+    alias_filepath = os.path.join(basedir, alias_filename)
+    if os.path.exists(alias_filepath) and os.path.isfile(alias_filepath):
         target["alias"] = {}
-        with open(alias_filename, "r", encoding="utf-8") as f:
+        with open(alias_filepath, "r", encoding="utf-8") as f:
             api_alias = json.load(f)
             for alias_name, api_name in api_alias.items():
                 if api_name in meta_dict:
@@ -625,7 +626,8 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
     if filled_count > 0:
         print(f"filled {filled_count} torch apis for ./api_difference")
 
-        with open("pytorch_api_mapping_cn.tmp.md", "w", encoding="utf-8") as f:
+        output_path = os.path.join(basedir, "pytorch_api_mapping_cn.tmp.md")
+        with open(output_path, "w", encoding="utf-8") as f:
             for prefix, apis in target.items():
                 f.write(f"## {prefix}\n\n")
                 od_apis = collections.OrderedDict(sorted(apis.items()))
@@ -643,7 +645,7 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
                         f.write(f"| {ref} |\n")
                 f.write("\n")
 
-        print("pytorch_api_mapping_cn.tmp.md generated.")
+        print(f'generated temp file: "{output_path}"')
 
 
 if __name__ == "__main__":
