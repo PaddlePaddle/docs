@@ -594,6 +594,12 @@ def get_api_type_from_torch_api(torch_api: str) -> str:
     return "untyped"
 
 
+def get_doc_url_from_meta(basedir, meta):
+    relpath = os.path.relpath(meta["source_file"], basedir).replace("\\", "/")
+    diffurl = urllib.parse.urljoin(PADDLE_DOCS_BASE_URL, relpath)
+    return diffurl
+
+
 def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
     target = {k + "XX": {} for k in _TABLE_PREFIXES}
     target["torch.XX"] = {}
@@ -608,10 +614,7 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
     for torch_api, meta in meta_dict.items():
         api_type = get_api_type_from_torch_api(torch_api)
 
-        relpath = os.path.relpath(meta["source_file"], basedir).replace(
-            "\\", "/"
-        )
-        diffurl = urllib.parse.urljoin(PADDLE_DOCS_BASE_URL, relpath)
+        diffurl = get_doc_url_from_meta(basedir, meta)
 
         column = f"REFERENCE-MAPPING-ITEM(`{torch_api}`, {diffurl})"
         if torch_api in target[api_type]:
@@ -641,16 +644,59 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
         target[api_type][torch_api] = column
 
     alias_filename = "api_alias_mapping.json"
-    if os.path.exists(alias_filename) and os.path.isfile(alias_filename):
-        with open(alias_filename, "r", encoding="utf-8") as f:
+    alias_filepath = os.path.join(basedir, alias_filename)
+    if os.path.exists(alias_filepath) and os.path.isfile(alias_filepath):
+        target["alias"] = {}
+        with open(alias_filepath, "r", encoding="utf-8") as f:
             api_alias = json.load(f)
-            for api_name, alias_name in api_alias.items():
-                pass
+            for alias_name, api_name in api_alias.items():
+                if api_name in meta_dict:
+                    pass
+                elif alias_name in meta_dict:
+                    # 如果反着有，就交换
+                    api_name, alias_name = alias_name, api_name
+                else:
+                    # 都没有就抛出警告
+                    print(
+                        f"Alias Warning: api `{api_name}` have no mapping doc, failed to reference from alias `{alias_name}`"
+                    )
+                    continue
+
+                if alias_name in INDEX_ALL_APIS:
+                    # 如果别名和本名都在前面表里，就跳过
+                    continue
+
+                meta_data = meta_dict[api_name]
+
+                paddle_api = meta_data.get("paddle_api", "-")
+                mapping_type = meta_data["mapping_type"]
+                url = get_doc_url_from_meta(basedir, meta_data)
+
+                alias_col = f"`{alias_name}`"
+                paddle_col = f"`{paddle_api}`"
+                if "torch_api_url" in meta_data:
+                    alias_col = f'[{alias_col}]({meta_data["torch_api_url"]})'
+                if "paddle_api_url" in meta_data:
+                    paddle_col = (
+                        f'[{paddle_col}]({meta_data["paddle_api_url"]})'
+                    )
+
+                line = " | ".join(
+                    [
+                        alias_col,
+                        paddle_col,
+                        mapping_type,
+                        f"`{api_name}`别名，[详细对比]({url})",
+                    ]
+                )
+                target["alias"][alias_name] = line
+                filled_count += 1
 
     if filled_count > 0:
         print(f"filled {filled_count} torch apis for ./api_difference")
 
-        with open("pytorch_api_mapping_cn.tmp.md", "w", encoding="utf-8") as f:
+        output_path = os.path.join(basedir, "pytorch_api_mapping_cn.tmp.md")
+        with open(output_path, "w", encoding="utf-8") as f:
             for prefix, apis in target.items():
                 f.write(f"## {prefix}\n\n")
                 od_apis = collections.OrderedDict(sorted(apis.items()))
@@ -660,9 +706,15 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
                 for api, ref in od_apis.items():
                     if ref.startswith("NOT-IMPLEMENTED-ITEM"):
                         f.write(f"| {ref} |\n")
+                for api, ref in od_apis.items():
+                    if not (
+                        ref.startswith("REFERENCE-MAPPING-ITEM")
+                        or ref.startswith("NOT-IMPLEMENTED-ITEM")
+                    ):
+                        f.write(f"| {ref} |\n")
                 f.write("\n")
 
-        print("pytorch_api_mapping_cn.tmp.md generated.")
+        print(f'generated temp file: "{output_path}"')
 
 
 if __name__ == "__main__":
