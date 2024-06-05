@@ -14,7 +14,7 @@ paddle.where(condition, x, y, name=None)
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | condition     | condition    | 判断条件。                             |

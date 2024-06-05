@@ -21,7 +21,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | num_features        | num_features                 | 特征数量。 |
 | eps                 | epsilon                      | 一个极小正数，仅参数名不一致。 |
 | momentum            | momentum                     | 动量因子，参数默认值不一致。 |
-| affine              | -                            | 是否进行仿射变换，Paddle 无此参数，需要转写。
+| affine              | -                            | 是否进行仿射变换，Paddle 无此参数，需要转写。 |
 | track_running_stats | -                            | 是否跟踪运行时的 mean 和 var， Paddle 无此参数。暂无转写方式。         |
 | device              | -                            | 表示 Tensor 存放设备位置，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
 | dtype               | -                            | 参数类型，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
