@@ -17,13 +17,13 @@ GroupNorm
     - **epsilon** (float，可选) - 为防止方差除零，增加一个很小的值。默认值：1e-05。
     - **weight_attr** (ParamAttr|bool，可选) - 指定权重参数属性的对象。如果为 False，表示参数不学习。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
     - **bias_attr** (ParamAttr|bool，可选) - 指定偏置参数属性的对象。如果为 False，表示参数不学习。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
-    - **data_format** (string，可选) - 只支持“NCHW”(num_batches，channels，height，width)格式。默认值：“NCHW”。
+    - **data_format** (string，可选) - 支持 “NCL”，“NCHW”，“NCDHW”，“NLC”，“NHWC”，“NDHWC” 格式。默认值：“NCHW”。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 ::::::::::::
 
-    - input：形状为(批大小，通道数，\*) 的 Tensor。
+    - input：形状为 (批大小，通道数，\*) 或 (批大小，\*，通道数) 的 Tensor。
     - output：和输入形状一样。
 
 代码示例

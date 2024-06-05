@@ -1,15 +1,15 @@
+import collections
 import json
 import os
 import re
-import shutil
-import subprocess
-import sys
-import tempfile
+import traceback
 import typing
+import urllib
+import urllib.parse
 from enum import IntEnum
 from typing import TypedDict
 
-CFP_BASEDIR = os.path.dirname(__file__)
+PADDLE_DOCS_BASE_URL = "https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/"
 
 mapping_type_set = {
     # type 1
@@ -27,7 +27,7 @@ mapping_type_set = {
     # type 4
     "组合替代实现",
     # type 5
-    "用法不同：涉及上下文修改",
+    "涉及上下文修改",
     # type 6
     "对应 API 不在主框架",
     # type 7
@@ -124,7 +124,7 @@ def get_meta_from_diff_file(filepath):
 
     signature_cache = None
 
-    with open(filepath, "r") as f:
+    with open(filepath, "r", encoding="utf-8") as f:
         for line in f.readlines():
             # 现在需要考虑内容信息了
             # if not line.startswith("##"):
@@ -298,80 +298,56 @@ MAPPING_DIFF_SOURCE_PATTERN = re.compile(
     r"^https://github.com/PaddlePaddle/((docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/)|(X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/))"
 )
 
+TABLE_MACRO_ROW_PATTERN = re.compile(
+    r"^(?P<macro_type>[\w-]+)\( *(?P<torch_api>[^,]+) *(, *(?P<diff_url>.+) *)? *\)$"
+)
 
-def validate_mapping_table_row(columns, row_idx, line_idx):
-    idx_s, torch_api_s, paddle_api_s, mapping_s = columns
 
-    idx = int(idx_s)
-    if row_idx != idx:
-        raise Exception(
-            f"Table row index [{row_idx}] != {idx} at line {line_idx}."
-        )
+INDEX_ALL_APIS = {}
+INDEX_TABLES_APIS = []
 
-    torch_api_match = TABLE_COLUMN_TORCH_API_PATTERN.match(torch_api_s)
-    if torch_api_match:
-        torch_api = torch_api_match["torch_api"]
-        torch_api_url = torch_api_match["url"][1:-1]  # remove '(' and ')'
-    else:
-        raise Exception(
-            f"Table row torch api not match: {torch_api_s} at line {line_idx}."
-        )
 
-    paddle_api_match = TABLE_COLUMN_PADDLE_API_PATTERN.match(paddle_api_s)
-    if len(paddle_api_s) > 0:
-        if paddle_api_match:
-            paddle_api = paddle_api_match["paddle_api"]
-            paddle_api_url = paddle_api_match["url"][1:-1]  # remove '(' and ')'
-        else:
+def validate_mapping_table_macro_row(columns, row_idx, line_idx):
+    assert (
+        len(columns) == 1
+    ), f"Table macro row must have 1 column at line {line_idx}."
+    macro_match = TABLE_MACRO_ROW_PATTERN.match(columns[0])
+
+    if macro_match:
+        macro_type = macro_match["macro_type"]
+        torch_api = macro_match["torch_api"].strip("`")
+        diff_url = macro_match["diff_url"]
+
+        if torch_api in INDEX_ALL_APIS:
             raise Exception(
-                f"Table row paddle api not match: {paddle_api_s} at line {line_idx}."
+                f"Duplicate torch api: {torch_api} at line {line_idx}."
             )
-    else:
-        paddle_api = None
-        paddle_api_url = None
+        INDEX_ALL_APIS[torch_api] = columns[0]
 
-    mapping_type_match = TABLE_COLUMN_MAPPING_PATTERN.match(mapping_s)
-    if mapping_type_match:
-        mapping_type = mapping_type_match["type"].strip()
-        mapping_diff_name = mapping_type_match["diff_name"]
-        diff_url = mapping_type_match["diff_url"]
+        return torch_api
 
-        if mapping_diff_name != "差异对比" and mapping_diff_name is not None:
-            print(
-                f"Table row mapping diff name not match: {mapping_diff_name} at line {line_idx}."
-            )
-
-        if diff_url is not None and not MAPPING_DIFF_SOURCE_PATTERN.match(
-            diff_url
-        ):
-            raise Exception(
-                f"Table row mapping diff url invalid: {diff_url} at line {line_idx}."
-            )
-        mapping_diff_url = diff_url
-    else:
-        raise Exception(
-            f"Table row mapping type not match: {mapping_s} at line {line_idx}."
-        )
-
-    return {
-        "torch_api": torch_api,
-        "torch_api_url": torch_api_url,
-        "paddle_api": paddle_api,
-        "paddle_api_url": paddle_api_url,
-        "mapping_type": mapping_type,
-        "mapping_diff_name": mapping_diff_name,
-        "mapping_diff_url": mapping_diff_url,
-        "line_idx": line_idx,
-    }
+    return False
 
 
-def collect_mapping_item_processor(item, line_idx, state, output, context):
+def collect_mapping_item_processor(api_name, line_idx, state, output, context):
+    if state == 0 or state == 1 or state == 5:
+        return True
+
+    if state == 2:
+        INDEX_TABLES_APIS.append({})
+        return True
     if state == 6:
         table_row_idx = context["table_row_idx"]
         columns = context["columns"]
-        item = validate_mapping_table_row(columns, table_row_idx, line_idx + 1)
-        output.append(item)
-        return True
+        assert (
+            len(columns) == 1
+        ), f"table row must have 1 column at line {line_idx}."
+        api_name = validate_mapping_table_macro_row(
+            columns, table_row_idx, line_idx + 1
+        )
+        INDEX_TABLES_APIS[-1][api_name] = columns[0]
+        output.append(api_name)
+        return bool(api_name)
 
     return False
 
@@ -399,10 +375,10 @@ def process_mapping_index(index_path, item_processer, context={}):
 
     expect_column_names = [
         "序号",
-        "PyTorch-2.1",
-        "PaddlePaddle-dev",
+        "Pytorch 最新 release",
+        "Paddle develop",
         "映射关系分类",
-        "详细对比",
+        "备注",
     ]
 
     context["table_row_idx"] = context.get("table_row_idx", -1)
@@ -419,11 +395,12 @@ def process_mapping_index(index_path, item_processer, context={}):
             continue
 
         columns = [c.strip() for c in content.split("|")]
-        if len(columns) <= 2:
-            raise Exception(
-                f"Table column count must > 0, but found {len(columns) - 2} at line {i+1}: {line}"
-            )
-        columns = columns[1:-1]
+        columns = [c for c in columns if len(c) > 0]
+        # if len(columns) <= 2:
+        # raise Exception(
+        #     f"Table column count must > 0, but found {len(columns) - 2} at line {i+1}: {line}"
+        # )
+        # continue
 
         if state == 0:
             column_names.clear()
@@ -477,12 +454,14 @@ def process_mapping_index(index_path, item_processer, context={}):
             #         f"Table content not match at line {i+1}: {line}"
             #     )
             try:
+                context["columns"] = columns
                 if not item_processer(line, i, state, output, context):
                     break
                 context["table_row_idx"] += 1
             except Exception as e:
                 print(e)
                 print(f"Error at line {i+1}: {line}")
+                traceback.print_exc()
                 ret_code = 1
 
             # state = 6
@@ -509,58 +488,112 @@ def process_mapping_index(index_path, item_processer, context={}):
     return 0
 
 
-PACONVERT_REPO_URL = "https://github.com/PaddlePaddle/PaConvert.git"
+_TABLE_PREFIXES = sorted(
+    [
+        "torch.nn.",
+        "torch.nn.functional.",
+        "torch.Tensor.",
+        "torch.nn.init.",
+        "torch.nn.utils.",
+        "torch.nn.Module.",
+        "torch.autograd.",
+        "torch.cuda.",
+        "torch.distributed.",
+        "torch.distributions.",
+        "torch.fft.",
+        "torch.hub.",
+        "torch.linalg.",
+        "torch.onnx.",
+        "torch.optim.",
+        "torch.profiler.",
+        "torch.sparse.",
+        # others
+    ],
+    key=lambda x: -len(x),
+)
 
 
-def download_file_by_git(
-    source, destination=None, repo_url=PACONVERT_REPO_URL, overwrite=False
-):
-    if destination is None:
-        destination = os.path.basename(source)
+def get_api_type_from_torch_api(torch_api: str) -> str:
+    for prefix in _TABLE_PREFIXES:
+        if torch_api.startswith(prefix):
+            return prefix + "XX"
+    else:
+        if len(torch_api.split(".")) > 2:
+            return "others"
+        else:
+            return "torch.XX"
+    return "untyped"
 
-    dest_path = os.path.join(CFP_BASEDIR, destination)
 
-    if os.path.exists(dest_path) and not overwrite:
-        print(f"File {dest_path} already exists, skip fetching.")
-        return
+def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
+    target = {k + "XX": {} for k in _TABLE_PREFIXES}
+    target["torch.XX"] = {}
+    target["others"] = {}
 
-    try:
-        # create temp dir
-        temp_dir = tempfile.mkdtemp()
-        # clone repo to temp dir
-        subprocess.run(
-            [
-                "git",
-                "clone",
-                "--depth=1",
-                "--single-branch",
-                repo_url,
-                temp_dir,
-            ],
-            check=True,
+    for torch_api, column in INDEX_ALL_APIS.items():
+        api_type = get_api_type_from_torch_api(torch_api)
+        target[api_type][torch_api] = column
+
+    filled_count = 0
+
+    for torch_api, meta in meta_dict.items():
+        api_type = get_api_type_from_torch_api(torch_api)
+
+        relpath = os.path.relpath(meta["source_file"], basedir).replace(
+            "\\", "/"
         )
-        print(f"Succeeded to clone repo '{repo_url}'.")
+        diffurl = urllib.parse.urljoin(PADDLE_DOCS_BASE_URL, relpath)
 
-        # copy file from repo to dest
-        src_file = os.path.join(temp_dir, source)
-        shutil.copy(src_file, dest_path)
-        print(f"Succeeded to copy file {source} from repo to {dest_path}.")
-    except subprocess.CalledProcessError as e:
-        print(f"Failed to fetch file by git: {e}")
-        sys.exit(-1)
-    finally:
-        shutil.rmtree(temp_dir)
+        column = f"REFERENCE-MAPPING-ITEM(`{torch_api}`, {diffurl})"
+        if torch_api in target[api_type]:
+            # if conflict,
+            # pass means replace, continue means skip
+            if target[api_type][torch_api] != column:
+                # if before is NOT-IMPLEMENTED-ITEM, replace
+                if target[api_type][torch_api].startswith(
+                    "NOT-IMPLEMENTED-ITEM"
+                ):
+                    pass
+                # if before is X2Paddle, skip
+                elif (
+                    "https://github.com/PaddlePaddle/X2Paddle"
+                    in target[api_type][torch_api]
+                ):
+                    continue
+                else:
+                    print(f"Conflict: {torch_api} in {api_type}")
+                    print(f"  {target[api_type][torch_api]}")
+                    print(f"  {column}")
+                    continue
+            else:
+                continue
 
-    return dest_path
+        filled_count += 1
+        target[api_type][torch_api] = column
+
+    if filled_count > 0:
+        print(f"filled {filled_count} torch apis for ./api_difference")
+
+        with open("pytorch_api_mapping_cn.tmp.md", "w", encoding="utf-8") as f:
+            for prefix, apis in target.items():
+                f.write(f"## {prefix}\n\n")
+                od_apis = collections.OrderedDict(sorted(apis.items()))
+                for api, ref in od_apis.items():
+                    if ref.startswith("REFERENCE-MAPPING-ITEM"):
+                        f.write(f"| {ref} |\n")
+                for api, ref in od_apis.items():
+                    if ref.startswith("NOT-IMPLEMENTED-ITEM"):
+                        f.write(f"| {ref} |\n")
+                f.write("\n")
+
+        print("pytorch_api_mapping_cn.tmp.md generated.")
 
 
 if __name__ == "__main__":
-    api_alias_source = "paconvert/api_alias_mapping.json"
-    # api_alias_mapping.json
-    api_alias_file = download_file_by_git(api_alias_source)
-
+    # convert from pytorch basedir
+    cfp_basedir = os.path.dirname(__file__)
     # pytorch_api_mapping_cn
-    mapping_index_file = os.path.join(CFP_BASEDIR, "pytorch_api_mapping_cn.md")
+    mapping_index_file = os.path.join(cfp_basedir, "pytorch_api_mapping_cn.md")
 
     if not os.path.exists(mapping_index_file):
         raise Exception(f"Cannot find mapping index file: {mapping_index_file}")
@@ -574,7 +607,7 @@ if __name__ == "__main__":
     )
     # index_data_dict = {i['torch_api'].replace('\_', '_'): i for i in index_data}
 
-    api_difference_basedir = os.path.join(CFP_BASEDIR, "api_difference")
+    api_difference_basedir = os.path.join(cfp_basedir, "api_difference")
 
     mapping_file_pattern = re.compile(r"^torch\.(?P<api_name>.+)\.md$")
     # get all diff files (torch.*.md)
@@ -604,7 +637,9 @@ if __name__ == "__main__":
     meta_dict = {m["torch_api"].replace(r"\_", "_"): m for m in metas}
 
     # 该文件用于 PaConvert 的文档对齐工作
-    api_diff_output_path = os.path.join(CFP_BASEDIR, "docs_mappings.json")
+    api_diff_output_path = os.path.join(cfp_basedir, "docs_mappings.json")
 
     with open(api_diff_output_path, "w", encoding="utf-8") as f:
         json.dump(metas, f, ensure_ascii=False, indent=4)
+
+    auto_fill_index_from_api_diff(cfp_basedir, meta_dict)

@@ -654,6 +654,11 @@ bincount(weights=None, minlength=0)
 
 请参考 :ref:`cn_api_paddle_bincount`
 
+bernoulli_(p=0.5, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_bernoulli` API，对输入 `x` 采用 Inplace 策略。
+
 bitwise_and(y, out=None, name=None)
 :::::::::
 
@@ -1491,6 +1496,33 @@ isnan(name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_isnan`
+
+isposinf(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_isposinf`
+
+isneginf(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_isneginf`
+
+isreal(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_isreal`
 
 kthvalue(k, axis=None, keepdim=False, name=None)
 :::::::::
@@ -3217,3 +3249,15 @@ block_diag(inputs, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_block_diag`
+
+ormqr(x, tau, other, left=True, transpose=False)
+:::::::::
+
+计算维度为(m, n)的矩阵 C（由 :attr:`other` 给出）和一个矩阵 Q 的乘积，
+其中 Q 由 Householder 反射系数 (:attr:`x`, :attr:`tau`) 表示。
+
+返回：乘积 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_linalg_ormqr`

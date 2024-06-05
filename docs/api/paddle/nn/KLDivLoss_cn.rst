@@ -3,15 +3,21 @@
 KLDivLoss
 -------------------------------
 
-.. py:class:: paddle.nn.KLDivLoss(reduction='mean')
+.. py:class:: paddle.nn.KLDivLoss(reduction='mean', log_target=False)
 
 创建一个 `KLDivLoss` 类的可调用对象，以计算输入(Input)和输入(Label)之间的 Kullback-Leibler 散度损失。注意其中输入(Input)应为对数概率值，输入(Label)应为概率值。
 
-kL 发散损失计算如下：
+若 ``log_target`` 为 ``False``:
 
 ..  math::
 
     l(input, label) = label * (log(label) - input)
+
+若 ``log_target`` 为 ``True``:
+
+..  math::
+
+    l(input, label) = exp(label) * (label - input)
 
 
 当 ``reduction``  为 ``none`` 时，输出损失与输入（input）形状相同，各点的损失单独计算，不会对结果做 reduction 。
@@ -26,6 +32,7 @@ kL 发散损失计算如下：
 ::::::::::::
 
     - **reduction** (str，可选) - 要应用于输出的 reduction 类型，可用类型为‘none’ | ‘batchmean’ | ‘mean’ | ‘sum’，‘none’表示无 reduction，‘batchmean’ 表示输出的总和除以批大小，‘mean’ 表示所有输出的平均值，‘sum’表示输出的总和。
+    - **log_target** (bool，可选) - 表示输入的 ``label`` 变量是否属于 log 空间。默认值为 False，表示不属于。
 
 形状
 ::::::::::::
