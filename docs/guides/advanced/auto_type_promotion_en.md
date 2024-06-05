@@ -242,7 +242,7 @@ There are two specail rules in this table above:
 
  ```
 
--  Logical Rule: For logical API, since complex types cannot be directly used for logical operations, calculations involving complex types are not within the scope of type promotion support. Within the supported scope, all results return bool type.
+-  Logic Rule: For logical API, since complex types cannot be directly used for logical operations, calculations involving complex types are not within the scope of type promotion support. Within the supported scope, all results return bool type.
 
  ```python
 
