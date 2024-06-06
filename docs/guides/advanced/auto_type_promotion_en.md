@@ -90,7 +90,7 @@ Sample Code:
 
 2. Type Promotion Rulse in Tensor-to-Scalar
 
--  Type promotion in Tensor-to-Scalar supports all types. The principle is to promote towards the Tensor's type when the Scalar's broad type (both integer, both floating-point, etc.) matches. Otherwise, the result follows the Tensor-to-Tensor rules.
+-  Type promotion between Tensor and Scalar supports all types. The principle is to promote towards the Tensor's type when the Scalar's broad type (both are integers or both are floating-point, etc.) matches. Otherwise, the result follows the Tensor-to-Tensor rules.
 
 -  The scalar operand has default dtype: int -> int64，float -> float32, bool -> bool, complex -> complex64. More Details show in this table:
 
