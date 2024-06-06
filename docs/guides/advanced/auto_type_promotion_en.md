@@ -37,7 +37,7 @@ The scope and rules of type promotion differ between Tensor-to-Tensor and Tensor
 
 1. Type Promotion Rules in Tensor-to-Tensor
 
--  In model training, computations between different data types are usually limited to floating-point types. To help users quickly troubleshoot type-related issues, automatic type promotion between Tensors only supports floating-point types and calculations between complex and real numbers. The result type is the larger of the two input types. More Details show in this table:
+-  In model training, computations between different data types are usually limited to floating-point types. To help users quickly troubleshoot type-related issues, automatic type promotion between Tensors will only support calculations between floating-point types, as well as between complex and real numbers. The principle is to return the larger data type of the two Tensors. More details are shown in the table below:
 
 +/-/* | bf16 | f16 | f32 | f64 | bool | u8 | i8 | i16 | i32 | i64 | c64 | c128 |
 :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
