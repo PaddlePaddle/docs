@@ -35,7 +35,7 @@ The scope and rules of type promotion differ between Tensor-to-Tensor and Tensor
 
  ```
 
-1. Type Promotion Rulse in Tensor-to-Tensor
+1. Type Promotion Rules in Tensor-to-Tensor
 
 -  In model training, computations between different data types are usually limited to floating-point types. To help users quickly troubleshoot type-related issues, automatic type promotion between Tensors only supports floating-point types and calculations between complex and real numbers. The result type is the larger of the two input types. More Details show in this table:
 
