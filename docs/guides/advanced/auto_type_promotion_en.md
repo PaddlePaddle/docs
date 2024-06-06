@@ -55,7 +55,7 @@ c64 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c128 | c64 | c128 |
 c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 |
 
 
--  Taking Paddle add (a, b) as an example, in the table above, line represent a and column represent b.
+-  Taking Paddle add (a, b) as an example, in the table above, the row represents 'a' and the column represents 'b'.
 
 Sample Code:
 
