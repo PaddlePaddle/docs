@@ -88,7 +88,7 @@ Sample Code:
 
  ```
 
-2. Type Promotion Rulse in Tensor-to-Scalar
+2. Type Promotion Rules in Tensor-to-Scalar
 
 -  Type promotion between Tensor and Scalar supports all types. The principle is to promote towards the Tensor's type when the Scalar's broad type (both are integers or both are floating-point, etc.) matches. Otherwise, the result follows the Tensor-to-Tensor rules.
 
