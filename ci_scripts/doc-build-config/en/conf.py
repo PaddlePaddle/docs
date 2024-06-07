@@ -104,6 +104,10 @@ language = "en"
 version = ""
 templates_path = ["/templates"]
 
+# Show type hints in the description
+autodoc_typehints = "description"
+autodoc_typehints_description_target = "documented"
+
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
 # today = ''
