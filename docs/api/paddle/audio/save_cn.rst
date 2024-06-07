@@ -3,7 +3,7 @@
 save
 -------------------------------
 
-.. py:function:: paddle.audio.save(filepath: str, src: paddle.Tensor, sample_rate: int, channels_first: bool = True, encoding: Optional[str] = None, bits_per_sample: Optional[int] = 16)
+.. py:function:: paddle.audio.save(filepath, src, sample_rate, channels_first=True, encoding=None, bits_per_sample=16)
 
 保存音频数据。
 
