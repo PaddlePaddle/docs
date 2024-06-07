@@ -133,6 +133,7 @@ tensor 数学操作
     " :ref:`paddle.signbit <cn_api_paddle_signbit>` ", "对输入 x 的每个元素符号位进行判断"
     " :ref:`paddle.sgn <cn_api_paddle_sgn>` ", "对输入 x 中每个元素进行正负判断，对于复数则输出单位向量"
     " :ref:`paddle.sin <cn_api_paddle_sin>` ", "计算输入的正弦值"
+    " :ref:`paddle.sinc <cn_api_paddle_sinc>` ", "计算输入的归一化 sinc 值"
     " :ref:`paddle.sinh <cn_api_paddle_sinh>` ", "双曲正弦函数"
     " :ref:`paddle.sqrt <cn_api_paddle_sqrt>` ", "计算输入的算数平方根"
     " :ref:`paddle.square <cn_api_paddle_square>` ", "逐元素取平方运算"
@@ -185,6 +186,7 @@ tensor 数学操作原位（inplace）版本
 
     " :ref:`paddle.remainder_ <cn_api_paddle_remainder_>` ", "Inplace 版本的 remainder API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.abs_ <cn_api_paddle_abs_>` ", "Inplace 版本的 abs API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.bernoulli_ <cn_api_paddle_bernoulli_>` ", "Inplace 版本的 bernoulli API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.tanh_ <cn_api_paddle_tanh_>` ", "Inplace 版本的 tanh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.erf_ <cn_api_paddle_erf_>` ", "Inplace 版本的 erf API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.erfinv_ <cn_api_paddle_erfinv_>` ", "Inplace 版本的 erfinv API，对输入 x 采用 Inplace 策略"
@@ -207,6 +209,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.sqrt_ <cn_api_paddle_sqrt_>` ", "Inplace 版本的 sqrt API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.square_ <cn_api_paddle_square_>` ", "Inplace 版本的 square API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.sin_ <cn_api_paddle_sin_>` ", "Inplace 版本的 sin API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.sinc_ <cn_api_paddle_sinc_>` ", "Inplace 版本的 sinc API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.sinh_ <cn_api_paddle_sinh_>` ", "Inplace 版本的 sinh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.subtract_ <cn_api_paddle_subtract_>` ", "Inplace 版本的 subtract API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.tan_ <cn_api_paddle_tan_>` ", "Inplace 版本的 tan API，对输入 x 采用 Inplace 策略"
@@ -238,6 +241,9 @@ tensor 逻辑操作
     " :ref:`paddle.isfinite <cn_api_paddle_isfinite>` ", "返回输入 tensor 的每一个值是否为 Finite（既非 +/-INF 也非 +/-NaN ）"
     " :ref:`paddle.isinf <cn_api_paddle_isinf>` ", "返回输入 tensor 的每一个值是否为 +/-INF"
     " :ref:`paddle.isnan <cn_api_paddle_isnan>` ", "返回输入 tensor 的每一个值是否为 +/-NaN"
+    " :ref:`paddle.isposinf <cn_api_paddle_isposinf>` ", "返回输入 tensor 的每一个值是否为 +INF"
+    " :ref:`paddle.isneginf <cn_api_paddle_isneginf>` ", "返回输入 tensor 的每一个值是否为 -INF"
+    " :ref:`paddle.isreal <cn_api_paddle_isreal>` ", "返回输入 tensor 的每一个值是否为实数类型"
 
 .. _tensor_attribute:
 
@@ -376,6 +382,8 @@ tensor 线性代数相关
     " :ref:`paddle.triu_indices <cn_api_paddle_triu_indices>` ", "返回输入矩阵在给定对角线右上三角部分元素坐标"
     " :ref:`paddle.cdist <cn_api_paddle_cdist>` ", "计算两组输入集合 x, y 中每对之间的 p 范数"
     " :ref:`paddle.pdist <cn_api_paddle_pdist>` ", "计算输入形状为 N x M 的 Tensor 中 N 个向量两两组合(pairwise)的 p 范数"
+    " :ref:`paddle.renorm <cn_api_paddle_renorm>` ", "计算沿轴的 p 范数"
+
 
 .. _tensor_manipulation:
 

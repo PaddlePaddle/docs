@@ -79,6 +79,7 @@ Methods
     astype
     atan
     backward
+    bernoulli_
     bitwise_and
     bitwise_not
     bitwise_or
@@ -154,6 +155,9 @@ Methods
     isfinite
     isinf
     isnan
+    isneginf
+    isposinf
+    isreal
     item
     kron
     less_equal
@@ -229,6 +233,8 @@ Methods
     sign
     sgn
     sin
+    sinc
+    sinc_
     sinh
     slice
     solve

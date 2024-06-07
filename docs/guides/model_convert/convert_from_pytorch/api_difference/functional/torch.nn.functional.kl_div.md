@@ -22,6 +22,8 @@ paddle.nn.functional.kl_div(input,
 
 其中 PyTorch 相比 Paddle 支持更多的参数，具体如下：
 
+### 参数映射
+
 | PyTorch      | PaddlePaddle | 备注                                                   |
 | ------------ | ------------ | ------------------------------------------------------ |
 | size_average | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。           |

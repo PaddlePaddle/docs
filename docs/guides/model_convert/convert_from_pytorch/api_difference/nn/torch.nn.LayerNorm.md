@@ -20,7 +20,7 @@ paddle.nn.LayerNorm(normalized_shape,
 ```
 
 两者功能一致但参数不一致，torch 参数更多，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | elementwise_affine        | -            | 是否进行仿射变换，Paddle 无此参数，需要转写。         |

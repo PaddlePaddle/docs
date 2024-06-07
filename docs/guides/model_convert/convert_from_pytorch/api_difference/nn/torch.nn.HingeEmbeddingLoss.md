@@ -21,12 +21,12 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
-| PyTorch      | Paddle    | 备注                                                         |
-| ------------ | --------- | ------------------------------------------------------------ |
-| margin       | margin    | 当 label 为-1 时，该值决定了小于 margin 的 input 才需要纳入 hinge embedding loss 的计算。 |
-| size_average | -         | PyTorch 已弃用， Paddle 无此参数，需要转写。                 |
-| reduce       | -         | PyTorch 已弃用， Paddle 无此参数，需要转写。                 |
-| reduction    | reduction | 表示应用于输出结果的计算方式。                               |
+| PyTorch      | PaddlePaddle | 备注                                                         |
+| ------------ | ------------ | ------------------------------------------------------------ |
+| margin       | margin       | 当 label 为-1 时，该值决定了小于 margin 的 input 才需要纳入 hinge embedding loss 的计算。 |
+| size_average | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。                 |
+| reduce       | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。                 |
+| reduction    | reduction    | 表示应用于输出结果的计算方式。                               |
 
 ### 转写示例
 

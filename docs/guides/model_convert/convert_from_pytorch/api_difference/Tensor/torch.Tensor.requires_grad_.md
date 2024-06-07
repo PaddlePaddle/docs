@@ -13,7 +13,7 @@ paddle.Tensor.stop_gradient = False
 ```
 
 两者功能一致，torch 为 funtion 调用方式，paddle 为 attribution 赋值方式，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | requires_grad        | -            | 是否计算梯度，Paddle 无此参数，需要转写。                                      |
