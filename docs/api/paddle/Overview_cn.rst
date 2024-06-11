@@ -239,6 +239,7 @@ tensor 逻辑操作
     " :ref:`paddle.is_empty <cn_api_paddle_is_empty>` ", "测试变量是否为空"
     " :ref:`paddle.is_tensor <cn_api_paddle_is_tensor>` ", "用来测试输入对象是否是 paddle.Tensor"
     " :ref:`paddle.isfinite <cn_api_paddle_isfinite>` ", "返回输入 tensor 的每一个值是否为 Finite（既非 +/-INF 也非 +/-NaN ）"
+    " :ref:`paddle.isin <cn_api_paddle_isin>` ", "测试输入 x 的每一个值是否在 test_x 中"
     " :ref:`paddle.isinf <cn_api_paddle_isinf>` ", "返回输入 tensor 的每一个值是否为 +/-INF"
     " :ref:`paddle.isnan <cn_api_paddle_isnan>` ", "返回输入 tensor 的每一个值是否为 +/-NaN"
     " :ref:`paddle.isposinf <cn_api_paddle_isposinf>` ", "返回输入 tensor 的每一个值是否为 +INF"
