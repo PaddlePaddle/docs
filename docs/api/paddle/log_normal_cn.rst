@@ -6,7 +6,16 @@ log\_normal
 .. py:function:: paddle.log_normal(mean=1.0, std=2.0, shape=None, name=None)
 
 
-返回符合对数正态分布（对应正态分布的均值为 ``mean``，标准差为 ``std``）的随机 Tensor。
+返回符合对数正态分布（对应正态分布的均值为 ``mean``，标准差为 ``std``）的随机 Tensor，对数正态分布的分布函数如下
+
+.. math::
+
+    f(x) = \frac{1}{x\sigma\sqrt{2\pi}}e^{-\frac{(\ln{x}-\mu)^2}{2\sigma^2}}
+
+其中：
+
+- :math:`mu` 表示对应正态分布的平均值。
+- :math:`sigma` 表示对应正态分布的标准差。
 
 如果 ``mean`` 是 Tensor，则输出 Tensor 和 ``mean`` 具有相同的形状和数据类型。
 如果 ``mean`` 不是 Tensor，且 ``std`` 是 Tensor，则输出 Tensor 和 ``std`` 具有相同的形状和数据类型。
