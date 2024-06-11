@@ -1,4 +1,4 @@
-## [参数不一致]torch.nn.Module.zero_grad
+## [ 输入参数用法不一致 ]torch.nn.Module.zero_grad
 
 ### [torch.nn.Module.zero_grad](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.zero_grad)
 

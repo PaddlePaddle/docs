@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.ConvTranspose2d
+## [ 输入参数用法不一致 ]torch.nn.ConvTranspose2d
 ### [torch.nn.ConvTranspose2d](https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose2d.html?highlight=convtranspose2d#torch.nn.ConvTranspose2d)
 ```python
 torch.nn.ConvTranspose2d(in_channels,

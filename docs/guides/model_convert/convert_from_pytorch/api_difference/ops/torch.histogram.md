@@ -1,4 +1,4 @@
-## [参数不一致]torch.histogram
+## [ 返回参数类型不一致]torch.histogram
 
 ### [torch.histogram](https://pytorch.org/docs/stable/generated/torch.histogram.html#torch.histogram)
 

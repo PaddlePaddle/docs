@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.ones
+## [ 输入参数用法不一致 ]torch.ones
 ### [torch.ones](https://pytorch.org/docs/stable/generated/torch.ones.html?highlight=ones#torch.ones)
 
 ```python
@@ -12,7 +12,6 @@ torch.ones(*size,
 ```
 
 ### [paddle.ones](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/ones_cn.html#ones)
-
 ```python
 paddle.ones(shape,
             dtype=None,

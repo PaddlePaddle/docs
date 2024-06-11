@@ -1,4 +1,5 @@
-## [ 参数不一致 ]torch.nn.GRUCell
+## [ 输入参数用法不一致 ]torch.nn.GRUCell
+
 ### [torch.nn.GRUCell](https://pytorch.org/docs/stable/generated/torch.nn.GRUCell.html#torch.nn.GRUCell)
 ```python
 torch.nn.GRUCell(input_size, hidden_size, bias=True, device=None, dtype=None)

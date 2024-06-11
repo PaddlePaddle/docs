@@ -1,4 +1,4 @@
-## [参数不一致]torch.cuda.set_rng_state_all
+## [ 输入参数类型不一致 ]torch.cuda.set_rng_state_all
 
 ### [torch.cuda.set_rng_state_all](https://pytorch.org/docs/stable/generated/torch.cuda.set_rng_state_all.html#torch.cuda.set_rng_state_all)
 

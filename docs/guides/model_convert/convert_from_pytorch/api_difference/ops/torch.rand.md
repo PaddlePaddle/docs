@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.rand
+## [ 输入参数用法不一致 ]torch.rand
 
 ### [torch.rand](https://pytorch.org/docs/stable/generated/torch.rand.html?highlight=rand#torch.rand)
 

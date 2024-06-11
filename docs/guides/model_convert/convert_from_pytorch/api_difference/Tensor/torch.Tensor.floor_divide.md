@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.floor_divide
+## [ 输入参数类型不一致 ]torch.Tensor.floor_divide
 
 ### [torch.Tensor.floor_divide](https://pytorch.org/docs/stable/generated/torch.Tensor.floor_divide.html?highlight=floor_divide#torch.Tensor.floor_divide)
 

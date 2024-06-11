@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.RNNCell
+## [ 输入参数用法不一致 ]torch.nn.RNNCell
 ### [torch.nn.RNNCell](https://pytorch.org/docs/stable/generated/torch.nn.RNNCell.html#torch.nn.RNNCell)
 ```python
 torch.nn.RNNCell(input_size, hidden_size, bias=True, nonlinearity='tanh', device=None, dtype=None)

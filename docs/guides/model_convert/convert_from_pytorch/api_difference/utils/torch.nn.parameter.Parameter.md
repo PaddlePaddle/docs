@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.parameter.Parameter
+## [ torch 参数更多 ]torch.nn.parameter.Parameter
 ### [torch.nn.parameter.Parameter](https://pytorch.org/docs/stable/generated/torch.nn.parameter.Parameter.html?highlight=torch%20nn%20parameter#torch.nn.parameter.Parameter)
 
 ```python

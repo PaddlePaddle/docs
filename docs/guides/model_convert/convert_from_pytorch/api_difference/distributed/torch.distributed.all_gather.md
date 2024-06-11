@@ -1,4 +1,4 @@
-## [参数不一致]torch.distributed.all_gather
+## [ 输入参数用法不一致 ]torch.distributed.all_gather
 
 ### [torch.distributed.all_gather](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_gather)
 

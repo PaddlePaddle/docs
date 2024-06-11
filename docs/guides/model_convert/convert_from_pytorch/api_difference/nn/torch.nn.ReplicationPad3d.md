@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.ReplicationPad3d
+## [ 输入参数类型不一致 ]torch.nn.ReplicationPad3d
 ### [torch.nn.ReplicationPad3d](https://pytorch.org/docs/stable/generated/torch.nn.ReplicationPad3d.html?highlight=pad#torch.nn.ReplicationPad3d)
 
 ```python

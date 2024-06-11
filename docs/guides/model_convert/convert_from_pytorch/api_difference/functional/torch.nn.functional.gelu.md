@@ -1,4 +1,4 @@
-## [参数不一致]torch.nn.functional.gelu
+## [ 输入参数用法不一致]torch.nn.functional.gelu
 
 ### [torch.nn.functional.gelu](https://pytorch.org/docs/stable/generated/torch.nn.functional.gelu.html#torch.nn.functional.gelu)
 

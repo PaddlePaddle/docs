@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.linalg.slogdet
+## [ 返回参数类型不一致 ]torch.linalg.slogdet
 ### [torch.linalg.slogdet](https://pytorch.org/docs/stable/generated/torch.linalg.slogdet.html#torch.linalg.slogdet)
 
 ```python

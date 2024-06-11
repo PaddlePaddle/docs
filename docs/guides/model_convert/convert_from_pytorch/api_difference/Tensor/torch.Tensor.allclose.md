@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.allclose
+## [ 返回参数类型不一致 ]torch.Tensor.allclose
 
 ### [torch.Tensor.allclose](https://pytorch.org/docs/stable/generated/torch.Tensor.allclose.html)
 

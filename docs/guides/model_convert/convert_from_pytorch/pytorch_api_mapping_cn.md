@@ -1,6 +1,6 @@
 # PyTorch 最新 release 与 Paddle develop API 映射表
 
-本文梳理了 PyTorch 最新发行版（当前 v2.1.0） API 与 PaddlePaddle develop 版本 API 对应关系与差异分析。通过本文档，帮助开发者快速迁移 PyTorch 使用经验，完成模型的开发与调优。
+本文梳理了 PyTorch 最新发行版（当前 v2.3.0） API 与 PaddlePaddle develop 版本 API 对应关系与差异分析。通过本文档，帮助开发者快速迁移 PyTorch 使用经验，完成模型的开发与调优。
 
 ## 贡献代码
 
