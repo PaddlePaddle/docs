@@ -17,14 +17,14 @@ LKJ 分布通常定义为对相关矩阵 :math:`\Omega` 的分布，其密度函
 其中，:math:`\Omega` 是一个 :math:`n \times n` 的相关矩阵，:math:`\eta` 是分布的形状参数，:math:`|\Omega|` 是矩阵的行列式。参数 :math:`\eta` 调节矩阵元素的分布集中度。
 
 
-相关矩阵的下三角 Choleskey 因子的 LJK 分布支持两种sample方法:`onion` 和 `cvine`
+相关矩阵的下三角 Choleskey 因子的 LJK 分布支持两种 sample 方法:`onion` 和 `cvine`
 
 参数
 ::::::::::::
 
     - **dim** (int) - : 目标相关矩阵的维度。
-    - **concentration** (float|Tensor) - : 集中参数，这个参数控制了生成的相关矩阵的分布，值必须大于0。concentration 越大，生成的矩阵越接近单位矩阵。
-    - **sample_method** (str) - : 不同采样策略，可选项有：`onion` 和 `cvine`. 这两种sample方法都在 [1]_ 中提出，并且在相关矩阵上提供相同的分布。但是它们在如何生成样本方面是不同的。默认为“onion”。
+    - **concentration** (float|Tensor) - : 集中参数，这个参数控制了生成的相关矩阵的分布，值必须大于 0。concentration 越大，生成的矩阵越接近单位矩阵。
+    - **sample_method** (str) - : 不同采样策略，可选项有：`onion` 和 `cvine`. 这两种 sample 方法都在 [1]_ 中提出，并且在相关矩阵上提供相同的分布。但是它们在如何生成样本方面是不同的。默认为“onion”。
 代码示例
 ::::::::::::
 
