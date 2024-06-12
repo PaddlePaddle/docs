@@ -1066,6 +1066,7 @@
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.softmax`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.softmax.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.sort`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.sort.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.split`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.split.md) |
+| REFERENCE-MAPPING-ITEM(`torch.Tensor.sparse_mask`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.sparse_mask.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.sqrt`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.sqrt.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.sqrt_`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.sqrt_.md) |
 | REFERENCE-MAPPING-ITEM(`torch.Tensor.square`, https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.square.md) |
