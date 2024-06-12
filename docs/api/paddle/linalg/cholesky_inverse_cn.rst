@@ -23,7 +23,7 @@ cholesky_inverse
 ::::::::::::
 
     - **x** （Tensor）- 输入变量是形状为 `[N, N]` 的对称正定矩阵的下三角或上三角 Cholesky 分解张量。支持数据类型为 float32、float64。
-    - **upper** （bool）- 如果 `upper` 是 `False`，则输入为下三角矩阵，否则为上三角矩阵。默认值为 False。
+    - **upper** （bool，可选）- 如果 `upper` 是 `False`，则输入为下三角矩阵，否则为上三角矩阵。默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
