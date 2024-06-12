@@ -58,20 +58,22 @@
 | FPGA |  | 百度 | 百度 Edgeboard 开发板 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html#id4) |  | [支持模型](https://ai.baidu.com/ai-doc/HWCE/Qkda68drw) |
 
 ## Paddle2ONNX
-|  分类  | 架构 | 公司 | 型号 | 支持部分模型 | 模型库链接 |
-|  ----  | ----  | ---- | ---- | ---- | ---- |
-|  AI 加速芯片 |   | 登临 | Goldwasser 系列加速卡 | ✔️  | [模型库](https://github.com/denglin-github/DLPaddleModelZoo) |
-|  AI 加速芯片 |   | 墨芯 | Moffett S4 | ✔️  | [模型库](https://github.com/MoffettSystem/moffett-modelzoo-paddle) |
-|  AI 加速芯片 |   | 海飞科 | Compass C10 | ✔️  | [模型库](https://github.com/hexaflakeai/model_zoo) |
-|  AI 加速芯片 |   | 清微智能 | TX5368 | ✔️  | [模型库](https://github.com/tsingmicro-toolchain/ts.knight-modelzoo) |
-|  AI 加速芯片 |   | 爱芯元智 | AX620A | ✔️  | [模型库](https://github.com/AXERA-TECH/ax-samples/tree/main) |
-|  AI 加速芯片 |   | 沐曦 | N100 | ✔️  | [模型库](https://github.com/denglin-github/DLPaddleModelZoo) |
+
+|  分类  | 公司 | 型号 | 支持部分模型 | 模型库链接 |
+|  ----  | ---- | ---- | ---- | ---- |
+|  AI 加速芯片 | 登临 | Goldwasser 系列加速卡 | ✔️  | [模型库](https://github.com/denglin-github/DLPaddleModelZoo) |
+|  AI 加速芯片 | 墨芯 | Moffett S4 | ✔️  | [模型库](https://github.com/MoffettSystem/moffett-modelzoo-paddle) |
+|  AI 加速芯片 | 海飞科 | Compass C10 | ✔️  | [模型库](https://github.com/hexaflakeai/model_zoo) |
+|  AI 加速芯片 | 清微智能 | TX5368 | ✔️  | [模型库](https://github.com/tsingmicro-toolchain/ts.knight-modelzoo) |
+|  AI 加速芯片 | 爱芯元智 | AX620A | ✔️  | [模型库](https://github.com/AXERA-TECH/ax-samples/tree/main) |
+|  AI 加速芯片 | 沐曦 | N100 | ✔️  | [模型库](https://github.com/denglin-github/DLPaddleModelZoo) |
 
 ## TVM
-|  分类  | 架构 | 公司 | 型号 | 支持部分模型 | 模型库链接 |
-|  ----  | ----  | ---- | ---- | ---- | ---- |
-|  嵌入式芯片 |   | Arm | Cortex-M 系列 | ✔️  | [模型库](https://github.com/ArmDeveloperEcosystem/Paddle-examples-for-AVH) |
-|  AI 加速芯片 |   | 安谋科技 | 周易 NPU | ✔️  | [模型库](https://github.com/Arm-China/PaddlePaddle_example_for_Zhouyi_NPU) |
-|  AI 加速芯片 |   | Imagination  | PowerVR 2NX | ✔️  | [模型库](https://github.com/imaginationtech/PaddlePaddle_Model_zoo) |
+
+|  分类  | 公司 | 型号 | 支持部分模型 | 模型库链接 |
+|  ----  | ---- | ---- | ---- | ---- |
+|  嵌入式芯片 | Arm | Cortex-M 系列 | ✔️  | [模型库](https://github.com/ArmDeveloperEcosystem/Paddle-examples-for-AVH) |
+|  AI 加速芯片 | 安谋科技 | 周易 NPU | ✔️  | [模型库](https://github.com/Arm-China/PaddlePaddle_example_for_Zhouyi_NPU) |
+|  AI 加速芯片 | Imagination  | PowerVR 2NX | ✔️  | [模型库](https://github.com/imaginationtech/PaddlePaddle_Model_zoo) |
 
 **注意:** 如果你想了解更多芯片支持的信息，请联系我们，邮箱为 Paddle-better@baidu.com。

@@ -20,5 +20,5 @@ paddle.io.RandomSampler(data_source, replacement=False, num_samples=None, genera
 | ----------- | ------------ | -------------------------------------------------------------------- |
 | data_source | data_source  | Dataset 或 IterableDataset 的一个子类实例或实现了 `__len__` 的 Python 对象。            |
 | replacement | replacement  | 如果为 False 则会采样整个数据集。    |
-| num_samples | num_samples  | 如果 replacement 设置为 True 则按此参数采集对应的样本数。    |
+| num_samples | num_samples  | 按此参数采集对应的样本数。    |
 | generator   | generator    | 指定采样 data_source 的采样器。 |

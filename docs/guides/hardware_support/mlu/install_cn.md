@@ -62,11 +62,10 @@ cnmon
 
 ```bash
 # 先安装飞桨 CPU 安装包
-pip install paddlepaddle==0.0.0 -f https://www.paddlepaddle.org.cn/whl/linux/cpu-mkl/develop.html
+pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
 
 # 再安装飞桨 MLU 插件包
-wget https://paddle-device.bj.bcebos.com/0.0.0/mlu/paddle_custom_mlu-0.0.0-cp310-cp310-linux_x86_64.whl
-pip install -U paddle_custom_mlu-0.0.0-cp310-cp310-linux_x86_64.whl
+pip install paddle-custom-mlu -i https://www.paddlepaddle.org.cn/packages/nightly/mlu
 ```
 
 ### 安装方式二：源代码编译安装
@@ -81,13 +80,13 @@ git clone https://github.com/PaddlePaddle/PaddleCustomDevice
 cd PaddleCustomDevice/backends/mlu
 
 # 先安装飞桨 CPU 安装包
-pip install paddlepaddle==0.0.0 -f https://www.paddlepaddle.org.cn/whl/linux/cpu-mkl/develop.html
+pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
 
 # 执行编译脚本 - submodule 在编译时会按需下载
 bash tools/compile.sh
 
 # 飞桨 MLU 插件包在 build/dist 路径下，使用 pip 安装即可
-pip install -U paddle_custom_mlu-0.0.0-cp310-cp310-linux_x86_64.whl
+pip install build/dist/paddle_custom_mlu*.whl
 ```
 
 ## 基础功能检查
@@ -99,9 +98,10 @@ pip install -U paddle_custom_mlu-0.0.0-cp310-cp310-linux_x86_64.whl
 python -c "import paddle_custom_device; paddle_custom_device.mlu.version()"
 # 预期得到如下输出结果
 version: 0.0.0
-commit: 9797ec4269d8d84812eb9c6d0eb67216506a5495
+commit: 147d506b2baa1971ab47b4550f0571e1f6b201fc
 cntoolkit: 3.8.2
 cnnl: 1.23.2
+cnnl_extra: 1.6.1
 cncl: 1.14.0
 mluops: 0.11.0
 
@@ -119,5 +119,5 @@ PaddlePaddle is installed successfully! Let's start deep learning with PaddlePad
 请使用以下命令卸载：
 
 ```bash
-pip uninstall paddlepaddle-mlu
+pip uninstall paddlepaddle paddle-custom-mlu
 ```
