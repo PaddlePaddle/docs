@@ -139,6 +139,10 @@ version = ""
 
 # html_permalinks_icon='P'
 
+# Show type hints in the description
+autodoc_typehints = "description"
+autodoc_typehints_description_target = "documented"
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 exclude_patterns = [
