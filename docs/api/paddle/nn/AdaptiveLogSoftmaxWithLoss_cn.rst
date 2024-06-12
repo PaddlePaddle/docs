@@ -23,8 +23,8 @@ AdaptiveLogSoftmaxWithLoss将标签按照频率划分为多个组，每个组包
     - **in_features** (int): 输入 Tensor 的特征数量。
     - **n_classes** (int): 数据集中类型的个数。
     - **cutoffs** (Sequence): 用于将 label 分配到不同存储组的截断值。
-    - **div_value** (float, 可选): 用于计算组大小的指数值. 默认值：4.0。
-    - **head_bias** (bool, 可选): 如果为 ``True``，AdaptiveLogSoftmaxWithLoss的 ``head`` 添加偏置项. 默认值： ``False``.
+    - **div_value** (float, 可选): 用于计算组大小的指数值。默认值：4.0。
+    - **head_bias** (bool, 可选): 如果为 ``True``，AdaptiveLogSoftmaxWithLoss的 ``head`` 添加偏置项。默认值： ``False``.
     - **name** (str, 可选): 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
