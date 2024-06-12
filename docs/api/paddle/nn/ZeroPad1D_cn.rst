@@ -13,7 +13,7 @@ ZeroPad1D
 
   - **padding** (Tensor | List[int] | int) - 如果输入数据类型为 int，则在所有待填充边界使用相同的填充，
     否则填充的格式为[pad_left, pad_right]。
-  - **data_format** (str)  - 指定输入的 format，可为 ``'NCL'`` 或者 ``'NLC'``，默认值为 ``'NCL'``。
+  - **data_format** (str)  - 指定输入的 format，可为 ``'NCL'`` 或者 ``'NLC'``，默认值为 ``'NCL'``，其中 `N` 是 batch size， `C` 是通道数， `L` 输入特征的长度。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
