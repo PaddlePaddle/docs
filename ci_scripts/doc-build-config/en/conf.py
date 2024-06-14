@@ -356,14 +356,20 @@ def handle_api_aliases():
             exec(f'{oname}.__name__ = "{tn}"')
 
 
-def remove_doctest_directives(app, what, name, obj, options, lines):
+def remove_directives(app, what, name, obj, options, lines):
     """
-    Remove `doctest` directives from docstring
+    Remove `doctest` and `mypy` `type: ignore: xxx` directives from docstring
     """
     # Modify the lines inplace
     # remove doctest directive
     pattern_doctest = re.compile(r"\s*>>>\s*#\s*x?doctest:\s*.*")
-    lines[:] = [line for line in lines if not pattern_doctest.match(line)]
+    # remove `# type: ignore ...`
+    pattern_typing_ignore = re.compile(r"# type:[^#]*")
+    lines[:] = [
+        pattern_typing_ignore.sub("", line)
+        for line in lines
+        if not pattern_doctest.match(line)
+    ]
 
     # remove blank ps(`>>>`)
     lines[:] = [line for line in lines if not line.strip() == ">>>"]
@@ -398,4 +404,4 @@ def setup(app):
     app.add_transform(AutoStructify)
 
     # remove doctest directives and blank ps
-    app.connect("autodoc-process-docstring", remove_doctest_directives)
+    app.connect("autodoc-process-docstring", remove_directives)
