@@ -287,7 +287,6 @@ Vision 层
 
 
     " :ref:`paddle.nn.ChannelShuffle <cn_api_paddle_nn_ChannelShuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的 Tensor 按通道分成 g 组，得到形为[N, g, C/g, H, W]或[N, H, W, g, C/g]的 Tensor，然后转置为[N, C/g, g, H, W]或[N, H, W, C/g, g]的形状，最后重新排列为原来的形状"
-    " :ref:`paddle.nn.functional.channel_shuffle <cn_api_paddle_nn_functional_channel_shuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的 Tensor 按通道分成 g 组，得到形为[N, g, C/g, H, W]或[N, H, W, g, C/g]的 Tensor，然后转置为[N, C/g, g, H, W]或[N, H, W, C/g, g]的形状，最后重新排列为原来的形状"
     " :ref:`paddle.nn.PixelShuffle <cn_api_paddle_nn_PixelShuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的 Tensor 重新排列成形为 [N, C/r**2, H*r, W*r]或 [N, H*r, W*r, C/r**2] 的 Tensor"
     " :ref:`paddle.nn.PixelUnshuffle <cn_api_paddle_nn_PixelUnshuffle>` ", "PixelShuffle 的逆操作，将一个形为[N, C, H, W]或是[N, H, W, C]的 Tensor 重新排列成形为 [N, C*r*r, H/r, W/r] 或 [N, H/r, W/r, C*r*r] 的 Tensor"
     " :ref:`paddle.nn.Upsample <cn_api_paddle_nn_Upsample>` ", "用于调整一个 batch 中图片的大小"
@@ -424,7 +423,6 @@ Padding 相关函数
     " :ref:`paddle.nn.functional.tanhshrink <cn_api_paddle_nn_functional_tanhshrink>` ", "tanhshrink 激活函数"
     " :ref:`paddle.nn.functional.thresholded_relu <cn_api_paddle_nn_functional_thresholded_relu>` ", "thresholded_relu 激活函数"
     " :ref:`paddle.nn.functional.thresholded_relu_ <cn_api_paddle_nn_functional_thresholded_relu_>` ", "Inplace 版本的 :ref:`cn_api_paddle_nn_functional_thresholded_relu` API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.nn.functional.tanh_ <cn_api_paddle_nn_functional_tanh_>` ", "Inplace 版本的 tanh API，对输入 x 采用 Inplace 策略"
 
 .. _normalization_functional:
 
@@ -545,6 +543,7 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.temporal_shift <cn_api_paddle_nn_functional_temporal_shift>` ", "用于对输入 X 做时序通道 T 上的位移操作，为 TSM 中使用的操作"
     " :ref:`paddle.nn.functional.upsample <cn_api_paddle_nn_functional_upsample>` ", "用于调整一个 batch 中图片的大小"
     " :ref:`paddle.nn.functional.class_center_sample <cn_api_paddle_nn_functional_class_center_sample>` ", "用于 PartialFC 类别中心采样"
+    " :ref:`paddle.nn.functional.channel_shuffle <cn_api_paddle_nn_functional_channel_shuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的 Tensor 按通道分成 g 组，得到形为[N, g, C/g, H, W]或[N, H, W, g, C/g]的 Tensor，然后转置为[N, C/g, g, H, W]或[N, H, W, C/g, g]的形状，最后重新排列为原来的形状"
 
 .. _about_initializer:
 
@@ -557,7 +556,6 @@ Embedding 相关函数
 
     " :ref:`paddle.nn.initializer.Assign <cn_api_paddle_nn_initializer_Assign>` ", "使用 Numpy 数组、Python 列表、Tensor 来初始化参数"
     " :ref:`paddle.nn.initializer.Bilinear <cn_api_paddle_nn_Bilinear>` ", "该接口为参数初始化函数，用于转置卷积函数中"
-    " :ref:`paddle.LazyGuard <cn_api_paddle_LazyGuard>` ", "使模型在实例化时，其内部的参数不会立即申请内存空间。"
     " :ref:`paddle.nn.initializer.Constant <cn_api_paddle_nn_initializer_Constant>` ", "用于权重初始化，通过输入的 value 值初始化输入变量"
     " :ref:`paddle.nn.initializer.KaimingNormal <cn_api_paddle_nn_initializer_KaimingNormal>` ", "实现 Kaiming 正态分布方式的权重初始化"
     " :ref:`paddle.nn.initializer.KaimingUniform <cn_api_paddle_nn_initializer_KaimingUniform>` ", "实现 Kaiming 均匀分布方式的权重初始化"
