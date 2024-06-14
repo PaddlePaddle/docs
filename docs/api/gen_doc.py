@@ -306,30 +306,30 @@ def parse_module_file(mod):
                             api_info_dict[obj_id]["src_file"] = src_file[
                                 src_file_start_ind:
                             ]
-                            api_info_dict[obj_id][
-                                "doc_filename"
-                            ] = obj_full_name.replace(".", "/")
+                            api_info_dict[obj_id]["doc_filename"] = (
+                                obj_full_name.replace(".", "/")
+                            )
                             api_info_dict[obj_id]["full_name"] = obj_full_name
                             api_info_dict[obj_id]["short_name"] = short_name
                             api_info_dict[obj_id]["module_name"] = mod_name
                             api_info_dict[obj_id]["lineno"] = node.lineno
                             if has_end_lineno:
-                                api_info_dict[obj_id][
-                                    "end_lineno"
-                                ] = node.end_lineno
+                                api_info_dict[obj_id]["end_lineno"] = (
+                                    node.end_lineno
+                                )
                             if isinstance(node, ast.FunctionDef):
-                                api_info_dict[obj_id][
-                                    "args"
-                                ] = gen_functions_args_str(node)
+                                api_info_dict[obj_id]["args"] = (
+                                    gen_functions_args_str(node)
+                                )
                             elif isinstance(node, ast.ClassDef):
                                 for n in node.body:
                                     if (
                                         hasattr(n, "name")
                                         and n.name == "__init__"
                                     ):
-                                        api_info_dict[obj_id][
-                                            "args"
-                                        ] = gen_functions_args_str(n)
+                                        api_info_dict[obj_id]["args"] = (
+                                            gen_functions_args_str(n)
+                                        )
                                         break
                         else:
                             logger.debug("%s omitted", obj_full_name)
@@ -354,9 +354,9 @@ def parse_module_file(mod):
                             api_info_dict[obj_id]["full_name"] = obj_full_name
                             api_info_dict[obj_id]["short_name"] = short_name
                             api_info_dict[obj_id]["module_name"] = mod_name
-                            api_info_dict[obj_id][
-                                "doc_filename"
-                            ] = obj_full_name.replace(".", "/")
+                            api_info_dict[obj_id]["doc_filename"] = (
+                                obj_full_name.replace(".", "/")
+                            )
                         else:
                             logger.debug("%s omitted", obj_full_name)
 

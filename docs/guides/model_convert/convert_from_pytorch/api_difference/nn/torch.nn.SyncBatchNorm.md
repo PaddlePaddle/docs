@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.SyncBatchNorm
+## [ 输入参数用法不一致 ]torch.nn.SyncBatchNorm
 ### [torch.nn.SyncBatchNorm](https://pytorch.org/docs/stable/generated/torch.nn.SyncBatchNorm.html#torch.nn.SyncBatchNorm)
 
 ```python
@@ -13,6 +13,7 @@ paddle.nn.SyncBatchNorm(num_features, epsilon=1e-5, momentum=0.9, weight_attr=No
 
 两者功能一致但参数不一致，部分参数名不同，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | num_features           | num_features      | 表示输入 Tensor 通道数。                                     |

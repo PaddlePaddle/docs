@@ -15,9 +15,10 @@ paddle.nn.functional.l1_loss(input, label, reduction='mean', name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | input        | 表示输入的 Tensor。
+| input         | input        | 表示输入的 Tensor。 |
 | target        | label        | 标签，和 input 具有相同的维度，仅参数名不一致。                                      |
 | size_average  | -            | 已废弃，和 reduce 组合决定损失计算方式。Paddle 无此参数，需要转写。                       |
 | reduce        | -            | 已废弃，和 size_average 组合决定损失计算方式。Paddle 无此参数，需要转写。                  |

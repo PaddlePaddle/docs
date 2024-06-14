@@ -1,4 +1,4 @@
-## [参数用法不一致]torch.nn.Sequential
+## [ 输入参数用法不一致 ]torch.nn.Sequential
 
 ### [torch.nn.Sequential](https://pytorch.org/docs/stable/generated/torch.nn.Sequential.html#torch.nn.Sequential)
 

@@ -13,6 +13,7 @@ paddle.nn.SyncBatchNorm.convert_sync_batchnorm(layer)
 
 PyTorch 参数更多，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | module           | layer      | 需要转换的模型层， 仅参数名不一致。                                    |

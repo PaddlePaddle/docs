@@ -63,6 +63,9 @@ select = [
 
     # Pygrep-hooks
     "PGH004",
+
+    # Ruff-specific rules
+    "RUF100",
 ]
 unfixable = [
     "NPY001"

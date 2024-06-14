@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.rand
+## [ 输入参数用法不一致 ]torch.rand
 
 ### [torch.rand](https://pytorch.org/docs/stable/generated/torch.rand.html?highlight=rand#torch.rand)
 
@@ -22,6 +22,7 @@ paddle.rand(shape,
 
 其中 torch 的 `size` 和 paddle 的 `shape` 用法不一致，torch 还支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | *size         | shape        | 表示输出形状大小，PyTorch 以可变参数方式传入，Paddle 以 list 或 tuple 的方式传入。                                     |

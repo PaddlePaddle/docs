@@ -703,7 +703,7 @@ PD_REGISTER_KERNEL(trace,
 
 - `trace`: kernel 名称，和算子的名称一致
 - `CPU`: backend 名称， 一般主要就是 CPU 和 GPU
-- `ALL_LAYOUT`: kernel 支持的 Tensor 布局，一般为 ALL_LAYOUT，及支持所有布局类型
+- `ALL_LAYOUT`: kernel 支持的 Tensor 布局，一般为 ALL_LAYOUT，即支持所有布局类型
 - `phi::TraceKernel`: kernel 的函数名称，记得带上 namespace phi
 - 剩余的均为 kernel 支持的数据类型
 

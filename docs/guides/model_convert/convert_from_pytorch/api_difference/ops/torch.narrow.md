@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.narrow
+## [ 输入参数用法不一致 ]torch.narrow
 ### [torch.narrow](https://pytorch.org/docs/stable/generated/torch.narrow.html?highlight=narrow#torch.narrow)
 ```python
 torch.narrow(input,
@@ -18,6 +18,7 @@ paddle.slice(input,
 
 其中 PyTorch 的 length 与 Paddle 的 ends 用法不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           | input         | 表示输入的 Tensor 。                                           |

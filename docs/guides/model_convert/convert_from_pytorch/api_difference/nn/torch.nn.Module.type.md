@@ -1,4 +1,4 @@
-## [参数不一致]torch.nn.Module.type
+## [ 输入参数类型不一致 ]torch.nn.Module.type
 
 ### [torch.nn.Module.type](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.type)
 

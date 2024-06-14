@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.utils.data.dataloader.default_collate
+## [ 返回参数类型不一致 ]torch.utils.data.dataloader.default_collate
 ### [torch.utils.data.dataloader.default_collate](https://pytorch.org/docs/stable/data.html?highlight=default_collate#torch.utils.data.default_collate)
 
 ```python
@@ -13,6 +13,7 @@ paddle.io.dataloader.collate.default_collate_fn(batch)
 
 返回参数类型不一致，需要转写。具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | batch        | batch        | 输入的用于组 batch 的数据。                                    |

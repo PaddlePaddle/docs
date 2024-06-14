@@ -866,7 +866,7 @@ class SimpleNet(Layer):
         super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
-    @to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), {'x': InputSpec(shape=[3], name='bias')}])
+    @to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), {'x': InputSpec(shape=[3], name='bias_info')}])
     def forward(self, x, bias_info):
         x_bias = bias_info['x']
         out = self.linear(x)

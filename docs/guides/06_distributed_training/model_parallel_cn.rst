@@ -29,7 +29,7 @@
 
 对于 Embedding 操作，可以将其理解为一种查找表操作。即，将输入看做索引，将 Embedding 参数看做查找表，根据该索引查表得到相应的输出，如下图（a）所示。当采用模型并行时，Embedding 的参数被均匀切分到多个卡上。假设 Embedding 参数的维度为 N*D，并采用 K 张卡执行模型并行，那么模型并行模式下每张卡上的 Embedding 参数的维度为 N//K*D。当参数的维度 N 不能被卡数 K 整除时，最后一张卡的参数维度值为(N//K+N%K)*D。以下图（b）为例，Embedding 参数的维度为 8*D，采用 2 张卡执行模型并行，那么每张卡上 Embedding 参数的维度为 4*D。
 
-为了便于说明，以下我们均假设 Embedding 的参数维度值 D 可以被模型并行的卡数 D 整除。此时，每张卡上 Embeeding 参数的索引值为[0, N/K)，逻辑索引值为[k*N/K, (k+1)*N/K)，其中 k 表示卡序号，0<=k<K。对于输入索引 I，如果该索引在该卡表示的逻辑索引范围内，则返回该索引所表示的表项（索引值为 I-k*N/K；否则，返回值为全 0 的虚拟表项。随后，通过 AllReduce 操作获取所有输出表项的和，即对应该 Embeding 操作的输出；整个查表过程如下图（b）所示。
+为了便于说明，以下我们均假设 Embedding 的参数维度值 D 可以被模型并行的卡数 D 整除。此时，每张卡上 Embedding 参数的索引值为[0, N/K)，逻辑索引值为[k*N/K, (k+1)*N/K)，其中 k 表示卡序号，0<=k<K。对于输入索引 I，如果该索引在该卡表示的逻辑索引范围内，则返回该索引所表示的表项（索引值为 I-k*N/K；否则，返回值为全 0 的虚拟表项。随后，通过 AllReduce 操作获取所有输出表项的和，即对应该 Embeding 操作的输出；整个查表过程如下图（b）所示。
 
 .. image:: ./images/parallel_embedding.png
   :width: 600
@@ -69,7 +69,7 @@
 :::::::::::::::::::::::::
 
 
-我们观察到，在模型并行模式下，Transformer 的 Attention 组件中存在两种类型的 Dropout 操作，如下图所示[1]。第一类是 softmax 算子后的 Dropout 算子；其输入是按列切分矩阵乘法的部分结果，我们称为局部 Dropout。直观理解，模型并行下，所有卡上的 Dropout 算子构成一个完整的 Dropout 算子，因此我们需要确保不同卡上该类 Dropout 算子的丢弃位置是不同。第二类是图中 g 操作之后的 Dropout 操作，对于此类 Dropout，其输入均为完整且相同的输出，我们需要确保 Dropout 算子的输出也相同，即各个卡上该类 Dropout 算子选择的丢弃位置是相同的。我们称此类 Dropout 为全局 Dropout。我们通常通过设置种子来控制两类 Dropout 的输出。具体地讲，对于局部 Dropout，我们在不同的卡上为他们设置不同的种子，从而确保它们选择的丢弃位置是不同的。而对于全局 Dropout 算子，我们在不同的卡上为它们设置相同的种子，从而确它们在不同卡上选择的丢弃位置是相同的。
+我们观察到，在模型并行模式下，Transformer 的 Attention 组件中存在两种类型的 Dropout 操作，如下图所示[1]。第一类是 softmax 算子后的 Dropout 算子；其输入是按列切分矩阵乘法的部分结果，我们称为局部 Dropout。直观理解，模型并行下，所有卡上的 Dropout 算子构成一个完整的 Dropout 算子，因此我们需要确保不同卡上该类 Dropout 算子的丢弃位置是不同的。第二类是图中 g 操作之后的 Dropout 操作，对于此类 Dropout，其输入均为完整且相同的输出，我们需要确保 Dropout 算子的输出也相同，即各个卡上该类 Dropout 算子选择的丢弃位置是相同的。我们称此类 Dropout 为全局 Dropout。我们通常通过设置种子来控制两类 Dropout 的输出。具体地讲，对于局部 Dropout，我们在不同的卡上为他们设置不同的种子，从而确保它们选择的丢弃位置是不同的。而对于全局 Dropout 算子，我们在不同的卡上为它们设置相同的种子，从而确它们在不同卡上选择的丢弃位置是相同的。
 
 .. image:: ./images/global_local_dropout.png
   :width: 400
@@ -87,7 +87,7 @@
 
 下面我们将分别介绍如何在动态图模式下使用飞桨框架进行模型并行训练。
 
-动态图中，我们提供了以下接口实现 Embeeding 和矩阵切分：
+动态图中，我们提供了以下接口实现 Embedding 和矩阵切分：
 
 - paddle.distributed.fleet.meta_parallel.VocabParallelEmbedding
 - paddle.distributed.fleet.meta_parallel.ColumnParallelLinear
@@ -150,7 +150,7 @@
 
 .. code-block:: python
 
-   dist_strategy = paddle.distributed.fleet.DistributedStrategy()
+   strategy = paddle.distributed.fleet.DistributedStrategy()
    strategy.hybrid_configs = {
        "mp_degree": 2,
        "dp_degree": 1,

@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.DataParallel
+## [ torch 参数更多 ]torch.nn.DataParallel
 ### [torch.nn.DataParallel](https://pytorch.org/docs/stable/generated/torch.nn.DataParallel.html?highlight=dataparallel#torch.nn.DataParallel)
 
 ```python
@@ -18,8 +18,10 @@ paddle.DataParallel(layers,
                     find_unused_parameters=False)
 ```
 
-两者功能一致但参数不一致，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | module        | layers       | 需要通过数据并行方式执行的模型。  |

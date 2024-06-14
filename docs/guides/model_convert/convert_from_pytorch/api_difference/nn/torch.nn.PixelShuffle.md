@@ -15,6 +15,7 @@ paddle.nn.PixelShuffle(upscale_factor,
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | upscale_factor   | upscale_factor | 表示增大空间分辨率的增大因子。                   |

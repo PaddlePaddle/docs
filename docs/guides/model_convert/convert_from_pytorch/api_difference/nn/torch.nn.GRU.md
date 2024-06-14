@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.GRU
+## [ 输入参数用法不一致 ]torch.nn.GRU
 ### [torch.nn.GRU](https://pytorch.org/docs/stable/generated/torch.nn.GRU.html?highlight=torch%20nn%20gru#torch.nn.GRU)
 ```python
 torch.nn.GRU(input_size,
@@ -26,6 +26,7 @@ paddle.nn.GRU(input_size,
 
 两者功能一致但参数不一致，部分参数名不同，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input_size          | input_size            | 表示输入 x 的大小。  |

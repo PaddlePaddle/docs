@@ -12,7 +12,7 @@ paddle.Tensor.expand(shape, name=None)
 ```
 
 两者功能一致，仅参数名不一致，具体差异如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | size          | shape        | 扩张后的维度，size 是可变参数，paddle 是 list/tuple           |

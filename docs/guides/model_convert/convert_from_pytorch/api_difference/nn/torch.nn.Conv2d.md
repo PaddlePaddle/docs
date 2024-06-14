@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.Conv2d
+## [ 输入参数用法不一致 ]torch.nn.Conv2d
 ### [torch.nn.Conv2d](https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html?highlight=conv2d#torch.nn.Conv2d)
 
 ```python
@@ -33,6 +33,7 @@ paddle.nn.Conv2D(in_channels,
 
 其中 PyTorch 的 `bias` 与 Paddle 的 `bias_attr` 用法不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | in_channels          | in_channels            | 表示输入 Tensor 通道数。                           |

@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.topk
+## [ 返回参数类型不一致 ]torch.topk
 
 ### [torch.topk](https://pytorch.org/docs/stable/generated/torch.topk.html?highlight=topk#torch.topk)
 
@@ -26,6 +26,7 @@ paddle.topk(x,
 PyTorch 相比 Paddle 支持更多其他参数，同时两个 api 的返回参数类型不同，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor ，仅参数名不一致。                          |

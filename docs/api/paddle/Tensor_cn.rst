@@ -221,15 +221,6 @@ strides
 **代码示例**
 COPY-FROM: paddle.Tensor.strides
 
-dist_attr
-:::::::::
-
-查看一个 Tensor 的 dist_attr，只有分布式 Tensor 才会有 dist_attr 属性，其描述了 tensor 的分布式属性。
-
-**代码示例**
-COPY-FROM: paddle.Tensor.dist_attr
-
-
 offset
 :::::::::
 
@@ -662,6 +653,11 @@ bincount(weights=None, minlength=0)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_bincount`
+
+bernoulli_(p=0.5, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_bernoulli` API，对输入 `x` 采用 Inplace 策略。
 
 bitwise_and(y, out=None, name=None)
 :::::::::
@@ -1483,6 +1479,15 @@ isfinite(name=None)
 
 请参考 :ref:`cn_api_paddle_isfinite`
 
+isin(test_x, assume_unique=False, invert=False, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_isin`
+
 isinf(name=None)
 :::::::::
 
@@ -1500,6 +1505,33 @@ isnan(name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_isnan`
+
+isposinf(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_isposinf`
+
+isneginf(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_isneginf`
+
+isreal(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_isreal`
 
 kthvalue(k, axis=None, keepdim=False, name=None)
 :::::::::
@@ -1643,6 +1675,11 @@ logsumexp(axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
+log_normal_(mean=0.0, std=1.0, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_log_normal` API，对输入 `x` 采用 Inplace 策略。
+
 请参考 :ref:`cn_api_paddle_logsumexp`
 
 masked_select(mask, name=None)
@@ -1717,7 +1754,7 @@ median(axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_median`
 
-nanmedian(axis=None, keepdim=True, name=None)
+nanmedian(axis=None, keepdim=False, name=None)
 :::::::::
 
 返回：沿着 ``axis`` 忽略 NAN 元素进行中位数计算的结果
@@ -1916,7 +1953,7 @@ prod(axis=None, keepdim=False, dtype=None, name=None)
 
 请参考 :ref:`cn_api_paddle_prod`
 
-quantile(q, axis=None, keepdim=False, name=None)
+quantile(q, axis=None, keepdim=False, interpolation='linear', name=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -3215,3 +3252,15 @@ signbit(x, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_signbit`
+
+ormqr(x, tau, other, left=True, transpose=False)
+:::::::::
+
+计算维度为(m, n)的矩阵 C（由 :attr:`other` 给出）和一个矩阵 Q 的乘积，
+其中 Q 由 Householder 反射系数 (:attr:`x`, :attr:`tau`) 表示。
+
+返回：乘积 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_linalg_ormqr`

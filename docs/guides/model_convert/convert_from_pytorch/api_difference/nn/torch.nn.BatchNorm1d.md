@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.BatchNorm1d
+## [ 输入参数用法不一致 ]torch.nn.BatchNorm1d
 ### [torch.nn.BatchNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm1d.html?highlight=torch%20nn%20batchnorm1d#torch.nn.BatchNorm1d)
 
 ```python
@@ -24,6 +24,7 @@ paddle.nn.BatchNorm1D(num_features,
 
 两者功能一致但参数不一致，部分参数名不同，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                                                                                          |
 | ------------- | ------------ |-----------------------------------------------------------------------------------------------------------------------------|
 | num_features           | num_features      | 表示输入 Tensor 通道数。                                                                                                            |

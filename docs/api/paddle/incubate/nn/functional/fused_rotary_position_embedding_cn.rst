@@ -16,6 +16,8 @@ fused_rotary_position_embedding
     - **cos** (Tensor, 可选) - 输入张量。 数据类型可以是 bfloat16, float16, float32 或 float64。 cos 的形状必须是 [seq_len, head_dim] 或 [1, seq_len, 1, head_dim], 并且 head_dim 必须是 2 的倍数。
     - **position_ids** (Tensor, 可选) - 输入张量。 数据类型为 int64. position_ids 的形状为[batch_size, seq_len]。
     - **use_neox_rotary_style** (可选|bool) - 当 use_neox_rotary_style 为 True, 每两个相邻的数字计算一次。 当 use_neox_rotary_style 为 False, 计算与前半段和后半段位置相对应的数字。 默认值为 True。
+    - **time_major** (可选|bool) - 指定输入张量的时间维度是否为第一个维度。 如果为 True，则输入张量的形状应为 [seq_len, batch_size, num_heads, head_dim]。 如果为 False，则输入张量的形状应为 [batch_size, seq_len, num_heads, head_dim] 。 默认值为 False。
+    - **rotary_emb_base** (可选|float) - 计算旋转角使用的底数。 默认值为 10000.0。
 
 
 返回

@@ -79,6 +79,7 @@ Methods
     astype
     atan
     backward
+    bernoulli_
     bitwise_and
     bitwise_not
     bitwise_or
@@ -152,8 +153,12 @@ Methods
     is_empty
     is_tensor
     isfinite
+    isin
     isinf
     isnan
+    isneginf
+    isposinf
+    isreal
     item
     kron
     less_equal
@@ -168,6 +173,7 @@ Methods
     logical_not
     logical_or
     logical_xor
+    log_normal_
     logsumexp
     masked_select
     matmul
@@ -229,6 +235,8 @@ Methods
     sign
     sgn
     sin
+    sinc
+    sinc_
     sinh
     slice
     solve

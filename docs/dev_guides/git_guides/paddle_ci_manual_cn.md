@@ -101,11 +101,17 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【触发条件】** `PR-CI-Build`通过后自动触发，并且使用`PR-CI-Build`的编译产物，无需单独编译。
 - **【注意事项】** 本条 CI 测试不通过的处理方法可查阅 [PR-CI-OP-benchmark Manual](https://github.com/PaddlePaddle/Paddle/wiki/PR-CI-OP-benchmark-Manual)。
 
+#### PR-CI-CINN-Build
+
+- **【条目描述】** 编译含 CINN（Compiler Infrastructure for Neural Networks，飞桨自研深度学习编译器）的 Paddle。
+- **【执行脚本】** `paddle/scripts/paddle_build.sh build_only`
+- **【触发条件】** `PR-CI-Clone`通过后自动触发。
+
 #### PR-CI-CINN
 
-- **【条目描述】** 编译含 CINN（Compiler Infrastructure for Neural Networks，飞桨自研深度学习编译器）的 Paddle，并运行 Paddle 训练框架与 CINN 对接的单测，保证训练框架进行 CINN 相关开发的正确性。
+- **【条目描述】** 运行 Paddle 训练框架与 CINN 对接的单测，保证训练框架进行 CINN 相关开发的正确性。
 - **【执行脚本】** 测试脚本: `paddle/scripts/paddle_build.sh test`
-- **【触发条件】** `PR-CI-Build`通过后自动触发，并且使用`PR-CI-Build`的编译产物，无需单独编译。
+- **【触发条件】** `PR-CI-CINN-Build`通过后自动触发，并且使用`PR-CI-CINN-Build`的编译产物，无需单独编译。
 
 #### PR-CI-Api-Benchmark
 
@@ -124,6 +130,12 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【条目描述】** 检测当前 PR 在 CPU、Python3 版本的编译与单测是否通过。
 - **【执行脚本】** `paddle/scripts/paddle_build.sh cicheck_py37`
 - **【触发条件】** `PR-CI-Clone`通过后自动触发。
+
+#### PR-CI-Py3-PIR
+
+- **【条目描述】** 检查 PR 在 PIR 模式下单测执行情况（test/deprecated 目录中的单测不进行测试)
+- **【执行脚本】** `paddle/scripts/paddle_build.sh cicheck_py37_pir`
+- **【触发条件】** `PR-CI-Py3`通过后自动触发。
 
 #### PR-CI-Coverage
 
@@ -154,13 +166,6 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
   - 测试脚本：`paddle/scripts/paddle_build.sh build_and_check_gpu`
 - **【触发条件】** `PR-CI-Build`通过后自动触发，并且使用`PR-CI-Build`的编译产物，无需单独编译。
 
-#### PR-CI-GpuPS
-
-- **【条目描述】** 检测 GPUBOX 相关代码合入后编译是否通过。
-- **【执行脚本】** `paddle/scripts/paddle_build.sh build_gpubox`
-- **【触发条件】**
-  - `PR-CI-Clone`通过后自动触发。
-
 #### PR-CI-Codestyle-Check
 
 - **【条目描述】** 该 CI 主要的功能是检查提交代码是否符合规范，详细内容请参考[代码风格检查指南](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/git_guides/codestyle_check_guide_cn.html)。
@@ -180,7 +185,7 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【条目描述】** 检测当前 PR 在 Linux GPU 环境下编译与单测是否通过，不同于 PR-CI-CINN，该 CI 只编译 CINN，并且只测试 CINN 模块的单测，不会测试 PaddleWithCINN 相关单测。
 - **【执行脚本】** `bash tools/cinn/build.sh gpu_on ci`
 - **【触发条件】**
-  - `PR-CI-Clone`通过后自动触发。
+  - `PR-CI-CINN-Build`通过后自动触发。
   - 必须修改下面路径中的文件才会触发
     ```bash  CMakeLists.txt
         cmake
@@ -250,11 +255,11 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
     test/sot
     ```
 
-#### PR-CI-LLM
+#### PR-CI-Distribute-stable
 
-- **【条目描述】** 执行 PaddleNLP 中的 LLM CI 测试，从而基于套件中的模型监控当前 PR 的精度。
-- **【执行脚本】** `git clone git@github.com:PaddlePaddle/PaddleNLP.git && cd PaddleNLP && git checkout stable/paddle-ci && pytest ./tests/llm`
-- **【触发条件】** `PR-CI-GpuPS`通过后自动触发。
+- **【条目描述】** 该 CI 主要的功能是检查提交代码是否引起编译错误、GPUBOX/LLM/自动并行架构的功能或精度错误
+- **【执行脚本】** `paddle/scripts/paddle_build.sh distribute_test`
+- **【触发条件】** `PR-CI-Clone`通过后自动触发。
 - **【注意事项】** 此 CI 的执行代码是在 PaddleNLP 的 repo 中的稳定版本分支`<stable/paddle-ci>`，出现问题请优先在本地自测复现。
 
 
@@ -298,9 +303,15 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【执行脚本】** `paddle/scripts/paddle_build.sh check_xpu_coverage`
 - **【触发条件】** `PR-CI-Clone`通过后自动触发。
 
+#### PR-CI-Kunlun-bxcheck
+
+- **【条目描述】** 检测 PR 中的修改能否在昆仑芯 XPU 上单测是否通过。
+- **【执行脚本】** `paddle/scripts/paddle_build.sh test`
+- **【触发条件】** `PR-CI-Kunlun-R200`编译成功后自动触发。
+
 ### 海光 DCU 测试项
 
-#### PR-CI-ROCM-Compile
+#### PR-CI-Hygon-DCU
 
 - **【条目描述】** 检测 PR 中的修改能否在海光 DCU 芯片上编译通过。
 - **【执行脚本】** `paddle/scripts/musl_build/build_paddle.sh build_only`

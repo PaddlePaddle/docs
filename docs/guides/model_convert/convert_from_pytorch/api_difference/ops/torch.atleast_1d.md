@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.atleast_1d
+## [ 输入参数用法不一致 ]torch.atleast_1d
 
 ### [torch.atleast_1d](https://pytorch.org/docs/stable/generated/torch.atleast_1d.html#torch-atleast-1d)
 
@@ -15,6 +15,7 @@ paddle.atleast_1d(*inputs, name=None)
 PyTorch 与 Paddle 参数不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> tensors </font> | <font color='red'> inputs </font> | 输入的 Tensor，仅当 torch 输入为 tuple(Tensor)时，两者处理方式不一致，需要转写。其他情形下均一致。 |

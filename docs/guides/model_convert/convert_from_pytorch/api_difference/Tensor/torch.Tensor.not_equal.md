@@ -1,4 +1,4 @@
-## [ 参数不一致 ] torch.Tensor.not_equal
+## [ 输入参数类型不一致 ] torch.Tensor.not_equal
 ### [torch.Tensor.not_equal](https://pytorch.org/docs/stable/generated/torch.Tensor.not_equal.html)
 
 ```python
@@ -14,6 +14,7 @@ paddle.Tensor.not_equal(y)
 其中，Paddle 与 PyTorch 的 `other` 参数所支持类型不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                             |
 | ------------- | ------------ | ----------------------------------------------- |
 | other         | y            | 比较的元素，PyTorch 支持 Tensor 和 Python Number，Paddle 仅支持 Tensor，需要转写。                       |

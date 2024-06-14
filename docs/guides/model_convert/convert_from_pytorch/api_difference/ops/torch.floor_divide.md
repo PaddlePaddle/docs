@@ -1,4 +1,4 @@
-## [参数不一致]torch.floor_divide
+## [ 输入参数类型不一致 ]torch.floor_divide
 ### [torch.floor_divide](https://pytorch.org/docs/stable/generated/torch.floor_divide.html?highlight=torch+floor_divide#torch.floor_divide)
 
 ```python
@@ -18,6 +18,7 @@ paddle.floor_divide(x,
 
 其中 PyTorch 和 Paddle 的 `other` 参数支持类型不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 |  input  |  x  | 表示输入的被除数 Tensor ，仅参数名不一致。  |

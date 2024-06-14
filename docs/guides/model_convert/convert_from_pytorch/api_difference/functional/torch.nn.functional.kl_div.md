@@ -2,7 +2,7 @@
 
 ### [torch.nn.functional.kl_div](https://pytorch.org/docs/stable/generated/torch.nn.functional.kl_div.html?highlight=kl_div#torch.nn.functional.kl_div)
 
-```
+```python
 torch.nn.functional.kl_div(input,
                target,
                size_average=None,
@@ -13,20 +13,23 @@ torch.nn.functional.kl_div(input,
 
 ### [paddle.nn.functional.kl_div](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/kl_div_cn.html)
 
-```
+```python
 paddle.nn.functional.kl_div(input,
                 label,
-                reduction='mean')
+                reduction='mean',
+                log_target=False)
 ```
 
 其中 PyTorch 相比 Paddle 支持更多的参数，具体如下：
+
+### 参数映射
 
 | PyTorch      | PaddlePaddle | 备注                                                   |
 | ------------ | ------------ | ------------------------------------------------------ |
 | size_average | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。           |
 | reduce       | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。           |
 | reduction    | reduction    | 表示对输出结果的计算方式。                             |
-| log_target   | -            | 指定目标是否为 log 空间，Paddle 无此参数，暂无转写方式。 |
+| log_target   | log_target   | 指定目标是否属于 log 空间。                            |
 
 ### 转写示例
 

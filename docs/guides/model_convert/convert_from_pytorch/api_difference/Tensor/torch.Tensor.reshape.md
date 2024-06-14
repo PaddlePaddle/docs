@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.reshape
+## [ 输入参数用法不一致 ]torch.Tensor.reshape
 
 ### [torch.Tensor.reshape](https://pytorch.org/docs/stable/generated/torch.Tensor.reshape.html)
 
@@ -14,6 +14,7 @@ paddle.Tensor.reshape(shape, name=None)
 
 PyTorch 的 `*shape` 相比于 Paddle 的 `shape` 额外支持可变参数的用法，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | *shape | shape | torch 支持可变参数或 list/tuple，paddle 仅支持 list/tuple。对于可变参数的用法，需要转写。 |

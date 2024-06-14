@@ -8,6 +8,7 @@ paddle.amp 目录下包含飞桨框架支持的动态图自动混合精度(AMP)�
 -  :ref:`AMP 相关 API <about_amp>`
 -  :ref:`开启 AMP 后默认转化为 float16 计算的相关 OP <about_amp_white_list_ops>`
 -  :ref:`开启 AMP 后默认使用 float32 计算的相关 OP <about_amp_black_list_ops>`
+-  :ref:`AMP 场景下判断设备是否支持特定数据类型 <about_supported>`
 
 paddle.amp 目录下包含 debugging 目录， debugging 目录中存放用于算子模型精度问题定位的 API。具体如下：
 
@@ -63,6 +64,18 @@ AMP 相关 API
     "cross_entropy", "交叉熵"
     "cross_entropy2", "交叉熵"
 
+.. _about_supported:
+
+AMP 场景下判断设备是否支持特定数据类型
+:::::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`is_bfloat16_supported <cn_api_paddle_amp_is_bfloat16_supported>` ", "判断设备是否支持 bfloat16"
+    " :ref:`is_float16_supported <cn_api_paddle_amp_is_float16_supported>` ", "判断设备是否支持 float16"
+
 .. _about_debugging:
 
 Debug 相关辅助类
@@ -84,6 +97,7 @@ Debug 相关辅助类
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`collect_operator_stats <cn_api_paddle_amp_debugging_collect_operator_stats>` ", "收集不同数据类型的算子调用次数"
     " :ref:`enable_operator_stats_collection <cn_api_paddle_amp_debugging_enable_operator_stats_collection>` ", "启用以收集不同数据类型的算子调用次数"
     " :ref:`disable_operator_stats_collection <cn_api_paddle_amp_debugging_disable_operator_stats_collection>` ", "禁用收集不同数据类型的算子调用次数"
 
@@ -99,3 +113,15 @@ Debug 相关辅助类
     " :ref:`enable_tensor_checker <cn_api_paddle_amp_debugging_enable_tensor_checker>` ", "开启模块级别的精度检查"
     " :ref:`disable_tensor_checker <cn_api_paddle_amp_debugging_disable_tensor_checker>` ", "关闭模块级别的精度检查"
     " :ref:`compare_accuracy <cn_api_paddle_amp_debugging_compare_accuracy>` ", "精度比对接口"
+
+.. _about_amp_numerics_check_api:
+
+数值检查相关 API
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`check_layer_numerics <cn_api_paddle_amp_debugging_check_layer_numerics>` ", "Layer 输入、输出数据的数值检查"
+    " :ref:`check_numerics <cn_api_paddle_amp_debugging_check_numerics>` ", "调试 Tensor 数值，检查其异常值(NaN、Inf) 和零元素"

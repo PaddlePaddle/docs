@@ -13,6 +13,7 @@ paddle.utils.cpp_extension.BuildExtension(*args, **kwargs)
 
 参数完全一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 |*args         | *args          |   用于指定 BuildExtension 的其他参数，支持的参数与 setuptools.command.build_ext 一致。 |

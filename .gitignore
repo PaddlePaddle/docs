@@ -1,11 +1,15 @@
+# IDE settings
 *.DS_Store
-.vscode/
-/doc/fluid/menu.zh.json
-/doc/fluid/menu.en.json
-.idea
-build
 .vscode
-output/
-venv/
+.idea
 
-*.pyc
+# virtualenv
+venv/
+ENV/
+
+# Compiled Python files
+__pycache__/
+
+# Build and output directories
+build
+output/

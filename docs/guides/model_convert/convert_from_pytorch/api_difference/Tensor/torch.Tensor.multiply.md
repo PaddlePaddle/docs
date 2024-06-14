@@ -1,4 +1,4 @@
-## [ 参数不一致 ] torch.Tensor.multiply
+## [ 输入参数类型不一致 ] torch.Tensor.multiply
 
 ### [torch.Tensor.multiply](https://pytorch.org/docs/stable/generated/torch.Tensor.multiply.html)
 
@@ -17,6 +17,7 @@ paddle.Tensor.multiply(y,
 其中，Paddle 与 PyTorch 的 `other` 参数所支持类型不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                             |
 | ------------- | ------------ | ----------------------------------------------- |
 | other         | y            | 相乘的元素，PyTorch 支持 Tensor 和 Python Number，Paddle 仅支持 Tensor，需要转写。                       |

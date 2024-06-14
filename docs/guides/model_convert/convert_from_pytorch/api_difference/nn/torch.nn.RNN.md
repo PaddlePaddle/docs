@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.RNN
+## [ 输入参数用法不一致 ]torch.nn.RNN
 ### [torch.nn.RNN](https://pytorch.org/docs/stable/generated/torch.nn.RNN.html#torch.nn.RNN)
 ```python
 torch.nn.RNN(input_size,
@@ -18,6 +18,7 @@ paddle.nn.SimpleRNN(input_size, hidden_size, num_layers=1, activation='tanh', di
 
 两者功能一致但参数不一致，部分参数名不同，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input_size          | input_size            | 表示输入 x 的大小。  |

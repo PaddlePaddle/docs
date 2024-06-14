@@ -8,7 +8,7 @@ torch.Tensor.unsqueeze(dim)
 
 ### [paddle.Tensor.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#unsqueeze-axis-name-none)
 
-```
+```python
 paddle.Tensor.unsqueeze(axis, name=None)
 ```
 
@@ -17,5 +17,5 @@ paddle.Tensor.unsqueeze(axis, name=None)
 ### 参数映射
 
 | PyTorch | PaddlePaddle |                备注                |
-| :-----: | :----------: | :--------------------------------: |
+| ------- | ------------ | ---------------------------------- |
 |   dim   |     axis     | 表示进行运算的轴，仅参数名不一致。 |

@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.ReflectionPad3d
+## [ 输入参数类型不一致 ]torch.nn.ReflectionPad3d
 ### [torch.nn.ReflectionPad3d](https://pytorch.org/docs/stable/generated/torch.nn.ReflectionPad3d.html?highlight=pad#torch.nn.ReflectionPad3d)
 
 ```python
@@ -17,6 +17,7 @@ paddle.nn.Pad3D(padding,
 
 其中 Paddle 与 PyTorch 的 padding 所支持的参数类型不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | padding       | padding      | 填充大小，PyTorch 和 Paddle 的 padding 参数的类型分别为 (int/tuple) 和 (int/Tensor/list)。  |

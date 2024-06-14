@@ -217,7 +217,7 @@
    |    act     |  activation   |
    |    eps     |    epsilon    |
    |    val     |     value     |
-   |    var     |    varible    |
+   |    var     |    variable   |
    |   param    |   parameter   |
    |    prog    |    program    |
    |    idx     |     index     |

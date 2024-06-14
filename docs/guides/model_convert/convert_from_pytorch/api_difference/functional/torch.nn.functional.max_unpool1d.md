@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.functional.max_unpool1d
+## [ 输入参数用法不一致 ]torch.nn.functional.max_unpool1d
 
 ### [torch.nn.functional.max_unpool1d](https://pytorch.org/docs/stable/generated/torch.nn.functional.max_unpool1d.html?highlight=max_unpool1d#torch.nn.functional.max_unpool1d)
 
@@ -26,6 +26,7 @@ paddle.nn.functional.max_unpool1d(x,
 
 其中 Paddle 和 PyTorch 的`indices`参数类型不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           | x           | 表示输入的 Tensor ，仅参数名不一致。               |

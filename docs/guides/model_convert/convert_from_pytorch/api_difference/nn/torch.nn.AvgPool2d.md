@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.AvgPool2d
+## [ 输入参数用法不一致 ]torch.nn.AvgPool2d
 ### [torch.nn.AvgPool2d](https://pytorch.org/docs/stable/generated/torch.nn.AvgPool2d.html?highlight=avgpool2d#torch.nn.AvgPool2d)
 
 ```python
@@ -25,6 +25,7 @@ paddle.nn.AvgPool2D(kernel_size,
 
 其中 PyTorch 的 count_include_pad 与 Paddle 的 exclusive 用法不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | kernel_size          | kernel_size         | 表示池化核的尺寸大小 。                                     |

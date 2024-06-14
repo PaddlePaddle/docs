@@ -1,10 +1,10 @@
-## [ 参数不一致 ]torch.nn.functional.one_hot
+## [ 返回参数类型不一致 ]torch.nn.functional.one_hot
 
 ### [torch.nn.functional.one_hot](https://pytorch.org/docs/stable/generated/torch.nn.functional.one_hot.html?highlight=one_hot#torch.nn.functional.one_hot)
 
 ```python
 torch.nn.functional.one_hot(tensor,
-                            num_classes=- 1)
+                            num_classes=-1)
 ```
 
 ### [paddle.nn.functional.one_hot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/one_hot_cn.html)
@@ -18,6 +18,7 @@ paddle.nn.functional.one_hot(x,
 两者功能一致，但 Paddle 的 num_classes 没有指定默认值，需要手动指定，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensor          | x         | 表示输入的 Tensor 。                                     |

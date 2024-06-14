@@ -10,21 +10,21 @@
 > 注：第 1~3 类均为 API 层面一对一映射，根据参数层面的映射关系将其细分为三类。
 
 * 第 1 类又分为五种情况：`无参数`、`参数完全一致`、`仅参数名不一致`、`仅 paddle 参数更多`、`仅参数默认值不一致`。
-> 注：分类优先级依次递增，即如果同时 `参数名不一致` + `paddle 参数更多`，则写成后者 `仅 paddle 参数更多` 。
+> 注：分类优先级依次递增，即如果同时 `参数名不一致` + `仅 paddle 参数更多`，则写成后者 `仅 paddle 参数更多` 。
 
 * 第 2 类为 `torch 参数更多`。如果 torch 和 paddle 都支持更多参数，统一写成`torch 参数更多`。
 
-* 第 3 类为 `参数不一致`。包括不限于 输入参数支持类型不一致、输入参数用法不一致、返回参数类型不一致 等情况。
-> 注意：这里的一致都是从 torch 的角度来看，如果 paddle 可涵盖 torch，即 torch 是 paddle 的功能子集，即认为是一致。例如：torch 参数仅支持 list，paddle 参数支持 list/tuple，则认为两者一致。反之则不一致。
+* 第 3 类又分为三种情况：`输入参数类型不一致`、`输入参数用法不一致`、`返回参数类型不一致`。
+> 注意：这里的**不一致**都是从 torch 的角度来看，如果 paddle 可涵盖 torch，即 torch 是 paddle 的功能子集，则认定为一致（例如：torch 参数仅支持 list，paddle 参数支持 list/tuple），反之才认定为不一致。
 
 * 第 4 类为 `组合替代实现` ，表示该 API 没有可直接对应的 API，需要通过多个 API 组合实现。
 
-* 第 5 类为 `用法不同：涉及上下文修改` ，表示涉及到上下文分析，需要修改其他位置的代码。
-> 举例：所有的 `torch.optim.lr_scheduler.*`、`torch.nn.init.*`、`torch.nn.utils.clip*` 都为该类。主要由于设计上与 Paddle 具有较大的差异，需要对上文例如 Layer 的`weight_attr`进行设置，涉及到上文代码联动修改。
+* 第 5 类为 `涉及上下文修改` ，表示涉及到上下文的分析，需要修改其他位置的代码。
+> 举例：所有的 `torch.optim.lr_scheduler.*`、`torch.nn.init.*`、`torch.nn.utils.clip*` 都为该类。此类 API 由于两者在设计上具有较大的差异，需要对上下文进行分析，涉及到上下文代码的联动修改。
 
-* 第 6 类为 `对应 API 不在主框架` 。例如 `torch.hamming_window` 对应 API 在 `paddlenlp` 中。
+* 第 6 类为 `可删除` 。表示可直接删除该 API，则无需写差异分析文档，仅标注即可
 
-* 第 7 类为 `功能缺失` ，表示当前无该功能，则无需写差异分析文档，仅标注到 pytorch_api_mapping_cn.md 文件中即可。
+* 第 7 类为 `功能缺失` ，表示 Paddle 当前无对应 API，则无需写差异分析文档，仅标注即可。
 
 > 注意：
 > 1. 分类优先级依次递增，即如果同时 `第 2 类：torch 参数更多` 与 `第 3 类：参数不一致` ，则写成后者 `第 3 类：参数不一致` 。
@@ -130,6 +130,7 @@ paddle.Tensor.clip(min=None, max=None, name=None)
 两者功能一致，参数完全一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                               |
 |---------|--------------| -------------------------------------------------- |
 | min     | min          | 裁剪的最小值，输入中小于该值的元素将由该元素代替。            |
@@ -195,6 +196,7 @@ paddle.nn.ZeroPad2D(padding,
 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | Paddle        | 备注                                                         |
 | ------- | ------------- | ------------------------------------------------------------ |
 | -       | axis          | 指定进行运算的轴， PyTorch 无此参数， Paddle 保持默认即可。  |
@@ -253,6 +255,7 @@ paddle.abs(x,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | Paddle | 备注                                                         |
 | ------------- | ------ | ------------------------------------------------------------ |
 | input         | x      | 表示输入的 Tensor ，仅参数名不一致。                         |
@@ -335,7 +338,7 @@ else:
 
 ## 模板 7
 
-### [ 参数不一致 ] torch.transpose
+### [ 输入参数用法不一致 ] torch.transpose
 
 ### [torch.transpose](https://pytorch.org/docs/stable/generated/torch.transpose.html?highlight=transpose#torch.transpose)(仅作为示例)
 
@@ -356,6 +359,7 @@ paddle.transpose(x,
 PyTorch 的 `tensors` 参数与 Paddle 的 `inputs` 参数用法不同，具体如下：
 
 ### 参数映射
+
 | PyTorch | Paddle        | 备注                                                         |
 | ------- | ------------- | ------------------------------------------------------------ |
 |*tensors |  inputs    | 一组输入 Tensor，PyTorch 的 tensors 为可变参数，Paddle 的 inputs 为 list(Tensor) 或 tuple(Tensor) 用法，需要转写。   |
@@ -422,7 +426,7 @@ paddle.add(input, value * tensor1 * tensor2)
 
 ## 模板 9
 
-### [ 用法不同：涉及上下文修改 ] torch.nn.utils.clip_grad_value_
+### [ 涉及上下文修改 ] torch.nn.utils.clip_grad_value_
 
 ### [torch.nn.utils.clip_grad_value_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_value_.html?highlight=clip_grad_value_#torch.nn.utils.clip_grad_value_)(仅作为示例)
 
@@ -441,6 +445,7 @@ paddle.nn.ClipGradByValue(max,
 其中 PyTorch 与 Paddle 对该 API 的设计思路与⽤法不同，需要分析上下⽂并联动修改：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | ---- |
 | parameters |  -  | 表示要操作的 Tensor， PyTorch 属于原位操作， PaddlePaddle ⽆此参数，需要实例化之后在 optimizer 中设置才可以使⽤。需要上下⽂分析与联动修改。|

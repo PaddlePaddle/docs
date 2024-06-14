@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.all
+## [ 输入参数类型不一致 ]torch.Tensor.all
 
 ### [torch.Tensor.all](https://pytorch.org/docs/stable/generated/torch.Tensor.all.html?highlight=torch+tensor+all#torch.Tensor.all)
 
@@ -17,6 +17,7 @@ paddle.Tensor.all(axis=None,
 其中 Paddle 与 PyTorch 运算 Tensor 所支持的类型不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | 运算 Tensor        | 运算 Tensor            | PyTorch 支持布尔和数值类型的输入，Paddle 仅支持布尔类型，需要转写。                   |

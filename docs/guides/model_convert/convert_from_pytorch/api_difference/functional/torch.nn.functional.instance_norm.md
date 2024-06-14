@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.functional.instance_norm
+## [ 输入参数用法不一致 ]torch.nn.functional.instance_norm
 
 ### [torch.nn.functional.instance_norm](https://pytorch.org/docs/stable/generated/torch.nn.functional.instance_norm.html#torch.nn.functional.instance_norm)
 
@@ -13,6 +13,7 @@ paddle.nn.functional.instance_norm(x, running_mean=None, running_var=None, weigh
 
 其中 PyTorch 与 Paddle 参数不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |

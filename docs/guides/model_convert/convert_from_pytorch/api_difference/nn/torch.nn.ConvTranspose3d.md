@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.ConvTranspose3d
+## [ 输入参数用法不一致 ]torch.nn.ConvTranspose3d
 ### [torch.nn.ConvTranspose3d](https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose3d.html?highlight=convtranspose3d#torch.nn.ConvTranspose3d)
 ```python
 torch.nn.ConvTranspose3d(in_channels,
@@ -31,6 +31,7 @@ paddle.nn.Conv3DTranspose(in_channels,
 
 其中 PyTorch 的 `bias` 与 Paddle 的 `bias_attr` 用法不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | in_channels          | in_channels            | 表示输入 Tensor 通道数。                           |

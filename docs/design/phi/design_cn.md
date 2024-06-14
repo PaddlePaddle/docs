@@ -409,7 +409,7 @@ void ScaleKernel(const Context& dev_ctx,
 
 ##### 2.3.1.5 IntArray
 
-IntArray 是一个整数类型数组，可以由`vector<int>`,`Tensor`以及`vector<Tensor>`进行构造，目前主要用来表示 shape，index 以及 aixs 等维度索引变量。
+IntArray 是一个整数类型数组，可以由`vector<int>`,`Tensor`以及`vector<Tensor>`进行构造，目前主要用来表示 shape，index 以及 axis 等维度索引变量。
 
 以 FullKernel 为例，其中的 shape 参数用来表示返回 Tensor 的维度信息（如[2，8，8]），在调用 FullKernel 时该项参数传入`vector<int>`,`Tensor`和`vector<Tensor>`类型的变量兼可完成调用。使用 IntArray 避免了每种 shape 类型单独编写一个重载函数的问题。
 

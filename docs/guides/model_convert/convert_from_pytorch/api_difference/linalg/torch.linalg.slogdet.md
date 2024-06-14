@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.linalg.slogdet
+## [ 返回参数类型不一致 ]torch.linalg.slogdet
 ### [torch.linalg.slogdet](https://pytorch.org/docs/stable/generated/torch.linalg.slogdet.html#torch.linalg.slogdet)
 
 ```python
@@ -14,6 +14,7 @@ paddle.linalg.slogdet(x)
 两者功能一致，返回参数个数不同，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> A </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |

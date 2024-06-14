@@ -409,7 +409,7 @@ void ScaleKernel(const Context& dev_ctx,
 
 ##### 2.3.1.5 IntArray
 
-IntArray is an integer type array that can be constructed from `vector<int>`, `Tensor` and `vector<Tensor>`. Currently, it is mainly used to represent dimension index variables such as `shape`, `index` and `aixs`.
+IntArray is an integer type array that can be constructed from `vector<int>`, `Tensor` and `vector<Tensor>`. Currently, it is mainly used to represent dimension index variables such as `shape`, `index` and `axis`.
 
 Taking `FullKernel` as an example, the shape parameter is used to indicate the dimension information of the returned Tensor (e.g. [2, 8, 8]). When calling `FullKernel`, the parameters of `vector<int>`, `Tensor` and `vector<Tensor>` type variables can be used to complete the call. Using `IntArray` avoids the problem of writing a separate overloaded function for each shape type.
 

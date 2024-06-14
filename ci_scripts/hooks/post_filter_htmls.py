@@ -16,6 +16,7 @@
 """
 do sth. after the html generated.
 """
+
 import argparse
 import os
 import sys

@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.le
+## [ 输入参数类型不一致 ]torch.le
 
 ### [torch.le](https://pytorch.org/docs/stable/generated/torch.le.html)
 
@@ -14,6 +14,7 @@ paddle.less_equal(x, y, name=None)
 
 其中 Paddle 和 PyTorch 的 `other` 参数所支持的数据类型不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 表示输入的 Tensor ，仅参数名不一致。                     |

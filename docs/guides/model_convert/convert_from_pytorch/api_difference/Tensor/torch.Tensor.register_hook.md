@@ -15,6 +15,7 @@ paddle.Tensor.register_hook(hook)
 两者功能一致，且参数一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | hook         | hook            | 一个需要注册到 Tensor.grad 上的 hook 函数。   |

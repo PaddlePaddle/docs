@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.RNNCell
+## [ 输入参数用法不一致 ]torch.nn.RNNCell
 ### [torch.nn.RNNCell](https://pytorch.org/docs/stable/generated/torch.nn.RNNCell.html#torch.nn.RNNCell)
 ```python
 torch.nn.RNNCell(input_size, hidden_size, bias=True, nonlinearity='tanh', device=None, dtype=None)
@@ -11,6 +11,7 @@ paddle.nn.SimpleRNNCell(input_size, hidden_size, activation='tanh', weight_ih_at
 
 两者功能一致但参数不一致，部分参数名不同，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input_size          | input_size            | 表示输入 x 的大小。  |
