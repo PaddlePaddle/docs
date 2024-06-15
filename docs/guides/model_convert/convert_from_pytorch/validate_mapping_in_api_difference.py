@@ -132,6 +132,7 @@ def get_meta_from_diff_file(filepath):
     args_pattern = re.compile(r"^### 参数映射$")
     ARGS_EXPECT_HEADERS = ["PyTorch", "PaddlePaddle", "备注"]
 
+    mapping_type = ""
     signature_cache = None
 
     with open(filepath, "r", encoding="utf-8") as f:
