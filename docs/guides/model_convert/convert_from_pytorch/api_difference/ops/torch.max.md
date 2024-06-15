@@ -1,7 +1,8 @@
 ## [ 返回参数类型不一致 ]torch.max
 输入一个 Tensor 对应 paddle.max，输入两个 Tensor 对应 paddle.maximum，因此有两组差异分析，分别如下：
 
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+
 ### [torch.max](https://pytorch.org/docs/stable/generated/torch.max.html?highlight=max#torch.max)
 
 ```python
