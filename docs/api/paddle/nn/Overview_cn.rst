@@ -272,8 +272,8 @@ Loss 层
     " :ref:`paddle.nn.TripletMarginWithDistanceLoss <cn_api_paddle_nn_TripletMarginWithDistanceLoss>` ", "TripletMarginWithDistanceLoss 层"
     " :ref:`paddle.nn.MultiLabelSoftMarginLoss <cn_api_paddle_nn_MultiLabelSoftMarginLoss>` ", "多标签 Hinge 损失层"
     " :ref:`paddle.nn.MultiMarginLoss <cn_api_paddle_nn_MultiMarginLoss>` ", "MultiMarginLoss 层"
-    " :ref:`paddle.nn.functional.adaptive_log_softmax_with_loss <cn_api_paddle_nn_functional_adaptive_log_softmax_with_loss>` ", "自适应 logsoftmax 损失函数"
     " :ref:`paddle.nn.AdaptiveLogSoftmaxWithLoss <_cn_api_paddle_nn_AdaptiveLogSoftmaxWithLoss>` ", "自适应 logsoftmax 损失类"
+    " :ref:`paddle.nn.functional.adaptive_log_softmax_with_loss <cn_api_paddle_nn_functional_adaptive_log_softmax_with_loss>` ", "自适应 logsoftmax 损失函数"
 
 
 .. _vision_layers:
@@ -422,7 +422,7 @@ Padding 相关函数
     " :ref:`paddle.nn.functional.tanhshrink <cn_api_paddle_nn_functional_tanhshrink>` ", "tanhshrink 激活函数"
     " :ref:`paddle.nn.functional.thresholded_relu <cn_api_paddle_nn_functional_thresholded_relu>` ", "thresholded_relu 激活函数"
     " :ref:`paddle.nn.functional.thresholded_relu_ <cn_api_paddle_nn_functional_thresholded_relu_>` ", "Inplace 版本的 :ref:`cn_api_paddle_nn_functional_thresholded_relu` API，对输入 x 采用 Inplace 策略"
-    
+
 .. _normalization_functional:
 
 Normalization 方法
