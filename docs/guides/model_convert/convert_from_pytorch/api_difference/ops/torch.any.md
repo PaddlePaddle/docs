@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.any
+## [ 输入参数类型不一致 ]torch.any
 
 ### [torch.any](https://pytorch.org/docs/stable/generated/torch.any.html?highlight=any#torch.any)
 

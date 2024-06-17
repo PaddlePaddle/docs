@@ -12,7 +12,7 @@ paddle.meshgrid(*args, **kargs)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensors       | args         | 输入的 Tensor 列表，仅参数名不一致。                                      |

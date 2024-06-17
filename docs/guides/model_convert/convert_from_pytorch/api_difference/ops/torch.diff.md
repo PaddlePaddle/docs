@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.diff
+## [ 输入参数用法不一致 ]torch.diff
 ### [torch.diff](https://pytorch.org/docs/stable/generated/torch.diff.html?highlight=diff#torch.diff)
 
 ```python

@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.functional.bilinear
+## [ 输入参数用法不一致 ]torch.nn.functional.bilinear
 
 ### [torch.nn.functional.bilinear](https://pytorch.org/docs/stable/generated/torch.nn.functional.bilinear.html?highlight=bilinear#torch.nn.functional.bilinear)
 

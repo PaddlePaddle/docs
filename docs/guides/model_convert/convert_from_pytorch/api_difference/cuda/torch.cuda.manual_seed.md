@@ -1,4 +1,4 @@
-## [参数不一致]torch.cuda.manual_seed
+## [ 返回参数类型不一致 ]torch.cuda.manual_seed
 
 ### [torch.cuda.manual_seed](https://pytorch.org/docs/stable/generated/torch.cuda.manual_seed.html#torch.cuda.manual_seed)
 

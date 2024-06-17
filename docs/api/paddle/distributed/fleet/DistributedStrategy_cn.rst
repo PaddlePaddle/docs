@@ -28,17 +28,6 @@ load_from_prototxt
 
 COPY-FROM: paddle.distributed.fleet.DistributedStrategy.load_from_prototxt
 
-execution_strategy
-'''''''''
-
-`Post Local SGD <https://arxiv.org/abs/1808.07217>`__
-
-配置 DistributedStrategy 中的 `ExecutionStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/ExecutionStrategy_cn.html>`_
-
-**代码示例**
-
-COPY-FROM: paddle.distributed.fleet.DistributedStrategy.execution_strategy
-
 build_strategy
 '''''''''
 

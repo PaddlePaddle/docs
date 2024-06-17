@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.InstanceNorm1d
+## [ 输入参数用法不一致 ]torch.nn.InstanceNorm1d
 
 ### [torch.nn.InstanceNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.InstanceNorm1d.html#torch.nn.InstanceNorm1d)
 

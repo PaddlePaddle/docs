@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.utils.data._utils.collate.default_collate
+## [ 返回参数类型不一致 ]torch.utils.data._utils.collate.default_collate
 ### [torch.utils.data._utils.collate.default_collate](https://pytorch.org/docs/stable/data.html?highlight=default_collate#torch.utils.data.default_collate)
 
 ```python

@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.le
+## [ 输入参数类型不一致 ]torch.le
 
 ### [torch.le](https://pytorch.org/docs/stable/generated/torch.le.html)
 

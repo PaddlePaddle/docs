@@ -1,18 +1,17 @@
-## [torch 参数更多 ]torch.numel
+## [ 无参数 ]torch.numel
 ### [torch.numel](https://pytorch.org/docs/stable/generated/torch.numel.html?highlight=numel#torch.numel)
 
 ```python
 torch.numel(input)
 ```
 
-### [paddle.Tensor.size](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#size)
+### [paddle.Tensor.size](https://www.paddlepaddle.org.cn/documentation/docs/guides/beginner/tensor_cn.html#tensor-shape)
 
 ```python
 paddle.Tensor.size
 ```
 
-Paddle 使用类方法来实现，因此忽略第一个参数，无其他参数。
-
+两者功能一致，均无参数。
 
 ### 转写示例
 ```python

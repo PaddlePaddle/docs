@@ -1,4 +1,5 @@
-## [ 参数不一致 ]torch.utils.data.DataLoader
+## [ torch 参数更多 ]torch.utils.data.DataLoader
+
 ### [torch.utils.data.DataLoader](https://pytorch.org/docs/stable/data.html?highlight=dataloader#torch.utils.data.DataLoader)
 ```python
 torch.utils.data.DataLoader(dataset,
@@ -39,7 +40,7 @@ paddle.io.DataLoader(dataset,
 ```
 
 
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | sampler       | -            | 表示数据集采集器，Paddle 无此参数。  |

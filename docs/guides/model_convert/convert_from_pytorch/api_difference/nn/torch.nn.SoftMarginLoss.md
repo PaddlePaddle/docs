@@ -19,11 +19,11 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
-| PyTorch      | Paddle    | 备注                                         |
-| ------------ | --------- | -------------------------------------------- |
-| size_average | -         | PyTorch 已弃用， Paddle 无此参数，需要转写。 |
-| reduce       | -         | PyTorch 已弃用， Paddle 无此参数，需要转写。 |
-| reduction    | reduction | 表示应用于输出结果的计算方式。               |
+| PyTorch      | PaddlePaddle | 备注                                         |
+| ------------ | ------------ | -------------------------------------------- |
+| size_average | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。 |
+| reduce       | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。 |
+| reduction    | reduction    | 表示应用于输出结果的计算方式。               |
 
 ### 转写示例
 

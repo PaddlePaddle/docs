@@ -12,6 +12,7 @@ paddle.distributed 目录包含的 API 支撑飞桨框架大规模分布式训�
 -  :ref:`Stream 集合通信高级 API <05>`
 -  :ref:`RPC API <06>`
 -  :ref:`自动并行 API <07>`
+-  :ref:`Sharding API <08>`
 
 .. _01:
 
@@ -50,6 +51,7 @@ Fleet 分布式高层 API
     :header: "API 名称", "API 功能"
     :widths: 20, 50
 
+    " :ref:`is_initialized <cn_api_paddle_distributed_is_initialized>` ", "检查分布式环境是否已经被初始化"
     " :ref:`is_available <cn_api_paddle_distributed_is_available>` ", "检查分布式环境是否可用"
     " :ref:`init_parallel_env <cn_api_paddle_distributed_init_parallel_env>` ", "初始化并行训练环境，支持动态图模式"
     " :ref:`launch <cn_api_paddle_distributed_launch>` ", "启动分布式训练进程，支持集合通信及参数服务器架构"
@@ -57,8 +59,11 @@ Fleet 分布式高层 API
     " :ref:`get_rank <cn_api_paddle_distributed_get_rank>` ", "获取当前进程的 rank 值"
     " :ref:`get_world_size <cn_api_paddle_distributed_get_world_size>` ", "获取当前进程数"
     " :ref:`new_group <cn_api_paddle_distributed_new_group>` ", "创建分布式通信组"
+    " :ref:`get_group <cn_api_paddle_distributed_get_group>` ", "通过通信组 id 获取通信组实例"
     " :ref:`destroy_process_group <cn_api_paddle_distributed_destroy_process_group>` ", "销毁分布式通信组"
     " :ref:`get_backend <cn_api_paddle_distributed_get_backend>` ", "获取指定分布式通信组后端的名称"
+    " :ref:`gloo_init_parallel_env <cn_api_paddle_distributed_gloo_init_parallel_env>` ", "初始化 ``GLOO`` 上下文用于 CPU 间的通信"
+    " :ref:`gloo_release <cn_api_paddle_distributed_gloo_release>` ", "释放当前并行环境的 gloo 上下文"
     " :ref:`ParallelEnv <cn_api_paddle_distributed_ParallelEnv>` ", "这个类用于获取动态图模型并行执行所需的环境变量值"
 
 .. _03:
@@ -102,6 +107,7 @@ Fleet 分布式高层 API
     " :ref:`send <cn_api_paddle_distributed_send>` ", "发送一个 tensor 到指定进程"
     " :ref:`recv <cn_api_paddle_distributed_recv>` ", "接收一个来自指定进程的 tensor"
     " :ref:`barrier <cn_api_paddle_distributed_barrier>` ", "同步路障，阻塞操作以实现组内进程同步"
+    " :ref:`gloo_barrier <cn_api_paddle_distributed_gloo_barrier>` ", "使用初始化的 gloo 上下文直接调用基于 gloo 封装的 barrier 函数"
     " :ref:`wait <cn_api_paddle_distributed_wait>` ", "同步通信组，在指定的通信组中同步特定的 tensor 对象"
 
 .. _05:
@@ -145,7 +151,6 @@ RPC API
     " :ref:`rpc.get_all_worker_infos <cn_api_paddle_distributed_rpc_get_all_worker_infos>` ", "获取所有 worker 的信息"
     " :ref:`rpc.get_current_worker_info <cn_api_paddle_distributed_rpc_get_current_worker_info>` ", "获取当前 worker 的信息"
 
-
 .. _07:
 
 自动并行 API
@@ -158,8 +163,23 @@ RPC API
     :widths: 20, 50
 
     " :ref:`shard_tensor <cn_api_paddle_distributed_shard_tensor>` ", "创建带有分布式切分信息的分布式 Tensor"
+    " :ref:`dtensor_from_fn <cn_api_paddle_distributed_dtensor_from_fn>` ", "通过一个 paddle API 结合分布式属性 placements 创建一个带分布式属性的 Tensor"
     " :ref:`shard_layer <cn_api_paddle_distributed_shard_layer>` ", "按照指定方式将 Layer 中的参数转换为分布式 Tensor"
     " :ref:`reshard <cn_api_paddle_distributed_reshard>`", "对一个带有分布式信息的 Tensor 重新进行分布/切片"
     " :ref:`to_static <cn_api_paddle_distributed_to_static>`", "将带有分布式切分信息的动态图模型转换为静态图分布式模型"
     " :ref:`Strategy <cn_api_paddle_distributed_Strategy>`", "配置静态图分布式训练时所使用的并行策略和优化策略"
+    " :ref:`DistAttr <cn_api_paddle_distributed_DistAttr>` ", "指定 Tensor 在 ProcessMesh 上的分布或切片方式"
+    " :ref:`shard_optimizer <cn_api_paddle_distributed_shard_optimizer>` ", "将单卡视角的优化器转变为分布式视角"
     " :ref:`split <cn_api_paddle_distributed_split>` ", "切分指定操作的参数到多个设备，并且并行计算得到结果"
+
+.. _08:
+
+Sharding API
+::::::::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 20, 50
+
+    " :ref:`sharding.group_sharded_parallel <cn_api_paddle_distributed_sharding_group_sharded_parallel>`", "对模型、优化器和 GradScaler 做 group sharded 配置"
+    " :ref:`sharding.save_group_sharded_model <cn_api_paddle_distributed_sharding_save_group_sharded_model>`", "对 group_sharded_parallel 配置后的模型和优化器状态进行保存"

@@ -1,4 +1,4 @@
-## [ 参数不一致 ] torch.Tensor.qr
+## [ 输入参数类型不一致 ] torch.Tensor.qr
 
 ### [torch.Tensor.qr](https://pytorch.org/docs/stable/generated/torch.Tensor.qr.html?highlight=torch+tensor+qr#torch.Tensor.qr)
 

@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.split
+## [ 输入参数用法不一致 ]torch.Tensor.split
 
 ### [torch.Tensor.split](https://pytorch.org/docs/stable/generated/torch.Tensor.split.html)
 

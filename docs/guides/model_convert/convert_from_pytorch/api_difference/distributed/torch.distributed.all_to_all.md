@@ -1,4 +1,4 @@
-## [参数不一致]torch.distributed.all_to_all
+## [ 输入参数用法不一致 ]torch.distributed.all_to_all
 
 ### [torch.distributed.all_to_all](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_to_all)
 

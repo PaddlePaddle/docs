@@ -1,4 +1,4 @@
-##  [ 参数不一致 ]torch.nn.functional.smooth_l1_loss
+##  [ 输入参数用法不一致 ]torch.nn.functional.smooth_l1_loss
 
 ### [torch.nn.functional.smooth_l1_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.smooth_l1_loss.html)
 

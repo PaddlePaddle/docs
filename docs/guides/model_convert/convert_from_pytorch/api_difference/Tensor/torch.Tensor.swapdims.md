@@ -1,4 +1,4 @@
-## [ 参数不一致 ] torch.Tensor.swapdims
+## [ 输入参数用法不一致 ] torch.Tensor.swapdims
 
 ### [torch.Tensor.swapdims](https://pytorch.org/docs/stable/generated/torch.Tensor.swapdims.html#torch.Tensor.swapdims)
 

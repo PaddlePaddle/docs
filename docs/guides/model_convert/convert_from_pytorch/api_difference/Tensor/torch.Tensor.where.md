@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.where
+## [ 输入参数用法不一致 ]torch.Tensor.where
 
 ### [torch.Tensor.where](https://pytorch.org/docs/stable/generated/torch.Tensor.where.html#torch.Tensor.where)
 
@@ -13,7 +13,7 @@ paddle.Tensor.where(x, y, name=None)
 ```
 
 两者功能一致，参数名和参数用法不一致，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | condition     | -            | condition 为判断条件。Paddle 无此参数，需要转写。|
