@@ -47,13 +47,6 @@ COPY-FROM: paddle.DataParallel:dp-example
 COPY-FROM: paddle.DataParallel:dp-pylayer-example
 
 
-
-
-代码示例
-::::::::::::
-
-
-
 方法
 ::::::::::::
 no_sync()
