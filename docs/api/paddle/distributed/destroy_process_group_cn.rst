@@ -4,7 +4,7 @@ destroy_process_group
 -------------------------------
 
 
-.. py:function:: destroy_process_group(group=None)
+.. py:function:: paddle.distributed.destroy_process_group(group=None)
 
 销毁一个指定的通信组。
 

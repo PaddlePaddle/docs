@@ -46,17 +46,24 @@ COPY-FROM: paddle.DataParallel:dp-example
 ::::::::::::
 COPY-FROM: paddle.DataParallel:dp-pylayer-example
 
-.. py:function:: no_sync()
 
-用于暂停梯度同步的上下文管理器。在 no_sync()中参数梯度只会在模型上累加；直到 with 之外的第一个 forward-backward，梯度才会被同步。
+
 
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.DataParallel.no_sync
+
 
 方法
 ::::::::::::
+no_sync()
+'''''''''
+用于暂停梯度同步的上下文管理器。在 no_sync()中参数梯度只会在模型上累加；直到 with 之外的第一个 forward-backward，梯度才会被同步。
+
+**代码示例**
+
+COPY-FROM: paddle.DataParallel.no_sync
+
 state_dict(destination=None, include_sublayers=True)
 '''''''''
 
