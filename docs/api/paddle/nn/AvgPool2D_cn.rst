@@ -3,7 +3,7 @@
 AvgPool2D
 -------------------------------
 
-.. py:function:: paddle.nn.AvgPool2D(kernel_size, stride=None, padding=0, ceil_mode=False, exclusive=True, divisor_override=None, data_format="NCHW", name=None)
+.. py:class:: paddle.nn.AvgPool2D(kernel_size, stride=None, padding=0, ceil_mode=False, exclusive=True, divisor_override=None, data_format="NCHW", name=None)
 构建 `AvgPool2D` 类的一个可调用对象，其将构建一个二维平均池化层，根据输入参数 `kernel_size`, `stride`,
 `padding` 等参数对输入做平均池化操作。
 
