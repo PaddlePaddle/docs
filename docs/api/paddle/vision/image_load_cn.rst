@@ -3,7 +3,7 @@
 image_load
 -------------------------------
 
-.. py:function:: paddle.vision.image.image_load(path, backend=None)
+.. py:function:: paddle.vision.image_load(path, backend=None)
 
 读取一个图像。
 
@@ -21,4 +21,4 @@ image_load
 代码示例
 :::::::::
 
-COPY-FROM: paddle.vision.image.image_load
+COPY-FROM: paddle.vision.image_load
