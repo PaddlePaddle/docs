@@ -272,7 +272,7 @@ Loss 层
     " :ref:`paddle.nn.TripletMarginWithDistanceLoss <cn_api_paddle_nn_TripletMarginWithDistanceLoss>` ", "TripletMarginWithDistanceLoss 层"
     " :ref:`paddle.nn.MultiLabelSoftMarginLoss <cn_api_paddle_nn_MultiLabelSoftMarginLoss>` ", "多标签 Hinge 损失层"
     " :ref:`paddle.nn.MultiMarginLoss <cn_api_paddle_nn_MultiMarginLoss>` ", "MultiMarginLoss 层"
-    " :ref:`paddle.nn.AdaptiveLogSoftmaxWithLoss <_cn_api_paddle_nn_AdaptiveLogSoftmaxWithLoss>` ", "自适应 logsoftmax 损失类"
+    " :ref:`paddle.nn.AdaptiveLogSoftmaxWithLoss <cn_api_paddle_nn_AdaptiveLogSoftmaxWithLoss>` ", "自适应 logsoftmax 损失类"
 
 
 .. _vision_layers:
