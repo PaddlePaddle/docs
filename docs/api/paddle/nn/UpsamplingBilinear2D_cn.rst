@@ -3,7 +3,7 @@
 UpsamplingBilinear2D
 -------------------------------
 
-.. py:function:: paddle.nn.UpsamplingBilinear2D(size=None,scale_factor=None, data_format='NCHW',name=None)
+.. py:class:: paddle.nn.UpsamplingBilinear2D(size=None,scale_factor=None, data_format='NCHW',name=None)
 
 
 
