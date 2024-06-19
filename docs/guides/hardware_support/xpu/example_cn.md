@@ -1,10 +1,10 @@
-# 昆仑 XPU 运行示例
+# 昆仑芯 XPU 运行示例
 
-**预先要求**：请先根据文档 [昆仑 XPU 安装说明](./install_cn.html) 准备昆仑 XPU 运行环境，建议以下步骤都在 docker 环境中运行。
+**预先要求**：请先根据文档 [昆仑芯 XPU 安装说明](./install_cn.html) 准备昆仑芯 XPU 运行环境，建议以下步骤都在 docker 环境中运行。
 
 ## 训练示例
 
-以 [ResNet50_vd](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.5/docs/zh_CN/quick_start/quick_start_classification_new_user.md) 模型为例，介绍如何使用昆仑 XPU 进行训练。
+以 [ResNet50_vd](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.5/docs/zh_CN/quick_start/quick_start_classification_new_user.md) 模型为例，介绍如何使用昆仑芯 XPU 进行训练。
 
 ### 一、下载套件代码
 
@@ -65,7 +65,7 @@ python tools/eval.py -c ./ppcls/configs/quick_start/ResNet50_vd.yaml \
 
 ## 推理示例
 
-以 [ResNet50](https://paddle-inference-dist.bj.bcebos.com/Paddle-Inference-Demo/resnet50.tgz) 模型为例，介绍如何使用昆仑 XPU 进行推理。
+以 [ResNet50](https://paddle-inference-dist.bj.bcebos.com/Paddle-Inference-Demo/resnet50.tgz) 模型为例，介绍如何使用昆仑芯 XPU 进行推理。
 
 ### 一、下载推理程序
 

@@ -1,20 +1,20 @@
-# 昆仑 XPU 安装说明
+# 昆仑芯 XPU 安装说明
 
 飞桨框架 XPU 版支持昆仑芯 XPU 的训练和推理，提供两种安装方式：
 
 1. 通过飞桨官网发布的 wheel 包安装
 2. 通过源代码编译安装得到 wheel 包
 
-## 昆仑 XPU 系统要求
+## 昆仑芯 XPU 系统要求
 
 | 要求类型 |   要求内容   |
 | --------- | -------- |
-| 芯片型号 | 昆仑芯 2 代，包括 R200、R300、R200-8F、R200-8FS、RG800 |
+| 芯片型号 | 昆仑芯 2 代，包括 R200、R300、R200-8F、RG800 |
 | 操作系统 | Linux 操作系统，包括 Ubuntu、CentOS、KylinV10 |
 
 ## 运行环境准备
 
-推荐使用飞桨官方发布的昆仑 XPU 开发镜像，该镜像预装有昆仑基础运行环境库（XRE）。
+推荐使用飞桨官方发布的昆仑芯 XPU 开发镜像，该镜像预装有昆仑芯基础运行环境库（XRE）。
 
 ```bash
 # 拉取镜像
@@ -26,7 +26,7 @@ docker run -it --name paddle-xpu-dev -v $(pwd):/work \
   --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
   registry.baidubce.com/device/paddle-xpu:ubuntu20-x86_64-gcc84-py310 /bin/bash
 
-# 检查容器内是否可以正常识别昆仑 XPU 设备
+# 检查容器内是否可以正常识别昆仑芯 XPU 设备
 xpu_smi
 
 # 预期得到输出如下
@@ -55,7 +55,7 @@ Driver Version: 4.0
 
 ## 安装飞桨框架
 
-**注意**：当前飞桨 develop 分支仅支持 X86 架构，如需昆仑 XPU 的 ARM 架构支持，请切换到 [release/2.6](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/guides/hardware_support/xpu/install_cn.html) 分支。
+**注意**：当前飞桨 develop 分支仅支持 X86 架构，如需昆仑芯 XPU 的 ARM 架构支持，请切换到 [release/2.6](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/guides/hardware_support/xpu/install_cn.html) 分支。
 
 ### 安装方式一：wheel 包安装
 

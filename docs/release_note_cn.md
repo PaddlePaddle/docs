@@ -357,7 +357,7 @@ PIR（Paddle Intermediate Representation）对底层的核心概念如 Operation
 - 修复 CustomDevice 中设备管理的一些问题，包括设备异常 ([#56556](https://github.com/PaddlePaddle/Paddle/pull/56556),[#58639](https://github.com/PaddlePaddle/Paddle/pull/58639),[#55173](https://github.com/PaddlePaddle/Paddle/pull/55173)), 异常事件([#56745](https://github.com/PaddlePaddle/Paddle/pull/56745),[#58059](https://github.com/PaddlePaddle/Paddle/pull/58059)), 显存异常([#56977](https://github.com/PaddlePaddle/Paddle/pull/56977),[#59247](https://github.com/PaddlePaddle/Paddle/pull/59247),[#54606](https://github.com/PaddlePaddle/Paddle/pull/54606)), 设备初始化 ([#57099](https://github.com/PaddlePaddle/Paddle/pull/57099),[#57994](https://github.com/PaddlePaddle/Paddle/pull/57994))，设备释放([#54932](https://github.com/PaddlePaddle/Paddle/pull/54932),[#55351](https://github.com/PaddlePaddle/Paddle/pull/55351),[#55783](https://github.com/PaddlePaddle/Paddle/pull/55783))，和设备资源池等。([#55229](https://github.com/PaddlePaddle/Paddle/pull/55229),[#56580](https://github.com/PaddlePaddle/Paddle/pull/56580))
 - 修复 CustomDevice 编译相关问题。[#56760](https://github.com/PaddlePaddle/Paddle/pull/56760),[#56766](https://github.com/PaddlePaddle/Paddle/pull/56766)
 
-### 昆仑 XPU
+### 昆仑芯 XPU
 
 #### 新功能
 
@@ -366,7 +366,7 @@ PIR（Paddle Intermediate Representation）对底层的核心概念如 Operation
 - 新增 XPU 融合算子包括 fast_where。[#55628](https://github.com/PaddlePaddle/Paddle/pull/55628)
 - 新增 XPU Plugin 功能支持，方便用户可通过 XTDK 编程方式开发 XPU 自定义算子。[#55101](https://github.com/PaddlePaddle/Paddle/pull/55101),[#59326](https://github.com/PaddlePaddle/Paddle/pull/59326)
 - 新增 XPU 对 AutoGrowthAllocator 的支持。[#54121](https://github.com/PaddlePaddle/Paddle/pull/54121)
-- 新增昆仑 3 的算子支持列表。[#57683](https://github.com/PaddlePaddle/Paddle/pull/57683)
+- 新增昆仑芯 3 的算子支持列表。[#57683](https://github.com/PaddlePaddle/Paddle/pull/57683)
 
 #### 功能优化
 
@@ -725,7 +725,7 @@ Azure-Tang, zhaoyinglia, From00, JZ-LIANG, xysheng-baidu, SylarTiaNII, kuizhiqin
 - CPU 的 OneDNN 推理支持 suqeeze2 + transpose2 融合，[#47592](https://github.com/PaddlePaddle/Paddle/pull/47592)
 
 ### XPU 推理提升和性能优化
-- 新增 ExpRunWithRuntimeConfig 接口与 XpuRuntimeConfig 允许推理期间设置外部流、L3 cache 等参数；GetExecStream 接口支持获得昆仑外部流对象；输入、输出支持昆仑设备内存减少 D2H 和 H2D 开销，[#53334](https://github.com/PaddlePaddle/Paddle/pull/53334)、 [#52466](https://github.com/PaddlePaddle/Paddle/pull/52466)、 [#53240](https://github.com/PaddlePaddle/Paddle/pull/53240)
+- 新增 ExpRunWithRuntimeConfig 接口与 XpuRuntimeConfig 允许推理期间设置外部流、L3 cache 等参数；GetExecStream 接口支持获得昆仑芯外部流对象；输入、输出支持昆仑芯设备内存减少 D2H 和 H2D 开销，[#53334](https://github.com/PaddlePaddle/Paddle/pull/53334)、 [#52466](https://github.com/PaddlePaddle/Paddle/pull/52466)、 [#53240](https://github.com/PaddlePaddle/Paddle/pull/53240)
 - 新增 multi-encoder,  fused_multi_transformer 算子和融合 pass，提升 ERNIE 和 Transformer 类模型性能，[#50570](https://github.com/PaddlePaddle/Paddle/pull/50570)、[#51346](https://github.com/PaddlePaddle/Paddle/pull/51346)、 [#50499](https://github.com/PaddlePaddle/Paddle/pull/50499)、[#53982](https://github.com/PaddlePaddle/Paddle/pull/53982)、[#50759](https://github.com/PaddlePaddle/Paddle/pull/50759)、[#51571](https://github.com/PaddlePaddle/Paddle/pull/51571)、 [#53144](https://github.com/PaddlePaddle/Paddle/pull/53144)、[#53306](https://github.com/PaddlePaddle/Paddle/pull/53306)
 - 优化 BeamSearch 性能，当 beam_size=1 时对 write_read_array, gather 等细粒度算子进行变换、去除和融合提升模型性能，[#53130](https://github.com/PaddlePaddle/Paddle/pull/53130)
 - 多个相同输入的 stack 算子变换为支持 broadcast 的 unsqueeze 算子，unsquee/squeeze 支持 inplace 计算，  [#52099](https://github.com/PaddlePaddle/Paddle/pull/52099)
@@ -2354,7 +2354,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - 统一参数服务器下，新增评估指标模块，支持 AUC/WuAUC/MaskAuc 等评估指标计算及可自定义扩展。([#38789](https://github.com/PaddlePaddle/Paddle/pull/38789))
 
-  - 支持在昆仑 2 芯片上的 XPU 参数服务器训练。([#41917](https://github.com/PaddlePaddle/Paddle/pull/41917), [#42266](https://github.com/PaddlePaddle/Paddle/pull/42266), [#41916](https://github.com/PaddlePaddle/Paddle/pull/41916))
+  - 支持在昆仑芯 2 芯片上的 XPU 参数服务器训练。([#41917](https://github.com/PaddlePaddle/Paddle/pull/41917), [#42266](https://github.com/PaddlePaddle/Paddle/pull/42266), [#41916](https://github.com/PaddlePaddle/Paddle/pull/41916))
 
 #### Profiler
 
@@ -2644,9 +2644,9 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
 - 新增对 unstack 和 unique op 元素个数为 0 的 Tensor 增加检查。([#36021](https://github.com/PaddlePaddle/Paddle/pull/36021))
 
-- 新增支持昆仑 2 的多层、双向 LSTM 功能，完善 RNN 前反向 op，支持时序类模型训练使用。([#](https://github.com/PaddlePaddle/Paddle/pull/41781)[42076](https://github.com/PaddlePaddle/Paddle/pull/42076))
+- 新增支持昆仑芯 2 的多层、双向 LSTM 功能，完善 RNN 前反向 op，支持时序类模型训练使用。([#](https://github.com/PaddlePaddle/Paddle/pull/41781)[42076](https://github.com/PaddlePaddle/Paddle/pull/42076))
 
-- 新增支持昆仑 2 的 bce_loss 前反向 op。([#41610](https://github.com/PaddlePaddle/Paddle/pull/41610))
+- 新增支持昆昆仑芯 2 的 bce_loss 前反向 op。([#41610](https://github.com/PaddlePaddle/Paddle/pull/41610))
 
 - 添加 `paddle.linalg.det` 的反向实现。([#36013](https://github.com/PaddlePaddle/Paddle/pull/36013))
 
