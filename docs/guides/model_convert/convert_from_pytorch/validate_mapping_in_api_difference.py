@@ -2,6 +2,7 @@ import collections
 import json
 import os
 import re
+import sys
 import traceback
 import typing
 import urllib
@@ -392,6 +393,10 @@ def validate_mapping_table_macro_row(columns, row_idx, line_idx):
 
     if macro_match:
         macro_type = macro_match["macro_type"]
+        if macro_type not in ["REFERENCE-MAPPING-ITEM", "NOT-IMPLEMENTED-ITEM"]:
+            print(f"Unknown macro type: {macro_type} at line {line_idx}.")
+            return False
+
         torch_api = macro_match["torch_api"].strip("`")
         diff_url = macro_match["diff_url"]
 
@@ -540,6 +545,7 @@ def process_mapping_index(index_path, item_processer, context={}):
                 print(f"Error at line {i+1}: {line}")
                 traceback.print_exc()
                 ret_code = 1
+                sys.exit(-5)
 
             # state = 6
         else:
@@ -689,15 +695,19 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
                         f'[{paddle_col}]({meta_data["paddle_api_url"]})'
                     )
 
-                line = " | ".join(
-                    [
-                        alias_col,
-                        paddle_col,
-                        mapping_type,
-                        f"`{api_name}`别名，[详细对比]({url})",
-                    ]
+                # line = " | ".join(
+                #     [
+                #         alias_col,
+                #         paddle_col,
+                #         mapping_type,
+                #         f"`{api_name}`别名，[详细对比]({url})",
+                #     ]
+                # )
+                # target["alias"][alias_name] = line
+                macro_line = (
+                    f"ALIAS-REFERENCE-ITEM(`{alias_name}`, `{api_name}`)"
                 )
-                target["alias"][alias_name] = line
+                target["alias"][alias_name] = macro_line
                 filled_count += 1
 
     if filled_count > 0:
