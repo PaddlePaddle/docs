@@ -19,9 +19,9 @@ LPPool1D
     - **norm_type** (int|float)：幂平均池化的指数，不可以为 0。
     - **kernel_size** (int|list|tuple) - 池化核的尺寸大小。如果 kernel_size 为 list 或 tuple 类型，其必须包含一个整数，最终池化核的大小为该数值。
     - **stride** (int|list|tuple，可选) - 池化操作步长。如果 stride 为 list 或 tuple 类型，其必须包含一个整数，最终池化操作的步长为该数值。默认值为 None，这时会使用 kernel_size 作为 stride。
-    - **padding** (str|int|list|tuple，可选) - 池化补零的方式。如果 padding 是一个字符串，则必须为 `SAME` 或者 `VALID`。如果是 turple 或者 list 类型，则应是 `[pad_left, pad_right]` 形式。如果 padding 是一个非 0 值，那么表示会在输入的两端都 padding 上同样长度的 0。默认值为 0。
+    - **padding** (string|int|list|tuple) 池化填充。如果它是一个字符串，可以是"VALID"或者"SAME"，表示填充算法。如果它是一个元组或列表，它可以有 3 种格式：(1)包含 2 个整数值：[pad_height, pad_width]；(2)包含 4 个整数值：[pad_height_top, pad_height_bottom, pad_width_left, pad_width_right]；(3)包含 4 个二元组：当 data_format 为"NCHW"时为 [[0,0], [0,0], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right]]，当 data_format 为"NHWC"时为[[0,0], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right], [0,0]]。若为一个整数，则表示 H 和 W 维度上均为该值。默认值：0。
     - **ceil_mode** (bool，可选) - 是否用 ceil 函数计算输出的 height 和 width，如果设置为 False，则使用 floor 函数来计算，默认为 False。
-    - **data_format** (str)：输入和输出的数据格式，可以是"NCL"和"NLC"。N 是批尺寸，C 是通道数，L 是特征长度。默认值："NCL"
+    - **data_format** (str，可选)：输入和输出的数据格式，可以是"NCL"和"NLC"。N 是批尺寸，C 是通道数，L 是特征长度。默认值："NCL"
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
