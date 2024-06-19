@@ -2,6 +2,7 @@ import collections
 import json
 import os
 import re
+import sys
 import traceback
 import typing
 import urllib
@@ -544,6 +545,7 @@ def process_mapping_index(index_path, item_processer, context={}):
                 print(f"Error at line {i+1}: {line}")
                 traceback.print_exc()
                 ret_code = 1
+                sys.exit(-5)
 
             # state = 6
         else:

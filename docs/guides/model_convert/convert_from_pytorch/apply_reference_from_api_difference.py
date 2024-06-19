@@ -68,7 +68,7 @@ REFERENCE_PATTERN = re.compile(
     r"^\| *REFERENCE-MAPPING-ITEM\( *(?P<torch_api>[^,]+) *, *(?P<diff_url>.+) *\) *\|$"
 )
 ALIAS_PATTERN = re.compile(
-    r"^\| *ALIAS-REFERENCE-ITEM\( *(?P<alias_name>[^,]+) *, *(?P<torch_api>[^,]+) *, *(?P<diff_url>.+) *\) *\|$"
+    r"^\| *ALIAS-REFERENCE-ITEM\( *(?P<alias_name>[^,]+) *, *(?P<torch_api>[^,]+) *\) *\|$"
 )
 NOT_IMPLEMENTED_PATTERN = re.compile(
     r"^\| *NOT-IMPLEMENTED-ITEM\( *(?P<torch_api>[^,]+) *, *(?P<torch_api_url>.+) *\) *\|$"
@@ -106,6 +106,8 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
                 f"Cannot find torch_api: {torch_api} in line {line_idx}"
             )
 
+        meta_dict[torch_api]["diff_url"] = diff_page_url
+
         reference_item = metadata_dict.get(torch_api, None)
         torch_api_url = reference_item["torch_api_url"]
         torch_api_column = f"[`{torch_api}`]({torch_api_url})"
@@ -142,22 +144,19 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         output = "| " + " | ".join(content) + " |\n"
         return output
     elif alias_match:
-        alias_name = (
-            reference_match["alias_name"].strip("`").replace(r"\_", "_")
-        )
-        torch_api = reference_match["torch_api"].strip("`").replace(r"\_", "_")
-        diff_url = reference_match["diff_url"]
-
-        diff_page_url = docs_url_to_relative_page(diff_url)
+        alias_name = alias_match["alias_name"].strip("`").replace(r"\_", "_")
+        torch_api = alias_match["torch_api"].strip("`").replace(r"\_", "_")
 
         if torch_api not in metadata_dict:
             raise Exception(
                 f"Cannot find torch_api: {torch_api} in line {line_idx}"
             )
 
+        diff_page_url = metadata_dict[torch_api].get("diff_url", "")
+
         reference_item = metadata_dict.get(torch_api, None)
         torch_api_url = reference_item["torch_api_url"]
-        torch_api_column = f"[`{torch_api}`]({torch_api_url})"
+        alisa_name_column = f"[`{alias_name}`]({torch_api_url})"
 
         mapping_type = reference_item["mapping_type"]
         mapping_type_column = mapping_type
@@ -165,9 +164,11 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         _mapping_type_desc, show_diff_url = mapping_type_to_description(
             mapping_type
         )
-        mapping_url_column = ""
+
+        desc_column = f"`{torch_api}` 别名"
+
         if show_diff_url:
-            mapping_url_column = f"[详细对比]({diff_page_url})"
+            desc_column += f"，[详细对比]({diff_page_url})"
 
         if "paddle_api" not in reference_item:
             if mapping_type not in ["组合替代实现", "可删除", "功能缺失"]:
@@ -182,10 +183,10 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
 
         content = [
             row_idx_s,
-            torch_api_column,
+            alisa_name_column,
             paddle_api_column,
             mapping_type_column,
-            mapping_url_column,
+            desc_column,
         ]
 
         output = "| " + " | ".join(content) + " |\n"
@@ -217,7 +218,7 @@ def apply_reference_to_row(line, metadata_dict, table_row_idx, line_idx):
         raise ValueError(
             f"found manual-maintaining row at line [{line_idx}]: {line}"
         )
-        # return line
+        return line
 
 
 def reference_mapping_item_processer(line, line_idx, state, output, context):
