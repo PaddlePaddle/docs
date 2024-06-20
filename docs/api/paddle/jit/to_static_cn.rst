@@ -3,7 +3,7 @@
 to_static
 -------------------------------
 
-.. py:function:: paddle.jit.to_static
+.. py:decorator:: paddle.jit.to_static
 
 本装饰器将函数内的动态图 API 转化为静态图 API。此装饰器自动处理静态图模式下的 Program 和 Executor，并将结果作为动态图 Tensor 返回。输出的动态图 Tensor 可以继续进行动态图训练、预测或其他运算。如果被装饰的函数里面调用其他动态图函数，被调用的函数也会被转化为静态图函数。
 
