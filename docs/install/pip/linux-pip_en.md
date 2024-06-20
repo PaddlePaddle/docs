@@ -102,93 +102,26 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle==2.6.1 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle==3.0.0b0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
-
 
 
 #### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
-
-
-
-2.2.1 If you are using CUDA 11.2
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post112 -i https://mirror.baidu.com/pypi/simple
-  ```
-
-
-  CUDA11.2 with cuDNN dynamic library PaddlePaddle
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post112 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
-  ```
-
-
-2.2.2 If you are using CUDA 11.6
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
-  ```
-
-
-  CUDA11.6 with cuDNN dynamic library PaddlePaddle
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post116 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
-  ```
-
-
-2.2.3 If you are using CUDA 11.7
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
-  ```
-
-
-  CUDA11.7 with cuDNN dynamic library PaddlePaddle
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post117 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
-  ```
 
 
 2.2.4 If you are using CUDA 11.8
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle-gpu==3.0.0b0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
 
-  CUDA11.8 with cuDNN dynamic library PaddlePaddle, you can use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package)
+2.2.5 If you are using CUDA 12.3
 
 
   ```
-  python3 -m pip download paddlepaddle-gpu==2.6.1 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html  --no-index --no-deps
-
-  ```
-
-
-2.2.5 If you are using CUDA 12.0
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post120 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
-  ```
-
-
-  CUDA12.0 with cuDNN dynamic library PaddlePaddle
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post120 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip install paddlepaddle-gpu==3.0.0b0 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
   ```
 
 
@@ -204,7 +137,7 @@ Note：
 * If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
 
   ```
-  python3 -m pip download paddlepaddle==2.6.1 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
+  python3 -m pip download paddlepaddle==3.0.0b0 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
   ```
 
 

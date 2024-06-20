@@ -71,41 +71,23 @@
 
 
   ```
-  python -m pip install paddlepaddle==2.6.1 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle==3.0.0b0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
+
 
 #### 2.2 <span id="gpu">GPU 版的 PaddlePaddle</span>
 
 
-
-2.2.1 CUDA11.2 的 PaddlePaddle
-
-  ```
-  python -m pip install paddlepaddle-gpu==2.6.1.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
-  ```
-
-2.2.2 CUDA11.6 的 PaddlePaddle
-
-  ```
-  python -m pip install paddlepaddle-gpu==2.6.1.post116 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
-  ```
-
-2.2.3 CUDA11.7 的 PaddlePaddle
-
-  ```
-  python -m pip install paddlepaddle-gpu==2.6.1.post117 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
-  ```
-
 2.2.4 CUDA11.8 的 PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.6.1 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle-gpu==3.0.0b0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
-2.2.5 CUDA12.0 的 PaddlePaddle
+2.2.5 CUDA12.3 的 PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.6.1.post120 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==3.0.0b0 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
   ```
 
 注：
@@ -117,7 +99,7 @@
 * 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
   ```
-  python -m pip download paddlepaddle==2.6.1 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/avx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle==3.0.0b0 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/avx/stable.html --no-index --no-deps
   ```
 
 
