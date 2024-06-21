@@ -1,5 +1,19 @@
 # 安装常见问题
 
+#### 问题：conda环境下安装paddlepaddle 3.0.0b0版本，运行`import paddle`时报错,报错信息为找不到libpython.so文件
+
++ 问题描述：
+> ImportError: libpython3.12.so.1.0: cannot open shared object file: No such file or directory
+
++ 问题分析：
+遇到该问题是因为3.0.0b0版本中增加了对于libpython的依赖，但是使用conda安装的python环境时，未把libpython.so文件所在路径加入到环境变量中，导致找不到该文件。
+
++ 解决办法：
+例如：执行`find / -name libpython3.12.so.1.0`, 发现 libpython的路径如`/opt/conda/lib/`，使用如下命令安装即可;
+
+```bash
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/conda/lib/
+```
 
 ##### 问题：使用过程中报找不到 tensorrt 库的日志
 
