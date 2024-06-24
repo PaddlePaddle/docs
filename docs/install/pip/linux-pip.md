@@ -68,8 +68,6 @@
 
   * **CUDA 工具包 12.3 配合 cuDNN v9.0.0, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.6.1.6**
 
-  * **如需使用分布式多卡环境，需配合 NCCL>=2.7**
-
   * **GPU 运算能力超过 6.0 的硬件设备**
 
     您可参考 NVIDIA 官方文档了解 CUDA、CUDNN 和 TensorRT 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/tensorrt)

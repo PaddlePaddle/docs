@@ -63,9 +63,9 @@
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 11.8 with cuDNN v8.6.0(for multi card support, NCCL2.7 or higher；for PaddleTensorRT deployment, TensorRT8.5.1.7)**
+  * **CUDA toolkit 11.8 with cuDNN v8.6.0(for PaddleTensorRT deployment, TensorRT8.5.1.7)**
 
-  * **CUDA toolkit 12.3 with cuDNN v9.0.0(for multi card support, NCCL2.7 or higher；for PaddleTensorRT deployment, TensorRT8.6.1.6)**
+  * **CUDA toolkit 12.3 with cuDNN v9.0.0(for PaddleTensorRT deployment, TensorRT8.6.1.6)**
 
   * **Hardware devices with GPU computing power over 3.5**
 
