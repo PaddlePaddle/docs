@@ -13,7 +13,7 @@
 
 # 二、基本概念
 
-## 2.1 自动并行相关 API
+## 2.1 自动并行 API
 
 根据功能，我们将自动并行支持的 API 分为标记信息、动转静、Save&Load 三类。
 
@@ -87,6 +87,43 @@ dist_tensor_after_reshard = dist.reshard(dist_tensor, mesh1, placements1)
 
 # 三、原理简介
 
+下面我们用一个简单的列子介绍自动并行框架底层的执行流程和原理。
+
+在单卡逻辑视角下我们希望完成计算 C = Matmul(A, B)，D = Relu(C)。
+假设用户将TensorB 标记成按列切分，表示在实际分布式集群中TensorB 被按行切分到不同的Devices 上。将TensorA 标记成复制，表示所有Devices 上都有完整TensorA 副本。
+
+```python
+import paddle
+import paddle.distributed as dist
+
+mesh = dist.ProcessMesh([0, 1], dim_names=['x'])
+dense_tensorA = paddle.to_tensor([[1,2,], [3,4]])
+dense_tensorB = paddle.to_tensor([[5,6], [7,8]])
+placementsA = [dist.Replicate()]
+placementsB = [dist.Shard(0)]
+
+dist_tensorA = dist.shard_tensor(dense_tensorA, mesh, placementsA)
+dist_tensorB = dist.shard_tensor(dense_tensorB, mesh, placementsB)
+dist_tensorC = Matmul(dist_tensorA, dist_tensorB)
+dist_tensorD = relu(dist_tensorC)
+```
+![原理简介](images/underlying1.png)
+
+接下来就会进入自动并行的第一个核心逻辑 **切分推导**。
+当前用户标记的输入切分状态是无法被Matmul算子实际计算的(TensorA 的第0维和TensorB 的第1维不匹配)。
+这时候自动并行框架会使用当前算子的切分推导规则(e.g. MatmulSPMD Rule)，根据输入tensors 的切分状态，推导出一套合法且性能较优的 输入-输出 张量的切分状态。
+在上述输入的切分状态下，框架会推导出会将 TensorA 的切分状态推导成按列切分，TensorB 保持切分状态不变，Matmul 的计算结果 TensorC 的切分状态是Partial。
+因为后续的Relu 算子是非线性的，输入不能是Partial 状态，所以框架会根据 ReluSPMD Rule将 TensorC 输入 Relu 前的的分布式状态推导成 Replicated。
+
+
+
+![原理简介](images/underlying2.png)
+
+接下来就会进入自动并行的第二个核心逻辑 **切分转换**。
+框架会根据tensor 当前的切分状态(src_placement)，和切分推导规则推导出的算子计算需要的切分状态(dst_placement),添加对应的通信/张量维度变换算子。
+根据上图的切分推导，在计算Matmul 添加 split 算子，在计算Relue 添加 Allreduce，将输入tensor 转换成需要的切分状态进行实际计算。
+
+![原理简介](images/underlying3.png)
 
 
 # 四、使用示例
