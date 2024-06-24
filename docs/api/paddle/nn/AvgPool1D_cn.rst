@@ -3,7 +3,7 @@
 AvgPool1D
 -------------------------------
 
-.. py:function:: paddle.nn.AvgPool1D(kernel_size, stride=None, padding=0, exclusive=True, ceil_mode=False, name=None)
+.. py:class:: paddle.nn.AvgPool1D(kernel_size, stride=None, padding=0, exclusive=True, ceil_mode=False, name=None)
 
 根据输入 `x` , `kernel_size` 等参数对一个输入 Tensor 计算 1D 的平均池化。输入和输出都是 3-D Tensor，
 默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数，`L` 是输入特征的长度。

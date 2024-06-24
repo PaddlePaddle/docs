@@ -3,7 +3,7 @@
 Bilinear
 -------------------------------
 
-.. py:function:: paddle.nn.Bilinear(in1_features, in2_features, out_features, weight_attr=None, bias_attr=None, name=None)
+.. py:class:: paddle.nn.Bilinear(in1_features, in2_features, out_features, weight_attr=None, bias_attr=None, name=None)
 
 该层对两个输入执行双线性 Tensor 积。
 
