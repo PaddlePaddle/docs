@@ -85,7 +85,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
 
     ```
-    docker run --gpus all --name paddle_docker -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    docker run --gpus all --name paddle_docker -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-gpu-cuda12.3-cudnn9.0-trt8.6 /bin/bash
     ```
 
     - `--gpus all`: gpu resources can be used in Docker container;
@@ -98,7 +98,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `-v $PWD:/paddle`: Specifies to mount the current path of the host (PWD variable in Linux will expand to the absolute path of the current path) to the /paddle directory inside the container;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`: Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
+    - `registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-gpu-cuda12.3-cudnn9.0-trt8.6`: Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
 
 
 * Use CPU version of PaddlePaddle with jupyter：

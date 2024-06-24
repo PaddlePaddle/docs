@@ -109,7 +109,7 @@
 * 使用 GPU 版本的 PaddlePaddle：
 
     ```
-    docker run --gpus all --name paddle_docker -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    docker run --gpus all --name paddle_docker -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-gpu-cuda12.3-cudnn9.0-trt8.6 /bin/bash
     ```
 
     - `--gpus all`: 在 Docker 容器中允许使用 gpu;
@@ -121,7 +121,7 @@
 
     - `-it`： 与宿主机保持交互状态;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`：使用名为`registry.baidubce.com/paddlepaddle/paddle`, tag 为`latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令。
+    - `registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-gpu-cuda12.3-cudnn9.0-trt8.6`：使用名为`registry.baidubce.com/paddlepaddle/paddle`, tag 为`3.0.0b0-gpu-cuda12.3-cudnn9.0-trt8.6`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令。
 
 
 
