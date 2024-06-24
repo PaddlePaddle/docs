@@ -22,22 +22,25 @@ paddle.nn.functional.cross_entropy(input,
                                    ignore_index=- 100,
                                    reduction='mean',
                                    soft_label=False,
+                                   label_smoothing=0.0,
                                    axis=- 1,
                                    use_softmax=True)
 ```
+
 两者功能一致，torch 参数更多，具体如下：
+
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | input         | 表示预测的 Tensor 。                                     |
-| target          | label         | 表示真实的 Tensor 。                                     |
+| target          | label         | 表示真实的 Tensor，仅参数名不同。                                     |
 | weight          | weight         | 表示权重。                                     |
 | size_average    | -         | 已弃用 。                                     |
 | ignore_index          | ignore_index         | 表示忽略的标签值 。                                     |
 | reduce          | -         | 已弃用 。                                     |
 | reduction          | reduction         | 表示应用于输出结果的计算方式 。                                     |
-| label_smoothing | -     | 指定计算损失时的平滑量， Paddle 无此参数，暂无转写方式。|
+| label_smoothing | -     | 指定计算损失时的平滑量，参数完全一致。|
 | -               | soft_label | 指明 label 是否为软标签， PyTorch 无此参数， Paddle 保持默认即可。|
 | -                  | axis | 进行 softmax 计算的维度索引， PyTorch 无此参数， Paddle 保持默认即可。|
 | -                  | use_softmax | 指定是否对 input 进行 softmax 归一化， PyTorch 无此参数， Paddle 保持默认即可。|
