@@ -3,7 +3,7 @@
 MSELoss
 -------------------------------
 
-.. py:function:: paddle.nn.MSELoss(reduction='mean')
+.. py:class:: paddle.nn.MSELoss(reduction='mean')
 
 计算预测值和目标值的均方差误差。
 

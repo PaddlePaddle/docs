@@ -3,7 +3,7 @@
 UpsamplingNearest2D
 -------------------------------
 
-.. py:function:: paddle.nn.UpsamplingNearest2D(size=None,scale_factor=None, data_format='NCHW',name=None)
+.. py:class:: paddle.nn.UpsamplingNearest2D(size=None,scale_factor=None, data_format='NCHW',name=None)
 
 
 
