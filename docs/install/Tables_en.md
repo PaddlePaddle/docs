@@ -351,7 +351,7 @@ Please note that: in the commands, <code> paddlepaddle-gpu==3.0.0b0 </code> will
         paddlepaddle_gpu-3.0.0b0-cp312-cp312-linux_x86_64.whl</a></td>
     </tr>
     <tr>
-        <td> macos-cpu-openblas </td>
+        <td> macos-cpu-x86 </td>
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cpu/paddlepaddle/paddlepaddle-3.0.0b0-cp38-cp38-macosx_10_9_x86_64.whl">
         paddlepaddle-3.0.0b0-cp38-cp38-macosx_10_9_x86_64.whl</a></td>
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cpu/paddlepaddle/paddlepaddle-3.0.0b0-cp39-cp39-macosx_10_9_x86_64.whl">
@@ -364,7 +364,7 @@ Please note that: in the commands, <code> paddlepaddle-gpu==3.0.0b0 </code> will
         paddlepaddle-3.0.0b0-cp312-cp312-macosx_10_9_universal2.whl</a></td>
     </tr>
     <tr>
-        <td> macos-cpu-openblas-m1 </td>
+        <td> macos-cpu-arm </td>
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cpu/paddlepaddle/paddlepaddle-3.0.0b0-cp38-cp38-macosx_11_0_arm64.whl">
         paddlepaddle-3.0.0b0-cp38-cp38-macosx_11_0_arm64.whl</a></td>
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cpu/paddlepaddle/paddlepaddle-3.0.0b0-cp39-cp39-macosx_11_0_arm64.whl">
