@@ -107,23 +107,28 @@ dist_tensorB = dist.shard_tensor(dense_tensorB, mesh, placementsB)
 dist_tensorC = Matmul(dist_tensorA, dist_tensorB)
 dist_tensorD = relu(dist_tensorC)
 ```
-![原理简介](images/underlying1.png)
+<div style="text-align: center;">
+<img src="images/underlying1.png" alt="用户标记" style="width: 45%; height: auto; center;">
+<!-- ![原理简介](images/underlying1.png) -->
+</div>
 
 接下来就会进入自动并行的第一个核心逻辑 **切分推导**。
 当前用户标记的输入切分状态是无法被Matmul算子实际计算的(TensorA 的第0维和TensorB 的第1维不匹配)。
 这时候自动并行框架会使用当前算子的切分推导规则(e.g. MatmulSPMD Rule)，根据输入tensors 的切分状态，推导出一套合法且性能较优的 输入-输出 张量的切分状态。
 在上述输入的切分状态下，框架会推导出会将 TensorA 的切分状态推导成按列切分，TensorB 保持切分状态不变，Matmul 的计算结果 TensorC 的切分状态是Partial。
 因为后续的Relu 算子是非线性的，输入不能是Partial 状态，所以框架会根据 ReluSPMD Rule将 TensorC 输入 Relu 前的的分布式状态推导成 Replicated。
-
-
-
-![原理简介](images/underlying2.png)
+<div style="text-align: center;">
+<img src="images/underlying2.png" alt="切分推导" style="width: 45%; height: auto; center;">
+</div>
 
 接下来就会进入自动并行的第二个核心逻辑 **切分转换**。
 框架会根据tensor 当前的切分状态(src_placement)，和切分推导规则推导出的算子计算需要的切分状态(dst_placement),添加对应的通信/张量维度变换算子。
 根据上图的切分推导，在计算Matmul 添加 split 算子，在计算Relue 添加 Allreduce，将输入tensor 转换成需要的切分状态进行实际计算。
 
-![原理简介](images/underlying3.png)
+<div style="text-align: center;">
+<img src="images/underlying3.png" alt="切分转换" style="width: 45%; height: auto; center;">
+</div>
+<!-- ![原理简介](images/underlying3.png) -->
 
 
 # 四、使用示例
