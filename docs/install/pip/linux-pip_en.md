@@ -67,7 +67,7 @@
 
   * **CUDA toolkit 12.3 with cuDNN v9.0.0(for PaddleTensorRT deployment, TensorRT8.6.1.6)**
 
-  * **Hardware devices with GPU computing power over 3.5**
+  * **Hardware devices with GPU computing power over 6.0**
 
     You can refer to NVIDIA official documents for installation process and configuration method of CUDA, cuDNN and TensorRT. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/tensorrt)
 
