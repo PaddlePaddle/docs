@@ -29,6 +29,7 @@ paddle.nn.LSTM(input_size,
 ```
 
 两者功能一致但参数不一致，部分参数名不同，具体如下：
+
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
