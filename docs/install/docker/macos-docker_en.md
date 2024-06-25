@@ -19,24 +19,24 @@ For domestic users, when downloading docker is slow due to network problems, you
 
 * CPU version of PaddlePaddle：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.1
+    docker pull registry.baidubce.com/paddlepaddle/paddle:3.0.0b0
     ```
 
 * CPU version of PaddlePaddle, and the image is pre-installed with jupyter：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.1-jupyter
+    docker pull registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-jupyter
     ```
 
 If your machine is not in mainland China, you can pull the image directly from DockerHub:
 
 * CPU version of PaddlePaddle：
     ```
-    docker pull paddlepaddle/paddle:2.6.1
+    docker pull paddlepaddle/paddle:3.0.0b0
     ```
 
 * CPU version of PaddlePaddle, and the image is pre-installed with jupyter：
     ```
-    docker pull paddlepaddle/paddle:2.6.1-jupyter
+    docker pull paddlepaddle/paddle:3.0.0b0-jupyter
     ```
 
 You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get more images.
@@ -48,7 +48,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
 
     ```
-    docker run --name paddle_docker -it -v $PWD:/paddle registry.baidubce.com/paddlepaddle/paddle:2.6.1 /bin/bash
+    docker run --name paddle_docker -it -v $PWD:/paddle registry.baidubce.com/paddlepaddle/paddle:3.0.0b0 /bin/bash
     ```
 
     - `--name paddle_docker`: set name of Docker, `paddle_docker` is name of docker you set;
@@ -59,7 +59,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `-v $PWD:/paddle`: Specifies to mount the current path of the host (PWD variable in Linux will expand to the absolute path of the current path) to the /paddle directory inside the container;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:2.6.1`: Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
+    - `registry.baidubce.com/paddlepaddle/paddle:3.0.0b0`: Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
 
 
 * Use CPU version of PaddlePaddle with jupyter：
@@ -75,7 +75,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
     cd ./jupyter_docker
     ```
     ```
-    docker run -p 80:80 --rm --env USER_PASSWD="password you set" -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:2.6.1-jupyter
+    docker run -p 80:80 --rm --env USER_PASSWD="password you set" -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-jupyter
     ```
 
     - `--rm`: Delete the container after closing it;
@@ -86,7 +86,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `-v $PWD:/home/paddle`: Specifies to mount the current path (the PWD variable will be expanded to the absolute path of the current path) to the /home/paddle directory inside the container;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:2.6.1-jupyter`: Specify the name of the image to be used, you can view it through the `docker images` command
+    - `registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-jupyter`: Specify the name of the image to be used, you can view it through the `docker images` command
 
 
 
@@ -105,12 +105,12 @@ Now you have successfully used Docker to install PaddlePaddle. For more informat
     </thead>
     <tbody>
         <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.6.1 </td>
-        <td> CPU image with 2.6.1 version of paddle installed </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:3.0.0b0 </td>
+        <td> CPU image with 3.0.0b0 version of paddle installed </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.6.1-jupyter </td>
-        <td> CPU image of paddle version 2.6.1 is installed, and jupyter is pre-installed in the image. Start the docker to run the jupyter service </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-jupyter </td>
+        <td> CPU image of paddle version 3.0.0b0 is installed, and jupyter is pre-installed in the image. Start the docker to run the jupyter service </td>
     </tr>
    </tbody>
 </table>
