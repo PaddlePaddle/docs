@@ -79,7 +79,7 @@ function get_paddle_pr_num_from_docs_pr_info(){
 function install_paddle() {
     # try to download paddle, and install
     # PADDLE_WHL is defined in ci_start.sh
-    pip install --no-cache-dir -i https://mirror.baidu.com/pypi/simple ${PADDLE_WHL} 1>nul
+    pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple ${PADDLE_WHL} 1>nul
     # if failed, build paddle
     if [ $? -ne 0 ];then
         build_paddle
