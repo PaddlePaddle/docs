@@ -5,7 +5,7 @@
 
 **以下将详细地介绍动静转换的各个模块内容：**
 
-- `飞桨框架 3.0 新特性 <new_features_cn.html>`_ ：概述了飞桨框架 3.0 版本下的架构设计、新特性、性能提升等
+- `飞桨框架 3.0 新特性 <overview_cn.html>`_ ：概述了飞桨框架 3.0 版本下的架构设计、新特性、性能提升等
 
 - `动静统一自动并行 <auto_parallel_cn.html>`_ ：介绍了飞桨动静统一的自动并行编程范式
 
@@ -20,7 +20,7 @@
 ..  toctree::
     :hidden:
 
-    new_features_cn.md
+    overview_cn.md
     auto_parallel_cn.md
     cinn_cn.md
     high_order_ad_cn.md
