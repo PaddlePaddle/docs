@@ -36,7 +36,7 @@
 
 目前已有的分布式策略，数据并行、模型并行等，都是通过（1）切分输入/输出（2）切分模型参数 （3）切分计算 这三种方式，满足在多计算设备上加速训练大模型的需求。为了提供更易用的分布式接口，我们引入分布式张量这一概念，描述由多个计算设备上的局部物理张量通过既定计算共同组成的逻辑张量，用户可以通过 paddle.distributed.shard_tensor 来创建分布式张量。
 
-为了描述分布式张量和计算设备之前的映射关系，我们引入 ``Placements`` 和 ``ProcessMesh`` 两个分布式概念。``ProcessMesh`` 可以理解为是用一个高维矩阵对分布集群中计算设备的抽象，比如一个4机32卡的集群可以用一个shape=[4,8] 的mesh 矩阵进行描述；``Placements`` 是由 ``Replicate``、``Shard``、``Partial`` 三种分布式标记组成的列表，长度和 ``ProcessMesh`` 的维度个数一致，用于表示分布式张量在对应计算设备的维度上，按照什么方式做切分，这三种分布式标记的详细描述如下：
+为了描述分布式张量和计算设备之前的映射关系，我们引入 ``Placements`` 和 ``ProcessMesh`` 两个分布式概念。``ProcessMesh`` 可以理解为是用一个高维矩阵对分布集群中计算设备的抽象，比如一个 4 机 32 卡的集群可以用一个 shape=[4,8] 的 mesh 矩阵进行描述；``Placements`` 是由 ``Replicate``、``Shard``、``Partial`` 三种分布式标记组成的列表，长度和 ``ProcessMesh`` 的维度个数一致，用于表示分布式张量在对应计算设备的维度上，按照什么方式做切分，这三种分布式标记的详细描述如下：
 
 * Replicate，指张量在所有计算设备上保持全量状态。
 * Shard(axis)，指将张量沿 axis 维度做切分后，放到不同的计算设备上。
@@ -90,7 +90,7 @@ dist_tensor_after_reshard = dist.reshard(dist_tensor, mesh1, placements1)
 下面我们用一个简单的列子介绍自动并行框架底层的执行流程和原理。
 
 在单卡逻辑视角下我们希望完成计算 C = Matmul(A, B)，D = Relu(C)。
-假设用户将TensorB 标记成按列切分，表示在实际分布式集群中TensorB 被按行切分到不同的Devices 上。将TensorA 标记成复制，表示所有Devices 上都有完整TensorA 副本。
+假设用户将 TensorB 标记成按列切分，表示在实际分布式集群中 TensorB 被按行切分到不同的 Devices 上。将 TensorA 标记成复制，表示所有 Devices 上都有完整 TensorA 副本。
 
 ```python
 import paddle
@@ -113,17 +113,17 @@ dist_tensorD = relu(dist_tensorC)
 </div>
 
 接下来就会进入自动并行的第一个核心逻辑 **切分推导**。
-当前用户标记的输入切分状态是无法被Matmul算子实际计算的(TensorA 的第0维和TensorB 的第1维不匹配)。
-这时候自动并行框架会使用当前算子的切分推导规则(e.g. MatmulSPMD Rule)，根据输入tensors 的切分状态，推导出一套合法且性能较优的 输入-输出 张量的切分状态。
-在上述输入的切分状态下，框架会推导出会将 TensorA 的切分状态推导成按列切分，TensorB 保持切分状态不变，Matmul 的计算结果 TensorC 的切分状态是Partial。
-因为后续的Relu 算子是非线性的，输入不能是Partial 状态，所以框架会根据 ReluSPMD Rule将 TensorC 输入 Relu 前的的分布式状态推导成 Replicated。
+当前用户标记的输入切分状态是无法被 Matmul 算子实际计算的(TensorA 的第 0 维和 TensorB 的第 1 维不匹配)。
+这时候自动并行框架会使用当前算子的切分推导规则(e.g. MatmulSPMD Rule)，根据输入 tensors 的切分状态，推导出一套合法且性能较优的 输入-输出 张量的切分状态。
+在上述输入的切分状态下，框架会推导出会将 TensorA 的切分状态推导成按列切分，TensorB 保持切分状态不变，Matmul 的计算结果 TensorC 的切分状态是 Partial。
+因为后续的 Relu 算子是非线性的，输入不能是 Partial 状态，所以框架会根据 ReluSPMD Rule 将 TensorC 输入 Relu 前的的分布式状态推导成 Replicated。
 <div style="text-align: center;">
 <img src="images/underlying2.png" alt="切分推导" style="width: 45%; height: auto; center;">
 </div>
 
 接下来就会进入自动并行的第二个核心逻辑 **切分转换**。
-框架会根据tensor 当前的切分状态(src_placement)，和切分推导规则推导出的算子计算需要的切分状态(dst_placement),添加对应的通信/张量维度变换算子。
-根据上图的切分推导，在计算Matmul 添加 split 算子，在计算Relue 添加 Allreduce，将输入tensor 转换成需要的切分状态进行实际计算。
+框架会根据 tensor 当前的切分状态(src_placement)，和切分推导规则推导出的算子计算需要的切分状态(dst_placement),添加对应的通信/张量维度变换算子。
+根据上图的切分推导，在计算 Matmul 添加 split 算子，在计算 Relue 添加 Allreduce，将输入 tensor 转换成需要的切分状态进行实际计算。
 
 <div style="text-align: center;">
 <img src="images/underlying3.png" alt="切分转换" style="width: 45%; height: auto; center;">
