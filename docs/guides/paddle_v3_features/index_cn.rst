@@ -11,7 +11,7 @@
 
 - `神经网络编译器 <cinn_cn.html>`_ ：介绍了神经网络编译器自动优化的基本原理、架构和功能
 
-- `高阶自动微分 <high_order_ad_cn.html>`_ ：介绍了飞桨高阶自动微分在科学计算领域的应用
+- `高阶自动微分 <higher_order_ad_cn.html>`_ ：介绍了飞桨高阶自动微分在科学计算领域的应用
 
 - `动转静 SOT 原理及使用 <sot_cn.html>`_ ：介绍了动转静 SOT 原理及使用方式
 
@@ -25,6 +25,6 @@
     overview_cn.md
     auto_parallel_cn.md
     cinn_cn.md
-    high_order_ad_cn.md
+    higher_order_ad_cn.md
     sot_cn.html
     paddle_ir_cn.md
