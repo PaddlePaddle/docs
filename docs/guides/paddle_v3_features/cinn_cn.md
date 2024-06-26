@@ -93,7 +93,7 @@ python run_net.py
 ## 四、设计架构
 <center><img src="
 https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/paddle_v3_features/images/cinn/cinn_design.png?raw=true" width="900" ></center>
-<br><center> 图 1 CINN 整体架构 </center>
+<center> 图 1 CINN 整体架构 </center><br>
 
 飞桨框架编译器（CINN, Compiler Infrastructure for Neural Networks）整体架构如上图所示，大体可以分为三个模块，分别是编译器前端、编译器后端和执行器部分。
 
@@ -110,7 +110,7 @@ https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/paddle_v3_features
 算子融合是编译器前端非常重要的一个功能，主要是将多个算子打包到一个子图中（对应为一个 FusionOp），交给编译器后端生成一个高效的硬件相关计算 Kernel。
 算子融合的本质是通过 IO 优化加速访存密集算子，如果我们将两个连续 Kernel 合并为一个 Kernel 调用，我们会减少中间变量的读写开销，因此在访存密集型的 2 个 Op 上，融合可以获取更高的性能。举个例子，如下图：
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/paddle_v3_features/images/cinn/op_fusion.png?raw=true" width="200" ></center>
-<br><center> 图 2 算子融合示例 </center>
+<center> 图 2 算子融合示例 </center><br>
 
 我们有两个算子 Relu 和 Scale，因为两个算子都是 IO 密集型算子（计算复杂度不高）。正常情况下我们需要读取 A 和 B 一次，写 B 和 C 一次。但是对于融合之后的 Kernel（右图）而言，我们只需要读取 A 和写 C 一次，这样我们通过算子融合可以取得更少的访存次数，在 IO 密集算子而言，可以极大提高性能。
 具体的算子融合策略实现非常复杂，这里不做展开介绍，感兴趣的读者可以阅读相关源码 [#cinn_group_cluster_pass](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/cinn/hlir/dialect/operator/transforms/cinn_group_cluster_pass.cc)。
