@@ -39,7 +39,7 @@ unsupport_func(x)  # raise error
 在新的 SOT 方案中引入了自适应打断机制来获得 100%理论动转静成功率。在旧的动转静 AST 方案中，是以源码转写的方式对整图进行转写，当遇到无法静态化的 Op 时，AST 整图转写失败。新的 SOT 方案中，首先将源码转写的方式升级为了字节码转写，当遇到无法静态化的 Op 时，我们将整图切分为子图，并使用**字节码进行粘连**，以达到转写成功的目的。在自适应打断机制加持下，用户动态图编写可以更加随意，并在子图层面享受动转静和编译器加速。
 
 <figure align="center">
-    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/sot/images/sot_vs_ast.png" style="zoom:80%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/sot_vs_ast.png" style="zoom:80%"/>
 </figure>
 
 
@@ -48,13 +48,13 @@ unsupport_func(x)  # raise error
 在新的 SOT 流程下，动转静是在字节码层面进行分析的，SOT 会先利用注册的 Python EvalFrame Hooker 获取到用户函数运行时的字节码和 PyFrame 上下文信息（包含了局部变量，参数等），然后使用内部实现的**字节码模拟执行器**来进行模拟执行，最后得到一个可以替换原来字节码的新 PyCodeObject 对象。模拟执行器会识别出用户函数中需要静态化的字节码和无法静态化的字节码，对于无法静态化的字节码使用打断功能会回退到动态图执行，对于可以静态化的字节码会生成一个静态图来进行替换。当第二次执行时，SOT 会先判断是否命中了上次转写的缓存，如果命中了缓存就可以直接获取上次转写的 PyCodeObject 重用。下图是整个 SOT 的执行流程。
 
 <figure align="center">
-    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/sot/images/sot_procedure.svg" style="zoom:80%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/sot_procedure.svg" style="zoom:80%"/>
 </figure>
 
 #### 三、框架架构
 
 <figure align="center">
-    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/sot/images/sot_framework.png" style="zoom:80%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/sot_framework.png" style="zoom:80%"/>
 </figure>
 
 
