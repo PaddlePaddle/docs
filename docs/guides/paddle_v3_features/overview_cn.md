@@ -36,7 +36,7 @@
 
 
 <figure align="center">
-<img src="./images/overview/paddle_v3_arch.png" style="zoom:100%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_arch.png" style="zoom:100%"/>
 </figure>
 
 飞桨框架对外提供了丰富的深度学习相关的各种开发接口，如张量表示、数学计算、模型组网、优化策略等。通过这些接口，开发者能够便捷地构建和训练自己的深度学习模型，无需深入到底层的技术细节中去。
@@ -61,19 +61,19 @@
 在大模型开发场景中，多维混合并行显得尤为重要。对于百亿甚至千亿规模的大模型，一般需要使用张量模型并行、流水并行、数据并行、分组参数切片并行的混合并行方式进行训练。然而，多维混合并行的开发过程往往相当复杂。以数据并行、张量模型并行和流水线并行为例，开发者必须精心处理计算、通信、调度等多元逻辑，才能编写出正确的混合并行代码，这无疑提高了开发的难度。为了解决这一难题，我们提出了动静统一的自动并行方案。自动并行，开发者只需要提供模型结构和集群，以及少量的标记信息，飞桨框架可以根据模型结构和集群信息自动寻找合适的分布式训练策略。我们来看一下对分布式标记（DistAttr）的定义。通过使用 ProcessMesh 将一个设备（比如一块 GPU 卡）映射为一个进程，将多个设备映射为多个进程组成的一维或多维数组，下图展示了由 8 个设备构成的两种不同 ProcessMesh 抽象表示。
 
 <figure align="center">
-<img src="./images/overview/paddle_v3_process_mesh.png" style="zoom:100%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_process_mesh.png" style="zoom:100%"/>
 </figure>
 
 然后通过使用 Placement 来表示张量在不同设备上的切分状态，分为 Replicate、Shard 和 Partial 这 3 种切分状态。如下图所示，Replicate 表示张量在不同设备上会以复制的形式存在；Shard 表示按照特定的维度在不同设备上进行切分；Partial 表示设备上的张量不完整，需要进行 Reduce Sum 或者 Reduce Mean 等不同方式的操作后，才能得到完整的状态。
 
 <figure align="center">
-<img src="./images/overview/paddle_v3_placement.png" style="zoom:100%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_placement.png" style="zoom:100%"/>
 </figure>
 
 在完成分布式标记抽象后，我们通过调用`paddle.distributed.shard_tensor()`接口，实现对张量切分的标记。通过张量切分的标记，我们可以表示复杂的分布式混合并行，下图展示了一个具体的数据并行、张量模型并行、流水线并行组成的混合并行的例子。
 
 <figure align="center">
-<img src="./images/overview/paddle_v3_parallel.png" style="zoom:100%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_parallel.png" style="zoom:100%"/>
 </figure>
 
 以下代码展示了混合并行的具体例子。
@@ -130,7 +130,7 @@ for step, data in enumerate(dist_loader()):
 为什么在深度学习框架中需要引入编译器技术呢？让我们通过一个实例来阐释这一点。我们以 Llama 模型中经常使用的 RMS Normalization （[Root Mean Square Layer Normalization](https://arxiv.org/abs/1910.07467)）为例，其计算公式相对简单明了。
 
 <figure align="center">
-<img src="./images/overview/paddle_v3_rmsnorm.png" style="zoom:100%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_rmsnorm.png" style="zoom:100%"/>
 </figure>
 
 假设我们需要是实现 RMS Normalization 的计算，最简单的办法是，我们可以使用飞桨框架提供的张量运算开发接口，调用平方、求和、除法、开根号等操作来完成，代码如下：
@@ -217,7 +217,7 @@ class RMSNorm(paddle.nn.Layer):
 而借助神经网络编译器技术，我们能够在维持高度灵活性和易用性的基础上，实现性能的显著提升。以下 A100 平台上 RMSNorm 算子的性能测试结果便是一个明证：相较于采用 Python 开发接口组合实现的方式，经过编译优化后的算子运行速度提升了 4 倍；即便与手动算子融合的方式相比，也实现了 14%的性能提升。这一成果充分展示了飞桨框架在灵活性与性能之间寻找到的理想平衡点。
 
 <figure align="center">
-<img src="./images/overview/paddle_v3_rmsnorm_perf.png" style="zoom:100%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_rmsnorm_perf.png" style="zoom:100%"/>
 </figure>
 
 ### 5.2 飞桨神经网络编译器 CINN
@@ -225,7 +225,7 @@ class RMSNorm(paddle.nn.Layer):
 飞桨神经网络编译器 CINN 采用了与框架一体化的设计，其基础设施是基于飞桨的高扩展中间表示 PIR。这一设计使得 CINN 能够同时支持训练和推理过程，并且具备处理动态可变形状输入的能力。在生成式大语言模型 Llama 和文生图模型 Stable Diffusion 上的实验结果显示，通过使用编译器的优化技术，相较于未采用手动性能优化的基础版本，推理速度分别实现了 36%和 30%的提升。那么，编译器究竟是如何实现深度学习任务的加速呢？以下，我们将通过一个由 Add 和 Relu 算子组成的例子来具体展示这一过程。
 
 <figure align="center">
-<img src="./images/overview/paddle_v3_cinn_arch.png" style="zoom:100%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_cinn_arch.png" style="zoom:100%"/>
 </figure>
 
 首先，该过程会利用组合算子机制，将原始的计算图拆解为由一系列基础算子构成的计算图，并在此过程中详细记录算子输入输出张量之间的形状关系，以确保其能够适应动态形状张量的复杂情况。随后，在神经网络编译器的前端部分，编译器会进行智能判断，识别出哪些基础算子具备融合潜力。对于这些可融合的基础算子，编译器会进一步调用基础的 Compute 函数，巧妙地将它们降级为由抽象语法树（AST）构成的低层中间表示（IR）。接下来，在神经网络编译器的后端部分，这些中间表示会被进一步精心转换成具体的代码实现，这既可能是 CUDA C 代码，也可能是 LLVM IR 代码，具体取决于目标平台的需求。最终，利用 NVCC 编译器或 LLVM 编译器，将这些代码转换成能够在芯片上高效运行的可执行代码，从而实现深度学习任务的显著加速。
@@ -237,11 +237,11 @@ class RMSNorm(paddle.nn.Layer):
 深度学习模型的训练过程，核心在于利用随机梯度下降（SGD）等优化算法来更新模型参数。在此过程中，深度学习框架的自动微分功能扮演着至关重要的角色，它基于链式法则自动计算出损失函数相对于模型参数的梯度。尽管在大多数深度学习任务中，仅需计算一阶导数，但在某些“AI for Science”的应用场景中，却需要计算高阶导数，这无疑大大增加了自动微分的复杂性。以 2D 矩形平板分布受载问题为例，该问题的内在机理需借助 4 阶微分方程来描述。因此，为了求解这类问题，深度学习框架必须提供高阶自动微分功能。然而，实现高阶自动微分面临着诸多挑战。具体来说，框架需要为每个算子编写高阶微分规则，而随着阶数的增加，这些微分规则的复杂性也随之上升。当阶数达到三阶或更高时，编写这些规则不仅变得极其困难，而且其正确性也难以保证。为了解决这一难题，我们提出了基于基础算子组合的高阶自动微分技术。该技术的核心思想是将复杂算子（如 log_softmax）拆解为多个基础算子的组合，然后对这些基础算子进行一阶自动微分变换。重要的是，基础算子经过一阶自动微分变换后，其所得的计算图仍然由基础算子构成。通过反复应用一阶自动微分规则，我们可以轻松地获得高阶自动微分的结果。
 
 <figure align="center">
-<img src="./images/overview/paddle_v3_2d_plate.png" style="zoom:100%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_2d_plate.png" style="zoom:100%"/>
 </figure>
 
 <figure align="center">
-<img src="./images/overview/paddle_v3_2d_plate_pde.png" style="zoom:100%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_2d_plate_pde.png" style="zoom:100%"/>
 </figure>
 
 为了全面支持高阶自动微分，飞桨框架精心设计与实现了一套组合算子机制。这一机制不仅完美兼容动态图模式和静态图模式，而且在动态图模式下支持 N+1 阶微分的灵活拆分，同时在静态图模式下能够进行高效的编译器融合优化。我们创新性地设计并实现了动静一体的算子组合规则，这意味着同一套组合规则在动态图和静态图两种模式下均可无缝复用，从而有效避免了重复开发的繁琐。在构建基础算子体系时，我们以 Tensor 作为核心操作对象，严格确保了算子的原子性、实用性和完备性。此外，我们还提供了自定义反向操作和自动重计算功能，这些强大的特性不仅显著提升了模型的精度，还有效地减少了显存占用，为用户带来了更高效、更灵活的深度学习体验。
@@ -259,7 +259,7 @@ class RMSNorm(paddle.nn.Layer):
 深度学习框架在实现高效能计算的过程中，还面临着一个关键性挑战，即如何实现与各类硬件的有效适配。为了应对这一挑战，飞桨框架采取了全面的策略，并成功实现了多种不同的接入方式，以确保能够灵活满足不同芯片的适配需求。通过这些多样化的接入方法，飞桨框架不仅提升了深度学习应用的性能，还确保了广泛的硬件兼容性，从而为开发者提供了一个强大且灵活的工具，以适应不断变化的计算环境和需求。特别是针对大模型场景，飞桨提供了标准化硬件适配接口，只需要适配 30 余个接口，即可全面支持大模型训压推全流程；通过基础算子体系，减少硬件适配所需开发的算子数量；支持算子融合、显存复用等方式对大模型进行性能优化；支持通过神经网络编译器代码后端 CodeGen 的方式进行适配，实现算子自动融合和性能优化。
 
 <figure align="center">
-<img src="./images/overview/paddle_v3_hardware.png" style="zoom:100%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_hardware.png" style="zoom:100%"/>
 </figure>
 
 基于前述的先进技术，飞桨与芯片厂商携手，共同打造一个繁荣的硬件生态。这一过程可划分为三个核心阶段。首先是“共聚”阶段，我们联合多家芯片厂商，共同发起了飞桨硬件生态圈。其次是“共研”阶段，与芯片厂商携手实现软硬一体的联合优化。最后是“共创”阶段，与芯片厂商深度合作，共创繁荣生态。至今，我们已与 22 家硬件厂商伙伴成功联合推出了飞桨生态发行版，标志着合作的深入与成果的显现。同时，我们的生态圈已吸引超过 40 家成员单位加入，覆盖了主流硬件厂商，提供了极为丰富的硬件支持框架，为用户带来更加多样化的选择。
@@ -339,7 +339,7 @@ export FLAGS_print_ir=false
 在设置环境变量后，我们即可正常使用飞桨框架。以上所展示例子的运行过程如下图所示：
 
 <figure align="center">
-<img src="./images/overview/paddle_v3_workflow.png" style="zoom:100%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_workflow.png" style="zoom:100%"/>
 </figure>
 
 在开发者编写动态图代码时，利用`shard_tensor`分布式开发接口，可以轻松地标记张量切分方式。在此场景中，我们对矩阵乘法的参数`w`进行了列切分。
