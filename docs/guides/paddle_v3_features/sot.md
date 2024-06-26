@@ -202,7 +202,7 @@ out = net(x, y)
 print(out)
 ```
 
-AST 模式下会报错，因为我们尝试混合使用 numpy 和 paddle api，导致无法整图静态化。
+在这个 Case 中，AST 模式下会报错，因为我们尝试混合使用 numpy 和 paddle api，导致无法整图静态化。
 ```bash
 Traceback (most recent call last):
   File "ttt.py", line 29, in <module>
