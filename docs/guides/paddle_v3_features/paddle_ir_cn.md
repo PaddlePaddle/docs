@@ -5,7 +5,7 @@
 ## 一、基础概念
 
 <figure align="center">
-<img src="./images/paddle_ir/overview.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/paddle_ir/overview.png" style="zoom:50%"/>
 </figure>
 
 在深度学习框架 IR 概念中，「顺序性」和「图语义」是两个非常高频常用的概念。旧的中间表示体系由「顺序性」ProgramDesc 和「图语义」Graph 两个核心类共同承载。用户在静态图 API 或者动转静模块下，产生的中间表示是 Op-by-Op 的 Program，如果要应用更高层面的优化策略（比如算子融合、inplace 策略、剪枝等），框架会将由 Program 构造出 Graph，其由数据节点、算子节点和彼此关联的边构成。
@@ -19,21 +19,21 @@
 计算图中间表示（Intermediate Representation，即 IR）是深度学习框架性能优化、推理部署、编译器等方向的重要基石。近些年来，越来越多的框架和研究者将编译器技术引入到深度学习的神经网络模型优化中，并在此基础上借助编译器的理念、技术和工具对神经网络进行自动优化和代码生成。飞桨历史上在架构层面并存着多套不同的中间表示体系，其表达能力各不相同、Pass 开发维护成本较高，代码复用性较差，缺乏统一规范，存在严重的框架稳定性问题。
 
 <figure align="center">
-<img src="./images/paddle_ir/vs_program.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/paddle_ir/vs_program.png" style="zoom:50%"/>
 </figure>
 
 
 因此在 3.0 版本下，飞桨在基础架构层面规范了中间表示 IR 定义，实现全架构统一表示，实现上下游各个方向共享开发成果：
-* 推理部署：简化抽象计算图，解决有环问题，降低 Pass 的开发成本
-* 分布式侧：多 Dialect 管理算子，支持分布式属性的灵活标记
-* 编译器侧：严格遵循 SSA 原则，灵活支撑编译优化鲁棒性
++ **推理部署** ：简化抽象计算图，解决有环问题，降低 Pass 的开发成本
++ **分布式侧** ：多 Dialect 管理算子，支持分布式属性的灵活标记
++ **编译器侧** ：严格遵循 SSA 原则，灵活支撑编译优化鲁棒性
 
 
 飞桨的新一代 IR 架构聚焦于高度灵活和高扩展性两个重要维度，通过更加完备且鲁邦的语义表达能力、训推全架构统一表示和高效可插拔的性能优化策略（Pass）开发机制，实现复杂语义支持，更便捷地支撑大模型自动并行下丰富的切分策略，无缝对接神经网络编译器实现自动性能优化和多硬件适配。
 
 ## 三、使用指南
 
-飞桨新的一代 IR 是基础架构层面的升级，对于用户在 API 层面的使用是无感的，用户可保持之前动转静（即 paddle.jit.to_static）或静态图代码不变，在 3.0-Beta 下仅需额外通过 export FLAGS_enable_pir_api=1 开启新 IR 功能即可，如下是一个简单的使用样例。
+飞桨新的一代 IR 是基础架构层面的升级，对于用户在 API 层面的使用是无感的，用户可保持之前动转静（即 paddle.jit.to_static）或静态图代码不变，在 3.0-Beta 下仅需额外通过 `export FLAGS_enable_pir_api=1` 开启新 IR 功能即可，如下是一个简单的使用样例。
 
 ```python
 # test_add_relu.py
@@ -63,7 +63,7 @@ out = net(x, y)
 print(out)
 ```
 
-将上述文件保存为 test_add_relu.py，执行如下命令：FLAGS_enable_pir_api=1 python test_add_relu.py 即可。开发者可额外指定 GLOG_v=6 输出日志，查看新一代 IR 下的 Program 表示，如下所示，在动转静或静态图模式下，用户的代码经过组网 API 下会先生成 Operator Dialect 下计算图表示，在执行时飞桨会将其转换为给定硬件下的 Kernel Dialect，然后交给执行器去依次调度对应的 PHI 算子库，计算最终结果。
+将上述文件保存为 test_add_relu.py，执行如下命令： `FLAGS_enable_pir_api=1 python test_add_relu.py` 即可。开发者可额外指定 GLOG_v=6 输出日志，查看新一代 IR 下的 Program 表示，如下所示，在动转静或静态图模式下，用户的代码经过组网 API 下会先生成 Operator Dialect 下计算图表示，在执行时飞桨会将其转换为给定硬件下的 Kernel Dialect，然后交给执行器去依次调度对应的 PHI 算子库，计算最终结果。
 
 ```python
 { // Operator Dialect
@@ -90,7 +90,7 @@ print(out)
 在大模型场景下，对深度学习框架中间表示的灵活性、扩展性和完备性提出了全新的需求。飞桨通过抽象核心结构，引入 Dialect 概念，实现多 Dialect 模块化，并提供了易用高性能、低成本开发、丰富可插拔的 Pass 优化策略，串联 AI 编译器，适配支持多异构硬件，面向大模型训推流程优化提速。
 
 <figure align="center">
-<img src="./images/paddle_ir/pir_design.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/paddle_ir/pir_design.png" style="zoom:50%"/>
 </figure>
 
 
@@ -112,13 +112,13 @@ print(out)
 Pass 的核心是子图匹配和替换（即图变换），是将一个 Program 通过某种规则转换为另一个新的 Program。IR 中包含了计算图中全局信息，如上下游算子的邻接关系等，更有利于进行图优化，比如常量折叠、算子融合，Inplace 策略等：
 
 <figure align="center">
-<img src="./images/paddle_ir/pass_example.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/paddle_ir/pass_example.png" style="zoom:50%"/>
 </figure>
 
 飞桨内置了一系列计算图优化、显存优化、量化等通用 Pass，灵活可配置。并简化了基础概念，向用户提供了 2 种 Pass 开发范式：Pattern Rewriter 和 Declarative Rewrite Rule（简称 DRR），充分兼顾自定义灵活性和开发易用性，大幅降用户 Pass 优化策略的开发门槛和代码量。
 
 <figure align="center">
-<img src="./images/paddle_ir/pass_design.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/paddle_ir/pass_design.png" style="zoom:50%"/>
 </figure>
 
 ## 五、参考资料

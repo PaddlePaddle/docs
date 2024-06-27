@@ -48,7 +48,7 @@ unsupport_func(x)  # raise error
 在新的 SOT 流程下，动转静是在字节码层面进行分析的，SOT 会先利用注册的 Python EvalFrame Hooker 获取到用户函数运行时的字节码和 PyFrame 上下文信息（包含了局部变量，参数等），然后使用内部实现的**字节码模拟执行器**来进行模拟执行，最后得到一个可以替换原来字节码的新 PyCodeObject 对象。模拟执行器会识别出用户函数中需要静态化的字节码和无法静态化的字节码，对于无法静态化的字节码使用打断功能会回退到动态图执行，对于可以静态化的字节码会生成一个静态图来进行替换。当第二次执行时，SOT 会先判断是否命中了上次转写的缓存，如果命中了缓存就可以直接获取上次转写的 PyCodeObject 重用。下图是整个 SOT 的执行流程。
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/sot/sot_procedure.svg" width="80%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/sot/sot_procedure.png" width="80%"/>
 </p>
 
 ## 三、框架架构
