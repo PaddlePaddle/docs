@@ -9,7 +9,11 @@
 深度学习模型的训练过程涉及使用随机梯度下降（SGD）等优化算法来更新模型参数。在这一过程中，深度学习框架的自动微分功能发挥着核心作用，它利用链式法则自动计算出损失函数相对于模型参数的梯度。尽管大多数深度学习任务只需计算一阶导数，但在某些 AI for Science 场景中，却需要计算高阶导数，这无疑增加了自动微分的复杂性。以 2D 矩形平板分布受载问题为例，该问题的内在机理需要使用 4 阶微分方程来描述。为了求解这类问题，深度学习框架必须支持高阶自动微分功能。
 
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/higher_order_ad/background.png" style="zoom:80%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_2d_plate.png" style="zoom:100%"/>
+</figure>
+
+<figure align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_2d_plate_pde.png" style="zoom:100%"/>
 </figure>
 
 二、设计思想
