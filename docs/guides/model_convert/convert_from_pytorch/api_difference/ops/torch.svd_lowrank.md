@@ -9,7 +9,7 @@ torch.svd_lowrank(A, q=6, niter=2, M=None)
 ### [paddle.linalg.svd_lowrank](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/svd_lowrank_cn.html)
 
 ```python
-paddle.linalg.svd_lowrank(x, q=None, niter=2, M=None name=None)
+paddle.linalg.svd_lowrank(x, q=None, niter=2, M=None, name=None)
 ```
 
 两者功能一致，仅参数名不一致，具体如下：
