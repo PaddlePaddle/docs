@@ -42,12 +42,9 @@
 * Shard(axis)，指将张量沿 axis 维度做切分后，放到不同的计算设备上。
 * Partial，指每个计算设备只拥有部分值，需要通过指定的规约操作才能恢复成全量数据。
 
-
 <p align="center">
     <img src="images/auto_parallel/mesh.png" width="40%"/>
 </p>
-
-<!-- ![Mesh和三种Placement状态](images/auto_parallel/auto_parallel/mesh.png)  -->
 
 在如下的示例中，我们希望在 6 个计算设备上，创建一个形状为(4, 3)的分布式张量，其中沿着计算设备的 x 维，切分张量的 0 维；沿着计算设备的 y 维上，切分张量的 1 维。最终，每个计算设备实际拥有大小为(2, 1)的实际张量，如图所示。
 
