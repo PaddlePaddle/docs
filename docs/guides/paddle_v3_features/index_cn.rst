@@ -13,7 +13,7 @@
 
 - `高阶自动微分 <high_order_ad_cn.html>`_ ：介绍了飞桨高阶自动微分在科学计算领域的应用
 
-- `动转静 SOT 原理及使用 <sot.html>`_ ：介绍了动转静 SOT 原理及使用方式
+- `动转静 SOT 原理及使用 <sot_cn.html>`_ ：介绍了动转静 SOT 原理及使用方式
 
 - `PIR 基本概念和开发 <paddle_ir_cn.html>`_ ：介绍了飞桨新一代中间表示（PIR）的设计和开发范式
 
@@ -26,5 +26,5 @@
     auto_parallel_cn.md
     cinn_cn.md
     high_order_ad_cn.md
-    sot.md
+    sot_cn.html
     paddle_ir_cn.md
