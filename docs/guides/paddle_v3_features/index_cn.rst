@@ -26,4 +26,5 @@
     auto_parallel_cn.md
     cinn_cn.md
     high_order_ad_cn.md
+    sot.md
     paddle_ir_cn.md
