@@ -1,3 +1,5 @@
+# CINN 神经网络编译器
+
 ## 一、概念简介
 深度学习编译器是一种专门为深度学习模型优化和部署而设计的工具，用于提高模型的计算效率、降低内存占用、加速训练推理过程。其功能是将高层次的深度学习模型转换为低层次的、高效的、底层硬件可执行的代码。简单来说，深度学习编译器在深度学习框架和底层硬件之间充当了“翻译”的角色，能够将用户定义的神经网络模型描述转化为底层硬件能够理解和执行的指令。编译器在实现这种转换的过程中，应用了一系列优化技术，以提高模型在各种硬件平台上（如 CPU、GPU）的执行效率。
 深度学习编译器的主要功能包括：
@@ -15,7 +17,7 @@
 深度学习编译器可以自动化许多优化过程，减少手动调优的工作量。开发者只需关注模型的设计和训练，而不必深入了解底层硬件优化细节，从而提高开发效率。
 
 ## 三、使用示例：
-飞桨框架编译器（CINN）使用时仅需在原先的模型动转静或推理流程下打开编译器相关 FLAGS 即可，无需对模型代码做任何改动。以下是一个使用样例：
+飞桨框架编译器（CINN, Compiler Infrastructure for Neural Networks）使用时仅需在原先的模型动转静或推理流程下打开编译器相关 FLAGS 即可，无需对模型代码做任何改动。以下是一个使用样例：
 
 示例代码文件：`run_net.py`
 ```python
@@ -91,8 +93,9 @@ python run_net.py
 注：由于飞桨的编译器仍然处在快速迭代开发阶段，我们设置了较多 FLAGS 进行分支的选择和调试，因此现阶段在使用 CINN 时需要对如下 FLAGS（`FLAGS_prim_enable_dynamic`、 `FLAGS_cinn_new_group_scheduler`、 `FLAGS_group_schedule_tiling_first`、 `FLAGS_cinn_bucket_compile`、 `FLAGS_enable_pir_api`） 进行手动设置，待后续相关功能完备后这些 FLAGS 会默认开启，无需再手动设置。
 
 ## 四、设计架构
-<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/images/cinn/cinn_design.png?raw=true" width="800" ></center>
-<br><center>图 1 CINN 整体架构 </center>
+<center><img src="
+https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/paddle_v3_features/images/cinn/cinn_design.png?raw=true" width="900" ></center>
+<center> 图 1 CINN 整体架构 </center><br>
 
 飞桨框架编译器（CINN, Compiler Infrastructure for Neural Networks）整体架构如上图所示，大体可以分为三个模块，分别是编译器前端、编译器后端和执行器部分。
 
@@ -108,11 +111,11 @@ python run_net.py
 #### c. 算子融合
 算子融合是编译器前端非常重要的一个功能，主要是将多个算子打包到一个子图中（对应为一个 FusionOp），交给编译器后端生成一个高效的硬件相关计算 Kernel。
 算子融合的本质是通过 IO 优化加速访存密集算子，如果我们将两个连续 Kernel 合并为一个 Kernel 调用，我们会减少中间变量的读写开销，因此在访存密集型的 2 个 Op 上，融合可以获取更高的性能。举个例子，如下图：
-<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/images/cinn/op_fusion.png?raw=true" width="200" ></center>
-<br><center>图 2 算子融合示例 </center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/paddle_v3_features/images/cinn/op_fusion.png?raw=true" width="200" ></center>
+<center> 图 2 算子融合示例 </center><br>
 
 我们有两个算子 Relu 和 Scale，因为两个算子都是 IO 密集型算子（计算复杂度不高）。正常情况下我们需要读取 A 和 B 一次，写 B 和 C 一次。但是对于融合之后的 Kernel（右图）而言，我们只需要读取 A 和写 C 一次，这样我们通过算子融合可以取得更少的访存次数，在 IO 密集算子而言，可以极大提高性能。
-具体的算子融合策略实现非常复杂，这里不做展开介绍，感兴趣的读者可以阅读相关源码 #cinn_group_cluster_pass。
+具体的算子融合策略实现非常复杂，这里不做展开介绍，感兴趣的读者可以阅读相关源码 [#cinn_group_cluster_pass](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/cinn/hlir/dialect/operator/transforms/cinn_group_cluster_pass.cc)。
 
 ### 2. 编译器后端
 编译器后端主要负责将前端处理后的 IR 转换为目标硬件可执行的代码或硬件描述。主要功能包括基于硬件特性的 IR 优化、高效内存管理和代码生成等。
