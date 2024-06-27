@@ -9,7 +9,7 @@
 深度学习模型的训练过程涉及使用随机梯度下降（SGD）等优化算法来更新模型参数。在这一过程中，深度学习框架的自动微分功能发挥着核心作用，它利用链式法则自动计算出损失函数相对于模型参数的梯度。尽管大多数深度学习任务只需计算一阶导数，但在某些 AI for Science 场景中，却需要计算高阶导数，这无疑增加了自动微分的复杂性。以 2D 矩形平板分布受载问题为例，该问题的内在机理需要使用 4 阶微分方程来描述。为了求解这类问题，深度学习框架必须支持高阶自动微分功能。
 
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/higer_order_ad/background.png" style="zoom:80%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/higher_order_ad/background.png" style="zoom:80%"/>
 </figure>
 
 二、设计思想
@@ -22,7 +22,7 @@
 根据 log_softmax 表达式拆解为 exp、max、log 等细粒度基础算子组成，基础算子是指由简单运算逻辑组成的有限集合，数量较少。基于飞桨的自动微分体系，使用基础算子的微分规则自动推导 log_softmax 一阶微分，注意基础算子微分规则仍由基础算子实现，因此 log_softmax 的一阶微分仍由基础算子组成。重复上述微分过程实现 log_softmax 高阶微分求解。
 
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/higer_order_ad/softmax_example.png" style="zoom:80%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/higher_order_ad/softmax_example.png" style="zoom:80%"/>
 </figure>
 
 三、框架架构
@@ -31,7 +31,7 @@
 为了支持高阶自动微分，飞桨框架精心设计与实现了组合算子机制。这一机制不仅兼容动态图模式和静态图模式，而且在动态图模式下支持 N+1 阶微分的拆分，同时在静态图模式下能够进行编译器融合优化。创新性地设计并实现了动静一体的算子组合规则，这意味着同一套组合规则在动态图和静态图两种模式下均可复用，从而避免了重复开发。在构建基础算子体系时，我们以 Tensor 作为核心操作对象，确保了算子的原子性、实用性和完备性。此外，我们还支持自定义反向操作和自动重计算功能，这些特性不仅提升了模型的精度，还有效地减少了显存占用，为用户提供了更高效、更灵活的深度学习体验。
 
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/higer_order_ad/architecture.png" style="zoom:80%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/higher_order_ad/architecture.png" style="zoom:80%"/>
 </figure>
 
  **基础算子集合设计**
@@ -201,5 +201,5 @@ print(H_y_x2_x2.shape)
 基于飞桨框架 3.0 为科学计算提供了高阶自动微分、编译优化、分布式训练能力支撑，提供了面向通用数理问题求解的赛桨 PaddleScience 以及专注于生物计算的螺旋桨 PaddleHelix 工具组件。为了更好地支撑 AI for Science 生态，飞桨对国内外主流开源科学计算工具进行了适配，并被国际主流的科学计算深度学习库 DeepXDE 唯一推荐。在与 NVIDIA 合作适配其 AI Physics 工具 Modulus 的过程中，飞桨利用其高阶自动微分与编译优化技术，成功完成了全量模型适配，实现了方程求解类模型性能的大幅优化，相比 Modulus 现有后端求解速度平均提升 71%。
 
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/higer_order_ad/ai4s.png" style="zoom:80%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/higher_order_ad/ai4s.png" style="zoom:80%"/>
 </figure>
