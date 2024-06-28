@@ -42,7 +42,9 @@
 * Shard(axis)，指将张量沿 axis 维度做切分后，放到不同的计算设备上。
 * Partial，指每个计算设备只拥有部分值，需要通过指定的规约操作才能恢复成全量数据。
 
-![三种分布式状态](images/placements.png)
+<p align="center">
+    <img src="images/auto_parallel/mesh.png" width="40%"/>
+</p>
 
 在如下的示例中，我们希望在 6 个计算设备上，创建一个形状为(4, 3)的分布式张量，其中沿着计算设备的 x 维，切分张量的 0 维；沿着计算设备的 y 维上，切分张量的 1 维。最终，每个计算设备实际拥有大小为(2, 1)的实际张量，如图所示。
 
@@ -60,7 +62,9 @@ dense_tensor = paddle.to_tensor([[1,2,3],
 placements = [dist.Shard(0), dist.Shard(1)]
 dist_tensor = dist.shard_tensor(dense_tensor, mesh, placements)
 ```
-![切分状态](images/shard.png)
+<p align="center">
+    <img src="images/auto_parallel/shard.png" width="40%"/>
+</p>
 
 ## 2.3 张量重切分
 
@@ -83,7 +87,9 @@ placements1 = [dist.Shard(0)]
 dist_tensor = dist.shard_tensor(dense_tensor, mesh0, placements0)
 dist_tensor_after_reshard = dist.reshard(dist_tensor, mesh1, placements1)
 ```
-![切分状态](images/reshard.png)
+<p align="center">
+    <img src="images/auto_parallel/reshard.png" width="40%"/>
+</p>
 
 # 三、原理简介
 
@@ -107,28 +113,28 @@ dist_tensorB = dist.shard_tensor(dense_tensorB, mesh, placementsB)
 dist_tensorC = Matmul(dist_tensorA, dist_tensorB)
 dist_tensorD = relu(dist_tensorC)
 ```
-<div style="text-align: center;">
-<img src="images/underlying1.png" alt="用户标记" style="width: 45%; height: auto; center;">
-<!-- ![原理简介](images/underlying1.png) -->
-</div>
+
+<p align="center">
+    <img src="images/auto_parallel/shard_anonation.png" width="40%"/>
+</p>
 
 接下来就会进入自动并行的第一个核心逻辑 **切分推导**。
 当前用户标记的输入切分状态是无法被 Matmul 算子实际计算的(TensorA 的第 0 维和 TensorB 的第 1 维不匹配)。
 这时候自动并行框架会使用当前算子的切分推导规则(e.g. MatmulSPMD Rule)，根据输入 tensors 的切分状态，推导出一套合法且性能较优的 输入-输出 张量的切分状态。
 在上述输入的切分状态下，框架会推导出会将 TensorA 的切分状态推导成按列切分，TensorB 保持切分状态不变，Matmul 的计算结果 TensorC 的切分状态是 Partial。
 因为后续的 Relu 算子是非线性的，输入不能是 Partial 状态，所以框架会根据 ReluSPMD Rule 将 TensorC 输入 Relu 前的的分布式状态推导成 Replicated。
-<div style="text-align: center;">
-<img src="images/underlying2.png" alt="切分推导" style="width: 45%; height: auto; center;">
-</div>
+<p align="center">
+    <img src="images/auto_parallel/shard_propogation.png" width="40%"/>
+</p>
 
 接下来就会进入自动并行的第二个核心逻辑 **切分转换**。
 框架会根据 tensor 当前的切分状态(src_placement)，和切分推导规则推导出的算子计算需要的切分状态(dst_placement),添加对应的通信/张量维度变换算子。
 根据上图的切分推导，在计算 Matmul 添加 split 算子，在计算 Relue 添加 Allreduce，将输入 tensor 转换成需要的切分状态进行实际计算。
 
-<div style="text-align: center;">
-<img src="images/underlying3.png" alt="切分转换" style="width: 45%; height: auto; center;">
-</div>
-<!-- ![原理简介](images/underlying3.png) -->
+<p align="center">
+    <img src="images/auto_parallel/shard_convertion.png" width="40%"/>
+</p>
+<!-- ![原理简介](images/auto_parallel/underlying3.png) -->
 
 
 # 四、使用示例
@@ -145,6 +151,7 @@ dist_tensorD = relu(dist_tensorC)
 import paddle
 import paddle.distributed as dist
 from paddle.io import BatchSampler, DataLoader, Dataset
+import numpy as np
 
 mesh = dist.ProcessMesh([0, 1, 2, 3], dim_names=['x'])
 
@@ -267,6 +274,7 @@ class MlpModel(paddle.nn.Layer):
 import paddle
 import paddle.distributed as dist
 from paddle.io import BatchSampler, DataLoader, Dataset
+import numpy as np
 
 mesh0 = dist.ProcessMesh([[0, 1], [2, 3]], dim_names=['x', 'y']) # 创建进程网格
 mesh1 = dist.ProcessMesh([[4, 5], [6, 7]], dim_names=['x', 'y']) # 创建进程网格
@@ -332,7 +340,9 @@ for step, inputs in enumerate(dataloader):
 
 自动并行的 API 在设计之初，就以实现统一的用户标记接口和逻辑为目标，保证动静半框架保证在相同的用户标记下，动静态图分布式执行逻辑一致。这样用户在全流程过程中只需要标记一套动态图组网，即可以实现动态图下的分布式训练 Debug 和 静态图下的分布式推理等逻辑。整个动转静训练的逻辑如下：
 
-![切分状态](images/dynamic_static_unified_auto_parallel.png)
+<p align="center">
+    <img src="images/auto_parallel/dynamic-static-unified.png" width="40%"/>
+</p>
 
 ```python
 ...
