@@ -39,7 +39,7 @@ unsupport_func(x)  # raise error
 在新的 SOT 方案中引入了自适应打断机制来获得 100% 理论动转静成功率。在旧的动转静 AST 方案中，是以源码转写的方式对整图进行转写，当遇到无法静态化的 Op 时，AST 整图转写失败。新的 SOT 方案中，首先将源码转写的方式升级为了字节码转写，当遇到无法静态化的 Op 时，我们将整图切分为子图，并使用**字节码进行粘连**，以达到转写成功的目的。在自适应打断机制加持下，用户动态图编写可以更加随意，并在子图层面享受动转静和编译器加速。
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/sot/sot_vs_ast.png" width="80%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/sot/sot_vs_ast.png" width="40%"/>
 </p>
 
 
@@ -48,23 +48,23 @@ unsupport_func(x)  # raise error
 在新的 SOT 流程下，动转静是在字节码层面进行分析的，SOT 会先利用注册的 Python EvalFrame Hooker 获取到用户函数运行时的字节码和 PyFrame 上下文信息（包含了局部变量，参数等），然后使用内部实现的**字节码模拟执行器**来进行模拟执行，最后得到一个可以替换原来字节码的新 PyCodeObject 对象。模拟执行器会识别出用户函数中需要静态化的字节码和无法静态化的字节码，对于无法静态化的字节码使用打断功能会回退到动态图执行，对于可以静态化的字节码会生成一个静态图来进行替换。当第二次执行时，SOT 会先判断是否命中了上次转写的缓存，如果命中了缓存就可以直接获取上次转写的 PyCodeObject 重用。下图是整个 SOT 的执行流程。
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/sot/sot_procedure.png" width="80%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/sot/sot_procedure.png" width="40%"/>
 </p>
 
 ## 三、框架架构
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/sot/sot_framework.png" width="80%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/sot/sot_framework.png" width="50%"/>
 </p>
 
 
 上图展示了 SOT 的所有组件，针对一些名词和模块，这里进行一个简单的介绍：
 
-### **一、EvalFrame Hooker 模块**
+### 3.1 EvalFrame Hooker 模块
 
 Python 在 2016 年的 PEP523 提案支持了自定义回调函数，将默认的执行器替换为用户自定义的解释函数。这个机制结合子图 fallback 方案的需求，我们在 Paddle 的 Pybind 层暴露了 `paddle.core.set_eval_frame` 接口。
 
-### **二、字节码模拟器（OpcodeExecutor）模块**
+### 3.2 字节码模拟器（OpcodeExecutor）模块
 
 这个部分是 SOT 方案的核心，主要的功能是我们需要模拟获取到的 PyCodeObject，并进行动态和静态代码分离，因此字节码模拟器是将 Python 函数映射为新的 Python 函数的模块。对于不同的静态化程度的函数，**字节码模拟器**会将一个函数对应于下面几种可能的情况：
 
@@ -79,7 +79,7 @@ Python 在 2016 年的 PEP523 提案支持了自定义回调函数，将默认�
 - 支持子函数递归模拟。
 - 完备的字节码支持，完备的版本支持。我们支持 python3.8 - python3.12 的几乎 90%常见字节码模拟。
 
-### **三、自适应子图打断模块：**
+### 3.3 自适应子图打断模块
 
 **对于控制流 If、For 依赖 Tensor 的场景，需要打断构图并静态化部分函数，子图打断能力是 SOT 能够达到近 100%成功率的核心组件。**
 
@@ -90,19 +90,19 @@ Python 在 2016 年的 PEP523 提案支持了自定义回调函数，将默认�
 
 基于不同的场景我们设计了不同的异常传播途径和不同的处理逻辑。
 
-### **四、Tracker、Guard、缓存模块：**
+### 3.4 Tracker、Guard、缓存模块
 
 子图 Fallback 的整体实现可以认为是将用户函数原始字节码转换为新的字节码，**为了避免每次传入相同输入都会重新触发开销昂贵的字节码转换操作，我们需要增加缓存机制来复用之前转写过的代码，实现 JIT 的效果。**
 
 但并不是任何字节码成功转换一次后第二次都是可以直接复用的，因为我们字节码的转换是基于 Frame 的初始状态进行模拟执行得到的，也就是说**转换后的字节码强依赖于 Frame 的初始状态**。当初始状态发生改变，最后转换后的字节码很有可能发生改变，因此我们需要一种机制来根据 Frame 初始状态来判断缓存过的字节码是否有效。这种转换复用的机制我们称为 Guard 函数，而 Guard 函数生成依赖字节码模拟过程中记录的每个模拟变量的 Tracker。
 
-### **五、副作用处理模块：**
+### 3.5 副作用处理模块
 
 **SideEffect 是指代码执行过程中除了函数返回值之外，还对调用方产生了额外的影响，比如修改全局变量、修改可变的共享变量等。**
 
 在模拟执行过程中，我们的代码是在虚拟环境下执行的，在该过程中不应该也不会对真实环境进行修改。而如果用户代码产生了 SideEffect，我们需要在生成的代码里反映出相应的 SideEffect，即在字节码生成步骤中增加 SideEffect 的处理部分。副作用模块就是专门记录并处理副作用正确性的功能模块。
 
-### **六、StatementIR 模块：**
+### 3.6 StatementIR 模块
 
 **StatementIR 是 Paddle 动转静模块与子图 FallBack 的一个『中间桥梁』，它达到了动转静复用的目的。**
 
@@ -121,7 +121,7 @@ SOT 方案相比于 AST 方案有如下的优势：
 
 ## 五、开始使用
 
-### 使用 SOT 模式（默认模式）
+### 5.1 使用 SOT 模式（默认模式）
 
 目前 SOT 模式是动转静的默认转写模式。用户只需要使用默认的 paddle.jit.to_static 就可以，下面是一个 SOT 动转静的使用样例：
 
@@ -165,7 +165,7 @@ Tensor(shape=[], dtype=float64, place=Place(gpu:0), stop_gradient=True,
        54.16428375)
 ```
 
-### 使用 AST 模式
+### 5.2 使用 AST 模式
 
 如果确定自己的代码完全可以静态化，用户可以手动打开 AST 模式，通常 AST 模式成功率会更低，但是调度开销会更小，同时支持部署推理。
 
