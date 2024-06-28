@@ -231,6 +231,7 @@ Dropout 层
 
 
     " :ref:`paddle.nn.AlphaDropout <cn_api_paddle_nn_AlphaDropout>` ", "具有自归一化性质的 dropout"
+    " :ref:`paddle.nn.FeatureAlphaDropout <cn_api_paddle_nn_FeatureAlphaDropout>` ", "具有自归一化性质的 dropout ，屏蔽整个通道"
     " :ref:`paddle.nn.Dropout <cn_api_paddle_nn_Dropout>` ", "Dropout"
     " :ref:`paddle.nn.Dropout2D <cn_api_paddle_nn_Dropout2D>` ", "一维 Dropout"
     " :ref:`paddle.nn.Dropout3D <cn_api_paddle_nn_Dropout3D>` ", "二维 Dropout"
@@ -462,6 +463,7 @@ Dropout 方法
 
 
     " :ref:`paddle.nn.functional.alpha_dropout <cn_api_paddle_nn_functional_alpha_dropout>` ", "一种具有自归一化性质的 dropout"
+    " :ref:`paddle.nn.functional.feature_alpha_dropout <cn_api_paddle_nn_functional_feature_alpha_dropout>` ", "一种具有自归一化性质的 dropout ，屏蔽整个通道"
     " :ref:`paddle.nn.functional.dropout <cn_api_paddle_nn_functional_dropout>` ", "Dropout"
     " :ref:`paddle.nn.functional.dropout2d <cn_api_paddle_nn_functional_dropout2d>` ", "一维 Dropout"
     " :ref:`paddle.nn.functional.dropout3d <cn_api_paddle_nn_functional_dropout3d>` ", "二维 Dropout"
