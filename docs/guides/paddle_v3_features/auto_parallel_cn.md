@@ -43,7 +43,7 @@
 * Partial，指每个计算设备只拥有部分值，需要通过指定的规约操作才能恢复成全量数据。
 
 <p align="center">
-    <img src="images/auto_parallel/mesh.png" width="40%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/mesh.png" width="40%"/>
 </p>
 
 在如下的示例中，我们希望在 6 个计算设备上，创建一个形状为(4, 3)的分布式张量，其中沿着计算设备的 x 维，切分张量的 0 维；沿着计算设备的 y 维上，切分张量的 1 维。最终，每个计算设备实际拥有大小为(2, 1)的实际张量，如图所示。
@@ -63,7 +63,7 @@ placements = [dist.Shard(0), dist.Shard(1)]
 dist_tensor = dist.shard_tensor(dense_tensor, mesh, placements)
 ```
 <p align="center">
-    <img src="images/auto_parallel/shard.png" width="40%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/shard.png" width="40%"/>
 </p>
 
 ## 2.3 张量重切分
@@ -88,7 +88,7 @@ dist_tensor = dist.shard_tensor(dense_tensor, mesh0, placements0)
 dist_tensor_after_reshard = dist.reshard(dist_tensor, mesh1, placements1)
 ```
 <p align="center">
-    <img src="images/auto_parallel/reshard.png" width="40%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/reshard.png" width="40%"/>
 </p>
 
 # 三、原理简介
@@ -115,7 +115,7 @@ dist_tensorD = relu(dist_tensorC)
 ```
 
 <p align="center">
-    <img src="images/auto_parallel/shard_anonation.png" width="40%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/shard_anonation.png" width="40%"/>
 </p>
 
 接下来就会进入自动并行的第一个核心逻辑 **切分推导**。
@@ -124,7 +124,7 @@ dist_tensorD = relu(dist_tensorC)
 在上述输入的切分状态下，框架会推导出会将 TensorA 的切分状态推导成按列切分，TensorB 保持切分状态不变，Matmul 的计算结果 TensorC 的切分状态是 Partial。
 因为后续的 Relu 算子是非线性的，输入不能是 Partial 状态，所以框架会根据 ReluSPMD Rule 将 TensorC 输入 Relu 前的的分布式状态推导成 Replicated。
 <p align="center">
-    <img src="images/auto_parallel/shard_propogation.png" width="40%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/shard_propogation.png" width="40%"/>
 </p>
 
 接下来就会进入自动并行的第二个核心逻辑 **切分转换**。
@@ -132,9 +132,9 @@ dist_tensorD = relu(dist_tensorC)
 根据上图的切分推导，在计算 Matmul 添加 split 算子，在计算 Relue 添加 Allreduce，将输入 tensor 转换成需要的切分状态进行实际计算。
 
 <p align="center">
-    <img src="images/auto_parallel/shard_convertion.png" width="40%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/shard_convertion.png" width="40%"/>
 </p>
-<!-- ![原理简介](images/auto_parallel/underlying3.png) -->
+<!-- ![原理简介](https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/underlying3.png) -->
 
 
 # 四、使用示例
@@ -341,7 +341,7 @@ for step, inputs in enumerate(dataloader):
 自动并行的 API 在设计之初，就以实现统一的用户标记接口和逻辑为目标，保证动静半框架保证在相同的用户标记下，动静态图分布式执行逻辑一致。这样用户在全流程过程中只需要标记一套动态图组网，即可以实现动态图下的分布式训练 Debug 和 静态图下的分布式推理等逻辑。整个动转静训练的逻辑如下：
 
 <p align="center">
-    <img src="images/auto_parallel/dynamic-static-unified.png" width="40%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/dynamic-static-unified.png" width="40%"/>
 </p>
 
 ```python
