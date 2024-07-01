@@ -95,6 +95,8 @@ pooling 层
     " :ref:`paddle.nn.MaxUnPool3D <cn_api_paddle_nn_MaxUnPool3D>` ", "三维最大反池化层"
     " :ref:`paddle.nn.FractionalMaxPool2D <cn_api_paddle_nn_FractionalMaxPool2D>` ", "二维分数阶最大值池化层"
     " :ref:`paddle.nn.FractionalMaxPool3D <cn_api_paddle_nn_FractionalMaxPool3D>` ", "三维分数阶最大值池化层"
+    " :ref:`paddle.nn.LPPool1D <cn_api_paddle_nn_LPPool1D>` ", "一维幂平均池化层"
+    " :ref:`paddle.nn.LPPool2D <cn_api_paddle_nn_LPPool2D>` ", "二维幂平均池化层"
 
 .. _padding_layers:
 
@@ -369,6 +371,8 @@ Pooling 相关函数
     " :ref:`paddle.nn.functional.max_unpool3d <cn_api_paddle_nn_functional_max_unpool3d>` ", "三维最大反池化层"
     " :ref:`paddle.nn.functional.fractional_max_pool2d <cn_api_paddle_nn_functional_fractional_max_pool2d>` ", "二维分数阶最大值池化"
     " :ref:`paddle.nn.functional.fractional_max_pool3d <cn_api_paddle_nn_functional_fractional_max_pool3d>` ", "三维分数阶最大值池化"
+    " :ref:`paddle.nn.functional.lp_pool1d <cn_api_paddle_nn_functional_lp_pool1d>` ", "一维平均幂池化"
+    " :ref:`paddle.nn.functional.lp_pool2d <cn_api_paddle_nn_functional_lp_pool2d>` ", "二维平均幂池化"
 
 .. _padding_functional:
 
