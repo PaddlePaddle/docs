@@ -1,4 +1,3 @@
-
 .. _cn_api_paddle_nn_LPPool2D:
 
 LPPool2D
