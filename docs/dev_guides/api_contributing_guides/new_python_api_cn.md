@@ -56,12 +56,12 @@ API 作为用户使用飞桨框架的接口，承接着实现用户模型开发�
 
 先看一个简单的 Python API 的代码样例，如图 1 所示，可以看到主要包括以下几部分：
 
-- **函数定义**：定义 Python 接口函数。
+- **函数定义**：定义 Python 接口函数与参数类型。
 - **英文文档**：API 的英文文档直接写在 `.py` 代码文件中，如下图所示；API 的中文文档则写到 [PaddlePaddle/docs](https://github.com/PaddlePaddle/docs) 仓库中。
 - **代码示例**：该 API 的使用示例代码。
 - **函数主体代码**：包括输入参数的检查、调用算子的执行逻辑等内容。
 
-<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/zeros_python_api_doctest.png?raw=true" width="900px" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/zeros_python_api.png?raw=true" width="900px" ></center>
 
 <center>图 1 Python API 代码样例</center>
 
@@ -75,7 +75,7 @@ API 作为用户使用飞桨框架的接口，承接着实现用户模型开发�
 
 ```python
 def zeros(shape, dtype=None, name=None):
-    # 为了突出重点，省略中间的文档和示例部分
+    # 为了突出重点，省略类型标注与中间的文档和示例部分
     if dtype is None:
         dtype = 'float32'
     return fill_constant(value=0.0, shape=shape, dtype=dtype, name=name)

@@ -87,9 +87,9 @@ class AliasAPIGen:
 
         obj = eval(api)
         if inspect.isclass(obj):
-            reg = "class %s(" % api.split(".")[-1]
+            reg = "class {}(".format(api.split(".")[-1])
         elif inspect.isfunction(obj):
-            reg = "def %s(" % api.split(".")[-1]
+            reg = "def {}(".format(api.split(".")[-1])
 
         shell_cmd = f"find {self.paddle_root_path} -name '*.py' | xargs grep  \"{reg}\" "
 

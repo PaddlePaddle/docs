@@ -80,8 +80,6 @@
   * `FLAGS_fuse_parameter_memory_size` → `strategy.fuse_grad_size_in_MB`
   * `FLAGS_fuse_parameter_groups_size` → `strategy.fuse_grad_size_in_TFLOPS`
 
- DistributedStrategy 中`exec_strategy`配置项不兼容升级为`execution_strategy`。
-
  DistributedStrategy 中`forward_recompute`配置项不兼容升级为`recompute`。
 
  DistributedStrategy 中`recompute_checkpoints`配置项不兼容升级为`recompute_configs`字典下的字段，如下：

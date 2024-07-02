@@ -95,6 +95,8 @@ pooling 层
     " :ref:`paddle.nn.MaxUnPool3D <cn_api_paddle_nn_MaxUnPool3D>` ", "三维最大反池化层"
     " :ref:`paddle.nn.FractionalMaxPool2D <cn_api_paddle_nn_FractionalMaxPool2D>` ", "二维分数阶最大值池化层"
     " :ref:`paddle.nn.FractionalMaxPool3D <cn_api_paddle_nn_FractionalMaxPool3D>` ", "三维分数阶最大值池化层"
+    " :ref:`paddle.nn.LPPool1D <cn_api_paddle_nn_LPPool1D>` ", "一维幂平均池化层"
+    " :ref:`paddle.nn.LPPool2D <cn_api_paddle_nn_LPPool2D>` ", "二维幂平均池化层"
 
 .. _padding_layers:
 
@@ -231,6 +233,7 @@ Dropout 层
 
 
     " :ref:`paddle.nn.AlphaDropout <cn_api_paddle_nn_AlphaDropout>` ", "具有自归一化性质的 dropout"
+    " :ref:`paddle.nn.FeatureAlphaDropout <cn_api_paddle_nn_FeatureAlphaDropout>` ", "具有自归一化性质的 dropout ，屏蔽整个通道"
     " :ref:`paddle.nn.Dropout <cn_api_paddle_nn_Dropout>` ", "Dropout"
     " :ref:`paddle.nn.Dropout2D <cn_api_paddle_nn_Dropout2D>` ", "一维 Dropout"
     " :ref:`paddle.nn.Dropout3D <cn_api_paddle_nn_Dropout3D>` ", "二维 Dropout"
@@ -274,6 +277,7 @@ Loss 层
     " :ref:`paddle.nn.TripletMarginWithDistanceLoss <cn_api_paddle_nn_TripletMarginWithDistanceLoss>` ", "TripletMarginWithDistanceLoss 层"
     " :ref:`paddle.nn.MultiLabelSoftMarginLoss <cn_api_paddle_nn_MultiLabelSoftMarginLoss>` ", "多标签 Hinge 损失层"
     " :ref:`paddle.nn.MultiMarginLoss <cn_api_paddle_nn_MultiMarginLoss>` ", "MultiMarginLoss 层"
+    " :ref:`paddle.nn.AdaptiveLogSoftmaxWithLoss <cn_api_paddle_nn_AdaptiveLogSoftmaxWithLoss>` ", "自适应 logsoftmax 损失类"
 
 
 .. _vision_layers:
@@ -367,6 +371,8 @@ Pooling 相关函数
     " :ref:`paddle.nn.functional.max_unpool3d <cn_api_paddle_nn_functional_max_unpool3d>` ", "三维最大反池化层"
     " :ref:`paddle.nn.functional.fractional_max_pool2d <cn_api_paddle_nn_functional_fractional_max_pool2d>` ", "二维分数阶最大值池化"
     " :ref:`paddle.nn.functional.fractional_max_pool3d <cn_api_paddle_nn_functional_fractional_max_pool3d>` ", "三维分数阶最大值池化"
+    " :ref:`paddle.nn.functional.lp_pool1d <cn_api_paddle_nn_functional_lp_pool1d>` ", "一维平均幂池化"
+    " :ref:`paddle.nn.functional.lp_pool2d <cn_api_paddle_nn_functional_lp_pool2d>` ", "二维平均幂池化"
 
 .. _padding_functional:
 
@@ -461,6 +467,7 @@ Dropout 方法
 
 
     " :ref:`paddle.nn.functional.alpha_dropout <cn_api_paddle_nn_functional_alpha_dropout>` ", "一种具有自归一化性质的 dropout"
+    " :ref:`paddle.nn.functional.feature_alpha_dropout <cn_api_paddle_nn_functional_feature_alpha_dropout>` ", "一种具有自归一化性质的 dropout ，屏蔽整个通道"
     " :ref:`paddle.nn.functional.dropout <cn_api_paddle_nn_functional_dropout>` ", "Dropout"
     " :ref:`paddle.nn.functional.dropout2d <cn_api_paddle_nn_functional_dropout2d>` ", "一维 Dropout"
     " :ref:`paddle.nn.functional.dropout3d <cn_api_paddle_nn_functional_dropout3d>` ", "二维 Dropout"
@@ -510,6 +517,7 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.triplet_margin_with_distance_loss <cn_api_paddle_nn_functional_triplet_margin_with_distance_loss>` ", "用户自定义距离函数用于计算 triplet margin loss 损失"
     " :ref:`paddle.nn.functional.multi_label_soft_margin_loss <cn_api_paddle_nn_functional_multi_label_soft_margin_loss>` ", "用于计算多分类的 hinge loss 损失函数"
     " :ref:`paddle.nn.functional.multi_margin_loss <cn_api_paddle_nn_functional_multi_margin_loss>` ", "用于计算 multi margin loss 损失函数"
+    " :ref:`paddle.nn.functional.adaptive_log_softmax_with_loss <cn_api_paddle_nn_functional_adaptive_log_softmax_with_loss>` ", "自适应 logsoftmax 损失函数"
 
 
 .. _common_functional:
