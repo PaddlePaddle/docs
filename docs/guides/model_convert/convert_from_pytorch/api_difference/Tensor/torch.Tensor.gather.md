@@ -18,5 +18,5 @@ paddle.Tensor.take_along_axis(index, axis, broadcast=True)
 
 | PyTorch | PaddlePaddle | 备注                                      |
 | ------- | ------------ | ----------------------------------------- |
-| dim     | index        | 索引 Tensor，仅参数名不一致。               |
-| index   | axis         | 指定 index 获取输入的维度，仅参数名不一致。 |
+| dim     | axis         | 索引 Tensor，仅参数名不一致。               |
+| index   | indices      | 指定 index 获取输入的维度，仅参数名不一致。 |
