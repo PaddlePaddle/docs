@@ -9,7 +9,7 @@ flashmask_attention
 flashmask 将通过参数 `startend_row_indices` 表示作用在 Attention Score 矩阵上的 mask ， Attention Score 矩阵指的是 :math:`Q * K^T` ，元素被 mask 指的是将 Score 矩阵中对应位置设置为 :math:`-inf`
 下图展示了多种 mask 的示例，图中为 Score 矩阵，灰色区域元素表示被 mask ，上方数字表示 startend_row_indices 的值，一行数字表明 startend_row_indices 的 shape 为 [batch_size, num_heads, seq_len, 1] ，二行数字表明 startend_row_indices 的 shape 为 [batch_size, num_heads, seq_len, 2]。
 
-.. image:: ../../../images/flashmask.jpeg
+.. image:: ../../../../images/flashmask.jpeg
    :width: 400px
    :height: 1800px
    :align: center
@@ -24,8 +24,7 @@ flashmask 将通过参数 `startend_row_indices` 表示作用在 Attention Score
     - **query** (int) - 输入 Query Tensor，shape =[batch_size, seq_len, num_heads, head_dim]，数据类型为 float16 或 bfloat16。
     - **key** (Tensor) - 输入 Key Tensor，shape 以及 dtype 和 query 相同。
     - **value** (Tensor) - 输入 Value Tensor，shape 以及 dtype 和 query 相同。
-    - **startend_row_indices** (Tensor)
-            - 稀疏掩码索引，shape 为 [batch_size, num_heads, seq_len, {1, 2, 4}]，数据类型为 int32。
+    - **startend_row_indices** (Tensor) - 稀疏掩码索引，shape 为 [batch_size, num_heads, seq_len, {1, 2, 4}]，数据类型为 int32。
                                        num_heads 为 1 或与 k 的 num_heads 相同，num_heads 取 1 时将被广播到与 k 的 num_heads 相同。
                                        根据 causal 参数的取值不同，startend_row_indices 可取不同形状并具有不同含义。
             - 当 `causal=True` 且 shape 取 [batch_size, num_heads, seq_len, 1] 时,
