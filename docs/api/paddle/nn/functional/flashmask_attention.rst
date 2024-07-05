@@ -22,6 +22,7 @@ flashmask 将通过参数 :code:`startend_row_indices` 表示作用在 Attention
 图(a)中 :code:`causal=True` ， :code:`startend_row_indices` 的值如下
 
 .. code-block:: python
+
     >>> print(startend_row_indices)
     Tensor(shape=[1, 1, 10, 1], dtype=int32, place=Place(gpu:0), stop_gradient=True,
           [[[[5 ],
@@ -35,9 +36,10 @@ flashmask 将通过参数 :code:`startend_row_indices` 表示作用在 Attention
               [5],
               [5]]]])
 
-图(b)中 :code:`causal=True` ， `startend_row_indices` 的值如下
+图(b)中 :code:`causal=True` ， :code:`startend_row_indices` 的值如下
 
 .. code-block:: python
+
     >>> print(startend_row_indices)
     Tensor(shape=[1, 1, 10, 1], dtype=int32, place=Place(gpu:0), stop_gradient=True,
           [[[[4 ],
@@ -56,9 +58,10 @@ flashmask 将通过参数 :code:`startend_row_indices` 表示作用在 Attention
    :alt: pipeline
    :align: center
 
-图(c)中 :code:`causal=True` ， `startend_row_indices` 的值如下
+图(c)中 :code:`causal=True` ， :code:`startend_row_indices` 的值如下
 
 .. code-block:: python
+
     >>> print(startend_row_indices)
     Tensor(shape=[1, 1, 10, 1], dtype=int32, place=Place(gpu:0), stop_gradient=True,
           [[[[10 ],
@@ -72,9 +75,10 @@ flashmask 将通过参数 :code:`startend_row_indices` 表示作用在 Attention
               [10],
               [10]]]])
 
-图(d)中 :code:`causal=True` ， `startend_row_indices` 的值如下
+图(d)中 :code:`causal=True` ， :code:`startend_row_indices` 的值如下
 
 .. code-block:: python
+
     >>> print(startend_row_indices)
     Tensor(shape=[1, 1, 10, 1], dtype=int32, place=Place(gpu:0), stop_gradient=True,
           [[[[10 ],
@@ -93,9 +97,10 @@ flashmask 将通过参数 :code:`startend_row_indices` 表示作用在 Attention
    :alt: pipeline
    :align: center
 
-图(e)中 :code:`causal=True` ， `startend_row_indices` 的值如下
+图(e)中 :code:`causal=True` ， :code:`startend_row_indices` 的值如下
 
 .. code-block:: python
+
     >>> print(startend_row_indices)
     Tensor(shape=[1, 1, 10, 2], dtype=int32, place=Place(gpu:0), stop_gradient=True,
           [[[[4 , 7 ],
@@ -109,7 +114,7 @@ flashmask 将通过参数 :code:`startend_row_indices` 表示作用在 Attention
               [10, 10],
               [10, 10]]]])
 
-图(f)中 :code:`causal=False` ， `startend_row_indices` 的值如下
+图(f)中 :code:`causal=False` ， :code:`startend_row_indices` 的值如下
 
 .. code-block:: python
     >>> print(startend_row_indices)
@@ -130,7 +135,9 @@ flashmask 将通过参数 :code:`startend_row_indices` 表示作用在 Attention
    :alt: pipeline
    :align: center
 
-图(g)中 :code:`causal=False` ， `startend_row_indices` 的值如下
+图(g)中 :code:`causal=False` ， :code:`startend_row_indices` 的值如下
+
+.. code-block:: python
 
     >>> print(startend_row_indices)
     Tensor(shape=[1, 1, 10, 4], dtype=int32, place=Place(gpu:0), stop_gradient=True,
@@ -145,9 +152,10 @@ flashmask 将通过参数 :code:`startend_row_indices` 表示作用在 Attention
               [8 , 10, 3 , 8 ],
               [9 , 10, 3 , 9 ]]]])
 
-图(h)中 :code:`causal=True` ， `startend_row_indices` 的值如下
+图(h)中 :code:`causal=True` ， :code:`startend_row_indices` 的值如下
 
 .. code-block:: python
+
     >>> print(startend_row_indices)
     Tensor(shape=[1, 1, 10, 1], dtype=int32, place=Place(gpu:0), stop_gradient=True,
           [[[[10 ],
