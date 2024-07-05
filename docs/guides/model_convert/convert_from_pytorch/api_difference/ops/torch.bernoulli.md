@@ -4,6 +4,7 @@
 
 ```python
 torch.bernoulli(input,
+                p=0.5,
                 *,
                 generator=None,
                 out=None)
@@ -23,6 +24,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input      | x  | 表示输入的 Tensor，仅参数名不一致。  |
+| p          | -            | 伯努利参数 p，Paddle 无此参数，暂无转写方式。                                       |
 | generator  | -  | 用于采样的伪随机数生成器， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | out        | -  | 表示输出的 Tensor，Paddle 无此参数，需要转写。    |
 
