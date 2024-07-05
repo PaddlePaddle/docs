@@ -5,18 +5,161 @@ flashmask_attention
 
 .. py:function:: paddle.nn.functional.flashmask_attention(query, key, value, startend_row_indices, dropout=0.0, causal=False, return_softmax_lse=False, return_seed_offset=False, fixed_seed_offset=None, rng_name="", training=True, name=None)
 
-用稀疏的 flashmask 表达的 flash_attention。
-flashmask 将通过参数 `startend_row_indices` 表示作用在 Attention Score 矩阵上的 mask ， Attention Score 矩阵指的是 :math:`Q * K^T` ，元素被 mask 指的是将 Score 矩阵中对应位置设置为 :math:`-inf` 。
-下图展示了多种 mask 的示例，图中为 Score 矩阵，灰色区域元素表示被 mask ，上方数字表示 startend_row_indices 的值，一行数字表明 startend_row_indices 的 shape 为 [batch_size, num_heads, seq_len, 1] ，二行数字表明 startend_row_indices 的 shape 为 [batch_size, num_heads, seq_len, 2]。
-
-.. image:: ../../../../images/flashmask.jpeg
-   :width: 1000px
-   :height: 2000px
-   :align: center
-
 .. math::
 
     result = softmax(\frac{ Q * K^T }{\sqrt{d}} + mask) * V
+
+用稀疏的 flashmask 表达的 flash_attention。
+flashmask 将通过参数 :code:`startend_row_indices` 表示作用在 Attention Score 矩阵上的 mask ， Attention Score 矩阵指的是 :math:`Q * K^T` ，元素被 mask 指的是将 Score 矩阵中对应位置设置为 :math:`-inf` 。
+
+下图展示了多种 mask 的示例，图中为 Score 矩阵，灰色区域元素表示被 mask ，上方数字表示 startend_row_indices 的值，一行数字表明 startend_row_indices 的 shape 为 [batch_size, num_heads, seq_len, 1] ，二行数字表明 startend_row_indices 的 shape 为 [batch_size, num_heads, seq_len, 2]。
+
+.. image:: ../../../../images/FlashMask1.png
+   :width: 900
+   :alt: pipeline
+   :align: center
+
+图(a)中 :code:`causal=True` ， :code:`startend_row_indices` 的值如下
+
+.. code-block:: python
+    >>> print(startend_row_indices)
+    Tensor(shape=[1, 1, 10, 1], dtype=int32, place=Place(gpu:0), stop_gradient=True,
+          [[[[5 ],
+              [5 ],
+              [5 ],
+              [5 ],
+              [5 ],
+              [5 ],
+              [5 ],
+              [5],
+              [5],
+              [5]]]])
+
+图(b)中 :code:`causal=True` ， `startend_row_indices` 的值如下
+
+.. code-block:: python
+    >>> print(startend_row_indices)
+    Tensor(shape=[1, 1, 10, 1], dtype=int32, place=Place(gpu:0), stop_gradient=True,
+          [[[[4 ],
+              [4 ],
+              [4 ],
+              [4 ],
+              [7 ],
+              [7 ],
+              [7 ],
+              [10],
+              [10],
+              [10]]]])
+
+.. image:: ../../../../images/FlashMask2.png
+   :width: 900
+   :alt: pipeline
+   :align: center
+
+图(c)中 :code:`causal=True` ， `startend_row_indices` 的值如下
+
+.. code-block:: python
+    >>> print(startend_row_indices)
+    Tensor(shape=[1, 1, 10, 1], dtype=int32, place=Place(gpu:0), stop_gradient=True,
+          [[[[10 ],
+              [10 ],
+              [10 ],
+              [10 ],
+              [7 ],
+              [7 ],
+              [7 ],
+              [10],
+              [10],
+              [10]]]])
+
+图(d)中 :code:`causal=True` ， `startend_row_indices` 的值如下
+
+.. code-block:: python
+    >>> print(startend_row_indices)
+    Tensor(shape=[1, 1, 10, 1], dtype=int32, place=Place(gpu:0), stop_gradient=True,
+          [[[[10 ],
+              [4 ],
+              [5 ],
+              [6 ],
+              [7 ],
+              [8 ],
+              [9 ],
+              [10],
+              [10],
+              [10]]]])
+
+.. image:: ../../../../images/FlashMask3.png
+   :width: 900
+   :alt: pipeline
+   :align: center
+
+图(e)中 :code:`causal=True` ， `startend_row_indices` 的值如下
+
+.. code-block:: python
+    >>> print(startend_row_indices)
+    Tensor(shape=[1, 1, 10, 2], dtype=int32, place=Place(gpu:0), stop_gradient=True,
+          [[[[4 , 7 ],
+              [4 , 7 ],
+              [4 , 7 ],
+              [4 , 7 ],
+              [10, 10],
+              [10, 10],
+              [10, 10],
+              [10, 10],
+              [10, 10],
+              [10, 10]]]])
+
+图(f)中 :code:`causal=False` ， `startend_row_indices` 的值如下
+
+.. code-block:: python
+    >>> print(startend_row_indices)
+    Tensor(shape=[1, 1, 10, 2], dtype=int32, place=Place(gpu:0), stop_gradient=True,
+          [[[[4 , 0 ],
+              [4 , 0 ],
+              [4 , 0 ],
+              [4 , 0 ],
+              [7, 4],
+              [7, 4],
+              [7, 4],
+              [10, 7],
+              [10, 7],
+              [10, 7]]]])
+
+.. image:: ../../../../images/FlashMask4.png
+   :width: 900
+   :alt: pipeline
+   :align: center
+
+图(g)中 :code:`causal=False` ， `startend_row_indices` 的值如下
+
+    >>> print(startend_row_indices)
+    Tensor(shape=[1, 1, 10, 4], dtype=int32, place=Place(gpu:0), stop_gradient=True,
+          [[[[10, 10, 0 , 0 ],
+              [10, 10, 0 , 0 ],
+              [10, 10, 0 , 0 ],
+              [3 , 10, 0 , 0 ],
+              [4 , 10, 3 , 4 ],
+              [5 , 10, 3 , 5 ],
+              [6 , 10, 3 , 6 ],
+              [7 , 10, 3 , 7 ],
+              [8 , 10, 3 , 8 ],
+              [9 , 10, 3 , 9 ]]]])
+
+图(h)中 :code:`causal=True` ， `startend_row_indices` 的值如下
+
+.. code-block:: python
+    >>> print(startend_row_indices)
+    Tensor(shape=[1, 1, 10, 1], dtype=int32, place=Place(gpu:0), stop_gradient=True,
+          [[[[10 ],
+              [4 ],
+              [8 ],
+              [6 ],
+              [10 ],
+              [7 ],
+              [10 ],
+              [9],
+              [10],
+              [10]]]])
 
 参数
 ::::::::::::
@@ -35,7 +178,7 @@ flashmask 将通过参数 `startend_row_indices` 表示作用在 Attention Score
             - 当 `causal=False` 且 shape 取 [batch_size, num_heads, seq_len, 2] 时,
               startend_row_indices 的值 r1,r2 表示 Score 矩阵中左下三角从第 r1 行下方（包括）的元素将被 mask，右上三角从第 r2 行上方（不包括）的元素将被 mask
             - 当 `causal=False` 且 shape 取 [batch_size, num_heads, seq_len, 4] 时 （尚未支持）,
-              startend_row_indices 的值 r1,r2,r3,r4 表示 Score 矩阵中左下三角从第 r1 行下方（包括）但在第 r2 行上方（不包括）的元素将被 mask，右上三角从第 r3 行下方（包括）但在第 r4 行上方（不包括）的元素将被 mask
+              startend_row_indices 的值 r1,r2,r3,r4 表示 Score 矩阵中左下三角从第 r1 行下方（包括）但在第 r2 行上方（不包括）的元素将被 mask，右上三角从第 r3 行下方（包括）但在第 r4 行上方（不包括）的元素将被 mask。
     - **dropout** (bool，可选) – dropout 概率值，默认值为 0。
     - **causal** (bool，可选) - 是否使用 causal 模式，默认值：False。
     - **return_softmax_lse** (bool，可选) - 是否返回 softmax_lse 的结果。默认值为 False。
