@@ -190,10 +190,10 @@ flashmask 将通过参数 :code:`startend_row_indices` 表示作用在 Attention
               startend_row_indices 的值 r1,r2,r3,r4 表示 Score 矩阵中左下三角从第 r1 行下方（包括）但在第 r2 行上方（不包括）的元素将被 mask，右上三角从第 r3 行下方（包括）但在第 r4 行上方（不包括）的元素将被 mask。
     - **dropout** (bool，可选) – dropout 概率值，默认值为 0。
     - **causal** (bool，可选) - 是否使用 causal 模式，默认值：False。
-    - **return_softmax_lse** (bool，可选) - 是否返回 softmax_lse 的结果。默认值为 False。
-    - **return_seed_offset** (bool，可选) - 是否返回 seed_offset 的结果。默认值为 False。
-    - **fixed_seed_offset** (Tensor，可选) - 固定 Dropout 的 offset seed.
-    - **rng_name** (str，可选) - 随机数生成器名称
+    - **return_softmax_lse** (bool，可选) - 是否返回 softmax_lse 的结果。默认值为 False，表示不返回 :code:`softmax_lse` 。
+    - **return_seed_offset** (bool，可选) - 是否返回 seed_offset 的结果。默认值为 False，表示不返回 :code:`seed_offset` 。
+    - **fixed_seed_offset** (Tensor，可选) - 固定 Dropout 的 offset seed。 默认值为 None, 表示不固定 seed。
+    - **rng_name** (str，可选) - 随机数生成器名称。 默认值为 ""。
     - **training** (bool，可选) - 指示是否为训练模式。默认值为 True。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
@@ -201,7 +201,9 @@ flashmask 将通过参数 :code:`startend_row_indices` 表示作用在 Attention
 返回
 ::::::::::::
 `Tensor`，attention 的结果。
+
 `softmax_lse`，当 return_softmax_lse 为 True 时，返回的 softmax_lse 的值
+
 `seed_offset`，当 return_seed_offset 为 True 时，返回的 seed_offset 的值
 
 
