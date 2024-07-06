@@ -56,7 +56,7 @@ PaddleSlim 是飞桨深度学习模型压缩工具，Paddle Inference 可联动 
 
 ### 主流软硬件环境兼容适配
 
-支持服务器端 X86 CPU、NVIDIA GPU 芯片，兼容 Linux/Mac/Windows 系统，同时对飞腾、鲲鹏、曙光、昆仑等国产 CPU/NPU 进行适配。。支持所有飞桨训练产出的模型，完全做到即训即用。
+支持服务器端 X86 CPU、NVIDIA GPU 芯片，兼容 Linux/Mac/Windows 系统，同时对飞腾、鲲鹏、曙光、昆仑芯等国产 CPU/NPU 进行适配。。支持所有飞桨训练产出的模型，完全做到即训即用。
 
 ### 主流、国产操作系统全适配
 

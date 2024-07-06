@@ -1,4 +1,4 @@
-## [参数不一致]torch.nn.Module.xpu
+## [ 输入参数用法不一致 ]torch.nn.Module.xpu
 
 ### [torch.nn.Module.xpu](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.xpu)
 

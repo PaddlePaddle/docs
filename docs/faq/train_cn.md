@@ -110,7 +110,7 @@ export FLAGS_fast_eager_deletion_mode=1
 export FLAGS_fraction_of_gpu_memory_to_use=0
 ```
 
-详细请参考官方文档[存储分配与优化](https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/performance_improving/singlenode_training_improving/memory_optimize.html) 调整相关配置。
+详细请参考官方文档[存储分配与优化](https://www.paddlepaddle.org.cn/documentation/docs/zh/dev_guides/api_contributing_guides/new_cpp_op_cn.html#xiancunyouhua) 调整相关配置。
 
 此外，建议您使用[AI Studio 学习与 实训社区训练](https://aistudio.baidu.com/aistudio/index)，获取免费 GPU 算力，提升您的训练效率。
 
@@ -130,7 +130,7 @@ export FLAGS_fraction_of_gpu_memory_to_use=0
 
 ##### 问题：如何处理变长 ID 导致程序内存占用过大的问题？
 
-+ 答复：请先参考[显存分配与优化文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/performance_improving/singlenode_training_improving/memory_optimize.html) 开启存储优化开关，包括显存垃圾及时回收和 Op 内部的输出复用输入等。若存储空间仍然不够，建议：
++ 答复：请先参考[显存分配与优化文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/dev_guides/api_contributing_guides/new_cpp_op_cn.html#xiancunyouhua) 开启存储优化开关，包括显存垃圾及时回收和 Op 内部的输出复用输入等。若存储空间仍然不够，建议：
 
   1. 降低 `batch_size` ；
   2. 对 index 进行排序，减少 padding 的数量。

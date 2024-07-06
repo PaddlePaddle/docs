@@ -3,36 +3,6 @@
 ==================
 
 
-FLAGS_enable_parallel_graph
-*******************************************
-(始于 1.2.0)
-
-该 flag 用于 ParallelExecutor 以禁用并行图执行模式。
-
-取值范围
----------------
-Bool 型，缺省值为 False。
-
-示例
--------
-FLAGS_enable_parallel_graph=False - 通过 ParallelExecutor 强制禁用并行图执行模式。
-
-
-FLAGS_pe_profile_fname
-*******************************************
-(始于 1.3.0)
-
-该 flag 用于 ParallelExecutor 的调试。ParallelExecutor 会通过 gpertools 生成配置文件结果，并将结果存储在 FLAGS_pe_profile_fname 指定的文件中。仅在编译选项选择 `WITH_PRIFILER=ON` 时有效。如果禁用则设为 empty。
-
-取值范围
----------------
-String 型，缺省值为 empty ("")。
-
-示例
--------
-FLAGS_pe_profile_fname="./parallel_executor.perf" - 将配置文件结果存储在 parallel_executor.perf 中。
-
-
 FLAGS_print_sub_graph_dir
 *******************************************
 (始于 1.2.0)

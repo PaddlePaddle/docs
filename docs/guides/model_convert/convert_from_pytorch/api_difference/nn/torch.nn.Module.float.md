@@ -1,4 +1,4 @@
-## [参数不一致]torch.nn.Module.float
+## [ 仅 paddle 参数更多 ]torch.nn.Module.float
 
 ### [torch.nn.Module.float](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.float)
 
@@ -12,7 +12,7 @@ torch.nn.Module.float()
 paddle.nn.Layer.to(dtype="float32")
 ```
 
-两者参数用法不一致，具体如下：
+Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 

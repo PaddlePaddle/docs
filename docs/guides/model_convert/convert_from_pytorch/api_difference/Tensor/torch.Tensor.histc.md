@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.histc
+## [ 返回参数类型不一致 ]torch.Tensor.histc
 
 ### [torch.Tensor.histc](https://pytorch.org/docs/stable/generated/torch.Tensor.histc.html?highlight=torch+tensor+histc#torch.Tensor.histc)
 

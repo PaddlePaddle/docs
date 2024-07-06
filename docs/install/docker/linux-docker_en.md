@@ -21,46 +21,40 @@ For domestic users, when downloading docker is slow due to network problems, you
 
 * CPU version of PaddlePaddle：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.1
+    docker pull registry.baidubce.com/paddlepaddle/paddle:3.0.0b0
     ```
 
 * CPU version of PaddlePaddle, and the image is pre-installed with jupyter：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.1-jupyter
+    docker pull registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-jupyter
     ```
 
 * GPU version of PaddlePaddle(**Latest version of gpu image is recommended， and make sure NVIDIA Container Toolkit is installed successfully**)：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.1-gpu-cuda11.2-cudnn8.2-trt8.0
+    docker pull registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-gpu-cuda12.3-cudnn9.0-trt8.6
     ```
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.1-gpu-cuda11.7-cudnn8.4-trt8.4
-    ```
-    ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:2.6.1-gpu-cuda12.0-cudnn8.9-trt8.6
+    docker pull registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-gpu-cuda11.8-cudnn8.6-trt8.5
     ```
 
 If your machine is not in mainland China, you can pull the image directly from DockerHub:
 
 * CPU version of PaddlePaddle：
     ```
-    docker pull paddlepaddle/paddle:2.6.1
+    docker pull paddlepaddle/paddle:3.0.0b0
     ```
 
 * CPU version of PaddlePaddle, and the image is pre-installed with jupyter：
     ```
-    docker pull paddlepaddle/paddle:2.6.1-jupyter
+    docker pull paddlepaddle/paddle:3.0.0b0-jupyter
     ```
 
 * GPU version of PaddlePaddle(**Latest version of gpu image is recommended， and make sure NVIDIA Container Toolkit is installed successfully**)：
     ```
-    docker pull paddlepaddle/paddle:2.6.1-gpu-cuda11.2-cudnn8.2-trt8.0
+    docker pull paddlepaddle/paddle:3.0.0b0-gpu-cuda12.3-cudnn9.0-trt8.6
     ```
     ```
-    docker pull paddlepaddle/paddle:2.6.1-gpu-cuda11.7-cudnn8.4-trt8.4
-    ```
-    ```
-    docker pull paddlepaddle/paddle:2.6.1-gpu-cuda12.0-cudnn8.9-trt8.6
+    docker pull paddlepaddle/paddle:3.0.0b0-gpu-cuda11.8-cudnn8.6-trt8.5
     ```
 
 You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get more images.
@@ -72,7 +66,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
 
     ```
-    docker run --name paddle_docker -it -v $PWD:/paddle registry.baidubce.com/paddlepaddle/paddle:2.6.1 /bin/bash
+    docker run --name paddle_docker -it -v $PWD:/paddle registry.baidubce.com/paddlepaddle/paddle:3.0.0b0 /bin/bash
     ```
 
     - `--name paddle_docker`: set name of Docker, `paddle_docker` is name of docker you set;
@@ -83,7 +77,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `-v $PWD:/paddle`: Specifies to mount the current path of the host (PWD variable in Linux will expand to the absolute path of the current path) to the /paddle directory inside the container;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:2.6.1`: Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
+    - `registry.baidubce.com/paddlepaddle/paddle:3.0.0b0`: Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
 
 
 * Use GPU version of PaddlePaddle：
@@ -91,7 +85,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
 
     ```
-    docker run --gpus all --name paddle_docker -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    docker run --gpus all --name paddle_docker -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-gpu-cuda12.3-cudnn9.0-trt8.6 /bin/bash
     ```
 
     - `--gpus all`: gpu resources can be used in Docker container;
@@ -104,7 +98,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `-v $PWD:/paddle`: Specifies to mount the current path of the host (PWD variable in Linux will expand to the absolute path of the current path) to the /paddle directory inside the container;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`: Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
+    - `registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-gpu-cuda12.3-cudnn9.0-trt8.6`: Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
 
 
 * Use CPU version of PaddlePaddle with jupyter：
@@ -120,7 +114,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
     cd ./jupyter_docker
     ```
     ```
-    docker run -p 80:80 --rm --env USER_PASSWD="password you set" -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:2.6.1-jupyter
+    docker run -p 80:80 --rm --env USER_PASSWD="password you set" -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-jupyter
     ```
 
     - `--rm`: Delete the container after closing it;
@@ -131,7 +125,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `-v $PWD:/home/paddle`: Specifies to mount the current path (the PWD variable will be expanded to the absolute path of the current path) to the /home/paddle directory inside the container;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:2.6.1-jupyter`: Specify the name of the image to be used, you can view it through the `docker images` command
+    - `registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-jupyter`: Specify the name of the image to be used, you can view it through the `docker images` command
 
 
 Now you have successfully used Docker to install PaddlePaddle. For more information about using Docker, see[Docker official documents](https://docs.docker.com)
@@ -149,24 +143,20 @@ Now you have successfully used Docker to install PaddlePaddle. For more informat
     </thead>
     <tbody>
         <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.6.1 </td>
-        <td> CPU image with 2.6.1 version of paddle installed </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:3.0.0b0 </td>
+        <td> CPU image with 3.0.0b0 version of paddle installed </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.6.1-jupyter </td>
-        <td> CPU image of paddle version 2.6.1 is installed, and jupyter is pre-installed in the image. Start the docker to run the jupyter service </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-jupyter </td>
+        <td> CPU image of paddle version 3.0.0b0 is installed, and jupyter is pre-installed in the image. Start the docker to run the jupyter service </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.6.1-gpu-cuda12.0-cudnn8.9-trt8.6 </td>
-        <td> GPU image of paddle version 2.6.1 is installed, cuda version is 12.0, cudnn version is 8.9, trt version is 8.6 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-gpu-cuda12.3-cudnn9.0-trt8.6 </td>
+        <td> GPU image of paddle version 3.0.0b0 is installed, cuda version is 12.3, cudnn version is 9.0, trt version is 8.6 </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.6.1-gpu-cuda11.7-cudnn8.4-trt8.4 </td>
-        <td> GPU image of paddle version 2.6.1 is installed, cuda version is 11.7, cudnn version is 8.4, trt version is 8.4 </td>
-    </tr>
-    <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.6.1-gpu-cuda11.2-cudnn8.2-trt8.0 </td>
-        <td> GPU image of paddle version 2.6.1 is installed, cuda version is 11.2, cudnn version is 8.2, trt version is 8.0 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:3.0.0b0-gpu-cuda11.8-cudnn8.6-trt8.5 </td>
+        <td> GPU image of paddle version 3.0.0b0 is installed, cuda version is 11.8, cudnn version is 8.6, trt version is 8.5 </td>
     </tr>
    </tbody>
 </table>

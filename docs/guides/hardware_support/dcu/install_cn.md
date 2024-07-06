@@ -21,9 +21,8 @@
 docker pull registry.baidubce.com/device/paddle-dcu:dtk23.10.1-kylinv10-gcc73-py310
 
 # 参考如下命令，启动容器
-docker run -it --name paddle-dcu-dev -v $(pwd):/work \
-  --workdir=/work --shm-size=128G --network=host  \
-  --device=/dev/kfd --device=/dev/dri --group-add video \
+docker run -it --name paddle-dcu-dev -v `pwd`:/work \
+  -w=/work --shm-size=128G --network=host --privileged  \
   --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
   registry.baidubce.com/device/paddle-dcu:dtk23.10.1-kylinv10-gcc73-py310 /bin/bash
 
@@ -51,11 +50,8 @@ DCU  Temp   AvgPwr  Fan   Perf  PwrCap  VRAM%  DCU%
 在启动的 docker 容器中，下载并安装飞桨官网发布的 wheel 包。
 
 ```bash
-# 下载 wheel 包
-wget https://paddle-device.bj.bcebos.com/0.0.0/dcu/paddlepaddle_rocm-0.0.0-cp310-cp310-linux_x86_64.whl
-
-# 安装 wheel 包
-pip install -U paddlepaddle_rocm-0.0.0-cp310-cp310-linux_x86_64.whl
+# 下载并安装 wheel 包
+pip install paddlepaddle-rocm -i https://www.paddlepaddle.org.cn/packages/nightly/dcu
 ```
 
 ### 安装方式二：源代码编译安装

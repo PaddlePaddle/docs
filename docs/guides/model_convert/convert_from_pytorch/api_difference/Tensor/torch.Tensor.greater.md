@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.greater
+## [ 输入参数类型不一致 ]torch.Tensor.greater
 
 ### [torch.Tensor.greater](https://pytorch.org/docs/stable/generated/torch.Tensor.greater.html?highlight=torch+tensor+greater#torch.Tensor.greater)
 

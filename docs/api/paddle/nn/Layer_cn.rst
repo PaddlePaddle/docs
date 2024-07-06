@@ -381,7 +381,7 @@ Parameter，传入的参数实例
 
 COPY-FROM: paddle.nn.Layer.add_parameter
 
-state_dict(destination=None, include_sublayers=True, use_hook=True)
+state_dict(destination=None, include_sublayers=True, structured_name_prefix='', use_hook=True, keep_vars=True)
 '''''''''
 
 获取当前层及其子层的所有参数和可持久性 buffers。并将所有参数和 buffers 存放在 dict 结构中。
@@ -390,7 +390,9 @@ state_dict(destination=None, include_sublayers=True, use_hook=True)
 
     - **destination** (dict，可选) - 如果提供 ``destination``，则所有参数和可持久性 buffers 都将存放在 ``destination`` 中。默认值：None。
     - **include_sublayers** (bool，可选) - 如果设置为 True，则包括子层的参数和 buffers。默认值：True。
+    - **structured_name_prefix** (str，可选) - 添加到参数和缓冲区名称的前缀。默认值：''。
     - **use_hook** (bool，可选) - 如果设置为 True，将_state_dict_hooks 中注册的函数应用于 destination。默认值：True。
+    - **keep_vars** (bool，可选) - 如果设置为 False，状态字典中返回的 tensors 将脱离计算图。默认值：True。
 
 **返回**
 dict，包含所有参数和可持久行 buffers 的 dict

@@ -1,4 +1,4 @@
-## [参数不一致]torch.distributed.broadcast
+## [ 输入参数用法不一致 ]torch.distributed.broadcast
 
 ### [torch.distributed.broadcast](https://pytorch.org/docs/stable/distributed.html#torch.distributed.broadcast)
 

@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.histc
+## [ 返回参数类型不一致 ]torch.histc
 
 ### [torch.histc](https://pytorch.org/docs/stable/generated/torch.histc.html#torch-histc)
 

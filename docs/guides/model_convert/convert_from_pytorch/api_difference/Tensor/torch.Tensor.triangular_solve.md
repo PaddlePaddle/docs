@@ -1,4 +1,4 @@
-## [参数不一致]torch.Tensor.triangular_solve
+## [ 输入参数用法不一致]torch.Tensor.triangular_solve
 
 ### [torch.Tensor.triangular_solve](https://pytorch.org/docs/stable/generated/torch.Tensor.triangular_solve.html#torch.Tensor.triangular_solve)
 
@@ -12,7 +12,7 @@ torch.Tensor.triangular_solve(A, upper=True, transpose=False, unitriangular=Fals
 paddle.Tensor.triangular_solve(b, upper=True, transpose=False, unitriangular=False, name=None)
 ```
 
-其中两者功能一致且参数用法一致，仅参数名不一致，具体如下：
+其中两者功能一致，输入参数用法不一致，具体如下：
 
 ### 参数映射
 

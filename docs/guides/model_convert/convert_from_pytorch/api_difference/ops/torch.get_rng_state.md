@@ -1,4 +1,4 @@
-## [参数不一致] torch.get_rng_state
+## [ 返回参数类型不一致] torch.get_rng_state
 
 ### [torch.get_rng_state](https://pytorch.org/docs/stable/generated/torch.get_rng_state.html#torch.get_rng_state)
 

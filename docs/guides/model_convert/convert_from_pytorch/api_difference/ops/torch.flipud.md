@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.flipud
+## [ 仅 paddle 参数更多 ]torch.flipud
 ### [torch.flipud](https://pytorch.org/docs/stable/generated/torch.flipud.html?highlight=flipud#torch.flipud)
 
 ```python

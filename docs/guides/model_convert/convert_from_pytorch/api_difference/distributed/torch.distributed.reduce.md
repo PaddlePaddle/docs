@@ -1,4 +1,4 @@
-## [参数不一致]torch.distributed.reduce
+## [ 输入参数用法不一致 ]torch.distributed.reduce
 
 ### [torch.distributed.reduce](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce)
 

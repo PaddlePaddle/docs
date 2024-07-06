@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.LSTM
+## [ 输入参数用法不一致 ]torch.nn.LSTM
 ### [torch.nn.LSTM](https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html?highlight=lstm#torch.nn.LSTM)
 
 ```python
@@ -29,6 +29,7 @@ paddle.nn.LSTM(input_size,
 ```
 
 两者功能一致但参数不一致，部分参数名不同，具体如下：
+
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
