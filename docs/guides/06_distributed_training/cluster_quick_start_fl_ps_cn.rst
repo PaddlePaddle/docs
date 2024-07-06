@@ -15,11 +15,11 @@
 
 本节将采用推荐领域非常经典的模型 NCF 为例，介绍如何使用飞桨分布式完成 FL-PS 训练任务。
 
-FL-PS 训练基于飞桨静态图，在这之前，请用户了解下 NCF 模型的单机静态图训练示例以及本地单机模拟分布式的使用方法：\ `https://github.com/PaddlePaddle/PaddleRec/tree/master/models/recall/ncf`_\。
+FL-PS 训练基于飞桨静态图，在这之前，请用户了解下 NCF 模型的单机静态图训练示例以及本地单机模拟分布式的使用方法：\ `<https://github.com/PaddlePaddle/PaddleRec/tree/master/models/recall/ncf/>`_\。
 
 在传统 PS 基础上，通过生成异构数据集、开启中心调度功能（Coordinator）进行 Client 选择、自定义配置 Client 端私有稀疏参数和 Server 端公共稀疏参数等手段，提升 FL-PS 的训练精度和效率。
 
-更多使用细节请阅读 \FL-PS 帮助文档：`https://github.com/PaddlePaddle/PaddleRec/blob/master/models/recall/ncf/fl_ps_help.md`_\.
+更多使用细节请阅读 \FL-PS 帮助文档：`<https://github.com/PaddlePaddle/PaddleRec/blob/master/models/recall/ncf/fl_ps_help.md>`_\.
 
 本功能依赖 PaddlePaddle2.4 及以上版本的飞桨开源框架，或者用户从 PaddlePaddle develop 分支进行源码编译。
 
@@ -33,15 +33,16 @@ FL-PS 训练主要包括如下几个部分：
     3. 加载模型
     4. 开始训练
 
-用户可从 FL-PS 训练脚本 `https://github.com/PaddlePaddle/PaddleRec/blob/master/tools/static_fl_trainer.py` 入手梳理详细流程。
+用户可从 FL-PS 训练脚本 `<https://github.com/PaddlePaddle/PaddleRec/blob/master/tools/static_fl_trainer.py>` 入手梳理详细流程。
 
 1.2.1 准备样本
 """"""""""""
 
 * 在 PaddleRec/datasets/movielens_pinterest_NCF 目录中执行: sh run.sh，获取初步处理过的训练数据（big_train）和测试数据（test_data）
-* 从 MovieLens 官网 `https://grouplens.org/datasets/movielens/1m/` 下载 ml-1m 数据集，获取 users.dat 文件（可自定义存储路径，但需要和 gen_heter_data.py 脚本中路径保持一致），后续用于构造异构数据集（按 zipcode 的首位数字划分）
+* 从 MovieLens 官网 `<https://grouplens.org/datasets/movielens/1m/>` 下载 ml-1m 数据集，获取 users.dat 文件（可自定义存储路径，但需要和 gen_heter_data.py 脚本中路径保持一致），后续用于构造异构数据集（按 zipcode 的首位数字划分）
 * 在 PaddleRec/datasets/movielens_pinterest_NCF/fl_data 中新建目录 fl_test_data 和 fl_train_data，用于存放每个 client 上的训练数据集和测试数据集
 * 在 PaddleRec/datasets/movielens_pinterest_NCF/fl_data 目录中执行: python gen_heter_data.py，生成 10 份训练数据
+
     * 总样本数 4970844（按 1:4 补充负样本）：0 - 518095，1 - 520165，2 - 373605，3 - 315550，4 - 483779，5 - 495635，6 - 402810，7 - 354590，8 - 262710，9 - 1243905
     * 样本数据每一行表示：物品 id，用户 id，标签
 
@@ -146,7 +147,7 @@ FL-PS 训练主要包括如下几个部分：
 1.2.4 开始训练
 """"""""""""
 
-有了训练脚本后，我们就可以用 ``fleetrun`` 指令运行分布式任务了。 ``fleetrun`` 是飞桨封装的分布式启动命令，命令参数 ``server_num`` , ``worker_num``,  ``coordinator_num``分别为服务节点、训练节点、中心调度节点的数量（目前只支持一个 Coordinator 节点）。在本例中，服务节点有 1 个，训练节点有 10 个。运行训练脚本之前，请确保所使用的端口没有被占用
+有了训练脚本后，我们就可以用 ``fleetrun`` 指令运行分布式任务了。 ``fleetrun`` 是飞桨封装的分布式启动命令，命令参数 ``server_num`` , ``worker_num`` , ``coordinator_num`` 分别为服务节点、训练节点、中心调度节点的数量（目前只支持一个 Coordinator 节点）。在本例中，服务节点有 1 个，训练节点有 10 个。运行训练脚本之前，请确保所使用的端口没有被占用
 
 接着，进入 PaddleRec 目录：PaddleRec/models/recall/ncf，
 
@@ -239,7 +240,7 @@ FL-PS 训练主要包括如下几个部分：
 参考脚本 `gen_heter_data.py` 写法。
 
 
-备注：本教程主要介绍了横向联邦 PS 的使用方法，关于纵向联邦 PS 的使用，请参考\ `https://github.com/PaddlePaddle/Paddle/blob/develop/test/ps/test_fl_ps.py`_\，使用 1.3.1 节的编译命令，再执行下述命令即可
+备注：本教程主要介绍了横向联邦 PS 的使用方法，关于纵向联邦 PS 的使用，请参考\ `<https://github.com/PaddlePaddle/Paddle/blob/develop/test/ps/test_fl_ps.py>`_\，使用 1.3.1 节的编译命令，再执行下述命令即可
 
 .. code-block:: bash
     ctest -R test_fl_ps -V
