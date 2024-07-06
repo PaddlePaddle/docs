@@ -120,11 +120,9 @@ fix end of files.........................................................Passed
 trim trailing whitespace.................................................Passed
 CRLF end-lines remover...................................................Passed
 Tabs remover.............................................................Passed
-CN-[whitespace]-EN fixer.................................................Passed
-convert jinja2 into html.............................(no files to check)Skipped
-convert-markdown-into-html...........................(no files to check)Skipped
-black................................................(no files to check)Skipped
-ruff.................................................(no files to check)Skipped
+CN-[whitespace]-EN fixer.............................(no files to check)Skipped
+ruff.....................................................................Passed
+ruff-format..............................................................Passed
 [my-cool-stuff ee8f4441f] fix docs bugs
  1 file changed, 19 insertions(+), 34 deletions(-)
 ```

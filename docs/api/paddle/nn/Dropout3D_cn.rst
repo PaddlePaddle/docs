@@ -3,7 +3,7 @@
 Dropout3D
 -------------------------------
 
-.. py:function:: paddle.nn.Dropout3D(p=0.5, data_format='NCDHW', name=None)
+.. py:class:: paddle.nn.Dropout3D(p=0.5, data_format='NCDHW', name=None)
 
 根据丢弃概率 `p`，在训练过程中随机将某些通道特征图置 0 (对一个形状为 `NCDHW` 的 5 维 Tensor，通道特征图指的是其中的形状为 `DHW` 的 3 维特征图)。Dropout3D 可以提高通道特征图之间的独立性。论文请参考：`Efficient Object Localization Using Convolutional Networks <https://arxiv.org/abs/1411.4280>`_
 

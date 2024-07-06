@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.atleast_1d
+## [ 输入参数用法不一致 ]torch.atleast_1d
 
 ### [torch.atleast_1d](https://pytorch.org/docs/stable/generated/torch.atleast_1d.html#torch-atleast-1d)
 

@@ -3,7 +3,7 @@
 CrossEntropyLoss
 -------------------------------
 
-.. py:function:: paddle.nn.CrossEntropyLoss(weight=None, ignore_index=-100, reduction='mean', soft_label=False, axis=-1, use_softmax=True, name=None)
+.. py:class:: paddle.nn.CrossEntropyLoss(weight=None, ignore_index=-100, reduction='mean', soft_label=False, label_smoothing=0.0, axis=-1, use_softmax=True, name=None)
 
 默认情况下， CrossEntropyLoss 使用 softmax 实现（即 use_softmax=True ）。该函数结合了 softmax 操作的计算和交叉熵损失函数，以提供更稳定的数值计算。
 

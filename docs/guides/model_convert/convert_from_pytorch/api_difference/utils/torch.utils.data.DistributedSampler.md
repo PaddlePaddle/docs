@@ -22,7 +22,7 @@ paddle.io.DistributedBatchSampler(dataset=None,
 ```
 
 PyTorch 参数更多，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ----- | ---------- | ---------- |
 | dataset             | dataset   | 被采样的数据集。                   |

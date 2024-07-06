@@ -1,4 +1,4 @@
-## [参数不一致]torch.cuda.get_rng_state_all
+## [ 返回参数类型不一致 ]torch.cuda.get_rng_state_all
 
 ### [torch.cuda.get_rng_state_all](https://pytorch.org/docs/stable/generated/torch.cuda.get_rng_state_all.html#torch.cuda.get_rng_state_all)
 

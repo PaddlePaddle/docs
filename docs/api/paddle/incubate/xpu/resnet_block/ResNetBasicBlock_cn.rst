@@ -2,7 +2,7 @@
 
 ResNetBasicBlock
 -------------------------------
-.. py:class:: paddle.incubate.xpu.ResNetBasicBlock(num_channels1, num_filter1, filter1_size, num_channels2, num_filter2, filter2_size, num_channels3, num_filter3, filter3_size, stride1=1, stride2=1, stride3=1, act='relu', momentum=0.9, eps=1e-5, data_format='NCHW', has_shortcut=False, use_global_stats=False, is_test=False, filter1_attr=None, scale1_attr=None, bias1_attr=None, moving_mean1_name=None, moving_var1_name=None, filter2_attr=None, scale2_attr=None, bias2_attr=None, moving_mean2_name=None, moving_var2_name=None, ilter3_attr=None, scale3_attr=None, bias3_attr=None, moving_mean3_name=None, moving_var3_name=None, padding1=0, padding2=0, padding3=0, dilation1=1, dilation2=1, dilation3=1, trainable_statistics=False, find_conv_max=True)
+.. py:class:: paddle.incubate.xpu.resnet_block.ResNetBasicBlock(num_channels1, num_filter1, filter1_size, num_channels2, num_filter2, filter2_size, num_channels3, num_filter3, filter3_size, stride1=1, stride2=1, stride3=1, act='relu', momentum=0.9, eps=1e-5, data_format='NCHW', has_shortcut=False, use_global_stats=False, is_test=False, filter1_attr=None, scale1_attr=None, bias1_attr=None, moving_mean1_name=None, moving_var1_name=None, filter2_attr=None, scale2_attr=None, bias2_attr=None, moving_mean2_name=None, moving_var2_name=None, ilter3_attr=None, scale3_attr=None, bias3_attr=None, moving_mean3_name=None, moving_var3_name=None, padding1=0, padding2=0, padding3=0, dilation1=1, dilation2=1, dilation3=1, trainable_statistics=False, find_conv_max=True)
 
 该接口用于构建 ``ResNetBasicBlock`` 类的一个可调用对象，实现一次性计算多个 ``Conv2D``、 ``BatchNorm`` 和 ``ReLU`` 的功能，排列顺序参见源码链接。
 

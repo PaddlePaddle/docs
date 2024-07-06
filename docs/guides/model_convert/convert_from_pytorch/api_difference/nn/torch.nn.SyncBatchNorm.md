@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.SyncBatchNorm
+## [ 输入参数用法不一致 ]torch.nn.SyncBatchNorm
 ### [torch.nn.SyncBatchNorm](https://pytorch.org/docs/stable/generated/torch.nn.SyncBatchNorm.html#torch.nn.SyncBatchNorm)
 
 ```python

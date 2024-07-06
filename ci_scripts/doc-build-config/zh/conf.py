@@ -30,7 +30,7 @@ AutoStructify.default_config = {
 templates_path = ["/templates"]
 
 project = "PaddlePaddle"
-author = "%s developers" % project
+author = f"{project} developers"
 copyright = "%d, %s" % (time.localtime(time.time()).tm_year, author)
 github_doc_root = "https://github.com/PaddlePaddle/docs/docs"
 
@@ -138,6 +138,10 @@ version = ""
 # today_fmt = '%B %d, %Y'
 
 # html_permalinks_icon='P'
+
+# Show type hints in the description
+autodoc_typehints = "description"
+autodoc_typehints_description_target = "documented"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -266,7 +270,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, "%s.tex" % project, project, author, "manual"),
+    (master_doc, f"{project}.tex", project, author, "manual"),
 ]
 
 # Use the .. admonition:: directive for Notes sections.

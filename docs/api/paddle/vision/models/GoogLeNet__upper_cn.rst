@@ -3,7 +3,7 @@
 GoogLeNet
 -------------------------------
 
-.. py:function:: paddle.vision.models.googlenet(num_classes=1000, with_pool=True)
+.. py:class:: paddle.vision.models.GoogLeNet(num_classes=1000, with_pool=True)
 
 
 GoogLeNet（Inception v1）模型，来自论文 `"Going Deeper with Convolutions" <https://arxiv.org/pdf/1409.4842.pdf>`_ 。

@@ -3,7 +3,7 @@
 Fold
 -------------------------------
 
-.. py:function:: paddle.nn.Fold(output_sizes, kernel_sizes, dilations=1, paddings=0, strides=1, name=None)
+.. py:class:: paddle.nn.Fold(output_sizes, kernel_sizes, dilations=1, paddings=0, strides=1, name=None)
 
 将一个滑动局部块组合成一个大的 Tensor。通常也被称为 col2im，用于批处理二维图像 Tensor。Fold 通过对所有包含块的值求和来计算结果中的每个大 Tensor 的组合值。
 

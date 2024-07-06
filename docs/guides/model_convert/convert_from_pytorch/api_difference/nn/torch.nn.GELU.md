@@ -1,4 +1,4 @@
-## [参数不一致]torch.nn.GELU
+## [ 输入参数用法不一致 ]torch.nn.GELU
 
 ### [torch.nn.GELU](https://pytorch.org/docs/stable/generated/torch.nn.GELU.html#torch.nn.GELU)
 

@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.narrow
+## [ 输入参数用法不一致 ]torch.narrow
 ### [torch.narrow](https://pytorch.org/docs/stable/generated/torch.narrow.html?highlight=narrow#torch.narrow)
 ```python
 torch.narrow(input,

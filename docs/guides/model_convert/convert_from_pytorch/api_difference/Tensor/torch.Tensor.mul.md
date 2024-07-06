@@ -1,4 +1,4 @@
-## [ 参数不一致 ] torch.Tensor.mul
+## [ 输入参数类型不一致 ] torch.Tensor.mul
 
 ### [torch.Tensor.mul](https://pytorch.org/docs/stable/generated/torch.Tensor.mul.html)
 

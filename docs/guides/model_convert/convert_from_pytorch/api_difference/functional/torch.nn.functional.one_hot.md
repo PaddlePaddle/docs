@@ -1,10 +1,10 @@
-## [ 参数不一致 ]torch.nn.functional.one_hot
+## [ 返回参数类型不一致 ]torch.nn.functional.one_hot
 
 ### [torch.nn.functional.one_hot](https://pytorch.org/docs/stable/generated/torch.nn.functional.one_hot.html?highlight=one_hot#torch.nn.functional.one_hot)
 
 ```python
 torch.nn.functional.one_hot(tensor,
-                            num_classes=- 1)
+                            num_classes=-1)
 ```
 
 ### [paddle.nn.functional.one_hot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/one_hot_cn.html)
