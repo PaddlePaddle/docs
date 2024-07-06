@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.reshape
+## [ 输入参数用法不一致 ]torch.Tensor.reshape
 
 ### [torch.Tensor.reshape](https://pytorch.org/docs/stable/generated/torch.Tensor.reshape.html)
 

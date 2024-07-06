@@ -1,4 +1,4 @@
-## [ 参数不一致 ] torch.swapaxes
+## [ 输入参数用法不一致 ] torch.swapaxes
 
 ### [torch.swapaxes](https://pytorch.org/docs/stable/generated/torch.swapaxes.html#torch.swapaxes)
 

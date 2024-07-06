@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.RNN
+## [ 输入参数用法不一致 ]torch.nn.RNN
 ### [torch.nn.RNN](https://pytorch.org/docs/stable/generated/torch.nn.RNN.html#torch.nn.RNN)
 ```python
 torch.nn.RNN(input_size,

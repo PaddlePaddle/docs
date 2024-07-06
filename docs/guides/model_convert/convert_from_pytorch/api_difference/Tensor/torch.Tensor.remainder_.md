@@ -1,4 +1,5 @@
-## [ 参数不一致 ]torch.Tensor.remainder_
+## [ 输入参数类型不一致 ]torch.Tensor.remainder_
+
 ### [torch.Tensor.remainder_](https://pytorch.org/docs/stable/generated/torch.Tensor.remainder_.html?highlight=torch+tensor+remainder_#torch.Tensor.remainder_)
 
 ```python

@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.multiply
+## [ 输入参数类型不一致 ]torch.multiply
 
 ### [torch.multiply](https://pytorch.org/docs/stable/generated/torch.multiply.html?highlight=torch+multiply#torch.multiply)
 

@@ -17,7 +17,7 @@ export DOCROOT
 # PADDLE_WHL is defined in ci_start.sh
 pip3 list --disable-pip-version-check | grep paddlepaddle > /dev/null
 if [ $? -ne 0 ] ; then
-  pip3 install --no-cache-dir -i https://mirror.baidu.com/pypi/simple ${PADDLE_WHL}
+  pip3 install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple ${PADDLE_WHL}
 fi
 
 

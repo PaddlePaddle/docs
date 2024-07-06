@@ -16,7 +16,7 @@ paddle.nn.KLDivLoss(reduction='mean',
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | size_average  | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。            |

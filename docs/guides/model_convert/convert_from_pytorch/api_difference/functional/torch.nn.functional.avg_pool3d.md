@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.functional.avg_pool3d
+## [ 输入参数用法不一致 ]torch.nn.functional.avg_pool3d
 
 ### [torch.nn.functional.avg_pool3d](https://pytorch.org/docs/stable/generated/torch.nn.functional.avg_pool3d.html#torch.nn.functional.avg_pool3d)
 

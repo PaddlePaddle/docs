@@ -1,4 +1,4 @@
-## [参数不一致]torch.broadcast_shapes
+## [ 输入参数用法不一致 ]torch.broadcast_shapes
 
 ### [torch.broadcast_shapes](https://pytorch.org/docs/stable/generated/torch.broadcast_shapes.html#torch.broadcast_shapes)
 

@@ -12,7 +12,7 @@ paddle.Tensor.unique(return_index=False, return_inverse=False, return_counts=Fal
 ```
 
 两者功能一致，torch 参数更多，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | sorted        | -            | 是否返回前进行排序，Paddle 无此参数，需要转写。                                     |

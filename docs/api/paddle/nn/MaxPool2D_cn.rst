@@ -3,7 +3,7 @@
 MaxPool2D
 -------------------------------
 
-.. py:function:: paddle.nn.MaxPool2D(kernel_size, stride=None, padding=0, ceil_mode=False, return_mask=False, data_format="NCHW", name=None)
+.. py:class:: paddle.nn.MaxPool2D(kernel_size, stride=None, padding=0, ceil_mode=False, return_mask=False, data_format="NCHW", name=None)
 构建 `MaxPool2D` 类的一个可调用对象，其将构建一个二维最大池化层，根据输入参数 `kernel_size`, `stride`,
 `padding` 等参数对输入做最大池化操作。
 

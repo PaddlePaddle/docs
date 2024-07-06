@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.LSTMCell
+## [ 输入参数用法不一致 ]torch.nn.LSTMCell
 ### [torch.nn.LSTMCell](https://pytorch.org/docs/stable/generated/torch.nn.LSTMCell.html#torch.nn.LSTMCell)
 ```python
 torch.nn.LSTMCell(input_size, hidden_size, bias=True, device=None, dtype=None)

@@ -1,4 +1,4 @@
-## [参数不一致] torch.random.set_rng_state
+## [ 输入参数类型不一致 ] torch.random.set_rng_state
 
 ### [torch.random.set_rng_state](https://pytorch.org/docs/stable/random.html#torch.random.set_rng_state)
 
@@ -12,7 +12,7 @@ torch.random.set_rng_state(new_state)
 paddle.set_rng_state(state_list)
 ```
 
-其中 PyTorch 与 Paddle 的输入参数类型不一致
+其中 PyTorch 与 Paddle 的输入参数类型不一致。
 
 ### 参数映射
 

@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.sort
+## [ 返回参数类型不一致 ]torch.sort
 
 ### [torch.sort](https://pytorch.org/docs/stable/generated/torch.sort.html?highlight=sort#torch.sort)
 

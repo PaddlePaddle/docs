@@ -26,7 +26,7 @@ AutoStructify = transform.AutoStructify
 
 # General information about the project.
 project = "PaddlePaddle"
-author = "%s developers" % project
+author = f"{project} developers"
 copyright = "%d, %s" % (time.localtime(time.time()).tm_year, author)
 github_doc_root = "https://github.com/PaddlePaddle/docs/docs"
 
@@ -103,6 +103,10 @@ master_doc = "index_en"
 language = "en"
 version = ""
 templates_path = ["/templates"]
+
+# Show type hints in the description
+autodoc_typehints = "description"
+autodoc_typehints_description_target = "documented"
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -227,7 +231,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, "%s.tex" % project, project, author, "manual"),
+    (master_doc, f"{project}.tex", project, author, "manual"),
 ]
 numfig = True
 highlight_language = "python"
@@ -352,14 +356,20 @@ def handle_api_aliases():
             exec(f'{oname}.__name__ = "{tn}"')
 
 
-def remove_doctest_directives(app, what, name, obj, options, lines):
+def remove_directives(app, what, name, obj, options, lines):
     """
-    Remove `doctest` directives from docstring
+    Remove `doctest` and `mypy` `type: ignore: xxx` directives from docstring
     """
     # Modify the lines inplace
     # remove doctest directive
     pattern_doctest = re.compile(r"\s*>>>\s*#\s*x?doctest:\s*.*")
-    lines[:] = [line for line in lines if not pattern_doctest.match(line)]
+    # remove `# type: ignore ...`
+    pattern_typing_ignore = re.compile(r"# type:[^#]*")
+    lines[:] = [
+        pattern_typing_ignore.sub("", line)
+        for line in lines
+        if not pattern_doctest.match(line)
+    ]
 
     # remove blank ps(`>>>`)
     lines[:] = [line for line in lines if not line.strip() == ">>>"]
@@ -394,4 +404,4 @@ def setup(app):
     app.add_transform(AutoStructify)
 
     # remove doctest directives and blank ps
-    app.connect("autodoc-process-docstring", remove_doctest_directives)
+    app.connect("autodoc-process-docstring", remove_directives)

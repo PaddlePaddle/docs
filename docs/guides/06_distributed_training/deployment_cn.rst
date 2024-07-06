@@ -12,7 +12,7 @@ PaddlePaddle 分布式对不同系统和硬件的支持情况如下表所示，
    * -
      - CPU
      - GPU
-     - 昆仑 XPU
+     - 昆仑芯 XPU
      - 海光 DCU
      - 昇腾 NPU
    * - Linux

@@ -1,4 +1,4 @@
-## [参数用法不一致]torch.utils.data.TensorDataset
+## [ 输入参数用法不一致 ]torch.utils.data.TensorDataset
 
 ### [torch.utils.data.TensorDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.TensorDataset)
 

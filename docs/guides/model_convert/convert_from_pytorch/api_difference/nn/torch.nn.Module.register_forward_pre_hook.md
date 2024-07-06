@@ -12,7 +12,7 @@ paddle.nn.Layer.register_forward_pre_hook(hook)
 ```
 PyTorch 参数更多，具体如下：
 
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | hook       | hook    |  被注册的 hook。                   |

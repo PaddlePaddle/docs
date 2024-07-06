@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.ones
+## [ 输入参数用法不一致 ]torch.ones
 ### [torch.ones](https://pytorch.org/docs/stable/generated/torch.ones.html?highlight=ones#torch.ones)
 
 ```python
@@ -12,7 +12,6 @@ torch.ones(*size,
 ```
 
 ### [paddle.ones](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/ones_cn.html#ones)
-
 ```python
 paddle.ones(shape,
             dtype=None,
@@ -20,7 +19,7 @@ paddle.ones(shape,
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | *size         | shape        | 表示输出形状大小，PyTorch 以可变参数方式传入，Paddle 以 list 或 tuple 的方式传入。                                     |

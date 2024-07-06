@@ -3,7 +3,7 @@
 Flatten
 -------------------------------
 
-.. py:function:: paddle.nn.Flatten(start_axis=1, stop_axis=-1)
+.. py:class:: paddle.nn.Flatten(start_axis=1, stop_axis=-1)
 
 
 

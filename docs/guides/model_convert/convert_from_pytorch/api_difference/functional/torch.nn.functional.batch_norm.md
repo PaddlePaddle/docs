@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.functional.batch_norm
+## [ 输入参数用法不一致 ]torch.nn.functional.batch_norm
 
 ### [torch.nn.functional.batch_norm](https://pytorch.org/docs/stable/generated/torch.nn.functional.batch_norm.html#torch.nn.functional.batch_norm)
 
