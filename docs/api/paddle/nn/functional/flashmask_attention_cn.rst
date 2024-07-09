@@ -173,7 +173,7 @@ flashmask 将通过参数 :code:`startend_row_indices` 表示作用在 Attention
 参数
 ::::::::::::
 
-    - **query** (int) - 输入 Query Tensor，shape =[batch_size, seq_len, num_heads, head_dim]，数据类型为 float16 或 bfloat16。
+    - **query** (Tensor) - 输入 Query Tensor，shape =[batch_size, seq_len, num_heads, head_dim]，数据类型为 float16 或 bfloat16。
     - **key** (Tensor) - 输入 Key Tensor，shape 以及 dtype 和 query 相同。
     - **value** (Tensor) - 输入 Value Tensor，shape 以及 dtype 和 query 相同。
     - **startend_row_indices** (Tensor)
