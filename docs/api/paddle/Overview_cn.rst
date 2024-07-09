@@ -399,6 +399,7 @@ tensor 元素操作相关（如：转置，reshape 等）
 
     " :ref:`paddle.broadcast_to <cn_api_paddle_broadcast_to>` ", "根据 shape 指定的形状广播 x ，广播后， x 的形状和 shape 指定的形状一致"
     " :ref:`paddle.broadcast_tensors <cn_api_paddle_broadcast_tensors>` ", "对一组输入 Tensor 进行广播操作, 输入应符合广播规范"
+    " :ref:`paddle.cartesian_prod <cn_api_paddle_cartesian_prod>` ", "对输入 Tensor 序列进行笛卡尔积操作"
     " :ref:`paddle.cast <cn_api_paddle_cast>` ", "将输入的 x 的数据类型转换为 dtype 并输出"
     " :ref:`paddle.chunk <cn_api_paddle_chunk>` ", "将输入 Tensor 分割成多个子 Tensor"
     " :ref:`paddle.concat <cn_api_paddle_concat>` ", "对输入沿 axis 轴进行联结，返回一个新的 Tensor"
