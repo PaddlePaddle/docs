@@ -77,6 +77,11 @@ def unescape_api(api):
 
 
 def reformat_signature(code):
+    """
+    从函数签名代码中解析出函数名和参数列表
+    - code: 函数签名代码
+    - 返回值: 函数名和参数列表
+    """
     lines = [l for l in code.split("\n") if len(l.strip()) > 0]
     assert len(lines) > 0, "code have no lines."
     buffer = "".join([l.strip() for l in lines])
@@ -117,6 +122,11 @@ def reformat_signature(code):
 
 
 def get_meta_from_diff_file(filepath):
+    """
+    该函数从指定的映射文件中解析出元数据信息
+    - filepath: 映射文件路径
+    - 返回值: DiffMeta 类型的元数据信息
+    """
     meta_data: DiffMeta = {"source_file": filepath}
     state = ParserState.wait_for_title
     title_pattern = re.compile(r"^## +\[(?P<type>[^\]]+)\] *(?P<torch_api>.+)$")
@@ -393,25 +403,32 @@ def validate_mapping_table_macro_row(columns, row_idx, line_idx):
 
     if macro_match:
         macro_type = macro_match["macro_type"]
-        if macro_type not in ["REFERENCE-MAPPING-ITEM", "NOT-IMPLEMENTED-ITEM"]:
+        if macro_type not in [
+            "REFERENCE-MAPPING-ITEM",
+            "NOT-IMPLEMENTED-ITEM",
+            "REFERENCE-MAPPING-TABLE",
+        ]:
             print(f"Unknown macro type: {macro_type} at line {line_idx}.")
             return False
 
-        torch_api = macro_match["torch_api"].strip("`")
-        diff_url = macro_match["diff_url"]
+        if macro_type == "REFERENCE-MAPPING-TABLE":
+            pass
+        else:
+            torch_api = macro_match["torch_api"].strip("`")
+            diff_url = macro_match["diff_url"]
 
-        if torch_api in INDEX_ALL_APIS:
-            raise Exception(
-                f"Duplicate torch api: {torch_api} at line {line_idx}."
-            )
-        INDEX_ALL_APIS[torch_api] = columns[0]
+            if torch_api in INDEX_ALL_APIS:
+                raise Exception(
+                    f"Duplicate torch api: {torch_api} at line {line_idx}."
+                )
+            INDEX_ALL_APIS[torch_api] = columns[0]
 
-        return torch_api
+            return torch_api
 
     return False
 
 
-def collect_mapping_item_processor(api_name, line_idx, state, output, context):
+def collect_mapping_item_processor(_line, line_idx, state, output, context):
     if state == 0 or state == 1 or state == 5:
         return True
 
@@ -435,6 +452,23 @@ def collect_mapping_item_processor(api_name, line_idx, state, output, context):
 
 
 def process_mapping_index(index_path, item_processer, context={}):
+    """
+    线性处理 `pytorch_api_mapping_cn.md` 文件
+    - index_path: 该 md 文件路径
+    - item_processer: 对文件每行的处理方式，输入参数 (line, line_idx, state, output, context)。
+                      如果处理出错则返回 False，否则返回 True。
+    - context: 用于存储处理过程中的上下文信息
+               - output: 使用 context["output"] 初始化，如果不调用 item_processer，直接加入原文件对应行，否则 item_processer 处理 output 逻辑。
+    - 返回值：是否成功处理，成功返回 0。
+
+    其中 state 信息如下：
+    - 0: 等待表头（如果未进入表格则始终为 0）
+    - 1: 无需处理的表格，分隔行（表头和内容的分割线）
+    - 2: 需要处理的表格，分隔行
+    - 5: 无需处理的表格，表格内容
+    - 6: **需要处理的表格，表格内容**
+
+    """
     if not os.path.exists(index_path):
         raise Exception(f"Cannot find pytorch_api_mapping_cn.md: {index_path}")
 

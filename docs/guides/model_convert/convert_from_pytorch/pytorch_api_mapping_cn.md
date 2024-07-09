@@ -55,7 +55,7 @@
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
-| REFERENCE-MAPPING-TABLE(`torch.nn.`) |
+| REFERENCE-MAPPING-TABLE(`torch.nn.functional`) |
 
 ***持续更新...***
 
@@ -201,15 +201,6 @@
 
 ***持续更新...***
 
-## torch.utils.data.XX API 映射列表
-
-梳理了`torch.utils.data.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
-
-| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
-| ----- | ----------- | ----------------- | ----------- | ------- |
-| REFERENCE-MAPPING-ITEM(`torch.utils.data.BatchSampler`, https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.utils.data.BatchSampler.md) |
-| REFERENCE-MAPPING-ITEM(`torch.utils.data.distributed.DistributedSampler`, https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.utils.data.distributed.DistributedSampler.md) |
-
 ## 其他类 API 映射列表
 
 梳理了其他类 API 的 PyTorch-PaddlePaddle API 映射列表。
@@ -336,7 +327,7 @@
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.SubsetRandomSampler`, `torch.utils.data.SubsetRandomSampler`) |
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.WeightedRandomSampler`, `torch.utils.data.WeightedRandomSampler`) |
 
- ## 尚未实现的 API
+ ## 尚未实现的 API 列表
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
