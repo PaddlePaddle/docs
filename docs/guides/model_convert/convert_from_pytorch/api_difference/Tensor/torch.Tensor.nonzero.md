@@ -18,4 +18,4 @@ paddle.Tensor.nonzero(as_tuple=False)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| as_tuple | as_tuple | bool 类型表示输出数据的格式，默认 False 时，输出一个张量，True 时输出一组一维张量。  |
+| as_tuple      | as_tuple     | bool 类型表示输出数据的格式，默认 False 时，输出一个张量，True 时输出一组一维张量。  |

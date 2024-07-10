@@ -6,10 +6,10 @@
 torch.Tensor.gather(dim, index)
 ```
 
-### [paddle.Tensor.take_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#take-along-axis-arr-index-axis)
+### [paddle.Tensor.take_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#take-along-axis-arr-indices-axis-broadcast-true)
 
 ```python
-paddle.Tensor.take_along_axis(index, axis, broadcast=True)
+paddle.Tensor.take_along_axis(indices, axis, broadcast=True)
 ```
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：

@@ -20,9 +20,9 @@ paddle.Tensor.tile(repeat_times, name=None)
 | ------- | ------------ | ------------------------------------------------------------ |
 | *dims   | repeat_times | 维度复制次数， PyTorch 参数 dims 既可以是可变参数，也可以是 list/tuple/tensor 的形式， Paddle 参数 repeat_times 为 list/tuple/tensor 的形式。 |
 
-转写示例
+### 转写示例
 
-#### ***dims: 维度复制次数**
+#### \*dims: 维度复制次数
 
 ```python
 # PyTorch 写法
