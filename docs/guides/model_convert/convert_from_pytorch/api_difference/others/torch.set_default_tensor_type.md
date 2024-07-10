@@ -1,4 +1,4 @@
-## [ 参数不一致 ] torch.set_default_tensor_type
+## [ 输入参数用法不一致 ] torch.set_default_tensor_type
 
 ### [torch.set_default_tensor_type](https://pytorch.org/docs/stable/generated/torch.set_default_tensor_type.html#torch-set-default-tensor-type)
 

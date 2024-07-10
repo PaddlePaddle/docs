@@ -1,5 +1,4 @@
-
-### [无参数]torch.distributed.is_initialized
+## [无参数]torch.distributed.is_initialized
 
 ### [torch.distributed.is_initialized](https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_initialized)
 
