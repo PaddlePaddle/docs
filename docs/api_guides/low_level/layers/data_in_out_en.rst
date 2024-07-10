@@ -25,6 +25,3 @@ Fluid supports obtaining data for the current batch in the training/inference ph
 
 The user can fetch expected variables from :code:`executor.run(fetch_list=[...], return_numpy=...)` . User can determine whether to convert the output data to numpy array by setting the :code:`return_numpy` parameter.
 If :code:`return_numpy` is :code:`False` , data of type :code:`LoDTensor` will be returned.
-
-For specific usage, please refer to the relevant API documentation :ref:`api_fluid_executor_Executor` and
-:ref:`api_fluid_ParallelExecutor`.

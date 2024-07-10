@@ -3,7 +3,7 @@
 L2Decay
 -------------------------------
 
-.. py:attribute::   paddle.regularizer.L2Decay(coeff=0.0)
+.. py:class:: paddle.regularizer.L2Decay(coeff=0.0)
 
 
 L2Decay 实现 L2 权重衰减正则化，用于模型训练，有助于防止模型对训练数据过拟合。

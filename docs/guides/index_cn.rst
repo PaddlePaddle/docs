@@ -8,6 +8,7 @@
 
 使用教程分为如下的模块：
 
+- `飞桨 3.0 全新特性 <./paddle_v3_features/index_cn.html>`_
 - `模型开发入门 <./beginner/index_cn.html>`_
 - `模型开发更多用法 <./advanced/index_cn.html>`_
 - `动态图转静态图 <./jit/index_cn.html>`_
@@ -22,6 +23,7 @@
 ..  toctree::
     :hidden:
 
+    paddle_v3_features/index_cn.rst
     beginner/index_cn.rst
     advanced/index_cn.rst
     jit/index_cn.rst

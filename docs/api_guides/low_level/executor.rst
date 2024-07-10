@@ -4,7 +4,7 @@
 执行引擎
 ##########
 
-:code:`Executor` 实现了一个简易的执行器，所有的操作在其中顺序执行。你可以在 Python 脚本中运行 :code:`Executor` 。PaddlePaddle Fluid 中有两种执行器。一种是 :code:`Executor` 默认的单线程执行器，另一种是并行计算执行器，在 :ref:`api_guide_parallel_executor` 中进行了解释。``Executor`` 和 :ref:`api_guide_parallel_executor` 的配置不同，这可能会给部分用户带来困惑。为使执行器更加灵活，我们引入了 :ref:`api_guide_compiled_program` ， :ref:`api_guide_compiled_program` 用于把一个程序转换为不同的优化组合，可以通过 :code:`Executor` 运行。
+:code:`Executor` 实现了一个简易的执行器，所有的操作在其中顺序执行。你可以在 Python 脚本中运行 :code:`Executor` 。
 
  :code:`Executor` 的逻辑非常简单。建议在调试阶段用 :code:`Executor` 在一台计算机上完整地运行模型，然后转向多设备或多台计算机计算。
 

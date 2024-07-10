@@ -26,7 +26,7 @@ AutoStructify = transform.AutoStructify
 
 # General information about the project.
 project = "PaddlePaddle"
-author = "%s developers" % project
+author = f"{project} developers"
 copyright = "%d, %s" % (time.localtime(time.time()).tm_year, author)
 github_doc_root = "https://github.com/PaddlePaddle/docs/docs"
 
@@ -231,7 +231,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, "%s.tex" % project, project, author, "manual"),
+    (master_doc, f"{project}.tex", project, author, "manual"),
 ]
 numfig = True
 highlight_language = "python"

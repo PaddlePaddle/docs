@@ -3,7 +3,7 @@
 SqueezeNet
 -------------------------------
 
-.. py:function:: paddle.vision.models.SqueezeNet(version, num_classes=1000, with_pool=True)
+.. py:class:: paddle.vision.models.SqueezeNet(version, num_classes=1000, with_pool=True)
 
 
 SqueezeNet 模型，来自论文 `"SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size" <https://arxiv.org/abs/1602.07360>`_ 。

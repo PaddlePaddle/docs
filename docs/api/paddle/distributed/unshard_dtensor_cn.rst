@@ -3,7 +3,7 @@
 unshard_dtensor
 -------------------------------
 
-.. py:function:: unshard_dtensor(dist_tensor)
+.. py:function:: paddle.distributed.unshard_dtensor(dist_tensor)
 
 将带有分布式信息的分布式 Tensor 转换为普通 Tensor。
 
