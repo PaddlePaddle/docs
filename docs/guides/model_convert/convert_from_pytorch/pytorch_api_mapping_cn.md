@@ -28,7 +28,7 @@
 | [torch.profiler.XX](#id21)   | 主要为`torch.profiler.XX`类 API |
 | [torch.optim.XX](#id22)   | 主要为`torch.optim.XX`类 API |
 | [torch.sparse.XX](#id12)   | 主要为`torch.sparse.XX`类 API |
-| [其他](#id13)   | 其他 API |
+| [torch 其他](#id13)   | PyTorch 其他 API |
 | [fairscale.xx](#id23)   | 第三方库 fairscale API |
 
 ## torch.XX API 映射列表
@@ -202,9 +202,9 @@
 
 ***持续更新...***
 
-## 其他类 API 映射列表
+## PyTorch 其他类 API 映射列表
 
-梳理了其他类 API 的 PyTorch-PaddlePaddle API 映射列表。
+梳理了 PyTorch 其他类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
@@ -418,6 +418,7 @@
 
 
  ## fairscale.XX API 映射列表
+
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 |MANUAL_MAINTAINING-ITEM(`fairscale.nn.model_parallel.initialize.get_model_parallel_rank`,https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/initialize.py#L155, `paddle.distributed.fleet.base.topology._HYBRID_PARALLEL_GROUP.get_model_parallel_rank`, https://github.com/PaddlePaddle/Paddle/blob/ddac1b431483ddc0f1ee600e799aa31fc0a75961/python/paddle/distributed/fleet/base/topology.py#L463, 无参数 , https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/fairscale/fairscale.nn.model_parallel.initialize.get_model_parallel_rank.md) |
