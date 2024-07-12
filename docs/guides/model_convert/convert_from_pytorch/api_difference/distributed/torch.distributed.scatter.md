@@ -1,4 +1,4 @@
-## [参数不一致]torch.distributed.scatter
+## [ 输入参数用法不一致 ]torch.distributed.scatter
 
 ### [torch.distributed.scatter](https://pytorch.org/docs/stable/distributed.html#torch.distributed.scatter)
 

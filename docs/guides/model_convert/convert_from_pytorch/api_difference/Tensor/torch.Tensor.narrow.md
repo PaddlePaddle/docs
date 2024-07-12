@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.narrow
+## [ 输入参数用法不一致 ]torch.Tensor.narrow
 ### [torch.Tensor.narrow](https://pytorch.org/docs/stable/generated/torch.Tensor.narrow.html#torch.Tensor.narrow)
 
 ```python

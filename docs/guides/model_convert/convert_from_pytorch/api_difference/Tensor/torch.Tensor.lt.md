@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.lt
+## [ 输入参数类型不一致 ]torch.Tensor.lt
 
 ### [torch.Tensor.lt](https://pytorch.org/docs/stable/generated/torch.Tensor.lt.html)
 

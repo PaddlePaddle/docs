@@ -12,27 +12,28 @@ torch.nanquantile(input,
                out=None)
 ```
 
-### [paddle.nanquantile]()
+### [paddle.nanquantile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nanquantile_cn.html#nanquantile)
 
 ```python
 paddle.nanquantile(x,
-                q,
-                axis=None,
-                keepdim=False,
-                interpolation='linear',
-                name=None)
+                   q,
+                   axis=None,
+                   keepdim=False,
+                   interpolation='linear',
+                   name=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input |  x  | 表示输入的 Tensor，仅参数名不一致。  |
 |   q   |  q  | 待计算的分位数。  |
-|  dim  | axis| 指定对 x 进行计算的轴，仅参数名不一致。 |
-|keepdim|keepdim| 是否在输出 Tensor 中保留减小的维度。|
-|interpolation|  interpolation | 当所需分位数位于两个数据点之间时使用的插值方法|
+|  dim  | axis | 指定对 x 进行计算的轴，仅参数名不一致。 |
+| keepdim | keepdim | 是否在输出 Tensor 中保留减小的维度。|
+| interpolation |  interpolation | 当所需分位数位于两个数据点之间时使用的插值方法。 |
 |  out  |  -  | 表示输出的 Tensor，Paddle 无此参数，需要转写。    |
 
 

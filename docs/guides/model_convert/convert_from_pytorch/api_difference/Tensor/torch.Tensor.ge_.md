@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.ge_
+## [ 输入参数类型不一致 ]torch.Tensor.ge_
 
 ### [torch.Tensor.ge_](https://pytorch.org/docs/stable/ge_nerated/torch.Tensor.ge_.html)
 

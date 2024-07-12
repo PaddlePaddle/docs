@@ -3,7 +3,7 @@
 MaxPool3D
 -------------------------------
 
-.. py:function:: paddle.sparse.nn.MaxPool3D(kernel_size, stride=None, padding=0, ceil_mode=False, return_mask=False, data_format="NDHWC", name=None)
+.. py:class:: paddle.sparse.nn.MaxPool3D(kernel_size, stride=None, padding=0, ceil_mode=False, return_mask=False, data_format="NDHWC", name=None)
 
 构建 `MaxPool3D` 类的一个可调用对象，其将构建一个三维最大池化层，根据输入参数 `kernel_size`, `stride`,
 `padding` 等参数对稀疏输入特征做最大池化操作。 输入输出都是 "NDHWC" 格式，其中 N 是批大小， C 是特征的通道数， H 是特征的高， W 是特征的宽。

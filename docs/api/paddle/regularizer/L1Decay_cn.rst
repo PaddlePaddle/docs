@@ -3,7 +3,7 @@
 L1Decay
 -------------------------------
 
-.. py:attribute::   paddle.regularizer.L1Decay(coeff=0.0)
+.. py:class:: paddle.regularizer.L1Decay(coeff=0.0)
 
 L1Decay 实现 L1 权重衰减正则化，用于模型训练，使得权重矩阵稀疏。
 

@@ -12,8 +12,8 @@ cross
 
 参数
 :::::::::
-    - **x** (Tensor) - 第一个输入 Tensor，数据类型为：float16、float32、float64、int32、int64。
-    - **y** (Tensor) - 第二个输入 Tensor，数据类型为：float16、float32、float64、int32、int64。
+    - **x** (Tensor) - 第一个输入 Tensor，数据类型为：float16、float32、float64、int32、int64、complex64、complex128。
+    - **y** (Tensor) - 第二个输入 Tensor，数据类型为：float16、float32、float64、int32、int64、complex64、complex128。
     - **axis** (int，可选) - 沿着此维进行向量积操作。默认值是 9，意思是选取第一个长度为 3 的 ``axis`` 。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

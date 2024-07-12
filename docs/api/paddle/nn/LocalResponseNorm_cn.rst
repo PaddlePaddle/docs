@@ -3,7 +3,7 @@
 LocalResponseNorm
 -------------------------------
 
-.. py:function:: paddle.nn.LocalResponseNorm(size, alpha=0.0001, beta=0.75, k=1.0, data_format="NCHW", name=None)
+.. py:class:: paddle.nn.LocalResponseNorm(size, alpha=0.0001, beta=0.75, k=1.0, data_format="NCHW", name=None)
 
 局部响应正则化（Local Response Normalization）用于对局部输入区域进行正则化，执行一种侧向抑制（lateral inhibition）。更多详情参考：`ImageNet Classification with Deep Convolutional Neural Networks <https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf>`_
 

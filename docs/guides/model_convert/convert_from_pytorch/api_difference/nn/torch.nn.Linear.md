@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.Linear
+## [ 输入参数用法不一致 ]torch.nn.Linear
 ### [torch.nn.Linear](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html?highlight=linear#torch.nn.Linear)
 
 ```python

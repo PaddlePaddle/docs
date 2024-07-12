@@ -1,4 +1,4 @@
-## [ 参数不一致 ] torch.Tensor.multiply
+## [ 输入参数类型不一致 ] torch.Tensor.multiply
 
 ### [torch.Tensor.multiply](https://pytorch.org/docs/stable/generated/torch.Tensor.multiply.html)
 

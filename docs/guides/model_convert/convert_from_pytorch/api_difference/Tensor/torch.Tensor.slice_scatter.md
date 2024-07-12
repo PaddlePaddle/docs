@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.slice_scatter
+## [ 输入参数类型不一致 ]torch.Tensor.slice_scatter
 
 ### [torch.Tensor.slice_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.slice_scatter.html#torch-tensor-slice-scatter)
 

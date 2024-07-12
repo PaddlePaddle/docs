@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.less_equal_
+## [ 输入参数类型不一致 ]torch.Tensor.less_equal_
 
 ### [torch.Tensor.less_equal_](https://pytorch.org/docs/stable/generated/torch.Tensor.less_equal_.html)
 
