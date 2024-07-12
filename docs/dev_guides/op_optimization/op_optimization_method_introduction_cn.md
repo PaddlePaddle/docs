@@ -45,7 +45,7 @@ GPU Kernel 直接影响了算子性能, 我们推荐采用以下等通用优化�
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/dev_guides/images/cuda_math_utils.png" style="zoom:50%" />
 
 
-### 2.3 [索引计算优化](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/platform/fast_divmod.h):
+### 2.3 [索引计算优化](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/funcs/fast_divmod.h):
 
 当 GPU Kernel 的索引计算中存在除法或取模操作, 将在导致汇编层面计算开销变大, 我们建议采用快速除法优化这部分的计算开销。飞桨内[Pooling OP](https://github.com/PaddlePaddle/Paddle/blob/890c73158f663b327be7664ed6c4d08fb2c236a9/paddle/phi/kernels/funcs/pooling.cu#L41-L101) 采用索引优化计算后, 性能提升 1 倍.
 

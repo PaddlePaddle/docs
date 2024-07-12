@@ -63,32 +63,13 @@
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 11.2 with cuDNN v8.2.1(for multi card support, NCCL2.7 or higher；for PaddleTensorRT deployment, TensorRT8.0.3.4)**
+  * **CUDA toolkit 11.8 with cuDNN v8.6.0(for PaddleTensorRT deployment, TensorRT8.5.1.7)**
 
-  * **CUDA toolkit 11.6 with cuDNN v8.4.0(for multi card support, NCCL2.7 or higher；for PaddleTensorRT deployment, TensorRT8.4.0.6)**
+  * **CUDA toolkit 12.3 with cuDNN v9.0.0(for PaddleTensorRT deployment, TensorRT8.6.1.6)**
 
-  * **CUDA toolkit 11.7 with cuDNN v8.4.1(for multi card support, NCCL2.7 or higher；for PaddleTensorRT deployment, TensorRT8.4.2.4)**
-
-  * **CUDA toolkit 11.8 with cuDNN v8.6.0(for multi card support, NCCL2.7 or higher；for PaddleTensorRT deployment, TensorRT8.5.1.7)**
-
-  * **CUDA toolkit 12.0 with cuDNN v8.9.1(for multi card support, NCCL2.7 or higher；for PaddleTensorRT deployment, TensorRT8.6.1.6)**
-
-  * **Hardware devices with GPU computing power over 3.5**
+  * **Hardware devices with GPU computing power over 6.0**
 
     You can refer to NVIDIA official documents for installation process and configuration method of CUDA, cuDNN and TensorRT. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/tensorrt)
-
-* If you need to use a multi-card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here are the installation instructions of nccl2 under CUDA11.2 and cuDNN7. For more version installation information, please refer to NVIDIA [Official Website](https://developer.nvidia.com/nccl)):
-
-
-    ```
-    rm -f /usr/local/lib/libnccl.so
-    wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-2.10.3-1+cuda11.4.x86_64.rpm
-    wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-devel-2.10.3-1+cuda11.4.x86_64.rpm
-    wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-static-2.10.3-1+cuda11.4.x86_64.rpm
-    rpm -ivh libnccl-2.10.3-1+cuda11.4.x86_64.rpm
-    rpm -ivh libnccl-devel-2.10.3-1+cuda11.4.x86_64.rpm
-    rpm -ivh libnccl-static-2.10.3-1+cuda11.4.x86_64.rpm
-    ```
 
 
 
@@ -102,93 +83,26 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle==2.6.1 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
-
 
 
 #### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
-
-
-
-2.2.1 If you are using CUDA 11.2
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post112 -i https://mirror.baidu.com/pypi/simple
-  ```
-
-
-  CUDA11.2 with cuDNN dynamic library PaddlePaddle
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post112 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
-  ```
-
-
-2.2.2 If you are using CUDA 11.6
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
-  ```
-
-
-  CUDA11.6 with cuDNN dynamic library PaddlePaddle
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post116 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
-  ```
-
-
-2.2.3 If you are using CUDA 11.7
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
-  ```
-
-
-  CUDA11.7 with cuDNN dynamic library PaddlePaddle
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post117 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
-  ```
 
 
 2.2.4 If you are using CUDA 11.8
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle-gpu==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
 
-  CUDA11.8 with cuDNN dynamic library PaddlePaddle, you can use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package)
+2.2.5 If you are using CUDA 12.3
 
 
   ```
-  python3 -m pip download paddlepaddle-gpu==2.6.1 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html  --no-index --no-deps
-
-  ```
-
-
-2.2.5 If you are using CUDA 12.0
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post120 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
-  ```
-
-
-  CUDA12.0 with cuDNN dynamic library PaddlePaddle
-
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post120 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip install paddlepaddle-gpu==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
   ```
 
 
@@ -204,7 +118,7 @@ Note：
 * If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
 
   ```
-  python3 -m pip download paddlepaddle==2.6.1 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
+  python3 -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0-beta0/linux/linux-cpu-openblas-avx/paddlepaddle-3.0.0b1-cp38-cp38-linux_x86_64.whl
   ```
 
 

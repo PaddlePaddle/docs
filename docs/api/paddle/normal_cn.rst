@@ -14,9 +14,12 @@ normal
 
 如果 ``mean`` 和 ``std`` 都是 Tensor，则 ``mean`` 和 ``std`` 的元素个数应该相同。
 
+如果 ``mean`` 是一个复数，则输出 Tensor 服从复正态分布，其数据类型为 complex64。
+如果 ``mean`` 是复数类型的 Tensor，则输出 Tensor 的数据类型与 ``mean`` 相同。
+
 参数
 ::::::::::
-    - **mean** (float|Tensor，可选) - 输出 Tensor 的正态分布的平均值。如果 ``mean`` 是 float，则表示输出 Tensor 中所有元素的正态分布的平均值。如果 ``mean`` 是 Tensor (支持的数据类型为 float32、float64)，则表示输出 Tensor 中每个元素的正态分布的平均值。默认值为 0.0。
+    - **mean** (float|complex|Tensor，可选) - 输出 Tensor 的正态分布的平均值。如果 ``mean`` 是 float，则表示输出 Tensor 中所有元素的正态分布的平均值。如果 ``mean`` 是 Tensor (支持的数据类型为 float32、float64、complex64、complex128)，则表示输出 Tensor 中每个元素的正态分布的平均值。默认值为 0.0。
     - **std** (float|Tensor，可选) - 输出 Tensor 的正态分布的标准差。如果 ``std`` 是 float，则表示输出 Tensor 中所有元素的正态分布的标准差。如果 ``std`` 是 Tensor (支持的数据类型为 float32、float64)，则表示输出 Tensor 中每个元素的正态分布的标准差。默认值为 0.0。
     - **shape** (list|tuple|Tensor，可选) - 生成的随机 Tensor 的形状。如果 ``shape`` 是 list、tuple，则其中的元素可以是 int，或者是形状为[]且数据类型为 int32、int64 的 0-D Tensor。如果 ``shape`` 是 Tensor，则是数据类型为 int32、int64 的 1D Tensor。如果 ``mean`` 或者 ``std`` 是 Tensor，输出 Tensor 的形状和 ``mean`` 或者 ``std`` 相同(此时 ``shape`` 无效)。默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

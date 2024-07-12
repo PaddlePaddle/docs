@@ -14,6 +14,8 @@ paddle.Tensor.moveaxis(source, destination,name = None)
 
 两者功能一致且参数用法一致，具体如下：
 
+### 参数映射
+
 | PyTorch                            | PaddlePaddle                       | 备注                               |
 |------------------------------------|------------------------------------|----------------------------------|
 | <font> source </font>     | <font> source </font>    | 将被移动的轴的位置。                       |

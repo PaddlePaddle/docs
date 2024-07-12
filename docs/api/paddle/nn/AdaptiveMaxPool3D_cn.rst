@@ -3,7 +3,7 @@
 AdaptiveMaxPool3D
 -------------------------------
 
-.. py:function:: paddle.nn.AdaptiveMaxPool3D(output_size, return_mask=False, name=None)
+.. py:class:: paddle.nn.AdaptiveMaxPool3D(output_size, return_mask=False, name=None)
 根据输入 `x` , `output_size` 等参数对一个输入 Tensor 计算 3D 的自适应最大池化。输入和输出都是 5-D Tensor，
 默认是以 `NCDHW` 格式表示的，其中 `N` 是 batch size， `C` 是通道数，`D` ， `H` ， `W` 分别是输入特征的深度，高度，宽度。
 

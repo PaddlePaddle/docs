@@ -1,4 +1,4 @@
-## [参数不一致]torch.distributed.reduce_scatter
+## [ 输入参数用法不一致 ]torch.distributed.reduce_scatter
 
 ### [torch.distributed.reduce_scatter](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_scatter)
 

@@ -12,7 +12,7 @@ paddle.nn.ParameterList(parameters=None)
 ```
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | values        | parameters   | 可迭代的 Parameters，参数名不一致。                   |

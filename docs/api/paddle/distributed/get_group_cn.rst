@@ -3,7 +3,7 @@
 get_group
 -------------------------------
 
-.. py:function:: get_group(id=0)
+.. py:function:: paddle.distributed.get_group(id=0)
 
 通过通信组 id 获取通信组实例
 

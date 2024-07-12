@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.Unfold
+## [ 仅参数名不一致 ]torch.nn.Unfold
 ### [torch.nn.Unfold](https://pytorch.org/docs/stable/generated/torch.nn.Unfold.html?highlight=nn+unfold#torch.nn.Unfold)
 
 ```python
@@ -17,15 +17,17 @@ paddle.nn.Unfold(kernel_size=[3, 3],
                     dilation=1,
                     name=None)
 ```
-其中 Paddle 与 PyTorch 前四个参数所支持的参数类型不一致，具体如下：
+
+其中功能一致, 仅参数名不一致，具体如下：
+
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| kernel_size   | kernel_sizes | 卷积核大小， PyTorch 参数类型为 int、tuple(int) 或者 list(int)， Paddle 参数类型为 int 或者 list(int)。   |
-| dilation      | dilations    | 卷积膨胀，PyTorch 参数类型为 int、tuple(int) 或者 list(int)， Paddle 参数类型为 int 或者 list(int)。 |
-| padding       | paddings     | 每个维度的扩展，PyTorch 参数类型为 int、tuple(int) 或者 list(int)， Paddle 参数类型为 int 或者 list(int)。 |
-| stride        | strides      | 步长大小，PyTorch 参数类型为 int、tuple(int) 或者 list(int)， Paddle 参数类型为 int 或者 list(int)。|
+| kernel_size   | kernel_sizes  | 卷积核的尺寸。                    |
+| dilation      | dilations     | 卷积膨胀。                        |
+| padding       | paddings     | 每个维度的扩展，仅参数名不一致。  |
+| stride        | strides      | 卷积步长，仅参数名不一致。        |
 
 ### 转写示例
 ``` python

@@ -1,4 +1,4 @@
-## [参数不一致]torch.cuda.Stream
+## [ 输入参数用法不一致 ]torch.cuda.Stream
 
 ### [torch.cuda.Stream](https://pytorch.org/docs/stable/generated/torch.cuda.Stream.html#torch.cuda.Stream)
 
@@ -12,7 +12,7 @@ torch.cuda.Stream(device=None, priority=0, **kwargs)
 paddle.device.cuda.Stream(device=None, priority=None)
 ```
 
-两者功能一致，参数不一致，具体如下：
+两者功能一致，参数用法不一致，具体如下：
 
 ### 参数映射
 

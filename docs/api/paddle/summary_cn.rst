@@ -19,7 +19,17 @@ summary
 :::::::::
 字典，包含了总的参数量和总的可训练的参数量。
 
-代码示例
+代码示例 1
 :::::::::
 
-COPY-FROM: paddle.summary
+COPY-FROM: paddle.summary:code-example-1
+
+代码示例 2
+:::::::::
+
+COPY-FROM: paddle.summary:code-example-2
+
+代码示例 3
+:::::::::
+
+COPY-FROM: paddle.summary:code-example-3

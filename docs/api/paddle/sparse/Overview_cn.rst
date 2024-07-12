@@ -60,6 +60,7 @@ paddle.sparse 目录包含飞桨框架支持稀疏数据存储和计算相关的
     " :ref:`paddle.sparse.reshape <cn_api_paddle_sparse_reshape>` ", "改变一个 SparseTensor 的形状"
     " :ref:`paddle.sparse.coalesce<cn_api_paddle_sparse_coalesce>` ", "对 SparseCooTensor 进行排序并合并"
     " :ref:`paddle.sparse.transpose <cn_api_paddle_sparse_transpose>` ", "在不改变数据的情况下改变 ``x`` 的维度顺序, 支持 COO 格式的多维 SparseTensor 以及 COO 格式的 2 维和 3 维 SparseTensor"
+    " :ref:`paddle.sparse.mask_as<cn_api_paddle_sparse_mask_as>` ", "稀疏张量的掩码逻辑，使用稀疏张量 `mask` 的索引过滤输入的稠密张量 `x`"
 
 .. _about_sparse_nn:
 

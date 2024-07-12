@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.functional.max_unpool1d
+## [ 输入参数用法不一致 ]torch.nn.functional.max_unpool1d
 
 ### [torch.nn.functional.max_unpool1d](https://pytorch.org/docs/stable/generated/torch.nn.functional.max_unpool1d.html?highlight=max_unpool1d#torch.nn.functional.max_unpool1d)
 

@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.view
+## [ 输入参数用法不一致 ]torch.Tensor.view
 
 ### [torch.Tensor.view](https://pytorch.org/docs/stable/generated/torch.Tensor.view.html?highlight=view#torch.Tensor.view)
 

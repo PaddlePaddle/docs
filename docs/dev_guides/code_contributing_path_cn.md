@@ -164,7 +164,6 @@ Tabs remover (C++)...................................(no files to check)Skipped
 Tabs remover (Python)....................................................Passed
 copyright_checker........................................................Passed
 black....................................................................Passed
-flake8...................................................................Passed
 ruff.....................................................................Passed
 clang-format.........................................(no files to check)Skipped
 cpplint..............................................(no files to check)Skipped
@@ -250,7 +249,7 @@ upstream    https://github.com/PaddlePaddle/Paddle.git (push)
 
 <span id="CItest">（6）确保通过 CI 测试</span>
 
-提交 Pull Request 后会触发 CI（Continuous Integration，持续集成）测试，并且之后每提交一次代码合入（`git push`）都会触发一次 CI 测试。CI 测试可尽可能保障代码质量，详细测试内容可参见 [Paddle CI 测试详解](../git_guides/paddle_ci_manual_cn.html)。
+提交 Pull Request 后会触发 CI（Continuous Integration，持续集成）测试，并且之后每提交一次代码合入（`git push`）都会触发一次 CI 测试。CI 测试可尽可能保障代码质量，详细测试内容可参见 [Paddle CI 测试详解](./git_guides/paddle_ci_manual_cn.html)。
 
 提交 Pull Request 后，请关注 CI 测试进程，一般会在几个小时内完成。
 

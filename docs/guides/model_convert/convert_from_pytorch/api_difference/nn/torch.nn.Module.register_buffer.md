@@ -12,7 +12,7 @@ paddle.nn.Layer.register_buffer(name, tensor, persistable=True)
 ```
 两者功能一致，仅参数名不一致，具体如下：
 
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | name       | name    |  注册 buffer 的名字。可以通过此名字来访问已注册的 buffer。                   |

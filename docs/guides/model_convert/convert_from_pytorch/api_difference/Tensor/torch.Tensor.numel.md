@@ -6,10 +6,10 @@
 torch.Tensor.numel()
 ```
 
-### [paddle.Tensor.size](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/layers/size_cn.html#cn-api-fluid-layers-size)
+### [paddle.Tensor.size](https://www.paddlepaddle.org.cn/documentation/docs/guides/beginner/tensor_cn.html#tensor-shape)
 
 ```python
-paddle.Tensor.size()
+paddle.Tensor.size
 ```
 
 两者功能一致，均无参数，用于返回张量的单元数量，是一个 int 型的整数。

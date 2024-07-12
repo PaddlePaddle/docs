@@ -3,7 +3,7 @@
 PixelShuffle
 -------------------------------
 
-.. py:function:: paddle.nn.PixelShuffle(upscale_factor, data_format="NCHW", name=None)
+.. py:class:: paddle.nn.PixelShuffle(upscale_factor, data_format="NCHW", name=None)
 
 将一个形为 :math:`[N, C, H, W]` 或是 :math:`[N, H, W, C]` 的 Tensor 重新排列成形为 :math:`[N, C/r^2, H \times r, W \times r]` 或 :math:`[N, H \times r, W \times r, C/r^2]` 的 Tensor。这样做有利于实现步长（stride）为 :math:`1/r` 的高效 sub-pixel（亚像素）卷积。详见 Shi 等人在 2016 年发表的论文 `Real Time Single Image and Video Super Resolution Using an Efficient Sub Pixel Convolutional Neural Network <https://arxiv.org/abs/1609.05158v2>`_ 。
 

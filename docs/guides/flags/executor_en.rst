@@ -3,36 +3,6 @@ executor
 ==================
 
 
-FLAGS_enable_parallel_graph
-*******************************************
-(since 1.2.0)
-
-This Flag is used for ParallelExecutor to disable parallel graph execution mode.
-
-Values accepted
----------------
-Bool. The default value is False.
-
-Example
--------
-FLAGS_enable_parallel_graph=False will force disable parallel graph execution mode by ParallelExecutor.
-
-
-FLAGS_pe_profile_fname
-*******************************************
-(since 1.3.0)
-
-This Flag is used for debugging for ParallelExecutor. The ParallelExecutor will generate the profile result by gperftools, and the profile result will be stored in the file which is specified by FLAGS_pe_profile_fname. Only valid when compiled `WITH_PRIFILER=ON`. Empty if disable.
-
-Values accepted
----------------
-String. The default value is empty ("").
-
-Example
--------
-FLAGS_pe_profile_fname="./parallel_executor.perf" will store the profile result to parallel_executor.perf.
-
-
 FLAGS_print_sub_graph_dir
 *******************************************
 (since 1.2.0)
