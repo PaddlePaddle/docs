@@ -29,6 +29,7 @@
 | [torch.optim.XX](#id22)   | 主要为`torch.optim.XX`类 API |
 | [torch.sparse.XX](#id12)   | 主要为`torch.sparse.XX`类 API |
 | [其他](#id13)   | 其他 API |
+| [fairscale.xx](#id23)   | 第三方库 fairscale API |
 
 ## torch.XX API 映射列表
 
@@ -414,5 +415,17 @@
 | NOT-IMPLEMENTED-ITEM(`torch.special.entr`, https://pytorch.org/docs/stable/special.html#torch.special.entr) |
 | NOT-IMPLEMENTED-ITEM(`torch.utils.cpp_extension.include_paths`, https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.include_paths) |
 | NOT-IMPLEMENTED-ITEM(`torch.utils.cpp_extension.load_inline`, https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.load_inline) |
+
+
+ ## fairscale.XX API 映射列表
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
+| ----- | ----------- | ----------------- | ----------- | ------- |
+|MANUAL_MAINTAINING-ITEM(`fairscale.nn.model_parallel.initialize.get_model_parallel_rank`,https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/initialize.py#L155, `paddle.distributed.fleet.base.topology._HYBRID_PARALLEL_GROUP.get_model_parallel_rank`, https://github.com/PaddlePaddle/Paddle/blob/ddac1b431483ddc0f1ee600e799aa31fc0a75961/python/paddle/distributed/fleet/base/topology.py#L463, 无参数 , https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/fairscale/fairscale.nn.model_parallel.initialize.get_model_parallel_rank.md) |
+|MANUAL_MAINTAINING-ITEM(`fairscale.nn.model_parallel.initialize.get_model_parallel_world_size`,https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/initialize.py#L150, `paddle.distributed.fleet.base.topology._HYBRID_PARALLEL_GROUP._mp_degree`,https://github.com/PaddlePaddle/Paddle/blob/ddac1b431483ddc0f1ee600e799aa31fc0a75961/python/paddle/distributed/fleet/base/topology.py#L185, 无参数 , https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/fairscale/fairscale.nn.model_parallel.initialize.get_model_parallel_world_size.md) |
+|MANUAL_MAINTAINING-ITEM(`fairscale.nn.model_parallel.initialize.initialize_model_parallel`,https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/initialize.py#L41, ` `, , 组合替代实现 , https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/fairscale/fairscale.nn.model_parallel.initialize.initialize_model_parallel.md) |
+|MANUAL_MAINTAINING-ITEM(`fairscale.nn.model_parallel.initialize.model_parallel_is_initialized`, https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/initialize.py#L119,` `, , 组合替代实现 , https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/fairscale/fairscale.nn.model_parallel.initialize.model_parallel_is_initialized.md) |
+|MANUAL_MAINTAINING-ITEM(`fairscale.nn.model_parallel.layers.ColumnParallelLinear`,https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/layers.py#L218, `paddle.distributed.meta_parallel.parallel_layers.mp_layers.ColumnParallelLinear`,https://github.com/PaddlePaddle/Paddle/blob/016766cc89fabc10181453ce70b701dd8ed019f6/python/paddle/distributed/fleet/layers/mpu/mp_layers.py#L153, torch 参数更多 , https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/fairscale/fairscale.nn.model_parallel.layers.ColumnParallelLinear.md) |
+|MANUAL_MAINTAINING-ITEM(`fairscale.nn.model_parallel.layers.ParallelEmbedding`,https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/layers.py#L152, `paddle.distributed.meta_parallel.parallel_layers.mp_layers.VocabParallelEmbedding`,https://github.com/PaddlePaddle/Paddle/blob/016766cc89fabc10181453ce70b701dd8ed019f6/python/paddle/distributed/fleet/layers/mpu/mp_layers.py#L37, torch 参数更多 , https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/fairscale/fairscale.nn.model_parallel.layers.ParallelEmbedding.md) |
+|MANUAL_MAINTAINING-ITEM(`fairscale.nn.model_parallel.layers.RowParallelLinear`,https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/layers.py#L299, `paddle.distributed.meta_parallel.parallel_layers.mp_layers.RowParallelLinear`,https://github.com/PaddlePaddle/Paddle/blob/016766cc89fabc10181453ce70b701dd8ed019f6/python/paddle/distributed/fleet/layers/mpu/mp_layers.py#L291,torch 参数更多 , https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/fairscale/fairscale.nn.model_parallel.layers.RowParallelLinear.md) |
 
 ***持续更新...***

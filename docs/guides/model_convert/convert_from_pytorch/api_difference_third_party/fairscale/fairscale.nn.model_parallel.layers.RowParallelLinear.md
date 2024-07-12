@@ -26,8 +26,8 @@ paddle.distributed.meta_parallel.parallel_layers.mp_layers.RowParallelLinear(in_
 | stride | | 线性层滑动步长 |
 | keep_master_weight_for_test | | 返回主参数用于测试 |
 |  |fuse_matmul_bias | 是否融合 matmul 和 bias 操作 |
-|  | mp_group| 向量并行组|
-|  | name| 网络层名称|
+|  | mp_group| 模型并行组 |
+|  | name| 网络层名称 |
 
 ### 转写示例
 

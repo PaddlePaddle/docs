@@ -26,7 +26,7 @@ paddle.distributed.meta_parallel.parallel_layers.mp_layers.VocabParallelEmbeddin
 | scale_grad_by_freq| | 是否根据 batch 内单词的频数的倒数缩放梯度 |
 | init_method | | 参数初始化方法|
 | keep_master_weight_for_test | | 返回主参数用于测试 |
-|  | mp_group| 向量并行组|
+|  | mp_group| 模型并行组|
 |  | name| 网络层名称|
 
 

@@ -3,7 +3,7 @@
 ### [torch.set_default_tensor_type](https://pytorch.org/docs/stable/generated/torch.set_default_tensor_type.html#torch-set-default-tensor-type)
 
 ```python
-torch.set_default_tensor_dtype(d)
+torch.set_default_tensor_type(d)
 ```
 
 ### [paddle.set_default_dtype](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/set_default_dtype_cn.html)

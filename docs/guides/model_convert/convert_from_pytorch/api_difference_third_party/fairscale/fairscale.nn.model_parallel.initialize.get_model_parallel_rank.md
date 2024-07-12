@@ -6,7 +6,7 @@
 fairscale.nn.model_parallel.initialize.get_model_parallel_rank()
 ```
 
-### [paddle.distributed.get_rank](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/get_rank_cn.html)
+### [paddle.distributed.fleet.base.topology._HYBRID_PARALLEL_GROUP.get_model_parallel_rank](https://github.com/PaddlePaddle/Paddle/blob/ddac1b431483ddc0f1ee600e799aa31fc0a75961/python/paddle/distributed/fleet/base/topology.py#L463)
 
 ```python
 paddle.distributed.fleet.base.topology._HYBRID_PARALLEL_GROUP.get_model_parallel_rank()

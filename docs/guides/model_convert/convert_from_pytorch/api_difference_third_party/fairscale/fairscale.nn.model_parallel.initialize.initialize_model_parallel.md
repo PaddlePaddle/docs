@@ -1,4 +1,4 @@
-## [组合实现]fairscale.nn.model_parallel.initialize.initialize_model_parallel
+## [组合替代实现]fairscale.nn.model_parallel.initialize.initialize_model_parallel
 
 ### [fairscale.nn.model_parallel.initialize.initialize_model_parallel](https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/initialize.py#L41)
 

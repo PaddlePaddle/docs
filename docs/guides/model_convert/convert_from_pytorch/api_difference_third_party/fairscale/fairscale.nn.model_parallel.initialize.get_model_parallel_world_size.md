@@ -6,7 +6,7 @@
 fairscale.nn.model_parallel.initialize.get_model_parallel_size()
 ```
 
-### [paddle.distributed.get_world_size](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/get_world_size_cn.html)
+### [paddle.distributed.fleet.base.topology._HYBRID_PARALLEL_GROUP._mp_degree](https://github.com/PaddlePaddle/Paddle/blob/ddac1b431483ddc0f1ee600e799aa31fc0a75961/python/paddle/distributed/fleet/base/topology.py#L185)
 
 ```python
 paddle.distributed.fleet.base.topology._HYBRID_PARALLEL_GROUP._mp_degree
