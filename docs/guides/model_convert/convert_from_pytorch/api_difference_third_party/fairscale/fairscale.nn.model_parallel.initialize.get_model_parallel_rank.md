@@ -20,6 +20,5 @@ paddle.distributed.fleet.base.topology._HYBRID_PARALLEL_GROUP.get_model_parallel
 fairscale.nn.model_parallel.initialize.get_model_parallel_size()
 
 # Paddle 写法
-assert paddle.distributed.fleet.base.topology._HYBRID_PARALLEL_GROUP is not None
 paddle.distributed.fleet.base.topology._HYBRID_PARALLEL_GROUP.get_model_parallel_rank()
 ```
