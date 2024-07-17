@@ -10,13 +10,13 @@ fairscale.nn.model_parallel.initialize.initialize_model_parallel()
 
 ### 参数映射
 
-| fairscale | PaddlePaddle | 备注     |
-| --------- | ------------ | -------- |
-| model_parallel_size_ | | 模型并行规模 |
-| pipeline_length | | 流水线并行规模 |
-| model_parallel_backend | | 模型并行通信后端 |
-| pipeline_backend | | 流水线并行通信后端 |
-| ddp_backend     | | 数据并行通信后端|
+| fairscale              | PaddlePaddle | 备注             |
+| ---------------------- | ------------ |---------------  |
+| model_parallel_size_   | -            | 模型并行规模      |
+| pipeline_length        | -            | 流水线并行规模    |
+| model_parallel_backend | -            | 模型并行通信后端   |
+| pipeline_backend       | -            | 流水线并行通信后端 |
+| ddp_backend            | -            | 数据并行通信后端   |
 
 ### 转写示例
 

@@ -1,4 +1,4 @@
-## [ 输入参数用法不一致 ] torch.set_default_tensor_type
+## [ 输入参数类型不一致 ] torch.set_default_tensor_type
 
 ### [torch.set_default_tensor_type](https://pytorch.org/docs/stable/generated/torch.set_default_tensor_type.html#torch-set-default-tensor-type)
 
@@ -12,7 +12,7 @@ torch.set_default_tensor_type(d)
 paddle.set_default_dtype(d)
 ```
 
-两者功能一致，支持的参数类型相同，但参数用法不一致，需将 d 转换为 paddle 可识别类型，具体如下：
+两者功能一致，支持的参数类型相同，但输入参数类型不一致，需将 d 转换为 paddle 可识别类型，具体如下：
 
 ### 参数映射
 
