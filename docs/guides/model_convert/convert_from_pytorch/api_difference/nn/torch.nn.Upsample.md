@@ -1,5 +1,5 @@
-## [ 仅 paddle 参数更多 ]torch.nn.Upsample
-### [torch.nn.Upsample](https://pytorch.org/docs/stable/generated/torch.nn.Upsample.html?highlight=upsample#torch.nn.Upsample)
+## [ torch 参数更多 ]torch.nn.Upsample
+### [torch.nn.Upsample](https://pytorch.org/docs/stable/generated/torch.nn.Upsample.html?highlight=torch+nn+upsample#torch.nn.Upsample)
 
 ```python
 torch.nn.Upsample(size=None,
@@ -29,5 +29,24 @@ paddle.nn.Upsample(size=None,
 | scale_factor             | scale_factor   | 输入的高度或宽度的乘数因子。    |
 | mode             | mode   | 表示插值方法。    |
 | align_corners             | align_corners   | 表示是否将输入和输出张量的 4 个角落像素的中心对齐，并保留角点像素的值。    |
+| recompute_scale_factor             | -   |  重新计算 scale_actor 以用于插值计算,Paddle 暂无转写方式。   |
 | -             | align_mode   | 双线性插值的可选项，PyTorch 无此参数，Paddle 保持默认即可。    |
 | -             | data_format  | Tensor 的所需数据类型，PyTorch 无此参数，Paddle 保持默认即可。 |
+
+
+### 转写示例
+```python
+# Pytorch 写法
+torch.nn.Upsample(scale_factor=2, mode='nearest')
+
+# Paddle 写法
+paddle.nn.Upsample(scale_factor=2, mode='nearest')
+```
+
+```python
+# Pytorch 写法
+torch.nn.Upsample(size=(2,2))
+
+# Paddle 写法
+paddle.nn.Upsample(size=(2,2))
+```
