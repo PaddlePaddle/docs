@@ -18,7 +18,7 @@ mapping_type_set = {
     "参数完全一致",
     "仅参数名不一致",
     "paddle 参数更多",
-    "仅参数默认值不一致",
+    "参数默认值不一致",
     # type 2
     "torch 参数更多",
     # type 3
@@ -347,7 +347,7 @@ def get_meta_from_diff_file(filepath):
         "参数完全一致",
         "仅参数名不一致",
         "paddle 参数更多",
-        "仅参数默认值不一致",
+        "参数默认值不一致",
         # type 2
         "torch 参数更多",
         # type 3

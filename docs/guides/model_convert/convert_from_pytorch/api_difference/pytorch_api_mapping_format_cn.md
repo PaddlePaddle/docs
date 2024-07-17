@@ -9,7 +9,7 @@
 为了文档整体的一致性，我们统一了 API 映射关系的分类名称，共分为 7 大类：
 > 注：第 1~3 类均为 API 层面一对一映射，根据参数层面的映射关系将其细分为三类。
 
-* 第 1 类又分为五种情况：`无参数`、`参数完全一致`、`仅参数名不一致`、`paddle 参数更多`、`仅参数默认值不一致`。
+* 第 1 类又分为五种情况：`无参数`、`参数完全一致`、`仅参数名不一致`、`paddle 参数更多`、`参数默认值不一致`。
 > 注：分类优先级依次递增，即如果同时 `参数名不一致` + `paddle 参数更多`，则写成后者 `paddle 参数更多` 。
 
 * 第 2 类为 `torch 参数更多`。如果 torch 和 paddle 都支持更多参数，统一写成`torch 参数更多`。
@@ -57,7 +57,7 @@ Paddle API 签名
 
 * 如果 `paddle 参数更多`，无需转写示例，需要在备注栏加一句 `PyTorch 无此参数，（Paddle 应如何设置此参数）` 。如果默认无影响，则写 `PyTorch 无此参数，Paddle 保持默认即可`。
 
-* 如果 `仅参数默认值不一致`，无需转写示例，需要在备注栏里加一句 `与 PyTorch 默认值不同，（Paddle 应如何设置此参数）` 。
+* 如果 `参数默认值不一致`，无需转写示例，需要在备注栏里加一句 `与 PyTorch 默认值不同，（Paddle 应如何设置此参数）` 。
 
 * 如果 `torch 参数更多`，对每个 torch 多的参数都需要转写示例，需要在备注栏里加一句 `Paddle 无此参数，需要转写` ；如确实无法转写，需要在备注里写 `Paddle 无此参数，暂无转写方式` ；若可直接删除，则需要写 `Paddle 无此参数，一般对网络训练结果影响不大，可直接删除` 。
 
@@ -209,7 +209,7 @@ Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ## 模板 5
 
-## [ 仅参数默认值不一致 ] torch.linalg.svd
+## [ 参数默认值不一致 ] torch.linalg.svd
 
 ### [torch.linalg.svd](https://pytorch.org/docs/stable/generated/torch.linalg.svd.html?highlight=svd#torch.linalg.svd)
 
@@ -223,7 +223,7 @@ torch.linalg.svd(A, full_matrices=True)
 paddle.linalg.svd(x, full_matrices=False, name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数默认值不一致，具体如下：
+两者功能一致且参数用法一致，参数默认值不一致，具体如下：
 
 ### 参数映射
 
