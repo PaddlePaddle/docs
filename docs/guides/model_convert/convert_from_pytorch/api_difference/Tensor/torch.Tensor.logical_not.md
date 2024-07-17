@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.Tensor.logical_not
+## [ paddle 参数更多 ] torch.Tensor.logical_not
 
 ### [torch.Tensor.logical_not](https://pytorch.org/docs/stable/generated/torch.Tensor.logical_not.html)
 

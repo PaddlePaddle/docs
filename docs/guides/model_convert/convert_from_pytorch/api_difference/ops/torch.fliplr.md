@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.fliplr
+## [ paddle 参数更多 ]torch.fliplr
 ### [torch.fliplr](https://pytorch.org/docs/stable/generated/torch.fliplr.html?highlight=fliplr#torch.fliplr)
 
 ```python

@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.Tensor.ravel
+## [ paddle 参数更多 ]torch.Tensor.ravel
 ### [torch.Tensor.ravel](https://pytorch.org/docs/stable/generated/torch.Tensor.ravel.html#torch.Tensor.ravel)
 
 ```python

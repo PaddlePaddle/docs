@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.Tensor.logcumsumexp
+## [ paddle 参数更多 ]torch.Tensor.logcumsumexp
 
 ### [torch.Tensor.logcumsumexp](https://pytorch.org/docs/stable/generated/torch.Tensor.logcumsumexp.html?highlight=logcumsumexp#torch.Tensor.logcumsumexp)
 

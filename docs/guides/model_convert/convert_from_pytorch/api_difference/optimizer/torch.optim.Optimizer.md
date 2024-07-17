@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.optim.Optimizer
+## [ paddle 参数更多 ]torch.optim.Optimizer
 
 ### [torch.optim.Optimizer](https://pytorch.org/docs/stable/optim.html#torch.optim.Optimizer)
 

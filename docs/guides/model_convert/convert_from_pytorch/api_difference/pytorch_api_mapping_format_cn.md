@@ -9,8 +9,8 @@
 为了文档整体的一致性，我们统一了 API 映射关系的分类名称，共分为 7 大类：
 > 注：第 1~3 类均为 API 层面一对一映射，根据参数层面的映射关系将其细分为三类。
 
-* 第 1 类又分为五种情况：`无参数`、`参数完全一致`、`仅参数名不一致`、`仅 paddle 参数更多`、`仅参数默认值不一致`。
-> 注：分类优先级依次递增，即如果同时 `参数名不一致` + `仅 paddle 参数更多`，则写成后者 `仅 paddle 参数更多` 。
+* 第 1 类又分为五种情况：`无参数`、`参数完全一致`、`仅参数名不一致`、`paddle 参数更多`、`仅参数默认值不一致`。
+> 注：分类优先级依次递增，即如果同时 `参数名不一致` + `paddle 参数更多`，则写成后者 `paddle 参数更多` 。
 
 * 第 2 类为 `torch 参数更多`。如果 torch 和 paddle 都支持更多参数，统一写成`torch 参数更多`。
 
@@ -55,7 +55,7 @@ Paddle API 签名
 
 * 如果 `仅参数名不一致`，无需转写示例，需要在备注栏里对该参数加一句 `仅参数名不一致`。
 
-* 如果 `仅 paddle 参数更多`，无需转写示例，需要在备注栏加一句 `PyTorch 无此参数，（Paddle 应如何设置此参数）` 。如果默认无影响，则写 `PyTorch 无此参数，Paddle 保持默认即可`。
+* 如果 `paddle 参数更多`，无需转写示例，需要在备注栏加一句 `PyTorch 无此参数，（Paddle 应如何设置此参数）` 。如果默认无影响，则写 `PyTorch 无此参数，Paddle 保持默认即可`。
 
 * 如果 `仅参数默认值不一致`，无需转写示例，需要在备注栏里加一句 `与 PyTorch 默认值不同，（Paddle 应如何设置此参数）` 。
 
@@ -177,7 +177,7 @@ paddle.dist(x,
 
 ## 模板 4
 
-### [ 仅 paddle 参数更多 ] torch.ZeroPad2d
+### [ paddle 参数更多 ] torch.ZeroPad2d
 
 ### [torch.nn.ZeroPad2d](https://pytorch.org/docs/stable/generated/torch.nn.ZeroPad2d.html?highlight=zeropad#torch.nn.ZeroPad2d)(仅作为示例)
 

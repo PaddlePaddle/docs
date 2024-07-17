@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.nn.AdaptiveAvgPool3d
+## [ paddle 参数更多 ] torch.nn.AdaptiveAvgPool3d
 
 ### [torch.nn.AdaptiveAvgPool3d](https://pytorch.org/docs/stable/generated/torch.nn.AdaptiveAvgPool3d.html)
 

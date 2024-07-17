@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.Tensor.median
+## [ paddle 参数更多 ]torch.Tensor.median
 
 ### [torch.Tensor.median](https://pytorch.org/docs/stable/generated/torch.Tensor.median.html)
 
