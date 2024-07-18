@@ -19,5 +19,5 @@ paddle.Tensor.matmul(y, transpose_x=False, transpose_y=False, name=None)
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | ---- |
 | other   | y            |  输入变量，仅参数名不一致。 |
-| -       | transpose_x  |  相乘前是否转置 x，仅 Paddle 参数更多，保持默认即可。 |
-| -       | transpose_y  |  相乘前是否转置 y，仅 Paddle 参数更多，保持默认即可。 |
+| -       | transpose_x  |  相乘前是否转置 x，PyTorch 无此参数，Paddle 保持默认即可。 |
+| -       | transpose_y  |  相乘前是否转置 y，PyTorch 无此参数，Paddle 保持默认即可。 |
