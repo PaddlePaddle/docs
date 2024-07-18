@@ -24,7 +24,7 @@ chunk
        - **x** (Tensor) - shape=(3,3,3)。
        - **chunks** (int) - 值=2。
        - **axis** (int|Tensor，可选) - 值=0，对第0个维度进行分割。
-.. image:: /docs/images/chunk.png
+.. image:: ../../images/chunk.png
 
 代码示例
 ::::::::::::
