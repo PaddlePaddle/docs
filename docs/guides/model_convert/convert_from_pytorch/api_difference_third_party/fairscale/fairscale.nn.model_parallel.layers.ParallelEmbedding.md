@@ -20,7 +20,7 @@ paddle.distributed.meta_parallel.parallel_layers.mp_layers.VocabParallelEmbeddin
 | num_embeddings               | num_embeddings | 词汇表大小  |
 | embedding_dim                | embedding_dim  | embedding 的维度大小|
 | padding_idx                  | -              | 填充数值，Paddle 无此参数，暂无转写方式 |
-| max_norm                     | -              | 范数大于 maxnorm 的数值被设置为 maxnorm |
+| max_norm                     | -              | 范数大于 maxnorm 的数值被设置为 maxnorm, Paddle 无此参数，暂无转写方式 |
 | norm_type                    | -              | 设置 p 范数，Paddle 无此参数，暂无转写方式 |
 | sparse                       | -              | 是否为稀疏向量，Paddle 无此参数，暂无转写方式 |
 | scale_grad_by_freq           | -              | 是否根据 batch 内单词的频数的倒数缩放梯度，Paddle 无此参数，暂无转写方式|
