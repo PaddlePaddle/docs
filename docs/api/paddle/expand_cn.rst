@@ -11,7 +11,7 @@ expand
 
 下图展示了一个 expand 的情形——一个形状为[1,2,3]的三维张量通过 expand 操作转变为形状为[2,2,3]的三维张量。通过比较，可以清晰地看到张量形状变化前后各元素的对应关系。
 
-.. image:: ../../images/expand.png
+.. image:: ../../images/api_legend/expand.png
    :alt: 图例
 
 参数
