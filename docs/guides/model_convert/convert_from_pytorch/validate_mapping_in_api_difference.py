@@ -407,6 +407,7 @@ def validate_mapping_table_macro_row(columns, row_idx, line_idx):
             "REFERENCE-MAPPING-ITEM",
             "NOT-IMPLEMENTED-ITEM",
             "REFERENCE-MAPPING-TABLE",
+            "MANUAL_MAINTAINING_PATTERN",
         ]:
             print(f"Unknown macro type: {macro_type} at line {line_idx}.")
             return False
@@ -674,6 +675,11 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
                     "NOT-IMPLEMENTED-ITEM"
                 ):
                     pass
+                # if before is MANUAL_MAINTAINING_PATTERN, replace
+                elif target[api_type][torch_api].startswith(
+                    "MANUAL_MAINTAINING_PATTERN"
+                ):
+                    pass
                 # if before is X2Paddle, skip
                 elif (
                     "https://github.com/PaddlePaddle/X2Paddle"
@@ -759,9 +765,13 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
                     if ref.startswith("NOT-IMPLEMENTED-ITEM"):
                         f.write(f"| {ref} |\n")
                 for api, ref in od_apis.items():
+                    if ref.startswith("MANUAL_MAINTAINING_PATTERN"):
+                        f.write(f"| {ref} |\n")
+                for api, ref in od_apis.items():
                     if not (
                         ref.startswith("REFERENCE-MAPPING-ITEM")
                         or ref.startswith("NOT-IMPLEMENTED-ITEM")
+                        or ref.startswith("MANUAL_MAINTAINING_PATTERN")
                     ):
                         f.write(f"| {ref} |\n")
                 f.write("\n")
