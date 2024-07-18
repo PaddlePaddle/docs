@@ -21,7 +21,7 @@ chunk
 
 图例
 :::::::::
-
+.. image::docs/images/chunk.png
 
 代码示例
 ::::::::::::
