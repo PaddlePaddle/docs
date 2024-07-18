@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.cuda.HalfTensor
+## [ paddle 参数更多 ] torch.cuda.HalfTensor
 
 ### [torch.cuda.HalfTensor](https://pytorch.org/docs/stable/tensors.html)
 

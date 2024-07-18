@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.Tensor.cummax
+## [ paddle 参数更多 ]torch.Tensor.cummax
 
 ### [torch.Tensor.cummax](https://pytorch.org/docs/stable/generated/torch.Tensor.cummax.html?highlight=cummax#torch.Tensor.cummax)
 

@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.nn.Module.cuda
+## [ paddle 参数更多 ]torch.nn.Module.cuda
 
 ### [torch.nn.Module.cuda](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.cuda)
 

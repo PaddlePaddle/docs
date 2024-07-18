@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.Tensor.fill_diagonal_
+## [ paddle 参数更多 ]torch.Tensor.fill_diagonal_
 
 ### [torch.Tensor.fill_diagonal_](https://pytorch.org/docs/stable/generated/torch.Tensor.fill_diagonal_.html?highlight=fill_diagonal_#torch.Tensor.fill_diagonal_)
 

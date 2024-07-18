@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.nn.Upsample
+## [ paddle 参数更多 ]torch.nn.Upsample
 ### [torch.nn.Upsample](https://pytorch.org/docs/stable/generated/torch.nn.Upsample.html?highlight=upsample#torch.nn.Upsample)
 
 ```python

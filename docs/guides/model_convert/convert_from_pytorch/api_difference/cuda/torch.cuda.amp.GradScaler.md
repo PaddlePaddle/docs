@@ -1,4 +1,4 @@
-## [仅参数默认值不一致]torch.cuda.amp.GradScaler
+## [ 参数默认值不一致 ]torch.cuda.amp.GradScaler
 
 ### [torch.cuda.amp.GradScaler](https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.GradScaler)
 

@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.nn.functional.hardsigmoid
+## [ paddle 参数更多 ]torch.nn.functional.hardsigmoid
 
 ### [torch.nn.functional.hardsigmoid](https://pytorch.org/docs/stable/generated/torch.nn.functional.hardsigmoid.html)
 
@@ -12,7 +12,7 @@ torch.nn.functional.hardsigmoid(input, inplace=False)
 paddle.nn.functional.hardsigmoid(x, slope=0.1666667, offset=0.5, name=None)
 ```
 
-其中 PyTorch 和 Paddle 功能一致，仅 paddle 参数更多，具体如下：
+其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 

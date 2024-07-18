@@ -1,4 +1,4 @@
-## [ 仅参数默认值不一致 ]torch.linalg.diagonal
+## [ 参数默认值不一致 ]torch.linalg.diagonal
 ### [torch.linalg.diagonal](https://pytorch.org/docs/stable/generated/torch.linalg.diagonal.html#torch.linalg.diagonal)
 
 ```python
@@ -15,7 +15,7 @@ paddle.diagonal(x,
                 name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数默认值不一致，具体如下：
+两者功能一致且参数用法一致，参数默认值不一致，具体如下：
 
 ### 参数映射
 

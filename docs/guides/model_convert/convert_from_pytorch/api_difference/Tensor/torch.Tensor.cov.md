@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.Tensor.cov
+## [ paddle 参数更多 ]torch.Tensor.cov
 ### [torch.Tensor.cov](https://pytorch.org/docs/stable/generated/torch.Tensor.cov.html#torch.Tensor.cov)
 
 ```python
@@ -15,7 +15,7 @@ paddle.Tensor.cov(rowvar=True,
                   name=None)
 ```
 
-仅 paddle 参数更多，具体如下：
+其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 

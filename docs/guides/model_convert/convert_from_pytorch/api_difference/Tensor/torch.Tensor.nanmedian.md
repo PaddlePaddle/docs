@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.Tensor.nanmedian
+## [ paddle 参数更多 ]torch.Tensor.nanmedian
 
 ### [torch.Tensor.nanmedian](https://pytorch.org/docs/stable/generated/torch.Tensor.nanmedian.html)
 

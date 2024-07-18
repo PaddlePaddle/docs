@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.Tensor.scatter_add_
+## [ paddle 参数更多 ]torch.Tensor.scatter_add_
 
 ### [torch.Tensor.scatter_add_](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter_add_.html#torch.Tensor.scatter_add_)
 

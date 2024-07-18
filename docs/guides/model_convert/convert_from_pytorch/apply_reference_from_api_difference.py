@@ -19,8 +19,8 @@ def mapping_type_to_description(mapping_type):
         "无参数",
         "参数完全一致",
         "仅参数名不一致",
-        "仅 paddle 参数更多",
-        "仅参数默认值不一致",
+        "paddle 参数更多",
+        "参数默认值不一致",
     ]
 
     if mapping_type in mapping_type_1:
