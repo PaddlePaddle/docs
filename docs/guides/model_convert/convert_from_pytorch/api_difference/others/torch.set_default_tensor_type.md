@@ -12,7 +12,7 @@ torch.set_default_tensor_type(d)
 paddle.set_default_dtype(d)
 ```
 
-两者功能一致但但输入参数类型不一致，torch 支持浮点张量类型或其名称，paddle 仅支持 dtype，需要转写，具体如下：
+两者功能一致但输入参数类型不一致，torch 支持浮点张量类型或其名称，paddle 仅支持 dtype，需要转写，具体如下：
 
 ### 参数映射
 

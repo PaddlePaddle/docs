@@ -17,14 +17,14 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | fairscale                   | PaddlePaddle      | 备注      |
 | ----------------------------| ----------------  | -------- |
-| in_features                 | in_features       | 输入特征数 |
-| out_features                | out_features      | 输出特征数 |
-| bias                        | has_bias          | 是否增加 bias |
-| gather_output               | gather_output     | 是否对每个 rank 的输出 allgather |
-| init_method                 | -                 | 参数初始化方法，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除 |
-| -                           | weight_attr       | 网络层参数属性 |
-| stride                      | -                 | 线性层切分后参数块的 stride, 用于特殊的存储格式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除 ｜
-| keep_master_weight_for_test | -                 | 返回主参数用于测试，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除 |
-| -                           | fuse_matmul_bias  | 是否融合矩阵乘和加 bias 操作 |
-| -                           | mp_group          | 模型并行组 |
-| -                           | name              | 网络层名称 |
+| in_features                 | in_features       | 输入特征数。 |
+| out_features                | out_features      | 输出特征数。 |
+| bias                        | has_bias          | 是否增加 bias。 |
+| gather_output               | gather_output     | 是否对每个 rank 的输出 allgather。 |
+| init_method                 | -                 | 参数初始化方法，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
+| -                           | weight_attr       | 网络层参数属性，PyTorch 无此参数，Paddle 保持默认即可。 |
+| stride                      | -                 | 线性层切分后参数块的 stride, 用于特殊的存储格式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 ｜
+| keep_master_weight_for_test | -                 | 返回主参数用于测试，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
+| -                           | fuse_matmul_bias  | 是否融合矩阵乘和加 bias 操作，PyTorch 无此参数，Paddle 保持默认即可。 |
+| -                           | mp_group          | 模型并行组，PyTorch 无此参数，Paddle 保持默认即可。 |
+| -                           | name              | 网络层名称，PyTorch 无此参数，Paddle 保持默认即可。 |
