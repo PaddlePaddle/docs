@@ -3,7 +3,7 @@
 ### [torch.dot](https://pytorch.org/docs/stable/generated/torch.dot.html?highlight=dot#torch.dot)
 
 ```python
-torch.dot(input, other, *, out=None)
+torch.dot(input, tensor, *, out=None)
 ```
 
 ### [paddle.dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/dot_cn.html#dot)
@@ -19,7 +19,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font>         | <font color='red'> x </font>            | 输入的 Tensor ，仅参数名不一致。                                     |
-| <font color='red'> other </font>         | <font color='red'> y </font>            | 输入的 Tensor ，仅参数名不一致。                                     |
+| <font color='red'> tensor </font>         | <font color='red'> y </font>            | 输入的 Tensor ，仅参数名不一致。                                     |
 | <font color='red'> out </font>           | -                                       | 表示输出的 Tensor，Paddle 无此参数，需要转写。              |
 
 

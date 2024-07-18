@@ -18,7 +18,7 @@ paddle.get_rng_state()
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> Tensor </font>         | <font color='red'> GeneratorState </font>            | 返回类型不一致                                     |
+| 返回值        | 返回值        | 返回类型不一致，PyTorch 为 Tensor，Paddle 为 GeneratorState。                                     |
 
 
 

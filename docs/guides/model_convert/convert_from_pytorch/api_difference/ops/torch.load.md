@@ -8,6 +8,7 @@ torch.load(f,
            pickle_module=pickle,
            *,
            weights_only=False,
+           mmap,
            **pickle_load_args)
 ```
 
@@ -29,4 +30,5 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | pickle_module    | -            | 表示用于 unpickling 元数据和对象的模块，Paddle 无此参数，暂无转写方式。   |
 | weights_only     | -            | 指示 unpickler 是否应限制为仅加载张量、原始类型和字典，Paddle 无此参数，暂无转写方式。 |
 | pickle_load_args | -            | 传递给 pickle_module.load（）和 pickle_mdule.Unpickler（）的可选关键字参数，Paddle 无此参数，暂无转写方式。 |
+| mmap             | -            | 指示是否使用 mmap 文件，Paddle 无此参数，暂无转写方式。 |
 | -                | configs      | 表示其他用于兼容的载入配置选项。PyTorch 无此参数，Paddle 保持默认即可。 |

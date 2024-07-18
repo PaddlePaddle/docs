@@ -18,6 +18,6 @@ paddle.nn.Layer.named_buffers(prefix='', include_sublayers=True, remove_duplicat
 
 | PyTorch        | PaddlePaddle | 备注                                                          |
 | -------------- | ------------ | ------------------------------------------------------------- |
-| prefix   | prefix  | 在所有参数名称前加的前缀。                                            |
-| recurse          | include_self           | 生成该模块和所有子模块的缓冲区，仅参数名不一致。                               |
+| prefix         | prefix       | 在所有参数名称前加的前缀。                                            |
+| recurse        | include_sublayers     | 生成该模块和所有子模块的缓冲区，仅参数名不一致。                               |
 | remove_duplicate   | remove_duplicate  | 是否删除结果中重复的模块实例。                                        |

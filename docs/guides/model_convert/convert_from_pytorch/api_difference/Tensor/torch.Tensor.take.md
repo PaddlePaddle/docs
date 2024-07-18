@@ -3,7 +3,7 @@
 ### [torch.Tensor.take](https://pytorch.org/docs/stable/generated/torch.Tensor.take.html#torch.Tensor.take)
 
 ```python
-torch.Tensor.take(indices)
+torch.Tensor.take(index)
 ```
 
 ### [paddle.Tensor.take](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#take-index-mode-raise-name-none)
@@ -18,7 +18,7 @@ paddle.Tensor.take(index, mode='raise', name=None)
 
 | PyTorch | PaddlePaddle | 备注                                                         |
 | ------- | ------------ | ------------------------------------------------------------ |
-| indices | index        | 表示输入 tensor 的索引，仅参数名不一致。                     |
+| index   | index        | 表示输入 tensor 的索引，参数完全一致。                     |
 | -       | mode         | 指定索引越界的 3 种处理方式，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 注：

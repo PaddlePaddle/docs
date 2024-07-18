@@ -10,6 +10,7 @@ torch.randint(low=0,
               dtype=None,
               layout=torch.strided,
               device=None,
+              pin_memory=False,
               requires_grad=False)
 ```
 
@@ -35,6 +36,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | dtype           | dtype            | 表示数据类型。               |
 | layout | -       | 表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | device     | -       | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。 |
+| pin_memory    | -            | 表示是否使用锁页内存， Paddle 无此参数，需要转写。       |
 | requires_grad | -       | 表示是否计算梯度， Paddle 无此参数，需要转写。 |
 
 
@@ -67,4 +69,13 @@ torch.randint(10, (2, 2), device=torch.device('cpu'))
 # Paddle 写法
 y = paddle.randint(10, shape=[2, 2])
 y.cpu()
+```
+
+#### pin_memory：是否分配到固定内存上
+```python
+# PyTorch 写法
+torch.randint(10, (2, 2), pin_memory=True)
+
+# Paddle 写法
+paddle.randint(10, shape=[2, 2]).pin_memory()
 ```

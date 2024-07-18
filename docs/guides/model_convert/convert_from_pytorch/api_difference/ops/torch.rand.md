@@ -5,11 +5,13 @@
 ```python
 torch.rand(*size,
            *,
+           generator=None,
            out=None,
            dtype=None,
            layout=torch.strided,
            device=None,
-           requires_grad=False)
+           requires_grad=False,
+           pin_memory=False)
 ```
 
 ### [paddle.rand](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/rand_cn.html#rand)
@@ -26,11 +28,13 @@ paddle.rand(shape,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | *size         | shape        | 表示输出形状大小，PyTorch 以可变参数方式传入，Paddle 以 list 或 tuple 的方式传入。                                     |
+| generator     | -      | 用于采样的伪随机数生成器， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | out           | -            | 表示输出的 Tensor，Paddle 无此参数。               |
 | dtype           | dtype            | 表示数据类型。               |
 | layout        | -            | 表示布局方式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                   |
 | device        | -            | 表示 Tensor 存放位置，Paddle 无此参数，需要转写。                   |
 | requires_grad | -            | 表示是否不阻断梯度传导，Paddle 无此参数，需要转写。 |
+| pin_memory    | -            | 表示是否使用锁页内存， Paddle 无此参数，需要转写。       |
 
 
 ### 转写示例
@@ -70,4 +74,13 @@ x = torch.rand([3, 5], requires_grad=True)
 # Paddle 写法
 x = paddle.rand([3, 5])
 x.stop_gradient = False
+```
+
+#### pin_memory：是否分配到固定内存上
+```python
+# PyTorch 写法
+torch.rand(3, 5, pin_memory=True)
+
+# Paddle 写法
+paddle.rand([3, 5]).pin_memory()
 ```
