@@ -12,17 +12,18 @@ torch.set_default_tensor_type(d)
 paddle.set_default_dtype(d)
 ```
 
-两者功能一致，支持的参数类型相同，但输入参数类型不一致，需将 d 转换为 paddle 可识别类型，具体如下：
+两者功能一致但但输入参数类型不一致，torch 支持浮点张量类型或其名称，paddle 仅支持 dtype，需要转写，具体如下：
 
 ### 参数映射
 
-| PyTorch     | PaddlePaddle | 备注                                                                                      |
-| ----------- | ------------ | -------------------------------------------------------------------------------------- |
-| d           | d            | 全局默认数据类型，均支持所有浮点类型|
+| PyTorch     | PaddlePaddle | 备注                 |
+| ----------- | ------------ | ------------------- |
+| d           | d            | 浮点张量类型或其名称.   |
 
 ### 转写示例
+#### d: 浮点张量类型或其名称
 ```python
-# pytorch
+# pytorch 写法
 torch.set_default_tensor_type(torch.HalfTensor)
 torch.set_default_tensor_type('torch.HalfTensor')
 torch.set_default_tensor_type(torch.FloatTensor)
@@ -30,7 +31,7 @@ torch.set_default_tensor_type('torch.FloatTensor')
 torch.set_default_tensor_type(torch.DoubleTensor)
 torch.set_default_tensor_type('torch.DoubleTensor')
 
-# paddle
+# paddle 写法
 paddle.set_default_dtype('float16')
 paddle.set_default_dtype('float16')
 paddle.set_default_dtype('float32')

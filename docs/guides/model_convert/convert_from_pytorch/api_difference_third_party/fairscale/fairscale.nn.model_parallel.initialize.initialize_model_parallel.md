@@ -8,16 +8,6 @@ fairscale.nn.model_parallel.initialize.initialize_model_parallel()
 
 对模型并行设置进行初始化; Paddle 无此 API，需要组合实现。
 
-### 参数映射
-
-| fairscale              | PaddlePaddle | 备注             |
-| ---------------------- | ------------ |---------------  |
-| model_parallel_size_   | -            | 模型并行规模      |
-| pipeline_length        | -            | 流水线并行规模    |
-| model_parallel_backend | -            | 模型并行通信后端   |
-| pipeline_backend       | -            | 流水线并行通信后端 |
-| ddp_backend            | -            | 数据并行通信后端   |
-
 ### 转写示例
 
 ```python

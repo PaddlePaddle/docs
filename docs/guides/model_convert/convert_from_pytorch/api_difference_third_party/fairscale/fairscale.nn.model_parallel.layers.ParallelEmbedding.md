@@ -17,14 +17,14 @@ paddle.distributed.meta_parallel.parallel_layers.mp_layers.VocabParallelEmbeddin
 
 | fairscale                    | PaddlePaddle   | 备注      |
 | ---------------------------- | -------------- | -------- |
-| num_embeddings               | num_embeddings | 词汇表大小  |
-| embedding_dim                | embedding_dim  | embedding 的维度大小|
-| padding_idx                  | -              | 填充数值，Paddle 无此参数，暂无转写方式 |
-| max_norm                     | -              | 范数大于 maxnorm 的数值被设置为 maxnorm, Paddle 无此参数，暂无转写方式 |
-| norm_type                    | -              | 设置 p 范数，Paddle 无此参数，暂无转写方式 |
-| sparse                       | -              | 是否为稀疏向量，Paddle 无此参数，暂无转写方式 |
-| scale_grad_by_freq           | -              | 是否根据 batch 内单词的频数的倒数缩放梯度，Paddle 无此参数，暂无转写方式|
-| init_method                  | -              | 参数初始化方法，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除 |
-| keep_master_weight_for_test  | -              | 返回主参数用于测试，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除 |
-| -                            | mp_group       | 模型并行组 |
-| -                            | name           | 网络层名称 |
+| num_embeddings               | num_embeddings | 词汇表大小。  |
+| embedding_dim                | embedding_dim  | embedding 的维度大小。|
+| padding_idx                  | -              | 填充数值，Paddle 无此参数，暂无转写方式。 |
+| max_norm                     | -              | 范数大于 maxnorm 的数值被设置为 maxnorm, Paddle 无此参数，暂无转写方式。 |
+| norm_type                    | -              | 设置 p 范数，Paddle 无此参数，暂无转写方式。 |
+| sparse                       | -              | 是否为稀疏向量，Paddle 无此参数，暂无转写方式。 |
+| scale_grad_by_freq           | -              | 是否根据 batch 内单词的频数的倒数缩放梯度，Paddle 无此参数，暂无转写方式。|
+| init_method                  | -              | 参数初始化方法，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
+| keep_master_weight_for_test  | -              | 返回主参数用于测试，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
+| -                            | mp_group       | 模型并行组，PyTorch 无此参数，Paddle 保持默认即可。 |
+| -                            | name           | 网络层名称，PyTorch 无此参数，Paddle 保持默认即可。 |

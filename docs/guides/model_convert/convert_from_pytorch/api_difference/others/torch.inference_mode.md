@@ -18,9 +18,10 @@ inference_mode 会额外禁用视图跟踪和版本计数器，提高推理性�
 
 | PyTorch     | PaddlePaddle | 备注                                                                                      |
 | ----------- | ------------ | ----------------------------------------------------------------------------------------- |
-| mode   | func      | mmode 为函数时，仅参数名不同；mode 为 bool 时，作为上下文管理器使用，其中 mode=True 可忽略该参数，mode=False 时，直接删除该代码 |
+| mode   | func      | mode 为函数时，仅参数名不同；mode 为 bool 时，作为上下文管理器使用，其中 mode=True 可忽略该参数，mode=False 时，直接删除该代码。 |
 
 ### 转写示例
+#### mode : 函数或 bool 值
 ```python
 # PyTorch 写法
 @torch.inference_mode()
@@ -40,5 +41,4 @@ def doubler(x):
 # Paddle 写法
 def doubler(x):
     return x * 2
-
 ```
