@@ -2,34 +2,30 @@
 
 请严格根据此格式规范来新增《API 映射关系》，不符合规范的文档将不予合入，具体如下:
 
-# API 映射关系 - 格式规范
+# API 映射关系文档 - 规范
 
 ### [分类名称] api 全称
 
-为了文档整体的一致性，我们统一了 API 映射关系的分类名称，共分为 7 大类：
-> 注：第 1~3 类均为 API 层面一对一映射，根据参数层面的映射关系将其细分为三类。
-
-* 第 1 类又分为五种情况：`无参数`、`参数完全一致`、`仅参数名不一致`、`paddle 参数更多`、`参数默认值不一致`。
-> 注：分类优先级依次递增，即如果同时 `参数名不一致` + `paddle 参数更多`，则写成后者 `paddle 参数更多` 。
-
-* 第 2 类为 `torch 参数更多`。如果 torch 和 paddle 都支持更多参数，统一写成`torch 参数更多`。
-
-* 第 3 类又分为三种情况：`输入参数类型不一致`、`输入参数用法不一致`、`返回参数类型不一致`。
-> 注意：这里的**不一致**都是从 torch 的角度来看，如果 paddle 可涵盖 torch，即 torch 是 paddle 的功能子集，则认定为一致（例如：torch 参数仅支持 list，paddle 参数支持 list/tuple），反之才认定为不一致。
-
-* 第 4 类为 `组合替代实现` ，表示该 API 没有可直接对应的 API，需要通过多个 API 组合实现。
-
-* 第 5 类为 `涉及上下文修改` ，表示涉及到上下文的分析，需要修改其他位置的代码。
-> 举例：所有的 `torch.optim.lr_scheduler.*`、`torch.nn.init.*`、`torch.nn.utils.clip*` 都为该类。此类 API 由于两者在设计上具有较大的差异，需要对上下文进行分析，涉及到上下文代码的联动修改。
-
-* 第 6 类为 `可删除` 。表示可直接删除该 API，则无需写差异分析文档，仅标注即可
-
-* 第 7 类为 `功能缺失` ，表示 Paddle 当前无对应 API，则无需写差异分析文档，仅标注即可。
+由于 API 映射关系的复杂性，为了保证文档格式的规范性，我们将所有 API 映射关系分为 12 类，并制定了统一的 **分类名称**：
+1. 无参数
+2. 参数完全一致
+3. 仅参数名不一致
+4. paddle 参数更多
+5. 参数默认值不一致
+6. torch 参数更多
+7. 输入参数用法不一致
+8. 输入参数类型不一致
+9. 返回参数类型不一致
+10. 组合替代实现
+11. 可删除
+12. 功能缺失
 
 > 注意：
-> 1. 分类优先级依次递增，即如果同时 `第 2 类：torch 参数更多` 与 `第 3 类：参数不一致` ，则写成后者 `第 3 类：参数不一致` 。
-> 2. 所有的 Paddle API 无需关注 `name` 参数，直接忽略即可。
-> 3. 将类成员 API 映射为非类成员 API，则无需对比第一个参数。例如将 `torch.Tensor.outer(vec2)` 映射为 `paddle.outer(x, y)`，则忽略 paddle 的第一个参数，从 torch 的 `vec2` 和 paddle 的 `y` 开始对比。
+> 1. 分类的优先级依次递增，例如：如果同时 `仅参数名不一致` + `paddle 参数更多`，则分类为后者 `paddle 参数更多` ，如果同时 `paddle 参数更多` + `torch 参数更多`，则分类为后者 `torch 参数更多`。
+> 2. `输入参数用法不一致`、`输入参数类型不一致`、`返回参数类型不一致` 其中的**不一致**都是从 torch 的角度来看，只要 torch 能被 paddle 全覆盖，则将其视作一致（例如：torch 参数仅支持 list 用法，而 paddle 参数支持 list/tuple 用法，则视作用法一致），如果 torch 无法被 paddle 全覆盖，才认定为 **不一致**。
+> 3. `可删除` 表示转写时可直接删除该 API，并不会对代码运行结果有影响，无需写映射文档，仅标注即可。`功能缺失` 表示 Paddle 当前无对应 API 功能，则无需写映射文档，仅标注即可。
+> 4. 所有的 Paddle API 无需关注 `name` 参数，直接忽略即可。
+> 5. 将类成员 API 映射为非类成员 API，则无需对比第一个参数。例如将 `torch.Tensor.outer(vec2)` 映射为 `paddle.outer(x, y)`，则忽略 paddle 的第一个参数 `x` ，直接从 torch 的 `vec2` 和 paddle 的 `y` 开始对比参数。
 
 ### [pytorch api 全称] (pytorch api 链接)
 
@@ -43,33 +39,33 @@ PyTorch API 签名
 Paddle API 签名
 ```
 
-**一句话总结**。整体概述总结两个 API 的差异。例如 `第 3 类：参数不一致` ，需要简述下有哪些不一致的地方。在描写参数时，需要用 \` ` 来加深其底色。
+**一句话总结**。整体概述总结两个 API 的差异。例如 `输入参数用法不一致` ，需要简述下有参数哪些用法不一致的地方。在描写参数时，需要用 \` ` 来加深其底色。
 
 ### 参数映射
 
-参数映射表的左边是`PyTorch` 对应参数，右边是`Paddle`对应参数，表格参数顺序按 `PyTorch` 参数顺序来。
+参数映射以表格的形式呈现，表格的第 1 列是`PyTorch` 所有参数，第 2 列是`Paddle`对应参数，表格顺序按第 1 列 `PyTorch` 的参数顺序来。
 
-* 如果 `无参数`，则没有参数映射这一栏。
+1. **无参数**：无需参数映射与转写示例。
 
-* 如果 `参数完全一致`，无需转写示例。
+2. **参数完全一致**：无需转写示例。
 
-* 如果 `仅参数名不一致`，无需转写示例，需要在备注栏里对该参数加一句 `仅参数名不一致`。
+3. **仅参数名不一致**：无需转写示例，但需要在备注列里注明哪些参数 `仅参数名不一致`。
 
-* 如果 `paddle 参数更多`，无需转写示例，需要在备注栏加一句 `PyTorch 无此参数，（Paddle 应如何设置此参数）` 。如果默认无影响，则写 `PyTorch 无此参数，Paddle 保持默认即可`。
+4. **paddle 参数更多**：无需转写示例，但需要在备注列里注明 `PyTorch 无此参数，[Paddle 应如何设置此参数]`。如果无需特殊设置，则写 `PyTorch 无此参数，Paddle 保持默认即可`。
 
-* 如果 `参数默认值不一致`，无需转写示例，需要在备注栏里加一句 `与 PyTorch 默认值不同，（Paddle 应如何设置此参数）` 。
+5. **参数默认值不一致**：无需转写示例，但需要在备注列里注明 `Paddle 与 PyTorch 默认值不同，[Paddle 应如何设置此参数，设置为多少]`。
 
-* 如果 `torch 参数更多`，对每个 torch 多的参数都需要转写示例，需要在备注栏里加一句 `Paddle 无此参数，需要转写` ；如确实无法转写，需要在备注里写 `Paddle 无此参数，暂无转写方式` ；若可直接删除，则需要写 `Paddle 无此参数，一般对网络训练结果影响不大，可直接删除` 。
+6. **torch 参数更多**：对每个 torch 多的参数都需要**转写示例**，同时需要在备注列里注明 `Paddle 无此参数，需要转写` ；如确实无法转写，则注明 `Paddle 无此参数，暂无转写方式` ；若可直接删除，则需要写 `Paddle 无此参数，一般对网络训练结果影响不大，可直接删除` 。
 
-* 如果 `参数不一致`，对每个不一致的参数都需要转写示例，需要在备注栏里写 `（说明不一致的用法），需要转写`；如确实无法转写，需要在备注里写 `（说明不一致的用法），暂无转写方式`。
+7. **输入参数用法不一致、输入参数类型不一致、返回参数类型不一致**：对每个不一致的参数都需要**转写示例**，同时需要在备注列里注明 `[不一致的用法说明]，需要转写`；如确实无法转写，需要在备注里写 `[不一致的用法说明]，暂无转写方式`。
 
-* 每个备注都需要`以句号结尾`。
+8. 每个备注都需要`以句号结尾`。
 
 ### 转写示例
 
-**除第 1 类 API 映射关系较为简单，无需写转写示例，其他类 API 都需要写转写示例，否则需说明：Paddle 暂无转写方式。**
+第 1-5 类不需要转写示例，第 6-10 类需要写转写示例，第 11-12 类无需写本映射文档。
 
-转写示例需要写得精简和一目了然。一般情形下只需写两行代码，无需打印各种结果，并且要保证转写前后的输出结果是一致的。另外需要先描述下待写的是该 torch api 的哪个参数及其功能。
+转写示例需要写得精简和一目了然。一般情形下只需写两行代码，无需打印各种结果，需要保证转写前后的输出结果是一致的。另外需要先描述下转写的是 torch api 的哪个参数及其功能。
 
 #### 参数名 1：参数功能 1
 ```python
@@ -89,11 +85,12 @@ torch.xxx()
 paddle.xxx()
 ```
 
---------------
+--------------------------------------------------------
 
-# API 映射关系 - 模板
+# API 映射关系文档 - 模板
 
-## 模板 1
+
+## 分类 1：无参数
 
 ### [ 无参数 ] torch.Tensor.t
 
@@ -111,7 +108,8 @@ paddle.Tensor.t()
 
 两者功能一致，无参数。
 
-## 模板 2
+
+## 分类 2：参数完全一致
 
 ### [ 参数完全一致 ] torch.Tensor.clip
 
@@ -121,14 +119,13 @@ paddle.Tensor.t()
 torch.Tensor.clip(min=None, max=None)
 ```
 
-### [paddle.Tensor.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#clip-min-none-max-none-name-none)
+### [paddle.Tensor.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#clip-min-none-max-none-name-none)
 
 ```python
 paddle.Tensor.clip(min=None, max=None, name=None)
 ```
 
 两者功能一致，参数完全一致，具体如下：
-
 ### 参数映射
 
 | PyTorch | PaddlePaddle | 备注                                               |
@@ -137,11 +134,12 @@ paddle.Tensor.clip(min=None, max=None, name=None)
 | max     | max          | 裁剪的最大值，输入中大于该值的元素将由该元素代替。            |
 
 
-## 模板 3
 
-### [ 仅参数名不一致 ] torch.dist
+## 分类 3：仅参数名不一致
 
-### [torch.dist](https://pytorch.org/docs/stable/generated/torch.dist.html?highlight=dist#torch.dist)(仅作为示例)
+### [ 仅参数名不一致 ]torch.dist
+
+### [torch.dist](https://pytorch.org/docs/stable/generated/torch.dist.html?highlight=dist#torch.dist)
 
 ```python
 torch.dist(input,
@@ -149,7 +147,7 @@ torch.dist(input,
            p=2)
 ```
 
-### [paddle.dist](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/dist_cn.html#dist)(仅作为示例)
+### [paddle.dist](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/dist_cn.html#dist)
 
 ```python
 paddle.dist(x,
@@ -158,34 +156,26 @@ paddle.dist(x,
 ```
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
-
 ### 参数映射
 
-| PyTorch   | Paddle      | 备注                                                         |
-| --------- | ----------- | ------------------------------------------------------------ |
-| input     | x           | 表示输入的 Tensor ，仅参数名不一致。                         |
-| other     | y           | 表示输入的 Tensor ，仅参数名不一致。                         |
-| dim       | axis        | 表示进行运算的轴，仅参数名不一致。                           |
-| dtype     | dtype       | 表示数据类型。                                               |
-| size      | shape       | 表示输出形状大小。                                           |
-| n         | num_rows    | 生成 2-D Tensor 的行数，仅参数名不一致。                     |
-| m         | num_columns | 生成 2-D Tensor 的列数， 仅参数名不一致。                    |
-| start_dim | start_axis  | 表示 flatten 展开的起始维度。                                |
-| end_dim   | stop_axis   | 表示 flatten 展开的结束维度。                                |
-| ndarray   | data        | 表示需要转换的数据， PyTorch 只能传入 numpy.ndarray ， Paddle 可以传入 scalar 、 list 、 tuple 、 numpy.ndarray 、 paddle.Tensor 。 |
+| PyTorch       | PaddlePaddle | 备注                                                   |
+| ------------- | ------------ | ------------------------------------------------------ |
+| input         | x            | 表示输入的 Tensor ，仅参数名不一致。  |
+| other         | y            | 表示输入的 Tensor ，仅参数名不一致。  |
+| p             | p            | 表示需要计算的范数 |
 
 
-## 模板 4
 
-### [ paddle 参数更多 ] torch.ZeroPad2d
+## 分类 4：paddle 参数更多
 
-### [torch.nn.ZeroPad2d](https://pytorch.org/docs/stable/generated/torch.nn.ZeroPad2d.html?highlight=zeropad#torch.nn.ZeroPad2d)(仅作为示例)
+### [ paddle 参数更多 ]torch.nn.ZeroPad2d
+### [torch.nn.ZeroPad2d](https://pytorch.org/docs/stable/generated/torch.nn.ZeroPad2d.html?highlight=zeropad#torch.nn.ZeroPad2d)
 
 ```python
 torch.nn.ZeroPad2d(padding)
 ```
 
-### [paddle.nn.ZeroPad2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ZeroPad2D_cn.html)(仅作为示例)
+### [paddle.nn.ZeroPad2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ZeroPad2D_cn.html)
 
 ```python
 paddle.nn.ZeroPad2D(padding,
@@ -193,34 +183,33 @@ paddle.nn.ZeroPad2D(padding,
                     name=None)
 ```
 
-Paddle 相比 PyTorch 支持更多其他参数，具体如下：
-
+其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
 
-| PyTorch | Paddle        | 备注                                                         |
-| ------- | ------------- | ------------------------------------------------------------ |
-| -       | axis          | 指定进行运算的轴， PyTorch 无此参数， Paddle 保持默认即可。  |
-| -       | keepdim       | 是否在输出 Tensor 中保留减小的维度， PyTorch 无此参数， Paddle 保持默认即可。 |
-| -       | dtype         | 输出 Tensor 的数据类型， PyTorch 无此参数， Paddle 保持默认即可。 |
-| -       | dtype         | 表示数据类型， PyTorch 无此参数， Paddle 保持默认即可。      |
-| -       | place         | 表示 Tensor 存放位置， PyTorch 无此参数， Paddle 需设置为 paddle.CPUPlace()。 |
-| -       | stop_gradient | 表示是否阻断梯度传导， PyTorch 无此参数， Paddle 保持默认即可。 |
+| PyTorch       | PaddlePaddle | 备注                                                   |
+| ------------- | ------------ | ------------------------------------------------------ |
+| padding       | padding      | 表示填充大小。                             |
+| -             | data_format  | 指定输入的 format， PyTorch 无此参数， Paddle 保持默认即可。 |
 
 
-## 模板 5
 
-## [ 参数默认值不一致 ] torch.linalg.svd
+## 分类 5：参数默认值不一致
 
-### [torch.linalg.svd](https://pytorch.org/docs/stable/generated/torch.linalg.svd.html?highlight=svd#torch.linalg.svd)
+### [ 参数默认值不一致 ]torch.linalg.diagonal
+### [torch.linalg.diagonal](https://pytorch.org/docs/stable/generated/torch.linalg.diagonal.html#torch.linalg.diagonal)
 
 ```python
-torch.linalg.svd(A, full_matrices=True)
+torch.linalg.diagonal(A, *, offset=0, dim1=-2, dim2=-1)
 ```
 
-### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/svd_cn.html)
+### [paddle.diagonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagonal_cn.html#diagonal)
 
 ```python
-paddle.linalg.svd(x, full_matrices=False, name=None)
+paddle.diagonal(x,
+                offset=0,
+                axis1=0,
+                axis2=1,
+                name=None)
 ```
 
 两者功能一致且参数用法一致，参数默认值不一致，具体如下：
@@ -229,15 +218,18 @@ paddle.linalg.svd(x, full_matrices=False, name=None)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| A             | x           | 输入 Tensor，仅参数名不一致。               |
-| full_matrices | full_matrices  | 是否计算完整的 U 和 V 矩阵，PyTorch 为 True，Paddle 为 False，Paddle 需设置为与 PyTorch 一致。  |
+| A             | x            | 表示输入的 Tensor ，仅参数名不一致。                       |
+| offset        | offset       | 表示对角线偏移量。  |
+| dim1          | axis1        | 获取对角线的二维平面的第一维，Paddle 与 PyTorch 默认值不同，Paddle 应设置为`-2`。|
+| dim2          | axis2        | 获取对角线的二维平面的第二维，Paddle 与 PyTorch 默认值不同，Paddle 应设置为`-1`。|
 
 
-## 模板 6
+
+## 分类 6：torch 参数更多
 
 ### [ torch 参数更多 ] torch.abs
 
-### [torch.abs](https://pytorch.org/docs/stable/generated/torch.abs.html?highlight=abs#torch.abs)(仅作为示例)
+### [torch.abs](https://pytorch.org/docs/stable/generated/torch.abs.html?highlight=abs#torch.abs)
 
 ```python
 torch.abs(input,
@@ -245,14 +237,14 @@ torch.abs(input,
           out=None)
 ```
 
-### [paddle.abs](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/abs_cn.html#abs)(仅作为示例)
+### [paddle.abs](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/abs_cn.html#abs)
 
 ```python
 paddle.abs(x,
            name=None)
 ```
 
-PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：（注：这里额外列举了一些其他常见 Pytorch 的参数的转写方式，与 torch.abs 无关）
 
 ### 参数映射
 
@@ -273,15 +265,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | antialias     | -      | 是否使用 anti-aliasing，Paddle 无此参数，暂无转写方式。        |
 
 ### 转写示例
-#### size：输出形状大小
-```python
-# PyTorch 写法
-torch.empty(3, 5)
-
-# Paddle 写法
-paddle.empty([3, 5])
-```
-
 #### out：指定输出
 ```python
 # PyTorch 写法
@@ -336,11 +319,11 @@ else:
 ```
 
 
-## 模板 7
+## 分类 7：输入参数用法不一致
 
-### [ 输入参数用法不一致 ] torch.transpose
+## [ 输入参数用法不一致 ] torch.transpose
 
-### [torch.transpose](https://pytorch.org/docs/stable/generated/torch.transpose.html?highlight=transpose#torch.transpose)(仅作为示例)
+### [torch.transpose](https://pytorch.org/docs/stable/generated/torch.transpose.html?highlight=transpose#torch.transpose)
 
 ```python
 torch.transpose(input,
@@ -348,7 +331,7 @@ torch.transpose(input,
                 dim1)
 ```
 
-### [paddle.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/transpose_cn.html#transpose)(仅作为示例)
+### [paddle.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/transpose_cn.html#transpose)
 
 ```python
 paddle.transpose(x,
@@ -356,18 +339,59 @@ paddle.transpose(x,
                  name=None)
 ```
 
-PyTorch 的 `tensors` 参数与 Paddle 的 `inputs` 参数用法不同，具体如下：
+其中 PyTorch 的 `dim0、dim1` 与 Paddle 用法不一致，具体如下：
 
 ### 参数映射
 
-| PyTorch | Paddle        | 备注                                                         |
-| ------- | ------------- | ------------------------------------------------------------ |
-|*tensors |  inputs    | 一组输入 Tensor，PyTorch 的 tensors 为可变参数，Paddle 的 inputs 为 list(Tensor) 或 tuple(Tensor) 用法，需要转写。   |
-| 返回值    | 返回值  | 返回参数类型不一致, PyTorch 返回 torch.ByteTensor，Paddle 返回 GeneratorState 对象，暂无转写方式。 |
+| PyTorch       | PaddlePaddle | 备注                                                   |
+| ------------- | ------------ | ------------------------------------------------------ |
+| <font color='red'>input</font>         | <font color='red'>x</font>            | 输入 Tensor。                                       |
+| <font color='red'>dim0</font>          | -            | PyTorch 转置的第一个维度，Paddle 无此参数，需要转写。                    |
+| <font color='red'>dim1</font>          | -            | PyTorch 转置的第二个维度，Paddle 无此参数，需要转写。                    |
+| -             | <font color='red'>perm</font>         | Paddle 可通过 perm 参数，等价的实现 torch 的 dim0、dim1 的功能。|
 
 
 ### 转写示例
-#### *tensors: 一组输入 Tensor，可变参数用法
+
+#### dim0、dim1 参数： 转置的维度设置
+``` python
+# PyTorch 写法:
+torch.transpose(x, dim0=0, dim1=1)
+
+# Paddle 写法:
+paddle.transpose(x, perm=[1, 0, 2])
+
+# 注：x 为 3D Tensor
+```
+
+
+## 分类 8：输入参数类型不一致
+
+### [ 输入参数类型不一致 ]torch.broadcast_tensors
+
+### [torch.broadcast_tensors](https://pytorch.org/docs/stable/generated/torch.broadcast_tensors.html?highlight=broadcast_tensors#torch.broadcast_tensors)
+
+```python
+torch.broadcast_tensors(*tensors)
+```
+
+### [paddle.broadcast_tensors](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/broadcast_tensors_cn.html#broadcast-tensors)
+
+```python
+paddle.broadcast_tensors(inputs,
+                         name=None)
+```
+
+两者功能一致但参数类型不一致，具体如下：
+### 参数映射
+
+| PyTorch       | PaddlePaddle | 备注                                                   |
+| ------------- | ------------ | ------------------------------------------------------ |
+| *tensors      | inputs       | 一组输入 Tensor ， PyTorch 参数 tensors 为可变参, Paddle 参数 inputs 为 list(Tensor) 或 tuple(Tensor) 的形式。   |
+
+
+### 转写示例
+#### *tensors: 一组输入 Tensor
 ```python
 # PyTorch 写法
 torch.broadcast_tensors(x, y)
@@ -376,100 +400,63 @@ torch.broadcast_tensors(x, y)
 paddle.broadcast_tensors([x, y])
 ```
 
-#### affine：是否进行反射变换
+
+## 分类 9：返回参数类型不一致
+
+### [ 返回参数类型不一致 ]torch.equal
+### [torch.equal](https://pytorch.org/docs/stable/generated/torch.equal.html?highlight=equal#torch.equal)
 
 ```python
-affine=False 时，表示不更新：
-
-# PyTorch 写法
-m = torch.nn.BatchNorm1D(24, affine=False)
-
-# Paddle 写法
-weight_attr = paddle.ParamAttr(learning_rate=0.0)
-bias_attr = paddle.ParamAttr(learning_rate=0.0)
-m = paddle.nn.BatchNorm1D(24, weight_attr=weight_attr, bias_attr=bias_attr)
-
-affine=True 时，表示更新：
-
-# PyTorch 写法
-m = torch.nn.BatchNorm1D(24)
-
-# Paddle 写法
-m = paddle.nn.BatchNorm1D(24)
+torch.equal(input,
+            other)
 ```
 
-## 模板 8
-
-### [ 组合替代实现 ] torch.addcmul
-
-### [torch.addcmul](https://pytorch.org/docs/master/generated/torch.addcmul.html#torch.addcmul)
+### [paddle.equal_all](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/equal_all_cn.html#equal-all)
 
 ```python
-torch.addcmul(input, tensor1, tensor2, *, value=1, out=None)
+paddle.equal_all(x,
+                 y,
+                 name=None)
 ```
 
-用于实现矩阵 `tensor1` 与矩阵 `tensor2` 相乘，再加上输入 `input` ，公式为：
-
-$ out =  input + value *  tensor1 * tensor2 $
-
-PaddlePaddle 目前无对应 API，可使用如下代码组合替代实现:
-
-### 转写示例
-
-```python
-# PyTorch 写法
-torch.addcmul(input, tensor1, tensor2, value=value)
-
-# Paddle 写法
-paddle.add(input, value * tensor1 * tensor2)
-```
-
-## 模板 9
-
-### [ 涉及上下文修改 ] torch.nn.utils.clip_grad_value_
-
-### [torch.nn.utils.clip_grad_value_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_value_.html?highlight=clip_grad_value_#torch.nn.utils.clip_grad_value_)(仅作为示例)
-
-```python
-torch.nn.utils.clip_grad_value_(parameters,
-                                clip_value)
-```
-
-### [paddle.nn.ClipGradByValue](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ClipGradByValue_cn.html#clipgradbyvalue)(仅作为示例)
-
-```python
-paddle.nn.ClipGradByValue(max,
-                          min=None)
-```
-
-其中 PyTorch 与 Paddle 对该 API 的设计思路与⽤法不同，需要分析上下⽂并联动修改：
-
+两者功能一致但返回参数类型不同，具体如下：
 ### 参数映射
 
-| PyTorch | PaddlePaddle | 备注 |
-| ------- | ------------ | ---- |
-| parameters |  -  | 表示要操作的 Tensor， PyTorch 属于原位操作， PaddlePaddle ⽆此参数，需要实例化之后在 optimizer 中设置才可以使⽤。需要上下⽂分析与联动修改。|
-| clip_value |  max |  表示裁剪梯度的范围，范围为 [-clip_value, clip_vale] ； PaddlePaddle 的 max 参数可实现该参数功能，直接设置为与 clip_value 一致。|
-| - | min | 表示裁剪梯度的最⼩值， PyTorch ⽆此参数， Paddle 保持默认即可。 |
+| PyTorch       | PaddlePaddle | 备注                                                   |
+| ------------- | ------------ | ------------------------------------------------------ |
+| input         | x            | 表示输入的 Tensor，仅参数名不一致。  |
+| other         | y            | 表示输入的 Tensor，仅参数名不一致。  |
+| 返回值         | 返回值        | PyTorch 返回 bool 类型，Paddle 返回 0-D bool Tensor，需要转写。|
+
+### 转写示例
+#### 返回值
+``` python
+# PyTorch 写法
+out = torch.equal(x, y)
+
+# Paddle 写法
+out = paddle.equal_all(x, y)
+out = out.item()
+```
+
+
+## 分类 10：组合替代实现
+
+### [ 组合替代实现 ]torch.aminmax
+
+### [torch.aminmax](https://pytorch.org/docs/stable/generated/torch.aminmax.html#torch.aminmax)
+
+```python
+torch.aminmax(input, *, dim=None, keepdim=False, out=None)
+```
+Paddle 无此 API，需要组合实现。
 
 ### 转写示例
 
 ```python
-# torch ⽤法
-net = Model()
-sgd = torch.optim.SGD(net.parameters(), lr=0.1)
-for i in range(10):
-    loss = net(x)
-    loss.backward()
-    torch.nn.utils.clip_grad_value_(net.parameters(), 1.)
-    sgd.step()
+# PyTorch 写法
+y = torch.aminmax(input, dim=-1, keepdim=True)
 
-# paddle ⽤法
-net = Model()
-sgd = paddle.optim.SGD(net.parameters(), lr=0.1,
-grad_clip=paddle.nn.ClipGradByValue(), 1.)
-for i in range(10):
-    loss = net(x)
-    loss.backward()
-    sgd.step()
+# Paddle 写法
+y = tuple([paddle.amin(input, axis=-1, keepdim=True), paddle.amax(input, axis=-1, keepdim=True)])
 ```

@@ -1,4 +1,4 @@
-## [torch 参数更多]torch.scatter
+## [ torch 参数更多 ]torch.scatter
 
 ### [torch.scatter](https://pytorch.org/docs/2.0/generated/torch.scatter.html?highlight=torch+scatter#torch.scatter)
 
