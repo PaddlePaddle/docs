@@ -17,6 +17,11 @@ hstack
 ::::::::::::
 Tensor，与输入数据类型相同的堆叠张量。
 
+也可以参考下方的图示来理解 ``hstack`` 是如何对张量进行变换的。
+
+.. image:: ../../images/api_legend/hstack.png
+   :alt: 图例
+
 代码示例
 ::::::::::::
 
