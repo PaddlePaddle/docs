@@ -6,7 +6,7 @@
 transformers.logging.get_logger(name: Optional[str] = None)
 ```
 
-paddle 并无此 api，可组合实现。
+Paddle 无此 API，需要组合实现。
 
 ### 转写示例
 

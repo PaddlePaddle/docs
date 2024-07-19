@@ -16,7 +16,7 @@ paddlenlp.generation.StoppingCriteriaList(input_ids: paddle.Tensor, scores: padd
 
 ### 参数映射
 
-| PyTorch           | PaddlePaddle      | 备注                                                         |
-| ----------------- | ----------------- | ------------------------------------------------------------ |
-| input_ids         | input_ids         |  |
-| scores            | logits            |  |
+| PyTorch           | PaddlePaddle      | 备注                                     |
+| ----------------- | ----------------- | --------------------------------------- |
+| input_ids         | input_ids         | 输入(tokens) 的 id 组成的 Tensor。 |
+| scores            | logits            | 得分组成的 Tensor。 |
