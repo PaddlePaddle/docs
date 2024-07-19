@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.Tensor.logical_and
+## [ paddle 参数更多 ] torch.Tensor.logical_and
 
 ### [torch.Tensor.logical_and](https://pytorch.org/docs/stable/generated/torch.Tensor.logical_and.html)
 

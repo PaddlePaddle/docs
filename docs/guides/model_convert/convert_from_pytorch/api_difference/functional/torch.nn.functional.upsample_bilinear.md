@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.nn.functional.upsample_bilinear
+## [ paddle 参数更多 ]torch.nn.functional.upsample_bilinear
 
 ### [torch.nn.functional.upsample_bilinear](https://pytorch.org/docs/stable/generated/torch.nn.functional.upsample_bilinear.html#torch.nn.functional.upsample_bilinear)
 

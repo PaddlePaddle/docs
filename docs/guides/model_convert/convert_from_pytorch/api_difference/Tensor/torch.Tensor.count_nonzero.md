@@ -1,4 +1,4 @@
-## [仅 paddle 参数更多]torch.Tensor.count_nonzero
+## [ paddle 参数更多 ]torch.Tensor.count_nonzero
 ### [torch.Tensor.count_nonzero](https://pytorch.org/docs/stable/generated/torch.Tensor.count_nonzero.html#torch.Tensor.count_nonzero)
 
 ```python

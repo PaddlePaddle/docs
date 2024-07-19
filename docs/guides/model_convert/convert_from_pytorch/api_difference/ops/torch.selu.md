@@ -1,4 +1,4 @@
-## [仅 paddle 参数更多]torch.selu
+## [ paddle 参数更多 ]torch.selu
 
 ### [torch.selu](https://pytorch.org/docs/stable/generated/torch.nn.functional.selu.html#torch.nn.functional.selu)
 

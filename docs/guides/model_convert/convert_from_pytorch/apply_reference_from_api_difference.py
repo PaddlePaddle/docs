@@ -19,8 +19,8 @@ def mapping_type_to_description(mapping_type):
         "无参数",
         "参数完全一致",
         "仅参数名不一致",
-        "仅 paddle 参数更多",
-        "仅参数默认值不一致",
+        "paddle 参数更多",
+        "参数默认值不一致",
     ]
 
     if mapping_type in mapping_type_1:
@@ -77,6 +77,9 @@ ALIAS_PATTERN = re.compile(
 )
 NOT_IMPLEMENTED_PATTERN = re.compile(
     r"^\| *NOT-IMPLEMENTED-ITEM\( *(?P<torch_api>[^,]+) *, *(?P<torch_api_url>.+) *\) *\|$"
+)
+MANUAL_MAINTAINING_PATTERN = re.compile(
+    r"^\| *MANUAL_MAINTAINING-ITEM\(*(?P<torch_api>[^,]+) *,*(?P<torch_url>[^,]+) *, *(?P<paddle_api>[^,]+) *,*(?P<paddle_url>[^,]+) *, *(?P<mapping_type_desc>[^,]+) *, *(?P<diff_url>.+) *\) *\|$"
 )
 
 
@@ -158,6 +161,7 @@ def apply_reference_to_row_ex(line, metadata_dict, context, line_idx):
     reference_table_match = REFERENCE_TABLE_PATTERN.match(line)
     alias_match = ALIAS_PATTERN.match(line)
     not_implemented_match = NOT_IMPLEMENTED_PATTERN.match(line)
+    manual_maintaining_match = MANUAL_MAINTAINING_PATTERN.match(line)
 
     row_idx_s = str(context["table_row_idx"])
 
@@ -208,7 +212,44 @@ def apply_reference_to_row_ex(line, metadata_dict, context, line_idx):
             mapping_column,
             mapping_url_column,
         ]
+        output = "| " + " | ".join(content) + " |\n"
+        return [output]
 
+    elif manual_maintaining_match:
+        torch_api = (
+            manual_maintaining_match["torch_api"].strip("`").replace(r"\_", "_")
+        )
+        torch_url = (
+            manual_maintaining_match["torch_url"].strip("`").replace(r"\_", "_")
+        )
+        paddle_api = (
+            manual_maintaining_match["paddle_api"]
+            .strip("`")
+            .replace(r"\_", "_")
+        )
+        paddle_url = (
+            manual_maintaining_match["paddle_url"]
+            .strip("`")
+            .replace(r"\_", "_")
+        )
+        mapping_column = (
+            manual_maintaining_match["mapping_type_desc"]
+            .strip()
+            .replace(r"\_", "_")
+        )
+        diff_page_url = (
+            manual_maintaining_match["diff_url"].strip("`").replace(r"\_", "_")
+        )
+        mapping_url_column = f"[详细对比]({diff_page_url})"
+        torch_api_column = f"[`{torch_api}`]({torch_url})"
+        paddle_api_column = f"[`{paddle_api}`]({paddle_url})"
+        content = [
+            row_idx_s,
+            torch_api_column,
+            paddle_api_column,
+            mapping_column,
+            mapping_url_column,
+        ]
         output = "| " + " | ".join(content) + " |\n"
         return [output]
     else:

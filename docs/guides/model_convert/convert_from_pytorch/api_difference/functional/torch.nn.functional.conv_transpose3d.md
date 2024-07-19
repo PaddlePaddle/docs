@@ -1,4 +1,4 @@
-## [仅 paddle 参数更多 ]torch.nn.functional.conv_transpose3d
+## [ paddle 参数更多 ]torch.nn.functional.conv_transpose3d
 
 ### [torch.nn.functional.conv_transpose3d](https://pytorch.org/docs/stable/generated/torch.nn.functional.conv_transpose3d.html?highlight=conv_#torch.nn.functional.conv_transpose3d)
 

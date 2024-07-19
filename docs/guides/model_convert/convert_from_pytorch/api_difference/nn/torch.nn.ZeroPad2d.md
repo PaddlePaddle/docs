@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.nn.ZeroPad2d
+## [ paddle 参数更多 ]torch.nn.ZeroPad2d
 ### [torch.nn.ZeroPad2d](https://pytorch.org/docs/stable/generated/torch.nn.ZeroPad2d.html?highlight=zeropad#torch.nn.ZeroPad2d)
 
 ```python

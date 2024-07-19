@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.nn.functional.pixel_unshuffle
+## [ paddle 参数更多 ] torch.nn.functional.pixel_unshuffle
 
 ### [torch.nn.functional.pixel_unshuffle](https://pytorch.org/docs/stable/generated/torch.nn.functional.pixel_unshuffle.html?highlight=pixel_unshuffle#torch.nn.functional.pixel_unshuffle)
 
