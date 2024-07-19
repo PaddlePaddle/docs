@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.cuda.LongTensor
+## [ paddle 参数更多 ] torch.cuda.LongTensor
 
 ### [torch.cuda.LongTensor](https://pytorch.org/docs/stable/tensors.html)
 

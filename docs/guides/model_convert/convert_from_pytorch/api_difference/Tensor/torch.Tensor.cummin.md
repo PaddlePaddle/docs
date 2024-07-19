@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.Tensor.cummin
+## [ paddle 参数更多 ]torch.Tensor.cummin
 
 ### [torch.Tensor.cummin](https://pytorch.org/docs/stable/generated/torch.Tensor.cummin.html?highlight=cummin#torch.Tensor.cummin)
 

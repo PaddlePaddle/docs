@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.utils.data.BatchSampler
+## [ paddle 参数更多 ]torch.utils.data.BatchSampler
 ### [torch.utils.data.BatchSampler](https://pytorch.org/docs/stable/data.html?highlight=batchsampler#torch.utils.data.BatchSampler)
 
 ```python

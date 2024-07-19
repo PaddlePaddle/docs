@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.nn.UpsamplingNearest2d
+## [ paddle 参数更多 ]torch.nn.UpsamplingNearest2d
 
 ### [torch.nn.UpsamplingNearest2d](https://pytorch.org/docs/stable/generated/torch.nn.UpsamplingNearest2d.html?highlight=upsampl#torch.nn.UpsamplingNearest2d)
 

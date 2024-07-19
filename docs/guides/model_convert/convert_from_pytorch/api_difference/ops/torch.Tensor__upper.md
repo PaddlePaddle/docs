@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.Tensor
+## [ paddle 参数更多 ] torch.Tensor
 
 ### [torch.Tensor](https://pytorch.org/docs/stable/tensors.html)
 

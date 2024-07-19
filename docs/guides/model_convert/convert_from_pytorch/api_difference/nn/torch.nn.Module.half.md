@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.nn.Module.half
+## [ paddle 参数更多 ]torch.nn.Module.half
 
 ### [torch.nn.Module.half](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.half)
 
