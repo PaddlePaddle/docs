@@ -271,7 +271,7 @@ named_sublayers(prefix='', include_self=False, layers_set=None, remove_duplicate
 
     - **prefix** (str，可选) - 在所有参数名称前加的前缀。默认值：''。
     - **include_self** (bool，可选) - 是否包含该层自身。默认值：False。
-    - **layers_set** (set，可选)：记录重复子层的集合。默认值：None。
+    - **layers_set** (set，可选) - 用来记录已经加入结果的子层的集合。默认值：None。
     - **remove_duplicate** (bool，可选) - 是否删除结果中重复的子层。默认值：True。
 
 **返回**
