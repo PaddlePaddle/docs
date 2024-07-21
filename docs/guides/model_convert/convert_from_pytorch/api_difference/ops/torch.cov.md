@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.cov
+## [ paddle 参数更多 ]torch.cov
 ### [torch.cov](https://pytorch.org/docs/stable/generated/torch.cov.html?highlight=cov#torch.cov)
 
 ```python
@@ -19,7 +19,8 @@ paddle.linalg.cov(x,
                   name=None)
 ```
 
-仅 paddle 参数更多，具体如下：
+其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
+
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |

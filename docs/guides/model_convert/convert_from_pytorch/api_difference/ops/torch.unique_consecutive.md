@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.unique_consecutive
+## [ paddle 参数更多 ]torch.unique_consecutive
 ### [torch.unique_consecutive](https://pytorch.org/docs/stable/generated/torch.unique_consecutive.html?highlight=unique_consecutive#torch.unique_consecutive)
 
 ```python

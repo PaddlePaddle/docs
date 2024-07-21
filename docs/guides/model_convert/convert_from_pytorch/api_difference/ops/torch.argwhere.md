@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.argwhere
+## [ paddle 参数更多 ]torch.argwhere
 ### [torch.argwhere](https://pytorch.org/docs/stable/generated/torch.argwhere.html#torch.argwhere)
 
 ```python

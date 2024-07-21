@@ -20,7 +20,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | ------------------- | ------------------- | -- |
 | name                | name                | worker 名字。 |
 | backend             | -                   | RPC 后台实现类型，Paddle 无此参数，暂无转写方式。 |
-| rank                | rank                | worker 的 ID，仅参数默认值不同。 |
+| rank                | rank                | worker 的 ID，Paddle 与 PyTorch 默认值不同，Paddle 应设置为 -1。 |
 | world_size          | world_size          | workers 的数量。 |
 | rpc_backend_options | -                   | 传递给 worker 创建时的配置项，Paddle 无此参数，暂无转写方式。 |
 | -                   | master_endpoint     | master 的 IP 地址，PyTorch 无此参数，Paddle 保持默认即可。 |

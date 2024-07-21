@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.nn.Module.float
+## [ paddle 参数更多 ]torch.nn.Module.float
 
 ### [torch.nn.Module.float](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.float)
 

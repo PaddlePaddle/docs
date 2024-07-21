@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.nn.Module.cpu
+## [ paddle 参数更多 ]torch.nn.Module.cpu
 
 ### [torch.nn.Module.cpu](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.cpu)
 
