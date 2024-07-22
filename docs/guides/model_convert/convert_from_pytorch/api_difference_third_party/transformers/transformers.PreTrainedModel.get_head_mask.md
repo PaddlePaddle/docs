@@ -12,7 +12,7 @@ Paddle 无此 API，需要组合实现。
 
 ```python
 # Pytorch 写法
-head_mask_output = transformers.logging.get_logger(head_mask = x, num_hidden_layers, is_attention_chunked)
+head_mask_output = transformers.PreTrainedModel.get_head_mask(head_mask = x, num_hidden_layers, is_attention_chunked)
 
 # Paddle 写法
 if x is not None:

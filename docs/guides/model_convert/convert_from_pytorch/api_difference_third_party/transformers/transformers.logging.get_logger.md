@@ -15,5 +15,6 @@ Paddle 无此 API，需要组合实现。
 transformers.logging.get_logger()
 
 # Paddle 写法
-paddle.utils.try_import('logging').getLogger(name=__name__)
+import logging
+logging.getLogger()
 ```

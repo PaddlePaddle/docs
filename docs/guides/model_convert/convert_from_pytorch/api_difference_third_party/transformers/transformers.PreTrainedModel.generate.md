@@ -16,8 +16,8 @@ paddlenlp.transformers.PreTrainedTokenizer.encode(input_ids, **kwargs)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | input_ids    | token 的 id 组成的 Tensor。 |
-| 返回值         | 返回值        | PyTorch 返回的 Tensor 包含输入的 Tensor，Paddle 不包含且返回类型为 tuple。|
+| input         | input_ids    | token 的 id 组成的 Tensor，仅参数名不一致。。 |
+| 返回值         | 返回值        | PyTorch 返回类型为 Tensor，由 input 和生成的 ids(Tensor) 拼接而成，Paddle 返回类型为 tuple，由生成的 ids(Tensor) 和对应的 scores (Tensor)组成，需要转写。|
 
 ### 转写示例
 

@@ -1,4 +1,4 @@
-## [仅 paddle 参数更多]flash_attn.ops.rms_norm.rms_norm
+## [paddle 参数更多]flash_attn.ops.rms_norm.rms_norm
 
 ### [flash_attn.ops.rms_norm.rms_norm](https://github.com/Dao-AILab/flash-attention/blob/d0787acc16c3667156b51ce5b01bdafc7594ed39/flash_attn/ops/rms_norm.py#L14)
 

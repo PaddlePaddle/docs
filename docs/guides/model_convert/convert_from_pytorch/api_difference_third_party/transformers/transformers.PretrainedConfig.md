@@ -18,7 +18,7 @@ paddlenlp.transformers.PretrainedConfig(*kwargs)
 
 | transformers                         | PaddlePaddle                   | 备注      |
 | -------------------------------------| ------------------------------ | -------- |
-| name_or_path            &            | name_or_path                   | 传递给 from_pretrained 的模型名称或模型所在路径。 |
+| name_or_path                         | name_or_path                   | 传递给 from_pretrained 的模型名称或模型所在路径。 |
 | output_attentions                    | output_attentions              | 是否返回注意力层的注意力张量。 |
 | output_hidden_states                 | output_hidden_states           | 是否返回注意力层的隐藏层张量。 |
 | return_dict                          | return_dict                    | 是否返回 dict 而不是 tuple。 |
