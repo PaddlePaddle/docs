@@ -3,7 +3,7 @@
 ### [torch.Tensor.remainder_](https://pytorch.org/docs/stable/generated/torch.Tensor.remainder_.html?highlight=torch+tensor+remainder_#torch.Tensor.remainder_)
 
 ```python
-torch.Tensor.remainder_(divisor)
+torch.Tensor.remainder_(other)
 ```
 
 ### [paddle.Tensor.remainder_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id15)
@@ -18,7 +18,7 @@ paddle.Tensor.remainder_(y, name=None)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| divisor         | y            | 除数，PyTorch 可为 Tensor or Scalar，Paddle 仅可为 Tensor，需要转写。   |
+| other         | y            | 除数，PyTorch 可为 Tensor or Scalar，Paddle 仅可为 Tensor，需要转写。   |
 
 ### 转写示例
 

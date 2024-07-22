@@ -8,7 +8,8 @@ torch.zeros(*size,
             dtype=None,
             layout=torch.strided,
             device=None,
-            requires_grad=False)
+            requires_grad=False,
+            pin_memory=False)
 ```
 
 ### [paddle.zeros](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/zeros_cn.html#zeros)
@@ -30,6 +31,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | <font color='red'> layout </font> | -       | 表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
 | <font color='red'> device </font>     | -       | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。 |
 | <font color='red'> requires_grad </font> | -       | 表示是否计算梯度， Paddle 无此参数，需要转写。 |
+| pin_memory    | -            | 表示是否使用锁页内存， Paddle 无此参数，需要转写。       |
 
 
 ### 转写示例
@@ -70,3 +72,12 @@ x = torch.zeros([3, 5], requires_grad=True)
 x = paddle.zeros([3, 5])
 x.stop_gradient = False
 ```
+
+#### pin_memory：是否分配到固定内存上
+
+```python
+# PyTorch 写法
+y = torch.zeros((3, 5), pin_memory=True)
+
+# Paddle 写法
+y = paddle.zeros([3, 5]).pin_memory()

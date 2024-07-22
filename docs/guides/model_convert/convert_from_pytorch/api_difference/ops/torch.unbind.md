@@ -9,7 +9,7 @@ torch.unbind(input,
 ### [paddle.unbind](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/unbind_cn.html#unbind)
 
 ```python
-paddle.unbind(x,
+paddle.unbind(input,
               axis=0)
 ```
 
@@ -19,5 +19,5 @@ paddle.unbind(x,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 输入的多维 Tensor ，仅参数名不一致。                   |
+| input         | input        | 输入的多维 Tensor ，参数完全一致。                   |
 | dim           | axis         | 表示需要分割的维度，仅参数名不一致。 |

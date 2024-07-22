@@ -4,7 +4,7 @@
 
 ```python
 torch.broadcast_to(input,
-                   shape)
+                   size)
 ```
 
 ### [paddle.broadcast_to](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/broadcast_to_cn.html#broadcast-to)
@@ -21,4 +21,4 @@ paddle.broadcast_to(x,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'>input</font>| <font color='red'>x</font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| shape | shape | 表示扩展后 Tensor 的 shape 。  |
+| size | shape | 表示扩展后 Tensor 的 shape，仅参数名不一致。  |

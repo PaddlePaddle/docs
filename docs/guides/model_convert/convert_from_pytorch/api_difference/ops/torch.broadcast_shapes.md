@@ -18,7 +18,7 @@ paddle.broadcast_shape(x_shape, y_shape)
 
 | PyTorch  | PaddlePaddle     | 备注                                                                                                      |
 | -------- | ---------------- | --------------------------------------------------------------------------------------------------------- |
-| \*shapes | x_shape, y_shape | 输入 Tensor 的 shape，输入参数数量不一致，PyTorch 可以输入多项，Paddle 输入为两项，需要多次调用进行转写。 |
+| *shapes | x_shape, y_shape | 输入 Tensor 的 shape，输入参数数量不一致，PyTorch 可以输入多项，Paddle 输入为两项，需要多次调用进行转写。 |
 
 ### 转写示例
 

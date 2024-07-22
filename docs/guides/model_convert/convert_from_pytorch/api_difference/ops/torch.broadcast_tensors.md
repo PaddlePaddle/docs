@@ -9,7 +9,7 @@ torch.broadcast_tensors(*tensors)
 ### [paddle.broadcast_tensors](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/broadcast_tensors_cn.html#broadcast-tensors)
 
 ```python
-paddle.broadcast_tensors(inputs,
+paddle.broadcast_tensors(input,
                          name=None)
 ```
 
@@ -18,7 +18,7 @@ paddle.broadcast_tensors(inputs,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> *tensors </font>      | <font color='red'> inputs </font>      | 一组输入 Tensor ， PyTorch 参数 tensors 为可变参, Paddle 参数 inputs 为 list(Tensor) 或 tuple(Tensor) 的形式。   |
+| <font color='red'> *tensors </font>      | <font color='red'> input </font>      | 一组输入 Tensor ， PyTorch 参数 tensors 为可变参, Paddle 参数 inputs 为 list(Tensor) 或 tuple(Tensor) 的形式。   |
 
 
 ### 转写示例
