@@ -3,9 +3,9 @@
 ### [torch.dropout](https://pytorch.org/docs/stable/jit_builtin_functions.html#supported-pytorch-functions)
 
 ```python
-torch.dropout(input: Tensor,
-              p: float,
-              train: bool)
+torch.dropout(input,
+              p,
+              train)
 ```
 
 ### [paddle.nn.functional.dropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/dropout_cn.html#dropout)
