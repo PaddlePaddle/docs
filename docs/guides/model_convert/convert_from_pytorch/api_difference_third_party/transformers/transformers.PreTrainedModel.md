@@ -1,6 +1,6 @@
-## [参数完全一致]transformers.PreTrainedModel
+## [组合替代实现]transformers.PreTrainedModel
 
-### [transformers.PreTrainedModel](https://github.com/huggingface/transformers/blob/d625294d79341662784495551abdf45e6cb9372f/src/transformers/modeling_utils.py#L1231)
+### [transformers.PreTrainedModel](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/model#transformers.PreTrainedModel)
 
 ```python
 transformers.PreTrainedModel(config: PretrainedConfig, *inputs, **kwargs)
