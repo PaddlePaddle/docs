@@ -35,7 +35,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | dtype            | dtype         | 创建 tensor 的数据类型。                                       |
 | layout           |-              |表示布局方式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
 | device           | place         | 创建 tensor 的设备位置，仅参数名不一致。                       |
-| pin_memory       | -             | 表示是否使用锁页内存， Paddle 无此参数，需要转写。       |
+| pin_memory       | -             | 表示是否使用锁页内存， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
 | requires_grad    | stop_gradient | 是否阻断 Autograd 的梯度传导，两者参数功能相反，需要转写。 |
 | check_invariants | -             | 是否检查稀疏 Tensor 变量，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 
@@ -57,22 +57,4 @@ cols = [1, 3, 2, 0, 1]
 values = [1, 2, 3, 4, 5]
 dense_shape = [3, 4]
 csr = paddle.sparse.sparse_csr_tensor(crows, cols, values, dense_shape, stop_gradient= True)
-```
-
-#### pin_memory 参数：是否分配到固定内存上
-
-```python
-# PyTorch 写法
-crows = [0, 2, 3, 5]
-cols = [1, 3, 2, 0, 1]
-values = [1, 2, 3, 4, 5]
-dense_shape = [3, 4]
-csr = torch.sparse_csr_tensor(crows, cols, values, dense_shape, pin_memory=True)
-
-# Paddle 写法
-crows = [0, 2, 3, 5]
-cols = [1, 3, 2, 0, 1]
-values = [1, 2, 3, 4, 5]
-dense_shape = [3, 4]
-csr = paddle.sparse.sparse_csr_tensor(crows, cols, values, dense_shape).pin_memory()
 ```
