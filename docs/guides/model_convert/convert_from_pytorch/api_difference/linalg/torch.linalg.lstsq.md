@@ -16,7 +16,7 @@ paddle.linalg.lstsq(x, y, rcond=None, driver=None, name=None)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x         | 表示输入的 Tensor 。                                     |
-| b           | y           | 表示输入的 Tensor 。     |
-| rcond           | rcond           | 用来决定 x 有效秩的 float 型浮点数。               |
-| driver           | driver           | 用来指定计算使用的 LAPACK 库方法。               |
+| input         | x         | 表示输入的 Tensor，仅参数名不一致。                            |
+| b             | y           | 表示输入的 Tensor，仅参数名不一致。                          |
+| rcond         | rcond           | 用来决定 x 有效秩的 float 型浮点数。                     |
+| driver        | driver           | 用来指定计算使用的 LAPACK 库方法。                      |
