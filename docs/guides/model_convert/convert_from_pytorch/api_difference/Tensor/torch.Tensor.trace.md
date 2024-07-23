@@ -1,4 +1,4 @@
-## [仅 paddle 参数更多]torch.Tensor.trace
+## [ paddle 参数更多 ]torch.Tensor.trace
 
 ### [torch.Tensor.trace](https://pytorch.org/docs/stable/generated/torch.Tensor.trace.html#torch-tensor-trace)
 

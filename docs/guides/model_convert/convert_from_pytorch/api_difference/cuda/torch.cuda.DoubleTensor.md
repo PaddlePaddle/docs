@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.cuda.DoubleTensor
+## [ paddle 参数更多 ] torch.cuda.DoubleTensor
 
 ### [torch.cuda.DoubleTensor](https://pytorch.org/docs/stable/tensors.html)
 

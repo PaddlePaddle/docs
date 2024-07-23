@@ -1,4 +1,4 @@
-## [仅 paddle 参数更多]torch.Tensor.uniform_
+## [ paddle 参数更多 ]torch.Tensor.uniform_
 
 ### [torch.Tensor.uniform_](https://pytorch.org/docs/stable/generated/torch.Tensor.uniform_.html#torch-tensor-uniform)
 

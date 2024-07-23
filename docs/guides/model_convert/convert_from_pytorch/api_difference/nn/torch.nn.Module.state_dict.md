@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.nn.Module.state_dict
+## [ paddle 参数更多 ] torch.nn.Module.state_dict
 ### [torch.nn.Module.state_dict](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.state_dict)
 
 ```python

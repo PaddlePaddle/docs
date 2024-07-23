@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.nn.functional.pixel_shuffle
+## [ paddle 参数更多 ]torch.nn.functional.pixel_shuffle
 
 ### [torch.nn.functional.pixel_shuffle](https://pytorch.org/docs/stable/generated/torch.nn.functional.pixel_shuffle.html?highlight=pixel_shuffle#torch.nn.functional.pixel_shuffle)
 

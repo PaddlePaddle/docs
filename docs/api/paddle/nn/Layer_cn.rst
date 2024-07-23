@@ -244,7 +244,7 @@ clear_gradients(set_to_zero=True)
 
 COPY-FROM: paddle.nn.Layer.clear_gradients
 
-named_parameters(prefix='', include_sublayers=True)
+named_parameters(prefix='', include_sublayers=True, remove_duplicate=True)
 '''''''''
 
 返回层中所有参数的迭代器，生成名称和参数的元组。
@@ -253,6 +253,7 @@ named_parameters(prefix='', include_sublayers=True)
 
     - **prefix** (str，可选) - 在所有参数名称前加的前缀。默认值：''。
     - **include_sublayers** (bool，可选) - 是否返回子层的参数。如果为 True，返回的列表中包含子层的参数。默认值：True。
+    - **remove_duplicate** (bool，可选) - 是否删除结果中重复的参数。默认值：True。
 
 **返回**
 iterator，产出名称和参数的元组的迭代器。
@@ -261,7 +262,7 @@ iterator，产出名称和参数的元组的迭代器。
 
 COPY-FROM: paddle.nn.Layer.named_parameters
 
-named_sublayers(prefix='', include_self=False, layers_set=None)
+named_sublayers(prefix='', include_self=False, layers_set=None, remove_duplicate=True)
 '''''''''
 
 返回层中所有子层上的迭代器，生成名称和子层的元组。重复的子层只产生一次。
@@ -270,7 +271,8 @@ named_sublayers(prefix='', include_self=False, layers_set=None)
 
     - **prefix** (str，可选) - 在所有参数名称前加的前缀。默认值：''。
     - **include_self** (bool，可选) - 是否包含该层自身。默认值：False。
-    - **layers_set** (set，可选)：记录重复子层的集合。默认值：None。
+    - **layers_set** (set，可选) - 用来记录已经加入结果的子层的集合。默认值：None。
+    - **remove_duplicate** (bool，可选) - 是否删除结果中重复的子层。默认值：True。
 
 **返回**
 iterator，产出名称和子层的元组的迭代器。
@@ -317,7 +319,7 @@ list，一个由当前层及其子层的所有 buffers 组成的列表，列表�
 
 COPY-FROM: paddle.nn.Layer.buffers
 
-named_buffers(prefix='', include_sublayers=True)
+named_buffers(prefix='', include_sublayers=True, remove_duplicate=True)
 '''''''''
 
 返回层中所有 buffers 的迭代器，生成名称和 buffer 的元组。
@@ -326,6 +328,7 @@ named_buffers(prefix='', include_sublayers=True)
 
     - **prefix** (str，可选) - 在所有 buffer 名称前加的前缀。默认值：''。
     - **include_sublayers** (bool，可选) - 是否返回子层的 buffers。如果为 True，返回的列表中包含子层的 buffers。默认值：True。
+    - **remove_duplicate** (bool，可选) - 是否删除结果中重复的 buffers。默认值：True。
 
 **返回**
 iterator，产出名称和 buffer 的元组的迭代器。

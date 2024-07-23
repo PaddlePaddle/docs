@@ -1,4 +1,4 @@
-## [仅 paddle 参数更多]torch.nn.Softmax2d
+## [ paddle 参数更多 ]torch.nn.Softmax2d
 
 ### [torch.nn.Softmax2d](https://pytorch.org/docs/stable/generated/torch.nn.Softmax2d.html?highlight=softmax2d#torch.nn.Softmax2d)
 

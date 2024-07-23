@@ -3,7 +3,7 @@
 ### [torch.Tensor.argsort](https://pytorch.org/docs/stable/generated/torch.Tensor.argsort.html)
 
 ```python
-torch.Tensor.argsort(dim=-1, descending=False, stable=False)
+torch.Tensor.argsort(dim=-1, descending=False, *, stable=False)
 ```
 
 ### [paddle.Tensor.argsort](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#argsort-axis-1-descending-false-name-none)

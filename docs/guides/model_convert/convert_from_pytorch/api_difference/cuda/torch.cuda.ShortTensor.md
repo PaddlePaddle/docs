@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.cuda.ShortTensor
+## [ paddle 参数更多 ] torch.cuda.ShortTensor
 
 ### [torch.cuda.ShortTensor](https://pytorch.org/docs/stable/tensors.html)
 

@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多]torch.nn.LocalResponseNorm
+## [ paddle 参数更多 ]torch.nn.LocalResponseNorm
 ### [torch.nn.LocalResponseNorm](https://pytorch.org/docs/stable/generated/torch.nn.LocalResponseNorm.html?highlight=localre#torch.nn.LocalResponseNorm)
 
 ```python

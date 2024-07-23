@@ -1,4 +1,4 @@
-## [仅 paddle 参数更多]torch.autograd.profiler.profile.export_chrome_trace
+## [ paddle 参数更多 ]torch.autograd.profiler.profile.export_chrome_trace
 
 ### [torch.autograd.profiler.profile.export_chrome_trace](https://pytorch.org/docs/stable/generated/torch.autograd.profiler.profile.export_chrome_trace.html#torch.autograd.profiler.profile.export_chrome_trace)
 
