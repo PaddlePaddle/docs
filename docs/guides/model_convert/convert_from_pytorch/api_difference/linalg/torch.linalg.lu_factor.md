@@ -3,7 +3,7 @@
 ### [torch.linalg.lu_factor](https://pytorch.org/docs/stable/generated/torch.linalg.lu_factor.html#torch.linalg.lu_factor)
 
 ```python
-torch.linalg.lu_factor(A, *, bool pivot=True, out=None)
+torch.linalg.lu_factor(A, *, pivot=True, out=None)
 ```
 
 ### [paddle.linalg.lu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_cn.html)

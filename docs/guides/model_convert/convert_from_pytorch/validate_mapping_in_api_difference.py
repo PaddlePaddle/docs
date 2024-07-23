@@ -116,7 +116,11 @@ def reformat_signature(code):
         assert m is not None, f'code arg "{arg_buffer}" not match arg pattern.'
         arg_name = m.group("arg_name")
         arg_default = m.group("arg_default")
-        args.append({"arg_name": arg_name, "arg_default": arg_default})
+        if arg_name[0].isalpha() or arg_name[0] == "_" or arg_name[0] == "*":
+            # if is a valid arg name
+            args.append({"arg_name": arg_name, "arg_default": arg_default})
+        else:
+            args[-1]["arg_default"] += f", {arg_name}"
 
     return {"api_name": api_name, "args": args}
 
