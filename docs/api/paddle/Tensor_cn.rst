@@ -2689,10 +2689,10 @@ is_integer()
 
 请参考 :ref:`cn_api_paddle_is_integer`
 
-take_along_axis(arr, indices, axis, broadcast=True)
+take_along_axis(indices, axis, broadcast=True)
 :::::::::
 
-基于输入索引矩阵，沿着指定 axis 从 arr 矩阵里选取 1d 切片。索引矩阵必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
+基于输入索引矩阵 indices，沿着指定 axis 从输入 tensor 里选取 1d 切片。索引矩阵必须和输入 tensor 有相同的维度，需要能够 broadcast 与 tensor 对齐。
 
 返回：计算后的 Tensor
 
@@ -2700,10 +2700,10 @@ take_along_axis(arr, indices, axis, broadcast=True)
 
 请参考 :ref:`cn_api_paddle_take_along_axis`
 
-put_along_axis(arr, indices, value, axis, reduce="assign", include_self=True, broadcast=True)
+put_along_axis(indices, value, axis, reduce="assign", include_self=True, broadcast=True)
 :::::::::
 
-基于输入 indices 矩阵，将输入 value 沿着指定 axis 放置入 arr 矩阵。索引矩阵和 value 必须和 arr 矩阵有相同的维度，如果 ``broadcast`` 为 ``True``，则需要能够 broadcast 与 arr 矩阵对齐。
+基于输入 indices 矩阵，将输入 value 沿着指定 axis 放置入 tensor 矩阵。索引矩阵和 value 必须和 tensor 矩阵有相同的维度，如果 ``broadcast`` 为 ``True``，则需要能够 broadcast 与 tensor 矩阵对齐。
 
 返回：计算后的 Tensor
 

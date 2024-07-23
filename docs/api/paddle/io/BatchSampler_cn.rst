@@ -17,7 +17,7 @@ BatchSampler
 ::::::::::::
 
     - **dataset** (Dataset，可选) - 此参数必须是 :ref:`cn_api_paddle_io_Dataset` 或 :ref:`cn_api_paddle_io_IterableDataset` 的一个子类实例或实现了 ``__len__`` 的 Python 对象，用于生成样本下标。默认值为 None, 表示不使用此参数。
-    - **sampler** (Sampler，可选) - 此参数必须是 :ref:`cn_api_paddle_io_Sampler` 的子类实例，用于迭代式获取样本下标。 ``dataset`` 和 ``sampler`` 参数只能设置一个。默认值为 None, 表示不使用此参数。
+    - **sampler** (Sampler|Iterable，可选) - 此参数必须是 :ref:`cn_api_paddle_io_Sampler` 或 Iterable 的子类实例，用于迭代式获取样本下标。 ``dataset`` 和 ``sampler`` 参数只能设置一个。默认值为 None, 表示不使用此参数。
     - **shuffle** (bool，可选) - 是否需要在生成样本下标时打乱顺序。默认值为 False ，表示不打乱顺序。
     - **batch_size** (int，可选) - 每 mini-batch 中包含的样本数。默认值为 1 ，表示每 mini-batch 中包含 1 个样本数。
     - **drop_last** (bool，可选) - 是否需要丢弃最后无法凑整一个 mini-batch 的样本。默认值为 False ，表示不丢弃最后无法凑整一个 mini-batch 的样本。

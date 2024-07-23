@@ -179,6 +179,16 @@ ______      _____                          _
 **对于不支持转换的 API**：将 **补全为 Pytorch API 全名**，同时在行前通过 `>>>>>>` 的形式加以标记，用户需要对该 API 进行人工手动转换，然后删除 `>>>>>>` 标记，否则代码无法运行。
 
 
+## 案例实践
+
+以下模型案例已经支持一键 100%转换率，欢迎学习与交流：
+
+| 模型名                                                     | Pytorch 代码地址                 | 支持类型   |
+| ----------------------------------------------------------| ------------------------------ | -------- |
+| [llama](https://github.com/PaddlePaddle/PaConvert/blob/master/docs/TypicalCase_Llama.md)   | https://github.com/meta-llama/llama.git  | 推理 |
+| [Qwen](https://github.com/PaddlePaddle/PaConvert/blob/master/docs/TypicalCase_Qwen.md)     | https://huggingface.co/Qwen/Qwen-7B-Chat  | 推理 |
+
+
 ## 贡献代码
 
 代码自动转换工具（[PaConvert](https://github.com/PaddlePaddle/PaConvert)）为开源贡献形式，欢迎你向我们贡献代码，详细开发步骤请参考 [贡献代码教程](https://github.com/PaddlePaddle/PaConvert/blob/master/docs/CONTRIBUTING.md)

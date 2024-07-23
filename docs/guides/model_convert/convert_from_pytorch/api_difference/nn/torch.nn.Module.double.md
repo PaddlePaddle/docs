@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.nn.Module.double
+## [ paddle 参数更多 ]torch.nn.Module.double
 
 ### [torch.nn.Module.double](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.double)
 

@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.cuda.IntTensor
+## [ paddle 参数更多 ] torch.cuda.IntTensor
 
 ### [torch.cuda.IntTensor](https://pytorch.org/docs/stable/tensors.html)
 

@@ -1,4 +1,4 @@
-## [仅 paddle 参数更多]torch.linalg.vander
+## [ paddle 参数更多 ]torch.linalg.vander
 
 ### [torch.linalg.vander](https://pytorch.org/docs/stable/generated/torch.linalg.vander.html#torch.linalg.vander)
 

@@ -83,7 +83,7 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
 * 目前在 macOS 环境仅支持 CPU 版 PaddlePaddle，请参考如下命令安装 Paddle:
 
   ```
-  conda install paddlepaddle==3.0.0b0 -c paddle
+  conda install paddlepaddle==3.0.0b1 -c paddle
   ```
 
 ## **三、验证安装**

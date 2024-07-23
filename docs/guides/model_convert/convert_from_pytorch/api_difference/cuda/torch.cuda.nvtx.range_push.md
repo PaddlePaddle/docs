@@ -9,7 +9,7 @@ torch.cuda.nvtx.range_push(msg)
 ### [paddle.framework.core.nvprof_nvtx_push](https://github.com/PaddlePaddle/Paddle/blob/645dfb4040a15712cea9ccfed4dcb0655aeeb0ea/paddle/fluid/pybind/pybind.cc#L2465)
 
 ```python
-paddle.framework.core.nvprof_nvtx_push(name)
+paddle.framework.core.nvprof_nvtx_push(arg0)
 ```
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
@@ -18,4 +18,4 @@ paddle.framework.core.nvprof_nvtx_push(name)
 
 | PyTorch | PaddlePaddle | 备注                                       |
 | ------- | ------------ | ------------------------------------------ |
-| msg     | name         | 关联 range 的 ASCII 消息，仅参数名不一致。 |
+| msg     | arg0         | 关联 range 的 ASCII 消息，仅参数名不一致。 |
