@@ -8,6 +8,11 @@ concat
 
 对输入沿参数 ``axis`` 轴进行联结，返回一个新的 Tensor。该 API 不支持输入 0-D Tensor，因为其必须指定沿着某个轴拼接，而 0-D Tensor 没有轴。
 
+下图展示了 concat 操作的典型情况——两个形状为 [2, 3, 4] 的三维张量通过 concat 操作沿着不同的``axis`` 轴拼接为不同形状的二维张量，我们可以清晰地看到不同维度拼接的效果。
+
+.. image:: ../../images/api_legend/concat.png
+   :alt: 图例
+
 参数
 ::::::::::::
 
