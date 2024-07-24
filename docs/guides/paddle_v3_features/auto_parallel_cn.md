@@ -129,7 +129,7 @@ dist_tensorD = relu(dist_tensorC)
 
 接下来就会进入自动并行的第二个核心逻辑 **切分转换**。
 框架会根据 tensor 当前的切分状态(src_placement)，和切分推导规则推导出的算子计算需要的切分状态(dst_placement),添加对应的通信/张量维度变换算子。
-根据上图的切分推导，在计算 Matmul 添加 split 算子，在计算 Relue 添加 Allreduce，将输入 tensor 转换成需要的切分状态进行实际计算。
+根据上图的切分推导，在计算 Matmul 添加 split 算子，在计算 Relu 添加 Allreduce，将输入 tensor 转换成需要的切分状态进行实际计算。
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/shard_convertion.png" width="40%"/>
