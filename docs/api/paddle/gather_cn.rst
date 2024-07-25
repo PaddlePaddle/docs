@@ -24,6 +24,11 @@ gather
         Out = [[3, 4],
                [5, 6]]
 
+下面展示了将一个形状为[3,2]的向量通过 gather 操作，沿着 axis = 0 维度，根据索引 Index = [1, 2] 获取对应的二维张量的例子。若索引为零维，则返回结果为一维张量，例如 Index = 0 ，沿着 axis = 0 维度，则返回位于图片上方的一维张量。
+
+.. image:: ../../images/api_legend/gather.png
+   :alt: 图例
+
 参数
 ::::::::::::
         - **x** (Tensor) - 输入 Tensor，秩 ``rank >= 1``，支持的数据类型包括 int32、int64、float32、float64、complex64、complex128 和 uint8 (CPU)、float16（GPU） 。
