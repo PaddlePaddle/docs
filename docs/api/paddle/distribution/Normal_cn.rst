@@ -8,13 +8,21 @@ Normal
 
 正态分布
 
-数学公式：
+若 `loc` 是实数，概率密度函数为：
 
 .. math::
 
     pdf(x; \mu, \sigma) = \frac{1}{Z}e^{\frac {-0.5 (x - \mu)^2}  {\sigma^2} }
 
     Z = (2 \pi \sigma^2)^{0.5}
+
+若 `loc` 是复数，概率密度函数为：
+
+.. math::
+
+    pdf(x; \mu, \sigma) = \frac{1}{Z}e^{\frac {-(x - \mu)^2}  {\sigma^2} }
+
+    Z = \pi \sigma^2
 
 上面的数学公式中：
 
@@ -25,7 +33,7 @@ Normal
 参数
 ::::::::::::
 
-    - **loc** (int|float|list|tuple|numpy.ndarray|Tensor) - 正态分布平均值。数据类型为 float32 或 float64。
+    - **loc** (int|float|complex|list|tuple|numpy.ndarray|Tensor) - 正态分布平均值。数据类型为 float32、float64、complex64 或 complex128。
     - **scale** (int|float|list|tuple|numpy.ndarray|Tensor) - 正态分布标准差。数据类型为 float32 或 float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
@@ -85,11 +93,17 @@ entropy()
 
 信息熵
 
-数学公式：
+实高斯分布信息熵的数学公式：
 
 .. math::
 
     entropy(\sigma) = 0.5 \log (2 \pi e \sigma^2)
+
+复高斯分布信息熵的数学公式：
+
+.. math::
+
+    entropy(\sigma) = \log (\pi e \sigma^2) + 1
 
 上面的数学公式中：
 
@@ -130,11 +144,21 @@ kl_divergence(other)
 
 两个正态分布之间的 KL 散度。
 
-数学公式：
+实高斯分布 KL 散度的数学公式：
 
 .. math::
 
     KL\_divergence(\mu_0, \sigma_0; \mu_1, \sigma_1) = 0.5 (ratio^2 + (\frac{diff}{\sigma_1})^2 - 1 - 2 \ln {ratio})
+
+    ratio = \frac{\sigma_0}{\sigma_1}
+
+    diff = \mu_1 - \mu_0
+
+复高斯分布 KL 散度的数学公式：
+
+.. math::
+
+    KL\_divergence(\mu_0, \sigma_0; \mu_1, \sigma_1) = ratio^2 + (\frac{diff}{\sigma_1})^2 - 1 - 2 \ln {ratio}
 
     ratio = \frac{\sigma_0}{\sigma_1}
 

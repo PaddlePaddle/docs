@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.gt
+## [ 输入参数类型不一致 ]torch.Tensor.gt
 
 ### [torch.Tensor.gt](https://pytorch.org/docs/stable/generated/torch.Tensor.gt.html?highlight=torch+tensor+gt#torch.Tensor.gt)
 

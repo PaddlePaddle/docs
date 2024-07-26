@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.fmod
+## [ 输入参数类型不一致 ]torch.Tensor.fmod
 
 ### [torch.Tensor.fmod](https://pytorch.org/docs/stable/generated/torch.Tensor.fmod.html#torch.Tensor.fmod)
 

@@ -654,6 +654,11 @@ bincount(weights=None, minlength=0)
 
 请参考 :ref:`cn_api_paddle_bincount`
 
+bernoulli_(p=0.5, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_bernoulli` API，对输入 `x` 采用 Inplace 策略。
+
 bitwise_and(y, out=None, name=None)
 :::::::::
 
@@ -1474,6 +1479,15 @@ isfinite(name=None)
 
 请参考 :ref:`cn_api_paddle_isfinite`
 
+isin(test_x, assume_unique=False, invert=False, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_isin`
+
 isinf(name=None)
 :::::::::
 
@@ -1491,6 +1505,33 @@ isnan(name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_isnan`
+
+isposinf(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_isposinf`
+
+isneginf(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_isneginf`
+
+isreal(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_isreal`
 
 kthvalue(k, axis=None, keepdim=False, name=None)
 :::::::::
@@ -1633,6 +1674,11 @@ logsumexp(axis=None, keepdim=False, name=None)
 返回：计算后的 Tensor
 
 返回类型：Tensor
+
+log_normal_(mean=0.0, std=1.0, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_log_normal` API，对输入 `x` 采用 Inplace 策略。
 
 请参考 :ref:`cn_api_paddle_logsumexp`
 
@@ -2643,10 +2689,10 @@ is_integer()
 
 请参考 :ref:`cn_api_paddle_is_integer`
 
-take_along_axis(arr, indices, axis, broadcast=True)
+take_along_axis(indices, axis, broadcast=True)
 :::::::::
 
-基于输入索引矩阵，沿着指定 axis 从 arr 矩阵里选取 1d 切片。索引矩阵必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
+基于输入索引矩阵 indices，沿着指定 axis 从输入 tensor 里选取 1d 切片。索引矩阵必须和输入 tensor 有相同的维度，需要能够 broadcast 与 tensor 对齐。
 
 返回：计算后的 Tensor
 
@@ -2654,10 +2700,10 @@ take_along_axis(arr, indices, axis, broadcast=True)
 
 请参考 :ref:`cn_api_paddle_take_along_axis`
 
-put_along_axis(arr, indices, value, axis, reduce="assign", include_self=True, broadcast=True)
+put_along_axis(indices, value, axis, reduce="assign", include_self=True, broadcast=True)
 :::::::::
 
-基于输入 indices 矩阵，将输入 value 沿着指定 axis 放置入 arr 矩阵。索引矩阵和 value 必须和 arr 矩阵有相同的维度，如果 ``broadcast`` 为 ``True``，则需要能够 broadcast 与 arr 矩阵对齐。
+基于输入 indices 矩阵，将输入 value 沿着指定 axis 放置入 tensor 矩阵。索引矩阵和 value 必须和 tensor 矩阵有相同的维度，如果 ``broadcast`` 为 ``True``，则需要能够 broadcast 与 tensor 矩阵对齐。
 
 返回：计算后的 Tensor
 
@@ -3206,3 +3252,26 @@ signbit(x, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_signbit`
+
+block_diag(inputs, name=None)
+:::::::::
+
+根据 `inputs` 创建对角矩阵。
+
+返回：对角矩阵 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_block_diag`
+
+ormqr(x, tau, other, left=True, transpose=False)
+:::::::::
+
+计算维度为(m, n)的矩阵 C（由 :attr:`other` 给出）和一个矩阵 Q 的乘积，
+其中 Q 由 Householder 反射系数 (:attr:`x`, :attr:`tau`) 表示。
+
+返回：乘积 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_linalg_ormqr`

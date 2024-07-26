@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.Tensor.scatter_add
+## [ paddle 参数更多 ]torch.Tensor.scatter_add
 
 ### [torch.Tensor.scatter_add](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter_add.html#torch.Tensor.scatter_add)
 
@@ -19,7 +19,7 @@ paddle.Tensor.put_along_axis(indices,
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | dim           | axis        | 表示在哪一个维度 scatter ，仅参数名不一致。 |

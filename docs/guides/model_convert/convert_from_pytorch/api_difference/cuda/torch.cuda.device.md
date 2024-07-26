@@ -1,4 +1,4 @@
-## [参数不一致]torch.cuda.device
+## [ 输入参数类型不一致 ]torch.cuda.device
 
 ### [torch.cuda.device](https://pytorch.org/docs/stable/generated/torch.cuda.device.html#torch.cuda.device)
 

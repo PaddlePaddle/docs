@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.Conv2d
+## [ 输入参数用法不一致 ]torch.nn.Conv2d
 ### [torch.nn.Conv2d](https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html?highlight=conv2d#torch.nn.Conv2d)
 
 ```python

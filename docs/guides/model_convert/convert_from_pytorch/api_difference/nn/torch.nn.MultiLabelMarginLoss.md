@@ -1,4 +1,4 @@
-## [仅 paddle 参数更多]torch.nn.MultiLabelMarginLoss
+## [ paddle 参数更多 ]torch.nn.MultiLabelMarginLoss
 
 ### [torch.nn.MultiLabelMarginLoss](https://pytorch.org/docs/stable/generated/torch.nn.MultiLabelMarginLoss)
 

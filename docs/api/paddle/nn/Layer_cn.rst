@@ -228,10 +228,14 @@ sublayers(include_self=False)
 
 COPY-FROM: paddle.nn.Layer.sublayers
 
-clear_gradients()
+clear_gradients(set_to_zero=True)
 '''''''''
 
 清除该层所有参数的梯度。
+
+**参数**
+
+    - **set_to_zero** (bool，可选) - 是否将可训练参数的梯度设置为 0 ，若为 False 则设为 None。默认值：True。
 
 **返回**
 无
@@ -240,7 +244,7 @@ clear_gradients()
 
 COPY-FROM: paddle.nn.Layer.clear_gradients
 
-named_parameters(prefix='', include_sublayers=True)
+named_parameters(prefix='', include_sublayers=True, remove_duplicate=True)
 '''''''''
 
 返回层中所有参数的迭代器，生成名称和参数的元组。
@@ -249,6 +253,7 @@ named_parameters(prefix='', include_sublayers=True)
 
     - **prefix** (str，可选) - 在所有参数名称前加的前缀。默认值：''。
     - **include_sublayers** (bool，可选) - 是否返回子层的参数。如果为 True，返回的列表中包含子层的参数。默认值：True。
+    - **remove_duplicate** (bool，可选) - 是否删除结果中重复的参数。默认值：True。
 
 **返回**
 iterator，产出名称和参数的元组的迭代器。
@@ -257,7 +262,7 @@ iterator，产出名称和参数的元组的迭代器。
 
 COPY-FROM: paddle.nn.Layer.named_parameters
 
-named_sublayers(prefix='', include_self=False, layers_set=None)
+named_sublayers(prefix='', include_self=False, layers_set=None, remove_duplicate=True)
 '''''''''
 
 返回层中所有子层上的迭代器，生成名称和子层的元组。重复的子层只产生一次。
@@ -266,7 +271,8 @@ named_sublayers(prefix='', include_self=False, layers_set=None)
 
     - **prefix** (str，可选) - 在所有参数名称前加的前缀。默认值：''。
     - **include_self** (bool，可选) - 是否包含该层自身。默认值：False。
-    - **layers_set** (set，可选)：记录重复子层的集合。默认值：None。
+    - **layers_set** (set，可选) - 用来记录已经加入结果的子层的集合。默认值：None。
+    - **remove_duplicate** (bool，可选) - 是否删除结果中重复的子层。默认值：True。
 
 **返回**
 iterator，产出名称和子层的元组的迭代器。
@@ -313,7 +319,7 @@ list，一个由当前层及其子层的所有 buffers 组成的列表，列表�
 
 COPY-FROM: paddle.nn.Layer.buffers
 
-named_buffers(prefix='', include_sublayers=True)
+named_buffers(prefix='', include_sublayers=True, remove_duplicate=True)
 '''''''''
 
 返回层中所有 buffers 的迭代器，生成名称和 buffer 的元组。
@@ -322,6 +328,7 @@ named_buffers(prefix='', include_sublayers=True)
 
     - **prefix** (str，可选) - 在所有 buffer 名称前加的前缀。默认值：''。
     - **include_sublayers** (bool，可选) - 是否返回子层的 buffers。如果为 True，返回的列表中包含子层的 buffers。默认值：True。
+    - **remove_duplicate** (bool，可选) - 是否删除结果中重复的 buffers。默认值：True。
 
 **返回**
 iterator，产出名称和 buffer 的元组的迭代器。
@@ -377,7 +384,7 @@ Parameter，传入的参数实例
 
 COPY-FROM: paddle.nn.Layer.add_parameter
 
-state_dict(destination=None, include_sublayers=True, use_hook=True)
+state_dict(destination=None, include_sublayers=True, structured_name_prefix='', use_hook=True, keep_vars=True)
 '''''''''
 
 获取当前层及其子层的所有参数和可持久性 buffers。并将所有参数和 buffers 存放在 dict 结构中。
@@ -386,7 +393,9 @@ state_dict(destination=None, include_sublayers=True, use_hook=True)
 
     - **destination** (dict，可选) - 如果提供 ``destination``，则所有参数和可持久性 buffers 都将存放在 ``destination`` 中。默认值：None。
     - **include_sublayers** (bool，可选) - 如果设置为 True，则包括子层的参数和 buffers。默认值：True。
+    - **structured_name_prefix** (str，可选) - 添加到参数和缓冲区名称的前缀。默认值：''。
     - **use_hook** (bool，可选) - 如果设置为 True，将_state_dict_hooks 中注册的函数应用于 destination。默认值：True。
+    - **keep_vars** (bool，可选) - 如果设置为 False，状态字典中返回的 tensors 将脱离计算图。默认值：True。
 
 **返回**
 dict，包含所有参数和可持久行 buffers 的 dict

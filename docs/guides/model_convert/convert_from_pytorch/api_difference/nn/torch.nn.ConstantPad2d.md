@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.nn.ConstantPad2d
+## [ paddle 参数更多 ]torch.nn.ConstantPad2d
 ### [torch.nn.ConstantPad2d](https://pytorch.org/docs/stable/generated/torch.nn.ConstantPad2d.html?highlight=pad#torch.nn.ConstantPad2d)
 ```python
 torch.nn.ConstantPad2d(padding,

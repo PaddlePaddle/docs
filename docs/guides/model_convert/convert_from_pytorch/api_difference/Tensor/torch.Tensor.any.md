@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.Tensor.any
+## [ 输入参数类型不一致 ]torch.Tensor.any
 
 ### [torch.Tensor.any](https://pytorch.org/docs/stable/generated/torch.Tensor.any.html?highlight=torch+tensor+any#torch.Tensor.any)
 

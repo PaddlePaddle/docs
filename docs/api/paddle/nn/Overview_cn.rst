@@ -95,6 +95,8 @@ pooling 层
     " :ref:`paddle.nn.MaxUnPool3D <cn_api_paddle_nn_MaxUnPool3D>` ", "三维最大反池化层"
     " :ref:`paddle.nn.FractionalMaxPool2D <cn_api_paddle_nn_FractionalMaxPool2D>` ", "二维分数阶最大值池化层"
     " :ref:`paddle.nn.FractionalMaxPool3D <cn_api_paddle_nn_FractionalMaxPool3D>` ", "三维分数阶最大值池化层"
+    " :ref:`paddle.nn.LPPool1D <cn_api_paddle_nn_LPPool1D>` ", "一维幂平均池化层"
+    " :ref:`paddle.nn.LPPool2D <cn_api_paddle_nn_LPPool2D>` ", "二维幂平均池化层"
 
 .. _padding_layers:
 
@@ -108,7 +110,9 @@ Padding 层
     " :ref:`paddle.nn.Pad1D <cn_api_paddle_nn_Pad1D>` ", "一维填充层"
     " :ref:`paddle.nn.Pad2D <cn_api_paddle_nn_Pad2D>` ", "二维填充层"
     " :ref:`paddle.nn.Pad3D <cn_api_paddle_nn_Pad3D>` ", "三维填充层"
+    " :ref:`paddle.nn.ZeroPad1D <cn_api_paddle_nn_ZeroPad1D>` ", "一维零填充层"
     " :ref:`paddle.nn.ZeroPad2D <cn_api_paddle_nn_ZeroPad2D>` ", "二维零填充层"
+    " :ref:`paddle.nn.ZeroPad3D <cn_api_paddle_nn_ZeroPad3D>` ", "三维零填充层"
 
 .. _activation_layers:
 
@@ -201,6 +205,7 @@ Transformer 相关
 
     " :ref:`paddle.nn.MultiHeadAttention <cn_api_paddle_nn_MultiHeadAttention>` ", "多头注意力机制"
     " :ref:`paddle.nn.functional.scaled_dot_product_attention <cn_api_paddle_nn_functional_scaled_dot_product_attention>` ", "点乘注意力机制，并在此基础上加入了对注意力权重的缩放"
+    " :ref:`paddle.nn.functional.sparse_attention <cn_api_paddle_nn_functional_sparse_attention>` ", "稀疏版本的 Attention API，对 Transformer 模块中的 Attention 矩阵进行了稀疏化，从而减少内存消耗和计算量"
     " :ref:`paddle.nn.Transformer <cn_api_paddle_nn_Transformer>` ", "Transformer 模型"
     " :ref:`paddle.nn.TransformerDecoder <cn_api_paddle_nn_TransformerDecoder>` ", "Transformer 解码器"
     " :ref:`paddle.nn.TransformerDecoderLayer <cn_api_paddle_nn_TransformerDecoderLayer>` ", "Transformer 解码器层"
@@ -229,6 +234,7 @@ Dropout 层
 
 
     " :ref:`paddle.nn.AlphaDropout <cn_api_paddle_nn_AlphaDropout>` ", "具有自归一化性质的 dropout"
+    " :ref:`paddle.nn.FeatureAlphaDropout <cn_api_paddle_nn_FeatureAlphaDropout>` ", "具有自归一化性质的 dropout ，屏蔽整个通道"
     " :ref:`paddle.nn.Dropout <cn_api_paddle_nn_Dropout>` ", "Dropout"
     " :ref:`paddle.nn.Dropout2D <cn_api_paddle_nn_Dropout2D>` ", "一维 Dropout"
     " :ref:`paddle.nn.Dropout3D <cn_api_paddle_nn_Dropout3D>` ", "二维 Dropout"
@@ -259,6 +265,7 @@ Loss 层
     " :ref:`paddle.nn.CrossEntropyLoss <cn_api_paddle_nn_CrossEntropyLoss>` ", "交叉熵损失层"
     " :ref:`paddle.nn.CTCLoss <cn_api_paddle_nn_CTCLoss>` ", "CTCLoss 层"
     " :ref:`paddle.nn.HSigmoidLoss <cn_api_paddle_nn_HSigmoidLoss>` ", "层次 sigmoid 损失层"
+    " :ref:`paddle.nn.HingeEmbeddingLoss <cn_api_paddle_nn_HingeEmbeddingLoss>` ", "HingeEmbeddingLoss 损失层"
     " :ref:`paddle.nn.KLDivLoss <cn_api_paddle_nn_KLDivLoss>` ", "Kullback-Leibler 散度损失层"
     " :ref:`paddle.nn.L1Loss <cn_api_paddle_nn_L1Loss>` ", "L1 损失层"
     " :ref:`paddle.nn.MarginRankingLoss <cn_api_paddle_nn_MarginRankingLoss>` ", "MarginRankingLoss 层"
@@ -266,12 +273,14 @@ Loss 层
     " :ref:`paddle.nn.NLLLoss <cn_api_paddle_nn_NLLLoss>` ", "NLLLoss 层"
     " :ref:`paddle.nn.GaussianNLLLoss <cn_api_paddle_nn_GaussianNLLLoss>` ", "GaussianNLLLoss 层"
     " :ref:`paddle.nn.PoissonNLLLoss <cn_api_paddle_nn_PoissonNLLLoss>`", "PoissonNLLLoss 层"
+    " :ref:`paddle.nn.RNNTLoss <cn_api_paddle_nn_RNNTLoss>`", "RNNTLoss 层"
     " :ref:`paddle.nn.SmoothL1Loss <cn_api_paddle_nn_SmoothL1Loss>` ", "平滑 L1 损失层"
     " :ref:`paddle.nn.SoftMarginLoss <cn_api_paddle_nn_SoftMarginLoss>` ", "SoftMarginLoss 层"
     " :ref:`paddle.nn.TripletMarginLoss <cn_api_paddle_nn_TripletMarginLoss>` ", "TripletMarginLoss 层"
     " :ref:`paddle.nn.TripletMarginWithDistanceLoss <cn_api_paddle_nn_TripletMarginWithDistanceLoss>` ", "TripletMarginWithDistanceLoss 层"
     " :ref:`paddle.nn.MultiLabelSoftMarginLoss <cn_api_paddle_nn_MultiLabelSoftMarginLoss>` ", "多标签 Hinge 损失层"
     " :ref:`paddle.nn.MultiMarginLoss <cn_api_paddle_nn_MultiMarginLoss>` ", "MultiMarginLoss 层"
+    " :ref:`paddle.nn.AdaptiveLogSoftmaxWithLoss <cn_api_paddle_nn_AdaptiveLogSoftmaxWithLoss>` ", "自适应 logsoftmax 损失类"
 
 
 .. _vision_layers:
@@ -365,6 +374,8 @@ Pooling 相关函数
     " :ref:`paddle.nn.functional.max_unpool3d <cn_api_paddle_nn_functional_max_unpool3d>` ", "三维最大反池化层"
     " :ref:`paddle.nn.functional.fractional_max_pool2d <cn_api_paddle_nn_functional_fractional_max_pool2d>` ", "二维分数阶最大值池化"
     " :ref:`paddle.nn.functional.fractional_max_pool3d <cn_api_paddle_nn_functional_fractional_max_pool3d>` ", "三维分数阶最大值池化"
+    " :ref:`paddle.nn.functional.lp_pool1d <cn_api_paddle_nn_functional_lp_pool1d>` ", "一维平均幂池化"
+    " :ref:`paddle.nn.functional.lp_pool2d <cn_api_paddle_nn_functional_lp_pool2d>` ", "二维平均幂池化"
 
 .. _padding_functional:
 
@@ -459,6 +470,7 @@ Dropout 方法
 
 
     " :ref:`paddle.nn.functional.alpha_dropout <cn_api_paddle_nn_functional_alpha_dropout>` ", "一种具有自归一化性质的 dropout"
+    " :ref:`paddle.nn.functional.feature_alpha_dropout <cn_api_paddle_nn_functional_feature_alpha_dropout>` ", "一种具有自归一化性质的 dropout ，屏蔽整个通道"
     " :ref:`paddle.nn.functional.dropout <cn_api_paddle_nn_functional_dropout>` ", "Dropout"
     " :ref:`paddle.nn.functional.dropout2d <cn_api_paddle_nn_functional_dropout2d>` ", "一维 Dropout"
     " :ref:`paddle.nn.functional.dropout3d <cn_api_paddle_nn_functional_dropout3d>` ", "二维 Dropout"
@@ -507,7 +519,10 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.triplet_margin_loss <cn_api_paddle_nn_functional_triplet_margin_loss>` ", "用于计算 TripletMarginLoss"
     " :ref:`paddle.nn.functional.triplet_margin_with_distance_loss <cn_api_paddle_nn_functional_triplet_margin_with_distance_loss>` ", "用户自定义距离函数用于计算 triplet margin loss 损失"
     " :ref:`paddle.nn.functional.multi_label_soft_margin_loss <cn_api_paddle_nn_functional_multi_label_soft_margin_loss>` ", "用于计算多分类的 hinge loss 损失函数"
+    " :ref:`paddle.nn.functional.hinge_embedding_loss <cn_api_paddle_nn_functional_hinge_embedding_loss>` ", "计算输入 input 和标签 label（包含 1 和 -1） 间的 `hinge embedding loss` 损失"
+    " :ref:`paddle.nn.functional.rnnt_loss <cn_api_paddle_nn_functional_rnnt_loss>` ", "计算 RNNT loss，也可以叫做 softmax with RNNT"
     " :ref:`paddle.nn.functional.multi_margin_loss <cn_api_paddle_nn_functional_multi_margin_loss>` ", "用于计算 multi margin loss 损失函数"
+    " :ref:`paddle.nn.functional.adaptive_log_softmax_with_loss <cn_api_paddle_nn_functional_adaptive_log_softmax_with_loss>` ", "自适应 logsoftmax 损失函数"
 
 
 .. _common_functional:
@@ -538,6 +553,7 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.temporal_shift <cn_api_paddle_nn_functional_temporal_shift>` ", "用于对输入 X 做时序通道 T 上的位移操作，为 TSM 中使用的操作"
     " :ref:`paddle.nn.functional.upsample <cn_api_paddle_nn_functional_upsample>` ", "用于调整一个 batch 中图片的大小"
     " :ref:`paddle.nn.functional.class_center_sample <cn_api_paddle_nn_functional_class_center_sample>` ", "用于 PartialFC 类别中心采样"
+    " :ref:`paddle.nn.functional.channel_shuffle <cn_api_paddle_nn_functional_channel_shuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的 Tensor 按通道分成 g 组，得到形为[N, g, C/g, H, W]或[N, H, W, g, C/g]的 Tensor，然后转置为[N, C/g, g, H, W]或[N, H, W, C/g, g]的形状，最后重新排列为原来的形状"
 
 .. _about_initializer:
 

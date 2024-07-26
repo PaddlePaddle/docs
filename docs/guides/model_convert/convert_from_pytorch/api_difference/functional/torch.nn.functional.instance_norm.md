@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.functional.instance_norm
+## [ 输入参数用法不一致 ]torch.nn.functional.instance_norm
 
 ### [torch.nn.functional.instance_norm](https://pytorch.org/docs/stable/generated/torch.nn.functional.instance_norm.html#torch.nn.functional.instance_norm)
 

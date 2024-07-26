@@ -1,4 +1,4 @@
-## [ 参数不一致 ] torch.Tensor.swapaxes
+## [ 输入参数用法不一致 ] torch.Tensor.swapaxes
 
 ### [torch.Tensor.swapaxes](https://pytorch.org/docs/stable/generated/torch.Tensor.swapaxes.html#torch.Tensor.swapaxes)
 
@@ -20,7 +20,7 @@ paddle.transpose(x,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| _         | <font color='red'>x</font>            | 输入 Tensor。                                       |
+| -             | <font color='red'>x</font>            | 输入 Tensor。                                       |
 | <font color='red'>axis0</font>      | -           | PyTorch 转置的第一个维度，Paddle 无此参数，需要转写。                   |
 | <font color='red'>axis1</font>      | -           | PyTorch 转置的第二个维度，Paddle 无此参数，需要转写。                   |
 | -             | <font color='red'>perm</font>     | PyTorch 无此参数。 Paddle 可通过 perm 参数，等价的实现 torch 的 axis0、axis1 的功能。|

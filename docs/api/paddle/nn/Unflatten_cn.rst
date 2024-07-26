@@ -3,7 +3,7 @@
 Unflatten
 -------------------------------
 
-.. py:function:: paddle.nn.Unflatten(axis, shape, name=None)
+.. py:class:: paddle.nn.Unflatten(axis, shape, name=None)
 
 
 

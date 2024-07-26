@@ -14,7 +14,7 @@ Paddle Inference 功能特性丰富，性能优异，针对不同平台不同的
 
 ## 与主框架 model.predict 区别
 
-飞桨推理产品 paddle inference 和主框架的 Model.predict 均可实现推理预测，Paddle Inference 是飞桨的原生推理库， 作用于服务器端和云端，提供高性能的推理能力，主框架的 Model 对象是一个具备训练、测试、推理的神经网络。相比于 Model.predict，inference 可使用 MKLDNN、CUDNN、TensorRT 进行预测加速，同时支持用 X2Paddle 工具从第三方框架（TensorFlow、Pytorh 、 Caffe 等）产出的模型，可联动 PaddleSlim，支持加载量化、裁剪和蒸馏后的模型部署。Model.predict 适用于训练好的模型直接进行预测，paddle inference 适用于对推理性能、通用性有要求的用户，针对不同平台不同的应用场景进行了深度的适配优化，保证模型在服务器端即训即用，快速部署。
+飞桨推理产品 paddle inference 和主框架的 Model.predict 均可实现推理预测，Paddle Inference 是飞桨的原生推理库， 作用于服务器端和云端，提供高性能的推理能力，主框架的 Model 对象是一个具备训练、测试、推理的神经网络。相比于 Model.predict，inference 可使用 MKLDNN、CUDNN、TensorRT 进行预测加速，同时支持用 X2Paddle 工具从第三方框架（TensorFlow、PyTorch、Caffe 等）产出的模型，可联动 PaddleSlim，支持加载量化、裁剪和蒸馏后的模型部署。Model.predict 适用于训练好的模型直接进行预测，paddle inference 适用于对推理性能、通用性有要求的用户，针对不同平台不同的应用场景进行了深度的适配优化，保证模型在服务器端即训即用，快速部署。
 
 ## 预测流程图
 
@@ -56,7 +56,7 @@ PaddleSlim 是飞桨深度学习模型压缩工具，Paddle Inference 可联动 
 
 ### 主流软硬件环境兼容适配
 
-支持服务器端 X86 CPU、NVIDIA GPU 芯片，兼容 Linux/Mac/Windows 系统，同时对飞腾、鲲鹏、曙光、昆仑等国产 CPU/NPU 进行适配。。支持所有飞桨训练产出的模型，完全做到即训即用。
+支持服务器端 X86 CPU、NVIDIA GPU 芯片，兼容 Linux/Mac/Windows 系统，同时对飞腾、鲲鹏、曙光、昆仑芯等国产 CPU/NPU 进行适配。支持所有飞桨训练产出的模型，完全做到即训即用。
 
 ### 主流、国产操作系统全适配
 

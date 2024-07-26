@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.ShortTensor
+## [ paddle 参数更多 ] torch.ShortTensor
 
 ### [torch.ShortTensor](https://pytorch.org/docs/stable/tensors.html)
 

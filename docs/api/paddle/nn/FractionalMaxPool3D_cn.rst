@@ -4,7 +4,7 @@
 FractionalMaxPool3D
 -------------------------------
 
-.. py:function:: paddle.nn.FractionalMaxPool3D(output_size, kernel_size=None, random_u=None, return_mask=False, name=None)
+.. py:class:: paddle.nn.FractionalMaxPool3D(output_size, kernel_size=None, random_u=None, return_mask=False, name=None)
 
 对输入的 Tensor `x` 采取 `2` 维分数阶最大值池化操作，具体可以参考论文：
 

@@ -3,7 +3,7 @@
 get_image_backend
 -------------------------------
 
-.. py:function:: paddle.vision.image.get_image_backend()
+.. py:function:: paddle.vision.get_image_backend()
 
 获取用于加载图像的模块名称。
 
@@ -16,4 +16,4 @@ get_image_backend
 代码示例
 :::::::::
 
-COPY-FROM: paddle.vision.image.get_image_backend
+COPY-FROM: paddle.vision.get_image_backend

@@ -1,8 +1,8 @@
-## [ 仅 paddle 参数更多 ]torch.Tensor.softmax
+## [ paddle 参数更多 ]torch.Tensor.softmax
 ### [torch.Tensor.softmax](https://pytorch.org/docs/stable/generated/torch.Tensor.softmax.html?highlight=softmax#torch.Tensor.softmax)
 
 ```python
-torch.Tensor.softmax(dim)
+torch.Tensor.softmax(dim, dtype)
 ```
 
 ### [paddle.nn.functional.softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/softmax_cn.html#softmax)
@@ -12,10 +12,11 @@ paddle.nn.functional.softmax(x, axis=-1, dtype=None, name=None)
 ```
 
 功能一致，torch 是类成员方式，paddle 是 function 调用，具体差异如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | dim           | axis         | 计算 softmax 的轴，仅参数名不一致。                                         |
+| dtype         | dtype        | 数据类型，参数完全一致。                                         |
 
 ### 转写示例
 #### dim: 计算 softmax 的轴

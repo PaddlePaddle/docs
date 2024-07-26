@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.cuda.FloatTensor
+## [ paddle 参数更多 ] torch.cuda.FloatTensor
 
 ### [torch.cuda.FloatTensor](https://pytorch.org/docs/stable/tensors.html)
 

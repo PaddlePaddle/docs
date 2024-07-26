@@ -16,13 +16,15 @@ paddle.distributed.ReduceOp
 
 其中，规约操作对应如下：
 
-|  torch   | paddle  |
-|  ----  | ----  |
-| SUM  | SUM |
-| PRODUCT  | PROD |
-| MIN | MIN |
-| MAX | MAX |
-| BAND | - |
-| BOR | - |
-| BXOR | - |
-| PREMUL_SUM | -  |
+### 参数映射
+
+|  PyTorch   | PaddlePaddle  | 备注 |
+|  ----  | ----  | --- |
+| SUM  | SUM | |
+| PRODUCT  | PROD | |
+| MIN | MIN | |
+| MAX | MAX | |
+| BAND | - | |
+| BOR | - | |
+| BXOR | - | |
+| PREMUL_SUM | -  | |
