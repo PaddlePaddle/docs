@@ -16,6 +16,7 @@ chunk
        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
        - **图例** 设**x**的尺寸为(3,3,3)，**chunks**值为 3，**axis**值为 0。
 .. image:: ../../images/chunk.png
+       :alt: 图例
 
 返回
 ::::::::::::
