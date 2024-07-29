@@ -19,6 +19,7 @@ chunk
 
 .. image:: ../../images/chunk.png
    :alt: 图例
+   :width: 500
 
 返回
 ::::::::::::
