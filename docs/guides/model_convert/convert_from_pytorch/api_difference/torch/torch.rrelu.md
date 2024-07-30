@@ -16,9 +16,9 @@ paddle.nn.functional.rrelu(x, lower=1./8, upper=1./3, training=True, name=None)
 
 ### 参数映射
 
-| PyTorch  | PaddlePaddle | 备注                                                                                                            |
-| -------- | ------------ | --------------------------------------------------------------------------------------------------------------- |
-| input    | x            | 输入的 Tensor，仅参数名不一致。                                                                                 |
-| lower    | lower        | 负值斜率的随机值范围下限。                                                                                      |
-| upper    | upper        | 负值斜率的随机值范围上限。                                                                                      |
-| training | training     | 标记是否为训练阶段，仅参数默认值不一致。                                                                                            |
+| PyTorch  | PaddlePaddle | 备注                                      |
+| -------- | ------------ | ----------------------------------------- |
+| input    | x            | 输入的 Tensor，仅参数名不一致。               |
+| lower    | lower        | 负值斜率的随机值范围下限。                    |
+| upper    | upper        | 负值斜率的随机值范围上限。                     |
+| training | training     | 标记是否为训练阶段，参数默认值不一致。           |
