@@ -16,7 +16,7 @@ paddle.incubate.nn.functional.fused_rms_norm(x, norm_weight, norm_bias, epsilon,
 
 ### 参数映射
 
-| PyTorch           | PaddlePaddle      | 备注                |
+| flash_attn           | PaddlePaddle      | 备注                |
 | ----------------- | ----------------- | ------------------------------------------------------------ |
 | x                 | x                 |  输入 Tensor。|
 | weight            | norm_weight       |  用于仿射输出的权重张量。|

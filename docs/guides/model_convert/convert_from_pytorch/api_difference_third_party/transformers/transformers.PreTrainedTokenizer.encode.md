@@ -14,7 +14,7 @@ paddlenlp.transformers.PreTrainedTokenizer.encode(text, **kwargs)
 
 ### 参数映射
 
-| PyTorch       | PaddlePaddle | 备注                                                   |
+| transformers  | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | text          | text         | 输入的编码文本。  |
 | 返回值         | 返回值        | PyTorch 返回 Tensor 类型，Paddle 返回类型为 `BatchEncoding`，是一种 dict-like 对象，key 包含 `input_ids`、`attention_mask` 等属性，需要转写。 |
