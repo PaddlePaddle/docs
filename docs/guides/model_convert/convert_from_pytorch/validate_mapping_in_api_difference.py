@@ -653,134 +653,66 @@ def get_doc_url_from_meta(basedir, meta):
     return diffurl
 
 
-def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
-    target = {k + "XX": {} for k in _TABLE_PREFIXES}
-    target["torch.XX"] = {}
-    target["others"] = {}
-
-    for torch_api, column in INDEX_ALL_APIS.items():
-        api_type = get_api_type_from_torch_api(torch_api)
-        target[api_type][torch_api] = column
-
-    filled_count = 0
-
-    for torch_api, meta in meta_dict.items():
-        api_type = get_api_type_from_torch_api(torch_api)
-
-        diffurl = get_doc_url_from_meta(basedir, meta)
-
-        column = f"REFERENCE-MAPPING-ITEM(`{torch_api}`, {diffurl})"
-        if torch_api in target[api_type]:
-            # if conflict,
-            # pass means replace, continue means skip
-            if target[api_type][torch_api] != column:
-                # if before is NOT-IMPLEMENTED-ITEM, replace
-                if target[api_type][torch_api].startswith(
-                    "NOT-IMPLEMENTED-ITEM"
-                ):
-                    pass
-                # if before is MANUAL_MAINTAINING_PATTERN, replace
-                elif target[api_type][torch_api].startswith(
-                    "MANUAL_MAINTAINING_PATTERN"
-                ):
-                    pass
-                # if before is X2Paddle, skip
-                elif (
-                    "https://github.com/PaddlePaddle/X2Paddle"
-                    in target[api_type][torch_api]
-                ):
-                    continue
-                else:
-                    print(f"Conflict: {torch_api} in {api_type}")
-                    print(f"  {target[api_type][torch_api]}")
-                    print(f"  {column}")
-                    continue
-            else:
-                continue
-
-        filled_count += 1
-        target[api_type][torch_api] = column
-
+def generate_alias_lines_from_paconvert(basedir, meta_dict) -> None:
     alias_filename = "api_alias_mapping.json"
     alias_filepath = os.path.join(basedir, alias_filename)
-    if os.path.exists(alias_filepath) and os.path.isfile(alias_filepath):
-        target["alias"] = {}
-        with open(alias_filepath, "r", encoding="utf-8") as f:
-            api_alias = json.load(f)
-            for alias_name, api_name in api_alias.items():
-                if api_name in meta_dict:
-                    pass
-                elif alias_name in meta_dict:
-                    # 如果反着有，就交换
-                    api_name, alias_name = alias_name, api_name
-                else:
-                    # 都没有就抛出警告
-                    print(
-                        f"Alias Warning: api `{api_name}` have no mapping doc, failed to reference from alias `{alias_name}`"
-                    )
-                    continue
+    if not os.path.exists(alias_filepath) or not os.path.isfile(alias_filepath):
+        return
 
-                if alias_name in INDEX_ALL_APIS:
-                    # 如果别名和本名都在前面表里，就跳过
-                    continue
+    alias_refer_failed_list = []
+    alias_output = {}
+    with open(alias_filepath, "r", encoding="utf-8") as f:
+        api_alias = json.load(f)
+        for alias_name, api_name in api_alias.items():
+            if api_name in meta_dict:
+                pass
+            elif alias_name in meta_dict:
+                # 如果反着有，就交换
+                api_name, alias_name = alias_name, api_name
+            else:
+                # 都没有就抛出警告
+                alias_refer_failed_list.append((alias_name, api_name))
+                continue
 
-                meta_data = meta_dict[api_name]
+            # TODO: 如果别名和本名都在前面表里，就跳过
+            if alias_name in INDEX_ALL_APIS:
+                continue
 
-                paddle_api = meta_data.get("paddle_api", "-")
-                mapping_type = meta_data["mapping_type"]
-                url = get_doc_url_from_meta(basedir, meta_data)
+            meta_data = meta_dict[api_name]
 
-                alias_col = f"`{alias_name}`"
-                paddle_col = f"`{paddle_api}`"
-                if "torch_api_url" in meta_data:
-                    alias_col = f'[{alias_col}]({meta_data["torch_api_url"]})'
-                if "paddle_api_url" in meta_data:
-                    paddle_col = (
-                        f'[{paddle_col}]({meta_data["paddle_api_url"]})'
-                    )
+            paddle_api = meta_data.get("paddle_api", "-")
+            mapping_type = meta_data["mapping_type"]
+            url = get_doc_url_from_meta(basedir, meta_data)
 
-                # line = " | ".join(
-                #     [
-                #         alias_col,
-                #         paddle_col,
-                #         mapping_type,
-                #         f"`{api_name}`别名，[详细对比]({url})",
-                #     ]
-                # )
-                # target["alias"][alias_name] = line
-                macro_line = (
-                    f"ALIAS-REFERENCE-ITEM(`{alias_name}`, `{api_name}`)"
+            alias_col = f"`{alias_name}`"
+            paddle_col = f"`{paddle_api}`"
+            if "torch_api_url" in meta_data:
+                alias_col = f'[{alias_col}]({meta_data["torch_api_url"]})'
+            if "paddle_api_url" in meta_data:
+                paddle_col = f'[{paddle_col}]({meta_data["paddle_api_url"]})'
+
+            macro_line = f"ALIAS-REFERENCE-ITEM(`{alias_name}`, `{api_name}`)"
+            alias_output[alias_name] = macro_line
+
+    output_path = os.path.join(basedir, "alias_macro_lines.tmp.md")
+    with open(output_path, "w", encoding="utf-8") as f:
+        od_apis = collections.OrderedDict(sorted(alias_output.items()))
+        for api, ref in od_apis.items():
+            f.write(f"| {ref} |\n")
+
+    print(f'generated alias temp file: "{output_path}"')
+
+    if len(alias_refer_failed_list) > 0:
+        fail_log_path = os.path.join(basedir, "alias_refer_failed.log")
+        with open(fail_log_path, "w", encoding="utf-8") as f:
+            for alias_name, api_name in alias_refer_failed_list:
+                f.write(
+                    f"api `{api_name}` have no mapping doc, failed to reference from alias `{alias_name}`\n"
                 )
-                target["alias"][alias_name] = macro_line
-                filled_count += 1
 
-    if filled_count > 0:
-        print(f"filled {filled_count} torch apis for ./api_difference")
-
-        output_path = os.path.join(basedir, "pytorch_api_mapping_cn.tmp.md")
-        with open(output_path, "w", encoding="utf-8") as f:
-            for prefix, apis in target.items():
-                f.write(f"## {prefix}\n\n")
-                od_apis = collections.OrderedDict(sorted(apis.items()))
-                for api, ref in od_apis.items():
-                    if ref.startswith("REFERENCE-MAPPING-ITEM"):
-                        f.write(f"| {ref} |\n")
-                for api, ref in od_apis.items():
-                    if ref.startswith("NOT-IMPLEMENTED-ITEM"):
-                        f.write(f"| {ref} |\n")
-                for api, ref in od_apis.items():
-                    if ref.startswith("MANUAL_MAINTAINING_PATTERN"):
-                        f.write(f"| {ref} |\n")
-                for api, ref in od_apis.items():
-                    if not (
-                        ref.startswith("REFERENCE-MAPPING-ITEM")
-                        or ref.startswith("NOT-IMPLEMENTED-ITEM")
-                        or ref.startswith("MANUAL_MAINTAINING_PATTERN")
-                    ):
-                        f.write(f"| {ref} |\n")
-                f.write("\n")
-
-        print(f'generated temp file: "{output_path}"')
+        print(
+            f'{len(alias_refer_failed_list)} alias reference failed, see log file: "{fail_log_path}"'
+        )
 
 
 if __name__ == "__main__":
@@ -792,15 +724,7 @@ if __name__ == "__main__":
     if not os.path.exists(mapping_index_file):
         raise Exception(f"Cannot find mapping index file: {mapping_index_file}")
 
-    index_data = process_mapping_index(
-        mapping_index_file,
-        collect_mapping_item_processor,
-        {
-            "ret_code": 0,
-        },
-    )
-    # index_data_dict = {i['torch_api'].replace('\_', '_'): i for i in index_data}
-
+    # 获取 api_difference/ 下的 api 映射文档
     api_difference_basedir = os.path.join(cfp_basedir, "api_difference")
 
     mapping_file_pattern = re.compile(r"^torch\.(?P<api_name>.+)\.md$")
@@ -813,7 +737,7 @@ if __name__ == "__main__":
             if mapping_file_pattern.match(filename)
         ]
     )
-    print(f"{len(diff_files)} mapping documents found.")
+    print(f"{len(diff_files)} mapping documents found in api_difference/.")
 
     metas = sorted(
         [get_meta_from_diff_file(f) for f in diff_files],
@@ -836,5 +760,4 @@ if __name__ == "__main__":
     with open(api_diff_output_path, "w", encoding="utf-8") as f:
         json.dump(metas, f, ensure_ascii=False, indent=4)
 
-    # 这个文件主要用来做从 api_alias_mapping 生成对应表格，先保留
-    auto_fill_index_from_api_diff(cfp_basedir, meta_dict)
+    generate_alias_lines_from_paconvert(cfp_basedir, meta_dict)
