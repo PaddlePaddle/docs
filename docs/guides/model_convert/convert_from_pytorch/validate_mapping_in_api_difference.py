@@ -463,7 +463,7 @@ def process_mapping_index(index_path, item_processer, context={}):
 
     """
     if not os.path.exists(index_path):
-        raise Exception(f"Cannot find pysrc_api_mapping_cn.md: {index_path}")
+        raise Exception(f"Cannot find pytorch_api_mapping_cn.md: {index_path}")
 
     with open(index_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
@@ -686,15 +686,7 @@ def get_table_header_by_prefix(prefix):
     return prefix.rstrip(".")
 
 
-if __name__ == "__main__":
-    # convert from pytorch basedir
-    cfp_basedir = os.path.dirname(__file__)
-    # pysrc_api_mapping_cn
-    mapping_index_file = os.path.join(cfp_basedir, "pytorch_api_mapping_cn.md")
-
-    if not os.path.exists(mapping_index_file):
-        raise Exception(f"Cannot find mapping index file: {mapping_index_file}")
-
+def get_all_metas(cfp_basedir):
     # 获取 api_difference/ 下的 api 映射文档
     diff_3rd_basedir = os.path.join(cfp_basedir, "api_difference_third_party")
 
@@ -725,6 +717,19 @@ if __name__ == "__main__":
 
     metas.sort(key=lambda x: x["src_api"])
     print(f"extracted {len(metas)} mapping metas data.")
+    return metas
+
+
+if __name__ == "__main__":
+    # convert from pytorch basedir
+    cfp_basedir = os.path.dirname(__file__)
+    # pysrc_api_mapping_cn
+    mapping_index_file = os.path.join(cfp_basedir, "pytorch_api_mapping_cn.md")
+
+    if not os.path.exists(mapping_index_file):
+        raise Exception(f"Cannot find mapping index file: {mapping_index_file}")
+
+    metas = get_all_metas(cfp_basedir)
 
     for m in metas:
         if m["mapping_type"] not in mapping_type_set:

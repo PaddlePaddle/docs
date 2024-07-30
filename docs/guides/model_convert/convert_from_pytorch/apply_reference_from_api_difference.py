@@ -9,7 +9,7 @@ print(script_dir)
 
 from validate_mapping_in_api_difference import (
     DiffMeta,
-    get_meta_from_diff_file,
+    get_all_metas,
     process_mapping_index as reference_mapping_item,
 )
 
@@ -60,26 +60,23 @@ def mapping_type_to_description(mapping_type):
         return "无对应 API，可以直接删除，对网络一般无影响", False
 
     raise ValueError(
-        f"Unexpected pyTorch-PaddlePaddle api mapping type {mapping_type}, please check  "
+        f"Unexpected PyTorch-PaddlePaddle api mapping type {mapping_type}, please check  "
     )
     return "【未知类型】", False
 
 
 # 以后没有 REFERENCE-ITEM 需要维护了，全部从 api_difference/ 目录生成
 _REFERENCE_ITEM_PATTERN = re.compile(
-    r"^\| *REFERENCE-MAPPING-ITEM\( *(?P<torch_api>[^,]+) *, *(?P<diff_url>.+) *\) *\|$"
+    r"^\| *REFERENCE-MAPPING-ITEM\( *(?P<src_api>[^,]+) *, *(?P<diff_url>.+) *\) *\|$"
 )
 REFERENCE_TABLE_PATTERN = re.compile(
     r"^\| *REFERENCE-MAPPING-TABLE\( *(?P<api_prefix>[^,]+) *(, *max_depth *= *(?P<max_depth>\d+) *)?\) *\|$"
 )
 ALIAS_PATTERN = re.compile(
-    r"^\| *ALIAS-REFERENCE-ITEM\( *(?P<alias_name>[^,]+) *, *(?P<torch_api>[^,]+) *\) *\|$"
+    r"^\| *ALIAS-REFERENCE-ITEM\( *(?P<alias_name>[^,]+) *, *(?P<src_api>[^,]+) *\) *\|$"
 )
 NOT_IMPLEMENTED_PATTERN = re.compile(
-    r"^\| *NOT-IMPLEMENTED-ITEM\( *(?P<torch_api>[^,]+) *, *(?P<torch_api_url>.+) *\) *\|$"
-)
-MANUAL_MAINTAINING_PATTERN = re.compile(
-    r"^\| *MANUAL_MAINTAINING-ITEM\(*(?P<torch_api>[^,]+) *,*(?P<torch_url>[^,]+) *, *(?P<paddle_api>[^,]+) *,*(?P<paddle_url>[^,]+) *, *(?P<mapping_type_desc>[^,]+) *, *(?P<diff_url>.+) *\) *\|$"
+    r"^\| *NOT-IMPLEMENTED-ITEM\( *(?P<src_api>[^,]+) *, *(?P<src_api_url>.+) *\) *\|$"
 )
 
 
@@ -116,17 +113,17 @@ def reference_table_match_to_condition(m):
     return api_prefix, max_depth
 
 
-def get_referenced_api_columns(torch_api, metadata_dict, alias=None):
+def get_referenced_api_columns(src_api, metadata_dict, alias=None):
     assert (
-        torch_api in metadata_dict
-    ), f'Error: cannot find mapping doc of api "{torch_api}"'
-    api_data: DiffMeta = metadata_dict[torch_api]
+        src_api in metadata_dict
+    ), f'Error: cannot find mapping doc of api "{src_api}"'
+    api_data: DiffMeta = metadata_dict[src_api]
 
     diff_page_url = doc_path_to_relative_page(api_data["source_file"])
 
-    torch_api_url = api_data["torch_api_url"]
-    api_disp_name = torch_api if alias is None else alias
-    torch_api_column = f"[`{api_disp_name}`]({torch_api_url})"
+    src_api_url = api_data["src_api_url"]
+    api_disp_name = src_api if alias is None else alias
+    src_api_column = f"[`{api_disp_name}`]({src_api_url})"
 
     mapping_type = api_data["mapping_type"]
     mapping_type_column = mapping_type
@@ -138,20 +135,20 @@ def get_referenced_api_columns(torch_api, metadata_dict, alias=None):
     if show_diff_url:
         desc_column = f"[详细对比]({diff_page_url})"
         if alias is not None:
-            desc_column = f"`{torch_api}` 别名，{desc_column}"
+            desc_column = f"`{src_api}` 别名，{desc_column}"
 
-    if "paddle_api" not in api_data:
+    if "dst_api" not in api_data:
         if mapping_type not in ["组合替代实现", "可删除", "功能缺失"]:
-            print(f"Error: cannot find paddle_api for torch_api: {torch_api}")
-        paddle_api_column = ""
+            print(f"Error: cannot find dst_api for src_api: {src_api}")
+        dst_api_column = ""
     else:
-        paddle_api = api_data["paddle_api"]
-        paddle_api_url = api_data["paddle_api_url"]
-        paddle_api_column = f"[`{paddle_api}`]({paddle_api_url})"
+        dst_api = api_data["dst_api"]
+        dst_api_url = api_data["dst_api_url"]
+        dst_api_column = f"[`{dst_api}`]({dst_api_url})"
 
     return [
-        torch_api_column,
-        paddle_api_column,
+        src_api_column,
+        dst_api_column,
         mapping_type_column,
         desc_column,
     ]
@@ -161,7 +158,6 @@ def apply_reference_to_row_ex(line, metadata_dict, context, line_idx):
     reference_table_match = REFERENCE_TABLE_PATTERN.match(line)
     alias_match = ALIAS_PATTERN.match(line)
     not_implemented_match = NOT_IMPLEMENTED_PATTERN.match(line)
-    manual_maintaining_match = MANUAL_MAINTAINING_PATTERN.match(line)
 
     row_idx_s = str(context["table_row_idx"])
 
@@ -183,10 +179,10 @@ def apply_reference_to_row_ex(line, metadata_dict, context, line_idx):
         return output_lines
     elif alias_match:
         alias_name = alias_match["alias_name"].strip("`").replace(r"\_", "_")
-        torch_api = alias_match["torch_api"].strip("`").replace(r"\_", "_")
+        src_api = alias_match["src_api"].strip("`").replace(r"\_", "_")
 
         content = get_referenced_api_columns(
-            torch_api, metadata_dict, alias=alias_name
+            src_api, metadata_dict, alias=alias_name
         )
 
         content.insert(0, row_idx_s)
@@ -194,59 +190,21 @@ def apply_reference_to_row_ex(line, metadata_dict, context, line_idx):
         output = "| " + " | ".join(content) + " |\n"
         return [output]
     elif not_implemented_match:
-        torch_api = (
-            not_implemented_match["torch_api"].strip("`").replace(r"\_", "_")
+        src_api = (
+            not_implemented_match["src_api"].strip("`").replace(r"\_", "_")
         )
-        torch_api_url = not_implemented_match["torch_api_url"].strip()
+        src_api_url = not_implemented_match["src_api_url"].strip()
 
-        torch_api_column = f"[`{torch_api}`]({torch_api_url})"
+        src_api_column = f"[`{src_api}`]({src_api_url})"
 
-        paddle_api_column = ""
+        dst_api_column = ""
         mapping_column = "功能缺失"
         mapping_url_column = ""
 
         content = [
             row_idx_s,
-            torch_api_column,
-            paddle_api_column,
-            mapping_column,
-            mapping_url_column,
-        ]
-        output = "| " + " | ".join(content) + " |\n"
-        return [output]
-
-    elif manual_maintaining_match:
-        torch_api = (
-            manual_maintaining_match["torch_api"].strip("`").replace(r"\_", "_")
-        )
-        torch_url = (
-            manual_maintaining_match["torch_url"].strip("`").replace(r"\_", "_")
-        )
-        paddle_api = (
-            manual_maintaining_match["paddle_api"]
-            .strip("`")
-            .replace(r"\_", "_")
-        )
-        paddle_url = (
-            manual_maintaining_match["paddle_url"]
-            .strip("`")
-            .replace(r"\_", "_")
-        )
-        mapping_column = (
-            manual_maintaining_match["mapping_type_desc"]
-            .strip()
-            .replace(r"\_", "_")
-        )
-        diff_page_url = (
-            manual_maintaining_match["diff_url"].strip("`").replace(r"\_", "_")
-        )
-        mapping_url_column = f"[详细对比]({diff_page_url})"
-        torch_api_column = f"[`{torch_api}`]({torch_url})"
-        paddle_api_column = f"[`{paddle_api}`]({paddle_url})"
-        content = [
-            row_idx_s,
-            torch_api_column,
-            paddle_api_column,
+            src_api_column,
+            dst_api_column,
             mapping_column,
             mapping_url_column,
         ]
@@ -333,28 +291,12 @@ def get_c2a_dict(conditions, meta_dict):
 if __name__ == "__main__":
     # convert from pytorch basedir
     cfp_basedir = os.path.dirname(__file__)
-    # pytorch_api_mapping_cn
+    # pysrc_api_mapping_cn
     mapping_index_file = os.path.join(cfp_basedir, "pytorch_api_mapping_cn.md")
 
-    api_difference_basedir = os.path.join(cfp_basedir, "api_difference")
+    metas = get_all_metas(cfp_basedir)
 
-    mapping_file_pattern = re.compile(r"^torch\.(?P<api_name>.+)\.md$")
-    # get all diff files (torch.*.md)
-    diff_files = sorted(
-        [
-            os.path.join(path, filename)
-            for path, _, file_list in os.walk(api_difference_basedir)
-            for filename in file_list
-            if mapping_file_pattern.match(filename)
-        ]
-    )
-
-    metas = sorted(
-        [get_meta_from_diff_file(f) for f in diff_files],
-        key=lambda x: x["torch_api"],
-    )
-
-    meta_dict = {m["torch_api"].replace(r"\_", "_"): m for m in metas}
+    meta_dict = {m["src_api"].replace(r"\_", "_"): m for m in metas}
 
     reference_context = {
         "metadata_dict": meta_dict,
