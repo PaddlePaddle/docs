@@ -96,6 +96,12 @@
             python -m pip install --pre paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
 
     (2). **GPU 版本** ：如果您想使用 GPU 版本请参考如下命令安装
+        
+        注意：
+
+            * 如果您想要安装CUDA 12.3版本，该版本需要libstdc++.so.6的版本大于3.4.30。为了满足此要求，您可以选择安装GCC 12版本，或者单独升级libstdc++库。
+
+            * 如果你想要安装CUDA 11.8版本，该版本要求libstdc++.so.6的版本大于3.4.25。为了满足此要求，您可以选择安装GCC 8或者更高的GCC版本，或者单独升级libstdc++库。
 
         安装 GPU cuda12.3 版本的命令为：
         ::
