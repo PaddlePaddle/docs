@@ -9,7 +9,7 @@
   重要更新
 -----------
 
-* 支持用户安装paddle不依赖cuda和cudnn，Paddle自动处理CUDA和cuDNN的安装
+* 支持用户安装 paddle 不依赖 cuda 和 cudnn，Paddle 自动处理 CUDA 和 cuDNN 的安装
 
 
 -----------
@@ -29,7 +29,7 @@
 **2. 处理器要求**
 
 * 处理器支持 MKL
-* 处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构，目前 PaddlePaddle 仅提供 arm64 架构下 cpu wheel包，不提供arm 64 架构下 gpu wheel包
+* 处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构，目前 PaddlePaddle 仅提供 arm64 架构下 cpu wheel 包，不提供 arm 64 架构下 gpu wheel 包
 
 **3. Python 和 pip 版本要求：**
 
@@ -97,12 +97,12 @@
 
     (2). **GPU 版本** ：如果您想使用 GPU 版本请参考如下命令安装
 
-        安装 GPU cuda12.3版本的命令为：
+        安装 GPU cuda12.3 版本的命令为：
         ::
 
             python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu123/
 
-        安装 GPU cuda11.8版本的命令为：
+        安装 GPU cuda11.8 版本的命令为：
         ::
             python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu118/
 
