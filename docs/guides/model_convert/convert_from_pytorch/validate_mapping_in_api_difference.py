@@ -666,7 +666,7 @@ def generate_alias_lines_from_paconvert(basedir, meta_dict) -> None:
         )
 
 
-def get_markdown_files(base_dir, prefix="torch."):
+def discover_markdown_files(base_dir, prefix="torch."):
     pattern = re.compile(f"^{re.escape(prefix)}.*{re.escape('.md')}$")
     markdown_files = []
     for path, _, file_list in os.walk(base_dir):
@@ -686,7 +686,7 @@ def get_table_header_by_prefix(prefix):
     return prefix.rstrip(".")
 
 
-def get_all_metas(cfp_basedir):
+def discover_all_metas(cfp_basedir):
     # 获取 api_difference/ 下的 api 映射文档
     diff_3rd_basedir = os.path.join(cfp_basedir, "api_difference_third_party")
 
@@ -701,7 +701,7 @@ def get_all_metas(cfp_basedir):
     diff_files = []
     for diff_src, api_prefix, dst_prefix in diff_srcs:
         basedir = os.path.join(cfp_basedir, diff_src)
-        files = get_markdown_files(basedir, api_prefix)
+        files = discover_markdown_files(basedir, api_prefix)
         diff_files.append(((api_prefix, dst_prefix), files))
 
         print(
@@ -729,7 +729,7 @@ if __name__ == "__main__":
     if not os.path.exists(mapping_index_file):
         raise Exception(f"Cannot find mapping index file: {mapping_index_file}")
 
-    metas = get_all_metas(cfp_basedir)
+    metas = discover_all_metas(cfp_basedir)
 
     for m in metas:
         if m["mapping_type"] not in mapping_type_set:

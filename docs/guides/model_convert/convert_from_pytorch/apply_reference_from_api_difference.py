@@ -9,7 +9,7 @@ print(script_dir)
 
 from validate_mapping_in_api_difference import (
     DiffMeta,
-    get_all_metas,
+    discover_all_metas,
     process_mapping_index as reference_mapping_item,
 )
 
@@ -155,11 +155,17 @@ def get_referenced_api_columns(src_api, metadata_dict, alias=None):
 
 
 def apply_reference_to_row_ex(line, metadata_dict, context, line_idx):
+    line = line.rstrip()
     reference_table_match = REFERENCE_TABLE_PATTERN.match(line)
     alias_match = ALIAS_PATTERN.match(line)
     not_implemented_match = NOT_IMPLEMENTED_PATTERN.match(line)
 
     row_idx_s = str(context["table_row_idx"])
+
+    def record_api(api):
+        if api not in context["api_used_src"]:
+            context["api_used_src"][api] = []
+        context["api_used_src"][api].append((line_idx, line))
 
     if reference_table_match:
         condition = reference_table_match_to_condition(reference_table_match)
@@ -169,6 +175,8 @@ def apply_reference_to_row_ex(line, metadata_dict, context, line_idx):
         output_lines = []
         cur_row_idx = context["table_row_idx"]
         for api in api_list:
+            record_api(api)
+
             content = get_referenced_api_columns(api, metadata_dict)
             content.insert(0, str(cur_row_idx))
             output = "| " + " | ".join(content) + " |\n"
@@ -179,6 +187,9 @@ def apply_reference_to_row_ex(line, metadata_dict, context, line_idx):
         return output_lines
     elif alias_match:
         alias_name = alias_match["alias_name"].strip("`").replace(r"\_", "_")
+
+        record_api(alias_name)
+
         src_api = alias_match["src_api"].strip("`").replace(r"\_", "_")
 
         content = get_referenced_api_columns(
@@ -193,6 +204,8 @@ def apply_reference_to_row_ex(line, metadata_dict, context, line_idx):
         src_api = (
             not_implemented_match["src_api"].strip("`").replace(r"\_", "_")
         )
+        record_api(src_api)
+
         src_api_url = not_implemented_match["src_api_url"].strip()
 
         src_api_column = f"[`{src_api}`]({src_api_url})"
@@ -288,13 +301,17 @@ def get_c2a_dict(conditions, meta_dict):
     return c2a_dict
 
 
+# 是否写回到源文件
+FLAG_WRITE_INPLACE = True
+
+
 if __name__ == "__main__":
     # convert from pytorch basedir
     cfp_basedir = os.path.dirname(__file__)
     # pysrc_api_mapping_cn
     mapping_index_file = os.path.join(cfp_basedir, "pytorch_api_mapping_cn.md")
 
-    metas = get_all_metas(cfp_basedir)
+    metas = discover_all_metas(cfp_basedir)
 
     meta_dict = {m["src_api"].replace(r"\_", "_"): m for m in metas}
 
@@ -303,6 +320,7 @@ if __name__ == "__main__":
         "ret_code": 0,
         "output": [],
         "table_conditions": [],
+        "api_used_src": {},
     }
 
     # 第一遍预读，用来分析有哪些表格和匹配条件
@@ -321,7 +339,20 @@ if __name__ == "__main__":
         mapping_index_file, reference_mapping_item_processer, reference_context
     )
 
-    with open(mapping_index_file, "w", encoding="utf-8") as f:
+    # 检查是否重复出现
+    for api, rows in reference_context["api_used_src"].items():
+        if len(rows) > 1:
+            row_ids = [r[0] for r in rows]
+            print(f"Error: {api} used in multiple rows: {row_ids}")
+            for row_id, line in rows:
+                print(f"  - row [{row_id}]: {line}")
+
+    # 是否生成并写入到源文件
+    output_path = mapping_index_file
+    if not FLAG_WRITE_INPLACE:
+        output_path = os.path.join(cfp_basedir, "generated.tmp.md")
+
+    with open(output_path, "w", encoding="utf-8") as f:
         f.writelines(reference_context["output"])
 
     # 映射关系文件的保存流程移动至 `validate_mapping_in_api_difference.py`

@@ -1,5 +1,6 @@
 # temp files used locally
 alias_macro_lines.tmp.md
+generated.tmp.md
 
 # files will be used in PaConvert
 docs_mappings.json
