@@ -22,7 +22,42 @@ tensor_split
 list[Tensor]，分割后的 Tensor 列表。
 
 
-代码示例
+代码示例 1
 :::::::::
 
-COPY-FROM: paddle.tensor_split
+COPY-FROM: paddle.tensor_split:code-example-1
+
+.. image:: ../../images/api_legend/tensor_split/tensor_split-1.png
+   :alt: 图例-1
+
+代码示例 2
+:::::::::::
+
+COPY-FROM: paddle.tensor_split:code-example-2
+
+.. image:: ../../images/api_legend/tensor_split/tensor_split-2.png
+   :alt: 图例-2
+
+代码示例 3
+:::::::::::
+
+COPY-FROM: paddle.tensor_split:code-example-3
+
+.. image:: ../../images/api_legend/tensor_split/tensor_split-3.png
+   :alt: 图例-3
+
+代码示例 4
+:::::::::::
+
+COPY-FROM: paddle.tensor_split:code-example-4
+
+.. image:: ../../images/api_legend/tensor_split/tensor_split-4.png
+   :alt: 图例-4
+
+代码示例 5
+:::::::::::
+
+COPY-FROM: paddle.tensor_split:code-example-5
+
+.. image:: ../../images/api_legend/tensor_split/tensor_split-5.png
+   :alt: 图例-5
