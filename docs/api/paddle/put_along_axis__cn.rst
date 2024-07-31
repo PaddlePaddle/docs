@@ -3,7 +3,7 @@
 put_along_axis\_
 -------------------------------
 
-.. py:function:: paddle.put_along_axis_(indices, value, axis, reduce, include_self, broadcast)
+.. py:function:: paddle.put_along_axis_(indices, values, axis, reduce='assign', include_self=True, broadcast=True)
 
 Inplace 版本的 :ref:`cn_api_paddle_put_along_axis` API，对输入 `x` 采用 Inplace 策略。
 
