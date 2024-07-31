@@ -9,8 +9,7 @@
   重要更新
 -----------
 
-* 新增对 python3.12 的支持，并不再支持 python3.7
-* 新增对 CUDA 12.0 的支持，并不再支持 CUDA 10.2
+* 支持用户安装paddle不依赖cuda和cudnn，Paddle自动处理CUDA和cuDNN的安装
 
 
 -----------
@@ -21,8 +20,8 @@
 
 **1. 操作系统要求：**
 
-* Windows 7 / 8 / 10，专业版 / 企业版
-* Ubuntu 18.04 / 20.04
+* Windows 7 / 8 / 10/ 11，专业版 / 企业版
+* Ubuntu 20.04 / 22.04
 * CentOS 7
 * macOS 10.x/11.x/12.x/13.x/14.x
 * 操作系统要求是 64 位版本
@@ -30,63 +29,13 @@
 **2. 处理器要求**
 
 * 处理器支持 MKL
-* 处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构，目前 PaddlePaddle 不支持 arm64 架构
+* 处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构，目前 PaddlePaddle 仅提供 arm64 架构下 cpu wheel包，不提供arm 64 架构下 gpu wheel包
 
 **3. Python 和 pip 版本要求：**
 
 * Python 的版本要求 3.8/3.9/3.10/3.11/3.12
 * Python 具有 pip, 且 pip 的版本要求 20.2.2+
 * Python 和 pip 要求是 64 位版本
-
-**4. PaddlePaddle 对 GPU 支持情况：**
-
-* 目前 **PaddlePaddle** 支持 **NVIDIA** 显卡的 **CUDA** 驱动和 **AMD** 显卡的 **ROCm** 架构
-* 需要安装 `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，版本要求 7.6+(For CUDA11+)
-* 如果您需要 GPU 多卡模式，需要安装 `NCCL 2 <https://developer.nvidia.com/nccl/>`_
-
-    * 仅 Ubuntu/CentOS 支持 NCCL 2 技术
-* 需要安装 `CUDA <https://docs.nvidia.com/cuda/cuda-installation-guide-windows/>`_ ，根据您系统不同，对 CUDA 版本要求不同：
-
-    * Windows 安装 GPU 版本
-
-        * Windows 7/8/10 支持 CUDA 11.0/11.2/11.6/11.8/12.0 单卡模式
-        * 不支持 **nvidia-docker** 方式安装
-    * Ubuntu 安装 GPU 版本
-
-        * Ubuntu 18.04 支持 CUDA (11.0 - 12.0)
-        * Ubuntu 20.04 支持 CUDA (11.0 - 12.0)
-        * 如果您是使用 **nvidia-docker** 安装，支持 CUDA 11.2/11.7/12.0
-    * CentOS 安装 GPU 版本
-
-        * 如果您是使用本机 **pip** 安装：
-
-            * CentOS 7 支持 CUDA (11.0 - 12.0)
-        * 如果您是使用本机源码编译安装：
-
-            * CentOS 7 支持 CUDA (11.0 - 12.0)
-        * 如果您是使用 **nvidia-docker** 安装，在 CentOS 7 下支持 CUDA 11.2/11.7/12.0
-    * macOS 不支持：macOS 平台不支持 GPU 安装
-
-请确保您的环境满足以上条件。如您有其他需求，请参考 `多版本 whl 包安装列表 <Tables.html#ciwhls-release>`_ .
-
-**5. PaddlePaddle 对 NCCL 支持情况：**
-
-* Windows 支持情况
-
-    * 不支持 NCCL
-* Ubuntu 支持情况
-
-    * Ubuntu 20.04：
-
-        * 支持 NCCL v2.4.7-v2.16.5
-* CentOS 支持情况
-
-    * CentOS 7：
-
-        * 支持 NCCL v2.4.7-v2.16.5
-* macOS 支持情况
-
-    * 不支持 NCCL
 
 **第一种安装方式：使用 pip 安装**
 
@@ -144,27 +93,18 @@
         安装 CPU 版本的命令为：
         ::
 
-            python -m pip install paddlepaddle==2.6.0 -i https://mirror.baidu.com/pypi/simple
-
-            或
-
-            python -m pip install paddlepaddle==2.6.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
-
+            python -m pip install --pre paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
 
     (2). **GPU 版本** ：如果您想使用 GPU 版本请参考如下命令安装
 
-        注意：
-
-            * 需要您确认您的 GPU 满足上方列出的要求
-
+        安装 GPU cuda12.3版本的命令为：
         ::
 
-            python -m pip install paddlepaddle-gpu==2.6.0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu123/
 
-            或
-
-            python -m pip install paddlepaddle-gpu==2.6.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
-
+        安装 GPU cuda11.8版本的命令为：
+        ::
+            python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu118/
 
     请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 
