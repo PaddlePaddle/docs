@@ -12,30 +12,52 @@ from typing import TypedDict
 
 PADDLE_DOCS_BASE_URL = "https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/"
 
-mapping_type_set = {
+mapping_type_levels = [
+    # type 0
+    ["UNDEFINED_MAPPING_TYPE_0"],
     # type 1
-    "无参数",
-    "参数完全一致",
-    "仅参数名不一致",
-    "paddle 参数更多",
-    "参数默认值不一致",
+    [
+        "无参数",
+        "参数完全一致",
+        "仅参数名不一致",
+        "paddle 参数更多",
+        "参数默认值不一致",
+    ],
     # type 2
-    "torch 参数更多",
+    [
+        "torch 参数更多",
+    ],
     # type 3
-    # "参数不一致",
-    "返回参数类型不一致",
-    "输入参数类型不一致",
-    "输入参数用法不一致",
+    [
+        "返回参数类型不一致",
+        "输入参数类型不一致",
+        "输入参数用法不一致",
+    ],
     # type 4
-    "组合替代实现",
+    [
+        "组合替代实现",
+    ],
     # type 5
-    "涉及上下文修改",
+    [
+        "涉及上下文修改",
+    ],
     # type 6
-    "对应 API 不在主框架",
+    [
+        "对应 API 不在主框架",
+    ],
     # type 7
-    "功能缺失",
+    [
+        "功能缺失",
+    ],
     # delete
-    "可删除",
+    [
+        "可删除",
+    ],
+]
+
+mapping_type_set = {t for ts in mapping_type_levels for t in ts}
+mapping_type_to_level = {
+    t: level for level, ts in enumerate(mapping_type_levels) for t in ts
 }
 
 
@@ -49,6 +71,15 @@ class DiffMeta(TypedDict):
     args_mapping: typing.Optional[typing.List[typing.Dict[str, str]]]
     mapping_type: str
     source_file: str
+
+
+class IndexParserState(IntEnum):
+    error = -1
+    normal = 0
+    table_sep = 1
+    table_row = 2
+    table_sep_ignore = 3
+    table_row_ignore = 4
 
 
 class ParserState(IntEnum):
@@ -353,20 +384,8 @@ def get_meta_from_diff_file(
             state = ParserState.end
 
     # 允许的终止状态，解析完了 dst_api 或者只有 src_api
-    # 这些映射类型必须要有对应的 dst_api
-    if mapping_type in [
-        "无参数",
-        "参数完全一致",
-        "仅参数名不一致",
-        "paddle 参数更多",
-        "参数默认值不一致",
-        # type 2
-        "torch 参数更多",
-        # type 3
-        "返回参数类型不一致",
-        "参数不一致",
-        "参数用法不一致",
-    ]:
+    # 映射类型前三个级别必须要有对应的 dst_api
+    if mapping_type_to_level[mapping_type] <= 3:
         if state != ParserState.end:
             raise Exception(
                 f"Unexpected End State at {state} in parsing file: {filepath}, current meta: {meta_data}"
@@ -380,87 +399,15 @@ def get_meta_from_diff_file(
     return meta_data
 
 
-TABLE_MACRO_ROW_PATTERN = re.compile(
-    r"^(?P<macro_type>[\w-]+)\( *(?P<src_api>[^,]+) *(, *(?P<diff_url>.+) *)? *\)$"
-)
-
-
-INDEX_ALL_APIS = {}
-INDEX_TABLES_APIS = []
-
-
-def validate_mapping_table_macro_row(columns, row_idx, line_idx):
-    assert (
-        len(columns) == 1
-    ), f"Table macro row must have 1 column at line {line_idx}."
-    macro_match = TABLE_MACRO_ROW_PATTERN.match(columns[0])
-
-    if macro_match:
-        macro_type = macro_match["macro_type"]
-        if macro_type not in [
-            "REFERENCE-MAPPING-ITEM",
-            "NOT-IMPLEMENTED-ITEM",
-            "REFERENCE-MAPPING-TABLE",
-            "MANUAL_MAINTAINING_PATTERN",
-        ]:
-            print(f"Unknown macro type: {macro_type} at line {line_idx}.")
-            return False
-
-        if macro_type == "REFERENCE-MAPPING-TABLE":
-            pass
-        else:
-            src_api = macro_match["src_api"].strip("`")
-            diff_url = macro_match["diff_url"]
-
-            if src_api in INDEX_ALL_APIS:
-                raise Exception(f"Duplicate api: {src_api} at line {line_idx}.")
-            INDEX_ALL_APIS[src_api] = columns[0]
-
-            return src_api
-
-    return False
-
-
-def collect_mapping_item_processor(_line, line_idx, state, output, context):
-    if state == 0 or state == 1 or state == 5:
-        return True
-
-    if state == 2:
-        INDEX_TABLES_APIS.append({})
-        return True
-    if state == 6:
-        table_row_idx = context["table_row_idx"]
-        columns = context["columns"]
-        assert (
-            len(columns) == 1
-        ), f"table row must have 1 column at line {line_idx}."
-        api_name = validate_mapping_table_macro_row(
-            columns, table_row_idx, line_idx + 1
-        )
-        INDEX_TABLES_APIS[-1][api_name] = columns[0]
-        output.append(api_name)
-        return bool(api_name)
-
-    return False
-
-
 def process_mapping_index(index_path, item_processer, context={}):
     """
-    线性处理 `pysrc_api_mapping_cn.md` 文件
+    线性处理 `pytorch_api_mapping_cn.md` 文件
     - index_path: 该 md 文件路径
     - item_processer: 对文件每行的处理方式，输入参数 (line, line_idx, state, output, context)。
                       如果处理出错则返回 False，否则返回 True。
     - context: 用于存储处理过程中的上下文信息
                - output: 使用 context["output"] 初始化，如果不调用 item_processer，直接加入原文件对应行，否则 item_processer 处理 output 逻辑。
     - 返回值：是否成功处理，成功返回 0。
-
-    其中 state 信息如下：
-    - 0: 等待表头（如果未进入表格则始终为 0）
-    - 1: 无需处理的表格，分隔行（表头和内容的分割线）
-    - 2: 需要处理的表格，分隔行
-    - 5: 无需处理的表格，表格内容
-    - 6: **需要处理的表格，表格内容**
-
     """
     if not os.path.exists(index_path):
         raise Exception(f"Cannot find pytorch_api_mapping_cn.md: {index_path}")
@@ -468,15 +415,7 @@ def process_mapping_index(index_path, item_processer, context={}):
     with open(index_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
-    state = 0
-    # -1: error
-    # 0: wait for table header
-
-    # 1: wait for ignore table seperator
-    # 2: wait for expect table content
-
-    # 5: wait for ignore table content
-    # 6: wait for expect table content
+    state = IndexParserState.normal
 
     column_names = []
     column_count = -1
@@ -494,24 +433,19 @@ def process_mapping_index(index_path, item_processer, context={}):
     output = context.get("output", [])
 
     for i, line in enumerate(lines):
-        if state < 0:
+        if state == IndexParserState.error:
             break
 
         content = line.strip()
         if not content.startswith("|"):
             output.append(line)
-            state = 0
+            state = IndexParserState.normal
             continue
 
         columns = [c.strip() for c in content.split("|")]
         columns = [c for c in columns if len(c) > 0]
-        # if len(columns) <= 2:
-        # raise Exception(
-        #     f"Table column count must > 0, but found {len(columns) - 2} at line {i+1}: {line}"
-        # )
-        # continue
 
-        if state == 0:
+        if state == IndexParserState.normal:
             column_names.clear()
             column_names.extend([c.strip() for c in columns])
             column_count = len(column_names)
@@ -520,14 +454,14 @@ def process_mapping_index(index_path, item_processer, context={}):
                 break
 
             if column_names == expect_column_names:
-                state = 2
+                state = IndexParserState.table_sep
                 context["table_row_idx"] = 1
                 # print(f'process mapping table at line {i+1}.')
             else:
-                state = 1
+                state = IndexParserState.table_sep_ignore
                 print(f"ignore table with {column_names} at line {i+1}.")
 
-        elif state == 1:
+        elif state == IndexParserState.table_sep_ignore:
             if (
                 not table_seperator_pattern.match(line)
                 or len(columns) != column_count
@@ -537,8 +471,8 @@ def process_mapping_index(index_path, item_processer, context={}):
                 )
             if not item_processer(line, i, state, output, context):
                 break
-            state = 5
-        elif state == 2:
+            state = IndexParserState.table_row_ignore
+        elif state == IndexParserState.table_sep:
             if (
                 not table_seperator_pattern.match(line)
                 or len(columns) != column_count
@@ -548,20 +482,11 @@ def process_mapping_index(index_path, item_processer, context={}):
                 )
             if not item_processer(line, i, state, output, context):
                 break
-            state = 6
-        elif state == 5:
-            # if len(columns) != column_count:
-            #     raise Exception(
-            #         f"Table content not match at line {i+1}: {line}"
-            #     )
+            state = IndexParserState.table_row
+        elif state == IndexParserState.table_row_ignore:
             if not item_processer(line, i, state, output, context):
                 break
-            # state = 5
-        elif state == 6:
-            # if len(columns) != column_count:
-            #     raise Exception(
-            #         f"Table content not match at line {i+1}: {line}"
-            #     )
+        elif state == IndexParserState.table_row:
             try:
                 context["columns"] = columns
                 if not item_processer(line, i, state, output, context):
@@ -572,19 +497,17 @@ def process_mapping_index(index_path, item_processer, context={}):
                 print(f"Error at line {i+1}: {line}")
                 traceback.print_exc()
                 ret_code = 1
-                sys.exit(-5)
-
-            # state = 6
+                sys.exit(-IndexParserState.table_row)
         else:
             ret_code = 2
             raise Exception(
                 f"Unexpected State at {state} in processing file: {index_path}"
             )
 
-    if state == 5 or state == 6:
-        state = 0
+    if state in [IndexParserState.table_row, IndexParserState.table_row_ignore]:
+        state = IndexParserState.normal
 
-    if state != 0:
+    if state != IndexParserState.normal:
         raise Exception(
             f"Unexpected End State at {state} in parsing file: {index_path}"
         )
@@ -623,10 +546,6 @@ def generate_alias_lines_from_paconvert(basedir, meta_dict) -> None:
             else:
                 # 都没有就抛出警告
                 alias_refer_failed_list.append((alias_name, api_name))
-                continue
-
-            # TODO: 如果别名和本名都在前面表里，就跳过
-            if alias_name in INDEX_ALL_APIS:
                 continue
 
             meta_data = meta_dict[api_name]

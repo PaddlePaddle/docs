@@ -9,9 +9,18 @@ print(script_dir)
 
 from validate_mapping_in_api_difference import (
     DiffMeta,
+    IndexParserState,
     discover_all_metas,
     process_mapping_index as reference_mapping_item,
 )
+
+accept_index_parser_state_set = {
+    IndexParserState.normal,
+    IndexParserState.table_sep_ignore,
+    IndexParserState.table_sep,
+    IndexParserState.table_row_ignore,
+    IndexParserState.table_row,
+}
 
 
 def mapping_type_to_description(mapping_type):
@@ -237,25 +246,16 @@ def reference_mapping_item_processer(line, line_idx, state, output, context):
 
     metadata_dict = context.get("metadata_dict", {})
 
-    if state == 0:
-        # check column names in common process
-        output.append(line)
-        return True
-    elif state == 1 or state == 2:
-        # check seperator of table to process in common process
-        output.append(line)
-        return True
-    elif state == 5:
-        # check content of table to ignore in common process
-        output.append(line)
-        return True
-    elif state == 6:
+    if state == IndexParserState.table_row:
         # check content of table to process in common process
         output_lines = apply_reference_to_row_ex(
             line, metadata_dict, context, line_idx + 1
         )
 
         output += output_lines
+        return True
+    elif state in accept_index_parser_state_set:
+        output.append(line)
         return True
 
     print(state)
@@ -266,16 +266,14 @@ def reference_table_scanner(line, _line_idx, state, output, context):
     if not line.startswith("|"):
         return True
 
-    if state >= 0 and state <= 2:
-        return True
-    elif state == 5:
-        return True
-    elif state == 6:
+    if state == IndexParserState.table_row:
         # check content of table to process in common process
         rtm = REFERENCE_TABLE_PATTERN.match(line)
         if rtm:
             condition = reference_table_match_to_condition(rtm)
             context["table_conditions"].append(condition)
+        return True
+    elif state in accept_index_parser_state_set:
         return True
 
     return False
@@ -301,7 +299,7 @@ def get_c2a_dict(conditions, meta_dict):
     return c2a_dict
 
 
-# 是否写回到源文件
+# 是否写回到源文件，调试时可以关闭
 FLAG_WRITE_INPLACE = True
 
 
@@ -351,6 +349,7 @@ if __name__ == "__main__":
     output_path = mapping_index_file
     if not FLAG_WRITE_INPLACE:
         output_path = os.path.join(cfp_basedir, "generated.tmp.md")
+        sys.exit(-2)
 
     with open(output_path, "w", encoding="utf-8") as f:
         f.writelines(reference_context["output"])
