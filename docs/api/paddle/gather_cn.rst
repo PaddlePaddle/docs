@@ -27,6 +27,7 @@ gather
 下面展示了将一个形状为[3,2]的向量通过 gather 操作，沿着 axis = 0 维度，根据索引 Index = [1, 2] 获取对应的二维张量的例子。若索引为零维，则返回结果为一维张量，例如 Index = 0 ，沿着 axis = 0 维度，则返回位于图片上方的一维张量。
 
 .. image:: ../../images/api_legend/gather.png
+   :width: 600
    :alt: 图例
 
 参数
