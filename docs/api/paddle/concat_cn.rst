@@ -11,7 +11,7 @@ concat
 下图展示了 concat 操作的典型情况——两个形状为 [2, 3, 4] 的三维张量通过 concat 操作沿着不同的 ``axis`` 轴拼接为不同形状的三维张量，我们可以清晰地看到不同维度拼接的效果。
 
 .. image:: ../../images/api_legend/concat.png
-   :width: 600
+   :width: 500
    :alt: 图例
 
 参数
