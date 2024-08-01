@@ -73,7 +73,7 @@ paddle.Tensor.atan2(y, name=None)
     - `组合替代实现` 或更靠后的映射类型：允许无 **paddle API** 部分
     - 其他类型：必须有所有结构
 
-通过设计这一系列约束，可以检查映射文档中粗心疏漏导致的错误，从而降低检查成本；此外，通过将文档解析得到结构化的元数据，能为后续流程提供数据支持。
+通过设计这一系列约束，可以检查映射文档中粗心疏漏导致的错误，从而降低检查成本；此外，通过将文档解析得到结构化的元数据（`docs_mapping.json`），能为后续流程提供数据支持。
 
 验证工具的使用方法为 `python docs/guides/model_convert/convert_from_pytorch/validate_mapping_in_api_difference.py`，其生成的内容均在脚本同目录下。
 

@@ -295,10 +295,10 @@ def get_meta_from_diff_file(
                         ) from e
 
                     if state == ParserState.wait_for_src_signature_end:
-                        meta_data["torch_signature"] = signature_info
+                        meta_data["src_signature"] = signature_info
                         state = ParserState.wait_for_dst_api
                     elif state == ParserState.wait_for_dst_signature_end:
-                        meta_data["paddle_signature"] = signature_info
+                        meta_data["dst_signature"] = signature_info
                         state = ParserState.wait_for_args
                     else:
                         raise ValueError(
@@ -354,8 +354,8 @@ def get_meta_from_diff_file(
                         torch_arg, paddle_arg, note = args_table_content
                         meta_data["args_mapping"].append(
                             {
-                                "torch_arg": torch_arg,
-                                "paddle_arg": paddle_arg,
+                                "src_arg": torch_arg,
+                                "dst_arg": paddle_arg,
                                 "note": note,
                             }
                         )
