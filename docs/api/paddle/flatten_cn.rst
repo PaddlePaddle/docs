@@ -39,9 +39,9 @@ flatten
       得到：
         Out.shape = (3 * 100 * 100 * 4)
 
-下图展示了一个[2, 2, 2]的Tensor在经过不同参数的Flatten后的形状。数据依次为0到7，数值与颜色映射关系图中已给出。
+下图展示了一个[2, 2, 2]的 Tensor 在经过不同参数的 Flatten 后的形状。数据依次为 0 到 7，数值与颜色映射关系图中已给出。
 
-可以看到，在通过不同参数的Flatten后，Tensor在start_axis与stop_axis维度间按照升序顺序重新排列元素。
+可以看到，在通过不同参数的 Flatten 后，Tensor 在 start_axis 与 stop_axis 维度间按照升序顺序重新排列元素。
 
 .. image:: ../../images/api_legend/flatten.png
    :alt: 图例
