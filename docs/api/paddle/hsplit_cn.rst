@@ -7,7 +7,17 @@ hsplit
 
 
 
-将输入 Tensor 沿着水平轴分割成多个子 Tensor。当 x 的维度大于 1 时等价于将 :ref:`cn_api_paddle_tensor_split` API 的参数 axis 固定为 1，当 x 的维度等于 1 时等价于将 paddle.tensor_split API 的参数 axis 固定为 0。
+``hsplit`` 全称 Horizontal Split ，即水平分割，将输入 Tensor 沿着水平轴分割成多个子 Tensor，存在以下两种情况：
+
+1. 当 x 的维度等于 1 时，等价于将 :ref:`cn_api_paddle_tensor_split` API 的参数 axis 固定为 0；
+
+   .. image:: ../../images/api_legend/hsplit/hsplit-1.png
+      :alt: 当 x 的维度等于 1 时
+
+2. 当 x 的维度大于 1 时，等价于将 :ref:`cn_api_paddle_tensor_split` API 的参数 axis 固定为 1。
+
+   .. image:: ../../images/api_legend/hsplit/hsplit-2.png
+      :alt: 当 x 的维度大于 1 时
 
 参数
 :::::::::
