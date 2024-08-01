@@ -14,6 +14,14 @@ python docs/guides/model_convert/convert_from_pytorch/validate_mapping_in_api_di
 
 当映射文档内容存在问题时，验证工具会自动输出对应问题部分的内容。
 
+验证无误后，进行生成：
+
+**注意：生成结果不要提交到仓库**
+
+```bash
+python docs/guides/model_convert/convert_from_pytorch/apply_reference_from_api_difference.py
+```
+
 当验证工具可以通过，但生成工具出错（如 CI 未通过）时，很可能是因为该 API 在表格中会被生成多次，请检查 CI 最后的输出内容或在本地进行生成工具调用，检查生成结果是否符合预期。
 
 ## 映射文档结构分析
@@ -115,4 +123,6 @@ API 别名表的生成逻辑与单个 API 项映射类似，实现于 `apply_ref
 
 第二次读取时使用 `reference_mapping_item_processer` 方法作为回调，对于所有需要处理的表格行进行转换，将转换结果写回 `context` 的 `output` 项中。
 
-完成读取后，检查是否有 API 重复出现，如果重复出现则输出重复出现的 API 名称和所在行，不写回源文件并进行 CI 报错，
+完成读取后，检查是否有 API 重复出现，如果重复出现则输出重复出现的 API 名称和所在行，不写回源文件并进行 CI 报错。
+
+*不写回源文件时，输出结果会存储到 `generated.tmp.md` 中，便于调试。*
