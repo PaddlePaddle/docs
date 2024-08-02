@@ -1,4 +1,4 @@
-## [仅 paddle 参数更多 ]torch.nn.MaxUnpool2d
+## [ paddle 参数更多 ]torch.nn.MaxUnpool2d
 ### [torch.nn.MaxUnpool2d](https://pytorch.org/docs/stable/generated/torch.nn.MaxUnpool2d.html?highlight=maxunpool2d#torch.nn.MaxUnpool2d)
 
 ```python

@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.Tensor.logical_or
+## [ paddle 参数更多 ] torch.Tensor.logical_or
 
 ### [torch.Tensor.logical_or](https://pytorch.org/docs/stable/generated/torch.Tensor.logical_or.html)
 

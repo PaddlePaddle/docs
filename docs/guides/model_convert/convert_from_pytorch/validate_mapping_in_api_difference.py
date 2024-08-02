@@ -17,8 +17,8 @@ mapping_type_set = {
     "无参数",
     "参数完全一致",
     "仅参数名不一致",
-    "仅 paddle 参数更多",
-    "仅参数默认值不一致",
+    "paddle 参数更多",
+    "参数默认值不一致",
     # type 2
     "torch 参数更多",
     # type 3
@@ -116,7 +116,11 @@ def reformat_signature(code):
         assert m is not None, f'code arg "{arg_buffer}" not match arg pattern.'
         arg_name = m.group("arg_name")
         arg_default = m.group("arg_default")
-        args.append({"arg_name": arg_name, "arg_default": arg_default})
+        if arg_name[0].isalpha() or arg_name[0] == "_" or arg_name[0] == "*":
+            # if is a valid arg name
+            args.append({"arg_name": arg_name, "arg_default": arg_default})
+        else:
+            args[-1]["arg_default"] += f", {arg_name}"
 
     return {"api_name": api_name, "args": args}
 
@@ -346,8 +350,8 @@ def get_meta_from_diff_file(filepath):
         "无参数",
         "参数完全一致",
         "仅参数名不一致",
-        "仅 paddle 参数更多",
-        "仅参数默认值不一致",
+        "paddle 参数更多",
+        "参数默认值不一致",
         # type 2
         "torch 参数更多",
         # type 3
@@ -407,6 +411,7 @@ def validate_mapping_table_macro_row(columns, row_idx, line_idx):
             "REFERENCE-MAPPING-ITEM",
             "NOT-IMPLEMENTED-ITEM",
             "REFERENCE-MAPPING-TABLE",
+            "MANUAL_MAINTAINING_PATTERN",
         ]:
             print(f"Unknown macro type: {macro_type} at line {line_idx}.")
             return False
@@ -674,6 +679,11 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
                     "NOT-IMPLEMENTED-ITEM"
                 ):
                     pass
+                # if before is MANUAL_MAINTAINING_PATTERN, replace
+                elif target[api_type][torch_api].startswith(
+                    "MANUAL_MAINTAINING_PATTERN"
+                ):
+                    pass
                 # if before is X2Paddle, skip
                 elif (
                     "https://github.com/PaddlePaddle/X2Paddle"
@@ -759,9 +769,13 @@ def auto_fill_index_from_api_diff(basedir, meta_dict) -> None:
                     if ref.startswith("NOT-IMPLEMENTED-ITEM"):
                         f.write(f"| {ref} |\n")
                 for api, ref in od_apis.items():
+                    if ref.startswith("MANUAL_MAINTAINING_PATTERN"):
+                        f.write(f"| {ref} |\n")
+                for api, ref in od_apis.items():
                     if not (
                         ref.startswith("REFERENCE-MAPPING-ITEM")
                         or ref.startswith("NOT-IMPLEMENTED-ITEM")
+                        or ref.startswith("MANUAL_MAINTAINING_PATTERN")
                     ):
                         f.write(f"| {ref} |\n")
                 f.write("\n")
@@ -822,4 +836,5 @@ if __name__ == "__main__":
     with open(api_diff_output_path, "w", encoding="utf-8") as f:
         json.dump(metas, f, ensure_ascii=False, indent=4)
 
+    # 这个文件主要用来做从 api_alias_mapping 生成对应表格，先保留
     auto_fill_index_from_api_diff(cfp_basedir, meta_dict)

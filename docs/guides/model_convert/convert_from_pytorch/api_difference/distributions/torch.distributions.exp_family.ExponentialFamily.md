@@ -9,7 +9,7 @@ torch.distributions.exp_family.ExponentialFamily(batch_shape=torch.Size([]), eve
 ### [paddle.distribution.ExponentialFamily](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/ExponentialFamily_cn.html)
 
 ```python
-paddle.distribution.ExponentialFamily(batch_shape， event_shape)
+paddle.distribution.ExponentialFamily(batch_shape, event_shape)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -18,6 +18,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch       | PaddlePaddle  | 备注                                          |
 | ------------- | ------------- | --------------------------------------------- |
-| batch_shape   | batch_shape， | 概率分布参数批量形状。                        |
+| batch_shape   | batch_shape | 概率分布参数批量形状。                        |
 | event_shape   | event_shape   | 多元概率分布维数形状。                        |
 | validate_args | -             | 是否添加验证环节。Paddle 无此参数，一般对训练结果影响不大，可直接删除。 |

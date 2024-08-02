@@ -2,7 +2,7 @@
 ### [torch.nn.Module.register_forward_hook](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_forward_hook)
 
 ```python
-torch.nn.Module.register_forward_hook(hook, *, prepend=False, with_kwargs=False)
+torch.nn.Module.register_forward_hook(hook, *, prepend=False, with_kwargs=False, always_call=False)
 ```
 
 ### [paddle.nn.Layer.register_forward_post_hook](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#register-forward-post-hook-hook)
@@ -18,3 +18,4 @@ PyTorch 参数更多，具体如下：
 | hook       | hook    |  被注册的 hook。                   |
 | prepend       | -    | 是否在其他 hook 执行前执行，Paddle 无此参数， 暂无转写方式。                   |
 | with_kwargs       | -    | 是否传入 forward 函数的参数，paddle 无此参数， 暂无转写方式。                   |
+| always_call=False | -        | 是否无论成功运行都调用 hook，Paddle 无此参数，暂无转写方式。 |

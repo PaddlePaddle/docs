@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.Tensor.flipud
+## [ paddle 参数更多 ]torch.Tensor.flipud
 
 ### [torch.Tensor.flipud](https://pytorch.org/docs/stable/generated/torch.Tensor.flipud.html?highlight=flipud#torch.Tensor.flipud)
 

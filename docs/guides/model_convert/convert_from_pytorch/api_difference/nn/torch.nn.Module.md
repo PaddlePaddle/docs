@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.nn.Module
+## [ paddle 参数更多 ] torch.nn.Module
 
 ### [torch.nn.Module](https://pytorch.org/docs/stable/generated/torch.nn.Module.html?highlight=torch+nn+module#torch.nn.Module)
 

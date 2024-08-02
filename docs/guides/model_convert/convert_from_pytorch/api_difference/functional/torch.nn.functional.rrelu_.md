@@ -1,4 +1,4 @@
-## [ 仅参数默认值不一致 ]torch.nn.functional.rrelu_
+## [ 参数默认值不一致 ]torch.nn.functional.rrelu_
 
 ### [torch.nn.functional.rrelu\_](https://pytorch.org/docs/stable/generated/torch.nn.functional.rrelu_.html)
 

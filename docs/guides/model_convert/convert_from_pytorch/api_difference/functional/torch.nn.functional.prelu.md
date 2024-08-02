@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.nn.functional.prelu
+## [ paddle 参数更多 ]torch.nn.functional.prelu
 
 ### [torch.nn.functional.prelu](https://pytorch.org/docs/stable/generated/torch.nn.functional.prelu.html?highlight=prelu#torch.nn.functional.prelu)
 
