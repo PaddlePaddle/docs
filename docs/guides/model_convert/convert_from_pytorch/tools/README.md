@@ -63,7 +63,7 @@ paddle.Tensor.atan2(y, name=None)
 
 ## 映射文档自动化工具
 
-映射文档自动化工具包含两部分，分别是[验证工具](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/validate_mapping_files.py)与[生成工具](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/tools/apply_references.py)。
+映射文档自动化工具包含两部分，分别是[验证工具](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/tools/validate_mapping_files.py)与[生成工具](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/tools/apply_references.py)。
 
 ### 映射文档验证工具
 
@@ -83,7 +83,7 @@ paddle.Tensor.atan2(y, name=None)
 
 通过设计这一系列约束，可以检查映射文档中粗心疏漏导致的错误，从而降低检查成本；此外，通过将文档解析得到结构化的元数据（`docs_mapping.json`），能为后续流程提供数据支持。
 
-验证工具的使用方法为 `python docs/guides/model_convert/convert_from_pytorch/validate_mapping_files.py`，其生成的内容均在脚本同目录下。
+验证工具的使用方法为 `python docs/guides/model_convert/convert_from_pytorch/tools/validate_mapping_files.py`，其生成的内容均在脚本同目录下。
 
 *为兼容第三方库的 api 映射语义，新版本将 `torch API` 修改为 `src API`，`paddle API` 修改为 `dst API`。*
 
@@ -101,13 +101,13 @@ paddle.Tensor.atan2(y, name=None)
 
 **API 别名引用格式** 为 `ALIAS-REFERENCE-ITEM(alias_name, api_name)`，但该项通常不需要手动来撰写。
 
-要获得 API 别名引用表的预处理命令，首先将 `PaConvert` 仓库的 `paconvert/api_alias_mapping.json` 链接或复制到 `docs/guides/model_convert/convert_from_pytorch/api_alias_mapping.json` 位置，随后调用验证工具即可在同目录下生成 `alias_macro_lines.tmp.md`，其内容为所有 API 别名引用表的预处理命令。
+要获得 API 别名引用表的预处理命令，首先将 `PaConvert` 仓库的 `paconvert/api_alias_mapping.json` 链接或复制到 `docs/guides/model_convert/convert_from_pytorch/tools/api_alias_mapping.json` 位置，随后调用验证工具即可在同目录下生成 `alias_macro_lines.tmp.md`，其内容为所有 API 别名引用表的预处理命令。
 
 API 别名表的生成逻辑与单个 API 项映射类似，实现于 `apply_reference_to_row_ex` 方法中，使用 `api_name` 对应的元数据进行生成。
 
 **未实现 API 声明格式** 为 `NOT-IMPLEMENTED-ITEM(torch_api, torch_api_url)`，该项需要手动进行维护，因为仓库中不含该项的映射文档，因此在参数中包含其展示需要的信息。
 
-在按照对应规则创建预处理命令后，通过直接调用 `python docs/guides/model_convert/convert_from_pytorch/apply_references.py` 即可进行生成，将 `pytorch_api_mapping_cn.md` 中的预处理命令进行展开。
+在按照对应规则创建预处理命令后，通过直接调用 `python docs/guides/model_convert/convert_from_pytorch/tools/apply_references.py` 即可进行生成，将 `pytorch_api_mapping_cn.md` 中的预处理命令进行展开。
 
 #### 生成工具原理
 
