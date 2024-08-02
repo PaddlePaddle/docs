@@ -6,7 +6,7 @@
 
 ## 快速使用
 
-在完成映射文档撰写后，调用验证工具进行一次验证：
+在完成映射文档撰写后，调用**验证工具**进行验证：
 
 ```bash
 python docs/guides/model_convert/convert_from_pytorch/tools/validate_mapping_files.py
@@ -14,7 +14,7 @@ python docs/guides/model_convert/convert_from_pytorch/tools/validate_mapping_fil
 
 当映射文档内容存在问题时，验证工具会自动输出对应问题部分的内容。
 
-验证无误后，进行生成：
+验证无误后，调用**生成工具**进行生成：
 
 **注意：生成结果不要提交到仓库**
 
