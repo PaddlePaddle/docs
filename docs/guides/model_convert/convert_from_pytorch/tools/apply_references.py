@@ -7,7 +7,7 @@ script_dir = os.path.dirname(__file__)
 sys.path.append(script_dir)
 print(script_dir)
 
-from validate_mapping_in_api_difference import (
+from validate_mapping_files import (
     DiffMeta,
     IndexParserState,
     discover_all_metas,
@@ -300,12 +300,13 @@ def get_c2a_dict(conditions, meta_dict):
 
 
 # 是否写回到源文件，调试时可以关闭
-FLAG_WRITE_INPLACE = True
+FLAG_WRITE_INPLACE = False
 
 
 if __name__ == "__main__":
     # convert from pytorch basedir
-    cfp_basedir = os.path.dirname(__file__)
+    tools_dir = os.path.dirname(__file__)
+    cfp_basedir = os.path.join(tools_dir, "..")
     # pysrc_api_mapping_cn
     mapping_index_file = os.path.join(cfp_basedir, "pytorch_api_mapping_cn.md")
 
@@ -348,10 +349,8 @@ if __name__ == "__main__":
     # 是否生成并写入到源文件
     output_path = mapping_index_file
     if not FLAG_WRITE_INPLACE:
-        output_path = os.path.join(cfp_basedir, "generated.tmp.md")
-        sys.exit(-2)
+        output_path = os.path.join(tools_dir, "generated.tmp.md")
 
     with open(output_path, "w", encoding="utf-8") as f:
         f.writelines(reference_context["output"])
-
     # 映射关系文件的保存流程移动至 `validate_mapping_in_api_difference.py`

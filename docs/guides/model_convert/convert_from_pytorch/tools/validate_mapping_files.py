@@ -641,7 +641,8 @@ def discover_all_metas(cfp_basedir):
 
 if __name__ == "__main__":
     # convert from pytorch basedir
-    cfp_basedir = os.path.dirname(__file__)
+    tools_dir = os.path.dirname(__file__)
+    cfp_basedir = os.path.join(tools_dir, "..")
     # pysrc_api_mapping_cn
     mapping_index_file = os.path.join(cfp_basedir, "pytorch_api_mapping_cn.md")
 
@@ -660,9 +661,9 @@ if __name__ == "__main__":
     meta_dict = {m["src_api"].replace(r"\_", "_"): m for m in metas}
 
     # 该文件用于 PaConvert 的文档对齐工作
-    api_diff_output_path = os.path.join(cfp_basedir, "docs_mappings.json")
+    api_diff_output_path = os.path.join(tools_dir, "docs_mappings.json")
 
     with open(api_diff_output_path, "w", encoding="utf-8") as f:
         json.dump(metas, f, ensure_ascii=False, indent=4)
 
-    generate_alias_lines_from_paconvert(cfp_basedir, meta_dict)
+    generate_alias_lines_from_paconvert(tools_dir, meta_dict)

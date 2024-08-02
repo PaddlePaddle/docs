@@ -1,6 +1,6 @@
 # PyTorch-Paddle 映射文档自动化工具
 
-代码自动转换工具的开发可以分为两部分，即[**撰写映射文档**](./api_difference/pytorch_api_mapping_format_cn.html)和[配置转换规则](https://github.com/PaddlePaddle/PaConvert/blob/master/docs/CONTRIBUTING.md)。**撰写映射文档**的产出包括大量映射文档与汇总 [映射表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.html)，分别对应 docs 仓库中的 [api_difference/](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference) 目录与 [pytorch_api_mapping_cn.md](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.md)。
+代码自动转换工具的开发可以分为两部分，即[**撰写映射文档**](../pytorch_api_mapping_format_cn.html)和[配置转换规则](https://github.com/PaddlePaddle/PaConvert/blob/master/docs/CONTRIBUTING.md)。**撰写映射文档**的产出包括大量映射文档与汇总 [映射表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.html)，分别对应 docs 仓库中的 [api_difference/](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference) 目录与 [pytorch_api_mapping_cn.md](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.md)。
 
 由于 PyTorch api 功能复杂多样，且 PyTorch 历史遗留因素导致 api 功能风格多变，致使参数映射方式错综复杂，难以通过自动分析的方式进行映射方式推理与管理，因而映射文档目前均为人工撰写、检查与维护。但随着映射文档规模增大，人工检查成本日益繁重，带来了大量非必要心智负担。考虑到映射文档规范存在公共结构，通过自动读取与分析这些公共结构，可以批量得到映射文档的**元信息**，从而为映射文档的检查提供便利。
 
@@ -9,7 +9,7 @@
 在完成映射文档撰写后，调用验证工具进行一次验证：
 
 ```bash
-python docs/guides/model_convert/convert_from_pytorch/validate_mapping_in_api_difference.py
+python docs/guides/model_convert/convert_from_pytorch/tools/validate_mapping_files.py
 ```
 
 当映射文档内容存在问题时，验证工具会自动输出对应问题部分的内容。
@@ -19,7 +19,7 @@ python docs/guides/model_convert/convert_from_pytorch/validate_mapping_in_api_di
 **注意：生成结果不要提交到仓库**
 
 ```bash
-python docs/guides/model_convert/convert_from_pytorch/apply_reference_from_api_difference.py
+python docs/guides/model_convert/convert_from_pytorch/tools/apply_references.py
 ```
 
 当验证工具可以通过，但生成工具出错（如 CI 未通过）时，很可能是因为该 API 在表格中会被生成多次，请检查 CI 最后的输出内容或在本地进行生成工具调用，检查生成结果是否符合预期。
@@ -63,7 +63,7 @@ paddle.Tensor.atan2(y, name=None)
 
 ## 映射文档自动化工具
 
-映射文档自动化工具包含两部分，分别是[验证工具](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/validate_mapping_in_api_difference.py)与[生成工具](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/apply_reference_from_api_difference.py)。
+映射文档自动化工具包含两部分，分别是[验证工具](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/validate_mapping_files.py)与[生成工具](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/tools/apply_references.py)。
 
 ### 映射文档验证工具
 
@@ -83,7 +83,7 @@ paddle.Tensor.atan2(y, name=None)
 
 通过设计这一系列约束，可以检查映射文档中粗心疏漏导致的错误，从而降低检查成本；此外，通过将文档解析得到结构化的元数据（`docs_mapping.json`），能为后续流程提供数据支持。
 
-验证工具的使用方法为 `python docs/guides/model_convert/convert_from_pytorch/validate_mapping_in_api_difference.py`，其生成的内容均在脚本同目录下。
+验证工具的使用方法为 `python docs/guides/model_convert/convert_from_pytorch/validate_mapping_files.py`，其生成的内容均在脚本同目录下。
 
 *为兼容第三方库的 api 映射语义，新版本将 `torch API` 修改为 `src API`，`paddle API` 修改为 `dst API`。*
 
@@ -107,7 +107,7 @@ API 别名表的生成逻辑与单个 API 项映射类似，实现于 `apply_ref
 
 **未实现 API 声明格式** 为 `NOT-IMPLEMENTED-ITEM(torch_api, torch_api_url)`，该项需要手动进行维护，因为仓库中不含该项的映射文档，因此在参数中包含其展示需要的信息。
 
-在按照对应规则创建预处理命令后，通过直接调用 `python docs/guides/model_convert/convert_from_pytorch/apply_reference_from_api_difference.py` 即可进行生成，将 `pytorch_api_mapping_cn.md` 中的预处理命令进行展开。
+在按照对应规则创建预处理命令后，通过直接调用 `python docs/guides/model_convert/convert_from_pytorch/apply_references.py` 即可进行生成，将 `pytorch_api_mapping_cn.md` 中的预处理命令进行展开。
 
 #### 生成工具原理
 
