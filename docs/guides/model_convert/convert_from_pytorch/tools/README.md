@@ -22,6 +22,8 @@ python docs/guides/model_convert/convert_from_pytorch/tools/validate_mapping_fil
 python docs/guides/model_convert/convert_from_pytorch/tools/apply_references.py
 ```
 
+CI 流程中会自动调用生成工具，验证工具则由开发者在开发文档时自行调用。
+
 当验证工具可以通过，但生成工具出错（如 CI 未通过）时，很可能是因为该 API 在表格中会被生成多次，请检查 CI 最后的输出内容或在本地进行生成工具调用，检查生成结果是否符合预期。
 
 ## 映射文档结构分析
@@ -101,7 +103,7 @@ paddle.Tensor.atan2(y, name=None)
 
 **API 别名引用格式** 为 `ALIAS-REFERENCE-ITEM(alias_name, api_name)`，但该项通常不需要手动来撰写。
 
-要获得 API 别名引用表的预处理命令，首先将 `PaConvert` 仓库的 `paconvert/api_alias_mapping.json` 链接或复制到 `docs/guides/model_convert/convert_from_pytorch/tools/api_alias_mapping.json` 位置，随后调用验证工具即可在同目录下生成 `alias_macro_lines.tmp.md`，其内容为所有 API 别名引用表的预处理命令。
+要获得 API 别名引用表的预处理命令，首先将 [PaConvert](https://github.com/PaddlePaddle/PaConvert) 仓库的 `paconvert/api_alias_mapping.json` 链接或复制到 `docs/guides/model_convert/convert_from_pytorch/tools/api_alias_mapping.json` 位置，随后调用验证工具即可在同目录下生成 `alias_macro_lines.tmp.md`，其内容为所有 API 别名引用表的预处理命令。
 
 API 别名表的生成逻辑与单个 API 项映射类似，实现于 `apply_reference_to_row_ex` 方法中，使用 `api_name` 对应的元数据进行生成。
 
