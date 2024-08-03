@@ -836,4 +836,5 @@ if __name__ == "__main__":
     with open(api_diff_output_path, "w", encoding="utf-8") as f:
         json.dump(metas, f, ensure_ascii=False, indent=4)
 
+    # 这个文件主要用来做从 api_alias_mapping 生成对应表格，先保留
     auto_fill_index_from_api_diff(cfp_basedir, meta_dict)
