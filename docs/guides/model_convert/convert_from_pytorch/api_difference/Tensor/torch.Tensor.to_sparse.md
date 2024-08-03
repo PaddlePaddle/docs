@@ -3,13 +3,13 @@
 ### [torch.Tensor.to_sparse](https://pytorch.org/docs/stable/generated/torch.Tensor.to_sparse.html#torch.Tensor.to_sparse)
 
 ```python
-torch.Tensor.to_sparse(sparseDims)
+torch.Tensor.to_sparse(sparse_dim)
 ```
 
 ### [paddle.Tensor.to_sparse_coo]()
 
 ```python
-paddle.Tensor.to_sparse_coo(sparseDims)
+paddle.Tensor.to_sparse_coo(sparse_dim)
 ```
 
 两者功能一致，参数用法一致，具体如下：
@@ -18,4 +18,4 @@ paddle.Tensor.to_sparse_coo(sparseDims)
 
 | PyTorch    | PaddlePaddle | 备注                                 |
 | ---------- | ------------ | ------------------------------------ |
-| sparseDims | sparseDims   | 在新的稀疏张量中包含的稀疏维度的数量 |
+| sparse_dim | sparse_dim   | 在新的稀疏张量中包含的稀疏维度的数量 |

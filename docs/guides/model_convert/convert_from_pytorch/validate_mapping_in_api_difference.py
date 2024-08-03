@@ -116,7 +116,11 @@ def reformat_signature(code):
         assert m is not None, f'code arg "{arg_buffer}" not match arg pattern.'
         arg_name = m.group("arg_name")
         arg_default = m.group("arg_default")
-        args.append({"arg_name": arg_name, "arg_default": arg_default})
+        if arg_name[0].isalpha() or arg_name[0] == "_" or arg_name[0] == "*":
+            # if is a valid arg name
+            args.append({"arg_name": arg_name, "arg_default": arg_default})
+        else:
+            args[-1]["arg_default"] += f", {arg_name}"
 
     return {"api_name": api_name, "args": args}
 
@@ -832,4 +836,5 @@ if __name__ == "__main__":
     with open(api_diff_output_path, "w", encoding="utf-8") as f:
         json.dump(metas, f, ensure_ascii=False, indent=4)
 
+    # 这个文件主要用来做从 api_alias_mapping 生成对应表格，先保留
     auto_fill_index_from_api_diff(cfp_basedir, meta_dict)
