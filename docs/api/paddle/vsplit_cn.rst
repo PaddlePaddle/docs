@@ -7,7 +7,17 @@ vsplit
 
 
 
-将输入 Tensor 沿着垂直轴分割成多个子 Tensor，等价于将 :ref:`cn_api_paddle_tensor_split` API 的参数 axis 固定为 0。
+``vsplit`` 全称 Vertical Split 即垂直分割） - 用于将张量沿垂直方向分割成多个子张量。 轴分割成多个子 Tensor，将输入 Tensor 沿着垂直轴分割成多个子 Tensor，等价于将 :ref:`cn_api_paddle_tensor_split` API 的参数 axis 固定为 0。
+
+当 Tensor 维度数量为 1 时：
+
+.. image:: ../../images/api_legend/vsplit/vsplit-1.png
+   :alt: vsplit 图例-1
+
+当 Tensor 维度数量大于 1 时：
+
+.. image:: ../../images/api_legend/vsplit/vsplit-2.png
+   :alt: vsplit 图例-2
 
 参数
 :::::::::
