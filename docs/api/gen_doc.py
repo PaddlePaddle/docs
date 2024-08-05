@@ -723,7 +723,7 @@ def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
 
 
 # generate api and src file mapping
-def gen_api_mapping(api_info_all_filename, output_filename):
+def gen_api_mapping(api_info_all_filename, output_filename, need_md=False):
     """We have api `type`:
     {
         "VariableMetaClass",
@@ -766,16 +766,22 @@ def gen_api_mapping(api_info_all_filename, output_filename):
             ):
                 api_mapping[src_file].add(api_info.get("short_name"))
 
-    with open(output_filename, "w") as f:
-        f.write("| src_file | apis | count |\n")
-        f.write("| - | - | - |\n")
-        count = 0
-        for src_file, apis in sorted(api_mapping.items(), key=lambda x: x[0]):
-            _count = len(apis)
-            count += _count
-            f.write(f"| `{src_file}` | {apis} | {_count} |\n")
+    if need_md:
+        with open(output_filename + ".md", "w") as f:
+            f.write("| src_file | apis | count |\n")
+            f.write("| - | - | - |\n")
+            count = 0
+            for src_file, apis in sorted(
+                api_mapping.items(), key=lambda x: x[0]
+            ):
+                _count = len(apis)
+                count += _count
+                f.write(f"| `{src_file}` | {apis} | {_count} |\n")
 
-        f.write(f"| 总计: {len(api_mapping)} | ~ | {count} |\n")
+            f.write(f"| 总计: {len(api_mapping)} | ~ | {count} |\n")
+
+    with open(output_filename + ".json", "w") as f:
+        json.dump({k: sorted(v) for k, v in api_mapping.items()}, f, indent=4)
 
 
 class EnDocGenerator:
@@ -1158,7 +1164,7 @@ if __name__ == "__main__":
             "__all__" in realattrs and realattr == "__all__"
         ):
             if args.gen_api_mapping:
-                gen_api_mapping(jsonfn, "api_info_mapping.md")
+                gen_api_mapping(jsonfn, "api_info_mapping", True)
 
         filter_out_object_of_api_info_dict()
         json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
