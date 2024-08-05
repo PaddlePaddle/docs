@@ -770,7 +770,7 @@ def gen_api_mapping(api_info_all_filename, output_filename):
         f.write("| src_file | apis | count |\n")
         f.write("| - | - | - |\n")
         count = 0
-        for src_file, apis in api_mapping.items():
+        for src_file, apis in sorted(api_mapping.items(), key=lambda x: x[0]):
             _count = len(apis)
             count += _count
             f.write(f"| `{src_file}` | {apis} | {_count} |\n")
