@@ -10,6 +10,7 @@ import pkgutil
 import re
 import sys
 import types
+from collections import defaultdict
 from queue import Queue
 
 import extract_api_from_docs
@@ -602,9 +603,11 @@ def set_referenced_from_attr():
                         ref_from.append(
                             {
                                 "file": a,
-                                "title": referenced_from_file_titles[a]
-                                if a in referenced_from_file_titles
-                                else "",
+                                "title": (
+                                    referenced_from_file_titles[a]
+                                    if a in referenced_from_file_titles
+                                    else ""
+                                ),
                             }
                         )
                     api_info_dict[api_id]["referenced_from"] = ref_from
@@ -717,6 +720,62 @@ def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
                                 osp_join(root, file), osp_join(root, ef)
                             )
                         )
+
+
+# generate api and src file mapping
+def gen_api_mapping(api_info_all_filename, output_filename):
+    """We have api `type`:
+    {
+        "VariableMetaClass",
+        "module",
+        "pybind11_type",
+        "function",
+        "getset_descriptor",
+        "method",
+        "VarType",
+        "PyLayerMeta",
+        "_ProtocolMeta",
+        "instancemethod",
+        "builtin_function_or_method",
+        "method_descriptor",
+        "EnumMeta",
+        "ABCMeta",
+        "type",
+        "property",
+    }
+
+    but only care about:
+
+    {"function", "ABCMeta", "type"}
+
+    """
+
+    if not os.path.exists(api_info_all_filename):
+        return
+
+    api_mapping = defaultdict(set)
+    with open(api_info_all_filename) as f:
+        for _, api_info in json.load(f).items():
+            src_file = api_info.get("src_file", "")
+            src_type = api_info.get("type", "")
+            if (
+                src_type
+                and src_type in ("function", "ABCMeta", "type")
+                and src_file
+                and src_file.strip() != "/paddle/base/libpaddle.so"
+            ):
+                api_mapping[src_file].add(api_info.get("short_name"))
+
+    with open(output_filename, "w") as f:
+        f.write("| src_file | apis | count |\n")
+        f.write("| - | - | - |\n")
+        count = 0
+        for src_file, apis in api_mapping.items():
+            _count = len(apis)
+            count += _count
+            f.write(f"| {src_file} | {apis} | {_count} |\n")
+
+        f.write(f"| 总计: {len(api_mapping)} | ~ | {count} |\n")
 
 
 class EnDocGenerator:
@@ -1029,6 +1088,12 @@ def parse_args():
         default=True,
         help='generate English api reST files. If "all" in attr, only for "all".',
     )
+    parser.add_argument(
+        "--gen-api-mapping",
+        dest="gen_api_mapping",
+        action="store_true",
+        help='generate api and src file mapping. If "all" in attr, only for "all".',
+    )
 
     args = parser.parse_args()
     return args
@@ -1089,6 +1154,11 @@ if __name__ == "__main__":
             if args.gen_rst:
                 gen_en_files()
                 check_cn_en_match()
+        if ("__all__" not in realattrs) or (
+            "__all__" in realattrs and realattr == "__all__"
+        ):
+            if args.gen_api_mapping:
+                gen_api_mapping(jsonfn, "api_info_mapping.md")
 
         filter_out_object_of_api_info_dict()
         json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
