@@ -773,7 +773,7 @@ def gen_api_mapping(api_info_all_filename, output_filename):
         for src_file, apis in api_mapping.items():
             _count = len(apis)
             count += _count
-            f.write(f"| {src_file} | {apis} | {_count} |\n")
+            f.write(f"| `{src_file}` | {apis} | {_count} |\n")
 
         f.write(f"| 总计: {len(api_mapping)} | ~ | {count} |\n")
 
