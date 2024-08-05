@@ -41,8 +41,7 @@
 
 
 
-* 需要确认 Python 和 pip 是 64bit，并且处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64"、"x64"或"AMD64"即可：
-
+* 需要确认 Python 和 pip 是 64bit，并且处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构或者 arrch64 结构(仅提供 cpu 版本的 wheel 包)。如果是 x86_64 架构，下面的第一行输出的是"64bit"，第二行输出的是"x86_64"、"x64"或"AMD64"即可，如果是 arrch64 架构，下面的第一行输出的是"64bit"，第二行输出的是"arm64"即可。
 
     ```
     python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
@@ -51,8 +50,6 @@
 
 
 * 默认提供的安装包需要计算机支持 MKL
-
-* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/FluidDoc/tree/develop/docs/install/install_script.md)。
 
 
 
@@ -115,7 +112,6 @@
   ```
   python3 -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0-beta0/linux/linux-cpu-openblas-avx/paddlepaddle-3.0.0b1-cp38-cp38-linux_x86_64.whl
   ```
-
 
 ## **三、验证安装**
 

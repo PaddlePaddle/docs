@@ -7,7 +7,9 @@ torch.nn.BatchNorm2d(num_features,
                      eps=1e-05,
                      momentum=0.1,
                      affine=True,
-                     track_running_stats=True)
+                     track_running_stats=True,
+                     device=None,
+                     dtype=None)
 ```
 
 ### [paddle.nn.BatchNorm2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BatchNorm2D_cn.html#batchnorm2d)
@@ -37,8 +39,8 @@ paddle.nn.BatchNorm2D(num_features,
 | -                   | data_format      | 指定输入数据格式， PyTorch 无此参数，Paddle 保持默认即可。                                                                               |
 | affine              | -                | 是否进行反射变换， Paddle 无此参数，需要转写。                                                                                                 |
 | track_running_stats | use_global_stats | 指示是否使用全局均值和方差，PyTorch 设置为 True，Paddle 需设置为 False；PyTorch 设置为 None，Paddle 需设置为 True；PyTorch 设置为 False，Paddle 需设置为 True，需要转写。 |
-
-
+| device        | -            | 指定 Tensor 的设备，一般对网络训练结果影响不大，可直接删除。   |
+| dtype         | -            | 指定权重参数属性的对象，一般对网络训练结果影响不大，可直接删除。 |
 
 ### 转写示例
 

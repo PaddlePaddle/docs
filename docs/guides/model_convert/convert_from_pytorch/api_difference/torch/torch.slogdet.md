@@ -2,7 +2,7 @@
 ### [torch.slogdet](https://pytorch.org/docs/stable/generated/torch.slogdet.html?highlight=slogdet#torch.slogdet)
 
 ```python
-torch.slogdet(input *, out=None)
+torch.slogdet(input, *, out=None)
 ```
 
 ### [paddle.linalg.slogdet](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/slogdet_cn.html#slogdet)
