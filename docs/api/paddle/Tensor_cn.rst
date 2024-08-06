@@ -261,9 +261,18 @@ numpy()
 返回类型：numpy\.ndarray
 
 **代码示例**
-COPY-FROM: paddle.Tensor.numpy
+    .. code-block:: python
 
+        import paddle
+        import numpy as np
 
+        x = paddle.to_tensor([1, 2, 3])
+        print(type(x))
+        # <class 'paddle.Tensor'>
+
+        y = x.numpy()
+        print(type(y))
+        # <class 'numpy.ndarray'>
 
 reconstruct_from_(other)
 :::::::::
