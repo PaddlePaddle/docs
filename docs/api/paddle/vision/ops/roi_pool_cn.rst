@@ -5,7 +5,7 @@ roi_pool
 
 .. py:function:: paddle.vision.ops.roi_pool(x, boxes, boxes_num, output_size, spatial_scale=1.0, name=None)
 
-实现 roi_cooling 层，位置敏感的兴趣区域池化（也称为 ROIPooling），是对非均匀大小的输入执行最大池，以获得固定大小的特征图（例如 7*7）。共三步：1.将每个区域分成大小相等的部分，并使用 output_size（h，w）。2.查找每个部分中的最大值 3。将这些最大值复制到输出缓冲区。有关详细信息，请参阅：https://stackoverflow.com/questions/43430056/what-is-roi-layer-in-fast-rcnn
+实现 roi_pooling 层，位置敏感的兴趣区域池化（也称为 ROIPooling），是对非均匀大小的输入执行最大池，以获得固定大小的特征图（例如 7*7）。共三步：1.将每个区域分成大小相等的部分，并使用 output_size（h，w）。2.查找每个部分中的最大值 3。将这些最大值复制到输出缓冲区。有关详细信息，请参阅：https://stackoverflow.com/questions/43430056/what-is-roi-layer-in-fast-rcnn
 
 
 参数
