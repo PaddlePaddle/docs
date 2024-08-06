@@ -12,4 +12,10 @@ transformers.PreTrainedTokenizer(**kwargs)
 paddlenlp.transformers.PreTrainedTokenizer(**kwargs)
 ```
 
-两者功能和参数均一致。
+功能一致，参数完全一致，具体如下：
+
+### 参数映射
+
+| transformers | PaddlePaddle | 备注                   |
+| ------------ | ------------ | ---------------------- |
+| kwargs       | kwargs       | 预训练分词器的输入，具体用法尚未分析。  |
