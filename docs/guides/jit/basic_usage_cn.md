@@ -277,6 +277,9 @@ class LinearNet(nn.Layer):
 
 动转静训练的基本执行流程如下图：
 
+只对``Layer``的``sub_layer2``子图进行动转静训练。动态图执行在进行正向传播的时，动态图是根据每一层的执行即时动态变化的，并自动记录对应的反向传播所需的信息，在调用``loss.backward()``时，进行反向传播计算梯度，优化器更新模型参数。对于动态图训练的正向传播和反向传播是分离的两个操作。对于静态子图训练，``sub_layer2``子图动转静，确定图结构，获取整个子图的信息进行优化，创建 [Executor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/static/Executor_cn.html#cn-api-paddle-static-executor) 执行器对整个静态子图进行训练。在动转静训练时，执行整个静态子图的``run_program_op``进行动转静训练。
+
+
 <figure align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/to_static_train.png" style="zoom:50%" />
 </figure>
