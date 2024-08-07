@@ -21,7 +21,7 @@ Tensor，与输入数据类型相同的堆叠张量。
 
 .. image:: ../../images/api_legend/vstack.png
    :width: 500
-   :alt: 图例v
+   :alt: 图例
 
 代码示例
 ::::::::::::
