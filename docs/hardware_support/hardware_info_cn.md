@@ -49,7 +49,7 @@
 | AI 加速芯片 |  | 瑞芯微 | RK18xx 系列 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/rockchip_npu.html#id5) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/rockchip_npu.html#id1) |
 | AI 加速芯片 |  | 联发科 | NeuroPilot APU |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/mediatek_apu.html#id1) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/mediatek_apu.html#id1) |
 | AI 加速芯片 |  | Imagination | PowerVR 2NX |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_kirin_npu.html#id5) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_kirin_npu.html#id1) |
-| AI 加速芯片 |  | 百度 | 昆仑芯 R200、R300 等 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html#id4) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html#id1) |
+| AI 加速芯片 |  | 昆仑芯 | 昆仑芯 R200、R300 等 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html#id4) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html#id1) |
 | AI 加速芯片 |  | 寒武纪 | 思元系列芯片 |  |  [源码编译](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/cambricon_mlu.html#cankaoshiliyanshi) |   | [支持模型](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/cambricon_mlu.html#paddle)   |
 | AI 加速芯片 |  | 比特大陆 | 算丰 BM16 系列芯片 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/bitmain.html#id5) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/bitmain.html#id1) |
 | AI 加速芯片 |  | 紫光展锐 | T820 |  | [源码编译](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/android_nnapi.html#android-nnapi-paddle-lite)  |   |  [支持模型](https://www.paddlepaddle.org.cn/lite/develop/demo_guides/android_nnapi.html#paddle)  |
