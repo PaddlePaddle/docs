@@ -6,7 +6,7 @@
 torch.Tensor.arctan2(other)
 ```
 
-### [paddle.Tensor.atan2]()
+### [paddle.Tensor.atan2](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/paddle/Tensor_en.html)
 
 ```python
 paddle.Tensor.atan2(y, name=None)
@@ -16,6 +16,6 @@ paddle.Tensor.atan2(y, name=None)
 
 ### 参数映射
 
-| PyTorch                             | PaddlePaddle | 备注                                                                    |
-| ----------------------------------- | ------------ | ----------------------------------------------------------------------- |
-| other     | y           | 表示输入的 Tensor ，仅参数名不一致。                         |
+| PyTorch   | PaddlePaddle | 备注                              |
+| --------- | ------------ | --------------------------------- |
+| other     | y            | 表示输入的 Tensor ，仅参数名不一致。 |

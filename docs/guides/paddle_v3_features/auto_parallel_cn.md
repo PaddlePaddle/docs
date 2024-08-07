@@ -288,7 +288,8 @@ class RandomDataset(Dataset):
 
     def __getitem__(self, index):
         input = np.random.uniform(size=[self.seq_len, self.hidden]).astype("float32")
-        return input
+        label = np.random.uniform(size=[self.seq_len, self.hidden]).astype("float32")
+        return input, label
 
     def __len__(self):
         return self.num_samples
@@ -304,7 +305,6 @@ class MlpModel(paddle.nn.Layer):
                     mesh1, [dist.Replicate(), dist.Shard(0)])  # 模型并行，行切
 
     def forward(self, x):
-        dist.shard_tensor(x, mesh0, [dist.Shard(0), dist.Replicate()])
         y = paddle.matmul(x, self.w0)
         y = dist.reshard(y, mesh1, [dist.Shard(0), dist.Shard(2)])  #流水线并行
         z = paddle.matmul(y, self.w1)
@@ -325,8 +325,8 @@ dataloader = dist.shard_dataloader(dataloader, meshes=[mesh0, mesh1], shard_dims
 opt = paddle.optimizer.AdamW(learning_rate=0.001, parameters=model.parameters())
 opt = dist.shard_optimizer(opt)
 
-for step, inputs in enumerate(dataloader):
-    data = inputs
+for step, inputs in enumerate(dataloader()):
+    data = inputs[0]
     logits = model(data)
     loss = paddle.mean(logits)
     loss.backward()

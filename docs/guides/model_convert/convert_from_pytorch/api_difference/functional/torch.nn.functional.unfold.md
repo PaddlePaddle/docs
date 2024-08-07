@@ -9,7 +9,7 @@ torch.nn.functional.unfold(input, kernel_size, dilation=1, padding=0, stride=1)
 ### [paddle.nn.functional.unfold](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/unfold_cn.html)
 
 ```python
-paddle.nn.functional.unfold(x, kernel_size, strides=1, paddings=0, dilation=1, name=None)
+paddle.nn.functional.unfold(x, kernel_sizes, strides=1, paddings=0, dilations=1, name=None)
 ```
 
 其中功能一致, 仅参数名不一致，具体如下：
@@ -19,7 +19,7 @@ paddle.nn.functional.unfold(x, kernel_size, strides=1, paddings=0, dilation=1, n
 | PyTorch     | PaddlePaddle | 备注                              |
 | ----------- | ------------ | --------------------------------- |
 | input       | x            | 输入 4-D Tensor，仅参数名不一致。 |
-| kernel_size | kernel_size  | 卷积核的尺寸。                    |
-| dilation    | dilation     | 卷积膨胀。                        |
+| kernel_size | kernel_sizes | 卷积核的尺寸。                    |
+| dilation    | dilations    | 卷积膨胀。                        |
 | padding     | paddings     | 每个维度的扩展，仅参数名不一致。  |
 | stride      | strides      | 卷积步长，仅参数名不一致。        |

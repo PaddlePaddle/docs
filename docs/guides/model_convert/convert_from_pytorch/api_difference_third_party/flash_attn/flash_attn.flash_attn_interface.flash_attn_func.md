@@ -16,7 +16,7 @@ paddle.nn.functional.flash_attention.flash_attention(query, key, value, dropout=
 
 ### 参数映射
 
-| PyTorch           | PaddlePaddle      | 备注                                                         |
+| flash_attn        | PaddlePaddle      | 备注                                                         |
 | ----------------- | ----------------- | ------------------------------------------------------------ |
 | q                 | query             | 注意力模块的 query Tensor。|
 | k                 | key               | 注意力模块的 key Tensor。|
