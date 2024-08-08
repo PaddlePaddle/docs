@@ -45,7 +45,7 @@ flatten
 
 .. image:: ../../images/api_legend/flatten.png
    :alt: 图例
-   :width: 1100
+   :width: 700
 
 参数
 ::::::::::::
