@@ -1,3 +1,4 @@
+import argparse
 import os
 import re
 import sys
@@ -299,11 +300,18 @@ def get_c2a_dict(conditions, meta_dict):
     return c2a_dict
 
 
-# 是否写回到源文件，调试时可以关闭
-FLAG_WRITE_INPLACE = False
-
-
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-c",
+        "--check_only",
+        action="store_true",
+        help="Write back to the source file",
+    )
+    args = parser.parse_args()
+
+    CHECK_ONLY = args.check_only
+
     # convert from pytorch basedir
     tools_dir = os.path.dirname(__file__)
     cfp_basedir = os.path.join(tools_dir, "..")
@@ -346,9 +354,9 @@ if __name__ == "__main__":
             for row_id, line in rows:
                 print(f"  - row [{row_id}]: {line}")
 
-    # 是否生成并写入到源文件
+    # 如果只检查，就写到临时文件去
     output_path = mapping_index_file
-    if not FLAG_WRITE_INPLACE:
+    if CHECK_ONLY:
         output_path = os.path.join(tools_dir, "generated.tmp.md")
 
     with open(output_path, "w", encoding="utf-8") as f:
