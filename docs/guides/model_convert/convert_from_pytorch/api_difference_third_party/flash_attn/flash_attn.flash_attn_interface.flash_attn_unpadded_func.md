@@ -17,7 +17,7 @@ max_seqlen_q, max_seqlen_k, scale,dropout=0.0, causal=False, return_softmax=Fals
 
 ### 参数映射
 
-| PyTorch           | PaddlePaddle      | 备注                |
+| flash_attn        | PaddlePaddle      | 备注                |
 | ----------------- | ----------------- | ------------------------------------------------------------ |
 | q                 | query             | 注意力模块的 query Tensor。|
 | k                 | key               | 注意力模块的 key Tensor。|

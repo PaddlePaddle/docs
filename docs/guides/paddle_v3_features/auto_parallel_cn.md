@@ -129,7 +129,7 @@ dist_tensorD = relu(dist_tensorC)
 
 接下来就会进入自动并行的第二个核心逻辑 **切分转换**。
 框架会根据 tensor 当前的切分状态(src_placement)，和切分推导规则推导出的算子计算需要的切分状态(dst_placement),添加对应的通信/张量维度变换算子。
-根据上图的切分推导，在计算 Matmul 添加 split 算子，在计算 Relue 添加 Allreduce，将输入 tensor 转换成需要的切分状态进行实际计算。
+根据上图的切分推导，在计算 Matmul 添加 split 算子，在计算 Relu 添加 Allreduce，将输入 tensor 转换成需要的切分状态进行实际计算。
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/shard_convertion.png" width="40%"/>
@@ -288,7 +288,8 @@ class RandomDataset(Dataset):
 
     def __getitem__(self, index):
         input = np.random.uniform(size=[self.seq_len, self.hidden]).astype("float32")
-        return input
+        label = np.random.uniform(size=[self.seq_len, self.hidden]).astype("float32")
+        return input, label
 
     def __len__(self):
         return self.num_samples
@@ -304,7 +305,6 @@ class MlpModel(paddle.nn.Layer):
                     mesh1, [dist.Replicate(), dist.Shard(0)])  # 模型并行，行切
 
     def forward(self, x):
-        dist.shard_tensor(x, mesh0, [dist.Shard(0), dist.Replicate()])
         y = paddle.matmul(x, self.w0)
         y = dist.reshard(y, mesh1, [dist.Shard(0), dist.Shard(2)])  #流水线并行
         z = paddle.matmul(y, self.w1)
@@ -325,8 +325,8 @@ dataloader = dist.shard_dataloader(dataloader, meshes=[mesh0, mesh1], shard_dims
 opt = paddle.optimizer.AdamW(learning_rate=0.001, parameters=model.parameters())
 opt = dist.shard_optimizer(opt)
 
-for step, inputs in enumerate(dataloader):
-    data = inputs
+for step, inputs in enumerate(dataloader()):
+    data = inputs[0]
     logits = model(data)
     loss = paddle.mean(logits)
     loss.backward()

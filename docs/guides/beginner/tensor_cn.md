@@ -572,7 +572,7 @@ x >= y  -> x.greater_equal(y) #判断 Tensor x 的元素是否大于或等于 Te
 ```python
 x.logical_and(y)              #对两个布尔类型 Tensor 逐元素进行逻辑与操作
 x.logical_or(y)               #对两个布尔类型 Tensor 逐元素进行逻辑或操作
-x.logical_xor(y)              #对两个布尔类型 Tensor 逐元素进行逻辑亦或操作
+x.logical_xor(y)              #对两个布尔类型 Tensor 逐元素进行逻辑异或操作
 x.logical_not(y)              #对两个布尔类型 Tensor 逐元素进行逻辑非操作
 ```
 

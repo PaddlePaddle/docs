@@ -1,9 +1,9 @@
 ## [组合替代实现] flash_attn.layers.rotary.apply_rotary_emb_func
 
-### [flash_attn.layers.rotary.apply_rotary_emb_fun](https://github.com/Dao-AILab/flash-attention/blob/d0787acc16c3667156b51ce5b01bdafc7594ed39/flash_attn/layers/rotary.py#L94)
+### [flash_attn.layers.rotary.apply_rotary_emb_func](https://github.com/Dao-AILab/flash-attention/blob/c4b9015d74bd9f638c6fd574482accf4bbbd4197/flash_attn/layers/rotary.py#L128)
 
 ```python
-flash_attn.layers.rotary.apply_rotary_emb_fun(x, cos, sin, interleaved=False, inplace=False, seqlen_offsets: Union[int, torch.Tensor] = 0, cu_seqlens: Optional[torch.Tensor] = None, max_seqlen: Optional[int] = None)
+flash_attn.layers.rotary.apply_rotary_emb_func(x, cos, sin, interleaved=False, inplace=False, seqlen_offsets: Union[int, torch.Tensor] = 0, cu_seqlens: Optional[torch.Tensor] = None, max_seqlen: Optional[int] = None)
 ```
 
 Paddle 无此 API，需要组合实现。

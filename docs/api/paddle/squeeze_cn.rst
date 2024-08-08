@@ -44,6 +44,12 @@ squeeze
         Output:
         out.shape = [1, 3, 5]
 
+下图展示了 squeeze 操作的一个典型情况——一个形状为 [3, 4, 1] 的三维度张量通过 squeeze 操作删除了所有尺寸为 1 的维度，即维度 3。我们可以看到该张量变为了一个形状为 [3, 4] 的二维张量。
+
+.. image:: ../../images/api_legend/squeeze.png
+    :width: 600
+    :alt: 图例
+
 参数
 :::::::::
         - **x** (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、bool、int8、int32、int64。
