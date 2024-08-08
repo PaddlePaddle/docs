@@ -22,7 +22,7 @@ python docs/guides/model_convert/convert_from_pytorch/tools/validate_mapping_fil
 python docs/guides/model_convert/convert_from_pytorch/tools/apply_references.py --check_only
 ```
 
-`check_only` 参数用于表示只用于检查，生成结果保存到脚本同目录下的 `generated.tmp.md` 中。不使用该参数时，则生成并覆盖保存上级目录的 `pytorch_api_mapping_cn.md`。
+`--check_only` 参数用于表示只用于检查，生成结果保存到脚本同目录下的 `generated.tmp.md` 中。不使用该参数时，则生成并覆盖保存上级目录的 `pytorch_api_mapping_cn.md`。
 
 CI 流程中会自动调用生成工具，验证工具则由开发者在开发文档时自行调用。
 
