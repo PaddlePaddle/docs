@@ -19,7 +19,7 @@
 *由于 dcu 代码位于飞桨主框架中，因此我们不需要安装额外的 Custom Device 包*
 
 ```shell
-python -m pip install --pre paddlepaddle-rocm -i https://www.paddlepaddle.org.cn/packages/nightly/dcu/
+python -m pip install --pre paddlepaddle-dcu -i https://www.paddlepaddle.org.cn/packages/nightly/dcu/
 ```
 
 2. 安装 PaddleX 代码库
