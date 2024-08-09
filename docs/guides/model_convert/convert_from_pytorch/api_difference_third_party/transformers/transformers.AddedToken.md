@@ -12,4 +12,15 @@ transformers.AddedToken(content: str, single_word=False, lstrip=False, rstrip=Fa
 paddlenlp.transformers.AddedToken(content: str = field(default_factory=str), single_word: bool = False， lstrip: bool = False, rstrip: bool = False, normalized: bool = True, special: bool = True)
 ```
 
-两者功能和参数均一致。
+功能一致，参数完全一致，具体如下：
+
+### 参数映射
+
+| transformers | PaddlePaddle | 备注                   |
+| ------------ | ------------ | ---------------------- |
+| content      | content      | 待添加的 Token 内容。  |
+| single_word  | single_word  | token 是否视为独立的词。 |
+| lstrip       | lstrip       | 是否移除左侧空白符。    |
+| rstrip       | rstrip       | 是否移除左侧空白符。    |
+| special      | special      | 是否有特殊的处理方式。  |
+| normalized   | normalized  | 是否进行规范化处理。  |
