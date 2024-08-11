@@ -51,7 +51,7 @@ i8 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
 i16 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
 i32 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
 i64 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
-c64 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c128 | c64 | c128 |
+c64 | c64 | c64 | c128 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c128 |
 c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 |
 
 
@@ -137,6 +137,7 @@ How to Use Type Promotion
  ```python
 
     import paddle
+    paddle.seed(2024)
     a = paddle.rand([3,3], dtype = 'float16')
     b = paddle.rand([3,3], dtype = 'float32')
     c = a + b # type promotion will automatically occur, casting 'a' to float32, and no additional user actions required
@@ -158,6 +159,7 @@ How to Use Type Promotion
     train_program = paddle.static.Program()
     startup_program = paddle.static.Program()
     with paddle.static.program_guard(train_program, startup_program):
+        paddle.seed(2024)
         a = paddle.rand([3,3], dtype = 'float16')
         b = paddle.rand([3,3], dtype = 'float32')
         f = paddle.add(a, b)
