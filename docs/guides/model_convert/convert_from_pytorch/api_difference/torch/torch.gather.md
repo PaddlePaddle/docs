@@ -29,6 +29,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | index         | indices      | 聚合元素的索引矩阵，维度和输入 (input) 的维度一致，仅参数名不一致。          |
 | sparse_grad   | -            | 表示是否对梯度稀疏化，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。    |
 | out           | -            | 表示目标 Tensor ， Paddle 无此参数，需要转写。   |
+| -             | broadcast    | 表示是否需要广播 indices 矩阵，PyTorch 无此参数，Paddle 应设置为 False 结果才与 pytorch 一致。 |
 
 
 ### 转写示例
