@@ -43,7 +43,7 @@ done
 ## 3 apply PyTorch-PaddlePaddle mapping
 APIMAPPING_ROOT=${DOCROOT}/guides/model_convert/convert_from_pytorch
 
-python ${APIMAPPING_ROOT}/apply_reference_from_api_difference.py
+python ${APIMAPPING_ROOT}/tools/apply_references.py
 
 if [ $? -ne 0 ]; then
     echo "Error: API mapping generate script failed, please check changes in ${APIMAPPING_ROOT}"

@@ -3,32 +3,33 @@
 ### [torch.Tensor.bernoulli](https://pytorch.org/docs/stable/generated/torch.Tensor.bernoulli.html#torch.Tensor.bernoulli)
 
 ```python
-torch.Tensor.bernoulli(p=0.5, *, generator=None)
+torch.Tensor.bernoulli(p=None, *, generator=None)
 ```
 
-### [paddle.Tensor.bernoulli]()
+### [paddle.bernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bernoulli_cn.html#bernoulli)
 
 ```python
-paddle.Tensor.bernoulli(name=None)
+paddle.bernoulli(x, name=None)
 ```
 
-PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Pytorch 为 Tensor 类方法，Paddle 为普通函数，另外 PyTorch 相比 Paddle 支持更多其他参数。具体如下：
+
 
 ### 参数映射
 
-| PyTorch       | PaddlePaddle | 备注                                                                                |
-| ------------- | ------------ | ----------------------------------------------------------------------------------- |
-| p             | -            | 伯努利参数 p，Paddle 无此参数，暂无转写方式。                                        |
-| generator     | -            | 用于采样的伪随机数生成器， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。    |
+| PyTorch       | PaddlePaddle | 备注                    |
+| ------------- | ------------ | ----------------------------------------------------------------------------- |
+| self      | x  | 伯努利参数 Tensor，将调用 torch.Tensor 类方法的 self Tensor 传入。  |
+| p         | -  | 可选，伯努利参数 p，Paddle 无此参数，暂无转写方式。 |
+| generator | -  | 用于采样的伪随机数生成器， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。    |
+
 
 ### 转写示例
-
+#### self：调用类方法的 Tensor
 ```python
-# torch 写法
-x = torch.tensor([0.2, 0.6, 0.8])
-y = x.bernoulli()
+# PyTorch 写法
+x.bernoulli()
 
-# paddle 写法
-x = paddle.to_tensor([0.2, 0.6, 0.8])
-y = x.bernoulli()
+# Paddle 写法
+paddle.bernoulli(x)
 ```

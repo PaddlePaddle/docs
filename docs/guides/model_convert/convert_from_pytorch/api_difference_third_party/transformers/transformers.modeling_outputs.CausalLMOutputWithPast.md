@@ -12,4 +12,13 @@ transformers.modeling_outputs.CausalLMOutputWithPast(loss: Optional = None, logi
 paddlenlp.transformers.model_outputs.CausalLMOutputWithPast(loss: Optional[paddle.Tensor] = None, logits: paddle.Tensor = None, past_key_values: Optional[Tuple[Tuple[paddle.Tensor]]] = None, hidden_states: Optional[Tuple[paddle.Tensor]] = None, attentions: Optional[Tuple[paddle.Tensor]] = None)
 ```
 
-两者功能和参数均一致。
+功能一致，参数完全一致，具体如下：
+
+### 参数映射
+| transformers      | PaddlePaddle                                          | 备注                                                    |
+|-------------------|-------------------------------------------------------|---------------------------------------------------------|
+| loss              | loss                                                  | 损失值。默认值为 None。                                 |
+| logits            | logits                                                | 模型输出的 logits。默认值为 None。                       |
+| past_key_values   | past_key_values                                       | 过去的键值对。默认值为 None。                           |
+| hidden_states     | hidden_states                                         | 隐藏状态。默认值为 None。                               |
+| attentions        | attentions                                            | 注意力权重。默认值为 None。                             |

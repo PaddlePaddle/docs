@@ -11,10 +11,10 @@ torch.nn.Unfold(kernel_size,
 ### [paddle.nn.Unfold](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Unfold_cn.html#unfold)
 
 ```python
-paddle.nn.Unfold(kernel_size=[3, 3],
+paddle.nn.Unfold(kernel_sizes=[3, 3],
                     strides=1,
                     paddings=1,
-                    dilation=1,
+                    dilations=1,
                     name=None)
 ```
 
@@ -35,5 +35,5 @@ paddle.nn.Unfold(kernel_size=[3, 3],
 unfold = nn.Unfold(kernel_size=(2, 3))
 
 # Paddle 写法
-unfold = nn.Unfold(kernel_size=[2, 3])
+unfold = nn.Unfold(kernel_sizes=[2, 3])
 ```
