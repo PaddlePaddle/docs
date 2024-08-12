@@ -12,6 +12,7 @@ expand_as
 下图展示了一个一维张量通过 expand_as 操作转变为形状为[2,3]的张量。目标张量的形状为[2,3]，通过expand_as，一维张量扩展成形状为[2,3]的张量。
 
 .. image:: ../../images/api_legend/expand_as.png
+   :width: 500
    :alt: 图例
 
 参数
