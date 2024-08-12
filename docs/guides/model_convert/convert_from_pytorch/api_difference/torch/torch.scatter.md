@@ -24,7 +24,7 @@ paddle.put_along_axis(arr,indices, values, axis, reduce="assign", include_self=T
 | src     | values        | 表示需要插入的值，仅参数名不一致。 |
 | reduce  | reduce       | 归约操作类型 。 |
 | -       | include_self | 表示插入 values 时是否包含 arr 中的元素，PyTorch 无此参数|
-| -       | broadcast   | 表示是否需要广播 indices 矩阵，PyTorch 无此参数，Paddle 应设置为 'False' 结果才与 pytorch 一致。 |
+| -       | broadcast   | 表示是否需要广播 indices 矩阵，PyTorch 无此参数，Paddle 应设置为 False 结果才与 pytorch 一致。 |
 | out     | -       | 表示输出的 Tensor，Paddle 无此参数，需要转写。 |
 
 

@@ -6,8 +6,15 @@ dsplit
 .. py:function:: paddle.dsplit(x, num_or_indices, name=None)
 
 
+``dsplit`` 全称 Depth Split ，即深度分割，将输入 Tensor 沿着深度轴分割成多个子 Tensor，等价于将 :ref:`cn_api_paddle_tensor_split` API 的参数 axis 固定为 2。
 
-将输入 Tensor 沿着深度轴分割成多个子 Tensor，等价于将 :ref:`cn_api_paddle_tensor_split` API 的参数 axis 固定为 2。
+.. note::
+   请确保使用 ``paddle.dsplit`` 进行变换的 Tensor 维度数量不少于 3。
+
+如下图，Tenser ``x`` 的 shape 为[4, 4, 4]，经过 ``paddle.dsplit(x, num_or_indices=2)`` 变换后，得到 ``out0`` 和 ``out1`` 两个 shape 均为[4, 4, 2]的子 Tensor :
+
+.. image:: ../../images/api_legend/dsplit/dsplit.png
+   :alt: dsplit 图例
 
 参数
 :::::::::

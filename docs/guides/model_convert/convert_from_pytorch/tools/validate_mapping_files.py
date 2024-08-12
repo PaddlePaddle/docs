@@ -190,7 +190,7 @@ def get_meta_from_diff_file(
     signature_cache = None
 
     with open(filepath, "r", encoding="utf-8") as f:
-        for line in f.readlines():
+        for line in f:
             # 现在需要考虑内容信息了
             # if not line.startswith("##"):
             #     continue
