@@ -277,12 +277,19 @@ class LinearNet(nn.Layer):
 
 动转静训练的基本执行流程如下图：
 
-只对``Layer``的``sub_layer2``子图进行动转静训练。动态图执行在进行正向传播的时，动态图是根据每一层的执行即时动态变化的，并自动记录对应的反向传播所需的信息，在调用``loss.backward()``时，进行反向传播计算梯度，优化器更新模型参数。对于动态图训练的正向传播和反向传播是分离的两个操作。对于静态子图训练，``sub_layer2``子图动转静，确定图结构，获取整个子图的信息进行优化，创建 [Executor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/static/Executor_cn.html#cn-api-paddle-static-executor) 执行器对整个静态子图进行训练。在动转静训练时，执行整个静态子图的``run_program_op``进行动转静训练。
-
 <figure align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/to_static_train.png" style="zoom:50%" />
 </figure>
 
+动转静训练整体是在动态图下进行的。对于没有装饰 `@to_static` 的函数（如 `sub_layer1`），该函数仍然走原生动态图执行流程，在前向逐个执行其中的 OP，并构建反向计算图。
+
+而对于装饰了 `@to_static` 的函数（如 `sub_layer2`），动转静会将其作为一个静态子图进行执行，这主要包含了如下几部分：
+
+-  首先对源函数源码进行转写，以确保控制流等语法结构能够捕获完全；
+-  之后会通过转写后的函数在静态图模式下进行组网，获取完整的前向 Program，并通过调用反向 API（`grad`）获取反向 Program；
+-  获取前反向 Program 后会传入 `RunProgramOp` 中来执行该静态子图，该 OP 是一个动态图 OP，与其它动态图 OP 有着类似的行为。为了执行 Program，`RunProgramOp` 会创建执行器来执行该 Program，以获得前向的计算结果。执行后会将反向 Program 等信息保存在反向计算图中，确保后续反向能够正确计算。
+
+当用户触发反向计算时（如 `loss.backward()`），动态图会根据反向图依次执行反向计算。对于已经转为静态子图的部分，反向图上对应 `RunProgramOp` 的反向计算。与前向类似，同样会创建执行器执行反向 Program，以获得反向计算得到的梯度结果。
 
 ## 三、动转静模型保存和加载
 
