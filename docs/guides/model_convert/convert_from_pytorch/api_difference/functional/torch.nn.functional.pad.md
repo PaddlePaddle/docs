@@ -17,6 +17,7 @@ paddle.nn.functional.pad(x,
                             mode='constant',
                             value=0.0,
                             data_format='NCHW',
+                            pad_from_left_axis=True,
                             name=None)
 ```
 
@@ -31,5 +32,6 @@ paddle.nn.functional.pad(x,
 | mode          | mode         | 表示填充的模式。                                     |
 | value          | value         | 表示填充的值，mode 为'constant'时有效 。                |
 | -        | data_format |  指定输入的数据格式, PyTorch 无此参数， Paddle 保持默认即可。 |
+| -        | pad_from_left_axis | 只有当 mode 为 'constant' ，且 pad 是 list 或 tuple，且 pad 的长度是 2*x.ndim 时有效，设置 pad 与 x 的轴左对齐或右对齐， PyTorch 无此参数， Paddle 需设置为 False 结果才与 PyTorch 一致。                |
 
 在实际使用过程中，`data_format` 参数需要根据输入参数进行指定
