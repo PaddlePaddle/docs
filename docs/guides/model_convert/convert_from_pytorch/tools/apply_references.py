@@ -4,9 +4,10 @@ import re
 import sys
 
 script_path = os.path.abspath(__file__)
-script_dir = os.path.dirname(__file__)
-sys.path.append(script_dir)
-print(script_dir)
+tools_dir = os.path.dirname(__file__)
+sys.path.append(tools_dir)
+
+cfp_basedir = os.path.join(tools_dir, "..")
 
 from validate_mapping_files import (
     DiffMeta,
@@ -106,7 +107,7 @@ def docs_url_to_relative_page(url):
 
 def doc_path_to_relative_page(path):
     """将映射文档的本地路径转换为网页相对路径"""
-    md_path = os.path.relpath(path, script_dir)
+    md_path = os.path.relpath(path, cfp_basedir)
 
     assert md_path.endswith(".md"), f"Unexpected mapping doc path: {path}"
 
@@ -312,9 +313,6 @@ if __name__ == "__main__":
 
     CHECK_ONLY = args.check_only
 
-    # convert from pytorch basedir
-    tools_dir = os.path.dirname(__file__)
-    cfp_basedir = os.path.join(tools_dir, "..")
     # pysrc_api_mapping_cn
     mapping_index_file = os.path.join(cfp_basedir, "pytorch_api_mapping_cn.md")
 
