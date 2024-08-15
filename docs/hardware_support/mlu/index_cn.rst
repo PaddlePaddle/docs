@@ -9,7 +9,7 @@
 飞桨框架支持基于寒武纪 MLU 芯片的训练和推理，请参考以下内容快速体验：
 
 - `寒武纪 MLU 基于框架的使用指南 <./paddle_tutorial_cn.html>`_ : 寒武纪 MLU 基于框架的使用指南
-- `寒武纪 MLU 基于套件的使用指南 <./suite_tutorial_cn.html>`_ : 寒武纪 MLU 基于套件的使用指南
+- `寒武纪 MLU 基于套件的使用指南 <./paddlex_tutorial_cn.html>`_ : 寒武纪 MLU 基于套件的使用指南
 - `寒武纪 MLU 支持模型 <./support_cn.html>`_ : 寒武纪 MLU 支持模型
 
 
