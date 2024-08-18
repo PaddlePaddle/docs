@@ -99,7 +99,7 @@ class User: ...
 
 因此我们总是建议使用 PEP 563，以确保 Paddle 类型提示的简洁性和现代化。
 
-> 注意 PEP 563 会在 Python 3.14 被 [PEP 649](https://peps.python.org/pep-0649/) 取代，但我们会继续使用 PEP 563 直到 Python 3.13 退场。
+> 注意 PEP 563 会在 Python 3.14 被 [PEP 649](https://peps.python.org/pep-0649/) 取代，但在 Python 3.13 及以前，PEP 563 仍然有着重要的作用。因此我们会继续使用 PEP 563 直到 Python 3.13 退场。
 
 值得注意的是 PEP 563 的生效范围仅为类型注解上下文，对于其它语法上下文是无效的，一种典型的 case 就是 `TypeAlias`，比如：
 
