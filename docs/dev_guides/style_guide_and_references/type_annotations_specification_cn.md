@@ -1,4 +1,4 @@
-# 类型提示标注规范
+# Python 类型提示标注规范
 
 Python 是一门动态类型语言，变量的类型在运行时确定，因此不需要在函数参数和返回值声明类型。这虽然给开发带来了很大的灵活性，让开发者不再需要苦恼于解决类型错误，但同时也给大型项目的维护和代码的可读性带来了挑战。为了避免这一问题，Python 从 3.0 开始引入类型注解功能，并不断迭代和规范，如今已经形成了一套静态类型检查体系。这不仅为开发者提供了标注类型的能力，增加代码可读性，也催生了 [Mypy](https://github.com/python/mypy)、[Pyright](https://github.com/microsoft/pyright) 等优秀的静态类型检查工具，使开发者能够在静态检查阶段就发现浅显的类型错误，提升代码的鲁棒性。
 
@@ -46,9 +46,10 @@ class User:
 
     def __init__(self, name: str):
         self.name = name
+        self._age = 18
 ```
 
-这里 `count: ClassVar[int]` 为类属性的类型提示，`name: str` 为实例属性的类型提示。这里对于实例属性 `name: str`，虽然 `__init__` 方法中已经为参数 `name` 标注了 `str` 类型，对于大多数静态类型检查工具来说，也能够正确推断出 `name` 的类型，但为了确保用户类型提示的准确性，我们建议尽可能为这样的公开属性标注类型提示。
+这里 `count: ClassVar[int]` 为类属性的类型提示，`name: str` 为实例属性的类型提示。这里对于实例属性 `name: str`，虽然 `__init__` 方法中已经为参数 `name` 标注了 `str` 类型，对于大多数静态类型检查工具来说，也能够正确推断出 `name` 的类型，但为了确保用户类型提示的准确性，我们建议尽可能为这样的公开属性标注类型提示，私有属性则可以不标注。
 
 ### 非公开 API 可选标注类型提示
 
@@ -114,6 +115,20 @@ from typing_extensions import TypeAlias
 IntOrStr: TypeAlias = int | str  # 不生效，3.8 仍然会报错
 
 class SequenceInt(Sequence[int]): ...  # 不生效，3.8 仍然会报错
+```
+
+对于此类情况，我们仍然需要使用 Python 3.8 兼容的形式，如：
+
+```python
+from __future__ import annotations
+
+from typing import Literal, Union, Sequence
+
+from typing_extensions import TypeAlias
+
+IntOrStr: TypeAlias = Union[int, str]
+
+class SequenceInt(Sequence[int]): ...
 ```
 
 > 后续示例代码默认使用 PEP 563，不再重复说明。
@@ -257,9 +272,9 @@ def process_data(
     with_index: bool = True,
 ) -> list[str] | list[tuple[int, str]]:
     if with_index:
-        return list(enumerate(data))
+        return list(enumerate(map(processor, data)))
     else:
-        return list(data)
+        return list(map(processor, data))
 
 data = ["a", "b", "c"]
 processor = lambda x: x.upper()
@@ -328,6 +343,10 @@ reveal_type(
 
 这里通过添加两个 `Literal` 的 `overload` 来明确返回值的类型，这样可以尽可能避免下游对返回值类型的判断。当然这个技巧也不是所有情况都适用的，对于一些场景返回值就是 `Union` 类型的情况，可以考虑拆分函数、使用泛型参数等方式来解决。
 
+### 使用 `TypedDict` 为 `**kwargs` 标注类型
+
+<!-- TODO -->
+
 ### 对于重复出现的类型，使用类型别名减少冗余代码
 
 如果一个复杂的类型在代码中需要用到多次，我们可以使用类型别名来减少冗余代码，提高代码的可读性。比如：
@@ -350,10 +369,12 @@ def set_user_type(user_type: UserType) -> None: ...
 - `V`：表示值类型
 - `P`：表示参数类型（`ParamSpec`）
 
+特别地，对于序列类型（`TypeVarTuple`），我们建议在泛型参数后加上 `s`，如 `Ts`，以与单个元素的类型区分。
+
 此外还有一些后缀用于表示该泛型参数的特性：
 
-- `_co` / `_contra`：表示协变 / 逆变类型
-- `s`：表示序列类型（`TypeVarTuple`）
+- `_co`：表示协变类型
+- `_contra`：表示逆变类型
 
 非暴露的泛型参数应以 `_` 开头，如 `_T`。
 
@@ -374,7 +395,7 @@ _K = TypeVar('_K')
 _V = TypeVar('_V')
 
 _InputT = ParamSpec('_InputT')
-_RetT = ParamSpec('_RetT')
+_RetT = TypeVar('_RetT')
 ```
 
 ### 使用泛型类时必须写明参数类型
