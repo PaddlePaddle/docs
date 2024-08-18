@@ -268,7 +268,7 @@ processed_data = process_data(data, processor, with_index=True)
 reveal_type(processed_data)  # -> Revealed type is 'list[str] | list[tuple[int, str]]'
 ```
 
-对于这个 case，返回值是一个 `Union`，下游如果想要确定类型就需要额外判断，而对于这个 case，我们完全可以根据 `with_index` 的值来确定返回值的类型，这可以通过 [`overload`](https://docs.python.org/3/library/typing.html#typing.overload) 来实现，因此我们更推荐如下写法：
+对于这个 case，返回值是一个 `Union`，下游如果想要确定类型就需要额外判断，而对于这个 case，我们完全可以根据 `with_index` 的字面量来确定返回值的类型，这可以通过 [`overload`](https://docs.python.org/3/library/typing.html#typing.overload) 来实现，因此我们更推荐如下写法：
 
 ```python
 from collections.abc import Callable, Iterable
