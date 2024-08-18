@@ -377,6 +377,29 @@ _InputT = ParamSpec('_InputT')
 _RetT = ParamSpec('_RetT')
 ```
 
+### 使用泛型类时必须写明参数类型
+
+Python 允许泛型类省略掉泛型参数，会隐式地将泛型参数视为 `Any` 类型，这可能会导致类型检查不够精准，且部分静态类型检查工具在严格模式下无法进行正确的类型推导，因此我们建议在使用泛型类时必顽写明泛型参数，即便使用 `Any`，如：
+
+因此相比于如下写法：
+
+```python
+from collections.abc import Callable, Sequence
+
+def process_data(data: Sequence, processor: Callable) -> None: ...
+```
+
+我们更推荐如下写法：
+
+```python
+from collections.abc import Callable, Sequence
+from typing import Any
+
+def process_data(data: Sequence[int], processor: Callable[[int], int]) -> None: ...
+# 如果泛型参数真的可以是任意类型，可以使用 Any，但不要省略
+def process_data(data: Sequence[Any], processor: Callable[..., Any]) -> None: ...
+```
+
 ### 当输出类型与输入类型一同变化时应考虑使用泛型
 
 如果一个函数的输出类型与输入类型有关联，我们可以考虑使用泛型参数来表示这种关联。比如：
