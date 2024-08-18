@@ -343,9 +343,42 @@ reveal_type(
 
 这里通过添加两个 `Literal` 的 `overload` 来明确返回值的类型，这样可以尽可能避免下游对返回值类型的判断。当然这个技巧也不是所有情况都适用的，对于一些场景返回值就是 `Union` 类型的情况，可以考虑拆分函数、使用泛型参数等方式来解决。
 
-### 使用 `TypedDict` 为 `**kwargs` 标注类型
+### 区分异构数组和同构数组类型
 
-<!-- TODO -->
+对于数组类型，我们可以将其分为异构数组和同构数组两种，异构数组表示数组内的元素类型不一致，往往拥有多个泛型参数，同构数组表示数组内的元素类型一致，往往只有一个泛型参数。
+
+Python 的 `list` 类型是同构数组类型，因此它只能拥有一个泛型参数，比如 `list[int]`，表示该 list 只包含 `int` 类型的元素。但不限定元素数量。
+
+Python 的 `tuple` 类型是异构数组类型，因此它可以拥有多种不同类型的元素，比如 `tuple[int, str, bool]`，表示该 tuple 只包含三个元素，依次分别为 `int`、`str`、`bool` 类型。如果想要表示一个同构的 `tuple` 类型，则需要使用 `tuple[int, ...]`，表示该 tuple 只包含 `int` 类型的元素，但不限定元素数量。这是初学者常见的误区，经常会误以为 `tuple` 也是同构数组类型，因此使用 `tuple[int]` 来表示不定长的 `int` 类型 tuple，但是实际上这只表示仅包含一个 `int` 类型元素的 tuple。
+
+### `*args` 和 `**kwargs` 的类型标注
+
+对于 `*args` 和 `**kwargs`，类型注解所提供的类型是每个元素的类型，比如：
+
+```python
+def fn(*args: int, **kwargs: bool) -> None: ...
+```
+
+表示的是 `*args` 里所有元素都是 `int` 类型，也即 `args` 类型为 `tuple[int, ...]`，`**kwargs` 里所有元素都是 `bool` 类型，也即 `kwargs` 类型为 `dict[str, bool]`。
+
+对于大多数情况来说，`*args` 和 `**kwargs` 内的元素并不是相同的，在这种情况下，我们可以利用 `Unpack` 配合 `TypedDict` 等类型来提供更好的约束，比如：
+
+```python
+from typing import TYPE_CHECKING, TypedDict
+
+from typing_extensions import Unpack
+
+if TYPE_CHECKING:
+    class _Options(TypedDict, total=False):
+        x: int
+        y: str
+
+def fn(*args: Unpack[tuple[int, str, bool]], **kwargs: Unpack[_Options]) -> None: ...
+```
+
+这里将 `*args` 的类型标注为 `Unpack[tuple[int, str, bool]]`，表示 `args` 必须传递三个参数，分别是 `int`、`str`、`bool` 类型。这种用法并不常见，因为 `*args` 很少会限制参数的个数，只在极少数场景下有用。
+
+而 `**kwargs` 的类型标注为 `Unpack[_Options]`，表示 `kwargs` 只能传递 `x` 和 `y` 两个参数，其中 `x` 的类型是 `int`，`y` 的类型是 `str`，而 `total=False` 表示所有参数都是可选的。这种用法非常常见，建议所有 `**kwargs` 都使用此种类型进行标注。
 
 ### 对于重复出现的类型，使用类型别名减少冗余代码
 
@@ -467,6 +500,30 @@ def decorator(fn: Callable[_InputT, _RetT]) -> Callable[_InputT, _RetT]:
 @decorator
 def fn(x: int) -> str:
     ...
+```
+
+### 使用 `Protocol` 表示复杂的函数类型
+
+当我们将函数作为参数时，可以直接使用 [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) 来进行标注，比如：
+
+```python
+from collections.abc import Callable
+
+def process_data(data: list[int], processor: Callable[[int], int]) -> list[int]: ...
+```
+
+但对于某些特殊函数，`Callable` 的表达能力可能不够，比如包含 `overload` 的场景：
+
+```python
+from typing import Protocol, overload
+
+class Processor(Protocol):
+    @overload
+    def __call__(self, value: int) -> int: ...
+    @overload
+    def __call__(self, value: tuple[int]) -> int: ...
+
+def process_data(data: list[int], processor: Processor) -> list[int]: ...
 ```
 
 ### 如果函数用于确定输入类型，应当使用 `TypeGuard` 或 `TypeIs`
