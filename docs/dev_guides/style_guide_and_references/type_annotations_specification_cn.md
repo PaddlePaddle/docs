@@ -419,7 +419,7 @@ def process_data(data: list[_T]) -> list[_T]: ...
 ```python
 from typing import TypeVar
 
-_T = TypeVar('_T', int | float)  # _T 只能是 int 或 float
+_T = TypeVar('_T', int, float)  # _T 只能是 int 或 float
 
 def process_data(data: list[_T]) -> list[_T]: ...
 ```
