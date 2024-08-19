@@ -1,4 +1,4 @@
-## [ 输入参数用法不一致 ]torch.utils.dlpack.to_dlpack
+## [ 仅参数名不一致 ]torch.utils.dlpack.to_dlpack
 ### [torch.utils.dlpack.to_dlpack](https://pytorch.org/docs/stable/dlpack.html?highlight=torch+utils+dlpack+to_dlpack#torch.utils.dlpack.to_dlpack)
 
 ```python
@@ -16,4 +16,4 @@ paddle.utils.dlpack.to_dlpack(x)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| tensor        | x        | Paddle Tensor，PyTorch不支持使用关键字传参。   |
+| tensor        | x        | Paddle Tensor，仅参数名不一致。   |
