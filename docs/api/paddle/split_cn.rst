@@ -9,7 +9,7 @@ split
 
 将输入 Tensor 分割成多个子 Tensor。
 
-下图展示了一个 split 的情形——一个形状为[2,3,2]的三维张量在进行 split 操作, 其中参数 num_or_sections = [1, 2], axis = 1 。通过比较，可以清晰地看到张量在切割前后的变化。
+下图展示了一个 split 的情形——一个形状为[4,4,4]的三维张量在进行 split 操作, 其中参数 ``num_or_sections`` 为 2。通过比较，可以清晰地看到张量在切割前后的变化。
 
 .. image:: ../../images/api_legend/split.png
     :width: 600
