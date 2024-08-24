@@ -135,27 +135,20 @@ class SequenceInt(Sequence[int]): ...
 
 ### 使用 `typing_extensions` 完善标注类型
 
-Python 的类型标注体系一直在跟随系统版本的发展而发展， 而 Paddle 版本 `3.0` 所支持的 Python 最低版本为 `3.8` ，从而导致一些较新的 `类型` 与 `特性` 无法直接使用。`typing_extensions` 对其进行了补足与扩展，如 Python `3.10` 版本中的 `typing.TypeGuard` ，使用 `typing_extensions` 可以直接代替使用：
+Python 的类型标注体系是不断发展的，新的类型和特性会不断被引入，而类型模块 `typing` 是作为标准库的一部分，是随着解释器版本一起分发的，因此一旦解释器版本确定了，`typing` 模块中所包含的类型也确定了。因此一些新版本才引入的类型在旧版本下是不能直接从 `typing` 导入的。
+
+为了解决这一问题，Python 社区发布了第三方库 `typing_extensions` 模块，该模块包含最新版本 `typing` 模块的内容。而由于其作为第三方库，可以在任意版本 Python 解释器下安装使用。这使得我们可以在保持低版本 Python 兼容的同时，使用最新版本的类型，以提供更精确的类型提示。
+
+当然，如果一个类型已经存在于所支持的最低 Python 版本 `typing` 模块中，那么建议直接从 `typing` 模块导入而不是 `typing_extensions` 中导入。
+
+比如 Paddle 目前最低支持的 Python 版本为 3.8，比如 `Literal` 是 3.8 引入的类型，因此我们应该直接从 `typing` 模块导入而不是 `typing_extensions` 中导入；而 `TypeGuard` 是 3.10 引入的类型，因此我们应该从 `typing_extensions` 中导入。
 
 ``` python
-from __future__ import annotations
-
-from typing_extensions import TypeGuard
-
-def is_str_list(val: list[object]) -> TypeGuard[list[str]]:
-    '''Determines whether all objects in the list are strings'''
-    return all(isinstance(x, str) for x in val)
-
-def func1(val: list[object]):
-    if is_str_list(val):
-        # Type of ``val`` is narrowed to ``list[str]``.
-        print(" ".join(val))
-    else:
-        # Type of ``val`` remains as ``list[object]``.
-        print("Not a list of strings!")
+from typing import Literal                  # Python 3.8 typing 模块中已经包含
+from typing_extensions import TypeGuard     # Python 3.10 typing 模块才包含，需要使用 typing_extensions
 ```
 
-另外，如 `typing.TypeAlias`、`typing.ParamSpec`、`typing.Self`、`typing.Unpack` 等，都可以通过 `typing_extensions` 进行使用。
+类似地，`typing.TypeAlias`、`typing.ParamSpec`、`typing.Self`、`typing.Unpack` 等常用类型，目前也都需要通过 `typing_extensions` 导入后方可使用。
 
 ### 仅类型提示相关的导入放在 `if TYPE_CHECKING` 下
 
