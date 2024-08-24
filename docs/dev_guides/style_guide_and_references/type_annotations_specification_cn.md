@@ -133,6 +133,30 @@ class SequenceInt(Sequence[int]): ...
 
 > 后续示例代码默认使用 PEP 563，不再重复说明。
 
+### 使用 `typing_extensions` 完善标注类型
+
+Python 的类型标注体系一直在跟随系统版本的发展而发展， 而 Paddle 版本 `3.0` 所支持的 Python 最低版本为 `3.8` ，从而导致一些较新的 `类型` 与 `特性` 无法直接使用。`typing_extensions` 对其进行了补足与扩展，如 Python `3.10` 版本中的 `typing.TypeGuard` ，使用 `typing_extensions` 可以直接代替使用：
+
+``` python
+from __future__ import annotations
+
+from typing_extensions import TypeGuard
+
+def is_str_list(val: list[object]) -> TypeGuard[list[str]]:
+    '''Determines whether all objects in the list are strings'''
+    return all(isinstance(x, str) for x in val)
+
+def func1(val: list[object]):
+    if is_str_list(val):
+        # Type of ``val`` is narrowed to ``list[str]``.
+        print(" ".join(val))
+    else:
+        # Type of ``val`` remains as ``list[object]``.
+        print("Not a list of strings!")
+```
+
+另外，如 `typing.TypeAlias`、`typing.ParamSpec`、`typing.Self`、`typing.Unpack` 等，都可以通过 `typing_extensions` 进行使用。
+
 ### 仅类型提示相关的导入放在 `if TYPE_CHECKING` 下
 
 我们在标注类型时，经常会需要额外 import 一些其他模块定义的类型，这些类型通常只在类型提示时使用，而在运行时并不需要。为了避免不必要的模块导入，我们建议将这些类型提示相关的导入放在 `if TYPE_CHECKING` 下，如：
