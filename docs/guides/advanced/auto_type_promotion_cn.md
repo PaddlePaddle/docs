@@ -51,7 +51,7 @@ i8 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
 i16 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
 i32 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
 i64 | - | - | - | - | - | - | - | - | - | - | c64 | c128 |
-c64 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c128 | c64 | c128 |
+c64 | c64 | c64 | c64 | c128 | c64 | c64 | c64 | c64 | c64 | c64 | c64 | c128 |
 c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 | c128 |
 
 
@@ -137,6 +137,7 @@ c128 | c128 | c128 | c128 | c128 |
  ```python
 
     import paddle
+    paddle.seed(2024)
     a = paddle.rand([3,3], dtype = 'float16')
     b = paddle.rand([3,3], dtype = 'float32')
     c = a + b # 此时将自动进行类型提升，将 a 的数据类型 cast 为 float32，不需要用户进行额外操作
@@ -158,6 +159,7 @@ c128 | c128 | c128 | c128 | c128 |
     train_program = paddle.static.Program()
     startup_program = paddle.static.Program()
     with paddle.static.program_guard(train_program, startup_program):
+        paddle.seed(2024)
         a = paddle.rand([3,3], dtype = 'float16')
         b = paddle.rand([3,3], dtype = 'float32')
         f = paddle.add(a, b)
