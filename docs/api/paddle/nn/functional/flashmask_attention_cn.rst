@@ -190,6 +190,9 @@ flashmask 将通过参数 :code:`startend_row_indices` 表示作用在 Attention
               startend_row_indices 的值 r1,r2,r3,r4 表示 Score 矩阵中左下三角从第 r1 行下方（包括）但在第 r2 行上方（不包括）的元素将被 mask，右上三角从第 r3 行下方（包括）但在第 r4 行上方（不包括）的元素将被 mask。
     - **dropout** (bool，可选) – dropout 概率值，默认值为 0。
     - **causal** (bool，可选) - 是否使用 causal 模式，默认值：False。
+    - **window_size** (int|tuple, 可选) - 表示滑动窗口局部注意力的窗口大小。
+                如果causal为True，位置 i 处的 Query 只与在 [i - window_size, i] 或 [i - window_size[0], i] 范围内的Key形成Attention。
+                如果causal为False，位置 i 处的 Query 只与在 [i - window_size, i + window_size] 或 [i - window_size[0], i + window_size[1]] 范围内的Key形成Attention。
     - **return_softmax_lse** (bool，可选) - 是否返回 softmax_lse 的结果。默认值为 False，表示不返回 :code:`softmax_lse` 。
     - **return_seed_offset** (bool，可选) - 是否返回 seed_offset 的结果。默认值为 False，表示不返回 :code:`seed_offset` 。
     - **fixed_seed_offset** (Tensor，可选) - 固定 Dropout 的 offset seed。 默认值为 None, 表示不固定 seed。
