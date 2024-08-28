@@ -38,14 +38,7 @@ torch.Tensor.tensor_split(tensor_indices_or_sections, dim=0)
 paddle.Tensor.tensor_split(num_or_indices, axis=0, name=None)
 ```
 
-其中 Paddle 相比 PyTorch 仅参数名不一致，具体如下：
-
-### 参数映射
-
-| PyTorch       | PaddlePaddle | 备注                                                    |
-| ------------- | ------------ | ------------------------------------------------------  |
-| tensor_indices_or_sections           | num_or_indices         | 表示分割的数量或索引，仅参数名不一致。                          |
-| dim           | axis         | 表示需要分割的维度，仅参数名不一致。                          |
+Paddle 当前无对应功能，功能缺失
 
 -------------------------------------------------------------------------------------------------
 
