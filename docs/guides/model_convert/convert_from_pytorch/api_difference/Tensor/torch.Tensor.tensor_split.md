@@ -38,7 +38,7 @@ torch.Tensor.tensor_split(tensor_indices_or_sections, dim=0)
 paddle.Tensor.tensor_split(num_or_indices, axis=0, name=None)
 ```
 
-Paddle 当前无对应功能，功能缺失
+Paddle 当前无对应功能，功能缺失。
 
 -------------------------------------------------------------------------------------------------
 
