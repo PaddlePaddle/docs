@@ -14,7 +14,7 @@ iinfo
 
 参数
 :::::::::
-    - **dtype** (paddle.dtype) - 输入的数据类型，只能为：paddle.uint8、 paddle.int8、 paddle.int16、 paddle.int32 和 paddle.int64 。
+    - **dtype** (paddle.dtype|str) - 输入的数据类型，只能为：paddle.uint8、 paddle.int8、 paddle.int16、 paddle.int32 和 paddle.int64 。
 
 返回
 :::::::::
