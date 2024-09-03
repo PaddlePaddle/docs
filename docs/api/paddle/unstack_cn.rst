@@ -25,7 +25,7 @@ unstack
 ::::::::::::
  长度为 num 的 Tensor 列表，数据类型与输入 Tensor 相同，dim 为 ``(D-1)``。
 
-也可以参考下方的图示来理解 ``unstack`` 是如何对张量进行变换的。图中分别展示了一个形状为 ``(3, 4)`` 的 Tensor 在 ``axis=0`` 和一个形状为 ``(2, 3, 3)`` 的 Tensor 在 ``axis=1`` 的 unstack 操作。
+也可以参考下方的图示来理解 ``unstack`` 是如何对张量进行变换的。图中分别展示了一个形状为 ``(3, 4)`` 的 Tensor 在 ``axis=1`` 和一个形状为 ``(2, 3, 3)`` 的 Tensor 在 ``axis=1`` 的 unstack 操作。
 
 .. image:: ../../images/api_legend/unstack.png
    :width: 500
