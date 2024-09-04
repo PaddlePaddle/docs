@@ -1,4 +1,4 @@
-## [torch 参数更多]torch.Tensor.histogram
+## [ 输入参数用法不一致 ]torch.Tensor.histogram
 
 ### [torch.Tensor.histogram](https://pytorch.org/docs/stable/generated/torch.Tensor.histogram.html#torch.Tensor.histogram)
 
@@ -12,7 +12,7 @@ torch.Tensor.histogram(bins, *, range=None, weight=None, density=False)
 paddle.Tensor.histogram(bins=100, min=0, max=0, weight=None, density=False)
 ```
 
-PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+其中 PyTorch 的 `range` 与 Paddle 用法不一致，具体如下：
 
 ### 参数映射
 

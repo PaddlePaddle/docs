@@ -1,4 +1,4 @@
-## [ 返回参数类型不一致]torch.histogram
+## [ 返回参数类型不一致 ]torch.histogram
 
 ### [torch.histogram](https://pytorch.org/docs/stable/generated/torch.histogram.html#torch.histogram)
 
@@ -12,7 +12,7 @@ torch.histogram(input, bins, *, range=None, weight=None, density=False, out=None
 paddle.histogram(input, bins=100, min=0, max=0, weight=None, density=False, name=None)
 ```
 
-PyTorch 相比 Paddle 支持更多其他参数，返回参数 Tensor 数量不一致，具体如下：
+两者功能一致但返回参数 Tensor 数量不一致，具体如下：
 
 ### 参数映射
 
