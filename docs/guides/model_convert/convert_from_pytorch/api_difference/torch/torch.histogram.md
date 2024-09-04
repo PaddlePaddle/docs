@@ -36,6 +36,5 @@ hist, bin_edges = torch.histogram(x, bins=5, range=(0., 3.))
 
 # Paddle 写法:
 x = paddle.to_tensor([1, 2, 1])
-hist = paddle.histogram(x, bins=5, min=0, max=3)
-bin_edges = paddle.histogram_bin_edges(x, bins=5, min=0, max=3)
+hist, bin_edges = paddle.histogram(x, bins=5, min=0, max=3), paddle.histogram_bin_edges(x, bins=5, min=0, max=3)
 ```
