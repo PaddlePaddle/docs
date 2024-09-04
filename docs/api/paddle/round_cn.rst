@@ -3,7 +3,7 @@
 round
 -------------------------------
 
-.. py:function:: paddle.round(x, name=None)
+.. py:function:: paddle.round(x, decimals=0, name=None)
 
 
 
