@@ -13,9 +13,20 @@
 - c. （提高要求）在C++实现类似的pickle功能，统一两端序列化协议，使得C++ , Python 层保存的模型和参数可以在C++, Python层直接加载。
 
 ## 二. API功能变化
-1. python端接口与旧IR下保持一致，TODO
+1. 用户使用的 Python 端接口与旧 IR 下保持一致。
 
-2. C++端接口
+    |  API类别  |   3.0 后变化   |  分类   |
+    |  :----  | :----  | :----  |
+    | `paddle.jit.save`  | 无 |   动转静  
+    | `paddle.jit.load`  | 无 |  动转静
+    | `paddle.save`  | 无 |  动静统一
+    | `paddle.load`  | 无 |  动静统一
+    | `paddle.static.save`  | `paddle.static.save_pir` |  静态图
+    | `paddle.static.load`  | `paddle.static.load_pir` |  静态图
+    | `paddle.static.load_program_state`  | 无  |  动静共用
+
+
+2. C++ 端接口
 
     save/load功能的序列化与反序列化功能在C++端实现，暴露出的几个接口可以供C++端调用，同时也通过pybind绑定至python端，供Python API使用。
 
@@ -30,7 +41,7 @@
 ## 三. 版本管理支持度，版本兼容方案
 版本兼容原则为向后兼容，即新版本支持部分旧版本的推理部署，但旧版本无需支持新版本的推理部署。3.0版本将不再支持1.0版本的推理部署，对于2.0版本则通过program_translator进行转换和支持。
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/paddle_ir/version-update.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/version-update.png" style="zoom:50%"/>
 </figure>
 
 以下方案讨论3.0以上版本向后兼容情况：
@@ -39,14 +50,14 @@
 - 3.1 框架加载3.0模型：3.0以后的3.x版本，将在此次更新的新版版本兼容系统中支持对于旧版本的兼容加载和推理部署。
 
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/paddle_ir/version-compat.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/version-compat.png" style="zoom:50%"/>
 </figure>
 
 ## 四.设计思路和实现方案：
 ### 1.model文件设计方案
 **主体设计思路与路线**
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/paddle_ir/architecture.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/architecture.png" style="zoom:50%"/>
 </figure>
 
 save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文件的互转功能，其中需要实现类型系统和模型结构到序列化结构的对应规则（及序列化协议），再实现IR结构到序列化结构互转的对应功能。
@@ -57,13 +68,13 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
 
     base_code 描述当前文件的内容，版本。
     ```json
-    "base_code" ：{"magic" : "PIR", "pirversion": uint}
+    "base_code" : {"magic" : "PIR", "pirversion": 1}
     ```
 2. 类型系统序列化协议内容：
  - dialect
  
    Type，Attrbute, Operation是注册在dialect中的结构，在save时需要将dialect信息保存下来，当前框架可以保证不同dialect的string 名称互斥，因此可以使用string作为保存的基本单位：
-    ```json
+    ```cpp
     //有save需求
     paddle::dialect::OperatorDialect  -> "pd_op"
     paddle::dialect::CustomOpDialect  -> "custom_op"
@@ -87,7 +98,7 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
 
    Attribute/Type分为有值和无值，无值的结构保存使用其class名称即可（但考虑到class的名称需要包含域名，内容多，会采用自定义编码表达），有值的结构需要save的内容是各Attrbute/Type storage中的属性，这些属性是反序列化接口的参数列表。内容可以是基本的组件: 整数浮点数；string；std::vector（数组）；bool；point； 和框架内IR结构Type，Attribute。
    - BuiltinDialectType
-   ```json
+   ```cpp
     // 无值Type
     pir::Int8Type{"Id" : 自定义编码}
     pir::BFloat16Type{"Id" :自定义编码}
@@ -122,7 +133,7 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     }
    ``` 
    - OperatorDialectType
-   ```json
+   ```cpp
     paddle::dialect::DenseTensorType = pir::DenseTensorType 
     paddle::dialect::SelectedRowsType{"Id" :自定义编码,
                                     "content" : content_json}
@@ -146,14 +157,14 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
    ```
 
    - ContolflowDialectType： 控制流相关Type由于属于反向引入的相关类型，暂时没有save需求，有需要可添加。
-   ```json
+   ```cpp
     pir::ContainerType // 未注册
     pir::StackType
     pir::InletType
     pir::OutletType
    ```
     - BuiltinDialectAttribute
-    ```json
+    ```cpp
     pir::BoolAttribute,{"Id" :自定义编码,
                         "content" : bool}
     pir::FloatAttribute,{"Id" :自定义编码,
@@ -186,7 +197,7 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
                               "content" :double}
     ```
     - OperatorDialectAttribute
-    ```json
+    ```cpp
     paddle::dialect::IntArrayAttribute,{"Id" :自定义编码,
                         "content" : std::vector<int64_t>} => phi::IntArray
     paddle::dialect::DataTypeAttribute,{"Id" :自定义编码,
@@ -201,25 +212,26 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
                                     "content" : Attribute} => phi::scalar
     ```
     - KernelDialectAttribute
-    ```json
+    ```cpp
     paddle::dialect::KernelAttribute
     ```
     - ShapeDialectAttribute
-    ```json
+    ```cpp
     pir::shape::SymbolAttribute
     ```
     **> 反序列化方式**
 
-    Type / Attribute 的反序列化有统一的接口处理`parseType()` 和 `parseAttribute()`，识别读入的编码后查表（IrContext提供编码到类的map) 得到原始类，递归实现构造内部 Type, 再构造外部 Type。
+    Type / Attribute 的反序列化有统一的接口处理`parseType()` 和 `parseAttribute()`，识别读入的编码后查表（IrContext提供编码到类的map）得到原始类，递归实现构造内部 Type, 再构造外部 Type。
 
     有值的 Type / Attribute 的需要提供 `deserialize()` 接口。`deserialize()` 保证传入内容值后能够获得C++对象。
 
     无值的Type可以直接调用相应的get函数进行恢复。如需要对齐实现，可以增加一个相同内容的 `deserialize()` 接口
     ```cpp
     template <typename... Args>                 \
-    static concrete_attribute deserialize(pir::IrContext *ctx, Args... args) {         \
+    static concrete_attribute deserialize(pir::IrContext *ctx, Args... args) {        \
         return pir::AttributeManager::template get<concrete_attribute>(ctx,      \
                                                                     args...);
+    }
     ```
 3. 模型结构序列化协议内容：
     
@@ -247,28 +259,28 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
 
     `OpResult` 中的一些可选的属性，例如 `persistable`， `stop_gradient` 等，都记录在 `Operation` 的参数 map 中，但它们不是 `create op` 接口需要的参数，因此单独保存，在反序列化的时候 `create` 之后进行设置。
     ```json
-    ...
+    // ...
     "Ops":{
             {"Id":"pd_op.full"
-            "OpOperands":[]
-            "OpResults":[{"Id": 1,
+             "OpOperands" : []
+             "OpResults" : [{"Id": 1,
                           "Type":{"Id":"pir::DenseTensorType",
                                   "Contents": ["pir::FloatType", [1,1], "NCHW", [[1]], 1]}}
                         ]
-            "Attr":[{"Name": "value",
+             "Attr" : [{"Name": "value",
                     "Type":{"Id": "pir::FloatAttribute",
                             "Contents": 1.0}},
                     {"Name":"shape",
                     "Type":{"Id": "pir::ArrayAttribute",
                             "Contents":[2,3]}}
                     ]
-            "OpResultsAttr":[{"Name":"StopGradient"
+             "OpResultsAttr" : [{"Name":"StopGradient"
                                 "Type":{"Id": "pir::ArrayAttribute",
                                     "Contents": [true]}},
-                            {"Name":"Persistable"
-                                "Type":{"Id": "pir::ArrayAttribute",
-                                    "Contents": [false]}}
-                            ]
+                                {"Name":"Persistable"
+                                    "Type":{"Id": "pir::ArrayAttribute",
+                                        "Contents": [false]}}
+                               ]
             }
     }
     ```
@@ -394,7 +406,7 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     ```
     if op 的特殊之处在于， if op 中含有多个 `region`，每个 `region` 中有一个 `block`， 因此 `op` 的序列化内容不同，需要特殊处理。
     ```json
-    ...
+    // ...
     {          
         "Id": "pd_op.if",
         "OpOperands":[4],
@@ -464,11 +476,11 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     ```json
     {   "Id":"pd_op.while",
         "OpOperands":[4,[1]]
-        "OpResults":[5:{...}]
+        "OpResults":[5:{}]
         "Regions":[
                     {"Id": "RegionId_2",
                         "Blocks" :[{"Id": "BlockId_2",
-                                    "BlockArgs":[-1: ]
+                                    "BlockArgs":[-1:{}]
                                     "Ops":[
                                             {"Id":"pd_op.add",
                                                 "OpOperands":[-1,2],
@@ -535,7 +547,7 @@ JSon字符串具体如何与基本数据类型进行转换。选择 `nlohmann` �
 
 `ModuleWriter` / `ModuleReader` 类，承担了读写 `IR` 结构的管理功能，依托于第三方库完成基本单位的读写。
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/paddle_ir/module.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/module.png" style="zoom:50%"/>
 </figure>
 
 - **ModuleWriter**
@@ -679,11 +691,11 @@ JSon字符串具体如何与基本数据类型进行转换。选择 `nlohmann` �
 
 - paddle.save & paddle.load：Python端直接调用协议库函数进行参数保存加载
     <figure align="center">
-    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/paddle_ir/param_py.png" style="zoom:50%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/param_py.png" style="zoom:50%"/>
     </figure>
 
 - paddle.save_vars & paddle.load_vars：适配推理侧，调用C++端功能实现C++端的参数读写
 
     <figure align="center">
-    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/paddle_ir/param_cpp.png" style="zoom:50%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/param_cpp.png" style="zoom:50%"/>
     </figure>
