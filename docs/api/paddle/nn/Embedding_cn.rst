@@ -37,7 +37,7 @@ Embedding
 
     - **num_embeddings** (int) - 嵌入字典的大小，input 中的 id 必须满足 ``0 <= id < num_embeddings`` 。
     - **embedding_dim** (int) - 每个嵌入向量的维度。
-    - **padding_idx** (int|long|None，可选) - padding_idx 的配置区间为 ``[-weight.shape[0], weight.shape[0]]``，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。
+    - **padding_idx** (int|long|None，可选) - padding_idx 的配置区间为 ``[-weight.shape[0], weight.shape[0])``，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。
     - **max_norm** (float，可选) - 若声明，会将范数大于此值的词嵌入向量重新归一化，使其范数等于此值。在动态图模式下会对 ``weight`` 产生 inplace 修改。默认值为 None。
     - **norm_type** (float) - 应用 ``max_norm`` 时所计算的 p 阶范数的 p 值。默认值 2.0。
     - **sparse** (bool，可选) - 是否使用稀疏更新，在词嵌入权重较大的情况下，使用稀疏更新能够获得更快的训练速度及更小的内存/显存占用。

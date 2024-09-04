@@ -20,5 +20,5 @@
     :hidden:
 
     paddle_tutorial_cn.md
-    suite_tutorial_cn.md
+    paddlex_tutorial_cn.md
     support_cn.md
