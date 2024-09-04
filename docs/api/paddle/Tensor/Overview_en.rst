@@ -144,7 +144,6 @@ Methods
     greater_equal
     greater_than
     histogram
-    histogram_bin_edge
     imag
     increment
     index_sample
