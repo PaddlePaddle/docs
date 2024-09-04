@@ -1,23 +1,23 @@
 # Save / Load
 ## 一、功能概要
-基于PIR体系基本结构，结合各方需求，设计一套版本管理完备、兼容性好的save_load体系。
-#### 1. Model 层面 （采用json文本存储）
-- a. 结合PIR的IR结构，设计简洁的序列化协议，保证正确反序列化的基础上降低存储内容。
-- b. 重构底层序列化和反序列化机制，实现PIR类型系统，模型结构增加删除修改灵活扩展时，saveload体系灵活扩展，支持新功能的保存和加载。
+基于 PIR 体系基本结构，结合各方需求，设计一套版本管理完备、兼容性好的 save_load 体系。
+#### 1. Model 层面 （采用 json 文本存储）
+- a. 结合 PIR 的 IR 结构，设计简洁的序列化协议，保证正确反序列化的基础上降低存储内容。
+- b. 重构底层序列化和反序列化机制，实现 PIR 类型系统，模型结构增加删除修改灵活扩展时，saveload 体系灵活扩展，支持新功能的保存和加载。
 - c. 设计良好的版本管理和版本间修改的兼容体系，支持新版本兼容读取旧版本模型进行推理训练的功能。
-- d. 推理侧希望保证save后的文件体积大小不劣化、序列化以及反序列化速度不可比protobuf慢
-- e. （提高要求）底层的机制或工具收敛， 上层api功能明确，无重复。
+- d. 推理侧希望保证 save 后的文件体积大小不劣化、序列化以及反序列化速度不可比 protobuf 慢
+- e. （提高要求）底层的机制或工具收敛， 上层 api 功能明确，无重复。
 #### 2. Parameter 层面
-- a. 统一原始Save/Load 接口和内部实现，支持c++ 层参数的存储，扩展至 Python 层
-- b. 使用旧版本的序列户格式：Python 层使用pickle序列化工具，C++层使用二进制序列化方法。
-- c. （提高要求）在C++实现类似的pickle功能，统一两端序列化协议，使得C++ , Python 层保存的模型和参数可以在C++, Python层直接加载。
+- a. 统一原始 Save/Load 接口和内部实现，支持 c++ 层参数的存储，扩展至 Python 层
+- b. 使用旧版本的序列户格式：Python 层使用 pickle 序列化工具，C++层使用二进制序列化方法。
+- c. （提高要求）在 C++实现类似的 pickle 功能，统一两端序列化协议，使得 C++ , Python 层保存的模型和参数可以在 C++, Python 层直接加载。
 
-## 二. API功能变化
+## 二. API 功能变化
 1. 用户使用的 Python 端接口与旧 IR 下保持一致。
 
-    |  API类别  |   3.0 后变化   |  分类  |
+    |  API 类别  |   3.0 后变化   |  分类  |
     |  :----  | :----  | :----  |
-    | `paddle.jit.save`  | 无 |   动转静  
+    | `paddle.jit.save`  | 无 |   动转静
     | `paddle.jit.load`  | 无 |  动转静
     | `paddle.save`  | 无 |  动静统一
     | `paddle.load`  | 无 |  动静统一
@@ -28,43 +28,43 @@
 
 2. C++ 端接口
 
-    save/load功能的序列化与反序列化功能在C++端实现，暴露出的几个接口可以供C++端调用，同时也通过pybind绑定至python端，供Python API使用。
+    save/load 功能的序列化与反序列化功能在 C++端实现，暴露出的几个接口可以供 C++端调用，同时也通过 pybind 绑定至 python 端，供 Python API 使用。
 
-    * `WriteModule` 通过pybind与 `serialize_pir_program`绑定，可以将指定program序列化为json文件存储至文件系统。
-    * `ReadModule` 通过pybind与 `deserialize_pir_program` 绑定，可以将指定json文件反序列化为pir program。
-    * `SaveFunction` 和 `SaveCombineFunction` 为参数序列化存储接口，在python端pybind为 `save_func` 和 `save_combine_func`
-    * `LoadFunction` 和 `LoadCombineFunction` 为参数序列化存储接口，在python端pybind为 `load_func` 和 `load_combine_func`
+    * `WriteModule` 通过 pybind 与 `serialize_pir_program`绑定，可以将指定 program 序列化为 json 文件存储至文件系统。
+    * `ReadModule` 通过 pybind 与 `deserialize_pir_program` 绑定，可以将指定 json 文件反序列化为 pir program。
+    * `SaveFunction` 和 `SaveCombineFunction` 为参数序列化存储接口，在 python 端 pybind 为 `save_func` 和 `save_combine_func`
+    * `LoadFunction` 和 `LoadCombineFunction` 为参数序列化存储接口，在 python 端 pybind 为 `load_func` 和 `load_combine_func`
 
     具体函数参数说明见 [interface.h](https://github.com/PaddlePaddle/Paddle/blob/c1d7f52d021817ddca58a962c4ea704da8275e9b/paddle/fluid/pir/serialize_deserialize/include/interface.h)
 
 
 ## 三. 版本管理支持度，版本兼容方案
-版本兼容原则为向后兼容，即新版本支持部分旧版本的推理部署，但旧版本无需支持新版本的推理部署。3.0版本将不再支持1.0版本的推理部署，对于2.0版本则通过program_translator进行转换和支持。
+版本兼容原则为向后兼容，即新版本支持部分旧版本的推理部署，但旧版本无需支持新版本的推理部署。3.0 版本将不再支持 1.0 版本的推理部署，对于 2.0 版本则通过 program_translator 进行转换和支持。
 <figure align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/version-update.png" style="zoom:50%"/>
 </figure>
 
-以下方案讨论3.0以上版本向后兼容情况：
-- 3.0框架加载3.1模型，这种需求本身不合理。抛开合理性，若3.1模型不涉及到新特性，默认支持，否则无法支持。
+以下方案讨论 3.0 以上版本向后兼容情况：
+- 3.0 框架加载 3.1 模型，这种需求本身不合理。抛开合理性，若 3.1 模型不涉及到新特性，默认支持，否则无法支持。
 
-- 3.1 框架加载3.0模型：3.0以后的3.x版本，将在此次更新的新版版本兼容系统中支持对于旧版本的兼容加载和推理部署。
+- 3.1 框架加载 3.0 模型：3.0 以后的 3.x 版本，将在此次更新的新版版本兼容系统中支持对于旧版本的兼容加载和推理部署。
 
 <figure align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/version-compat.png" style="zoom:50%"/>
 </figure>
 
 ## 四.设计思路和实现方案：
-### 1.model文件设计方案
+### 1.model 文件设计方案
 **主体设计思路与路线**
 <figure align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/architecture.png" style="zoom:50%"/>
 </figure>
 
-save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文件的互转功能，其中需要实现类型系统和模型结构到序列化结构的对应规则（及序列化协议），再实现IR结构到序列化结构互转的对应功能。
+save_load 体系需要完成 PIR 的类型系统，模型结构 到 序列化文件的互转功能，其中需要实现类型系统和模型结构到序列化结构的对应规则（及序列化协议），再实现 IR 结构到序列化结构互转的对应功能。
 
 **关键技术点/子模块设计方案**
 #### 1.1 协议定义模块
-1. 非program序列化内容
+1. 非 program 序列化内容
 
     base_code 描述当前文件的内容，版本。
     ```json
@@ -72,10 +72,10 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     ```
 2. 类型系统序列化协议内容：
  - dialect
- 
-   Type，Attrbute, Operation是注册在dialect中的结构，在save时需要将dialect信息保存下来，当前框架可以保证不同dialect的string 名称互斥，因此可以使用string作为保存的基本单位：
+
+   Type，Attrbute, Operation 是注册在 dialect 中的结构，在 save 时需要将 dialect 信息保存下来，当前框架可以保证不同 dialect 的 string 名称互斥，因此可以使用 string 作为保存的基本单位：
     ```cpp
-    //有save需求
+    //有 save 需求
     paddle::dialect::OperatorDialect  -> "pd_op"
     paddle::dialect::CustomOpDialect  -> "custom_op"
     paddle::dialect::OneDNNOperatorDialect -> "onednn_op"
@@ -83,12 +83,12 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     pir::ControlFlowDialect -> "cf"
     pir::builtinDialect -> "builtin"
 
-    //kernel 级别的dilect没有save需求
+    //kernel 级别的 dilect 没有 save 需求
     paddle::dialect::KernelDialect
     paddle::dialect::CustomKernelDialect
     paddle::dialect::OneDNNKernelDialect
 
-    //不确定是否有save需求
+    //不确定是否有 save 需求
     cinn::dialect::OperatorDialect
     cinn::dialect::RuntimeDialect
 
@@ -96,10 +96,10 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     ```
  - Type/Attribute
 
-   Attribute/Type分为有值和无值，无值的结构保存使用其class名称即可（但考虑到class的名称需要包含域名，内容多，会采用自定义编码表达），有值的结构需要save的内容是各Attrbute/Type storage中的属性，这些属性是反序列化接口的参数列表。内容可以是基本的组件: 整数浮点数；string；std::vector（数组）；bool；point； 和框架内IR结构Type，Attribute。
+   Attribute/Type 分为有值和无值，无值的结构保存使用其 class 名称即可（但考虑到 class 的名称需要包含域名，内容多，会采用自定义编码表达），有值的结构需要 save 的内容是各 Attrbute/Type storage 中的属性，这些属性是反序列化接口的参数列表。内容可以是基本的组件: 整数浮点数；string；std::vector（数组）；bool；point； 和框架内 IR 结构 Type，Attribute。
    - BuiltinDialectType
    ```cpp
-    // 无值Type
+    // 无值 Type
     pir::Int8Type{"Id" : 自定义编码}
     pir::BFloat16Type{"Id" :自定义编码}
     pir::Float16Type{"Id" :自定义编码}
@@ -113,8 +113,8 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     pir::Complex64Type{"Id" :自定义编码}
     pir::Complex128Type{"Id" :自定义编码}
 
-    // 有值Type
-    从xxxTypeStorage 类中的属性确认该Type包含的内容; 
+    // 有值 Type
+    从 xxxTypeStorage 类中的属性确认该 Type 包含的内容;
     pir::DenseTensorType{"Id" :自定义编码,
                          "content" : content_json}
     content_json = {
@@ -131,10 +131,10 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
         std::vector<Type>;
         size_t;
     }
-   ``` 
+   ```
    - OperatorDialectType
    ```cpp
-    paddle::dialect::DenseTensorType = pir::DenseTensorType 
+    paddle::dialect::DenseTensorType = pir::DenseTensorType
     paddle::dialect::SelectedRowsType{"Id" :自定义编码,
                                     "content" : content_json}
     content_json = {
@@ -149,14 +149,14 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
         string => pir::DataLayout;
     }
    ```
-   - KernelDialectType： kernel相关的type没有save需求
+   - KernelDialectType： kernel 相关的 type 没有 save 需求
    ```json
     paddle::dialect::AllocatedDenseTensorType
     paddle::dialect::AllocatedSelectedRowsType
     paddle::dialect::AllocatedDenseTensorArrayType
    ```
 
-   - ContolflowDialectType： 控制流相关Type由于属于反向引入的相关类型，暂时没有save需求，有需要可添加。
+   - ContolflowDialectType： 控制流相关 Type 由于属于反向引入的相关类型，暂时没有 save 需求，有需要可添加。
    ```cpp
     pir::ContainerType // 未注册
     pir::StackType
@@ -189,8 +189,8 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     pir::PointerAttribute,{"Id" :自定义编码,
                            "content" : void*}
 
-    //没有get函数的attribute,增加get函数，且get的参数要是基本类型，基本类型到内置类型的转换
-    //float 到 phi::dtype::complex<float> 需要交给get函数转换。
+    //没有 get 函数的 attribute,增加 get 函数，且 get 的参数要是基本类型，基本类型到内置类型的转换
+    //float 到 phi::dtype::complex<float> 需要交给 get 函数转换。
     pir::Complex64Attribute,{"Id" :自定义编码,
                              "content" :float}
     pir::Complex128Attribute,{"Id" :自定义编码,
@@ -206,8 +206,8 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
                         "content" : std::string(allocationType)} => phi::Place::
     paddle::dialect::DataLayoutAttribute{"Id" :自定义编码,
                         "content" : std::string()} => phi::DataLayout::
-    
-    //Attribute 嵌套Attribute
+
+    //Attribute 嵌套 Attribute
     paddle::dialect::ScalarAttribute{{"Id" :自定义编码,
                                     "content" : Attribute} => phi::scalar
     ```
@@ -221,11 +221,11 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     ```
     **> 反序列化方式**
 
-    Type / Attribute 的反序列化有统一的接口处理`parseType()` 和 `parseAttribute()`，识别读入的编码后查表（IrContext提供编码到类的map）得到原始类，递归实现构造内部 Type, 再构造外部 Type。
+    Type / Attribute 的反序列化有统一的接口处理`parseType()` 和 `parseAttribute()`，识别读入的编码后查表（IrContext 提供编码到类的 map）得到原始类，递归实现构造内部 Type, 再构造外部 Type。
 
-    有值的 Type / Attribute 的需要提供 `deserialize()` 接口。`deserialize()` 保证传入内容值后能够获得C++对象。
+    有值的 Type / Attribute 的需要提供 `deserialize()` 接口。`deserialize()` 保证传入内容值后能够获得 C++对象。
 
-    无值的Type可以直接调用相应的get函数进行恢复。如需要对齐实现，可以增加一个相同内容的 `deserialize()` 接口
+    无值的 Type 可以直接调用相应的 get 函数进行恢复。如需要对齐实现，可以增加一个相同内容的 `deserialize()` 接口
     ```cpp
     template <typename... Args>                 \
     static concrete_attribute deserialize(pir::IrContext *ctx, Args... args) {        \
@@ -234,14 +234,14 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     }
     ```
 3. 模型结构序列化协议内容：
-    
+
 - **Operation**
 
     `Operation` 本身可以使用其唯一的 string name 作为标识。
 
 - **Value/Operand**
 
-    `Value` 和 `Operand` 使用 int64 编号, 起始值为1， `Value` 保存在 op 的 `“OpResults” key` 中， `Operand` 保存在 op 的 `“OpOperands”` 中。
+    `Value` 和 `Operand` 使用 int64 编号, 起始值为 1， `Value` 保存在 op 的 `“OpResults” key` 中， `Operand` 保存在 op 的 `“OpOperands”` 中。
 
     `Value` 需要保存其编码和其 `Type` 的 key/value 对, `Operand` 只需保存其编码，
 
@@ -286,16 +286,16 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     ```
     **> 反序列化方式**
 
-    Operation的反序列化调用operation的create函数，以对所有OP采用同一套代码进行构建。
+    Operation 的反序列化调用 operation 的 create 函数，以对所有 OP 采用同一套代码进行构建。
     ```cpp
-    inputs;//保存operand 和value的关系
-    output_types;// 要求value需要保存type
-    attributeMap(string, attribute); // 要求能恢复一个attribute，
+    inputs;//保存 operand 和 value 的关系
+    output_types;// 要求 value 需要保存 type
+    attributeMap(string, attribute); // 要求能恢复一个 attribute，
     pir::OpInfo // ctx->GetRegisteredOpInfo(op_name);
 
 
     static Operation *Create(OperationArgument &&op_argument)
-  
+
     static Operation *Create(const std::vector<pir::Value> &inputs,
                             const AttributeMap &attributes,
                             const std::vector<pir::Type> &output_types,
@@ -307,7 +307,7 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
  - **Program**
 
     保存时可选用于推理还是训练，由接口中最后一个参数 `trainable` 控制。
-    
+
     训练情况下： `Op` 中包含 `OpResultAttr` 字段，记录 `Opresult` 的 `stop_gradient` 和 `persistable` 信息。
 
     `program` 中包含了表达模型结构的单位， `Op`， `Region`， `Block`， `program` 内容的层次结构如下，其中没有内容的字段可以不出现；反序列化时默认为空。
@@ -327,8 +327,8 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     `{}` 表达一个数据结构，例如一个`block`，一个`op`。
 
     **> 压缩优化**
-    
-    以上述字符串作为非自定义编码内容的save形式会导致存储文件较大。使用缩短字符串进行空间压缩可以带来良好的效果，如果对存储空间有进一步要求可以考虑对字符串进行字节编码。
+
+    以上述字符串作为非自定义编码内容的 save 形式会导致存储文件较大。使用缩短字符串进行空间压缩可以带来良好的效果，如果对存储空间有进一步要求可以考虑对字符串进行字节编码。
 
     - `dielect name` 压缩：创建 `DialectIdMap` 对 dialect name 进行压缩。
 
@@ -340,7 +340,7 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
         | `paddle::dialect::CustomOpDialect::name()`  | “3” |
         | `paddle::dialect::DistDialect::name()`  | “4” |
 
-    - `schema key` 压缩：对序列化中出现的 key 标识符进行字母缩写，具体的对应关系在 [schema.h](https://github.com/PaddlePaddle/Paddle/blob/c1d7f52d021817ddca58a962c4ea704da8275e9b/paddle/fluid/pir/serialize_deserialize/include/schema.h#L4) 中。 
+    - `schema key` 压缩：对序列化中出现的 key 标识符进行字母缩写，具体的对应关系在 [schema.h](https://github.com/PaddlePaddle/Paddle/blob/c1d7f52d021817ddca58a962c4ea704da8275e9b/paddle/fluid/pir/serialize_deserialize/include/schema.h#L4) 中。
     - `parameter op` 压缩：由于 parameter op 可能在模型中出现多次，且其 Attribute 和 OpresultAttribute 较为固定，因此省略 attribute name， 按照约定顺序存储各属性的值。
         ```cpp
         // attr_name ; type
@@ -353,8 +353,8 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
         // trainable; array(bool)
         ```
     **> 示例**
-    
-    对于一个简单program：
+
+    对于一个简单 program：
     ```bash
     {
         (%0) = "builtin.parameter" () {is_distributed:[false],is_parameter:[true],need_clip:[true],parameter_name:"fc_0.b_0",persistable:[true],stop_gradient:[false],trainable:[true]} : () -> builtin.tensor<30xf32>
@@ -368,7 +368,7 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
         (%8) = "pd_op.fetch" (%7) {col:(Int32)0,name:"fetch_name_0",persistable:[true],stop_gradient:[false]} : (builtin.tensor<-1x30xf32>) -> builtin.tensor<-1x30xf32>
     }
     ```
-    经过序列化存储为的program json格式为：
+    经过序列化存储为的 program json 格式为：
     ```json
     {"base_code":{"magic":"pir","trainable":true,"version":1},
     "program":{"regions":[{"#":"region_0","blocks":[{"#":"block_0","args":[],"ops":[
@@ -395,10 +395,10 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
         (%4) = pd_op.if (%3) {stop_gradient:[true]} -> pd_op.tensor<1xf32>
         {
             (%5) = "pd_op.add" (%1, %1) {stop_gradient:[true]} : (pd_op.tensor<1xf32>, pd_op.tensor<1xf32>) -> pd_op.tensor<1xf32>
-            () = "cf.yield" (%5) {} : (pd_op.tensor<1xf32>) -> 
+            () = "cf.yield" (%5) {} : (pd_op.tensor<1xf32>) ->
         } else {
             (%6) = "pd_op.subtract" (%1, %1) {stop_gradient:[true]} : (pd_op.tensor<1xf32>, pd_op.tensor<1xf32>) -> pd_op.tensor<1xf32>
-            () = "cf.yield" (%6) {} : (pd_op.tensor<1xf32>) -> 
+            () = "cf.yield" (%6) {} : (pd_op.tensor<1xf32>) ->
         }
         (%7) = "pd_op.mean" (%4) {axis:(pd_op.IntArray)[],keepdim:false,stop_gradient:[true]} : (pd_op.tensor<1xf32>) -> pd_op.tensor<f32>
     }
@@ -407,7 +407,7 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     if op 的特殊之处在于， if op 中含有多个 `region`，每个 `region` 中有一个 `block`， 因此 `op` 的序列化内容不同，需要特殊处理。
     ```json
     // ...
-    {          
+    {
         "Id": "pd_op.if",
         "OpOperands":[4],
         "OpResults":[5],
@@ -417,15 +417,15 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
                                 "Ops":[
                                         { "Id":"pd_op.add",
                                             "OpOperands":[2,2],
-                                            "OpResults":[{"Id":6, 
-                                                        "Type":{"Id":"pir::DenseTensorType" 
+                                            "OpResults":[{"Id":6,
+                                                        "Type":{"Id":"pir::DenseTensorType"
                                                                 "Contents":["pir::FloatType", [1], "NCHW", [[1]], 1]
                                                                 },
                                                         }],
                                             "Attr":[],
                                             "OpResultsAttr":["StopGradient":[true], "Persistable":[false]]
-                                        },  
-                                        { "Id":"cf.yield",                                                                   
+                                        },
+                                        { "Id":"cf.yield",
                                             "OpOperands":[6],
                                             "OpResults":[],
                                             "Attr":[],
@@ -438,7 +438,7 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
                     "Blocks":[{"Id":"BlockId_3",
                                 "BlockArgs":[],
                                 "Ops":[
-                                        {"Id":"pd_op.sub", 
+                                        {"Id":"pd_op.sub",
                                             "OpOperands":[2,2]
                                             "OpResults":[{"Id":7,
                                                         "Type":{"Id":"pir::DenseTensorType",
@@ -447,7 +447,7 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
                                                         }],
                                             "Attr":[]
                                             "OpResultsAttr":["StopGradient":[true], "Persistable":[false]]
-                                        }  
+                                        }
                                         { "Id":"cf.yield",
                                             "OpOperands":[7],
                                             "OpResults":[],
@@ -465,11 +465,11 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     (%1) = "pd_op.full" () {dtype:(pd_op.DataType)int64,place:(pd_op.Place)Place(undefined:0),shape:(pd_op.IntArray)[1],stop_gradient:[true],value:(Float)1} : () -> pd_op.tensor<1xi64>
     (%2) = "pd_op.full" () {dtype:(pd_op.DataType)int64,place:(pd_op.Place)Place(undefined:0),shape:(pd_op.IntArray)[1],stop_gradient:[true],value:(Float)10} : () -> pd_op.tensor<1xi64>
     (%3) = "pd_op.less_than" (%0, %2) {stop_gradient:[true]} : (pd_op.tensor<1xi64>, pd_op.tensor<1xi64>) -> pd_op.tensor<1xb>
-    (%4) = "pd_op.while"(cond=%3, inputs=%0) { 
+    (%4) = "pd_op.while"(cond=%3, inputs=%0) {
     ^%arg_0
         (%5) = "pd_op.add" (%arg_0, %1) {stop_gradient:[true]} : (pd_op.tensor<1xi64>, pd_op.tensor<1xi64>) -> pd_op.tensor<1xi64>
         (%6) = "pd_op.less_than" (%5, %2) {stop_gradient:[true]} : (pd_op.tensor<1xi64>, pd_op.tensor<1xi64>) -> pd_op.tensor<1xb>
-        () = "cf.yield" (%6, %5) {} : (pd_op.tensor<1xb>, pd_op.tensor<1xi64>) -> 
+        () = "cf.yield" (%6, %5) {} : (pd_op.tensor<1xb>, pd_op.tensor<1xi64>) ->
     }
     ```
     whileOp 的特殊之处在于其 `block` 中含有 `blockArg`，`blockArg` 性质和 `Value` 相同。因此编号也遵循 `Value` 规则，但又需要和 `Op` 产生的 `Value` 有区别，使用 `int64_t` 的负数表达编码。
@@ -485,13 +485,13 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
                                             {"Id":"pd_op.add",
                                                 "OpOperands":[-1,2],
                                                 "OpResults":[{"Id":6,
-                                                            "Type":{"Id":"pir::DenseTensorType" 
+                                                            "Type":{"Id":"pir::DenseTensorType"
                                                                     "Contents":["pir::FloatType", [1], "NCHW", [[1]], 1]
                                                                     }
                                                             }],
                                                 "Attr":[],
                                                 "OpResultsAttr":["StopGradient":[true], "Persistable":[false]]
-                                                },  
+                                                },
                                                 {"Id":"pd_op.less_than" ,
                                                 "OpOperands":[6,3],
                                                 "OpResults":[{
@@ -510,7 +510,7 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
                                                 "OpResultsAttr":["StopGradient":[true], "Persistable":[false]]
                                                 }
                                         ]
-                                                        
+
                                     }]
                     }
                     ]
@@ -519,7 +519,7 @@ save_load 体系需要完成PIR的类型系统，模型结构 到 序列化文�
     ```
 
 #### 1.2 序列化模块/反序列化模块
-JSon字符串具体如何与基本数据类型进行转换。选择 `nlohmann` 库。该库提供了众多的函数进行便捷的转换操作。[nlohmann json](https://github.com/nlohmann/json/blob/87cda1d6646592ac5866dc703c8e1839046a6806/README.md)
+JSon 字符串具体如何与基本数据类型进行转换。选择 `nlohmann` 库。该库提供了众多的函数进行便捷的转换操作。[nlohmann json](https://github.com/nlohmann/json/blob/87cda1d6646592ac5866dc703c8e1839046a6806/README.md)
 
 对于 `Op`， `Attr`， `Type` 的序列化和反序列化，在 `IR` 结构的定义中需要提供用于序列化的接口 `name()`; 和用于反序列化的接口 `get()`;
 
@@ -531,7 +531,7 @@ JSon字符串具体如何与基本数据类型进行转换。选择 `nlohmann` �
         j["id"] = type.name();
         return j;
     }
-    
+
     template<>
     Json SerializeTypeToJson<pir::VectorType>(const pir::VectorType type){
         Json j;
@@ -552,21 +552,21 @@ JSon字符串具体如何与基本数据类型进行转换。选择 `nlohmann` �
 
 - **ModuleWriter**
 
-    - **功能**：将传入的Program转化为json对象;
+    - **功能**：将传入的 Program 转化为 json 对象;
 
     - **属性**：
 
-        `ModuleWriterConfig` 中保存了当前的PirVersion版本；后续可以扩展一些轻量化的全局信息
+        `ModuleWriterConfig` 中保存了当前的 PirVersion 版本；后续可以扩展一些轻量化的全局信息
 
-        `program_` 是要序列化的program;
+        `program_` 是要序列化的 program;
 
-        `program_json` 是序列化后的json对象；
+        `program_json` 是序列化后的 json 对象；
 
-        `SerializeAttrMap` 是attr类型和序列化字符串的对应关系；
+        `SerializeAttrMap` 是 attr 类型和序列化字符串的对应关系；
 
-        `SerializeTypeMap` 是type类型和序列化字符串的对应关系；
+        `SerializeTypeMap` 是 type 类型和序列化字符串的对应关系；
 
-        `value_id_map` 是序列化的value 和其数字标识的对应关系，用于序列化operands
+        `value_id_map` 是序列化的 value 和其数字标识的对应关系，用于序列化 operands
 
         `xxx_id_` 是序列化过程中用于排序计数的标识
 
@@ -578,9 +578,9 @@ JSon字符串具体如何与基本数据类型进行转换。选择 `nlohmann` �
 
 - **ModuleReader**
 
-    - **功能**：将传入的json对象恢复为Program;
+    - **功能**：将传入的 json 对象恢复为 Program;
 
-    - **属性**: 
+    - **属性**:
 
         `ModuleReaderConfig` 中保存了当前的 PirVersion 版本；后续可以扩展一些轻量化的全局信息.
 
@@ -588,7 +588,7 @@ JSon字符串具体如何与基本数据类型进行转换。选择 `nlohmann` �
 
         `program_` 反序列化后的 program；
 
-        `DeSerializeAttrMap` 是序列化字符串和 attr 类型的对应关系； 
+        `DeSerializeAttrMap` 是序列化字符串和 attr 类型的对应关系；
 
         `DeSerializeTypeMap` 是序列化字符串和 type 类型的对应关系；
 
@@ -603,12 +603,12 @@ JSon字符串具体如何与基本数据类型进行转换。选择 `nlohmann` �
         `ReadOp` 递归调用 `ReadValue()`， `ReadOperands()`， `ReadAttrbute / ReadType` 用于解析输入输出，属性和类型。
 
 #### 1.3 （二次开发）类型/参数扩展支持
-当有新的类型出现时，需要注册自定义编码和类型的对应关系，并实现一个对应的c++结构和相应的转化函数。
+当有新的类型出现时，需要注册自定义编码和类型的对应关系，并实现一个对应的 c++结构和相应的转化函数。
 
 1. 缩略名添加：
-- 对于新增 `Dialect`，在[schema.cc](https://github.com/PaddlePaddle/Paddle/blob/c1d7f52d021817ddca58a962c4ea704da8275e9b/paddle/fluid/pir/serialize_deserialize/src/schema.cc#L4)的 `DialectIdMap` 中注册新的dialect。
+- 对于新增 `Dialect`，在[schema.cc](https://github.com/PaddlePaddle/Paddle/blob/c1d7f52d021817ddca58a962c4ea704da8275e9b/paddle/fluid/pir/serialize_deserialize/src/schema.cc#L4)的 `DialectIdMap` 中注册新的 dialect。
     ```cpp
-    // 在当前已有的map基础上顺序递增
+    // 在当前已有的 map 基础上顺序递增
     insert(paddle::dialect::DistDialect::name(), "4");
     ```
 - 对于`Type/Attribute`，在对应的属性/类型定义中添加 `name()` 函数获取对应的缩略名称。
@@ -637,12 +637,12 @@ JSon字符串具体如何与基本数据类型进行转换。选择 `nlohmann` �
     static pir::Attribute ReadPaddleDistAttr(const std::string attr_name,
                                            Json* attr_json,
                                            pir::IrContext* ctx);
-    
+
     ```
     并在相应的 `parseType()` 和 `parseAttr()`中添加上述方法的调用。
 3. 对上述函数进行实现，需要调用到相应的 `serializeXToJson` 和 `deserializeXFromJson` 模板。
     ```cpp
-    // serializeAttrToJson: TensorDistAttribute 
+    // serializeAttrToJson: TensorDistAttribute
     template <>
     Json serializeAttrToJson<paddle::dialect::TensorDistAttribute>(
         const paddle::dialect::TensorDistAttribute& attr) {}
@@ -665,36 +665,36 @@ JSon字符串具体如何与基本数据类型进行转换。选择 `nlohmann` �
 
 - **pir version**
 
-    在c++端序列化反序列化模块设计独立的`pir_version`，用来控制pir的迭代升级。每次发布新的版本，会建立一个表示记录patch信息的`yaml`文件，该文件的文件名顺序递增，即为当前的`pir_version`。版本兼容模块在`ReadModule`中会比对读入文件中记录的版本信息`file_version`与当前系统的`pir_version`，如果相同则不需要启动版本兼容模块，如果不相同则需进行patch构建。
+    在 c++端序列化反序列化模块设计独立的`pir_version`，用来控制 pir 的迭代升级。每次发布新的版本，会建立一个表示记录 patch 信息的`yaml`文件，该文件的文件名顺序递增，即为当前的`pir_version`。版本兼容模块在`ReadModule`中会比对读入文件中记录的版本信息`file_version`与当前系统的`pir_version`，如果相同则不需要启动版本兼容模块，如果不相同则需进行 patch 构建。
 
-- **version patch链式法则构建**
+- **version patch 链式法则构建**
 
-    获取到的`file_version`与`pir_version`如果不同，则会在patch目录下从`file_version`到`pir_version`进行遍历搜寻，依次建立各版本的patch并进行`patch merge`，构建出最终版的patch信息。
+    获取到的`file_version`与`pir_version`如果不同，则会在 patch 目录下从`file_version`到`pir_version`进行遍历搜寻，依次建立各版本的 patch 并进行`patch merge`，构建出最终版的 patch 信息。
 
-    `PatchBuilder.BuildPatch`函数为核心的patch构建函数，该函数读入yaml文件，解析并构建出`patch json`，并根据各patch的类型分别存储到内存的map中去。提供各类型的apply函数，在反序列化阶段根据各元素的名称进行`patch apply`。
+    `PatchBuilder.BuildPatch`函数为核心的 patch 构建函数，该函数读入 yaml 文件，解析并构建出`patch json`，并根据各 patch 的类型分别存储到内存的 map 中去。提供各类型的 apply 函数，在反序列化阶段根据各元素的名称进行`patch apply`。
 
 3. 反序列化中查找`patch map`，进行`patch apply`
 
-    在反序列化阶段，依次在各元素`（op、type、attribute）`递归构建之前进行patch搜寻，检测map中是否含有此ID下的patch，若有则调用相应的`patch appy`函数进行json修改。返回得到经过`patch merge`的新json，再进入原本的构建流程。
+    在反序列化阶段，依次在各元素`（op、type、attribute）`递归构建之前进行 patch 搜寻，检测 map 中是否含有此 ID 下的 patch，若有则调用相应的`patch appy`函数进行 json 修改。返回得到经过`patch merge`的新 json，再进入原本的构建流程。
 
 ### 2. param 设计方案
 #### 2.1 主体设计思路与路线
-**使用旧IR下的存储协议，新加转换模块适配新IR**
+**使用旧 IR 下的存储协议，新加转换模块适配新 IR**
 
-从减少开发成本和适配成本的角度来看，Python端和C++端均使用旧IR下的存储协议，新增对应的模块来适配PIR。
+从减少开发成本和适配成本的角度来看，Python 端和 C++端均使用旧 IR 下的存储协议，新增对应的模块来适配 PIR。
 
 * PIR 下 value 没有 name 属性，新增模块将 program 中创建的 parameter value 与 name 进行映射，并在 scope 中找到对应的 variable，获取 tensor 值。
 * PIR 下不再迁移旧 IR 下的 save (combine) op、load (combine) op，新增 function 代替对应 op kernel 功能。
 
 #### 2.2 关键技术点/子模块设计方案
-**适配新IR的转换模块以及原模块更新**：对接旧IR下已有的接口和存储结构，新增新IR的适配转换逻辑
+**适配新 IR 的转换模块以及原模块更新**：对接旧 IR 下已有的接口和存储结构，新增新 IR 的适配转换逻辑
 
-- paddle.save & paddle.load：Python端直接调用协议库函数进行参数保存加载
+- paddle.save & paddle.load：Python 端直接调用协议库函数进行参数保存加载
     <figure align="center">
     <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/param_py.png" style="zoom:50%"/>
     </figure>
 
-- paddle.save_vars & paddle.load_vars：适配推理侧，调用C++端功能实现C++端的参数读写
+- paddle.save_vars & paddle.load_vars：适配推理侧，调用 C++端功能实现 C++端的参数读写
 
     <figure align="center">
     <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/param_cpp.png" style="zoom:50%"/>
