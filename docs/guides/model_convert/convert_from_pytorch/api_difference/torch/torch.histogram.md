@@ -12,7 +12,7 @@ torch.histogram(input, bins, *, range=None, weight=None, density=False, out=None
 paddle.histogram(input, bins=100, min=0, max=0, weight=None, density=False, name=None)
 ```
 
-两者功能一致但返回参数 Tensor 数量不一致，具体如下：
+其中 PyTorch 的 `range` 与 Paddle 用法不一致，且返回参数 Tensor 数量不一致，具体如下：
 
 ### 参数映射
 
