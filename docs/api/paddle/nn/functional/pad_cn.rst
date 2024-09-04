@@ -8,8 +8,12 @@ pad
 依照 ``pad`` 和 ``mode`` 属性对 ``x`` 进行 ``pad``。
 
 .. note::
-    1. 记 ``x`` 的维数为 N (以下延用)。当 ``mode`` 为 ``'constant'`` 时， ``pad`` 的长度可以是任意小于等于 2*N 的偶数。
-    2. pad 的顺序支持右对齐(从 ``x`` 的最后一维开始)。特别地，当 ``mode`` 为 ``'constant'`` ，且 ``pad`` 是长度为 2N 的列表时，pad 的顺序可以通过 ``pad_from_left_axis`` 参数来控制，如果 ``pad_from_left_axis`` 是 True，pad 的顺序则是左对齐；如果 ``pad_from_left_axis`` 是 False，pad 的顺序则是右对齐。
+    1. 记 ``x`` 的维数为 N (以下延用)。 ``pad`` 的长度：
+
+        1.1. 当 ``mode`` 为 ``'constant'`` 时， ``pad`` 的长度可以是任意小于等于 2*N 的偶数。
+        1.2. 当 ``mode`` 为 ``'reflect'``、 ``'replicate'``、 ``'circular'`` 时， ``pad`` 的长度必须为 2*(N-2)。
+
+    2. ``pad`` 的顺序：支持右对齐(从 ``x`` 的最后一维开始)。特别地，当 ``mode`` 为 ``'constant'`` ，且 ``pad`` 是长度为 2N 的列表时，pad 的顺序可以通过 ``pad_from_left_axis`` 参数来控制，如果 ``pad_from_left_axis`` 是 True，pad 的顺序则是左对齐；如果 ``pad_from_left_axis`` 是 False，pad 的顺序则是右对齐。
     3. 当 ``mode`` 为 ``'reflect'``、 ``'replicate'``、 ``'circular'``，或 ``pad`` 是 Tensor，或 ``pad`` 的长度是 2*(N-2) 时，``x`` 的维数只支持 3-D、4—D、5-D。此时 pad 作用在相应 ``data_format`` 的 [D, H, W] 轴上，顺序是从 [D, H, W] 轴的最后一维到第一维。具体地，当 N=3 时，pad 的格式为[pad_left, pad_right]；当 N=4 时，pad 的格式为[pad_left, pad_right, pad_top, pad_bottom]；当 N=5 时，pad 的格式为[pad_left, pad_right, pad_top, pad_bottom, pad_front, pad_back]。
     4. 如果 ``mode`` 为 ``reflect``，则 ``x`` 对应 [D, H, W] 维度上的长度必须大于对应的 ``pad`` 值。
 
