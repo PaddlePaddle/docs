@@ -1,4 +1,4 @@
-## [ 输入参数用法不一致 ]torch.Tensor.histogram
+## [ 组合替代实现 ]torch.Tensor.histogram
 
 ### [torch.Tensor.histogram](https://pytorch.org/docs/stable/generated/torch.Tensor.histogram.html#torch.Tensor.histogram)
 

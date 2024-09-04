@@ -1,4 +1,4 @@
-## [ 返回参数类型不一致 ]torch.histogram
+## [ 组合替代实现 ]torch.histogram
 
 ### [torch.histogram](https://pytorch.org/docs/stable/generated/torch.histogram.html#torch.histogram)
 
