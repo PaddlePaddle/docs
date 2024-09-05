@@ -12,7 +12,7 @@ torch.Tensor.histogram(bins, *, range=None, weight=None, density=False)
 paddle.Tensor.histogram(bins=100, min=0, max=0, weight=None, density=False)
 ```
 
-其中 PyTorch 的 `range` 与 Paddle 用法不一致，具体如下：
+其中 PyTorch 的 `range` 与 Paddle 用法不一致，需要通过 paddle.Tensor.histogram 和 paddle.Tensor.histogram_bin_edges 组合实现，具体如下：
 
 ### 参数映射
 
@@ -30,9 +30,21 @@ paddle.Tensor.histogram(bins=100, min=0, max=0, weight=None, density=False)
 ```python
 # PyTorch 写法:
 x = torch.tensor([1., 2, 1])
-hist, bin_edges = x.histogram(bins=5, range=(0., 3.))
+hist, _ = x.histogram(bins=5, range=(0., 3.))
 
 # Paddle 写法:
 x = paddle.to_tensor([1, 2, 1])
-hist, bin_edges = x.histogram(bins=5, min=0, max=3), x.histogram_bin_edges(bins=5, min=0, max=3)
+hist = x.histogram(bins=5, min=0, max=3)
+```
+
+#### 返回值
+
+```python
+# PyTorch 写法:
+x = torch.tensor([1., 2, 1])
+hist, bin_edges = x.histogram(x, bins=5)
+
+# Paddle 写法:
+x = paddle.to_tensor([1, 2, 1])
+hist, bin_edges = x.histogram(x, bins=5), x.histogram_bin_edges(x, bins=5)
 ```
