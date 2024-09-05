@@ -1,19 +1,16 @@
 # Save / Load
 ## 一、功能概要
-基于 PIR 体系基本结构，结合各方需求，设计一套版本管理完备、兼容性好的 save_load 体系。
+基于 PIR 体系基本结构的 save_load 体系,支持pir 模型结构的保存和加载， 提供版本管理机制，支持常规op升级后的兼容推理。
 #### 1. Model 层面 （采用 json 文本存储）
 - a. 结合 PIR 的 IR 结构，设计简洁的序列化协议，保证正确反序列化的基础上降低存储内容。
 - b. 重构底层序列化和反序列化机制，实现 PIR 类型系统，模型结构增加删除修改灵活扩展时，saveload 体系灵活扩展，支持新功能的保存和加载。
 - c. 设计良好的版本管理和版本间修改的兼容体系，支持新版本兼容读取旧版本模型进行推理训练的功能。
-- d. 推理侧希望保证 save 后的文件体积大小不劣化、序列化以及反序列化速度不可比 protobuf 慢
-- e. （提高要求）底层的机制或工具收敛， 上层 api 功能明确，无重复。
 #### 2. Parameter 层面
-- a. 统一原始 Save/Load 接口和内部实现，支持 c++ 层参数的存储，扩展至 Python 层
-- b. 使用旧版本的序列户格式：Python 层使用 pickle 序列化工具，C++层使用二进制序列化方法。
-- c. （提高要求）在 C++实现类似的 pickle 功能，统一两端序列化协议，使得 C++ , Python 层保存的模型和参数可以在 C++, Python 层直接加载。
+- a. c++ 层参数存储，采用二进制流的保存方式，存储文件为 xxx.pdiparams
+- b. Python层参数存储， 使用 pickle 序列化工具，存储文件为 xxx.pdparams
 
 ## 二. API 功能变化
-1. 用户使用的 Python 端接口与旧 IR 下保持一致。
+1. 用户使用的 Python 端接口与旧 IR 下保持一致，内部依据当前运行状态进行分支处理。
 
     |  API 类别  |   3.0 后变化   |  分类  |
     |  :----  | :----  | :----  |
@@ -21,8 +18,8 @@
     | `paddle.jit.load`  | 无 |  动转静
     | `paddle.save`  | 无 |  动静统一
     | `paddle.load`  | 无 |  动静统一
-    | `paddle.static.save`  | `paddle.static.save_pir` |  静态图
-    | `paddle.static.load`  | `paddle.static.load_pir` |  静态图
+    | `paddle.static.save`  | 无 |  静态图
+    | `paddle.static.load`  | 无 |  静态图
     | `paddle.static.load_program_state`  | 无  |  动静共用
 
 
@@ -47,7 +44,7 @@
 以下方案讨论 3.0 以上版本向后兼容情况：
 - 3.0 框架加载 3.1 模型，这种需求本身不合理。抛开合理性，若 3.1 模型不涉及到新特性，默认支持，否则无法支持。
 
-- 3.1 框架加载 3.0 模型：3.0 以后的 3.x 版本，将在此次更新的新版版本兼容系统中支持对于旧版本的兼容加载和推理部署。
+- 3.1 框架加载 3.0 模型：3.0 以后的 3.x 版本，将通过版本兼容系统支持对于旧版本的兼容加载和推理部署。
 
 <figure align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/version-compat.png" style="zoom:50%"/>
@@ -73,7 +70,7 @@ save_load 体系需要完成 PIR 的类型系统，模型结构 到 序列化文
 2. 类型系统序列化协议内容：
  - dialect
 
-   Type，Attrbute, Operation 是注册在 dialect 中的结构，在 save 时需要将 dialect 信息保存下来，当前框架可以保证不同 dialect 的 string 名称互斥，因此可以使用 string 作为保存的基本单位：
+   Type，Attrbute, Operation 是注册在 dialect 中的结构，在 save 时需要将 dialect 信息保存下来，当前框架可以保证不同 dialect 的 string 名称互斥，因此使用 string 作为保存的基本单位：
     ```cpp
     //有 save 需求
     paddle::dialect::OperatorDialect  -> "pd_op"
@@ -83,20 +80,10 @@ save_load 体系需要完成 PIR 的类型系统，模型结构 到 序列化文
     pir::ControlFlowDialect -> "cf"
     pir::builtinDialect -> "builtin"
 
-    //kernel 级别的 dilect 没有 save 需求
-    paddle::dialect::KernelDialect
-    paddle::dialect::CustomKernelDialect
-    paddle::dialect::OneDNNKernelDialect
-
-    //不确定是否有 save 需求
-    cinn::dialect::OperatorDialect
-    cinn::dialect::RuntimeDialect
-
-    pir::shape::ShapeDialect
     ```
  - Type/Attribute
 
-   Attribute/Type 分为有值和无值，无值的结构保存使用其 class 名称即可（但考虑到 class 的名称需要包含域名，内容多，会采用自定义编码表达），有值的结构需要 save 的内容是各 Attrbute/Type storage 中的属性，这些属性是反序列化接口的参数列表。内容可以是基本的组件: 整数浮点数；string；std::vector（数组）；bool；point； 和框架内 IR 结构 Type，Attribute。
+   Attribute/Type 分为有值和无值，无值的结构保存使用其名称（自定义编码），有值的结构需要 save 的内容是各 Attrbute/Type storage 中的属性，这些属性是反序列化接口的参数列表。内容可以是c++基本数据结构: 整数浮点数；string；std::vector（数组）；bool；point； 和框架内 IR 结构 Type，Attribute。
    - BuiltinDialectType
    ```cpp
     // 无值 Type
@@ -221,11 +208,10 @@ save_load 体系需要完成 PIR 的类型系统，模型结构 到 序列化文
     ```
     **> 反序列化方式**
 
-    Type / Attribute 的反序列化有统一的接口处理`parseType()` 和 `parseAttribute()`，识别读入的编码后查表（IrContext 提供编码到类的 map）得到原始类，递归实现构造内部 Type, 再构造外部 Type。
+    Type / Attribute 的反序列化有统一的接口处理`parseType()` 和 `parseAttribute()`，识别读入的string后查表得到原始类，递归实现构造内部 Type, 再构造外部 Type。
 
-    有值的 Type / Attribute 的需要提供 `deserialize()` 接口。`deserialize()` 保证传入内容值后能够获得 C++对象。
+    Type / Attribute 的需要提供 `get()` 接口。`get()` 保证传入内容值后能够获得 C++对象。
 
-    无值的 Type 可以直接调用相应的 get 函数进行恢复。如需要对齐实现，可以增加一个相同内容的 `deserialize()` 接口
     ```cpp
     template <typename... Args>                 \
     static concrete_attribute deserialize(pir::IrContext *ctx, Args... args) {        \
