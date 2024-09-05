@@ -1,15 +1,19 @@
 # Save / Load
 ## 一、功能概要
-基于 PIR 体系基本结构的 save_load 体系,支持pir 模型结构的保存和加载， 提供版本管理机制，支持常规op升级后的兼容推理。
+基于 PIR 体系基本结构的 save_load 体系,支持 pir 模型结构的保存和加载， 提供版本管理机制，支持常规 op 升级后的兼容推理。
 #### 1. Model 层面 （采用 json 文本存储）
 - a. 结合 PIR 的 IR 结构，设计简洁的序列化协议，保证正确反序列化的基础上降低存储内容。
 - b. 重构底层序列化和反序列化机制，实现 PIR 类型系统，模型结构增加删除修改灵活扩展时，saveload 体系灵活扩展，支持新功能的保存和加载。
 - c. 设计良好的版本管理和版本间修改的兼容体系，支持新版本兼容读取旧版本模型进行推理训练的功能。
 #### 2. Parameter 层面
 - a. c++ 层参数存储，采用二进制流的保存方式，存储文件为 xxx.pdiparams
-- b. Python层参数存储， 使用 pickle 序列化工具，存储文件为 xxx.pdparams
+- b. Python 层参数存储， 使用 pickle 序列化工具，存储文件为 xxx.pdparams
 
 ## 二. API 功能变化
+<figure align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/version-update.png" style="zoom:50%"/>
+</figure>
+
 1. 用户使用的 Python 端接口与旧 IR 下保持一致，内部依据当前运行状态进行分支处理。
 
     |  API 类别  |   3.0 后变化   |  分类  |
@@ -83,7 +87,7 @@ save_load 体系需要完成 PIR 的类型系统，模型结构 到 序列化文
     ```
  - Type/Attribute
 
-   Attribute/Type 分为有值和无值，无值的结构保存使用其名称（自定义编码），有值的结构需要 save 的内容是各 Attrbute/Type storage 中的属性，这些属性是反序列化接口的参数列表。内容可以是c++基本数据结构: 整数浮点数；string；std::vector（数组）；bool；point； 和框架内 IR 结构 Type，Attribute。
+   Attribute/Type 分为有值和无值，无值的结构保存使用其名称（自定义编码），有值的结构需要 save 的内容是各 Attrbute/Type storage 中的属性，这些属性是反序列化接口的参数列表。内容可以是 c++基本数据结构: 整数浮点数；string；std::vector（数组）；bool；point； 和框架内 IR 结构 Type，Attribute。
    - BuiltinDialectType
    ```cpp
     // 无值 Type
@@ -208,7 +212,7 @@ save_load 体系需要完成 PIR 的类型系统，模型结构 到 序列化文
     ```
     **> 反序列化方式**
 
-    Type / Attribute 的反序列化有统一的接口处理`parseType()` 和 `parseAttribute()`，识别读入的string后查表得到原始类，递归实现构造内部 Type, 再构造外部 Type。
+    Type / Attribute 的反序列化有统一的接口处理`parseType()` 和 `parseAttribute()`，识别读入的 string 后查表得到原始类，递归实现构造内部 Type, 再构造外部 Type。
 
     Type / Attribute 的需要提供 `get()` 接口。`get()` 保证传入内容值后能够获得 C++对象。
 
