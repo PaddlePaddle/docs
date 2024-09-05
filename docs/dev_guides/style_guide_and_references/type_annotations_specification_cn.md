@@ -133,6 +133,23 @@ class SequenceInt(Sequence[int]): ...
 
 > 后续示例代码默认使用 PEP 563，不再重复说明。
 
+### 使用 `typing_extensions` 完善标注类型
+
+Python 的类型标注体系是不断发展的，新的类型和特性会不断被引入，而类型模块 `typing` 是作为标准库的一部分，是随着解释器版本一起分发的，因此一旦解释器版本确定了，`typing` 模块中所包含的类型也确定了。因此一些新版本才引入的类型在旧版本下是不能直接从 `typing` 导入的。
+
+为了解决这一问题，Python 社区发布了第三方库 `typing_extensions` 模块，该模块包含最新版本 `typing` 模块的内容。而由于其作为第三方库，可以在任意版本 Python 解释器下安装使用。这使得我们可以在保持低版本 Python 兼容的同时，使用最新版本的类型，以提供更精确的类型提示。
+
+当然，如果一个类型已经存在于所支持的最低 Python 版本 `typing` 模块中，那么建议直接从 `typing` 模块导入而不是 `typing_extensions` 中导入。
+
+比如 Paddle 目前最低支持的 Python 版本为 3.8，比如 `Literal` 是 3.8 引入的类型，因此我们应该直接从 `typing` 模块导入而不是 `typing_extensions` 中导入；而 `TypeGuard` 是 3.10 引入的类型，因此我们应该从 `typing_extensions` 中导入。
+
+``` python
+from typing import Literal                  # Python 3.8 typing 模块中已经包含
+from typing_extensions import TypeGuard     # Python 3.10 typing 模块才包含，需要使用 typing_extensions
+```
+
+类似地，`typing.TypeAlias`、`typing.ParamSpec`、`typing.Self`、`typing.Unpack` 等常用类型，目前也都需要通过 `typing_extensions` 导入后方可使用。
+
 ### 仅类型提示相关的导入放在 `if TYPE_CHECKING` 下
 
 我们在标注类型时，经常会需要额外 import 一些其他模块定义的类型，这些类型通常只在类型提示时使用，而在运行时并不需要。为了避免不必要的模块导入，我们建议将这些类型提示相关的导入放在 `if TYPE_CHECKING` 下，如：
