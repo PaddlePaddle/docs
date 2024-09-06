@@ -121,7 +121,19 @@ Pass 的核心是子图匹配和替换（即图变换），是将一个 Program 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/paddle_ir/pass_design.png" style="zoom:50%"/>
 </figure>
 
+### 4.兼容性良好的 Save/Load 体系
+基于 PIR 体系基本结构的 save_load 体系，支持 pir 模型结构的保存和加载，提供版本管理机制，支持常规 op 升级后的兼容推理。
+#### 1. Model 层面
+- a. 结合 PIR 的 IR 结构，设计简洁的序列化协议，保证正确反序列化的基础上降低存储内容。
+- b. 重构底层序列化和反序列化机制，实现 PIR 类型系统，模型结构增加删除修改灵活扩展时，saveload 体系灵活扩展，支持新功能的保存和加载。
+- paddle 3.0 beta 版之前，模型存储文件为 xxx.pdmodel，序列化协议为 protobuf；paddle 3.0 beta 版之后，模型存储文件为 xxx.json， 序列化协议为 json。
+- c. 设计良好的版本管理和版本间修改的兼容体系，支持新版本兼容读取旧版本模型进行推理训练的功能。
+#### 2. Parameter 层面
+- a. C++ 层参数存储，采用二进制流的保存方式，存储文件为 xxx.pdiparams。
+- b. Python 层参数存储， 使用 pickle 序列化工具，存储文件为 xxx.pdparams。
+
 ## 五、参考资料
 1. [【方案设计】IR 底层基础类型系统设计文档](https://github.com/PaddlePaddle/community/blob/master/pfcc/paddle-code-reading/IR_Dialect/basic_concepts.md)
 2. [【方案设计】IR 顶层模型结构表示设计文档](https://github.com/PaddlePaddle/community/blob/master/pfcc/paddle-code-reading/IR_Dialect/ir_program.md)
 3. [【方案设计】控制流设计文档](https://github.com/PaddlePaddle/community/blob/master/pfcc/paddle-code-reading/IR_Dialect/control_flow.md)
+4. [【方案设计】Save / Load 设计文档](https://github.com/PaddlePaddle/community/blob/master/pfcc/paddle-code-reading/IR_Dialect/pir_save_load.md)
