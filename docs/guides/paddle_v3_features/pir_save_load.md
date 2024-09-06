@@ -11,7 +11,7 @@
 
 ## 二. API 功能变化
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/version-update.png" style="zoom:50%"/>
+<img src="./images/save_load/version-update.png" style="zoom:50%"/>
 </figure>
 
 1. 用户使用的 Python 端接口与旧 IR 下保持一致，内部依据当前运行状态进行分支处理。
@@ -42,7 +42,7 @@
 ## 三. 版本管理支持度，版本兼容方案
 版本兼容原则为向后兼容，即新版本支持部分旧版本的推理部署，但旧版本无需支持新版本的推理部署。3.0 版本将不再支持 1.0 版本的推理部署，对于 2.0 版本则通过 program_translator 进行转换和支持。
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/version-update.png" style="zoom:50%"/>
+<img src="./images/save_load/version-update.png" style="zoom:50%"/>
 </figure>
 
 以下方案讨论 3.0 以上版本向后兼容情况：
@@ -141,7 +141,7 @@ save_load 体系需要完成 PIR 的类型系统，模型结构 到 序列化文
     }
    ```
    - KernelDialectType： kernel 相关的 type 没有 save 需求
-   ```json
+   ```cpp
     paddle::dialect::AllocatedDenseTensorType
     paddle::dialect::AllocatedSelectedRowsType
     paddle::dialect::AllocatedDenseTensorArrayType
@@ -537,7 +537,7 @@ JSon 字符串具体如何与基本数据类型进行转换。选择 `nlohmann` 
 
 `ModuleWriter` / `ModuleReader` 类，承担了读写 `IR` 结构的管理功能，依托于第三方库完成基本单位的读写。
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/module.png" style="zoom:50%"/>
+<img src="./images/save_load/module.png" style="zoom:50%"/>
 </figure>
 
 - **ModuleWriter**
@@ -681,11 +681,11 @@ JSon 字符串具体如何与基本数据类型进行转换。选择 `nlohmann` 
 
 - paddle.save & paddle.load：Python 端直接调用协议库函数进行参数保存加载
     <figure align="center">
-    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/param_py.png" style="zoom:50%"/>
+    <img src="./images/save_load/param_py.png" style="zoom:50%"/>
     </figure>
 
 - paddle.save_vars & paddle.load_vars：适配推理侧，调用 C++端功能实现 C++端的参数读写
 
     <figure align="center">
-    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/save_load/param_cpp.png" style="zoom:50%"/>
+    <img src="./images/save_load/param_cpp.png" style="zoom:20%"/>
     </figure>
