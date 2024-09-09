@@ -18,4 +18,8 @@ OUTPUTDIR=${1}
 VERSIONSTR=${2}
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
+script_dir=$(dirname "${BASH_SOURCE[0]}")
+chmod +x $script_dir/../../paddle_log
+$script_dir/../../paddle_log
+
 python ${SCRIPT_DIR}/post_filter_htmls.py ${OUTPUTDIR}/en/${VERSIONSTR}/api/

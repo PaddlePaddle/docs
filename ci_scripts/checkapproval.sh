@@ -2,6 +2,11 @@
 
 set -x
 
+script_dir=$(dirname "${BASH_SOURCE[0]}")
+chmod +x $script_dir/../paddle_log
+$script_dir/../paddle_log
+
+
 API_FILES=("docs/api/paddle")
 
 for API_FILE in ${API_FILES[*]}; do

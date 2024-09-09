@@ -1,6 +1,11 @@
 #! /bin/bash
 CURDIR=$(pwd)
 
+
+script_dir=$(dirname "${BASH_SOURCE[0]}")
+chmod +x $script_dir/../paddle_log
+$script_dir/../paddle_log
+
 FLUIDDOCDIR=${FLUIDDOCDIR:=/FluidDoc}
 OUTPUTDIR=${OUTPUTDIR:=/docs}
 CONFIGDIR=${CONFIGDIR:=${FLUIDDOCDIR}/ci_scripts/doc-build-config}

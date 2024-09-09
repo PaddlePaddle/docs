@@ -8,6 +8,10 @@ VERSIONSTR=${VERSIONSTR:=develop}
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
 
+script_dir=$(dirname "${BASH_SOURCE[0]}")
+chmod +x $script_dir/../paddle_log
+$script_dir/../paddle_log
+
 function filter_cn_api_files() {
     # $1 - files list
     # $2 - resultvar

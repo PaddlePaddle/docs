@@ -2,6 +2,10 @@
 
 set -ex
 
+script_dir=$(dirname "${BASH_SOURCE[0]}")
+chmod +x $script_dir/../paddle_log
+$script_dir/../paddle_log
+
 function check_system_message(){
     local jsonfn=$1
     local output_path=$2
