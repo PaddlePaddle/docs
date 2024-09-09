@@ -5,6 +5,9 @@ SHORT=f:p:w:hx:
 LONG=docs-dir:,paddle-dir:,paddle-whl:,https-proxy:
 
 OPTIND=1
+script_dir=$(dirname "${BASH_SOURCE[0]}")
+chmod +x $script_dir/paddle_log
+$script_dir/paddle_log
 
 show_help() {
   cat <<HELP_HELP_HELP
