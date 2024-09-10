@@ -3,6 +3,7 @@
 飞桨框架在海光 DCU 上通过精度验证的模型情况如下：
 
 * PaddleX 使用文档详见：[PaddleX 多硬件使用](https://github.com/PaddlePaddle/PaddleX/blob/develop/docs/tutorials/base/devices_use_guidance.md)
+* 如果您适配/验证过更多模型，欢迎向飞桨开源社区贡献适配代码，然后邮件联系我们更新本列表 [ext_paddle_oss](ext_paddle_oss@baidu.com)
 
 | 模型库 | 模型类型 | 模型名称 | 训练 | 推理 |
 | - | - | - | - | - |
