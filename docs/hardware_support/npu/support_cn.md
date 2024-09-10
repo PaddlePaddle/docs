@@ -3,6 +3,7 @@
 飞桨框架在昇腾 NPU 上通过精度验证的模型情况如下：
 
 * PaddleX 使用文档详见：[PaddleX 多硬件使用](https://github.com/PaddlePaddle/PaddleX/blob/develop/docs/tutorials/base/devices_use_guidance.md)
+* 如果您适配/验证过更多模型，欢迎向飞桨开源社区贡献适配代码，然后邮件联系我们更新本列表 [ext_paddle_oss](ext_paddle_oss@baidu.com)
 
 | 模型库 | 模型类型 | 模型名称 | 训练 | 推理 |
 | - | - | - | - | - |
@@ -68,4 +69,4 @@
 | PaddleX | 时序预测 | [Nonstationary](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/Nonstationary.yaml) | √ | √ |
 | PaddleX | 时序预测 | [TiDE](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/TiDE.yaml) | √ | √ |
 | PaddleNLP | 语义模型 | [BERT]() | √ | √ |
-| PaddleNLP | 大语言模型 | [Llama](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/llm/npu/llama) | √ | √ |
+| PaddleNLP | 大语言模型 | [LLaMA](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/llm/npu/llama) | √ | √ |
