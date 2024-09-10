@@ -68,3 +68,4 @@
 | PaddleX | 时序预测 | [Nonstationary](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/Nonstationary.yaml) | √ | √ |
 | PaddleX | 时序预测 | [TiDE](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/TiDE.yaml) | √ | √ |
 | PaddleNLP | 语义模型 | [BERT]() | √ | √ |
+| PaddleNLP | 大语言模型 | [Llama](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/llm/npu/llama) | √ | √ |
