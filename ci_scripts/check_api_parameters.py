@@ -59,8 +59,39 @@ def _check_params_in_description(rstfilename, paramstr):
     params_intitle = []
     if paramstr:
         fake_func = ast.parse(f"def fake_func({paramstr}): pass")
-        for arg in fake_func.body[0].args.args:
+        # Iterate over all intitle parameters
+        num_defaults = len(fake_func.body[0].args.defaults)
+        num_args = len(fake_func.body[0].args.args)
+        # args & defaults
+        for i, arg in enumerate(fake_func.body[0].args.args):
+            if i >= num_args - num_defaults:
+                default_value = ast.dump(
+                    fake_func.body[0].args.defaults[
+                        i - (num_args - num_defaults)
+                    ]
+                )
+                params_intitle.append(f"{arg.arg}={default_value}")
+            else:
+                params_intitle.append(arg.arg)
+        # posonlyargs
+        for arg in fake_func.body[0].args.posonlyargs:
             params_intitle.append(arg.arg)
+        # vararh(*args)
+        if fake_func.body[0].args.vararg:
+            params_intitle.append(fake_func.body[0].args.vararg.arg)
+        # kwonlyargs & kw_defaults
+        for i, arg in enumerate(fake_func.body[0].args.kwonlyargs):
+            if (
+                i < len(fake_func.body[0].args.kw_defaults)
+                and fake_func.body[0].args.kw_defaults[i] is not None
+            ):
+                default_value = ast.dump(fake_func.body[0].args.kw_defaults[i])
+                params_intitle.append(f"{arg.arg}={default_value}")
+            else:
+                params_intitle.append(arg.arg)
+        # **kwargs
+        if fake_func.body[0].args.kwarg:
+            params_intitle.append(fake_func.body[0].args.kwarg.arg)
 
     funcdescnode = extract_params_desc_from_rst_file(rstfilename)
     if funcdescnode:
@@ -71,7 +102,9 @@ def _check_params_in_description(rstfilename, paramstr):
         else:
             for i in range(len(items)):
                 pname_intitle = params_intitle[i].split("=")[0].strip()
-                mo = re.match(r"(\w+)\b.*", items[i].children[0].astext())
+                mo = re.match(
+                    r"\*{0,2}(\w+)\b.*", items[i].children[0].astext()
+                )
                 if mo:
                     pname_indesc = mo.group(1)
                     if pname_indesc != pname_intitle:
@@ -106,7 +139,9 @@ def _check_params_in_description_with_fullargspec(rstfilename, funcname):
         else:
             for i in range(len(items)):
                 pname_intitle = params_inspec[i]
-                mo = re.match(r"(\w+)\b.*", items[i].children[0].astext())
+                mo = re.match(
+                    r"\*{0,2}(\w+)\b.*", items[i].children[0].astext()
+                )
                 if mo:
                     pname_indesc = mo.group(1)
                     if pname_indesc != pname_intitle:
