@@ -3,6 +3,7 @@
 飞桨框架在昆仑芯 XPU 上通过精度验证的模型情况如下：
 
 * PaddleX 使用文档详见：[PaddleX 多硬件使用](https://github.com/PaddlePaddle/PaddleX/blob/develop/docs/tutorials/base/devices_use_guidance.md)
+* PaddleNLP 大语言模型多硬件使用文档详见：[PaddleNLP XPU 大语言模型使用文档](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/llm/xpu)
 * 如果您适配/验证过更多模型，欢迎向飞桨开源社区贡献适配代码，然后邮件联系我们更新本列表 [ext_paddle_oss](ext_paddle_oss@baidu.com)
 
 | 模型库 | 模型类型 | 模型名称 | 训练 | 推理 |
@@ -46,7 +47,6 @@
 | PaddleX | 时序预测 | [DLinear](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/DLinear.yaml) | √ | √ |
 | PaddleX | 时序预测 | [RLinear](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/RLinear.yaml) | √ | √ |
 | PaddleX | 时序预测 | [NLinear](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/NLinear.yaml) | √ | √ |
-| PaddleNLP | 语义模型 | [BERT]() | √ | √ |
-| PaddleNLP | 语义模型 | [ERINE3.0]() | √ | √ |
+| PaddleNLP | 自然语言理解模型 | [BERT](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/legacy/model_zoo/bert) | √ | √ |
+| PaddleNLP | 自然语言理解模型 | [ERINE3.0](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/legacy/model_zoo/ernie-3.0/configs/default.yml) | √ | √ |
 | PaddleNLP | 大语言模型 | [LLaMA](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/llm/xpu/llama) | √ | √ |
-
