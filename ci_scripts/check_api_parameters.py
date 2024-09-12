@@ -192,7 +192,7 @@ def check_api_parameters(rstfiles, apiinfo):
     2. Some COMPLICATED annotations may break the scripts.
     """
     pat = re.compile(
-        r"^\.\.\s+py:(method|function|class)::\s+(\S+)\s*\(\s*(.*)\s*\)\s*$"
+        r"^\.\.\s+py:(method|function|class)::\s+([^\s(]+)\s*(?:\(\s*(.*)\s*\))?\s*$"
     )
     check_passed = []
     check_failed = {}
