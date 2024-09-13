@@ -373,6 +373,7 @@ tensor 线性代数相关
     " :ref:`paddle.cross <cn_api_paddle_cross>` ", "计算 Tensor x 和 y 在 axis 维度上的向量积（叉积）"
     " :ref:`paddle.dist <cn_api_paddle_dist>` ", "计算 (x-y) 的 p 范数（p-norm）"
     " :ref:`paddle.dot <cn_api_paddle_dot>` ", "计算向量的内积"
+    " :ref:`paddle.histogram_bin_edges <cn_api_paddle_histogram_bin_edges>` ", "返回计算 input 的直方图时所使用的 bins 的边界值 bin_edges"
     " :ref:`paddle.histogram <cn_api_paddle_histogram>` ", "计算输入 Tensor 的直方图"
     " :ref:`paddle.histogramdd <cn_api_paddle_histogramdd>` ", "计算输入多维 Tensor 的直方图"
     " :ref:`paddle.matmul <cn_api_paddle_matmul>` ", "计算两个 Tensor 的乘积，遵循完整的广播规则"

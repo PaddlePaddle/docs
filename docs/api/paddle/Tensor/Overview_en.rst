@@ -143,6 +143,7 @@ Methods
     gradient
     greater_equal
     greater_than
+    histogram_bin_edges
     histogram
     imag
     increment

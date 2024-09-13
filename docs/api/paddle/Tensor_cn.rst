@@ -1371,6 +1371,15 @@ heaviside(y, name=None)
 
 请参考 :ref:`cn_api_paddle_heaviside`
 
+histogram_bin_edges(bins=100, min=0, max=0)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_histogram_bin_edges`
+
 histogram(bins=100, min=0, max=0)
 :::::::::
 
