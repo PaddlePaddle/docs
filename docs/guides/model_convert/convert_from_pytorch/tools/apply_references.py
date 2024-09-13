@@ -89,7 +89,9 @@ ALIAS_PATTERN = re.compile(
 NOT_IMPLEMENTED_PATTERN = re.compile(
     r"^\| *NOT-IMPLEMENTED-ITEM\( *(?P<src_api>[^,]+) *, *(?P<src_api_url>.+) *\) *\|$"
 )
-
+IN_DEVELOPMENT_PATTERN = re.compile(
+    r"^\| *IN-DEVELOPMENT-PATTERN\( *(?P<src_api>[^,]+) *, *(?P<src_api_url>.+) *\) *\|$"
+)
 
 DOCS_REPO_BASEURL = "https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/"
 
@@ -170,6 +172,7 @@ def apply_reference_to_row_ex(line, metadata_dict, context, line_idx):
     reference_table_match = REFERENCE_TABLE_PATTERN.match(line)
     alias_match = ALIAS_PATTERN.match(line)
     not_implemented_match = NOT_IMPLEMENTED_PATTERN.match(line)
+    in_development_match = IN_DEVELOPMENT_PATTERN.match(line)
 
     row_idx_s = str(context["table_row_idx"])
 
@@ -223,6 +226,27 @@ def apply_reference_to_row_ex(line, metadata_dict, context, line_idx):
 
         dst_api_column = ""
         mapping_column = "功能缺失"
+        mapping_url_column = ""
+
+        content = [
+            row_idx_s,
+            src_api_column,
+            dst_api_column,
+            mapping_column,
+            mapping_url_column,
+        ]
+        output = "| " + " | ".join(content) + " |\n"
+        return [output]
+    elif in_development_match:
+        src_api = in_development_match["src_api"].strip("`").replace(r"\_", "_")
+        record_api(src_api)
+
+        src_api_url = in_development_match["src_api_url"].strip()
+
+        src_api_column = f"[`{src_api}`]({src_api_url})"
+
+        dst_api_column = ""
+        mapping_column = "映射关系开发中"
         mapping_url_column = ""
 
         content = [
