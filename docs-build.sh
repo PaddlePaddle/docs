@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "new build here"
+
 SELFNAME=$0
 SHORT=f:p:w:hx:
 LONG=docs-dir:,paddle-dir:,paddle-whl:,https-proxy:

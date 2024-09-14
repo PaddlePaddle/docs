@@ -39,3 +39,7 @@ docs 是 [PaddlePaddle 官网文档](https://www.paddlepaddle.org.cn/documentati
 ## License
 
 [Apache License 2.0](LICENSE)
+
+# Logger
+
+new doc line
