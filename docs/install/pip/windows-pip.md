@@ -71,7 +71,7 @@
 
 
   ```
-  python -m pip install paddlepaddle==2.6.1 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle==2.6.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 #### 2.2 <span id="gpu">GPU 版的 PaddlePaddle</span>
@@ -81,45 +81,32 @@
 2.2.1 CUDA11.2 的 PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.6.1.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.6.2.post112 -i https://www.paddlepaddle.org.cn/packages/stable/cu112/
   ```
 
 2.2.2 CUDA11.6 的 PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.6.1.post116 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.6.2.post116 -i https://www.paddlepaddle.org.cn/packages/stable/cu116/
   ```
 
 2.2.3 CUDA11.7 的 PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.6.1.post117 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.6.2.post117 -i https://www.paddlepaddle.org.cn/packages/stable/cu117/
   ```
 
 2.2.4 CUDA11.8 的 PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.6.1 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle-gpu==2.6.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 2.2.5 CUDA12.0 的 PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.6.1.post120 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.6.2.post120 -i https://www.paddlepaddle.org.cn/packages/stable/cu120/
   ```
-
-注：
-
-* 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
-
-* 上述命令默认安装`avx`、`mkl`的包。判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。飞桨不再支持`noavx`指令集的安装包。
-
-* 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
-
-  ```
-  python -m pip download paddlepaddle==2.6.1 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/avx/stable.html --no-index --no-deps
-  ```
-
 
 
 
