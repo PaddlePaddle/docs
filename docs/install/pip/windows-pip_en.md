@@ -68,7 +68,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle==2.6.2 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle==2.6.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 
@@ -98,7 +98,7 @@ You can choose the following version of PaddlePaddle to start installation:
 2.2.4 If you are using CUDA 11.8
 
   ```
-  python -m pip install paddlepaddle-gpu==2.6.2 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle-gpu==2.6.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 2.2.5 If you are using CUDA 12.0
