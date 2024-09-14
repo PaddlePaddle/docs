@@ -102,7 +102,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle==2.6.1 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle==2.6.2 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
@@ -115,7 +115,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post112 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle-gpu==2.6.2.post112 -i https://www.paddlepaddle.org.cn/packages/stable/cu112/
   ```
 
 
@@ -123,7 +123,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post112 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.6.2.post112 -i https://www.paddlepaddle.org.cn/packages/stable/cudnnin/
   ```
 
 
@@ -131,7 +131,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.6.2.post116 -i https://www.paddlepaddle.org.cn/packages/stable/cu116/
   ```
 
 
@@ -139,7 +139,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post116 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python -m pip install paddlepaddle-gpu==2.6.2.post116 -i https://www.paddlepaddle.org.cn/packages/stable/cudnnin/
   ```
 
 
@@ -147,7 +147,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.6.2.post117 -i https://www.paddlepaddle.org.cn/packages/stable/cu117/
   ```
 
 
@@ -155,7 +155,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post117 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.6.2.post117 -i https://www.paddlepaddle.org.cn/packages/stable/cudnnin/
   ```
 
 
@@ -163,7 +163,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle-gpu==2.6.2 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
@@ -171,7 +171,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip download paddlepaddle-gpu==2.6.1 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html  --no-index --no-deps
+  python3 -m pip download paddlepaddle-gpu==2.6.2 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html  --no-index --no-deps
 
   ```
 
@@ -180,7 +180,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post120 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.6.2.post120 -i https://www.paddlepaddle.org.cn/packages/stable/cu120/
   ```
 
 
@@ -188,7 +188,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.6.1.post120 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.6.2.post120 -i https://www.paddlepaddle.org.cn/packages/stable/cudnnin/
   ```
 
 
@@ -204,7 +204,7 @@ Note：
 * If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
 
   ```
-  python3 -m pip download paddlepaddle==2.6.1 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
+  python3 -m pip download paddlepaddle==2.6.2 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
   ```
 
 

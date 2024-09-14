@@ -96,7 +96,7 @@ You can choose the following version of PaddlePaddle to start installation:
 If your computer doesn't have NVIDIA® GPU, please install `the CPU Version of PaddlePaddle`
 
 ```
-conda install paddlepaddle==2.6.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+conda install paddlepaddle==2.6.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 ```
 
 
@@ -108,19 +108,19 @@ conda install paddlepaddle==2.6.1 --channel https://mirrors.tuna.tsinghua.edu.cn
 *  If you are using CUDA 11.2，cuDNN 8.2.1:
 
   ```
-  conda install paddlepaddle-gpu==2.6.1 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
+  conda install paddlepaddle-gpu==2.6.2 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
   ```
 
 *  If you are using CUDA 11.6，cuDNN 8.4.0:
 
   ```
-  conda install paddlepaddle-gpu==2.6.1 cudatoolkit=11.6 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
+  conda install paddlepaddle-gpu==2.6.2 cudatoolkit=11.6 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
   ```
 
 *  If you are using CUDA 11.7，cuDNN 8.4.1:
 
   ```
-  conda install paddlepaddle-gpu==2.6.1 cudatoolkit=11.7 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
+  conda install paddlepaddle-gpu==2.6.2 cudatoolkit=11.7 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
   ```
 
 You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
