@@ -57,42 +57,40 @@ def parse_args():
 def _check_params_in_description(rstfilename, paramstr):
     flag = True
     info = ""
-    params_intitle = []
+    params_in_title = []
     if paramstr:
         fake_func = ast.parse(f"def fake_func({paramstr}): pass")
-        # Iterate over all intitle parameters
+        # Iterate over all in_title parameters
         num_defaults = len(fake_func.body[0].args.defaults)
         num_args = len(fake_func.body[0].args.args)
         # args & defaults
         for i, arg in enumerate(fake_func.body[0].args.args):
             if i >= num_args - num_defaults:
-                default_value = ast.dump(
-                    fake_func.body[0].args.defaults[
-                        i - (num_args - num_defaults)
-                    ]
-                )
-                params_intitle.append(f"{arg.arg}={default_value}")
+                default_value = fake_func.body[0].args.defaults[
+                    i - (num_args - num_defaults)
+                ]
+                params_in_title.append(f"{arg.arg}={default_value}")
             else:
-                params_intitle.append(arg.arg)
+                params_in_title.append(arg.arg)
         # posonlyargs
         for arg in fake_func.body[0].args.posonlyargs:
-            params_intitle.append(arg.arg)
-        # vararh(*args)
+            params_in_title.append(arg.arg)
+        # vararg(*args)
         if fake_func.body[0].args.vararg:
-            params_intitle.append(fake_func.body[0].args.vararg.arg)
+            params_in_title.append(fake_func.body[0].args.vararg.arg)
         # kwonlyargs & kw_defaults
         for i, arg in enumerate(fake_func.body[0].args.kwonlyargs):
             if (
                 i < len(fake_func.body[0].args.kw_defaults)
                 and fake_func.body[0].args.kw_defaults[i] is not None
             ):
-                default_value = ast.dump(fake_func.body[0].args.kw_defaults[i])
-                params_intitle.append(f"{arg.arg}={default_value}")
+                default_value = fake_func.body[0].args.kw_defaults[i]
+                params_in_title.append(f"{arg.arg}={default_value}")
             else:
-                params_intitle.append(arg.arg)
+                params_in_title.append(arg.arg)
         # **kwargs
         if fake_func.body[0].args.kwarg:
-            params_intitle.append(fake_func.body[0].args.kwarg.arg)
+            params_in_title.append(fake_func.body[0].args.kwarg.arg)
 
     funcdescnode = extract_params_desc_from_rst_file(rstfilename)
     if funcdescnode:
@@ -101,40 +99,40 @@ def _check_params_in_description(rstfilename, paramstr):
         if not re.match(list_pat, str(items[0])):
             flag = False
             info = "Something wrong with the format of params list in description, check it please."
-        elif len(items) != len(params_intitle):
+        elif len(items) != len(params_in_title):
             flag = False
             if not items:
                 info = (
                     "Params section in description is empty, check it please."
                 )
             else:
-                info = f"The number of params in title does not match the params in description: {len(params_intitle)} != {len(items)}."
+                info = f"The number of params in title does not match the params in description: {len(params_in_title)} != {len(items)}."
             print(f"check failed (parammeters description): {rstfilename}")
         else:
             for i in range(len(items)):
-                pname_intitle = params_intitle[i].split("=")[0].strip()
+                pname_in_title = params_in_title[i].split("=")[0].strip()
                 mo = re.match(
                     r"\*{0,2}(\w+)\b.*", items[i].children[0].astext()
                 )
                 if mo:
                     pname_indesc = mo.group(1)
-                    if pname_indesc != pname_intitle:
+                    if pname_indesc != pname_in_title:
                         flag = False
-                        info = f"the following param in title does not match the param in description: {pname_intitle} != {pname_indesc}."
+                        info = f"the following param in title does not match the param in description: {pname_in_title} != {pname_indesc}."
                         print(
-                            f"check failed (parammeters description): {rstfilename}, {pname_intitle} != {pname_indesc}"
+                            f"check failed (parammeters description): {rstfilename}, {pname_in_title} != {pname_indesc}"
                         )
                 else:
                     flag = False
-                    info = f"param name '{pname_intitle}' not matched in description line{i+1}, check it please."
+                    info = f"param name '{pname_in_title}' not matched in description line{i+1}, check it please."
                     print(
                         f"check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph."
                     )
     else:
-        if params_intitle:
+        if params_in_title:
             info = "params section not found in description, check it please."
             print(
-                f"check failed (parameters description not found): {rstfilename}, {params_intitle}."
+                f"check failed (parameters description not found): {rstfilename}, {params_in_title}."
             )
             flag = False
     return flag, info
@@ -154,21 +152,21 @@ def _check_params_in_description_with_fullargspec(rstfilename, funcname):
             print(f"check failed (parammeters description): {rstfilename}")
         else:
             for i in range(len(items)):
-                pname_intitle = params_inspec[i]
+                pname_in_title = params_inspec[i]
                 mo = re.match(
                     r"\*{0,2}(\w+)\b.*", items[i].children[0].astext()
                 )
                 if mo:
                     pname_indesc = mo.group(1)
-                    if pname_indesc != pname_intitle:
+                    if pname_indesc != pname_in_title:
                         flag = False
-                        info = f"the following param in title does not match the param in description: {pname_intitle} != {pname_indesc}."
+                        info = f"the following param in title does not match the param in description: {pname_in_title} != {pname_indesc}."
                         print(
-                            f"check failed (parammeters description): {rstfilename}, {pname_intitle} != {pname_indesc}"
+                            f"check failed (parammeters description): {rstfilename}, {pname_in_title} != {pname_indesc}"
                         )
                 else:
                     flag = False
-                    info = f"param name '{pname_intitle}' not matched in description line{i+1}, check it please."
+                    info = f"param name '{pname_in_title}' not matched in description line{i+1}, check it please."
                     print(
                         f"check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph."
                     )
