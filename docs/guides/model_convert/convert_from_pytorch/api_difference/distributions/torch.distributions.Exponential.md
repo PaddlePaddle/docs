@@ -3,7 +3,7 @@
 ### [torch.distributions.Exponential](https://pytorch.org/docs/stable/distributions.html#torch.distributions.exponential.Exponential.arg_constraints)
 
 ```python
-torch.distributions.Exponential(rate, 
+torch.distributions.Exponential(rate,
                                 validate_args=None)
 ```
 

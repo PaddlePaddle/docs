@@ -3,7 +3,7 @@
 ### [torch.distributions.MultivariateNormal](https://pytorch.org/docs/stable/distributions.html#multivariatenormal)
 
 ```python
-torch.distributions.MultivariateNormal(loc, 
+torch.distributions.MultivariateNormal(loc,
                                        covariance_matrix=None,
                                        precision_matrix=None,
                                        scale_tril=None,
@@ -13,7 +13,7 @@ torch.distributions.MultivariateNormal(loc,
 ### [paddle.distribution.MultivariateNormal](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/distribution/MultivariateNormal_cn.html#multivariatenormal)
 
 ```python
-paddle.distribution.MultivariateNormal(loc, 
+paddle.distribution.MultivariateNormal(loc,
                                        covariance_matrix=None,
                                        precision_matrix=None,
                                        scale_tril=None)

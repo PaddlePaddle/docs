@@ -3,16 +3,16 @@
 ### [torch.distributions.ContinuousBernoulli](https://pytorch.org/docs/stable/distributions.html)
 
 ```python
-torch.distributions.Binomial(probs=None, 
+torch.distributions.Binomial(probs=None,
                              logits=None,
-                             lims=(0.499, 0.501) 
+                             lims=(0.499, 0.501)
                              validate_args=None)
 ```
 
 ### [paddle.distribution.ContinuousBernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/distribution/ContinuousBernoulli_cn.html#continuousbernoulli)
 
 ```python
-paddle.distribution.ContinuousBernoulli(probs, 
+paddle.distribution.ContinuousBernoulli(probs,
                                         lims=(0.499, 0.501))
 ```
 

@@ -4,7 +4,7 @@
 
 ```python
 torch.amp.autocast(device_type,
-                   dtype=None, 
+                   dtype=None,
                    enabled=True,
                    cache_enabled=None)
 ```
@@ -12,11 +12,11 @@ torch.amp.autocast(device_type,
 ### [paddle.amp.auto_cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/auto_cast_cn.html#auto-cast)
 
 ```python
-paddle.amp.auto_cast(enable=True, 
-                     custom_white_list=None, 
-                     custom_black_list=None, 
-                     level='O1', 
-                     dtype='float16', 
+paddle.amp.auto_cast(enable=True,
+                     custom_white_list=None,
+                     custom_black_list=None,
+                     level='O1',
+                     dtype='float16',
                      use_promote=True)
 ```
 
@@ -30,4 +30,3 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | dtype           | dtype      | 指定自动混合精度的计算类型         |
 | enabled         | enable  | 是否启用自动混合精度。 |
 | cache_enabled        | -      | 启用或禁用 CUDA 图形缓存 Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
-

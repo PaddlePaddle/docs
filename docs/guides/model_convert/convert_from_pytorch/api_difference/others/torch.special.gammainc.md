@@ -3,7 +3,7 @@
 ### [torch.special.gammainc](https://pytorch.org/docs/stable/special.html#torch.special.gammainc)
 
 ```python
-torch.special.gammainc(input, 
+torch.special.gammainc(input,
                        other,
                        *,
                        out=None)
@@ -12,7 +12,7 @@ torch.special.gammainc(input,
 ### [paddle.gammainc](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/index_cn.html)
 
 ```python
-paddle.gammainc(x, 
+paddle.gammainc(x,
                 y)
 ```
 

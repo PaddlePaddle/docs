@@ -10,9 +10,9 @@ torch.nn.functional.channel_shuffle(input,
 ### [paddle.nn.functional.channel_shuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/channel_shuffle_cn.html#channel-shuffle)
 
 ```python
-paddle.nn.functional.channel_shuffle(x, 
-                                    groups, 
-                                    data_format='NCHW', 
+paddle.nn.functional.channel_shuffle(x,
+                                    groups,
+                                    data_format='NCHW',
                                     name=None)
 ```
 

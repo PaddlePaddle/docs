@@ -3,16 +3,16 @@
 ### [torch.distributions.Binomial](https://pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial)
 
 ```python
-torch.distributions.Binomial(total_count=1, 
-                             probs=None, 
-                             logits=None, 
+torch.distributions.Binomial(total_count=1,
+                             probs=None,
+                             logits=None,
                              validate_args=None)
 ```
 
 ### [paddle.distribution.Binomial](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/distribution/Binomial_cn.html#binomial)
 
 ```python
-paddle.distribution.Binomial(total_count, 
+paddle.distribution.Binomial(total_count,
                              probs)
 ```
 
