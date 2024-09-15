@@ -176,8 +176,8 @@ RFC 通过并合入后形成 Tracking Issue。原则上完成 RFC 的开发者�
 > [!NOTE]
 >
 > 1. 优秀 RFC 案例：
->    - [将 xdoctest 引入到飞桨框架工作流中](https://github.com/PaddlePaddle/community/blob/master/rfcs/Docs/将%20xdoctest%20 引入到飞桨框架工作流中.md)、
->    - [为 Paddle 框架 API 添加类型提示](https://github.com/PaddlePaddle/community/blob/master/rfcs/CodeStyle/【Hackathon%206th】为%20Paddle%20 框架%20API%20 添加类型提示.md)
+>    - [将 xdoctest 引入到飞桨框架工作流中](https://github.com/PaddlePaddle/community/blob/master/rfcs/Docs/将%20xdoctest%20引入到飞桨框架工作流中.md)
+>    - [为 Paddle 框架 API 添加类型提示](https://github.com/PaddlePaddle/community/blob/master/rfcs/CodeStyle/【Hackathon%206th】为%20Paddle%20框架%20API%20添加类型提示.md)
 > 2. 优秀 Tracking Issue 案例：
 >    - [将 xdoctest 引入到飞桨框架工作流中 Tracking Issue](https://github.com/PaddlePaddle/Paddle/issues/54705)
 >    - [为公开 API 标注类型提示信息 Tracking Issue](https://github.com/PaddlePaddle/Paddle/issues/65008)
