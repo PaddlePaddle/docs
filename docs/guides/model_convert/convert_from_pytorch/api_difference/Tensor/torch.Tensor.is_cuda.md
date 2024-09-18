@@ -17,5 +17,5 @@ d.is_cuda
 
 # Paddle 写法
 d = paddle.to_tensor([1,2,3])
-"gpu" in str(d.place)
+d.place.is_gpu_place()
 ```
