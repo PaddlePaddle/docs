@@ -11,7 +11,7 @@ torch.nn.functional.lp_pool2d(input, norm_type, kernel_size, stride=None, ceil_m
 paddle.nn.functional.lp_pool2d(x, kernel_size, stride=None, padding=0, ceil_mode=False, data_format="NCL", name=None)
 ```
 
-其中 PyTorch 与 Paddle 参数不一致，具体如下：
+其中 Paddle 参数更多，具体如下：
 
 ### 参数映射
 
