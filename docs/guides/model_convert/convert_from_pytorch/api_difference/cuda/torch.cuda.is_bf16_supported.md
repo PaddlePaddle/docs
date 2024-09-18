@@ -12,5 +12,4 @@ torch.cuda.is_bf16_supported()
 paddle.amp.is_bfloat16_supported()
 ```
 
-
 功能一致，无参数。
