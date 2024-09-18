@@ -1,4 +1,3 @@
-
 ## [ 组合替代实现 ]torch.nn.Softmin
 
 ### [torch.nn.Softmin](https://pytorch.org/docs/stable/generated/torch.nn.Softmin.html#softmin)
@@ -14,7 +13,7 @@ Paddle 无此 API，需要组合实现。
 ```python
 # PyTorch 写法
 module = torch.nn.Softmin(dim=1)
-module(-input)
+module(input)
 
 # Paddle 写法
 module = paddle.nn.Softmax(axis=1)
