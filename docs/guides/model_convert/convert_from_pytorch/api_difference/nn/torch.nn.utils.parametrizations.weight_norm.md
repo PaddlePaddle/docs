@@ -18,6 +18,6 @@ paddle.nn.utils.weight_norm(layer, name='weight', dim=0)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| module        | layer        | 要添加权重归一化的层。|
+| module        | layer        | 要添加权重归一化的层，仅参数名不一致。|
 | name          | name         | 权重参数的名字。|
 | dim           | dim          | 进行归一化操作的切片所在维度。|
