@@ -17,7 +17,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | M          | M            | 输入窗口的长度。 |
-| alpha         | alpha   | 窗口系数，Pytorch 默认值为0.54。|
+| alpha         | alpha   | 窗口系数，Pytorch 默认值为0.54, Paddle 无默认值，Paddle 需保持与 PyTorch 一致。|
 | sym          | sym       | 判断是否返回适用于过滤器设计的对称窗口。  |
 | dtype        | dtype | 返回 Tensor 的数据类型。 |
 | layout | -   | 表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
@@ -32,7 +32,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.signal.windows.general_hamming(10, requires_grad=True)
 
 # Paddle 写法
-x = paddle.audio.functional._general_hamming(10, 0.5)
+x = paddle.audio.functional._general_hamming(10, 0.54)
 x.stop_gradient = False
 ```
 
@@ -42,6 +42,6 @@ x.stop_gradient = False
 torch.signal.windows.general_hamming(10, device=torch.device('cpu'))
 
 # Paddle 写法
-y = paddle.audio.functional._general_hamming(10, 0.5)
+y = paddle.audio.functional._general_hamming(10, 0.54)
 y.cpu()
 ```
