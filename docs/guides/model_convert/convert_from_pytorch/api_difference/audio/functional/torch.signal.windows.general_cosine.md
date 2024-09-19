@@ -5,7 +5,7 @@
 torch.signal.windows.general_cosine(M, *, a, sym=True, dtype=None, layout=torch.strided, device=None, requires_grad=False)
 ```
 
-### [paddle.audio.functional.__general_cosine]()
+### [paddle.audio.functional._general_cosine]()
 
 ```python
 paddle.audio.functional._general_cosine(M: int, a: float, sym: bool = True, dtype: str = 'float64')
