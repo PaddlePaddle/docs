@@ -5,10 +5,10 @@
 torch.signal.windows.hann(M, *, sym=True, dtype=None, layout=torch.strided, device=None, requires_grad=False)
 ```
 
-### [paddle.audio.functional._hann]()
+### [paddle.audio.functional.window._hann]()
 
 ```python
-paddle.audio.functional._hann(M: int, sym: bool = True, dtype: str = 'float64')
+paddle.audio.functional.window._hann(M: int, sym: bool = True, dtype: str = 'float64')
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -31,7 +31,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.signal.windows.hann(10, requires_grad=True)
 
 # Paddle 写法
-x = paddle.audio.functional._hann(10)
+x = paddle.audio.functional.window._hann(10)
 x.stop_gradient = False
 ```
 
@@ -41,6 +41,6 @@ x.stop_gradient = False
 torch.signal.windows.hann(10, device=torch.device('cpu'))
 
 # Paddle 写法
-y = paddle.audio.functional._hann(10)
+y = paddle.audio.functional.window._hann(10)
 y.cpu()
 ```

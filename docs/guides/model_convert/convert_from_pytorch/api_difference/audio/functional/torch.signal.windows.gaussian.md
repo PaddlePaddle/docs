@@ -5,10 +5,10 @@
 torch.signal.windows.gaussian(M, *, std=1.0, sym=True, dtype=None, layout=torch.strided, device=None, requires_grad=False)
 ```
 
-### [paddle.audio.functional._gaussian]()
+### [paddle.audio.functional.window._gaussian]()
 
 ```python
-paddle.audio.functional._gaussian(M: int, std: float, sym: bool = True, dtype: str = 'float64')
+paddle.audio.functional.window._gaussian(M: int, std: float, sym: bool = True, dtype: str = 'float64')
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -32,7 +32,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.signal.windows.gaussian(10, requires_grad=True)
 
 # Paddle 写法
-x = paddle.audio.functional._gaussian(10, 1.0)
+x = paddle.audio.functional.window._gaussian(10, 1.0)
 x.stop_gradient = False
 ```
 
@@ -42,6 +42,6 @@ x.stop_gradient = False
 torch.signal.windows.gaussian(10, device=torch.device('cpu'))
 
 # Paddle 写法
-y = paddle.audio.functional._gaussian(10, 1.0)
+y = paddle.audio.functional.window._gaussian(10, 1.0)
 y.cpu()
 ```

@@ -8,7 +8,7 @@ torch.signal.windows.general_cosine(M, *, a, sym=True, dtype=None, layout=torch.
 ### [paddle.audio.functional._general_cosine]()
 
 ```python
-paddle.audio.functional._general_cosine(M: int, a: float, sym: bool = True, dtype: str = 'float64')
+paddle.audio.functional.window._general_cosine(M: int, a: float, sym: bool = True, dtype: str = 'float64')
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -32,7 +32,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.signal.windows.general_cosine(10, a=[0.46, 0.23, 0.31], requires_grad=True)
 
 # Paddle 写法
-x = paddle.audio.functional._general_cosine(10, a=[0.46, 0.23, 0.31])
+x = paddle.audio.functional.window._general_cosine(10, a=[0.46, 0.23, 0.31])
 x.stop_gradient = False
 ```
 
@@ -42,6 +42,6 @@ x.stop_gradient = False
 torch.signal.windows.general_cosine(10, a=[0.46, 0.23, 0.31], device=torch.device('cpu'))
 
 # Paddle 写法
-y = paddle.audio.functional._general_cosine(10, a=[0.46, 0.23, 0.31])
+y = paddle.audio.functional.window._general_cosine(10, a=[0.46, 0.23, 0.31])
 y.cpu()
 ```

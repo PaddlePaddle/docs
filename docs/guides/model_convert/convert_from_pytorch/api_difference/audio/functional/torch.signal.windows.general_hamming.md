@@ -5,10 +5,10 @@
 torch.signal.windows.general_hamming(M, *, alpha=0.54, sym=True, dtype=None, layout=torch.strided, device=None, requires_grad=False)
 ```
 
-### [paddle.audio.functional._general_hamming]()
+### [paddle.audio.functional.window._general_hamming]()
 
 ```python
-paddle.audio.functional._general_hamming(M: int, alpha: float, sym: bool = True, dtype: str = 'float64')
+paddle.audio.functional.window._general_hamming(M: int, alpha: float, sym: bool = True, dtype: str = 'float64')
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -32,7 +32,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.signal.windows.general_hamming(10, requires_grad=True)
 
 # Paddle 写法
-x = paddle.audio.functional._general_hamming(10, 0.54)
+x = paddle.audio.functional.window._general_hamming(10, 0.54)
 x.stop_gradient = False
 ```
 
@@ -42,6 +42,6 @@ x.stop_gradient = False
 torch.signal.windows.general_hamming(10, device=torch.device('cpu'))
 
 # Paddle 写法
-y = paddle.audio.functional._general_hamming(10, 0.54)
+y = paddle.audio.functional.window._general_hamming(10, 0.54)
 y.cpu()
 ```
