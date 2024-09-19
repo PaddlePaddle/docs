@@ -83,7 +83,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     fi
 fi
 
-check_parameters=OFF
+check_parameters=ON
 if [ "${check_parameters}" = "OFF" ] ; then
     #echo "chinese api doc fileslist is empty, skip check."
     echo "check_api_parameters is not stable, close it temporarily."

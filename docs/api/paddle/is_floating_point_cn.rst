@@ -9,7 +9,7 @@ is_floating_point
 参数
 :::::::::
 
-- **x**  (Tensor) - 输入的 Tensor。
+    - **x**  (Tensor) - 输入的 Tensor。
 
 返回
 :::::::::
