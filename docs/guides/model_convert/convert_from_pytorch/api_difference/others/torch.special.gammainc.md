@@ -1,4 +1,4 @@
-## [ torch 参数更多 ] torch.special.gammainc
+## [torch 参数更多]torch.special.gammainc
 
 ### [torch.special.gammainc](https://pytorch.org/docs/stable/special.html#torch.special.gammainc)
 
@@ -27,7 +27,9 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | out        | -      | Paddle 无此参数，需要转写。 |
 
 ### 转写示例
+
 #### out：指定输出
+
 ```python
 # PyTorch 写法
 torch.special.gammainc(torch.tensor([1.0,2.0]),torch.tensor([3.0,4.0]),out=y)
