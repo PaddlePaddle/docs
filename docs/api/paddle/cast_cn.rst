@@ -10,6 +10,11 @@ cast
 
 将 ``x`` 的数据类型转换为 ``dtype`` 并输出。支持输出和输入的数据类型相同。
 
+下图展示了一个例子：将输入的 float64 类型 Tensor 转化为 uint8 类型 Tensor
+
+.. image:: ../../images/api_legend/cast.png
+   :alt: 图例
+
 参数
 ::::::::::::
 

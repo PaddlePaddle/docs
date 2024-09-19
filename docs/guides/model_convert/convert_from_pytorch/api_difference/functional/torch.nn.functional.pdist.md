@@ -6,10 +6,10 @@
 torch.nn.functional.pdist(input, p=2)
 ```
 
-### [paddle.nn.functional.pdist](https://github.com/PaddlePaddle/Paddle/blob/210442ec30e5038809865a6105dd38308d1df2e0/python/paddle/nn/functional/distance.py#L111)
+### [paddle.pdist](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/pdist_cn.html)
 
 ```python
-paddle.nn.functional.pdist(x, p=2.0)
+paddle.pdist(x, p=2.0)
 ```
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：

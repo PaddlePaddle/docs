@@ -141,7 +141,7 @@ class AliasAPIGen:
         # sort others api by path length
         api_list.sort(key=lambda api: api.count("."))
 
-        return [real_api] + [rec_api] + api_list
+        return [real_api, rec_api, *api_list]
 
     def filter_api(self, api_list):
         for api in api_list:

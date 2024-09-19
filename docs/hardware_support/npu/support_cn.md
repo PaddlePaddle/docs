@@ -1,287 +1,73 @@
 # 昇腾 NPU 验证模型
 
-基于 2024Q2 devlop 版本，飞桨框架在昇腾 NPU 上通过精度验证的模型情况如下：
+飞桨框架在昇腾 NPU 上通过精度验证的模型情况如下：
 
-| 模型库 | 模型名称 | 训练 | 推理 |
-| - | - | - | - |
-| PaddleClas | ResNet50 | √ | √  |
-| PaddleClas | ResNet18 | √ | √  |
-| PaddleClas | ResNet101 | √ | √  |
-| PaddleClas | ResNet34 | √ | √  |
-| PaddleClas | ResNet152 | √ | √  |
-| PaddleClas | MobileNetV3_small_x1_0 | √ | √  |
-| PaddleClas | convnext | √ | √  |
-| PaddleClas | MobilenetV2 | √ | √  |
-| PaddleClas | mobilnetv2_x0_5 | √ | √  |
-| PaddleClas | mobilnetv2_x0_25 | √ | √  |
-| PaddleClas | AlexNet | 未测试 | √  |
-| PaddleClas | CLIP_vit_base_patch16_224 | 未测试 | √  |
-| PaddleClas | CSPDarkNet53 | 未测试 | √  |
-| PaddleClas | CSWinTransformer_base_224 | 未测试 | √  |
-| PaddleClas | CSWinTransformer_base_384 | 未测试 | √  |
-| PaddleClas | CSWinTransformer_large_224 | 未测试 | √  |
-| PaddleClas | CSWinTransformer_large_384 | 未测试 | √  |
-| PaddleClas | CSWinTransformer_small_224 | 未测试 | √  |
-| PaddleClas | CSWinTransformer_tiny_224 | 未测试 | √  |
-| PaddleClas | ConvNeXt_small | 未测试 | √  |
-| PaddleClas | ConvNeXt_tiny | 未测试 | √  |
-| PaddleClas | CvT_13_224 | 未测试 | √  |
-| PaddleClas | CvT_13_384 | 未测试 | √  |
-| PaddleClas | CvT_21_224 | 未测试 | √  |
-| PaddleClas | CvT_21_384 | 未测试 | √  |
-| PaddleClas | DLA102 | 未测试 | √  |
-| PaddleClas | DLA102x | 未测试 | √  |
-| PaddleClas | DLA102x2 | 未测试 | √  |
-| PaddleClas | DLA169 | 未测试 | √  |
-| PaddleClas | DLA34 | 未测试 | √  |
-| PaddleClas | DLA46_c | 未测试 | √  |
-| PaddleClas | DLA46x_c | 未测试 | √  |
-| PaddleClas | DLA60 | 未测试 | √  |
-| PaddleClas | DLA60x | 未测试 | √  |
-| PaddleClas | DLA60x_c | 未测试 | √  |
-| PaddleClas | DPN107 | 未测试 | √  |
-| PaddleClas | DPN131 | 未测试 | √  |
-| PaddleClas | DPN68 | 未测试 | √  |
-| PaddleClas | DPN92 | 未测试 | √  |
-| PaddleClas | DPN98 | 未测试 | √  |
-| PaddleClas | DSNet_base | 未测试 | √  |
-| PaddleClas | DSNet_tiny | 未测试 | √  |
-| PaddleClas | DarkNet53 | 未测试 | √  |
-| PaddleClas | DeiT_base_patch16_224 | 未测试 | √  |
-| PaddleClas | DeiT_base_patch16_384 | 未测试 | √  |
-| PaddleClas | DeiT_small_patch16_224 | 未测试 | √  |
-| PaddleClas | DeiT_tiny_patch16_224 | 未测试 | √  |
-| PaddleClas | DenseNet121 | 未测试 | √  |
-| PaddleClas | DenseNet161 | 未测试 | √  |
-| PaddleClas | DenseNet169 | 未测试 | √  |
-| PaddleClas | DenseNet201 | 未测试 | √  |
-| PaddleClas | DenseNet264 | 未测试 | √  |
-| PaddleClas | DistillationModel | 未测试 | √  |
-| PaddleClas | ESNet_x0_25 | 未测试 | √  |
-| PaddleClas | ESNet_x0_5 | 未测试 | √  |
-| PaddleClas | ESNet_x0_75 | 未测试 | √  |
-| PaddleClas | ESNet_x1_0 | 未测试 | √  |
-| PaddleClas | EfficientNetB0 | 未测试 | √  |
-| PaddleClas | EfficientNetB1 | 未测试 | √  |
-| PaddleClas | EfficientNetB2 | 未测试 | √  |
-| PaddleClas | EfficientNetB3 | 未测试 | √  |
-| PaddleClas | EfficientNetB4 | 未测试 | √  |
-| PaddleClas | EfficientNetB5 | 未测试 | √  |
-| PaddleClas | EfficientNetB6 | 未测试 | √  |
-| PaddleClas | EfficientNetB7 | 未测试 | √  |
-| PaddleClas | GhostNet_x0_5 | 未测试 | √  |
-| PaddleClas | GhostNet_x1_0 | 未测试 | √  |
-| PaddleClas | GhostNet_x1_3 | 未测试 | √  |
-| PaddleClas | GoogLeNet | 未测试 | √  |
-| PaddleClas | HRNet_W18_C | 未测试 | √  |
-| PaddleClas | HRNet_W30_C | 未测试 | √  |
-| PaddleClas | HRNet_W32_C | 未测试 | √  |
-| PaddleClas | HRNet_W40_C | 未测试 | √  |
-| PaddleClas | HRNet_W44_C | 未测试 | √  |
-| PaddleClas | HRNet_W48_C | 未测试 | √  |
-| PaddleClas | HRNet_W64_C | 未测试 | √  |
-| PaddleClas | HarDNet39_ds | 未测试 | √  |
-| PaddleClas | HarDNet68 | 未测试 | √  |
-| PaddleClas | HarDNet68_ds | 未测试 | √  |
-| PaddleClas | HarDNet85 | 未测试 | √  |
-| PaddleClas | InceptionV3 | 未测试 | √  |
-| PaddleClas | InceptionV4 | 未测试 | √  |
-| PaddleClas | LeViT_128 | 未测试 | √  |
-| PaddleClas | LeViT_128S | 未测试 | √  |
-| PaddleClas | LeViT_192 | 未测试 | √  |
-| PaddleClas | LeViT_256 | 未测试 | √  |
-| PaddleClas | LeViT_384 | 未测试 | √  |
-| PaddleClas | MetaBIN_ResNet50 | 未测试 | √  |
-| PaddleClas | MixNet_L | 未测试 | √  |
-| PaddleClas | MixNet_M | 未测试 | √  |
-| PaddleClas | MixNet_S | 未测试 | √  |
-| PaddleClas | MobileNeXt_x1_0 | 未测试 | √  |
-| PaddleClas | MobileNetV1 | 未测试 | √  |
-| PaddleClas | MobileNetV1_x0_25 | 未测试 | √  |
-| PaddleClas | MobileNetV1_x0_5 | 未测试 | √  |
-| PaddleClas | MobileNetV1_x0_75 | 未测试 | √  |
-| PaddleClas | MobileNetV2_x0_75 | 未测试 | √  |
-| PaddleClas | MobileNetV2_x1_5 | 未测试 | √  |
-| PaddleClas | MobileNetV2_x2_0 | 未测试 | √  |
-| PaddleClas | MobileNetV3_large_x0_35 | 未测试 | √  |
-| PaddleClas | MobileNetV3_large_x0_5 | 未测试 | √  |
-| PaddleClas | MobileNetV3_large_x0_75 | 未测试 | √  |
-| PaddleClas | MobileNetV3_large_x1_0 | 未测试 | √  |
-| PaddleClas | MobileNetV3_large_x1_25 | 未测试 | √  |
-| PaddleClas | MobileNetV3_small_x0_35 | 未测试 | √  |
-| PaddleClas | MobileNetV3_small_x0_5 | 未测试 | √  |
-| PaddleClas | MobileNetV3_small_x0_75 | 未测试 | √  |
-| PaddleClas | MobileNetV3_small_x1_25 | 未测试 | √  |
-| PaddleClas | MobileViTV2_x0_5 | 未测试 | √  |
-| PaddleClas | MobileViTV2_x1_0 | 未测试 | √  |
-| PaddleClas | MobileViTV2_x1_5 | 未测试 | √  |
-| PaddleClas | MobileViTV2_x2_0 | 未测试 | √  |
-| PaddleClas | MobileViTV3_S | 未测试 | √  |
-| PaddleClas | MobileViTV3_S_L2 | 未测试 | √  |
-| PaddleClas | MobileViTV3_XS | 未测试 | √  |
-| PaddleClas | MobileViTV3_XS_L2 | 未测试 | √  |
-| PaddleClas | MobileViTV3_XXS | 未测试 | √  |
-| PaddleClas | MobileViTV3_XXS_L2 | 未测试 | √  |
-| PaddleClas | MobileViTV3_x0_5 | 未测试 | √  |
-| PaddleClas | MobileViTV3_x0_75 | 未测试 | √  |
-| PaddleClas | MobileViTV3_x1_0 | 未测试 | √  |
-| PaddleClas | MobileViT_S | 未测试 | √  |
-| PaddleClas | MobileViT_XS | 未测试 | √  |
-| PaddleClas | MobileViT_XXS | 未测试 | √  |
-| PaddleClas | NextViT_base_224 | 未测试 | √  |
-| PaddleClas | NextViT_base_384 | 未测试 | √  |
-| PaddleClas | NextViT_large_224 | 未测试 | √  |
-| PaddleClas | NextViT_large_384 | 未测试 | √  |
-| PaddleClas | NextViT_small_224 | 未测试 | √  |
-| PaddleClas | NextViT_small_384 | 未测试 | √  |
-| PaddleClas | PPHGNet_small | 未测试 | √  |
-| PaddleClas | PPHGNet_tiny | 未测试 | √  |
-| PaddleClas | PPLCNetV2_base | 未测试 | √  |
-| PaddleClas | PPLCNet_x0_25 | 未测试 | √  |
-| PaddleClas | PPLCNet_x0_35 | 未测试 | √  |
-| PaddleClas | PPLCNet_x0_5 | 未测试 | √  |
-| PaddleClas | PPLCNet_x0_75 | 未测试 | √  |
-| PaddleClas | PPLCNet_x1_0 | 未测试 | √  |
-| PaddleClas | PPLCNet_x1_5 | 未测试 | √  |
-| PaddleClas | PPLCNet_x2_0 | 未测试 | √  |
-| PaddleClas | PPLCNet_x2_5 | 未测试 | √  |
-| PaddleClas | PVT_V2_B0 | 未测试 | √  |
-| PaddleClas | PVT_V2_B1 | 未测试 | √  |
-| PaddleClas | PVT_V2_B2 | 未测试 | √  |
-| PaddleClas | PVT_V2_B2_Linear | 未测试 | √  |
-| PaddleClas | PVT_V2_B3 | 未测试 | √  |
-| PaddleClas | PVT_V2_B4 | 未测试 | √  |
-| PaddleClas | PVT_V2_B5 | 未测试 | √  |
-| PaddleClas | ReXNet_1_0 | 未测试 | √  |
-| PaddleClas | ReXNet_1_3 | 未测试 | √  |
-| PaddleClas | ReXNet_1_5 | 未测试 | √  |
-| PaddleClas | ReXNet_2_0 | 未测试 | √  |
-| PaddleClas | ReXNet_3_0 | 未测试 | √  |
-| PaddleClas | RepVGG_B3 | 未测试 | √  |
-| PaddleClas | Res2Net101_vd_26w_4s | 未测试 | √  |
-| PaddleClas | Res2Net200_vd_26w_4s | 未测试 | √  |
-| PaddleClas | Res2Net50_14w_8s | 未测试 | √  |
-| PaddleClas | Res2Net50_26w_4s | 未测试 | √  |
-| PaddleClas | Res2Net50_vd_26w_4s | 未测试 | √  |
-| PaddleClas | ResNeSt101 | 未测试 | √  |
-| PaddleClas | ResNeSt50 | 未测试 | √  |
-| PaddleClas | ResNeSt50_fast_1s1x64d | 未测试 | √  |
-| PaddleClas | ResNeXt101_32x4d | 未测试 | √  |
-| PaddleClas | ResNeXt101_64x4d | 未测试 | √  |
-| PaddleClas | ResNeXt101_vd_32x4d | 未测试 | √  |
-| PaddleClas | ResNeXt101_vd_64x4d | 未测试 | √  |
-| PaddleClas | ResNeXt152_64x4d | 未测试 | √  |
-| PaddleClas | ResNeXt152_vd_32x4d | 未测试 | √  |
-| PaddleClas | ResNeXt152_vd_64x4d | 未测试 | √  |
-| PaddleClas | ResNeXt50_32x4d | 未测试 | √  |
-| PaddleClas | ResNeXt50_64x4d | 未测试 | √  |
-| PaddleClas | ResNeXt50_vd_32x4d | 未测试 | √  |
-| PaddleClas | ResNeXt50_vd_64x4d | 未测试 | √  |
-| PaddleClas | ResNet101_vd | 未测试 | √  |
-| PaddleClas | ResNet152_vd | 未测试 | √  |
-| PaddleClas | ResNet18_vd | 未测试 | √  |
-| PaddleClas | ResNet200_vd | 未测试 | √  |
-| PaddleClas | ResNet34_vd | 未测试 | √  |
-| PaddleClas | ResNet50_vd | 未测试 | √  |
-| PaddleClas | SENet154_vd | 未测试 | √  |
-| PaddleClas | SE_ResNeXt101_32x4d | 未测试 | √  |
-| PaddleClas | SE_ResNeXt50_32x4d | 未测试 | √  |
-| PaddleClas | SE_ResNeXt50_vd_32x4d | 未测试 | √  |
-| PaddleClas | SE_ResNet18_vd | 未测试 | √  |
-| PaddleClas | SE_ResNet34_vd | 未测试 | √  |
-| PaddleClas | SE_ResNet50_vd | 未测试 | √  |
-| PaddleClas | ShuffleNetV2_swish | 未测试 | √  |
-| PaddleClas | ShuffleNetV2_x0_25 | 未测试 | √  |
-| PaddleClas | ShuffleNetV2_x0_33 | 未测试 | √  |
-| PaddleClas | ShuffleNetV2_x0_5 | 未测试 | √  |
-| PaddleClas | ShuffleNetV2_x1_0 | 未测试 | √  |
-| PaddleClas | ShuffleNetV2_x1_5 | 未测试 | √  |
-| PaddleClas | ShuffleNetV2_x2_0 | 未测试 | √  |
-| PaddleClas | SqueezeNet1_0 | 未测试 | √  |
-| PaddleClas | SqueezeNet1_1 | 未测试 | √  |
-| PaddleClas | SwinTransformerV2_base_patch4_window16_256 | 未测试 | √  |
-| PaddleClas | SwinTransformerV2_base_patch4_window8_256 | 未测试 | √  |
-| PaddleClas | SwinTransformerV2_large_patch4_window16_256 | 未测试 | √  |
-| PaddleClas | SwinTransformerV2_small_patch4_window16_256 | 未测试 | √  |
-| PaddleClas | SwinTransformerV2_small_patch4_window8_256 | 未测试 | √  |
-| PaddleClas | SwinTransformerV2_tiny_patch4_window16_256 | 未测试 | √  |
-| PaddleClas | SwinTransformerV2_tiny_patch4_window8_256 | 未测试 | √  |
-| PaddleClas | SwinTransformer_base_patch4_window12_384 | 未测试 | √  |
-| PaddleClas | SwinTransformer_base_patch4_window7_224 | 未测试 | √  |
-| PaddleClas | SwinTransformer_large_patch4_window12_384 | 未测试 | √  |
-| PaddleClas | SwinTransformer_large_patch4_window7_224 | 未测试 | √  |
-| PaddleClas | SwinTransformer_small_patch4_window7_224 | 未测试 | √  |
-| PaddleClas | SwinTransformer_tiny_patch4_window7_224 | 未测试 | √  |
-| PaddleClas | TNT_small | 未测试 | √  |
-| PaddleClas | TinyNet_A | 未测试 | √  |
-| PaddleClas | TinyNet_B | 未测试 | √  |
-| PaddleClas | TinyNet_C | 未测试 | √  |
-| PaddleClas | TinyNet_D | 未测试 | √  |
-| PaddleClas | TinyNet_E | 未测试 | √  |
-| PaddleClas | VAN_B0 | 未测试 | √  |
-| PaddleClas | VAN_B1 | 未测试 | √  |
-| PaddleClas | VGG13 | 未测试 | √  |
-| PaddleClas | VGG16 | 未测试 | √  |
-| PaddleClas | VGG19 | 未测试 | √  |
-| PaddleClas | ViT_base_patch16_224 | 未测试 | √  |
-| PaddleClas | ViT_base_patch16_384 | 未测试 | √  |
-| PaddleClas | ViT_base_patch32_384 | 未测试 | √  |
-| PaddleClas | ViT_large_patch16_224 | 未测试 | √  |
-| PaddleClas | ViT_large_patch16_384 | 未测试 | √  |
-| PaddleClas | ViT_large_patch32_384 | 未测试 | √  |
-| PaddleClas | ViT_small_patch16_224 | 未测试 | √  |
-| PaddleClas | Xception41 | 未测试 | √  |
-| PaddleClas | Xception41_deeplab | 未测试 | √  |
-| PaddleClas | Xception65 | 未测试 | √  |
-| PaddleClas | Xception65_deeplab | 未测试 | √  |
-| PaddleClas | Xception71 | 未测试 | √  |
-| PaddleClas | alt_gvt_base | 未测试 | √  |
-| PaddleClas | alt_gvt_large | 未测试 | √  |
-| PaddleClas | alt_gvt_small | 未测试 | √  |
-| PaddleClas | cae_base_patch16_224 | 未测试 | √  |
-| PaddleClas | pcpvt_base | 未测试 | √  |
-| PaddleClas | pcpvt_large | 未测试 | √  |
-| PaddleClas | pcpvt_small | 未测试 | √  |
-| PaddleDetection | ppyoloe_vit_base_csppan_cae_36e_coco | 未测试 | √  |
-| PaddleDetection | solov2_r50_enhance_coco | 未测试 | √  |
-| PaddleOCR | ch_PP-OCRv2_det_0 | 未测试 | √  |
-| PaddleOCR | ch_PP-OCRv2_rec | 未测试 | √  |
-| PaddleOCR | ch_PP-OCRv3_det_0 | 未测试 | √  |
-| PaddleOCR | ch_PP-OCRv4_mobile_det_0 | 未测试 | √  |
-| PaddleOCR | ch_PP-OCRv4_server_det_0 | 未测试 | √  |
-| PaddleOCR | ch_PP-OCRv4_server_rec | 未测试 | √  |
-| PaddleOCR | ch_ppocr_mobile_v2_0_rec | 未测试 | √  |
-| PaddleOCR | ch_ppocr_server_v2_0_rec | 未测试 | √  |
-| PaddleOCR | det_mv3_db_v2_0_0 | 未测试 | √  |
-| PaddleOCR | det_r50_db_plusplus_0 | 未测试 | √  |
-| PaddleOCR | en_table_structure | 未测试 | √  |
-| PaddleOCR | rec_mv3_none_bilstm_ctc_v2_0 | 未测试 | √  |
-| PaddleOCR | rec_mv3_none_none_ctc_v2_0 | 未测试 | √  |
-| PaddleOCR | rec_mv3_tps_bilstm_att_v2_0 | 未测试 | √  |
-| PaddleOCR | rec_mv3_tps_bilstm_ctc_v2_0 | 未测试 | √  |
-| PaddleOCR | rec_r32_gaspin_bilstm_att | 未测试 | √  |
-| PaddleOCR | rec_r34_vd_none_bilstm_ctc_v2_0 | 未测试 | √  |
-| PaddleOCR | rec_r34_vd_none_none_ctc_v2_0 | 未测试 | √  |
-| PaddleOCR | rec_r34_vd_tps_bilstm_att_v2_0 | 未测试 | √  |
-| PaddleOCR | rec_r34_vd_tps_bilstm_ctc_v2_0 | 未测试 | √  |
-| PaddleOCR | rec_svtrnet | 未测试 | √  |
-| PaddleOCR | rec_vitstr | 未测试 | √  |
-| PaddleOCR | slanet | 未测试 | √  |
-| PaddleSeg | Deeplabv3_R50 | √ | √  |
-| PaddleSeg | Deeplabv3_R101 | √ | √  |
-| PaddleSeg | Deeplabv3Plus-R50 | √ | √  |
-| PaddleSeg | Deeplabv3Plus-R101 | √ | √  |
-| PaddleSeg | fcn_hrnetw18 | 未测试 | √  |
-| PaddleSeg | fcn_hrnetw18_small | 未测试 | √  |
-| PaddleSeg | fcn_uhrnetw18_small | 未测试 | √  |
-| PaddleSeg | ocrnet_hrnetw48 | 未测试 | √  |
-| PaddleSeg | pfpnnet | 未测试 | √  |
-| PaddleSeg | pphumanseg_lite | 未测试 | √  |
-| PaddleSeg | pphumanseg_server | 未测试 | √  |
-| PaddleSeg | ppmatting | 未测试 | √  |
-| PaddleNLP | Bert | √ | √  |
-| PaddleTS | DLinear | √ | √  |
-| PaddleTS | RLinear | √ | √  |
-| PaddleTS | NLinear | √ | √  |
-| PaddleVideo | AGCN | 未测试 | √  |
-| PaddleVideo | STGCN | 未测试 | √  |
+* PaddleX 使用文档详见：[PaddleX 多硬件使用](https://github.com/PaddlePaddle/PaddleX/blob/develop/docs/tutorials/base/devices_use_guidance.md)
+* PaddleNLP 大语言模型多硬件使用文档详见：[PaddleNLP NPU 大语言模型使用文档](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/llm/npu)
+* 如果您适配/验证过更多模型，欢迎向飞桨开源社区贡献适配代码，然后邮件联系我们，更新本列表 [ext_paddle_oss](ext_paddle_oss@baidu.com)
+
+| 模型库 | 模型类型 | 模型名称 | 训练 | 推理 |
+| - | - | - | - | - |
+| PaddleX | 图像分类 | [ResNet18](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/ResNet18.yaml) | √ | √ |
+| PaddleX | 图像分类 | [ResNet34](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/ResNet34.yaml) | √ | √ |
+| PaddleX | 图像分类 | [ResNet50](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/ResNet50.yaml) | √ | √ |
+| PaddleX | 图像分类 | [ResNet101](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/ResNet101.yaml) | √ | √ |
+| PaddleX | 图像分类 | [ResNet152](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/ResNet152.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-LCNet_x0_25](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-LCNet_x0_25.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-LCNet_x0_35](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-LCNet_x0_35.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-LCNet_x0_5](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-LCNet_x0_5.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-LCNet_x0_75](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-LCNet_x0_75.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-LCNet_x1_0](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-LCNet_x1_0.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-LCNet_x1_5](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-LCNet_x1_5.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-LCNet_x2_0](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-LCNet_x2_0.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-LCNet_x2_5](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-LCNet_x2_5.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV2_x0_25](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV2_x0_25.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV2_x0_5](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV2_x0_5.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV2_x1_0](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV2_x1_0.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV3_small_x0_35](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_small_x0_35.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV3_small_x0_5](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_small_x0_5.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV3_small_x0_75](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_small_x0_75.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV3_small_x1_0](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_small_x1_0.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV3_small_x1_25](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_small_x1_25.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV3_large_x0_35](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_large_x0_35.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV3_large_x0_5](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_large_x0_5.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV3_large_x0_75](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_large_x0_75.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV3_large_x1_0](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_large_x1_0.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV3_large_x1_25](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_large_x1_25.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-HGNet_small](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-HGNet_small.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-HGNetV2-B0](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-HGNetV2-B0.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-HGNetV2-B4](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-HGNetV2-B4.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-HGNetV2-B6](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-HGNetV2-B6.yaml) | √ | √ |
+| PaddleX | 图像分类 | [SwinTransformer_base_patch4_window7_224](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/SwinTransformer_base_patch4_window7_224.yaml) | √ | √ |
+| PaddleX | 图像分类 | [ConvNeXt_tiny](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/ConvNeXt_tiny.yaml) | √ | √ |
+| PaddleX | 图像分类 | [CLIP_vit_base_patch16_224](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/CLIP_vit_base_patch16_224.yaml) | √ | √ |
+| PaddleX | 目标检测 | [PP-YOLOE_plus-S](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PP-YOLOE_plus-S.yaml) | √ | √ |
+| PaddleX | 目标检测 | [PP-YOLOE_plus-M](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PP-YOLOE_plus-M.yaml) | √ | √ |
+| PaddleX | 目标检测 | [PP-YOLOE_plus-L](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PP-YOLOE_plus-L.yaml) | √ | √ |
+| PaddleX | 目标检测 | [PP-YOLOE_plus-X](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PP-YOLOE_plus-X.yaml) | √ | √ |
+| PaddleX | 目标检测 | [RT-DETR-R18](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/RT-DETR-R18.yaml) | √ | √ |
+| PaddleX | 目标检测 | [RT-DETR-R50](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/RT-DETR-R50.yaml) | √ | √ |
+| PaddleX | 目标检测 | [RT-DETR-L](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/RT-DETR-L.yaml) | √ | √ |
+| PaddleX | 目标检测 | [RT-DETR-H](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/RT-DETR-H.yaml) | √ | √ |
+| PaddleX | 目标检测 | [RT-DETR-X](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/RT-DETR-X.yaml) | √ | √ |
+| PaddleX | 目标检测 | [PicoDet-S](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PicoDet-S.yaml) | √ | √ |
+| PaddleX | 目标检测 | [PicoDet-L](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PicoDet-L.yaml) | √ | √ |
+| PaddleX | 语义分割 | [Deeplabv3-R50](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/semantic_segmentation/Deeplabv3-R50.yaml) | √ | √ |
+| PaddleX | 语义分割 | [Deeplabv3-R101](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/semantic_segmentation/Deeplabv3-R101.yaml) | √ | √ |
+| PaddleX | 语义分割 | [Deeplabv3_Plus-R50](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/semantic_segmentation/Deeplabv3_Plus-R50.yaml) | √ | √ |
+| PaddleX | 语义分割 | [Deeplabv3_Plus-R101](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/semantic_segmentation/Deeplabv3_Plus-R101.yaml) | √ | √ |
+| PaddleX | 语义分割 | [PP-LiteSeg-T](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/semantic_segmentation/PP-LiteSeg-T.yaml) | √ | √ |
+| PaddleX | 语义分割 | [OCRNet_HRNet-W48](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/semantic_segmentation/OCRNet_HRNet-W48.yaml) | √ | √ |
+| PaddleX | 文本检测 | [PP-OCRv4_server_det](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_detection/PP-OCRv4_server_det.yaml) | √ | √ |
+| PaddleX | 文本检测 | [PP-OCRv4_mobile_det](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_detection/PP-OCRv4_mobile_det.yaml) | √ | √ |
+| PaddleX | 文本识别 | [PP-OCRv4_server_rec](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_recognition/PP-OCRv4_server_rec.yaml) | √ | √ |
+| PaddleX | 文本识别 | [PP-OCRv4_mobile_rec](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_recognition/PP-OCRv4_mobile_rec.yaml) | √ | √ |
+| PaddleX | 版面分析 | [PicoDet_layout_1x](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/structure_analysis/PicoDet_layout_1x.yaml) | √ | √ |
+| PaddleX | 时序预测 | [DLinear](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/DLinear.yaml) | √ | √ |
+| PaddleX | 时序预测 | [RLinear](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/RLinear.yaml) | √ | √ |
+| PaddleX | 时序预测 | [NLinear](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/NLinear.yaml) | √ | √ |
+| PaddleX | 时序预测 | [TimesNet](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/TimesNet.yaml) | √ | √ |
+| PaddleX | 时序预测 | [Nonstationary](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/Nonstationary.yaml) | √ | √ |
+| PaddleX | 时序预测 | [TiDE](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/TiDE.yaml) | √ | √ |
+| PaddleNLP | 自然语言理解模型 | [BERT](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/legacy/model_zoo/bert) | √ | √ |
+| PaddleNLP | 大语言模型 | [LLaMA](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/llm/npu/llama) | √ | √ |

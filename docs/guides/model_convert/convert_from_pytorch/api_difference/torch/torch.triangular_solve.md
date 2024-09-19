@@ -1,4 +1,4 @@
-## [torch 参数更多]torch.triangular_solve
+## [返回参数类型不一致]torch.triangular_solve
 
 ### [torch.triangular_solve](https://pytorch.org/docs/stable/generated/torch.triangular_solve.html#torch.triangular_solve)
 
@@ -24,15 +24,25 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | transpose     | transpose     | 是否对系数矩阵 x 进行转置。                                 |
 | unitriangular | unitriangular | 如果为 True，则将系数矩阵 x 对角线元素假设为 1 来求解方程。 |
 | out           | -             | 表示输出的 Tensor，Paddle 无此参数，需要转写。          |
+| 返回值         | 返回值         | Pytorch 返回两个 Tensor：solution 与 A，Paddle 仅返回一个 Tensor：solution，需要转写。          |
 
 ### 转写示例
-
-#### out 参数：输出的 Tensor
-
+#### 返回值
 ```python
 # PyTorch 写法:
-torch.triangular_solve(x2, x1, out=y)
+torch.triangular_solve(b, A)
 
 # Paddle 写法:
-paddle.assign(paddle.linalg.triangular_solve(x1, x2), y)
+## 注：Paddle 将 A 与 b 交换
+tuple(paddle.linalg.triangular_solve(A, b), A)
+```
+
+#### out 参数：输出的 Tensor
+```python
+# PyTorch 写法:
+torch.triangular_solve(b, A, out=(y1, y2))
+
+# Paddle 写法:
+paddle.assign(paddle.linalg.triangular_solve(A, b), y1)
+paddle.assign(A, y2)
 ```

@@ -3,11 +3,17 @@
 rot90
 -------------------------------
 
-.. py:function:: paddle.rot90(x, k=1, axes=[0, 1], name=None):
+.. py:function:: paddle.rot90(x, k=1, axes=[0, 1], name=None)
 
 
 
 沿 axes 指定的平面将 n 维 tensor 旋转 90 度。当 k 为正数，旋转方向为从 axes[0]到 axes[1]，当 k 为负数，旋转方向为从 axes[1]到 axes[0]，k 的绝对值表示旋转次数。
+
+下图展示了一个形状为 [2,3,4] 的三维张量执行 rot90 操作的示例，其中 axes 为 [0, 1]， k 为 1 ，旋转方向为从 axes = 0 到 axes = 1，旋转次数为 1 次。
+
+.. image:: ../../images/api_legend/rot90.png
+   :width: 700
+   :alt: 图例
 
 参数
 ::::::::::

@@ -3,7 +3,7 @@
 ### [fairscale.nn.model_parallel.layers.ParallelEmbedding](https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/layers.py#L152)
 
 ```python
-fairscale.nn.model_parallel.initialize.ParallelEmbedding(num_embeddings: int, embedding_dim: int ,padding_idx: Optional[int] = None, max_norm: Optional[float] = None, norm_type: float = 2.0, scale_grad_by_freq: bool = False, sparse: bool = False, init_method: Callable[[torch.Tensor], torch.Tensor] = init.xavier_normal_, keep_master_weight_for_test: bool = False)
+fairscale.nn.model_parallel.layers.ParallelEmbedding(num_embeddings: int, embedding_dim: int ,padding_idx: Optional[int] = None, max_norm: Optional[float] = None, norm_type: float = 2.0, scale_grad_by_freq: bool = False, sparse: bool = False, init_method: Callable[[torch.Tensor], torch.Tensor] = init.xavier_normal_, keep_master_weight_for_test: bool = False)
 ```
 ### [paddle.distributed.meta_parallel.parallel_layers.mp_layers.VocabParallelEmbedding](https://github.com/PaddlePaddle/Paddle/blob/016766cc89fabc10181453ce70b701dd8ed019f6/python/paddle/distributed/fleet/layers/mpu/mp_layers.py#L37)
 

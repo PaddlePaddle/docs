@@ -52,7 +52,7 @@ paddle.assign(paddle.max(a), y)
 result = torch.max(a, dim=1)
 
 # Paddle 写法
-result = torch.max(a, dim=1), torch.argmax(a, dim=1)
+result = paddle.max(a, axis=1), paddle.argmax(a, axis=1)
 ```
 
 --------------------------------------------------------------------------------------------------
