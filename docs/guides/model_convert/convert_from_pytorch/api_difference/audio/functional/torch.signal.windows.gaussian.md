@@ -17,7 +17,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | M  | M            | 输入窗口的长度。 |
-| std  | std            | 高斯的标准差，Pytorch 默认值为1.0, Paddle 无默认值，Paddle 需保持与 PyTorch 一致。 |
+| std  | std            | 高斯的标准差，Pytorch 默认值为 1.0, Paddle 无默认值，Paddle 需保持与 PyTorch 一致。 |
 | sym        | sym       | 判断是否返回适用于过滤器设计的对称窗口。  |
 | dtype        | dtype | 返回 Tensor 的数据类型。 |
 | layout | -| 表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
