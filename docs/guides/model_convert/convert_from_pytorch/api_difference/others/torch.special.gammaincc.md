@@ -1,4 +1,4 @@
-### [ torch 参数更多 ] torch.special.gammaincc
+## [ torch 参数更多 ]torch.special.gammaincc
 
 ### [torch.special.gammaincc](https://pytorch.org/docs/stable/special.html#torch.special.gammaincc)
 
