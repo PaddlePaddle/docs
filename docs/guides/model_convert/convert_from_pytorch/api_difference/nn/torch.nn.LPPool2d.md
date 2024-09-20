@@ -1,4 +1,4 @@
-## [ Paddle 参数更多 ]torch.nn.LPPool2d
+## [ paddle 参数更多 ]torch.nn.LPPool2d
 
 ### [torch.nn.LPPool2d](https://pytorch.org/docs/stable/generated/torch.nn.LPPool2d.html#lppool2d)
 

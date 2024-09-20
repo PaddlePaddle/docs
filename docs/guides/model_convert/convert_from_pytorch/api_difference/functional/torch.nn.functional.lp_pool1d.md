@@ -1,4 +1,4 @@
-## [ Paddle 参数更多 ]torch.nn.functional.lp_pool1d
+## [ paddle 参数更多 ]torch.nn.functional.lp_pool1d
 
 ### [torch.nn.functional.lp_pool1d](https://pytorch.org/docs/stable/generated/torch.nn.functional.lp_pool1d.html#torch.nn.functional.lp_pool1d)
 
