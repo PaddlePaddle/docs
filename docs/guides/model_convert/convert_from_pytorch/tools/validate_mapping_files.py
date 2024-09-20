@@ -383,6 +383,11 @@ def get_meta_from_diff_file(
         if state == ParserState.wait_for_args_table_end:
             state = ParserState.end
 
+    if not mapping_type:
+        raise Exception(
+            f"Cannot get mapping_type in parsing file: {filepath}, current meta: {meta_data}"
+        )
+
     # 允许的终止状态，解析完了 dst_api 或者只有 src_api
     # 映射类型前三个级别必须要有对应的 dst_api
     if mapping_type_to_level[mapping_type] <= 3:
