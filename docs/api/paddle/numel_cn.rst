@@ -3,7 +3,7 @@
 numel
 -------------------------------
 
-.. py:function:: paddle.numel(x)
+.. py:function:: paddle.numel(x, name=None)
 
 
 返回 shape 为[]的 0-D Tensor，其值为输入 Tensor 中元素的个数。

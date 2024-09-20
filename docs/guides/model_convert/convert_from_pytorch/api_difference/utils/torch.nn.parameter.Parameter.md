@@ -19,15 +19,17 @@ paddle.create_parameter(shape,
 
 两者功能一致但参数不一致，具体如下：
 ### 参数映射
-| PyTorch       | PaddlePaddle | 备注                                                   |
-| ------------- | ------------ | ------------------------------------------------------ |
-| data          | -            | 参数 Tensor，Paddle 无此参数。  |
-| requires_grad | -            | ，Paddle 无此参数。  |
-| -             | shape        | 指定输出 Tensor 的形状，PyTorch 无此参数。  |
-| -             | dtype        | 初始化数据类型，PyTorch 无此参数。  |
-| -             | attr         | 指定参数的属性对象，PyTorch 无此参数。  |
-| -             | is_bias      | 当 default_initializer 为空，该值会对选择哪个默认初始化程序产生影响。如果 is_bias 为真，则使用 initializer.Constant(0.0)，否则使用 Xavier()，PyTorch 无此参数。  |
-| -             | default_initializer | 参数的初始化程序，PyTorch 无此参数。  |
+
+| PyTorch | PaddlePaddle | 备注                                                                                             |
+|---------|--------------|--------------------------------------------------------------------------------------------------|
+| data    | -            | 参数 Tensor，PaddlePaddle 无此参数。                                                             |
+| requires_grad | -        | PaddlePaddle 无此参数。                                                                         |
+| -       | shape        | 指定输出 Tensor 的形状，PyTorch 无此参数。                                                       |
+| -       | dtype        | 初始化数据类型，PyTorch 无此参数。                                                               |
+| -       | attr         | 指定参数的属性对象，PyTorch 无此参数。                                                           |
+| -       | is_bias      | 当 default_initializer 为空，该值会对选择哪个默认初始化程序产生影响。如果 is_bias 为真，则使用 initializer.Constant(0.0)，否则使用 Xavier()，PyTorch 无此参数。 |
+| -       | default_initializer | 参数的初始化程序，PyTorch 无此参数。                                                       |
+
 
 ### 功能差异
 
