@@ -1,4 +1,4 @@
-### [ torch 参数更多 ] torch.distributions.Binomial
+## [ torch 参数更多 ] torch.distributions.Binomial
 
 ### [torch.distributions.Binomial](https://pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial)
 
@@ -20,7 +20,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
-| PyTorch       | Paddle | 备注                                                         |
+| PyTorch       | PaddlePaddle | 备注                                                         |
 | ------------- | ------ | ------------------------------------------------------------ |
 | total_count        | total_count      | 样本大小。                         |
 | probs           | probs      | 每次伯努利实验中事件发生的概率。         |

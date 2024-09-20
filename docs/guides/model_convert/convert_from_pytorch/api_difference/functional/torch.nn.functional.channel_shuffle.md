@@ -1,4 +1,4 @@
-### [ paddle 参数更多 ]torch.nn.functional.channel_shuffle
+## [ paddle 参数更多 ]torch.nn.functional.channel_shuffle
 
 ### [torch.nn.functional.channel_shuffle](https://pytorch.org/docs/stable/generated/torch.nn.ChannelShuffle.html)
 
