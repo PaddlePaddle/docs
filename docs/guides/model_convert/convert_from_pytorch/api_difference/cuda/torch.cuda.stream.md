@@ -6,10 +6,10 @@
 torch.cuda.stream(stream)
 ```
 
-### [paddle.device.cuda.stream_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/stream_guard_cn.html)
+### [paddle.device.stream_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/device/stream_guard_cn.html#stream-guard)
 
 ```python
-paddle.device.cuda.stream_guard(stream)
+paddle.device.stream_guard(stream)
 ```
 
 功能一致，参数完全一致，具体如下：

@@ -9,7 +9,9 @@ torch.nn.LSTM(input_size,
               batch_first=False,
               dropout=0,
               bidirectional=False,
-              proj_size=0)
+              proj_size=0,
+              device=None,
+              dtype=None)
 ```
 
 ### [paddle.nn.LSTM](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LSTM_cn.html#lstm)
@@ -42,6 +44,8 @@ paddle.nn.LSTM(input_size,
 | dropout   | dropout   | 表示 dropout 概率。  |
 | bidirectional | direction    | PyTorch 表示是否进行双向，Paddle 使用字符串表示是双向 LSTM（`bidirectional`）还是单向 LSTM（`forward`）|
 | proj_size     | proj_size            | 表示 LSTM 后将 `hidden state` 映射到对应的大小。 |
+| device   | -   | 指定 Tensor 的设备，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
+| dtype   | -   | Tensor 的所需数据类型，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | -             |weight_ih_attr| weight_ih 的参数，PyTorch 无此参数，Paddle 保持默认即可。  |
 | -             |weight_hh_attr| weight_hh 的参数，PyTorch 无此参数，Paddle 保持默认即可。  |
 
