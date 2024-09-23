@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import collections
 import json
 import os
 import re
 import sys
 import traceback
-import typing
 import urllib
 import urllib.parse
 from enum import IntEnum
@@ -63,12 +64,12 @@ mapping_type_to_level = {
 
 class DiffMeta(TypedDict):
     src_api: str
-    src_api_url: typing.Optional[str]
-    src_signature: typing.Optional[str]
-    dst_api: typing.Optional[str]
-    dst_api_url: typing.Optional[str]
-    dst_signature: typing.Optional[str]
-    args_mapping: typing.Optional[typing.List[typing.Dict[str, str]]]
+    src_api_url: str | None
+    src_signature: str | None
+    dst_api: str | None
+    dst_api_url: str | None
+    dst_signature: str | None
+    args_mapping: list[dict[str, str]] | None
     mapping_type: str
     source_file: str
 
