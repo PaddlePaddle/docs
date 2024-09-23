@@ -19,6 +19,12 @@ from_dlpack
 :::::::::
   - **out** (Tensor) - 从 `dlpack` 中解码得到的 Paddle Tensor，支持的数据类型为： bool，float16，float32，float64，uint8，int8，int16，int32，int64，complex64，complex128，支持的设备类型为： ``CPU``， ``CUDAPlace``， ``CUDAPinnedPlace``。
 
-代码示例
+代码示例 1
 :::::::::
-COPY-FROM: paddle.utils.dlpack.from_dlpack
+
+COPY-FROM: paddle.utils.dlpack.from_dlpack:paddle_from_paddle
+
+代码示例 2
+:::::::::
+
+COPY-FROM: paddle.utils.dlpack.from_dlpack:paddle_from_numpy

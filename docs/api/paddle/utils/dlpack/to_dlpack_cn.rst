@@ -15,6 +15,12 @@ to_dlpack
 :::::::::
   - **dlpack** (PyCapsule) - 一个带有 dltensor 的 ``PyCapsule`` 对象。
 
-代码示例
+代码示例 1
 :::::::::
-COPY-FROM: paddle.utils.dlpack.to_dlpack
+
+COPY-FROM: paddle.utils.dlpack.to_dlpack:paddle_to_paddle
+
+代码示例 2
+:::::::::
+
+COPY-FROM: paddle.utils.dlpack.to_dlpack:paddle_to_torch
