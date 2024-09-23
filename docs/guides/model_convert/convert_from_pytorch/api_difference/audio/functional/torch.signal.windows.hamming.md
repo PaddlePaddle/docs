@@ -8,7 +8,7 @@ torch.signal.windows.hamming(M, *, sym=True, dtype=None, layout=torch.strided, d
 ### [paddle.audio.functional.get_window](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/audio/functional/get_window_cn.html#get-window)
 
 ```python
-paddle.audio.functional.get_window(window, win_length, fftbins=True, dtype='float64')
+paddle.audio.functional.window._hamming(M: int, sym: bool = True, dtype: str = 'float64')
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
