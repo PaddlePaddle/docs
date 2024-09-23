@@ -13,7 +13,7 @@ ParameterDict
 参数
 ::::::::::::
 
-    - **parameters** (iterable，可选) - 可迭代的 Parameters。
+    - **parameters** (ParameterDict|OrderedDict|list[(key, Tensor)]，可选) - 可迭代的 Parameters。
 
 返回
 ::::::::::::
