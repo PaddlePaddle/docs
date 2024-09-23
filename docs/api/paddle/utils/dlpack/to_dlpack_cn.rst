@@ -18,9 +18,9 @@ to_dlpack
 代码示例 1
 :::::::::
 
-COPY-FROM: paddle.utils.dlpack.to_dlpack:paddle_to_paddle
+COPY-FROM: paddle.utils.dlpack.to_dlpack:paddle-to-paddle
 
 代码示例 2
 :::::::::
 
-COPY-FROM: paddle.utils.dlpack.to_dlpack:paddle_to_torch
+COPY-FROM: paddle.utils.dlpack.to_dlpack:paddle-to-torch
