@@ -1,4 +1,4 @@
-## [ 组合替代实现 ] torch.Tensor.copysign_
+## [ 输入参数类型不一致 ] torch.Tensor.copysign_
 
 ### [torch.Tensor.copysign_](https://pytorch.org/docs/stable/generated/torch.Tensor.copysign_.html#torch.Tensor.copysign_)
 
@@ -6,25 +6,26 @@
 torch.Tensor.copysign_(other)
 ```
 
-Paddle 无此 API，需要组合实现。
+### [paddle.Tensor.copysign_]()
 
-### 转写示例
-
-#### other：输入，类型为 tensor 时
 ```python
-# PyTorch 写法
-input.copysign(other=x)
-
-# Paddle 写法
-paddle.assign(paddle.copysign(input, x), input)
+paddle.Tensor.copysign_(y, name=None)
 ```
 
-#### other：输入，类型为 number 时
+其中，PyTorch 与 Paddle 的 `other` 参数所支持类型不一致，具体如下：
+
+### 参数映射
+
+| PyTorch | PaddlePaddle | 备注                          |
+| ------- | ------------ | ----------------------------- |
+| other   | y            | 表示输入的 Tensor ，PyTorch 支持 Python Number 和 Tensor 类型， Paddle 仅支持 Tensor 类型。当输入为 Python Number 类型时，需要转写。  |
+
+### 转写示例
+#### other
 ```python
 # PyTorch 写法
-input.copysign(other=x)
+result = x.copysign_(other=2.)
 
 # Paddle 写法
-tensor = paddle.to_tensor([x])
-paddle.assign(paddle.copysign(input, x), input)
+result = x.copysign_(y=paddle.to_tensor(2.))
 ```

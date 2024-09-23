@@ -6,10 +6,10 @@
 torch.Tensor.mul_(other)
 ```
 
-### [paddle.Tensor.multiply](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#multiply-y-axis-1-name-none)
+### [paddle.Tensor.multiply_]()
 
 ```python
-paddle.Tensor.multiply(y,
+paddle.Tensor.multiply_(y,
                        axis=-1,
                        name=None)
 ```
@@ -30,5 +30,5 @@ paddle.Tensor.multiply(y,
 x.mul_(other=2)
 
 # Paddle 写法
-paddle.assign(x.multiply(y=paddle.to_tensor(2)), x)
+x.multiply_(y=paddle.to_tensor(2))
 ```

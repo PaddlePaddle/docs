@@ -6,10 +6,10 @@
 torch.Tensor.fmod_(other)
 ```
 
-### [paddle.Tensor.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#mod-y-name-none)
+### [paddle.Tensor.mod_]()
 
 ```python
-paddle.Tensor.mod(y, name=None)
+paddle.Tensor.mod_(y, name=None)
 ```
 
 其中，PyTorch 与 Paddle 的 `other` 参数所支持类型不一致，具体如下：
@@ -27,5 +27,5 @@ paddle.Tensor.mod(y, name=None)
 x.fmod_(other=2.)
 
 # Paddle 写法
-paddle.assign(x.mod(y=paddle.to_tensor(2.)), x)
+x.mod_(y=paddle.to_tensor(2.))
 ```

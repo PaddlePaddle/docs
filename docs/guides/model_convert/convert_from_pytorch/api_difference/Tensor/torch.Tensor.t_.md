@@ -1,4 +1,4 @@
-## [ 组合替代实现 ] torch.Tensor.t_
+## [ 无参数 ] torch.Tensor.t_
 
 ### [torch.Tensor.t_](https://pytorch.org/docs/stable/generated/torch.Tensor.t_.html#torch.Tensor.t_)
 
@@ -6,14 +6,10 @@
 torch.Tensor.t_()
 ```
 
-Paddle 无此 API，需要组合实现。
-
-### 转写示例
+### [paddle.Tensor.t_]()
 
 ```python
-# PyTorch 写法
-x.t_()
-
-# Paddle 写法
-paddle.assign(x.t(), x)
+paddle.Tensor.t_()
 ```
+
+两者功能一致，无参数。

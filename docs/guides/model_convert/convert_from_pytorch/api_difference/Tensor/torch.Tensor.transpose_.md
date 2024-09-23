@@ -6,10 +6,10 @@
 torch.Tensor.transpose_(dim0, dim1)
 ```
 
-### [paddle.Tensor.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#transpose-perm-name-none)
+### [paddle.Tensor.transpose_]()
 
 ```python
-paddle.Tensor.transpose(perm, name=None)
+paddle.Tensor.transpose_(perm, name=None)
 ```
 
 PyTorch 的 `dim0, dim1` 与 Paddle 的 `perm` 用法不同，具体如下：
@@ -28,5 +28,5 @@ x.transpose_(0, 1)
 
 # paddle
 x = paddle.randn([2, 3, 5])
-paddle.assign(x.transpose(perm=[1, 0, 2]), x)
+x.transpose_(perm=[1, 0, 2])
 ```

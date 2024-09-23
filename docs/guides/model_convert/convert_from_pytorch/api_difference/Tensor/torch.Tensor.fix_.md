@@ -1,19 +1,15 @@
-## [ 组合替代实现 ]torch.Tensor.fix_
+## [ 无参数 ]torch.Tensor.fix_
 
-### [torch.Tensor.fix_](https://pytorch.org/docs/stable/generated/torch.Tensor.fix_.html#torch.Tensor.fix_)
+### [torch.Tensor.fix_](https://pytorch.org/docs/stable/generated/torch.Tensor.fix_.html)
 
 ```python
 torch.Tensor.fix_()
 ```
 
-Paddle 无此 API，需要组合实现。
-
-### 转写示例
+### [paddle.Tensor.trunc_]()
 
 ```python
-# PyTorch 写法
-x.fix_()
-
-# Paddle 写法
-paddle.assign(x.fix_(), x)
+paddle.Tensor.trunc_()
 ```
+
+两者功能一致，均无参数。
