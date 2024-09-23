@@ -23,4 +23,4 @@ paddle.nn.functional.channel_shuffle(x,
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 表示输入的 Tensor ，仅参数名不一致。  |
 | groups         | groups            | 表示要把通道分成的组数。  |
-| -             | data_format            | 数据格式，可选：NCHW 或 NHWC |
+| -             | data_format            | 数据格式，可选：NCHW 或 NHWC。PyTorch 无此参数，Paddle 保持默认即可。 |
