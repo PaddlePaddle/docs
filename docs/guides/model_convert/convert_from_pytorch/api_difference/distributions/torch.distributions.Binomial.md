@@ -22,7 +22,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch       | PaddlePaddle | 备注                                                         |
 | ------------- | ------ | ------------------------------------------------------------ |
-| total_count        | total_count      | 样本大小，当torch不指定时，Paddle 应设置该值为1。                         |
+| total_count        | total_count      | 样本大小，当 torch 不指定时，Paddle 应设置该值为 1。                         |
 | probs           | probs      | 每次伯努利实验中事件发生的概率。         |
 | logits         | -  | 采样 1 的 log-odds，Paddle 无此参数，暂无转写方式。 |
 | validate_args        | -      | 是否添加验证环节。Paddle 无此参数，一般对训练结果影响不大，可直接删除。 |
