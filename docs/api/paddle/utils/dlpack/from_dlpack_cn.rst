@@ -22,9 +22,9 @@ from_dlpack
 代码示例 1
 :::::::::
 
-COPY-FROM: paddle.utils.dlpack.from_dlpack:paddle-from-paddle
+COPY-FROM: paddle.utils.dlpack.from_dlpack:code-paddle-from-paddle
 
 代码示例 2
 :::::::::
 
-COPY-FROM: paddle.utils.dlpack.from_dlpack:paddle-from-numpy
+COPY-FROM: paddle.utils.dlpack.from_dlpack:code-paddle-from-numpy
