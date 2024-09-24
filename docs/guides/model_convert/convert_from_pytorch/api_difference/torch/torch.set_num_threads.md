@@ -18,4 +18,4 @@ paddle.static.cpu_places(device_count=None)
 
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
-| -       | device_count | 要设置的 Cpu 线程数，仅参数名不一致。 |
+| -       | device_count | 要设置的 Cpu 线程数，参数默认值不一致，参数名不一致。 |

@@ -6,7 +6,7 @@
 torch.get_num_threads()
 ```
 
-Paddle 无此 API，需要组合实现。
+返回用于并行化 CPU 操作的线程数，Paddle 无此 API，需要组合实现。
 
 ### 转写示例
 
