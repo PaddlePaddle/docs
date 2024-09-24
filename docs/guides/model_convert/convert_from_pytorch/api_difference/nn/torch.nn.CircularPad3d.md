@@ -18,6 +18,6 @@ paddle.nn.Pad3D(padding, mode='constant', value=0.0, data_format='NCDHW', name=N
 | PyTorch       | PaddlePaddle | 备注                                                                         |
 | ------------- | ------------ | ---------------------------------------------------------------------------- |
 | padding       | padding      | 填充大小。                                                                   |
-| -             | mode         | `padding` 的四种模式。PyTorch 无此参数，Paddle 应设置为 `constant`。         |
+| -             | mode         | `padding` 的四种模式。PyTorch 无此参数，Paddle 应设置为 `circular`。         |
 | -             | value        | 以 `constant` 模式填充区域时填充的值。PyTorch 无此参数，Paddle 保持默认即可。|
 | -             | data_format  | 输入的数据格式。PyTorch 无此参数，Paddle 保持默认即可。                      |

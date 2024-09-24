@@ -17,5 +17,5 @@ module(input)
 
 # Paddle 写法
 module = paddle.nn.Softmax(axis=1)
-module(-input)
+module(-1. * input) # 使用负输入与 Softmax 组合来实现 Softmin
 ```

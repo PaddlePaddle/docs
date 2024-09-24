@@ -24,5 +24,5 @@ paddle.nn.functional.scaled_dot_product_attention(query, key, value, attn_mask=N
 | attn_mask | attn_mask    | 与添加到注意力分数的 `query`、 `key`、 `value` 类型相同的浮点掩码, 默认值为 `None`。                            |
 | dropout_p | dropout_p    | `dropout` 的比例, 默认值为 0.00 即不进行正则化。                                                                |
 | is_causal | is_causal    | 是否启用因果关系, 默认值为 `False` 即不启用。                                                                   |
-| scale     | -            | 在softmax之前应用的缩放因子。默认与 Paddle 行为一致。Paddle 无此参数，暂无转写方式。                            |
-| -         | training     | 是否处于训练阶段, 默认值为 `True` 即处于训练阶段。Pytorch 无此参数，Paddle 需要按照是否处于训练阶段设置。       |
+| scale     | -            | 在 softmax 之前应用的缩放因子。默认与 Paddle 行为一致。Paddle 无此参数，暂无转写方式。                            |
+| -         | training     | 是否处于训练阶段, 默认值为 `True` 即处于训练阶段。Pytorch 无此参数，默认行为等同与 `training=True`，Paddle 保持默认即可。|
