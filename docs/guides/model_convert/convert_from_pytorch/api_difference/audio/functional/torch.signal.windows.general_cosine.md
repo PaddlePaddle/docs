@@ -8,7 +8,7 @@ torch.signal.windows.general_cosine(M, *, a, sym=True, dtype=None, layout=torch.
 ### [paddle.audio.functional.get_window](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/audio/functional/get_window_cn.html#get-window)
 
 ```python
-paddle.audio.functional.window._general_cosine(M: int, a: float, sym: bool = True, dtype: str = 'float64')
+paddle.audio.functional.get_window(window, win_length, fftbins=True, dtype='float64')
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
