@@ -33,8 +33,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.signal.windows.gaussian(10)
 
 # Paddle 写法
-std=1.0
-paddle.audio.functional.get_window(('gaussian',std), 10)
+paddle.audio.functional.get_window(('gaussian', 1.0), 10)
 ```
 
 #### std：高斯的标准差
@@ -43,8 +42,7 @@ paddle.audio.functional.get_window(('gaussian',std), 10)
 torch.signal.windows.gaussian(10, std=2.0)
 
 # Paddle 写法
-std=2.0
-paddle.audio.functional.get_window(('gaussian',std), 10)
+paddle.audio.functional.get_window(('gaussian', 2.0), 10)
 ```
 
 #### requires_grad：是否需要求反向梯度，需要修改该 Tensor 的 stop_gradient 属性
@@ -53,8 +51,7 @@ paddle.audio.functional.get_window(('gaussian',std), 10)
 torch.signal.windows.gaussian(10, requires_grad=True)
 
 # Paddle 写法
-std=1.0
-x = paddle.audio.functional.get_window(('gaussian',std), 10)
+x = paddle.audio.functional.get_window(('gaussian', 1.0), 10)
 x.stop_gradient = False
 ```
 
@@ -64,7 +61,6 @@ x.stop_gradient = False
 torch.signal.windows.gaussian(10, device=torch.device('cpu'))
 
 # Paddle 写法
-std=1.0
-y = paddle.audio.functional.get_window(('gaussian',std), 10)
+y = paddle.audio.functional.get_window(('gaussian', 1.0), 10)
 y.cpu()
 ```

@@ -33,18 +33,16 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.signal.windows.general_hamming(10)
 
 # Paddle 写法
-a=0.54
-paddle.audio.functional.get_window(('general_hamming',a), 10)
+paddle.audio.functional.get_window(('general_hamming', 0.54), 10)
 ```
 
 #### alpha：窗口系数
 ```python
 # PyTorch 写法
-torch.signal.windows.general_hamming(10, 0.6)
+torch.signal.windows.general_hamming(10, alpha = 0.6)
 
 # Paddle 写法
-a = 0.6
-paddle.audio.functional.get_window(('general_hamming',a), 10)
+paddle.audio.functional.get_window(('general_hamming', 0.6), 10)
 ```
 
 #### requires_grad：是否需要求反向梯度，需要修改该 Tensor 的 stop_gradient 属性
@@ -53,8 +51,7 @@ paddle.audio.functional.get_window(('general_hamming',a), 10)
 torch.signal.windows.general_hamming(10, requires_grad=True)
 
 # Paddle 写法
-a = 0.54
-x = paddle.audio.functional.get_window(('general_hamming',a), 10)
+x = paddle.audio.functional.get_window(('general_hamming', 0.54), 10)
 x.stop_gradient = False
 ```
 
@@ -64,7 +61,6 @@ x.stop_gradient = False
 torch.signal.windows.general_hamming(10, device=torch.device('cpu'))
 
 # Paddle 写法
-a = 0.54
-y = paddle.audio.functional.get_window(('general_hamming',a), 10)
+y = paddle.audio.functional.get_window(('general_hamming', 0.54), 10)
 y.cpu()
 ```

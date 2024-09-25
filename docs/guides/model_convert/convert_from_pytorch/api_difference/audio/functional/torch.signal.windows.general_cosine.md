@@ -33,8 +33,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.signal.windows.general_cosine(10, a=[0.46, 0.23, 0.31])
 
 # Paddle 写法
-a=[0.46, 0.23, 0.31]
-paddle.audio.functional.get_window(('general_cosine',a), 10)
+paddle.audio.functional.get_window(('general_cosine', [0.46, 0.23, 0.31]), 10)
 ```
 
 #### a：余弦函数相关的系数
@@ -43,8 +42,7 @@ paddle.audio.functional.get_window(('general_cosine',a), 10)
 torch.signal.windows.general_cosine(10, a=[0.1, 0.2, 0.3])
 
 # Paddle 写法
-a = [0.1, 0.2, 0.3]
-paddle.audio.functional.get_window(('general_cosine',a), 10)
+paddle.audio.functional.get_window(('general_cosine', [0.1, 0.2, 0.3]), 10)
 ```
 
 #### requires_grad：是否需要求反向梯度，需要修改该 Tensor 的 stop_gradient 属性
@@ -53,8 +51,7 @@ paddle.audio.functional.get_window(('general_cosine',a), 10)
 torch.signal.windows.general_cosine(10, a=[0.46, 0.23, 0.31], requires_grad=True)
 
 # Paddle 写法
-a = [0.46, 0.23, 0.31]
-x = paddle.audio.functional.get_window(('general_cosine',a), 10)
+x = paddle.audio.functional.get_window(('general_cosine', [0.46, 0.23, 0.31]), 10)
 x.stop_gradient = False
 ```
 
@@ -64,7 +61,6 @@ x.stop_gradient = False
 torch.signal.windows.general_cosine(10, a=[0.46, 0.23, 0.31], device=torch.device('cpu'))
 
 # Paddle 写法
-a = [0.46, 0.23, 0.31]
-y = paddle.audio.functional.get_window(('general_cosine',a), 10)
+y = paddle.audio.functional.get_window(('general_cosine', [0.46, 0.23, 0.31]), 10)
 y.cpu()
 ```
