@@ -26,8 +26,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 转写示例
 
-#### out: 输出的 Tensor
-
 #### 返回值
 
 ```python
@@ -35,9 +33,11 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.linalg.cholesky_ex(x, upper=False)
 
 # Paddle 写法:
-## 注: 仅支持check_errors=False时的情况
+## 注: 仅支持 check_errors=False 时的情况
 (paddle.linalg.cholesky(x, upper=False), paddle.zeros(x.shape[:-2], dtype='int64'))
 ```
+
+#### out: 输出的 Tensor
 
 ```python
 # PyTorch 写法
@@ -45,5 +45,5 @@ torch.linalg.cholesky_ex(x, upper=False, out=output)
 
 
 # Paddle 写法
-paddle.assign(paddle.linalg.cholesky(x, upper=False),output)
+paddle.assign((paddle.linalg.cholesky(x, upper=False), paddle.zeros(x.shape[:-2], dtype='int64')),output)
 ```

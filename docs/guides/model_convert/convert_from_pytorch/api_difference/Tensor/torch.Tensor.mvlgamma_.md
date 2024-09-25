@@ -1,10 +1,3 @@
-<!--
- * @Description:
- * @Author: Xiao
- * @Date: 2024-09-21 16:03:47
- * @LastEditTime: 2024-09-23 19:33:10
- * @LastEditors: Xiao
--->
 ## [ 参数完全一致 ]torch.Tensor.mvlgamma_
 
 ### [torch.Tensor.mvlgamma_](https://pytorch.org/docs/stable/generated/torch.Tensor.mvlgamma_.html#torch-tensor-mvlgamma)
@@ -18,6 +11,14 @@ torch.Tensor.mvlgamma_(p)
 ```python
 paddle.Tensor.multigammaln_(p, name=None)
 ```
+
+两者功能一致，参数完全一致，具体如下：
+
+### 参数映射
+
+| PyTorch | PaddlePaddle | 备注                                                 |
+| ------- | ------------ | ---------------------------------------------------- |
+| p       | p            | 多元伽马函数积分空间的维度。                         |
 
 ### 转写示例
 
