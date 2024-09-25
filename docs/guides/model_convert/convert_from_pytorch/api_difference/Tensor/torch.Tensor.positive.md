@@ -1,4 +1,4 @@
-## [功能缺失]torch.Tensor.positive
+## [组合替代实现]torch.Tensor.positive
 
 [torch.Tensor.positive](https://pytorch.org/docs/stable/generated/torch.Tensor.positive.html#torch.Tensor.positive)
 

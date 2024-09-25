@@ -1,4 +1,4 @@
-## [功能缺失]torch.can_cast
+## [组合替代实现]torch.can_cast
 
 ### [torch.can_cast](https://pytorch.org/docs/stable/generated/torch.can_cast.html#torch-can-cast)
 
