@@ -3,7 +3,7 @@
 ### [torch.Tensor.scatter_reduce](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter_reduce.html#torch-tensor-scatter-reduce)
 
 ```python
-Tensor.scatter_reduce(dim, index, src, reduce, *, include_self=True)
+torch.Tensor.scatter_reduce(dim, index, src, reduce, *, include_self=True)
 ```
 
 ### [paddle.Tensor.put_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#put-along-axis-indices-value-axis-reduce-assign-include-self-true-broadcast-true)
