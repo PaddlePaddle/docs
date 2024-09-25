@@ -15,11 +15,5 @@ torch.get_num_threads()
 torch.get_num_threads()
 
 # Paddle 写法
-import multiprocessing
-def get_num_threads():
-    device = paddle.device.get_device()
-    if 'cpu' in device:
-        return multiprocessing.cpu_count()
-
-get_num_threads()
+return multiprocessing.cpu_count()
 ```
