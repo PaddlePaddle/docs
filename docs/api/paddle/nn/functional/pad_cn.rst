@@ -3,7 +3,7 @@
 pad
 -------------------------------
 
-.. py:function:: paddle.nn.functional.pad(x, pad, mode="constant", value=0.0, data_format="NCHW", pad_from_left_axis=True, name=None)
+.. py:function:: paddle.nn.functional.pad(x, pad, mode="constant", value=0.0, data_format=None, pad_from_left_axis=True, name=None)
 
 依照 ``pad`` 和 ``mode`` 属性对 ``x`` 进行 ``pad``。
 
@@ -31,7 +31,7 @@ pad
      - ``'circular'`` 为循环填充 ``x``。具体结果可见以下示例。
 
   - **value** (float，可选) - 以 ``'constant'`` 模式填充区域时填充的值。默认值为 :math:`0.0`。
-  - **data_format** (str，可选) - 当 ``mode`` 为 ``'reflect'``、 ``'replicate'``、 ``'circular'``，或 ``pad`` 是 Tensor，或 ``pad`` 的长度是 2*(N-2) 时，指定 ``x`` 的数据格式，可为 ``'NCL'``、``'NLC'``、``'NCHW'``、``'NHWC'``、``'NCDHW'`` 或 ``'NDHWC'``，默认值为 ``'NCHW'``。
+  - **data_format** (str，可选) - 当 ``mode`` 为 ``'reflect'``、 ``'replicate'``、 ``'circular'``，或 ``pad`` 是 Tensor，或 ``pad`` 的长度是 2*(N-2) 时，指定 ``x`` 的数据格式，可为 ``'NCL'``、``'NLC'``、``'NCHW'``、``'NHWC'``、``'NCDHW'`` 或 ``'NDHWC'``，默认值为 None，此时取值将根据输入 ``x`` 的维度自动推断：若 ``x`` 维度是 3，取值为 ``'NCL'``；若 ``x`` 维度是 4，取值为 ``'NCHW'``；；若 ``x`` 维度是 5，取值为 ``'NCDHW'``。
   - **pad_from_left_axis** (bool，可选) - 只有当 ``mode`` 为 ``'constant'`` ，且 ``pad`` 是长度为 2N 的列表时有效，设置 ``pad`` 与 ``x`` 的轴左对齐或右对齐。默认值为 True，表示左对齐填充。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 返回
