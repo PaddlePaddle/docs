@@ -30,7 +30,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 #### window：窗函数类型
 ```python
 # PyTorch 写法
-torch.signal.windows.c(10)
+torch.signal.windows.gaussian(10)
 
 # Paddle 写法
 std=1.0
@@ -40,7 +40,7 @@ paddle.audio.functional.get_window(('gaussian',std), 10)
 #### std：高斯的标准差
 ```python
 # PyTorch 写法
-torch.signal.windows.c(10, std=2.0)
+torch.signal.windows.gaussian(10, std=2.0)
 
 # Paddle 写法
 std=2.0
