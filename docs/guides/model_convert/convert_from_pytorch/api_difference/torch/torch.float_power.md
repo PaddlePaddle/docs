@@ -15,7 +15,7 @@ Paddle 无此 API，需要组合实现。
 torch.float_power(x, y)
 
 # Paddle 写法
-paddle.pow(paddle.cast(x, paddle.float64), y)
+paddle.pow(x.cast(paddle.float64), y)
 ```
 
 #### out：指定输出
@@ -25,5 +25,5 @@ paddle.pow(paddle.cast(x, paddle.float64), y)
 torch.float_power(x, y, out=out)
 
 # Paddle 写法
-paddle.assign(paddle.pow(paddle.cast(x, paddle.float64), y), out)
+paddle.assign(paddle.pow(x.cast(paddle.float64), y), out)
 ```

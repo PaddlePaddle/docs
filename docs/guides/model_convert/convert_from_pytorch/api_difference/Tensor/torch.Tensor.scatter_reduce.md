@@ -21,6 +21,6 @@ paddle.Tensor.put_along_axis(indices, values, axis, reduce="assign", include_sel
 | dim          | axis         | 表示 scatter 的维度，仅参数名不一致。                        |
 | index        | indices      | 表示输入的索引张量，仅参数名不一致。                         |
 | src          | values       | 表示需要插入的值，仅参数名不一致。                           |
-| reduce       | reduce       | 表示插入 values 时的计算方式，参数默认值不一致。PyTorch 中该参数无默认值，需要输入，Paddle 中默认值为 `assign`，应设置为与 PyTorch 一致。其中 PyTorch 的 `sum` 对应 Paddle 中的 `add`，PyTorch 的 `prod` 对应 Paddle 中 `multiple`。 |
+| reduce       | reduce       | 表示插入 values 时的计算方式，参数默认值不一致。PyTorch 中该参数无默认值，需要输入，Paddle 中默认值为 `assign`，应设置为与 PyTorch 一致。其中 PyTorch 的 `sum` 对应 Paddle 中的 `add`，PyTorch 的 `prod` 对应 Paddle 中 `multiply`。 |
 | include_self | include_self | 表示插入 values 时是否包含输入元素中的值。                   |
 | -            | broadcast    | 表示是否需要广播索引张量矩阵，PyTorch 无此参数，Paddle 应设置为 `False` 才与 PyTorch 一致 |
