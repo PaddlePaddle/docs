@@ -16,9 +16,10 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| M          | M            | 输入窗口的长度。 |
-| alpha         | alpha   | 窗口系数，Pytorch 默认值为 0.54, Paddle 无默认值，Paddle 需保持与 PyTorch 一致。|
-| sym          | sym       | 判断是否返回适用于过滤器设计的对称窗口。  |
+| - | window |  窗函数类型，Pytorch 无此参数，Paddle 需设置为 `general_hamming`。 |
+| M  | win_length            | 输入窗口的长度，也是采样点数。 |
+| alpha         | -    | 窗口系数，Pytorch 默认值为 0.54, Paddle 无默认值，需要转写。|
+| sym        | fftbins       | 判断是否返回适用于过滤器设计的对称窗口。  |
 | dtype        | dtype | 返回 Tensor 的数据类型。 |
 | layout | -   | 表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | device | -   | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。 |
@@ -26,13 +27,34 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 转写示例
 
+#### window：窗函数类型
+```python
+# PyTorch 写法
+torch.signal.windows.general_hamming(10)
+
+# Paddle 写法
+a=0.54
+paddle.audio.functional.get_window(('general_hamming',a), 10)
+```
+
+#### alpha：窗口系数
+```python
+# PyTorch 写法
+torch.signal.windows.general_hamming(10, 0.6)
+
+# Paddle 写法
+a = 0.6
+paddle.audio.functional.get_window(('general_hamming',a), 10)
+```
+
 #### requires_grad：是否需要求反向梯度，需要修改该 Tensor 的 stop_gradient 属性
 ```python
 # PyTorch 写法
 torch.signal.windows.general_hamming(10, requires_grad=True)
 
 # Paddle 写法
-x = paddle.audio.functional.window._general_hamming(10, 0.54)
+a = 0.54
+x = paddle.audio.functional.get_window(('general_hamming',a), 10)
 x.stop_gradient = False
 ```
 
@@ -42,6 +64,7 @@ x.stop_gradient = False
 torch.signal.windows.general_hamming(10, device=torch.device('cpu'))
 
 # Paddle 写法
-y = paddle.audio.functional.window._general_hamming(10, 0.54)
+a = 0.54
+y = paddle.audio.functional.get_window(('general_hamming',a), 10)
 y.cpu()
 ```
