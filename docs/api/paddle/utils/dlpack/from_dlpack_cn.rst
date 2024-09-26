@@ -8,7 +8,6 @@ from_dlpack
 将 DLPack 格式的 Tensor 解码为 Paddle Tensor，DLPACK 是一种通用稳定的内存数据结构，可用于不同深度学习框架之间的 Tensor 共享。
 
 .. note::
-
     一个 dlpack 只能被 ``from_dlpack`` 解码一次。
 
 参数
