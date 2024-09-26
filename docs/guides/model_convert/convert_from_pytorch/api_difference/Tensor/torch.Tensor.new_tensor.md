@@ -3,7 +3,7 @@
 ### [torch.Tensor.new_tensor](https://pytorch.org/docs/stable/generated/torch.Tensor.new_tensor.html#torch-tensor-new-tensor)
 
 ```python
-torch.Tensor.new_tensor(data, *, dtype=None, device=None, requires_grad=False, layout=torch.strided, pin_memory=False)
+torch.Tensor.new_tensor(data, *, dtype=None, device=None, requires_grad=False)
 ```
 
 ### [paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/to_tensor_cn.html)

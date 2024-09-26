@@ -20,7 +20,7 @@ paddle.device.Stream(device=None, priority=None, blocking=False)
 | -------- | ------------ | ----------------------------------------------------------------------------------------- |
 | device   | device       | 希望分配 stream 的设备。                                                                  |
 | priority | priority     | stream 的优先级，PyTorch 取值范围为-1、0，Paddle 的取值范围为 1、2，需要转写。 |
-| - | blocking     | stream 是否同步执行。 |
+| - | blocking     | stream 是否同步执行，Paddle保持默认值即可。 |
 
 ### 转写示例
 
