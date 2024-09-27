@@ -17,8 +17,8 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | - | window |  窗函数类型，Pytorch 无此参数，Paddle 需设置为 `exponential`。 |
-| M  | win_length            | 输入窗口的长度，也是采样点数。 |
-| sym        | fftbins       | 判断是否返回适用于过滤器设计的对称窗口。  |
+| M  | win_length            | 输入窗口的长度，也是采样点数，仅参数名不一致。 |
+| sym        | fftbins       | 判断是否返回适用于过滤器设计的对称窗口，仅参数名不一致。  |
 | center         | -       | 窗口的中心位置，Paddle 无此参数，暂无转写方式。 |
 | tau           | -       | 窗口的半衰期，Paddle 无此参数，暂无转写方式。 |
 | dtype        | dtype | 返回 Tensor 的数据类型。 |
