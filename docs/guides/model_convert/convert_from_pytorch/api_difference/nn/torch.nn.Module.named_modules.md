@@ -21,4 +21,4 @@ paddle.nn.Layer.named_sublayers(prefix='', include_self=False, layers_set=None, 
 | memo          | layers_set   | 用来记录已经加入结果的子层的集合，仅参数名不一致。                               |
 | prefix   | prefix  | 在所有参数名称前加的前缀。                                            |
 | remove_duplicate   | remove_duplicate  | 是否删除结果中重复的模块实例。                                            |
-| -         | include_self      | 是否包含该层自身，PyTorch 无此参数，Paddle 设置为True。                                                |
+| -         | include_self      | 是否包含该层自身，PyTorch 无此参数，Paddle 设置为 True。                                                |
