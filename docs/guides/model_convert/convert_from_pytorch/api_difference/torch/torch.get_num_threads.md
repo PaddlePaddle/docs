@@ -15,5 +15,5 @@ torch.get_num_threads()
 torch.get_num_threads()
 
 # Paddle 写法
-return multiprocessing.cpu_count()
+multiprocessing.cpu_count()
 ```

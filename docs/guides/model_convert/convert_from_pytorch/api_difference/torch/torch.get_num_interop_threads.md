@@ -15,5 +15,5 @@ torch.get_num_interop_threads()
 torch.get_num_interop_threads()
 
 # Paddle 写法
-return os.environ['OMP_NUM_THREADS']
+os.environ['OMP_NUM_THREADS']
 ```

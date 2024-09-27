@@ -19,7 +19,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | ------------- | ------------ | ------------------------------------------------------ |
 | -    | window |  窗函数类型，Pytorch 无此参数，Paddle 需设置为 `blackman`。 |
 | window_length  | win_length            | 输入窗口的长度，仅参数名不同。 |
-| periodic        | fftbins       | 判断是否返回适用于过滤器设计的对称窗口，功能相反，需要转写。  |
+| periodic        | fftbins       | 判断是否返回适用于过滤器设计的对称窗口，功能相反，Pytorch 默认值为 True 时，Paddle 须设置为 False，需要转写。  |
 | dtype        | dtype | 返回 Tensor 的数据类型。 |
 | layout | -| 表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | device | - | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。 |
