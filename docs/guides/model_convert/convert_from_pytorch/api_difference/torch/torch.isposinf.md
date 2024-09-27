@@ -27,7 +27,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ```python
 # Pytorch 写法
-torch.isposinf(a, out=b)
+torch.isposinf(x, out=y)
 
 # Paddle 写法
 paddle.assign(paddle.isposinf(x), y)

@@ -27,7 +27,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ```python
 # Pytorch 写法
-torch.isneginf(a, out=b)
+torch.isneginf(x, out=y)
 
 # Paddle 写法
 paddle.assign(paddle.isneginf(x), y)
