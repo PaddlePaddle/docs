@@ -15,5 +15,5 @@ Paddle 无此 API，需要组合实现。
 a.xlogy_(b)
 
 # Paddle 写法
-paddle.assign(a * paddle.log(b), a)
+a.multiply_(paddle.log(paddle.to_tensor(b)))
 ```

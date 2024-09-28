@@ -14,5 +14,5 @@ Paddle 无此 API，需要组合实现。
 input.baddbmm_(batch1, batch2, beta=beta, alpha=alpha)
 
 # Paddle 写法
-paddle.assign(beta * input + alpha * paddle.bmm(batch1, batch2), input)
+input.multiply_(paddle.to_tensor(beta, dtype=input.dtype)).add_(alpha * paddle.bmm(batch1, batch2))
 ```

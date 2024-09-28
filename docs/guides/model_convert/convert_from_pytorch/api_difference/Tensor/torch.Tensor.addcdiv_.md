@@ -19,5 +19,5 @@ PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 input.addcdiv_(tensor1, tensor2, value=value)
 
 # Paddle 写法
-paddle.assign(input + value * tensor1 / tensor2, input)
+input.add_(value * tensor1 / tensor2)
 ```

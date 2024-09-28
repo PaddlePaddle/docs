@@ -15,5 +15,5 @@ Paddle 无此 API，需要组合实现。
 x.erfc_()
 
 # Paddle 写法
-paddle.assign(1 - x.erf(), x)
+paddle.erf_(x).multiply_(paddle.to_tensor(-1.)).add_(paddle.to_tensor(1.))
 ```

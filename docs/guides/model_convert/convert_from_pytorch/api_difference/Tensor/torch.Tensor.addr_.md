@@ -15,5 +15,5 @@ Paddle 无此 API，需要组合实现。
 y = input.addr_(vec1, vec2, beta=beta, alpha=alpha)
 
 # Paddle 写法
-paddle.assign(beta * input + alpha * paddle.outer(vec1, vec2), input)
+input.multiply_(paddle.to_tensor(beta, dtype=input.dtype)).add_(alpha * paddle.outer(vec1, vec2))
 ```

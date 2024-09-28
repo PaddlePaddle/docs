@@ -14,5 +14,5 @@ Paddle 无此 API，需要组合实现。
 input.addmv_(mat, vec, beta=beta, alpha=alpha)
 
 # Paddle 写法
-paddle.assign(beta * input + alpha * paddle.mm(mat, vec), input)
+input.multiply_(paddle.to_tensor(beta, dtype=input.dtype)).add_(alpha * paddle.mm(mat, vec))
 ```
