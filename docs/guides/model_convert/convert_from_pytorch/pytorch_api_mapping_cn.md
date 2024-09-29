@@ -424,7 +424,7 @@
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.sparse_dim`, https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_dim.html#torch-tensor-sparse-dim, 可新增且有相关设计) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.q_zero_point`, https://pytorch.org/docs/stable/generated/torch.Tensor.q_zero_point.html#torch-tensor-q-zero-point, 实现路径不同) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.memory_stats`, https://pytorch.org/docs/stable/generated/torch.cuda.memory_stats.html#torch-cuda-memory-stats, 可新增且有相关设计) |
-| NOT-IMPLEMENTED-ITEM(`torch.distributed.pipeline.sync.Pipe`, https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.Pipe, 可新增且有相关设计) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.pipeline.sync.Pipe`, https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.Pipe, 废弃 API) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.set_rng_state`, https://pytorch.org/docs/stable/generated/torch.cuda.set_rng_state.html#torch-cuda-set-rng-state, 可新增且有相关设计) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.lu_solve`, https://pytorch.org/docs/stable/generated/torch.Tensor.lu_solve.html#torch-tensor-lu-solve, 可新增且有相关设计) |
 | NOT-IMPLEMENTED-ITEM(`torch.linalg.tensorinv`, https://pytorch.org/docs/stable/generated/torch.linalg.tensorinv.html#torch-linalg-tensorinv, 可新增且有相关设计) |
@@ -840,8 +840,8 @@
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.checkpoint.format_utils.dcp_to_torch_save`, https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.format_utils.dcp_to_torch_save, 可新增且有相关设计) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.checkpoint.format_utils.DynamicMetaLoadPlanner`, https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.format_utils.DynamicMetaLoadPlanner, 可新增且有相关设计) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.checkpoint.format_utils.torch_save_to_dcp`, https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.format_utils.torch_save_to_dcp, 可新增且有相关设计) |
-| NOT-IMPLEMENTED-ITEM(`torch.distributed.checkpoint.fsspec.FsspecReader`, https://pytorch.org/docs/2.3/distributed.checkpoint.html#torch.distributed.checkpoint.fsspec.FsspecReader, 可新增且有相关设计) |
-| NOT-IMPLEMENTED-ITEM(`torch.distributed.checkpoint.fsspec.FsspecWriter`, https://pytorch.org/docs/2.3/distributed.checkpoint.html#torch.distributed.checkpoint.fsspec.FsspecWriter, 可新增且有相关设计) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.checkpoint.fsspec.FsspecReader`, https://pytorch.org/docs/2.3/distributed.checkpoint.html#torch.distributed.checkpoint.fsspec.FsspecReader, 废弃 API) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.checkpoint.fsspec.FsspecWriter`, https://pytorch.org/docs/2.3/distributed.checkpoint.html#torch.distributed.checkpoint.fsspec.FsspecWriter, 废弃 API) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.checkpoint.LoadPlan`, https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.LoadPlan, 可新增且有相关设计) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.checkpoint.LoadPlanner`, https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.LoadPlanner, 可新增且有相关设计) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.checkpoint.ReadItem`, https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.ReadItem, 可新增且有相关设计) |
@@ -883,10 +883,10 @@
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.rpc.PyRRef`, https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.PyRRef, 可新增且有相关设计) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.rpc.RpcBackendOptions`, https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.RpcBackendOptions, 可新增且有相关设计) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.optim.PostLocalSGDOptimizer`, https://pytorch.org/docs/stable/distributed.optim.html#torch.distributed.optim.PostLocalSGDOptimizer, 可新增且有相关设计) |
-| NOT-IMPLEMENTED-ITEM(`torch.distributed.pipeline.sync.skip.skippable.pop`, https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.skip.skippable.pop, 可新增且有相关设计) |
-| NOT-IMPLEMENTED-ITEM(`torch.distributed.pipeline.sync.skip.skippable.skippable`, https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.skip.skippable.skippable, 可新增且有相关设计) |
-| NOT-IMPLEMENTED-ITEM(`torch.distributed.pipeline.sync.skip.skippable.stash`, https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.skip.skippable.stash, 可新增且有相关设计) |
-| NOT-IMPLEMENTED-ITEM(`torch.distributed.pipeline.sync.skip.skippable.verify_skippables`, https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.skip.skippable.verify_skippables, 可新增且有相关设计) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.pipeline.sync.skip.skippable.pop`, https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.skip.skippable.pop, 废弃 API) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.pipeline.sync.skip.skippable.skippable`, https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.skip.skippable.skippable, 废弃 API) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.pipeline.sync.skip.skippable.stash`, https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.skip.skippable.stash, 废弃 API) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.pipeline.sync.skip.skippable.verify_skippables`, https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.skip.skippable.verify_skippables, 废弃 API) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.tensor.parallel.loss_parallel`, https://pytorch.org/docs/stable/distributed.tensor.parallel.html#torch.distributed.tensor.parallel.loss_parallel, 可新增且有相关设计) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.tensor.parallel.PrepareModuleInput`, https://pytorch.org/docs/stable/distributed.tensor.parallel.html#torch.distributed.tensor.parallel.PrepareModuleInput, 可新增且有相关设计) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.tensor.parallel.PrepareModuleOutput`, https://pytorch.org/docs/stable/distributed.tensor.parallel.html#torch.distributed.tensor.parallel.PrepareModuleOutput, 可新增且有相关设计) |
