@@ -15,5 +15,5 @@ torch.get_num_threads()
 torch.get_num_threads()
 
 # Paddle 写法
-os.environ['OMP_NUM_THREADS']
+os.environ['CPU_NUM']
 ```

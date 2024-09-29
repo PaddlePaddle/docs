@@ -15,5 +15,5 @@ torch.set_num_threads(int)
 torch.set_num_threads(2)
 
 # Paddle 写法
-os.environ['OMP_NUM_THREADS'] = '2'
+os.environ['CPU_NUM'] = '2'
 ```
