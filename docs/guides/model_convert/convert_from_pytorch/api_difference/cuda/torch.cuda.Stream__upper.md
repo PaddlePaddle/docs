@@ -6,10 +6,10 @@
 torch.cuda.Stream(device=None, priority=0, **kwargs)
 ```
 
-### [paddle.device.cuda.Stream](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/Stream_cn.html)
+### [paddle.device.Stream](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/Stream_cn.html#stream)
 
 ```python
-paddle.device.cuda.Stream(device=None, priority=None)
+paddle.device.Stream(device=None, priority=None)
 ```
 
 两者功能一致，参数用法不一致，具体如下：
@@ -34,5 +34,5 @@ y = torch.cuda.Stream(priority=default_priority)
 # Paddle 写法
 high_priority = 1
 default_priority = 2
-y = paddle.device.cuda.Stream(priority=default_priority)
+y = paddle.device.Stream(priority=default_priority)
 ```
