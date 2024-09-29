@@ -87,7 +87,7 @@ ALIAS_PATTERN = re.compile(
     r"^\| *ALIAS-REFERENCE-ITEM\( *(?P<alias_name>[^,]+) *, *(?P<src_api>[^,]+) *\) *\|$"
 )
 NOT_IMPLEMENTED_PATTERN = re.compile(
-    r"^\| *NOT-IMPLEMENTED-ITEM\( *(?P<src_api>[^,]+) *, *(?P<src_api_url>.+) *\) *\|$"
+    r"^\| *NOT-IMPLEMENTED-ITEM\( *(?P<src_api>[^,]+) *, *(?P<src_api_url>.+), *(?P<remark>.+) *\) *\|$"
 )
 IN_DEVELOPMENT_PATTERN = re.compile(
     r"^\| *IN-DEVELOPMENT-PATTERN\( *(?P<src_api>[^,]+) *, *(?P<src_api_url>.+) *\) *\|$"
@@ -226,7 +226,7 @@ def apply_reference_to_row_ex(line, metadata_dict, context, line_idx):
 
         dst_api_column = ""
         mapping_column = "功能缺失"
-        mapping_url_column = ""
+        mapping_url_column = not_implemented_match["remark"].strip()
 
         content = [
             row_idx_s,
