@@ -3,7 +3,7 @@
 reduce_as
 -------------------------------
 
-.. py:function:: paddle.reduce_as(x, target, name=None):
+.. py:function:: paddle.reduce_as(x, target, name=None)
 
 对 x 在某些维度上求和，使其结果与 target 的 shape 一致。
 

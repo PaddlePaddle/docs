@@ -3,7 +3,7 @@
 sparse_csr_tensor
 -------------------------------
 
-.. py:function:: paddle.sparse.sparse_csr_tensor(crows, cols, values, shape, dtype=None, place=None, stop_gradient=True)
+.. py:function:: paddle.sparse.sparse_csr_tensor(crows, cols, values, shape=None, dtype=None, place=None, stop_gradient=True)
 
 该 API 通过已知的非零元素的 ``crows`` , ``cols`` 和 ``values`` 来创建一个 CSR(Compressed Sparse Row) 格式的稀疏 tensor，tensor 类型为 ``paddle.Tensor`` 。
 
@@ -26,7 +26,7 @@ sparse_csr_tensor
       list，tuple，numpy\.ndarray，paddle\.Tensor 类型。
     - **values** (list|tuple|ndarray|Tensor) - 一维数组，存储非零元素，可以是
       list，tuple，numpy\.ndarray，paddle\.Tensor 类型。
-    - **shape** (list|tuple) - 稀疏 Tensor 的形状，也是 Tensor 的形状，如果没有提供，将自动推测出最小的形状。
+    - **shape** (list|tuple，可选) - 稀疏 Tensor 的形状，也是 Tensor 的形状，如果没有提供，将自动推测出最小的形状。
     - **dtype** (str|np.dtype，可选) - 创建 tensor 的数据类型，可以是 'bool' ，'float16'，'float32'，
       'float64' ，'int8'，'int16'，'int32'，'int64'，'uint8'，'complex64'，'complex128'。
       默认值为 None，如果 ``values`` 为 python 浮点类型，则从
