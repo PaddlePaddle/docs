@@ -28,4 +28,4 @@ paddle.distributed.fleet.meta_parallel.VocabParallelEmbedding(num_embeddings, em
 | keep_master_weight_for_test  | -              | 返回主参数用于测试，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | -                            | mp_group       | 模型并行组，PyTorch 无此参数，Paddle 保持默认即可。 |
 | -                            | name           | 网络层名称，PyTorch 无此参数，Paddle 保持默认即可。 |
-| -                            | weight_attr           | 指定权重参数属性，PyTorch 无此参数，Paddle 设置为paddle.nn.initializer.Constant(0)。 |
+| -                            | weight_attr           | 指定权重参数属性，PyTorch 无此参数，Paddle 设置为 paddle.nn.initializer.Constant(0)。 |
