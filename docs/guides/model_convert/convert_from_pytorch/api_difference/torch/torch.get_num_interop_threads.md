@@ -15,5 +15,5 @@ torch.get_num_interop_threads()
 torch.get_num_interop_threads()
 
 # Paddle 写法
-os.environ['OMP_NUM_THREADS']
+multiprocessing.cpu_count()
 ```
