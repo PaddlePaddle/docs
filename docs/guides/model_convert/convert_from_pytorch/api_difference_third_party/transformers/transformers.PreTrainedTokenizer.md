@@ -6,10 +6,10 @@
 transformers.PreTrainedTokenizer(**kwargs)
 ```
 
-### [paddlenlp.transformers.PreTrainedTokenizer](https://github.com/PaddlePaddle/PaddleNLP/blob/e336e78c338d2514ee6c937982ce5d8c960b85ff/paddlenlp/transformers/tokenizer_utils.py#L881)
+### [paddlenlp.transformers.PretrainedTokenizer](https://github.com/PaddlePaddle/PaddleNLP/blob/e336e78c338d2514ee6c937982ce5d8c960b85ff/paddlenlp/transformers/tokenizer_utils.py#L881)
 
 ```python
-paddlenlp.transformers.PreTrainedTokenizer(**kwargs)
+paddlenlp.transformers.PretrainedTokenizer(**kwargs)
 ```
 
 功能一致，参数完全一致，具体如下：
