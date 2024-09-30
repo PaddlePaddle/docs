@@ -20,7 +20,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | M  | win_length            | 输入窗口的长度，也是采样点数，仅参数名不一致。 |
 | alpha         | -    | 窗口系数，Pytorch 默认值为 0.54, Paddle 无默认值，需要转写。|
 | sym        | fftbins       | 判断是否返回适用于过滤器设计的对称窗口，仅参数名不一致。  |
-| dtype        | dtype | 返回 Tensor 的数据类型。 |
+| dtype        | dtype | 返回 Tensor 的数据类型，Paddle 默认为 `float64`。 |
 | layout | -   | 表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | device | -   | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。 |
 | requires_grad | - | 表示是否计算梯度， Paddle 无此参数，需要转写。 |
