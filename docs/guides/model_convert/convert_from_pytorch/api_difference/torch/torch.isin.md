@@ -1,4 +1,4 @@
-## [仅参数名不一致]torch.isin
+## [ 仅参数名不一致 ]torch.isin
 
 ### [torch.isin](https://pytorch.org/docs/stable/generated/torch.isin.html#torch.isin)
 
