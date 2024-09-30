@@ -1,6 +1,6 @@
 ## [ 组合替代实现 ]torch.autograd.Variable
 
-### [torch.Tensor.addcmul_](https://pytorch.org/docs/stable/autograd.html#variable-deprecated)
+### [torch.autograd.Variable](https://pytorch.org/docs/stable/autograd.html#variable-deprecated)
 ```python
 torch.autograd.Variable(data, requires_grad=False)
 ```
