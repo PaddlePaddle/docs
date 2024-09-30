@@ -1,6 +1,6 @@
 ## [参数完全一致]torchvision.transforms.functional.adjust_hue
 
-### [torchvision.transforms.functional.adjust_hue](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.adjust_hue.html#:~:text=brightness_factor%20(float)%20%E2%80%93%20How%20much,by%20a%20factor%20of%202.)
+### [torchvision.transforms.functional.adjust_hue](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.adjust_hue.html)
 
 ```python
 torchvision.transforms.functional.adjust_hue(img: Tensor, hue_factor: float) → Tensor
@@ -16,7 +16,7 @@ paddle.vision.transforms.adjust_hue(img: PIL.Image | np.array | paddle.Tensor, h
 
 ### 参数映射
 
-| torchvision | paddle | 备注                                     |
+| torchvision | PaddlePaddle | 备注                                     |
 | ----------------------------------------------- | ------------------------------------ | ---------------------------------------- |
 | img                        | img  | Paddle 支持更多类型，但包含 torchvision 支持的类型。 |
 | hue_factor                              | hue_factor                    | 调整色调的因子，范围为 [-0.5, 0.5]。          |

@@ -16,6 +16,6 @@ paddle.vision.transforms.hflip(img: PIL.Image | numpy.ndarray | paddle.Tensor)
 
 ### 参数映射
 
-| torchvision | paddle | 备注                                                         |
+| torchvision | PaddlePaddle | 备注                                                         |
 | ---------------------------------------- | -------------------------------- | ------------------------------------------------------------ |
-| img (PIL Image \| Tensor)                | img (PIL.Image \| numpy.ndarray \| Tensor) | 输入图像。 |
+| img (PIL Image or Tensor)                | img (PIL.Image or numpy.ndarray or Tensor) | 输入图像。 |

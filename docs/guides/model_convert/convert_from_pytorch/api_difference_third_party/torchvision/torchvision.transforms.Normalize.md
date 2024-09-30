@@ -16,14 +16,14 @@ paddle.vision.transforms.Normalize(mean: int | float | list | tuple = 0.0, std: 
 
 ### 参数映射
 
-| torchvision.transforms.Normalize | paddle.vision.transforms.Normalize | 备注                                                         |
+| torchvision | PaddlePaddle | 备注                                                         |
 | -------------------------------- | ----------------------------------- | ------------------------------------------------------------ |
-| mean (int \| float \| list \| tuple)                  | mean (int \| float \| list \| tuple) | 用于每个通道归一化的均值。                                   |
-| std (int \| float \| list \| tuple)                   | std (int \| float \| list \| tuple)  | 用于每个通道归一化的标准差值。                               |
+| mean (int or float or list or tuple)                  | mean (int or float or list or tuple) | 用于每个通道归一化的均值。                                   |
+| std (int or float or list or tuple)                   | std (int or float or list or tuple)  | 用于每个通道归一化的标准差值。                               |
 | inplace (bool, optional)         | -                                     | Paddle 不支持 `inplace` 参数。                               |
 | -                                | data_format (str, optional)                     | Paddle 支持 `data_format` 参数，用于指定数据格式。默认为 'CHW'。 |
 | -                                | to_rgb (bool, optional)                         | Paddle 支持 `to_rgb` 参数，是否将图像转换为 RGB 格式。默认为 False。 |
-| -                                | keys (list[str] \| tuple[str], optional)        | Paddle 支持 `keys` 参数，默认为 None。 |
+| -                                | keys (list[str] or tuple[str], optional)        | Paddle 支持 `keys` 参数，默认为 None。 |
 
 ### 转写示例
 

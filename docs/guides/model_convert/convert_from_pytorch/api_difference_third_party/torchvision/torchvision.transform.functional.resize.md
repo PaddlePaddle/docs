@@ -1,6 +1,6 @@
 ## [输入参数类型不一致]torchvision.transforms.functional.resize
 
-### [torchvision.transforms.resize](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.resize.html)
+### [torchvision.transforms.functional.resize](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.resize.html)
 
 ```python
 torchvision.transforms.functional.resize(img: Tensor, size: Optional[Union[int, Sequence[int]]],
@@ -12,7 +12,7 @@ torchvision.transforms.functional.resize(img: Tensor, size: Optional[Union[int, 
 ### [paddle.vision.transforms.resize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/resize_cn.html)
 
 ```python
-paddle.vision.transforms.Resize(img: numpy.ndarray | Tensor | PIL.Image, size: int | list | tuple,
+paddle.vision.transforms.resize(img: numpy.ndarray | Tensor | PIL.Image, size: int | list | tuple,
                                 interpolation: str | int = 'bilinear',
                                 keys: list[str] | tuple[str] = None)
 ```
@@ -21,13 +21,13 @@ paddle.vision.transforms.Resize(img: numpy.ndarray | Tensor | PIL.Image, size: i
 
 ### 参数映射
 
-| torchvision | paddle | 备注                                                         |
+| torchvision | PaddlePaddle | 备注                                                         |
 | ----------------------------- | -------------------------------- | ------------------------------------------------------------ |
-| size (int \| list \| tuple) | size (int \| list \| tuple)      | 两者均支持单个整数或序列表示输出大小。                       |
-| interpolation (InterpolationMode) | interpolation (str \| int) | 两者类型不一致。               |
-| max_size (int \| None)        | -                                | Paddle 不支持 `max_size` 参数。                             |
-| antialias (bool \| None)      | -                                | Paddle 不支持 `antialias` 参数。                             |
-| -                             | keys (list[str] \| tuple[str] = None) | Paddle 支持 `keys` 参数。 |
+| size (int or list or tuple) | size (int or list or tuple)      | 两者均支持单个整数或序列表示输出大小。                       |
+| interpolation (InterpolationMode) | interpolation (str or int) | 两者类型不一致。               |
+| max_size (int or None)        | -                                | Paddle 不支持 `max_size` 参数。                             |
+| antialias (bool or None)      | -                                | Paddle 不支持 `antialias` 参数。                             |
+| -                             | keys (list[str] or tuple[str] = None) | Paddle 支持 `keys` 参数。 |
 
 
 ### 转写示例

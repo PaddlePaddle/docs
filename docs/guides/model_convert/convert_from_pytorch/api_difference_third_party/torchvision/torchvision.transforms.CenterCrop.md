@@ -16,7 +16,7 @@ paddle.vision.transforms.CenterCrop(size: int | list | tuple, keys: list[str] | 
 
 ### 参数映射
 
-| torchvision | paddle | 备注                                     |
+| torchvision | PaddlePaddle | 备注                                     |
 | --------------------------------- | ------------------------------------- | ---------------------------------------- |
 | size             | size            | 输出图像的形状大小。 |
 | -                                 | keys (optional)    | Paddle 支持 `keys` 参数。 |

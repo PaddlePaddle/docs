@@ -29,16 +29,16 @@ paddle.vision.transforms.RandomAffine(degrees: Tuple[float, float] | float | int
 
 ### 参数映射
 
-| torchvision.transforms.RandomAffine        | paddle.vision.transforms.RandomAffine    | 备注                                                         |
+| torchvision        | PaddlePaddle    | 备注                                                         |
 | ------------------------------------------ | ----------------------------------------- | ------------------------------------------------------------ |
-| degrees (Tuple[float, float] \| float \| int)               | degrees (Tuple[float, float] \| float \| int) | 随机旋转变换的角度大小。 |
-| translate (tuple, optional)                | translate (Sequence[float] \| float \| int) | 随机水平平移和垂直平移变化的位移大小。 |
+| degrees (Tuple[float, float] or float or int)               | degrees (Tuple[float, float] or float or int) | 随机旋转变换的角度大小。 |
+| translate (tuple, optional)                | translate (Sequence[float] or float or int) | 随机水平平移和垂直平移变化的位移大小。 |
 | scale (tuple, optional)                    | scale (Tuple[float, float], optional)     | 随机伸缩变换的比例大小。                                   |
-| shear (sequence \| number, optional)       | shear (Sequence[float] \| float \| int)   | 随机剪切角度的大小范围。                           |
-| interpolation (InterpolationMode, optional)| interpolation (str \| int)                | 参数类型不同，Paddle 使用字符串或整数表示插值方法。            |
-| fill (int \| float \| sequence)            | fill (int \| List[int] \| Tuple[int])     |  对图像扩展时填充的像素值，默认值： 0 。                   |
+| shear (sequence or number, optional)       | shear (Sequence[float] or float or int)   | 随机剪切角度的大小范围。                           |
+| interpolation (InterpolationMode, optional)| interpolation (str or int)                | 参数类型不同，Paddle 使用字符串或整数表示插值方法。            |
+| fill (int or float or sequence)            | fill (int or List[int] or Tuple[int])     |  对图像扩展时填充的像素值，默认值： 0 。                   |
 | center (sequence, optional)                | center (Tuple[int, int], optional)        | 仿射变换的中心点坐标。   |
-| -                                          | keys (List[str] \| Tuple[str], optional)  | Paddle 支持 `keys` 参数，torchvision 不支持。                 |
+| -                                          | keys (List[str] or Tuple[str], optional)  | Paddle 支持 `keys` 参数，torchvision 不支持。                 |
 
 
 ### 转写示例

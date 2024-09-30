@@ -16,7 +16,7 @@ paddle.vision.transforms.center_crop(img: PIL.Image|paddle.Tensor|np.array, outp
 
 ### 参数映射
 
-| torchvision | paddle | 备注                             |
+| torchvision | PaddlePaddle | 备注                             |
 | ----------------------------------------------- | ------------------------------------- | -------------------------------- |
 | img                        | img            | 输入图片。       |
 | output_size                   | output_size         | 输出尺寸。 |

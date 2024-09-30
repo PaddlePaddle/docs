@@ -16,7 +16,7 @@ paddle.vision.transforms.ToTensor(data_format: str = 'CHW', keys: List[str] | Tu
 
 ### 参数映射
 
-| torchvision.transforms.ToTensor | paddle.vision.transforms.ToTensor          | 备注                                                         |
+| torchvision | PaddlePaddle          | 备注                                                         |
 |---------------------------------|--------------------------------------------|--------------------------------------------------------------|
 | -                               | data_format (str，可选，默认值='CHW')      | Paddle 特有参数，指定返回的 Tensor 格式，可选 `'CHW'` 或 `'HWC'`。 |
-| -                               | keys (List[str] \| Tuple[str], 可选)       | Paddle 特有参数。                       |
+| -                               | keys (List[str] or Tuple[str], 可选)       | Paddle 特有参数。                       |

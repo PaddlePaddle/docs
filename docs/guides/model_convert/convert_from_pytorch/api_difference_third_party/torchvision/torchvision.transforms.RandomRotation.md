@@ -25,14 +25,14 @@ paddle.vision.transforms.RandomRotation(degrees: int | list | tuple,
 
 ### 参数映射
 
-| torchvision | paddle | 备注                                                         |
+| torchvision | PaddlePaddle | 备注                                                         |
 | ------------------------------------- | ---------------------------------------- | ------------------------------------------------------------ |
-| degrees (int \| list \| tuple)             | degrees (int \| list \| tuple)           | 两者均支持单个整数或序列表示旋转角度范围。                   |
-| interpolation (InterpolationMode)     | interpolation (str \| int)              | 支持的插值方法。               |
+| degrees (int or list or tuple)             | degrees (int or list or tuple)           | 两者均支持单个整数或序列表示旋转角度范围。                   |
+| interpolation (InterpolationMode)     | interpolation (str or int)              | 支持的插值方法。               |
 | expand (bool, optional)               | expand (bool, optional)                  | 两者均支持是否扩展图像尺寸。                                 |
-| center (int \| list \| tuple, optional)           | center (tuple[int, int], optional)       | Paddle 的 center 参数仅支持整数坐标。                       |
-| fill (int \| float \| tuple)          | fill (int \| float \| tuple)                           | 对图像扩展时填充的值。默认值：0。               |
-| -                                     | keys (list[str] \| tuple[str], optional) | Paddle 支持 `keys` 参数，用于指定要旋转的键，torchvision 不支持。 |
+| center (int or list or tuple, optional)           | center (tuple[int, int], optional)       | Paddle 的 center 参数仅支持整数坐标。                       |
+| fill (int or float or tuple)          | fill (int or float or tuple)                           | 对图像扩展时填充的值。默认值：0。               |
+| -                                     | keys (list[str] or tuple[str], optional) | Paddle 支持 `keys` 参数，用于指定要旋转的键，torchvision 不支持。 |
 
 ### 转写示例
 

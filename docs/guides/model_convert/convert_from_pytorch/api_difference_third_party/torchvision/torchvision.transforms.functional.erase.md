@@ -27,12 +27,12 @@ paddle.vision.transforms.erase(img: paddle.Tensor | np.ndarray | PIL.Image.Image
 
 ### 参数映射
 
-| torchvision.transforms.functional.erase | paddle.vision.transforms.erase      | 备注                                                         |
+| torchvision | PaddlePaddle     | 备注                                                         |
 | --------------------------------------- | ----------------------------------- | ------------------------------------------------------------ |
-| img (Tensor)                            | img (paddle.Tensor \| np.ndarray \| PIL.Image.Image) | 输入类型 torchvision 仅支持 Tensor，Paddle 支持 Tensor、numpy.ndarray 和 PIL.Image。 |
+| img (Tensor)                            | img (paddle.Tensor or np.ndarray or PIL.Image.Image) | 输入类型 torchvision 仅支持 Tensor，Paddle 支持 Tensor、numpy.ndarray 和 PIL.Image。 |
 | i (int)                                 | i (int)                             | 擦除区域左上角的纵坐标，参数名称和功能一致。                  |
 | j (int)                                 | j (int)                             | 擦除区域左上角的横坐标，参数名称和功能一致。                  |
 | h (int)                                 | h (int)                             | 擦除区域的高度，参数名称和功能一致。                         |
 | w (int)                                 | w (int)                             | 擦除区域的宽度，参数名称和功能一致。                         |
-| v (Tensor)                              | v (paddle.Tensor \| np.ndarray)     | 擦除区域的填充值，torchvision 仅支持 Tensor，Paddle 支持 Tensor 和 numpy.ndarray。当输入为 PIL.Image 时，Paddle 的 `v` 参数需为 numpy.ndarray 类型。 |
+| v (Tensor)                              | v (paddle.Tensor or np.ndarray)     | 擦除区域的填充值，torchvision 仅支持 Tensor，Paddle 支持 Tensor 和 numpy.ndarray。当输入为 PIL.Image 时，Paddle 的 `v` 参数需为 numpy.ndarray 类型。 |
 | inplace (bool)                          | inplace (bool)                      | 是否进行原地操作，参数名称和功能一致。                       |

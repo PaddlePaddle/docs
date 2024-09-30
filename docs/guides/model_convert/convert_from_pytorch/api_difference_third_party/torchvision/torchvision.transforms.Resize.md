@@ -21,13 +21,13 @@ paddle.vision.transforms.Resize(size: int | list | tuple,
 
 ### 参数映射
 
-| torchvision | paddle | 备注                                                         |
+| torchvision | PaddlePaddle | 备注                                                         |
 | ----------------------------- | -------------------------------- | ------------------------------------------------------------ |
-| size (int \| list \| tuple) | size (int \| list \| tuple)      | 两者均支持单个整数或序列表示输出大小。                       |
-| interpolation (InterpolationMode) | interpolation (str \| int) | 两者类型不一致。               |
-| max_size (int \| None)        | -                                | Paddle 不支持 `max_size` 参数。                             |
-| antialias (bool \| None)      | -                                | Paddle 不支持 `antialias` 参数。                             |
-| -                             | keys (list[str] \| tuple[str] = None) | Paddle 支持 `keys` 参数。 |
+| size (int or list or tuple) | size (int or list or tuple)      | 两者均支持单个整数或序列表示输出大小。                       |
+| interpolation (InterpolationMode) | interpolation (str or int) | 两者类型不一致。               |
+| max_size (int or None)        | -                                | Paddle 不支持 `max_size` 参数。                             |
+| antialias (bool or None)      | -                                | Paddle 不支持 `antialias` 参数。                             |
+| -                             | keys (list[str] or tuple[str] = None) | Paddle 支持 `keys` 参数。 |
 
 
 ### 转写示例

@@ -16,6 +16,6 @@ paddle.vision.transforms.Compose(transforms: list | tuple)
 
 ### 参数映射
 
-| torchvision                 | paddle                | 备注                                     |
+| torchvision                 | PaddlePaddle                | 备注                                     |
 | ---------------------------------------------- | ----------------------------------------------- | ---------------------------------------- |
-| transforms (list of Transform objects)         | transforms (list \| tuple)                      | torch 仅支持 list，paddle 支持 list 或 tuple |
+| transforms (list of Transform objects)         | transforms (list or tuple)                      | torch 仅支持 list，paddle 支持 list 或 tuple |

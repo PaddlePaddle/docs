@@ -23,13 +23,13 @@ paddle.vision.transforms.RandomPerspective(prob: float = 0.5,
 
 ### 参数映射
 
-| torchvision.transforms.RandomPerspective | paddle.vision.transforms.RandomPerspective | 备注                                                         |
+| torchvision | PaddlePaddle | 备注                                                         |
 | ----------------------------------------- | ------------------------------------------ | ------------------------------------------------------------ |
 | distortion_scale (float)                  | distortion_scale (float)                   | 两者参数名称和功能一致，控制失真程度。                       |
 | p (float)                                 | prob (float)                               | 参数名不同，Paddle 使用 `prob` 替代 `p`，表示透视变换的概率。 |
-| interpolation (InterpolationMode \| int)  | interpolation (str \| int)                | 参数名相同但类型不同，Paddle 使用字符串或整数表示插值方法。    |
-| fill (int \| list \| tuple)           | fill (int \| list \| tuple)                | 对图像扩展时填充的值。默认值： 0。                 |
-| -                                         | keys (list[str] \| tuple[str])             | Paddle 支持 `keys` 参数。 |
+| interpolation (InterpolationMode or int)  | interpolation (str or int)                | 参数名相同但类型不同，Paddle 使用字符串或整数表示插值方法。    |
+| fill (int or list or tuple)           | fill (int or list or tuple)                | 对图像扩展时填充的值。默认值： 0。                 |
+| -                                         | keys (list[str] or tuple[str])             | Paddle 支持 `keys` 参数。 |
 
 ### 转写示例
 

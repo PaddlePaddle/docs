@@ -16,9 +16,9 @@ paddle.vision.transforms.crop(img: PIL.Image | np.array, top: int, left: int, he
 
 ### 参数映射
 
-| torchvision | paddle | 备注                                                         |
+| torchvision | PaddlePaddle | 备注                                                         |
 | ------------------------------------- | ------------------------------ | ------------------------------------------------------------ |
-| img (PIL Image \| Tensor)             | img (PIL.Image \| np.array \| paddle.Tensor)    | 输入图片。 |
+| img (PIL Image or Tensor)             | img (PIL.Image or np.array or paddle.Tensor)    | 输入图片。 |
 | top (int) | top (int) | 要裁剪的矩形框左上方的坐标点的垂直方向的值。 |
 | left (int)| left (int)| 要裁剪的矩形框左上方的坐标点的水平方向的值。 |
 | height (int)| height (int)| 要裁剪的矩形框的高度值。 |

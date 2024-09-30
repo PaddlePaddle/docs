@@ -15,6 +15,6 @@ paddle.vision.transforms.vflip(img: PIL.Image.Image | numpy.ndarray | paddle.Ten
 
 ### 参数映射
 
-| torchvision.transforms.functional.vflip | paddle.vision.transforms.vflip            | 备注                                                         |
+| torchvision | PaddlePaddle            | 备注                                                         |
 | --------------------------------------- | ----------------------------------------- | ------------------------------------------------------------ |
-| img (PIL.Image.Image \| torch.Tensor)   | img (PIL.Image.Image \| paddle.Tensor \| numpy.ndarray)    | 输入图像。 |
+| img (PIL.Image.Image or torch.Tensor)   | img (PIL.Image.Image or paddle.Tensor or numpy.ndarray)    | 输入图像。 |

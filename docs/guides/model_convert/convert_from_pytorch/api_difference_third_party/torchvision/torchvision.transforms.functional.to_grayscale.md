@@ -18,7 +18,7 @@ paddle.vision.transforms.to_grayscale(img: PIL.Image.Image | numpy.ndarray,
 
 ### 参数映射
 
-| torchvision.transforms.functional.to_grayscale | paddle.vision.transforms.to_grayscale       | 备注                                                         |
+| torchvision | PaddlePaddle       | 备注                                                         |
 |-----------------------------------------------|---------------------------------------------|--------------------------------------------------------------|
-| img (PIL.Image.Image)                         | img (PIL.Image.Image \| numpy.ndarray)      | 输入图像。Paddle 额外支持 `numpy.ndarray` 类型。              |
+| img (PIL.Image.Image)                         | img (PIL.Image.Image or numpy.ndarray)      | 输入图像。Paddle 额外支持 `numpy.ndarray` 类型。              |
 | num_output_channels (int)                     | num_output_channels (int)                   | 输出图像的通道数，默认值均为 1。                              |

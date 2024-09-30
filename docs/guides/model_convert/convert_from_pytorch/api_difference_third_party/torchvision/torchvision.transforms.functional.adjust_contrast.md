@@ -16,7 +16,7 @@ paddle.vision.transforms.adjust_contrast(img: PIL.Image|np.array|paddle.Tensor, 
 
 ### 参数映射
 
-| torchvision | paddle | 备注                                     |
+| torchvision | PaddlePaddle | 备注                                     |
 | --------------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| img (PIL Image or Tensor)                           | img (PIL.Image \| np.array \| paddle.Tensor) | Paddle 支持更多类型，但包含 torchvision 支持的类型。 |
+| img (PIL Image or Tensor)                           | img (PIL.Image or np.array or paddle.Tensor) | Paddle 支持更多类型，但包含 torchvision 支持的类型。 |
 | contrast_factor (float)                             | contrast_factor (float)                  | 调整对比度的因子。                          |

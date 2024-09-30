@@ -6,7 +6,7 @@
 torchvision.transforms.functional.normalize(img, mean, std, inplace = False)
 ```
 
-### [paddle.vision.transforms.normalize](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/normalize_cn.html#cn-api-paddle-vision-transforms-normalize)
+### [paddle.vision.transforms.normalize](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/normalize_cn.html)
 
 ```python
 paddle.vision.transforms.normalize(img, mean = 0.0, std = 1.0, data_format = 'CHW', to_rgb = False, keys = None)
@@ -16,15 +16,15 @@ paddle.vision.transforms.normalize(img, mean = 0.0, std = 1.0, data_format = 'CH
 
 ### 参数映射
 
-| torchvision.transforms.Normalize | paddle.vision.transforms.Normalize | 备注                                                         |
+| torchvision | PaddlePaddle | 备注                                                         |
 | -------------------------------- | ----------------------------------- | ------------------------------------------------------------ |
-| img (PIL.Image \| Tensor) | img (PIL.Image \| np.array \| paddle.Tensor) | 用于归一化的数据。 |
-| mean (int \| float \| list \| tuple)                  | mean (int \| float \| list \| tuple) | 用于每个通道归一化的均值。                                   |
-| std (int \| float \| list \| tuple)                   | std (int \| float \| list \| tuple)  | 用于每个通道归一化的标准差值。                               |
+| img (PIL.Image or Tensor) | img (PIL.Image or np.array or paddle.Tensor) | 用于归一化的数据。 |
+| mean (int or float or list or tuple)                  | mean (int or float or list or tuple) | 用于每个通道归一化的均值。                                   |
+| std (int or float or list or tuple)                   | std (int or float or list or tuple)  | 用于每个通道归一化的标准差值。                               |
 | inplace (bool, optional)         | -                                     | Paddle 不支持 `inplace` 参数。                               |
 | -                                | data_format (str, optional)                     | Paddle 支持 `data_format` 参数，用于指定数据格式。默认为 'CHW'。 |
 | -                                | to_rgb (bool, optional)                         | Paddle 支持 `to_rgb` 参数，是否将图像转换为 RGB 格式。默认为 False。 |
-| -                                | keys (list[str] \| tuple[str], optional)        | Paddle 支持 `keys` 参数，默认为 None。 |
+| -                                | keys (list[str] or tuple[str], optional)        | Paddle 支持 `keys` 参数，默认为 None。 |
 
 ### 转写示例
 

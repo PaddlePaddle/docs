@@ -16,7 +16,7 @@ paddle.vision.transforms.RandomVerticalFlip(prob: float = 0.5, keys: list[str] |
 
 ### 参数映射
 
-| torchvision | paddle | 备注                                                         |
+| torchvision | PaddlePaddle | 备注                                                         |
 | ------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------ |
 | p (float)                                   | prob (float)                                 | 翻转概率，参数名不同。                                       |
-| -                                           | keys (list[str] \| tuple[str] = None)        | Paddle 支持 `keys` 参数。             |
+| -                                           | keys (list[str] or tuple[str] = None)        | Paddle 支持 `keys` 参数。             |

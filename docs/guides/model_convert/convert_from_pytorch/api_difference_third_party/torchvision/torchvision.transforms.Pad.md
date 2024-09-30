@@ -16,9 +16,9 @@ paddle.vision.transforms.Pad(padding: int | list | tuple, fill: int | list | tup
 
 ### 参数映射
 
-| torchvision                   | paddle                       | 备注                                                         |
+| torchvision                   | PaddlePaddle                       | 备注                                                         |
 | --------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------ |
-| padding (int \| list \| tuple)                     | padding (int \| list \| tuple)                       | 两者均支持单个整数或序列进行填充。                           |
-| fill (int \| list \| tuple)                  | fill (int \| list \| tuple)                          | Paddle 支持列表或元组，用于多通道图像填充。                |
+| padding (int or list or tuple)                     | padding (int or list or tuple)                       | 两者均支持单个整数或序列进行填充。                           |
+| fill (int or list or tuple)                  | fill (int or list or tuple)                          | Paddle 支持列表或元组，用于多通道图像填充。                |
 | padding_mode (str)                            | padding_mode (str)                                   | 两者均支持 'constant', 'edge', 'reflect', 'symmetric' 模式。|
-| -                                             | keys (list[str] \| tuple[str] = None)                | Paddle 支持 `keys` 参数。            |
+| -                                             | keys (list[str] or tuple[str] = None)                | Paddle 支持 `keys` 参数。            |

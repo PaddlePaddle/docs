@@ -24,14 +24,14 @@ paddle.vision.transforms.perspective(img: PIL.Image | numpy.ndarray | paddle.Ten
 
 ### 参数映射
 
-| torchvision.transforms.functional.perspective | paddle.vision.transforms.perspective | 备注                                                         |
+| torchvision | PaddlePaddle | 备注                                                         |
 | ---------------------------------------------- | ------------------------------------- | ------------------------------------------------------------ |
-| img (PIL Image \| Tensor)                     | img (PIL.Image \| numpy.ndarray \| paddle.Tensor) | 输入图片。 |
+| img (PIL Image or Tensor)                     | img (PIL.Image or numpy.ndarray or paddle.Tensor) | 输入图片。 |
 | startpoints (List[List[int]])                 | startpoints (List[List[float]])        | 数据类型不同，torchvision 使用 int，Paddle 使用 float       |
 | endpoints (List[List[int]])                   | endpoints (List[List[float]])          | 数据类型不同，torchvision 使用 int，Paddle 使用 float       |
-| interpolation (InterpolationMode \| int)      | interpolation (str \| int)             | 参数名相同但类型不同，Paddle 使用 `str` 替代 `InterpolationMode` |
-| fill (Optional[List[float]] \| number)        | fill (int \| list \| tuple)            | Paddle 支持更多类型，支持 int、list、tuple                    |
-| -                                              | keys (List[str] \| Tuple[str])         | Paddle 支持 `keys` 参数 |
+| interpolation (InterpolationMode or int)      | interpolation (str or int)             | 参数名相同但类型不同，Paddle 使用 `str` 替代 `InterpolationMode` |
+| fill (Optional[List[float]] or number)        | fill (int or list or tuple)            | Paddle 支持更多类型，支持 int、list、tuple                    |
+| -                                              | keys (List[str] or Tuple[str])         | Paddle 支持 `keys` 参数 |
 | antialias (bool, optional)                     | -                                      | Paddle 不支持 `antialias` 参数                                 |
 
 

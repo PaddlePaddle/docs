@@ -16,14 +16,14 @@ paddle.vision.transforms.RandomResizedCrop(size: int | list | tuple, scale: list
 
 ### 参数映射
 
-| torchvision | paddle | 备注                                                         |
+| torchvision | PaddlePaddle | 备注                                                         |
 | ------------------------------------------ | ------------------------------------------- | ------------------------------------------------------------ |
-| size (int \| list \| tuple)                     | size (int \| list \| tuple)                 | 裁剪后的图片大小。                                           |
-| scale (tuple of float)                     | scale (list \| tuple)                        | 相对于原图的尺寸，随机裁剪后图像大小的范围。                |
-| ratio (tuple of float)                     | ratio (list \| tuple)                        | 裁剪后的目标图像宽高比范围。                                 |
-| interpolation (InterpolationMode)          | interpolation (int \| str)                  | Paddle 支持更多插值方法，接受整数或字符串形式。               |
+| size (int or list or tuple)                     | size (int or list or tuple)                 | 裁剪后的图片大小。                                           |
+| scale (tuple of float)                     | scale (list or tuple)                        | 相对于原图的尺寸，随机裁剪后图像大小的范围。                |
+| ratio (tuple of float)                     | ratio (list or tuple)                        | 裁剪后的目标图像宽高比范围。                                 |
+| interpolation (InterpolationMode)          | interpolation (int or str)                  | Paddle 支持更多插值方法，接受整数或字符串形式。               |
 | antialias (bool, optional)                 | -                                           | Paddle 不支持 `antialias` 参数。                             |
-| -                                          | keys (list[str] \| tuple[str] = None)        | Paddle 支持 `keys` 参数，可用于指定要裁剪的键。              |
+| -                                          | keys (list[str] or tuple[str] = None)        | Paddle 支持 `keys` 参数，可用于指定要裁剪的键。              |
 
 ### 转写示例
 

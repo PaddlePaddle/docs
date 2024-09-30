@@ -16,7 +16,7 @@ paddle.vision.transforms.to_tensor(pic: PIL.Image.Image | numpy.ndarray, data_fo
 
 ### 参数映射
 
-| torchvision.transforms.functional.to_tensor | paddle.vision.transforms.to_tensor | 备注                                               |
+| torchvision | PaddlePaddle | 备注                                               |
 | ------------------------------------------- | ----------------------------------- | -------------------------------------------------- |
-| pic (PIL.Image.Image \| numpy.ndarray)      | pic (PIL.Image.Image \| numpy.ndarray) | 输入图像，参数类型和名称一致。                       |
+| pic (PIL.Image.Image or numpy.ndarray)      | pic (PIL.Image.Image or numpy.ndarray) | 输入图像，参数类型和名称一致。                       |
 | -                                           | data_format (str，可选，默认值='CHW') | Paddle 特有参数，指定返回的 Tensor 数据格式，可选 `'CHW'` 或 `'HWC'`。 |
