@@ -5,10 +5,10 @@
 ```python
 fairscale.nn.model_parallel.layers.ParallelEmbedding(num_embeddings: int, embedding_dim: int ,padding_idx: Optional[int] = None, max_norm: Optional[float] = None, norm_type: float = 2.0, scale_grad_by_freq: bool = False, sparse: bool = False, init_method: Callable[[torch.Tensor], torch.Tensor] = init.xavier_normal_, keep_master_weight_for_test: bool = False)
 ```
-### [paddle.distributed.meta_parallel.parallel_layers.mp_layers.VocabParallelEmbedding](https://github.com/PaddlePaddle/Paddle/blob/016766cc89fabc10181453ce70b701dd8ed019f6/python/paddle/distributed/fleet/layers/mpu/mp_layers.py#L37)
+### [paddle.distributed.fleet.meta_parallel.VocabParallelEmbedding](https://github.com/PaddlePaddle/Paddle/blob/016766cc89fabc10181453ce70b701dd8ed019f6/python/paddle/distributed/fleet/layers/mpu/mp_layers.py#L37)
 
 ```python
-paddle.distributed.meta_parallel.parallel_layers.mp_layers.VocabParallelEmbedding(num_embeddings, embedding_dim, weight_attr=None, mp_group=None, name=None)
+paddle.distributed.fleet.meta_parallel.VocabParallelEmbedding(num_embeddings, embedding_dim, weight_attr=None, mp_group=None, name=None)
 ```
 
 两者功能大体一致，但内部实现细节不一样，ParallelEmbedding 的切分方向沿着 embedding 方向，VocabParallelEmbedding 的切分方向沿着 vocab(词汇表)方向，故在多卡训练时，load 参数时需手动修改以匹配参数切分方式的不同。
@@ -28,3 +28,4 @@ paddle.distributed.meta_parallel.parallel_layers.mp_layers.VocabParallelEmbeddin
 | keep_master_weight_for_test  | -              | 返回主参数用于测试，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | -                            | mp_group       | 模型并行组，PyTorch 无此参数，Paddle 保持默认即可。 |
 | -                            | name           | 网络层名称，PyTorch 无此参数，Paddle 保持默认即可。 |
+| -                            | weight_attr           | 指定权重参数属性，PyTorch 无此参数，Paddle 设置为 paddle.nn.initializer.Constant(0)。 |
