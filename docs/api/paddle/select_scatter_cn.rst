@@ -8,11 +8,11 @@ select_scatter
 
 参数
 :::::::::
-- **x**  (Tensor) - 输入的 Tensor 作为目标矩阵，数据类型为： `bool`、 `float16`、 `float32`、 `float64`、 `uint8`、 `int8`、 `int16`、 `int32`、 `int64`、 `bfloat16`、 `complex64`、 `complex128`。
-- **values**  (Tensor) - 需要插入的值，形状需要与 ``x`` 矩阵除去第 ``axis`` 维后的形状一致，数据类型为： `bool`、 `float16`、 `float32`、 `float64`、 `uint8`、 `int8`、 `int16`、 `int32`、 `int64`、 `bfloat16`、 `complex64`、 `complex128`。
-- **axis**  (int) - 指定沿着哪个维度嵌入对应的值，数据类型为：int。
-- **index**  (int) - 指定沿着 ``axis`` 维的哪一列嵌入对应的值，数据类型为：int。
-- **name**  (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **x**  (Tensor) - 输入的 Tensor 作为目标矩阵，数据类型为： `bool`、 `float16`、 `float32`、 `float64`、 `uint8`、 `int8`、 `int16`、 `int32`、 `int64`、 `bfloat16`、 `complex64`、 `complex128`。
+    - **values**  (Tensor) - 需要插入的值，形状需要与 ``x`` 矩阵除去第 ``axis`` 维后的形状一致，数据类型为： `bool`、 `float16`、 `float32`、 `float64`、 `uint8`、 `int8`、 `int16`、 `int32`、 `int64`、 `bfloat16`、 `complex64`、 `complex128`。
+    - **axis**  (int) - 指定沿着哪个维度嵌入对应的值，数据类型为：int。
+    - **index**  (int) - 指定沿着 ``axis`` 维的哪一列嵌入对应的值，数据类型为：int。
+    - **name**  (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

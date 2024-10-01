@@ -4,7 +4,7 @@
 
 * PaddleX 使用文档详见：[PaddleX 多硬件使用](https://github.com/PaddlePaddle/PaddleX/blob/develop/docs/tutorials/base/devices_use_guidance.md)
 * PaddleNLP 大语言模型多硬件使用文档详见：[PaddleNLP NPU 大语言模型使用文档](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/llm/npu)
-* 如果您适配/验证过更多模型，欢迎向飞桨开源社区贡献适配代码，然后邮件联系我们，更新本列表 [ext_paddle_oss](ext_paddle_oss@baidu.com)
+* 如果您适配/验证过更多模型，欢迎按照此 [贡献教程](https://github.com/PaddlePaddle/PaddleX/blob/aba62bfb45f7873a5b1285c5423b20a40468a420/docs/tutorials/hardware_support/how_to_contribute.md) 向飞桨开源社区贡献适配结果，我们验证后会更新本模型验证列表
 
 | 模型库 | 模型类型 | 模型名称 | 训练 | 推理 |
 | - | - | - | - | - |
@@ -21,9 +21,14 @@
 | PaddleX | 图像分类 | [PP-LCNet_x1_5](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-LCNet_x1_5.yaml) | √ | √ |
 | PaddleX | 图像分类 | [PP-LCNet_x2_0](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-LCNet_x2_0.yaml) | √ | √ |
 | PaddleX | 图像分类 | [PP-LCNet_x2_5](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-LCNet_x2_5.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-LCNetV2_base](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-LCNetV2_base.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV1_x0_75](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV1_x0_75.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobileNetV1_x1_0](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV1_x1_0.yaml) | √ | √ |
 | PaddleX | 图像分类 | [MobileNetV2_x0_25](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV2_x0_25.yaml) | √ | √ |
 | PaddleX | 图像分类 | [MobileNetV2_x0_5](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV2_x0_5.yaml) | √ | √ |
 | PaddleX | 图像分类 | [MobileNetV2_x1_0](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV2_x1_0.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobilenetV2_x1_5](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV2_x1_5.yaml) | √ | √ |
+| PaddleX | 图像分类 | [MobilenetV2_x2_0](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV2_x2_0.yaml) | √ | √ |
 | PaddleX | 图像分类 | [MobileNetV3_small_x0_35](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_small_x0_35.yaml) | √ | √ |
 | PaddleX | 图像分类 | [MobileNetV3_small_x0_5](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_small_x0_5.yaml) | √ | √ |
 | PaddleX | 图像分类 | [MobileNetV3_small_x0_75](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_small_x0_75.yaml) | √ | √ |
@@ -35,12 +40,25 @@
 | PaddleX | 图像分类 | [MobileNetV3_large_x1_0](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_large_x1_0.yaml) | √ | √ |
 | PaddleX | 图像分类 | [MobileNetV3_large_x1_25](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/MobileNetV3_large_x1_25.yaml) | √ | √ |
 | PaddleX | 图像分类 | [PP-HGNet_small](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-HGNet_small.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-HGNet_tiny](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-HGNet_tiny.yaml) | √ | √ |
 | PaddleX | 图像分类 | [PP-HGNetV2-B0](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-HGNetV2-B0.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-HGNetV2-B1](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-HGNetV2-B1.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-HGNetV2-B2](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-HGNetV2-B2.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-HGNetV2-B3](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-HGNetV2-B3.yaml) | √ | √ |
 | PaddleX | 图像分类 | [PP-HGNetV2-B4](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-HGNetV2-B4.yaml) | √ | √ |
+| PaddleX | 图像分类 | [PP-HGNetV2-B5](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-HGNetV2-B5.yaml) | √ | √ |
 | PaddleX | 图像分类 | [PP-HGNetV2-B6](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/PP-HGNetV2-B6.yaml) | √ | √ |
 | PaddleX | 图像分类 | [SwinTransformer_base_patch4_window7_224](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/SwinTransformer_base_patch4_window7_224.yaml) | √ | √ |
+| PaddleX | 图像分类 | [SwinTransformer_small_patch4_window7_224](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/SwinTransformer_small_patch4_window7_224.yaml) | √ | √ |
+| PaddleX | 图像分类 | [SwinTransformer_tiny_patch4_window7_224](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/SwinTransformer_tiny_patch4_window7_224.yaml) | √ | √ |
 | PaddleX | 图像分类 | [ConvNeXt_tiny](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/ConvNeXt_tiny.yaml) | √ | √ |
+| PaddleX | 图像分类 | [ConvNeXt_Small](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/ConvNeXt_small.yaml) | √ | √ |
+| PaddleX | 图像分类 | [ConvNeXt_base_224](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/ConvNeXt_base_224.yaml) | √ | √ |
+| PaddleX | 图像分类 | [ConvNeXt_base_384](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/ConvNeXt_base_384.yaml) | √ | √ |
+| PaddleX | 图像分类 | [ConvNeXt_large_224](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/ConvNeXt_large_224.yaml) | √ | √ |
+| PaddleX | 图像分类 | [ConvNeXt_large_384](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/ConvNeXt_large_384.yaml) | √ | √ |
 | PaddleX | 图像分类 | [CLIP_vit_base_patch16_224](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/CLIP_vit_base_patch16_224.yaml) | √ | √ |
+| PaddleX | 图像分类 | [CLIP_vit_large_patch14_224](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/CLIP_vit_large_patch14_224.yaml) | √ | √ |
 | PaddleX | 目标检测 | [PP-YOLOE_plus-S](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PP-YOLOE_plus-S.yaml) | √ | √ |
 | PaddleX | 目标检测 | [PP-YOLOE_plus-M](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PP-YOLOE_plus-M.yaml) | √ | √ |
 | PaddleX | 目标检测 | [PP-YOLOE_plus-L](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PP-YOLOE_plus-L.yaml) | √ | √ |
@@ -50,18 +68,42 @@
 | PaddleX | 目标检测 | [RT-DETR-L](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/RT-DETR-L.yaml) | √ | √ |
 | PaddleX | 目标检测 | [RT-DETR-H](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/RT-DETR-H.yaml) | √ | √ |
 | PaddleX | 目标检测 | [RT-DETR-X](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/RT-DETR-X.yaml) | √ | √ |
+| PaddleX | 目标检测 | [PicoDet-XS](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PicoDet-XS.yaml) | √ | √ |
 | PaddleX | 目标检测 | [PicoDet-S](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PicoDet-S.yaml) | √ | √ |
+| PaddleX | 目标检测 | [PicoDet-M](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PicoDet-M.yaml) | √ | √ |
 | PaddleX | 目标检测 | [PicoDet-L](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PicoDet-L.yaml) | √ | √ |
+| PaddleX | 目标检测 | [CenterNet-DLA34](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/CenterNet-DLA-34.yaml) | √ | √ |
+| PaddleX | 目标检测 | [CenterNet-ResNet50](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/CenterNet-ResNet50.yaml) | √ | √ |
+| PaddleX | 目标检测 | [FCOS-ResNet50](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/FCOS-ResNet50.yaml) | √ | √ |
+| PaddleX | 目标检测 | [DETR-R50](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/DETR-R50.yaml) | √ | √ |
+| PaddleX | 目标检测 | [FasterRCNN-ResNet34-FPN](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/FasterRCNN-ResNet34-FPN.yaml) | √ | √ |
+| PaddleX | 目标检测 | [FasterRCNN-ResNet50-FPN](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/FasterRCNN-ResNet50-FPN.yaml) | √ | √ |
+| PaddleX | 目标检测 | [FasterRCNN-ResNet50-vd-FPN](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/FasterRCNN-ResNet50-vd-FPN.yaml) | √ | √ |
+| PaddleX | 目标检测 | [FasterRCNN-ResNet50-vd-SSLDv2-FPN](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/FasterRCNN-ResNet50-vd-SSLDv2-FPN.yaml) | √ | √ |
+| PaddleX | 目标检测 | [FasterRCNN-ResNet101-FPN](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/FasterRCNN-ResNet101-FPN.yaml) | √ | √ |
+| PaddleX | 目标检测 | [YOLOv3-DarkNet53](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/YOLOv3-DarkNet53.yaml) | √ | √ |
+| PaddleX | 目标检测 | [YOLOv3-ResNet50_vd-DCN](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/YOLOv3-ResNet50_vd_DCN.yaml) | √ | √ |
+| PaddleX | 目标检测 | [YOLOv3-MobileNet-V3](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/YOLOv3-MobileNetV3.yaml) | √ | √ |
 | PaddleX | 语义分割 | [Deeplabv3-R50](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/semantic_segmentation/Deeplabv3-R50.yaml) | √ | √ |
 | PaddleX | 语义分割 | [Deeplabv3-R101](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/semantic_segmentation/Deeplabv3-R101.yaml) | √ | √ |
 | PaddleX | 语义分割 | [Deeplabv3_Plus-R50](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/semantic_segmentation/Deeplabv3_Plus-R50.yaml) | √ | √ |
 | PaddleX | 语义分割 | [Deeplabv3_Plus-R101](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/semantic_segmentation/Deeplabv3_Plus-R101.yaml) | √ | √ |
 | PaddleX | 语义分割 | [PP-LiteSeg-T](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/semantic_segmentation/PP-LiteSeg-T.yaml) | √ | √ |
 | PaddleX | 语义分割 | [OCRNet_HRNet-W48](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/semantic_segmentation/OCRNet_HRNet-W48.yaml) | √ | √ |
+| PaddleX | 实例分割 | [PPYOLOE_Seg-S](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/instance_segmentation/PP-YOLOE_seg-S.yaml) | √ | √ |
+| PaddleX | 实例分割 | [SOLOv2](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/instance_segmentation/SOLOv2.yaml) | √ | √ |
+| PaddleX | 实例分割 | [Cascade-MaskRCNN-ResNet50-vd-SSLDv2-FPN](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/instance_segmentation/Cascade-MaskRCNN-ResNet50-vd-SSLDv2-FPN.yaml) | √ | √ |
+| PaddleX | 实例分割 | [Cascade-MaskRCNN-ResNet50-FPN](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/instance_segmentation/Cascade-MaskRCNN-ResNet50-FPN.yaml) | √ | √ |
+| PaddleX | 实例分割 | [Mask-RT-DETR-H](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/instance_segmentation/Mask-RT-DETR-H.yaml) | √ | √ |
+| PaddleX | 实例分割 | [Mask-RT-DETR-L](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/instance_segmentation/Mask-RT-DETR-L.yaml) | √ | √ |
+| PaddleX | 实例分割 | [Mask-RT-DETR-M](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/instance_segmentation/Mask-RT-DETR-M.yaml) | √ | √ |
 | PaddleX | 文本检测 | [PP-OCRv4_server_det](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_detection/PP-OCRv4_server_det.yaml) | √ | √ |
 | PaddleX | 文本检测 | [PP-OCRv4_mobile_det](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_detection/PP-OCRv4_mobile_det.yaml) | √ | √ |
 | PaddleX | 文本识别 | [PP-OCRv4_server_rec](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_recognition/PP-OCRv4_server_rec.yaml) | √ | √ |
 | PaddleX | 文本识别 | [PP-OCRv4_mobile_rec](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_recognition/PP-OCRv4_mobile_rec.yaml) | √ | √ |
+| PaddleX | 文本识别 | [ch_REPSVTR_rec](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_recognition/ch_RepSVTR_rec.yaml) | √ | √ |
+| PaddleX | 文本识别 | [ch_SVTRv2_rec](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_recognition/ch_SVTRv2_rec.yaml) | √ | √ |
+| PaddleX | 表格识别 | [SLANet](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/table_recognition/SLANet.yaml) | √ | √ |
 | PaddleX | 版面分析 | [PicoDet_layout_1x](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/structure_analysis/PicoDet_layout_1x.yaml) | √ | √ |
 | PaddleX | 时序预测 | [DLinear](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/DLinear.yaml) | √ | √ |
 | PaddleX | 时序预测 | [RLinear](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/RLinear.yaml) | √ | √ |
@@ -69,5 +111,15 @@
 | PaddleX | 时序预测 | [TimesNet](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/TimesNet.yaml) | √ | √ |
 | PaddleX | 时序预测 | [Nonstationary](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/Nonstationary.yaml) | √ | √ |
 | PaddleX | 时序预测 | [TiDE](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/TiDE.yaml) | √ | √ |
+| PaddleX | 时序异常检测 | [DLinear_ad](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_anomaly_detection/DLinear_ad.yaml) | √ | √ |
+| PaddleX | 时序异常检测 | [PatchTST_ad](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_anomaly_detection/PatchTST_ad.yaml) | √ | √ |
+| PaddleX | 时序异常检测 | [TimesNet_ad](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_anomaly_detection/TimesNet_ad.yaml) | √ | √ |
+| PaddleX | 时序异常检测 | [Nonstationary_ad](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_anomaly_detection/Nonstationary_ad.yaml) | √ | √ |
+| PaddleX | 时序异常检测 | [AutoEncoder_ad](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_anomaly_detection/AutoEncoder_ad.yaml) | √ | √ |
+| PaddleX | 时序分类 | [TimesNet_cls](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_classification/TimesNet_cls.yaml) | √ | √ |
 | PaddleNLP | 自然语言理解模型 | [BERT](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/legacy/model_zoo/bert) | √ | √ |
+| PaddleNLP | 自然语言理解模型 | [ERNIE-3.0](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/legacy/model_zoo/ernie-3.0) | √ | √ |
+| PaddleNLP | 自然语言理解模型 | [UIE](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/legacy/model_zoo/uie) | √ | √ |
+| PaddleNLP | 自然语言理解模型 | [UTC](https://github.com/PaddlePaddle/PaddleNLP/tree/release/2.8/applications/zero_shot_text_classification) | √ | √ |
+| PaddleNLP | 自然语言理解模型 | [RoBERTa](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/legacy/model_zoo/roberta) | √ | √ |
 | PaddleNLP | 大语言模型 | [LLaMA](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/llm/npu/llama) | √ | √ |
