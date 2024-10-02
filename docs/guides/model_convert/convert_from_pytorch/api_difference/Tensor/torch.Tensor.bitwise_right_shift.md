@@ -1,4 +1,4 @@
-## [ paddle参数更多 ]torch.Tensor.bitwise_right_shift
+## [ paddle 参数更多 ]torch.Tensor.bitwise_right_shift
 
 ### [torch.Tensor.bitwise_right_shift](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_right_shift.html#torch-tensor-bitwise-right-shift)
 
