@@ -18,10 +18,8 @@ paddle.Tensor.is_sparse_csr()
 
 ```python
 # torch 版本可以直接访问属性
-# x = torch.rand(3)
-# print(x.is_sparse_csr)
+x.is_sparse_csr
 
 # Paddle 版本需要调用
-x = paddle.rand([3])
-print(x.is_sparse_csr())
+x.is_sparse_csr()
 ```

@@ -3,7 +3,7 @@
 ### [torch.Tensor.col_indices](https://pytorch.org/docs/stable/generated/torch.Tensor.col_indices.html)
 
 ```python
-torch.Tensor.crow_indices()
+torch.Tensor.col_indices()
 ```
 
 ### [paddle.Tensor.cols]()

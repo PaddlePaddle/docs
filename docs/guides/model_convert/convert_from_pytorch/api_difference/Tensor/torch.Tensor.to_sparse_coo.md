@@ -18,4 +18,4 @@ paddle.Tensor.to_sparse_coo(sparse_dim)
 
 | PyTorch | PaddlePaddle | 备注                                                                                      |
 | ------- | ------------ | ----------------------------------------------------------------------------------------- |
-| -       | sparse_dim   | 在新的稀疏张量中包含的稀疏维度的数量，pytorch中无此参数，paddle令其为tensor维度长度即可。 |
+| -       | sparse_dim   | 在新的稀疏张量中包含的稀疏维度的数量，pytorch中无此参数，paddle令其为tensor输入维度长度即可。 |

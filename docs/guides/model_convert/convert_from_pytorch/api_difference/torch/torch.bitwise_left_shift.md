@@ -1,4 +1,4 @@
-## [ paddle参数更多 ]torch.bitwise_left_shift
+## [ paddle 参数更多 ]torch.bitwise_left_shift
 
 ### [torch.bitwise_left_shift](https://pytorch.org/docs/stable/generated/torch.bitwise_left_shift.html)
 

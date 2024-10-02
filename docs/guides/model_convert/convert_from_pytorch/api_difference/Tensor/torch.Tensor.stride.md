@@ -24,12 +24,9 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 转写示例
 
 ```python
-# torch 版本
-x = torch.rand(3)
-print(x.stride(dim=0))
+# torch 版本, 默认返回全部
+x.stride(dim)
 
 # Paddle 版本
-x = paddle.rand([3])
-dim=0
-print(dim==None?x.get_strides():x.get_strides()[dim])
+x.get_strides() if dim is None else x.get_strides()[dim]
 ```
