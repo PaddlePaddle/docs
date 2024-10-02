@@ -19,7 +19,7 @@ paddle.linalg.inv(x, name=None)
 | PyTorch      | PaddlePaddle | 备注                                                                  |
 | ------------ | ------------ | --------------------------------------------------------------------- |
 | A            | x            | 输入 Tensor，仅参数名不一致。                                         |
-| check_errors | -            | 是否检查错误，paddle 暂不支持，需转写，目前仅支持check_errors为False的情况。                                         |
+| check_errors | -            | 是否检查错误，paddle 暂不支持，需转写，目前仅支持 check_errors 为 False 的情况。                                         |
 | out          | -            | 表示输出的 Tensor ， Paddle 无此参数，需要转写。                      |
 | 返回值       | 返回值       | Pytorch 返回两个 out 与 info，Paddle 仅返回一个 Tensor：out，需转写。 |
 
