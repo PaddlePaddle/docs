@@ -1,4 +1,4 @@
-## [ torch参数更多 ] torch.Tensor.stride
+## [ torch 参数更多 ] torch.Tensor.stride
 
 ### [torch.Tensor.stride](https://pytorch.org/docs/stable/generated/torch.Tensor.stride.html#torch-tensor-stride)
 
