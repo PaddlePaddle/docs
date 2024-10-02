@@ -1,4 +1,4 @@
-## [ paddle参数更多 ]torch.Tensor.to_sparse_coo
+## [ paddle 参数更多 ]torch.Tensor.to_sparse_coo
 
 ### [torch.Tensor.to_sparse_coo](https://pytorch.org/docs/stable/generated/torch.Tensor.to_sparse_coo.html)
 
