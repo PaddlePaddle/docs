@@ -12,9 +12,8 @@ PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 
 ```python
 # PyTorch 写法
-out = x.random_(from=0, to=10)
+x.random_(from=0, to=10)
 
 # Paddle 写法
-out = paddle.cast(paddle.randint(low=0, high=10, shape=x.shape), dtype='float32')
-x = out
+paddle.assign(paddle.cast(paddle.randint(low=0, high=2, shape=x.shape), dtype='float32'), x)
 ```

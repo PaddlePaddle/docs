@@ -1,4 +1,4 @@
-## [torch 参数更多 ]torch.distributions.lkj_cholesky.LKJCholesky
+## [ torch 参数更多 ]torch.distributions.lkj_cholesky.LKJCholesky
 
 ### [torch.distributions.lkj_cholesky.LKJCholesky](https://pytorch.org/docs/stable/distributions.html#torch.distributions.lkj_cholesky.LKJCholesky)
 
@@ -21,4 +21,4 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | dim | dim | 表示输入的参数。                                                        |
 | concentration | concentration | 表示输入的参数。                                                        |
 | validate_args | -             | 是否添加验证环节。Paddle 无此参数，一般对训练结果影响不大，可直接删除。 |
-| - | sample_method             | pytorch无此参数，保持默认即可。 |
+| - | sample_method             | pytorch无此参数，paddle保持默认即可。 |

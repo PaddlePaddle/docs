@@ -19,6 +19,4 @@ paddle.Tensor.geometric_(probs, name=None)
 | PyTorch | PaddlePaddle | 备注                          |
 | ------- | ------------ | ----------------------------- |
 | p   | probs            | 输入 Tensor，仅参数名不一致。 |
-
-| *         | -            | 其他参数                                                                             |
 | generator | -            | 用于采样的伪随机数生成器， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
