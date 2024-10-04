@@ -1,4 +1,4 @@
-## [ torch参数更多 ]torch.Tensor.cauchy_
+## [ torch 参数更多 ]torch.Tensor.cauchy_
 
 ### [torch.Tensor.cauchy_](https://pytorch.org/docs/stable/generated/torch.Tensor.cauchy_.html)
 

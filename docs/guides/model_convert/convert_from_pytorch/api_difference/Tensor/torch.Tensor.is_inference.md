@@ -6,10 +6,10 @@
 torch.Tensor.is_inference()
 ```
 
-### [paddle.Tensor._is_inference](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html)
+### [paddle.Tensor.stop_gradient]()
 
 ```python
-paddle.Tensor._is_inference
+paddle.Tensor.stop_gradient
 ```
 
 两者功能一致，无参数。
