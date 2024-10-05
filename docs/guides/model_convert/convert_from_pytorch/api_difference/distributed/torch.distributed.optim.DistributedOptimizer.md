@@ -16,13 +16,11 @@ paddle.distributed.shard_optimizer(optimizer, shard_fn=None)
 
 ### 参数映射
 
-| PyTorch         | PaddlePaddle | 备注                                                |
-| --------------- | ------------ | --------------------------------------------------- |
-| optimizer_class | optimizer    | 优化器。                                            |
-| params_rref     | -            | 初始化方法，paddle 无此参数，暂无转写方式。         |
-| timeout         | -            | 超时配置，paddle 无此参数，暂无转写方式。           |
-| world_size      | -            | 进程数量，paddle 无此参数，暂无转写方式。           |
-| rank            | -            | 当前进程所在的 gpu，paddle 无此参数，暂无转写方式。 |
-| store           | -            | 信息交换的配置，paddle 无此参数，暂无转写方式。     |
-| group_name      | -            | 组名，paddle 无此参数，暂无转写方式。               |
-| -               | shard_fn     | 用于切分优化器状态。                                |
+
+| PyTorch         | PaddlePaddle | 备注                                        |
+| --------------- | ------------ | ------------------------------------------- |
+| optimizer_class | optimizer    | 优化器。                                    |
+| params_rref     | -            | 初始化方法，paddle 无此参数，暂无转写方式。 |
+| args            | -            | 优化器实例化参数。                          |
+| kwargs          | -            | 优化器实例化参数                            |
+| -               | shard_fn     | 用于切分优化器状态。                        |
