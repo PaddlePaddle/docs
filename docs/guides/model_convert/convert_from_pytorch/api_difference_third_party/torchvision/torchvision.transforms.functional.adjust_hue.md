@@ -3,13 +3,16 @@
 ### [torchvision.transforms.functional.adjust_hue](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.adjust_hue.html)
 
 ```python
-torchvision.transforms.functional.adjust_hue(img: Tensor, hue_factor: float) → Tensor
+torchvision.transforms.functional.adjust_hue(img: Tensor, hue_factor: float)
 ```
 
 ### [paddle.vision.transforms.adjust_hue](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/adjust_hue_cn.html)
 
 ```python
-paddle.vision.transforms.adjust_hue(img: PIL.Image | np.array | paddle.Tensor, hue_factor: float) → PIL.Image | numpy.ndarray | paddle.Tensor
+paddle.vision.transforms.adjust_hue(
+    img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor], 
+    hue_factor: float
+)
 ```
 
 两者功能一致，参数完全一致，具体如下：

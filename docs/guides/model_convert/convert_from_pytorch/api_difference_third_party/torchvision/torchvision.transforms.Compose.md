@@ -3,13 +3,18 @@
 ### [torchvision.transforms.Compose](https://pytorch.org/vision/main/generated/torchvision.transforms.Compose.html)
 
 ```python
-torchvision.transforms.Compose(transforms: list of Transform objects)
+torchvision.transforms.Compose(
+    transforms: List[Transform]
+)
 ```
 
 ### [paddle.vision.transforms.Compose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Compose_cn.html)
 
 ```python
-paddle.vision.transforms.Compose(transforms: list | tuple)
+paddle.vision.transforms.Compose(
+    transforms: Union[List[Transform], Tuple[Transform, ...]]
+)
+
 ```
 
 两者功能一致，参数完全一致，具体如下：
@@ -18,4 +23,4 @@ paddle.vision.transforms.Compose(transforms: list | tuple)
 
 | torchvision                 | PaddlePaddle                | 备注                                     |
 | ---------------------------------------------- | ----------------------------------------------- | ---------------------------------------- |
-| transforms (list of Transform objects)         | transforms (list or tuple)                      | torch 仅支持 list，paddle 支持 list 或 tuple |
+| transforms          | transforms                       | torch 仅支持 list，paddle 支持 list 或 tuple |

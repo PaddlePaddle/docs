@@ -3,21 +3,26 @@
 ### [torchvision.transforms.functional.perspective](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.perspective.html#perspective)
 
 ```python
-torchvision.transforms.functional.perspective(img: Tensor,
-                                              startpoints: List[List[int]],
-                                              endpoints: List[List[int]],
-                                              interpolation: InterpolationMode = InterpolationMode.BILINEAR,
-                                              fill: Optional[List[float]] = None) → Tensor
+torchvision.transforms.functional.perspective(
+    img: Tensor,
+    startpoints: List[List[int]],
+    endpoints: List[List[int]],
+    interpolation: InterpolationMode = InterpolationMode.BILINEAR,
+    fill: Optional[List[float]] = None
+)
 ```
 
 ### [paddle.vision.transforms.perspective](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/perspective_cn.html#cn-api-paddle-vision-transforms-perspective)
 
 ```python
-paddle.vision.transforms.perspective(img: PIL.Image | numpy.ndarray | paddle.Tensor,
-                                     startpoints: List[List[float]],
-                                     endpoints: List[List[float]],
-                                     interpolation: str | int = 'nearest',
-                                     fill: int | list | tuple = 0) → PIL.Image | numpy.ndarray | paddle.Tensor
+paddle.vision.transforms.perspective(
+    img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor],
+    startpoints: List[List[float]],
+    endpoints: List[List[float]],
+    interpolation: Union[str, int] = 'nearest',
+    fill: Union[int, List[int], Tuple[int, ...]] = 0
+) -> Union[PIL.Image.Image, np.ndarray, paddle.Tensor]
+
 ```
 
 两者功能一致，但参数类型不一致。
@@ -26,13 +31,13 @@ paddle.vision.transforms.perspective(img: PIL.Image | numpy.ndarray | paddle.Ten
 
 | torchvision | PaddlePaddle | 备注                                                         |
 | ---------------------------------------------- | ------------------------------------- | ------------------------------------------------------------ |
-| img (PIL Image or Tensor)                     | img (PIL.Image or numpy.ndarray or paddle.Tensor) | 输入图片。 |
-| startpoints (List[List[int]])                 | startpoints (List[List[float]])        | 数据类型不同，torchvision 使用 int，Paddle 使用 float       |
-| endpoints (List[List[int]])                   | endpoints (List[List[float]])          | 数据类型不同，torchvision 使用 int，Paddle 使用 float       |
-| interpolation (InterpolationMode or int)      | interpolation (str or int)             | 参数名相同但类型不同，Paddle 使用 `str` 替代 `InterpolationMode` |
-| fill (Optional[List[float]] or number)        | fill (int or list or tuple)            | Paddle 支持更多类型，支持 int、list、tuple                    |
-| -                                              | keys (List[str] or Tuple[str])         | Paddle 支持 `keys` 参数 |
-| antialias (bool, optional)                     | -                                      | Paddle 不支持 `antialias` 参数                                 |
+| img                      | img  | 输入图片。 |
+| startpoints                  | startpoints         | 数据类型不同，torchvision 使用 int，Paddle 使用 float       |
+| endpoints                    | endpoints           | 数据类型不同，torchvision 使用 int，Paddle 使用 float       |
+| interpolation       | interpolation              | 参数名相同但类型不同，Paddle 使用 str 替代 InterpolationMode |
+| fill         | fill             | Paddle 支持更多类型，支持 int、list、tuple                    |
+| -                                              | keys          | Paddle 支持 keys 参数 |
+| antialias                      | -                                      | Paddle 不支持 antialias 参数                                 |
 
 
 ### 转写示例

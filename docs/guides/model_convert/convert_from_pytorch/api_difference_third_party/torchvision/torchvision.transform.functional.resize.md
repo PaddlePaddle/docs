@@ -12,9 +12,12 @@ torchvision.transforms.functional.resize(img: Tensor, size: Optional[Union[int, 
 ### [paddle.vision.transforms.resize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/resize_cn.html)
 
 ```python
-paddle.vision.transforms.resize(img: numpy.ndarray | Tensor | PIL.Image, size: int | list | tuple,
-                                interpolation: str | int = 'bilinear',
-                                keys: list[str] | tuple[str] = None)
+paddle.vision.transforms.resize(
+    img: Union[np.ndarray, paddle.Tensor, PIL.Image.Image], 
+    size: Union[int, List[int], Tuple[int, ...]], 
+    interpolation: Union[str, int] = 'bilinear', 
+    keys: Optional[Union[List[str], Tuple[str, ...]]] = None
+)
 ```
 
 两者功能一致，但输入参数类型不一致。
@@ -23,11 +26,11 @@ paddle.vision.transforms.resize(img: numpy.ndarray | Tensor | PIL.Image, size: i
 
 | torchvision | PaddlePaddle | 备注                                                         |
 | ----------------------------- | -------------------------------- | ------------------------------------------------------------ |
-| size (int or list or tuple) | size (int or list or tuple)      | 两者均支持单个整数或序列表示输出大小。                       |
-| interpolation (InterpolationMode) | interpolation (str or int) | 两者类型不一致。               |
-| max_size (int or None)        | -                                | Paddle 不支持 `max_size` 参数。                             |
-| antialias (bool or None)      | -                                | Paddle 不支持 `antialias` 参数。                             |
-| -                             | keys (list[str] or tuple[str] = None) | Paddle 支持 `keys` 参数。 |
+| size  | size       | 两者均支持单个整数或序列表示输出大小。                       |
+| interpolation  | interpolation  | 两者类型不一致，torch 为 InterpolationMode。               |
+| max_size         | -                                | 表示调整图像大小时允许的最长边的最大值，Paddle 不支持 `max_size` 参数。                             |
+| antialias       | -                                | 是否应用抗锯齿处理，Paddle 不支持 `antialias` 参数。                             |
+| -                             | keys  | Paddle 支持 `keys` 参数。 |
 
 
 ### 转写示例

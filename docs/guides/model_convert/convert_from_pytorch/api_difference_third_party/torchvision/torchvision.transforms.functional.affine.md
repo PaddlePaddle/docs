@@ -10,20 +10,23 @@ torchvision.transforms.functional.affine(img: Tensor,
                                         shear: List[float],
                                         interpolation: InterpolationMode = InterpolationMode.NEAREST,
                                         fill: Optional[List[float]] = None,
-                                        center: Optional[List[int]] = None) → Tensor
+                                        center: Optional[List[int]] = None)
 ```
 
 ### [paddle.vision.transforms.affine](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/affine_cn.html)
 
 ```python
-paddle.vision.transforms.affine(img: PIL.Image | numpy.ndarray | paddle.Tensor,
-                                angle: float | int,
-                                translate: list[float],
-                                scale: float,
-                                shear: list | tuple,
-                                interpolation: str | int = 'nearest',
-                                fill: int | list | tuple = 0,
-                                center: tuple[int, int] = None) → PIL.Image | numpy.ndarray | paddle.Tensor
+paddle.vision.transforms.affine(
+    img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor],
+    angle: Union[float, int],
+    translate: List[float],
+    scale: float,
+    shear: Union[List[float], Tuple[float, ...]],
+    interpolation: Union[str, int] = 'nearest',
+    fill: Union[int, List[int], Tuple[int, ...]] = 0,
+    center: Optional[Tuple[int, int]] = None
+)
+
 ```
 
 两者功能基本一致，但参数类型不一致，具体如下：
@@ -32,14 +35,14 @@ paddle.vision.transforms.affine(img: PIL.Image | numpy.ndarray | paddle.Tensor,
 
 | torchvision | PaddlePaddle | 备注                                                         |
 | ----------------------------------------- | -------------------------------- | ------------------------------------------------------------ |
-| img (Tensor)                              | img (PIL.Image or numpy.ndarray or paddle.Tensor) | 输入图片 |
-| angle (float)                             | angle (float or int)             | Paddle 类型更灵活 |
-| translate (List[int])                     | translate (list[float])          | 数据类型不同，torchvision 使用整数，Paddle 使用浮点数       |
-| scale (float)                             | scale (float)                     | 参数名称和功能一致，控制缩放比例                             |
-| shear (list)                       | shear (list or tuple)            | 剪切角度值    |
-| interpolation (InterpolationMode or int)  | interpolation (str or int)       | 参数类型不同，Paddle 使用字符串或整数表示插值方法            |
-| fill (int or list or tuple)    | fill (int or list or tuple)      | 对图像扩展时填充的像素值，默认值：0       |
-| center (tuple[int, int] or None)              | center (tuple[int, int] or None) |  仿射变换的中心点坐标     |
+| img                               | img  | 输入图片。 |
+| angle                              | angle              | Paddle 类型更灵活。 |
+| translate                      | translate           | 数据类型不同，torchvision 使用整数，Paddle 使用浮点数。       |
+| scale                              | scale                      | 参数名称和功能一致，控制缩放比例。                             |
+| shear                        | shear             | 剪切角度值 。   |
+| interpolation   | interpolation        | 参数类型不同，Paddle 使用字符串或整数表示插值方法  。          |
+| fill     | fill       | 对图像扩展时填充的像素值，默认值：0 。    |
+| center               | center  |  仿射变换的中心点坐标 。    |
 
 ### 转写示例
 

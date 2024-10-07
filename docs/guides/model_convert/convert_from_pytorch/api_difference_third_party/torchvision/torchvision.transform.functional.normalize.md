@@ -18,13 +18,13 @@ paddle.vision.transforms.normalize(img, mean = 0.0, std = 1.0, data_format = 'CH
 
 | torchvision | PaddlePaddle | 备注                                                         |
 | -------------------------------- | ----------------------------------- | ------------------------------------------------------------ |
-| img (PIL.Image or Tensor) | img (PIL.Image or np.array or paddle.Tensor) | 用于归一化的数据。 |
-| mean (int or float or list or tuple)                  | mean (int or float or list or tuple) | 用于每个通道归一化的均值。                                   |
-| std (int or float or list or tuple)                   | std (int or float or list or tuple)  | 用于每个通道归一化的标准差值。                               |
-| inplace (bool, optional)         | -                                     | Paddle 不支持 `inplace` 参数。                               |
-| -                                | data_format (str, optional)                     | Paddle 支持 `data_format` 参数，用于指定数据格式。默认为 'CHW'。 |
-| -                                | to_rgb (bool, optional)                         | Paddle 支持 `to_rgb` 参数，是否将图像转换为 RGB 格式。默认为 False。 |
-| -                                | keys (list[str] or tuple[str], optional)        | Paddle 支持 `keys` 参数，默认为 None。 |
+| img  | img  | 用于归一化的数据。 |
+| mean                   | mean  | 用于每个通道归一化的均值。                                   |
+| std                    | std   | 用于每个通道归一化的标准差值。                               |
+| inplace          | -                                     | 是否原地修改。                               |
+| -                                | data_format                      | 用于指定数据格式，默认为 'CHW'。 |
+| -                                | to_rgb                          | 是否将图像转换为 RGB 格式，默认为 False。 |
+| -                                | keys         | Paddle 支持 `keys` 参数，默认为 None。 |
 
 ### 转写示例
 
@@ -42,9 +42,7 @@ img = torch.tensor([
     [[0.5, 0.5], [0.5, 0.5]]
 ])
 result = F.normalize(img, mean=mean, std=std)
-```
 
-```python
 # Paddle 写法
 import paddle
 mean = 0.5, 0.5, 0.5

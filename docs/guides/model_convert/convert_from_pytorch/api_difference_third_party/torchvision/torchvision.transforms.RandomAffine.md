@@ -3,26 +3,30 @@
 ### [torchvision.transforms.RandomAffine](https://pytorch.org/vision/main/generated/torchvision.transforms.RandomAffine.html)
 
 ```python
-torchvision.transforms.RandomAffine(degrees: sequence | number,
-                                    translate: Optional[Tuple[float, float]] = None,
-                                    scale: Optional[Tuple[float, float]] = None,
-                                    shear: sequence | number = None,
-                                    interpolation: InterpolationMode = InterpolationMode.NEAREST,
-                                    fill: int | float | sequence = 0,
-                                    center: Optional[Sequence[int]] = None)
+torchvision.transforms.RandomAffine(
+    degrees: Union[List[float], Tuple[float, ...], float],
+    translate: Optional[Tuple[float, float]] = None,
+    scale: Optional[Tuple[float, float]] = None,
+    shear: Union[List[float], Tuple[float, ...], float] = None,
+    interpolation: InterpolationMode = InterpolationMode.NEAREST,
+    fill: Union[int, float, List[float], Tuple[float, ...]] = 0,
+    center: Optional[Union[List[int], Tuple[int, ...]]] = None
+)
 ```
 
 ### [paddle.vision.transforms.RandomAffine](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomAffine_cn.html)
 
 ```python
-paddle.vision.transforms.RandomAffine(degrees: Tuple[float, float] | float | int,
-                                      translate: Sequence[float] | float | int = None,
-                                      scale: Tuple[float, float] = None,
-                                      shear: Sequence[float] | float | int = None,
-                                      interpolation: str | int = 'nearest',
-                                      fill: int | List[int] | Tuple[int] = 0,
-                                      center: Tuple[int, int] = None,
-                                      keys: List[str] | Tuple[str] = None)
+paddle.vision.transforms.RandomAffine(
+    degrees: Union[Tuple[float, float], float, int],
+    translate: Optional[Union[Sequence[float], float, int]] = None,
+    scale: Optional[Tuple[float, float]] = None,
+    shear: Optional[Union[Sequence[float], float, int]] = None,
+    interpolation: Union[str, int] = 'nearest',
+    fill: Union[int, List[int], Tuple[int, ...]] = 0,
+    center: Optional[Tuple[int, int]] = None,
+    keys: Optional[Union[List[str], Tuple[str, ...]]] = None
+)
 ```
 
 两者功能基本一致，但参数类型存在不一致，具体如下：
@@ -31,14 +35,14 @@ paddle.vision.transforms.RandomAffine(degrees: Tuple[float, float] | float | int
 
 | torchvision        | PaddlePaddle    | 备注                                                         |
 | ------------------------------------------ | ----------------------------------------- | ------------------------------------------------------------ |
-| degrees (Tuple[float, float] or float or int)               | degrees (Tuple[float, float] or float or int) | 随机旋转变换的角度大小。 |
-| translate (tuple, optional)                | translate (Sequence[float] or float or int) | 随机水平平移和垂直平移变化的位移大小。 |
-| scale (tuple, optional)                    | scale (Tuple[float, float], optional)     | 随机伸缩变换的比例大小。                                   |
-| shear (sequence or number, optional)       | shear (Sequence[float] or float or int)   | 随机剪切角度的大小范围。                           |
-| interpolation (InterpolationMode, optional)| interpolation (str or int)                | 参数类型不同，Paddle 使用字符串或整数表示插值方法。            |
-| fill (int or float or sequence)            | fill (int or List[int] or Tuple[int])     |  对图像扩展时填充的像素值，默认值： 0 。                   |
-| center (sequence, optional)                | center (Tuple[int, int], optional)        | 仿射变换的中心点坐标。   |
-| -                                          | keys (List[str] or Tuple[str], optional)  | Paddle 支持 `keys` 参数，torchvision 不支持。                 |
+| degrees                | degrees  | 随机旋转变换的角度大小。 |
+| translate                 | translate  | 随机水平平移和垂直平移变化的位移大小。 |
+| scale                     | scale      | 随机伸缩变换的比例大小。                                   |
+| shear        | shear    | 随机剪切角度的大小范围。                           |
+| interpolation | interpolation                 | 参数类型不同，Paddle 使用字符串或整数表示插值方法。            |
+| fill             | fill      |  对图像扩展时填充的像素值，默认值： 0 。                   |
+| center                 | center         | 仿射变换的中心点坐标。   |
+| -                                          | keys   | Paddle 支持 `keys` 参数，torchvision 不支持。                 |
 
 
 ### 转写示例

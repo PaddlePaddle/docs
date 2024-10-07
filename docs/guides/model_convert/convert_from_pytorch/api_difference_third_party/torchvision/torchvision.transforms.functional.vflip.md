@@ -3,13 +3,17 @@
 ### [torchvision.transforms.functional.vflip](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.vflip.html)
 
 ```python
-torchvision.transforms.functional.vflip(img: PIL.Image.Image | torch.Tensor)
+torchvision.transforms.functional.vflip(
+    img: Union[PIL.Image.Image, torch.Tensor]
+)
 ```
 
-### [paddle.vision.transforms.vflip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/vflip_cn.html#vflip)
+### [paddle.vision.transforms.vflip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/vflip_cn.html)
 
 ```python
-paddle.vision.transforms.vflip(img: PIL.Image.Image | numpy.ndarray | paddle.Tensor)
+paddle.vision.transforms.vflip(
+    img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor]
+)
 ```
 
 
@@ -17,4 +21,4 @@ paddle.vision.transforms.vflip(img: PIL.Image.Image | numpy.ndarray | paddle.Ten
 
 | torchvision | PaddlePaddle            | 备注                                                         |
 | --------------------------------------- | ----------------------------------------- | ------------------------------------------------------------ |
-| img (PIL.Image.Image or torch.Tensor)   | img (PIL.Image.Image or paddle.Tensor or numpy.ndarray)    | 输入图像。 |
+| img    | img     | 输入图像。 |

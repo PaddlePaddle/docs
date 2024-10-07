@@ -27,9 +27,9 @@ paddle.vision.transforms.RandomErasing(prob = 0.5,
 
 | torchvision         | PaddlePaddle     | 备注                                                         |
 | --------------------------------------------- | ------------------------------------------ | ------------------------------------------------------------ |
-| p (float)                                     | prob (float)                               | 参数名称不同，Paddle 使用 `prob` 替代 `p`，表示擦除操作的概率。 |
-| scale (Tuple[float, float])                   | scale (Tuple[float, float])                    |  擦除区域面积在输入图像的中占比范围。 |
-| ratio (Tuple[float, float])                   | ratio (Tuple[float, float])                    |  擦除区域的纵横比范围。 |
-| value (int or float or Tuple[int, int, int] or str) | value (int or float or Tuple[int, int, int] or str)    | 擦除区域中像素将被替换为的值。 |
-| inplace (bool)                                | inplace (bool)                             | 该变换是否在原地操作。                                         |
-| -                                             | keys (List[str] or Tuple[str], optional)   | Paddle 支持 `keys` 参数，torchvision 不支持。 |
+| p                                      | prob                                | 参数名称不同，Paddle 使用 `prob` 替代 `p`，表示擦除操作的概率。 |
+| scale                    | scale                     |  擦除区域面积在输入图像的中占比范围。 |
+| ratio                    | ratio                     |  擦除区域的纵横比范围。 |
+| value  | value     | 擦除区域中像素将被替换为的值。 |
+| inplace                                 | inplace                              | 该变换是否在原地操作。                                         |
+| -                                             | keys    | Paddle 支持 `keys` 参数，torchvision 不支持。 |
