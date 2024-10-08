@@ -14,11 +14,11 @@ paddle.isin(x, test_x, assume_unique=False, invert=False, name=None)
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
-### 参数映射：
+### 参数映射
 
-| PyTorch       | PaddlePaddle  | 备注                                             |
-| ------------- | ------------- | ------------------------------------------------ |
-| elements      | x             | 输入的 tensor，仅参数名不一致。                   |
-| test_elements | test_x        | 用于检测的 tensor，仅参数名不一致。               |
-| assume_unique | assume_unique | 表示输入的 tensor 和用于检测的 tensor 元素是否唯一。 |
-| invert        | invert        | 表示是否输出反转的结果。                         |
+| PyTorch       | PaddlePaddle | 备注                                                   |
+| ------------- | ------------ | ------------------------------------------------------ |
+| elements      | x            | 表示输入的 Tensor，仅参数名不一致。                    |
+| test_elements | test_x       | 表示用于检验的 Tensor ，仅参数名不一致。               |
+| assume_unique | assum_unique | 表示输入的 Tensor 和用于检验的 Tensor 的元素是否唯一。 |
+| invert        | invert       | 表示是否输出反转的结果。                               |
