@@ -6,7 +6,7 @@
 torch.Tensor.orgqr(input2)
 ```
 
-### [paddle.Tensor.householder_product](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/linalg/householder_product_cn.html#householder-product)
+### [paddle.Tensor.householder_product](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/householder_product_cn.html#householder-product)
 
 ```python
 paddle.Tensor.householder_product(tau, name=None)

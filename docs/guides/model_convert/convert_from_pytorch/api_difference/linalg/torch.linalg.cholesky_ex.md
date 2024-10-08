@@ -20,7 +20,7 @@ paddle.linalg.cholesky(x, upper=False, name=None)
 | ------------ | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | input        | x            | 表示输入参数为多维 Tensor，它的维度应该为 [*, M, N]，其中*为零或更大的批次尺寸，并且最里面的两个维度上的矩阵都应为对称的正定矩阵，仅参数名不一致。 |
 | upper        | upper        | 表示是否返回上三角矩阵或下三角矩阵。                                                                                                                 |
-| check_errors | -            | 是否检查错误，paddle 暂不支持，需转写，目前仅支持 check_errors 为 False 的情况。                                                                                                                      |
+| check_errors | -            | 是否检查错误，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                                                                                                                      |
 | out          | -            | 表示输出的 Tensor ，Paddle 无此参数，需要转写。                                                                                                      |
 | 返回值       | 返回值       | Pytorch 返回两个 out 与 info，Paddle 仅返回一个 Tensor：out，需转写。                                                                                |
 
@@ -34,7 +34,7 @@ torch.linalg.cholesky_ex(x, upper=False)
 
 # Paddle 写法:
 ## 注: 仅支持 check_errors=False 时的情况
-(paddle.linalg.cholesky(x, upper=False), paddle.zeros(x.shape[:-2], dtype='int64'))
+(paddle.linalg.cholesky(x, upper=False), paddle.zeros(x.shape[:-2], dtype='int32'))
 ```
 
 #### out: 输出的 Tensor
@@ -45,5 +45,7 @@ torch.linalg.cholesky_ex(x, upper=False, out=output)
 
 
 # Paddle 写法
-paddle.assign((paddle.linalg.cholesky(x, upper=False), paddle.zeros(x.shape[:-2], dtype='int64')),output)
+out1 = paddle.linalg.cholesky(x, upper=False)
+out2 = paddle.zeros(x.shape[:-2], dtype='int32')
+paddle.assign(out1, output=output[0]), paddle.assign(out2, output=output[1])
 ```
