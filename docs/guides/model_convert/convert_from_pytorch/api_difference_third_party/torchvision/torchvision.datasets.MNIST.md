@@ -15,7 +15,7 @@ paddle.vision.datasets.MNIST(image_path: str = None, label_path: str = None, mod
 
 ### 参数映射
 
-| torchvision.datasets.MNIST 参数 | paddle.vision.datasets.MNIST 参数 | 备注 |
+| torchvision | PaddlePaddle | 备注 |
 | -------------------------------- | ---------------------------------- | ---- |
 | `root`                           | `image_path`, `label_path`         | torchvision 使用 `root` 指定数据集根目录，Paddle 分别使用 `image_path` 和 `label_path` 指定图像和标签路径。|
 | `train`                          | `mode`                              | torchvision 的 `train=True` 对应 Paddle 的 `mode='train'`，`train=False` 对应 `mode='test'`。|
