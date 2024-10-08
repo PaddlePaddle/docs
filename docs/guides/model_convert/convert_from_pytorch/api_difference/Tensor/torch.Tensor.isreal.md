@@ -3,7 +3,7 @@
 ### [torch.Tensor.isreal](https://pytorch.org/docs/stable/generated/torch.Tensor.isreal.html#torch.Tensor.isreal)
 
 ```python
-Tensor.isreal()
+torch.Tensor.isreal()
 ```
 
 ### [paddle.Tensor.isreal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#isreal-name-none)
