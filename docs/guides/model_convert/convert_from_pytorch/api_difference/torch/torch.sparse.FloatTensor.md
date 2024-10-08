@@ -26,11 +26,11 @@ paddle.sparse.sparse_coo_tensor(indices, values, shape=None, dtype=None, place=N
 | -       | stop_gradient      | 是否阻断 Autograd 的梯度传导。PyTorch 无此参数，Paddle 保持默认即可。    |
 ### 转写示例
 
-#### dtype：输出数据类型
+#### device：输出数据类型
 
 ```python
 # PyTorch 写法
-torch.sparse.FloatTensor(i, v, torch.Size([2, 3]), dtype=torch.float32)
+torch.sparse.FloatTensor(i, v, torch.Size([2, 3]), device='cpu')
 
 # Paddle 写法
-paddle.sparse.sparse_coo_tensor(i, v, torch.Size([2, 3]),).astype(paddle.float32)
+paddle.sparse.sparse_coo_tensor(i, v, torch.Size([2, 3]), place=Place(cpu))
