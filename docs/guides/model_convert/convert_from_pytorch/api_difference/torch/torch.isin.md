@@ -16,9 +16,9 @@ paddle.isin(x, test_x, assume_unique=False, invert=False, name=None)
 
 ### 参数映射
 
-| PyTorch       | PaddlePaddle | 备注                                                   |
-| ------------- | ------------ | ------------------------------------------------------ |
-| elements      | x            | 表示输入的 Tensor，仅参数名不一致。                    |
-| test_elements | test_x       | 表示用于检验的 Tensor ，仅参数名不一致。               |
-| assume_unique | assum_unique | 表示输入的 Tensor 和用于检验的 Tensor 的元素是否唯一。 |
-| invert        | invert       | 表示是否输出反转的结果。                               |
+| PyTorch       | PaddlePaddle  | 备注                                                   |
+| ------------- | ------------- | ------------------------------------------------------ |
+| elements      | x             | 表示输入的 Tensor，仅参数名不一致。                    |
+| test_elements | test_x        | 表示用于检验的 Tensor ，仅参数名不一致。               |
+| assume_unique | assume_unique | 表示输入的 Tensor 和用于检验的 Tensor 的元素是否唯一。 |
+| invert        | invert        | 表示是否输出反转的结果。                               |
