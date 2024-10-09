@@ -48,10 +48,10 @@ paddle.audio.functional.get_window(('general_hamming', 0.6), 10)
 #### dtype：返回 Tensor 的数据类型
 ```python
 # PyTorch 写法
-torch.signal.windows.general_hamming(10, alpha = 0.6)
+torch.signal.windows.general_hamming(10)
 
 # Paddle 写法
-paddle.audio.functional.get_window(('general_hamming', 0.6), 10, dtype='float32')
+paddle.audio.functional.get_window(('general_hamming', 0.54), 10, dtype='float32')
 ```
 
 #### requires_grad：是否需要求反向梯度，需要修改该 Tensor 的 stop_gradient 属性

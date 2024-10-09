@@ -34,7 +34,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.signal.windows.exponential(10)
 
 # Paddle 写法
-paddle.audio.functional.get_window(('exponential', 0.5), 10)
+paddle.audio.functional.get_window(('exponential', 1.0), 10)
 ```
 
 #### tau：窗口的半衰期
@@ -52,7 +52,7 @@ paddle.audio.functional.get_window(('exponential', 0.5), 10)
 torch.signal.windows.exponential(10)
 
 # Paddle 写法
-paddle.audio.functional.get_window(('exponential', 0.5), 10, dtype = 'float32')
+paddle.audio.functional.get_window(('exponential', 1.0), 10, dtype = 'float32')
 ```
 
 #### requires_grad：是否需要求反向梯度，需要修改该 Tensor 的 stop_gradient 属性
@@ -61,7 +61,7 @@ paddle.audio.functional.get_window(('exponential', 0.5), 10, dtype = 'float32')
 torch.signal.windows.exponential(10, requires_grad=True)
 
 # Paddle 写法
-x = paddle.audio.functional.get_window(('exponential', 0.5), 10)
+x = paddle.audio.functional.get_window(('exponential', 1.0), 10)
 x.stop_gradient = False
 ```
 
@@ -71,6 +71,6 @@ x.stop_gradient = False
 torch.signal.windows.exponential(10, device=torch.device('cpu'))
 
 # Paddle 写法
-y = paddle.audio.functional.get_window(('exponential', 0.5), 10)
+y = paddle.audio.functional.get_window(('exponential', 1.0), 10)
 y.cpu()
 ```
