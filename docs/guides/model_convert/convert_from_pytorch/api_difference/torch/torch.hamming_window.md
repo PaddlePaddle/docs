@@ -21,7 +21,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | periodic        | fftbins       | 判断是否返回适用于过滤器设计的对称窗口，功能相反，Pytorch 默认值为 True 时，Paddle 须设置为 False，需要转写。  |
 | alpha | -  | 窗函数中非线性部分的衰减速度，Paddle 无此参数，暂无转写方式。  |
 | beta | -  | 窗函数中线性部分的衰减速度，Paddle 无此参数，暂无转写方式。  |
-| dtype        | dtype | 返回 Tensor 的数据类型。 |
+| dtype        | dtype | 返回 Tensor 的数据类型，支持 float32、float64。PyTorch 若参数为空，返回数据类型默认为 `float32`。 Paddle 若参数为空，返回数据类型默认为 `float64` ，需要转写。|
 | layout | -   | 表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | device | -   | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。 |
 | requires_grad | - | 表示是否计算梯度， Paddle 无此参数，需要转写。 |
@@ -31,7 +31,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 #### window：窗函数类型
 ```python
 # PyTorch 写法
-torch.hamming_window(10, periodic = True)
+torch.hamming_window(10)
 
 # Paddle 写法
 paddle.audio.functional.get_window('hamming', 10, fftbins = False)
@@ -44,6 +44,15 @@ torch.hamming_window(10, periodic = False)
 
 # Paddle 写法
 paddle.audio.functional.get_window('hamming', 10, fftbins = True)
+```
+
+#### dtype：返回 Tensor 的数据类型
+```python
+# PyTorch 写法
+torch.hamming_window(10)
+
+# Paddle 写法
+paddle.audio.functional.get_window('hamming', 10, fftbins = False, dtype='float32')
 ```
 
 #### requires_grad：是否需要求反向梯度，需要修改该 Tensor 的 stop_gradient 属性
