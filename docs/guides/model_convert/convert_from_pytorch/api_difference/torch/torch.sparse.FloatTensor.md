@@ -33,4 +33,4 @@ paddle.sparse.sparse_coo_tensor(indices, values, shape=None, dtype=None, place=N
 torch.sparse.FloatTensor(i, v, torch.Size([2, 3]), device='cpu')
 
 # Paddle 写法
-paddle.sparse.sparse_coo_tensor(i, v, torch.Size([2, 3]), place=Place(cpu))
+paddle.sparse.sparse_coo_tensor(i, v, [2, 3], place="cpu")
