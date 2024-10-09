@@ -17,16 +17,20 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
-| PyTorch | PaddlePaddle | 备注                                                           |
-| ------- | ------------ | -------------------------------------------------------------- |
+
+| PyTorch | PaddlePaddle | 备注                                                            |
+| ------- | ------------ | --------------------------------------------------------------- |
 | dim     | -            | 返回指定维度的步长，默认返回全部步长，paddle 不支持，需要转写。 |
 
 ### 转写示例
 
 ```python
 # torch 版本, 默认返回全部
-x.stride(dim)
+x.stride(dim=None)
 
 # Paddle 版本
-x.get_strides() if dim is None else x.get_strides()[dim]
+if dim:
+    x.get_strides() 
+else:
+    x.get_strides()[dim]
 ```
