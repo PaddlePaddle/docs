@@ -44,11 +44,13 @@ train_dataset = datasets.MNIST(
 # Paddle 写法
 from pathlib import Path
 import paddle
-transform = paddle.vision.transforms.Compose(transforms=[paddle.vision.
-    transforms.ToTensor(), paddle.vision.transforms.Normalize(mean=(0.1307,
-    ), std=(0.3081,))])
-train_dataset = paddle.vision.datasets.MNIST(transform=transform, download=True, mode='train',
+transform = paddle.vision.transforms.Compose(
+    transforms=[paddle.vision.transforms.ToTensor(), 
+    paddle.vision.transforms.Normalize(mean=(0.1307,), std=(0.3081,))])
+train_dataset = paddle.vision.datasets.MNIST(
+    transform=transform, 
+    download=True, 
+    mode='train',
     image_path=str(Path('./data') / 'MNIST/raw/train-images-idx3-ubyte.gz'),
     label_path=str(Path('./data') / 'MNIST/raw/train-labels-idx1-ubyte.gz'))
-
 ```
