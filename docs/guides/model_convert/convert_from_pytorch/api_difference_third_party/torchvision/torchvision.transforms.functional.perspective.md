@@ -21,7 +21,7 @@ paddle.vision.transforms.perspective(
     endpoints: List[List[float]],
     interpolation: Union[str, int] = 'nearest',
     fill: Union[int, List[int], Tuple[int, ...]] = 0
-) -> Union[PIL.Image.Image, np.ndarray, paddle.Tensor]
+)
 
 ```
 
@@ -32,12 +32,11 @@ paddle.vision.transforms.perspective(
 | torchvision | PaddlePaddle | 备注                                                         |
 | ---------------------------------------------- | ------------------------------------- | ------------------------------------------------------------ |
 | img                      | img  | 输入图片。 |
-| startpoints                  | startpoints         | 数据类型不同，torchvision 使用 int，Paddle 使用 float       |
-| endpoints                    | endpoints           | 数据类型不同，torchvision 使用 int，Paddle 使用 float       |
-| interpolation       | interpolation              | 参数名相同但类型不同，Paddle 使用 str 替代 InterpolationMode |
-| fill         | fill             | Paddle 支持更多类型，支持 int、list、tuple                    |
-| -                                              | keys          | Paddle 支持 keys 参数 |
-| antialias                      | -                                      | Paddle 不支持 antialias 参数                                 |
+| startpoints                  | startpoints         | 在原图上的四个角（左上、右上、右下、左下）的坐标。      |
+| endpoints                    | endpoints           | 在原图上的四个角（左上、右上、右下、左下）的坐标。      |
+| interpolation       | interpolation              | 参数名相同但类型不同，Paddle 使用 String 替代 InterpolationMode，转写时需要把 InterpolationMode 转写为 String。 |
+| fill         | fill             |  对图像扩展时填充的像素值。             |
+| antialias                      | -                                      | Paddle 无此参数，暂无转写方式。                                 |
 
 
 ### 转写示例

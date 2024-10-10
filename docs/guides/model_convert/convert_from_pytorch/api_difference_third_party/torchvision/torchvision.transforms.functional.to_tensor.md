@@ -10,7 +10,7 @@ torchvision.transforms.functional.to_tensor(pic: Union[PIL.Image.Image, numpy.nd
 
 ```python
 paddle.vision.transforms.to_tensor(
-    pic: Union[PIL.Image.Image, np.ndarray], 
+    pic: Union[PIL.Image.Image, np.ndarray],
     data_format: str = 'CHW'
 )
 ```
@@ -21,5 +21,5 @@ paddle.vision.transforms.to_tensor(
 
 | torchvision | PaddlePaddle | 备注                                               |
 | ------------------------------------------- | ----------------------------------- | -------------------------------------------------- |
-| pic       | pic  | 输入图像，参数类型和名称一致。                       |
-| -                                           | data_format  | Paddle 特有参数，指定返回的 Tensor 数据格式，可选 `'CHW'` 或 `'HWC'`。 |
+| pic       | pic  | 输入图像。                       |
+| -                                           | data_format  | PyTorch 无此参数，Paddle 保持默认即可。 |

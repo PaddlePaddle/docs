@@ -23,4 +23,4 @@ paddle.vision.transforms.Compose(
 
 | torchvision                 | PaddlePaddle                | 备注                                     |
 | ---------------------------------------------- | ----------------------------------------------- | ---------------------------------------- |
-| transforms          | transforms                       | torch 仅支持 list，paddle 支持 list 或 tuple |
+| transforms          | transforms                       | 用于组合的数据预处理接口实例列表。 |

@@ -10,7 +10,7 @@ torchvision.transforms.Grayscale(num_output_channels: int = 1)
 
 ```python
 paddle.vision.transforms.Grayscale(
-    num_output_channels: int = 1, 
+    num_output_channels: int = 1,
     keys: Optional[Union[List[str], Tuple[str, ...]]] = None
 )
 ```
@@ -22,4 +22,4 @@ paddle.vision.transforms.Grayscale(
 | torchvision | PaddlePaddle | 备注                                     |
 | -------------------------------- | ----------------------------------- | ---------------------------------------- |
 | num_output_channels         | num_output_channels            | 输出图像的通道数，参数值为 1 或 3。       |
-| -                                | keys | Paddle 支持 `keys` 参数。 |
+| -                                | keys | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。 |

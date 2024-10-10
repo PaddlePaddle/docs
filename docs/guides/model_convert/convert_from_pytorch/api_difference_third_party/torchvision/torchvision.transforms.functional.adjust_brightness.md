@@ -10,7 +10,7 @@ torchvision.transforms.functional.adjust_brightness(img: Tensor, brightness_fact
 
 ```python
 paddle.vision.transforms.adjust_brightness(
-    img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor], 
+    img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor],
     brightness_factor: float
 )
 ```
@@ -21,5 +21,5 @@ paddle.vision.transforms.adjust_brightness(
 
 | torchvision | PaddlePaddle | 备注                                     |
 | ----------------------------------------------------- | ------------------------------------------ | ---------------------------------------- |
-| img                              | img | Paddle 支持更多类型，但包含 torch 支持的类型。 |
+| img                              | img | Paddle 支持更多类型，其中包含 PyTorch 支持的类型。 |
 | brightness_factor                              | brightness_factor                    | 调整亮度的因子。                          |

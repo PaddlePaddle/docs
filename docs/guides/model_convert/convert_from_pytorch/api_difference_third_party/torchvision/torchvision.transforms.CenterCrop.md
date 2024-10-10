@@ -13,7 +13,7 @@ torchvision.transforms.CenterCrop(
 
 ```python
 paddle.vision.transforms.CenterCrop(
-    size: Union[int, List[int], Tuple[int, ...]], 
+    size: Union[int, List[int], Tuple[int, ...]],
     keys: Optional[Union[List[str], Tuple[str, ...]]] = None
 )
 
@@ -26,4 +26,4 @@ paddle.vision.transforms.CenterCrop(
 | torchvision | PaddlePaddle | 备注                                     |
 | --------------------------------- | ------------------------------------- | ---------------------------------------- |
 | size             | size            | 输出图像的形状大小。 |
-| -                                 | keys     | Paddle 支持 `keys` 参数。 |
+| -                                 | keys     | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。 |

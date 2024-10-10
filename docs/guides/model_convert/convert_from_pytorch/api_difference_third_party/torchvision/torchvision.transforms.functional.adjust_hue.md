@@ -10,7 +10,7 @@ torchvision.transforms.functional.adjust_hue(img: Tensor, hue_factor: float)
 
 ```python
 paddle.vision.transforms.adjust_hue(
-    img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor], 
+    img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor],
     hue_factor: float
 )
 ```
@@ -21,5 +21,5 @@ paddle.vision.transforms.adjust_hue(
 
 | torchvision | PaddlePaddle | 备注                                     |
 | ----------------------------------------------- | ------------------------------------ | ---------------------------------------- |
-| img                        | img  | Paddle 支持更多类型，但包含 torchvision 支持的类型。 |
+| img                        | img  | Paddle 支持更多类型，其中包含 PyTorch 支持的类型。 |
 | hue_factor                              | hue_factor                    | 调整色调的因子，范围为 [-0.5, 0.5]。          |

@@ -32,8 +32,8 @@ paddle.vision.transforms.RandomCrop(
 | torchvision | PaddlePaddle | 备注                                                         |
 | ---------------------------------- | ------------------------------------ | ------------------------------------------------------------ |
 | size              | size           | 裁剪后的图片大小。                                           |
-| padding  | padding  | 两者均支持单个整数或序列进行填充。                           |
+| padding  | padding  |  对图像四周外边进行填充。                           |
 | pad_if_needed                | pad_if_needed                  | 是否在裁剪前进行填充以满足大小要求。                         |
-| fill         | fill                 | 用于填充的像素值，仅当 padding_mode 为 'constant' 时有效。   |
+| fill         | fill                 | 用于填充的像素值。   |
 | padding_mode                  | padding_mode                    | 填充模式，支持 'constant', 'edge', 'reflect', 'symmetric'。 |
-| -                                  | keys  | Paddle 支持 `keys` 参数。            |
+| -                                  | keys  | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。            |

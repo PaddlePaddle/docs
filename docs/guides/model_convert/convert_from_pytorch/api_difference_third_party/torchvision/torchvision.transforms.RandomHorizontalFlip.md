@@ -10,7 +10,7 @@ torchvision.transforms.RandomHorizontalFlip(p: float = 0.5)
 
 ```python
 paddle.vision.transforms.RandomHorizontalFlip(
-    prob: float = 0.5, 
+    prob: float = 0.5,
     keys: Optional[Union[List[str], Tuple[str, ...]]] = None
 )
 ```
@@ -21,5 +21,5 @@ paddle.vision.transforms.RandomHorizontalFlip(
 
 | torchvision | PaddlePaddle | 备注                                                         |
 | ------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------ |
-| p                                    | prob                                  | 翻转概率，参数名不同。                                       |
-| -                                           | keys         | Paddle 支持 `keys` 参数，可用于指定要翻转的键。             |
+| p                                    | prob                                  | 翻转概率，仅参数名不一致。                                       |
+| -                                           | keys         | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。             |

@@ -21,10 +21,10 @@ paddle.vision.transforms.normalize(img, mean = 0.0, std = 1.0, data_format = 'CH
 | img  | img  | 用于归一化的数据。 |
 | mean                   | mean  | 用于每个通道归一化的均值。                                   |
 | std                    | std   | 用于每个通道归一化的标准差值。                               |
-| inplace          | -                                     | 是否原地修改。                               |
-| -                                | data_format                      | 用于指定数据格式，默认为 'CHW'。 |
-| -                                | to_rgb                          | 是否将图像转换为 RGB 格式，默认为 False。 |
-| -                                | keys         | Paddle 支持 `keys` 参数，默认为 None。 |
+| inplace          | -                                     | 是否原地修改，Paddle 无此参数，需要转写。                               |
+| -                                | data_format                      | 用于指定数据格式，默认为 'CHW'，PyTorch 无此参数，Paddle 保持默认即可。 |
+| -                                | to_rgb                          | 是否将图像转换为 RGB 格式，默认为 False，PyTorch 无此参数，Paddle 保持默认即可。 |
+| -                                | keys         | Paddle 支持 `keys` 参数，默认为 None，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 ### 转写示例
 

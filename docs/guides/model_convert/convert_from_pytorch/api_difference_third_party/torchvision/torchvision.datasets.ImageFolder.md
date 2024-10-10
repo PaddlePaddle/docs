@@ -3,21 +3,21 @@
 ### [torchvision.datasets.ImageFolder](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/ImageFolder_cn.html)
 
 ```python
-torchvision.datasets.ImageFolder(root: Union[str, pathlib.Path], 
-                                 transform: Optional[Callable] = None, 
-                                 target_transform: Optional[Callable] = None, 
-                                 loader: Callable[[str], Any] = default_loader, 
-                                 is_valid_file: Optional[Callable[[str], bool]] = None, 
+torchvision.datasets.ImageFolder(root: Union[str, pathlib.Path],
+                                 transform: Optional[Callable] = None,
+                                 target_transform: Optional[Callable] = None,
+                                 loader: Callable[[str], Any] = default_loader,
+                                 is_valid_file: Optional[Callable[[str], bool]] = None,
                                  allow_empty: bool = False)
 ```
 
 ### [paddle.vision.datasets.ImageFolder](https://pytorch.org/vision/main/generated/torchvision.datasets.ImageFolder.html)
 
 ```python
-paddle.vision.datasets.ImageFolder(root: str, 
-                                   loader: Optional[Callable] = None, 
-                                   extensions: Optional[Union[list[str], tuple[str]]] = None, 
-                                   transform: Optional[Callable] = None, 
+paddle.vision.datasets.ImageFolder(root: str,
+                                   loader: Optional[Callable] = None,
+                                   extensions: Optional[Union[list[str], tuple[str]]] = None,
+                                   transform: Optional[Callable] = None,
                                    is_valid_file: Optional[Callable[[str], bool]] = None)
 ```
 
@@ -32,7 +32,7 @@ paddle.vision.datasets.ImageFolder(root: str,
 | loader                           | loader                             | 图片加载函数。                              |
 | is_valid_file                    | is_valid_file                      | 根据每条数据的路径来判断是否合法的一个函数。extensions 和 is_valid_file 不可以同时设置。                  |
 | allow_empty                      | -                                  | 是否允许空文件夹，Paddle 无此参数。一般情况下对使用无显著影响，可直接删除。 |
-| -                                | extensions                         | Paddle 中支持设定允许的文件后缀，用于限制数据集文件的格式。|
+| -                                | extensions                         | Paddle 中支持设定允许的文件后缀，用于限制数据集文件的格式，转写时保持默认即可。|
 
 ### 转写示例
 

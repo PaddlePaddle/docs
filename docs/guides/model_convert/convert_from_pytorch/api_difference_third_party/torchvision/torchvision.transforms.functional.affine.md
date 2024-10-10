@@ -36,12 +36,12 @@ paddle.vision.transforms.affine(
 | torchvision | PaddlePaddle | 备注                                                         |
 | ----------------------------------------- | -------------------------------- | ------------------------------------------------------------ |
 | img                               | img  | 输入图片。 |
-| angle                              | angle              | Paddle 类型更灵活。 |
-| translate                      | translate           | 数据类型不同，torchvision 使用整数，Paddle 使用浮点数。       |
-| scale                              | scale                      | 参数名称和功能一致，控制缩放比例。                             |
+| angle                              | angle              | 旋转角度。 |
+| translate                      | translate           | 随机水平平移和垂直平移变化的位移大小。       |
+| scale                              | scale                      | 控制缩放比例。                             |
 | shear                        | shear             | 剪切角度值 。   |
-| interpolation   | interpolation        | 参数类型不同，Paddle 使用字符串或整数表示插值方法  。          |
-| fill     | fill       | 对图像扩展时填充的像素值，默认值：0 。    |
+| interpolation   | interpolation        | 参数类型不同，Paddle 使用 String 表示插值方法，转写时需要把 InterpolationMode 转写为 String  。          |
+| fill     | fill       | 对图像扩展时填充的像素值。    |
 | center               | center  |  仿射变换的中心点坐标 。    |
 
 ### 转写示例

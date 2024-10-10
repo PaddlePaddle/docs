@@ -17,12 +17,12 @@ paddle.vision.datasets.MNIST(image_path: str = None, label_path: str = None, mod
 
 | torchvision | PaddlePaddle | 备注 |
 | -------------------------------- | ---------------------------------- | ---- |
-| `root`                           | `image_path`, `label_path`         | torchvision 使用 `root` 指定数据集根目录，Paddle 分别使用 `image_path` 和 `label_path` 指定图像和标签路径。|
+| `root`                           | `image_path`, `label_path`         | torchvision 使用 `root` 指定数据集根目录，Paddle 分别使用 `image_path` 和 `label_path` 指定图像和标签路径，转写时需要用 `root/{file_location}` 拼接成 paddle 所需路径 。|
 | `train`                          | `mode`                              | torchvision 的 `train=True` 对应 Paddle 的 `mode='train'`，`train=False` 对应 `mode='test'`。|
-| `transform`                      | `transform`                         | 参数一致。|
+| `transform`                      | `transform`                         | 参数一致，转写时保持默认。|
 | `target_transform`               | -                                    | Paddle 不支持 `target_transform` 参数。|
-| `download`                       | `download`                           | 参数一致。|
-| -                                | `backend`                            | Paddle 额外支持 `backend` 参数，用于指定返回的图像类型。|
+| `download`                       | `download`                           | 参数一致，无需转写。|
+| -                                | `backend`                            | Paddle 额外支持 `backend` 参数，用于指定返回的图像类型，转写时保持默认即可。|
 
 ### 转写示例
 
@@ -48,7 +48,7 @@ transform = paddle.vision.transforms.Compose(transforms=[paddle.vision.
     transforms.ToTensor(), paddle.vision.transforms.Normalize(mean=(0.1307,
     ), std=(0.3081,))])
 train_dataset = paddle.vision.datasets.MNIST(transform=transform, download=True, mode='train',
-    image_path=str(Path('./data') / 'MNIST/raw/train-images-idx3-ubyte.gz'), 
+    image_path=str(Path('./data') / 'MNIST/raw/train-images-idx3-ubyte.gz'),
     label_path=str(Path('./data') / 'MNIST/raw/train-labels-idx1-ubyte.gz'))
 
 ```

@@ -10,7 +10,7 @@ torchvision.transforms.functional.adjust_contrast(img: Tensor, contrast_factor: 
 
 ```python
 paddle.vision.transforms.adjust_contrast(
-    img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor], 
+    img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor],
     contrast_factor: float
 )
 ```
@@ -21,5 +21,5 @@ paddle.vision.transforms.adjust_contrast(
 
 | torchvision | PaddlePaddle | 备注                                     |
 | --------------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| img                            | img  | Paddle 支持更多类型，但包含 torchvision 支持的类型。 |
+| img                            | img  | Paddle 支持更多类型，其中包含 PyTorch 支持的类型。 |
 | contrast_factor                              | contrast_factor                   | 调整对比度的因子。                          |

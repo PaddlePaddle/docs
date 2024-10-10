@@ -27,11 +27,11 @@ paddle.vision.transforms.Resize(
 
 | torchvision | PaddlePaddle | 备注                                                         |
 | ----------------------------- | -------------------------------- | ------------------------------------------------------------ |
-| size  | size       | 两者均支持单个整数或序列表示输出大小。                       |
-| interpolation  | interpolation  | 两者类型不一致。               |
-| max_size         | -                                | Paddle 不支持 `max_size` 参数。                             |
-| antialias       | -                                | Paddle 不支持 `antialias` 参数。                             |
-| -                             | keys  | Paddle 支持 `keys` 参数。 |
+| size  | size       | 输出图像大小。                       |
+| interpolation  | interpolation  | 参数名相同但类型不同，Paddle 使用 String 表示插值方法，转写时需要把 InterpolationMode 转写为 String。            |
+| max_size         | -                                | Paddle 无此参数，暂无转写方式。                          |
+| antialias       | -                                | Paddle 无此参数，暂无转写方式。                           |
+| -                             | keys  | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 
 ### 转写示例

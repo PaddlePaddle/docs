@@ -4,9 +4,9 @@
 
 ```python
 torchvision.transforms.functional.pad(
-    img: Union[PIL.Image.Image, torch.Tensor], 
-    padding: Union[int, List[int], Tuple[int, ...]], 
-    fill: Union[int, List[int], Tuple[int, ...]] = 0, 
+    img: Union[PIL.Image.Image, torch.Tensor],
+    padding: Union[int, List[int], Tuple[int, ...]],
+    fill: Union[int, List[int], Tuple[int, ...]] = 0,
     padding_mode: Literal['constant', 'edge', 'reflect', 'symmetric'] = 'constant'
 )
 ```
@@ -15,10 +15,10 @@ torchvision.transforms.functional.pad(
 
 ```python
 paddle.vision.transforms.pad(
-    img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor], 
-    padding: Union[int, List[int], Tuple[int, ...]], 
-    fill: Union[int, List[int], Tuple[int, ...]] = 0, 
-    padding_mode: Literal['constant', 'edge', 'reflect', 'symmetric'] = 'constant', 
+    img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor],
+    padding: Union[int, List[int], Tuple[int, ...]],
+    fill: Union[int, List[int], Tuple[int, ...]] = 0,
+    padding_mode: Literal['constant', 'edge', 'reflect', 'symmetric'] = 'constant',
     keys: Optional[Union[List[str], Tuple[str, ...]]] = None
 )
 ```
@@ -33,4 +33,4 @@ paddle.vision.transforms.pad(
 | padding                      | padding                        | 两者均支持单个整数或序列进行填充。                           |
 | fill                   | fill                           | 用于多通道图像填充。                |
 | padding_mode                             | padding_mode                                    | 两者均支持 'constant', 'edge', 'reflect', 'symmetric' 模式。|
-| -                                             | keys                 | Paddle 支持 `keys` 参数。            |
+| -                                             | keys                 | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。            |

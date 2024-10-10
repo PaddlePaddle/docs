@@ -31,12 +31,12 @@ paddle.vision.transforms.RandomRotation(
 
 | torchvision | PaddlePaddle | 备注                                                         |
 | ------------------------------------- | ---------------------------------------- | ------------------------------------------------------------ |
-| degrees              | degrees            | 两者均支持单个整数或序列表示旋转角度范围。                   |
-| interpolation      | interpolation               | 支持的插值方法。               |
-| expand                | expand                   | 两者均支持是否扩展图像尺寸。                                 |
-| center            | center        | Paddle 的 center 参数仅支持整数坐标。                       |
-| fill           | fill                            | 对图像扩展时填充的值。默认值：0。               |
-| -                                     | keys  | Paddle 支持 `keys` 参数，用于指定要旋转的键，torchvision 不支持。 |
+| degrees              | degrees            | 旋转角度范围。                   |
+| interpolation      | interpolation               | 参数名相同但类型不同，Paddle 使用 String 表示插值方法，转写时需要把 InterpolationMode 转写为 String。           |
+| expand                | expand                   | 是否扩展图像尺寸。                    |
+| center            | center        |  旋转的中心点坐标。             |
+| fill           | fill                            | 对图像扩展时填充的值。               |
+| -                                     | keys  | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 ### 转写示例
 

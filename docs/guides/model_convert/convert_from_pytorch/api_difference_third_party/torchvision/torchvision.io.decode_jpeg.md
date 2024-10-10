@@ -26,7 +26,7 @@ paddle.vision.ops.decode_jpeg(
 
 | torchvision                           | PaddlePaddle       | 备注      |
 | ------------------------------------- | ------------------ | -------- |
-| input                                 | x                  | 输入 JPEG 图像的原始字节，Paddle 仅支持一个 Tensor，PyTorch 支持单个或列表。|
+| input                                 | x                  | 参数名不同，输入 JPEG 图像的原始字节，Paddle 仅支持一个 Tensor，PyTorch 支持单个或列表。|
 | mode                                  | mode               | 图像模式选择，e.g. "RGB"，参数含义一致。|
 | device                                | -                  | 指定解码后图像存储的设备，Paddle 无此参数，通常仅影响图像存储位置，可直接删除。|
 | apply_exif_orientation                | -                  | 是否应用 EXIF 方向变换，Paddle 无此参数，可直接删除。|

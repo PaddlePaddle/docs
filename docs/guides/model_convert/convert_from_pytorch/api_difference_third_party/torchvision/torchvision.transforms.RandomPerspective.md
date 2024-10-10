@@ -29,11 +29,11 @@ paddle.vision.transforms.RandomPerspective(
 
 | torchvision | PaddlePaddle | 备注                                                         |
 | ----------------------------------------- | ------------------------------------------ | ------------------------------------------------------------ |
-| distortion_scale                   | distortion_scale                    | 两者参数名称和功能一致，控制失真程度。                       |
-| p                                  | prob                                | 参数名不同，Paddle 使用 `prob` 替代 `p`，表示透视变换的概率。 |
-| interpolation   | interpolation                 | 参数名相同但类型不同，Paddle 使用字符串或整数表示插值方法。    |
-| fill            | fill                 | 对图像扩展时填充的值。默认值： 0。                 |
-| -                                         | keys              | Paddle 支持 `keys` 参数。 |
+| distortion_scale                   | distortion_scale                    | 控制失真程度。                       |
+| p                                  | prob                                | 仅参数名不一致。 |
+| interpolation   | interpolation                 | 参数名相同但类型不同，Paddle 使用 String 表示插值方法，转写时需要把 InterpolationMode 转写为 String。    |
+| fill            | fill                 | 对图像扩展时填充的值。         |
+| -                                         | keys              | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 ### 转写示例
 

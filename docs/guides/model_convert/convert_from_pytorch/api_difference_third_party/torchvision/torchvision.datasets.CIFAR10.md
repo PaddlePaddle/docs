@@ -17,12 +17,12 @@ paddle.vision.datasets.Cifar10(data_file: Optional[str] = None, mode: str = 'tra
 
 | torchvision        | PaddlePaddle           | 备注                                                       |
 | ---------------------- | --------------------- | ---------------------------------------------------------- |
-| root                   | data_file             | 在 Paddle 中，data_file 需要包含完整的路径和文件名。         |
-| train                  | mode                  | train=True 对应 mode='train'，train=False 对应 mode='test' |
-| transform              | transform             | 参数相同                                                   |
-| target_transform       | -                     | Paddle 不支持 target_transform 参数                        |
-| download               | download              | 参数相同，但默认值不同：torchvision 默认为 False，Paddle 默认为 True |
-| -                      | backend               | Paddle 支持额外的 backend 参数，用于指定图像类型（'pil' 或 'cv2'） |
+| root                   | data_file             | 在 Paddle 中，data_file 需要包含完整的文件名，比如 torch 中是 `/path/to/data`，对应 paddle 中 `/path/to/data/cifar-10-python.tar.gz`。         |
+| train                  | mode                  | 'train' 或 'test' 模式两者之一。转写时，Pytorch 的 train=True 对应 Paddle 的 mode='train'，train=False 对应 mode='test'。 |
+| transform              | transform             | 图片数据的预处理。           |
+| target_transform       | -                     |  Paddle 无此参数，暂无转写方式。       |
+| download               | download              | 参数相同，但默认值不同，转写时和 PyTorch 保持一致。 |
+| -                      | backend               | Paddle 支持额外的 backend 参数，用于指定图像类型，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 ### 转写示例
 
@@ -37,4 +37,3 @@ from pathlib import Path
 train_dataset = paddle.vision.datasets.Cifar10(transform=transform,
     download=True, data_file=str(Path('/path/to/data') / 'cifar-10-python.tar.gz'), mode='train')
 ```
-
