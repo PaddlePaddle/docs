@@ -25,13 +25,23 @@ paddle.linalg.inv(x, name=None)
 
 ### 转写示例
 
+#### 返回值
+
+```python
+# PyTorch 写法
+torch.linalg.inv_ex(x)
+
+# Paddle 写法
+(paddle.linalg.inv(x), paddle.zeros(x.shape[:-2], dtype='int32'))
+```
+
 #### out 参数：输出的 Tensor
 
 ```python
-# PyTorch 写法:
+# PyTorch 写法
 torch.linalg.inv_ex(x, out=y)
 
-# Paddle 写法:
+# Paddle 写法
 out1 = paddle.linalg.inv(x)
 out2 = paddle.zeros(x.shape[:-2], dtype='int32')
 paddle.assign(out1, output=y[0]), paddle.assign(out2, output=y[1])

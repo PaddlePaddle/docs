@@ -26,6 +26,16 @@ paddle.linalg.cholesky(x, upper=False, name=None)
 
 ### 转写示例
 
+#### 返回值
+
+```python
+# PyTorch 写法
+torch.linalg.cholesky_ex(x, upper=False)
+
+# Paddle 写法
+(paddle.linalg.cholesky(x, upper=False), paddle.zeros(x.shape[:-2], dtype='int32'))
+```
+
 #### out: 输出的 Tensor
 
 ```python
