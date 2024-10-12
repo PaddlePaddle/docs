@@ -19,8 +19,8 @@ repos:
     -   id: remove-tabs
         types: [text]
 # Document hooks
--   repo: https://github.com/ShigureLab/dochooks
-    rev: v0.3.0
+-   repo: https://github.com/PFCCLab/dochooks
+    rev: v0.4.0
     hooks:
     -   id: insert-whitespace-between-cn-and-en-char
         files: \.md$|\.rst$
