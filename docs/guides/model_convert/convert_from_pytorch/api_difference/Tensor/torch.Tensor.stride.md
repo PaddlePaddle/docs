@@ -30,7 +30,7 @@ x.stride(dim=None)
 
 # Paddle 版本
 if dim:
-    x.get_strides() 
+    x.get_strides()
 else:
     x.get_strides()[dim]
 ```
