@@ -16,6 +16,7 @@ paddle.nn.ParameterDict(parameters=None)
 
 ### 参数映射
 
-| PyTorch | PaddlePaddle | 备注                                |
-| ------- | ------------ | ----------------------------------- |
-| values  | parameters   | 可迭代的 Parameters，参数名不一致。 |
+
+| PyTorch | PaddlePaddle | 备注                                  |
+| ------- | ------------ | ------------------------------------- |
+| values  | parameters   | 可迭代的 Parameters，仅参数名不一致。 |
