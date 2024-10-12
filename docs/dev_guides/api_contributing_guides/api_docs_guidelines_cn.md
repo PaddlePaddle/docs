@@ -145,6 +145,8 @@ API 的声明部分，要给出 API 的声明信息；
 
     .. py:class:: paddle.nn.Conv2D(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, padding_mode='zeros', weight_attr=None, bias_attr=None, data_format='NCHW')
 
+**注意**：此处的参数名称需要与后文 API 参数板块中的严格保持一致。
+
 ### API 功能描述
 
 API 功能描述部分只需要尽可能简单的描述出 API 的功能作用即可，要让用户能快速看懂。如 [paddle.add](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/add_cn.html#add)：
@@ -195,7 +197,10 @@ API 功能描述部分只需要尽可能简单的描述出 API 的功能作用�
 
 ### API 参数（重要）
 
-**注意**：一些通用的参数说明，直接复制 [**常用文档写法**](https://github.com/PaddlePaddle/docs/blob/develop/docs/templates/common_docs.py) 中的描述即可。
+**注意**：
+
+- 一些通用的参数说明，直接复制 [**常用文档写法**](https://github.com/PaddlePaddle/docs/blob/develop/docs/templates/common_docs.py) 中的描述即可。
+- 若当前 API 无参数，则不需要填写该板块。
 
 
 API 参数部分，要解释清楚每个参数的意义和使用场景。需要注意以下两点：
