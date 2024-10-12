@@ -29,8 +29,8 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 x.stride(dim=None)
 
 # Paddle 版本
-if dim:
-    x.get_strides()
-else:
+if dim is not None:
     x.get_strides()[dim]
+else:
+    x.get_strides()
 ```
