@@ -4,10 +4,10 @@
 
 ```python
 torchvision.transforms.functional.crop(
-    img: Union[PIL.Image.Image, torch.Tensor], 
-    top: int, 
-    left: int, 
-    height: int, 
+    img: Union[PIL.Image.Image, torch.Tensor],
+    top: int,
+    left: int,
+    height: int,
     width: int
 )
 ```
@@ -16,10 +16,10 @@ torchvision.transforms.functional.crop(
 
 ```python
 paddle.vision.transforms.crop(
-    img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor], 
-    top: int, 
-    left: int, 
-    height: int, 
+    img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor],
+    top: int,
+    left: int,
+    height: int,
     width: int
 )
 ```

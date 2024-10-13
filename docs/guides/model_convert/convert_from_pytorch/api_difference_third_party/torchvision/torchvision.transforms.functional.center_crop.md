@@ -10,7 +10,7 @@ torchvision.transforms.functional.center_crop(img: Tensor, output_size: List[int
 
 ```python
 paddle.vision.transforms.center_crop(
-    img: Union[PIL.Image.Image, paddle.Tensor, np.ndarray], 
+    img: Union[PIL.Image.Image, paddle.Tensor, np.ndarray],
     output_size: List[int]
 )
 ```

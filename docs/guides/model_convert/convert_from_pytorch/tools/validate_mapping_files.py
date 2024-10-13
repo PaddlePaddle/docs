@@ -115,7 +115,7 @@ def split_args(args_str):
     args = []
     current = []
     stack = []
-    brackets = {'(': ')', '[': ']', '{': '}'}
+    brackets = {"(": ")", "[": "]", "{": "}"}
     closing = {v: k for k, v in brackets.items()}
 
     for char in args_str:
@@ -126,15 +126,15 @@ def split_args(args_str):
                 stack.pop()
             else:
                 raise ValueError(f"Unmatched closing bracket: {char}")
-        elif char == ',' and not stack:
-            arg = ''.join(current).strip()
+        elif char == "," and not stack:
+            arg = "".join(current).strip()
             if arg:
                 args.append(arg)
             current = []
             continue
         current.append(char)
 
-    arg = ''.join(current).strip()
+    arg = "".join(current).strip()
     if arg:
         args.append(arg)
     return args
@@ -147,7 +147,7 @@ def split_signatures(buffer):
     signatures = []
     current = []
     stack = []
-    brackets = {'(': ')', '[': ']', '{': '}'}
+    brackets = {"(": ")", "[": "]", "{": "}"}
     closing = {v: k for k, v in brackets.items()}
 
     for char in buffer:
@@ -159,14 +159,14 @@ def split_signatures(buffer):
             else:
                 raise ValueError(f"Unmatched closing bracket: {char}")
         current.append(char)
-        if char == ')' and not stack:
+        if char == ")" and not stack:
             # End of a function signature
-            signature = ''.join(current).strip()
+            signature = "".join(current).strip()
             signatures.append(signature)
             current = []
 
     if current:
-        signatures.append(''.join(current).strip())
+        signatures.append("".join(current).strip())
 
     return signatures
 
@@ -186,9 +186,9 @@ def reformat_signature(code):
     parsed_signatures = []
 
     arg_pattern = re.compile(
-        r"^(?P<arg_name>[^\=\:]+)"                  # 参数名
-        r"(?:\s*\:\s*(?P<arg_type>[^=]+))?"         # 可选的类型注解
-        r"(?:\s*\=\s*(?P<arg_default>.+))?$"       # 可选的默认值
+        r"^(?P<arg_name>[^\=\:]+)"  # 参数名
+        r"(?:\s*\:\s*(?P<arg_type>[^=]+))?"  # 可选的类型注解
+        r"(?:\s*\=\s*(?P<arg_default>.+))?$"  # 可选的默认值
     )
 
     for sig in signatures:
@@ -215,10 +215,18 @@ def reformat_signature(code):
 
         for arg_buffer in arg_buffer_list:
             m = arg_pattern.match(arg_buffer)
-            assert m is not None, f'code arg "{arg_buffer}" not match arg pattern.'
+            assert (
+                m is not None
+            ), f'code arg "{arg_buffer}" not match arg pattern.'
             arg_name = m.group("arg_name").strip()
-            arg_type = m.group("arg_type").strip() if m.group("arg_type") else None
-            arg_default = m.group("arg_default").strip() if m.group("arg_default") else None
+            arg_type = (
+                m.group("arg_type").strip() if m.group("arg_type") else None
+            )
+            arg_default = (
+                m.group("arg_default").strip()
+                if m.group("arg_default")
+                else None
+            )
 
             if (
                 arg_name.startswith("*")
@@ -227,7 +235,13 @@ def reformat_signature(code):
                 or arg_name[0] == "_"
             ):
                 # if is a valid arg name
-                args.append({"arg_name": arg_name, "arg_type": arg_type, "arg_default": arg_default})
+                args.append(
+                    {
+                        "arg_name": arg_name,
+                        "arg_type": arg_type,
+                        "arg_default": arg_default,
+                    }
+                )
             else:
                 if args:
                     if args[-1]["arg_default"] is not None:
@@ -240,6 +254,7 @@ def reformat_signature(code):
         parsed_signatures.append({"api_name": api_name, "args": args})
 
     return parsed_signatures
+
 
 def get_meta_from_diff_file(
     filepath,
