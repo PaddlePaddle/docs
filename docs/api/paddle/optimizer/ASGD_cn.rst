@@ -4,8 +4,8 @@ ASGD
 -------------------------------
 
 .. py:class:: paddle.optimizer.ASGD(learning_rate=0.001, batch_num=1, parameters=None, weight_decay=None, grad_clip=None, multi_precision=False, name=None)
-    
-ASGD算法的优化器。有关详细信息，请参阅：
+
+ASGD 算法的优化器。有关详细信息，请参阅：
 
 `Minimizing Finite Sums with the Stochastic Average Gradient <https://hal.science/hal-00860051v2>`_ 。
 
