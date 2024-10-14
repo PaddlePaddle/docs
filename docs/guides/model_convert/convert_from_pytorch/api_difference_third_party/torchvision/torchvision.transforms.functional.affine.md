@@ -26,7 +26,6 @@ paddle.vision.transforms.affine(
     fill: Union[int, List[int], Tuple[int, ...]] = 0,
     center: Optional[Tuple[int, int]] = None
 )
-
 ```
 
 两者功能基本一致，但参数类型不一致，具体如下：
@@ -34,41 +33,22 @@ paddle.vision.transforms.affine(
 ### 参数映射
 
 | torchvision | PaddlePaddle | 备注                                                         |
-| ----------------------------------------- | -------------------------------- | ------------------------------------------------------------ |
-| img                               | img  | 输入图片。 |
-| angle                              | angle              | 旋转角度。 |
-| translate                      | translate           | 随机水平平移和垂直平移变化的位移大小。       |
-| scale                              | scale                      | 控制缩放比例。                             |
-| shear                        | shear             | 剪切角度值 。   |
-| interpolation   | interpolation        | 参数类型不同，Paddle 使用 String 表示插值方法，转写时需要把 InterpolationMode 转写为 String  。          |
-| fill     | fill       | 对图像扩展时填充的像素值。    |
-| center               | center  |  仿射变换的中心点坐标 。    |
+| ----------- | ------------ | ------------------------------------------------------------ |
+| img               | img           | 输入图片。 |
+| angle             | angle         | 旋转角度。 |
+| translate         | translate     | 随机水平平移和垂直平移变化的位移大小。       |
+| scale             | scale         | 控制缩放比例。                             |
+| shear             | shear         | 剪切角度值。   |
+| interpolation     | interpolation | 插值的方法，PyTorch 参数为 InterpolationMode, Paddle 参数为 int 或 str 的形式，需要转写。          |
+| fill              | fill          | 对图像扩展时填充的像素值。    |
+| center            | center        | 仿射变换的中心点坐标 。    |
 
 ### 转写示例
-
+#### interpolation：插值的方法
 ```python
 # PyTorch 写法
-import torch
-import torchvision.transforms.functional as F
-import torchvision.transforms as transforms
-from PIL import Image
-img = Image.open('path_to_image.jpg')
-angle = 30.0
-translate = [10, 20]
-scale = 1.2
-shear = [10.0, 5.0]
-rotated_img = F.affine(img, angle=angle, translate=translate, scale=scale, shear=shear, interpolation=transforms.InterpolationMode.BILINEAR, fill=[0, 0, 0], center=[100, 100])
+rotated_img = torchvision.transforms.functional.affine(img, angle=30.0, translate=[10, 20], scale=1.2, shear=[10.0, 5.0], interpolation=torchvision.transforms.InterpolationMode.BILINEAR, fill=[0, 0, 0], center=[100, 100])
 
 # Paddle 写法
-import paddle
-from PIL import Image
-img = Image.open('path_to_image.jpg')
-angle = 30.0
-translate = [10, 20]
-scale = 1.2
-shear = [10.0, 5.0]
-rotated_img = paddle.vision.transforms.affine(img=img, angle=angle,
-    translate=translate, scale=scale, shear=shear, interpolation='bilinear',
-    fill=[0, 0, 0], center=[100, 100])
-
+rotated_img = paddle.vision.transforms.affine(img=img, angle=30.0, translate=[10, 20], scale=1.2, shear=[10.0, 5.0], interpolation='bilinear', fill=[0, 0, 0], center=[100, 100])
 ```

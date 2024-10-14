@@ -25,9 +25,9 @@ paddle.vision.transforms.Pad(
 
 ### 参数映射
 
-| torchvision                   | PaddlePaddle                       | 备注                                                         |
-| --------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------ |
-| padding                      | padding                        | 在图像边界上进行填充的范围。                           |
-| fill                   | fill                           | 用于多通道图像填充。                |
-| padding_mode                             | padding_mode                                    | 两者均支持 'constant', 'edge', 'reflect', 'symmetric' 模式。|
-| -                                             | keys                 | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。            |
+| torchvision   | PaddlePaddle  | 备注                           |
+| ------------- | ------------- | ----------------------------- |
+| padding       | padding       | 在图像边界上进行填充的范围。     |
+| fill          | fill          | 多通道图像填充。                |
+| padding_mode  | padding_mode  | 填充模式。|
+| -             | keys          | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。     |

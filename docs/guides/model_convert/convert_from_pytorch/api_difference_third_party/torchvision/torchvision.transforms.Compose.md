@@ -14,13 +14,12 @@ torchvision.transforms.Compose(
 paddle.vision.transforms.Compose(
     transforms: Union[List[Transform], Tuple[Transform, ...]]
 )
-
 ```
 
-两者功能一致，参数完全一致，具体如下：
+功能一致，参数完全一致，具体如下：
 
 ### 参数映射
 
-| torchvision                 | PaddlePaddle                | 备注                                     |
-| ---------------------------------------------- | ----------------------------------------------- | ---------------------------------------- |
-| transforms          | transforms                       | 用于组合的数据预处理接口实例列表。 |
+| torchvision         | PaddlePaddle             | 备注                                     |
+| ------------------- | ------------------------ | ---------------------------------------- |
+| transforms          | transforms               | 用于组合的数据预处理接口实例列表。 |

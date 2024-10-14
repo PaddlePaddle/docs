@@ -26,37 +26,11 @@ paddle.vision.transforms.Normalize(
 
 ### 参数映射
 
-| torchvision | PaddlePaddle | 备注                                                         |
-| -------------------------------- | ----------------------------------- | ------------------------------------------------------------ |
-| mean                   | mean  | 用于每个通道归一化的均值。                                   |
-| std                    | std   | 用于每个通道归一化的标准差值。                               |
-| inplace          | -                    | Paddle 无此参数，暂无转写方式。           |
-| -                                | data_format                      | PyTorch 无此参数，Paddle 保持默认即可。 |
-| -                                | to_rgb                          | PyTorch 无此参数，Paddle 保持默认即可。 |
-| -                                | keys         | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。。 |
-
-### 转写示例
-
-#### 基本归一化
-
-```python
-# PyTorch 写法
-import torch
-import torchvision.transforms as transforms
-img = torch.tensor([
-    [[0.5, 0.5], [0.5, 0.5]],
-    [[0.5, 0.5], [0.5, 0.5]],
-    [[0.5, 0.5], [0.5, 0.5]]
-])
-normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-normalized_img = normalize(img)
-
-# Paddle 写法
-import paddle
-img = paddle.to_tensor(data=[[[0.5, 0.5], [0.5, 0.5]],
-                             [[0.5, 0.5], [0.5, 0.5]],
-                             [[0.5, 0.5], [0.5, 0.5]]])
-normalize = paddle.vision.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-normalized_img = normalize(img)
-
-```
+| torchvision | PaddlePaddle | 备注                      |
+| ------------ | -------------- | ---------------------- |
+| mean          | mean          | 用于每个通道归一化的均值。  |
+| std           | std           | 用于每个通道归一化的标准差值。  |
+| inplace       | -             | 是否原地修改，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。   |
+| -             | data_format   | 数据的格式，PyTorch 无此参数，Paddle 保持默认即可。 |
+| -             | to_rgb        | 是否转换为 rgb 的格式，PyTorch 无此参数，Paddle 保持默认即可。 |
+| -             | keys          | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。             |

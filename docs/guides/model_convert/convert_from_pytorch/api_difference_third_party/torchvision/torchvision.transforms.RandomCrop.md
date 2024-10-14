@@ -25,15 +25,15 @@ paddle.vision.transforms.RandomCrop(
 )
 ```
 
-两者功能一致，但 Paddle 相比 torchvision 支持更多参数，具体如下：
+其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 
 | torchvision | PaddlePaddle | 备注                                                         |
-| ---------------------------------- | ------------------------------------ | ------------------------------------------------------------ |
-| size              | size           | 裁剪后的图片大小。                                           |
-| padding  | padding  |  对图像四周外边进行填充。                           |
-| pad_if_needed                | pad_if_needed                  | 是否在裁剪前进行填充以满足大小要求。                         |
-| fill         | fill                 | 用于填充的像素值。   |
-| padding_mode                  | padding_mode                    | 填充模式，支持 'constant', 'edge', 'reflect', 'symmetric'。 |
-| -                                  | keys  | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。            |
+| ------------- | -------------- | -------------------------------------------------------- |
+| size          | size          | 裁剪后的图片大小。                                           |
+| padding       | padding       | 对图像四周外边进行填充。                                  |
+| pad_if_needed | pad_if_needed | 是否在裁剪前进行填充以满足大小要求。                         |
+| fill          | fill          | 用于填充的像素值。                                        |
+| padding_mode  | padding_mode  | 填充模式。 |
+| -             | keys          | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。     |

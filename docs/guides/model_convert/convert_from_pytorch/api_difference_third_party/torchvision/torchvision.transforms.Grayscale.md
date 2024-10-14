@@ -15,11 +15,11 @@ paddle.vision.transforms.Grayscale(
 )
 ```
 
-两者功能一致，但 Paddle 相比 torchvision 支持更多参数，具体如下：
+其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 
-| torchvision | PaddlePaddle | 备注                                     |
-| -------------------------------- | ----------------------------------- | ---------------------------------------- |
-| num_output_channels         | num_output_channels            | 输出图像的通道数，参数值为 1 或 3。       |
-| -                                | keys | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。 |
+| torchvision | PaddlePaddle | 备注    |
+| --------------------------- | ------------------------------ | --------------------- |
+| num_output_channels         | num_output_channels            | 输出图像的通道数。       |
+| -                           | keys                           | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。             |

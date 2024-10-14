@@ -28,31 +28,23 @@ paddle.vision.transforms.RandomResizedCrop(
 
 ### 参数映射
 
-| torchvision | PaddlePaddle | 备注                                                         |
-| ------------------------------------------ | ------------------------------------------- | ------------------------------------------------------------ |
-| size                      | size                  | 裁剪后的图片大小。                                           |
-| scale                      | scale                         | 相对于原图的尺寸，随机裁剪后图像大小的范围。                |
-| ratio                      | ratio                         | 裁剪后的目标图像宽高比范围。                                 |
-| interpolation           | interpolation                   | 参数名相同但类型不同，Paddle 使用 String 表示插值方法，转写时需要把 InterpolationMode 转写为 String。            |
-| antialias                  | -                                           | Paddle 无此参数，暂无转写方式。       |
-| -                                          | keys         | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。              |
+| torchvision | PaddlePaddle | 备注                             |
+| --------------------- | ----------------- | --------------------- |
+| size                  | size              | 裁剪后的图片大小。                                           |
+| scale                 | scale             | 随机裁剪后图像大小的范围。                |
+| ratio                 | ratio             | 裁剪后的目标图像宽高比范围。                                 |
+| interpolation         | interpolation     | 插值的方法，PyTorch 参数为 InterpolationMode, Paddle 参数为 int 或 str 的形式，需要转写。|
+| antialias             | -                 | 是否应用抗锯齿效果，Paddle 无此参数，暂无转写方式。       |
+| -                     | keys              | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。     |
 
 ### 转写示例
-
+#### interpolation：插值的方法
 ```python
 # PyTorch 写法
-import torchvision.transforms as transforms
-from PIL import Image
-transform = transforms.RandomResizedCrop(size=(224, 224), scale=(0.08, 1.0), ratio=(0.75, 1.3333), interpolation=transforms.InterpolationMode.BILINEAR)
-img = Image.open('path_to_image.jpg')
+transform = torchvision.transforms.RandomResizedCrop(size=(224, 224), scale=(0.08, 1.0), ratio=(0.75, 1.3333), interpolation=torchvision.transforms.InterpolationMode.BILINEAR)
 cropped_img = transform(img)
 
 # Paddle 写法
-import paddle
-from PIL import Image
-transform = paddle.vision.transforms.RandomResizedCrop(size=(224, 224),
-    scale=(0.08, 1.0), ratio=(0.75, 1.3333), interpolation='bilinear')
-img = Image.open('path_to_image.jpg')
+transform = paddle.vision.transforms.RandomResizedCrop(size=(224, 224), scale=(0.08, 1.0), ratio=(0.75, 1.3333), interpolation='bilinear')
 cropped_img = transform(img)
-
 ```

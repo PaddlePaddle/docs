@@ -26,32 +26,22 @@ paddle.vision.transforms.Resize(
 ### 参数映射
 
 | torchvision | PaddlePaddle | 备注                                                         |
-| ----------------------------- | -------------------------------- | ------------------------------------------------------------ |
-| size  | size       | 输出图像大小。                       |
-| interpolation  | interpolation  | 参数名相同但类型不同，Paddle 使用 String 表示插值方法，转写时需要把 InterpolationMode 转写为 String。            |
-| max_size         | -                                | Paddle 无此参数，暂无转写方式。                          |
-| antialias       | -                                | Paddle 无此参数，暂无转写方式。                           |
-| -                             | keys  | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。 |
+| ------------- | --------------- | ------------------------------------------------------------ |
+| size           | size             | 输出图像大小。                       |
+| interpolation  | interpolation    | 插值的方法，PyTorch 参数为 InterpolationMode, Paddle 参数为 int 或 str 的形式，需要转写。          |
+| max_size       | -                | 允许的最长边的最大值，Paddle 无此参数，暂无转写方式。                             |
+| antialias      | -                | 是否应用抗锯齿处理，Paddle 无此参数，暂无转写方式。                             |
+| -              | keys             | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。     |
 
 
 ### 转写示例
-
-
+#### interpolation：插值的方法
 ```python
 # PyTorch 写法
-import torchvision.transforms as transforms
-from PIL import Image
-transform = transforms.Resize(size=(224, 224),
-                             interpolation=transforms.InterpolationMode.BILINEAR)
-img = Image.open('path_to_image.jpg')
+transform = torchvision.transforms.Resize(size=(224, 224), interpolation=torchvision.transforms.InterpolationMode.BILINEAR)
 resized_img = transform(img)
 
 # Paddle 写法
-import paddle
-from PIL import Image
-transform = paddle.vision.transforms.Resize(size=(224, 224), interpolation=
-    'bilinear')
-img = Image.open('path_to_image.jpg')
+transform = paddle.vision.transforms.Resize(size=(224, 224), interpolation='bilinear')
 resized_img = transform(img)
-
 ```

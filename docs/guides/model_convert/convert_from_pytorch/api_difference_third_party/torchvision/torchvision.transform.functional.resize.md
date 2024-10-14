@@ -16,7 +16,6 @@ paddle.vision.transforms.resize(
     img: Union[np.ndarray, paddle.Tensor, PIL.Image.Image],
     size: Union[int, List[int], Tuple[int, ...]],
     interpolation: Union[str, int] = 'bilinear',
-    keys: Optional[Union[List[str], Tuple[str, ...]]] = None
 )
 ```
 
@@ -25,31 +24,21 @@ paddle.vision.transforms.resize(
 ### 参数映射
 
 | torchvision | PaddlePaddle | 备注                                                         |
-| ----------------------------- | -------------------------------- | ------------------------------------------------------------ |
-| size  | size       | 两者均支持单个整数或序列表示输出大小。                       |
-| interpolation  | interpolation  | 两者类型不一致，torch 为 InterpolationMode，转写时需要把 InterpolationMode 转写为 String。               |
-| max_size         | -                                | 表示调整图像大小时允许的最长边的最大值，Paddle 无此参数，暂无转写方式。                             |
-| antialias       | -                                | 是否应用抗锯齿处理，Paddle 无此参数，暂无转写方式。                             |
-| -                             | keys  | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。 |
+| ------------ | ------------ | ---------------- |
+| img            | img              | 输入数据。         |
+| size           | size             | 输出图像大小。         |
+| interpolation  | interpolation    | 插值的方法，PyTorch 参数为 InterpolationMode, Paddle 参数为 int 或 str 的形式，需要转写。          |
+| max_size       | -                | 允许的最长边的最大值，Paddle 无此参数，暂无转写方式。                             |
+| antialias      | -                | 是否应用抗锯齿处理，Paddle 无此参数，暂无转写方式。                             |
 
 
 ### 转写示例
-
+#### interpolation：插值的方法
 
 ```python
 # PyTorch 写法
-import torchvision.transforms as transforms
-import torchvision.transforms.functional as F
-from PIL import Image
-img = Image.open('path_to_image.jpg')
-resized_img = F.resize(img, size=(224, 224),
-                             interpolation=transforms.InterpolationMode.BILINEAR)
+resized_img = torchvision.transforms.functional.resize(img, size=(224, 224), interpolation=torchvision.transforms.InterpolationMode.BILINEAR)
 
 # Paddle 写法
-import paddle
-from PIL import Image
-img = Image.open('path_to_image.jpg')
-resized_img = paddle.vision.transforms.resize(img=img, size=(224, 224),
-    interpolation='bilinear')
-
+resized_img = paddle.vision.transforms.resize(img=img, size=(224, 224), interpolation='bilinear')
 ```

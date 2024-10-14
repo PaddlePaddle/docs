@@ -15,11 +15,11 @@ paddle.vision.transforms.to_tensor(
 )
 ```
 
-两者功能基本一致，但 Paddle 相比 torchvision 支持更多参数，具体如下：
+其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 
-| torchvision | PaddlePaddle | 备注                                               |
-| ------------------------------------------- | ----------------------------------- | -------------------------------------------------- |
-| pic       | pic  | 输入图像。                       |
-| -                                           | data_format  | PyTorch 无此参数，Paddle 保持默认即可。 |
+| torchvision | PaddlePaddle | 备注                          |
+| --------- | ------------- | ------------------------------ |
+| pic       | pic           | 输入图像。                       |
+| -         | data_format   | 返回的 Tensor 的格式，PyTorch 无此参数，Paddle 保持默认即可。 |

@@ -12,45 +12,48 @@ torchvision.datasets.MNIST(root: Union[str, Path], train: bool = True, transform
 paddle.vision.datasets.MNIST(image_path: str = None, label_path: str = None, mode: str = 'train', transform: Callable = None, download: bool = True, backend: str = None)
 ```
 
+两者功能一致但参数类型不一致，具体如下：
 
 ### 参数映射
 
 | torchvision | PaddlePaddle | 备注 |
 | -------------------------------- | ---------------------------------- | ---- |
-| `root`                           | `image_path`, `label_path`         | torchvision 使用 `root` 指定数据集根目录，Paddle 分别使用 `image_path` 和 `label_path` 指定图像和标签路径，转写时需要用 `root/{file_location}` 拼接成 paddle 所需路径 。|
-| `train`                          | `mode`                              | torchvision 的 `train=True` 对应 Paddle 的 `mode='train'`，`train=False` 对应 `mode='test'`。|
-| `transform`                      | `transform`                         | 参数一致，转写时保持默认。|
-| `target_transform`               | -                                    | Paddle 不支持 `target_transform` 参数。|
-| `download`                       | `download`                           | 参数一致，无需转写。|
-| -                                | `backend`                            | Paddle 额外支持 `backend` 参数，用于指定返回的图像类型，转写时保持默认即可。|
+| root                   | -                     | 指定数据集根目录。|
+| -                      | image_path            | 图像路径，Paddle 使用 image_path 和 label_path，等价的实现 PyTorch 的 root 的功能，需要转写。|
+| -                      | label_path            | 标签路径，Paddle 使用 image_path 和 label_path，等价的实现 PyTorch 的 root 的功能，需要转写。|
+| train                  | mode                  | 训练集或者数据集。PyTorch 参数 train=True 对应 Paddle 参数 mode='train'，PyTorch 参数 train=False 对应 Paddle 参数 mode='test'，需要转写。 |
+| transform              | transform             | 图片数据的预处理。|
+| target_transform       | -                     | 接受目标数据并转换，Paddle 无此参数，暂无转写方式。    |
+| download               | download              | 是否自动下载数据集文件，参数默认值不一致。PyTorch 默认为 False，Paddle 默认为 True，Paddle 需设置为与 PyTorch 一致。 |
+| -                      | backend               | 指定图像类型，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 ### 转写示例
-
+#### root：数据集文件路径
 ```python
 # PyTorch 写法
-import torchvision.datasets as datasets
-import torchvision.transforms as transforms
-transform = transforms.Compose([
-    transforms.ToTensor(),
-    transforms.Normalize((0.1307,), (0.3081,))
-])
-train_dataset = datasets.MNIST(
-    root='./data',
-    train=True,
-    transform=transform,
-    download=True
-)
+train_dataset = torchvision.datasets.MNIST(root='./data')
 
 # Paddle 写法
-from pathlib import Path
-import paddle
-transform = paddle.vision.transforms.Compose(
-    transforms=[paddle.vision.transforms.ToTensor(),
-    paddle.vision.transforms.Normalize(mean=(0.1307,), std=(0.3081,))])
 train_dataset = paddle.vision.datasets.MNIST(
-    transform=transform,
-    download=True,
-    mode='train',
-    image_path=str(Path('./data') / 'MNIST/raw/train-images-idx3-ubyte.gz'),
-    label_path=str(Path('./data') / 'MNIST/raw/train-labels-idx1-ubyte.gz'))
+    image_path=str(pathlib.Path('./data') / 'MNIST/raw/train-images-idx3-ubyte.gz'),
+    label_path=str(pathlib.Path('./data') / 'MNIST/raw/train-labels-idx1-ubyte.gz'))
+```
+
+#### train: 训练集或数据集
+训练集
+```python
+# PyTorch 写法
+train_dataset = torchvision.datasets.MNIST(train=True, download=True)
+
+# Paddle 写法
+train_dataset = paddle.vision.datasets.MNIST(mode='train', download=True)
+```
+
+测试集
+```python
+# PyTorch 写法
+train_dataset = torchvision.datasets.MNIST(train=False, download=True)
+
+# Paddle 写法
+train_dataset = paddle.vision.datasets.MNIST(mode='test', download=True)
 ```

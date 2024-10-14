@@ -29,45 +29,31 @@ paddle.vision.transforms.RandomAffine(
 )
 ```
 
-两者功能基本一致，但参数类型存在不一致，具体如下：
+两者功能一致但参数类型不一致，具体如下：
 
 ### 参数映射
 
-| torchvision        | PaddlePaddle    | 备注                                                         |
-| ------------------------------------------ | ----------------------------------------- | ------------------------------------------------------------ |
-| degrees                | degrees  | 随机旋转变换的角度大小。 |
-| translate                 | translate  | 随机水平平移和垂直平移变化的位移大小。 |
-| scale                     | scale      | 随机伸缩变换的比例大小。                                   |
-| shear        | shear    | 随机剪切角度的大小范围。                           |
-| interpolation | interpolation                 | 参数类型不同，Paddle 使用 String 表示插值方法，转写时需要把 InterpolationMode 转写为 String。            |
-| fill             | fill      |  对图像扩展时填充的像素值。                   |
-| center                 | center         | 仿射变换的中心点坐标。   |
-| -                                          | keys   | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。                 |
+| torchvision        | PaddlePaddle    | 备注                      |
+| ------------------ | ---------------- | ------------------------ |
+| degrees           | degrees           | 随机旋转变换的角度大小。 |
+| translate         | translate         | 随机水平平移和垂直平移变化的位移大小。 |
+| scale             | scale             | 随机伸缩变换的比例大小。  |
+| shear             | shear             | 随机剪切角度的大小范围。  |
+| interpolation     | interpolation     | 插值的方法，PyTorch 参数为 InterpolationMode, Paddle 参数为 int 或 str 的形式，需要转写。|
+| fill              | fill              | 对图像扩展时填充的像素值。   |
+| center            | center            | 仿射变换的中心点坐标。   |
+| -                 | keys              | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。     |
 
 
 ### 转写示例
-
+#### interpolation：插值的方法
 
 ```python
 # PyTorch 写法
-import torchvision.transforms as transforms
-from PIL import Image
-transform = transforms.RandomAffine(degrees=30,
-                                    translate=(0.1, 0.2),
-                                    scale=(0.8, 1.2),
-                                    shear=10,
-                                    interpolation=transforms.InterpolationMode.BILINEAR,
-                                    fill=0,
-                                    center=(100, 100))
-img = Image.open('path_to_image.jpg')
+transform = torchvision.transforms.RandomAffine(degrees=30, translate=(0.1, 0.2), scale=(0.8, 1.2), shear=10, interpolation=torchvision.transforms.InterpolationMode.BILINEAR, fill=0, center=(100, 100))
 transformed_img = transform(img)
 
 # Paddle 写法
-import paddle
-from PIL import Image
-transform = paddle.vision.transforms.RandomAffine(degrees=30, translate=(
-    0.1, 0.2), scale=(0.8, 1.2), shear=10, interpolation='bilinear', fill=0,
-    center=(100, 100))
-img = Image.open('path_to_image.jpg')
+transform = paddle.vision.transforms.RandomAffine(degrees=30, translate=(0.1, 0.2), scale=(0.8, 1.2), shear=10, interpolation='bilinear', fill=0, center=(100, 100))
 transformed_img = transform(img)
 ```

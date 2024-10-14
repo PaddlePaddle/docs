@@ -19,7 +19,7 @@ paddle.vision.transforms.RandomHorizontalFlip(
 
 ### 参数映射
 
-| torchvision | PaddlePaddle | 备注                                                         |
-| ------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------ |
-| p                                    | prob                                  | 翻转概率，仅参数名不一致。                                       |
-| -                                           | keys         | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。             |
+| torchvision | PaddlePaddle | 备注                    |
+| ------------- | ------------- | --------------------- |
+| p             | prob          | 翻转概率，仅参数名不一致。        |
+| -             | keys          | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。     |

@@ -30,29 +30,22 @@ paddle.vision.transforms.RandomRotation(
 ### 参数映射
 
 | torchvision | PaddlePaddle | 备注                                                         |
-| ------------------------------------- | ---------------------------------------- | ------------------------------------------------------------ |
-| degrees              | degrees            | 旋转角度范围。                   |
-| interpolation      | interpolation               | 参数名相同但类型不同，Paddle 使用 String 表示插值方法，转写时需要把 InterpolationMode 转写为 String。           |
-| expand                | expand                   | 是否扩展图像尺寸。                    |
-| center            | center        |  旋转的中心点坐标。             |
-| fill           | fill                            | 对图像扩展时填充的值。               |
-| -                                     | keys  | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。 |
+| ------------------- | ------------------ | ----------------------------------------------- |
+| degrees               | degrees           | 旋转角度范围。                   |
+| interpolation         | interpolation     | 插值的方法，PyTorch 参数为 InterpolationMode, Paddle 参数为 int 或 str 的形式，需要转写。|
+| expand                | expand            | 是否扩展图像尺寸。                    |
+| center                | center            | 旋转的中心点坐标。             |
+| fill                  | fill              | 对图像扩展时填充的值。               |
+| -                     | keys              | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。     |
 
 ### 转写示例
-
+#### interpolation：插值的方法
 ```python
 # PyTorch 写法
-import torchvision.transforms as transforms
-from PIL import Image
-transform = transforms.RandomRotation(degrees=45, interpolation=transforms.InterpolationMode.BILINEAR, expand=True, center=(100, 100), fill=(255, 0, 0))
-img = Image.open('path_to_image.jpg')
+transform = torchvision.transforms.RandomRotation(degrees=45, interpolation=torchvision.transforms.InterpolationMode.BILINEAR, expand=True, center=(100, 100), fill=(255, 0, 0))
 rotated_img = transform(img)
 
 # Paddle 写法
-import paddle
-from PIL import Image
-transform = paddle.vision.transforms.RandomRotation(degrees=45,
-    interpolation='bilinear', expand=True, center=(100, 100), fill=(255, 0, 0))
-img = Image.open('path_to_image.jpg')
+transform = paddle.vision.transforms.RandomRotation(degrees=45, interpolation='bilinear', expand=True, center=(100, 100), fill=(255, 0, 0))
 rotated_img = transform(img)
 ```

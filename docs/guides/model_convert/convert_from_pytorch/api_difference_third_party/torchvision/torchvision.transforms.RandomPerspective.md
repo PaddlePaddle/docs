@@ -27,32 +27,22 @@ paddle.vision.transforms.RandomPerspective(
 
 ### 参数映射
 
-| torchvision | PaddlePaddle | 备注                                                         |
-| ----------------------------------------- | ------------------------------------------ | ------------------------------------------------------------ |
-| distortion_scale                   | distortion_scale                    | 控制失真程度。                       |
-| p                                  | prob                                | 仅参数名不一致。 |
-| interpolation   | interpolation                 | 参数名相同但类型不同，Paddle 使用 String 表示插值方法，转写时需要把 InterpolationMode 转写为 String。    |
-| fill            | fill                 | 对图像扩展时填充的值。         |
-| -                                         | keys              | Paddle 支持 `keys` 参数，PyTorch 无此参数，Paddle 保持默认即可。 |
+| torchvision | PaddlePaddle | 备注                  |
+| ----------------- | ------------------ | ----------- |
+| distortion_scale  | distortion_scale  | 控制失真程度。                       |
+| p                 | prob              | 进行透视变换的概率，仅参数名不一致。 |
+| interpolation     | interpolation     | 插值的方法，PyTorch 参数为 InterpolationMode, Paddle 参数为 int 或 str 的形式，需要转写。|
+| fill              | fill              | 对图像扩展时填充的值。         |
+| -                 | keys              | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。     |
 
 ### 转写示例
-
+#### interpolation：插值的方法
 ```python
 # PyTorch 写法
-import torchvision.transforms as transforms
-from PIL import Image
-transform = transforms.RandomPerspective(distortion_scale=0.5,
-                                        p=0.5,
-                                        interpolation=transforms.InterpolationMode.BILINEAR,
-                                        fill=0)
-img = Image.open('path_to_image.jpg')
+transform = torchvision.transforms.RandomPerspective(distortion_scale=0.5, p=0.5, interpolation=torchvision.transforms.InterpolationMode.BILINEAR, fill=0)
 transformed_img = transform(img)
 
 # Paddle 写法
-import paddle
-from PIL import Image
-transform = paddle.vision.transforms.RandomPerspective(distortion_scale=0.5,
-    prob=0.5, interpolation='bilinear', fill=0)
-img = Image.open('path_to_image.jpg')
+transform = paddle.vision.transforms.RandomPerspective(distortion_scale=0.5, prob=0.5, interpolation='bilinear', fill=0)
 transformed_img = transform(img)
 ```
