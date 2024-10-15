@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.Tensor.geometric_
+## [ torch 参数更多 ]torch.Tensor.geometric_
 
 ### [torch.Tensor.geometric_](https://pytorch.org/docs/stable/generated/torch.Tensor.geometric_.html)
 
@@ -12,7 +12,7 @@ torch.Tensor.geometric_(p, *, generator=None)
 paddle.Tensor.geometric_(probs, name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不一致，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

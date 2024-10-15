@@ -1,4 +1,4 @@
-## [ 组合替代实现 ] torch.Tensor.random_
+## [ torch 参数更多 ] torch.Tensor.random_
 
 ### [torch.Tensor.random_](https://pytorch.org/docs/stable/generated/torch.Tensor.random_.html)
 
@@ -6,14 +6,19 @@
 torch.Tensor.random_(from=0, to=None, *, generator=None)
 ```
 
-PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
-
-### 转写示例
+### [paddle.Tensor.uniform_](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/paddle/Tensor/uniform__en.html)
 
 ```python
-# PyTorch 写法
-x.random_(from=0, to=10)
-
-# Paddle 写法
-paddle.assign(paddle.cast(paddle.randint(low=0, high=2, shape=x.shape), dtype='float32'), x)
+paddle.Tensor.uniform_(min: float = - 1.0, max: float = 1.0, seed: int = 0)
 ```
+
+PyTorch 相比 Paddle 支持更多其他参数，具体如下:
+
+### 参数映射
+
+| PyTorch | PaddlePaddle | 备注                                                        |
+| ------- | ------------ | ----------------------------------------------------------- |
+| from    | min         | 最小值 |
+| to       | max        | 最大值   |
+| generator       | -        | 用于采样的伪随机数生成器， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
+| -       | seed | 随机数种子。PyTorch 无此参数，Paddle 保持默认即可。     |
