@@ -12,6 +12,12 @@ as_complex
 
 输入 Tensor 的形状是 ``(*, 2)`` (其中 ``*`` 表示任意形状)，亦即，输入的最后一维的大小必须是 2，这对应着复数的实部和虚部。输出 Tensor 的形状是 ``(*,)``。
 
+下图展示了一个as_complex简单的使用情形。一个形状为[2, 3, 2]的实数Tensor经过as_complex转换，最后一个长度为2的维度被合并为复数，形状变为[2, 3]。
+
+.. figure:: ../../images/api_legend/as_complex.png
+   :alt: as_complex图示
+   :width: 500
+   :align: center
 参数
 :::::::::
     - **x** (Tensor) - 输入 Tensor，数据类型为：float32 或 float64。
