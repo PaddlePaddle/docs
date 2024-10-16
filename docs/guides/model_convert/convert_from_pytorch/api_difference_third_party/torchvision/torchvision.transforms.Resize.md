@@ -28,7 +28,7 @@ paddle.vision.transforms.Resize(
 | torchvision | PaddlePaddle | 备注                                                         |
 | ------------- | --------------- | ------------------------------------------------------------ |
 | size           | size             | 输出图像大小。                       |
-| interpolation  | interpolation    | 插值的方法，PyTorch 参数为 InterpolationMode, Paddle 参数为 int 或 str 的形式，需要转写。          |
+| interpolation  | interpolation    | 插值的方法，两者类型不一致，PyTorch 为 InterpolationMode 枚举类, Paddle 为 int 或 string，需要转写。        |
 | max_size       | -                | 允许的最长边的最大值，Paddle 无此参数，暂无转写方式。                             |
 | antialias      | -                | 是否应用抗锯齿处理，Paddle 无此参数，暂无转写方式。                             |
 | -              | keys             | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。     |

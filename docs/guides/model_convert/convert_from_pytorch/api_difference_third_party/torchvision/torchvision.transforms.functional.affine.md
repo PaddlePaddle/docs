@@ -28,7 +28,7 @@ paddle.vision.transforms.affine(
 )
 ```
 
-两者功能基本一致，但参数类型不一致，具体如下：
+两者功能一致，但输入参数类型不一致，具体如下：
 
 ### 参数映射
 
@@ -39,7 +39,7 @@ paddle.vision.transforms.affine(
 | translate         | translate     | 随机水平平移和垂直平移变化的位移大小。       |
 | scale             | scale         | 控制缩放比例。                             |
 | shear             | shear         | 剪切角度值。   |
-| interpolation     | interpolation | 插值的方法，PyTorch 参数为 InterpolationMode, Paddle 参数为 int 或 str 的形式，需要转写。          |
+| interpolation     | interpolation | 插值的方法，两者类型不一致，PyTorch 为 InterpolationMode 枚举类, Paddle 为 int 或 string，需要转写。         |
 | fill              | fill          | 对图像扩展时填充的像素值。    |
 | center            | center        | 仿射变换的中心点坐标 。    |
 

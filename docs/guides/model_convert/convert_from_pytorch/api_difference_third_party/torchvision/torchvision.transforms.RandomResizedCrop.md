@@ -33,7 +33,7 @@ paddle.vision.transforms.RandomResizedCrop(
 | size                  | size              | 裁剪后的图片大小。                                           |
 | scale                 | scale             | 随机裁剪后图像大小的范围。                |
 | ratio                 | ratio             | 裁剪后的目标图像宽高比范围。                                 |
-| interpolation         | interpolation     | 插值的方法，PyTorch 参数为 InterpolationMode, Paddle 参数为 int 或 str 的形式，需要转写。|
+| interpolation         | interpolation     | 插值的方法，两者类型不一致，PyTorch 为 InterpolationMode 枚举类, Paddle 为 int 或 string，需要转写。 |
 | antialias             | -                 | 是否应用抗锯齿效果，Paddle 无此参数，暂无转写方式。       |
 | -                     | keys              | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。     |
 

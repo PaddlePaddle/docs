@@ -25,7 +25,7 @@ paddle.vision.transforms.RandomCrop(
 )
 ```
 
-其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
+两者功能一致，但 Paddle 相比 torchvision 支持更多参数，具体如下：
 
 ### 参数映射
 

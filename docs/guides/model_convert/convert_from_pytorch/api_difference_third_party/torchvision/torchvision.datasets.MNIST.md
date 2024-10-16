@@ -12,15 +12,13 @@ torchvision.datasets.MNIST(root: Union[str, Path], train: bool = True, transform
 paddle.vision.datasets.MNIST(image_path: str = None, label_path: str = None, mode: str = 'train', transform: Callable = None, download: bool = True, backend: str = None)
 ```
 
-两者功能一致但参数类型不一致，具体如下：
+两者功能一致，指定数据集文件路径的参数 `root` 与指定训练集的参数 `train` 的用法不一致，具体如下：
 
 ### 参数映射
 
 | torchvision | PaddlePaddle | 备注 |
 | -------------------------------- | ---------------------------------- | ---- |
-| root                   | -                     | 指定数据集根目录。|
-| -                      | image_path            | 图像路径，Paddle 使用 image_path 和 label_path，等价的实现 PyTorch 的 root 的功能，需要转写。|
-| -                      | label_path            | 标签路径，Paddle 使用 image_path 和 label_path，等价的实现 PyTorch 的 root 的功能，需要转写。|
+| root                   | image_path, label_path| 指定数据集目录，Paddle 使用 image_path 和 label_path，等价的实现 PyTorch 的 root 的功能，需要转写。|
 | train                  | mode                  | 训练集或者数据集。PyTorch 参数 train=True 对应 Paddle 参数 mode='train'，PyTorch 参数 train=False 对应 Paddle 参数 mode='test'，需要转写。 |
 | transform              | transform             | 图片数据的预处理。|
 | target_transform       | -                     | 接受目标数据并转换，Paddle 无此参数，暂无转写方式。    |

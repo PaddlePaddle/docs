@@ -33,7 +33,7 @@ paddle.vision.transforms.perspective(
 | img               | img               | 输入图片。    |
 | startpoints       | startpoints       | 在原图上的四个角（左上、右上、右下、左下）的坐标。      |
 | endpoints         | endpoints         | 在原图上的四个角（左上、右上、右下、左下）的坐标。      |
-| interpolation     | interpolation     | 插值的方法，PyTorch 参数为 InterpolationMode, Paddle 参数为 int 或 str 的形式，需要转写。          |
+| interpolation     | interpolation     | 插值的方法，两者类型不一致，PyTorch 为 InterpolationMode 枚举类, Paddle 为 int 或 string，需要转写。    |
 | fill              | fill              | 对图像扩展时填充的像素值。             |
 
 

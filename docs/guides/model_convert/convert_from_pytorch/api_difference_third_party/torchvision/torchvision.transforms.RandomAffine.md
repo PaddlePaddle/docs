@@ -39,7 +39,7 @@ paddle.vision.transforms.RandomAffine(
 | translate         | translate         | 随机水平平移和垂直平移变化的位移大小。 |
 | scale             | scale             | 随机伸缩变换的比例大小。  |
 | shear             | shear             | 随机剪切角度的大小范围。  |
-| interpolation     | interpolation     | 插值的方法，PyTorch 参数为 InterpolationMode, Paddle 参数为 int 或 str 的形式，需要转写。|
+| interpolation     | interpolation     | 插值的方法，PyTorch 参数为 InterpolationMode 枚举类, Paddle 参数为 int 或 string，需要转写。 |
 | fill              | fill              | 对图像扩展时填充的像素值。   |
 | center            | center            | 仿射变换的中心点坐标。   |
 | -                 | keys              | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。     |

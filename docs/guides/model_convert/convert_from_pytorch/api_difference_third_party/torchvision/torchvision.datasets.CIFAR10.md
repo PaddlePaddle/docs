@@ -1,4 +1,4 @@
-## [输入参数类型不一致]torchvision.datasets.CIFAR10
+## [输入参数用法不一致]torchvision.datasets.CIFAR10
 
 ### [torchvision.datasets.CIFAR10](https://pytorch.org/vision/main/generated/torchvision.datasets.CIFAR10.html)
 
@@ -12,7 +12,7 @@ torchvision.datasets.CIFAR10(root: Union[str, Path], train: bool = True, transfo
 paddle.vision.datasets.Cifar10(data_file: Optional[str] = None, mode: str = 'train', transform: Optional[Callable] = None, download: bool = True, backend: Optional[str] = None)
 ```
 
-两者功能一致但参数类型不一致，具体如下：
+两者功能一致，指定数据集文件路径的参数 `root` 与指定训练集的参数 `train` 的用法不一致，具体如下：
 
 ### 参数映射
 
