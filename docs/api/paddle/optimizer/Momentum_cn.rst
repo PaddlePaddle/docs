@@ -23,13 +23,16 @@ Momentum
 参数
 ::::::::::::
 
-    - **learning_rate** (float|_LRScheduler，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler 类，默认值为 0.001。
-    - **momentum** (float，可选) - 动量因子。
-    - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
+    - **learning_rate** (float|_LRScheduler，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler 类的 tensor ，默认值为 0.001。
+    - **momentum** (float，可选) - 动量因子。默认值为 0.9。
+    - **parameters** (list|tuple，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数。可以为不同的参数组指定不同的选项，如学习率，权重衰减等，参数是 dict 的列表。注意，参数组中的 learning_rate 表示基础 learning_rate 的比例。在静态图模式下默认值为 None，这时所有的参数都将被优化。
     - **use_nesterov** (bool，可选) - 赋能牛顿动量，默认值 False。
     - **weight_decay** (float|Tensor，可选) - 权重衰减系数，是一个 float 类型或者 shape 为[1]，数据类型为 float32 的 Tensor 类型。默认值为 0.01。
     - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_paddle_nn_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_paddle_nn_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_paddle_nn_ClipGradByValue>` 。
       默认值为 None，此时将不进行梯度裁剪。
+    - **multi_precision** (bool，可选) - 在权重更新时是否使用多精度。默认值 False。
+    - **rescale_grad**(float,可选) - 用梯度 rescale_grad 之前更新。通常选择为1.0/batch_size。
+    - **use_multi_tensor** (bool，可选) - 是否使用 multi-tensor 策略一次性更新所有参数。默认值 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
@@ -100,7 +103,7 @@ set_lr(value)
 
 .. note::
 
-该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。在优化器中手动设置学习率的值。如果优化器使用 LRScheduler 则不能调用此API， 会导致冲突。
 
 set_lr_scheduler(scheduler)
 '''''''''
