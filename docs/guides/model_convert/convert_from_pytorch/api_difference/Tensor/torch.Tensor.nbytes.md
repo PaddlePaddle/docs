@@ -15,5 +15,5 @@ Paddle 无此 API，需要组合实现。
 y = a.nbytes
 
 # Paddle 写法
-y = int(paddle.numel(a) * a.element_size())
+y = a.size * a.element_size()
 ```
