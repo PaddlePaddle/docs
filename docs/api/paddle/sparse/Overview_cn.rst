@@ -55,6 +55,7 @@ paddle.sparse 目录包含飞桨框架支持稀疏数据存储和计算相关的
     " :ref:`paddle.sparse.subtract <cn_api_paddle_sparse_subtract>` ", "对稀疏 Tensor 逐元素相减"
     " :ref:`paddle.sparse.multiply <cn_api_paddle_sparse_multiply>` ", "对稀疏 Tensor 逐元素相乘"
     " :ref:`paddle.sparse.divide <cn_api_paddle_sparse_divide>` ", "对稀疏 Tensor 逐元素相除"
+    " :ref:`paddle.sparse.sum <cn_api_paddle_sparse_sum>` ", "给定维度 axis 上稀疏张量 x 元素的和"
     " :ref:`paddle.sparse.is_same_shape <cn_api_paddle_sparse_is_same_shape>` ", "判断两个稀疏 Tensor 或稠密 Tensor 的 shape 是否一致"
     " :ref:`paddle.sparse.reshape <cn_api_paddle_sparse_reshape>` ", "改变一个 SparseTensor 的形状"
     " :ref:`paddle.sparse.coalesce<cn_api_paddle_sparse_coalesce>` ", "对 SparseCooTensor 进行排序并合并"
