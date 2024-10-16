@@ -22,5 +22,5 @@ paddle.distributed.fleet.distributed_optimizer(optimizer, strategy=None)
 | optimizer_class | optimizer    | 优化器。                                                    |
 | params_rref     | -            | 初始化方法，paddle 无此参数，需要转写方式。                 |
 | args            | -            | 优化器实例化参数。                                          |
-| kwargs          | -            | 优化器实例化参数                                            |
+| kwargs          | -            | 优化器实例化字典参数                                        |
 | -               | strategy     | 用于切分优化器状态，PyTorch 无此参数，Paddle 保持默认即可。 |
