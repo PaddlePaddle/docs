@@ -3,7 +3,7 @@
 KaimingUniform
 -------------------------------
 
-.. py:class:: paddle.nn.initializer.KaimingUniform(fan_in=None, negative_slope=0.0, nonlinearity='relu')
+.. py:class:: paddle.nn.initializer.KaimingUniform(fan_in=None, negative_slope=0.0, nonlinearity='relu', mode='fan_in')
 
 
 
@@ -14,7 +14,7 @@ Kaiming 均匀分布方式的权重初始化函数，方法来自 Kaiming He，X
 
 .. math::
 
-    x = gain \times \sqrt{\frac{3}{fan\_in}}
+    x = gain \times \sqrt{\frac{3}{fan\_mode}}
 
 参数
 ::::::::::::
@@ -22,6 +22,7 @@ Kaiming 均匀分布方式的权重初始化函数，方法来自 Kaiming He，X
     - **fan_in** (float16|float32，可选) - 可训练的 Tensor 的 in_features 值。如果设置为 None，程序会自动计算该值。如果你不想使用 in_features，你可以自己设置这个值。默认值为 None。
     - **negative_slope** (float，可选) -  只适用于使用 leaky_relu 作为激活函数时的 negative_slope 参数。默认值为 :math:`0.0`。
     - **nonlinearity** (str，可选) -  非线性激活函数。默认值为 relu。
+    - **mode** (str，可选) -  设置 fan_mode 为 'fan_in' 或 'fan_out'。默认值为 'fan_in'。
 
 .. note::
 
