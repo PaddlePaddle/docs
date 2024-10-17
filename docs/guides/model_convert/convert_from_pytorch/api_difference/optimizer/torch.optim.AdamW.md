@@ -30,7 +30,8 @@ paddle.optimizer.AdamW(learning_rate=0.001,
                     grad_clip=None,
                     name=None,
                     lazy_mode=False,
-                    multi_precision=False,)
+                    multi_precision=False,
+                    amsgrad=False,)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -44,7 +45,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | betas     | beta1, beta2       | 一阶矩估计的指数衰减率。PyTorch 为元祖形式，Paddle 为分开的两个参数。默认值分别一致。                          |
 | eps       | epsilon        | 保持数值稳定性的短浮点类型值。仅参数名不一致。                           |
 | weight_decay           | weight_decay     | 表示权重衰减系数。参数名和默认值均一致。         |
-| amsgrad   | -    | 是否使用该算法的 AMSGrad 变体。Paddle 无此参数，暂无转写方式。                       |
+| amsgrad   | -    | 是否使用该算法的 AMSGrad 变体。参数一致。                     |
 | maximize           | -     | 根据目标最大化参数，而不是最小化。Paddle 无此参数，暂无转写方式。         |
 | foreach           | -     | 是否使用优化器的 foreach 实现。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
 | capturable           | -     | 在 CUDA 图中捕获此实例是否安全。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
