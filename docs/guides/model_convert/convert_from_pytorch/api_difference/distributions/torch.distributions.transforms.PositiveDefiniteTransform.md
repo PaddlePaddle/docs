@@ -15,6 +15,6 @@ PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 y = PositiveDefiniteTransform()(tensor1)
 
 # Paddle 写法
-T = tensor1.tril(-1) + tensor1.diagonal(-2, -1).exp().diag_embed()
-y = T @ T.mT
+x = tensor1.tril(-1) + tensor1.diagonal(-2, -1).exp().diag_embed()
+y = x @ x.T
 ```
