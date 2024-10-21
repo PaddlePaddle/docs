@@ -22,4 +22,4 @@ torch.is_inference(x)
 
 # Paddle 写法
 x.stop_gradient
-``` 
+```
