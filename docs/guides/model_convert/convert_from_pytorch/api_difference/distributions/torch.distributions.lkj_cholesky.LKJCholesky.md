@@ -31,8 +31,11 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ```python
 # PyTorch 写法
-y = torch.distributions.lkj_cholesky.LKJCholesky(dim=3, concentration=torch.tensor([1.0])).sample()
+concentration = torch.tensor([1.0])
+y = torch.distributions.lkj_cholesky.LKJCholesky(dim=3, concentration=concentration).sample()
 
 # Paddle 写法
-y = paddle.unsqueeze(paddle.distribution.LKJCholesky(dim=3, concentration=paddle.to_tensor([1.0]).sample(), axis=0)
+concentration = paddle.to_tensor([1.0])
+y = paddle.distribution.LKJCholesky(dim=3, concentration=concentration).sample()
+y = paddle.unsqueeze(y, axis=0)
 ```
