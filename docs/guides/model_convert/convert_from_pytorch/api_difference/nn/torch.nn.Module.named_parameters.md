@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.nn.Module.named_parameters
+## [仅参数名不一致]torch.nn.Module.named_parameters
 
 ### [torch.nn.Module.named_parameters](https://pytorch.org/docs/stable/generated/torch.nn.Module.html?highlight=torch+nn+module+named_parameters#torch.nn.Module.named_parameters)
 
@@ -20,4 +20,4 @@ paddle.nn.Layer.named_parameters(prefix='', include_sublayers=True, remove_dupli
 | -------------- | ------------ | ------------------------------------------------------------- |
 | prefix   | prefix  | 在所有参数名称前加的前缀。                                            |
 | recurse   | include_sublayers  | 生成该模块和所有子模块的参数, 仅参数名不一致。                                            |
-| remove_duplicate   | remove_duplicate  | 是否删除结果中的重复参数。                                        |
+| remove_duplicate   | remove_duplicate  | 是否删除结果中的重复参数。|

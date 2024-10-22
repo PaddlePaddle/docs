@@ -7,7 +7,9 @@ torch.nn.GRU(input_size,
              bias=True,
              batch_first=False,
              dropout=0,
-             bidirectional=False)
+             bidirectional=False,
+             device=None,
+             dtype=None)
 ```
 
 ### [paddle.nn.GRU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GRU_cn.html#gru)
@@ -36,6 +38,8 @@ paddle.nn.GRU(input_size,
 | batch_first   | time_major   | PyTorch 表示 batch size 是否为第一维，PaddlePaddle 表示 time steps 是否为第一维，它们的意义相反。需要转写。  |
 | dropout   | dropout   | 表示 dropout 概率。  |
 | bidirectional | direction    | PyTorch 表示是否进行双向 GRU，Paddle 使用字符串表示是双向 GRU（`bidirectional`）还是单向 GRU（`forward`）。 |
+| device   | -   | 指定 Tensor 的设备，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
+| dtype   | -   | Tensor 的所需数据类型，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | -             |weight_ih_attr| weight_ih 的参数， PyTorch 无此参数， Paddle 保持默认即可。  |
 | -             |weight_hh_attr| weight_hh 的参数，  PyTorch 无此参数， Paddle 保持默认即可。  |
 
