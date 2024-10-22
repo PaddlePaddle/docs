@@ -1,4 +1,4 @@
-## [ 待定 ]torch.cuda.is_initialized
+## [组合替代实现]torch.cuda.is_initialized
 
 ### [torch.cuda.is_initialized]()(https://pytorch.org/docs/stable/generated/torch.cuda.is_initialized.html)
 
