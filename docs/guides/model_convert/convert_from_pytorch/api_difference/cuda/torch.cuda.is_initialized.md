@@ -1,6 +1,6 @@
-## [组合替代实现]torch.cuda.is_initialized
+## [ 组合替代实现 ]torch.cuda.is_initialized
 
-### [torch.cuda.is_initialized]()(https://pytorch.org/docs/stable/generated/torch.cuda.is_initialized.html)
+### [torch.cuda.is_initialized](xly.bce.baidu.com/paddlepaddle/fluid-doc/newipipe/detail/11746629/job/27824342/realTimeLog/479)
 
 ```python
 torch.cuda.is_initialized()
