@@ -12,7 +12,7 @@ torch.distributed.rpc.remote(to, func, args=None, kwargs=None, timeout=-1.0)
 paddle.distributed.rpc.rpc_async(to, fn, args=None, kwargs=None, timeout=-1)
 ```
 
-两者功能一致且参数用法一致，仅参数名不一致，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，同时 `remote` 使用 `to_here` 获取 `func` 执行结果，而 `rpc_async` 使用 `wait` 获取结果，具体如下：
 
 ### 参数映射
 

@@ -12,4 +12,4 @@ torch.distributions.constraints.Constraint()
 paddle.distribution.constraint.Constraint()
 ```
 
-两者功能一致，无参数。
+两者功能一致，无参数，另外 `torch.distributions.constraints.Constraint` 对象使用 `check` 进行回调，而 `paddle.distribution.constraint.Constraint` 直接使用 `__call__` 。
