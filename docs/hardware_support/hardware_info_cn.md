@@ -8,12 +8,12 @@
 |  ----  | ----  | ---- | ---- |---- | ---- |---- | ---- |
 | 服务端 CPU | x86 | Intel | 常见 CPU 型号如 Xeon、Core 全系列 | [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/compile/linux-compile.html) | ✔️ |  |
 | 服务端 GPU |  | NVIDIA | Ada Lovelace、Hopper、 Ampere、Turing、 Volta 架构 | [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/compile/linux-compile.html) | ✔️ |  |
-| AI 加速芯片 | 达芬奇 | 华为 | 昇腾 910 系列 | [安装](./npu/install_cn.html#wheel) | [源码编译](./npu/install_cn.html) | | ✔️ |
+| AI 加速芯片 | 达芬奇 | 华为 | 昇腾 910 系列 | [安装](./npu/install_cn.html#wheel) | [源码编译](./npu/install_cn.html) | | [支持模型](./npu/support_cn.html) |
 | AI 加速芯片 | GPGPU | 海光 | 海光 Z100 系列 | [安装](./dcu/install_cn.html#wheel) | [源码编译](./dcu/install_cn.html) | | [支持模型](./dcu/support_cn.html) |
 | AI 加速芯片 | XPU | 昆仑芯 | 昆仑芯 R200、R300 等 | [安装](./xpu/install_cn.html#wheel) | [源码编译](./xpu/install_cn.html#xpu) |  | [支持模型](./xpu/support_cn.html) |
 | AI 加速芯片 | IPU | Graphcore | GC200 | | | | ✔️ |
 | AI 加速芯片 | MLU | 寒武纪 | MLU370 系列 | [安装](./mlu/install_cn.html#wheel) | [源码编译](./mlu/install_cn.html) |  | [支持模型](./mlu/support_cn.html) |
-| AI 加速芯片 |  | 天数智芯 | 天垓 100 |  [安装](https://gitee.com/deep-spark/deepsparkhub/blob/master/docker/Iluvatar/README.md) ||  |  | ✔️ |
+| AI 加速芯片 |  | 天数智芯 | 天垓 100 |  [安装](https://gitee.com/deep-spark/deepsparkhub/blob/master/docker/Iluvatar/README.md) ||  |  | [支持模型](https://github.com/Deep-Spark/DeepSparkHub) |
 | AI 加速芯片 |  | 壁仞 | BR100、BR104 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/biren_gpu/README_cn.md) |  | ✔️ |
 | AI 加速芯片 |  | 燧原 | 云燧 T20 、i20|  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/gcu/README_cn.md) |  | ✔️ |
 | AI 加速芯片 |  | 太初 | 元碁系列 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleTecoBackend)  |  | ✔️ |
@@ -45,7 +45,7 @@
 | 移动端 GPU |  | ARM | Mali 系列 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/opencl.html) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/introduction/support_model_list.html) |
 | 移动端 GPU |  | 高通 | Adreno 系列 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/opencl.html) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/introduction/support_model_list.html) |
 | AI 加速芯片 |  | 华为 | Kirin 810/990/9000 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_kirin_npu.html#id5) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_kirin_npu.html#id1) |
-| AI 加速芯片 |  | 华为 | 昇腾 310 |  | 即将提供 |  |  |
+| AI 加速芯片 |  | 华为 | 昇腾 310 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_ascend_npu.html) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_ascend_npu.html#paddle) |
 | AI 加速芯片 |  | 瑞芯微 | RK18xx 系列 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/rockchip_npu.html#id5) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/rockchip_npu.html#id1) |
 | AI 加速芯片 |  | 联发科 | NeuroPilot APU |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/mediatek_apu.html#id1) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/mediatek_apu.html#id1) |
 | AI 加速芯片 |  | Imagination | PowerVR 2NX |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_kirin_npu.html#id5) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_kirin_npu.html#id1) |
