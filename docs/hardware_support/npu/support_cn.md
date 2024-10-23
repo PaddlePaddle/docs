@@ -2,7 +2,7 @@
 
 飞桨框架在昇腾 NPU 上通过精度验证的模型情况如下：
 
-* PaddleX 使用文档详见：[PaddleX 多硬件使用](https://github.com/PaddlePaddle/PaddleX/blob/develop/docs/tutorials/base/devices_use_guidance.md)
+* PaddleX 使用文档详见：[PaddleX 多硬件使用](https://github.com/PaddlePaddle/PaddleX/blob/release/3.0-beta1/docs/other_devices_support/multi_devices_use_guide.md)
 * PaddleNLP 大语言模型多硬件使用文档详见：[PaddleNLP NPU 大语言模型使用文档](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/llm/npu)
 * 如果您适配/验证过更多模型，欢迎按照此 [贡献教程](https://github.com/PaddlePaddle/PaddleX/blob/aba62bfb45f7873a5b1285c5423b20a40468a420/docs/tutorials/hardware_support/how_to_contribute.md) 向飞桨开源社区贡献适配结果，我们验证后会更新本模型验证列表
 
