@@ -5,10 +5,11 @@ unbind
 
 .. py:function:: paddle.unbind(input, axis=0)
 
+下图展示了一个形状为 [2, 3, 4] 的三维张量在通过沿 axis0 进行 unbind 操作之后转变为2个形状为 [3, 4] 的二维张量。值得注意的是沿着 axis0 进行 unbind 操作仅能返回2个张量，沿着 axis1 进行 unbind 进行操作仅能返回3个张量。
 
-
-
-将输入 Tensor 按照指定的维度分割成多个子 Tensor。
+.. image:: ../../images/api_legend/unbind.png
+   :width: 700
+   :alt: 图例
 
 参数
 :::::::::
