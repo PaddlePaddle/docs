@@ -7,6 +7,12 @@ slice_scatter
 
 沿着 `axes` 将 `value` 矩阵的值嵌入到 `x` 矩阵。返回一个新的 Tensor 而不是视图。 `axes` 需要与 `starts`, `ends` 和 `strides` 尺寸一致。
 
+下图展示了代码示例三的情形——一个形状为 [3, 3, 5] 的三维张量 x，在 Axis 0 和 Axis 2 上使用 slice scatter 操作，将形状为 [1, 3, 1] 的 value 张量嵌入到指定的范围内。图中显示了原始张量、value 张量以及操作后的结果，并标注了每个轴的坐标，便于观察操作前后的元素分布情况。
+
+.. image:: ../../images/api_legend/slice_scatter.png
+   :width: 500
+   :alt: 图例
+
 参数
 :::::::::
     - **x**  (Tensor) - 输入的 Tensor 作为目标矩阵，数据类型为： `bool`、 `float16`、 `float32`、 `float64`、 `uint8`、 `int8`、 `int16`、 `int32`、 `int64`、 `bfloat16`、 `complex64`、 `complex128`。
