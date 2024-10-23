@@ -7,6 +7,10 @@ moveaxis
 
 将输入 Tensor ``x`` 的轴从 ``source`` 位置移动到 ``destination`` 位置，其他轴按原来顺序排布。同时根据新的 shape，重排 Tensor 中的数据。
 
+下图展示了代码示例中的第一个操作
+
+.. image:: ../../images/api_legend/moveaxis.png
+    :width: 600
 参数
 :::::::::
     - **x** (Tensor) - 输入的 N-D Tensor，数据类型为：bool、int32、int64、float32、float64、complex64、complex128。
