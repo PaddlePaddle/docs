@@ -14,7 +14,7 @@ max
 
 参数
 :::::::::
-   - **x** (Tensor) - Tensor，支持数据类型为 float32，float64，int32，int64。
+   - **x** (Tensor) - Tensor，支持数据类型为 float8_e4m3fn, float8_e5m2, bfloat16, float16, float32，float64，int32，int64。
    - **axis** (list|int|tuple，可选) - 求最大值运算的维度。如果为 None，则计算所有元素的最大值并返回包含单个元素的 Tensor 变量，否则必须在 :math:`[-x.ndim, x.ndim]` 范围内。如果 :math:`axis[i] <0`，则维度将变为 :math:`x.ndim+axis[i]`，默认值为 None。
    - **keepdim** (bool，可选) - 是否在输出 Tensor 中保留输入的维度。除非 keepdim 为 True，否则输出 Tensor 的维度将比输入 Tensor 小一维，默认值为 False。
    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

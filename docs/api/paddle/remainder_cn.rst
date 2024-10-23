@@ -19,8 +19,8 @@ remainder
 参数
 :::::::::
 
-  - **x** (Tensor) - 多维 Tensor。数据类型为 float16 、float32 、float64、int32 或 int64。
-  - **y** (Tensor) - 多维 Tensor。数据类型为 float16 、float32 、float64、int32 或 int64。
+  - **x** (Tensor) - 多维 Tensor。数据类型为 bfloat16 、float16 、float32 、float64、int32 或 int64。
+  - **y** (Tensor) - 多维 Tensor。数据类型为 bfloat16 、float16 、float32 、float64、int32 或 int64。
   - **name** (str，可选)  - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 
 返回

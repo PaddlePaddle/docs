@@ -20,7 +20,7 @@ scale
 参数
 ::::::::::::
 
-        - **x** (Tensor) - 要进行缩放的多维 Tensor，数据类型可以为 float32，float64，int8，int16，int32，int64，uint8。
+        - **x** (Tensor) - 要进行缩放的多维 Tensor，数据类型可以为 bfloat16、float16、float32、float64、int8、int16、int32、int64、uint8、complex64、complex128。
         - **scale** (float|Tensor) - 缩放的比例，是一个 float 类型或者一个 shape 为[]，数据类型为 float32 的 0-D Tensor 类型。
         - **bias** (float) - 缩放的偏置。
         - **bias_after_scale** (bool) - 判断在缩放之前或之后添加偏置。为 True 时，先缩放再偏置；为 False 时，先偏置再缩放。该参数在某些情况下，对数值稳定性很有用。
