@@ -5,7 +5,7 @@
 torch.diagonal(input,
                offset=0,
                dim1=0,
-               dim2=1))
+               dim2=1)
 ```
 
 ### [paddle.diagonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagonal_cn.html#diagonal)

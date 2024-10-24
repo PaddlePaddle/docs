@@ -108,53 +108,152 @@ def unescape_api(api):
     return api.replace(r"\_", "_")
 
 
+def split_args(args_str):
+    """
+    按逗号分割参数字符串，忽略括号内的逗号
+    """
+    args = []
+    current = []
+    stack = []
+    brackets = {"(": ")", "[": "]", "{": "}"}
+    closing = {v: k for k, v in brackets.items()}
+
+    for char in args_str:
+        if char in brackets:
+            stack.append(brackets[char])
+        elif char in closing:
+            if stack and stack[-1] == char:
+                stack.pop()
+            else:
+                raise ValueError(f"Unmatched closing bracket: {char}")
+        elif char == "," and not stack:
+            arg = "".join(current).strip()
+            if arg:
+                args.append(arg)
+            current = []
+            continue
+        current.append(char)
+
+    arg = "".join(current).strip()
+    if arg:
+        args.append(arg)
+    return args
+
+
+def split_signatures(buffer):
+    """
+    分割包含多个函数签名的字符串
+    """
+    signatures = []
+    current = []
+    stack = []
+    brackets = {"(": ")", "[": "]", "{": "}"}
+    closing = {v: k for k, v in brackets.items()}
+
+    for char in buffer:
+        if char in brackets:
+            stack.append(brackets[char])
+        elif char in closing:
+            if stack and stack[-1] == char:
+                stack.pop()
+            else:
+                raise ValueError(f"Unmatched closing bracket: {char}")
+        current.append(char)
+        if char == ")" and not stack:
+            # End of a function signature
+            signature = "".join(current).strip()
+            signatures.append(signature)
+            current = []
+
+    if current:
+        signatures.append("".join(current).strip())
+
+    return signatures
+
+
 def reformat_signature(code):
     """
     从函数签名代码中解析出函数名和参数列表
-    - code: 函数签名代码
-    - 返回值: 函数名和参数列表
+    - code: 函数签名代码，可能包含多个函数声明
+    - 返回值: 包含所有函数名和参数列表的列表
     """
     lines = [l for l in code.split("\n") if len(l.strip()) > 0]
     assert len(lines) > 0, "code have no lines."
     buffer = "".join([l.strip() for l in lines])
 
-    first_par_pos = buffer.find("(")
+    signatures = split_signatures(buffer)
 
-    m = re.match(r"^\s*(?P<api_name>[^\( ]+)(.*?)$", buffer)
-    assert m is not None, f'code first line "{buffer}" not match api pattern.'
-    api_name = m.group("api_name")
+    parsed_signatures = []
 
-    if first_par_pos < 0:
-        # 要是没括号，可能是特殊情况，比如 property
-        return {"api_name": api_name}
-
-    last_par_pos = buffer.rfind(")")
-    assert (
-        last_par_pos > first_par_pos
-    ), f'code first line "{buffer}" not match api pattern.'
-    args_buffer = buffer[first_par_pos + 1 : last_par_pos]
-
-    args = []
-    args_buffer = args_buffer.strip()
     arg_pattern = re.compile(
-        r"^(?P<arg_name>[^\=]+)(\=(?P<arg_default>[^,]+))?$"
+        r"^(?P<arg_name>[^\=\:]+)"  # 参数名
+        r"(?:\s*\:\s*(?P<arg_type>[^=]+))?"  # 可选的类型注解
+        r"(?:\s*\=\s*(?P<arg_default>.+))?$"  # 可选的默认值
     )
 
-    arg_buffer_list = [
-        l.strip() for l in args_buffer.split(",") if len(l.strip()) > 0
-    ]
-    for arg_buffer in arg_buffer_list:
-        m = arg_pattern.match(arg_buffer)
-        assert m is not None, f'code arg "{arg_buffer}" not match arg pattern.'
-        arg_name = m.group("arg_name")
-        arg_default = m.group("arg_default")
-        if arg_name[0].isalpha() or arg_name[0] == "_" or arg_name[0] == "*":
-            # if is a valid arg name
-            args.append({"arg_name": arg_name, "arg_default": arg_default})
-        else:
-            args[-1]["arg_default"] += f", {arg_name}"
+    for sig in signatures:
+        first_par_pos = sig.find("(")
+        m = re.match(r"^\s*(?P<api_name>[^\( ]+)(.*?)$", sig)
+        assert m is not None, f'code first line "{sig}" not match api pattern.'
+        api_name = m.group("api_name")
 
-    return {"api_name": api_name, "args": args}
+        if first_par_pos < 0:
+            # 要是没括号，可能是特殊情况，比如 property
+            parsed_signatures.append({"api_name": api_name})
+            continue
+
+        last_par_pos = sig.rfind(")")
+        assert (
+            last_par_pos > first_par_pos
+        ), f'code first line "{sig}" not match api pattern.'
+        args_buffer = sig[first_par_pos + 1 : last_par_pos]
+
+        args = []
+        args_buffer = args_buffer.strip()
+
+        arg_buffer_list = split_args(args_buffer)
+
+        for arg_buffer in arg_buffer_list:
+            m = arg_pattern.match(arg_buffer)
+            assert (
+                m is not None
+            ), f'code arg "{arg_buffer}" not match arg pattern.'
+            arg_name = m.group("arg_name").strip()
+            arg_type = (
+                m.group("arg_type").strip() if m.group("arg_type") else None
+            )
+            arg_default = (
+                m.group("arg_default").strip()
+                if m.group("arg_default")
+                else None
+            )
+
+            if (
+                arg_name.startswith("*")
+                or arg_name.startswith("**")
+                or arg_name[0].isalpha()
+                or arg_name[0] == "_"
+            ):
+                # if is a valid arg name
+                args.append(
+                    {
+                        "arg_name": arg_name,
+                        "arg_type": arg_type,
+                        "arg_default": arg_default,
+                    }
+                )
+            else:
+                if args:
+                    if args[-1]["arg_default"] is not None:
+                        args[-1]["arg_default"] += f", {arg_name}"
+                    else:
+                        args[-1]["arg_default"] = arg_name
+                else:
+                    raise ValueError(f"Invalid argument format: {arg_buffer}")
+
+        parsed_signatures.append({"api_name": api_name, "args": args})
+
+    return parsed_signatures
 
 
 def get_meta_from_diff_file(
