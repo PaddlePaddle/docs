@@ -30,17 +30,36 @@ paddle.vision.datasets.VOC2012(data_file: Optional[str] = None, mode: str = 'tra
 #### root：数据集文件路径
 ```python
 # PyTorch 写法
-train_dataset = torchvision.datasets.VOCDetection(root='./data', image_set='train')
+train_dataset = torchvision.datasets.VOCDetection(root='./data', image_set='trainval')
 
 # Paddle 写法
 train_dataset = paddle.vision.datasets.VOC2012(data_file='./data/voc2012/VOCtrainval_11-May-2012.tar', mode='train')
 ```
 
 #### image_set: 数据集
+数据集 imaget_set 为 'trainval'
 ```python
 # PyTorch 写法
-train_dataset = torchvision.datasets.VOCDetection(root='./data', image_set='trainval', download=True)
+train_dataset = torchvision.datasets.VOCDetection(root='./data', image_set='trainval')
 
 # Paddle 写法
-train_dataset = paddle.vision.datasets.VOC2012(data_file='./data/voc2012/VOCtrainval_11-May-2012.tar', mode='train', download=True)
+train_dataset = paddle.vision.datasets.VOC2012(data_file='./data/voc2012/VOCtrainval_11-May-2012.tar', mode='train')
+```
+
+数据集 imaget_set 为 'train'
+```python
+# PyTorch 写法
+train_dataset = torchvision.datasets.VOCDetection(root='./data', image_set='train')
+
+# Paddle 写法
+train_dataset = paddle.vision.datasets.VOC2012(data_file='./data/voc2012/VOCtrainval_11-May-2012.tar', mode='test')
+```
+
+数据集 imaget_set 为 'val'
+```python
+# PyTorch 写法
+train_dataset = torchvision.datasets.VOCDetection(root='./data', image_set='val')
+
+# Paddle 写法
+train_dataset = paddle.vision.datasets.VOC2012(data_file='./data/voc2012/VOCtrainval_11-May-2012.tar', mode='valid')
 ```

@@ -31,8 +31,8 @@ paddle.vision.transforms.rotate(img, angle, interpolation='nearest', expand=Fals
 
 ```python
 # PyTorch 写法
-resized_img = torchvision.transforms.functional.rotate(img, angle=90, interpolation=torchvision.transforms.InterpolationMode.BILINEAR)
+torchvision.transforms.functional.rotate(img, angle=90, interpolation=torchvision.transforms.InterpolationMode.BILINEAR)
 
 # Paddle 写法
-resized_img = paddle.vision.transforms.rotate(img=img, angle=90, interpolation='bilinear')
+paddle.vision.transforms.rotate(img=img, angle=90, interpolation='bilinear')
 ```

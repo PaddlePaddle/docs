@@ -36,29 +36,11 @@ train_dataset = paddle.vision.datasets.Flowers102(data_file='./data/flowers-102/
 ```
 
 #### split: 训练集或数据集
-训练集
-```python
-# PyTorch 写法
-train_dataset = torchvision.datasets.Flowers102(root='./data', split='train', download=True)
-
-# Paddle 写法
-train_dataset = paddle.vision.datasets.Flowers102(data_file='./data/flowers-102/102flowers.tgz', label_file='./data/flowers-102/imagelabels.mat', setid_file='./data/flowers-102/setid.mat', mode='train', download=True)
-```
-
-测试集
-```python
-# PyTorch 写法
-train_dataset = torchvision.datasets.Flowers102(root='./data', split='test', download=True)
-
-# Paddle 写法
-train_dataset = paddle.vision.datasets.Flowers102(data_file='./data/flowers-102/102flowers.tgz', label_file='./data/flowers-102/imagelabels.mat', setid_file='./data/flowers-102/setid.mat', mode='test', download=True)
-```
-
 验证集
 ```python
 # PyTorch 写法
-train_dataset = torchvision.datasets.Flowers102(root='./data', split='val', download=True)
+train_dataset = torchvision.datasets.Flowers102(root='./data', split='val')
 
 # Paddle 写法
-train_dataset = paddle.vision.datasets.Flowers102(data_file='./data/flowers-102/102flowers.tgz', label_file='./data/flowers-102/imagelabels.mat', setid_file='./data/flowers-102/setid.mat', mode='valid', download=True)
+train_dataset = paddle.vision.datasets.Flowers102(data_file='./data/flowers-102/102flowers.tgz', label_file='./data/flowers-102/imagelabels.mat', setid_file='./data/flowers-102/setid.mat', mode='valid')
 ```
