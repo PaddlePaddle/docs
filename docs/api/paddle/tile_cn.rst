@@ -13,7 +13,6 @@ tile
 
 .. image:: ../../images/api_legend/tile.png
     :width: 600
-    :alt: 图例
 
 参数
 :::::::::
