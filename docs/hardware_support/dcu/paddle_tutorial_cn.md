@@ -6,7 +6,7 @@
 
 * 本教程介绍如何基于海光 DCU 进行 ResNet50 的训练，总共需要 1 卡进行训练
 
-* 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备： 
+* 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备：
 
   * 镜像链接：registry.baidubce.com/paddlepaddle/paddle-dcu:dtk24.04.1-kylinv10-gcc82
 
