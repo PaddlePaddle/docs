@@ -18,9 +18,7 @@ paddle.vision.datasets.Flowers(data_file=None, label_file=None, setid_file=None,
 
 | torchvision        | PaddlePaddle           | 备注                                                       |
 | ---------------------- | --------------------- | ---------------------------------------------------------- |
-| root                   | data_file             | 数据集文件路径，Paddle 参数 data_file 需含完整的文件名，如 PyTorch 参数 `./data`，对应 Paddle 参数 `./data/flowers-102/102flowers.tgz`，需要转写。         |
-| -                      | label_file            | 标签文件路径，Paddle 参数 label_file 需含完整的文件名，如 PyTorch 参数 `./data`，对应 Paddle 参数 `./data/flowers-102/imagelabels.mat`，需要转写。         |
-| -                      | setid_file            | 子数据集下标划分文件路径，Paddle 参数 setid_file 需含完整的文件名，如 PyTorch 参数 `./data`，对应 Paddle 参数 `./data/flowers-102/setid.mat`，需要转写。         |
+| root                   | data_file, label_file, setid_file| 指定数据集目录，Paddle 使用 data_file、label_file 和 setid_file，等价的实现 PyTorch 的 root 的功能，需要转写。  |
 | split                  | mode                  | 训练集、数据集或验证集。对于训练集和数据集，PyTorch 参数与 Paddle 参数相同，为 'train' 或 'test'，对于验证集，PyTorch 参数 split='val' 对应 Paddle 参数 mode='valid'，需要转写。 |
 | transform              | transform             | 图片数据的预处理。           |
 | target_transform       | -                     | 接受目标数据并转换，Paddle 无此参数，暂无转写方式。    |
