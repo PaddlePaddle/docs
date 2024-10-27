@@ -32,7 +32,7 @@ paddle.vision.datasets.Flowers(data_file=None, label_file=None, setid_file=None,
 train_dataset = torchvision.datasets.Flowers102(root='./data', split='train')
 
 # Paddle 写法
-train_dataset = paddle.vision.datasets.Flowers102(data_file='./data/flowers-102/102flowers.tgz', label_file='./data/flowers-102/imagelabels.mat', setid_file='./data/flowers-102/setid.mat', mode='train')
+train_dataset = paddle.vision.datasets.Flowers(data_file='./data/flowers-102/102flowers.tgz', label_file='./data/flowers-102/imagelabels.mat', setid_file='./data/flowers-102/setid.mat', mode='train')
 ```
 
 #### split: 训练集或数据集
@@ -42,5 +42,5 @@ train_dataset = paddle.vision.datasets.Flowers102(data_file='./data/flowers-102/
 train_dataset = torchvision.datasets.Flowers102(root='./data', split='val')
 
 # Paddle 写法
-train_dataset = paddle.vision.datasets.Flowers102(data_file='./data/flowers-102/102flowers.tgz', label_file='./data/flowers-102/imagelabels.mat', setid_file='./data/flowers-102/setid.mat', mode='valid')
+train_dataset = paddle.vision.datasets.Flowers(data_file='./data/flowers-102/102flowers.tgz', label_file='./data/flowers-102/imagelabels.mat', setid_file='./data/flowers-102/setid.mat', mode='valid')
 ```
