@@ -1,4 +1,4 @@
-## [torch 参数更多]torchvision.ops.DeformConv2d
+## [输入参数用法不一致]torchvision.ops.DeformConv2d
 
 ### [torchvision.ops.DeformConv2d](https://pytorch.org/vision/main/generated/torchvision.ops.DeformConv2d.html)
 
@@ -12,7 +12,7 @@ torchvision.ops.DeformConv2d(in_channels: int, out_channels: int, kernel_size: i
 paddle.vision.ops.DeformConv2D(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, deformable_groups=1, groups=1, weight_attr=None, bias_attr=None)
 ```
 
-功能一致，参数完全一致，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -25,7 +25,6 @@ paddle.vision.ops.DeformConv2D(in_channels, out_channels, kernel_size, stride=1,
 | padding          | padding              | 填充大小。       |
 | dilation         | dilation             | 空洞大小。       |
 | -               | deformable_groups    | 可变形卷积组数，PyTorch 无此参数，Paddle 保持默认即可。       |
-| -               | groups               | 三维卷积层的组数，PyTorch 无此参数，Paddle 保持默认即可。       |
-| bias            | -                    | 可变形卷积偏置项，Paddle 无此参数，暂无转写方式。      |
+| groups          | groups               | 三维卷积层的组数。       |
+| bias            | bias_attr            | 可变形卷积偏置项。      |
 | -               | weight_attr          | 二维卷积层的可学习参数/权重的属性，PyTorch 无此参数，Paddle 保持默认即可。       |
-| -               | bias_attr            | 二维卷积层偏置参数属性对象，PyTorch 无此参数，Paddle 保持默认即可。       |

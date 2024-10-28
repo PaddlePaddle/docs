@@ -1,4 +1,4 @@
-## [参数完全一致]torchvision.io.read_file
+## [仅参数名不一致]torchvision.io.read_file
 
 ### [torchvision.io.read_file](https://pytorch.org/vision/main/generated/torchvision.io.read_file.html)
 
@@ -12,7 +12,7 @@ torchvision.io.read_file(path)
 paddle.vision.ops.read_file(filename, name=None)
 ```
 
-功能一致，参数完全一致，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 
