@@ -33,9 +33,14 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | -             | last_comm_buffer_size |  它限制通信调用中最后一个缓冲区的内存大小（MB），PyTorch 无此参数，Paddle 保持默认即可。 |
 | -             | find_unused_parameters |  是否在模型 forward 函数的返回值的所有张量中，遍历整个向后图，PyTorch 无此参数，Paddle 保持默认即可。 |
 
-### 功能差异
-#### 使用差异
-***PyTorch***：在 API 中即可通过设置参数使用的 GPU id。
-***PaddlePaddle***：只能在启动代码时设置 GPU id，设置方式如下：
-> python -m paddle.distributed.launch –selected_gpus=0,1 demo.py
-> 其中 demo.py 脚本的代码可以是下面的示例代码。
+### 转写示例
+
+#### GPU id参数：指定使用哪些 GPU 训练
+``` python
+# PyTorch 写法:
+model = torch.nn.DataParallel(SimpleModel(), device_ids=[0, 1])
+
+# Paddle 写法:
+# 只能在启动代码时设置 GPU id，设置方式如下：
+python -m paddle.distributed.launch –selected_gpus=0,1 demo.py
+```

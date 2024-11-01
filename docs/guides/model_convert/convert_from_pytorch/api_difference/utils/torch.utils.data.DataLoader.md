@@ -56,7 +56,7 @@ paddle.io.DataLoader(dataset,
 | -             | use_buffer_reader | 表示是否使用缓存读取器，PyTorch 无此参数。                   |
 | -             | use_shared_memory | 表示是否使用共享内存来提升子进程将数据放入进程间队列的速度，PyTorch 无此参数。   |
 
-### 功能差异
+### 转写示例
 #### 自定义数据采集器
 ***PyTorch***：可通过设置`sampler`自定义数据采集器。
 ***PaddlePaddle***：PaddlePaddle 无此功能，可使用如下代码自定义一个 DataLoader 实现该功能。

@@ -31,7 +31,7 @@ paddle.create_parameter(shape,
 | -       | default_initializer | 参数的初始化程序，PyTorch 无此参数。                                                       |
 
 
-### 功能差异
+### 转写示例
 
 #### 使用方式
 ***PyTorch***：通过设置`data`将 Tensor 赋给 Parameter。

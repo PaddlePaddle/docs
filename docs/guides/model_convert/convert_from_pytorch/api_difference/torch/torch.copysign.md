@@ -1,5 +1,4 @@
-## [ 组合替代实现 ]torch.copysign
-
+## [ torch 参数更多 ]torch.copysign
 ### [torch.copysign](https://pytorch.org/docs/stable/generated/torch.copysign.html#torch.copysign)
 
 ```python
@@ -8,17 +7,29 @@ torch.copysign(input,
           *,
           out=None)
 ```
-创建一个新的浮点张量，其大小与` input `相同，正负符号与` other `相同
 
-PaddlePaddle 目前无对应 API，可使用如下代码组合替代实现:
+### [paddle.copysign](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/copysign_cn.html#copysign)
+
+```python
+paddle.copysign(x, y)
+```
+
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+### 参数映射
+
+| PyTorch       | PaddlePaddle | 备注                                                   |
+| ------------- | ------------ | ------------------------------------------------------ |
+| input | x |  输入的第一个张量，表示输出的大小，仅参数名不一致。 |
+| other  | y            | 输入的第二个张量，表示输出的符号，仅参数名不一致。 |
+| out  | -            | 表示输出的 Tensor，Paddle 无此参数，需要转写。 |
 
 ### 转写示例
 
 #### out：指定输出
 ```python
 # PyTorch 写法
-torch.copysign(input, other, out=y)
+torch.copysign(input, other, out=t)
 
 # Paddle 写法
-paddle.assign(paddle.abs(input) * paddle.sign(other), y)
+paddle.assign(paddle.copysign(x, y), t)
 ```
