@@ -33,25 +33,31 @@ train_dataset = torchvision.datasets.MNIST(root='./data')
 
 # Paddle 写法
 train_dataset = paddle.vision.datasets.MNIST(
-    image_path=str(pathlib.Path('./data') / 'MNIST/raw/train-images-idx3-ubyte.gz'),
-    label_path=str(pathlib.Path('./data') / 'MNIST/raw/train-labels-idx1-ubyte.gz'))
+    image_path='./data/MNIST/raw/train-images-idx3-ubyte.gz',
+    label_path='./data/MNIST/raw/train-labels-idx1-ubyte.gz')
 ```
 
 #### train: 训练集或数据集
 训练集
 ```python
 # PyTorch 写法
-train_dataset = torchvision.datasets.MNIST(train=True, download=True)
+train_dataset = torchvision.datasets.MNIST(root='./data', train=True)
 
 # Paddle 写法
-train_dataset = paddle.vision.datasets.MNIST(mode='train', download=True)
+train_dataset = paddle.vision.datasets.MNIST(
+    image_path='./data/MNIST/raw/train-images-idx3-ubyte.gz',
+    label_path='./data/MNIST/raw/train-labels-idx1-ubyte.gz',
+    mode='train')
 ```
 
 测试集
 ```python
 # PyTorch 写法
-train_dataset = torchvision.datasets.MNIST(train=False, download=True)
+train_dataset = torchvision.datasets.MNIST(root='./data', train=False)
 
 # Paddle 写法
-train_dataset = paddle.vision.datasets.MNIST(mode='test', download=True)
+train_dataset = paddle.vision.datasets.MNIST(
+    image_path='./data/MNIST/raw/t10k-images-idx3-ubyte.gz',
+    label_path='./data/MNIST/raw/t10k-labels-idx1-ubyte.gz',
+    mode='test')
 ```
