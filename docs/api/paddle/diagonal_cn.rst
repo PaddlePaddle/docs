@@ -20,7 +20,7 @@ diagonal
 
 参数
 :::::::::
-    - **x** (Tensor)：输入变量，类型为 Tensor，支持 bool、int32、int64、float16、float32、float64 数据类型。
+    - **x** (Tensor)：输入变量，类型为 Tensor，支持 bool、int32、int64、bfloat16、float16、float32、float64 数据类型。
     - **offset** （int，可选）- 从指定的二维平面中获取对角线的位置，默认值为 0，既主对角线。
     - **axis1** （int，可选）- 获取对角线的二维平面的第一维，默认值为 0。
     - **axis2** （int，可选）- 获取对角线的二维平面的第二维，默认值为 1。
