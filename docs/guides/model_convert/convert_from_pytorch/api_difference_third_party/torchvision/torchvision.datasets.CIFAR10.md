@@ -32,24 +32,24 @@ paddle.vision.datasets.Cifar10(data_file: Optional[str] = None, mode: str = 'tra
 train_dataset = torchvision.datasets.CIFAR10(root='/path/to/data', train=True)
 
 # Paddle 写法
-train_dataset = paddle.vision.datasets.Cifar10(data_file=str(pathlib.Path('/path/to/data') / 'cifar-10-python.tar.gz'), mode='train')
+train_dataset = paddle.vision.datasets.Cifar10(data_file='/path/to/data/cifar-10-python.tar.gz', mode='train')
 ```
 
 #### train: 训练集或数据集
 训练集
 ```python
 # PyTorch 写法
-train_dataset = torchvision.datasets.CIFAR10(train=True, download=True)
+train_dataset = torchvision.datasets.CIFAR10(root='/path/to/data', train=True, download=True)
 
 # Paddle 写法
-train_dataset = paddle.vision.datasets.Cifar10(mode='train', download=True)
+train_dataset = paddle.vision.datasets.Cifar10(data_file='/path/to/data/cifar-10-python.tar.gz', mode='train', download=True)
 ```
 
 测试集
 ```python
 # PyTorch 写法
-train_dataset = torchvision.datasets.CIFAR10(train=False, download=True)
+train_dataset = torchvision.datasets.CIFAR10(root='/path/to/data', train=False, download=True)
 
 # Paddle 写法
-train_dataset = paddle.vision.datasets.Cifar10(mode='test', download=True)
+train_dataset = paddle.vision.datasets.Cifar10(data_file='/path/to/data/cifar-10-python.tar.gz', mode='test', download=True)
 ```

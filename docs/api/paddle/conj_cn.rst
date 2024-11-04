@@ -11,7 +11,7 @@ conj
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入的复数值的 Tensor，数据类型为：complex64、complex128、float16、float32、float64、int32 或 int64。
+    - **x** (Tensor) - 输入的复数值的 Tensor，数据类型为：complex64、complex128、bfloat16、float16、float32、float64、int32 或 int64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

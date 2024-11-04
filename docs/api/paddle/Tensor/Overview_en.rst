@@ -151,6 +151,7 @@ Methods
     index_select
     inverse
     isclose
+    is_coalesced
     is_empty
     is_tensor
     isfinite
