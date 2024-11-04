@@ -31,5 +31,5 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.copysign(input, other, out=t)
 
 # Paddle 写法
-paddle.assign(paddle.copysign(x, y), t)
+paddle.assign(paddle.copysign(input, other), y)
 ```
