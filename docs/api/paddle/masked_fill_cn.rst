@@ -21,6 +21,11 @@ masked_fill
 ::::::::::::
 返回一个根据 ``mask`` 将对应位置填充为 ``value`` 的 Tensor，数据类型与 ``x`` 相同。
 
+下图展示了一个例子，假设我们有一个所有元素值为 1 的 3x3 矩阵 x 和一个相同尺寸的掩码矩阵 Mask ， Value值为3。
+
+.. image:: ../../images/api_legend/masked_fill.png
+   :width: 500
+   :alt: 图例
 
 代码示例
 ::::::::::::
