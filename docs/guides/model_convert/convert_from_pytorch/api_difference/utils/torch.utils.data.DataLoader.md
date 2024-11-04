@@ -43,7 +43,7 @@ paddle.io.DataLoader(dataset,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| sampler       | -            | 表示数据集采集器，Paddle 无此参数。  |
+| sampler       | -            | 表示数据集采集器，Paddle 无此参数，暂无转写方式。  |
 | pin_memory    | -            | 表示数据最开始是属于锁页内存，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | multiprocessing_context | -  | ？，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                   |
 | generator     | -            | 用于采样的伪随机数生成器，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。   |
@@ -57,10 +57,13 @@ paddle.io.DataLoader(dataset,
 | -             | use_shared_memory | 表示是否使用共享内存来提升子进程将数据放入进程间队列的速度，PyTorch 无此参数。   |
 
 ### 转写示例
-#### 自定义数据采集器
-***PyTorch***：可通过设置`sampler`自定义数据采集器。
-***PaddlePaddle***：PaddlePaddle 无此功能，可使用如下代码自定义一个 DataLoader 实现该功能。
-```python
+#### sampler：自定义数据采集器
+``` python
+# PyTorch 写法:
+result = torch.utils.data.DataLoader(dataset=dataset, sampler=sampler)
+
+# Paddle 写法:
+# 只能自定义一个 DataLoader 实现该功能：
 class DataLoader(paddle.io.DataLoader):
     def __init__(self,
                  dataset,
@@ -98,4 +101,5 @@ class DataLoader(paddle.io.DataLoader):
             worker_init_fn=worker_init_fn)
         if sampler is not None:
             self.batch_sampler.sampler = sampler
+result = DataLoader(dataset=dataset, sampler=sampler)
 ```

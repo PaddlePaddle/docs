@@ -6,10 +6,10 @@
 torch.Tensor.sinc_()
 ```
 
-### [paddle.sinc_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sinc__cn.html#sinc)
+### [paddle.Tensor.sinc_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sinc__cn.html#sinc)
 
 ```python
-paddle.sinc_(x, name=None)
+paddle.Tensor.sinc_()
 ```
 
-Pytorch 为 Tensor 类方法，PaddlePaddle 为普通函数，将调用 torch.Tensor 类方法的 self Tensor 传入到 Paddle 接口中即可。
+两者功能一致，均无参数。

@@ -35,7 +35,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 转写示例
 
-#### GPU id 参数：指定使用哪些 GPU 训练
+#### device_ids：指定使用哪些 GPU 训练
 ``` python
 # PyTorch 写法:
 model = torch.nn.DataParallel(SimpleModel(), device_ids=[0, 1])
