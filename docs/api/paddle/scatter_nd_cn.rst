@@ -14,7 +14,7 @@ scatter_nd
 
 下图展示了一个形状为 [3, 4] 的张量，使用 paddle.scatter_nd 操作根据 index 指定的位置更新张量为对应的 update 的数据。通过比较，可以清晰地看到张量形状变化前后各元素的对应关系。
 
-.. image:: ../../images/api_legend/roll.png
+.. image:: ../../images/api_legend/scatter_nd.png
     :width: 700
     :align: center
     :alt: 图例
