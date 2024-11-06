@@ -52,6 +52,24 @@ stack
                         [3.0, 4.0]
                         [5.0, 6.0] ] ]
 
+**图解说明（一）**：
+
+    下图展示了示例一中的情形——三个形状为[1, 2]的二维张量通过 stack 操作，在 axis = 0 的维度上堆叠为形状为[3, 1, 2]的三维张量。
+
+    .. figure:: ../../images/api_legend/stack/stack-0.png
+       :width: 1000
+       :alt: 图示一
+       :align: center
+
+**图解说明（二）**：
+
+    下图展示了如下所述情形——三个形状为[2, 2]的二维张量通过 stack 操作，在 axis = 1 的维度上堆叠为形状为[2, 3, 2]的三维张量。
+
+    .. figure:: ../../images/api_legend/stack/stack-1.png
+       :width: 1000
+       :alt: 图示二
+       :align: center
+
 参数
 :::::::::
 
