@@ -691,6 +691,15 @@ bitwise_not(out=None, name=None)
 
 请参考 :ref:`cn_api_paddle_bitwise_not`
 
+bitwise_invert(out=None, name=None)
+:::::::::
+
+返回：按位取反运算后的结果
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_bitwise_invert`
+
 bitwise_or(y, out=None, name=None)
 :::::::::
 
