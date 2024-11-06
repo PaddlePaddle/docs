@@ -78,7 +78,7 @@ python main.py -c paddlex/configs/image_classification/ResNet50.yaml \
 # 命令运行成功后会在 log 中打印出 Check dataset passed ! 信息
 ```
 
-更多关于 PaddleX 数据集说明的内容，可以查看 [PaddleX 数据集校验](https://github.com/PaddlePaddle/PaddleX/blob/release/3.0-beta/docs/tutorials/data/dataset_check.md)
+更多关于 PaddleX 数据集说明的内容，可以查看 [PaddleX 图像分类模块数据准备](https://github.com/PaddlePaddle/PaddleX/blob/release/3.0-beta1/docs/module_usage/tutorials/cv_modules/image_classification.md#41-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87)
 
 ### 三、模型训练
 
