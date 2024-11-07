@@ -9,6 +9,74 @@ index_add
 
 沿着指定轴 ``axis`` 将 ``index`` 中指定位置的 ``x`` 与 ``value`` 相加，并写入到结果 Tensor 中的对应位置。这里 ``index`` 是一个 ``1-D`` Tensor。除 ``axis`` 轴外，返回的 Tensor 其余维度大小和输入 ``x`` 相等， ``axis`` 维度的大小等于 ``index`` 的大小。
 
+**示例**
+
+::
+    * 示例 1（输入为 2-D Tensor）：
+
+        输入：
+            x.shape = [3, 3]
+            x.data = [[1., 1., 1.],
+                      [1., 1., 1.],
+                      [1., 1., 1.]]
+
+        参数：
+            index.shape = [2]
+            index.data = [0, 2]
+
+            axis = 0
+
+            value.shape = [2, 3]
+            value.data = [[1., 1., 1.],
+                          [1., 1., 1.]]
+        输出：
+            out.shape = [3, 3]
+            out.data = [[2., 2., 2.],
+                        [1., 1., 1.],
+                        [2., 2., 2.]]
+
+    * 示例 2（输入为 2-D Tensor）：
+
+        输入：
+            x.shape = [3, 3]
+            x.data = [[1., 1., 1.],
+                      [1., 1., 1.],
+                      [1., 1., 1.]]
+
+        参数：
+            index.shape = [2]
+            index.data = [0, 2]
+
+            axis = 1
+
+            value.shape = [3, 2]
+            value.data = [[1., 1.],
+                          [1., 1.],
+                          [1., 1.]]
+        输出：
+            out.shape = [3, 3]
+            out.data = [[2., 1., 2.],
+                        [1., 1., 1.],
+                        [2., 1., 2.]]
+
+** 示例 1 图解说明 **
+
+    下图展示了示例 1 中的情形——一个形状为 [3,3] 的二维张量通过 index_add 操作在 axis=0 轴上对指定位置的元素进行相加，同时保持了除 ``axis`` 轴外，返回的 Tensor 其余维度大小和输入 ``x`` 相等。
+
+    .. figure:: ../../images/api_legend/index_add/index_add-1.png
+        :width: 500
+        :alt: 示例 1 图示
+        :align: center
+
+** 示例 2 图解说明 **
+
+    下图展示了示例 2 中的情形——一个形状为 [3,3] 的二维张量通过 index_add 操作在 axis=1 轴上对指定位置的元素进行相加，同时保持了除 ``axis`` 轴外，返回的 Tensor 其余维度大小和输入 ``x`` 相等。
+
+    .. figure:: ../../images/api_legend/index_add/index_add-2.png
+        :width: 500
+        :alt: 示例 2 图示
+        :align: center
+
 参数
 :::::::::
 
