@@ -27,7 +27,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | alpha         | -            | 表示`other`的乘数，Paddle 无此参数。Paddle 应设置 y = alpha * other。  |
 | out           | -            | 表示输出的 Tensor，Paddle 无此参数。  |
 
-### 功能差异
 
 ### 转写示例
 #### alpha：表示`other`的乘数
