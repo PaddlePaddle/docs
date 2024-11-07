@@ -3298,3 +3298,24 @@ ormqr(x, tau, other, left=True, transpose=False)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_linalg_ormqr`
+
+set_(source=None, shape=None, stride=None, offset=0, name=None)
+:::::::::
+
+将 ``self`` 设置为 ``source`` 的数据内存，形状，步长以及 offset。
+
+仅在动态图下可用，设置后 ``self`` 将与 ``source`` 共享内存。
+
+参数：
+    - **source** (Tensor，可选) - 设置的目标 Tensor，可选的数据类型为 'bfloat16'、'float16'、'float32'、'float64'、'bool'、'int8'、'int16'、'int32'、'int64'、'uint8'、'complex64'、'complex128'。默认值为 None，表示将 ``self`` 设置为一个 empty tensor。
+    - **shape** (list|tuple，可选) - 设置的目标 shape，每个元素需为整数。默认值为 None，表示用 ``source`` 的形状作为目标 shape。
+    - **stride** (list|tuple，可选) - 设置的目标 stride，每个元素需为整数。默认值为 None，当 ``shape`` 也是 None 时，使用 ``source`` 的步长作为目标 stride；当 ``shape`` 不是 None 时，使用该形状的默认步长。
+    - **offset** (int，可选) - 设置的目标 offset。默认值为 0。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+返回：设置后的 ``self``。
+
+返回类型：Tensor
+
+**代码示例**
+COPY-FROM: paddle.Tensor.set_
