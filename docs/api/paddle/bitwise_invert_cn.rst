@@ -11,9 +11,7 @@ bitwise_invert
        Out = \sim X
 
 .. note::
-    ``paddle.bitwise_invert`` 遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
-
-    .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
+       ``bitwise_invert`` 和 ``bitwise_not`` 执行相同的操作，功能等效。
 
 参数
 ::::::::::::
