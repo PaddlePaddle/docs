@@ -17,10 +17,10 @@ paddle.Tensor.set_(source=None, shape=None, stride=None, offset=0, name=None)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| source           | source            | 设置的目标 Tensor。               |
-| storage_offset           | offset            | 表示距离内存数据起始位置的偏移量。Pytorch 是指偏移数字的个数，而 Paddle 是指偏移数字对应存储位置的偏移量（以 byte 为单位），需要转写。             |
-| size   | shape            | 设置的目标形状, 仅参数名不一致。    |
-| stride   | stride            | 设置的目标步长,。    |
+| source         | source      | 设置的目标 Tensor。                    |
+| storage_offset | offset      | 表示距离内存数据起始位置的偏移量。Pytorch 是指偏移数字的个数，而 Paddle 是指偏移数字对应存储位置的偏移量（以 byte 为单位），需要转写。  |
+| size           | shape       | 设置的目标形状, 仅参数名不一致。        |
+| stride         | stride      | 设置的目标步长。                       |
 
 
 ### 转写示例
