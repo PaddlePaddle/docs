@@ -35,8 +35,7 @@ index_add
                         [1., 1., 1.],
                         [2., 2., 2.]]
 
-    * 示例 2 （输入为 2-D Tensor, axis=1 ）：
-
+    - 示例 2 （输入为 2-D Tensor, axis=1 ）：
         输入：
             x.shape = [3, 3]
             x.data = [[1., 1., 1.],
