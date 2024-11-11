@@ -19,8 +19,6 @@ broadcast_tensors
    :width: 800
    :alt: Broadcast图示
    :align: center
-
-
 参数
 :::::::::
     - input (list(Tensor)|tuple(Tensor)) - 一组输入 Tensor，数据类型为：bool、float32、float64、complex64、complex128、int32 或 int64。所有的输入 Tensor 均需要满足 rank <= 5。
