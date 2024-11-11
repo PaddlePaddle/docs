@@ -30,6 +30,15 @@ shard_index
 ::::::::::::
 Tensor
 
+**图解说明**：
+
+    一个形状为[2, 1]的二维张量，通过 shard_index 操作，当 index_num = 20，nshards = 2，shard_id = 0 时，计算分片大小 shard_size = (20 + 2 - 1) // 2 = 10。对于 label 中的元素值，如 16，因为 16 >= 10（不在分片 0 的[0, 10)区间内），根据公式其值被设为 ignore_value（即 -1）；而元素值 1，由于 0 <= 1 < 10（在分片 0 内），更新后值为 1 - 0 * 10 = 1，最终得到形状仍为[2, 1]但元素部分改变的新张量（如 shard_label）。
+
+    .. figure:: ../../images/api_legend/shard_index.png
+        :width: 500
+        :align: center
+
+
 代码示例
 ::::::::::::
 
