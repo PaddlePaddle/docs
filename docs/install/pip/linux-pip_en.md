@@ -83,7 +83,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+  python3 -m pip install paddlepaddle==3.0.0b2 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
 
 
@@ -94,7 +94,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
+  python3 -m pip install paddlepaddle-gpu==3.0.0b2 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
 
@@ -102,7 +102,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
+  python3 -m pip install paddlepaddle-gpu==3.0.0b2 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
   ```
 
 
@@ -118,7 +118,7 @@ Note：
 * If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
 
   ```
-  python3 -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0-beta0/linux/linux-cpu-openblas-avx/paddlepaddle-3.0.0b1-cp38-cp38-linux_x86_64.whl
+  python3 -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0-beta0/linux/linux-cpu-openblas-avx/paddlepaddle-3.0.0b2-cp38-cp38-linux_x86_64.whl
   ```
 
 
