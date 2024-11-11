@@ -12,8 +12,8 @@ index_add
 **示例**
 
 ::
-    * 示例 1 （输入为 2-D Tensor, axis=0 ）：
 
+    - 示例 1 （输入为 2-D Tensor, axis=0 ）：
         输入：
             x.shape = [3, 3]
             x.data = [[1., 1., 1.],
