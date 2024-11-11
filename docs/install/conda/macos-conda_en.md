@@ -87,7 +87,7 @@ conda config --set show_channel_urls yes
 * Currently, only the CPU version of PaddlePaddle is supported in the macOS environment. Please use the following command to install PaddlePaddle：
 
   ```
-  conda install paddlepaddle==3.0.0b1 -c paddle
+  conda install paddlepaddle==3.0.0b2 -c paddle
   ```
 
 
