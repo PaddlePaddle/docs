@@ -12,7 +12,7 @@ index_add
 **示例**
 
 ::
-    * 示例 1（输入为 2-D Tensor）：
+    * 示例 1 （输入为 2-D Tensor, axis=0 ）：
 
         输入：
             x.shape = [3, 3]
@@ -35,7 +35,7 @@ index_add
                         [1., 1., 1.],
                         [2., 2., 2.]]
 
-    * 示例 2（输入为 2-D Tensor）：
+    * 示例 2 （输入为 2-D Tensor, axis=1 ）：
 
         输入：
             x.shape = [3, 3]
