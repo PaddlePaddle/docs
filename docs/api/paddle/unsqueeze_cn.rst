@@ -10,6 +10,14 @@ unsqueeze
 请注意，在动态图模式下，输出 Tensor 将与输入 Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。
 如果不希望输入与输出共享数据，请使用 `Tensor.clone`，例如 `unsqueeze_clone_x = x.unsqueeze(-1).clone()` 。
 
+下图展示了一个 Shape 为 [2, 3] 的 Tensor 如何使用 ``unsqueeze`` 方法在最后一个位置（axis = 2）增加一个维度，从二维变成三维。
+
+.. image:: ../../images/api_legend/unsqueeze.png
+    :width: 700
+    :alt: 图例
+
+额外的，当需要在多个位置增加维度时， ``unsqueeze`` 方法会按元素顺序依次增加维度。例如 Shape 为 [2, 3] 的 Tensor 在 axis = [0, 2]处增加维度， ``unsqueeze`` 方法会先在第一维度前插入一个维度， Shape 变为 [1, 2, 3]，接着在第三维前插入一个维度， Shape 最终变为 [1, 2, 1, 3]。
+
 参数
 :::::::::
         - **x** (Tensor) - 输入的 `Tensor`，数据类型为：bfloat16、float32、float64、bool、int8、int32、int64。
