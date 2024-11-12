@@ -2,7 +2,7 @@
 
 [The Python Package Index(PyPI)](https://pypi.org/)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式，飞桨提供的 PyPI 安装包支持分布式训练（多机多卡）、TensorRT 推理功能。
 
-* 您无需再安装 CUDA\CUDNN\NCCL 等软件,whl 包中已经自带,直接安装 whl 包即可
+* 您无需再安装 CUDA\CUDNN\NCCL 等软件, paddle whl 包中已经自带, 直接安装 paddle whl 包即可
 
 ## 一、环境准备
 

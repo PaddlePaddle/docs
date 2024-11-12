@@ -2,7 +2,7 @@
 
 [The Python Package Index(PyPI)]( https://pypi.org/ ）It is a package manager for Python. This document introduces the PyPI installation method. The PyPI installation package provided by PaddlePaddle supports distributed training (multiple computers and multiple cards) and TensorRT reasoning functions.
 
-* You don't need to install CUDA, CUDNN, NCCL and other software anymore. The WHL package already comes with it, just install the WHL package directly
+* You don't need to install CUDA, CUDNN, NCCL and other software anymore. The Paddle WHL package already comes with it, just install the Paddle WHL package directly
 
 ## Environmental preparation
 
