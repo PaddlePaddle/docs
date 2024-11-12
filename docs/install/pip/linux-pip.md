@@ -31,9 +31,6 @@
 
 * 需要确认 pip 的版本是否满足要求，要求 pip 版本为 20.2.2 或更高版本
 
-    ```
-    python3 -m ensurepip
-    ```
 
     ```
     python3 -m pip --version
@@ -49,7 +46,11 @@
 
 
 
-* 默认提供的安装包需要计算机支持 MKL
+* 默认提供的安装包需要计算机支持 MKL, Intel 芯片都支持 MKL
+
+    ```
+    cat /proc/cpuinfo
+    ```
 
 
 
@@ -60,10 +61,6 @@
 * 如果您的计算机没有 NVIDIA® GPU，请安装[CPU 版的 PaddlePaddle](#cpu)
 
 * 如果您的计算机有 NVIDIA® GPU，请确保满足以下条件并且安装[GPU 版 PaddlePaddle](#gpu)，依赖库环境版本要求如下：
-
-  * **CUDA 工具包 11.8 配合 cuDNN v8.6.0, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.5.3.1**
-
-  * **CUDA 工具包 12.3 配合 cuDNN v9.0.0, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.6.1.6**
 
   * **GPU 运算能力超过 6.0 的硬件设备**
 
@@ -82,7 +79,7 @@
 #### 2.2 <span id="gpu">GPU 版的 PaddlePaddle</span>
 
 
-2.2.1 CUDA11.8 的 PaddlePaddle
+2.2.1 CUDA11.8 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT8.5.3.1)
 
 
   ```
@@ -90,7 +87,7 @@
   ```
 
 
-2.2.2 CUDA12.3 的 PaddlePaddle
+2.2.2 CUDA12.3 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT8.6.1.6)
 
 
   ```

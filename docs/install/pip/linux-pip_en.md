@@ -32,10 +32,6 @@
 
 
     ```
-    python3 -m ensurepip
-    ```
-
-    ```
     python3 -m pip --version
     ```
 
@@ -49,10 +45,11 @@
 
 
 
-* The installation package provided by default requires computer support for MKL
+* The installation package provided by default requires computer support for MKL, Intel chips all support MKL
 
-* If you do not know the machine environment, please download and use[Quick install script](https://fast-install.bj.bcebos.com/fast_install.sh), for instructions please refer to[here](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md)。
-
+    ```
+    cat /proc/cpuinfo
+    ```
 
 
 ## INSTALLATION
@@ -62,10 +59,6 @@
 * If your computer doesn't have NVIDIA® GPU, please install [the CPU Version of PaddlePaddle](#cpu)
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
-
-  * **CUDA toolkit 11.8 with cuDNN v8.6.0(for PaddleTensorRT deployment, TensorRT8.5.1.7)**
-
-  * **CUDA toolkit 12.3 with cuDNN v9.0.0(for PaddleTensorRT deployment, TensorRT8.6.1.6)**
 
   * **Hardware devices with GPU computing power over 6.0**
 
@@ -90,7 +83,7 @@ You can choose the following version of PaddlePaddle to start installation:
 #### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
 
 
-2.2.4 If you are using CUDA 11.8
+2.2.4 If you are using CUDA 11.8(If you need to use TensorRT, you can install TensorRT 8.5.3.1 yourself)
 
 
   ```
@@ -98,8 +91,7 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-2.2.5 If you are using CUDA 12.3
-
+2.2.5 If you are using CUDA 12.3(If you need to use TensorRT, you can install TensorRT 8.6.1.6 yourself)
 
   ```
   python3 -m pip install paddlepaddle-gpu==3.0.0b2 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
