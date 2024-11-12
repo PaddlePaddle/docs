@@ -2,6 +2,8 @@
 
 [The Python Package Index(PyPI)](https://pypi.org/)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式，飞桨提供的 PyPI 安装包支持分布式训练（多机多卡）、TensorRT 推理功能。
 
+* 您无需再安装 CUDA\CUDNN\NCCL 等软件,whl 包中已经自带,直接安装 whl 包即可
+
 ## 一、环境准备
 
 ### 1.1 如何查看您的环境
@@ -48,10 +50,6 @@
 
 * 默认提供的安装包需要计算机支持 MKL, Intel 芯片都支持 MKL
 
-    ```
-    cat /proc/cpuinfo
-    ```
-
 
 
 ## 二、开始安装
@@ -79,7 +77,7 @@
 #### 2.2 <span id="gpu">GPU 版的 PaddlePaddle</span>
 
 
-2.2.1 CUDA11.8 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT8.5.3.1)
+2.2.1 CUDA11.8 的 PaddlePaddle(依赖 gcc8+, 如果需要使用 TensorRT 可自行安装 TensorRT8.5.3.1)
 
 
   ```
@@ -87,7 +85,7 @@
   ```
 
 
-2.2.2 CUDA12.3 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT8.6.1.6)
+2.2.2 CUDA12.3 的 PaddlePaddle(依赖 gcc12+, 如果需要使用 TensorRT 可自行安装 TensorRT8.6.1.6)
 
 
   ```

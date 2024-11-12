@@ -25,12 +25,7 @@
 
 
 * NCCL, distribution are not supported on windows now
-
 * The installation package provided by default requires computer support for MKL, Intel chips all support MKL
-
-    ```
-    cat /proc/cpuinfo
-    ```
 
 
 ## INSTALLATION

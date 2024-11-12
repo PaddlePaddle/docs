@@ -29,12 +29,7 @@
 
 
 * Windows 暂不支持 NCCL，分布式等相关功能
-
 * 默认提供的安装包需要计算机支持 MKL, Intel 芯片都支持 MKL
-
-    ```
-    cat /proc/cpuinfo
-    ```
 
 
 ## 二、开始安装

@@ -1,5 +1,9 @@
 # Install on Linux via PIP
 
+[The Python Package Index(PyPI)]( https://pypi.org/ ）It is a package manager for Python. This document introduces the PyPI installation method. The PyPI installation package provided by PaddlePaddle supports distributed training (multiple computers and multiple cards) and TensorRT reasoning functions.
+
+* You don't need to install CUDA, CUDNN, NCCL and other software anymore. The WHL package already comes with it, just install the WHL package directly
+
 ## Environmental preparation
 
 ### 1.1 How to check your environment
@@ -83,7 +87,7 @@ You can choose the following version of PaddlePaddle to start installation:
 #### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
 
 
-2.2.4 If you are using CUDA 11.8(If you need to use TensorRT, you can install TensorRT 8.5.3.1 yourself)
+2.2.4 If you are using CUDA 11.8(Dependent on GCC8+, If you need to use TensorRT, you can install TensorRT 8.5.3.1 yourself)
 
 
   ```
@@ -91,7 +95,7 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-2.2.5 If you are using CUDA 12.3(If you need to use TensorRT, you can install TensorRT 8.6.1.6 yourself)
+2.2.5 If you are using CUDA 12.3(Dependent on GCC8+, If you need to use TensorRT, you can install TensorRT 8.6.1.6 yourself)
 
   ```
   python3 -m pip install paddlepaddle-gpu==3.0.0b2 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
