@@ -26,3 +26,13 @@ masked_scatter
 ::::::::::::
 
 COPY-FROM: paddle.masked_scatter
+
+
+**示例图解说明**：
+
+    下图展示了示例中的情形——一个形状为[2,2]的二维张量通过 masked_scatter 操作将一维张量 value 覆盖到对应位置。
+
+    .. figure:: ../../images/api_legend/masked_scatter.png
+       :width: 500
+       :alt: 示例图示
+       :align: center
