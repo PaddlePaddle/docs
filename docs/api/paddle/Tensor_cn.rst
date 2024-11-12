@@ -411,6 +411,20 @@ COPY-FROM: paddle.Tensor.contiguous
 
 
 
+is_coalesced()
+:::::::::
+
+.. note::
+   只支持 COO 格式的稀疏 Tensor。且新创建的 SparseCooTensor 默认是未合并的。
+
+返回：本 Tensor 是否为合并的 SparseCooTensor。如果不是则返回 False。
+
+返回类型：bool
+
+**代码示例**
+COPY-FROM: paddle.Tensor.is_coalesced
+
+
 
 is_contiguous()
 :::::::::
@@ -676,6 +690,15 @@ bitwise_not(out=None, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_bitwise_not`
+
+bitwise_invert(out=None, name=None)
+:::::::::
+
+返回：按位取反运算后的结果
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_bitwise_invert`
 
 bitwise_or(y, out=None, name=None)
 :::::::::

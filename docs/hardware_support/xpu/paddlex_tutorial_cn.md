@@ -70,7 +70,7 @@ tar -xf ./dataset/cls_flowers_examples.tar -C ./dataset/
 2. 数据校验
 
 ```shell
-PaddleX 支持对数据集进行校验，确保数据集格式符合 PaddleX 的相关要求。同时在数据校验时，能够对数据集进行分析，统计数据集的基本信息。
+# PaddleX 支持对数据集进行校验，确保数据集格式符合 PaddleX 的相关要求。同时在数据校验时，能够对数据集进行分析，统计数据集的基本信息。
 python main.py -c paddlex/configs/image_classification/ResNet50.yaml \
     -o Global.mode=check_dataset \
     -o Global.dataset_dir=./dataset/cls_flowers_examples
@@ -78,7 +78,7 @@ python main.py -c paddlex/configs/image_classification/ResNet50.yaml \
 # 命令运行成功后会在 log 中打印出 Check dataset passed ! 信息
 ```
 
-更多关于 PaddleX 数据集说明的内容，可以查看 [PaddleX 数据集校验](https://github.com/PaddlePaddle/PaddleX/blob/release/3.0-beta/docs/tutorials/data/dataset_check.md)
+更多关于 PaddleX 数据集说明的内容，可以查看 [PaddleX 图像分类模块数据准备](https://github.com/PaddlePaddle/PaddleX/blob/release/3.0-beta1/docs/module_usage/tutorials/cv_modules/image_classification.md#41-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87)
 
 ### 三、模型训练
 
@@ -102,13 +102,13 @@ python main.py -c paddlex/configs/image_classification/ResNet50.yaml \
 
 #### 基于 PaddleInference 推理
 
-训练完成后，最优权重放在 `resnet50_output/best_model/` 目录下，其中 `inference.pdiparams`、`inference.pdiparams.info`、`inference.pdmodel` 3 个文件为静态图文件，用于推理使用，使用如下命令进行推理
+训练完成后，最优权重放在 `resnet50_output/best_model/` 目录下，其中 `inference/inference.pdiparams`、`inference/inference.pdiparams.info`、`inference/inference.pdmodel` 3 个文件为静态图文件，用于推理使用，使用如下命令进行推理
 
 ```shell
 python main.py -c paddlex/configs/image_classification/ResNet50.yaml \
     -o Global.mode=predict \
-    -o Predict.model_dir="./resnet50_output/best_model" \
-    -o Predict.input_path="https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_image_classification_001.jpg" \
+    -o Predict.model_dir="./resnet50_output/best_model/inference" \
+    -o Predict.input="https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_image_classification_001.jpg" \
     -o Global.device="xpu:0"
 ```
 
@@ -126,7 +126,7 @@ python -m pip install paddle2onnx
 b. 模型转换
 
 ```shell
-paddle2onnx --model_dir=./resnet50_output/best_model/ \
+paddle2onnx --model_dir=./resnet50_output/best_model/inference \
     --model_filename=inference.pdmodel \
     --params_filename=inference.pdiparams \
     --save_file=./resnet50_output/best_model/inference.onnx \

@@ -62,7 +62,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+  python -m pip install paddlepaddle==3.0.0b2 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
 
 
@@ -72,13 +72,13 @@ You can choose the following version of PaddlePaddle to start installation:
 2.2.4 If you are using CUDA 11.8
 
   ```
-  python -m pip install paddlepaddle-gpu==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
+  python -m pip install paddlepaddle-gpu==3.0.0b2 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
 2.2.5 If you are using CUDA 12.3
 
   ```
-  python -m pip install paddlepaddle-gpu==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
+  python -m pip install paddlepaddle-gpu==3.0.0b2 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
   ```
 
 Note：
@@ -91,7 +91,7 @@ Note：
 * If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
 
   ```
-  python -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0-beta0/windows/windows-cpu-avx-openblas-vs2017/paddlepaddle-3.0.0b1-cp38-cp38-win_amd64.whl
+  python -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0-beta0/windows/windows-cpu-avx-openblas-vs2017/paddlepaddle-3.0.0b2-cp38-cp38-win_amd64.whl
   ```
 
 ## Verify installation

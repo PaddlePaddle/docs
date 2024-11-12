@@ -92,7 +92,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 
 
 ```
-conda install paddlepaddle==3.0.0b1 -c paddle
+conda install paddlepaddle==3.0.0b2 -c paddle
 ```
 
 
@@ -102,13 +102,13 @@ conda install paddlepaddle==3.0.0b1 -c paddle
 *  对于 `CUDA 11.8` 安装命令为:
 
   ```
-  conda install paddlepaddle-gpu==3.0.0b1 paddlepaddle-cuda=11.8 -c paddle -c nvidia
+  conda install paddlepaddle-gpu==3.0.0b2 paddlepaddle-cuda=11.8 -c paddle -c nvidia
   ```
 
 *  对于 `CUDA 12.3` 安装命令为:
 
   ```
-  conda install paddlepaddle-gpu==3.0.0b1 paddlepaddle-cuda=12.3 -c paddle -c nvidia
+  conda install paddlepaddle-gpu==3.0.0b2 paddlepaddle-cuda=12.3 -c paddle -c nvidia
   ```
 
 
