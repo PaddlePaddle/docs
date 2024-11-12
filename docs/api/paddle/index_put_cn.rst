@@ -29,3 +29,12 @@ COPY-FROM: paddle.index_put
 更多关于 outplace 操作的介绍请参考 `3.1.3 原位（Inplace）操作和非原位（Outplace）操作的区别`_ 了解详情。
 
 .. _3.1.3 原位（Inplace）操作和非原位（Outplace）操作的区别: https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/beginner/tensor_cn.html#id3
+
+**示例图解说明**：
+
+    下图展示了示例中的情形——一个形状为[3,3]的二维张量通过 index_put 操作,将对应 index 的位置填充为 value 张量里对应元素，注意 index 与 value 的元素个数应匹配。
+
+    .. figure:: ../../images/api_legend/index_put.png
+       :width: 500
+       :alt: 示例图示
+       :align: center
