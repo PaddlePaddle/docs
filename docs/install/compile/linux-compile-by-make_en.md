@@ -58,12 +58,12 @@ For domestic users, when downloading docker is slow due to network problems, you
 
 * CPU version of PaddlePaddle：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev
     ```
 
 * GPU version of PaddlePaddle：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2
     ```
 
 If your machine is not in mainland China, you can pull the image directly from DockerHub:
@@ -90,7 +90,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     Using the image pulled from Baidu.
     ```
-    docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+    docker run --name paddle-test -v $PWD:/paddle --network=host -it ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
     ```
 
     - `--name paddle-test`: names the Docker container you created as paddle-test;
@@ -101,7 +101,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `-it`: keeps interaction with the host;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev`: use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
+    - `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev`: use the image named `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
     If you are using the image pulled from DockerHub, just modify the image name.
     ```
@@ -113,7 +113,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     Using the image pulled from Baidu.
     ```
-    docker run --gpus all --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    docker run --gpus all --name paddle-test -v $PWD:/paddle --network=host -it ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
     ```
 
     - `--gpus all`: gpu resources can be used in Docker container;
@@ -127,7 +127,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `-it`: keeps interaction with the host;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`: use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
+    - `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`: use the image named `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
     If you are using the image pulled from DockerHub, just modify the image name.
     ```
