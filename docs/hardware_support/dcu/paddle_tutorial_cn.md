@@ -8,7 +8,11 @@
 
 * 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备：
 
+<<<<<<< HEAD
   * 镜像链接： registry.baidubce.com/paddlepaddle/paddle-dcu:dtk24.04.1-kylinv10-gcc82
+=======
+  * 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle-dcu:dtk24.04.1-kylinv10-gcc82
+>>>>>>> 93b862d70... Update docker images
 
 ### 环境安装
 
