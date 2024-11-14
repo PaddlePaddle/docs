@@ -301,7 +301,7 @@ def get_meta_from_diff_file(
                     mapping_type = title_match["type"].strip()
                     src_api = unescape_api(title_match["src_api"].strip())
                     if src_api == "torch.pi":
-                        dst_prefix="numpy."
+                        dst_prefix = "numpy."
                     meta_data["src_api"] = unescape_api(src_api)
                     meta_data["mapping_type"] = mapping_type
 
@@ -475,8 +475,6 @@ def get_meta_from_diff_file(
                 raise ValueError(
                     f"Unexpected state {state} when process {filepath} line: {line}"
                 )
-
-
 
     # 允许没有参数映射列表
     if mapping_type in ["无参数", "组合替代实现"]:
