@@ -32,6 +32,7 @@
 | [fairscale.xx](#id23)   | 第三方库 fairscale API |
 | [transformers.xx](#id24)   | 第三方库 transformers API |
 | [flash_attn.xx](#id25)   | 第三方库 flash_attn API |
+| [torchvision.xx](#id26)   | 第三方库 torchvision API |
 
 ## torch.XX API 映射列表
 
@@ -235,6 +236,14 @@
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | REFERENCE-MAPPING-TABLE(`flash_attn.`) |
+
+***持续更新...***
+
+## torchvision.XX API 映射列表
+
+| 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
+| ----- | ----------- | ----------------- | ----------- | ------- |
+| REFERENCE-MAPPING-TABLE(`torchvision.`) |
 
 ***持续更新...***
 
