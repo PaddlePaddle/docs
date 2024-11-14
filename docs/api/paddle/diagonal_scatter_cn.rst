@@ -26,6 +26,12 @@ diagonal_scatter
     - **axis2** (int, 可选) - 对角线的第二个维度，默认值为 1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
+下图展示了一个例子——x是一个[[0,1,2],[3,4,5]]的二维张量，通过diagonal_scatter在axis1=0，axis2=1构成的二维平面内，向其主对角线填充了一个[1,1]的张量。
+
+.. image:: ../../images/api_legend/diagonal_scatter.png
+   :width: 500
+   :alt: 图例
+
 返回
 ::::::::::::
 ``Tensor``，返回一个根据给定的轴 ``axis`` 和偏移量 ``offset``，将张量 ``y`` 填充到张量 ``x`` 对应位置的新 ``Tensor``。
