@@ -3,13 +3,13 @@
 ### [torch.pi](https://github.com/pytorch/pytorch)
 
 ```python
-torch.pi()
+torch.pi
 ```
 
 ### [numpy.pi](https://github.com/numpy/numpy)
 
 ```python
-numpy.pi()
+numpy.pi
 ```
 
 功能一致，无参数。

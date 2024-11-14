@@ -5,7 +5,7 @@
 torch.utils.checkpoint.checkpoint(function, *args, use_reentrant=True, **kwargs)
 ```
 
-### [paddle.utils.cpp_extension.CppExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/cpp_extension/CppExtension_cn.html)
+### [paddle.distributed.fleet.utils.recompute](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/cpp_extension/CppExtension_cn.html)
 
 ```python
 paddle.distributed.fleet.utils.recompute(function, *args, **kwargs)
