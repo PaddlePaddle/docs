@@ -15,26 +15,26 @@
 | [torch.nn.functional.XX](#id3) | 主要为`torch.nn.functional.XX`类 API |
 | [torch.nn.init.XX](#id4) | 主要为`torch.nn.init.XX`类 API |
 | [torch.nn.utils.XX](#id5) | 主要为`torch.nn.utils.XX`类 API |
-| [torch.nn.Module.XX](#id15) | 主要为`torch.nn.Module.XX`类 API |
-| [torch.Tensor.XX](#id6) | 主要为`torch.Tensor.XX`类 API |
-| [torch.autograd.XX](#id20) | 主要为`torch.autograd.XX`类 API |
-| [torch.cuda.XX](#id7) | 主要为`torch.cuda.XX`类 API |
-| [torch.distributed.XX](#id8) | 主要为`torch.distributed.XX`类 API |
-| [torch.distributions.XX](#id9)   | 主要为`torch.distributions.XX`类 API |
-| [torch.fft.XX](#id10)   | 主要为`torch.fft.XX`类 API |
-| [torch.hub.XX](#id14)   | 主要为`torch.hub.XX`类 API |
-| [torch.linalg.XX](#id11)   | 主要为`torch.linalg.XX`类 API |
+| [torch.nn.Module.XX](#id6) | 主要为`torch.nn.Module.XX`类 API |
+| [torch.Tensor.XX](#id7) | 主要为`torch.Tensor.XX`类 API |
+| [torch.autograd.XX](#id8) | 主要为`torch.autograd.XX`类 API |
+| [torch.cuda.XX](#id9) | 主要为`torch.cuda.XX`类 API |
+| [torch.distributed.XX](#id10) | 主要为`torch.distributed.XX`类 API |
+| [torch.distributions.XX](#id11)   | 主要为`torch.distributions.XX`类 API |
+| [torch.fft.XX](#id12)   | 主要为`torch.fft.XX`类 API |
+| [torch.hub.XX](#id13)   | 主要为`torch.hub.XX`类 API |
+| [torch.linalg.XX](#id14)   | 主要为`torch.linalg.XX`类 API |
 | [torch.onnx.XX](#id15)   | 主要为`torch.onnx.XX`类 API |
-| [torch.profiler.XX](#id21)   | 主要为`torch.profiler.XX`类 API |
-| [torch.optim.XX](#id22)   | 主要为`torch.optim.XX`类 API |
-| [torch.sparse.XX](#id12)   | 主要为`torch.sparse.XX`类 API |
-| [torch 其他](#id13)   | PyTorch 其他 API |
-| [fairscale.xx](#id23)   | 第三方库 fairscale API |
-| [transformers.xx](#id24)   | 第三方库 transformers API |
-| [flash_attn.xx](#id25)   | 第三方库 flash_attn API |
-| [torchvision.xx](#id26)   | 第三方库 torchvision API |
+| [torch.profiler.XX](#id16)   | 主要为`torch.profiler.XX`类 API |
+| [torch.optim.XX](#id17)   | 主要为`torch.optim.XX`类 API |
+| [torch.sparse.XX](#id18)   | 主要为`torch.sparse.XX`类 API |
+| [torch 其他](#id19)   | PyTorch 其他 API |
+| [fairscale.xx](#id20)   | 第三方库 fairscale API |
+| [transformers.xx](#id21)   | 第三方库 transformers API |
+| [flash_attn.xx](#id22)   | 第三方库 flash_attn API |
+| [torchvision.xx](#id23)   | 第三方库 torchvision API |
 
-## torch.XX API 映射列表
+## <span id="id1">torch.XX API 映射列表</span>
 
 梳理了`torch.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
@@ -44,7 +44,7 @@
 
 ***持续更新...***
 
-## torch.nn.XX API 映射列表
+## <span id="id2">torch.nn.XX API 映射列表</span>
 
 梳理了`torch.nn.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
@@ -54,7 +54,7 @@
 
 ***持续更新...***
 
-## torch.nn.functional.XX API 映射列表
+## <span id="id3">torch.nn.functional.XX API 映射列表</span>
 梳理了`torch.nn.functional.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
@@ -63,7 +63,7 @@
 
 ***持续更新...***
 
-## torch.Tensor.XX API 映射列表
+## <span id="id7">torch.Tensor.XX API 映射列表</span>
 
 梳理了`torch.Tensor.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
@@ -73,7 +73,8 @@
 
 ***持续更新...***
 
-## torch.nn.init.XX API 映射列表
+## <span id="id4">torch.nn.init.XX API 映射列表</span>
+
 梳理了`torch.nn.init.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
@@ -82,7 +83,8 @@
 
 ***持续更新...***
 
-## torch.nn.utils.XX API 映射列表
+## <span id="id5">torch.nn.utils.XX API 映射列表</span>
+
 梳理了`torch.nn.utils.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
@@ -91,7 +93,8 @@
 
 ***持续更新...***
 
-## torch.nn.Module.XX API 映射列表
+## <span id="id6">torch.nn.Module.XX API 映射列表</span>
+
 梳理了`torch.nn.Module.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
@@ -100,7 +103,7 @@
 
 ***持续更新...***
 
-## torch.autograd.XX API 映射列表
+## <span id="id8">torch.autograd.XX API 映射列表</span>
 梳理了`torch.autograd.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
@@ -109,7 +112,7 @@
 
 ***持续更新...***
 
-## torch.cuda.XX API 映射列表
+## <span id="id9">torch.cuda.XX API 映射列表</span>
 梳理了`torch.cuda.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
@@ -118,7 +121,7 @@
 
 ***持续更新...***
 
-## torch.distributed.XX API 映射列表
+## <span id="id10">torch.distributed.XX API 映射列表</span>
 梳理了`torch.distributed.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
@@ -127,7 +130,7 @@
 
 ***持续更新...***
 
-## torch.distributions.XX API 映射列表
+## <span id="id11">torch.distributions.XX API 映射列表</span>
 梳理了`torch.distributions.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
@@ -136,7 +139,7 @@
 
 ***持续更新...***
 
-## torch.fft.XX API 映射列表
+## <span id="id12">torch.fft.XX API 映射列表</span>
 梳理了`torch.fft.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
@@ -145,7 +148,7 @@
 
 ***持续更新...***
 
-## torch.hub.XX API 映射列表
+## <span id="id13">torch.hub.XX API 映射列表</span>
 
 梳理了`torch.hub.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
@@ -156,7 +159,7 @@
 
 ***持续更新...***
 
-## torch.linalg.XX API 映射列表
+## <span id="id14">torch.linalg.XX API 映射列表</span>
 
 梳理了`torch.linalg.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
@@ -166,7 +169,7 @@
 
 ***持续更新...***
 
-## torch.onnx.XX API 映射列表
+## <span id="id15">torch.onnx.XX API 映射列表</span>
 
 梳理了`torch.onnx.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
@@ -176,7 +179,7 @@
 
 ***持续更新...***
 
-## torch.optim.XX API 映射列表
+## <span id="id17">torch.optim.XX API 映射列表</span>
 梳理了`torch.optim.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
@@ -185,7 +188,7 @@
 
 ***持续更新...***
 
-## torch.profiler.XX API 映射列表
+## <span id="id16">torch.profiler.XX API 映射列表</span>
 
 梳理了`torch.profiler.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
@@ -195,7 +198,7 @@
 
 ***持续更新...***
 
-## torch.sparse.XX API 映射列表
+## <span id="id18">torch.sparse.XX API 映射列表</span>
 
 梳理了`torch.sparse.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
@@ -205,7 +208,7 @@
 
 ***持续更新...***
 
-## PyTorch 其他类 API 映射列表
+## <span id="id19">PyTorch 其他类 API 映射列表</span>
 
 梳理了 PyTorch 其他类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
@@ -215,7 +218,7 @@
 
 ***持续更新...***
 
-## fairscale.XX API 映射列表
+## <span id="id20">fairscale.XX API 映射列表</span>
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
@@ -223,7 +226,7 @@
 
 ***持续更新...***
 
-## transformers.XX API 映射列表
+## <span id="id21">transformers.XX API 映射列表</span>
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
@@ -231,7 +234,7 @@
 
 ***持续更新...***
 
-## flash_attn.XX API 映射列表
+## <span id="id22">flash_attn.XX API 映射列表</span>
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
@@ -239,7 +242,7 @@
 
 ***持续更新...***
 
-## torchvision.XX API 映射列表
+## <span id="id23">torchvision.XX API 映射列表</span>
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
