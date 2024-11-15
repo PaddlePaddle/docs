@@ -13,10 +13,10 @@
 | [torch.XX](#id1) | 主要为`torch.XX`类 API |
 | [torch.nn.XX](#id2) | 主要为`torch.nn.XX`类 API |
 | [torch.nn.functional.XX](#id3) | 主要为`torch.nn.functional.XX`类 API |
-| [torch.nn.init.XX](#id4) | 主要为`torch.nn.init.XX`类 API |
-| [torch.nn.utils.XX](#id5) | 主要为`torch.nn.utils.XX`类 API |
-| [torch.nn.Module.XX](#id6) | 主要为`torch.nn.Module.XX`类 API |
-| [torch.Tensor.XX](#id7) | 主要为`torch.Tensor.XX`类 API |
+| [torch.Tensor.XX](#id4) | 主要为`torch.Tensor.XX`类 API |
+| [torch.nn.init.XX](#id5) | 主要为`torch.nn.init.XX`类 API |
+| [torch.nn.utils.XX](#id6) | 主要为`torch.nn.utils.XX`类 API |
+| [torch.nn.Module.XX](#id7) | 主要为`torch.nn.Module.XX`类 API |
 | [torch.autograd.XX](#id8) | 主要为`torch.autograd.XX`类 API |
 | [torch.cuda.XX](#id9) | 主要为`torch.cuda.XX`类 API |
 | [torch.distributed.XX](#id10) | 主要为`torch.distributed.XX`类 API |
@@ -25,8 +25,8 @@
 | [torch.hub.XX](#id13)   | 主要为`torch.hub.XX`类 API |
 | [torch.linalg.XX](#id14)   | 主要为`torch.linalg.XX`类 API |
 | [torch.onnx.XX](#id15)   | 主要为`torch.onnx.XX`类 API |
-| [torch.profiler.XX](#id16)   | 主要为`torch.profiler.XX`类 API |
-| [torch.optim.XX](#id17)   | 主要为`torch.optim.XX`类 API |
+| [torch.optim.XX](#id16)   | 主要为`torch.optim.XX`类 API |
+| [torch.profiler.XX](#id17)   | 主要为`torch.profiler.XX`类 API |
 | [torch.sparse.XX](#id18)   | 主要为`torch.sparse.XX`类 API |
 | [torch 其他](#id19)   | PyTorch 其他 API |
 | [fairscale.xx](#id20)   | 第三方库 fairscale API |
@@ -63,7 +63,7 @@
 
 ***持续更新...***
 
-## <span id="id7">torch.Tensor.XX API 映射列表</span>
+## <span id="id4">torch.Tensor.XX API 映射列表</span>
 
 梳理了`torch.Tensor.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
@@ -73,7 +73,7 @@
 
 ***持续更新...***
 
-## <span id="id4">torch.nn.init.XX API 映射列表</span>
+## <span id="id5">torch.nn.init.XX API 映射列表</span>
 
 梳理了`torch.nn.init.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
@@ -83,7 +83,7 @@
 
 ***持续更新...***
 
-## <span id="id5">torch.nn.utils.XX API 映射列表</span>
+## <span id="id6">torch.nn.utils.XX API 映射列表</span>
 
 梳理了`torch.nn.utils.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
@@ -93,7 +93,7 @@
 
 ***持续更新...***
 
-## <span id="id6">torch.nn.Module.XX API 映射列表</span>
+## <span id="id7">torch.nn.Module.XX API 映射列表</span>
 
 梳理了`torch.nn.Module.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
@@ -179,7 +179,7 @@
 
 ***持续更新...***
 
-## <span id="id17">torch.optim.XX API 映射列表</span>
+## <span id="id16">torch.optim.XX API 映射列表</span>
 梳理了`torch.optim.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
@@ -188,7 +188,7 @@
 
 ***持续更新...***
 
-## <span id="id16">torch.profiler.XX API 映射列表</span>
+## <span id="id17">torch.profiler.XX API 映射列表</span>
 
 梳理了`torch.profiler.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
