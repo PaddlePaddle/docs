@@ -19,7 +19,7 @@ paddle.vision.models.alexnet(pretrained=False, **kwargs)
 | torchvision | PaddlePaddle | 备注 |
 | ----------- | ------------ | ---- |
 | weights     | pretrained   | 预训练权重，PyTorch 参数 weights 为 AlexNet_Weights 枚举类或 String 类型，Paddle 参数 pretrained 为 bool 类型，需要转写。|
-| progress    | -            | 是否显示下载进度条，Paddle 无此参数，暂无转写方式。|
+| progress    | -            | 是否显示下载进度条，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
 | kwargs      | kwargs       | 附加的关键字参数。|
 
 ### 转写示例
