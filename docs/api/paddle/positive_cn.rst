@@ -15,7 +15,7 @@ positive
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 支持任意维度的 Tensor。数据类型为 uint8,int8,int16,int32,int64,float32，float64，float16，complex64，complex128。
+    - **x** (Tensor) - 支持任意维度的 Tensor。数据类型为 uint8、int8、int16、int32、int64、float32、float64、float16、complex64、complex128。
 
 返回
 ::::::::::::
