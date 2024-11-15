@@ -30,5 +30,5 @@ paddle.vision.models.vgg19(pretrained=False, batch_norm=False, **kwargs)
 torchvision.models.vgg19(weights=torchvision.models.VGG19_Weights.DEFAULT)
 
 # Paddle 写法
-paddle.vision.models.vgg19(pretrained=True, batch_norm=False)
+paddle.vision.models.vgg19(pretrained=True)
 ```

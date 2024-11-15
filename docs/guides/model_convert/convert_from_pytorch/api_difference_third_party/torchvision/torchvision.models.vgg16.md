@@ -31,5 +31,5 @@ paddle.vision.models.vgg16(pretrained=False, batch_norm=False, **kwargs)
 torchvision.models.vgg16(weights=torchvision.models.VGG16_Weights.DEFAULT)
 
 # Paddle 写法
-paddle.vision.models.vgg16(pretrained=True, batch_norm=False)
+paddle.vision.models.vgg16(pretrained=True)
 ```
