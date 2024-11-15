@@ -5,8 +5,6 @@ matrix_transpose
 
 .. py:function:: paddle.linalg.matrix_transpose(x, name=None)
 
-
-
 对输入张量 `x` 的最后两个维度进行转置。
 
 .. note::
@@ -20,8 +18,8 @@ matrix_transpose
 
 返回
 ::::::::::::
- ``最后两个维度进行转置后的结果`` `Tensor`，数据类型与 `x` 相同。
 
+ ``最后两个维度进行转置后的结果`` `Tensor`，数据类型与 `x` 相同。
 
 代码示例
 ::::::::::::
