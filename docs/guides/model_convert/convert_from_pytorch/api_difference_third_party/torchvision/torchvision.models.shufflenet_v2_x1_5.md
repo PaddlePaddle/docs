@@ -18,6 +18,16 @@ paddle.vision.models.shufflenet_v2_x1_5(pretrained=False, **kwargs)
 
 | torchvision | PaddlePaddle | 备注 |
 | ----------- | ------------ | ---- |
-| weights     | pretrained   | 预训练权重，Paddle 参数 pretrained 为 bool 类型，PyTorch 参数 weights 为 ShuffleNet_V2_X1_5_Weights 类型，需要转写。|
+| weights     | pretrained   | 预训练权重，PyTorch 参数 weights 为 ShuffleNet_V2_X1_5_Weights 枚举类或 String 类型，Paddle 参数 pretrained 为 bool 类型，需要转写。|
 | progress    | -            | 是否显示下载进度条，Paddle 无此参数，暂无转写方式。|
 | kwargs      | kwargs       | 附加的关键字参数。|
+
+### 转写示例
+#### weights: 预训练权重
+```python
+# PyTorch 写法
+torchvision.models.shufflenet_v2_x1_5(weights=torchvision.models.ShuffleNet_V2_X1_5_Weights.DEFAULT)
+
+# Paddle 写法
+paddle.vision.models.shufflenet_v2_x1_5(pretrained=True)
+```

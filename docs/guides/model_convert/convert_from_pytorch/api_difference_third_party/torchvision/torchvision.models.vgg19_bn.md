@@ -18,7 +18,17 @@ paddle.vision.models.vgg19(pretrained=False, batch_norm=False, **kwargs)
 
 | torchvision | PaddlePaddle | 备注 |
 | ----------- | ------------ | ---- |
-| weights     | pretrained   | 预训练权重，Paddle 参数 pretrained 为 bool 类型，PyTorch 参数 weights 为 VGG19_BN_Weights 类型，需要转写。|
+| weights     | pretrained   | 预训练权重，PyTorch 参数 weights 为 VGG19_BN_Weights 枚举类或 String 类型，Paddle 参数 pretrained 为 bool 类型，需要转写。|
 | progress    | -            | 是否显示下载进度条，Paddle 无此参数，暂无转写方式。|
 | -           | batch_norm   | 是否使用批归一化，PyTorch 无此参数，Paddle 应设置为 True。 |
 | kwargs      | kwargs       | 附加的关键字参数。|
+
+### 转写示例
+#### weights: 预训练权重
+```python
+# PyTorch 写法
+torchvision.models.vgg19_bn(weights=torchvision.models.VGG19_BN_Weights.DEFAULT)
+
+# Paddle 写法
+paddle.vision.models.vgg19_bn(pretrained=True, batch_norm=True)
+```
