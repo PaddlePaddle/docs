@@ -742,7 +742,7 @@ def discover_all_metas(cfp_basedir):
         s, d = prefixs
         sh = get_table_header_by_prefix(s)
         for f in files:
-            if(os.path.basename(f) in validate_whitelist):
+            if os.path.basename(f) in validate_whitelist:
                 continue
             metas.append(get_meta_from_diff_file(f, s, d, src_argmap_title=sh))
 
