@@ -6,7 +6,7 @@
 os.environ.get(key, value)
 ```
 
-Paddle 无此 API，需要组合实现。
+Paddle 无此 API，需要组合实现。该API一般情况下与Paddle无关，仅在torch分布式相关的深度学习用法里才需转写。可以用来获取参与分布式训练的进程总数，以及获取当前进程的rank。
 
 ### 转写示例
 

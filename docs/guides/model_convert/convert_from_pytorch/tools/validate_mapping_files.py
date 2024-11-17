@@ -13,6 +13,10 @@ from typing import TypedDict
 
 PADDLE_DOCS_BASE_URL = "https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/"
 
+validate_whitelist = [
+    r"torch.pi.md",
+]
+
 mapping_type_levels = [
     # type 0
     ["UNDEFINED_MAPPING_TYPE_0"],
@@ -300,8 +304,6 @@ def get_meta_from_diff_file(
                 if title_match:
                     mapping_type = title_match["type"].strip()
                     src_api = unescape_api(title_match["src_api"].strip())
-                    if src_api == "torch.pi":
-                        dst_prefix = "numpy."
                     meta_data["src_api"] = unescape_api(src_api)
                     meta_data["mapping_type"] = mapping_type
 
@@ -740,6 +742,8 @@ def discover_all_metas(cfp_basedir):
         s, d = prefixs
         sh = get_table_header_by_prefix(s)
         for f in files:
+            if(os.path.basename(f) in validate_whitelist):
+                continue
             metas.append(get_meta_from_diff_file(f, s, d, src_argmap_title=sh))
 
     metas.sort(key=lambda x: x["src_api"])

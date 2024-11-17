@@ -12,4 +12,4 @@ torchvision.transforms.InterpolationMode.NEAREST
 'nearest'
 ```
 
-两者功能一致，无参数。
+枚举对应到字符串，两者功能一致，无参数。

@@ -2,13 +2,13 @@
 ### [torch.utils.checkpoint.checkpoint](https://pytorch.org/docs/stable/checkpoint.html#torch.utils.checkpoint.checkpoint)
 
 ```python
-torch.utils.checkpoint.checkpoint(function, *args, use_reentrant=True, **kwargs)
+torch.utils.checkpoint.checkpoint(function, preserve_rng_state=True, use_reentrant=True, determinism_check="default", *args, **kwargs)
 ```
 
 ### [paddle.distributed.fleet.utils.recompute](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/cpp_extension/CppExtension_cn.html)
 
 ```python
-paddle.distributed.fleet.utils.recompute(function, *args, **kwargs)
+paddle.distributed.fleet.utils.recompute(function, preserve_rng_state=True, use_reentrant=True, *args, **kwargs)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：

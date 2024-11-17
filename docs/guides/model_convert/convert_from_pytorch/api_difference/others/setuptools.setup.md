@@ -6,7 +6,7 @@
 setuptools.setup(*args, **attrs)
 ```
 
-Paddle 无此 API，需要组合实现。
+Paddle 无此 API，需要组合实现。该API一般情况下与Paddle无关，仅在torch分布式相关的深度学习用法里才需转写，用来构建一个包含自定义扩展（如 C++ ）的 PyTorch 包。
 
 ### 转写示例
 
