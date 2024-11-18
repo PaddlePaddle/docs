@@ -49,13 +49,13 @@ log_prob(value)
 
 
 
-sample(shape)
+sample(shape=[])
 '''''''''
 随机采样，生成指定维度的样本。
 
 **参数**
 
-    - **shape** (Sequence[int], optional) - 采样的样本维度。
+    - **shape** (Sequence[int]，可选) - 采样的样本维度。
 
 **返回**
 
