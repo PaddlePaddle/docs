@@ -13,21 +13,21 @@ atleast_2d
 
 .. figure:: /images/api_legend/paddle.atleast_2d.png
    :align: center
-   :alt: 显示 paddle.atleast_2d 的升维过程
+   :alt: paddle.atleast_2d
 
    图示：输入不同维度的张量，经过 `paddle.atleast_2d` 函数的升维效果。
 
-1. 输入为 0 维张量（标量）：
+1. **输入为 0 维张量（标量）**：
 
    - 输入：`5` （标量）
    - 输出：`[[5]]` （扩展为二维张量）
 
-2. 输入为 1 维张量（向量）：
+2. **输入为 1 维张量（向量）**：
 
    - 输入：`[1, 2, 3]` （1 维张量）
    - 输出：`[[1, 2, 3]]` （扩展为二维张量）
 
-3. 输入为 2 维张量（矩阵）：
+3. **输入为 2 维张量（矩阵）**：
 
    - 输入：`[[1, 2], [3, 4]]` （2 维张量）
    - 输出：`[[1, 2], [3, 4]]` （无需改变）
@@ -43,19 +43,4 @@ Tensor 或由 Tensor 组成的 list。当只有一个输入时，返回一个 Te
 
 代码示例
 ========
-
-.. code-block:: python
-
-    import paddle
-
-    # 输入为 0 维张量
-    result = paddle.atleast_2d(5)
-    print(result)  # [[5]]
-
-    # 输入为 1 维张量
-    result = paddle.atleast_2d([1, 2, 3])
-    print(result)  # [[1, 2, 3]]
-
-    # 输入为 2 维张量
-    result = paddle.atleast_2d([[1, 2], [3, 4]])
-    print(result)  # [[1, 2], [3, 4]]
+COPY-FROM: paddle.atleast_2d
