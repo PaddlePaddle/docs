@@ -230,7 +230,6 @@ REGISTER_OP_WITHOUT_GRADIENT(op_type, op_class, op_maker_class)
 * `Tensor` is an n-dimension array with type.
     * Only dims and data pointers are stored in `Tensor`.
     * All operations on `Tensor` are written in `Operator` or global functions.
-    * Variable length Tensor design [LoDTensor](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/lod_tensor.md)
 * `Variable` instances are the inputs and the outputs of an operator, not just `Tensor`.
     * `step_scopes` in RNN is a variable and not a tensor.
 * `Scope` is where variables are stored.

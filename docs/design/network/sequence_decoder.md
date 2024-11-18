@@ -11,10 +11,9 @@ In the old version of PaddlePaddle, the C++ class `RecurrentGradientMachine` imp
 
 There are a lot of heuristic tricks in the sequence generation tasks, so the flexibility of sequence decoder is very important to users.
 
-During the refactoring of PaddlePaddle, some new concepts are proposed such as:  [LoDTensor](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/lod_tensor.md) and [TensorArray](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/tensor_array.md) that can better support the sequence usage, and they can also help make the implementation of beam search based sequence decoder **more transparent and modular** .
+During the refactoring of PaddlePaddle, some new concepts are proposed such as:  [TensorArray](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/tensor_array.md) that can better support the sequence usage, and they can also help make the implementation of beam search based sequence decoder **more transparent and modular** .
 
-For example, the RNN states, candidates IDs and probabilities of beam search can be represented all as `LoDTensors`;
-the selected candidate's IDs in each time step can be stored in a `TensorArray`, and `Packed` to the sentences translated.
+For example, the selected candidate's IDs in each time step can be stored in a `TensorArray`, and `Packed` to the sentences translated.
 
 ## Changing LoD's absolute offset to relative offsets
 The current `LoDTensor` is designed to store levels of variable-length sequences. It stores several arrays of integers where each represents a level.
