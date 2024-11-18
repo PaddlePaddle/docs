@@ -19,6 +19,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | function          | function            | 模型前向传播的部分连续的层函数组成的序列。  |
 | preserve_rng_state         | preserve_rng_state         | 是否保存前向的 rng。   |
 | use_reentrant         | use_reentrant         |  recompute 的实现方式。   |
-| determinism_check         | -         | 控制是否在反向传播时检查操作的确定性, Paddle 无此参数，暂无转写方式。   |
+| determinism_check         | -         | 控制是否在反向传播时检查操作的确定性, 一般对训练结果影响不大，可直接删除。   |
 |*args         | *args          |   function 的输入。 |
 | **kwargs      | **kwargs        |   用于指定 Extension 的其他参数，支持的参数与 setuptools.Extension 一致。 |
