@@ -12,7 +12,6 @@ Core Concepts
   var_desc.md
   tensor.md
   tensor_array.md
-  lod_tensor.md
   block.md
   scope.md
   executor.md
