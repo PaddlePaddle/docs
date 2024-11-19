@@ -132,8 +132,24 @@ Pass 的核心是子图匹配和替换（即图变换），是将一个 Program 
 - a. C++ 层参数存储，采用二进制流的保存方式，存储文件为 xxx.pdiparams。
 - b. Python 层参数存储， 使用 pickle 序列化工具，存储文件为 xxx.pdparams。
 
-## 五、参考资料
+## 五、PIR 组网插入隐式算子的场景
+### 1.背景
+PIR 组网过程中存在『插入隐式算子』的场景，所谓『隐式算子』是指：非用户直接调用 API 接口插入的对应算子，而是底层组网逻辑及执行逻辑中自动插入的算子，这里算子包括三类：
+
+* 组网过程中：为可变 Attribute 插入的 pd_op.full / pd_op.full_int_array 算子
+* 组网过程中：针对 pir::VectorType 插入的 builtin.combine / builtin.split 算子
+* 执行过程中：为静态 kernel 选择插入的 pd_op.shadow_feed 算子
+
+### 2.隐式算子介绍
+|插入的隐式算子|含义|
+|-|-|
+|pd_op.full / pd_op.full_int_array|飞桨的算子定义包含可变 Attribute 的概念，对于可变 Attribute，用户的组网 API 可传入一个常量、也可传入一个 Tensor/Value。在 PIR 的算子定义体系下，可变 Attribute 都将被视为输入变量，因此，当用户 API 传入一个常量的时候，将在组网代码中通过自动插入 pd_op.full / pd_op.full_int_array 将输入的常量转换为变量，再构造对应的算子。 包含可变 Attribute 的算子集合：在 paddle/phi/ops/yaml/op_compat.yaml 中搜索 scalar 及 int_array 标记的属性。|
+|builtin.combine / builtin.split|这两个算子针对 pir::VectorType 引入的辅助算子，用于将一组具有相同 Type 的 Value 拼接成一个 VectorType 的 Value，或者将 VectorType 的 Value 拆分成多个具有相同 Type 的 Value。 算子定义过程中，会出现上述内容的都是输入/输出包含 Tensor[] 类型的算子，例如：concat 算子的输入 Tensor[] x。|
+|pd_op.shadow_feed|为执行流程中全静态选 Kernel 所引入的隐式算子，该算子的签名是：out = shadow_feed(x, dst_place_type)，作用是将输入 x 拷贝/共享到 dst_place_type，若 x 的 place 与 dst_place_type 不一致，则执行 memcpy，否则 out 直接与 x share data。 算子定义见：paddle/phi/ops/yaml/inconsistent/static_ops.yaml；Kernel 定义见：paddle/phi/kernels/impl/data_impl.h。|
+
+## 六、参考资料
 1. [【方案设计】IR 底层基础类型系统设计文档](https://github.com/PaddlePaddle/community/blob/master/pfcc/paddle-code-reading/IR_Dialect/basic_concepts.md)
 2. [【方案设计】IR 顶层模型结构表示设计文档](https://github.com/PaddlePaddle/community/blob/master/pfcc/paddle-code-reading/IR_Dialect/ir_program.md)
 3. [【方案设计】控制流设计文档](https://github.com/PaddlePaddle/community/blob/master/pfcc/paddle-code-reading/IR_Dialect/control_flow.md)
 4. [【方案设计】Save / Load 设计文档](https://github.com/PaddlePaddle/community/blob/master/pfcc/paddle-code-reading/IR_Dialect/pir_save_load.md)
+5. [【方案设计】PIR 组网插入隐式算子的场景](https://github.com/PaddlePaddle/community/blob/master/pfcc/call-for-contributions/PIR/special_operations.md)
