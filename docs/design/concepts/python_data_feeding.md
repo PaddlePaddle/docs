@@ -6,7 +6,7 @@ In the former implementation of Paddle Fluid, there are two ways to feed data:
 
 - Feed data directly using `DataFeeder.feed()` in Python codes. It is more flexible than the first way. Many kinds of preprocessing steps can be performed before feeding using Python or any other languages, instead of adding many uncommon `operators` in C++ side. But this method is less efficient: the program cannot read the next mini-batch data before `Executor::Run()` ends. Moreover, `decorated_readers` such as `double_buffer_reader` cannot be used for better performance.
 
-In this document, we design a Python Data Feeding process combining the efficiency of the first way and the flexibility of the second way. A data queue `LoDTensorBlockingQueue` is designed to be shared by the Python and C++ side, while `LoDTensorArray` is pushed into the queue in Python side and `reader_op` in C++ side reads out the data from the queue.
+In this document, we design a Python Data Feeding process combining the efficiency of the first way and the flexibility of the second way. A data queue `LoDTensorBlockingQueue` is designed to be shared by the Python and C++ side, while `DenseTensorArray` is pushed into the queue in Python side and `reader_op` in C++ side reads out the data from the queue.
 
 
 ## Design of LoDTensorBlockingQueue

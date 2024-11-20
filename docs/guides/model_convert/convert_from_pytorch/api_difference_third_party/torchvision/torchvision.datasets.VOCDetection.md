@@ -3,7 +3,7 @@
 ### [torchvision.datasets.VOCDetection](https://pytorch.org/vision/main/generated/torchvision.datasets.VOCDetection.html)
 
 ```python
-torchvision.datasets.VOCDetection(root: Union[str, Path], year: str = '2012', image_set: str = 'train', download: bool = False, transform: Optional[Callable] = None, target_transform: Optional[Callable] = None)
+torchvision.datasets.VOCDetection(root: Union[str, Path], year: str = '2012', image_set: str = 'train', download: bool = False, transform: Optional[Callable] = None, target_transform: Optional[Callable] = None, transforms: Optional[Callable] = None)
 ```
 
 ### [paddle.vision.datasets.VOC2012](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/VOC2012_cn.html)
@@ -24,6 +24,7 @@ paddle.vision.datasets.VOC2012(data_file: Optional[str] = None, mode: str = 'tra
 | transform              | transform             | 图片数据的预处理。           |
 | target_transform       | -                     | 接受目标数据并转换，Paddle 无此参数，暂无转写方式。    |
 | download               | download              | 是否自动下载数据集文件。 |
+| transforms             | -                     | 输入样本及其目标，返回转换后的版本，Paddle 无此参数，暂无转写方式。 |
 | -                      | backend               | 指定图像类型，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 ### 转写示例

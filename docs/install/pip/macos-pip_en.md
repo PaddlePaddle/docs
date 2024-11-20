@@ -11,7 +11,6 @@
   ```
 
 
-
 * Confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python
 
   * Use the following command to output Python path. Depending on the environment, you may need to replace python3 in all command lines in the description with specific Python path
@@ -19,7 +18,6 @@
     ```
     which python3
     ```
-
 
 
 * You need to confirm whether the version of Python meets the requirements
@@ -30,9 +28,6 @@
 
 * It is required to confirm whether the version of pip meets the requirements. The version of pip is required to be 20.2.2 or above
 
-    ```
-    python3 -m ensurepip
-    ```
 
     ```
     python3 -m pip --version
