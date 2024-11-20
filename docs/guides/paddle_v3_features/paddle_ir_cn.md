@@ -141,11 +141,33 @@ PIR 组网过程中存在『插入隐式算子』的场景，所谓『隐式算�
 * 执行过程中：为静态 kernel 选择插入的 pd_op.shadow_feed 算子
 
 ### 2.隐式算子介绍
-|插入的隐式算子|含义|
-|-|-|
-|pd_op.full / pd_op.full_int_array|飞桨的算子定义包含可变 Attribute 的概念，对于可变 Attribute，用户的组网 API 可传入一个常量、也可传入一个 Tensor/Value。在 PIR 的算子定义体系下，可变 Attribute 都将被视为输入变量，因此，当用户 API 传入一个常量的时候，将在组网代码中通过自动插入 pd_op.full / pd_op.full_int_array 将输入的常量转换为变量，再构造对应的算子。 包含可变 Attribute 的算子集合：在 paddle/phi/ops/yaml/op_compat.yaml 中搜索 scalar 及 int_array 标记的属性。|
-|builtin.combine / builtin.split|这两个算子针对 pir::VectorType 引入的辅助算子，用于将一组具有相同 Type 的 Value 拼接成一个 VectorType 的 Value，或者将 VectorType 的 Value 拆分成多个具有相同 Type 的 Value。 算子定义过程中，会出现上述内容的都是输入/输出包含 Tensor[] 类型的算子，例如：concat 算子的输入 Tensor[] x。|
-|pd_op.shadow_feed|为执行流程中全静态选 Kernel 所引入的隐式算子，该算子的签名是：out = shadow_feed(x, dst_place_type)，作用是将输入 x 拷贝/共享到 dst_place_type，若 x 的 place 与 dst_place_type 不一致，则执行 memcpy，否则 out 直接与 x share data。 算子定义见：paddle/phi/ops/yaml/inconsistent/static_ops.yaml；Kernel 定义见：paddle/phi/kernels/impl/data_impl.h。|
+<p align="center">
+<table>
+    <thead>
+    <tr>
+        <th> 插入的隐式算子 </th>
+        <th> 含义 </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td> pd_op.full / pd_op.full_int_array </td>
+        <td> 飞桨的算子定义包含可变 Attribute 的概念，对于可变 Attribute，用户的组网 API 可传入一个常量、也可传入一个 Tensor/Value。在 PIR 的算子定义体系下，可变 Attribute 都将被视为输入变量，因此，当用户 API 传入一个常量的时候，将在组网代码中通过自动插入 pd_op.full / pd_op.full_int_array 将输入的常量转换为变量，再构造对应的算子。
+包含可变 Attribute 的算子集合：在 paddle/phi/ops/yaml/op_compat.yaml 中搜索 scalar 及 int_array 标记的属性。</td>
+    </tr>
+    <tr>
+        <td> builtin.combine / builtin.split </td>
+        <td> 这两个算子针对 pir::VectorType 引入的辅助算子，用于将一组具有相同 Type 的 Value 拼接成一个 VectorType 的 Value，或者将 VectorType 的 Value 拆分成多个具有相同 Type 的 Value。
+算子定义过程中，会出现上述内容的都是输入/输出包含 Tensor[] 类型的算子，例如：concat 算子的输入 Tensor[] x。</td>
+    </tr>
+    <tr>
+        <td> pd_op.shadow_feed </td>
+        <td> 为执行流程中全静态选 Kernel 所引入的隐式算子，该算子的签名是：out = shadow_feed(x, dst_place_type)，作用是将输入 x 拷贝/共享到 dst_place_type，若 x 的 place 与 dst_place_type 不一致，则执行 memcpy，否则 out 直接与 x share data。
+算子定义见：paddle/phi/ops/yaml/inconsistent/static_ops.yaml；Kernel 定义见：paddle/phi/kernels/impl/data_impl.h。 </td>
+    </tr>
+    </tbody>
+</table>
+</p>
 
 ## 六、参考资料
 1. [【方案设计】IR 底层基础类型系统设计文档](https://github.com/PaddlePaddle/community/blob/master/pfcc/paddle-code-reading/IR_Dialect/basic_concepts.md)
