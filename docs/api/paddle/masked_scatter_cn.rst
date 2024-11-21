@@ -9,6 +9,15 @@ masked_scatter
 
 返回一个 N-D 的 Tensor，Tensor 的值是根据 ``mask`` 信息，将 ``value`` 中的值逐个填充到 ``x`` 中 ``mask`` 对应为 ``True`` 的位置，``mask`` 的数据类型是 bool。
 
+**示例图解说明**：
+
+    下图展示了示例中的情形——一个形状为[2,2]的二维张量通过 masked_scatter 操作将一维张量 value 覆盖到对应位置。
+
+    .. figure:: ../../images/api_legend/masked_scatter.png
+       :width: 500
+       :alt: 示例图示
+       :align: center
+
 参数
 ::::::::::::
 
@@ -26,13 +35,3 @@ masked_scatter
 ::::::::::::
 
 COPY-FROM: paddle.masked_scatter
-
-
-**示例图解说明**：
-
-    下图展示了示例中的情形——一个形状为[2,2]的二维张量通过 masked_scatter 操作将一维张量 value 覆盖到对应位置。
-
-    .. figure:: ../../images/api_legend/masked_scatter.png
-       :width: 500
-       :alt: 示例图示
-       :align: center
