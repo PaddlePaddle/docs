@@ -9,6 +9,12 @@ unfold
 
 仅在动态图下可用，返回的 Tensor 和 x 共享内存。
 
+下图展示了一个元素值为 0-8 且 Shape 为 [9] 的 Tensor 如何使用 ``unfold`` 方法在第一个维度（axis = 0），使用大小为 2 的窗口（size = 0）根据 4 的步长（step = 4）进行采样。
+
+.. image:: ../../images/api_legend/unfold.png
+    :width: 700
+    :alt: 图例
+
 参数
 :::::::::
 
