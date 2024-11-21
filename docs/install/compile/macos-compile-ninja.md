@@ -48,7 +48,7 @@ cd Paddle
 
 * CPU 版的 PaddlePaddle：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev
     ```
 如果您的机器不在中国大陆地区，可以直接从 DockerHub 拉取镜像：
 * CPU 版的 PaddlePaddle：
@@ -58,12 +58,12 @@ cd Paddle
 您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
 #### 5. 创建并进入满足编译环境的 Docker 容器：
 ```
-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+docker run --name paddle-test -v $PWD:/paddle --network=host -it ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
 ```
 - `--name paddle-test`：为您创建的 Docker 容器命名为 paddle-test
 - `-v：$PWD:/paddle`：将当前目录挂载到 Docker 容器中的/paddle 目录下（Linux 中 PWD 变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）
 - `-it`：与宿主机保持交互状态
-- `registry.baidubce.com/paddlepaddle/paddle:latest-dev`：使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令
+- `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev`：使用名为`ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令
 注意：请确保至少为 docker 分配 4g 以上的内存，否则编译过程可能因内存不足导致失败。您可以在 docker 用户界面的“Preferences-Resources”中设置容器的内存分配上限。
 #### 6. 进入 Docker 后进入 paddle 目录下：
 ```
