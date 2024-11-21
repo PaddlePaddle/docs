@@ -18,4 +18,4 @@ paddle.set_default_dtype(d)
 
 | PyTorch     | PaddlePaddle | 备注                                                                                      |
 | ----------- | ------------ | ----------------------------------------------------------------------------------------- |
-| d           | d            | 全局默认数据类型，torch 支持 float32 和 float64，paddle 支持 float16、float32 和 float64。  |
+| d           | d            | 全局默认数据类型，torch 支持 float32 和 float64，paddle 支持 bfloat16、float16、float32 和 float64。  |

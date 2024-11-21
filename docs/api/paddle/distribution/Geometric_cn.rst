@@ -208,13 +208,13 @@ kl_divergence(other)
 
 COPY-FROM: paddle.distribution.Geometric.kl_divergence
 
-sample(shape)
+sample(shape=[])
 '''''''''
 随机采样，生成指定维度的样本。
 
 **参数**
 
-    - **shape** (tuple(int)) - 采样的样本维度。
+    - **shape** (Sequence[int]，可选) - 采样的样本维度。
 
 **返回**
 
@@ -224,13 +224,13 @@ sample(shape)
 
 COPY-FROM: paddle.distribution.Geometric.sample
 
-rsample(shape)
+rsample(shape=[])
 '''''''''
 重参数化采样，生成指定维度的样本。
 
 **参数**
 
-    - **shape** (tuple(int)) - 重参数化采样的样本维度。
+    - **shape** (Sequence[int]，可选) - 重参数化采样的样本维度。
 
 **返回**
 

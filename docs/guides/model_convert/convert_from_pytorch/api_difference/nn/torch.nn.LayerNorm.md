@@ -38,7 +38,7 @@ paddle.nn.LayerNorm(normalized_shape,
 torch.nn.LayerNorm(normalized_shape=(256, 256), eps=1e-05, elementwise_affine=False)
 
 # paddle 写法
-paddle.nn.GroupNorm(normalized_shape=(256, 256), epsilon=1e-05, weight_attr=False, bias_attr=False)
+paddle.nn.LayerNorm(normalized_shape=(256, 256), epsilon=1e-05, weight_attr=False, bias_attr=False)
 
 # 当 PyTorch 的 elementwise_affine 为`True`，torch 写法
 torch.nn.LayerNorm(normalized_shape=(256, 256), eps=1e-05, elementwise_affine=True)

@@ -49,7 +49,7 @@ For domestic users, when downloading docker is slow due to network problems, you
 
 * CPU version of PaddlePaddle：
 ```
-docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev
 ```
 
 If your machine is not in mainland China, you can pull the image directly from DockerHub:
@@ -65,7 +65,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 #### 5. Create and enter a Docker container that meets the compilation environment:
 
 ```
-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+docker run --name paddle-test -v $PWD:/paddle --network=host -it ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
 ```
 
 - `--name paddle-test`: name the Docker container you created as paddle-test,
@@ -74,7 +74,7 @@ docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidub
 
 - `-it`: keeps interacting with the host;
 
-- `registry.baidubce.com/paddlepaddle/paddle:latest-dev`: creates a Docker container with a mirror named `registry.baidubce.com/paddlepaddle/paddle:latest-dev`, /bin /bash starts the /bin/bash command after entering the container.
+- `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev`: creates a Docker container with a mirror named `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev`, /bin /bash starts the /bin/bash command after entering the container.
 
 
 Note:

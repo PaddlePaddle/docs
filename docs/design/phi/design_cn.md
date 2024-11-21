@@ -1386,7 +1386,7 @@ class ProtoArgumentMappingContext : public phi::ArgumentMappingContext {
     for (int i = 0; i < block_.vars_size(); ++i) {
       auto& var = block_.vars()[i];
       if (var.name() == name) {
-        if (var.type() == proto::VarType::LOD_TENSOR) {
+        if (var.type() == proto::VarType::DENSE_TENSOR) {
           return true;
         }
       }

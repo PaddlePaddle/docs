@@ -50,8 +50,8 @@ fi
 
 VERSIONSTR=${VERSIONSTR:=develop}
 
-SPHINX_DOCKERIMAGE=registry.baidubce.com/paddleopen/fluiddoc-sphinx:20210610-py38
-PADDLEDEV_DOCKERIMAGE=registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda10.1-cudnn7-gcc82
+SPHINX_DOCKERIMAGE=ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddleopen/fluiddoc-sphinx:20210610-py38
+PADDLEDEV_DOCKERIMAGE=ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev-cuda10.1-cudnn7-gcc82
 
 
 if [ "$PADDLE_WHL" = '' ] && [ "$PADDLE_DIR" = '' ] ; then
