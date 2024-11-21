@@ -232,6 +232,7 @@ Methods
     scatter_
     scatter_nd
     scatter_nd_add
+    set_
     set_value
     shard_index
     sign
