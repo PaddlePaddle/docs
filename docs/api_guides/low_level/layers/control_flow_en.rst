@@ -34,8 +34,8 @@ While
 When the condition is true, repeatedly execute logic in the :code:`block` which :code:`While` flow belongs to until the condition is judged to be false and the loop will be ended. The related APIs are as follows:
 
 * :ref:`api_fluid_layers_increment` : It is usually used to count the number of loops;
-* :ref:`api_fluid_layers_array_read` : Reads Variable from the specified location in :code:`LOD_TENSOR_ARRAY` to perform calculations;
-* :ref:`api_fluid_layers_array_write` : Writes the Variable back to the specified location in :code:`LOD_TENSOR_ARRAY` and stores the result of the calculation.
+* :ref:`api_fluid_layers_array_read` : Reads Variable from the specified location in :code:`DENSE_TENSOR_ARRAY` to perform calculations;
+* :ref:`api_fluid_layers_array_write` : Writes the Variable back to the specified location in :code:`DENSE_TENSOR_ARRAY` and stores the result of the calculation.
 
 Please refer to :ref:`api_fluid_layers_While`
 

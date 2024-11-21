@@ -344,12 +344,12 @@ out = convert_ifelse(paddle.mean(x) > 5.0, true_fn_0, false_fn_0, (x,), (x,), (o
 ```
 
 
-### 8.1 list 与 LoDTensorArray
+### 8.1 list 与 DenseTensorArray
 
 当控制流中，出现了 ``list.append`` 类似语法时，情况会有一点点特殊。
 
 Paddle 框架中的 ``cond_op`` 和 [``while_loop``](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/static/nn/while_loop_cn.html#while-loop) 对输入和返回类型有一个要求：
-> 输入或者返回类型必须是：LoDTensor 或者 LoDTensorArray <br><br>
+> 输入或者返回类型必须是：LoDTensor 或者 DenseTensorArray <br><br>
 > 即：不支持其他非 LoDTensor 类型
 
 因此控制流中类似：
@@ -370,7 +370,7 @@ def forward(self, x)：
 
 def forward(x):
     bs = paddle.shape(x)[0]    # <---- bs 是个静态图 Variable, shape = (1, )
-    outs = paddle.tensor.create_array(dtype='float32')    # <--- list 转为 LoDTensorArray
+    outs = paddle.tensor.create_array(dtype='float32')    # <--- list 转为 DenseTensorArray
     i = 0
 
     def for_loop_condition_0(outs, bs, i, x):
@@ -391,8 +391,8 @@ def forward(x):
 
 关于 控制流中包含 ``list`` 相关操作的几点说明：
 
-+ **并非所有**的 list 都会转为 ``LoDTensorArray``
-> 只有在此控制流语句是依赖 ``Tensor`` 时，才会触发 ``list`` &rarr; ``LoDTensorArray`` 的转换
++ **并非所有**的 list 都会转为 ``DenseTensorArray``
+> 只有在此控制流语句是依赖 ``Tensor`` 时，才会触发 ``list`` &rarr; ``DenseTensorArray`` 的转换
 
 + 暂不支持依赖 Tensor 的控制流中，使用多层嵌套的 ``list.append`` 操作
 
@@ -407,7 +407,7 @@ def forward(x):
         return outs
     ```
 
-> 因为框架底层的 ``LoDTensorArray = std::vector< LoDTensor >`` ，不支持两层以上 ``vector`` 嵌套
+> 因为框架底层的 ``DenseTensorArray = std::vector< LoDTensor >`` ，不支持两层以上 ``vector`` 嵌套
 
 
 ### 8.2 x.shape 与 paddle.shape(x)
