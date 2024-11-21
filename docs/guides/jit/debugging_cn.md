@@ -100,7 +100,7 @@ pdb 是 Python 中的一个模块，该模块定义了一个交互式 Python 源
      11         return x
     [EOF]
     (Pdb) p x
-    var assign_0.tmp_0 : LOD_TENSOR.shape(3,).dtype(int32).stop_gradient(False)
+    var assign_0.tmp_0 : DENSE_TENSOR.shape(3,).dtype(int32).stop_gradient(False)
     (Pdb)
     ```
 

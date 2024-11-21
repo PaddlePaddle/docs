@@ -61,28 +61,28 @@ variance
 方法
 :::::::::
 
-sample(shape, seed=0)
+sample(shape=[], seed=0)
 '''''''''
 
 生成指定维度的样本。
 
 **参数**
 
-    - **shape** ((Sequence[int], 可选) - 指定生成样本的维度。
+    - **shape** (Sequence[int], 可选) - 指定生成样本的维度。
     - **seed** (int) - 长整型数。
 
 **返回**
 
 Tensor，预先设计好维度的 Tensor，数据类型为 float32。
 
-rsample(shape)
+rsample(shape=[])
 '''''''''
 
 重参数化采样，生成指定维度的样本。
 
 **参数**
 
-    - **shape** ((Sequence[int], 可选) - 指定生成样本的维度。
+    - **shape** (Sequence[int], 可选) - 指定生成样本的维度。
 
 **返回**
 

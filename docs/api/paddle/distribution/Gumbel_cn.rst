@@ -169,26 +169,26 @@ entropy(scale)
 :math:`\gamma`：欧拉常数。
 
 
-sample(shape)
+sample(shape=[])
 '''''''''
 随机采样，生成指定维度的样本。
 
 **参数**
 
-    - **shape** (list[int]) - 1 维列表，指定样本的维度。
+    - **shape** (Sequence[int]，可选) - 1 维列表，指定样本的维度。
 
 **返回**
 
     - **Tensor** - 预先设计好维度的样本数据。
 
 
-rsample(shape)
+rsample(shape=[])
 '''''''''
 重参数化采样。
 
 **参数**
 
-    - **shape** (list[int]) - 1 维列表，指定样本的维度。
+    - **shape** (Sequence[int]，可选) - 1 维列表，指定样本的维度。
 
 **返回**
 
