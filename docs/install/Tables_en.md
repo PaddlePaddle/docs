@@ -456,16 +456,16 @@ Suppose you have written a PaddlePaddle program in the current directory (such a
 cd /home/work
 ```
 ```
-docker run -it -v $PWD:/work registry.baidubce.com/paddlepaddle/paddle /work/train.py
+docker run -it -v $PWD:/work ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle /work/train.py
 ```
 
 
-In the above commands, the `-it` parameter indicates that the container has been run interactively; `-v $PWD:/work` specifies that the current path (the absolute path where the PWD variable in Linux will expand to the current path) is mounted to the `:/work` directory inside the container: `registry.baidubce.com/paddlepaddle/paddle` specifies the container to be used; finally `/work/train.py` is the command executed inside the container, ie. the training program.
+In the above commands, the `-it` parameter indicates that the container has been run interactively; `-v $PWD:/work` specifies that the current path (the absolute path where the PWD variable in Linux will expand to the current path) is mounted to the `:/work` directory inside the container: `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle` specifies the container to be used; finally `/work/train.py` is the command executed inside the container, ie. the training program.
 
 Of course, you can also enter into the Docker container and execute or debug your code interactively:
 
 ```
-docker run -it -v $PWD:/work registry.baidubce.com/paddlepaddle/paddle /bin/bash
+docker run -it -v $PWD:/work ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle /bin/bash
 ```
 ```
 cd /work
@@ -487,13 +487,13 @@ Use Docker to quickly launch a local Jupyter Notebook containing the PaddlePaddl
 We provide a Docker image that can run the PaddlePaddle Book directly, running directly:
 
 ```
-docker run -p 8888:8888 registry.baidubce.com/paddlepaddle/book
+docker run -p 8888:8888 ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/book
 ```
 
 Domestic users can use the following image source to speed up access:
 
 ```
-docker run -p 8888:8888 registry.baidubce.com/paddlepaddle/book
+docker run -p 8888:8888 ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/book
 ```
 
 Then enter the following URL in your browser:
@@ -511,7 +511,7 @@ http://localhost:8888/
 In order to ensure that the GPU driver works properly in the image, we recommend using [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) to run the image. Don't forget to install the latest GPU drivers on your physical machine in advance.
 
 ```
-Nvidia-docker run -it -v $PWD:/work registry.baidubce.com/paddlepaddle/paddle:latest-gpu /bin/bash
+Nvidia-docker run -it -v $PWD:/work ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-gpu /bin/bash
 ```
 
 **Note: If you don't have nvidia-docker installed, you can try the following to mount the CUDA library and Linux devices into the Docker container:**
@@ -521,5 +521,5 @@ export CUDA_SO="$(\ls /usr/lib64/libcuda* | xargs -I{} echo '-v {}:{}') \
 $(\ls /usr/lib64/libnvidia* | xargs -I{} echo '-v {}:{}')"
 export DEVICES=$(\ls /dev/nvidia* | xargs -I{} echo '--device {}:{}')
 docker run ${CUDA_SO} \
-${DEVICES} -it registry.baidubce.com/paddlepaddle/paddle:latest-gpu
+${DEVICES} -it ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-gpu
 ```

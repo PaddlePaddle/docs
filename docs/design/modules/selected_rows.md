@@ -42,7 +42,7 @@ message LodTensorDesc {
 message VarDesc {
   required string name = 1;
   enum VarType {
-    LOD_TENSOR = 0;
+    DENSE_TENSOR = 0;
     SELECTED_ROWS = 1;
   }
   required VarType type = 2;

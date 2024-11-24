@@ -36,14 +36,14 @@ COPY-FROM: paddle.distribution.Categorical
 方法
 :::::::::
 
-sample(shape)
+sample(shape=[])
 '''''''''
 
 生成指定维度的样本
 
 **参数**
 
-    - **shape** (list) - 指定生成样本的维度。
+    - **shape** (Sequence[int]，可选) - 指定生成样本的维度。
 
 **返回**
 

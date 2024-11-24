@@ -8,7 +8,7 @@
 
 * 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备：
 
-  * 镜像链接： registry.baidubce.com/device/paddle-mlu:ubuntu20-x86_64-gcc84-py310
+  * 镜像链接： ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:ubuntu20-x86_64-gcc84-py310
 
 ### 环境安装
 
