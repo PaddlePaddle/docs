@@ -22,4 +22,3 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | determinism_check         | -         | 控制是否在反向传播时检查操作的确定性, 一般对训练结果影响不大，可直接删除。   |
 |*args         | *args          |   function 的输入。 |
 | **kwargs      | **kwargs        |   用于指定 Extension 的其他参数，支持的参数与 setuptools.Extension 一致。 |
-
