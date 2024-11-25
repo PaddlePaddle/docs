@@ -10,7 +10,7 @@ torch.nn.GRUCell(input_size, hidden_size, bias=True, device=None, dtype=None)
 paddle.nn.GRUCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
 ```
 
-两者功能一致但参数不一，具体如下：
+两者功能一致但参数不一，且二者的 forward 函数返回值格式不一致，具体如下：
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -39,4 +39,14 @@ torch.nn.GRU(16, 32, bias=False)
 
 # Paddle 写法
 paddle.nn.GRU(16, 32, bias_ih_attr=False, bias_hh_attr=False)
+```
+#### forward：前向传播
+```python
+# PyTorch 写法
+rnn = torch.nn.GRUCell(2, 2)
+result = rnn(inp, h0)
+
+# Paddle 写法
+rnn = paddle.nn.GRUCell(2, 2)
+result = rnn(inp, h0)[0]
 ```

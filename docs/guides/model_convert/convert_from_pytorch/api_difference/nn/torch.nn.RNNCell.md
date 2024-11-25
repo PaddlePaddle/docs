@@ -9,7 +9,7 @@ torch.nn.RNNCell(input_size, hidden_size, bias=True, nonlinearity='tanh', device
 paddle.nn.SimpleRNNCell(input_size, hidden_size, activation='tanh', weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
 ```
 
-两者功能一致但参数不一致，部分参数名不同，具体如下：
+两者功能一致但参数不一致，部分参数名不同，且二者的 forward 函数返回值格式不一致, 具体如下：
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -36,4 +36,15 @@ torch.nn.RNNCell(16, 32, bias=False)
 
 # Paddle 写法
 paddle.nn.SimpleRNNCell(16, 32, bias_ih_attr=False, bias_hh_attr=False)
+```
+
+#### forward：前向传播
+```python
+# PyTorch 写法
+rnn = torch.nn.RNNCell(2, 2)
+result = rnn(inp, h0)
+
+# Paddle 写法
+rnn = paddle.nn.SimpleRNNCell(2, 2)
+result = rnn(inp, h0)[0]
 ```
