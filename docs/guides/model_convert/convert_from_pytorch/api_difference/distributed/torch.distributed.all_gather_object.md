@@ -23,7 +23,7 @@ paddle.distributed.all_gather_object(object_list, obj, group=None)
 | group    | group        | 表示执行该操作的进程组实例。                            |
 
 ### 转写示例
-
+#### object_list：保存聚合结果列表
 ```python
 # PyTorch 写法
 import torch.distributed as dist
