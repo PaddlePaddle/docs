@@ -496,6 +496,7 @@ def get_meta_from_diff_file(
     # 映射类型前三个级别必须要有对应的 dst_api
     if mapping_type_to_level[mapping_type] <= 3:
         if state != ParserState.end:
+            print(state)
             raise Exception(
                 f"Unexpected End State at {state} in parsing file: {filepath}, current meta: {meta_data}"
             )

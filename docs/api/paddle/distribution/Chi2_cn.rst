@@ -90,26 +90,26 @@ kl_divergence(other)
     - Tensor: 两个卡方分布之间的 KL 散度。
 
 
-sample(shape)
+sample(shape=[])
 '''''''''
 随机采样，生成指定维度的样本。
 
 **参数**
 
-    - **shape** (Sequence[int], optional) - 采样的样本维度。
+    - **shape** (Sequence[int]，可选) - 采样的样本维度。
 
 **返回**
 
     - **Tensor** - 指定维度的样本数据。数据类型为 float32。
 
 
-rsample(shape)
+rsample(shape=[])
 '''''''''
 重参数化采样，生成指定维度的样本。
 
 **参数**
 
-    - **shape** (Sequence[int], optional) - 重参数化采样的样本维度。
+    - **shape** (Sequence[int]，可选) - 重参数化采样的样本维度。
 
 **返回**
 

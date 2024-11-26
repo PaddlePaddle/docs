@@ -6,7 +6,7 @@
 torch.Tensor.is_coalesced()
 ```
 
-### [paddle.Tensor.is_coalesced](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html)
+### [paddle.Tensor.is_coalesced](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#is-coalesced)
 
 ```python
 paddle.Tensor.is_coalesced()
