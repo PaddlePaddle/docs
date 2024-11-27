@@ -9,6 +9,11 @@ view
 
 仅在动态图下可用，返回的 Tensor 和 x 共享内存。
 
+下图展示了一个 view 操作的情形——一个形状为 [2, 4, 6] 的三维张量通过 view 操作转变为形状为 [8, 6] 的二维张量。
+
+.. image:: ../../images/api_legend/view_shape.png
+   :alt: 图例
+
 参数
 :::::::::
 
@@ -25,3 +30,4 @@ Tensor，x 的一个 view Tensor。
 :::::::::
 
 COPY-FROM: paddle.view
+View_shape.png
