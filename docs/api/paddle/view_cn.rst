@@ -30,4 +30,3 @@ Tensor，x 的一个 view Tensor。
 :::::::::
 
 COPY-FROM: paddle.view
-View_shape.png
