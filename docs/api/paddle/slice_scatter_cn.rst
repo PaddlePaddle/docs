@@ -7,7 +7,7 @@ slice_scatter
 
 沿着 `axes` 将 `value` 矩阵的值嵌入到 `x` 矩阵。返回一个新的 Tensor 而不是视图。 `axes` 需要与 `starts`, `ends` 和 `strides` 尺寸一致。
 
-图示展示了示例三，——一个形状为 [3, 3, 5] 的张量 x，在 Axis 0 和 Axis 2 上使用 slice scatter 操作，将 [1, 3, 1] 的 value 张量嵌入到指定的范围内。图中显示了原始张量、value 张量以及操作后的结果。
+图示展示了示例二，——一个形状为 [3, 9] 的张量 x，在 Axis 1  上使用 slice scatter 操作，将 [3, 1] 的 value 张量嵌入到指定的范围内。图中显示了原始张量、value 张量以及操作后的结果。
 
 .. image:: ../../images/api_legend/slice_scatter.png
    :width: 500
