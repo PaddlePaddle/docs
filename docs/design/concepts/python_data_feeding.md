@@ -10,7 +10,7 @@ In this document, we design a Python Data Feeding process combining the efficien
 
 
 ## Design of LoDTensorBlockingQueue
-`LoDTensorBlockingQueue` is a blocking queue with a fixed `capacity` and accepts `std::vector<framework::LoDTensor>` with shapes indicated by `dims`. Since `LoDTensorBlockingQueue` must be constructed using `capacity` and `dims`, it cannot be a `Variable` type. Therefore, a `LoDTensorBlockingQueueHolder` is designed to defer construction of `LoDTensorBlockingQueue`.
+`LoDTensorBlockingQueue` is a blocking queue with a fixed `capacity` and accepts `std::vector<framework::DenseTensor>` with shapes indicated by `dims`. Since `LoDTensorBlockingQueue` must be constructed using `capacity` and `dims`, it cannot be a `Variable` type. Therefore, a `LoDTensorBlockingQueueHolder` is designed to defer construction of `LoDTensorBlockingQueue`.
 
 ```C++
 class LoDTensorBlockingQueueHolder;
@@ -33,15 +33,15 @@ class LoDTensorBlockingQueue {
 
   // Block if Size() == Cap()
   // Return false only when queue_.IsClosed() == true
-  bool Push(const std::vector<framework::LoDTensor> &lod_tensor_vec);
+  bool Push(const std::vector<framework::DenseTensor> &lod_tensor_vec);
 
   // Block if Size() == 0.
   // *Success == false when queue_.IsClosed() == true
-  std::vector<framework::LoDTensor> Pop(bool *success = nullptr);
+  std::vector<framework::DenseTensor> Pop(bool *success = nullptr);
 
  private:
   // Use reader::BlockingQueue as the inner data structure
-  BlockingQueue<std::vector<framework::LoDTensor>> queue_;
+  BlockingQueue<std::vector<framework::DenseTensor>> queue_;
   std::vector<framework::DDim> dims_;
 };
 
@@ -78,7 +78,7 @@ class PyReader : public ReaderBase {
  public:
   explicit PyReader(const std::shared_ptr<LoDTensorBlockingQueue>& queue);
 
-  void ReadNext(std::vector<framework::LoDTensor>* out) override {
+  void ReadNext(std::vector<framework::DenseTensor>* out) override {
     bool success;
     *out = queue_->Pop(&success);
     if (!success) out->clear();

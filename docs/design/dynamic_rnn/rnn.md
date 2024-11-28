@@ -56,7 +56,7 @@ We can define an RNN's step-net using a Block:
 ```python
 import paddle as pd
 
-X = some_op() # x is some operator's output and is a LoDTensor
+X = some_op() # x is some operator's output and is a DenseTensor
 a = some_op()
 
 # declare parameters
@@ -84,7 +84,7 @@ Python API functions in above example:
 - `rnn.add_memory`: creates a variable used as the memory.
 - `rnn.add_outputs`: marks the variables that will be concatenated across steps into the RNN output.
 
-### Nested RNN and LoDTensor
+### Nested RNN and DenseTensor
 
 An RNN whose step-net includes other RNN operators is known as an *nested RNN*.
 

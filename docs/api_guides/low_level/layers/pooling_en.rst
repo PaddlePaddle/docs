@@ -49,7 +49,7 @@ related API:
 
 ``roi_pool`` is generally used in detection networks, and the input feature map is pooled to a specific size by the bounding box.
 
-- ``rois`` : It receives ``LoDTensor`` type to indicate the Regions of Interest that needs to be pooled. For an explanation of RoI, please refer to `Paper <https://arxiv.org/abs/1506.01497>`__
+- ``rois`` : It receives ``DenseTensor`` type to indicate the Regions of Interest that needs to be pooled. For an explanation of RoI, please refer to `Paper <https://arxiv.org/abs/1506.01497>`__
 
 - ``pooled_height`` and ``pooled_width`` : accept non-square pooling box sizes
 
