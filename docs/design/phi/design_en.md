@@ -388,7 +388,7 @@ enum class DataType {
 ```
 
 - Why doesn't use the `VarType` of the original fluid here?
-    - Reason 1: The original `DataType` and `VarType` of fluid are the same level concepts, and the design is relatively confusing. For example, `LoDTensor` and `FLOAT32` are the same level concepts, but these two are obviously not. We do not want to inherit the original design with obvious defects.
+    - Reason 1: The original `DataType` and `VarType` of fluid are the same level concepts, and the design is relatively confusing. For example, `DenseTensor` and `FLOAT32` are the same level concepts, but these two are obviously not. We do not want to inherit the original design with obvious defects.
     - Reason 2: Decouple dependencies from fluid, so that PHI can be compiled independently in the future.
 
 ##### 2.3.1.4 Scalar
@@ -499,7 +499,7 @@ Tensor ondnn() const;
 
 ##### 2.3.3.3 DenseTensor、SparseTensor
 
-- `DenseTensor` is the basic implementation of Tensor, which corresponds to the `LoDTensor` class in the original fluid. `DenseTensorMeta` in `DenseTensor` contains basic members that describe Tensor information, and `Allocation` in `DenseTensor` is the original `Allocation` of fluid.
+- `DenseTensor` is the basic implementation of Tensor, which corresponds to the `DenseTensor` class in the original fluid. `DenseTensorMeta` in `DenseTensor` contains basic members that describe Tensor information, and `Allocation` in `DenseTensor` is the original `Allocation` of fluid.
 - `SparseCsrTensor` and `SparseCooTensor` are newly designed sparse Tensor types, see code implementation for details.
 
 > In order to be compatible with the original framework scheduling and operators, we have also migrated `SelectedRows` as a basic Tensor type. If it can be replaced by a new sparse Tensor in the future, it will be removed.
@@ -1320,7 +1320,7 @@ class ExecutionArgumentMappingContext : public phi::ArgumentMappingContext {
 
   bool IsDenseTensorInput(const std::string& name) const override {
     return ctx_.InputVar(name)->IsType<framework::Tensor>() ||
-      ctx_.InputVar(name)->IsType<framework::LoDTensor>();
+      ctx_.InputVar(name)->IsType<framework::DenseTensor>();
   }
 
   bool IsSelectedRowsInput(const std::string& name) const override {

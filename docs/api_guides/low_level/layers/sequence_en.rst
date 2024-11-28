@@ -7,18 +7,18 @@ Sequence
 Many problems in the field of deep learning involve the processing of the `sequence <https://en.wikipedia.org/wiki/Sequence>`_.
 From Wiki's definition, sequences can represent a variety of physical meanings, but in deep learning, the most common is still "time sequence" - a sequence containing information of multiple time steps.
 
-In Paddle Fluid, we represent the sequence as ``LoDTensor``.
-Because the general neural network performs computing batch by batch, we use a LoDTensor to store a mini batch of sequences.
-The 0th dimension of a LoDTensor contains all the time steps of all sequences in the mini batch, and LoD is used to record the length of each sequence to distinguish different sequences.
-In the calculation, it is also necessary to split the 0th dimension of a mini batch in the LoDTensor into a number of sequences according to the LoD information. (Please refer to the LoD related documents for details. )
-Therefore, the operation for the 0th dimension of LoDTensor cannot be performed simply by a general layer. The operation of this dimension must be combined with the information of LoD.
+In Paddle Fluid, we represent the sequence as ``DenseTensor``.
+Because the general neural network performs computing batch by batch, we use a DenseTensor to store a mini batch of sequences.
+The 0th dimension of a DenseTensor contains all the time steps of all sequences in the mini batch, and LoD is used to record the length of each sequence to distinguish different sequences.
+In the calculation, it is also necessary to split the 0th dimension of a mini batch in the DenseTensor into a number of sequences according to the LoD information. (Please refer to the LoD related documents for details. )
+Therefore, the operation for the 0th dimension of DenseTensor cannot be performed simply by a general layer. The operation of this dimension must be combined with the information of LoD.
 (For example, you can't reshape the 0th dimension of a sequence with :code:`layers.reshape`).
 
 In order to correctly implement various sequence-oriented operations, we have designed a series of sequence-related APIs.
-In practice, because a LoDTensor contains a mini batch of sequences, and different sequences in the same mini batch usually belong to multiple samples, they do not and should not interact with each other.
-Therefore, if a layer is input with two (or more) LoDTensors (or with a list of LoDTensors), and each LoDTensor represents a mini batch of sequences, the first sequence in the first LoDTensor will be only calculated with the first sequence in the second LoDTensor, and the second sequence in the first LoDTensor will only be calculated with the second sequence in the second LoDTensor. To conclude with, the *i'th* sequence in the first LoDTensor will only be calculated with the *i'th* sequence in the second LoDTensor, and so on.
+In practice, because a DenseTensor contains a mini batch of sequences, and different sequences in the same mini batch usually belong to multiple samples, they do not and should not interact with each other.
+Therefore, if a layer is input with two (or more) DenseTensors (or with a list of DenseTensors), and each DenseTensor represents a mini batch of sequences, the first sequence in the first DenseTensor will be only calculated with the first sequence in the second DenseTensor, and the second sequence in the first DenseTensor will only be calculated with the second sequence in the second DenseTensor. To conclude with, the *i'th* sequence in the first DenseTensor will only be calculated with the *i'th* sequence in the second DenseTensor, and so on.
 
-**In summary, a LoDTensor stores multiple sequences in a mini batch, where the number of sequences is batch size; when multiple LoDTensors are calculated, the i'th sequence in each LoDTensor will only be calculated with the i'th of the other LoDTensors. Understanding this is critical to understand the following associated operations.**
+**In summary, a DenseTensor stores multiple sequences in a mini batch, where the number of sequences is batch size; when multiple DenseTensors are calculated, the i'th sequence in each DenseTensor will only be calculated with the i'th of the other DenseTensors. Understanding this is critical to understand the following associated operations.**
 
 1. sequence_softmax
 -------------------
@@ -30,16 +30,16 @@ This layer is often used to do softmax normalization within each sequence.
 
 2. sequence_concat
 ------------------
-The layer takes a list as input, which can contain multiple LoDTensors, and every LoDTensors is a mini batch of sequences.
+The layer takes a list as input, which can contain multiple DenseTensors, and every DenseTensors is a mini batch of sequences.
 The layer will concatenate the i-th sequence in each batch into a new sequence in the time dimension as the i'th sequence in the returned batch.
-Of course, the sequences of each LoDTensor in the list must have the same batch size.
+Of course, the sequences of each DenseTensor in the list must have the same batch size.
 
  Please refer to :ref:`api_fluid_layers_sequence_concat`
 
 
 3. sequence_first_step
 ----------------------
-This layer takes a LoDTensor as input and takes the first element in each sequence (the element of the first time step) as the return value.
+This layer takes a DenseTensor as input and takes the first element in each sequence (the element of the first time step) as the return value.
 
  Please refer to :ref:`api_fluid_layers_sequence_first_step`
 
@@ -53,7 +53,7 @@ Same as :code:`sequence_first_step` except that this layer takes the last elemen
 
 5. sequence_expand
 ------------------
-This layer has two LoDTensors of sequences as input and extends the sequence in the first batch according to the LoD information of the sequence in the second LoDTensor.
+This layer has two DenseTensors of sequences as input and extends the sequence in the first batch according to the LoD information of the sequence in the second DenseTensor.
 It is usually used to extend a sequence with only one time step (for example, the return result of :code:`sequence_first_step`) into a sequence with multiple time steps, which is convenient for calculations with sequences composed of multiple time steps.
 
  Please refer to :ref:`api_fluid_layers_sequence_expand`
@@ -61,8 +61,8 @@ It is usually used to extend a sequence with only one time step (for example, th
 
 6. sequence_expand_as
 ---------------------
-This layer takes two LoDTensors of sequences as input and then extends each sequence in the first Tensor to a sequence with the same length as the corresponding one in the second Tensor.
-Unlike :code:`sequence_expand` , this layer will strictly extend the sequence in the first LoDTensor to have the same length as the corresponding one in the second LoDTensor.
+This layer takes two DenseTensors of sequences as input and then extends each sequence in the first Tensor to a sequence with the same length as the corresponding one in the second Tensor.
+Unlike :code:`sequence_expand` , this layer will strictly extend the sequence in the first DenseTensor to have the same length as the corresponding one in the second DenseTensor.
 If it cannot be extended to the same length (for example, the sequence length of the second batch is not an integer multiple of the sequence length of the first batch), an error will be reported.
 
  Please refer to :ref:`api_fluid_layers_sequence_expand_as`
@@ -70,14 +70,14 @@ If it cannot be extended to the same length (for example, the sequence length of
 
 7. sequence_enumerate
 ---------------------
-This layer takes a LodTensor of sequences as input and also specifies the length of a :code:`win_size`. This layer will take a subsequence of length :code:`win_size` in all sequences and combine them into a new sequence.
+This layer takes a DenseTensor of sequences as input and also specifies the length of a :code:`win_size`. This layer will take a subsequence of length :code:`win_size` in all sequences and combine them into a new sequence.
 
  Please refer to :ref:`api_fluid_layers_sequence_enumerate`
 
 
 8. sequence_reshape
 -------------------
-This layer requires a LoDTensor of sequences as input, and you need to specify a :code:`new_dim` as the dimension of the new sequence.
+This layer requires a DenseTensor of sequences as input, and you need to specify a :code:`new_dim` as the dimension of the new sequence.
 The layer will reshape each sequence in the mini batch to the dimension given by new_dim. Note that the length of each sequence will be changed (so does the LoD information) to accommodate the new shape.
 
  Please refer to :ref:`api_fluid_layers_sequence_reshape`

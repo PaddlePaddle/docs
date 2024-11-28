@@ -220,7 +220,7 @@ type
 .. note::
 该属性是只读属性。
 
-此 :ref:`api_guide_Variable` 的内存模型，例如是：``LoDTensor``，或者 ``SelectedRows``。
+此 :ref:`api_guide_Variable` 的内存模型，例如是：``DenseTensor``，或者 ``SelectedRows``。
 
 ndim
 '''''''''
