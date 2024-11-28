@@ -57,7 +57,7 @@ Tensor，数据类型和形状都与 :code:`x` 相同。
 代码示例
 ::::::::::::
 
-
+COPY-FROM: paddle.scatter_nd_add
 
 **示例一图解说明**：
 
