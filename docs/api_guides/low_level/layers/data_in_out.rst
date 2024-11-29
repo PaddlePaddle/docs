@@ -27,6 +27,6 @@ Fluid 支持在训练/预测阶段获取当前 batch 的数据。
 
 用户可通过 :code:`executor.run(fetch_list=[...], return_numpy=...)` 的方式
 fetch 期望的输出变量，通过设置 :code:`return_numpy` 参数设置是否将输出数据转为 numpy array。
-若 :code:`return_numpy` 为 :code:`False` ，则返回 :code:`LoDTensor` 类型数据。
+若 :code:`return_numpy` 为 :code:`False` ，则返回 :code:`DenseTensor` 类型数据。
 
 具体使用方式请参考相关 API 文档 :ref:`cn_api_paddle_static_Executor`。

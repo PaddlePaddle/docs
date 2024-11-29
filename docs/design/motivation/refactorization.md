@@ -251,7 +251,7 @@ REGISTER_OP_WITHOUT_GRADIENT(op_type, op_class, op_maker_class)
 - Model migration
   - Framework development gives **priority support** to model migration, for example,
     - the MNIST demo needs a Python interface,
-    - the RNN models require the framework to support `LoDTensor`.
+    - the RNN models require the framework to support `DenseTensor`.
   - Determine some timelines,
   - Frequently used Ops need to be migrated first,
   - Different models can be migrated in parallel.

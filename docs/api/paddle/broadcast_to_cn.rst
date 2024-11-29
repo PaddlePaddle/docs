@@ -9,6 +9,12 @@ broadcast_to
 
 ``x`` 的维数和 ``shape`` 的元素数应小于等于 6，并且 ``shape`` 中的元素数应该大于等于 ``x`` 的维数。扩展的维度的维度值应该为 1。
 
+下图展示了一个形状为[3]的一维张量根据 ``shape`` 指定的形状广播为[2,3]的二维张量这一过程。
+
+.. figure:: ../../images/api_legend/broadcast_to.png
+    :width: 500
+    :align: center
+
 参数
 :::::::::
 

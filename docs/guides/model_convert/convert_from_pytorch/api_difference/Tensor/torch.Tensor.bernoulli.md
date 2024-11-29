@@ -9,7 +9,7 @@ torch.Tensor.bernoulli(p=None, *, generator=None)
 ### [paddle.bernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bernoulli_cn.html#bernoulli)
 
 ```python
-paddle.bernoulli(x, name=None)
+paddle.bernoulli(x, p=None, name=None)
 ```
 
 Pytorch 为 Tensor 类方法，Paddle 为普通函数，另外 PyTorch 相比 Paddle 支持更多其他参数。具体如下：
@@ -20,7 +20,7 @@ Pytorch 为 Tensor 类方法，Paddle 为普通函数，另外 PyTorch 相比 Pa
 | PyTorch       | PaddlePaddle | 备注                    |
 | ------------- | ------------ | ----------------------------------------------------------------------------- |
 | self      | x  | 伯努利参数 Tensor，将调用 torch.Tensor 类方法的 self Tensor 传入。  |
-| p         | -  | 可选，伯努利参数 p，Paddle 无此参数，暂无转写方式。 |
+| p         | p  | 可选，伯努利参数 p。 |
 | generator | -  | 用于采样的伪随机数生成器， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。    |
 
 
