@@ -60,7 +60,7 @@ variance
 方法
 :::::::::
 
-sample(shape=(), seed=0)
+sample(shape=[], seed=0)
 '''''''''
 
 生成指定维度的样本。
@@ -74,7 +74,7 @@ sample(shape=(), seed=0)
 
 Tensor，预先设计好维度的样本数据。
 
-rsample(shape=())
+rsample(shape=[])
 '''''''''
 
 重参数化采样，生成指定维度的样本。

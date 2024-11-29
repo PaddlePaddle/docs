@@ -1,4 +1,4 @@
-## [参数完全一致]torch.distributed.all_gather_object
+## [ 输入参数用法不一致 ]torch.distributed.all_gather_object
 
 ### [torch.distributed.all_gather_object](https://pytorch.org/docs/stable/distributed.html?highlight=all_gather_object#torch.distributed.all_gather_object)
 
@@ -18,13 +18,12 @@ paddle.distributed.all_gather_object(object_list, obj, group=None)
 
 | PyTorch  | PaddlePaddle | 备注                                          |
 | -------- | ------------ | --------------------------------------------- |
-| object_list |             | 表示用于保存聚合结果的列表。需初始化成与 `group` 等长的列表 |
-|             | object_list | 表示用于保存聚合结果的列表。需初始化成空列表           |
+| object_list |      object_list       | 表示用于保存聚合结果的列表。PyTorch 需初始化成与 `group` 等长的列表, Paddle 需初始化为空列表，需要转写。 |
 | obj      | obj          | 表示待聚合的对象。                  |
 | group    | group        | 表示执行该操作的进程组实例。                            |
 
 ### 转写示例
-
+#### object_list：保存聚合结果列表
 ```python
 # PyTorch 写法
 import torch.distributed as dist

@@ -445,7 +445,7 @@ RuntimeError: In static mode, the __setitem__ (looks like: x[indices] = values) 
 
 >>> b = paddle.static.setitem(a, 0, 1) # use paddle.static.setitem instead of __setitem__ in static mode
 >>> b
-var set_value_0.tmp_0 : LOD_TENSOR.shape(2, 3, 4).dtype(float32).stop_gradient(True)
+var set_value_0.tmp_0 : DENSE_TENSOR.shape(2, 3, 4).dtype(float32).stop_gradient(True)
 ```
 
 ### 5.3 不同数据类型时的行为

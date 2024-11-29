@@ -35,7 +35,7 @@ The computation `Program` consists of nested `Blocks`. Each `Block` will consist
 
 ## Definition of VarType
 
-A VarDesc should have a name, type and whether or not it is persistable. There are different kinds of variable types supported in PaddlePaddle, apart from the POD_Types like: `LOD_TENSOR`, `SELECTED_ROWS`, `FEED_MINIBATCH`, `FETCH_LIST`, `STEP_SCOPES`, `LOD_RANK_TABLE`, `DENSE_TENSOR_ARRAY`, `PLACE_LIST`, `READER` and `CHANNEL`. These are declared inside `VarType`. A `VarDesc` then looks as the following:
+A VarDesc should have a name, type and whether or not it is persistable. There are different kinds of variable types supported in PaddlePaddle, apart from the POD_Types like: `DENSE_TENSOR`, `SELECTED_ROWS`, `FEED_MINIBATCH`, `FETCH_LIST`, `STEP_SCOPES`, `LOD_RANK_TABLE`, `DENSE_TENSOR_ARRAY`, `PLACE_LIST`, `READER` and `CHANNEL`. These are declared inside `VarType`. A `VarDesc` then looks as the following:
 
 ```proto
 message VarDesc {
@@ -69,7 +69,7 @@ enum Type {
   FP64 = 6;
 
   // Other types that may need additional descriptions
-  LOD_TENSOR = 7;
+  DENSE_TENSOR = 7;
   SELECTED_ROWS = 8;
   FEED_MINIBATCH = 9;
   FETCH_LIST = 10;
@@ -82,18 +82,18 @@ enum Type {
 }
 ```
 
-A TensorDesc describes `SelectedRows` and `LoDTensor`. For details of `SelectedRows`, please reference `SelectedRows` .
+A TensorDesc describes `SelectedRows` and `DenseTensor`. For details of `SelectedRows`, please reference `SelectedRows` .
 
 ## Definition of LodTensorDesc
 
 ```proto
-message LoDTensorDesc {
+message DenseTensorDesc {
   required TensorDesc tensor = 1;
   optional int32 lod_level = 2 [ default = 0 ];
 }
 ```
 
-A LoDTensorDesc contains a tensor and a lod_level.
+A DenseTensorDesc contains a tensor and a lod_level.
 
 ## Definition of Variable in Python
 

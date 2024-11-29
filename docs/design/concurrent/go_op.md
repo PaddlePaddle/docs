@@ -10,7 +10,7 @@ concurrently process data and communicate easily between different threads.
 ## How to use it
 
 ```
-channel = fluid.make_channel(dtype=core.VarDesc.VarType.LOD_TENSOR)
+channel = fluid.make_channel(dtype=core.VarDesc.VarType.DENSE_TENSOR)
 
 with fluid.Go():
     # Send a tensor of value 99 to "channel" on a detached thread
@@ -58,7 +58,7 @@ blocks {
   vars {
     name: "return_value"
     type {
-      type: LOD_TENSOR
+      type: DENSE_TENSOR
       lod_tensor {
         tensor {
           data_type: INT64
@@ -69,7 +69,7 @@ blocks {
   vars {
     name: "status_recv"
     type {
-      type: LOD_TENSOR
+      type: DENSE_TENSOR
       lod_tensor {
         tensor {
           data_type: BOOL
@@ -131,7 +131,7 @@ blocks {
   vars {
     name: "status"
     type {
-      type: LOD_TENSOR
+      type: DENSE_TENSOR
       lod_tensor {
         tensor {
           data_type: BOOL

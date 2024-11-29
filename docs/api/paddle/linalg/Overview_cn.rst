@@ -42,6 +42,7 @@ paddle.linalg 目录下包含飞桨框架支持的线性代数相关 API。具�
     " :ref:`paddle.linalg.pinv <cn_api_paddle_linalg_pinv>` ", "计算矩阵的广义逆"
     " :ref:`paddle.linalg.cov <cn_api_paddle_linalg_cov>` ", "计算矩阵的协方差矩阵"
     " :ref:`paddle.linalg.matrix_exp <cn_api_paddle_linalg_matrix_exp>` ", "计算方阵的矩阵指数"
+    " :ref:`paddle.linalg.matrix_transpose <cn_api_paddle_linalg_matrix_transpose>` ", "计算矩阵的转置"
 
 
 .. _about_matrix_decompositions:
