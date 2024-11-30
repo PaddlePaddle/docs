@@ -29,4 +29,17 @@ svdvals
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.linalg.svdvals
+.. code-block:: python
+
+    >>> import paddle
+    >>> x = paddle.to_tensor([[1.0, 2.0], [1.0, 3.0], [4.0, 6.0]])
+    >>> s = paddle.linalg.svdvals(x)
+    >>> print(s)
+    Tensor(shape=[2], dtype=float32, place=Place(cpu), stop_gradient=True,
+    [8.14753819, 0.78589684])
+
+    >>> x = paddle.to_tensor([[[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]], [[7.0, 8.0, 9.0], [10.0, 11.0, 12.0]]])
+    >>> s = paddle.linalg.svdvals(x)
+    >>> print(s)
+    Tensor(shape=[2, 3], dtype=float32, place=Place(cpu), stop_gradient=True,
+    [[10.68784027,  0.82634664,  0.       ], [25.46213760,  0.76250070,  0.       ]])
