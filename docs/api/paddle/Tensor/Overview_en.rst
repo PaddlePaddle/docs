@@ -111,6 +111,7 @@ Methods
     cuda
     cumprod
     cumsum
+    dense_dim
     detach
     diagonal
     digamma
@@ -244,6 +245,7 @@ Methods
     slice
     solve
     sort
+    sparse_dim
     split
     vsplit
     sqrt
