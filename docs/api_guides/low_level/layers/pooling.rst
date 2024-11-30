@@ -49,7 +49,7 @@ api 汇总：
 
 ``roi_pool``\ 一般用于检测网络中，将输入特征图依据候选框池化到特定的大小。
 
--  ``rois``\ : 接收\ ``LoDTensor``\ 类型来表示需要池化的 Regions of Interest，关于 RoI 的解释请参考\ `论文 <https://arxiv.org/abs/1506.01497>`__
+-  ``rois``\ : 接收\ ``DenseTensor``\ 类型来表示需要池化的 Regions of Interest，关于 RoI 的解释请参考\ `论文 <https://arxiv.org/abs/1506.01497>`__
 
 -  ``pooled_height`` 和 ``pooled_width``\ : 这里可以接受非正方的池化窗口大小
 
