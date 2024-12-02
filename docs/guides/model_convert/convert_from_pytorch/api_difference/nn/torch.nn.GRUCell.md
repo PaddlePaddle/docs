@@ -10,7 +10,7 @@ torch.nn.GRUCell(input_size, hidden_size, bias=True, device=None, dtype=None)
 paddle.nn.GRUCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
 ```
 
-两者功能一致但输入参数用法不一致，且返回参数类型不同，具体如下：
+两者功能一致但输入参数用法不一致，且返回参数个数不同，具体如下：
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -22,7 +22,7 @@ paddle.nn.GRUCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=N
 | dtype   | -   | Tensor 的所需数据类型，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | -             |weight_ih_attr| weight_ih 的参数， PyTorch 无此参数， Paddle 保持默认即可。  |
 | -             |weight_hh_attr| weight_hh 的参数，  PyTorch 无此参数， Paddle 保持默认即可。  |
-
+| forward 类方法返回值            |forward 类方法返回值  | PyTorch 的返回值为更新后的隐藏状态 ret, Paddle 返回值为 ret、 ret, 需要转写。  |
 
 ### 转写示例
 #### bias：是否使用偏置
@@ -40,6 +40,7 @@ paddle.nn.GRUCell(16, 32, bias_ih_attr=False, bias_hh_attr=False)
 ```
 #### forward 类方法：前向传播
 ```python
+# 返回值个数不一致，Paddle 返回值比 Pytorch 多一个
 # PyTorch 写法
 rnn = torch.nn.GRUCell(2, 2)
 result = rnn(inp, h0)

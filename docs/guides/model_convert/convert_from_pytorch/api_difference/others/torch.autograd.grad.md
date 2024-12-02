@@ -26,4 +26,5 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | only_inputs      | only_inputs  | 是否只计算 inputs 的梯度。                                   |
 | allow_unused     | allow_unused | 决定当某些 inputs 变量不在计算图中时抛出错误还是返回 None。  |
 | is_grads_batched | -            | 是否反向使用批量，Paddle 无此参数，暂无转写方式。            |
+| materialize_grads | -            | 决定将未使用输入的梯度设置为零还是 None，暂无转写方式。            |
 | -                | no_grad_vars | 指明不需要计算梯度的变量，PyTorch 无此参数，Paddle 保持默认即可。 |
