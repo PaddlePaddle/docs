@@ -40,7 +40,7 @@ fluid.channel_close(ch)
 
 ### Send data to a channel
 
-Sends a variable to a channel.  Currently, variables of dtype `LoDTensor`,
+Sends a variable to a channel.  Currently, variables of dtype `DenseTensor`,
 `LoDRankTable`, `DenseTensorArray`, `SelectedRows`, `ReaderHolder`, and
 `ChannelHolder` are supported.
 

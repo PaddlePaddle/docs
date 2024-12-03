@@ -3,7 +3,7 @@
 Feed training/inference data with DataFeeder
 ########################################################
 
-Fluid provides the :code:`DataFeeder` class, which converts data types such as numpy array into a :code:`LoDTensor` type to feed the training/inference network.
+Fluid provides the :code:`DataFeeder` class, which converts data types such as numpy array into a :code:`DenseTensor` type to feed the training/inference network.
 
 To create a :code:`DataFeeder` object:
 
@@ -17,8 +17,8 @@ To create a :code:`DataFeeder` object:
     feeder = fluid.DataFeeder(feed_list=[image, label], place=place)
 
 The :code:`feed_list` parameter is a list of variables created by :code:`fluid.layers.data()` .
-The :code:`place` parameter indicates that data such as numpy array passed in from the Python side should be converted to GPU or CPU :code:`LoDTensor`.
-After creating the :code:`DataFeeder` object, the user can call the :code:`feed(iterable)` method to convert :code:`iterable` data given by user into :code:`LoDTensor` .
+The :code:`place` parameter indicates that data such as numpy array passed in from the Python side should be converted to GPU or CPU :code:`DenseTensor`.
+After creating the :code:`DataFeeder` object, the user can call the :code:`feed(iterable)` method to convert :code:`iterable` data given by user into :code:`DenseTensor` .
 
 :code:`iterable` should be a object of Python List or a Tuple type, and each element in :code:`iterable` is a Python List of length N or Tuple type object, where N is the number of :code:`feed_list` variables passed in when the :code:`DataFeeder` object is created.
 
