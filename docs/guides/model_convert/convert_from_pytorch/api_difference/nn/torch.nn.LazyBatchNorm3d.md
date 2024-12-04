@@ -18,7 +18,7 @@ paddle.nn.BatchNorm3D(num_features,
                       name=None)
 ```
 
-其中，Paddle 不支持 `num_features` 参数的延迟初始化，两者功能一致但参数不一致，部分参数名不同，具体如下：
+其中，Paddle 不支持 `num_features` 参数的延迟初始化，部分参数名不同，具体如下：
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
