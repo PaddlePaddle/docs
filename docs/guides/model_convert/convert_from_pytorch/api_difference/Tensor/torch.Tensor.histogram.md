@@ -22,7 +22,7 @@ paddle.Tensor.histogram(bins=100, min=0.0, max=0.0, weight=None, density=False)
 | range   | min, max     | PyTorch 为 bins 的范围，Paddle 为 range 的下边界，上边界，需要转写。 |
 | weight  | weight       | 权重 Tensor，维度和 input 相同。    |
 | density | density      | 表示直方图返回值是 count 还是归一化的频率，默认值 False 表示返回的是 count。  |
-| 返回值  | 返回值       | PyTorch 返回 hist 和 bin_edges，paddle.Tensor.histogram 返回 hist，paddle.Tensor.histogram_bin_edges 返回 bin_edges，需要转写。                                 |
+| 返回值  | 返回值       | PyTorch 返回 hist 和 bin_edges，返回值 dtype 类型与 self 一致，paddle.Tensor.histogram 返回 hist，返回值 dtype 类型为 int64 或 float32，paddle.Tensor.histogram_bin_edges 返回 bin_edges，返回值 dtype 类型为 float32，需要转写。                                 |
 
 ### 转写示例
 
@@ -38,7 +38,7 @@ x = paddle.to_tensor([1, 2, 1])
 hist = x.histogram(bins=5, min=0., max=3.)
 ```
 
-#### 返回值
+#### 返回值：数量
 
 ```python
 # PyTorch 写法:
@@ -48,4 +48,16 @@ hist, bin_edges = x.histogram(x, bins=5)
 # Paddle 写法:
 x = paddle.to_tensor([1, 2, 1])
 hist, bin_edges = x.histogram(x, bins=5), x.histogram_bin_edges(x, bins=5)
+```
+
+#### 返回值：dtype 类型
+
+```python
+# PyTorch 写法:
+x = torch.tensor([1., 2, 1])
+hist, bin_edges = x.histogram(x, bins=5)
+
+# Paddle 写法:
+x = paddle.to_tensor([1., 2, 1])
+hist, bin_edges = x.histogram(x, bins=5).cast(x.dtype), x.histogram_bin_edges(x, bins=5).cast(x.dtype)
 ```
