@@ -41,12 +41,12 @@ paddle.nn.BatchNorm1D(num_features,
 ```python
 # PyTorch 写法
 bn = torch.nn.LazyBatchNorm1d()
-input = torch.randn(3, 5)  # 5 是输入通道数
+input = torch.randn(3, 5, 10)  # 5 是通道数
 output = bn(input)  # 此时 num_features 会根据输入 Tensor 的形状自动设置为 5
 
 # Paddle 写法
 bn = paddle.nn.BatchNorm1D(num_features=5)  # 需要明确指定 num_features
-input = paddle.randn([3, 5])  # 5 是输入通道数
+input = paddle.randn([3, 5, 10])  # 5 是通道数
 output = bn(input)
 ```
 
