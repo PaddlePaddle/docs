@@ -5,7 +5,13 @@ tensordot
 
 .. py:function:: paddle.tensordot(x, y, axes=2, name=None)
 
-Tensor 缩并运算（Tensor Contraction），即沿着 axes 给定的多个轴对两个 Tensor 对应元素的乘积进行加和操作。
+Tensor 缩并运算（Tensor Tensordot）,即计算的是两个张量在某些轴上的乘积并求和。
+可以选择沿一个或多个轴进行点积操作,操作后返回的结果张量维度是 A 和 B 上未参与点积的维度的并集。
+图例中展示了一个shape = [2,2,2]的a张量,和shape = [2,3]的b张量,res为a,b两个张量沿着axis = 1轴做tensordot的结果
+res = paddle.tensordot(x, y, axes = 1)
+.. image:: ../../images/api_legend/concat.png
+   :width: 500
+   :alt: 图例
 
 参数
 ::::::::::::
