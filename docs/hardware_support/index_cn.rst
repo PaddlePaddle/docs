@@ -11,6 +11,7 @@
 - `海光 DCU 芯片运行飞桨 <./dcu/index_cn.html>`_ : 介绍如何在海光 DCU 芯片环境上安装和使用飞桨。
 - `昇腾 NPU 芯片运行飞桨 <./npu/index_cn.html>`_ : 介绍如何在昇腾 NPU 芯片环境上安装和使用飞桨。
 - `寒武纪 MLU 芯片运行飞桨 <./mlu/index_cn.html>`_ : 介绍如何在寒武纪 MLU 芯片环境上安装和使用飞桨。
+- `燧原 GCU 芯片运行飞桨 <./gcu/index_cn.html>`_ : 介绍如何在燧原 GCU 芯片环境上安装和使用飞桨。
 
 ..  toctree::
     :hidden:
@@ -20,3 +21,4 @@
     dcu/index_cn.rst
     npu/index_cn.rst
     mlu/index_cn.rst
+    gcu/index_cn.rst
