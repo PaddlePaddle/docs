@@ -18,8 +18,8 @@ clip
 ::::::::::::
 
     - **x** (Tensor) - 输入的 Tensor，数据类型为：bfloat16、float16、float32、float64、int32、int64。
-    - **min** (float|int|Tensor，可选) - 裁剪的最小值，输入中小于该值的元素将由该元素代替，若参数为空，则不对输入的最小值做限制。数据类型可以是 float32 或形状为[]的 0-D Tensor，类型可以为 bfloat16、float16、float32、float64、int32，默认值为 None。
-    - **max** (float|int|Tensor，可选) - 裁剪的最大值，输入中大于该值的元素将由该元素代替，若参数为空，则不对输入的最大值做限制。数据类型可以是 float32 或形状为[]的 0-D Tensor，类型可以为 bfloat16、float16、float32、float64、int32，默认值为 None。
+    - **min** (float|int|Tensor，可选) - 裁剪的最小值，输入中小于该值的元素将由该元素代替，若参数为空，则不对输入的最小值做限制。数据类型可以是 float32 或 Tensor，为多维 Tensor 时，其形状应于 x 的内层形状相同，类型可以为 int32、float16、float32、float64，默认值为 None。
+    - **max** (float|int|Tensor，可选) - 裁剪的最大值，输入中大于该值的元素将由该元素代替，若参数为空，则不对输入的最大值做限制。数据类型可以是 float32 或 Tensor，为多维 Tensor 时，其形状应于 x 的内层形状相同，类型可以为 int32、float16、float32、float64，默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
