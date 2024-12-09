@@ -15,7 +15,7 @@
 | AI 加速芯片 | MLU | 寒武纪 | MLU370 系列 | [安装](./mlu/install_cn.html#wheel) | [源码编译](./mlu/install_cn.html) |  | [支持模型](./mlu/support_cn.html) |
 | AI 加速芯片 |  | 天数智芯 | 天垓 100 |  [安装](https://gitee.com/deep-spark/deepsparkhub/blob/master/docker/Iluvatar/README.md) ||  |  | ✔️ |
 | AI 加速芯片 |  | 壁仞 | BR100、BR104 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/biren_gpu/README_cn.md) |  | ✔️ |
-| AI 加速芯片 |  | 燧原 | 云燧 T20 、i20|  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/gcu/README_cn.md) |  | ✔️ |
+| AI 加速芯片 |  | 燧原 | 云燧 T20 、i20、S60 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/gcu/README_cn.md) |  | ✔️ |
 | AI 加速芯片 |  | 太初 | 元碁系列 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleTecoBackend)  |  | ✔️ |
 
 ## Paddle Inference
@@ -36,6 +36,7 @@
 | 服务端 CPU | x86 | 兆芯 | 全系列 CPU |  |[源码编译](../../install/compile/zhaoxin-compile.html#anchor-1) |  |  |
 | 服务端 CPU |  | 海光 | 海光 3000、5000、7000 系列 CPU |  |  |  |  |
 | 服务端 CPU |  | 申威 | 申威 SW6A、SW6B |  |[源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/compile_SW.html)  |  |  |
+| AI 加速芯片 | | 燧原 | S60 | | [源码编译](./gcu/install_cn.html) |  | ✔️ |
 
 ## Paddle Lite
 
