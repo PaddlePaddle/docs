@@ -7,6 +7,14 @@ index_fill
 
 依据指定的轴 ``axis`` 和索引 ``indices`` 将指定位置的 ``x`` 填充为 ``value`` 。
 
+**图解说明**：
+
+    一个形状为 [3, 3] 的二维张量，通过 index_fill 操作，当 axis = 0，索引张量 index 为 [0, 2]，填充值 value = -1 时，将第一行和第三行的所有元素填充为 -1，从而得到形状仍为 [3, 3] 但元素部分改变的新张量。
+
+    .. figure:: ../../images/api_legend/index_fill.png
+        :width: 500
+        :align: center
+
 参数
 :::::::::
 
