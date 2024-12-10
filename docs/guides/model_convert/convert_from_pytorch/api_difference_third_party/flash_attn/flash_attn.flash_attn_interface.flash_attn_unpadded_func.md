@@ -25,7 +25,7 @@ max_seqlen_q, max_seqlen_k, scale,dropout=0.0, causal=False, return_softmax=Fals
 | cu_seqlens_q      | cu_seqlens_q      | batch 中累计序列长度，用于索引 q。|
 | cu_seqlens_k      | cu_seqlens_k      | batch 中累计序列长度，用于索引 k。|
 | max_seqlen_q      | max_seqlen_q      | query 最大序列长度。|
-| max_seqlen_k      | max_seqlen_v      | key 最大序列长度。|
+| max_seqlen_k      | max_seqlen_k      | key 最大序列长度。|
 | dropout_p         | dropout           | 丢弃概率。    |
 | softmax_scale     | scale             | QK^T 的缩放因子。    |
 | causal            | causal            | 是否应用因果注意力 mask。  |
@@ -35,7 +35,7 @@ max_seqlen_q, max_seqlen_k, scale,dropout=0.0, causal=False, return_softmax=Fals
 | alibi_slopes      | -                 | 用于注意力得分间的 bias，Paddle 无此参数，暂无转写方式。 |
 | block_table       | -                 | block 表，用于 paged KV cache，Paddle 无此参数，暂无转写方式。 |
 | return_attn_probs | return_softmax    | 是否返回注意力概率。 |
-|                   | fixed_seed_offset | 为 dropout mask 固定 sedd, offset，PyTorch 无此参数，Paddle 保持默认即可。 |
-|                   | rng_name          | 选定 rng Generator，PyTorch 无此参数，Paddle 保持默认即可。 |
-|                   | training          | 是否在训练阶段，PyTorch 无此参数，Paddle 保持默认即可。 |
-|                   | name              | 名称，PyTorch 无此参数，Paddle 保持默认即可。|
+|          -        | fixed_seed_offset | 为 dropout mask 固定 sedd, offset，PyTorch 无此参数，Paddle 保持默认即可。 |
+|         -         | rng_name          | 选定 rng Generator，PyTorch 无此参数，Paddle 保持默认即可。 |
+|       -           | training          | 是否在训练阶段，PyTorch 无此参数，Paddle 保持默认即可。 |
+|        -          | name              | 名称，PyTorch 无此参数，Paddle 保持默认即可。|

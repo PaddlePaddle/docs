@@ -72,9 +72,9 @@ Among them, `lod_start_pos_` uses `shared_ptr` to reduce the cost of storage and
 `LODTensor` can be thought as an extension of `Tensor`, which is almost completely compatible with the original `Tensor`.
 
 ## How to support the framework
-### Replace `Tensor` with `LoDTensor`
-To implement the passing of `LODTensor`, most `Tensor` in the framework need to be replaced with `LODTensor`.
-Simple implementation, directly **replace all previous `Tensor` with `LODTensor`** , where you can directly modify the `Tensor` interface created in `pybind.cc`.
+### Replace `Tensor` with `DenseTensor`
+To implement the passing of `DenseTensor`, most `Tensor` in the framework need to be replaced with `DenseTensor`.
+Simple implementation, directly **replace all previous `Tensor` with `DenseTensor`** , where you can directly modify the `Tensor` interface created in `pybind.cc`.
 
 In addition, the user may need to perceive the existence of a sequence (such as the sequence of the visualization needs to parse the output sequence in the model), so some of the serial operation APIs also need to be exposed to the python layer.
 

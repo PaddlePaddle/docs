@@ -82,18 +82,18 @@ enum Type {
 }
 ```
 
-A TensorDesc describes `SelectedRows` and `LoDTensor`. For details of `SelectedRows`, please reference `SelectedRows` .
+A TensorDesc describes `SelectedRows` and `DenseTensor`. For details of `SelectedRows`, please reference `SelectedRows` .
 
 ## Definition of LodTensorDesc
 
 ```proto
-message LoDTensorDesc {
+message DenseTensorDesc {
   required TensorDesc tensor = 1;
   optional int32 lod_level = 2 [ default = 0 ];
 }
 ```
 
-A LoDTensorDesc contains a tensor and a lod_level.
+A DenseTensorDesc contains a tensor and a lod_level.
 
 ## Definition of Variable in Python
 

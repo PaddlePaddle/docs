@@ -12,6 +12,7 @@
 
 飞桨框架支持基于昆仑芯 XPU 芯片的训练和推理，请参考以下内容快速体验：
 
+- `昆仑芯 XPU 安装说明` <./install_cn.html>: 昆仑芯 XPU 安装说明
 - `昆仑芯 XPU 基于框架的使用指南 <./paddle_tutorial_cn.html>`_ : 昆仑芯 XPU 基于框架的使用指南
 - `昆仑芯 XPU 基于套件的使用指南 <./paddlex_tutorial_cn.html>`_ : 昆仑芯 XPU 基于套件的使用指南
 - `昆仑芯 XPU 支持模型 <./support_cn.html>`_ : 昆仑芯 XPU 支持模型
@@ -19,6 +20,7 @@
 ..  toctree::
     :hidden:
 
+    install_cn.md
     paddle_tutorial_cn.md
     paddlex_tutorial_cn.md
     support_cn.md

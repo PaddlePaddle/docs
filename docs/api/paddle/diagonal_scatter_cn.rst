@@ -16,6 +16,12 @@ diagonal_scatter
     - 如果 offset > 0，则嵌入主对角线右上的对角线。
     - 如果 offset < 0，则嵌入主对角线左下的对角线。
 
+下图展示了一个例子: x 是一个二维张量，通过 diagonal_scatter 在 axis1=0， axis2=1 构成的二维平面内，向其主对角线（offset=0）填充了一个一维张量。
+
+.. image:: ../../images/api_legend/diagonal_scatter.png
+   :width: 500
+   :alt: 图例
+
 参数
 ::::::::::::
 
