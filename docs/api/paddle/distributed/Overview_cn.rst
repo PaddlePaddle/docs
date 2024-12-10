@@ -171,6 +171,28 @@ RPC API
     " :ref:`DistAttr <cn_api_paddle_distributed_DistAttr>` ", "指定 Tensor 在 ProcessMesh 上的分布或切片方式"
     " :ref:`shard_optimizer <cn_api_paddle_distributed_shard_optimizer>` ", "将单卡视角的优化器转变为分布式视角"
     " :ref:`split <cn_api_paddle_distributed_split>` ", "切分指定操作的参数到多个设备，并且并行计算得到结果"
+    " :ref:`set_mesh <cn_api_paddle_distributed_set_mesh>` ", "设置全局 ProcessMesh"
+    " :ref:`get_mesh <cn_api_paddle_distributed_get_mesh>` ", "获取全局 ProcessMesh"
+
+
+此外，自动并行提供更高层次的 API 来帮助用户通过非入侵组网的方式实现自动并行的分布式训练。
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 20, 50
+
+    " :ref:`parallelize <cn_api_paddle_distributed_parallelize>` ", "对模型和优化器进行并行化处理"
+    " :ref:`ColWiseParallel <cn_api_paddle_distributed_ColWiseParallel>` ", "按列切分标识 Layer"
+    " :ref:`RowWiseParallel <cn_api_paddle_distributed_RowWiseParallel>` ", "按行切分标识 Layer"
+    " :ref:`SequenceParallelBegin <cn_api_paddle_distributed_SequenceParallelBegin>` ", "标识 Layer 为序列并行的开始"
+    " :ref:`SequenceParallelEnd <cn_api_paddle_distributed_SequenceParallelEnd>` ", "标识 Layer 序列并行的结束"
+    " :ref:`SequenceParallelEnable <cn_api_paddle_distributed_SequenceParallelEnable>` ", "对标识 Layer 进行序列并行"
+    " :ref:`SequenceParallelDisable <cn_api_paddle_distributed_SequenceParallelDisable>` ", "对标识 Layer 不进行序列并行"
+    " :ref:`SplitPoint <cn_api_paddle_distributed_SplitPoint>` ", "标识 Layer 为流水线并行的切分点"
+    " :ref:`PrepareLayerInput <cn_api_paddle_distributed_PrepareLayerInput>` ", "对标识 Layer 的输入进行处理"
+    " :ref:`PrepareLayerOutput <cn_api_paddle_distributed_PrepareLayerOutput>` ", "对标识 Layer 的输出进行处理"
+
+
 
 .. _08:
 
