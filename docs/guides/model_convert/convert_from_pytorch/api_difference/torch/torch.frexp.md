@@ -31,5 +31,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.frexp(x,out=y)
 
 # Paddle 写法
-paddle.assign(paddle.frexp(x), y)
+out1, out2 = paddle.frexp(x)
+paddle.assign(out1, y[0]), paddle.assign(out2, y[1])
 ```
