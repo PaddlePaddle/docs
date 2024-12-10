@@ -388,7 +388,7 @@ enum class DataType {
 ```
 
 - 这里什么不使用原先 fluid 的 VarType？
-    - 理由 1：原先 fluid 的 DataType 和 VarType 是同级概念，设计是比较混乱的，例如 LoDTensor 和 FLOAT32 是同级概念，但这两者显然不是的，我们不希望继承原先有明显缺陷的设计
+    - 理由 1：原先 fluid 的 DataType 和 VarType 是同级概念，设计是比较混乱的，我们不希望继承原先有明显缺陷的设计
     - 理由 2：和 fluid 解耦依赖，便于后续 PHI 可以独立编译
 
 ##### 2.3.1.4 Scalar
@@ -499,7 +499,7 @@ Tensor ondnn() const;
 
 ##### 2.3.3.3 DenseTensor、SparseTensor
 
-- DenseTensor 对应原 fluid 内的 LoDTensor 类，是 Tensor 的基础实现，DenseTensor 内的 DenseTensorMeta 包含描述 Tensor 信息的基础成员，DenseTensor 内的 Allocation 就是 fluid 原有的 Allocation
+- DenseTensor 是 Tensor 的基础实现，DenseTensor 内的 DenseTensorMeta 包含描述 Tensor 信息的基础成员，DenseTensor 内的 Allocation 就是 fluid 原有的 Allocation
 - SparseCsrTensor、SparseCooTensor 是新设计的稀疏 Tensor 类型，详见代码实现
 
 > 为了兼容原先框架调度及算子，SelectedRows 我们也迁移过来作为一种基础 Tensor 类型，后续如果能够被新的稀疏 Tensor 替代，长期会移除
@@ -1320,7 +1320,7 @@ class ExecutionArgumentMappingContext : public phi::ArgumentMappingContext {
 
   bool IsDenseTensorInput(const std::string& name) const override {
     return ctx_.InputVar(name)->IsType<framework::Tensor>() ||
-      ctx_.InputVar(name)->IsType<framework::LoDTensor>();
+      ctx_.InputVar(name)->IsType<framework::DenseTensor>();
   }
 
   bool IsSelectedRowsInput(const std::string& name) const override {
@@ -1386,7 +1386,7 @@ class ProtoArgumentMappingContext : public phi::ArgumentMappingContext {
     for (int i = 0; i < block_.vars_size(); ++i) {
       auto& var = block_.vars()[i];
       if (var.name() == name) {
-        if (var.type() == proto::VarType::LOD_TENSOR) {
+        if (var.type() == proto::VarType::DENSE_TENSOR) {
           return true;
         }
       }

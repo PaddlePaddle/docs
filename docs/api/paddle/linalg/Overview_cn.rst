@@ -42,6 +42,7 @@ paddle.linalg 目录下包含飞桨框架支持的线性代数相关 API。具�
     " :ref:`paddle.linalg.pinv <cn_api_paddle_linalg_pinv>` ", "计算矩阵的广义逆"
     " :ref:`paddle.linalg.cov <cn_api_paddle_linalg_cov>` ", "计算矩阵的协方差矩阵"
     " :ref:`paddle.linalg.matrix_exp <cn_api_paddle_linalg_matrix_exp>` ", "计算方阵的矩阵指数"
+    " :ref:`paddle.linalg.matrix_transpose <cn_api_paddle_linalg_matrix_transpose>` ", "计算矩阵的转置"
 
 
 .. _about_matrix_decompositions:
@@ -60,6 +61,7 @@ paddle.linalg 目录下包含飞桨框架支持的线性代数相关 API。具�
     " :ref:`paddle.linalg.cholesky <cn_api_paddle_linalg_cholesky>` ", "计算一个实数对称正定矩阵的 Cholesky 分解"
     " :ref:`paddle.linalg.cholesky_inverse <cn_api_paddle_linalg_cholesky_inverse>` ", "使用 Cholesky 因子 `U` 计算对称正定矩阵的逆矩阵"
     " :ref:`paddle.linalg.svd <cn_api_paddle_linalg_svd>` ", "计算矩阵的奇异值分解"
+    " :ref:`paddle.linalg.svdvals <_cn_api_paddle_linalg_svdvals>` ", "计算矩阵的奇异值"
     " :ref:`paddle.linalg.svd_lowrank <cn_api_paddle_linalg_svd_lowrank>` ", "对低秩矩阵进行奇异值分解"
     " :ref:`paddle.linalg.pca_lowrank <cn_api_paddle_linalg_pca_lowrank>` ", "对矩阵进行线性主成分分析"
     " :ref:`paddle.linalg.qr <cn_api_paddle_linalg_qr>` ", "计算矩阵的正交三角分解（也称 QR 分解）"

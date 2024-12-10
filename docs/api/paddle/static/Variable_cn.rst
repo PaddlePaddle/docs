@@ -3,7 +3,7 @@
 Variable
 -------------------------------
 
-.. py:class:: paddle.static.Variable(block, type=<VarType.LOD_TENSOR: 7>, name=None, shape=None, dtype=None, lod_level=None, capacity=None, persistable=None, error_clip=None, stop_gradient=False, is_data=False, need_check_feed=False, belong_to_optimizer=False, **kwargs)
+.. py:class:: paddle.static.Variable(block, type=<VarType.DENSE_TENSOR: 7>, name=None, shape=None, dtype=None, lod_level=None, capacity=None, persistable=None, error_clip=None, stop_gradient=False, is_data=False, need_check_feed=False, belong_to_optimizer=False, **kwargs)
 
 
 .. note::
@@ -220,7 +220,7 @@ type
 .. note::
 该属性是只读属性。
 
-此 :ref:`api_guide_Variable` 的内存模型，例如是：``LoDTensor``，或者 ``SelectedRows``。
+此 :ref:`api_guide_Variable` 的内存模型，例如是：``DenseTensor``，或者 ``SelectedRows``。
 
 ndim
 '''''''''

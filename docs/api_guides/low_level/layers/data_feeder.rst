@@ -3,7 +3,7 @@
 使用 DataFeeder 传入训练/预测数据
 ###################################
 
-Fluid 提供 :code:`DataFeeder` 类，将 numpy array 等数据转换为 :code:`LoDTensor` 类型传入训练/预测网络。
+Fluid 提供 :code:`DataFeeder` 类，将 numpy array 等数据转换为 :code:`DenseTensor` 类型传入训练/预测网络。
 
 用户创建 :code:`DataFeeder` 对象的方式为：
 
@@ -17,9 +17,9 @@ Fluid 提供 :code:`DataFeeder` 类，将 numpy array 等数据转换为 :code:`
     feeder = fluid.DataFeeder(feed_list=[image, label], place=place)
 
 其中，:code:`feed_list` 参数为变量列表，这些变量由 :code:`fluid.layers.data()` 创建，
-:code:`place` 参数表示应将 Python 端传入的 numpy array 等数据转换为 GPU 端或是 CPU 端的 :code:`LoDTensor` 。
+:code:`place` 参数表示应将 Python 端传入的 numpy array 等数据转换为 GPU 端或是 CPU 端的 :code:`DenseTensor` 。
 创建 :code:`DataFeeder` 对象后，用户可调用其 :code:`feed(iterable)` 方法将用户传入的
-:code:`iterable` 数据转换为 :code:`LoDTensor`。
+:code:`iterable` 数据转换为 :code:`DenseTensor`。
 
 :code:`iterable` 应为 Python List 或 Tuple 类型对象，且 :code:`iterable` 的每个元素均为长度为 N 的
 Python List 或 Tuple 类型对象，其中 N 为创建 :code:`DataFeeder` 对象时传入的 :code:`feed_list` 变量个数。

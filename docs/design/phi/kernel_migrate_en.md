@@ -151,8 +151,8 @@ Secondly, it is necessary to replace some of the types or functions that were on
 
 | fluid writing | phi writing |
 |---|---|
-| `farmework::Tensor` | `DenseTensor` |
-| `farmework::LoDTensor` | `DenseTensor` |
+| `framework::Tensor` | `DenseTensor` |
+| `framework::DenseTensor` | `DenseTensor` |
 | template parameter `DeviceContext` | template parameter `Context` |
 | `platform::XXXDeviceContext` | `XXXContext` |
 | `out->mutbale_data(ctx.GetPlace()/place)` | `dev_ctx.template Alloc(out)` |

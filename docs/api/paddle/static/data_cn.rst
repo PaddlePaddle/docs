@@ -18,7 +18,7 @@ data
     - **name** (str) - 变量名，具体用法请参见 :ref:`api_guide_Name`。
     - **shape** (list|tuple)- 声明维度信息的 list 或 tuple。可以在某个维度上设置 None 或-1，以指示该维度可以是任何大小。例如，将可变 batchsize 设置为 None 或-1。
     - **dtype** (np.dtype|str，可选)- 数据类型，支持 bool，float16，float32，float64，int8，int16，int32，int64，uint8。默认值为 None。当 ``dtype`` 为 None 时，``dtype`` 将通过 ``padle.get_default_dtype()`` 获取全局类型。
-    - **lod_level** (int，可选)- LoDTensor 变量的 LoD level 数，LoD level 是 PaddlePaddle 的高级特性，一般任务中不会需要更改此默认值。默认值为 0。
+    - **lod_level** (int，可选)- DenseTensor 变量的 LoD level 数，LoD level 是 PaddlePaddle 的高级特性，一般任务中不会需要更改此默认值。默认值为 0。
 
 返回
 ::::::::::::

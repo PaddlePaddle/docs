@@ -438,6 +438,33 @@ COPY-FROM: paddle.Tensor.is_contiguous
 
 
 
+dense_dim()
+:::::::::
+
+.. note::
+   若本 Tensor 不是稀疏 Tensor，则返回 len(self.shape)。
+
+返回：本 Tensor 的稠密维度。
+
+返回类型：int
+
+**代码示例**
+COPY-FROM: paddle.Tensor.dense_dim
+
+
+
+sparse_dim()
+:::::::::
+
+.. note::
+   若本 Tensor 不是稀疏 Tensor，则返回 0。
+
+返回：本 Tensor 的稀疏维度。
+
+返回类型：int
+
+**代码示例**
+COPY-FROM: paddle.Tensor.sparse_dim
 
 
 
@@ -1609,6 +1636,15 @@ less_than(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_less_than`
+
+less(y, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_less`
 
 lgamma(name=None)
 :::::::::

@@ -7,6 +7,15 @@ index_put
 
 依据索引 ``indices`` ，将指定位置的 ``x`` 重新赋值为 ``value`` 。这里 ``indices`` 是一个 ``tuple of tensor`` 。
 
+**示例图解说明**：
+
+    下图展示了示例中的情形——一个形状为[3,3]的二维张量通过 index_put 操作,将对应 index 的位置填充为 value 张量里对应元素，注意 index 与 value 的元素个数应匹配。
+
+    .. figure:: ../../images/api_legend/index_put.png
+       :width: 500
+       :alt: 示例图示
+       :align: center
+
 参数
 :::::::::
 

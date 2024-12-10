@@ -1055,8 +1055,6 @@ The following device operations are asynchronous with respect to the host:
 
 ### 7.9 LoD 在算子内部的传导规范
 
-[LoD](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/lod_tensor.md) 是 Paddle 框架用来表示变长序列数据的属性，除了仅支持输入是 padding  data 的算子外，所有算子的实现都要考虑 LoD 的传导问题。
-
 根据算子的计算过程中是否用到 LoD，我们可以将涉及到 LoD 传导问题的算子分为两类: LoD-Transparent 与 LoD-Based。
 
 <table>

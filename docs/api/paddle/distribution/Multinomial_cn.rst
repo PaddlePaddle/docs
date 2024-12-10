@@ -77,7 +77,7 @@ log_prob(value)
 Tensor，:attr:`value` 的对数概率。
 
 
-sample(shape=())
+sample(shape=[])
 '''''''''
 
 生成满足特定形状的样本数据。

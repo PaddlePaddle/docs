@@ -22,7 +22,7 @@ Creates a new channel that takes in variables of a specific dtype.
     an unbuffered channel.  Capacity > 0 represents a buffered channel
 
 ```
-ch = fluid.make_channel(dtype=core.VarDesc.VarType.LOD_TENSOR, 10)
+ch = fluid.make_channel(dtype=core.VarDesc.VarType.DENSE_TENSOR, 10)
 ```
 
 ### Close a channel
@@ -40,7 +40,7 @@ fluid.channel_close(ch)
 
 ### Send data to a channel
 
-Sends a variable to a channel.  Currently, variables of dtype `LoDTensor`,
+Sends a variable to a channel.  Currently, variables of dtype `DenseTensor`,
 `LoDRankTable`, `DenseTensorArray`, `SelectedRows`, `ReaderHolder`, and
 `ChannelHolder` are supported.
 
@@ -54,7 +54,7 @@ however the user can optionally copy the data before performing the send.
   to copy the source variable to a new variable to be sent.
 
 ```
-ch = fluid.make_channel(dtype=core.VarDesc.VarType.LOD_TENSOR)
+ch = fluid.make_channel(dtype=core.VarDesc.VarType.DENSE_TENSOR)
 var = fill_constant(shape=[1],dtype=core.VarDesc.VarType.INT32, value=100)
 fluid.channel_send(ch, var, True)
 ```
@@ -70,7 +70,7 @@ receiving variable.
   variable received from the channel
 
 ```
-ch = fluid.make_channel(dtype=core.VarDesc.VarType.LOD_TENSOR)
+ch = fluid.make_channel(dtype=core.VarDesc.VarType.DENSE_TENSOR)
 var = fill_constant(shape=[1],dtype=core.VarDesc.VarType.INT32, value=-1)
 fluid.channel_recv(ch, var)
 ```
