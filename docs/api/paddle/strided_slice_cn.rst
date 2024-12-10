@@ -43,6 +43,13 @@ strided_slice 算子。
                 则：
                      result=[[2],]
 
+**示例图解说明**：
+
+    下图依次展示了三个示例中的情形，一个形状为[2,4]的张量通过 3 个不同 strided_slice 操作得到不同的切片。可以清晰地看到张量形状变化前后各元素的对应关系。
+
+    .. figure:: ../../images/api_legend/strided_slice.png
+       :width: 500
+       :align: center
 
 参数
 ::::::::::::
