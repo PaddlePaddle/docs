@@ -17,6 +17,7 @@ unique
        :align: center
 
     图二展示了代码中形状为[3,3]的二维张量通过 unique 操作(axis=0)去重排序后得到新的形状为[2,3]的二维张量，新的二维张量会按照字典序进行排列。
+
     .. figure:: ../../images/api_legend/unique_2.png
        :width: 500
        :alt: 图二：二维张量 axis=0 示例
