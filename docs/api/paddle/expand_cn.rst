@@ -9,10 +9,13 @@ expand
 
 ``x`` 的维数和 ``shape`` 的元素数应小于等于 6，并且 ``shape`` 中的元素数应该大于等于 ``x`` 的维数。扩展的维度的维度值应该为 1。
 
+**示例图解说明**：
+    Original Tensor 显示了一个形状为 [3] 的一维张量 [1, 2, 3]。通过 paddle.expand 方法（参数 ``shape = [2, 3]``）被广播扩展为一个形状为 [2, 3] 的二维张量。
 
-Original Tensor显示了一个形状为 [3]的一维张量[1, 2, 3]。
-通过 tensor.expand((2, 3))方法被广播扩展为一个形状为[2, 3]的二维张量。
-其中每一行均为原张量的值。expand的结果在右侧图中展示。
+    .. figure:: ../../images/api_legend/expand.png
+       :width: 500
+       :alt: 示例一图示
+       :align: center
 
 
 参数
