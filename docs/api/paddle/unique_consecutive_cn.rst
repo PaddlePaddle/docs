@@ -9,7 +9,7 @@ unique_consecutive
     上图展示了一个一维张量的去重过程
     下图展示了一个 [3, 4] 的二维张量沿 axis = 0 展开后去重再进行二维折叠的过程
 
-    .. figure:: ../../images/api_legend/unique-consecutive.png
+    .. figure:: ../../images/api_legend/unique_consecutive.png
        :width: 500
        :alt: 示例二图示
        :align: center
