@@ -6,6 +6,9 @@ unique_consecutive
 .. py:function:: paddle.unique_consecutive(x, return_inverse=False, return_counts=False, axis=None, dtype="int64", name=None)
 
 将 Tensor 中连续重复的元素进行去重，返回连续不重复的 Tensor 。
+
+**示例图解说明**：
+
     上图展示了一个一维张量的去重过程
     下图展示了一个 [3, 4] 的二维张量沿 axis = 0 展开后去重再进行二维折叠的过程
 
@@ -13,6 +16,7 @@ unique_consecutive
        :width: 500
        :alt: 示例二图示
        :align: center
+
 参数
 ::::::::::::
 
