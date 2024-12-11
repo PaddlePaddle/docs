@@ -4,10 +4,11 @@ tensordot
 -------------------------------
 
 .. py:function:: paddle.tensordot(x, y, axes=2, name=None)
+
 Tensor 缩并运算（Tensor Contraction），即沿着 axes 给定的多个轴对两个 Tensor 对应元素的乘积进行加和操作。
 可以选择沿一个或多个轴进行点积操作,操作后返回的结果张量维度是 A 和 B 上未参与点积的维度的并集。
-图例中展示了一个shape = [2,2,2]的a张量,和shape = [2,3]的b张量
-shape = [2,2,3]的res张量为a,b两个张量沿着a张量的最后一个轴和b张量的第一个轴进行缩并的结果
+图例中展示了一个 shape = [2,2,2]的 a 张量,和 shape = [2,3]的 b 张量
+shape = [2,2,3]的 res 张量为 a,b 两个张量沿着 a 张量的最后一个轴和 b 张量的第一个轴进行缩并的结果
 res = paddle.tensordot(x, y, axes = 1)
 .. image:: ../../images/api_legend/tensordot.png
    :width: 500
