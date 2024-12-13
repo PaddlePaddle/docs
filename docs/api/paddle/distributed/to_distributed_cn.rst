@@ -17,10 +17,11 @@ to_distributed
 
     - **model** (paddle.nn.Layer) - 单卡视角的模型，没有包含任何分布式代码。
     - **optimizer** (paddle.optimizer.Optimizer) - 单卡视角的优化器，通过常规优化器 API 构造，如 ``paddle.optimizer.Adam``。
-    - **dataloader** (paddle.io.DataLoader) - 单卡视角的数据加载器，通过常规方式沟通，如 ``paddle.io.Dataset`` 及 ``paddle.io.Sampler``,
-            无需使用 ``paddle.io.DistributedBatchSampler``。
+    - **dataloader** (paddle.io.DataLoader) - 单卡视角的数据加载器，通过常规方式沟通，如 ``paddle.io.Dataset`` 及 ``paddle.io.Sampler``, 无需使用 ``paddle.io.DistributedBatchSampler``。
     - **config** (ToDistributedConfig，可选) - 可以用来配置 输入数据信息 和 是否使用序列并行。配置时使用数据类 ``paddle.distributed.auto_parallel.high_level_api.ToDistributedConfig`` 来完成。
+
       配置 输入数据信息，是提供模型训练时最有可能输入数据的 shape、dtype 和 stop_gradient 信息，便于更快更准地自动选择最优的分布式策略。
+
       配置 是否使用序列并行，可以指定如果最优的分布式策略中包含模型并行时，是否要使用序列并行。
 
 返回
