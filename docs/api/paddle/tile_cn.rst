@@ -9,6 +9,11 @@ tile
 
 ``x`` 的维数和 ``repeat_times`` 中的元素数量应小于等于 6。
 
+下图展示了内容为 [1, 2, 3]的一个一维张量沿着第一个维度重复 2 次，沿着第二个维度重复 1 次，结果是一个形状为 [2, 3] 的二维张量；以及沿着第一个维度重复 2 次，沿着第二个维度也重复 2 次。结果是一个形状为 [2, 6] 的张量。
+
+.. image:: ../../images/api_legend/tile.png
+    :width: 600
+
 参数
 :::::::::
     - **x** (Tensor) - 输入的 Tensor，数据类型为：bool、float16、float32、float64、int32 或 int64。
@@ -20,6 +25,6 @@ tile
 ``Tensor``，数据类型与 ``x`` 相同。返回值的第 i 维的大小等于 ``x[i] * repeat_times[i]`` 。
 
 代码示例
-:::::::::
+::::::::::::
 
 COPY-FROM: paddle.tile
