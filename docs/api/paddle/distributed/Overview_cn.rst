@@ -199,7 +199,7 @@ RPC API
     :header: "API 名称", "API 功能"
     :widths: 20, 50
 
-    " :ref:`parallelize <cn_api_paddle_distributed_to_distributed>` ", "一键进行分布式训练"
+    " :ref:`to_distributed <cn_api_paddle_distributed_to_distributed>` ", "一键进行分布式训练"
 
 .. _08:
 
