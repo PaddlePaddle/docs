@@ -5,7 +5,17 @@ unique_consecutive
 
 .. py:function:: paddle.unique_consecutive(x, return_inverse=False, return_counts=False, axis=None, dtype="int64", name=None)
 
-将 Tensor 中连续重复的元素进行去重，返回连续不重复的 Tensor。
+将 Tensor 中连续重复的元素进行去重，返回连续不重复的 Tensor 。
+
+**示例图解说明**：
+
+    上图展示了一个一维张量的去重过程
+    下图展示了一个 [3, 4] 的二维张量沿 axis = 0 展开后去重再进行二维折叠的过程
+
+    .. figure:: ../../images/api_legend/unique_consecutive.png
+       :width: 500
+       :alt: 示例二图示
+       :align: center
 
 参数
 ::::::::::::
@@ -20,9 +30,9 @@ unique_consecutive
 返回
 ::::::::::::
 
-    - **out** (Tensor) - 连续不重复元素构成的 Tensor，数据类型与输入一致。
-    - **inverse** (Tensor，可选) - 输入 Tensor 的元素对应在连续不重复元素中的索引，仅在 `return_inverse` 为 True 时返回。
-    - **counts** (Tensor，可选) - 每个连续不重复元素在输入 Tensor 中的个数，仅在 `return_counts` 为 True 时返回。
+    - **out** ( Tensor )  - 连续不重复元素构成的 Tensor ，数据类型与输入一致。
+    - **inverse** ( Tensor ，可选 ) - 输入 Tensor 的元素对应在连续不重复元素中的索引，仅在 ``return_inverse`` 为 True 时返回。
+    - **counts** ( Tensor ，可选) - 每个连续不重复元素在输入 Tensor 中的个数，仅在 ``return_counts`` 为 True 时返回。
 
 代码示例
 ::::::::::::
