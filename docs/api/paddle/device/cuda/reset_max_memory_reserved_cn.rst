@@ -1,11 +1,11 @@
-.. _cn_api_paddle_device_cuda_reset_peak_memory_stats:
+.. _cn_api_paddle_device_cuda_reset_max_memory_reserved:
 
-reset_peak_memory_stats
+reset_max_memory_reserved
 -------------------------------
 
-.. py:function:: paddle.device.cuda.reset_peak_memory_stats(device=None)
+.. py:function:: paddle.device.cuda.reset_max_memory_reserved(device=None)
 
-重置CUDA内存分配器的峰值统计信息。
+重置给定设备上由 Allocator 管理的显存峰值。
 
 参数
 ::::::::
@@ -21,4 +21,4 @@ None
 代码示例
 ::::::::
 
-COPY-FROM: paddle.device.cuda.reset_peak_memory_stats
+COPY-FROM: paddle.device.cuda.reset_max_memory_reserved

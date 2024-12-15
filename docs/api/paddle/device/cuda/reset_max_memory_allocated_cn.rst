@@ -5,7 +5,7 @@ reset_max_memory_allocated
 
 .. py:function:: paddle.device.cuda.reset_max_memory_allocated(device=None)
 
-重置特定设备上张量占用的最大GPU内存的跟踪起点。（此函数会调用reset_peak_memory_stats函数，重置CUDA内存分配器的峰值统计信息。）
+重置给定设备上分配给 Tensor 的显存峰值。
 
 参数
 ::::::::
