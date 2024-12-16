@@ -193,6 +193,13 @@ RPC API
     " :ref:`PrepareLayerOutput <cn_api_paddle_distributed_PrepareLayerOutput>` ", "对标识 Layer 的输出进行处理"
 
 
+甚至无需了解任何分布式概念，使用 to_distributed 接口一键进行分布式训练
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 20, 50
+
+    " :ref:`to_distributed <cn_api_paddle_distributed_to_distributed>` ", "一键进行分布式训练"
 
 .. _08:
 
