@@ -19,4 +19,4 @@ paddlenlp.generation.StoppingCriteriaList(input_ids: paddle.Tensor, scores: padd
 | transformers      | PaddlePaddle      | 备注                                     |
 | ----------------- | ----------------- | --------------------------------------- |
 | input_ids         | input_ids         | 输入(tokens) 的 id 组成的 Tensor。 |
-| scores            | logits            | 得分组成的 Tensor，仅参数名不一致。 |
+| scores            | scores            | 得分组成的 Tensor，仅参数名不一致。 |
