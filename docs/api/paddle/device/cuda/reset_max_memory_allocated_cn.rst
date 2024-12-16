@@ -5,7 +5,7 @@ reset_max_memory_allocated
 
 .. py:function:: paddle.device.cuda.reset_max_memory_allocated(device=None)
 
-重置给定设备上分配给 Tensor 的显存峰值。
+重置给定设备上分配给 Tensor 的显存峰值统计。
 
 参数
 ::::::::

@@ -5,7 +5,7 @@ reset_max_memory_reserved
 
 .. py:function:: paddle.device.cuda.reset_max_memory_reserved(device=None)
 
-重置给定设备上由 Allocator 管理的显存峰值。
+重置给定设备上由 Allocator 管理的显存峰值统计。
 
 参数
 ::::::::
