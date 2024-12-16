@@ -27,7 +27,7 @@ AutoStructify = transform.AutoStructify
 # General information about the project.
 project = "PaddlePaddle"
 author = f"{project} developers"
-copyright = "%d, %s" % (time.localtime(time.time()).tm_year, author)
+copyright = f"{time.localtime(time.time()).tm_year}, {author}"
 github_doc_root = "https://github.com/PaddlePaddle/docs/docs"
 
 # add markdown parser

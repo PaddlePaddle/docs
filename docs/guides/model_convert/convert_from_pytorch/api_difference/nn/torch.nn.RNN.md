@@ -8,7 +8,7 @@ torch.nn.RNN(input_size,
              bias=True,
              batch_first=False,
              dropout=0,
-             bidirectional=False，
+             bidirectional=False,
              device=None,
              dtype=None)
 ```

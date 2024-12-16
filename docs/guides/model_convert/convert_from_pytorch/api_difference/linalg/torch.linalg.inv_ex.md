@@ -3,7 +3,7 @@
 ### [torch.linalg.inv_ex](https://pytorch.org/docs/stable/generated/torch.linalg.inv_ex.html)
 
 ```python
-torch.linalg.inv_ex(A， *， check_errors=False, out=None)
+torch.linalg.inv_ex(A, *, check_errors=False, out=None)
 ```
 
 ### [paddle.linalg.inv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/inv_cn.html)

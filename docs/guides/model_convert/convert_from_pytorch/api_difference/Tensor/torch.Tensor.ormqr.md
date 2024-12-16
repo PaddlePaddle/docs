@@ -20,5 +20,5 @@ paddle.linalg.ormqr(x, tau, y, left=True, transpose=False)
 | --------- | ------------ | ---------------------------------- |
 | input2    | tau          | Householder 反射系数，仅参数名不同 |
 | input3    | y        | 用于矩阵乘积，仅参数名不同         |
-| left      | left         | 决定了矩阵乘积运算的顺序，一致     |
-| transpose | transpose    | 决定矩阵 Q 是否共轭转置变换，一致  |
+| left      | left         | 决定了矩阵乘积运算的顺序    |
+| transpose | transpose    | 决定矩阵 Q 是否共轭转置变换  |
