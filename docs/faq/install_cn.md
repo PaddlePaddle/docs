@@ -83,8 +83,6 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/conda/lib/
 
 `ERROR: No matching distribution found for paddlepaddle`
 
-<img src="https://agroup-bos-bj.cdn.bcebos.com/bj-febb18fb78004dc17f18d60a009dc6a8bd907251" alt="图片" />
-
 + 报错分析：
 
 Python 版本不匹配导致。用户使用的是 32 位 Python，但是对应的 32 位 pip 没有 PaddlePaddle 源。
