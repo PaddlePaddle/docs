@@ -3368,14 +3368,14 @@ COPY-FROM: paddle.Tensor.set_
 resize_(shape, fill_zero=False, name=None)
 :::::::::
 
-将 ``self`` 设置为 ``shape`` 的形状。
+将 ``self`` 的形状重置为 ``shape``。
 
 参数：
     - **shape** (list|tuple) - 设置的目标形状，每个元素需为整数。
     - **fill_zero** (bool，可选) - 当目标形状的元素个数大于 ``self`` 的元素个数时，若 ``fill_zero`` 设为 True 则新元素将用 0 填充。默认值为 False，此时新元素的值不确定。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回：设置后的 ``self``。
+返回：重置形状后的 ``self``。
 
 返回类型：Tensor
 
