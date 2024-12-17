@@ -3,7 +3,7 @@
 embedding
 -------------------------------
 
-.. py:function:: paddle.nn.functional.embedding(x, weight, padding_idx=None, max_norm=None, norm_type=2.0, sparse=False, name=None)
+.. py:function:: paddle.nn.functional.embedding(x, weight, padding_idx=None, max_norm=None, norm_type=2.0, sparse=False, scale_grad_by_freq=False, name=None)
 
 
 
@@ -45,6 +45,7 @@ embedding
     - **max_norm** (float，可选) - 若声明，会将范数大于此值的词嵌入向量重新归一化，使其范数等于此值。在动态图模式下会对 ``weight`` 产生 inplace 修改。默认值为 None。
     - **norm_type** (float) - 应用 ``max_norm`` 时所计算的 p 阶范数的 p 值。默认值 2.0。
     - **sparse** (bool，可选) - 是否使用稀疏更新，在词嵌入权重较大的情况下，使用稀疏更新（即设置为 True）能够获得更快的训练速度及更小的内存/显存占用。但是一些优化器不支持稀疏更新，例如 :ref:`cn_api_paddle_optimizer_Adadelta` ， :ref:`cn_api_paddle_optimizer_Adamax` ， :ref:`cn_api_paddle_optimizer_Lamb` 。在这些情况下，稀疏必须为 False。默认值：False。
+    - **scale_grad_by_freq** (bool，可选) - 是否根据单词在 mini-batch 中出现频率的倒数缩放梯度。默认值 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
