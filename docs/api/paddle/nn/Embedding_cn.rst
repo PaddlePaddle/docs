@@ -3,7 +3,7 @@
 Embedding
 -------------------------------
 
-.. py:class:: paddle.nn.Embedding(num_embeddings, embedding_dim, padding_idx=None, sparse=False, weight_attr=None, name=None)
+.. py:class:: paddle.nn.Embedding(num_embeddings, embedding_dim, padding_idx=None, sparse=False, weight_attr=None, scale_grad_by_freq=False, name=None)
 
 嵌入层(Embedding Layer)，用于构建 ``Embedding`` 的一个可调用对象，具体用法参照 ``代码示例``。其根据 ``x`` 中的 id 信息从 embedding 矩阵中查询对应 embedding 信息，并会根据输入的 size (num_embeddings, embedding_dim)和 weight_attr 自动构造一个二维 embedding 矩阵。
 
@@ -42,6 +42,7 @@ Embedding
     - **norm_type** (float) - 应用 ``max_norm`` 时所计算的 p 阶范数的 p 值。默认值 2.0。
     - **sparse** (bool，可选) - 是否使用稀疏更新，在词嵌入权重较大的情况下，使用稀疏更新能够获得更快的训练速度及更小的内存/显存占用。
     - **weight_attr** (ParamAttr|None，可选) - 指定嵌入向量的配置，包括初始化方法，具体用法请参见 :ref:`api_guide_ParamAttr`，一般无需设置，默认值为 None。
+    - **scale_grad_by_freq** (bool，可选) - 是否根据单词在 mini-batch 中出现频率的倒数缩放梯度。默认值 False。
     - **name** (str|None，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
