@@ -384,7 +384,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.quantize_per_tensor`, https://pytorch.org/docs/stable/generated/torch.quantize_per_tensor.html#torch-quantize-per-tensor, 有对应相近功能但设计差异大无法映射，一般无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.to_mkldnn`, https://pytorch.org/docs/stable/generated/torch.Tensor.to_mkldnn.html#torch-tensor-to-mkldnn, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.utils.rnn.pack_padded_sequence`, https://pytorch.org/docs/stable/generated/torch.nn.utils.rnn.pack_padded_sequence.html#torch-nn-utils-rnn-pack-padded-sequence, 可新增，且框架底层有相关设计，成本低) |
-| NOT-IMPLEMENTED-ITEM(`torch.Tensor.set_`, https://pytorch.org/docs/stable/generated/torch.Tensor.set_.html#torch-tensor-set, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.utils.rnn.pad_packed_sequence`, https://pytorch.org/docs/stable/generated/torch.nn.utils.rnn.pad_packed_sequence.html#torch-nn-utils-rnn-pad-packed-sequence, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.utils.model_zoo.load_url`, https://pytorch.org/docs/stable/model_zoo.html#torch.utils.model_zoo.load_url, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.record_stream`, https://pytorch.org/docs/stable/generated/torch.Tensor.record_stream.html#torch-tensor-record-stream, 可新增，且框架底层有相关设计，成本低) |
@@ -430,7 +429,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.as_subclass`, https://pytorch.org/docs/stable/generated/torch.Tensor.as_subclass.html#torch-tensor-as-subclass, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.q_scale`, https://pytorch.org/docs/stable/generated/torch.Tensor.q_scale.html#torch-tensor-q-scale, 有对应相近功能但设计差异大无法映射，一般无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.set_float32_matmul_precision`, https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch-set-float32-matmul-precision, 可新增，且框架底层有相关设计，成本低) |
-| NOT-IMPLEMENTED-ITEM(`torch.Tensor.sparse_dim`, https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_dim.html#torch-tensor-sparse-dim, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.q_zero_point`, https://pytorch.org/docs/stable/generated/torch.Tensor.q_zero_point.html#torch-tensor-q-zero-point, 有对应相近功能但设计差异大无法映射，一般无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.memory_stats`, https://pytorch.org/docs/stable/generated/torch.cuda.memory_stats.html#torch-cuda-memory-stats, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.pipeline.sync.Pipe`, https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.Pipe, 废弃 API ，无需新增) |
@@ -445,7 +443,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.utils.mobile_optimizer.optimize_for_mobile`, https://pytorch.org/docs/stable/mobile_optimizer.html#torch.utils.mobile_optimizer.optimize_for_mobile, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.fsdp.MixedPrecision`, https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.MixedPrecision, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.utils.rnn.PackedSequence`, https://pytorch.org/docs/stable/generated/torch.nn.utils.rnn.PackedSequence.html#torch.nn.utils.rnn.PackedSequence, 可新增，且框架底层有相关设计，成本低) |
-| NOT-IMPLEMENTED-ITEM(`torch.Tensor.dense_dim`, https://pytorch.org/docs/stable/generated/torch.Tensor.dense_dim.html#torch-tensor-dense-dim, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.qscheme`, https://pytorch.org/docs/stable/generated/torch.Tensor.qscheme.html#torch-tensor-qscheme, 有对应相近功能但设计差异大无法映射，一般无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.fx.wrap`, https://pytorch.org/docs/stable/fx.html#torch.fx.wrap, 有对应相近功能但设计差异大无法映射，一般无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.autograd.set_detect_anomaly`, https://pytorch.org/docs/stable/autograd.html#torch.autograd.set_detect_anomaly, 可新增，且框架底层有相关设计，成本低) |
@@ -1042,13 +1039,6 @@
 | IN-DEVELOPMENT-PATTERN(`torch.nn.parameter.UninitializedParameter`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedParameter.html#torch.nn.parameter.UninitializedParameter) |
 | IN-DEVELOPMENT-PATTERN(`torch.nn.modules.module.register_module_forward_pre_hook`, https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_pre_hook.html#torch-nn-modules-module-register-module-forward-pre-hook) |
 | IN-DEVELOPMENT-PATTERN(`torch.nn.modules.module.register_module_forward_hook`, https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_hook.html#torch-nn-modules-module-register-module-forward-hook) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.LazyConv1d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyConv1d.html#torch.nn.LazyConv1d) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.LazyConv2d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyConv2d.html#torch.nn.LazyConv2d) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.LazyConv3d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyConv3d.html#torch.nn.LazyConv3d) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.LazyConvTranspose1d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyConvTranspose1d.html#torch.nn.LazyConvTranspose1d) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.LazyConvTranspose2d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyConvTranspose2d.html#torch.nn.LazyConvTranspose2d) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.LazyConvTranspose3d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyConvTranspose3d.html#torch.nn.LazyConvTranspose3d) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.LazyLinear`, https://pytorch.org/docs/stable/generated/torch.nn.LazyLinear.html#torch.nn.LazyLinear) |
 | IN-DEVELOPMENT-PATTERN(`torch.Tensor.requires_grad`, https://pytorch.org/docs/stable/generated/torch.Tensor.requires_grad.html#torch-tensor-requires-grad) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.device_of`, https://pytorch.org/docs/stable/generated/torch.cuda.device_of.html#torch.cuda.device_of) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.get_rng_state`, https://pytorch.org/docs/stable/generated/torch.cuda.get_rng_state.html#torch-cuda-get-rng-state) |
@@ -1063,7 +1053,6 @@
 | IN-DEVELOPMENT-PATTERN(`torch.jit.save`, https://pytorch.org/docs/stable/generated/torch.jit.save.html#torch-jit-save) |
 | IN-DEVELOPMENT-PATTERN(`torch.jit.ignore`, https://pytorch.org/docs/stable/generated/torch.jit.ignore.html#torch-jit-ignore) |
 | IN-DEVELOPMENT-PATTERN(`torch.jit.unused`, https://pytorch.org/docs/stable/generated/torch.jit.unused.html#torch-jit-unused) |
-| IN-DEVELOPMENT-PATTERN(`torch.utils.checkpoint.checkpoint`, https://pytorch.org/docs/stable/checkpoint.html#torch.utils.checkpoint.checkpoint) |
 | IN-DEVELOPMENT-PATTERN(`torch.utils.checkpoint.checkpoint_sequential`, https://pytorch.org/docs/stable/checkpoint.html#torch.utils.checkpoint.checkpoint_sequential) |
 | IN-DEVELOPMENT-PATTERN(`torch.utils.tensorboard.writer.SummaryWriter`, https://pytorch.org/docs/stable/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter) |
 | IN-DEVELOPMENT-PATTERN(`torch.nn.parameter.UninitializedBuffer`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedBuffer.html#torch.nn.parameter.UninitializedBuffer) |
@@ -1162,12 +1151,6 @@
 | IN-DEVELOPMENT-PATTERN(`torch.distributions.binomial.Binomial`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributions.continuous_bernoulli.ContinuousBernoulli`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.continuous_bernoulli.ContinuousBernoulli) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributions.exponential.Exponential`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.exponential.Exponential) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.LazyBatchNorm1d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm1d.html#torch.nn.LazyBatchNorm1d) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.StreamContext`, https://pytorch.org/docs/stable/generated/torch.cuda.StreamContext.html#torch.cuda.StreamContext) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.LazyBatchNorm2d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm2d.html#torch.nn.LazyBatchNorm2d) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.LazyBatchNorm3d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm3d.html#torch.nn.LazyBatchNorm3d) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.LazyInstanceNorm2d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm2d.html#torch.nn.LazyInstanceNorm2d) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.LazyInstanceNorm1d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm1d.html#torch.nn.LazyInstanceNorm1d) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.LazyInstanceNorm3d`, https://pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm3d.html#torch.nn.LazyInstanceNorm3d) |
 | IN-DEVELOPMENT-PATTERN(`torch.set_deterministic_debug_mode`, https://pytorch.org/docs/stable/generated/torch.set_deterministic_debug_mode.html#torch-set-deterministic-debug-mode) |
 | IN-DEVELOPMENT-PATTERN(`torch.get_deterministic_debug_mode`, https://pytorch.org/docs/stable/generated/torch.get_deterministic_debug_mode.html#torch-get-deterministic-debug-mode) |
