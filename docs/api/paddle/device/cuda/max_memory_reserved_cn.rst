@@ -5,7 +5,7 @@ max_memory_reserved
 
 .. py:function:: paddle.device.cuda.max_memory_reserved(device=None)
 
-返回给定设备上由 Allocator 管理的显存峰值。
+返回给定设备上由 Allocator 管理的显存峰值统计。
 
 参数
 ::::::::
@@ -16,7 +16,7 @@ max_memory_reserved
 返回
 ::::::::
 
-一个整数，表示给定设备上当前由 Allocator 管理的显存峰值，以字节为单位。
+一个整数，表示给定设备上当前由 Allocator 管理的显存峰值统计，以字节为单位。
 
 代码示例
 ::::::::
