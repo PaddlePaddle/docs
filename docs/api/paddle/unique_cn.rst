@@ -24,6 +24,7 @@ unique
        :align: center
 
     图三展示了代码中形状为[3,3]的二维张量通过 unique 操作(axis=1)去重排序后得到新的形状为[3,3]的二维张量。由于没有重复的列向量，因此只会进行列的字典排序，注意输出的时候是按照行优先的顺序进行输出。
+
     .. figure:: ../../images/api_legend/unique_3.png
        :width: 500
        :alt: 图三：二维张量 axis=1 示例
