@@ -11,7 +11,9 @@ MultiLabelSoftMarginLoss
 损失函数按照下列公式计算
 
 .. math::
-    \text{loss}(x, y) = \sum_{ij}\frac{\max(0, 1 - (x[y[j]] - x[i]))}{\text{x.shape}(0)}
+    \text{loss}(input, label) = - \frac{1}{\text{C}} * \sum_i label[i] * \log((1 + \exp(-input[i]))^{-1}) + (1-label[i]) * \log\left(\frac{\exp(-input[i])}{(1 + \exp(-input[i]))}\right)
+
+其中 :math:`\text{C}` 为类别数量,
 
 如果添加权重则再乘以对应的权重值
 
