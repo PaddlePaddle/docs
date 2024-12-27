@@ -33,6 +33,9 @@
 | [transformers.xx](#id21)   | 第三方库 transformers API |
 | [flash_attn.xx](#id22)   | 第三方库 flash_attn API |
 | [torchvision.xx](#id23)   | 第三方库 torchvision API |
+| [API 别名映射](#id24)   | API 别名映射列表 |
+| [功能缺失的 API](#id25)   | 功能缺失的 API 列表 |
+| [映射关系开发中的 API](#id26)   | 映射关系开发中的 API 列表 |
 
 ## <span id="id1">torch.XX API 映射列表</span>
 
@@ -250,7 +253,7 @@
 
 ***持续更新...***
 
-## API 别名映射列表
+## <span id="id24">API 别名映射列表</span>
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ---- | -------------------- | -------------- | ----------- | ---- |
@@ -366,7 +369,7 @@
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.SubsetRandomSampler`, `torch.utils.data.SubsetRandomSampler`) |
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.WeightedRandomSampler`, `torch.utils.data.WeightedRandomSampler`) |
 
- ## 功能缺失的 API 列表
+ ## <span id="id25">功能缺失的 API 列表</span>
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
@@ -378,7 +381,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.dequantize`, https://pytorch.org/docs/stable/generated/torch.Tensor.dequantize.html#torch-tensor-dequantize, 有对应相近功能但设计差异大无法映射，一般无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.xpu.synchronize`, https://pytorch.org/docs/stable/generated/torch.xpu.synchronize.html#torch-xpu-synchronize, 有对应相近功能但设计差异大无法映射，一般无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.vmap`, https://pytorch.org/docs/stable/generated/torch.vmap.html#torch-vmap, 可新增，且框架底层有相关设计，成本低) |
-| NOT-IMPLEMENTED-ITEM(`torch.Tensor.resize_`, https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html#torch-tensor-resize, 废弃 API ，无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.fx.symbolic_trace`, https://pytorch.org/docs/stable/fx.html#torch.fx.symbolic_trace, 有对应相近功能但设计差异大无法映射，一般无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.jit.annotate`, https://pytorch.org/docs/stable/generated/torch.jit.annotate.html#torch-jit-annotate, 有对应相近功能但设计差异大无法映射，一般无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.quantize_per_tensor`, https://pytorch.org/docs/stable/generated/torch.quantize_per_tensor.html#torch-quantize-per-tensor, 有对应相近功能但设计差异大无法映射，一般无需新增) |
@@ -1030,7 +1032,7 @@
 | NOT-IMPLEMENTED-ITEM(`torch.layout`, https://pytorch.org/docs/stable/tensor_attributes.html#torch.layout, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.is_current_stream_capturing`, https://pytorch.org/docs/stable/generated/torch.cuda.is_current_stream_capturing.html#torch-cuda-is-current-stream-capturing, 可新增，且框架底层有相关设计，成本低) |
 
-## 映射关系开发中的 API 列表
+## <span id="id26">映射关系开发中的 API 列表</span>
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
@@ -1117,7 +1119,6 @@
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_trunc`, https://pytorch.org/docs/stable/generated/torch._foreach_trunc.html#torch-foreach-trunc) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_trunc_`, https://pytorch.org/docs/stable/generated/torch._foreach_trunc_.html#torch-foreach-trunc) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_zero_`, https://pytorch.org/docs/stable/generated/torch._foreach_zero_.html#torch-foreach-zero) |
-| IN-DEVELOPMENT-PATTERN(`torch.Tensor.itemsize`, https://pytorch.org/docs/stable/generated/torch.Tensor.itemsize.html#torch-tensor-itemsize) |
 | IN-DEVELOPMENT-PATTERN(`torch.Tensor.to_sparse_csr`, https://pytorch.org/docs/stable/generated/torch.Tensor.to_sparse_csr.html#torch-tensor-to-sparse-csr) |
 | IN-DEVELOPMENT-PATTERN(`torch.autograd.graph.Node.name`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.name.html#torch-autograd-graph-node-name) |
 | IN-DEVELOPMENT-PATTERN(`torch.autograd.graph.Node.metadata`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.metadata.html#torch-autograd-graph-node-metadata) |
