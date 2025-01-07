@@ -531,6 +531,7 @@
 | NOT-IMPLEMENTED-ITEM(`torch.xpu.current_device`, https://pytorch.org/docs/stable/generated/torch.xpu.current_device.html#torch-xpu-current-device, 有对应相近功能但设计差异大无法映射，一般无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.xpu.get_device_properties`, https://pytorch.org/docs/stable/generated/torch.xpu.get_device_properties.html#torch-xpu-get-device-properties, 有对应相近功能但设计差异大无法映射，一般无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.functional.multilabel_margin_loss`, https://pytorch.org/docs/stable/generated/torch.nn.functional.multilabel_margin_loss.html#torch-nn-functional-multilabel-margin-loss, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.functional.MultiLabelMarginLoss`, https://pytorch.org/docs/stable/generated/torch.nn.MultiLabelMarginLoss.html#torch.nn.MultiLabelMarginLoss, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.gradient`, https://pytorch.org/docs/stable/generated/torch.gradient.html#torch-gradient, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.sparse_resize_`, https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_resize_.html#torch-tensor-sparse-resize, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.autograd.profiler.profile`, https://pytorch.org/docs/stable/autograd.html#torch.autograd.profiler.profile, 可新增，但框架底层无相关设计，成本高) |
