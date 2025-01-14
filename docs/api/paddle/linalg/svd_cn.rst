@@ -11,7 +11,7 @@ svd
 记 :math:`X` 为一个矩阵，则计算的结果为 2 个矩阵 :math:`U`, :math:`VH` 和一个向量 :math:`S`。则分解后满足公式：
 
 .. math::
-    X = U * diag(S) * VH
+    X = U * diag(S) * V ^ {H}
 
 值得注意的是，:math:`S` 是向量，从大到小表示每个奇异值。而 :math:`VH` 则是 V 的共轭转置。
 
