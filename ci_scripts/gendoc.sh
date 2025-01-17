@@ -17,7 +17,9 @@ export DOCROOT
 # PADDLE_WHL is defined in ci_start.sh
 pip3 list --disable-pip-version-check | grep paddlepaddle > /dev/null
 if [ $? -ne 0 ] ; then
-  pip3 install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple ${PADDLE_WHL}
+  #pip3 install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple ${PADDLE_WHL}
+  wget --no-proxy -q https://paddle-qa.bj.bcebos.com/paddle-pipeline/CompileServicing-LinuxCentos-Compile-PR-Cuda118-Normal_ON-WITH_GPU_OFF/4aa22bf27415a714094c45145c7371bc1065c92a/paddlepaddle-0.0.0-cp310-cp310-linux_x86_64.whl
+  pip3 install paddlepaddle-0.0.0-cp310-cp310-linux_x86_64.whl
 fi
 
 
