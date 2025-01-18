@@ -86,7 +86,7 @@ Date:   xxx
 | [copyright_checker](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/codestyle/copyright.hook) | Copyright 检查 | 本地脚本 |
 | [typos](https://github.com/crate-ci/typos) | 拼写错误检查 | 1.27.3 |
 | [black](https://github.com/psf/black) | Python 代码格式化 | 24.8.0 |
-| [ruff](https://github.com/astral-sh/ruff) | Python 代码风格检查 | 0.8.3 |
+| [ruff](https://github.com/astral-sh/ruff) | Python 代码风格检查 | 0.9.2 |
 | [clang-format](https://github.com/llvm/llvm-project/tree/main/clang/tools/clang-format) | C++ 代码格式化 | 13.0.0 |
 | [cpplint](https://github.com/cpplint/cpplint) | C++ 代码风格检查 | 1.6.0 |
 | [clang-tidy](https://github.com/llvm/llvm-project/tree/main/clang-tools-extra/clang-tidy) | C++ 代码风格检查 | 15.0.2.1 |
