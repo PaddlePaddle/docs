@@ -51,7 +51,7 @@ DCU  Temp   AvgPwr  Fan   Perf  PwrCap  VRAM%  DCU%
 
 ```bash
 # 下载并安装 wheel 包
-pip install paddlepaddle-rocm -i https://www.paddlepaddle.org.cn/packages/nightly/dcu
+python -m pip install --pre paddlepaddle-dcu -i https://www.paddlepaddle.org.cn/packages/nightly/dcu/
 ```
 
 ### 安装方式二：源代码编译安装
@@ -106,5 +106,5 @@ PaddlePaddle is installed successfully! Let's start deep learning with PaddlePad
 请使用以下命令卸载：
 
 ```bash
-pip uninstall paddlepaddle-rocm
+pip uninstall paddlepaddle-dcu
 ```
