@@ -76,7 +76,7 @@ cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" \
 make -j16
 
 # 编译产出在 build/python/dist/ 路径下，使用 pip 安装即可
-pip install -U paddlepaddle_rocm-0.0.0-cp310-cp310-linux_x86_64.whl
+pip install -U paddlepaddle_dcu-0.0.0-cp310-cp310-linux_x86_64.whl
 ```
 
 ## 基础功能检查
