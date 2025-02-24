@@ -368,8 +368,8 @@
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.SequentialSampler`, `torch.utils.data.SequentialSampler`) |
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.SubsetRandomSampler`, `torch.utils.data.SubsetRandomSampler`) |
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.WeightedRandomSampler`, `torch.utils.data.WeightedRandomSampler`) |
-| ALIAS-REFERENCE-ITEM(`torch.special.gammainc`, `torch.igamma`) |
-| ALIAS-REFERENCE-ITEM(`torch.special.gammaincc`, `torch.igammac`) |
+| ALIAS-REFERENCE-ITEM(`torch.igamma`, `torch.special.gammainc`) |
+| ALIAS-REFERENCE-ITEM(`torch.igammac`, `torch.special.gammaincc`) |
 
  ## <span id="id25">功能缺失的 API 列表</span>
 
