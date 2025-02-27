@@ -11,7 +11,6 @@ API 功能分类
     low_level/layers/index.rst
     low_level/nets.rst
     low_level/optimizer.rst
-    low_level/backward.rst
     low_level/metrics.rst
     low_level/model_save_reader.rst
     low_level/inference.rst
