@@ -4,7 +4,7 @@ alltoall
 -------------------------------
 
 
-.. py:function:: paddle.distributed.alltoall(in_tensor_list, out_tensor_list, group=None, sync_op=True)
+.. py:function:: paddle.distributed.alltoall(out_tensor_list, in_tensor_list, group=None, sync_op=True)
 
 将 in_tensor_list 中的一组 tensor 分发到每个进程，随后在每个进程上将分发结果聚合到 out_tensor_list。
 

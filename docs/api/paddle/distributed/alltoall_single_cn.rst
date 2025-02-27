@@ -4,7 +4,7 @@ alltoall_single
 -------------------------------
 
 
-.. py:function:: paddle.distributed.alltoall_single(in_tensor, out_tensor, in_split_sizes=None, out_split_sizes=None, group=None, sync_op=True)
+.. py:function:: paddle.distributed.alltoall_single(out_tensor, in_tensor, in_split_sizes=None, out_split_sizes=None, group=None, sync_op=True)
 
 将输入的 tensor 分发到每个进程，随后在每个进程上将分发结果聚合到 out_tensor 中。
 
