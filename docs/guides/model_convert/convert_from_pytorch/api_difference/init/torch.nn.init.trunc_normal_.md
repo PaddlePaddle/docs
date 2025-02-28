@@ -7,7 +7,8 @@ torch.nn.init.trunc_normal_(tensor,
                             mean=0.0,
                             std=1.0,
                             a=-2.0,
-                            b=2.0)
+                            b=2.0,
+                            generator=None)
 ```
 
 ### [paddle.nn.initializer.TruncatedNormal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/initializer/TruncatedNormal_cn.html)
@@ -31,6 +32,7 @@ paddle.nn.initializer.TruncatedNormal(mean=0.0,
 | std           |  std         | 正态分布的标准差。参数名和默认值一致。               |
 | a           |  a         | 截断正态分布的下界。参数名和默认值一致。               |
 | b           |  b         | 截断正态分布的上界。参数名和默认值一致。               |
+| generator        | -        | 用于采样的伪随机数生成器，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。    |
 
 ### 转写示例
 ```python

@@ -368,6 +368,8 @@
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.SequentialSampler`, `torch.utils.data.SequentialSampler`) |
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.SubsetRandomSampler`, `torch.utils.data.SubsetRandomSampler`) |
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.WeightedRandomSampler`, `torch.utils.data.WeightedRandomSampler`) |
+| ALIAS-REFERENCE-ITEM(`torch.igamma`, `torch.special.gammainc`) |
+| ALIAS-REFERENCE-ITEM(`torch.igammac`, `torch.special.gammaincc`) |
 
  ## <span id="id25">功能缺失的 API 列表</span>
 
@@ -1037,12 +1039,9 @@
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
-| IN-DEVELOPMENT-PATTERN(`torch.igamma`, https://pytorch.org/docs/stable/generated/torch.igamma.html#torch-igamma) |
-| IN-DEVELOPMENT-PATTERN(`torch.igammac`, https://pytorch.org/docs/stable/generated/torch.igammac.html#torch-igammac) |
 | IN-DEVELOPMENT-PATTERN(`torch.nn.parameter.UninitializedParameter`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedParameter.html#torch.nn.parameter.UninitializedParameter) |
 | IN-DEVELOPMENT-PATTERN(`torch.nn.modules.module.register_module_forward_pre_hook`, https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_pre_hook.html#torch-nn-modules-module-register-module-forward-pre-hook) |
 | IN-DEVELOPMENT-PATTERN(`torch.nn.modules.module.register_module_forward_hook`, https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_hook.html#torch-nn-modules-module-register-module-forward-hook) |
-| IN-DEVELOPMENT-PATTERN(`torch.Tensor.requires_grad`, https://pytorch.org/docs/stable/generated/torch.Tensor.requires_grad.html#torch-tensor-requires-grad) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.device_of`, https://pytorch.org/docs/stable/generated/torch.cuda.device_of.html#torch.cuda.device_of) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.get_rng_state`, https://pytorch.org/docs/stable/generated/torch.cuda.get_rng_state.html#torch-cuda-get-rng-state) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.set_per_process_memory_fraction`, https://pytorch.org/docs/stable/generated/torch.cuda.set_per_process_memory_fraction.html#torch-cuda-set-per-process-memory-fraction) |
