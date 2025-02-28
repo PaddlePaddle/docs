@@ -13,7 +13,6 @@ API 功能分类
     low_level/optimizer.rst
     low_level/metrics.rst
     low_level/model_save_reader.rst
-    low_level/inference.rst
     low_level/memory_optimize.rst
     low_level/executor.rst
     low_level/compiled_program.rst
