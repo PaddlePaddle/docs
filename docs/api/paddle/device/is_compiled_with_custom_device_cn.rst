@@ -7,6 +7,11 @@ is_compiled_with_custom_device
 
 检查 ``whl`` 包是否可以被用来在指定类型的自定义新硬件上运行模型
 
+参数
+::::::::::::
+
+    - **device_type** (str) - 已注册的设备类型，例如"npu"。
+
 返回
 ::::::::::::
 bool，支持指定 device_type 则为 True，否则为 False。

@@ -260,6 +260,7 @@ def check_api_parameters(rstfiles, apiinfo):
                         print(f"check failed: {rstfile}")
                     break
             if not func_found:
+                # TODO: deal with to_static and not_to_static, because func and decorator.
                 info = 'funcname in title is not found, please check the format of ".. py:function::func()"'
                 api_notfound[rstfile] = info
                 print(f"check failed (object not found): {rstfile}")
