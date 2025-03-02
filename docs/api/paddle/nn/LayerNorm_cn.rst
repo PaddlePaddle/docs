@@ -28,8 +28,8 @@ LayerNorm
 
     - **normalized_shape** (int|list|tuple) – 需规范化的 shape，期望的输入 shape 为 ``[*, normalized_shape[0], normalized_shape[1], ..., normalized_shape[-1]]`` 。如果是单个整数，则此模块将在最后一个维度上规范化（此时最后一维的维度需与该参数相同）。
     - **epsilon** (float，可选) - 指明在计算过程中是否添加较小的值到方差中以防止除零。默认值：1e-05。
-weight_attr (ParamAttr|bool|None, 可选) - 用于指定可训练的增益参数 :math:g 的属性。如果为 False，则不使用权重（即权重参数为 None）；如果为 None，则会使用一个默认的 ParamAttr 作为权重的属性设置，该属性将权重初始化为 1。默认值为 None，表示使用默认的权重属性。具体用法请参见 :ref:cn_api_paddle_ParamAttr。
-bias_attr (ParamAttr|bool|None, 可选) - 用于指定可训练的偏置参数 :math:b 的属性。如果为 False，则不使用偏置（即偏置参数为 None）；如果为 None，则会使用一个默认的 ParamAttr 作为偏置的属性设置，该属性将偏置初始化为 0。默认值为 None，表示使用默认的偏置属性。具体用法请参见 :ref:cn_api_paddle_ParamAttr。
+weight_attr (ParamAttr|bool|None, 可选) - 用于指定可训练的增益参数 :math:g 的属性。如果为 False，则不使用权重（即权重参数为 None）；如果为 None，则会使用一个默认的 ParamAttr 作为权重的属性设置，该属性将权重初始化为 1。默认值为 None，表示使用默认的权重属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr`。
+bias_attr (ParamAttr|bool|None, 可选) - 用于指定可训练的偏置参数 :math:b 的属性。如果为 False，则不使用偏置（即偏置参数为 None）；如果为 None，则会使用一个默认的 ParamAttr 作为偏置的属性设置，该属性将偏置初始化为 0。默认值为 None，表示使用默认的偏置属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr`。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状

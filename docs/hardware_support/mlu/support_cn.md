@@ -43,6 +43,8 @@
 | PaddleX | 文本识别 | [PP-OCRv4_server_rec](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_recognition/PP-OCRv4_server_rec.yaml) | √ | √ |
 | PaddleX | 文本识别 | [PP-OCRv4_mobile_rec](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_recognition/PP-OCRv4_mobile_rec.yaml) | √ | √ |
 | PaddleX | 版面分析 | [PicoDet_layout_1x](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/structure_analysis/PicoDet_layout_1x.yaml) | √ | √ |
+| PaddleX | 图像异常检测 | [STFPM](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/anomaly_detection/STFPM.yaml) | √ | √ |
+| PaddleX | 人脸检测 | [PicoDet_LCNet_x2_5_face](https://github.com/PaddlePaddle/PaddleX/blob/release/3.0-beta2/paddlex/configs/face_detection/PicoDet_LCNet_x2_5_face.yaml) | √ | √ |
 | PaddleX | 时序预测 | [DLinear](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/DLinear.yaml) | √ | √ |
 | PaddleX | 时序预测 | [RLinear](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/RLinear.yaml) | √ | √ |
 | PaddleX | 时序预测 | [NLinear](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/ts_forecast/NLinear.yaml) | √ | √ |

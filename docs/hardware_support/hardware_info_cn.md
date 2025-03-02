@@ -4,19 +4,19 @@
 
 ## PaddlePaddle
 
-|  分类  | 架构 | 公司 | 型号 | 安装 | 源码编译 |  完全支持训练 | 支持部分模型 |
-|  ----  | ----  | ---- | ---- |---- | ---- |---- | ---- |
-| 服务端 CPU | x86 | Intel | 常见 CPU 型号如 Xeon、Core 全系列 | [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/compile/linux-compile.html) | ✔️ |  |
-| 服务端 GPU |  | NVIDIA | Ada Lovelace、Hopper、 Ampere、Turing、 Volta 架构 | [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/compile/linux-compile.html) | ✔️ |  |
-| AI 加速芯片 | 达芬奇 | 华为 | 昇腾 910 系列 | [安装](./npu/install_cn.html#wheel) | [源码编译](./npu/install_cn.html) | | ✔️ |
-| AI 加速芯片 | GPGPU | 海光 | 海光 Z100 系列 | [安装](./dcu/install_cn.html#wheel) | [源码编译](./dcu/install_cn.html) | | [支持模型](./dcu/support_cn.html) |
-| AI 加速芯片 | XPU | 昆仑芯 | 昆仑芯 R200、R300 等 | [安装](./xpu/install_cn.html#wheel) | [源码编译](./xpu/install_cn.html#xpu) |  | [支持模型](./xpu/support_cn.html) |
-| AI 加速芯片 | IPU | Graphcore | GC200 | | | | ✔️ |
-| AI 加速芯片 | MLU | 寒武纪 | MLU370 系列 | [安装](./mlu/install_cn.html#wheel) | [源码编译](./mlu/install_cn.html) |  | [支持模型](./mlu/support_cn.html) |
-| AI 加速芯片 |  | 天数智芯 | 天垓 100 |  [安装](https://gitee.com/deep-spark/deepsparkhub/blob/master/docker/Iluvatar/README.md) ||  |  | ✔️ |
-| AI 加速芯片 |  | 壁仞 | BR100、BR104 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/biren_gpu/README_cn.md) |  | ✔️ |
-| AI 加速芯片 |  | 燧原 | 云燧 T20 、i20、S60 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/gcu/README_cn.md) |  | ✔️ |
-| AI 加速芯片 |  | 太初 | 元碁系列 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleTecoBackend)  |  | ✔️ |
+|  分类  | 架构 | 公司 | 型号 | 安装 | 源码编译 |  代码仓库 |
+|  ----  | ----  | ---- | ---- |---- | ---- |---- |
+| 服务端 CPU | x86 | Intel | 常见 CPU 型号如 Xeon、Core 全系列 | [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/compile/linux-compile.html) |[代码仓库](https://github.com/PaddlePaddle/Paddle) |
+| 服务端 GPU |  | NVIDIA | Ada Lovelace、Hopper、 Ampere、Turing、 Volta 架构 | [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/compile/linux-compile.html) |[代码仓库](https://github.com/PaddlePaddle/Paddle) |
+| AI 加速芯片 | 达芬奇 | 华为 | 昇腾 910 系列 | [安装](./npu/install_cn.html#wheel) | [源码编译](./npu/install_cn.html) |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice) |
+| AI 加速芯片 | GPGPU | 海光 | 海光 Z100, K100 系列 | [安装](./dcu/install_cn.html#wheel) | [源码编译](./dcu/install_cn.html) |[代码仓库](https://github.com/PaddlePaddle/Paddle) |
+| AI 加速芯片 | XPU | 昆仑芯 | 昆仑芯 R200、R300 等 | [安装](./xpu/install_cn.html#wheel) | [源码编译](./xpu/install_cn.html#xpu) |[代码仓库](https://github.com/PaddlePaddle/Paddle)  |
+| AI 加速芯片 | IPU | Graphcore | GC200 | | |[代码仓库](https://github.com/PaddlePaddle/Paddle) |
+| AI 加速芯片 | MLU | 寒武纪 | MLU370 系列 | [安装](./mlu/install_cn.html#wheel) | [源码编译](./mlu/install_cn.html) | [代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice) |
+| AI 加速芯片 |  | 天数智芯 | 天垓 100 |  [安装](https://gitee.com/deep-spark/deepsparkhub/blob/master/docker/Iluvatar/README.md) || [代码仓库](https://github.com/PaddlePaddle/Paddle4CoreX/tree/release/2.5_corex)|
+| AI 加速芯片 |  | 壁仞 | BR100、BR104 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/biren_gpu/README_cn.md) |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice) |
+| AI 加速芯片 |  | 燧原 | 云燧 T20 、i20、S60 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/gcu/README_cn.md) |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice)  |
+| AI 加速芯片 |  | 太初 | 元碁系列 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleTecoBackend)  |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice)  |
 
 ## Paddle Inference
 
@@ -68,6 +68,7 @@
 |  AI 加速芯片 | 清微智能 | TX5368 | ✔️  | [模型库](https://github.com/tsingmicro-toolchain/ts.knight-modelzoo) |
 |  AI 加速芯片 | 爱芯元智 | AX620A | ✔️  | [模型库](https://github.com/AXERA-TECH/ax-samples/tree/main) |
 |  AI 加速芯片 | 沐曦 | N100 | ✔️  | [模型库](https://github.com/denglin-github/DLPaddleModelZoo) |
+|  AI 加速芯片 | 希姆计算 | STCP920 | ✔️  | [模型库](https://github.com/Stream-Computing/STCPaddleModelZoo) |
 
 ## TVM
 

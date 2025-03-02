@@ -69,7 +69,7 @@ select = [
     "PGH004",
 
     # Flake8-type-checking
-    "TCH",
+    "TC",
 
     # Ruff-specific rules
     "RUF005",

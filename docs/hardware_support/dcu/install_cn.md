@@ -18,13 +18,13 @@
 
 ```bash
 # 拉取镜像
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-dcu:dtk23.10.1-kylinv10-gcc73-py310
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle-dcu:dtk24.04.1-kylinv10-gcc82
 
 # 参考如下命令，启动容器
 docker run -it --name paddle-dcu-dev -v `pwd`:/work \
   -w=/work --shm-size=128G --network=host --privileged  \
   --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
-  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-dcu:dtk23.10.1-kylinv10-gcc73-py310 /bin/bash
+  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle-dcu:dtk24.04.1-kylinv10-gcc82 /bin/bash
 
 # 检查容器内是否可以正常识别海光 DCU 设备
 rocm-smi
@@ -51,7 +51,7 @@ DCU  Temp   AvgPwr  Fan   Perf  PwrCap  VRAM%  DCU%
 
 ```bash
 # 下载并安装 wheel 包
-pip install paddlepaddle-rocm -i https://www.paddlepaddle.org.cn/packages/nightly/dcu
+python -m pip install --pre paddlepaddle-dcu -i https://www.paddlepaddle.org.cn/packages/nightly/dcu/
 ```
 
 ### 安装方式二：源代码编译安装
@@ -76,7 +76,7 @@ cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" \
 make -j16
 
 # 编译产出在 build/python/dist/ 路径下，使用 pip 安装即可
-pip install -U paddlepaddle_rocm-0.0.0-cp310-cp310-linux_x86_64.whl
+pip install -U paddlepaddle_dcu-0.0.0-cp310-cp310-linux_x86_64.whl
 ```
 
 ## 基础功能检查
@@ -106,5 +106,5 @@ PaddlePaddle is installed successfully! Let's start deep learning with PaddlePad
 请使用以下命令卸载：
 
 ```bash
-pip uninstall paddlepaddle-rocm
+pip uninstall paddlepaddle-dcu
 ```

@@ -28,8 +28,8 @@ lspci | grep d802
 
 ```bash
 # 拉取镜像
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC1-ubuntu20-x86_64-gcc84-py39 # X86 架构
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC1-ubuntu20-aarch64-gcc84-py39 # ARM 架构
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-npu-base-x86_64-gcc84 # X86 架构
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-npu-base-aarch64-gcc84 # ARM 架构
 
 # 考如下命令启动容器，ASCEND_RT_VISIBLE_DEVICES 可指定可见的 NPU 卡号
 docker run -it --name paddle-npu-dev -v $(pwd):/work \
@@ -38,7 +38,7 @@ docker run -it --name paddle-npu-dev -v $(pwd):/work \
     -v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
     -v /usr/local/dcmi:/usr/local/dcmi \
     -e ASCEND_RT_VISIBLE_DEVICES="0,1,2,3,4,5,6,7" \
-    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC1-ubuntu20-$(uname -m)-gcc84-py39 /bin/bash
+    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-$(uname -m)-gcc84 /bin/bash
 
 # 检查容器内是否可以正常识别昇腾 NPU 设备
 npu-smi info
@@ -112,7 +112,7 @@ python -c "import paddle_custom_device; paddle_custom_device.npu.version()"
 # 预期得到如下输出结果
 version: 0.0.0
 commit: 147d506b2baa1971ab47b4550f0571e1f6b201fc
-cann: 8.0.RC1
+cann: 8.0.RC2
 ....
 
 # 飞桨基础健康检查
@@ -130,4 +130,18 @@ PaddlePaddle is installed successfully! Let's start deep learning with PaddlePad
 
 ```bash
 pip uninstall paddlepaddle paddle-custom-npu
+```
+
+## 常见问题解决
+
+* CANN-8.0.RC2 对 numpy 和 opencv 部分版本不支持，建议安装指定版本
+```bash
+python -m pip install numpy==1.26.4
+python -m pip install opencv-python==3.4.18.65
+```
+* arm 机器上需要设置环境变量（x86 环境无需设置）
+```bash
+# 解决 libgomp 在 arm 机器上报错
+# "libgomp cannot allocate memory in static TLS block"
+export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD
 ```
