@@ -20,6 +20,8 @@ import os.path as osp
 import re
 import sys
 
+import paddle  # noqa: F401
+
 
 def add_path(path):
     if path not in sys.path:
