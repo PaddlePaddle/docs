@@ -19,14 +19,15 @@ You can configure properties related to model parameters using :ref:`cn_api_padd
 Initialization Method
 =====================
 
-Paddle initializes a single parameter by setting attributes of :code:`initializer` in :code:`ParamAttr` .
-Example:
+Paddle initializes a single parameter by setting attributes of :code:`initializer` in :code:`ParamAttr` .Example:
 
   .. code-block:: python
 
+      import paddle
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
-                                     initializer=paddle.nn.initializer.Constant(1.0))
-      y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
+                                initializer=paddle.nn.initializer.Constant(5.0))
+      fc_layer = paddle.nn.Linear(64, 10, weight_attr=param_attrs)
 
 The following is the initialization method supported by Paddle:
 
@@ -120,9 +121,11 @@ Paddle regularizes a single parameter by setting attributes of :code:`regularize
 
   .. code-block:: python
 
+      import paddle
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
-                                     regularizer=fluid.regularizer.L1DecayRegularizer(0.1))
-      y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
+                                regularizer=paddle.regularizer.L1Decay(0.1))
+      fc_layer = paddle.nn.Linear(64, 10, weight_attr=param_attrs)
 
 The following is the regularization approach supported by Paddle:
 
@@ -134,20 +137,21 @@ Model Averaging
 
 Paddle determines whether to average a single parameter by setting attributes of :code:`do_model_average` in :code:`ParamAttr` .
 
-- Default value: `True`. This is used only with `ExponentialMovingAverage`.
+- Default value: `True`. This feature is used with the :code:`paddle.incubate.ModelAverage` optimizer.
 
   .. code-block:: python
 
+      import paddle
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
-                                     do_model_average=True)
-      y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
+                                do_model_average=True)
+      fc_layer = paddle.nn.Linear(64, 10, weight_attr=param_attrs)
 
-During mini-batch training, after each batch updates the parameters, `ExponentialMovingAverage` calculates an exponential moving average of the parameters based on a decay rate. These averaged parameters are used only for testing and prediction, not for training.
+During mini-batch training, the model parameters are updated after each batch. Model averaging calculates the average of the parameters from the most recent k updates.
 
-API reference: :ref:`cn_api_paddle_static_ExponentialMovingAverage`
+The averaged parameters are used only for testing and prediction, not for training.
 
-.. note::
- :ref:`cn_api_paddle_incubate_ModelAverage` is currently in incubation, and its API may change.
+API reference: :ref:`cn_api_paddle_static_ExponentialMovingAverage` (currently in incubation and may undergo changes).
 
 Clipping
 ==========
@@ -161,9 +165,11 @@ Paddle sets clipping method for a single parameter by setting attributes of :cod
 
   .. code-block:: python
 
+      import paddle
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
-                                     need_clip=True)
-      y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
+                                need_clip=True)
+      fc_layer = paddle.nn.Linear(64, 10, weight_attr=param_attrs)
 
 The following is the clipping method supported by Paddle:
 
