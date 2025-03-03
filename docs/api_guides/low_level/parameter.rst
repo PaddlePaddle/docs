@@ -139,7 +139,7 @@ Paddle 通过设置 :code:`ParamAttr` 的 :code:`regularizer` 属性为单个 pa
 
 Paddle 通过设置 :code:`ParamAttr` 的 :code:`do_model_average` 属性为单个 parameter 设置是否进行平均优化。
 
-默认值为 True，需要配合 :code:`paddle.incubate.ModelAverage` 优化器使用。
+默认值为 True。
 
   .. code-block:: python
 
