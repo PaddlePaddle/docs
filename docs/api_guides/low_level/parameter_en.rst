@@ -137,7 +137,7 @@ Model Averaging
 
 Paddle determines whether to average a single parameter by setting attributes of :code:`do_model_average` in :code:`ParamAttr` .
 
-- Default value: `True`. This feature is used with the :code:`paddle.incubate.ModelAverage` optimizer.
+- Default value: `True`.
 
   .. code-block:: python
 
