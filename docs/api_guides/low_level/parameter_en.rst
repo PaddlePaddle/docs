@@ -7,7 +7,7 @@ Model Parameters
 .. note::
   The paddle.fluid.* APIs are deprecated. Please use the latest Paddle API versions instead.
 
-Model parameters are weights and biases in a model. In Paddle, they are represented as `paddle.Tensor` types. These parameters are learnable variables that have gradients and can be optimized.
+Model parameters are weights and biases in a model. In Paddle, they are instances of `paddle.framework.Parameter` class which is inherited from `paddle.framework.Variable`. These parameters are learnable variables that have gradients and can be optimized.
 
 You can configure properties related to model parameters using :ref:`cn_api_paddle_ParamAttr`. The configurable options include:
 
@@ -23,6 +23,7 @@ Paddle initializes a single parameter by setting attributes of :code:`initialize
 Example:
 
   .. code-block:: python
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
                                      initializer=paddle.nn.initializer.Constant(1.0))
       y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
@@ -118,6 +119,7 @@ Regularization
 Paddle regularizes a single parameter by setting attributes of :code:`regularizer` in :code:`ParamAttr` .
 
   .. code-block:: python
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
                                      regularizer=fluid.regularizer.L1DecayRegularizer(0.1))
       y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
@@ -135,6 +137,7 @@ Paddle determines whether to average a single parameter by setting attributes of
 - Default value: `True`. This is used only with `ExponentialMovingAverage`.
 
   .. code-block:: python
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
                                      do_model_average=True)
       y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
@@ -157,6 +160,7 @@ Paddle sets clipping method for a single parameter by setting attributes of :cod
 - Default value: `True`.
 
   .. code-block:: python
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
                                      need_clip=True)
       y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
@@ -184,4 +188,4 @@ Limits the values of a multi-dimensional input Tensor `X` to the range [min, max
 
 API reference: :ref:`cn_api_paddle_nn_ClipGradByValue`
 
-For more details on gradient clipping methods, refer to: `Introduction to Gradient Clipping <https://www.paddlepaddle.org.cn/documentation/docs/en/develop/guides/advanced/gradient_clip_en.html>`_
+For more details on gradient clipping methods, refer to: :ref:`梯度裁剪方式介绍 <en_gradient_clip>`_
