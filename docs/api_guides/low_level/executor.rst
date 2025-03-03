@@ -11,6 +11,7 @@
  :code:`Executor` 在构造时接受一个 :code:`Place` ，它既可能是 :ref:`api_fluid_CPUPlace` 也可能是 :ref:`api_fluid_CUDAPlace` 。
 
 .. code-block:: python
+
     # 首先创建 Executor。
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
     exe = fluid.Executor(place)
@@ -21,7 +22,9 @@
     loss, = exe.run(fluid.default_main_program(),
                     feed=feed_dict,
                     fetch_list=[loss.name])
+
 简单样例请参照 `basics_fit_a_line <../../beginners_guide/basics/fit_a_line/README.cn.html>`_
 
 - 相关 API :
+
  - :ref:`cn_api_fluid_Executor`
