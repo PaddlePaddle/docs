@@ -24,9 +24,11 @@ Paddle 通过设置 :code:`ParamAttr` 的 :code:`initializer` 属性为单个 pa
 
   .. code-block:: python
 
+      import paddle
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
-                                initializer=paddle.nn.initializer.Constant(1.0))
-      y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
+                                initializer=paddle.nn.initializer.Constant(5.0))
+      fc_layer = paddle.nn.Linear(64, 10, weight_attr=param_attrs)
 
 以下为 Paddle 支持的初始化方式：
 
@@ -120,9 +122,12 @@ Paddle 通过设置 :code:`ParamAttr` 的 :code:`regularizer` 属性为单个 pa
 
   .. code-block:: python
 
+      import paddle
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
-                                regularizer=fluid.regularizer.L1DecayRegularizer(0.1))
-      y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
+                                regularizer=paddle.regularizer.L1Decay(0.1))
+      fc_layer = paddle.nn.Linear(64, 10, weight_attr=param_attrs)
+
 
 以下为 Paddle 支持的正则化方式：
 
@@ -134,20 +139,21 @@ Paddle 通过设置 :code:`ParamAttr` 的 :code:`regularizer` 属性为单个 pa
 
 Paddle 通过设置 :code:`ParamAttr` 的 :code:`do_model_average` 属性为单个 parameter 设置是否进行平均优化。
 
-默认值为 True。仅在 :code:`ExponentialMovingAverage` 下使用。
+默认值为 True，需要配合 :code:`paddle.incubate.ModelAverage` 优化器使用。
 
   .. code-block:: python
 
+      import paddle
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
-                                do_model_average=true)
-      y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
+                                do_model_average=True)
+      fc_layer = paddle.nn.Linear(64, 10, weight_attr=param_attrs)
 
+在 mini-batch 训练过程中，每个 batch 过后，模型的 parameters 都会被更新一次。模型平均的作用就是平均最近 k 次更新产生的 parameters。
 
-在 miniBatch 训练过程中，每个 batch 更新参数后，:code:`ExponentialMovingAverage` 会根据衰减率计算参数的指数滑动平均值。平均后的参数仅用于测试和预测，不参与实际的训练过程。
+平均后的 parameters 仅用于测试和预测，不参与实际的训练过程。
 
-API 请参考：:ref:`cn_api_paddle_static_ExponentialMovingAverage`
-
-:ref:`cn_api_paddle_incubate_ModelAverage` 当前处于孵化状态，API 可能会有变动。
+API 请参考：:ref:`cn_api_paddle_incubate_ModelAverage` （当前处于孵化状态，API 可能会有变动）
 
 Clipping
 ==========
@@ -161,9 +167,11 @@ Paddle 通过设置 :code:`ParamAttr` 的 :code:`need_clip` 属性为单个 para
 
   .. code-block:: python
 
+      import paddle
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
                                 need_clip=True)
-      y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
+      fc_layer = paddle.nn.Linear(64, 10, weight_attr=param_attrs)
 
 以下为 Paddle 支持的 clipping 方式：
 
