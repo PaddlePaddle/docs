@@ -12,7 +12,6 @@ API 功能分类
     low_level/optimizer.rst
     low_level/memory_optimize.rst
     low_level/executor.rst
-    low_level/compiled_program.rst
     low_level/parameter.rst
     low_level/distributed/index.rst
     X2Paddle/TensorFlow-Fluid.rst
