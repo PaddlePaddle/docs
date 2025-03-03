@@ -7,7 +7,7 @@
 .. note::
   paddle.fluid.* 已废弃，请使用 Paddle 最新版本的 API。
 
-模型参数为模型中的 weight 和 bias 统称，在 Paddle 中属于 `paddle.Tensor` 类型。模型参数是可学习的变量，拥有梯度并且可优化。
+模型参数为模型中的 weight 和 bias 统称，在 Paddle 中对应 `paddle.framework.Parameter` 类，继承自 `paddle.framework.Variable`。模型参数是可学习的变量，拥有梯度并且可优化。
 
 模型参数相关的属性可以通过 :ref:`cn_api_paddle_ParamAttr` 来配置，可配置内容有：
 
@@ -23,6 +23,7 @@ Paddle 通过设置 :code:`ParamAttr` 的 :code:`initializer` 属性为单个 pa
 示例如下：
 
   .. code-block:: python
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
                                 initializer=paddle.nn.initializer.Constant(1.0))
       y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
@@ -43,7 +44,7 @@ API 请参考：:ref:`cn_api_paddle_nn_initializer_Constant`
 
 随机正态分布初始化方法。根据正态（高斯）分布生成随机值，适用于大多数神经网络的参数初始化。
 
-参数可以指定均值 `mean` （默认 0.0）和标准差 `std` （默认 1.0）。
+参数指定均值 `mean` （默认 0.0）和标准差 `std` （默认 1.0）。
 
 API 请参考：:ref:`cn_api_paddle_nn_initializer_Normal`
 
@@ -52,7 +53,7 @@ API 请参考：:ref:`cn_api_paddle_nn_initializer_Normal`
 
 随机均匀分布初始化方法。在指定区间 [low, high] 内均匀采样生成初始值。
 
-参数 `low` 和 `high` 默认分别为 -1.0 和 1.0。
+参数 `low` 和 `high` 默认为 -1.0 和 1.0。
 
 API 请参考：:ref:`cn_api_paddle_nn_initializer_Uniform`
 
@@ -97,7 +98,7 @@ API 请参考：:ref:`cn_api_paddle_nn_initializer_KaimingNormal`
 
 截断正态分布初始化方法。在正态分布基础上，限制生成值在指定范围 [a, b] 内。
 
-参数可以指定均值 `mean` （默认 0.0）、标准差 `std` （默认 1.0）以及截断边界 `a` 和 `b` （默认 -2.0 和 2.0）。
+参数指定均值 `mean` （默认 0.0）、标准差 `std` （默认 1.0）以及截断边界 `a` 和 `b` （默认 -2.0 和 2.0）。
 
 API 请参考：:ref:`cn_api_paddle_nn_initializer_TruncatedNormal`
 
@@ -118,6 +119,7 @@ Paddle 还支持以下初始化方式：
 Paddle 通过设置 :code:`ParamAttr` 的 :code:`regularizer` 属性为单个 parameter 设置正则化。
 
   .. code-block:: python
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
                                 regularizer=fluid.regularizer.L1DecayRegularizer(0.1))
       y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
@@ -135,6 +137,7 @@ Paddle 通过设置 :code:`ParamAttr` 的 :code:`do_model_average` 属性为单�
 默认值为 True。仅在 :code:`ExponentialMovingAverage` 下使用。
 
   .. code-block:: python
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
                                 do_model_average=true)
       y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
@@ -157,6 +160,7 @@ Paddle 通过设置 :code:`ParamAttr` 的 :code:`need_clip` 属性为单个 para
 默认值为 True。
 
   .. code-block:: python
+
       param_attrs = paddle.ParamAttr(name="fc_weight",
                                 need_clip=True)
       y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=param_attrs)
@@ -184,4 +188,4 @@ API 请参考：:ref:`cn_api_paddle_nn_ClipGradByNorm`
 
 API 请参考：:ref:`cn_api_paddle_nn_ClipGradByValue`
 
-具体梯度裁剪方式请参考：`梯度裁剪方式介绍 <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/advanced/gradient_clip_cn.html>`_
+具体梯度裁剪方式请参考：:ref:`梯度裁剪方式介绍 <cn_gradient_clip>`
