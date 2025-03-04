@@ -9,7 +9,7 @@ Model Parameters
 
 Model parameters are usually weights and bias in the model. In Paddle's dynamic graph mode, they correspond to the :code:`EagerParamBase` class. Model parameters are learnable variables that have gradients and can be optimized. In Paddle, custom parameters can be created using :ref:`cn_api_paddle_create_parameter` .
 
-You can configure properties related to model parameters using :ref:`cn_api_paddle_ParamAttr`. The configurable options include:
+You can configure properties related to model parameters using :ref:`cn_api_paddle_ParamAttr` . The configurable options include:
 
 - Initialization method
 - Regularization
@@ -72,7 +72,7 @@ API reference: :ref:`cn_api_paddle_nn_initializer_XavierUniform`
 
 The Xavier normal distribution method, proposed in the paper **Understanding the difficulty of training deep feedforward neural networks**, initializes parameters with a normal distribution.
 
-- Mean is 0, and the standard deviation is determined by `fan_in`, `fan_out`, and `gain`.
+- Mean is 0, and the standard deviation is determined by `fan_in`, `fan_out`, and `gain` .
 
 API reference: :ref:`cn_api_paddle_nn_initializer_XavierNormal`
 
@@ -137,7 +137,7 @@ Model Averaging
 
 Paddle determines whether to average a single parameter by setting attributes of :code:`do_model_average` in :code:`ParamAttr` .
 
-- Default value: `True`.
+- Default value: `True` .
 
   .. code-block:: python
 
@@ -157,11 +157,11 @@ Clipping
 ==========
 
 .. note::
-  The `gradient_clip` attribute is deprecated. Use `need_clip` to set gradient clipping ranges and configure clipping when initializing the `optimizer`.
+  The :code:`gradient_clip` attribute is deprecated. Use :code:`need_clip` to set gradient clipping ranges and configure clipping when initializing the :code:`optimizer` .
 
 Paddle sets clipping method for a single parameter by setting attributes of :code:`need_clip` in :code:`ParamAttr` .
 
-- Default value: `True`.
+- Default value: `True` .
 
   .. code-block:: python
 
