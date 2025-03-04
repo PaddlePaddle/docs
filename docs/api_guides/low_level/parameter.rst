@@ -7,7 +7,7 @@
 .. note::
   paddle.fluid.* 已废弃，请使用 Paddle 最新版本的 API。
 
-模型参数为模型中的 weight 和 bias 统称，在 Paddle 中对应 `paddle.framework.Parameter` 类，继承自 `paddle.framework.Variable`。模型参数是可学习的变量，拥有梯度并且可优化。
+模型参数通常为模型中的 weight 和 bias，在 Paddle 动态图下对应 `EagerParamBase` 类。模型参数是可学习的变量，拥有梯度并且可优化。在 Paddle 中可以通过 :ref:`cn_api_paddle_create_parameter` 来创建自定义参数。
 
 模型参数相关的属性可以通过 :ref:`cn_api_paddle_ParamAttr` 来配置，可配置内容有：
 
