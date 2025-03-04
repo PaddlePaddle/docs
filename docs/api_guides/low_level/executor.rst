@@ -8,7 +8,7 @@
 
  :code:`Executor` 的逻辑非常简单。建议在调试阶段用 :code:`Executor` 在一台计算机上完整地运行模型，然后转向多设备或多台计算机计算。
 
- :code:`Executor` 在构造时接受一个 :code:`Place` 对象，包括 :ref:`cn_api_paddle_CPUPlace` :ref:`cn_api_paddle_CUDAPlace` 等，也可以是一个 :code:`str` 类型的设备描述符，如 :code:`"cpu"` 或 :code:`"gpu:0"`。
+ :code:`Executor` 在构造时接受一个 :code:`Place` 对象，包括 :ref:`cn_api_paddle_CPUPlace` 与 :ref:`cn_api_paddle_CUDAPlace` 等，也可以是一个 :code:`str` 类型的设备描述符，如 :code:`"cpu"` 或 :code:`"gpu:0"`。
 
 .. code-block:: python
 
