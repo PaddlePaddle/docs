@@ -67,7 +67,6 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
      1. 如果是多卡训练，并且 feed 参数为 dict 类型，输入数据将被均匀分配到不同的卡上，例如：使用 2 块 GPU 训练，输入样本数为 3，即[0, 1, 2]，经过拆分之后，GPU0 上的样本数为 1，即[0]，GPU1 上的样本数为 2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个 batch 的样本数是否少于当前可用的 CPU 核数或 GPU 卡数，如果是少于，建议丢弃该 batch。
      2. 如果可用的 CPU 核数或 GPU 卡数大于 1，则 fetch 出来的结果为不同设备上的相同变量值（fetch_list 中的变量）在第 0 维拼接在一起。
 
-.. _executor_code_example_1:
 
 **代码示例 1**
 
