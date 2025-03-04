@@ -5,9 +5,9 @@ Model Parameters
 ##################
 
 .. note::
-  The paddle.fluid.* APIs are deprecated. Please use the latest Paddle API versions instead.
+  The `paddle.fluid.*` APIs are deprecated. Please use the latest Paddle API versions instead.
 
-Model parameters are weights and biases in a model. In Paddle, they are instances of `paddle.framework.Parameter` class which is inherited from `paddle.framework.Variable`. These parameters are learnable variables that have gradients and can be optimized.
+Model parameters are usually weights and bias in the model. In Paddle's dynamic graph mode, they correspond to the :code:`EagerParamBase` class. Model parameters are learnable variables that have gradients and can be optimized. In Paddle, custom parameters can be created using :ref:`cn_api_paddle_create_parameter` .
 
 You can configure properties related to model parameters using :ref:`cn_api_paddle_ParamAttr`. The configurable options include:
 
