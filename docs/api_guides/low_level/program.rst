@@ -39,11 +39,13 @@ Block
 
 
 
+.. _api_guide_Operator:
+
 =============
 Operator
 =============
 
-在 Paddle 中，所有对数据的操作都由 :code:`Operator` 表示 每个 :code:`Operator` 执行特定的功能，如矩阵乘法、卷积、激活函数等，通过组合这些 :code:`Operator`，可以构建复杂的计算图，实现模型的前向传播和反向传播。。
+在 Paddle 中，所有对数据的操作都由 :code:`Operator` 表示 每个 :code:`Operator` 执行特定的功能，如矩阵乘法、卷积、激活函数等，通过组合这些 :code:`Operator`，可以构建复杂的计算图，实现模型的前向传播和反向传播。
 
 
 
@@ -125,7 +127,7 @@ Paddle 中部分网络层里包含了 :code:`name` 参数，如 :ref:`cn_api_sta
 ParamAttr
 =========
 
-ParamAttr 是用于设置模型参数（如权重和偏置）属性的配置类。通过 ParamAttr，用户可以灵活地定义参数的初始化方式、正则化策略、梯度裁剪以及模型平均等特性。
+``ParamAttr`` 是用于设置模型参数（如权重和偏置）属性的配置类。通过 ``ParamAttr``，用户可以灵活地定义参数的初始化方式、正则化策略、梯度裁剪以及模型平均等特性。
 
 实例代码如下：
 
@@ -152,10 +154,7 @@ ParamAttr 是用于设置模型参数（如权重和偏置）属性的配置类�
 相关 API
 =========
 
-* 用户配置的单个神经网络叫做 :ref:`cn_api_Program` 。值得注意的是，训练神经网
-  络时，用户经常需要配置和操作多个 :code:`Program` 。比如参数初始化的
-  :code:`Program` ， 训练用的 :code:`Program` ，测试用的
-  :code:`Program` 等等。
+* 用户配置的单个神经网络叫做 :ref:`cn_api_Program` 。值得注意的是，训练神经网络时，用户经常需要配置和操作多个 :code:`Program` 。比如参数初始化的:code:`Program` ， 训练用的 :code:`Program` ，测试用的:code:`Program` 等等。
 
 
 * 用户还可以使用 :ref:`cn_api_program_guard` 配合 :code:`with` 语句，修改配置好的 :ref:`cn_api_default_startup_program` 和 :ref:`cn_api_default_main_program` 。

@@ -8,19 +8,21 @@ Basic Concept
 Program
 ==================
 
-:code:`Fluid` describes neural network configuration in the form of abstract grammar tree similar to that of a programming language, and the user's description of computation will be written into a Program. Program in Fluid replaces the concept of models in traditional frameworks. It can describe any complex model through three execution structures: sequential execution, conditional selection and loop execution. Writing :code:`Program` is very close to writing a common program. If you have tried programming before, you will naturally apply your expertise to it.
+In PaddlePaddle, a Program is a static graph model, similar to programs in other programming languages. Static graph programming follows a "define-and-run" approach:
 
-In brief：
+* Define: The complete neural network architecture is predefined in the code.
 
-* A model is a Fluid :code:`Program`  and can contain more than one :code:`Program` ;
+* Compile: PaddlePaddle represents the neural network as a Program data structure and performs compilation optimizations.
 
-* :code:`Program` consists of nested :code:`Block` , and the concept of :code:`Block` can be analogized to a pair of braces in C++ or Java, or an indentation block in Python.
+* Execute: An executor is invoked to obtain the computation results.
 
+This approach allows for efficient execution but requires the entire network structure to be defined before running the program. 
 
-* Computing in :code:`Block` is composed of three ways: sequential execution, conditional selection or loop execution, which constitutes complex computational logic.
+* A :code:`Program` consists of nested :code:`Blocks`. The concept of a :code:`Block` can be likened to a pair of curly braces ``{}`` in languages like C++ or Java, or to an indented block in Python. 
 
+* The computation in the :code:`Block` is composed of three types of execution: sequential execution, conditional selection, and loop execution, which together form a complex computational logic.
 
-* :code:`Block` contains descriptions of computation and computational objects. The description of computation is called Operator; the object of computation (or the input and output of Operator) is unified as Tensor. In Fluid, Tensor is represented by 0-leveled `LoD-Tensor <http://paddlepaddle.org/documentation/docs/zh/1.2/user_guides/howto/prepare_data/lod_tensor.html#permalink-4-lod-tensor>`_ .
+* The :code:`Block` contains descriptions of the computation and the objects involved in the computation. The description of the computation is called the :code:`Operator`; the objects on which the computation acts (or the inputs and outputs of the :code:`Operator`) are unified as :code:`Tensors`.
 
 .. _api_guide_Block_en:
 
@@ -28,43 +30,31 @@ In brief：
 Block
 =========
 
-:code:`Block` is the concept of variable scope in advanced languages. In programming languages, Block is a pair of braces, which contains local variable definitions and a series of instructions or operators. Control flow structures :code:`if-else` and :code:`for` in programming languages can be equivalent to the following counterparts in deep learning:
+The :code:`Block` is the concept of variable scope in high-level languages, similar to a pair of curly braces in C or Java, which contain local variable definitions and a series of instructions or operators.
 
-+----------------------+-------------------------+
-| programming languages| Fluid                   |
-+======================+=========================+
-| for, while loop      | RNN,WhileOP             |
-+----------------------+-------------------------+
-| if-else, switch      | IfElseOp, SwitchOp      |
-+----------------------+-------------------------+
-| execute sequentially | a series of layers      |
-+----------------------+-------------------------+
+The :code:`Block` is the fundamental unit in a computation graph used to represent computational logic. It contains a series of operations (:code:`Operator`) and computational objects (:code:`Tensor`), supporting control structures such as sequential execution, conditional selection, and loop execution, thereby building complex computational flows.
 
-As mentioned above,  :code:`Block` in Fluid describes a set of Operators that include sequential execution, conditional selection or loop execution, and the operating object of Operator: Tensor.
+* Computation description: The :code:`Block` contains multiple :code:`Operators` internally, with each :code:`Operator` representing a computational operation, such as addition, convolution, etc.
 
+* Object description: The computational objects in the :code:`Block` are unified as :code:`Tensors`, representing multi-dimensional arrays or matrices, and are the basic units of data storage and transmission.
 
+* Control structures: The :code:`Block` supports control structures such as sequential execution, conditional selection, and loop execution, making the computational flow more flexible and complex.
+
+In the PaddlePaddle computation graph, :code:`Block`, :code:`Operator`, and :code:`Tensor` together form the backbone of the computational flow. The :code:`Block` provides a container function, organizing and managing the internal :code:`Operators` and :code:`Tensors`, thereby enabling efficient construction and execution of the computation graph.
 
 =============
 Operator
 =============
 
-In Fluid, all operations of data are represented by :code:`Operator` . In Python, :code:`Operator` in Fluid is encapsulated into modules like :code:`paddle.fluid.layers` , :code:`paddle.fluid.nets` .
-
-This is because some common operations on Tensor may consist of more basic operations. For simplicity, some encapsulation of the basic Operator is carried out inside the framework, including the creation of learnable parameters relied by an Operator, the initialization details of learnable parameters, and so on, so as to reduce the cost of further development.
-
-
-
-More information can be read for reference. `Fluid Design Idea <../../advanced_usage/design_idea/fluid_design_idea.html>`_
-
-.. _api_guide_Variable_en:
+In Paddle, all operations on data are represented by :code:`Operators`. Each :code:`Operator` performs a specific function, such as matrix multiplication, convolution, activation functions, etc. By combining these :code:`Operators`, complex computation graphs can be constructed to implement the forward and backward propagation of a model.
 
 =========
 Variable
 =========
 
-In Fluid， :code:`Variable` can contain any type of value -- in most cases a LoD-Tensor.
+In Paddle, a :code:`Variable` can contain any type of value — most commonly a :code:`Tensor`.
 
-All the learnable parameters in the model are kept in the memory space in form of :code:`Variable` . In most cases, you do not need to create the learnable parameters in the network by yourself. Fluid provides encapsulation for almost common basic computing modules of the neural network. Taking the simplest full connection model as an example, calling :code:`fluid.layers.fc` directly creates two learnable parameters for the full connection layer, namely, connection weight (W) and bias, without explicitly calling :code:`Variable` related interfaces to create learnable parameters.
+All learnable parameters in the model are stored as :code:`Variable` objects in memory. In most cases, you don't need to manually create the learnable parameters in the network, as Paddle provides wrappers for almost all common neural network basic computation modules. For example, in the simplest fully connected model in a static graph, calling :code:`paddle.static.nn.fc` will automatically create the learnable parameters for the fully connected layer: connection weights (W) and biases (bias), without the need to explicitly call the :code:`variable` interface to create learnable parameters.
 
 .. _api_guide_Name:
 
@@ -72,56 +62,61 @@ All the learnable parameters in the model are kept in the memory space in form o
 Name
 =========
 
-In Fluid, some layers contain the parameter :code:`name` , such as :ref:`api_fluid_layers_fc` . This :code:`name` is generally used as the prefix identification of output and weight in network layers. The specific rules are as follows:
+In Paddle, some network layers include a :code:`name` parameter, such as in the :code:`paddle.static.nn.fc` API. This :code:`name` is generally used as a prefix identifier for the network layer's output and weights. The specific rules are as follows:
 
-* Prefix identification for output of layers. If :code:`name` is specified in the layer, Fluid will name the output with ``nameValue.tmp_number`` . If the :code:`name` is not specified, ``OPName_number.tmp_number`` is automatically generated to name the layer. The numbers are automatically incremented to distinguish different network layers under the same operator.
+* The prefix identifier used for the network layer output. If the :code:`name` parameter is specified in the network layer, Paddle will use the :code:`name` value followed by ``.tmp_number`` as a unique identifier for naming the network layer's output. If the :code:`name` parameter is not specified, it will use the format ``OP_name_number.tmp_number`` for naming, where the numbers will automatically increment to distinguish different network layers under the same OP name.
 
-* Prefix identification for weight or bias variable. If the weight and bias variables are created by ``param_attr`` and ``bias_attr`` in operator, such as :ref:`api_fluid_layers_embedding` 、 :ref:`api_fluid_layers_fc` , Fluid will generate ``prefix.w_number`` or ``prefix.b_number`` as unique identifier to name them, where the ``prefix`` is :code:`name` specified by users or ``OPName_number`` generated by default. If :code:`name` is specified in ``param_attr`` and ``bias_attr`` , the :code:`name` is no longer generated automatically. Refer to the sample code for details.
+* The prefix identifier used for weight or bias variables. If weight or bias variables are created in the network layer through ``param_attr`` and ``bias_attr``, such as in the :ref:`api_nn_embedding` or :ref:`api_static_nn_fc` APIs, Paddle will automatically generate a unique identifier in the format ``prefix.w_number`` or ``prefix.b_number`` for naming them, where ``prefix`` is either the user-specified :code:`name` or the automatically generated ``OP_name_number``. If a :code:`name` is specified in ``param_attr`` or ``bias_attr``, this :code:`name` will be used, and the automatic generation will not occur. For details, please refer to the example code.
 
-In addition, the weights of multiple network layers can be shared by specifying the :code:`name` parameter in :ref:`api_fluid_ParamAttr`.
+Additionally, in the :ref:`api_ParamAttr` API, you can achieve weight sharing across multiple network layers by specifying the :code:`name` parameter.
 
 Sample Code:
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import numpy as np
 
-    x = fluid.layers.data(name='x', shape=[1], dtype='int64', lod_level=1)
-    emb = fluid.layers.embedding(input=x, size=(128, 100))  # embedding_0.w_0
-    emb = fluid.layers.Print(emb) # Tensor[embedding_0.tmp_0]
+    embedding = paddle.nn.Embedding(num_embeddings=128, embedding_dim=100)
+    emb = embedding(x)  # embedding_0.w_0
+    print(emb) # Tensor[embedding_0.tmp_0]
 
     # default name
-    fc_none = fluid.layers.fc(input=emb, size=1)  # fc_0.w_0, fc_0.b_0
-    fc_none = fluid.layers.Print(fc_none)  # Tensor[fc_0.tmp_1]
+    fc = paddle.nn.Linear(in_features=100, out_features=1)
+    fc_out = fc(emb)  # fc_0.w_0, fc_0.b_0
+    print(fc_out)  # Tensor[fc_0.tmp_1]
 
-    fc_none1 = fluid.layers.fc(input=emb, size=1)  # fc_1.w_0, fc_1.b_0
-    fc_none1 = fluid.layers.Print(fc_none1)  # Tensor[fc_1.tmp_1]
+    fc1 = paddle.nn.Linear(in_features=100, out_features=1)  # fc_1.w_0, fc_1.b_0
+    fc1_out = fc1(emb)  # fc_1.w_0, fc_1.b_0
+    print(fc1_out)  # Tensor[fc_1.tmp_1]
 
     # name in ParamAttr
-    w_param_attrs = fluid.ParamAttr(name="fc_weight", learning_rate=0.5, trainable=True)
+    w_param_attrs = paddle.ParamAttr(name="fc_weight", learning_rate=0.5, trainable=True)
     print(w_param_attrs.name)  # fc_weight
 
     # name == 'my_fc'
-    my_fc1 = fluid.layers.fc(input=emb, size=1, name='my_fc', param_attr=w_param_attrs) # fc_weight, my_fc.b_0
-    my_fc1 = fluid.layers.Print(my_fc1)  # Tensor[my_fc.tmp_1]
+    my_fc = paddle.nn.Linear(in_features=100, out_features=1, name='my_fc', weight_attr=w_param_attrs)
+    my_fc_out = my_fc(emb) # fc_weight, my_fc.b_0
+    print(my_fc_out)  # Tensor[my_fc.tmp_1]
 
-    my_fc2 = fluid.layers.fc(input=emb, size=1, name='my_fc', param_attr=w_param_attrs) # fc_weight, my_fc.b_1
-    my_fc2 = fluid.layers.Print(my_fc2)  # Tensor[my_fc.tmp_3]
+    my_fc2 = paddle.nn.Linear(in_features=100, out_features=1, name='my_fc', weight_attr=w_param_attrs)
+    my_fc2_out = my_fc2(emb) # fc_weight, my_fc.b_1
+    print(my_fc2_out)  # Tensor[my_fc.tmp_3]
 
-    place = fluid.CPUPlace()
-    x_data = np.array([[1],[2],[3]]).astype("int64")
-    x_lodTensor = fluid.create_lod_tensor(x_data, [[1, 2]], place)
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    ret = exe.run(feed={'x': x_lodTensor}, fetch_list=[fc_none, fc_none1, my_fc1, my_fc2], return_numpy=False)
+    place = paddle.CPUPlace()
+
+    exe = paddle.static.Executor(place)
+
+    exe.run(paddle.static.default_startup_program())
+
+    ret = exe.run(feed={'x': x}, fetch_list=[fc_out, fc1_out, my_fc_out, my_fc2_out], return_numpy=False)
 
 
-In the above example, ``fc_none`` and ``fc_none1`` are not specified :code:`name` parameter, so this two layers are named with ``fc_0.tmp_1`` and ``fc_1.tmp_1`` in the form ``OPName_number.tmp_number`` , where the numbers in ``fc_0`` and ``fc_1`` are automatically incremented to distinguish this two fully connected layers. The other two fully connected layers ``my_fc1`` and ``my_fc2`` both specify the :code:`name` parameter with same values. Fluid will distinguish the two layers by suffix ``tmp_number`` . That is ``my_fc.tmp_1`` and ``my_fc.tmp_3`` .
+In the above example, ``fc_none`` and ``fc_none1`` did not specify the :code:`name` parameter, so the outputs of these OPs are named using the format ``OP_name_number.tmp_number``: ``fc_0.tmp_1`` and ``fc_1.tmp_1``, where the numbers in ``fc_0`` and ``fc_1`` automatically increment to distinguish the two fully connected layers. ``my_fc1`` and ``my_fc2`` both specified the :code:`name` parameter, but with the same value. Paddle differentiates them by appending ``tmp_number``, resulting in ``my_fc.tmp_1`` and ``my_fc.tmp_3``.
 
-Variables created in ``emb`` layer and ``fc_none`` , ``fc_none1`` are named by the ``OPName_number`` , such as ``embedding_0.w_0`` 、 ``fc_0.w_0`` 、 ``fc_0.b_0`` . And the prefix is consistent with the prefix of network layer. The ``my_fc1`` layer and ``my_fc2`` layer preferentially name the shared weight with ``fc_weight`` specified in ``ParamAttr`` . The bias variables ``my_fc.b_0`` and ``my_fc.b_1`` are identified suboptimally with :code:`name` int the operator as prefix.
+For variables created in the network layers, the ``emb`` layer, ``fc_none``, and ``fc_none1`` layers default to naming weight or bias variables with the prefix ``OP_name_number``, such as ``embedding_0.w_0``, ``fc_0.w_0``, and ``fc_0.b_0``, with the prefix matching the OP output. The ``my_fc1`` and ``my_fc2`` layers prioritize the ``fc_weight`` specified in ``ParamAttr`` as the name for the shared weights. The bias variables ``my_fc.b_0`` and ``my_fc.b_1`` are next in priority, named with the :code:`name` prefix.
 
-In the above example, the ``my_fc1`` and ``my_fc2`` two fully connected layers implement the sharing of weight parameters by constructing ``ParamAttr`` and specifying the :code:`name` parameter.
+In the above example, the two fully connected layers, ``my_fc1`` and ``my_fc2``, achieved weight variable sharing by constructing ``ParamAttr`` and specifying the :code:`name` parameter.
 
 .. _api_guide_ParamAttr:
 
@@ -129,15 +124,34 @@ In the above example, the ``my_fc1`` and ``my_fc2`` two fully connected layers i
 ParamAttr
 =========
 
+``ParamAttr`` is a configuration class used to set the attributes of model parameters, such as weights and biases. Through ``ParamAttr``, users can flexibly define characteristics such as parameter initialization methods, regularization strategies, gradient clipping, and model averaging.
+
+Sample Code:
+
+.. code-block:: python
+    import paddle
+    from paddle import ParamAttr
+
+    # Create a fully connected layer and set the attributes for the weights and biases.
+    fc = paddle.nn.Linear(in_features=128, out_features=64,
+                          weight_attr=ParamAttr(
+                              name='fc_weight',
+                              initializer=paddle.nn.initializer.XavierUniform(),
+                              regularizer=paddle.regularizer.L2Decay(0.0001)
+                          ),
+                           bias_attr=ParamAttr(
+                              name='fc_bias',
+                              initializer=paddle.nn.initializer.Constant(0.0)
+                          ))
+
+In the above example, ``weight_attr`` and ``bias_attr`` set the attributes for the weights and biases, respectively. The :code:`name` specifies the name of the parameter. The ``initializer`` sets the initialization method for the parameter, and the ``regularizer`` sets the regularization strategy for the parameter.
+
 ==================
 Related API
 ==================
 
 
-* A single neural network configured by the user is called :ref:`api_fluid_Program` . It is noteworthy that when training neural networks, users often need to configure and operate multiple :code:`Program` . For example,  :code:`Program` for parameter initialization, :code:`Program` for training,  :code:`Program` for testing, etc.
+* The user-configured individual neural network is called a :code:`Program`. It is important to note that during the training of a neural network, users often need to configure and operate multiple :code:`Programs`. For example, a :code:`Program` for parameter initialization, a :code:`Program` for training, and a :code:`Program` for testing, etc.
 
 
-* Users can also use :ref:`api_fluid_program_guard` with :code:`with` to modify the configured :ref:`api_fluid_default_startup_program` and :ref:`api_fluid_default_main_program` .
-
-
-* In Fluid，the execution order in a Block is determined by control flow，such as :ref:`api_fluid_layers_IfElse` , :ref:`api_fluid_layers_While` and :ref:`api_fluid_layers_Switch` . For more information, please refer to： :ref:`api_guide_control_flow_en`
+* Users can also use the :ref:`api_program_guard` in conjunction with the :code:`with` statement to modify the configured :ref:`api_default_startup_program` and :ref:`api_default_main_program`.
