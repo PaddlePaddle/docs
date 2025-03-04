@@ -151,15 +151,15 @@ During mini-batch training, the model parameters are updated after each batch. M
 
 The averaged parameters are used only for testing and prediction, not for training.
 
-API reference: :ref:`api_paddle_static_ExponentialMovingAverage` (currently in incubation and may undergo changes).
+API reference: :ref:`cn_api_paddle_incubate_ModelAverage` (currently in incubation and may undergo changes).
 
 Clipping
 ==========
 
 .. note::
-  The :code:`gradient_clip` attribute is deprecated. Use :code:`need_clip` to set gradient clipping ranges and configure clipping when initializing the :code:`optimizer` .
+  The :code:`gradient_clip` attribute is deprecated. Use :code:`need_clip` to control whether gradient clipping is applied, and configure the clipping method when initializing the :code:`optimizer` .
 
-Paddle sets clipping method for a single parameter by setting attributes of :code:`need_clip` in :code:`ParamAttr` .
+Paddle determines whether gradient clipping is applied to a single parameter by setting attributes of :code:`need_clip` in :code:`ParamAttr` .
 
 - Default value: `True` .
 
