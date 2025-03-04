@@ -7,9 +7,9 @@ Model Parameters
 .. note::
   The `paddle.fluid.*` APIs are deprecated. Please use the latest Paddle API versions instead.
 
-Model parameters are usually weights and bias in the model. In Paddle's dynamic graph mode, they correspond to the :code:`EagerParamBase` class. Model parameters are learnable variables that have gradients and can be optimized. In Paddle, custom parameters can be created using :ref:`cn_api_paddle_create_parameter` .
+Model parameters are usually weights and bias in the model. In Paddle's dynamic graph mode, they correspond to the :code:`EagerParamBase` class. Model parameters are learnable variables that have gradients and can be optimized. In Paddle, custom parameters can be created using :ref:`api_paddle_create_parameter` .
 
-You can configure properties related to model parameters using :ref:`cn_api_paddle_ParamAttr` . The configurable options include:
+You can configure properties related to model parameters using :ref:`api_paddle_ParamAttr` . The configurable options include:
 
 - Initialization method
 - Regularization
@@ -38,7 +38,7 @@ The constant initialization method sets parameters to a fixed value, such as ini
 
 - Parameter: `value` specifies the initial value (default is 0.0).
 
-API reference: :ref:`cn_api_paddle_nn_initializer_Constant`
+API reference: :ref:`api_paddle_nn_initializer_Constant`
 
 2. Normal
 ----------
@@ -47,7 +47,7 @@ The random normal distribution method generates values based on a normal (Gaussi
 
 - Parameters: `mean` (default 0.0) and `std` (default 1.0) define the mean and standard deviation.
 
-API reference: :ref:`cn_api_paddle_nn_initializer_Normal`
+API reference: :ref:`api_paddle_nn_initializer_Normal`
 
 3. Uniform
 -----------
@@ -56,7 +56,7 @@ The random uniform distribution method samples values evenly within a specified 
 
 - Parameters: `low` (default -1.0) and `high` (default 1.0) define the range.
 
-API reference: :ref:`cn_api_paddle_nn_initializer_Uniform`
+API reference: :ref:`api_paddle_nn_initializer_Uniform`
 
 4. XavierUniform
 -----------------
@@ -65,7 +65,7 @@ The Xavier uniform distribution method, proposed by Xavier Glorot and Yoshua Ben
 
 - Range is determined by `fan_in` (input dimension), `fan_out` (output dimension), and `gain` (scaling factor).
 
-API reference: :ref:`cn_api_paddle_nn_initializer_XavierUniform`
+API reference: :ref:`api_paddle_nn_initializer_XavierUniform`
 
 5. XavierNormal
 ----------------
@@ -74,7 +74,7 @@ The Xavier normal distribution method, proposed in the paper **Understanding the
 
 - Mean is 0, and the standard deviation is determined by `fan_in`, `fan_out`, and `gain` .
 
-API reference: :ref:`cn_api_paddle_nn_initializer_XavierNormal`
+API reference: :ref:`api_paddle_nn_initializer_XavierNormal`
 
 6. KaimingUniform
 ------------------
@@ -83,7 +83,7 @@ The Kaiming uniform distribution method, proposed by Kaiming He et al. in the pa
 
 - Range is determined by `fan_in`, `negative_slope` (default 0), and `nonlinearity` (default 'relu').
 
-API reference: :ref:`cn_api_paddle_nn_initializer_KaimingUniform`
+API reference: :ref:`api_paddle_nn_initializer_KaimingUniform`
 
 7. KaimingNormal
 -----------------
@@ -92,7 +92,7 @@ The Kaiming normal distribution method, proposed in the paper **Delving Deep int
 
 - Mean is 0, and the standard deviation is determined by `fan_in`, `negative_slope` (default 0), and `nonlinearity` (default 'relu').
 
-API reference: :ref:`cn_api_paddle_nn_initializer_KaimingNormal`
+API reference: :ref:`api_paddle_nn_initializer_KaimingNormal`
 
 8. TruncatedNormal
 -------------------
@@ -101,18 +101,18 @@ The truncated normal distribution method limits the generated values from a norm
 
 - Parameters: `mean` (default 0.0), `std` (default 1.0), and truncation bounds `a` and `b` (default -2.0 and 2.0).
 
-API reference: :ref:`cn_api_paddle_nn_initializer_TruncatedNormal`
+API reference: :ref:`api_paddle_nn_initializer_TruncatedNormal`
 
 Other Initialization Methods
 ----------------------------
 
 Paddle also supports the following initialization methods:
 
-- :ref:`cn_api_paddle_nn_initializer_Assign`: Initialize directly using a NumPy array, Python list, or Tensor.
-- :ref:`cn_api_paddle_nn_initializer_Bilinear`: Used for upsampling in transposed convolutions to enlarge feature maps.
-- :ref:`cn_api_paddle_nn_initializer_Dirac`: Initializes convolution kernels with a Dirac delta function to preserve input characteristics.
-- :ref:`cn_api_paddle_nn_initializer_Orthogonal`: Generates an orthogonal matrix for initialization, ensuring (semi-)orthogonality.
-- :ref:`cn_api_paddle_nn_initializer_set_global_initializer`: Sets a global initialization method, effective only for code that follows it.
+- :ref:`api_paddle_nn_initializer_Assign`: Initialize directly using a NumPy array, Python list, or Tensor.
+- :ref:`api_paddle_nn_initializer_Bilinear`: Used for upsampling in transposed convolutions to enlarge feature maps.
+- :ref:`api_paddle_nn_initializer_Dirac`: Initializes convolution kernels with a Dirac delta function to preserve input characteristics.
+- :ref:`api_paddle_nn_initializer_Orthogonal`: Generates an orthogonal matrix for initialization, ensuring (semi-)orthogonality.
+- :ref:`api_paddle_nn_initializer_set_global_initializer`: Sets a global initialization method, effective only for code that follows it.
 
 Regularization
 =================
@@ -129,8 +129,8 @@ Paddle regularizes a single parameter by setting attributes of :code:`regularize
 
 The following is the regularization approach supported by Paddle:
 
-- :ref:`cn_api_paddle_regularizer_L1Decay`
-- :ref:`cn_api_paddle_regularizer_L2Decay`
+- :ref:`api_paddle_regularizer_L1Decay`
+- :ref:`api_paddle_regularizer_L2Decay`
 
 Model Averaging
 ================
@@ -151,7 +151,7 @@ During mini-batch training, the model parameters are updated after each batch. M
 
 The averaged parameters are used only for testing and prediction, not for training.
 
-API reference: :ref:`cn_api_paddle_static_ExponentialMovingAverage` (currently in incubation and may undergo changes).
+API reference: :ref:`api_paddle_static_ExponentialMovingAverage` (currently in incubation and may undergo changes).
 
 Clipping
 ==========
@@ -178,20 +178,20 @@ The following is the clipping method supported by Paddle:
 
 Limits the sum of the L2 norms of all Tensors in a Tensor list `t_list` to the :code:`clip_norm` range.
 
-API reference: :ref:`cn_api_paddle_nn_ClipGradByGlobalNorm`
+API reference: :ref:`api_paddle_nn_ClipGradByGlobalNorm`
 
 2. GradientClipByNorm
 ---------------------
 
 Limits the L2 norm of a multi-dimensional input Tensor `X` to the :code:`clip_norm` range.
 
-API reference: :ref:`cn_api_paddle_nn_ClipGradByNorm`
+API reference: :ref:`api_paddle_nn_ClipGradByNorm`
 
 3. GradientClipByValue
 ----------------------
 
 Limits the values of a multi-dimensional input Tensor `X` to the range [min, max].
 
-API reference: :ref:`cn_api_paddle_nn_ClipGradByValue`
+API reference: :ref:`api_paddle_nn_ClipGradByValue`
 
-For more details on gradient clipping methods, refer to: :ref:`梯度裁剪方式介绍 <en_gradient_clip>`_
+For more details on gradient clipping methods, refer to: :ref:`Gradient clip methods in Paddle <en_gradient_clip>` .
