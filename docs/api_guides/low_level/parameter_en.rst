@@ -151,7 +151,7 @@ During mini-batch training, the model parameters are updated after each batch. M
 
 The averaged parameters are used only for testing and prediction, not for training.
 
-API reference: :ref:`cn_api_paddle_incubate_ModelAverage` (currently in incubation and may undergo changes).
+API reference: :ref:`api_paddle_incubate_ModelAverage` (currently in incubation and may undergo changes).
 
 Clipping
 ==========
