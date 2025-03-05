@@ -139,7 +139,7 @@ Paddle 通过设置 :code:`ParamAttr` 的 :code:`regularizer` 属性为单个 pa
 
 Paddle 通过设置 :code:`ParamAttr` 的 :code:`do_model_average` 属性为单个 parameter 设置是否进行平均优化。
 
-默认值为 True。
+默认值为 `True` 。
 
   .. code-block:: python
 
@@ -159,11 +159,11 @@ Clipping
 ==========
 
 .. note::
-  :code:`gradient_clip` 已废弃，请使用 :code:`need_clip` 设置梯度裁剪范围，并在初始化 :code:`optimizer` 时设置梯度裁剪。
+  :code:`gradient_clip` 已废弃，请使用 :code:`need_clip` 设置是否进行梯度裁剪，并在初始化 :code:`optimizer` 时设置梯度裁剪方法。
 
-Paddle 通过设置 :code:`ParamAttr` 的 :code:`need_clip` 属性为单个 parameter 设置是否需要梯度裁剪。
+Paddle 通过设置 :code:`ParamAttr` 的 :code:`need_clip` 属性为单个 parameter 设置是否进行梯度裁剪。
 
-默认值为 True。
+默认值为 `True` 。
 
   .. code-block:: python
 
