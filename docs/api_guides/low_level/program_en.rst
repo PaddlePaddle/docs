@@ -5,24 +5,59 @@ Basic Concept
 ###############
 
 ==================
+IR
+==================
+
+:code:`Paddle` represents the computation graph using an IR (Intermediate Representation) and leverages compiler principles, techniques, and tools to perform automatic optimization and code generation for neural networks.
+
+The new IR represents structured control flow through a recursive nesting of :code:`Operation`, :code:`Region`, and :code:`Block`.
+
+* An :code:`Operation` contains zero or more :code:`Regions`.
+* A :code:`Region` contains zero or more :code:`Blocks`.
+* A :code:`Block` contains zero or more :code:`Operations`.
+
+These three components are recursively nested to describe complex model structures.
+
+==================
 Program
 ==================
 
-In PaddlePaddle, a Program is a static graph model, similar to programs in other programming languages. Static graph programming follows a "define-and-run" approach:
+A :code:`Program` represents a specific model. It consists of two parts: the computation graph and the weights. The model is equivalent to a directed acyclic graph (DAG), where :code:`Operation` serves as the nodes and :code:`Value` represents the edges.
 
-* Define: The complete neural network architecture is predefined in the code.
+:code:`Weight` is used to store the model's weight parameters separately, while :code:`Value` and :code:`Operation` abstract the computation graph.
 
-* Compile: PaddlePaddle represents the neural network as a Program data structure and performs compilation optimizations.
+:code:`Operation` represents a node in the computation graph. Each :code:`Operation` corresponds to an operator and contains zero or more :code:`Regions`.
 
-* Execute: An executor is invoked to obtain the computation results.
+:code:`Region` acts as a closure and contains zero or more :code:`Blocks`.
 
-This approach allows for efficient execution but requires the entire network structure to be defined before running the program.
+:code:`Block` represents a basic block conforming to SSA (Static Single Assignment) form and contains zero or more :code:`Operations`.
 
-* A :code:`Program` consists of nested :code:`Blocks`. The concept of a :code:`Block` can be likened to a pair of curly braces ``{}`` in languages like C++ or Java, or to an indented block in Python.
+:code:`Value` represents a directed edge in the computation graph, linking two :code:`Operations` and describing the UD (Use-Define) chain in the program.
 
-* The computation in the :code:`Block` is composed of three types of execution: sequential execution, conditional selection, and loop execution, which together form a complex computational logic.
+In a :code:`Program`, ``ModuleOp module_`` stores the computation graph, while the ``ParameterMap parameters_`` stores the weights. In the ``ModuleOp`` class, a :code:`Block` is used to store the contents of the computation graph.
 
-* The :code:`Block` contains descriptions of the computation and the objects involved in the computation. The description of the computation is called the :code:`Operator`; the objects on which the computation acts (or the inputs and outputs of the :code:`Operator`) are unified as :code:`Tensors`.
+.. _api_guide_Region_en:
+
+=========
+Region
+=========
+
+A :code:`Region` contains a list of :code:`Blocks`. The first :code:`Block` (if it exists) is referred to as the entry block of that :code:`Region`.
+
+Unlike basic blocks, a key constraint of a :code:`Region` is that any :code:`Value` defined within the :code:`Region` can only be used inside that :code:`Region` and cannot be accessed externally.
+
+When control flow enters a :code:`Region`, it effectively creates a new sub-scope. Upon exiting the :code:`Region`, all variables defined within this sub-scope can be reclaimed.
+
+Control flow always enters a :code:`Region` through its entry block. Therefore, the parameters of a :code:`Region` can be described using the entry block's parameters without additional handling.
+
+Once a :code:`Region` completes its execution and control flow returns from a child :code:`Block` to the :code:`Region`, there are two possible outcomes:
+
+* The control flow enters another :code:`Region` of the same Op (which may be itself).
+* The control flow returns to the parent Op of the :code:`Region`, marking the completion of one execution cycle of that Op.
+
+The specific destination is determined by the semantics of the parent Op of the :code:`Region`.
+
+Note: Before introducing control flow, an :code:`Operation` consists of its inputs, outputs, attributes, and type information. After incorporating control flow, an :code:`Operation` additionally includes its inputs (:code:`OpOperand`), outputs (:code:`OpResult`), attributes (:code:`AttributeMap`), successor blocks (:code:`BlockOperand`), and :code:`Region`. The successor blocks and :code:`Region` are newly added components.
 
 .. _api_guide_Block_en:
 
@@ -30,17 +65,33 @@ This approach allows for efficient execution but requires the entire network str
 Block
 =========
 
-The :code:`Block` is the concept of variable scope in high-level languages, similar to a pair of curly braces in C or Java, which contain local variable definitions and a series of instructions or operators.
+A :code:`Block` is equivalent to a basic block and contains a list of operators (``std::list<Operation*>``) that represent the computation semantics of the basic block.
 
-The :code:`Block` is the fundamental unit in a computation graph used to represent computational logic. It contains a series of operations (:code:`Operator`) and computational objects (:code:`Tensor`), supporting control structures such as sequential execution, conditional selection, and loop execution, thereby building complex computational flows.
+When the last operator in a :code:`Block` finishes execution, the control flow follows one of two paths based on the semantics of the last operator (terminator operator) in the block:
 
-* Computation description: The :code:`Block` contains multiple :code:`Operators` internally, with each :code:`Operator` representing a computational operation, such as addition, convolution, etc.
+* It transitions to another :code:`Block` within the same :code:`Region`. This :code:`Block` must be a successor block of the terminator operator.
+* It returns to the parent :code:`Region` of the :code:`Block`, indicating the completion of one execution cycle of that :code:`Region`.
 
-* Object description: The computational objects in the :code:`Block` are unified as :code:`Tensors`, representing multi-dimensional arrays or matrices, and are the basic units of data storage and transmission.
+.. _api_guide_Operation_en:
 
-* Control structures: The :code:`Block` supports control structures such as sequential execution, conditional selection, and loop execution, making the computational flow more flexible and complex.
+=============
+Operation
+=============
 
-In the PaddlePaddle computation graph, :code:`Block`, :code:`Operator`, and :code:`Tensor` together form the backbone of the computational flow. The :code:`Block` provides a container function, organizing and managing the internal :code:`Operators` and :code:`Tensors`, thereby enabling efficient construction and execution of the computation graph.
+An :code:`Operation` is a node in a directed graph. The information of an :code:`Operation` is divided into four parts: inputs (:code:`OpOperandImpl`), outputs (:code:`OpResultImpl`), attributes (:code:`Attribute`), and type information (:code:`OpInfo`). The number of inputs and outputs is determined at the time of construction and remains unchanged afterward.
+
+:code:`Attribute` is used to describe an attribute. Users can temporarily store some runtime attributes within an operator, but these runtime attributes are only for assisting computation and are not allowed to alter the computation semantics. When exporting a model, all runtime attributes are removed by default.
+
+:code:`Operation` type information (:code:`OpInfo`) is essentially an abstraction of the common properties shared by operators of the same type.
+
+
+.. _api_guide_Weight_en:
+
+=============
+Weight
+=============
+
+:code:`Weight` attributes are a special type of attribute, typically involving a large amount of data. :code:`Paddle` stores weights separately and retrieves or saves weight values in the model using weight names. Currently, all model weights in :code:`Paddle` are of type ``Variable``.
 
 =============
 Operator
@@ -56,7 +107,7 @@ In Paddle, a :code:`Variable` can contain any type of value — most commonly a 
 
 All learnable parameters in the model are stored as :code:`Variable` objects in memory. In most cases, you don't need to manually create the learnable parameters in the network, as Paddle provides wrappers for almost all common neural network basic computation modules. For example, in the simplest fully connected model in a static graph, calling :code:`paddle.static.nn.fc` will automatically create the learnable parameters for the fully connected layer: connection weights (W) and biases (bias), without the need to explicitly call the :code:`variable` interface to create learnable parameters.
 
-.. _api_guide_Name:
+.. _api_guide_Name_en:
 
 =========
 Name
@@ -118,7 +169,7 @@ For variables created in the network layers, the ``emb`` layer, ``fc_none``, and
 
 In the above example, the two fully connected layers, ``my_fc1`` and ``my_fc2``, achieved weight variable sharing by constructing ``ParamAttr`` and specifying the :code:`name` parameter.
 
-.. _api_guide_ParamAttr:
+.. _api_guide_ParamAttr_en:
 
 =========
 ParamAttr
@@ -145,13 +196,3 @@ Sample Code:
                           ))
 
 In the above example, ``weight_attr`` and ``bias_attr`` set the attributes for the weights and biases, respectively. The :code:`name` specifies the name of the parameter. The ``initializer`` sets the initialization method for the parameter, and the ``regularizer`` sets the regularization strategy for the parameter.
-
-==================
-Related API
-==================
-
-
-* The user-configured individual neural network is called a :code:`Program`. It is important to note that during the training of a neural network, users often need to configure and operate multiple :code:`Programs`. For example, a :code:`Program` for parameter initialization, a :code:`Program` for training, and a :code:`Program` for testing, etc.
-
-
-* Users can also use the :ref:`api_program_guard` in conjunction with the :code:`with` statement to modify the configured :ref:`api_default_startup_program` and :ref:`api_default_main_program`.
