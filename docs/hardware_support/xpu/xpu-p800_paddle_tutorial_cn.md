@@ -32,6 +32,20 @@ python -m pip install --pre paddlepaddle-xpu -i https://www.paddlepaddle.org.cn/
 
 * *本教程预计使用单卡 P800 训练 9 分钟*
 
+在启动命令前，请正确设置以下环境变量：
+```shell
+export XPU_FORCE_USERMODE_LAUNCH=1
+export XBLAS_FC_HBM_VERSION=40
+export XPU_CDNN_CLUSTER_PARALLEL=1
+export XPU_CDNN_CLUSTER_PARALLEL_STREAM_NUMBER=2
+export XPU_PADDLE_L3_SIZE0=1024
+export XPU_PADDLE_L3_SIZE1=1024
+export XPUAPI_DEFAULT_SIZE0=1502653248
+export XPUAPI_DEFAULT_SIZE1=380265324
+export FLAGS_set_to_1d=False
+export FLAGS_use_stride_kernel="0"
+```
+
 1. 导入必要的包
 
 ```python
