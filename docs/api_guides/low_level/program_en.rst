@@ -16,9 +16,9 @@ In PaddlePaddle, a Program is a static graph model, similar to programs in other
 
 * Execute: An executor is invoked to obtain the computation results.
 
-This approach allows for efficient execution but requires the entire network structure to be defined before running the program. 
+This approach allows for efficient execution but requires the entire network structure to be defined before running the program.
 
-* A :code:`Program` consists of nested :code:`Blocks`. The concept of a :code:`Block` can be likened to a pair of curly braces ``{}`` in languages like C++ or Java, or to an indented block in Python. 
+* A :code:`Program` consists of nested :code:`Blocks`. The concept of a :code:`Block` can be likened to a pair of curly braces ``{}`` in languages like C++ or Java, or to an indented block in Python.
 
 * The computation in the :code:`Block` is composed of three types of execution: sequential execution, conditional selection, and loop execution, which together form a complex computational logic.
 
