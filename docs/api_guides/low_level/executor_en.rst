@@ -8,7 +8,7 @@ Executor
 
 The logic of :code:`Executor` is very simple. It is suggested to thoroughly run the model with :code:`Executor` in debugging phase on one computer and then switch to mode of multiple devices or multiple computers to compute.
 
-:code:`Executor` accepts either a :code:`Place` including :ref:`cn_api_paddle_CPUPlace` and :ref:`cn_api_paddle_CUDAPlace`, or a device descriptor :code:`str` such as :code:`"cpu"` and :code:`"gpu:0"`.
+:code:`Executor` accepts either a :code:`Place` including :ref:`api_paddle_CPUPlace` and :ref:`api_paddle_CUDAPlace`, or a device descriptor :code:`str` such as :code:`"cpu"` and :code:`"gpu:0"`.
 
 .. code-block:: python
 
@@ -27,7 +27,7 @@ The logic of :code:`Executor` is very simple. It is suggested to thoroughly run 
     exe = paddle.static.Executor(place)
 
     # define input data and labels
-    # shape '-1' indicates dynamic batch size and '784' is the feature dimensions
+    # shape '-1' indicates dynamic batch size and '784' is the feature dimension
     x = paddle.static.data(name="x", shape=[-1, 784], dtype="float32")
     label = paddle.static.data(name="label", shape=[-1, 1], dtype="int64")
 
@@ -50,4 +50,4 @@ The logic of :code:`Executor` is very simple. It is suggested to thoroughly run 
     )
     print(f"loss: {loss_value}\nmodel output: {out_value}")
 
-For the parameter introduction on Executor please refer to :ref:`cn_api_paddle_static_Executor`
+For the parameter introduction about Executor please refer to :ref:`api_paddle_static_Executor`
