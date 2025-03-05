@@ -16,7 +16,7 @@
 | PaddleX | 图像多标签分类 | [PP-HGNetV2-B0_ML](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/multilabel_classification/PP-HGNetV2-B0_ML.yaml) | √ | √ |
 | PaddleX | 图像多标签分类 | [PP-HGNetV2-B4_ML](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/multilabel_classification/PP-HGNetV2-B4_ML.yaml) | √ | √ |
 | PaddleX | 图像多标签分类 | [PP-HGNetV2-B6_ML](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/multilabel_classification/PP-HGNetV2-B6_ML.yaml) | √ | √ |
-| PaddleX | 图像特征 | [PP-ShiTuV2_rec_CLIP_vit_base](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/general_recognition/PP-ShiTuV2_rec_CLIP_vit_base.yaml) | √ | √ |
+| PaddleX | 图像特征 | [PP-ShiTuV2_rec_CLIP_vit_base](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/image_feature/PP-ShiTuV2_rec_CLIP_vit_base.yaml) | √ | √ |
 | PaddleX | 目标检测 | [PicoDet-XS](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/object_detection/PicoDet-XS.yaml) | √ | √ |
 | PaddleX | 目标检测 | [PicoDet-S](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/object_detection/PicoDet-S.yaml) | √ | √ |
 | PaddleX | 目标检测 | [PicoDet-M](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/object_detection/PicoDet-M.yaml) | √ | √ |
