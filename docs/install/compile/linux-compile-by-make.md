@@ -155,20 +155,12 @@ mkdir -p /paddle/build && cd /paddle/build
 
 #### 8. 使用以下命令安装相关依赖：
 
-- 安装 protobuf。
-
+- 安装编译依赖
 ```
-pip3.10 install protobuf
+pip3.10 install -r /paddle/requirements.txt
 ```
 
 注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12
-
-- 安装 patchelf，PatchELF 是一个小而实用的程序，用于修改 ELF 可执行文件的动态链接器和 RPATH。
-
-```
-apt install patchelf
-```
-
 
 #### 9. 执行 cmake：
 
@@ -433,7 +425,16 @@ git checkout develop
 mkdir build && cd build
 ```
 
-#### 11. 执行 cmake：
+#### 11. 使用以下命令安装相关依赖：
+
+- 安装编译依赖
+```
+pip3.10 install -r /paddle/requirements.txt
+```
+
+注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12
+
+#### 12. 执行 cmake：
 
 >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
@@ -478,7 +479,7 @@ mkdir build && cd build
 
 
 
-#### 12. 使用以下命令来编译：
+#### 13. 使用以下命令来编译：
 
 ```
 make -j$(nproc)
@@ -488,12 +489,12 @@ make -j$(nproc)
 
 > 如果编译过程中显示“Too many open files”错误时，请使用指令 ulimit -n 8192 来增大当前进程允许打开的文件数，一般来说 8192 可以保证编译完成。
 
-#### 13. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
+#### 14. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
 ```
 cd /paddle/build/python/dist
 ```
 
-#### 14. 在当前机器或目标机器安装编译好的`.whl`包：
+#### 15. 在当前机器或目标机器安装编译好的`.whl`包：
 
 ```
 pip install -U（whl 包的名字）

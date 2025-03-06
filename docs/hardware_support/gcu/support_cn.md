@@ -8,18 +8,18 @@
 
 | 模型库 | 模型类型 | 模型名称 | 训练 | 推理 |
 | - | - | - | - | - |
-| PaddleX | 图像分类 | [ResNet50](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/image_classification/ResNet50.yaml) |   | √ |
-| PaddleX | 目标检测 | [PP-YOLOE_plus-S](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PP-YOLOE_plus-S.yaml) |   | √ |
-| PaddleX | 目标检测 | [PP-YOLOE_plus-M](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PP-YOLOE_plus-M.yaml) |   | √ |
-| PaddleX | 目标检测 | [PP-YOLOE_plus-L](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PP-YOLOE_plus-L.yaml) |   | √ |
-| PaddleX | 目标检测 | [PP-YOLOE_plus-X](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/PP-YOLOE_plus-X.yaml) |   | √ |
-| PaddleX | 目标检测 | [RT-DETR-R18](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/RT-DETR-R18.yaml) |   | √ |
-| PaddleX | 目标检测 | [RT-DETR-R50](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/RT-DETR-R50.yaml) |   | √ |
-| PaddleX | 目标检测 | [RT-DETR-L](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/RT-DETR-L.yaml) |   | √ |
-| PaddleX | 目标检测 | [RT-DETR-H](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/RT-DETR-H.yaml) |   | √ |
-| PaddleX | 目标检测 | [RT-DETR-X](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/object_detection/RT-DETR-X.yaml) |   | √ |
-| PaddleX | 文本检测 | [PP-OCRv4_server_det](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_detection/PP-OCRv4_server_det.yaml) |   | √ |
-| PaddleX | 文本检测 | [PP-OCRv4_mobile_det](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_detection/PP-OCRv4_mobile_det.yaml) |   | √ |
-| PaddleX | 文本识别 | [PP-OCRv4_server_rec](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_recognition/PP-OCRv4_server_rec.yaml) |   | √ |
-| PaddleX | 文本识别 | [PP-OCRv4_mobile_rec](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/text_recognition/PP-OCRv4_mobile_rec.yaml) |   | √ |
-| PaddleNLP | 大语言模型 | [LLaMA](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/llm/gcu/llama) |   | √ |
+| PaddleX | 图像分类 | [ResNet50](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/image_classification/ResNet50.yaml) |   | √ |
+| PaddleX | 目标检测 | [PP-YOLOE_plus-S](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/object_detection/PP-YOLOE_plus-S.yaml) |   | √ |
+| PaddleX | 目标检测 | [PP-YOLOE_plus-M](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/object_detection/PP-YOLOE_plus-M.yaml) |   | √ |
+| PaddleX | 目标检测 | [PP-YOLOE_plus-L](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/object_detection/PP-YOLOE_plus-L.yaml) |   | √ |
+| PaddleX | 目标检测 | [PP-YOLOE_plus-X](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/object_detection/PP-YOLOE_plus-X.yaml) |   | √ |
+| PaddleX | 目标检测 | [RT-DETR-R18](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/object_detection/RT-DETR-R18.yaml) |   | √ |
+| PaddleX | 目标检测 | [RT-DETR-R50](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/object_detection/RT-DETR-R50.yaml) |   | √ |
+| PaddleX | 目标检测 | [RT-DETR-L](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/object_detection/RT-DETR-L.yaml) |   | √ |
+| PaddleX | 目标检测 | [RT-DETR-H](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/object_detection/RT-DETR-H.yaml) |   | √ |
+| PaddleX | 目标检测 | [RT-DETR-X](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/object_detection/RT-DETR-X.yaml) |   | √ |
+| PaddleX | 文本检测 | [PP-OCRv4_server_det](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/text_detection/PP-OCRv4_server_det.yaml) |   | √ |
+| PaddleX | 文本检测 | [PP-OCRv4_mobile_det](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/text_detection/PP-OCRv4_mobile_det.yaml) |   | √ |
+| PaddleX | 文本识别 | [PP-OCRv4_server_rec](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/text_recognition/PP-OCRv4_server_rec.yaml) |   | √ |
+| PaddleX | 文本识别 | [PP-OCRv4_mobile_rec](https://github.com/PaddlePaddle/PaddleX/blob/develop/paddlex/configs/modules/text_recognition/PP-OCRv4_mobile_rec.yaml) |   | √ |
+| PaddleNLP | 大语言模型 | [LLaMA](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/llm/devices/gcu/llama) |   | √ |
