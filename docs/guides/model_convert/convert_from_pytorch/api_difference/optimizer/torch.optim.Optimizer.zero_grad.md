@@ -1,4 +1,4 @@
-## [ 输入参数用法不一致 ]torch.nn.Module.zero_grad
+## [ 输入参数用法不一致 ]torch.optim.Optimizer.zero_grad
 
 ### [torch.optim.Optimizer.zero_grad](https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.zero_grad.html)
 
