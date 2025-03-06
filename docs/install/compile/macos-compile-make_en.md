@@ -117,6 +117,11 @@ Note: We used Python3.10 command as an example above, if the version of your Pyt
 apt install patchelf
 ```
 
+> Install compilation dependencies
+```
+pip3.10 install -r /paddle/requirements.txt
+```
+
 #### 10. Execute cmake:
 
 * For users who need to compile the **CPU version PaddlePaddle** (We currently do not support the compilation of the GPU version PaddlePaddle under macOS):
