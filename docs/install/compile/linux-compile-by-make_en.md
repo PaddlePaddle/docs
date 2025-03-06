@@ -173,6 +173,10 @@ Note: We used Python3.10 command as an example above, if the version of your Pyt
 ```
 apt install patchelf
 ```
+- Install compilation dependencies
+```
+pip3.10 install -r /paddle/requirements.txt
+```
 
 #### 9. Execute cmake:
 

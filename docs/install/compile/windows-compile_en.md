@@ -33,21 +33,9 @@ There is one compilation methods in Windows system:
 
     * After installing python, please check whether the python version is the expected version by `python-version`, because you may have more than one python installed on your computer. You can handle conflicts of multiple pythons by changing the order of the environment variables.
 
-    > `numpy, protobuf, wheel` are needed to be installed. Use the 'pip' command.
-
-    * To Install numpy package you can use command
+    > Install compilation dependencies
         ```
-        pip install numpy
-        ```
-
-    * To Install protobuf package you can use command
-        ```
-        pip install protobuf
-        ```
-
-    * To Install Wheel package you can use command
-        ```
-        pip install wheel
+        pip install -r /paddle/requirements.txt
         ```
 
     > Git can be downloaded on the [official website](https://gitforwindows.org/) and added to the environment variable.
