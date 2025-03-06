@@ -140,4 +140,4 @@ Related API
 * Users can also use :ref:`api_fluid_program_guard` with :code:`with` to modify the configured :ref:`api_fluid_default_startup_program` and :ref:`api_fluid_default_main_program` .
 
 
-* In Fluid，the execution order in a Block is determined by control flow，such as :ref:`api_fluid_layers_IfElse` , :ref:`api_fluid_layers_While` and :ref:`api_fluid_layers_Switch` . For more information, please refer to： :ref:`api_guide_control_flow_en`
+* In Fluid，the execution order in a Block is determined by control flow，such as :ref:`api_fluid_layers_IfElse` , :ref:`api_fluid_layers_While` and :ref:`api_fluid_layers_Switch` .
