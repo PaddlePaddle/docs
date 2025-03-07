@@ -19,18 +19,28 @@
 ```bash
 # 拉取镜像
 docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-gcu:topsrider3.2.109-ubuntu20-x86_64-gcc84
-
+```
+```bash
 # 参考如下命令启动容器
 docker run --name paddle-gcu-dev -v /home:/home \
     --network=host --ipc=host -it --privileged \
     ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-gcu:topsrider3.2.109-ubuntu20-x86_64-gcc84 /bin/bash
+```
+#### 选项说明及可调整参数
 
+##### ① `--name paddle-gcu-dev`
+- **作用**：指定容器名称。
+- **可调整**：
+  - 用户可改为其他名称，例如 `paddle-gcu-test`，方便区分不同实验。
+
+```bash
 # 容器外安装驱动程序。可以参考飞桨自定义接入硬件后端(GCU)环境准备章节
 bash TopsRider_i3x_*_deb_amd64.run --driver --no-auto-load
 
 # 容器外检查是否可以正常识别燧原 GCU 设备
 efsmi
-
+```
+```bash
 # 预期得到类似如下的结果
 ----------------------------------------------------------------------------
 ------------------- Enflame System Management Interface --------------------
@@ -66,7 +76,7 @@ python -m pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/n
 # 再安装飞桨 GCU 插件包
 python -m pip install paddle-custom-gcu -i https://www.paddlepaddle.org.cn/packages/nightly/gcu
 ```
-
+⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ### 安装方式二：源代码编译安装
 
 在启动的 docker 容器中，先安装飞桨 CPU 安装包，再下载 PaddleCustomDevice 源码编译得到飞桨 GCU 插件包。
@@ -90,7 +100,7 @@ make -j $(nproc)
 # 飞桨 GCU 插件包在 build/dist 路径下，使用 pip 安装即可
 python -m pip install --force-reinstall -U build/dist/paddle_custom_gcu*.whl
 ```
-
+⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ## 基础功能检查
 
 安装完成后，在 docker 容器中输入如下命令进行飞桨基础健康功能的检查。
@@ -98,14 +108,19 @@ python -m pip install --force-reinstall -U build/dist/paddle_custom_gcu*.whl
 ```bash
 # 检查当前安装版本
 python -c "import paddle_custom_device; paddle_custom_device.gcu.version()"
+```
+```bash
 # 预期得到如下输出结果
 version: 3.0.0.dev20241206
 commit: 7a2766768cc92aa94cc3d0ea6c23e8397f15f68a
 TopsPlatform: 1.2.0.301
 ....
-
+```
+```bash
 # 飞桨基础健康检查
 python -c "import paddle; paddle.utils.run_check()"
+```
+```bash
 # 预期得到输出如下
 Running verify PaddlePaddle program ...
 PaddlePaddle works well on 1 gcu.
