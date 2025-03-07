@@ -36,7 +36,7 @@ cd PaddleX
 # -e：以可编辑模式安装，当前项目的代码更改，都会直接作用到已经安装的 PaddleX Wheel
 pip install -e .
 ```
-
+⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ## 基于 PaddleX 训练 ResNet50
 
 ### 一、安装 PaddleX 依赖
