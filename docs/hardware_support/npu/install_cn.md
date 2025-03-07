@@ -30,7 +30,8 @@ lspci | grep d802
 # 拉取镜像
 docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-npu-base-x86_64-gcc84 # X86 架构
 docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-npu-base-aarch64-gcc84 # ARM 架构
-
+```
+```bash
 # 考如下命令启动容器，ASCEND_RT_VISIBLE_DEVICES 可指定可见的 NPU 卡号
 docker run -it --name paddle-npu-dev -v $(pwd):/work \
     --privileged --network=host --shm-size=128G -w=/work \
@@ -39,10 +40,30 @@ docker run -it --name paddle-npu-dev -v $(pwd):/work \
     -v /usr/local/dcmi:/usr/local/dcmi \
     -e ASCEND_RT_VISIBLE_DEVICES="0,1,2,3,4,5,6,7" \
     ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-$(uname -m)-gcc84 /bin/bash
+```
+#### 选项说明及可调整参数
 
+##### ① `--name paddle-npu-dev`
+- **作用**：指定容器名称。
+- **可调整**：
+  - 用户可改为其他名称，例如 `paddle-npu-test`，方便区分不同实验。
+
+##### ② `-v $(pwd):/work`
+- **作用**：挂载本地目录到容器内 `/work` 目录。
+- **可调整**：
+  - 可以修改 `$(pwd)` 为实际路径，例如 `-v /data/projects:/work`，让容器访问宿主机的数据。
+
+##### ③ `--shm-size=128G`
+- **作用**：设置共享内存大小，影响数据处理和计算效率。
+- **可调整**：
+  - 若内存有限，可降低，如 `--shm-size=32G`，但可能影响大规模训练。
+  - 若训练任务需要更大共享内存，可提高，如 `--shm-size=256G`。
+
+```bash
 # 检查容器内是否可以正常识别昇腾 NPU 设备
 npu-smi info
-
+```
+```bash
 # 预期得到类似如下的结果
 +------------------------------------------------------------------------------------------------+
 | npu-smi 23.0.3                   Version: 23.0.3                                               |
@@ -80,7 +101,7 @@ pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
 # 再安装飞桨 NPU 插件包
 pip install paddle-custom-npu -i https://www.paddlepaddle.org.cn/packages/nightly/npu
 ```
-
+⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ### 安装方式二：源代码编译安装
 
 在启动的 docker 容器中，先安装飞桨 CPU 安装包，再下载 PaddleCustomDevice 源码编译得到飞桨 NPU 插件包。
@@ -101,7 +122,7 @@ bash tools/compile.sh
 # 飞桨 NPU 插件包在 build/dist 路径下，使用 pip 安装即可
 pip install build/dist/paddle_custom_npu*.whl
 ```
-
+⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ## 基础功能检查
 
 安装完成后，在 docker 容器中输入如下命令进行飞桨基础健康功能的检查。
@@ -109,14 +130,19 @@ pip install build/dist/paddle_custom_npu*.whl
 ```bash
 # 检查当前安装版本
 python -c "import paddle_custom_device; paddle_custom_device.npu.version()"
+```
+```bash
 # 预期得到如下输出结果
 version: 0.0.0
 commit: 147d506b2baa1971ab47b4550f0571e1f6b201fc
 cann: 8.0.RC2
 ....
-
+```
+```bash
 # 飞桨基础健康检查
 python -c "import paddle; paddle.utils.run_check()"
+```
+```bash
 # 预期得到输出如下
 Running verify PaddlePaddle program ...
 PaddlePaddle works well on 1 npu.
