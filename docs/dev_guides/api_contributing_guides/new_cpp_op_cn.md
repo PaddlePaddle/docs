@@ -115,7 +115,7 @@ Python API 到算子 InferMeta 函数和 Kernel 调用之间的框架调度部�
 </thead>
 <tbody>
 <tr>
-<td>api</td>
+<td>op</td>
 <td>算子名称，与该算子 Python API 函数名相同（命名方式为：全小写+下划线），示例中为 trace</td>
 </tr>
 <tr>
@@ -260,7 +260,7 @@ b. 如果是实现自定义的 C++ API，需要在'paddle/phi/api/lib/api_custom
 
 > 说明：InferMeta 与 kernel 共同组成了一个算子的运算过程。InferMeta 在 kernel 前执行，用于维度、数据类型等信息的计算处理，这些信息在没有具体数据时依然可以通过输入参数完成输出结果的信息推导（例如两个维度为 2x3 的张量相加，输出结果的维度也一定是 2x3），可以利用这些信息优化训练过程中资源的分配和使用，kernel 中也不再需要专门推导这些信息。kernel 则用于具体数据的逻辑计算，为 InferMeta 函数推导得到的张量填充具体的结果值。
 
-[trace 算子的 InferMeta 函数](https://github.com/PaddlePaddle/Paddle/blob/befa78ea3fa9d0dae096a7de91f626b0c31daee8/paddle/phi/infermeta/unary.cc#L721) 实现如下：
+[trace 算子的 InferMeta 函数](https://github.com/PaddlePaddle/Paddle/blob/97a59db7509b10029ebf5b1aa68f1503cd03c494/paddle/phi/infermeta/unary.cc#L5197) 实现如下：
 
 ```cpp
 void TraceInferMeta(
@@ -276,14 +276,23 @@ void TraceInferMeta(
   PADDLE_ENFORCE_GE(
       x_dims.size(),
       2,
-      phi::errors::OutOfRange(
-          "Input's dim is out of range (expected at least 2, but got %ld).",
+      common::errors::OutOfRange(
+          "Input(x)'s dim is out of range (expected at least 2, but got %ld).",
           x_dims.size()));
   PADDLE_ENFORCE_LT(
       dim1_,
       x_dims.size(),
-      phi::errors::OutOfRange(
-          "Attr(dim1) is out of range (expected to be in range of [%ld, "
+      common::errors::OutOfRange(
+          "axis1 is out of range (expected to be in range of [%ld, "
+          "%ld], but got %ld).",
+          -(x_dims.size()),
+          (x_dims.size() - 1),
+          dim1));
+  PADDLE_ENFORCE_GE(
+      dim1_,
+      0,
+      common::errors::OutOfRange(
+          "axis1 is out of range (expected to be in range of [%ld, "
           "%ld], but got %ld).",
           -(x_dims.size()),
           (x_dims.size() - 1),
@@ -291,8 +300,17 @@ void TraceInferMeta(
   PADDLE_ENFORCE_LT(
       dim2_,
       x_dims.size(),
-      phi::errors::OutOfRange(
-          "Attr(dim2) is out of range (expected to be in range of [%ld, "
+      common::errors::OutOfRange(
+          "axis2 is out of range (expected to be in range of [%ld, "
+          "%ld], but got %ld).",
+          -(x_dims.size()),
+          (x_dims.size() - 1),
+          dim2));
+  PADDLE_ENFORCE_GE(
+      dim2_,
+      0,
+      common::errors::OutOfRange(
+          "axis2 is out of range (expected to be in range of [%ld, "
           "%ld], but got %ld).",
           -(x_dims.size()),
           (x_dims.size() - 1),
@@ -300,22 +318,22 @@ void TraceInferMeta(
   PADDLE_ENFORCE_NE(
       dim1_,
       dim2_,
-      phi::errors::InvalidArgument("The dimensions should not be identical "
-                                   "%ld vs %ld.",
-                                   dim1,
-                                   dim2));
+      common::errors::InvalidArgument("The dimensions should not be identical "
+                                      "%ld vs %ld.",
+                                      dim1,
+                                      dim2));
 
-  auto sizes = vectorize(x_dims);
+  auto sizes = common::vectorize(x_dims);
   if (x_dims.size() == 2) {
     sizes.clear();
-    sizes.push_back(1);
   } else {
     sizes.erase(sizes.begin() + std::max(dim1_, dim2_));
     sizes.erase(sizes.begin() + std::min(dim1_, dim2_));
   }
-  out->set_dims(phi::make_ddim(sizes));
+  out->set_dims(common::make_ddim(sizes));
   out->set_dtype(x.dtype());
 }
+
 ```
 
 其中，`MetaTensor`是对底层异构 Tensor 的抽象封装，仅支持对底层 Tensor 的维度、数据类型、布局等属性进行读取和设置，具体方法请参考 [meta_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/meta_tensor.h)。
@@ -333,7 +351,7 @@ InferMeta 的文件放置规则（[paddle/phi/infermeta](https://github.com/Padd
 
 **InferMeta 的编译时与运行时**
 
-在静态图模型中，`InferMeta`操作在  [编译时(compile time)和运行时(run time)](https://github.com/PaddlePaddle/docs/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md) 都会被调用，在 compile time 时，由于真实的维度未知，框架内部用 -1 来表示，在 run time 时，用实际的维度表示，因此维度的值在 compile time 和 run time 时可能不一致，如果存在维度的判断和运算操作，InferMeta 就需要区分 compile time 和 run time。
+在静态图模型中，`InferMeta`操作在编译时(compile time)和运行时(run time)都会被调用，在 compile time 时，由于真实的维度未知，框架内部用 -1 来表示，在 run time 时，用实际的维度表示，因此维度的值在 compile time 和 run time 时可能不一致，如果存在维度的判断和运算操作，InferMeta 就需要区分 compile time 和 run time。
 
 对于此类 InferMeta 函数，需要在 InferMeta 函数声明的参数列表末尾增加 `MetaConfig` 参数，例如：
 
@@ -399,81 +417,82 @@ y_dim[i] = x_dim[i] + z_dim[i]
 
 **参考代码：**
 
-  - 判断的实现方法可以参考 [SigmoidCrossEntropyWithLogitsInferMeta](https://github.com/PaddlePaddle/Paddle/blob/cd28cddbfb5f5643947291e9a640ecd414dc8dae/paddle/phi/infermeta/binary.cc#L650)，SigmoidCrossEntropyWithLogits 要求 X 和 labels 的两个输入，除了最后一维以外，其他的维度完全一致。
+  - 判断的实现方法可以参考 [SigmoidCrossEntropyWithLogitsInferMeta](https://github.com/PaddlePaddle/Paddle/blob/efd481536f5b88ec5f0433810a3b0d9ad09555fb/paddle/phi/infermeta/multiary.cc#L5025)，SigmoidCrossEntropyWithLogits 要求 x 和 labels 的两个输入，除了最后一维以外，其他的维度完全一致。
 
 ```cpp
   bool check = true;
   if ((!config.is_runtime) &&
-      (phi::product(x_dims) <= 0 || phi::product(labels_dims) <= 0)) {
+      (contain_unknown_dim(x_dims) || contain_unknown_dim(labels_dims))) {
     check = false;
   }
 
   if (check) {
     PADDLE_ENFORCE_EQ(
-        phi::slice_ddim(x_dims, 0, rank),
-        phi::slice_ddim(labels_dims, 0, rank),
-        phi::errors::InvalidArgument(
+        common::slice_ddim(x_dims, 0, rank),
+        common::slice_ddim(labels_dims, 0, rank),
+        common::errors::InvalidArgument(
             "Input(X) and Input(Label) shall have the same shape "
             "except the last dimension. But received: the shape of "
             "Input(X) is [%s], the shape of Input(Label) is [%s].",
             x_dims,
             labels_dims));
+
+    ......
   }
 ```
 
-  - 运算的实现可以参考 [ConcatInferMeta](https://github.com/PaddlePaddle/Paddle/blob/0604df9e70dfe7be8a21df6a80d9fa6d4939bd9d/paddle/phi/infermeta/multiary.cc#L323)，concat 在 InferShape 判断时，调用`ComputeAndCheckShape`，除了进行 concat 轴之外，其他的维度完全一致；在生成 output 的维度时，把 concat 轴的维度求和，其他的维度和输入保持一致。
+  - 运算的实现可以参考 [ConcatInferMeta](https://github.com/PaddlePaddle/Paddle/blob/efd481536f5b88ec5f0433810a3b0d9ad09555fb/paddle/phi/infermeta/multiary.cc#L1261)，concat 在 InferShape 判断时，调用`ComputeAndCheckShape`，除了进行 concat 轴之外，其他的维度完全一致；在生成 output 的维度时，把 concat 轴的维度求和，其他的维度和输入保持一致。
 
 ```cpp
-  const size_t n = inputs_dims.size();
-  auto out_dims = inputs_dims[0];
-  size_t in_zero_dims_size = out_dims.size();
-  for (size_t i = 1; i < n; i++) {
-    PADDLE_ENFORCE_EQ(
-        inputs_dims[i].size(),
-        out_dims.size(),
-        phi::errors::InvalidArgument("The shape of input[0] and input[%d] "
-                                    "is expected to be equal."
-                                    "But received input[0]'s shape = "
-                                    "[%s], input[%d]'s shape = [%s].",
-                                    i,
-                                    inputs_dims[0],
-                                    i,
-                                    inputs_dims[i]));
-    for (size_t j = 0; j < in_zero_dims_size; j++) {
-      if (j == axis) {
-        if (is_runtime) {
-          out_dims[axis] += inputs_dims[i][j];
-        } else {
-          if (inputs_dims[i][j] == -1 || out_dims[j] == -1) {
-            out_dims[axis] = -1;
-          } else {
-            out_dims[axis] += inputs_dims[i][j];
-          }
-        }
-      } else {
-        bool check_shape =
-            is_runtime || (inputs_dims[0][j] > 0 && inputs_dims[i][j] > 0);
-        if (check_shape) {
-          // check all shape in run time
-          PADDLE_ENFORCE_EQ(inputs_dims[0][j],
-                            inputs_dims[i][j],
-                            phi::errors::InvalidArgument(
-                                "The %d-th dimension of input[0] and input[%d] "
-                                "is expected to be equal."
-                                "But received input[0]'s shape = "
-                                "[%s], input[%d]'s shape = [%s].",
-                                j,
-                                i,
-                                inputs_dims[0],
-                                i,
-                                inputs_dims[i]));
-        }
-        if (!is_runtime && out_dims[j] == -1 && inputs_dims[i][j] > 0) {
-          out_dims[j] = inputs_dims[i][j];
-        }
-      }
-    }
+void ConcatInferMeta(const std::vector<const MetaTensor*>& x,
+                     const Scalar& axis_scalar,
+                     MetaTensor* out,
+                     MetaConfig config) {
+  PADDLE_ENFORCE_GE(x.size(),
+                    0UL,
+                    common::errors::InvalidArgument(
+                        "The size of input meta vector should be greater"
+                        "than 0."));
+  if (axis_scalar.FromTensor() && !config.is_runtime) {
+    auto out_dims =
+        common::make_ddim(std::vector<int>(x.at(0)->dims().size(), -1));
+    out->set_dims(out_dims);
+    out->set_dtype(x.at(0)->dtype());
+    out->set_layout(x.at(0)->layout());
+    out->share_lod(*x.at(0));
+    return;
   }
+
+  int axis = axis_scalar.to<int>();
+  // 1. calculate axis
+  int rank = x.at(0)->dims().size();
+  PADDLE_ENFORCE_EQ(
+      axis >= -rank && axis < rank,
+      true,
+      common::errors::InvalidArgument(
+          "The axis is expected to be in range of [%d, %d), but got %d",
+          -rank,
+          rank,
+          axis));
+  if (axis < 0) {
+    axis = axis + rank;
+  }
+
+  // 2. calculate out dims
+  std::vector<phi::DDim> x_dims;
+  x_dims.reserve(x.size());
+  for (const auto* x_t : x) {
+    x_dims.emplace_back(x_t->dims());
+  }
+  phi::DDim out_dim =
+      phi::funcs::ComputeAndCheckShape(config.is_runtime, x_dims, axis);
+
+  out->set_dims(out_dim);
+  out->set_dtype(x.at(0)->dtype());
+  out->set_layout(x.at(0)->layout());
+  out->share_lod(*x.at(0));
+}
+
 ```
 
 ## 四、新增算子 Kernel
