@@ -19,17 +19,37 @@
 ```bash
 # 拉取镜像
 docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:ubuntu20-x86_64-gcc84-py310
-
+```
+```bash
 # 参考如下命令，启动容器
 docker run -it --name paddle-mlu-dev -v $(pwd):/work \
   -w=/work --shm-size=128G --network=host --privileged  \
   --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
   -v /usr/bin/cnmon:/usr/bin/cnmon \
   ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:ubuntu20-x86_64-gcc84-py310 /bin/bash
+```
+#### 选项说明及可调整参数
 
+##### ① `--name paddle-mlu-dev`
+- **作用**：指定容器名称。
+- **可调整**：
+  - 用户可改为其他名称，例如 `paddle-mlu-test`，方便区分不同实验。
+
+##### ② `-v $(pwd):/work`
+- **作用**：挂载本地目录到容器内 `/work` 目录。
+- **可调整**：
+  - 可以修改 `$(pwd)` 为实际路径，例如 `-v /data/projects:/work`，让容器访问宿主机的数据。
+
+##### ③ `--shm-size=128G`
+- **作用**：设置共享内存大小，影响数据处理和计算效率。
+- **可调整**：
+  - 若内存有限，可降低，如 `--shm-size=32G`，但可能影响大规模训练。
+  - 若训练任务需要更大共享内存，可提高，如 `--shm-size=256G`。
+```bash
 # 检查容器内是否可以正常识别寒武纪 MLU 设备
 cnmon
-
+```
+```bash
 # 预期得到输出如下
 +------------------------------------------------------------------------------+
 | CNMON v5.10.13                                               Driver v5.10.13 |
@@ -67,7 +87,7 @@ pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
 # 再安装飞桨 MLU 插件包
 pip install paddle-custom-mlu -i https://www.paddlepaddle.org.cn/packages/nightly/mlu
 ```
-
+⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ### 安装方式二：源代码编译安装
 
 在启动的 docker 容器中，先安装飞桨 CPU 安装包，再下载 PaddleCustomDevice 源码编译得到飞桨 MLU 插件包。
@@ -88,7 +108,7 @@ bash tools/compile.sh
 # 飞桨 MLU 插件包在 build/dist 路径下，使用 pip 安装即可
 pip install build/dist/paddle_custom_mlu*.whl
 ```
-
+⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ## 基础功能检查
 
 安装完成后，在 docker 容器中输入如下命令进行飞桨基础健康功能的检查。
@@ -96,6 +116,8 @@ pip install build/dist/paddle_custom_mlu*.whl
 ```bash
 # 检查当前安装版本
 python -c "import paddle_custom_device; paddle_custom_device.mlu.version()"
+```
+```bash
 # 预期得到如下输出结果
 version: 0.0.0
 commit: 147d506b2baa1971ab47b4550f0571e1f6b201fc
@@ -104,9 +126,12 @@ cnnl: 1.23.2
 cnnl_extra: 1.6.1
 cncl: 1.14.0
 mluops: 0.11.0
-
+```
+```bash
 # 飞桨基础健康检查
 python -c "import paddle; paddle.utils.run_check()"
+```
+```bash
 # 预期得到输出如下
 Running verify PaddlePaddle program ...
 PaddlePaddle works well on 1 mlu.
