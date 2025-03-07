@@ -21,7 +21,7 @@
 ```shell
 python -m pip install paddlepaddle-xpu -i https://www.paddlepaddle.org.cn/packages/nightly/xpu/
 ```
-
+⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ## 二、运行示例
 
 飞桨框架集成了经典的视觉模型用于帮助用户快速上手，我们将基于 ResNet50 结构，在 Cifar10 数据集上进行一次快速训练，用于帮助您了解如何基于昆仑芯 XPU 进行训练（和 GPU 训练代码相比，差异点仅为 `paddle.set_device("xpu")`）
