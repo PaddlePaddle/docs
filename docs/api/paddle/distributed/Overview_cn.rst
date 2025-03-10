@@ -173,6 +173,8 @@ RPC API
     " :ref:`split <cn_api_paddle_distributed_split>` ", "切分指定操作的参数到多个设备，并且并行计算得到结果"
     " :ref:`set_mesh <cn_api_paddle_distributed_set_mesh>` ", "设置全局 ProcessMesh"
     " :ref:`get_mesh <cn_api_paddle_distributed_get_mesh>` ", "获取全局 ProcessMesh"
+    " :ref:`save_state_dict <cn_api_paddle_distributed_save_state_dict>` ", "保存分布式训练的 state_dict 到指定路径"
+    " :ref:`load_state_dict <cn_api_paddle_distributed_load_state_dict>` ", "将指定路径的 checkpoint 加载到指定 state_dict 中"
 
 
 此外，自动并行提供更高层次的 API 来帮助用户通过非入侵组网的方式实现自动并行的分布式训练。
