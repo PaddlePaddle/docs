@@ -567,7 +567,7 @@ paddle/phi/kernels
 ```plain
 namespace phi {
 template <typename T, typename Context>
-void TraceKernel(const Context& dev_ctx,
+void TraceKernel(const Context& ctx,
                  const DenseTensor& x,
                  int offset,
                  int axis1,
@@ -579,7 +579,7 @@ void TraceKernel(const Context& dev_ctx,
 模板为固定写法，说明如下：
 
 - 第一个模板参数为数据类型`T`，第二个模板参数为设备上下文`Context`，`template <typename T, typename Context>`
-- 函数命名：kernel 的命名统一加 kernel 后缀。即：kernel 名称 + kernel 后缀，驼峰式命名，例如：AddKernel
+- 函数命名：kernel 的命名统一加 Kernel 后缀。即：kernel 名称 + Kernel 后缀，驼峰式命名，例如：AddKernel
 - 参数顺序：Context， InputTensor …, Attribute …, OutTensor* 。即：第一位参数为 Context， 后边为输入的 Tensor， 接着是输入的属性参数， 最后是输出的 Tensor 的指针参数。如果 kernel 没有输入 Tensor 或者没有属性参数，略过即可
 - 第 1 个函数参数，类型为 `const Context&` 的 dev_ctx
 - 第 2 个函数参数，输入 Tensor，类型一般为 `const DenseTensor&`
@@ -679,12 +679,13 @@ void TraceKernel(const Context& dev_ctx,
 
 **（3）实现反向 Kernel 函数**
 
-反向 kernel 的实现与前向是类似的，此处不再赘述，可以直接参考对应链接中的代码实现。
+反向 kernel 的实现与前向是类似的，具体实现此处不再赘述。
 
-
-  - [paddle/phi/kernels/trace_grad_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_kernel.h)
+  - [paddle/phi/kernels/trace_grad_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_grad_kernel.h)
   - [paddle/phi/kernels/cpu/trace_grad_kernel.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/trace_grad_kernel.cc)
   - [paddle/phi/kernels/gpu/trace_grad_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_grad_kernel.cu)
+
+在 `trace_grad_kernel.cc` 与 `trace_grad_kernel.cu` 文件中都没有具体的 `phi::TraceGradKernel` 实现, 具体实现在 `trace_grad_kernel_impl.h` 文件中。
 
 
 **（4）公共函数管理**
@@ -743,10 +744,10 @@ PD_REGISTER_KERNEL(trace,
 mkdir build && cd build
 ```
 
-执行`cmake`命令，具体选项可参考 [从源码编译](../../install/compile/fromsource.html) 中的介绍，下面的命令为编译 Python3.8，GPU 版本，带测试，Release 版本的 Paddle。
+执行`cmake`命令，具体选项可参考 [从源码编译](../../install/compile/fromsource.html) 中的介绍，下面的命令为编译 Python3.10，GPU 版本，带测试，Release 版本的 Paddle。
 
 ```plain
-cmake .. -DPY_VERSION=3.8 -DWITH_GPU=ON -DWITH_TESTING=ON -DCMAKE_BUILD_TYPE=Release
+cmake .. -DPY_VERSION=3.10 -DWITH_GPU=ON -DWITH_TESTING=ON -DCMAKE_BUILD_TYPE=Release
 ```
 
 在`build`目录下，运行下面命令可以进行编译整个 paddle：
@@ -761,14 +762,19 @@ make -j$(nproc)
 
 飞桨框架会对新增的算子 kernel 自动绑定 Python，并链接到生成的 lib 库中，然后开发者需要在 Python 端定义相应的 API，在 API 内调用新增算子，并添加相应的中英文文档描述即可。
 
- `paddle.trace`  的 Python API 实现位于 [python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/bd4dc3be34584f9b273ecec07297fb05e1cf4c52/python/paddle/tensor/math.py#L2277) 中，具体实现如下：
+ `paddle.trace`  的 Python API 实现位于 [python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/2ffcf1d15a5852c532c11cdb444c64f2294becdc/python/paddle/tensor/math.py#L4098) 中，具体实现如下：
 
 ```python
-def trace(x, offset=0, axis1=0, axis2=1, name=None):
+def trace(
+    x: Tensor,
+    offset: int = 0,
+    axis1: int = 0,
+    axis2: int = 1,
+    name: str | None = None,
+) -> Tensor:
     """
-    **trace**
 
-    This OP computes the sum along diagonals of the input tensor x.
+    Computes the sum along diagonals of the input tensor x.
 
     If ``x`` is 2D, returns the sum of diagonal.
 
@@ -784,11 +790,11 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
     - Note that if offset is out of input's shape indicated by axis1 and axis2, 0 will be returned.
 
     Args:
-        x(Tensor): The input tensor x. Must be at least 2-dimensional. The input data type should be float32, float64, int32, int64.
-        offset(int, optional): Which diagonals in input tensor x will be taken. Default: 0 (main diagonals).
-        axis1(int, optional): The first axis with respect to take diagonal. Default: 0.
-        axis2(int, optional): The second axis with respect to take diagonal. Default: 1.
-        name (str, optional): For details, please refer to :ref:`api_guide_Name`. Generally, no setting is required. Default: None.
+        x (Tensor): The input tensor x. Must be at least 2-dimensional. The input data type should be float16, float32, float64, int32, int64.
+        offset (int, optional): Which diagonals in input tensor x will be taken. Default: 0 (main diagonals).
+        axis1 (int, optional): The first axis with respect to take diagonal. Default: 0.
+        axis2 (int, optional): The second axis with respect to take diagonal. Default: 1.
+        name (str|None, optional): Name for the operation (optional, default is None). For more information, please refer to :ref:`api_guide_Name`.
 
     Returns:
         Tensor: the output data type is the same as input data type.
@@ -796,64 +802,73 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
     Examples:
         .. code-block:: python
 
-            import paddle
+            >>> import paddle
 
-            case1 = paddle.randn([2, 3])
-            case2 = paddle.randn([3, 10, 10])
-            case3 = paddle.randn([3, 10, 5, 10])
-            data1 = paddle.trace(case1) # data1.shape = [1]
-            data2 = paddle.trace(case2, offset=1, axis1=1, axis2=2) # data2.shape = [3]
-            data3 = paddle.trace(case3, offset=-3, axis1=1, axis2=-1) # data2.shape = [3, 5]
+            >>> case1 = paddle.randn([2, 3])
+            >>> case2 = paddle.randn([3, 10, 10])
+            >>> case3 = paddle.randn([3, 10, 5, 10])
+            >>> data1 = paddle.trace(case1)
+            >>> data1.shape
+            []
+            >>> data2 = paddle.trace(case2, offset=1, axis1=1, axis2=2)
+            >>> data2.shape
+            [3]
+            >>> data3 = paddle.trace(case3, offset=-3, axis1=1, axis2=-1)
+            >>> data3.shape
+            [3, 5]
     """
-    def __check_input(input, offset, dim1, dim2):
-        check_dtype(x.dtype, 'Input',
-                    ['int32', 'int64', 'float16', 'float32', 'float64'],
-                    'trace')
+
+    def __check_input(x, offset, axis1, axis2):
+        check_dtype(
+            x.dtype,
+            'Input',
+            ['int32', 'int64', 'float16', 'float32', 'float64'],
+            'trace',
+        )
 
         input_shape = list(x.shape)
-        assert len(input_shape) >= 2,                     \
-                "The x must be at least 2-dimensional, "   \
-                "But received Input x's dimensional: %s.\n" %  \
-                len(input_shape)
+        assert len(input_shape) >= 2, (
+            "The x must be at least 2-dimensional, "
+            f"But received Input x's dimensional: {len(input_shape)}.\n"
+        )
 
         axis1_ = axis1 if axis1 >= 0 else len(input_shape) + axis1
         axis2_ = axis2 if axis2 >= 0 else len(input_shape) + axis2
 
-        assert ((0 <= axis1_) and (axis1_ < len(input_shape))),     \
-            "The argument axis1 is out of range (expected to be in range of [%d, %d], but got %d).\n"  \
-            % (-(len(input_shape)), len(input_shape) - 1, axis1)
+        assert (0 <= axis1_) and (
+            axis1_ < len(input_shape)
+        ), f"The argument axis1 is out of range (expected to be in range of [{-(len(input_shape))}, {len(input_shape) - 1}], but got {axis1}).\n"
 
-        assert ((0 <= axis2_) and (axis2_ < len(input_shape))),   \
-            "The argument axis2 is out of range (expected to be in range of [%d, %d], but got %d).\n"   \
-            % (-(len(input_shape)), len(input_shape) - 1, axis2)
+        assert (0 <= axis2_) and (
+            axis2_ < len(input_shape)
+        ), f"The argument axis2 is out of range (expected to be in range of [{-(len(input_shape))}, {len(input_shape) - 1}], but got {axis2}).\n"
 
+        assert axis1_ != axis2_, (
+            "axis1 and axis2 cannot be the same axis."
+            f"But received axis1 = {axis1}, axis2 = {axis2}\n"
+        )
 
-        assert  axis1_ != axis2_,   \
-               "axis1 and axis2 cannot be the same axis." \
-                "But received axis1 = %d, axis2 = %d\n"%(axis1, axis2)
+    if in_dynamic_or_pir_mode():
+        return _C_ops.trace(x, offset, axis1, axis2)
+    else:
+        __check_input(x, offset, axis1, axis2)
 
-    __check_input(input, offset, axis1, axis2)
+        helper = LayerHelper('trace', **locals())
+        out = helper.create_variable_for_type_inference(dtype=x.dtype)
 
-    if in_dygraph_mode():
-        return _C_ops.trace( x, offset, axis1, axis2 )
-
-    helper = LayerHelper('trace', **locals())
-    out = helper.create_variable_for_type_inference(dtype=x.dtype)
-
-    helper.append_op(
-        type='trace',
-        inputs={'Input': [x]},
-        attrs={'offset': offset,
-               'axis1': axis1,
-               'axis2': axis2},
-        outputs={'Out': [out]})
-    return out
+        helper.append_op(
+            type='trace',
+            inputs={'Input': [x]},
+            attrs={'offset': offset, 'axis1': axis1, 'axis2': axis2},
+            outputs={'Out': [out]},
+        )
+        return out
 ```
 
 - Python API 实现要点（详见 [开发 API Python 端](./new_python_api_cn.html)）
   - 对输入参数进行合法性检查，即 `__check_input(input, offset, axis1, axis2)`
-  - 添加动态图分支调用，即 `if in_dygraph_mode` 进入动态图调用分支
-  - 添加静态图分支调用，即动态图分支后剩余的代码
+  - 添加动态图分支调用，即 `if in_dynamic_or_pir_mode` 进入动态图调用分支
+  - 动态图分支后剩余的代码，为老静态图的分支
 
 ## 六、添加单元测试
 
@@ -865,37 +880,37 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 
 ### 6.1 C++ 算子单元测试
 
-算子单元测试继承自 [OpTest](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/op_test.py#L309)。各项具体的单元测试在`TestTraceOp`里完成。测试算子，需要：
+算子单元测试继承自 [OpTest](https://github.com/PaddlePaddle/Paddle/blob/develop/test/legacy_test/op_test.py#L418)。各项具体的单元测试在`TestTraceOp`里完成。测试算子，需要：
 
 1. 在`setUp`函数定义输入、输出，以及相关的属性参数，并生成随机的输入数据。
 2. 在 Python 脚本中实现与前向算子相同的计算逻辑，得到输出值，与算子前向计算的输出进行对比。
 3. 反向计算已经自动集成进测试框架，直接调用相应接口即可。
 
 ```python
-import paddle
 import unittest
+
 import numpy as np
-from op_test import OpTest
+from op_test import OpTest, convert_float_to_uint16
+
+import paddle
+from paddle import base, tensor
+from paddle.base import core
 
 
 class TestTraceOp(OpTest):
-    # 配置 op 信息以及输入输出等参数
     def setUp(self):
         self.op_type = "trace"
         self.python_api = paddle.trace
         self.init_config()
         self.outputs = {'Out': self.target}
 
-    # 测试前向输出结果
     def test_check_output(self):
-        self.check_output(check_eager=True)
+        self.check_output(check_pir=True)
 
-    # 测试反向梯度输出
     def test_check_grad(self):
-        self.check_grad(['Input'], 'Out', check_eager=True)
+        self.check_grad(['Input'], 'Out', check_pir=True)
 
     def init_config(self):
-        # 生成随机的输入数据
         self.case = np.random.randn(20, 6).astype('float64')
         self.inputs = {'Input': self.case}
         self.attrs = {'offset': 0, 'axis1': 0, 'axis2': 1}
@@ -910,26 +925,40 @@ class TestTraceOp(OpTest):
 
 - **前向算子单测**
 
-  - test_check_output 中会对算子的前向计算结果进行测试，对比参考的结果为 setUp 中 `self.outputs`提供的数据。`check_eager=True`表示开启新动态图（eager 模式）单测，`check_eager`默认为`False`
+  - test_check_output 中会对算子的前向计算结果进行测试，对比参考的结果为 setUp 中 `self.outputs` 提供的数据。`check_pir=True`表示开启 pir 模式单测，`check_dygraph` 默认为`True` 表示默认开启动态图单测。
 
 - **反向算子单测**
 
   - `test_check_grad`中调用`check_grad`使用数值法检测梯度正确性和稳定性。
     - 第一个参数`['Input']` : 指定对输入变量`Input`做梯度检测。
     - 第二个参数`'Out'` : 指定前向网络最终的输出目标变量`Out`。
-    - 第三个参数`check_eager` : `check_eager=True` 表示开启新动态图（eager 模式）单测，`check_eager` 默认为`False`。
+    - 第三个参数`check_pir` : `check_pir=True` 表示开启新 pir 模式单测，`check_dygraph` 默认为`True`, 表示默认开启动态图单测。
   - 对于存在多个输入的反向算子测试，需要指定只计算部分输入梯度的 case
-    - 例如，[test_elementwise_sub_op.py](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/test_elementwise_sub_op.py) 中的`test_check_grad_ingore_x`和`test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况
-    - 此处第三个参数 max_relative_error：指定检测梯度时能容忍的最大错误值。
+    - 例如，[test_elementwise_sub_op.py](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/test_elementwise_sub_op.py) 中的 `test_check_grad_ignore_x` 和 `test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况
+    - 此处第三个参数 `max_relative_error` ：指定检测梯度时能容忍的最大错误值。
 
   ```python
-  def test_check_grad_ingore_x(self):
-      self.check_grad(
-          ['Y'], 'Out', max_relative_error=0.005, no_grad_set=set("X"))
+      def test_check_grad_ignore_x(self):
+        self.check_grad(
+            ['Y'],
+            'Out',
+            max_relative_error=0.005,
+            no_grad_set=set("X"),
+            check_prim=self.check_prim,
+            check_prim_pir=self.check_prim_pir,
+            check_pir=True,
+        )
 
-  def test_check_grad_ingore_y(self):
-      self.check_grad(
-          ['X'], 'Out', max_relative_error=0.005, no_grad_set=set('Y'))
+    def test_check_grad_ignore_y(self):
+        self.check_grad(
+            ['X'],
+            'Out',
+            max_relative_error=0.005,
+            no_grad_set=set('Y'),
+            check_prim=self.check_prim,
+            check_prim_pir=self.check_prim_pir,
+            check_pir=True,
+        )
   ```
 
 
