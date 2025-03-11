@@ -12,6 +12,13 @@
 | 芯片型号 | 寒武纪思元 370 系列，包括 MLU370X8、MLU370X4、MLU370S4 |
 | 操作系统 | Linux 操作系统，包括 Ubuntu、KylinV10 |
 
+**注意**：[develop](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/mlu/README_cn.md) 分支仅支持『寒武纪 MLU370』系列芯片。查看芯片类型请参考如下命令：
+
+```bash
+# 系统环境下运行如下命令，如果有设备列表输出，则表示当前为『寒武纪 MLU370』系列芯片
+lspci -vvt | grep 370
+```
+
 ## 运行环境准备
 
 推荐使用飞桨官方发布的寒武纪 MLU 开发镜像，该镜像预装有[寒武纪基础软件开发平台](https://developer.cambricon.com/)。

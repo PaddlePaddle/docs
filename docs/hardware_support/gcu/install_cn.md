@@ -12,6 +12,13 @@
 | 芯片型号 | 燧原 S60 |
 | 操作系统 | Linux 操作系统，如 Ubuntu 等 |
 
+**注意**：[develop](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/gcu/README_cn.md) 分支仅支持『燧原 S60』芯片。查看芯片类型请参考如下命令：
+
+```bash
+# 系统环境下运行如下命令，如果有设备列表输出，则表示当前为『燧原 S60』芯片
+lspci | grep S60
+```
+
 ## 运行环境准备
 
 推荐使用飞桨官方发布的燧原 GCU 开发镜像，该镜像预装有[燧原基础软件开发平台（TopsRider）](https://www.enflame-tech.com/developer)。
