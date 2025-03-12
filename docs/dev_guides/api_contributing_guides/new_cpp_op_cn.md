@@ -898,20 +898,23 @@ from paddle.base import core
 
 
 class TestTraceOp(OpTest):
+    # 配置 op 信息以及输入输出等参数
     def setUp(self):
-        # 配置 op 信息以及输入输出等参数
         self.op_type = "trace"
         self.python_api = paddle.trace
         self.init_config()
         self.outputs = {'Out': self.target}
 
+    # 测试前向输出结果
     def test_check_output(self):
         self.check_output(check_pir=True)
 
+    # 测试反向梯度输出
     def test_check_grad(self):
         self.check_grad(['Input'], 'Out', check_pir=True)
 
     def init_config(self):
+        # 生成随机的输入数据
         self.case = np.random.randn(20, 6).astype('float64')
         self.inputs = {'Input': self.case}
         self.attrs = {'offset': 0, 'axis1': 0, 'axis2': 1}
