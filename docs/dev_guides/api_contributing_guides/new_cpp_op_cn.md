@@ -867,8 +867,8 @@ def trace(
 
 - Python API 实现要点（详见 [开发 API Python 端](./new_python_api_cn.html)）
   - 对输入参数进行合法性检查，即 `__check_input(input, offset, axis1, axis2)`
-  - 添加动态图分支调用，即 `if in_dynamic_or_pir_mode` 进入动态图调用分支
-  - 动态图分支后剩余的代码，为老静态图的分支
+  - 添加飞桨新架构下动静统一分支的调用，通过 `if in_dynamic_or_pir_mode` 进入动态图及 PIR 分支
+  - 动静统一分支后剩余的代码，为旧架构遗留的静态图分支
 
 ## 六、添加单元测试
 
@@ -899,6 +899,7 @@ from paddle.base import core
 
 class TestTraceOp(OpTest):
     def setUp(self):
+        # 配置 op 信息以及输入输出等参数
         self.op_type = "trace"
         self.python_api = paddle.trace
         self.init_config()
@@ -925,17 +926,17 @@ class TestTraceOp(OpTest):
 
 - **前向算子单测**
 
-  - test_check_output 中会对算子的前向计算结果进行测试，对比参考的结果为 setUp 中 `self.outputs` 提供的数据。`check_pir=True`表示开启 pir 模式单测，`check_dygraph` 默认为`True` 表示默认开启动态图单测。
+  - test_check_output 中会对算子的前向计算结果进行测试，对比参考的结果为 setUp 中 `self.outputs` 提供的数据。`check_pir=True` 表示开启 PIR 模式单测（默认为 `False`，需手动开启），`check_dygraph` 默认为 `True` 表示默认开启动态图单测。
 
 - **反向算子单测**
 
   - `test_check_grad`中调用`check_grad`使用数值法检测梯度正确性和稳定性。
     - 第一个参数`['Input']` : 指定对输入变量`Input`做梯度检测。
     - 第二个参数`'Out'` : 指定前向网络最终的输出目标变量`Out`。
-    - 第三个参数`check_pir` : `check_pir=True` 表示开启新 pir 模式单测，`check_dygraph` 默认为`True`, 表示默认开启动态图单测。
+    - 第三个参数`check_pir` : `check_pir=True` 表示开启 PIR 模式单测（默认为 `False`，需手动开启），`check_dygraph` 默认为 `True`, 表示默认开启动态图单测。
   - 对于存在多个输入的反向算子测试，需要指定只计算部分输入梯度的 case
     - 例如，[test_elementwise_sub_op.py](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/test_elementwise_sub_op.py) 中的 `test_check_grad_ignore_x` 和 `test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况
-    - 此处第三个参数 `max_relative_error` ：指定检测梯度时能容忍的最大错误值。
+    - 此处第三个参数 `max_relative_error` ：指定检测梯度时能容忍的最大相对误差值。
 
   ```python
       def test_check_grad_ignore_x(self):
