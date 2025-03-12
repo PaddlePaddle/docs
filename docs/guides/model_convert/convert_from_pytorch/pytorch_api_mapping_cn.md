@@ -1054,7 +1054,6 @@
 | IN-DEVELOPMENT-PATTERN(`torch.nn.parameter.UninitializedBuffer`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedBuffer.html#torch.nn.parameter.UninitializedBuffer) |
 | IN-DEVELOPMENT-PATTERN(`torch.autograd.Function.jvp`, https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp) |
 | IN-DEVELOPMENT-PATTERN(`torch.memory_format`, https://pytorch.org/docs/stable/tensor_attributes.html#torch.memory_format) |
-| IN-DEVELOPMENT-PATTERN(`torch.set_default_device`, https://pytorch.org/docs/stable/generated/torch.set_default_device.html#torch-set-default-device) |
 | IN-DEVELOPMENT-PATTERN(`torch.concatenate`, https://pytorch.org/docs/stable/generated/torch.concatenate.html#torch-concatenate) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_abs`, https://pytorch.org/docs/stable/generated/torch._foreach_abs.html#torch-foreach-abs) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_abs_`, https://pytorch.org/docs/stable/generated/torch._foreach_abs_.html#torch-foreach-abs) |

@@ -31,3 +31,11 @@ x = torch.cuda.get_rng_state(device='cuda：0')
 # Paddle 写法，返回 GeneratorState 对象
 x = paddle.get_cuda_rng_state()[0]
 ```
+
+```python
+# PyTorch 写法，返回 torch.ByteTensor
+x = torch.cuda.get_rng_state()
+
+# Paddle 写法，返回 GeneratorState 对象
+x = paddle.get_cuda_rng_state()[paddle.framework._current_expected_place().get_device_id()]
+```
