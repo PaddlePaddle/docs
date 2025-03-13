@@ -195,6 +195,7 @@ Methods
     outer
     cov
     lu
+    lu_solve
     lu_unpack
     cholesky_solve
     mod

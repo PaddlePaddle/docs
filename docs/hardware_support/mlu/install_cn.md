@@ -25,7 +25,7 @@ lspci -vvt | grep 370
 
 ```bash
 # 拉取镜像
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:ubuntu20-x86_64-gcc84-py310
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:ctr2.15.0-ubuntu20-gcc84-py310
 ```
 ```bash
 # 参考如下命令，启动容器
@@ -33,7 +33,7 @@ docker run -it --name paddle-mlu-dev -v $(pwd):/work \
   -w=/work --shm-size=128G --network=host --privileged  \
   --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
   -v /usr/bin/cnmon:/usr/bin/cnmon \
-  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:ubuntu20-x86_64-gcc84-py310 /bin/bash
+  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:ctr2.15.0-ubuntu20-gcc84-py310 /bin/bash
 ```
 #### 选项说明及可调整参数
 
