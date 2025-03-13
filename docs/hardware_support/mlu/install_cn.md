@@ -33,7 +33,7 @@ docker run -it --name paddle-mlu-dev -v $(pwd):/work \
   -w=/work --shm-size=128G --network=host --privileged  \
   --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
   -v /usr/bin/cnmon:/usr/bin/cnmon \
-  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:ubuntu20-x86_64-gcc84-py310 /bin/bash
+  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:3.0.0rc1-ctr2.15.0-ubuntu20-gcc84-py310 /bin/bash
 ```
 #### 选项说明及可调整参数
 

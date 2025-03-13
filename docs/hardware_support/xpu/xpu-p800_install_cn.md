@@ -34,7 +34,7 @@ docker run -it --name paddle-xpu-dev -v $(pwd):/work \
   -v /usr/local/bin/xpu-smi:/usr/local/bin/xpu-smi \
   -w=/work --shm-size=128G --network=host --privileged  \
   --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
-  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-xpu:ubuntu20-x86_64-gcc84-py310 /bin/bash
+  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-xpu:3.0.0rc1-xpu-ubuntu20-x86_64-gcc84-py310 /bin/bash
 ```
 #### 选项说明及可调整参数
 

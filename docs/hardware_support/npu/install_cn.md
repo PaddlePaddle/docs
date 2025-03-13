@@ -39,7 +39,7 @@ docker run -it --name paddle-npu-dev -v $(pwd):/work \
     -v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
     -v /usr/local/dcmi:/usr/local/dcmi \
     -e ASCEND_RT_VISIBLE_DEVICES="0,1,2,3,4,5,6,7" \
-    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-$(uname -m)-gcc84 /bin/bash
+    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC1-ubuntu20-$(uname -m)-gcc84-py310 /bin/bash
 ```
 #### 选项说明及可调整参数
 
@@ -96,10 +96,11 @@ python -c "import paddle_custom_device; paddle_custom_device.npu.version()"
 ```
 ```bash
 # 预期得到如下输出结果
-version: 0.0.0
-commit: 147d506b2baa1971ab47b4550f0571e1f6b201fc
-cann: 8.0.RC2
-....
+version: 3.0.0-rc1
+commit: b84fac70d1b981285c8ed09a6dbf4c8a2d523233
+custom_op commit: b84fac70d1b981285c8ed09a6dbf4c8a2d523233
+cann: 8.0.RC1
+{'version': '3.0.0-rc1', 'commit': 'b84fac70d1b981285c8ed09a6dbf4c8a2d523233', 'custom_op commit': 'b84fac70d1b981285c8ed09a6dbf4c8a2d523233', 'cann': '8.0.RC1'}
 ```
 ```bash
 # 飞桨基础健康检查
