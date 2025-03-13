@@ -370,6 +370,7 @@
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.WeightedRandomSampler`, `torch.utils.data.WeightedRandomSampler`) |
 | ALIAS-REFERENCE-ITEM(`torch.igamma`, `torch.special.gammainc`) |
 | ALIAS-REFERENCE-ITEM(`torch.igammac`, `torch.special.gammaincc`) |
+| ALIAS-REFERENCE-ITEM(`torch.distributions.multivariate_normal.MultivariateNormal`, `torch.distributions.MultivariateNormal`) |
 
  ## <span id="id25">功能缺失的 API 列表</span>
 
@@ -1034,22 +1035,15 @@
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.memory_usage`, https://pytorch.org/docs/stable/generated/torch.cuda.memory_usage.html#torch-cuda-memory-usage, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.layout`, https://pytorch.org/docs/stable/tensor_attributes.html#torch.layout, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.is_current_stream_capturing`, https://pytorch.org/docs/stable/generated/torch.cuda.is_current_stream_capturing.html#torch-cuda-is-current-stream-capturing, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.cuda.device_of`, https://pytorch.org/docs/stable/generated/torch.cuda.device_of.html, 可新增，且框架底层有相关设计，成本低) |
 
 ## <span id="id26">映射关系开发中的 API 列表</span>
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | IN-DEVELOPMENT-PATTERN(`torch.nn.parameter.UninitializedParameter`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedParameter.html#torch.nn.parameter.UninitializedParameter) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.modules.module.register_module_forward_pre_hook`, https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_pre_hook.html#torch-nn-modules-module-register-module-forward-pre-hook) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.modules.module.register_module_forward_hook`, https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_hook.html#torch-nn-modules-module-register-module-forward-hook) |
-| IN-DEVELOPMENT-PATTERN(`torch.cuda.device_of`, https://pytorch.org/docs/stable/generated/torch.cuda.device_of.html#torch.cuda.device_of) |
-| IN-DEVELOPMENT-PATTERN(`torch.cuda.get_rng_state`, https://pytorch.org/docs/stable/generated/torch.cuda.get_rng_state.html#torch-cuda-get-rng-state) |
-| IN-DEVELOPMENT-PATTERN(`torch.cuda.set_per_process_memory_fraction`, https://pytorch.org/docs/stable/generated/torch.cuda.set_per_process_memory_fraction.html#torch-cuda-set-per-process-memory-fraction) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributed.Backend`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.Backend) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributed.is_available`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_available) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributed.is_nccl_available`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_nccl_available) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributed.gather_object`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.gather_object) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributions.multivariate_normal.MultivariateNormal`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.multivariate_normal.MultivariateNormal) |
 | IN-DEVELOPMENT-PATTERN(`torch.jit.script`, https://pytorch.org/docs/stable/generated/torch.jit.script.html#torch-jit-script) |
 | IN-DEVELOPMENT-PATTERN(`torch.jit.trace`, https://pytorch.org/docs/stable/generated/torch.jit.trace.html#torch-jit-trace) |
 | IN-DEVELOPMENT-PATTERN(`torch.jit.save`, https://pytorch.org/docs/stable/generated/torch.jit.save.html#torch-jit-save) |
@@ -1058,11 +1052,8 @@
 | IN-DEVELOPMENT-PATTERN(`torch.utils.checkpoint.checkpoint_sequential`, https://pytorch.org/docs/stable/checkpoint.html#torch.utils.checkpoint.checkpoint_sequential) |
 | IN-DEVELOPMENT-PATTERN(`torch.utils.tensorboard.writer.SummaryWriter`, https://pytorch.org/docs/stable/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter) |
 | IN-DEVELOPMENT-PATTERN(`torch.nn.parameter.UninitializedBuffer`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedBuffer.html#torch.nn.parameter.UninitializedBuffer) |
-| IN-DEVELOPMENT-PATTERN(`torch.optim.Optimizer.zero_grad`, https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.zero_grad.html#torch-optim-optimizer-zero-grad) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributed.monitored_barrier`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.monitored_barrier) |
 | IN-DEVELOPMENT-PATTERN(`torch.autograd.Function.jvp`, https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp) |
 | IN-DEVELOPMENT-PATTERN(`torch.memory_format`, https://pytorch.org/docs/stable/tensor_attributes.html#torch.memory_format) |
-| IN-DEVELOPMENT-PATTERN(`torch.set_default_device`, https://pytorch.org/docs/stable/generated/torch.set_default_device.html#torch-set-default-device) |
 | IN-DEVELOPMENT-PATTERN(`torch.concatenate`, https://pytorch.org/docs/stable/generated/torch.concatenate.html#torch-concatenate) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_abs`, https://pytorch.org/docs/stable/generated/torch._foreach_abs.html#torch-foreach-abs) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_abs_`, https://pytorch.org/docs/stable/generated/torch._foreach_abs_.html#torch-foreach-abs) |
@@ -1137,7 +1128,6 @@
 | IN-DEVELOPMENT-PATTERN(`torch.distributed.reduce_scatter_tensor`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_scatter_tensor) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributed.all_to_all_single`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_to_all_single) |
 | IN-DEVELOPMENT-PATTERN(`torch.utils.set_module`, https://pytorch.org/docs/stable/generated/torch.utils.set_module.html#torch-utils-set-module) |
-| IN-DEVELOPMENT-PATTERN(`torch.get_default_device`, https://pytorch.org/docs/stable/generated/torch.get_default_device.html#torch-get-default-device) |
 | IN-DEVELOPMENT-PATTERN(`torch.nn.utils.fuse_conv_bn_eval`, https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_conv_bn_eval.html#torch-nn-utils-fuse-conv-bn-eval) |
 | IN-DEVELOPMENT-PATTERN(`torch.nn.utils.fuse_conv_bn_weights`, https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_conv_bn_weights.html#torch-nn-utils-fuse-conv-bn-weights) |
 | IN-DEVELOPMENT-PATTERN(`torch.nn.utils.fuse_linear_bn_eval`, https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_linear_bn_eval.html#torch-nn-utils-fuse-linear-bn-eval) |
