@@ -127,9 +127,9 @@ def reference_table_match_to_condition(m):
 
 
 def get_referenced_api_columns(src_api, metadata_dict, alias=None):
-    assert (
-        src_api in metadata_dict
-    ), f'Error: cannot find mapping doc of api "{src_api}"'
+    assert src_api in metadata_dict, (
+        f'Error: cannot find mapping doc of api "{src_api}"'
+    )
     api_data: DiffMeta = metadata_dict[src_api]
 
     diff_page_url = doc_path_to_relative_page(api_data["source_file"])

@@ -409,29 +409,6 @@ def forward(x):
 
 > 因为框架底层的 ``DenseTensorArray = std::vector< DenseTensor >`` ，不支持两层以上 ``vector`` 嵌套
 
-
-### 8.2 x.shape 与 paddle.shape(x)
-
-模型中比较常见的控制流转写大多数与 ``batch_size`` 或者 ``x.shape`` 相关。
-
-``x.shape[i]`` 的返回值可能是固定的值，也可能是 ``None`` ，表示动态 shape（如 batch_size）。
-
-如果比较明确 ``x.shape[i]`` 对应的是 **动态 shape**，推荐使用 ``paddle.shape(x)[i]``
-
-如上面的例子：
-
-```python
-def forward(self, x)：
-    bs = paddle.shape(x)[0]        # <---- x.shape[0] 表示 batch_size，动态 shape
-    outs = []
-    for i in range(bs):
-        outs.append(x)
-
-    return outs
-```
-
-> 动态 shape 推荐使用 ``paddle.shape(x)[i]`` ，动转静也对 ``x.shape[i]`` 做了很多兼容处理。前者写法出错率可能更低些。
-
 ## 九、jit.save 与默认参数
 
 

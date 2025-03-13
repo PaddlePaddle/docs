@@ -4,7 +4,8 @@
 
 ```python
 torch.nn.init.xavier_uniform_(tensor,
-                        gain=1.0)
+                        gain=1.0,
+                        generator=None)
 ```
 
 ### [paddle.nn.initializer.XavierUniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/XavierUniform_cn.html)
@@ -24,6 +25,7 @@ paddle.nn.initializer.XavierUniform(fan_in=None,
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensor        | -          | n 维 tensor。Paddle 无此参数，因为是通过调用类的 __call__ 函数来进行 tensor 的初始化。    |
 | gain        | gain          |  缩放因子。                                              |
+| generator        | -        | 用于采样的伪随机数生成器，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。    |
 | -          |  fan_in          | 用于泽维尔初始化的 fan_in。PyTorch 无此参数，Paddle 保持默认即可。        |
 | -          |  fan_out         | 用于泽维尔初始化的 fan_out。PyTorch 无此参数，Paddle 保持默认即可。       |
 

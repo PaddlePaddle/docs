@@ -48,6 +48,7 @@ tensor 数学操作
     " :ref:`paddle.asin <cn_api_paddle_asin>` ", "arcsine 函数"
     " :ref:`paddle.atan <cn_api_paddle_atan>` ", "arctangent 函数"
     " :ref:`paddle.atan2 <cn_api_paddle_atan2>` ", "arctangent2 函数"
+    " :ref:`paddle.baddbmm <cn_api_paddle_baddbmm>` ", "对两个批量矩阵 x 和 y 进行乘法运算，将结果乘以标量 alpha，再加上 input 与 beta 的乘积，得到输出"
     " :ref:`paddle.ceil <cn_api_paddle_ceil>` ", "向上取整运算函数"
     " :ref:`paddle.clip <cn_api_paddle_clip>` ", "将输入的所有元素进行剪裁，使得输出元素限制在[min, max]内"
     " :ref:`paddle.conj <cn_api_paddle_conj>` ", "逐元素计算 Tensor 的共轭运算"

@@ -326,7 +326,7 @@ class class_helper:
                     if fun_infor["template"] == "":
                         fun_name_and_intro_text = ""
                     else:
-                        fun_name_and_intro_text = f'{fun_infor["template"]}\n'
+                        fun_name_and_intro_text = f"{fun_infor['template']}\n"
                     fun_name_and_intro_text += (
                         f"{fun_infor['name']}\n"
                         + "'''''''''''\n"
@@ -337,7 +337,7 @@ class class_helper:
 
                     if fun_infor["note"] != "":
                         fun_note_text = (
-                            "..note::\n" + f'\t{fun_infor["note"]}\n' + "\n"
+                            "..note::\n" + f"\t{fun_infor['note']}\n" + "\n"
                         )
                         f.write(fun_note_text)
 
@@ -403,7 +403,7 @@ class class_helper:
                     if fun_infor["template"] == "":
                         fun_name_and_intro_text = ""
                     else:
-                        fun_name_and_intro_text = f'{fun_infor["template"]}\n'
+                        fun_name_and_intro_text = f"{fun_infor['template']}\n"
                     fun_name_and_intro_text += (
                         f"{fun_infor['name']}\n"
                         + "'''''''''''\n"
@@ -414,7 +414,7 @@ class class_helper:
 
                     if fun_infor["note"] != "":
                         fun_note_text = (
-                            "..note::\n" + f'\t{fun_infor["note"]}\n' + "\n"
+                            "..note::\n" + f"\t{fun_infor['note']}\n" + "\n"
                         )
                         f.write(fun_note_text)
 
@@ -476,7 +476,7 @@ def generate_overview_cn(overview_list, root_dir, LANGUAGE):
 
         for h_dict in overview_list:
             basename = os.path.basename(h_dict["h_file"])
-            h_head_text = f'### [{basename}]({h_dict["h_file"]})\n'
+            h_head_text = f"### [{basename}]({h_dict['h_file']})\n"
             f.write(h_head_text)
 
             # Note: add url link
@@ -544,7 +544,7 @@ def generate_overview_en(overview_list, root_dir, LANGUAGE):
 
         for h_dict in overview_list:
             basename = os.path.basename(h_dict["h_file"])
-            h_head_text = f'### [{basename}]({h_dict["h_file"]})\n'
+            h_head_text = f"### [{basename}]({h_dict['h_file']})\n"
             f.write(h_head_text)
 
             # Note: add url link
