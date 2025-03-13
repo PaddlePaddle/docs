@@ -192,6 +192,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.erf_ <cn_api_paddle_erf_>` ", "Inplace 版本的 erf API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.erfinv_ <cn_api_paddle_erfinv_>` ", "Inplace 版本的 erfinv API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.add_ <cn_api_paddle_add_>` ", "Inplace 版本的 add API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.addmm_ <cn_api_paddle_addmm_>` ", "Inplace 版本的 addmm API，对输入 input 采用 Inplace 策略"
     " :ref:`paddle.put_along_axis_ <cn_api_paddle_put_along_axis_>` ", "Inplace 版本的 put_along_axis API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.ceil_ <cn_api_paddle_ceil_>` ", "Inplace 版本的 ceil API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.clip_ <cn_api_paddle_clip_>` ", "Inplace 版本的 clip API，对输入 x 采用 Inplace 策略"
