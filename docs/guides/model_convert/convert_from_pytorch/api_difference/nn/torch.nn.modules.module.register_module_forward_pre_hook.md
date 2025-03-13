@@ -12,7 +12,7 @@ torch.nn.modules.module.register_module_forward_pre_hook(hook)
 paddle.nn.Layer.register_forward_pre_hook(hook)
 ```
 
-功能一致，参数完全一致，具体如下：
+其中，PyTorch 为给全局所有 module 注册 hook,而 Paddle 为给单个 Layer 注册 hook。参数完全一致，具体如下：
 
 ### 参数映射
 
