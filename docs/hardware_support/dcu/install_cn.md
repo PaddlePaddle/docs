@@ -14,7 +14,11 @@
 
 ## 运行环境准备
 
-推荐使用飞桨官方发布的海光 DCU 开发镜像，该镜像预装有海光 DCU 基础运行环境库（DTK）和飞桨 3.0rc 版本的 SDK。
+您可以基于 docker、pip、源码等不同方式准备飞桨开发环境
+
+### 基于 Docker 的方式（推荐）
+
+我们推荐使用飞桨官方发布的海光 DCU 开发镜像，该镜像预装有海光 DCU 基础运行环境库（DTK）和飞桨 3.0rc 版本的 SDK。
 
 ```bash
 # 拉取镜像
@@ -65,9 +69,39 @@ DCU  Temp   AvgPwr  Fan   Perf  PwrCap  VRAM%  DCU%
 ===================End of SMI Log===================
 ```
 
+### 基于 pip 安装的方式
+
+```bash
+# 下载并安装 wheel 包
+python -m pip install paddlepaddle-dcu==3.0.0rc1 -i https://www.paddlepaddle.org.cn/packages/stable/dcu/
+```
+
+### 基于源码编译的方式
+
+```bash
+# 下载 Paddle 源码
+git clone https://github.com/PaddlePaddle/Paddle.git -b release/3.0-rc
+cd Paddle
+
+# 创建编译目录
+mkdir build && cd build
+
+# cmake 编译命令
+cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" \
+  -DPY_VERSION=3.10 -DPYTHON_EXECUTABLE=`which python3` -DWITH_CUSTOM_DEVICE=OFF \
+  -DWITH_TESTING=OFF -DON_INFER=ON -DWITH_DISTRIBUTE=ON -DWITH_MKL=ON \
+  -DWITH_ROCM=ON -DWITH_RCCL=ON
+
+# make 编译命令
+make -j16
+
+# 编译产出在 build/python/dist/ 路径下，使用 pip 安装即可
+python -m pip install -U paddlepaddle_dcu-*-linux_x86_64.whl
+```
+
 ## 基础功能检查
 
-镜像中默认装有 3.0rc 版本的 PaddlePaddle，在 docker 容器中输入如下命令进行飞桨基础健康功能的检查。
+输入如下命令进行飞桨基础健康功能的检查。
 
 ```bash
 # 检查当前安装版本

@@ -21,7 +21,11 @@ lspci -d 1d22: -n
 
 ## 运行环境准备
 
-推荐使用飞桨官方发布的昆仑芯 XPU 开发镜像，该镜像预装有昆仑芯基础运行环境库（XRE）和飞桨 3.0rc 版本的 SDK。
+您可以基于 docker、pip、源码等不同方式准备飞桨开发环境
+
+### 基于 Docker 的方式（推荐）
+
+我们推荐使用飞桨官方发布的昆仑芯 XPU 开发镜像，该镜像预装有昆仑芯基础运行环境库（XRE）和飞桨 3.0rc 版本的 SDK。
 
 ```bash
 # 拉取镜像
@@ -78,6 +82,36 @@ Driver Version: 4.0
 | DevID | PID | Streams | L3 | Memory | Command |
 -------------------------------------------------
 -------------------------------------------------
+```
+
+### 基于 pip 安装的方式
+
+```bash
+# 下载并安装 wheel 包
+python -m pip install paddlepaddle-xpu==3.0.0rc1 -i https://www.paddlepaddle.org.cn/packages/stable/xpu/
+```
+
+### 基于源码编译的方式
+
+```bash
+# 下载 Paddle 源码
+git clone https://github.com/PaddlePaddle/Paddle.git -b release/3.0-rc
+cd Paddle
+
+# 创建编译目录
+mkdir build && cd build
+
+# cmake 编译命令
+cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" \
+  -DPY_VERSION=3.10 -DPYTHON_EXECUTABLE=`which python3` -DWITH_CUSTOM_DEVICE=OFF \
+  -DWITH_TESTING=OFF -DON_INFER=ON -DWITH_DISTRIBUTE=ON -DWITH_ARM=OFF \
+  -DWITH_XPU=ON -DWITH_XPU_BKCL=ON -DWITH_UBUNTU=ON
+
+# make 编译命令
+make -j16
+
+# 编译产出在 build/python/dist/ 路径下，使用 pip 安装即可
+python -m pip install -U paddlepaddle_xpu-*-linux_x86_64.whl
 ```
 
 ## 基础功能检查

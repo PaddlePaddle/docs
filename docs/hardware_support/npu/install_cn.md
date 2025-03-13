@@ -24,7 +24,11 @@ lspci | grep d802
 
 ## 运行环境准备
 
-推荐使用飞桨官方发布的昇腾 NPU 开发镜像，该镜像预装有[昇腾基础软件开发平台（CANN）](https://www.hiascend.com/software/cann)和飞桨 3.0rc 版本的 SDK。
+您可以基于 docker、pip、源码等不同方式准备飞桨开发环境
+
+### 基于 Docker 的方式（推荐）
+
+我们推荐使用飞桨官方发布的昇腾 NPU 开发镜像，该镜像预装有[昇腾基础软件开发平台（CANN）](https://www.hiascend.com/software/cann)和飞桨 3.0rc 版本的 SDK。
 
 ```bash
 # 拉取镜像
@@ -86,9 +90,38 @@ npu-smi info
 +===========================+===============+====================================================+
 ```
 
+### 基于 pip 安装的方式
+
+```bash
+# 先安装飞桨 CPU 安装包
+python -m pip install paddlepaddle==3.0.0rc1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+
+# 再安装飞桨 NPU 插件包
+python -m pip install paddle-custom-npu==3.0.0rc1 -i https://www.paddlepaddle.org.cn/packages/stable/npu/
+```
+
+### 基于源码编译的方式
+
+```bash
+# 下载 PaddleCustomDevice 源码
+git clone https://github.com/PaddlePaddle/PaddleCustomDevice -b release/3.0-rc
+
+# 进入硬件后端(昇腾 NPU)目录
+cd PaddleCustomDevice/backends/npu
+
+# 先安装飞桨 CPU 安装包
+python -m pip install paddlepaddle==3.0.0rc1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+
+# 执行编译脚本 - submodule 在编译时会按需下载
+bash tools/compile.sh
+
+# 飞桨 NPU 插件包在 build/dist 路径下，使用 pip 安装即可
+python -m pip install build/dist/paddle_custom_npu*.whl
+```
+
 ## 基础功能检查
 
-镜像中默认装有 3.0rc 版本的 PaddlePaddle，在 docker 容器中输入如下命令进行飞桨基础健康功能的检查。
+输入如下命令进行飞桨基础健康功能的检查。
 
 ```bash
 # 检查当前安装版本
