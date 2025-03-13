@@ -1,14 +1,14 @@
-# 海光 DCU 基于框架的使用指南
+# 昆仑芯 XPU 基于框架的使用指南
 
 ## 一、环境准备
 
 ### 环境说明
 
-* 本教程介绍如何基于海光 DCU 进行 ResNet50 的训练，总共需要 1 卡进行训练
+* 本教程介绍如何基于昆仑芯 XPU 进行 ResNet50 的训练，总共需要 1 卡进行训练
 
 * 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备：
 
-  * 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle-dcu:dtk24.04.1-kylinv10-gcc82
+  * 镜像链接： ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-xpu:ubuntu20-x86_64-gcc84-py310
 
 ### 环境安装
 
@@ -16,21 +16,21 @@
 
 *该命令会自动安装飞桨主框架每日自动构建的 nightly-build 版本*
 
-*由于 dcu 代码位于飞桨主框架中，因此我们不需要安装额外的 Custom Device 包*
+*由于 xpu 代码位于飞桨主框架中，因此我们不需要安装额外的 Custom Device 包*
 
 ```shell
-python -m pip install --pre paddlepaddle-dcu -i https://www.paddlepaddle.org.cn/packages/nightly/dcu/
+python -m pip install paddlepaddle-xpu -i https://www.paddlepaddle.org.cn/packages/nightly/xpu/
 ```
 ⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ## 二、运行示例
 
-飞桨框架集成了经典的视觉模型用于帮助用户快速上手，我们将基于 ResNet50 结构，在 Cifar10 数据集上进行一次快速训练，用于帮助您了解如何基于海光 DCU 进行训练
+飞桨框架集成了经典的视觉模型用于帮助用户快速上手，我们将基于 ResNet50 结构，在 Cifar10 数据集上进行一次快速训练，用于帮助您了解如何基于昆仑芯 XPU 进行训练（和 GPU 训练代码相比，差异点仅为 `paddle.set_device("xpu")`）
 
 注意：
 
 * *本教程主要用于快速入门，并未对参数进行细致调优，训练效果未必是最好的，您可以自行调整超参数进行效果调优*
 
-* *本教程预计使用单卡 DCU 训练 30 分钟*
+* *本教程预计使用单卡 R300 训练 40 分钟*
 
 1. 导入必要的包
 
@@ -43,9 +43,8 @@ from paddle.vision.models import resnet50
 2. 设置运行设备
 
 ```python
-# 注意：为了保持和 GPU 兼容，可以尽量少的修改模型代码，我们在命名上做了兼容处理，dcu 设备的名字同样叫做 gpu
-# 1. 设定运行设备为 gpu
-paddle.set_device("gpu")
+# 1. 设定运行设备为 xpu
+paddle.set_device("xpu")
 ```
 
 3. 加载训练数据集

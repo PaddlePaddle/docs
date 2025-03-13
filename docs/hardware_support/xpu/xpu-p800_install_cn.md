@@ -1,40 +1,47 @@
-# 海光 DCU 安装说明
+# 昆仑芯 XPU P800 安装说明
 
-飞桨框架 DCU 版支持海光 DCU 的训练和推理，提供两种安装方式：
+飞桨框架 XPU 版支持昆仑芯 XPU P800 的训练和推理，提供两种安装方式：
 
 1. 通过飞桨官网发布的 wheel 包安装
 2. 通过源代码编译安装得到 wheel 包
 
-## 海光 DCU 系统要求
+## 昆仑芯 XPU P800 系统要求
 
 | 要求类型 |   要求内容   |
 | --------- | -------- |
-| 芯片型号 | 海光 Z100 系列芯片，包括 Z100、Z100L |
-| 操作系统 | Linux 操作系统，包括 CentOS、KylinV10 |
+| 芯片型号 | 昆仑芯 P800 |
+| 操作系统 | Ubuntu |
+
+**注意**：当前教程适用于『昆仑芯』P800。查看芯片类型请参考如下命令：
+
+```bash
+# 系统环境下运行如下命令，如果有设备列表输出，且字段为 3686 ~ 3689，则说明芯片为昆仑芯 P800
+lspci -d 1d22: -n
+lspci -d 2057: -n
+```
 
 ## 运行环境准备
 
-推荐使用飞桨官方发布的海光 DCU 开发镜像，该镜像预装有海光 DCU 基础运行环境库（DTK）。
+推荐使用飞桨官方发布的昆仑芯 XPU 开发镜像，该镜像预装有昆仑芯基础运行环境库（XRE）。
 
 ```bash
 # 拉取镜像
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle-dcu:dtk24.04.1-kylinv10-gcc82
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-xpu:ubuntu20-x86_64-gcc84-py310
 ```
-
 ```bash
-# 启动容器
-docker run -it --name paddle-dcu-dev -v $(pwd):/work \
+# 参考如下命令，启动容器
+docker run -it --name paddle-xpu-dev -v $(pwd):/work \
+  -v /usr/local/bin/xpu-smi:/usr/local/bin/xpu-smi \
   -w=/work --shm-size=128G --network=host --privileged  \
   --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
-  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle-dcu:dtk24.04.1-kylinv10-gcc82 /bin/bash
+  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-xpu:ubuntu20-x86_64-gcc84-py310 /bin/bash
 ```
-
 #### 选项说明及可调整参数
 
-##### ① `--name paddle-dcu-dev`
+##### ① `--name paddle-xpu-dev`
 - **作用**：指定容器名称。
 - **可调整**：
-  - 用户可改为其他名称，例如 `paddle-dcu-test`，方便区分不同实验。
+  - 用户可改为其他名称，例如 `paddle-xpu-test`，方便区分不同实验。
 
 ##### ② `-v $(pwd):/work`
 - **作用**：挂载本地目录到容器内 `/work` 目录。
@@ -46,28 +53,14 @@ docker run -it --name paddle-dcu-dev -v $(pwd):/work \
 - **可调整**：
   - 若内存有限，可降低，如 `--shm-size=32G`，但可能影响大规模训练。
   - 若训练任务需要更大共享内存，可提高，如 `--shm-size=256G`。
-
 ```bash
-# 检查容器内是否正常识别海光 DCU 设备
-rocm-smi
-```
-
-```bash
-# 预期输出
-============System Management Interface ============
-====================================================
-DCU  Temp   AvgPwr  Fan   Perf  PwrCap  VRAM%  DCU%
-0    30.0c  38.0W   0.0%  auto  280.0W    0%   0%
-1    30.0c  41.0W   0.0%  auto  280.0W    0%   0%
-2    29.0c  38.0W   0.0%  auto  280.0W    0%   0%
-3    29.0c  39.0W   0.0%  auto  280.0W    0%   0%
-====================================================
-===================End of SMI Log===================
+# 检查容器内是否可以正常识别昆仑芯 XPU 设备
+xpu-smi
 ```
 
 ## 安装飞桨框架
 
-**注意**：飞桨框架 DCU 版仅支持海光 C86 架构。
+**注意**：当前飞桨 develop 分支仅支持 X86 架构，如需昆仑芯 XPU 的 ARM 架构支持，请提交[issue](https://github.com/PaddlePaddle/Paddle/issues)告知我们
 
 ### 安装方式一：wheel 包安装
 
@@ -75,7 +68,7 @@ DCU  Temp   AvgPwr  Fan   Perf  PwrCap  VRAM%  DCU%
 
 ```bash
 # 下载并安装 wheel 包
-python -m pip install --pre paddlepaddle-dcu -i https://www.paddlepaddle.org.cn/packages/nightly/dcu/
+python -m pip install --pre paddlepaddle-xpu -i https://www.paddlepaddle.org.cn/packages/nightly/xpu-p800/
 ```
 ⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ### 安装方式二：源代码编译安装
@@ -91,16 +84,14 @@ cd Paddle
 mkdir build && cd build
 
 # cmake 编译命令
-cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" \
-  -DPY_VERSION=3.10 -DPYTHON_EXECUTABLE=`which python3` -DWITH_CUSTOM_DEVICE=OFF \
-  -DWITH_TESTING=OFF -DON_INFER=ON -DWITH_DISTRIBUTE=ON -DWITH_MKL=ON \
-  -DWITH_ROCM=ON -DWITH_RCCL=ON
+cmake .. -DPY_VERSION=3.10 -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=OFF -DWITH_XPU=ON -DON_INFER=ON \
+    -DWITH_PYTHON=ON -DWITH_MKL=OFF -DWITH_XPU_BKCL=ON -DWITH_TESTING=ON -DWITH_DISTRIBUTE=ON -DWITH_XPU_XRE5=ON -DWITH_XCCL_RDMA=ON
 
 # make 编译命令
-make -j16
+make -j50 TARGET=HASWELL
 
 # 编译产出在 build/python/dist/ 路径下，使用 pip 安装即可
-pip install -U paddlepaddle_dcu-0.0.0-cp310-cp310-linux_x86_64.whl
+pip install -U paddlepaddle_xpu-0.0.0-cp310-cp310-linux_x86_64.whl
 ```
 ⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ## 基础功能检查
@@ -113,10 +104,16 @@ python -c "import paddle; paddle.version.show()"
 ```
 ```bash
 # 预期得到输出如下
-commit: d37bd8bcf75cf51f6c1117526f3f67d04946ebb9
+commit: 606d18c011a706c41b08b595821bbb835c44d637
 cuda: False
 cudnn: False
 nccl: 0
+xpu_xre: 5.0.21.15
+xpu_xccl: 3.0.2.3
+xpu_xhpc: dev/20250220
+cinn: False
+tensorrt: None
+cuda_archs: []
 ```
 ```bash
 # 飞桨基础健康检查
@@ -125,8 +122,8 @@ python -c "import paddle; paddle.utils.run_check()"
 ```bash
 # 预期得到输出如下
 Running verify PaddlePaddle program ...
-PaddlePaddle works well on 1 GPU.
-PaddlePaddle works well on 8 GPUs.
+PaddlePaddle works well on 1 XPU.
+PaddlePaddle works well on 8 XPUs.
 PaddlePaddle is installed successfully! Let's start deep learning with PaddlePaddle now.
 ```
 
@@ -135,5 +132,5 @@ PaddlePaddle is installed successfully! Let's start deep learning with PaddlePad
 请使用以下命令卸载：
 
 ```bash
-pip uninstall paddlepaddle-dcu
+pip uninstall paddlepaddle-xpu
 ```

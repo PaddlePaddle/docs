@@ -1,10 +1,10 @@
-# 昆仑芯 XPU 基于框架的使用指南
+# 昆仑芯 XPU P800 基于框架的使用指南
 
 ## 一、环境准备
 
 ### 环境说明
 
-* 本教程介绍如何基于昆仑芯 XPU 进行 ResNet50 的训练，总共需要 1 卡进行训练
+* 本教程介绍如何基于昆仑芯 XPU P800 进行 ResNet50 的训练，总共需要 1 卡进行训练
 
 * 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备：
 
@@ -19,18 +19,32 @@
 *由于 xpu 代码位于飞桨主框架中，因此我们不需要安装额外的 Custom Device 包*
 
 ```shell
-python -m pip install paddlepaddle-xpu -i https://www.paddlepaddle.org.cn/packages/nightly/xpu/
+python -m pip install --pre paddlepaddle-xpu -i https://www.paddlepaddle.org.cn/packages/nightly/xpu-p800/
 ```
-
+⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ## 二、运行示例
 
-飞桨框架集成了经典的视觉模型用于帮助用户快速上手，我们将基于 ResNet50 结构，在 Cifar10 数据集上进行一次快速训练，用于帮助您了解如何基于昆仑芯 XPU 进行训练（和 GPU 训练代码相比，差异点仅为 `paddle.set_device("xpu")`）
+飞桨框架集成了经典的视觉模型用于帮助用户快速上手，我们将基于 ResNet50 结构，在 Cifar10 数据集上进行一次快速训练，用于帮助您了解如何基于昆仑芯 XPU P800 进行训练（和 GPU 训练代码相比，差异点仅为 `paddle.set_device("xpu")`）
 
 注意：
 
 * *本教程主要用于快速入门，并未对参数进行细致调优，训练效果未必是最好的，您可以自行调整超参数进行效果调优*
 
-* *本教程预计使用单卡 R300 训练 40 分钟*
+* *本教程预计使用单卡 P800 训练 9 分钟*
+
+在启动命令前，请正确设置以下环境变量：
+```shell
+export XPU_FORCE_USERMODE_LAUNCH=1
+export XBLAS_FC_HBM_VERSION=40
+export XPU_CDNN_CLUSTER_PARALLEL=1
+export XPU_CDNN_CLUSTER_PARALLEL_STREAM_NUMBER=2
+export XPU_PADDLE_L3_SIZE0=1024
+export XPU_PADDLE_L3_SIZE1=1024
+export XPUAPI_DEFAULT_SIZE0=1502653248
+export XPUAPI_DEFAULT_SIZE1=380265324
+export FLAGS_set_to_1d=False
+export FLAGS_use_stride_kernel="0"
+```
 
 1. 导入必要的包
 
