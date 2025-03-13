@@ -3,23 +3,24 @@
 ### [torch.Tensor.where](https://pytorch.org/docs/stable/generated/torch.Tensor.where.html#torch.Tensor.where)
 
 ```python
-torch.Tensor.where(condition, y)
+torch.Tensor.where(condition, other)
 ```
 
-### [paddle.Tensor.where](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#where-y-name-none)
+### [paddle.where](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/where_cn.html)
 
 ```python
-paddle.Tensor.where(x, y, name=None)
+paddle.where(condition, x=None, y=None, name=None)
 ```
 
-两者功能一致，参数名和参数用法不一致，具体如下：
+Pytorch 为 Tensor 类方法，Paddle 为普通函数，具体如下：
+
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| condition     | -            | condition 为判断条件。Paddle 无此参数，需要转写。|
-| -             | x            | 当 condition 为 true 时，选择 x 中元素。|
-| y             | y            | 当 condition 为 false 时，选择 y 中元素。|
-
+| condition     | condition    | 判断条件。|
+| self             | x            | 当 condition 为 true 时，选择的元素，调用 torch.Tensor 类方法的 self Tensor 传入。|
+| other             | y            | 当 condition 为 false 时，选择的元素，仅参数名不一致。|
 
 ### 转写示例
 
@@ -30,7 +31,5 @@ b = torch.tensor([2, 3, 0])
 c = a.where(a > 0, b)
 
 # paddle 写法
-a = paddle.to_tensor([0, 1, 2])
-b = paddle.to_tensor([2, 3, 0])
-c = (a > 0).where(a, b)
+paddle.where(a > 0, a, b)
 ```
