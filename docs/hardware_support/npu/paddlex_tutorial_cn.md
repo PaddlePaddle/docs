@@ -8,9 +8,9 @@
 
 * 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备：
 
-  * x86_64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-npu-base-x86_64-gcc84
+  * x86_64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC1-ubuntu20-x86_64-gcc84-py39
 
-  * aarch64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-npu-base-aarch64-gcc84
+  * aarch64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC1-ubuntu20-aarch64-gcc84-py310
 
   * 镜像中已经默认安装了昇腾算子库 CANN-8.0.RC2
 
@@ -18,13 +18,7 @@
 
 ### 环境安装
 
-1. 安装 PaddlePaddle
-
-*该命令会自动安装飞桨主框架每日自动构建的 nightly-build 版本*
-
-```shell
-python -m pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
-```
+1. 镜像中默认装有 3.0rc 版本的 PaddlePaddle，无需额外安装
 
 2. 安装 CustomDevice
 
@@ -48,7 +42,7 @@ cd PaddleX
 # -e：以可编辑模式安装，当前项目的代码更改，都会直接作用到已经安装的 PaddleX Wheel
 pip install -e .
 ```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
+
 ## 基于 PaddleX 训练 ResNet50
 
 ### 一、安装 PaddleX 依赖
