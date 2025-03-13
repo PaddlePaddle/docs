@@ -89,13 +89,13 @@ python -c "import paddle_custom_device; paddle_custom_device.mlu.version()"
 ```
 ```bash
 # 预期得到如下输出结果
-version: 0.0.0
-commit: 147d506b2baa1971ab47b4550f0571e1f6b201fc
-cntoolkit: 3.8.2
-cnnl: 1.23.2
-cnnl_extra: 1.6.1
-cncl: 1.14.0
-mluops: 0.11.0
+version: 3.0.0-rc1
+commit: b84fac70d1b981285c8ed09a6dbf4c8a2d523233
+cntoolkit: 3.10.1
+cnnl: 1.25.1
+cnnl_extra: 1.8.1
+cncl: 1.16.0
+mluops: 1.1.1
 ```
 ```bash
 # 飞桨基础健康检查
