@@ -131,7 +131,7 @@ python -c "import paddle; paddle.utils.run_check()"
 ```bash
 # 预期得到输出如下
 Running verify PaddlePaddle program ...
-PaddlePaddle works well on 1 mlu.
-PaddlePaddle works well on 8 mlus.
+PaddlePaddle works well on 1 GPU.
+PaddlePaddle works well on 8 GPUs.
 PaddlePaddle is installed successfully! Let's start deep learning with PaddlePaddle now.
 ```
