@@ -66,7 +66,6 @@ Methods
     add_
     add_n
     addmm
-    addmm_
     all
     allclose
     angle
