@@ -32,8 +32,8 @@ lspci | grep d802
 
 ```bash
 # 拉取镜像
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC1-ubuntu20-x86_64-gcc84-py39 # X86 架构
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC1-ubuntu20-aarch64-gcc84-py310 # ARM 架构
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC2-ubuntu20-x86_64-gcc84-py310 # X86 架构
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC2-ubuntu20-aarch64-gcc84-py310 # ARM 架构
 ```
 ```bash
 # 考如下命令启动容器，ASCEND_RT_VISIBLE_DEVICES 可指定可见的 NPU 卡号
@@ -43,7 +43,7 @@ docker run -it --name paddle-npu-dev -v $(pwd):/work \
     -v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
     -v /usr/local/dcmi:/usr/local/dcmi \
     -e ASCEND_RT_VISIBLE_DEVICES="0,1,2,3,4,5,6,7" \
-    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC1-ubuntu20-$(uname -m)-gcc84-py310 /bin/bash
+    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC2-ubuntu20-$(uname -m)-gcc84-py310 /bin/bash
 ```
 #### 选项说明及可调整参数
 

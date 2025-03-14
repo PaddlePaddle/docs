@@ -8,9 +8,9 @@
 
 * 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备：
 
-  * x86_64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC1-ubuntu20-x86_64-gcc84-py39
+  * x86_64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC2-ubuntu20-x86_64-gcc84-py310
 
-  * aarch64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC1-ubuntu20-aarch64-gcc84-py310
+  * aarch64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC2-ubuntu20-aarch64-gcc84-py310
 
   * 镜像中已经默认安装了昇腾算子库 CANN-8.0.RC2
 
