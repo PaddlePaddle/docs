@@ -86,7 +86,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     fi
 fi
 
-# 3 check docs style/format
+# 3 check docs syntax
 cd ${PADDLE_DIR}
 git merge --no-edit upstream/${BRANCH}
 need_check_api_py_files=$(find_all_api_py_files_modified_by_pr)
@@ -99,10 +99,10 @@ fi
 if [ "${need_check_api_py_files}" = "" ] ; then
     echo "api python file list is empty, skip check system message in docs"
 else
-    echo 'need check api pyhon file: ', $need_check_api_py_files
+    echo 'need check api python file: ', $need_check_api_py_files
     /bin/bash ${DIR_PATH}/check_api_docs_en.sh ${jsonfn} ${OUTPUTDIR}/en/${VERSIONSTR}/api/ "${need_check_api_py_files}"
     if [ $? -ne 0 ]; then
-        echo 'Docs Style Check is failed, please check the style in the above docs'
+        echo 'Docs syntax check is failed, please check the syntax in the above docs, mostly caused by incorrect formatting written in the docstring.'
         exit 1
     fi
 fi
