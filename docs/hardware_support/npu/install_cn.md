@@ -24,13 +24,18 @@ lspci | grep d802
 
 ## 运行环境准备
 
-推荐使用飞桨官方发布的昇腾 NPU 开发镜像，该镜像预装有[昇腾基础软件开发平台（CANN）](https://www.hiascend.com/software/cann)。
+您可以基于 docker、pip、源码等不同方式准备飞桨开发环境
+
+### 基于 Docker 的方式（推荐）
+
+我们推荐使用飞桨官方发布的昇腾 NPU 开发镜像，该镜像预装有[昇腾基础软件开发平台（CANN）](https://www.hiascend.com/software/cann)和飞桨 3.0rc 版本的 SDK。
 
 ```bash
 # 拉取镜像
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC1-ubuntu20-x86_64-gcc84-py39 # X86 架构
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC1-ubuntu20-aarch64-gcc84-py39 # ARM 架构
-
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC2-ubuntu20-x86_64-gcc84-py310 # X86 架构
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC2-ubuntu20-aarch64-gcc84-py310 # ARM 架构
+```
+```bash
 # 考如下命令启动容器，ASCEND_RT_VISIBLE_DEVICES 可指定可见的 NPU 卡号
 docker run -it --name paddle-npu-dev -v $(pwd):/work \
     --privileged --network=host --shm-size=128G -w=/work \
@@ -38,11 +43,31 @@ docker run -it --name paddle-npu-dev -v $(pwd):/work \
     -v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
     -v /usr/local/dcmi:/usr/local/dcmi \
     -e ASCEND_RT_VISIBLE_DEVICES="0,1,2,3,4,5,6,7" \
-    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC1-ubuntu20-$(uname -m)-gcc84-py39 /bin/bash
+    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0rc1-cann80RC2-ubuntu20-$(uname -m)-gcc84-py310 /bin/bash
+```
+#### 选项说明及可调整参数
 
+##### ① `--name paddle-npu-dev`
+- **作用**：指定容器名称。
+- **可调整**：
+  - 用户可改为其他名称，例如 `paddle-npu-test`，方便区分不同实验。
+
+##### ② `-v $(pwd):/work`
+- **作用**：挂载本地目录到容器内 `/work` 目录。
+- **可调整**：
+  - 可以修改 `$(pwd)` 为实际路径，例如 `-v /data/projects:/work`，让容器访问宿主机的数据。
+
+##### ③ `--shm-size=128G`
+- **作用**：设置共享内存大小，影响数据处理和计算效率。
+- **可调整**：
+  - 若内存有限，可降低，如 `--shm-size=32G`，但可能影响大规模训练。
+  - 若训练任务需要更大共享内存，可提高，如 `--shm-size=256G`。
+
+```bash
 # 检查容器内是否可以正常识别昇腾 NPU 设备
 npu-smi info
-
+```
+```bash
 # 预期得到类似如下的结果
 +------------------------------------------------------------------------------------------------+
 | npu-smi 23.0.3                   Version: 23.0.3                                               |
@@ -65,58 +90,56 @@ npu-smi info
 +===========================+===============+====================================================+
 ```
 
-## 安装飞桨框架
-
-**注意**：当前飞桨仅提供 910B 芯片在 X86 架构上的 wheel 包，如果需要 910A 芯片或 ARM 架构，请参考[源代码编译安装](#安装方式二：源代码编译安装)。
-
-### 安装方式一：wheel 包安装
-
-昇腾支持插件式安装，需先安装飞桨 CPU 安装包，再安装飞桨 NPU 插件包。在启动的 docker 容器中，执行以下命令：
+### 基于 pip 安装的方式
 
 ```bash
 # 先安装飞桨 CPU 安装包
-pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
+python -m pip install paddlepaddle==3.0.0rc1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 
 # 再安装飞桨 NPU 插件包
-pip install paddle-custom-npu -i https://www.paddlepaddle.org.cn/packages/nightly/npu
+python -m pip install paddle-custom-npu==3.0.0rc1 -i https://www.paddlepaddle.org.cn/packages/stable/npu/
 ```
 
-### 安装方式二：源代码编译安装
-
-在启动的 docker 容器中，先安装飞桨 CPU 安装包，再下载 PaddleCustomDevice 源码编译得到飞桨 NPU 插件包。
+### 基于源码编译的方式
 
 ```bash
 # 下载 PaddleCustomDevice 源码
-git clone https://github.com/PaddlePaddle/PaddleCustomDevice
+git clone https://github.com/PaddlePaddle/PaddleCustomDevice -b release/3.0-rc
 
 # 进入硬件后端(昇腾 NPU)目录
 cd PaddleCustomDevice/backends/npu
 
 # 先安装飞桨 CPU 安装包
-pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
+python -m pip install paddlepaddle==3.0.0rc1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 
 # 执行编译脚本 - submodule 在编译时会按需下载
 bash tools/compile.sh
 
 # 飞桨 NPU 插件包在 build/dist 路径下，使用 pip 安装即可
-pip install build/dist/paddle_custom_npu*.whl
+python -m pip install build/dist/paddle_custom_npu*.whl
 ```
 
 ## 基础功能检查
 
-安装完成后，在 docker 容器中输入如下命令进行飞桨基础健康功能的检查。
+输入如下命令进行飞桨基础健康功能的检查。
 
 ```bash
 # 检查当前安装版本
 python -c "import paddle_custom_device; paddle_custom_device.npu.version()"
+```
+```bash
 # 预期得到如下输出结果
-version: 0.0.0
-commit: 147d506b2baa1971ab47b4550f0571e1f6b201fc
+version: 3.0.0-rc1
+commit: b84fac70d1b981285c8ed09a6dbf4c8a2d523233
+custom_op commit: b84fac70d1b981285c8ed09a6dbf4c8a2d523233
 cann: 8.0.RC1
-....
-
+{'version': '3.0.0-rc1', 'commit': 'b84fac70d1b981285c8ed09a6dbf4c8a2d523233', 'custom_op commit': 'b84fac70d1b981285c8ed09a6dbf4c8a2d523233', 'cann': '8.0.RC1'}
+```
+```bash
 # 飞桨基础健康检查
 python -c "import paddle; paddle.utils.run_check()"
+```
+```bash
 # 预期得到输出如下
 Running verify PaddlePaddle program ...
 PaddlePaddle works well on 1 npu.
@@ -124,10 +147,16 @@ PaddlePaddle works well on 8 npus.
 PaddlePaddle is installed successfully! Let's start deep learning with PaddlePaddle now.
 ```
 
-## 如何卸载
+## 常见问题解决
 
-请使用以下命令卸载 Paddle:
-
+* CANN-8.0.x 系列 对 numpy 和 opencv 部分版本不支持，建议安装指定版本
 ```bash
-pip uninstall paddlepaddle paddle-custom-npu
+python -m pip install numpy==1.26.4
+python -m pip install opencv-python==3.4.18.65
+```
+* arm 机器上需要设置环境变量（x86 环境无需设置）
+```bash
+# 解决 libgomp 在 arm 机器上报错
+# "libgomp cannot allocate memory in static TLS block"
+export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD
 ```

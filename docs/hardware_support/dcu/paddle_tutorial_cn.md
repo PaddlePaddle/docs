@@ -8,19 +8,9 @@
 
 * 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备：
 
-  * 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle-dcu:dtk24.04.1-kylinv10-gcc82
+  * 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-dcu:3.0.0rc1-dtk24.04.1-kylinv10-gcc82-py310
 
-### 环境安装
-
-安装 PaddlePaddle
-
-*该命令会自动安装飞桨主框架每日自动构建的 nightly-build 版本*
-
-*由于 dcu 代码位于飞桨主框架中，因此我们不需要安装额外的 Custom Device 包*
-
-```shell
-python -m pip install --pre paddlepaddle-dcu -i https://www.paddlepaddle.org.cn/packages/nightly/dcu/
-```
+* 镜像中默认装有 3.0rc 版本的 PaddlePaddle
 
 ## 二、运行示例
 

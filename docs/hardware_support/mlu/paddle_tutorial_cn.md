@@ -8,25 +8,9 @@
 
 * 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备：
 
-  * 镜像链接： ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:ubuntu20-x86_64-gcc84-py310
+  * 镜像链接： ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:3.0.0rc1-ctr2.15.0-ubuntu20-gcc84-py310
 
-### 环境安装
-
-1. 安装 PaddlePaddle
-
-*该命令会自动安装飞桨主框架每日自动构建的 nightly-build 版本*
-
-```shell
-python -m pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
-```
-
-2. 安装 CustomDevice
-
-*该命令会自动安装飞桨 Custom Device 每日自动构建的 nightly-build 版本*
-
-```shell
-python -m pip install --pre paddle-custom-mlu -i https://www.paddlepaddle.org.cn/packages/nightly/mlu/
-```
+* 镜像中默认装有 3.0rc 版本的 PaddlePaddle
 
 ## 二、运行示例
 
