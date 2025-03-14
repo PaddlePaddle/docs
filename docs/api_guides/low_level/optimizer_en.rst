@@ -19,7 +19,7 @@ API Reference: :ref:`api_paddle_optimizer_Adam`
 
 2. SGD
 ------------------------
-:code:`SGD` is an offspring class of :code:`Optimizer` implementing `Random Gradient Descent <https://arxiv.org/pdf/1609.04747>`_ which is a method of `Gradient Descent <https://en.wikipedia.org/wiki/Gradient_descent>`_ .
+:code:`SGD` is an offspring class of :code:`Optimizer` implementing `Stochastic Gradient Descent <https://arxiv.org/pdf/1609.04747>`_ which is a method of `Gradient Descent <https://en.wikipedia.org/wiki/Gradient_descent>`_ .
 When it needs to train a large number of samples, we usually choose :code:`SGD` to make loss function converge more quickly.
 
 API Reference: :ref:`api_paddle_optimizer_SGD`
