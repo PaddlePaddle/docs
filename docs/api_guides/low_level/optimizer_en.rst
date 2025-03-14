@@ -28,7 +28,7 @@ API Reference: :ref:`api_paddle_optimizer_SGD`
 3. Momentum
 ------------------------
 :code:`Momentum` optimizer adds momentum on the basis of :code:`SGD` , reducing noise problem in the process of random gradient descent.
-You can set :code:`ues_nesterov` as False or True, respectively corresponding to traditional `Momentum(Section 4.1 in thesis)
+You can set :code:`use_nesterov` as False or True, respectively corresponding to traditional `Momentum(Section 4.1 in thesis)
 <https://arxiv.org/pdf/1609.04747>`_  algorithm and `Nesterov accelerated gradient(Section 4.2 in thesis)
 <https://arxiv.org/pdf/1609.04747>`_ algorithm.
 
@@ -42,19 +42,19 @@ API Reference: :ref:`api_paddle_optimizer_Momentum`
 API Reference: :ref:`api_paddle_optimizer_AdamW`
 
 
-5. RMSProp
+5. Adagrad
+------------------------
+`Adagrad <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_ optimizer can adaptively allocate different learning rates for parameters to solve the problem of different sample sizes for different parameters.
+
+API Reference: :ref:`api_paddle_optimizer_Adagrad`
+
+
+6. RMSProp
 ------------------------
 `RMSProp <http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf>`_ optimizer is a method to adaptively adjust learning rate.
 It mainly solves the problem of dramatic decrease of learning rate in the mid-term and end term of model training after :code:`Adagrad` is used.
 
 API Reference: :ref:`api_paddle_optimizer_RMSProp`
-
-
-6. Adagrad
-------------------------
-`Adagrad <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_ optimizer can adaptively allocate different learning rates for parameters to solve the problem of different sample sizes for different parameters.
-
-API Reference: :ref:`api_paddle_optimizer_Adagrad`
 
 
 7. Adamax
@@ -80,7 +80,7 @@ API Reference: :ref:`api_paddle_optimizer_NAdam`
 
 10. RAdam
 ------------------------
-`RAdam <https://arxiv.org/abs/1908.03265>`_ optimizer improves upon :code:`Adam` by modifying the momentum term, enhancing the initial stability of training.
+`RAdam <https://arxiv.org/abs/1908.03265>`_ optimizer improves upon :code:`Adam` by introducing an adaptive learning rate warmup strategy, enhancing the initial stability of training.
 
 API Reference: :ref:`api_paddle_optimizer_RAdam`
 
