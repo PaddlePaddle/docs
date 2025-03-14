@@ -107,11 +107,11 @@ def trace(
     name: str | None = None,
 ) -> Tensor:
     # 为了突出重点，省略部分代码
-    # 动态图分支，直接调用算子对应的 Python C 函数
+    # 动静统一分支，直接调用算子对应的 Python C 函数
     if in_dynamic_or_pir_mode():
         return _C_ops.trace(x, offset, axis1, axis2)
 
-    # 静态图分支
+    # 老静态图分支
     ## 输入参数检查
     __check_input(x, offset, axis1, axis2)
 
@@ -133,30 +133,30 @@ def trace(
 截取上面示例中动态图相关代码如下：
 
 ```python
-    # 动态图与 PIR 分支，直接调用算子对应的 Python C 函数
+    # 新架构动静统一分支（即动态图与 PIR 分支），直接调用算子对应的 Python C 函数
     if in_dynamic_or_pir_mode():
         return _C_ops.trace(x, offset, axis1, axis2)
 ```
 
-动态图与 PIR 分支的写法一般是调用 C++ 算子对应的 Python C 函数，示例中调用名为 `trace` 的 算子，使用 `_C_ops.trace`，然后传入参数。
+动静统一分支的写法一般是调用 C++ 算子对应的 Python C 函数，示例中调用名为 `trace` 的 算子，使用 `_C_ops.trace`，然后传入参数。
 
   - `_C_ops` 是 [python/paddle/_C_ops.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/_C_ops.py)，其实现了从 Paddle 编译得到的二进制文件中 import  C++ 算子对应的 Python C 函数。
   - `trace` 是算子的 Python C 函数名。Python C 函数的命名直接采用算子名。
   - 参数 `( x, offset, axis1, axis2 )`需按照 [YAML 配置文件](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/ops.yaml#L5041) 中定义的输入参数顺序传入，C++ 算子的输入、输出和属性等描述是通过 YAML 配置文件定义的，具体可参见 [开发 C++ 算子](new_cpp_op_cn.html) 章节介绍。
 
-> 注意：由于目前飞桨动态图与 PIR 模式进行了统一, 通过 `in_dynamic_or_pir_mode()` 去使用，**在新增算子时无需添加老静态图分支代码**。
+> 注意：由于目前飞桨动态图与 PIR 模式进行了统一, 通过 `in_dynamic_or_pir_mode()` 去使用，**在新增 API 时无需添加老静态图分支代码**。
 
-**（2）静态图分支**
+**（2）老静态图分支**（新增 API 无需添加）
 
 截取上面示例中静态图相关代码如下：
 
 ```python
-    # 静态图分支
+    # 老静态图分支
     ## 输入参数检查
     __check_input(x, offset, axis1, axis2)
 
     ## 构造输出，添加 OP，返回输出
-    # LayerHelper 是一个用于创建 OP 输出变量、向静态图 program 中添加 OP 的辅助工具类
+    # LayerHelper 是一个用于创建 OP 输出变量、向老静态图 program 中添加 OP 的辅助工具类
     helper = LayerHelper('trace', **locals())
     # 创建输出 Tensor
     out = helper.create_variable_for_type_inference(dtype=x.dtype)
@@ -233,10 +233,10 @@ paddle.sum(x, axis=0) # 与 x.sum(axis=0) 等价
 
 **（2）具体做法**
 
-如需让新增的函数支持作为 `Tensor`  方法调用，则需要将函数名添加到 `Python/paddle/tensor/__init__.py` 中的 `tensor_method_func` 列表中。具体的做法是：
+如需让新增的函数支持作为 `Tensor`  方法调用，则需要将函数名添加到 `python/paddle/tensor/__init__.py` 中的 `tensor_method_func` 列表中。具体的做法是：
 
 
-  1. 在 [Python/paddle/tensor/\_\_init\_\_.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/__init__.py) 中 import 所需的函数；
+  1. 在 [`python/paddle/tensor/__init__.py`](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/__init__.py) 中 import 所需的函数；
   2. 然后将其名字加入 `tensor_method_func` 列表。
 
 
@@ -275,25 +275,25 @@ from a import f # it's ok, too
 
 **（2）具体做法**
 
-  - 一些常用的 Paddle API 可先参考上述方法建立别名，比如前文示例中  `paddle.trace `  API 的 `trace` 函数定义在 [Python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/math.py) 中，又在 [Python/paddle/tensor/\_\_init\_\_.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/__init__.py) 中被 import，并且也在 [Python/paddle/\_\_init\_\_.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/__init__.py) 中被 import。
+  - 一些常用的 Paddle API 可先参考上述方法建立别名，比如前文示例中  `paddle.trace`  API 的 `trace` 函数定义在 [python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/math.py) 中，又在 [`python/paddle/tensor/__init__.py`](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/__init__.py) 中被 import，并且也在 [`python/paddle/__init__.py`](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/__init__.py) 中被 import。
 
 ```python
-# Python/paddle/tensor/math.py
+# python/paddle/tensor/math.py
 def trace(...):
         ...
 
-# Python/paddle/tensor/__init__.py
+# python/paddle/tensor/__init__.py
 from .math import trace
 
-# Python/paddle/__init__.py
+# python/paddle/__init__.py
 from .tensor.math import trace
 ```
 
 如此设置，`import paddle` 之后，可以通过 `paddle.trace`, `paddle.tensor.trace` 和 `paddle.tensor.math.trace` 多个名称来调用这个函数，即该 API 有多个名称，但是推荐使用 `paddle.trace`这个更简洁的名称作为正式名称。
 
   - 设置 `paddle.trace` 作为正式名称，具体做法是：
-    - 仅在 `Python/paddle/__init__.py` 文件的 `__all__` 列表中加入 `'trace'`；
-    - 不在 `Python/paddle/tensor/__init__.py` 和 `Python/paddle/tensor/math.py` 的 `__all__` 列表中加入 `'trace'`。
+    - 仅在 `python/paddle/__init__.py` 文件的 `__all__` 列表中加入 `'trace'`；
+    - 不在 `python/paddle/tensor/__init__.py` 和 `python/paddle/tensor/math.py` 的 `__all__` 列表中加入 `'trace'`。
 
 > 说明：当出现类似把一个元素放入一个集中管理的列表的操作时，可以考虑按照字母表顺序插入列表中的合适位置。因为如果有多人同时新增 API 时，这样的方式比直接加在末尾更不容易出现冲突。
 
@@ -330,14 +330,14 @@ from .tensor.math import trace
 
 **（3）Python API 单元测试的开发指导**
 
-Python API 的单元测试直接继承 Python 内置的 `UnitTest.TestCase` 类，一般来说需要用 NumPy/SciPy 中的对应功能作为参考，如果 NumPy/SciPy 中没有现成的对应函数，可以用 NumPy/SciPy 实现一个作为参考，并以这个为基准对新增的 Python API 进行测试，如 [test_activation_op.py](https://github.com/PaddlePaddle/Paddle/blob/9e78201a8f379367c84aae0c41dcb3b34a72c792/test/legacy_test/test_activation_op.py#L1495) 中 paddle.nn.Hardtanh API 的单元测试，代码如下所示。
+Python API 的单元测试直接继承 Python 内置的 `unitTest.TestCase` 类，一般来说需要用 NumPy/SciPy 中的对应功能作为参考，如果 NumPy/SciPy 中没有现成的对应函数，可以用 NumPy/SciPy 实现一个作为参考，并以这个为基准对新增的 Python API 进行测试，如 [test_activation_op.py](https://github.com/PaddlePaddle/Paddle/blob/9e78201a8f379367c84aae0c41dcb3b34a72c792/test/legacy_test/test_activation_op.py#L1495) 中 paddle.nn.Hardtanh API 的单元测试，代码如下所示。
 
 **开发步骤：**
 
    1. 用 NumPy/SciPy 实现用于对比结果的计算函数（NumPy/SciPy 有现成函数时可跳过这一步）；
    2. 在 `setUp` 函数中定义输入等相关属性参数；
    3. 实现动态图以及 PIR 分支单元测试代码；
-   4. 实现静态图单元测试代码 (保留即可, 无需修改)。
+   4. （新增 API 无需实现）~~实现静态图单元测试代码~~。
 
 ```python
 # 使用 numpy 实现 hardtanh 函数，用于对比结果
