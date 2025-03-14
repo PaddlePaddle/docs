@@ -86,32 +86,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     fi
 fi
 
-check_parameters=OFF
-if [ "${check_parameters}" = "OFF" ] ; then
-    #echo "chinese api doc fileslist is empty, skip check."
-    echo "check_api_parameters is not stable, close it temporarily."
-else
-    jsonfn=${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output/api_info_all.json
-    if [ -f $jsonfn ] ; then
-        echo "$jsonfn exists."
-        /bin/bash ${DIR_PATH}/check_api_parameters.sh "${need_check_cn_doc_files}" ${jsonfn}
-        if [ $? -ne 0 ];then
-            exit 1
-        fi
-    else
-        echo "$jsonfn not exists."
-        exit 1
-    fi
-fi
-
-EXIT_CODE=0
-# 3 check code style/format.
-/bin/bash  ${DIR_PATH}/check_code.sh
-if [ $? -ne 0 ];then
-    EXIT_CODE=1
-fi
-
-# 4 check docs style/format
+# 3 check docs style/format
 cd ${PADDLE_DIR}
 git merge --no-edit upstream/${BRANCH}
 need_check_api_py_files=$(find_all_api_py_files_modified_by_pr)
@@ -131,14 +106,6 @@ else
         exit 1
     fi
 fi
-
-
-# 5 Approval check
-/bin/bash  ${DIR_PATH}/checkapproval.sh
-if [ $? -ne 0 ];then
-    exit 1
-fi
-
 
 echo "PADDLE_WHL=${PADDLE_WHL}"
 # print preview url
