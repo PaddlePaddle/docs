@@ -12,7 +12,7 @@
 1. Adam
 -------------------------
 `Adam <https://arxiv.org/abs/1412.6980>`_ 的优化器是一种自适应调整学习率的方法，
-适用于大多非 `凸优化 <https://zh.wikipedia.org/zh/凸優化>`_ 、大数据集和高维空间的场景。在实际应用中，:code:`Adam` 是最为常用的一种优化方法。
+适用于大多 `非凸优化 <https://www.cs.cornell.edu/courses/cs6787/2017fa/Lecture7.pdf>`_ 、大数据集和高维空间的场景。在实际应用中，:code:`Adam` 是最为常用的一种优化方法。
 
 API Reference 请参考 :ref:`cn_api_paddle_optimizer_Adam`
 

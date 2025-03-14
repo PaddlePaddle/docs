@@ -12,7 +12,7 @@ With `forward computing and back propagation <https://zh.wikipedia.org/zh-hans/b
 1. Adam
 ------------------------
 Optimizer of `Adam <https://arxiv.org/abs/1412.6980>`_ is a method to adaptively adjust learning rate,
-fit for most  non- `convex optimization <https://en.wikipedia.org/wiki/Convex_optimization>`_ , big data set and high-dimensional scenarios. :code:`Adam` is the most common optimization algorithm.
+fit for most `non-convex optimization <https://www.cs.cornell.edu/courses/cs6787/2017fa/Lecture7.pdf>`_ , big data set and high-dimensional scenarios. :code:`Adam` is the most common optimization algorithm.
 
 API Reference: :ref:`api_paddle_optimizer_Adam`
 
