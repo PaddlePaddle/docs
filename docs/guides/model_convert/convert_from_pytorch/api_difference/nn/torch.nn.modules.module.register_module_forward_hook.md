@@ -1,4 +1,4 @@
-## [ torch 参数更多 ]torch.nn.modules.module.register_module_forward_hook
+## [ 组合替代实现 ]torch.nn.modules.module.register_module_forward_hook
 ### [torch.nn.modules.module.register_module_forward_hook](https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_hook.html)
 
 ```python
@@ -16,5 +16,16 @@ paddle.nn.Layer.register_forward_post_hook(hook)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| hook  | hook       | 被注册为 forward pre-hook 的函数。 |
+| hook  | hook       | 被注册为 forward post-hook 的函数。 |
 | always_call        | -       | 是否强制调用钩子，Paddle 无此参数，一般对训练结果影响不大，可直接删除。  |
+
+### 转写示例
+
+```python
+# PyTorch 写法
+torch.nn.modules.module.register_module_forward_hook(hook)
+
+# Paddle 写法
+for layer in model.sublayers():
+    layer.register_forward_post_hook(hook)
+```
