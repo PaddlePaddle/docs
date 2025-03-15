@@ -235,6 +235,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.less_than_ <cn_api_paddle_less_than_>` ", "Inplace 版本的 less_than API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.lgamma_ <cn_api_paddle_lgamma_>` ", "Inplace 版本的 lgamma API，对输入 x 采用 Inplace 策略"
 
+
 .. _tensor_logic:
 
 tensor 逻辑操作
