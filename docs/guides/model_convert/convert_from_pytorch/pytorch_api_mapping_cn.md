@@ -371,6 +371,7 @@
 | ALIAS-REFERENCE-ITEM(`torch.igamma`, `torch.special.gammainc`) |
 | ALIAS-REFERENCE-ITEM(`torch.igammac`, `torch.special.gammaincc`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.multivariate_normal.MultivariateNormal`, `torch.distributions.MultivariateNormal`) |
+| ALIAS-REFERENCE-ITEM(`torch.concatenate`, `torch.cat`) |
 
  ## <span id="id25">功能缺失的 API 列表</span>
 
@@ -1037,6 +1038,7 @@
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.is_current_stream_capturing`, https://pytorch.org/docs/stable/generated/torch.cuda.is_current_stream_capturing.html#torch-cuda-is-current-stream-capturing, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.device_of`, https://pytorch.org/docs/stable/generated/torch.cuda.device_of.html, 可新增，且框架底层有相关设计，成本低) |
 
+
 ## <span id="id26">映射关系开发中的 API 列表</span>
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
@@ -1054,23 +1056,7 @@
 | IN-DEVELOPMENT-PATTERN(`torch.nn.parameter.UninitializedBuffer`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedBuffer.html#torch.nn.parameter.UninitializedBuffer) |
 | IN-DEVELOPMENT-PATTERN(`torch.autograd.Function.jvp`, https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp) |
 | IN-DEVELOPMENT-PATTERN(`torch.memory_format`, https://pytorch.org/docs/stable/tensor_attributes.html#torch.memory_format) |
-| IN-DEVELOPMENT-PATTERN(`torch.concatenate`, https://pytorch.org/docs/stable/generated/torch.concatenate.html#torch-concatenate) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_abs`, https://pytorch.org/docs/stable/generated/torch._foreach_abs.html#torch-foreach-abs) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_abs_`, https://pytorch.org/docs/stable/generated/torch._foreach_abs_.html#torch-foreach-abs) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_acos`, https://pytorch.org/docs/stable/generated/torch._foreach_acos.html#torch-foreach-acos) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_acos_`, https://pytorch.org/docs/stable/generated/torch._foreach_acos_.html#torch-foreach-acos) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_asin`, https://pytorch.org/docs/stable/generated/torch._foreach_asin.html#torch-foreach-asin) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_asin_`, https://pytorch.org/docs/stable/generated/torch._foreach_asin_.html#torch-foreach-asin) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_atan`, https://pytorch.org/docs/stable/generated/torch._foreach_atan.html#torch-foreach-atan) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_atan_`, https://pytorch.org/docs/stable/generated/torch._foreach_atan_.html#torch-foreach-atan) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_ceil`, https://pytorch.org/docs/stable/generated/torch._foreach_ceil.html#torch-foreach-ceil) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_ceil_`, https://pytorch.org/docs/stable/generated/torch._foreach_ceil_.html#torch-foreach-ceil) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_cos`, https://pytorch.org/docs/stable/generated/torch._foreach_cos.html#torch-foreach-cos) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_cos_`, https://pytorch.org/docs/stable/generated/torch._foreach_cos_.html#torch-foreach-cos) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_cosh`, https://pytorch.org/docs/stable/generated/torch._foreach_cosh.html#torch-foreach-cosh) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_cosh_`, https://pytorch.org/docs/stable/generated/torch._foreach_cosh_.html#torch-foreach-cosh) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_erf`, https://pytorch.org/docs/stable/generated/torch._foreach_erf.html#torch-foreach-erf) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_erf_`, https://pytorch.org/docs/stable/generated/torch._foreach_erf_.html#torch-foreach-erf) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_erfc`, https://pytorch.org/docs/stable/generated/torch._foreach_erfc.html#torch-foreach-erfc) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_erfc_`, https://pytorch.org/docs/stable/generated/torch._foreach_erfc_.html#torch-foreach-erfc) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_exp`, https://pytorch.org/docs/stable/generated/torch._foreach_exp.html#torch-foreach-exp) |
