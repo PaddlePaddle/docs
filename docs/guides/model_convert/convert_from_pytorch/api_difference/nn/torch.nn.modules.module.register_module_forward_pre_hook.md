@@ -24,9 +24,16 @@ paddle.nn.Layer.register_forward_pre_hook(hook)
 
 ```python
 # PyTorch 写法
+Linear = torch.nn.Linear(2, 4)
+Conv2d = torch.nn.Conv2d(3, 16, 3)
+Batch2d = torch.nn.BatchNorm2d(10)
 torch.nn.modules.module.register_module_forward_pre_hook(hook)
 
 # Paddle 写法
-for layer in model.sublayers():
-    layer.register_forward_pre_hook(hook)
+Linear = paddle.nn.Linear(2, 4)
+Conv2d = paddle.nn.Conv2d(3, 16, 3)
+Batch2d = paddle.nn.BatchNorm2D(10)
+Linear.register_forward_pre_hook(hook)
+Conv2d.register_forward_pre_hook(hook)
+Batch2d.register_forward_pre_hook(hook)
 ```
