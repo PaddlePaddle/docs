@@ -3,7 +3,7 @@
 less\_than\_
 -------------------------------
 
-.. py:function:: paddle.less_than_(x: Tensor, y: Tensor, name: str | None = None)→ Tensor[source]
+.. py:function:: paddle.less_than_(x, y, name=None)
 
 Inplace 版本的 :ref:`cn_api_paddle_less_than` API，对输入 `x` 采用 Inplace 策略。
 更多关于 inplace 操作的介绍请参考 `3.1.3 原位（Inplace）操作和非原位操作的区别`_ 了解详情。
