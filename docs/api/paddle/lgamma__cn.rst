@@ -1,7 +1,7 @@
 .. _cn_api_paddle_lgamma_:
 
 lgamma\_
--------------------------------
+--------------------------------
 
 .. py:function:: paddle.lgamma_(x, name=None)
 
