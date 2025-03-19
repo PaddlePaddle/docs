@@ -1,0 +1,23 @@
+.. _cn_api_paddle_geometric_:
+
+geometric
+-------------------------------
+
+.. py:function:: paddle.geometric(x, probs, name=None)
+使用从几何分布中抽取的数据填充 Tensor。
+
+参数
+::::::::::::
+
+    - **x** (Tensor) - 被填充的 Tensor，数据类型为：float32、float64。
+    - **probs** (float | Tensor) - 输入的概率参数，probs 的值必须为正，数据类型为 float、Tensor。当该参数为 Tensor 时，probs 代表每次试验成功的概率。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+返回
+::::::::::::
+输出为使用几何分布填充后的 Tensor x。
+
+代码示例
+::::::::::::
+
+COPY-FROM: paddle.geometric_
