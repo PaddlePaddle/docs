@@ -233,6 +233,9 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.bitwise_left_shift_ <cn_api_paddle_bitwise_left_shift_>` ", "Inplace 版本的 bitwise_left_shift API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.bitwise_right_shift_ <cn_api_paddle_bitwise_right_shift_>` ", "Inplace 版本的 bitwise_right_shift API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.log_normal_ <cn_api_paddle_log_normal_>` ", "Inplace 版本的 log_normal API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.tril_ <cn_api_paddle_tril_>` ", "Inplace 版本的 tril API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.triu_ <cn_api_paddle_triu_>` ", "Inplace 版本的 triu API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.trunc_ <cn_api_paddle_trunc_>` ", "Inplace 版本的 trunc API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.where_ <cn_api_paddle_where_>` ", "Inplace 版本的 where API，对输入 x 采用 Inplace 策略"
 
 
