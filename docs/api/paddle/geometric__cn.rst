@@ -1,6 +1,6 @@
 .. _cn_api_paddle_geometric_:
 
-geometric_
+geometric\_
 -------------------------------
 
 .. py:function:: paddle.geometric_(x, probs, name=None)
