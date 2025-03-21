@@ -197,6 +197,8 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.ceil_ <cn_api_paddle_ceil_>` ", "Inplace 版本的 ceil API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.clip_ <cn_api_paddle_clip_>` ", "Inplace 版本的 clip API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.copysign_ <cn_api_paddle_copysign_>` ", "Inplace 版本的 copysign API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.cumprod_ <cn_api_paddle_cumprod_>` ", "Inplace 版本的 cumprod API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.cumsum_ <cn_api_paddle_cumsum_>` ", "Inplace 版本的 cumsum API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.divide_ <cn_api_paddle_divide_>` ", "Inplace 版本的 divide API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.equal_ <cn_api_paddle_equal_>` ", "Inplace 版本的 equal API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.exp_ <cn_api_paddle_exp_>` ", "Inplace 版本的 exp API，对输入 x 采用 Inplace 策略"
@@ -234,6 +236,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.bitwise_left_shift_ <cn_api_paddle_bitwise_left_shift_>` ", "Inplace 版本的 bitwise_left_shift API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.bitwise_right_shift_ <cn_api_paddle_bitwise_right_shift_>` ", "Inplace 版本的 bitwise_right_shift API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.log_normal_ <cn_api_paddle_log_normal_>` ", "Inplace 版本的 log_normal API，对输入 x 采用 Inplace 策略"
+
 
 
 .. _tensor_logic:
