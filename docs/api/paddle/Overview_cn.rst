@@ -198,7 +198,6 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.clip_ <cn_api_paddle_clip_>` ", "Inplace 版本的 clip API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.copysign_ <cn_api_paddle_copysign_>` ", "Inplace 版本的 copysign API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.divide_ <cn_api_paddle_divide_>` ", "Inplace 版本的 divide API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.equal_ <cn_api_paddle_equal_>` ", "Inplace 版本的 equal API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.exp_ <cn_api_paddle_exp_>` ", "Inplace 版本的 exp API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.expm1_ <cn_api_paddle_expm1_>` ", "Inplace 版本的 expm1 API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.flatten_ <cn_api_paddle_flatten_>` ", "Inplace 版本的 flatten API，对输入 x 采用 Inplace 策略"
@@ -233,6 +232,8 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.bitwise_left_shift_ <cn_api_paddle_bitwise_left_shift_>` ", "Inplace 版本的 bitwise_left_shift API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.bitwise_right_shift_ <cn_api_paddle_bitwise_right_shift_>` ", "Inplace 版本的 bitwise_right_shift API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.log_normal_ <cn_api_paddle_log_normal_>` ", "Inplace 版本的 log_normal API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.i0_ <cn_api_paddle_i0_>` ", "Inplace 版本的 i0 API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.lcm_ <cn_api_paddle_lcm_>` ", "Inplace 版本的 lcm API，对输入 x 采用 Inplace 策略"
 
 
 .. _tensor_logic:
@@ -253,6 +254,21 @@ tensor 逻辑操作
     " :ref:`paddle.isposinf <cn_api_paddle_isposinf>` ", "返回输入 tensor 的每一个值是否为 +INF"
     " :ref:`paddle.isneginf <cn_api_paddle_isneginf>` ", "返回输入 tensor 的每一个值是否为 -INF"
     " :ref:`paddle.isreal <cn_api_paddle_isreal>` ", "返回输入 tensor 的每一个值是否为实数类型"
+
+
+.. _tensor_logic_inplace:
+
+tensor 逻辑操作原位（inplace）版本
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`paddle.equal_ <cn_api_paddle_equal_>` ", "Inplace 版本的 equal API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.greater_equal_ <_cn_api_paddle_greater_equal_>` ", "Inplace 版本的 greater_equal API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.greater_than_ <_cn_api_paddle_greater_than_>` ", "Inplace 版本的 greater_than API，对输入 x 采用 Inplace 策略"
+
 
 .. _tensor_attribute:
 
