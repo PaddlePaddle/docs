@@ -17,3 +17,38 @@ torch.distributed.Backend("GLOO")
 # Paddle 写法
 "gloo"
 ```
+
+```python
+# PyTorch 写法
+torch.distributed.Backend("NCCL")
+
+# Paddle 写法
+"nccl"
+```
+
+
+```python
+# PyTorch 写法
+torch.distributed.Backend("UCC")
+
+# Paddle 写法
+"ucc"
+```
+
+
+```python
+# PyTorch 写法
+torch.distributed.Backend("MPI")
+
+# Paddle 写法
+"mpi"
+```
+
+
+```python
+# PyTorch 写法
+torch.distributed.Backend("XCCL")
+
+# Paddle 写法
+"xccl"
+```

@@ -25,15 +25,3 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | _frames_up             | -      | 控制编译时的堆栈帧深度，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | -    | build_strategy      | 对转换后的计算图进行优化方法，PyTorch 无此参数，Paddle 保持默认即可。 |
 | -             | backend      | 指定后端编译器，PyTorch 无此参数，Paddle 保持默认即可。 |
-
-### 转写示例
-
-#### f 参数用法不同
-
-```python
-# PyTorch 写法:
-torch.jit.load('scriptmodule.pt')
-
-# Paddle 写法:
-paddle.jit.load('example_model/linear')
-```
