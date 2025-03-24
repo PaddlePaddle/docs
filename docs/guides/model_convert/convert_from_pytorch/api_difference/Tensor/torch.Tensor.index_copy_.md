@@ -28,5 +28,5 @@ for i in range(0, np.prod(shape[:dim])):
 new_index = paddle.concat(new_index)
 new_x = x.reshape_([-1] + shape[dim + 1:])
 new_source = source.reshape([-1] + shape[dim + 1:])
-y = new_self.scatter_(new_index, new_source).reshape_(shape)
+y = new_x.scatter_(new_index, new_source).reshape_(shape)
 ```
