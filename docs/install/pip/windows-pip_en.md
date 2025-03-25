@@ -82,7 +82,7 @@ Note：
 * If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
 
   ```
-  python -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0-beta0/windows/windows-cpu-avx-openblas-vs2017/paddlepaddle-3.0.0-cp38-cp38-win_amd64.whl
+  python -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0/windows/windows-cpu-avx-openblas-vs2017/paddlepaddle-3.0.0-cp38-cp38-win_amd64.whl
   ```
 
 ## Verify installation

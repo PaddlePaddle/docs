@@ -85,7 +85,7 @@
 * 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
   ```
-  python -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0-beta0/windows/windows-cpu-avx-openblas-vs2017/paddlepaddle-3.0.0-cp38-cp38-win_amd64.whl
+  python -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0/windows/windows-cpu-avx-openblas-vs2017/paddlepaddle-3.0.0-cp38-cp38-win_amd64.whl
   ```
 
 
