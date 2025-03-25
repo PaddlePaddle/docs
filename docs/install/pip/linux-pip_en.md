@@ -98,7 +98,7 @@ You can choose the following version of PaddlePaddle to start installation:
 2.2.5 If you are using CUDA 12.6(Dependent on GCC8+, If you need to use TensorRT, you can install TensorRT 8.6.1.6 yourself)
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
+  python3 -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
   ```
 
 

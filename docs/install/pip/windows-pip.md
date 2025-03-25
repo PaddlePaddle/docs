@@ -73,7 +73,7 @@
 2.2.5 CUDA12.6 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT8.6.1.6)
 
   ```
-  python -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
+  python -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
   ```
 
 注：

@@ -339,15 +339,15 @@ Please note that: in the commands, <code> paddlepaddle-gpu==3.0.0 </code> will i
         paddlepaddle_gpu-3.0.0-cp312-cp312-linux_x86_64.whl</a></td>
     </tr>
         <td> cuda12.6-cudnn9.0-mkl-gcc12.2-avx </td>
-        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu123/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp38-cp38-linux_x86_64.whl">
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp38-cp38-linux_x86_64.whl">
         paddlepaddle_gpu-3.0.0-cp38-cp38-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu123/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp39-cp39-linux_x86_64.whl">
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp39-cp39-linux_x86_64.whl">
         paddlepaddle_gpu-3.0.0-cp39-cp39-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu123/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp310-cp310-linux_x86_64.whl">
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp310-cp310-linux_x86_64.whl">
         paddlepaddle_gpu-3.0.0-cp310-cp310-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu123/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp311-cp311-linux_x86_64.whl">
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp311-cp311-linux_x86_64.whl">
         paddlepaddle_gpu-3.0.0-cp311-cp311-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu123/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp312-cp312-linux_x86_64.whl">
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp312-cp312-linux_x86_64.whl">
         paddlepaddle_gpu-3.0.0-cp312-cp312-linux_x86_64.whl</a></td>
     </tr>
     <tr>
@@ -394,11 +394,11 @@ Please note that: in the commands, <code> paddlepaddle-gpu==3.0.0 </code> will i
     </tr>
     <tr>
         <td> win-cuda12.6-cudnn9.0-mkl-vs2019-avx </td>
-        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu123/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-3.0.0-cp38-cp38-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu123/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-3.0.0-cp39-cp39-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu123/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-3.0.0-cp310-cp310-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu123/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp311-cp311-win_amd64.whl"> paddlepaddle_gpu-3.0.0-cp311-cp311-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu123/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp312-cp312-win_amd64.whl"> paddlepaddle_gpu-3.0.0-cp312-cp312-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-3.0.0-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-3.0.0-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-3.0.0-cp310-cp310-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp311-cp311-win_amd64.whl"> paddlepaddle_gpu-3.0.0-cp311-cp311-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.0.0-cp312-cp312-win_amd64.whl"> paddlepaddle_gpu-3.0.0-cp312-cp312-win_amd64.whl</a></td>
     </tr>
    </tbody>
 </table>
