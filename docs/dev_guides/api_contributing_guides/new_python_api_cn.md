@@ -74,16 +74,20 @@ API 作为用户使用飞桨框架的接口，承接着实现用户模型开发�
 如图 1 所示，zeros 函数是通过组合 fill_constant 实现的，并且 fill_constant 里已经处理了动态图和静态图的情况，所以直接调用即可。这就是组合其他 Python API 实现的例子。
 
 ```python
-def zeros(shape, dtype=None, name=None):
+def zeros(
+    shape: ShapeLike,
+    dtype: DTypeLike | None = None,
+    name: str | None = None,
+) -> paddle.Tensor:
     # 为了突出重点，省略类型标注与中间的文档和示例部分
     if dtype is None:
-        dtype = 'float32'
+        dtype = paddle.get_default_dtype()
     return fill_constant(value=0.0, shape=shape, dtype=dtype, name=name)
 ```
 【代码仓库链接】
 
-- [zeros 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py#L1051)
-- [fill_constant 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py#L881)
+- [zeros 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py#L1251)
+- [fill_constant 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py#L1052)
 
 #### 2.2.2 代码示例二（调用 C++ 算子接口）
 
@@ -95,13 +99,19 @@ def zeros(shape, dtype=None, name=None):
 
 
 ```python
-def trace(x, offset=0, axis1=0, axis2=1, name=None):
+def trace(
+    x: Tensor,
+    offset: int = 0,
+    axis1: int = 0,
+    axis2: int = 1,
+    name: str | None = None,
+) -> Tensor:
     # 为了突出重点，省略部分代码
-    # 动态图分支，直接调用算子对应的 Python C 函数
-    if in_dygraph_mode():
-        return _C_ops.trace( x, offset, axis1, axis2 )
+    # 动静统一分支，直接调用算子对应的 Python C 函数
+    if in_dynamic_or_pir_mode():
+        return _C_ops.trace(x, offset, axis1, axis2)
 
-    # 静态图分支
+    # 老静态图分支
     ## 输入参数检查
     __check_input(x, offset, axis1, axis2)
 
@@ -112,10 +122,9 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
     helper.append_op(
         type='trace',
         inputs={'Input': [x]},
-        attrs={'offset': offset,
-               'axis1': axis1,
-               'axis2': axis2},
-        outputs={'Out': [out]})
+        attrs={'offset': offset, 'axis1': axis1, 'axis2': axis2},
+        outputs={'Out': [out]},
+    )
     return out
 ```
 
@@ -124,30 +133,30 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 截取上面示例中动态图相关代码如下：
 
 ```python
-    # 动态图分支，直接调用算子对应的 Python C 函数
-    if in_dygraph_mode():
-        return _C_ops.trace( x, offset, axis1, axis2 )
+    # 新架构动静统一分支（即动态图与 PIR 分支），直接调用算子对应的 Python C 函数
+    if in_dynamic_or_pir_mode():
+        return _C_ops.trace(x, offset, axis1, axis2)
 ```
 
-动态图分支的写法一般是调用 C++ 算子对应的 Python C 函数，示例中调用名为 `trace` 的 算子，使用 `_C_ops.trace`，然后传入参数。
+动静统一分支的写法一般是调用 C++ 算子对应的 Python C 函数，示例中调用名为 `trace` 的 算子，使用 `_C_ops.trace`，然后传入参数。
 
   - `_C_ops` 是 [python/paddle/_C_ops.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/_C_ops.py)，其实现了从 Paddle 编译得到的二进制文件中 import  C++ 算子对应的 Python C 函数。
   - `trace` 是算子的 Python C 函数名。Python C 函数的命名直接采用算子名。
-  - 参数 `( x, offset, axis1, axis2 )`需按照 [YAML 配置文件](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/ops.yaml#L185) 中定义的输入参数顺序传入，C++ 算子的输入、输出和属性等描述是通过 YAML 配置文件定义的，具体可参见 [开发 C++ 算子](new_cpp_op_cn.html) 章节介绍。
+  - 参数 `( x, offset, axis1, axis2 )`需按照 [YAML 配置文件](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/ops.yaml#L5041) 中定义的输入参数顺序传入，C++ 算子的输入、输出和属性等描述是通过 YAML 配置文件定义的，具体可参见 [开发 C++ 算子](new_cpp_op_cn.html) 章节介绍。
 
-> 注意：由于目前飞桨动态图仅支持新动态图，通过 `in_dygraph_mode()` 去使用，`_in_legacy_dygraph()`为旧动态图开关已被遗弃，**在新增算子时无需添加旧动态图分支代码**。
+> 注意：由于目前飞桨动态图与 PIR 模式进行了统一, 通过 `in_dynamic_or_pir_mode()` 去使用，**在新增 API 时无需添加老静态图分支代码**。
 
-**（2）静态图分支**
+**（2）老静态图分支**（新增 API 无需添加）
 
 截取上面示例中静态图相关代码如下：
 
 ```python
-    # 静态图分支
+    # 老静态图分支
     ## 输入参数检查
     __check_input(x, offset, axis1, axis2)
 
     ## 构造输出，添加 OP，返回输出
-    # LayerHelper 是一个用于创建 OP 输出变量、向静态图 program 中添加 OP 的辅助工具类
+    # LayerHelper 是一个用于创建 OP 输出变量、向老静态图 program 中添加 OP 的辅助工具类
     helper = LayerHelper('trace', **locals())
     # 创建输出 Tensor
     out = helper.create_variable_for_type_inference(dtype=x.dtype)
@@ -155,10 +164,9 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
     helper.append_op(
         type='trace',
         inputs={'Input': [x]},
-        attrs={'offset': offset,
-               'axis1': axis1,
-               'axis2': axis2},
-        outputs={'Out': [out]})
+        attrs={'offset': offset, 'axis1': axis1, 'axis2': axis2},
+        outputs={'Out': [out]},
+    )
     return out
 ```
 
@@ -171,36 +179,39 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
   - 先创建 LayerHelper 对象，再使用 LayerHelper 对象创建输出 Tensor（[LayerHelper](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/base/layer_helper.py) 是一个用于创建 OP 输出变量、向 静态图 Program 中添加 OP 的辅助工具类）。
   - 在 `append_op` 添加 `inputs` 和 `outputs` 项，其中的 key 值（静态图中变量名）一般与 Python 接口中定义的输入输出 Tensor 变量名的命名相同。（注意：这里 `trace` 中的 `Input` 没有与 Python 接口中 `x` 命名直接对应是由于为了兼容旧算子体系下 `trace` 算子的定义实现而做了额外的映射，新增算子时无需考虑这种情况。）
 
-输入参数检查的 `__check_input` 函数代码如下所示，其中检测 Tensor 的数据类型可以用 [check_variable_and_dtype](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/base/data_feeder.py#L164) 或 [check_type](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/base/data_feeder.py#L176) 函数进行检测。
+输入参数检查的 `__check_input` 函数代码如下所示，其中检测 Tensor 的数据类型可以用 [check_variable_and_dtype](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/base/data_feeder.py#L168) 或 [check_type](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/base/data_feeder.py#L109) 函数进行检测。
 
 ```python
 def __check_input(x, offset, axis1, axis2):
         # 检查输入 x 的 dtype 是否在要求范围内
-        check_dtype(x.dtype, 'Input',
-                    ['int32', 'int64', 'float16', 'float32', 'float64'],
-                    'trace')
+        check_dtype(
+            x.dtype,
+            'Input',
+            ['int32', 'int64', 'float16', 'float32', 'float64'],
+            'trace',
+        )
         # 检查输入 x 的维度信息
         input_shape = list(x.shape)
-        assert len(input_shape) >= 2,                     \
-                "The x must be at least 2-dimensional, "   \
-                "But received Input x's dimensional: %s.\n" %  \
-                len(input_shape)
+        assert len(input_shape) >= 2, (
+            "The x must be at least 2-dimensional, "
+            f"But received Input x's dimensional: {len(input_shape)}.\n"
+        )
 
         axis1_ = axis1 if axis1 >= 0 else len(input_shape) + axis1
         axis2_ = axis2 if axis2 >= 0 else len(input_shape) + axis2
         # 检查参数值是否有效
-        assert ((0 <= axis1_) and (axis1_ < len(input_shape))),     \
-            "The argument axis1 is out of range (expected to be in range of [%d, %d], but got %d).\n"  \
-            % (-(len(input_shape)), len(input_shape) - 1, axis1)
+        assert (0 <= axis1_) and (
+            axis1_ < len(input_shape)
+        ), f"The argument axis1 is out of range (expected to be in range of [{-(len(input_shape))}, {len(input_shape) - 1}], but got {axis1}).\n"
 
-        assert ((0 <= axis2_) and (axis2_ < len(input_shape))),   \
-            "The argument axis2 is out of range (expected to be in range of [%d, %d], but got %d).\n"   \
-            % (-(len(input_shape)), len(input_shape) - 1, axis2)
+        assert (0 <= axis2_) and (
+            axis2_ < len(input_shape)
+        ), f"The argument axis2 is out of range (expected to be in range of [{-(len(input_shape))}, {len(input_shape) - 1}], but got {axis2}).\n"
 
-
-        assert  axis1_ != axis2_,   \
-               "axis1 and axis2 cannot be the same axis." \
-                "But received axis1 = %d, axis2 = %d\n"%(axis1, axis2)
+        assert axis1_ != axis2_, (
+            "axis1 and axis2 cannot be the same axis."
+            f"But received axis1 = {axis1}, axis2 = {axis2}\n"
+        )
 ```
 
 ### 2.3 将 API 绑定为 Tensor 的方法
@@ -222,10 +233,10 @@ paddle.sum(x, axis=0) # 与 x.sum(axis=0) 等价
 
 **（2）具体做法**
 
-如需让新增的函数支持作为 `Tensor`  方法调用，则需要将函数名添加到 `Python/paddle/tensor/__init__.py` 中的 `tensor_method_func` 列表中。具体的做法是：
+如需让新增的函数支持作为 `Tensor`  方法调用，则需要将函数名添加到 `python/paddle/tensor/__init__.py` 中的 `tensor_method_func` 列表中。具体的做法是：
 
 
-  1. 在 [Python/paddle/tensor/__init__.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/__init__.py) 中 import 所需的函数；
+  1. 在 [`python/paddle/tensor/__init__.py`](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/__init__.py) 中 import 所需的函数；
   2. 然后将其名字加入 `tensor_method_func` 列表。
 
 
@@ -264,25 +275,25 @@ from a import f # it's ok, too
 
 **（2）具体做法**
 
-  - 一些常用的 Paddle API 可先参考上述方法建立别名，比如前文示例中  `paddle.trace `  API 的 `trace` 函数定义在 [Python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/math.py#L2784) 中，又在 [Python/paddle/tensor/__init__.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/__init__.py) 中被 import，并且也在 [Python/paddle/__init__.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/__init__.py) 中被 import。
+  - 一些常用的 Paddle API 可先参考上述方法建立别名，比如前文示例中  `paddle.trace`  API 的 `trace` 函数定义在 [python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/math.py) 中，又在 [`python/paddle/tensor/__init__.py`](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/__init__.py) 中被 import，并且也在 [`python/paddle/__init__.py`](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/__init__.py) 中被 import。
 
 ```python
-# Python/paddle/tensor/math.py
+# python/paddle/tensor/math.py
 def trace(...):
         ...
 
-# Python/paddle/tensor/__init__.py
+# python/paddle/tensor/__init__.py
 from .math import trace
 
-# Python/paddle/__init__.py
+# python/paddle/__init__.py
 from .tensor.math import trace
 ```
 
 如此设置，`import paddle` 之后，可以通过 `paddle.trace`, `paddle.tensor.trace` 和 `paddle.tensor.math.trace` 多个名称来调用这个函数，即该 API 有多个名称，但是推荐使用 `paddle.trace`这个更简洁的名称作为正式名称。
 
   - 设置 `paddle.trace` 作为正式名称，具体做法是：
-    - 仅在 `Python/paddle/__init__.py` 文件的 `__all__` 列表中加入 `'trace'`；
-    - 不在 `Python/paddle/tensor/__init__.py` 和 `Python/paddle/tensor/math.py` 的 `__all__` 列表中加入 `'trace'`。
+    - 仅在 `python/paddle/__init__.py` 文件的 `__all__` 列表中加入 `'trace'`；
+    - 不在 `python/paddle/tensor/__init__.py` 和 `python/paddle/tensor/math.py` 的 `__all__` 列表中加入 `'trace'`。
 
 > 说明：当出现类似把一个元素放入一个集中管理的列表的操作时，可以考虑按照字母表顺序插入列表中的合适位置。因为如果有多人同时新增 API 时，这样的方式比直接加在末尾更不容易出现冲突。
 
@@ -319,14 +330,14 @@ from .tensor.math import trace
 
 **（3）Python API 单元测试的开发指导**
 
-Python API 的单元测试直接继承 Python 内置的 `UnitTest.TestCase` 类，一般来说需要用 NumPy/SciPy 中的对应功能作为参考，如果 NumPy/SciPy 中没有现成的对应函数，可以用 NumPy/SciPy 实现一个作为参考，并以这个为基准对新增的 Python API 进行测试，如 [test_activation_op.py](https://github.com/PaddlePaddle/Paddle/blob/19a8f0aa263a8d0595f7e328077cc2f48eca547f/test/legacy_test/test_activation_op.py#L1279) 中 paddle.nn.Hardtanh API 的单元测试，代码如下所示。
+Python API 的单元测试直接继承 Python 内置的 `unitTest.TestCase` 类，一般来说需要用 NumPy/SciPy 中的对应功能作为参考，如果 NumPy/SciPy 中没有现成的对应函数，可以用 NumPy/SciPy 实现一个作为参考，并以这个为基准对新增的 Python API 进行测试，如 [test_activation_op.py](https://github.com/PaddlePaddle/Paddle/blob/9e78201a8f379367c84aae0c41dcb3b34a72c792/test/legacy_test/test_activation_op.py#L1495) 中 paddle.nn.Hardtanh API 的单元测试，代码如下所示。
 
 **开发步骤：**
 
    1. 用 NumPy/SciPy 实现用于对比结果的计算函数（NumPy/SciPy 有现成函数时可跳过这一步）；
    2. 在 `setUp` 函数中定义输入等相关属性参数；
-   3. 实现静态图单元测试代码；
-   4. 实现动态图单元测试代码。
+   3. 实现动态图以及 PIR 分支单元测试代码；
+   4. （新增 API 无需实现）~~实现静态图单元测试代码~~。
 
 ```python
 # 使用 numpy 实现 hardtanh 函数，用于对比结果
@@ -342,46 +353,66 @@ class TestHardtanhAPI(unittest.TestCase):
     def setUp(self):
         np.random.seed(1024)
         self.x_np = np.random.uniform(-3, 3, [10, 12]).astype('float32')
-        self.place=paddle.CUDAPlace(0) if paddle.is_compiled_with_cuda() \
+        self.place = (
+            paddle.CUDAPlace(0)
+            if paddle.is_compiled_with_cuda()
             else paddle.CPUPlace()
+        )
 
     # 静态图单测
     def test_static_api(self):
-        # 开启静态图模式
-        paddle.enable_static()
-        with paddle.static.program_guard(paddle.static.Program()):
-            x = paddle.fluid.data('X', [10, 12])
-            out1 = F.hardtanh(x)
-            m = paddle.nn.Hardtanh()
-            out2 = m(x)
-            exe = paddle.static.Executor(self.place)
-            # 计算静态图结果
-            res = exe.run(feed={'X': self.x_np}, fetch_list=[out1, out2])
-        out_ref = ref_hardtanh(self.x_np)
-        for r in res:
-            # 对比静态图与 numpy 实现函数计算结果是否相同
-            self.assertEqual(np.allclose(out_ref, r), True)
+        # 开启静态图模式, 在静态图上下文管理器中
+        with static_guard():
+            with paddle.static.program_guard(paddle.static.Program()):
+                x = paddle.static.data('X', [10, 12], dtype="float32")
+                out1 = F.hardtanh(x)
+                m = paddle.nn.Hardtanh()
+                out2 = m(x)
+                exe = paddle.static.Executor(self.place)
+                 # 计算静态图结果
+                res = exe.run(feed={'X': self.x_np}, fetch_list=[out1, out2])
+            out_ref = ref_hardtanh(self.x_np)
+            for r in res:
+                # 对比静态图与 numpy 实现函数计算结果是否相同
+                np.testing.assert_allclose(out_ref, r, rtol=1e-05)
 
     # 动态图单测
     def test_dygraph_api(self):
-        # 关闭静态图模式
-        paddle.disable_static(self.place)
-        x = paddle.to_tensor(self.x_np)
-        # 测试动态图 F.hardtanh 和 paddle.nn.Hardtanh 计算结果
-        out1 = F.hardtanh(x)
-        m = paddle.nn.Hardtanh()
-        out2 = m(x)
-        out_ref = ref_hardtanh(self.x_np)
-        for r in [out1, out2]:
-            self.assertEqual(np.allclose(out_ref, r.numpy()), True)
+        # 开启静态图模式, 在动态图态图上下文管理器中
+        with dynamic_guard():
+            x = paddle.to_tensor(self.x_np)
+            # 测试动态图 F.hardtanh 和 paddle.nn.Hardtanh 计算结果
+            out1 = F.hardtanh(x)
+            m = paddle.nn.Hardtanh()
+            out2 = m(x)
+            out_ref = ref_hardtanh(self.x_np)
+            for r in [out1, out2]:
+                # 对比动态图与 numpy 实现函数计算结果是否相同
+                np.testing.assert_allclose(out_ref, r.numpy(), rtol=1e-05)
 
-        out1 = F.hardtanh(x, -2.0, 2.0)
-        m = paddle.nn.Hardtanh(-2.0, 2.0)
-        out2 = m(x)
-        out_ref = ref_hardtanh(self.x_np, -2.0, 2.0)
-        for r in [out1, out2]:
-            self.assertEqual(np.allclose(out_ref, r.numpy()), True)
-        paddle.enable_static()
+            out1 = F.hardtanh(x, -2.0, 2.0)
+            m = paddle.nn.Hardtanh(-2.0, 2.0)
+            out2 = m(x)
+            out_ref = ref_hardtanh(self.x_np, -2.0, 2.0)
+            for r in [out1, out2]:
+                # 对比动态图与 numpy 实现函数计算结果是否相同
+                np.testing.assert_allclose(out_ref, r.numpy(), rtol=1e-05)
+
+    def test_errors(self):
+        with static_guard():
+            with paddle.static.program_guard(paddle.static.Program()):
+                # The input type must be Variable.
+                self.assertRaises(TypeError, F.hardtanh, 1)
+                # The input dtype must be float16, float32, float64.
+                x_int32 = paddle.static.data(
+                    name='x_int32', shape=[12, 10], dtype='int32'
+                )
+                self.assertRaises(TypeError, F.hardtanh, x_int32)
+                # support the input dtype is float16
+                x_fp16 = paddle.static.data(
+                    name='x_fp16', shape=[12, 10], dtype='float16'
+                )
+                F.hardtanh(x_fp16)
 ```
 
 **开发要点：**
@@ -392,8 +423,9 @@ class TestHardtanhAPI(unittest.TestCase):
   - 用 NumPy/SciPy 的实现对比时，一般用 `self.assertTrue(numpy.allclose(actual, desired))` 或者 `numpy.testing.assert_allclose(actual, desired)` 来进行数值对比。其中，`numpy.testing.assert_allclose` 相对误差和绝对误差是 `rtol=1e-07, atol=0`；`numpy.allclose` 的相对误差和绝对误差是 `rtol=1e-05, atol=1e-08`，前者比后者更严格。一般进行单元测试的时候，都使用默认的误差阈值，如需设置自定义的阈值，需要说明原因。
   - 因为单元测试各个 case 的运行次序是不确定的，为了保证不同的测试 case 运行在正确的运行模式（动态图/静态图）上，常见的做法有：
     - 在每个测试 case 的起始部分，显式切换 paddle 的运行模式，用`paddle.enable_static` 和 `paddle.disable_static` 分别激活和取消静态图模式。如前文代码所示，在 `test_static_api` 和 `test_dygraph_api` 的开头分别切换了状态。
+    - 在每个测试 case 的起始部分，显式切换 paddle 的运行模式，用`static_guard()` 和 `dynamic_guard()` 分别激活和取消静态图模式。如前文代码所示，在 `test_static_api` 和 `test_dygraph_api` 的开头分别切换了状态。
 
-    - 将静态图和动态图测试定义为不以 `test` 开头的函数（如 [test_l1_loss.py](https://github.com/PaddlePaddle/Paddle/blob/19a8f0aa263a8d0595f7e328077cc2f48eca547f/test/legacy_test/test_l1_loss.py#L77) 中定义为 `run_imperative`、`run_static` 函数)，然后定义一个 test 开头的函数，切换不同的状态去运行它。
+    - 将静态图和动态图测试定义为不以 `test` 开头的函数（如 [test_l1_loss.py](https://github.com/PaddlePaddle/Paddle/blob/3b08b23e0d3ec02b922da865bad6017277e224ec/test/legacy_test/test_l1_loss.py#L84) 中定义为 `run_imperative`、`run_static` 函数)，然后定义一个 test 开头的函数，切换不同的状态去运行它。
 
 
       ```python
@@ -404,13 +436,10 @@ class TestHardtanhAPI(unittest.TestCase):
            # 开启静态图模式，测试静态图模式
            paddle.enable_static()
 
-           with fluid.program_guard(fluid.Program()):
-               self.run_static()
+           self.run_static()
       ```
 
     - 将动态图和静态图的测试 case 分在不同的 Python 文件中，`import paddle` 后在模块级别设置 paddle 的运行模式。比如 [test_rnn_cells.py](https://github.com/PaddlePaddle/Paddle/blob/develop/test/rnn/test_rnn_cells.py) 和 [test_rnn_cells_static.py](https://github.com/PaddlePaddle/Paddle/blob/develop/test/rnn/test_rnn_cells_static.py) 的做法。
-
-    - 在测试模块级别设定 paddle 的运行模式为静态图（一般是在一个模块的开始，而不是写在 `if __name__=="__main__":` 里)。然后在需要使用动态图的 case 里，将动态图部分的代码至于 `dygraph.guard` 上下文管理器内。这是老式的写法，目前不再推荐这么写，但已有的代码库中也存在这样的模式。
 
 
 ### 3.3 运行单元测试
