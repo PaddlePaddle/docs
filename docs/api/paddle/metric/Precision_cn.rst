@@ -11,7 +11,7 @@ Precision
 相关链接：https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers
 
 .. note::
-这个 metric 只能用来评估二分类。
+    这个 metric 只能用来评估二分类。
 
 参数
 ::::::::::::
