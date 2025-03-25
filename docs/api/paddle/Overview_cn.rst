@@ -11,9 +11,11 @@ paddle 目录下包含 tensor、device、framework 相关 API 以及某些高层
 -  :ref:`tensor 属性相关 <tensor_attribute>`
 -  :ref:`tensor 创建相关 <tensor_creation>`
 -  :ref:`tensor 元素查找相关 <tensor_search>`
+-  :ref:`tensor 元素查找相关原位（inplace）版本 <tensor_search_inplace>`
 -  :ref:`tensor 初始化相关 <tensor_initializer>`
 -  :ref:`tensor random 相关 <tensor_random>`
 -  :ref:`tensor 线性代数相关 <tensor_linalg>`
+-  :ref:`tensor 线性代数相关原位（inplace）版本 <tensor_linalg_inplace>`
 -  :ref:`tensor 元素操作相关（如：转置，reshape 等） <tensor_manipulation>`
 -  :ref:`tensor 元素操作相关原位（inplace）版本 <tensor_manipulation_inplace>`
 -  :ref:`爱因斯坦求和 <einsum>`
@@ -341,6 +343,17 @@ tensor 元素查找相关
     " :ref:`paddle.topk <cn_api_paddle_topk>` ", "沿着可选的 axis 查找 topk 最大或者最小的结果和结果所在的索引信息"
     " :ref:`paddle.where <cn_api_paddle_where>` ", "返回一个根据输入 condition, 选择 x 或 y 的元素组成的多维 Tensor"
 
+.. _tensor_search_inplace:
+
+tensor 元素查找相关原位（inplace）版本
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`paddle.where_ <cn_api_paddle_where_>` ", "Inplace 版本的 where API，对输入 x 采用 Inplace 策略"
+
 .. _tensor_initializer:
 
 tensor 初始化相关
@@ -405,6 +418,18 @@ tensor 线性代数相关
     " :ref:`paddle.pdist <cn_api_paddle_pdist>` ", "计算输入形状为 N x M 的 Tensor 中 N 个向量两两组合(pairwise)的 p 范数"
     " :ref:`paddle.renorm <cn_api_paddle_renorm>` ", "计算沿轴的 p 范数"
 
+.. _tensor_linalg_inplace:
+
+tensor 线性代数相关原位（inplace）版本
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`paddle.tril_ <cn_api_paddle_tril_>` ", "Inplace 版本的 tril API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.triu_ <cn_api_paddle_triu_>` ", "Inplace 版本的 triu API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.trunc_ <cn_api_paddle_trunc_>` ", "Inplace 版本的 trunc API，对输入 x 采用 Inplace 策略"
 
 .. _tensor_manipulation:
 
