@@ -103,7 +103,7 @@ clear_grad()
 
 **代码示例**
 
-    COPY-FROM: paddle.optimizer.NAdam.clear_grad
+COPY-FROM: paddle.optimizer.NAdam.clear_grad
 
 set_lr(value)
 '''''''''
