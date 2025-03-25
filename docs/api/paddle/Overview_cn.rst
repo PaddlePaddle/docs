@@ -187,6 +187,7 @@ tensor 数学操作原位（inplace）版本
 
     " :ref:`paddle.remainder_ <cn_api_paddle_remainder_>` ", "Inplace 版本的 remainder API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.abs_ <cn_api_paddle_abs_>` ", "Inplace 版本的 abs API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.baddbmm_ <cn_api_paddle_baddbmm_>` ", "Inplace 版本的 baddbmm API，对输入 input 采用 Inplace 策略"
     " :ref:`paddle.bernoulli_ <cn_api_paddle_bernoulli_>` ", "Inplace 版本的 bernoulli API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.tanh_ <cn_api_paddle_tanh_>` ", "Inplace 版本的 tanh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.erf_ <cn_api_paddle_erf_>` ", "Inplace 版本的 erf API，对输入 x 采用 Inplace 策略"
@@ -235,6 +236,11 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.index_fill_ <cn_api_paddle_index_fill_>` ", "Inplace 版本的 index_fill API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.bitwise_left_shift_ <cn_api_paddle_bitwise_left_shift_>` ", "Inplace 版本的 bitwise_left_shift API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.bitwise_right_shift_ <cn_api_paddle_bitwise_right_shift_>` ", "Inplace 版本的 bitwise_right_shift API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.ldexp_ <cn_api_paddle_ldexp_>` ", "Inplace 版本的 ldexp API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.less_ <cn_api_paddle_less_>` ", "Inplace 版本的 less API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.less_equal_ <cn_api_paddle_less_equal_>` ", "Inplace 版本的 less_equal API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.less_than_ <cn_api_paddle_less_than_>` ", "Inplace 版本的 less_than API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.lgamma_ <cn_api_paddle_lgamma_>` ", "Inplace 版本的 lgamma API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.log_normal_ <cn_api_paddle_log_normal_>` ", "Inplace 版本的 log_normal API，对输入 x 采用 Inplace 策略"
 
 

@@ -6,13 +6,13 @@ Auc
 .. py:class:: paddle.metric.Auc()
 
 .. note::
-目前只用 Python 实现 Auc，可能速度略慢。
+    目前只用 Python 实现 Auc，可能速度略慢。
 
-该接口计算 Auc，在二分类(binary classification)中广泛使用。
+    该接口计算 Auc，在二分类(binary classification)中广泛使用。
 
-该接口创建四个局部变量 true_positives，true_negatives，false_positives 和 false_negatives，用于计算 Auc。为了离散化 AUC 曲线，使用临界值的线性间隔来计算召回率和准确率的值。用 false positive 的召回值高度计算 ROC 曲线面积，用 recall 的准确值高度计算 PR 曲线面积。
+    该接口创建四个局部变量 true_positives，true_negatives，false_positives 和 false_negatives，用于计算 Auc。为了离散化 AUC 曲线，使用临界值的线性间隔来计算召回率和准确率的值。用 false positive 的召回值高度计算 ROC 曲线面积，用 recall 的准确值高度计算 PR 曲线面积。
 
-参考链接：https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve
+    参考链接：https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve
 
 参数
 ::::::::::::

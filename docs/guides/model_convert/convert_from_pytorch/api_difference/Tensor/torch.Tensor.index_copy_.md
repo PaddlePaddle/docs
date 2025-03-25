@@ -21,9 +21,12 @@ y = x.scatter_(index, source)
 y = x.index_copy_(dim, index, source)
 
 # Paddle 写法
-times, temp_shape, temp_index = paddle.prod(paddle.to_tensor(x.shape[:dim])), x.shape, index
-x, new_t = x.reshape([-1] + temp_shape[dim+1:]), source.reshape([-1] + temp_shape[dim+1:])
-for i in range(1, times):
-    temp_index= paddle.concat([temp_index, index+len(index)*i])
-y = x.scatter_(temp_index, new_t).reshape_(temp_shape)
+shape = x.shape
+new_index = []
+for i in range(0, np.prod(shape[:dim])):
+    new_index.append(index + i * len(index))
+new_index = paddle.concat(new_index)
+new_x = x.reshape_([-1] + shape[dim + 1:])
+new_source = source.reshape([-1] + shape[dim + 1:])
+y = new_x.scatter_(new_index, new_source).reshape_(shape)
 ```
