@@ -97,7 +97,7 @@ You can choose the following version of PaddlePaddle to start installation:
 If your computer doesn't have NVIDIA® GPU, please install `the CPU Version of PaddlePaddle`
 
 ```
-conda install paddlepaddle==3.0.0rc1 -c paddle
+conda install paddlepaddle==3.0.0 -c paddle
 ```
 
 
@@ -109,13 +109,13 @@ conda install paddlepaddle==3.0.0rc1 -c paddle
 *  If you are using CUDA 11.8:
 
   ```
-  conda install paddlepaddle-gpu==3.0.0rc1 paddlepaddle-cuda=11.8 -c paddle -c nvidia
+  conda install paddlepaddle-gpu==3.0.0 paddlepaddle-cuda=11.8 -c paddle -c nvidia
   ```
 
-*  If you are using CUDA 12.3:
+*  If you are using CUDA 12.6:
 
   ```
-  conda install paddlepaddle-gpu==3.0.0rc1 paddlepaddle-cuda=12.3 -c paddle -c nvidia
+  conda install paddlepaddle-gpu==3.0.0 paddlepaddle-cuda=12.6 -c paddle -c nvidia
   ```
 
 
