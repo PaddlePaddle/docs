@@ -233,7 +233,6 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.bitwise_left_shift_ <cn_api_paddle_bitwise_left_shift_>` ", "Inplace 版本的 bitwise_left_shift API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.bitwise_right_shift_ <cn_api_paddle_bitwise_right_shift_>` ", "Inplace 版本的 bitwise_right_shift API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.log_normal_ <cn_api_paddle_log_normal_>` ", "Inplace 版本的 log_normal API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.transpose_ <_cn_api_paddle_transpose_>` ", "Inplace 版本的 transpose API，对输入 x 采用 Inplace 策略"
 
 
 .. _tensor_logic:
@@ -483,6 +482,7 @@ tensor 元素操作相关原位（inplace）版本
     " :ref:`paddle.scatter_ <cn_api_paddle_scatter_>` ", "Inplace 版本的 scatter API，对输入 x 采用 Inplace 策略 "
     " :ref:`paddle.squeeze_ <cn_api_paddle_squeeze_>` ", "Inplace 版本的 squeeze API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.unsqueeze_ <cn_api_paddle_unsqueeze_>` ", "Inplace 版本的 unsqueeze API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.transpose_ <cn_api_paddle_transpose_>` ", "Inplace 版本的 transpose API，对输入 x 采用 Inplace 策略"
 
 .. einsum:
 
