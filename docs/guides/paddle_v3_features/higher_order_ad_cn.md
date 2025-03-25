@@ -81,7 +81,7 @@ class MyNet(paddle.nn.Layer):
 
 ```python
 x = paddle.randn([2, 2])
-x.stop_gradient = False # 允许计算对x的梯度
+x.stop_gradient = False # 允许计算对 x 的梯度
 net = MyNet()
 y = net(x)
 ```
