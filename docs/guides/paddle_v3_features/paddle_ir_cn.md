@@ -132,6 +132,9 @@ Pass 的核心是子图匹配和替换（即图变换），是将一个 Program 
 - a. C++ 层参数存储，采用二进制流的保存方式，存储文件为 xxx.pdiparams。
 - b. Python 层参数存储， 使用 pickle 序列化工具，存储文件为 xxx.pdparams。
 
+### 5.插件式子图接入能力
+基于 PIR 体系，提供了**训推一体**[子图插件式接入方案](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/Guides/pir_plugin_subgraph.md)，支持具备子图优化能力的硬件借助 customdevice 机制完成子图运行能力的接入，硬件厂商通过适配子图接入的相关函数，支持 Paddle 动转静训练，静态图推理使用图引擎优化方案运行。
+
 ## 五、二次开发注意事项
 ### 1.背景
 PIR 组网过程中存在『插入隐式算子』的场景，所谓『隐式算子』是指：非用户直接调用 API 接口插入的对应算子，而是底层组网逻辑及执行逻辑中自动插入的算子，这里算子包括三类：
