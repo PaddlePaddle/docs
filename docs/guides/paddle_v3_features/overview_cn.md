@@ -8,7 +8,7 @@
 
 以下是飞桨框架 3.x 的新特性：
 
-- **动静统一自动并行：** 为了降低大模型的编程难度，飞桨还优化了动静统一的半自动并行编程范式，显著简化了编程的复杂度。开发者无需深入研究手动并行编程的复杂概念和 API，只需进行少量的张量切分标注，即可完成混合并行模型的构建。框架能够自动推导分布式切分状态并添加通信算子，同时还支持一键动转静分布式训练，从而大幅简化了混合并行训练代码的开发过程。动静统一方面，飞桨通过采用基于字节码的动静转换技术，全面升级了其动转静训练能力，支持自适应的图构建功能。在 700 多个飞桨产业级模型上进行了验证，实现了一键动转静训练 100%的成功率。
+- **动静统一自动并行：** 飞桨推出了动静统一的自动并行编程范式，显著降低了编写分布式训练程序的复杂度。开发者无需深入研究并手动编写复杂的并行切分和通信代码，只需进行少量的张量切分标注，即可完成分布式模型的构建。框架能够为用户自动推导分布式切分状态并添加通信操作，同时还支持一键动转静训练，大幅简化了分布式训练代码的开发过程。
 - **神经网络编译器自动优化：** 飞桨神经网络编译器 CINN（Compiler Infrastructure for Neural Networks）采用与框架一体化的设计，能够支持生成式模型、科学计算模型等多种模型的高效训练与可变形状推理，为计算灵活性与高性能之间提供了一个良好的平衡点。通过算子的自动融合和代码生成技术，Llama2 和 Stable Diffusion 模型的性能提升了 30%。
 - **高阶自动微分：** 为了更好支持科学计算等场景，飞桨框架设计并实现了基于组合算子机制的高阶自动微分技术，结合神经网络编译器自动优化技术，我们测试了超过 40 多个科学计算场景的微分方程，其求解速度领先业界同类产品 70%。
 - **高扩展中间表示** ：为了提升飞桨框架的可扩展性，我们研发了高扩展中间表示 PIR（Paddle Intermediate Representation）。这一表示系统性地抽象了底层核心概念，提供了灵活且高效的组件。PIR 作为基础设施，支撑着动转静、自动微分、自动并行、组合算子、图优化等多项技术，并广泛应用于分布式训练、模型压缩、推理部署等场景。通过 PIR 提供的 DRR（Declarative Rewrite Rule）机制，Pass 的开发成本可以降低 60%。我们对超过 900 个模型配置进行了测试，结果显示，在使用 PIR 后，推理的整体性能提升了超过 10%。
@@ -57,69 +57,23 @@
 飞桨采用的技术方案是源代码到源代码的转换，即分析并转写动态图 Python 源代码，进而生成对应的静态图 Python 源代码；在获取源代码后，使用静态 Python 解释器来执行这段静态图代码，从而得到计算图表示。动静转换技术的核心挑战在于对 Python 语法的支持程度。通过实际测试，我们发现飞桨对 Python 语法的支持率高达 94%，飞桨的动静转换功能在整图导出任务的成功率高达 95%。飞桨框架的优势在于它同时兼容动态图和静态图两种开发模式。因此，在进行动静转换时，仅需实现从动态图 Python 源代码到静态图 Python 源代码的转换。这一转换过程可以通过 Python 解释器进一步增强对 Python 语法的支持，从而大大降低了实现的难度。在训练场景，针对那些无法进行动静转换的情况，例如 Python 代码中调用 Numpy 等第三方库时，这些库的函数调用无法直接转换为静态图表示。为了解决这一问题，飞桨创新性地研发了“自适应图构建机制”。当遇到不支持的语法时，该机制会被触发，自动断开这些部分，并利用前后相邻的图进行重新构建。通过采用这种方案，我们在训练场景中可以实现 100%的动静转换成功率，从而为编译器等计算图优化技术提供了更广阔的空间。更多关于动静转换的信息，请参考以下链接：[《动转静 SOT 原理及使用》](./sot_cn.md)
 
 ### 4.2 自动并行
+在大模型场景中，分布式训练必不可少。当前用户使用Megatron、DeepSpeed等动态图手动并行框架开发分布式策略时，往往需要精心处理计算、通信、调度等多元逻辑，才能编写出正确的分布式代码，这无疑提高了开发的难度。为了解决这一难题，我们提出了动静统一的自动并行方案。在自动并行的编程范式下，开发者只需要在单卡模型组网的基础上提供集群声明以及少量的标记信息，飞桨框架可以根据模型结构和集群信息自动寻找合适的分布式训练策略。
 
-在大模型开发场景中，多维混合并行显得尤为重要。对于百亿甚至千亿规模的大模型，一般需要使用张量模型并行、流水并行、数据并行、分组参数切片并行的混合并行方式进行训练。然而，多维混合并行的开发过程往往相当复杂。以数据并行、张量模型并行和流水线并行为例，开发者必须精心处理计算、通信、调度等多元逻辑，才能编写出正确的混合并行代码，这无疑提高了开发的难度。为了解决这一难题，我们提出了动静统一的自动并行方案。自动并行，开发者只需要提供模型结构和集群，以及少量的标记信息，飞桨框架可以根据模型结构和集群信息自动寻找合适的分布式训练策略。我们来看一下对分布式标记（DistAttr）的定义。通过使用 ProcessMesh 将一个设备（比如一块 GPU 卡）映射为一个进程，将多个设备映射为多个进程组成的一维或多维数组，下图展示了由 8 个设备构成的两种不同 ProcessMesh 抽象表示。
+在做分布式标记时，我们使用 ProcessMesh 将一个设备（比如一块 GPU 卡）映射为一个进程，将多个设备映射为多个进程组成的一维或多维数组。下图展示了由 8 个设备构成的两种不同 ProcessMesh 抽象表示。
 
 <figure align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_process_mesh.png" style="zoom:50%"/>
 </figure>
 
-然后通过使用 Placement 来表示张量在不同设备上的切分状态，分为 Replicate、Shard 和 Partial 这 3 种切分状态。如下图所示，Replicate 表示张量在不同设备上会以复制的形式存在；Shard 表示按照特定的维度在不同设备上进行切分；Partial 表示设备上的张量不完整，需要进行 Reduce Sum 或者 Reduce Mean 等不同方式的操作后，才能得到完整的状态。
+然后通过使用 Placement 来表示张量在不同设备上的切分状态，Placement分为 Replicate、Shard 和 Partial 这 3 种切分状态。如下图所示，Replicate 表示张量在不同设备上会以复制的形式存在；Shard 表示按照特定的维度在不同设备上进行切分；Partial 表示设备上的张量不完整，需要进行 Reduce Sum 或者 Reduce Mean 等不同方式的操作后，才能得到完整的状态。
 
 <figure align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_placement.png" style="zoom:50%"/>
 </figure>
 
-在完成分布式标记抽象后，我们通过调用`paddle.distributed.shard_tensor()`接口，实现对张量切分的标记。通过张量切分的标记，我们可以表示复杂的分布式混合并行，下图展示了一个具体的数据并行、张量模型并行、流水线并行组成的混合并行的例子。
+在完成分布式标记抽象后，通过调用`paddle.distributed.shard_tensor()`接口，将一个普通的张量标记成分布式张量。标记出分布式张量后，我们可以像写单卡程序一样，调用算子对分布式张量进行操作。框架底层会根据算子的计算逻辑自动进行必要的数据切分、并行计算和通信操作，以保证分布式计算结果的正确性。
 
-<figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/overview/paddle_v3_parallel.png" style="zoom:50%"/>
-</figure>
-
-以下代码展示了混合并行的具体例子。
-
-```python
-import paddle
-import paddle.distributed as dist
-from paddle.io import BatchSampler, DataLoader, Dataset
-import numpy as np
-...
-mesh0 = dist.ProcessMesh([[0, 1], [2, 3]], dim_names=['x', 'y'])
-mesh1 = dist.ProcessMesh([[4, 5], [6, 7]], dim_names=['x', 'y'])
-...
-class MlpModel(paddle.nn.Layer):
-    def __init__(self):
-        super(MlpModel, self).__init__()
-        # 张量切分标记
-        self.w0 = dist.shard_tensor(
-                    self.create_parameter(shape=[1024, 4096]),
-                    mesh0, [dist.Replicate(), dist.Shard(1)])
-        self.w1 = dist.shard_tensor(
-                    self.create_parameter(shape=[4096, 1024]),
-                    mesh1, [dist.Replicate(), dist.Shard(0)])
-
-    def forward(self, x):
-        # 张量切分标记
-        dist.shard_tensor(x, mesh0, [dist.Shard(0), dist.Replicate()])
-        y = paddle.matmul(x, self.w0)
-        # 张量重切分
-        y = dist.reshard(y, mesh1, [dist.Shard(0), dist.Shard(2)])
-        z = paddle.matmul(y, self.w1)
-        return z
-...
-# 创建模型
-model = MlpModel()
-opt = paddle.optimizer.AdamW(...)
-...
-# 动转静训练
-dist_model, dist_loader = dist.to_static(model, opt, ...)
-for step, data in enumerate(dist_loader()):
-    ...
-    loss = dist_model(data)
-    ...
-```
-
-我们以具体的 Llama 模型训练为例，动态图手动并行的开发方式，它要求开发者不仅要选择合适的并行策略，还必须精心设计通信逻辑；通过采用自动并行的开发方式，开发者无需再考虑复杂的通信逻辑。其分布式训练核心代码量减少了 50%，从而大大降低了开发的难度；从我们的一些实验可知，当前这种自动并行的性能优于动态图手动并行的性能。未来，我们将进一步探索无需使用张量切分标记的全自动并行，让开发者可以像写单机代码一样写分布式代码，进一步提升大模型的开发体验。更多关于自动并行的信息，请参考以下文档：[《动静统一自动并行》](./auto_parallel_cn.md)
+自动并行提供了一种高度灵活和方便的张量切分标记方式，可以轻松地实现各种复杂的分布式并行策略。以具体的 Llama 模型训练为例，动态图手动并行的开发方式，它要求开发者不仅要选择合适的并行策略，还必须精心设计通信逻辑；通过采用自动并行的开发方式，开发者无需再考虑复杂的通信逻辑。其分布式训练核心代码量可减少50%，从而大大降低了开发的难度。未来，我们将进一步探索无需使用张量切分标记的全自动并行，让开发者可以完全不用关心集群拓扑和分布式标记信息，进一步提升大模型的开发体验。关于自动并行功能的更多介绍，请参考以下文档：[《自动并行训练》](./auto_parallel_cn.md)
 
 ## 五、神经网络编译器自动优化
 
