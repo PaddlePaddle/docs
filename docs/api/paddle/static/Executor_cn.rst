@@ -64,8 +64,8 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
 返回 fetch_list 中指定的变量值。
 
 .. note::
-     1. 如果是多卡训练，并且 feed 参数为 dict 类型，输入数据将被均匀分配到不同的卡上，例如：使用 2 块 GPU 训练，输入样本数为 3，即[0, 1, 2]，经过拆分之后，GPU0 上的样本数为 1，即[0]，GPU1 上的样本数为 2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个 batch 的样本数是否少于当前可用的 CPU 核数或 GPU 卡数，如果是少于，建议丢弃该 batch。
-     2. 如果可用的 CPU 核数或 GPU 卡数大于 1，则 fetch 出来的结果为不同设备上的相同变量值（fetch_list 中的变量）在第 0 维拼接在一起。
+    1. 如果是多卡训练，并且 feed 参数为 dict 类型，输入数据将被均匀分配到不同的卡上，例如：使用 2 块 GPU 训练，输入样本数为 3，即[0, 1, 2]，经过拆分之后，GPU0 上的样本数为 1，即[0]，GPU1 上的样本数为 2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个 batch 的样本数是否少于当前可用的 CPU 核数或 GPU 卡数，如果是少于，建议丢弃该 batch。
+    2. 如果可用的 CPU 核数或 GPU 卡数大于 1，则 fetch 出来的结果为不同设备上的相同变量值（fetch_list 中的变量）在第 0 维拼接在一起。
 
 
 **代码示例 1**
@@ -107,7 +107,7 @@ train_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False
 从预定义的数据集中训练。数据集在 paddle.fluid.dataset 中定义。给定程序（或编译程序），train_from_dataset 将使用数据集中的所有数据样本。输入范围可由用户给出。默认情况下，范围是 global_scope()。训练中的线程总数是 thread。训练中使用的线程数将是数据集中 threadnum 的最小值，同时也是此接口中线程的值。可以设置 debug，以便执行器显示所有算子的运行时间和当前训练任务的吞吐量。
 
 .. note::
-train_from_dataset 将销毁每次运行在 executor 中创建的所有资源。
+    train_from_dataset 将销毁每次运行在 executor 中创建的所有资源。
 
 **参数**
 
