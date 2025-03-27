@@ -1,10 +1,11 @@
 # 分布式算子开发
+
 分布式算子用于在自动并行计算中自动推导输入、输出张量在设备上的切分状态，并完成对应的并行计算。由于可以自动推导输入、输出的分布情况，用户在使用自动并行时只需标记部分张量的分布情况，无需考虑每个设备内部的计算以及设备间的通信等细节，分布式算子可自动高效实现整个网络的分布式训练，大幅简化分布式程序的编写过程。
 
  如下图所示，在执行加法计算前，用户只标记了输入 Tensor1 的切分状态为 Shard(0)，因此每个设备上只有 Tensor1 的部分数据，Tensor2 没有标记，每个设备上有所有数据。在执行计算前，加法算子首先根据用户标记的张量切分状态，推导出没有标记的输入张量的切分状态，以及输出张量的切分状态，并根据推导得到的切分状态对输入张量进行转换，示例中加法算子推导出 Tensor2 和输出的切分状态为 Shard(0)，并对 Tensor2 进行切分状态的转换，转换后每个设备有 Tensor2 的部分数据。 最后利用多设备进行分布式计算得到输出，示例中在每个设备上均执行加法计算，得到计算结果，其切分状态也是 Shard(0)。
 
 <p align="center">
-    <img src="./images/elementwise_spmd.svg" width="70%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/dev_guides/api_contributing_guides/images/elementwise_spmd.svg" width="70%"/>
 </p>
 
 
@@ -15,13 +16,13 @@
 
 下图是一个 2 机 4 卡的示例，其中 ProcessMesh 被表示为 [[0, 1], [2, 3]]：
 <p align="center">
-    <img src="./images/process_mesh_2-2.svg" width="50%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/dev_guides/api_contributing_guides/images/process_mesh_2-2.svg" width="50%"/>
 </p>
 
 我们可以使用 DimsMapping 来表示数据在 ProcessMesh 上的分布方式，DimsMapping[i] = j 表示张量的第 i 维在 ProcessMesh 的第 j 维上被切分，若 j 为 -1 则表示不切分，在该维上复制。例如张量大小为 (4, 4)，process_mesh 的大小为 [2, 2]，DimsMapping = [-1, 1] 表示张量的第 0 维不切分，第 1 维在 ProcessMesh 的第 1 维上切分，切分后每个卡上的张量大小为 (2, 1)，等价于 Placements 表示的 [Replicate(), Shard(1)]。DimsMapping = [0, 1] 表示张量的第 0 维在 ProcessMesh 的第 0 维上切分，第 1 维在 ProcessMesh 的第 1 维上切分，切分后每个卡上的张量大小为 (1, 1)，等价于 Placements 表示的 [Shard(0), Shard(1)]。下图分别展示了 DimsMapping 为 [-1, 1] 和 [0, 1] 时的张量切分情况。
 
 <p align="center">
-    <img src="./images/DimMapping.svg" width="70%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/dev_guides/api_contributing_guides/images/DimMapping.svg" width="70%"/>
 </p>
 
 ## 二、开发流程
@@ -168,7 +169,7 @@ SpmdInfo ElementwiseBinaryInferSpmd(const DistMetaTensor& x,
 
 
 <p align="center">
-    <img src="./images/DimsTrans.png" width="70%"/>
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/dev_guides/api_contributing_guides/images/DimsTrans.png" width="70%"/>
     <br>
     (6, 12, 24, 48) --> (72, 24, 6, 8) 的变换关系
 </p>

@@ -34,7 +34,7 @@ mesh = paddle.distributed.ProcessMesh([[0, 1], [2, 3]], dim_names=['dp', 'tp'])
 * Partial(reduce_type)：指每个计算设备只拥有部分值，需要通过 allreduce_sum 或其它指定的规约操作才能恢复成全量数据。Partial 状态往往在网络运算过程中产生，用户很少需要显式标记 Partial 状态。
 
 <figure align="center">
-<img src="./images/auto_parallel/mesh.png" width="70%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/mesh.png" width="70%"/>
 </figure>
 
 
@@ -58,7 +58,7 @@ print(dist_tensor.process_mesh) # {shape: [2,3], process_ids: [0,1,2,3,4,5], dim
 print(dist_tensor.placements) # [Shard(dim=0), Replicate()]
 ```
 <figure align="center">
-<img src="./images/auto_parallel/shard.svg" width="70%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/shard.svg" width="70%"/>
 </figure>
 
 对应的张量切分状态如上图所示，从数据行的维度（第 0 维）看，4 行数据被切分成了 2 块，每块 2 行，放置在设备的'x'维上，对应'x'维上的切分状态 Shard(0)。从数据列的维度看，数据没有做并行切分，'y'维上每个设备都拥有完整的 3 列数据，对应在'y'维上的全复制状态 Replicate()。
@@ -77,7 +77,7 @@ print(dist_tensor.placements) # [Shard(dim=0), Shard(dim=1)]
 reshard 之后的张量切分状态如下，可以看到数据被切分得更细了：
 
 <figure align="center">
-<img src="./images/auto_parallel/reshard.svg" width="70%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/reshard.svg" width="70%"/>
 </figure>
 
 > 注：用户使用分布式张量的方式与普通的张量基本相同，在使用时不需要关心分布式算子的概念，因此此处不对分布式算子做展开介绍。如果你有开发新算子的需求，请查看[分布式算子开发](../../dev_guides/api_contributing_guides/auto_parallel_op.md)章节内容。
@@ -446,7 +446,7 @@ print(f"max_memory_reserved = {paddle.device.cuda.max_memory_reserved() / 1e6 : 
 * 二是动态图和静态图架构内核的动静统一，在单卡组网动转静之后，动态图和静态图模式均由统一的内核进行切分推导和通信转换，这些关键的模块逻辑在动态图和静态图两种模式进行了统一的抽象，动静在各自的执行流程中执行相同的规则函数，实现相同的分布式逻辑。
 
 <figure align="center">
-<img src="./images/auto_parallel/to_static.svg" width="70%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/to_static.svg" width="70%"/>
 </figure>
 
 
@@ -959,7 +959,7 @@ print(f"max_memory_reserved = {paddle.device.cuda.max_memory_reserved() / 1e6 : 
 这样我们就实现了 4 卡流水并行，其调度图如下所示：
 
 <figure align="center">
-<img src="./images/auto_parallel/v.png" width="70%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/v.png" width="70%"/>
 </figure>
 
 ### 5.2 复杂流水并行策略
@@ -1087,17 +1087,17 @@ print(f"max_memory_reserved = {paddle.device.cuda.max_memory_reserved() / 1e6 : 
 ```
 各种流水并行调度图如下：
 <figure align="center">
-<img src="./images/auto_parallel/FThenB.png" width="70%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/FThenB.png" width="70%"/>
 <p>FThenB 调度图</p>
 </figure>
 
 <figure align="center">
-<img src="./images/auto_parallel/1F1B.png" width="70%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/1F1B.png" width="70%"/>
 <p>1F1B 调度图</p>
 </figure>
 
 <figure align="center">
-<img src="./images/auto_parallel/VPP.png" width="70%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/VPP.png" width="70%"/>
 <p>VPP 调度图</p>
 </figure>
 
@@ -1149,19 +1149,19 @@ print(f"max_memory_reserved = {paddle.device.cuda.max_memory_reserved() / 1e6 : 
 
 下面列出了一些我们正在进行，并可能在下个版本推出的工作：
 
-1. 基础能力完善
-- 分布式算子：简化分布式算子开发流程，包括探索更简单的切分推导规则编写方式，内置更多场景下常用算子的切分推导规则，完善自定义算子集成机制等。
-- 并行策略支持：开发 ContextParallel、ConvParallel 等更多并行策略，支持多模型结构混合并行，探索现有并行策略与 FP8、DeepEP 等大模型训练新技术的结合方式。
-- 切分标记语法：支持灵活标记更多的切分模式，包括非均衡切分、多维切分等。
-- 国产硬件支持：在更多国产 AI 加速芯片上适配自动并行，进行更深度的软硬件协同优化。
-- 自动并行推理：探索训推一体机制，使得自动并行组网的训练代码推理可复用，自动并行的静态图优化可以在推理中复用。
-2. 易用性提升
-- 流水并行：设计和开发更易用的流水并行接口，让用户能更简单和灵活地实现新的流水编排方式。
-- 全自动 API：基于 cost-model 为用户自动搜索和选择最优的并行策略，让用户可以不做任何切分标记，一键跑起分布式训练。
-- 调试体验：开发更多的调试工具，让用户能方便地调试自动并行程序。
-3. 性能优化
-- 动态图性能：在动态图上实现更多的优化策略，让用户在动态图模式下也能获得较优的性能体验。
-- AI 编译器：结合编译器技术构建图层自动并行+算子层编译器两层编译架构，探索分布式算子融合，实现更极致和通用的性能优化。
+* 基础能力完善
+  - 分布式算子：简化分布式算子开发流程，包括探索更简单的切分推导规则编写方式，内置更多场景下常用算子的切分推导规则，完善自定义算子集成机制等。
+  - 并行策略支持：开发 ContextParallel、ConvParallel 等更多并行策略，支持多模型结构混合并行，探索现有并行策略与 FP8、DeepEP 等大模型训练新技术的结合方式。
+  - 切分标记语法：支持灵活标记更多的切分模式，包括非均衡切分、多维切分等。
+  - 国产硬件支持：在更多国产 AI 加速芯片上适配自动并行，进行更深度的软硬件协同优化。
+  - 自动并行推理：探索训推一体机制，使得自动并行组网的训练代码推理可复用，自动并行的静态图优化可以在推理中复用。
+* 易用性提升
+  - 流水并行：设计和开发更易用的流水并行接口，让用户能更简单和灵活地实现新的流水编排方式。
+  - 全自动 API：基于 cost-model 为用户自动搜索和选择最优的并行策略，让用户可以不做任何切分标记，一键跑起分布式训练。
+  - 调试体验：开发更多的调试工具，让用户能方便地调试自动并行程序。
+* 性能优化
+  - 动态图性能：在动态图上实现更多的优化策略，让用户在动态图模式下也能获得较优的性能体验。
+  - AI 编译器：结合编译器技术构建图层自动并行+算子层编译器两层编译架构，探索分布式算子融合，实现更极致和通用的性能优化。
 
 如果你对以上的研发内容感兴趣，或想在自动并行之上进行一些新的创新和研发，也可以加入飞桨开发者社区，一起建设和完善自动并行架构，共同定义理想的深度学习框架，欢迎访问社区 issue 区[置顶栏](https://github.com/PaddlePaddle/Paddle/issues)，参与飞桨启航计划、飞桨黑客松等丰富活动。关于飞桨开源社区的更多动态，欢迎关注[飞桨开源社区博客](https://pfcc.blog)！
 
@@ -1206,12 +1206,12 @@ print(f"max_memory_reserved = {paddle.device.cuda.max_memory_reserved() / 1e6 : 
 
 <div class="image-group">
   <div class="image-container">
-    <img src="./images/auto_parallel/wechat-group.png" style="width:100%; height: auto; border-radius: 8px;">
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/wechat-group.png" style="width:100%; height: auto; border-radius: 8px;">
     <div class="image-title">微信交流群</div>
   </div>
 
   <div class="image-container">
-    <img src="./images/auto_parallel/hi-group.png" style="width:100%; height: auto; border-radius: 8px;">
+    <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/hi-group.png" style="width:100%; height: auto; border-radius: 8px;">
     <div class="image-title">如流交流群</div>
   </div>
 </div>
