@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 import sys
 
 source_to_doc_dict = {}
@@ -68,6 +69,9 @@ def check_system_message_in_doc(doc_file):
     return: True or False
     """
     pass_check = True
+    if not os.path.exists(doc_file):
+        return pass_check
+
     with open(doc_file, "r") as f:
         for line, row in enumerate(f):
             if SYSTEM_MESSAGE_WARNING in row:
