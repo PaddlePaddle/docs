@@ -11,14 +11,14 @@
 飞桨已经实现了大部分常用的分布式算子，并提供一套通用机制允许用户根据需要开发自己的分布式算子。相比于单卡的算子，分布式算子仅需额外开发一个切分推导规则即可。切分推导规则主要用于推导补全模型中没有被用户标记的张量的分布情况，其决定了后续整个网络的分布式训练策略，是影响训练效率的重要模块。对于一些缺少推导规则的算子，框架提供了兜底规则，将所有输入 tensor 变换为全复制的状态进行计算，虽然效率较低，但能保证其在自动并行中正确执行。
 
 ## 一、基础概念
-在切分推导中，我们使用DimsMapping来表示张量在不同设备上的分布情况。DimsMapping 和 [Placements](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/Placement_cn.html#placement) 类似，都用于表示张量在ProcessMesh上的分布方式，不同点在于 DimsMapping是从张量的角度出发，描述张量每一维度的切分状态；Placements则是从ProcessMesh的角度出发，描述在 ProcessMesh 的每一维度上数据的切分状态。
+在切分推导中，我们使用 DimsMapping 来表示张量在不同设备上的分布情况。DimsMapping 和 [Placements](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/Placement_cn.html#placement) 类似，都用于表示张量在 ProcessMesh 上的分布方式，不同点在于 DimsMapping 是从张量的角度出发，描述张量每一维度的切分状态；Placements 则是从 ProcessMesh 的角度出发，描述在 ProcessMesh 的每一维度上数据的切分状态。
 
-下图是一个2机4卡的示例，其中ProcessMesh被表示为 [[0, 1], [2, 3]]：
+下图是一个 2 机 4 卡的示例，其中 ProcessMesh 被表示为 [[0, 1], [2, 3]]：
 <p align="center">
     <img src="./images/process_mesh_2-2.svg" width="50%"/>
 </p>
 
-我们可以使用DimsMapping来表示数据在 ProcessMesh 上的分布方式，DimsMapping[i] = j 表示张量的第i维在ProcessMesh 的第j维上被切分，若j为 -1 则表示不切分，在该维上复制。例如张量大小为 (4, 4)，process_mesh 的大小为 [2, 2]，DimsMapping = [-1, 1] 表示张量的第 0 维不切分，第1维在 ProcessMesh 的第1维上切分，切分后每个卡上的张量大小为 (2, 1)，等价于 Placements 表示的 [Replicate(), Shard(1)]。DimsMapping = [0, 1] 表示张量的第0维在 ProcessMesh 的第0 维上切分，第1 维在 ProcessMesh 的第1 维上切分，切分后每个卡上的张量大小为 (1, 1)，等价于 Placements 表示的 [Shard(0), Shard(1)]。下图分别展示了 DimsMapping为 [-1, 1] 和 [0, 1] 时的张量切分情况。
+我们可以使用 DimsMapping 来表示数据在 ProcessMesh 上的分布方式，DimsMapping[i] = j 表示张量的第 i 维在 ProcessMesh 的第 j 维上被切分，若 j 为 -1 则表示不切分，在该维上复制。例如张量大小为 (4, 4)，process_mesh 的大小为 [2, 2]，DimsMapping = [-1, 1] 表示张量的第 0 维不切分，第 1 维在 ProcessMesh 的第 1 维上切分，切分后每个卡上的张量大小为 (2, 1)，等价于 Placements 表示的 [Replicate(), Shard(1)]。DimsMapping = [0, 1] 表示张量的第 0 维在 ProcessMesh 的第 0 维上切分，第 1 维在 ProcessMesh 的第 1 维上切分，切分后每个卡上的张量大小为 (1, 1)，等价于 Placements 表示的 [Shard(0), Shard(1)]。下图分别展示了 DimsMapping 为 [-1, 1] 和 [0, 1] 时的张量切分情况。
 
 <p align="center">
     <img src="./images/DimMapping.svg" width="70%"/>
@@ -32,7 +32,7 @@
 1. 开发算子的推导规则，代码以 {op_name}.h 和 {op_name}.cc 命名（以 matmul 为例，文件名为 matmul.h 和 matmul.cc），放在 [Paddle/paddle/phi/infermeta/spmd_rules](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/infermeta/spmd_rules) 目录下。
 2. 注册规则，仿照已有规则注册新增规则，使规则在算子计算时生效。
 3. 写推导规则对应的单测，放到 [Paddle/test/auto_parallel/spmd_rules](https://github.com/PaddlePaddle/Paddle/tree/develop/test/auto_parallel/spmd_rules) 目录，写法可以参考该目录下其他单测文件，单测需要包含全面的测试用例。
-   
+
 ### 2.1 接口定义
 以加法计算为例，推导规则的接口定义如下，接口中参数需要和 phi api（Paddle/paddle/phi/api/lib/api.cc，这个文件在 cmake 之后会生成）保持一致，由于加法、减法、乘法等计算都是对两个输入张量的逐元素计算，因此可以使用同一规则，这里将规则命名为 ElementwiseBinaryInferSpmd：
 
@@ -60,13 +60,13 @@ SpmdInfo ElementwiseBinaryInferSpmd(const DistMetaTensor& x,
 按照算子的不同计算逻辑，规则整体上可以分为两大类，计算类和修改形状类，实现的核心思想一样，都是通过找到输入、输出维度之间的对应关系，把分布式属性在对应维度间进行传递。下面分别介绍两类推导规则的实现过程。
 
 #### 2.2.1 计算类规则
-计算类规则对应于对输入进行计算的算子，例如matmul、elementwise 等。计算类算子的推导规则基于Einsum Notation 实现，首先找到输入张量、输出张量各维度之间的对应关系，然后把分布式属性在对应维度间进行传递。推导的具体过程如下： 
+计算类规则对应于对输入进行计算的算子，例如 matmul、elementwise 等。计算类算子的推导规则基于 Einsum Notation 实现，首先找到输入张量、输出张量各维度之间的对应关系，然后把分布式属性在对应维度间进行传递。推导的具体过程如下：
 
 1. 根据算子的计算过程，得到对应的 Einsum Notation。Einsum Notation 反应了输入和输出之间各维度的对应关系，例如根据 matmul 的计算方式，其 Einsum Notation 为 ij, jk -> ik，表示输出 tensor 中的 (i,k) 由第一个输入的 (i,j) 和第二个输入的 (j,k) 得到，消失的维度是进行规约（这里是 j，进行求和）的维度。由此可见，Einsum Notation 中字母相同的维度就是输入、输出中对应的维度。
 2. 对输入的 DimsMapping 进行合并操作，即如果有多个输入 tensor，且 DimsMapping 不相同，计算得到一个对所有输入兼容的 DimsMapping，由此可以得到 Einsum Notation 中每个字母（维度）的 DimsMapping 值。
-3. 根据第2步中得到的字母（维度）和 dims mapping 值的对应关系，得到输出的 DimsMapping。
-4. 如果输入的 DimsMapping 需要更新，即算子计算时所需要的输入切分状态和输入张量当前的切分状态不同，例如第2步中得到的兼容值和原来的不相同、或者原来的 DimsMapping 不合法等，则进行更新。
-一些基础函数已经实现在公共模块中，开发者需要根据算子计算过程构建 Einsum Notation，2、3、4步可以调用基础函数完成。查看后文单测中的测试样例可以帮助理解推导过程。
+3. 根据第 2 步中得到的字母（维度）和 dims mapping 值的对应关系，得到输出的 DimsMapping。
+4. 如果输入的 DimsMapping 需要更新，即算子计算时所需要的输入切分状态和输入张量当前的切分状态不同，例如第 2 步中得到的兼容值和原来的不相同、或者原来的 DimsMapping 不合法等，则进行更新。
+一些基础函数已经实现在公共模块中，开发者需要根据算子计算过程构建 Einsum Notation，2、3、4 步可以调用基础函数完成。查看后文单测中的测试样例可以帮助理解推导过程。
 
 
 
@@ -216,7 +216,7 @@ SpmdInfo ReshapeInferSpmd(const DistMetaTensor& x,
   // tgt_shape 的变换。
   std::vector<DimTrans*> trans = MakeReshapeDimTrans(src_shape, tgt_shape);
 
-  // Step2: 由 Step1 的到的 std::vector<DimTrans*>，调用 InferFromDimTrans 
+  // Step2: 由 Step1 的到的 std::vector<DimTrans*>，调用 InferFromDimTrans
   // 就可以得到 output 的 dims_mapping。返回值中，dims_mapping_vec[0] 是 input
   // 的 dims mapping，dims_mapping_vec[1] 是 output 的 dims mapping。
   std::vector<std::vector<int64_t>> dims_mapping_vec =
@@ -298,7 +298,7 @@ class TestElementwiseSPMDRule(unittest.TestCase):
         y_shape = [64, 36]
         process_mesh = auto.ProcessMesh(mesh=[0, 1, 2, 3])
 
-        # 定义数据结构，目前python 端使用 DistTensorSpec 这个数据结构作为输入
+        # 定义数据结构，目前 python 端使用 DistTensorSpec 这个数据结构作为输入
         x_tensor_dist_attr = TensorDistAttr()
         x_tensor_dist_attr.dims_mapping = [1, 0]
         x_tensor_dist_attr.process_mesh = process_mesh
@@ -331,7 +331,7 @@ class TestElementwiseSPMDRule(unittest.TestCase):
         self.assertEqual(infered_input_dist_attrs[0].dims_mapping, [0, -1])
         self.assertEqual(infered_input_dist_attrs[1].dims_mapping, [0, -1])
         self.assertEqual(infered_output_dist_attrs[0].dims_mapping, [0, -1])
-    
+
     # 逆向推导单测
     def test_backward_multi_mesh_dim(self):
         process_mesh = auto.ProcessMesh([[0, 1, 2], [3, 4, 5]])
@@ -360,8 +360,8 @@ class TestElementwiseSPMDRule(unittest.TestCase):
         self.assertEqual(infered_input_dist_attrs[0].dims_mapping, [0, 1, -1])
         self.assertEqual(infered_input_dist_attrs[1].dims_mapping, [0, 1, -1])
         self.assertEqual(infered_output_dist_attrs[0].dims_mapping, [0, 1, -1])
-    
-    
+
+
 ```
 ### 3.5 自定义算子
 自定义算子允许用户在不修改 paddle 源代码的情况下，新增 op，扩展框架的能力。在自动并行中使用自定义算子时，也需要实现对应的切分推导规则，否则框架将使用默认的兜底规则，将所有输入 tensor 变换为全复制的状态进行计算，效率较低。
@@ -416,4 +416,4 @@ PD_BUILD_OP(custom_relu)
     #endif
     ;
 ```
-> 注：关于构建自定义算子的更多细节，请参考[自定义C++算子](../../guides/custom_op/new_cpp_op_cn.md)。
+> 注：关于构建自定义算子的更多细节，请参考[自定义 C++算子](../../guides/custom_op/new_cpp_op_cn.md)。
