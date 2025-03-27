@@ -19,7 +19,7 @@ LBFGS 具体原理参考书籍 Jorge Nocedal, Stephen J. Wright, Numerical Optim
 
 
 .. note::
-  当前仅支持动态图模式下使用。
+    当前仅支持动态图模式下使用。
 
 
 参数
@@ -52,11 +52,11 @@ COPY-FROM: paddle.optimizer.LBFGS
 方法
 ::::::::::::
 step(closure)
-'''''''''
+''''''''''''''
 
 .. note::
 
-该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+    该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 执行一次 LBFGS 优化器（包含若干 iter）并进行参数更新。
 
@@ -74,11 +74,11 @@ COPY-FROM: paddle.optimizer.LBFGS.step
 
 
 state_dict()
-'''''''''
+''''''''''''''
 
 .. note::
 
-该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+    该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 将优化器当前参数状态保存到字典。
 
