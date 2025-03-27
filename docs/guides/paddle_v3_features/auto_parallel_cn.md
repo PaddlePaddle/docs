@@ -80,7 +80,7 @@ reshard 之后的张量切分状态如下，可以看到数据被切分得更细
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/reshard.svg" width="70%"/>
 </figure>
 
-> 注：用户使用分布式张量的方式与普通的张量基本相同，在使用时不需要关心分布式算子的概念，因此此处不对分布式算子做展开介绍。如果你有开发新算子的需求，请查看[分布式算子开发](../../dev_guides/api_contributing_guides/auto_parallel_op.md)章节内容。
+> 注：用户使用分布式张量的方式与普通的张量基本相同，在使用时不需要关心分布式算子的概念，因此此处不对分布式算子做展开介绍。如果你有开发新算子的需求，请查看[分布式算子开发](../../dev_guides/api_contributing_guides/auto_parallel_op_cn.md)章节内容。
 >
 
 ## 二、基础并行策略
