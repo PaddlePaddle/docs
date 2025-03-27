@@ -247,7 +247,7 @@ SpmdInfo ReshapeInferSpmd(const DistMetaTensor& x,
   return {{x_dist_attr_dst}, {out_dist_attr}};
 }
 ```
-### 3.3 规则注册
+### 2.3 规则注册
 规则实现后需要在 yaml 文件中 op 的配置里加上该 op 所使用的切分推导规则，使该规则生效，如果 op 没有切分推导规则，则该 op 在计算时会使用全复制的兜底规则，把所有的输入张量都转换为全复制状态进行计算，效率较低。下面的代码展示了如何注册规则，只需要在配置 op 的 yaml 文件里加上 spmd_rule 字段即可，spmd_rule 的值是切分推导规则的函数名。
 
 此外，这种直接配置的方式也可方便用户直接复用现有的规则，如果某个 op 没有在 yaml 中添加推导规则，但该 op 所需要的规则已经在框架中实现了，则直接在 yaml 文件里添加即可。
@@ -285,7 +285,7 @@ PD_REGISTER_SPMD_RULE(
     PD_INFER_SPMD(phi::distributed::ElementwiseUnaryInferSpmd),
     PD_INFER_SPMD(phi::distributed::ElementwiseUnaryInferSpmdReverse));
 ```
-## 3.4 单测
+### 2.4 单测
 推导规则的单测使用 python 中的 unittest 进行开发，放到 [Paddle/test/auto_parallel/spmd_rules](https://github.com/PaddlePaddle/Paddle/tree/develop/test/auto_parallel/spmd_rules) 目录下，命名为 test_{op_name}_rule.py。在安装了新编译的 paddle python 包后，直接 python 运行单测文件进行测试。可以仿照现有的单测写，elementwise 的单测代码如下。
 
 ```python
@@ -361,10 +361,9 @@ class TestElementwiseSPMDRule(unittest.TestCase):
         self.assertEqual(infered_input_dist_attrs[0].dims_mapping, [0, 1, -1])
         self.assertEqual(infered_input_dist_attrs[1].dims_mapping, [0, 1, -1])
         self.assertEqual(infered_output_dist_attrs[0].dims_mapping, [0, 1, -1])
-
-
 ```
-### 3.5 自定义算子
+
+## 三、自定义算子
 自定义算子允许用户在不修改 paddle 源代码的情况下，新增 op，扩展框架的能力。在自动并行中使用自定义算子时，也需要实现对应的切分推导规则，否则框架将使用默认的兜底规则，将所有输入 tensor 变换为全复制的状态进行计算，效率较低。
 
 
