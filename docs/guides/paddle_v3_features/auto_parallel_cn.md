@@ -58,7 +58,7 @@ print(dist_tensor.process_mesh) # {shape: [2,3], process_ids: [0,1,2,3,4,5], dim
 print(dist_tensor.placements) # [Shard(dim=0), Replicate()]
 ```
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/shard.svg" width="70%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/shard.png" width="70%"/>
 </figure>
 
 对应的张量切分状态如上图所示，从数据行的维度（第 0 维）看，4 行数据被切分成了 2 块，每块 2 行，放置在设备的'x'维上，对应'x'维上的切分状态 Shard(0)。从数据列的维度看，数据没有做并行切分，'y'维上每个设备都拥有完整的 3 列数据，对应在'y'维上的全复制状态 Replicate()。
@@ -77,7 +77,7 @@ print(dist_tensor.placements) # [Shard(dim=0), Shard(dim=1)]
 reshard 之后的张量切分状态如下，可以看到数据被切分得更细了：
 
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/reshard.svg" width="70%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/reshard.png" width="70%"/>
 </figure>
 
 > 注：用户使用分布式张量的方式与普通的张量基本相同，在使用时不需要关心分布式算子的概念，因此此处不对分布式算子做展开介绍。如果你有开发新算子的需求，请查看[分布式算子开发](../../dev_guides/api_contributing_guides/auto_parallel_op_cn.md)章节内容。
@@ -446,7 +446,7 @@ print(f"max_memory_reserved = {paddle.device.cuda.max_memory_reserved() / 1e6 : 
 * 二是动态图和静态图架构内核的动静统一，在单卡组网动转静之后，动态图和静态图模式均由统一的内核进行切分推导和通信转换，这些关键的模块逻辑在动态图和静态图两种模式进行了统一的抽象，动静在各自的执行流程中执行相同的规则函数，实现相同的分布式逻辑。
 
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/to_static.svg" width="70%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/auto_parallel/to_static.png" width="70%"/>
 </figure>
 
 
