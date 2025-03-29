@@ -3,13 +3,13 @@
 ### [torch.distributed.P2POp](https://pytorch.org/docs/stable/distributed.html#torch.distributed.P2POp)
 
 ```python
-torch.distributed.recv(tensor, src=None, group=None, tag=0)
+torch.distributed.P2POp(op, tensor, peer, group=None, tag=0)
 ```
 
-### [paddle.distributed.recv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/recv_cn.html)
+### [paddle.distributed.P2POp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/Overview_cn.html#paddle-distributed)
 
 ```python
-paddle.distributed.recv(tensor, src=0, group=None, sync_op=True)
+paddle.distributed.P2POp(op, tensor, peer, group=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -18,8 +18,8 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch | PaddlePaddle    | 备注                                                              |
 | ------- | --------------- | ----------------------------------------------------------------- |
-| tensor  | tensor          | 表示用于接收数据的 Tensor。                                               |
-| src     | src             | 表示目标进程的 rank。                                                  |
-| group   | group           | 表示执行该操作的进程组实例。   |
+| op  | op          | 表示操作类型。                                               |
+| tensor  | tensor          | 表示发送或接收的 Tensor。                                               |
+| peer     | peer             | 表示目标进程的 rank。                                                  |
+| group   | group           | 指定通信的进程组。   |
 | tag     | -               | 表示匹配接收标签，Paddle 无此参数，暂无转写方式。   |
-| -       | sync_op | 表示该操作是否为同步操作，PyTorch 无此参数，Paddle 保持默认即可。 |
