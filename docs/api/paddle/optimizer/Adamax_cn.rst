@@ -53,7 +53,7 @@ COPY-FROM: paddle.optimizer.Adamax
 方法
 ::::::::::::
 step()
-'''''''''
+''''''''''''
 
 .. note::
 
