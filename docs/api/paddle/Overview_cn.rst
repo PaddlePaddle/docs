@@ -93,6 +93,7 @@ tensor 数学操作
     " :ref:`paddle.logical_and_ <cn_api_paddle_logical_and_>` ", "逐元素逻辑与运算（Inplace 版本）"
     " :ref:`paddle.logical_not <cn_api_paddle_logical_not>` ", "逐元素的对 X Tensor 进行逻辑非运算"
     " :ref:`paddle.logical_or <cn_api_paddle_logical_or>` ", "逐元素的对 X 和 Y 进行逻辑或运算"
+    " :ref:`paddle.logical_or_ <cn_api_paddle_logical_or_>` ", "逐元素逻辑或运算（Inplace 版本）"
     " :ref:`paddle.logical_xor <cn_api_paddle_logical_xor>` ", "逐元素的对 X 和 Y 进行逻辑异或运算"
     " :ref:`paddle.logit <cn_api_paddle_logit>` ", "计算 logit 结果"
     " :ref:`paddle.logspace <cn_api_paddle_logspace>` ", "返回区间 :math:`[base^{start}, base^{stop}]` 内固定数量的对数均匀分布的值"
