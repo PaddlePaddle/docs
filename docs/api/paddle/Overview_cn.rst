@@ -90,6 +90,7 @@ tensor 数学操作
     " :ref:`paddle.logaddexp <cn_api_paddle_logaddexp>` ", "计算 ``x`` 和 ``y`` 的以 e 为底的指数的和的自然对数"
     " :ref:`paddle.logcumsumexp <cn_api_paddle_logcumsumexp>` ", "计算 x 的指数的前缀和的对数"
     " :ref:`paddle.logical_and <cn_api_paddle_logical_and>` ", "逐元素的对 x 和 y 进行逻辑与运算"
+    " :ref:`paddle.logical_and_ <cn_api_paddle_logical_and_>` ", "逐元素逻辑与运算（Inplace 版本）"
     " :ref:`paddle.logical_not <cn_api_paddle_logical_not>` ", "逐元素的对 X Tensor 进行逻辑非运算"
     " :ref:`paddle.logical_or <cn_api_paddle_logical_or>` ", "逐元素的对 X 和 Y 进行逻辑或运算"
     " :ref:`paddle.logical_xor <cn_api_paddle_logical_xor>` ", "逐元素的对 X 和 Y 进行逻辑异或运算"
