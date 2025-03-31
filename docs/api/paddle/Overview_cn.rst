@@ -8,6 +8,7 @@ paddle 目录下包含 tensor、device、framework 相关 API 以及某些高层
 -  :ref:`tensor 数学操作 <tensor_math>`
 -  :ref:`tensor 数学操作原位（inplace）版本 <tensor_math_inplace>`
 -  :ref:`tensor 逻辑操作 <tensor_logic>`
+-  :ref:`tensor 逻辑操作原位（inplace）版本 <tensor_logic_inplace>`
 -  :ref:`tensor 属性相关 <tensor_attribute>`
 -  :ref:`tensor 创建相关 <tensor_creation>`
 -  :ref:`tensor 元素查找相关 <tensor_search>`
@@ -176,6 +177,7 @@ tensor 数学操作
     " :ref:`paddle.combinations <cn_api_paddle_combinations>` ", "对输入 Tensor 计算长度为 r 的情况下的所有组合"
     " :ref:`paddle.select_scatter <cn_api_paddle_select_scatter>` ", "根据 axis 和 index（整数） 填充 value 值至输入 Tensor"
     " :ref:`paddle.reduce_as <cn_api_paddle_reduce_as>` ", "对 x 在某些维度上求和，使其结果与 target 的 shape 一致"
+
 .. _tensor_math_inplace:
 
 tensor 数学操作原位（inplace）版本
@@ -235,7 +237,6 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.i0_ <cn_api_paddle_i0_>` ", "Inplace 版本的 i0 API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.lcm_ <cn_api_paddle_lcm_>` ", "Inplace 版本的 lcm API，对输入 x 采用 Inplace 策略"
 
-
 .. _tensor_logic:
 
 tensor 逻辑操作
@@ -255,7 +256,6 @@ tensor 逻辑操作
     " :ref:`paddle.isneginf <cn_api_paddle_isneginf>` ", "返回输入 tensor 的每一个值是否为 -INF"
     " :ref:`paddle.isreal <cn_api_paddle_isreal>` ", "返回输入 tensor 的每一个值是否为实数类型"
 
-
 .. _tensor_logic_inplace:
 
 tensor 逻辑操作原位（inplace）版本
@@ -266,8 +266,8 @@ tensor 逻辑操作原位（inplace）版本
     :widths: 10, 30
 
     " :ref:`paddle.equal_ <cn_api_paddle_equal_>` ", "Inplace 版本的 equal API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.greater_equal_ <_cn_api_paddle_greater_equal_>` ", "Inplace 版本的 greater_equal API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.greater_than_ <_cn_api_paddle_greater_than_>` ", "Inplace 版本的 greater_than API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.greater_equal_ <cn_api_paddle_greater_equal_>` ", "Inplace 版本的 greater_equal API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.greater_than_ <cn_api_paddle_greater_than_>` ", "Inplace 版本的 greater_than API，对输入 x 采用 Inplace 策略"
 
 
 .. _tensor_attribute:
@@ -410,7 +410,6 @@ tensor 线性代数相关
     " :ref:`paddle.cdist <cn_api_paddle_cdist>` ", "计算两组输入集合 x, y 中每对之间的 p 范数"
     " :ref:`paddle.pdist <cn_api_paddle_pdist>` ", "计算输入形状为 N x M 的 Tensor 中 N 个向量两两组合(pairwise)的 p 范数"
     " :ref:`paddle.renorm <cn_api_paddle_renorm>` ", "计算沿轴的 p 范数"
-
 
 .. _tensor_manipulation:
 
