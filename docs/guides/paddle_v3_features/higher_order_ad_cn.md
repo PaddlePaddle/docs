@@ -184,11 +184,13 @@ print(H_y_x2_x2.shape)
 
 此外，飞桨利用高阶自动微分与编译优化技术，在与 NVIDIA 合作适配其 AI Physics 工具 Modulus-sym 的过程中，成功完成了全量模型适配([Modulus-sym[paddle-backend]](https://github.com/PaddlePaddle/modulus-sym/tree/paddle?tab=readme-ov-file#modulus-symbolic-betapaddle-backend))，实现了方程求解类模型性能的大幅优化，相比 Modulus-sym 现有后端**求解速度平均提升 71%**；
 
-在 AI 分子动力学套件 [DeePMD-kit](https://docs.deepmodeling.com/projects/deepmd/en/latest/train/training.html) 中，我们对 dpa2, se_atten, se_e2_a 进行了动态图和编译器适配，相比 DeePMD-kit torch 后端，**求解速度分别提升了 102.6%, 40.5%, 102.6%**，相关结果已公开至论文：[DeePMD-kit v3: A Multiple-Backend Framework for Machine Learning Potentials](https://arxiv.org/abs/2502.19161)。
-
 <figure align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/higher_order_ad/ai4s.png" style="zoom:40%"/>
 </figure>
+
+> 上述测试环境为：cuda 11.8, A100-SXM4-40GB, torch 2.6(2236df1), paddle 3.0(388165), ips = total_batch_size / batch_cost(ms)
+
+在 AI 分子动力学套件 [DeePMD-kit](https://docs.deepmodeling.com/projects/deepmd/en/latest/train/training.html) 中，我们对 dpa2, se_atten, se_e2_a 进行了动态图和编译器适配，相比 DeePMD-kit torch 后端，**求解速度分别提升了 102.6%, 40.5%, 102.6%**，相关结果已公开至论文：[DeePMD-kit v3: A Multiple-Backend Framework for Machine Learning Potentials](https://arxiv.org/abs/2502.19161)。
 
 | 模型名称/平均耗时(s/batch) | Torch(dygraph)  | Paddle(dygraph) | Paddle(CINN) | IPS 提升率 |
 |:---------------------------|:-------|:-------|:-------------|:-----------|
@@ -196,4 +198,4 @@ print(H_y_x2_x2.shape)
 | se_atten                   | 0.0336 | 0.049  | **0.024**        | 40.5%      |
 | se_e2_a                    | 0.0227 | 0.025  | **0.011**        | 102.6%     |
 
-> cuda 11.8, A100-SXM4-40GB, torch 2.6(2236df1), paddle 3.0(86994e3), ips 提升率 = (torch/paddle-1)
+> 上述测试环境为：cuda 11.8, A100-SXM4-40GB, torch 2.6(2236df1), paddle 3.0(86994e3), ips 提升率 = (torch/paddle-1)
