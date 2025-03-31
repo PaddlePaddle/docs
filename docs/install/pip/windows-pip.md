@@ -8,7 +8,7 @@
 
 * 需要确认 python 的版本是否满足要求
 
-  * 使用以下命令确认是 3.8/3.9/3.10/3.11/3.12
+  * 使用以下命令确认是 3.8/3.9/3.10/3.11/3.12/3.13
 
     ```
     python --version
@@ -70,7 +70,7 @@
   python -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
-2.2.5 CUDA12.6 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT8.6.1.6)
+2.2.5 CUDA12.6 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT10.5.0.18)
 
   ```
   python -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/

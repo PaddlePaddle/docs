@@ -27,7 +27,7 @@
 
 * 需要确认 python 的版本是否满足要求
 
-  * 使用以下命令确认是 3.8/3.9/3.10/3.11/3.12
+  * 使用以下命令确认是 3.8/3.9/3.10/3.11/3.12/3.13
 
         python3 --version
 
@@ -45,7 +45,6 @@
     ```
     python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
-
 
 
 * 默认提供的安装包需要计算机支持 MKL, Intel 芯片都支持 MKL
@@ -77,7 +76,7 @@
 #### 2.2 <span id="gpu">GPU 版的 PaddlePaddle</span>
 
 
-2.2.1 CUDA11.8 的 PaddlePaddle(依赖 gcc8+, 如果需要使用 TensorRT 可自行安装 TensorRT8.5.3.1)
+2.2.1 CUDA11.8 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT8.5.3.1)
 
 
   ```
@@ -85,7 +84,7 @@
   ```
 
 
-2.2.2 CUDA12.6 的 PaddlePaddle(依赖 gcc12+, 如果需要使用 TensorRT 可自行安装 TensorRT8.6.1.6)
+2.2.2 CUDA12.6 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT10.5.0.18)
 
 
   ```
