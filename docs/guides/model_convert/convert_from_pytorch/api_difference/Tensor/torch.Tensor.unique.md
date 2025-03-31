@@ -15,7 +15,7 @@ paddle.Tensor.unique(return_index=False, return_inverse=False, return_counts=Fal
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| sorted        | -            | 是否返回前进行排序，Paddle 无此参数，需要转写。                                     |
+| sorted        | -            | 是否返回前进行排序，Paddle 无此参数。PyTorch 中虽然有此参数，但是在文档中标注了结果按升序返回，忽略 sorted 参数。     |
 | return_inverse| return_inverse        | 是否返回输入 Tensor 的元素对应在独有元素中的索引。        |
 | return_counts | return_counts        | 是否返回每个独有元素在输入 Tensor 中的个数。             |
 | dim           | axis        | 选取的轴，仅参数名不一致。                                                 |
@@ -30,5 +30,5 @@ torch.Tensor.unique(sorted=True, return_inverse=False, return_counts=False, dim=
 # paddle 写法
 paddle.Tensor.unique(return_index=False, return_inverse=False, return_counts=False, axis=1)
 
-# 当 sorted 为‘False’时，暂时无法转写
+# 当 sorted 为‘False’时，torch 仍然会返回升序结果，忽略 sorted 参数。paddle 转写与 sorted 为‘True’时相同。
 ```
