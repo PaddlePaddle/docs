@@ -272,7 +272,7 @@ for data in loader():
     print('loss', loss, flush=1)
 ```
 
-因为一些功能还在开发中，为了避免对用户造成干扰，当前我们没有默认开启高扩展中间表示 PIR 和神经网络编译器自动优化功能，在开始执行前，我们需要进行环境变量设置以确保新功能生效，如下：
+由于在部分极端场景下编译器可能会引起性能退化，为了避免对用户造成干扰，当前我们没有默认开启神经网络编译器自动优化功能，在开始执行前，我们需要进行环境变量设置以确保新功能生效，如下：
 
 ```cpp
 # 打开组合算子
@@ -280,15 +280,6 @@ export FLAGS_prim_enable_dynamic=true && export FLAGS_prim_all=true
 
 # 打开 CINN 编译器相关 FLAG
 export FLAGS_use_cinn=true
-export FLAGS_cinn_new_group_scheduler=true
-export FLAGS_group_schedule_tiling_first=true
-export FLAGS_cinn_bucket_compile=true
-
-# 打开 PIR 模式
-export FLAGS_enable_pir_api=true
-
-# 是否打印 Program IR 信息
-export FLAGS_print_ir=false
 
 # 执行命令
 # python -u -m paddle.distributed.launch --gpus "0,1" test_demo.py
