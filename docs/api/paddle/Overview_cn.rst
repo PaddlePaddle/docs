@@ -12,9 +12,11 @@ paddle 目录下包含 tensor、device、framework 相关 API 以及某些高层
 -  :ref:`tensor 属性相关 <tensor_attribute>`
 -  :ref:`tensor 创建相关 <tensor_creation>`
 -  :ref:`tensor 元素查找相关 <tensor_search>`
+-  :ref:`tensor 元素查找相关原位（inplace）版本 <tensor_search_inplace>`
 -  :ref:`tensor 初始化相关 <tensor_initializer>`
 -  :ref:`tensor random 相关 <tensor_random>`
 -  :ref:`tensor 线性代数相关 <tensor_linalg>`
+-  :ref:`tensor 线性代数相关原位（inplace）版本 <tensor_linalg_inplace>`
 -  :ref:`tensor 元素操作相关（如：转置，reshape 等） <tensor_manipulation>`
 -  :ref:`tensor 元素操作相关原位（inplace）版本 <tensor_manipulation_inplace>`
 -  :ref:`爱因斯坦求和 <einsum>`
@@ -189,7 +191,9 @@ tensor 数学操作原位（inplace）版本
 
     " :ref:`paddle.remainder_ <cn_api_paddle_remainder_>` ", "Inplace 版本的 remainder API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.abs_ <cn_api_paddle_abs_>` ", "Inplace 版本的 abs API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.baddbmm_ <cn_api_paddle_baddbmm_>` ", "Inplace 版本的 baddbmm API，对输入 input 采用 Inplace 策略"
     " :ref:`paddle.bernoulli_ <cn_api_paddle_bernoulli_>` ", "Inplace 版本的 bernoulli API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.bitwise_xor_ <cn_api_paddle_bitwise_xor_>` ", "Inplace 版本的 bitwise_xor API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.tanh_ <cn_api_paddle_tanh_>` ", "Inplace 版本的 tanh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.erf_ <cn_api_paddle_erf_>` ", "Inplace 版本的 erf API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.erfinv_ <cn_api_paddle_erfinv_>` ", "Inplace 版本的 erfinv API，对输入 x 采用 Inplace 策略"
@@ -199,6 +203,8 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.ceil_ <cn_api_paddle_ceil_>` ", "Inplace 版本的 ceil API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.clip_ <cn_api_paddle_clip_>` ", "Inplace 版本的 clip API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.copysign_ <cn_api_paddle_copysign_>` ", "Inplace 版本的 copysign API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.cumprod_ <cn_api_paddle_cumprod_>` ", "Inplace 版本的 cumprod API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.cumsum_ <cn_api_paddle_cumsum_>` ", "Inplace 版本的 cumsum API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.divide_ <cn_api_paddle_divide_>` ", "Inplace 版本的 divide API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.exp_ <cn_api_paddle_exp_>` ", "Inplace 版本的 exp API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.expm1_ <cn_api_paddle_expm1_>` ", "Inplace 版本的 expm1 API，对输入 x 采用 Inplace 策略"
@@ -210,6 +216,9 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.gammainc_ <cn_api_paddle_gammainc_>` ", "Inplace 版本的 gammainc API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.gammaln_ <cn_api_paddle_gammaln_>` ", "Inplace 版本的 gammaln API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.gcd_ <cn_api_paddle_gcd_>` ", "Inplace 版本的 gcd API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.logit_ <cn_api_paddle_logit_>` ", "Inplace 版本的 logit API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.multiply_ <cn_api_paddle_multiply_>` ", "Inplace 版本的 multiply API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.polygamma_ <cn_api_paddle_polygamma_>` ", "Inplace 版本的 polygamma API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.reciprocal_ <cn_api_paddle_reciprocal_>` ", "Inplace 版本的 reciprocal API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.round_ <cn_api_paddle_round_>` ", "Inplace 版本的 round API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.rsqrt_ <cn_api_paddle_rsqrt_>` ", "Inplace 版本的 rsqrt API，对输入 x 采用 Inplace 策略"
@@ -233,9 +242,17 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.index_fill_ <cn_api_paddle_index_fill_>` ", "Inplace 版本的 index_fill API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.bitwise_left_shift_ <cn_api_paddle_bitwise_left_shift_>` ", "Inplace 版本的 bitwise_left_shift API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.bitwise_right_shift_ <cn_api_paddle_bitwise_right_shift_>` ", "Inplace 版本的 bitwise_right_shift API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.ldexp_ <cn_api_paddle_ldexp_>` ", "Inplace 版本的 ldexp API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.less_ <cn_api_paddle_less_>` ", "Inplace 版本的 less API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.less_equal_ <cn_api_paddle_less_equal_>` ", "Inplace 版本的 less_equal API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.less_than_ <cn_api_paddle_less_than_>` ", "Inplace 版本的 less_than API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.lgamma_ <cn_api_paddle_lgamma_>` ", "Inplace 版本的 lgamma API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.log_normal_ <cn_api_paddle_log_normal_>` ", "Inplace 版本的 log_normal API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.i0_ <cn_api_paddle_i0_>` ", "Inplace 版本的 i0 API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.lcm_ <cn_api_paddle_lcm_>` ", "Inplace 版本的 lcm API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.normal_ <cn_api_paddle_normal_>` ", "Inplace 版本的 normal API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.neg_ <cn_api_paddle_neg_>` ", "Inplace 版本的 neg API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.nan_to_num_ <cn_api_paddle_nan_to_num_>` ", "Inplace 版本的 nan_to_num API，对输入 x 采用 Inplace 策略"
+
+
 
 .. _tensor_logic:
 
@@ -347,6 +364,17 @@ tensor 元素查找相关
     " :ref:`paddle.topk <cn_api_paddle_topk>` ", "沿着可选的 axis 查找 topk 最大或者最小的结果和结果所在的索引信息"
     " :ref:`paddle.where <cn_api_paddle_where>` ", "返回一个根据输入 condition, 选择 x 或 y 的元素组成的多维 Tensor"
 
+.. _tensor_search_inplace:
+
+tensor 元素查找相关原位（inplace）版本
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`paddle.where_ <cn_api_paddle_where_>` ", "Inplace 版本的 where API，对输入 x 采用 Inplace 策略"
+
 .. _tensor_initializer:
 
 tensor 初始化相关
@@ -410,6 +438,19 @@ tensor 线性代数相关
     " :ref:`paddle.cdist <cn_api_paddle_cdist>` ", "计算两组输入集合 x, y 中每对之间的 p 范数"
     " :ref:`paddle.pdist <cn_api_paddle_pdist>` ", "计算输入形状为 N x M 的 Tensor 中 N 个向量两两组合(pairwise)的 p 范数"
     " :ref:`paddle.renorm <cn_api_paddle_renorm>` ", "计算沿轴的 p 范数"
+
+.. _tensor_linalg_inplace:
+
+tensor 线性代数相关原位（inplace）版本
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`paddle.tril_ <cn_api_paddle_tril_>` ", "Inplace 版本的 tril API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.triu_ <cn_api_paddle_triu_>` ", "Inplace 版本的 triu API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.trunc_ <cn_api_paddle_trunc_>` ", "Inplace 版本的 trunc API，对输入 x 采用 Inplace 策略"
 
 .. _tensor_manipulation:
 

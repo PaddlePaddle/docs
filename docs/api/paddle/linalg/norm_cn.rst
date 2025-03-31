@@ -3,7 +3,7 @@
 norm
 -------------------------------
 
-.. py:function:: paddle.linalg.norm(x, p=None, axis=None, keepdim=False, name=None):
+.. py:function:: paddle.linalg.norm(x, p=None, axis=None, keepdim=False, name=None)
 
 
 

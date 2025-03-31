@@ -33,7 +33,7 @@
 
 ## 三、使用指南
 
-飞桨新的一代 IR 是基础架构层面的升级，对于用户在 API 层面的使用是无感的，用户可保持之前动转静（即 paddle.jit.to_static）或静态图代码不变，在 3.0-Beta 下仅需额外通过 `export FLAGS_enable_pir_api=1` 开启新 IR 功能即可，如下是一个简单的使用样例。
+飞桨新的一代 IR 是基础架构层面的升级，对于用户在 API 层面的使用是无感的，用户可保持之前动转静（即 paddle.jit.to_static）或静态图代码不变，3.0.0 版本默认使用新 IR 功能, 在前置 3.0 系列版本下需额外通过 `export FLAGS_enable_pir_api=1` 开启新 IR 功能即可，如下是一个简单的使用样例。
 
 ```python
 # test_add_relu.py
@@ -127,10 +127,13 @@ Pass 的核心是子图匹配和替换（即图变换），是将一个 Program 
 - a. 结合 PIR 的 IR 结构，设计简洁的序列化协议，保证正确反序列化的基础上降低存储内容。
 - b. 重构底层序列化和反序列化机制，实现 PIR 类型系统，模型结构增加删除修改灵活扩展时，saveload 体系灵活扩展，支持新功能的保存和加载。
 - paddle 3.0 beta 版之前，模型存储文件为 xxx.pdmodel，序列化协议为 protobuf；paddle 3.0 beta 版之后，模型存储文件为 xxx.json， 序列化协议为 json。
-- c. 设计良好的版本管理和版本间修改的兼容体系，支持新版本兼容读取旧版本模型进行推理训练的功能。
+- c. 拥有良好的版本管理和版本间修改的兼容体系，支持新版本兼容读取旧版本模型进行推理训练的功能。
 #### 2. Parameter 层面
 - a. C++ 层参数存储，采用二进制流的保存方式，存储文件为 xxx.pdiparams。
 - b. Python 层参数存储， 使用 pickle 序列化工具，存储文件为 xxx.pdparams。
+
+### 5.插件式子图接入能力
+基于 PIR 体系，提供了**训推一体**[子图插件式接入方案](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/Guides/pir_plugin_subgraph.md)，支持具备子图优化能力的硬件借助 customdevice 机制完成子图运行能力的接入，硬件厂商通过适配子图接入的相关函数，支持 Paddle 动转静训练，静态图推理使用图引擎优化方案运行。
 
 ## 五、二次开发注意事项
 ### 1.背景

@@ -1037,21 +1037,16 @@
 | NOT-IMPLEMENTED-ITEM(`torch.layout`, https://pytorch.org/docs/stable/tensor_attributes.html#torch.layout, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.is_current_stream_capturing`, https://pytorch.org/docs/stable/generated/torch.cuda.is_current_stream_capturing.html#torch-cuda-is-current-stream-capturing, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.device_of`, https://pytorch.org/docs/stable/generated/torch.cuda.device_of.html, 可新增，且框架底层有相关设计，成本低) |
-
+| NOT-IMPLEMENTED-ITEM(`torch.nn.parameter.UninitializedParameter`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedParameter.html, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.gather_object`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.gather_object, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.jit.trace`, https://pytorch.org/docs/stable/generated/torch.jit.trace.html#torch-jit-trace, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.jit.unused`, https://pytorch.org/docs/stable/generated/torch.jit.unused.html#torch-jit-unused, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.utils.checkpoint.checkpoint_sequential`, https://pytorch.org/docs/stable/checkpoint.html#torch.utils.checkpoint.checkpoint_sequential, 可新增，但框架底层无相关设计，成本高) |
 
 ## <span id="id26">映射关系开发中的 API 列表</span>
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.parameter.UninitializedParameter`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedParameter.html#torch.nn.parameter.UninitializedParameter) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributed.Backend`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.Backend) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributed.gather_object`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.gather_object) |
-| IN-DEVELOPMENT-PATTERN(`torch.jit.script`, https://pytorch.org/docs/stable/generated/torch.jit.script.html#torch-jit-script) |
-| IN-DEVELOPMENT-PATTERN(`torch.jit.trace`, https://pytorch.org/docs/stable/generated/torch.jit.trace.html#torch-jit-trace) |
-| IN-DEVELOPMENT-PATTERN(`torch.jit.save`, https://pytorch.org/docs/stable/generated/torch.jit.save.html#torch-jit-save) |
-| IN-DEVELOPMENT-PATTERN(`torch.jit.ignore`, https://pytorch.org/docs/stable/generated/torch.jit.ignore.html#torch-jit-ignore) |
-| IN-DEVELOPMENT-PATTERN(`torch.jit.unused`, https://pytorch.org/docs/stable/generated/torch.jit.unused.html#torch-jit-unused) |
-| IN-DEVELOPMENT-PATTERN(`torch.utils.checkpoint.checkpoint_sequential`, https://pytorch.org/docs/stable/checkpoint.html#torch.utils.checkpoint.checkpoint_sequential) |
 | IN-DEVELOPMENT-PATTERN(`torch.utils.tensorboard.writer.SummaryWriter`, https://pytorch.org/docs/stable/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter) |
 | IN-DEVELOPMENT-PATTERN(`torch.nn.parameter.UninitializedBuffer`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedBuffer.html#torch.nn.parameter.UninitializedBuffer) |
 | IN-DEVELOPMENT-PATTERN(`torch.autograd.Function.jvp`, https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp) |
@@ -1059,11 +1054,7 @@
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_ceil_`, https://pytorch.org/docs/stable/generated/torch._foreach_ceil_.html#torch-foreach-ceil) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_erfc`, https://pytorch.org/docs/stable/generated/torch._foreach_erfc.html#torch-foreach-erfc) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_erfc_`, https://pytorch.org/docs/stable/generated/torch._foreach_erfc_.html#torch-foreach-erfc) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_exp`, https://pytorch.org/docs/stable/generated/torch._foreach_exp.html#torch-foreach-exp) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_exp_`, https://pytorch.org/docs/stable/generated/torch._foreach_exp_.html#torch-foreach-exp) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_expm1`, https://pytorch.org/docs/stable/generated/torch._foreach_expm1.html#torch-foreach-expm1) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_expm1_`, https://pytorch.org/docs/stable/generated/torch._foreach_expm1_.html#torch-foreach-expm1) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_floor`, https://pytorch.org/docs/stable/generated/torch._foreach_floor.html#torch-foreach-floor) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_floor_`, https://pytorch.org/docs/stable/generated/torch._foreach_floor_.html#torch-foreach-floor) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_log`, https://pytorch.org/docs/stable/generated/torch._foreach_log.html#torch-foreach-log) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_log_`, https://pytorch.org/docs/stable/generated/torch._foreach_log_.html#torch-foreach-log) |
@@ -1096,7 +1087,6 @@
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_trunc`, https://pytorch.org/docs/stable/generated/torch._foreach_trunc.html#torch-foreach-trunc) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_trunc_`, https://pytorch.org/docs/stable/generated/torch._foreach_trunc_.html#torch-foreach-trunc) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_zero_`, https://pytorch.org/docs/stable/generated/torch._foreach_zero_.html#torch-foreach-zero) |
-| IN-DEVELOPMENT-PATTERN(`torch.Tensor.to_sparse_csr`, https://pytorch.org/docs/stable/generated/torch.Tensor.to_sparse_csr.html#torch-tensor-to-sparse-csr) |
 | IN-DEVELOPMENT-PATTERN(`torch.autograd.graph.Node.name`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.name.html#torch-autograd-graph-node-name) |
 | IN-DEVELOPMENT-PATTERN(`torch.autograd.graph.Node.metadata`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.metadata.html#torch-autograd-graph-node-metadata) |
 | IN-DEVELOPMENT-PATTERN(`torch.autograd.graph.Node.next_functions`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.next_functions.html#torch-autograd-graph-node-next-functions) |
