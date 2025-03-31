@@ -369,10 +369,10 @@ function fn_exp_0_subtract_0_infer_shape (kernel_args, kernel_args_num, tensor_s
 
 1. 科学计算系列模型：
    * 飞桨基于 CINN 编译器在科学计算 Modulus 模型上，相比 Pytorch 求解速度平均提升 115%。
-<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/paddle_v3_features/images/cinn/modulus_cinn_vs_torch.png?raw=true" width="95%" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/paddle_v3_features/images/cinn/modulus_cinn_vs_torch.png?raw=true" width="80%" ></center>
 <center> 图 3 Modulus 系列模型性能对比数据  </center><br>
 
 2. PaddleX 模型：
    * PaddleX 系列 60+ 模型使用 CINN 编译器后超 60% 模型有显著性能提升，平均提升达 27.4%。部分重点模型相比 Pytorch 也有明显性能优势。
-<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/paddle_v3_features/images/cinn/PaddleX_cinn_vs_torch.png?raw=true" width="95%" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/paddle_v3_features/images/cinn/PaddleX_cinn_vs_torch.png?raw=true" width="80%" ></center>
 <center> 图 4 部分重点模型单机 8 卡 FP16 训练性能对比数据 </center><br>
