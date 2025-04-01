@@ -59,7 +59,7 @@ BatchNorm1D
     - output：和输入形状一样的 Tensor。
 
 .. note::
-目前训练时设置 track_running_stats 为 False 是无效的，实际还是会按照 True 的方案保存全局均值和方差。之后的版本会修复此问题。
+    目前训练时设置 track_running_stats 为 False 是无效的，实际还是会按照 True 的方案保存全局均值和方差。之后的版本会修复此问题。
 
 
 代码示例
