@@ -24,7 +24,11 @@
 ..  toctree::
     :hidden:
 
-    install_cn.md
-    paddle_tutorial_cn.md
-    paddlex_tutorial_cn.md
-    support_cn.md
+    xpu-gen2_install_cn.md
+    xpu-gen2_paddle_tutorial_cn.md
+    xpu-gen2_paddlex_tutorial_cn.md
+    xpu-gen2_support_cn.md
+    xpu-p800_install_cn.md
+    xpu-p800_paddle_tutorial_cn.md
+    xpu-p800_paddlex_tutorial_cn.md
+    xpu-p800_support_cn.md

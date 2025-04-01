@@ -16,6 +16,7 @@ sparse_embedding
 .. note::
     input 中的 id 必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出。
 
+
 ::
 
     Case 1:
