@@ -51,8 +51,8 @@ clone(for_test=False)
 '''''''''
 
 .. note::
- 1. ``Program.clone()`` 方法不会克隆例如 :ref:`cn_api_paddle_io_DataLoader` 这样的数据读取相关的部分，这可能会造成的数据读取部分在克隆后丢失；
- 2. 此 API 当 ``for_test=True`` 时将会裁剪部分 OP 和变量。为防止错误的裁剪，推荐在 :ref:`cn_api_paddle_static_append_backward` 和执行优化器之前使用；``clone(for_test=True)`` 。
+    1. ``Program.clone()`` 方法不会克隆例如 :ref:`cn_api_paddle_io_DataLoader` 这样的数据读取相关的部分，这可能会造成的数据读取部分在克隆后丢失；
+    2. 此 API 当 ``for_test=True`` 时将会裁剪部分 OP 和变量。为防止错误的裁剪，推荐在 :ref:`cn_api_paddle_static_append_backward` 和执行优化器之前使用；``clone(for_test=True)`` 。
 
 
 当 ``for_test=True`` 时创建一个新的、仅包含当前 Program 前向内容的 Program。否则创建一个新的和当前 Program 完全相同的 Program。
@@ -78,7 +78,7 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
 **代码示例**
 
 .. note::
- Program 在 clone 后的顺序可能不同，这不会影响的训练或测试进程。在下面的示例中，我们提供了一个简单的方法 print_prog（Program）来打印程序描述，以确保 clone 后仍能得到同样的打印结果：
+    Program 在 clone 后的顺序可能不同，这不会影响的训练或测试进程。在下面的示例中，我们提供了一个简单的方法 print_prog（Program）来打印程序描述，以确保 clone 后仍能得到同样的打印结果：
 
 COPY-FROM: paddle.static.Program.clone:code-example-2
 
@@ -129,7 +129,7 @@ random_seed
 '''''''''
 
 .. note::
- 必须在相关 OP 被添加之前设置。
+    必须在相关 OP 被添加之前设置。
 
 程序中随机运算符的默认随机种子。0 意味着随机生成随机种子。
 
