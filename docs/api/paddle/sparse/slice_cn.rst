@@ -3,7 +3,7 @@
 slice
 -------------------------------
 
-.. py:function:: paddle.sparse.slice(x, axis, starts, ends, name=None):
+.. py:function:: paddle.sparse.slice(x, axis, starts, ends, name=None)
 
 沿多个轴生成 ``x`` 的切片。使用 ``axes`` 、 ``starts`` 和 ``ends`` 属性来指定轴列表中每个轴的起点和终点位置，并使用此信息来对 ``x`` 切片。
 如果向 ``starts`` 或 ``ends`` 传递负值如 :math:`-i`，则表示该轴的反向第 :math:`i-1` 个位置（这里以 0 为初始位置）。
