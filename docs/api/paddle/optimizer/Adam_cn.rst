@@ -60,7 +60,7 @@ step()
 '''''''''
 
 .. note::
-  该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+    该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 执行一次优化器并进行参数更新。
 
@@ -74,7 +74,7 @@ step()
 COPY-FROM: paddle.optimizer.Adam.step
 
 append_regularization_ops(parameters_and_grads, regularization=None)
-'''''''''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 创建并添加反向正则化算子，该操作将正则化函数的梯度添加到参数的梯度中并返回修改后的梯度。
 
 **参数**
@@ -91,7 +91,7 @@ append_regularization_ops(parameters_and_grads, regularization=None)
  list[(Variable, Variable)]
 
 minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
-'''''''''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 为网络添加反向计算过程，并根据反向计算所得的梯度，更新 parameters 中的 Parameters，最小化网络损失值 loss。
 
@@ -112,10 +112,10 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 COPY-FROM: paddle.optimizer.Adam.minimize
 
 clear_grad()
-'''''''''
+''''''''''''''''''
 
 .. note::
- 该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+    该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 
 清除需要优化的参数的梯度。
@@ -125,11 +125,11 @@ clear_grad()
 COPY-FROM: paddle.optimizer.Adam.clear_grad
 
 set_lr(value)
-'''''''''
+''''''''''''''''''
 
 .. note::
 
-该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+    该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler 时，无法使用该 API 手动设置学习率，因为这将导致冲突。
 
@@ -146,11 +146,11 @@ set_lr(value)
 COPY-FROM: paddle.optimizer.Adam.set_lr
 
 set_lr_scheduler(scheduler)
-'''''''''
+''''''''''''''''''''''''''''''''''''
 
 .. note::
 
-该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+    该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 手动设置当前 ``optimizer`` 的学习率为 LRScheduler 类。
 
@@ -170,7 +170,7 @@ get_lr()
 '''''''''
 
 .. note::
-该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+    该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 获取当前步骤的学习率。当不使用_LRScheduler 时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 
@@ -184,7 +184,7 @@ float，当前步骤的学习率。
 COPY-FROM: paddle.optimizer.Adam.get_lr
 
 set_state_dict(state_dict)
-'''''''''
+''''''''''''''''''''''''''''''''''''
 
 加载优化器状态词典，对于 Adam 优化器，包含 beta1，beta2，momentum 等。如果使用 LRScheduler，global_step 将会改变。
 
@@ -201,7 +201,7 @@ set_state_dict(state_dict)
 COPY-FROM: paddle.optimizer.Adam.set_state_dict
 
 state_dict(state_dict)
-'''''''''
+'''''''''''''''''''''''''''
 
 从优化器中获取 state_dict 信息，其中包含所有优化器所需的值，对于 Adam 优化器，包含 beta1，beta2，momentum 等。
 如果使用 LRScheduler，global_step 将被包含在 state_dict 内。如果优化器未被调用 minimize 函数，state_dict 将为空。

@@ -40,7 +40,7 @@ InstanceNorm1D
     - output：和输入形状一样。
 
 .. note::
-目前设置 track_running_stats 和 momentum 是无效的。之后的版本会修复此问题。
+    目前设置 track_running_stats 和 momentum 是无效的。之后的版本会修复此问题。
 
 
 代码示例

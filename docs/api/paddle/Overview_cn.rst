@@ -8,6 +8,7 @@ paddle 目录下包含 tensor、device、framework 相关 API 以及某些高层
 -  :ref:`tensor 数学操作 <tensor_math>`
 -  :ref:`tensor 数学操作原位（inplace）版本 <tensor_math_inplace>`
 -  :ref:`tensor 逻辑操作 <tensor_logic>`
+-  :ref:`tensor 逻辑操作原位（inplace）版本 <tensor_logic_inplace>`
 -  :ref:`tensor 属性相关 <tensor_attribute>`
 -  :ref:`tensor 创建相关 <tensor_creation>`
 -  :ref:`tensor 元素查找相关 <tensor_search>`
@@ -178,6 +179,7 @@ tensor 数学操作
     " :ref:`paddle.combinations <cn_api_paddle_combinations>` ", "对输入 Tensor 计算长度为 r 的情况下的所有组合"
     " :ref:`paddle.select_scatter <cn_api_paddle_select_scatter>` ", "根据 axis 和 index（整数） 填充 value 值至输入 Tensor"
     " :ref:`paddle.reduce_as <cn_api_paddle_reduce_as>` ", "对 x 在某些维度上求和，使其结果与 target 的 shape 一致"
+
 .. _tensor_math_inplace:
 
 tensor 数学操作原位（inplace）版本
@@ -191,6 +193,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.abs_ <cn_api_paddle_abs_>` ", "Inplace 版本的 abs API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.baddbmm_ <cn_api_paddle_baddbmm_>` ", "Inplace 版本的 baddbmm API，对输入 input 采用 Inplace 策略"
     " :ref:`paddle.bernoulli_ <cn_api_paddle_bernoulli_>` ", "Inplace 版本的 bernoulli API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.bitwise_xor_ <cn_api_paddle_bitwise_xor_>` ", "Inplace 版本的 bitwise_xor API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.tanh_ <cn_api_paddle_tanh_>` ", "Inplace 版本的 tanh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.erf_ <cn_api_paddle_erf_>` ", "Inplace 版本的 erf API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.erfinv_ <cn_api_paddle_erfinv_>` ", "Inplace 版本的 erfinv API，对输入 x 采用 Inplace 策略"
@@ -203,7 +206,6 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.cumprod_ <cn_api_paddle_cumprod_>` ", "Inplace 版本的 cumprod API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.cumsum_ <cn_api_paddle_cumsum_>` ", "Inplace 版本的 cumsum API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.divide_ <cn_api_paddle_divide_>` ", "Inplace 版本的 divide API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.equal_ <cn_api_paddle_equal_>` ", "Inplace 版本的 equal API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.exp_ <cn_api_paddle_exp_>` ", "Inplace 版本的 exp API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.expm1_ <cn_api_paddle_expm1_>` ", "Inplace 版本的 expm1 API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.flatten_ <cn_api_paddle_flatten_>` ", "Inplace 版本的 flatten API，对输入 x 采用 Inplace 策略"
@@ -250,6 +252,8 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.neg_ <cn_api_paddle_neg_>` ", "Inplace 版本的 neg API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nan_to_num_ <cn_api_paddle_nan_to_num_>` ", "Inplace 版本的 nan_to_num API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.logical_and_ <cn_api_paddle_logical_and_>` ", "Inplace 版本的 logical_and API，对输入 x 采用 Inplace 策略）"
+    " :ref:`paddle.i0_ <cn_api_paddle_i0_>` ", "Inplace 版本的 i0 API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.lcm_ <cn_api_paddle_lcm_>` ", "Inplace 版本的 lcm API，对输入 x 采用 Inplace 策略"
 
 
 
@@ -272,6 +276,20 @@ tensor 逻辑操作
     " :ref:`paddle.isposinf <cn_api_paddle_isposinf>` ", "返回输入 tensor 的每一个值是否为 +INF"
     " :ref:`paddle.isneginf <cn_api_paddle_isneginf>` ", "返回输入 tensor 的每一个值是否为 -INF"
     " :ref:`paddle.isreal <cn_api_paddle_isreal>` ", "返回输入 tensor 的每一个值是否为实数类型"
+
+.. _tensor_logic_inplace:
+
+tensor 逻辑操作原位（inplace）版本
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`paddle.equal_ <cn_api_paddle_equal_>` ", "Inplace 版本的 equal API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.greater_equal_ <cn_api_paddle_greater_equal_>` ", "Inplace 版本的 greater_equal API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.greater_than_ <cn_api_paddle_greater_than_>` ", "Inplace 版本的 greater_than API，对输入 x 采用 Inplace 策略"
+
 
 .. _tensor_attribute:
 
@@ -524,6 +542,7 @@ tensor 元素操作相关原位（inplace）版本
     " :ref:`paddle.scatter_ <cn_api_paddle_scatter_>` ", "Inplace 版本的 scatter API，对输入 x 采用 Inplace 策略 "
     " :ref:`paddle.squeeze_ <cn_api_paddle_squeeze_>` ", "Inplace 版本的 squeeze API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.unsqueeze_ <cn_api_paddle_unsqueeze_>` ", "Inplace 版本的 unsqueeze API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.transpose_ <cn_api_paddle_transpose_>` ", "Inplace 版本的 transpose API，对输入 x 采用 Inplace 策略"
 
 .. einsum:
 

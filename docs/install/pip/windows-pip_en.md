@@ -6,7 +6,7 @@
 
 * Confirm whether the Python version meets the requirements
 
-  * Use the following command to confirm that it is 3.8+/3.9+/3.10+/3.11+/3.12+
+  * Use the following command to confirm that it is 3.8/3.9/3.10/3.11/3.12/3.13
 
         python --version
 
@@ -66,7 +66,7 @@ You can choose the following version of PaddlePaddle to start installation:
   python -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
-2.2.5 If you are using CUDA 12.6(If you need to use TensorRT, you can install TensorRT 8.6.1.6 yourself)
+2.2.5 If you are using CUDA 12.6(If you need to use TensorRT, you can install TensorRT 10.5.0.18 yourself)
 
   ```
   python -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
