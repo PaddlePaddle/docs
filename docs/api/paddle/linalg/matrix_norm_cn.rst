@@ -3,7 +3,7 @@
 matrix_norm
 -------------------------------
 
-.. py:function:: paddle.linalg.matrix_norm(x, p='fro', axis=[-2,-1], keepdim=False, name=None):
+.. py:function:: paddle.linalg.matrix_norm(x, p='fro', axis=[-2,-1], keepdim=False, name=None)
 
 
 
