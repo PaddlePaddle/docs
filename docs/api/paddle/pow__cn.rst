@@ -1,4 +1,3 @@
-@@ -0,0 +1,11 @@
 .. _cn_api_paddle_pow_:
 
 pow\_
