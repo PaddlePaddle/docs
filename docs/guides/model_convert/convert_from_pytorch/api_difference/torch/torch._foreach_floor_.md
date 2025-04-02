@@ -15,10 +15,5 @@ Paddle 无此 API，需要组合实现。
 torch._foreach_floor_(tensors)
 
 # Paddle 写法
-def foreach_operator_(func, tensors):
-    result = []
-    for x in tensors:
-        result.append(paddle.assign(func(x), x))
-    return result
-foreach_operator_(tensors, paddle.floor)
+[paddle.assign(paddle.floor(x), x) for x in tensors]
 ```

@@ -15,11 +15,5 @@ Paddle 无此 API，需要组合实现。
 torch._foreach_erfc_(tensors)
 
 # Paddle 写法
-def foreach_erfc_(tensors):
-    result = []
-    for x in tensors:
-        result.append(paddle.assign(1-paddle.erf(x), x))
-    return result
-
-foreach_erfc_(tensors)
+[paddle.assign(1-paddle.erf(x), x) for x in tensors]
 ```

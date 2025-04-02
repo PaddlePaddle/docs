@@ -1042,10 +1042,10 @@
 | NOT-IMPLEMENTED-ITEM(`torch.jit.trace`, https://pytorch.org/docs/stable/generated/torch.jit.trace.html#torch-jit-trace, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.jit.unused`, https://pytorch.org/docs/stable/generated/torch.jit.unused.html#torch-jit-unused, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.utils.checkpoint.checkpoint_sequential`, https://pytorch.org/docs/stable/checkpoint.html#torch.utils.checkpoint.checkpoint_sequential, 可新增，但框架底层无相关设计，成本高) |
-| NOT-IMPLEMENTED-ITEM(`torch.nn.parameter.UninitializedBuffer`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedBuffer.html#torch.nn.parameter.UninitializedBuffer, 可新增，但框架底层无相关设计，成本高) |
-| NOT-IMPLEMENTED-ITEM(`torch.autograd.Function.jvp`, https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.parameter.UninitializedBuffer`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedBuffer.html#torch.nn.parameter.UninitializedBuffer, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.autograd.Function.jvp`, https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.memory_format`, https://pytorch.org/docs/stable/tensor_attributes.html#torch.memory_format, 可新增，但框架底层无相关设计，成本高) |
-| NOT-IMPLEMENTED-ITEM(`torch.distributed.is_gloo_available`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_gloo_available, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.is_gloo_available`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_gloo_available, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.get_group_rank`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_group_rank, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.get_global_rank`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_process_group_ranks, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.set_deterministic_debug_mode`, https://pytorch.org/docs/stable/generated/torch.set_deterministic_debug_mode.html#torch-set-deterministic-debug-mode, 可新增，但框架底层无相关设计，成本高) |
