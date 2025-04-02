@@ -215,7 +215,6 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.gammaincc_ <cn_api_paddle_gammaincc_>` ", "Inplace 版本的 gammaincc API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.gammainc_ <cn_api_paddle_gammainc_>` ", "Inplace 版本的 gammainc API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.gammaln_ <cn_api_paddle_gammaln_>` ", "Inplace 版本的 gammaln API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.pow_ <cn_api_paddle_pow_>` ", "Inplace 版本的 pow API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.gcd_ <cn_api_paddle_gcd_>` ", "Inplace 版本的 gcd API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.logit_ <cn_api_paddle_logit_>` ", "Inplace 版本的 logit API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.multiply_ <cn_api_paddle_multiply_>` ", "Inplace 版本的 multiply API，对输入 x 采用 Inplace 策略"
