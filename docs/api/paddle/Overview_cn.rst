@@ -189,6 +189,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.abs_ <cn_api_paddle_abs_>` ", "Inplace 版本的 abs API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.bitwise_not_ <cn_api_paddle_bitwise_not_>` ", "Inplace 版本的 bitwise_not API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.bitwise_or_ <cn_api_paddle_bitwise_or_>` ", "Inplace 版本的 bitwise_or API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.baddbmm_ <cn_api_paddle_baddbmm_>` ", "Inplace 版本的 baddbmm API，对输入 input 采用 Inplace 策略"
     " :ref:`paddle.bernoulli_ <cn_api_paddle_bernoulli_>` ", "Inplace 版本的 bernoulli API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.tanh_ <cn_api_paddle_tanh_>` ", "Inplace 版本的 tanh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.erf_ <cn_api_paddle_erf_>` ", "Inplace 版本的 erf API，对输入 x 采用 Inplace 策略"
