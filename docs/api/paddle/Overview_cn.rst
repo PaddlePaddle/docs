@@ -205,6 +205,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.expm1_ <cn_api_paddle_expm1_>` ", "Inplace 版本的 expm1 API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.flatten_ <cn_api_paddle_flatten_>` ", "Inplace 版本的 flatten API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.floor_ <cn_api_paddle_floor_>` ", "Inplace 版本的 floor API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.pow_ <cn_api_paddle_pow_>` ", "Inplace 版本的 pow API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.floor_divide_ <cn_api_paddle_floor_divide_>` ", "Inplace 版本的 floor_divide API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.frac_ <cn_api_paddle_frac_>` ", "Inplace 版本的 frac API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.gammaincc_ <cn_api_paddle_gammaincc_>` ", "Inplace 版本的 gammaincc API，对输入 x 采用 Inplace 策略"
