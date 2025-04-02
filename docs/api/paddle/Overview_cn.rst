@@ -219,7 +219,6 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.multiply_ <cn_api_paddle_multiply_>` ", "Inplace 版本的 multiply API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.polygamma_ <cn_api_paddle_polygamma_>` ", "Inplace 版本的 polygamma API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.reciprocal_ <cn_api_paddle_reciprocal_>` ", "Inplace 版本的 reciprocal API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.reciprocal_ <cn_api_paddle_renorm_>` ", "Inplace 版本的 renorm API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.round_ <cn_api_paddle_round_>` ", "Inplace 版本的 round API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.rsqrt_ <cn_api_paddle_rsqrt_>` ", "Inplace 版本的 rsqrt API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.scale_ <cn_api_paddle_scale_>` ", "Inplace 版本的 scale API，对输入 x 采用 Inplace 策略"
@@ -229,7 +228,6 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.sinc_ <cn_api_paddle_sinc_>` ", "Inplace 版本的 sinc API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.sinh_ <cn_api_paddle_sinh_>` ", "Inplace 版本的 sinh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.subtract_ <cn_api_paddle_subtract_>` ", "Inplace 版本的 subtract API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.subtract_ <cn_api_paddle_t_>` ", "Inplace 版本的 t API，对输入 input 采用 Inplace 策略"
     " :ref:`paddle.tan_ <cn_api_paddle_tan_>` ", "Inplace 版本的 tan API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.cos_ <cn_api_paddle_cos_>` ", "Inplace 版本的 cos API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.atan_ <cn_api_paddle_atan_>` ", "Inplace 版本的 atan API，对输入 x 采用 Inplace 策略"
@@ -435,6 +433,8 @@ tensor 线性代数相关原位（inplace）版本
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`paddle.renorm_ <cn_api_paddle_renorm_>` ", "Inplace 版本的 renorm API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.t_ <cn_api_paddle_t_>` ", "Inplace 版本的 t API，对输入 input 采用 Inplace 策略"
     " :ref:`paddle.tril_ <cn_api_paddle_tril_>` ", "Inplace 版本的 tril API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.triu_ <cn_api_paddle_triu_>` ", "Inplace 版本的 triu API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.trunc_ <cn_api_paddle_trunc_>` ", "Inplace 版本的 trunc API，对输入 x 采用 Inplace 策略"
