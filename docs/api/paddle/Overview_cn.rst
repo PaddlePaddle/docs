@@ -238,6 +238,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.log_normal_ <cn_api_paddle_log_normal_>` ", "Inplace 版本的 log_normal API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.logical_not_ <cn_api_paddle_logical_not_>` ", "Inplace 版本的 logical_not API，对输入 x 采用 Inplace 策略"
 
+
 .. _tensor_logic:
 
 tensor 逻辑操作
