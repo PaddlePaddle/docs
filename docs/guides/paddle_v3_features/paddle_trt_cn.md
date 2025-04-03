@@ -96,7 +96,7 @@ PIR-TRT 功能实现分为俩个步骤，即模型转换（convert）阶段和�
 
 示例中，步骤1和2过程是准备一个用来跑 TensorRT 加速推理的模型，这里创建了一个简单的动态图模型并且使用[动转静](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/jit/index_cn.html)方式保存下来为后续推理使用。步骤3创建了一个TensorRTConfig，用来给 TensorRT 做一些基础设置，这里Input设置了运行 TensorRT 所必须的输入min/opt/max shape，save_model_dir用于指定了convert后模型保存的路径。
 
-在运行推理阶段，主要是通过使用convert后的模型进行推理，来获得 TensorRT 加速效果。在[上一节](https://www.paddlepaddle.org.cn/inference/v3.0/guides/nv_gpu_infer/gpu_native_infer.html)中，我们了解到 Paddle Inference 推理简介（对 Paddle Inference 不熟悉请参考[这里](https://www.paddlepaddle.org.cn/inference/v3.0/guides/introduction/index_intro.html）包含了以下六步：
+在运行推理阶段，主要是通过使用convert后的模型进行推理，来获得 TensorRT 加速效果。在[上一节](https://www.paddlepaddle.org.cn/inference/v3.0/guides/nv_gpu_infer/gpu_native_infer.html)中，我们了解到 Paddle Inference 推理简介（对 Paddle Inference 不熟悉请参考[这里](https://www.paddlepaddle.org.cn/inference/v3.0/guides/introduction/index_intro.html)包含了以下六步：
 
 - 导入包
 - 设置 Config
