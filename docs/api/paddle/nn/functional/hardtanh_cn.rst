@@ -2,7 +2,7 @@
 
 hardtanh
 -------------------------------
-.. py:function:: paddle.nn.functional.hardtanh(x, min=-1.0, max=1.0, name=None):
+.. py:function:: paddle.nn.functional.hardtanh(x, min=-1.0, max=1.0, name=None)
 
 hardtanh 激活层（Hardtanh Activation Operator）。计算输入 `x` 的 `hardtanh` 值。计算公式如下：
 

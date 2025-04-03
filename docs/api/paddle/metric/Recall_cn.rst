@@ -11,7 +11,7 @@ Recall
 相关链接：https://en.wikipedia.org/wiki/Precision_and_recall
 
 .. note::
-这个 metric 只能用来评估二分类。
+    这个 metric 只能用来评估二分类。
 
 
 参数
