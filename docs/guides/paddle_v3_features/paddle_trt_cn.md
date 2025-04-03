@@ -96,7 +96,7 @@ PIR-TRT 功能实现分为俩个步骤，即模型转换（convert）阶段和�
 
 示例中，步骤1和2过程是准备一个用来跑 TensorRT 加速推理的模型，这里创建了一个简单的动态图模型并且使用[动转静](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/jit/index_cn.html)方式保存下来为后续推理使用。步骤3创建了一个TensorRTConfig，用来给 TensorRT 做一些基础设置，这里Input设置了运行 TensorRT 所必须的输入min/opt/max shape，save_model_dir用于指定了convert后模型保存的路径。
 
-在运行推理阶段，主要是通过使用convert后的模型进行推理，来获得 TensorRT 加速效果。在[上一节](./gpu_native_infer.md)中，我们了解到 Paddle Inference 推理流程（对 Paddle Inference 不熟悉请参考[这里](https://paddleinference.paddlepaddle.org.cn/quick_start/workflow.html)）包含了以下六步：
+在运行推理阶段，主要是通过使用convert后的模型进行推理，来获得 TensorRT 加速效果。在[上一节](https://www.paddlepaddle.org.cn/inference/v3.0/guides/nv_gpu_infer/gpu_native_infer.html)中，我们了解到 Paddle Inference 推理简介（对 Paddle Inference 不熟悉请参考[这里](https://www.paddlepaddle.org.cn/inference/v3.0/guides/introduction/index_intro.html）包含了以下六步：
 
 - 导入包
 - 设置 Config
@@ -188,11 +188,11 @@ PIR-TRT 采用子图的形式对 TensorRT 进行集成，当模型加载后，�
 
 **原始网络**
 
-![model_original](./images/model_original.png)
+![model_original](./images/paddle-trt/model_original.png)
 
 **转换的网络**
 
-![model_trt](./images/model_trt.png)
+![model_trt](./images/paddle-trt/model_trt.png)
 
 原始网络是由matmul，add，relu等算子组合成的一个简单网络。PIR-TRT 会对网络进行检测并将matmul，add，relu等算子作为一个可转换子图选出来，由一个 TensorRT 节点代替，成为转换后网络中的 **tensorrt_engine** 节点，并且在该节点之前添加一个 combine 节点，方便将输入汇总传给 tensorrt_engine，在该节点之后添加一个 split 节点，方便将输出分发给其他节点。在网络运行过程中，如果遇到tensorrt_engine，Paddle Inference 将调用 TensorRT 来对其执行。
 
