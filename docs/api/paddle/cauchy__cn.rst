@@ -1,9 +1,9 @@
 .. _cn_api_paddle_cauchy_:
 
-cauchy_
+cauchy\_
 -------------------------------
 
-.. py:function::paddle.cauchy_(x: paddle.Tensor, loc: Numeric = 0, scale: Numeric = 1, name: str | None = None)
+.. py:function:: paddle.cauchy_(x: paddle.Tensor, loc: Numeric = 0, scale: Numeric = 1, name: str | None = None)
 
 
 
