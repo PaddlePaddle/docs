@@ -11,22 +11,22 @@ Paddle Fluid 中提供了面向多种任务的多种类型的损失函数，以�
 ====
 
 平方误差损失（squared error loss）使用预测值和真实值之间误差的平方作为样本损失，是回归问题中最为基本的损失函数。
-API Reference 请参考 :ref:`cn_api_fluid_layers_square_error_cost`。
+API Reference 请参考 :ref:`cn_api_nn_functional_square_error_cost`。
 
 平滑 L1 损失（smooth_l1 loss）是一种分段的损失函数，较平方误差损失其对异常点相对不敏感，因而更为鲁棒。
-API Reference 请参考 :ref:`cn_api_fluid_layers_smooth_l1`。
+API Reference 请参考 :ref:`cn_api_nn_functional_smooth_l1_loss`。
 
 
 分类
 ====
 
 `交叉熵（cross entropy） <https://en.wikipedia.org/wiki/Cross_entropy>`_ 是分类问题中使用最为广泛的损失函数，Paddle Fluid 中提供了接受归一化概率值和非归一化分值输入的两种交叉熵损失函数的接口，并支持 soft label 和 hard label 两种样本类别标签。
-API Reference 请参考 :ref:`cn_api_fluid_layers_cross_entropy` 和 :ref:`cn_api_fluid_layers_softmax_with_cross_entropy`。
+API Reference 请参考 :ref:`cn_api_nn_functional_cross_entropy`。
 
 多标签分类
 ---------
 对于多标签分类问题，如一篇文章同属于政治、科技等多个类别的情况，需要将各类别作为独立的二分类问题计算损失，Paddle Fluid 中为此提供了 sigmoid_cross_entropy_with_logits 损失函数，
-API Reference 请参考 :ref:`cn_api_fluid_layers_sigmoid_cross_entropy_with_logits`。
+API Reference 请参考 :ref:`cn_api_nn_functional_binary_cross_entropy`。
 
 大规模分类
 ---------
@@ -34,7 +34,7 @@ API Reference 请参考 :ref:`cn_api_fluid_layers_sigmoid_cross_entropy_with_log
 
 * 噪声对比估计通过将多分类问题转化为学习分类器来判别数据来自真实分布和噪声分布的二分类问题，基于二分类来进行极大似然估计，避免在全类别空间计算归一化因子从而降低了计算复杂度。
 * 层级 sigmoid 通过二叉树进行层级的二分类来实现多分类，每个样本的损失对应了编码路径上各节点二分类交叉熵的和，避免了归一化因子的计算从而降低了计算复杂度。
-这两种方法对应的损失函数在 Paddle Fluid 中均有提供，API Reference 请参考 :ref:`cn_api_fluid_layers_nce` 和 :ref:`cn_api_fluid_layers_hsigmoid`。
+这两种方法对应的损失函数在 Paddle Fluid 中均有提供，API Reference 请参考 :ref:`cn_api_static_nn_nce` 和 :ref:`cn_api_nn_functional_hsigmoid_loss`。
 
 序列分类
 -------
@@ -55,6 +55,6 @@ API Reference 请参考 :ref:`cn_api_fluid_layers_sigmoid_cross_entropy_with_log
 更多
 ====
 
-对于一些较为复杂的损失函数，可以尝试使用其他损失函数组合实现；Paddle Fluid 中提供的用于图像分割任务的 :ref:`cn_api_fluid_layers_dice_loss` 即是使用其他 OP 组合（计算各像素位置似然概率的均值）而成；多目标损失函数也可看作这样的情况，如 Faster RCNN 就使用 cross entropy 和 smooth_l1 loss 的加权和作为损失函数。
+对于一些较为复杂的损失函数，可以尝试使用其他损失函数组合实现；Paddle Fluid 中提供的用于图像分割任务的 :ref:`cn_api_nn_functional_dice_loss` 即是使用其他 OP 组合（计算各像素位置似然概率的均值）而成；多目标损失函数也可看作这样的情况，如 Faster RCNN 就使用 cross entropy 和 smooth_l1 loss 的加权和作为损失函数。
 
-**注意**，在定义损失函数之后为能够使用 :ref:`api_guide_optimizer` 进行优化，通常需要使用 :ref:`cn_api_fluid_layers_mean` 或其他操作将损失函数返回的高维 Tensor 转换为 Scalar 值。
+**注意**，在定义损失函数之后为能够使用 :ref:`api_guide_optimizer` 进行优化，通常需要使用 :ref:`cn_api_mean` 或其他操作将损失函数返回的高维 Tensor 转换为 Scalar 值。
