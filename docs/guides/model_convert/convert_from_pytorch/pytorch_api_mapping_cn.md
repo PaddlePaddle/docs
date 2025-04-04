@@ -1042,22 +1042,20 @@
 | NOT-IMPLEMENTED-ITEM(`torch.jit.trace`, https://pytorch.org/docs/stable/generated/torch.jit.trace.html#torch-jit-trace, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.jit.unused`, https://pytorch.org/docs/stable/generated/torch.jit.unused.html#torch-jit-unused, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.utils.checkpoint.checkpoint_sequential`, https://pytorch.org/docs/stable/checkpoint.html#torch.utils.checkpoint.checkpoint_sequential, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.parameter.UninitializedBuffer`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedBuffer.html#torch.nn.parameter.UninitializedBuffer, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.autograd.Function.jvp`, https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.memory_format`, https://pytorch.org/docs/stable/tensor_attributes.html#torch.memory_format, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.is_gloo_available`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_gloo_available, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.get_group_rank`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_group_rank, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.get_global_rank`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_process_group_ranks, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.set_deterministic_debug_mode`, https://pytorch.org/docs/stable/generated/torch.set_deterministic_debug_mode.html#torch-set-deterministic-debug-mode, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.get_deterministic_debug_mode`, https://pytorch.org/docs/stable/generated/torch.get_deterministic_debug_mode.html#torch-get-deterministic-debug-mode, 可新增，但框架底层无相关设计，成本高) |
 
 ## <span id="id26">映射关系开发中的 API 列表</span>
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | IN-DEVELOPMENT-PATTERN(`torch.utils.tensorboard.writer.SummaryWriter`, https://pytorch.org/docs/stable/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.parameter.UninitializedBuffer`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedBuffer.html#torch.nn.parameter.UninitializedBuffer) |
-| IN-DEVELOPMENT-PATTERN(`torch.autograd.Function.jvp`, https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp) |
-| IN-DEVELOPMENT-PATTERN(`torch.memory_format`, https://pytorch.org/docs/stable/tensor_attributes.html#torch.memory_format) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_ceil_`, https://pytorch.org/docs/stable/generated/torch._foreach_ceil_.html#torch-foreach-ceil) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_erfc`, https://pytorch.org/docs/stable/generated/torch._foreach_erfc.html#torch-foreach-erfc) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_erfc_`, https://pytorch.org/docs/stable/generated/torch._foreach_erfc_.html#torch-foreach-erfc) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_exp_`, https://pytorch.org/docs/stable/generated/torch._foreach_exp_.html#torch-foreach-exp) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_floor_`, https://pytorch.org/docs/stable/generated/torch._foreach_floor_.html#torch-foreach-floor) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_log`, https://pytorch.org/docs/stable/generated/torch._foreach_log.html#torch-foreach-log) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_log_`, https://pytorch.org/docs/stable/generated/torch._foreach_log_.html#torch-foreach-log) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_log10`, https://pytorch.org/docs/stable/generated/torch._foreach_log10.html#torch-foreach-log10) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_log10_`, https://pytorch.org/docs/stable/generated/torch._foreach_log10_.html#torch-foreach-log10) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_log1p`, https://pytorch.org/docs/stable/generated/torch._foreach_log1p.html#torch-foreach-log1p) |
@@ -1094,10 +1092,6 @@
 | IN-DEVELOPMENT-PATTERN(`torch.autograd.graph.Node.register_prehook`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.register_prehook.html#torch-autograd-graph-node-register-prehook) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.OutOfMemoryError`, https://pytorch.org/docs/stable/generated/torch.cuda.OutOfMemoryError.html#torch-cuda-outofmemoryerror) |
 | IN-DEVELOPMENT-PATTERN(`torch.backends.cpu.get_cpu_capability`, https://pytorch.org/docs/stable/backends.html#torch.backends.cpu.get_cpu_capability) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributed.P2POp`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.P2POp) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributed.is_gloo_available`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_gloo_available) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributed.get_group_rank`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_group_rank) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributed.get_global_rank`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_global_rank) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributed.get_process_group_ranks`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_process_group_ranks) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributed.batch_isend_irecv`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.batch_isend_irecv) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributed.all_gather_into_tensor`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_gather_into_tensor) |
@@ -1119,5 +1113,3 @@
 | IN-DEVELOPMENT-PATTERN(`torch.distributions.continuous_bernoulli.ContinuousBernoulli`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.continuous_bernoulli.ContinuousBernoulli) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributions.exponential.Exponential`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.exponential.Exponential) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.StreamContext`, https://pytorch.org/docs/stable/generated/torch.cuda.StreamContext.html#torch.cuda.StreamContext) |
-| IN-DEVELOPMENT-PATTERN(`torch.set_deterministic_debug_mode`, https://pytorch.org/docs/stable/generated/torch.set_deterministic_debug_mode.html#torch-set-deterministic-debug-mode) |
-| IN-DEVELOPMENT-PATTERN(`torch.get_deterministic_debug_mode`, https://pytorch.org/docs/stable/generated/torch.get_deterministic_debug_mode.html#torch-get-deterministic-debug-mode) |
