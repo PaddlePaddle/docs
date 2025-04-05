@@ -4,7 +4,7 @@ cauchy\_
 ------------------------------
 
 .. py:function::   paddle.cauchy_(x: paddle.Tensor, loc: Numeric = 0, scale: Numeric =
-   1, name: str \| None = None) →
+   1, name: str | None = None) →
    paddle.Tensor[`source <https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py#L3215>`__]
 
 使用 Cauchy 分布中的数字填充张量。
