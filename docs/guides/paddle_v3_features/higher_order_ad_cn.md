@@ -157,9 +157,9 @@ for i in range(1000):
     loss_pde = mse(w_x_x_x_x + 2 * w_x_x_y_y + w_y_y_y_y, q / D)
 
     # 2. define bc_left_right_loss
-    np_x = np.random.choice([-Lx / 2, Lx / 2], size=(50, 1)).astype("float32")
+    np_rand_x = np.random.choice([-Lx / 2, Lx / 2], size=(50, 1)).astype("float32")
     np_rand_y = np.random.uniform(-Ly / 2, Ly / 2, size=(50, 1)).astype("float32")
-    x = paddle.to_tensor(np_x, stop_gradient=False)  # [50, 1]
+    x = paddle.to_tensor(np_rand_x, stop_gradient=False)  # [50, 1]
     y = paddle.to_tensor(np_rand_y, stop_gradient=False)  # [50, 1]
     tensor_input = paddle.concat([x, y], axis=1)  # [50, 2]
     output = model(tensor_input)
@@ -170,9 +170,9 @@ for i in range(1000):
 
     # 3. define bc_loss
     np_rand_x = np.random.uniform(-Lx / 2, Lx / 2, size=(50, 1)).astype("float32")
-    np_y = np.random.choice([-Ly / 2, Ly / 2], size=(50, 1)).astype("float32")
+    np_rand_y = np.random.choice([-Ly / 2, Ly / 2], size=(50, 1)).astype("float32")
     x = paddle.to_tensor(np_rand_x, stop_gradient=False)  # [50, 1]
-    y = paddle.to_tensor(np_y, stop_gradient=False)  # [50, 1]
+    y = paddle.to_tensor(np_rand_y, stop_gradient=False)  # [50, 1]
     tensor_input = paddle.concat([x, y], axis=1)  # [50, 2]
     output = model(tensor_input)
     w = output
@@ -227,7 +227,7 @@ print("saved matplotlib to: ./result.jpg")
 
 ### 4.1 使用 PaddleScience API 求解
 
-PaddleScience 提供了更高级的 API: [`ppsci.lambdify`](https://paddlescience-docs.readthedocs.io/zh-cn/latest/zh/api/utils/symbolic/?h=#ppsci.utils.symbolic.lambdify)，该 API 可以自动将 sympy 表达式转换为基于 Paddle 原生 API 的计算函数，从而避免用户多次显式调用 `paddle.grad`，同时该 API 的子表达式缓存机制也使得用户无需再关注中间变量的复用。
+基于飞桨框架，我们开发了科学计算套件 [**PaddleScience**](https://paddlescience-docs.readthedocs.io/zh-cn/latest/)，并提供了更上层的 API: [`ppsci.lambdify`](https://paddlescience-docs.readthedocs.io/zh-cn/latest/zh/api/utils/symbolic/?h=#ppsci.utils.symbolic.lambdify)。`ppsci.lambdify` 可以自动将 sympy 表达式转换为基于 Paddle 原生 API 的计算函数，从而避免用户多次显式调用 `paddle.grad`，同时该 API 具备子表达式缓存机制，使得用户无需再关注中间变量的复用。
 
 ```python
 import paddle
@@ -289,9 +289,9 @@ for i in range(1000):
     loss_pde = mse(pde_out, q / D)
 
     # 2. define bc_left_right_loss
-    np_x = np.random.choice([-Lx / 2, Lx / 2], size=(50, 1)).astype("float32")
+    np_rand_x = np.random.choice([-Lx / 2, Lx / 2], size=(50, 1)).astype("float32")
     np_rand_y = np.random.uniform(-Ly / 2, Ly / 2, size=(50, 1)).astype("float32")
-    x = paddle.to_tensor(np_x, stop_gradient=False)  # [50, 1]
+    x = paddle.to_tensor(np_rand_x, stop_gradient=False)  # [50, 1]
     y = paddle.to_tensor(np_rand_y, stop_gradient=False)  # [50, 1]
     data_dict = {"x": x, "y": y}
     w_x_x = bc_lr_func(data_dict)
@@ -299,9 +299,9 @@ for i in range(1000):
 
     # 3. define bc_loss
     np_rand_x = np.random.uniform(-Lx / 2, Lx / 2, size=(50, 1)).astype("float32")
-    np_y = np.random.choice([-Ly / 2, Ly / 2], size=(50, 1)).astype("float32")
+    np_rand_y = np.random.choice([-Ly / 2, Ly / 2], size=(50, 1)).astype("float32")
     x = paddle.to_tensor(np_rand_x, stop_gradient=False)  # [50, 1]
-    y = paddle.to_tensor(np_y, stop_gradient=False)  # [50, 1]
+    y = paddle.to_tensor(np_rand_y, stop_gradient=False)  # [50, 1]
     data_dict = {"x": x, "y": y}
     bc_ud1_out = bc_ud1_func(data_dict)
     bc_ud2_out = bc_ud2_func(data_dict)
@@ -353,11 +353,11 @@ print("saved matplotlib to: ./result.jpg")
 
 ## 五、飞桨支撑科学计算 AI4S
 
-基于飞桨框架 3.0 为科学计算提供了高阶自动微分、编译优化、分布式训练能力支撑，提供了面向通用数理问题求解的赛桨 PaddleScience 以及专注于生物计算的螺旋桨 PaddleHelix 工具组件。为了更好地支撑 AI for Science 生态，飞桨对国内外主流开源科学计算工具进行了适配，并被国际主流的科学计算深度学习库 DeepXDE 唯一推荐。
+基于飞桨框架 3.0 为科学计算提供了高阶自动微分、编译优化、分布式训练能力支撑，提供了面向通用数理问题求解的赛桨 [**PaddleScience**](https://paddlescience-docs.readthedocs.io/zh-cn/latest/) 以及专注于生物计算的螺旋桨 [**PaddleHelix**](https://paddlehelix.baidu.com/) 工具组件。为了更好地支撑 AI for Science 生态，飞桨对国内外主流开源科学计算工具进行了适配，并被国际主流的科学计算深度学习库 DeepXDE 唯一推荐。
 
 ### 5.1 飞桨 + Modulus-sym
 
-飞桨利用高阶自动微分与编译优化技术，在与 NVIDIA 合作适配其 AI Physics 工具 Modulus-sym 的过程中，成功完成了全量模型适配([Modulus-sym[paddle-backend]](https://github.com/PaddlePaddle/modulus-sym/tree/paddle?tab=readme-ov-file#modulus-symbolic-betapaddle-backend))，实现了方程求解类模型性能的大幅优化，相比 Modulus-sym 现有后端**求解速度平均提升 115%**；
+飞桨利用高阶自动微分与编译优化技术，在与 NVIDIA 合作适配其 AI Physics 工具 Modulus-sym 的过程中，成功完成了全量模型适配([**Modulus-sym(paddle-backend)**](https://github.com/PaddlePaddle/modulus-sym/tree/paddle?tab=readme-ov-file#modulus-symbolic-betapaddle-backend))，实现了方程求解类模型性能的大幅优化，相比 Modulus-sym 现有后端**求解速度平均提升 115%**；
 
 ![ai4s.png](https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/higher_order_ad/ai4s.png)
 
@@ -365,7 +365,7 @@ print("saved matplotlib to: ./result.jpg")
 
 ### 5.2 飞桨 + DeePMD-kit
 
-在 AI 分子动力学套件 [DeePMD-kit](https://docs.deepmodeling.com/projects/deepmd/en/latest/train/training.html) 中，我们对 dpa2, se_atten, se_e2_a 进行了动态图和编译器适配，相比 DeePMD-kit torch 后端，**求解速度分别提升了 102.6%, 40.5%, 102.6%**，相关结果已公开至论文：[DeePMD-kit v3: A Multiple-Backend Framework for Machine Learning Potentials](https://arxiv.org/abs/2502.19161)。
+在 AI 分子动力学套件 [**DeePMD-kit**](https://docs.deepmodeling.com/projects/deepmd/en/latest/train/training.html) 中，我们对 dpa2, se_atten, se_e2_a 进行了动态图和编译器适配，相比 DeePMD-kit torch 后端，**求解速度分别提升了 102.6%, 40.5%, 102.6%**，相关结果已公开至论文：[DeePMD-kit v3: A Multiple-Backend Framework for Machine Learning Potentials](https://arxiv.org/abs/2502.19161)。
 
 基于飞桨后端运行 DeePMD-kit 可参考：[5.1. Train a model](https://docs.deepmodeling.com/projects/deepmd/en/latest/train/training.html)
 
