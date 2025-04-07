@@ -182,7 +182,7 @@ print(H_y_x2_x2.shape)
 
 基于飞桨框架 3.0 为科学计算提供了高阶自动微分、编译优化、分布式训练能力支撑，提供了面向通用数理问题求解的赛桨 PaddleScience 以及专注于生物计算的螺旋桨 PaddleHelix 工具组件。为了更好地支撑 AI for Science 生态，飞桨对国内外主流开源科学计算工具进行了适配，并被国际主流的科学计算深度学习库 DeepXDE 唯一推荐。
 
-此外，飞桨利用高阶自动微分与编译优化技术，在与 NVIDIA 合作适配其 AI Physics 工具 Modulus-sym 的过程中，成功完成了全量模型适配([Modulus-sym[paddle-backend]](https://github.com/PaddlePaddle/modulus-sym/tree/paddle?tab=readme-ov-file#modulus-symbolic-betapaddle-backend))，实现了方程求解类模型性能的大幅优化，相比 Modulus-sym 现有后端**求解速度平均提升 71%**；
+此外，飞桨利用高阶自动微分与编译优化技术，在与 NVIDIA 合作适配其 AI Physics 工具 Modulus-sym 的过程中，成功完成了全量模型适配([Modulus-sym[paddle-backend]](https://github.com/PaddlePaddle/modulus-sym/tree/paddle?tab=readme-ov-file#modulus-symbolic-betapaddle-backend))，实现了方程求解类模型性能的大幅优化，相比 Modulus-sym 现有后端**求解速度平均提升 115%**；
 
 <figure align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/paddle_v3_features/images/higher_order_ad/ai4s.png" style="zoom:40%"/>
