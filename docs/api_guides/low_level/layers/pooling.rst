@@ -40,10 +40,10 @@ PaddlePaddle 中有针对定长图像特征的二维(pool2d)、三维卷积(pool
 
 api 汇总：
 
-- :ref:`cn_api_nn_functional_avg_pool2d`
-- :ref:`cn_api_nn_functional_max_pool2d`
-- :ref:`cn_api_nn_functional_avg_pool3d`
-- :ref:`cn_api_nn_functional_max_pool3d`
+- :ref:`cn_api_paddle_nn_functional_avg_pool2d`
+- :ref:`cn_api_paddle_nn_functional_max_pool2d`
+- :ref:`cn_api_paddle_nn_functional_avg_pool3d`
+- :ref:`cn_api_paddle_nn_functional_max_pool3d`
 
 
 2. roi_pool
@@ -60,7 +60,7 @@ api 汇总：
 
 api 汇总：
 
-- :ref:`cn_api_vison_ops_roi_pool`
+- :ref:`cn_api_paddle_vison_ops_roi_pool`
 
 
 3. sequence_pool
@@ -79,4 +79,4 @@ api 汇总：
 
 api 汇总：
 
-- :ref:`cn_api_static_nn_sequence_pool`
+- :ref:`cn_api_paddle_static_nn_sequence_pool`

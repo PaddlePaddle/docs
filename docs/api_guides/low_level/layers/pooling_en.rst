@@ -40,10 +40,10 @@ PaddlePaddle has two-dimensional (pool2d), three-dimensional convolution (pool3d
 
 related API:
 
-- :ref:`api_nn_functional_avg_pool2d`
-- :ref:`api_nn_functional_max_pool2d`
-- :ref:`api_nn_functional_avg_pool3d`
-- :ref:`api_nn_functional_max_pool3d`
+- :ref:`api_paddle_nn_functional_avg_pool2d`
+- :ref:`api_paddle_nn_functional_max_pool2d`
+- :ref:`api_paddle_nn_functional_avg_pool3d`
+- :ref:`api_paddle_nn_functional_max_pool3d`
 
 
 2. roi_pool
@@ -60,7 +60,7 @@ related API:
 
 related API:
 
-- :ref:`api_vison_ops_roi_pool`
+- :ref:`api_paddle_vison_ops_roi_pool`
 
 
 3. sequence_pool
@@ -79,4 +79,4 @@ one of  ``average``, ``sum``, ``sqrt`` and ``max`` to be used as the pooling met
 
 related API:
 
-- :ref:`api_static_nn_sequence_pool`
+- :ref:`api_paddle_static_nn_sequence_pool`
