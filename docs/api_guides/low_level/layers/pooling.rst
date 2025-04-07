@@ -60,7 +60,7 @@ api 汇总：
 
 api 汇总：
 
-- :ref:`cn_api_paddle_vison_ops_roi_pool`
+- :ref:`cn_api_paddle_vision_ops_roi_pool`
 
 
 3. sequence_pool

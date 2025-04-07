@@ -60,7 +60,7 @@ related API:
 
 related API:
 
-- :ref:`api_paddle_vison_ops_roi_pool`
+- :ref:`api_paddle_vision_ops_roi_pool`
 
 
 3. sequence_pool
