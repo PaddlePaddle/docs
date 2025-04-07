@@ -52,6 +52,8 @@
 
 ## 四、二维平板分布受载问题
 
+### 4.1 问题描述
+
 基于上述飞桨的高阶自动微分能力，接下来尝试解决在第一章提到的“2D 矩形平板分布受载问题”。首先列出该问题的数学模型：
 
 薄板小挠度理论的基本方程为：
@@ -66,28 +68,28 @@ $$
 左右两边 $(x=-1 \mid x=+1)$ 为简支边界条件，因此挠度 $w$ 和弯矩 $M_x$ 都为 $0$ :
 
 $$
-(w)_{x=-1 \mid x=+1}=0, \quad\left(M_x\right)_{x=-1 \mid x=+1}=0
+(w)\_{x=-1 \mid x=+1}=0, \quad\left(M\_x\right)\_{x=-1 \mid x=+1}=0
 $$
 
 由于 $M_x=-D\left(\frac{\partial^2 w}{\partial x^2}+\mu \frac{\partial^2 w}{\partial y^2}\right)$， 且 $\frac{\partial^2 w}{\partial y^2}=0$， 所以简支边界条件可化简为：
 
 $$
-(w)_{x=-1 \mid x=+1}=0, \quad\left(\frac{\partial^2 w}{\partial x^2}\right)_{x=-1 \mid x=+1}=0
+(w)\_{x=-1 \mid x=+1}=0, \quad\left(\frac{\partial^2 w}{\partial x^2}\right)\_{x=-1 \mid x=+1}=0
 $$
 
 上下两边 $(y=-0.5 \mid y=+0.5)$ 为自由边界条件， 弯矩、扭矩、横向剪切力都为 $0$ :
 
 $$
-\left(M_y\right)_{\mathrm{y}=-0.5 \mid \mathrm{y}=+0.5}=0, \quad\left(M_{x y}\right)_{\mathrm{y}=-0.5 \mid \mathrm{y}=+0.5}=0, \quad\left(Q_y\right)_{\mathrm{y}=-0.5 \mid \mathrm{y}=+0.5}=0
+\left(M\_y\right)\_{\mathrm{y}=-0.5 \mid \mathrm{y}=+0.5}=0, \quad\left(M\_{x y}\right)\_{\mathrm{y}=-0.5 \mid \mathrm{y}=+0.5}=0, \quad\left(Q\_y\right)\_{\mathrm{y}=-0.5 \mid \mathrm{y}=+0.5}=0
 $$
 
 由于 $M_y=-D\left(\frac{\partial^2 w}{\partial y^2}+\mu \frac{\partial^2 w}{\partial x^2}\right), \quad M_{x y}=-D(1-\mu) \frac{\partial^2 w}{\partial x \partial y}, \quad Q_y=-D \frac{\partial}{\partial y}\left(\frac{\partial^2 w}{\partial x^2}+\frac{\partial^2 w}{\partial y^2}\right)$ ，且扭矩可以变换为等效剪力， 扭矩和横向剪力合并为 $\left(Q_y+\frac{\partial M_{x y}}{\partial x}\right)_{\mathrm{y}=-0.5 \mid \mathrm{y}=+0.5}=0$， 所以自由边界条件用挠度表示为
 
 $$
-\left(\frac{\partial^2 w}{\partial y^2}+\mu \frac{\partial^2 w}{\partial x^2}\right)_{y=-0.5 \mid y=+0.5}=0, \quad\left(\frac{\partial^3 w}{\partial y^3}+(2-\mu) \frac{\partial^3 w}{\partial x^2 \partial y}\right)_{y=-0.5 \mid y=+0.5}=0
+\left(\frac{\partial^2 w}{\partial y^2}+\mu \frac{\partial^2 w}{\partial x^2}\right)\_{y=-0.5 \mid y=+0.5}=0, \quad\left(\frac{\partial^3 w}{\partial y^3}+(2-\mu) \frac{\partial^3 w}{\partial x^2 \partial y}\right)\_{y=-0.5 \mid y=+0.5}=0
 $$
 
-### 4.1 使用飞桨原生 API 求解
+### 4.2 使用飞桨原生 API 求解
 
 接下来给出上述问题转换成的飞桨代码。
 
@@ -225,7 +227,7 @@ plt.savefig("./result.jpg")
 print("saved matplotlib to: ./result.jpg")
 ```
 
-### 4.1 使用 PaddleScience API 求解
+### 4.3 使用 PaddleScience API 求解
 
 基于飞桨框架，我们开发了科学计算套件 [**PaddleScience**](https://paddlescience-docs.readthedocs.io/zh-cn/latest/)，并提供了更上层的 API: [`ppsci.lambdify`](https://paddlescience-docs.readthedocs.io/zh-cn/latest/zh/api/utils/symbolic/?h=#ppsci.utils.symbolic.lambdify)。`ppsci.lambdify` 可以自动将 sympy 表达式转换为基于 Paddle 原生 API 的计算函数，从而避免用户多次显式调用 `paddle.grad`，同时该 API 具备子表达式缓存机制，使得用户无需再关注中间变量的复用。
 
