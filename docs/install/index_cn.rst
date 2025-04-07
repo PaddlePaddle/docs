@@ -20,10 +20,10 @@
 
 **1. 操作系统要求：**
 
-* Windows 7 / 8 / 10/ 11，专业版 / 企业版
+* Windows 7 / 8 / 10 / 11，专业版 / 企业版
 * Ubuntu 20.04 / 22.04
-* CentOS 7
-* macOS 10.x/11.x/12.x/13.x/14.x
+* almalinux 8
+* macOS 12.x/13.x/14.x/15.x
 * 操作系统要求是 64 位版本
 
 **2. 处理器要求**
@@ -33,7 +33,7 @@
 
 **3. Python 和 pip 版本要求：**
 
-* Python 的版本要求 3.8/3.9/3.10/3.11/3.12
+* Python 的版本要求 3.8/3.9/3.10/3.11/3.12/3.13
 * Python 具有 pip, 且 pip 的版本要求 20.2.2+
 * Python 和 pip 要求是 64 位版本
 
@@ -66,7 +66,7 @@
 
 4. 检查 Python 的版本
 
-    使用以下命令确认是 3.8/3.9/3.10/3.11/3.12
+    使用以下命令确认是 3.8/3.9/3.10/3.11/3.12/3.13
     ::
 
         python --version
@@ -88,6 +88,10 @@
 
 7. 如果您希望使用 `pip <https://pypi.org/project/pip/>`_ 进行安装 PaddlePaddle 可以直接使用以下命令:
 
+     注意:
+
+       * 如果你想要安装 paddlepaddle，该版本要求 libstdc++.so.6 的版本大于 3.4.25。为了满足此要求，您可以选择安装 GCC 8 或者更高的 GCC 版本，或者单独升级 libstdc++库。
+
     (1). **CPU 版本** ：如果您只是想安装 CPU 版本请参考如下命令安装
 
         安装 CPU 版本的命令为：
@@ -97,16 +101,10 @@
 
     (2). **GPU 版本** ：如果您想使用 GPU 版本请参考如下命令安装
 
-        注意：
-
-            * 如果您想要安装 CUDA 12.3 版本，该版本需要 libstdc++.so.6 的版本大于 3.4.30。为了满足此要求，您可以选择安装 GCC 12 版本，或者单独升级 libstdc++库。
-
-            * 如果你想要安装 CUDA 11.8 版本，该版本要求 libstdc++.so.6 的版本大于 3.4.25。为了满足此要求，您可以选择安装 GCC 8 或者更高的 GCC 版本，或者单独升级 libstdc++库。
-
-        安装 GPU cuda12.3 版本的命令为：
+        安装 GPU cuda12.6 版本的命令为：
         ::
 
-            python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu123/
+            python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu126/
 
         安装 GPU cuda11.8 版本的命令为：
         ::
