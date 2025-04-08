@@ -51,7 +51,7 @@
 
 + **如果发现模型训练 CPU 向 GPU 调度不充分的情况下。**
 
-  如下是模型训练时执行单个 step 的 timeline 示意图，框架通过 CPU 调度底层 Kernel 计算，在某些情况下，如果 CPU 调度时间过长，会导致 GPU 利用率不高（可终端执行 watch -n 1 nvidia-smi 观察）。
+  如下是模型训练时执行单个 step 的 timeline 示意图，框架通过 CPU 调度底层 Kernel 计算，在某些情况下，如果 CPU 调度时间过长，会导致 GPU 利用率不高（可终端执行 `watch -n 1 nvidia-smi` 观察）。
 
   <figure align="center">
   <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/timeline_base.png" style="zoom:70%" />
@@ -312,7 +312,7 @@ class LinearNet(nn.Layer):
     + 模型参数层面：将动态图模型中的参数（Parameters 和 Buffers ）转为 ``Persistable=True``  的静态图模型参数 Variable。
 
 2. 再将静态图模型和参数导出为磁盘文件。Program 和 Variable 都可以直接序列化导出为磁盘文件，与前端代码完全解耦，导出的文件包括：
-    + 后缀为 ``.pdmodel`` 的模型结构文件；
+    + 后缀为 ``.json`` 的模型结构文件；
 
     + 后缀为 ``.pdiparams`` 的模型参数文件；
 
@@ -346,7 +346,7 @@ paddle.jit.save(layer, path)
 
 ```
 linear.pdiparams        // 存放模型中所有的权重数据
-linear.pdmodel         // 存放模型的网络结构
+linear.json             // 存放模型的网络结构
 linear.pdiparams.info   // 存放和参数状态有关的额外信息
 ```
 
@@ -569,7 +569,7 @@ train(layer, loader, loss_fn, adam)
 
 ```
 linear.pdiparams        // 存放模型中所有的权重数据
-linear.pdmodel         // 存放模型的网络结构
+linear.json             // 存放模型的网络结构
 linear.pdiparams.info   // 存放和参数状态有关的额外信息
 ```
 
@@ -698,7 +698,7 @@ pred = loaded_layer(x)
 
   + 该场景下保存的模型命名规则如下：
 
-    + forward 的模型名字为：**模型名+后缀** ，其他函数的模型名字为：**模型名+函数名+后缀** 。每个函数有各自的 pdmodel 和 pdiparams 的文件，所有函数共用 `pdiparams.info` 。上述示例代码将在 `example.model` 文件夹下产生 5 个文件： ``linear.another_forward.pdiparams`` 、 ``linear.pdiparams`` 、 ``linear.pdmodel`` 、 ``linear.another_forward.pdmodel`` 、``linear.pdiparams.info`` 。
+    + forward 的模型名字为：**模型名+后缀** ，其他函数的模型名字为：**模型名+函数名+后缀** 。每个函数有各自的 pdmodel 和 pdiparams 的文件，所有函数共用 `pdiparams.info` 。上述示例代码将在 `example.model` 文件夹下产生 5 个文件： ``linear.another_forward.pdiparams`` 、 ``linear.pdiparams`` 、 ``linear.json`` 、 ``linear.another_forward.json`` 、``linear.pdiparams.info`` 。
 
 
 ### 3.5 ``InputSpec`` 的用法介绍
@@ -722,8 +722,8 @@ from paddle.static import InputSpec
 x = InputSpec([None, 784], 'float32', 'x')
 label = InputSpec([None, 1], 'int64', 'label')
 
-print(x)      # InputSpec(shape=(-1, 784), dtype=VarType.FP32, name=x)
-print(label)  # InputSpec(shape=(-1, 1), dtype=VarType.INT64, name=label)
+print(x)      # InputSpec(shape=(-1, 784), dtype=paddle.float32, name=x, stop_gradient=False)
+print(label)  # InputSpec(shape=(-1, 1), dtype=paddle.int64, name=label, stop_gradient=False)
 ```
 
 **（2）方式二：由 Tensor 构造**
@@ -737,7 +737,7 @@ from paddle.static import InputSpec
 
 x = paddle.to_tensor(np.ones([2, 2], np.float32))
 x_spec = InputSpec.from_tensor(x, name='x')
-print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
+print(x_spec)  # InputSpec(shape=(2, 2), dtype=paddle.float32, name=x, stop_gradient=False)
 ```
 
 
@@ -770,7 +770,7 @@ from paddle.static import InputSpec
 
 x = np.ones([2, 2], np.float32)
 x_spec = InputSpec.from_numpy(x, name='x')
-print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
+print(x_spec)  # InputSpec(shape=(2, 2), dtype=paddle.float32, name=x, stop_gradient=False)
 ```
 
 > 注：若未在 from_numpy 中指定新的 name，则默认使用 None 。
@@ -888,7 +888,7 @@ class SimpleNet(Layer):
 
 **（4）方式四：指定非 Tensor 参数类型**
 
-若被装饰函数的参数列表除了 Tensor 类型，还包含其他如 Int、 String 等非 Tensor 类型时，推荐在函数中使用 kwargs 形式定义非 Tensor 参数，如下述样例中的 ``use_act`` 参数。
+若被装饰函数的参数列表除了 Tensor 类型，还包含其他如 int、 str 等非 Tensor 类型时，推荐在函数中使用 kwargs 形式定义非 Tensor 参数，如下述样例中的 ``use_act`` 参数。
 
 ```python
 class SimpleNet(Layer):
@@ -930,7 +930,7 @@ paddle.jit.save(net, path='./simple_net')
 
 + 若存在 relu 后跟 depthwise_conv2 函数，则可以尝试开启 ``fuse_relu_depthwise_conv``
 
-+ 若存在较多的 conv2dAPI 的调用，则可以尝试开启 ``enable_addto`` ，更多策略开关可以参考 [BuildStrategy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/BuildStrategy_cn.html#buildstrategy) 接口文档。
++ 若存在较多的 conv2d API 的调用，则可以尝试开启 ``enable_addto`` ，更多策略开关可以参考 [BuildStrategy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/BuildStrategy_cn.html#buildstrategy) 接口文档。
 
 
     ```python

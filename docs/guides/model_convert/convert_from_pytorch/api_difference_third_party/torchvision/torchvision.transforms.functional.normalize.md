@@ -3,7 +3,7 @@
 ### [torchvision.transforms.functional.normalize](https://pytorch.org/vision/stable/generated/torchvision.transforms.functional.normalize.html)
 
 ```python
-torchvision.transforms.functional.normalize(img, mean, std, inplace = False)
+torchvision.transforms.functional.normalize(tensor, mean, std, inplace = False)
 ```
 
 ### [paddle.vision.transforms.normalize](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/normalize_cn.html)

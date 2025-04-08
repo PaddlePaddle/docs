@@ -53,11 +53,11 @@ COPY-FROM: paddle.optimizer.Adamax
 方法
 ::::::::::::
 step()
-'''''''''
+''''''''''''
 
 .. note::
 
-该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+    该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 执行一次优化器并进行参数更新。
 
@@ -71,7 +71,7 @@ step()
 COPY-FROM: paddle.optimizer.Adamax.step
 
 minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
-'''''''''
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 为网络添加反向计算过程，并根据反向计算所得的梯度，更新 parameters 中的 Parameters，最小化网络损失值 loss。
 
@@ -92,11 +92,11 @@ COPY-FROM: paddle.optimizer.Adamax.minimize
 
 
 clear_grad()
-'''''''''
+''''''''''''''''''
 
 .. note::
 
-该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+    该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 
 清除需要优化的参数的梯度。
@@ -106,11 +106,11 @@ clear_grad()
 COPY-FROM: paddle.optimizer.Adamax.clear_grad
 
 set_lr(value)
-'''''''''
+''''''''''''''''''
 
 .. note::
 
-该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+    该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler 时，无法使用该 API 手动设置学习率，因为这将导致冲突。
 
@@ -127,11 +127,11 @@ set_lr(value)
 COPY-FROM: paddle.optimizer.Adamax.set_lr
 
 set_lr_scheduler(scheduler)
-'''''''''
+''''''''''''''''''''''''''''''''''''
 
 .. note::
 
-该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+    该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 手动设置当前 ``optimizer`` 的学习率为 LRScheduler 类。
 
@@ -148,11 +148,11 @@ set_lr_scheduler(scheduler)
 COPY-FROM: paddle.optimizer.Adamax.set_lr_scheduler
 
 get_lr()
-'''''''''
+'''''''''''''
 
 .. note::
 
-该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+    该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 获取当前步骤的学习率。当不使用_LRScheduler 时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 

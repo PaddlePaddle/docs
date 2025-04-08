@@ -176,8 +176,8 @@ persistable
 '''''''''
 
 .. note::
-1. 该属性我们即将废弃，此介绍仅为了帮助用户理解概念，1.6 版本后用户可以不再关心该属性
-2. 该属性除参数以外默认值为 ``False``，而参数的该属性默认值为 ``True`` 。
+  1. 该属性我们即将废弃，此介绍仅为了帮助用户理解概念，1.6 版本后用户可以不再关心该属性
+  2. 该属性除参数以外默认值为 ``False``，而参数的该属性默认值为 ``True`` 。
 
 此 :ref:`api_guide_Variable` 是否是长期存活的 :ref:`api_guide_Variable`。
 
@@ -185,7 +185,7 @@ name
 '''''''''
 
 .. note::
-静态图模式下，同一个 :ref:`api_guide_Block` 中的两个或更多 :ref:`api_guide_Variable` 拥有相同 ``name`` 将意味着他们会共享相同的内容。通常我们使用这种方式来实现参数共享。
+  静态图模式下，同一个 :ref:`api_guide_Block` 中的两个或更多 :ref:`api_guide_Variable` 拥有相同 ``name`` 将意味着他们会共享相同的内容。通常我们使用这种方式来实现参数共享。
 
 此 :ref:`api_guide_Variable` 的名字（str）。
 
@@ -194,7 +194,7 @@ shape
 '''''''''
 
 .. note::
-该属性是只读属性。
+  该属性是只读属性。
 
 此 :ref:`api_guide_Variable` 在每个维度上的元素数量。
 
@@ -202,7 +202,7 @@ dtype
 '''''''''
 
 .. note::
-该属性是只读属性。
+  该属性是只读属性。
 
 此 :ref:`api_guide_Variable` 的实际数据类型。
 
@@ -210,7 +210,7 @@ lod_level
 '''''''''
 
 .. note::
-该属性是只读属性。
+  该属性是只读属性。
 
 此 :ref:`api_guide_Variable` 的 ``LoD`` 信息。
 
@@ -218,7 +218,7 @@ type
 '''''''''
 
 .. note::
-该属性是只读属性。
+  该属性是只读属性。
 
 此 :ref:`api_guide_Variable` 的内存模型，例如是：``DenseTensor``，或者 ``SelectedRows``。
 
@@ -226,6 +226,6 @@ ndim
 '''''''''
 
 .. note::
-该属性是只读属性。
+  该属性是只读属性。
 
 此 :ref:`api_guide_Variable` 的维度，也称作 rank。

@@ -207,9 +207,9 @@ def reformat_signature(code):
             continue
 
         last_par_pos = sig.rfind(")")
-        assert (
-            last_par_pos > first_par_pos
-        ), f'code first line "{sig}" not match api pattern.'
+        assert last_par_pos > first_par_pos, (
+            f'code first line "{sig}" not match api pattern.'
+        )
         args_buffer = sig[first_par_pos + 1 : last_par_pos]
 
         args = []
@@ -219,9 +219,9 @@ def reformat_signature(code):
 
         for arg_buffer in arg_buffer_list:
             m = arg_pattern.match(arg_buffer)
-            assert (
-                m is not None
-            ), f'code arg "{arg_buffer}" not match arg pattern.'
+            assert m is not None, (
+                f'code arg "{arg_buffer}" not match arg pattern.'
+            )
             arg_name = m.group("arg_name").strip()
             arg_type = (
                 m.group("arg_type").strip() if m.group("arg_type") else None
@@ -569,7 +569,7 @@ def process_mapping_index(index_path, item_processer, context={}):
                 # print(f'process mapping table at line {i+1}.')
             else:
                 state = IndexParserState.table_sep_ignore
-                print(f"ignore table with {column_names} at line {i+1}.")
+                print(f"ignore table with {column_names} at line {i + 1}.")
 
         elif state == IndexParserState.table_sep_ignore:
             if (
@@ -577,7 +577,7 @@ def process_mapping_index(index_path, item_processer, context={}):
                 or len(columns) != column_count
             ):
                 raise Exception(
-                    f"Table seperator not match at line {i+1}: {line}"
+                    f"Table seperator not match at line {i + 1}: {line}"
                 )
             if not item_processer(line, i, state, output, context):
                 break
@@ -588,7 +588,7 @@ def process_mapping_index(index_path, item_processer, context={}):
                 or len(columns) != column_count
             ):
                 raise Exception(
-                    f"Table seperator not match at line {i+1}: {line}"
+                    f"Table seperator not match at line {i + 1}: {line}"
                 )
             if not item_processer(line, i, state, output, context):
                 break
@@ -604,7 +604,7 @@ def process_mapping_index(index_path, item_processer, context={}):
                 context["table_row_idx"] += 1
             except Exception as e:
                 print(e)
-                print(f"Error at line {i+1}: {line}")
+                print(f"Error at line {i + 1}: {line}")
                 traceback.print_exc()
                 ret_code = 1
                 sys.exit(-IndexParserState.table_row)
@@ -667,9 +667,9 @@ def generate_alias_lines_from_paconvert(basedir, meta_dict) -> None:
             alias_col = f"`{alias_name}`"
             paddle_col = f"`{dst_api}`"
             if "src_api_url" in meta_data:
-                alias_col = f'[{alias_col}]({meta_data["src_api_url"]})'
+                alias_col = f"[{alias_col}]({meta_data['src_api_url']})"
             if "dst_api_url" in meta_data:
-                paddle_col = f'[{paddle_col}]({meta_data["dst_api_url"]})'
+                paddle_col = f"[{paddle_col}]({meta_data['dst_api_url']})"
 
             macro_line = f"ALIAS-REFERENCE-ITEM(`{alias_name}`, `{api_name}`)"
             alias_output[alias_name] = macro_line

@@ -1,4 +1,4 @@
-## [ torch 参数更多 ]torch.nn.Embedding
+## [ paddle 参数更多 ]torch.nn.Embedding
 ### [torch.nn.Embedding](https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html?highlight=embedding#torch.nn.Embedding)
 
 ```python
@@ -20,10 +20,11 @@ paddle.nn.Embedding(num_embeddings,
                     norm_type=2.0,
                     sparse=False,
                     weight_attr=None,
+                    scale_grad_by_freq=False,
                     name=None)
 ```
 
-PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -33,6 +34,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | padding_idx     | padding_idx            | 在此区间内的参数及对应的梯度将会以 0 进行填充  |
 | max_norm      | max_norm        | 如果给定，Embeddding 向量的范数（范数的计算方式由 norm_type 决定）超过了 max_norm 这个界限，就要再进行归一化。  |
 | norm_type     | norm_type    | 为 maxnorm 选项计算 p-范数的 p。默认值 2.0。  |
-| scale_grad_by_freq | -       | 是否根据单词在 mini-batch 中出现的频率，对梯度进行放缩，Paddle 无此参数，暂无转写方式。  |
+| scale_grad_by_freq | scale_grad_by_freq  | 是否根据单词在 mini-batch 中出现频率的倒数缩放梯度。  |
 | sparse     | sparse            | 表示是否使用稀疏更新。  |
 | -             | weight_attr  | 指定权重参数属性的对象，PyTorch 无此参数，Paddle 保持默认即可。  |

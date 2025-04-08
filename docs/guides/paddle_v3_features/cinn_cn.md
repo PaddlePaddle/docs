@@ -73,16 +73,10 @@ print(out)
 # 打开组合算子
 export FLAGS_prim_enable_dynamic=true && export FLAGS_prim_all=true
 
-# 打开 CINN 编译器相关 FLAG
+# 打开 CINN 编译器
 export FLAGS_use_cinn=true
-export FLAGS_cinn_new_group_scheduler=true
-export FLAGS_group_schedule_tiling_first=true
-export FLAGS_cinn_bucket_compile=true
 
-# 打开 PIR 模式
-export FLAGS_enable_pir_api=true
-
-# 是否打印 Program IR 信息
+# 是否打印 Program IR 信息 (用于调试)
 export FLAGS_print_ir=false
 
 python run_net.py
@@ -90,7 +84,7 @@ python run_net.py
 
 上述代码示例中我们创建了一个简单的`rms_norm`计算子图，使用飞桨的动转静流程将子图转为静态图并调用编译器 CINN 进行优化和执行。经过性能对比测试，在 A100 GPU 环境中上述子图使用 CINN 可以取得 3 倍左右的性能提升（该性能数据仅供学习参考，在实际应用模型中能够取得的性能提升效果一般会低于该数据）。
 
-注：由于飞桨的编译器仍然处在快速迭代开发阶段，我们设置了较多 FLAGS 进行分支的选择和调试，因此现阶段在使用 CINN 时需要对如下 FLAGS（`FLAGS_prim_enable_dynamic`、 `FLAGS_cinn_new_group_scheduler`、 `FLAGS_group_schedule_tiling_first`、 `FLAGS_cinn_bucket_compile`、 `FLAGS_enable_pir_api`） 进行手动设置，待后续相关功能完备后这些 FLAGS 会默认开启，无需再手动设置。
+注：由于飞桨的编译器仍然处在快速迭代开发阶段，我们设置了多个 FLAGS 进行分支的选择和调试，因此现阶段在使用 CINN 时需要对如下 FLAGS（ `FLAGS_use_cinn`、`FLAGS_prim_enable_dynamic`、`FLAGS_prim_all`） 进行手动设置，待后续相关功能完备后动转静流程将默认开启这些 FLAGS，无需再手动设置。
 
 ## 四、设计架构
 <center><img src="
@@ -358,3 +352,27 @@ function fn_exp_0_subtract_0_infer_shape (kernel_args, kernel_args_num, tensor_s
 编译器生成的 Kernel 代码需要与深度学习框架执行器完成交互和集成才能最终运行起来，因此需要基于执行器的运行调度接口对编译器生成的 Kernel 进行封装。
 
 接入执行器后在运行时对于经过编译器处理的子图将执行 CINN 生成的 Kernel, 否则将执行常规的 PHI 算子 Kernel。
+
+
+## 五、技术创新点
+1. 以 Reduce 为核心的算子深度融合
+   * 摒弃传统的粗粒度 pattern 匹配模式，支持维度轴自动变换对齐融合，在保证计算正确性的同时，具有更强的算子融合能力，带来更大的性能优化潜力。
+2. 动静态维度的高效后端 Kernel 调优
+   * 算子支持全面：支持 reduce、broadcast、transpose 等多种算子的不同组合方式，针对各类算子组合和数据类型，自适应不同维度大小与不同硬件配置，进行全场景高效调优。
+   * 自动向量化加速：提高 BF16、FP16 等小数据类型的访存效率。
+   * 动静态运行时配置生成：通过分析与分桶机制，根据运行时的硬件配置，在无需 profiling 的情况下生成高效 Kernel。
+3. 动态维度的复杂表达式化简
+   * 分层化简体系：Lower、Schedule、CodeGen 阶段执行不同等级化简方法，解决传统化简方法中多场景叠加后化简困难、化简不彻底问题。
+   * 复杂表达式结构化简：深度解析融合算子编译调优后的固定子结构，建立专项化简模板，同时开放自定义化简接口，实现化简策略的弹性扩展与精准适配。
+
+## 六、性能优化效果
+
+1. 科学计算系列模型：
+   * 飞桨基于 CINN 编译器在科学计算 Modulus 模型上，相比 Pytorch 求解速度平均提升 115%。
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/paddle_v3_features/images/cinn/modulus_cinn_vs_torch.png?raw=true" width="95%" ></center>
+<center> 图 3 Modulus 系列模型性能对比数据  </center><br>
+
+2. PaddleX 模型：
+   * PaddleX 系列 60+ 模型使用 CINN 编译器后超 60% 模型有显著性能提升，平均提升达 27.4%。部分重点模型相比 Pytorch 也有明显性能优势。
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/paddle_v3_features/images/cinn/PaddleX_cinn_vs_torch.png?raw=true" width="95%" ></center>
+<center> 图 4 部分重点模型单机 8 卡 FP16 训练性能对比数据 </center><br>

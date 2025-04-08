@@ -195,6 +195,7 @@ Methods
     outer
     cov
     lu
+    lu_solve
     lu_unpack
     cholesky_solve
     mod
@@ -221,6 +222,7 @@ Methods
     repeat_interleave
     reshape
     reshape_
+    resize_
     reverse
     roll
     round

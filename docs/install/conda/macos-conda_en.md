@@ -10,7 +10,7 @@
 
 #### 1.1.1 Create the Anaconda Virtual Environment
 
-Create virtual environment First create the Anaconda virtual environment according to the specific Python version. The Anaconda installation of PaddlePaddle supports Python version of 3.8 - 3.12.
+Create virtual environment First create the Anaconda virtual environment according to the specific Python version. The Anaconda installation of PaddlePaddle supports Python version of 3.8 - 3.13.
 
 ```
 conda create -n paddle_env python=YOUR_PY_VER
@@ -87,7 +87,7 @@ conda config --set show_channel_urls yes
 * Currently, only the CPU version of PaddlePaddle is supported in the macOS environment. Please use the following command to install PaddlePaddle：
 
   ```
-  conda install paddlepaddle==3.0.0b2 -c paddle
+  conda install paddlepaddle==3.0.0 -c paddle
   ```
 
 

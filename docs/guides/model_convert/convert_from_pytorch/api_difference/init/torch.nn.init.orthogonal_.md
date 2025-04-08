@@ -4,7 +4,8 @@
 
 ```python
 torch.nn.init.orthogonal_(tensor,
-                        gain=1)
+                        gain=1,
+                        generator=None)
 ```
 
 ### [paddle.nn.initializer.Orthogonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/Orthogonal_cn.html)
@@ -22,6 +23,7 @@ paddle.nn.initializer.Orthogonal(gain=1.0,
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensor        | -          | n 维 tensor。Paddle 无此参数，因为是通过调用类的 __call__ 函数来进行 tensor 的初始化。    |
 | gain        | gain          |  参数初始化的增益系数。参数名和参数默认值均一致。    |
+| generator        | -        | 用于采样的伪随机数生成器，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。    |
 
 ### 转写示例
 ```python

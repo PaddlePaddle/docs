@@ -1,9 +1,9 @@
-## [ 无参数 ]torch.Tensor.item_size
+## [ 无参数 ]torch.Tensor.itemsize
 
-### [torch.Tensor.item_size](https://pytorch.org/docs/stable/generated/torch.Tensor.itemsize.html)
+### [torch.Tensor.itemsize](https://pytorch.org/docs/stable/generated/torch.Tensor.itemsize.html)
 
 ```python
-torch.Tensor.item_size()
+torch.Tensor.itemsize
 ```
 
 ### [paddle.Tensor.element_size](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#element-size)

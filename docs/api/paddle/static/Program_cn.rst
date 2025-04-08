@@ -7,7 +7,7 @@ Program
 
 
 .. note::
-默认情况下，Paddle 内部默认含有 :ref:`cn_api_paddle_static_default_startup_program` 和 :ref:`cn_api_paddle_static_default_main_program`，它们共享参数。:ref:`cn_api_paddle_static_default_startup_program` 只运行一次来初始化参数，:ref:`cn_api_paddle_static_default_main_program` 在每个 mini batch 中运行并更新权重。
+ 默认情况下，Paddle 内部默认含有 :ref:`cn_api_paddle_static_default_startup_program` 和 :ref:`cn_api_paddle_static_default_main_program`，它们共享参数。:ref:`cn_api_paddle_static_default_startup_program` 只运行一次来初始化参数，:ref:`cn_api_paddle_static_default_main_program` 在每个 mini batch 中运行并更新权重。
 
 Program 是 Paddle 对于计算图的一种静态描述，使用 Program 的构造函数可以创建一个 Program。Program 中包括至少一个 :ref:`api_guide_Block`，当 :ref:`api_guide_Block` 中存在条件选择的控制流 OP（例如 :ref:`cn_api_paddle_static_nn_while_loop` 等）时，该 Program 将会含有嵌套着的 :ref:`api_guide_Block` 即控制流外部的 :ref:`api_guide_Block` 将包含着控制流内部的 :ref:`api_guide_Block`，而嵌套的 :ref:`api_guide_Block` 的元素访问控制将由具体的控制流 OP 来决定。关于 Program 具体的结构和包含的类型请参阅 `framework.proto <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto>`_
 。
