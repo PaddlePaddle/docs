@@ -6,7 +6,7 @@
   - [3. API 使用介绍](#3-api-使用介绍)
   - [4. 低精度和量化推理](#4-低精度和量化推理)
   - [5. Paddle Inference 适配 TensorRT 原理介绍](#5-paddle-inference-适配-tensorrt-原理介绍)
-  - [6. 基于 pdmodel 格式的旧架构 TensorRT 推理](#6-基于 pdmodel 格式的旧架构-TensorRT-推理)
+  - [6. 基于 pdmodel 格式的旧架构 TensorRT 推理](#6-基于-pdmodel-格式的旧架构-TensorRT-推理)
 
 <a name="1"></a>
 
