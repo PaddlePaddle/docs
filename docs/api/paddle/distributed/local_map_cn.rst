@@ -3,7 +3,7 @@
 local_map
 -------------------------------
 
-.. py:function:: paddle.distributed.local_map(func, out_placements, in_placements=None, process_mesh=None, *, reshard_inputs=False)
+.. py:function:: paddle.distributed.local_map(func, out_placements, in_placements=None, process_mesh=None, reshard_inputs=False)
 
 local_map 是一个函数装饰器，用于在分布式训练中实现局部计算操作。它允许用户将分布式张量传递给为普通张量编写的函数，通过自动处理张量转换，使得用户可以像编写单卡代码一样实现这些局部操作。
 
