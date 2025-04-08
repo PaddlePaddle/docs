@@ -8,7 +8,6 @@
   - [5. Paddle Inference 适配 TensorRT 原理介绍](#5-paddle-inference-适配-tensorrt-原理介绍)
   - [6. 基于 pdmodel 格式的旧架构 TensorRT 推理](#6-基于-pdmodel-格式的旧架构-TensorRT-推理)
 
-<a name="1"></a>
 
 
 ## 1. 概要
@@ -20,7 +19,6 @@ PIR-TRT 功能实现主要由俩个部分组成，PIR-TRT 转换阶段和 PIR-TR
 
 PIR-TRT 支持动态 shape 输入，动态 shape 可用于输入 size 任意变化的模型，如动态 shape 的图像模型（FCN， Faster-RCNN）、 NLP 的 Bert/Ernie 等模型，当然也支持包括静态 shape 输入的模型。 PIR-TRT 支持 FP32、FP16、INT8 等多种计算精度，支持服务器端 GPU，如 T4、A30，也支持边缘端硬件，如 Jetson NX、 Jetson Nano、 Jetson TX2 等。
 
-<a name="2"></a>
 
 ## 2. 环境准备
 
@@ -47,7 +45,6 @@ PIR-TRT 支持动态 shape 输入，动态 shape 可用于输入 size 任意变�
 4. 推荐使用的 TensorRT 的版本在 8.6 及以上，低于 8.5 版本的 TensorRT 功能将不可用。
 
 
-<a name="3"></a>
 
 ## 3. API 使用介绍
 
@@ -129,7 +126,6 @@ Paddle Inference 中推理阶段使用 TensorRT 加速也是遵照这样的流�
 ```
 
 
-<a name="4"></a>
 
 ## 4. 低精度和量化推理
 
@@ -179,8 +175,6 @@ trt_config.precision_mode = PrecisionMode.INT8
 ```
 
 
-<a name="5"></a>
-
 ## 5. Paddle Inference 适配 TensorRT 原理介绍
 
 PIR-TRT 采用子图的形式对 TensorRT 进行集成，当模型加载后，神经网络可以表示为由运算节点及其输入输出组成的 PIR 计算图。PIR-TRT 对整个图进行扫描，发现图中可以使用 TensorRT 优化的子图，并使用 TensorRT 节点替换它们。在模型的推断期间，如果遇到 TensorRT 节点，Paddle Inference 会调用 TensorRT 库对该节点进行优化，其他的节点调用 Paddle Infenrence 的 GPU 原生实现。TensorRT 在推断期间能够进行 Op 的横向和纵向融合，过滤掉冗余的 Op，并对特定平台下的特定的 Op 选择合适的 Kernel 等进行优化，能够加快模型的推理速度。
@@ -198,7 +192,6 @@ PIR-TRT 采用子图的形式对 TensorRT 进行集成，当模型加载后，�
 原始网络是由 matmul，add，relu 等算子组合成的一个简单网络。PIR-TRT 会对网络进行检测并将 matmul，add，relu 等算子作为一个可转换子图选出来，由一个 TensorRT 节点代替，成为转换后网络中的 **tensorrt_engine** 节点，并且在该节点之前添加一个 combine 节点，方便将输入汇总传给 tensorrt_engine，在该节点之后添加一个 split 节点，方便将输出分发给其他节点。在网络运行过程中，如果遇到 tensorrt_engine，Paddle Inference 将调用 TensorRT 来对其执行。
 
 
-<a name="6"></a>
 
 ## 6. 基于 pdmodel 模型格式的 TensorRT 推理
 
