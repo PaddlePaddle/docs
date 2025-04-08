@@ -36,3 +36,26 @@ high_priority = 1
 default_priority = 2
 y = paddle.device.Stream(priority=default_priority)
 ```
+
+#### device: 希望分配 stream 的设备
+
+```python
+# PyTorch 写法
+torch.cuda.Stream('cuda:0')
+
+# Paddle 写法
+paddle.device.Stream('gpu:0')
+
+# PyTorch 写法
+num=2
+torch.cuda.Stream(num)
+
+# Paddle 写法
+paddle.device.Stream(device=f'gpu:{type}')
+
+# PyTorch 写法
+torch.cuda.Stream(device=0 if 2 > 1 else 1)
+
+# Paddle 写法
+paddle.device.Stream('gpu:0')
+```

@@ -3,7 +3,7 @@
 ### [torch.device](https://pytorch.org/docs/stable/tensor_attributes.html#torch-device)
 
 ```python
-torch.device(type, index)
+torch.device(type, index, device)
 ```
 
 Paddle 无此 API，需要组合实现。
@@ -23,4 +23,29 @@ torch.device('cpu')
 
 # Paddle 写法
 'cpu'
+
+# PyTorch 写法
+type = 'cuda'
+index = 0
+torch.device(index=index, type=type)
+
+# Paddle 写法
+type = type.replace('cuda', 'gpu')
+f'{type}:{index}'
+
+# PyTorch 写法
+type = 'cuda'
+index = 0
+torch.device(index=index, type=type)
+
+# Paddle 写法
+type = type.replace('cuda', 'gpu')
+f'{type}:{index}'
+
+# PyTorch 写法
+a = 1
+torch.device(a)
+
+# Paddle 写法
+type = f'gpu:{type}'
 ```
