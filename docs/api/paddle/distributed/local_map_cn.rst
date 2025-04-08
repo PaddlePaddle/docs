@@ -11,18 +11,18 @@ local_map 是一个函数装饰器，用于在分布式训练中实现局部计�
 
 1. 使用更简便：直接包装普通函数，无需继承 Layer 类
 2. 更灵活的输入：支持混合输入(分布式张量、普通张量、非张量参数)
-3. 自动reshard：支持自动 reshard 输入张量
-4. 智能推导：若process_mesh未指定，则从输入张量自动推导 process_mesh
+3. 自动 reshard：支持自动 reshard 输入张量
+4. 智能推导：若 process_mesh 未指定，则从输入张量自动推导 process_mesh
 5. 运行模式兼容：支持动态图和静态图
-6. 通用性更强：可处理任意 Python 函数，不限于 Layer 的forward方法
+6. 通用性更强：可处理任意 Python 函数，不限于 Layer 的 forward 方法
 7. 灵活的输出：支持混合输出(分布式张量、普通张量、非张量值)
 
 参数
 :::::::::
 
     - **func** (Callable) - 要应用于分布式张量本地分片的函数
-    - **out_placements** (list[list[dist.Placement]]) - 指定输出张量的分布策略。每个元素是一个Placement列表,描述对应输出张量的分布方式。对于不具有分布式属性的输出应设为None
-    - **in_placements** (list[list[dist.Placement]] | None) - 指定输入张量的要求分布。每个元素是一个Placement列表,描述对应输入张量的分布要求.对于不具有分布式属性的输入应设为None,默认为None
+    - **out_placements** (list[list[dist.Placement]]) - 指定输出张量的分布策略。每个元素是一个 Placement 列表,描述对应输出张量的分布方式。对于不具有分布式属性的输出应设为 None
+    - **in_placements** (list[list[dist.Placement]] | None) - 指定输入张量的要求分布。每个元素是一个 Placement 列表,描述对应输入张量的分布要求.对于不具有分布式属性的输入应设为 None,默认为 None
     - **process_mesh** (Optional[ProcessMesh]) - 计算设备网格。如未指定则从输入张量推断
     - **reshard_inputs** (bool) - 当输入张量分布不符合要求时是否自动重分布。默认 False
 
