@@ -67,8 +67,8 @@ local_map 是一个函数装饰器，用于在分布式训练中实现局部计�
     # 使用 local_map 包装函数
     wrapped_func = dist.local_map(
         custom_function,
-        out_placements=[dist.Partial(dist.ReduceType.kRedSum)],
-        in_placements=(dist.Shard(0),),
+        out_placements=[[dist.Partial(dist.ReduceType.kRedSum)]],
+        in_placements=[[dist.Shard(0)]],
         process_mesh=mesh
     )
 
