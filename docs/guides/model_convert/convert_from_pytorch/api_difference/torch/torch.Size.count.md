@@ -1,4 +1,4 @@
-## [ 参数完全一致 ]torch.Size.count
+## [ 组合替代实现 ]torch.Size.count
 
 ### [torch.Size.count](https://pytorch.org/docs/stable/size.html)
 
@@ -6,16 +6,17 @@
 torch.Size.count(value)
 ```
 
-### [tuple.count]()
+Paddle 无此 API，需要组合实现。
+
+### 转写示例
 
 ```python
-tuple.count(value)
-```
+# PyTorch 写法
+x = torch.ones(10, 20, 30)
+s = x.size()
+s.count(30,)
 
-两者功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| PyTorch | PaddlePaddle | 备注 |
-| ------- | ------------ | ------- |
-| value     | value            | 表示获取的数值，。 |
+# Paddle 写法
+x = paddle.ones([10, 20, 30])
+s = tuple(x.shape)
+s.count(30)

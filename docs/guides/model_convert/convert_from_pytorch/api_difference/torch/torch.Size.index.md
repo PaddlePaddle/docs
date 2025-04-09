@@ -1,4 +1,4 @@
-## [ 参数完全一致 ]torch.Size.index
+## [ 组合替代实现 ]torch.Size.index
 
 ### [torch.Size.index](https://pytorch.org/docs/stable/size.html)
 
@@ -6,17 +6,18 @@
 torch.Size.index(value, start=0)
 ```
 
-### [tuple.index]()
+Paddle 无此 API，需要组合实现。
+
+### 转写示例
 
 ```python
-tuple.index(value, start=0)
+# PyTorch 写法
+x = torch.ones(10, 20, 30)
+s = x.size()
+s.index(30, 1)
+
+# Paddle 写法
+x = paddle.ones([10, 20, 30])
+s = tuple(x.shape)
+s.index(30, 1)
 ```
-
-两者功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| PyTorch | PaddlePaddle | 备注 |
-| ------- | ------------ | ------- |
-| value     | value            | 查找的数值。 |
-| start     | start           | 查找索引的起点，默认为 0。 |
