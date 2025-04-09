@@ -5,7 +5,7 @@ local_map
 
 .. py:function:: paddle.distributed.local_map(func, out_placements, in_placements=None, process_mesh=None, reshard_inputs=False)
 
-local_map 是一个函数装饰器，用于在分布式训练中实现局部计算操作。它允许用户将分布式张量传递给为普通张量编写的函数，通过自动处理张量转换，使得用户可以像编写单卡代码一样实现这些局部操作。
+local_map 是一个函数装饰器，允许用户将分布式张量（DTensor）传递给为普通张量（Tensor）编写的函数。它通过提取分布式张量的本地分量，调用目标函数，并根据 out_placements 将输出包装为分布式张量来实现这一功能，通过自动处理张量转换，使得用户可以像编写单卡代码一样实现这些局部操作。
 
 
 参数
@@ -16,6 +16,21 @@ local_map 是一个函数装饰器，用于在分布式训练中实现局部计�
     - **in_placements** (list[list[dist.Placement]] | None) - 指定输入张量的要求分布。每个元素是一个 Placement 列表,描述对应输入张量的分布要求.对于不具有分布式属性的输入应设为 None,默认为 None
     - **process_mesh** (Optional[ProcessMesh]) - 计算设备网格。如未指定则从输入张量推断
     - **reshard_inputs** (bool) - 当输入张量分布不符合要求时是否自动重分布。默认 False
+
+返回
+:::::::::
+
+    返回一个可调用对象（Callable），该对象将 func 应用于输入分布式张量的每个本地分片，并根据返回值构造新的分布式张量。
+
+
+异常抛出情况
+:::::::::
+
+    - **AssertionError** - 当输出分布策略的数量与函数输出的数量不匹配时抛出。
+    - **AssertionError** - 当非张量输出指定了非 None 的分布策略时抛出。
+    - **AssertionError** - 当 process_mesh 为 None 且没有分布式张量输入，但 out_placements 包含非 None 值时抛出。
+    - **ValueError** - 当输入分布式张量的分布方式与要求的 in_placements 不匹配，且 reshard_inputs 为 False 时抛出。
+
 
 代码示例
 :::::::::
@@ -71,19 +86,6 @@ local_map 是一个函数装饰器，用于在分布式训练中实现局部计�
     # [Rank 1] local_value=6.0
     print(f"global_value (distributed)={output_dist.item()}")
     # global_value (distributed)=7.5
-
-
-**使用场景**
-
-local_map 可以用于但不限于以下场景:
-
-1. 带 mask 的 loss 计算：需要在每张卡上独立计算 masked token 的 loss
-2. MoE (混合专家模型)相关计算：
-   - aux_loss 计算：基于每张卡上专家分配到的局部 token 数进行计算
-   - z_loss 计算：对每张卡上的 logits 独立计算 z_loss
-   - 张量 reshape 操作：在局部维度上进行 shape 变换
-3. 需要对分布式张量应用普通张量函数的场景
-4. 需要混合处理分布式张量和普通张量的场景
 
 **注意事项**
 
