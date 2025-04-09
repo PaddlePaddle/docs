@@ -12,10 +12,10 @@ local_map 是一个函数装饰器，允许用户将分布式张量（DTensor）
 :::::::::
 
     - **func** (Callable) - 要应用于分布式张量本地分片的函数
-    - **out_placements** (list[list[dist.Placement]]) - 指定输出张量的分布策略。每个元素是一个 Placement 列表,描述对应输出张量的分布方式。对于不具有分布式属性的输出应设为 None
-    - **in_placements** (list[list[dist.Placement]] | None) - 指定输入张量的要求分布。每个元素是一个 Placement 列表,描述对应输入张量的分布要求.对于不具有分布式属性的输入应设为 None,默认为 None
-    - **process_mesh** (Optional[ProcessMesh]) - 计算设备网格。如未指定则从输入张量推断
-    - **reshard_inputs** (bool) - 当输入张量分布不符合要求时是否自动重分布。默认 False
+    - **out_placements** (list[list[dist.Placement]]) - 指定输出张量的分布策略。外层列表长度必须与函数输出数量匹配，每个内层列表描述对应输出张量的分布方式。对于非张量输出必须设为 None
+    - **in_placements** (list[list[dist.Placement]] | None) - 指定输入张量的要求分布。如果指定，每个内层列表描述对应输入张量的分布要求。外层列表长度必须与输入张量数量匹配。对于不具有分布式属性的输入应设为 None,默认为 None
+    - **process_mesh** (Optional[ProcessMesh]) - 计算设备网格。所有分布式张量必须位于同一个 process_mesh 上。如未指定则从输入张量推断
+    - **reshard_inputs** (bool) - 当输入分布式张量的分布方式与要求的 in_placements 不匹配时,是否自动重分布。默认 False
 
 返回
 :::::::::
@@ -86,11 +86,3 @@ local_map 是一个函数装饰器，允许用户将分布式张量（DTensor）
     # [Rank 1] local_value=6.0
     print(f"global_value (distributed)={output_dist.item()}")
     # global_value (distributed)=7.5
-
-**注意事项**
-
-1. 输出必须指定正确的分布策略以确保结果正确性
-2. 在函数中可以像单卡编程一样使用常规的 tensor 操作
-3. 计算结果会自动根据分布策略进行聚合，无需手动添加通信操作
-4. 当指定 in_placements 时，输入张量的分布必须匹配要求，除非启用 reshard_inputs
-5. 所有分布式张量必须在同一个 process_mesh 上
