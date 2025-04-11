@@ -8,7 +8,7 @@
 
 飞桨框架支持基于海光 DCU 芯片的训练和推理，请参考以下内容快速体验：
 
-- `海光 DCU 安装说明 <./install_cn.html>`_ : 海光 DCU 安装说明
+- `海光 DCU 安装说明` <./install_cn.html>: 海光 DCU 安装说明
 - `海光 DCU 基于框架的使用指南 <./paddle_tutorial_cn.html>`_ : 海光 DCU 基于框架的使用指南
 - `海光 DCU 基于套件的使用指南 <./paddlex_tutorial_cn.html>`_ : 海光 DCU 基于套件的使用指南
 - `海光 DCU 支持模型 <./support_cn.html>`_ : 海光 DCU 支持模型
