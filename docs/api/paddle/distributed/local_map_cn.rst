@@ -11,12 +11,11 @@ local_map 是一个函数装饰器，允许用户将分布式张量（DTensor）
 参数
 :::::::::
 
-    - **func** (Callable) - 要应用于分布式张量本地分片的函数
-    - **out_placements** (list[list[dist.Placement]]) - 指定输出张量的分布策略。外层列表长度必须与函数输出数量匹配，每个内层列表描述对应输出张量的分布方式。对于非张量输出必须设为 None
-    - **in_placements** (list[list[dist.Placement]] | None) - 指定输入张量的要求分布。如果指定，每个内层列表描述对应输入张量的分布要求。外层列表长度必须与输入张量数量匹配。对于不具有分布式属性的输入应设为 None,默认为 None
-    - **process_mesh** (Optional[ProcessMesh]) - 计算设备网格。所有分布式张量必须位于同一个 process_mesh 上。如未指定则从输入张量推断
-    - **reshard_inputs** (bool) - 当输入分布式张量的分布方式与要求的 in_placements 不匹配时,是否自动重分布。默认 False
-
+    - **func** (Callable) - 要应用于分布式张量本地分片的函数。
+    - **out_placements** (list[list[dist.Placement]]) - 指定输出张量的分布策略。外层列表长度必须与函数输出数量匹配，每个内层列表描述对应输出张量的分布方式。对于非张量输出必须设为 None。
+    - **in_placements** (list[list[dist.Placement]]，可选) - 指定输入张量的要求分布。如果指定，每个内层列表描述对应输入张量的分布要求。外层列表长度必须与输入张量数量匹配。对于不具有分布式属性的输入应设为 None，默认为 None，表示输入张量不需要分布或从输入张量推断分布。
+    - **process_mesh** (Optional[ProcessMesh]，可选) - 计算设备网格。所有分布式张量必须位于同一个 process_mesh 上。如未指定，默认为 None，表示从输入张量推断 process_mesh。
+    - **reshard_inputs** (bool) - 当输入分布式张量的分布方式与要求的 in_placements 不匹配时，是否自动 reshard。默认 False，表示不自动 reshard。
 返回
 :::::::::
 
@@ -35,54 +34,4 @@ local_map 是一个函数装饰器，允许用户将分布式张量（DTensor）
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.distributed as dist
-    from paddle import Tensor
-    from paddle.distributed import ProcessMesh
-
-    def custom_function(x):
-        mask = paddle.zeros_like(x)
-        if dist.get_rank() == 0:
-            mask[1:3] = 1
-        else:
-            mask[4:7] = 1
-        x = x * mask
-        mask_sum = paddle.sum(x)
-        mask_sum = mask_sum / mask.sum()
-        return mask_sum
-
-    dist.init_parallel_env()
-    mesh = ProcessMesh([0, 1], dim_names=["x"])
-
-    local_input = paddle.arange(0, 10, dtype='float32')
-    local_input = local_input + dist.get_rank()
-
-    input_dist = dist.auto_parallel.api.dtensor_from_local(
-        local_input,
-        mesh,
-        [dist.Shard(0)]
-    )
-
-    # 使用 local_map 包装函数
-    wrapped_func = dist.local_map(
-        custom_function,
-        out_placements=[[dist.Partial(dist.ReduceType.kRedSum)]],
-        in_placements=[[dist.Shard(0)]],
-        process_mesh=mesh
-    )
-
-    # 应用函数到分布式张量
-    output_dist = wrapped_func(input_dist)
-
-    # 收集并打印结果
-    local_value = output_dist._local_value()
-    gathered_values: list[Tensor] = []
-    dist.all_gather(gathered_values, local_value)
-    print(f"[Rank 0] local_value={gathered_values[0].item()}")
-    # [Rank 0] local_value=1.5
-    print(f"[Rank 1] local_value={gathered_values[1].item()}")
-    # [Rank 1] local_value=6.0
-    print(f"global_value (distributed)={output_dist.item()}")
-    # global_value (distributed)=7.5
+COPY-FROM: paddle.distributed.local_map
