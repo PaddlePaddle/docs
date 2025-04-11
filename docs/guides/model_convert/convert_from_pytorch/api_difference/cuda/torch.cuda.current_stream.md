@@ -30,15 +30,8 @@ torch.cuda.current_stream('cuda:0')
 paddle.device.current_stream('gpu:0')
 
 # PyTorch 写法
-num=2
-torch.cuda.current_stream(num)
+torch.cuda.current_stream(2)
 
 # Paddle 写法
-paddle.device.current_stream(device=f'gpu:{type}')
-
-# PyTorch 写法
-torch.cuda.current_stream(device=0 if 2 > 1 else 1)
-
-# Paddle 写法
-paddle.device.current_stream('gpu:0')
+paddle.device.current_stream(device='gpu:2')
 ```

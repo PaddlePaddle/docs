@@ -30,15 +30,9 @@ torch.cuda.get_device_properties('cuda:0')
 paddle.device.cuda.get_device_properties('gpu:0')
 
 # PyTorch 写法
-num=2
-torch.cuda.get_device_properties(num)
+torch.cuda.get_device_properties(2)
 
 # Paddle 写法
-paddle.device.cuda.get_device_properties(device=f'gpu:{type}')
+paddle.device.cuda.get_device_properties(device='gpu:2')
 
-# PyTorch 写法
-torch.cuda.get_device_properties(device=0 if 2 > 1 else 1)
-
-# Paddle 写法
-paddle.device.cuda.get_device_properties('gpu:0')
 ```

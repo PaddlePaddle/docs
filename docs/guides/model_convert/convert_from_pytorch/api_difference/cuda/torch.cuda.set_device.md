@@ -31,15 +31,8 @@ torch.cuda.set_device('cuda:0')
 paddle.set_device('gpu:0')
 
 # PyTorch 写法
-num=2
-torch.cuda.set_device(num)
+torch.cuda.set_device(2)
 
 # Paddle 写法
-paddle.set_device(device=f'gpu:{type}')
-
-# PyTorch 写法
-torch.cuda.set_device(device=0 if 2 > 1 else 1)
-
-# Paddle 写法
-paddle.set_device('gpu:0')
+paddle.set_device(device='gpu:2')
 ```

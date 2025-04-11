@@ -31,15 +31,8 @@ torch.cuda.synchronize('cuda:0')
 paddle.device.cuda.synchronize('gpu:0')
 
 # PyTorch 写法
-num=2
-torch.cuda.synchronize(num)
+torch.cuda.synchronize(2)
 
 # Paddle 写法
-paddle.device.cuda.synchronize(device=f'gpu:{type}')
-
-# PyTorch 写法
-torch.cuda.synchronize(device=0 if 2 > 1 else 1)
-
-# Paddle 写法
-paddle.device.cuda.synchronize('gpu:0')
+paddle.device.cuda.synchronize(device='gpu:2')
 ```

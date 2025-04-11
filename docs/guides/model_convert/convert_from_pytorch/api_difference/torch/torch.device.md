@@ -17,7 +17,6 @@ torch.device('cuda', 0)
 # Paddle 写法
 'gpu:0'
 
-
 # PyTorch 写法
 torch.device('cpu')
 
@@ -25,27 +24,14 @@ torch.device('cpu')
 'cpu'
 
 # PyTorch 写法
-type = 'cuda'
-index = 0
-torch.device(index=index, type=type)
+torch.device(1)
 
 # Paddle 写法
-type = type.replace('cuda', 'gpu')
-f'{type}:{index}'
+"gpu:1"
 
 # PyTorch 写法
-type = 'cuda'
-index = 0
-torch.device(index=index, type=type)
+torch.device("cuda:0")
 
 # Paddle 写法
-type = type.replace('cuda', 'gpu')
-f'{type}:{index}'
-
-# PyTorch 写法
-a = 1
-torch.device(a)
-
-# Paddle 写法
-type = f'gpu:{type}'
+"gpu:0"
 ```

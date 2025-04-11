@@ -32,7 +32,7 @@ paddle.Tensor.cuda(device_id=None, blocking=False)
 tensor.cuda(non_blocking=True)
 
 # Paddle 写法
-tensor.cuda(non_blocking=not True)
+tensor.cuda(non_blocking=False)
 ```
 
 #### device: 目标 GPU 设备
@@ -45,19 +45,8 @@ tensor.cuda("cuda:0")
 tensor.cuda(0)
 
 # PyTorch 写法
-device = "cuda:0"
-tensor.cuda(device)
+tensor.cuda(0)
 
 # Paddle 写法
-device = "cuda:0"
-device.replace("cuda:"," ")
-tensor.cuda(device)
-
-# PyTorch 写法
-device = 0
-tensor.cuda(device)
-
-# Paddle 写法
-device = 0
-tensor.cuda(device)
+tensor.cuda(0)
 ```

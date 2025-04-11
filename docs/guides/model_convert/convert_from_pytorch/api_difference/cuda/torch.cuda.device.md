@@ -32,15 +32,9 @@ torch.cuda.device('cuda:0')
 paddle.device._convert_to_place('gpu:0')
 
 # PyTorch 写法
-num=2
-torch.cuda.device(num)
+torch.cuda.device(2)
 
 # Paddle 写法
-paddle.device._convert_to_place(device=f'gpu:{type}')
+paddle.device._convert_to_place(device='gpu:2')
 
-# PyTorch 写法
-torch.cuda.device(device=0 if 2 > 1 else 1)
-
-# Paddle 写法
-paddle.device._convert_to_place('gpu:0')
 ```

@@ -31,17 +31,14 @@ torch.set_default_device('cuda:0')
 paddle.set_device('gpu:0')
 
 # PyTorch 写法
-num=2
-torch.set_default_device(num)
+torch.set_default_device(2)
 
 # Paddle 写法
-paddle.set_device(device=f'gpu:{type}')
+paddle.set_device(device='gpu:2')
 
 # PyTorch 写法
-device='cpu'
-torch.set_default_device(device)
+torch.set_default_device("cpu")
 
 # Paddle 写法
-device='cpu'
-paddle.set_device(device=device)
+paddle.set_device("cpu")
 ```
