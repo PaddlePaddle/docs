@@ -12,7 +12,7 @@
 
 飞桨框架支持基于昆仑芯 XPU 芯片的训练和推理，请参考以下内容快速体验（注意，从 3.0 版本开始，飞桨不再支持昆仑 2 代芯片，如果需要使用相关功能，请使用 3.0rc 版本）：
 
-- `昆仑芯 XPU P800 安装说明 <./xpu-p800_install_cn.html>`_: 昆仑芯 XPU P800 安装说明
+- `昆仑芯 XPU P800 安装说明 <./xpu-p800_install_cn.html>`_ : 昆仑芯 XPU P800 安装说明
 - `昆仑芯 XPU P800 基于框架的使用指南 <./xpu-p800_paddle_tutorial_cn.html>`_ : 昆仑芯 XPU P800 基于框架的使用指南
 - `昆仑芯 XPU P800 基于套件的使用指南 <./xpu-p800_paddlex_tutorial_cn.html>`_ : 昆仑芯 XPU P800 基于套件的使用指南
 - `昆仑芯 XPU P800 支持模型 <./xpu-p800_support_cn.html>`_ : 昆仑芯 XPU P800 支持模型
