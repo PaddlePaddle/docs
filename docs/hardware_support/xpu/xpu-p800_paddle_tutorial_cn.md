@@ -8,20 +8,10 @@
 
 * 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备：
 
-  * 镜像链接： ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-xpu:ubuntu20-x86_64-gcc84-py310
+  * 镜像链接： ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-xpu:3.0.0-xpu-ubuntu20-x86_64-gcc84-py310
 
-### 环境安装
+* 镜像中默认装有 3.0 版本的 PaddlePaddle
 
-安装 PaddlePaddle
-
-*该命令会自动安装飞桨主框架每日自动构建的 nightly-build 版本*
-
-*由于 xpu 代码位于飞桨主框架中，因此我们不需要安装额外的 Custom Device 包*
-
-```shell
-python -m pip install --pre paddlepaddle-xpu -i https://www.paddlepaddle.org.cn/packages/nightly/xpu-p800/
-```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ## 二、运行示例
 
 飞桨框架集成了经典的视觉模型用于帮助用户快速上手，我们将基于 ResNet50 结构，在 Cifar10 数据集上进行一次快速训练，用于帮助您了解如何基于昆仑芯 XPU P800 进行训练（和 GPU 训练代码相比，差异点仅为 `paddle.set_device("xpu")`）
