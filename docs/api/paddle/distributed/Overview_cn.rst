@@ -176,7 +176,7 @@ RPC API
     " :ref:`get_mesh <cn_api_paddle_distributed_get_mesh>` ", "获取全局 ProcessMesh"
     " :ref:`save_state_dict <cn_api_paddle_distributed_save_state_dict>` ", "保存分布式训练的 state_dict 到指定路径"
     " :ref:`load_state_dict <cn_api_paddle_distributed_load_state_dict>` ", "将指定路径的 checkpoint 加载到指定 state_dict 中"
-
+    " :ref:`local_map <cn_api_paddle_distributed_local_map>` ", "支持分布式张量（DTensor）传递给为普通张量（Tensor）编写的函数处理，并保证处理逻辑正确"
 
 此外，自动并行提供更高层次的 API 来帮助用户通过非入侵组网的方式实现自动并行的分布式训练。
 
