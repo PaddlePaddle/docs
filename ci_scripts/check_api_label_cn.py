@@ -77,7 +77,8 @@ def need_check(file: str) -> bool:
 
 def check_usage_of_api_label(
     files: list[Path], valid_api_labels: list[str]
-) -> bool:
+) -> list[str]:
+    errors = []
     for file in files:
         with open(file, "r", encoding="utf-8") as f:
             pattern = f.read()
@@ -92,11 +93,8 @@ def check_usage_of_api_label(
                 continue
             if api_label in valid_api_labels:
                 continue
-            logger.error(
-                f"Found api label {api_label} in {file}, but it is not a valid api label, please re-check it!"
-            )
-            return False
-    return True
+            errors.append(f"api label `{api_label}` in `{file}`")
+    return errors
 
 
 def get_custom_files_for_checking_usage(doc_root: str) -> set[Path]:
@@ -129,10 +127,13 @@ def run_cn_api_label_checking(
         get_custom_files_for_checking_usage(doc_root)
     )
 
-    passed = check_usage_of_api_label(
+    errors = check_usage_of_api_label(
         api_label_usage_file_set, valid_api_labels
     )
-    if not passed:
+    if errors:
+        logger.error("Found valid api labels usage as follows:")
+        for i, error in enumerate(errors):
+            logger.error(f"{i + 1}: {error}")
         sys.exit(1)
 
     print("All api_label check success in PR !")
