@@ -37,4 +37,4 @@ MFCC
 代码示例
 :::::::::
 
-COPY-FROM: paddle.audio.features.layers.MFCC
+COPY-FROM: paddle.audio.features.MFCC
