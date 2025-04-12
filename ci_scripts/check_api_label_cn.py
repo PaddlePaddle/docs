@@ -102,7 +102,7 @@ def check_usage_of_api_label(
 def get_custom_files_for_checking_usage(doc_root: str) -> set[Path]:
     # TODO: add more dir for checking
     custom_files = set()
-    for file_path in Path(doc_root) / API.rglob("*.rst"):
+    for file_path in (Path(doc_root) / API).rglob("*.rst"):
         if not file_path.is_file():
             continue
         custom_files.add(file_path)
