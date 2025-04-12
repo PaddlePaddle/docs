@@ -146,8 +146,10 @@ def _check_params_in_description_with_fullargspec(rstfilename, funcname):
 
     func_node = modified_tree.body[0]
     params_inspec = gen_functions_args_str(func_node).split(", ")
-    params_inspec.remove("/")
-    params_inspec.remove("*")
+    if "/" in params_inspec:
+        params_inspec.remove("/")
+    if "*" in params_inspec:
+        params_inspec.remove("*")
     funcdescnode = extract_params_desc_from_rst_file(rstfilename)
     if funcdescnode:
         items = funcdescnode.children[1].children[0].children
