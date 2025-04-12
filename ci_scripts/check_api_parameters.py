@@ -66,8 +66,10 @@ def _check_params_in_description(rstfilename, paramstr):
         func_node = fake_func.body[0]
         func_args_str = gen_functions_args_str(func_node)
         params_in_title = func_args_str.split(", ")
-        params_in_title.remove("/")
-        params_in_title.remove("*")
+        if "/" in params_in_title:
+            params_in_title.remove("/")
+        if "*" in params_in_title:
+            params_in_title.remove("*")
 
     funcdescnode = extract_params_desc_from_rst_file(rstfilename)
     if funcdescnode:
