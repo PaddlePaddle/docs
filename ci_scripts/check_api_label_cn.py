@@ -106,6 +106,8 @@ def get_custom_files_for_checking_usage(doc_root: str) -> set[Path]:
         if not file_path.is_file():
             continue
         custom_files.add(file_path)
+    return custom_files
+
 
 def run_cn_api_label_checking(
     doc_root: str, api_root: str, files: list[str]
@@ -115,6 +117,7 @@ def run_cn_api_label_checking(
         if need_check(file) and not check_api_label(doc_root, file):
             logger.error(
                 f"The first line in {doc_root}/{file} is not available, please re-check it!"
+            )
             sys.exit(1)
 
     # collect all api_labels in api_root
