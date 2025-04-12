@@ -37,4 +37,4 @@ LogMelSpectrogram
 代码示例
 :::::::::
 
-COPY-FROM: paddle.audio.features.layers.LogMelSpectrogram
+COPY-FROM: paddle.audio.features.LogMelSpectrogram
