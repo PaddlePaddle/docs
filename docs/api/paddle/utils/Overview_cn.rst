@@ -41,7 +41,6 @@ paddle.utils 目录下包含飞桨框架工具类的 API。具体如下：
     " :ref:`generate <cn_api_paddle_utils_unique_name_generate>` ", "产生以前缀开头的唯一名称"
     " :ref:`guard <cn_api_paddle_utils_unique_name_guard>` ", "更改命名空间"
     " :ref:`switch <cn_api_paddle_utils_unique_name_switch>` ", "切换命名空间"
-    " :ref:`Profiler <cn_api_paddle_profiler_Profiler>` ", "通用性能分析器"
     " :ref:`require_version <cn_api_paddle_utils_require_version>` ", "用于检查已安装的飞桨版本是否介于[min_version, max_version]之间"
     " :ref:`to_dlpack <cn_api_paddle_utils_dlpack_to_dlpack>` ", "用于将 Tensor 对象转换为 DLPack"
     " :ref:`from_dlpack <cn_api_paddle_utils_dlpack_from_dlpack>` ", "用于从 DLPack 中解码出 Tensor 对象"
