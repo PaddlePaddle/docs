@@ -123,6 +123,8 @@ def _check_params_in_description_with_fullargspec(rstfilename, funcname):
     try:
         func = eval(funcname)
     except NameError:
+        import paddle  # noqa: F401
+
         func = eval(funcname)
     source = inspect.getsource(func)
 
