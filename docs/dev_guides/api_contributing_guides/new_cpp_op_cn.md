@@ -193,6 +193,18 @@ Python API 到算子 InferMeta 函数和 Kernel 调用之间的框架调度部�
 a. 如果是复用已有算子，需要被复用的算子为前向算子且两者的返回值类型相同，可参考 zeros_like 算子<br>
 b. 如果是实现自定义的 C++ API，需要在'paddle/phi/api/lib/api_custom_impl.h'声明自定义实现函数并在'paddle/phi/api/lib/api_custom_impl.cc'中进行实现，具体可参考 embedding 算子</td>
 </tr>
+<tr>
+<td>data_transform</td>
+<td>控制算子输入参数的自动转换行为，包括类型（dtype）、设备（backend）和布局（layout），设备和布局的转换由全局标志控制，默认开启</td>
+</tr>
+<tr>
+<td>data_transform:skip_transform</td>
+<td>跳过指定参数的所有数据转换（最高优先级），设置后将禁用该参数所有类型、设备和布局的自动转换</td>
+</tr>
+<tr>
+<td>data_transform:support_trans_dtype</td>
+<td>开启指定参数的自动类型转换，设置后会对非复数类型也进行自动类型转换（复数类型默认总是转换，除非设置了skip_transform）</td>
+</tr>
 </tbody>
 </table>
 
