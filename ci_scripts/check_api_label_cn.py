@@ -105,9 +105,7 @@ def get_custom_files_for_checking_usage(doc_root: str) -> set[Path]:
     for file_path in Path(doc_root) / API.rglob("*.rst"):
         if not file_path.is_file():
             continue
-        custom_files.append(file_path)
-    return custom_files
-
+        custom_files.add(file_path)
 
 def run_cn_api_label_checking(
     doc_root: str, api_root: str, files: list[str]
