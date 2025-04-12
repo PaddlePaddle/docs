@@ -3,8 +3,8 @@ set -x
 
 FLUIDDOCDIR=${FLUIDDOCDIR:=/FluidDoc}
 
-DOCROOT=${FLUIDDOCDIR}/docs/
-APIROOT=${DOCROOT}/api/
+DOCROOT=${FLUIDDOCDIR}/docs
+APIROOT=${DOCROOT}/api
 
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
