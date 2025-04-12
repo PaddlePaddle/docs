@@ -114,8 +114,7 @@ def run_cn_api_label_checking(
     for file in files:
         if need_check(file) and not check_api_label(doc_root, file):
             logger.error(
-                f"The first line in {doc_root}/{file} is not avaiable, please re-check it!"
-            )
+                f"The first line in {doc_root}/{file} is not available, please re-check it!"
             sys.exit(1)
 
     # collect all api_labels in api_root
