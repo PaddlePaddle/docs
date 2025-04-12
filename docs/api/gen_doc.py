@@ -362,36 +362,63 @@ def parse_module_file(mod):
 
 
 def gen_functions_args_str(node):
+    def _process_positional_args(args, params):
+        positional_args = args.posonlyargs + args.args
+        num_defaults = len(args.defaults)
+
+        total_positional = len(positional_args)
+        first_default_pos = total_positional - num_defaults
+        if args.posonlyargs:
+            for idx, arg in enumerate(args.posonlyargs):
+                if arg.arg == "self":
+                    continue
+                param = _format_arg_with_default(
+                    arg, idx, first_default_pos, args.defaults
+                )
+                params.append(param)
+            params.append("/")
+
+        for idx, arg in enumerate(args.args):
+            if arg.arg == "self":
+                continue
+            global_idx = idx + len(args.posonlyargs)
+            param = _format_arg_with_default(
+                arg, global_idx, first_default_pos, args.defaults
+            )
+            params.append(param)
+
+    def _format_arg_with_default(arg, index, first_default_pos, defaults):
+        if first_default_pos is not None and index >= first_default_pos:
+            default_index = index - first_default_pos
+            defarg_value = ast.unparse(defaults[default_index]).strip()
+            return f"{arg.arg}={defarg_value}"
+        return arg.arg
+
+    def _process_var_args(args, params):
+        if args.vararg:
+            params.append(f"*{args.vararg.arg}")
+        elif args.kwonlyargs:
+            params.append("*")
+
+    def _process_kwonly_args(args, params):
+        for idx, arg in enumerate(args.kwonlyargs):
+            if default := args.kw_defaults[idx]:
+                default_str = ast.unparse(default).strip()
+                params.append(f"{arg.arg}={default_str}")
+            else:
+                params.append(arg.arg)
+
+    def _process_kwargs(args, params):
+        if args.kwarg:
+            params.append(f"**{args.kwarg.arg}")
+
     str_args_list = []
     if isinstance(node, ast.FunctionDef):
-        # 'args', 'defaults', 'kw_defaults', 'kwarg', 'kwonlyargs', 'posonlyargs', 'vararg'
-        for arg in node.args.args:
-            if not arg.arg == "self":
-                str_args_list.append(arg.arg)
-
-        defarg_ind_start = len(str_args_list) - len(node.args.defaults)
-        for defarg_ind in range(len(node.args.defaults)):
-            if isinstance(node.args.defaults[defarg_ind], ast.Name):
-                str_args_list[defarg_ind_start + defarg_ind] += "=" + str(
-                    node.args.defaults[defarg_ind].id
-                )
-            elif isinstance(node.args.defaults[defarg_ind], ast.Constant):
-                defarg_val = str(node.args.defaults[defarg_ind].value)
-                if isinstance(node.args.defaults[defarg_ind].value, str):
-                    defarg_val = f"'{defarg_val}'"
-                str_args_list[defarg_ind_start + defarg_ind] += "=" + defarg_val
-        if node.args.vararg is not None:
-            str_args_list.append("*" + node.args.vararg.arg)
-        if len(node.args.kwonlyargs) > 0:
-            if node.args.vararg is None:
-                str_args_list.append("*")
-            for kwoarg, d in zip(node.args.kwonlyargs, node.args.kw_defaults):
-                if isinstance(d, ast.Constant):
-                    str_args_list.append(f"{kwoarg.arg}={d.value}")
-                elif isinstance(d, ast.Name):
-                    str_args_list.append(f"{kwoarg.arg}={d.id}")
-        if node.args.kwarg is not None:
-            str_args_list.append("**" + node.args.kwarg.arg)
+        func_args = node.args
+        _process_positional_args(func_args, str_args_list)
+        _process_var_args(func_args, str_args_list)
+        _process_kwonly_args(func_args, str_args_list)
+        _process_kwargs(func_args, str_args_list)
 
     return ", ".join(str_args_list)
 

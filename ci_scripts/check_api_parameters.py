@@ -29,7 +29,10 @@ def add_path(path):
 this_dir = osp.dirname(__file__)
 # Add docs/api to PYTHONPATH
 add_path(osp.abspath(osp.join(this_dir, "..", "docs", "api")))
-from extract_api_from_docs import extract_params_desc_from_rst_file
+from extract_api_from_docs import (
+    extract_params_desc_from_rst_file,
+    gen_functions_args_str,
+)
 
 arguments = [
     # flags, dest, type, default, help
@@ -60,37 +63,11 @@ def _check_params_in_description(rstfilename, paramstr):
     params_in_title = []
     if paramstr:
         fake_func = ast.parse(f"def fake_func({paramstr}): pass")
-        # Iterate over all in_title parameters
-        num_defaults = len(fake_func.body[0].args.defaults)
-        num_args = len(fake_func.body[0].args.args)
-        # args & defaults
-        for i, arg in enumerate(fake_func.body[0].args.args):
-            if i >= num_args - num_defaults:
-                default_value = fake_func.body[0].args.defaults[
-                    i - (num_args - num_defaults)
-                ]
-                params_in_title.append(f"{arg.arg}={default_value}")
-            else:
-                params_in_title.append(arg.arg)
-        # posonlyargs
-        for arg in fake_func.body[0].args.posonlyargs:
-            params_in_title.append(arg.arg)
-        # vararg(*args)
-        if fake_func.body[0].args.vararg:
-            params_in_title.append(fake_func.body[0].args.vararg.arg)
-        # kwonlyargs & kw_defaults
-        for i, arg in enumerate(fake_func.body[0].args.kwonlyargs):
-            if (
-                i < len(fake_func.body[0].args.kw_defaults)
-                and fake_func.body[0].args.kw_defaults[i] is not None
-            ):
-                default_value = fake_func.body[0].args.kw_defaults[i]
-                params_in_title.append(f"{arg.arg}={default_value}")
-            else:
-                params_in_title.append(arg.arg)
-        # **kwargs
-        if fake_func.body[0].args.kwarg:
-            params_in_title.append(fake_func.body[0].args.kwarg.arg)
+        func_node = fake_func.body[0]
+        func_args_str = gen_functions_args_str(func_node)
+        params_in_title = func_args_str.split(", ")
+        params_in_title.remove("/")
+        params_in_title.remove("*")
 
     funcdescnode = extract_params_desc_from_rst_file(rstfilename)
     if funcdescnode:
@@ -141,11 +118,35 @@ def _check_params_in_description(rstfilename, paramstr):
 def _check_params_in_description_with_fullargspec(rstfilename, funcname):
     flag = True
     info = ""
-    funcspec = inspect.getfullargspec(eval(funcname))
+    try:
+        func = eval(funcname)
+    except NameError:
+        func = eval(funcname)
+    source = inspect.getsource(func)
+
+    class FunctionDefExtractor(ast.NodeTransformer):
+        target_name = func.__name__
+
+        def visit_FunctionDef(self, node):
+            if node.name == self.target_name:
+                node.decorator_list = []
+                node.body = [ast.Pass()]
+                return node
+            return None
+
+    tree = ast.parse(source)
+    modified_tree = FunctionDefExtractor().visit(tree)
+    modified_tree.body = [
+        node for node in modified_tree.body if node is not None
+    ]
+
+    func_node = modified_tree.body[0]
+    params_inspec = gen_functions_args_str(func_node).split(", ")
+    params_inspec.remove("/")
+    params_inspec.remove("*")
     funcdescnode = extract_params_desc_from_rst_file(rstfilename)
     if funcdescnode:
         items = funcdescnode.children[1].children[0].children
-        params_inspec = funcspec.args
         if len(items) != len(params_inspec):
             flag = False
             info = f"check_with_fullargspec failed (parammeters description): {rstfilename}"
@@ -171,10 +172,10 @@ def _check_params_in_description_with_fullargspec(rstfilename, funcname):
                         f"check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph."
                     )
     else:
-        if funcspec.args:
+        if params_inspec:
             info = "params section not found in description, check it please."
             print(
-                f"check failed (parameters description not found): {rstfilename}, {funcspec.args}."
+                f"check failed (parameters description not found): {rstfilename}, {params_inspec}."
             )
             flag = False
     return flag, info
