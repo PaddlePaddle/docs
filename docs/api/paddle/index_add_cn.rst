@@ -13,7 +13,7 @@ index_add
 
 ::
 
-    - 示例 1 ( 输入为 2-D Tensor, axis=0 ):
+    - 示例 1 （输入为 2-D Tensor, axis=0 ）：
         输入：
             x.shape = [3, 3]
             x.data = [[1., 1., 1.],
@@ -35,7 +35,7 @@ index_add
                         [1., 1., 1.],
                         [2., 2., 2.]]
 
-    - 示例 2 ( 输入为 2-D Tensor, axis=1 ):
+    - 示例 2 （输入为 2-D Tensor, axis=1 ）：
         输入：
             x.shape = [3, 3]
             x.data = [[1., 1., 1.],
@@ -88,7 +88,7 @@ index_add
 返回
 :::::::::
 
-Tensor, 返回一个数据类型同输入的 Tensor。
+Tensor，返回一个数据类型同输入的 Tensor。
 
 
 代码示例

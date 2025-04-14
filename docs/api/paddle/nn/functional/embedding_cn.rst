@@ -23,7 +23,7 @@ embedding
                 x.data = [[1, 3], [2, 4], [4, 127]]
                 x.shape = [3, 2]
                 weight.shape = [128, 16]
-            输出是 Tensor:
+            输出是 Tensor：
                 out.shape = [3, 2, 16]
                 out.data = [[[0.129435295, 0.244512452, ..., 0.436322452],
                             [0.345421456, 0.524563927, ..., 0.144534654]],
@@ -51,7 +51,7 @@ embedding
 
 返回
 ::::::::::::
-Tensor, x 映射后得到的 Embedding Tensor，数据类型和权重定义的类型一致。
+Tensor，x 映射后得到的 Embedding Tensor，数据类型和权重定义的类型一致。
 
 
 代码示例
