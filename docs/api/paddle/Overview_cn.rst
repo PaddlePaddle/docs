@@ -200,7 +200,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.add_ <cn_api_paddle_add_>` ", "Inplace 版本的 add API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.addmm_ <cn_api_paddle_addmm_>` ", "Inplace 版本的 addmm API，对输入 input 采用 Inplace 策略"
     " :ref:`paddle.put_along_axis_ <cn_api_paddle_put_along_axis_>` ", "Inplace 版本的 put_along_axis API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.cauchy_ <cn_api_paddle_cauchy_>` ", 对现有张量``x``进行原地修改,将所有元素替换为从柯西分布中随机采样的数值。
+    " :ref:`paddle.cauchy_ <cn_api_paddle_cauchy_>` ", "直接修改输入 x，将所有元素替换为从柯西分布中随机采样的数值"
     " :ref:`paddle.ceil_ <cn_api_paddle_ceil_>` ", "Inplace 版本的 ceil API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.clip_ <cn_api_paddle_clip_>` ", "Inplace 版本的 clip API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.copysign_ <cn_api_paddle_copysign_>` ", "Inplace 版本的 copysign API，对输入 x 采用 Inplace 策略"
