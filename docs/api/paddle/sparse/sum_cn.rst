@@ -3,7 +3,7 @@
 sum
 -------------------------------
 
-.. py:function:: paddle.sparse.sum(x, axis=None, dtype=None, keepdim=False, name=None):
+.. py:function:: paddle.sparse.sum(x, axis=None, dtype=None, keepdim=False, name=None)
 
 计算给定维度 :attr:`axis` 上稀疏张量 :attr:`x` 元素的和。
 输入 :attr:`x` 必须为稀疏压缩格式（ `SparseCooTensor` 或 `SparseCsrTensor`）。

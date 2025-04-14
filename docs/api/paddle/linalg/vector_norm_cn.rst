@@ -3,7 +3,7 @@
 vector_norm
 -------------------------------
 
-.. py:function:: paddle.linalg.vector_norm(x, p=2.0, axis=None, keepdim=False, name=None):
+.. py:function:: paddle.linalg.vector_norm(x, p=2.0, axis=None, keepdim=False, name=None)
 
 
 

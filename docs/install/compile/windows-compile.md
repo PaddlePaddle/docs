@@ -34,7 +34,7 @@
     * 通过 `python --version` 检查默认 python 版本是否是预期版本，因为你的计算机可能安装有多个 python，可通过修改系统环境变量的顺序来修改默认 Python 版本。
     * 安装编译依赖
         ```
-        pip3.10 install -r /paddle/requirements.txt
+        pip3.10 install -r /paddle/python/requirements.txt
         ```
 
 4. 创建编译 Paddle 的文件夹（例如 D:\workspace），进入该目录并下载源码：

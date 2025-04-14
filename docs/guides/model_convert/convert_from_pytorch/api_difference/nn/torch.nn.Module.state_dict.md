@@ -2,7 +2,7 @@
 ### [torch.nn.Module.state_dict](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.state_dict)
 
 ```python
-torch.nn.Module.state_dict(*, destination, prefix='', keep_vars=False)
+torch.nn.Module.state_dict(destination, prefix='', keep_vars=False)
 ```
 
 ### [paddle.nn.Layer.state_dict](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#state-dict-destination-none-include-sublayers-true-use-hook-true)

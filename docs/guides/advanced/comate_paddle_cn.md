@@ -1,4 +1,4 @@
-# 飞桨 AI 编程助手
+# 使用 Comate 加速飞桨编程
 
 随着大模型能力的不断增强，产学研各界越来越多的开发者开始使用大模型来辅助编程以提升开发效率。对于使用常见编程语言（如：Python、C++、Java 等）的开发者们，基于大模型的交互式编程能力已逐步释放出更多的增益，深受开发者欢迎。
 
@@ -12,7 +12,7 @@
 - 方式一：【自动调起】如果在编辑页面检测到 `import paddle` 关键字后会自动触发
 - 方式二：【手动调起】在输入栏里输入 `@飞桨`
 
-![img1](./images/comate_paddle/comate_paddle_1.jpeg)
+![img1](./images/comate_paddle_1.jpeg)
 
 调起 **飞桨 AI 编程助手** 后，可使用以下五种能力。（后续新增更多能力中，敬请期待）
 
@@ -24,13 +24,13 @@
     2. 描述飞桨代码需求，例如：帮我编写模型组网函数、编写网络训练函数、调用深度学习框架接口、Resnet50 网络代码等
     3. 任意提问...
 
-![img2](./images/comate_paddle/comate_paddle_2.jpeg)
+![img2](./images/comate_paddle_2.jpeg)
 
 
 ## 2. 代码补全
 * 无需侧边栏交互，在编写代码过程中稍微停顿，则代码补全内容会自动弹出，按 TAB 键采纳
 
-![img3](./images/comate_paddle/comate_paddle_3.jpeg)
+![img3](./images/comate_paddle_3.jpeg)
 
 
 ## 3. 代码生成
@@ -38,7 +38,7 @@
 * 需要具体描述代码需求，例如：线性层网络、矩阵乘法、二维卷积、最大池化、cross-entropy 损失函数、正则化、梯度裁剪等
 * 相比通用问答能力，代码生成能力更为定制化，可以更精准的满足编写飞桨代码的需求
 
-![img4](./images/comate_paddle/comate_paddle_4.jpeg)
+![img4](./images/comate_paddle_4.jpeg)
 
 
 ## 4. 代码转换
@@ -52,11 +52,11 @@
     4. 框选代码
 * 相比通用问答能力，代码转换能力更为定制化，可以更精准的满足转换其他代码到飞桨的需求，且转换速度更快，准确率更高
 
-![img5](./images/comate_paddle/comate_paddle_5.jpeg)
+![img5](./images/comate_paddle_5.jpeg)
 
 
 ## 5. 代码解释
 * 结合飞桨专业知识与历史优秀代码集，对代码进行解释。直接 **框选代码** 后回车即可解释
 * 相比通用问答能力，代码解释能力更为定制化，可以更精准的满足解释飞桨代码的需求
 
-![img6](./images/comate_paddle/comate_paddle_6.jpeg)
+![img6](./images/comate_paddle_6.jpeg)
