@@ -34,4 +34,10 @@ torch.cuda.current_stream(2)
 
 # Paddle 写法
 paddle.device.current_stream(device='gpu:2')
+
+# PyTorch 写法
+torch.cuda.current_stream(device=None)
+
+# Paddle 写法
+paddle.device.current_stream(device=None)
 ```

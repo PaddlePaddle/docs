@@ -17,7 +17,7 @@ paddle.device.cuda.get_device_properties(device)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| device        | device            | 表示设备、设备 ID 和类似于 gpu:x 的设备名称。如果 device 为空，则 device 为当前的设备。默认值为 None，需要转写。|
+| device        | device            | 表示设备、设备 ID 和类似于 gpu:x 的设备名称。默认值为 None，需要转写。|
 
 ### 转写示例
 #### device: 设备
@@ -35,4 +35,9 @@ torch.cuda.get_device_properties(2)
 # Paddle 写法
 paddle.device.cuda.get_device_properties(device='gpu:2')
 
+# PyTorch 写法
+torch.cuda.get_device_properties(device=None)
+
+# Paddle 写法
+paddle.device.cuda.get_device_properties(device=None)
 ```

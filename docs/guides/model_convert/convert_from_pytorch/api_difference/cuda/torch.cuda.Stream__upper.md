@@ -27,10 +27,10 @@ paddle.device.Stream(device=None, priority=None)
 
 ```python
 # PyTorch 写法
-y = torch.cuda.Stream(priority=0)
+torch.cuda.Stream(priority=0)
 
 # Paddle 写法
-y = paddle.device.Stream(priority=2)
+paddle.device.Stream(priority=2)
 ```
 
 #### device: 希望分配 stream 的设备
