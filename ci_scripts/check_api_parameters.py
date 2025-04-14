@@ -31,10 +31,8 @@ def add_path(path):
 this_dir = osp.dirname(__file__)
 # Add docs/api to PYTHONPATH
 add_path(osp.abspath(osp.join(this_dir, "..", "docs", "api")))
-from extract_api_from_docs import (
-    extract_params_desc_from_rst_file,
-    gen_functions_args_str,
-)
+from extract_api_from_docs import extract_params_desc_from_rst_file
+from gen_doc import gen_functions_args_str
 
 arguments = [
     # flags, dest, type, default, help
