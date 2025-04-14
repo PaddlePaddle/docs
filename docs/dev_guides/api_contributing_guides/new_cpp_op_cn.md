@@ -195,15 +195,15 @@ b. 如果是实现自定义的 C++ API，需要在'paddle/phi/api/lib/api_custom
 </tr>
 <tr>
 <td>data_transform</td>
-<td>控制算子输入参数的自动转换行为，包括类型（dtype）、设备（backend）和布局（layout），设备和布局的转换由全局标志控制，默认开启</td>
+<td>控制算子输入参数的自动转换行为，包括类型（dtype）、设备（backend）和布局（layout），设备和布局的转换由全局 flag 控制，默认开启</td>
 </tr>
 <tr>
 <td>data_transform:skip_transform</td>
-<td>跳过指定参数的所有数据转换（最高优先级），设置后将禁用该参数所有类型、设备和布局的自动转换</td>
+<td>跳过指定参数的所有数据转换（最高优先级），设置后将禁用该参数所有类型（dtype）、设备（backend）和布局（layout）的自动转换</td>
 </tr>
 <tr>
 <td>data_transform:support_trans_dtype</td>
-<td>开启指定参数的自动类型转换，设置后会对非复数类型也进行自动类型转换（复数类型默认总是转换，除非设置了skip_transform）</td>
+<td>开启指定参数的自动类型转换，设置后会对非复数类型也进行自动类型转换（复数类型默认总是转换，除非在 skip_transform 配置中指定）</td>
 </tr>
 </tbody>
 </table>
@@ -248,6 +248,10 @@ b. 如果是实现自定义的 C++ API，需要在'paddle/phi/api/lib/api_custom
 <tr>
 <td>backward</td>
 <td>反向算子对应的更高阶反向算子名称，如一阶反向算子的反向为二阶反向算子</td>
+</tr>
+<tr>
+<td>data_transform</td>
+<td>与前向配置规则相同</td>
 </tr>
 <tr>
 <td colspan="2" style="text-align: center;"><b>特殊配置项（目前特殊配置项还处于不稳定阶段，后续可能会有调整更新）</b></td>
