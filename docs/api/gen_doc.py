@@ -328,7 +328,9 @@ def parse_module_file(mod):
                                         and n.name == "__init__"
                                     ):
                                         api_info_dict[obj_id]["args"] = (
-                                            gen_functions_args_str(n)
+                                            gen_functions_args_str(
+                                                n, skip_self=True
+                                            )
                                         )
                                         break
                         else:
@@ -361,7 +363,7 @@ def parse_module_file(mod):
                             logger.debug("%s omitted", obj_full_name)
 
 
-def gen_functions_args_str(node):
+def gen_functions_args_str(node, skip_self=False):
     def _process_positional_args(args, params):
         positional_args = args.posonlyargs + args.args
         num_defaults = len(args.defaults)
@@ -370,7 +372,7 @@ def gen_functions_args_str(node):
         first_default_pos = total_positional - num_defaults
         if args.posonlyargs:
             for idx, arg in enumerate(args.posonlyargs):
-                if arg.arg == "self":
+                if skip_self and arg.arg == "self":
                     continue
                 param = _format_arg_with_default(
                     arg, idx, first_default_pos, args.defaults
@@ -379,7 +381,7 @@ def gen_functions_args_str(node):
             params.append("/")
 
         for idx, arg in enumerate(args.args):
-            if arg.arg == "self":
+            if skip_self and arg.arg == "self":
                 continue
             global_idx = idx + len(args.posonlyargs)
             param = _format_arg_with_default(

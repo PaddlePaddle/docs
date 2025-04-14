@@ -20,6 +20,8 @@ import os.path as osp
 import re
 import sys
 
+import paddle  # noqa: F401
+
 
 def add_path(path):
     if path not in sys.path:
@@ -70,6 +72,7 @@ def _check_params_in_description(rstfilename, paramstr):
             params_in_title.remove("/")
         if "*" in params_in_title:
             params_in_title.remove("*")
+        params_in_title = ", ".join(params_in_title)
 
     funcdescnode = extract_params_desc_from_rst_file(rstfilename)
     if funcdescnode:
@@ -122,34 +125,20 @@ def _check_params_in_description_with_fullargspec(rstfilename, funcname):
     info = ""
     try:
         func = eval(funcname)
-    except NameError:
-        import paddle  # noqa: F401
-
-        func = eval(funcname)
+    except AttributeError:
+        flag = False
+        info = f"function {funcname} in rst file {rstfilename} not found in paddle module, please check it."
+        return flag, info
     source = inspect.getsource(func)
 
-    class FunctionDefExtractor(ast.NodeTransformer):
-        target_name = func.__name__
-
-        def visit_FunctionDef(self, node):
-            if node.name == self.target_name:
-                node.decorator_list = []
-                node.body = [ast.Pass()]
-                return node
-            return None
-
     tree = ast.parse(source)
-    modified_tree = FunctionDefExtractor().visit(tree)
-    modified_tree.body = [
-        node for node in modified_tree.body if node is not None
-    ]
-
-    func_node = modified_tree.body[0]
+    func_node = tree.body[0]
     params_inspec = gen_functions_args_str(func_node).split(", ")
     if "/" in params_inspec:
         params_inspec.remove("/")
     if "*" in params_inspec:
         params_inspec.remove("*")
+    params_inspec = ", ".join(params_inspec)
     funcdescnode = extract_params_desc_from_rst_file(rstfilename)
     if funcdescnode:
         items = funcdescnode.children[1].children[0].children
@@ -207,16 +196,39 @@ def check_api_parameters(rstfiles, apiinfo):
         print(f"checking : {rstfile}")
         with open(rstfilename, "r") as rst_fobj:
             func_found = False
+            is_first_line = True
+            api_label = None
             for line in rst_fobj:
+                if is_first_line:
+                    api_label = (
+                        line.strip()
+                        .removeprefix(".. _cn_api_")
+                        .replace("_", ".")
+                        .removesuffix("__upper")
+                    )
+                    is_first_line = False
                 mo = pat.match(line)
                 if mo:
                     func_found = True
                     functype = mo.group(1)
                     if functype not in ("function", "method"):
+                        # TODO: check class method
                         check_passed.append(rstfile)
                         continue
                     funcname = mo.group(2)
                     paramstr = mo.group(3)
+
+                    # check same as the api_label
+                    if funcname != api_label:
+                        # if funcname is a function, try to back to class
+                        obj = eval(funcname)
+                        if inspect.isfunction(obj):
+                            class_name = ".".join(funcname.split(".")[:-1])
+                            if class_name != api_label:
+                                flag = False
+                                info = f"funcname in title is not same as the label name: {funcname} != {api_label}."
+                                return flag, info
+
                     flag = False
                     func_found_in_json = False
                     for apiobj in apiinfo.values():
