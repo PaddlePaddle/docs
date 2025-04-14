@@ -308,10 +308,10 @@ class LinearNet(nn.Layer):
 
 1. 先执行了动转静。当然如果前面已经执行了动转静训练，则跳过这一步。在处理逻辑上，主要包含两个主要模块：
 
-    + 模型结构层面：将动态图模型中被 `@paddle.jit.to_static` 装饰的函数转化为完整的静态图 Program。
-    + 模型参数层面：将动态图模型中的参数（`Parameters` 和 `Buffers`）转为 `persistable=True` 的静态图模型参数 Variable。
+    + 模型结构层面：将动态图模型中被 `@paddle.jit.to_static` 装饰的函数转化为完整的静态图 `Program`。
+    + 模型参数层面：将动态图模型中的参数（`Parameters` 和 `Buffers`）转为 `persistable=True` 的静态图模型参数 `Value`。
 
-3. 再将静态图模型和参数导出为磁盘文件。`Program` 和 `Value` 都可以直接序列化导出为磁盘文件，与前端代码完全解耦，导出的文件包括：
+2. 再将静态图模型和参数导出为磁盘文件。`Program` 和 `Value` 都可以直接序列化导出为磁盘文件，与前端代码完全解耦，导出的文件包括：
 
     + 后缀为 `.json` 的模型结构文件；
     + 后缀为 `.pdiparams` 的模型参数文件；
@@ -361,7 +361,7 @@ linear.pdiparams.info   // 存放和参数状态有关的额外信息
 
 ##### 3.2.2.1 使用 `paddle.jit.load` 加载
 
-使用 `paddle.jit.load` 载入，载入后得到的是一个 Layer 的派生类对象 TranslatedLayer ， TranslatedLayer 具有 Layer 的通用特征，可以进行模型调优。
+使用 `paddle.jit.load` 载入，载入后得到的是一个 `Layer` 的派生类对象 `TranslatedLayer`，`TranslatedLayer` 具有 `Layer` 的通用特征，可以进行训练调优。
 
 > 注意：使用 `paddle.jit.load` 载入模型，如果要用于训练调优，在 `paddle.jit.save` 的时候不能切换成 `eval()` 模式进行保存。另外，为了规避变量名字冲突，载入之后会重命名变量。
 
@@ -693,11 +693,11 @@ pred = loaded_layer(x)
     paddle.jit.save(layer, path)
     ```
 
-    > 注：只有在 forward 之外还需要保存其他函数时才用这个特性，如果仅装饰非 forward 函数，而 forward 本身函数没有被装饰，是不符合规范的。当保存多个函数时， `InputSpec` 信息需要在各个函数的 `@paddle.jit.to_static` 里分别指定，并且 `input_spec` 参数必须为 None，因为此时 save 接口 input_spec 参数无法知道它应该配置给哪个函数。
+    > 注：只有在 `forward` 之外还需要保存其他函数时才用这个特性，如果仅装饰非 `forward` 函数，而 `forward` 本身函数没有被装饰，是不符合规范的。当保存多个函数时， `InputSpec` 信息需要在各个函数的 `@paddle.jit.to_static` 里分别指定，并且传递给 `paddle.jit.save` 的 `input_spec` 参数必须为 `None`，因为此时 save 接口 `input_spec` 参数无法知道它应该配置给哪个函数。
 
   + 该场景下保存的模型命名规则如下：
 
-    + forward 的模型名字为：**模型名+后缀** ，其他函数的模型名字为：**模型名+函数名+后缀** 。每个函数有各自的 pdmodel 和 pdiparams 的文件，所有函数共用 `pdiparams.info` 。上述示例代码将在 `example.model` 文件夹下产生 5 个文件： `linear.another_forward.pdiparams` 、 `linear.pdiparams` 、 `linear.json` 、 `linear.another_forward.json` 、`linear.pdiparams.info` 。
+    + forward 的模型名字为：**模型名+后缀** ，其他函数的模型名字为：**模型名+函数名+后缀** 。每个函数有各自的 pdmodel 和 pdiparams 的文件，所有函数共用 `pdiparams.info` 。上述示例代码将在 `example.model` 文件夹下产生 4 个文件： `linear.another_forward.pdiparams` 、 `linear.pdiparams` 、 `linear.json` 、 `linear.another_forward.json` 、`linear.pdiparams.info` 。
 
 
 ### 3.5 `InputSpec` 的用法介绍
