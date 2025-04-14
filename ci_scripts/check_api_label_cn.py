@@ -116,7 +116,7 @@ def run_cn_api_label_checking(
     doc_root: Path, api_root: Path, files: list[Path]
 ) -> None:
     # get real path for changed files
-    real_path_files_set = {Path(doc_root) / file for file in files}
+    real_path_files_set = set(files)
 
     # check the api_label in the first line for increased files
     for file_path in real_path_files_set:
@@ -132,8 +132,16 @@ def run_cn_api_label_checking(
     valid_api_labels = collect_api_labels(api_root)
 
     # check the usage of api_label in custom files
+    need_uasge_check_files = set()
+    for file_path in real_path_files_set:
+        if not file_path.is_relative_to(doc_root):
+            continue
+        if file_path.suffix != ".rst":
+            continue
+        need_uasge_check_files.add(file_path)
+
     api_label_usage_file_set = (
-        real_path_files_set | get_custom_files_for_checking_usage(doc_root)
+        need_uasge_check_files | get_custom_files_for_checking_usage(doc_root)
     )
 
     if errors := validate_api_label_references(
