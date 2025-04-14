@@ -887,7 +887,7 @@ class SimpleNet(Layer):
 
 **（4）方式四：指定非 Tensor 参数类型**
 
-若被装饰函数的参数列表除了 Tensor 类型，还包含其他如 int、 str 等非 Tensor 类型时，推荐在函数中使用 kwargs 形式定义非 Tensor 参数，如下述样例中的 `use_act` 参数。
+若被装饰函数的参数列表除了 Tensor 类型，还包含其他如 int、str 等非 Tensor 类型时，推荐在函数中使用 kwargs 形式定义非 Tensor 参数，如下述样例中的 `use_act` 参数。
 
 ```python
 class SimpleNet(Layer):
@@ -912,10 +912,9 @@ net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), True])
 paddle.jit.save(net, path='./simple_net')
 ```
 
-在上述样例中，假设 step 为奇数时， `use_act` 取值为 False ； step 为偶数时， `use_act` 取值为 True 。动转静支持非 Tensor 参数在训练时取不同的值，且保证了取值不同的训练过程都可以更新模型的网络参数，行为与动态图一致。
+在上述样例中，假设 `step` 为奇数时，`use_act` 取值为 `False`；`step` 为偶数时，`use_act` 取值为 `True`。动转静支持非 Tensor 参数在训练时取不同的值，且保证了取值不同的训练过程都可以更新模型的网络参数，行为与动态图一致。
 
-在借助 `paddle.jit.save` 保存预测模型时，动转静会根据 input_spec 和 kwargs 的默认值保存推理模型和网络参数。建议将 `kwargs` 参数默认值设置为预测时的取值。
-
+在借助 `paddle.jit.save` 保存预测模型时，动转静会根据 `input_spec` 和 `kwargs` 的默认值保存推理模型和网络参数。建议将 `kwargs` 参数默认值设置为预测时的取值。
 
 
 ## 四、动转静更多用法
