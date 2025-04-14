@@ -70,7 +70,6 @@ def _check_params_in_description(rstfilename, paramstr):
             params_in_title.remove("/")
         if "*" in params_in_title:
             params_in_title.remove("*")
-        params_in_title = ", ".join(params_in_title)
 
     funcdescnode = extract_params_desc_from_rst_file(rstfilename)
     if funcdescnode:
@@ -87,7 +86,9 @@ def _check_params_in_description(rstfilename, paramstr):
                 )
             else:
                 info = f"The number of params in title does not match the params in description: {len(params_in_title)} != {len(items)}."
-            print(f"check failed (parammeters description): {rstfilename}")
+            print(
+                f"check failed with different nums (parammeters description): {rstfilename}"
+            )
         else:
             for i in range(len(items)):
                 pname_in_title = params_in_title[i].split("=")[0].strip()
@@ -136,7 +137,7 @@ def _check_params_in_description_with_fullargspec(rstfilename, funcname):
         params_inspec.remove("/")
     if "*" in params_inspec:
         params_inspec.remove("*")
-    params_inspec = ", ".join(params_inspec)
+
     funcdescnode = extract_params_desc_from_rst_file(rstfilename)
     if funcdescnode:
         items = funcdescnode.children[1].children[0].children
