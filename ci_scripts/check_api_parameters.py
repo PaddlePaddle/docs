@@ -227,7 +227,8 @@ def check_api_parameters(rstfiles, apiinfo):
                             if class_name != api_label:
                                 flag = False
                                 info = f"funcname in title is not same as the label name: {funcname} != {api_label}."
-                                return flag, info
+                                check_failed[rstfile] = info
+                                continue
 
                     flag = False
                     func_found_in_json = False
