@@ -203,7 +203,7 @@ def check_api_parameters(rstfiles, apiinfo):
                     api_label = (
                         line.strip()
                         .removeprefix(".. _cn_api_")
-                        .replace("_", ".")
+                        .removesuffix(":")
                         .removesuffix("__upper")
                     )
                     is_first_line = False
@@ -217,14 +217,19 @@ def check_api_parameters(rstfiles, apiinfo):
                         continue
                     funcname = mo.group(2)
                     paramstr = mo.group(3)
+                    func_to_label = funcname.replace(".", "_")
 
                     # check same as the api_label
-                    if funcname != api_label:
+                    if func_to_label != api_label:
                         # if funcname is a function, try to back to class
-                        obj = eval(funcname)
-                        if inspect.isfunction(obj):
+                        try:
+                            obj = eval(funcname)
+                        except AttributeError:
+                            obj = None
+                        if obj is not None and inspect.isfunction(obj):
                             class_name = ".".join(funcname.split(".")[:-1])
-                            if class_name != api_label:
+                            class_to_label = class_name.replace(".", "_")
+                            if class_to_label != api_label:
                                 flag = False
                                 info = f"funcname in title is not same as the label name: {funcname} != {api_label}."
                                 check_failed[rstfile] = info
