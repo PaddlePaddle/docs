@@ -44,7 +44,7 @@
     + 最大程度抽离 **训练和预测** 的逻辑为 **公共子函数**
 
 
-## 二、何时指定 InputSpec?
+## 二、何时指定 `InputSpec`?
 
 在动转静的原理介绍中，静态图 `Program` 的生成需要依赖 `Placeholder` 信息，此信息可通过两种方式获得：
 
@@ -138,10 +138,10 @@ import paddle
 import numpy as np
 
 # 动态图
-x = paddle.to_tensor(np.array([2,3,4]))
+x = paddle.to_tensor(np.array([2, 3, 4]))
 
 # 动转静后代码
-x = paddle.assign(np.array([2,3,4]))
+x = paddle.assign(np.array([2, 3, 4]))
 ```
 
 
@@ -193,7 +193,7 @@ class SimpleNet(paddle.nn.Layer):
 
 动态图模型常常包含很多嵌套的子网络，建议各个自定义的子网络 `sublayer` **无论是否包含了参数，都继承 `nn.Layer` **。
 
-从 **Parameters 和 Buffers**  章节可知，有些 `paddle.to_tensor` 接口转来的 `Tensor` 也可能参与预测逻辑分支的计算，即模型导出时，也需要作为参数序列化保存到 `.pdiparams` 文件中。
+从 [**Parameters 和 Buffers**](./principle_cn.html#program-parameters) 章节可知，有些 `paddle.to_tensor` 接口转来的 `Tensor` 也可能参与预测逻辑分支的计算，即模型导出时，也需要作为参数序列化保存到 `.pdiparams` 文件中。
 
 > **原因**： 若某个 sublayer 包含了 buffer Variables，但却没有继承 `nn.Layer` ，则可能导致保存的 `.pdiparams` 文件缺失部分重要参数。
 
@@ -312,13 +312,12 @@ net = paddle.jit.save(static_func, path='another_func')
 使用上的区别主要在于：
 
 + **`@to_static` 装饰**：导出其他函数时需要显式地用 `@to_static` 装饰，以告知动静转换模块将其识别、并转为静态图 Program；
-+ **`save`接口参数**：调用`jit.save`接口时，需将上述被`@to_static` 装饰后的函数作为**参数**；
++ **`save` 接口参数**：调用 `jit.save` 接口时，需将上述被 `@to_static` 装饰后的函数作为**参数**；
 
-执行上述代码样例后，在当前目录下会生成三个文件：
+执行上述代码样例后，在当前目录下会生成两个文件：
 ```
 another_func.pdiparams        // 存放模型中所有的权重数据
-another_func.pdimodel         // 存放模型的网络结构
-another_func.pdiparams.info   // 存放额外的其他信息
+another_func.json             // 存放模型的网络结构
 ```
 
 
@@ -409,7 +408,7 @@ def forward(x):
 
 > 因为框架底层的 `DenseTensorArray = std::vector<DenseTensor >` ，不支持两层以上 `vector` 嵌套
 
-## 九、jit.save 与默认参数
+## 九、`jit.save` 与默认参数
 
 
 最后一步是预测模型的导出，Paddle 提供了 `paddle.jit.save` 接口，搭配 `@to_static` 可以导出预测模型。

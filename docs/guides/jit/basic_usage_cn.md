@@ -697,7 +697,7 @@ pred = loaded_layer(x)
 
   + 该场景下保存的模型命名规则如下：
 
-    + forward 的模型名字为：**模型名+后缀** ，其他函数的模型名字为：**模型名+函数名+后缀** 。每个函数有各自的 pdmodel 和 pdiparams 的文件，所有函数共用 `pdiparams.info` 。上述示例代码将在 `example.model` 文件夹下产生 4 个文件： `linear.another_forward.pdiparams` 、 `linear.pdiparams` 、 `linear.json` 、 `linear.another_forward.json` 、`linear.pdiparams.info` 。
+    + forward 的模型名字为：**模型名+后缀** ，其他函数的模型名字为：**模型名+函数名+后缀** 。每个函数有各自的 pdmodel 和 pdiparams 的文件，所有函数共用 `pdiparams.info` 。上述示例代码将在 `example.model` 文件夹下产生 4 个文件： `linear.another_forward.json`、 `linear.another_forward.pdiparams`、`linear.json`、`linear.pdiparams`、`linear.pdiparams.info` 。
 
 
 ### 3.5 `InputSpec` 的用法介绍
