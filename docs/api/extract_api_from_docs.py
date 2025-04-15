@@ -242,7 +242,7 @@ def extract_params_desc_from_rst_file(filename, section_title="参数"):
         "docinfo_xform": 0,
         "initial_header_level": 2,
     }
-    with open(filename, "r") as fileobj:
+    with open(filename, "r", encoding="utf-8") as fileobj:
         doctree = docutils.core.publish_doctree(
             fileobj.read(), settings_overrides=overrides
         )

@@ -154,11 +154,13 @@ class ParamChecker:
                 func_node = fake_func.body[0]
                 func_args_str = gen_functions_args_str(func_node)
                 params_in_title = [
-                    p for p in func_args_str.split(", ") if p not in ("*", "/")
+                    p.split("=")[0].strip()
+                    for p in func_args_str.split(", ")
+                    if p not in ("/", "*")
                 ]
             except Exception as e:
                 raise APICheckError(f"Failed to parse parameters: {e}")
-        funcdescnode = extract_params_desc_from_rst_file(rst_file)
+        funcdescnode = extract_params_desc_from_rst_file(str(rst_file))
         if funcdescnode:
             try:
                 items = funcdescnode.children[1].children[0].children
@@ -210,7 +212,7 @@ class ParamChecker:
             tree = ast.parse(source)
             func_node = tree.body[0]
             params_inspec = [
-                p
+                p.split("=")[0].strip()
                 for p in gen_functions_args_str(func_node).split(", ")
                 if p not in ("/", "*")
             ]
@@ -292,7 +294,6 @@ def main():
     except Exception as e:
         logger.error(f"Failed to load API info file: {e}")
         sys.exit(1)
-
     rst_files = [fn for fn in args.rst_files.split(" ") if fn]
     if not rst_files:
         logger.error("No RST files provided.")
@@ -301,22 +302,22 @@ def main():
     checker = ParamChecker(api_info)
     results = checker.check_files(rst_files)
 
-    logging.info(
+    logger.info(
         f"API parameter checking completed. Pass: {len(results.passed)}, Fail: {len(results.failed)}, Not Found: {len(results.not_found)}"
     )
 
     if results.failed:
-        logging.error("Following files failed the check:")
+        logger.info("Following files failed the check:")
         for file_path, error in results.failed.items():
             logger.error(f"  - {file_path}: {error}")
     if results.not_found:
-        logging.error("Following files had API not found:")
+        logger.info("Following files had API not found:")
         for file_path, error in results.not_found.items():
             logger.error(f"  - {file_path}: {error}")
     if results.failed or results.not_found:
         sys.exit(1)
     else:
-        logging.info("All API parameter checks passed.")
+        logger.info("All API parameter checks passed.")
         sys.exit(0)
 
 
