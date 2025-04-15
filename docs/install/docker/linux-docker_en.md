@@ -34,7 +34,7 @@ For domestic users, when downloading docker is slow due to network problems, you
     docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.0.0-gpu-cuda12.6-cudnn9.5-trt10.5
     ```
     ```
-    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.0.0-gpu-cuda11.8-cudnn8.6-trt8.5
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.0.0-gpu-cuda11.8-cudnn8.9-trt8.6
     ```
 
 If your machine is not in mainland China, you can pull the image directly from DockerHub:
@@ -54,7 +54,7 @@ If your machine is not in mainland China, you can pull the image directly from D
     docker pull paddlepaddle/paddle:3.0.0-gpu-cuda12.6-cudnn9.5-trt10.5
     ```
     ```
-    docker pull paddlepaddle/paddle:3.0.0-gpu-cuda11.8-cudnn8.6-trt8.5
+    docker pull paddlepaddle/paddle:3.0.0-gpu-cuda11.8-cudnn8.9-trt8.6
     ```
 
 You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get more images.
@@ -155,8 +155,8 @@ Now you have successfully used Docker to install PaddlePaddle. For more informat
         <td> GPU image of paddle version 3.0.0 is installed, cuda version is 12.6, cudnn version is 9.5, trt version is 10.5 </td>
     </tr>
     <tr>
-        <td> ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.0.0-gpu-cuda11.8-cudnn8.6-trt8.5 </td>
-        <td> GPU image of paddle version 3.0.0 is installed, cuda version is 11.8, cudnn version is 8.6, trt version is 8.5 </td>
+        <td> ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.0.0-gpu-cuda11.8-cudnn8.9-trt8.6 </td>
+        <td> GPU image of paddle version 3.0.0 is installed, cuda version is 11.8, cudnn version is 8.9, trt version is 8.6 </td>
     </tr>
    </tbody>
 </table>
