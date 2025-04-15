@@ -20,7 +20,7 @@ import inspect
 import logging
 import os
 import re
-from contextlib import contextmanager
+from contextlib import contextmanager, redirect_stderr
 
 import docutils
 import docutils.core
@@ -235,7 +235,9 @@ def extract_rst_title(filename):
     return None
 
 
-def extract_params_desc_from_rst_file(filename, section_title="参数"):
+def extract_params_desc_from_rst_file(
+    filename, need_redirect_stderr=False, section_title="参数"
+):
     overrides = {
         # Disable the promotion of a lone top-level section title to document
         # title (and subsequent section title to document subtitle promotion).
@@ -243,9 +245,15 @@ def extract_params_desc_from_rst_file(filename, section_title="参数"):
         "initial_header_level": 2,
     }
     with open(filename, "r", encoding="utf-8") as fileobj:
-        doctree = docutils.core.publish_doctree(
-            fileobj.read(), settings_overrides=overrides
-        )
+        if need_redirect_stderr:
+            with redirect_stderr():
+                doctree = docutils.core.publish_doctree(
+                    fileobj.read(), settings_overrides=overrides
+                )
+        else:
+            doctree = docutils.core.publish_doctree(
+                fileobj.read(), settings_overrides=overrides
+            )
         found = False
         for child in doctree.children:
             if isinstance(child, docutils.nodes.section) and isinstance(

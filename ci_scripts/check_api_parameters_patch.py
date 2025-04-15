@@ -158,9 +158,13 @@ class ParamChecker:
                     for p in func_args_str.split(", ")
                     if p not in ("/", "*")
                 ]
+                params_in_title = [
+                    p.removeprefix("*").removeprefix("*")
+                    for p in params_in_title
+                ]
             except Exception as e:
                 raise APICheckError(f"Failed to parse parameters: {e}")
-        funcdescnode = extract_params_desc_from_rst_file(str(rst_file))
+        funcdescnode = extract_params_desc_from_rst_file(str(rst_file), True)
         if funcdescnode:
             try:
                 items = funcdescnode.children[1].children[0].children
@@ -205,7 +209,7 @@ class ParamChecker:
             obj = self._import_object(funcname)
         except Exception:
             raise APICheckError(
-                f"Function {funcname} in rst file {rst_file} not found in paddle module, please check it."
+                f"Function {funcname} not found in paddle module, please check it."
             )
         try:
             source = inspect.getsource(obj)
@@ -216,9 +220,14 @@ class ParamChecker:
                 for p in gen_functions_args_str(func_node).split(", ")
                 if p not in ("/", "*")
             ]
+            # for *args and **kwargs, remove * and **
+            params_inspec = [
+                p.removeprefix("*").removeprefix("*") for p in params_inspec
+            ]
+
         except Exception as e:
             raise APICheckError(f"Failed to inspect function {funcname}: {e}")
-        funcdescnode = extract_params_desc_from_rst_file(str(rst_file))
+        funcdescnode = extract_params_desc_from_rst_file(str(rst_file), True)
         if funcdescnode:
             try:
                 items = funcdescnode.children[1].children[0].children
@@ -302,16 +311,16 @@ def main():
     checker = ParamChecker(api_info)
     results = checker.check_files(rst_files)
 
-    logger.info(
+    logger.warning(
         f"API parameter checking completed. Pass: {len(results.passed)}, Fail: {len(results.failed)}, Not Found: {len(results.not_found)}"
     )
 
     if results.failed:
-        logger.info("Following files failed the check:")
+        logger.warning("Following files failed the check:")
         for file_path, error in results.failed.items():
             logger.error(f"  - {file_path}: {error}")
     if results.not_found:
-        logger.info("Following files had API not found:")
+        logger.warning("Following files had API not found:")
         for file_path, error in results.not_found.items():
             logger.error(f"  - {file_path}: {error}")
     if results.failed or results.not_found:
