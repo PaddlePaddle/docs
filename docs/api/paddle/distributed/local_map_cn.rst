@@ -15,7 +15,7 @@ local_map 是一个函数装饰器，允许用户将分布式张量（DTensor）
     - **out_placements** (list[list[dist.Placement]]) - 指定输出张量的分布策略。外层列表长度必须与函数输出数量匹配，每个内层列表描述对应输出张量的分布方式。对于非张量输出必须设为 None。
     - **in_placements** (list[list[dist.Placement]]，可选) - 指定输入张量的要求分布。如果指定，每个内层列表描述对应输入张量的分布要求。外层列表长度必须与输入张量数量匹配。对于不具有分布式属性的输入应设为 None，默认为 None，表示输入张量不需要分布或从输入张量推断分布。
     - **process_mesh** (Optional[ProcessMesh]，可选) - 计算设备网格。所有分布式张量必须位于同一个 process_mesh 上。如未指定，默认为 None，表示从输入张量推断 process_mesh。
-    - **reshard_inputs** (bool) - 当输入分布式张量的分布方式与要求的 in_placements 不匹配时，是否自动 reshard。默认 False，表示不自动 reshard。
+    - **reshard_inputs** (bool，可选) - 提示当输入分布式张量的分布方式与要求的 in_placements 不匹配时，是否自动 reshard。默认 False，表示不自动 reshard。
 
 返回
 :::::::::
