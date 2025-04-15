@@ -35,7 +35,7 @@ if [ "$need_check_files" = "" ]
 then
     echo "need check files is empty, skip api parameters check"
 else
-    python check_api_parameters.py --rst-files "${need_check_files}" --api-info $2
+    python check_api_parameters_patch.py --rst-files "${need_check_files}" --api-info $2
     if [ $? -ne 0 ];then
         set +x
         echo "************************************************************************************"
