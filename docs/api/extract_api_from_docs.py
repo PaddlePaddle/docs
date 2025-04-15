@@ -246,10 +246,11 @@ def extract_params_desc_from_rst_file(
     }
     with open(filename, "r", encoding="utf-8") as fileobj:
         if need_redirect_stderr:
-            with redirect_stderr():
-                doctree = docutils.core.publish_doctree(
-                    fileobj.read(), settings_overrides=overrides
-                )
+            with open(os.devnull, "w") as fnull:
+                with redirect_stderr(fnull):
+                    doctree = docutils.core.publish_doctree(
+                        fileobj.read(), settings_overrides=overrides
+                    )
         else:
             doctree = docutils.core.publish_doctree(
                 fileobj.read(), settings_overrides=overrides
