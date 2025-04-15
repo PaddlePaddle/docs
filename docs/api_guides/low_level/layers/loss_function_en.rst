@@ -39,7 +39,7 @@ The loss functions for both methods are available in Paddle . For API Reference 
 
 Sequence classification
 -------------------------
-Sequence classification can be divided into the following three types:
+Sequence classification can be divided into the following two types:
 
 * Sequence Classification problem is that the entire sequence corresponds to a prediction label, such as text classification. This is a common classification problem, you can use cross entropy as the loss function.
 * Temporal Classification problem needs to label unsegmented sequences, such as speech recognition. For this time-based classification problem, `CTC(Connectionist Temporal Classification) <http://people.idsia.ch/~santiago/papers/icml2006.pdf>`_ loss function does not need to align input data and labels, and is able to perform end-to-end training. Paddle  provides a warpctc interface to calculate the corresponding loss. For API Reference,  please refer to :ref:`api_paddle_nn_functional_ctc_loss` .
