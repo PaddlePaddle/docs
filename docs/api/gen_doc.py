@@ -363,7 +363,7 @@ def parse_module_file(mod):
                             logger.debug("%s omitted", obj_full_name)
 
 
-def gen_functions_args_str(node, skip_self=False):
+def gen_functions_args_str(node, skip_self=False, return_str=True):
     def _process_positional_args(args, params):
         positional_args = args.posonlyargs + args.args
         num_defaults = len(args.defaults)
@@ -421,8 +421,10 @@ def gen_functions_args_str(node, skip_self=False):
         _process_var_args(func_args, str_args_list)
         _process_kwonly_args(func_args, str_args_list)
         _process_kwargs(func_args, str_args_list)
-
-    return ", ".join(str_args_list)
+    if return_str:
+        return ", ".join(str_args_list)
+    else:
+        return str_args_list
 
 
 # step 2 fill field : `display`

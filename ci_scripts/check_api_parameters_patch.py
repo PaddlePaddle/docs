@@ -152,10 +152,12 @@ class ParamChecker:
             try:
                 fake_func = ast.parse(f"def fake_func({paramstr}): pass")
                 func_node = fake_func.body[0]
-                func_args_str = gen_functions_args_str(func_node)
+                func_args_str: list[str] = gen_functions_args_str(
+                    func_node, False, False
+                )
                 params_in_title = [
                     p.split("=")[0].strip()
-                    for p in func_args_str.split(", ")
+                    for p in func_args_str
                     if p not in ("/", "*")
                 ]
                 params_in_title = [
@@ -217,7 +219,7 @@ class ParamChecker:
             func_node = tree.body[0]
             params_inspec = [
                 p.split("=")[0].strip()
-                for p in gen_functions_args_str(func_node).split(", ")
+                for p in gen_functions_args_str(func_node, True, False)
                 if p not in ("/", "*")
             ]
             # for *args and **kwargs, remove * and **
