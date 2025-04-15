@@ -223,7 +223,7 @@ train(layer, loader, loss_fn, adam)
 + 两种方式均实现了动转静训练，最终实现的效果是一样。
 
 
-**值得注意的是：请确保被装饰的 `Layer.forward` 方法中仅实现预测功能，避免将训练所需的 loss 计算逻辑写入 forward 方法。**
+**值得注意的是：请确保被装饰的 `Layer.forward` 方法中仅实现预测所需功能，避免将训练所需的 loss 计算逻辑写入 forward 方法。**
 
 `Layer` 更准确的语义是描述一个具有预测功能的模型对象，接收输入的样本数据，输出预测的结果，而 loss 计算是仅属于模型训练中的概念。将 loss 计算的实现放到 `Layer.forward` 方法中，会使 `Layer` 在不同场景下概念有所差别，并且增大 `Layer` 使用的复杂性，这不是良好的编码行为，同时也会在最终保存预测模型时引入剪枝的复杂性，因此建议保持 `Layer` 实现的简洁性。
 
@@ -315,7 +315,6 @@ class LinearNet(nn.Layer):
 
     + 后缀为 `.json` 的模型结构文件；
     + 后缀为 `.pdiparams` 的模型参数文件；
-    + 后缀为 `.pdiparams.info` 的和参数状态有关的额外信息文件。
 
 类似的，使用 `paddle.jit.load` 加载模型，即将上述三个文件加载为静态图模型的 `Program` 和 `Value`，可用于执行静态图模式下训练调优或验证推理效果。
 
@@ -346,7 +345,6 @@ paddle.jit.save(layer, path)
 ```
 linear.pdiparams        // 存放模型中所有的权重数据
 linear.json             // 存放模型的网络结构
-linear.pdiparams.info   // 存放和参数状态有关的额外信息
 ```
 
 导出的模型可用于在云、边、端不同的硬件环境中部署，可以支持不同语言环境部署，如 C++、Java、Python 等。飞桨提供了服务器端部署的 Paddle Inference、移动端/IoT 端部署的 Paddle Lite、服务化部署的 Paddle Serving 等，以实现模型的快速部署上线。具体介绍可参见 [推理部署](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/infer/index_cn.html) 章节。
@@ -569,7 +567,6 @@ train(layer, loader, loss_fn, adam)
 ```
 linear.pdiparams        // 存放模型中所有的权重数据
 linear.json             // 存放模型的网络结构
-linear.pdiparams.info   // 存放和参数状态有关的额外信息
 ```
 
 
@@ -697,7 +694,7 @@ pred = loaded_layer(x)
 
   + 该场景下保存的模型命名规则如下：
 
-    + forward 的模型名字为：**模型名+后缀** ，其他函数的模型名字为：**模型名+函数名+后缀** 。每个函数有各自的 pdmodel 和 pdiparams 的文件，所有函数共用 `pdiparams.info` 。上述示例代码将在 `example.model` 文件夹下产生 4 个文件： `linear.another_forward.json`、 `linear.another_forward.pdiparams`、`linear.json`、`linear.pdiparams`、`linear.pdiparams.info` 。
+    + forward 的模型名字为：**模型名+后缀** ，其他函数的模型名字为：**模型名+函数名+后缀** 。每个函数有各自的 `.json` 和 `.pdiparams` 的文件。上述示例代码将在 `example.model` 文件夹下产生 4 个文件： `linear.another_forward.json`、 `linear.another_forward.pdiparams`、`linear.json`、`linear.pdiparams`。
 
 
 ### 3.5 `InputSpec` 的用法介绍
