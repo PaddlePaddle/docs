@@ -11,6 +11,8 @@
 
 - `大模型训推一体 <overview_cn.html>`_ ：同一套框架支持训练和推理，实现训练、推理代码复用和无缝衔接
 
+- `Paddle Inference(TensorRT 子图引擎) <paddle_trt_cn.html>`_ ：介绍了飞桨结合 TensorRT 子图引擎推理的使用方式和工作原理.
+
 - `科学计算高阶微分 <higher_order_ad_cn.html>`_ ：介绍了飞桨高阶自动微分在科学计算领域的应用
 
 - `神经网络编译器 <cinn_cn.html>`_ ：介绍了神经网络编译器自动优化的基本原理、架构和功能
@@ -33,3 +35,4 @@
     sot_cn.md
     paddle_ir_cn.md
     comate_paddle_cn.md
+    paddle_trt_cn.md

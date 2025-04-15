@@ -3,7 +3,7 @@
 interpolate
 -------------------------------
 
-.. py:function:: paddle.nn.functional.interpolate(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format=None, name=None)
+.. py:function:: paddle.nn.functional.interpolate(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format=None, recompute_scale_factor=None, name=None)
 
 
 
@@ -148,6 +148,7 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
     - **align_corners** (bool，可选) - 一个可选的 bool 型参数，如果为 True，则将输入和输出 Tensor 的 4 个角落像素的中心对齐，并保留角点像素的值。默认值为 False。
     - **align_mode** (int，可选) - 双线性插值的可选项。可以是 '0' 代表 src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1'，代表 src_idx = scale * dst_index。默认值：0。
     - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致。支持的值有："NCW"、"NWC"、"NCHW"、"NHWC"、"NCDHW"、"NDHWC"。默认值为 None，此时若输入是 3-D Tensor， ``data_format`` 将默认为"NCW"；若输入是 4—D Tensor, 将默认为"NCHW"；若输入是 5—D Tensor, 将默认为"NCDHW"。
+    - **recompute_scale_factor** (bool，可选) - 是否在插值计算中重新计算乘数因子。当设置为 True 时，必须提供 scale_factor 参数，函数会用 scale_factor 和输入张量的形状计算输出张量的形状，然后根据输出张量形状和输入张量形状重新计算乘数因子。该参数可用于 scale_factor 为浮点数的情况。当设置为 False 时，将直接使用 size 或 scale_factor 进行插值计算，不进行重新计算。默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
