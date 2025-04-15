@@ -32,7 +32,7 @@ python -m pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/n
 ```shell
 python -m pip install paddle-sdaa -i https://www.paddlepaddle.org.cn/packages/nightly/sdaa/
 ```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
+⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本:https://www.paddlepaddle.org.cn/packages/stable/sdaa/paddle-sdaa/
 ## 二、运行示例
 
 飞桨框架集成了经典的视觉模型用于帮助用户快速上手，我们将基于 ResNet50 结构，在 Cifar10 数据集上进行一次快速训练，用于帮助您了解如何基于太初 SDAA 进行训练（和 GPU 训练代码相比，差异点仅为 `paddle.set_device("sdaa")`）
@@ -41,9 +41,7 @@ python -m pip install paddle-sdaa -i https://www.paddlepaddle.org.cn/packages/ni
 
 * *本教程主要用于快速入门，并未对参数进行细致调优，训练效果未必是最好的，您可以自行调整超参数进行效果调优*
 
-* *太初 CANN 算子库在运行时，有些算子是即时编译生成的，因此第一次运行本教程时，会有 3 ~ 5 分钟的编译等待时间，这个速度取决于模型所用到的算子数量，Tensor shape 的变化情况，以及机器上的资源使用（如 CPU）*
-
-* *本教程预计使用单卡 910B 训练 20 分钟*
+* *本教程预计使用单卡 T100 训练 35 分钟*
 
 1. 导入必要的包
 
