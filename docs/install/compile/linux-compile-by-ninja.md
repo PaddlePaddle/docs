@@ -149,7 +149,7 @@ mkdir -p /paddle/build && cd /paddle/build
 #### 8. 使用以下命令安装相关依赖：
 - 安装编译依赖
 ```
-pip3.10 install -r /paddle/requirements.txt
+pip3.10 install -r /paddle/python/requirements.txt
 ```
 注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12
 #### 9. 执行 cmake：
@@ -348,7 +348,7 @@ mkdir build && cd build
 
 - 安装编译依赖
 ```
-pip3.10 install -r /paddle/requirements.txt
+pip3.10 install -r /paddle/python/requirements.txt
 ```
 
 注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12

@@ -569,7 +569,6 @@ framework 相关
     " :ref:`paddle.CUDAPinnedPlace <cn_api_paddle_CUDAPinnedPlace>` ", "一个设备描述符，它所指代的页锁定内存由 CUDA 函数 cudaHostAlloc() 在主机内存上分配，主机的操作系统将不会对这块内存进行分页和交换操作，可以通过直接内存访问技术访问，加速主机和 GPU 之间的数据拷贝"
     " :ref:`paddle.CUDAPlace <cn_api_paddle_CUDAPlace>` ", "一个设备描述符，表示一个分配或将要分配 Tensor 的 GPU 设备"
     " :ref:`paddle.DataParallel <cn_api_paddle_DataParallel>` ", "通过数据并行模式执行动态图模型"
-    " :ref:`paddle.NPUPlace <cn_api_paddle_NPUPlace>` ", "一个设备描述符，指 NCPUPlace 则 Tensor 将被自动分配在该设备上，并且模型将会运行在该设备上"
     " :ref:`paddle.disable_signal_handler <cn_api_paddle_disable_signal_handler>` ", "关闭 Paddle 系统信号处理方法"
     " :ref:`paddle.disable_static <cn_api_paddle_disable_static>` ", "关闭静态图模式"
     " :ref:`paddle.enable_grad <cn_api_paddle_enable_grad>` ", "创建一个上下文来启用动态图梯度计算"
