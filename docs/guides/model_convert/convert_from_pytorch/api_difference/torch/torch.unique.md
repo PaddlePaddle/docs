@@ -26,7 +26,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 表示输入 Tensor。  |
-| sorted        | -            | 表示是否按升序返回排列，Paddle 无此参数。暂无转写方式  |
+| sorted        | -            | 表示是否按升序返回排列，Paddle 无此参数。转换时直接删除即可，PyTorch 目前忽略了此参数。  |
 | -             | return_index | 表示是否返回独有元素在输入 Tensor 中的索引，PyTorch 无此参数。Paddle 保持默认即可。  |
 | return_inverse| return_inverse| 表示是否返回输入 Tensor 的元素对应在独有元素中的索引。  |
 | return_counts | return_counts| 表示是否返回每个独有元素在输入 Tensor 中的个数。  |

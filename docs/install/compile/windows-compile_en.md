@@ -35,7 +35,7 @@ There is one compilation methods in Windows system:
 
     > Install compilation dependencies
         ```
-        pip install -r /paddle/requirements.txt
+        pip install -r /paddle/python/requirements.txt
         ```
 
     > Git can be downloaded on the [official website](https://gitforwindows.org/) and added to the environment variable.

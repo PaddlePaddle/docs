@@ -9,7 +9,7 @@ torch.nn.functional.interpolate(input, size=None, scale_factor=None, mode='neare
 ### [paddle.nn.functional.interpolate](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/interpolate_cn.html)
 
 ```python
-paddle.nn.functional.interpolate(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format=None, name=None)
+paddle.nn.functional.interpolate(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format=None, recompute_scale_factor=None, name=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -23,7 +23,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | scale_factor           | scale_factor  | 输入的高度或宽度的乘数因子。                                                                           |
 | mode                   | mode          | 插值方法。                                                                                             |
 | align_corners          | align_corners | 一个可选的 bool 型参数，如果为 True，则将输入和输出张量的 4 个角落像素的中心对齐，并保留角点像素的值。 |
-| recompute_scale_factor | -             | 是否重新计算 scale_factor，Paddle 无此参数，暂无转写方式。                                             |
+| recompute_scale_factor | recompute_scale_factor | 是否重新计算乘数因子。                                             |
 | antialias              | -             | 是否使用 anti-aliasing，Paddle 无此参数，暂无转写方式。                                                |
 | -                      | align_mode    | 双线性插值的可选项，PyTorch 无此参数，Paddle 保持默认即可。                                            |
 | -                      | data_format   | 指定输入的数据格式，PyTorch 无此参数，Paddle 保持默认即可。                                            |
