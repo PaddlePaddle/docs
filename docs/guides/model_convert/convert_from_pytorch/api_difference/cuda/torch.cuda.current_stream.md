@@ -17,7 +17,7 @@ paddle.device.current_stream(device=None)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| device        | device            | 表示希望获取 stream 的设备或者设备 ID。如果为 None，则为当前的设备。默认值为 None,需要转写。                                     |
+| device        | device            | 表示希望获取 stream 的设备或者设备 ID。如果为 None，则为当前的设备。默认值为 None，需要转写。                                     |
 
 ### 转写示例
 #### device: 特定的运行设备
@@ -36,8 +36,8 @@ torch.cuda.current_stream(2)
 paddle.device.current_stream(device='gpu:2')
 
 # PyTorch 写法
-torch.cuda.current_stream(device=None)
+torch.cuda.current_stream()
 
 # Paddle 写法
-paddle.device.current_stream(device=None)
+paddle.device.current_stream()
 ```
