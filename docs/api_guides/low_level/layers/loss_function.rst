@@ -42,7 +42,7 @@ API Reference 请参考 :ref:`cn_api_paddle_nn_functional_binary_cross_entropy`�
 序列分类可以分为以下两种：
 
 * 序列分类（Sequence Classification）问题，整个序列对应一个预测标签，如文本分类。这种即是普通的分类问题，可以使用 cross entropy 作为损失函数。
-* 时序分类（Temporal Classification）问题，需要对未分割的序列进行标注，如语音识别。对于这种时序分类问题，`CTC（Connectionist Temporal Classification） <http://people.idsia.ch/~santiago/papers/icml2006.pdf>`_ 损失函数不需要对齐输入数据及标签，可以进行端到端的训练，Paddle Fluid 提供了 warpctc 的接口来计算相应的损失，API Reference 请参考 :ref:`cn_api_paddle_nn_functional_ctc_loss`。
+* 时序分类（Temporal Classification）问题，需要对未分割的序列进行标注，如语音识别。对于这种时序分类问题，`CTC（Connectionist Temporal Classification） <http://people.idsia.ch/~santiago/papers/icml2006.pdf>`_ 损失函数不需要对齐输入数据及标签，可以进行端到端的训练，Paddle 提供了 warpctc 的接口来计算相应的损失，API Reference 请参考 :ref:`cn_api_paddle_nn_functional_ctc_loss`。
 
 排序
 ======
