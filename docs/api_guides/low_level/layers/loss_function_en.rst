@@ -35,6 +35,7 @@ For large-scale classification problems, special methods and corresponding loss 
 
 * NCE solves the binary-classification problem of discriminating the true distribution and the noise distribution by converting the multi-classification problem into a classifier. The maximum likelihood estimation is performed based on the binary-classification to avoid calculating the normalization factor in the full-class space to reduce computational complexity.
 * Hierarchical sigmoid realizes multi-classification by hierarchical classification of binary trees. The loss of each sample corresponds to the sum of the cross-entropy of the binary-classification for each node on the coding path, which avoids the calculation of the normalization factor and reduces the computational complexity.
+
 The loss functions for both methods are available in Paddle . For API Reference please refer to :ref:`api_paddle_static_nn_nce` and :ref:`api_paddle_nn_functional_hsigmoid_loss`.
 
 Sequence classification
