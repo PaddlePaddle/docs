@@ -34,6 +34,7 @@ API Reference 请参考 :ref:`cn_api_paddle_nn_functional_binary_cross_entropy`�
 
 * 噪声对比估计通过将多分类问题转化为学习分类器来判别数据来自真实分布和噪声分布的二分类问题，基于二分类来进行极大似然估计，避免在全类别空间计算归一化因子从而降低了计算复杂度。
 * 层级 sigmoid 通过二叉树进行层级的二分类来实现多分类，每个样本的损失对应了编码路径上各节点二分类交叉熵的和，避免了归一化因子的计算从而降低了计算复杂度。
+
 这两种方法对应的损失函数在 Paddle 中均有提供，API Reference 请参考 :ref:`cn_api_paddle_static_nn_nce` 和 :ref:`cn_api_paddle_nn_functional_hsigmoid_loss`。
 
 序列分类
