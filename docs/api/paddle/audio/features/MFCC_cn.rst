@@ -32,9 +32,9 @@ MFCC
 返回
 :::::::::
 
-计算``MFCC``的可调用对象。
+计算 ``MFCC`` 的可调用对象。
 
 代码示例
 :::::::::
 
-COPY-FROM: paddle.audio.features.layers.MFCC
+COPY-FROM: paddle.audio.features.MFCC
