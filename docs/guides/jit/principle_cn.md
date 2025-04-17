@@ -195,7 +195,7 @@ def not_depend_tensor_if(x, label=None):
         out = paddle.nn.functional.cross_entropy(out, label)
     return out
 
-print(to_static(not_depend_tensor_if).code)
+print(to_static(not_depend_tensor_if, full_graph=True).code)
 # 转写后的代码：
 """
 def not_depend_tensor_if(x, label=None):
@@ -230,7 +230,7 @@ def depend_tensor_if(x):
         out = x + 1
     return out
 
-print(to_static(depend_tensor_if).code)
+print(to_static(depend_tensor_if, full_graph=True).code)
 # 转写后的代码：
 """
 def depend_tensor_if(x):
@@ -296,7 +296,7 @@ def not_depend_tensor_while(x):
 
     return x
 
-print(to_static(not_depend_tensor_while).code)
+print(to_static(not_depend_tensor_while, full_graph=True).code)
 """
 def not_depend_tensor_while(x):
     a = 1
@@ -332,7 +332,7 @@ def depend_tensor_while(x):
 
     return x
 
-print(to_static(depend_tensor_while).code)
+print(to_static(depend_tensor_while, full_graph=True).code)
 """
 def depend_tensor_while(x):
     bs = paddle.shape(x)[0]
