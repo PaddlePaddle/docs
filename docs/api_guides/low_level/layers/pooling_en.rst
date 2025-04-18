@@ -34,7 +34,7 @@ PaddlePaddle has two-dimensional (pool2d), three-dimensional convolution (pool3d
 
 - ``data_format`` : It represents the format of the input and output data, which can be either ``NCHW`` or ``NHWC``.
 
-- ``return_mask`` : It indicates whether to return the max indices and the output.
+- ``return_mask`` : It indicates whether to return the max indices and the output (This parameter is only supported in the max pooling operation.).
 
 related API:
 
@@ -51,7 +51,7 @@ related API:
 
 -  ``x`` : The input feature map, with a shape of (N, C, H, W).
 
-- ``boxes`` : It receives ``DenseTensor`` type to indicate the Regions of Interest that needs to be pooled. For an explanation of RoI, please refer to `Paper <https://arxiv.org/abs/1506.01497>`__
+- ``boxes`` : It receives ``Tensor`` type to indicate the Regions of Interest that needs to be pooled. For an explanation of RoI, please refer to `Paper <https://arxiv.org/abs/1506.01497>`__
 
 -  ``boxes_num`` : The number of boxes contained in each image of the batch.
 

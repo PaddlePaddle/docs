@@ -34,7 +34,7 @@ PaddlePaddle 中有针对定长图像特征的二维(pool2d)、三维卷积(pool
 
 -  ``data_format``\ : 输入和输出的数据格式，可以是\ ``NCHW``\和\ ``NHWC``\。
 
--  ``return_mask``\ : 是否返回最大索引和输出。
+-  ``return_mask``\ : 是否返回最大索引和输出（仅在最大值池化操作中支持此参数）。
 
 API 汇总：
 
@@ -51,7 +51,7 @@ API 汇总：
 
 -  ``x``\ : 输入的特征图，形状为(N, C, H, W)。
 
--  ``boxes``\ : 接收\ ``DenseTensor``\ 类型来表示需要池化的 Regions of Interest，关于 RoI 的解释请参考\ `论文 <https://arxiv.org/abs/1506.01497>`__
+-  ``boxes``\ : 接收\ ``Tensor``\ 类型来表示需要池化的 Regions of Interest，关于 RoI 的解释请参考\ `论文 <https://arxiv.org/abs/1506.01497>`__
 
 -  ``boxes_num``\ : 该批次中每张图所包含的框数量。
 
