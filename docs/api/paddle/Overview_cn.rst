@@ -200,6 +200,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.add_ <cn_api_paddle_add_>` ", "Inplace 版本的 add API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.addmm_ <cn_api_paddle_addmm_>` ", "Inplace 版本的 addmm API，对输入 input 采用 Inplace 策略"
     " :ref:`paddle.put_along_axis_ <cn_api_paddle_put_along_axis_>` ", "Inplace 版本的 put_along_axis API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.cauchy_ <cn_api_paddle_cauchy_>` ", "直接修改输入 x，将所有元素替换为从柯西分布中随机采样的数值"
     " :ref:`paddle.ceil_ <cn_api_paddle_ceil_>` ", "Inplace 版本的 ceil API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.clip_ <cn_api_paddle_clip_>` ", "Inplace 版本的 clip API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.copysign_ <cn_api_paddle_copysign_>` ", "Inplace 版本的 copysign API，对输入 x 采用 Inplace 策略"
@@ -249,11 +250,17 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.less_than_ <cn_api_paddle_less_than_>` ", "Inplace 版本的 less_than API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.lgamma_ <cn_api_paddle_lgamma_>` ", "Inplace 版本的 lgamma API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.log_normal_ <cn_api_paddle_log_normal_>` ", "Inplace 版本的 log_normal API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.logical_or_ <cn_api_paddle_logical_or_>` ", "Inplace 版本的 logical_or API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.log_ <cn_api_paddle_log_>` ", "Inplace 版本的 log API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.log10_ <cn_api_paddle_log10_>` ", "Inplace 版本的 log10 API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.log2_ <cn_api_paddle_log2_>` ", "Inplace 版本的 log2 API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.logical_and_ <cn_api_paddle_logical_and_>` ", "Inplace 版本的 logical_and API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.normal_ <cn_api_paddle_normal_>` ", "Inplace 版本的 normal API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.neg_ <cn_api_paddle_neg_>` ", "Inplace 版本的 neg API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nan_to_num_ <cn_api_paddle_nan_to_num_>` ", "Inplace 版本的 nan_to_num API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.i0_ <cn_api_paddle_i0_>` ", "Inplace 版本的 i0 API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.lcm_ <cn_api_paddle_lcm_>` ", "Inplace 版本的 lcm API，对输入 x 采用 Inplace 策略"
+
 
 
 
