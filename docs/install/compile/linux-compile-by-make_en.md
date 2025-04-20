@@ -175,7 +175,7 @@ apt install patchelf
 ```
 - Install compilation dependencies
 ```
-pip3.10 install -r /paddle/requirements.txt
+pip3.10 install -r /paddle/python/requirements.txt
 ```
 
 #### 9. Execute cmake:

@@ -48,3 +48,5 @@ The following content describes the APIs related to the learning rate scheduler:
 * :code:`LinearLR`: Linear decay. That is, the learning rate will be firstly multiplied by start_factor and linearly increase to end learning rate. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_LinearLR`
 
 * :code:`CosineAnnealingWarmRestarts`: Cosine attenuation. It means the learning rate changes with the number of steps in the form of a cosine function. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_CosineAnnealingWarmRestarts`
+
+* :code:`LRScheduler`: Learning rate scheduling base class. All specific learning rate scheduling strategies inherit from this class. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_LRScheduler`

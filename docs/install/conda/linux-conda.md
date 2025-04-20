@@ -9,7 +9,7 @@
 
 #### 1.1.1 安装环境
 
-首先根据具体的 Python 版本创建 Anaconda 虚拟环境，PaddlePaddle 的 Anaconda 安装支持 3.8 - 3.12 版本的 Python 安装环境。
+首先根据具体的 Python 版本创建 Anaconda 虚拟环境，PaddlePaddle 的 Anaconda 安装支持 3.8 - 3.13 版本的 Python 安装环境。
 
 ```
 conda create -n paddle_env python=YOUR_PY_VER
@@ -90,7 +90,7 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
 如果您的计算机没有 NVIDIA® GPU，请安装 CPU 版的 PaddlePaddle
 
 ```
-conda install paddlepaddle==3.0.0rc1 -c paddle
+conda install paddlepaddle==3.0.0 -c paddle
 ```
 
 
@@ -100,13 +100,13 @@ conda install paddlepaddle==3.0.0rc1 -c paddle
 *  对于 `CUDA 11.8` 安装命令为:
 
   ```
-  conda install paddlepaddle-gpu==3.0.0rc1 paddlepaddle-cuda=11.8 -c paddle -c nvidia
+  conda install paddlepaddle-gpu==3.0.0 paddlepaddle-cuda=11.8 -c paddle -c nvidia
   ```
 
-*  对于 `CUDA 12.3` 安装命令为:
+*  对于 `CUDA 12.6` 安装命令为:
 
   ```
-  conda install paddlepaddle-gpu==3.0.0rc1 paddlepaddle-cuda=12.3 -c paddle -c nvidia
+  conda install paddlepaddle-gpu==3.0.0 paddlepaddle-cuda=12.6 -c paddle -c nvidia
   ```
 
 
