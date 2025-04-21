@@ -202,7 +202,6 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.add_ <cn_api_paddle_add_>` ", "Inplace 版本的 add API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.addmm_ <cn_api_paddle_addmm_>` ", "Inplace 版本的 addmm API，对输入 input 采用 Inplace 策略"
     " :ref:`paddle.put_along_axis_ <cn_api_paddle_put_along_axis_>` ", "Inplace 版本的 put_along_axis API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.cast_ <cn_api_paddle_cast_>` ", "Inplace 版本的 cast API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.cauchy_ <cn_api_paddle_cauchy_>` ", "直接修改输入 x，将所有元素替换为从柯西分布中随机采样的数值"
     " :ref:`paddle.ceil_ <cn_api_paddle_ceil_>` ", "Inplace 版本的 ceil API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.clip_ <cn_api_paddle_clip_>` ", "Inplace 版本的 clip API，对输入 x 采用 Inplace 策略"
@@ -548,6 +547,7 @@ tensor 元素操作相关原位（inplace）版本
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`paddle.cast_ <cn_api_paddle_cast_>` ", "Inplace 版本的 cast API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.index_add_ <cn_api_paddle_index_add_>` ", "Inplace 版本的 :ref:`cn_api_paddle_index_add` API，对输入 `x` 采用 Inplace 策略"
     " :ref:`paddle.index_put_ <cn_api_paddle_index_put_>` ", "依据索引 ``indices`` ，将指定位置的 ``x`` 重新赋值为 ``value`` "
     " :ref:`paddle.reshape_ <cn_api_paddle_reshape_>` ", "Inplace 版本的 reshape API，对输入 x 采用 Inplace 策略"
