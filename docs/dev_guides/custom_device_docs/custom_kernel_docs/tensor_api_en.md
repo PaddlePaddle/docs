@@ -186,5 +186,5 @@ All element data of `DenseTensor` are stored in contiguous memory, and you can r
 - `DDim`：Please refer to [ddim.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/ddim.h)
 - `LoD`：Please refer to [lod_utils.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/lod_utils.h)
 - `DataType`：Please refer to [data_type.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/data_type.h)
-- `DataLayout`：Please refer to [layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/layout.h)
+- `DataLayout`：Please refer to [layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/common/layout.h)
 - `Place`：Please refer to [place.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/place.h)
