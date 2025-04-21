@@ -79,7 +79,6 @@ Executor 相关 API
     " :ref:`sequence_expand <cn_api_paddle_static_nn_sequence_expand>` ", "仅支持带有 LoD 信息的 Tensor，根据输入 y 的第 ref_level 层 lod 对输入 x 进行扩展"
     " :ref:`sequence_first_step <cn_api_paddle_static_nn_sequence_first_step>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor，在最后一层 lod_level 上，选取其每个序列的第一个时间步的特征向量作为池化后的输出向量"
     " :ref:`sequence_last_step <cn_api_paddle_static_nn_sequence_last_step>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor，在最后一层 lod_level 上，选取其每个序列的最后一个时间步的特征向量作为池化后的输出向量"
-    " :ref:`sequence_pad <cn_api_paddle_static_nn_sequence_pad>` ", "仅支持带有 LoD 信息的 Tensor，将同一 batch 中的序列填充到一个一致的长度（由 maxlen 指定）"
     " :ref:`sequence_pool <cn_api_paddle_static_nn_sequence_pool>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor 进行指定方式的池化操作"
     " :ref:`sequence_reshape <cn_api_paddle_static_nn_sequence_reshape>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor 进行指定方式的变形操作"
     " :ref:`sequence_reverse <cn_api_paddle_static_nn_sequence_reverse>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor，在每个序列上进行反转"
@@ -122,7 +121,6 @@ io 相关 API
     " :ref:`Print <cn_api_paddle_static_Print>` ", "打印正在访问的变量内容"
     " :ref:`Variable <cn_api_paddle_static_Variable>` ", "创建参数"
     " :ref:`WeightNormParamAttr <cn_api_paddle_static_WeightNormParamAttr>` ", "权重归一化类"
-    " :ref:`sequence_scatter <cn_api_paddle_static_nn_sequence_scatter>` ", "仅支持 LoDTensor,根据 index 提供的位置将 updates 中的信息更新到输出中"
     " :ref:`sequence_unpad <cn_api_paddle_static_nn_sequence_unpad>` ", "仅支持 LoDTensor ，根据 length 的信息，将 input 中 padding 元素移除，并且返回一个 LoDTensor"
 .. _about_device:
 
