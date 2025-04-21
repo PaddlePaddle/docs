@@ -251,6 +251,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.lgamma_ <cn_api_paddle_lgamma_>` ", "Inplace 版本的 lgamma API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.log_normal_ <cn_api_paddle_log_normal_>` ", "Inplace 版本的 log_normal API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.logical_or_ <cn_api_paddle_logical_or_>` ", "Inplace 版本的 logical_or API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.logical_not_ <cn_api_paddle_logical_not_>` ", "Inplace 版本的 logical_not API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.log_ <cn_api_paddle_log_>` ", "Inplace 版本的 log API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.log10_ <cn_api_paddle_log10_>` ", "Inplace 版本的 log10 API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.log2_ <cn_api_paddle_log2_>` ", "Inplace 版本的 log2 API，对输入 x 采用 Inplace 策略"
