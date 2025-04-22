@@ -751,8 +751,8 @@ opt = paddle.optimizer.AdamW(learning_rate=0.001, parameters=model.parameters())
 opt = dist.shard_optimizer(opt)
 
 # 在模型训练阶段开始前加载
-dist.save_state_dict(model.state_dict(), './ckpt/model')
-dist.save_state_dict(opt.state_dict(), './ckpt/opt')
+dist.load_state_dict(model.state_dict(), './ckpt/model')
+dist.load_state_dict(opt.state_dict(), './ckpt/opt')
 
 for step, inputs in enumerate(dataloader):
     data = inputs
