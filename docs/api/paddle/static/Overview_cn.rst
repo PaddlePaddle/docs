@@ -68,24 +68,18 @@ Executor 相关 API
     " :ref:`group_norm <cn_api_paddle_static_nn_group_norm>` ", "Group Normalization 方法"
     " :ref:`instance_norm <cn_api_paddle_static_nn_instance_norm>` ", "Instance Normalization 方法"
     " :ref:`layer_norm <cn_api_paddle_static_nn_layer_norm>` ", "Layer Normalization 方法"
-    " :ref:`multi_box_head <cn_api_paddle_static_nn_multi_box_head>` ", "SSD 检测头 "
     " :ref:`nce <cn_api_paddle_static_nn_nce>` ", "计算并返回噪音对比估计损失"
     " :ref:`prelu <cn_api_paddle_static_nn_prelu>` ", "prelu 激活函数"
     " :ref:`row_conv <cn_api_paddle_static_nn_row_conv>` ", "行卷积"
     " :ref:`spectral_norm <cn_api_paddle_static_nn_spectral_norm>` ", "Spectral Normalization 方法"
     " :ref:`switch_case <cn_api_paddle_static_nn_switch_case>` ", "类似于 c++的 switch/case"
-    " :ref:`sequence_concat <cn_api_paddle_static_nn_sequence_concat>` ", "仅支持带有 LoD 信息的 Tensor ，通过 Tensor 的 LoD 信息将输入的多个 Tensor 进行连接，输出连接后的 Tensor"
     " :ref:`sequence_conv <cn_api_paddle_static_nn_sequence_conv>` ", "仅支持带有 LoD 信息的 Tensor，在给定的卷积参数下，对输入的变长序列 Tensor 进行卷积操作"
-    " :ref:`sequence_enumerate <cn_api_paddle_static_nn_sequence_enumerate>` ", "仅支持带有 LoD 信息的 Tensor，枚举形状为 [d_1, 1] 的输入序列所有长度为 win_size 的子序列，生成一个形状为 [d_1, win_size] 的新序列，需要时以 pad_value 填充"
     " :ref:`sequence_expand <cn_api_paddle_static_nn_sequence_expand>` ", "仅支持带有 LoD 信息的 Tensor，根据输入 y 的第 ref_level 层 lod 对输入 x 进行扩展"
-    " :ref:`sequence_expand_as <cn_api_paddle_static_nn_sequence_expand_as>` ", "仅支持带有 LoD 信息的 Tensor，根据输入 y 的第 0 级 lod 对输入 x 进行扩展"
     " :ref:`sequence_first_step <cn_api_paddle_static_nn_sequence_first_step>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor，在最后一层 lod_level 上，选取其每个序列的第一个时间步的特征向量作为池化后的输出向量"
     " :ref:`sequence_last_step <cn_api_paddle_static_nn_sequence_last_step>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor，在最后一层 lod_level 上，选取其每个序列的最后一个时间步的特征向量作为池化后的输出向量"
-    " :ref:`sequence_pad <cn_api_paddle_static_nn_sequence_pad>` ", "仅支持带有 LoD 信息的 Tensor，将同一 batch 中的序列填充到一个一致的长度（由 maxlen 指定）"
     " :ref:`sequence_pool <cn_api_paddle_static_nn_sequence_pool>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor 进行指定方式的池化操作"
     " :ref:`sequence_reshape <cn_api_paddle_static_nn_sequence_reshape>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor 进行指定方式的变形操作"
     " :ref:`sequence_reverse <cn_api_paddle_static_nn_sequence_reverse>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor，在每个序列上进行反转"
-    " :ref:`sequence_slice <cn_api_paddle_static_nn_sequence_slice>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor，实现序列切片运算"
     " :ref:`sequence_softmax <cn_api_paddle_static_nn_sequence_softmax>` ", "仅支持带有 LoD 信息的 Tensor，根据 Tensor 信息将输入的第 0 维度进行划分，在划分的每一个区间内部进行运算"
 
 .. _about_io:
@@ -124,8 +118,7 @@ io 相关 API
     " :ref:`Print <cn_api_paddle_static_Print>` ", "打印正在访问的变量内容"
     " :ref:`Variable <cn_api_paddle_static_Variable>` ", "创建参数"
     " :ref:`WeightNormParamAttr <cn_api_paddle_static_WeightNormParamAttr>` ", "权重归一化类"
-    " :ref:`sequence_scatter <cn_api_paddle_static_nn_sequence_scatter>` ", "仅支持 LoDTensor,根据 index 提供的位置将 updates 中的信息更新到输出中"
-    " :ref:`sequence_unpad <cn_api_paddle_static_nn_sequence_unpad>` ", "仅支持 LoDTensor ，根据 length 的信息，将 input 中 padding 元素移除，并且返回一个 LoDTensor"
+
 .. _about_device:
 
 运行设备相关 API
