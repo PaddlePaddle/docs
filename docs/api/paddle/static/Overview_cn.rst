@@ -81,7 +81,6 @@ Executor 相关 API
     " :ref:`sequence_pool <cn_api_paddle_static_nn_sequence_pool>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor 进行指定方式的池化操作"
     " :ref:`sequence_reshape <cn_api_paddle_static_nn_sequence_reshape>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor 进行指定方式的变形操作"
     " :ref:`sequence_reverse <cn_api_paddle_static_nn_sequence_reverse>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor，在每个序列上进行反转"
-    " :ref:`sequence_slice <cn_api_paddle_static_nn_sequence_slice>` ", "仅支持带有 LoD 信息的 Tensor，对输入的 Tensor，实现序列切片运算"
     " :ref:`sequence_softmax <cn_api_paddle_static_nn_sequence_softmax>` ", "仅支持带有 LoD 信息的 Tensor，根据 Tensor 信息将输入的第 0 维度进行划分，在划分的每一个区间内部进行运算"
 
 .. _about_io:
@@ -121,7 +120,6 @@ io 相关 API
     " :ref:`Variable <cn_api_paddle_static_Variable>` ", "创建参数"
     " :ref:`WeightNormParamAttr <cn_api_paddle_static_WeightNormParamAttr>` ", "权重归一化类"
     " :ref:`sequence_scatter <cn_api_paddle_static_nn_sequence_scatter>` ", "仅支持 LoDTensor,根据 index 提供的位置将 updates 中的信息更新到输出中"
-    " :ref:`sequence_unpad <cn_api_paddle_static_nn_sequence_unpad>` ", "仅支持 LoDTensor ，根据 length 的信息，将 input 中 padding 元素移除，并且返回一个 LoDTensor"
 .. _about_device:
 
 运行设备相关 API
