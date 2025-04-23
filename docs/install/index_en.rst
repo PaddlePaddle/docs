@@ -69,28 +69,33 @@ This section will introduce the installation method using pip.
 4.Check the Python version
 
     Use the following command to confirm it is 3.8/3.9/3.10/3.11/3.12/3.13
+
     ::
         python --version
 
 5.Check the pip version, confirm it is 20.2.2+
+
   ::
       python -m ensurepip
       python -m pip --version
 
 6.Confirm that Python and pip are 64 bit, and the processor architecture is x86_64 (also known as x64, Intel 64, AMD64). The first line of the following output is "64bit", and the second line output is "x86_64", "x64" or "AMD64":
+
   ::
       python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 
 7.If you want to use pip <https://pypi.org/project/pip/>_ to install PaddlePaddle, you can directly use the following command:
+
     Note:
+
       * If you want to install paddlepaddle, the version requires libstdc++.so.6 version greater than 3.4.25. To meet this requirement, you can choose to install GCC 8 or a higher GCC version, or upgrade the libstdc++ library separately. *
 
-      (1). **CPU version**: If you just want to install the CPU version, please refer to the following command for installation
+      (1). **CPU version** : If you just want to install the CPU version, please refer to the following command for installation
           The command to install the CPU version is:
           ::
               python -m pip install --pre paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
 
-      (2). GPU version: If you want to use the GPU version, please refer to the following command for installation
+      (2). **GPU version** : If you want to use the GPU version, please refer to the following command for installation
           The command to install the GPU cuda12.6 version is:
           ::
               python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu126/
@@ -124,13 +129,9 @@ This section will introduce the installation method using pip.
 ..  toctree::
     :hidden:
 
-    pip/frompip.rst
-    conda/fromconda.rst
-    docker/fromdocker.rst
-    compile/fromsource.rst
-    install_xpu_cn.md
-    install_dcu_cn.md
-    install_npu_cn.md
-    install_mlu_cn.md
-    install_NGC_PaddlePaddle_ch.rst
-    Tables.md
+    pip/frompip_en.rst
+    conda/fromconda_en.rst
+    docker/fromdocker_en.rst
+    compile/fromsource_en.rst
+    install_NGC_PaddlePaddle_en.rst
+    Tables_en.md
