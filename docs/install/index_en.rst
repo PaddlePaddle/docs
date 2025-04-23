@@ -71,17 +71,20 @@ This section will introduce the installation method using pip.
     Use the following command to confirm it is 3.8/3.9/3.10/3.11/3.12/3.13
 
     ::
+
         python --version
 
 5.Check the pip version, confirm it is 20.2.2+
 
     ::
+
         python -m ensurepip
         python -m pip --version
 
 6.Confirm that Python and pip are 64 bit, and the processor architecture is x86_64 (also known as x64, Intel 64, AMD64). The first line of the following output is "64bit", and the second line output is "x86_64", "x64" or "AMD64":
 
     ::
+
         python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 
 7.If you want to use pip <https://pypi.org/project/pip/>_ to install PaddlePaddle, you can directly use the following command:
