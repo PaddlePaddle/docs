@@ -51,8 +51,5 @@ tuple(paddle.ones([10, 20, 30]).shape).index(30, 1)
 torch.ones(10, 20, 30).size().numel()
 
 # Paddle 写法
-result = tuple(paddle.ones([10, 20, 30]).shape)
-out = 1
-for x in result:
-    out *= x
+paddle.ones([10, 20, 30]).numel().item()
 ```

@@ -16,13 +16,13 @@ Paddle 无此 API，需要组合实现。
 
 ```python
 # PyTorch 写法
-torch.device('cuda', 0)
+torch.device(type='cuda', index=0)
 
 # Paddle 写法
 'gpu:0'
 
 # PyTorch 写法
-torch.device('cpu')
+torch.device(type='cpu')
 
 # Paddle 写法
 'cpu'
