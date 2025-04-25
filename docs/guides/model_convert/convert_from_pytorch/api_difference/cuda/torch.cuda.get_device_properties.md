@@ -34,4 +34,10 @@ torch.cuda.get_device_properties(2)
 
 # Paddle 写法
 paddle.device.cuda.get_device_properties(device='gpu:2')
+
+# PyTorch 写法
+torch.cuda.get_device_properties()
+
+# Paddle 写法
+paddle.device.cuda.get_device_properties()
 ```
