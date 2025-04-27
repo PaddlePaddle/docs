@@ -1,4 +1,4 @@
-## [ 输入参数用法不一致 ]torch.cuda.synchronize
+## [ 输入参数类型不一致 ]torch.cuda.synchronize
 
 ### [torch.cuda.synchronize](https://pytorch.org/docs/stable/generated/torch.cuda.synchronize.html#torch.cuda.synchronize)
 
@@ -12,7 +12,7 @@ torch.cuda.synchronize(device)
 paddle.device.cuda.synchronize(device)
 ```
 
-功能一致，输入参数用法不一致，具体如下：
+两者功能一致但参数类型不一致，具体如下：
 
 ### 参数映射
 
@@ -34,5 +34,5 @@ paddle.device.cuda.synchronize('gpu:0')
 torch.cuda.synchronize(2)
 
 # Paddle 写法
-paddle.device.cuda.synchronize(device='gpu:2')
+paddle.device.cuda.synchronize('gpu:2')
 ```

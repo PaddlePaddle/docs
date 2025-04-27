@@ -34,5 +34,5 @@ paddle.set_device('gpu:0')
 torch.cuda.set_device(2)
 
 # Paddle 写法
-paddle.set_device(device='gpu:2')
+paddle.set_device('gpu:2')
 ```

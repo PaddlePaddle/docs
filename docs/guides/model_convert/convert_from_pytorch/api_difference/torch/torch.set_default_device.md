@@ -34,7 +34,7 @@ paddle.set_device('gpu:0')
 torch.set_default_device(2)
 
 # Paddle 写法
-paddle.set_device(device='gpu:2')
+paddle.set_device('gpu:2')
 
 # PyTorch 写法
 torch.set_default_device("cpu")

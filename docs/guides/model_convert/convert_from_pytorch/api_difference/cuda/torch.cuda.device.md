@@ -35,6 +35,6 @@ paddle.device._convert_to_place('gpu:0')
 torch.cuda.device(2)
 
 # Paddle 写法
-paddle.device._convert_to_place(device='gpu:2')
+paddle.device._convert_to_place('gpu:2')
 
 ```

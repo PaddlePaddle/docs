@@ -32,7 +32,7 @@ paddle.Tensor.cuda(device_id=None, blocking=False)
 tensor.cuda(non_blocking=True)
 
 # Paddle 写法
-tensor.cuda(non_blocking=False)
+tensor.cuda(blocking=False)
 ```
 
 #### device: 目标 GPU 设备

@@ -25,7 +25,7 @@ paddle.set_device(device)
 
 ```python
 # PyTorch 写法
-torch.cpu.set_device(device='cpu:0')
+torch.cpu.set_device('cpu:0')
 
 # Paddle 写法
 paddle.set_device('cpu')
