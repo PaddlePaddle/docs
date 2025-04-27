@@ -799,11 +799,9 @@
 | NOT-IMPLEMENTED-ITEM(`torch.SymBool`, https://pytorch.org/docs/stable/torch.html#torch.SymBool, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.SymFloat`, https://pytorch.org/docs/stable/torch.html#torch.SymFloat, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.SymInt`, https://pytorch.org/docs/stable/torch.html#torch.SymInt, 可新增，且框架底层有相关设计，成本低) |
-| NOT-IMPLEMENTED-ITEM(`torch.cpu.current_device`, https://pytorch.org/docs/stable/generated/torch.cpu.current_device.html#torch-cpu-current-device, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.cpu.current_stream`, https://pytorch.org/docs/stable/generated/torch.cpu.current_stream.html#torch.cpu.current_stream, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.cpu.device_count`, https://pytorch.org/docs/stable/generated/torch.cpu.device_count.html#torch-cpu-device-count, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.cpu.is_available`, https://pytorch.org/docs/stable/generated/torch.cpu.is_available.html#torch-cpu-is-available, 可新增，但框架底层无相关设计，成本高) |
-| NOT-IMPLEMENTED-ITEM(`torch.cpu.set_device`, https://pytorch.org/docs/stable/generated/torch.cpu.set_device.html#torch-cpu-set-device, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.cpu.stream`, https://pytorch.org/docs/stable/generated/torch.cpu.stream.html#torch-cpu-stream, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.cpu.Stream`, https://pytorch.org/docs/stable/generated/torch.cpu.Stream.html#torch.cpu.Stream, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.cpu.StreamContext`, https://pytorch.org/docs/stable/generated/torch.cpu.StreamContext.html#torch.cpu.StreamContext, 可新增，但框架底层无相关设计，成本高) |

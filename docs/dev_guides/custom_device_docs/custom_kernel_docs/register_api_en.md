@@ -20,7 +20,7 @@ Explanation：
 - Name of the macro：`PD_REGISTER_PLUGIN_KERNEL`
 - First parameter：kernel_name，which is the same both inside and outside. You can refer to registration names of the same kernel functions of CPU, such as `softmax`.
 - Second parameter：backend，which can be customized. But its name must be the same as that of the custom runtime, such as `Ascend910`.
-- Third parameter：layout，the enumeration of `DataLayout`. For the setting, please refer to [layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/layout.h)
+- Third parameter：layout，the enumeration of `DataLayout`. For the setting, please refer to [layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/common/layout.h)
 - Fourth parameter：meta_kernel_fn，the name of a kernel function. Here, the template parameter is not included, such as `my_namespace::SoftmaxKernel`.
 - Variable-length data type parameter: includes basic C++ data types or types defined by PaddlePaddle like `phi::dtype::float16`、`phi::dtype::bfloat16`、`phi::dtype::complex`. You can refer to [data_type.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/data_type.h)
 - End：the function body. You can set the kernel if necessary. If not, keep `{}`.
