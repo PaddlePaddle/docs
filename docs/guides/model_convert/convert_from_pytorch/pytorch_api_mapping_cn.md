@@ -1048,22 +1048,20 @@
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.get_global_rank`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_process_group_ranks, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.set_deterministic_debug_mode`, https://pytorch.org/docs/stable/generated/torch.set_deterministic_debug_mode.html#torch-set-deterministic-debug-mode, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.get_deterministic_debug_mode`, https://pytorch.org/docs/stable/generated/torch.get_deterministic_debug_mode.html#torch-get-deterministic-debug-mode, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.autograd.graph.Node.name`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.name.html#torch-autograd-graph-node-name, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.autograd.graph.Node.metadata`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.metadata.html#torch-autograd-graph-node-metadata, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.autograd.graph.Node.next_functions`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.next_functions.html#torch-autograd-graph-node-next-functions, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.autograd.graph.Node.register_hook`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.register_hook.html#torch-autograd-graph-node-register-hook, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.autograd.graph.Node.register_prehook`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.register_prehook.html#torch-autograd-graph-node-register-prehook, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.cuda.OutOfMemoryError`, https://pytorch.org/docs/stable/generated/torch.cuda.OutOfMemoryError.html#torch-cuda-outofmemoryerror, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.backends.cpu.get_cpu_capability`, https://pytorch.org/docs/stable/backends.html#torch.backends.cpu.get_cpu_capability, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.get_process_group_ranks`, https://pytorch.org/docs/stable/backends.html#torch.backends.cpu.get_cpu_capability, 可新增，且框架底层有相关设计，成本低) |
 
 ## <span id="id26">映射关系开发中的 API 列表</span>
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | IN-DEVELOPMENT-PATTERN(`torch.utils.tensorboard.writer.SummaryWriter`, https://pytorch.org/docs/stable/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_log10`, https://pytorch.org/docs/stable/generated/torch._foreach_log10.html#torch-foreach-log10) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_log10_`, https://pytorch.org/docs/stable/generated/torch._foreach_log10_.html#torch-foreach-log10) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_log1p`, https://pytorch.org/docs/stable/generated/torch._foreach_log1p.html#torch-foreach-log1p) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_log1p_`, https://pytorch.org/docs/stable/generated/torch._foreach_log1p_.html#torch-foreach-log1p) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_log2`, https://pytorch.org/docs/stable/generated/torch._foreach_log2.html#torch-foreach-log2) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_log2_`, https://pytorch.org/docs/stable/generated/torch._foreach_log2_.html#torch-foreach-log2) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_neg`, https://pytorch.org/docs/stable/generated/torch._foreach_neg.html#torch-foreach-neg) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_neg_`, https://pytorch.org/docs/stable/generated/torch._foreach_neg_.html#torch-foreach-neg) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_tan`, https://pytorch.org/docs/stable/generated/torch._foreach_tan.html#torch-foreach-tan) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_tan_`, https://pytorch.org/docs/stable/generated/torch._foreach_tan_.html#torch-foreach-tan) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_sin`, https://pytorch.org/docs/stable/generated/torch._foreach_sin.html#torch-foreach-sin) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_sin_`, https://pytorch.org/docs/stable/generated/torch._foreach_sin_.html#torch-foreach-sin) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_sinh`, https://pytorch.org/docs/stable/generated/torch._foreach_sinh.html#torch-foreach-sinh) |
@@ -1083,15 +1081,6 @@
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_trunc`, https://pytorch.org/docs/stable/generated/torch._foreach_trunc.html#torch-foreach-trunc) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_trunc_`, https://pytorch.org/docs/stable/generated/torch._foreach_trunc_.html#torch-foreach-trunc) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_zero_`, https://pytorch.org/docs/stable/generated/torch._foreach_zero_.html#torch-foreach-zero) |
-| IN-DEVELOPMENT-PATTERN(`torch.autograd.graph.Node.name`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.name.html#torch-autograd-graph-node-name) |
-| IN-DEVELOPMENT-PATTERN(`torch.autograd.graph.Node.metadata`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.metadata.html#torch-autograd-graph-node-metadata) |
-| IN-DEVELOPMENT-PATTERN(`torch.autograd.graph.Node.next_functions`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.next_functions.html#torch-autograd-graph-node-next-functions) |
-| IN-DEVELOPMENT-PATTERN(`torch.autograd.graph.Node.register_hook`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.register_hook.html#torch-autograd-graph-node-register-hook) |
-| IN-DEVELOPMENT-PATTERN(`torch.autograd.graph.Node.register_prehook`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.register_prehook.html#torch-autograd-graph-node-register-prehook) |
-| IN-DEVELOPMENT-PATTERN(`torch.cuda.OutOfMemoryError`, https://pytorch.org/docs/stable/generated/torch.cuda.OutOfMemoryError.html#torch-cuda-outofmemoryerror) |
-| IN-DEVELOPMENT-PATTERN(`torch.backends.cpu.get_cpu_capability`, https://pytorch.org/docs/stable/backends.html#torch.backends.cpu.get_cpu_capability) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributed.get_process_group_ranks`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_process_group_ranks) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributed.batch_isend_irecv`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.batch_isend_irecv) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributed.all_gather_into_tensor`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_gather_into_tensor) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributed.reduce_scatter_tensor`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_scatter_tensor) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributed.all_to_all_single`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_to_all_single) |
