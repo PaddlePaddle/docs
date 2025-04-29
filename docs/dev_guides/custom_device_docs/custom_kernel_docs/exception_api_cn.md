@@ -59,4 +59,4 @@ PADDLE_ENFORCE_EQ(
 ## 相关内容
 
 - `PADDLE_ENFORCE`：请参照[enforce.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/enforce.h)
-- `errors`：请参照[errors.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/errors.h)
+- `errors`：请参照[errors.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/common/errors.h)

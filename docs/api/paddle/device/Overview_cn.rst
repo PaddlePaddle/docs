@@ -45,7 +45,6 @@ paddle.device 目录下包含 cuda 目录， cuda 目录中存放 CUDA 相关的
     " :ref:`is_compiled_with_cuda <cn_api_paddle_device_is_compiled_with_cuda>` ", "检查 ``whl`` 包是否可以被用来在 GPU 上运行模型"
     " :ref:`is_compiled_with_custom_device <cn_api_paddle_device_is_compiled_with_custom_device>` ", "检查 ``whl`` 包是否可以被用来在指定类型的自定义新硬件上运行模型"
     " :ref:`is_compiled_with_ipu <cn_api_paddle_device_is_compiled_with_ipu>` ", "检查 ``whl`` 包是否可以被用来在 Graphcore IPU 上运行模型"
-    " :ref:`is_compiled_with_npu <cn_api_paddle_device_is_compiled_with_npu>` ", "检查 ``whl`` 包是否可以被用来在 NPU 上运行模型"
     " :ref:`is_compiled_with_rocm <cn_api_paddle_device_is_compiled_with_rocm>` ", "检查 ``whl`` 包是否可以被用来在 AMD 或海光 GPU(ROCm) 上运行模型"
     " :ref:`is_compiled_with_xpu <cn_api_paddle_device_is_compiled_with_xpu>` ", "检查 ``whl`` 包是否可以被用来在 Baidu Kunlun XPU 上运行模型"
 
@@ -59,7 +58,6 @@ paddle.device 目录下包含 cuda 目录， cuda 目录中存放 CUDA 相关的
     :widths: 10, 30
 
     " :ref:`IPUPlace <cn_api_paddle_device_IPUPlace>` ", "``IPUPlace`` 是一个设备描述符，指定 ``IPUPlace`` 则模型将会运行在该设备上"
-    " :ref:`MLUPlace <cn_api_paddle_device_MLUPlace>` ", "``MLUPlace`` 是一个设备描述符，指定 ``MLUPlace`` 则模型将会运行在该设备上"
     " :ref:`XPUPlace <cn_api_paddle_device_XPUPlace>` ", "``XPUPlace`` 是一个设备描述符，表示一个分配或将要分配 ``Tensor`` 的 Baidu Kunlun XPU 设备"
 
 .. _cn_device_stream_event:

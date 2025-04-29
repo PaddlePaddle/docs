@@ -6,10 +6,10 @@
 torch.cuda.device(device)
 ```
 
-### [paddle.CUDAPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/CUDAPlace_cn.html)
+### [paddle.device._convert_to_place](https://github.com/PaddlePaddle/Paddle/blob/c8ccc9b154632ef41ade1b8e97b87d54fde7e8f8/python/paddle/device/__init__.py#L174)
 
 ```python
-paddle.CUDAPlace(id)
+paddle.device._convert_to_place(device)
 ```
 
 其中 PyTorch 与 Paddle 的参数支持类型不一致，具体如下：
@@ -18,23 +18,23 @@ paddle.CUDAPlace(id)
 
 | PyTorch | PaddlePaddle | 备注                                                                             |
 | ------- | ------------ | -------------------------------------------------------------------------------- |
-| device  | id           | GPU 的设备 ID, PyTorch 支持 torch.device 和 int，Paddle 支持 int，需要转写。 |
+| device  | device           | GPU 的设备 ID, PyTorch 支持 torch.device 和 int，Paddle 支持 str，需要转写。 |
 
 ### 转写示例
 
-#### device: 获取 device 参数，对其取 device.index 值
+#### device: 特定的运行设备
 
 ```python
 # PyTorch 写法
-torch.cuda.device(torch.device('cuda'))
+torch.cuda.device('cuda:0')
 
 # Paddle 写法
-paddle.CUDAPlace(0)
+paddle.device._convert_to_place('gpu:0')
 
-# 增加 index
 # PyTorch 写法
-torch.cuda.device(torch.device('cuda', index=index))
+torch.cuda.device(2)
 
 # Paddle 写法
-paddle.CUDAPlace(index)
+paddle.device._convert_to_place('gpu:2')
+
 ```

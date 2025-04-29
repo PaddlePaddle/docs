@@ -1,9 +1,9 @@
-## [无参数]torch.cuda.current_device
+## [ 无参数 ]torch.cpu.current_device
 
-### [torch.cuda.current_device](https://pytorch.org/docs/stable/generated/torch.cuda.current_device.html#torch.cuda.current_device)
+### [torch.cpu.current_device](https://pytorch.org/docs/stable/generated/torch.cpu.current_device.html)
 
 ```python
-torch.cuda.current_device()
+torch.cpu.current_device()
 ```
 
 ### [paddle.get_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/get_device_cn.html#get-device)

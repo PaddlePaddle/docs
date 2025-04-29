@@ -20,7 +20,7 @@ PD_REGISTER_PLUGIN_KERNEL(kernel_name, backend, layout, meta_kernel_fn, ...)) {}
 - 注册宏名称：固定为`PD_REGISTER_PLUGIN_KERNEL`
 - 第一个参数：kernel_name，即 Kernel 名称，飞桨内外一致，请参照 CPU 相同 Kernel 函数注册名称，如`softmax`
 - 第二个参数：backend，即后端名称，可自定义，但须与自定义 Runtime 设定的名称一致，如`Ascend910`
-- 第三个参数：layout，即内存布局，为`DataLayout`类型的枚举，按需设定，请参照[layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/layout.h)
+- 第三个参数：layout，即内存布局，为`DataLayout`类型的枚举，按需设定，请参照[layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/common/layout.h)
 - 第四个参数：meta_kernel_fn，即 Kernel 函数名，注意此处不加模板参数，如`my_namespace::SoftmaxKernel`
 - 不定长数据类型参数：C++的基础数据类型或飞桨定义的`phi::dtype::float16`、`phi::dtype::bfloat16`、`phi::dtype::complex`等类型，请参照[data_type.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/data_type.h)
 - 末尾：固定为函数体，其中可按需对 Kernel 进行必要设置，如果没有，保留`{}`。
