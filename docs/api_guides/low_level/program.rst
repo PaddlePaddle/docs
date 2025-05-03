@@ -1,128 +1,100 @@
-.. _api_guide_Program:
-
-#########
 基础概念
-#########
+=======
 
-==================
 Program
-==================
+-------
 
-:code:`Fluid` 中使用类似于编程语言的抽象语法树的形式描述用户的神经网络配置，用户对计算的描述都将写入一段 Program。Fluid 中的 Program 替代了传统框架中模型的概念，通过对顺序执行、条件选择和循环执行三种执行结构的支持，做到对任意复杂模型的描述。书写 :code:`Program` 的过程非常接近于写一段通用程序，如果您已经具有一定的编程经验，会很自然地将自己的知识迁移过来。
+:code:`Fluid` 使用类似编程语言的抽象语法树（AST）来描述神经网络配置，用户对计算的描述会被写入 :code:`Program` 中。在 Fluid 中，:code:`Program` 替代了传统框架中的“模型”概念。它通过三种执行结构：顺序执行、条件选择和循环执行，来表示复杂的模型。编写 :code:`Program` 类似于编写普通程序，如果你曾经编程过，你可以直接运用这些经验。
 
+总结：
 
-总得来说：
+- Fluid 中的模型是通过 :code:`Program` 表示的，一个 :code:`Program` 可以包含多个嵌套的 :code:`Program`。
+- :code:`Program` 由多个嵌套的 :code:`Block` 构成，:code:`Block` 的概念可以类比为 C++ 或 Java 中的一对大括号，或 Python 中的缩进块。
+- :code:`Block` 中的计算通过顺序执行、条件选择或循环执行三种方式进行，这三者共同构成复杂的计算逻辑。
+- :code:`Block` 包含计算描述和计算对象。计算的描述称为 Operator，计算对象（即 Operator 的输入和输出）统一表示为 Tensor。在 Fluid 中，Tensor 由 0 级 `LoD-Tensor <http://paddlepaddle.org/documentation/docs/zh/1.2/user_guides/howto/prepare_data/lod_tensor.html#permalink-4-lod-tensor>`_ 表示。
 
-* 一个模型是一个 Fluid :code:`Program` ,一个模型可以含有多于一个 :code:`Program` ；
-
-* :code:`Program` 由嵌套的 :code:`Block` 构成，:code:`Block` 的概念可以类比到 C++ 或是 Java 中的一对大括号，或是 Python 语言中的一个缩进块；
-
-* :code:`Block` 中的计算由顺序执行、条件选择或者循环执行三种方式组合，构成复杂的计算逻辑；
-
-* :code:`Block` 中包含对计算和计算对象的描述。计算的描述称之为 Operator；计算作用的对象（或者说 Operator 的输入和输出）被统一为 Tensor，在 Fluid 中，Tensor 用层级为 0 的 :ref:`Lod_Tensor  <cn_user_guide_lod_tensor>` 表示。
-
-
-
-.. _api_guide_Block:
-
-=========
 Block
-=========
+------
 
-:code:`Block` 是高级语言中变量作用域的概念，在编程语言中，Block 是一对大括号，其中包含局部变量定义和一系列指令或操作符。编程语言中的控制流结构 :code:`if-else` 和 :code:`for` 在深度学习中可以被等效为：
+:code:`Block` 是一个变量作用域的概念，类似于高级编程语言中的块结构。在编程语言中，块由一对大括号定义，包含局部变量定义和一系列指令或操作符。在深度学习中，控制流结构如编程语言中的 :code:`if-else` 和 :code:`for` 循环在 Fluid 中被映射为相应的操作符。
 
-+-----------------+--------------------+
-|    编程语言     |       Fluid        |
-+=================+====================+
-| for, while loop | RNN,WhileOP        |
-+-----------------+--------------------+
-| if-else, switch | IfElseOp, SwitchOp |
-+-----------------+--------------------+
-| 顺序执行        | 一系列 layers      |
-+-----------------+--------------------+
++----------------------+-------------------------+
+| 编程语言       | Fluid                      |
++----------------+----------------------------+
+| for、while 循环 | RNN、WhileOP               |
++----------------+----------------------------+
+| if-else、switch | IfElseOp、SwitchOp         |
++----------------+----------------------------+
+| 顺序执行       | 一系列的层                 |
++----------------+----------------------------+
 
-如上文所说，Fluid 中的 :code:`Block` 描述了一组以顺序、选择或是循环执行的 Operator 以及 Operator 操作的对象：Tensor。
+如上所述，Fluid 中的 :code:`Block` 定义了一组操作符，这些操作符包括顺序执行、条件选择和循环执行，操作对象则是 Tensor。
 
-
-
-
-=============
 Operator
-=============
+---------
 
-在 Fluid 中，所有对数据的操作都由 :code:`Operator` 表示，为了便于用户使用，在 Python 端，Fluid 中的 :code:`Operator` 被一步封装入 :code:`paddle.fluid.layers` ， :code:`paddle.fluid.nets` 等模块。
+在 Fluid 中，所有的数据操作都由 :code:`Operator` 表示。在 Python 中，这些 :code:`Operator` 被封装成模块，如 :code:`paddle.fluid.layers` 和 :code:`paddle.fluid.nets`。
 
-这是因为一些常见的对 Tensor 的操作可能是由更多基础操作构成，为了提高使用的便利性，框架内部对基础 Operator 进行了一些封装，包括创建 Operator 依赖可学习参数，可学习参数的初始化细节等，减少用户重复开发的成本。
+一些常见的 Tensor 操作可能由更基础的操作构成。为了简化开发，Fluid 内部对这些基础操作进行了封装，包括学习参数的创建、初始化等，从而减少了用户开发的工作量。
 
+更多详情请参考 `Fluid Design Idea <../../advanced_usage/design_idea/fluid_design_idea.html>`_。
 
-更多内容可参考阅读 `Fluid 设计思想 <../../advanced_usage/design_idea/fluid_design_idea.html>`_
-
-.. _api_guide_Variable:
-
-=========
 Variable
-=========
+--------
 
-Fluid 中的 :code:`Variable` 可以包含任何类型的值———在大多数情况下是一个 :ref:`Lod_Tensor <cn_user_guide_lod_tensor>` 。
+在 Fluid 中，:code:`Variable` 可以包含任何类型的值，在大多数情况下是 LoD-Tensor。
 
-模型中所有的可学习参数都以 :code:`Variable` 的形式保留在内存空间中，您在绝大多数情况下都不需要自己来创建网络中的可学习参数， Fluid 为几乎常见的神经网络基本计算模块都提供了封装。以最简单的全连接模型为例，调用 :code:`fluid.layers.fc` 会直接为全连接层创建连接权值( W )和偏置（ bias ）两个可学习参数，无需显示地调用 :code:`variable` 相关接口创建可学习参数。
+所有模型中的可学习参数都以 :code:`Variable` 形式存储在内存中。在大多数情况下，你不需要手动创建网络中的可学习参数。Fluid 提供了几乎所有常见的神经网络基本计算模块的封装。例如，在全连接层中，调用 :code:`fluid.layers.fc` 就会自动创建该层的两个可学习参数：连接权重（W）和偏置，而不需要显式调用 :code:`Variable` 接口来创建它们。
 
-.. _api_guide_Name:
-
-=========
 Name
-=========
+-----
 
-Fluid 中部分网络层里包含了 :code:`name` 参数，如 :ref:`cn_api_fluid_layers_fc` 。此 :code:`name` 一般用来作为网络层输出、权重的前缀标识，具体规则如下：
+在 Fluid 中，某些层包含 :code:`name` 参数，如 :ref:`api_fluid_layers_fc`。该 :code:`name` 参数通常用作网络层中输出和权重的前缀标识。命名规则如下：
 
-* 用于网络层输出的前缀标识。若网络层中指定了 :code:`name` 参数，Fluid 将以 ``name 值.tmp_数字`` 作为唯一标识对网络层输出进行命名；未指定 :code:`name` 参数时，则以 ``OP 名_数字.tmp_数字`` 的方式进行命名，其中的数字会自动递增，以区分同名 OP 下的不同网络层。
+- **输出层的前缀标识**：如果在层中指定了 :code:`name`，Fluid 会将输出命名为 ``nameValue.tmp_number``。如果未指定 :code:`name`，则会自动生成 ``OPName_number.tmp_number`` 来命名该层，其中的数字会自动递增，以区分同一个操作符下的不同网络层。
+- **权重或偏置变量的前缀标识**：如果权重和偏置变量是通过 ``param_attr`` 和 ``bias_attr`` 在操作符中创建的，如 :ref:`api_fluid_layers_embedding` 和 :ref:`api_fluid_layers_fc`，Fluid 会生成 ``prefix.w_number`` 或 ``prefix.b_number`` 作为唯一标识来命名它们，其中 ``prefix`` 是用户指定的 :code:`name` 或默认生成的 ``OPName_number``。如果在 ``param_attr`` 和 ``bias_attr`` 中指定了 :code:`name`，则不会自动生成 :code:`name`。具体示例代码如下。
 
-* 用于权重或偏置变量的前缀标识。若在网络层中通过 ``param_attr`` 和 ``bias_attr`` 创建了权重变量或偏置变量， 如 :ref:`cn_api_fluid_layers_embedding` 、 :ref:`cn_api_fluid_layers_fc` ，则 Fluid 会自动生成 ``前缀.w_数字`` 或 ``前缀.b_数字`` 的唯一标识对其进行命名，其中 ``前缀`` 为用户指定的 :code:`name` 或自动生成的 ``OP 名_数字`` 。若在 ``param_attr`` 和 ``bias_attr`` 中指定了 :code:`name` ，则用此 :code:`name` ，不再自动生成。细节请参考示例代码。
+示例代码：
 
-此外，在 :ref:`cn_api_fluid_ParamAttr` 中，可通过指定 :code:`name` 参数实现多个网络层的权重共享。
+```python
+import paddle.fluid as fluid
+import numpy as np
 
-示例代码如下：
+x = fluid.layers.data(name='x', shape=[1], dtype='int64', lod_level=1)
+emb = fluid.layers.embedding(input=x, size=(128, 100))  # embedding_0.w_0
+emb = fluid.layers.Print(emb) # Tensor[embedding_0.tmp_0]
 
-.. code-block:: python
+# 默认名称
+fc_none = fluid.layers.fc(input=emb, size=1)  # fc_0.w_0, fc_0.b_0
+fc_none = fluid.layers.Print(fc_none)  # Tensor[fc_0.tmp_1]
 
-    import paddle.fluid as fluid
-    import numpy as np
+fc_none1 = fluid.layers.fc(input=emb, size=1)  # fc_1.w_0, fc_1.b_0
+fc_none1 = fluid.layers.Print(fc_none1)  # Tensor[fc_1.tmp_1]
 
-    x = fluid.layers.data(name='x', shape=[1], dtype='int64', lod_level=1)
-    emb = fluid.layers.embedding(input=x, size=(128, 100))  # embedding_0.w_0
-    emb = fluid.layers.Print(emb) # Tensor[embedding_0.tmp_0]
+# ParamAttr 中的名称
+w_param_attrs = fluid.ParamAttr(name="fc_weight", learning_rate=0.5, trainable=True)
+print(w_param_attrs.name)  # fc_weight
 
-    # default name
-    fc_none = fluid.layers.fc(input=emb, size=1)  # fc_0.w_0, fc_0.b_0
-    fc_none = fluid.layers.Print(fc_none)  # Tensor[fc_0.tmp_1]
+# name == 'my_fc'
+my_fc1 = fluid.layers.fc(input=emb, size=1, name='my_fc', param_attr=w_param_attrs) # fc_weight, my_fc.b_0
+my_fc1 = fluid.layers.Print(my_fc1)  # Tensor[my_fc.tmp_1]
 
-    fc_none1 = fluid.layers.fc(input=emb, size=1)  # fc_1.w_0, fc_1.b_0
-    fc_none1 = fluid.layers.Print(fc_none1)  # Tensor[fc_1.tmp_1]
+my_fc2 = fluid.layers.fc(input=emb, size=1, name='my_fc', param_attr=w_param_attrs) # fc_weight, my_fc.b_1
+my_fc2 = fluid.layers.Print(my_fc2)  # Tensor[my_fc.tmp_3]
 
-    # name in ParamAttr
-    w_param_attrs = fluid.ParamAttr(name="fc_weight", learning_rate=0.5, trainable=True)
-    print(w_param_attrs.name)  # fc_weight
-
-    # name == 'my_fc'
-    my_fc1 = fluid.layers.fc(input=emb, size=1, name='my_fc', param_attr=w_param_attrs) # fc_weight, my_fc.b_0
-    my_fc1 = fluid.layers.Print(my_fc1)  # Tensor[my_fc.tmp_1]
-
-    my_fc2 = fluid.layers.fc(input=emb, size=1, name='my_fc', param_attr=w_param_attrs) # fc_weight, my_fc.b_1
-    my_fc2 = fluid.layers.Print(my_fc2)  # Tensor[my_fc.tmp_3]
-
-    place = fluid.CPUPlace()
-    x_data = np.array([[1],[2],[3]]).astype("int64")
-    x_lodTensor = fluid.create_lod_tensor(x_data, [[1, 2]], place)
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    ret = exe.run(feed={'x': x_lodTensor}, fetch_list=[fc_none, fc_none1, my_fc1, my_fc2], return_numpy=False)
+place = fluid.CPUPlace()
+x_data = np.array([[1],[2],[3]]).astype("int64")
+x_lodTensor = fluid.create_lod_tensor(x_data, [[1, 2]], place)
+exe = fluid.Executor(place)
+exe.run(fluid.default_startup_program())
+ret = exe.run(feed={'x': x_lodTensor}, fetch_list=[fc_none, fc_none1, my_fc1, my_fc2], return_numpy=False)
 
 
-上述示例中， ``fc_none`` 和 ``fc_none1`` 均未指定 :code:`name` 参数，则以 ``OP 名_数字.tmp_数字`` 分别对该 OP 输出进行命名：``fc_0.tmp_1`` 和 ``fc_1.tmp_1`` ，其中 ``fc_0``  和 ``fc_1`` 中的数字自动递增以区分两个全连接层； ``my_fc1`` 和 ``my_fc2`` 均指定了 :code:`name` 参数，但取值相同，Fluid 以后缀 ``tmp_数字`` 进行区分，即 ``my_fc.tmp_1`` 和 ``my_fc.tmp_3`` 。
-
-对于网络层中创建的变量， ``emb`` 层和 ``fc_none`` 、 ``fc_none1`` 层均默认以 ``OP 名_数字`` 为前缀对权重或偏置变量进行命名，如 ``embedding_0.w_0`` 、 ``fc_0.w_0`` 、 ``fc_0.b_0`` ，其前缀与 OP 输出的前缀一致。 ``my_fc1`` 层和 ``my_fc2`` 层则优先以 ``ParamAttr`` 中指定的 ``fc_weight`` 作为共享权重的名称。而偏置变量 ``my_fc.b_0`` 和 ``my_fc.b_1`` 则次优地以 :code:`name` 作为前缀标识。
-
-在上述示例中，``my_fc1`` 和 ``my_fc2`` 两个全连接层通过构建 ``ParamAttr`` ，并指定 :code:`name` 参数，实现了网络层权重变量的共享机制。
+示例说明：
+* ``fc_none`` 与 ``fc_none1`` 未设置 :code:`name`，输出分别命名为 ``fc_0.tmp_1``、``fc_1.tmp_1``；
+* ``my_fc1`` 和 ``my_fc2`` 使用了相同的 :code:`name`，系统自动区分为 ``my_fc.tmp_1`` 和 ``my_fc.tmp_3``；
+* 权重变量命名为指定的 ``fc_weight``，偏置命名为 ``my_fc.b_0`` 和 ``my_fc.b_1``；
+* 通过 ``ParamAttr`` 指定同一 name，实现了 ``my_fc1`` 与 ``my_fc2`` 权重共享。
 
 .. _api_guide_ParamAttr:
 
@@ -130,16 +102,18 @@ Fluid 中部分网络层里包含了 :code:`name` 参数，如 :ref:`cn_api_flui
 ParamAttr
 =========
 
+:code:`ParamAttr` 是一个用于控制参数属性的辅助类，可设置参数名称、学习率、是否可训练等属性。在网络层中通过 :code:`param_attr` 参数传入。
+
+更多详细信息，请参阅 :ref:`cn_api_fluid_ParamAttr`。
+
 =========
 相关 API
 =========
 
-* 用户配置的单个神经网络叫做 :ref:`cn_api_fluid_Program` 。值得注意的是，训练神经网
-  络时，用户经常需要配置和操作多个 :code:`Program` 。比如参数初始化的
-  :code:`Program` ， 训练用的 :code:`Program` ，测试用的
-  :code:`Program` 等等。
-
-
-* 用户还可以使用 :ref:`cn_api_fluid_program_guard` 配合 :code:`with` 语句，修改配置好的 :ref:`cn_api_fluid_default_startup_program` 和 :ref:`cn_api_fluid_default_main_program` 。
-
-* 在 Fluid 中，Block 内部执行顺序由控制流决定，如 :ref:`cn_api_fluid_layers_IfElse` , :ref:`cn_api_fluid_layers_While`, :ref:`cn_api_fluid_layers_Switch` 等，更多内容可参考： :ref:`api_guide_control_flow`
+* 用户定义的神经网络由 :ref:`cn_api_fluid_Program` 构建。通常一个训练流程中涉及多个 :code:`Program`，如参数初始化用、训练用、测试用等；
+* 使用 :ref:`cn_api_fluid_program_guard` 配合 :code:`with` 语句，可对默认的 :ref:`cn_api_fluid_default_startup_program` 和 :ref:`cn_api_fluid_default_main_program` 进行切换；
+* 在 Fluid 中，控制流执行顺序通过以下 API 实现：
+  - :ref:`cn_api_fluid_layers_IfElse`
+  - :ref:`cn_api_fluid_layers_While`
+  - :ref:`cn_api_fluid_layers_Switch`
+  更多内容详见 :ref:`api_guide_control_flow`。
