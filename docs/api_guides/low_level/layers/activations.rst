@@ -13,6 +13,7 @@ PaddlePaddle 对大部分的激活函数进行了支持，其中有:
 * :ref:`cn_api_paddle_nn_functional_hardsigmoid`
 * :ref:`cn_api_paddle_nn_functional_hardshrink`
 * :ref:`cn_api_paddle_nn_functional_leaky_relu`
+* :ref:`cn_api_paddle_nn_functional_log_sigmoid`
 * :ref:`cn_api_paddle_nn_functional_maxout`
 * :ref:`cn_api_paddle_pow`
 * :ref:`cn_api_paddle_nn_functional_prelu`

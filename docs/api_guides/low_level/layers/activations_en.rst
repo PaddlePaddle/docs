@@ -13,6 +13,7 @@ PaddlePaddle supports most of the activation functions, including:
 * :ref:`api_paddle_nn_functional_hardsigmoid`
 * :ref:`api_paddle_nn_functional_hardshrink`
 * :ref:`api_paddle_nn_functional_leaky_relu`
+* :ref:`api_paddle_nn_functional_log_sigmoid`
 * :ref:`api_paddle_nn_functional_maxout`
 * :ref:`api_paddle_pow`
 * :ref:`api_paddle_nn_functional_prelu`
