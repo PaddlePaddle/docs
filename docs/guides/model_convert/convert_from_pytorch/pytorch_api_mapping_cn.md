@@ -372,6 +372,7 @@
 | ALIAS-REFERENCE-ITEM(`torch.igammac`, `torch.special.gammaincc`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.multivariate_normal.MultivariateNormal`, `torch.distributions.MultivariateNormal`) |
 | ALIAS-REFERENCE-ITEM(`torch.concatenate`, `torch.cat`) |
+| ALIAS-REFERENCE-ITEM(`torch.concat`, `torch.cat`) |
 
  ## <span id="id25">功能缺失的 API 列表</span>
 
@@ -550,7 +551,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.optim.lr_scheduler.ChainedScheduler`, https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ChainedScheduler.html#torch.optim.lr_scheduler.ChainedScheduler, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.futures.collect_all`, https://pytorch.org/docs/stable/futures.html#torch.futures.collect_all, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.sparse_compressed_tensor`, https://pytorch.org/docs/stable/generated/torch.sparse_compressed_tensor.html#torch-sparse-compressed-tensor, 可新增，且框架底层有相关设计，成本低) |
-| NOT-IMPLEMENTED-ITEM(`torch.linalg.vecdot`, https://pytorch.org/docs/stable/generated/torch.linalg.vecdot.html#torch-linalg-vecdot, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.mps.current_allocated_memory`, https://pytorch.org/docs/stable/generated/torch.mps.current_allocated_memory.html#torch-mps-current-allocated-memory, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.profiler.tensorboard_trace_handler`, https://pytorch.org/docs/stable/profiler.html#torch.profiler.tensorboard_trace_handler, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.xpu.is_available`, https://pytorch.org/docs/stable/generated/torch.xpu.is_available.html#torch-xpu-is-available, 有对应相近功能但设计差异大无法映射，一般无需新增) |

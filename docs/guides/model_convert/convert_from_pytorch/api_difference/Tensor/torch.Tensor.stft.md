@@ -6,10 +6,10 @@
 torch.Tensor.stft(n_fft, hop_length=None, win_length=None, window=None, center=True, pad_mode='reflect', normalized=False, onesided=None, return_complex=None)
 ```
 
-### [paddle.signal.stft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/signal/stft_cn.html)
+### [paddle.Tensor.stft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/signal/stft_cn.html)
 
 ```python
-paddle.signal.stft(x, n_fft, hop_length=None, win_length=None, window=None, center=True, pad_mode='reflect', normalized=False, onesided=True, name=None)
+paddle.Tensor.stft(n_fft, hop_length=None, win_length=None, window=None, center=True, pad_mode='reflect', normalized=False, onesided=True, name=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -35,5 +35,5 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 y = torch.rand(512,512).stft(n_fft=512, return_complex=False)
 
 # Paddle 写法
-y = paddle.as_real(paddle.signal.stft(paddle.rand((512,512)), n_fft=512))
+y = paddle.as_real(paddle.rand((512,512)).stft(n_fft=512))
 ```

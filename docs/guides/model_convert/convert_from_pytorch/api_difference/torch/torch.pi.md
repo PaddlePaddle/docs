@@ -6,10 +6,10 @@
 torch.pi
 ```
 
-### [numpy.pi](https://github.com/numpy/numpy)
+### [paddle.pi](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/__init__.py#L786)
 
 ```python
-numpy.pi
+paddle.pi
 ```
 
 功能一致，无参数。
