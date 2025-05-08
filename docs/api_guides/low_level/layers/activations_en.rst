@@ -32,7 +32,7 @@ PaddlePaddle supports most of the activation functions, including:
 
 **The way to apply activation functions in PaddlePaddle is as follows:**
 
-- PaddlePaddle provides a dedicated interface for each activation function, allowing users to explicitly invoke them as needed. Below is an example of applying the ReLU activation function after a convolution operation:
+PaddlePaddle provides a dedicated interface for each activation function, allowing users to explicitly invoke them as needed. Below is an example of applying the ReLU activation function after a convolution operation:
 
 .. code-block:: python
 

@@ -32,7 +32,7 @@ PaddlePaddle 对大部分的激活函数进行了支持，其中有:
 
 **PaddlePaddle 应用激活函数的方式如下：**
 
-- PaddlePaddle 为每个 Activation 提供了接口，我们可以显式的对它们进行调用，以下是在卷积作后应用 ReLU 激活函数的示例：
+PaddlePaddle 为每个 Activation 提供了接口，可以显式调用。以下是一个示例，展示如何在卷积操作之后应用 ReLU 激活函数：
 
 .. code-block:: python
 
