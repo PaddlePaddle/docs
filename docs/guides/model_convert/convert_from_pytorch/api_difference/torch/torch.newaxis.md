@@ -10,7 +10,7 @@ torch.newaxis
 ### [paddle.newaxis](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/__init__.py#L783)
 
 ```python
-paddle.axis
+paddle.newaxis
 ```
 
 功能一致，无参数。
