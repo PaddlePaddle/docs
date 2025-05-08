@@ -23,7 +23,6 @@ paddle 目录下包含 tensor、device、framework 相关 API 以及某些高层
 -  :ref:`framework 相关 <about_framework>`
 -  :ref:`device 相关 <about_device>`
 -  :ref:`高层 API 相关 <about_hapi>`
--  :ref:`稀疏 API 相关 <about_sparse_api>`
 -  :ref:`环境变量 FLAGS 相关 <about_flags_api>`
 
 
