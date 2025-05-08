@@ -1,9 +1,9 @@
-## [ 输入参数类型不一致 ]torch.set_default_device
+## [ 输入参数类型不一致 ]torch.cpu.set_device
 
-### [torch.set_default_device](https://pytorch.org/docs/stable/generated/torch.set_default_device.html#torch-set-default-device)
+### [torch.cpu.set_device](https://pytorch.org/docs/stable/generated/torch.cpu.set_device.html)
 
 ```python
-torch.set_default_device(device)
+torch.cpu.set_device(device)
 ```
 
 ### [paddle.set_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/set_device_cn.html#set-device)
@@ -25,20 +25,8 @@ paddle.set_device(device)
 
 ```python
 # PyTorch 写法
-torch.set_default_device('cuda:0')
+torch.cpu.set_device('cpu:0')
 
 # Paddle 写法
-paddle.set_device('gpu:0')
-
-# PyTorch 写法
-torch.set_default_device(2)
-
-# Paddle 写法
-paddle.set_device('gpu:2')
-
-# PyTorch 写法
-torch.set_default_device("cpu")
-
-# Paddle 写法
-paddle.set_device("cpu")
+paddle.set_device('cpu')
 ```

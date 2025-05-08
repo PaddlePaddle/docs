@@ -25,3 +25,30 @@ torch.Size([2, 3])
 # Paddle 写法
 (2, 3)
 ```
+
+```python
+# PyTorch 写法
+torch.Size([2, 3]).count(2)
+
+# Paddle 写法
+(2, 3).count(2)
+```
+
+```python
+# PyTorch 写法
+torch.Size([2, 3]).index(3,0)
+
+# Paddle 写法
+(2, 3).index(3,0)
+```
+
+```python
+# PyTorch 写法
+torch.Size([2, 3]).numel()
+
+# Paddle 写法
+result = (2, 3)
+out = 1
+for x in result:
+    out *= x
+```

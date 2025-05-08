@@ -29,3 +29,27 @@ torch.tensor([-1, -2, 3]).size(0)
 # Paddle 写法
 paddle.to_tensor([-0.4, -0.2, 0.1, 0.3]).shape[0]
 ```
+
+```python
+# PyTorch 写法
+torch.ones(10, 20, 30).size().count(30)
+
+# Paddle 写法
+tuple(paddle.ones([10, 20, 30]).shape).count(30)
+```
+
+```python
+# PyTorch 写法
+torch.ones(10, 20, 30).size().index(30, 1)
+
+# Paddle 写法
+tuple(paddle.ones([10, 20, 30]).shape).index(30, 1)
+```
+
+```python
+# PyTorch 写法
+torch.ones(10, 20, 30).size().numel()
+
+# Paddle 写法
+paddle.ones([10, 20, 30]).numel().item()
+```
