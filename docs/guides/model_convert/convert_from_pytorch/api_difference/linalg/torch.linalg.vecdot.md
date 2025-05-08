@@ -1,4 +1,4 @@
-## [torch 参数更多]torch.linalg.vectdot
+## [torch 参数更多]torch.linalg.vecdot
 
 ### [torch.linalg.vecdot](https://pytorch.org/docs/stable/generated/torch.linalg.vecdot.html)
 
