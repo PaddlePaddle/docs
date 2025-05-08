@@ -19,7 +19,7 @@ PaddlePaddle supports most of the activation functions, including:
 * :ref:`api_paddle_nn_functional_prelu`
 * :ref:`api_paddle_nn_functional_relu`
 * :ref:`api_paddle_nn_functional_relu6`
-* :ref:`api_paddle_nn_functional_sigmoid`
+* :ref:`api_paddle_tensor_sigmoid`
 * :ref:`api_paddle_nn_functional_softplus`
 * :ref:`api_paddle_nn_functional_softshrink`
 * :ref:`api_paddle_nn_functional_softsign`
