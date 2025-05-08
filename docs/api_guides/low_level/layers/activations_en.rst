@@ -12,10 +12,9 @@ PaddlePaddle supports most of the activation functions, including:
 * :ref:`api_paddle_pow`
 * :ref:`api_paddle_stanh`
 * :ref:`api_paddle_nn_functional_elu`
-* :ref:`api_paddle_nn_functional_hard_sigmoid`
-* :ref:`api_paddle_nn_functional_hard_shrink`
+* :ref:`api_paddle_nn_functional_hardsigmoid`
+* :ref:`api_paddle_nn_functional_hardshrink`
 * :ref:`api_paddle_nn_functional_leaky_relu`
-* :ref:`api_paddle_nn_functional_logsigmoid`
 * :ref:`api_paddle_nn_functional_maxout`
 * :ref:`api_paddle_nn_functional_prelu`
 * :ref:`api_paddle_static_nn_prelu`
@@ -27,8 +26,8 @@ PaddlePaddle supports most of the activation functions, including:
 * :ref:`api_paddle_nn_functional_softsign`
 * :ref:`api_paddle_nn_functional_swish`
 * :ref:`api_paddle_nn_functional_thresholded_relu`
-* :ref:`api_paddle_nn_functional_tanh`
-* :ref:`api_paddle_nn_functional_tanh_shrink`
+* :ref:`api_paddle_tanh`
+* :ref:`api_paddle_nn_functional_tanhshrink`
 
 
 **The way to apply activation functions in PaddlePaddle is as follows:**
