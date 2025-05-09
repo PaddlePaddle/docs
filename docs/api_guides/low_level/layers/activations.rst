@@ -8,18 +8,29 @@
 
 PaddlePaddle 对大部分的激活函数进行了支持，其中有:
 
+* :ref:`cn_api_paddle_nn_functional_celu`
 * :ref:`cn_api_paddle_nn_functional_elu`
 * :ref:`cn_api_paddle_exp`
-* :ref:`cn_api_paddle_nn_functional_hardsigmoid`
+* :ref:`cn_api_paddle_nn_functional_glu`
+* :ref:`cn_api_paddle_nn_functional_gumbel_softmax`
 * :ref:`cn_api_paddle_nn_functional_hardshrink`
+* :ref:`cn_api_paddle_nn_functional_hardsigmoid`
+* :ref:`cn_api_paddle_nn_functional_hardswish`
+* :ref:`cn_api_paddle_nn_functional_hardtanh`
 * :ref:`cn_api_paddle_nn_functional_leaky_relu`
 * :ref:`cn_api_paddle_nn_functional_log_sigmoid`
+* :ref:`cn_api_paddle_nn_functional_log_softmax`
 * :ref:`cn_api_paddle_nn_functional_maxout`
+* :ref:`cn_api_paddle_nn_functional_mish`
 * :ref:`cn_api_paddle_pow`
 * :ref:`cn_api_paddle_nn_functional_prelu`
 * :ref:`cn_api_paddle_nn_functional_relu`
 * :ref:`cn_api_paddle_nn_functional_relu6`
+* :ref:`cn_api_paddle_nn_functional_rrelu`
+* :ref:`cn_api_paddle_nn_functional_selu`
 * :ref:`cn_api_paddle_nn_functional_sigmoid`
+* :ref:`cn_api_paddle_nn_functional_silu`
+* :ref:`cn_api_paddle_nn_functional_softmax`
 * :ref:`cn_api_paddle_nn_functional_softplus`
 * :ref:`cn_api_paddle_nn_functional_softshrink`
 * :ref:`cn_api_paddle_nn_functional_softsign`
