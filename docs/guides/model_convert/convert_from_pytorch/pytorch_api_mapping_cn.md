@@ -1055,19 +1055,18 @@
 | NOT-IMPLEMENTED-ITEM(`torch.autograd.graph.Node.register_prehook`, https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.register_prehook.html#torch-autograd-graph-node-register-prehook, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.OutOfMemoryError`, https://pytorch.org/docs/stable/generated/torch.cuda.OutOfMemoryError.html#torch-cuda-outofmemoryerror, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.backends.cpu.get_cpu_capability`, https://pytorch.org/docs/stable/backends.html#torch.backends.cpu.get_cpu_capability, 可新增，但框架底层无相关设计，成本高) |
-| NOT-IMPLEMENTED-ITEM(`torch.distributed.get_process_group_ranks`, https://pytorch.org/docs/stable/backends.html#torch.backends.cpu.get_cpu_capability, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.distributed.get_process_group_ranks`, https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.get_process_group_ranks, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.utils.fuse_conv_bn_eval`, https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_conv_bn_eval.html#torch-nn-utils-fuse-conv-bn-eval, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.utils.fuse_conv_bn_weights`, https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_conv_bn_weights.html#torch-nn-utils-fuse-conv-bn-weights, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.utils.fuse_linear_bn_eval`, https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_linear_bn_eval.html#torch-nn-utils-fuse-linear-bn-eval, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.utils.fuse_linear_bn_weights`, https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_linear_bn_weights.html#torch-nn-utils-fuse-linear-bn-weights, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.cuda.is_initialized`, https://pytorch.org/docs/stable/generated/torch.cuda.is_initialized.html#torch-cuda-is-initialized, 可新增，但框架底层无相关设计，成本高) |
 
 ## <span id="id26">映射关系开发中的 API 列表</span>
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
 | IN-DEVELOPMENT-PATTERN(`torch.utils.tensorboard.writer.SummaryWriter`, https://pytorch.org/docs/stable/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_sin`, https://pytorch.org/docs/stable/generated/torch._foreach_sin.html#torch-foreach-sin) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_sin_`, https://pytorch.org/docs/stable/generated/torch._foreach_sin_.html#torch-foreach-sin) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_sinh`, https://pytorch.org/docs/stable/generated/torch._foreach_sinh.html#torch-foreach-sinh) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_sinh_`, https://pytorch.org/docs/stable/generated/torch._foreach_sinh_.html#torch-foreach-sinh) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_round`, https://pytorch.org/docs/stable/generated/torch._foreach_round.html#torch-foreach-round) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_round_`, https://pytorch.org/docs/stable/generated/torch._foreach_round_.html#torch-foreach-round) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_sqrt`, https://pytorch.org/docs/stable/generated/torch._foreach_sqrt.html#torch-foreach-sqrt) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_sqrt_`, https://pytorch.org/docs/stable/generated/torch._foreach_sqrt_.html#torch-foreach-sqrt) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_lgamma`, https://pytorch.org/docs/stable/generated/torch._foreach_lgamma.html#torch-foreach-lgamma) |
@@ -1081,19 +1080,10 @@
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_trunc`, https://pytorch.org/docs/stable/generated/torch._foreach_trunc.html#torch-foreach-trunc) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_trunc_`, https://pytorch.org/docs/stable/generated/torch._foreach_trunc_.html#torch-foreach-trunc) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_zero_`, https://pytorch.org/docs/stable/generated/torch._foreach_zero_.html#torch-foreach-zero) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributed.all_gather_into_tensor`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_gather_into_tensor) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributed.reduce_scatter_tensor`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_scatter_tensor) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributed.all_to_all_single`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_to_all_single) |
-| IN-DEVELOPMENT-PATTERN(`torch.utils.set_module`, https://pytorch.org/docs/stable/generated/torch.utils.set_module.html#torch-utils-set-module) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.utils.fuse_conv_bn_eval`, https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_conv_bn_eval.html#torch-nn-utils-fuse-conv-bn-eval) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.utils.fuse_conv_bn_weights`, https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_conv_bn_weights.html#torch-nn-utils-fuse-conv-bn-weights) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.utils.fuse_linear_bn_eval`, https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_linear_bn_eval.html#torch-nn-utils-fuse-linear-bn-eval) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.utils.fuse_linear_bn_weights`, https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_linear_bn_weights.html#torch-nn-utils-fuse-linear-bn-weights) |
 | IN-DEVELOPMENT-PATTERN(`torch.nn.utils.convert_conv2d_weight_memory_format`, https://pytorch.org/docs/stable/generated/torch.nn.utils.convert_conv2d_weight_memory_format.html#torch-nn-utils-convert-conv2d-weight-memory-format) |
 | IN-DEVELOPMENT-PATTERN(`torch.nn.utils.convert_conv3d_weight_memory_format`, https://pytorch.org/docs/stable/generated/torch.nn.utils.convert_conv3d_weight_memory_format.html#torch-nn-utils-convert-conv3d-weight-memory-format) |
 | IN-DEVELOPMENT-PATTERN(`torch.backends.cuda.can_use_flash_attention`, https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.can_use_flash_attention) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributed.device_mesh.DeviceMesh`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.device_mesh.DeviceMesh) |
-| IN-DEVELOPMENT-PATTERN(`torch.cuda.is_initialized`, https://pytorch.org/docs/stable/generated/torch.cuda.is_initialized.html#torch-cuda-is-initialized) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.comm.scatter`, https://pytorch.org/docs/stable/generated/torch.cuda.comm.scatter.html#torch-cuda-comm-scatter) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.comm.gather`, https://pytorch.org/docs/stable/generated/torch.cuda.comm.gather.html#torch-cuda-comm-gather) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributions.binomial.Binomial`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial) |
