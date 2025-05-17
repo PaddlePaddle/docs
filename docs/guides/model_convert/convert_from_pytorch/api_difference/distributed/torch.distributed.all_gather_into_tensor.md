@@ -3,7 +3,7 @@
 ### [torch.distributed.all_gather_into_tensor](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.all_gather_into_tensor)
 
 ```python
-torch.distributed.all_gather_object(output_tensor, input_tensor, group=None, async_op=False)
+torch.distributed.all_gather_into_tensor(output_tensor, input_tensor, group=None, async_op=False)
 
 ```
 
@@ -19,8 +19,8 @@ paddle.distributed.stream.all_gather(tensor_or_tensor_list, tensor, group=None, 
 
 | PyTorch  | PaddlePaddle | 备注                                          |
 | -------- | ------------ | --------------------------------------------- |
-| output_tensor |      tensor_or_tensor_list       | 表示用于保存聚合结果的张量。 |
-| input_tensor      | tensor          | 表示待聚合的张量。                  |
+| output_tensor |      tensor_or_tensor_list       | 表示用于保存聚合结果的张量，仅参数名不一致。 |
+| input_tensor      | tensor          | 表示待聚合的张量，仅参数名不一致。                  |
 | group    | group        | 表示执行该操作的进程组实例。                            |
 | async_op    | sync_op      | torch 为是否异步操作，Paddle 为是否同步操作，转写方式取反即可。 |
 | -    | use_calc_stream      | 该操作是否在计算流上进行，PyTorch 无此参数，Paddle 保持默认即可。 |
@@ -34,5 +34,5 @@ dist.all_gather_into_tensor(output_tensor=output_tensor, input_tensor=data, asyn
 
 # Paddle 写法
 import paddle.distributed as dist
-dist.all_gather_object(tensor_or_tensor_list=output_tensor, tensor=data, sync_op=False)
+dist.stream.all_gather(tensor_or_tensor_list=output_tensor, tensor=data, sync_op=False)
 ```
