@@ -17,6 +17,7 @@
 | AI 加速芯片 |  | 壁仞 | BR100、BR104 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/biren_gpu/README_cn.md) |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice) |
 | AI 加速芯片 |  | 燧原 | 云燧 T20 、i20、S60 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/gcu/README_cn.md) |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice)  |
 | AI 加速芯片 |  | 太初 | 元碁系列 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleTecoBackend)  |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice)  |
+| AI 加速芯片 |  | 沐曦 | 曦云C系列 | | |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice)  |
 
 ## Paddle Inference
 
@@ -37,6 +38,7 @@
 | 服务端 CPU |  | 海光 | 海光 3000、5000、7000 系列 CPU |  |  |  |  |
 | 服务端 CPU |  | 申威 | 申威 SW6A、SW6B |  |[源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/compile_SW.html)  |  |  |
 | AI 加速芯片 | | 燧原 | S60 | | [源码编译](./gcu/install_cn.html) |  | ✔️ |
+| AI 加速芯片 | GPGPU | 沐曦 | 曦云C、N  系列 GPU |  |  |  |  |
 
 ## Paddle Lite
 
