@@ -38,7 +38,6 @@
 | 服务端 CPU |  | 海光 | 海光 3000、5000、7000 系列 CPU |  |  |  |  |
 | 服务端 CPU |  | 申威 | 申威 SW6A、SW6B |  |[源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/compile_SW.html)  |  |  |
 | AI 加速芯片 | | 燧原 | S60 | | [源码编译](./gcu/install_cn.html) |  | ✔️ |
-| AI 加速芯片 | GPGPU | 沐曦 | 曦云C、N  系列 GPU |  |  |  |  |
 
 ## Paddle Lite
 
