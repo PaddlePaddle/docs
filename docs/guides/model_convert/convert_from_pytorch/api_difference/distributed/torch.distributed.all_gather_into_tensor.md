@@ -7,10 +7,10 @@ torch.distributed.all_gather_into_tensor(output_tensor, input_tensor, group=None
 
 ```
 
-### [paddle.distributed.stream.all_gather](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/stream/all_gather_cn.html#all-gather)
+### [paddle.distributed.all_gather](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/all_gather_cn.html#all-gather)
 
 ```python
-paddle.distributed.stream.all_gather(tensor_or_tensor_list, tensor, group=None, sync_op=True, use_calc_stream=False)
+paddle.distributed.all_gather(tensor_list, tensor, group=None, sync_op=True)
 ```
 
 其中 PyTorch 和 Paddle 功能一致，参数用法不一致，具体如下：
@@ -19,13 +19,25 @@ paddle.distributed.stream.all_gather(tensor_or_tensor_list, tensor, group=None, 
 
 | PyTorch  | PaddlePaddle | 备注                                          |
 | -------- | ------------ | --------------------------------------------- |
-| output_tensor |      tensor_or_tensor_list       | 表示用于保存聚合结果的张量，仅参数名不一致。 |
+| output_tensor |      tensor_list       | 表示用于保存聚合结果的张量，torch 为 Tensor， Paddle 为 list，需要转写。 |
 | input_tensor      | tensor          | 表示待聚合的张量，仅参数名不一致。                  |
 | group    | group        | 表示执行该操作的进程组实例。                            |
 | async_op    | sync_op      | torch 为是否异步操作，Paddle 为是否同步操作，转写方式取反即可。 |
-| -    | use_calc_stream      | 该操作是否在计算流上进行，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 ### 转写示例
+#### output_tensor：输出张量
+```python
+# PyTorch 写法
+import torch.distributed as dist
+dist.all_gather_into_tensor(output_tensor=output_tensor, input_tensor=data)
+
+# Paddle 写法
+import paddle.distributed as dist
+tensor_list = []
+dist.stream.all_gather(tensor_list=tensor_list, tensor=data)
+output_tensor = paddle.concat(tensor_list, axis=0)
+```
+
 #### async_op：是否为异步操作
 ```python
 # PyTorch 写法
@@ -34,5 +46,7 @@ dist.all_gather_into_tensor(output_tensor=output_tensor, input_tensor=data, asyn
 
 # Paddle 写法
 import paddle.distributed as dist
-dist.stream.all_gather(tensor_or_tensor_list=output_tensor, tensor=data, sync_op=False)
+tensor_list = []
+dist.stream.all_gather(tensor_list=tensor_list, tensor=data, sync_op=False)
+output_tensor = paddle.concat(tensor_list, axis=0)
 ```

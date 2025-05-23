@@ -15,5 +15,5 @@ Paddle 无此 API，需要组合实现。
 torch._foreach_round_(tensors)
 
 # Paddle 写法
-[paddle.assign(paddle.round(x), x) for x in tensors]
+[x.round_() for x in tensors]
 ```
