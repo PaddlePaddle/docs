@@ -34,14 +34,9 @@ torch.distributed.reduce_scatter_tensor(output, input)
 
 # Paddle 写法:
 world_size = paddle.distributed.get_world_size()
-if input_tensor.size(0) == world_size * output.shape[0]:
-    split_size = output.shape[0]
-    dim = 0
-elif input_tensor.size(0) == world_size:
-    split_size = 1
-    dim = 0
-
-input_list = torch.split(input_tensor, split_size_or_sections=split_size, dim=dim)
-
+if input.shape[0] == world_size:
+    input_list = paddle.unstack(input, axis=0)
+else:
+    input_list = paddle.split(input, num_or_sections=world_size, axis=0)
 paddle.distributed.reduce_scatter(output, input_list)
 ```
