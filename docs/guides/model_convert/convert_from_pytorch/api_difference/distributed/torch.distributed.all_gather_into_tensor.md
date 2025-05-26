@@ -29,24 +29,14 @@ paddle.distributed.all_gather(tensor_list, tensor, group=None, sync_op=True)
 ```python
 # PyTorch 写法
 import torch.distributed as dist
-dist.all_gather_into_tensor(output_tensor=output_tensor, input_tensor=data)
+dist.all_gather_into_tensor(output_tensor=output_tensor, input_tensor=input_tensor)
 
 # Paddle 写法
 import paddle.distributed as dist
 tensor_list = []
-dist.stream.all_gather(tensor_list=tensor_list, tensor=data)
-output_tensor = paddle.concat(tensor_list, axis=0)
-```
-
-#### async_op：是否为异步操作
-```python
-# PyTorch 写法
-import torch.distributed as dist
-dist.all_gather_into_tensor(output_tensor=output_tensor, input_tensor=data, async_op=True)
-
-# Paddle 写法
-import paddle.distributed as dist
-tensor_list = []
-dist.stream.all_gather(tensor_list=tensor_list, tensor=data, sync_op=False)
-output_tensor = paddle.concat(tensor_list, axis=0)
+dist.all_gather(tensor_list=tensor_list, tensor=input_tensor)
+if paddle.distributed.get_world_size() * input_tensor.shape[0] == output_tensor.shape[0]:
+    output_tensor = paddle.concat(tensor_list, axis=0)
+else:
+    output_tensor = paddle.stack(tensor_list, axis=0)
 ```

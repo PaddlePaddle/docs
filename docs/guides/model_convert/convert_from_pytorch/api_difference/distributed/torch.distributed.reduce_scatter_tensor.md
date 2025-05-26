@@ -30,20 +30,18 @@ paddle.distributed.reduce_scatter(tensor, tensor_list, op=ReduceOp.SUM, group=No
 
 ```python
 # PyTorch 写法:
-torch.distributed.reduce_scatter_tensor(data1, input)
+torch.distributed.reduce_scatter_tensor(output, input)
 
 # Paddle 写法:
-input_list = [input[i] for i in range(input.shape[0])]
-paddle.distributed.reduce_scatter(data1, input_list)
-```
+world_size = paddle.distributed.get_world_size()
+if input_tensor.size(0) == world_size * output.shape[0]:
+    split_size = output.shape[0]
+    dim = 0
+elif input_tensor.size(0) == world_size:
+    split_size = 1
+    dim = 0
 
-#### async_op：是否为异步操作
+input_list = torch.split(input_tensor, split_size_or_sections=split_size, dim=dim)
 
-```python
-# PyTorch 写法:
-torch.distributed.reduce_scatter_tensor(data1, input, async_op=True)
-
-# Paddle 写法:
-input_list = [input[i] for i in range(input.shape[0])]
-paddle.distributed.reduce_scatter(data1, input_list, sync_op=False)
+paddle.distributed.reduce_scatter(output, input_list)
 ```
