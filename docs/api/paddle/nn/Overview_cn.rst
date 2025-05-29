@@ -49,6 +49,7 @@ paddle.nn 目录下包含飞桨框架支持的神经网络层和相关函数的�
     " :ref:`paddle.nn.Layer <cn_api_paddle_nn_Layer>` ", "基于 OOD 实现的动态图 Layer"
     " :ref:`paddle.nn.LayerList <cn_api_paddle_nn_LayerList>` ", "用于保存子层列表"
     " :ref:`paddle.nn.ParameterList <cn_api_paddle_nn_ParameterList>` ", "参数列表容器"
+    " :ref:`paddle.nn.ParameterDict <cn_api_paddle_nn_ParameterDict>` ", "参数字典容器"
     " :ref:`paddle.nn.Sequential <cn_api_paddle_nn_Sequential>` ", "顺序容器；子 Layer 将按构造函数参数的顺序添加到此容器中"
     " :ref:`paddle.nn.LayerDict <cn_api_paddle_nn_LayerDict>` ", "保存子层到有序字典中，它包含的子层将被正确地注册和添加"
 

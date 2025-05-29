@@ -21,6 +21,10 @@ transpose
 ::::::::::::
 多维 Tensor
 
+下图展示了代码示例中的第二个例子
+
+.. image:: ../../images/api_legend/transpose.png
+    :width: 500
 
 代码示例
 ::::::::::::

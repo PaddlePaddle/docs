@@ -39,7 +39,7 @@ void KernelNameKernel(const Context& dev_ctx,
     - `phi::dtype::float16` 请参照[float16.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/float16.h)
     - `const Scalar&` 请参照[scalar.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/scalar.h)
     - `DataType` 请参照[data_type.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/data_type.h)
-    - `DataLayout` 请参照[layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/layout.h)
+    - `DataLayout` 请参照[layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/common/layout.h)
     - `Place` 请参照[place.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/place.h)
     - `const std::vector<int64_t>&`
     - `const ScalarArray&` 请参照[int_array.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/int_array.h)

@@ -20,7 +20,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | ------------------- | ------------ | --------------------------------------------------------------- |
 | num_features        | num_features | 输入 Tensor 的通道数量。                                        |
 | eps                 | epsilon      | 为了数值稳定加在分母上的值，仅参数名不一致。                    |
-| momentum            | momentum     | 此值用于计算 moving_mean 和 moving_var。                        |
+| momentum            | momentum     | 此值用于计算 moving_mean 和 moving_var, 值的大小 Paddle = 1 - PyTorch，需要转写。。                        |
 | affine              | -            | 是否进行仿射变换，Paddle 无此参数，需要转写。               |
 | track_running_stats | -            | 是否跟踪运行时的 mean 和 var， Paddle 无此参数。暂无转写方式。         |
 | device              | -            | 表示 Tensor 存放设备位置，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
@@ -45,4 +45,14 @@ torch.nn.InstanceNorm3d(num_features, affine=True)
 
 # paddle 写法
 paddle.nn.InstanceNorm3d(num_features)
+```
+
+
+#### momentum：
+```python
+# PyTorch 写法
+IN = torch.nn.InstanceNorm3d(num_features, eps=1e-05, momentum=0.8)
+
+# Paddle 写法
+IN = paddle.nn.InstanceNorm3d(num_features, epsilon=1e-05, momentum=0.2)
 ```

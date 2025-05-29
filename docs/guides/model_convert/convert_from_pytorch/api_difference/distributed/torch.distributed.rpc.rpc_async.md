@@ -1,4 +1,4 @@
-## [仅参数名不一致]torch.distributed.rpc.rpc_async
+## [输入参数用法不一致]torch.distributed.rpc.rpc_async
 
 ### [torch.distributed.rpc.rpc_async](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.rpc_async)
 
@@ -20,6 +20,6 @@ paddle.distributed.rpc.rpc_async(to, fn, args=None, kwargs=None, timeout=- 1)
 | ------- | ------------ | ---------------------------------- |
 | to      | to           | 目标 worker 的名字。               |
 | func    | fn           | 一个可调用的函数，仅参数名不一致。 |
-| args    | args         | 函数 fn 的参数。                   |
+| args    | args         | 函数 fn 的参数， paddle 不支持输入类型为张量，暂无转写方式。                   |
 | kwargs  | kwargs       | 函数 fn 的字典参数。               |
 | timeout | timeout      | RPC 调用的超时时间。               |

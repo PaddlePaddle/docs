@@ -1,28 +1,51 @@
 .. _api_guide_activations:
 
-####
+###################
 激活函数
-####
+###################
 
 激活函数将非线性的特性引入到神经网络当中。
 
-PaddlePaddle Fluid 对大部分的激活函数进行了支持，其中有:
+PaddlePaddle 对大部分的激活函数进行了支持，其中有:
 
-:ref:`cn_api_fluid_layers_relu`, :ref:`cn_api_fluid_layers_tanh`, :ref:`cn_api_fluid_layers_sigmoid`, :ref:`cn_api_fluid_layers_elu`, :ref:`cn_api_fluid_layers_relu6`, :ref:`cn_api_fluid_layers_pow`, :ref:`cn_api_fluid_layers_stanh`, :ref:`cn_api_fluid_layers_hard_sigmoid`, :ref:`cn_api_fluid_layers_swish`, :ref:`cn_api_fluid_layers_prelu`, :ref:`cn_api_fluid_layers_brelu`, :ref:`cn_api_fluid_layers_leaky_relu`, :ref:`cn_api_fluid_layers_soft_relu`, :ref:`cn_api_fluid_layers_thresholded_relu`, :ref:`cn_api_fluid_layers_maxout`, :ref:`cn_api_fluid_layers_logsigmoid`, :ref:`cn_api_fluid_layers_hard_shrink`, :ref:`cn_api_fluid_layers_softsign`, :ref:`cn_api_fluid_layers_softplus`, :ref:`cn_api_fluid_layers_tanh_shrink`, :ref:`cn_api_fluid_layers_softshrink`, :ref:`cn_api_fluid_layers_exp`。
+* :ref:`cn_api_paddle_nn_functional_celu`
+* :ref:`cn_api_paddle_nn_functional_elu`
+* :ref:`cn_api_paddle_exp`
+* :ref:`cn_api_paddle_nn_functional_glu`
+* :ref:`cn_api_paddle_nn_functional_gumbel_softmax`
+* :ref:`cn_api_paddle_nn_functional_hardshrink`
+* :ref:`cn_api_paddle_nn_functional_hardsigmoid`
+* :ref:`cn_api_paddle_nn_functional_hardswish`
+* :ref:`cn_api_paddle_nn_functional_hardtanh`
+* :ref:`cn_api_paddle_nn_functional_leaky_relu`
+* :ref:`cn_api_paddle_nn_functional_log_sigmoid`
+* :ref:`cn_api_paddle_nn_functional_log_softmax`
+* :ref:`cn_api_paddle_nn_functional_maxout`
+* :ref:`cn_api_paddle_nn_functional_mish`
+* :ref:`cn_api_paddle_pow`
+* :ref:`cn_api_paddle_nn_functional_prelu`
+* :ref:`cn_api_paddle_nn_functional_relu`
+* :ref:`cn_api_paddle_nn_functional_relu6`
+* :ref:`cn_api_paddle_nn_functional_rrelu`
+* :ref:`cn_api_paddle_nn_functional_selu`
+* :ref:`cn_api_paddle_nn_functional_sigmoid`
+* :ref:`cn_api_paddle_nn_functional_silu`
+* :ref:`cn_api_paddle_nn_functional_softmax`
+* :ref:`cn_api_paddle_nn_functional_softplus`
+* :ref:`cn_api_paddle_nn_functional_softshrink`
+* :ref:`cn_api_paddle_nn_functional_softsign`
+* :ref:`cn_api_paddle_stanh`
+* :ref:`cn_api_paddle_nn_functional_swish`
+* :ref:`cn_api_paddle_tanh`
+* :ref:`cn_api_paddle_nn_functional_thresholded_relu`
+* :ref:`cn_api_paddle_nn_functional_tanhshrink`
 
 
-**Fluid 提供了两种使用激活函数的方式：**
+**PaddlePaddle 应用激活函数的方式如下：**
 
-- 如果一个层的接口提供了 :code:`act` 变量（默认值为 None），我们可以通过该变量指定该层的激活函数类型。该方式支持常见的激活函数: :code:`relu`, :code:`tanh`, :code:`sigmoid`, :code:`identity`。
+PaddlePaddle 为每个 Activation 提供了接口，可以显式调用。以下是一个示例，展示如何在卷积操作之后应用 ReLU 激活函数：
 
 .. code-block:: python
 
-    conv2d = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3, act="relu")
-
-
-- Fluid 为每个 Activation 提供了接口，我们可以显式的对它们进行调用。
-
-.. code-block:: python
-
-    conv2d = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3)
-    relu1 = fluid.layers.relu(conv2d)
+    conv2d = paddle.nn.functional.conv2d(x, weight, stride=1, padding=1) # 卷积
+    relu1 = paddle.nn.functional.relu(conv2d) # 使用 ReLu 激活函数

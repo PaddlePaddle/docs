@@ -189,7 +189,7 @@ PADDLE_ENFORCE(forward_pd != nullptr,
 错误示例：
 ```c++
 PADDLE_ENFORCE(context->HasInput("X"),
-               "ArrayToLoDTensorOp must has input X."); //must has?
+               "ArrayToDenseTensorOp must has input X."); //must has?
 ```
 
 ## 3. 报错信息规范示例库

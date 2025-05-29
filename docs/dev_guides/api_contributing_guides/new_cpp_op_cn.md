@@ -14,6 +14,7 @@
 开发代码前请确认：
 
 - 已签署 [贡献者许可协议（Contributor License Agreement，CLA）](https://cla-assistant.io/PaddlePaddle/Paddle)；
+
 - 已阅读 [代码贡献流程](..\code_contributing_path_cn.html)、[贡献前阅读](read_before_contributing_cn.html) 和相关代码规范；
 
 - 已根据 [API 设计和命名规范](api_design_guidelines_standard_cn.html) 确定了新增 API 的名称和存放位置；
@@ -35,14 +36,14 @@
 
 | **内容**       | **新增文件位置**                                             |
 | -------------- | ------------------------------------------------------------ |
-| 算子描述及定义 | 前向算子定义：[paddle/phi/api/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/ops.yaml) <br/>反向算子定义：[paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml) |
+| 算子描述及定义 | 前向算子定义：[paddle/phi/api/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/ops.yaml) <br/>反向算子定义：[paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/backward.yaml) |
 | 算子 InferMeta | [paddle/phi/infermeta](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/infermeta) 目录下的相应文件中 |
 | 算子 Kernel    | [paddle/phi/kernels](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/kernels) 目录下的如下文件：（一般情况）<br/>xxx_kernel.h<br/>xxx_kernel.cc<br/>xxx_grad_kernel.h<br/>xxx_grad_kernel.cc |
 | Python API     | [python/paddle](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle) 目录下的相应子目录中的 .py 文件，遵循相似功能的 API 放在同一文件夹的原则 |
 | 单元测试       | [test/legacy_test](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test) 目录下的相应文件中：<br/>test_xxx_op.py |
 
 
-用户使用飞桨开发神经网络模型时使用的 Python 接口(如 paddle.add(), paddle.relu()等) 我们一般称都为飞桨的 Python API，每个运算类的 Python API 在框架内部都会对应到一个或者多个 C++ 端算子，每个算子在不同硬件设备上（CPU, GPU 等）实现的运算逻辑代码又被称为 Kernel, 这里主要是由于不同硬件设备提供的编程接口不同，所以虽然同一个算子的不同硬件设备 Kernel 都实现了相同的数学运算逻辑，但在代码实现上却有所差异。算子 InferMeta 函数是在算子 kernel 执行前先将输出结果的维度、数据类型等信息进行处理，由于计算量较小所以可以直接在 CPU 上计算，因此每个算子只需要实现一个 InferMeta 函数，而不必像 Kernel 一样在不同硬件上实现多个。
+用户使用飞桨开发神经网络模型时使用的 Python 接口（如 paddle.add()，paddle.relu()等）我们一般称都为飞桨的 Python API，每个运算类的 Python API 在框架内部都会对应到一个或者多个 C++ 端算子，每个算子在不同硬件设备上（CPU，GPU 等）实现的运算逻辑代码又被称为 Kernel，这里主要是由于不同硬件设备提供的编程接口不同，所以虽然同一个算子的不同硬件设备 Kernel 都实现了相同的数学运算逻辑，但在代码实现上却有所差异。算子 InferMeta 函数是在算子 kernel 执行前先将输出结果的维度、数据类型等信息进行处理，由于计算量较小所以可以直接在 CPU 上计算，因此每个算子只需要实现一个 InferMeta 函数，而不必像 Kernel 一样在不同硬件上实现多个。
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/api_op_kernel.png?raw=true" width="550" ></center>
 
@@ -60,7 +61,7 @@ Python API 到算子 InferMeta 函数和 Kernel 调用之间的框架调度部�
 
 | **内容**       | **trace 示例代码仓库链接**                                             |
 | -------------- | ------------------------------------------------------------ |
-| 算子描述及定义 | [paddle/phi/api/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/ops.yaml) <br/>[paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml) |
+| 算子描述及定义 | [paddle/phi/api/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/ops.yaml) <br/>[paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/backward.yaml) |
 | 算子 InferMeta | [paddle/phi/infermeta/unary.cc](https://github.com/PaddlePaddle/Paddle/blob/befa78ea3fa9d0dae096a7de91f626b0c31daee8/paddle/phi/infermeta/unary.cc#L721) |
 | 算子 Kernel    | [paddle/phi/kernels](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/kernels) 目录下的如下文件：<br/>[/trace_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_kernel.h)<br/>[/cpu/trace_kernel.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/trace_kernel.cc)<br/>[/gpu/trace_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_kernel.cu)<br/>[/trace_grad_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_kernel.h)<br/>[/cpu/trace_grad_kernel.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/trace_grad_kernel.cc)<br/>[/gpu/trace_grad_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_grad_kernel.cu) |
 | Python API     | [python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/bd4dc3be34584f9b273ecec07297fb05e1cf4c52/python/paddle/tensor/math.py#L2277) |
@@ -73,9 +74,9 @@ Python API 到算子 InferMeta 函数和 Kernel 调用之间的框架调度部�
 
 ### 3.1 算子 Yaml 文件配置
 
-在 `paddle/phi/api/yaml/ops.yaml` 和 `paddle/phi/api/yaml/backward.yaml` 文件中对算子进行描述及定义，在框架编译时会根据 YAML 文件中的配置自动生成 C++ 端的相关代码接口以及内部实现（详见下文 [8.1 Paddle 基于 Yaml 配置自动生成算子代码的逻辑解读](#paddleyaml) 小节的介绍），下面主要以 [paddle.trace](../../api/paddle/trace_cn.html#trace) 为例介绍算子的 Yaml 配置规则：
+在 `paddle/phi/ops/yaml/ops.yaml` 和 `paddle/phi/ops/yaml/backward.yaml` 文件中对算子进行描述及定义，在框架编译时会根据 YAML 文件中的配置自动生成 C++ 端的相关代码接口以及内部实现（详见下文 [8.1 Paddle 基于 Yaml 配置自动生成算子代码的逻辑解读](#paddleyaml) 小节的介绍），下面主要以 [paddle.trace](../../api/paddle/trace_cn.html#trace) 为例介绍算子的 Yaml 配置规则：
 
-[paddle/phi/api/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/ops.yaml) 中 trace 相关配置：
+[paddle/phi/ops/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/ops.yaml) 中 trace 相关配置：
 
 ```yaml
 - op : trace
@@ -88,7 +89,7 @@ Python API 到算子 InferMeta 函数和 Kernel 调用之间的框架调度部�
   backward : trace_grad
 ```
 
-[paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml) 中 trace 相关配置：
+[paddle/phi/ops/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/backward.yaml) 中 trace 相关配置：
 
 ```yaml
 - backward_op : trace_grad
@@ -115,7 +116,7 @@ Python API 到算子 InferMeta 函数和 Kernel 调用之间的框架调度部�
 </thead>
 <tbody>
 <tr>
-<td>api</td>
+<td>op</td>
 <td>算子名称，与该算子 Python API 函数名相同（命名方式为：全小写+下划线），示例中为 trace</td>
 </tr>
 <tr>
@@ -192,8 +193,21 @@ Python API 到算子 InferMeta 函数和 Kernel 调用之间的框架调度部�
 a. 如果是复用已有算子，需要被复用的算子为前向算子且两者的返回值类型相同，可参考 zeros_like 算子<br>
 b. 如果是实现自定义的 C++ API，需要在'paddle/phi/api/lib/api_custom_impl.h'声明自定义实现函数并在'paddle/phi/api/lib/api_custom_impl.cc'中进行实现，具体可参考 embedding 算子</td>
 </tr>
+<tr>
+<td>data_transform</td>
+<td>控制算子输入参数的自动转换行为，包括类型（dtype）、设备（backend）和布局（layout），设备和布局的转换由全局 flag 控制，默认开启</td>
+</tr>
+<tr>
+<td>data_transform:skip_transform</td>
+<td>跳过指定参数的所有数据转换（最高优先级），设置后将禁用该参数所有类型（dtype）、设备（backend）和布局（layout）的自动转换</td>
+</tr>
+<tr>
+<td>data_transform:support_trans_dtype</td>
+<td>开启指定参数的自动类型转换，设置后会对非复数类型也进行自动类型转换（复数类型默认总是转换，除非在 skip_transform 配置中指定）</td>
+</tr>
 </tbody>
 </table>
+
 `backward.yaml` 中反向算子的配置规则如下：
 
 <table>
@@ -236,6 +250,10 @@ b. 如果是实现自定义的 C++ API，需要在'paddle/phi/api/lib/api_custom
 <td>反向算子对应的更高阶反向算子名称，如一阶反向算子的反向为二阶反向算子</td>
 </tr>
 <tr>
+<td>data_transform</td>
+<td>与前向配置规则相同</td>
+</tr>
+<tr>
 <td colspan="2" style="text-align: center;"><b>特殊配置项（目前特殊配置项还处于不稳定阶段，后续可能会有调整更新）</b></td>
 </tr>
 <tr>
@@ -260,7 +278,7 @@ b. 如果是实现自定义的 C++ API，需要在'paddle/phi/api/lib/api_custom
 
 > 说明：InferMeta 与 kernel 共同组成了一个算子的运算过程。InferMeta 在 kernel 前执行，用于维度、数据类型等信息的计算处理，这些信息在没有具体数据时依然可以通过输入参数完成输出结果的信息推导（例如两个维度为 2x3 的张量相加，输出结果的维度也一定是 2x3），可以利用这些信息优化训练过程中资源的分配和使用，kernel 中也不再需要专门推导这些信息。kernel 则用于具体数据的逻辑计算，为 InferMeta 函数推导得到的张量填充具体的结果值。
 
-[trace 算子的 InferMeta 函数](https://github.com/PaddlePaddle/Paddle/blob/befa78ea3fa9d0dae096a7de91f626b0c31daee8/paddle/phi/infermeta/unary.cc#L721) 实现如下：
+[trace 算子的 InferMeta 函数](https://github.com/PaddlePaddle/Paddle/blob/97a59db7509b10029ebf5b1aa68f1503cd03c494/paddle/phi/infermeta/unary.cc#L5197) 实现如下：
 
 ```cpp
 void TraceInferMeta(
@@ -276,14 +294,23 @@ void TraceInferMeta(
   PADDLE_ENFORCE_GE(
       x_dims.size(),
       2,
-      phi::errors::OutOfRange(
-          "Input's dim is out of range (expected at least 2, but got %ld).",
+      common::errors::OutOfRange(
+          "Input(x)'s dim is out of range (expected at least 2, but got %ld).",
           x_dims.size()));
   PADDLE_ENFORCE_LT(
       dim1_,
       x_dims.size(),
-      phi::errors::OutOfRange(
-          "Attr(dim1) is out of range (expected to be in range of [%ld, "
+      common::errors::OutOfRange(
+          "axis1 is out of range (expected to be in range of [%ld, "
+          "%ld], but got %ld).",
+          -(x_dims.size()),
+          (x_dims.size() - 1),
+          dim1));
+  PADDLE_ENFORCE_GE(
+      dim1_,
+      0,
+      common::errors::OutOfRange(
+          "axis1 is out of range (expected to be in range of [%ld, "
           "%ld], but got %ld).",
           -(x_dims.size()),
           (x_dims.size() - 1),
@@ -291,8 +318,17 @@ void TraceInferMeta(
   PADDLE_ENFORCE_LT(
       dim2_,
       x_dims.size(),
-      phi::errors::OutOfRange(
-          "Attr(dim2) is out of range (expected to be in range of [%ld, "
+      common::errors::OutOfRange(
+          "axis2 is out of range (expected to be in range of [%ld, "
+          "%ld], but got %ld).",
+          -(x_dims.size()),
+          (x_dims.size() - 1),
+          dim2));
+  PADDLE_ENFORCE_GE(
+      dim2_,
+      0,
+      common::errors::OutOfRange(
+          "axis2 is out of range (expected to be in range of [%ld, "
           "%ld], but got %ld).",
           -(x_dims.size()),
           (x_dims.size() - 1),
@@ -300,22 +336,22 @@ void TraceInferMeta(
   PADDLE_ENFORCE_NE(
       dim1_,
       dim2_,
-      phi::errors::InvalidArgument("The dimensions should not be identical "
-                                   "%ld vs %ld.",
-                                   dim1,
-                                   dim2));
+      common::errors::InvalidArgument("The dimensions should not be identical "
+                                      "%ld vs %ld.",
+                                      dim1,
+                                      dim2));
 
-  auto sizes = vectorize(x_dims);
+  auto sizes = common::vectorize(x_dims);
   if (x_dims.size() == 2) {
     sizes.clear();
-    sizes.push_back(1);
   } else {
     sizes.erase(sizes.begin() + std::max(dim1_, dim2_));
     sizes.erase(sizes.begin() + std::min(dim1_, dim2_));
   }
-  out->set_dims(phi::make_ddim(sizes));
+  out->set_dims(common::make_ddim(sizes));
   out->set_dtype(x.dtype());
 }
+
 ```
 
 其中，`MetaTensor`是对底层异构 Tensor 的抽象封装，仅支持对底层 Tensor 的维度、数据类型、布局等属性进行读取和设置，具体方法请参考 [meta_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/meta_tensor.h)。
@@ -333,7 +369,7 @@ InferMeta 的文件放置规则（[paddle/phi/infermeta](https://github.com/Padd
 
 **InferMeta 的编译时与运行时**
 
-在静态图模型中，`InferMeta`操作在  [编译时(compile time)和运行时(run time)](https://github.com/PaddlePaddle/docs/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md) 都会被调用，在 compile time 时，由于真实的维度未知，框架内部用 -1 来表示，在 run time 时，用实际的维度表示，因此维度的值在 compile time 和 run time 时可能不一致，如果存在维度的判断和运算操作，InferMeta 就需要区分 compile time 和 run time。
+在静态图模型中，`InferMeta`操作在编译时(compile time)和运行时(run time)都会被调用，在 compile time 时，由于真实的维度未知，框架内部用 -1 来表示，在 run time 时，用实际的维度表示，因此维度的值在 compile time 和 run time 时可能不一致，如果存在维度的判断和运算操作，InferMeta 就需要区分 compile time 和 run time。
 
 对于此类 InferMeta 函数，需要在 InferMeta 函数声明的参数列表末尾增加 `MetaConfig` 参数，例如：
 
@@ -399,81 +435,82 @@ y_dim[i] = x_dim[i] + z_dim[i]
 
 **参考代码：**
 
-  - 判断的实现方法可以参考 [SigmoidCrossEntropyWithLogitsInferMeta](https://github.com/PaddlePaddle/Paddle/blob/cd28cddbfb5f5643947291e9a640ecd414dc8dae/paddle/phi/infermeta/binary.cc#L650)，SigmoidCrossEntropyWithLogits 要求 X 和 labels 的两个输入，除了最后一维以外，其他的维度完全一致。
+  - 判断的实现方法可以参考 [SigmoidCrossEntropyWithLogitsInferMeta](https://github.com/PaddlePaddle/Paddle/blob/efd481536f5b88ec5f0433810a3b0d9ad09555fb/paddle/phi/infermeta/multiary.cc#L5025)，SigmoidCrossEntropyWithLogits 要求 x 和 labels 的两个输入，除了最后一维以外，其他的维度完全一致。
 
 ```cpp
   bool check = true;
   if ((!config.is_runtime) &&
-      (phi::product(x_dims) <= 0 || phi::product(labels_dims) <= 0)) {
+      (contain_unknown_dim(x_dims) || contain_unknown_dim(labels_dims))) {
     check = false;
   }
 
   if (check) {
     PADDLE_ENFORCE_EQ(
-        phi::slice_ddim(x_dims, 0, rank),
-        phi::slice_ddim(labels_dims, 0, rank),
-        phi::errors::InvalidArgument(
+        common::slice_ddim(x_dims, 0, rank),
+        common::slice_ddim(labels_dims, 0, rank),
+        common::errors::InvalidArgument(
             "Input(X) and Input(Label) shall have the same shape "
             "except the last dimension. But received: the shape of "
             "Input(X) is [%s], the shape of Input(Label) is [%s].",
             x_dims,
             labels_dims));
+
+    ......
   }
 ```
 
-  - 运算的实现可以参考 [ConcatInferMeta](https://github.com/PaddlePaddle/Paddle/blob/0604df9e70dfe7be8a21df6a80d9fa6d4939bd9d/paddle/phi/infermeta/multiary.cc#L323)，concat 在 InferShape 判断时，调用`ComputeAndCheckShape`，除了进行 concat 轴之外，其他的维度完全一致；在生成 output 的维度时，把 concat 轴的维度求和，其他的维度和输入保持一致。
+  - 运算的实现可以参考 [ConcatInferMeta](https://github.com/PaddlePaddle/Paddle/blob/efd481536f5b88ec5f0433810a3b0d9ad09555fb/paddle/phi/infermeta/multiary.cc#L1261)，concat 在 InferShape 判断时，调用`ComputeAndCheckShape`，除了进行 concat 轴之外，其他的维度完全一致；在生成 output 的维度时，把 concat 轴的维度求和，其他的维度和输入保持一致。
 
 ```cpp
-  const size_t n = inputs_dims.size();
-  auto out_dims = inputs_dims[0];
-  size_t in_zero_dims_size = out_dims.size();
-  for (size_t i = 1; i < n; i++) {
-    PADDLE_ENFORCE_EQ(
-        inputs_dims[i].size(),
-        out_dims.size(),
-        phi::errors::InvalidArgument("The shape of input[0] and input[%d] "
-                                    "is expected to be equal."
-                                    "But received input[0]'s shape = "
-                                    "[%s], input[%d]'s shape = [%s].",
-                                    i,
-                                    inputs_dims[0],
-                                    i,
-                                    inputs_dims[i]));
-    for (size_t j = 0; j < in_zero_dims_size; j++) {
-      if (j == axis) {
-        if (is_runtime) {
-          out_dims[axis] += inputs_dims[i][j];
-        } else {
-          if (inputs_dims[i][j] == -1 || out_dims[j] == -1) {
-            out_dims[axis] = -1;
-          } else {
-            out_dims[axis] += inputs_dims[i][j];
-          }
-        }
-      } else {
-        bool check_shape =
-            is_runtime || (inputs_dims[0][j] > 0 && inputs_dims[i][j] > 0);
-        if (check_shape) {
-          // check all shape in run time
-          PADDLE_ENFORCE_EQ(inputs_dims[0][j],
-                            inputs_dims[i][j],
-                            phi::errors::InvalidArgument(
-                                "The %d-th dimension of input[0] and input[%d] "
-                                "is expected to be equal."
-                                "But received input[0]'s shape = "
-                                "[%s], input[%d]'s shape = [%s].",
-                                j,
-                                i,
-                                inputs_dims[0],
-                                i,
-                                inputs_dims[i]));
-        }
-        if (!is_runtime && out_dims[j] == -1 && inputs_dims[i][j] > 0) {
-          out_dims[j] = inputs_dims[i][j];
-        }
-      }
-    }
+void ConcatInferMeta(const std::vector<const MetaTensor*>& x,
+                     const Scalar& axis_scalar,
+                     MetaTensor* out,
+                     MetaConfig config) {
+  PADDLE_ENFORCE_GE(x.size(),
+                    0UL,
+                    common::errors::InvalidArgument(
+                        "The size of input meta vector should be greater"
+                        "than 0."));
+  if (axis_scalar.FromTensor() && !config.is_runtime) {
+    auto out_dims =
+        common::make_ddim(std::vector<int>(x.at(0)->dims().size(), -1));
+    out->set_dims(out_dims);
+    out->set_dtype(x.at(0)->dtype());
+    out->set_layout(x.at(0)->layout());
+    out->share_lod(*x.at(0));
+    return;
   }
+
+  int axis = axis_scalar.to<int>();
+  // 1. calculate axis
+  int rank = x.at(0)->dims().size();
+  PADDLE_ENFORCE_EQ(
+      axis >= -rank && axis < rank,
+      true,
+      common::errors::InvalidArgument(
+          "The axis is expected to be in range of [%d, %d), but got %d",
+          -rank,
+          rank,
+          axis));
+  if (axis < 0) {
+    axis = axis + rank;
+  }
+
+  // 2. calculate out dims
+  std::vector<phi::DDim> x_dims;
+  x_dims.reserve(x.size());
+  for (const auto* x_t : x) {
+    x_dims.emplace_back(x_t->dims());
+  }
+  phi::DDim out_dim =
+      phi::funcs::ComputeAndCheckShape(config.is_runtime, x_dims, axis);
+
+  out->set_dims(out_dim);
+  out->set_dtype(x.at(0)->dtype());
+  out->set_layout(x.at(0)->layout());
+  out->share_lod(*x.at(0));
+}
+
 ```
 
 ## 四、新增算子 Kernel
@@ -548,7 +585,7 @@ paddle/phi/kernels
 ```plain
 namespace phi {
 template <typename T, typename Context>
-void TraceKernel(const Context& dev_ctx,
+void TraceKernel(const Context& ctx,
                  const DenseTensor& x,
                  int offset,
                  int axis1,
@@ -560,7 +597,7 @@ void TraceKernel(const Context& dev_ctx,
 模板为固定写法，说明如下：
 
 - 第一个模板参数为数据类型`T`，第二个模板参数为设备上下文`Context`，`template <typename T, typename Context>`
-- 函数命名：kernel 的命名统一加 kernel 后缀。即：kernel 名称 + kernel 后缀，驼峰式命名，例如：AddKernel
+- 函数命名：kernel 的命名统一加 Kernel 后缀。即：kernel 名称 + Kernel 后缀，驼峰式命名，例如：AddKernel
 - 参数顺序：Context， InputTensor …, Attribute …, OutTensor* 。即：第一位参数为 Context， 后边为输入的 Tensor， 接着是输入的属性参数， 最后是输出的 Tensor 的指针参数。如果 kernel 没有输入 Tensor 或者没有属性参数，略过即可
 - 第 1 个函数参数，类型为 `const Context&` 的 dev_ctx
 - 第 2 个函数参数，输入 Tensor，类型一般为 `const DenseTensor&`
@@ -660,12 +697,13 @@ void TraceKernel(const Context& dev_ctx,
 
 **（3）实现反向 Kernel 函数**
 
-反向 kernel 的实现与前向是类似的，此处不再赘述，可以直接参考对应链接中的代码实现。
+反向 kernel 的实现与前向是类似的，具体实现此处不再赘述。
 
-
-  - [paddle/phi/kernels/trace_grad_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_kernel.h)
+  - [paddle/phi/kernels/trace_grad_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_grad_kernel.h)
   - [paddle/phi/kernels/cpu/trace_grad_kernel.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/trace_grad_kernel.cc)
   - [paddle/phi/kernels/gpu/trace_grad_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_grad_kernel.cu)
+
+在 `trace_grad_kernel.cc` 与 `trace_grad_kernel.cu` 文件中都没有具体的 `phi::TraceGradKernel` 实现, 具体实现在 `trace_grad_kernel_impl.h` 文件中。
 
 
 **（4）公共函数管理**
@@ -724,10 +762,10 @@ PD_REGISTER_KERNEL(trace,
 mkdir build && cd build
 ```
 
-执行`cmake`命令，具体选项可参考 [从源码编译](../../install/compile/fromsource.html) 中的介绍，下面的命令为编译 Python3.8，GPU 版本，带测试，Release 版本的 Paddle。
+执行`cmake`命令，具体选项可参考 [从源码编译](../../install/compile/fromsource.html) 中的介绍，下面的命令为编译 Python3.10，GPU 版本，带测试，Release 版本的 Paddle。
 
 ```plain
-cmake .. -DPY_VERSION=3.8 -DWITH_GPU=ON -DWITH_TESTING=ON -DCMAKE_BUILD_TYPE=Release
+cmake .. -DPY_VERSION=3.10 -DWITH_GPU=ON -DWITH_TESTING=ON -DCMAKE_BUILD_TYPE=Release
 ```
 
 在`build`目录下，运行下面命令可以进行编译整个 paddle：
@@ -736,20 +774,25 @@ cmake .. -DPY_VERSION=3.8 -DWITH_GPU=ON -DWITH_TESTING=ON -DCMAKE_BUILD_TYPE=Rel
 make -j$(nproc)
 ```
 
-> **注意：**新增算子后请重新执行`cmake`命令，然后再执行`make`命令编译 paddle。
+> **注意：** 新增算子后请重新执行`cmake`命令，然后再执行`make`命令编译 paddle。
 
 ## 五、封装 Python API
 
 飞桨框架会对新增的算子 kernel 自动绑定 Python，并链接到生成的 lib 库中，然后开发者需要在 Python 端定义相应的 API，在 API 内调用新增算子，并添加相应的中英文文档描述即可。
 
- `paddle.trace`  的 Python API 实现位于 [python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/bd4dc3be34584f9b273ecec07297fb05e1cf4c52/python/paddle/tensor/math.py#L2277) 中，具体实现如下：
+ `paddle.trace`  的 Python API 实现位于 [python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/2ffcf1d15a5852c532c11cdb444c64f2294becdc/python/paddle/tensor/math.py#L4098) 中，具体实现如下：
 
 ```python
-def trace(x, offset=0, axis1=0, axis2=1, name=None):
+def trace(
+    x: Tensor,
+    offset: int = 0,
+    axis1: int = 0,
+    axis2: int = 1,
+    name: str | None = None,
+) -> Tensor:
     """
-    **trace**
 
-    This OP computes the sum along diagonals of the input tensor x.
+    Computes the sum along diagonals of the input tensor x.
 
     If ``x`` is 2D, returns the sum of diagonal.
 
@@ -765,11 +808,11 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
     - Note that if offset is out of input's shape indicated by axis1 and axis2, 0 will be returned.
 
     Args:
-        x(Tensor): The input tensor x. Must be at least 2-dimensional. The input data type should be float32, float64, int32, int64.
-        offset(int, optional): Which diagonals in input tensor x will be taken. Default: 0 (main diagonals).
-        axis1(int, optional): The first axis with respect to take diagonal. Default: 0.
-        axis2(int, optional): The second axis with respect to take diagonal. Default: 1.
-        name (str, optional): For details, please refer to :ref:`api_guide_Name`. Generally, no setting is required. Default: None.
+        x (Tensor): The input tensor x. Must be at least 2-dimensional. The input data type should be float16, float32, float64, int32, int64.
+        offset (int, optional): Which diagonals in input tensor x will be taken. Default: 0 (main diagonals).
+        axis1 (int, optional): The first axis with respect to take diagonal. Default: 0.
+        axis2 (int, optional): The second axis with respect to take diagonal. Default: 1.
+        name (str|None, optional): Name for the operation (optional, default is None). For more information, please refer to :ref:`api_guide_Name`.
 
     Returns:
         Tensor: the output data type is the same as input data type.
@@ -777,64 +820,73 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
     Examples:
         .. code-block:: python
 
-            import paddle
+            >>> import paddle
 
-            case1 = paddle.randn([2, 3])
-            case2 = paddle.randn([3, 10, 10])
-            case3 = paddle.randn([3, 10, 5, 10])
-            data1 = paddle.trace(case1) # data1.shape = [1]
-            data2 = paddle.trace(case2, offset=1, axis1=1, axis2=2) # data2.shape = [3]
-            data3 = paddle.trace(case3, offset=-3, axis1=1, axis2=-1) # data2.shape = [3, 5]
+            >>> case1 = paddle.randn([2, 3])
+            >>> case2 = paddle.randn([3, 10, 10])
+            >>> case3 = paddle.randn([3, 10, 5, 10])
+            >>> data1 = paddle.trace(case1)
+            >>> data1.shape
+            []
+            >>> data2 = paddle.trace(case2, offset=1, axis1=1, axis2=2)
+            >>> data2.shape
+            [3]
+            >>> data3 = paddle.trace(case3, offset=-3, axis1=1, axis2=-1)
+            >>> data3.shape
+            [3, 5]
     """
-    def __check_input(input, offset, dim1, dim2):
-        check_dtype(x.dtype, 'Input',
-                    ['int32', 'int64', 'float16', 'float32', 'float64'],
-                    'trace')
+
+    def __check_input(x, offset, axis1, axis2):
+        check_dtype(
+            x.dtype,
+            'Input',
+            ['int32', 'int64', 'float16', 'float32', 'float64'],
+            'trace',
+        )
 
         input_shape = list(x.shape)
-        assert len(input_shape) >= 2,                     \
-                "The x must be at least 2-dimensional, "   \
-                "But received Input x's dimensional: %s.\n" %  \
-                len(input_shape)
+        assert len(input_shape) >= 2, (
+            "The x must be at least 2-dimensional, "
+            f"But received Input x's dimensional: {len(input_shape)}.\n"
+        )
 
         axis1_ = axis1 if axis1 >= 0 else len(input_shape) + axis1
         axis2_ = axis2 if axis2 >= 0 else len(input_shape) + axis2
 
-        assert ((0 <= axis1_) and (axis1_ < len(input_shape))),     \
-            "The argument axis1 is out of range (expected to be in range of [%d, %d], but got %d).\n"  \
-            % (-(len(input_shape)), len(input_shape) - 1, axis1)
+        assert (0 <= axis1_) and (
+            axis1_ < len(input_shape)
+        ), f"The argument axis1 is out of range (expected to be in range of [{-(len(input_shape))}, {len(input_shape) - 1}], but got {axis1}).\n"
 
-        assert ((0 <= axis2_) and (axis2_ < len(input_shape))),   \
-            "The argument axis2 is out of range (expected to be in range of [%d, %d], but got %d).\n"   \
-            % (-(len(input_shape)), len(input_shape) - 1, axis2)
+        assert (0 <= axis2_) and (
+            axis2_ < len(input_shape)
+        ), f"The argument axis2 is out of range (expected to be in range of [{-(len(input_shape))}, {len(input_shape) - 1}], but got {axis2}).\n"
 
+        assert axis1_ != axis2_, (
+            "axis1 and axis2 cannot be the same axis."
+            f"But received axis1 = {axis1}, axis2 = {axis2}\n"
+        )
 
-        assert  axis1_ != axis2_,   \
-               "axis1 and axis2 cannot be the same axis." \
-                "But received axis1 = %d, axis2 = %d\n"%(axis1, axis2)
+    if in_dynamic_or_pir_mode():
+        return _C_ops.trace(x, offset, axis1, axis2)
+    else:
+        __check_input(x, offset, axis1, axis2)
 
-    __check_input(input, offset, axis1, axis2)
+        helper = LayerHelper('trace', **locals())
+        out = helper.create_variable_for_type_inference(dtype=x.dtype)
 
-    if in_dygraph_mode():
-        return _C_ops.trace( x, offset, axis1, axis2 )
-
-    helper = LayerHelper('trace', **locals())
-    out = helper.create_variable_for_type_inference(dtype=x.dtype)
-
-    helper.append_op(
-        type='trace',
-        inputs={'Input': [x]},
-        attrs={'offset': offset,
-               'axis1': axis1,
-               'axis2': axis2},
-        outputs={'Out': [out]})
-    return out
+        helper.append_op(
+            type='trace',
+            inputs={'Input': [x]},
+            attrs={'offset': offset, 'axis1': axis1, 'axis2': axis2},
+            outputs={'Out': [out]},
+        )
+        return out
 ```
 
 - Python API 实现要点（详见 [开发 API Python 端](./new_python_api_cn.html)）
   - 对输入参数进行合法性检查，即 `__check_input(input, offset, axis1, axis2)`
-  - 添加动态图分支调用，即 `if in_dygraph_mode` 进入动态图调用分支
-  - 添加静态图分支调用，即动态图分支后剩余的代码
+  - 添加飞桨新架构下动静统一分支的调用，通过 `if in_dynamic_or_pir_mode` 进入动态图及 PIR 分支
+  - 动静统一分支后剩余的代码，为旧架构遗留的静态图分支
 
 ## 六、添加单元测试
 
@@ -846,17 +898,21 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 
 ### 6.1 C++ 算子单元测试
 
-算子单元测试继承自 [OpTest](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/op_test.py#L309)。各项具体的单元测试在`TestTraceOp`里完成。测试算子，需要：
+算子单元测试继承自 [OpTest](https://github.com/PaddlePaddle/Paddle/blob/develop/test/legacy_test/op_test.py#L418)。各项具体的单元测试在`TestTraceOp`里完成。测试算子，需要：
 
 1. 在`setUp`函数定义输入、输出，以及相关的属性参数，并生成随机的输入数据。
 2. 在 Python 脚本中实现与前向算子相同的计算逻辑，得到输出值，与算子前向计算的输出进行对比。
 3. 反向计算已经自动集成进测试框架，直接调用相应接口即可。
 
 ```python
-import paddle
 import unittest
+
 import numpy as np
-from op_test import OpTest
+from op_test import OpTest, convert_float_to_uint16
+
+import paddle
+from paddle import base, tensor
+from paddle.base import core
 
 
 class TestTraceOp(OpTest):
@@ -869,11 +925,11 @@ class TestTraceOp(OpTest):
 
     # 测试前向输出结果
     def test_check_output(self):
-        self.check_output(check_eager=True)
+        self.check_output(check_pir=True)
 
     # 测试反向梯度输出
     def test_check_grad(self):
-        self.check_grad(['Input'], 'Out', check_eager=True)
+        self.check_grad(['Input'], 'Out', check_pir=True)
 
     def init_config(self):
         # 生成随机的输入数据
@@ -891,26 +947,40 @@ class TestTraceOp(OpTest):
 
 - **前向算子单测**
 
-  - test_check_output 中会对算子的前向计算结果进行测试，对比参考的结果为 setUp 中 `self.outputs`提供的数据。`check_eager=True`表示开启新动态图（eager 模式）单测，`check_eager`默认为`False`
+  - test_check_output 中会对算子的前向计算结果进行测试，对比参考的结果为 setUp 中 `self.outputs` 提供的数据。`check_pir=True` 表示开启 PIR 模式单测（默认为 `False`，需手动开启），`check_dygraph` 默认为 `True` 表示默认开启动态图单测。
 
 - **反向算子单测**
 
   - `test_check_grad`中调用`check_grad`使用数值法检测梯度正确性和稳定性。
     - 第一个参数`['Input']` : 指定对输入变量`Input`做梯度检测。
     - 第二个参数`'Out'` : 指定前向网络最终的输出目标变量`Out`。
-    - 第三个参数`check_eager` : `check_eager=True` 表示开启新动态图（eager 模式）单测，`check_eager` 默认为`False`。
+    - 第三个参数`check_pir` : `check_pir=True` 表示开启 PIR 模式单测（默认为 `False`，需手动开启），`check_dygraph` 默认为 `True`, 表示默认开启动态图单测。
   - 对于存在多个输入的反向算子测试，需要指定只计算部分输入梯度的 case
-    - 例如，[test_elementwise_sub_op.py](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/test_elementwise_sub_op.py) 中的`test_check_grad_ingore_x`和`test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况
-    - 此处第三个参数 max_relative_error：指定检测梯度时能容忍的最大错误值。
+    - 例如，[test_elementwise_sub_op.py](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/test_elementwise_sub_op.py) 中的 `test_check_grad_ignore_x` 和 `test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况
+    - 此处第三个参数 `max_relative_error` ：指定检测梯度时能容忍的最大相对误差值。
 
   ```python
-  def test_check_grad_ingore_x(self):
-      self.check_grad(
-          ['Y'], 'Out', max_relative_error=0.005, no_grad_set=set("X"))
+      def test_check_grad_ignore_x(self):
+        self.check_grad(
+            ['Y'],
+            'Out',
+            max_relative_error=0.005,
+            no_grad_set=set("X"),
+            check_prim=self.check_prim,
+            check_prim_pir=self.check_prim_pir,
+            check_pir=True,
+        )
 
-  def test_check_grad_ingore_y(self):
-      self.check_grad(
-          ['X'], 'Out', max_relative_error=0.005, no_grad_set=set('Y'))
+    def test_check_grad_ignore_y(self):
+        self.check_grad(
+            ['X'],
+            'Out',
+            max_relative_error=0.005,
+            no_grad_set=set('Y'),
+            check_prim=self.check_prim,
+            check_prim_pir=self.check_prim_pir,
+            check_pir=True,
+        )
   ```
 
 
@@ -1054,8 +1124,6 @@ The following device operations are asynchronous with respect to the host:
 如果算子有数学公式，一定要在代码中将数学公式写明，并在 Python API 的 Doc 中显示，因为用户在对比不同框架的计算结果时可能需要了解 Paddle 对算子是怎么实现的。
 
 ### 7.9 LoD 在算子内部的传导规范
-
-[LoD](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/lod_tensor.md) 是 Paddle 框架用来表示变长序列数据的属性，除了仅支持输入是 padding  data 的算子外，所有算子的实现都要考虑 LoD 的传导问题。
 
 根据算子的计算过程中是否用到 LoD，我们可以将涉及到 LoD 传导问题的算子分为两类: LoD-Transparent 与 LoD-Based。
 

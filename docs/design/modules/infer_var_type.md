@@ -2,9 +2,9 @@
 
 ## The Problem Posed
 
-The variable in our design can hold variant types. Such as `LoDTensor` and `SelectedRows`. An operator should be able to inference the variable types of its output.
+The variable in our design can hold variant types. Such as `DenseTensor` and `SelectedRows`. An operator should be able to inference the variable types of its output.
 
-For example, a `lookup table` operator takes two `LoDTensor`; one is a float tensor as the embedding table, the other is an int tensor as word ID. The gradient operator of `lookup table` will generate a `SelectedRows` as its output. A `sum` operator can take both `LoDTensor` and `SelectedRows` as its inputs and will generate a `LoDTensor` if any of its inputs is `LoDTensor`, otherwise, the `sum` operator will generate `SelectedRows` as its output.
+For example, a `lookup table` operator takes two `DenseTensor`; one is a float tensor as the embedding table, the other is an int tensor as word ID. The gradient operator of `lookup table` will generate a `SelectedRows` as its output. A `sum` operator can take both `DenseTensor` and `SelectedRows` as its inputs and will generate a `DenseTensor` if any of its inputs is `DenseTensor`, otherwise, the `sum` operator will generate `SelectedRows` as its output.
 
 The variable type will be constant at runtime. Every variable's type can either be set by the user (input data and parameter) or be inferred by the operator in compile time.
 
@@ -29,11 +29,11 @@ struct OpInfo {
 };
 ```
 
-The default `InferVarType` will set output type as `LoDTensor`. It can be done by `GetInferVarType()`.
+The default `InferVarType` will set output type as `DenseTensor`. It can be done by `GetInferVarType()`.
 
 ```cpp
 void DefaultInferVarType(const OpDescBind& op_desc, BlockDescBind* block) {
-  // set the output type of variable as `LoDTensor`.
+  // set the output type of variable as `DenseTensor`.
   // ...
 }
 

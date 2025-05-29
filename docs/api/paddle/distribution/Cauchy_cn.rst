@@ -58,7 +58,7 @@ ValueError，柯西分布没有标准差
 方法
 :::::::::
 
-sample(shape, name=None)
+sample(shape=[], name=None)
 '''''''''
 
 生成指定维度的样本。
@@ -68,7 +68,7 @@ sample(shape, name=None)
 
 **参数**
 
-    - **shape** (Sequence[int]) - 指定生成样本的维度。
+    - **shape** (Sequence[int]，可选) - 指定生成样本的维度。
     - **name** (str，可选) - 操作的名称，一般无需设置，默认值为 None，具体用法请参见 :ref:`api_guide_Name`。
 
 **返回**
@@ -79,14 +79,14 @@ Tensor，样本，其维度为 :math:`\text{sample shape} + \text{batch shape} +
 
 COPY-FROM: paddle.distribution.Cauchy.sample
 
-rsample(shape, name=None)
+rsample(shape=[], name=None)
 '''''''''
 
 重参数化采样，生成指定维度的样本。
 
 **参数**
 
-    - **shape** (Sequence[int]) - 指定生成样本的维度。
+    - **shape** (Sequence[int]，可选) - 指定生成样本的维度。
     - **name** (str，可选) - 操作的名称，一般无需设置，默认值为 None，具体用法请参见 :ref:`api_guide_Name`。
 
 **返回**

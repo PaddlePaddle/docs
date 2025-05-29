@@ -89,7 +89,7 @@ log_prob(value)
 Tensor，value 的对数概率。数据类型与 :attr:`df` 相同。
 
 
-sample()
+sample(shape=[])
 '''''''''
 
 从学生 t 分布中生成满足特定形状的样本数据。最终生成样本形状为 ``shape+batch_shape`` 。

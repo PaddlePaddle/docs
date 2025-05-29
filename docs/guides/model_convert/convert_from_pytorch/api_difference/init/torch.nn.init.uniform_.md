@@ -5,7 +5,8 @@
 ```python
 torch.nn.init.uniform_(tensor,
                         a=0.0,
-                        b=1.0)
+                        b=1.0,
+                        generator=None)
 ```
 
 ### [paddle.nn.initializer.Uniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/Uniform_cn.html)
@@ -25,6 +26,7 @@ paddle.nn.initializer.Uniform(low=-1.0,
 | tensor        | -          | n 维 tensor。Paddle 无此参数，因为是通过调用类的 __call__ 函数来进行 tensor 的初始化。    |
 | a           |  low          | 均匀分布的下界，参数默认值不一致, PyTorch 默认为`0.0`，Paddle 为`-1.0`，Paddle 需保持与 PyTorch 一致。               |
 | b           |  high         | 均匀分布的上界，仅参数名不一致。               |
+| generator        | -        | 用于采样的伪随机数生成器，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。    |
 
 ### 转写示例
 ```python

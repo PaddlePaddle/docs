@@ -34,7 +34,7 @@ message TensorDesc {
   repeated int64 dims = 2; // [UNK, 640, 480] is saved as [-1, 640, 480]
 }
 
-message LodTensorDesc {
+message DenseTensorDesc {
   required TensorDesc tensor = 1;
   optional int lod_level = 2;
 }
@@ -42,11 +42,11 @@ message LodTensorDesc {
 message VarDesc {
   required string name = 1;
   enum VarType {
-    LOD_TENSOR = 0;
+    DENSE_TENSOR = 0;
     SELECTED_ROWS = 1;
   }
   required VarType type = 2;
-  optional LodTensorDesc lod_desc = 3;
+  optional DenseTensorDesc lod_desc = 3;
   optional TensorDesc selected_rows_desc = 4;
   optional bool persistable = 5 [ default = false ];
 }

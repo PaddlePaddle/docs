@@ -19,14 +19,14 @@ repos:
     -   id: remove-tabs
         types: [text]
 # Document hooks
--   repo: https://github.com/ShigureLab/dochooks
-    rev: v0.3.0
+-   repo: https://github.com/PFCCLab/dochooks
+    rev: v0.5.0
     hooks:
     -   id: insert-whitespace-between-cn-and-en-char
         files: \.md$|\.rst$
 # For Python files
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.1
+    rev: v0.11.0
     hooks:
     -   id: ruff
         args: [--fix, --exit-non-zero-on-fix, --no-cache]

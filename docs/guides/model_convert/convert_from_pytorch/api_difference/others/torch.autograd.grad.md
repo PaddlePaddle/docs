@@ -3,7 +3,7 @@
 ### [torch.autograd.grad](https://pytorch.org/docs/stable/generated/torch.autograd.grad.html#torch.autograd.grad)
 
 ```python
-torch.autograd.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, is_grads_batched=False)
+torch.autograd.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, is_grads_batched=False, materialize_grads=False)
 ```
 
 ### [paddle.grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/grad_cn.html)
@@ -26,4 +26,5 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | only_inputs      | only_inputs  | 是否只计算 inputs 的梯度。                                   |
 | allow_unused     | allow_unused | 决定当某些 inputs 变量不在计算图中时抛出错误还是返回 None。  |
 | is_grads_batched | -            | 是否反向使用批量，Paddle 无此参数，暂无转写方式。            |
+| materialize_grads | -            | 与输入无关变量的梯度，初始化为零还是不初始化，Paddle 无此参数，暂无转写方式。            |
 | -                | no_grad_vars | 指明不需要计算梯度的变量，PyTorch 无此参数，Paddle 保持默认即可。 |

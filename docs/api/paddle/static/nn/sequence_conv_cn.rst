@@ -7,8 +7,8 @@ sequence_conv
 .. py:function:: paddle.static.nn.sequence_conv(input, num_filters, filter_size=3, filter_stride=1, padding=True, padding_start=None, bias_attr=None, param_attr=None, act=None, name=None)
 
 .. note::
-1. 该 API 的输入只能是带有 LoD 信息的 Tensor，如果您需要处理的输入是普通的 Tensor 类型，请使用 :ref:`paddle.nn.functional.conv2d <cn_api_paddle_nn_functional_conv2d>` 。
-2. 参数 ``padding`` 为无用参数，将在未来的版本中被移除。
+    1. 该 API 的输入只能是带有 LoD 信息的 Tensor，如果您需要处理的输入是普通的 Tensor 类型，请使用 :ref:`paddle.nn.functional.conv2d <cn_api_paddle_nn_functional_conv2d>` 。
+    2. 参数 ``padding`` 为无用参数，将在未来的版本中被移除。
 
 
 在给定的卷积参数下（如卷积核数目、卷积核大小等），对输入的变长序列（sequence）Tensor 进行卷积操作。默认情况下，该 OP 会自适应地在每个输入序列的两端等长地填充全 0 数据，以确保卷积后的序列输出长度和输入长度一致。支持通过配置 ``padding_start`` 参数来指定序列填充的行为。

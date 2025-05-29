@@ -118,28 +118,28 @@ icdf(value)
     - Tensor: value 对应 Laplace 逆累积分布函数下的值。
 
 
-sample(shape)
+sample(shape=[])
 '''''''''
 
 生成指定维度的样本。
 
 **参数**
 
-    - **shape** (tuple[int]) - 1 维元组，指定生成样本的维度，默认为()。
+    - **shape** (Sequence[int]，可选) - 1 维元组，指定生成样本的维度，默认为[]。
 
 **返回**
 
     - Tensor: 预先设计好维度的样本数据。
 
 
-rsample(shape)
+rsample(shape=[])
 '''''''''
 
 生成指定维度的样本（重参数采样）。
 
 **参数**
 
-    - **shape** (tuple[int]) - 1 维元组，指定生成样本的维度，默认为()。
+    - **shape** (Sequence[int]，可选) - 1 维元组，指定生成样本的维度，默认为[]。
 
 **返回**
 

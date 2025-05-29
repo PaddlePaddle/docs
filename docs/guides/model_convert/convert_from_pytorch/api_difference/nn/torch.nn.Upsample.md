@@ -5,7 +5,8 @@
 torch.nn.Upsample(size=None,
                   scale_factor=None,
                   mode='nearest',
-                  align_corners=False)
+                  align_corners=False,
+                  recompute_scale_factor=None)
 ```
 
 ### [paddle.nn.Upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Upsample_cn.html#upsample)
@@ -17,6 +18,7 @@ paddle.nn.Upsample(size=None,
                    align_corners=False,
                    align_mode=0,
                    data_format='NCHW',
+                   recompute_scale_factor=None,
                    name=None)
 ```
 
@@ -31,3 +33,4 @@ paddle.nn.Upsample(size=None,
 | align_corners             | align_corners   | 表示是否将输入和输出张量的 4 个角落像素的中心对齐，并保留角点像素的值。    |
 | -             | align_mode   | 双线性插值的可选项，PyTorch 无此参数，Paddle 保持默认即可。    |
 | -             | data_format  | Tensor 的所需数据类型，PyTorch 无此参数，Paddle 保持默认即可。 |
+| recompute_scale_factor | recompute_scale_factor | 是否重新计算乘数因子。 |

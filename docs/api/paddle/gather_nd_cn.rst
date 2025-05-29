@@ -49,6 +49,16 @@ gather_nd
                       = [23]
 
 
+**示例图解说明**：
+
+    下图展示了示例中的情形——一个形状为[2,3,4]的三维张量通过 gather_nd 操作分别输出三个不同的张量。通过比较，可以看出不同 index 下输出张量的差别。
+
+    .. figure:: ../../images/api_legend/gather_nd.png
+       :width: 761
+       :alt: 示例图示
+       :align: center
+
+
 参数
 ::::::::::::
 
@@ -60,7 +70,6 @@ gather_nd
 ::::::::::::
 
 shape 为 index.shape[:-1] + x.shape[index.shape[-1]:]的 Tensor，数据类型与 :code:`x` 一致。
-
 
 代码示例
 ::::::::::::

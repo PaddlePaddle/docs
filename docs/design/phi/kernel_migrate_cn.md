@@ -151,8 +151,8 @@ void LogSoftmaxKernel(const Context& dev_ctx,
 
 | fluid 写法 | phi 写法 |
 |---|---|
-| `farmework::Tensor` | `DenseTensor` |
-| `farmework::LoDTensor` | `DenseTensor` |
+| `framework::Tensor` | `DenseTensor` |
+| `framework::DenseTensor` | `DenseTensor` |
 | 模板参数 `DeviceContext` | 模板参数 `Context` |
 | `platform::XXXDeviceContext` | `XXXContext` |
 | `out->mutbale_data(ctx.GetPlace()/place)` | `dev_ctx.template Alloc(out)` |

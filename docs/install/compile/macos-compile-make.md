@@ -48,7 +48,7 @@ cd Paddle
 
 * CPU 版的 PaddlePaddle：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev
     ```
 
 如果您的机器不在中国大陆地区，可以直接从 DockerHub 拉取镜像：
@@ -64,7 +64,7 @@ cd Paddle
 #### 5. 创建并进入满足编译环境的 Docker 容器：
 
 ```
-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+docker run --name paddle-test -v $PWD:/paddle --network=host -it ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
 ```
 
 - `--name paddle-test`：为您创建的 Docker 容器命名为 paddle-test
@@ -73,7 +73,7 @@ docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidub
 
 - `-it`：与宿主机保持交互状态
 
-- `registry.baidubce.com/paddlepaddle/paddle:latest-dev`：使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令
+- `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev`：使用名为`ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令
 
 注意：请确保至少为 docker 分配 4g 以上的内存，否则编译过程可能因内存不足导致失败。您可以在 docker 用户界面的“Preferences-Resources”中设置容器的内存分配上限。
 
@@ -99,19 +99,12 @@ mkdir -p /paddle/build && cd /paddle/build
 
 #### 9. 使用以下命令安装相关依赖：
 
-- 安装 protobuf 3.20.2。
-
+- 安装编译依赖
 ```
-pip3.10 install protobuf==3.20.2
+pip3.10 install -r /paddle/python/requirements.txt
 ```
 
 注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12
-
-- 安装 patchelf，PatchELF 是一个小而实用的程序，用于修改 ELF 可执行文件的动态链接器和 RPATH。
-
-```
-apt install patchelf
-```
 
 #### 10. 执行 cmake：
 
@@ -248,7 +241,16 @@ paddle 支持 Python 3.8 以上版本
 mkdir build && cd build
 ```
 
-#### 8. 执行 cmake：
+#### 8. 使用以下命令安装相关依赖：
+
+- 安装编译依赖
+```
+pip3.10 install -r /paddle/python/requirements.txt
+```
+
+注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12
+
+#### 9. 执行 cmake：
 
 >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
@@ -261,18 +263,18 @@ mkdir build && cd build
 
 >`-DPY_VERSION=3.10`请修改为安装环境的 Python 版本
 
-#### 9. 使用以下命令来编译：
+#### 10. 使用以下命令来编译：
 
 ```
 make -j$(sysctl -n hw.ncpu)
 ```
 
-#### 10. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
+#### 11. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
 ```
 cd /paddle/build/python/dist
 ```
 
-#### 11. 在当前机器或目标机器安装编译好的`.whl`包：
+#### 12. 在当前机器或目标机器安装编译好的`.whl`包：
 
 ```
 pip install -U（whl 包的名字）

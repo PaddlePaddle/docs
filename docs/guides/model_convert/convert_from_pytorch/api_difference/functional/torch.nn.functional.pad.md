@@ -16,7 +16,7 @@ paddle.nn.functional.pad(x,
                             pad,
                             mode='constant',
                             value=0.0,
-                            data_format='NCHW',
+                            data_format=None,
                             pad_from_left_axis=True,
                             name=None)
 ```

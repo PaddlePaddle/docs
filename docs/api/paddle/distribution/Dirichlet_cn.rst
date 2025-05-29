@@ -81,7 +81,7 @@ log_prob(value)
 - Tensor: value 的对数概率。
 
 
-sample()
+sample(shape=[])
 '''''''''
 
 从 Beta 分布中生成满足特定形状的样本数据。

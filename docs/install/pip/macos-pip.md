@@ -23,7 +23,6 @@
     ```
 
 
-
 * 需要确认 python 的版本是否满足要求
 
   * 使用以下命令确认是 3.8/3.9/3.10/3.11/3.12
@@ -34,10 +33,6 @@
 
 * 需要确认 pip 的版本是否满足要求，要求 pip 版本为 20.2.2 或更高版本
 
-
-    ```
-    python3 -m ensurepip
-    ```
 
     ```
     python3 -m pip --version
@@ -66,7 +61,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+  python3 -m pip install paddlepaddle==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
 
 

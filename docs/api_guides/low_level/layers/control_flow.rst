@@ -34,8 +34,8 @@ While
 While 循环，当条件判断为真时，循环执行 :code:`While` 控制流所属 :code:`block` 内的逻辑，条件判断为假时退出循环。与之相关的 API 有
 
 * :ref:`cn_api_fluid_layers_increment` ：累加 API，通常用于对循环次数进行计数；
-* :ref:`cn_api_fluid_layers_array_read` ：从 :code:`LOD_TENSOR_ARRAY` 中指定的位置读入 Variable，进行计算；
-* :ref:`cn_api_fluid_layers_array_write` ：将 Variable 写回到 :code:`LOD_TENSOR_ARRAY` 指定的位置，存储计算结果。
+* :ref:`cn_api_fluid_layers_array_read` ：从 :code:`DENSE_TENSOR_ARRAY` 中指定的位置读入 Variable，进行计算；
+* :ref:`cn_api_fluid_layers_array_write` ：将 Variable 写回到 :code:`DENSE_TENSOR_ARRAY` 指定的位置，存储计算结果。
 
 请参考 :ref:`cn_api_fluid_layers_While`
 

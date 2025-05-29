@@ -1,4 +1,4 @@
-# Design: Sequence Decoder Generating LoDTensors
+# Design: Sequence Decoder Generating DenseTensors
 In tasks such as machine translation and visual captioning,
 a [sequence decoder](https://github.com/PaddlePaddle/book/blob/develop/08.machine_translation/README.md) is necessary to generate sequences, one word at a time.
 
@@ -11,13 +11,12 @@ In the old version of PaddlePaddle, the C++ class `RecurrentGradientMachine` imp
 
 There are a lot of heuristic tricks in the sequence generation tasks, so the flexibility of sequence decoder is very important to users.
 
-During the refactoring of PaddlePaddle, some new concepts are proposed such as:  [LoDTensor](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/lod_tensor.md) and [TensorArray](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/tensor_array.md) that can better support the sequence usage, and they can also help make the implementation of beam search based sequence decoder **more transparent and modular** .
+During the refactoring of PaddlePaddle, some new concepts are proposed such as:  [TensorArray](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/tensor_array.md) that can better support the sequence usage, and they can also help make the implementation of beam search based sequence decoder **more transparent and modular** .
 
-For example, the RNN states, candidates IDs and probabilities of beam search can be represented all as `LoDTensors`;
-the selected candidate's IDs in each time step can be stored in a `TensorArray`, and `Packed` to the sentences translated.
+For example, the selected candidate's IDs in each time step can be stored in a `TensorArray`, and `Packed` to the sentences translated.
 
 ## Changing LoD's absolute offset to relative offsets
-The current `LoDTensor` is designed to store levels of variable-length sequences. It stores several arrays of integers where each represents a level.
+The current `DenseTensor` is designed to store levels of variable-length sequences. It stores several arrays of integers where each represents a level.
 
 The integers in each level represent the begin and end (not inclusive) offset of a sequence **in the underlying tensor**,
 let's call this format the **absolute-offset LoD** for clarity.
@@ -157,7 +156,7 @@ In this way, users can customize anything on the input or output of beam search,
 The implementation of sequence decoder can reuse the C++ class:  [RNNAlgorithm](https://github.com/Superjom/Paddle/blob/68cac3c0f8451fe62a4cdf156747d6dc0ee000b3/paddle/operators/dynamic_recurrent_op.h#L30),
 so the python syntax is quite similar to that of an  [RNN](https://github.com/Superjom/Paddle/blob/68cac3c0f8451fe62a4cdf156747d6dc0ee000b3/doc/design/block.md#blocks-with-for-and-rnnop).
 
-Both of them are two-level `LoDTensors`:
+Both of them are two-level `DenseTensors`:
 
 - The first level represents `batch_size` of (source) sentences.
 - The second level represents the candidate ID sets for translation prefix.
@@ -184,18 +183,18 @@ the current state is stored in `encoder_ctx_expanded`:
 
 The benefit from the relative offset LoD is that the empty candidate set can be represented naturally.
 
-The status in each time step can be stored in `TensorArray`, and `Pack`ed to a final LoDTensor. The corresponding syntax is:
+The status in each time step can be stored in `TensorArray`, and `Pack`ed to a final DenseTensor. The corresponding syntax is:
 
 ```python
 decoder.output(selected_ids)
 decoder.output(selected_generation_scores)
 ```
 
-The `selected_ids` are the candidate ids for the prefixes, and will be `Packed` by `TensorArray` to a two-level `LoDTensor`, where the first level represents the source sequences and the second level represents generated sequences.
+The `selected_ids` are the candidate ids for the prefixes, and will be `Packed` by `TensorArray` to a two-level `DenseTensor`, where the first level represents the source sequences and the second level represents generated sequences.
 
-Packing the `selected_scores` will get a `LoDTensor` that stores scores of each translation candidate.
+Packing the `selected_scores` will get a `DenseTensor` that stores scores of each translation candidate.
 
-Packing the `selected_generation_scores` will get a `LoDTensor`, and each tail is the probability of the translation.
+Packing the `selected_generation_scores` will get a `DenseTensor`, and each tail is the probability of the translation.
 
 ## LoD and shape changes during decoding
 <p align="center">
@@ -211,7 +210,7 @@ The beam search algorithm will be implemented as one method of the sequence deco
 2. `topk_scores`, the corresponding scores for `topk_ids`
 3. `generated_scores`, the score of the prefixes.
 
-All of these are LoDTensors, so that the sequence affiliation is clear. Beam search will keep a beam for each prefix and select a smaller candidate set for each prefix.
+All of these are DenseTensors, so that the sequence affiliation is clear. Beam search will keep a beam for each prefix and select a smaller candidate set for each prefix.
 
 It will return three variables:
 
@@ -220,10 +219,10 @@ It will return three variables:
 3. `generated_scores`, the updated scores for each prefix (with the new candidates appended).
 
 ## Introducing the LoD-based `Pack` and `Unpack` methods in `TensorArray`
-The `selected_ids`, `selected_scores` and `generated_scores` are LoDTensors that exist at each time step,
+The `selected_ids`, `selected_scores` and `generated_scores` are DenseTensors that exist at each time step,
 so it is natural to store them in arrays.
 
 Currently, PaddlePaddle has a module called `TensorArray` which can store an array of tensors. It is better to store the results of beam search in a `TensorArray`.
 
-The `Pack` and `UnPack` in `TensorArray` are used to pack tensors in the array to an `LoDTensor` or split the `LoDTensor` to an array of tensors.
-It needs some extensions to support the packing or unpacking an array of `LoDTensors`.
+The `Pack` and `UnPack` in `TensorArray` are used to pack tensors in the array to an `DenseTensor` or split the `DenseTensor` to an array of tensors.
+It needs some extensions to support the packing or unpacking an array of `DenseTensors`.

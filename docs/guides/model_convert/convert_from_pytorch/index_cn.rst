@@ -4,8 +4,7 @@
 
 您可以通过下面的内容，如何将 PyTorch 训练代码迁移到飞桨:
 
-- `代码自动转换工具 <./paconvert_introduction_cn.html>`_ : 介绍 Pytorch 代码自动转 Paddle 工具使用方法。
-- `PyTorch API 映射表 <./pytorch_api_mapping_cn.html>`_ : 说明 PyTorch 最新 release 版本 与 Paddle develop 版本 API 对应关系。
+- `PyTorch API 映射表 <./pytorch_api_mapping_cn.html>`_ : 描述 PyTorch 最新 release 版本 与 Paddle develop 版本 的 API 对应关系。
 - `CV - 快速上手 <./cv_quick_start_cn.html>`_ : 以 MobileNetV3 为例，介绍如何从 PyTorch 迁移到飞桨。
 - `CV - 迁移经验总结 <./cv_experience_cn.html>`_ : 介绍 CV 各个方向从 PyTorch 迁移到飞桨的基本流程、常用工具、定位问题的思路及解决方法。
 - `NLP - 快速上手 <./nlp_fast_explore_cn.html>`_ : 以 Bert 为例，介绍如何从 PyTorch 迁移到飞桨。

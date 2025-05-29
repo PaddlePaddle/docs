@@ -50,7 +50,7 @@ log_prob(value)
 - Tensor: value 的对数概率。
 
 
-sample(shape=())
+sample(shape=[])
 '''''''''
 
 生成满足特定形状的样本数据。
@@ -63,7 +63,7 @@ sample(shape=())
 
 - Tensor：样本数据。
 
-rsample(shape=())
+rsample(shape=[])
 '''''''''
 
 重参数化采样，生成满足特定形状的样本数据。

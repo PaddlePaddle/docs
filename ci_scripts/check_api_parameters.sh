@@ -11,6 +11,9 @@ function filter_cn_api_files() {
     local __resultvar=$2
     local need_check_files=""
     for file in `echo $git_files`;do
+        if [[ "$file" == *"Overview_cn.rst"* ]] || [[ "$file" == *__cn.rst ]]; then
+            continue
+        fi
         echo "$file" | grep '.*\.rst$' > /dev/null
         if [ $? -eq 0 ] ;then
             need_check_files="${need_check_files} $file"

@@ -19,10 +19,23 @@ Distribution
 方法
 :::::::::
 
-sample()
+sample(shape=[])
 '''''''''
 
 从分布中采样
+
+**参数**
+
+    - **shape** (Sequence[int]，可选) - 采样的样本维度。
+
+rsample(shape=[])
+'''''''''
+
+从分布中重参数化采样
+
+**参数**
+
+    - **shape** (Sequence[int]，可选) - 重参数化采样的样本维度。
 
 entropy()
 '''''''''

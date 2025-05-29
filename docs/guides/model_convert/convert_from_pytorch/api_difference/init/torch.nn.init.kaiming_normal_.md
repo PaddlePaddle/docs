@@ -6,7 +6,8 @@
 torch.nn.init.kaiming_normal_(tensor,
                         a=0,
                         mode='fan_in',
-                        nonlinearity='leaky_relu')
+                        nonlinearity='leaky_relu',
+                        generator=None)
 ```
 
 ### [paddle.nn.initializer.KaimingNormal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/KaimingNormal_cn.html)
@@ -27,6 +28,7 @@ paddle.nn.initializer.KaimingNormal(fan_in=None,
 | a        | negative_slope     | 只适用于使用 leaky_relu 作为激活函数时的 negative_slope 参数。仅参数名不一致。    |
 | nonlinearity     |  nonlinearity        |  非线性激活函数。参数默认值不一样，PyTorch 默认值为`leaky_relu`，Paddle 默认值为`relu`，Paddle 需保持与 PyTorch 一致。            |
 | mode         | -        | "fan_in"（默认）或 "fan_out"。Paddle 无此参数，mode="fan_out"时，Paddle 无此参数，暂无转写方式。    |
+| generator        | -        | 用于采样的伪随机数生成器，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。    |
 | -          | fan_in        | 可训练的 Tensor 的 in_features 值。PyTorch 无此参数，Paddle 保持默认即可。               |
 
 ### 转写示例

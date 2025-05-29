@@ -7,6 +7,12 @@ unflatten
 
 将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状。与 :ref:`cn_api_paddle_flatten` 是反函数。
 
+下图展示了一个[2, 6]的 Tensor 在经过 ``unflatten(X, axis=1, shape=(2, 3))`` 后的形状，数据依次为 0 到 11。
+
+.. image:: ../../images/api_legend/unflatten.png
+   :alt: 图例
+   :width: 700
+
 
 参数
 :::::::::

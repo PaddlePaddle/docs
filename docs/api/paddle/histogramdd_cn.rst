@@ -13,7 +13,7 @@ histogramdd
 参数
 ::::::::::::
 
-    - **input** (Tensor) - 输入多维 Tensor 。
+    - **x** (Tensor) - 输入多维 Tensor 。
     - **bins** (Tensor[]|int[]|int) - 如果为 Tensor 数组，则表示所有 bin 边界。如果为 int 数组，则表示每个维度中等宽 bin 的数量。如果为 int，则表示所有维度的等宽 bin 数量。默认值为 10 ，表示所有维度的等宽 bin 数量为 10 个。
     - **ranges** (float[], 可选) - 表示每个维度中最左边和最右边的 bin 边界。如果为 None ，则将每个尺寸的最小值和最大值设置为最左边和最右边。默认值为 None ，表示自动根据最大值与最小值计算 bin 的边界。
     - **density** (bool，可选) - 表示是否计算 density ，如果为 False，结果将包含每个 bin 中的计数（或权重）。如果为 True，则将每个计数（权重）除以总计数（总权重），然后再除以相关 bin 的宽度。默认值为 False ，表示不计算 density 。

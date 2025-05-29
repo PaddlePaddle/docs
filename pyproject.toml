@@ -1,8 +1,9 @@
 [tool.ruff]
 line-length = 80
-target-version = "py38"
+target-version = "py39"
 
 [tool.ruff.lint]
+exclude = ["*.ipynb"]
 select = [
     # Pycodestyle
     "E",
@@ -69,7 +70,7 @@ select = [
     "PGH004",
 
     # Flake8-type-checking
-    "TCH",
+    "TC",
 
     # Ruff-specific rules
     "RUF005",
