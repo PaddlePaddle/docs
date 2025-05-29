@@ -1,9 +1,9 @@
-## [ torch 参数更多 ] torch.distributions.ContinuousBernoulli
+## [ torch 参数更多 ] torch.distributions.continuous_bernoulli.ContinuousBernoulli
 
-### [torch.distributions.ContinuousBernoulli](https://pytorch.org/docs/stable/distributions.html)
+### [torch.distributions.continuous_bernoulli.ContinuousBernoulli](https://pytorch.org/docs/stable/distributions.html)
 
 ```python
-torch.distributions.ContinuousBernoulli(probs=None,
+torch.distributions.continuous_bernoulli.ContinuousBernoulli(probs=None,
                                         logits=None,
                                         lims=(0.499, 0.501),
                                         validate_args=None)

@@ -1,9 +1,9 @@
-## [ torch 参数更多 ] torch.distributions.MultivariateNormal
+## [ torch 参数更多 ] torch.distributions.multivariate_normal.MultivariateNormal
 
-### [torch.distributions.MultivariateNormal](https://pytorch.org/docs/stable/distributions.html#multivariatenormal)
+### [torch.distributions.multivariate_normal.MultivariateNormal](https://pytorch.org/docs/stable/distributions.html#multivariatenormal)
 
 ```python
-torch.distributions.MultivariateNormal(loc,
+torch.distributions.multivariate_normal.MultivariateNormal(loc,
                                        covariance_matrix=None,
                                        precision_matrix=None,
                                        scale_tril=None,
