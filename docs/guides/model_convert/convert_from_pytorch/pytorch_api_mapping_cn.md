@@ -257,33 +257,78 @@
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ---- | -------------------- | -------------- | ----------- | ---- |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.absolute`, `torch.Tensor.abs`) |
 | ALIAS-REFERENCE-ITEM(`torch.Tensor.absolute_`, `torch.Tensor.abs_`) |
-| ALIAS-REFERENCE-ITEM(`torch.Tensor.acos`, `torch.Tensor.arccos`) |
-| ALIAS-REFERENCE-ITEM(`torch.Tensor.asin`, `torch.Tensor.arcsin`) |
-| ALIAS-REFERENCE-ITEM(`torch.Tensor.atan`, `torch.Tensor.arctan`) |
-| ALIAS-REFERENCE-ITEM(`torch.Tensor.atan2`, `torch.Tensor.arctan2`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.arccos`, `torch.Tensor.acos`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.arccos_`, `torch.Tensor.acos_`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.arccosh`, `torch.Tensor.acosh`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.arccosh_`, `torch.Tensor.acosh_`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.arcsin`, `torch.Tensor.asin`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.arcsin_`, `torch.Tensor.asin_`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.arcsinh`, `torch.Tensor.asinh`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.arcsinh_`, `torch.Tensor.asinh_`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.arctan`, `torch.Tensor.atan`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.arctan2`, `torch.Tensor.atan2`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.arctan_`, `torch.Tensor.atan_`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.arctanh`, `torch.Tensor.atanh`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.arctanh_`, `torch.Tensor.atanh_`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.divide`, `torch.Tensor.div`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.divide_`, `torch.Tensor.div_`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.greater`, `torch.Tensor.gt`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.greater_`, `torch.Tensor.gt_`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.greater_equal`, `torch.Tensor.ge`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.greater_equal_`, `torch.Tensor.ge_`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.less`, `torch.Tensor.lt`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.less_`, `torch.Tensor.lt_`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.less_equal`, `torch.Tensor.le`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.less_equal_`, `torch.Tensor.le_`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.multiply`, `torch.Tensor.mul`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.multiply_`, `torch.Tensor.mul_`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.not_equal`, `torch.Tensor.ne`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.not_equal_`, `torch.Tensor.ne_`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.subtract`, `torch.Tensor.sub`) |
+| ALIAS-REFERENCE-ITEM(`torch.Tensor.subtract_`, `torch.Tensor.sub_`) |
+| ALIAS-REFERENCE-ITEM(`torch.absolute`, `torch.abs`) |
 | ALIAS-REFERENCE-ITEM(`torch.absolute_`, `torch.abs_`) |
 | ALIAS-REFERENCE-ITEM(`torch.adaptive_avg_pool1d`, `torch.nn.functional.adaptive_avg_pool1d`) |
+| ALIAS-REFERENCE-ITEM(`torch.amp.autocast_mode.autocast`, `torch.amp.autocast`) |
+| ALIAS-REFERENCE-ITEM(`torch.arccos`, `torch.acos`) |
+| ALIAS-REFERENCE-ITEM(`torch.arccosh`, `torch.acosh`) |
+| ALIAS-REFERENCE-ITEM(`torch.arcsin`, `torch.asin`) |
+| ALIAS-REFERENCE-ITEM(`torch.arcsinh`, `torch.asinh`) |
+| ALIAS-REFERENCE-ITEM(`torch.arctan`, `torch.atan`) |
+| ALIAS-REFERENCE-ITEM(`torch.arctan2`, `torch.atan2`) |
+| ALIAS-REFERENCE-ITEM(`torch.arctanh`, `torch.atanh`) |
 | ALIAS-REFERENCE-ITEM(`torch.autograd.function.Function`, `torch.autograd.Function`) |
+| ALIAS-REFERENCE-ITEM(`torch.autograd.set_grad_enabled`, `torch.autograd.grad_mode.set_grad_enabled`) |
 | ALIAS-REFERENCE-ITEM(`torch.avg_pool1d`, `torch.nn.functional.avg_pool1d`) |
 | ALIAS-REFERENCE-ITEM(`torch.bilinear`, `torch.nn.functional.bilinear`) |
+| ALIAS-REFERENCE-ITEM(`torch.channel_shuffle`, `torch.nn.functional.channel_shuffle`) |
+| ALIAS-REFERENCE-ITEM(`torch.clip`, `torch.clamp`) |
+| ALIAS-REFERENCE-ITEM(`torch.concat`, `torch.cat`) |
+| ALIAS-REFERENCE-ITEM(`torch.concatenate`, `torch.cat`) |
 | ALIAS-REFERENCE-ITEM(`torch.conv1d`, `torch.nn.functional.conv1d`) |
 | ALIAS-REFERENCE-ITEM(`torch.conv2d`, `torch.nn.functional.conv2d`) |
 | ALIAS-REFERENCE-ITEM(`torch.conv3d`, `torch.nn.functional.conv3d`) |
 | ALIAS-REFERENCE-ITEM(`torch.conv_transpose1d`, `torch.nn.functional.conv_transpose1d`) |
 | ALIAS-REFERENCE-ITEM(`torch.conv_transpose2d`, `torch.nn.functional.conv_transpose2d`) |
 | ALIAS-REFERENCE-ITEM(`torch.conv_transpose3d`, `torch.nn.functional.conv_transpose3d`) |
+| ALIAS-REFERENCE-ITEM(`torch.cosine_similarity`, `torch.nn.functional.cosine_similarity`) |
 | ALIAS-REFERENCE-ITEM(`torch.cuda.amp.autocast_mode.autocast`, `torch.cuda.amp.autocast`) |
+| ALIAS-REFERENCE-ITEM(`torch.digamma`, `torch.special.digamma`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.AbsTransform`, `torch.distributions.transforms.AbsTransform`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.AffineTransform`, `torch.distributions.transforms.AffineTransform`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.Bernoulli`, `torch.distributions.bernoulli.Bernoulli`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.Beta`, `torch.distributions.beta.Beta`) |
+| ALIAS-REFERENCE-ITEM(`torch.distributions.Binomial`, `torch.distributions.binomial.Binomial`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.Categorical`, `torch.distributions.categorical.Categorical`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.Cauchy`, `torch.distributions.cauchy.Cauchy`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.ComposeTransform`, `torch.distributions.transforms.ComposeTransform`) |
+| ALIAS-REFERENCE-ITEM(`torch.distributions.ContinuousBernoulli`, `torch.distributions.continuous_bernoulli.ContinuousBernoulli`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.Dirichlet`, `torch.distributions.dirichlet.Dirichlet`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.Distribution`, `torch.distributions.distribution.Distribution`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.ExpTransform`, `torch.distributions.transforms.ExpTransform`) |
+| ALIAS-REFERENCE-ITEM(`torch.distributions.Exponential`, `torch.distributions.exponential.Exponential`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.ExponentialFamily`, `torch.distributions.exp_family.ExponentialFamily`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.Geometric`, `torch.distributions.geometric.Geometric`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.Gumbel`, `torch.distributions.gumbel.Gumbel`) |
@@ -292,6 +337,7 @@
 | ALIAS-REFERENCE-ITEM(`torch.distributions.Laplace`, `torch.distributions.laplace.Laplace`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.LogNormal`, `torch.distributions.log_normal.LogNormal`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.Multinomial`, `torch.distributions.multinomial.Multinomial`) |
+| ALIAS-REFERENCE-ITEM(`torch.distributions.MultivariateNormal`, `torch.distributions.multivariate_normal.MultivariateNormal`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.Normal`, `torch.distributions.normal.Normal`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.PowerTransform`, `torch.distributions.transforms.PowerTransform`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.ReshapeTransform`, `torch.distributions.transforms.ReshapeTransform`) |
@@ -303,13 +349,30 @@
 | ALIAS-REFERENCE-ITEM(`torch.distributions.Transform`, `torch.distributions.transforms.Transform`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.TransformedDistribution`, `torch.distributions.transformed_distribution.TransformedDistribution`) |
 | ALIAS-REFERENCE-ITEM(`torch.distributions.Uniform`, `torch.distributions.uniform.Uniform`) |
+| ALIAS-REFERENCE-ITEM(`torch.divide`, `torch.div`) |
+| ALIAS-REFERENCE-ITEM(`torch.erf`, `torch.special.erf`) |
+| ALIAS-REFERENCE-ITEM(`torch.erfc`, `torch.special.erfc`) |
+| ALIAS-REFERENCE-ITEM(`torch.erfinv`, `torch.special.erfinv`) |
+| ALIAS-REFERENCE-ITEM(`torch.exp2`, `torch.special.exp2`) |
+| ALIAS-REFERENCE-ITEM(`torch.expm1`, `torch.special.expm1`) |
+| ALIAS-REFERENCE-ITEM(`torch.greater`, `torch.gt`) |
 | ALIAS-REFERENCE-ITEM(`torch.greater_equal`, `torch.ge`) |
 | ALIAS-REFERENCE-ITEM(`torch.group_norm`, `torch.nn.functional.group_norm`) |
 | ALIAS-REFERENCE-ITEM(`torch.hardshrink`, `torch.nn.functional.hardshrink`) |
+| ALIAS-REFERENCE-ITEM(`torch.i0`, `torch.special.i0`) |
+| ALIAS-REFERENCE-ITEM(`torch.igamma`, `torch.special.gammainc`) |
+| ALIAS-REFERENCE-ITEM(`torch.igammac`, `torch.special.gammaincc`) |
 | ALIAS-REFERENCE-ITEM(`torch.layer_norm`, `torch.nn.functional.layer_norm`) |
+| ALIAS-REFERENCE-ITEM(`torch.less`, `torch.lt`) |
+| ALIAS-REFERENCE-ITEM(`torch.less_equal`, `torch.le`) |
+| ALIAS-REFERENCE-ITEM(`torch.linalg.matmul`, `torch.matmul`) |
+| ALIAS-REFERENCE-ITEM(`torch.logit`, `torch.special.logit`) |
 | ALIAS-REFERENCE-ITEM(`torch.logsumexp`, `torch.special.logsumexp`) |
 | ALIAS-REFERENCE-ITEM(`torch.matrix_exp`, `torch.linalg.matrix_exp`) |
+| ALIAS-REFERENCE-ITEM(`torch.matrix_power`, `torch.linalg.matrix_power`) |
+| ALIAS-REFERENCE-ITEM(`torch.multiply`, `torch.mul`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.NLLLoss2d`, `torch.nn.NLLLoss`) |
+| ALIAS-REFERENCE-ITEM(`torch.nn.Parameter`, `torch.nn.parameter.Parameter`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.AvgPool1d`, `torch.nn.AvgPool1d`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.AvgPool2d`, `torch.nn.AvgPool2d`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.AvgPool3d`, `torch.nn.AvgPool3d`) |
@@ -320,6 +383,7 @@
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.Dropout`, `torch.nn.Dropout`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.GroupNorm`, `torch.nn.GroupNorm`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.LSTM`, `torch.nn.LSTM`) |
+| ALIAS-REFERENCE-ITEM(`torch.nn.modules.Linear`, `torch.nn.Linear`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.Module`, `torch.nn.Module`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.RNN`, `torch.nn.RNN`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.RNNBase`, `torch.nn.RNNBase`) |
@@ -332,6 +396,7 @@
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.batchnorm.SyncBatchNorm`, `torch.nn.SyncBatchNorm`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.conv.Conv2d`, `torch.nn.Conv2d`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.distance.CosineSimilarity`, `torch.nn.CosineSimilarity`) |
+| ALIAS-REFERENCE-ITEM(`torch.nn.modules.linear.Linear`, `torch.nn.Linear`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.module.Module`, `torch.nn.Module`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.pooling.AvgPool1d`, `torch.nn.AvgPool1d`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.modules.pooling.AvgPool2d`, `torch.nn.AvgPool2d`) |
@@ -345,21 +410,39 @@
 | ALIAS-REFERENCE-ITEM(`torch.nn.parallel.data_parallel.DataParallel`, `torch.nn.DataParallel`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.parallel.distributed.DistributedDataParallel`, `torch.nn.parallel.DistributedDataParallel`) |
 | ALIAS-REFERENCE-ITEM(`torch.nn.utils.clip_grad_norm`, `torch.nn.utils.clip_grad_norm_`) |
+| ALIAS-REFERENCE-ITEM(`torch.nn.utils.parametrizations.spectral_norm`, `torch.nn.utils.spectral_norm`) |
+| ALIAS-REFERENCE-ITEM(`torch.nn.utils.spectral_norm.SpectralNorm.apply`, `torch.nn.utils.spectral_norm`) |
+| ALIAS-REFERENCE-ITEM(`torch.not_equal`, `torch.ne`) |
 | ALIAS-REFERENCE-ITEM(`torch.optim.sgd.SGD`, `torch.optim.SGD`) |
 | ALIAS-REFERENCE-ITEM(`torch.orgqr`, `torch.linalg.householder_product`) |
 | ALIAS-REFERENCE-ITEM(`torch.pairwise_distance`, `torch.nn.functional.pairwise_distance`) |
 | ALIAS-REFERENCE-ITEM(`torch.pdist`, `torch.nn.functional.pdist`) |
 | ALIAS-REFERENCE-ITEM(`torch.pixel_shuffle`, `torch.nn.functional.pixel_shuffle`) |
 | ALIAS-REFERENCE-ITEM(`torch.pixel_unshuffle`, `torch.nn.functional.pixel_unshuffle`) |
+| ALIAS-REFERENCE-ITEM(`torch.polygamma`, `torch.special.polygamma`) |
 | ALIAS-REFERENCE-ITEM(`torch.prelu`, `torch.nn.functional.prelu`) |
+| ALIAS-REFERENCE-ITEM(`torch.random.get_rng_state`, `torch.get_rng_state`) |
+| ALIAS-REFERENCE-ITEM(`torch.random.initial_seed`, `torch.initial_seed`) |
+| ALIAS-REFERENCE-ITEM(`torch.random.manual_seed`, `torch.manual_seed`) |
+| ALIAS-REFERENCE-ITEM(`torch.random.seed`, `torch.seed`) |
+| ALIAS-REFERENCE-ITEM(`torch.random.set_rng_state`, `torch.set_rng_state`) |
 | ALIAS-REFERENCE-ITEM(`torch.relu_`, `torch.nn.functional.relu_`) |
 | ALIAS-REFERENCE-ITEM(`torch.rrelu_`, `torch.nn.functional.rrelu_`) |
+| ALIAS-REFERENCE-ITEM(`torch.set_grad_enabled`, `torch.autograd.grad_mode.set_grad_enabled`) |
+| ALIAS-REFERENCE-ITEM(`torch.sigmoid`, `torch.nn.functional.sigmoid`) |
+| ALIAS-REFERENCE-ITEM(`torch.sinc`, `torch.special.sinc`) |
+| ALIAS-REFERENCE-ITEM(`torch.subtract`, `torch.sub`) |
 | ALIAS-REFERENCE-ITEM(`torch.tanh`, `torch.nn.functional.tanh`) |
 | ALIAS-REFERENCE-ITEM(`torch.threshold`, `torch.nn.functional.threshold`) |
+| ALIAS-REFERENCE-ITEM(`torch.threshold_`, `torch.nn.functional.threshold_`) |
 | ALIAS-REFERENCE-ITEM(`torch.torch.Tensor`, `torch.Tensor`) |
 | ALIAS-REFERENCE-ITEM(`torch.torch.finfo`, `torch.finfo`) |
+| ALIAS-REFERENCE-ITEM(`torch.torch.tril`, `torch.tril`) |
 | ALIAS-REFERENCE-ITEM(`torch.trapz`, `torch.trapezoid`) |
+| ALIAS-REFERENCE-ITEM(`torch.utils.data.DistributedSampler`, `torch.utils.data.distributed.DistributedSampler`) |
+| ALIAS-REFERENCE-ITEM(`torch.utils.data._utils.collate.default_collate`, `torch.utils.data.default_collate`) |
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.dataloader.DataLoader`, `torch.utils.data.DataLoader`) |
+| ALIAS-REFERENCE-ITEM(`torch.utils.data.dataloader.default_collate`, `torch.utils.data.default_collate`) |
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.dataset.ConcatDataset`, `torch.utils.data.ConcatDataset`) |
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.dataset.Dataset`, `torch.utils.data.Dataset`) |
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.BatchSampler`, `torch.utils.data.BatchSampler`) |
@@ -368,13 +451,8 @@
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.SequentialSampler`, `torch.utils.data.SequentialSampler`) |
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.SubsetRandomSampler`, `torch.utils.data.SubsetRandomSampler`) |
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.WeightedRandomSampler`, `torch.utils.data.WeightedRandomSampler`) |
-| ALIAS-REFERENCE-ITEM(`torch.igamma`, `torch.special.gammainc`) |
-| ALIAS-REFERENCE-ITEM(`torch.igammac`, `torch.special.gammaincc`) |
-| ALIAS-REFERENCE-ITEM(`torch.distributions.multivariate_normal.MultivariateNormal`, `torch.distributions.MultivariateNormal`) |
-| ALIAS-REFERENCE-ITEM(`torch.concatenate`, `torch.cat`) |
-| ALIAS-REFERENCE-ITEM(`torch.concat`, `torch.cat`) |
-| ALIAS-REFERENCE-ITEM(`torch.cuda.reset_max_memory_cached`, `torch.cuda.reset_max_memory_reserved`) |
-| ALIAS-REFERENCE-ITEM(`torch.cuda.reset_peak_memory_stats`, `torch.cuda.reset_max_memory_allocated`) |
+| ALIAS-REFERENCE-ITEM(`torch.utils.model_zoo.load_url`, `torch.hub.load_state_dict_from_url`) |
+| ALIAS-REFERENCE-ITEM(`torch.xlogy`, `torch.special.xlogy`) |
 
  ## <span id="id25">功能缺失的 API 列表</span>
 
@@ -394,7 +472,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.to_mkldnn`, https://pytorch.org/docs/stable/generated/torch.Tensor.to_mkldnn.html#torch-tensor-to-mkldnn, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.utils.rnn.pack_padded_sequence`, https://pytorch.org/docs/stable/generated/torch.nn.utils.rnn.pack_padded_sequence.html#torch-nn-utils-rnn-pack-padded-sequence, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.utils.rnn.pad_packed_sequence`, https://pytorch.org/docs/stable/generated/torch.nn.utils.rnn.pad_packed_sequence.html#torch-nn-utils-rnn-pad-packed-sequence, 可新增，且框架底层有相关设计，成本低) |
-| NOT-IMPLEMENTED-ITEM(`torch.utils.model_zoo.load_url`, https://pytorch.org/docs/stable/model_zoo.html#torch.utils.model_zoo.load_url, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.record_stream`, https://pytorch.org/docs/stable/generated/torch.Tensor.record_stream.html#torch-tensor-record-stream, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.xpu.empty_cache`, https://pytorch.org/docs/stable/generated/torch.xpu.empty_cache.html#torch-xpu-empty-cache, 有对应相近功能但设计差异大无法映射，一般无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.library.impl`, https://pytorch.org/docs/stable/library.html#torch.library.impl, 有对应相近功能但设计差异大无法映射，一般无需新增) |
@@ -440,7 +517,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.memory_stats`, https://pytorch.org/docs/stable/generated/torch.cuda.memory_stats.html#torch-cuda-memory-stats, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.pipeline.sync.Pipe`, https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.Pipe, 废弃 API ，无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.set_rng_state`, https://pytorch.org/docs/stable/generated/torch.cuda.set_rng_state.html#torch-cuda-set-rng-state, 可新增，且框架底层有相关设计，成本低) |
-| NOT-IMPLEMENTED-ITEM(`torch.Tensor.lu_solve`, https://pytorch.org/docs/stable/generated/torch.Tensor.lu_solve.html#torch-tensor-lu-solve, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.linalg.tensorinv`, https://pytorch.org/docs/stable/generated/torch.linalg.tensorinv.html#torch-linalg-tensorinv, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.fsdp.FullStateDictConfig`, https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.FullStateDictConfig, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.mem_get_info`, https://pytorch.org/docs/stable/generated/torch.cuda.mem_get_info.html#torch-cuda-mem-get-info, 可新增，且框架底层有相关设计，成本低) |
@@ -620,7 +696,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.autograd.forward_ad.make_dual`, https://pytorch.org/docs/stable/generated/torch.autograd.forward_ad.make_dual.html#torch-autograd-forward-ad-make-dual, 实验阶段不稳定 API ，无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.nvtx.mark`, https://pytorch.org/docs/stable/generated/torch.cuda.nvtx.mark.html#torch-cuda-nvtx-mark, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.autograd.forward_ad.unpack_dual`, https://pytorch.org/docs/stable/generated/torch.autograd.forward_ad.unpack_dual.html#torch-autograd-forward-ad-unpack-dual, 实验阶段不稳定 API ，无需新增) |
-| NOT-IMPLEMENTED-ITEM(`torch.autograd.grad_mode.set_grad_enabled`, https://pytorch.org/docs/stable/generated/torch.autograd.grad_mode.set_grad_enabled.html#torch.autograd.grad_mode.set_grad_enabled, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.autograd.graph.save_on_cpu`, https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.save_on_cpu, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.autograd.profiler.load_nvprof`, https://pytorch.org/docs/stable/generated/torch.autograd.profiler.load_nvprof.html#torch-autograd-profiler-load-nvprof, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.autograd.profiler.profile.key_averages`, https://pytorch.org/docs/stable/generated/torch.autograd.profiler.profile.key_averages.html#torch-autograd-profiler-profile-key-averages, 可新增，但框架底层无相关设计，成本高) |
@@ -933,7 +1008,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.sspaddmm`, https://pytorch.org/docs/stable/generated/torch.sspaddmm.html#torch-sspaddmm, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.library.fallthrough_kernel`, https://pytorch.org/docs/stable/library.html#torch.library.fallthrough_kernel, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.linalg.solve_ex`, https://pytorch.org/docs/stable/generated/torch.linalg.solve_ex.html#torch-linalg-solve-ex, 可新增，且框架底层有相关设计，成本低) |
-| NOT-IMPLEMENTED-ITEM(`torch.lu_solve`, https://pytorch.org/docs/stable/generated/torch.lu_solve.html#torch-lu-solve, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.monitor.Aggregation`, https://pytorch.org/docs/stable/monitor.html#torch.monitor.Aggregation, 实验阶段不稳定 API ，无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.monitor.data_value_t`, https://pytorch.org/docs/stable/monitor.html#torch.monitor.data_value_t, 实验阶段不稳定 API ，无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.monitor.EventHandlerHandle`, https://pytorch.org/docs/stable/monitor.html#torch.monitor.EventHandlerHandle, 实验阶段不稳定 API ，无需新增) |
@@ -1039,7 +1113,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.jit.unused`, https://pytorch.org/docs/stable/generated/torch.jit.unused.html#torch-jit-unused, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.utils.checkpoint.checkpoint_sequential`, https://pytorch.org/docs/stable/checkpoint.html#torch.utils.checkpoint.checkpoint_sequential, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.parameter.UninitializedBuffer`, https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedBuffer.html#torch.nn.parameter.UninitializedBuffer, 可新增，且框架底层有相关设计，成本低) |
-| NOT-IMPLEMENTED-ITEM(`torch.autograd.Function.jvp`, https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.memory_format`, https://pytorch.org/docs/stable/tensor_attributes.html#torch.memory_format, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.is_gloo_available`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_gloo_available, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.get_group_rank`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_group_rank, 可新增，且框架底层有相关设计，成本低) |
@@ -1058,6 +1131,9 @@
 | NOT-IMPLEMENTED-ITEM(`torch.nn.utils.fuse_conv_bn_weights`, https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_conv_bn_weights.html#torch-nn-utils-fuse-conv-bn-weights, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.utils.fuse_linear_bn_eval`, https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_linear_bn_eval.html#torch-nn-utils-fuse-linear-bn-eval, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.utils.fuse_linear_bn_weights`, https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_linear_bn_weights.html#torch-nn-utils-fuse-linear-bn-weights, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.functional.conv_tbc`, https://pytorch.org/docs/, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.functional.celu_`, https://pytorch.org/docs, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.functional.selu_`, https://pytorch.org/docs, 可新增，且框架底层有相关设计，成本低) |
 
 ## <span id="id26">映射关系开发中的 API 列表</span>
 
@@ -1083,7 +1159,8 @@
 | IN-DEVELOPMENT-PATTERN(`torch.distributed.device_mesh.DeviceMesh`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.device_mesh.DeviceMesh) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.comm.scatter`, https://pytorch.org/docs/stable/generated/torch.cuda.comm.scatter.html#torch-cuda-comm-scatter) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.comm.gather`, https://pytorch.org/docs/stable/generated/torch.cuda.comm.gather.html#torch-cuda-comm-gather) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributions.binomial.Binomial`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributions.continuous_bernoulli.ContinuousBernoulli`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.continuous_bernoulli.ContinuousBernoulli) |
-| IN-DEVELOPMENT-PATTERN(`torch.distributions.exponential.Exponential`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.exponential.Exponential) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.StreamContext`, https://pytorch.org/docs/stable/generated/torch.cuda.StreamContext.html#torch.cuda.StreamContext) |
+| IN-DEVELOPMENT-PATTERN(`torch.Tensor.lu_solve`, https://pytorch.org/docs/stable/generated/torch.Tensor.lu_solve.html#torch-tensor-lu-solve) |
+| IN-DEVELOPMENT-PATTERN(`torch.cuda.reset_peak_memory_stats`, https://pytorch.org/docs/stable/generated/torch.cuda.reset_peak_memory_stats.html#torch-cuda-reset-peak-memory-stats) |
+| IN-DEVELOPMENT-PATTERN(`torch.cuda.reset_max_memory_cached`, https://pytorch.org/docs/stable/generated/torch.cuda.reset_max_memory_cached.html#torch-cuda-reset-max-memory-cached) |
+| IN-DEVELOPMENT-PATTERN(`torch.autograd.Function.jvp`, https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp) |
