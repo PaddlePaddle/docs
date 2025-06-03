@@ -373,6 +373,8 @@
 | ALIAS-REFERENCE-ITEM(`torch.distributions.multivariate_normal.MultivariateNormal`, `torch.distributions.MultivariateNormal`) |
 | ALIAS-REFERENCE-ITEM(`torch.concatenate`, `torch.cat`) |
 | ALIAS-REFERENCE-ITEM(`torch.concat`, `torch.cat`) |
+| ALIAS-REFERENCE-ITEM(`torch.cuda.reset_max_memory_cached`, `torch.cuda.reset_max_memory_reserved`) |
+| ALIAS-REFERENCE-ITEM(`torch.cuda.reset_peak_memory_stats`, `torch.cuda.reset_max_memory_allocated`) |
 
  ## <span id="id25">功能缺失的 API 列表</span>
 
@@ -395,7 +397,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.utils.model_zoo.load_url`, https://pytorch.org/docs/stable/model_zoo.html#torch.utils.model_zoo.load_url, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.record_stream`, https://pytorch.org/docs/stable/generated/torch.Tensor.record_stream.html#torch-tensor-record-stream, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.xpu.empty_cache`, https://pytorch.org/docs/stable/generated/torch.xpu.empty_cache.html#torch-xpu-empty-cache, 有对应相近功能但设计差异大无法映射，一般无需新增) |
-| NOT-IMPLEMENTED-ITEM(`torch.cuda.reset_peak_memory_stats`, https://pytorch.org/docs/stable/generated/torch.cuda.reset_peak_memory_stats.html#torch-cuda-reset-peak-memory-stats, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.library.impl`, https://pytorch.org/docs/stable/library.html#torch.library.impl, 有对应相近功能但设计差异大无法映射，一般无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.BFloat16Storage`, https://pytorch.org/docs/stable/storage.html#torch.BFloat16Storage, 废弃 API ，无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.BoolStorage`, https://pytorch.org/docs/stable/storage.html#torch.BoolStorage, 废弃 API ，无需新增) |
@@ -424,7 +425,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.nn.EmbeddingBag`, https://pytorch.org/docs/stable/generated/torch.nn.EmbeddingBag.html#torch.nn.EmbeddingBag, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.fx.GraphModule`, https://pytorch.org/docs/stable/fx.html#torch.fx.GraphModule, 有对应相近功能但设计差异大无法映射，一般无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.share_memory_`, https://pytorch.org/docs/stable/generated/torch.Tensor.share_memory_.html#torch-tensor-share-memory, 可新增，且框架底层有相关设计，成本低) |
-| NOT-IMPLEMENTED-ITEM(`torch.cuda.reset_max_memory_allocated`, https://pytorch.org/docs/stable/generated/torch.cuda.reset_max_memory_allocated.html#torch-cuda-reset-max-memory-allocated, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.utils.parametrize.remove_parametrizations`, https://pytorch.org/docs/stable/generated/torch.nn.utils.parametrize.remove_parametrizations.html#torch-nn-utils-parametrize-remove-parametrizations, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.is_shared`, https://pytorch.org/docs/stable/generated/torch.Tensor.is_shared.html#torch-tensor-is-shared, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.storage_offset`, https://pytorch.org/docs/stable/generated/torch.Tensor.storage_offset.html#torch-tensor-storage-offset, 可新增，但框架底层无相关设计，成本高) |
@@ -501,7 +501,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.TCPStore`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.TCPStore, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.optim.lr_scheduler.SequentialLR`, https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.SequentialLR.html#torch.optim.lr_scheduler.SequentialLR, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.sparse.sampled_addmm`, https://pytorch.org/docs/stable/generated/torch.sparse.sampled_addmm.html#torch-sparse-sampled-addmm, 可新增，且框架底层有相关设计，成本低) |
-| NOT-IMPLEMENTED-ITEM(`torch.linalg.lu_solve`, https://pytorch.org/docs/stable/generated/torch.linalg.lu_solve.html#torch-linalg-lu-solve, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.nested.nested_tensor`, https://pytorch.org/docs/stable/nested.html#torch.nested.nested_tensor, 实验阶段不稳定 API ，无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.align_to`, https://pytorch.org/docs/stable/named_tensor.html#torch.Tensor.align_to, 实验阶段不稳定 API ，无需新增) |
 | NOT-IMPLEMENTED-ITEM(`torch.promote_types`, https://pytorch.org/docs/stable/generated/torch.promote_types.html#torch-promote-types, 可新增，且框架底层有相关设计，成本低) |
@@ -600,7 +599,6 @@
 | NOT-IMPLEMENTED-ITEM(`torch.Tensor.storage_type`, https://pytorch.org/docs/stable/generated/torch.Tensor.storage_type.html#torch-tensor-storage-type, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.can_device_access_peer`, https://pytorch.org/docs/stable/generated/torch.cuda.can_device_access_peer.html#torch-cuda-can-device-access-peer, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.jiterator._create_jit_fn`, https://pytorch.org/docs/stable/generated/torch.cuda.jiterator._create_jit_fn.html#torch-cuda-jiterator-create-jit-fn, 可新增，且框架底层有相关设计，成本低) |
-| NOT-IMPLEMENTED-ITEM(`torch.cuda.reset_max_memory_cached`, https://pytorch.org/docs/stable/generated/torch.cuda.reset_max_memory_cached.html#torch-cuda-reset-max-memory-cached, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.cuda.set_sync_debug_mode`, https://pytorch.org/docs/stable/generated/torch.cuda.set_sync_debug_mode.html#torch-cuda-set-sync-debug-mode, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributed.fsdp.FullOptimStateDictConfig`, https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.FullOptimStateDictConfig, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.distributions.transforms.CorrCholeskyTransform`, https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.CorrCholeskyTransform, 可新增，且框架底层有相关设计，成本低) |
