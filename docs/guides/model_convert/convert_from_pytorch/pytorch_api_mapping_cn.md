@@ -453,6 +453,8 @@
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.WeightedRandomSampler`, `torch.utils.data.WeightedRandomSampler`) |
 | ALIAS-REFERENCE-ITEM(`torch.utils.model_zoo.load_url`, `torch.hub.load_state_dict_from_url`) |
 | ALIAS-REFERENCE-ITEM(`torch.xlogy`, `torch.special.xlogy`) |
+| ALIAS-REFERENCE-ITEM(`torch.cuda.reset_max_memory_cached`, `torch.cuda.reset_max_memory_reserved`) |
+| ALIAS-REFERENCE-ITEM(`torch.cuda.reset_peak_memory_stats`, `torch.cuda.reset_max_memory_allocated`) |
 
  ## <span id="id25">功能缺失的 API 列表</span>
 
@@ -1161,6 +1163,4 @@
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.comm.gather`, https://pytorch.org/docs/stable/generated/torch.cuda.comm.gather.html#torch-cuda-comm-gather) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.StreamContext`, https://pytorch.org/docs/stable/generated/torch.cuda.StreamContext.html#torch.cuda.StreamContext) |
 | IN-DEVELOPMENT-PATTERN(`torch.Tensor.lu_solve`, https://pytorch.org/docs/stable/generated/torch.Tensor.lu_solve.html#torch-tensor-lu-solve) |
-| IN-DEVELOPMENT-PATTERN(`torch.cuda.reset_peak_memory_stats`, https://pytorch.org/docs/stable/generated/torch.cuda.reset_peak_memory_stats.html#torch-cuda-reset-peak-memory-stats) |
-| IN-DEVELOPMENT-PATTERN(`torch.cuda.reset_max_memory_cached`, https://pytorch.org/docs/stable/generated/torch.cuda.reset_max_memory_cached.html#torch-cuda-reset-max-memory-cached) |
 | IN-DEVELOPMENT-PATTERN(`torch.autograd.Function.jvp`, https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp) |
