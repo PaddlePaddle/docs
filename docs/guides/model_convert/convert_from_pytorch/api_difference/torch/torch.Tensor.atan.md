@@ -1,9 +1,9 @@
-## [ 无参数 ]torch.Tensor.arctan
+## [ 无参数 ]torch.Tensor.atan
 
-### [torch.Tensor.arctan](https://pytorch.org/docs/stable/generated/torch.Tensor.arctan.html)
+### [torch.Tensor.atan](https://pytorch.org/docs/stable/generated/torch.Tensor.atan.html)
 
 ```python
-torch.Tensor.arctan()
+torch.Tensor.atan()
 ```
 
 ### [paddle.Tensor.atan](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#atan-name-none)

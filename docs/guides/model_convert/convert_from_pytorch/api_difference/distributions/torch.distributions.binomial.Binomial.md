@@ -1,9 +1,9 @@
-## [ torch 参数更多 ] torch.distributions.Binomial
+## [ torch 参数更多 ] torch.distributions.binomial.Binomial
 
-### [torch.distributions.Binomial](https://pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial)
+### [torch.distributions.binomial.Binomial](https://pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial)
 
 ```python
-torch.distributions.Binomial(total_count=1,
+torch.distributions.binomial.Binomial(total_count=1,
                              probs=None,
                              logits=None,
                              validate_args=None)

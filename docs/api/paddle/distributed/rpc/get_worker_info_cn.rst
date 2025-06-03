@@ -6,7 +6,7 @@ get_worker_info
 
 .. py:function:: paddle.distributed.rpc.get_worker_info(name)
 
-利用 worker 名字获取 worker 的信息。
+利用 worker 名字获取 worker 的信息。注意：所有 RPC 对外开放接口，均应在安全的网络环境下供内部使用，不得公网开放访问。
 
 参数
 :::::::::

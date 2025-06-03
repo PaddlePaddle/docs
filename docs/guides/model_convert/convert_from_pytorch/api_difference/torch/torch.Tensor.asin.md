@@ -1,9 +1,9 @@
-## [ 无参数 ] torch.Tensor.arcsin
+## [ 无参数 ] torch.Tensor.asin
 
-### [torch.Tensor.arcsin](https://pytorch.org/docs/stable/generated/torch.Tensor.arcsin.html)
+### [torch.Tensor.asin](https://pytorch.org/docs/stable/generated/torch.Tensor.asin.html)
 
 ```python
-torch.Tensor.arcsin()
+torch.Tensor.asin()
 ```
 
 ### [paddle.Tensor.asin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#asin-name-none)

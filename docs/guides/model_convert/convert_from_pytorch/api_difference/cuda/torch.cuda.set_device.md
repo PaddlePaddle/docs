@@ -6,10 +6,10 @@
 torch.cuda.set_device(device)
 ```
 
-### [paddle.set_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/set_device_cn.html)
+### [paddle.device.set_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/set_device_cn.html)
 
 ```python
-paddle.set_device(device)
+paddle.device.set_device(device)
 ```
 
 功能一致，参数类型不一致，具体如下：
@@ -28,11 +28,11 @@ paddle.set_device(device)
 torch.cuda.set_device('cuda:0')
 
 # Paddle 写法
-paddle.set_device('gpu:0')
+paddle.device.set_device('gpu:0')
 
 # PyTorch 写法
 torch.cuda.set_device(2)
 
 # Paddle 写法
-paddle.set_device('gpu:2')
+paddle.device.set_device('gpu:2')
 ```

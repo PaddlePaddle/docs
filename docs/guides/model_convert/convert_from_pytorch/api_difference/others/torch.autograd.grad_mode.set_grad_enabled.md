@@ -1,9 +1,9 @@
-## [参数完全一致]torch.autograd.set_grad_enabled
+## [参数完全一致]torch.autograd.grad_mode.set_grad_enabled
 
-### [torch.autograd.set_grad_enabled](https://pytorch.org/docs/stable/generated/torch.set_grad_enabled.html)
+### [torch.autograd.grad_mode.set_grad_enabled](https://docs.pytorch.org/docs/stable/generated/torch.autograd.grad_mode.set_grad_enabled.html#torch.autograd.grad_mode.set_grad_enabled)
 
 ```python
-torch.autograd.set_grad_enabled(mode)
+torch.autograd.grad_mode.set_grad_enabled(mode)
 ```
 
 ### [paddle.set_grad_enabled](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/set_grad_enabled_cn.html)

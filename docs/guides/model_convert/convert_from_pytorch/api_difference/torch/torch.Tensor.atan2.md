@@ -1,9 +1,9 @@
-## [ 仅参数名不一致 ]torch.Tensor.arctan2
+## [ 仅参数名不一致 ]torch.Tensor.atan2
 
-### [torch.Tensor.arctan2](https://pytorch.org/docs/stable/generated/torch.arctan2.html#torch.arctan2)
+### [torch.Tensor.atan2](https://pytorch.org/docs/stable/generated/torch.atan2.html#torch.atan2)
 
 ```python
-torch.Tensor.arctan2(other)
+torch.Tensor.atan2(other)
 ```
 
 ### [paddle.Tensor.atan2](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/paddle/Tensor_en.html)

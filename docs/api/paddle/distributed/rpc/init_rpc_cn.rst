@@ -6,7 +6,7 @@ init_rpc
 
 .. py:function:: paddle.distributed.rpc.init_rpc(name, rank=None, world_size=None, master_endpoint=None)
 
-初始化 rpc 服务。
+初始化 rpc 服务。注意：所有 RPC 对外开放接口，均应在安全的网络环境下供内部使用，不得公网开放访问。
 
 参数
 :::::::::

@@ -1,9 +1,9 @@
-## [ torch 参数更多 ] torch.distributions.Exponential
+## [ torch 参数更多 ] torch.distributions.exponential.Exponential
 
-### [torch.distributions.Exponential](https://pytorch.org/docs/stable/distributions.html#torch.distributions.exponential.Exponential.arg_constraints)
+### [torch.distributions.exponential.Exponential](https://pytorch.org/docs/stable/distributions.html#torch.distributions.exponential.Exponential.arg_constraints)
 
 ```python
-torch.distributions.Exponential(rate,
+torch.distributions.exponential.Exponential(rate,
                                 validate_args=None)
 ```
 

@@ -1,9 +1,9 @@
-## [ 组合替代实现 ]torch.sinc
+## [ 组合替代实现 ]torch.special.sinc
 
-### [torch.sinc](https://pytorch.org/docs/stable/generated/torch.sinc.html#torch.sinc)
+### [torch.special.sinc](https://docs.pytorch.org/docs/stable/special.html#torch.special.sinc)
 
 ```python
-torch.sinc(input, *, out=None)
+torch.special.sinc(input, *, out=None)
 ```
 
 Paddle 无此 API，需要组合实现。
