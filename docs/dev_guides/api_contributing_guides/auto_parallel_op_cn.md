@@ -19,7 +19,7 @@
     <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/dev_guides/api_contributing_guides/images/process_mesh_2-2.png" width="50%"/>
 </p>
 
-我们可以使用 DimsMapping 来表示数据在 ProcessMesh 上的分布方式，DimsMapping[i] = j 表示张量的第 i 维在 ProcessMesh 的第 j 维上被切分，若 j 为 -1 则表示不切分，在该维上复制。例如张量大小为 (4, 4)，process_mesh 的大小为 [2, 2]，DimsMapping = [-1, 1] 表示张量的第 0 维不切分，第 1 维在 ProcessMesh 的第 1 维上切分，切分后每个卡上的张量大小为 (2, 1)，等价于 Placements 表示的 [Replicate(), Shard(1)]。DimsMapping = [0, 1] 表示张量的第 0 维在 ProcessMesh 的第 0 维上切分，第 1 维在 ProcessMesh 的第 1 维上切分，切分后每个卡上的张量大小为 (1, 1)，等价于 Placements 表示的 [Shard(0), Shard(1)]。下图分别展示了 DimsMapping 为 [-1, 1] 和 [0, 1] 时的张量切分情况。
+我们可以使用 DimsMapping 来表示数据在 ProcessMesh 上的分布方式，DimsMapping[i] = j 表示张量的第 i 维在 ProcessMesh 的第 j 维上被切分，若 j 为 -1 则表示不切分，在该维上复制。例如张量大小为 (2, 2)，process_mesh 的大小为 [2, 2]，DimsMapping = [-1, 1] 表示张量的第 0 维不切分，第 1 维在 ProcessMesh 的第 1 维上切分，切分后每个卡上的张量大小为 (2, 1)，等价于 Placements 表示的 [Replicate(), Shard(1)]。DimsMapping = [0, 1] 表示张量的第 0 维在 ProcessMesh 的第 0 维上切分，第 1 维在 ProcessMesh 的第 1 维上切分，切分后每个卡上的张量大小为 (1, 1)，等价于 Placements 表示的 [Shard(0), Shard(1)]。下图分别展示了 DimsMapping 为 [-1, 1] 和 [0, 1] 时的张量切分情况。
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/dev_guides/api_contributing_guides/images/DimMapping.png" width="70%"/>

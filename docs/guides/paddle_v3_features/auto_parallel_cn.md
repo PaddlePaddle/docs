@@ -182,7 +182,7 @@ class MlpModel(paddle.nn.Layer):
         self.w1 = self.create_parameter(shape=[4096, 1024])
 
     def forward(self, x):
-        dist.shard_tensor(x, mesh, [dist.Shard(0)]) # 标记输入数据沿第 0 维切分
+        x = dist.shard_tensor(x, mesh, [dist.Shard(0)]) # 标记输入数据沿第 0 维切分
         y = paddle.matmul(x, self.w0)
         z = paddle.matmul(y, self.w1)
         return z
