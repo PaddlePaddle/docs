@@ -29,5 +29,5 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.cholesky_inverse(input, out=output)
 
 # Paddle 写法
-paddle.assign(paddle.linalg.cholesky_inverse(a), output=output)
+paddle.assign(paddle.linalg.cholesky_inverse(input), output=output)
 ```

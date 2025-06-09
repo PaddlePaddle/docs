@@ -1,15 +1,15 @@
-## [ 无参数 ]torch.cdouble
+## [ 无参数 ]torch.bool
 
-### [torch.cdouble](https://github.com/pytorch/pytorch/tree/main/torch)
+### [torch.bool](https://github.com/pytorch/pytorch/tree/main/torch)
 
 ```python
-torch.cdouble
+torch.bool
 ```
 
-### [paddle.complex128](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/framework/dtype.pyi#L34)
+### [paddle.bool](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/framework/dtype.pyi#L36)
 
 ```python
-paddle.complex128
+paddle.bool
 ```
 
 两者功能一致，无参数。
