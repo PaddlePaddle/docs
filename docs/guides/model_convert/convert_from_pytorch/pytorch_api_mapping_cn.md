@@ -453,8 +453,14 @@
 | ALIAS-REFERENCE-ITEM(`torch.utils.data.sampler.WeightedRandomSampler`, `torch.utils.data.WeightedRandomSampler`) |
 | ALIAS-REFERENCE-ITEM(`torch.utils.model_zoo.load_url`, `torch.hub.load_state_dict_from_url`) |
 | ALIAS-REFERENCE-ITEM(`torch.xlogy`, `torch.special.xlogy`) |
-| ALIAS-REFERENCE-ITEM(`torch.cuda.reset_max_memory_cached`, `torch.cuda.reset_max_memory_reserved`) |
+| ALIAS-REFERENCE-ITEM(`torch.cuda.reset_max_memory_reserved`, `torch.cuda.reset_max_memory_cached`) |
 | ALIAS-REFERENCE-ITEM(`torch.cuda.reset_peak_memory_stats`, `torch.cuda.reset_max_memory_allocated`) |
+| ALIAS-REFERENCE-ITEM(`torch.cdouble`, `torch.complex128`) |
+| ALIAS-REFERENCE-ITEM(`torch.float`, `torch.float32`) |
+| ALIAS-REFERENCE-ITEM(`torch.double`, `torch.float64`) |
+| ALIAS-REFERENCE-ITEM(`torch.half`, `torch.float16`) |
+| ALIAS-REFERENCE-ITEM(`torch.short`, `torch.int16`) |
+| ALIAS-REFERENCE-ITEM(`torch.int`, `torch.int32`) |
 
  ## <span id="id25">功能缺失的 API 列表</span>
 
