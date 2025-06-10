@@ -12,4 +12,5 @@ torch.complex64
 paddle.complex64
 ```
 
-两者功能一致，无参数，该 API 也可以直接映射到字符串"complex64"。
+两者功能一致，无参数。
+注：该 API 也可直接转写为字符串形式：'complex64'。
