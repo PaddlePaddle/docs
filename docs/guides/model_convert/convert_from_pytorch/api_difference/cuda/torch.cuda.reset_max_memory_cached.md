@@ -1,9 +1,9 @@
-## [参数完全一致]torch.cuda.reset_max_memory_reserved
+## [参数完全一致]torch.cuda.reset_max_memory_cached
 
-### [torch.cuda.reset_max_memory_reserved](https://pytorch.org/docs/stable/generated/torch.cuda.reset_max_memory_reserved.html#torch.cuda.reset_max_memory_reserved)
+### [torch.cuda.reset_max_memory_cached](https://docs.pytorch.org/docs/stable/generated/torch.cuda.reset_max_memory_cached.html#torch-cuda-reset-max-memory-cached)
 
 ```python
-torch.cuda.reset_max_memory_reserved(device)
+torch.cuda.reset_max_memory_cached(device)
 ```
 
 ### [paddle.device.cuda.reset_max_memory_reserved](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/reset_max_memory_reserved_cn.html)

@@ -8,7 +8,7 @@ torch.Tensor.cholesky_inverse(upper=False)
 ### [paddle.Tensor.cholesky_inverse](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html)
 
 ```python
-paddle.Tensor.cholesky(upper=False, name=None)
+paddle.Tensor.cholesky_inverse(upper=False, name=None)
 ```
 
 功能一致，参数完全一致，具体如下：
