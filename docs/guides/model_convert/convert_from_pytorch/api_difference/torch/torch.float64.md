@@ -12,4 +12,4 @@ torch.float64
 paddle.float64
 ```
 
-两者功能一致，无参数。
+两者功能一致，无参数，该 API 也可以直接映射到字符串"float64"。

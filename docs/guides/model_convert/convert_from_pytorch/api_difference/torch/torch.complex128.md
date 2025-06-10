@@ -12,4 +12,4 @@ torch.complex128
 paddle.complex128
 ```
 
-两者功能一致，无参数。
+两者功能一致，无参数，该 API 也可以直接映射到字符串"complex128"。
