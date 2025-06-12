@@ -6,10 +6,10 @@
 torch.special.gammaln(input, *, out=None)
 ```
 
-### [paddle.lgamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/lgamma_cn.html#lgamma)
+### [paddle.gammaln](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/gammaln_cn.html#gammaln)
 
 ```python
-paddle.lgamma(x, name=None)
+paddle.gammaln(x, name=None)
 ```
 
 其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：

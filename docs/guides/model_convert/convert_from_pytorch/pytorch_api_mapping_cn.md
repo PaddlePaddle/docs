@@ -456,6 +456,7 @@
 | ALIAS-REFERENCE-ITEM(`torch.cuda.reset_max_memory_reserved`, `torch.cuda.reset_max_memory_cached`) |
 | ALIAS-REFERENCE-ITEM(`torch.cuda.reset_peak_memory_stats`, `torch.cuda.reset_max_memory_allocated`) |
 | ALIAS-REFERENCE-ITEM(`torch.cdouble`, `torch.complex128`) |
+| ALIAS-REFERENCE-ITEM(`torch.cfloat`, `torch.complex64`) |
 | ALIAS-REFERENCE-ITEM(`torch.float`, `torch.float32`) |
 | ALIAS-REFERENCE-ITEM(`torch.double`, `torch.float64`) |
 | ALIAS-REFERENCE-ITEM(`torch.half`, `torch.float16`) |
@@ -1142,16 +1143,15 @@
 | NOT-IMPLEMENTED-ITEM(`torch.nn.functional.conv_tbc`, https://pytorch.org/docs/, 可新增，但框架底层无相关设计，成本高) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.functional.celu_`, https://pytorch.org/docs, 可新增，且框架底层有相关设计，成本低) |
 | NOT-IMPLEMENTED-ITEM(`torch.nn.functional.selu_`, https://pytorch.org/docs, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.utils.convert_conv2d_weight_memory_format`, https://pytorch.org/docs/stable/generated/torch.nn.utils.convert_conv2d_weight_memory_format.html#torch-nn-utils-convert-conv2d-weight-memory-format, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.nn.utils.convert_conv3d_weight_memory_format`, https://pytorch.org/docs/stable/generated/torch.nn.utils.convert_conv3d_weight_memory_format.html#torch-nn-utils-convert-conv3d-weight-memory-format, 可新增，且框架底层有相关设计，成本低) |
+| NOT-IMPLEMENTED-ITEM(`torch.utils.tensorboard.writer.SummaryWriter`, https://pytorch.org/docs/stable/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter, 可新增，但框架底层无相关设计，成本高) |
+| NOT-IMPLEMENTED-ITEM(`torch.backends.cuda.can_use_flash_attention`, https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.can_use_flash_attention, 可新增，且框架底层有相关设计，成本低) |
 
 ## <span id="id26">映射关系开发中的 API 列表</span>
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射关系分类 | 备注 |
 | ----- | ----------- | ----------------- | ----------- | ------- |
-| IN-DEVELOPMENT-PATTERN(`torch.utils.tensorboard.writer.SummaryWriter`, https://pytorch.org/docs/stable/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_sqrt`, https://pytorch.org/docs/stable/generated/torch._foreach_sqrt.html#torch-foreach-sqrt) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_sqrt_`, https://pytorch.org/docs/stable/generated/torch._foreach_sqrt_.html#torch-foreach-sqrt) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_lgamma`, https://pytorch.org/docs/stable/generated/torch._foreach_lgamma.html#torch-foreach-lgamma) |
-| IN-DEVELOPMENT-PATTERN(`torch._foreach_lgamma_`, https://pytorch.org/docs/stable/generated/torch._foreach_lgamma_.html#torch-foreach-lgamma) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_frac`, https://pytorch.org/docs/stable/generated/torch._foreach_frac.html#torch-foreach-frac) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_frac_`, https://pytorch.org/docs/stable/generated/torch._foreach_frac_.html#torch-foreach-frac) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_reciprocal`, https://pytorch.org/docs/stable/generated/torch._foreach_reciprocal.html#torch-foreach-reciprocal) |
@@ -1161,12 +1161,8 @@
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_trunc`, https://pytorch.org/docs/stable/generated/torch._foreach_trunc.html#torch-foreach-trunc) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_trunc_`, https://pytorch.org/docs/stable/generated/torch._foreach_trunc_.html#torch-foreach-trunc) |
 | IN-DEVELOPMENT-PATTERN(`torch._foreach_zero_`, https://pytorch.org/docs/stable/generated/torch._foreach_zero_.html#torch-foreach-zero) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.utils.convert_conv2d_weight_memory_format`, https://pytorch.org/docs/stable/generated/torch.nn.utils.convert_conv2d_weight_memory_format.html#torch-nn-utils-convert-conv2d-weight-memory-format) |
-| IN-DEVELOPMENT-PATTERN(`torch.nn.utils.convert_conv3d_weight_memory_format`, https://pytorch.org/docs/stable/generated/torch.nn.utils.convert_conv3d_weight_memory_format.html#torch-nn-utils-convert-conv3d-weight-memory-format) |
-| IN-DEVELOPMENT-PATTERN(`torch.backends.cuda.can_use_flash_attention`, https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.can_use_flash_attention) |
 | IN-DEVELOPMENT-PATTERN(`torch.distributed.device_mesh.DeviceMesh`, https://pytorch.org/docs/stable/distributed.html#torch.distributed.device_mesh.DeviceMesh) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.comm.scatter`, https://pytorch.org/docs/stable/generated/torch.cuda.comm.scatter.html#torch-cuda-comm-scatter) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.comm.gather`, https://pytorch.org/docs/stable/generated/torch.cuda.comm.gather.html#torch-cuda-comm-gather) |
 | IN-DEVELOPMENT-PATTERN(`torch.cuda.StreamContext`, https://pytorch.org/docs/stable/generated/torch.cuda.StreamContext.html#torch.cuda.StreamContext) |
-| IN-DEVELOPMENT-PATTERN(`torch.Tensor.lu_solve`, https://pytorch.org/docs/stable/generated/torch.Tensor.lu_solve.html#torch-tensor-lu-solve) |
 | IN-DEVELOPMENT-PATTERN(`torch.autograd.Function.jvp`, https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp) |
