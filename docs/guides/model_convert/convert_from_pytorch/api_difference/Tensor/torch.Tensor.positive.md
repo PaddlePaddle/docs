@@ -12,4 +12,4 @@ torch.Tensor.positive()
 paddle.positive(x)
 ```
 
-两者功能一致，无参数。
+Pytorch 为 Tensor 类方法，Paddle 为普通函数，将调用 torch.Tensor 类方法的 self Tensor 传入到 Paddle 接口中即可。
