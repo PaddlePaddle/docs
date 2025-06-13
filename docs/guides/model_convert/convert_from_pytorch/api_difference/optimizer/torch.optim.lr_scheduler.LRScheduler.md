@@ -30,17 +30,25 @@ paddle.optimizer.lr.LRScheduler(learning_rate=0.1,
 ```python
 # PyTorch 写法
 linear = torch.nn.Linear(10, 10)
-class Newscheduler(torch.optim.lr_scheduler.LRScheduler):
+class CustomScheduler(torch.optim.lr_scheduler.LRScheduler):
+    def __init__(
+        self, optimizer: Optimizer, last_epoch=-1, verbose="deprecated"
+    ):
     ...
-
 sgd = torch.optimizer.SGD(lr=0.5, parameters=linear.parameters())
-scheduler = Newscheduler(optimizer=sgd, lr_lambda=lambda x:0.95**x)
+scheduler = CustomScheduler(optimizer=sgd, lr_lambda=lambda x:0.95**x)
 
 # Paddle 写法
 linear = paddle.nn.linear(10, 10)
-class Newscheduler( paddle.optimizer.lr.LRScheduler):
+class CustomScheduler(paddle.optimizer.lr.LRScheduler):
+    def __init__(
+        self,
+        learning_rate: float = 0.1,
+        last_epoch: int = -1,
+        verbose: bool = False,
+    ) -> None:
     ...
 sgd = paddle.optimizer.SGD(learning_rate=0.5, parameters=linear.parameters())
-scheduler = Newscheduler(learning_rate=sgd.get_lr(), lr_lambda=lambda x:0.95**x)
+scheduler = CustomScheduler(learning_rate=sgd.get_lr(), lr_lambda=lambda x:0.95**x)
 sgd.set_lr_scheduler(scheduler)
 ```
