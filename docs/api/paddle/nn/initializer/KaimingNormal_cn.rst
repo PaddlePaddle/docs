@@ -3,7 +3,7 @@
 KaimingNormal
 -------------------------------
 
-.. py:class:: paddle.nn.initializer.KaimingNormal(fan_in=None, negative_slope=0.0, nonlinearity='relu')
+.. py:class:: paddle.nn.initializer.KaimingNormal(fan_in=None, negative_slope=0.0, nonlinearity='relu', mode='fan_in')
 
 
 
