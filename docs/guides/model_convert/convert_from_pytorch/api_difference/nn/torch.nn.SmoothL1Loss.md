@@ -26,7 +26,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduce        | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。 |
 | reduction        | reduction            | 表示应用于输出结果的计算方式。 |
 | beta          | delta        | SmoothL1Loss 损失的阈值参数，beta 不为 1.0 时 Paddle 不支持，暂无转写方式。  |
-| -          | is_huber         | 参数为 True 时，函数为 Huber 损失。参数为 False 时，函数为 Huber 损失除以 delta，此时 paddle 和 pytorch 一致                     |
+| -          | is_huber         | 控制 huber_loss 与 smooth_l1_loss 的开关，Paddle 需设置为 False 。                    |
 
 ### 转写示例
 #### size_average
@@ -107,11 +107,11 @@ paddle.nn.SmoothL1Loss(reduction='sum')
 #### beta
 ```python
 # PyTorch 的 beta 参数转化为 delta 参数
-a=0.8
+beta=0.8
 
 # PyTorch 写法
-torch.nn.SmoothL1Loss(beta=a)
+torch.nn.SmoothL1Loss(beta=beta)
 
 # Paddle 写法
-paddle.nn.SmoothL1Loss(delta=a, is_huber=False)
+paddle.nn.SmoothL1Loss(delta=beta, is_huber=False)
 ```
