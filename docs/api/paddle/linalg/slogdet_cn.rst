@@ -9,7 +9,7 @@ slogdet
 .. note::
     1. 如果行列式值为 0，则符号值为 0，自然对数值为-inf。
     2. 如果计算的是复矩阵的行列式， :math:`abs(det)` 为行列式的模，因此符号值为 :math:`det / abs(det)` 。
-    3. 该API的返回值结构已从**单个形状为 `[2, *]` 的堆叠 Tensor（其中索引0表示sign，索引1表示logdet）调整为包含两个独立 Tensor `(sign, logdet)` 的元组**（参见 `PR #69913 <https://github.com/PaddlePaddle/Paddle/pull/72505>`_）。这可能会导致依赖旧返回值结构的**已导出推理模型不兼容**。
+    3. 该API的返回值结构已从单个形状为 `[2, *]` 的堆叠 Tensor（其中索引0表示sign，索引1表示logdet）调整为包含两个独立 Tensor `(sign, logdet)` 的元组（参见 `PR #72505 <https://github.com/PaddlePaddle/Paddle/pull/72505>`_）。这可能会导致依赖旧返回值结构的已导出推理模型不兼容。
 
 参数
 ::::::::::::
