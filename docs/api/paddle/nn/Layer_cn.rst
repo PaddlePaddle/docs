@@ -32,6 +32,9 @@ train()
 
 将此层及其所有子层设置为训练模式。这只会影响某些模块，如 Dropout 和 BatchNorm。
 
+**返回**
+Layer (返回网络层)， self (返回自身)
+
 **代码示例**
 
 COPY-FROM: paddle.nn.Layer
@@ -42,7 +45,7 @@ eval()
 将此层及其所有子层设置为预测模式。这只会影响某些模块，如 Dropout 和 BatchNorm。
 
 **返回**
-无
+Layer (返回网络层)， self (返回自身)
 
 **代码示例**
 
