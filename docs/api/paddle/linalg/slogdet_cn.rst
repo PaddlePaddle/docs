@@ -19,7 +19,7 @@ slogdet
 返回
 ::::::::::::
 
-Tensor，输出矩阵的行列式值 Shape 为 ``[2, *]``。
+tuple(Tensor, Tensor): 包含两个 Tensor 的元组：(sign, logabsdet)。第一个 Tensor 表示行列式的符号，第二个 Tensor 表示行列式绝对值的自然对数。
 
 代码示例
 ::::::::::
