@@ -11,7 +11,7 @@ set_program_state
 如果参数的 shape 或 dtype 不匹配，则会引发异常。
 
 .. note::
-必须在运行 start_up_program 之后调用此函数。
+    必须在运行 start_up_program 之后调用此函数。
 
 参数
 ::::::::::::

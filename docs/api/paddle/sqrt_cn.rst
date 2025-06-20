@@ -19,7 +19,7 @@ sqrt
 ::::::::::::
 
 
-    - **x** (Tensor) - 支持任意维度的 Tensor。数据类型为 float32，float64 或 float16。
+    - **x** (Tensor) - 支持任意维度的 Tensor。数据类型为 float16，float32，float64，complex64 或 complex128。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

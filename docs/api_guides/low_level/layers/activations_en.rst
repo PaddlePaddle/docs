@@ -6,44 +6,46 @@ Activation Function
 
 The activation function incorporates non-linearity properties into the neural network.
 
-PaddlePaddle Fluid supports most of the activation functions, including:
+PaddlePaddle supports most of the activation functions, including:
 
-:ref:`api_fluid_layers_relu`,
-:ref:`api_fluid_layers_tanh`,
-:ref:`api_fluid_layers_sigmoid`,
-:ref:`api_fluid_layers_elu`,
-:ref:`api_fluid_layers_relu6`,
-:ref:`api_fluid_layers_pow`,
-:ref:`api_fluid_layers_stanh`,
-:ref:`api_fluid_layers_hard_sigmoid`,
-:ref:`api_fluid_layers_swish`,
-:ref:`api_fluid_layers_prelu`,
-:ref:`api_fluid_layers_brelu`,
-:ref:`api_fluid_layers_leaky_relu`,
-:ref:`api_fluid_layers_soft_relu`,
-:ref:`api_fluid_layers_thresholded_relu`,
-:ref:`api_fluid_layers_maxout`,
-:ref:`api_fluid_layers_logsigmoid`,
-:ref:`api_fluid_layers_hard_shrink`,
-:ref:`api_fluid_layers_softsign`,
-:ref:`api_fluid_layers_softplus`,
-:ref:`api_fluid_layers_tanh_shrink`,
-:ref:`api_fluid_layers_softshrink`,
-:ref:`api_fluid_layers_exp`.
+* :ref:`api_paddle_nn_functional_celu`
+* :ref:`api_paddle_nn_functional_elu`
+* :ref:`api_paddle_exp`
+* :ref:`api_paddle_nn_functional_glu`
+* :ref:`api_paddle_nn_functional_gumbel_softmax`
+* :ref:`api_paddle_nn_functional_hardshrink`
+* :ref:`api_paddle_nn_functional_hardsigmoid`
+* :ref:`api_paddle_nn_functional_hardswish`
+* :ref:`api_paddle_nn_functional_hardtanh`
+* :ref:`api_paddle_nn_functional_leaky_relu`
+* :ref:`api_paddle_nn_functional_log_sigmoid`
+* :ref:`api_paddle_nn_functional_log_softmax`
+* :ref:`api_paddle_nn_functional_maxout`
+* :ref:`api_paddle_nn_functional_mish`
+* :ref:`api_paddle_pow`
+* :ref:`api_paddle_nn_functional_prelu`
+* :ref:`api_paddle_nn_functional_relu`
+* :ref:`api_paddle_nn_functional_relu6`
+* :ref:`api_paddle_nn_functional_rrelu`
+* :ref:`api_paddle_nn_functional_selu`
+* :ref:`api_paddle_tensor_sigmoid`
+* :ref:`api_paddle_nn_functional_silu`
+* :ref:`api_paddle_nn_functional_softmax`
+* :ref:`api_paddle_nn_functional_softplus`
+* :ref:`api_paddle_nn_functional_softshrink`
+* :ref:`api_paddle_nn_functional_softsign`
+* :ref:`api_paddle_stanh`
+* :ref:`api_paddle_nn_functional_swish`
+* :ref:`api_paddle_tanh`
+* :ref:`api_paddle_nn_functional_thresholded_relu`
+* :ref:`api_paddle_nn_functional_tanhshrink`
 
 
-**Fluid provides two ways to use the activation function:**
+**The way to apply activation functions in PaddlePaddle is as follows:**
 
-- If a layer interface provides :code:`act` variables (default None), we can specify the type of layer activation function through this parameter. This mode supports common activation functions :code:`relu`, :code:`tanh`, :code:`sigmoid`, :code:`identity`.
+PaddlePaddle provides a dedicated interface for each activation function, allowing users to explicitly invoke them as needed. Below is an example of applying the ReLU activation function after a convolution operation:
 
 .. code-block:: python
 
-    conv2d = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3, act="relu")
-
-
-- Fluid provides an interface for each Activation, and we can explicitly call it.
-
-.. code-block:: python
-
-    conv2d = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3)
-    relu1 = fluid.layers.relu(conv2d)
+    conv2d = paddle.nn.functional.conv2d(x, weight, stride=1, padding=1)  # Convolution operation
+    relu1 = paddle.nn.functional.relu(conv2d)  # Applying the ReLU activation function

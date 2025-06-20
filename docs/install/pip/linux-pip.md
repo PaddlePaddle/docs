@@ -27,7 +27,7 @@
 
 * 需要确认 python 的版本是否满足要求
 
-  * 使用以下命令确认是 3.8/3.9/3.10/3.11/3.12
+  * 使用以下命令确认是 3.8/3.9/3.10/3.11/3.12/3.13
 
         python3 --version
 
@@ -45,7 +45,6 @@
     ```
     python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
-
 
 
 * 默认提供的安装包需要计算机支持 MKL, Intel 芯片都支持 MKL
@@ -70,26 +69,26 @@
 
 
   ```
-  python3 -m pip install paddlepaddle==3.0.0rc0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+  python3 -m pip install paddlepaddle==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
 
 
 #### 2.2 <span id="gpu">GPU 版的 PaddlePaddle</span>
 
 
-2.2.1 CUDA11.8 的 PaddlePaddle(依赖 gcc8+, 如果需要使用 TensorRT 可自行安装 TensorRT8.5.3.1)
+2.2.1 CUDA11.8 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT8.5.3.1)
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.0.0rc0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
+  python3 -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
 
-2.2.2 CUDA12.3 的 PaddlePaddle(依赖 gcc12+, 如果需要使用 TensorRT 可自行安装 TensorRT8.6.1.6)
+2.2.2 CUDA12.6 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT10.5.0.18)
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.0.0rc0 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
+  python3 -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
   ```
 
 
@@ -105,7 +104,7 @@
 * 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
   ```
-  python3 -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0-beta0/linux/linux-cpu-openblas-avx/paddlepaddle-3.0.0rc0-cp38-cp38-linux_x86_64.whl
+  python3 -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0-beta0/linux/linux-cpu-openblas-avx/paddlepaddle-3.0.0-cp38-cp38-linux_x86_64.whl
   ```
 
 ## **三、验证安装**

@@ -1,4 +1,4 @@
-## [ 可删除 ]torch.Tensor.is_contiguous
+## [ torch 参数更多 ]torch.Tensor.is_contiguous
 
 ### [torch.Tensor.is_contiguous](https://pytorch.org/docs/stable/generated/torch.Tensor.is_contiguous.html#torch-tensor-is-contiguous)
 
@@ -6,4 +6,16 @@
 torch.Tensor.is_contiguous(memory_format=torch.contiguous_format)
 ```
 
-判断 Tensor 是否是 contiguous 的，PaddlePaddle 的 Tensor 默认是 contiguous 的, 因此可直接视作为 True。
+### [paddle.Tensor.is_contiguous](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#is-contiguous)
+
+```python
+paddle.Tensor.is_contiguous()
+```
+
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+
+### 参数映射
+
+| PyTorch       | PaddlePaddle | 备注                                                                                |
+| ------------- | ------------ | ----------------------------------------------------------------------------------- |
+| memory_format | - |表示内存格式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |

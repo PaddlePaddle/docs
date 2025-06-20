@@ -1,4 +1,4 @@
-## [组合替代实现]torch.Tensor.positive
+## [ 无参数 ]torch.Tensor.positive
 
 ### [torch.Tensor.positive](https://pytorch.org/docs/stable/generated/torch.Tensor.positive.html#torch.Tensor.positive)
 
@@ -6,22 +6,10 @@
 torch.Tensor.positive()
 ```
 
-判断 `input` 是否是 bool 类型的 Tensor，如果是则抛出 RuntimeError 异常，否则返回 `input` 。
-
-Paddle 无此 API，需要组合实现。
-
-### 转写示例
+### [paddle.positive](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/positive_cn.html#positive)
 
 ```python
-# PyTorch 写法
-x.positive()
-
-# Paddle 写法
-def positive(x):
-    if x.dtype != paddle.bool:
-        return x
-    else:
-        raise RuntimeError("boolean tensors is not supported.")
-
-positive(x)
+paddle.positive(x)
 ```
+
+Pytorch 为 Tensor 类方法，Paddle 为普通函数，将调用 torch.Tensor 类方法的 self Tensor 传入到 Paddle 接口中即可。

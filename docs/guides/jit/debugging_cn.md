@@ -62,7 +62,7 @@ os.environ["TRANSLATOR_DISABLE_NEW_ERROR"] = '1'
 pdb 是 Python 中的一个模块，该模块定义了一个交互式 Python 源代码调试器。它支持在源码行间设置断点和单步执行，列出源代码和变量，运行 Python 代码等。
 #### 2.1.1 调试步骤
 
-- step1：在想要进行调试的代码前插入`import pdb; pdb.set_trace()`开启 pdb 调试。
+- step1：在想要进行调试的代码前插入 `breakpoint()` 开启 pdb 调试。
     ```python
     import paddle
     import numpy as np
@@ -70,7 +70,7 @@ pdb 是 Python 中的一个模块，该模块定义了一个交互式 Python 源
     @paddle.jit.to_static
     def func(x):
         x = paddle.to_tensor(x)
-        import pdb; pdb.set_trace()       # <------ 开启 pdb 调试
+        breakpoint()            # <------ 开启 pdb 调试
         two = paddle.full(shape=[1], fill_value=2, dtype="int32")
         x = paddle.reshape(x, shape=[1, two])
         return x
@@ -80,27 +80,29 @@ pdb 是 Python 中的一个模块，该模块定义了一个交互式 Python 源
 
 - step2：正常运行.py 文件，在终端会出现下面类似结果，在`(Pdb)`位置后输入相应的 pdb 命令进行调试。
     ```
-    > /tmp/tmpm0iw5b5d.py(9)func()
-    -> two = paddle.full(shape=[1], fill_value=2, dtype='int32')
+    > /home/paddle/.cache/paddle/to_static_tmp/5532/func1pr4zwfs.py(16)func()
+    -> two = _jst.Ld(_jst.Ld(paddle).full)(shape=[1], fill_value=2, dtype='int32')
     (Pdb)
     ```
 
 - step3：在 pdb 交互模式下输入 l、p 等命令可以查看动转静后静态图相应的代码、变量，进而排查相关的问题。
     ```
-    > /tmp/tmpm0iw5b5d.py(9)func()
-    -> two = paddle.full(shape=[1], fill_value=2, dtype='int32')
+    > /home/paddle/.cache/paddle/to_static_tmp/5532/func1pr4zwfs.py(16)func()
+    -> two = _jst.Ld(_jst.Ld(paddle).full)(shape=[1], fill_value=2, dtype='int32')
     (Pdb) l
-      4     import numpy as np
-      5     def func(x):
-      6         x = paddle.assign(x)
-      7         import pdb
-      8         pdb.set_trace()
-      9  ->     two = paddle.full(shape=[1], fill_value=2, dtype='int32')
-     10         x = paddle.reshape(x, shape=[1, two])
-     11         return x
-    [EOF]
+    11         def func(x):
+    12             __return_0 = False
+    13             __return_value_0 = None
+    14             x = _jst.Ld(_jst.Ld(paddle).to_tensor)(_jst.Ld(x))
+    15             _jst.Ld(breakpoint)()
+    16  ->         two = _jst.Ld(_jst.Ld(paddle).full)(shape=[1], fill_value=2, dtype='int32')
+    17             x = _jst.Ld(_jst.Ld(paddle).reshape)(_jst.Ld(x), shape=[1, _jst.Ld(two)])
+    18             __return_value_0 = _jst.Ld(x)
+    19             return _jst.Ld(__return_value_0)
+    20         return func
+    21     func = create_func()
     (Pdb) p x
-    var assign_0.tmp_0 : DENSE_TENSOR.shape(3,).dtype(int32).stop_gradient(False)
+    Value(define_op_name=pd_op.data, index=0, dtype=tensor<3xi32>, stop_gradient=True)
     (Pdb)
     ```
 
@@ -133,7 +135,7 @@ func(np.ones([1]))
 此外，如果你想将转化后的代码也输出到 `sys.stdout` , 可以设置参数 `also_to_stdout` 为 True，否则将仅输出到 `sys.stderr`。 `set_code_level` 函数可以设置查看不同的 AST Transformer 转化后的代码，详情请见 [set_code_level](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/jit/set_code_level_cn.html)。
 
 #### 2.2.2 被装饰后的函数的 code 属性
-如下代码中，装饰器@to_static 会将函数 func 转化为一个类对象 StaticFunction，可以使用 StaticFunction 的 code 属性来获得转化后的代码。
+如下代码中，装饰器 `@to_static` 会将函数 func 转化为一个类对象 `StaticFunction`，可以使用 `StaticFunction` 的 code 属性来获得转化后的代码。
 ```python
 import paddle
 import numpy as np
@@ -190,12 +192,12 @@ func(np.ones([1]))
 ```
 运行后可以看到 x 的值：
 ```
-Variable: assign_0.tmp_0
+Variable: var
   - lod: {}
-  - place: CUDAPlace(0)
+  - place: Place(gpu:0)
   - shape: [1]
   - layout: NCHW
-  - dtype: double
+  - dtype: float64
   - data: [1]
 ```
 ### 2.4 日志打印
@@ -274,11 +276,11 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
 
 **排查建议：**
 
-- 代码层面，判断是否是上游使用了 reshape 导致 -1 的污染性传播
-> 动态图由于执行时 shape 都是已知的，所以 reshape(x, [-1, 0, 128]) 是没有问题的。但静态图组网时都是编译期的 shape（可能为-1），因此使用 reshape 接口时，尽量减少 -1 的使用。
+- 代码层面，判断是否是上游使用了 `reshape` 导致 -1 的污染性传播
+> 动态图由于执行时 shape 都是已知的，所以 `reshape(x, [-1, 0, 128])` 是没有问题的。但静态图组网时都是编译期的 shape（可能为-1），因此使用 reshape 接口时，尽量减少 -1 的使用。
 
 - 可以结合调试技巧，判断是否是某个 API 的输出 shape 在动静态图下有 diff 行为
-> 比如某些 Paddle API 动态图下返回的是 1-D Tensor， 但静态图却是始终和输入保持一致，如 ctx->SetOutputDim("Out", ctx->GetInputDim("X"));
+> 比如某些 Paddle API 动态图下返回的是 1-D Tensor， 但静态图却是始终和输入保持一致，如 `ctx->SetOutputDim("Out", ctx->GetInputDim("X"));`
 
 ### 3.3 desc->CheckGuards() == true
 **报错信息大致如下：**
@@ -300,11 +302,11 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
 ### 3.4 Segment Fault
 当动转静出现 段错误 时，报错栈信息也会很少，但导致此类问题的原因一般也比较明确。
 此类问题的一般原因是：
-> 某个 sublayer 未继承 nn.Layer ，同时在\__init__.py 函数中存在 paddle.to_tensor 接口的调用。导致在生成 Program 或者保存模型参数时，在静态图模式下访问了动态图的 Tensor 数据。
+> 某个 sublayer 未继承 nn.Layer ，同时在 `__init__.py` 函数中存在 `paddle.to_tensor` 接口的调用。导致在生成 Program 或者保存模型参数时，在静态图模式下访问了动态图的 Tensor 数据。
 
 **排查建议：**
 
-- 每个 sublayer 是否继承了 nn.Layer
+- 每个 sublayer 是否继承了 `nn.Layer`
 
 ### 3.5 Container 的使用建议
 动态图下，提供了如下几种 container 的容器类：

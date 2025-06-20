@@ -16,7 +16,7 @@ matrix_rank
 
 参数
 :::::::::
-    - **x** (Tensor) - 输入 tensor。它的形状应该是 ``[..., m, n]``，其中 ``...`` 是零或者更大的批次维度。如果 ``x`` 是一批矩阵，则输出具有相同的批次尺寸。``x`` 的数据类型应该为 float32 或 float64。
+    - **x** (Tensor) - 输入 tensor。它的形状应该是 ``[..., m, n]``，其中 ``...`` 是零或者更大的批次维度。如果 ``x`` 是一批矩阵，则输出具有相同的批次尺寸。``x`` 的数据类型应该为 float32，float64，complex64 或 complex128。
     - **tol** (float|Tensor，可选) - 阈值。默认值：None。如果未指定 ``tol`` ， ``sigma`` 为所计算奇异值中的最大值（或特征值绝对值的最大值）， ``eps`` 为 ``x`` 的类型的 epsilon 值，使用公式 ``tol=sigma * max(m,n) * eps`` 来计算 ``tol``。请注意，如果 ``x`` 是一批矩阵，以这种方式为每批矩阵计算 ``tol`` 。
     - **hermitian** (bool，可选) - 表示 ``x`` 是否是 Hermitian 矩阵。默认值：False。当 hermitian=True 时，``x`` 被假定为 Hermitian 矩阵，这时函数内会使用更高效的算法来求解特征值，但在函数内部不会对 ``x`` 进行检查。我们仅仅使用矩阵的下三角来进行计算。
     - **atol** (float|Tensor，可选) - 绝对阈值。未被声明时当作 0 。默认值：None。

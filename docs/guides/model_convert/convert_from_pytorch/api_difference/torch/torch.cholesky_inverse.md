@@ -1,28 +1,33 @@
-## [ 组合替代实现 ]torch.cholesky_inverse
+## [ torch 参数更多 ]torch.cholesky_inverse
+
 ### [torch.cholesky_inverse](https://pytorch.org/docs/stable/generated/torch.cholesky_inverse.html?highlight=cholesky_inverse#torch.cholesky_inverse)
+
 ```python
 torch.cholesky_inverse(input, upper=False, out=None)
 ```
 
-###  功能介绍
-用于计算对称正定矩阵的逆矩阵，公式为：
-> 当`upper`为 False 时，
-> $inv=(uu^T)^{-1}$ ；
-> 当`upper`为 True 时，
-> $inv=(u^Tu)^{-1}$ 。
-
-
-PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
+### [paddle.linalg.cholesky_inverse](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/cholesky_inverse_cn.html#cholesky-inverse)
 
 ```python
-import paddle
+paddle.linalg.cholesky_inverse(x, upper=False, name=None)
+```
 
-def cholesky_inverse(input, upper=False, out=None) :
-    u = paddle.cholesky(input, False)
-    ut = paddle.transpose(u, perm=[1, 0])
-    if upper:
-        out = paddle.inverse(paddle.matmul(ut, u))
-    else:
-        out = paddle.inverse(paddle.matmul(u, ut))
-    return out
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+
+### 参数映射
+
+| PyTorch       | PaddlePaddle | 备注                                                   |
+| ------------- | ------------ | ------------------------------------------------------ |
+| input |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
+| upper   | upper        | 指示是否返回上三角矩阵或下三角矩阵。  |
+| out     | -            | 表示输出的 Tensor，Paddle 无此参数，需要转写。 |
+
+### 转写示例
+
+```python
+# PyTorch 写法
+torch.cholesky_inverse(input, out=output)
+
+# Paddle 写法
+paddle.assign(paddle.linalg.cholesky_inverse(input), output=output)
 ```

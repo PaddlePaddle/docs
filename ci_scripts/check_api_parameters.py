@@ -124,7 +124,7 @@ def _check_params_in_description(rstfilename, paramstr):
                         )
                 else:
                     flag = False
-                    info = f"param name '{pname_in_title}' not matched in description line{i+1}, check it please."
+                    info = f"param name '{pname_in_title}' not matched in description line{i + 1}, check it please."
                     print(
                         f"check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph."
                     )
@@ -166,7 +166,7 @@ def _check_params_in_description_with_fullargspec(rstfilename, funcname):
                         )
                 else:
                     flag = False
-                    info = f"param name '{pname_in_title}' not matched in description line{i+1}, check it please."
+                    info = f"param name '{pname_in_title}' not matched in description line{i + 1}, check it please."
                     print(
                         f"check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph."
                     )
@@ -228,7 +228,7 @@ def check_api_parameters(rstfiles, apiinfo):
                                     )
                                 else:
                                     print(
-                                        f'check func:{funcname} in {rstfilename} with {paramstr}, but different with json\'s {apiobj["args"]}'
+                                        f"check func:{funcname} in {rstfilename} with {paramstr}, but different with json's {apiobj['args']}"
                                     )
                                     flag, info = _check_params_in_description(
                                         rstfilename, paramstr

@@ -1,4 +1,4 @@
-## [ 组合替代实现 ] torch.Tensor.mT
+## [ 无参数 ] torch.Tensor.mT
 
 ### [torch.Tensor.mT](https://pytorch.org/docs/stable/tensors.html?#torch.Tensor.mT)
 
@@ -6,16 +6,10 @@
 torch.Tensor.mT
 ```
 
-Paddle 无此 API，需要组合实现。
-PyTorch 中等于 x.transpose(-2, -1)，Paddle 中 transpose 参数 perm 为转换后的维度位置。
-
-### 转写示例
+### [paddle.Tensor.mT](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/base/dygraph/math_op_patch.py#L208)
 
 ```python
-# 假设 x 为 4D
-# PyTorch 写法
-y = x.mT
-
-# Paddle 写法
-y = x.transpose(x, perm=[0, 1, 3, 2])
+paddle.Tensor.mT
 ```
+
+两者功能一致，无参数。
