@@ -15,5 +15,5 @@ Paddle 无此 API，需要组合实现。
 torch._foreach_reciprocal_(tensors)
 
 # Paddle 写法
-[paddle.assign(paddle.reciprocal(x), x) for x in tensors]
+[x.reciprocal_() for x in tensors]
 ```

@@ -15,5 +15,5 @@ Paddle 无此 API，需要组合实现。
 torch._foreach_exp_(tensors)
 
 # Paddle 写法
-[paddle.assign(paddle.exp(x), x) for x in tensors]
+[x.exp_() for x in tensors]
 ```

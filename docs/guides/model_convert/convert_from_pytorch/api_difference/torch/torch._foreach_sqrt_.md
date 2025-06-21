@@ -15,5 +15,5 @@ Paddle 无此 API，需要组合实现。
 torch._foreach_sqrt_(tensors)
 
 # Paddle 写法
-[paddle.assign(paddle.sqrt(x), x) for x in tensors]
+[x.sqrt_() for x in tensors]
 ```

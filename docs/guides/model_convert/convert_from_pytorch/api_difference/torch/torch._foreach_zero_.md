@@ -15,5 +15,5 @@ Paddle 无此 API，需要组合实现。
 torch._foreach_zero_(tensors)
 
 # Paddle 写法
-[paddle.assign(paddle.zeros_like(x), x) for x in tensors]
+[x.zero_() for x in tensors]
 ```

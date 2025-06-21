@@ -15,5 +15,5 @@ Paddle 无此 API，需要组合实现。
 torch._foreach_ceil_(tensors)
 
 # Paddle 写法
-[paddle.assign(paddle.ceil(x), x) for x in tensors]
+[x.ceil_() for x in tensors]
 ```
