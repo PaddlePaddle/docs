@@ -281,6 +281,7 @@ Loss 层
     " :ref:`paddle.nn.TripletMarginWithDistanceLoss <cn_api_paddle_nn_TripletMarginWithDistanceLoss>` ", "TripletMarginWithDistanceLoss 层"
     " :ref:`paddle.nn.MultiLabelSoftMarginLoss <cn_api_paddle_nn_MultiLabelSoftMarginLoss>` ", "多标签 Hinge 损失层"
     " :ref:`paddle.nn.MultiMarginLoss <cn_api_paddle_nn_MultiMarginLoss>` ", "MultiMarginLoss 层"
+    " :ref:`paddle.nn.MultiLabelMarginLoss <cn_api_paddle_nn_MultiLabelMarginLoss>` ", "MultiLabelMarginLoss 层"
     " :ref:`paddle.nn.AdaptiveLogSoftmaxWithLoss <cn_api_paddle_nn_AdaptiveLogSoftmaxWithLoss>` ", "自适应 logsoftmax 损失类"
 
 
@@ -523,6 +524,7 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.hinge_embedding_loss <cn_api_paddle_nn_functional_hinge_embedding_loss>` ", "计算输入 input 和标签 label（包含 1 和 -1） 间的 `hinge embedding loss` 损失"
     " :ref:`paddle.nn.functional.rnnt_loss <cn_api_paddle_nn_functional_rnnt_loss>` ", "计算 RNNT loss，也可以叫做 softmax with RNNT"
     " :ref:`paddle.nn.functional.multi_margin_loss <cn_api_paddle_nn_functional_multi_margin_loss>` ", "用于计算 multi margin loss 损失函数"
+    " :ref:`paddle.nn.functional.multi_label_margin_loss <cn_api_paddle_nn_functional_multi_label_margin_loss>` ", "用于计算 multi label margin loss 损失函数"
     " :ref:`paddle.nn.functional.adaptive_log_softmax_with_loss <cn_api_paddle_nn_functional_adaptive_log_softmax_with_loss>` ", "自适应 logsoftmax 损失函数"
 
 
