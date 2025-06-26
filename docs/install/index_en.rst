@@ -37,7 +37,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 3. Version requirements of python and pip:
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-* Python requires version 3.8/3.9/3.10/3.11/3.12/3.13
+* Python requires version 3.9/3.10/3.11/3.12/3.13
 * Python needs pip, and pip requires version 20.2.2 or above
 * Python and pip requires 64-bit
 
@@ -68,7 +68,7 @@ This section will introduce the installation method using pip.
 
 4.Check the Python version
 
-    Use the following command to confirm it is 3.8/3.9/3.10/3.11/3.12/3.13
+    Use the following command to confirm it is 3.9/3.10/3.11/3.12/3.13
 
     ::
 
@@ -100,6 +100,10 @@ This section will introduce the installation method using pip.
                python -m pip install --pre paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
 
     (2). **GPU version** : If you want to use the GPU version, please refer to the following command for installation
+
+         The command to install the GPU cuda12.9 version is:
+         ::
+               python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu129/
 
          The command to install the GPU cuda12.6 version is:
          ::

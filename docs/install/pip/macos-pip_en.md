@@ -22,7 +22,7 @@
 
 * You need to confirm whether the version of Python meets the requirements
 
-  * Use the following command to confirm that it is 3.8/3.9/3.10/3.11/3.12
+  * Use the following command to confirm that it is 3.9/3.10/3.11/3.12/3.13
 
         python3 --version
 
@@ -34,7 +34,7 @@
     ```
 
 
-* You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64) or arm64 (PaddlePaddle already supports Mac M1):
+* You need to confirm that Python and pip are 64bit, and the processor architecture is arm64 (PaddlePaddle already supports Mac M), no longer supporting x86_64 architecture
 
 
     ```
@@ -61,7 +61,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 ```
-python3 -m pip install paddlepaddle==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+python3 -m pip install paddlepaddle==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 ```
 
 Note：

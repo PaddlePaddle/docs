@@ -27,7 +27,7 @@
 
 * 需要确认 python 的版本是否满足要求
 
-  * 使用以下命令确认是 3.8/3.9/3.10/3.11/3.12/3.13
+  * 使用以下命令确认是 3.9/3.10/3.11/3.12/3.13
 
         python3 --version
 
@@ -69,7 +69,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+  python3 -m pip install paddlepaddle==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
 
 
@@ -80,7 +80,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
+  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
 
@@ -88,7 +88,14 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
+  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
+  ```
+
+2.2.3 CUDA12.9 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT10.5.0.18)
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu129/
   ```
 
 
@@ -101,11 +108,6 @@
   cat /proc/cpuinfo | grep -i avx
   ```
 
-* 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
-
-  ```
-  python3 -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0-beta0/linux/linux-cpu-openblas-avx/paddlepaddle-3.0.0-cp38-cp38-linux_x86_64.whl
-  ```
 
 ## **三、验证安装**
 

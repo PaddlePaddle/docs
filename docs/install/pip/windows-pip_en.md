@@ -6,7 +6,7 @@
 
 * Confirm whether the Python version meets the requirements
 
-  * Use the following command to confirm that it is 3.8/3.9/3.10/3.11/3.12/3.13
+  * Use the following command to confirm that it is 3.9/3.10/3.11/3.12/3.13
 
         python --version
 
@@ -53,23 +53,29 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+  python -m pip install paddlepaddle==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
 
 
 #### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
 
 
-2.2.4 If you are using CUDA 11.8(If you need to use TensorRT, you can install TensorRT 8.5.1.7 yourself)
+2.2.1 If you are using CUDA 11.8(If you need to use TensorRT, you can install TensorRT 8.5.1.7 yourself)
 
   ```
-  python -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
+  python -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
-2.2.5 If you are using CUDA 12.6(If you need to use TensorRT, you can install TensorRT 10.5.0.18 yourself)
+2.2.2 If you are using CUDA 12.6(If you need to use TensorRT, you can install TensorRT 10.5.0.18 yourself)
 
   ```
-  python -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
+  python -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
+  ```
+
+2.2.3 If you are using CUDA 12.9(If you need to use TensorRT, you can install TensorRT 10.5.0.18 yourself)
+
+  ```
+  python -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu129/
   ```
 
 Note：
@@ -78,12 +84,6 @@ Note：
 
 * The above commands install the `avx` and `mkl` package by default. Paddle no longer supports `noavx` package. To determine whether your machine supports `avx`, you can install the [CPU-Z](https://www.cpuid.com/softwares/cpu-z.html) tool to view the "processor-instruction set".
 
-
-* If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
-
-  ```
-  python -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0/windows/windows-cpu-avx-openblas-vs2017/paddlepaddle-3.0.0-cp38-cp38-win_amd64.whl
-  ```
 
 ## Verify installation
 

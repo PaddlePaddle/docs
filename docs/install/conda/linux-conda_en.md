@@ -9,7 +9,7 @@
 
 #### 1.1.1 Create the Anaconda Virtual Environment
 
-Create virtual environment First create the Anaconda virtual environment according to the specific Python version. The Anaconda installation of PaddlePaddle supports Python version of 3.8 - 3.13.
+Create virtual environment First create the Anaconda virtual environment according to the specific Python version. The Anaconda installation of PaddlePaddle supports Python version of 3.9 - 3.13.
 
 ```
 conda create -n paddle_env python=YOUR_PY_VER
@@ -112,6 +112,12 @@ conda install paddlepaddle==3.0.0 -c paddle
 
   ```
   conda install paddlepaddle-gpu==3.0.0 paddlepaddle-cuda=12.6 -c paddle -c nvidia
+  ```
+
+*  If you are using CUDA 12.9:
+
+  ```
+  conda install paddlepaddle-gpu==3.0.0 paddlepaddle-cuda=12.9 -c paddle -c nvidia
   ```
 
 

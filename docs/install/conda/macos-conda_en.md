@@ -10,7 +10,7 @@
 
 #### 1.1.1 Create the Anaconda Virtual Environment
 
-Create virtual environment First create the Anaconda virtual environment according to the specific Python version. The Anaconda installation of PaddlePaddle supports Python version of 3.8 - 3.13.
+Create virtual environment First create the Anaconda virtual environment according to the specific Python version. The Anaconda installation of PaddlePaddle supports Python version of 3.9 - 3.13.
 
 ```
 conda create -n paddle_env python=YOUR_PY_VER
@@ -54,7 +54,7 @@ python3 --version
 #### 1.2.3 Check the system environment
 
 
-Confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64) or arm64 (PaddlePaddle already supports Mac M1):
+Confirm that Python and pip are 64bit, and the processor architecture is arm64 (PaddlePaddle already supports Mac M), no longer supporting x86_64 architecture
 
 
 ```

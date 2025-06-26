@@ -28,7 +28,7 @@
 
 * You need to confirm whether the version of Python meets the requirements
 
-  * Use the following command to confirm that it is 3.8/3.9/3.10/3.11/3.12/3.13
+  * Use the following command to confirm that it is 3.9/3.10/3.11/3.12/3.13
 
         python3 --version
 
@@ -80,25 +80,31 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+  python3 -m pip install paddlepaddle==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
 
 
 #### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
 
 
-2.2.4 If you are using CUDA 11.8(If you need to use TensorRT, you can install TensorRT 8.5.3.1 yourself)
+2.2.1 If you are using CUDA 11.8(If you need to use TensorRT, you can install TensorRT 8.5.3.1 yourself)
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
+  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
 
-2.2.5 If you are using CUDA 12.6(If you need to use TensorRT, you can install TensorRT 10.5.0.18 yourself)
+2.2.2 If you are using CUDA 12.6(If you need to use TensorRT, you can install TensorRT 10.5.0.18 yourself)
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
+  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
+  ```
+
+2.2.3 If you are using CUDA 12.9(If you need to use TensorRT, you can install TensorRT 10.5.0.18 yourself)
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu129/
   ```
 
 
@@ -110,13 +116,6 @@ Note：
    ```
    cat /proc/cpuinfo | grep -i avx
    ```
-
-* If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
-
-  ```
-  python3 -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0/linux/linux-cpu-openblas-avx/paddlepaddle-3.0.0-cp38-cp38-linux_x86_64.whl
-  ```
-
 
 
 ## Verify installation

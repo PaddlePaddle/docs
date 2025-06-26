@@ -33,7 +33,7 @@
 
 **3. Python 和 pip 版本要求：**
 
-* Python 的版本要求 3.8/3.9/3.10/3.11/3.12/3.13
+* Python 的版本要求 3.9/3.10/3.11/3.12/3.13
 * Python 具有 pip, 且 pip 的版本要求 20.2.2+
 * Python 和 pip 要求是 64 位版本
 
@@ -66,7 +66,7 @@
 
 4. 检查 Python 的版本
 
-    使用以下命令确认是 3.8/3.9/3.10/3.11/3.12/3.13
+    使用以下命令确认是 3.9/3.10/3.11/3.12/3.13
     ::
 
         python --version
@@ -101,9 +101,12 @@
 
     (2). **GPU 版本** ：如果您想使用 GPU 版本请参考如下命令安装
 
+        安装 GPU cuda12.s96 版本的命令为：
+        ::
+            python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu129/
+
         安装 GPU cuda12.6 版本的命令为：
         ::
-
             python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu126/
 
         安装 GPU cuda11.8 版本的命令为：

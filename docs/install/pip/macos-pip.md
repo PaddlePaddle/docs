@@ -25,7 +25,7 @@
 
 * 需要确认 python 的版本是否满足要求
 
-  * 使用以下命令确认是 3.8/3.9/3.10/3.11/3.12
+  * 使用以下命令确认是 3.9/3.10/3.11/3.12/3.13
 
     ```
     python3 --version
@@ -40,7 +40,7 @@
 
 
 
-* 需要确认 Python 和 pip 是 64bit，并且处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构 或 arm64 架构（paddle 已原生支持 Mac M1 芯片）：
+* 需要确认 Python 和 pip 是 64bit，并且处理器架构是 arm64 架构（paddle 已原生支持 Mac M 芯片), 不再支持 x86_64 架构：
 
     ```
     python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
@@ -61,7 +61,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+  python3 -m pip install paddlepaddle==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
 
 
