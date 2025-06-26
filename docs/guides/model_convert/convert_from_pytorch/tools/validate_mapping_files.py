@@ -675,8 +675,7 @@ def generate_alias_lines_from_paconvert(basedir, meta_dict) -> None:
     output_path = os.path.join(basedir, "alias_macro_lines.tmp.md")
     with open(output_path, "w", encoding="utf-8") as f:
         od_apis = collections.OrderedDict(sorted(alias_output.items()))
-        for api, ref in od_apis.items():
-            f.write(f"| {ref} |\n")
+        f.writelines(f"| {ref} |\n" for api, ref in od_apis.items())
 
     print(f'generated alias temp file: "{output_path}"')
 
