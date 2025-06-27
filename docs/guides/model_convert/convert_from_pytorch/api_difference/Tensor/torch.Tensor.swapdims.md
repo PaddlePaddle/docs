@@ -6,11 +6,10 @@
 torch.Tensor.swapdims(dim0, dim1)
 ```
 
-### [paddle.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/transpose_cn.html#transpose)
+### [paddle.Tensor.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#transpose-perm-name-none)
 
 ```python
-paddle.transpose(x,
-                 perm,
+paddle.Tensor.transpose(perm,
                  name=None)
 ```
 
@@ -20,10 +19,9 @@ paddle.transpose(x,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| -         | <font color='red'>x</font>            | 输入 Tensor。                                       |
-| <font color='red'>dim0</font>          | -            | PyTorch 转置的第一个维度，Paddle 无此参数，需要转写。                  |
-| <font color='red'>dim1</font>          | -            | PyTorch 转置的第二个维度，Paddle 无此参数，需要转写。                   |
-| -             | <font color='red'>perm</font>         | Paddle 无此参数。 Paddle 可通过 perm 参数，等价的实现 torch 的 dim0、dim1 的功能。|
+| dim0          | -            | PyTorch 转置的第一个维度，Paddle 无此参数，需要转写。                  |
+| dim1          | -            | PyTorch 转置的第二个维度，Paddle 无此参数，需要转写。                   |
+| -             | perm         | Paddle 无此参数。 Paddle 可通过 perm 参数，等价的实现 torch 的 dim0、dim1 的功能。|
 
 
 ### 转写示例
@@ -34,7 +32,7 @@ paddle.transpose(x,
 x.swapaxes(dim0=0, dim1=1)
 
 # Paddle 写法:
-paddle.transpose(x, perm=[1, 0, 2])
+x.transpose(perm=[1, 0, 2])
 
 # 注：x 为 3D Tensor
 ```

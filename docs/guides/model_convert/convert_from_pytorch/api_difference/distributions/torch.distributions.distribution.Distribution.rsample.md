@@ -1,9 +1,9 @@
-## [ 仅参数名不一致 ]torch.distributions.Distribution.rsample
+## [ 仅参数名不一致 ]torch.distributions.distribution.Distribution.rsample
 
-### [torch.distributions.Distribution.rsample](https://pytorch.org/docs/stable/distributions.html#torch.distributions.distribution.Distribution.rsample)
+### [torch.distributions.distribution.Distribution.rsample](https://pytorch.org/docs/stable/distributions.html#torch.distributions.distribution.Distribution.rsample)
 
 ```python
-torch.distributions.Distribution.rsample(sample_shape=torch.Size([]))
+torch.distributions.distribution.Distribution.rsample(sample_shape=torch.Size([]))
 ```
 
 ### [paddle.distribution.Distribution.rsample](https://github.com/PaddlePaddle/Paddle/blob/2bbd6f84c1db3e7401732869ee50aef2d9c97bdc/python/paddle/distribution/distribution.py#L96)

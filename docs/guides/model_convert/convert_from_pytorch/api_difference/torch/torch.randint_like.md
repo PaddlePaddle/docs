@@ -7,7 +7,7 @@ torch.randint_like(input,
                    low=0,
                    high,
                    *,
-                   memory_format=torch.preserve_format
+                   memory_format=torch.preserve_format,
                    dtype=None,
                    layout=torch.strided,
                    device=None,

@@ -462,6 +462,9 @@
 | ALIAS-REFERENCE-ITEM(`torch.half`, `torch.float16`) |
 | ALIAS-REFERENCE-ITEM(`torch.short`, `torch.int16`) |
 | ALIAS-REFERENCE-ITEM(`torch.int`, `torch.int32`) |
+| ALIAS-REFERENCE-ITEM(`torch.distributions.Distribution.log_prob`, `torch.distributions.distribution.Distribution.log_prob`) |
+| ALIAS-REFERENCE-ITEM(`torch.distributions.Distribution.rsample`, `torch.distributions.distribution.Distribution.rsample`) |
+| ALIAS-REFERENCE-ITEM(`torch.distributions.Distribution.sample`, `torch.distributions.distribution.Distribution.sample`) |
 
  ## <span id="id25">功能缺失的 API 列表</span>
 

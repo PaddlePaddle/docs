@@ -6,10 +6,10 @@
 torch.cuda.synchronize(device)
 ```
 
-### [paddle.device.cuda.synchronize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/synchronize_cn.html)
+### [paddle.device.synchronize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/synchronize_cn.html)
 
 ```python
-paddle.device.cuda.synchronize(device)
+paddle.device.synchronize(device)
 ```
 
 两者功能一致但参数类型不一致，具体如下：
@@ -28,11 +28,11 @@ paddle.device.cuda.synchronize(device)
 torch.cuda.synchronize('cuda:0')
 
 # Paddle 写法
-paddle.device.cuda.synchronize('gpu:0')
+paddle.device.synchronize('gpu:0')
 
 # PyTorch 写法
 torch.cuda.synchronize(2)
 
 # Paddle 写法
-paddle.device.cuda.synchronize('gpu:2')
+paddle.device.synchronize('gpu:2')
 ```
