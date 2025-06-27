@@ -18,6 +18,20 @@
 | AI 加速芯片 |  | 燧原 | 云燧 T20 、i20、S60 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/gcu/README_cn.md) |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice)  |
 | AI 加速芯片 |  | 太初 | 元碁系列 | [安装](./sdaa/install_cn.html#wheel) |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/sdaa/README_cn.md)  |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice)  |
 
+
+## FastDeploy
+
+|分类|架构|公司|型号|使用指南|
+|-|-|-|-|-|
+| AI 加速卡 | | NVIDIA | Ada Lovelace、Hopper、 Ampere 架构 | [使用指南](https://github.com/PaddlePaddle/FastDeploy) |
+| AI 加速卡 | XPU | 昆仑芯 | P800 | 适配中 |
+| AI 加速卡 | GPGPU | 海光 | K100_AI | 适配中 |
+| AI 加速卡 | 达芬奇 | 昇腾 | 910 系列 | 适配中 |
+| AI 加速卡 | GPGPU | 天数 | 天垓 150 | 适配中 |
+| AI 加速卡 | GPGPU | 沐曦 | 曦云 C 系列 | 适配中 |
+| AI 加速卡 | | 燧原 | S60 | 适配中 |
+
+
 ## Paddle Inference
 
 |  分类  | 架构 | 公司 | 型号 | 预编译库 | 源码编译 |  完全支持推理 | 支持部分模型 |
