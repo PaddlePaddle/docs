@@ -7,6 +7,11 @@ scatter
 
 通过基于 ``updates`` 来更新选定索引 ``index`` 上的输入来获得输出。具体行为如下：
 
+如下图，当 overwrite 为 True 的时候使用覆盖模式更新相同索引的输出，依次将 ``x[index[i]]`` 更新为 ``update[i]`` ；而当 overwrite 为 False 时使用累加模式更新相同索引的输出，先依次将 ``x[index[i]]`` 更新为与该行大小相同的元素值均为 0 的 Tensor ，再依次将 ``update[i]`` 加到 ``x[index[i]]`` 产生输出。
+
+.. image:: ../../images/api_legend/scatter.png
+   :alt: 图例- scatter 的行为展示
+
 COPY-FROM: paddle.scatter:scatter-example-1
 
 **Notice：**

@@ -52,7 +52,7 @@ paddle 环境安装
 
 .. code-block::
 
-   $ docker run --name paddle -it --net=host -v $PWD:/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8 /bin/bash
+   $ docker run --name paddle -it --net=host -v $PWD:/paddle ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8 /bin/bash
 
 * 当使用 gpu 时请配置 nvidia docker runtime 或使用 nvidia-docker 启动容器，进入容器后使用 nvidia-smi 命令确认环境正确
 * 使用分布式时需要添加 --net=host 参数让容器使用主机网络以实现跨机建立连接
@@ -230,14 +230,14 @@ paddlejob 任务提交
           spec:
             containers:
               - name: paddle
-                image: registry.baidubce.com/paddle-operator/demo-wide-and-deep:v1
+                image: ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddle-operator/demo-wide-and-deep:v1
       ps:
         replicas: 2
         template:
           spec:
             containers:
               - name: paddle
-                image: registry.baidubce.com/paddle-operator/demo-wide-and-deep:v1
+                image: ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddle-operator/demo-wide-and-deep:v1
 
 说明：
 
@@ -277,7 +277,7 @@ paddlejob 任务提交
           spec:
             containers:
               - name: paddle
-                image: registry.baidubce.com/paddle-operator/demo-resnet:v1
+                image: ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddle-operator/demo-resnet:v1
                 command:
                 - python
                 args:

@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.Tensor.sinc
+## [ 无参数 ]torch.Tensor.sinc
 
 ### [torch.Tensor.sinc](https://pytorch.org/docs/stable/generated/torch.Tensor.sinc.html#torch.Tensor.sinc)
 
@@ -6,15 +6,10 @@
 torch.Tensor.sinc()
 ```
 
-Paddle 无此 API，需要组合实现。
-
-### 转写示例
+### [paddle.Tensor.sinc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sinc_cn.html#sinc)
 
 ```python
-# PyTorch 写法
-y = a.sinc()
-
-# Paddle 写法
-import numpy
-y = paddle.where(a==0, x=paddle.to_tensor([1], dtype=a.dtype), y=paddle.sin(numpy.pi*a)/(numpy.pi*a))
+paddle.Tensor.sinc()
 ```
+
+两者功能一致，均无参数。

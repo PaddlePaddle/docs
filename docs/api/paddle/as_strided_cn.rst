@@ -9,6 +9,11 @@ as_strided
 
 仅在动态图下可用，返回的 Tensor 和 x 共享内存。
 
+下图展示了一个例子：将输入的 形状为[2,4,6] Tensor 转化为 形状为[8,6],步长为[6,1] 的 Tensor
+
+.. image:: ../../images/api_legend/as_strided.png
+   :alt: 图例
+
 参数
 :::::::::
 

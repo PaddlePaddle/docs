@@ -67,14 +67,11 @@ Einsum 求和过程理论上等价于如下四步，但实现中实际执行的�
 参数
 :::::
 
-
-    **equation** (str)：求和标记
-
-    **operands** (Tensor, [Tensor, ...])：输入 Tensor
+    - **equation** (str)：求和标记
+    - **operands** (Tensor, [Tensor, ...])：输入 Tensor
 
 返回
 :::::
-
 
     Tensor：输出 Tensor
 

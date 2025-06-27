@@ -3,7 +3,7 @@
 SmoothL1Loss
 -------------------------------
 
-.. py:class:: paddle.nn.SmoothL1Loss(reduction='mean', delta=1.0, name=None)
+.. py:class:: paddle.nn.SmoothL1Loss(reduction='mean', delta=1.0, is_huber=True, name=None)
 
 计算输入 :attr:`input` 和标签 :attr:`label` 间的 SmoothL1 损失，如果逐个元素的绝对误差低于 1，则创建使用平方项的条件，否则为 L1 损失。在某些情况下，它可以防止梯度爆炸，也称为 Huber 损失，该损失函数的数学计算公式如下：
 
@@ -24,6 +24,7 @@ SmoothL1Loss
 
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有 ``none``、``mean`` 和 ``sum``。默认为 ``mean``，计算 ``mini-batch`` loss 均值。设置为 `sum` 时，计算 `mini-batch` loss 的总和。设置为 ``none`` 时，则返回 loss Tensor。
     - **delta** (str，可选) - SmoothL1Loss 损失的阈值参数 :math:`\delta`，用于控制 Huber 损失对线性误差或平方误差的侧重。数据类型为 float32。默认值为 :math:`1.0`。
+    - **is_huber** (bool，可选) - 如果为 True，则使用 Huber 损失。如果为 False, 则使用 Huber 损失除以 delta 值。默认为 True。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 输入

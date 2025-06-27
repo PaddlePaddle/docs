@@ -5,11 +5,11 @@ Rprop
 
 .. py:class:: paddle.optimizer.Rprop(learning_rate=0.001, learning_rate_range=(1e-5, 50), parameters=None, etas=(0.5, 1.2), grad_clip=None, name=None)
 
-    
+
 .. note::
     此优化器仅适用于 full-batch 训练。
 
-Rprop算法的优化器。有关详细信息，请参阅：
+Rprop 算法的优化器。有关详细信息，请参阅：
 
 `A direct adaptive method for faster backpropagation learning : The RPROP algorithm <https://ieeexplore.ieee.org/document/298623>`_ 。
 

@@ -18,6 +18,7 @@ paddle.nn.functional.smooth_l1_loss(input,
                     label,
                     reduction='mean',
                     delta=1.0,
+                    is_huber=True,
                     name=None)
 ```
 
@@ -33,6 +34,7 @@ paddle.nn.functional.smooth_l1_loss(input,
 | reduce          | -         | 已弃用                                     |
 | reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'   |
 | beta          | delta         | SmoothL1Loss 损失的阈值参数                       |
+| -          | is_huber         | 控制 huber_loss 与 smooth_l1_loss 的开关，Paddle 需设置为 False 。                     |
 
 Torch 中 Smooth L1 loss 的计算方式:
 
@@ -64,7 +66,8 @@ z_i = \begin{cases}
         \end{cases}
 $$
 
-所以如果 PyTorch 函数参数 $beta$ 与 Paddle 中的参数 $delta$ 取值相同，则 Paddle 的 loss 要再除以 $delta$ 值才能与 Torch 中的结果对齐。
+当 $is\_huber$ 参数为 True 时，Paddle 为 huber 损失。
+当 $is\_huber$ 参数为 False 时，PyTorch 和 Paddle 计算过程一致，均为 huber 损失除以 $delta$ 值。
 
 
 ### 转写示例
@@ -89,11 +92,11 @@ else:
 #### beta
 ```python
 # PyTorch 的 beta 参数转化为 delta 参数
-a=0.8
+beta=0.8
 
 # PyTorch 写法
-output = torch.nn.functional.smooth_l1_loss(input, label, beta=a)
+output = torch.nn.functional.smooth_l1_loss(input, label, beta=beta)
 
 # Paddle 写法
-output = paddle.nn.functional.smooth_l1_loss(input, label, delta=a) / a
+output = paddle.nn.functional.smooth_l1_loss(input, label, delta=beta, is_huber=False)
 ```

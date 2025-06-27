@@ -35,8 +35,8 @@ execute.
 
 **Example:**
 ```
-ch1 = fluid.make_channel(dtype=core.VarDesc.VarType.LOD_TENSOR)
-quit_ch = fluid.make_channel(dtype=core.VarDesc.VarType.LOD_TENSOR)
+ch1 = fluid.make_channel(dtype=core.VarDesc.VarType.DENSE_TENSOR)
+quit_ch = fluid.make_channel(dtype=core.VarDesc.VarType.DENSE_TENSOR)
 
 x = fill_constant(shape=[1], dtype=core.VarDesc.VarType.INT32, value=0)
 y = fill_constant(shape=[1], dtype=core.VarDesc.VarType.INT32, value=1)

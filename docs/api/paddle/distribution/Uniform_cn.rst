@@ -47,14 +47,14 @@ COPY-FROM: paddle.distribution.Uniform
 方法
 :::::::::
 
-sample(shape, seed=0)
+sample(shape=[], seed=0)
 '''''''''
 
 生成指定维度的样本。
 
 **参数**
 
-    - **shape** (list) - 1 维列表，指定生成样本的维度。数据类型为 int32。
+    - **shape** (Sequence[int]，可选) - 1 维列表，指定生成样本的维度。数据类型为 int32。
     - **seed** (int) - 长整型数。
 
 **返回**

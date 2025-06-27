@@ -2,6 +2,8 @@
 
 [The Python Package Index(PyPI)](https://pypi.org/)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式，飞桨提供的 PyPI 安装包支持分布式训练（多机多卡）、TensorRT 推理功能。
 
+* 您无需再安装 CUDA\CUDNN\NCCL 等软件, paddle whl 包中已经自带, 直接安装 paddle whl 包即可
+
 ## 一、环境准备
 
 ### 1.1 如何查看您的环境
@@ -25,15 +27,12 @@
 
 * 需要确认 python 的版本是否满足要求
 
-  * 使用以下命令确认是 3.8/3.9/3.10/3.11/3.12
+  * 使用以下命令确认是 3.9/3.10/3.11/3.12/3.13
 
         python3 --version
 
 * 需要确认 pip 的版本是否满足要求，要求 pip 版本为 20.2.2 或更高版本
 
-    ```
-    python3 -m ensurepip
-    ```
 
     ```
     python3 -m pip --version
@@ -48,8 +47,7 @@
     ```
 
 
-
-* 默认提供的安装包需要计算机支持 MKL
+* 默认提供的安装包需要计算机支持 MKL, Intel 芯片都支持 MKL
 
 
 
@@ -61,10 +59,6 @@
 
 * 如果您的计算机有 NVIDIA® GPU，请确保满足以下条件并且安装[GPU 版 PaddlePaddle](#gpu)，依赖库环境版本要求如下：
 
-  * **CUDA 工具包 11.8 配合 cuDNN v8.6.0, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.5.3.1**
-
-  * **CUDA 工具包 12.3 配合 cuDNN v9.0.0, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.6.1.6**
-
   * **GPU 运算能力超过 6.0 的硬件设备**
 
     您可参考 NVIDIA 官方文档了解 CUDA、CUDNN 和 TensorRT 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/tensorrt)
@@ -75,26 +69,33 @@
 
 
   ```
-  python3 -m pip install paddlepaddle==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+  python3 -m pip install paddlepaddle==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
 
 
 #### 2.2 <span id="gpu">GPU 版的 PaddlePaddle</span>
 
 
-2.2.1 CUDA11.8 的 PaddlePaddle
+2.2.1 CUDA11.8 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT8.5.3.1)
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
+  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
 
-2.2.2 CUDA12.3 的 PaddlePaddle
+2.2.2 CUDA12.6 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT10.5.0.18)
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
+  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
+  ```
+
+2.2.3 CUDA12.9 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT10.5.0.18)
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu129/
   ```
 
 
@@ -107,11 +108,6 @@
   cat /proc/cpuinfo | grep -i avx
   ```
 
-* 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
-
-  ```
-  python3 -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0-beta0/linux/linux-cpu-openblas-avx/paddlepaddle-3.0.0b1-cp38-cp38-linux_x86_64.whl
-  ```
 
 ## **三、验证安装**
 

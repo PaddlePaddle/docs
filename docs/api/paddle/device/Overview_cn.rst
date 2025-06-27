@@ -45,8 +45,6 @@ paddle.device 目录下包含 cuda 目录， cuda 目录中存放 CUDA 相关的
     " :ref:`is_compiled_with_cuda <cn_api_paddle_device_is_compiled_with_cuda>` ", "检查 ``whl`` 包是否可以被用来在 GPU 上运行模型"
     " :ref:`is_compiled_with_custom_device <cn_api_paddle_device_is_compiled_with_custom_device>` ", "检查 ``whl`` 包是否可以被用来在指定类型的自定义新硬件上运行模型"
     " :ref:`is_compiled_with_ipu <cn_api_paddle_device_is_compiled_with_ipu>` ", "检查 ``whl`` 包是否可以被用来在 Graphcore IPU 上运行模型"
-    " :ref:`is_compiled_with_mlu <cn_api_paddle_device_is_compiled_with_mlu>` ", "检查 ``whl`` 包是否可以被用来在 Cambricon MLU 上运行模型"
-    " :ref:`is_compiled_with_npu <cn_api_paddle_device_is_compiled_with_npu>` ", "检查 ``whl`` 包是否可以被用来在 NPU 上运行模型"
     " :ref:`is_compiled_with_rocm <cn_api_paddle_device_is_compiled_with_rocm>` ", "检查 ``whl`` 包是否可以被用来在 AMD 或海光 GPU(ROCm) 上运行模型"
     " :ref:`is_compiled_with_xpu <cn_api_paddle_device_is_compiled_with_xpu>` ", "检查 ``whl`` 包是否可以被用来在 Baidu Kunlun XPU 上运行模型"
 
@@ -60,7 +58,6 @@ paddle.device 目录下包含 cuda 目录， cuda 目录中存放 CUDA 相关的
     :widths: 10, 30
 
     " :ref:`IPUPlace <cn_api_paddle_device_IPUPlace>` ", "``IPUPlace`` 是一个设备描述符，指定 ``IPUPlace`` 则模型将会运行在该设备上"
-    " :ref:`MLUPlace <cn_api_paddle_device_MLUPlace>` ", "``MLUPlace`` 是一个设备描述符，指定 ``MLUPlace`` 则模型将会运行在该设备上"
     " :ref:`XPUPlace <cn_api_paddle_device_XPUPlace>` ", "``XPUPlace`` 是一个设备描述符，表示一个分配或将要分配 ``Tensor`` 的 Baidu Kunlun XPU 设备"
 
 .. _cn_device_stream_event:
@@ -108,9 +105,11 @@ CUDA 相关
     " :ref:`get_device_capability <cn_api_paddle_device_cuda_get_device_capability>` ", "获取 CUDA 设备计算能力的主要和次要修订号"
     " :ref:`get_device_name <cn_api_paddle_device_cuda_get_device_name>` ", "获取 CUDA 设备名称"
     " :ref:`get_device_properties <cn_api_paddle_device_cuda_get_device_properties>` ", "获取 CUDA 设备属性"
-    " :ref:`max_memory_allocated <cn_api_paddle_device_cuda_max_memory_allocated>` ", "返回给定设备上分配给 Tensor 的显存峰值"
-    " :ref:`max_memory_reserved <cn_api_paddle_device_cuda_max_memory_reserved>` ", "返回给定设备上由 Allocator 管理的显存峰值"
+    " :ref:`max_memory_allocated <cn_api_paddle_device_cuda_max_memory_allocated>` ", "返回给定设备上分配给 Tensor 的显存峰值统计"
+    " :ref:`max_memory_reserved <cn_api_paddle_device_cuda_max_memory_reserved>` ", "返回给定设备上由 Allocator 管理的显存峰值统计"
     " :ref:`memory_allocated <cn_api_paddle_device_cuda_memory_allocated>` ", "返回给定设备上当前分配给 Tensor 的显存大小"
     " :ref:`memory_reserved <cn_api_paddle_device_cuda_memory_reserved>` ", "返回给定设备上当前由 Allocator 管理的显存大小"
+    " :ref:`reset_max_memory_allocated <cn_api_paddle_device_cuda_reset_max_memory_allocated>` ", "重置给定设备上分配给 Tensor 的显存峰值统计"
+    " :ref:`reset_max_memory_reserved <cn_api_paddle_device_cuda_reset_max_memory_reserved>` ", "重置给定设备上由 Allocator 管理的显存峰值统计"
     " :ref:`stream_guard <cn_api_paddle_device_cuda_stream_guard>` ", "切换当前的 CUDA stream 为输入指定的 stream，该 API 目前仅支持动态图模式"
     " :ref:`synchronize <cn_api_paddle_device_cuda_synchronize>` ", "等待给定的 CUDA 设备上的计算完成"

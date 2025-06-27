@@ -5,10 +5,10 @@
 ```python
 fairscale.nn.model_parallel.layers.ColumnParallelLinear(in_features: int, out_features: int, bias: bool = True, gather_output: bool = True, init_method: Callable[[torch.Tensor], torch.Tensor] = init.xavier_normal_, stride: int = 1, keep_master_weight_for_test: bool = False)
 ```
-### [paddle.distributed.meta_parallel.parallel_layers.mp_layers.ColumnParallelLinear](https://github.com/PaddlePaddle/Paddle/blob/016766cc89fabc10181453ce70b701dd8ed019f6/python/paddle/distributed/fleet/layers/mpu/mp_layers.py#L153)
+### [paddle.distributed.fleet.meta_parallel.ColumnParallelLinear](https://github.com/PaddlePaddle/Paddle/blob/016766cc89fabc10181453ce70b701dd8ed019f6/python/paddle/distributed/fleet/layers/mpu/mp_layers.py#L153)
 
 ```python
-paddle.distributed.meta_parallel.parallel_layers.mp_layers.ColumnParallelLinear(in_features, out_features, weight_attr=None, has_bias=None, gather_output=True, fuse_matmul_bias=False, mp_group=None, name=None)
+paddle.distributed.fleet.meta_parallel.ColumnParallelLinear(in_features, out_features, weight_attr=None, has_bias=None, gather_output=True, fuse_matmul_bias=False, mp_group=None, name=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：

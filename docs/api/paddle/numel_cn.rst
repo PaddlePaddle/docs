@@ -3,7 +3,7 @@
 numel
 -------------------------------
 
-.. py:function:: paddle.numel(x)
+.. py:function:: paddle.numel(x, name=None)
 
 
 返回 shape 为[]的 0-D Tensor，其值为输入 Tensor 中元素的个数。
@@ -11,7 +11,7 @@ numel
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入 Tensor，数据类型为 int32、int64、float16、float32、float64、int32、int64。
+    - **x** (Tensor) - 输入 Tensor，数据类型为 int32、int64、float16、float32、float64、uint8、int8、int32、int64、complex64、complex128。
     - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

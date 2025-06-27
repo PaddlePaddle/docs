@@ -70,9 +70,9 @@ Cycles are unsupported in ONNX. In Paddle, the `while` op is the most prominent 
 
 ## Sequences
 
-Sequence processing operators like `sequence_expand`, `sequence_reshape`, `sequence_concat`, and `sequence_pool` are not supported by ONNX as well, because they do not support non-padded datatypes like LoDTensors.
+Sequence processing operators like `sequence_expand`, `sequence_reshape`, `sequence_concat`, and `sequence_pool` are not supported by ONNX as well, because they do not support non-padded datatypes like DenseTensors.
 
-*Resolution*: Since the runtimes using our ONNX exported graphs won't be using LoDTensors in the first place, such sequence operators should be mapped to ONNX ops that will do the necessary transposing ops with the knowledge of the padding and shape of the Tensors.
+*Resolution*: Since the runtimes using our ONNX exported graphs won't be using DenseTensors in the first place, such sequence operators should be mapped to ONNX ops that will do the necessary transposing ops with the knowledge of the padding and shape of the Tensors.
 
 ## Ops that can't easily be mapped
 
@@ -109,7 +109,7 @@ There are ops in ONNX whose job can't be accomplished by a single corresponding 
 *Resolution*: Chain multiple Paddle operators.
 
 
-## Lack of LoDTensors
+## Lack of DenseTensors
 
 As stated above, ONNX only supports simple Tensor values.
 

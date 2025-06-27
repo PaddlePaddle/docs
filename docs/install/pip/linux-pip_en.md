@@ -1,5 +1,9 @@
 # Install on Linux via PIP
 
+[The Python Package Index(PyPI)]( https://pypi.org/ ）It is a package manager for Python. This document introduces the PyPI installation method. The PyPI installation package provided by PaddlePaddle supports distributed training (multiple computers and multiple cards) and TensorRT reasoning functions.
+
+* You don't need to install CUDA, CUDNN, NCCL and other software anymore. The Paddle WHL package already comes with it, just install the Paddle WHL package directly
+
 ## Environmental preparation
 
 ### 1.1 How to check your environment
@@ -24,16 +28,12 @@
 
 * You need to confirm whether the version of Python meets the requirements
 
-  * Use the following command to confirm that it is 3.8/3.9/3.10/3.11/3.12
+  * Use the following command to confirm that it is 3.9/3.10/3.11/3.12/3.13
 
         python3 --version
 
 * It is required to confirm whether the version of pip meets the requirements. The version of pip is required to be 20.2.2 or above
 
-
-    ```
-    python3 -m ensurepip
-    ```
 
     ```
     python3 -m pip --version
@@ -49,10 +49,11 @@
 
 
 
-* The installation package provided by default requires computer support for MKL
+* The installation package provided by default requires computer support for MKL, Intel chips all support MKL
 
-* If you do not know the machine environment, please download and use[Quick install script](https://fast-install.bj.bcebos.com/fast_install.sh), for instructions please refer to[here](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md)。
-
+    ```
+    cat /proc/cpuinfo
+    ```
 
 
 ## INSTALLATION
@@ -62,10 +63,6 @@
 * If your computer doesn't have NVIDIA® GPU, please install [the CPU Version of PaddlePaddle](#cpu)
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
-
-  * **CUDA toolkit 11.8 with cuDNN v8.6.0(for PaddleTensorRT deployment, TensorRT8.5.1.7)**
-
-  * **CUDA toolkit 12.3 with cuDNN v9.0.0(for PaddleTensorRT deployment, TensorRT8.6.1.6)**
 
   * **Hardware devices with GPU computing power over 6.0**
 
@@ -83,26 +80,31 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python3 -m pip install paddlepaddle==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+  python3 -m pip install paddlepaddle==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
 
 
 #### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
 
 
-2.2.4 If you are using CUDA 11.8
+2.2.1 If you are using CUDA 11.8(If you need to use TensorRT, you can install TensorRT 8.5.3.1 yourself)
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
+  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
 
-2.2.5 If you are using CUDA 12.3
-
+2.2.2 If you are using CUDA 12.6(If you need to use TensorRT, you can install TensorRT 10.5.0.18 yourself)
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
+  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
+  ```
+
+2.2.3 If you are using CUDA 12.9(If you need to use TensorRT, you can install TensorRT 10.5.0.18 yourself)
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu129/
   ```
 
 
@@ -114,13 +116,6 @@ Note：
    ```
    cat /proc/cpuinfo | grep -i avx
    ```
-
-* If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
-
-  ```
-  python3 -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0-beta0/linux/linux-cpu-openblas-avx/paddlepaddle-3.0.0b1-cp38-cp38-linux_x86_64.whl
-  ```
-
 
 
 ## Verify installation

@@ -6,16 +6,12 @@
 
 * Confirm whether the Python version meets the requirements
 
-  * Use the following command to confirm that it is 3.8+/3.9+/3.10+/3.11+/3.12+
+  * Use the following command to confirm that it is 3.9/3.10/3.11/3.12/3.13
 
         python --version
 
 
 * Confirm whether the version of pip meets the requirements. The version of pip is required to be 20.2.2 or above
-
-    ```
-    python -m ensurepip
-    ```
 
     ```
     python -m pip --version
@@ -28,9 +24,8 @@
     ```
 
 
-* The installation package provided by default requires computer support for MKL
 * NCCL, distribution are not supported on windows now
-
+* The installation package provided by default requires computer support for MKL, Intel chips all support MKL
 
 
 ## INSTALLATION
@@ -42,10 +37,6 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 * If your computer doesn't have NVIDIA® GPU, please install [the CPU Version of PaddlePaddle](#cpu)
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
-
-  * **CUDA toolkit 11.8 with cuDNN v8.6.0(for PaddleTensorRT deployment, TensorRT8.5.1.7)**
-
-  * **CUDA toolkit 12.3 with cuDNN v9.0.0(for PaddleTensorRT deployment, TensorRT8.6.1.6)**
 
   * **GPU CUDA capability over 6.0**
 
@@ -62,23 +53,29 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+  python -m pip install paddlepaddle==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
 
 
 #### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
 
 
-2.2.4 If you are using CUDA 11.8
+2.2.1 If you are using CUDA 11.8(If you need to use TensorRT, you can install TensorRT 8.5.1.7 yourself)
 
   ```
-  python -m pip install paddlepaddle-gpu==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
+  python -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
-2.2.5 If you are using CUDA 12.3
+2.2.2 If you are using CUDA 12.6(If you need to use TensorRT, you can install TensorRT 10.5.0.18 yourself)
 
   ```
-  python -m pip install paddlepaddle-gpu==3.0.0b1 -i https://www.paddlepaddle.org.cn/packages/stable/cu123/
+  python -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
+  ```
+
+2.2.3 If you are using CUDA 12.9(If you need to use TensorRT, you can install TensorRT 10.5.0.18 yourself)
+
+  ```
+  python -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu129/
   ```
 
 Note：
@@ -87,12 +84,6 @@ Note：
 
 * The above commands install the `avx` and `mkl` package by default. Paddle no longer supports `noavx` package. To determine whether your machine supports `avx`, you can install the [CPU-Z](https://www.cpuid.com/softwares/cpu-z.html) tool to view the "processor-instruction set".
 
-
-* If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
-
-  ```
-  python -m pip install https://paddle-wheel.bj.bcebos.com/3.0.0-beta0/windows/windows-cpu-avx-openblas-vs2017/paddlepaddle-3.0.0b1-cp38-cp38-win_amd64.whl
-  ```
 
 ## Verify installation
 

@@ -5,9 +5,20 @@ masked_scatter
 
 .. py:function:: paddle.masked_scatter(x, mask, value, name=None)
 
-
-
 返回一个 N-D 的 Tensor，Tensor 的值是根据 ``mask`` 信息，将 ``value`` 中的值逐个填充到 ``x`` 中 ``mask`` 对应为 ``True`` 的位置，``mask`` 的数据类型是 bool。
+
+
+**示例图解说明**：
+
+    - value 张量：包含要填充到目标张量中的数据。只有掩码为 True 的部分会从 value 中取值，其余值会被忽略。
+    - mask 掩码：指定哪些位置需要从 value 张量中提取值并填充到目标张量中。True 表示对应位置需要被更新。
+    - origin 原始张量：输入张量，只有满足掩码的部分会被替换，其余部分保持不变。
+    - 操作结果：经过 masked_scatter 操作，origin 张量中掩码为 True 的部分被更新为 value 中对应的值，而掩码为 False 的部分保持不变，形成最终更新的张量。
+
+    .. figure:: ../../images/api_legend/masked_scatter.png
+       :width: 500
+       :alt: 示例一图示
+       :align: center
 
 参数
 ::::::::::::

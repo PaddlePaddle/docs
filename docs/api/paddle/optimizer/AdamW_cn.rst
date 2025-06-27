@@ -3,7 +3,7 @@
 AdamW
 -------------------------------
 
-.. py:class:: paddle.optimizer.AdamW(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=0.01, lr_ratio=None, apply_decay_param_fun=None, grad_clip=None, lazy_mode=False, multi_precision=False, name=None)
+.. py:class:: paddle.optimizer.AdamW(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=0.01, lr_ratio=None, apply_decay_param_fun=None, grad_clip=None, lazy_mode=False, multi_precision=False, amsgrad=False, name=None)
 
 
 
@@ -13,15 +13,17 @@ AdamW 优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION <https://arxiv.org/
 其参数更新的计算公式如下：
 
 .. math::
-    \\t = t + 1
-.. math::
-    moment\_1\_out=\beta_1∗moment\_1+(1−\beta_1)∗grad
-.. math::
-    moment\_2\_out=\beta_2∗moment\_2+(1−\beta_2)∗grad*grad
-.. math::
-    learning\_rate=learning\_rate*\frac{\sqrt{1-\beta_2^t}}{1-\beta_1^t}
-.. math::
-    param\_out=param-learning\_rate*(\frac{moment\_1}{\sqrt{moment\_2}+\epsilon} + \lambda * param)
+    \begin{aligned}
+        &\hspace{5mm} t = t + 1 \\
+        &\hspace{5mm} moment\_1\_out = {\beta}_1 * moment\_1 + (1 - {\beta}_1) * grad \\
+        &\hspace{5mm} moment\_2\_out = {\beta}_2 * moment\_2 + (1 - {\beta}_2) * grad * grad \\
+        &\hspace{5mm} learning\_rate = learning\_rate * \frac{\sqrt{1 - {\beta}_2^t}}{1 - {\beta}_1^t} \\
+        &\hspace{5mm}\textbf{if} \: \textit{amsgrad}: \\
+        &\hspace{15mm} moment\_2\_max\_out = max(moment\_2\_out, moment\_2\_max) \\
+        &\hspace{15mm} param\_out = param - learning\_rate * (\frac{moment\_1\_out}{\sqrt{moment\_2\_max\_out} + \epsilon} + \lambda * param) \\
+        &\hspace{5mm}\textbf{else}: \: \\
+        &\hspace{15mm} param\_out = param - learning\_rate * (\frac{moment\_1\_out}{\sqrt{moment\_2\_out} + \epsilon} + \lambda * param) \\
+    \end{aligned}
 
 相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_
 
@@ -43,6 +45,7 @@ AdamW 优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION <https://arxiv.org/
       默认值为 None，此时将不进行梯度裁剪。
     - **lazy_mode** （bool，可选） - 设为 True 时，仅更新当前具有梯度的元素。官方 Adam 算法有两个移动平均累加器（moving-average accumulators）。累加器在每一步都会更新。在密集模式和稀疏模式下，两条移动平均线的每个元素都会更新。如果参数非常大，那么更新可能很慢。lazy mode 仅更新当前具有梯度的元素，所以它会更快。但是这种模式与原始的算法有不同的描述，可能会导致不同的结果，默认为 False。
     - **multi_precision** (bool，可选) – 在基于 GPU 设备的混合精度训练场景中，该参数主要用于保证梯度更新的数值稳定性。设置为 True 时，优化器会针对 FP16 类型参数保存一份与其值相等的 FP32 类型参数备份。梯度更新时，首先将梯度类型提升到 FP32，然后将其更新到 FP32 类型参数备份中。最后，更新后的 FP32 类型值会先转换为 FP16 类型，再赋值给实际参与计算的 FP16 类型参数。默认为 False。
+    - **amsgrad** （bool，可选） - 是否使用该算法的 AMSGrad 变体 :ref:`On the Convergence of Adam and Beyond <https://openreview.net/forum?id=ryQu7f-RZ>`，默认为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 

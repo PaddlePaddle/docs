@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.nn.Module.named_buffers
+## [仅参数名不一致]torch.nn.Module.named_buffers
 
 ### [torch.nn.Module.named_buffers](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.named_buffers)
 
@@ -20,4 +20,4 @@ paddle.nn.Layer.named_buffers(prefix='', include_sublayers=True, remove_duplicat
 | -------------- | ------------ | ------------------------------------------------------------- |
 | prefix         | prefix       | 在所有参数名称前加的前缀。                                            |
 | recurse        | include_sublayers     | 生成该模块和所有子模块的缓冲区，仅参数名不一致。                               |
-| remove_duplicate   | remove_duplicate  | 是否删除结果中重复的模块实例。                                        |
+| remove_duplicate   | remove_duplicate  | 是否删除结果中重复的模块实例 |

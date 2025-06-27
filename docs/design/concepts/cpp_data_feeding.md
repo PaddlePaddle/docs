@@ -22,7 +22,7 @@ class ReaderBase {
  public:
   // Reads the next batch of data. (A 'batch' can be only one instance)
   // If the next batch doesn't exist, it throws an exception
-  virtual void ReadNext(std::vector<LoDTensor>* out) = 0;
+  virtual void ReadNext(std::vector<DenseTensor>* out) = 0;
 
   // Checks whether the next instance exists.
   virtual bool HasNext() = 0;
@@ -43,10 +43,10 @@ class FileReader : public ReaderBase {
  public:
   explicit FileReader(const std::vector<DDim>& dims);
 
-  void ReadNext(std::vector<LoDTensor>* out) override;
+  void ReadNext(std::vector<DenseTensor>* out) override;
 
  protected:
-  virtual void ReadNextImpl(std::vector<LoDTensor>* out) = 0;
+  virtual void ReadNextImpl(std::vector<DenseTensor>* out) = 0;
 
  private:
   std::vector<DDim> dims_;
@@ -55,7 +55,7 @@ class FileReader : public ReaderBase {
 
 A file reader binds with a single file and reads one data instance at a time. Each type of file reader shall implement its own `ReadNextImpl()`, `HasNext()` and `ReInit()`.
 
-The `ReadNextImpl()` is invoked by `ReadNext()`. Besides invoking `ReadNextImpl()`, `ReadNext()` is also responsible for checking the output, making sure that each shape of `LoDTensor` in `*out` is consistent with the one in `dims_`.
+The `ReadNextImpl()` is invoked by `ReadNext()`. Besides invoking `ReadNextImpl()`, `ReadNext()` is also responsible for checking the output, making sure that each shape of `DenseTensor` in `*out` is consistent with the one in `dims_`.
 
 ### DecoratedReader
 
@@ -135,7 +135,7 @@ To make sure that created prefetching readers match file formats, we need a name
 
 ### ReadOp
 
-A reader is only a Variable. It cannot trigger the reading process by itself. So we add the `ReadOp` to execute it. A `ReadOp` takes a reader Variable as its input. Each time it runs, it invokes the reader‘s `ReadNext()` function and gets a new batch of data(or only one instance of data, if we use file reader directly). The output data of a reader are in the form of `std::vector<LoDTenosr>`, so the `ReadOp` also needs to split the vector and move LoDTensors to their respective output Variables.
+A reader is only a Variable. It cannot trigger the reading process by itself. So we add the `ReadOp` to execute it. A `ReadOp` takes a reader Variable as its input. Each time it runs, it invokes the reader‘s `ReadNext()` function and gets a new batch of data(or only one instance of data, if we use file reader directly). The output data of a reader are in the form of `std::vector<DenseTensor>`, so the `ReadOp` also needs to split the vector and move DenseTensors to their respective output Variables.
 
 ## Program with Readers
 

@@ -53,14 +53,14 @@ Tensor，方差
 方法
 :::::::::
 
-sample(shape)
+sample(shape=[])
 '''''''''
 
 生成指定维度的样本。
 
 **参数**
 
-    - **shape** (Sequence[int]) - 指定生成样本的维度。
+    - **shape** (Sequence[int]，可选) - 指定生成样本的维度。
 
 **返回**
 
@@ -70,7 +70,7 @@ Tensor，样本，其维度为 :math:`\text{sample shape} + \text{batch shape} +
 
 COPY-FROM: paddle.distribution.Bernoulli.sample
 
-rsample(shape, temperature=1.0)
+rsample(shape=[], temperature=1.0)
 '''''''''
 
 重参数化采样，生成指定维度的样本。
@@ -86,7 +86,7 @@ rsample(shape, temperature=1.0)
 
 **参数**
 
-    - **shape** (Sequence[int]) - 指定生成样本的维度。
+    - **shape** (Sequence[int]，可选) - 指定生成样本的维度。
     - **temperature** (float) - ``rsample`` 的温度，必须为正值。
 
 **返回**

@@ -1,16 +1,19 @@
+from __future__ import annotations
+
 import collections
 import json
 import os
 import re
 import sys
 import traceback
-import typing
 import urllib
 import urllib.parse
 from enum import IntEnum
 from typing import TypedDict
 
 PADDLE_DOCS_BASE_URL = "https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/"
+
+validate_whitelist = []
 
 mapping_type_levels = [
     # type 0
@@ -63,12 +66,12 @@ mapping_type_to_level = {
 
 class DiffMeta(TypedDict):
     src_api: str
-    src_api_url: typing.Optional[str]
-    src_signature: typing.Optional[str]
-    dst_api: typing.Optional[str]
-    dst_api_url: typing.Optional[str]
-    dst_signature: typing.Optional[str]
-    args_mapping: typing.Optional[typing.List[typing.Dict[str, str]]]
+    src_api_url: str | None
+    src_signature: str | None
+    dst_api: str | None
+    dst_api_url: str | None
+    dst_signature: str | None
+    args_mapping: list[dict[str, str]] | None
     mapping_type: str
     source_file: str
 
@@ -107,53 +110,152 @@ def unescape_api(api):
     return api.replace(r"\_", "_")
 
 
+def split_args(args_str):
+    """
+    按逗号分割参数字符串，忽略括号内的逗号
+    """
+    args = []
+    current = []
+    stack = []
+    brackets = {"(": ")", "[": "]", "{": "}"}
+    closing = {v: k for k, v in brackets.items()}
+
+    for char in args_str:
+        if char in brackets:
+            stack.append(brackets[char])
+        elif char in closing:
+            if stack and stack[-1] == char:
+                stack.pop()
+            else:
+                raise ValueError(f"Unmatched closing bracket: {char}")
+        elif char == "," and not stack:
+            arg = "".join(current).strip()
+            if arg:
+                args.append(arg)
+            current = []
+            continue
+        current.append(char)
+
+    arg = "".join(current).strip()
+    if arg:
+        args.append(arg)
+    return args
+
+
+def split_signatures(buffer):
+    """
+    分割包含多个函数签名的字符串
+    """
+    signatures = []
+    current = []
+    stack = []
+    brackets = {"(": ")", "[": "]", "{": "}"}
+    closing = {v: k for k, v in brackets.items()}
+
+    for char in buffer:
+        if char in brackets:
+            stack.append(brackets[char])
+        elif char in closing:
+            if stack and stack[-1] == char:
+                stack.pop()
+            else:
+                raise ValueError(f"Unmatched closing bracket: {char}")
+        current.append(char)
+        if char == ")" and not stack:
+            # End of a function signature
+            signature = "".join(current).strip()
+            signatures.append(signature)
+            current = []
+
+    if current:
+        signatures.append("".join(current).strip())
+
+    return signatures
+
+
 def reformat_signature(code):
     """
     从函数签名代码中解析出函数名和参数列表
-    - code: 函数签名代码
-    - 返回值: 函数名和参数列表
+    - code: 函数签名代码，可能包含多个函数声明
+    - 返回值: 包含所有函数名和参数列表的列表
     """
     lines = [l for l in code.split("\n") if len(l.strip()) > 0]
     assert len(lines) > 0, "code have no lines."
     buffer = "".join([l.strip() for l in lines])
 
-    first_par_pos = buffer.find("(")
+    signatures = split_signatures(buffer)
 
-    m = re.match(r"^\s*(?P<api_name>[^\( ]+)(.*?)$", buffer)
-    assert m is not None, f'code first line "{buffer}" not match api pattern.'
-    api_name = m.group("api_name")
+    parsed_signatures = []
 
-    if first_par_pos < 0:
-        # 要是没括号，可能是特殊情况，比如 property
-        return {"api_name": api_name}
-
-    last_par_pos = buffer.rfind(")")
-    assert (
-        last_par_pos > first_par_pos
-    ), f'code first line "{buffer}" not match api pattern.'
-    args_buffer = buffer[first_par_pos + 1 : last_par_pos]
-
-    args = []
-    args_buffer = args_buffer.strip()
     arg_pattern = re.compile(
-        r"^(?P<arg_name>[^\=]+)(\=(?P<arg_default>[^,]+))?$"
+        r"^(?P<arg_name>[^\=\:]+)"  # 参数名
+        r"(?:\s*\:\s*(?P<arg_type>[^=]+))?"  # 可选的类型注解
+        r"(?:\s*\=\s*(?P<arg_default>.+))?$"  # 可选的默认值
     )
 
-    arg_buffer_list = [
-        l.strip() for l in args_buffer.split(",") if len(l.strip()) > 0
-    ]
-    for arg_buffer in arg_buffer_list:
-        m = arg_pattern.match(arg_buffer)
-        assert m is not None, f'code arg "{arg_buffer}" not match arg pattern.'
-        arg_name = m.group("arg_name")
-        arg_default = m.group("arg_default")
-        if arg_name[0].isalpha() or arg_name[0] == "_" or arg_name[0] == "*":
-            # if is a valid arg name
-            args.append({"arg_name": arg_name, "arg_default": arg_default})
-        else:
-            args[-1]["arg_default"] += f", {arg_name}"
+    for sig in signatures:
+        first_par_pos = sig.find("(")
+        m = re.match(r"^\s*(?P<api_name>[^\( ]+)(.*?)$", sig)
+        assert m is not None, f'code first line "{sig}" not match api pattern.'
+        api_name = m.group("api_name")
 
-    return {"api_name": api_name, "args": args}
+        if first_par_pos < 0:
+            # 要是没括号，可能是特殊情况，比如 property
+            parsed_signatures.append({"api_name": api_name})
+            continue
+
+        last_par_pos = sig.rfind(")")
+        assert last_par_pos > first_par_pos, (
+            f'code first line "{sig}" not match api pattern.'
+        )
+        args_buffer = sig[first_par_pos + 1 : last_par_pos]
+
+        args = []
+        args_buffer = args_buffer.strip()
+
+        arg_buffer_list = split_args(args_buffer)
+
+        for arg_buffer in arg_buffer_list:
+            m = arg_pattern.match(arg_buffer)
+            assert m is not None, (
+                f'code arg "{arg_buffer}" not match arg pattern.'
+            )
+            arg_name = m.group("arg_name").strip()
+            arg_type = (
+                m.group("arg_type").strip() if m.group("arg_type") else None
+            )
+            arg_default = (
+                m.group("arg_default").strip()
+                if m.group("arg_default")
+                else None
+            )
+
+            if (
+                arg_name.startswith("*")
+                or arg_name.startswith("**")
+                or arg_name[0].isalpha()
+                or arg_name[0] == "_"
+            ):
+                # if is a valid arg name
+                args.append(
+                    {
+                        "arg_name": arg_name,
+                        "arg_type": arg_type,
+                        "arg_default": arg_default,
+                    }
+                )
+            else:
+                if args:
+                    if args[-1]["arg_default"] is not None:
+                        args[-1]["arg_default"] += f", {arg_name}"
+                    else:
+                        args[-1]["arg_default"] = arg_name
+                else:
+                    raise ValueError(f"Invalid argument format: {arg_buffer}")
+
+        parsed_signatures.append({"api_name": api_name, "args": args})
+
+    return parsed_signatures
 
 
 def get_meta_from_diff_file(
@@ -200,7 +302,6 @@ def get_meta_from_diff_file(
                 if title_match:
                     mapping_type = title_match["type"].strip()
                     src_api = unescape_api(title_match["src_api"].strip())
-
                     meta_data["src_api"] = unescape_api(src_api)
                     meta_data["mapping_type"] = mapping_type
 
@@ -226,6 +327,9 @@ def get_meta_from_diff_file(
                     meta_data["src_api_url"] = real_url
                     state = ParserState.wait_for_src_signature_begin
             elif state == ParserState.wait_for_dst_api:
+                paddle_pattern = re.compile(
+                    rf"^### +\[ *(?P<dst_api>{re.escape(dst_prefix)}[^\]]+)\](\((?P<url>[^\)]*)\))?$"
+                )
                 paddle_match = paddle_pattern.match(line)
 
                 if paddle_match:
@@ -372,8 +476,6 @@ def get_meta_from_diff_file(
                     f"Unexpected state {state} when process {filepath} line: {line}"
                 )
 
-    # print(state)
-
     # 允许没有参数映射列表
     if mapping_type in ["无参数", "组合替代实现"]:
         if state == ParserState.wait_for_args:
@@ -383,10 +485,16 @@ def get_meta_from_diff_file(
         if state == ParserState.wait_for_args_table_end:
             state = ParserState.end
 
+    if not mapping_type:
+        raise Exception(
+            f"Cannot get mapping_type in parsing file: {filepath}, current meta: {meta_data}"
+        )
+
     # 允许的终止状态，解析完了 dst_api 或者只有 src_api
     # 映射类型前三个级别必须要有对应的 dst_api
     if mapping_type_to_level[mapping_type] <= 3:
         if state != ParserState.end:
+            print(state)
             raise Exception(
                 f"Unexpected End State at {state} in parsing file: {filepath}, current meta: {meta_data}"
             )
@@ -459,7 +567,7 @@ def process_mapping_index(index_path, item_processer, context={}):
                 # print(f'process mapping table at line {i+1}.')
             else:
                 state = IndexParserState.table_sep_ignore
-                print(f"ignore table with {column_names} at line {i+1}.")
+                print(f"ignore table with {column_names} at line {i + 1}.")
 
         elif state == IndexParserState.table_sep_ignore:
             if (
@@ -467,7 +575,7 @@ def process_mapping_index(index_path, item_processer, context={}):
                 or len(columns) != column_count
             ):
                 raise Exception(
-                    f"Table seperator not match at line {i+1}: {line}"
+                    f"Table seperator not match at line {i + 1}: {line}"
                 )
             if not item_processer(line, i, state, output, context):
                 break
@@ -478,7 +586,7 @@ def process_mapping_index(index_path, item_processer, context={}):
                 or len(columns) != column_count
             ):
                 raise Exception(
-                    f"Table seperator not match at line {i+1}: {line}"
+                    f"Table seperator not match at line {i + 1}: {line}"
                 )
             if not item_processer(line, i, state, output, context):
                 break
@@ -494,7 +602,7 @@ def process_mapping_index(index_path, item_processer, context={}):
                 context["table_row_idx"] += 1
             except Exception as e:
                 print(e)
-                print(f"Error at line {i+1}: {line}")
+                print(f"Error at line {i + 1}: {line}")
                 traceback.print_exc()
                 ret_code = 1
                 sys.exit(-IndexParserState.table_row)
@@ -557,9 +665,9 @@ def generate_alias_lines_from_paconvert(basedir, meta_dict) -> None:
             alias_col = f"`{alias_name}`"
             paddle_col = f"`{dst_api}`"
             if "src_api_url" in meta_data:
-                alias_col = f'[{alias_col}]({meta_data["src_api_url"]})'
+                alias_col = f"[{alias_col}]({meta_data['src_api_url']})"
             if "dst_api_url" in meta_data:
-                paddle_col = f'[{paddle_col}]({meta_data["dst_api_url"]})'
+                paddle_col = f"[{paddle_col}]({meta_data['dst_api_url']})"
 
             macro_line = f"ALIAS-REFERENCE-ITEM(`{alias_name}`, `{api_name}`)"
             alias_output[alias_name] = macro_line
@@ -567,8 +675,7 @@ def generate_alias_lines_from_paconvert(basedir, meta_dict) -> None:
     output_path = os.path.join(basedir, "alias_macro_lines.tmp.md")
     with open(output_path, "w", encoding="utf-8") as f:
         od_apis = collections.OrderedDict(sorted(alias_output.items()))
-        for api, ref in od_apis.items():
-            f.write(f"| {ref} |\n")
+        f.writelines(f"| {ref} |\n" for api, ref in od_apis.items())
 
     print(f'generated alias temp file: "{output_path}"')
 
@@ -632,6 +739,8 @@ def discover_all_metas(cfp_basedir):
         s, d = prefixs
         sh = get_table_header_by_prefix(s)
         for f in files:
+            if os.path.basename(f) in validate_whitelist:
+                continue
             metas.append(get_meta_from_diff_file(f, s, d, src_argmap_title=sh))
 
     metas.sort(key=lambda x: x["src_api"])

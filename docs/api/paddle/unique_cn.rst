@@ -7,6 +7,29 @@ unique
 
 返回 Tensor 按升序排序后的独有元素。
 
+**示例图解说明**：
+
+    图一展示了代码中一维张量通过 unique 操作去重排序后得到的新的一维张量。我们将原张量各个元素的索引记为 index，新张量的索引记为 new index，原张量中各个元素出现次数记为 counts。那么输出 indices 即是新张量下 index 的排列顺序，inverse 即是原张量下 new index 的排列顺序。例如，在新张量[1,2,3,5]中，各元素的 new index 为 0,1,2,3，把 new index 对应到原张量，即是[1,2,2,0,3,2]，这就是我们输出的 inverse。
+
+    .. figure:: ../../images/api_legend/unique_1.png
+       :width: 500
+       :alt: 图一：一维张量示例
+       :align: center
+
+    图二展示了代码中形状为[3,3]的二维张量通过 unique 操作(axis=0)去重排序后得到新的形状为[2,3]的二维张量，新的二维张量会按照字典序进行排列。
+
+    .. figure:: ../../images/api_legend/unique_2.png
+       :width: 500
+       :alt: 图二：二维张量 axis=0 示例
+       :align: center
+
+    图三展示了代码中形状为[3,3]的二维张量通过 unique 操作(axis=1)去重排序后得到新的形状为[3,3]的二维张量。由于没有重复的列向量，因此只会进行列的字典排序，注意输出的时候是按照行优先的顺序进行输出。
+
+    .. figure:: ../../images/api_legend/unique_3.png
+       :width: 500
+       :alt: 图三：二维张量 axis=1 示例
+       :align: center
+
 参数
 ::::::::::::
 

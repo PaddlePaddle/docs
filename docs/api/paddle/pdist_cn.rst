@@ -3,7 +3,7 @@
 pdist
 -------------------------------
 
-.. py:function:: paddle.pdist(x, p=2.0, name=None):
+.. py:function:: paddle.pdist(x, p=2.0, name=None)
 
 计算输入形状为 N x M 的 Tensor 中 N 个向量两两组合(pairwise)的 p 范数。
 

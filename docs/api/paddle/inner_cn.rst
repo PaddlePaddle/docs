@@ -13,7 +13,6 @@ inner
 参数
 ::::::::::::
 
-:::::::::
     - **x** (Tensor) - 一个 N 维 Tensor 或者标量 Tensor，如果是 N 维 Tensor 最后一个维度长度需要跟 y 保持一致。
     - **y** (Tensor) - 一个 N 维 Tensor 或者标量 Tensor，如果是 N 维 Tensor 最后一个维度长度需要跟 x 保持一致。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
@@ -21,7 +20,6 @@ inner
 返回
 ::::::::::::
 
-:::::::::
     - Tensor, x、y 的内积结果，Tensor shape 为 x.shape[:-1] + y.shape[:-1]。
 
 代码示例：

@@ -111,6 +111,7 @@ Methods
     cuda
     cumprod
     cumsum
+    dense_dim
     detach
     diagonal
     digamma
@@ -151,6 +152,7 @@ Methods
     index_select
     inverse
     isclose
+    is_coalesced
     is_empty
     is_tensor
     isfinite
@@ -193,6 +195,7 @@ Methods
     outer
     cov
     lu
+    lu_solve
     lu_unpack
     cholesky_solve
     mod
@@ -219,6 +222,7 @@ Methods
     repeat_interleave
     reshape
     reshape_
+    resize_
     reverse
     roll
     round
@@ -231,6 +235,7 @@ Methods
     scatter_
     scatter_nd
     scatter_nd_add
+    set_
     set_value
     shard_index
     sign
@@ -242,6 +247,7 @@ Methods
     slice
     solve
     sort
+    sparse_dim
     split
     vsplit
     sqrt

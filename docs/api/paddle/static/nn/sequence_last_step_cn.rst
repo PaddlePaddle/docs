@@ -8,7 +8,7 @@ sequence_last_step
 
 
 .. note::
-该 API 仅支持带有 LoD 信息的 Tensor 类型的输入。
+    该 API 仅支持带有 LoD 信息的 Tensor 类型的输入。
 
 对输入的 Tensor，在最后一层 lod_level 上，选取其每个序列（sequence）的最后一个时间步（time-step）的特征向量作为池化后的输出向量。
 

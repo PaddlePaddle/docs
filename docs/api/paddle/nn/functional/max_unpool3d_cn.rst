@@ -31,7 +31,7 @@ max_unpool3d
 参数
 :::::::::
     - **x** (Tensor) - 形状为 `[N,C,D,H,W]` 的 5-D Tensor，N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度，数据类型为 float32， float64 或 int64。
-    - **indices** (Tensor) - 形状为 `[N,C,D,H,W]` 的 5-D Tensor，N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度，数据类型为 int32。
+    - **indices** (Tensor) - 形状为 `[N,C,D,H,W]` 的 5-D Tensor，N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度，数据类型为 int32 或 int64。
     - **kernel_size** (int|list|tuple) - 反池化的滑动窗口大小。
     - **stride** (int|list|tuple，可选) - 池化层的步长。如果它是一个元组或列表，它必须是三个相等的整数，(pool_stride_Depth, pool_stride_Height, pool_stride_Width)，默认值：None。
     - **padding** (str|int|list|tuple，可选) - 池化填充，默认值：0。

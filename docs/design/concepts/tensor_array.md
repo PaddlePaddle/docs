@@ -5,11 +5,11 @@ In addition to the very simple C++ implementation
 ```c++
 class TensorArray {
  public:
-  explicit TensorArray(const LoDTensor&);
+  explicit TensorArray(const DenseTensor&);
   explicit TensorArray(size_t size);
 
  private:
-  vector<LoDTensor> values_;
+  vector<DenseTensor> values_;
 };
 ```
 
@@ -69,13 +69,13 @@ According to the [RNN roadmap](https://github.com/PaddlePaddle/Paddle/issues/456
 Currently, the basic RNN implementation supported by PaddlePaddle is the `recurrent_op` which takes tensors as input and splits them into `input_segments`.
 
 
-Since a tensor cannot store variable-length sequences directly, PaddlePaddle implements the tensor with level of details (`LoDTensor` for short).
-Segmenting the `LoDTensor` is much more complicated than splitting a tensor, that makes it necessary to refactor the `recurrent_op` with `LoDTensor` segmenting support.
+Since a tensor cannot store variable-length sequences directly, PaddlePaddle implements the tensor with level of details (`DenseTensor` for short).
+Segmenting the `DenseTensor` is much more complicated than splitting a tensor, that makes it necessary to refactor the `recurrent_op` with `DenseTensor` segmenting support.
 
 As the next step in RNN support, `dynamic_recurrent_op` should be introduced to handle inputs with variable-length sequences.
 
 The implementation is similar to `recurrent_op`.
-The key difference is the way **the original input `LoDTensors` and outputs are split to get the `input_segments` and the `output_segments`.**
+The key difference is the way **the original input `DenseTensors` and outputs are split to get the `input_segments` and the `output_segments`.**
 
 
 Though it can't be built over `recurrent_op` or `dynamic_recurrent_op` directly,
@@ -211,7 +211,7 @@ class TensorArray:
         tensor_array_size(self.name, output)
 ```
 
-## LoDTensor-related Supports
+## DenseTensor-related Supports
 The `RecurrentGradientMachine` in Paddle serves as a flexible RNN layer; it takes varience-length sequences as input, and output sequences too.
 
 Since each step of RNN can only take a tensor-represented batch of data as input,
@@ -232,13 +232,13 @@ def unpack(level):
         - a new `TensorArray`, whose values are LodTensors and represents batches
           of data.
         - an int32 Tensor, which stores the map from the new batch's indices to
-          original LoDTensor
+          original DenseTensor
     '''
     pass
 
 def pack(level, indices_map):
     '''
-    Recover the original LoD-arranged LoDTensor with the values in a `TensorArray`
+    Recover the original LoD-arranged DenseTensor with the values in a `TensorArray`
     and `level` and `indices_map`.
     '''
     pass
@@ -265,7 +265,7 @@ for (int step = 0; step = ta.size(); step++) {
 }
 
 // rnn_output is the final output of an rnn
-LoDTensor rnn_output = ta.pack(ta, indice_map);
+DenseTensor rnn_output = ta.pack(ta, indice_map);
 ```
-the code above shows that by embedding the LoDTensor-related preprocess operations into `TensorArray`,
+the code above shows that by embedding the DenseTensor-related preprocess operations into `TensorArray`,
 the implementation of a RNN that supports varient-length sentences is far more concise than `RecurrentGradientMachine` because the latter mixes all the codes together, hard to read and extend.

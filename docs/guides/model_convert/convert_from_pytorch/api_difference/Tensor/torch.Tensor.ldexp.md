@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.Tensor.ldexp
+## [ 仅参数名不一致 ]torch.Tensor.ldexp
 
 ### [torch.Tensor.ldexp](https://pytorch.org/docs/stable/generated/torch.Tensor.ldexp.html#torch.Tensor.ldexp)
 
@@ -6,14 +6,16 @@
 torch.Tensor.ldexp(other)
 ```
 
-Paddle 无此 API，需要组合实现。
-
-### 转写示例
+### [paddle.Tensor.ldexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tensor)
 
 ```python
-# PyTorch 写法
-y = a.ldexp(b)
-
-# Paddle 写法
-y = a * (2 ** b)
+paddle.Tensor.ldexp(y)
 ```
+
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
+
+### 参数映射
+
+| PyTorch | PaddlePaddle | 备注                                       |
+| ------- | ------------ | ------------------------------------------ |
+| other     | y         | 表示输入的 Tensor ，仅参数名不一致。 |

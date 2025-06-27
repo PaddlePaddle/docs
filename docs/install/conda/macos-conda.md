@@ -8,7 +8,7 @@
 
 #### 1.1.1 安装环境
 
-首先根据具体的 Python 版本创建 Anaconda 虚拟环境，PaddlePaddle 的 Anaconda 安装支持 3.8 - 3.12 版本的 Python 安装环境。
+首先根据具体的 Python 版本创建 Anaconda 虚拟环境，PaddlePaddle 的 Anaconda 安装支持 3.9 - 3.13 版本的 Python 安装环境。
 
 ```
 conda create -n paddle_env python=YOUR_PY_VER
@@ -52,7 +52,7 @@ python3 --version
 
 #### 1.2.3 检查系统环境
 
-确认 Python 和 pip 是 64bit，并且处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构 或 arm64 架构（paddle 已原生支持 Mac M1 芯片）：
+确认 Python 和 pip 是 64bit，并且处理器架构是 arm64 架构（paddle 已原生支持 Mac M 芯片), 不再支持 x86_64 架构
 
 
 ```
@@ -83,7 +83,7 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
 * 目前在 macOS 环境仅支持 CPU 版 PaddlePaddle，请参考如下命令安装 Paddle:
 
   ```
-  conda install paddlepaddle==3.0.0b1 -c paddle
+  conda install paddlepaddle==3.0.0 -c paddle
   ```
 
 ## **三、验证安装**

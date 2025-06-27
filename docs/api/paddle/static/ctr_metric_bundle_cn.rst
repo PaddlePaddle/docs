@@ -22,7 +22,7 @@ CTR 相关度量层
 ::::::::::::
     - **input** (Tensor) - 一个浮点数 2D 张量，值在[0, 1]范围内。每行按降序排列。这个输入应该是 topk 的输出。通常，这个张量表示每个标签的概率。
     - **label** (Tensor) - 表示训练数据标签的 2D 整数张量。高度为批量大小，宽度始终为 1。
-    - **ins_tag_weight** (Tensor) - 表示训练数据的 ins_tag_weight 的 2D 整数张量。1 表示真实数据，0 表示假数据。类型为 float32 或 float64 的 LoDTensor 或 Tensor。
+    - **ins_tag_weight** (Tensor) - 表示训练数据的 ins_tag_weight 的 2D 整数张量。1 表示真实数据，0 表示假数据。类型为 float32 或 float64 的 DenseTensor 或 Tensor。
 
 返回
 ::::::::::::

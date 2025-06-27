@@ -12,8 +12,8 @@ Paddle 无此 API，需要组合实现。
 
 ```python
 # PyTorch 写法
-y = x.float_power(2)
+y = x.float_power(y)
 
 # Paddle 写法
-y = x.cast(paddle.float64).pow(2)
+y = x.cast(paddle.float64).pow(y)
 ```

@@ -8,9 +8,11 @@
 
 * 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备：
 
-  * 镜像链接：registry.baidubce.com/device/paddle-npu:cann80T13-ubuntu20-x86_64-gcc84-py39
+  * x86_64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-npu-base-x86_64-gcc84
 
-  * 镜像中已经默认安装了昇腾算子库 CANN-8.0.T13
+  * aarch64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-npu-base-aarch64-gcc84
+
+  * 镜像中已经默认安装了昇腾算子库 CANN-8.0.RC2
 
 * 昇腾驱动版本为 23.0.3
 
@@ -46,7 +48,7 @@ cd PaddleX
 # -e：以可编辑模式安装，当前项目的代码更改，都会直接作用到已经安装的 PaddleX Wheel
 pip install -e .
 ```
-
+⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ## 基于 PaddleX 训练 ResNet50
 
 ### 一、安装 PaddleX 依赖
@@ -80,15 +82,15 @@ tar -xf ./dataset/cls_flowers_examples.tar -C ./dataset/
 2. 数据校验
 
 ```shell
-PaddleX 支持对数据集进行校验，确保数据集格式符合 PaddleX 的相关要求。同时在数据校验时，能够对数据集进行分析，统计数据集的基本信息。
-python main.py -c paddlex/configs/image_classification/ResNet50.yaml \
+# PaddleX 支持对数据集进行校验，确保数据集格式符合 PaddleX 的相关要求。同时在数据校验时，能够对数据集进行分析，统计数据集的基本信息。
+python main.py -c paddlex/configs/modules/image_classification/ResNet50.yaml \
     -o Global.mode=check_dataset \
     -o Global.dataset_dir=./dataset/cls_flowers_examples
 
 # 命令运行成功后会在 log 中打印出 Check dataset passed ! 信息
 ```
 
-更多关于 PaddleX 数据集说明的内容，可以查看 [PaddleX 数据集校验](https://github.com/PaddlePaddle/PaddleX/blob/release/3.0-beta/docs/tutorials/data/dataset_check.md)
+更多关于 PaddleX 数据集说明的内容，可以查看 [PaddleX 图像分类模块数据准备](https://github.com/PaddlePaddle/PaddleX/blob/release/3.0-beta1/docs/module_usage/tutorials/cv_modules/image_classification.md#41-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87)
 
 ### 三、模型训练
 
@@ -96,10 +98,10 @@ python main.py -c paddlex/configs/image_classification/ResNet50.yaml \
 
 * 参数 `-o Global.device` 指定的是即将运行的设备，这里需要传入的是 `npu:0,1,2,3` ，通过指定该参数，PaddleX 调用飞桨的设备指定接口 `paddle.set_device` 来指定运行设备为 `npu` ，在进行模型训练时，飞桨将自动调用 npu 算子用于执行模型计算。关于设备指定的更多细节，可以参考官方 api [paddle.set_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/set_device_cn.html#set-device)。
 
-* 参数 `-c paddlex/configs/image_classification/ResNet50.yaml` 表示读取指定目录下的配置文件，配置文件中指定了模型结构，训练超参等所有训练模型需要用到的配置，该文件中指定的模型结构为 `ResNet50`
+* 参数 `-c paddlex/configs/modules/image_classification/ResNet50.yaml` 表示读取指定目录下的配置文件，配置文件中指定了模型结构，训练超参等所有训练模型需要用到的配置，该文件中指定的模型结构为 `ResNet50`
 
 ```shell
-python main.py -c paddlex/configs/image_classification/ResNet50.yaml \
+python main.py -c paddlex/configs/modules/image_classification/ResNet50.yaml \
     -o Global.mode=train \
     -o Global.dataset_dir=./dataset/cls_flowers_examples \
     -o Global.output=resnet50_output \
@@ -112,13 +114,13 @@ python main.py -c paddlex/configs/image_classification/ResNet50.yaml \
 
 #### 基于 PaddleInference 推理
 
-训练完成后，最优权重放在 `resnet50_output/best_model/` 目录下，其中 `inference.pdiparams`、`inference.pdiparams.info`、`inference.pdmodel` 3 个文件为静态图文件，用于推理使用，使用如下命令进行推理
+训练完成后，最优权重放在 `resnet50_output/best_model` 目录下，其中 `inference/inference.pdiparams`、`inference/inference.pdiparams.info`、`inference/inference.pdmodel` 3 个文件为静态图文件，用于推理使用，使用如下命令进行推理
 
 ```shell
-python main.py -c paddlex/configs/image_classification/ResNet50.yaml \
+python main.py -c paddlex/configs/modules/image_classification/ResNet50.yaml \
     -o Global.mode=predict \
-    -o Predict.model_dir="./resnet50_output/best_model" \
-    -o Predict.input_path="https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_image_classification_001.jpg" \
+    -o Predict.model_dir="./resnet50_output/best_model/inference" \
+    -o Predict.input="https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_image_classification_001.jpg" \
     -o Global.device="npu:0"
 ```
 
@@ -136,7 +138,7 @@ python -m pip install paddle2onnx
 b. 模型转换
 
 ```shell
-paddle2onnx --model_dir=./resnet50_output/best_model/ \
+paddle2onnx --model_dir=./resnet50_output/best_model/inference \
     --model_filename=inference.pdmodel \
     --params_filename=inference.pdiparams \
     --save_file=./resnet50_output/best_model/inference.onnx \
@@ -179,14 +181,14 @@ tar -xf ./dataset/det_coco_examples.tar -C ./dataset/
 
 ```shell
 # PaddleX 支持对数据集进行校验，确保数据集格式符合 PaddleX 的相关要求。同时在数据校验时，能够对数据集进行分析，统计数据集的基本信息。
-python main.py -c paddlex/configs/object_detection/PP-YOLOE_plus-S.yaml \
+python main.py -c paddlex/configs/modules/object_detection/PP-YOLOE_plus-S.yaml \
     -o Global.mode=check_dataset \
     -o Global.dataset_dir=./dataset/det_coco_examples
 
 # 命令运行成功后会在 log 中打印出 Check dataset passed ! 信息
 ```
 
-更多关于 PaddleX 数据集说明的内容，可以查看 [PaddleX 数据集校验](https://github.com/PaddlePaddle/PaddleX/blob/release/3.0-beta/docs/tutorials/data/dataset_check.md)
+更多关于 PaddleX 数据集说明的内容，可以查看 [PaddleX 目标检测模块数据准备](https://github.com/PaddlePaddle/PaddleX/blob/release/3.0-beta1/docs/module_usage/tutorials/cv_modules/object_detection.md#41-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87)
 
 ### 三、模型训练
 
@@ -194,10 +196,10 @@ python main.py -c paddlex/configs/object_detection/PP-YOLOE_plus-S.yaml \
 
 * 参数 `-o Global.device` 指定的是即将运行的设备，这里需要传入的是 `npu:0,1,2,3` ，通过指定该参数，PaddleX 调用飞桨的设备指定接口 `paddle.set_device` 来指定运行设备为 `npu` ，在进行模型训练时，飞桨将自动调用 npu 算子用于执行模型计算。关于设备指定的更多细节，可以参考官方 api [paddle.set_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/set_device_cn.html#set-device)。
 
-* 参数 `-c paddlex/configs/object_detection/PP-YOLOE_plus-S.yaml` 表示读取指定目录下的配置文件，配置文件中指定了模型结构，训练超参等所有训练模型需要用到的配置，该文件中指定的模型结构为 `PP-YOLOE_plus-S`
+* 参数 `-c paddlex/configs/modules/object_detection/PP-YOLOE_plus-S.yaml` 表示读取指定目录下的配置文件，配置文件中指定了模型结构，训练超参等所有训练模型需要用到的配置，该文件中指定的模型结构为 `PP-YOLOE_plus-S`
 
 ```shell
-python main.py -c paddlex/configs/object_detection/PP-YOLOE_plus-S.yaml \
+python main.py -c paddlex/configs/modules/object_detection/PP-YOLOE_plus-S.yaml \
     -o Global.mode=train \
     -o Global.dataset_dir=./dataset/det_coco_examples \
     -o Global.output=ppyolo_plus_s_output \
@@ -210,13 +212,13 @@ python main.py -c paddlex/configs/object_detection/PP-YOLOE_plus-S.yaml \
 
 #### 基于 PaddleInference 推理
 
-训练完成后，最优权重放在 `ppyolo_plus_s_output/best_model/` 目录下，其中 `inference.pdiparams`、`inference.pdiparams.info`、`inference.pdmodel` 3 个文件为静态图文件，用于推理使用，使用如下命令进行推理
+训练完成后，最优权重放在 `ppyolo_plus_s_output/best_model` 目录下，其中 `inference/inference.pdiparams`、`inference/inference.pdiparams.info`、`inference/inference.pdmodel` 3 个文件为静态图文件，用于推理使用，使用如下命令进行推理
 
 ```shell
-python main.py -c paddlex/configs/object_detection/PP-YOLOE_plus-S.yaml \
+python main.py -c paddlex/configs/modules/object_detection/PP-YOLOE_plus-S.yaml \
     -o Global.mode=predict \
-    -o Predict.model_dir="./ppyolo_plus_s_output/best_model" \
-    -o Predict.input_path="https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_object_detection_002.png" \
+    -o Predict.model_dir="./ppyolo_plus_s_output/best_model/inference" \
+    -o Predict.input="https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_object_detection_002.png" \
     -o Global.device="npu:0"
 ```
 
@@ -254,14 +256,14 @@ tar -xf ./dataset/seg_optic_examples.tar -C ./dataset/
 
 ```shell
 # PaddleX 支持对数据集进行校验，确保数据集格式符合 PaddleX 的相关要求。同时在数据校验时，能够对数据集进行分析，统计数据集的基本信息。
-python main.py -c paddlex/configs/semantic_segmentation/Deeplabv3_Plus-R50.yaml \
+python main.py -c paddlex/configs/modules/semantic_segmentation/Deeplabv3_Plus-R50.yaml \
     -o Global.mode=check_dataset \
     -o Global.dataset_dir=./dataset/seg_optic_examples
 
 # 命令运行成功后会在 log 中打印出 Check dataset passed ! 信息
 ```
 
-更多关于 PaddleX 数据集说明的内容，可以查看 [PaddleX 数据集校验](https://github.com/PaddlePaddle/PaddleX/blob/release/3.0-beta/docs/tutorials/data/dataset_check.md)
+更多关于 PaddleX 数据集说明的内容，可以查看 [PaddleX 语义分割模块数据准备](https://github.com/PaddlePaddle/PaddleX/blob/release/3.0-beta1/docs/module_usage/tutorials/cv_modules/semantic_segmentation.md#41-%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87)
 
 
 ### 三、模型训练
@@ -270,10 +272,10 @@ python main.py -c paddlex/configs/semantic_segmentation/Deeplabv3_Plus-R50.yaml 
 
 * 参数 `-o Global.device` 指定的是即将运行的设备，这里需要传入的是 `npu:0,1,2,3` ，通过指定该参数，PaddleX 调用飞桨的设备指定接口 `paddle.set_device` 来指定运行设备为 `npu` ，在进行模型训练时，飞桨将自动调用 npu 算子用于执行模型计算。关于设备指定的更多细节，可以参考官方 api [paddle.set_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/set_device_cn.html#set-device)。
 
-* 参数 `-c paddlex/configs/semantic_segmentation/Deeplabv3_Plus-R50.yaml` 表示读取指定目录下的配置文件，配置文件中指定了模型结构，训练超参等所有训练模型需要用到的配置，该文件中指定的模型结构为 `Deeplabv3_Plus-R50`
+* 参数 `-c paddlex/configs/modules/semantic_segmentation/Deeplabv3_Plus-R50.yaml` 表示读取指定目录下的配置文件，配置文件中指定了模型结构，训练超参等所有训练模型需要用到的配置，该文件中指定的模型结构为 `Deeplabv3_Plus-R50`
 
 ```shell
-python main.py -c paddlex/configs/semantic_segmentation/Deeplabv3_Plus-R50.yaml \
+python main.py -c paddlex/configs/modules/semantic_segmentation/Deeplabv3_Plus-R50.yaml \
     -o Global.mode=train \
     -o Global.dataset_dir=./dataset/seg_optic_examples \
     -o Global.output=deeplabv3p_output \
@@ -286,12 +288,12 @@ python main.py -c paddlex/configs/semantic_segmentation/Deeplabv3_Plus-R50.yaml 
 
 #### 基于 PaddleInference 推理
 
-训练完成后，最优权重放在 `deeplabv3p_output/best_model/` 目录下，其中 `model/inference.pdiparams`、`model/inference.pdiparams.info`、`model/inference.pdmodel` 3 个文件为静态图文件，用于推理使用，使用如下命令进行推理
+训练完成后，最优权重放在 `deeplabv3p_output/best_model/` 目录下，其中 `inference/inference.pdiparams`、`inference/inference.pdiparams.info`、`inference/inference.pdmodel` 3 个文件为静态图文件，用于推理使用，使用如下命令进行推理
 
 ```shell
-python main.py -c paddlex/configs/semantic_segmentation/Deeplabv3_Plus-R50.yaml \
+python main.py -c paddlex/configs/modules/semantic_segmentation/Deeplabv3_Plus-R50.yaml \
     -o Global.mode=predict \
-    -o Predict.model_dir="./deeplabv3p_output/best_model/model/" \
-    -o Predict.input_path="https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_semantic_segmentation_001.jpg" \
+    -o Predict.model_dir="./deeplabv3p_output/best_model/inference" \
+    -o Predict.input="https://paddle-model-ecology.bj.bcebos.com/paddlex/imgs/demo_image/general_semantic_segmentation_001.jpg" \
     -o Global.device="npu:0"
 ```

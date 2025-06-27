@@ -3,7 +3,7 @@
 save
 -----
 
-.. py:function:: paddle.save(obj, path, protocol=4)
+.. py:function:: paddle.save(obj, path, protocol=4, **configs)
 
 将对象实例 obj 保存到指定的路径中。
 
@@ -26,10 +26,10 @@ save
 
 参数
 :::::::::
- - **obj**  (Object) – 要保存的对象实例。
- - **path**  (str|BytesIO) – 保存对象实例的路径/内存对象。如果存储到当前路径，输入的 path 字符串将会作为保存的文件名。
- - **protocol**  (int，可选) – pickle 模块的协议版本，默认值为 4，取值范围是[2,4]。
- - **configs**  (dict，可选) – 其他配置选项，目前支持以下选项：（1）use_binary_format（bool）- 如果被保存的对象是静态图的 Tensor，你可以指定这个参数。如果被指定为 ``True``，这个 Tensor 会被保存为由 paddle 定义的二进制格式的文件；否则这个 Tensor 被保存为 pickle 格式。默认为 ``False`` 。
+    - **obj**  (Object) – 要保存的对象实例。
+    - **path**  (str|BytesIO) – 保存对象实例的路径/内存对象。如果存储到当前路径，输入的 path 字符串将会作为保存的文件名。
+    - **protocol**  (int，可选) – pickle 模块的协议版本，默认值为 4，取值范围是[2,4]。
+    - **configs**  (dict，可选) – 其他配置选项，目前支持以下选项：（1）use_binary_format（bool）- 如果被保存的对象是静态图的 Tensor，你可以指定这个参数。如果被指定为 ``True``，这个 Tensor 会被保存为由 paddle 定义的二进制格式的文件；否则这个 Tensor 被保存为 pickle 格式。默认为 ``False`` 。
 
 返回
 :::::::::

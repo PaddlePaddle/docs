@@ -1,28 +1,23 @@
-## [ 组合替代实现 ]torch.Tensor.bernoulli_
+## [ torch 参数更多 ]torch.Tensor.bernoulli_
 
 ### [torch.Tensor.bernoulli_](https://pytorch.org/docs/stable/generated/torch.Tensor.bernoulli_.html#torch.Tensor.bernoulli_)
 
 ```python
 torch.Tensor.bernoulli_(p=0.5, *, generator=None)
 ```
-Paddle 无此 API，需要组合实现。
 
-### 转写示例
-#### p：输入概率，类型为 tensor 时
+### [paddle.Tensor.bernoulli_](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/tensor.py)
+
 ```python
-# PyTorch 写法
-input.bernoulli_(p=x)
-
-# Paddle 写法
-paddle.assign(paddle.bernoulli(paddle.broadcast_to(x, input.shape)), input)
+paddle.Tensor.bernoulli_(p=0.5, name=None)
 ```
 
-#### p：输入概率，类型为 float 时
-```python
-# PyTorch 写法
-input.bernoulli_(p=x)
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
-# Paddle 写法
-tensor = paddle.to_tensor([x])
-paddle.assign(paddle.bernoulli(paddle.broadcast_to(tensor, input.shape)), input)
-```
+
+### 参数映射
+
+| PyTorch       | PaddlePaddle | 备注                    |
+| ------------- | ------------ | ----------------------------------------------------------------------------- |
+| p         | p  | 可选，伯努利参数 p。 |
+| generator | -  | 用于采样的伪随机数生成器， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。    |

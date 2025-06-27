@@ -165,12 +165,44 @@ RPC API
     " :ref:`shard_tensor <cn_api_paddle_distributed_shard_tensor>` ", "创建带有分布式切分信息的分布式 Tensor"
     " :ref:`dtensor_from_fn <cn_api_paddle_distributed_dtensor_from_fn>` ", "通过一个 paddle API 结合分布式属性 placements 创建一个带分布式属性的 Tensor"
     " :ref:`shard_layer <cn_api_paddle_distributed_shard_layer>` ", "按照指定方式将 Layer 中的参数转换为分布式 Tensor"
+    " :ref:`shard_dataloader <cn_api_paddle_distributed_shard_dataloader>` ", "将单机视角下的 dataloader 转换成分布式的 dataloader"
     " :ref:`reshard <cn_api_paddle_distributed_reshard>`", "对一个带有分布式信息的 Tensor 重新进行分布/切片"
     " :ref:`to_static <cn_api_paddle_distributed_to_static>`", "将带有分布式切分信息的动态图模型转换为静态图分布式模型"
     " :ref:`Strategy <cn_api_paddle_distributed_Strategy>`", "配置静态图分布式训练时所使用的并行策略和优化策略"
     " :ref:`DistAttr <cn_api_paddle_distributed_DistAttr>` ", "指定 Tensor 在 ProcessMesh 上的分布或切片方式"
     " :ref:`shard_optimizer <cn_api_paddle_distributed_shard_optimizer>` ", "将单卡视角的优化器转变为分布式视角"
     " :ref:`split <cn_api_paddle_distributed_split>` ", "切分指定操作的参数到多个设备，并且并行计算得到结果"
+    " :ref:`set_mesh <cn_api_paddle_distributed_set_mesh>` ", "设置全局 ProcessMesh"
+    " :ref:`get_mesh <cn_api_paddle_distributed_get_mesh>` ", "获取全局 ProcessMesh"
+    " :ref:`save_state_dict <cn_api_paddle_distributed_save_state_dict>` ", "保存分布式训练的 state_dict 到指定路径"
+    " :ref:`load_state_dict <cn_api_paddle_distributed_load_state_dict>` ", "将指定路径的 checkpoint 加载到指定 state_dict 中"
+    " :ref:`local_map <cn_api_paddle_distributed_local_map>` ", "支持分布式张量（DTensor）传递给为普通张量（Tensor）编写的函数处理，并保证处理逻辑正确"
+
+此外，自动并行提供更高层次的 API 来帮助用户通过非入侵组网的方式实现自动并行的分布式训练。
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 20, 50
+
+    " :ref:`parallelize <cn_api_paddle_distributed_parallelize>` ", "对模型和优化器进行并行化处理"
+    " :ref:`ColWiseParallel <cn_api_paddle_distributed_ColWiseParallel>` ", "按列切分标识 Layer"
+    " :ref:`RowWiseParallel <cn_api_paddle_distributed_RowWiseParallel>` ", "按行切分标识 Layer"
+    " :ref:`SequenceParallelBegin <cn_api_paddle_distributed_SequenceParallelBegin>` ", "标识 Layer 为序列并行的开始"
+    " :ref:`SequenceParallelEnd <cn_api_paddle_distributed_SequenceParallelEnd>` ", "标识 Layer 序列并行的结束"
+    " :ref:`SequenceParallelEnable <cn_api_paddle_distributed_SequenceParallelEnable>` ", "对标识 Layer 进行序列并行"
+    " :ref:`SequenceParallelDisable <cn_api_paddle_distributed_SequenceParallelDisable>` ", "对标识 Layer 不进行序列并行"
+    " :ref:`SplitPoint <cn_api_paddle_distributed_SplitPoint>` ", "标识 Layer 为流水线并行的切分点"
+    " :ref:`PrepareLayerInput <cn_api_paddle_distributed_PrepareLayerInput>` ", "对标识 Layer 的输入进行处理"
+    " :ref:`PrepareLayerOutput <cn_api_paddle_distributed_PrepareLayerOutput>` ", "对标识 Layer 的输出进行处理"
+
+
+甚至无需了解任何分布式概念，使用 to_distributed 接口一键进行分布式训练
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 20, 50
+
+    " :ref:`to_distributed <cn_api_paddle_distributed_to_distributed>` ", "一键进行分布式训练"
 
 .. _08:
 

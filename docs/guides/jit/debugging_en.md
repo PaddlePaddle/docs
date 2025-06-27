@@ -99,7 +99,7 @@ pdb is a module in Python that defines an interactive Pyhton source code debugge
      11         return x
     [EOF]
     (Pdb) p x
-    var assign_0.tmp_0 : LOD_TENSOR.shape(3,).dtype(int32).stop_gradient(False)
+    var assign_0.tmp_0 : DENSE_TENSOR.shape(3,).dtype(int32).stop_gradient(False)
     (Pdb)
     ```
 
