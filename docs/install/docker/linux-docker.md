@@ -31,13 +31,13 @@
 
 * GPU 版的 PaddlePaddle(**建议拉取最新版本镜像，并确保已经成功安装 NVIDIA Container Toolkit**)：
     ```
-    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda11.8-cudnn8.9-trt8.6
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda11.8-cudnn8.9
     ```
     ```
-    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda12.6-cudnn9.5-trt10.5
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda12.6-cudnn9.5
     ```
     ```
-    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda12.9-cudnn9.9-trt10.5
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda12.9-cudnn9.9
     ```
 
 如果您的机器不在中国大陆地区，可以直接从 DockerHub 拉取镜像：
@@ -54,13 +54,13 @@
 
 * GPU 版的 PaddlePaddle(**建议拉取最新版本镜像，并确保已经成功安装 NVIDIA Container Toolkit**)：
     ```
-    docker pull paddlepaddle/paddle:3.1.0-gpu-cuda11.8-cudnn8.9-trt8.6
+    docker pull paddlepaddle/paddle:3.1.0-gpu-cuda11.8-cudnn8.9
     ```
     ```
-    docker pull paddlepaddle/paddle:3.1.0-gpu-cuda12.6-cudnn9.5-trt10.5
+    docker pull paddlepaddle/paddle:3.1.0-gpu-cuda12.6-cudnn9.5
     ```
     ```
-    docker pull paddlepaddle/paddle:3.1.0-gpu-cuda12.9-cudnn9.9-trt10.5
+    docker pull paddlepaddle/paddle:3.1.0-gpu-cuda12.9-cudnn9.9
     ```
 
 您还可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取更多镜像。
@@ -115,7 +115,7 @@
 * 使用 GPU 版本的 PaddlePaddle：
 
     ```
-    docker run --gpus all --name paddle_docker -v $PWD:/paddle --network=host -it ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda12.6-cudnn9.5-trt10.5 /bin/bash
+    docker run --gpus all --name paddle_docker -v $PWD:/paddle --network=host -it ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda12.6-cudnn9.5 /bin/bash
     ```
 
     - `--gpus all`: 在 Docker 容器中允许使用 gpu;
@@ -127,7 +127,7 @@
 
     - `-it`： 与宿主机保持交互状态;
 
-    - `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda12.6-cudnn9.5-trt10.5`：使用名为`ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle`, tag 为`3.1.0-gpu-cuda12.6-cudnn9.5-trt10.5`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令。
+    - `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda12.6-cudnn9.5`：使用名为`ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle`, tag 为`3.1.0-gpu-cuda12.6-cudnn9.5`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令。
 
 
 
@@ -154,16 +154,16 @@
         <td> 安装了 3.1.0 版本 paddle 的 CPU 镜像，且镜像中预装好了 jupyter，启动 docker 即运行 jupyter 服务 </td>
     </tr>
     <tr>
-        <td> ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda11.8-cudnn8.9-trt8.6 </td>
-        <td> 安装了 3.1.0 版本 paddle 的 GPU 镜像，cuda 版本为 11.8，cudnn 版本为 8.9，trt 版本为 8.6 </td>
+        <td> ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda11.8-cudnn8.9 </td>
+        <td> 安装了 3.1.0 版本 paddle 的 GPU 镜像，cuda 版本为 11.8，cudnn 版本为 8.9 </td>
     </tr>
     <tr>
-        <td> ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda12.6-cudnn9.5-trt10.5 </td>
-        <td> 安装了 3.1.0 版本 paddle 的 GPU 镜像，cuda 版本为 12.6，cudnn 版本为 9.5，trt 版本为 10.5 </td>
+        <td> ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda12.6-cudnn9.5 </td>
+        <td> 安装了 3.1.0 版本 paddle 的 GPU 镜像，cuda 版本为 12.6，cudnn 版本为 9.5 </td>
     </tr>
     <tr>
-        <td> ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda12.9-cudnn9.9-trt10.5 </td>
-        <td> 安装了 3.1.0 版本 paddle 的 GPU 镜像，cuda 版本为 12.9，cudnn 版本为 9.9，trt 版本为 10.5 </td>
+        <td> ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.1.0-gpu-cuda12.9-cudnn9.9 </td>
+        <td> 安装了 3.1.0 版本 paddle 的 GPU 镜像，cuda 版本为 12.9，cudnn 版本为 9.9 </td>
     </tr>
    </tbody>
 </table>

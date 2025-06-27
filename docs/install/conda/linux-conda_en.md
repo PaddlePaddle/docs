@@ -114,12 +114,6 @@ conda install paddlepaddle==3.0.0 -c paddle
   conda install paddlepaddle-gpu==3.0.0 paddlepaddle-cuda=12.6 -c paddle -c nvidia
   ```
 
-*  If you are using CUDA 12.9:
-
-  ```
-  conda install paddlepaddle-gpu==3.0.0 paddlepaddle-cuda=12.9 -c paddle -c nvidia
-  ```
-
 
 ## Verify installation
 
