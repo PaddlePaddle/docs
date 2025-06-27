@@ -109,12 +109,6 @@ conda install paddlepaddle==3.0.0 -c paddle
   conda install paddlepaddle-gpu==3.0.0 paddlepaddle-cuda=12.6 -c paddle -c nvidia
   ```
 
-*  对于 `CUDA 12.9` 安装命令为:
-
-  ```
-  conda install paddlepaddle-gpu==3.0.0 paddlepaddle-cuda=12.9 -c paddle -c nvidia
-  ```
-
 
 ## **三、验证安装**
 
