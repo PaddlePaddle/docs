@@ -77,16 +77,15 @@ DCU  Temp   AvgPwr  Fan   Perf  PwrCap  VRAM%  DCU%
 
 ```bash
 # 下载并安装 wheel 包
-python -m pip install --pre paddlepaddle-dcu -i https://www.paddlepaddle.org.cn/packages/nightly/dcu/
+python -m pip install paddlepaddle-dcu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/dcu/
 ```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ### 安装方式二：源代码编译安装
 
 在启动的 docker 容器中，下载 Paddle 源码并编译，CMAKE 编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)。
 
 ```bash
 # 下载 Paddle 源码
-git clone https://github.com/PaddlePaddle/Paddle.git -b develop
+git clone https://github.com/PaddlePaddle/Paddle.git -b release/3.1
 cd Paddle
 
 # 创建编译目录
@@ -102,9 +101,8 @@ cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" \
 make -j16
 
 # 编译产出在 build/python/dist/ 路径下，使用 pip 安装即可
-pip install -U paddlepaddle_dcu-0.0.0-cp310-cp310-linux_x86_64.whl
+pip install -U paddlepaddle_dcu-*-linux_x86_64.whl
 ```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ## 基础功能检查
 
 安装完成后，在 docker 容器中输入如下命令进行飞桨基础健康功能的检查。

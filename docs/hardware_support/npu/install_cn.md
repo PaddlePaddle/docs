@@ -94,25 +94,24 @@ npu-smi info
 
 ```bash
 # 先安装飞桨 CPU 安装包
-pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
+python -m pip install paddlepaddle==3.1.0a0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 
 # 再安装飞桨 NPU 插件包
-pip install paddle-custom-npu -i https://www.paddlepaddle.org.cn/packages/nightly/npu
+python -m pip install paddle-custom-npu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/npu/
 ```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ### 安装方式二：源代码编译安装
 
 在启动的 docker 容器中，先安装飞桨 CPU 安装包，再下载 PaddleCustomDevice 源码编译得到飞桨 NPU 插件包。
 
 ```bash
 # 下载 PaddleCustomDevice 源码
-git clone https://github.com/PaddlePaddle/PaddleCustomDevice
+git clone https://github.com/PaddlePaddle/PaddleCustomDevice -b release/3.1
 
 # 进入硬件后端(昇腾 NPU)目录
 cd PaddleCustomDevice/backends/npu
 
 # 先安装飞桨 CPU 安装包
-pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
+python -m pip install paddlepaddle==3.1.0a0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 
 # 执行编译脚本 - submodule 在编译时会按需下载
 bash tools/compile.sh
@@ -120,7 +119,6 @@ bash tools/compile.sh
 # 飞桨 NPU 插件包在 build/dist 路径下，使用 pip 安装即可
 pip install build/dist/paddle_custom_npu*.whl
 ```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ## 基础功能检查
 
 安装完成后，在 docker 容器中输入如下命令进行飞桨基础健康功能的检查。
@@ -131,7 +129,7 @@ python -c "import paddle_custom_device; paddle_custom_device.npu.version()"
 ```
 ```bash
 # 预期得到如下输出结果
-version: 0.0.0
+version: 3.1.0
 commit: 147d506b2baa1971ab47b4550f0571e1f6b201fc
 cann: 8.0.RC2
 ....
