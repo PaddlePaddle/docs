@@ -25,13 +25,13 @@ lspci | grep S60
 
 ```bash
 # 拉取镜像
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-gcu:topsrider3.2.109-ubuntu20-x86_64-gcc84
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-gcu:topsrider3.4.623-ubuntu20-x86_64-gcc84
 ```
 ```bash
 # 参考如下命令启动容器
 docker run --name paddle-gcu-dev -v /home:/home \
     --network=host --ipc=host -it --privileged \
-    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-gcu:topsrider3.2.109-ubuntu20-x86_64-gcc84 /bin/bash
+    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/topsrider3.4.623-ubuntu20-x86_64-gcc84 /bin/bash
 ```
 #### 选项说明及可调整参数
 
@@ -78,25 +78,24 @@ efsmi
 
 ```bash
 # 先安装飞桨 CPU 安装包
-python -m pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
+python -m pip install paddlepaddle==3.1.0a0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 
 # 再安装飞桨 GCU 插件包
-python -m pip install paddle-custom-gcu -i https://www.paddlepaddle.org.cn/packages/nightly/gcu
+python -m pip install paddle-custom-gcu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/gcu/
 ```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ### 安装方式二：源代码编译安装
 
 在启动的 docker 容器中，先安装飞桨 CPU 安装包，再下载 PaddleCustomDevice 源码编译得到飞桨 GCU 插件包。
 
 ```bash
 # 下载 PaddleCustomDevice 源码
-git clone https://github.com/PaddlePaddle/PaddleCustomDevice
+git clone https://github.com/PaddlePaddle/PaddleCustomDevice -b release/3.1
 
 # 进入硬件后端(燧原 GCU)目录
 cd PaddleCustomDevice/backends/gcu
 
 # 先安装飞桨 CPU 安装包
-python -m pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
+python -m pip install paddlepaddle==3.1.0a0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 
 # 执行编译命令 - submodule 在编译时会按需下载
 mkdir -p build && cd build
@@ -118,7 +117,7 @@ python -c "import paddle_custom_device; paddle_custom_device.gcu.version()"
 ```
 ```bash
 # 预期得到如下输出结果
-version: 3.0.0.dev20241206
+version: 3.1.0
 commit: 7a2766768cc92aa94cc3d0ea6c23e8397f15f68a
 TopsPlatform: 1.2.0.301
 ....
