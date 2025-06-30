@@ -24,12 +24,12 @@
 |分类|架构|公司|型号|使用指南|
 |-|-|-|-|-|
 | AI 加速卡 | | NVIDIA | Ada Lovelace、Hopper、 Ampere 架构 | [使用指南](https://github.com/PaddlePaddle/FastDeploy) |
-| AI 加速卡 | XPU | 昆仑芯 | P800 | 适配中 |
+| AI 加速卡 | XPU | 昆仑芯 | P800 | [使用指南](https://github.com/PaddlePaddle/FastDeploy/tree/develop/docs/get_started/installation/kunlunxin_xpu.md) |
+| AI 加速卡 | | 燧原 | S60 | [使用指南](https://github.com/PaddlePaddle/FastDeploy/tree/develop/docs/get_started/installation/Enflame_gcu.md)  |
+| AI 加速卡 | GPGPU | 天数 | 天垓 150 | [使用指南](https://github.com/PaddlePaddle/FastDeploy/tree/develop/docs/get_started/installation/iluvatar_gpu.md) |
 | AI 加速卡 | GPGPU | 海光 | K100_AI | 适配中 |
 | AI 加速卡 | 达芬奇 | 昇腾 | 910 系列 | 适配中 |
-| AI 加速卡 | GPGPU | 天数 | 天垓 150 | 适配中 |
 | AI 加速卡 | GPGPU | 沐曦 | 曦云 C 系列 | 适配中 |
-| AI 加速卡 | | 燧原 | S60 | 适配中 |
 
 
 ## Paddle Inference
