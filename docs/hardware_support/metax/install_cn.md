@@ -22,13 +22,12 @@
 
 ```bash
 # 先安装飞桨 CPU 安装包
-pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
+python -m pip install  --pre paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
 
 # 再安装飞桨 曦云C500 插件包
-pip install paddle-metax-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/sdaa
+python -m pip install --pre paddle-metax-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/maca/
 ```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.1 版本:https://www.paddlepaddle.org.cn/packages/stable/metax/paddle-metax-gpu/
-### 安装方式二：源代码编译安装
+
 
 在启动的 docker 容器中，先安装飞桨 CPU 安装包，再下载 PaddleCustomDevice 源码编译得到飞桨 C500 插件包。
 
@@ -41,20 +40,19 @@ git submodule sync
 git submodule update --init --recursive
 
 # 进入硬件后端(沐曦 曦云C500)目录
-cd backends/metax
+cd backends/metax_gpu
 
 # 先安装飞桨 CPU 安装包
-pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
+python -m pip install  --pre paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
 
-# 执行编译脚本
-bash build.sh
+# 编译安装
+bash build_in_metax.sh
+# 或者
+bash change_patch.sh #只执行一次
+bash compile.sh      # 可执行多次
 
 # 编译产出在 build/dist 路径下，使用 pip 安装
 pip install build/dist/*.whl --force-reinstall
-```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.1 版本。
-
-```
 
 
 ## 如何卸载
