@@ -3,10 +3,10 @@
 ## Environment preparation
 
 * **Linux version (64 bit)**
-    * **CentOS 7 (GPU 版本支持 CUDA 11.0 - 12.0)**
-    * **Ubuntu 18.04 (GPU 版本支持 CUDA 11.0 - 12.0)**
-    * **Ubuntu 20.04 (GPU 版本支持 CUDA 11.0 - 12.0)**
-* **Python 版本 3.8/3.9/3.10/3.11/3.12 (64 bit)**
+    * **Ubuntu 20.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
+    * **Ubuntu 22.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
+    * **Ubuntu 24.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
+* **Python 版本 3.9/3.10/3.11/3.12/3.13 (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -63,7 +63,7 @@ For domestic users, when downloading docker is slow due to network problems, you
 
 * GPU version of PaddlePaddle：
     ```
-    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda126-dev
     ```
 
 If your machine is not in mainland China, you can pull the image directly from DockerHub:
@@ -75,10 +75,10 @@ If your machine is not in mainland China, you can pull the image directly from D
 
 * GPU version of PaddlePaddle：
     ```
-    docker pull paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2
+    docker pull paddlepaddle/paddle:cuda126-dev
     ```
 
-In the above example, `latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82` is only for illustration, indicating that the GPU version of the image is installed. If you want to install another `cuda/cudnn` version of the image, you can replace it with `latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2` etc.
+In the above example, `cuda126-dev` is only for illustration, indicating that the GPU version of the image is installed. If you want to install another `cuda/cudnn` version of the image, you can replace it with `cuda126-dev` etc.
 
 You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get the image that matches your machine.
 
@@ -113,7 +113,7 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     Using the image pulled from Baidu.
     ```
-    docker run --gpus all --name paddle-test -v $PWD:/paddle --network=host -it ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    docker run --gpus all --name paddle-test -v $PWD:/paddle --network=host -it ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda126-dev /bin/bash
     ```
 
     - `--gpus all`: gpu resources can be used in Docker container;
@@ -127,11 +127,11 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
     - `-it`: keeps interaction with the host;
 
-    - `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`: use the image named `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
+    - `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda126-dev`: use the image named `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda126-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
     If you are using the image pulled from DockerHub, just modify the image name.
     ```
-    docker run --gpus all --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    docker run --gpus all --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:cuda126-dev /bin/bash
     ```
 
 Note:
@@ -150,7 +150,7 @@ cd /paddle
 git checkout develop
 ```
 
-Paddle supports Python version 3.8 and above
+Paddle supports Python version 3.9 and above
 
 #### 7. Create and enter the /paddle/build path:
 
@@ -166,7 +166,7 @@ mkdir -p /paddle/build && cd /paddle/build
 pip3.10 install protobuf
 ```
 
-Note: We used Python3.10 command as an example above, if the version of your Python is 3.8/3.9/3.11/3.12, please change pip3.10 in the commands to pip3.8/pip3.9/pip3.11/pip3.12
+Note: We used Python3.10 command as an example above, if the version of your Python is 3.9/3.11/3.12/3.13, please change pip3.10 in the commands to pip3.9/pip3.11/pip3.12/pip3.13
 
 - Installing patchelf, PatchELF is a small and useful program for modifying the dynamic linker and RPATH of ELF executables.
 
@@ -188,7 +188,7 @@ pip3.10 install -r /paddle/python/requirements.txt
 
 * For users who need to compile the **GPU version PaddlePaddle**:
     ```
-    cmake .. -DPY_VERSION=3.10 -DWITH_GPU=ON
+    cmake .. -DPY_VERSION=3.10 -DWITH_GPU=ON -DWITH_DISTRIBUTE=ON
     ```
 
 - For details on the compilation options, see the [compilation options table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile).
@@ -221,7 +221,7 @@ pip3.10 install -U [whl package name]
 ```
 
 Note:
-We used Python3.10 command as an example above, if the version of your Python is 3.8/3.9/3.11/3.12, please change pip3.10 in the commands to pip3.8/pip3.9/pip3.11/3.12.
+We used Python3.10 command as an example above, if the version of your Python is 3.9/3.11/3.12/3.13, please change pip3.10 in the commands to pip3.9/pip3.11/pip3.12/pip3.13.
 
 #### Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
@@ -252,19 +252,17 @@ uname -m && cat /etc/*release
 
 #### 3. Install NCCL (optional)
 
-* If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under CUDA11.2 and cuDNN8. For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl)):
+* If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under CUDA11.8 and cuDNN8. For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl)):
 
 
     * **CentOS system can refer to the following commands**
 
         ```
-        rm -f /usr/local/lib/libnccl.so
-        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-2.10.3-1+cuda11.4.x86_64.rpm
-        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-devel-2.10.3-1+cuda11.4.x86_64.rpm
-        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-static-2.10.3-1+cuda11.4.x86_64.rpm
-        rpm -ivh libnccl-2.10.3-1+cuda11.4.x86_64.rpm
-        rpm -ivh libnccl-devel-2.10.3-1+cuda11.4.x86_64.rpm
-        rpm -ivh libnccl-static-2.10.3-1+cuda11.4.x86_64.rpm
+        wget -q https://nccl2-deb.cdn.bcebos.com/nccl_2.16.2-1+cuda11.8_x86_64.txz --no-check-certificate --no-proxy
+        tar xf nccl_2.16.2-1+cuda11.8_x86_64.txz
+        cp -a nccl_2.16.2-1+cuda11.8_x86_64/include/* /usr/include/
+        cp -a nccl_2.16.2-1+cuda11.8_x86_64/lib/* /usr/lib64
+        rm -rf nccl_2.16.2-1+cuda11.8_x86_64 nccl_2.16.2-1+cuda11.8_x86_64.txz
         ```
 
 
@@ -325,15 +323,15 @@ make -j8 && make install
 * b. Install pip:
 
 
-    (Please refer to the official Python installation process, and ensure that the pip3 version 20.2.2 and above, please note that in python3.8 and above, pip3 does not necessarily correspond to the python version, such as python3.10 default only Pip3.10)
+    (Please refer to the official Python installation process, and ensure that the pip3 version 20.2.2 and above, please note that in python3.9 and above, pip3 does not necessarily correspond to the python version, such as python3.10 default only Pip3.10)
 
-* c. (Only For Python3) set Python3 related environment variables, here is python3.10 version example, please replace with the version you use (3.8, 3.9, 3.11, 3.12):
+* c. (Only For Python3) set Python3 related environment variables, here is python3.10 version example, please replace with the version you use (3.9, 3.11, 3.12, 3.13):
 
     1. First find the path to the Python lib using
         ```
         find `dirname $(dirname $(which python3))` -name "libpython3.so"
         ```
-        If it is 3.8/3.9/3.10/3.11/3.12, change `python3` to `python3.8`, `python3.9`, `python3.10`, `python3.11`, `python3.12`, then replace [python-lib-path] in the following steps with the file path found.
+        If it is 3.9/3.10/3.11/3.12/3.13, change `python3` to `python3.9`, `python3.10`, `python3.11`, `python3.12`, `python3.13`, then replace [python-lib-path] in the following steps with the file path found.
 
     2. Set PYTHON_LIBRARIES:
         ```
@@ -357,7 +355,7 @@ make -j8 && make install
         ```
         (here replace the last two levels content of [python-lib-path] with /bin/)
 
-* d. Install the virtual environment `virtualenv` and `virtualenvwrapper` and create a virtual environment called `paddle-venv`: (please note the pip3 commands corresponding to the python version, such as pip3.8, pip3.9, pip3.10, pip3.11, pip3.12)
+* d. Install the virtual environment `virtualenv` and `virtualenvwrapper` and create a virtual environment called `paddle-venv`: (please note the pip3 commands corresponding to the python version, such as pip3.9, pip3.10, pip3.11, pip3.12, pip3.13)
 
     1. Install `virtualenv`:
         ```
@@ -425,7 +423,7 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 9. Switch to develop branch for compilation (Paddle supports Python version 3.8 and above):
+#### 9. Switch to develop branch for compilation (Paddle supports Python version 3.9 and above):
 
 ```
 git checkout develop
@@ -455,16 +453,14 @@ mkdir build && cd build
 
 * For users who need to compile the **GPU version PaddlePaddle**:
 
-    1. Please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is ubuntu 20.04, CUDA11.2, cuDNN8 nccl2 installation instructions, for more information on the installation information please refer to the [NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download)):
+    1. Please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is ubuntu 20.04, CUDA11.8, cuDNN8 nccl2 installation instructions, for more information on the installation information please refer to the [NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download)):
 
         ```
-        rm -f /usr/local/lib/libnccl.so
-        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-2.10.3-1+cuda11.4.x86_64.rpm
-        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-devel-2.10.3-1+cuda11.4.x86_64.rpm
-        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-static-2.10.3-1+cuda11.4.x86_64.rpm
-        rpm -ivh libnccl-2.10.3-1+cuda11.4.x86_64.rpm
-        rpm -ivh libnccl-devel-2.10.3-1+cuda11.4.x86_64.rpm
-        rpm -ivh libnccl-static-2.10.3-1+cuda11.4.x86_64.rpm
+        wget -q https://nccl2-deb.cdn.bcebos.com/nccl_2.16.2-1+cuda11.8_x86_64.txz --no-check-certificate --no-proxy
+        tar xf nccl_2.16.2-1+cuda11.8_x86_64.txz
+        cp -a nccl_2.16.2-1+cuda11.8_x86_64/include/* /usr/include/
+        cp -a nccl_2.16.2-1+cuda11.8_x86_64/lib/* /usr/lib64
+        rm -rf nccl_2.16.2-1+cuda11.8_x86_64 nccl_2.16.2-1+cuda11.8_x86_64.txz
         ```
 
 
@@ -472,11 +468,11 @@ mkdir build && cd build
 
 
         ```
-        cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的 Python3 的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的 PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的 PYTHON_LIBRARY] -DWITH_GPU=ON
+        cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的 Python3 的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的 PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的 PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_DISTRIBUTE=ON
         ```
 
 
-Note: For the command involving Python 3, we use Python 3.10 as an example above, if the version of your Python is 3.8/3.9/3.11/3.12, please change Python3.10 in the commands to Python3.8/Python3.9/Python3.11/Python3.12
+Note: For the command involving Python 3, we use Python 3.10 as an example above, if the version of your Python is 3.9/3.11/3.12/3.13, please change Python3.10 in the commands to Python3.9/Python3.11/Python3.12/Python3.13
 
 
 

@@ -2,8 +2,8 @@
 
 ## 环境准备
 
-* **macOS 版本 10.x/11.x/12.x/13.x/14.x (64 bit) (不支持 GPU 版本)**
-* **Python 版本 3.8/3.9/3.10/3.11/3.12 (64 bit)**
+* **macOS 版本 10.x/11.x/12.x/13.x/14.x/15.x (64 bit) (不支持 GPU 版本)**
+* **Python 版本 3.9/3.10/3.11/3.12/3.13 (64 bit)**
 
 ## 选择 CPU/GPU
 
@@ -73,7 +73,7 @@ cd /paddle
 ```
 git checkout develop
 ```
-paddle 支持 Python 3.8 以上版本
+paddle 支持 Python 3.9 以上版本
 
 #### 8. 创建并进入/paddle/build 路径下：
 ```
@@ -84,7 +84,7 @@ mkdir -p /paddle/build && cd /paddle/build
 ```
 pip3.10 install -r /paddle/python/requirements.txt
 ```
-注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12
+注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.9/3.11/3.12/3.13，请将上述命令中的 pip3.10 改成 pip3.9/pip3.11/pip3.12/pip3.13
 #### 10. 执行 cmake：
 *  对于需要编译**CPU 版本 PaddlePaddle**的用户（我们目前不支持 macOS 下 GPU 版本 PaddlePaddle 的编译）：
     ```
@@ -106,7 +106,7 @@ cd /paddle/build/python/dist
 ```
 pip3.10 install -U [whl 包的名字]
 ```
-注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12。
+注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.9/3.11/3.12/3.13，请将上述命令中的 pip3.10 改成 pip3.9/pip3.11/pip3.12/pip3.13。
 #### 恭喜，至此您已完成 PaddlePaddle 的编译安装。您只需要进入 Docker 容器后运行 PaddlePaddle，即可开始使用。更多 Docker 使用请参见[Docker 官方文档](https://docs.docker.com)
 <a name="mac_source"></a>
 <br/><br/>
@@ -118,7 +118,7 @@ uname -m
 ```
 并且在`关于本机`中查看系统版本。并提前安装[OpenCV](https://opencv.org/releases.html)
 #### 2. 安装 Python 以及 pip：
-> **请不要使用 macOS 中自带 Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装 python(对于**Python3**请使用 python[官方下载](https://www.python.org/downloads/mac-osx/)python3.8、python3.9、python3.10、python3.11、python3.12), pip 以及其他的依赖，这将会使您高效编译。
+> **请不要使用 macOS 中自带 Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装 python(对于**Python3**请使用 python[官方下载](https://www.python.org/downloads/mac-osx/)python3.9、python3.10、python3.11、python3.12、python3.13), pip 以及其他的依赖，这将会使您高效编译。
 使用 Python 官网安装
 > 请注意，当您的 mac 上安装有多个 python 时请保证您正在使用的 python 是您希望使用的 python。
 #### 3. (Only For Python3)设置 Python 相关的环境变量：
@@ -172,7 +172,7 @@ cd Paddle
 ```
 git checkout develop
 ```
-paddle 支持 Python 3.8 以上版本
+paddle 支持 Python 3.9 以上版本
 #### 7. 并且请创建并进入一个叫 build 的目录下：
 ```
 mkdir build && cd build
@@ -184,7 +184,7 @@ mkdir build && cd build
 pip3.10 install -r /paddle/python/requirements.txt
 ```
 
-注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12
+注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.9/3.11/3.12/3.13，请将上述命令中的 pip3.10 改成 pip3.9/pip3.11/pip3.12/pip3.13
 #### 9. 执行 cmake：
 >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 *  对于需要编译**CPU 版本 PaddlePaddle**的用户：
