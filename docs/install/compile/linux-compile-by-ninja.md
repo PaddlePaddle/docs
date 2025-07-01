@@ -3,10 +3,10 @@
 ## 环境准备
 
 * **Linux 版本 (64 bit)**
-    * **CentOS 7 (GPU 版本支持 CUDA 11.0 - 12.0)**
-    * **Ubuntu 18.04 (GPU 版本支持 CUDA 11.0 - 12.0)**
-    * **Ubuntu 20.04 (GPU 版本支持 CUDA 11.0 - 12.0)**
-* **Python 版本 3.8/3.9/3.10/3.11/3.12 (64 bit)**
+    * **Ubuntu 20.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
+    * **Ubuntu 22.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
+    * **Ubuntu 24.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
+* **Python 版本 3.9/3.10/3.11/3.12/3.13 (64 bit)**
 
 ## 选择 CPU/GPU
 
@@ -65,7 +65,7 @@ cd Paddle
 
 * GPU 版的 PaddlePaddle：
     ```
-    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda126-dev
     ```
 
 如果您的机器不在中国大陆地区，可以直接从 [DockerHub 中的 paddle 镜像仓库](https://hub.docker.com/r/paddlepaddle/paddle/tags) 拉取镜像：
@@ -77,10 +77,10 @@ cd Paddle
 
 * GPU 版的 PaddlePaddle(**建议使用较新的镜像,并确保已经成功安装 NVIDIA Container Toolkit**)：
     ```
-    docker pull paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2
+    docker pull paddlepaddle/paddle:cuda126-dev
     ```
 
-上例中，`latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2` 仅作示意用，表示安装 GPU 版的镜像。如果您还想安装其他 cuda/cudnn 版本的镜像，可以将其替换成其他版本（建议拉取最新的 GPU 版本）。
+上例中，`cuda126-dev` 仅作示意用，表示安装 GPU 版的镜像。如果您还想安装其他 cuda/cudnn 版本的镜像，可以将其替换成其他版本（建议拉取最新的 GPU 版本）。
 您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
 
 
@@ -110,7 +110,7 @@ cd Paddle
 
     用从百度拉取的镜像创建容器
     ```
-    docker run --gpus all --name paddle-test -v $PWD:/paddle --network=host -it ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    docker run --gpus all --name paddle-test -v $PWD:/paddle --network=host -it ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda126-dev /bin/bash
     ```
 
     - `--gpus all`: 在 Docker 容器中允许使用 gpu;
@@ -121,11 +121,11 @@ cd Paddle
 
     - `-it`： 与宿主机保持交互状态;
 
-    - `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`：使用名为`ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle`, tag 为`latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令。
+    - `ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda126-dev`：使用名为`ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle`, tag 为`cuda126-dev`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令。
 
     若使用的是从 DockerHub 拉取的镜像创建容器，则修改镜像名即可：
     ```
-    docker run --gpus all --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev-cuda12.0-cudnn8.9-trt8.6-gcc12.2 /bin/bash
+    docker run --gpus all --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:cuda126-dev /bin/bash
     ```
 
 注意：
@@ -141,7 +141,7 @@ cd /paddle
 ```
 git checkout develop
 ```
-paddle 支持 Python 3.8 以上版本
+paddle 支持 Python 3.9 以上版本
 #### 7. 创建并进入/paddle/build 路径下：
 ```
 mkdir -p /paddle/build && cd /paddle/build
@@ -151,7 +151,7 @@ mkdir -p /paddle/build && cd /paddle/build
 ```
 pip3.10 install -r /paddle/python/requirements.txt
 ```
-注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12
+注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.9/3.11/3.12/3.13，请将上述命令中的 pip3.10 改成 pip3.9/pip3.11/pip3.12/pip3.13
 #### 9. 执行 cmake：
 * 对于需要编译**CPU 版本 PaddlePaddle**的用户：
     ```
@@ -159,7 +159,7 @@ pip3.10 install -r /paddle/python/requirements.txt
     ```
 * 对于需要编译**GPU 版本 PaddlePaddle**的用户：
     ```
-    cmake .. -GNinja -DPY_VERSION=3.10 -DWITH_GPU=ON
+    cmake .. -GNinja -DPY_VERSION=3.10 -DWITH_GPU=ON -DWITH_DISTRIBUTE=ON
     ```
 - 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 - 请注意修改参数`-DPY_VERSION`为您希望编译使用的 python 版本,  例如`-DPY_VERSION=3.10`表示 python 版本为 3.10
@@ -179,7 +179,7 @@ For Python3:
 ```
 pip3.10 install -U [whl 包的名字]
 ```
-注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12。
+注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.9/3.11/3.12/3.13，请将上述命令中的 pip3.10 改成 pip3.9/pip3.11/pip3.12/pip3.13。
 #### 恭喜，至此您已完成 PaddlePaddle 的编译安装。您只需要进入 Docker 容器后运行 PaddlePaddle，即可开始使用。更多 Docker 使用请参见[Docker 官方文档](https://docs.docker.com)
 <a name="ct_source"></a>
 ### <span id="compile_from_host">本机编译</span>
@@ -203,15 +203,13 @@ uname -m && cat /etc/*release
     apt update
     ```
 #### 3. 安装 NCCL（可选）
-* 如果您需要使用 GPU 多卡，请确保您已经正确安装 nccl2，或者按照以下指令安装 nccl2（这里提供的是 CUDA11.2，cuDNN8 下 nccl2 的安装指令，更多版本的安装信息请参考 NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
+* 如果您需要使用 GPU 多卡，请确保您已经正确安装 nccl2，或者按照以下指令安装 nccl2（这里提供的是 CUDA11.8，cuDNN8 下 nccl2 的安装指令，更多版本的安装信息请参考 NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
         ```
-        rm -f /usr/local/lib/libnccl.so
-        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-2.10.3-1+cuda11.4.x86_64.rpm
-        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-devel-2.10.3-1+cuda11.4.x86_64.rpm
-        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-static-2.10.3-1+cuda11.4.x86_64.rpm
-        rpm -ivh libnccl-2.10.3-1+cuda11.4.x86_64.rpm
-        rpm -ivh libnccl-devel-2.10.3-1+cuda11.4.x86_64.rpm
-        rpm -ivh libnccl-static-2.10.3-1+cuda11.4.x86_64.rpm
+        wget -q https://nccl2-deb.cdn.bcebos.com/nccl_2.16.2-1+cuda11.8_x86_64.txz --no-check-certificate --no-proxy
+        tar xf nccl_2.16.2-1+cuda11.8_x86_64.txz
+        cp -a nccl_2.16.2-1+cuda11.8_x86_64/include/* /usr/include/
+        cp -a nccl_2.16.2-1+cuda11.8_x86_64/lib/* /usr/lib64
+        rm -rf nccl_2.16.2-1+cuda11.8_x86_64 nccl_2.16.2-1+cuda11.8_x86_64.txz
         ```
 #### 4. 安装必要的工具
 `bzip2`以及`make`：
@@ -255,12 +253,12 @@ make -j8 && make install
     (请参照 Python 官方流程安装）
 * b. 安装 pip:
     (请参照 Python 官方流程安装）
-* c.（Only For Python3）设置 Python3 相关的环境变量，这里以 python3.10 版本示例，请替换成您使用的版本（3.8、3.9、3.10、3.11、3.12）：
+* c.（Only For Python3）设置 Python3 相关的环境变量，这里以 python3.10 版本示例，请替换成您使用的版本（3.9、3.10、3.11、3.12、3.13）：
     1. 首先使用
         ```
         find `dirname $(dirname $(which python3))` -name "libpython3.so"
         ```
-        找到 Python lib 的路径，如果是 3.8、3.9、3.10、3.11、3.12，请将`python3`改成`python3.8`、`python3.9`，`python3.10`， `python3.11`，`python3.12`然后将下面[python-lib-path]替换为找到文件路径
+        找到 Python lib 的路径，如果是 3.9、3.10、3.11、3.12、3.13，请将`python3`改成`python3.9`，`python3.10`， `python3.11`，`python3.12`，`python3.13`然后将下面[python-lib-path]替换为找到文件路径
     2. 设置 PYTHON_LIBRARIES：
         ```
         export PYTHON_LIBRARY=[python-lib-path]
@@ -279,7 +277,7 @@ make -j8 && make install
         export PATH=[python-lib-path]:$PATH
         ```
         （这里将[python-lib-path]的最后两级目录替换为/bin/)
-* d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意对应 python 版本的 pip3 的命令，如 pip3.8、pip3.9、pip3.10、pip3.11、pip3.12))
+* d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意对应 python 版本的 pip3 的命令，如 pip3.9、pip3.10、pip3.11、pip3.12、pip3.13))
     1. 安装`virtualenv`
         ```
         pip install virtualenv
@@ -351,7 +349,7 @@ mkdir build && cd build
 pip3.10 install -r /paddle/python/requirements.txt
 ```
 
-注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12
+注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.9/3.11/3.12/3.13，请将上述命令中的 pip3.10 改成 pip3.9/pip3.11/pip3.12/pip3.13
 #### 12. 执行 cmake：
 >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 *  对于需要编译**CPU 版本 PaddlePaddle**的用户：
@@ -361,22 +359,20 @@ pip3.10 install -r /paddle/python/requirements.txt
     ```
     > 如果遇到`Could NOT find PROTOBUF (missing:  PROTOBUF_LIBRARY PROTOBUF_INCLUDE_DIR)`可以重新执行一次 cmake 指令。
     > 请注意 PY_VERSION 参数更换为您需要的 python 版本
-* 对于需要编译**GPU 版本 PaddlePaddle**的用户：(**仅支持 CentOS7（** CUDA11.0 - CUDA12.0 **)**)
-    1. 请确保您已经正确安装 nccl2，或者按照以下指令安装 nccl2（这里提供的是 CUDA11.2，cuDNN8 下 nccl2 的安装指令，更多版本的安装信息请参考 NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
+* 对于需要编译**GPU 版本 PaddlePaddle**的用户：(**仅支持 CentOS7（** CUDA11.8 - CUDA12.9 **)**)
+    1. 请确保您已经正确安装 nccl2，或者按照以下指令安装 nccl2（这里提供的是 CUDA11.8，cuDNN8 下 nccl2 的安装指令，更多版本的安装信息请参考 NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
         ```
-        rm -f /usr/local/lib/libnccl.so
-        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-2.10.3-1+cuda11.4.x86_64.rpm
-        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-devel-2.10.3-1+cuda11.4.x86_64.rpm
-        wget --no-check-certificate -q https://nccl2-deb.cdn.bcebos.com/libnccl-static-2.10.3-1+cuda11.4.x86_64.rpm
-        rpm -ivh libnccl-2.10.3-1+cuda11.4.x86_64.rpm
-        rpm -ivh libnccl-devel-2.10.3-1+cuda11.4.x86_64.rpm
-        rpm -ivh libnccl-static-2.10.3-1+cuda11.4.x86_64.rpm
+        wget -q https://nccl2-deb.cdn.bcebos.com/nccl_2.16.2-1+cuda11.8_x86_64.txz --no-check-certificate --no-proxy
+        tar xf nccl_2.16.2-1+cuda11.8_x86_64.txz
+        cp -a nccl_2.16.2-1+cuda11.8_x86_64/include/* /usr/include/
+        cp -a nccl_2.16.2-1+cuda11.8_x86_64/lib/* /usr/lib64
+        rm -rf nccl_2.16.2-1+cuda11.8_x86_64 nccl_2.16.2-1+cuda11.8_x86_64.txz
         ```
     2. 如果您已经正确安装了`nccl2`，就可以开始 cmake 了：(*For Python3: 请给 PY_VERSION 参数配置正确的 python 版本*)
         ```
-        cmake .. -GNinja -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的 Python3 的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的 PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的 PYTHON_LIBRARY] -DWITH_GPU=ON
+        cmake .. -GNinja -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的 Python3 的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的 PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的 PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_DISTRIBUTE=ON
         ```
-注意：以上涉及 Python3 的命令，用 Python3.10 来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 Python3.10 改成 Python3.8/Python3.9/Python3.11/Python3.12
+注意：以上涉及 Python3 的命令，用 Python3.10 来举例，如您的 Python 版本为 3.9/3.11/3.12/3.13，请将上述命令中的 Python3.10 改成 Python3.9/Python3.11/Python3.12/Python3.13
 #### 13. 使用以下命令来编译：
 ```
 ninja -j$(nproc)
