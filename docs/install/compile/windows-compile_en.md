@@ -4,7 +4,7 @@
 
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
 * **GPU Version support CUDA 11.0 - 12.0, and only support single GPU**
-* **Python version 3.8+/3.9+/3.10+/3.11+/3.12+(64bit)**
+* **Python version 3.9+/3.10+/3.11+/3.12+/3.13+ (64bit)**
 * **pip version 20.2.2 or above (64bit)**
 * **Visual Studio 2017(for CPU)/2019(for GPU)**
 
@@ -29,7 +29,7 @@ There is one compilation methods in Windows system:
 
     > CMake requires version 3.17 and above, and add to the ring Environment variables.
 
-    > Python requires version 3.8 and above,  which can be downloaded from the [official website](https://www.python.org/downloads/release).
+    > Python requires version 3.9 and above,  which can be downloaded from the [official website](https://www.python.org/downloads/release).
 
     * After installing python, please check whether the python version is the expected version by `python-version`, because you may have more than one python installed on your computer. You can handle conflicts of multiple pythons by changing the order of the environment variables.
 
@@ -54,7 +54,7 @@ There is one compilation methods in Windows system:
     git checkout develop
     ```
 
-    Note: Paddle supports Python version 3.8 and above.
+    Note: Paddle supports Python version 3.9 and above.
 
 4. Create a directory called build and enter it:
 
@@ -94,11 +94,11 @@ There is one compilation methods in Windows system:
         ```
         set CUDA_TOOLKIT_ROOT_DIR=C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2
         set PATH=%CUDA_TOOLKIT_ROOT_DIR:/=\%\bin;%CUDA_TOOLKIT_ROOT_DIR:/=\%\libnvvp;%PATH%
-        cmake .. -GNinja -DWITH_GPU=ON -DCUDA_TOOLKIT_ROOT_DIR="%CUDA_TOOLKIT_ROOT_DIR%" -DWITH_UNITY_BUILD=ON
+        cmake .. -GNinja -DWITH_GPU=ON -DCUDA_TOOLKIT_ROOT_DIR="%CUDA_TOOLKIT_ROOT_DIR%" -DWITH_UNITY_BUILD=ON -DWITH_DISTRIBUTE=ON
         ```
         > 2. If more than one Python are installed, the latest installed Python will be used by default, and you can choose the Python version by `-DPYTHON_EXECUTABLE` . for example:
         ```
-        cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\\Python38\\python.exe  -DWITH_UNITY_BUILD=ON
+        cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\\Python38\\python.exe  -DWITH_UNITY_BUILD=ON -DWITH_DISTRIBUTE=ON
         ```
 
 6. Execute compile:
