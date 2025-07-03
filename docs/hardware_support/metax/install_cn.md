@@ -1,7 +1,4 @@
 
-Viewed
-Original file line number   Original file line  Diff line number    Diff line change
-@@ -0,0 +1,64 @@
 # 沐曦 曦云 C 系列 安装说明
 
 飞桨框架 MACA 版支持基于沐曦 MACA 软件栈 的训练和推理，提供两种安装方式：
@@ -16,7 +13,7 @@ Original file line number   Original file line  Diff line number    Diff line ch
 | 芯片型号 | 沐曦曦云 C 系列芯片，包括 C500 |
 | 操作系统 | Linux 操作系统，包括 CentOS、Ubuntu、KylinV10 等 |
 
-```
+
 ## 安装飞桨框架
 ### 安装方式一：wheel 包安装
 沐曦曦云 C500 支持插件式安装，需先安装飞桨 CPU 安装包，再安装飞桨 沐曦 插件包：
@@ -58,6 +55,4 @@ pip install build/dist/*.whl --force-reinstall
 
 请使用以下命令卸载 Paddle:
 
-```bash
 pip uninstall paddlepaddle paddle-metax-gpu
-```

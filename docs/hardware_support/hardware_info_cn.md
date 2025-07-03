@@ -81,7 +81,7 @@
 |  AI 加速芯片 | 海飞科 | Compass C10 | ✔️  | [模型库](https://github.com/hexaflakeai/model_zoo) |
 |  AI 加速芯片 | 清微智能 | TX5368 | ✔️  | [模型库](https://github.com/tsingmicro-toolchain/ts.knight-modelzoo) |
 |  AI 加速芯片 | 爱芯元智 | AX620A | ✔️  | [模型库](https://github.com/AXERA-TECH/ax-samples/tree/main) |
-|  AI 加速芯片 | 沐曦 | N100 | ✔️  | [模型库](https://github.com/denglin-github/DLPaddleModelZoo) |
+|  AI 加速芯片 | 沐曦 | N100 | ✔️  | [模型库](https://gitee.com/metax-maca/modelzoo/tree/master/paddlepaddle) |
 |  AI 加速芯片 | 希姆计算 | STCP920 | ✔️  | [模型库](https://github.com/Stream-Computing/STCPaddleModelZoo) |
 
 ## TVM
