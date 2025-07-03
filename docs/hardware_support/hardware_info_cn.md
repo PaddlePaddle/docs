@@ -17,7 +17,7 @@
 | AI 加速芯片 |  | 壁仞 | BR100、BR104 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/biren_gpu/README_cn.md) |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice) |
 | AI 加速芯片 |  | 燧原 | 云燧 T20 、i20、S60 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/gcu/README_cn.md) |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice)  |
 | AI 加速芯片 |  | 太初 | 元碁系列 | [安装](./sdaa/install_cn.html#wheel) |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/sdaa/README_cn.md)  |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice)  |
-
+| AI 加速芯片 | | 沐曦 | 曦云 C 系列 | [安装](./metax/install_cn.md#wheel) | [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/metax_gpu/README_cn.md) |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice) |
 
 ## FastDeploy
 
