@@ -21,11 +21,15 @@ lspci -vvt | grep 370
 
 ## 运行环境准备
 
-推荐使用飞桨官方发布的寒武纪 MLU 开发镜像，该镜像预装有[寒武纪基础软件开发平台](https://developer.cambricon.com/)。
+您可以基于 docker、pip、源码等不同方式准备飞桨开发环境
+
+### 基于 Docker 的方式（推荐）
+
+我们推荐使用飞桨官方发布的寒武纪 MLU 开发镜像，该镜像预装有[寒武纪基础软件开发平台](https://developer.cambricon.com/)和飞桨 3.0 版本的 SDK。
 
 ```bash
 # 拉取镜像
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:ctr2.15.0-ubuntu20-gcc84-py310
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:3.0.0-ctr2.15.0-ubuntu20-gcc84-py310
 ```
 ```bash
 # 参考如下命令，启动容器
@@ -33,7 +37,7 @@ docker run -it --name paddle-mlu-dev -v $(pwd):/work \
   -w=/work --shm-size=128G --network=host --privileged  \
   --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
   -v /usr/bin/cnmon:/usr/bin/cnmon \
-  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:ctr2.15.0-ubuntu20-gcc84-py310 /bin/bash
+  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-mlu:3.0.0-ctr2.15.0-ubuntu20-gcc84-py310 /bin/bash
 ```
 #### 选项说明及可调整参数
 
@@ -79,46 +83,36 @@ cnmon
 +------------------------------------------------------------------------------+
 ```
 
-## 安装飞桨框架
-
-**注意**：当前飞桨 develop 分支仅支持 X86 架构，暂不支持寒武纪 MLU 的 ARM 架构。
-
-### 安装方式一：wheel 包安装
-
-寒武纪支持插件式安装，需先安装飞桨 CPU 安装包，再安装飞桨 MLU 插件包。在启动的 docker 容器中，执行以下命令：
+### 基于 pip 安装的方式
 
 ```bash
-# 先安装飞桨 CPU 安装包
-pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
-
-# 再安装飞桨 MLU 插件包
-pip install paddle-custom-mlu -i https://www.paddlepaddle.org.cn/packages/nightly/mlu
+# 下载并安装 wheel 包
+python -m pip install paddlepaddle==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+python -m pip install paddle-custom-mlu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/mlu/
 ```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
-### 安装方式二：源代码编译安装
 
-在启动的 docker 容器中，先安装飞桨 CPU 安装包，再下载 PaddleCustomDevice 源码编译得到飞桨 MLU 插件包。
+### 基于源码编译的方式
 
 ```bash
 # 下载 PaddleCustomDevice 源码
-git clone https://github.com/PaddlePaddle/PaddleCustomDevice
+git clone https://github.com/PaddlePaddle/PaddleCustomDevice -b release/3.0.0
 
 # 进入硬件后端(寒武纪 MLU)目录
 cd PaddleCustomDevice/backends/mlu
 
 # 先安装飞桨 CPU 安装包
-pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
+python -m pip install paddlepaddle==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 
 # 执行编译脚本 - submodule 在编译时会按需下载
 bash tools/compile.sh
 
 # 飞桨 MLU 插件包在 build/dist 路径下，使用 pip 安装即可
-pip install build/dist/paddle_custom_mlu*.whl
+python -m pip install build/dist/paddle_custom_mlu*.whl
 ```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
+
 ## 基础功能检查
 
-安装完成后，在 docker 容器中输入如下命令进行飞桨基础健康功能的检查。
+输入如下命令进行飞桨基础健康功能的检查。
 
 ```bash
 # 检查当前安装版本
@@ -126,13 +120,13 @@ python -c "import paddle_custom_device; paddle_custom_device.mlu.version()"
 ```
 ```bash
 # 预期得到如下输出结果
-version: 0.0.0
-commit: 147d506b2baa1971ab47b4550f0571e1f6b201fc
-cntoolkit: 3.8.2
-cnnl: 1.23.2
-cnnl_extra: 1.6.1
-cncl: 1.14.0
-mluops: 0.11.0
+version: 3.0.0
+commit: e6e31bd475e38c18d2c39d58fad903bd16b3ca0d
+cntoolkit: 3.10.1
+cnnl: 1.25.1
+cnnl_extra: 1.8.1
+cncl: 1.16.0
+mluops: 1.1.1
 ```
 ```bash
 # 飞桨基础健康检查
@@ -144,12 +138,4 @@ Running verify PaddlePaddle program ...
 PaddlePaddle works well on 1 mlu.
 PaddlePaddle works well on 8 mlus.
 PaddlePaddle is installed successfully! Let's start deep learning with PaddlePaddle now.
-```
-
-## 如何卸载
-
-请使用以下命令卸载：
-
-```bash
-pip uninstall paddlepaddle paddle-custom-mlu
 ```

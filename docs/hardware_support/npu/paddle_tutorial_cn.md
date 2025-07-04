@@ -8,32 +8,16 @@
 
 * 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备：
 
-  * x86_64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-npu-base-x86_64-gcc84
+  * x86_64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0-cann800-ubuntu20-npu-910b-x86_64-gcc84-py310
 
-  * aarch64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-npu-base-aarch64-gcc84
+  * aarch64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:3.0.0-cann800-ubuntu20-npu-910b-aarch64-gcc84-py310
 
-  * 镜像中已经默认安装了昇腾算子库 CANN-8.0.RC2
+  * 镜像中已经默认安装了昇腾算子库 CANN-8.0.0
 
 * 昇腾驱动版本为 23.0.3
 
-### 环境安装
+* 镜像中默认装有 3.0 版本的 PaddlePaddle
 
-1. 安装 PaddlePaddle
-
-*该命令会自动安装飞桨主框架每日自动构建的 nightly-build 版本*
-
-```shell
-python -m pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
-```
-
-2. 安装 CustomDevice
-
-*该命令会自动安装飞桨 Custom Device 每日自动构建的 nightly-build 版本*
-
-```shell
-python -m pip install paddle-custom-npu -i https://www.paddlepaddle.org.cn/packages/nightly/npu/
-```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ## 二、运行示例
 
 飞桨框架集成了经典的视觉模型用于帮助用户快速上手，我们将基于 ResNet50 结构，在 Cifar10 数据集上进行一次快速训练，用于帮助您了解如何基于昇腾 NPU 进行训练（和 GPU 训练代码相比，差异点仅为 `paddle.set_device("npu")`）

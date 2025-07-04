@@ -8,7 +8,7 @@
 
 * 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备：
 
-  * 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-gcu:topsrider3.2.109-ubuntu20-x86_64-gcc84
+  * 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-gcu:3.0.0-topsrider3.2.109-ubuntu20-x86_64-gcc84-py310
 
   * 镜像中已经默认安装了燧原软件栈 TopsRider-3.2.109
 
@@ -16,23 +16,9 @@
 
 ### 环境安装
 
-1. 安装 PaddlePaddle
+1. 镜像中默认装有 3.0 版本的 PaddlePaddle，无需额外安装
 
-*该命令会自动安装飞桨主框架每日自动构建的 nightly-build 版本*
-
-```shell
-python -m pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
-```
-
-2. 安装 CustomDevice
-
-*该命令会自动安装飞桨 Custom Device 每日自动构建的 nightly-build 版本*
-
-```shell
-python -m pip install paddle-custom-gcu -i https://www.paddlepaddle.org.cn/packages/nightly/gcu/
-```
-
-3. 安装 PaddleX 代码库
+2. 安装 PaddleX 代码库
 
 ```shell
 git clone https://github.com/PaddlePaddle/PaddleX.git
@@ -46,7 +32,7 @@ cd PaddleX
 # -e：以可编辑模式安装，当前项目的代码更改，都会直接作用到已经安装的 PaddleX Wheel
 pip install -e .
 ```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
+
 ## 基于 PaddleX 进行 ResNet50 推理
 
 ### 一、安装 PaddleX 依赖
