@@ -24,7 +24,7 @@ python -m pip install  --pre paddlepaddle -i https://www.paddlepaddle.org.cn/pac
 python -m pip install --pre paddle-metax-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/maca/
 ```
 
-
+### 安装方式二：源代码编译安装
 在启动的 docker 容器中，先安装飞桨 CPU 安装包，再下载 PaddleCustomDevice 源码编译得到飞桨 C500 插件包。
 
 ```bash
@@ -50,9 +50,11 @@ bash compile.sh      # 可执行多次
 # 编译产出在 build/dist 路径下，使用 pip 安装
 pip install build/dist/*.whl --force-reinstall
 
-
+```
 ## 如何卸载
 
 请使用以下命令卸载 Paddle:
 
+```bash
 pip uninstall paddlepaddle paddle-metax-gpu
+```
