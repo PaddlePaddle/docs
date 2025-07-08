@@ -19,9 +19,9 @@
 沐曦曦云 C500 支持插件式安装，需先安装飞桨 CPU 安装包，再安装飞桨 沐曦 插件包：
 ```bash
 # 先安装飞桨 CPU 安装包
-python -m pip install  --pre paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
+python -m pip install paddlepaddle==3.1.0a0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 # 再安装飞桨 曦云 C500 插件包
-python -m pip install --pre paddle-metax-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/maca/
+python -m pip install paddle-metax-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/maca/
 ```
 
 ### 安装方式二：源代码编译安装
@@ -29,7 +29,7 @@ python -m pip install --pre paddle-metax-gpu -i https://www.paddlepaddle.org.cn/
 
 ```bash
 # 下载 PaddleCustomDevice 源码
-git clone https://github.com/PaddlePaddle/PaddleCustomDevice.git
+git clone https://github.com/PaddlePaddle/PaddleCustomDevice -b release/3.1
 
 # 在 PaddleCUstomDevice 根目录下执行以下指令更新子模块代码
 git submodule sync
@@ -39,7 +39,7 @@ git submodule update --init --recursive
 cd backends/metax_gpu
 
 # 先安装飞桨 CPU 安装包
-python -m pip install  --pre paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
+python -m pip install paddlepaddle==3.1.0a0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 
 # 编译安装
 bash build_in_metax.sh

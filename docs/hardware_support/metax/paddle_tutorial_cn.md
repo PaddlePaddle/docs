@@ -19,16 +19,16 @@
 
 1. 安装 PaddlePaddle
 
-*该命令会自动安装飞桨主框架每日自动构建的 nightly-build 版本*
+*该命令会自动安装飞桨主框架每日自动构建的 release-3.1-build 版本*
 
 ```shell
-python -m pip install  --pre paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
+python -m pip install paddlepaddle==3.1.0a0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 ```
 
 2. 安装 CustomDevice
 
-*该命令会自动安装飞桨 Custom Device 每日自动构建的 nightly-build 版本*
+*该命令会自动安装飞桨 Custom Device 构建的 release-3.1-build 版本*
 
 ```shell
-python -m pip install --pre paddle-metax-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/maca/
+python -m pip install paddle-metax-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/maca/
 ```
