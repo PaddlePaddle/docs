@@ -133,7 +133,7 @@ python -c "import paddle_custom_device; paddle_custom_device.npu.version()"
 # 预期得到如下输出结果
 version: 0.0.0
 commit: 147d506b2baa1971ab47b4550f0571e1f6b201fc
-cann: 8.0.RC2
+cann: 8.0.0
 ....
 ```
 ```bash

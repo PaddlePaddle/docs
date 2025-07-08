@@ -12,7 +12,7 @@
 
   * aarch64 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann800-ubuntu20-npu-910b-base-aarch64-gcc84
 
-  * 镜像中已经默认安装了昇腾算子库 CANN-8.0.RC2
+  * 镜像中已经默认安装了昇腾算子库 CANN-8.0.0
 
 * 昇腾驱动版本为 23.0.3
 
