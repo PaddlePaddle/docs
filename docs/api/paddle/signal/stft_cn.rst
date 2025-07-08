@@ -4,7 +4,7 @@ stft
 -------------------------------
 
 
-.. py:function:: paddle.signal.stft(x, n_fft, hop_length=None, win_length=None, window=None, center=True, pad_mode='reflect', normalized=False, onesided=True, name=None)
+.. py:function:: paddle.signal.stft(x, n_fft, hop_length=None, win_length=None, window=None, center=True, pad_mode='reflect', normalized=False, onesided=None, name=None)
 
 短时傅里叶变换。
 
@@ -47,7 +47,7 @@ stft
   数；
 - **onesided** (bool，可选) - 当输入为实信号时，选择是否只返回傅里叶变换结果的一半的频点
   值（输入信号和窗函数均为实数时，傅里叶变换结果具有共轭对称性）。如果输入的信号或者窗函数的
-  数据类型是复数，则此时不能设置为 ``True``。默认为 ``True``；
+  数据类型是复数，则此时不能设置为 ``True``。默认为 ``None``；
 - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
