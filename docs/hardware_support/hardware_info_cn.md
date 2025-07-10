@@ -17,7 +17,7 @@
 | AI 加速芯片 |  | 壁仞 | BR100、BR104 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/biren_gpu/README_cn.md) |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice) |
 | AI 加速芯片 |  | 燧原 | 云燧 T20 、i20、S60 |  |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/gcu/README_cn.md) |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice)  |
 | AI 加速芯片 |  | 太初 | 元碁系列 | [安装](./sdaa/install_cn.html#wheel) |  [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/sdaa/README_cn.md)  |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice)  |
-
+| AI 加速芯片 | | 沐曦 | 曦云 C 系列 | [安装](./metax/install_cn.md#wheel) | [源码编译](https://github.com/PaddlePaddle/PaddleCustomDevice/blob/develop/backends/metax_gpu/README_cn.md) |[代码仓库](https://github.com/PaddlePaddle/PaddleCustomDevice) |
 
 ## FastDeploy
 
@@ -81,7 +81,7 @@
 |  AI 加速芯片 | 海飞科 | Compass C10 | ✔️  | [模型库](https://github.com/hexaflakeai/model_zoo) |
 |  AI 加速芯片 | 清微智能 | TX5368 | ✔️  | [模型库](https://github.com/tsingmicro-toolchain/ts.knight-modelzoo) |
 |  AI 加速芯片 | 爱芯元智 | AX620A | ✔️  | [模型库](https://github.com/AXERA-TECH/ax-samples/tree/main) |
-|  AI 加速芯片 | 沐曦 | N100 | ✔️  | [模型库](https://github.com/denglin-github/DLPaddleModelZoo) |
+|  AI 加速芯片 | 沐曦 | N100 | ✔️ | [模型库](https://gitee.com/metax-maca/modelzoo/tree/master/paddlepaddle) |
 |  AI 加速芯片 | 希姆计算 | STCP920 | ✔️  | [模型库](https://github.com/Stream-Computing/STCPaddleModelZoo) |
 
 ## TVM
