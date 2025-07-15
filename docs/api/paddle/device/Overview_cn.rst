@@ -85,6 +85,7 @@ Stream 与 Event 相关 API
     " :ref:`current_stream <cn_api_paddle_device_current_stream>` ", "通过 device 返回当前的 stream"
     " :ref:`set_stream <cn_api_paddle_device_set_stream>` ", "设置当前的 stream"
     " :ref:`stream_guard <cn_api_paddle_device_stream_guard>` ", "切换当前的 stream 为输入指定的 stream，该 API 目前仅支持动态图模式"
+    " :ref:`device_guard <cn_api_paddle_device_device_guard>` ", "切换当前的 device 为输入指定的 device，该 API 目前仅支持动态图模式"
     " :ref:`synchronize <cn_api_paddle_device_synchronize>` ", "等待给定的设备上的计算完成"
 
 
