@@ -21,7 +21,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | size_average | -            | 已废弃，和 reduce 组合决定损失计算方式。       |
 | reduce       | -            | 已废弃，和 size_average 组合决定损失计算方式。 |
 | reduction    | reduction    | 指定应用于输出结果的计算方式。                 |
-| -            | name         | Paddle 支持的操作名称，PyTorch 无此参数。     |
 
 ### 转写示例
 
