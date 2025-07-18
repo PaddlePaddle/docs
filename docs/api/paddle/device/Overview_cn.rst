@@ -11,9 +11,10 @@ paddle.device
 -  :ref:`Stream 与 Event 辅助类 <cn_device_stream_event>`
 -  :ref:`Stream 与 Event 相关 API <cn_device_stream_event_api>`
 
-paddle.device 目录下包含 cuda 目录， cuda 目录中存放 CUDA 相关的 API。具体如下：
+paddle.device 目录下包含 cuda 目录和 xpu 目录， cuda 目录中存放 CUDA 相关的 API， xpu 目录中存放 XPU 相关的 API。具体如下：
 
 -  :ref:`CUDA 相关 <cn_device_cuda>`
+-  :ref:`XPU 相关 <cn_device_xpu>`
 
 .. _cn_device_setting:
 
@@ -114,3 +115,26 @@ CUDA 相关
     " :ref:`reset_max_memory_reserved <cn_api_paddle_device_cuda_reset_max_memory_reserved>` ", "重置给定设备上由 Allocator 管理的显存峰值统计"
     " :ref:`stream_guard <cn_api_paddle_device_cuda_stream_guard>` ", "切换当前的 CUDA stream 为输入指定的 stream，该 API 目前仅支持动态图模式"
     " :ref:`synchronize <cn_api_paddle_device_cuda_synchronize>` ", "等待给定的 CUDA 设备上的计算完成"
+
+
+.. _cn_device_xpu:
+
+XPU 相关
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`device_count <cn_api_paddle_device_xpu_device_count>` ", "返回值是 int，表示当前程序可用的 XPU 数量"
+    " :ref:`empty_cache <cn_api_paddle_device_xpu_empty_cache>` ", "用于释放显存分配器中空闲的显存"
+    " :ref:`max_memory_allocated <cn_api_paddle_device_xpu_max_memory_allocated>` ", "返回给定设备上分配给 Tensor 的显存峰值统计"
+    " :ref:`max_memory_reserved <cn_api_paddle_device_xpu_max_memory_reserved>` ", "返回给定设备上由 Allocator 管理的显存峰值统计"
+    " :ref:`memory_allocated <cn_api_paddle_device_xpu_memory_allocated>` ", "返回给定设备上当前分配给 Tensor 的显存大小"
+    " :ref:`memory_reserved <cn_api_paddle_device_xpu_memory_reserved>` ", "返回给定设备上当前由 Allocator 管理的显存大小"
+    " :ref:`memory_used <cn_api_paddle_device_xpu_memory_used>` ", "返回给定设备上 XPU 运行时已使用的显存大小"
+    " :ref:`memory_total <cn_api_paddle_device_xpu_memory_total>` ", "返回给定设备上 XPU 的总显存大小"
+    " :ref:`reset_max_memory_allocated <cn_api_paddle_device_xpu_reset_max_memory_allocated>` ", "重置给定设备上分配给 Tensor 的显存峰值统计"
+    " :ref:`reset_max_memory_reserved <cn_api_paddle_device_xpu_reset_max_memory_reserved>` ", "重置给定设备上由 Allocator 管理的显存峰值统计"
+    " :ref:`set_debug_level <cn_api_paddle_device_xpu_set_debug_level>` ", "设置 XPU API DEBUG 功能的等级，打印算子的调用信息"
+    " :ref:`synchronize <cn_api_paddle_device_xpu_synchronize>` ", "等待给定的 XPU 设备上的计算完成"
