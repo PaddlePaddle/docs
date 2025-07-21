@@ -13,6 +13,8 @@
 - `寒武纪 MLU 芯片运行飞桨 <./mlu/index_cn.html>`_ : 介绍如何在寒武纪 MLU 芯片环境上安装和使用飞桨。
 - `燧原 GCU 芯片运行飞桨 <./gcu/index_cn.html>`_ : 介绍如何在燧原 GCU 芯片环境上安装和使用飞桨。
 - `太初 SDAA 芯片运行飞桨 <./sdaa/index_cn.html>`_ : 介绍如何在太初 SDAA 芯片环境上安装和使用飞桨。
+- `沐曦 GPU 芯片运行飞桨 <./metax/index_cn.html>`_ : 介绍如何在沐曦 GPU 芯片环境上安装和使用飞桨。
+- `天数 GPU 芯片运行飞桨 <./iluvatar_gpu/index_cn.html>`_ : 介绍如何在天数 GPU 芯片环境上安装和使用飞桨。
 
 ..  toctree::
     :hidden:
@@ -24,3 +26,5 @@
     mlu/index_cn.rst
     gcu/index_cn.rst
     sdaa/index_cn.rst
+    metax/index_cn.rst
+    iluvatar_gpu/index_cn.rst
