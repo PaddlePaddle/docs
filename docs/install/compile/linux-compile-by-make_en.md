@@ -35,7 +35,7 @@ The dependencies required for compiling Paddle are pre-installed in the Docker e
 
 Compiling PaddlePaddle with Docker，you need:
 
-- On the local host [Install Docker](https://docs.docker.com/engine/install/)
+- On the local host [Install Docker](https://docs.docker.com/engine/install/),Recommended to use [Docker List]（ https://www.paddlepaddle.org.cn/documentation/docs/zh/install/docker/docker_list.html ）Compile the image in.
 
 - To enable GPU support on Linux, please [Install NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit)
 
