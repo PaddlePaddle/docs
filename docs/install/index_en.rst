@@ -42,7 +42,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 * Python and pip requires 64-bit
 
 **First Installation Method: Using pip for installation**
-You can choose any of the four methods: "Using pip for installation", "Using conda for installation", "Using docker for installation", "Compiling from source code for installation".
+You can choose any of the four methods: "Using pip for installation", "Using docker for installation", "Compiling from source code for installation".
 
 This section will introduce the installation method using pip.
 
@@ -139,7 +139,6 @@ This section will introduce the installation method using pip.
     :hidden:
 
     pip/frompip_en.rst
-    conda/fromconda_en.rst
     docker/fromdocker_en.rst
     compile/fromsource_en.rst
     install_NGC_PaddlePaddle_en.rst
