@@ -39,7 +39,7 @@
 
 **第一种安装方式：使用 pip 安装**
 
-您可以选择“使用 pip 安装”、“使用 conda 安装”、“使用 docker 安装”、“从源码编译安装” 四种方式中的任意一种方式进行安装。
+您可以选择“使用 pip 安装”、“使用 docker 安装”、“从源码编译安装” 四种方式中的任意一种方式进行安装。
 
 本节将介绍使用 pip 的安装方式。
 
@@ -140,7 +140,6 @@
     :hidden:
 
     pip/frompip.rst
-    conda/fromconda.rst
     docker/fromdocker.rst
     compile/fromsource.rst
     install_xpu_cn.md
