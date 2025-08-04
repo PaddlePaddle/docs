@@ -12,7 +12,7 @@ torch.Tensor.requires_grad
 paddle.Tensor.stop_gradient
 ```
 
-两者功能相反，无参数，具体如下：
+Paddle 无此 API，需要组合实现。
 
 ### 转写示例
 #### requires_grad：是否计算梯度
