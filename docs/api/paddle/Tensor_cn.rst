@@ -636,6 +636,210 @@ astype(dtype)
         print("original tensor's dtype is: {}".format(x.dtype))
         print("new tensor's dtype is: {}".format(x.astype('float64').dtype))
 
+bfloat16()
+:::::::::
+
+如果当前 Tensor 已经是 ``bfloat16`` 类型，则返回该 Tensor。否则，返回一个新的 ``bfloat16`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.bfloat16().dtype))
+
+bool()
+:::::::::
+
+如果当前 Tensor 已经是 ``bool`` 类型，则返回该 Tensor。否则，返回一个新的 ``bool`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.bool().dtype))
+
+byte()
+:::::::::
+
+如果当前 Tensor 已经是 ``byte`` 类型，则返回该 Tensor。否则，返回一个新的 ``byte`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.byte().dtype))
+
+char()
+:::::::::
+
+如果当前 Tensor 已经是 ``char`` 类型，则返回该 Tensor。否则，返回一个新的 ``char`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.char().dtype))
+
+double()
+:::::::::
+
+如果当前 Tensor 已经是 ``double`` 类型，则返回该 Tensor。否则，返回一个新的 ``double`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.double().dtype))
+
+float()
+:::::::::
+
+如果当前 Tensor 已经是 ``float`` 类型，则返回该 Tensor。否则，返回一个新的 ``float`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.float().dtype))
+
+half()
+:::::::::
+
+如果当前 Tensor 已经是 ``half`` 类型，则返回该 Tensor。否则，返回一个新的 ``half`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.half().dtype))
+
+int()
+:::::::::
+
+如果当前 Tensor 已经是 ``int`` 类型，则返回该 Tensor。否则，返回一个新的 ``int`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.int().dtype))
+
+long()
+:::::::::
+
+如果当前 Tensor 已经是 ``long`` 类型，则返回该 Tensor。否则，返回一个新的 ``long`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.long().dtype))
+
+short()
+:::::::::
+
+如果当前 Tensor 已经是 ``short`` 类型，则返回该 Tensor。否则，返回一个新的 ``short`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.short().dtype))
+
+cfloat()
+:::::::::
+
+如果当前 Tensor 已经是 ``cfloat`` 类型，则返回该 Tensor。否则，返回一个新的 ``cfloat`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.cfloat().dtype))
+
+cdouble()
+:::::::::
+
+如果当前 Tensor 已经是 ``cdouble`` 类型，则返回该 Tensor。否则，返回一个新的 ``cdouble`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.cdouble().dtype))
+
 atan(name=None)
 :::::::::
 
