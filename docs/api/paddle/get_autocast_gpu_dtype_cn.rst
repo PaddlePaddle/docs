@@ -1,4 +1,4 @@
-.. _cn_api_get_autocast_gpu_dtype:
+.. _cn_api_paddle_get_autocast_gpu_dtype:
 
 get_autocast_gpu_dtype
 -------------------------------

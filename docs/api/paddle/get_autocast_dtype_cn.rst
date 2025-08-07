@@ -1,4 +1,4 @@
-.. _cn_api_get_autocast_dtype:
+.. _cn_api_paddle_get_autocast_dtype:
 
 get_autocast_dtype
 -------------------------------
@@ -24,4 +24,4 @@ get_autocast_dtype
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.get_autocast_gpu_dtype
+COPY-FROM: paddle.amp.get_autocast_dtype

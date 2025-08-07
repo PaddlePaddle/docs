@@ -1,4 +1,4 @@
-.. _cn_api_is_autocast_enabled:
+.. _cn_api_paddle_is_autocast_enabled:
 
 is_autocast_enabled
 -------------------------------
@@ -24,4 +24,4 @@ is_autocast_enabled
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.is_autocast_enabled
+COPY-FROM: paddle.amp.is_autocast_enabled
