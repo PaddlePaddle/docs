@@ -20,10 +20,14 @@ pad
     3. 当 ``mode`` 为 ``'reflect'``、 ``'replicate'``、 ``'circular'``，或 ``pad`` 是 Tensor，或 ``pad`` 的长度是 2*(N-2) 时，``x`` 的维数只支持 3-D、4—D、5-D。此时 pad 作用在相应 ``data_format`` 的 [D, H, W] 轴上，顺序是从 [D, H, W] 轴的最后一维到第一维。具体地，当 N=3 时，pad 的格式为[pad_left, pad_right]；当 N=4 时，pad 的格式为[pad_left, pad_right, pad_top, pad_bottom]；当 N=5 时，pad 的格式为[pad_left, pad_right, pad_top, pad_bottom, pad_front, pad_back]。
     4. 如果 ``mode`` 为 ``reflect``，则 ``x`` 对应 [D, H, W] 维度上的长度必须大于对应的 ``pad`` 值。
 
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``。
+
 参数
 ::::::::::::
 
   - **x** (Tensor) - Tensor，format 可以为 ``'NCL'``、``'NLC'``、``'NCHW'``、``'NHWC'``、``'NCDHW'`` 或 ``'NDHWC'``，默认值为 ``'NCHW'``，数据类型支持 float16、float32、float64、int32、int64、complex64、complex128。
+  - **input** - ``x``的别名，行为完全一致。
   - **pad** (Tensor|list[int]|tuple[int]) - 填充大小，基本数据类型是整数类型。具体设置请参照 Note（注解）。
 
   - **mode** (str，可选) - padding 的四种模式，分别为 ``'constant'``、``'reflect'``、``'replicate'`` 和 ``'circular'``，

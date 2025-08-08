@@ -5,12 +5,15 @@ is_complex
 
 .. py:function:: paddle.is_complex(x)
 
-
 判断输入 tensor 的数据类型是否为复数类型(complex64 或者 complex128)。
+
+.. note::
+别名支持: 参数名 ``input`` 可替代 ``x``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``。
 
 参数
 :::::::::
    - **x** (Tensor) - 输入 Tensor
+   - **input** - ``x``的别名，行为完全一致。
 
 
 返回

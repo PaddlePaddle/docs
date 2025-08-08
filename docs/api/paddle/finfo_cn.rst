@@ -11,10 +11,14 @@ finfo
 
 其功能类似 `numpy.finfo <https://numpy.org/doc/stable/reference/generated/numpy.finfo.html#numpy-finfo>`_ 。
 
+.. note::
+别名支持: 参数名 ``type`` 可替代 ``dtype``，如 ``type=paddle.float32`` 等价于 ``dtype=paddle.float32``。
+
 
 参数
 :::::::::
     - **dtype** (paddle.dtype|str) - 输入的数据类型，可以是：paddle.float16、 paddle.float32、 paddle.float64、 paddle.bfloat16、 paddle.complex64、 paddle.complex128 或这些类型的字符串形式。
+    - **type** - ``dtype``的别名，行为完全一致。
 
 返回
 :::::::::
