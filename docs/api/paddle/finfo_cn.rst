@@ -12,7 +12,7 @@ finfo
 其功能类似 `numpy.finfo <https://numpy.org/doc/stable/reference/generated/numpy.finfo.html#numpy-finfo>`_ 。
 
 .. note::
-别名支持: 参数名 ``type`` 可替代 ``dtype``，如 ``type=paddle.float32`` 等价于 ``dtype=paddle.float32``。
+   别名支持: 参数名 ``type`` 可替代 ``dtype``，如 ``type=paddle.float32`` 等价于 ``dtype=paddle.float32``。
 
 
 参数
