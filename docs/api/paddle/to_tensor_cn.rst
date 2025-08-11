@@ -13,7 +13,7 @@ to_tensor
 否则会创建一个新的 Tensor，且不保留原来计算图。
 
 .. note::
-别名支持: 参数名 ``device`` 可替代 ``place``，如 ``device=paddle.CUDAPlace(0)`` 等价于 ``place=paddle.CUDAPlace(0)``。
+    别名支持: 参数名 ``device`` 可替代 ``place``，如 ``device=paddle.CUDAPlace(0)`` 等价于 ``place=paddle.CUDAPlace(0)``。
 
 .. code-block:: text
 
