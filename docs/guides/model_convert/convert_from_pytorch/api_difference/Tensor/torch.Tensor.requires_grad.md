@@ -15,7 +15,6 @@ paddle.Tensor.stop_gradient
 Paddle 无此 API，需要组合实现。
 
 ### 转写示例
-#### requires_grad：是否计算梯度
 ```python
 # 当 torch 写法
 x.requires_grad = True
@@ -28,4 +27,10 @@ x.requires_grad = False
 
 # paddle 写法
 x.stop_gradient = True
+
+# torch 写法
+x.requires_grad
+
+# paddle 写法
+not x.stop_gradient
 ```
