@@ -495,7 +495,7 @@ acos(name=None)
 
 请参考 :ref:`cn_api_paddle_acos`
 
-add(y, name=None)
+add(y, name=None, *, alpha=1, out=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -504,7 +504,7 @@ add(y, name=None)
 
 请参考 :ref:`cn_api_paddle_add`
 
-add_(y, name=None)
+add_(y, name=None, *, alpha=1, out=None)
 :::::::::
 
 Inplace 版本的 :ref:`cn_api_paddle_add` API，对输入 `x` 采用 Inplace 策略。
