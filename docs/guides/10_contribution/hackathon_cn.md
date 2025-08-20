@@ -11,11 +11,11 @@
 
 对深度学习感兴趣的你，快来参加活动吧，更有机会获得现金奖励以及来自百度和开源社区技术大咖们的指导与经验分享，更多奖励等你来拿。
 
-> 第九期黑客松任务总览：https://github.com/PaddlePaddle/Paddle/issues/74
+> 第九期黑客松任务总览：https://github.com/PaddlePaddle/Paddle/issues/74777
 
 ### 1. 开源贡献个人挑战赛
 
-贡献任务详见 issue： **https://github.com/PaddlePaddle/Paddle/issues/74**
+贡献任务详见 issue： **https://github.com/PaddlePaddle/Paddle/issues/74773**
 
 以开源贡献为核心，发布 **4+** 开源项目的 **100+** 贡献任务，开源项目包括：飞桨核心框架、飞桨科学计算、飞桨各套件等。**开发者使用 GitHub ID 报名，独立完成具有明确验收目标的贡献任务，获得对应的任务奖励。**
 
@@ -71,7 +71,7 @@
 集训项目详见 issue：
 
 - 提前批： https://github.com/PaddlePaddle/Paddle/issues/74285
-- 正式批： https://github.com/PaddlePaddle/Paddle/issues/74
+- 正式批： https://github.com/PaddlePaddle/Paddle/issues/74775
 
 #### 2.1 活动流程
 
@@ -140,7 +140,7 @@
 
 ### 3. Fundable Projects
 
-贡献任务详见 issue： **https://github.com/PaddlePaddle/Paddle/issues/74**
+贡献任务详见 issue： **https://github.com/PaddlePaddle/Paddle/issues/74774**
 
 定位**硬核项目**，要求开发者能够**独立拆解任务需求、梳理开发路径，并且号召社区共同实现某一功能需求**，最终以功能完成度为标准发放奖金。
 
@@ -222,7 +222,7 @@ RFC 通过并合入后形成 Tracking Issue。原则上完成 RFC 的开发者�
 
 ### 4. 文心大模型案例征集
 
-活动报名详见 issue： **https://github.com/PaddlePaddle/Paddle/issues/74**
+活动报名详见 issue： **https://github.com/PaddlePaddle/Paddle/issues/74776**
 
 **背景**
 
