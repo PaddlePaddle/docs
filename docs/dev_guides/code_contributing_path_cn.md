@@ -164,14 +164,15 @@ Tabs remover (C++)...................................(no files to check)Skipped
 Tabs remover (Python)....................................................Passed
 copyright_checker........................................................Passed
 typos....................................................................Passed
-black....................................................................Passed
-ruff.....................................................................Passed
+ruff check...............................................................Passed
+ruff format..............................................................Passed
 clang-format.........................................(no files to check)Skipped
 cpplint..............................................(no files to check)Skipped
 clang-tidy...........................................(no files to check)Skipped
 auto-generate-cmakelists.............................(no files to check)Skipped
 cmake-format.........................................(no files to check)Skipped
 CMake Lint...........................................(no files to check)Skipped
+yamlfmt..................................................................Passed
 sort-txt-file........................................(no files to check)Skipped
 [my-cool-stuff e309f4805e] add a new file test.md
  1 file changed, 0 insertions(+), 0 deletions(-)
