@@ -18,7 +18,7 @@ repeat_interleave
        :align: center
 
 .. note::
-    别名支持: 参数名 ``input`` 可替代 ``x``和 ``dim`` 可替代 ``axis``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``dim=1`` 等价于 ``axis=1``。
+    别名支持: 参数名 ``input`` 可替代 ``x`` 和 ``dim`` 可替代 ``axis``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``dim=1`` 等价于 ``axis=1``。
 
 参数
 :::::::::
