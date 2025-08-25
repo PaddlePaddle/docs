@@ -13,7 +13,7 @@ PyTorch 兼容的 :ref:`cn_api_paddle_split` 版本，允许了非整除的 ``sp
 .. _【输入参数用法不一致】torch.split: https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.split.html
 
 .. note::
-    此 API 遵循 `torch.split`` 的函数签名和行为以实现 PyTorch 兼容。
+    此 API 遵循 ``torch.split`` 的函数签名和行为以实现 PyTorch 兼容。
     如需使用 Paddle 原生实现，请参考 :ref:`cn_api_paddle_split`
 
 参数
