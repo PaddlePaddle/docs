@@ -24,9 +24,9 @@ divide
 参数
 :::::::::
         - **x** (Tensor) - 多维 Tensor。数据类型为 bool、bfloat16、float16、float32、float64、int8、int16、int32、int64、uint8、complex64、complex128。
-                ``别名: input``
+          ``别名: input``
         - **y** (Tensor) - 多维 Tensor。数据类型为 bool、bfloat16、float16、float32、float64、int8、int16、int32、int64、uint8、complex64、complex128。
-                ``别名: other``
+          ``别名: other``
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
         - **rounding_mode** (str，可选) - 舍入模式。可选值为 None（默认）、"trunc"（向零截断）或 "floor"（向负无穷舍入）。
         - **out** (Tensor，可选) - 输出 Tensor。默认值为 None。

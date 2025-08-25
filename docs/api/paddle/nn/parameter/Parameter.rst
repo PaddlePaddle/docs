@@ -4,6 +4,7 @@ Parameter
 -------------------------------
 
 .. py:class:: paddle.nn.parameter.Parameter(data=None, requires_grad=True)
+
 一种被视为模型参数的 Tensor。
 
 Parameter 是 Tensor 的子类，当与 ``Layer`` 一起使用时具有特殊行为 - 当被赋值给 Layer 的属性时，会自动添加到该层的参数列表中。普通 Tensor 不会有此效果。
