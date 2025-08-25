@@ -16,7 +16,7 @@ broadcast_to
     :align: center
 
 .. note::
-    别名支持: 参数名 ``input`` 可替代 ``x``和 ``size`` 可替代 ``shape``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``size=[2, 3]`` 等价于 ``shape=[2, 3]``。
+    别名支持: 参数名 ``input`` 可替代 ``x`` 和 ``size`` 可替代 ``shape``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``size=[2, 3]`` 等价于 ``shape=[2, 3]``。
 
 参数
 :::::::::
