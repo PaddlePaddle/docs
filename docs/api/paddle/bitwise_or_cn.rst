@@ -16,7 +16,7 @@ bitwise_or
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
 .. note::
-    别名支持: 参数名 ``input`` 可替代 ``x``和 ``other`` 可替代 ``y``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``other=tensor_y`` 等价于 ``y=tensor_y``。
+    别名支持: 参数名 ``input`` 可替代 ``x`` 和 ``other`` 可替代 ``y``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``other=tensor_y`` 等价于 ``y=tensor_y``。
 
 参数
 ::::::::::::
