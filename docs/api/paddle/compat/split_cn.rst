@@ -24,7 +24,7 @@ PyTorch 兼容的 :ref:`cn_api_paddle_split` 版本，允许了非整除的 ``sp
 
 返回
 :::::::::
-tuple(Tensor) - 分割后的 Tensor 元组
+tuple(Tensor)，分割后的 Tensor 元组
 
 
 代码示例

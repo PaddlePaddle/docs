@@ -37,7 +37,7 @@ PyTorch 兼容的 :ref:`cn_api_paddle_nn_Unfold` 版本：
 参数
 :::::::::::
 
-        - **kernel_size** (int|list|tuple|Tensor) - 卷积核尺寸。接受 ``[k_h, k_w]`` 或整数 ``k``（视为 ``[k, k]``）
+        - **kernel_size** (int|list|tuple|Tensor) - 卷积核尺寸。接受 ``[k_h, k_w]`` 或整数 ``k`` （视为  ``[k, k]``）
         - **dilation** (int|list|tuple|Tensor, 可选) - 卷积膨胀系数。接受单整数或 ``[dilation_h, dilation_w]``。单整数 ``dilation`` 视为 ``[dilation, dilation]``。默认为 1
         - **padding** (int|list|tuple|Tensor, 可选) - 各维度填充大小。接受单整数或 ``[padding_h, padding_w]``。``[padding_h, padding_w]`` 将扩展为 ``[padding_h, padding_w, padding_h, padding_w]``。单整数 ``padding`` 将转为 ``[padding, padding, padding, padding]``。默认为 0
         - **stride** (int|list|tuple|Tensor, 可选) - 滑动步长。接受单整数或 ``[stride_h, stride_w]``。单整数 ``stride`` 视为 ``[stride, stride]``。默认为 1
