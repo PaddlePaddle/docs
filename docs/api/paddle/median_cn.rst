@@ -8,7 +8,7 @@ median
 沿给定的轴 ``axis`` 计算 ``x`` 中元素的中位数。
 
 .. note::
-    别名支持: 参数名 ``input`` 可替代 ``x``和 ``dim`` 可替代 ``axis``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``dim=1`` 等价于 ``axis=1``。
+    别名支持: 参数名 ``input`` 可替代 ``x`` 和 ``dim`` 可替代 ``axis``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``dim=1`` 等价于 ``axis=1``。
     当出现别名替换时， ``mode`` 设置默认参数为 ``min`` 而不是 ``avg``。
 
 参数
