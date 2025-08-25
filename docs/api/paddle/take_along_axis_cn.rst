@@ -7,7 +7,7 @@ take_along_axis
 基于输入索引矩阵，沿着指定 axis 从 arr 矩阵里选取 1d 切片。索引矩阵必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
 
 .. note::
-    别名支持: 参数名 ``input`` 可替代 ``arr``和 ``dim`` 可替代 ``axis``，如 ``input=tensor_arr`` 等价于 ``arr=tensor_arr``， ``dim=1`` 等价于 ``axis=1``。
+    别名支持: 参数名 ``input`` 可替代 ``arr`` 和 ``dim`` 可替代 ``axis``，如 ``input=tensor_arr`` 等价于 ``arr=tensor_arr``， ``dim=1`` 等价于 ``axis=1``。
 
 参数
 :::::::::
