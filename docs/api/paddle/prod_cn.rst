@@ -10,7 +10,7 @@ prod
 对指定维度上的 Tensor 元素进行求乘积运算，并输出相应的计算结果。
 
 .. note::
-    别名支持: 参数名 ``input`` 可替代 ``x``和 ``dim`` 可替代 ``axis``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``dim=1`` 等价于 ``axis=1``。
+    别名支持: 参数名 ``input`` 可替代 ``x`` 和 ``dim`` 可替代 ``axis``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``dim=1`` 等价于 ``axis=1``。
 
 参数
 ::::::::::::
