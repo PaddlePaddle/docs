@@ -14,7 +14,7 @@ diff
     高阶的前向差值可以通过递归的方式进行计算，`n`的值支持任意正整数。
 
 .. note::
-    别名支持: 参数名 ``input`` 可替代 ``x``和 ``dim`` 可替代 ``axis``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``dim=1`` 等价于 ``axis=1``。
+    别名支持: 参数名 ``input`` 可替代 ``x`` 和 ``dim`` 可替代 ``axis``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``dim=1`` 等价于 ``axis=1``。
 
 参数
 ::::::::::::
