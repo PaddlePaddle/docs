@@ -47,12 +47,19 @@ flatten
    :alt: 图例
    :width: 700
 
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x`` 、 ``start_dim`` 可替代 ``start_axis`` 和 ``ehd_dim`` 可替代 ``stop_axis``。
+    如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``start_dim=1`` 等价于 ``start_axis=1`` 和 ``ehd_dim=1`` 等价于 ``stop_axis=1``。
+
 参数
 ::::::::::::
 
   - **x** (Tensor) - 多维 Tensor，数据类型可以为 float16、float32、float64、int8、int32 或 int64。
+  - **input** - ``x`` 的别名，行为完全一致。
   - **start_axis** (int) - flatten 展开的起始维度。
+  - **start_dim** - ``start_axis`` 的别名，行为完全一致。
   - **stop_axis** (int) - flatten 展开的结束维度。
+  - **end_dim** - ``stop_axis`` 的别名，行为完全一致。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
