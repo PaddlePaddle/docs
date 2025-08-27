@@ -12,16 +12,16 @@ index_select
 .. note::
     别名支持: 参数名 ``input`` 可替代 ``x``， ``dim`` 可替代 ``axis`` 。
     参数顺序支持: 支持 PyTorch 参数顺序 ``(input, dim, index)`` 作为位置参数传入，可转换为 Paddle 顺序 ``(x, index, axis)``。
-    例如 ``paddle.index_select(input=x, dim=1, index=idx)`` 等价于 ``paddle.index_select(x=x, axis=1, index=idx)``， ``paddle.index_select(x, 1, idx)`` 等价于 ``paddle.index_select(x, idx, axis=1)``。
+    如 ``(input=x, dim=1, index=idx)`` 等价于 ``(x=x, index=idx, axis=1)``， ``(x, 1, idx)`` 等价于 ``(x, idx, axis=1)``。
 
 参数
 :::::::::
 
     - **x** （Tensor） - 输入 Tensor。 ``x`` 的数据类型可以是 float16，float32，float64，int32，int64，complex64，complex128。
-    - **input** （Tensor） - ``x`` 的别名，行为完全一致。
+        别名： ``input``
     - **index** （Tensor） - 包含索引下标的 1-D Tensor。
     - **axis** （int，可选） - 索引轴，若未指定，则默认选取第 0 维。
-    - **dim** （int，可选） - ``axis`` 的别名，行为完全一致。
+        别名： ``dim``
     - **name** （str，可选） - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 关键字参数
