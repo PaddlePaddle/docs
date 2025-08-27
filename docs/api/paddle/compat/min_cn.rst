@@ -11,6 +11,15 @@ min
 
 .. _【返回参数类型不一致】torch.min: https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.min.html
 
+
+.. caution::
+
+    下面列举的三种功能参数输入方式 **互斥**，混用非公共的参数输入方法将会导致报错，请谨慎使用。
+
+
+=====
+
+
 .. py:function:: paddle.compat.min(x, out=None)
 
 
@@ -28,6 +37,9 @@ min
 返回
 :::::::::
    Tensor，最小值运算的 Tensor（0D），数据类型和输入数据类型一致。
+
+
+=====
 
 
 .. py:function:: paddle.compat.min(x, dim=None, keepdim=False, out=None)
@@ -48,6 +60,8 @@ min
 :::::::::
 MinMaxRetType(Tensor, Tensor)，此处的 ``MinMaxRetType`` 是一个具名元组，含有 ``values`` （在前）和 ``indices`` （在后）两个域，用法与 tuple 一致。
 
+
+=====
 
 
 .. py:function:: paddle.compat.min(x, other, out=None)
@@ -70,6 +84,14 @@ MinMaxRetType(Tensor, Tensor)，此处的 ``MinMaxRetType`` 是一个具名元�
    Tensor，逐元素最小的结果，形状、数据类型与 place 与 ``x`` 一致。
 
 
+=====
+
+
 代码示例
 ::::::::::
+
+.. note::
+
+    以下示例为上述三种不同输入方法对应功能的示例。
+
 COPY-FROM: paddle.compat.min

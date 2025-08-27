@@ -31,8 +31,8 @@ API 文档
 | paddle.callbacks         | 日志回调类，包括 ModelCheckpoint、                                                 |
 |                          | ProgBarLogger 等。                                                                 |
 +--------------------------+------------------------------------------------------------------------------------+
-| paddle.compat            | PyTorch-compatible function and module interfaces, with identical calling methods and behaviors to their PyTorch counterparts.                                             |
-|                          | 行为都与 PyTorch 对应接口一致                                                         |
+| paddle.compat            | PyTorch 兼容的函数与模块，                                                         |
+|                          | 行为与 PyTorch 对应接口一致                                                        |
 +--------------------------+------------------------------------------------------------------------------------+
 | paddle.device            | 设备管理相关 API，包括 set_device、get_device 等。                                 |
 +--------------------------+------------------------------------------------------------------------------------+
