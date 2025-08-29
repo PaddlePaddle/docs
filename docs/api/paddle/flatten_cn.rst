@@ -55,11 +55,11 @@ flatten
 ::::::::::::
 
   - **x** (Tensor) - 多维 Tensor，数据类型可以为 float16、float32、float64、int8、int32 或 int64。
-  - **input** - ``x`` 的别名，行为完全一致。
+    别名： ``input`` 
   - **start_axis** (int) - flatten 展开的起始维度。
-  - **start_dim** - ``start_axis`` 的别名，行为完全一致。
+    别名： ``start_dim`` 
   - **stop_axis** (int) - flatten 展开的结束维度。
-  - **end_dim** - ``stop_axis`` 的别名，行为完全一致。
+    别名： ``end_dim`` 
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
