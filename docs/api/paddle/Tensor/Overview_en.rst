@@ -245,6 +245,7 @@ Methods
     sinc_
     sinh
     slice
+    softmax
     solve
     sort
     sparse_dim

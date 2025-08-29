@@ -92,6 +92,9 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 +--------------------------+---------------------------------------------------------------+
 | paddle.signal            | APIs for signal processing.                                   |
 +--------------------------+---------------------------------------------------------------+
+| paddle.special           | PyTorch-compatible functions behave the same as their         |
+|                          | PyTorch counterparts.                                         |
++--------------------------+---------------------------------------------------------------+
 | paddle.sparse            | The Sparse domain API.                                        |
 +--------------------------+---------------------------------------------------------------+
 | paddle.static            | Basic framework related APIs under static graph,              |
