@@ -43,8 +43,8 @@ Tabs remover (C++).......................................................Passed
 Tabs remover (Python)................................(no files to check)Skipped
 copyright_checker........................................................Passed
 typos....................................................................Passed
-black................................................(no files to check)Skipped
-ruff.................................................(no files to check)Skipped
+ruff check...........................................(no files to check)Skipped
+ruff format..........................................(no files to check)Skipped
 clang-format.............................................................Failed
 - hook id: clang-format
 - files were modified by this hook
@@ -53,6 +53,8 @@ clang-tidy...............................................................Passed
 auto-generate-cmakelists.............................(no files to check)Skipped
 cmake-format.........................................(no files to check)Skipped
 CMake Lint...........................................(no files to check)Skipped
+yamlfmt..................................................................Passed
+sort-txt-file........................................(no files to check)Skipped
 ➜  git diff
 diff --git a/paddle/phi/kernels/abs_kernel.h b/paddle/phi/kernels/abs_kernel.h
 index 7e06204845..c1b803b44f 100644
@@ -85,13 +87,13 @@ Date:   xxx
 | [Lucas-C/pre-commit-hooks](https://github.com/Lucas-C/pre-commit-hooks.git) | 社区维护的一些通用的 hook，含将 CRLF 改为 LF、移除 Tab 等 hook | 1.5.1 |
 | [copyright_checker](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/codestyle/copyright.hook) | Copyright 检查 | 本地脚本 |
 | [typos](https://github.com/crate-ci/typos) | 拼写错误检查 | 1.30.2 |
-| [black](https://github.com/psf/black) | Python 代码格式化 | 25.1.0 |
 | [ruff](https://github.com/astral-sh/ruff) | Python 代码风格检查 | 0.12.0 |
 | [clang-format](https://github.com/llvm/llvm-project/tree/main/clang/tools/clang-format) | C++ 代码格式化 | 13.0.0 |
 | [cpplint](https://github.com/cpplint/cpplint) | C++ 代码风格检查 | 1.6.0 |
 | [clang-tidy](https://github.com/llvm/llvm-project/tree/main/clang-tools-extra/clang-tidy) | C++ 代码风格检查 | 15.0.2.1 |
 | [cmake-format](https://github.com/cheshirekow/cmake-format-precommit) | CMake 代码格式化 | 0.6.13 |
 | [cmake-lint](https://github.com/PFCCLab/cmake-lint-paddle)| CMake 代码风格检查 | 1.5.1 |
+| [yamlfmt](https://github.com/PFCCLab/yamlfmt-pre-commit-mirror.git) | YAML 代码格式化 | 0.16.0 |
 
 > 注：这些工具可能会更新，详细配置请查看：[https://github.com/PaddlePaddle/Paddle/blob/develop/.pre-commit-config.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/.pre-commit-config.yaml)。
 

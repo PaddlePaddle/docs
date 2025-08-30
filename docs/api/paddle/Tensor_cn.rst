@@ -1149,9 +1149,13 @@ exponential_(lam=1.0, name=None)
 
     f(x) = \lambda e^{-\lambda x}
 
+.. note::
+    别名支持: 参数名 ``lambd`` 可替代 ``lam``，如 ``lambd=1.0`` 等价于 ``lam=1.0``。
+
 参数：
     - **x** (Tensor) - 输入 Tensor，数据类型为 float32/float64。
     - **lam** (float) - 指数分布的 :math:`\lambda` 参数。
+    - **lambd** - ``lam`` 的别名，行为完全一致。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
