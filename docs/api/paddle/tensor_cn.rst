@@ -43,4 +43,4 @@ tensor
 代码示例
 :::::::::
 
-COPY-FROM: paddle.tensor
+COPY-FROM: paddle.tensor.creation.tensor
