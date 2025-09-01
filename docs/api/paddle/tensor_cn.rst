@@ -25,6 +25,11 @@ tensor
                 保持类型
     np.ndarray ─────────► paddle.Tensor
 
+.. note::
+
+  ``paddle.tensor`` 在功能和参数上与 ``torch.tensor`` 对齐。
+  与 ``paddle.to_tensor`` 的区别在于两者的参数名称不同， ``paddle.tensor`` 还额外支持了 ``pin_memory`` 功能。
+
 参数
 :::::::::
 
