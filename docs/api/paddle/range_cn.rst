@@ -1,9 +1,9 @@
-.. _cn_api_paddle_arange:
+.. _cn_api_paddle_range:
 
-arange
+range
 -------------------------------
 
-.. py:function:: paddle.arange(start=0, end=None, step=1, dtype=None, name=None)
+.. py:function:: paddle.range(start=0, end=None, step=1, dtype=None, out=None, device=None, requires_grad=False, pin_memory=False, name=None)
 
 返回一个形状为 [$\lfloor \dfrac{end-start}{step} \rfloor + 1$] 的 1-D Tensor(对应 **闭区间** [ ``start`` , ``end`` ])，数据类型为 ``dtype`` 。
 
@@ -22,7 +22,7 @@ arange
 
 返回
 ::::::::::
-  Tensor，以步长 ``step`` 均匀分割给定数值区间[start, end)后得到的 1-D Tensor，数据类型为 ``dtype`` 。
+  返回一个形状为 [$\lfloor \dfrac{end-start}{step} \rfloor + 1$] 的 1-D Tensor(对应 **闭区间** [ ``start`` , ``end`` ])，数据类型为 ``dtype`` 。
 
 
 代码示例
