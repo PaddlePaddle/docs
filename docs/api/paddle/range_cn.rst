@@ -5,9 +5,7 @@ arange
 
 .. py:function:: paddle.arange(start=0, end=None, step=1, dtype=None, name=None)
 
-返回以步长 ``step`` 均匀分隔给定数值区间[ ``start`` , ``end`` )的 1-D Tensor，数据类型为 ``dtype`` 。
-
-当 ``dtype`` 表示浮点类型时，为了避免浮点计算误差，建议给 ``end`` 加上一个极小值 epsilon，使边界可以更加明确。
+返回一个形状为 [$\lfloor \dfrac{end-start}{step} \rfloor + 1$] 的 1-D Tensor(对应 **闭区间** [ ``start`` , ``end`` ])，数据类型为 ``dtype`` 。
 
 参数
 ::::::::::
@@ -30,4 +28,4 @@ arange
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.arange
+COPY-FROM: paddle.range
