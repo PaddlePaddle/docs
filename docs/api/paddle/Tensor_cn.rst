@@ -13,7 +13,7 @@ Tensor
 - 创建一个与其他 Tensor 具有相同 ``shape`` 与 ``dtype`` 的 Tensor，请参考 :ref:`cn_api_paddle_ones_like` 、 :ref:`cn_api_paddle_zeros_like` 、 :ref:`cn_api_paddle_full_like`
 
 .. note::
-    支持与 torch 相同的构造函数，但不鼓励使用构造函数直接构建，推荐使用 ``paddle.tensor`` 构建 Tensor，详细请参考:ref:`cn_api_paddle_tensor`。
+    支持与 torch 相同的构造函数，但不鼓励使用构造函数直接构建，推荐使用 ``paddle.tensor`` 构建 Tensor，详细请参考 :ref:`cn_api_paddle_tensor`。
 
     **代码示例**
 
@@ -29,7 +29,7 @@ Tensor
             paddle.Tensor(data=[1,2,3])
             paddle.Tensor(data=[1,2,3], device="cpu")
 
-    支持与 torch 相同的 ``[Dtype]Tensor``，其使用方式与``Tensor``相同，但不鼓励使用该构造方式，推荐使用 ``paddle.tensor`` 与 ``dtype`` 参数结合的方式构造 Tensor，详细请参考:ref:`cn_api_paddle_tensor`。
+    支持与 torch 相同的 ``[Dtype]Tensor``，其使用方式与``Tensor``相同，但不鼓励使用该构造方式，推荐使用 ``paddle.tensor`` 与 ``dtype`` 参数结合的方式构造 Tensor，详细请参考 :ref:`cn_api_paddle_tensor`。
 
     ======================================= ===========================================
     Data type                               \[Dtype\]Tensor
