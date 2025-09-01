@@ -1,4 +1,4 @@
-.. _cn_api_swapaxes:
+.. _cn_api_paddle_swapaxes:
 
 swapaxes
 -------------------------------

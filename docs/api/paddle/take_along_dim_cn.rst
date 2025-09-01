@@ -1,4 +1,4 @@
-.. _cn_api_take_along_dim:
+.. _cn_api_paddle_take_along_dim:
 
 take_along_dim
 -------------------------------

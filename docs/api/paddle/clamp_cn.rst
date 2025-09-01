@@ -1,4 +1,4 @@
-.. _cn_api_clamp:
+.. _cn_api_paddle_clamp:
 
 clamp
 -------------------------------

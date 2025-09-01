@@ -1,4 +1,4 @@
-.. _cn_api_is_autocast_enabled:
+.. _cn_api_paddle_is_autocast_enabled:
 
 is_autocast_enabled
 -------------------------------

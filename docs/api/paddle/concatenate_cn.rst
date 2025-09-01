@@ -1,4 +1,4 @@
-.. _cn_api_concatenate:
+.. _cn_api_paddle_concatenate:
 
 concatenate
 -------------------------------

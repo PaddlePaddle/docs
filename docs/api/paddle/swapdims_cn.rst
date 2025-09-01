@@ -1,4 +1,4 @@
-.. _cn_api_swapdims:
+.. _cn_api_paddle_swapdims:
 
 swapdims
 -------------------------------
