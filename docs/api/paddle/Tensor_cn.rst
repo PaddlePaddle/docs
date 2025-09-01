@@ -3397,8 +3397,6 @@ new_full(shape, fill_value, dtype=None, name=None, out=None, device=None, requir
     - **fill_value** (Scalar|Tensor) - 用于填充的常量值。若为 Tensor，则应为标量（0 维 Tensor）。
     - **dtype** (str，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
       若为 None，则默认与 ``self`` 的 dtype 一致。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **out** (Tensor，可选) - 用于存储结果的 Tensor。若指定，将直接写入该 Tensor。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
     - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
@@ -3421,8 +3419,6 @@ new_ones(shape, dtype=None, name=None, out=None, device=None, requires_grad=Fals
     - **size** - ``shape`` 的别名，行为完全一致。
     - **dtype** (str，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
       若为 None，则默认与 ``self`` 的 dtype 一致。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **out** (Tensor，可选) - 用于存储结果的 Tensor。若指定，将直接写入该 Tensor。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
     - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
@@ -3445,8 +3441,6 @@ new_zeros(shape, dtype=None, name=None, out=None, device=None, requires_grad=Fal
     - **size** - ``shape`` 的别名，行为完全一致。
     - **dtype** (str，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
       若为 None，则默认与 ``self`` 的 dtype 一致。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **out** (Tensor，可选) - 用于存储结果的 Tensor。若指定，将直接写入该 Tensor。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
     - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
@@ -3468,8 +3462,6 @@ new_empty(shape, dtype=None, name=None, out=None, device=None, requires_grad=Fal
       若为列表或元组，其中元素需为整数或 0 维 Tensor。
     - **dtype** (str，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
       若为 None，则默认与 ``self`` 的 dtype 一致。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **out** (Tensor，可选) - 用于存储结果的 Tensor。若指定，将直接写入该 Tensor。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
     - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
