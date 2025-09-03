@@ -7,7 +7,7 @@ matmul
 
 .. note::
     计算两个 Tensor 的乘积，遵循完整的广播规则，关于广播规则，请参见 `Tensor 介绍`_ .
-    
+
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
 .. note::
@@ -33,14 +33,14 @@ matmul
 
 参数
 :::::::::
-    - **x** (Tensor) - 输入变量，类型为 Tensor，数据类型为 bfloat16， float16， float32， float64。  
-      ``别名：input`` 
-    - **y** (Tensor) - 输入变量，类型为 Tensor，数据类型为 bfloat16， float16， float32， float64。  
-      ``别名：other`` 
+    - **x** (Tensor) - 输入变量，类型为 Tensor，数据类型为 bfloat16， float16， float32， float64。
+      ``别名：input``
+    - **y** (Tensor) - 输入变量，类型为 Tensor，数据类型为 bfloat16， float16， float32， float64。
+      ``别名：other``
     - **transpose_x** (bool，可选) - 相乘前是否转置 x，默认值为 False。
     - **transpose_y** (bool，可选) - 相乘前是否转置 y，默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **out** (Tensor，可选)- 输出的结果。该参数为仅关键字参数，默认值为None。
+    - **out** (Tensor，可选)- 输出的结果。该参数为仅关键字参数，默认值为 None。
 
 返回
 ::::::::::::
