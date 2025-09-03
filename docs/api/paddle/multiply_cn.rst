@@ -36,7 +36,7 @@ multiply
         - **y** （Tensor）- 多维 ``Tensor``。数据类型为 ``bfloat16`` 、 ``float16`` 、 ``float32`` 、 ``float64`` 、 ``int32`` 、 ``int64``、 ``bool``、 ``complex64`` 或  ``complex128``。  
          ``别名：other``         
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-        - **out** (Tensor，可选)- 输出的结果。该参数为仅关键字参数。
+        - **out** (Tensor，可选)- 输出的结果。该参数为仅关键字参数，默认值为None。
 
 
 返回

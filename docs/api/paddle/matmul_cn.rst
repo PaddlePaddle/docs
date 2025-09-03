@@ -38,7 +38,7 @@ matmul
     - **transpose_x** (bool，可选) - 相乘前是否转置 x，默认值为 False。
     - **transpose_y** (bool，可选) - 相乘前是否转置 y，默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **out** (Tensor，可选)- 输出的结果。该参数为仅关键字参数。
+    - **out** (Tensor，可选)- 输出的结果。该参数为仅关键字参数，默认值为None。
 
 返回
 ::::::::::::
