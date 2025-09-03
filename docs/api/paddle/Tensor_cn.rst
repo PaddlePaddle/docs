@@ -8,9 +8,43 @@ Tensor
 
 ``Tensor`` 是 Paddle 中最为基础的数据结构，请参考 `Tensor 介绍 <https://www.paddlepaddle.org.cn/documentation/docs/guides/beginner/tensor_cn.html>`_
 
-- 用预先存在的 ``data`` 数据创建 1 个 Tensor，请参考 :ref:`cn_api_paddle_to_tensor`
+- 用预先存在的 ``data`` 数据创建 1 个 Tensor，请参考 :ref:`cn_api_paddle_tensor`
 - 创建一个指定 ``shape`` 的 Tensor，请参考 :ref:`cn_api_paddle_ones` 、 :ref:`cn_api_paddle_zeros`、 :ref:`cn_api_paddle_full`
 - 创建一个与其他 Tensor 具有相同 ``shape`` 与 ``dtype`` 的 Tensor，请参考 :ref:`cn_api_paddle_ones_like` 、 :ref:`cn_api_paddle_zeros_like` 、 :ref:`cn_api_paddle_full_like`
+
+.. note::
+    支持与 torch 相同的构造函数，但不鼓励使用构造函数直接构建，推荐使用 ``paddle.tensor`` 构建 Tensor，详细请参考 :ref:`cn_api_paddle_tensor`。
+
+    **代码示例**
+
+         .. code-block:: python
+
+            import paddle
+            paddle.Tensor()
+            paddle.Tensor(device="cpu")
+            paddle.Tensor(1,2,3)
+            paddle.Tensor(1,2,3, device="cpu")
+            paddle.Tensor([1,2,3])
+            paddle.Tensor([1,2,3], device="cpu")
+            paddle.Tensor(data=[1,2,3])
+            paddle.Tensor(data=[1,2,3], device="cpu")
+
+    支持与 torch 相同的 ``[Dtype]Tensor``，其使用方式与 ``Tensor`` 相同，但不鼓励使用该构造方式，推荐使用 ``paddle.tensor`` 与 ``dtype`` 参数结合的方式构造 Tensor，详细请参考 :ref:`cn_api_paddle_tensor`。
+
+    ======================================= ===========================================
+    Data type                               \[Dtype\]Tensor
+    ======================================= ===========================================
+    32-bit floating point                   ``paddle.FloatTensor``
+    64-bit floating point                   ``paddle.DoubleTensor``
+    16-bit floating point                   ``paddle.HalfTensor``
+    16-bit floating point                   ``paddle.BFloat16Tensor``
+    8-bit integer (unsigned)                ``paddle.ByteTensor``
+    8-bit integer (signed)                  ``paddle.CharTensor``
+    16-bit integer (signed)                 ``paddle.ShortTensor``
+    32-bit integer (signed)                 ``paddle.IntTensor``
+    64-bit integer (signed)                 ``paddle.LongTensor``
+    Boolean                                 ``paddle.BoolTensor``
+    ======================================= ===========================================
 
 create_tensor(dtype, name=None, persistable=False)
 :::::::::
