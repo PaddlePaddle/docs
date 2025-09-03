@@ -15,11 +15,16 @@ broadcast_to
     :width: 500
     :align: center
 
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x`` 和 ``size`` 可替代 ``shape``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``size=[2, 3]`` 等价于 ``shape=[2, 3]``。
+
 参数
 :::::::::
 
     - **x** (Tensor) - 输入的 Tensor，数据类型为：bool、float16、float32、float64、int32、int64、uint8 或 uint16。
+    - **input** - ``x`` 的别名，行为完全一致。
     - **shape** (tuple|list|Tensor) - 给定输入 ``x`` 扩展后的形状，若 ``shape`` 为 list 或者 tuple，则其中的元素值应该为整数或者是形状为 1-D 或 0-D 的 Tensor，若 ``shape`` 类型为 Tensor，则其应该为 1-D Tensor。
+    - **size** - ``shape`` 的别名，行为完全一致。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

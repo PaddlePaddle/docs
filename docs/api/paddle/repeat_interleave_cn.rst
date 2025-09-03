@@ -17,11 +17,16 @@ repeat_interleave
        :alt: 示例一图示
        :align: center
 
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x`` 和 ``dim`` 可替代 ``axis``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``， ``dim=1`` 等价于 ``axis=1``。
+
 参数
 :::::::::
     - **x** （Tensor）– 输入 Tensor。 ``x`` 的数据类型可以是 float32，float64，int32，int64。
+    - **input** - ``x`` 的别名，行为完全一致。
     - **repeats** （Tensor, int）– 包含复制次数的 1-D Tensor 或指定的复制次数。
     - **axis**    (int，可选) – 指定对输入 ``x`` 进行运算的轴，若未指定，默认值为 None，使用输入 Tensor 的 flatten 形式。
+    - **dim** - ``axis`` 的别名，行为完全一致。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 

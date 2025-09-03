@@ -495,7 +495,7 @@ acos(name=None)
 
 请参考 :ref:`cn_api_paddle_acos`
 
-add(y, name=None)
+add(y, name=None, \*, alpha=1, out=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -504,7 +504,7 @@ add(y, name=None)
 
 请参考 :ref:`cn_api_paddle_add`
 
-add_(y, name=None)
+add_(y, name=None, \*, alpha=1, out=None)
 :::::::::
 
 Inplace 版本的 :ref:`cn_api_paddle_add` API，对输入 `x` 采用 Inplace 策略。
@@ -1025,7 +1025,7 @@ dist(y, p=2)
 
 请参考 :ref:`cn_api_paddle_dist`
 
-divide(y, name=None)
+divide(y, name=None, \*, rounding_mode=None, out=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -1149,9 +1149,13 @@ exponential_(lam=1.0, name=None)
 
     f(x) = \lambda e^{-\lambda x}
 
+.. note::
+    别名支持: 参数名 ``lambd`` 可替代 ``lam``，如 ``lambd=1.0`` 等价于 ``lam=1.0``。
+
 参数：
     - **x** (Tensor) - 输入 Tensor，数据类型为 float32/float64。
     - **lam** (float) - 指数分布的 :math:`\lambda` 参数。
+    - **lambd** - ``lam`` 的别名，行为完全一致。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
