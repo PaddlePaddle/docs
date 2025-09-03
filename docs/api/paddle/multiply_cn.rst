@@ -3,8 +3,7 @@
 multiply
 -------------------------------
 
-.. py:function:: paddle.multiply(x, y, name=None)
-
+.. py:function:: paddle.multiply(x, y, name=None, *, out=None)
 
 
 
@@ -25,6 +24,9 @@ multiply
         3. 输入 ``x`` 与输入 ``y`` 必须可以广播为相同形状，关于广播规则，请参见 `Tensor 介绍`_ .
 
         .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x``， ``other`` 可替代 ``y``;
+  
 
 参数
 :::::::::
