@@ -3,7 +3,7 @@
 amin
 -------------------------------
 
-.. py:function:: paddle.amin(x, axis=None, keepdim=False, name=None)
+.. py:function:: paddle.amin(x, axis=None, keepdim=False, name=None, *, out=None)
 
 
 对指定维度上的 Tensor 元素求最小值运算，并输出相应的计算结果。
@@ -11,6 +11,7 @@ amin
 .. note::
 
     对输入有多个最小值的情况下，min 将梯度完整传回到最小值对应的位置，amin 会将梯度平均传回到最小值对应的位置
+    别名支持: 参数名 ``input`` 可替代 ``x``， ``dim`` 可替代 ``axis``
 
 参数
 :::::::::
