@@ -21,7 +21,7 @@ amin
     ``别名：dim``
    - **keepdim** (bool，可选)- 是否在输出 Tensor 中保留减小的维度。如果 keepdim 为 False，结果 Tensor 的维度将比输入 Tensor 的小，默认值为 False。
    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-   - **out** (Tensor，可选)- 输出的结果。该参数为仅关键字参数。
+   - **out** (Tensor，可选)- 输出的结果。该参数为仅关键字参数，默认值为None。
 返回
 :::::::::
    Tensor，在指定 axis 上进行求最小值运算的 Tensor，数据类型和输入数据类型一致。
