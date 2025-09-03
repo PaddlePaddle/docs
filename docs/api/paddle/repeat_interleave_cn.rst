@@ -31,7 +31,7 @@ repeat_interleave
     - **axis**    (int，可选) – 指定对输入 ``x`` 进行运算的轴，若未指定，默认值为 None，使用输入 Tensor 的 flatten 形式。
     - **dim** - ``axis`` 的别名，行为完全一致。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **output_size** (int64，可选) – 输出 Tensor 的总大小，用于优化内存分配。若未指定，默认值为 None。
+    - **output_size** (int64，可选) – 关键字参数。输出 Tensor 的总大小，用于优化内存分配。若未指定，默认值为 None。
 
 
 

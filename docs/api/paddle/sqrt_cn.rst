@@ -3,7 +3,7 @@
 sqrt
 -------------------------------
 
-.. py:function:: paddle.sqrt(x, out=None, name=None)
+.. py:function:: paddle.sqrt(x, name=None, *, out=None)
 
 
 
@@ -23,8 +23,9 @@ sqrt
 
 
     - **x** (Tensor) - 支持任意维度的 Tensor。数据类型为 float16，float32，float64，complex64 或 complex128。
-    - **out** (Tensor，可选) - 输出 Tensor，用于存储计算结果。如果指定，则结果将写入此 Tensor 中。
+    ``别名: input``
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **out** (Tensor，可选) - 关键字参数。输出 Tensor，用于存储计算结果。如果指定，则结果将写入此 Tensor 中。
 
 返回
 ::::::::::::
