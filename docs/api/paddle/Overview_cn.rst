@@ -118,7 +118,7 @@ tensor 数学操作
     " :ref:`paddle.inner <cn_api_paddle_inner>` ", "计算两个输入矩阵的内积"
     " :ref:`paddle.outer <cn_api_paddle_outer>` ", "计算两个输入矩阵的外积"
     " :ref:`paddle.ger <cn_api_paddle_ger>` ", "计算两个输入矩阵的外积"
-    " :ref:`paddle.mul <cn_api_paddle_mul` ", "逐元素相乘算子"
+    " :ref:`paddle.mul <cn_api_paddle_mul>` ", "逐元素相乘算子"
     " :ref:`paddle.multiplex <cn_api_paddle_multiplex>` ", "从每个输入 Tensor 中选择特定行构造输出 Tensor"
     " :ref:`paddle.multiply <cn_api_paddle_multiply>` ", "逐元素相乘算子"
     " :ref:`paddle.ldexp <cn_api_paddle_ldexp>` ", "计算 x 乘以 2 的 y 次幂"
