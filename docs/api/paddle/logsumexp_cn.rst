@@ -3,7 +3,7 @@
 logsumexp
 -------------------------------
 
-.. py:function:: paddle.logsumexp(x, axis=None, keepdim=False, name=None)
+.. py:function:: paddle.logsumexp(x, axis=None, keepdim=False, name=None, *, out=None)
 
 沿着参数 ``axis`` 计算 ``x`` 的以 e 为底的指数的和的自然对数。计算公式如下：
 
