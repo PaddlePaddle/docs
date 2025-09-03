@@ -3,7 +3,7 @@
 norm
 -------------------------------
 
-.. py:function:: paddle.linalg.norm(x, p=None, axis=None, keepdim=False, name=None)
+.. py:function:: paddle.linalg.norm(x, p=None, axis=None, keepdim=False, out=None, dtype=None, name=None)
 
 
 
@@ -50,9 +50,14 @@ norm
 :::::::::
 
     - **x** (Tensor) - 输入 Tensor。维度为多维，数据类型为 float32 或 float64。
+      别名： ``input``, ``A``
     - **p** (int|float|string，可选) - 范数(ord)的种类。目前支持的值为 `fro`、`nuc`、`inf`、`-inf`、`0`、`1`、`2`，和任何实数 p 对应的 p 范数。默认值为 None。
-    - **axis** (int|list|tuple，可选) - 使用范数计算的轴。如果 ``axis`` 为 None，则忽略 input 的维度，将其当做向量来计算。如果 ``axis`` 为 int 或者只有一个元素的 list|tuple，``norm`` API 会计算输入 Tensor 的向量范数。如果 axis 为包含两个元素的 list，API 会计算输入 Tensor 的矩阵范数。当 ``axis < 0`` 时，实际的计算维度为 rank(input) + axis。默认值为 `None` 。
+      别名： ``ord``
+    - **axis** (int|list|tuple，可选) - 使用范数计算的轴。如果 ``axis`` 为 None，若 ``p`` 同时为 ``str`` 类型，则会自动补全 ``axis``，否则忽略 input 的维度，将其当做向量来计算。如果 ``axis`` 为 int 或者只有一个元素的 list|tuple，``norm`` API 会计算输入 Tensor 的向量范数。如果 axis 为包含两个元素的 list，API 会计算输入 Tensor 的矩阵范数。当 ``axis < 0`` 时，实际的计算维度为 rank(input) + axis。默认值为 `None` 。
+      别名： ``dim``
     - **keepdim** (bool，可选) - 是否在输出的 Tensor 中保留和输入一样的维度，默认值为 False。当 :attr:`keepdim` 为 False 时，输出的 Tensor 会比输入 :attr:`input` 的维度少一些。
+    - **out** (Tensor，可选) - 存储输出的 Tensor，当 ``out = None`` 时，该参数无作用。
+    - **dtype** (str|paddle.dtype，可选) - 输出的数据类型，如果指定，则执行操作时输入张量将转换为 `dtype`。默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
