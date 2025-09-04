@@ -81,7 +81,7 @@ softmax
                  [0.72747516, 0.72747516, 0.72747516, 0.72747516]]]
 
 .. note::
-  别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``dim`` 可替代 ``axis`` ，如 ``softmax(input=tensor_x, dim=1, ...)`` 等价于 ``softmax(x=tensor_x, axis=1, ...)`` 。
+    别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``dim`` 可替代 ``axis`` ，如 ``softmax(input=tensor_x, dim=1, ...)`` 等价于 ``softmax(x=tensor_x, axis=1, ...)`` 。
 
 参数
 ::::::::::
