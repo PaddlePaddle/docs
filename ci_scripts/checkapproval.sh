@@ -18,7 +18,7 @@ for API_FILE in ${API_FILES[*]}; do
     if [ "${API_FILE}" == "docs/api/paddle" ];then
       set +x
       echo "=========================================================================================="
-      echo "You must have one TPM (jzhang533/ZhangJun or Ligoml/LiMengLiu or sunzhongkai588/SunZhongKaior mattheliu/LiuZhuoXin) approval for the api change! ${API_FILE} for the management reason of API interface and API document."
+      echo "You must have one TPM (jzhang533/ZhangJun or Ligoml/LiMengLiu or sunzhongkai588/SunZhongKai or mattheliu/LiuZhuoXin) approval for the api change! ${API_FILE} for the management reason of API interface and API document."
       echo "=========================================================================================="
       set -x
     fi
