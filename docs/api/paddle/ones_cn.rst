@@ -14,6 +14,7 @@ ones
     ``shape`` 支持可变参数类型。
     使用实例：
         ``paddle.ones(1, 2, 3, dtype=paddle.float32)``
+
         ``paddle.ones(size=[1, 2, 3], dtype=paddle.float32)``
 
 
