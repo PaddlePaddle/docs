@@ -36,7 +36,7 @@ reshape
 
   - **x** (Tensor) - N-D ``Tensor``，数据类型为 ``float16``, ``float32``, ``float64``, ``int16``, ``int32``, ``int64``, ``int8``, ``uint8``, ``complex64``, ``complex128``, ``bfloat16`` 或 ``bool``。
     ``别名: input``
-  - **shape** (list|tuple|Tensor|*shape) - 数据类型是 ``int32``。定义目标形状。目标形状最多只能有一个维度为-1。如果 ``shape`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[]的 ``Tensor``。如果 ``shape`` 的类型是 ``Tensor``，则是 1-D 的 ``Tensor``。 如果是 ``*shape``，则直接以可变长参数形式传入整数（例如 ``reshape(tensor_x, 2, 3)``）。 
+  - **shape** (list|tuple|Tensor|*shape) - 数据类型是 ``int32``。定义目标形状。目标形状最多只能有一个维度为-1。如果 ``shape`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[]的 ``Tensor``。如果 ``shape`` 的类型是 ``Tensor``，则是 1-D 的 ``Tensor``。 如果是 ``*shape``，则直接以可变长参数形式传入整数（例如 ``reshape(tensor_x, 2, 3)``）。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
