@@ -3,7 +3,7 @@
 eye
 -------------------------------
 
-.. py:function:: paddle.eye(num_rows, num_columns=None, dtype=None, name=None)
+.. py:function:: paddle.eye(num_rows, num_columns=None, dtype=None, name=None, *, out=None, device=None, requires_grad=False, pin_memory=False)
 
 构建二维 Tensor(主对角线元素为 1，其他元素为 0)。
 
@@ -15,7 +15,10 @@ eye
   - **dtype** (np.dtype|str，可选) - 返回 Tensor 的数据类型。支持 int32、int64、float16、float32、float64、complex64、complex128。
     默认值为 None，此时返回 Tensor 的数据类型为 float32。
   - **name** (str，可选) - 操作的名称，具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-  - **out** (Tensor，可选) - 用于保存输出结果的 Tensor。
+
+关键字参数
+::::::::::::
+  - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
   - **device** (PlaceLike|None，可选) - 指定返回 Tensor 所在的设备。如果为 None，则使用当前默认设备（可通过 ``paddle.device.set_device`` 设置）。
     对于 CPU Tensor，设备为 CPU；对于 CUDA Tensor，设备为当前 CUDA 设备。默认值为 None。
   - **requires_grad** (bool，可选) - 是否在返回的 Tensor 上记录 autograd 的操作。默认值为 False。

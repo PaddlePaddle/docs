@@ -3386,7 +3386,7 @@ resize_(shape, fill_zero=False, name=None)
 **代码示例**
 COPY-FROM: paddle.Tensor.resize_
 
-new_full(shape, fill_value, dtype=None, name=None, out=None, device=None, requires_grad=False, pin_memory=False)
+new_full(size, fill_value, *, dtype=None, device=None, requires_grad=False, pin_memory=False)
 :::::::::
 
 创建一个与 ``self`` 数据类型和设备相同的新 Tensor，并将其形状重置为 ``shape``，元素值全部填充为 ``fill_value``。
@@ -3395,8 +3395,11 @@ new_full(shape, fill_value, dtype=None, name=None, out=None, device=None, requir
     - **size** (list|tuple|Tensor) - 设置的目标形状，可以是整数列表、元组，或 1-D Tensor（数据类型为 ``int32`` 或 ``int64``）。
       若为列表或元组，其中元素需为整数或 0 维 Tensor。
     - **fill_value** (Scalar|Tensor) - 用于填充的常量值。若为 Tensor，则应为标量（0 维 Tensor）。
+
+关键字参数:
     - **dtype** (str，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
       若为 None，则默认与 ``self`` 的 dtype 一致。
+    - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
     - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
@@ -3408,7 +3411,7 @@ new_full(shape, fill_value, dtype=None, name=None, out=None, device=None, requir
 
 COPY-FROM: paddle.Tensor.new_full
 
-new_ones(shape, dtype=None, name=None, out=None, device=None, requires_grad=False, pin_memory=False)
+new_ones(size, *, dtype=None, device=None, requires_grad=False, pin_memory=False)
 :::::::::
 
 创建一个与 ``self`` 数据类型和设备相同的新 Tensor，并将其形状重置为 ``shape``，元素值全部填充为 ``fill_value``。
@@ -3416,9 +3419,11 @@ new_ones(shape, dtype=None, name=None, out=None, device=None, requires_grad=Fals
 参数：
     - **size** (list|tuple|Tensor) - 设置的目标形状，可以是整数列表、元组，或 1-D Tensor（数据类型为 ``int32`` 或 ``int64``）。
       若为列表或元组，其中元素需为整数或 0 维 Tensor。
-    - **size** - ``shape`` 的别名，行为完全一致。
+
+关键字参数:
     - **dtype** (str，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
       若为 None，则默认与 ``self`` 的 dtype 一致。
+    - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
     - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
@@ -3430,7 +3435,7 @@ new_ones(shape, dtype=None, name=None, out=None, device=None, requires_grad=Fals
 
 COPY-FROM: paddle.Tensor.new_ones
 
-new_zeros(shape, dtype=None, name=None, out=None, device=None, requires_grad=False, pin_memory=False)
+new_zeros(size, *, dtype=None, device=None, requires_grad=False, pin_memory=False)
 :::::::::
 
 创建一个与 ``self`` 数据类型和设备相同的新 Tensor，并将其形状重置为 ``shape``，元素值全部填充为 ``fill_value``。
@@ -3438,9 +3443,11 @@ new_zeros(shape, dtype=None, name=None, out=None, device=None, requires_grad=Fal
 参数：
     - **size** (list|tuple|Tensor) - 设置的目标形状，可以是整数列表、元组，或 1-D Tensor（数据类型为 ``int32`` 或 ``int64``）。
       若为列表或元组，其中元素需为整数或 0 维 Tensor。
-    - **size** - ``shape`` 的别名，行为完全一致。
+
+关键字参数:
     - **dtype** (str，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
       若为 None，则默认与 ``self`` 的 dtype 一致。
+    - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
     - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
@@ -3452,7 +3459,7 @@ new_zeros(shape, dtype=None, name=None, out=None, device=None, requires_grad=Fal
 
 COPY-FROM: paddle.Tensor.new_zeros
 
-new_empty(shape, dtype=None, name=None, out=None, device=None, requires_grad=False, pin_memory=False)
+new_empty(size, *, dtype=None, device=None, requires_grad=False, pin_memory=False)
 :::::::::
 
 创建一个与 ``self`` 数据类型和设备相同的新 Tensor，并将其形状重置为 ``shape``，元素值全部填充为 ``fill_value``。
@@ -3460,8 +3467,11 @@ new_empty(shape, dtype=None, name=None, out=None, device=None, requires_grad=Fal
 参数：
     - **size** (list|tuple|Tensor) - 设置的目标形状，可以是整数列表、元组，或 1-D Tensor（数据类型为 ``int32`` 或 ``int64``）。
       若为列表或元组，其中元素需为整数或 0 维 Tensor。
+
+关键字参数:
     - **dtype** (str，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
       若为 None，则默认与 ``self`` 的 dtype 一致。
+    - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
     - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。

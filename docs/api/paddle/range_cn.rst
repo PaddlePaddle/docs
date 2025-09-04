@@ -14,7 +14,7 @@ range
   - **end** (float|int|Tensor，可选) - 区间终点（且通常区间不包括此值）。当 ``end`` 类型是 Tensor 时，是形状为[]且数据类型为 int32、int64、float32、float64 的 0-D Tensor。默认值为 None。
   - **step** (float|int|Tensor，可选) - 均匀分割的步长。当 ``step`` 类型是 Tensor 时，是形状为[]且数据类型为 int32、int64、float32、float64 的 0-D Tensor。默认值为 1。
   - **dtype** (str|np.dtype，可选) - 输出 Tensor 的数据类型，支持 int32、int64、float32、float64。当该参数值为 None 时，输出 Tensor 的数据类型为 int64。默认值为 None。
-  - **out** (Tensor，可选) - 用于存储结果的 Tensor。若指定，将直接写入该 Tensor。
+  - **out** (Tensor，可选) - 用于存储结果的 Tensor。若指定，将直接写入该 Tensor，默认值为 None。
   - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
   - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
   - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。

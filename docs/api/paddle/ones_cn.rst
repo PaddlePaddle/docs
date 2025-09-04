@@ -3,7 +3,7 @@
 ones
 -------------------------------
 
-.. py:function:: paddle.ones(shape, dtype=None, name=None)
+.. py:function:: paddle.ones(shape, dtype=None, name=None, *, out=None, device=None, requires_grad=False, pin_memory=False)
 
 
 
@@ -24,7 +24,10 @@ ones
     - **size** - ``shape`` 的别名，行为完全一致。
     - **dtype** (np.dtype|str，可选) - 要创建的 Tensor 的数据类型，可以为 bool、float16、float32、float64、int32 或 int64。如果 ``dtype`` 为 None，那么数据类型为 float32。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **out** (Tensor，可选) - 用于存储结果的 Tensor。若指定，将直接写入该 Tensor。
+
+关键字参数
+::::::::::::
+    - **out** (Tensor，可选) - 用于存储结果的 Tensor。若指定，将直接写入该 Tensor，默认值为 None。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
     - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
