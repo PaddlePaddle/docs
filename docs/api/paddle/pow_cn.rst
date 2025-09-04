@@ -18,10 +18,8 @@ pow
 
 参数
 :::::::::
-    - **x** （Tensor）- 多维 ``Tensor``，数据类型为 ``bfloat16`` 、 ``float16`` 、 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
-        ``别名: input``
-    - **y** （float|int|Tensor）- 如果类型是多维 ``Tensor``，其数据类型应该和 ``x`` 相同。
-        ``别名: exponent``
+    - **x** （Tensor）- 多维 ``Tensor``，数据类型为 ``bfloat16`` 、 ``float16`` 、 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。别名： ``input``。
+    - **y** （float|int|Tensor）- 如果类型是多维 ``Tensor``，其数据类型应该和 ``x`` 相同。别名： ``exponent``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

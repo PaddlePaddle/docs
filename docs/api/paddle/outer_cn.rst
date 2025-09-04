@@ -16,10 +16,8 @@ outer
 参数
 :::::::::
 
-    - **x** (Tensor) - 一个 N 维 Tensor 或者标量 Tensor。
-        ``别名: input``
-    - **y** (Tensor) - 一个 N 维 Tensor 或者标量 Tensor。
-        ``别名: vec2``
+    - **x** (Tensor) - 一个 N 维 Tensor 或者标量 Tensor。别名： ``input``。
+    - **y** (Tensor) - 一个 N 维 Tensor 或者标量 Tensor。别名： ``vec2``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
