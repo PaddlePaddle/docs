@@ -252,6 +252,13 @@ data
 **代码示例**
 COPY-FROM: paddle.Tensor.data
 
+is_cuda
+:::::::::
+
+如果 Tensor 存储在 GPU 上，则为 True，否则为 False。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.is_cuda
 
 numpy()
 :::::::::

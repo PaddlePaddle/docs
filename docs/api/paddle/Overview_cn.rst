@@ -320,6 +320,7 @@ tensor 属性相关
     " :ref:`paddle.is_integer <cn_api_paddle_is_integer>` ", "判断输入 tensor 的数据类型是否为整数类型"
     " :ref:`paddle.broadcast_shape <cn_api_paddle_broadcast_shape>` ", "返回对 x_shape 大小的 Tensor 和 y_shape 大小的 Tensor 做 broadcast 操作后得到的 shape"
     " :ref:`paddle.is_floating_point <cn_api_paddle_is_floating_point>` ", "判断输入 Tensor 的数据类型是否为浮点类型"
+    " :ref:`paddle.Size <cn_api_paddle_Size>` ", "tuple 的子类, paddle.Tensor.size() 的返回类型，用于描述张量的维度大小。"
 
 .. _tensor_creation:
 
