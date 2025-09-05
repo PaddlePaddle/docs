@@ -13,7 +13,7 @@ randn
   - **shape** (list|tuple|Tensor|*shape) - 生成的随机 Tensor 的形状。数据类型为 int32 或 int64。
     如果 ``shape`` 是 list、tuple，则其中的元素可以是 int，或者是形状为 [] 且数据类型为 int32、int64 的 0-D Tensor。
     如果 ``shape`` 是 Tensor，则是数据类型为 int32、int64 的 1-D Tensor，表示一个列表。
-    如果 ``shape`` 是 *shape，则可以直接以可变参数的形式传入多个整数（例如 ``randn(2, 3)``）。
+    如果 ``shape`` 是 \*shape，则可以直接以可变参数的形式传入多个整数（例如 ``randn(2, 3)``）。
     该参数的别名为 ``size``。
 
   - **dtype** (str|np.dtype|paddle.dtype|None，可选) - 输出 Tensor 的数据类型。
@@ -23,8 +23,8 @@ randn
 
 关键字参数
 ::::::::::::
-  - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
-  - **device** (PlaceLike|None，可选) - 指定返回 Tensor 所在的设备。
+  - **out** (Tensor，可选) - 用于保存输出结果的 Tensor。默认值为 None。
+  - **device** (PlaceLike|None，可选) - 指定返回 Tensor 所在的设备。默认值为 None，表示使用当前全局设备（可通过 ``paddle.device.set_device`` 设置）。
   - **requires_grad** (bool，可选) - 是否在返回的 Tensor 上记录 autograd 的操作。默认值为 False。
   - **pin_memory** (bool，可选) - 如果设置为 True，返回的 Tensor 会分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
 

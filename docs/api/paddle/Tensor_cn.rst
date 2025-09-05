@@ -3420,7 +3420,7 @@ resize_(shape, fill_zero=False, name=None)
 **代码示例**
 COPY-FROM: paddle.Tensor.resize_
 
-new_full(size, fill_value, *, dtype=None, device=None, requires_grad=False, pin_memory=False)
+new_full(size, fill_value, \*, dtype=None, device=None, requires_grad=False, pin_memory=False)
 :::::::::
 
 创建一个与 ``self`` 数据类型和设备相同的新 Tensor，并将其形状重置为 ``shape``，元素值全部填充为 ``fill_value``。
@@ -3445,7 +3445,7 @@ new_full(size, fill_value, *, dtype=None, device=None, requires_grad=False, pin_
 
 COPY-FROM: paddle.Tensor.new_full
 
-new_ones(size, *, dtype=None, device=None, requires_grad=False, pin_memory=False)
+new_ones(size, \*, dtype=None, device=None, requires_grad=False, pin_memory=False)
 :::::::::
 
 创建一个与 ``self`` 数据类型和设备相同的新 Tensor，并将其形状重置为 ``shape``，元素值全部填充为 ``fill_value``。
@@ -3469,7 +3469,7 @@ new_ones(size, *, dtype=None, device=None, requires_grad=False, pin_memory=False
 
 COPY-FROM: paddle.Tensor.new_ones
 
-new_zeros(size, *, dtype=None, device=None, requires_grad=False, pin_memory=False)
+new_zeros(size, \*, dtype=None, device=None, requires_grad=False, pin_memory=False)
 :::::::::
 
 创建一个与 ``self`` 数据类型和设备相同的新 Tensor，并将其形状重置为 ``shape``，元素值全部填充为 ``fill_value``。
@@ -3493,7 +3493,7 @@ new_zeros(size, *, dtype=None, device=None, requires_grad=False, pin_memory=Fals
 
 COPY-FROM: paddle.Tensor.new_zeros
 
-new_empty(size, *, dtype=None, device=None, requires_grad=False, pin_memory=False)
+new_empty(size, \*, dtype=None, device=None, requires_grad=False, pin_memory=False)
 :::::::::
 
 创建一个与 ``self`` 数据类型和设备相同的新 Tensor，并将其形状重置为 ``shape``，元素值全部填充为 ``fill_value``。
