@@ -3,7 +3,7 @@
 var
 -------------------------------
 
-.. py:function:: paddle.var(x, axis=None, unbiased=True, keepdim=False, name=None)
+.. py:function:: paddle.var(x, axis=None, unbiased=True, keepdim=False, name=None, *, correction=1, out=None)
 
 沿给定的轴 ``axis`` 计算 ``x`` 中元素的方差。
 
@@ -24,6 +24,8 @@ var
    - **keepdim** (bool，可选) - 是否在输出 Tensor 中保留输入的维度。除非 keepdim 为 True，否则输出 Tensor 的维度将比输入 Tensor 小一维，默认值为 False。
    - **dim** - ``axis`` 的别名，行为完全一致。
    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+   - **correction** (int|float，可选) - 样本数量与样本自由度之间的差异。默认值为 1（贝塞尔校正）。如果指定了 ``unbiased`` 参数，此参数将被忽略。仅当 ``unbiased`` 为 None 时生效。
+   - **out** (Tensor，可选) - 输出的结果 Tensor，是与输入数据类型相同的 N-D Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。
 
 返回
 ::::::::::

@@ -254,6 +254,34 @@ layout
 **代码示例**
 COPY-FROM: paddle.Tensor.layout
 
+requires_grad
+:::::::::
+
+查看一个 Tensor 是否计算并传播梯度。``requires_grad`` 属性与 ``stop_gradient`` 属性含义相反：
+
+- 当 ``requires_grad`` 为 ``True`` 时，该 Tensor 会计算梯度并参与梯度传播
+- 当 ``requires_grad`` 为 ``False`` 时，该 Tensor 不会计算梯度，并会阻止 Autograd 的梯度传播
+
+用户自行创建的 Tensor，``requires_grad`` 默认为 ``False``；模型参数的 ``requires_grad`` 默认为 ``True``。
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+
+    x = paddle.to_tensor([[1, 2], [3, 4]], dtype='float32')
+    print("x.requires_grad:", x.requires_grad)
+    # x.requires_grad: False
+
+    x.stop_gradient = False
+    print("x.requires_grad:", x.requires_grad)
+    # x.requires_grad: True
+
+    linear = paddle.nn.Linear(2, 1)
+    print("weight.requires_grad:", linear.weight.requires_grad)
+    # weight.requires_grad: True
+
 shape
 :::::::::
 
