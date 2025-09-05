@@ -13,7 +13,7 @@ create_dct
     - **n_mfcc** (float) - mel 倒谱系数数目。
     - **n_mels** (int) - mel 的 fliterbank 数。
     - **norm** (float，可选) - 正则化类型，默认值是'ortho'。
-    - **dtype** (str，可选) - 默认'float32'。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 默认'float32'。
 
 返回
 :::::::::

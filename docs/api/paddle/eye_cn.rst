@@ -12,7 +12,7 @@ eye
 
   - **num_rows** (int|Tensor) - 生成 2-D Tensor 的行数，数据类型为非负 int32。别名：``n``。
   - **num_columns** (int|Tensor|None，可选) - 生成 2-D Tensor 的列数，数据类型为非负 int32。若为 None，则默认等于 ``num_rows``。别名：``m``。
-  - **dtype** (np.dtype|str，可选) - 返回 Tensor 的数据类型。支持 int32、int64、float16、float32、float64、complex64、complex128。
+  - **dtype** (str|paddle.dtype|np.dtype，可选) - 返回 Tensor 的数据类型。支持 int32、int64、float16、float32、float64、complex64、complex128。
     默认值为 None，此时返回 Tensor 的数据类型为 float32。
   - **name** (str，可选) - 操作的名称，具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

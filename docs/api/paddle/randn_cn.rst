@@ -15,7 +15,7 @@ randn
     如果 ``shape`` 是 Tensor，则是数据类型为 int32、int64 的 1-D Tensor，表示一个列表。
     如果 ``shape`` 是 \*shape，则可以直接以可变参数的形式传入多个整数（例如 ``randn(2, 3)``）。
     该参数的别名为 ``size``。
-  - **dtype** (str|np.dtype|paddle.dtype|None，可选) - 输出 Tensor 的数据类型。
+  - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型。
     支持的数据类型包括：float16、bfloat16、float32、float64、complex64、complex128。
     默认值为 None，此时使用全局默认数据类型（可参考 ``get_default_dtype`` 了解详情）。
   - **name** (str，可选) - 操作的名称，具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

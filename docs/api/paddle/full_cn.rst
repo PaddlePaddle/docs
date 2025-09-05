@@ -18,7 +18,7 @@ full
       如果 ``shape`` 是 \*shape，则可以直接以可变参数的形式传入多个整数（例如 ``randn(2, 3)``）。
       该参数的别名为 ``size``。
     - **fill_value** (bool|float|int|Tensor) - 用于初始化输出 Tensor 的常量数据的值。如果 fill_value 是一个 Tensor ，它应该是一个表示标量的 0-D Tensor。注意：该参数不可超过输出变量数据类型的表示范围。
-    - **dtype** （np.dtype|str，可选）- 输出变量的数据类型，可以是 float16、float32、float64、int32、int64。如果 dytpe 为 None，则创建的 Tensor 的数据类型为 float32。默认值为 None。
+    - **dtype** （str|paddle.dtype|np.dtype，可选）- 输出变量的数据类型，可以是 float16、float32、float64、int32、int64。如果 dytpe 为 None，则创建的 Tensor 的数据类型为 float32。默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 关键字参数

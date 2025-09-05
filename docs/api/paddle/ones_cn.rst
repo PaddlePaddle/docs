@@ -26,7 +26,7 @@ ones
       如果 ``shape`` 是 Tensor，则是数据类型为 int32、int64 的 1-D Tensor，表示一个列表。
       如果 ``shape`` 是 \*shape，则可以直接以可变参数的形式传入多个整数（例如 ``randn(2, 3)``）。
       该参数的别名为 ``size``。
-    - **dtype** (np.dtype|str，可选) - 要创建的 Tensor 的数据类型，可以为 bool、float16、float32、float64、int32 或 int64。如果 ``dtype`` 为 None，那么数据类型为 float32。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 要创建的 Tensor 的数据类型，可以为 bool、float16、float32、float64、int32 或 int64。如果 ``dtype`` 为 None，那么数据类型为 float32。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 关键字参数

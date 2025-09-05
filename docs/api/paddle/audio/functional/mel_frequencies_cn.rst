@@ -14,7 +14,7 @@ mel_frequencies
     - **f_min** (float，可选) - 最小频率(hz)，默认 0.0。
     - **f_max** (float，可选) - 最大频率(hz)，默认 11025.0。
     - **htk** (bool，可选) - 是否使用 htk 缩放，默认 False。
-    - **dtype** (str，可选) - 默认'float32'。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 默认'float32'。
 
 返回
 :::::::::

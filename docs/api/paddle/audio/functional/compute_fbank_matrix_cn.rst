@@ -17,7 +17,7 @@ compute_fbank_matrix
     - **f_max** (Optional[float]，可选) - 最大频率(hz)，默认是 None。
     - **htk** (bool，可选) - 是否使用 htk 缩放，默认是 False。
     - **norm** (Union[str, float]，可选) - norm 的类型，默认是``slaney``。
-    - **dtype** (str，可选) - 返回矩阵的数据类型，默认``float32``。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 返回矩阵的数据类型，默认``float32``。
 
 返回
 :::::::::
