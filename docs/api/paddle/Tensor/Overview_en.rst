@@ -38,6 +38,7 @@ Properties
 
 ======================================= ===========================================
 ``T``                                   The transpose of ``Tensor``. See :ref:`paddle.transpose <api_paddle_transpose>` .
+``mT``                                  Matrix transpose of ``Tensor`` (swap the last two dimensions). See :ref:`paddle.matrix_transpose <api_paddle_matrix_transpose>`.
 ``block``                               Tensor's block.
 ``dtype``                               Tensor's data type.
 ``grad``                                The value of Tensor's grad.
@@ -93,12 +94,14 @@ Methods
     ceil
     ceil_
     cholesky
+    cholesky_solve
     chunk
     clear_grad
     clear_gradient
     clip
     clip_
     clone
+    combinations
     concat
     cond
     conj
@@ -106,20 +109,23 @@ Methods
     cos
     cosh
     count_nonzero
+    cov
     cpu
     cross
     cuda
     cumprod
     cumsum
+    cumulative_trapezoid
     dense_dim
     detach
     diagonal
+    diagonal_scatter
+    diff
     digamma
     dim
     dist
     divide
     dot
-    diff
     eigvals
     equal
     equal_all
@@ -139,22 +145,31 @@ Methods
     floor_
     floor_divide
     floor_mod
+    fmax
+    fmin
+    frac
+    frexp
     gather
     gather_nd
     gradient
     greater_equal
     greater_than
-    histogram_bin_edges
     histogram
+    histogram_bin_edges
+    hypot
+    hypot_
     imag
     increment
     index_sample
     index_select
+    inner
     inverse
-    isclose
     is_coalesced
+    is_complex
     is_empty
+    is_integer
     is_tensor
+    isclose
     isfinite
     isin
     isinf
@@ -168,6 +183,7 @@ Methods
     less_than
     lgamma
     log
+    log_normal_
     log10
     log1p
     log2
@@ -176,40 +192,38 @@ Methods
     logical_not
     logical_or
     logical_xor
-    log_normal_
     logsumexp
+    lu
+    lu_solve
+    lu_unpack
     masked_select
     matmul
     matrix_power
     max
     maximum
-    fmax
     mean
     median
-    nanmedian
     min
     minimum
-    fmin
     mm
-    inner
-    outer
-    cov
-    lu
-    lu_solve
-    lu_unpack
-    cholesky_solve
     mod
     multiplex
     multiply
     mv
     nan_to_num
+    nanmedian
     ndimension
     neg
+    new_full
+    new_ones
+    new_zeros
+    new_empty
     nonzero
     norm
     not_equal
     numel
     numpy
+    outer
     pin_memory
     pow
     prod
@@ -237,9 +251,9 @@ Methods
     scatter_nd_add
     set_
     set_value
+    sgn
     shard_index
     sign
-    sgn
     sin
     sinc
     sinc_
@@ -249,7 +263,6 @@ Methods
     sort
     sparse_dim
     split
-    vsplit
     sqrt
     sqrt_
     square
@@ -272,8 +285,8 @@ Methods
     topk
     trace
     transpose
+    trapezoid
     trunc
-    frac
     unbind
     uniform_
     unique
@@ -282,16 +295,8 @@ Methods
     unsqueeze_
     unstack
     value
+    vander
     var
+    vsplit
     where
     zero_
-    is_complex
-    is_integer
-    frexp
-    trapezoid
-    cumulative_trapezoid
-    vander
-    hypot
-    hypot_
-    diagonal_scatter
-    combinations

@@ -126,6 +126,8 @@ XPU 相关
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`Stream <cn_api_paddle_device_xpu_Stream>` ", "XPU ``StreamBase`` 的设备流包装器，该 API 未来计划废弃，不推荐使用"
+    " :ref:`Event <cn_api_paddle_device_xpu_Event>` ", "XPU ``EventBase`` 的设备事件包装器，该 API 未来计划废弃，不推荐使用"
     " :ref:`device_count <cn_api_paddle_device_xpu_device_count>` ", "返回值是 int，表示当前程序可用的 XPU 数量"
     " :ref:`empty_cache <cn_api_paddle_device_xpu_empty_cache>` ", "用于释放显存分配器中空闲的显存"
     " :ref:`max_memory_allocated <cn_api_paddle_device_xpu_max_memory_allocated>` ", "返回给定设备上分配给 Tensor 的显存峰值统计"
