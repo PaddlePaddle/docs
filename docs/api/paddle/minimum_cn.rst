@@ -22,9 +22,9 @@ minimum
 参数
 :::::::::
    - **x** (Tensor) - 输入的 Tensor。数据类型为 ``bfloat16`` 、 ``float16`` 、 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
-   ``别名: input``
+     ``别名: input``
    - **y** (Tensor) - 输入的 Tensor。数据类型为 ``bfloat16`` 、 ``float16`` 、 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
-   ``别名: other``
+     ``别名: other``
    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
    - **out** (Tensor，可选) - 关键字参数。输出 Tensor，用于存储计算结果。如果指定，则结果将写入此 Tensor 中。
 
