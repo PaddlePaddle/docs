@@ -9,22 +9,22 @@
 ## API 映射表目录
 |类别|简介|
 |-|-|
-|参数与API名均一致|此类API功能和使用方法一致，只需将 ``torch.`` 替换为 ``paddle.``|
-|参数一致但API名不一致|此类API功能相同且参数一致，但命名不同|
-|仅参数名不一致|​	此类API功能相同，但部分参数名称不同|
-|paddle参数更多|此类API在PaddlePaddle中提供了更多可选参数|
-|参数默认值不一致|此类API功能相同，但某些参数的默认值不同|
-|torch参数更多|​此类API在PyTorch中提供了更多参数|
-|输入参数用法不一致|此类API对输入参数的处理方式不同|
-|输入参数类型不一致|此类API要求的输入数据类型不同|
-|返回参数类型不一致|​此类API返回值的类型或结构不同|
-|组合替代实现|此类功能在PaddlePaddle中没有直接对应的单一API，需要通过多个PaddlePaddle API组合来实现|
-|可删除|此类PyTorch API在PaddlePaddle中可以直接删除|
-|功能缺失|此类PyTorch API的功能在PaddlePaddle中暂时没有等效实现|
+|参数与 API 名均一致|此类 API 功能和使用方法一致，只需将 ``torch.`` 替换为 ``paddle.``|
+|参数一致但 API 名不一致|此类 API 功能相同且参数一致，但命名不同|
+|仅参数名不一致|​  此类 API 功能相同，但部分参数名称不同|
+|paddle 参数更多|此类 API 在 PaddlePaddle 中提供了更多可选参数|
+|参数默认值不一致|此类 API 功能相同，但某些参数的默认值不同|
+|torch 参数更多|​此类 API 在 PyTorch 中提供了更多参数|
+|输入参数用法不一致|此类 API 对输入参数的处理方式不同|
+|输入参数类型不一致|此类 API 要求的输入数据类型不同|
+|返回参数类型不一致|​此类 API 返回值的类型或结构不同|
+|组合替代实现|此类功能在 PaddlePaddle 中没有直接对应的单一 API，需要通过多个 PaddlePaddle API 组合来实现|
+|可删除|此类 PyTorch API 在 PaddlePaddle 中可以直接删除|
+|功能缺失|此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现|
 
-## 参数与API名均一致
+## 参数与 API 名均一致
 ##### 分类依据
-此类API功能和使用方法在PyTorch和PaddlePaddle中完全一致，只需将 ``torch.`` 替换为 ``paddle.``
+此类 API 功能和使用方法在 PyTorch 和 PaddlePaddle 中完全一致，只需将 ``torch.`` 替换为 ``paddle.``
 
 ##### 转写示例
 ### [torch.Tensor.t](https://pytorch.org/docs/stable/generated/torch.Tensor.t.html#torch.Tensor.t)
@@ -39,7 +39,7 @@ torch.Tensor.t()
 paddle.Tensor.t()
 ```
 
-| 序号 | Pytorch最新release | Paddle develop | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
 | 1 | torch.einsum (https://pytorch.org/docs/stable/generated/torch.einsum.html#torch.einsum) | paddle.einsum (https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/einsum_cn.html) | - |
 | 2 | torch.Tensor.cos (https://pytorch.org/docs/stable/generated/torch.Tensor.cos.html?highlight=cos#torch.Tensor.cos) | paddle.Tensor.cos (paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cos-name-none) | - |
@@ -493,8 +493,8 @@ paddle.Tensor.t()
 | 450 | torch.utils.cpp_extension.BuildExtension.with_options | paddle.utils.cpp_extension.BuildExtension.with_options | - |
 
 
-## 参数一致但API名不一致
-此类API功能和使用方法在PyTorch和PaddlePaddle中完全一致,但是API名称不同，需要用户进行API名称替换。
+## 参数一致但 API 名不一致
+此类 API 功能和使用方法在 PyTorch 和 PaddlePaddle 中完全一致,但是 API 名称不同，需要用户进行 API 名称替换。
 
 ##### 转写示例
 ### [torch.nn.BatchNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm1d.html?highlight=torch%20nn%20batchnorm1d#torch.nn.BatchNorm1d)
@@ -521,7 +521,7 @@ paddle.nn.BatchNorm1D(num_features,
                      dtype=None)
 ```
 
-| 序号 | Pytorch最新release | Paddle develop | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
 | 1 | torch.autograd.function.FunctionCtx.mark_non_differentiable (https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.mark_non_differentiable.html#torch.autograd.function.FunctionCtx.mark_non_differentiable) | paddle.autograd.PyLayerContext.mark_non_differentiable (https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext_cn.html#mark-non-differentiable-self-tensors) | - |
 | 2 | torch.autograd.function.FunctionCtx.save_for_backward (https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.save_for_backward.html#torch.autograd.function.FunctionCtx.save_for_backward) | paddle.autograd.PyLayerContext.save_for_backward (https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext_cn.html#save-for-backward-tensors) | - |
@@ -652,7 +652,7 @@ paddle.nn.BatchNorm1D(num_features,
 ## 仅参数名不一致
 （同上）
 
-|序号|Pytorch最新release|Paddle develop|备注|
+|序号|Pytorch 最新 release|Paddle develop|备注|
 |-|-|-|-|
 |1|||（此类开始需要详细对比的链接）|
 |2||||
@@ -661,4 +661,3 @@ paddle.nn.BatchNorm1D(num_features,
 |||||
 |||||
 |||||
-
