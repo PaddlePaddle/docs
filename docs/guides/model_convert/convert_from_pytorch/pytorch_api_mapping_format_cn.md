@@ -7,8 +7,8 @@
 ### [分类名称] api 全称
 
 由于 API 映射关系的复杂性，为了保证文档格式的规范性，我们将所有 API 映射关系分为 12 类，并制定了统一的 **分类名称**：
-1. 无参数
-2. 参数完全一致
+1. 参数与API名均一致
+2. 参数一致但API名不一致
 3. 仅参数名不一致
 4. paddle 参数更多
 5. 参数默认值不一致
@@ -45,9 +45,9 @@ Paddle API 签名
 
 参数映射以表格的形式呈现，表格的第 1 列是`PyTorch` 所有参数，第 2 列是`Paddle`对应参数，表格顺序按第 1 列 `PyTorch` 的参数顺序来。
 
-1. **无参数**：无需参数映射与转写示例。
+1. **参数与API名均一致**：无需参数映射与转写示例。
 
-2. **参数完全一致**：无需转写示例。
+2. **参数一致但API名不一致**：无需参数映射转写示例。
 
 3. **仅参数名不一致**：无需转写示例，但需要在备注列里注明哪些参数 `仅参数名不一致`。
 
@@ -91,8 +91,8 @@ paddle.xxx()
 
 | 分类序号 |    分类名称            |    参数映射      |    转写示例      |
 | ------- | -----------------    | --------------- | --------------- |
-| 1       | 无参数                | ❌              |  ❌              |
-| 2       | 参数完全一致           | ✅              |  ❌              |
+| 1       | 参数与API名均一致     | ❌              |  ❌              |
+| 2       | 参数一致但API名不一致  | ✅              |  ❌              |
 | 3       | 仅参数名不一致         | ✅              |  ❌              |
 | 4       | paddle 参数更多       | ✅              |  ❌              |
 | 5       | 参数默认值不一致       | ✅              |  ❌              |
@@ -107,9 +107,9 @@ paddle.xxx()
 # API 映射关系文档 - 模板
 
 
-## 分类 1：无参数
+## 分类 1：参数与API名均一致
 
-### [ 无参数 ] torch.Tensor.t
+### [ 参数与API名均一致 ] torch.Tensor.t
 
 ### [torch.Tensor.t](https://pytorch.org/docs/stable/generated/torch.Tensor.t.html#torch.Tensor.t)
 
@@ -123,34 +123,38 @@ torch.Tensor.t()
 paddle.Tensor.t()
 ```
 
-两者功能一致，无参数。
+两者功能、API名称均一致，只需要将torch.改成paddle.。
 
 
-## 分类 2：参数完全一致
+## 分类 2：参数一致但API名不一致
 
-### [ 参数完全一致 ] torch.Tensor.clip
+### [ 参数一致但API名不一致 ] torch.Tensor.new_zeros
 
-### [torch.Tensor.clip](https://pytorch.org/docs/stable/generated/torch.Tensor.clip.html?highlight=clip#torch.Tensor.clip)
-
-```python
-torch.Tensor.clip(min=None, max=None)
-```
-
-### [paddle.Tensor.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#clip-min-none-max-none-name-none)
+### [torch.nn.BatchNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm1d.html?highlight=torch%20nn%20batchnorm1d#torch.nn.BatchNorm1d)
 
 ```python
-paddle.Tensor.clip(min=None, max=None, name=None)
+torch.nn.BatchNorm1d(num_features,
+                     eps=1e-05,
+                     momentum=0.1,
+                     affine=True,
+                     track_running_stats=True,
+                     device=None,
+                     dtype=None)
 ```
 
-两者功能一致，参数完全一致，具体如下：
-### 参数映射
+### [paddle.nn.BatchNorm1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BatchNorm1D_cn.html#batchnorm1d)
 
-| PyTorch | PaddlePaddle | 备注                                               |
-|---------|--------------| -------------------------------------------------- |
-| min     | min          | 裁剪的最小值，输入中小于该值的元素将由该元素代替。            |
-| max     | max          | 裁剪的最大值，输入中大于该值的元素将由该元素代替。            |
+```python
+paddle.nn.BatchNorm1D(num_features,
+                     eps=1e-05,
+                     momentum=0.1,
+                     affine=True,
+                     track_running_stats=True,
+                     device=None,
+                     dtype=None)
+```
 
-
+两者功能一致，参数完全一致，API名称不一致
 
 ## 分类 3：仅参数名不一致
 
