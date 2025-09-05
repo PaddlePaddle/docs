@@ -1,20 +1,20 @@
-.. _cn_api_paddle_nn_functional_softmax:
+.. _cn_api_paddle_special_softmax:
 
 softmax
 -------------------------------
-.. py:function:: paddle.nn.functional.softmax(x, axis=-1, dtype=None, name=None, *, out=None)
+.. py:function:: paddle.special.softmax(input, dim=None, dtype=None, *, out=None)
 
 实现 softmax 层。计算过程如下：
 
-步骤 1：输入 :attr:`x` 的 :attr:`axis` 维会被置换到最后一维；
+步骤 1：输入 :attr:`input` 的 :attr:`dim` 维会被置换到最后一维；
 
-步骤 2：将输入 :attr:`x` 在逻辑上变换为二维矩阵。二维矩阵第一维（列长度）是输入除最后一维之外的其他维度值的乘积，第二维（行长度）和输入 ``axis`` 维的长度相同；对于矩阵的每一行，softmax 操作对其进行重新缩放，使得该行的每个元素在 :math:`[0, 1]` 范围内，并且总和为 :math:`1`；
+步骤 2：将输入 :attr:`input` 在逻辑上变换为二维矩阵。二维矩阵第一维（列长度）是输入除最后一维之外的其他维度值的乘积，第二维（行长度）和输入 ``dim`` 维的长度相同；对于矩阵的每一行，softmax 操作对其进行重新缩放，使得该行的每个元素在 :math:`[0, 1]` 范围内，并且总和为 :math:`1`；
 
-步骤 3：softmax 操作执行完成后，执行步骤 1 和步骤 2 的逆运算，将二维矩阵恢复至和输入 :attr:`x` 相同的维度。
+步骤 3：softmax 操作执行完成后，执行步骤 1 和步骤 2 的逆运算，将二维矩阵恢复至和输入 :attr:`input` 相同的维度。
 
 上述步骤 2 中 softmax 操作计算过程如下：
 
-    - 对于二维矩阵的每一行，计算 K 维向量（K 是输入第 :attr:`axis` 维的长度）中指定位置的指数值和全部位置指数值的和。
+    - 对于二维矩阵的每一行，计算 K 维向量（K 是输入第 :attr:`dim` 维的长度）中指定位置的指数值和全部位置指数值的和。
 
     - 指定位置指数值与全部位置指数值之和的比值就是 softmax 操作的输出。
 
@@ -22,7 +22,7 @@ softmax
 
 .. math::
 
-    softmax[i, j] = \frac{\exp(x[i, j])}{\sum_j(exp(x[i, j])}
+    softmax[i, j] = \frac{\exp(input[i, j])}{\sum_j(exp(input[i, j])}
 
 - 示例 1（矩阵一共有三维。axis = -1，表示沿着最后一维（即第三维）做 softmax 操作）
 
@@ -30,16 +30,16 @@ softmax
 
   # input
 
-    x.shape = [2, 3, 4]
+    input.shape = [2, 3, 4]
 
-    x.data = [[[2.0, 3.0, 4.0, 5.0],
+    input.data = [[[2.0, 3.0, 4.0, 5.0],
                [3.0, 4.0, 5.0, 6.0],
                [7.0, 8.0, 8.0, 9.0]],
               [[1.0, 2.0, 3.0, 4.0],
                [5.0, 6.0, 7.0, 8.0],
                [6.0, 7.0, 8.0, 9.0]]]
 
-    axis = -1
+    dim = -1
 
   # output
 
@@ -52,22 +52,22 @@ softmax
                  [0.0320586 , 0.08714432, 0.23688282, 0.64391426],
                  [0.0320586 , 0.08714432, 0.23688282, 0.64391426]]]
 
-- 示例 2（矩阵一共有三维。axis = 1，表示沿着第二维做 softmax 操作）
+- 示例 2（矩阵一共有三维。dim = 1，表示沿着第二维做 softmax 操作）
 
 .. code-block:: text
 
   # input
 
-    x.shape = [2, 3, 4]
+    input.shape = [2, 3, 4]
 
-    x.data = [[[2.0, 3.0, 4.0, 5.0],
+    input.data = [[[2.0, 3.0, 4.0, 5.0],
                [3.0, 4.0, 5.0, 6.0],
                [7.0, 8.0, 8.0, 9.0]],
               [[1.0, 2.0, 3.0, 4.0],
                [5.0, 6.0, 7.0, 8.0],
                [6.0, 7.0, 8.0, 9.0]]]
 
-    axis = 1
+    dim = 1
 
   # output
 
@@ -84,20 +84,17 @@ softmax
 参数
 ::::::::::
 
-    - **x** (Tensor) - 输入的 ``Tensor``，数据类型为 bfloat16 、 float16 、 float32 或 float64。
-      ``别名：input``
-    - **axis** (int，可选) - 指定对输入 :attr:`x` 进行运算的轴。:attr:`axis` 的有效范围是 :math:`[-D, D)`，:math:`D` 是输入 :attr:`x` 的维度，:attr:`axis` 为负值时与 :math:`axis + D` 等价。默认值为 -1。
-      ``别名：dim``
+    - **input** (Tensor) - 输入的 ``Tensor``，数据类型为 bfloat16 、 float16 、 float32 或 float64。
+    - **dim** (int，可选) - 指定对输入 :attr:`input` 进行运算的轴。:attr:`dim` 的有效范围是 :math:`[-D, D)`，:math:`D` 是输入 :attr:`input` 的维度，:attr:`dim` 为负值时与 :math:`dim + D` 等价。默认值为 None。
     - **dtype** (str，可选) - 输出 `Tensor` 的数据类型，支持 bfloat16、 float16、 float32、float64。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **out** (Tensor，可选) - 指定输出结果的 `Tensor`，默认值为 None。
 
 返回
 ::::::::::
 
-    ``Tensor``，形状和 :attr:`x` 相同，数据类型为 :attr:`dtype` 或者和 :attr:`x` 相同。
+    ``Tensor``，形状和 :attr:`input` 相同，数据类型为 :attr:`dtype` 或者和 :attr:`input` 相同。
 
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.nn.functional.softmax
+COPY-FROM: paddle.special.softmax

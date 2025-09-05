@@ -16,6 +16,7 @@ PyTorch 兼容函数
 
     " :ref:`max <cn_api_paddle_compat_max>` ", "包含 `amax`、同时返回 values 及 indices 的轴向最大值、`maximum` 三种功能"
     " :ref:`min <cn_api_paddle_compat_min>` ", "包含 `amin`、同时返回 values 及 indices 的轴向最小值、`minimum` 三种功能"
+    " :ref:`softmax <cn_api_paddle_compat_softmax>` ", "softmax 函数"
     " :ref:`sort <cn_api_paddle_compat_sort>` ", "同时返回 values 及 indices 的排序"
     " :ref:`split <cn_api_paddle_compat_split>` ", "允许非整除块大小输入的 Tensor 轴向切分"
 

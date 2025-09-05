@@ -141,6 +141,21 @@ item(*args)
         print(x.item(2))            #3.3
         print(x.item(0, 2))         #3.3
 
+itemsize
+:::::::::
+
+Tensor 单个元素占据的字节数。
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        x = paddle.randn((2,3),dtype=paddle.float64)
+        x.itemsize
+        #8
+
 name
 :::::::::
 
@@ -812,6 +827,24 @@ chunk(chunks, axis=0, name=None)
 
 请参考 :ref:`cn_api_paddle_chunk`
 
+clamp(min=None, max=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+
+        x1 = paddle.to_tensor([[1.2, 3.5], [4.5, 6.4]], 'float32')
+        out1 = x1.clamp(min=3.5, max=5.0)
+        print(out1)
+        #Tensor(shape=[2, 2], dtype=float32, place=Place(cpu), stop_gradient=True,
+        #    [[3.50000000, 3.50000000],
+        #     [4.50000000, 5.        ]])
 
 clip(min=None, max=None, name=None)
 :::::::::
@@ -2326,6 +2359,34 @@ slice(axes, starts, ends)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_slice`
+
+softmax(dim, dtype=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+
+        x = paddle.to_tensor([[[2.0, 3.0, 4.0, 5.0],
+                               [3.0, 4.0, 5.0, 6.0],
+                               [7.0, 8.0, 8.0, 9.0]],
+                              [[1.0, 2.0, 3.0, 4.0],
+                               [5.0, 6.0, 7.0, 8.0],
+                               [6.0, 7.0, 8.0, 9.0]]],dtype='float32')
+        out1 = x.softmax(-1)
+        print(out1)
+        #Tensor(shape=[2, 3, 4], dtype=float32, place=Place(cpu), stop_gradient=True,
+        #    [[[0.03205860, 0.08714432, 0.23688284, 0.64391428],
+        #      [0.03205860, 0.08714432, 0.23688284, 0.64391428],
+        #      [0.07232949, 0.19661194, 0.19661194, 0.53444666]],
+        #     [[0.03205860, 0.08714432, 0.23688284, 0.64391428],
+        #      [0.03205860, 0.08714432, 0.23688284, 0.64391428],
+        #      [0.03205860, 0.08714432, 0.23688284, 0.64391428]]])
 
 sort(axis=-1, descending=False, name=None)
 :::::::::
