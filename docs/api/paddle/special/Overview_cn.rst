@@ -3,7 +3,7 @@
 paddle.special
 ---------------------
 
-paddle.special 目录下包含飞桨框架支持的效仿 torch.special 模块
+paddle.special 模块是模仿 SciPy 的 special 模块设计的，包含了许多特殊数学函数。
 
 .. _about_special_funcs:
 
