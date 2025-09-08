@@ -17,7 +17,7 @@ sum
 :::::::::
     - **x** (Tensor) - 输入的 Tensor，数据类型为 bool、float16、float32、float64、int32 或 int64。
     - **axis** (int|list|tuple，可选) - 沿着哪些维度进行求和操作。如果为 :attr:`None`，则对 :attr:`x` 的所有元素进行求和并返回一个只有一个元素的 Tensor；否则必须在 :math:`[-rank(x), rank(x))` 范围内。如果 :math:`axis[i] < 0`，则要减少的维度是 :math:`rank + axis[i]`。
-    - **dtype** (str，可选) - 输出 Tensor 的数据类型。默认值为 None，表示与输入 Tensor `x` 数据类型一致。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型。默认值为 None，表示与输入 Tensor `x` 数据类型一致。
     - **keepdim** (bool，可选) - 是否在输出 Tensor 中保留减少的维度。如果为 True，则结果 Tensor 的维数比 :attr:`x` 少一维，否则与 :attr:`x` 维数一致。默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

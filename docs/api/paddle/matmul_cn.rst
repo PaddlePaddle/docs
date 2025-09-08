@@ -3,12 +3,15 @@
 matmul
 -------------------------------
 
-.. py:function:: paddle.matmul(x, y, transpose_x=False, transpose_y=False, name=None)
+.. py:function:: paddle.matmul(x, y, transpose_x=False, transpose_y=False, name=None, *, out=None)
 
 .. note::
     计算两个 Tensor 的乘积，遵循完整的广播规则，关于广播规则，请参见 `Tensor 介绍`_ .
 
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
+
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x``， ``other`` 可替代 ``y``;
 
 并且其行为与 ``numpy.matmul`` 一致。目前，输入 Tensor 的维数可以是任意数量，``matmul``  可以用于
 实现 ``dot`` ， ``matmul`` 和 ``batchmatmul``。实际行为取决于输入 ``x`` 、输入 ``y`` 、 ``transpose_x`` ，
@@ -31,10 +34,13 @@ matmul
 参数
 :::::::::
     - **x** (Tensor) - 输入变量，类型为 Tensor，数据类型为 bfloat16， float16， float32， float64。
+      ``别名：input``
     - **y** (Tensor) - 输入变量，类型为 Tensor，数据类型为 bfloat16， float16， float32， float64。
+      ``别名：other``
     - **transpose_x** (bool，可选) - 相乘前是否转置 x，默认值为 False。
     - **transpose_y** (bool，可选) - 相乘前是否转置 y，默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **out** (Tensor，可选)- 输出的结果。该参数为仅关键字参数，默认值为 None。
 
 返回
 ::::::::::::

@@ -1,13 +1,11 @@
-.. _cn_api_paddle_arange:
+.. _cn_api_paddle_range:
 
-arange
+range
 -------------------------------
 
-.. py:function:: paddle.arange(start=0, end=None, step=1, dtype=None, *, out=None, device=None, requires_grad=False, pin_memory=False, name=None)
+.. py:function:: paddle.range(start=0, end=None, step=1, dtype=None, *, out=None, device=None, requires_grad=False, name=None)
 
-返回以步长 ``step`` 均匀分隔给定数值区间[ ``start`` , ``end`` )的 1-D Tensor，数据类型为 ``dtype`` 。
-
-当 ``dtype`` 表示浮点类型时，为了避免浮点计算误差，建议给 ``end`` 加上一个极小值 epsilon，使边界可以更加明确。
+返回一个形状为 [$\lfloor \dfrac{end-start}{step} \rfloor + 1$] 的 1-D Tensor(对应 **闭区间** [ ``start`` , ``end`` ])，数据类型为 ``dtype`` 。
 
 参数
 ::::::::::
@@ -22,15 +20,14 @@ arange
   - **out** (Tensor，可选) - 用于存储结果的 Tensor。若指定，将直接写入该 Tensor，默认值为 None。
   - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。默认值为 None，表示使用当前全局设备（可通过 ``paddle.device.set_device`` 设置）。
   - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
-  - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::
-  Tensor，以步长 ``step`` 均匀分割给定数值区间[start, end)后得到的 1-D Tensor，数据类型为 ``dtype`` 。
+  返回一个形状为 [$\lfloor \dfrac{end-start}{step} \rfloor + 1$] 的 1-D Tensor(对应 **闭区间** [ ``start`` , ``end`` ])，数据类型为 ``dtype`` 。
 
 
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.arange
+COPY-FROM: paddle.range
