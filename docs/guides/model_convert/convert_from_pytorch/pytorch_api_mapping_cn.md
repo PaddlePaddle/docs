@@ -40,7 +40,7 @@ torch.Tensor.t()
 paddle.Tensor.t()
 ```
 
-| 序号 | Pytorch最新release | Paddle develop | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
 | 1 | [torch.Tensor.bfloat16](https://pytorch.org/docs/stable/generated/torch.Tensor.bfloat16.html#torch.Tensor.bfloat16) | paddle.Tensor.bfloat16 | - |
 | 2 | [torch.Tensor.bool](https://pytorch.org/docs/stable/generated/torch.Tensor.bool.html#torch.Tensor.bool) | paddle.Tensor.bool | - |
@@ -532,7 +532,7 @@ paddle.nn.BatchNorm1D(num_features,
                      dtype=None)
 ```
 
-| 序号 | Pytorch最新release | Paddle develop | 备注 |
+| 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
 | 1 | [torch.Tensor.clamp](https://pytorch.org/docs/stable/generated/torch.Tensor.clamp.html?highlight=clamp#torch.Tensor.clamp) | [paddle.Tensor.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#clip-min-none-max-none-name-none) | - |
 | 2 | [torch.Tensor.clamp_](https://pytorch.org/docs/stable/generated/torch.Tensor.clamp_.html?highlight=clamp_#torch.Tensor.clamp_) | [paddle.Tensor.clip_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id6) | - |
