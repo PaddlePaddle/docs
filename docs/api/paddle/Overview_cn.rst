@@ -348,7 +348,8 @@ tensor 创建相关
     " :ref:`paddle.ones <cn_api_paddle_ones>` ", "创建形状为 shape 、数据类型为 dtype 且值全为 1 的 Tensor"
     " :ref:`paddle.ones_like <cn_api_paddle_ones_like>` ", "返回一个和 x 具有相同形状的数值都为 1 的 Tensor"
     " :ref:`paddle.Tensor <cn_api_paddle_Tensor>` ", "Paddle 中最为基础的数据结构"
-    " :ref:`paddle.to_tensor <cn_api_paddle_vision_transforms_to_tensor>` ", "通过已知的 data 来创建一个 tensor"
+    " :ref:`paddle.to_tensor <cn_api_paddle_to_tensor>` ", "通过已知的 data 来创建一个 tensor"
+    " :ref:`paddle.tensor <cn_api_paddle_tensor>` ", "通过已知的 data 来创建一个 tensor, 与 torch.tensor 参数和功能对齐"
     " :ref:`paddle.tolist <cn_api_paddle_tolist>` ", "将 paddle Tensor 转化为 python list"
     " :ref:`paddle.zeros <cn_api_paddle_zeros>` ", "创建形状为 shape 、数据类型为 dtype 且值全为 0 的 Tensor"
     " :ref:`paddle.zeros_like <cn_api_paddle_zeros_like>` ", "返回一个和 x 具有相同的形状的全零 Tensor，数据类型为 dtype 或者和 x 相同"
@@ -357,6 +358,7 @@ tensor 创建相关
     " :ref:`paddle.clone <cn_api_paddle_clone>` ", "对输入 Tensor ``x`` 进行拷贝，并返回一个新的 Tensor，并且该操作提供梯度回传"
     " :ref:`paddle.batch <cn_api_paddle_batch>` ", "一个 reader 的装饰器。返回的 reader 将输入 reader 的数据打包成指定的 batch_size 大小的批处理数据（不推荐使用）"
     " :ref:`paddle.polar <cn_api_paddle_polar>`", "对于给定的模 ``abs`` 和相位角 ``angle``，返回一个对应复平面上的坐标复数 Tensor"
+    " :ref:`paddle.range <cn_api_paddle_range>` ，返回一个 1-D Tensor，包含在区间 [start, end] 内按给定步长 step 均匀排列的数值，数据类型为 dtype。"
     " :ref:`paddle.vander <cn_api_paddle_vander>` ", "生成范德蒙德矩阵。"
 
 .. _tensor_search:
