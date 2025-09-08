@@ -23,7 +23,7 @@ MelSpectrogram
     - **f_max** (float，可选) - 最大频率(hz)，默认为 None。
     - **htk** (bool，可选) - 在计算 fbank 矩阵时是否用在 HTK 公式缩放，默认是 False。
     - **norm** (Union[str, float]，可选) -计算 fbank 矩阵时正则化的种类，默认是'slaney'，也可以 norm=0.5，使用 p-norm 正则化。
-    - **dtype**  (str，可选) - 输入和窗的数据类型，默认是'float32'。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输入和窗的数据类型，默认是'float32'。
 
 
 返回

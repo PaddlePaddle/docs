@@ -33,7 +33,7 @@ SpectralNorm
     - **power_iters** (int，可选) - 将用于计算的 ``SpectralNorm`` 功率迭代次数，默认值：1。
     - **eps** (float，可选) -  ``eps`` 用于保证计算规范中的数值稳定性，分母会加上 ``eps`` 防止除零。默认值：1e-12。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **dtype** (str，可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
 
 形状
 :::::::::

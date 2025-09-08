@@ -17,4 +17,4 @@ paddle.conj(x,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
+|  input  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
