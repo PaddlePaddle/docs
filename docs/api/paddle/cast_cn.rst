@@ -19,7 +19,7 @@ cast
 ::::::::::::
 
     - **x** (Tensor) - 输入多维 Tensor，支持的数据类型为：bool、float16、float32、float64、uint8、int32、int64。
-    - **dtype** (str|np.dtype) - 输出 Tensor 的数据类型。支持的数据类型为：bool、float16、float32、float64、int8、int32、int64、uint8。
+    - **dtype** (str|paddle.dtype|np.dtype) - 输出 Tensor 的数据类型。支持的数据类型为：bool、float16、float32、float64、int8、int32、int64、uint8。
 
 返回
 ::::::::::::

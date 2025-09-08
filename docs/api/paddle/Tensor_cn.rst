@@ -655,7 +655,7 @@ astype(dtype)
 将 Tensor 的类型转换为 ``dtype``，并返回一个新的 Tensor。
 
 参数：
-    - **dtype** (str) - 转换后的 dtype，支持'bool'，'float16'，'float32'，'float64'，'int8'，'int16'，
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 转换后的 dtype，支持'bool'，'float16'，'float32'，'float64'，'int8'，'int16'，
       'int32'，'int64'，'uint8'。
 
 返回：类型转换后的新的 Tensor
@@ -3431,7 +3431,7 @@ new_full(size, fill_value, \*, dtype=None, device=None, requires_grad=False, pin
     - **fill_value** (Scalar|Tensor) - 用于填充的常量值。若为 Tensor，则应为标量（0 维 Tensor）。
 
 关键字参数:
-    - **dtype** (str，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
       若为 None，则默认与 ``self`` 的 dtype 一致。
     - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
@@ -3455,7 +3455,7 @@ new_ones(size, \*, dtype=None, device=None, requires_grad=False, pin_memory=Fals
       若为列表或元组，其中元素需为整数或 0 维 Tensor。
 
 关键字参数:
-    - **dtype** (str，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
       若为 None，则默认与 ``self`` 的 dtype 一致。
     - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
@@ -3479,7 +3479,7 @@ new_zeros(size, \*, dtype=None, device=None, requires_grad=False, pin_memory=Fal
       若为列表或元组，其中元素需为整数或 0 维 Tensor。
 
 关键字参数:
-    - **dtype** (str，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
       若为 None，则默认与 ``self`` 的 dtype 一致。
     - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
@@ -3503,7 +3503,7 @@ new_empty(size, \*, dtype=None, device=None, requires_grad=False, pin_memory=Fal
       若为列表或元组，其中元素需为整数或 0 维 Tensor。
 
 关键字参数:
-    - **dtype** (str，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
       若为 None，则默认与 ``self`` 的 dtype 一致。
     - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
