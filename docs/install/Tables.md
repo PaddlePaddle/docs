@@ -344,6 +344,7 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu118/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp313-cp313-linux_x86_64.whl">
         paddlepaddle_gpu-3.2.0-cp313-cp313-linux_x86_64.whl</a></td>
     </tr>
+    <tr>
         <td> cuda12.6-cudnn9.0-mkl-gcc12.2-avx </td>
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp39-cp39-linux_x86_64.whl">
         paddlepaddle_gpu-3.2.0-cp39-cp39-linux_x86_64.whl</a></td>
@@ -354,6 +355,19 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp312-cp312-linux_x86_64.whl">
         paddlepaddle_gpu-3.2.0-cp312-cp312-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp313-cp313-linux_x86_64.whl">
+        paddlepaddle_gpu-3.2.0-cp313-cp313-linux_x86_64.whl</a></td>
+    </tr>
+    <tr>
+        <td> cuda12.6-cudnn9.9-mkl-gcc12.2-avx </td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu129/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp39-cp39-linux_x86_64.whl">
+        paddlepaddle_gpu-3.2.0-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu129/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp310-cp310-linux_x86_64.whl">
+        paddlepaddle_gpu-3.2.0-cp310-cp310-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu129/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp311-cp311-linux_x86_64.whl">
+        paddlepaddle_gpu-3.2.0-cp311-cp311-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu129/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp312-cp312-linux_x86_64.whl">
+        paddlepaddle_gpu-3.2.0-cp312-cp312-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu129/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp313-cp313-linux_x86_64.whl">
         paddlepaddle_gpu-3.2.0-cp313-cp313-linux_x86_64.whl</a></td>
     </tr>
     <tr>
@@ -392,6 +406,13 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp311-cp311-win_amd64.whl"> paddlepaddle_gpu-3.2.0-cp311-cp311-win_amd64.whl</a></td>
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp312-cp312-win_amd64.whl"> paddlepaddle_gpu-3.2.0-cp312-cp312-win_amd64.whl</a></td>
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp313-cp313-win_amd64.whl"> paddlepaddle_gpu-3.2.0-cp313-cp313-win_amd64.whl</a></td>
+    </tr>
+        <td> win-cuda12.9-cudnn9.9-mkl-vs2019-avx </td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu129/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-3.2.0-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu129/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-3.2.0-cp310-cp310-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu129/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp311-cp311-win_amd64.whl"> paddlepaddle_gpu-3.2.0-cp311-cp311-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu129/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp312-cp312-win_amd64.whl"> paddlepaddle_gpu-3.2.0-cp312-cp312-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu129/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp313-cp313-win_amd64.whl"> paddlepaddle_gpu-3.2.0-cp313-cp313-win_amd64.whl</a></td>
     </tr>
    </tbody>
 </table>
