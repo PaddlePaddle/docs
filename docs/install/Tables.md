@@ -358,7 +358,7 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
         paddlepaddle_gpu-3.2.0-cp313-cp313-linux_x86_64.whl</a></td>
     </tr>
     <tr>
-        <td> cuda12.6-cudnn9.9-mkl-gcc12.2-avx </td>
+        <td> cuda12.9-cudnn9.9-mkl-gcc12.2-avx </td>
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu129/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp39-cp39-linux_x86_64.whl">
         paddlepaddle_gpu-3.2.0-cp39-cp39-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu129/paddlepaddle-gpu/paddlepaddle_gpu-3.2.0-cp310-cp310-linux_x86_64.whl">
