@@ -175,6 +175,21 @@ item(*args)
         print(x.item(2))            #3.3
         print(x.item(0, 2))         #3.3
 
+itemsize
+:::::::::
+
+Tensor 单个元素占据的字节数。
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+
+        x = paddle.randn((2,3),dtype=paddle.float64)
+        x.itemsize
+        #8
+
 name
 :::::::::
 
@@ -670,6 +685,210 @@ astype(dtype)
         print("original tensor's dtype is: {}".format(x.dtype))
         print("new tensor's dtype is: {}".format(x.astype('float64').dtype))
 
+bfloat16()
+:::::::::
+
+如果当前 Tensor 已经是 ``bfloat16`` 类型，则返回该 Tensor。否则，返回一个新的 ``bfloat16`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.bfloat16().dtype))
+
+bool()
+:::::::::
+
+如果当前 Tensor 已经是 ``bool`` 类型，则返回该 Tensor。否则，返回一个新的 ``bool`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.bool().dtype))
+
+byte()
+:::::::::
+
+如果当前 Tensor 已经是 ``byte`` 类型，则返回该 Tensor。否则，返回一个新的 ``byte`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.byte().dtype))
+
+char()
+:::::::::
+
+如果当前 Tensor 已经是 ``char`` 类型，则返回该 Tensor。否则，返回一个新的 ``char`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.char().dtype))
+
+double()
+:::::::::
+
+如果当前 Tensor 已经是 ``double`` 类型，则返回该 Tensor。否则，返回一个新的 ``double`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.double().dtype))
+
+float()
+:::::::::
+
+如果当前 Tensor 已经是 ``float`` 类型，则返回该 Tensor。否则，返回一个新的 ``float`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.float().dtype))
+
+half()
+:::::::::
+
+如果当前 Tensor 已经是 ``half`` 类型，则返回该 Tensor。否则，返回一个新的 ``half`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.half().dtype))
+
+int()
+:::::::::
+
+如果当前 Tensor 已经是 ``int`` 类型，则返回该 Tensor。否则，返回一个新的 ``int`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.int().dtype))
+
+long()
+:::::::::
+
+如果当前 Tensor 已经是 ``long`` 类型，则返回该 Tensor。否则，返回一个新的 ``long`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.long().dtype))
+
+short()
+:::::::::
+
+如果当前 Tensor 已经是 ``short`` 类型，则返回该 Tensor。否则，返回一个新的 ``short`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.short().dtype))
+
+cfloat()
+:::::::::
+
+如果当前 Tensor 已经是 ``cfloat`` 类型，则返回该 Tensor。否则，返回一个新的 ``cfloat`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.cfloat().dtype))
+
+cdouble()
+:::::::::
+
+如果当前 Tensor 已经是 ``cdouble`` 类型，则返回该 Tensor。否则，返回一个新的 ``cdouble`` 类型的 Tensor 副本。
+
+返回： 转换后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.cdouble().dtype))
+
 atan(name=None)
 :::::::::
 
@@ -846,6 +1065,24 @@ chunk(chunks, axis=0, name=None)
 
 请参考 :ref:`cn_api_paddle_chunk`
 
+clamp(min=None, max=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+
+        x1 = paddle.to_tensor([[1.2, 3.5], [4.5, 6.4]], 'float32')
+        out1 = x1.clamp(min=3.5, max=5.0)
+        print(out1)
+        #Tensor(shape=[2, 2], dtype=float32, place=Place(cpu), stop_gradient=True,
+        #    [[3.50000000, 3.50000000],
+        #     [4.50000000, 5.        ]])
 
 clip(min=None, max=None, name=None)
 :::::::::
@@ -2360,6 +2597,34 @@ slice(axes, starts, ends)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_slice`
+
+softmax(dim, dtype=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+
+        x = paddle.to_tensor([[[2.0, 3.0, 4.0, 5.0],
+                               [3.0, 4.0, 5.0, 6.0],
+                               [7.0, 8.0, 8.0, 9.0]],
+                              [[1.0, 2.0, 3.0, 4.0],
+                               [5.0, 6.0, 7.0, 8.0],
+                               [6.0, 7.0, 8.0, 9.0]]],dtype='float32')
+        out1 = x.softmax(-1)
+        print(out1)
+        #Tensor(shape=[2, 3, 4], dtype=float32, place=Place(cpu), stop_gradient=True,
+        #    [[[0.03205860, 0.08714432, 0.23688284, 0.64391428],
+        #      [0.03205860, 0.08714432, 0.23688284, 0.64391428],
+        #      [0.07232949, 0.19661194, 0.19661194, 0.53444666]],
+        #     [[0.03205860, 0.08714432, 0.23688284, 0.64391428],
+        #      [0.03205860, 0.08714432, 0.23688284, 0.64391428],
+        #      [0.03205860, 0.08714432, 0.23688284, 0.64391428]]])
 
 sort(axis=-1, descending=False, name=None)
 :::::::::

@@ -139,6 +139,7 @@ tensor 数学操作
     " :ref:`paddle.sin <cn_api_paddle_sin>` ", "计算输入的正弦值"
     " :ref:`paddle.sinc <cn_api_paddle_sinc>` ", "计算输入的归一化 sinc 值"
     " :ref:`paddle.sinh <cn_api_paddle_sinh>` ", "双曲正弦函数"
+    " :ref:`paddle.softmax <cn_api_paddle_softmax>` ", "softmax 函数"
     " :ref:`paddle.sqrt <cn_api_paddle_sqrt>` ", "计算输入的算数平方根"
     " :ref:`paddle.square <cn_api_paddle_square>` ", "逐元素取平方运算"
     " :ref:`paddle.stanh <cn_api_paddle_stanh>` ", "stanh 激活函数"
