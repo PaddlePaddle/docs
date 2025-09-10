@@ -708,8 +708,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-| 1 |- |- | - |
-新增中
+#####　新增中......
 
 ## paddle 参数更多
 ##### 分类依据
@@ -717,8 +716,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-| 1 |- |- | - |
-新增中
+#####　新增中......
 
 ## 参数默认值不一致
 ##### 分类依据
@@ -726,8 +724,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-| 1 |- |- | - |
-新增中
+#####　新增中......
 
 ## torch 参数更多
 ##### 分类依据
@@ -735,8 +732,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-| 1 |- |- | - |
-新增中
+#####　新增中......
 
 ## 输入参数用法不一致
 ##### 分类依据
@@ -744,8 +740,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-| 1 |- |- | - |
-新增中
+#####　新增中......
 
 ## 输入参数类型不一致
 ##### 分类依据
@@ -753,8 +748,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-| 1 |- |- | - |
-新增中
+#####　新增中......
 
 ## 返回参数类型不一致
 ##### 分类依据
@@ -762,8 +756,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-| 1 |- |- | - |
-新增中
+#####　新增中......
 
 ## 组合替代实现
 ##### 分类依据
@@ -771,8 +764,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-| 1 |- |- | - |
-新增中
+#####　新增中......
 
 ## 可删除
 ##### 分类依据
@@ -780,8 +772,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-| 1 |- |- | - |
-新增中
+#####　新增中......
 
 ## 功能缺失
 ##### 分类依据
@@ -789,5 +780,4 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-| 1 |- |- | - |
-新增中
+#####　新增中......
