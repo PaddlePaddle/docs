@@ -45,9 +45,9 @@ Paddle API 签名
 
 参数映射以表格的形式呈现，表格的第 1 列是`PyTorch` 所有参数，第 2 列是`Paddle`对应参数，表格顺序按第 1 列 `PyTorch` 的参数顺序来。
 
-1. **参数与 API 名均一致**：无需参数映射与转写示例。
+1. **参数与 API 名均一致**：无需映射文档与转写示例。
 
-2. **参数一致但 API 名不一致**：无需参数映射转写示例。
+2. **参数一致但 API 名不一致**：无需映射文档与转写示例。
 
 3. **仅参数名不一致**：无需转写示例，但需要在备注列里注明哪些参数 `仅参数名不一致`。
 
@@ -92,7 +92,7 @@ paddle.xxx()
 | 分类序号 |    分类名称            |    参数映射      |    转写示例      |
 | ------- | -----------------    | --------------- | --------------- |
 | 1       | 参数与 API 名均一致     | ❌              |  ❌              |
-| 2       | 参数一致但 API 名不一致  | ✅              |  ❌              |
+| 2       | 参数一致但 API 名不一致  | ❌              |  ❌              |
 | 3       | 仅参数名不一致         | ✅              |  ❌              |
 | 4       | paddle 参数更多       | ✅              |  ❌              |
 | 5       | 参数默认值不一致       | ✅              |  ❌              |
@@ -105,56 +105,6 @@ paddle.xxx()
 --------------------------------------------------------
 
 # API 映射关系文档 - 模板
-
-
-## 分类 1：参数与 API 名均一致
-
-### [ 参数与 API 名均一致 ] torch.Tensor.t
-
-### [torch.Tensor.t](https://pytorch.org/docs/stable/generated/torch.Tensor.t.html#torch.Tensor.t)
-
-```python
-torch.Tensor.t()
-```
-
-### [paddle.Tensor.t](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#t-name-none)
-
-```python
-paddle.Tensor.t()
-```
-
-两者功能、API 名称均一致，只需要将 torch.改成 paddle.。
-
-
-## 分类 2：参数一致但 API 名不一致
-
-### [ 参数一致但 API 名不一致 ] torch.Tensor.new_zeros
-
-### [torch.nn.BatchNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm1d.html?highlight=torch%20nn%20batchnorm1d#torch.nn.BatchNorm1d)
-
-```python
-torch.nn.BatchNorm1d(num_features,
-                     eps=1e-05,
-                     momentum=0.1,
-                     affine=True,
-                     track_running_stats=True,
-                     device=None,
-                     dtype=None)
-```
-
-### [paddle.nn.BatchNorm1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BatchNorm1D_cn.html#batchnorm1d)
-
-```python
-paddle.nn.BatchNorm1D(num_features,
-                     eps=1e-05,
-                     momentum=0.1,
-                     affine=True,
-                     track_running_stats=True,
-                     device=None,
-                     dtype=None)
-```
-
-两者功能一致，参数完全一致，API 名称不一致
 
 ## 分类 3：仅参数名不一致
 
