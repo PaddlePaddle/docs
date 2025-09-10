@@ -17,5 +17,5 @@ paddle.nonzero(x, as_tuple=False)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'>input</font>         | <font color='red'>x</font>            | 输入的 Tensor ，仅参数名不一致。                   |
-| - | <font color='red'> as_tuple </font>   | 返回格式。是否以 1-D Tensor 构成的元组格式返回。 PyTorch 无此参数， Paddle 保持默认即可。  |
+| input         | x            | 输入的 Tensor ，仅参数名不一致。                   |
+| - |  as_tuple    | 返回格式。是否以 1-D Tensor 构成的元组格式返回。 PyTorch 无此参数， Paddle 保持默认即可。  |

@@ -139,6 +139,7 @@ tensor 数学操作
     " :ref:`paddle.sin <cn_api_paddle_sin>` ", "计算输入的正弦值"
     " :ref:`paddle.sinc <cn_api_paddle_sinc>` ", "计算输入的归一化 sinc 值"
     " :ref:`paddle.sinh <cn_api_paddle_sinh>` ", "双曲正弦函数"
+    " :ref:`paddle.softmax <cn_api_paddle_softmax>` ", "softmax 函数"
     " :ref:`paddle.sqrt <cn_api_paddle_sqrt>` ", "计算输入的算数平方根"
     " :ref:`paddle.square <cn_api_paddle_square>` ", "逐元素取平方运算"
     " :ref:`paddle.stanh <cn_api_paddle_stanh>` ", "stanh 激活函数"
@@ -358,6 +359,7 @@ tensor 创建相关
     " :ref:`paddle.clone <cn_api_paddle_clone>` ", "对输入 Tensor ``x`` 进行拷贝，并返回一个新的 Tensor，并且该操作提供梯度回传"
     " :ref:`paddle.batch <cn_api_paddle_batch>` ", "一个 reader 的装饰器。返回的 reader 将输入 reader 的数据打包成指定的 batch_size 大小的批处理数据（不推荐使用）"
     " :ref:`paddle.polar <cn_api_paddle_polar>`", "对于给定的模 ``abs`` 和相位角 ``angle``，返回一个对应复平面上的坐标复数 Tensor"
+    " :ref:`paddle.range <cn_api_paddle_range>` ，返回一个 1-D Tensor，包含在区间 [start, end] 内按给定步长 step 均匀排列的数值，数据类型为 dtype。"
     " :ref:`paddle.vander <cn_api_paddle_vander>` ", "生成范德蒙德矩阵。"
 
 .. _tensor_search:

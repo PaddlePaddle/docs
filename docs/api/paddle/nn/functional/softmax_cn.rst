@@ -2,7 +2,7 @@
 
 softmax
 -------------------------------
-.. py:function:: paddle.nn.functional.softmax(x, axis=-1, dtype=None, name=None)
+.. py:function:: paddle.nn.functional.softmax(x, axis=-1, dtype=None, name=None, *, out=None)
 
 实现 softmax 层。计算过程如下：
 
@@ -85,9 +85,11 @@ softmax
 ::::::::::
 
     - **x** (Tensor) - 输入的 ``Tensor``，数据类型为 bfloat16 、 float16 、 float32 或 float64。
+      ``别名：input``
     - **axis** (int，可选) - 指定对输入 :attr:`x` 进行运算的轴。:attr:`axis` 的有效范围是 :math:`[-D, D)`，:math:`D` 是输入 :attr:`x` 的维度，:attr:`axis` 为负值时与 :math:`axis + D` 等价。默认值为 -1。
-    - **dtype** (str，可选) - 输出 `Tensor` 的数据类型，支持 bfloat16、 float16、 float32、float64。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 `Tensor` 的数据类型，支持 bfloat16、 float16、 float32、float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **out** (Tensor，可选) - 指定输出结果的 `Tensor`，默认值为 None。
 
 返回
 ::::::::::

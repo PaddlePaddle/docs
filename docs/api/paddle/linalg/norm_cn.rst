@@ -57,7 +57,7 @@ norm
       别名： ``dim``
     - **keepdim** (bool，可选) - 是否在输出的 Tensor 中保留和输入一样的维度，默认值为 False。当 :attr:`keepdim` 为 False 时，输出的 Tensor 会比输入 :attr:`input` 的维度少一些。
     - **out** (Tensor，可选) - 存储输出的 Tensor，当 ``out = None`` 时，该参数无作用。
-    - **dtype** (str|paddle.dtype，可选) - 输出的数据类型，如果指定，则执行操作时输入张量将转换为 `dtype`。默认值为 None。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出的数据类型，如果指定，则执行操作时输入张量将转换为 `dtype`。默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

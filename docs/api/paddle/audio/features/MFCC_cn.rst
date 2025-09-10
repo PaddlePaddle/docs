@@ -27,7 +27,7 @@ MFCC
     - **ref_value** (float，可选) - 参照值， 如果小于 1.0，信号的 db 会被提升， 相反 db 会下降， 默认值为 1.0。
     - **amin** (float，可选) - 输入的幅值的最小值，默认是 1e-10。
     - **top_db** (float，可选) - log-mel 谱的最大值(db)，默认是 None。
-    - **dtype**  (str，可选) - 输入和窗的数据类型，默认是'float32'。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输入和窗的数据类型，默认是'float32'。
 
 返回
 :::::::::

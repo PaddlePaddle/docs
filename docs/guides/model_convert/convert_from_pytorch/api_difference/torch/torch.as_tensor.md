@@ -23,5 +23,5 @@ paddle.to_tensor(data,
 | ------------- | ------------ | ------------------------------------------------------ |
 | data          | data         | 表示输入的 Tensor 。                                     |
 | dtype           | dtype            | 表示 Tensor 的数据类型。               |
-| <font color='red'> device </font>           | <font color='red'> place </font>            | 表示 Tensor 的存放位置，仅参数名不一致。               |
-| -           | <font color='red'> stop_gradient </font>            | 表示是否阻断梯度传导， PyTorch 无此参数， Paddle 保持默认即可。             |
+| device            |  place             | 表示 Tensor 的存放位置，仅参数名不一致。               |
+| -           |  stop_gradient             | 表示是否阻断梯度传导， PyTorch 无此参数， Paddle 保持默认即可。             |

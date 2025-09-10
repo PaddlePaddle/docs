@@ -18,4 +18,4 @@ paddle.abs_(x)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font>         | <font color='red'> x </font>            | 输入的 Tensor ，仅参数名不一致。                                     |
+|  input          |  x             | 输入的 Tensor ，仅参数名不一致。                                     |
