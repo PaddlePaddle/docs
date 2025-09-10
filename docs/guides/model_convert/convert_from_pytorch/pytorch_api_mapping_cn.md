@@ -27,7 +27,7 @@
 ##### 分类依据
 此类 API 功能和使用方法在 PyTorch 和 PaddlePaddle 中完全一致，只需将 ``torch.`` 替换为 ``paddle.``
 
-##### 转写示例1
+##### 转写示例 1
 ### [torch.einsum](https://pytorch.org/docs/stable/generated/torch.einsum.html#torch.einsum)
 
 ```python
@@ -39,8 +39,8 @@ torch.einsum(equation, *operands)
 ```python
 paddle.einsum(equation, *operands)
 ```
-##### 转写示例2
-###  [torch.set_default_dtype](https://pytorch.org/docs/stable/generated/torch.set_default_dtype.html) 
+##### 转写示例 2
+###  [torch.set_default_dtype](https://pytorch.org/docs/stable/generated/torch.set_default_dtype.html)
 
 ```python
 torch.set_default_dtype(d)
@@ -51,7 +51,7 @@ torch.set_default_dtype(d)
 ```python
 paddle.set_default_dtype(d)
 ```
-##### 转写示例3
+##### 转写示例 3
 ###  [torch.nn.Softplus](https://pytorch.org/docs/stable/generated/torch.nn.Softplus.html)
 
 ```python
@@ -531,7 +531,7 @@ paddle.nn.Softplus(beta=1, threshold=20, name=None)
 ## 参数一致但 API 名不一致
 此类 API 功能和使用方法在 PyTorch 和 PaddlePaddle 中完全一致,但是 API 名称不同，需要用户进行 API 名称替换。
 
-##### 转写示例1
+##### 转写示例 1
 ### [torch.nn.BatchNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm1d.html?highlight=torch%20nn%20batchnorm1d#torch.nn.BatchNorm1d)
 
 ```python
@@ -555,7 +555,7 @@ paddle.nn.BatchNorm1D(num_features,
                      device=None,
                      dtype=None)
 ```
-##### 转写示例2
+##### 转写示例 2
 ### [torch.nn.HuberLoss](https://pytorch.org/docs/stable/generated/torch.nn.HuberLoss.html#torch.nn.HuberLoss)
 
 ```python
@@ -567,7 +567,7 @@ torch.nn.HuberLoss(reduction='mean', delta=1.0)
 ```python
 paddle.nn.SmoothL1Loss(reduction='mean', delta=1.0, name=None)
 ```
-##### 转写示例3
+##### 转写示例 3
 ### [torch.autograd.Function.forward](https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward)
 
 ```python
@@ -791,99 +791,3 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 |------|-------------------|---------------|------|
 | 1 |- |- | - |
 新增中
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
