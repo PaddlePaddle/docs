@@ -510,11 +510,11 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 
 **转写示例**
 ```python
-## Pytorch 代码
+## Pytorch 写法
 m = torch.nn.AdaptiveAvgPool1d(5)
 y = x.to_sparse(1)
 
-## Paddle 代码
+## Paddle 写法
 m = paddle.nn.AdaptiveAvgPool1D(5)
 y = x.to_sparse_coo(1)
 ```
