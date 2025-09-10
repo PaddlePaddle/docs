@@ -474,8 +474,9 @@ Dropout 方法
     " :ref:`paddle.nn.functional.alpha_dropout <cn_api_paddle_nn_functional_alpha_dropout>` ", "一种具有自归一化性质的 dropout"
     " :ref:`paddle.nn.functional.feature_alpha_dropout <cn_api_paddle_nn_functional_feature_alpha_dropout>` ", "一种具有自归一化性质的 dropout ，屏蔽整个通道"
     " :ref:`paddle.nn.functional.dropout <cn_api_paddle_nn_functional_dropout>` ", "Dropout"
-    " :ref:`paddle.nn.functional.dropout2d <cn_api_paddle_nn_functional_dropout2d>` ", "一维 Dropout"
-    " :ref:`paddle.nn.functional.dropout3d <cn_api_paddle_nn_functional_dropout3d>` ", "二维 Dropout"
+    " :ref:`paddle.nn.functional.dropout1d <cn_api_paddle_nn_functional_dropout1d>` ", "一维 Dropout"
+    " :ref:`paddle.nn.functional.dropout2d <cn_api_paddle_nn_functional_dropout2d>` ", "二维 Dropout"
+    " :ref:`paddle.nn.functional.dropout3d <cn_api_paddle_nn_functional_dropout3d>` ", "三维 Dropout"
 
 .. _embedding_functional:
 
@@ -557,6 +558,7 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.upsample <cn_api_paddle_nn_functional_upsample>` ", "用于调整一个 batch 中图片的大小"
     " :ref:`paddle.nn.functional.class_center_sample <cn_api_paddle_nn_functional_class_center_sample>` ", "用于 PartialFC 类别中心采样"
     " :ref:`paddle.nn.functional.channel_shuffle <cn_api_paddle_nn_functional_channel_shuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的 Tensor 按通道分成 g 组，得到形为[N, g, C/g, H, W]或[N, H, W, g, C/g]的 Tensor，然后转置为[N, C/g, g, H, W]或[N, H, W, C/g, g]的形状，最后重新排列为原来的形状"
+    " :ref:`paddle.nn.parameter.Parameter <cn_api_paddle_nn_parameter_Parameter>` ", "用于创建可训练参数，作为模型的一部分参与梯度更新"
 
 .. _about_initializer:
 

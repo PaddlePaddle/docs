@@ -3,7 +3,7 @@
 nonzero
 -------------------------------
 
-.. py:function:: paddle.nonzero(x, as_tuple=False)
+.. py:function:: paddle.nonzero(x, as_tuple=False, *, out=None)
 
 
 
@@ -12,11 +12,19 @@ nonzero
 返回结果是一个 ``shape`` 等于 ``[z x n]`` 的 ``Tensor``，第 ``i`` 行代表输入中第 ``i`` 个非零元素的坐标；当 ``as_tuple = True`` 时，
 返回结果是由 ``n`` 个大小为 ``z`` 的 ``1-D Tensor`` 构成的元组，第 ``i`` 个 ``1-D Tensor`` 记录输入的非零元素在第 ``i`` 维的坐标。
 
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x`` ，如 ``nonzero(input=tensor_x)`` 等价于 ``nonzero(x=tensor_x)`` 。
+
 参数
 :::::::::
 
-    - **x** （Tensor）– 输入的 Tensor。
+    - **x** （Tensor）– 输入的 Tensor。别名： ``input``。
     - **as_tuple** (bool，可选) - 返回格式。是否以 ``1-D Tensor`` 构成的元组格式返回。
+
+关键字参数
+:::::::::
+
+    - **out** (Tensor，可选) - 输出 Tensor。默认值为 None。
 
 
 

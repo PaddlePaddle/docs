@@ -15,10 +15,15 @@ expand_as
    :width: 500
    :alt: 图例
 
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x``， ``other`` 可替代 ``y``。
+
 参数
 :::::::::
     - **x** (Tensor) - 输入的 Tensor，数据类型为：bool、float32、float64、int32 或 int64。
+      别名： ``input``
     - **y** (Tensor) - 给定输入 ``x`` 扩展后的形状。
+      别名： ``other``
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 返回
 :::::::::

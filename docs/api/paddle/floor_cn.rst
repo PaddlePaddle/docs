@@ -16,7 +16,7 @@ floor
 参数
 ::::::::::::
 
-    - **x** - 输入为多维 Tensor。数据类型必须为 float32 或 float64。
+    - **x** - 输入为多维 Tensor。数据类型支持 float32, float64, float16, bfloat16, uint8, int8, int16, int32, int64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

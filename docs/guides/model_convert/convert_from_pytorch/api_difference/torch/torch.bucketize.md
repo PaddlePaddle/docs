@@ -16,11 +16,11 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'>input</font>| <font color='red'>x</font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| <font color='red'>boundaries</font>| <font color='red'>sorted_sequence</font> | 数据的边界，仅参数名不一致。  |
-| <font color='red'>out_int32</font>| <font color='red'>out_int32</font> | 输出的数据类型是否为 int32。  |
-| <font color='red'>right</font>| <font color='red'>right</font> | 根据给定输入在 sorted_sequence 查找对应的上边界或下边界。  |
-| <font color='red'>out</font> | -  | 表示输出的 Tensor， Paddle 无此参数，需要转写。    |
+| input| x | 表示输入的 Tensor ，仅参数名不一致。  |
+| boundaries| sorted_sequence | 数据的边界，仅参数名不一致。  |
+| out_int32| out_int32 | 输出的数据类型是否为 int32。  |
+| right| right | 根据给定输入在 sorted_sequence 查找对应的上边界或下边界。  |
+| out | -  | 表示输出的 Tensor， Paddle 无此参数，需要转写。    |
 
 
 ### 转写示例
