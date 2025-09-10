@@ -24,44 +24,20 @@
 |功能缺失|此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现|
 
 ## 参数与 API 名均一致
-##### 分类依据
-此类 API 功能和使用方法在 PyTorch 和 PaddlePaddle 中完全一致，只需将 ``torch.`` 替换为 ``paddle.``
+**分类依据​​**
+此类 API 功能和使用方法在 PyTorch 和 PaddlePaddle 中完全一致，只需将 torch.替换为 paddle.
 
-##### 转写示例 1
-### [torch.einsum](https://pytorch.org/docs/stable/generated/torch.einsum.html#torch.einsum)
-
+**转写示例**
 ```python
-torch.einsum(equation, *operands)
-```
+# PyTorch 写法
+x = torch.eye(5)
+torch.einsum('ii->i', x)
+model = torch.nn.Softplus(beta=0.5, threshold=15)
 
-### [paddle.einsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/einsum_cn.html)
-
-```python
-paddle.einsum(equation, *operands)
-```
-##### 转写示例 2
-###  [torch.set_default_dtype](https://pytorch.org/docs/stable/generated/torch.set_default_dtype.html)
-
-```python
-torch.set_default_dtype(d)
-```
-
-### [paddle.set_default_dtype](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/set_default_dtype_cn.html)
-
-```python
-paddle.set_default_dtype(d)
-```
-##### 转写示例 3
-###  [torch.nn.Softplus](https://pytorch.org/docs/stable/generated/torch.nn.Softplus.html)
-
-```python
-torch.nn.Softplus(beta=1, threshold=20)
-```
-
-### [paddle.nn.Softplus](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Softplus_cn.html)
-
-```python
-paddle.nn.Softplus(beta=1, threshold=20, name=None)
+# Paddle 写法
+x = paddle.eye(5)
+paddle.einsum('ii->i', x)
+model = paddle.nn.Softplus(beta=0.5, threshold=15)
 ```
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
@@ -529,55 +505,18 @@ paddle.nn.Softplus(beta=1, threshold=20, name=None)
 | 461 | [torch.Tensor.view_as](https://pytorch.org/docs/stable/generated/torch.Tensor.view_as.html?highlight=view_as#torch.Tensor.view_as) | [paddle.Tensor.view_as](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#view-as-x-other-name-none) | - |
 
 ## 参数一致但 API 名不一致
-此类 API 功能和使用方法在 PyTorch 和 PaddlePaddle 中完全一致,但是 API 名称不同，需要用户进行 API 名称替换。
+**分类依据**
+此类 API 两者完全一致，只有 API 名称不同，只需用户将 Pytorch API 名称替换为 Paddle API 名称即可。
 
-##### 转写示例 1
-### [torch.nn.BatchNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm1d.html?highlight=torch%20nn%20batchnorm1d#torch.nn.BatchNorm1d)
-
+**转写示例**
 ```python
-torch.nn.BatchNorm1d(num_features,
-                     eps=1e-05,
-                     momentum=0.1,
-                     affine=True,
-                     track_running_stats=True,
-                     device=None,
-                     dtype=None)
-```
+## Pytorch 代码
+m = torch.nn.AdaptiveAvgPool1d(5)
+y = x.to_sparse(1)
 
-### [paddle.nn.BatchNorm1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BatchNorm1D_cn.html#batchnorm1d)
-
-```python
-paddle.nn.BatchNorm1D(num_features,
-                     eps=1e-05,
-                     momentum=0.1,
-                     affine=True,
-                     track_running_stats=True,
-                     device=None,
-                     dtype=None)
-```
-##### 转写示例 2
-### [torch.nn.HuberLoss](https://pytorch.org/docs/stable/generated/torch.nn.HuberLoss.html#torch.nn.HuberLoss)
-
-```python
-torch.nn.HuberLoss(reduction='mean', delta=1.0)
-```
-
-### [paddle.nn.SmoothL1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SmoothL1Loss_cn.html)
-
-```python
-paddle.nn.SmoothL1Loss(reduction='mean', delta=1.0, name=None)
-```
-##### 转写示例 3
-### [torch.autograd.Function.forward](https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward)
-
-```python
-torch.autograd.Function.forward(ctx, *args, **kwargs)
-```
-
-### [paddle.autograd.PyLayer.forward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayer_cn.html#forward-ctx-args-kwargs)
-
-```python
-paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
+## Paddle 代码
+m = paddle.nn.AdaptiveAvgPool1D(5)
+y = x.to_sparse_coo(1)
 ```
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
@@ -697,7 +636,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-#####　新增中......
+新增中......
 
 ## paddle 参数更多
 ##### 分类依据
@@ -705,7 +644,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-#####　新增中......
+新增中......
 
 ## 参数默认值不一致
 ##### 分类依据
@@ -713,7 +652,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-#####　新增中......
+新增中......
 
 ## torch 参数更多
 ##### 分类依据
@@ -721,7 +660,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-#####　新增中......
+新增中......
 
 ## 输入参数用法不一致
 ##### 分类依据
@@ -729,7 +668,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-#####　新增中......
+新增中......
 
 ## 输入参数类型不一致
 ##### 分类依据
@@ -737,7 +676,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-#####　新增中......
+新增中......
 
 ## 返回参数类型不一致
 ##### 分类依据
@@ -745,7 +684,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-#####　新增中......
+新增中......
 
 ## 组合替代实现
 ##### 分类依据
@@ -753,7 +692,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-#####　新增中......
+新增中......
 
 ## 可删除
 ##### 分类依据
@@ -761,7 +700,7 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-#####　新增中......
+新增中......
 
 ## 功能缺失
 ##### 分类依据
@@ -769,4 +708,4 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-#####　新增中......
+新增中......
