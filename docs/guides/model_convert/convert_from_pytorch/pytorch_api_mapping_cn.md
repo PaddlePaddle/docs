@@ -691,17 +691,6 @@ paddle.autograd.PyLayer.forward(ctx, *args, **kwargs)
 | 107 | [torchvision.transforms.functional.to_grayscale](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.to_grayscale.html?highlight=to_grayscale#torchvision.transforms.functional.to_grayscale) | [paddle.vision.transforms.to_grayscale](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/to_grayscale_cn.html#to-grayscale) | - |
 | 108 | [torchvision.transforms.functional.vflip](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.vflip.html) | [paddle.vision.transforms.vflip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/vflip_cn.html) | - |
 
-|仅参数名不一致|​  此类 API 功能相同，但部分参数名称不同|
-|paddle 参数更多|此类 API 在 PaddlePaddle 中提供了更多可选参数|
-|参数默认值不一致|此类 API 功能相同，但某些参数的默认值不同|
-|torch 参数更多|​此类 API 在 PyTorch 中提供了更多参数|
-|输入参数用法不一致|此类 API 对输入参数的处理方式不同|
-|输入参数类型不一致|此类 API 要求的输入数据类型不同|
-|返回参数类型不一致|​此类 API 返回值的类型或结构不同|
-|组合替代实现|此类功能在 PaddlePaddle 中没有直接对应的单一 API，需要通过多个 PaddlePaddle API 组合来实现|
-|可删除|此类 PyTorch API 在 PaddlePaddle 中可以直接删除|
-|功能缺失|此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现|
-
 ## 仅参数名不一致
 ##### 分类依据
 此类 API 功能相同，但部分参数名称不同
