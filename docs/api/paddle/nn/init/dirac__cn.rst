@@ -1,6 +1,6 @@
 .. _cn_api_paddle_nn_init_dirac_:
 
-dirac_
+dirac\_
 -------------------------------
 
 .. py:class:: paddle.nn.init.dirac_(tensor, groups=1)

@@ -1,6 +1,6 @@
 .. _cn_api_paddle_nn_init_constant_:
 
-constant_
+constant\_
 -------------------------------
 
 .. py:class:: paddle.nn.init.constant_(tensor, val)

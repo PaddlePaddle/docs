@@ -1,6 +1,6 @@
 .. _cn_api_paddle_nn_init_kaiming_normal_:
 
-kaiming_normal_
+kaiming_normal\_
 -------------------------------
 
 .. py:class:: paddle.nn.init.kaiming_normal_(tensor, a=0, mode='fan_in', nonlinearity='leaky_relu')

@@ -1,6 +1,6 @@
 .. _cn_api_paddle_nn_init_trunc_normal_:
 
-trunc_normal_
+trunc_normal\_
 -------------------------------
 
 .. py:class:: paddle.nn.init.trunc_normal_(tensor, mean=0.0, std=1.0, a=-2.0, b=2.0)

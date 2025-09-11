@@ -1,6 +1,6 @@
 .. _cn_api_paddle_nn_init_xavier_uniform_:
 
-xavier_uniform_
+xavier_uniform\_
 -------------------------------
 
 .. py:class:: paddle.nn.init.xavier_uniform_(tensor, gain=1.0)

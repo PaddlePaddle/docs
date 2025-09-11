@@ -1,6 +1,6 @@
 .. _cn_api_paddle_nn_init_ones_:
 
-ones_
+ones\_
 -------------------------------
 
 .. py:class:: paddle.nn.init.ones_(tensor)

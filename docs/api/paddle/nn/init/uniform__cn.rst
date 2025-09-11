@@ -1,6 +1,6 @@
 .. _cn_api_paddle_nn_init_uniform_:
 
-uniform_
+uniform\_
 -------------------------------
 
 .. py:class:: paddle.nn.init.uniform_(tensor, a=0.0, b=1.0)

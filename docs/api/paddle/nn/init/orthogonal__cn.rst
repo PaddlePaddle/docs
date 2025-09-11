@@ -1,6 +1,6 @@
 .. _cn_api_paddle_nn_init_orthogonal_:
 
-orthogonal_
+orthogonal\_
 -------------------------------
 
 .. py:class:: paddle.nn.init.orthogonal_(tensor, gain=1)

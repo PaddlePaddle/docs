@@ -1,6 +1,6 @@
 .. _cn_api_paddle_nn_init_eye_:
 
-eye_
+eye\_
 -------------------------------
 
 .. py:class:: paddle.nn.init.eye_(tensor)

@@ -1,6 +1,6 @@
 .. _cn_api_paddle_nn_init_kaiming_uniform_:
 
-kaiming_uniform_
+kaiming_uniform\_
 -------------------------------
 
 .. py:class:: paddle.nn.init.kaiming_uniform_(tensor, a=0, mode='fan_in', nonlinearity='leaky_relu')

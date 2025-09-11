@@ -1,6 +1,6 @@
 .. _cn_api_paddle_nn_init_normal_:
 
-normal_
+normal\_
 -------------------------------
 
 .. py:class:: paddle.nn.init.normal_(tensor, mean=0.0, std=1.0)

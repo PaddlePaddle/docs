@@ -1,6 +1,6 @@
 .. _cn_api_paddle_nn_init_zeros_:
 
-zeros_
+zeros\_
 -------------------------------
 
 .. py:class:: paddle.nn.init.zeros_(tensor)
