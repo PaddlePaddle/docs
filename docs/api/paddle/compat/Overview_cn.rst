@@ -19,6 +19,8 @@ PyTorch 兼容函数
     " :ref:`softmax <cn_api_paddle_compat_softmax>` ", "softmax 函数"
     " :ref:`sort <cn_api_paddle_compat_sort>` ", "同时返回 values 及 indices 的排序"
     " :ref:`split <cn_api_paddle_compat_split>` ", "允许非整除块大小输入的 Tensor 轴向切分"
+    " :ref:`median <cn_api_paddle_compat_median>` ", "兼容版中位数，支持 dim/keepdim/out 签名"
+    " :ref:`nanmedian <cn_api_paddle_compat_nanmedian>` ", "忽略 NaN 的兼容版中位数，支持 dim/keepdim/out 签名"
 
 
 .. _about_compat_class:

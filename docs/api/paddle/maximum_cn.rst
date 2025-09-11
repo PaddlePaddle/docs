@@ -3,7 +3,7 @@
 maximum
 -------------------------------
 
-.. py:function:: paddle.maximum(x, y, name=None)
+.. py:function:: paddle.maximum(x, y, name=None, *, out=None)
 
 
 逐元素对比输入的两个 Tensor，并且把各个位置更大的元素保存到返回结果中。
@@ -18,11 +18,16 @@ maximum
 
    .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
+
 参数
 :::::::::
-   - **x** （Tensor）- 输入的 Tensor。数据类型为 ``bfloat16`` 、 ``float16`` 、 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
-   - **y** （Tensor）- 输入的 Tensor。数据类型为 ``bfloat16`` 、 ``float16`` 、 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
+   - **x** (Tensor)- 输入的 Tensor。数据类型为 ``bfloat16`` 、 ``float16`` 、 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
+     ``别名: input``
+   - **y** (Tensor) - 输入的 Tensor。数据类型为 ``bfloat16`` 、 ``float16`` 、 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
+     ``别名: other``
    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+   - **out** (Tensor，可选) - 关键字参数。输出 Tensor，用于存储计算结果。如果指定，则结果将写入此 Tensor 中。
+
 
 返回
 :::::::::

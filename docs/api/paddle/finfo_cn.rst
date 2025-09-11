@@ -17,8 +17,7 @@ finfo
 
 参数
 :::::::::
-    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输入的数据类型，可以是：paddle.float16、 paddle.float32、 paddle.float64、 paddle.bfloat16、 paddle.complex64、 paddle.complex128 或这些类型的字符串形式。
-    - **type** - ``dtype`` 的别名，行为完全一致。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输入的数据类型，可以是：paddle.float16、 paddle.float32、 paddle.float64、 paddle.bfloat16、 paddle.complex64、 paddle.complex128 或这些类型的字符串形式。别名： ``type``。
 
 返回
 :::::::::

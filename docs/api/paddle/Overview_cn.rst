@@ -426,6 +426,7 @@ tensor random 相关
     " :ref:`paddle.randint_like <cn_api_paddle_randint_like>` ", "返回一个和 x 具有相同形状的服从均匀分布的、范围在[low, high)的随机 Tensor，数据类型为 dtype 或者和 x 相同。"
     " :ref:`paddle.randn <cn_api_paddle_randn>` ", "返回符合标准正态分布（均值为 0，标准差为 1 的正态随机分布）的随机 Tensor"
     " :ref:`paddle.randn_like <cn_api_paddle_randn_like>` ", "返回一个和 x 具有相同形状的服从标准正态分布（均值为 0，标准差为 1 的正态随机分布）的随机 Tensor，数据类型为 dtype 或者和 x 相同。"
+    " :ref:`paddle.rand_like <cn_api_paddle_rand_like>` ", "返回一个和 x 具有相同形状的服从均匀分布的、范围在[0, 1)的随机 Tensor，数据类型为 dtype 或者和 x 相同。"
     " :ref:`paddle.randperm <cn_api_paddle_randperm>` ", "返回一个数值在 0 到 n-1、随机排列的 1-D Tensor"
     " :ref:`paddle.seed <cn_api_paddle_seed>` ", "设置全局默认 generator 的随机种子"
     " :ref:`paddle.uniform <cn_api_paddle_uniform>` ", "返回数值服从范围[min, max)内均匀分布的随机 Tensor"

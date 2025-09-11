@@ -254,6 +254,34 @@ layout
 **代码示例**
 COPY-FROM: paddle.Tensor.layout
 
+requires_grad
+:::::::::
+
+查看一个 Tensor 是否计算并传播梯度。``requires_grad`` 属性与 ``stop_gradient`` 属性含义相反：
+
+- 当 ``requires_grad`` 为 ``True`` 时，该 Tensor 会计算梯度并参与梯度传播
+- 当 ``requires_grad`` 为 ``False`` 时，该 Tensor 不会计算梯度，并会阻止 Autograd 的梯度传播
+
+用户自行创建的 Tensor，``requires_grad`` 默认为 ``False``；模型参数的 ``requires_grad`` 默认为 ``True``。
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+
+    x = paddle.to_tensor([[1, 2], [3, 4]], dtype='float32')
+    print("x.requires_grad:", x.requires_grad)
+    # x.requires_grad: False
+
+    x.stop_gradient = False
+    print("x.requires_grad:", x.requires_grad)
+    # x.requires_grad: True
+
+    linear = paddle.nn.Linear(2, 1)
+    print("weight.requires_grad:", linear.weight.requires_grad)
+    # weight.requires_grad: True
+
 shape
 :::::::::
 
@@ -1426,7 +1454,7 @@ exponential_(lam=1.0, name=None)
 参数：
     - **x** (Tensor) - 输入 Tensor，数据类型为 float32/float64。
     - **lam** (float) - 指数分布的 :math:`\lambda` 参数。
-      别名： ``lambd`` 
+      别名： ``lambd``
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
@@ -1777,7 +1805,7 @@ index_put(indices, value, accumulate=False, name=None)
 
 请参考 :ref:`cn_api_paddle_index_put`
 
-repeat_interleave(repeats, axis=None, name=None)
+repeat_interleave(repeats, axis=None, name=None, \*, output_size=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -2061,7 +2089,7 @@ max(axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_max`
 
-amax(axis=None, keepdim=False, name=None)
+amax(axis=None, keepdim=False, name=None, \*, out=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -2070,7 +2098,7 @@ amax(axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_amax`
 
-maximum(y, axis=-1, name=None)
+maximum(y, axis=-1, name=None, \*, out=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -2115,7 +2143,7 @@ min(axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_min`
 
-amin(axis=None, keepdim=False, name=None)
+amin(axis=None, keepdim=False, name=None, \*, out=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -2124,7 +2152,7 @@ amin(axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_amin`
 
-minimum(y, axis=-1, name=None)
+minimum(y, axis=-1, name=None, \*, out=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -2680,7 +2708,7 @@ vsplit(num_or_indices, name=None)
 
 请参考 :ref:`cn_api_paddle_vsplit`
 
-sqrt(name=None)
+sqrt(name=None, \*, out=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -2808,6 +2836,22 @@ tile(repeat_times, name=None)
 
 请参考 :ref:`cn_api_paddle_tile`
 
+repeat(\*repeats, name=None)
+:::::::::
+
+沿着指定维度重复当前 Tensor。返回一个新的 Tensor，其形状为当前 Tensor 的形状与 sizes 的乘积。
+
+参数：
+    - **repeats** (tuple|list|int) - 指定每个维度重复的次数。可以是单个整数，也可以是元组或列表。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+返回：重复后的 Tensor
+
+返回类型：Tensor
+
+**代码示例**
+COPY-FROM: paddle.Tensor.repeat
+
 to(*args, **kwargs)
 :::::::::
 
@@ -2838,7 +2882,7 @@ tolist()
 
 请参考 :ref:`cn_api_paddle_tolist`
 
-topk(k, axis=None, largest=True, sorted=True, name=None)
+topk(k, axis=None, largest=True, sorted=True, name=None, \*, out=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -2864,6 +2908,15 @@ transpose(perm, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_transpose`
+
+permute(dims, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_permute`
 
 triangular_solve(b, upper=True, transpose=False, unitriangular=False, name=None)
 :::::::::

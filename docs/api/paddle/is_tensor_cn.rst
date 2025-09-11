@@ -7,10 +7,13 @@ is_tensor
 
 测试输入对象是否是 `paddle.Tensor`
 
+.. note::
+    别名支持: 参数名 ``obj`` 可替代 ``x``，如 ``is_tensor(obj=tensor_x)`` 等价于 ``is_tensor(x=tensor_x)`` 。
+
 参数
 ::::::::::::
 
-    - **x** (Object) - 测试的对象。
+    - **x** (Object) - 测试的对象。别名： ``obj``。
 
 
 返回
