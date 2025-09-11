@@ -8,10 +8,15 @@ argmin
 
 沿参数 ``axis`` 计算输入 ``x`` 的最小元素的索引。
 
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x``， ``dim`` 可替代 ``axis``。
+
 参数
 ::::::::
     - **x** (Tensor) - 输入的多维 ``Tensor``，支持的数据类型：float16、float32、float64、int16、int32、int64、uint8。
+      别名： ``input``
     - **axis** (int，可选) - 指定对输入 Tensor 进行运算的轴， ``axis`` 的有效范围是[-R, R），R 是输入 ``x`` 的维度个数， ``axis`` 为负数时，进行计算的 ``axis`` 与 ``axis`` + R 一致。默认值为 None，将会对输入的 `x` 进行平铺展开，返回最小值的索引。
+      别名： ``dim``
     - **keepdim** (bool，可选) - 是否保留进行最小值索引操作的轴，默认值为 False。
     - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，可选值为 int32、int64，默认值为'int64'，将返回 int64 类型的结果。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

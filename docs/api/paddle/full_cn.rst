@@ -9,6 +9,9 @@ full
 
 创建形状大小为 ``shape`` 并且数据类型为 ``dtype``  的 Tensor，其中元素值均为 ``fill_value`` 。
 
+.. note::
+    别名支持: 参数名 ``size`` 可替代 ``shape``，如 ``full(size=[2, 3], …)`` 等价于 ``full(shape=[2, 3], …)`` 。
+
 参数
 ::::::::::::
 
