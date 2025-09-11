@@ -80,13 +80,14 @@ softmax
                  [0.26762315, 0.26762315, 0.26762315, 0.26762315],
                  [0.72747516, 0.72747516, 0.72747516, 0.72747516]]]
 
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``dim`` 可替代 ``axis`` ，如 ``softmax(input=tensor_x, dim=1, ...)`` 等价于 ``softmax(x=tensor_x, axis=1, ...)`` 。
 
 参数
 ::::::::::
 
-    - **x** (Tensor) - 输入的 ``Tensor``，数据类型为 bfloat16 、 float16 、 float32 或 float64。
-      ``别名：input``
-    - **axis** (int，可选) - 指定对输入 :attr:`x` 进行运算的轴。:attr:`axis` 的有效范围是 :math:`[-D, D)`，:math:`D` 是输入 :attr:`x` 的维度，:attr:`axis` 为负值时与 :math:`axis + D` 等价。默认值为 -1。
+    - **x** (Tensor) - 输入的 ``Tensor``，数据类型为 bfloat16 、 float16 、 float32 或 float64。别名： ``input``。
+    - **axis** (int，可选) - 指定对输入 :attr:`x` 进行运算的轴。:attr:`axis` 的有效范围是 :math:`[-D, D)`，:math:`D` 是输入 :attr:`x` 的维度，:attr:`axis` 为负值时与 :math:`axis + D` 等价。默认值为 -1。别名： ``dim``。
     - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 `Tensor` 的数据类型，支持 bfloat16、 float16、 float32、float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **out** (Tensor，可选) - 指定输出结果的 `Tensor`，默认值为 None。
