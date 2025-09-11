@@ -3,7 +3,7 @@
 complex
 -------------------------------
 
-.. py:function:: paddle.complex(real, imag, name=None)
+.. py:function:: paddle.complex(real, imag, name=None, *, out=None)
 
 
 给定实部和虚部，返回一个复数 Tensor。
@@ -14,6 +14,11 @@ complex
     - **real** (Tensor) - 实部，数据类型为：float32 或 float64。
     - **imag** (Tensor) - 虚部，数据类型和 ``real`` 相同。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+:::::::::
+
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 :::::::::

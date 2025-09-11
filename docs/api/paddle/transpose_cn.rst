@@ -3,7 +3,7 @@
 transpose
 -------------------------------
 
-.. py:function:: paddle.transpose(x,perm,name=None)
+.. py:function:: paddle.transpose(x, perm, name=None)
 
 
 

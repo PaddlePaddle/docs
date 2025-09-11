@@ -2188,6 +2188,11 @@ mode(axis=-1, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_mode`
 
+mul_(y, name=None)
+:::::::::
+
+``multiply`` 的 inplace 版本，请参考 :ref:`cn_api_paddle_multiply`
+
 multiplex(index)
 :::::::::
 
@@ -2462,6 +2467,15 @@ reshape(shape, name=None)
 
 请参考 :ref:`cn_api_paddle_reshape`
 
+ravel()
+:::::::::
+
+返回：展平且连续的 Tensor，如无必要，不会进行内存拷贝，即返回值于原始 Tensor 共享同一片内存。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_reshape`
+
 reshape_(shape, name=None)
 :::::::::
 
@@ -2532,6 +2546,20 @@ scatter_(index, updates, overwrite=True, name=None)
 
 Inplace 版本的 :ref:`cn_api_paddle_scatter` API，对输入 `x` 采用 Inplace 策略。
 
+scatter_add(index, updates, overwrite=True, name=None)
+:::::::::
+
+``put_along_axis`` 的别名
+
+请参考 :ref:`cn_api_paddle_put_along_axis`
+
+scatter_add_(index, updates, overwrite=True, name=None)
+:::::::::
+
+``put_along_axis_`` 的别名
+
+请参考 :ref:`cn_api_paddle_put_along_axis_`
+
 scatter_nd(updates, shape, name=None)
 :::::::::
 
@@ -2549,6 +2577,13 @@ scatter_nd_add(index, updates, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_scatter_nd_add`
+
+scatter_reduce(dim, index, src, reduce, \*, include_self=True)
+:::::::::
+
+``put_along_axis`` 的别名
+
+请参考 :ref:`cn_api_paddle_put_along_axis`
 
 set_value(value)
 :::::::::
@@ -2803,6 +2838,24 @@ sum(axis=None, dtype=None, keepdim=False, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_sum`
+
+swapaxes(perm, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_swapaxes`
+
+swapdims(perm, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_swapdims`
 
 t(name=None)
 :::::::::
@@ -3123,6 +3176,17 @@ take_along_axis(indices, axis, broadcast=True)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_take_along_axis`
+
+take_along_dim(indices, axis, broadcast=True)
+:::::::::
+
+基于输入索引矩阵 indices，沿着指定 axis 从输入 tensor 里选取 1d 切片。索引矩阵必须和输入 tensor 有相同的维度，需要能够 broadcast 与 tensor 对齐。
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_take_along_dim`
 
 put_along_axis(indices, value, axis, reduce="assign", include_self=True, broadcast=True)
 :::::::::
