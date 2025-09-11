@@ -3,7 +3,7 @@
 concat
 -------------------------------
 
-.. py:function:: paddle.concat(x, axis=0, name=None, \*, out=None)
+.. py:function:: paddle.concat(x, axis=0, name=None, *, out=None)
 
 
 对输入沿参数 ``axis`` 轴进行联结，返回一个新的 Tensor。该 API 不支持输入 0-D Tensor，因为其必须指定沿着某个轴拼接，而 0-D Tensor 没有轴。

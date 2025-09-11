@@ -3,7 +3,7 @@
 stack
 -------------------------------
 
-.. py:function:: paddle.stack(x, axis=0, name=None, \*, out=None)
+.. py:function:: paddle.stack(x, axis=0, name=None, *, out=None)
 
 
 

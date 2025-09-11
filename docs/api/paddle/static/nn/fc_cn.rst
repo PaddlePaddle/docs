@@ -8,8 +8,8 @@ fc
 
 
 在神经网络中构建一个全连接层。其输入可以是一个 Tensor 或多个 Tensor 组成的 list（详见参数说明）。为每个输入 Tensor 创建一个权重（weight）参数，即一个从每个输入单元到每个输出单元的全连接权重矩阵。
-每个输入 Tensor 和其对应的权重（weight）相乘得到形状为 :math:`[batch\_size, \*, size]` 输出 Tensor，其中 :math:`*` 表示可以为任意个额外的维度。
-如果有多个输入 Tensor，则多个形状为 :math:`[batch\_size, \*, size]` 的 Tensor 计算结果会被累加起来，作为最终输出。如果 :attr:`bias_attr` 非空，则会创建一个偏置（bias）参数，并把它累加到输出 Tensor 中。
+每个输入 Tensor 和其对应的权重（weight）相乘得到形状为 :math:`[batch\_size, *, size]` 输出 Tensor，其中 :math:`*` 表示可以为任意个额外的维度。
+如果有多个输入 Tensor，则多个形状为 :math:`[batch\_size, *, size]` 的 Tensor 计算结果会被累加起来，作为最终输出。如果 :attr:`bias_attr` 非空，则会创建一个偏置（bias）参数，并把它累加到输出 Tensor 中。
 如果 :attr:`activation` 非空，将会在输出结果上应用相应的激活函数。
 
 对于单个输入 Tensor :math:`X`，计算公式为：
@@ -80,7 +80,7 @@ fc
 返回
 :::::::::
 
-Tensor，形状为 :math:`[batch\_size, \*, size]`，数据类型与输入 Tensor 相同。
+Tensor，形状为 :math:`[batch\_size, *, size]`，数据类型与输入 Tensor 相同。
 
 
 

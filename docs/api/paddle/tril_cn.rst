@@ -3,7 +3,7 @@
 tril
 -------------------------------
 
-.. py:function:: paddle.tril(x, diagonal=0, name=None, \*, out=None)
+.. py:function:: paddle.tril(x, diagonal=0, name=None, *, out=None)
 
 
 

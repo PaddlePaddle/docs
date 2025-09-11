@@ -3,7 +3,7 @@
 add
 -------------------------------
 
-.. py:function:: paddle.add(x, y, name=None, \*, alpha=1, out=None)
+.. py:function:: paddle.add(x, y, name=None, *, alpha=1, out=None)
 
 
 

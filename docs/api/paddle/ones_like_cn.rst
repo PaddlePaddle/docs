@@ -3,7 +3,7 @@
 ones_like
 -------------------------------
 
-.. py:function:: paddle.ones_like(x, dtype=None, name=None, \*, device=None, requires_grad=False, pin_memory=False)
+.. py:function:: paddle.ones_like(x, dtype=None, name=None, *, device=None, requires_grad=False, pin_memory=False)
 
 
 返回一个和输入参数 ``x`` 具有相同形状的数值都为 1 的 Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同，如果 ``dtype`` 为 None，则输出 Tensor 的数据类型与 ``x`` 相同。

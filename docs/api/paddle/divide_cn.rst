@@ -3,7 +3,7 @@
 divide
 -------------------------------
 
-.. py:function:: paddle.divide(x, y, name=None, \*, rounding_mode=None, out=None)
+.. py:function:: paddle.divide(x, y, name=None, *, rounding_mode=None, out=None)
 
 逐元素相除算子，输入 ``x`` 与输入 ``y`` 逐元素相除，并将各个位置的输出元素保存到返回结果中。
 

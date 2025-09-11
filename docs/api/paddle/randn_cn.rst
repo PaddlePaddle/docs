@@ -3,7 +3,7 @@
 randn
 -------------------------------
 
-.. py:function:: paddle.randn(shape, dtype=None, name=None, \*, out=None, device=None, requires_grad=False, pin_memory=False)
+.. py:function:: paddle.randn(shape, dtype=None, name=None, *, out=None, device=None, requires_grad=False, pin_memory=False)
 
 返回符合标准正态分布（均值为 0，标准差为 1 的正态随机分布）的随机 Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 

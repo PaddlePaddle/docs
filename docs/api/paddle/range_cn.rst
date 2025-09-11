@@ -3,7 +3,7 @@
 range
 -------------------------------
 
-.. py:function:: paddle.range(start=0, end=None, step=1, dtype=None, \*, out=None, device=None, requires_grad=False, name=None)
+.. py:function:: paddle.range(start=0, end=None, step=1, dtype=None, *, out=None, device=None, requires_grad=False, name=None)
 
 返回一个形状为 [$\lfloor \dfrac{end-start}{step} \rfloor + 1$] 的 1-D Tensor(对应 **闭区间** [ ``start`` , ``end`` ])，数据类型为 ``dtype`` 。
 

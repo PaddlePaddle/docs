@@ -3,7 +3,7 @@
 any
 -------------------------------
 
-.. py:function:: paddle.any(x, axis=None, keepdim=False, name=None, \*, out=None)
+.. py:function:: paddle.any(x, axis=None, keepdim=False, name=None, *, out=None)
 
 对指定维度上的 Tensor 元素进行逻辑或运算，并输出相应的计算结果。
 

@@ -3,7 +3,7 @@
 empty_like
 -------------------------------
 
-.. py:function:: paddle.empty_like(x, dtype=None, name=None, \*, device=None, requires_grad=False, pin_memory=False)
+.. py:function:: paddle.empty_like(x, dtype=None, name=None, *, device=None, requires_grad=False, pin_memory=False)
 
 
 根据参数 ``x`` 的 shape 和数据类型 ``dtype`` 创建未初始化的 Tensor。如果 ``dtype`` 为 None，则 Tensor 的数据类型与 ``x`` 相同。

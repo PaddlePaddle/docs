@@ -3,7 +3,7 @@
 empty
 -------------------------------
 
-.. py:function:: paddle.empty(shape, dtype=None, name=None, \*, out=None, device=None, requires_grad=False, pin_memory=False)
+.. py:function:: paddle.empty(shape, dtype=None, name=None, *, out=None, device=None, requires_grad=False, pin_memory=False)
 
 
 

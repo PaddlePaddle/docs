@@ -3,7 +3,7 @@
 nanmedian
 -------------------------------
 
-.. py:function:: paddle.compat.nanmedian(input, \*, dim=None, keepdim=False, \*, out=None)
+.. py:function:: paddle.compat.nanmedian(input, *, dim=None, keepdim=False, *, out=None)
 
 PyTorch 兼容的 :ref:`cn_api_paddle_nanmedian` 版本，提供完全一致的函数签名与行为：
 - 忽略 NaN 元素计算中位数。

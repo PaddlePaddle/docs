@@ -3,7 +3,7 @@
 full_like
 -------------------------------
 
-.. py:function:: paddle.full_like(x, fill_value, dtype=None, name=None, \*, device=None, requires_grad=False, pin_memory=False)
+.. py:function:: paddle.full_like(x, fill_value, dtype=None, name=None, *, device=None, requires_grad=False, pin_memory=False)
 
 
 创建一个和 ``x`` 具有相同的形状并且数据类型为 ``dtype`` 的 Tensor，其中元素值均为 ``fill_value``，当 ``dtype`` 为 None 的时候，Tensor 数据类型和输入 ``x`` 相同。

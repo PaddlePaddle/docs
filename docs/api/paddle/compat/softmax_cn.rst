@@ -2,7 +2,7 @@
 
 softmax
 -------------------------------
-.. py:function:: paddle.compat.softmax(input, dim=None, dtype=None, \*, out=None)
+.. py:function:: paddle.compat.softmax(input, dim=None, dtype=None, *, out=None)
 
 实现 softmax 层。计算过程如下：
 
