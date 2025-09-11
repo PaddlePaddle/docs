@@ -3,7 +3,7 @@
 triu
 -------------------------------
 
-.. py:function:: paddle.triu(x, diagonal=0, name=None, *, out=None)
+.. py:function:: paddle.triu(x, diagonal=0, name=None, \*, out=None)
 
 
 返回输入矩阵 `input` 的上三角部分，其余部分被设为 0。

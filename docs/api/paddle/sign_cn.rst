@@ -3,7 +3,7 @@
 sign
 -------------------------------
 
-.. py:function:: paddle.sign(x, name=None, *, out=None)
+.. py:function:: paddle.sign(x, name=None, \*, out=None)
 
 对输入参数 ``x`` 中每个元素进行判断，并且输出判断值：对于实数， 1 表示正数，-1 表示负数，0 表示零。对于复数，返回值是一个单位大小的复数。如果复数元素为零，则返回 0+0j。
 

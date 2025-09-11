@@ -3,7 +3,7 @@
 clip
 -------------------------------
 
-.. py:function:: paddle.clip(x, min=None, max=None, name=None, *, out=None)
+.. py:function:: paddle.clip(x, min=None, max=None, name=None, \*, out=None)
 
 
 

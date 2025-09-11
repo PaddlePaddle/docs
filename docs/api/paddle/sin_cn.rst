@@ -3,7 +3,7 @@
 sin
 -------------------------------
 
-.. py:function:: paddle.sin(x, name=None, *, out=out)
+.. py:function:: paddle.sin(x, name=None, \*, out=out)
 
 计算输入的正弦值。
 

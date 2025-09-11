@@ -3,7 +3,7 @@
 log
 -------------------------------
 
-.. py:function:: paddle.log(x, name=None, *, out=None)
+.. py:function:: paddle.log(x, name=None, \*, out=None)
 
 
 

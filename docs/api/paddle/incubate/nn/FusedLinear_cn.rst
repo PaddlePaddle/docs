@@ -5,8 +5,8 @@ FusedLinear
 
 .. py:class:: paddle.incubate.nn.FusedLinear(in_features, out_features, weight_attr=None, bias_attr=None, transpose_weight=False, name=None)
 
-FusedLinear 层只接受一个 Tensor 作为输入，形状为 :math:`[batch\_size, *, in\_features]`，其中 :math:`*` 表示可以为任意个额外的维度。
-该层可以计算输入 Tensor 与权重矩阵 :math:`W` 的乘积，然后生成形状为 :math:`[batch\_size, *, out\_features]` 的输出 Tensor。
+FusedLinear 层只接受一个 Tensor 作为输入，形状为 :math:`[batch\_size, \*, in\_features]`，其中 :math:`*` 表示可以为任意个额外的维度。
+该层可以计算输入 Tensor 与权重矩阵 :math:`W` 的乘积，然后生成形状为 :math:`[batch\_size, \*, out\_features]` 的输出 Tensor。
 如果 :math:`bias\_attr` 不是 False，则将创建一个偏置参数并将其添加到输出中。此方法要求 CUDA 版本不低于 11.6。
 
 参数
@@ -34,8 +34,8 @@ bias
 形状
 :::::::::
 
-- 输入：形状为 :math:`[batch\_size, *, in\_features]` 的多维 Tensor。
-- 输出：形状为 :math:`[batch\_size, *, out\_features]` 的多维 Tensor。
+- 输入：形状为 :math:`[batch\_size, \*, in\_features]` 的多维 Tensor。
+- 输出：形状为 :math:`[batch\_size, \*, out\_features]` 的多维 Tensor。
 
 代码示例
 :::::::::

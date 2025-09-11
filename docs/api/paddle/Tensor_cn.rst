@@ -2550,7 +2550,7 @@ scatter_nd_add(index, updates, name=None)
 
 请参考 :ref:`cn_api_paddle_scatter_nd_add`
 
-scatter_reduce(dim, index, src, reduce, *, include_self=True)
+scatter_reduce(dim, index, src, reduce, \*, include_self=True)
 :::::::::
 
 ``put_along_axis`` 的别名

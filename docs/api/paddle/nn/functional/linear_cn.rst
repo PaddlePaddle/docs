@@ -15,8 +15,8 @@ linear
 
 其中，:math:`W` 和 :math:`b` 分别为权重和偏置。
 
-如果权重 :math:`W` 是一个形状为 :math:`[in\_features, out\_features]` 的 2-D Tensor，输入则可以是一个多维 Tensor 形状为 :math:`[batch\_size, *, in\_features]`，其中 :math:`*` 表示可以为任意个额外的维度。
-linear 接口可以计算输入 Tensor 与权重矩阵 :math:`W` 的乘积，生成形状为 :math:`[batch\_size, *, out\_features]` 的输出 Tensor。
+如果权重 :math:`W` 是一个形状为 :math:`[in\_features, out\_features]` 的 2-D Tensor，输入则可以是一个多维 Tensor 形状为 :math:`[batch\_size, \*, in\_features]`，其中 :math:`*` 表示可以为任意个额外的维度。
+linear 接口可以计算输入 Tensor 与权重矩阵 :math:`W` 的乘积，生成形状为 :math:`[batch\_size, \*, out\_features]` 的输出 Tensor。
 如果偏置 :math:`bias` 不是 None，它必须是一个形状为 :math:`[out\_features]` 的 1-D Tensor，且将会被其加到输出中。
 
 
@@ -32,7 +32,7 @@ linear 接口可以计算输入 Tensor 与权重矩阵 :math:`W` 的乘积，生
 返回
 :::::::::
 
-Tensor，形状为 :math:`[batch\_size, *, out\_features]`，数据类型与输入 Tensor 相同。
+Tensor，形状为 :math:`[batch\_size, \*, out\_features]`，数据类型与输入 Tensor 相同。
 
 
 代码示例

@@ -3,7 +3,7 @@
 full
 -------------------------------
 
-.. py:function:: paddle.full(shape, fill_value, dtype=None, name=None, *, out=None, device=None, requires_grad=False, pin_memory=False)
+.. py:function:: paddle.full(shape, fill_value, dtype=None, name=None, \*, out=None, device=None, requires_grad=False, pin_memory=False)
 
 
 

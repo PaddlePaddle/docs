@@ -3,7 +3,7 @@
 cos
 -------------------------------
 
-.. py:function:: paddle.cos(x, name=None, *, out=None)
+.. py:function:: paddle.cos(x, name=None, \*, out=None)
 
 
 

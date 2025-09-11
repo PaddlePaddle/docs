@@ -3,7 +3,7 @@
 zeros_like
 -------------------------------
 
-.. py:function:: paddle.zeros_like(x, dtype=None, name=None, *, device=None, requires_grad=False, pin_memory=False)
+.. py:function:: paddle.zeros_like(x, dtype=None, name=None, \*, device=None, requires_grad=False, pin_memory=False)
 
 
 返回一个和 ``x`` 具有相同的形状的全零 Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同。

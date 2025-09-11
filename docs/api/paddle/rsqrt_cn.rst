@@ -3,7 +3,7 @@
 rsqrt
 -------------------------------
 
-.. py:function:: paddle.rsqrt(x, name=None, *, out=None)
+.. py:function:: paddle.rsqrt(x, name=None, \*, out=None)
 
 
 

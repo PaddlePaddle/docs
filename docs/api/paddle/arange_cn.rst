@@ -3,7 +3,7 @@
 arange
 -------------------------------
 
-.. py:function:: paddle.arange(start=0, end=None, step=1, dtype=None, *, out=None, device=None, requires_grad=False, pin_memory=False, name=None)
+.. py:function:: paddle.arange(start=0, end=None, step=1, dtype=None, \*, out=None, device=None, requires_grad=False, pin_memory=False, name=None)
 
 返回以步长 ``step`` 均匀分隔给定数值区间[ ``start`` , ``end`` )的 1-D Tensor，数据类型为 ``dtype`` 。
 

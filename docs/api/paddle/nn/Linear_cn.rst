@@ -14,8 +14,8 @@ Linear
 
 其中，:math:`W` 和 :math:`b` 分别为权重和偏置。
 
-Linear 层只接受一个 Tensor 作为输入，形状为 :math:`[batch\_size, *, in\_features]`，其中 :math:`*` 表示可以为任意个额外的维度。
-该层可以计算输入 Tensor 与权重矩阵 :math:`W` 的乘积，然后生成形状为 :math:`[batch\_size, *, out\_features]` 的输出 Tensor。
+Linear 层只接受一个 Tensor 作为输入，形状为 :math:`[batch\_size, \*, in\_features]`，其中 :math:`*` 表示可以为任意个额外的维度。
+该层可以计算输入 Tensor 与权重矩阵 :math:`W` 的乘积，然后生成形状为 :math:`[batch\_size, \*, out\_features]` 的输出 Tensor。
 如果 :math:`bias\_attr` 不是 False，则将创建一个偏置参数并将其添加到输出中。
 
 参数
@@ -43,8 +43,8 @@ bias
 形状
 :::::::::
 
-- 输入：形状为 :math:`[batch\_size, *, in\_features]` 的多维 Tensor。其数据类型为 float16, float32, float64, 默认为 float32。
-- 输出：形状为 :math:`[batch\_size, *, out\_features]` 的多维 Tensor。其数据类型与输入相同。
+- 输入：形状为 :math:`[batch\_size, \*, in\_features]` 的多维 Tensor。其数据类型为 float16, float32, float64, 默认为 float32。
+- 输出：形状为 :math:`[batch\_size, \*, out\_features]` 的多维 Tensor。其数据类型与输入相同。
 
 代码示例
 :::::::::

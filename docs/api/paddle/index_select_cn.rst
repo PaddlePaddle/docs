@@ -3,7 +3,7 @@
 index_select
 -------------------------------
 
-.. py:function:: paddle.index_select(x, index, axis=0, name=None, *, out=None)
+.. py:function:: paddle.index_select(x, index, axis=0, name=None, \*, out=None)
 
 
 

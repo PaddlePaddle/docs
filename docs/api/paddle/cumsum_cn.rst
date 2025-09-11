@@ -3,7 +3,7 @@
 cumsum
 -------------------------------
 
-.. py:function:: paddle.cumsum(x, axis=None, dtype=None, name=None, *, out=None)
+.. py:function:: paddle.cumsum(x, axis=None, dtype=None, name=None, \*, out=None)
 
 
 

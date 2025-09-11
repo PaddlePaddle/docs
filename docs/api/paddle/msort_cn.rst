@@ -3,7 +3,7 @@
 msort
 -------------------------------
 
-.. py:function:: paddle.msort(input: Tensor, *, out: Tensor | None = None)
+.. py:function:: paddle.msort(input: Tensor, \*, out: Tensor | None = None)
 
 沿输入 `Tensor` 的第 0 轴（`axis=0`）按升序对元素进行排序。
 

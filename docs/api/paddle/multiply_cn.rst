@@ -3,7 +3,7 @@
 multiply
 -------------------------------
 
-.. py:function:: paddle.multiply(x, y, name=None, *, out=None)
+.. py:function:: paddle.multiply(x, y, name=None, \*, out=None)
 
 
 

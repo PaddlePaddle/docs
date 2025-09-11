@@ -3,7 +3,7 @@
 polar
 -------------------------------
 
-.. py:function:: paddle.polar(abs, angle, name=None, *, out=None)
+.. py:function:: paddle.polar(abs, angle, name=None, \*, out=None)
 
 
 对于给定的模 ``abs`` 和相位角 ``angle``，返回一个对应复平面（笛卡尔坐标系）上的复数坐标 Tensor。

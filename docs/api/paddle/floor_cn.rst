@@ -3,7 +3,7 @@
 floor
 -------------------------------
 
-.. py:function:: paddle.floor(x, name=None, *, out=None)
+.. py:function:: paddle.floor(x, name=None, \*, out=None)
 
 
 

@@ -3,7 +3,7 @@
 median
 -------------------------------
 
-.. py:function:: paddle.compat.median(input, dim=None, keepdim=False, *, out=None)
+.. py:function:: paddle.compat.median(input, dim=None, keepdim=False, \*, out=None)
 
 PyTorch 兼容的 :ref:`cn_api_paddle_median` 版本，提供完全一致的函数签名与行为：
 - 当 ``dim`` 为 ``None`` 时，返回所有元素的中位数。

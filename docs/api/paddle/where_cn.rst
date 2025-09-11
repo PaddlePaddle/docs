@@ -3,7 +3,7 @@
 where
 -------------------------------
 
-.. py:function:: paddle.where(condition, x=None, y=None, name=None, *, out=None)
+.. py:function:: paddle.where(condition, x=None, y=None, name=None, \*, out=None)
 
 
 

@@ -3,7 +3,7 @@
 matmul
 -------------------------------
 
-.. py:function:: paddle.matmul(x, y, transpose_x=False, transpose_y=False, name=None, *, out=None)
+.. py:function:: paddle.matmul(x, y, transpose_x=False, transpose_y=False, name=None, \*, out=None)
 
 .. note::
     计算两个 Tensor 的乘积，遵循完整的广播规则，关于广播规则，请参见 `Tensor 介绍`_ .

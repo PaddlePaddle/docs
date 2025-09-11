@@ -3,7 +3,7 @@
 sqrt
 -------------------------------
 
-.. py:function:: paddle.sqrt(x, name=None, *, out=None)
+.. py:function:: paddle.sqrt(x, name=None, \*, out=None)
 
 
 

@@ -3,7 +3,7 @@
 pow
 -------------------------------
 
-.. py:function:: paddle.pow(x, y, name=None, *, out=None)
+.. py:function:: paddle.pow(x, y, name=None, \*, out=None)
 
 
 

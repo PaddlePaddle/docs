@@ -3,7 +3,7 @@
 eye
 -------------------------------
 
-.. py:function:: paddle.eye(num_rows, num_columns=None, dtype=None, name=None, *, out=None, device=None, requires_grad=False, pin_memory=False)
+.. py:function:: paddle.eye(num_rows, num_columns=None, dtype=None, name=None, \*, out=None, device=None, requires_grad=False, pin_memory=False)
 
 构建二维 Tensor(主对角线元素为 1，其他元素为 0)。
 

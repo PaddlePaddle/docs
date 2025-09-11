@@ -3,7 +3,7 @@
 complex
 -------------------------------
 
-.. py:function:: paddle.complex(real, imag, name=None, *, out=None)
+.. py:function:: paddle.complex(real, imag, name=None, \*, out=None)
 
 
 给定实部和虚部，返回一个复数 Tensor。

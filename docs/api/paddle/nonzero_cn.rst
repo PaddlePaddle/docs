@@ -3,7 +3,7 @@
 nonzero
 -------------------------------
 
-.. py:function:: paddle.nonzero(x, as_tuple=False, *, out=None)
+.. py:function:: paddle.nonzero(x, as_tuple=False, \*, out=None)
 
 
 
