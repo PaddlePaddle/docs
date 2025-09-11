@@ -19,11 +19,11 @@ multinomial
 ::::::::::::
 
     - **x** (Tensor) - 输入的概率值。数据类型为 ``float32`` 、``float64`` 。
-    - **input** - ``x`` 的别名，行为完全一致。
+     ``别名：input``
     - **num_samples** (int，可选) - 采样的次数（可选，默认值为 1）。
     - **replacement** (bool，可选) - 是否是可放回的采样（可选，默认值为 False）。
-    - **out** (Tensor，可选) - 输出的结果 `Tensor`，是与输入数据类型相同的 Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **out** (Tensor，可选)- 输出的结果。该参数为仅关键字参数，默认值为 None。
 
 返回
 ::::::::::::
