@@ -10,7 +10,7 @@
 
 |类别|简介|
 |-|-|
-|API 完全一致|此类 API 功能和使用方法一致，只需将 ``torch.`` 替换为 ``paddle.``|
+|API 完全一致|此类 API 功能和使用方法一致，此类 API 无需转换，只需要 ``import paddle as torch``，或者将前缀 ``torch.``替换为 ``paddle.``即可。|
 |仅 API 调用方式不一致|参数一致，但 API 调用方式不一致。此类 API 需要转换，但转换成本较低，只需要对 API 调用方式进行改写，无需处理 API 参数部分。包括：API 名称不同、API 路径不同、Tensor 类方法改成普通方法、Tensor 方法改成属性、Tensor 属性改成方法 等情况。|
 |仅参数名不一致|​  此类 API 功能相同，但部分参数名称不同|
 |paddle 参数更多|此类 API 在 PaddlePaddle 中提供了更多可选参数|
@@ -25,8 +25,7 @@
 
 ## API 完全一致
 **分类依据**
-此类 API 功能和使用方法在 PyTorch 和 PaddlePaddle 中完全一致，只需将 ``torch.`` 替换为 ``paddle.``
-
+此类 API 功能和使用方法一致，此类 API 无需转换，只需要 ``import paddle as torch``，或者将前缀 ``torch.``替换为 ``paddle.``即可。
 **转写示例**
 ```python
 # PyTorch 写法
