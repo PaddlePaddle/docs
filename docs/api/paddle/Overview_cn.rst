@@ -508,6 +508,7 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.expand_as <cn_api_paddle_expand_as>` ", "根据 y 的形状扩展 x ，扩展后， x 的形状和 y 的形状相同"
     " :ref:`paddle.flatten <cn_api_paddle_flatten>` ", "根据给定的 start_axis 和 stop_axis 将连续的维度展平"
     " :ref:`paddle.flip <cn_api_paddle_flip>` ", "沿指定轴反转 n 维 tensor"
+    " :ref:`paddle.ravel <cn_api_paddle_ravel>` ", "返回一个连续的展平的 tensor"
     " :ref:`paddle.rot90 <cn_api_paddle_rot90>` ", "沿 axes 指定的平面将 n 维 tensor 旋转 90 度 k 次"
     " :ref:`paddle.gather <cn_api_paddle_gather>` ", "根据索引 index 获取输入 x 的指定 axis 维度的条目，并将它们拼接在一起"
     " :ref:`paddle.gather_nd <cn_api_paddle_gather_nd>` ", "paddle.gather 的高维推广"
@@ -562,6 +563,7 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.hstack <cn_api_paddle_hstack>` ", "沿水平轴堆叠输入 x 中的所有张量。"
     " :ref:`paddle.vstack <cn_api_paddle_vstack>` ", "沿垂直轴堆叠输入 x 中的所有张量。"
     " :ref:`paddle.dstack <cn_api_paddle_dstack>` ", "沿深度轴堆叠输入 x 中的所有张量。"
+    " :ref:`paddle.narrow <cn_api_paddle_narrow>` ", "沿指定维度 dim 对输入 x 进行切片。"
 
 .. _tensor_manipulation_inplace:
 

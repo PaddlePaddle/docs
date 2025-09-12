@@ -822,15 +822,27 @@ half()
 
 返回： 转换后的 Tensor
 
+type_as(other)
+:::::::::
+
+将当前 Tensor 的数据类型转换至与目标 Tensor 相同。
+
+参数：
+    - **other** (Tensor) -用作类型参考的张量，返回的新 Tensor 将与其 dtype 保持一致。
+
+返回：类型转换后的新的 Tensor
+
 返回类型：Tensor
 
 **代码示例**
     .. code-block:: python
 
         import paddle
-        x = paddle.to_tensor(1.0)
+        x = paddle.to_tensor([1, 2, 3], dtype='int32')
+        y = paddle.to_tensor([4.0, 5.0, 6.0], dtype='float32')
+        x_float = x.type_as(y)
         print("original tensor's dtype is: {}".format(x.dtype))
-        print("new tensor's dtype is: {}".format(x.half().dtype))
+        print("new tensor's dtype is: {}".format(x_float.dtype))
 
 int()
 :::::::::
