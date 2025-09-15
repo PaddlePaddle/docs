@@ -24,7 +24,7 @@
 |功能缺失|此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现|
 
 ## API 完全一致
-**分类依据**
+**分类简介**
 此类 API 功能和使用方法一致，此类 API 无需转换，只需要 ``import paddle as torch``，或者将前缀 ``torch.``替换为 ``paddle.``即可。
 **转写示例**
 ```python
@@ -487,7 +487,7 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 | 444 | [torch.scatter](https://pytorch.org/docs/2.0/generated/torch.scatter.html?highlight=torch+scatter#torch.scatter) | paddle.scatter | - |
 
 ## 仅 API 调用方式不一致
-**分类依据**
+**分类简介**
 参数一致，但 API 调用方式不一致。
 此类 API 需要转换，但转换成本较低，只需要对 API 调用方式进行改写，无需处理 API 参数部分。
 包括：API 名称不同、API 路径不同、Tensor 类方法改成普通方法、Tensor 方法改成属性、Tensor 属性改成方法 等情况。
@@ -596,7 +596,7 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 | 100 | [torchvision.transforms.functional.vflip](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.vflip.html) | [paddle.vision.transforms.vflip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/vflip_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.functional.vflip.md) |
 
 ## 仅参数名不一致
-**分类依据**
+**分类简介**
 此类 API 功能相同，但部分参数名称不同
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
@@ -604,7 +604,7 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 新增中......
 
 ## paddle 参数更多
-**分类依据**
+**分类简介**
 此类 API 在 PaddlePaddle 中提供了更多可选参数
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
@@ -612,7 +612,7 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 新增中......
 
 ## 参数默认值不一致
-**分类依据**
+**分类简介**
 此类 API 功能相同，但某些参数的默认值不同
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
@@ -620,7 +620,7 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 新增中......
 
 ## torch 参数更多
-**分类依据**
+**分类简介**
 此类 API 在 PyTorch 中提供了更多参数
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
@@ -628,7 +628,7 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 新增中......
 
 ## 输入参数用法不一致
-**分类依据**
+**分类简介**
 此类 API 对输入参数的处理方式不同
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
@@ -636,7 +636,7 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 新增中......
 
 ## 输入参数类型不一致
-**分类依据**
+**分类简介**
 此类 API 要求的输入数据类型不同
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
@@ -644,7 +644,7 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 新增中......
 
 ## 返回参数类型不一致
-**分类依据**
+**分类简介**
 ​此类 API 返回值的类型或结构不同
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
@@ -652,7 +652,7 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 新增中......
 
 ## 组合替代实现
-**分类依据**
+**分类简介**
 此类功能在 PaddlePaddle 中没有直接对应的单一 API，需要通过多个 PaddlePaddle API 组合来实现
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
@@ -660,7 +660,7 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 新增中......
 
 ## 可删除
-**分类依据**
+**分类简介**
 此类 PyTorch API 在 PaddlePaddle 中可以直接删除
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
@@ -668,7 +668,7 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 新增中......
 
 ## 功能缺失
-**分类依据**
+**分类简介**
 此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
