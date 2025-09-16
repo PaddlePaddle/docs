@@ -11,7 +11,7 @@ for API_FILE in ${API_FILES[*]}; do
     approval_line=`curl -H "Authorization: token ${GITHUB_API_TOKEN}" https://api.github.com/repos/PaddlePaddle/docs/pulls/${GIT_PR_ID}/reviews?per_page=10000`
     set -x
     if [ "${API_FILE}" == "docs/api/paddle" ];then
-      APPROVALS=`echo ${approval_line} | python ./check_pr_approval.py 1 29231 79295425 23093488 39876205 70642955 mattheliu`
+      APPROVALS=`echo ${approval_line} | python ./check_pr_approval.py 1 29231 79295425 23093488 39876205 70642955 102272920`
     fi
   fi
   if [ "${APPROVALS}" == "FALSE" ]; then
