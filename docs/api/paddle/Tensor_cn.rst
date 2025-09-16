@@ -329,6 +329,13 @@ data
 **代码示例**
 COPY-FROM: paddle.Tensor.data
 
+is_cuda
+:::::::::
+
+如果 Tensor 存储在 GPU 上，则为 True，否则为 False。
+
+**代码示例**
+COPY-FROM: paddle.Tensor.is_cuda
 
 numpy()
 :::::::::
@@ -2828,7 +2835,7 @@ strided_slice(axes, starts, ends, strides)
 
 请参考 :ref:`cn_api_paddle_strided_slice`
 
-subtract(y, name=None)
+subtract(y, name=None, \*, alpha=1, out=None)
 :::::::::
 
 返回：计算后的 Tensor
@@ -2837,10 +2844,24 @@ subtract(y, name=None)
 
 请参考 :ref:`cn_api_paddle_subtract`
 
-subtract_(y, name=None)
+subtract_(y, name=None, \*, alpha=1)
 :::::::::
 
 Inplace 版本的 :ref:`cn_api_paddle_subtract` API，对输入 `x` 采用 Inplace 策略。
+
+sub(y, name=None, \*, alpha=1, out=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_sub`
+
+sub_(y, name=None, \*, alpha=1)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_sub` API，对输入 `x` 采用 Inplace 策略。
 
 sum(axis=None, dtype=None, keepdim=False, name=None)
 :::::::::
@@ -3027,6 +3048,15 @@ unbind(axis=0)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_unbind`
+
+random_(from=0, to=None, generator=None)
+:::::::::
+
+返回：一个从均匀分布采样的随机数填充的 Tensor。输出 Tensor 将被置于输入 x 的位置。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_random_`
 
 uniform_(min=-1.0, max=1.0, seed=0, name=None)
 :::::::::
