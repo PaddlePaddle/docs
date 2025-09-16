@@ -27,8 +27,8 @@ paddle.allclose(x,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font>         | <font color='red'> x </font>            | 输入的 Tensor ，仅参数名不一致。                   |
-| <font color='red'> other </font>         | <font color='red'> y </font>            | 输入的 Tensor ，仅参数名不一致。                   |
+|  input          |  x             | 输入的 Tensor ，仅参数名不一致。                   |
+|  other          |  y             | 输入的 Tensor ，仅参数名不一致。                   |
 | rtol      |   rtol         |   表示相对容忍误差。   |
 | atol      |   atol         |   表示绝对容忍误差。      |
 | equal_nan      |   equal_nan         |    表示是否将两个 NaN 数值视为相等 。   |

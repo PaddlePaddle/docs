@@ -17,7 +17,7 @@ paddle.argsort(x, axis=-1, descending=False, stable=False, name=None)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'>input</font>         | <font color='red'>x</font>            | 输入的多维 Tensor ，仅参数名不一致。                   |
-| <font color='red'> dim </font> | <font color='red'> axis </font>    | 指定进行运算的轴，仅参数名不一致。  |
+| input         | x            | 输入的多维 Tensor ，仅参数名不一致。                   |
+|  dim  |  axis     | 指定进行运算的轴，仅参数名不一致。  |
 | descending |  descending | 是否使用降序排列。  |
 |  stable  |  stable   | 是否使用稳定排序。  |

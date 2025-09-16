@@ -57,11 +57,14 @@ conv2d
 
     W_{out} = \frac{\left ( W_{in} -\left ( dilation[1]*\left ( W_{f}-1 \right )+1 \right ) \right )}{stride[1]}+1
 
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x``。
 
 参数
 ::::::::::::
 
     - **x** (Tensor) - 输入是形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的 4-D Tensor，N 是批尺寸，C 是通道数，H 是特征高度，W 是特征宽度，数据类型为 float16, float32 或 float64。
+      别名： ``input``。
     - **weight** (Tensor) - 形状为 :math:`[M, C/g, kH, kW]` 的卷积核。M 是输出通道数，g 是分组的个数，kH 是卷积核的高度，kW 是卷积核的宽度。
     - **bias** (int|list|tuple，可选) - 偏置项，形状为：:math:`[M,]` 。
     - **stride** (int|list|tuple，可选) - 步长大小。卷积核和输入进行卷积计算时滑动的步长。如果它是一个列表或元组，则必须包含两个整型数：（stride_height,stride_width）。若为一个整数，stride_height = stride_width = stride。默认值：1。
