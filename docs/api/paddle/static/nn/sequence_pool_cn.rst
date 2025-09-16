@@ -22,7 +22,7 @@ sequence_pool
 - **last**: :math:`Out[i] = X_{N\_i}`
 - **first**: :math:`Out[i] = X_{0}`
 
-其中 ``N_i`` 为待池化第 i 个输入序列的长度。
+其中  ``N_i``  为待池化第 i 个输入序列的长度。
 
 ::
 

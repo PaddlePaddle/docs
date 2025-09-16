@@ -8,7 +8,7 @@ uniform
 
 
 
-返回数值服从范围[``min``, ``max``)内均匀分布的随机 Tensor，形状为 ``shape``，数据类型为 ``dtype``。
+返回数值服从范围[ ``min`` ,  ``max`` )内均匀分布的随机 Tensor，形状为  ``shape`` ，数据类型为  ``dtype`` 。
 
 .. code-block:: text
 
@@ -21,7 +21,7 @@ uniform
 参数
 ::::::::::::
 
-    - **shape** (list|tuple|Tensor) - 生成的随机 Tensor 的形状。如果 ``shape`` 是 list、tuple，则其中的元素可以是 int，或者是形状为[]且数据类型为 int32、int64 的 0-D Tensor。如果 ``shape`` 是 Tensor，则是数据类型为 int32、int64 的 1-D Tensor。
+    - **shape** (list|tuple|Tensor) - 生成的随机 Tensor 的形状。如果  ``shape``  是 list、tuple，则其中的元素可以是 int，或者是形状为[]且数据类型为 int32、int64 的 0-D Tensor。如果  ``shape``  是 Tensor，则是数据类型为 int32、int64 的 1-D Tensor。
     - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，支持 float32、float64。默认值为 None。
     - **min** (float|int，可选) - 要生成的随机值范围的下限，min 包含在范围中。支持的数据类型：float、int。默认值为-1.0。
     - **max** (float|int，可选) - 要生成的随机值范围的上限，max 不包含在范围中。支持的数据类型：float、int。默认值为 1.0。
@@ -31,7 +31,7 @@ uniform
 返回
 ::::::::::::
 
-Tensor：数值服从范围[``min``, ``max``)内均匀分布的随机 Tensor，形状为 ``shape``，数据类型为 ``dtype``。
+Tensor：数值服从范围[ ``min`` ,  ``max`` )内均匀分布的随机 Tensor，形状为  ``shape`` ，数据类型为  ``dtype`` 。
 
 
 代码示例

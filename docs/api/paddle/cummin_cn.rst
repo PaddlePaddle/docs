@@ -5,7 +5,7 @@ cummin
 
 .. py:function:: paddle.cummin(x, axis=None, dtype='int64', name=None)
 
-沿给定 ``axis`` 计算 Tensor ``x`` 的累积最小值。
+沿给定  ``axis``  计算 Tensor  ``x``  的累积最小值。
 
 .. note::
     结果的第一个元素和输入的第一个元素相同。
@@ -18,8 +18,8 @@ cummin
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 返回
 ::::::::::
-    - ``out`` (Tensor)：返回累积最小值操作的结果，累积最小值结果类型和输入 x 相同。
-    - ``indices`` (Tensor)：返回对应累积最小值操作的的索引结果。
+    -  ``out``  (Tensor)：返回累积最小值操作的结果，累积最小值结果类型和输入 x 相同。
+    -  ``indices``  (Tensor)：返回对应累积最小值操作的的索引结果。
 
 代码示例
 ::::::::::

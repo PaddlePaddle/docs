@@ -18,7 +18,7 @@ UCIHousing
 
 返回值
 :::::::::
-``Dataset``，UCI housing 数据集实例。
+ ``Dataset`` ，UCI housing 数据集实例。
 
 代码示例
 :::::::::

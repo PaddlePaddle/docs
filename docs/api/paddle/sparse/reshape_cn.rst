@@ -6,16 +6,16 @@ reshape
 .. py:function:: paddle.sparse.reshape(x, shape, name=None)
 
 
-在保持输入 ``x`` 数据不变的情况下，改变 ``x`` 的形状。 ``x`` 必须是一个 ``SparseCooTensor`` 或者 ``SparseCsrTensor`` 。
+在保持输入  ``x``  数据不变的情况下，改变  ``x``  的形状。  ``x``  必须是一个  ``SparseCooTensor``  或者  ``SparseCsrTensor``  。
 
-目前只能针对输入 ``x`` 的 ``sparse dims`` 部分改变形状，但是 ``shape`` 仍必须指定为变形后的 ``Tensor`` 的完整的形状。
+目前只能针对输入  ``x``  的  ``sparse dims``  部分改变形状，但是  ``shape``  仍必须指定为变形后的  ``Tensor``  的完整的形状。
 
-注意如果 ``x`` 是一个 ``SparseCsrTensor`` ， 则 ``len(shape)`` 必须为 2 或者 3。
+注意如果  ``x``  是一个  ``SparseCsrTensor``  ， 则  ``len(shape)``  必须为 2 或者 3。
 
-在指定目标 ``shape`` 时存在一些技巧：
+在指定目标  ``shape``  时存在一些技巧：
 
-  - 1. -1 表示这个维度的值是从 ``x`` 的元素总数和剩余维度推断出来的。因此，有且只有一个维度可以被设置为-1。
-  - 2. 0 表示实际的维数是从 ``x`` 的对应维数中复制出来的，因此 ``shape`` 中 0 的索引值不能超过 ``x`` 的维度。
+  - 1. -1 表示这个维度的值是从  ``x``  的元素总数和剩余维度推断出来的。因此，有且只有一个维度可以被设置为-1。
+  - 2. 0 表示实际的维数是从  ``x``  的对应维数中复制出来的，因此  ``shape``  中 0 的索引值不能超过  ``x``  的维度。
 
 这里有一些例子来解释它们：
 
@@ -24,20 +24,20 @@ reshape
   - 3. 给定一个形状为[2,4,6]的三维 Tensor x ，目标形状为[-1,0,3,2]，则将 x 变换为形状为[2,4,3,2]的 4-D Tensor，且 x 的数据保持不变。在这种情况下， 0 对应位置的维度值将从 x 的对应维数中复制，-1 对应位置的维度值由 x 的元素总数和剩余维度推断出来。
 
 .. note::
-    别名支持: 参数名 ``input`` 可替代 ``x``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``。
+    别名支持: 参数名  ``input``  可替代  ``x`` ，如  ``input=tensor_x``  等价于  ``x=tensor_x`` 。
 
 参数
 :::::::::
 
-  - **x** (Tensor) - ``sparse tensor``，数据类型为 ``float32``、 ``float64``、 ``int32``、 ``int64`` 或者 ``bool``。
-    别名： ``input``
-  - **shape** (list|tuple) - 数据类型是 ``int32``。定义目标形状。目标形状最多只能有一个维度为 -1 。
+  - **x** (Tensor) -  ``sparse tensor`` ，数据类型为  ``float32`` 、  ``float64`` 、  ``int32`` 、  ``int64``  或者  ``bool`` 。
+    别名：  ``input`` 
+  - **shape** (list|tuple) - 数据类型是  ``int32`` 。定义目标形状。目标形状最多只能有一个维度为 -1 。
   - **name** (str ，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None 。
 
 返回
 :::::::::
 
-``Tensor`` ： 改变形状后的 ``Tensor``，数据类型与 ``x`` 相同。
+ ``Tensor``  ： 改变形状后的  ``Tensor`` ，数据类型与  ``x``  相同。
 
 
 代码示例

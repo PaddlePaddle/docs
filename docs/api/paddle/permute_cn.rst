@@ -16,7 +16,7 @@ permute
 
 返回
 ::::::::::::
-    ``Tensor``，经过 dims 指定顺序重排后的多维 Tensor，数据类型与输入一致，shape 为根据 dims 重新排列后的 shape。
+     ``Tensor`` ，经过 dims 指定顺序重排后的多维 Tensor，数据类型与输入一致，shape 为根据 dims 重新排列后的 shape。
 
 
 代码示例
