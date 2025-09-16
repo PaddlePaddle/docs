@@ -5,7 +5,7 @@ moveaxis
 
 .. py:function:: paddle.moveaxis(x, source, destination, name=None)
 
-将输入 Tensor ``x`` 的轴从 ``source`` 位置移动到 ``destination`` 位置，其他轴按原来顺序排布。同时根据新的 shape，重排 Tensor 中的数据。
+将输入 Tensor  ``x``  的轴从  ``source``  位置移动到  ``destination``  位置，其他轴按原来顺序排布。同时根据新的 shape，重排 Tensor 中的数据。
 
 下图展示了代码示例中的第一个操作
 
@@ -20,7 +20,7 @@ moveaxis
 
 返回
 :::::::::
-``Tensor``：将轴移动后的 Tensor
+ ``Tensor`` ：将轴移动后的 Tensor
 
 代码示例
 :::::::::

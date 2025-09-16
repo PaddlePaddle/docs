@@ -7,12 +7,12 @@ is_floating_point
 判断输入 Tensor 的数据类型是否为浮点类型。
 
 .. note::
-    别名支持: 参数名 ``input`` 可替代 ``x``，如 ``is_floating_point(input=tensor_x)`` 等价于 ``is_floating_point(x=tensor_x)`` 。
+    别名支持: 参数名  ``input``  可替代  ``x`` ，如  ``is_floating_point(input=tensor_x)``  等价于  ``is_floating_point(x=tensor_x)``  。
 
 参数
 :::::::::
 
-    - **x**  (Tensor) - 输入的 Tensor。别名： ``input``。
+    - **x**  (Tensor) - 输入的 Tensor。别名：  ``input`` 。
 
 返回
 :::::::::

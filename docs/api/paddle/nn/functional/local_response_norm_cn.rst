@@ -7,7 +7,7 @@ local_response_norm
 
 局部响应正则化（Local Response Normalization）用于对局部输入区域进行正则化，执行一种侧向抑制（lateral inhibition）。更多详情参考：`ImageNet Classification with Deep Convolutional Neural Networks <https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf>`_
 
-其中 ``input`` 是 mini-batch 的输入特征。计算过程如下：
+其中  ``input``  是 mini-batch 的输入特征。计算过程如下：
 
 .. math::
 

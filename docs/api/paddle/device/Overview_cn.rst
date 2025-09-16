@@ -42,12 +42,12 @@ paddle.device 目录下包含 cuda 目录和 xpu 目录， cuda 目录中存放 
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`is_compiled_with_cinn <cn_api_paddle_device_is_compiled_with_cinn>` ", "检查 ``whl`` 包是否可以被用来在 CINN 上运行模型"
-    " :ref:`is_compiled_with_cuda <cn_api_paddle_device_is_compiled_with_cuda>` ", "检查 ``whl`` 包是否可以被用来在 GPU 上运行模型"
-    " :ref:`is_compiled_with_custom_device <cn_api_paddle_device_is_compiled_with_custom_device>` ", "检查 ``whl`` 包是否可以被用来在指定类型的自定义新硬件上运行模型"
-    " :ref:`is_compiled_with_ipu <cn_api_paddle_device_is_compiled_with_ipu>` ", "检查 ``whl`` 包是否可以被用来在 Graphcore IPU 上运行模型"
-    " :ref:`is_compiled_with_rocm <cn_api_paddle_device_is_compiled_with_rocm>` ", "检查 ``whl`` 包是否可以被用来在 AMD 或海光 GPU(ROCm) 上运行模型"
-    " :ref:`is_compiled_with_xpu <cn_api_paddle_device_is_compiled_with_xpu>` ", "检查 ``whl`` 包是否可以被用来在 Baidu Kunlun XPU 上运行模型"
+    " :ref:`is_compiled_with_cinn <cn_api_paddle_device_is_compiled_with_cinn>` ", "检查  ``whl``  包是否可以被用来在 CINN 上运行模型"
+    " :ref:`is_compiled_with_cuda <cn_api_paddle_device_is_compiled_with_cuda>` ", "检查  ``whl``  包是否可以被用来在 GPU 上运行模型"
+    " :ref:`is_compiled_with_custom_device <cn_api_paddle_device_is_compiled_with_custom_device>` ", "检查  ``whl``  包是否可以被用来在指定类型的自定义新硬件上运行模型"
+    " :ref:`is_compiled_with_ipu <cn_api_paddle_device_is_compiled_with_ipu>` ", "检查  ``whl``  包是否可以被用来在 Graphcore IPU 上运行模型"
+    " :ref:`is_compiled_with_rocm <cn_api_paddle_device_is_compiled_with_rocm>` ", "检查  ``whl``  包是否可以被用来在 AMD 或海光 GPU(ROCm) 上运行模型"
+    " :ref:`is_compiled_with_xpu <cn_api_paddle_device_is_compiled_with_xpu>` ", "检查  ``whl``  包是否可以被用来在 Baidu Kunlun XPU 上运行模型"
 
 .. _cn_device_descriptor:
 
@@ -58,8 +58,8 @@ paddle.device 目录下包含 cuda 目录和 xpu 目录， cuda 目录中存放 
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`IPUPlace <cn_api_paddle_device_IPUPlace>` ", "``IPUPlace`` 是一个设备描述符，指定 ``IPUPlace`` 则模型将会运行在该设备上"
-    " :ref:`XPUPlace <cn_api_paddle_device_XPUPlace>` ", "``XPUPlace`` 是一个设备描述符，表示一个分配或将要分配 ``Tensor`` 的 Baidu Kunlun XPU 设备"
+    " :ref:`IPUPlace <cn_api_paddle_device_IPUPlace>` ", " ``IPUPlace``  是一个设备描述符，指定  ``IPUPlace``  则模型将会运行在该设备上"
+    " :ref:`XPUPlace <cn_api_paddle_device_XPUPlace>` ", " ``XPUPlace``  是一个设备描述符，表示一个分配或将要分配  ``Tensor``  的 Baidu Kunlun XPU 设备"
 
 .. _cn_device_stream_event:
 
@@ -70,8 +70,8 @@ Stream 与 Event 辅助类
     :header: "类名称", "辅助类功能"
     :widths: 10, 30
 
-    " :ref:`Stream <cn_api_paddle_device_Stream>` ", "``StreamBase`` 的设备流包装器"
-    " :ref:`Event <cn_api_paddle_device_Event>` ", "``StreamBase`` 的设备事件包装器"
+    " :ref:`Stream <cn_api_paddle_device_Stream>` ", " ``StreamBase``  的设备流包装器"
+    " :ref:`Event <cn_api_paddle_device_Event>` ", " ``StreamBase``  的设备事件包装器"
 
 
 .. _cn_device_stream_event_api:
@@ -99,8 +99,8 @@ CUDA 相关
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`Stream <cn_api_paddle_device_cuda_Stream>` ", "CUDA ``StreamBase`` 的设备流包装器，该 API 未来计划废弃，不推荐使用"
-    " :ref:`Event <cn_api_paddle_device_cuda_Event>` ", "CUDA ``StreamBase`` 的设备事件包装器，该 API 未来计划废弃，不推荐使用"
+    " :ref:`Stream <cn_api_paddle_device_cuda_Stream>` ", "CUDA  ``StreamBase``  的设备流包装器，该 API 未来计划废弃，不推荐使用"
+    " :ref:`Event <cn_api_paddle_device_cuda_Event>` ", "CUDA  ``StreamBase``  的设备事件包装器，该 API 未来计划废弃，不推荐使用"
     " :ref:`current_stream <cn_api_paddle_device_cuda_current_stream>` ", "通过 device 返回当前的 CUDA stream"
     " :ref:`device_count <cn_api_paddle_device_cuda_device_count>` ", "返回值是 int，表示当前程序可用的 GPU 数量"
     " :ref:`empty_cache <cn_api_paddle_device_cuda_empty_cache>` ", "用于释放显存分配器中空闲的显存"
@@ -126,8 +126,8 @@ XPU 相关
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`Stream <cn_api_paddle_device_xpu_Stream>` ", "XPU ``StreamBase`` 的设备流包装器，该 API 未来计划废弃，不推荐使用"
-    " :ref:`Event <cn_api_paddle_device_xpu_Event>` ", "XPU ``EventBase`` 的设备事件包装器，该 API 未来计划废弃，不推荐使用"
+    " :ref:`Stream <cn_api_paddle_device_xpu_Stream>` ", "XPU  ``StreamBase``  的设备流包装器，该 API 未来计划废弃，不推荐使用"
+    " :ref:`Event <cn_api_paddle_device_xpu_Event>` ", "XPU  ``EventBase``  的设备事件包装器，该 API 未来计划废弃，不推荐使用"
     " :ref:`device_count <cn_api_paddle_device_xpu_device_count>` ", "返回值是 int，表示当前程序可用的 XPU 数量"
     " :ref:`empty_cache <cn_api_paddle_device_xpu_empty_cache>` ", "用于释放显存分配器中空闲的显存"
     " :ref:`max_memory_allocated <cn_api_paddle_device_xpu_max_memory_allocated>` ", "返回给定设备上分配给 Tensor 的显存峰值统计"

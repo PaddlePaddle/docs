@@ -3,7 +3,7 @@
 paddle.Tensor
 ========================
 
-A ``Tensor`` is a generalization of vectors and matrices and is easily understood as a multidimensional array. For more information, you can see `Introduction to Tensor <https://www.paddlepaddle.org.cn/documentation/docs/en/guides/01_paddle2.0_introduction/basic_concept/tensor_introduction_en.html>`_.
+A  ``Tensor``  is a generalization of vectors and matrices and is easily understood as a multidimensional array. For more information, you can see `Introduction to Tensor <https://www.paddlepaddle.org.cn/documentation/docs/en/guides/01_paddle2.0_introduction/basic_concept/tensor_introduction_en.html>`_.
 
 Data types
 ----------
@@ -13,18 +13,18 @@ PaddlePaddle defines the following Tensor types:
 ======================================= ===========================================
 Data type                               dtype
 ======================================= ===========================================
-32-bit floating point                   ``paddle.float32``
-64-bit floating point                   ``paddle.float64``
-16-bit floating point                   ``paddle.float16``
-16-bit floating point                   ``paddle.bfloat16``
-64-bit complex                          ``paddle.complex64``
-128-bit complex                         ``paddle.complex128``
-8-bit integer (unsigned)                ``paddle.uint8``
-8-bit integer (signed)                  ``paddle.int8``
-16-bit integer (signed)                 ``paddle.int16``
-32-bit integer (signed)                 ``paddle.int32``
-64-bit integer (signed)                 ``paddle.int64``
-Boolean                                 ``paddle.bool``
+32-bit floating point                    ``paddle.float32`` 
+64-bit floating point                    ``paddle.float64`` 
+16-bit floating point                    ``paddle.float16`` 
+16-bit floating point                    ``paddle.bfloat16`` 
+64-bit complex                           ``paddle.complex64`` 
+128-bit complex                          ``paddle.complex128`` 
+8-bit integer (unsigned)                 ``paddle.uint8`` 
+8-bit integer (signed)                   ``paddle.int8`` 
+16-bit integer (signed)                  ``paddle.int16`` 
+32-bit integer (signed)                  ``paddle.int32`` 
+64-bit integer (signed)                  ``paddle.int64`` 
+Boolean                                  ``paddle.bool`` 
 ======================================= ===========================================
 
 Tensor class reference
@@ -37,21 +37,21 @@ Properties
 ~~~~~~~~~~~~~~~~~~~~~~
 
 ======================================= ===========================================
-``T``                                   The transpose of ``Tensor``. See :ref:`paddle.transpose <api_paddle_transpose>` .
-``mT``                                  Matrix transpose of ``Tensor`` (swap the last two dimensions). See :ref:`paddle.matrix_transpose <api_paddle_matrix_transpose>`.
-``block``                               Tensor's block.
-``dtype``                               Tensor's data type.
-``grad``                                The value of Tensor's grad.
-``inplace_version``                     The inplace version of current Tensor.
-``is_leaf``                             Whether Tensor is leaf Tensor.
-``name``                                The name of Tensor.
-``ndim``                                The dimensions of Tensor.
-``persistable``                         The value of Tensor's persistable.
-``place``                               The place of Tensor.
-``shape``                               The shape of Tensor. See :ref:`paddle.shape <api_paddle_shape>` .
-``size``                                The size of Tensor. See :ref:`paddle.numel <api_paddle_numel>` .
-``stop_gradient``                       The value of Tensor's stop_gradient.
-``type``                                Tensor's type.
+ ``T``                                    The transpose of  ``Tensor`` . See :ref:`paddle.transpose <api_paddle_transpose>` .
+ ``mT``                                   Matrix transpose of  ``Tensor``  (swap the last two dimensions). See :ref:`paddle.matrix_transpose <api_paddle_matrix_transpose>`.
+ ``block``                                Tensor's block.
+ ``dtype``                                Tensor's data type.
+ ``grad``                                 The value of Tensor's grad.
+ ``inplace_version``                      The inplace version of current Tensor.
+ ``is_leaf``                              Whether Tensor is leaf Tensor.
+ ``name``                                 The name of Tensor.
+ ``ndim``                                 The dimensions of Tensor.
+ ``persistable``                          The value of Tensor's persistable.
+ ``place``                                The place of Tensor.
+ ``shape``                                The shape of Tensor. See :ref:`paddle.shape <api_paddle_shape>` .
+ ``size``                                 The size of Tensor. See :ref:`paddle.numel <api_paddle_numel>` .
+ ``stop_gradient``                        The value of Tensor's stop_gradient.
+ ``type``                                 Tensor's type.
 ======================================= ===========================================
 
 
