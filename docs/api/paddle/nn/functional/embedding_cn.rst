@@ -43,7 +43,7 @@ embedding
 
 
     - **x** (Tensor) - 存储 id 信息的 Tensor，数据类型必须为：int32/int64。input 中的 id 必须满足 ``0 =< id < size[0]`` 。
-    - **input** - ``x`` 的别名，行为完全一致。
+      别名： ``input``
     - **weight** (Tensor) - 存储词嵌入权重参数的 Tensor，形状为(num_embeddings, embedding_dim)。
     - **padding_idx** (int|long|None，可选) - padding_idx 的配置区间为 ``[-weight.shape[0], weight.shape[0]``，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。如果 padding_idx < 0 ，则 padding_idx 将自动转换到 ``weight.shape[0] + padding_idx`` 。如果设置为 "None"，则不会对输出产生影响。默认值：None。
     - **max_norm** (float，可选) - 若声明，会将范数大于此值的词嵌入向量重新归一化，使其范数等于此值。在动态图模式下会对 ``weight`` 产生 inplace 修改。默认值为 None。

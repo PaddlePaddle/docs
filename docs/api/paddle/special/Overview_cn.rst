@@ -15,3 +15,4 @@ special 函数
     :widths: 10, 30
 
     " :ref:`softmax <cn_api_paddle_special_softmax>` ", "softmax 函数"
+    " :ref:`logsumexp <cn_api_paddle_special_logsumexp>` ", "logsumexp 函数"

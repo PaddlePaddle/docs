@@ -3,7 +3,7 @@
 where
 -------------------------------
 
-.. py:function:: paddle.where(condition, x=None, y=None, name=None)
+.. py:function:: paddle.where(condition, x=None, y=None, name=None, *, out=None)
 
 
 
@@ -30,6 +30,11 @@ where
     - **x** (Tensor|scalar，可选) - 条件为 True 时选择的 Tensor 或 scalar，数据类型为 bfloat16、 float16、float32、float64、int32 或 int64。``x`` 和 ``y`` 必须都给出或者都不给出。别名： ``input``。
     - **y** (Tensor|scalar，可选) - 条件为 False 时选择的 Tensor 或 scalar，数据类型为 bfloat16、float16、float32、float64、int32 或 int64。``x`` 和 ``y`` 必须都给出或者都不给出。别名： ``other``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+:::::::::
+
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 ::::::::::::

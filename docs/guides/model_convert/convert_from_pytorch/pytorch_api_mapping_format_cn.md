@@ -7,8 +7,8 @@
 ### [分类名称] api 全称
 
 由于 API 映射关系的复杂性，为了保证文档格式的规范性，我们将所有 API 映射关系分为 12 类，并制定了统一的 **分类名称**：
-1. 参数与 API 名均一致
-2. 参数一致但 API 名不一致
+1. API 完全一致
+2. 仅 API 调用方式不一致
 3. 仅参数名不一致
 4. paddle 参数更多
 5. 参数默认值不一致
@@ -45,9 +45,9 @@ Paddle API 签名
 
 参数映射以表格的形式呈现，表格的第 1 列是`PyTorch` 所有参数，第 2 列是`Paddle`对应参数，表格顺序按第 1 列 `PyTorch` 的参数顺序来。
 
-1. **参数与 API 名均一致**：无需映射文档与转写示例。
+1. **API 完全一致**：无需映射文档。
 
-2. **参数一致但 API 名不一致**：无需映射文档与转写示例。
+2. **仅 API 调用方式不一致**：对每个不一致的调用方式都需要**转写示例**，同时需要在备注列里注明 `[不一致的用法说明]，需要转写`。
 
 3. **仅参数名不一致**：无需转写示例，但需要在备注列里注明哪些参数 `仅参数名不一致`。
 
@@ -91,8 +91,8 @@ paddle.xxx()
 
 | 分类序号 |    分类名称            |    参数映射      |    转写示例      |
 | ------- | -----------------    | --------------- | --------------- |
-| 1       | 参数与 API 名均一致     | ❌              |  ❌              |
-| 2       | 参数一致但 API 名不一致  | ❌              |  ❌              |
+| 1       | API 完全一致          | ❌              |  ❌              |
+| 2       | 仅 API 调用方式不一致  | ✅            |  ✅              |
 | 3       | 仅参数名不一致         | ✅              |  ❌              |
 | 4       | paddle 参数更多       | ✅              |  ❌              |
 | 5       | 参数默认值不一致       | ✅              |  ❌              |
@@ -105,6 +105,37 @@ paddle.xxx()
 --------------------------------------------------------
 
 # API 映射关系文档 - 模板
+## 分类 1：API 完全一致
+
+此类 API 无需编写映射文档。
+
+## 分类 2：仅 API 调用方式不一致
+
+### [ 仅 API 调用方式不一致 ]torch.Tensor.det
+
+### [torch.Tensor.det](https://pytorch.org/docs/stable/generated/torch.Tensor.det.html?highlight=det#torch.Tensor.det)
+
+```python
+torch.Tensor.det()
+```
+
+### [paddle.linalg.det](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/det_cn.html#det)
+
+```python
+paddle.linalg.det(x, name=None)
+```
+
+两者功能一致，但调用方式不一致，具体如下：
+
+### 转写示例
+
+``` python
+# PyTorch 写法:
+x.det()
+
+# Paddle 写法:
+paddle.linalg.det(x)
+```
 
 ## 分类 3：仅参数名不一致
 
@@ -127,6 +158,7 @@ paddle.dist(x,
 ```
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
+
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -134,7 +166,6 @@ paddle.dist(x,
 | input         | x            | 表示输入的 Tensor ，仅参数名不一致。  |
 | other         | y            | 表示输入的 Tensor ，仅参数名不一致。  |
 | p             | p            | 表示需要计算的范数 |
-
 
 
 ## 分类 4：paddle 参数更多
@@ -155,6 +186,7 @@ paddle.nn.ZeroPad2D(padding,
 ```
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
+
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |

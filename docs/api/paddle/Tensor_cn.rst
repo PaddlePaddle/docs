@@ -254,6 +254,34 @@ layout
 **代码示例**
 COPY-FROM: paddle.Tensor.layout
 
+requires_grad
+:::::::::
+
+查看一个 Tensor 是否计算并传播梯度。``requires_grad`` 属性与 ``stop_gradient`` 属性含义相反：
+
+- 当 ``requires_grad`` 为 ``True`` 时，该 Tensor 会计算梯度并参与梯度传播
+- 当 ``requires_grad`` 为 ``False`` 时，该 Tensor 不会计算梯度，并会阻止 Autograd 的梯度传播
+
+用户自行创建的 Tensor，``requires_grad`` 默认为 ``False``；模型参数的 ``requires_grad`` 默认为 ``True``。
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+
+    x = paddle.to_tensor([[1, 2], [3, 4]], dtype='float32')
+    print("x.requires_grad:", x.requires_grad)
+    # x.requires_grad: False
+
+    x.stop_gradient = False
+    print("x.requires_grad:", x.requires_grad)
+    # x.requires_grad: True
+
+    linear = paddle.nn.Linear(2, 1)
+    print("weight.requires_grad:", linear.weight.requires_grad)
+    # weight.requires_grad: True
+
 shape
 :::::::::
 
@@ -794,15 +822,27 @@ half()
 
 返回： 转换后的 Tensor
 
+type_as(other)
+:::::::::
+
+将当前 Tensor 的数据类型转换至与目标 Tensor 相同。
+
+参数：
+    - **other** (Tensor) -用作类型参考的张量，返回的新 Tensor 将与其 dtype 保持一致。
+
+返回：类型转换后的新的 Tensor
+
 返回类型：Tensor
 
 **代码示例**
     .. code-block:: python
 
         import paddle
-        x = paddle.to_tensor(1.0)
+        x = paddle.to_tensor([1, 2, 3], dtype='int32')
+        y = paddle.to_tensor([4.0, 5.0, 6.0], dtype='float32')
+        x_float = x.type_as(y)
         print("original tensor's dtype is: {}".format(x.dtype))
-        print("new tensor's dtype is: {}".format(x.half().dtype))
+        print("new tensor's dtype is: {}".format(x_float.dtype))
 
 int()
 :::::::::
@@ -1426,7 +1466,7 @@ exponential_(lam=1.0, name=None)
 参数：
     - **x** (Tensor) - 输入 Tensor，数据类型为 float32/float64。
     - **lam** (float) - 指数分布的 :math:`\lambda` 参数。
-    - **lambd** - ``lam`` 的别名，行为完全一致。
+      别名： ``lambd``
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
@@ -2160,6 +2200,11 @@ mode(axis=-1, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_mode`
 
+mul_(y, name=None)
+:::::::::
+
+``multiply`` 的 inplace 版本，请参考 :ref:`cn_api_paddle_multiply`
+
 multiplex(index)
 :::::::::
 
@@ -2434,6 +2479,15 @@ reshape(shape, name=None)
 
 请参考 :ref:`cn_api_paddle_reshape`
 
+ravel()
+:::::::::
+
+返回：展平且连续的 Tensor，如无必要，不会进行内存拷贝，即返回值于原始 Tensor 共享同一片内存。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_reshape`
+
 reshape_(shape, name=None)
 :::::::::
 
@@ -2504,6 +2558,20 @@ scatter_(index, updates, overwrite=True, name=None)
 
 Inplace 版本的 :ref:`cn_api_paddle_scatter` API，对输入 `x` 采用 Inplace 策略。
 
+scatter_add(index, updates, overwrite=True, name=None)
+:::::::::
+
+``put_along_axis`` 的别名
+
+请参考 :ref:`cn_api_paddle_put_along_axis`
+
+scatter_add_(index, updates, overwrite=True, name=None)
+:::::::::
+
+``put_along_axis_`` 的别名
+
+请参考 :ref:`cn_api_paddle_put_along_axis_`
+
 scatter_nd(updates, shape, name=None)
 :::::::::
 
@@ -2521,6 +2589,13 @@ scatter_nd_add(index, updates, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_scatter_nd_add`
+
+scatter_reduce(dim, index, src, reduce, \*, include_self=True)
+:::::::::
+
+``put_along_axis`` 的别名
+
+请参考 :ref:`cn_api_paddle_put_along_axis`
 
 set_value(value)
 :::::::::
@@ -2775,6 +2850,24 @@ sum(axis=None, dtype=None, keepdim=False, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_sum`
+
+swapaxes(perm, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_swapaxes`
+
+swapdims(perm, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_swapdims`
 
 t(name=None)
 :::::::::
@@ -3095,6 +3188,17 @@ take_along_axis(indices, axis, broadcast=True)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_take_along_axis`
+
+take_along_dim(indices, axis, broadcast=True)
+:::::::::
+
+基于输入索引矩阵 indices，沿着指定 axis 从输入 tensor 里选取 1d 切片。索引矩阵必须和输入 tensor 有相同的维度，需要能够 broadcast 与 tensor 对齐。
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_take_along_dim`
 
 put_along_axis(indices, value, axis, reduce="assign", include_self=True, broadcast=True)
 :::::::::
