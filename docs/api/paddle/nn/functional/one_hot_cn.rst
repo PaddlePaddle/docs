@@ -36,12 +36,15 @@ one_hot
   输出：抛出 Illegal value 的异常
     X 中第 2 维的值是 5，超过了 num_classes，因此抛异常。
 
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x``，如 ``one_hot(input=tensor_x, ...)`` 等价于 ``one_hot(x=tensor_x, ...)``。
 
 参数
 ::::::::::::
 
     - **x** (Tensor) - 维度为 :math:`[N_1, ..., N_n]` 的多维 Tensor，维度至少 1 维。数据类型为 int32 或 int64。
-    - **num_classes** (int) - 用于定义一个 one-hot 向量的长度。若输入为词 id，则 ``num_classes`` 通常取值为词典大小。
+      ``别名: input``
+    - **num_classes** (int) - 用于定义一个 one-hot 向量的长度。若输入为词 id，则 ``num_classes`` 通常取值为词典大小，默认值为-1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

@@ -3,7 +3,7 @@
 polar
 -------------------------------
 
-.. py:function:: paddle.polar(abs, angle, name=None)
+.. py:function:: paddle.polar(abs, angle, name=None, *, out=None)
 
 
 对于给定的模 ``abs`` 和相位角 ``angle``，返回一个对应复平面（笛卡尔坐标系）上的复数坐标 Tensor。
@@ -16,6 +16,11 @@ polar
     - **abs** (Tensor) – 输入是一个多维的 Tensor，它的数据类型可以是 float32，float64。
     - **angle** (Tensor) – 输入是一个多维的 Tensor，它的数据类型可以是 float32，float64。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
+
+关键字参数
+:::::::::
+
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 返回
 ::::::::::
     - ``Tensor`` (Tensor)：对应模 ``abs`` 和相位角 ``angle`` 在复平面（笛卡尔坐标系）上的复数坐标 Tensor，形状和原输入的形状一致。

@@ -3,7 +3,7 @@
 Embedding
 -------------------------------
 
-.. py:class:: paddle.nn.Embedding(num_embeddings, embedding_dim, padding_idx=None, sparse=False, weight_attr=None, scale_grad_by_freq=False, name=None)
+.. py:class:: paddle.nn.Embedding(num_embeddings, embedding_dim, padding_idx=None, max_norm=None, norm_type=2.0, *, scale_grad_by_freq=False, sparse=False, _weight=None, _freeze=False, device=None, dtype=None, weight_attr=None, name=None)
 
 嵌入层(Embedding Layer)，用于构建 ``Embedding`` 的一个可调用对象，具体用法参照 ``代码示例``。其根据 ``x`` 中的 id 信息从 embedding 矩阵中查询对应 embedding 信息，并会根据输入的 size (num_embeddings, embedding_dim)和 weight_attr 自动构造一个二维 embedding 矩阵。
 
@@ -40,9 +40,17 @@ Embedding
     - **padding_idx** (int|long|None，可选) - padding_idx 的配置区间为 ``[-weight.shape[0], weight.shape[0])``，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。
     - **max_norm** (float，可选) - 若声明，会将范数大于此值的词嵌入向量重新归一化，使其范数等于此值。在动态图模式下会对 ``weight`` 产生 inplace 修改。默认值为 None。
     - **norm_type** (float) - 应用 ``max_norm`` 时所计算的 p 阶范数的 p 值。默认值 2.0。
-    - **sparse** (bool，可选) - 是否使用稀疏更新，在词嵌入权重较大的情况下，使用稀疏更新能够获得更快的训练速度及更小的内存/显存占用。
-    - **weight_attr** (ParamAttr|None，可选) - 指定嵌入向量的配置，包括初始化方法，具体用法请参见 :ref:`api_guide_ParamAttr`，一般无需设置，默认值为 None。
+
+关键字参数
+::::::::::::
+
     - **scale_grad_by_freq** (bool，可选) - 是否根据单词在 mini-batch 中出现频率的倒数缩放梯度。默认值 False。
+    - **sparse** (bool，可选) - 是否使用稀疏更新，在词嵌入权重较大的情况下，使用稀疏更新能够获得更快的训练速度及更小的内存/显存占用。
+    - **_weight** (Tensor，可选) - 嵌入矩阵的初始化参数，如果提供了此参数，则不会创建新的嵌入矩阵，而是直接使用此参数。
+    - **_freeze** (bool，可选) - 是否冻结嵌入矩阵的参数，默认值为 False。
+    - **device** (str|None，可选) - 指定权重所在的设备，默认值为 None。
+    - **dtype** (str|None，可选) - 指定权重的类型，默认值为 None。
+    - **weight_attr** (ParamAttr|None，可选) - 指定嵌入向量的配置，包括初始化方法，具体用法请参见 :ref:`api_guide_ParamAttr`，一般无需设置。若设置该参数，则 :attr:_freeze 属性将被忽略，权重是否可训练取决于 weight_attr 中的 trainable 参数。默认值为 None。
     - **name** (str|None，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 

@@ -22,6 +22,6 @@ paddle.bincount(x,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'>input</font>| <font color='red'>x</font> | 表示输入的 Tensor ，仅参数名不一致。  |
+| input| x | 表示输入的 Tensor ，仅参数名不一致。  |
 | weights        | weights            | 表示输入 Tensor 中每个元素的权重。                   |
 | minlength        | minlength            | 表示输出 Tensor 的最小长度。                   |

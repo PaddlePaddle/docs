@@ -26,8 +26,7 @@ pad
 参数
 ::::::::::::
 
-  - **x** (Tensor) - Tensor，format 可以为 ``'NCL'``、``'NLC'``、``'NCHW'``、``'NHWC'``、``'NCDHW'`` 或 ``'NDHWC'``，默认值为 ``'NCHW'``，数据类型支持 float16、float32、float64、int32、int64、complex64、complex128。
-  - **input** - ``x`` 的别名，行为完全一致。
+  - **x** (Tensor) - Tensor，format 可以为 ``'NCL'``、``'NLC'``、``'NCHW'``、``'NHWC'``、``'NCDHW'`` 或 ``'NDHWC'``，默认值为 ``'NCHW'``，数据类型支持 float16、float32、float64、int32、int64、complex64、complex128。别名： ``input``。
   - **pad** (Tensor|list[int]|tuple[int]) - 填充大小，基本数据类型是整数类型。具体设置请参照 Note（注解）。
 
   - **mode** (str，可选) - padding 的四种模式，分别为 ``'constant'``、``'reflect'``、``'replicate'`` 和 ``'circular'``，

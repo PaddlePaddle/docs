@@ -23,7 +23,7 @@ sparse_coo_tensor
     - **values** (list|tuple|ndarray|Tensor) - 初始化 tensor 的数据，可以是
       list，tuple，numpy\.ndarray，paddle\.Tensor 类型。
     - **shape** (list|tuple，可选) - 稀疏 Tensor 的形状，也是 Tensor 的形状，如果没有提供，将自动推测出最小的形状。
-    - **dtype** (str|np.dtype，可选) - 创建 tensor 的数据类型，可以是 'bool' ，'float16'，'float32'，
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 创建 tensor 的数据类型，可以是 'bool' ，'float16'，'float32'，
       'float64' ，'int8'，'int16'，'int32'，'int64'，'uint8'，'complex64'，'complex128'。
       默认值为 None，如果 ``values`` 为 python 浮点类型，则从
       :ref:`cn_api_paddle_get_default_dtype` 获取类型，如果 ``values`` 为其他类型，

@@ -753,7 +753,9 @@ if __name__ == "__main__":
     tools_dir = os.path.dirname(__file__)
     cfp_basedir = os.path.join(tools_dir, "..")
     # pysrc_api_mapping_cn
-    mapping_index_file = os.path.join(cfp_basedir, "pytorch_api_mapping_cn.md")
+    mapping_index_file = os.path.join(
+        cfp_basedir, "deprecated/pytorch_api_mapping_cn_deprecated.md"
+    )
 
     if not os.path.exists(mapping_index_file):
         raise Exception(f"Cannot find mapping index file: {mapping_index_file}")
