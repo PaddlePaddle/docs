@@ -604,6 +604,8 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 
 
 
+
+
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
 | 1 | [torch.sparse.mm](https://pytorch.org/docs/stable/generated/torch.sparse.mm.html?highlight=torch+sparse+mm#torch.sparse.mm) | [paddle.sparse.matmul](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/matmul_cn.html) | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/sparse/torch.sparse.mm.md) |
@@ -843,6 +845,8 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 此类 API 在 PaddlePaddle 中提供了更多可选参数。
 
 
+
+
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
 | 1 | [torch.nn.functional.max_unpool3d](https://pytorch.org/docs/stable/generated/torch.nn.functional.max_unpool3d.html?highlight=max_unpool3d#torch.nn.functional.max_unpool3d) | [paddle.nn.functional.max_unpool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/max_unpool3d_cn.html) | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/functional/torch.nn.functional.max_unpool3d.md) |
@@ -977,6 +981,8 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 
 
 
+
+
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
 | 1 | [torch.nn.functional.rrelu_](https://pytorch.org/docs/stable/generated/torch.nn.functional.rrelu_.html) | [paddle.nn.functional.rrelu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/rrelu_cn.html) | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/functional/torch.nn.functional.rrelu_.md) |
@@ -990,6 +996,8 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 **分类简介**
 
 此类 API 在 PyTorch 中提供了更多参数。
+
+
 
 
 
@@ -1430,6 +1438,8 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 
 
 
+
+
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
 | 1 | [torch.nn.functional.batch_norm](https://pytorch.org/docs/stable/generated/torch.nn.functional.batch_norm.html#torch.nn.functional.batch_norm) | [paddle.nn.functional.batch_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/batch_norm_cn.html#batch-norm) | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/functional/torch.nn.functional.batch_norm.md) |
@@ -1507,6 +1517,8 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 **分类简介**
 
 此类 API 要求的输入数据类型不同。
+
+
 
 
 
@@ -1613,6 +1625,8 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 
 
 
+
+
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
 | 1 | [torch.sparse.sum](https://pytorch.org/docs/stable/generated/torch.sparse.sum.html?highlight=sparse+sum#torch.sparse.sum) | [paddle.sparse.sum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/sum_cn.html#sum) | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/sparse/torch.sparse.sum.md) |
@@ -1649,6 +1663,8 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 **分类简介**
 
 此类功能在 PaddlePaddle 中没有直接对应的单一 API，需要通过多个 PaddlePaddle API 组合来实现。
+
+
 
 
 
@@ -1743,94 +1759,93 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 | 85 | [torch.var_mean](https://pytorch.org/docs/stable/generated/torch.var_mean.html?highlight=var_mean#torch.var_mean) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.var_mean.md) |
 | 86 | [torch.multiprocessing.cpu_count](https://github.com/pytorch/pytorch/blob/main/torch/multiprocessing/__init__.py) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.multiprocessing.cpu_count.md) |
 | 87 | torch.\_foreach_sinh_ | - | - |
-| 88 | [torch.special.sinc](https://docs.pytorch.org/docs/stable/special.html#torch.special.sinc) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.special.sinc.md) |
-| 89 | [torch.chain_matmul](https://pytorch.org/docs/stable/generated/torch.chain_matmul.html?highlight=chain_matmul#torch.chain_matmul) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.chain_matmul.md) |
-| 90 | [torch.get_num_threads](https://pytorch.org/docs/stable/generated/torch.get_num_threads.html) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.get_num_threads.md) |
-| 91 | [torch.set_num_threads](https://pytorch.org/docs/stable/generated/torch.set_num_threads.html) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.set_num_threads.md) |
-| 92 | [torch.adjoint](https://pytorch.org/docs/stable/generated/torch.adjoint.html#torch.adjoint) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.adjoint.md) |
-| 93 | torch.\_foreach_expm1_ | - | - |
-| 94 | [torch.std_mean](https://pytorch.org/docs/stable/generated/torch.std_mean.html?highlight=std_mean#torch.std_mean) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.std_mean.md) |
-| 95 | [torch.addcmul](https://pytorch.org/docs/stable/generated/torch.addcmul.html#torch.addcmul) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.addcmul.md) |
-| 96 | torch.\_foreach_acos_ | - | - |
-| 97 | torch.\_foreach_reciprocal | - | - |
-| 98 | [torch.addmv](https://pytorch.org/docs/stable/generated/torch.addmv.html?highlight=addmv#torch.addmv) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.addmv.md) |
-| 99 | torch.\_foreach_sigmoid | - | - |
-| 100 | torch.\_foreach_exp | - | - |
-| 101 | [torch.Generator](https://pytorch.org/docs/stable/generated/torch.Generator.html#generator) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.Generator.md) |
-| 102 | [torch.inference_mode](https://pytorch.org/docs/stable/generated/torch.inference_mode.html#torch.inference_mode) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.inference_mode.md) |
-| 103 | [torch._assert](https://pytorch.org/docs/stable/generated/torch._assert.html) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch._assert.md) |
-| 104 | torch.\_foreach_cosh | - | - |
-| 105 | torch.\_foreach_log2 | - | - |
-| 106 | torch.\_foreach_asin | - | - |
-| 107 | [torch.autograd.Variable](https://pytorch.org/docs/stable/autograd.html#variable-deprecated) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.autograd.Variable.md) |
-| 108 | [torch.device](https://pytorch.org/docs/stable/tensor_attributes.html#torch-device) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.device.md) |
-| 109 | torch.\_foreach_erf | - | - |
-| 110 | torch.\_foreach_cosh_ | - | - |
-| 111 | torch.\_foreach_log1p_ | - | - |
-| 112 | torch.\_foreach_sqrt | - | - |
-| 113 | [torch.detach](https://pytorch.org/docs/stable/autograd.html#variable-deprecated) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.detach.md) |
-| 114 | torch.\_foreach_acos | - | - |
-| 115 | [torch.index_copy](https://pytorch.org/docs/stable/generated/torch.index_copy.html#torch.index_copy) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.index_copy.md) |
-| 116 | torch.\_foreach_lgamma_ | - | - |
-| 117 | torch.\_foreach_floor_ | - | - |
-| 118 | torch.\_foreach_sqrt_ | - | - |
-| 119 | torch.\_foreach_zero_ | - | - |
-| 120 | torch.\_foreach_erfc | - | - |
-| 121 | torch.\_foreach_abs | - | - |
-| 122 | torch.\_foreach_cos_ | - | - |
-| 123 | [torch.addr](https://pytorch.org/docs/stable/generated/torch.addr.html?highlight=addr#torch.addr) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.addr.md) |
-| 124 | torch.\_foreach_sin_ | - | - |
-| 125 | [torch.addbmm](https://pytorch.org/docs/stable/generated/torch.addbmm.html#torch.addbmm) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.addbmm.md) |
-| 126 | torch.\_foreach_exp_ | - | - |
-| 127 | [torch.initial_seed](https://pytorch.org/docs/stable/generated/torch.initial_seed.html?highlight=initial_seed) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.initial_seed.md) |
-| 128 | torch.\_foreach_neg_ | - | - |
-| 129 | [torch.can_cast](https://pytorch.org/docs/stable/generated/torch.can_cast.html#torch-can-cast) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.can_cast.md) |
-| 130 | torch.\_foreach_asin_ | - | - |
-| 131 | torch.\_foreach_abs_ | - | - |
-| 132 | torch.\_foreach_atan | - | - |
-| 133 | torch.\_foreach_trunc | - | - |
-| 134 | torch.\_foreach_sinh | - | - |
-| 135 | torch.\_foreach_sigmoid_ | - | - |
-| 136 | torch.\_foreach_frac | - | - |
-| 137 | torch.\_foreach_lgamma | - | - |
-| 138 | torch.\_foreach_log2_ | - | - |
-| 139 | torch.\_foreach_neg | - | - |
-| 140 | [torch.select](https://pytorch.org/docs/stable/generated/torch.select.html#torch.select) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.select.md) |
-| 141 | [torch.logaddexp2](https://pytorch.org/docs/stable/generated/torch.logaddexp2.html#torch.logaddexp2) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.logaddexp2.md) |
-| 142 | torch.\_foreach_log1p | - | - |
-| 143 | [torch.is_nonzero](https://pytorch.org/docs/stable/generated/torch.is_nonzero.html#torch.is_nonzero) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.is_nonzero.md) |
-| 144 | torch.\_foreach_tan_ | - | - |
-| 145 | torch.\_foreach_log10_ | - | - |
-| 146 | torch.\_foreach_trunc_ | - | - |
-| 147 | [torch.get_num_interop_threads](https://pytorch.org/docs/stable/generated/torch.get_num_interop_threads.html) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.get_num_interop_threads.md) |
-| 148 | torch.\_foreach_log_ | - | - |
-| 149 | torch.\_foreach_erfc_ | - | - |
-| 150 | torch.\_foreach_expm1 | - | - |
-| 151 | torch.\_foreach_round | - | - |
-| 152 | [torch.Size](https://pytorch.org/docs/stable/jit_builtin_functions.html#supported-pytorch-functions) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.Size.md) |
-| 153 | torch.\_foreach_reciprocal_ | - | - |
-| 154 | [torch.float_power](https://pytorch.org/docs/stable/generated/torch.float_power.html#torch-float-power) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.float_power.md) |
-| 155 | [torch.cuda.set_per_process_memory_fraction](https://pytorch.org/docs/stable/generated/torch.cuda.set_per_process_memory_fraction.html) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/cuda/torch.cuda.set_per_process_memory_fraction.md) |
-| 156 | [torch.cuda.initial_seed](https://pytorch.org/docs/stable/generated/torch.cuda.initial_seed.html?highlight=torch+cuda+initial_seed#torch.cuda.initial_seed) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/cuda/torch.cuda.initial_seed.md) |
-| 157 | [torch.cuda.is_available](https://pytorch.org/docs/stable/generated/torch.cuda.is_available.html#torch-cuda-is-available) | [paddle.device.cuda.device_count](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/device_count_cn.html) | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/cuda/torch.cuda.is_available.md) |
-| 158 | [torch.distributed.Backend](https://pytorch.org/docs/stable/distributed.html#torch.distributed.Backend) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/distributed/torch.distributed.Backend.md) |
-| 159 | [torch.nn.modules.module.register_module_forward_pre_hook](https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_pre_hook.html) | [paddle.nn.Layer.register_forward_pre_hook](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#register-forward-pre-hook-hook) | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.modules.module.register_module_forward_pre_hook.md) |
-| 160 | [torch.nn.Module.get_buffer](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.get_buffer) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.Module.get_buffer.md) |
-| 161 | [torch.nn.modules.utils._ntuple](https://github.com/pytorch/pytorch/blob/1f4d4d3b7836d38d936a21665e6b2ab0b39d7092/torch/nn/modules/utils.py#L8) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.modules.utils._ntuple.md) |
-| 162 | [torch.nn.Softmin](https://pytorch.org/docs/stable/generated/torch.nn.Softmin.html#softmin) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.Softmin.md) |
-| 163 | [torch.nn.Module.get_parameter](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.get_parameter) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.Module.get_parameter.md) |
-| 164 | [torch.nn.Module.get_submodule](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.get_submodule) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.Module.get_submodule.md) |
-| 165 | [torch.nn.modules.module.register_module_forward_hook](https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_hook.html) | [paddle.nn.Layer.register_forward_post_hook](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#register-forward-post-hook-hook) | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.modules.module.register_module_forward_hook.md) |
-| 166 | [torch.nn.modules.utils._pair](https://github.com/pytorch/pytorch/blob/1f4d4d3b7836d38d936a21665e6b2ab0b39d7092/torch/nn/modules/utils.py#L198) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.modules.utils._pair.md) |
-| 167 | [torch.utils.set_module](https://docs.pytorch.org/docs/stable/generated/torch.utils.set_module.html#torch-utils-set-module) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/utils/torch.utils.set_module.md) |
-| 168 | [torch.distributions.transforms.PositiveDefiniteTransform](https://pytorch.org/docs/stable/distributions.html#module-torch.distributions.transforms) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/distributions/torch.distributions.transforms.PositiveDefiniteTransform.md) |
-| 169 | [flash_attn.layers.rotary.apply_rotary_emb_func](https://github.com/Dao-AILab/flash-attention/blob/c4b9015d74bd9f638c6fd574482accf4bbbd4197/flash_attn/layers/rotary.py#L128) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference_third_party/flash_attn/flash_attn.layers.rotary.apply_rotary_emb_func.md) |
-| 170 | [fairscale.nn.model_parallel.initialize.model_parallel_is_initialized](https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/initialize.py#L119) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference_third_party/fairscale/fairscale.nn.model_parallel.initialize.model_parallel_is_initialized.md) |
-| 171 | [fairscale.nn.model_parallel.initialize.initialize_model_parallel](https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/initialize.py#L41) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference_third_party/fairscale/fairscale.nn.model_parallel.initialize.initialize_model_parallel.md) |
-| 172 | [transformers.PreTrainedModel.get_head_mask](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/model#transformers.modeling_utils.ModuleUtilsMixin.get_head_mask) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference_third_party/transformers/transformers.PreTrainedModel.get_head_mask.md) |
-| 173 | [transformers.PreTrainedModel](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/model#transformers.PreTrainedModel) | [paddlenlp.transformers.PreTrainedModel](https://github.com/PaddlePaddle/PaddleNLP/blob/e336e78c338d2514ee6c937982ce5d8c960b85ff/paddlenlp/transformers/model_utils.py#L843) | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference_third_party/transformers/transformers.PreTrainedModel.md) |
-| 174 | [transformers.logging.get_logger](https://github.com/huggingface/transformers/blob/d625294d79341662784495551abdf45e6cb9372f/src/transformers/utils/logging.py#L147) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference_third_party/transformers/transformers.logging.get_logger.md) |
-| 175 | [transformers.PreTrainedModel.post_init](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/model#transformers.PreTrainedModel.post_init) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference_third_party/transformers/transformers.PreTrainedModel.post_init.md) |
+| 88 | [torch.chain_matmul](https://pytorch.org/docs/stable/generated/torch.chain_matmul.html?highlight=chain_matmul#torch.chain_matmul) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.chain_matmul.md) |
+| 89 | [torch.get_num_threads](https://pytorch.org/docs/stable/generated/torch.get_num_threads.html) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.get_num_threads.md) |
+| 90 | [torch.set_num_threads](https://pytorch.org/docs/stable/generated/torch.set_num_threads.html) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.set_num_threads.md) |
+| 91 | [torch.adjoint](https://pytorch.org/docs/stable/generated/torch.adjoint.html#torch.adjoint) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.adjoint.md) |
+| 92 | torch.\_foreach_expm1_ | - | - |
+| 93 | [torch.std_mean](https://pytorch.org/docs/stable/generated/torch.std_mean.html?highlight=std_mean#torch.std_mean) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.std_mean.md) |
+| 94 | [torch.addcmul](https://pytorch.org/docs/stable/generated/torch.addcmul.html#torch.addcmul) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.addcmul.md) |
+| 95 | torch.\_foreach_acos_ | - | - |
+| 96 | torch.\_foreach_reciprocal | - | - |
+| 97 | [torch.addmv](https://pytorch.org/docs/stable/generated/torch.addmv.html?highlight=addmv#torch.addmv) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.addmv.md) |
+| 98 | torch.\_foreach_sigmoid | - | - |
+| 99 | torch.\_foreach_exp | - | - |
+| 100 | [torch.Generator](https://pytorch.org/docs/stable/generated/torch.Generator.html#generator) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.Generator.md) |
+| 101 | [torch.inference_mode](https://pytorch.org/docs/stable/generated/torch.inference_mode.html#torch.inference_mode) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.inference_mode.md) |
+| 102 | [torch._assert](https://pytorch.org/docs/stable/generated/torch._assert.html) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch._assert.md) |
+| 103 | torch.\_foreach_cosh | - | - |
+| 104 | torch.\_foreach_log2 | - | - |
+| 105 | torch.\_foreach_asin | - | - |
+| 106 | [torch.autograd.Variable](https://pytorch.org/docs/stable/autograd.html#variable-deprecated) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.autograd.Variable.md) |
+| 107 | [torch.device](https://pytorch.org/docs/stable/tensor_attributes.html#torch-device) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.device.md) |
+| 108 | torch.\_foreach_erf | - | - |
+| 109 | torch.\_foreach_cosh_ | - | - |
+| 110 | torch.\_foreach_log1p_ | - | - |
+| 111 | torch.\_foreach_sqrt | - | - |
+| 112 | [torch.detach](https://pytorch.org/docs/stable/autograd.html#variable-deprecated) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.detach.md) |
+| 113 | torch.\_foreach_acos | - | - |
+| 114 | [torch.index_copy](https://pytorch.org/docs/stable/generated/torch.index_copy.html#torch.index_copy) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.index_copy.md) |
+| 115 | torch.\_foreach_lgamma_ | - | - |
+| 116 | torch.\_foreach_floor_ | - | - |
+| 117 | torch.\_foreach_sqrt_ | - | - |
+| 118 | torch.\_foreach_zero_ | - | - |
+| 119 | torch.\_foreach_erfc | - | - |
+| 120 | torch.\_foreach_abs | - | - |
+| 121 | torch.\_foreach_cos_ | - | - |
+| 122 | [torch.addr](https://pytorch.org/docs/stable/generated/torch.addr.html?highlight=addr#torch.addr) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.addr.md) |
+| 123 | torch.\_foreach_sin_ | - | - |
+| 124 | [torch.addbmm](https://pytorch.org/docs/stable/generated/torch.addbmm.html#torch.addbmm) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.addbmm.md) |
+| 125 | torch.\_foreach_exp_ | - | - |
+| 126 | [torch.initial_seed](https://pytorch.org/docs/stable/generated/torch.initial_seed.html?highlight=initial_seed) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.initial_seed.md) |
+| 127 | torch.\_foreach_neg_ | - | - |
+| 128 | [torch.can_cast](https://pytorch.org/docs/stable/generated/torch.can_cast.html#torch-can-cast) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.can_cast.md) |
+| 129 | torch.\_foreach_asin_ | - | - |
+| 130 | torch.\_foreach_abs_ | - | - |
+| 131 | torch.\_foreach_atan | - | - |
+| 132 | torch.\_foreach_trunc | - | - |
+| 133 | torch.\_foreach_sinh | - | - |
+| 134 | torch.\_foreach_sigmoid_ | - | - |
+| 135 | torch.\_foreach_frac | - | - |
+| 136 | torch.\_foreach_lgamma | - | - |
+| 137 | torch.\_foreach_log2_ | - | - |
+| 138 | torch.\_foreach_neg | - | - |
+| 139 | [torch.select](https://pytorch.org/docs/stable/generated/torch.select.html#torch.select) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.select.md) |
+| 140 | [torch.logaddexp2](https://pytorch.org/docs/stable/generated/torch.logaddexp2.html#torch.logaddexp2) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.logaddexp2.md) |
+| 141 | torch.\_foreach_log1p | - | - |
+| 142 | [torch.is_nonzero](https://pytorch.org/docs/stable/generated/torch.is_nonzero.html#torch.is_nonzero) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.is_nonzero.md) |
+| 143 | torch.\_foreach_tan_ | - | - |
+| 144 | torch.\_foreach_log10_ | - | - |
+| 145 | torch.\_foreach_trunc_ | - | - |
+| 146 | [torch.get_num_interop_threads](https://pytorch.org/docs/stable/generated/torch.get_num_interop_threads.html) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.get_num_interop_threads.md) |
+| 147 | torch.\_foreach_log_ | - | - |
+| 148 | torch.\_foreach_erfc_ | - | - |
+| 149 | torch.\_foreach_expm1 | - | - |
+| 150 | torch.\_foreach_round | - | - |
+| 151 | [torch.Size](https://pytorch.org/docs/stable/jit_builtin_functions.html#supported-pytorch-functions) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.Size.md) |
+| 152 | torch.\_foreach_reciprocal_ | - | - |
+| 153 | [torch.float_power](https://pytorch.org/docs/stable/generated/torch.float_power.html#torch-float-power) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/torch/torch.float_power.md) |
+| 154 | [torch.cuda.set_per_process_memory_fraction](https://pytorch.org/docs/stable/generated/torch.cuda.set_per_process_memory_fraction.html) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/cuda/torch.cuda.set_per_process_memory_fraction.md) |
+| 155 | [torch.cuda.initial_seed](https://pytorch.org/docs/stable/generated/torch.cuda.initial_seed.html?highlight=torch+cuda+initial_seed#torch.cuda.initial_seed) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/cuda/torch.cuda.initial_seed.md) |
+| 156 | [torch.cuda.is_available](https://pytorch.org/docs/stable/generated/torch.cuda.is_available.html#torch-cuda-is-available) | [paddle.device.cuda.device_count](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/device_count_cn.html) | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/cuda/torch.cuda.is_available.md) |
+| 157 | [torch.distributed.Backend](https://pytorch.org/docs/stable/distributed.html#torch.distributed.Backend) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/distributed/torch.distributed.Backend.md) |
+| 158 | [torch.nn.modules.module.register_module_forward_pre_hook](https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_pre_hook.html) | [paddle.nn.Layer.register_forward_pre_hook](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#register-forward-pre-hook-hook) | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.modules.module.register_module_forward_pre_hook.md) |
+| 159 | [torch.nn.Module.get_buffer](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.get_buffer) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.Module.get_buffer.md) |
+| 160 | [torch.nn.modules.utils._ntuple](https://github.com/pytorch/pytorch/blob/1f4d4d3b7836d38d936a21665e6b2ab0b39d7092/torch/nn/modules/utils.py#L8) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.modules.utils._ntuple.md) |
+| 161 | [torch.nn.Softmin](https://pytorch.org/docs/stable/generated/torch.nn.Softmin.html#softmin) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.Softmin.md) |
+| 162 | [torch.nn.Module.get_parameter](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.get_parameter) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.Module.get_parameter.md) |
+| 163 | [torch.nn.Module.get_submodule](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.get_submodule) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.Module.get_submodule.md) |
+| 164 | [torch.nn.modules.module.register_module_forward_hook](https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_hook.html) | [paddle.nn.Layer.register_forward_post_hook](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#register-forward-post-hook-hook) | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.modules.module.register_module_forward_hook.md) |
+| 165 | [torch.nn.modules.utils._pair](https://github.com/pytorch/pytorch/blob/1f4d4d3b7836d38d936a21665e6b2ab0b39d7092/torch/nn/modules/utils.py#L198) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/nn/torch.nn.modules.utils._pair.md) |
+| 166 | [torch.utils.set_module](https://docs.pytorch.org/docs/stable/generated/torch.utils.set_module.html#torch-utils-set-module) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/utils/torch.utils.set_module.md) |
+| 167 | [torch.distributions.transforms.PositiveDefiniteTransform](https://pytorch.org/docs/stable/distributions.html#module-torch.distributions.transforms) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference/distributions/torch.distributions.transforms.PositiveDefiniteTransform.md) |
+| 168 | [flash_attn.layers.rotary.apply_rotary_emb_func](https://github.com/Dao-AILab/flash-attention/blob/c4b9015d74bd9f638c6fd574482accf4bbbd4197/flash_attn/layers/rotary.py#L128) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference_third_party/flash_attn/flash_attn.layers.rotary.apply_rotary_emb_func.md) |
+| 169 | [fairscale.nn.model_parallel.initialize.model_parallel_is_initialized](https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/initialize.py#L119) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference_third_party/fairscale/fairscale.nn.model_parallel.initialize.model_parallel_is_initialized.md) |
+| 170 | [fairscale.nn.model_parallel.initialize.initialize_model_parallel](https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/initialize.py#L41) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference_third_party/fairscale/fairscale.nn.model_parallel.initialize.initialize_model_parallel.md) |
+| 171 | [transformers.PreTrainedModel.get_head_mask](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/model#transformers.modeling_utils.ModuleUtilsMixin.get_head_mask) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference_third_party/transformers/transformers.PreTrainedModel.get_head_mask.md) |
+| 172 | [transformers.PreTrainedModel](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/model#transformers.PreTrainedModel) | [paddlenlp.transformers.PreTrainedModel](https://github.com/PaddlePaddle/PaddleNLP/blob/e336e78c338d2514ee6c937982ce5d8c960b85ff/paddlenlp/transformers/model_utils.py#L843) | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference_third_party/transformers/transformers.PreTrainedModel.md) |
+| 173 | [transformers.logging.get_logger](https://github.com/huggingface/transformers/blob/d625294d79341662784495551abdf45e6cb9372f/src/transformers/utils/logging.py#L147) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference_third_party/transformers/transformers.logging.get_logger.md) |
+| 174 | [transformers.PreTrainedModel.post_init](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/model#transformers.PreTrainedModel.post_init) | - | [差异对比](https://github.com/Paddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/tools/../api_difference_third_party/transformers/transformers.PreTrainedModel.post_init.md) |
 
 ## 11. 可删除
 **分类简介**
@@ -1845,6 +1860,8 @@ model = paddle.nn.Softplus(beta=0.5, threshold=15)
 **分类简介**
 
 此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现。
+
+
 
 
 
