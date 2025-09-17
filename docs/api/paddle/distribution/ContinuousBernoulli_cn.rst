@@ -148,7 +148,7 @@ Tensor，ContinuousBernoulli 随机变量在对应 quantile 下的值。数据�
 sample(shape=[])
 '''''''''
 
-从 ContinuousBernoulli 分布中生成满足特定形状的样本数据。最终生成样本形状为  ``shape+batch_shape``  。
+从 ContinuousBernoulli 分布中生成满足特定形状的样本数据。最终生成样本形状为   ``shape+batch_shape``   。
 
 **参数**
 
@@ -162,7 +162,7 @@ Tensor，样本数据。其维度为 :math:`\text{sample shape} + \text{batch sh
 rsample(shape=[])
 '''''''''
 
-重参数化采样，生成指定维度的样本。最终生成样本形状为  ``shape+batch_shape``  。
+重参数化采样，生成指定维度的样本。最终生成样本形状为   ``shape+batch_shape``   。
 
 **参数**
 

@@ -22,7 +22,7 @@ Inplace 版本的 :ref:`cn_api_paddle_normal` API，对输入 x 采用 Inplace �
 
 返回
 ::::::::::
-   Tensor：符合正态分布（均值为  ``mean`` ，标准差为  ``std``  的正态随机分布）的随机 Tensor。
+   Tensor：符合正态分布（均值为   ``mean``  ，标准差为   ``std``   的正态随机分布）的随机 Tensor。
 
 示例代码
 ::::::::::

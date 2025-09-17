@@ -17,7 +17,7 @@ IpuCompiledProgram 将输入的 Program 转换和优化成 IPU 所需要的形�
 
 返回
 :::::::::
-IpuCompiledProgram，初始化后的  ``IpuCompiledProgram``  对象。
+IpuCompiledProgram，初始化后的   ``IpuCompiledProgram``   对象。
 
 代码示例
 ::::::::::
@@ -38,7 +38,7 @@ compile(self, feed_list, fetch_list)
 
 **返回**
 
-Program，编译之后的  ``Program``  对象。
+Program，编译之后的   ``Program``   对象。
 
 
 **代码示例**

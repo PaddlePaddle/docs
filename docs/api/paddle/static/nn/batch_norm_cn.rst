@@ -19,7 +19,7 @@ batch_norm
 
 更多详情请参考：`Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
 
- ``input``  是 mini-batch 的输入。
+  ``input``   是 mini-batch 的输入。
 
 .. math::
     \mu_{\beta} &\gets \frac{1}{m} \sum_{i=1}^{m} x_i  \qquad &//\
@@ -58,8 +58,8 @@ moving_mean 和 moving_var 是训练过程中统计得到的全局均值和方�
     - **data_layout** （string) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N 是批尺寸，C 是通道数，H 是特征高度，W 是特征宽度。默认值："NCHW"。
     - **in_place** （bool）- batch_norm 的输出复用输入的 tensor，可以节省显存。默认：False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **moving_mean_name** （string）- moving_mean 的名称，存储全局均值。如果将其设置为 None,  ``batch_norm``  将随机命名全局均值；否则， ``batch_norm``  将命名全局均值为  ``moving_mean_name`` 。默认：None。
-    - **moving_variance_name** （string）- moving_variance 的名称，存储全局变量。如果将其设置为 None,  ``batch_norm``  将随机命名全局方差；否则， ``batch_norm``  将命名全局方差为  ``moving_variance_name`` 。默认：None。
+    - **moving_mean_name** （string）- moving_mean 的名称，存储全局均值。如果将其设置为 None,   ``batch_norm``   将随机命名全局均值；否则，  ``batch_norm``   将命名全局均值为   ``moving_mean_name``  。默认：None。
+    - **moving_variance_name** （string）- moving_variance 的名称，存储全局变量。如果将其设置为 None,   ``batch_norm``   将随机命名全局方差；否则，  ``batch_norm``   将命名全局方差为   ``moving_variance_name``  。默认：None。
     - **do_model_average_for_mean_and_var** （bool，默认 False）- 是否为 mean 和 variance 做模型均值。
     - **use_global_stats** （bool） – 是否使用全局均值和方差。在预测或测试模式下，将 use_global_stats 设置为 true 或将 is_test 设置为 true，并且行为是等效的。在训练模式中，当设置 use_global_stats 为 True 时，在训练期间也使用全局均值和方差。默认：False。
 

@@ -43,15 +43,15 @@ LRScheduler
 
 * :code:`CosineAnnealingWarmRestarts`: 余弦退火学习率，即学习率随 step 数变化呈余弦函数周期变化。 请参考 :ref:`cn_api_paddle_optimizer_lr_CosineAnnealingWarmRestarts`。
 
-你可以继承该基类实现任意的学习率策略，导出基类的方法为  ``from paddle.optimizer.lr import LRScheduler``  ，
-必须要重写该基类的  ``get_lr()``  函数，否则会抛出  ``NotImplementedError``  异常。
+你可以继承该基类实现任意的学习率策略，导出基类的方法为   ``from paddle.optimizer.lr import LRScheduler``   ，
+必须要重写该基类的   ``get_lr()``   函数，否则会抛出   ``NotImplementedError``   异常。
 
 参数
 ::::::::::::
 
     - **learning_rate** (float，可选) - 初始学习率，数据类型为 Python float。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的 epoch 数。默认值为 -1，则为初始学习率。
-    - **verbose** (bool，可选) - 如果是  ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为  ``False``  。
+    - **verbose** (bool，可选) - 如果是   ``True``  ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为   ``False``   。
 
 返回
 ::::::::::::
@@ -71,7 +71,7 @@ step 函数需要在优化器的 `optimizer.step()` 函数之后调用，调用�
 
 **参数**
 
-    - **epoch** （int，可选）- 指定具体的 epoch 数。默认值 None，此时将会从-1 自动累加  ``epoch``  数。
+    - **epoch** （int，可选）- 指定具体的 epoch 数。默认值 None，此时将会从-1 自动累加   ``epoch``   数。
 
 **返回**
 
@@ -84,22 +84,22 @@ COPY-FROM: paddle.optimizer.lr.LRScheduler.step
 get_lr()
 '''''''''
 
-如果一个子类继承了  ``基类 LRScheduler`` ，则用户必须重写方法  ``get_lr()`` ，否则，将会抛出  ``NotImplementedError``  异常，
+如果一个子类继承了   ``基类 LRScheduler``  ，则用户必须重写方法   ``get_lr()``  ，否则，将会抛出   ``NotImplementedError``   异常，
 
-上述给出了实现  ``StepLR``  的一个简单示例。
+上述给出了实现   ``StepLR``   的一个简单示例。
 
 state_keys()
 '''''''''
 
-该函数通过定义字典  ``self.keys``  来设置  ``optimizer.state_dict()``  时的存储对象，默认情况下： ``self.keys=['last_epoch', 'last_lr']`` ，其中  ``last_epoch`` 
-是当前的 epoch 数， ``last_lr``  是当前的学习率值。
+该函数通过定义字典   ``self.keys``   来设置   ``optimizer.state_dict()``   时的存储对象，默认情况下：  ``self.keys=['last_epoch', 'last_lr']``  ，其中   ``last_epoch``  
+是当前的 epoch 数，  ``last_lr``   是当前的学习率值。
 
-如果需要改变默认的行为，用户需要重写该方法，来重新定义字典  ``self.keys`` ，一般无需重新设置。
+如果需要改变默认的行为，用户需要重写该方法，来重新定义字典   ``self.keys``  ，一般无需重新设置。
 
 state_dict()
 '''''''''
 
-以  ``dict``  形式返回调度器的状态。
+以   ``dict``   形式返回调度器的状态。
 
 set_state_dict(state_dict)
 '''''''''

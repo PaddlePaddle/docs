@@ -23,13 +23,13 @@ gelu 激活层（GELU Activation Operator）
 
 参数
 ::::::::::::
- - **x** (Tensor) - 输入的  ``Tensor`` ，数据类型为：float32、float64。
+ - **x** (Tensor) - 输入的   ``Tensor``  ，数据类型为：float32、float64。
  - **approximate** (bool，可选) - 是否使用近似计算，默认值为 False，表示不使用近似计算。
  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::
-     ``Tensor`` ，数据类型和形状同  ``x``  一致。
+      ``Tensor``  ，数据类型和形状同   ``x``   一致。
 
 代码示例
 ::::::::::

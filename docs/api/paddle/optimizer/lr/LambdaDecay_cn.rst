@@ -5,7 +5,7 @@ LambdaDecay
 
 .. py:class:: paddle.optimizer.lr.LambdaDecay(learning_rate, lr_lambda, last_epoch=-1, verbose=False)
 
-该接口提供  ``lambda``  函数设置学习率的策略。 ``lr_lambda``  为一个  ``lambda``  函数，其通过  ``epoch``  计算出一个因子，该因子会乘以初始学习率。。
+该接口提供   ``lambda``   函数设置学习率的策略。  ``lr_lambda``   为一个   ``lambda``   函数，其通过   ``epoch``   计算出一个因子，该因子会乘以初始学习率。。
 
 衰减过程可以参考以下代码：
 
@@ -26,11 +26,11 @@ LambdaDecay
     - **learning_rate** （float） - 初始学习率，数据类型为 Python float。
     - **lr_lambda** （function）：lr_lambda 为一个 lambda 函数，其通过 epoch 计算出一个因子，该因子会乘以初始学习率。
     - **last_epoch** （int，可选）：上一轮的轮数，重启训练时设置为上一轮的 epoch 数。默认值为 -1，则为初始学习率。
-    - **verbose** （bool，可选）：如果是  ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为  ``False``  。
+    - **verbose** （bool，可选）：如果是   ``True``  ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为   ``False``   。
 
 返回
 ::::::::::::
-用于调整学习率的  ``LambdaDecay``  实例对象。
+用于调整学习率的   ``LambdaDecay``   实例对象。
 
 代码示例
 ::::::::::::
@@ -46,7 +46,7 @@ step 函数需要在优化器的 `optimizer.step()` 函数之后调用，调用�
 
 **参数**
 
-  - **epoch** （int，可选）- 指定具体的 epoch 数。默认值 None，此时将会从-1 自动累加  ``epoch``  数。
+  - **epoch** （int，可选）- 指定具体的 epoch 数。默认值 None，此时将会从-1 自动累加   ``epoch``   数。
 
 **返回**
 
