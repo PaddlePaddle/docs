@@ -8,7 +8,7 @@ is_compiled_with_ipu
 
 
 
-检查 ``whl`` 包是否可以被用来在 Graphcore IPU 上运行模型
+检查  ``whl``  包是否可以被用来在 Graphcore IPU 上运行模型
 
 返回
 ::::::::::

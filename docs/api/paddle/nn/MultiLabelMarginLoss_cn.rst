@@ -18,7 +18,7 @@ MultiLabelMarginLoss
 
 参数
 :::::::::
-    - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有：``'none'``、``'mean'``、``'sum'``。默认为 ``'mean'``，计算 Loss 的均值；设置为 ``'sum'`` 时，计算 Loss 的总和；设置为 ``'none'`` 时，则返回原始 Loss。
+    - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有： ``'none'`` 、 ``'mean'`` 、 ``'sum'`` 。默认为  ``'mean'`` ，计算 Loss 的均值；设置为  ``'sum'``  时，计算 Loss 的总和；设置为  ``'none'``  时，则返回原始 Loss。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 调用参数
@@ -30,7 +30,7 @@ MultiLabelMarginLoss
 :::::::::
     - **input** (Tensor) - :math:`[N, C]`，其中 N 是 batch_size， C 是类别数量。
     - **label** (Tensor) - :math:`[N, C]`，与 input 形状相同。
-    - **output** (Tensor) - 输出的 Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N]`。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[]` 。
+    - **output** (Tensor) - 输出的 Tensor。如果 :attr:`reduction` 是  ``'none'`` ，则输出的维度为 :math:`[N]`。如果 :attr:`reduction` 是  ``'mean'``  或  ``'sum'`` ，则输出的维度为 :math:`[]` 。
 
 返回
 :::::::::

@@ -5,7 +5,7 @@ logaddexp
 
 .. py:function:: paddle.logaddexp(x, y, name=None)
 
-计算 ``x`` 和 ``y`` 的以 e 为底的指数的和的自然对数。计算公式如下：
+计算  ``x``  和  ``y``  的以 e 为底的指数的和的自然对数。计算公式如下：
 
 .. math::
    logaddexp(x) = \log (exp(x)+exp(y))
@@ -18,7 +18,7 @@ logaddexp
 
 返回
 ::::::::::
-    ``Tensor``，根据上述公式计算的 logaddexp(x) 结果
+     ``Tensor`` ，根据上述公式计算的 logaddexp(x) 结果
 
 代码示例
 ::::::::::

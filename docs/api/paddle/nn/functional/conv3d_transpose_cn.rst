@@ -26,9 +26,9 @@ conv3d_transpose
     -  :math:`X`：输入，具有 NCDHW 或 NDHWC 格式的 5-D Tensor
     -  :math:`W`：卷积核，具有 NCDHW 格式的 5-D Tensor
     -  :math:`*`：卷积操作（**注意**：转置卷积本质上的计算还是卷积）
-    -  :math:`b`：偏置（bias），2-D Tensor，形状为 ``[M, 1]``
+    -  :math:`b`：偏置（bias），2-D Tensor，形状为  ``[M, 1]`` 
     -  :math:`σ`：激活函数
-    -  :math:`Out`：输出值，NCDHW 或 NDHWC 格式的 5-D Tensor，和 ``X`` 的形状可能不同
+    -  :math:`Out`：输出值，NCDHW 或 NDHWC 格式的 5-D Tensor，和  ``X``  的形状可能不同
 
 **示例**
 
@@ -54,14 +54,14 @@ conv3d_transpose
     H_{out} &\in [ H^\prime_{out}, H^\prime_{out} + strides[1] ] \\
     W_{out} &\in [ W^\prime_{out}, W^\prime_{out} + strides[2] ] \\
 
-如果 ``padding`` = "SAME":
+如果  ``padding``  = "SAME":
 
 .. math::
     D'_{out} = \frac{(D_{in} + stride[0] - 1)}{stride[0]}\\
     H'_{out} = \frac{(H_{in} + stride[1] - 1)}{stride[1]}\\
     W'_{out} = \frac{(W_{in} + stride[2] - 1)}{stride[2]}\\
 
-如果 ``padding`` = "VALID":
+如果  ``padding``  = "VALID":
 
 .. math::
     D'_{out}=(D_{in}-1)*strides[0] + dilations[0]*(D_f-1)+1\\
@@ -79,19 +79,19 @@ conv3d_transpose
   - **x** (Tensor) - 形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的 5-D Tensor，N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度，数据类型：float32 或 float64。
   - **weight** (Tensor) - 形状为 :math:`[C, M/g, kD, kH, kW]` 的卷积核。M 是输出通道数，g 是分组的个数，kD 是卷积核的深度，kH 是卷积核的高度，kW 是卷积核的宽度。
   - **bias** (int|list|tuple，可选) - 偏置项，形状为：:math:`[M, ]` 。默认值为 None。
-  - **stride** (int|list|tuple，可选) - 步长大小。如果 ``stride`` 为元组或列表，则必须包含三个整型数，分别表示深度，垂直和水平滑动步长。否则，表示深度，垂直和水平滑动步长均为 ``stride``。默认值为 1。
-  - **padding** (int|list|tuple|str，可选) - 填充 padding 大小。padding 参数在输入特征层每边添加 ``dilation * (kernel_size - 1) - padding`` 个 0。如果它是一个字符串，可以是 "VALID" 或者 "SAME"，表示填充算法，计算细节可参考上述 ``padding`` = "SAME" 或  ``padding`` = "VALID" 时的计算公式。如果它是一个元组或列表，它可以有 3 种格式：(1) 包含 5 个二元组：当 ``data_format`` 为 "NCDHW" 时为 [[0,0], [0,0], [pad_depth_front, pad_depth_back], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right]]，当 ``data_format`` 为 "NDHWC" 时，为 [[0,0], [pad_depth_front, pad_depth_back], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right], [0,0]]；(2) 包含 6 个整数值：[pad_depth_front, pad_depth_back, pad_height_top, pad_height_bottom, pad_width_left, pad_width_right]；(3) 包含 3 个整数值：[pad_depth, pad_height, pad_width]，此时 pad_depth_front = pad_depth_back = pad_depth, pad_height_top = pad_height_bottom = pad_height, pad_width_left = pad_width_right = pad_width。若为一个整数，pad_depth = pad_height = pad_width = padding。默认值为 0。
+  - **stride** (int|list|tuple，可选) - 步长大小。如果  ``stride``  为元组或列表，则必须包含三个整型数，分别表示深度，垂直和水平滑动步长。否则，表示深度，垂直和水平滑动步长均为  ``stride`` 。默认值为 1。
+  - **padding** (int|list|tuple|str，可选) - 填充 padding 大小。padding 参数在输入特征层每边添加  ``dilation * (kernel_size - 1) - padding``  个 0。如果它是一个字符串，可以是 "VALID" 或者 "SAME"，表示填充算法，计算细节可参考上述  ``padding``  = "SAME" 或   ``padding``  = "VALID" 时的计算公式。如果它是一个元组或列表，它可以有 3 种格式：(1) 包含 5 个二元组：当  ``data_format``  为 "NCDHW" 时为 [[0,0], [0,0], [pad_depth_front, pad_depth_back], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right]]，当  ``data_format``  为 "NDHWC" 时，为 [[0,0], [pad_depth_front, pad_depth_back], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right], [0,0]]；(2) 包含 6 个整数值：[pad_depth_front, pad_depth_back, pad_height_top, pad_height_bottom, pad_width_left, pad_width_right]；(3) 包含 3 个整数值：[pad_depth, pad_height, pad_width]，此时 pad_depth_front = pad_depth_back = pad_depth, pad_height_top = pad_height_bottom = pad_height, pad_width_left = pad_width_right = pad_width。若为一个整数，pad_depth = pad_height = pad_width = padding。默认值为 0。
   - **output_padding** (int|list|tuple，可选) - 输出形状上一侧额外添加的大小。默认值为 0。
   - **dilation** (int|list|tuple，可选) - 空洞大小。空洞卷积时会使用该参数，卷积核对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息。如果空洞大小为列表或元组，则必须包含两个整型数：(dilation_height, dilation_width)。若为一个整数，dilation_height = dilation_width = dilation。默认值为 1。
   - **groups** (int，可选) - 三维转置卷积层的组数。从 `Alex Krizhevsky 的 Deep CNN 论文 <https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf>`_ 中的群卷积中受到启发，当 groups = 2 时，输入和卷积核分别根据通道数量平均分为两组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算。默认值为 1。
-  - **output_size** (int|list|tuple，可选) - 输出尺寸，整数或包含一个整数的列表或元组。如果为 ``None``，则会用 filter_size( ``weight`` 的 shape), ``padding`` 和 ``stride`` 计算出输出特征图的尺寸。默认值为 None。
+  - **output_size** (int|list|tuple，可选) - 输出尺寸，整数或包含一个整数的列表或元组。如果为  ``None`` ，则会用 filter_size(  ``weight``  的 shape),  ``padding``  和  ``stride``  计算出输出特征图的尺寸。默认值为 None。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是 "NCHW" 和 "NHWC"。N 是批尺寸，C 是通道数，H 是特征高度，W 是特征宽度。默认值为 "NCHW"。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回
 ::::::::::::
-5-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回转置卷积计算的结果，如果指定激活层，则返回转置卷积和激活计算之后的最终结果。
+5-D Tensor，数据类型与  ``input``  一致。如果未指定激活层，则返回转置卷积计算的结果，如果指定激活层，则返回转置卷积和激活计算之后的最终结果。
 
 返回类型
 ::::::::::::

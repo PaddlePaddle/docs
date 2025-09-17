@@ -24,7 +24,7 @@ sum
 返回
 ::::::::::::
 
-  ``Tensor``，在指定维度上进行求和运算的 Tensor。如果 `x.dtype='bool'` 或 `x.dtype='int32'`，则其数据类型为 `'int64'`，否则数据类型与 `x` 一致。
+   ``Tensor`` ，在指定维度上进行求和运算的 Tensor。如果 `x.dtype='bool'` 或 `x.dtype='int32'`，则其数据类型为 `'int64'`，否则数据类型与 `x` 一致。
 
 
 代码示例
