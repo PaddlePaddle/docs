@@ -335,7 +335,13 @@ is_cuda
 如果 Tensor 存储在 GPU 上，则为 True，否则为 False。
 
 **代码示例**
-COPY-FROM: paddle.Tensor.is_cuda
+
+    .. code-block:: python
+
+        import paddle
+        d = torch.Tensor([1,2,3])
+        d.is_cuda
+
 
 numpy()
 :::::::::
