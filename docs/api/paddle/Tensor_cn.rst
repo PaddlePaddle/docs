@@ -1716,6 +1716,8 @@ greater_equal(y, name=None)
 
 返回类型：Tensor
 
+请参考 :ref:`cn_api_paddle_greater_equal`
+
 ge(y, name=None)
 :::::::::
 
