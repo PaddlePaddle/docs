@@ -1716,7 +1716,14 @@ greater_equal(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_greater_equal`
+ge(y, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_ge`
 
 greater_than(y, name=None)
 :::::::::
@@ -1726,6 +1733,15 @@ greater_than(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_greater_than`
+
+gt(y, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_gt`
 
 heaviside(y, name=None)
 :::::::::
@@ -1943,6 +1959,15 @@ less_equal(y, name=None)
 
 请参考 :ref:`cn_api_paddle_less_equal`
 
+le(y, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_le`
+
 less_than(y, name=None)
 :::::::::
 
@@ -1960,6 +1985,15 @@ less(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_less`
+
+le(y, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_le`
 
 lgamma(name=None)
 :::::::::
@@ -2291,6 +2325,15 @@ not_equal(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_not_equal`
+
+ne(y, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_ne`
 
 numel(name=None)
 :::::::::
