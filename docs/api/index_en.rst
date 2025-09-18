@@ -83,6 +83,8 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 |                          | providing functionality to display and analyze                |
 |                          | performance for model training and inference processes.       |
 +--------------------------+---------------------------------------------------------------+
+| paddle.random            | Random number generation related APIs, including initial_seed. |
++--------------------------+---------------------------------------------------------------+
 | paddle.quantization      | Quantization related APIs.                                    |
 +--------------------------+---------------------------------------------------------------+
 | paddle.regularizer       | Regularization APIs, including L1Decay, L2Decay, etc.         |
