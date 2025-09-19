@@ -22,7 +22,7 @@ layer_norm
     - **weight** (Tensor，可选) - 权重的 Tensor，默认为 None。
     - **bias** (Tensor，可选) - 偏置的 Tensor，默认为 None。
     - **epsilon** (float，可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
-        别名： ``eps``
+      别名： ``eps``
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
