@@ -3,7 +3,7 @@
 remainder
 -------------------------------
 
-.. py:function:: paddle.remainder(x, y, name=None)
+.. py:function:: paddle.remainder(x, y, name=None, *, out=None)
 
 
 逐元素取模算子。公式为：
