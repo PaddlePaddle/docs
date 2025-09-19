@@ -1,6 +1,7 @@
 # temp files used locally
 alias_macro_lines.tmp.md
 generated.tmp.md
+tmp_check.md
 
 # files will be used in PaConvert
 docs_mappings.json
@@ -10,3 +11,12 @@ api_alias_mapping.json
 
 # log files
 alias_refer_failed.log
+
+# from paconvert
+api_mapping.json
+no_need_convert.txt
+
+# validate warning info
+toc_warnings.txt
+unique_warnings.txt
+link_warnings.txt
