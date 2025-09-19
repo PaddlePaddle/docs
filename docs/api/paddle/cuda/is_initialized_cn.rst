@@ -11,7 +11,3 @@ is_initialized
 ::::::::::::
 
     bool, CUDA 是否已初始化。
-
-代码示例
-::::::::::::
-COPY-FROM: paddle.cuda.is_initialized
