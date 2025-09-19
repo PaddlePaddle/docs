@@ -43,6 +43,7 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 
 
 
+
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
 | 1 | [torch.Tensor.bfloat16](https://pytorch.org/docs/stable/generated/torch.Tensor.bfloat16.html#torch.Tensor.bfloat16) | paddle.Tensor.bfloat16 | - |
@@ -506,12 +507,14 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 459 | torch.Tensor.scatter | paddle.Tensor.scatter | - |
 | 460 | torch.Tensor.scatter_ | paddle.Tensor.scatter_ | - |
 | 461 | torch.scatter | paddle.scatter | - |
+
 ## 2. 仅 API 调用方式不一致
 **分类简介**
 
 参数一致，但 API 调用方式不一致。
 此类 API 需要转换，但转换成本较低，只需要对 API 调用方式进行改写，无需处理 API 参数部分。
 包括：API 名称不同、API 路径不同、Tensor 类方法改成普通方法、Tensor 方法改成属性、Tensor 属性改成方法 等情况。
+
 
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
@@ -612,6 +615,7 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 94 | [torchvision.transforms.functional.pad](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.pad.html) | [paddle.vision.transforms.pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/pad_cn.html) | - |
 | 95 | [torchvision.transforms.functional.to_grayscale](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.to_grayscale.html?highlight=to_grayscale#torchvision.transforms.functional.to_grayscale) | [paddle.vision.transforms.to_grayscale](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/to_grayscale_cn.html#to-grayscale) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.functional.to_grayscale.md) |
 | 96 | [torchvision.transforms.functional.vflip](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.vflip.html) | [paddle.vision.transforms.vflip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/vflip_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.functional.vflip.md) |
+
 ## 3. 仅参数名不一致
 **分类简介**
 
@@ -850,6 +854,7 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 226 | [torchvision.io.read_file](https://pytorch.org/vision/main/generated/torchvision.io.read_file.html) | [paddle.vision.ops.read_file](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/ops/read_file_cn.html#cn-api-paddle-vision-ops-read-file) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.io.read_file.md) |
 | 227 | [transformers.StoppingCriteriaList](https://github.com/huggingface/transformers/blob/d625294d79341662784495551abdf45e6cb9372f/src/transformers/generation/stopping_criteria.py#L503) | [paddlenlp.generation.StoppingCriteriaList](https://github.com/PaddlePaddle/PaddleNLP/blob/e336e78c338d2514ee6c937982ce5d8c960b85ff/paddlenlp/generation/stopping_criteria.py#L72) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/transformers/transformers.StoppingCriteriaList.md) |
 | 228 | [transformers.generation.LogitsProcessor](https://hf-mirror.com/docs/transformers/v4.42.0/en/internal/generation_utils#logitsprocessor) | [paddlenlp.generation.LogitsProcessor](https://github.com/PaddlePaddle/PaddleNLP/blob/e336e78c338d2514ee6c937982ce5d8c960b85ff/paddlenlp/generation/logits_process.py#L26) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/transformers/transformers.generation.LogitsProcessor.md) |
+
 ## 4. paddle 参数更多
 **分类简介**
 
@@ -982,6 +987,7 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 120 | [torchvision.transforms.ToTensor](https://pytorch.org/vision/main/generated/torchvision.transforms.ToTensor.html?highlight=totensor#torchvision.transforms.ToTensor) | [paddle.vision.transforms.ToTensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/ToTensor_cn.html#totensor) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.ToTensor.md) |
 | 121 | [torchvision.transforms.functional.to_tensor](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.to_tensor.html) | [paddle.vision.transforms.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/to_tensor_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.functional.to_tensor.md) |
 | 122 | [torchvision.ops.DeformConv2d](https://pytorch.org/vision/main/generated/torchvision.ops.DeformConv2d.html) | [paddle.vision.ops.DeformConv2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/ops/DeformConv2D_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.ops.DeformConv2d.md) |
+
 ## 5. 参数默认值不一致
 **分类简介**
 
@@ -998,6 +1004,7 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 4 | [torch.alpha_dropout](https://pytorch.org/docs/master/generated/torch.nn.functional.alpha_dropout.html) | [paddle.nn.functional.alpha_dropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/alpha_dropout_cn.html#alpha-dropout) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.alpha_dropout.md) |
 | 5 | [torch.rrelu](https://pytorch.org/docs/stable/generated/torch.nn.functional.rrelu.html#torch.nn.functional.rrelu) | [paddle.nn.functional.rrelu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/rrelu_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.rrelu.md) |
 | 6 | [torch.cuda.amp.GradScaler](https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.GradScaler) | [paddle.amp.GradScaler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/GradScaler_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.amp.GradScaler.md) |
+
 ## 6. torch 参数更多
 **分类简介**
 
@@ -1424,6 +1431,7 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 414 | [transformers.GenerationConfig](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/text_generation#transformers.GenerationConfig) | [paddlenlp.generation.GenerationConfig](https://github.com/PaddlePaddle/PaddleNLP/blob/e336e78c338d2514ee6c937982ce5d8c960b85ff/paddlenlp/generation/configuration_utils.py#L62) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/transformers/transformers.GenerationConfig.md) |
 | 415 | [transformers.AddedToken](https://github.com/huggingface/transformers/blob/d625294d79341662784495551abdf45e6cb9372f/src/transformers/tokenization_utils_base.py#L84) | [paddlenlp.transformers.AddedToken](https://github.com/PaddlePaddle/PaddleNLP/blob/e336e78c338d2514ee6c937982ce5d8c960b85ff/paddlenlp/transformers/tokenizer_utils_base.py#L48) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/transformers/transformers.AddedToken.md) |
 | 416 | [transformers.PretrainedConfig](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/configuration#transformers.PretrainedConfig) | [paddlenlp.transformers.PretrainedConfig](https://github.com/PaddlePaddle/PaddleNLP/blob/57000fa12ce67024238f0b56a6fde63c592c54ce/paddlenlp/transformers/configuration_utils.py#L317) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/transformers/transformers.PretrainedConfig.md) |
+
 ## 7. 输入参数用法不一致
 **分类简介**
 
@@ -1504,6 +1512,7 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 68 | [torchvision.datasets.VOCDetection](https://pytorch.org/vision/main/generated/torchvision.datasets.VOCDetection.html) | [paddle.vision.datasets.VOC2012](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/VOC2012_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.datasets.VOCDetection.md) |
 | 69 | [torchvision.ops.roi_pool](https://pytorch.org/vision/main/generated/torchvision.ops.roi_pool.html) | [paddle.vision.ops.roi_pool](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/ops/roi_pool_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.ops.roi_pool.md) |
 | 70 | [torchvision.datasets.FashionMNIST](https://pytorch.org/vision/main/generated/torchvision.datasets.FashionMNIST.html) | [paddle.vision.datasets.FashionMNIST](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/FashionMNIST_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.datasets.FashionMNIST.md) |
+
 ## 8. 输入参数类型不一致
 **分类简介**
 
@@ -1601,6 +1610,7 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 85 | [torchvision.models.mobilenet_v3_large](https://pytorch.org/vision/main/models/generated/torchvision.models.mobilenet_v3_large.html) | [paddle.vision.models.mobilenet_v3_large](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/mobilenet_v3_large_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.models.mobilenet_v3_large.md) |
 | 86 | [torchvision.models.mobilenet_v2](https://pytorch.org/vision/stable/models/generated/torchvision.models.mobilenet_v2.html) | [paddle.vision.models.mobilenet_v2](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/mobilenet_v2_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.models.mobilenet_v2.md) |
 | 87 | [torchvision.models.densenet121](https://pytorch.org/vision/main/models/generated/torchvision.models.densenet121.html) | [paddle.vision.models.densenet121](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/densenet121_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.models.densenet121.md) |
+
 ## 9. 返回参数类型不一致
 **分类简介**
 
@@ -1640,6 +1650,7 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 27 | [torch.utils.data.default_collate](https://pytorch.org/docs/stable/data.html?highlight=default_collate#torch.utils.data.default_collate) | paddle.io.dataloader.collate.default_collate_fn | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.default_collate.md) |
 | 28 | [transformers.PreTrainedModel.generate](https://github.com/huggingface/transformers/blob/0fdea8607d7e01eb0e38a1ebeb7feee30a22f0cf/src/transformers/generation/utils.py#L1567) | [paddlenlp.transformers.PreTrainedModel.generate](https://github.com/PaddlePaddle/PaddleNLP/blob/88d4b19bc6865fb28c11d2ce83d07c3b4b8dc423/paddlenlp/generation/utils.py#L604) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/transformers/transformers.PreTrainedModel.generate.md) |
 | 29 | [transformers.PreTrainedTokenizer.encode](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/tokenizer#transformers.PreTrainedTokenizer.encode) | [paddlenlp.transformers.PreTrainedTokenizer.encode](https://github.com/PaddlePaddle/PaddleNLP/blob/88d4b19bc6865fb28c11d2ce83d07c3b4b8dc423/paddlenlp/transformers/tokenizer_utils_base.py#L2369) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/transformers/transformers.PreTrainedTokenizer.encode.md) |
+
 ## 10. 组合替代实现
 **分类简介**
 
@@ -1822,6 +1833,7 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 170 | [transformers.PreTrainedModel](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/model#transformers.PreTrainedModel) | [paddlenlp.transformers.PreTrainedModel](https://github.com/PaddlePaddle/PaddleNLP/blob/e336e78c338d2514ee6c937982ce5d8c960b85ff/paddlenlp/transformers/model_utils.py#L843) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/transformers/transformers.PreTrainedModel.md) |
 | 171 | [transformers.logging.get_logger](https://github.com/huggingface/transformers/blob/d625294d79341662784495551abdf45e6cb9372f/src/transformers/utils/logging.py#L147) | - | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/transformers/transformers.logging.get_logger.md) |
 | 172 | [transformers.PreTrainedModel.post_init](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/model#transformers.PreTrainedModel.post_init) | - | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/transformers/transformers.PreTrainedModel.post_init.md) |
+
 ## 11. 可删除
 **分类简介**
 

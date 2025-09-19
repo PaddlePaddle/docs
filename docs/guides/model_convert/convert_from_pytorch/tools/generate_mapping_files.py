@@ -434,7 +434,7 @@ def update_mapping_table(
     # 替换原内容中的表格（考虑可能有序号的标题）
     # 添加额外的换行符确保格式正确
     pattern = rf"(## \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=## \d*\.?\s*|\Z)"
-    replacement = rf"\1{table_content_str}\n"
+    replacement = rf"\1{table_content_str}\n\n"
     return re.sub(pattern, replacement, md_content, flags=re.MULTILINE)
 
 
@@ -459,7 +459,7 @@ def update_special_category_table(md_content, category, table_content):
     # 更精确的正则表达式，确保只匹配特定类别的表格
     pattern = rf"(## \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=## \d*\.?\s*|\Z)"
     # 替换为：标题 + 新表格内容
-    replacement = rf"\1\n{table_content}\n"
+    replacement = rf"\1{table_content}\n\n"
     return re.sub(pattern, replacement, md_content, flags=re.MULTILINE)
 
 
