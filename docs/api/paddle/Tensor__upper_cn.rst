@@ -1,4 +1,4 @@
-.. _cn_api_paddle_Tensor:
+.. _cn_api_paddle_Tensor__upper:
 
 Tensor
 -------------------------------

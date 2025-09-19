@@ -1,9 +1,9 @@
-.. _cn_api_paddle_utils_dlpack_from_dlpack:
+.. _cn_api_paddle_from_dlpack:
 
 from_dlpack
 -------------------------------
 
-.. py:function:: paddle.utils.dlpack.from_dlpack(dlpack)
+.. py:function:: paddle.from_dlpack(dlpack, *, device=None, copy=None)
 
 将 DLPack 格式的 Tensor 解码为 Paddle Tensor，DLPACK 是一种通用稳定的内存数据结构，可用于不同深度学习框架之间的 Tensor 共享。
 
@@ -13,6 +13,8 @@ from_dlpack
 参数
 :::::::::
   - **dlpack** (SupportDLPack | PyCapsule) - 一个实现了 ``__dlpack__`` 与 ``__dlpack_device__`` 方法的对象，或者是一个带有 dltensor 的 ``PyCapsule`` 对象。
+  - **device** (PlaceLike, 可选) - 返回的 Tensor 所在的设备。如果不指定，返回的 Tensor 将与输入的 `dlpack` 位于同一设备上。
+  - **copy** (bool, 可选) - 是否复制输入的内容。如果为 True，则输出的 Tensor 总是被复制。如果为 False，则输出的 Tensor 永远不会被复制，如果需要复制则会引发 ``BufferError`` 异常。如果为 None，则在可能的情况下重用现有的内存缓冲区，否则进行复制。默认值为 None。
 
 返回
 :::::::::

@@ -1,9 +1,9 @@
-.. _cn_api_paddle_utils_dlpack_to_dlpack:
+.. _cn_api_paddle_to_dlpack:
 
 to_dlpack
 -------------------------------
 
-.. py:function:: paddle.utils.dlpack.to_dlpack(x)
+.. py:function:: paddle.to_dlpack(x)
 
 将 Tensor 对象转化为一个带有 dltensor 的 ``PyCapsule`` 对象，该对象是一种称为 DLPack 的通用稳定内存数据结构，可用于不同深度学习框架之间的 Tensor 共享。
 
