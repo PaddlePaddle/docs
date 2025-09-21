@@ -355,7 +355,7 @@ tensor 创建相关
     " :ref:`paddle.numel <cn_api_paddle_numel>` ", "返回一个长度为 1 并且元素值为输入 x 元素个数的 Tensor"
     " :ref:`paddle.ones <cn_api_paddle_ones>` ", "创建形状为 shape 、数据类型为 dtype 且值全为 1 的 Tensor"
     " :ref:`paddle.ones_like <cn_api_paddle_ones_like>` ", "返回一个和 x 具有相同形状的数值都为 1 的 Tensor"
-    " :ref:`paddle.Tensor <cn_api_paddle_Tensor>` ", "Paddle 中最为基础的数据结构"
+    " :ref:`paddle.Tensor <cn_api_paddle_Tensor__upper>` ", "Paddle 中最为基础的数据结构"
     " :ref:`paddle.to_tensor <cn_api_paddle_to_tensor>` ", "通过已知的 data 来创建一个 tensor"
     " :ref:`paddle.tensor <cn_api_paddle_tensor>` ", "通过已知的 data 来创建一个 tensor, 与 torch.tensor 参数和功能对齐"
     " :ref:`paddle.tolist <cn_api_paddle_tolist>` ", "将 paddle Tensor 转化为 python list"
