@@ -13,7 +13,7 @@ GradScaler 用于动态图模式下的"自动混合精度"的训练。它控制 
 ``unscale_()`` 用于让 loss 除去一个缩放的比例。
 ``step()`` 与 ``optimizer.step()`` 类似，执行参数的更新，不更新缩放比例 loss_scaling。
 ``update()`` 更新缩放比例。
-``minimize()`` 与 ``optimizer.minimize()`` 类似，执行参数的更新，同时更新缩放比例 loss_scaling，等效与 ``step()``+``update()``。
+``minimize()`` 与 ``optimizer.minimize()`` 类似，执行参数的更新，同时更新缩放比例 loss_scaling，等效与 ``step()`` + ``update()``。
 
 通常，GradScaler 和 ``paddle.amp.auto_cast`` 一起使用，来实现动态图模式下的"自动混合精度"。
 
@@ -43,7 +43,7 @@ scale(var)
 '''''''''
 
 将 Tensor 乘上缩放因子，返回缩放后的输出。
-如果这个 :class: `GradScaler` 的实例不使用 loss scaling，则返回的输出将保持不变。
+如果这个 :class:`GradScaler` 的实例不使用 loss scaling，则返回的输出将保持不变。
 
 **参数**
 
