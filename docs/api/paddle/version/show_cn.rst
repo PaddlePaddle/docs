@@ -19,8 +19,8 @@ show
     - minor - paddle wheel 包版本号的 minor 信息。
     - patch - paddle wheel 包版本号的 patch 信息。
     - rc - 是否是 rc 版本。
-    - cuda - 若 paddle wheel 包为 GPU 版本，则返回 paddle wheel 包编译时使用的 CUDA 的版本信息；若 paddle wheel 包为 CPU 版本，则返回 ``False`` 。
-    - cudnn - 若 paddle wheel 包为 GPU 版本，则返回 paddle wheel 包编译时使用的 cuDNN 的版本信息；若 paddle wheel 包为 CPU 版本，则返回 ``False`` 。
+    - cuda - 若 paddle wheel 包为 GPU 版本，则返回 paddle wheel 包编译时使用的 CUDA 的版本信息；若 paddle wheel 包为 CPU 版本，则返回  ``False``  。
+    - cudnn - 若 paddle wheel 包为 GPU 版本，则返回 paddle wheel 包编译时使用的 cuDNN 的版本信息；若 paddle wheel 包为 CPU 版本，则返回  ``False``  。
     - tensorrt - 返回 paddle 安装包编译时使用的 TensorRT 版本号，若无安装 TensorRT, 则返回 None 。
     - cuda_archs - 返回 paddle 安装包编译时的 CUDA 架构列表。
 

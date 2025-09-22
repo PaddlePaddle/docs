@@ -5,7 +5,7 @@ is_compiled_with_custom_device
 
 .. py:function:: paddle.device.is_compiled_with_custom_device(device_type)
 
-检查 ``whl`` 包是否可以被用来在指定类型的自定义新硬件上运行模型
+检查  ``whl``  包是否可以被用来在指定类型的自定义新硬件上运行模型
 
 返回
 ::::::::::::

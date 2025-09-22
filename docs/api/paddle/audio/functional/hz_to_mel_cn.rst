@@ -16,7 +16,7 @@ hz_to_mel
 返回
 :::::::::
 
-``paddle.Tensor 或 float``，mels 值。
+ ``paddle.Tensor 或 float`` ，mels 值。
 
 代码示例
 :::::::::

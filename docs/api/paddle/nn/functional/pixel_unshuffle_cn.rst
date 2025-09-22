@@ -18,7 +18,7 @@ pixel_unshuffle
 
 返回
 :::::::::
-``Tensor``，重新排列过的 Tensor，其数据类型与输入相同。
+ ``Tensor`` ，重新排列过的 Tensor，其数据类型与输入相同。
 
 代码示例
 :::::::::

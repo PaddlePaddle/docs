@@ -5,7 +5,7 @@ randperm
 
 .. py:function:: paddle.randperm(n, dtype="int64", name=None)
 
-返回一个数值在 0 到 n-1、随机排列的 1-D Tensor，数据类型为 ``dtype``。
+返回一个数值在 0 到 n-1、随机排列的 1-D Tensor，数据类型为  ``dtype`` 。
 
 参数
 ::::::::::::
@@ -15,7 +15,7 @@ randperm
 
 返回
 ::::::::::
-  Tensor：一个数值在 0 到 n-1、随机排列的 1-D Tensor，数据类型为 ``dtype`` 。
+  Tensor：一个数值在 0 到 n-1、随机排列的 1-D Tensor，数据类型为  ``dtype``  。
 
 代码示例
 ::::::::::

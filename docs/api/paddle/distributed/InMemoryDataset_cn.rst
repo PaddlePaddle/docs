@@ -35,7 +35,7 @@ init(**kwargs)
     - **input_type** (int) - 输入到模型训练样本的类型。0 代表一条样本，1 代表一个 batch。默认值为 0。
     - **fs_name** (str) - hdfs 名称。默认值为""。
     - **fs_ugi** (str) - hdfs 的 ugi。默认值为""。
-    - **pipe_command** (str) - 在当前的 ``dataset`` 中设置的 pipe 命令用于数据的预处理。pipe 命令只能使用 UNIX 的 pipe 命令，默认为"cat"。
+    - **pipe_command** (str) - 在当前的  ``dataset``  中设置的 pipe 命令用于数据的预处理。pipe 命令只能使用 UNIX 的 pipe 命令，默认为"cat"。
     - **download_cmd** (str) - 数据下载 pipe 命令。pipe 命令只能使用 UNIX 的 pipe 命令，默认为"cat"。
 
 
@@ -66,14 +66,14 @@ update_settings(**kwargs)
     - **input_type** (int) - 输入到模型训练样本的类型。0 代表一条样本，1 代表一个 batch。默认值为 0。
     - **fs_name** (str) - hdfs 名称。默认值为""。
     - **fs_ugi** (str) - hdfs 的 ugi。默认值为""。
-    - **pipe_command** (str) - 在当前的 ``dataset`` 中设置的 pipe 命令用于数据的预处理。pipe 命令只能使用 UNIX 的 pipe 命令，默认为"cat"。
+    - **pipe_command** (str) - 在当前的  ``dataset``  中设置的 pipe 命令用于数据的预处理。pipe 命令只能使用 UNIX 的 pipe 命令，默认为"cat"。
     - **download_cmd** (str) - 数据下载 pipe 命令。pipe 命令只能使用 UNIX 的 pipe 命令，默认为"cat"。
     - **merge_size** (int) - 通过样本 id 来设置合并，相同 id 的样本将会在 shuffle 之后进行合并，你应该在一个 data 生成器里面解析样本 id。merge_size 表示合并的最小数量，默认值为-1，表示不做合并。
     - **parse_ins_id** (bool) - 是否需要解析每条样的 id，默认值为 False。
     - **parse_content** (bool) 是否需要解析每条样本的 content，默认值为 False。
     - **fleet_send_batch_size** (int) - 设置发送 batch 的大小，默认值为 1024。
     - **fleet_send_sleep_seconds** (int) - 设置发送 batch 后的睡眠时间，默认值为 0。
-    - **fea_eval** (bool) - 设置特征打乱特征验证模式，来修正特征级别的重要性，特征打乱需要 ``fea_eval`` 被设置为 True。默认值为 False。
+    - **fea_eval** (bool) - 设置特征打乱特征验证模式，来修正特征级别的重要性，特征打乱需要  ``fea_eval``  被设置为 True。默认值为 False。
     - **candidate_size** (int) - 特征打乱特征验证模式下，用于随机化特征的候选池大小。默认值为 10000。
 
 **返回**
@@ -113,7 +113,7 @@ COPY-FROM: paddle.distributed.InMemoryDataset.preload_into_memory
 wait_preload_done()
 '''''''''
 
-等待 ``preload_into_memory`` 完成。
+等待  ``preload_into_memory``  完成。
 
 **代码示例**
 

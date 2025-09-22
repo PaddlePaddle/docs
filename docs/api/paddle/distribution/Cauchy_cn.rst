@@ -100,7 +100,7 @@ COPY-FROM: paddle.distribution.Cauchy.rsample
 prob(value)
 '''''''''
 
-``value`` 的概率密度函数。
+ ``value``  的概率密度函数。
 
 .. math::
 
@@ -112,7 +112,7 @@ prob(value)
 
 **返回**
 
-Tensor， ``value`` 的概率密度函数。
+Tensor，  ``value``  的概率密度函数。
 
 **代码示例**
 
@@ -129,7 +129,7 @@ log_prob(value)
 
 **返回**
 
-Tensor， ``value`` 的对数概率密度函数。
+Tensor，  ``value``  的对数概率密度函数。
 
 **代码示例**
 
@@ -138,7 +138,7 @@ COPY-FROM: paddle.distribution.Cauchy.log_prob
 cdf(value)
 '''''''''
 
-``value`` 的累积分布函数 （CDF）
+ ``value``  的累积分布函数 （CDF）
 
 .. math::
 
@@ -150,7 +150,7 @@ cdf(value)
 
 **返回**
 
-Tensor， ``value`` 的累积分布函数。
+Tensor，  ``value``  的累积分布函数。
 
 **代码示例**
 
@@ -183,7 +183,7 @@ kl_divergence(other)
 
 **参数**
 
-    - **other** (Cauchy) - ``Cauchy`` 的实例。
+    - **other** (Cauchy) -  ``Cauchy``  的实例。
 
 **返回**
 

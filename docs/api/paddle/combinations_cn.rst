@@ -17,7 +17,7 @@ combinations
 
 返回
 ::::::::::
-    - ``out`` (Tensor)：由组合数拼接而成的 Tensor ，和输入 x 类型相同。
+    -  ``out``  (Tensor)：由组合数拼接而成的 Tensor ，和输入 x 类型相同。
 
 代码示例
 ::::::::::

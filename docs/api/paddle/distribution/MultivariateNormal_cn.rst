@@ -94,7 +94,7 @@ Tensor，:attr:`value` 的对数概率。数据类型与 `self.loc` 相同。
 sample(shape=[])
 '''''''''
 
-从 MultivariateNormal 分布中生成满足特定形状的样本数据。最终生成样本形状为 ``sample_shape + batch_shape + event_shape`` 。
+从 MultivariateNormal 分布中生成满足特定形状的样本数据。最终生成样本形状为  ``sample_shape + batch_shape + event_shape``  。
 
 **参数**
 
@@ -108,7 +108,7 @@ Tensor，样本数据。其维度为 :math:`\text{sample shape} + \text{batch sh
 rsample(shape=[])
 '''''''''
 
-重参数化采样，生成指定维度的样本。最终生成样本形状为 ``sample_shape + batch_shape + event_shape`` 。
+重参数化采样，生成指定维度的样本。最终生成样本形状为  ``sample_shape + batch_shape + event_shape``  。
 
 **参数**
 

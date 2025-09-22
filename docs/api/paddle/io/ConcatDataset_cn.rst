@@ -17,7 +17,7 @@ ConcatDataset
 返回
 :::::::::
 
-Dataset，由 ``datasets`` 拼接而成的数据集。
+Dataset，由  ``datasets``  拼接而成的数据集。
 
 代码示例
 :::::::::

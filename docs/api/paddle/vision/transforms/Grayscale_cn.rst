@@ -11,7 +11,7 @@ Grayscale
 :::::::::
 
     - **num_output_channels** (int，可选) - 输出图像的通道数，参数值为 1 或 3。默认值：1。
-    - **keys** (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值：None。
+    - **keys** (list[str]|tuple[str]，可选) - 与  ``BaseTransform``  定义一致。默认值：None。
 
 形状
 :::::::::
@@ -22,7 +22,7 @@ Grayscale
 返回
 :::::::::
 
-    计算 ``Grayscale`` 的可调用对象。
+    计算  ``Grayscale``  的可调用对象。
 
 代码示例
 :::::::::
