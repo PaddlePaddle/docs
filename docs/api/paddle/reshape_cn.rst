@@ -6,7 +6,7 @@ reshape
 .. py:function::  paddle.reshape(x, shape, name=None)
 
 
-在保持输入 ``x`` 数据不变的情况下，改变 ``x`` 的形状。
+在保持输入  ``x``  数据不变的情况下，改变  ``x``  的形状。
 
 请注意，在动态图模式下，输出 Tensor 将与输入 Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。
 如果不希望输入与输出共享数据，请使用 `Tensor.clone`，例如 `reshape_clone_x = x.reshape([-1]).clone()` 。
@@ -29,19 +29,19 @@ reshape
    :alt: 图例
 
 .. note::
-    别名支持: 参数名 ``input`` 可替代 ``x``，如 ``reshape(input=tensor_x, ...)`` 等价于 ``reshape(x=tensor_x, ...)``。
+    别名支持: 参数名  ``input``  可替代  ``x`` ，如  ``reshape(input=tensor_x, ...)``  等价于  ``reshape(x=tensor_x, ...)`` 。
 
 参数
 ::::::::::::
 
-  - **x** (Tensor) - N-D ``Tensor``，数据类型为 ``float16``, ``float32``, ``float64``, ``int16``, ``int32``, ``int64``, ``int8``, ``uint8``, ``complex64``, ``complex128``, ``bfloat16`` 或 ``bool``。别名： ``input``。
-  - **shape** (list|tuple|Tensor|*shape) - 数据类型是 ``int32``。定义目标形状。目标形状最多只能有一个维度为-1。如果 ``shape`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[]的 ``Tensor``。如果 ``shape`` 的类型是 ``Tensor``，则是 1-D 的 ``Tensor``。 如果是 ``shape`` 是 \*shape，则直接以可变长参数形式传入整数（例如 ``reshape(tensor_x, 2, 3)``）。
+  - **x** (Tensor) - N-D  ``Tensor`` ，数据类型为  ``float16`` ,  ``float32`` ,  ``float64`` ,  ``int16`` ,  ``int32`` ,  ``int64`` ,  ``int8`` ,  ``uint8`` ,  ``complex64`` ,  ``complex128`` ,  ``bfloat16``  或  ``bool`` 。别名：  ``input`` 。
+  - **shape** (list|tuple|Tensor|*shape) - 数据类型是  ``int32`` 。定义目标形状。目标形状最多只能有一个维度为-1。如果  ``shape``  的类型是 list 或 tuple，它的元素可以是整数或者形状为[]的  ``Tensor`` 。如果  ``shape``  的类型是  ``Tensor`` ，则是 1-D 的  ``Tensor`` 。 如果是  ``shape``  是 \*shape，则直接以可变长参数形式传入整数（例如  ``reshape(tensor_x, 2, 3)`` ）。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
 
-``Tensor``，改变形状后的 ``Tensor``，数据类型与 ``x`` 相同。
+ ``Tensor`` ，改变形状后的  ``Tensor`` ，数据类型与  ``x``  相同。
 
 
 代码示例

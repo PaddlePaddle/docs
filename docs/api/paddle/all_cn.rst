@@ -8,14 +8,14 @@ all
 对指定维度上的 Tensor 元素进行逻辑与运算，并输出相应的计算结果。
 
 .. note::
-    别名支持: 参数名 ``input`` 可替代 ``x``， ``dim`` 可替代 ``axis``。
+    别名支持: 参数名  ``input``  可替代  ``x`` ，  ``dim``  可替代  ``axis`` 。
 
 参数
 :::::::::
     - **x** （Tensor）- 输入变量为多维 Tensor，数据类型为 bool、float32、float64、int32、int64。
-      别名： ``input``
+      别名：  ``input`` 
     - **axis** （int | list | tuple，可选）- 计算逻辑与运算的维度。如果为 None，则计算所有元素的逻辑与并返回包含单个元素的 Tensor 变量，否则必须在 :math:`[−rank(x),rank(x)]` 范围内。如果 :math:`axis [i] <0`，则维度将变为 :math:`rank+axis[i]`，默认值为 None。
-      别名： ``dim``
+      别名：  ``dim`` 
     - **keepdim** (bool，可选) - 是否在输出 Tensor 中保留减小的维度。除非 keepdim 为 True，否则输出 Tensor 的维度将比输入 Tensor 小一维，默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **out** （Tensor，可选） - 指定输出结果的 `Tensor`，默认值为 None。

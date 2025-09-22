@@ -5,7 +5,7 @@ histogram_bin_edges
 
 .. py:function:: paddle.histogram_bin_edges(input, bins=100, min=0.0, max=0.0, name=None)
 
-只返回在计算 ``input`` 的直方图时所使用的 bins 的边界值 bin_edges。如果 min 和 max 都为 0.0，则利用数据中的最大最小值作为边界。
+只返回在计算  ``input``  的直方图时所使用的 bins 的边界值 bin_edges。如果 min 和 max 都为 0.0，则利用数据中的最大最小值作为边界。
 
 参数
 ::::::::::::

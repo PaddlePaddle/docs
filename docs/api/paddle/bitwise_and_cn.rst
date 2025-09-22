@@ -5,13 +5,13 @@ bitwise_and
 
 .. py:function:: paddle.bitwise_and(x, y, out=None, name=None)
 
-对 Tensor ``x`` 和 ``y`` 逐元素进行 ``按位与`` 运算。
+对 Tensor  ``x``  和  ``y``  逐元素进行  ``按位与``  运算。
 
 .. math::
         Out = X \& Y
 
 .. note::
-    ``paddle.bitwise_and`` 遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
+     ``paddle.bitwise_and``  遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
 
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 参数
@@ -24,7 +24,7 @@ bitwise_and
 
 返回
 ::::::::::::
- ``按位与`` 运算后的结果 ``Tensor``，数据类型与 ``x`` 相同。
+  ``按位与``  运算后的结果  ``Tensor`` ，数据类型与  ``x``  相同。
 
 代码示例
 ::::::::::::

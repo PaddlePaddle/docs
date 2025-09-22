@@ -7,15 +7,15 @@ GradScaler
 
 
 
-GradScaler 用于动态图模式下的"自动混合精度"的训练。它控制 loss 的缩放比例，有助于避免浮点数溢出的问题。这个类具有 ``scale()``、 ``unscale_()``、 ``step()``、 ``update()``、 ``minimize()``和参数的``get()/set()``等方法。
+GradScaler 用于动态图模式下的"自动混合精度"的训练。它控制 loss 的缩放比例，有助于避免浮点数溢出的问题。这个类具有  ``scale()`` 、  ``unscale_()`` 、  ``step()`` 、  ``update()`` 、  ``minimize()`` 和参数的 ``get()/set()`` 等方法。
 
-``scale()`` 用于让 loss 乘上一个缩放的比例。
-``unscale_()`` 用于让 loss 除去一个缩放的比例。
-``step()`` 与 ``optimizer.step()`` 类似，执行参数的更新，不更新缩放比例 loss_scaling。
-``update()`` 更新缩放比例。
-``minimize()`` 与 ``optimizer.minimize()`` 类似，执行参数的更新，同时更新缩放比例 loss_scaling，等效与``step()``+``update()``。
+ ``scale()``  用于让 loss 乘上一个缩放的比例。
+ ``unscale_()``  用于让 loss 除去一个缩放的比例。
+ ``step()``  与  ``optimizer.step()``  类似，执行参数的更新，不更新缩放比例 loss_scaling。
+ ``update()``  更新缩放比例。
+ ``minimize()``  与  ``optimizer.minimize()``  类似，执行参数的更新，同时更新缩放比例 loss_scaling，等效与 ``step()`` + ``update()`` 。
 
-通常，GradScaler 和 ``paddle.amp.auto_cast`` 一起使用，来实现动态图模式下的"自动混合精度"。
+通常，GradScaler 和  ``paddle.amp.auto_cast``  一起使用，来实现动态图模式下的"自动混合精度"。
 
 
 参数
@@ -60,15 +60,15 @@ COPY-FROM: paddle.amp.GradScaler.scale
 minimize(optimizer, *args, **kwargs)
 '''''''''
 
-这个函数与 ``optimizer.minimize()`` 类似，用于执行参数更新。
+这个函数与  ``optimizer.minimize()``  类似，用于执行参数更新。
 如果参数缩放后的梯度包含 NAN 或者 INF，则跳过参数更新。否则，首先让缩放过梯度的参数取消缩放，然后更新参数。
 最终，更新 loss scaling 的比例。
 
 **参数**
 
     - **optimizer** (Optimizer) - 用于更新参数的优化器。
-    - **args** - 参数，将会被传递给 ``optimizer.minimize()`` 。
-    - **kwargs** - 关键词参数，将会被传递给 ``optimizer.minimize()`` 。
+    - **args** - 参数，将会被传递给  ``optimizer.minimize()``  。
+    - **kwargs** - 关键词参数，将会被传递给  ``optimizer.minimize()``  。
 
 **代码示例**
 
@@ -77,9 +77,9 @@ COPY-FROM: paddle.amp.GradScaler.minimize
 step(optimizer)
 '''''''''
 
-这个函数与 ``optimizer.step()`` 类似，用于执行参数更新。
+这个函数与  ``optimizer.step()``  类似，用于执行参数更新。
 如果参数缩放后的梯度包含 NAN 或者 INF，则跳过参数更新。否则，首先让缩放过梯度的参数取消缩放，然后更新参数。
-该函数与 ``update()`` 函数一起使用，效果等同于 ``minimize()``。
+该函数与  ``update()``  函数一起使用，效果等同于  ``minimize()`` 。
 
 **参数**
 
@@ -102,8 +102,8 @@ unscale_(optimizer)
 '''''''''
 
 将参数的梯度除去缩放比例。
-如果在 ``step()`` 调用前调用 ``unscale_()``，则 ``step()`` 不会重复调用 ``unscale()``，否则 ``step()`` 将先执行 ``unscale_()`` 再做参数更新。
-``minimize()`` 用法同上。
+如果在  ``step()``  调用前调用  ``unscale_()`` ，则  ``step()``  不会重复调用  ``unscale()`` ，否则  ``step()``  将先执行  ``unscale_()``  再做参数更新。
+ ``minimize()``  用法同上。
 
 **参数**
     - **optimizer** (Optimizer) - 用于更新参数的优化器。
@@ -288,7 +288,7 @@ load_state_dict(state_dict)
 
 **参数**
 
-- **state_dict** (dict) - 用于设置或更新 GradScaler 对象的属性参数，dict 需要是``GradScaler.state_dict()``的返回值。
+- **state_dict** (dict) - 用于设置或更新 GradScaler 对象的属性参数，dict 需要是 ``GradScaler.state_dict()`` 的返回值。
 
 **代码示例**
 

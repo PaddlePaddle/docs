@@ -11,7 +11,7 @@ mod
         out = x \% y
 
 .. note::
-    ``paddle.mod`` 支持广播。关于广播规则，请参见 `Tensor 介绍`_ .
+     ``paddle.mod``  支持广播。关于广播规则，请参见 `Tensor 介绍`_ .
 
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
@@ -23,7 +23,7 @@ mod
 
 返回
 :::::::::
-``Tensor``，存储运算后的结果。如果 x 和 y 有不同的 shape 且是可以广播的，返回 Tensor 的 shape 是 x 和 y 经过广播后的 shape。如果 x 和 y 有相同的 shape，返回 Tensor 的 shape 与 x，y 相同。
+ ``Tensor`` ，存储运算后的结果。如果 x 和 y 有不同的 shape 且是可以广播的，返回 Tensor 的 shape 是 x 和 y 经过广播后的 shape。如果 x 和 y 有相同的 shape，返回 Tensor 的 shape 与 x，y 相同。
 
 代码示例
 :::::::::

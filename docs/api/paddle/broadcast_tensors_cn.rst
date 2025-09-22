@@ -5,7 +5,7 @@ broadcast_tensors
 
 .. py:function:: paddle.broadcast_tensors(input, name=None)
 
-根据 Broadcast 规范对一组输入 ``input`` 进行 Broadcast 操作
+根据 Broadcast 规范对一组输入  ``input``  进行 Broadcast 操作
 输入应符合 Broadcast 规范
 
 .. note::
@@ -34,7 +34,7 @@ broadcast_tensors
 
 返回
 :::::::::
-``list(Tensor)``，一组 Broadcast 后的 ``Tensor``，其顺序与 ``input`` 一一对应。
+ ``list(Tensor)`` ，一组 Broadcast 后的  ``Tensor`` ，其顺序与  ``input``  一一对应。
 
 代码示例
 :::::::::

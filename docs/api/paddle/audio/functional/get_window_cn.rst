@@ -18,7 +18,7 @@ get_window
 返回
 :::::::::
 
-``paddle.Tensor``，对应窗表征的 Tensor 。
+ ``paddle.Tensor`` ，对应窗表征的 Tensor 。
 
 代码示例
 :::::::::

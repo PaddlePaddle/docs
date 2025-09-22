@@ -19,11 +19,11 @@ cdist
   - **p** (float, 可选) - 计算每个向量对之间的 p 范数距离的值。默认值为 :math:`2.0`。
   - **compute_mode** (str, 可选) - 选择计算模式。
 
-    - ``use_mm_for_euclid_dist_if_necessary``: 对于 p = 2.0 且 P > 25, R > 25 ，如果可能，将使用矩阵乘法计算欧氏距离。
-    - ``use_mm_for_euclid_dist``: 对于 p = 2.0 ，使用矩阵乘法计算欧几里得距离。
-    - ``use_loop_for_euclid_dist``: 不使用矩阵乘法计算欧几里得距离。
+    -  ``use_mm_for_euclid_dist_if_necessary`` : 对于 p = 2.0 且 P > 25, R > 25 ，如果可能，将使用矩阵乘法计算欧氏距离。
+    -  ``use_mm_for_euclid_dist`` : 对于 p = 2.0 ，使用矩阵乘法计算欧几里得距离。
+    -  ``use_loop_for_euclid_dist`` : 不使用矩阵乘法计算欧几里得距离。
 
-    默认值为 ``use_mm_for_euclid_dist_if_necessary``。
+    默认值为  ``use_mm_for_euclid_dist_if_necessary`` 。
   - **name** (str, 可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 
 返回
