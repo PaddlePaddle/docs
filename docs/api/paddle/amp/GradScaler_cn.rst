@@ -106,7 +106,8 @@ unscale_(optimizer)
 ``minimize()`` 用法同上。
 
 **参数**
-    - **optimizer** (Optimizer) - 用于更新参数的优化器。
+
+- **optimizer** (Optimizer) - 用于更新参数的优化器。
 
 **代码示例**
 
