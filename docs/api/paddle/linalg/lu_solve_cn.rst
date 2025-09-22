@@ -43,4 +43,4 @@ lu_solve
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.tensor.linalg.lu_solve
+COPY-FROM: paddle.linalg.lu_solve
