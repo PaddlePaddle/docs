@@ -43,7 +43,6 @@ done
 ## 3 apply PyTorch-PaddlePaddle mapping
 APIMAPPING_ROOT=${DOCROOT}/guides/model_convert/convert_from_pytorch
 
-
 python ${APIMAPPING_ROOT}/tools/apply_references.py
 
 if [ $? -ne 0 ]; then
