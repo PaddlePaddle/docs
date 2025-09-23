@@ -4,6 +4,25 @@ import os
 import re
 from collections import defaultdict
 
+def escape_underscores_in_api(api_name):
+    """
+    处理PyTorch API名称中的下划线转义。
+    
+    参数:
+        api_name (str): 待处理的API名称字符串
+        
+    返回:
+        str: 处理后的字符串。如果下划线出现次数>=2，则所有下划线被替换为'\_'；
+             否则返回原字符串。
+    """
+    # 统计下划线在字符串中出现的次数
+    underscore_count = api_name.count('_')
+    
+    # 如果下划线出现次数大于等于2，则进行替换
+    if underscore_count >= 2:
+        return api_name.replace('_', r'\_')
+    else:
+        return api_name
 
 def get_base_dir():
     """
@@ -116,7 +135,7 @@ def get_mapping_doc_url(torch_api, base_dir):
                     os.path.join(root, expected_filename), base_dir
                 )
                 full_url = mapping_url_head + relative_path.replace(os.sep, "/")
-                return f"[差异对比]({full_url})"
+                return f"[详细对比]({full_url})"
 
     return "-"
 
@@ -238,8 +257,11 @@ def generate_category1_table(
                 src_url = item.get("src_api_url")
                 dst_url = item.get("dst_api_url")
 
-                col2 = f"[{src_api}]({src_url})" if src_url else src_api
-                col3 = f"[{dst_api}]({dst_url})" if dst_url else dst_api
+                src_api_display = escape_underscores_in_api(src_api)
+                dst_api_display = escape_underscores_in_api(dst_api)
+
+                col2 = f"[{src_api_display}]({src_url})" if src_url else src_api
+                col3 = f"[{dst_api_display}]({dst_url})" if dst_url else dst_api
                 rows.append((src_api, col2, col3, "-"))
 
     # 生成Markdown表格字符串
@@ -308,9 +330,12 @@ def generate_category2_table(
                     dst_url = item.get("dst_api_url")
                     break
 
+
+            src_api_display = escape_underscores_in_api(src_api)
+            paddle_api_display = escape_underscores_in_api(paddle_api)
             # 构建第二列和第三列的字符串内容，包含URL（如果存在）
-            col2 = f"[{src_api}]({src_url})" if src_url else src_api
-            col3 = f"[{paddle_api}]({dst_url})" if dst_url else paddle_api
+            col2 = f"[{src_api_display}]({src_url})" if src_url else src_api
+            col3 = f"[{paddle_api_display}]({dst_url})" if dst_url else paddle_api
 
             # 生成备注列的超链接
             remark_link = get_mapping_doc_url(src_api, base_dir)
@@ -338,8 +363,11 @@ def generate_category2_table(
                 src_url = item.get("src_api_url")
                 dst_url = item.get("dst_api_url")
 
-                col2 = f"[{src_api}]({src_url})" if src_url else src_api
-                col3 = f"[{dst_api}]({dst_url})" if dst_url else dst_api
+                src_api_display = escape_underscores_in_api(src_api)
+                dst_api_display = escape_underscores_in_api(dst_api)
+
+                col2 = f"[{src_api_display}]({src_url})" if src_url else src_api
+                col3 = f"[{dst_api_display}]({dst_url})" if dst_url else dst_api
 
                 # 生成备注列的超链接
                 remark_link = get_mapping_doc_url(src_api, base_dir)
@@ -396,18 +424,21 @@ def update_mapping_table(
         dst_api_url = mapping_info.get("dst_api_url", "")
         github_url = convert_to_github_url(api_md, base_dir)
 
+        api_name_display = escape_underscores_in_api(api_name)
+        dst_api_display = escape_underscores_in_api(dst_api)
+
         # 创建Torch API超链接
         torch_display = (
-            f"[{api_name}]({src_api_url})" if src_api_url else api_name
+            f"[{api_name_display}]({src_api_url})" if src_api_url else api_name
         )
 
         # 创建Paddle API超链接
         paddle_display = (
-            f"[{dst_api}]({dst_api_url})" if dst_api_url else dst_api
+            f"[{dst_api_display}]({dst_api_url})" if dst_api_url else dst_api
         )
 
         # 创建备注列内容
-        remark = f"[差异对比]({github_url})" if github_url else "-"
+        remark = f"[详细对比]({github_url})" if github_url else "-"
 
         # 添加表格行，并使用有效序号
         table_rows.append(
