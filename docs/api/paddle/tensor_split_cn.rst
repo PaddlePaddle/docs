@@ -67,7 +67,7 @@ COPY-FROM: paddle.tensor_split:tensor-split-example-4
 代码示例 5
 :::::::::::
 
-COPY-FROM: paddle.tensor_split:tensor-split-example-5
+COPY-FROM: paddle.tensor_split:tensor-spilt-example-5
 
 .. image:: ../../images/api_legend/tensor_split/tensor_split-6.png
    :alt: 图例-5
