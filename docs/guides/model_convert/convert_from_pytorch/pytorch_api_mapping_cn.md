@@ -1849,8 +1849,6 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现。
 
 
-
-
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
 | 1 | [torch.Tensor.int_repr](https://pytorch.org/docs/stable/generated/torch.Tensor.int_repr.html#torch.Tensor.int_repr) | - | [详细对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.int_repr.md) |
