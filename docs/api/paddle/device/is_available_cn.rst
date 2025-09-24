@@ -1,4 +1,4 @@
-.. _cn_api_paddle_cuda_is_available:
+.. _cn_api_paddle_device_is_available:
 
 is_available
 -------------------------------

@@ -636,6 +636,8 @@ device 相关
 
     " :ref:`paddle.get_cuda_rng_state <cn_api_paddle_get_cuda_rng_state>` ", "获取 cuda 随机数生成器的状态信息"
     " :ref:`paddle.set_cuda_rng_state <cn_api_paddle_set_cuda_rng_state>` ", "设置 cuda 随机数生成器的状态信息"
+    " :ref:`paddle.get_default_device <cn_api_paddle_get_default_device>` ", "获取当前默认设备信息"
+    " :ref:`paddle.get_device_module <cn_api_paddle_get_device_module>` ", "获取指定设备对应的模块"
 
 .. _about_hapi:
 
