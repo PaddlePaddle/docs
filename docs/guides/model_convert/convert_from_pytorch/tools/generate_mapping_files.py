@@ -433,7 +433,7 @@ def generate_api_alias_table(
         paddle_display = f"[{dst_api_display}]({dst_api_url})" if dst_api_url else dst_api
         
         # 构建备注列，格式为"{torch_api_alias}别名+[差异对比]{url}"
-        remark = f"``{torch_api_alias_display}``别名,[{get_mapping_doc_url(torch_api_alias, base_dir)}]"
+        remark = f"``{torch_api_alias_display}`` 别名,[{get_mapping_doc_url(torch_api_alias, base_dir)}]"
         
         # 添加表格行
         rows.append((torch_api, torch_display, paddle_display, remark))
@@ -693,7 +693,7 @@ def main():
         "返回参数类型不一致",  # 序号9
         "组合替代实现",  # 序号10
         "可删除",  # 序号11
-        "API 别名映射",  # 序号12
+        "API 别名",  # 序号12
         "功能缺失",  # 序号13
     ]
 
@@ -747,7 +747,7 @@ def main():
         existing_apis,
     )
     updated_content = update_special_category_table(
-        updated_content, "API 别名映射", category12_table
+        updated_content, "API 别名", category12_table
     )
 
     # 生成类别13（功能缺失）的表格
