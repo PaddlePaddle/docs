@@ -1828,7 +1828,7 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 ### 12. API 别名
 **分类简介**
 
-此类PyTorch API是其他Pytorch API的别名
+此类 PyTorch API 是其他 Pytorch API 的别名
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
@@ -2676,4 +2676,3 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 669 | [torch.cuda.comm.scatter](https://pytorch.org/docs/stable/generated/torch.cuda.comm.scatter.html#torch-cuda-comm-scatter) | - | 可新增，且框架底层有相关设计，成本低 |
 | 670 | [torch.cuda.comm.gather](https://pytorch.org/docs/stable/generated/torch.cuda.comm.gather.html#torch-cuda-comm-gather) | - | 可新增，且框架底层有相关设计，成本低 |
 | 671 | [torch.autograd.Function.jvp](https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp) | - | 可新增，且框架底层有相关设计，成本低 |
-
