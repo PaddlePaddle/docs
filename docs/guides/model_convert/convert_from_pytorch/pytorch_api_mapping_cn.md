@@ -507,6 +507,9 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 459 | torch.Tensor.scatter | paddle.Tensor.scatter | - |
 | 460 | torch.Tensor.scatter_ | paddle.Tensor.scatter_ | - |
 | 461 | torch.scatter | paddle.scatter | - |
+| 445 | [torch.cuda.is_initialized](https://docs.pytorch.org/docs/stable/generated/torch.cuda.is_initialized.html#torch-cuda-is-initialized) | [paddle.cuda.is_initialized](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cuda/is_initialized.html) | - |
+| 446 | [torch.cuda.mem_get_info](https://docs.pytorch.org/docs/stable/generated/torch.cuda.memory.mem_get_info.html#torch.cuda.memory.mem_get_info) | [paddle.cuda.mem_get_info](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cuda/mem_get_info.html) | - |
+| 447 | [torch.cuda.cudart](https://docs.pytorch.org/docs/stable/generated/torch.cuda.is_initialized.html#torch-cuda-is-initialized) | [paddle.cuda.cudart](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cuda/cudart.html) | - |
 
 ## 2. 仅 API 调用方式不一致
 **分类简介**
