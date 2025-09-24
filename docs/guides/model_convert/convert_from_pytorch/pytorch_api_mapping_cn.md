@@ -6,7 +6,7 @@
 
 欢迎你向我们贡献代码，关于如何编写 API 映射关系，为保证文档格式统一性与可读性，请严格参照 [API 映射关系-格式与模板](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_format_cn.md) 来编写。
 
-## API 映射表目录
+## API 映射分类
 
 | 序号 | 类别 | 简介 |
 | ---- | ---- | ---- |
@@ -21,7 +21,7 @@
 | 9 |返回参数类型不一致|此类 API 返回值的类型或结构不同|
 | 10 |组合替代实现|此类功能在 PaddlePaddle 中没有直接对应的单一 API，需要通过多个 PaddlePaddle API 组合来实现|
 | 11 |可删除|此类 PyTorch API 在 PaddlePaddle 中可以直接删除|
-| 12| API 别名映射|此类 PyTorch API 在 PaddlePaddle 中有对应的别名映射关系|
+| 12| API 别名|此类 PyTorch API 是其他 Pytorch API 的别名|
 | 13 |功能缺失|此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现|
 
 ### 1. API 完全一致
@@ -1825,7 +1825,7 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 |------|-------------------|---------------|------|
 新增中......
 
-### 12. API 别名映射
+### 12. API 别名
 **分类简介**
 此类 PyTorch API 在 PaddlePaddle 中有对应的别名映射关系。
 
