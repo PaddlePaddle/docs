@@ -2688,4 +2688,3 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 669 | [torch.cuda.comm.scatter](https://pytorch.org/docs/stable/generated/torch.cuda.comm.scatter.html#torch-cuda-comm-scatter) | - | 可新增，且框架底层有相关设计，成本低 |
 | 670 | [torch.cuda.comm.gather](https://pytorch.org/docs/stable/generated/torch.cuda.comm.gather.html#torch-cuda-comm-gather) | - | 可新增，且框架底层有相关设计，成本低 |
 | 671 | [torch.autograd.Function.jvp](https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp) | - | 可新增，且框架底层有相关设计，成本低 |
-
