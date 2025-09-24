@@ -4,25 +4,27 @@ import os
 import re
 from collections import defaultdict
 
+
 def escape_underscores_in_api(api_name):
-    """
+    r"""
     处理PyTorch API名称中的下划线转义。
-    
+
     参数:
         api_name (str): 待处理的API名称字符串
-        
+
     返回:
         str: 处理后的字符串。如果下划线出现次数>=2，则所有下划线被替换为'\_'；
              否则返回原字符串。
     """
     # 统计下划线在字符串中出现的次数
-    underscore_count = api_name.count('_')
-    
+    underscore_count = api_name.count("_")
+
     # 如果下划线出现次数大于等于2，则进行替换
     if underscore_count >= 2:
-        return api_name.replace('_', r'\_')
+        return api_name.replace("_", r"\_")
     else:
         return api_name
+
 
 def get_base_dir():
     """
@@ -135,7 +137,7 @@ def get_mapping_doc_url(torch_api, base_dir):
                     os.path.join(root, expected_filename), base_dir
                 )
                 full_url = mapping_url_head + relative_path.replace(os.sep, "/")
-                return f"[详细对比]({full_url})"
+                return f"[差异对比]({full_url})"
 
     return "-"
 
@@ -152,7 +154,7 @@ def parse_special_category_apis(md_content, category):
 
     for line in lines:
         # 检查是否进入目标类别部分
-        if re.match(rf"## \d*\.?\s*{re.escape(category)}", line):
+        if re.match(rf"### \d*\.?\s*{re.escape(category)}", line):
             in_target_section = True
             continue
 
@@ -163,8 +165,8 @@ def parse_special_category_apis(md_content, category):
                 continue
 
             # 检查是否离开目标部分
-            if re.match(r"## \d*\.?\s*", line) and not re.match(
-                rf"## \d*\.?\s*{re.escape(category)}", line
+            if re.match(r"### \d*\.?\s*", line) and not re.match(
+                rf"### \d*\.?\s*{re.escape(category)}", line
             ):
                 break
 
@@ -330,12 +332,13 @@ def generate_category2_table(
                     dst_url = item.get("dst_api_url")
                     break
 
-
             src_api_display = escape_underscores_in_api(src_api)
             paddle_api_display = escape_underscores_in_api(paddle_api)
             # 构建第二列和第三列的字符串内容，包含URL（如果存在）
             col2 = f"[{src_api_display}]({src_url})" if src_url else src_api
-            col3 = f"[{paddle_api_display}]({dst_url})" if dst_url else paddle_api
+            col3 = (
+                f"[{paddle_api_display}]({dst_url})" if dst_url else paddle_api
+            )
 
             # 生成备注列的超链接
             remark_link = get_mapping_doc_url(src_api, base_dir)
@@ -438,7 +441,7 @@ def update_mapping_table(
         )
 
         # 创建备注列内容
-        remark = f"[详细对比]({github_url})" if github_url else "-"
+        remark = f"[差异对比]({github_url})" if github_url else "-"
 
         # 添加表格行，并使用有效序号
         table_rows.append(
@@ -464,7 +467,7 @@ def update_mapping_table(
 
     # 替换原内容中的表格（考虑可能有序号的标题）
     # 添加额外的换行符确保格式正确
-    pattern = rf"(## \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=## \d*\.?\s*|\Z)"
+    pattern = rf"(### \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=### \d*\.?\s*|\Z)"
     replacement = rf"\1{table_content_str}\n\n"
     return re.sub(pattern, replacement, md_content, flags=re.MULTILINE)
 
@@ -477,8 +480,8 @@ def add_category_numbers(md_content, all_categories):
     updated_content = md_content
     for idx, category in enumerate(all_categories, 1):
         # 先移除可能存在的旧序号
-        pattern = rf"## \d*\.?\s*{re.escape(category)}"
-        replacement = f"## {idx}. {category}"
+        pattern = rf"### \d*\.?\s*{re.escape(category)}"
+        replacement = f"### {idx}. {category}"
         updated_content = re.sub(pattern, replacement, updated_content)
     return updated_content
 
@@ -488,7 +491,7 @@ def update_special_category_table(md_content, category, table_content):
     更新特殊类别（1和2）的表格内容
     """
     # 更精确的正则表达式，确保只匹配特定类别的表格
-    pattern = rf"(## \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=## \d*\.?\s*|\Z)"
+    pattern = rf"(### \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=### \d*\.?\s*|\Z)"
     # 替换为：标题 + 新表格内容
     replacement = rf"\1{table_content}\n\n"
     return re.sub(pattern, replacement, md_content, flags=re.MULTILINE)

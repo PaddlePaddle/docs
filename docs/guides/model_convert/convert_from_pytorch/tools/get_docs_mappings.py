@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import collections
 import json
 import os
 import re
@@ -712,4 +711,3 @@ if __name__ == "__main__":
 
     with open(api_diff_output_path, "w", encoding="utf-8") as f:
         json.dump(metas, f, ensure_ascii=False, indent=4)
-
