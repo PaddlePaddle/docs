@@ -81,6 +81,7 @@ def parse_md_files(directories):
 
     return category_api_map
 
+
 def load_mapping_json(json_path):
     """
     加载docs_mapping.json文件
@@ -388,10 +389,7 @@ def generate_category2_table(
 
 
 def generate_api_alias_table(
-    docs_mapping,
-    api_alias_mapping_path,
-    base_dir,
-    existing_apis
+    docs_mapping, api_alias_mapping_path, base_dir, existing_apis
 ):
     """
     生成类别12（API 别名映射）的Markdown表格
@@ -401,7 +399,9 @@ def generate_api_alias_table(
         with open(api_alias_mapping_path, "r", encoding="utf-8") as f:
             api_alias_data = json.load(f)
     except Exception as e:
-        print(f"错误: 读取API别名映射文件 {api_alias_mapping_path} 时出错: {e!s}")
+        print(
+            f"错误: 读取API别名映射文件 {api_alias_mapping_path} 时出错: {e!s}"
+        )
         return ""
 
     rows = []  # 存储表格行数据的列表
@@ -417,24 +417,30 @@ def generate_api_alias_table(
         mapping_info = docs_mapping.get(torch_api_alias, {})
         dst_api = mapping_info.get("dst_api", "-")
         dst_api_url = mapping_info.get("dst_api_url", "")
-        
+
         # 获取torch_api的URL
         src_api_url = docs_mapping.get(torch_api, {}).get("src_api_url", "")
-        
+
         # 构建显示的API名称
         torch_api_display = escape_underscores_in_api(torch_api)
         torch_api_alias_display = torch_api_alias.replace(r"\_", "_")
         dst_api_display = escape_underscores_in_api(dst_api)
-        
+
         # 创建Torch API超链接
-        torch_display = f"[{torch_api_display}]({src_api_url})" if src_api_url else torch_api
-        
+        torch_display = (
+            f"[{torch_api_display}]({src_api_url})"
+            if src_api_url
+            else torch_api
+        )
+
         # 创建Paddle API超链接
-        paddle_display = f"[{dst_api_display}]({dst_api_url})" if dst_api_url else dst_api
-        
+        paddle_display = (
+            f"[{dst_api_display}]({dst_api_url})" if dst_api_url else dst_api
+        )
+
         # 构建备注列，格式为"{torch_api_alias}别名+[差异对比]{url}"
         remark = f"``{torch_api_alias_display}`` 别名, [{get_mapping_doc_url(torch_api_alias, base_dir)}]"
-        
+
         # 添加表格行
         rows.append((torch_api, torch_display, paddle_display, remark))
         used_apis.add(torch_api)
@@ -455,10 +461,7 @@ def generate_api_alias_table(
 
 
 def generate_no_implement_table(
-    docs_mapping,
-    no_implement_path,
-    base_dir,
-    existing_apis
+    docs_mapping, no_implement_path, base_dir, existing_apis
 ):
     """
     生成类别13（功能缺失）的Markdown表格
@@ -475,7 +478,7 @@ def generate_no_implement_table(
     # 使用正则表达式匹配NOT-IMPLEMENTED-ITEM
     pattern = r"NOT-IMPLEMENTED-ITEM\(`([^`]+)`, (https://pytorch\.org/docs/[^,]+), (.*)\)"
     matches = re.findall(pattern, no_implement_content, re.MULTILINE)
-    # print(matches)    
+    # print(matches)
     rows = []  # 存储表格行数据的列表
 
     for idx, match in enumerate(matches, start=1):
@@ -486,27 +489,29 @@ def generate_no_implement_table(
         # 检查API是否已经在前面的类别中处理过
         if torch_api in existing_apis:
             continue
-            
+
         # 在docs_mapping中查找对应的Paddle API
         mapping_info = docs_mapping.get(torch_api, {})
         dst_api = mapping_info.get("dst_api", "-")
         dst_api_url = mapping_info.get("dst_api_url", "")
-        
+
         # 构建显示的API名称
         torch_api_display = escape_underscores_in_api(torch_api)
         dst_api_display = escape_underscores_in_api(dst_api)
-        
+
         # 创建Torch API超链接
         torch_display = f"[{torch_api_display}]({torch_api_url})"
-        
+
         # 创建Paddle API超链接
-        paddle_display = f"[{dst_api_display}]({dst_api_url})" if dst_api_url else dst_api
-        
+        paddle_display = (
+            f"[{dst_api_display}]({dst_api_url})" if dst_api_url else dst_api
+        )
+
         # 构建备注列
         # 备注列已经包含在remark中了
         # if not remark.startswith("["):
         #     remark = f"[{remark}]"
-        
+
         rows.append((torch_api, torch_display, paddle_display, remark))
         existing_apis.add(torch_api)
 
@@ -729,7 +734,9 @@ def main():
 
     # 更新内容（只处理3-11类）
     for idx, category in enumerate(all_categories, 1):
-        if idx >= 3 and idx <= 11 and category in category_api_map:  # 只处理3-11类
+        if (
+            idx >= 3 and idx <= 11 and category in category_api_map
+        ):  # 只处理3-11类
             updated_content = update_mapping_table(
                 updated_content,
                 category,
