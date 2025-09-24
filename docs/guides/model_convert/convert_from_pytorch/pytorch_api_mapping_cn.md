@@ -987,13 +987,25 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 121 | [torchvision.transforms.functional.to_tensor](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.to_tensor.html) | [paddle.vision.transforms.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/to_tensor_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.functional.to_tensor.md) |
 | 122 | [torchvision.ops.DeformConv2d](https://pytorch.org/vision/main/generated/torchvision.ops.DeformConv2d.html) | [paddle.vision.ops.DeformConv2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/ops/DeformConv2D_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.ops.DeformConv2d.md) |
 
+### 5. 参数默认值不一致
+**分类简介**
+
+此类 API 功能相同，但某些参数的默认值不同
+
+
+| 序号 | Pytorch 最新 release | Paddle develop | 备注 |
+|------|-------------------|---------------|------|
+| 1 | [torch.nn.functional.rrelu_](https://pytorch.org/docs/stable/generated/torch.nn.functional.rrelu_.html) | [paddle.nn.functional.rrelu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/rrelu_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.rrelu_.md) |
+| 2 | [torch.nn.functional.threshold_](https://pytorch.org/docs/stable/generated/torch.nn.functional.threshold_.html#torch.nn.functional.threshold_) | [paddle.nn.functional.thresholded\_relu\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/thresholded_relu__cn.html#thresholded-relu) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/functional/torch.nn.functional.threshold_.md) |
+| 3 | [torch.linalg.diagonal](https://pytorch.org/docs/stable/generated/torch.linalg.diagonal.html#torch.linalg.diagonal) | [paddle.diagonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagonal_cn.html#diagonal) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/linalg/torch.linalg.diagonal.md) |
+| 4 | [torch.alpha_dropout](https://pytorch.org/docs/master/generated/torch.nn.functional.alpha_dropout.html) | [paddle.nn.functional.alpha_dropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/alpha_dropout_cn.html#alpha-dropout) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.alpha_dropout.md) |
+| 5 | [torch.rrelu](https://pytorch.org/docs/stable/generated/torch.nn.functional.rrelu.html#torch.nn.functional.rrelu) | [paddle.nn.functional.rrelu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/rrelu_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.rrelu.md) |
+| 6 | [torch.cuda.amp.GradScaler](https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.GradScaler) | [paddle.amp.GradScaler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/GradScaler_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.amp.GradScaler.md) |
+
 ### 6. torch 参数更多
 **分类简介**
 
 此类 API 在 PyTorch 中提供了更多参数。
-
-
-
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
@@ -2676,3 +2688,4 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 | 669 | [torch.cuda.comm.scatter](https://pytorch.org/docs/stable/generated/torch.cuda.comm.scatter.html#torch-cuda-comm-scatter) | - | 可新增，且框架底层有相关设计，成本低 |
 | 670 | [torch.cuda.comm.gather](https://pytorch.org/docs/stable/generated/torch.cuda.comm.gather.html#torch-cuda-comm-gather) | - | 可新增，且框架底层有相关设计，成本低 |
 | 671 | [torch.autograd.Function.jvp](https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp) | - | 可新增，且框架底层有相关设计，成本低 |
+
