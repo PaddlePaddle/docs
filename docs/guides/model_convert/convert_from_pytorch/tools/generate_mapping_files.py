@@ -423,7 +423,7 @@ def generate_api_alias_table(
         
         # 构建显示的API名称
         torch_api_display = escape_underscores_in_api(torch_api)
-        torch_api_alias_display = escape_underscores_in_api(torch_api_alias)
+        torch_api_alias_display = torch_api_alias.replace(r"\_", "_")
         dst_api_display = escape_underscores_in_api(dst_api)
         
         # 创建Torch API超链接
@@ -433,7 +433,7 @@ def generate_api_alias_table(
         paddle_display = f"[{dst_api_display}]({dst_api_url})" if dst_api_url else dst_api
         
         # 构建备注列，格式为"{torch_api_alias}别名+[差异对比]{url}"
-        remark = f"``{torch_api_alias_display}`` 别名,[{get_mapping_doc_url(torch_api_alias, base_dir)}]"
+        remark = f"``{torch_api_alias_display}`` 别名, [{get_mapping_doc_url(torch_api_alias, base_dir)}]"
         
         # 添加表格行
         rows.append((torch_api, torch_display, paddle_display, remark))
