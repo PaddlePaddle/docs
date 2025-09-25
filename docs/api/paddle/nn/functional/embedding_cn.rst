@@ -9,11 +9,11 @@ embedding
 
 嵌入层(Embedding Layer)，根据  ``x``  中的 id 信息从 embedding 矩阵中查询对应 embedding 信息，并会根据输入的 size (vocab_size, emb_size) 和 dtype 自动构造一个二维 embedding 矩阵。
 
-输出的 Tensor 的 shape 是将输入 Tensor shape 后追加一维 embedding_dim（weight.shape[1]）。
+输出的 Tensor 的 shape 是将输入 Tensor shape 后追加一维 embedding_dim (weight.shape[1]) 。
 
 .. note::
 
-   x 中的 id 必须满足  ``0 =< id < weight.shape[0]`` ，否则程序会抛出异常并退出。
+    x 中的 id 必须满足  ``0 =< id < weight.shape[0]`` ，否则程序会抛出异常并退出。
 
 .. note::
     别名支持: 参数名  ``input``  可替代  ``x`` ，如  ``input=tensor_x``  等价于  ``x=tensor_x`` 。
@@ -42,7 +42,7 @@ embedding
 ::::::::::::
 
 
-    - **x** (Tensor) - 存储 id 信息的 Tensor，数据类型必须为：int32/int64。input 中的 id 必须满足  ``0 =< id < weight.shape[0]``  。
+    - **x** (Tensor) - 存储 id 信息的 Tensor，数据类型必须为：int32/int64。输入中的 id 必须满足  ``0 =< id < weight.shape[0]``  。
       别名：  ``input`` 
     - **weight** (Tensor) - 存储词嵌入权重参数的 Tensor，形状为 (num_embeddings, embedding_dim) 。
     - **padding_idx** (int|long|None，可选) - padding_idx 的配置区间为  ``[-weight.shape[0], weight.shape[0])`` ，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。如果 padding_idx < 0 ，则 padding_idx 将自动转换到  ``weight.shape[0] + padding_idx``  。如果设置为 None，则不会对输出产生影响。默认值：None。
