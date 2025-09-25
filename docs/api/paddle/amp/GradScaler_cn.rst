@@ -7,13 +7,13 @@ GradScaler
 
 
 
-GradScaler 用于动态图模式下的"自动混合精度"的训练。它控制 loss 的缩放比例，有助于避免浮点数溢出的问题。这个类具有  ``scale()`` 、  ``unscale_()`` 、  ``step()`` 、  ``update()`` 、  ``minimize()`` 和参数的 ``get()/set()`` 等方法。
+GradScaler 用于动态图模式下的"自动混合精度"的训练。它控制 loss 的缩放比例，有助于避免浮点数溢出的问题。这个类具有 ``scale()``、 ``unscale_()``、 ``step()``、 ``update()``、 ``minimize()`` 和参数的 ``get()/set()`` 等方法。
 
- ``scale()``  用于让 loss 乘上一个缩放的比例。
- ``unscale_()``  用于让 loss 除去一个缩放的比例。
- ``step()``  与  ``optimizer.step()``  类似，执行参数的更新，不更新缩放比例 loss_scaling。
- ``update()``  更新缩放比例。
- ``minimize()``  与  ``optimizer.minimize()``  类似，执行参数的更新，同时更新缩放比例 loss_scaling，等效与 ``step()`` + ``update()`` 。
+``scale()`` 用于让 loss 乘上一个缩放的比例。
+``unscale_()`` 用于让 loss 除去一个缩放的比例。
+``step()`` 与 ``optimizer.step()`` 类似，执行参数的更新，不更新缩放比例 loss_scaling。
+``update()`` 更新缩放比例。
+``minimize()`` 与 ``optimizer.minimize()`` 类似，执行参数的更新，同时更新缩放比例 loss_scaling，等效与 ``step()`` + ``update()``。
 
 通常，GradScaler 和  ``paddle.amp.auto_cast``  一起使用，来实现动态图模式下的"自动混合精度"。
 
@@ -57,7 +57,7 @@ scale(var)
 
 COPY-FROM: paddle.amp.GradScaler.scale
 
-minimize(optimizer, *args, **kwargs)
+minimize(optimizer, args, kwargs)
 '''''''''
 
 这个函数与  ``optimizer.minimize()``  类似，用于执行参数更新。
@@ -106,7 +106,8 @@ unscale_(optimizer)
  ``minimize()``  用法同上。
 
 **参数**
-    - **optimizer** (Optimizer) - 用于更新参数的优化器。
+
+- **optimizer** (Optimizer) - 用于更新参数的优化器。
 
 **代码示例**
 
