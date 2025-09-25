@@ -49,7 +49,4 @@ data_norm
 Tensor，是对输入数据进行正则化后的结果。
 
 
-代码示例
-::::::::::::
 
-COPY-FROM: paddle.static.nn.data_norm
