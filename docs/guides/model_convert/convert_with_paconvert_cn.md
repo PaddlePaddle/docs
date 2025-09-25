@@ -1,57 +1,54 @@
 # 代码自动转换工具
 
-![](https://img.shields.io/badge/version-v2.0-brightgreen) ![](https://img.shields.io/badge/docs-latest-brightgreen) ![](https://img.shields.io/badge/PRs-welcome-brightgreen) ![](https://img.shields.io/badge/pre--commit-Yes-brightgreen)
+![](https://img.shields.io/badge/version-v3.0-brightgreen) ![](https://img.shields.io/badge/docs-latest-brightgreen) ![](https://img.shields.io/badge/PRs-welcome-brightgreen) ![](https://img.shields.io/badge/pre--commit-Yes-brightgreen)
 
 **Pa**ddlePaddle Code **Convert** Toolkits（**[PaConvert Github](https://github.com/PaddlePaddle/PaConvert)**）
 
 ##  🤗 公告 🤗
-- 本工具由 Paddle 官方团队维护与建设，所有转换代码均已经过测试，欢迎使用，高效迁移 Pytorch 代码到 PaddlePaddle
+- ✅ 本工具由 Paddle 官方维护与建设，高效自动化迁移 Pytorch 代码到 PaddlePaddle，欢迎使用
 
-- 支持 1500+个 Pytorch API 的一键转换，我们通过 300+个 Pytorch 模型测试，代码行数的自动转换率约为 **95+%**（剩余 5%工作需要您手动修改）
+- ✅ 本工具基于 [PyTorch 最新 release 与 Paddle develop API 映射表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.html) 实现，文档经过详细验证分析，欢迎查阅
 
-- 本工具基于 [PyTorch 最新 release 与 Paddle develop API 映射表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.html) 实现，表中 API 均经过详细验证分析，欢迎查阅
+- ✅ 当前支持高达 **1600+个 torch API、200 个 torchvision API** 的一键转换，基本实现 Pytorch 全覆盖
 
-- 有使用问题和建议欢迎在 [PaConvert GitHub Issues](https://github.com/PaddlePaddle/PaConvert/issues) 中提出
+- ✅ 通过 **300+个 Pytorch 模型测试**，代码行数**平均转换率约为 95+%**（剩余<5%需要您手动修改），转换速度极快（不低于 1200+行/秒）
 
 ## 概述
 
-本工具能自动将其它深度学习框架训练或推理的**代码**，转换为 PaddlePaddle 的**代码**，方便快速自动地 **模型代码迁移**。
+本工具能自动将其它深度学习框架训练或推理的**代码**，转换为 PaddlePaddle 的**代码**，方便快速自动地 **模型代码迁移**。目前仅支持自动转换 Pytorch 代码，其它深度学习框架的支持后续新增中。
 
-目前仅支持自动转换 Pytorch 代码，其它深度学习框架的支持后续新增中，转换时会尽量保持原代码的风格与结构，将其它深度学习框架的 API 接口 转换为 PaddlePaddle 的 API 接口。
+使用 `-i` 指定输入目录，转换过程不会改动原目录，会将原目录中的文件一一转换到 `-o` 指定的输出目录中（如不指定，则默认为`./paddle_project`），转换时会尽量保持原代码的风格与结构不变。
 
-转换过程中不会改动原文件，会将原项目中的文件一一转换到 `out_dir` 文件夹中（如不指定`out_dir`，则默认在当前目录下新建`paddle_project/`）。
+## 安装使用
 
-## 使用方式
+#### 1. 命令行用法
 
-### 1. IDE 交互式用法（推荐）
+通过终端命令行的方式使用：
 
-在 IDE 中交互式编程使用，界面友好，使用门槛低。
+```bash
+pip install -U paconvert
+paconvert -i torch_code_dir [-o paddle_code_dir] [-e exclude.py] [--log_dir log_dir] [--log_level "INFO"] [--show_unsupport] [--run_check] [--no_format]
+```
+
+- 命令行参数介绍
+```
+-i, --in_dir         输入 torch 代码，可以为文件或目录。
+-o, --out_dir        可选，输出 paddle 代码，可以为文件或目录。默认在当前路径下创建 paddle_project 目录来保存代码。
+-e, --exc_patterns   可选，正则表达式，匹配到的文件或目录将不会被转换，多个表达式请使用逗号分隔。默认不会排除。
+--log_dir            可选，打印日志的路径，默认会直接在终端上打印日志。
+--log_level          可选，打印 log 等级，支持"WARNING"、"INFO"、"DEBUG"。默认等级"INFO"。
+--show_unsupport     可选，展示当前不支持转换的 API，这些 API 需要您自行转换。默认不展示。
+--run_check          可选，工具进行安装与运行自检。
+--no_format          可选，转换后的代码不进行代码风格优化。默认会优化代码风格。
+```
+
+#### 2. IDE 交互式用法
+
+在 IDE 中使用，交互式界面更友好。
 
 需要在`PyCharm`或`VS Code`等主流 IDE 中安装 **文心快码插件(Baidu Comate)** 后即可使用。以`VS Code`上使用为例：
 
 ![img](./images/comate_paconvert.jpeg)
-
-
-### 2. 命令行用法
-
-通过终端命令行的方式使用，有一定的使用门槛：
-
-```bash
-pip install -U paconvert
-paconvert --in_dir torch_project [--out_dir paddle_project] [--exclude_dirs exclude_dirs] [--log_dir log_dir] [--log_level "INFO"] [--run_check] [--no-format]
-```
-
-- 命令行参数介绍
-
-```
---in_dir        输入 torch 项目文件，可以为单个文件或文件夹
---out_dir       可选，输出 paddle 项目文件，可以为单个文件或文件夹，默认在当前目录下创建./paddle_project/
---exclude_dirs  可选，排除转换的文件或文件夹，排除多项时请用逗号分隔，默认不排除
---log_dir       可选，输出日志的路径，默认会在终端上打印日志
---log_level     可选，打印 log 等级，支持"WARNING"、"INFO"、"DEBUG"，默认"INFO"
---run_check     可选，工具自检
---no-format     可选，不格式化转换后的代码。使用此选项时，转换后的 Paddle 代码不进行代码格式化处理
-```
 
 
 ## 转换示例
@@ -215,16 +212,16 @@ ______      _____                          _
 - **对于不支持转换的 API**：将 **补全为 Pytorch API 全名**，同时在行前通过 `>>>>>>` 的形式加以标记，用户需要对该 API 进行人工手动转换，然后删除 `>>>>>>` 标记，否则代码无法运行。
 
 
-## 案例实践
+## 经典案例
 
 以下大语言模型代码库已经支持一键 100%转换率，欢迎学习与交流：
 
-| 模型名                                                     | Pytorch 代码库地址                 | 支持类型   |
-| ----------------------------------------------------------| ------------------------------ | -------- |
-| [Llama](https://github.com/PaddlePaddle/PaConvert/blob/master/docs/TypicalCase_Llama.md)   | https://github.com/meta-llama/llama.git  | 推理 |
-| [Qwen](https://github.com/PaddlePaddle/PaConvert/blob/master/docs/TypicalCase_Qwen.md)     | https://huggingface.co/Qwen/Qwen-7B-Chat  | 推理 |
+| 模型名                                                     | Pytorch 代码库地址                 | 支持类型   | 详细介绍文档 |
+| ----------------------------------------------------------| ------------------------------ | ----------- | ---------- |
+| Llama 大模型 | https://github.com/meta-llama/llama.git  | 推理 | [Llama](https://github.com/PaddlePaddle/PaConvert/blob/master/docs/TypicalCase_Llama.md)|
+| Qwen 大模型  | https://huggingface.co/Qwen/Qwen-7B-Chat  | 推理 | [Qwen](https://github.com/PaddlePaddle/PaConvert/blob/master/docs/TypicalCase_Qwen.md) |
 
 
 ## 贡献代码
 
-代码自动转换工具（[PaConvert](https://github.com/PaddlePaddle/PaConvert)）为开源贡献形式，欢迎向我们贡献代码，详细开发步骤请参考 [贡献代码教程](docs/CONTRIBUTING.md)
+代码自动转换工具（[PaConvert](https://github.com/PaddlePaddle/PaConvert)）为开源贡献形式，欢迎向我们贡献代码，详细开发步骤请参考 [贡献代码教程](https://github.com/PaddlePaddle/PaConvert/blob/master/docs/CONTRIBUTING.md)

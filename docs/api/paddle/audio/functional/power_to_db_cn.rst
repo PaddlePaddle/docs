@@ -18,7 +18,7 @@ power_to_db
 返回
 :::::::::
 
-``paddle.Tensor 或 float``，db 单位的能量谱。
+ ``paddle.Tensor 或 float`` ，db 单位的能量谱。
 
 代码示例
 :::::::::

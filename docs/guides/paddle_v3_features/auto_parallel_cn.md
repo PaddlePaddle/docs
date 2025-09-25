@@ -182,7 +182,7 @@ class MlpModel(paddle.nn.Layer):
         self.w1 = self.create_parameter(shape=[4096, 1024])
 
     def forward(self, x):
-        dist.shard_tensor(x, mesh, [dist.Shard(0)]) # 标记输入数据沿第 0 维切分
+        x = dist.shard_tensor(x, mesh, [dist.Shard(0)]) # 标记输入数据沿第 0 维切分
         y = paddle.matmul(x, self.w0)
         z = paddle.matmul(y, self.w1)
         return z
@@ -751,8 +751,8 @@ opt = paddle.optimizer.AdamW(learning_rate=0.001, parameters=model.parameters())
 opt = dist.shard_optimizer(opt)
 
 # 在模型训练阶段开始前加载
-dist.save_state_dict(model.state_dict(), './ckpt/model')
-dist.save_state_dict(opt.state_dict(), './ckpt/opt')
+dist.load_state_dict(model.state_dict(), './ckpt/model')
+dist.load_state_dict(opt.state_dict(), './ckpt/opt')
 
 for step, inputs in enumerate(dataloader):
     data = inputs

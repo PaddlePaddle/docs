@@ -2,19 +2,21 @@
 
 ## Environment preparation
 
-* **macOS version 10.x/11.x/12.x/13.x/14.x (64 bit) (not support GPU version)**
-* **Python version 3.8/3.9/3.10/3.11/3.12 (64 bit)**
+* **macOS version 10.x/11.x/12.x/13.x/14.x/15.x (64 bit) (not support GPU version)**
+* **Python version 3.9/3.10/3.11/3.12/3.13 (64 bit)**
+* **Note: Docker compilation only supports x86_64 architecture, generated x86_64 whl packages cannot be installed on Apple Silicon (M-series chip) Macs**
 
 ## Choose CPU/GPU
 
 * Currently, only PaddlePaddle for CPU is supported.
 
 ## Installation steps
-There are two compilation methods in macOS system. It's recommended to use Docker to compile.
-The dependencies required for compiling Paddle are pre-installed in the Docker environment, which is simpler than the native compiling environment.
+There are two compilation methods in macOS system:
 
-* [Compile with Docker](#compile_from_docker)
-* [Local compilation](#compile_from_host)
+* [Compile with Docker](#compile_from_docker) - Only for Intel Mac (x86_64)
+* [Local compilation](#compile_from_host) - Recommended for Apple Silicon Mac (ARM64)
+
+**Note:** Docker compilation only supports x86_64 architecture, generated x86_64 whl packages cannot be installed on Apple Silicon (M-series chip) Macs. If you are using an Apple Silicon Mac, please use local compilation.
 
 <a name="mac_docker"></a>
 ### <span id="compile_from_docker">**Compile with Docker**</span>
@@ -93,7 +95,7 @@ cd /paddle
 git checkout develop
 ```
 
-Paddle supports Python version 3.8 and above
+Paddle supports Python version 3.9 and above
 
 #### 8. Create and enter the /paddle/build path:
 
@@ -109,7 +111,7 @@ mkdir -p /paddle/build && cd /paddle/build
 pip3.10 install protobuf==3.20.2
 ```
 
-Note: We used Python3.10 command as an example above, if the version of your Python is 3.8/3.9/3.11/3.12, please change pip3.10 in the commands to pip3.8/pip3.9/3.11/3.12
+Note: We used Python3.10 command as an example above, if the version of your Python is 3.9/3.11/3.12/3.13, please change pip3.10 in the commands to pip3.9/pip3.11/pip3.12/pip3.13
 
 > Installing patchelf, PatchELF is a small and useful program for modifying the dynamic linker and RPATH of ELF executables.
 
@@ -119,7 +121,7 @@ apt install patchelf
 
 > Install compilation dependencies
 ```
-pip3.10 install -r /paddle/requirements.txt
+pip3.10 install -r /paddle/python/requirements.txt
 ```
 
 #### 10. Execute cmake:
@@ -158,7 +160,7 @@ pip3.10 install -U [whl package name]
 ```
 
 Note:
-We used Python3.10 command as an example above, if the version of your Python is 3.8/3.9/3.11/3.12, please change pip3.10 in the commands to pip3.8/pip3.9/pip3.11/pip3.12.
+We used Python3.10 command as an example above, if the version of your Python is 3.9/3.11/3.12/3.13, please change pip3.10 in the commands to pip3.9/pip3.11/pip3.12/pip3.13.
 
 #### Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
@@ -169,11 +171,13 @@ We used Python3.10 command as an example above, if the version of your Python is
 
 **Please strictly follow the order of the following instructions**
 
+**Important:** If you are using an Apple Silicon (M-series chip) Mac, please ensure you use local compilation and add the `-DWITH_ARM=ON` parameter to the cmake command.
+
 #### 1. Check that your computer and operating system meet our supported compilation standards: `uname -m` and view the system version `about this Mac`. And install [OpenCV](https://opencv.org/releases.html) in advance.
 
 #### 2. Install python and pip:
 
-> **Please do not use the Python initially given by macOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.8, python3.9, python3.10, python3.11, python3.12), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
+> **Please do not use the Python initially given by macOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.9, python3.10, python3.11, python3.12, python3.13), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
 
 Install using Python official website
 
@@ -248,7 +252,7 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 6. Switch to develop branch to compile: (Paddle supports Python version 3.8 and above)
+#### 6. Switch to develop branch to compile: (Paddle supports Python version 3.9 and above)
 
 ```
 git checkout develop
@@ -268,7 +272,7 @@ mkdir build && cd build
 
     ```
     cmake .. -DPY_VERSION=3.10 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
-    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF
+    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_ARM=ON
     ```
 
 - ``-DPY_VERSION=3.10`` Please change to the Python version of the installation environment.

@@ -28,8 +28,8 @@ lspci | grep d802
 
 ```bash
 # 拉取镜像
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-npu-base-x86_64-gcc84 # X86 架构
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-npu-base-aarch64-gcc84 # ARM 架构
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann800-ubuntu20-npu-910b-base-x86_64-gcc84 # X86 架构
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann800-ubuntu20-npu-910b-base-aarch64-gcc84 # ARM 架构
 ```
 ```bash
 # 考如下命令启动容器，ASCEND_RT_VISIBLE_DEVICES 可指定可见的 NPU 卡号
@@ -39,7 +39,7 @@ docker run -it --name paddle-npu-dev -v $(pwd):/work \
     -v /usr/local/bin/npu-smi:/usr/local/bin/npu-smi \
     -v /usr/local/dcmi:/usr/local/dcmi \
     -e ASCEND_RT_VISIBLE_DEVICES="0,1,2,3,4,5,6,7" \
-    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann80RC2-ubuntu20-$(uname -m)-gcc84 /bin/bash
+    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-npu:cann800-ubuntu20-npu-910b-base-$(uname -m)-gcc84 /bin/bash
 ```
 #### 选项说明及可调整参数
 
@@ -133,7 +133,7 @@ python -c "import paddle_custom_device; paddle_custom_device.npu.version()"
 # 预期得到如下输出结果
 version: 0.0.0
 commit: 147d506b2baa1971ab47b4550f0571e1f6b201fc
-cann: 8.0.RC2
+cann: 8.0.0
 ....
 ```
 ```bash

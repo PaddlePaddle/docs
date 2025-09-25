@@ -2,19 +2,21 @@
 
 ## 环境准备
 
-* **macOS 版本 10.x/11.x/12.x/13.x/14.x (64 bit) (不支持 GPU 版本)**
-* **Python 版本 3.8/3.9/3.10/3.11/3.12 (64 bit)**
+* **macOS 版本 10.x/11.x/12.x/13.x/14.x/15.x (64 bit) (不支持 GPU 版本)**
+* **Python 版本 3.9/3.10/3.11/3.12/3.13 (64 bit)**
+* **注意：Docker 编译方式仅支持 x86_64 架构，生成的 x86_64 whl 包无法在 Apple Silicon (M系列芯片) Mac 上安装**
 
 ## 选择 CPU/GPU
 
 * 目前仅支持在 macOS 环境下编译安装 CPU 版本的 PaddlePaddle
 
 ## 安装步骤
-在 macOS 系统下有 2 种编译方式，推荐使用 Docker 编译。
-Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机编译环境更简单。
+在 macOS 系统下有 2 种编译方式：
 
-* [Docker 源码编译](#compile_from_docker)
-* [本机源码编译](#compile_from_host)
+* [Docker 源码编译](#compile_from_docker) - 仅适用于 Intel Mac (x86_64)
+* [本机源码编译](#compile_from_host) - 推荐用于 Apple Silicon Mac (ARM64)
+
+**注意：** Docker 编译方式仅支持 x86_64 架构，生成的 x86_64 whl 包无法在 Apple Silicon (M系列芯片) Mac 上安装。如果您使用的是 Apple Silicon Mac，请使用本机编译方式。
 
 <a name="mac_docker"></a>
 ### <span id="compile_from_docker">**使用 Docker 编译**</span>
@@ -73,7 +75,7 @@ cd /paddle
 ```
 git checkout develop
 ```
-paddle 支持 Python 3.8 以上版本
+paddle 支持 Python 3.9 以上版本
 
 #### 8. 创建并进入/paddle/build 路径下：
 ```
@@ -82,9 +84,9 @@ mkdir -p /paddle/build && cd /paddle/build
 #### 9. 使用以下命令安装相关依赖：
 - 安装编译依赖
 ```
-pip3.10 install -r /paddle/requirements.txt
+pip3.10 install -r /paddle/python/requirements.txt
 ```
-注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12
+注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.9/3.11/3.12/3.13，请将上述命令中的 pip3.10 改成 pip3.9/pip3.11/pip3.12/pip3.13
 #### 10. 执行 cmake：
 *  对于需要编译**CPU 版本 PaddlePaddle**的用户（我们目前不支持 macOS 下 GPU 版本 PaddlePaddle 的编译）：
     ```
@@ -106,19 +108,21 @@ cd /paddle/build/python/dist
 ```
 pip3.10 install -U [whl 包的名字]
 ```
-注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12。
+注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.9/3.11/3.12/3.13，请将上述命令中的 pip3.10 改成 pip3.9/pip3.11/pip3.12/pip3.13。
 #### 恭喜，至此您已完成 PaddlePaddle 的编译安装。您只需要进入 Docker 容器后运行 PaddlePaddle，即可开始使用。更多 Docker 使用请参见[Docker 官方文档](https://docs.docker.com)
 <a name="mac_source"></a>
 <br/><br/>
 ### <span id="compile_from_host">**本机编译**</span>
 **请严格按照以下指令顺序执行**
+
+**重要提示：** 如果您使用的是 Apple Silicon (M系列芯片) Mac，请确保使用本机编译方式，并在 cmake 命令中添加 `-DWITH_ARM=ON` 参数。
 #### 1. 检查您的计算机和操作系统是否符合我们支持的编译标准：
 ```
 uname -m
 ```
 并且在`关于本机`中查看系统版本。并提前安装[OpenCV](https://opencv.org/releases.html)
 #### 2. 安装 Python 以及 pip：
-> **请不要使用 macOS 中自带 Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装 python(对于**Python3**请使用 python[官方下载](https://www.python.org/downloads/mac-osx/)python3.8、python3.9、python3.10、python3.11、python3.12), pip 以及其他的依赖，这将会使您高效编译。
+> **请不要使用 macOS 中自带 Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装 python(对于**Python3**请使用 python[官方下载](https://www.python.org/downloads/mac-osx/)python3.9、python3.10、python3.11、python3.12、python3.13), pip 以及其他的依赖，这将会使您高效编译。
 使用 Python 官网安装
 > 请注意，当您的 mac 上安装有多个 python 时请保证您正在使用的 python 是您希望使用的 python。
 #### 3. (Only For Python3)设置 Python 相关的环境变量：
@@ -172,7 +176,7 @@ cd Paddle
 ```
 git checkout develop
 ```
-paddle 支持 Python 3.8 以上版本
+paddle 支持 Python 3.9 以上版本
 #### 7. 并且请创建并进入一个叫 build 的目录下：
 ```
 mkdir build && cd build
@@ -181,16 +185,16 @@ mkdir build && cd build
 
 - 安装编译依赖
 ```
-pip3.10 install -r /paddle/requirements.txt
+pip3.10 install -r /paddle/python/requirements.txt
 ```
 
-注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.8/3.9/3.11/3.12，请将上述命令中的 pip3.10 改成 pip3.8/pip3.9/pip3.11/pip3.12
+注意：以上用 Python3.10 命令来举例，如您的 Python 版本为 3.9/3.11/3.12/3.13，请将上述命令中的 pip3.10 改成 pip3.9/pip3.11/pip3.12/pip3.13
 #### 9. 执行 cmake：
 >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 *  对于需要编译**CPU 版本 PaddlePaddle**的用户：
     ```
     cmake .. -GNinja -DPY_VERSION=3.10 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
-    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF
+    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_ARM=ON
     ```
 >`-DPY_VERSION=3.10`请修改为安装环境的 Python 版本
 #### 10. 使用以下命令来编译：

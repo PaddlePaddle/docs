@@ -15,12 +15,12 @@ affine
     - scale (float) - 伸缩变换的比例大小，注意必须大于 0 。
     - shear (list|tuple) - 剪切角度值，顺时针方向，第一个值是平行于 x 轴的剪切量，而第二个值是于平行于 y 轴的剪切量。
     - interpolation (str，可选) - 插值的方法。
-        如果这个参数没有设定或者输入图像为单通道，则该参数会根据使用的后端，被设置为 ``PIL.Image.NEAREST`` 或者 ``cv2.INTER_NEAREST`` 。
-        当使用 ``pil`` 作为后端时, 支持的插值方法如下:
+        如果这个参数没有设定或者输入图像为单通道，则该参数会根据使用的后端，被设置为  ``PIL.Image.NEAREST``  或者  ``cv2.INTER_NEAREST``  。
+        当使用  ``pil``  作为后端时, 支持的插值方法如下:
             - "nearest": Image.NEAREST
             - "bilinear": Image.BILINEAR
             - "bicubic": Image.BICUBIC
-        当使用 ``cv2`` 作为后端时, 支持的插值方法如下:
+        当使用  ``cv2``  作为后端时, 支持的插值方法如下:
             - "nearest": cv2.INTER_NEAREST
             - "bilinear": cv2.INTER_LINEAR
             - "bicubic": cv2.INTER_CUBIC
@@ -30,7 +30,7 @@ affine
 返回
 ::::::::::::
 
-    ``PIL.Image / numpy ndarray / paddle.Tensor`` ，仿射变换后的图像。
+     ``PIL.Image / numpy ndarray / paddle.Tensor``  ，仿射变换后的图像。
 
 代码示例
 ::::::::::::

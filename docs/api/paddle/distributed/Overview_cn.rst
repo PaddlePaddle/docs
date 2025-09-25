@@ -19,7 +19,7 @@ paddle.distributed 目录包含的 API 支撑飞桨框架大规模分布式训�
 Fleet 分布式高层 API
 ::::::::::::::::::::::::::
 
-``paddle.distributed.fleet`` 是分布式训练的统一入口 API，用于配置分布式训练。
+ ``paddle.distributed.fleet``  是分布式训练的统一入口 API，用于配置分布式训练。
 
 .. csv-table::
     :header: "API 名称", "API 功能"
@@ -62,7 +62,7 @@ Fleet 分布式高层 API
     " :ref:`get_group <cn_api_paddle_distributed_get_group>` ", "通过通信组 id 获取通信组实例"
     " :ref:`destroy_process_group <cn_api_paddle_distributed_destroy_process_group>` ", "销毁分布式通信组"
     " :ref:`get_backend <cn_api_paddle_distributed_get_backend>` ", "获取指定分布式通信组后端的名称"
-    " :ref:`gloo_init_parallel_env <cn_api_paddle_distributed_gloo_init_parallel_env>` ", "初始化 ``GLOO`` 上下文用于 CPU 间的通信"
+    " :ref:`gloo_init_parallel_env <cn_api_paddle_distributed_gloo_init_parallel_env>` ", "初始化  ``GLOO``  上下文用于 CPU 间的通信"
     " :ref:`gloo_release <cn_api_paddle_distributed_gloo_release>` ", "释放当前并行环境的 gloo 上下文"
     " :ref:`ParallelEnv <cn_api_paddle_distributed_ParallelEnv>` ", "这个类用于获取动态图模型并行执行所需的环境变量值"
 
@@ -115,7 +115,7 @@ Fleet 分布式高层 API
 Stream 集合通信高级 API
 ::::::::::::::::::::::
 
-``paddle.distributed.stream`` 在集合通信 API 的基础上，提供更统一的语义和对计算流的更精细的控制能力，有助于在特定场景下提高性能。
+ ``paddle.distributed.stream``  在集合通信 API 的基础上，提供更统一的语义和对计算流的更精细的控制能力，有助于在特定场景下提高性能。
 
 .. csv-table::
     :header: "API 名称", "API 功能"
@@ -176,7 +176,7 @@ RPC API
     " :ref:`get_mesh <cn_api_paddle_distributed_get_mesh>` ", "获取全局 ProcessMesh"
     " :ref:`save_state_dict <cn_api_paddle_distributed_save_state_dict>` ", "保存分布式训练的 state_dict 到指定路径"
     " :ref:`load_state_dict <cn_api_paddle_distributed_load_state_dict>` ", "将指定路径的 checkpoint 加载到指定 state_dict 中"
-
+    " :ref:`local_map <cn_api_paddle_distributed_local_map>` ", "支持分布式张量（DTensor）传递给为普通张量（Tensor）编写的函数处理，并保证处理逻辑正确"
 
 此外，自动并行提供更高层次的 API 来帮助用户通过非入侵组网的方式实现自动并行的分布式训练。
 

@@ -1,8 +1,9 @@
 [tool.ruff]
 line-length = 80
-target-version = "py38"
+target-version = "py39"
 
 [tool.ruff.lint]
+exclude = ["*.ipynb"]
 select = [
     # Pycodestyle
     "E",
@@ -64,6 +65,7 @@ select = [
 
     # Flake8-simplify
     "SIM101",
+    "SIM117",
 
     # Pygrep-hooks
     "PGH004",
@@ -107,7 +109,6 @@ ignore = [
     "E741",
     "F841",
     "UP015",
-    "UP038"
 ]
 
 [tool.ruff.lint.isort]

@@ -186,5 +186,5 @@
 - `DDim`：请参照[ddim.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/ddim.h)
 - `LoD`：请参照[lod_utils.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/lod_utils.h)
 - `DataType`：请参照[data_type.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/data_type.h)
-- `DataLayout`：请参照[layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/layout.h)
+- `DataLayout`：请参照[layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/common/layout.h)
 - `Place`：请参照[place.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/place.h)

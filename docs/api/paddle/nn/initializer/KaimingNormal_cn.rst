@@ -3,7 +3,7 @@
 KaimingNormal
 -------------------------------
 
-.. py:class:: paddle.nn.initializer.KaimingNormal(fan_in=None, negative_slope=0.0, nonlinearity='relu')
+.. py:class:: paddle.nn.initializer.KaimingNormal(fan_in=None, negative_slope=0.0, nonlinearity='relu', mode='fan_in')
 
 
 
@@ -22,6 +22,7 @@ Kaiming 正态分布方式的权重初始化函数，方法来自 Kaiming He，X
     - **fan_in** (float16|float32，可选) - 可训练的 Tensor 的 in_features 值。如果设置为 None，程序会自动计算该值。如果你不想使用 in_features，你可以自己设置这个值。默认值为 None。
     - **negative_slope** (float，可选) - 只适用于使用 leaky_relu 作为激活函数时的 negative_slope 参数。默认值为 :math:`0.0`。
     - **nonlinearity** (str，可选) - 非线性激活函数。默认值为 relu。
+    - **mode** (str，可选)：初始化的模式，参数为 'fan_in' 或 'fan_out'。当设置为 'fan_in' 时，将使用 fan_in 参数进行初始化。当设置为 'fan_out' 时，将使用可训练 Tensor 的 out_features 值进行初始化。默认为 'fan_in'。
 
 .. note::
 

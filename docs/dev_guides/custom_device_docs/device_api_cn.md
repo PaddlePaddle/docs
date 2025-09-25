@@ -141,7 +141,7 @@ devices - 存储可用设备号。
 ### 接口定义
 
 ```c++
-C_Status (*get_compute_capability)(size_t* compute_capability)
+C_Status (*get_compute_capability)(const C_Device device, size_t* compute_capability)
 ```
 
 ### 接口说明
@@ -150,6 +150,7 @@ C_Status (*get_compute_capability)(size_t* compute_capability)
 
 ### 参数
 
+device - 需要获取算力的设备。
 compute_capability - 存储设备算力。
 
 ## get_runtime_version 【required】
@@ -157,7 +158,7 @@ compute_capability - 存储设备算力。
 ### 接口定义
 
 ```c++
-C_Status (*get_runtime_version)(size_t* version)
+C_Status (*get_runtime_version)(const C_Device device, size_t* version)
 ```
 
 ### 接口说明
@@ -166,6 +167,7 @@ C_Status (*get_runtime_version)(size_t* version)
 
 ### 参数
 
+device - 需要获取版本号的设备。
 version - 存储运行时版本号。
 
 ## get_driver_version 【required】
@@ -173,7 +175,7 @@ version - 存储运行时版本号。
 ### 接口定义
 
 ```c++
-C_Status (*get_driver_version)(size_t* version)
+C_Status (*get_driver_version)(const C_Device device, size_t* version)
 ```
 
 ### 接口说明
@@ -182,4 +184,113 @@ C_Status (*get_driver_version)(size_t* version)
 
 ### 参数
 
+device - 需要获取版本号的设备。
 version - 存储驱动版本号。
+
+## get_multi_process 【optional】
+
+### 接口定义
+
+```c++
+C_Status (*get_multi_process)(const C_Device device, size_t* multi_process);
+```
+
+### 接口说明
+
+获取设备上的MultiProcessor数量。
+
+### 参数
+
+device - 需要获取MultiProcessor数量的设备。
+multi_process - 存储MultiProcessor数量。
+
+## get_max_threads_per_mp 【optional】
+
+### 接口定义
+
+```c++
+C_Status (*get_max_threads_per_mp)(const C_Device device, size_t* threads_per_mp);
+```
+
+### 接口说明
+
+获取设备每个MultiProcessor上的最大线程数。
+
+### 参数
+
+device - 需要获取每个MultiProcessor上的最大线程数的设备。
+threads_per_mp - 存储MultiProcessor上最大线程数。
+
+## get_max_threads_per_block 【optional】
+
+### 接口定义
+
+```c++
+C_Status (*get_max_threads_per_block)(const C_Device device, size_t* threads_per_block);
+```
+
+### 接口说明
+
+获取设备每个Block能够运行的最大线程数。
+
+### 参数
+
+device - 需要获取每个Block能够运行的最大线程数的设备。
+threads_per_block - 存储Block上最大线程数。
+
+## get_max_grid_dim_size 【optional】
+
+### 接口定义
+
+```c++
+C_Status (*get_max_grid_dim_size)(const C_Device device, std::array<unsigned int, 3>* grid_dim_size);
+```
+
+### 接口说明
+
+获取设备最大网格维度大小。
+
+### 参数
+
+device - 需要获取最大网格维度大小的设备。
+grid_dim_size - 存储网格维度大小。
+
+## init_eigen_device 【optional】
+
+### 接口定义
+
+```c++
+C_Status (*init_eigen_device)(C_Place place,
+                              C_EigenDevice* eigen_device,
+                              C_Stream stream,
+                              C_Allocator allocator);
+```
+
+### 接口说明
+
+初始化Eigen GPU设备对象。
+
+### 参数
+
+place - 使用的设备的place对象。
+eigen_device - 存储Eigen GPU设备对象。
+stream - Custom Context中stream对象。
+allocator - Custom Context中的分配器对象。
+
+## destroy_eigen_device 【optional】
+
+### 接口定义
+
+```c++
+C_Status (*destroy_eigen_device)(const C_Device device,
+                                   C_EigenDevice* eigen_device);
+```
+
+### 接口说明
+
+销毁Eigen GPU设备对象。
+
+### 参数
+
+device - 使用的设备对象。
+eigen_device - 需要销毁的Eigen GPU设备对象。

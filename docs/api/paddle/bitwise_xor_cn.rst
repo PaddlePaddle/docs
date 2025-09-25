@@ -5,13 +5,13 @@ bitwise_xor
 
 .. py:function:: paddle.bitwise_xor(x, y, out=None, name=None)
 
-对 Tensor ``x`` 和 ``y`` 逐元素进行 ``按位异或`` 运算。
+对 Tensor  ``x``  和  ``y``  逐元素进行  ``按位异或``  运算。
 
 .. math::
         Out = X ^\wedge Y
 
 .. note::
-    ``paddle.bitwise_xor`` 遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
+     ``paddle.bitwise_xor``  遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
 
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
@@ -25,7 +25,7 @@ bitwise_xor
 
 返回
 ::::::::::::
- ``按位异或`` 运算后的结果 ``Tensor``，数据类型与 ``x`` 相同。
+  ``按位异或``  运算后的结果  ``Tensor`` ，数据类型与  ``x``  相同。
 
 代码示例
 ::::::::::::
