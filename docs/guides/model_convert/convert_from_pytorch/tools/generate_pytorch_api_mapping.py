@@ -441,7 +441,7 @@ def generate_api_alias_table(
         )
 
         # 构建备注列，格式为"{torch_api_alias}别名+[差异对比]{url}"
-        remark = f"``{torch_api_alias_display}`` 别名, [{get_mapping_doc_url(torch_api_alias, base_dir)}]"
+        remark = f"``{torch_api_alias_display}`` 别名， {get_mapping_doc_url(torch_api_alias, base_dir)}"
 
         # 添加表格行
         rows.append((torch_api, torch_display, paddle_display, remark))
@@ -654,7 +654,7 @@ def main():
     # 定义路径
     md_file_path = os.path.join(base_dir, "pytorch_api_mapping_cn.md")
     json_file_path = os.path.join(
-        os.path.dirname(__file__), "docs_mappings.json"
+        os.path.dirname(__file__), "api_difference_info.json"
     )
     no_need_convert_path = os.path.join(
         os.path.dirname(__file__), "no_need_convert.txt"

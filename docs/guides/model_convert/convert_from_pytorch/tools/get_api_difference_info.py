@@ -707,7 +707,7 @@ if __name__ == "__main__":
     meta_dict = {m["src_api"].replace(r"\_", "_"): m for m in metas}
 
     # 该文件用于 PaConvert 的文档对齐工作
-    api_diff_output_path = os.path.join(tools_dir, "docs_mappings.json")
+    api_diff_output_path = os.path.join(tools_dir, "api_difference_info.json")
 
     with open(api_diff_output_path, "w", encoding="utf-8") as f:
         json.dump(metas, f, ensure_ascii=False, indent=4)

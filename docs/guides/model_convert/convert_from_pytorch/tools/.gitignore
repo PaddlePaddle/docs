@@ -6,6 +6,7 @@ no_implement.md
 
 # files will be used in PaConvert
 docs_mappings.json
+api_difference_info.json
 
 # files copied from PaConvert
 api_alias_mapping.json
