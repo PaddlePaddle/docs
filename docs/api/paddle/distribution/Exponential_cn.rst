@@ -7,11 +7,11 @@ Exponential
 
 指数分布
 
-指数分布的概率密度满足一下公式：
+指数分布的概率密度满足以下公式：
 
 .. math::
 
-    f(x; \theta) =  \theta e^{- \theta x },  (x \ge 0) $$
+    f(x; \theta) =  \theta e^{- \theta x },  (x \ge 0)
 
 上面数学公式中：
 
@@ -53,9 +53,10 @@ prob(value)
     - **value** (float|Tensor) - 输入值。
 
 数学公式：
+
 .. math::
 
-    f(x; \theta) =  \theta e^{- \theta x },  (x \ge 0) $$
+    f(x; \theta) =  \theta e^{- \theta x },  (x \ge 0)
 
 上面数学公式中：
 
@@ -63,7 +64,7 @@ prob(value)
 
 **返回**
 
-    - **Tensor** - value 对应的概率密度。
+    - Tensor: value 对应的概率密度。
 
 
 log_prob(value)
@@ -76,7 +77,7 @@ log_prob(value)
 
 **返回**
 
-    - **Tensor** - value 对应的对数概率密度。
+    - Tensor: value 对应的对数概率密度。
 
 entropy()
 '''''''''
@@ -154,7 +155,7 @@ sample(shape=[])
 
 **返回**
 
-    - **Tensor** - 指定维度的样本数据。数据类型为 float32。
+    - Tensor: 指定维度的样本数据。数据类型为 float32。
 
 
 rsample(shape=[])
@@ -167,4 +168,4 @@ rsample(shape=[])
 
 **返回**
 
-    - **Tensor** - 指定维度的样本数据。数据类型为 float32。
+    - Tensor: 指定维度的样本数据。数据类型为 float32。
