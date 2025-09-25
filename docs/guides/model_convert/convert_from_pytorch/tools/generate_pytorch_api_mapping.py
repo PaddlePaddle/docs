@@ -126,7 +126,7 @@ def get_mapping_doc_url(torch_api, base_dir):
         os.path.join(base_dir, "api_difference"),
         # os.path.join(base_dir, "api_difference_third_party"),
     ]
- 
+
     # 将torch_api中的特殊字符转换为下划线，并添加.md后缀，构成文件名
     expected_filename = f"{torch_api}.md"
     final_name = f"{torch_api}.html"
