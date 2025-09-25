@@ -10,12 +10,12 @@ MaxPool3D
 例如：
 
 输入：
-    X 形状：:math:`\left ( N,C,D_{in}, H_{in},W_{in} \right )`
+    X 形状： :math:`\left ( N,C,D_{in}, H_{in},W_{in} \right )`
 属性：
-    kernel_size: :math:`ksize [kD, kH, kW]`
-    stride: :math:`stride`
+    kernel_size： :math:`ksize [kD, kH, kW]`
+    stride： :math:`stride`
 输出：
-    Out 形状：:math:`\left ( N,C,D_{out}, H_{out},W_{out} \right )`
+    Out 形状： :math:`\left ( N,C,D_{out}, H_{out},W_{out} \right )`
 .. math::
     .. math::
           \text{out}(N_i, C_j, d, h, w) ={} & \max_{k=0, \ldots, kD-1} \max_{m=0, \ldots, kH-1} \max_{n=0, \ldots, kW-1} \\
