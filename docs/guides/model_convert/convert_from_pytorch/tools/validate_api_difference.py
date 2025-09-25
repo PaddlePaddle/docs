@@ -19,7 +19,7 @@ def parse_toc(lines):
     for i, line in enumerate(lines):
         line = line.strip()
 
-        if line == "## API 映射表目录":
+        if line == "## API 映射分类":
             in_toc = True
             continue
 
@@ -62,7 +62,7 @@ def parse_categories(lines):
         line = line.strip()
 
         # 检测类别标题 (## X. 类别名称)
-        category_match = re.match(r"^## (\d+)\. (.+)$", line)
+        category_match = re.match(r"^### (\d+)\. (.+)$", line)
         if category_match:
             # 保存前一个类别和表格
             if current_category is not None:
