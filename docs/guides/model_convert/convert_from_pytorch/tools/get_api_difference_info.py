@@ -656,15 +656,15 @@ def get_table_header_by_prefix(prefix):
 
 def discover_all_metas(cfp_basedir):
     # 获取 api_difference/ 下的 api 映射文档
-    diff_3rd_basedir = os.path.join(cfp_basedir, "api_difference_third_party")
+    diff_3rd_basedir = os.path.join(cfp_basedir, "api_difference")
 
     diff_srcs = [("api_difference", "torch.", "paddle.")]
-    diff_srcs.extend(
-        [
-            (os.path.join(diff_3rd_basedir, subdir), f"{subdir}.", "")
-            for subdir in os.listdir(diff_3rd_basedir)
-        ]
-    )
+    diff_srcs += [
+        ("api_difference", "fairscale.", "paddle."),
+        ("api_difference", "flash_attn.", "paddle."),
+        ("api_difference", "transformers.", "paddlenlp."),
+        ("api_difference", "torchvision.", ""),
+    ]
 
     diff_files = []
     for diff_src, api_prefix, dst_prefix in diff_srcs:
@@ -672,9 +672,9 @@ def discover_all_metas(cfp_basedir):
         files = discover_markdown_files(basedir, api_prefix)
         diff_files.append(((api_prefix, dst_prefix), files))
 
-        print(
-            f"{len(files)} mapping documents found in {os.path.relpath(basedir, cfp_basedir)}."
-        )
+        # print(
+        #     f"{len(files)} mapping documents found in {os.path.relpath(basedir, cfp_basedir)}."
+        # )
 
     metas = []
     for prefixs, files in diff_files:
@@ -707,7 +707,7 @@ if __name__ == "__main__":
     meta_dict = {m["src_api"].replace(r"\_", "_"): m for m in metas}
 
     # 该文件用于 PaConvert 的文档对齐工作
-    api_diff_output_path = os.path.join(tools_dir, "docs_mappings_new.json")
+    api_diff_output_path = os.path.join(tools_dir, "docs_mappings.json")
 
     with open(api_diff_output_path, "w", encoding="utf-8") as f:
         json.dump(metas, f, ensure_ascii=False, indent=4)
