@@ -9,7 +9,7 @@ SubmConv2D
 
 子流形稀疏二维卷积层(submanifold sparse convolution2d layer)根据输入计算输出，卷积核和步长、填充、空洞大小(dilations)一组参数。
 输入(input)和输出(Output)是多维的稀疏张量(Sparse Coo Tensor)，
-形状为 :math:[N,H,W,C] 其中 N 是批尺寸，C 是通道，H 是特征高度，W 是特征宽度。
+形状为 :math:`[N,H,W,C]` 其中 N 是批尺寸，C 是通道，H 是特征高度，W 是特征宽度。
 如果提供了 bias_attr，则添加偏置项到卷积的输出。
 对于每一个输入 :math:`X`，方程是：
 
@@ -18,11 +18,11 @@ SubmConv2D
 
 其中：
 
-    - :math:`X`: 输入值, NDHWC 格式的 Tencer。
-    - :math:`W`: 卷积核值, NDHWC 格式的 Tencer。
-    - :math:`\\ast`: 子流形卷积运算, 参考论文: https://arxiv.org/abs/1706.01307。
-    - :math:`b`: 偏置值, 形状为[M]的 1-D Tencer。
-    - :math:`Out`: 输出值, :math:`Out` 和 :math:`X` 的形状可能不同。
+    - :math:`X` : 输入值, NDHWC 格式的 Tencer。
+    - :math:`W` : 卷积核值, NDHWC 格式的 Tencer。
+    - :math:`\\ast` : 子流形卷积运算, 参考论文: https://arxiv.org/abs/1706.01307。
+    - :math:`b` : 偏置值, 形状为[M]的 1-D Tencer。
+    - :math:`Out` : 输出值, :math:`Out` 和 :math:`X` 的形状可能不同。
 
 参数
 ::::::::::::
@@ -44,7 +44,7 @@ SubmConv2D
     - **groups** (int, 可选): - 二维卷积层的组号。根据 Alex Krizhevsky 的 Deep CNN 论文中的分组卷积:当 group = 2 时, 卷积核的前半部分仅连接到输入通道的前半部分, 而卷积核的后半部分仅连接到输入通道的后半部分。默认值为 1。
     - **padding_mode** (str, 可选): -  ``'zeros'`` ,  ``'reflect'`` ,  ``'replicate'``  或  ``'circular'`` 。 目前仅支持  ``'zeros'`` 。
     - **key** (str, 可选): - key 用于保存或使用相同的规则手册，规则手册的定义和作用是指 https://pdfs.semanticscholar.org/5125/a16039cabc6320c908a4764f32596e018ad3.pdf。默认值为 None。
-    - **weight_attr** (ParamAttr, 可选): - conv2d 的可学习参数/权重的参数属性。如果设置为 None 或 ParamAttr 的一个属性，则 conv2d 将创建 ParamAttr 作为 param_attr。 如果设置为 None, 则参数初始化为:math:`Normal(0.0, std)`, 并且 :math:`std` 是:math:`(\frac{2.0 }{filter\_elem\_num})^{0.5}`,默认值为 None。
+    - **weight_attr** (ParamAttr, 可选): - conv2d 的可学习参数/权重的参数属性。如果设置为 None 或 ParamAttr 的一个属性，则 conv2d 将创建 ParamAttr 作为 param_attr。 如果设置为 None, 则参数初始化为 :math:`Normal(0.0, std)` , 并且 :math:`std` 是 :math:`(\frac{2.0 }{filter\_elem\_num})^{0.5}` ,默认值为 None。
     - **bias_attr** (ParamAttr|bool, 可选): - conv2d 偏差的参数属性。如果设置为 False, 则不会向输出单位添加任何偏置。如果设置为 None 或 ParamAttr 的一个属性，则 conv2d 将创建 ParamAttr 作为 bias_attr。如果未设置 bias_attr 的初始值设定项,则偏置初始化为零。默认值为 None。
     - **data_format** (str, 可选): 指定输入布局的数据格式。它可以是 "NCHW" 或 "NHWC"。目前仅支持 "NHWC"。
 
