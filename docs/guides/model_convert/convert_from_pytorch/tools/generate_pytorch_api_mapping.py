@@ -119,24 +119,26 @@ def get_mapping_doc_url(torch_api, base_dir):
     """
     根据torch_api名称，递归查找对应的差异对比文档，并返回Markdown格式的超链接字符串。
     """
-    mapping_url_head = "https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/"
-
+    # mapping_url_head = "https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/"
+    mapping_url_head = "https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/"
     # 定义两个可能的文档目录路径
     api_difference_dirs = [
         os.path.join(base_dir, "api_difference"),
         # os.path.join(base_dir, "api_difference_third_party"),
     ]
-
+ 
     # 将torch_api中的特殊字符转换为下划线，并添加.md后缀，构成文件名
     expected_filename = f"{torch_api}.md"
+    final_name = f"{torch_api}.html"
 
     for search_dir in api_difference_dirs:
         for root, dirs, files in os.walk(search_dir):
             if expected_filename in files:
                 relative_path = os.path.relpath(
-                    os.path.join(root, expected_filename), base_dir
+                    os.path.join(root, final_name), base_dir
                 )
                 full_url = mapping_url_head + relative_path.replace(os.sep, "/")
+
                 return f"[差异对比]({full_url})"
 
     return "-"
@@ -564,7 +566,8 @@ def update_mapping_table(
         # 获取URL信息
         src_api_url = mapping_info.get("src_api_url", "")
         dst_api_url = mapping_info.get("dst_api_url", "")
-        github_url = convert_to_github_url(api_md, base_dir)
+        # github_url = convert_to_github_url(api_md, base_dir)
+        github_url = get_mapping_doc_url(api_name, base_dir)
 
         api_name_display = escape_underscores_in_api(api_name)
         dst_api_display = escape_underscores_in_api(dst_api)
@@ -580,7 +583,7 @@ def update_mapping_table(
         )
 
         # 创建备注列内容
-        remark = f"[差异对比]({github_url})" if github_url else "-"
+        remark = f"{github_url}" if github_url else "-"
 
         # 添加表格行，并使用有效序号
         table_rows.append(
