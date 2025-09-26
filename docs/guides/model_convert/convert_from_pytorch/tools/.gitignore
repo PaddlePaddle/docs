@@ -11,6 +11,7 @@ api_difference_info.json
 # files copied from PaConvert
 api_alias_mapping.json
 api_mapping.json
+attribute_mapping.json
 global_var.py
 
 # log files

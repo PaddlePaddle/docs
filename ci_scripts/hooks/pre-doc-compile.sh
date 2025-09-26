@@ -17,12 +17,14 @@ mkdir -p ${TOOLS_DIR}
 API_ALIAS_MAPPING_URL="https://raw.githubusercontent.com/PaddlePaddle/PaConvert/master/paconvert/api_alias_mapping.json"
 API_MAPPING_URL="https://raw.githubusercontent.com/PaddlePaddle/PaConvert/master/paconvert/api_mapping.json"
 GLOBAL_VAR_URL="https://raw.githubusercontent.com/PaddlePaddle/PaConvert/master/paconvert/global_var.py"
+ATTRIBUTE_MAPPING_URL="https://raw.githubusercontent.com/PaddlePaddle/PaConvert/master/paconvert/attribute_mapping.json"
 
 # 下载文件
 echo "Downloading API mapping files to ${TOOLS_DIR}..."
 curl -o "${TOOLS_DIR}/api_alias_mapping.json" -s "${API_ALIAS_MAPPING_URL}"
 curl -o "${TOOLS_DIR}/api_mapping.json" -s "${API_MAPPING_URL}"
 curl -o "${TOOLS_DIR}/global_var.py" -s "${GLOBAL_VAR_URL}"
+curl -o "${TOOLS_DIR}/attribute_mapping.json" -s "${ATTRIBUTE_MAPPING_URL}"
 
 # 检查下载是否成功
 if [ $? -ne 0 ]; then
