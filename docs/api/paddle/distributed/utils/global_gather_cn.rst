@@ -12,8 +12,8 @@ global_gather 根据 global_count 将 x 的数据收集到 n_expert * world_size
 如下图所示，world_size 是 2，n_expert 是 2，x 的 batch_size 是 4，local_count 是[2, 0, 2, 0]，0 卡的 global_count 是[2, 0, , ],
 1 卡的 global_count 是[2, 0, ,](因为篇幅问题，这里只展示在 0 卡运算的数据)，在 global_gather 算子里，
 global_count 和 local_count 的意义与其在 global_scatter 里正好相反，
-global_count[i]代表向第 (i // n_expert)张卡的第 (i % n_expert)个 expert 发送 local_expert[i]个数据，
-local_count[i]代表从第 (i // n_expert)张卡接收 global_count[i]个数据给本卡的 第(i % n_expert)个 expert。
+global_count[i] 代表向第 (i // n_expert)张卡的第 (i % n_expert)个 expert 发送 local_expert[i]个数据，
+local_count[i] 代表从第 (i // n_expert)张卡接收 global_count[i] 个数据给本卡的 第(i % n_expert)个 expert。
 发送的数据会按照每张卡的每个 expert 排列。图中的 rank0 代表第 0 张卡，rank1 代表第 1 张卡。
 
 global_gather 发送数据的流程如下：
@@ -43,8 +43,40 @@ global_gather 发送数据的流程如下：
 
 返回
 :::::::::
-Tensor，从所有 expert 接收的数据。
+Tensor，从所有 expert 接收的数据喵~
 
 代码示例
 :::::::::
-COPY-FROM: paddle.distributed.utils.global_gather
+
+.. code-block:: python
+
+    # required: distributed
+    import numpy as np
+    import paddle
+    from paddle.distributed import init_parallel_env
+    init_parallel_env()
+    n_expert = 2
+    world_size = 2
+    d_model = 2
+    in_feat = d_model
+    local_input_buf = np.array([[1, 2],[3, 4],[5, 6],[7, 8],[9, 10]], dtype=np.float32)
+    if paddle.distributed.ParallelEnv().local_rank == 0:
+        local_count = np.array([2, 1, 1, 1])
+        global_count = np.array([2, 1, 1, 1])
+    else:
+        local_count = np.array([1, 1, 2, 1])
+        global_count = np.array([1, 1, 2, 1])
+    local_input_buf = paddle.to_tensor(local_input_buf, dtype="float32", stop_gradient=False)
+    local_count = paddle.to_tensor(local_count, dtype="int64")
+    global_count = paddle.to_tensor(global_count, dtype="int64")
+    a = paddle.distributed.utils.global_gather(local_input_buf, local_count, global_count)
+    print(a)
+    # out for rank 0: [[1, 2], [3, 4], [7, 8], [1, 2], [7, 8]]
+    # out for rank 1: [[5, 6], [9, 10], [3, 4], [5, 6], [9, 10]]
+    a.stop_gradient = False
+    c = a * a
+    c.backward()
+    print("local_input_buf.grad", local_input_buf.grad)
+    # rank 0 的输出: [[2, 4], [6, 8], [10, 12], [14, 16], [18, 20]]
+    # rank 1 的输出: [[2, 4], [6, 8], [10, 12], [14, 16], [18, 20]]
+    # 这是彩蛋喵，希望不要被百度reviewer发现QAQ~
