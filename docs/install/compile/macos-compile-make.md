@@ -4,17 +4,19 @@
 
 * **macOS 版本 10.x/11.x/12.x/13.x/14.x/15.x (64 bit) (不支持 GPU 版本)**
 * **Python 版本 3.9/3.10/3.11/3.12/3.13 (64 bit)**
+* **注意：Docker 编译方式仅支持 x86_64 架构，生成的 x86_64 whl 包无法在 Apple Silicon (M系列芯片) Mac 上安装**
 
 ## 选择 CPU/GPU
 
 * 目前仅支持在 macOS 环境下编译安装 CPU 版本的 PaddlePaddle
 
 ## 安装步骤
-在 macOS 系统下有 2 种编译方式，推荐使用 Docker 编译。
-Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机编译环境更简单。
+在 macOS 系统下有 2 种编译方式：
 
-* [Docker 源码编译](#compile_from_docker)
-* [本机源码编译](#compile_from_host)
+* [Docker 源码编译](#compile_from_docker) - 仅适用于 Intel Mac (x86_64)
+* [本机源码编译](#compile_from_host) - 推荐用于 Apple Silicon Mac (ARM64)
+
+**注意：** Docker 编译方式仅支持 x86_64 架构，生成的 x86_64 whl 包无法在 Apple Silicon (M系列芯片) Mac 上安装。如果您使用的是 Apple Silicon Mac，请使用本机编译方式。
 
 <a name="mac_docker"></a>
 ### <span id="compile_from_docker">**使用 Docker 编译**</span>
@@ -149,6 +151,8 @@ pip3.10 install -U [whl 包的名字]
 
 **请严格按照以下指令顺序执行**
 
+**重要提示：** 如果您使用的是 Apple Silicon (M系列芯片) Mac，请确保使用本机编译方式，并在 cmake 命令中添加 `-DWITH_ARM=ON` 参数。
+
 #### 1. 检查您的计算机和操作系统是否符合我们支持的编译标准：
 ```
 uname -m
@@ -258,7 +262,7 @@ pip3.10 install -r /paddle/python/requirements.txt
 
     ```
     cmake .. -DPY_VERSION=3.10 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
-    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF
+    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_ARM=ON
     ```
 
 >`-DPY_VERSION=3.10`请修改为安装环境的 Python 版本

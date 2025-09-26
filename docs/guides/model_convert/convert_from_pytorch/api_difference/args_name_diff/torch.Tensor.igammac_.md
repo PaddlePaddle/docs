@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.Tensor.igammac\_
+## [ 仅参数名不一致 ]torch.Tensor.igammac_
 
 ### [torch.Tensor.igammac_](https://pytorch.org/docs/stable/generated/torch.Tensor.igammac_.html#torch.Tensor.igammac_)
 

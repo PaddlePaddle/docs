@@ -18,7 +18,7 @@ Adaptive Gradient 优化器（自适应梯度优化器，简称 Adagrad）可以
 
 相关论文：`Adaptive Subgradient Methods for Online Learning and Stochastic Optimization <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_ 。
 
-原始论文的算法中没有引入上述公式中的 ``epsilon`` 属性，此处引入该属性用于维持数值稳定性，避免除 0 错误发生。
+原始论文的算法中没有引入上述公式中的  ``epsilon``  属性，此处引入该属性用于维持数值稳定性，避免除 0 错误发生。
 
 引入 epsilon 参数依据：`Per-parameter adaptive learning rate methods <http://cs231n.github.io/neural-networks-3/#ada>`_ 。
 

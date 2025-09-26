@@ -15,7 +15,7 @@ unshard_dtensor
 
 返回
 :::::::::
-paddle.Tensor: 不带分布式信息的普通 Tensor，包含 ``dist_tensor`` 的全局数据。
+paddle.Tensor: 不带分布式信息的普通 Tensor，包含  ``dist_tensor``  的全局数据。
 
 
 代码示例

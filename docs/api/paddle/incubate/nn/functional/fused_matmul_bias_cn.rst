@@ -11,8 +11,8 @@ fused_matmul_bias
 
 参数
 ::::::::::::
-- **x** (Tensor) - 第一个输入 ``Tensor``，被乘 ``Tensor``。
-- **y** (Tensor) - 第二个输入 ``Tensor``，被乘 ``Tensor``。其秩必须为 2。
+- **x** (Tensor) - 第一个输入  ``Tensor`` ，被乘  ``Tensor`` 。
+- **y** (Tensor) - 第二个输入  ``Tensor`` ，被乘  ``Tensor`` 。其秩必须为 2。
 - **bias** (Tensor，可选) - 输入的偏置。如果为 None，则不执行偏置加法。否则，偏置将被加到矩阵乘法结果上。默认：None。
 - **transpose_x** (bool，可选) - 是否在乘积运算前转置 :math:`x`。默认：False。
 - **transpose_y** (bool，可选) - 是否在乘积运算前转置 :math:`y`。默认：False。
@@ -20,7 +20,7 @@ fused_matmul_bias
 
 返回
 ::::::::::::
-输出 ``Tensor``
+输出  ``Tensor`` 
 
 代码示例
 ::::::::::::

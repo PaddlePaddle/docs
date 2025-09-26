@@ -25,7 +25,7 @@ distribute_fpn_proposals
     - **refer_level** （int） - 具有指定比例的 FPN 层的引用级别。
     - **refer_scale** （int） - 具有指定级别的 FPN 层的引用比例。
     - **pixel_offset** (bool, 可选）- 是否有像素偏移。如果是 True, 在计算形状大小时时会偏移 1。默认值为 False。
-    - **rois_num** (Tensor, 可选): 每张图所包含的 RoI 数量。是形状为[B]的 1-D Tensor, 数据类型为 int32。其中 B 是图像数量。如果``rois_num`` 不为 None， 将会返回一个形状为[B]的 1-D Tensor, 其中每个元素是每张图在对应层级上的 RoI 数量。默认值为 None。
+    - **rois_num** (Tensor, 可选): 每张图所包含的 RoI 数量。是形状为[B]的 1-D Tensor, 数据类型为 int32。其中 B 是图像数量。如果 ``rois_num``  不为 None， 将会返回一个形状为[B]的 1-D Tensor, 其中每个元素是每张图在对应层级上的 RoI 数量。默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

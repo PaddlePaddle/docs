@@ -5,7 +5,7 @@ LRScheduler
 
 .. py:class:: paddle.callbacks.LRScheduler(by_step=True, by_epoch=False)
 
- ``LRScheduler`` 是一个学习率回调函数。
+  ``LRScheduler``  是一个学习率回调函数。
 
 参数
 ::::::::::::

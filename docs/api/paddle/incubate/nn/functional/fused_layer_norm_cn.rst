@@ -13,7 +13,7 @@ fused_layer_norm 算子目前只支持在 GPU 下运行。
 
 参数
 ::::::::::::
-    - **x** (Tensor) - 输入 ``Tensor``。
+    - **x** (Tensor) - 输入  ``Tensor`` 。
     - **norm_weight** (Tensor) - 用于仿射输出的权重张量。
     - **norm_bias** (Tensor) - 用于仿射输出的偏置张量。
     - **epsilon** (float) - 一个小的浮点数，用于避免除以零。
@@ -29,11 +29,11 @@ fused_layer_norm 算子目前只支持在 GPU 下运行。
 
 返回
 ::::::::::::
-输出 ``Tensor``
+输出  ``Tensor`` 
 
 形状
 ::::::::::::
-``Tensor``，形状同 ``x`` 一致。
+ ``Tensor`` ，形状同  ``x``  一致。
 
 代码示例
 ::::::::::::

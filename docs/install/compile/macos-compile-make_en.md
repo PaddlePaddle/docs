@@ -4,17 +4,19 @@
 
 * **macOS version 10.x/11.x/12.x/13.x/14.x/15.x (64 bit) (not support GPU version)**
 * **Python version 3.9/3.10/3.11/3.12/3.13 (64 bit)**
+* **Note: Docker compilation only supports x86_64 architecture, generated x86_64 whl packages cannot be installed on Apple Silicon (M-series chip) Macs**
 
 ## Choose CPU/GPU
 
 * Currently, only PaddlePaddle for CPU is supported.
 
 ## Installation steps
-There are two compilation methods in macOS system. It's recommended to use Docker to compile.
-The dependencies required for compiling Paddle are pre-installed in the Docker environment, which is simpler than the native compiling environment.
+There are two compilation methods in macOS system:
 
-* [Compile with Docker](#compile_from_docker)
-* [Local compilation](#compile_from_host)
+* [Compile with Docker](#compile_from_docker) - Only for Intel Mac (x86_64)
+* [Local compilation](#compile_from_host) - Recommended for Apple Silicon Mac (ARM64)
+
+**Note:** Docker compilation only supports x86_64 architecture, generated x86_64 whl packages cannot be installed on Apple Silicon (M-series chip) Macs. If you are using an Apple Silicon Mac, please use local compilation.
 
 <a name="mac_docker"></a>
 ### <span id="compile_from_docker">**Compile with Docker**</span>
@@ -169,6 +171,8 @@ We used Python3.10 command as an example above, if the version of your Python is
 
 **Please strictly follow the order of the following instructions**
 
+**Important:** If you are using an Apple Silicon (M-series chip) Mac, please ensure you use local compilation and add the `-DWITH_ARM=ON` parameter to the cmake command.
+
 #### 1. Check that your computer and operating system meet our supported compilation standards: `uname -m` and view the system version `about this Mac`. And install [OpenCV](https://opencv.org/releases.html) in advance.
 
 #### 2. Install python and pip:
@@ -268,7 +272,7 @@ mkdir build && cd build
 
     ```
     cmake .. -DPY_VERSION=3.10 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
-    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF
+    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_ARM=ON
     ```
 
 - ``-DPY_VERSION=3.10`` Please change to the Python version of the installation environment.

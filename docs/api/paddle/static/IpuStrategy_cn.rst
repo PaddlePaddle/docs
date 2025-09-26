@@ -7,7 +7,7 @@ IpuStrategy
 .. py:class:: paddle.static.IpuStrategy()
 
 
-``IpuStrategy`` 使用户能更精准地控制 :ref:`cn_api_paddle_static_IpuCompiledProgram` 中计算图的建造方法。
+ ``IpuStrategy``  使用户能更精准地控制 :ref:`cn_api_paddle_static_IpuCompiledProgram` 中计算图的建造方法。
 
 
 返回
@@ -137,7 +137,7 @@ COPY-FROM: paddle.static.IpuStrategy.disable_pattern
 register_patch(self)
 '''''''''
 
-注册 patch function 以支持 IPU 上的动转静功能。该函数仅应在 IPU 动转静时使用，注册的函数会影响原动转静的逻辑，可通过``release_patch``释放注册的函数。
+注册 patch function 以支持 IPU 上的动转静功能。该函数仅应在 IPU 动转静时使用，注册的函数会影响原动转静的逻辑，可通过 ``release_patch`` 释放注册的函数。
 
 **代码示例**
 
@@ -183,19 +183,19 @@ COPY-FROM: paddle.static.IpuStrategy.parse_optimizer
 num_ipus
 '''''''''
 
-返回 IpuStrategy 实例中的 IPU 设备个数，类型为 ``Int``。
+返回 IpuStrategy 实例中的 IPU 设备个数，类型为  ``Int`` 。
 
 is_training
 '''''''''
 
-返回 IpuStrategy 实例中的计算模式是训练模式或推理模式，类型为 ``Bool``。
+返回 IpuStrategy 实例中的计算模式是训练模式或推理模式，类型为  ``Bool`` 。
 
 enable_pipelining
 '''''''''
 
-返回 IpuStrategy 实例中是否使能数据流水线功能，类型为 ``Bool``。
+返回 IpuStrategy 实例中是否使能数据流水线功能，类型为  ``Bool`` 。
 
 enable_fp16
 '''''''''
 
-返回 IpuStrategy 实例中是否使能 float16 计算图，类型为 ``Bool``。
+返回 IpuStrategy 实例中是否使能 float16 计算图，类型为  ``Bool`` 。

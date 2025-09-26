@@ -25,7 +25,7 @@ Adamax 优化器是参考 `Adam 论文 <https://arxiv.org/abs/1412.6980>`_ 第 7
 
 相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_
 
-论文中没有 ``epsilon`` 参数。但是，为了保持数值稳定性，避免除 0 错误，此处增加了这个参数。
+论文中没有  ``epsilon``  参数。但是，为了保持数值稳定性，避免除 0 错误，此处增加了这个参数。
 
 参数
 ::::::::::::
@@ -43,7 +43,7 @@ Adamax 优化器是参考 `Adam 论文 <https://arxiv.org/abs/1412.6980>`_ 第 7
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 .. note::
-    目前 ``Adamax`` 不支持 Sparse Parameter Optimization（稀疏参数优化）。
+    目前  ``Adamax``  不支持 Sparse Parameter Optimization（稀疏参数优化）。
 
 代码示例
 ::::::::::::
@@ -84,7 +84,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 **返回**
 
- tuple(optimize_ops, params_grads)，其中 optimize_ops 为参数优化 OP 列表；param_grads 为由(param, param_grad)组成的列表，其中 param 和 param_grad 分别为参数和参数的梯度。在静态图模式下，该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为 True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
+ tuple(optimize_ops, params_grads)，其中 optimize_ops 为参数优化 OP 列表；param_grads 为由(param, param_grad)组成的列表，其中 param 和 param_grad 分别为参数和参数的梯度。在静态图模式下，该返回值可以加入到  ``Executor.run()``  接口的  ``fetch_list``  参数中，若加入，则会重写  ``use_prune``  参数为 True，并根据  ``feed``  和  ``fetch_list``  进行剪枝，详见  ``Executor``  的文档。
 
 **代码示例**
 
@@ -112,7 +112,7 @@ set_lr(value)
 
     该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
-手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler 时，无法使用该 API 手动设置学习率，因为这将导致冲突。
+手动设置当前  ``optimizer``  的学习率。当使用_LRScheduler 时，无法使用该 API 手动设置学习率，因为这将导致冲突。
 
 **参数**
 
@@ -133,7 +133,7 @@ set_lr_scheduler(scheduler)
 
     该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
-手动设置当前 ``optimizer`` 的学习率为 LRScheduler 类。
+手动设置当前  ``optimizer``  的学习率为 LRScheduler 类。
 
 **参数**
 
