@@ -9,4 +9,4 @@ empty_cache
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.device.empty_cache
+COPY-FROM: paddle.device.custom_device.empty_cache

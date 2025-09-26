@@ -19,4 +19,4 @@ reset_max_memory_allocated
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.device.reset_max_memory_allocated
+COPY-FROM: paddle.device.custom_device.reset_max_memory_allocated

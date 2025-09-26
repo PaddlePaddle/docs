@@ -19,4 +19,4 @@ max_memory_allocated
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.device.max_memory_allocated
+COPY-FROM: paddle.device.custom_device.max_memory_allocated

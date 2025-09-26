@@ -19,4 +19,4 @@ memory_reserved
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.device.memory_reserved
+COPY-FROM: paddle.device.custom_device.memory_reserved

@@ -19,4 +19,4 @@ reset_max_memory_reserved
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.device.reset_max_memory_reserved
+COPY-FROM: paddle.device.custom_device.reset_max_memory_reserved
