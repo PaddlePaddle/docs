@@ -41,6 +41,18 @@ Device APIs
 +------------------------+----------------------------------------+----------+
 | get_driver_version     | To get the driver version              | Y        |
 +------------------------+----------------------------------------+----------+
+| get_multi_process      | To get the number of MultiProcessors on the device | N |
++------------------------+----------------------------------------+----------+
+| get_max_threads_per_mp | To get the max threads per MultiProcessor | N     |
++------------------------+----------------------------------------+----------+
+| get_max_threads_per_block | To get the max threads per block    | N     |
++------------------------+----------------------------------------+----------+
+| get_max_grid_dim_size  | To get the max grid dimension size     | N        |
++------------------------+----------------------------------------+----------+
+| init_eigen_device      | To initialize the Eigen GPU device object | N  |
++------------------------+----------------------------------------+----------+
+| destroy_eigen_device   | To destroy the Eigen GPU device object | N      |
++------------------------+----------------------------------------+----------+
 
 
 Memory APIs
