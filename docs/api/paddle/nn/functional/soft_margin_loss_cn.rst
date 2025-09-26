@@ -20,14 +20,14 @@ soft_margin_loss
 参数
 :::::::::
     - **input** (Tensor) - :math:`[N, *]` ，其中 N 是 batch_size， `*` 是任意其他维度。数据类型是 float32、float64。
-    - **label** (Tensor) - :math:`[N, *]` ，标签 ``label`` 的维度、数据类型与输入 ``input`` 相同。
-    - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有： ``'none'``、 ``'mean'``、 ``'sum'`` 。默认为 ``'mean'``，计算 Loss 的均值；设置为 ``'sum'`` 时，计算 Loss 的总和；设置为 ``'none'`` 时，则返回原始 Loss。
+    - **label** (Tensor) - :math:`[N, *]` ，标签  ``label``  的维度、数据类型与输入  ``input``  相同。
+    - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有：  ``'none'`` 、  ``'mean'`` 、  ``'sum'``  。默认为  ``'mean'`` ，计算 Loss 的均值；设置为  ``'sum'``  时，计算 Loss 的总和；设置为  ``'none'``  时，则返回原始 Loss。
     - **name** (str，可选) - 操作的名称（可选，默认值为 None）。更多信息请参见 :ref:`api_guide_Name` 。
 
 
 返回
 :::::::::
-    - 输出的结果 Tensor。如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 :math:`[N, *]` ，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[]` 。
+    - 输出的结果 Tensor。如果 :attr:`reduction` 是  ``'none'`` , 则输出的维度为 :math:`[N, *]` ，与输入  ``input``  的形状相同。如果 :attr:`reduction` 是  ``'mean'``  或  ``'sum'`` ，则输出的维度为 :math:`[]` 。
 
 
 代码示例

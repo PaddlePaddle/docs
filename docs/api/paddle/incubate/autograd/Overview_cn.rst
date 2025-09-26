@@ -3,7 +3,7 @@
 paddle.incubate.autograd
 _________________________
 
-``paddle.incubate.autograd`` 提供支持高阶的反向及前向自动微分相关 API，是飞桨框架对高阶自动微分进行探索与升级。当前处于孵化状态，API 签名及相关功能可能会发生变化，功能尚不完善，如果想自行实现相关模型、探索自动微分机制，请仔细阅读下述使用方法及使用限制。
+ ``paddle.incubate.autograd``  提供支持高阶的反向及前向自动微分相关 API，是飞桨框架对高阶自动微分进行探索与升级。当前处于孵化状态，API 签名及相关功能可能会发生变化，功能尚不完善，如果想自行实现相关模型、探索自动微分机制，请仔细阅读下述使用方法及使用限制。
 
 
 .. _autograd_recommended_usage:
@@ -11,7 +11,7 @@ _________________________
 推荐用法
 ::::::::::::::::::::
 
-第一步：导入依赖。使用 ``paddle.incubate.autograd.enable_prim()`` 打开自动微分开关。
+第一步：导入依赖。使用  ``paddle.incubate.autograd.enable_prim()``  打开自动微分开关。
 
 ..  code-block:: python
 
@@ -22,7 +22,7 @@ _________________________
         paddle.incubate.autograd.enable_prim()
 
 
-第二步：编写组网代码。以单层的全联接网络为例，``MyNet`` 继承自 ``paddle.nn.Layer`` ，在 ``__init__`` 方法中初始化网络参数，在 ``forward`` 方法中实现前向运行逻辑。注意，当前自动微分仅支持部分飞桨 API，主要覆盖全联接网络和一些激活函数，当前支持的飞桨 API 列表参考 :ref:`支持的飞桨 API <autograd_supported_api>`。
+第二步：编写组网代码。以单层的全联接网络为例， ``MyNet``  继承自  ``paddle.nn.Layer``  ，在  ``__init__``  方法中初始化网络参数，在  ``forward``  方法中实现前向运行逻辑。注意，当前自动微分仅支持部分飞桨 API，主要覆盖全联接网络和一些激活函数，当前支持的飞桨 API 列表参考 :ref:`支持的飞桨 API <autograd_supported_api>`。
 
 ..  code-block:: python
 
@@ -48,7 +48,7 @@ _________________________
         y = net(x)
 
 
-第四步：计算 Loss 并进行优化。为了演示高阶微分用法，此处 Loss 定义中使用了 ``paddle.incubate.autograd.grad`` API 计算 ``y`` 对 ``x`` 二阶微分，使用 L2 norm 归一化，然后用 Adam 优化器进行优化。
+第四步：计算 Loss 并进行优化。为了演示高阶微分用法，此处 Loss 定义中使用了  ``paddle.incubate.autograd.grad``  API 计算  ``y``  对  ``x``  二阶微分，使用 L2 norm 归一化，然后用 Adam 优化器进行优化。
 目前已支持高阶的反向微分和前向微分，相关 API 列表参考 :ref:`自动微分 API <autograd_apis>` 。
 
 ..  code-block:: python

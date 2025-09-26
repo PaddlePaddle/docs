@@ -6,7 +6,7 @@
 torch.linalg.householder_product(input, tau, *, out=None)
 ```
 
-### [paddle.linalg.householder_product](https://github.com/PaddlePaddle/Paddle/blob/d6ea911bd1bfda5604807eeb18318e71b395ac58/python/paddle/tensor/linalg.py#L3744)
+### [paddle.linalg.householder_product](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/householder_product_cn.html#householder-product)
 
 ```python
 paddle.linalg.householder_product(x, tau, name=None)

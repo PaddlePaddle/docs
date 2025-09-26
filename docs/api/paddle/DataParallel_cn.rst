@@ -8,19 +8,19 @@ DataParallel
 
 通过数据并行模式执行动态图模型。
 
-目前，``DataParallel`` 仅支持以多进程的方式执行动态图模型。
+目前， ``DataParallel``  仅支持以多进程的方式执行动态图模型。
 
 支持两种使用方式：
 
-1. 使用 ``paddle.distributed.spawn`` 方法启动，例如：
+1. 使用  ``paddle.distributed.spawn``  方法启动，例如：
 
- ``python demo.py`` (spawn need to be called in ``__main__`` method)
+  ``python demo.py``  (spawn need to be called in  ``__main__``  method)
 
-2. 使用 ``paddle.distributed.launch`` 方法启动，例如：
+2. 使用  ``paddle.distributed.launch``  方法启动，例如：
 
-``python -m paddle.distributed.launch –selected_gpus=0,1 demo.py``
+ ``python -m paddle.distributed.launch –selected_gpus=0,1 demo.py`` 
 
-其中 ``demo.py`` 脚本的代码可以是下面的示例代码。
+其中  ``demo.py``  脚本的代码可以是下面的示例代码。
 
 参数
 ::::::::::::
@@ -33,7 +33,7 @@ DataParallel
 
 返回
 ::::::::::::
-支持数据并行的 ``Layer``。
+支持数据并行的  ``Layer`` 。
 
 代码示例
 ::::::::::::
@@ -64,7 +64,7 @@ state_dict(destination=None, include_sublayers=True)
 
 **参数**
 
-    - **destination** (dict，可选) - 如果提供 ``destination``，则所有参数和持久的 buffers 都将存放在 ``destination`` 中。默认值：None。
+    - **destination** (dict，可选) - 如果提供  ``destination`` ，则所有参数和持久的 buffers 都将存放在  ``destination``  中。默认值：None。
     - **include_sublayers** (bool，可选) - 如果设置为 True，则包括子层的参数和 buffers。默认值：True。
 
 **返回**
@@ -78,7 +78,7 @@ COPY-FROM: paddle.DataParallel.state_dict
 set_state_dict(state_dict, use_structured_name=True)
 '''''''''
 
-根据传入的 ``state_dict`` 设置 parameters 和持久的 buffers。所有 parameters 和 buffers 将由 ``state_dict`` 中的 ``Tensor`` 设置。
+根据传入的  ``state_dict``  设置 parameters 和持久的 buffers。所有 parameters 和 buffers 将由  ``state_dict``  中的  ``Tensor``  设置。
 
 **参数**
 

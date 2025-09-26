@@ -8,7 +8,7 @@ where
 
 
 
-根据 ``condition`` 来选择 ``x`` 或 ``y`` 中的对应元素来组成新的 Tensor。具体地，
+根据  ``condition``  来选择  ``x``  或  ``y``  中的对应元素来组成新的 Tensor。具体地，
 
 .. math::
     out_i =
@@ -18,27 +18,27 @@ where
     \end{cases}.
 
 .. note::
-    ``numpy.where(condition)`` 功能与 ``paddle.nonzero(condition, as_tuple=True)`` 相同，可以参考 :ref:`cn_api_paddle_nonzero`。
+     ``numpy.where(condition)``  功能与  ``paddle.nonzero(condition, as_tuple=True)``  相同，可以参考 :ref:`cn_api_paddle_nonzero`。
 
 .. note::
-    别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``other`` 可替代 ``y`` ，如 ``paddle.where(condition, input=x, other=y)`` 等价于 ``paddle.where(condition, x=x, y=y)`` 。
+    别名支持: 参数名  ``input``  可替代  ``x`` ，参数名  ``other``  可替代  ``y``  ，如  ``paddle.where(condition, input=x, other=y)``  等价于  ``paddle.where(condition, x=x, y=y)``  。
 
 参数
 ::::::::::::
 
-    - **condition** (Tensor) - 选择 ``x`` 或 ``y`` 元素的条件。在为 True（非零值）时，选择 ``x``，否则选择 ``y``。
-    - **x** (Tensor|scalar，可选) - 条件为 True 时选择的 Tensor 或 scalar，数据类型为 bfloat16、 float16、float32、float64、int32 或 int64。``x`` 和 ``y`` 必须都给出或者都不给出。别名： ``input``。
-    - **y** (Tensor|scalar，可选) - 条件为 False 时选择的 Tensor 或 scalar，数据类型为 bfloat16、float16、float32、float64、int32 或 int64。``x`` 和 ``y`` 必须都给出或者都不给出。别名： ``other``。
+    - **condition** (Tensor) - 选择  ``x``  或  ``y``  元素的条件。在为 True（非零值）时，选择  ``x`` ，否则选择  ``y`` 。
+    - **x** (Tensor|scalar，可选) - 条件为 True 时选择的 Tensor 或 scalar，数据类型为 bfloat16、 float16、float32、float64、int32 或 int64。 ``x``  和  ``y``  必须都给出或者都不给出。别名：  ``input`` 。
+    - **y** (Tensor|scalar，可选) - 条件为 False 时选择的 Tensor 或 scalar，数据类型为 bfloat16、float16、float32、float64、int32 或 int64。 ``x``  和  ``y``  必须都给出或者都不给出。别名：  ``other`` 。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 关键字参数
 :::::::::
 
-    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
+    - **out** (Tensor，可选) - 输出 Tensor，若不为  ``None`` ，计算结果将保存在该 Tensor 中，默认值为  ``None`` 。
 
 返回
 ::::::::::::
-Tensor，形状与 ``condition`` 相同，数据类型与 ``x`` 和 ``y`` 相同。
+Tensor，形状与  ``condition``  相同，数据类型与  ``x``  和  ``y``  相同。
 
 
 

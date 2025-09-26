@@ -24,8 +24,8 @@ Conv2D
     - :math:`X`：输入值，NHWC 格式的 Tensor
     - :math:`W`：卷积核值，HWCM 格式的 Tensor
     - :math:`*`：卷积操作
-    - :math:`b`：偏置值，1-D Tensor，形为 ``[M]``
-    - :math:`Out`：输出值，NHWC 格式的 Tensor，和 ``X`` 的形状可能不同
+    - :math:`b`：偏置值，1-D Tensor，形为  ``[M]`` 
+    - :math:`Out`：输出值，NHWC 格式的 Tensor，和  ``X``  的形状可能不同
 
 参数
 ::::::::::::
@@ -45,7 +45,7 @@ Conv2D
         注意，批量维度和通道维度也包括在内。每对整数对应输入的一个维度的填充量。批量维度和通道维度的填充应为 [0, 0] 或 (0, 0)。默认值为 0。
     - **dilation** (int|list|tuple，可选) - 空洞大小。可以为单个整数或包含三个整数的元组或列表，分别表示卷积核中的元素沿着深度，高和宽的空洞。如果为单个整数，表示深度，高和宽的空洞都等于该整数。默认值：1。
     - **groups** (int，可选) - 二维卷积层的组数。根据 Alex Krizhevsky 的深度卷积神经网络（CNN）论文中的成组卷积：当 group=n，输入和卷积核分别根据通道数量平均分为 n 组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算，……，第 n 组卷积核和第 n 组输入进行卷积计算。默认值：1。
-    - **padding_mode** (str，可选) - 填充模式。包括 ``'zeros'``, ``'reflect'``, ``'replicate'`` 或者 ``'circular'``。默认值：``'zeros'`` 。
+    - **padding_mode** (str，可选) - 填充模式。包括  ``'zeros'`` ,  ``'reflect'`` ,  ``'replicate'``  或者  ``'circular'`` 。默认值： ``'zeros'``  。
     - **weight_attr** (ParamAttr，可选) - conv2d 的可学习参数/权重的参数属性。如果设置为 None 或 ParamAttr 的一个属性，conv2d 将创建 ParamAttr 作为 param_attr。如果设置为 None，则参数初始化为 :math:`Normal(0.0, std)`，:math:`std` 为 :math:`(\frac{2.0 }{filter\_elem\_num})^{0.5}`。默认值为 None。
     - **bias_attr** (ParamAttr|bool，可选) - conv2d 的偏置参数属性。如果设置为 False，则不会在输出单元中添加偏置。如果设置为 None 或 ParamAttr 的一个属性，conv2d 将创建 ParamAttr 作为 bias_attr。如果 bias_attr 的初始化器未设置，则偏置初始化为零。默认值为 None。
     - **data_format** (str，可选) - 指定输入的数据格式。可以是 "NCHW" 或 "NHWC"。目前仅支持 "NHWC"。N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度。默认值："NDHWC"。 当前只支持"NDHWC"。
@@ -56,11 +56,11 @@ Conv2D
 
 weight
 '''''''''
-本层的可学习参数，类型为 ``Parameter``
+本层的可学习参数，类型为  ``Parameter`` 
 
 bias
 '''''''''
-本层的可学习偏置，类型为 ``Parameter``
+本层的可学习偏置，类型为  ``Parameter`` 
 
 形状
 ::::::::::::

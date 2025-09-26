@@ -11,7 +11,7 @@ xpu
 返回
 ::::::::::
 
-若 paddle wheel 包为 XPU 版本，则返回 paddle wheel 包编译时使用的 XPU 的版本信息；若 paddle wheel 包为 非 XPU 版本，则返回 ``False`` 。
+若 paddle wheel 包为 XPU 版本，则返回 paddle wheel 包编译时使用的 XPU 的版本信息；若 paddle wheel 包为 非 XPU 版本，则返回  ``False``  。
 
 代码示例：
 ::::::::::
