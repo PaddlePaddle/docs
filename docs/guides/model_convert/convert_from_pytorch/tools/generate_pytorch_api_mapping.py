@@ -646,7 +646,8 @@ def update_mapping_table(
         valid_idx += 1  # 序号递增
 
     # 构建完整的表格内容
-    if table_rows:  # 如果存在有效行
+
+    if len(table_rows) > 0:  # 如果存在有效行
         table_content = [
             "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
             "|------|-------------------|---------------|------|",
@@ -656,7 +657,7 @@ def update_mapping_table(
         table_content = [
             "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
             "|------|-------------------|---------------|------|",
-            "\n新增中......",
+            "新增中......",
         ]
 
     table_content_str = "\n".join(table_content)
