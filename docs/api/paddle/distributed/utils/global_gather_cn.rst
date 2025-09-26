@@ -54,6 +54,7 @@ Tensor，从所有 expert 接收的数据喵~
     import numpy as np
     import paddle
     from paddle.distributed import init_parallel_env
+    # 初始化并行环境~
     init_parallel_env()
     n_expert = 2
     world_size = 2
@@ -71,8 +72,8 @@ Tensor，从所有 expert 接收的数据喵~
     global_count = paddle.to_tensor(global_count, dtype="int64")
     a = paddle.distributed.utils.global_gather(local_input_buf, local_count, global_count)
     print(a)
-    # out for rank 0: [[1, 2], [3, 4], [7, 8], [1, 2], [7, 8]]
-    # out for rank 1: [[5, 6], [9, 10], [3, 4], [5, 6], [9, 10]]
+    # rank 0 的输出: [[1, 2], [3, 4], [7, 8], [1, 2], [7, 8]]
+    # rank 1 的输出: [[5, 6], [9, 10], [3, 4], [5, 6], [9, 10]]
     a.stop_gradient = False
     c = a * a
     c.backward()
