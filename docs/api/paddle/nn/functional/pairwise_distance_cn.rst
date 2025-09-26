@@ -5,7 +5,7 @@ pairwise_distance
 
 .. py:function:: paddle.nn.functional.pairwise_distance(x, y, p=2., epsilon=1e-6, keepdim=False, name=None)
 
-计算两组向量（输入 ``x``、``y``）两两之间的距离。该距离通过 p 范数计算：
+计算两组向量（输入  ``x`` 、 ``y`` ）两两之间的距离。该距离通过 p 范数计算：
 
 .. math::
 

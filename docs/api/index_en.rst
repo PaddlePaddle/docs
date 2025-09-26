@@ -34,6 +34,12 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 | paddle.callbacks         | Paddle log callback APIs, including ModelCheckpoint,          |
 |                          | ProgBarLogger, etc.                                           |
 +--------------------------+---------------------------------------------------------------+
+| paddle.compat            | PyTorch-compatible APIs, with identical calling methods       |
+|                          | and behaviors to their PyTorch counterparts.                  |
++--------------------------+---------------------------------------------------------------+
+| paddle.cuda              | PyTorch-compatible APIs，                                     |
+|                          | including CUDA-related utilities                              |
++--------------------------+---------------------------------------------------------------+
 | paddle.device            | Device management related APIs, such as set_device,           |
 |                          | get_device, etc.                                              |
 +--------------------------+---------------------------------------------------------------+

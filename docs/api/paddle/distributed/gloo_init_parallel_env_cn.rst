@@ -4,7 +4,7 @@ gloo_init_parallel_env
 -----------------
 
 .. py:function:: paddle.distributed.gloo_init_parallel_env(rank_id, rank_num, server_endpoint)
-该函数仅初始化 ``GLOO`` 上下文用于 CPU 间的通信。
+该函数仅初始化  ``GLOO``  上下文用于 CPU 间的通信。
 
 参数
 :::::::::

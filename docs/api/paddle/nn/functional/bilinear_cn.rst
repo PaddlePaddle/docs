@@ -19,7 +19,7 @@ bilinear
 
 返回
 :::::::::
-``Tensor``，一个形为 [batch_size, out_features] 的 2-D Tensor。
+ ``Tensor`` ，一个形为 [batch_size, out_features] 的 2-D Tensor。
 
 代码示例
 :::::::::

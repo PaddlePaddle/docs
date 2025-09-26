@@ -14,7 +14,7 @@ parameters_to_vector
 
 返回
 :::::::::
-``Tensor``，多个 parameter 展平并连接的 1-D Tensor
+ ``Tensor`` ，多个 parameter 展平并连接的 1-D Tensor
 
 代码示例
 :::::::::

@@ -17,7 +17,7 @@ clone
 返回
 :::::::::
 
-``Tensor``，从输入 :attr:`x` 拷贝的 Tensor。
+ ``Tensor`` ，从输入 :attr:`x` 拷贝的 Tensor。
 
 代码示例
 :::::::::

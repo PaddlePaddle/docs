@@ -22,7 +22,7 @@ GaussianNLLLoss
 
     - **full** (bool，可选) - 是否在损失计算中包括常数项。默认情况下为 False，表示忽略最后的常数项。
     - **epsilon** (float，可选) - 一个很小的数字，用于限制 variance 的值，使其不会导致除 0 的出现。默认值为 1e-6。
-    - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有 ``none``、``mean`` 和 ``sum``。默认为 ``mean``，计算 ``mini-batch`` loss 均值。设置为 ``sum`` 时，计算 ``mini-batch`` loss 的总和。设置为 ``none`` 时，则返回 loss Tensor。
+    - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有  ``none`` 、 ``mean``  和  ``sum`` 。默认为  ``mean`` ，计算  ``mini-batch``  loss 均值。设置为  ``sum``  时，计算  ``mini-batch``  loss 的总和。设置为  ``none``  时，则返回 loss Tensor。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状

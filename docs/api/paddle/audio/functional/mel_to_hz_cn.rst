@@ -16,7 +16,7 @@ mel_to_hz
 返回
 :::::::::
 
-``paddle.Tensor 或 float``，hz 为单位的频率。
+ ``paddle.Tensor 或 float`` ，hz 为单位的频率。
 
 代码示例
 :::::::::
