@@ -7,7 +7,7 @@ embedding
 
 
 
-嵌入层(Embedding Layer)，根据  ``x``  中的 id 信息从 embedding 矩阵中查询对应 embedding 信息，并会根据输入的 size (vocab_size, emb_size) 和 dtype 自动构造一个二维 embedding 矩阵。
+用于查找  ``x``  提供的 id 的嵌入向量。
 
 输出的 Tensor 的 shape 是将输入 Tensor shape 后追加一维 embedding_dim (weight.shape[1]) 。
 
