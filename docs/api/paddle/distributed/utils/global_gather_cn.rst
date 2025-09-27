@@ -48,36 +48,4 @@ Tensor，从所有 expert 接收的数据喵~
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    # required: distributed
-    import numpy as np
-    import paddle
-    from paddle.distributed import init_parallel_env
-    # 初始化并行环境~
-    init_parallel_env()
-    n_expert = 2
-    world_size = 2
-    d_model = 2
-    in_feat = d_model
-    local_input_buf = np.array([[1, 2],[3, 4],[5, 6],[7, 8],[9, 10]], dtype=np.float32)
-    if paddle.distributed.ParallelEnv().local_rank == 0:
-        local_count = np.array([2, 1, 1, 1])
-        global_count = np.array([2, 1, 1, 1])
-    else:
-        local_count = np.array([1, 1, 2, 1])
-        global_count = np.array([1, 1, 2, 1])
-    local_input_buf = paddle.to_tensor(local_input_buf, dtype="float32", stop_gradient=False)
-    local_count = paddle.to_tensor(local_count, dtype="int64")
-    global_count = paddle.to_tensor(global_count, dtype="int64")
-    a = paddle.distributed.utils.global_gather(local_input_buf, local_count, global_count)
-    print(a)
-    # rank 0 的输出: [[1, 2], [3, 4], [7, 8], [1, 2], [7, 8]]
-    # rank 1 的输出: [[5, 6], [9, 10], [3, 4], [5, 6], [9, 10]]
-    a.stop_gradient = False
-    c = a * a
-    c.backward()
-    print("local_input_buf.grad", local_input_buf.grad)
-    # rank 0 的输出: [[2, 4], [6, 8], [10, 12], [14, 16], [18, 20]]
-    # rank 1 的输出: [[2, 4], [6, 8], [10, 12], [14, 16], [18, 20]]
-    # 这是彩蛋喵，希望不要被百度reviewer发现QAQ~
+COPY-FROM: paddle.distributed.utils.global_gather
