@@ -12,7 +12,7 @@ global_scatter 根据 local_count 将 x 的数据分发到 n_expert * world_size
 如下图所示，world_size 是 2，n_expert 是 2，x 的 batch_size 是 4，local_count 是[2, 0, 2, 0]，0 卡的 global_count 是 [2, 0, , ],
 1 卡的 global_count 是 [2, 0, ,](因为篇幅问题，这里只展示在 0 卡运算的数据)，在 global_scatter 算子里，
 local_count[i] 代表向第 (i // n_expert) 张卡的第 (i % n_expert) 个 expert 发送 local_expert[i] 个数据，
-global_count[i]代表从第 (i // n_expert) 张卡接收 global_count[i] 个数据给本卡的 第(i % n_expert)个 expert。
+global_count[i] 代表从第 (i // n_expert) 张卡接收 global_count[i] 个数据给本卡的 第(i % n_expert)个 expert。
 图中的 rank0 代表第 0 张卡，rank1 代表第 1 张卡。
 global_scatter 发送数据的流程如下：
 
