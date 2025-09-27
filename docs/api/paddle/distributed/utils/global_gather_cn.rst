@@ -45,7 +45,3 @@ global_gather 发送数据的流程如下：
 :::::::::
 Tensor，从所有 expert 接收的数据喵~
 
-代码示例
-:::::::::
-
-COPY-FROM: paddle.distributed.utils.global_gather
