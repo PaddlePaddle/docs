@@ -8,9 +8,11 @@
 
 ## API 映射分类
 
+根据 PyTorch API 与 Paddle API 两者之间的映射差异，将映射关系分为以下 13 类
+
 | 序号 | 类别 | 简介 |
 | ---- | ---- | ---- |
-| 1 |API 完全一致|此类 API 使用方式完全一致，无需转换，只需在文件最上方插入一行 `import paddle as torch` 即可。（或者也可将代码里所有前缀 `torch.` 替换为 `paddle.`）|
+| 1 |API 完全一致|此类 API 完全一致，只需要将代码中所有前缀 `torch.`替换为 `paddle.`即可。（或者只需在文件最上方插入一行 `import paddle as torch`即可）|
 | 2 |仅 API 调用方式不一致|参数一致，但 API 调用方式不一致。此类 API 需要转换，但转换成本较低，只需要对 API 调用方式进行改写，无需处理 API 参数部分。包括：API 名称不同、API 路径不同、Tensor 类方法改成普通方法、Tensor 方法改成属性、Tensor 属性改成方法 等情况。|
 | 3 |仅参数名不一致|此类 API 功能相同，但部分参数名称不同|
 | 4 |paddle 参数更多|此类 API 在 PaddlePaddle 中提供了更多可选参数|
