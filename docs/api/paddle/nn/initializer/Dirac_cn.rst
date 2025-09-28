@@ -6,7 +6,7 @@ Dirac
 .. py:class:: paddle.nn.initializer.Dirac(groups=1, name=None)
 
 
-通过  ``狄拉克 delta 函数``  来初始化 3D/4D/5D Tensor。
+通过 ``狄拉克 delta 函数`` 来初始化 3D/4D/5D Tensor。
 
 该初始化方式一般用于 Conv1D/Conv2D/Conv3D 卷积层，能尽可能多的保留卷积层输入的特性。（如果 `out_channels` > `in_channels`，则可保留全部的输入 `channel` 特性）
 

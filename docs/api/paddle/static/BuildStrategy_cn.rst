@@ -5,7 +5,7 @@ BuildStrategy
 
 .. py:class:: paddle.static.BuildStrategy
 
- ``BuildStrategy``  使用户更方便地控制  ``ParallelExecutor``  中计算图的建造方法，可通过设置  ``ParallelExecutor``  中的  ``BuildStrategy``  成员来实现此功能。
+``BuildStrategy`` 使用户更方便地控制 ``ParallelExecutor`` 中计算图的建造方法，可通过设置 ``ParallelExecutor`` 中的 ``BuildStrategy`` 成员来实现此功能。
 
 返回
 :::::::::
@@ -157,7 +157,8 @@ COPY-FROM: paddle.static.BuildStrategy.memory_optimize
 reduce_strategy
 '''''''''
 
-``static.BuildStrategy.ReduceStrategy``  类型。在  ``ParallelExecutor``  中，存在两种参数梯度聚合策略，即  ``AllReduce``  和  ``Reduce`` 。如果用户需要在所有执行设备上独立地进行参数更新，可以使用  ``AllReduce`` 。如果使用  ``Reduce``  策略，所有参数的优化将均匀地分配给不同的执行设备，随之将优化后的参数广播给其他执行设备。默认值为  ``AllReduce``  。
+``static.BuildStrategy.ReduceStrategy`` 类型。在 ``ParallelExecutor`` 中，存在两种参数梯度聚合策略，即 ``AllReduce`` 和 ``Reduce``。如果用户需要在所有执行设备上独立地进行参数更新，可以使用 ``AllReduce``。如果使用 ``Reduce`` 策略，所有参数的优化将均匀地分配给不同的执行设备，随之将优化后的参数广播给其他执行设备。
+默认值为 ``AllReduce`` 。
 
 **代码示例**
 

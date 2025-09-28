@@ -59,7 +59,7 @@ sparse_embedding
 
 参数
 ::::::::
-    - **input** (Variable) - 存储 id 信息的 Tensor，数据类型必须为：int64，输入的 shape 最后一维须为 1。input 中的 id 必须满足  ``0 =< id < size[0]``  。
+    - **input** (Variable) - 存储 id 信息的 Tensor，数据类型必须为：int64，输入的 shape 最后一维须为 1。input 中的 id 必须满足 ``0 =< id < size[0]`` 。
     - **size** (tuple|list) - embedding 矩阵的维度(vocab_size，emb_size)。必须包含两个元素，第一个元素为 vocab_size(词表大小)，第二个为 emb_size（embedding 层维度）。大规模稀疏场景下，参数规模初始为 0，会随着训练的进行逐步扩展，因此如果 vocab_size 暂时无用，其值可以为任意整数，emb_size 则为词嵌入权重参数的维度配置。
     - **padding_idx** (int|long|None，可选) - padding_idx 需在区间 ``[-vocab_size, vocab_size)`` ，否则不生效， ``padding_idx < 0`` 时，padding_idx 会被改成 ``vocab_size + padding_idx`` ，input 中等于 padding_index 的 id 对应的 embedding 信息会被设置为 0，且这部分填充数据在训练时将不会被更新。如果为 None，不作处理，默认为 None。
     - **is_test** (bool，可选) - 表示训练/预测模式。在预测模式(is_test=True)下，遇到不存在的特征，不会初始化及创建，会直接以 0 填充后返回。默认值为 False。

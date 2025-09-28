@@ -23,7 +23,7 @@ http://www.statmt.org/wmt16/multimodal-task.html#task1
 
 返回值
 :::::::::
- ``Dataset`` ，WMT16 数据集实例。实例一共有三个字段：
+``Dataset``，WMT16 数据集实例。实例一共有三个字段：
 
   - **src_ids** (np.array) - 源语言当前的 token id 序列。
   - **trg_ids** (np.array) - 目标语言当前的 token id 序列。
