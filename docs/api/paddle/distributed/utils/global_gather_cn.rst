@@ -45,3 +45,42 @@ global_gather 发送数据的流程如下：
 :::::::::
 Tensor，从所有 expert 接收的数据喵~
 
+代码示例
+:::::::::
+
+.. code-block:: python
+
+  >>> # doctest: +REQUIRES(env:DISTRIBUTED)
+  >>> import paddle
+  >>> from paddle.distributed import init_parallel_env
+  >>> from paddle.distributed.utils import moe_utils
+  >>> init_parallel_env()
+  >>> n_expert = 2
+  >>> world_size = 2
+  >>> d_model = 2
+  >>> in_feat = d_model
+  >>> local_input_buf = paddle._to_tensor(
+  ...     [[1, 2],[3, 4],[5, 6],[7, 8],[9, 10]],
+  ...     dtype='float32',
+  ...     stop_gradient=False
+  ... )
+  >>> if paddle.distributed.ParallelEnv().local_rank == 0:
+  ...     local_count = paddle.to_tensor([2, 1, 1, 1], dtype="int64")
+  ...     global_count = paddle.to_tensor([2, 1, 1, 1], dtype="int64")
+  >>> else:
+  ...     local_count = paddle.to_tensor([1, 1, 2, 1], dtype="int64")
+  ...     global_count = paddle.to_tensor([1, 1, 2, 1], dtype="int64")
+  >>> a = moe_utils.global_gather(
+  ...     local_input_buf,
+  ...     local_count,
+  ...     global_count
+  ... )
+  >>> print(a)
+  >>> # rank 0 的 输出: [[1, 2], [3, 4], [7, 8], [1, 2], [7, 8]]
+  >>> # rank 1 的 输出: [[5, 6], [9, 10], [3, 4], [5, 6], [9, 10]]
+  >>> a.stop_gradient = False
+  >>> c = a * a
+  >>> c.backward()
+  >>> print("local_input_buf.grad", local_input_buf.grad)
+  >>> # rank 0 的 输出: [[2, 4], [6, 8], [10, 12], [14, 16], [18, 20]]
+  >>> # rank 1 的 输出: [[2, 4], [6, 8], [10, 12], [14, 16], [18, 20]]
