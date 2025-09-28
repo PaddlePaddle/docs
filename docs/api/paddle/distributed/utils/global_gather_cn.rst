@@ -43,7 +43,7 @@ global_gather 发送数据的流程如下：
 
 返回
 :::::::::
-Tensor，从所有 expert 接收的数据喵~
+Tensor，从所有 expert 接收的数据
 
 代码示例
 :::::::::
