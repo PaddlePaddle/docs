@@ -1,4 +1,4 @@
-## [ 参数完全一致 ] torch.Tensor.sparse_mask
+## [仅 API 调用方式不一致] torch.Tensor.sparse_mask
 
 ### [torch.Tensor.sparse_mask](https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_mask.html)
 

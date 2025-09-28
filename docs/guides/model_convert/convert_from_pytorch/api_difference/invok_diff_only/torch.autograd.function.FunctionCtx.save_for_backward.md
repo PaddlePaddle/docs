@@ -1,4 +1,4 @@
-## [参数完全一致]torch.autograd.function.FunctionCtx.save_for_backward
+## [仅 API 调用方式不一致]torch.autograd.function.FunctionCtx.save_for_backward
 
 ### [torch.autograd.function.FunctionCtx.save_for_backward](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.save_for_backward.html#torch.autograd.function.FunctionCtx.save_for_backward)
 

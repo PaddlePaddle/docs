@@ -1,4 +1,4 @@
-## [参数完全一致]torch.autograd.grad_mode.set_grad_enabled
+## [仅 API 调用方式不一致]torch.autograd.grad_mode.set_grad_enabled
 
 ### [torch.autograd.grad_mode.set_grad_enabled](https://docs.pytorch.org/docs/stable/generated/torch.autograd.grad_mode.set_grad_enabled.html#torch.autograd.grad_mode.set_grad_enabled)
 

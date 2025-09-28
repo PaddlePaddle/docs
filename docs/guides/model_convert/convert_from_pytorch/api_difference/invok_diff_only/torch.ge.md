@@ -1,4 +1,4 @@
-## [ 参数完全一致 ]torch.ge
+## [仅 API 调用方式不一致]torch.ge
 
 ### [torch.ge](https://pytorch.org/docs/stable/generated/torch.ge.html)
 

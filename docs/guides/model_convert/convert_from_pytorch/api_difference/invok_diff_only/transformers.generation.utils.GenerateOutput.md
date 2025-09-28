@@ -1,4 +1,4 @@
-## [无参数]transformers.generation.utils.GenerateOutput
+## [仅 API 调用方式不一致]transformers.generation.utils.GenerateOutput
 
 ### [transformers.generation.utils.GenerateOutput](https://github.com/huggingface/transformers/blob/v4.42.0/src/transformers/generation/utils.py#L345)
 

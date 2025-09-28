@@ -1,4 +1,4 @@
-## [参数完全一致]torchvision.transforms.functional.to_grayscale
+## [仅 API 调用方式不一致]torchvision.transforms.functional.to_grayscale
 
 ### [torchvision.transforms.functional.to_grayscale](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.to_grayscale.html?highlight=to_grayscale#torchvision.transforms.functional.to_grayscale)
 

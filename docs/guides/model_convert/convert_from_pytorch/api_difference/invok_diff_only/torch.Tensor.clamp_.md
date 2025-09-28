@@ -1,4 +1,4 @@
-## [ 参数完全一致 ] torch.Tensor.clamp_
+## [仅 API 调用方式不一致] torch.Tensor.clamp_
 
 ### [torch.Tensor.clamp_](https://pytorch.org/docs/stable/generated/torch.Tensor.clamp_.html?highlight=clamp_#torch.Tensor.clamp_)
 

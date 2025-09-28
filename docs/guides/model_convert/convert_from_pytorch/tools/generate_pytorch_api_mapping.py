@@ -394,7 +394,7 @@ def generate_category2_table(
         ):
             continue
         # 检查条件：mapping_type为"无参数"或"参数完全一致"，src_api包含"torch"，替换后与dst_api不等
-        if (mapping_type in ["无参数", "参数完全一致"]) and "torch" in src_api:
+        if mapping_type in ["无参数", "参数完全一致", "仅 API 调用方式不一致"]:
             expected_paddle_api = src_api.replace("torch", "paddle")
             if expected_paddle_api != dst_api:
                 used_apis.add(src_api)  # 标记该API已处理

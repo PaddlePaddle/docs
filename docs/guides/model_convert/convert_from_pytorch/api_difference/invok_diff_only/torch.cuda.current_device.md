@@ -1,4 +1,4 @@
-## [无参数]torch.cuda.current_device
+## [仅 API 调用方式不一致]torch.cuda.current_device
 
 ### [torch.cuda.current_device](https://pytorch.org/docs/stable/generated/torch.cuda.current_device.html#torch.cuda.current_device)
 

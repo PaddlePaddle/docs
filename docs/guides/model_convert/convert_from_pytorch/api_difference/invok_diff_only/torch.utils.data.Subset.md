@@ -1,4 +1,4 @@
-## [参数完全一致]torch.utils.data.Subset
+## [仅 API 调用方式不一致]torch.utils.data.Subset
 
 ### [torch.utils.data.Subset](https://pytorch.org/docs/stable/data.html#torch.utils.data.Subset)
 

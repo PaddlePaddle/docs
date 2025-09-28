@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.uint8
+## [仅 API 调用方式不一致]torch.uint8
 
 ### [torch.uint8](https://github.com/pytorch/pytorch/tree/main/torch)
 

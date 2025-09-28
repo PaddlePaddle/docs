@@ -1,4 +1,4 @@
-## [参数完全一致]torch.utils.data.ConcatDataset
+## [仅 API 调用方式不一致]torch.utils.data.ConcatDataset
 
 ### [torch.utils.data.ConcatDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.ConcatDataset)
 

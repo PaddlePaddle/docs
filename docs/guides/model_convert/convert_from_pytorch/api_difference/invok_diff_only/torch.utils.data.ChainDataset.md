@@ -1,4 +1,4 @@
-## [参数完全一致]torch.utils.data.ChainDataset
+## [仅 API 调用方式不一致]torch.utils.data.ChainDataset
 
 ### [torch.utils.data.ChainDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.ChainDataset)
 

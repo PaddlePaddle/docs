@@ -1,4 +1,4 @@
-## [参数完全一致]torch.cuda.max_memory_allocated
+## [仅 API 调用方式不一致]torch.cuda.max_memory_allocated
 
 ### [torch.cuda.max_memory_allocated](https://pytorch.org/docs/stable/generated/torch.cuda.max_memory_allocated.html#torch.cuda.max_memory_allocated)
 

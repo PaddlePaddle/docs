@@ -1,4 +1,4 @@
-## [参数完全一致]torchvision.transforms.functional.pad
+## [仅 API 调用方式不一致]torchvision.transforms.functional.pad
 
 ### [torchvision.transforms.functional.pad](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.pad.html)
 

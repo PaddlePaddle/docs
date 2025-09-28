@@ -1,4 +1,4 @@
-## [参数完全一致]torch.cuda.get_device_capability
+## [仅 API 调用方式不一致]torch.cuda.get_device_capability
 
 ### [torch.cuda.get_device_capability](https://pytorch.org/docs/stable/generated/torch.cuda.get_device_capability.html#torch.cuda.get_device_capability)
 

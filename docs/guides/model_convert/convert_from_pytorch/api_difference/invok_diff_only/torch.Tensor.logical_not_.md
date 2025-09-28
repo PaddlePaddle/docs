@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.Tensor.logical_not_
+## [仅 API 调用方式不一致]torch.Tensor.logical_not_
 
 ### [torch.Tensor.logical_not_](https://pytorch.org/docs/stable/generated/torch.Tensor.logical_not_.html)
 

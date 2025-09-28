@@ -1,4 +1,4 @@
-## [ 无参数 ] torch.Tensor.nelement
+## [仅 API 调用方式不一致] torch.Tensor.nelement
 
 ### [torch.Tensor.nelement](https://pytorch.org/docs/stable/generated/torch.Tensor.nelement.html?highlight=nelement#torch.Tensor.nelement)
 

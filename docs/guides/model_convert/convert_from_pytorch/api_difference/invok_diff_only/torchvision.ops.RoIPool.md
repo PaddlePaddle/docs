@@ -1,4 +1,4 @@
-## [参数完全一致]torchvision.ops.RoIPool
+## [仅 API 调用方式不一致]torchvision.ops.RoIPool
 
 ### [torchvision.ops.RoIPool](https://pytorch.org/vision/main/generated/torchvision.ops.RoIPool.html)
 

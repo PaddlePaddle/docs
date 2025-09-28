@@ -1,4 +1,4 @@
-## [参数完全一致]torchvision.transforms.functional.adjust_contrast
+## [仅 API 调用方式不一致]torchvision.transforms.functional.adjust_contrast
 
 ### [torchvision.transforms.functional.adjust_contrast](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.adjust_contrast.html)
 

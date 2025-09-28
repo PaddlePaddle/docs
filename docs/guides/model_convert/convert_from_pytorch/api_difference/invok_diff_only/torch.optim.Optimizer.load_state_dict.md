@@ -1,4 +1,4 @@
-## [ 参数完全一致 ]torch.optim.Optimizer.load_state_dict
+## [仅 API 调用方式不一致]torch.optim.Optimizer.load_state_dict
 
 ### [torch.optim.Optimizer.load_state_dict](https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.load_state_dict.html#torch.optim.Optimizer.load_state_dict)
 

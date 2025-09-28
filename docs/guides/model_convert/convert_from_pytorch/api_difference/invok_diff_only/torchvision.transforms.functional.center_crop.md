@@ -1,4 +1,4 @@
-## [参数完全一致]torchvision.transforms.functional.center_crop
+## [仅 API 调用方式不一致]torchvision.transforms.functional.center_crop
 
 ### [torchvision.transforms.functional.center_crop](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.center_crop.html)
 

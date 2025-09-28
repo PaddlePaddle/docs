@@ -1,4 +1,4 @@
-## [ 无参数 ] torch.Tensor.negative_
+## [仅 API 调用方式不一致] torch.Tensor.negative_
 
 ### [torch.Tensor.negative_](https://pytorch.org/docs/stable/generated/torch.Tensor.negative_.html)
 

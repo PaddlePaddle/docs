@@ -1,4 +1,4 @@
-## [参数完全一致]torch.cuda.set_stream
+## [仅 API 调用方式不一致]torch.cuda.set_stream
 
 ### [torch.cuda.set_stream](https://pytorch.org/docs/stable/generated/torch.cuda.set_stream.html#torch.cuda.set_stream)
 

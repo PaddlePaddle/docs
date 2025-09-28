@@ -1,4 +1,4 @@
-## [参数完全一致]torch.autograd.graph.saved_tensors_hooks
+## [仅 API 调用方式不一致]torch.autograd.graph.saved_tensors_hooks
 
 ### [torch.autograd.graph.saved_tensors_hooks](https://pytorch.org/docs/stable/autograd.html?highlight=saved_tensors_hooks#torch.autograd.graph.saved_tensors_hooks)
 

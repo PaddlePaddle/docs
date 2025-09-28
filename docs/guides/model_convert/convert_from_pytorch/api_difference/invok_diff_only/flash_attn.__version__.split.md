@@ -1,4 +1,4 @@
-## [ 参数完全一致 ] flash_attn._\_version__.split
+## [仅 API 调用方式不一致] flash_attn._\_version__.split
 
 ### [flash_attn._\_version__.split](https://github.com/Dao-AILab/flash-attention/blob/72e27c6320555a37a83338178caa25a388e46121/flash_attn/__init__.py)
 

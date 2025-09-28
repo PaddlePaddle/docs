@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.distributions.constraints.Constraint
+## [仅 API 调用方式不一致]torch.distributions.constraints.Constraint
 
 ### [torch.distributions.constraints.Constraint](https://pytorch.org/docs/stable/distributions.html#module-torch.distributions.constraints)
 

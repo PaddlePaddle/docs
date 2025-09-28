@@ -1,4 +1,4 @@
-## [无参数]torch.get_default_device
+## [仅 API 调用方式不一致]torch.get_default_device
 
 ### [torch.get_default_device](https://pytorch.org/docs/stable/generated/torch.get_default_device.html#torch-get-default-device)
 

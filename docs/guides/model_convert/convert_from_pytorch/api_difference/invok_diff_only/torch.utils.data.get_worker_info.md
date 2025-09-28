@@ -1,4 +1,4 @@
-## [无参数]torch.utils.data.get_worker_info
+## [仅 API 调用方式不一致]torch.utils.data.get_worker_info
 
 ### [torch.utils.data.get_worker_info](https://pytorch.org/docs/stable/data.html#torch.utils.data.get_worker_info)
 

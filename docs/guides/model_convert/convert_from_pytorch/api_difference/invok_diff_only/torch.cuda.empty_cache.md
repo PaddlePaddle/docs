@@ -1,4 +1,4 @@
-## [无参数]torch.cuda.empty_cache
+## [仅 API 调用方式不一致]torch.cuda.empty_cache
 
 ### [torch.cuda.empty_cache](https://pytorch.org/docs/stable/generated/torch.cuda.empty_cache.html#torch.cuda.empty_cache)
 

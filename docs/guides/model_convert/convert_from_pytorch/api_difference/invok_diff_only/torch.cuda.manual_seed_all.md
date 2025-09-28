@@ -1,4 +1,4 @@
-## [参数完全一致]torch.cuda.manual_seed_all
+## [仅 API 调用方式不一致]torch.cuda.manual_seed_all
 
 ### [torch.cuda.manual_seed_all](https://pytorch.org/docs/2.0/generated/torch.cuda.manual_seed_all.html#torch.cuda.manual_seed_all)
 

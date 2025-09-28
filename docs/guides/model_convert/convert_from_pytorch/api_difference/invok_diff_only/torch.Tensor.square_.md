@@ -1,4 +1,4 @@
-## [ 无参数 ] torch.Tensor.square_
+## [仅 API 调用方式不一致] torch.Tensor.square_
 
 ### [torch.Tensor.square_](https://pytorch.org/docs/stable/generated/torch.Tensor.square_.html)
 

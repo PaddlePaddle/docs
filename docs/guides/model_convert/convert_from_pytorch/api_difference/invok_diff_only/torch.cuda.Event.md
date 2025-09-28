@@ -1,4 +1,4 @@
-## [参数完全一致]torch.cuda.Event
+## [仅 API 调用方式不一致]torch.cuda.Event
 
 ### [torch.cuda.Event](https://pytorch.org/docs/stable/generated/torch.cuda.Event.html#torch.cuda.Event)
 

@@ -1,4 +1,4 @@
-## [参数完全一致]torch.cuda.memory_reserved
+## [仅 API 调用方式不一致]torch.cuda.memory_reserved
 
 ### [torch.cuda.memory_reserved](https://pytorch.org/docs/stable/generated/torch.cuda.memory_reserved.html#torch.cuda.memory_reserved)
 

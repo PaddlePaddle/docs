@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.utils.cpp_extension.CUDA_HOME
+## [仅 API 调用方式不一致]torch.utils.cpp_extension.CUDA_HOME
 ### [torch.utils.cpp_extension.CUDA_HOME]()
 
 ```python

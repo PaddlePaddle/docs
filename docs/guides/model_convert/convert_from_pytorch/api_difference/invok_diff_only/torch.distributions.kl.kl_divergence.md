@@ -1,4 +1,4 @@
-## [参数完全一致]torch.distributions.kl.kl_divergence
+## [仅 API 调用方式不一致]torch.distributions.kl.kl_divergence
 
 ### [torch.distributions.kl.kl_divergence](https://pytorch.org/docs/stable/distributions.html?highlight=torch+distributions+kl+kl_divergence#torch.distributions.kl.kl_divergence)
 

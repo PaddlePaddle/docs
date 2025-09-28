@@ -1,4 +1,4 @@
-## [参数完全一致]torchvision.transforms.functional.hflip
+## [仅 API 调用方式不一致]torchvision.transforms.functional.hflip
 
 ### [torchvision.transforms.functional.hflip](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.hflip.html)
 

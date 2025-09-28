@@ -1,4 +1,4 @@
-## [参数完全一致]torchvision.transforms.Compose
+## [仅 API 调用方式不一致]torchvision.transforms.Compose
 
 ### [torchvision.transforms.Compose](https://pytorch.org/vision/main/generated/torchvision.transforms.Compose.html)
 

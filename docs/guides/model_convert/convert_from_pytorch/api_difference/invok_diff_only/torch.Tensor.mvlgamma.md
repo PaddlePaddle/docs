@@ -1,4 +1,4 @@
-## [ 参数完全一致 ]torch.Tensor.mvlgamma
+## [仅 API 调用方式不一致]torch.Tensor.mvlgamma
 
 ### [torch.Tensor.mvlgamma](https://pytorch.org/docs/stable/generated/torch.Tensor.mvlgamma.html#torch-tensor-mvlgamma)
 

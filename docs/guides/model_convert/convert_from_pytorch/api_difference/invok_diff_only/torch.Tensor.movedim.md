@@ -1,4 +1,4 @@
-## [ 参数完全一致 ]torch.Tensor.movedim
+## [仅 API 调用方式不一致]torch.Tensor.movedim
 
 ### [torch.Tensor.movedim](https://pytorch.org/docs/stable/generated/torch.Tensor.movedim.html)
 

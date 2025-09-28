@@ -1,4 +1,4 @@
-## [参数完全一致]torchvision.transforms.functional.erase
+## [仅 API 调用方式不一致]torchvision.transforms.functional.erase
 
 ### [torchvision.transforms.functional.erase](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.erase.html?highlight=erase#torchvision.transforms.functional.erase)
 

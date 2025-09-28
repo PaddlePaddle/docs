@@ -1,4 +1,4 @@
-## [ 无参数 ] torch.Tensor.imag
+## [仅 API 调用方式不一致] torch.Tensor.imag
 
 ### [torch.Tensor.imag](https://pytorch.org/docs/stable/generated/torch.Tensor.imag.html)
 

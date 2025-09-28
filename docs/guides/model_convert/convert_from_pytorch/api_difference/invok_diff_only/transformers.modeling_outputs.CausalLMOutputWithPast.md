@@ -1,4 +1,4 @@
-## [参数完全一致]transformers.modeling_outputs.CausalLMOutputWithPast
+## [仅 API 调用方式不一致]transformers.modeling_outputs.CausalLMOutputWithPast
 
 ### [transformers.modeling_outputs.CausalLMOutputWithPast](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast)
 

@@ -1,4 +1,4 @@
-## [ 参数完全一致 ]torch.nn.utils.clip_grad_value_
+## [仅 API 调用方式不一致]torch.nn.utils.clip_grad_value_
 ### [torch.nn.utils.clip_grad_value_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_value_.html?highlight=clip_grad_value_#torch.nn.utils.clip_grad_value_)
 
 ```python

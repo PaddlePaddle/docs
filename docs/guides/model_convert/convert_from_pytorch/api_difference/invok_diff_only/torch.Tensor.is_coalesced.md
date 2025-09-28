@@ -1,4 +1,4 @@
-## [ 无参数 ] torch.Tensor.is_coalesced
+## [仅 API 调用方式不一致] torch.Tensor.is_coalesced
 
 ### [torch.Tensor.is_coalesced](https://pytorch.org/docs/stable/generated/torch.Tensor.is_coalesced.html#torch-tensor-is-coalesced)
 

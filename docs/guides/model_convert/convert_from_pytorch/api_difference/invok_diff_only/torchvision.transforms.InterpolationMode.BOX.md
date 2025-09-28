@@ -1,4 +1,4 @@
-## [ 无参数 ]torchvision.transforms.InterpolationMode.BOX
+## [仅 API 调用方式不一致]torchvision.transforms.InterpolationMode.BOX
 
 ### [torchvision.transforms.InterpolationMode.BOX](https://pytorch.org/vision/stable/index.html)
 

@@ -1,4 +1,4 @@
-## [参数完全一致]torchvision.transforms.functional.adjust_hue
+## [仅 API 调用方式不一致]torchvision.transforms.functional.adjust_hue
 
 ### [torchvision.transforms.functional.adjust_hue](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.adjust_hue.html)
 

@@ -1,4 +1,4 @@
-## [参数完全一致]torch.autograd.function.FunctionCtx.set_materialize_grads
+## [仅 API 调用方式不一致]torch.autograd.function.FunctionCtx.set_materialize_grads
 
 ### [torch.autograd.function.FunctionCtx.set_materialize_grads](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.set_materialize_grads.html#torch.autograd.function.FunctionCtx.set_materialize_grads)
 

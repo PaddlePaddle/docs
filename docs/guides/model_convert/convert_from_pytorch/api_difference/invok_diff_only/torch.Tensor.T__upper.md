@@ -1,4 +1,4 @@
-## [ 无参数 ] torch.Tensor.T
+## [仅 API 调用方式不一致] torch.Tensor.T
 
 ### [torch.Tensor.T](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.T)
 

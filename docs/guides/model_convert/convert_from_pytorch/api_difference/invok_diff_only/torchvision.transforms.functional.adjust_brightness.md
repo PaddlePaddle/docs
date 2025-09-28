@@ -1,4 +1,4 @@
-## [参数完全一致]torchvision.transforms.functional.adjust_brightness
+## [仅 API 调用方式不一致]torchvision.transforms.functional.adjust_brightness
 
 ### [torchvision.transforms.functional.adjust_brightness](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.adjust_brightness.html)
 

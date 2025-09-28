@@ -1,4 +1,4 @@
-## [参数完全一致]torch.nn.HuberLoss
+## [仅 API 调用方式不一致]torch.nn.HuberLoss
 
 ### [torch.nn.HuberLoss](https://pytorch.org/docs/stable/generated/torch.nn.HuberLoss.html#torch.nn.HuberLoss)
 

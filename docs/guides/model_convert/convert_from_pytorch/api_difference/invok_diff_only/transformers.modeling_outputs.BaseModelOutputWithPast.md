@@ -1,4 +1,4 @@
-## [参数完全一致]transformers.modeling_outputs.BaseModelOutputWithPast
+## [仅 API 调用方式不一致]transformers.modeling_outputs.BaseModelOutputWithPast
 
 ### [transformers.modeling_outputs.BaseModelOutputWithPast](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast)
 

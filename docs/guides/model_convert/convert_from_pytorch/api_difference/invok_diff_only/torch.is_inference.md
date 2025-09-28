@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.is_inference
+## [仅 API 调用方式不一致]torch.is_inference
 
 ### [torch.is_inference]()
 

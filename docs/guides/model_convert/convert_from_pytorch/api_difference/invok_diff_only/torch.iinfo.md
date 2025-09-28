@@ -1,4 +1,4 @@
-## [参数完全一致]torch.iinfo
+## [仅 API 调用方式不一致]torch.iinfo
 
 ### [torch.iinfo](https://pytorch.org/docs/stable/type_info.html#torch-iinfo)
 

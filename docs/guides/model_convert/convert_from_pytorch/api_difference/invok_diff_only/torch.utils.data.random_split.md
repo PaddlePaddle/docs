@@ -1,4 +1,4 @@
-## [ 参数完全一致 ]torch.utils.data.random_split
+## [仅 API 调用方式不一致]torch.utils.data.random_split
 ### [torch.utils.data.random_split](https://pytorch.org/docs/stable/data.html?highlight=torch+utils+data+random_split#torch.utils.data.random_split)
 
 ```python

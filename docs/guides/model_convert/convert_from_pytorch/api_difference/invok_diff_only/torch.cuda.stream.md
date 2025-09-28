@@ -1,4 +1,4 @@
-## [参数完全一致]torch.cuda.stream
+## [仅 API 调用方式不一致]torch.cuda.stream
 
 ### [torch.cuda.stream](https://pytorch.org/docs/stable/generated/torch.cuda.stream.html)
 

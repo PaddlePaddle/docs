@@ -1,4 +1,4 @@
-## [ 参数完全一致 ]torch.utils.data.SequentialSampler
+## [仅 API 调用方式不一致]torch.utils.data.SequentialSampler
 
 ### [torch.utils.data.SequentialSampler](https://pytorch.org/docs/stable/generated/torch.utils.data.SequentialSampler.html)
 

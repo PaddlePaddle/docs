@@ -1,4 +1,4 @@
-## [参数完全一致]torch.autograd.Function.forward
+## [仅 API 调用方式不一致]torch.autograd.Function.forward
 
 ### [torch.autograd.Function.forward](https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward)
 

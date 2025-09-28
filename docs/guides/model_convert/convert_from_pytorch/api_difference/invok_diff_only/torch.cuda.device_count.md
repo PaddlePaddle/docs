@@ -1,4 +1,4 @@
-## [无参数]torch.cuda.device_count
+## [仅 API 调用方式不一致]torch.cuda.device_count
 
 ### [torch.cuda.device_count](https://pytorch.org/docs/stable/generated/torch.cuda.device_count.html#torch.cuda.device_count)
 
