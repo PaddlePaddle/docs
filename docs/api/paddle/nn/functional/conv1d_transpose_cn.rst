@@ -105,3 +105,10 @@ conv1d_transpose
 
     y = F.conv1d_transpose(x, w)
     print(y)  # [1, 1, 5]
+
+**输出：**
+
+.. code-block:: text
+
+    Tensor(shape=[1, 1, 5], dtype=float32, place=Place(cpu), stop_gradient=True,
+    [[[60., 16., 99., 75., 4. ]]])
