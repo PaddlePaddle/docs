@@ -5,7 +5,7 @@ cummax
 
 .. py:function:: paddle.cummax(x, axis=None, dtype='int64', name=None)
 
-沿给定  ``axis``  计算 Tensor  ``x``  的累积最大值。
+沿给定 ``axis`` 计算 Tensor ``x`` 的累积最大值。
 
 .. note::
     结果的第一个元素和输入的第一个元素相同。
@@ -19,8 +19,8 @@ cummax
 
 返回
 ::::::::::
-    -  ``out``  (Tensor)：返回累积最大值操作的结果，累积最大值结果类型和输入 x 相同。
-    -  ``indices``  (Tensor)：返回对应累积最大值操作的的索引结果。
+    - ``out`` (Tensor)：返回累积最大值操作的结果，累积最大值结果类型和输入 x 相同。
+    - ``indices`` (Tensor)：返回对应累积最大值操作的的索引结果。
 
 代码示例
 ::::::::::

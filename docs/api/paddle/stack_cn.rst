@@ -8,7 +8,7 @@ stack
 
 
 沿 axis 轴对输入 x 进行堆叠操作。要求所有输入 Tensor 有相同的 Shape 和数据类型。
-例如，输入 x 为 N 个 Shape 为 [A, B]的 Tensor，如果  ``axis==0`` ，则输出 Tensor 的 Shape 为 [N, A, B]；如果  ``axis==1`` ，则输出 Tensor 的 Shape 为 [A, N, B]；以此类推。
+例如，输入 x 为 N 个 Shape 为 [A, B]的 Tensor，如果 ``axis==0``，则输出 Tensor 的 Shape 为 [N, A, B]；如果 ``axis==1``，则输出 Tensor 的 Shape 为 [A, N, B]；以此类推。
 
 .. code-block:: text
 
@@ -73,14 +73,14 @@ stack
 参数
 :::::::::
 
-    - **x** (list[Tensor]|tuple[Tensor]) – 输入 x 是多个 Tensor，且这些 Tensor 的维度和数据类型必须相同。支持的数据类型：float32、float64、int32、int64。别名  ``input`` 。
-    - **axis** (int，可选) – 指定对输入 Tensor 进行堆叠运算的轴，有效 axis 的范围是：[−(R+1),R+1)，R 是输入中第一个 Tensor 的维数。如果 axis < 0，则 axis=axis+R+1。默认值为 0。别名  ``dim`` 。
+    - **x** (list[Tensor]|tuple[Tensor]) – 输入 x 是多个 Tensor，且这些 Tensor 的维度和数据类型必须相同。支持的数据类型：float32、float64、int32、int64。别名 ``input``。
+    - **axis** (int，可选) – 指定对输入 Tensor 进行堆叠运算的轴，有效 axis 的范围是：[−(R+1),R+1)，R 是输入中第一个 Tensor 的维数。如果 axis < 0，则 axis=axis+R+1。默认值为 0。别名 ``dim``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 关键字参数
 :::::::::
 
-    - **out** (Tensor，可选) - 输出 Tensor，若不为  ``None`` ，计算结果将保存在该 Tensor 中，默认值为  ``None`` 。
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 :::::::::

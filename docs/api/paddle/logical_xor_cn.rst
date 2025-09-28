@@ -5,32 +5,32 @@ logical_xor
 
 .. py:function:: paddle.logical_xor(x, y, out=None, name=None)
 
-逐元素的对  ``X``  和  ``Y``  进行逻辑异或运算。
+逐元素的对 ``X`` 和 ``Y`` 进行逻辑异或运算。
 
 .. math::
         Out = (X || Y) \&\& !(X \&\& Y)
 
 .. note::
-     ``paddle.logical_xor``  遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
+    ``paddle.logical_xor`` 遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
 
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
 .. note::
-    别名支持: 参数名  ``input``  可替代  ``x`` ，  ``other``  可替代  ``y`` 。
+    别名支持: 参数名 ``input`` 可替代 ``x``， ``other`` 可替代 ``y``。
 
 参数
 ::::::::::::
 
         - **x** （Tensor） - 输入的 `Tensor`，支持的数据类型为 bool, int8, int16, int32, int64, bfloat16, float16, float32, float64, complex64, complex128。
-          别名：  ``input`` 
+          别名： ``input``
         - **y** （Tensor） - 输入的 `Tensor`，支持的数据类型为 bool, int8, int16, int32, int64, bfloat16, float16, float32, float64, complex64, complex128。
-          别名：  ``other`` 
+          别名： ``other``
         - **out** （Tensor，可选） - 指定算子输出结果的 `Tensor`，可以是程序中已经创建的任何 Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。
         - **name** （str，可选） - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
-  ``Tensor`` ，维度 ``x``  维度相同，存储运算后的结果。
+ ``Tensor``，维度``x`` 维度相同，存储运算后的结果。
 
 代码示例
 ::::::::::::

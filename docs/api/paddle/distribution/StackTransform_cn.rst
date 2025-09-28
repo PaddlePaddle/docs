@@ -5,7 +5,7 @@ StackTransform
 
 .. py:class:: paddle.distribution.StackTransform(transforms, axis=0)
 
- ``StackTransform``  将一系列变换沿着某个特定轴作用于一个输入 Tensor 上。
+``StackTransform`` 将一系列变换沿着某个特定轴作用于一个输入 Tensor 上。
 
 参数
 :::::::::
@@ -53,7 +53,7 @@ forward_log_det_jacobian(x)
 
 计算正变换雅可比行列式绝对值的对数。
 
-如果变换不是一一映射，则雅可比矩阵不存在，抛出  ``NotImplementedError`` 。
+如果变换不是一一映射，则雅可比矩阵不存在，抛出 ``NotImplementedError``。
 
 **参数**
 
@@ -69,7 +69,7 @@ inverse_log_det_jacobian(y)
 
 计算逆变换雅可比行列式绝对值的对数。
 
-与  ``forward_log_det_jacobian``  互为负数。
+与 ``forward_log_det_jacobian`` 互为负数。
 
 **参数**
 

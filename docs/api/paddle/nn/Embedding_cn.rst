@@ -5,12 +5,12 @@ Embedding
 
 .. py:class:: paddle.nn.Embedding(num_embeddings, embedding_dim, padding_idx=None, max_norm=None, norm_type=2.0, *, scale_grad_by_freq=False, sparse=False, _weight=None, _freeze=False, device=None, dtype=None, weight_attr=None, name=None)
 
-嵌入层(Embedding Layer)，用于构建  ``Embedding``  的一个可调用对象，具体用法参照  ``代码示例`` 。其根据  ``x``  中的 id 信息从 embedding 矩阵中查询对应 embedding 信息，并会根据输入的 size (num_embeddings, embedding_dim)和 weight_attr 自动构造一个二维 embedding 矩阵。
+嵌入层(Embedding Layer)，用于构建 ``Embedding`` 的一个可调用对象，具体用法参照 ``代码示例``。其根据 ``x`` 中的 id 信息从 embedding 矩阵中查询对应 embedding 信息，并会根据输入的 size (num_embeddings, embedding_dim)和 weight_attr 自动构造一个二维 embedding 矩阵。
 
 输出的 Tensor 的 shape 是在输入 Tensor shape 的最后一维后面添加了 embedding_dim 的维度。
 
 .. note::
-   input 中的 id 必须满足  ``0 <= id < size[0]`` ，否则程序会抛异常退出。
+   input 中的 id 必须满足 ``0 <= id < size[0]``，否则程序会抛异常退出。
 
 .. code-block:: text
 
@@ -35,11 +35,11 @@ Embedding
 参数
 ::::::::::::
 
-    - **num_embeddings** (int) - 嵌入字典的大小，input 中的 id 必须满足  ``0 <= id < num_embeddings``  。
+    - **num_embeddings** (int) - 嵌入字典的大小，input 中的 id 必须满足 ``0 <= id < num_embeddings`` 。
     - **embedding_dim** (int) - 每个嵌入向量的维度。
-    - **padding_idx** (int|long|None，可选) - padding_idx 的配置区间为  ``[-weight.shape[0], weight.shape[0])`` ，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。
-    - **max_norm** (float，可选) - 若声明，会将范数大于此值的词嵌入向量重新归一化，使其范数等于此值。在动态图模式下会对  ``weight``  产生 inplace 修改。默认值为 None。
-    - **norm_type** (float) - 应用  ``max_norm``  时所计算的 p 阶范数的 p 值。默认值 2.0。
+    - **padding_idx** (int|long|None，可选) - padding_idx 的配置区间为 ``[-weight.shape[0], weight.shape[0])``，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。
+    - **max_norm** (float，可选) - 若声明，会将范数大于此值的词嵌入向量重新归一化，使其范数等于此值。在动态图模式下会对 ``weight`` 产生 inplace 修改。默认值为 None。
+    - **norm_type** (float) - 应用 ``max_norm`` 时所计算的 p 阶范数的 p 值。默认值 2.0。
 
 关键字参数
 ::::::::::::
@@ -60,7 +60,7 @@ Embedding
 weight
 '''''''''
 
-本层的可学习参数，类型为  ``Parameter``  。
+本层的可学习参数，类型为 ``Parameter`` 。
 
 返回
 ::::::::::::

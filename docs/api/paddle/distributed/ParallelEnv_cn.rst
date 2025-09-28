@@ -6,11 +6,11 @@ ParallelEnv
 .. py:class:: paddle.distributed.ParallelEnv()
 
 .. note::
-    不推荐使用这个 API，如果需要获取 rank 和 world_size，建议使用  ``paddle.distributed.get_rank()``  和   ``paddle.distributed.get_world_size()``  。
+    不推荐使用这个 API，如果需要获取 rank 和 world_size，建议使用 ``paddle.distributed.get_rank()`` 和  ``paddle.distributed.get_world_size()`` 。
 
 这个类用于获取动态图模型并行执行所需的环境变量值。
 
-动态图并行模式现在需要使用  ``paddle.distributed.launch``  模块或者  ``paddle.distributed.spawn``  方法启动。
+动态图并行模式现在需要使用 ``paddle.distributed.launch`` 模块或者 ``paddle.distributed.spawn`` 方法启动。
 
 代码示例
 :::::::::

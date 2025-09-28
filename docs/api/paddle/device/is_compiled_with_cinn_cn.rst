@@ -5,7 +5,7 @@ is_compiled_with_cinn
 
 .. py:function:: paddle.device.is_compiled_with_cinn()
 
-检查  ``whl``  包是否可以被用来在 CINN 上运行模型。
+检查 ``whl`` 包是否可以被用来在 CINN 上运行模型。
 
 返回
 ::::::::::::

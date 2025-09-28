@@ -8,7 +8,7 @@ softmax
 
 步骤 1：输入 :attr:`x` 的 :attr:`axis` 维会被置换到最后一维；
 
-步骤 2：将输入 :attr:`x` 在逻辑上变换为二维矩阵。二维矩阵第一维（列长度）是输入除最后一维之外的其他维度值的乘积，第二维（行长度）和输入  ``axis``  维的长度相同；对于矩阵的每一行，softmax 操作对其进行重新缩放，使得该行的每个元素在 :math:`[0, 1]` 范围内，并且总和为 :math:`1`；
+步骤 2：将输入 :attr:`x` 在逻辑上变换为二维矩阵。二维矩阵第一维（列长度）是输入除最后一维之外的其他维度值的乘积，第二维（行长度）和输入 ``axis`` 维的长度相同；对于矩阵的每一行，softmax 操作对其进行重新缩放，使得该行的每个元素在 :math:`[0, 1]` 范围内，并且总和为 :math:`1`；
 
 步骤 3：softmax 操作执行完成后，执行步骤 1 和步骤 2 的逆运算，将二维矩阵恢复至和输入 :attr:`x` 相同的维度。
 
@@ -81,13 +81,13 @@ softmax
                  [0.72747516, 0.72747516, 0.72747516, 0.72747516]]]
 
 .. note::
-    别名支持: 参数名  ``input``  可替代  ``x`` ，参数名  ``dim``  可替代  ``axis``  ，如  ``softmax(input=tensor_x, dim=1, ...)``  等价于  ``softmax(x=tensor_x, axis=1, ...)``  。
+    别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``dim`` 可替代 ``axis`` ，如 ``softmax(input=tensor_x, dim=1, ...)`` 等价于 ``softmax(x=tensor_x, axis=1, ...)`` 。
 
 参数
 ::::::::::
 
-    - **x** (Tensor) - 输入的  ``Tensor`` ，数据类型为 bfloat16 、 float16 、 float32 或 float64。别名：  ``input`` 。
-    - **axis** (int，可选) - 指定对输入 :attr:`x` 进行运算的轴。:attr:`axis` 的有效范围是 :math:`[-D, D)`，:math:`D` 是输入 :attr:`x` 的维度，:attr:`axis` 为负值时与 :math:`axis + D` 等价。默认值为 -1。别名：  ``dim`` 。
+    - **x** (Tensor) - 输入的 ``Tensor``，数据类型为 bfloat16 、 float16 、 float32 或 float64。别名： ``input``。
+    - **axis** (int，可选) - 指定对输入 :attr:`x` 进行运算的轴。:attr:`axis` 的有效范围是 :math:`[-D, D)`，:math:`D` 是输入 :attr:`x` 的维度，:attr:`axis` 为负值时与 :math:`axis + D` 等价。默认值为 -1。别名： ``dim``。
     - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 `Tensor` 的数据类型，支持 bfloat16、 float16、 float32、float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **out** (Tensor，可选) - 指定输出结果的 `Tensor`，默认值为 None。
@@ -95,7 +95,7 @@ softmax
 返回
 ::::::::::
 
-     ``Tensor`` ，形状和 :attr:`x` 相同，数据类型为 :attr:`dtype` 或者和 :attr:`x` 相同。
+    ``Tensor``，形状和 :attr:`x` 相同，数据类型为 :attr:`dtype` 或者和 :attr:`x` 相同。
 
 代码示例
 ::::::::::
