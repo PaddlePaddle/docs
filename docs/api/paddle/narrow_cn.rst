@@ -17,7 +17,7 @@ narrow
 
 返回
 :::::::::
- ``Tensor`` ，与 input 数据类型相同，形状仅在 dim 维变为 length，其余维不变。
+``Tensor``，与 input 数据类型相同，形状仅在 dim 维变为 length，其余维不变。
 
 代码示例
 :::::::::

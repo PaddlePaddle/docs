@@ -20,7 +20,7 @@ Imikolov
 
 返回
 :::::::::
- ``Dataset`` ，imikolov 数据集实例。
+``Dataset``，imikolov 数据集实例。
 
 代码示例
 :::::::::

@@ -5,9 +5,9 @@ diag_embed
 
 .. py:function:: paddle.diag_embed(input, offset=0, dim1=-2, dim2=-1)
 
-创建一个 Tensor，其在指定的 2D 平面（由  ``dim1``  和  ``dim2``  指定）上的对角线由输入  ``input``  填充。默认的，指定的 2D 平面由返回 Tensor 的最后两维组成。
+创建一个 Tensor，其在指定的 2D 平面（由 ``dim1`` 和 ``dim2`` 指定）上的对角线由输入 ``input`` 填充。默认的，指定的 2D 平面由返回 Tensor 的最后两维组成。
 
-参数  ``offset``  确定在指定的二维平面中填充对角线的位置：
+参数 ``offset`` 确定在指定的二维平面中填充对角线的位置：
 
  - 如果 offset = 0，则填充主对角线。
  - 如果 offset > 0，则填充主对角线右上的对角线。

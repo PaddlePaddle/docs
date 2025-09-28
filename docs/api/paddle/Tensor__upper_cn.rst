@@ -6,14 +6,14 @@ Tensor
 .. py:class:: paddle.Tensor
 
 
- ``Tensor``  是 Paddle 中最为基础的数据结构，请参考 `Tensor 介绍 <https://www.paddlepaddle.org.cn/documentation/docs/guides/beginner/tensor_cn.html>`_
+``Tensor`` 是 Paddle 中最为基础的数据结构，请参考 `Tensor 介绍 <https://www.paddlepaddle.org.cn/documentation/docs/guides/beginner/tensor_cn.html>`_
 
-- 用预先存在的  ``data``  数据创建 1 个 Tensor，请参考 :ref:`cn_api_paddle_tensor`
-- 创建一个指定  ``shape``  的 Tensor，请参考 :ref:`cn_api_paddle_ones` 、 :ref:`cn_api_paddle_zeros`、 :ref:`cn_api_paddle_full`
-- 创建一个与其他 Tensor 具有相同  ``shape``  与  ``dtype``  的 Tensor，请参考 :ref:`cn_api_paddle_ones_like` 、 :ref:`cn_api_paddle_zeros_like` 、 :ref:`cn_api_paddle_full_like`
+- 用预先存在的 ``data`` 数据创建 1 个 Tensor，请参考 :ref:`cn_api_paddle_tensor`
+- 创建一个指定 ``shape`` 的 Tensor，请参考 :ref:`cn_api_paddle_ones` 、 :ref:`cn_api_paddle_zeros`、 :ref:`cn_api_paddle_full`
+- 创建一个与其他 Tensor 具有相同 ``shape`` 与 ``dtype`` 的 Tensor，请参考 :ref:`cn_api_paddle_ones_like` 、 :ref:`cn_api_paddle_zeros_like` 、 :ref:`cn_api_paddle_full_like`
 
 .. note::
-    支持与 torch 相同的构造函数，但不鼓励使用构造函数直接构建，推荐使用  ``paddle.tensor``  构建 Tensor，详细请参考 :ref:`cn_api_paddle_tensor`。
+    支持与 torch 相同的构造函数，但不鼓励使用构造函数直接构建，推荐使用 ``paddle.tensor`` 构建 Tensor，详细请参考 :ref:`cn_api_paddle_tensor`。
 
     **代码示例**
 
@@ -29,21 +29,21 @@ Tensor
             paddle.Tensor(data=[1,2,3])
             paddle.Tensor(data=[1,2,3], device="cpu")
 
-    支持与 torch 相同的  ``[Dtype]Tensor`` ，其使用方式与  ``Tensor``  相同，但不鼓励使用该构造方式，推荐使用  ``paddle.tensor``  与  ``dtype``  参数结合的方式构造 Tensor，详细请参考 :ref:`cn_api_paddle_tensor`。
+    支持与 torch 相同的 ``[Dtype]Tensor``，其使用方式与 ``Tensor`` 相同，但不鼓励使用该构造方式，推荐使用 ``paddle.tensor`` 与 ``dtype`` 参数结合的方式构造 Tensor，详细请参考 :ref:`cn_api_paddle_tensor`。
 
     ======================================= ===========================================
     Data type                               \[Dtype\]Tensor
     ======================================= ===========================================
-    32-bit floating point                    ``paddle.FloatTensor`` 
-    64-bit floating point                    ``paddle.DoubleTensor`` 
-    16-bit floating point                    ``paddle.HalfTensor`` 
-    16-bit floating point                    ``paddle.BFloat16Tensor`` 
-    8-bit integer (unsigned)                 ``paddle.ByteTensor`` 
-    8-bit integer (signed)                   ``paddle.CharTensor`` 
-    16-bit integer (signed)                  ``paddle.ShortTensor`` 
-    32-bit integer (signed)                  ``paddle.IntTensor`` 
-    64-bit integer (signed)                  ``paddle.LongTensor`` 
-    Boolean                                  ``paddle.BoolTensor`` 
+    32-bit floating point                   ``paddle.FloatTensor``
+    64-bit floating point                   ``paddle.DoubleTensor``
+    16-bit floating point                   ``paddle.HalfTensor``
+    16-bit floating point                   ``paddle.BFloat16Tensor``
+    8-bit integer (unsigned)                ``paddle.ByteTensor``
+    8-bit integer (signed)                  ``paddle.CharTensor``
+    16-bit integer (signed)                 ``paddle.ShortTensor``
+    32-bit integer (signed)                 ``paddle.IntTensor``
+    64-bit integer (signed)                 ``paddle.LongTensor``
+    Boolean                                 ``paddle.BoolTensor``
     ======================================= ===========================================
 
 create_tensor(dtype, name=None, persistable=False)
@@ -257,12 +257,12 @@ COPY-FROM: paddle.Tensor.layout
 requires_grad
 :::::::::
 
-查看一个 Tensor 是否计算并传播梯度。 ``requires_grad``  属性与  ``stop_gradient``  属性含义相反：
+查看一个 Tensor 是否计算并传播梯度。``requires_grad`` 属性与 ``stop_gradient`` 属性含义相反：
 
-- 当  ``requires_grad``  为  ``True``  时，该 Tensor 会计算梯度并参与梯度传播
-- 当  ``requires_grad``  为  ``False``  时，该 Tensor 不会计算梯度，并会阻止 Autograd 的梯度传播
+- 当 ``requires_grad`` 为 ``True`` 时，该 Tensor 会计算梯度并参与梯度传播
+- 当 ``requires_grad`` 为 ``False`` 时，该 Tensor 不会计算梯度，并会阻止 Autograd 的梯度传播
 
-用户自行创建的 Tensor， ``requires_grad``  默认为  ``False`` ；模型参数的  ``requires_grad``  默认为  ``True`` 。
+用户自行创建的 Tensor，``requires_grad`` 默认为 ``False``；模型参数的 ``requires_grad`` 默认为 ``True``。
 
 **代码示例**
 
@@ -695,7 +695,7 @@ asin(name=None)
 astype(dtype)
 :::::::::
 
-将 Tensor 的类型转换为  ``dtype`` ，并返回一个新的 Tensor。
+将 Tensor 的类型转换为 ``dtype``，并返回一个新的 Tensor。
 
 参数：
     - **dtype** (str|paddle.dtype|np.dtype，可选) - 转换后的 dtype，支持'bool'，'float16'，'float32'，'float64'，'int8'，'int16'，
@@ -716,7 +716,7 @@ astype(dtype)
 bfloat16()
 :::::::::
 
-如果当前 Tensor 已经是  ``bfloat16``  类型，则返回该 Tensor。否则，返回一个新的  ``bfloat16``  类型的 Tensor 副本。
+如果当前 Tensor 已经是 ``bfloat16`` 类型，则返回该 Tensor。否则，返回一个新的 ``bfloat16`` 类型的 Tensor 副本。
 
 返回： 转换后的 Tensor
 
@@ -733,7 +733,7 @@ bfloat16()
 bool()
 :::::::::
 
-如果当前 Tensor 已经是  ``bool``  类型，则返回该 Tensor。否则，返回一个新的  ``bool``  类型的 Tensor 副本。
+如果当前 Tensor 已经是 ``bool`` 类型，则返回该 Tensor。否则，返回一个新的 ``bool`` 类型的 Tensor 副本。
 
 返回： 转换后的 Tensor
 
@@ -750,7 +750,7 @@ bool()
 byte()
 :::::::::
 
-如果当前 Tensor 已经是  ``byte``  类型，则返回该 Tensor。否则，返回一个新的  ``byte``  类型的 Tensor 副本。
+如果当前 Tensor 已经是 ``byte`` 类型，则返回该 Tensor。否则，返回一个新的 ``byte`` 类型的 Tensor 副本。
 
 返回： 转换后的 Tensor
 
@@ -767,7 +767,7 @@ byte()
 char()
 :::::::::
 
-如果当前 Tensor 已经是  ``char``  类型，则返回该 Tensor。否则，返回一个新的  ``char``  类型的 Tensor 副本。
+如果当前 Tensor 已经是 ``char`` 类型，则返回该 Tensor。否则，返回一个新的 ``char`` 类型的 Tensor 副本。
 
 返回： 转换后的 Tensor
 
@@ -784,7 +784,7 @@ char()
 double()
 :::::::::
 
-如果当前 Tensor 已经是  ``double``  类型，则返回该 Tensor。否则，返回一个新的  ``double``  类型的 Tensor 副本。
+如果当前 Tensor 已经是 ``double`` 类型，则返回该 Tensor。否则，返回一个新的 ``double`` 类型的 Tensor 副本。
 
 返回： 转换后的 Tensor
 
@@ -801,7 +801,7 @@ double()
 float()
 :::::::::
 
-如果当前 Tensor 已经是  ``float``  类型，则返回该 Tensor。否则，返回一个新的  ``float``  类型的 Tensor 副本。
+如果当前 Tensor 已经是 ``float`` 类型，则返回该 Tensor。否则，返回一个新的 ``float`` 类型的 Tensor 副本。
 
 返回： 转换后的 Tensor
 
@@ -818,7 +818,7 @@ float()
 half()
 :::::::::
 
-如果当前 Tensor 已经是  ``half``  类型，则返回该 Tensor。否则，返回一个新的  ``half``  类型的 Tensor 副本。
+如果当前 Tensor 已经是 ``half`` 类型，则返回该 Tensor。否则，返回一个新的 ``half`` 类型的 Tensor 副本。
 
 返回： 转换后的 Tensor
 
@@ -847,7 +847,7 @@ type_as(other)
 int()
 :::::::::
 
-如果当前 Tensor 已经是  ``int``  类型，则返回该 Tensor。否则，返回一个新的  ``int``  类型的 Tensor 副本。
+如果当前 Tensor 已经是 ``int`` 类型，则返回该 Tensor。否则，返回一个新的 ``int`` 类型的 Tensor 副本。
 
 返回： 转换后的 Tensor
 
@@ -864,7 +864,7 @@ int()
 long()
 :::::::::
 
-如果当前 Tensor 已经是  ``long``  类型，则返回该 Tensor。否则，返回一个新的  ``long``  类型的 Tensor 副本。
+如果当前 Tensor 已经是 ``long`` 类型，则返回该 Tensor。否则，返回一个新的 ``long`` 类型的 Tensor 副本。
 
 返回： 转换后的 Tensor
 
@@ -881,7 +881,7 @@ long()
 short()
 :::::::::
 
-如果当前 Tensor 已经是  ``short``  类型，则返回该 Tensor。否则，返回一个新的  ``short``  类型的 Tensor 副本。
+如果当前 Tensor 已经是 ``short`` 类型，则返回该 Tensor。否则，返回一个新的 ``short`` 类型的 Tensor 副本。
 
 返回： 转换后的 Tensor
 
@@ -898,7 +898,7 @@ short()
 cfloat()
 :::::::::
 
-如果当前 Tensor 已经是  ``cfloat``  类型，则返回该 Tensor。否则，返回一个新的  ``cfloat``  类型的 Tensor 副本。
+如果当前 Tensor 已经是 ``cfloat`` 类型，则返回该 Tensor。否则，返回一个新的 ``cfloat`` 类型的 Tensor 副本。
 
 返回： 转换后的 Tensor
 
@@ -915,7 +915,7 @@ cfloat()
 cdouble()
 :::::::::
 
-如果当前 Tensor 已经是  ``cdouble``  类型，则返回该 Tensor。否则，返回一个新的  ``cdouble``  类型的 Tensor 副本。
+如果当前 Tensor 已经是 ``cdouble`` 类型，则返回该 Tensor。否则，返回一个新的 ``cdouble`` 类型的 Tensor 副本。
 
 返回： 转换后的 Tensor
 
@@ -944,7 +944,7 @@ backward(grad_tensor=None, retain_graph=False)
 从当前 Tensor 开始计算反向的神经网络，传导并计算计算图中 Tensor 的梯度。
 
 参数：
-    - **grad_tensor** (Tensor, 可选) - 当前 Tensor 的初始梯度值。如果  ``grad_tensor``  是 None，当前 Tensor 的初始梯度值将会是值全为 1.0 的 Tensor；如果  ``grad_tensor``  不是 None，必须和当前 Tensor 有相同的长度。默认值：None。
+    - **grad_tensor** (Tensor, 可选) - 当前 Tensor 的初始梯度值。如果 ``grad_tensor`` 是 None，当前 Tensor 的初始梯度值将会是值全为 1.0 的 Tensor；如果 ``grad_tensor`` 不是 None，必须和当前 Tensor 有相同的长度。默认值：None。
 
     - **retain_graph** (bool, 可选) - 如果为 False，反向计算图将被释放。如果在 backward()之后继续添加 OP，
       需要设置为 True，此时之前的反向计算图会保留。将其设置为 False 会更加节省内存。默认值：False。
@@ -1058,7 +1058,7 @@ broadcast_to(shape, name=None)
 
 bucketize(sorted_sequence, out_int32=False, right=False, name=None)
 :::::::::
-返回: 根据给定的一维 Tensor  ``sorted_sequence``  ，输入  ``x``  对应的桶索引。
+返回: 根据给定的一维 Tensor ``sorted_sequence`` ，输入 ``x`` 对应的桶索引。
 
 返回类型：Tensor。
 
@@ -1211,7 +1211,7 @@ COPY-FROM: paddle.cosh
 count_nonzero(axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：沿给定的轴  ``axis``  统计输入 Tensor  ``x``  中非零元素的个数。
+返回：沿给定的轴 ``axis`` 统计输入 Tensor ``x`` 中非零元素的个数。
 
 返回类型：Tensor
 
@@ -1366,7 +1366,7 @@ diff(x, n=1, axis=-1, prepend=None, append=None, name=None)
 element_size()
 :::::::::
 
-返回 Tensor 单个元素在计算机中所分配的  ``bytes``  数量。
+返回 Tensor 单个元素在计算机中所分配的 ``bytes`` 数量。
 
 返回：整数 int
 
@@ -1452,21 +1452,21 @@ expand_as(y, name=None)
 exponential_(lam=1.0, name=None)
 :::::::::
 
-该 OP 为 inplace 形式，通过  ``指数分布``  随机数来填充该 Tensor。
+该 OP 为 inplace 形式，通过 ``指数分布`` 随机数来填充该 Tensor。
 
- ``lam``  是  ``指数分布``  的 :math:`\lambda` 参数。随机数符合以下概率密度函数：
+``lam`` 是 ``指数分布`` 的 :math:`\lambda` 参数。随机数符合以下概率密度函数：
 
 .. math::
 
     f(x) = \lambda e^{-\lambda x}
 
 .. note::
-    别名支持: 参数名  ``lambd``  可替代  ``lam`` ，如  ``lambd=1.0``  等价于  ``lam=1.0`` 。
+    别名支持: 参数名 ``lambd`` 可替代 ``lam``，如 ``lambd=1.0`` 等价于 ``lam=1.0``。
 
 参数：
     - **x** (Tensor) - 输入 Tensor，数据类型为 float32/float64。
     - **lam** (float) - 指数分布的 :math:`\lambda` 参数。
-      别名：  ``lambd`` 
+      别名： ``lambd``
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
@@ -1694,7 +1694,7 @@ gcd(x, y, name=None)
 gradient()
 :::::::::
 
-与  ``Tensor.grad``  相同，查看一个 Tensor 的梯度，数据类型为 numpy\.ndarray。
+与 ``Tensor.grad`` 相同，查看一个 Tensor 的梯度，数据类型为 numpy\.ndarray。
 
 返回：该 Tensor 的梯度
 返回类型：numpy\.ndarray
@@ -2131,7 +2131,7 @@ mean(axis=None, keepdim=False, name=None)
 median(axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：沿着  ``axis``  进行中位数计算的结果
+返回：沿着 ``axis`` 进行中位数计算的结果
 
 返回类型：Tensor
 
@@ -2140,7 +2140,7 @@ median(axis=None, keepdim=False, name=None)
 nanmedian(axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：沿着  ``axis``  忽略 NAN 元素进行中位数计算的结果
+返回：沿着 ``axis`` 忽略 NAN 元素进行中位数计算的结果
 
 返回类型：Tensor
 
@@ -2203,7 +2203,7 @@ mode(axis=-1, keepdim=False, name=None)
 mul_(y, name=None)
 :::::::::
 
- ``multiply``  的 inplace 版本，请参考 :ref:`cn_api_paddle_multiply`
+``multiply`` 的 inplace 版本，请参考 :ref:`cn_api_paddle_multiply`
 
 multiplex(index)
 :::::::::
@@ -2226,7 +2226,7 @@ multiply(y, axis=-1, name=None)
 mv(vec, name=None)
 :::::::::
 
-返回：当前 Tensor 向量  ``vec``  的乘积
+返回：当前 Tensor 向量 ``vec`` 的乘积
 
 返回类型：Tensor
 
@@ -2409,7 +2409,7 @@ register_hook(hook)
 参数：
     - **hook** (function) - 一个需要注册到 Tensor.grad 上的 hook 函数
 
-返回：一个能够通过调用其  ``remove()``  方法移除所注册 hook 的对象
+返回：一个能够通过调用其 ``remove()`` 方法移除所注册 hook 的对象
 
 返回类型：TensorHookRemoveHelper
 
@@ -2561,14 +2561,14 @@ Inplace 版本的 :ref:`cn_api_paddle_scatter` API，对输入 `x` 采用 Inplac
 scatter_add(index, updates, overwrite=True, name=None)
 :::::::::
 
- ``put_along_axis``  的别名
+``put_along_axis`` 的别名
 
 请参考 :ref:`cn_api_paddle_put_along_axis`
 
 scatter_add_(index, updates, overwrite=True, name=None)
 :::::::::
 
- ``put_along_axis_``  的别名
+``put_along_axis_`` 的别名
 
 请参考 :ref:`cn_api_paddle_put_along_axis_`
 
@@ -2593,7 +2593,7 @@ scatter_nd_add(index, updates, name=None)
 scatter_reduce(dim, index, src, reduce, \*, include_self=True)
 :::::::::
 
- ``put_along_axis``  的别名
+``put_along_axis`` 的别名
 
 请参考 :ref:`cn_api_paddle_put_along_axis`
 
@@ -2920,16 +2920,16 @@ COPY-FROM: paddle.Tensor.repeat
 to(*args, **kwargs)
 :::::::::
 
-转换 Tensor 的设备或/和数据类型，并且返回转换后的 Tensor。该函数将会从  ``args``  以及  ``kwargs``  中解析出要转换到的目标类型 dtype 以及目标设备 place。
+转换 Tensor 的设备或/和数据类型，并且返回转换后的 Tensor。该函数将会从 ``args`` 以及 ``kwargs`` 中解析出要转换到的目标类型 dtype 以及目标设备 place。
 目前支持一下三种方式调用该方法：
 
     1. to(dtype, blocking=True)
     2. to(device, dtype=None, blocking=True)
     3. to(other, blocking=True)
 
-其中，  ``dtype``  可以是  ``paddle.dtype`` ,  ``numpy.dtype``  类型或者是 ``["bfloat16", "float16", "float32", "float64", "int8", "int16", "int32",
-"int64", "uint8", "complex64", "complex128", "bool"] `` 中的任意一个 `` str ``。 `` device `` 可以是 `` paddle.CPUPlace() ``, `` paddle.CUDAPlace()``,
- ``paddle.CUDAPinnedPlace()`` ,  ``paddle.XPUPlace()`` ,  ``paddle.CustomPlace()``  或者  ``str`` 。  ``other``  需要是  ``Tensor``  类型。
+其中， ``dtype`` 可以是 ``paddle.dtype``, ``numpy.dtype`` 类型或者是 ``["bfloat16", "float16", "float32", "float64", "int8", "int16", "int32",
+"int64", "uint8", "complex64", "complex128", "bool"]`` 中的任意一个 ``str``。 ``device`` 可以是 ``paddle.CPUPlace()``, ``paddle.CUDAPlace()``,
+``paddle.CUDAPinnedPlace()``, ``paddle.XPUPlace()``, ``paddle.CustomPlace()`` 或者 ``str``。 ``other`` 需要是 ``Tensor`` 类型。
 
 返回：类型转换后的新的 Tensor
 
@@ -3203,7 +3203,7 @@ take_along_dim(indices, axis, broadcast=True)
 put_along_axis(indices, value, axis, reduce="assign", include_self=True, broadcast=True)
 :::::::::
 
-基于输入 indices 矩阵，将输入 value 沿着指定 axis 放置入 tensor 矩阵。索引矩阵和 value 必须和 tensor 矩阵有相同的维度，如果  ``broadcast``  为  ``True`` ，则需要能够 broadcast 与 tensor 矩阵对齐。
+基于输入 indices 矩阵，将输入 value 沿着指定 axis 放置入 tensor 矩阵。索引矩阵和 value 必须和 tensor 矩阵有相同的维度，如果 ``broadcast`` 为 ``True``，则需要能够 broadcast 与 tensor 矩阵对齐。
 
 返回：计算后的 Tensor
 
@@ -3689,25 +3689,25 @@ Inplace 版本的 :ref:`cn_api_paddle_masked_scatter` API，对输入 `x` 采用
 
 atleast_1d(name=None)
 :::::::::
-将输入转换为张量并返回至少为  ``1``  维的视图。  ``1``  维或更高维的输入会被保留。
+将输入转换为张量并返回至少为 ``1`` 维的视图。 ``1`` 维或更高维的输入会被保留。
 
-返回至少为  ``1``  维视图的 Tensor 。
+返回至少为 ``1`` 维视图的 Tensor 。
 
 请参考 :ref:`cn_api_paddle_atleast_1d`
 
 atleast_2d(name=None)
 :::::::::
-将输入转换为张量并返回至少为  ``2``  维的视图。  ``2``  维或更高维的输入会被保留。
+将输入转换为张量并返回至少为 ``2`` 维的视图。 ``2`` 维或更高维的输入会被保留。
 
-返回至少为  ``2``  维视图的 Tensor 。
+返回至少为 ``2`` 维视图的 Tensor 。
 
 请参考 :ref:`cn_api_paddle_atleast_2d`
 
 atleast_3d(name=None)
 :::::::::
-将输入转换为张量并返回至少为  ``3``  维的视图。  ``3``  维或更高维的输入会被保留。
+将输入转换为张量并返回至少为 ``3`` 维的视图。 ``3`` 维或更高维的输入会被保留。
 
-返回至少为  ``3``  维视图的 Tensor 。
+返回至少为 ``3`` 维视图的 Tensor 。
 
 请参考 :ref:`cn_api_paddle_atleast_3d`
 diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
@@ -3723,7 +3723,7 @@ diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
 select_scatter(x, values, axis, index, name=None)
 :::::::::
 
-将  ``values``  矩阵的值嵌入到  ``x``  矩阵的第  ``axis``  维的  ``index``  列,  ``values``  的形状需要与  ``x``  矩阵除去第  ``axis``  维后的形状一致
+将 ``values`` 矩阵的值嵌入到 ``x`` 矩阵的第 ``axis`` 维的 ``index`` 列, ``values`` 的形状需要与 ``x`` 矩阵除去第 ``axis`` 维后的形状一致
 
 返回：计算后的 Tensor
 
@@ -3779,18 +3779,18 @@ ormqr(x, tau, other, left=True, transpose=False)
 set_(source=None, shape=None, stride=None, offset=0, name=None)
 :::::::::
 
-将  ``self``  设置为  ``source``  的数据内存，形状，步长以及偏移量。
+将 ``self`` 设置为 ``source`` 的数据内存，形状，步长以及偏移量。
 
-仅在动态图下可用，设置后  ``self``  将与  ``source``  共享内存。
+仅在动态图下可用，设置后 ``self`` 将与 ``source`` 共享内存。
 
 参数：
-    - **source** (Tensor，可选) - 设置的目标 Tensor，可选的数据类型为 'bfloat16'、'float16'、'float32'、'float64'、'bool'、'int8'、'int16'、'int32'、'int64'、'uint8'、'complex64'、'complex128'。默认值为 None，表示将  ``self``  设置为一个 empty tensor。
-    - **shape** (list|tuple，可选) - 设置的目标 shape，每个元素需为整数。默认值为 None，表示用  ``source``  的形状作为目标 shape。
-    - **stride** (list|tuple，可选) - 设置的目标 stride，每个元素需为整数。默认值为 None，当  ``shape``  也是 None 时，使用  ``source``  的步长作为目标 stride；当  ``shape``  不是 None 时，使用该形状的默认步长。
+    - **source** (Tensor，可选) - 设置的目标 Tensor，可选的数据类型为 'bfloat16'、'float16'、'float32'、'float64'、'bool'、'int8'、'int16'、'int32'、'int64'、'uint8'、'complex64'、'complex128'。默认值为 None，表示将 ``self`` 设置为一个 empty tensor。
+    - **shape** (list|tuple，可选) - 设置的目标 shape，每个元素需为整数。默认值为 None，表示用 ``source`` 的形状作为目标 shape。
+    - **stride** (list|tuple，可选) - 设置的目标 stride，每个元素需为整数。默认值为 None，当 ``shape`` 也是 None 时，使用 ``source`` 的步长作为目标 stride；当 ``shape`` 不是 None 时，使用该形状的默认步长。
     - **offset** (int，可选) - 设置的目标 offset，指偏移数字对应存储位置的偏移量（以 byte 为单位）。默认值为 0。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回：设置后的  ``self`` 。
+返回：设置后的 ``self``。
 
 返回类型：Tensor
 
@@ -3800,14 +3800,14 @@ COPY-FROM: paddle.Tensor.set_
 resize_(shape, fill_zero=False, name=None)
 :::::::::
 
-将  ``self``  的形状重置为  ``shape`` 。
+将 ``self`` 的形状重置为 ``shape``。
 
 参数：
     - **shape** (list|tuple) - 设置的目标形状，每个元素需为整数。
-    - **fill_zero** (bool，可选) - 当目标形状的元素个数大于  ``self``  的元素个数时，若  ``fill_zero``  设为 True 则新元素将用 0 填充。默认值为 False，此时新元素的值不确定。
+    - **fill_zero** (bool，可选) - 当目标形状的元素个数大于 ``self`` 的元素个数时，若 ``fill_zero`` 设为 True 则新元素将用 0 填充。默认值为 False，此时新元素的值不确定。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回：重置形状后的  ``self`` 。
+返回：重置形状后的 ``self``。
 
 返回类型：Tensor
 
@@ -3817,23 +3817,23 @@ COPY-FROM: paddle.Tensor.resize_
 new_full(size, fill_value, \*, dtype=None, device=None, requires_grad=False, pin_memory=False)
 :::::::::
 
-创建一个与  ``self``  数据类型和设备相同的新 Tensor，并将其形状重置为  ``shape`` ，元素值全部填充为  ``fill_value`` 。
+创建一个与 ``self`` 数据类型和设备相同的新 Tensor，并将其形状重置为 ``shape``，元素值全部填充为 ``fill_value``。
 
 参数：
-    - **size** (list|tuple|Tensor) - 设置的目标形状，可以是整数列表、元组，或 1-D Tensor（数据类型为  ``int32``  或  ``int64`` ）。
+    - **size** (list|tuple|Tensor) - 设置的目标形状，可以是整数列表、元组，或 1-D Tensor（数据类型为 ``int32`` 或 ``int64``）。
       若为列表或元组，其中元素需为整数或 0 维 Tensor。
     - **fill_value** (Scalar|Tensor) - 用于填充的常量值。若为 Tensor，则应为标量（0 维 Tensor）。
 
 关键字参数:
-    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，可选： ``float16`` 、 ``float32`` 、 ``float64`` 、 ``int32`` 、 ``int64`` 、 ``complex64`` 、 ``complex128`` 。
-      若为 None，则默认与  ``self``  的 dtype 一致。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
+      若为 None，则默认与 ``self`` 的 dtype 一致。
     - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
-    - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与  ``self``  保持一致。
+    - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
     - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
 
 返回：
-    - **Tensor**，其形状为  ``shape`` ，元素值为  ``fill_value`` ，数据类型为  ``dtype`` （若未指定，则与  ``self``  一致）。
+    - **Tensor**，其形状为 ``shape``，元素值为 ``fill_value``，数据类型为 ``dtype``（若未指定，则与 ``self`` 一致）。
 
 **代码示例**
 
@@ -3842,22 +3842,22 @@ COPY-FROM: paddle.Tensor.new_full
 new_ones(size, \*, dtype=None, device=None, requires_grad=False, pin_memory=False)
 :::::::::
 
-创建一个与  ``self``  数据类型和设备相同的新 Tensor，并将其形状重置为  ``shape`` ，元素值全部填充为  ``fill_value`` 。
+创建一个与 ``self`` 数据类型和设备相同的新 Tensor，并将其形状重置为 ``shape``，元素值全部填充为 ``fill_value``。
 
 参数：
-    - **size** (list|tuple|Tensor) - 设置的目标形状，可以是整数列表、元组，或 1-D Tensor（数据类型为  ``int32``  或  ``int64`` ）。
+    - **size** (list|tuple|Tensor) - 设置的目标形状，可以是整数列表、元组，或 1-D Tensor（数据类型为 ``int32`` 或 ``int64``）。
       若为列表或元组，其中元素需为整数或 0 维 Tensor。
 
 关键字参数:
-    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，可选： ``float16`` 、 ``float32`` 、 ``float64`` 、 ``int32`` 、 ``int64`` 、 ``complex64`` 、 ``complex128`` 。
-      若为 None，则默认与  ``self``  的 dtype 一致。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
+      若为 None，则默认与 ``self`` 的 dtype 一致。
     - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
-    - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与  ``self``  保持一致。
+    - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
     - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
 
 返回：
-    - **Tensor**，其形状为  ``shape`` ，元素值为  ``1`` ，数据类型为  ``dtype`` （若未指定，则与  ``self``  一致）。
+    - **Tensor**，其形状为 ``shape``，元素值为 ``1``，数据类型为 ``dtype``（若未指定，则与 ``self`` 一致）。
 
 **代码示例**
 
@@ -3866,22 +3866,22 @@ COPY-FROM: paddle.Tensor.new_ones
 new_zeros(size, \*, dtype=None, device=None, requires_grad=False, pin_memory=False)
 :::::::::
 
-创建一个与  ``self``  数据类型和设备相同的新 Tensor，并将其形状重置为  ``shape`` ，元素值全部填充为  ``fill_value`` 。
+创建一个与 ``self`` 数据类型和设备相同的新 Tensor，并将其形状重置为 ``shape``，元素值全部填充为 ``fill_value``。
 
 参数：
-    - **size** (list|tuple|Tensor) - 设置的目标形状，可以是整数列表、元组，或 1-D Tensor（数据类型为  ``int32``  或  ``int64`` ）。
+    - **size** (list|tuple|Tensor) - 设置的目标形状，可以是整数列表、元组，或 1-D Tensor（数据类型为 ``int32`` 或 ``int64``）。
       若为列表或元组，其中元素需为整数或 0 维 Tensor。
 
 关键字参数:
-    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，可选： ``float16`` 、 ``float32`` 、 ``float64`` 、 ``int32`` 、 ``int64`` 、 ``complex64`` 、 ``complex128`` 。
-      若为 None，则默认与  ``self``  的 dtype 一致。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
+      若为 None，则默认与 ``self`` 的 dtype 一致。
     - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
-    - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与  ``self``  保持一致。
+    - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
     - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
 
 返回：
-    - **Tensor**，其形状为  ``shape`` ，元素值为  ``0`` ，数据类型为  ``dtype`` （若未指定，则与  ``self``  一致）。
+    - **Tensor**，其形状为 ``shape``，元素值为 ``0``，数据类型为 ``dtype``（若未指定，则与 ``self`` 一致）。
 
 **代码示例**
 
@@ -3890,22 +3890,22 @@ COPY-FROM: paddle.Tensor.new_zeros
 new_empty(size, \*, dtype=None, device=None, requires_grad=False, pin_memory=False)
 :::::::::
 
-创建一个与  ``self``  数据类型和设备相同的新 Tensor，并将其形状重置为  ``shape`` ，元素值全部填充为  ``fill_value`` 。
+创建一个与 ``self`` 数据类型和设备相同的新 Tensor，并将其形状重置为 ``shape``，元素值全部填充为 ``fill_value``。
 
 参数：
-    - **size** (list|tuple|Tensor) - 设置的目标形状，可以是整数列表、元组，或 1-D Tensor（数据类型为  ``int32``  或  ``int64`` ）。
+    - **size** (list|tuple|Tensor) - 设置的目标形状，可以是整数列表、元组，或 1-D Tensor（数据类型为 ``int32`` 或 ``int64``）。
       若为列表或元组，其中元素需为整数或 0 维 Tensor。
 
 关键字参数:
-    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，可选： ``float16`` 、 ``float32`` 、 ``float64`` 、 ``int32`` 、 ``int64`` 、 ``complex64`` 、 ``complex128`` 。
-      若为 None，则默认与  ``self``  的 dtype 一致。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，可选：``float16``、``float32``、``float64``、``int32``、``int64``、``complex64``、``complex128``。
+      若为 None，则默认与 ``self`` 的 dtype 一致。
     - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
-    - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与  ``self``  保持一致。
+    - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
     - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
 
 返回：
-    - **Tensor**，其形状为  ``shape`` ，元素值为  ``0`` (一般情况下为  ``0`` ，但也有可能为随机值)，数据类型为  ``dtype`` （若未指定，则与  ``self``  一致）。
+    - **Tensor**，其形状为 ``shape``，元素值为 ``0``(一般情况下为 ``0``，但也有可能为随机值)，数据类型为 ``dtype``（若未指定，则与 ``self`` 一致）。
 
 **代码示例**
 

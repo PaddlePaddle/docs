@@ -56,9 +56,9 @@ CrossEntropyLoss
 
     1. Weight
 
-        如果  ``weight``  参数为  ``None``  , 直接进行下一步.
+        如果 ``weight`` 参数为 ``None`` , 直接进行下一步.
 
-        如果  ``weight``  参数不为  ``None``  , 每个样本的交叉熵按权重加权
+        如果 ``weight`` 参数不为 ``None`` , 每个样本的交叉熵按权重加权
         根据 soft_label = False 或 True 如下：
 
         1.1. Hard labels (soft_label = False)
@@ -74,20 +74,20 @@ CrossEntropyLoss
 
     2. reduction
 
-        2.1 如果  ``reduction``  参数为  ``none`` 
+        2.1 如果 ``reduction`` 参数为 ``none``
 
         直接返回之前的结果
 
-        2.2 如果  ``reduction``  参数为  ``sum`` 
+        2.2 如果 ``reduction`` 参数为 ``sum``
 
         返回之前结果的和
 
         .. math::
            \\loss=\sum_{j}loss_j
 
-        2.3 如果  ``reduction``  参数为  ``mean``  , 则按照  ``weight``  参数进行如下处理。
+        2.3 如果 ``reduction`` 参数为 ``mean`` , 则按照 ``weight`` 参数进行如下处理。
 
-        2.3.1. 如果   ``weight``   参数为  ``None`` 
+        2.3.1. 如果  ``weight``  参数为 ``None``
 
         返回之前结果的平均值
 
@@ -96,7 +96,7 @@ CrossEntropyLoss
 
         其中，N 是样本数，C 是类别数。
 
-        2.3.2. 如果  ``weight``  参数不为  ``None`` ，则返回之前结果的加权平均值
+        2.3.2. 如果 ``weight`` 参数不为 ``None``，则返回之前结果的加权平均值
 
         1. Hard labels (soft_label = False)
 
@@ -116,7 +116,7 @@ CrossEntropyLoss
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，数据类型为 string，可选值有：`none`, `mean`, `sum`。默认为 `mean`，计算 `mini-batch` loss 均值。设置为 `sum` 时，计算 `mini-batch` loss 的总和。设置为 `none` 时，则返回 loss Tensor。
     - **soft_label** (bool，可选) – 指明 label 是否为软标签。默认为 False，表示 label 为硬标签；若 soft_label=True 则表示软标签。
     - **label_smoothing** （float，可选）- 指定计算损失时的标签平滑度，它应该在 :math:`[0.0，1.0]` 范围内。其中 0.0 表示无平滑。使得平滑后的标签变成原始真实标签和均匀分布的混合，默认值： 0.0。
-    - **axis** (int，可选) - 进行 softmax 计算的维度索引。它应该在 :math:`[-1，dim-1]` 范围内，而  ``dim``  是输入 logits 的维度。默认值：-1。
+    - **axis** (int，可选) - 进行 softmax 计算的维度索引。它应该在 :math:`[-1，dim-1]` 范围内，而 ``dim`` 是输入 logits 的维度。默认值：-1。
     - **use_softmax** (bool，可选) - 指定是否对 input 进行 softmax 归一化。默认值：True。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 形状

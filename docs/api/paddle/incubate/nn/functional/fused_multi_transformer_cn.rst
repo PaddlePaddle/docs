@@ -89,7 +89,7 @@ Transformer 层的功能与以下伪代码一致：
 
 返回
 ::::::::::::
-    - Tensor|tuple：如果  ``cache_kvs``  为 None，则返回与  ``x``  形状和数据类型相同的张量，代表 Transformer 的输出。如果  ``cache_kvs``  不为 None，则返回元组（output, cache_kvs），其中 output 是 Transformer 的输出，cache_kvs 与输入`cache_kvs`原地更新。
+    - Tensor|tuple：如果 ``cache_kvs`` 为 None，则返回与 ``x`` 形状和数据类型相同的张量，代表 Transformer 的输出。如果 ``cache_kvs`` 不为 None，则返回元组（output, cache_kvs），其中 output 是 Transformer 的输出，cache_kvs 与输入`cache_kvs`原地更新。
 
 
 代码示例

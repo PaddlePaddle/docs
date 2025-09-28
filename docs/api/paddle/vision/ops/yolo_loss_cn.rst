@@ -7,7 +7,7 @@ yolo_loss
 
 该运算通过给定的预测结果和真实框计算 YOLOv3 损失。
 
-YOLOv3 loss 前的网络输出形状为[N，C，H，W]，H 和 W 应该相同，用来指定网格(grid)大小。每个网格点预测 S 个边界框(bounding boxes)，S 由每个尺度中  ``anchors``  簇的个数指定。在第二维（表示通道的维度）中，C 的值应为 S *（class_num + 5），class_num 是源数据集的对象种类数（如 coco 中为 80），另外，除了存储 4 个边界框位置坐标 x，y，w，h，还包括边界框以及每个 anchor 框的 one-hot 关键字的置信度得分。
+YOLOv3 loss 前的网络输出形状为[N，C，H，W]，H 和 W 应该相同，用来指定网格(grid)大小。每个网格点预测 S 个边界框(bounding boxes)，S 由每个尺度中 ``anchors`` 簇的个数指定。在第二维（表示通道的维度）中，C 的值应为 S *（class_num + 5），class_num 是源数据集的对象种类数（如 coco 中为 80），另外，除了存储 4 个边界框位置坐标 x，y，w，h，还包括边界框以及每个 anchor 框的 one-hot 关键字的置信度得分。
 假设有四个表征位置的坐标为 :math:`t_x, t_y, t_w, t_h`，那么边界框的预测将会如下定义：
 
          $$
@@ -45,9 +45,9 @@ YOLOv3 loss 前的网络输出形状为[N，C，H，W]，H 和 W 应该相同，
          $$
 
 
-当  ``use_label_smooth``  为  ``True``  时，在计算分类损失时将平滑分类目标，将正样本的目标平滑到 1.0-1.0 / class_num，并将负样本的目标平滑到 1.0 / class_num。
+当 ``use_label_smooth`` 为 ``True`` 时，在计算分类损失时将平滑分类目标，将正样本的目标平滑到 1.0-1.0 / class_num，并将负样本的目标平滑到 1.0 / class_num。
 
- ``gt_score``  （如果存在）表示真实框的 mixup 得分，那么真实框所产生的所有损失需要乘上  ``gt_score``  。
+``gt_score`` （如果存在）表示真实框的 mixup 得分，那么真实框所产生的所有损失需要乘上 ``gt_score`` 。
 
 
 

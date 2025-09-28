@@ -16,7 +16,7 @@ CompiledProgram 根据 `build_strategy` 的配置将输入的 Program 或 Graph 
 
 返回
 :::::::::
-CompiledProgram，初始化后的  ``CompiledProgram``  对象。
+CompiledProgram，初始化后的 ``CompiledProgram`` 对象。
 
 代码示例
 ::::::::::

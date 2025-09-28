@@ -23,7 +23,7 @@ http://paddlemodels.bj.bcebos.com/wmt/wmt14.tgz
 
 返回值
 :::::::::
- ``Dataset`` ，WMT14 数据集实例。
+``Dataset``，WMT14 数据集实例。
 
   - **src_ids** (np.array) - 源语言当前的 token id 序列。
   - **trg_ids** (np.array) - 目标语言当前的 token id 序列。

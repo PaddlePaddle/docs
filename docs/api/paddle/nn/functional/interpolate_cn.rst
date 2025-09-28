@@ -141,19 +141,19 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 3-D，4-D 或 5-D Tensor，数据类型为 float32、float64 或 uint8，其数据格式由参数  ``data_format``  指定。如果没有指定  ``data_format``  参数，其数据格式将由维度决定，具体请参照  ``data_format``  参数。
+    - **x** (Tensor) - 3-D，4-D 或 5-D Tensor，数据类型为 float32、float64 或 uint8，其数据格式由参数 ``data_format`` 指定。如果没有指定 ``data_format`` 参数，其数据格式将由维度决定，具体请参照 ``data_format`` 参数。
     - **size** (list|tuple|Tensor|None) - 输出 Tensor，输入为 4D Tensor 时，形状为为(out_h, out_w)的 2-D Tensor。输入为 5-D Tensor 时，形状为(out_d, out_h, out_w)的 3-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[]的 Tensor。如果 :code:`out_shape` 是 Tensor，则其为 1D Tensor。默认值为 None。
     - **scale_factor** (float|Tensor|list|tuple|None)-输入的高度或宽度的乘数因子。out_shape 和 scale 至少要设置一个。out_shape 的优先级高于 scale。默认值为 None。如果 scale_factor 是一个 list 或 tuple，它必须与输入的 shape 匹配。
     - **mode** (str，可选) - 插值方法。支持"bilinear"或"trilinear"或"nearest"或"bicubic"或"linear"或"area"。默认值为"nearest"。
     - **align_corners** (bool，可选) - 一个可选的 bool 型参数，如果为 True，则将输入和输出 Tensor 的 4 个角落像素的中心对齐，并保留角点像素的值。默认值为 False。
     - **align_mode** (int，可选) - 双线性插值的可选项。可以是 '0' 代表 src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1'，代表 src_idx = scale * dst_index。默认值：0。
-    - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致。支持的值有："NCW"、"NWC"、"NCHW"、"NHWC"、"NCDHW"、"NDHWC"。默认值为 None，此时若输入是 3-D Tensor，  ``data_format``  将默认为"NCW"；若输入是 4—D Tensor, 将默认为"NCHW"；若输入是 5—D Tensor, 将默认为"NCDHW"。
+    - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致。支持的值有："NCW"、"NWC"、"NCHW"、"NHWC"、"NCDHW"、"NDHWC"。默认值为 None，此时若输入是 3-D Tensor， ``data_format`` 将默认为"NCW"；若输入是 4—D Tensor, 将默认为"NCHW"；若输入是 5—D Tensor, 将默认为"NCDHW"。
     - **recompute_scale_factor** (bool，可选) - 是否在插值计算中重新计算乘数因子。当设置为 True 时，必须提供 scale_factor 参数，函数会用 scale_factor 和输入张量的形状计算输出张量的形状，然后根据输出张量形状和输入张量形状重新计算乘数因子。该参数可用于 scale_factor 为浮点数的情况。当设置为 False 时，将直接使用 size 或 scale_factor 进行插值计算，不进行重新计算。默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
-3-D，4-D，或 5-D Tensor，数据格式与输入  ``x``  一致。
+3-D，4-D，或 5-D Tensor，数据格式与输入 ``x`` 一致。
 
 
 代码示例

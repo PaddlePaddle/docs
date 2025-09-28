@@ -18,8 +18,8 @@ conv2d
     - :math:`X` ：输入值，NHWC 格式的 Tensor
     - :math:`W` ：卷积核值，HWCM 格式的 Tensor
     - :math:`*` ：卷积操作
-    - :math:`b` ：偏置值，1-D Tensor，形为  ``[M]`` 
-    - :math:`Out` ：输出值，  ``Out``  和  ``X``  的形状可能不同。
+    - :math:`b` ：偏置值，1-D Tensor，形为 ``[M]``
+    - :math:`Out` ：输出值， ``Out`` 和 ``X`` 的形状可能不同。
 
 参数
 ::::::::::::

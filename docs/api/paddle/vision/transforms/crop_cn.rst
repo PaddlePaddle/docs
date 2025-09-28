@@ -19,7 +19,7 @@ crop
 返回
 :::::::::
 
-     ``PIL.Image 或 numpy.ndarray`` ，裁剪后的图像。
+    ``PIL.Image 或 numpy.ndarray``，裁剪后的图像。
 
 代码示例
 :::::::::
