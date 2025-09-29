@@ -34,16 +34,16 @@ Tensor
     ======================================= ===========================================
     Data type                               \[Dtype\]Tensor
     ======================================= ===========================================
-    32-bit floating point                    ``paddle.FloatTensor`` 
-    64-bit floating point                    ``paddle.DoubleTensor`` 
-    16-bit floating point                    ``paddle.HalfTensor`` 
-    16-bit floating point                    ``paddle.BFloat16Tensor`` 
-    8-bit integer (unsigned)                 ``paddle.ByteTensor`` 
-    8-bit integer (signed)                   ``paddle.CharTensor`` 
-    16-bit integer (signed)                  ``paddle.ShortTensor`` 
-    32-bit integer (signed)                  ``paddle.IntTensor`` 
-    64-bit integer (signed)                  ``paddle.LongTensor`` 
-    Boolean                                  ``paddle.BoolTensor`` 
+    32-bit floating point                    ``paddle.FloatTensor``
+    64-bit floating point                    ``paddle.DoubleTensor``
+    16-bit floating point                    ``paddle.HalfTensor``
+    16-bit floating point                    ``paddle.BFloat16Tensor``
+    8-bit integer (unsigned)                 ``paddle.ByteTensor``
+    8-bit integer (signed)                   ``paddle.CharTensor``
+    16-bit integer (signed)                  ``paddle.ShortTensor``
+    32-bit integer (signed)                  ``paddle.IntTensor``
+    64-bit integer (signed)                  ``paddle.LongTensor``
+    Boolean                                  ``paddle.BoolTensor``
     ======================================= ===========================================
 
 create_tensor(dtype, name=None, persistable=False)
@@ -1473,7 +1473,7 @@ exponential_(lam=1.0, name=None)
 参数：
     - **x** (Tensor) - 输入 Tensor，数据类型为 float32/float64。
     - **lam** (float) - 指数分布的 :math:`\lambda` 参数。
-      别名：  ``lambd`` 
+      别名：  ``lambd``
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
