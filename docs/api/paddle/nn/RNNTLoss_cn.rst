@@ -12,7 +12,7 @@ RNNTLoss
 :::::::::
     - **blank** (int，可选) - 空格标记的 ID 值，其取值范围为 [0, num_classes + 1)。数据类型支持 int32。默认值为 0。
     - **fastemit_lambda** (float，默认 0.001) - FastEmit 的正则化参数(https://arxiv.org/pdf/2010.11148.pdf)。
-    - **reduction** (str，可选) - 表示如何平均损失，候选是 ``'none'``|``'mean'``|``'sum'`` 。如果是 ``'mean'`` ，输出将是损失的总和并除以 batch_size;如果是 ``'sum'``，返回损失的总和;如果为 ``'none'``，则不应用 reduction。默认是 ``'mean'``。
+    - **reduction** (str，可选) - 表示如何平均损失，候选是 ``'none'`` | ``'mean'`` | ``'sum'`` 。如果是 ``'mean'`` ，输出将是损失的总和并除以 batch_size;如果是 ``'sum'``，返回损失的总和;如果为 ``'none'``，则不应用 reduction。默认是 ``'mean'``。
     - **name** (str，可选) - 操作名称，默认为 None。
 
 形状
