@@ -16,7 +16,9 @@ def get_pytorch_url(torch_api: str) -> str:
     返回:
         对应 stable 版本文档的 URL 字符串
     """
+
     base_url = "https://pytorch.org/docs/stable"
+    torch_api = torch_api.replace(r"\_", "_")
 
     # 特殊处理 torch.Tensor 的方法和属性
     if torch_api.startswith("torch.Tensor."):
@@ -259,17 +261,7 @@ def generate_category1_table(
     """
     生成类别1（API完全一致）的Markdown表格
     """
-    white_list = [
-        "torch.Tensor.imag",
-        "torch.Tensor.is_coalesced",
-        "torch.Tensor.is_sparse",
-        "torch.Tensor.is_sparse_csr",
-        "torch.Tensor.logical_not_",
-        "torch.Tensor.real",
-        "torch.iinfo",
-        "torch.nn.utils.clip_grad_norm_",
-        "torch.nn.utils.clip_grad_value_",
-    ]
+    white_list = []
 
     no_need_convert_list = extract_no_need_convert_list(
         no_need_convert_file_path
@@ -280,6 +272,7 @@ def generate_category1_table(
 
     # 处理no_need_convert_list中的每个Torch API
     for torch_api in no_need_convert_list:
+        existing_apis.add(torch_api)
         if "__" in torch_api:
             torch_api = torch_api.replace("_", r"\_")
         if torch_api in used_apis:
