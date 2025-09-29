@@ -10,13 +10,12 @@ api_difference_info.json
 
 # files copied from PaConvert
 api_alias_mapping.json
+api_mapping.json
+attribute_mapping.json
+global_var.py
 
 # log files
 alias_refer_failed.log
-
-# from paconvert
-api_mapping.json
-no_need_convert.txt
 
 # validate warning info
 toc_warnings.txt

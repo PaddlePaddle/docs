@@ -1,4 +1,5 @@
 import argparse
+import ast
 import json
 import os
 import re
@@ -186,6 +187,29 @@ def parse_special_category_apis(md_content, category):
     return apis
 
 
+def extract_no_need_convert_list(file_path):
+    with open(file_path, "r", encoding="utf-8") as file:
+        content = file.read()
+
+    tree = ast.parse(content)
+    no_need_list = None
+
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ClassDef) and node.name == "GlobalManager":
+            for class_node in node.body:
+                if isinstance(class_node, ast.Assign) and any(
+                    target.id == "NO_NEED_CONVERT_LIST"
+                    for target in class_node.targets
+                ):
+                    # 提取列表字面量
+                    list_source = ast.get_source_segment(
+                        content, class_node.value
+                    )
+                    no_need_list = ast.literal_eval(list_source)
+                    break
+    return no_need_list
+
+
 def generate_category1_table(
     docs_mapping, no_need_convert_file_path, base_dir, existing_apis
 ):
@@ -204,9 +228,9 @@ def generate_category1_table(
         "torch.nn.utils.clip_grad_value_",
     ]
 
-    # 读取no_need_convert.txt文件，获取无需转换的API列表
-    with open(no_need_convert_file_path, "r", encoding="utf-8") as f:
-        no_need_convert_list = [line.strip() for line in f if line.strip()]
+    no_need_convert_list = extract_no_need_convert_list(
+        no_need_convert_file_path
+    )
 
     rows = []  # 存储表格行数据的列表
     used_apis = set()  # 用于记录已处理的API，避免重复
@@ -286,6 +310,7 @@ def generate_category2_table(
     no_need_convert_file_path,
     base_dir,
     existing_apis,
+    attribute_mapping_file_path,
 ):
     """
     生成类别2（仅API调用方式不一致）的Markdown表格
@@ -301,13 +326,18 @@ def generate_category2_table(
         "torch.utils.data.RandomSampler",
     ]
 
-    # 读取no_need_convert.txt文件，获取无需转换的API列表
-    with open(no_need_convert_file_path, "r", encoding="utf-8") as f:
-        no_need_convert_list = [line.strip() for line in f if line.strip()]
+    no_need_convert_list = extract_no_need_convert_list(
+        no_need_convert_file_path
+    )
 
     # 加载api_mapping.json文件
     with open(api_mapping_file_path, "r", encoding="utf-8") as f:
         api_mapping_data = json.load(f)
+
+    with open(attribute_mapping_file_path, "r", encoding="utf-8") as f:
+        attribute_mapping_data = json.load(f)
+
+    api_mapping_data = api_mapping_data | attribute_mapping_data
 
     rows = []  # 存储表格行数据的列表
     used_apis = set()  # 用于记录已处理的API，避免重复
@@ -317,7 +347,13 @@ def generate_category2_table(
         if src_api in whitelist_skip or src_api in no_need_convert_list:
             continue
         matcher = mapping_info.get("Matcher", "")
-        if matcher == "UnchangeMatcher":
+        # ChangeAPIMatcher、TensorFunc2PaddleFunc、Func2Attribute、Attribute2Func类别
+        if matcher in [
+            "ChangeAPIMatcher",
+            "TensorFunc2PaddleFunc",
+            "Func2Attribute",
+            "Attribute2Func",
+        ]:
             # 在docs_mapping中查找当前src_api对应的信息
             docs_mapping_info = docs_mapping.get(src_api, {})
             src_url = docs_mapping_info.get("src_api_url")
@@ -463,31 +499,49 @@ def generate_api_alias_table(
 
 
 def generate_no_implement_table(
-    docs_mapping, no_implement_path, base_dir, existing_apis
+    docs_mapping, md_content, base_dir, existing_apis
 ):
     """
     生成类别13（功能缺失）的Markdown表格
+    直接从主文档中解析类别13的表格内容
     """
-    # 读取no_implement.md文件
-    try:
-        with open(no_implement_path, "r", encoding="utf-8") as f:
-            no_implement_content = f.read()
-    except Exception as e:
-        print(f"错误: 读取功能缺失文件 {no_implement_path} 时出错: {e!s}")
+    # 定位类别13的表格
+    pattern = r"### 13\. 功能缺失([\s\S]*?)(?=### |$)"
+    match = re.search(pattern, md_content)
+    if not match:
+        print("未找到类别13的表格")
+
+    section_content = match.group(1)
+
+    # 解析表格内容
+    table_pattern = r"\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n([\s\S]*?)(?=\n\n|\Z)"
+    table_match = re.search(table_pattern, section_content)
+    if not table_match:
         return ""
 
-    # 从no_implement_content中提取API信息
-    # 使用正则表达式匹配NOT-IMPLEMENTED-ITEM
-    pattern = r"NOT-IMPLEMENTED-ITEM\(`([^`]+)`, (https://pytorch\.org/docs/[^,]+), (.*)\)"
-    matches = re.findall(pattern, no_implement_content, re.MULTILINE)
-    # print(matches)
-    rows = []  # 存储表格行数据的列表
+    table_content = table_match.group(1)
+    rows = []
 
-    for idx, match in enumerate(matches, start=1):
-        torch_api = match[0]
-        torch_api_url = match[1]
-        remark = match[2]
-        # print(torch_api)
+    # 解析每一行
+    for line in table_content.split("\n"):
+        if not line.startswith("|"):
+            continue
+
+        parts = line.split("|")
+        if len(parts) < 5:
+            continue
+
+        # 提取各列内容
+        torch_api_cell = parts[2].strip()
+        paddle_api_cell = parts[3].strip()
+        remark_cell = parts[4].strip()
+
+        # 提取Torch API名称（处理超链接）
+        torch_api_match = re.match(r"\[(.*?)\]\(.*?\)", torch_api_cell)
+        torch_api = (
+            torch_api_match.group(1) if torch_api_match else torch_api_cell
+        )
+
         # 检查API是否已经在前面的类别中处理过
         if torch_api in existing_apis:
             continue
@@ -501,20 +555,20 @@ def generate_no_implement_table(
         torch_api_display = escape_underscores_in_api(torch_api)
         dst_api_display = escape_underscores_in_api(dst_api)
 
-        # 创建Torch API超链接
-        torch_display = f"[{torch_api_display}]({torch_api_url})"
+        # 创建Torch API超链接（保留原链接）
+        torch_link_match = re.search(r"\((.*?)\)", torch_api_cell)
+        torch_url = torch_link_match.group(1) if torch_link_match else ""
+        torch_display = (
+            f"[{torch_api_display}]({torch_url})" if torch_url else torch_api
+        )
 
         # 创建Paddle API超链接
         paddle_display = (
             f"[{dst_api_display}]({dst_api_url})" if dst_api_url else dst_api
         )
 
-        # 构建备注列
-        # 备注列已经包含在remark中了
-        # if not remark.startswith("["):
-        #     remark = f"[{remark}]"
-
-        rows.append((torch_api, torch_display, paddle_display, remark))
+        # 保留原备注内容
+        rows.append((torch_api, torch_display, paddle_display, remark_cell))
         existing_apis.add(torch_api)
 
     # 生成Markdown表格字符串
@@ -592,7 +646,8 @@ def update_mapping_table(
         valid_idx += 1  # 序号递增
 
     # 构建完整的表格内容
-    if table_rows:  # 如果存在有效行
+
+    if len(table_rows) > 0:  # 如果存在有效行
         table_content = [
             "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
             "|------|-------------------|---------------|------|",
@@ -602,7 +657,7 @@ def update_mapping_table(
         table_content = [
             "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
             "|------|-------------------|---------------|------|",
-            "\n新增中......",
+            "新增中......",
         ]
 
     table_content_str = "\n".join(table_content)
@@ -657,7 +712,7 @@ def main():
         os.path.dirname(__file__), "api_difference_info.json"
     )
     no_need_convert_path = os.path.join(
-        os.path.dirname(__file__), "no_need_convert.txt"
+        os.path.dirname(__file__), "global_var.py"
     )
     api_mapping_path = os.path.join(
         os.path.dirname(__file__), "api_mapping.json"
@@ -667,6 +722,9 @@ def main():
     )
     no_implement_path = os.path.join(
         os.path.dirname(__file__), "no_implement.md"
+    )
+    attribute_mapping_path = os.path.join(
+        os.path.dirname(__file__), "attribute_mapping.json"
     )
 
     api_dirs = [
@@ -719,6 +777,7 @@ def main():
         no_need_convert_path,
         base_dir,
         existing_apis,
+        attribute_mapping_path,
     )
 
     updated_content = update_special_category_table(
@@ -763,7 +822,7 @@ def main():
     # 生成类别13（功能缺失）的表格
     category13_table = generate_no_implement_table(
         docs_mapping,
-        no_implement_path,
+        updated_content,
         base_dir,
         existing_apis,
     )

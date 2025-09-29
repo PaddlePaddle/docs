@@ -15,7 +15,7 @@ clip_grad_norm\_
     - **parameters** (Iterable[paddle.Tensor] or paddle.Tensor) - 需要参与梯度裁剪的一个 Tensor 或者多个 Tensor。
     - **max_norm** (float or int) - 梯度的最大范数。
     - **norm_type** (float or int) - 所用 p-范数类型。可以是无穷范数的`inf`。
-    - **error_if_nonfinite** (bool) - 如果为 True，且如果来自：attr:`parameters`的梯度的总范数为`nan`、`inf`或`-inf`，则抛出错误。
+    - **error_if_nonfinite** (bool) - 如果为 True，且如果来自 :attr:`parameters` 的梯度的总范数为 `nan`、 `inf` 或 `-inf`，则抛出错误。
 
 返回
 ::::::::::::

@@ -51,17 +51,17 @@ squeeze
     :alt: 图例
 
 .. note::
-    别名支持: 参数名  ``input``  可替代  ``x`` ，参数名  ``dim``  可替代  ``axis`` ，如  ``squeeze(input=tensor_x, dim=1)``  等价于  ``squeeze(x=tensor_x, axis=1)`` 。
+    别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``dim`` 可替代 ``axis``，如 ``squeeze(input=tensor_x, dim=1)`` 等价于 ``squeeze(x=tensor_x, axis=1)``。
 
 参数
 :::::::::
-        - **x** (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、bool、int8、int32、int64。别名：  ``input`` 。
-        - **axis** (int|list|tuple，可选) - 输入一个或一列整数，代表要压缩的轴。axis 的范围： [−ndim(x), ndim(x)) 。 如果 axis 为负数， 则 axis=axis+ndim(x) 。默认为 None，表示对所有尺寸为 1 的维度进行压缩。别名：  ``dim`` 。
+        - **x** (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、bool、int8、int32、int64。别名： ``input``。
+        - **axis** (int|list|tuple，可选) - 输入一个或一列整数，代表要压缩的轴。axis 的范围： [−ndim(x), ndim(x)) 。 如果 axis 为负数， 则 axis=axis+ndim(x) 。默认为 None，表示对所有尺寸为 1 的维度进行压缩。别名： ``dim``。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
- ``Tensor`` ，对维度进行压缩后的 Tensor，数据类型与输入 Tensor 一致。
+``Tensor``，对维度进行压缩后的 Tensor，数据类型与输入 Tensor 一致。
 
 代码示例
 :::::::::

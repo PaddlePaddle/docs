@@ -11,7 +11,7 @@ TESS
 参数
 :::::::::
 
-  - **mode** (str，可选) -  ``'train'``  或  ``'dev'``  模式两者之一，默认值为  ``'train'`` 。
+  - **mode** (str，可选) - ``'train'`` 或 ``'dev'`` 模式两者之一，默认值为 ``'train'``。
   - **n_folds** (int，可选) - 默认是 5，指定把数据集分为的文件夹数目， 1 个文件夹是 dev，其他是 train。
   - **split** (int，可选) - 默认是 1，指定 dev 的文件夹。
   - **feat_type** (str，可选) - 默认是 raw，raw 是原始语音，支持 mfcc，spectrogram，melspectrogram，logmelspectrogram。指定从音频提取的语音特征。

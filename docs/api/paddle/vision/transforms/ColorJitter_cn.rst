@@ -14,7 +14,7 @@ ColorJitter
     - **contrast** (float，可选) - 对比度调整范围大小，，会从给定参数后的均匀分布[max(0，1 - contrast), 1 + contrast]中随机选择进行实际调整，不能是负数。默认值：0。
     - **saturation** (float，可选) - 饱和度调整范围大小，，会从给定参数后的均匀分布[max(0，1 - saturation), 1 + saturation]中随机选择进行实际调整，不能是负数。默认值：0。
     - **hue** (float，可选) - 色调调整范围大小，会从给定参数后的均匀分布[-hue, hue]中随机选择进行实际调整，参数值需要在 0 到 0.5 之间。默认值：0。
-    - **keys** (list[str]|tuple[str]，可选) - 与  ``BaseTransform``  定义一致。默认值：None。
+    - **keys** (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值：None。
 
 形状
 :::::::::
@@ -25,7 +25,7 @@ ColorJitter
 返回
 :::::::::
 
-    计算  ``ColorJitter``  的可调用对象。
+    计算 ``ColorJitter`` 的可调用对象。
 
 代码示例
 :::::::::

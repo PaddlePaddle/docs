@@ -11,7 +11,7 @@ cuda
 返回
 ::::::::::
 
-若 paddle wheel 包为 GPU 版本，则返回 paddle wheel 包编译时使用的 CUDA 的版本信息；若 paddle wheel 包为 CPU 版本，则返回  ``False``  。
+若 paddle wheel 包为 GPU 版本，则返回 paddle wheel 包编译时使用的 CUDA 的版本信息；若 paddle wheel 包为 CPU 版本，则返回 ``False`` 。
 
 代码示例：
 ::::::::::

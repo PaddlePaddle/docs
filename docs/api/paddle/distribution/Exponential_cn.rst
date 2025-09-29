@@ -87,7 +87,7 @@ entropy()
 
     - Tensor: 信息熵。
 
-cdf(k)
+cdf(value)
 '''''''''
 指数分布的累积分布函数。
 
@@ -109,7 +109,7 @@ cdf(k)
 
     - Tensor: value 对应的累积分布。
 
-icdf(k)
+icdf(value)
 '''''''''
 指数分布的逆累积分布函数。
 
@@ -121,7 +121,8 @@ icdf(k)
 
 .. math::
 
-    icdf(x; \theta) = -\frac{ 1 }{ \theta } ln(1 + x), (x \ge 0)
+    icdf(x; \theta) = -\frac{ 1 }{ \theta } ln(1 - x), (0 < x < 1)
+
 
 上面的数学公式中：
 
@@ -138,7 +139,7 @@ kl_divergence(other)
 
 **参数**
 
-    - **other** (Geometric) - Exponential 的实例。
+    - **other** (Exponential) - Exponential 的实例。
 
 **返回**
 

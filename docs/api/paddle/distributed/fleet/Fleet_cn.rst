@@ -265,17 +265,17 @@ COPY-FROM: paddle.distributed.fleet.Fleet.stop_worker
 save_inference_model(executor, dirname, feeded_var_names, target_vars, main_program=None, export_for_deployment=True)
 '''''''''
 
-修剪指定的  ``main_program``  以构建一个专门用于预测的  ``Inference Program``  （  ``Program``  含义详见 :ref:`api_guide_Program` ）。所得到的  ``Inference Program``  及其对应的所>有相关参数均被保存到  ``dirname``  指定的目录中。
+修剪指定的 ``main_program`` 以构建一个专门用于预测的 ``Inference Program`` （ ``Program`` 含义详见 :ref:`api_guide_Program` ）。所得到的 ``Inference Program`` 及其对应的所>有相关参数均被保存到 ``dirname`` 指定的目录中。
 
 
 **参数**
 
-  - **executor** (Executor) –  用于保存预测模型的  ``executor`` ，详见 :ref:`api_guide_executor` 。
+  - **executor** (Executor) –  用于保存预测模型的 ``executor``，详见 :ref:`api_guide_executor` 。
   - **dirname** (str) – 指定保存预测模型结构和参数的文件目录。
   - **feeded_var_names** (list[str]) – 字符串列表，包含着 Inference Program 预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
-  - **target_vars** (list[Tensor]) –  ``Tensor``  （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
-  - **main_program** (Program，可选) – 通过该参数指定的  ``main_program``  可构建一个专门用于预测的  ``Inference Program`` 。若为 None，则使用全局默认的   ``_main_program_``  。>默认值为 None。
-  - **export_for_deployment** (bool，可选) – 若为 True，则  ``main_program``  指定的 Program 将被修改为只支持直接预测部署的 Program。否则，将存储更多的信息，方便优化和再训练。目前
+  - **target_vars** (list[Tensor]) – ``Tensor`` （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
+  - **main_program** (Program，可选) – 通过该参数指定的 ``main_program`` 可构建一个专门用于预测的 ``Inference Program``。若为 None，则使用全局默认的  ``_main_program_`` 。>默认值为 None。
+  - **export_for_deployment** (bool，可选) – 若为 True，则 ``main_program`` 指定的 Program 将被修改为只支持直接预测部署的 Program。否则，将存储更多的信息，方便优化和再训练。目前
 只支持设置为 True，且默认值为 True。
 
 
@@ -295,9 +295,9 @@ save_persistables(executor, dirname, main_program=None)
 
 **参数**
 
- - **executor**  (Executor) – 用于保存持久性变量的  ``executor`` ，详见 :ref:`api_guide_executor` 。
+ - **executor**  (Executor) – 用于保存持久性变量的 ``executor``，详见 :ref:`api_guide_executor` 。
  - **dirname**  (str) – 用于储存持久性变量的文件目录。
- - **main_program**  (Program，可选) – 需要保存持久性变量的 Program（  ``Program``  含义详见 :ref:`api_guide_Program` ）。如果为 None，则使用 default_main_Program。默认值为 None>。
+ - **main_program**  (Program，可选) – 需要保存持久性变量的 Program（ ``Program`` 含义详见 :ref:`api_guide_Program` ）。如果为 None，则使用 default_main_Program。默认值为 None>。
 
 **返回**
 无
@@ -441,10 +441,10 @@ state_dict()
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
-以  ``dict``  返回当前  ``optimizer``  使用的所有 Tensor。比如对于 Adam 优化器，将返回 beta1, beta2, momentum 等 Tensor。
+以 ``dict`` 返回当前 ``optimizer`` 使用的所有 Tensor。比如对于 Adam 优化器，将返回 beta1, beta2, momentum 等 Tensor。
 
 **返回**
-dict，当前  ``optimizer``  使用的所有 Tensor。
+dict，当前 ``optimizer`` 使用的所有 Tensor。
 
 
 **代码示例**
@@ -479,7 +479,7 @@ set_state_dict(state_dict)
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
-加载  ``optimizer``  的 Tensor 字典给当前  ``optimizer``  。
+加载 ``optimizer`` 的 Tensor 字典给当前 ``optimizer`` 。
 
 **返回**
 None
@@ -520,7 +520,7 @@ set_lr(value)
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
-手动设置当前  ``optimizer``  的学习率。
+手动设置当前 ``optimizer`` 的学习率。
 
 **参数**
 
@@ -573,7 +573,7 @@ set_lr_scheduler(scheduler)
 
   **1. 该 API 只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
-手动设置当前  ``optimizer``  的学习率为 LRScheduler 类。
+手动设置当前 ``optimizer`` 的学习率为 LRScheduler 类。
 
 **参数**
 

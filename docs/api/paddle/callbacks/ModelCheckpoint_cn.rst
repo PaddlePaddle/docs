@@ -5,7 +5,7 @@ ModelCheckpoint
 
 .. py:class:: paddle.callbacks.ModelCheckpoint(save_freq=1, save_dir=None)
 
-  ``ModelCheckpoint``  回调类和 model.fit 联合使用，在训练阶段，保存模型权重和优化器状态信息。当前仅支持在固定的 epoch 间隔保存模型，不支持按照 batch 的间隔保存。
+ ``ModelCheckpoint`` 回调类和 model.fit 联合使用，在训练阶段，保存模型权重和优化器状态信息。当前仅支持在固定的 epoch 间隔保存模型，不支持按照 batch 的间隔保存。
 
    子方法可以参考基类。
 

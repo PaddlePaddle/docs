@@ -5,7 +5,7 @@ Independent
 
 .. py:class:: paddle.distribution.Independent(base, reinterpreted_batch_rank)
 
-将一个基础分布  ``base``  的最右侧  ``reinterpreted_batch_rank``  批维度转换为事件维度。
+将一个基础分布 ``base`` 的最右侧 ``reinterpreted_batch_rank`` 批维度转换为事件维度。
 
 
 参数
@@ -70,7 +70,7 @@ sample(shape=[])
 
 **参数**
 
-- **shape** (Sequence[int]，可选)：采样次数。最终生成样本形状为  ``shape+batch_shape``  。
+- **shape** (Sequence[int]，可选)：采样次数。最终生成样本形状为 ``shape+batch_shape`` 。
 
 **返回**
 
