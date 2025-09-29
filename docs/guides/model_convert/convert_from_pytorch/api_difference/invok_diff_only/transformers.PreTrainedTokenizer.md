@@ -13,4 +13,3 @@ paddlenlp.transformers.PretrainedTokenizer(**kwargs)
 ```
 
 功能一致，参数完全一致，具体如下：
-
