@@ -15,43 +15,43 @@ Device APIs
 ############
 
 +---------------------------+----------------------------------------------------------+----------+
-|          API              |                      Function                          | Required |
+|          API              |                      Function                            | Required |
 +===========================+==========================================================+==========+
 | initialize                | To initialize the device backend                         | N        |
 +---------------------------+----------------------------------------------------------+----------+
-| finalize                  | To de-initialize the device backend                       | N        |
+| finalize                  | To de-initialize the device backend                      | N        |
 +---------------------------+----------------------------------------------------------+----------+
-| init_device               | To initialize the designated device                       | N        |
+| init_device               | To initialize the designated device                      | N        |
 +---------------------------+----------------------------------------------------------+----------+
-| deinit_device             | To de-initialize the designated device                    | N        |
+| deinit_device             | To de-initialize the designated device                   | N        |
 +---------------------------+----------------------------------------------------------+----------+
-| set_device                | To set the current device                                 | Y        |
+| set_device                | To set the current device                                | Y        |
 +---------------------------+----------------------------------------------------------+----------+
-| get_device                | To get the current device                                 | Y        |
+| get_device                | To get the current device                                | Y        |
 +---------------------------+----------------------------------------------------------+----------+
-| synchronize_device        | To synchronize the desginated device                      | Y        |
+| synchronize_device        | To synchronize the desginated device                     | Y        |
 +---------------------------+----------------------------------------------------------+----------+
-| get_device_count          | To count available devices                                | Y        |
+| get_device_count          | To count available devices                               | Y        |
 +---------------------------+----------------------------------------------------------+----------+
-| get_device_list           | To get the list of available devices                      | Y        |
+| get_device_list           | To get the list of available devices                     | Y        |
 +---------------------------+----------------------------------------------------------+----------+
-| get_compute_capability    | To get computing capability of devices                    | Y        |
+| get_compute_capability    | To get computing capability of devices                   | Y        |
 +---------------------------+----------------------------------------------------------+----------+
-| get_runtime_version       | To get the runtime version                                | Y        |
+| get_runtime_version       | To get the runtime version                               | Y        |
 +---------------------------+----------------------------------------------------------+----------+
-| get_driver_version        | To get the driver version                                 | Y        |
+| get_driver_version        | To get the driver version                                | Y        |
 +---------------------------+----------------------------------------------------------+----------+
-| get_multi_process         | To get the number of MultiProcessors on the device        | N        |
+| get_multi_process         | To get the number of MultiProcessors on the device       | N        |
 +---------------------------+----------------------------------------------------------+----------+
-| get_max_threads_per_mp    | To get the max threads per MultiProcessor                 | N        |
+| get_max_threads_per_mp    | To get the max threads per MultiProcessor                | N        |
 +---------------------------+----------------------------------------------------------+----------+
-| get_max_threads_per_block | To get the max threads per block                          | N        |
+| get_max_threads_per_block | To get the max threads per block                         | N        |
 +---------------------------+----------------------------------------------------------+----------+
-| get_max_grid_dim_size     | To get the max grid dimension size                        | N        |
+| get_max_grid_dim_size     | To get the max grid dimension size                       | N        |
 +---------------------------+----------------------------------------------------------+----------+
-| init_eigen_device         | To initialize the Eigen GPU device object                 | N        |
+| init_eigen_device         | To initialize the Eigen GPU device object                | N        |
 +---------------------------+----------------------------------------------------------+----------+
-| destroy_eigen_device      | To destroy the Eigen GPU device object                    | N        |
+| destroy_eigen_device      | To destroy the Eigen GPU device object                   | N        |
 +---------------------------+----------------------------------------------------------+----------+
 
 
