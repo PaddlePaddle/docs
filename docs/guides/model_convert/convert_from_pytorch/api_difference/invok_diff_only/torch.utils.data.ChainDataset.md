@@ -13,9 +13,3 @@ paddle.io.ChainDataset(datasets)
 ```
 
 paddle 参数和 torch 参数完全一致，具体如下：
-
-### 参数映射
-
-| PyTorch     | PaddlePaddle | 备注                                  |
-| ----------- | ------------ | ------------------------------------- |
-| datasets | datasets  | 待级联的多个数据集 |

@@ -16,10 +16,3 @@ paddle.vision.transforms.adjust_brightness(
 ```
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| torchvision           | PaddlePaddle      | 备注                  |
-| --------------------- | ----------------- | --------------------- |
-| img                   | img               | 输入的图像。           |
-| brightness_factor     | brightness_factor | 调整亮度的因子。       |

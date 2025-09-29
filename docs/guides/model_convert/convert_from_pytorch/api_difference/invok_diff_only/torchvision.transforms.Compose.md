@@ -17,9 +17,3 @@ paddle.vision.transforms.Compose(
 ```
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| torchvision         | PaddlePaddle             | 备注                                     |
-| ------------------- | ------------------------ | ---------------------------------------- |
-| transforms          | transforms               | 用于组合的数据预处理接口实例列表。 |

@@ -17,10 +17,3 @@ paddle.vision.transforms.to_grayscale(
 ```
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| torchvision               | PaddlePaddle       | 备注                      |
-|-------------------------- |------------------- |-------------------------- |
-| img                       | img                   | 输入图像。              |
-| num_output_channels       | num_output_channels   | 输出图像的通道数。       |

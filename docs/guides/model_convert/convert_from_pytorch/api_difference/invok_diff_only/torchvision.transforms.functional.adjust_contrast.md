@@ -16,10 +16,3 @@ paddle.vision.transforms.adjust_contrast(
 ```
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| torchvision           | PaddlePaddle      | 备注                                     |
-| --------------------- | ----------------- | ---------------------------------------- |
-| img                   | img               | 输入的图像。           |
-| contrast_factor       | contrast_factor   | 调整对比度的因子。                          |

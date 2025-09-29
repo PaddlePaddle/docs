@@ -21,6 +21,7 @@ mapping_type_levels = [
     [
         "无参数",
         "参数完全一致",
+        "仅 API 调用方式不一致",
         "仅参数名不一致",
         "paddle 参数更多",
         "参数默认值不一致",
@@ -476,7 +477,7 @@ def get_meta_from_diff_file(
                 )
 
     # 允许没有参数映射列表
-    if mapping_type in ["无参数", "组合替代实现"]:
+    if mapping_type in ["无参数", "组合替代实现", "仅 API 调用方式不一致"]:
         if state == ParserState.wait_for_args:
             state = ParserState.end
     # 必须有参数映射列表，但是可以随时停止

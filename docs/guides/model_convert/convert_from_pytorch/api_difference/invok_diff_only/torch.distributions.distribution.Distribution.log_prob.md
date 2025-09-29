@@ -14,9 +14,3 @@ paddle.distribution.Distribution.log_prob(value)
 
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| PyTorch | PaddlePaddle | 备注         |
-| ------- | ------------ | ------------ |
-| value   | value        | 输入 Tensor。 |

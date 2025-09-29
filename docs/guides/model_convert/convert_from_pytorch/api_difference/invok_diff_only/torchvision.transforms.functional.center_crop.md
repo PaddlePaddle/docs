@@ -16,10 +16,3 @@ paddle.vision.transforms.center_crop(
 ```
 
 两者功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| torchvision   | PaddlePaddle  | 备注             |
-| ------------- | ------------- | ---------------- |
-| img           | img           | 输入图片。        |
-| output_size   | output_size   | 输出尺寸。        |

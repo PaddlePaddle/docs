@@ -13,9 +13,3 @@ paddle.optimizer.Optimizer._add_param_group(param_group)
 ```
 
 参数完全一致，具体如下：
-
-### 参数映射
-
-| PyTorch      | PaddlePaddle | 备注                                                                |
-| ------------ | ------------ | ------------------------------------------------------------------- |
-| param_group         | param_group         | 被添加的参数。                                                       |

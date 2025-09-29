@@ -13,9 +13,3 @@ paddlenlp.trainer.utils.add_start_docstrings_to_model_forward(*docstr)
 ```
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| transformers | PaddlePaddle | 备注                   |
-| ------------ | ------------ | ---------------------- |
-| docstr       | docstr       | 输入的文档字符串。  |

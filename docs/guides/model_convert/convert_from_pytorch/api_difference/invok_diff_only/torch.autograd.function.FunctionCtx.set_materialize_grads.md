@@ -13,9 +13,3 @@ paddle.autograd.PyLayerContext.set_materialize_grads(value)
 ```
 
 两者功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| PyTorch | PaddlePaddle | 备注                                   |
-| ------- | ------------ | -------------------------------------- |
-| value   | value        | 是否要框架来初始化未初始化的反向梯度。 |
