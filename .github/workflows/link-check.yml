@@ -1,13 +1,9 @@
 name: Link Checker
 
 on:
-  repository_dispatch:
-  push:
-    branches:
-      - develop
-  workflow_dispatch:
   schedule:
     - cron: "00 18 * * 0"
+  workflow_dispatch:
 
 jobs:
   linkChecker:
