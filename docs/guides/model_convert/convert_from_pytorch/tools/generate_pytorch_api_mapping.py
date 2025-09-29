@@ -6,6 +6,50 @@ import re
 from collections import defaultdict
 
 
+def get_pytorch_url(torch_api: str) -> str:
+    """
+    生成 PyTorch 官方 stable 版本 API 文档的 URL
+
+    参数:
+        torch_api: PyTorch API 全名 (如 'torch.nn.Linear' 或 'torch.Tensor.addbmm')
+
+    返回:
+        对应 stable 版本文档的 URL 字符串
+    """
+    base_url = "https://pytorch.org/docs/stable"
+
+    # 特殊处理 torch.Tensor 的方法和属性
+    if torch_api.startswith("torch.Tensor."):
+        return f"{base_url}/tensors.html#{torch_api}"
+
+    # 处理核心模块的文档路径映射
+    module_map = {
+        "torch": "torch",
+        "torch.nn": "nn",
+        "torch.nn.functional": "nn.functional",
+        "torch.optim": "optim",
+        "torch.utils.data": "data",
+        "torch.cuda": "cuda",
+        "torch.distributed": "distributed",
+        "torch.amp": "amp",
+        "torch.autograd": "autograd",
+        "torch.jit": "jit",
+        "torch.onnx": "onnx",
+        "torch.fft": "fft",
+        "torch.linalg": "linalg",
+        "torch.special": "special",
+        "torch.sparse": "sparse",
+        "torch.profiler": "profiler",
+    }
+
+    # 优先检查预定义的模块映射
+    if torch_api in module_map:
+        return f"{base_url}/{module_map[torch_api]}.html"
+
+    # 处理一般情况：API全名作为独立页面
+    return f"{base_url}/generated/{torch_api}.html"
+
+
 def escape_underscores_in_api(api_name):
     r"""
     处理PyTorch API名称中的下划线转义。
@@ -244,52 +288,12 @@ def generate_category1_table(
         used_apis.add(torch_api)  # 标记该API已处理
         existing_apis.add(torch_api)
 
-        # 在docs_mapping中查找当前torch_api对应的信息
-        mapping_info = docs_mapping.get(torch_api, {})
-        src_url = mapping_info.get("src_api_url") if mapping_info else None
-
-        # 查找对应的paddle_api映射信息（可能需要遍历所有值）
+        src_url = get_pytorch_url(torch_api)
         dst_url = None
-        for item in docs_mapping.values():
-            if item.get("dst_api") == paddle_api:
-                dst_url = item.get("dst_api_url")
-                break
-
         # 构建第二列和第三列的字符串内容，包含URL（如果存在）
         col2 = f"[{torch_api}]({src_url})" if src_url else torch_api
         col3 = f"[{paddle_api}]({dst_url})" if dst_url else paddle_api
         rows.append((torch_api, col2, col3, "-"))
-
-    # 遍历docs_mapping，查找满足条件的额外API对
-    for src_api, item in docs_mapping.items():
-        mapping_type = item.get("mapping_type", "")
-        dst_api = item.get("dst_api", "")
-
-        # 检查条件：mapping_type为"无参数"或"参数完全一致"，且src_api以"torch"开头，替换后与dst_api相同，且不在no_need_convert_list中
-        if (mapping_type in ["无参数", "参数完全一致"]) and src_api.startswith(
-            "torch"
-        ):
-            expected_paddle_api = src_api.replace("torch", "paddle")
-            if "__" in src_api:
-                src_api = src_api.replace("_", r"\_")
-                dst_api = dst_api.replace("_", r"\_")
-            if (
-                expected_paddle_api == dst_api
-                and src_api not in used_apis
-                and src_api not in white_list
-            ):
-                used_apis.add(src_api)  # 标记该API已处理
-                existing_apis.add(src_api)
-
-                src_url = item.get("src_api_url")
-                dst_url = item.get("dst_api_url")
-
-                src_api_display = escape_underscores_in_api(src_api)
-                dst_api_display = escape_underscores_in_api(dst_api)
-
-                col2 = f"[{src_api_display}]({src_url})" if src_url else src_api
-                col3 = f"[{dst_api_display}]({dst_url})" if dst_url else dst_api
-                rows.append((src_api, col2, col3, "-"))
 
     # 生成Markdown表格字符串
     table_lines = [

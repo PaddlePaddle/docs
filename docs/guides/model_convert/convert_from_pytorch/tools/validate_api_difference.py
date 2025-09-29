@@ -1,11 +1,18 @@
 import argparse
 import os
 import re
+import time
+import requests
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # 默认文件路径
 DEFAULT_FILE_PATH = "/workspace/paddleDocs/docs/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.md"
 
+# 用户代理头，模拟浏览器访问
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+}
 
 def parse_toc(lines):
     """
@@ -252,6 +259,123 @@ def check_links_exist(categories):
     return warnings
 
 
+def extract_all_urls(categories):
+    """
+    从所有类别中提取所有URL及其上下文信息
+    """
+    urls_with_context = []
+
+    for category in categories:
+        for row_idx, row in enumerate(category["table"]):
+            # 提取Pytorch列链接
+            pytorch_links = extract_links(row["pytorch"])
+            for link_text, url in pytorch_links:
+                urls_with_context.append({
+                    "url": url,
+                    "category_id": category["id"],
+                    "category_name": category["name"],
+                    "row_index": row_idx + 1,
+                    "column": "Pytorch",
+                    "context": f"{link_text} (类别 {category['id']}.{category['name']} 第 {row_idx+1} 行)"
+                })
+            
+            # 提取Paddle列链接
+            paddle_links = extract_links(row["paddle"])
+            for link_text, url in paddle_links:
+                urls_with_context.append({
+                    "url": url,
+                    "category_id": category["id"],
+                    "category_name": category["name"],
+                    "row_index": row_idx + 1,
+                    "column": "Paddle",
+                    "context": f"{link_text} (类别 {category['id']}.{category['name']} 第 {row_idx+1} 行)"
+                })
+            
+            # 提取Note列链接
+            note_links = extract_links(row["note"])
+            for link_text, url in note_links:
+                urls_with_context.append({
+                    "url": url,
+                    "category_id": category["id"],
+                    "category_name": category["name"],
+                    "row_index": row_idx + 1,
+                    "column": "Note",
+                    "context": f"{link_text} (类别 {category['id']}.{category['name']} 第 {row_idx+1} 行)"
+                })
+    
+    return urls_with_context
+
+
+def check_url_availability(url_info, timeout=10):
+    """
+    检查单个URL的可用性，返回结果和错误信息
+    """
+    url = url_info["url"]
+    
+    # 跳过非HTTP(S)协议的URL
+    if not url.startswith(("http://", "https://")):
+        return url_info, False, f"不支持的协议: {url.split(':')[0]}"
+    
+    try:
+        # 使用HEAD方法检查URL可用性（节省带宽和时间）
+        response = requests.head(
+            url, 
+            headers=HEADERS, 
+            timeout=timeout,
+            allow_redirects=True
+        )
+        
+        # 检查HTTP状态码
+        if response.status_code == 200:
+            return url_info, True, "可用"
+        elif 300 <= response.status_code < 400:
+            return url_info, True, f"重定向({response.status_code})"
+        else:
+            return url_info, False, f"HTTP错误({response.status_code})"
+            
+    except requests.exceptions.Timeout:
+        return url_info, False, "请求超时"
+    except requests.exceptions.ConnectionError:
+        return url_info, False, "连接错误"
+    except requests.exceptions.TooManyRedirects:
+        return url_info, False, "重定向过多"
+    except requests.exceptions.RequestException as e:
+        return url_info, False, f"请求异常: {str(e)}"
+    except Exception as e:
+        return url_info, False, f"未知错误: {str(e)}"
+
+
+def check_all_urls(urls_with_context, max_workers=20):
+    """
+    使用线程池并发检查所有URL的可用性
+    """
+    unavailable_urls = []
+    
+    print(f"开始检查 {len(urls_with_context)} 个URL的可用性...")
+    start_time = time.time()
+    
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        # 提交所有URL检查任务
+        future_to_url = {
+            executor.submit(check_url_availability, url_info): url_info 
+            for url_info in urls_with_context
+        }
+        
+        # 处理完成的任务
+        for future in as_completed(future_to_url):
+            url_info, is_available, message = future.result()
+            if not is_available:
+                # 添加详细错误信息
+                url_info["error"] = message
+                unavailable_urls.append(url_info)
+    
+    elapsed_time = time.time() - start_time
+    print(f"URL检查完成，耗时: {elapsed_time:.2f}秒")
+    print(f"发现 {len(unavailable_urls)} 个不可用URL")
+    
+    return unavailable_urls
+
+
 def main():
     parser = argparse.ArgumentParser(description="Markdown 文件校验工具")
     parser.add_argument(
@@ -331,6 +455,33 @@ def main():
     # 如果没有警告，输出成功信息
     if not toc_warnings and not unique_warnings and not link_warnings:
         print("所有校验通过，没有发现警告!")
+    
+    # 新增：检查URL可用性
+    print("\n开始URL可用性检查...")
+    urls_with_context = extract_all_urls(categories)
+    
+    if not urls_with_context:
+        print("未找到需要检查的URL")
+        return
+    
+    # 检查所有URL的可用性
+    unavailable_urls = check_all_urls(urls_with_context)
+    
+    # 输出不可用URL的警告
+    if unavailable_urls:
+        output_path = os.path.join(tools_dir, "url_available_warning.txt")
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write("URL可用性校验警告:\n\n")
+            for url_info in unavailable_urls:
+                f.write(f"URL: {url_info['url']}\n")
+                f.write(f"位置: 类别 {url_info['category_id']}.{url_info['category_name']} ")
+                f.write(f"第 {url_info['row_index']} 行 {url_info['column']}列\n")
+                f.write(f"上下文: {url_info['context']}\n")
+                f.write(f"错误: {url_info['error']}\n")
+                f.write("-" * 80 + "\n")
+        print(f"生成 {output_path}，包含 {len(unavailable_urls)} 个不可用URL警告")
+    else:
+        print("所有URL均可用，未发现不可用链接")
 
 
 if __name__ == "__main__":
