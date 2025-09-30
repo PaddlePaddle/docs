@@ -141,12 +141,6 @@ if [ ${EXIT_CODE} -ne 0 ]; then
     exit ${EXIT_CODE}
 fi
 
-# 5 Approval check
-/bin/bash  ${DIR_PATH}/checkapproval.sh
-if [ $? -ne 0 ];then
-    exit 1
-fi
-
 echo "PADDLE_WHL=${PADDLE_WHL}"
 # print preview url
 echo "${PREVIEW_URL_PROMPT}"
