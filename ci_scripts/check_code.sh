@@ -26,12 +26,12 @@ diff_files=$(git diff --name-only --diff-filter=ACMR ${BRANCH})
 num_diff_files=$(echo "$diff_files" | wc -l)
 echo -e "diff files between pr and ${BRANCH}:\n${diff_files}"
 
-echo "Checking code style by prek ..."
-prek run --files ${diff_files};check_error=$?
+echo "Checking code style by pre-commit ..."
+pre-commit run --files ${diff_files};check_error=$?
 
 if test ! -z "$(git diff)"; then
     echo -e '\n************************************************************************************'
-    echo -e "These files have been formatted by code format hook. You should use prek to \
+    echo -e "These files have been formatted by code format hook. You should use pre-commit to \
 format them before git push."
     echo -e '************************************************************************************\n'
     git diff 2>&1
@@ -40,15 +40,15 @@ fi
 echo -e '\n************************************************************************************'
 if [ ${check_error} != 0 ];then
     echo "Your PR code style check failed."
-    echo "Please install prek locally and set up git hook scripts:"
+    echo "Please install pre-commit locally and set up git hook scripts:"
     echo ""
-    echo "    pip install prek"
-    echo "    prek install"
+    echo "    pip install pre-commit"
+    echo "    pre-commit install"
     echo ""
     if [[ $num_diff_files -le 100 ]];then
-        echo "Then, run prek to check codestyle issues in your PR:"
+        echo "Then, run pre-commit to check codestyle issues in your PR:"
         echo ""
-        echo "    prek run --files" $(echo ${diff_files} | tr "\n" " ")
+        echo "    pre-commit run --files" $(echo ${diff_files} | tr "\n" " ")
         echo ""
     fi
     echo "For more information, please refer to our codestyle check guide:"

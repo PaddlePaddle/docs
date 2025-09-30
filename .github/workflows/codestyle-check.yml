@@ -44,11 +44,11 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Install prek
+      - name: Install pre-commit
         run: |
-          uv tool install prek
+          uv tool install pre-commit
 
-      - name: Run prek
+      - name: Run pre-commit
         run: |
           set +e
           bash -x ci_scripts/check_code.sh;EXCODE=$?
