@@ -319,14 +319,13 @@ def generate_category2_table(
     生成类别2（仅API调用方式不一致）的Markdown表格
     """
     whitelist_skip = [
-        "torch.Tensor.numel",
-        "torch.Tensor.nelement",
-        "torch.Tensor.is_inference",
-        "torch.numel",
-        "torch.is_inference",
-        "torch.ge",
-        "torch.utils.data.WeightedRandomSampler",
-        "torch.utils.data.RandomSampler",
+        # "torch.Tensor.numel",# invoke_diff
+        # "torch.Tensor.nelement",
+        # "torch.Tensor.is_inference", # 不确定
+        # "torch.numel", # 返回类型不一致
+        # "torch.is_inference",
+        # "torch.utils.data.WeightedRandomSampler",
+        # "torch.utils.data.RandomSampler",
     ]
 
     no_need_convert_list = extract_no_need_convert_list(
@@ -356,6 +355,8 @@ def generate_category2_table(
             "TensorFunc2PaddleFunc",
             "Func2Attribute",
             "Attribute2Func",
+            "NumelMatcher",
+            "Is_InferenceMatcher",
         ]:
             # 在docs_mapping中查找当前src_api对应的信息
             docs_mapping_info = docs_mapping.get(src_api, {})
