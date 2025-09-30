@@ -1,316 +1,316 @@
-name:  📝 分布式文档——数据并行快速开始体验评估 Eval Issue
+name: 📝 分布式文档——数据并行快速开始体验评估 Eval Issue
 description: 第三期分布式文档——数据并行快速开始体验评估报告。
 labels: [distributed_dp_eval]
 
 body:
-- type: markdown
-  attributes:
-    value: >
-      #### 此模板用于第三期分布式文档（数据并行快速开始）评估工作小组成员，向飞桨团队反馈文档问题。如非工作小组成员，请使用 「📚文档」模板，感谢配合~
+  - type: markdown
+    attributes:
+      value: >
+        #### 此模板用于第三期分布式文档（数据并行快速开始）评估工作小组成员，向飞桨团队反馈文档问题。如非工作小组成员，请使用 「📚文档」模板，感谢配合~
 
-      #### This template is used by members of the distributed document evaluation working group to report documentation issues to the Paddle Team. If you are not a member of the working group, please use the "📚 Documentation Issue" template, thank you for your cooperation~
+        #### This template is used by members of the distributed document evaluation working group to report documentation issues to the Paddle Team. If you are not a member of the working group, please use the "📚 Documentation Issue" template, thank you for your cooperation~
 
-- type: dropdown
-  id: distributed_dp_task_type
-  attributes:
-    label: 任务类型
-    description: 请选择您的任务类型
-    options:
-      - 单机多卡
-      - 多机多卡
-  validations:
-    required: true
+  - type: dropdown
+    id: distributed_dp_task_type
+    attributes:
+      label: 任务类型
+      description: 请选择您的任务类型
+      options:
+        - 单机多卡
+        - 多机多卡
+    validations:
+      required: true
 
-- type: dropdown
-  id: distributed_dp_environment
-  attributes:
-    label: 项目环境
-    description: 请选择您的项目运行环境
-    options:
-      - 云平台
-      - 自己的硬件（如集群）
-      - AI Studio
-      - 其他
-  validations:
-    required: true
+  - type: dropdown
+    id: distributed_dp_environment
+    attributes:
+      label: 项目环境
+      description: 请选择您的项目运行环境
+      options:
+        - 云平台
+        - 自己的硬件（如集群）
+        - AI Studio
+        - 其他
+    validations:
+      required: true
 
-- type: markdown
-  attributes:
-    value: >
-      # 数据并行任务一 体验评估报告
-
-
-- type: textarea
-  id: distributed_dp_task1
-  attributes:
-    label: 认领任务
-    description: |
-      请输入您认领的任务名称，并附上链接（如果有）。
-      例：【CV】使用卷积神经网络进行图像分类：https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/cv/convnet_image_classification.html
-  validations:
-    required: true
-
-- type: markdown
-  attributes:
-    value: >
-      ## 任务一体验评测
-
-- type: textarea
-  id: distributed_dp_eval1
-  attributes:
-    label: 1.导入分布式训练需要的依赖包
-    description: |
-      针对「导入分布式训练需要的依赖」这一环节，请回答以下内容
-    value: |
-      - 完成情况（成功/不成功) ：
-      - 遇到问题：
-      - 解决方法（无法解决需注明)：
-      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
-  validations:
-    required: true
-
-- type: textarea
-  id: distributed_dp_eval2
-  attributes:
-    label: 2.初始化分布式训练环境
-    description: |
-      针对「初始化分布式训练环境」这一环节，请回答以下内容
-    value: |
-      - 完成情况（成功/不成功) ：
-      - 遇到问题：
-      - 解决方法（无法解决需注明)：
-      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
-  validations:
-    required: true
-
-- type: textarea
-  id: distributed_dp_eval3
-  attributes:
-    label: 3.设置分布式训练需要的优化器
-    description: |
-      针对「设置分布式训练需要的优化器」这一环节，请回答以下内容
-    value: |
-      - 完成情况（成功/不成功) ：
-      - 遇到问题：
-      - 解决方法（无法解决需注明)：
-      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
-  validations:
-    required: true
+  - type: markdown
+    attributes:
+      value: >
+        # 数据并行任务一 体验评估报告
 
 
-- type: textarea
-  id: distributed_dp_eval4
-  attributes:
-    label: 4.数据集拆分
-    description: |
-      针对「数据集拆分」这一环节，请回答以下内容
-    value: |
-      - 完成情况（成功/不成功) ：
-      - 遇到问题：
-      - 解决方法（无法解决需注明)：
-      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
-  validations:
-    required: true
+  - type: textarea
+    id: distributed_dp_task1
+    attributes:
+      label: 认领任务
+      description: |
+        请输入您认领的任务名称，并附上链接（如果有）。
+        例：【CV】使用卷积神经网络进行图像分类：https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/cv/convnet_image_classification.html
+    validations:
+      required: true
 
-- type: textarea
-  id: distributed_dp_eval5
-  attributes:
-    label: 5.构建训练代码
-    description: |
-      针对「构建训练代码」这一环节，请回答以下内容
-    value: |
-      - 完成情况（成功/不成功) ：
-      - 遇到问题：
-      - 解决方法（无法解决需注明)：
-      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
-  validations:
-    required: true
+  - type: markdown
+    attributes:
+      value: >
+        ## 任务一体验评测
 
-- type: textarea
-  id: distributed_dp_eval6
-  attributes:
-    label: 6.单机多卡分布式训练
-    description: |
-      针对「单机多卡分布式训练」这一环节，请回答以下内容
-    value: |
-      - 完成情况（成功/不成功) ：
-      - 遇到问题：
-      - 解决方法（无法解决需注明)：
-      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
-  validations:
-    required: true
+  - type: textarea
+    id: distributed_dp_eval1
+    attributes:
+      label: 1.导入分布式训练需要的依赖包
+      description: |
+        针对「导入分布式训练需要的依赖」这一环节，请回答以下内容
+      value: |
+        - 完成情况（成功/不成功) ：
+        - 遇到问题：
+        - 解决方法（无法解决需注明)：
+        - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    validations:
+      required: true
 
-- type: textarea
-  id: distributed_dp_eval7
-  attributes:
-    label: 7.多机多卡分布式训练
-    description: |
-      针对「多机多卡分布式训练」这一环节，请回答以下内容
-    value: |
-      - 完成情况（成功/不成功) ：
-      - 遇到问题：
-      - 解决方法（无法解决需注明)：
-      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
-  validations:
-    required: false
+  - type: textarea
+    id: distributed_dp_eval2
+    attributes:
+      label: 2.初始化分布式训练环境
+      description: |
+        针对「初始化分布式训练环境」这一环节，请回答以下内容
+      value: |
+        - 完成情况（成功/不成功) ：
+        - 遇到问题：
+        - 解决方法（无法解决需注明)：
+        - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    validations:
+      required: true
 
-- type: textarea
-  id: distributed_dp_eval8
-  attributes:
-    label: 其他问题或建议
-    description: |
-     如果有其他问题或建议，请您详细描述。
-  validations:
-    required: false
-
-- type: textarea
-  id: distributed_dp_code1
-  attributes:
-    label: 相关代码
-    description: |
-      请附上aistudio项目地址 或 直接贴示例代码
-  validations:
-    required: true
-
-- type: markdown
-  attributes:
-    value: >
-      # 数据并行任务二 体验评估报告
+  - type: textarea
+    id: distributed_dp_eval3
+    attributes:
+      label: 3.设置分布式训练需要的优化器
+      description: |
+        针对「设置分布式训练需要的优化器」这一环节，请回答以下内容
+      value: |
+        - 完成情况（成功/不成功) ：
+        - 遇到问题：
+        - 解决方法（无法解决需注明)：
+        - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    validations:
+      required: true
 
 
-- type: textarea
-  id: distributed_dp_task2
-  attributes:
-    label: 认领任务名称
-    description: |
-      请输入您认领的任务名称，并附上链接（如果有）
-  validations:
-    required: true
+  - type: textarea
+    id: distributed_dp_eval4
+    attributes:
+      label: 4.数据集拆分
+      description: |
+        针对「数据集拆分」这一环节，请回答以下内容
+      value: |
+        - 完成情况（成功/不成功) ：
+        - 遇到问题：
+        - 解决方法（无法解决需注明)：
+        - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    validations:
+      required: true
 
-- type: markdown
-  attributes:
-    value: >
-      ## 任务二体验评测
+  - type: textarea
+    id: distributed_dp_eval5
+    attributes:
+      label: 5.构建训练代码
+      description: |
+        针对「构建训练代码」这一环节，请回答以下内容
+      value: |
+        - 完成情况（成功/不成功) ：
+        - 遇到问题：
+        - 解决方法（无法解决需注明)：
+        - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    validations:
+      required: true
 
-- type: textarea
-  id: distributed_dp_eval11
-  attributes:
-    label: 1.导入分布式训练需要的依赖包
-    description: |
-      针对「导入分布式训练需要的依赖」这一环节，请回答以下内容
-    value: |
-      - 完成情况（成功/不成功) ：
-      - 遇到问题：
-      - 解决方法（无法解决需注明)：
-      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
-  validations:
-    required: true
+  - type: textarea
+    id: distributed_dp_eval6
+    attributes:
+      label: 6.单机多卡分布式训练
+      description: |
+        针对「单机多卡分布式训练」这一环节，请回答以下内容
+      value: |
+        - 完成情况（成功/不成功) ：
+        - 遇到问题：
+        - 解决方法（无法解决需注明)：
+        - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    validations:
+      required: true
 
-- type: textarea
-  id: distributed_dp_eval12
-  attributes:
-    label: 2.初始化分布式训练环境
-    description: |
-      针对「初始化分布式训练环境」这一环节，请回答以下内容
-    value: |
-      - 完成情况（成功/不成功) ：
-      - 遇到问题：
-      - 解决方法（无法解决需注明)：
-      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
-  validations:
-    required: true
+  - type: textarea
+    id: distributed_dp_eval7
+    attributes:
+      label: 7.多机多卡分布式训练
+      description: |
+        针对「多机多卡分布式训练」这一环节，请回答以下内容
+      value: |
+        - 完成情况（成功/不成功) ：
+        - 遇到问题：
+        - 解决方法（无法解决需注明)：
+        - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    validations:
+      required: false
 
-- type: textarea
-  id: distributed_dp_eval13
-  attributes:
-    label: 3.设置分布式训练需要的优化器
-    description: |
-      针对「设置分布式训练需要的优化器」这一环节，请回答以下内容
-    value: |
-      - 完成情况（成功/不成功) ：
-      - 遇到问题：
-      - 解决方法（无法解决需注明)：
-      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
-  validations:
-    required: true
+  - type: textarea
+    id: distributed_dp_eval8
+    attributes:
+      label: 其他问题或建议
+      description: |
+        如果有其他问题或建议，请您详细描述。
+    validations:
+      required: false
 
+  - type: textarea
+    id: distributed_dp_code1
+    attributes:
+      label: 相关代码
+      description: |
+        请附上aistudio项目地址 或 直接贴示例代码
+    validations:
+      required: true
 
-- type: textarea
-  id: distributed_dp_eval14
-  attributes:
-    label: 4.数据集拆分
-    description: |
-      针对「数据集拆分」这一环节，请回答以下内容
-    value: |
-      - 完成情况（成功/不成功) ：
-      - 遇到问题：
-      - 解决方法（无法解决需注明)：
-      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
-  validations:
-    required: true
-
-- type: textarea
-  id: distributed_dp_eval15
-  attributes:
-    label: 5.构建训练代码
-    description: |
-      针对「构建训练代码」这一环节，请回答以下内容
-    value: |
-      - 完成情况（成功/不成功) ：
-      - 遇到问题：
-      - 解决方法（无法解决需注明)：
-      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
-  validations:
-    required: true
-
-- type: textarea
-  id: distributed_dp_eval16
-  attributes:
-    label: 6.单机多卡分布式训练
-    description: |
-      针对「单机多卡分布式训练」这一环节，请回答以下内容
-    value: |
-      - 完成情况（成功/不成功) ：
-      - 遇到问题：
-      - 解决方法（无法解决需注明)：
-      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
-  validations:
-    required: true
-
-- type: textarea
-  id: distributed_dp_eval17
-  attributes:
-    label: 7.多机多卡分布式训练
-    description: |
-      针对「多机多卡分布式训练」这一环节，请回答以下内容
-    value: |
-      - 完成情况（成功/不成功) ：
-      - 遇到问题：
-      - 解决方法（无法解决需注明)：
-      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
-  validations:
-    required: false
-
-- type: textarea
-  id: distributed_dp_eval18
-  attributes:
-    label: 其他问题或建议
-    description: |
-     如果有其他问题或建议，请您详细描述。
-  validations:
-    required: false
-
-- type: textarea
-  id: distributed_dp_code2
-  attributes:
-    label: 相关代码
-    description: |
-      请附上aistudio项目地址 或 直接贴示例代码
-  validations:
-    required: true
+  - type: markdown
+    attributes:
+      value: >
+        # 数据并行任务二 体验评估报告
 
 
-- type: markdown
-  attributes:
-    value: >
-      感谢你的贡献 🎉！Thanks for your contribution 🎉!
+  - type: textarea
+    id: distributed_dp_task2
+    attributes:
+      label: 认领任务名称
+      description: |
+        请输入您认领的任务名称，并附上链接（如果有）
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: >
+        ## 任务二体验评测
+
+  - type: textarea
+    id: distributed_dp_eval11
+    attributes:
+      label: 1.导入分布式训练需要的依赖包
+      description: |
+        针对「导入分布式训练需要的依赖」这一环节，请回答以下内容
+      value: |
+        - 完成情况（成功/不成功) ：
+        - 遇到问题：
+        - 解决方法（无法解决需注明)：
+        - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    validations:
+      required: true
+
+  - type: textarea
+    id: distributed_dp_eval12
+    attributes:
+      label: 2.初始化分布式训练环境
+      description: |
+        针对「初始化分布式训练环境」这一环节，请回答以下内容
+      value: |
+        - 完成情况（成功/不成功) ：
+        - 遇到问题：
+        - 解决方法（无法解决需注明)：
+        - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    validations:
+      required: true
+
+  - type: textarea
+    id: distributed_dp_eval13
+    attributes:
+      label: 3.设置分布式训练需要的优化器
+      description: |
+        针对「设置分布式训练需要的优化器」这一环节，请回答以下内容
+      value: |
+        - 完成情况（成功/不成功) ：
+        - 遇到问题：
+        - 解决方法（无法解决需注明)：
+        - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    validations:
+      required: true
+
+
+  - type: textarea
+    id: distributed_dp_eval14
+    attributes:
+      label: 4.数据集拆分
+      description: |
+        针对「数据集拆分」这一环节，请回答以下内容
+      value: |
+        - 完成情况（成功/不成功) ：
+        - 遇到问题：
+        - 解决方法（无法解决需注明)：
+        - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    validations:
+      required: true
+
+  - type: textarea
+    id: distributed_dp_eval15
+    attributes:
+      label: 5.构建训练代码
+      description: |
+        针对「构建训练代码」这一环节，请回答以下内容
+      value: |
+        - 完成情况（成功/不成功) ：
+        - 遇到问题：
+        - 解决方法（无法解决需注明)：
+        - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    validations:
+      required: true
+
+  - type: textarea
+    id: distributed_dp_eval16
+    attributes:
+      label: 6.单机多卡分布式训练
+      description: |
+        针对「单机多卡分布式训练」这一环节，请回答以下内容
+      value: |
+        - 完成情况（成功/不成功) ：
+        - 遇到问题：
+        - 解决方法（无法解决需注明)：
+        - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    validations:
+      required: true
+
+  - type: textarea
+    id: distributed_dp_eval17
+    attributes:
+      label: 7.多机多卡分布式训练
+      description: |
+        针对「多机多卡分布式训练」这一环节，请回答以下内容
+      value: |
+        - 完成情况（成功/不成功) ：
+        - 遇到问题：
+        - 解决方法（无法解决需注明)：
+        - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    validations:
+      required: false
+
+  - type: textarea
+    id: distributed_dp_eval18
+    attributes:
+      label: 其他问题或建议
+      description: |
+        如果有其他问题或建议，请您详细描述。
+    validations:
+      required: false
+
+  - type: textarea
+    id: distributed_dp_code2
+    attributes:
+      label: 相关代码
+      description: |
+        请附上aistudio项目地址 或 直接贴示例代码
+    validations:
+      required: true
+
+
+  - type: markdown
+    attributes:
+      value: >
+        感谢你的贡献 🎉！Thanks for your contribution 🎉!
