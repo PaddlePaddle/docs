@@ -1,4 +1,4 @@
-## [仅 API 调用方式不一致] torch.utils.data.RandomSampler
+## [暂未分类] torch.utils.data.RandomSampler
 
 ### [torch.utils.data.RandomSampler](https://pytorch.org/docs/stable/data.html#torch.utils.data.RandomSampler)
 

@@ -1,4 +1,4 @@
-## [仅 API 调用方式不一致]transformers.PreTrainedTokenizer
+## [暂未分类]transformers.PreTrainedTokenizer
 
 ### [transformers.PreTrainedTokenizer](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/tokenizer#transformers.PreTrainedTokenizer)
 
