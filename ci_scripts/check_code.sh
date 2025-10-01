@@ -26,8 +26,18 @@ diff_files=$(git diff --name-only --diff-filter=ACMR ${BRANCH})
 num_diff_files=$(echo "$diff_files" | wc -l)
 echo -e "diff files between pr and ${BRANCH}:\n${diff_files}"
 
+PRE_COMMIT_EXE="pre-commit"
+# Use prek to replace pre-commit if prek is installed
+if command -v prek &> /dev/null
+then
+    echo "Detected prek, use prek to check code style for better performance."
+    PRE_COMMIT_EXE="prek"
+else
+    echo "prek not found, use pre-commit to check code style."
+fi
+
 echo "Checking code style by pre-commit ..."
-pre-commit run --files ${diff_files};check_error=$?
+$PRE_COMMIT_EXE run --files ${diff_files};check_error=$?
 
 if test ! -z "$(git diff)"; then
     echo -e '\n************************************************************************************'
