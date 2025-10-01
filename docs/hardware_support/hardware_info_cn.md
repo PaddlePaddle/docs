@@ -74,15 +74,15 @@
 
 ## Paddle2ONNX
 
-|  分类  | 公司 | 型号 | 支持部分模型 | 模型库链接 |
-|  ----  | ---- | ---- | ---- | ---- |
-|  AI 加速芯片 | 登临 | Goldwasser 系列加速卡 | ✔️  | [模型库](https://github.com/denglin-github/DLPaddleModelZoo) |
-|  AI 加速芯片 | 墨芯 | Moffett S4 | ✔️  | [模型库](https://github.com/MoffettSystem/moffett-modelzoo-paddle) |
-|  AI 加速芯片 | 海飞科 | Compass C10 | ✔️  | [模型库](https://github.com/hexaflakeai/model_zoo) |
-|  AI 加速芯片 | 清微智能 | TX5368 | ✔️  | [模型库](https://github.com/tsingmicro-toolchain/ts.knight-modelzoo) |
-|  AI 加速芯片 | 爱芯元智 | AX620A | ✔️  | [模型库](https://github.com/AXERA-TECH/ax-samples/tree/main) |
-|  AI 加速芯片 | 沐曦 | N100 | ✔️  | [模型库](https://gitee.com/metax-maca/modelzoo/tree/master/paddlepaddle) |
-|  AI 加速芯片 | 希姆计算 | STCP920 | ✔️  | [模型库](https://github.com/Stream-Computing/STCPaddleModelZoo) |
+| 分类 | 架构 | 公司 | 型号 | 支持部分模型 | 模型库链接 |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| AI 加速芯片 | | 登临 | Goldwasser 系列加速卡 | ✔️ | [模型库](https://github.com/denglin-github/DLPaddleModelZoo) |
+| AI 加速芯片 | | 墨芯 | Moffett S4 | ✔️ | [模型库](https://github.com/MoffettSystem/moffett-modelzoo-paddle) |
+| AI 加速芯片 | | 海飞科 | Compass C10 | ✔️ | [模型库](https://github.com/hexaflakeai/model_zoo) |
+| AI 加速芯片 | | 清微智能 | TX5368 | ✔️ | [模型库](https://github.com/tsingmicro-toolchain/ts.knight-modelzoo) |
+| AI 加速芯片 | | 爱芯元智 | AX620A | ✔️ | [模型库](https://github.com/AXERA-TECH/ax-samples/tree/main) |
+| AI 加速芯片 | | 沐曦 | N100 | ✔️ | [模型库](https://gitee.com/metax-maca/modelzoo/tree/master/paddlepaddle) |
+| AI 加速芯片 | | 希姆计算 | STCP920 | ✔️ | [模型库](https://github.com/Stream-Computing/STCPaddleModelZoo) |
 
 ## TVM
 
