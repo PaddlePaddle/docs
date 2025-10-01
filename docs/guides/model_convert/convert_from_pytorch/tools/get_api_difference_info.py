@@ -21,6 +21,7 @@ mapping_type_levels = [
     [
         "无参数",
         "参数完全一致",
+        "仅 API 调用方式不一致",
         "仅参数名不一致",
         "paddle 参数更多",
         "参数默认值不一致",
@@ -476,7 +477,7 @@ def get_meta_from_diff_file(
                 )
 
     # 允许没有参数映射列表
-    if mapping_type in ["无参数", "组合替代实现"]:
+    if mapping_type in ["无参数", "组合替代实现", "仅 API 调用方式不一致"]:
         if state == ParserState.wait_for_args:
             state = ParserState.end
     # 必须有参数映射列表，但是可以随时停止
@@ -656,37 +657,40 @@ def get_table_header_by_prefix(prefix):
 
 def discover_all_metas(cfp_basedir):
     # 获取 api_difference/ 下的 api 映射文档
-    diff_3rd_basedir = os.path.join(cfp_basedir, "api_difference_third_party")
+    diff_3rd_basedir = os.path.join(cfp_basedir, "api_difference")
 
     diff_srcs = [("api_difference", "torch.", "paddle.")]
-    diff_srcs.extend(
-        [
-            (os.path.join(diff_3rd_basedir, subdir), f"{subdir}.", "")
-            for subdir in os.listdir(diff_3rd_basedir)
-        ]
-    )
+    diff_srcs += [
+        ("api_difference", "fairscale.", "paddle."),
+        ("api_difference", "flash_attn.", "paddle."),
+        ("api_difference", "transformers.", "paddlenlp."),
+        ("api_difference", "torchvision.", ""),
+    ]
 
     diff_files = []
     for diff_src, api_prefix, dst_prefix in diff_srcs:
         basedir = os.path.join(cfp_basedir, diff_src)
         files = discover_markdown_files(basedir, api_prefix)
-        diff_files.append(((api_prefix, dst_prefix), files))
 
-        print(
-            f"{len(files)} mapping documents found in {os.path.relpath(basedir, cfp_basedir)}."
-        )
+        # 新增过滤逻辑：跳过包含"others"的文件路径
+        filtered_files = [f for f in files if "others" not in f]
+        diff_files.append(((api_prefix, dst_prefix), filtered_files))
 
     metas = []
     for prefixs, files in diff_files:
         s, d = prefixs
         sh = get_table_header_by_prefix(s)
         for f in files:
-            if os.path.basename(f) in validate_whitelist:
-                continue
-            metas.append(get_meta_from_diff_file(f, s, d, src_argmap_title=sh))
+            # 确保文件路径中不包含"others"才处理
+            if "others" not in f:
+                metas.append(
+                    get_meta_from_diff_file(f, s, d, src_argmap_title=sh)
+                )
 
     metas.sort(key=lambda x: x["src_api"])
-    print(f"extracted {len(metas)} mapping metas data.")
+    print(
+        f"extracted {len(metas)} mapping metas data (excluding 'others' files)."
+    )
     return metas
 
 
@@ -707,7 +711,7 @@ if __name__ == "__main__":
     meta_dict = {m["src_api"].replace(r"\_", "_"): m for m in metas}
 
     # 该文件用于 PaConvert 的文档对齐工作
-    api_diff_output_path = os.path.join(tools_dir, "docs_mappings_new.json")
+    api_diff_output_path = os.path.join(tools_dir, "api_difference_info.json")
 
     with open(api_diff_output_path, "w", encoding="utf-8") as f:
         json.dump(metas, f, ensure_ascii=False, indent=4)

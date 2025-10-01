@@ -14,7 +14,7 @@ in_dynamic_mode
 
 返回
 ::::::::::::
-bool，如果 paddle 当前是在动态图模式运行，则返回  ``True`` ，否则返回  ``False`` 。
+bool，如果 paddle 当前是在动态图模式运行，则返回 ``True``，否则返回 ``False``。
 
 
 代码示例
