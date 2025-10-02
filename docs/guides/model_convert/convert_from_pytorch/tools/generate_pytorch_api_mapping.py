@@ -400,23 +400,11 @@ def generate_category2_table(
             continue
         # 检查条件：mapping_type为"无参数"或"参数完全一致"，src_api包含"torch"，替换后与dst_api不等
         if mapping_type in ["无参数", "参数完全一致", "仅 API 调用方式不一致"]:
-            expected_paddle_api = src_api.replace("torch", "paddle")
-            if expected_paddle_api != dst_api:
-                used_apis.add(src_api)  # 标记该API已处理
-                existing_apis.add(src_api)
+            print(src_api)
 
-                src_url = item.get("src_api_url")
-                dst_url = item.get("dst_api_url")
-
-                src_api_display = escape_underscores_in_api(src_api)
-                dst_api_display = escape_underscores_in_api(dst_api)
-
-                col2 = f"[{src_api_display}]({src_url})" if src_url else src_api
-                col3 = f"[{dst_api_display}]({dst_url})" if dst_url else dst_api
-
-                # 生成备注列的超链接
-                remark_link = get_mapping_doc_url(src_api, base_dir)
-                rows.append((src_api, col2, col3, remark_link))
+            # 生成备注列的超链接
+            # remark_link = get_mapping_doc_url(src_api, base_dir)
+            # rows.append((src_api, col2, col3, remark_link))
 
     # 生成Markdown表格字符串
     table_lines = [

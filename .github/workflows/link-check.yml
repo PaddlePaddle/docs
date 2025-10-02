@@ -18,10 +18,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
-            args: --verbose --no-progress --max-redirects 8 './**/*.md' './**/*.rst'
-            format: markdown
-            fail: false
-            output: lychee/results.md
+          args: --verbose --no-progress --max-redirects 8 './**/*.md' './**/*.rst'
+          format: markdown
+          fail: false
+          output: lychee/results.md
 
       - name: Create Issue From File
         if: steps.lychee.outputs.exit_code != 0

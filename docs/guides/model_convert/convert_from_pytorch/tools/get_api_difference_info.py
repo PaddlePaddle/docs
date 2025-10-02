@@ -671,23 +671,26 @@ def discover_all_metas(cfp_basedir):
     for diff_src, api_prefix, dst_prefix in diff_srcs:
         basedir = os.path.join(cfp_basedir, diff_src)
         files = discover_markdown_files(basedir, api_prefix)
-        diff_files.append(((api_prefix, dst_prefix), files))
 
-        # print(
-        #     f"{len(files)} mapping documents found in {os.path.relpath(basedir, cfp_basedir)}."
-        # )
+        # 新增过滤逻辑：跳过包含"others"的文件路径
+        filtered_files = [f for f in files if "others" not in f]
+        diff_files.append(((api_prefix, dst_prefix), filtered_files))
 
     metas = []
     for prefixs, files in diff_files:
         s, d = prefixs
         sh = get_table_header_by_prefix(s)
         for f in files:
-            if os.path.basename(f) in validate_whitelist:
-                continue
-            metas.append(get_meta_from_diff_file(f, s, d, src_argmap_title=sh))
+            # 确保文件路径中不包含"others"才处理
+            if "others" not in f:
+                metas.append(
+                    get_meta_from_diff_file(f, s, d, src_argmap_title=sh)
+                )
 
     metas.sort(key=lambda x: x["src_api"])
-    print(f"extracted {len(metas)} mapping metas data.")
+    print(
+        f"extracted {len(metas)} mapping metas data (excluding 'others' files)."
+    )
     return metas
 
 
