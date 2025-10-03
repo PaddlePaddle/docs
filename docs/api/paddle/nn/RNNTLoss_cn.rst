@@ -5,7 +5,7 @@ RNNTLoss
 
 .. py:class:: paddle.nn.RNNTLoss(blank=0, fastemit_lambda=0.001, reduction='mean', name=None)
 
-计算 RNNT loss。该接口的底层调用了第三方 `warp-transducer <https://github.com/b-flo/warp-transducer.git>`_ 的实现。
+计算 RNNT loss。该接口的底层调用了第三方 `warp-transducer <https://github.com/b-flo/warp-transducer>`_ 的实现。
 也可以叫做 softmax with RNNT，因为 warp-transducer 库中插入了 softmax 激活函数来对输入的值进行归一化。
 
 参数
