@@ -50,7 +50,7 @@ axis 参数的默认值为 None。当 ``axis=None`` 时，dropout 的功能为�
    将输入 x 和生成的 mask 点积，就得到了随机丢弃部分元素之后的结果：
    [[0 2 0]
     [4 0 6]]
-   假定 dropout 的概率使用默认值，即 ``p=0.5``，若 mode 参数使用默认值，即 ``mode='upscale_in_train'`` ，
+   假定 dropout 的概率使用默认值，即 ``p=0.5`` ，若 mode 参数使用默认值，即 ``mode='upscale_in_train'`` ，
    则在训练阶段，最终增大后的结果为：
    [[0 4 0 ]
     [8 0 12]]
@@ -70,8 +70,8 @@ axis 参数的默认值为 None。当 ``axis=None`` 时，dropout 的功能为�
 
  -  axis 应设置为：``[0, 1, ... , ndim(x)-1]`` 的子集（ndim(x) 为输入 x 的维度），例如：
 
-   - 若 x 的维度为 2，参数 axis 可能的取值有 4 种：``None``, ``[0]``, ``[1]``, ``[0,1]``
-   - 若 x 的维度为 3，参数 axis 可能的取值有 8 种：``None``, ``[0]``, ``[1]``, ``[2]``, ``[0,1]``, ``[0,2]``, ``[1,2]``, ``[0,1,2]``
+   - 若 x 的维度为 2，参数 axis 可能的取值有 4 种： ``None`` , ``[0]`` , ``[1]`` , ``[0,1]``
+   - 若 x 的维度为 3，参数 axis 可能的取值有 8 种： ``None`` , ``[0]`` , ``[1]`` , ``[2]`` , ``[0,1]`` , ``[0,2]`` , ``[1,2]``, ``[0,1,2]``
 
  -  下面以维度为 2 的输入 Tensor 展示 axis 参数的用法：
 
@@ -80,7 +80,7 @@ axis 参数的默认值为 None。当 ``axis=None`` 时，dropout 的功能为�
    假定 x 是形状为 2*3 的 2 维 Tensor:
    [[1 2 3]
     [4 5 6]]
-   (1) 若 ``axis=[0]``，则表示只在第 0 个维度做 dropout。这时生成 mask 的形状为 2*1。
+   (1) 若 ``axis=[0]`` ，则表示只在第 0 个维度做 dropout。这时生成 mask 的形状为 2*1。
      例如，我们可能会得到这样的 mask:
      [[1]
       [0]]
@@ -92,7 +92,7 @@ axis 参数的默认值为 None。当 ``axis=None`` 时，dropout 的功能为�
       [0 0 0]]
      之后依据其它参数的设置，得到最终的输出结果。
 
-   (2) 若 ``axis=[1]``，则表示只在第 1 个维度做 dropout。这时生成的 mask 形状为 1*3。
+   (2) 若 ``axis=[1]`` ，则表示只在第 1 个维度做 dropout。这时生成的 mask 形状为 1*3。
      例如，我们可能会得到这样的 mask:
      [[1 0 1]]
      这个 1*3 的 mask 在和 x 做点积的时候，会首先广播成一个 2*3 的矩阵：
@@ -101,9 +101,9 @@ axis 参数的默认值为 None。当 ``axis=None`` 时，dropout 的功能为�
      点积所得结果为：
      [[1 0 3]
       [4 0 6]]
-   (3) 若 ``axis=[0, 1]``，则表示在第 0 维和第 1 维上做 dropout。此时与默认设置 ``axis=None`` 的作用一致。
+   (3) 若 ``axis=[0, 1]`` ，则表示在第 0 维和第 1 维上做 dropout。此时与默认设置 ``axis=None`` 的作用一致。
 
-若输入 x 为 4 维 Tensor，形状为 `NCHW`，其中 N 是批尺寸，C 是通道数，H 是特征高度，W 是特征宽度，当设置 ``axis=[0,1]`` 时，则只会在通道 `N` 和 `C` 上做 dropout，通道 `H` 和 `W` 的元素是绑定在一起的，即：``paddle.nn.functional.dropout(x, p, axis=[0,1])``，此时对 4 维 Tensor 中的某个 2 维特征图（形状为 `HW`），或者全部置 0，或者全部保留，这便是 dropout2d 的实现。详情参考 :ref:`cn_api_paddle_nn_functional_dropout2d` 。
+若输入 x 为 4 维 Tensor，形状为 `NCHW`，其中 N 是批尺寸，C 是通道数，H 是特征高度，W 是特征宽度，当设置 ``axis=[0,1]`` 时，则只会在通道 `N` 和 `C` 上做 dropout，通道 `H` 和 `W` 的元素是绑定在一起的，即：``paddle.nn.functional.dropout(x, p, axis=[0,1])`` ，此时对 4 维 Tensor 中的某个 2 维特征图（形状为 `HW`），或者全部置 0，或者全部保留，这便是 dropout2d 的实现。详情参考 :ref:`cn_api_paddle_nn_functional_dropout2d` 。
 
 类似的，若输入 x 为 5 维 Tensor，形状为 `NCDHW`，其中 D 是特征深度，当设置 ``axis=[0,1]`` 时，便可实现 dropout3d。详情参考 :ref:`cn_api_paddle_nn_functional_dropout3d` 。
 
