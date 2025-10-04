@@ -52,6 +52,7 @@ fi
 python ${APIMAPPING_ROOT}/tools/get_api_difference_info.py
 python ${APIMAPPING_ROOT}/tools/generate_pytorch_api_mapping.py
 
+
 if [ $? -ne 0 ]; then
     echo "Error: API mapping generate script failed, please check changes in ${APIMAPPING_ROOT}"
     exit 1

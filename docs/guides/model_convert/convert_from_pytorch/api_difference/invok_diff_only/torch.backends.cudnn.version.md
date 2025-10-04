@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.backends.cudnn.version
+## [仅 API 调用方式不一致]torch.backends.cudnn.version
 
 ### [torch.backends.cudnn.version](https://pytorch.org/docs/stable/generated/torch.backends.cudnn.version.html)
 

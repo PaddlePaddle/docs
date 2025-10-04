@@ -1,4 +1,4 @@
-## [无参数]torch.utils.data.IterableDataset
+## [仅 API 调用方式不一致]torch.utils.data.IterableDataset
 
 ### [torch.utils.data.IterableDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset)
 

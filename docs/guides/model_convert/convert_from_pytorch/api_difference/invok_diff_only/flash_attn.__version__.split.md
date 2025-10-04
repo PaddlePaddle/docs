@@ -1,4 +1,4 @@
-## [ 参数完全一致 ] flash_attn._\_version__.split
+## [仅 API 调用方式不一致] flash_attn._\_version__.split
 
 ### [flash_attn._\_version__.split](https://github.com/Dao-AILab/flash-attention/blob/72e27c6320555a37a83338178caa25a388e46121/flash_attn/__init__.py)
 
@@ -13,9 +13,3 @@ paddle.__version__.split(sep=None, maxsplit=-1)
 ```
 
 两者功能一致，参数完全一致，具体如下：
-### 参数映射
-
-| flash_attn | PaddlePaddle | 备注                                               |
-|---------|--------------| -------------------------------------------------- |
-| sep     | sep          | 分割字符串的分隔符。            |
-| max     | max          | 分割操作的最大次数            |

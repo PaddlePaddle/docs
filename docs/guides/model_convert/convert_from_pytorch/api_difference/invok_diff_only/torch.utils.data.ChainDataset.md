@@ -1,4 +1,4 @@
-## [参数完全一致]torch.utils.data.ChainDataset
+## [仅 API 调用方式不一致]torch.utils.data.ChainDataset
 
 ### [torch.utils.data.ChainDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.ChainDataset)
 
@@ -13,9 +13,3 @@ paddle.io.ChainDataset(datasets)
 ```
 
 paddle 参数和 torch 参数完全一致，具体如下：
-
-### 参数映射
-
-| PyTorch     | PaddlePaddle | 备注                                  |
-| ----------- | ------------ | ------------------------------------- |
-| datasets | datasets  | 待级联的多个数据集 |

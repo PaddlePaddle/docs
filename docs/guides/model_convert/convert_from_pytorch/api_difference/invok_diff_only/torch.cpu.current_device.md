@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.cpu.current_device
+## [仅 API 调用方式不一致]torch.cpu.current_device
 
 ### [torch.cpu.current_device](https://pytorch.org/docs/stable/generated/torch.cpu.current_device.html)
 

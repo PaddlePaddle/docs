@@ -1,4 +1,4 @@
-## [参数完全一致]torchvision.transforms.functional.adjust_hue
+## [仅 API 调用方式不一致]torchvision.transforms.functional.adjust_hue
 
 ### [torchvision.transforms.functional.adjust_hue](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.adjust_hue.html)
 
@@ -16,10 +16,3 @@ paddle.vision.transforms.adjust_hue(
 ```
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| torchvision           | PaddlePaddle      | 备注                                     |
-| --------------------- | ----------------- | ---------------------------------------- |
-| img                   | img               | 输入的图像。                              |
-| hue_factor            | hue_factor        | 调整色调的因子。       |

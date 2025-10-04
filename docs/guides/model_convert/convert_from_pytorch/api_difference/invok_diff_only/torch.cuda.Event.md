@@ -1,4 +1,4 @@
-## [参数完全一致]torch.cuda.Event
+## [仅 API 调用方式不一致]torch.cuda.Event
 
 ### [torch.cuda.Event](https://pytorch.org/docs/stable/generated/torch.cuda.Event.html#torch.cuda.Event)
 
@@ -13,9 +13,3 @@ paddle.device.cuda.Event(enable_timing=False, blocking=False, interprocess=False
 ```
 
 功能一致，参数完全一致，具体如下：
-### 参数映射
-| PyTorch       | PaddlePaddle      | 备注                                                   |
-|---------------|-------------------| ------------------------------------------------------ |
-| enable_timing | enable_timing     | 表示是否需要统计时间。默认值为 False。                                     |
-| blocking      | blocking          | 表示 wait()函数是否被阻塞。默认值为 False。       |
-| interprocess  | interprocess      | 表示是否能在进程间共享。默认值为 False。       |

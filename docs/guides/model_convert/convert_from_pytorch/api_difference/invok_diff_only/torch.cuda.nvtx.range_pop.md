@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.cuda.nvtx.range_pop
+## [仅 API 调用方式不一致]torch.cuda.nvtx.range_pop
 
 ### [torch.cuda.nvtx.range_pop](https://pytorch.org/docs/stable/generated/torch.cuda.nvtx.range_pop.html#torch.cuda.nvtx.range_pop)
 

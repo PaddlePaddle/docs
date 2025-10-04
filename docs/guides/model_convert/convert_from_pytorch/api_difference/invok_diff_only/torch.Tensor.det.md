@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.Tensor.det
+## [仅 API 调用方式不一致]torch.Tensor.det
 
 ### [torch.Tensor.det](https://pytorch.org/docs/stable/generated/torch.Tensor.det.html?highlight=det#torch.Tensor.det)
 

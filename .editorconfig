@@ -1,0 +1,19 @@
+# EditorConfig is a cross-editor configuration file
+# that helps to unify code styles for multiple
+# developers collaborative projects.
+# See more at https://editorconfig.org/
+
+root = true
+
+[*]
+indent_style = space
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{yml,yaml}]
+indent_size = 2
+
+[*.{py,pyi,toml}]
+indent_size = 4

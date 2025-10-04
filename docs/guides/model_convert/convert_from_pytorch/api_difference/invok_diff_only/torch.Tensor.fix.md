@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.Tensor.fix
+## [仅 API 调用方式不一致]torch.Tensor.fix
 
 ### [torch.Tensor.fix](https://pytorch.org/docs/stable/generated/torch.Tensor.fix.html?highlight=fix#torch.Tensor.fix)
 

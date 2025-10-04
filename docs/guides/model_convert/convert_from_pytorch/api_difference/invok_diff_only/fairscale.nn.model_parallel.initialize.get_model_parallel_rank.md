@@ -1,4 +1,4 @@
-## [无参数]fairscale.nn.model_parallel.initialize.get_model_parallel_rank
+## [仅 API 调用方式不一致]fairscale.nn.model_parallel.initialize.get_model_parallel_rank
 
 ### [fairscale.nn.model_parallel.initialize.get_model_parallel_rank](https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/initialize.py#L155)
 

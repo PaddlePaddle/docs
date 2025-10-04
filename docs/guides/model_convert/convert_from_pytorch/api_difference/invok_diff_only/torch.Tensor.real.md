@@ -1,4 +1,4 @@
-## [ 无参数 ] torch.Tensor.real
+## [仅 API 调用方式不一致] torch.Tensor.real
 
 ### [torch.Tensor.real](https://pytorch.org/docs/stable/generated/torch.Tensor.real.html)
 

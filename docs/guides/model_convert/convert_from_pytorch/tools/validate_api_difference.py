@@ -252,6 +252,59 @@ def check_links_exist(categories):
     return warnings
 
 
+def extract_all_urls(categories):
+    """
+    从所有类别中提取所有URL及其上下文信息
+    """
+    urls_with_context = []
+
+    for category in categories:
+        for row_idx, row in enumerate(category["table"]):
+            # 提取Pytorch列链接
+            pytorch_links = extract_links(row["pytorch"])
+            for link_text, url in pytorch_links:
+                urls_with_context.append(
+                    {
+                        "url": url,
+                        "category_id": category["id"],
+                        "category_name": category["name"],
+                        "row_index": row_idx + 1,
+                        "column": "Pytorch",
+                        "context": f"{link_text} (类别 {category['id']}.{category['name']} 第 {row_idx + 1} 行)",
+                    }
+                )
+
+            # 提取Paddle列链接
+            paddle_links = extract_links(row["paddle"])
+            for link_text, url in paddle_links:
+                urls_with_context.append(
+                    {
+                        "url": url,
+                        "category_id": category["id"],
+                        "category_name": category["name"],
+                        "row_index": row_idx + 1,
+                        "column": "Paddle",
+                        "context": f"{link_text} (类别 {category['id']}.{category['name']} 第 {row_idx + 1} 行)",
+                    }
+                )
+
+            # 提取Note列链接
+            note_links = extract_links(row["note"])
+            for link_text, url in note_links:
+                urls_with_context.append(
+                    {
+                        "url": url,
+                        "category_id": category["id"],
+                        "category_name": category["name"],
+                        "row_index": row_idx + 1,
+                        "column": "Note",
+                        "context": f"{link_text} (类别 {category['id']}.{category['name']} 第 {row_idx + 1} 行)",
+                    }
+                )
+
+    return urls_with_context
+
+
 def main():
     parser = argparse.ArgumentParser(description="Markdown 文件校验工具")
     parser.add_argument(

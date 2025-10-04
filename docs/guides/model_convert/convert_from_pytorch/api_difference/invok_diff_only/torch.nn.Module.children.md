@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.nn.Module.children
+## [仅 API 调用方式不一致]torch.nn.Module.children
 
 ### [torch.nn.Module.children](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.children)
 

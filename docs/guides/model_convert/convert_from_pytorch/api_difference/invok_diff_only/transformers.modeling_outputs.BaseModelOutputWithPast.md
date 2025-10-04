@@ -1,4 +1,4 @@
-## [参数完全一致]transformers.modeling_outputs.BaseModelOutputWithPast
+## [仅 API 调用方式不一致]transformers.modeling_outputs.BaseModelOutputWithPast
 
 ### [transformers.modeling_outputs.BaseModelOutputWithPast](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast)
 
@@ -14,12 +14,3 @@ paddlenlp.transformers.model_outputs.BaseModelOutputWithPast(last_hidden_state: 
 
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| transformers      | PaddlePaddle                                          | 备注                                                    |
-| ----------------- | ----------------------------------------------------- | ------------------------------------------------------- |
-| last_hidden_state | last_hidden_state                                     | 最后一个隐藏状态。默认值为 None。                        |
-| past_key_values   | past_key_values                                       | 过去的键值对。默认值为 None。                           |
-| hidden_states     | hidden_states                                         | 隐藏状态。默认值为 None。                               |
-| attentions        | attentions                                            | 注意力权重。默认值为 None。                             |

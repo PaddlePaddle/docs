@@ -1275,6 +1275,13 @@ cuda(device_id=None, blocking=False)
             y = x.cuda(1)
             print(y.place)        # CUDAPlace(1)
 
+get_device()
+:::::::::
+
+获取当前 Tensor 所在的设备 ID。
+
+返回：设备 ID。CPU 设备返回 -1，GPU 设备返回对应的设备 ID。
+
 cumsum(axis=None, dtype=None, name=None)
 :::::::::
 

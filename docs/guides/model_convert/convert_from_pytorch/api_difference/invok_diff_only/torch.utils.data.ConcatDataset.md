@@ -1,4 +1,4 @@
-## [参数完全一致]torch.utils.data.ConcatDataset
+## [仅 API 调用方式不一致]torch.utils.data.ConcatDataset
 
 ### [torch.utils.data.ConcatDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.ConcatDataset)
 
@@ -13,9 +13,3 @@ paddle.io.ConcatDataset(datasets)
 ```
 
 paddle 参数和 torch 参数完全一致，具体如下：
-
-### 参数映射
-
-| PyTorch  | PaddlePaddle | 备注               |
-| -------- | ------------ | ------------------ |
-| datasets | datasets     | 待拼接的数据集序列 |

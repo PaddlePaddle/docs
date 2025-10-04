@@ -1,4 +1,4 @@
-## [参数完全一致]torch.autograd.grad_mode.set_grad_enabled
+## [仅 API 调用方式不一致]torch.autograd.grad_mode.set_grad_enabled
 
 ### [torch.autograd.grad_mode.set_grad_enabled](https://docs.pytorch.org/docs/stable/generated/torch.autograd.grad_mode.set_grad_enabled.html#torch.autograd.grad_mode.set_grad_enabled)
 
@@ -13,9 +13,3 @@ paddle.set_grad_enabled(mode)
 ```
 
 两者功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| PyTorch | PaddlePaddle | 备注                                        |
-| ------- | ------------ | ------------------------------------------- |
-| mode    | mode         | 启用（True）或禁用（False）动态图梯度计算。 |
