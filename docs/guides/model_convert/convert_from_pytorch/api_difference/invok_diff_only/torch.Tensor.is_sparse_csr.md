@@ -1,4 +1,4 @@
-## [ 无参数 ] torch.Tensor.is_sparse_csr
+## [仅 API 调用方式不一致] torch.Tensor.is_sparse_csr
 
 ### [torch.Tensor.is_sparse_csr](https://pytorch.org/docs/stable/generated/torch.Tensor.is_sparse_csr.html)
 

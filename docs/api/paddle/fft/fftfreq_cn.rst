@@ -19,14 +19,14 @@ fftfreq
 - **n** (int) - 窗长度（傅里叶变换点数）。
 - **d** (float，可选) - 采样间隔，采样率的倒数，默认值为 1。
 - **dtype** (str|paddle.dtype|np.dtype，可选) - 返回 Tensor 的数据类型，默认为
-   ``paddle.get_default_dtype()``  返回的类型。
+  ``paddle.get_default_dtype()`` 返回的类型。
 - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回
 :::::::::
 
-Tensor，形状为  ``[n]`` ，数据类型为  ``dtype``  指定的数据类型，包含频率窗口中心序列。
+Tensor，形状为 ``[n]``，数据类型为 ``dtype`` 指定的数据类型，包含频率窗口中心序列。
 
 代码示例
 :::::::::

@@ -36,7 +36,7 @@ init(**kwargs)
     - **input_type** (int) - 输入到模型训练样本的类型。0 代表一条样本，1 代表一个 batch。默认值为 0。
     - **fs_name** (str) - hdfs 名称。默认值为""。
     - **fs_ugi** (str) - hdfs 的 ugi。默认值为""。
-    - **pipe_command** (str) - 在当前的  ``dataset``  中设置的 pipe 命令用于数据的预处理。pipe 命令只能使用 UNIX 的 pipe 命令，默认为"cat"。
+    - **pipe_command** (str) - 在当前的 ``dataset`` 中设置的 pipe 命令用于数据的预处理。pipe 命令只能使用 UNIX 的 pipe 命令，默认为"cat"。
     - **download_cmd** (str) - 数据下载 pipe 命令。pipe 命令只能使用 UNIX 的 pipe 命令，默认为"cat"。
 
 

@@ -1,4 +1,4 @@
-## [参数完全一致] torchvision.transforms.functional.vflip
+## [仅 API 调用方式不一致] torchvision.transforms.functional.vflip
 
 ### [torchvision.transforms.functional.vflip](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.vflip.html)
 
@@ -17,9 +17,3 @@ paddle.vision.transforms.vflip(
 ```
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| torchvision | PaddlePaddle    | 备注      |
-| ----------- | --------------- | --------- |
-| img         | img             | 输入图像。 |

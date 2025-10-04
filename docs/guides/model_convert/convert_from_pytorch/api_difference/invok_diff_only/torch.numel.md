@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.numel
+## [仅 API 调用方式不一致]torch.numel
 ### [torch.numel](https://pytorch.org/docs/stable/generated/torch.numel.html?highlight=numel#torch.numel)
 
 ```python

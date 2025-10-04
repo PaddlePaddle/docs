@@ -1,4 +1,4 @@
-## [参数完全一致]transformers.modeling_outputs.CausalLMOutputWithPast
+## [仅 API 调用方式不一致]transformers.modeling_outputs.CausalLMOutputWithPast
 
 ### [transformers.modeling_outputs.CausalLMOutputWithPast](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast)
 
@@ -13,12 +13,3 @@ paddlenlp.transformers.model_outputs.CausalLMOutputWithPast(loss: Optional[paddl
 ```
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-| transformers      | PaddlePaddle                                          | 备注                                                    |
-|-------------------|-------------------------------------------------------|---------------------------------------------------------|
-| loss              | loss                                                  | 损失值。默认值为 None。                                 |
-| logits            | logits                                                | 模型输出的 logits。默认值为 None。                       |
-| past_key_values   | past_key_values                                       | 过去的键值对。默认值为 None。                           |
-| hidden_states     | hidden_states                                         | 隐藏状态。默认值为 None。                               |
-| attentions        | attentions                                            | 注意力权重。默认值为 None。                             |

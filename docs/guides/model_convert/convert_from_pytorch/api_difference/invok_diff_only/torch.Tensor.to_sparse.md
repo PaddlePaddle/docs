@@ -1,4 +1,4 @@
-## [ 参数完全一致 ] torch.Tensor.to_sparse
+## [仅 API 调用方式不一致] torch.Tensor.to_sparse
 
 ### [torch.Tensor.to_sparse](https://pytorch.org/docs/stable/generated/torch.Tensor.to_sparse.html#torch.Tensor.to_sparse)
 
@@ -13,9 +13,3 @@ paddle.Tensor.to_sparse_coo(sparse_dim)
 ```
 
 两者功能一致，参数用法一致，具体如下：
-
-### 参数映射
-
-| PyTorch    | PaddlePaddle | 备注                                 |
-| ---------- | ------------ | ------------------------------------ |
-| sparse_dim | sparse_dim   | 在新的稀疏张量中包含的稀疏维度的数量 |

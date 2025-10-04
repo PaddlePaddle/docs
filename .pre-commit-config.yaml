@@ -1,35 +1,41 @@
 repos:
-# Common hooks
--   repo: https://github.com/pre-commit/pre-commit-hooks
+  # Common hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
-    -   id: check-merge-conflict
-    -   id: check-symlinks
-    -   id: detect-private-key
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: detect-private-key
         files: (?!.*paddle)^.*$
-    -   id: end-of-file-fixer
+      - id: end-of-file-fixer
         types: [text]
-    -   id: trailing-whitespace
+      - id: trailing-whitespace
         types: [text]
--   repo: https://github.com/Lucas-C/pre-commit-hooks
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.5.1
     hooks:
-    -   id: remove-crlf
+      - id: remove-crlf
         types: [text]
-    -   id: remove-tabs
+      - id: remove-tabs
         types: [text]
-# Document hooks
--   repo: https://github.com/PFCCLab/dochooks
-    rev: v0.5.0
+  # Document hooks
+  - repo: https://github.com/PFCCLab/dochooks
+    rev: v0.6.0
     hooks:
-    -   id: insert-whitespace-between-cn-and-en-char
+      - id: insert-whitespace-between-cn-and-en-char
         files: \.md$|\.rst$
-# For Python files
--   repo: https://github.com/astral-sh/ruff-pre-commit
+      - id: check-case-conflict
+  # For Python files
+  - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.13.0
     hooks:
-    -   id: ruff-check
+      - id: ruff-check
         args: [--fix, --exit-non-zero-on-fix, --no-cache]
-        types_or: [ python, pyi ]
-    -   id: ruff-format
-        types_or: [ python, pyi, jupyter ]
+        types_or: [python, pyi]
+      - id: ruff-format
+        types_or: [python, pyi, jupyter]
+  # For YAML files
+  - repo: https://github.com/PFCCLab/yamlfmt-pre-commit-mirror.git
+    rev: v0.16.0
+    hooks:
+      - id: yamlfmt

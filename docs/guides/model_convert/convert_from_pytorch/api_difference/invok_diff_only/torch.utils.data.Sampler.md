@@ -1,4 +1,4 @@
-## [参数完全一致]torch.utils.data.Sampler
+## [仅 API 调用方式不一致]torch.utils.data.Sampler
 
 ### [torch.utils.data.Sampler](https://pytorch.org/docs/stable/data.html#torch.utils.data.Sampler)
 
@@ -13,9 +13,3 @@ paddle.io.Sampler(data_source)
 ```
 
 paddle 参数和 torch 参数完全一致，具体如下：
-
-### 参数映射
-
-| PyTorch     | PaddlePaddle | 备注                                   |
-| ----------- | ------------ | -------------------------------------- |
-| data_source | data_source  | Dataset 或者 IterableDataset 的子类实现。 |

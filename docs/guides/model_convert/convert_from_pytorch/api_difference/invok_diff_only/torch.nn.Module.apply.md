@@ -1,4 +1,4 @@
-## [ 参数完全一致 ]torch.nn.Module.apply
+## [仅 API 调用方式不一致]torch.nn.Module.apply
 
 ### [torch.nn.Module.apply](https://pytorch.org/docs/stable/generated/torch.nn.Module.html?highlight=torch+nn+module+apply#torch.nn.Module.apply)
 
@@ -13,9 +13,3 @@ paddle.nn.Layer.apply(fn)
 ```
 
 两者功能一致，参数完全一致。
-
-### 参数映射
-
-| PyTorch | PaddlePaddle |            备注            |
-|  -----  |  ----------  |  ------------------------ |
-|   fn    |      fn      | 表示应用于每个模块的函数。 |

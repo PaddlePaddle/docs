@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.Tensor.matrix_exp
+## [仅 API 调用方式不一致]torch.Tensor.matrix_exp
 
 ### [torch.Tensor.matrix_exp](https://pytorch.org/docs/stable/generated/torch.Tensor.matrix_exp.html#torch-tensor-matrix-exp)
 

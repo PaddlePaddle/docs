@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.Tensor.positive
+## [仅 API 调用方式不一致]torch.Tensor.positive
 
 ### [torch.Tensor.positive](https://pytorch.org/docs/stable/generated/torch.Tensor.positive.html#torch.Tensor.positive)
 

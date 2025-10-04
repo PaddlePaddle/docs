@@ -16,12 +16,12 @@ rnnt_loss
     - **label_lengths** (Tensor) - 每个标签序列的长度，它应该有形状 [batch_size] 和 dtype int64。
     - **blank** (int，可选) - RNN-T loss 的空白标签索引，处于半开放区间 [0,B)。数据类型必须为 int32。默认值为 0。
     - **fastemit_lambda** (float，默认 0.001) - FastEmit 的正则化参数(https://arxiv.org/pdf/2010.11148.pdf)。
-    - **reduction** (str，可选) - 表示如何平均损失，候选是  ``'none'`` | ``'mean'`` | ``'sum'``  。如果 ::attr:`reduction` 是  ``'mean'`` ，输出将是损失的总和并除以 batch_size;如果 :attr:`reduction` 是  ``'sum'`` ，返回损失的总和;如果 :attr:`reduction` 为  ``'none'`` ，则不应用 reduction。默认是  ``'mean'`` 。
+    - **reduction** (str，可选) - 表示如何平均损失，候选是 ``'none'``|``'mean'``|``'sum'`` 。如果 ::attr:`reduction` 是 ``'mean'``，输出将是损失的总和并除以 batch_size;如果 :attr:`reduction` 是 ``'sum'``，返回损失的总和;如果 :attr:`reduction` 为 ``'none'``，则不应用 reduction。默认是 ``'mean'``。
     - **name** (str，可选) - 操作名称，默认为 None。
 
 返回
 :::::::::
- ``Tensor`` ，输入  ``input``  和标签  ``labels``  间的 `rnnt loss`。如果 :attr:`reduction` 是  ``'none'`` ，则输出 loss 的维度为 [batch_size]。如果 :attr:`reduction` 是  ``'mean'``  或  ``'sum'`` ，则输出 Loss 的维度为 []。数据类型与输入的  ``input``  一致。
+``Tensor``，输入 ``input`` 和标签 ``labels`` 间的 `rnnt loss`。如果 :attr:`reduction` 是 ``'none'``，则输出 loss 的维度为 [batch_size]。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出 Loss 的维度为 []。数据类型与输入的 ``input`` 一致。
 
 
 代码示例

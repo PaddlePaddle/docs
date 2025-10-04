@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.nn.Module.eval
+## [仅 API 调用方式不一致]torch.nn.Module.eval
 
 ### [torch.nn.Module.eval](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.eval)
 

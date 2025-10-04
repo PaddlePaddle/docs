@@ -1,4 +1,4 @@
-## [无参数]transformers.generation.LogitsProcessorList
+## [仅 API 调用方式不一致]transformers.generation.LogitsProcessorList
 
 ### [transformers.generation.LogitsProcessorList](https://hf-mirror.com/docs/transformers/v4.42.0/en/internal/generation_utils#transformers.LogitsProcessorList)
 

@@ -24,7 +24,7 @@ Print
     - **print_tensor_shape** (bool，可选) - 指明是否打印 Tensor 维度信息，默认为 True。
     - **print_tensor_layout** (bool，可选) - 指明是否打印 Tensor 布局信息，默认为 True。
     - **print_tensor_lod** (bool，可选) - 指明是否打印 Tensor 的 LoD 信息，默认为 True。
-    - **print_phase** (str，可选) - 指明打印的阶段，包括  ``forward``  ,  ``backward``  和  ``both`` ，默认为  ``both`` 。设置为  ``forward``  时，只打印 Tensor 的前向信息；设置为  ``backward``  时，只打印 Tensor 的梯度信息；设置为  ``both``  时，则同时打印 Tensor 的前向信息以及梯度信息。
+    - **print_phase** (str，可选) - 指明打印的阶段，包括 ``forward`` , ``backward`` 和 ``both``，默认为 ``both``。设置为 ``forward`` 时，只打印 Tensor 的前向信息；设置为 ``backward`` 时，只打印 Tensor 的梯度信息；设置为 ``both`` 时，则同时打印 Tensor 的前向信息以及梯度信息。
 
 返回
 ::::::::::::

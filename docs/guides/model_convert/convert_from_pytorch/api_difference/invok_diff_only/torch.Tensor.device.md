@@ -1,4 +1,4 @@
-## [ 无参数 ] torch.Tensor.device
+## [仅 API 调用方式不一致] torch.Tensor.device
 
 ### [torch.Tensor.device](https://pytorch.org/docs/stable/generated/torch.Tensor.device.html)
 

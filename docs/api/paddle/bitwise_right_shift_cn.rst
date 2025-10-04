@@ -5,13 +5,13 @@ bitwise_right_shift
 
 .. py:function:: paddle.bitwise_right_shift(x, y, is_arithmetic=True, out=None, name=None)
 
-对 Tensor  ``x``  和  ``y``  逐元素进行  ``按位算术(或逻辑)右移``  运算。
+对 Tensor ``x`` 和 ``y`` 逐元素进行 ``按位算术(或逻辑)右移`` 运算。
 
 .. math::
         Out = X \gg Y
 
 .. note::
-     ``paddle.bitwise_right_shift``  遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
+    ``paddle.bitwise_right_shift`` 遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
 
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 参数
@@ -25,7 +25,7 @@ bitwise_right_shift
 
 返回
 ::::::::::::
-  ``按位算术(逻辑)右移``  运算后的结果  ``Tensor`` ，数据类型与  ``x``  相同。
+ ``按位算术(逻辑)右移`` 运算后的结果 ``Tensor``，数据类型与 ``x`` 相同。
 
 代码示例 1
 ::::::::::::

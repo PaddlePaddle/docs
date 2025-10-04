@@ -5,7 +5,7 @@ Sigmoid
 
 .. py:class:: paddle.nn.Sigmoid(name=None)
 
-用于创建一个  ``Sigmoid``  的可调用类。这个类可以计算输入 :attr:`x` 经过激活函数  ``sigmoid``  之后的值。
+用于创建一个 ``Sigmoid`` 的可调用类。这个类可以计算输入 :attr:`x` 经过激活函数 ``sigmoid`` 之后的值。
 
     .. math::
 
@@ -24,7 +24,7 @@ Sigmoid
 返回
 ::::::::
 
-返回计算  ``Sigmoid``  的可调用对象。
+返回计算 ``Sigmoid`` 的可调用对象。
 
 
 代码示例

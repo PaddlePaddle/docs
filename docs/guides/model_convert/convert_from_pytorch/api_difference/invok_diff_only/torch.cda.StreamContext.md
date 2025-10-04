@@ -1,4 +1,4 @@
-## [参数完全一致]torch.cuda.StreamContext
+## [仅 API 调用方式不一致]torch.cuda.StreamContext
 
 ### [torch.cuda.StreamContext](https://pytorch.org/docs/stable/generated/torch.cuda.StreamContext.html#torch.cuda.StreamContext)
 
@@ -13,9 +13,3 @@ paddle.device.stream_guard(stream)
 ```
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| PyTorch       | PaddlePaddle      | 备注                                                   |
-|---------------|-------------------| ------------------------------------------------------ |
-| stream | stream     | 指定的 CUDA stream 。|

@@ -1,4 +1,4 @@
-## [ 无参数 ] torch.Tensor.col_indices
+## [仅 API 调用方式不一致] torch.Tensor.col_indices
 
 ### [torch.Tensor.col_indices](https://pytorch.org/docs/stable/generated/torch.Tensor.col_indices.html)
 

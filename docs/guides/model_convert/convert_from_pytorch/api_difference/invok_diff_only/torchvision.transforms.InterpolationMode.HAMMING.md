@@ -1,4 +1,4 @@
-## [ 无参数 ]torchvision.transforms.InterpolationMode.HAMMING
+## [仅 API 调用方式不一致]torchvision.transforms.InterpolationMode.HAMMING
 
 ### [torchvision.transforms.InterpolationMode.HAMMING](https://pytorch.org/vision/stable/index.html)
 

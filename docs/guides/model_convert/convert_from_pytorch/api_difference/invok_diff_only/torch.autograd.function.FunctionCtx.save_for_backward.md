@@ -1,4 +1,4 @@
-## [参数完全一致]torch.autograd.function.FunctionCtx.save_for_backward
+## [仅 API 调用方式不一致]torch.autograd.function.FunctionCtx.save_for_backward
 
 ### [torch.autograd.function.FunctionCtx.save_for_backward](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.save_for_backward.html#torch.autograd.function.FunctionCtx.save_for_backward)
 
@@ -13,9 +13,3 @@ paddle.autograd.PyLayerContext.save_for_backward(*tensors)
 ```
 
 两者功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| PyTorch | PaddlePaddle | 备注                  |
-| ------- | ------------ | --------------------- |
-| tensors | tensors      | 需要被暂存的 Tensor。 |

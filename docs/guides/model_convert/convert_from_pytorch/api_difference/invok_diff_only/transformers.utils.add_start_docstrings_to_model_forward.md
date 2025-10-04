@@ -1,4 +1,4 @@
-## [参数完全一致]transformers.utils.add_start_docstrings_to_model_forward
+## [仅 API 调用方式不一致]transformers.utils.add_start_docstrings_to_model_forward
 
 ### [transformers.utils.add_start_docstrings_to_model_forward](https://github.com/huggingface/transformers/blob/44b231671db25974cfebcdae34402ad5099bf37a/src/transformers/utils/doc.py#L45)
 
@@ -13,9 +13,3 @@ paddlenlp.trainer.utils.add_start_docstrings_to_model_forward(*docstr)
 ```
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| transformers | PaddlePaddle | 备注                   |
-| ------------ | ------------ | ---------------------- |
-| docstr       | docstr       | 输入的文档字符串。  |

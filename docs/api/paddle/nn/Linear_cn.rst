@@ -33,12 +33,12 @@ Linear 层只接受一个 Tensor 作为输入，形状为 :math:`[batch\_size, *
 weight
 '''''''''
 
-本层的可学习参数，类型为  ``Parameter``  。
+本层的可学习参数，类型为 ``Parameter`` 。
 
 bias
 '''''''''
 
-本层的可学习偏置，类型为  ``Parameter``  。
+本层的可学习偏置，类型为 ``Parameter`` 。
 
 形状
 :::::::::

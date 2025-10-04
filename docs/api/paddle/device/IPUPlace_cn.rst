@@ -8,7 +8,7 @@ IPUPlace
 
 
 
- ``IPUPlace``  是一个设备描述符，指定  ``IPUPlace``  则模型将会运行在该设备上。
+``IPUPlace`` 是一个设备描述符，指定 ``IPUPlace`` 则模型将会运行在该设备上。
 
 代码示例
 ::::::::::
