@@ -76,32 +76,33 @@ conv2d_transpose
   - **bias** (int|list|tuple，可选) - 偏置项，形状为：:math:`[M,]` 。
   - **stride** (int|list|tuple，可选) - 步长大小。如果 ``stride`` 为元组，则必须包含两个整型数，分别表示垂直和水平滑动步长。否则，表示垂直和水平滑动步长均为 ``stride``。默认值：1。
   - **padding** (int|list|tuple|str，可选) - 填充大小。如果它是一个字符串，可以是 "VALID" 或者 "SAME"，表示填充算法，计算细节可参考上述 ``padding`` = "SAME" 或 ``padding`` = "VALID" 时的计算公式。
-
     如果它是一个元组或列表，可以有以下 3 种格式：
 
-    1. **包含 4 个二元组**  
+    1. **包含 4 个二元组**
 
-       - 当 ``data_format`` 为 "NCHW" 时为：  
-         ``[[0, 0], [0, 0], [padding_height_top, padding_height_bottom], [padding_width_left, padding_width_right]]``  
-       - 当 ``data_format`` 为 "NHWC" 时为：  
-         ``[[0, 0], [padding_height_top, padding_height_bottom], [padding_width_left, padding_width_right], [0, 0]]``  
+       - 当 ``data_format`` 为 "NCHW" 时为：
+         ``[[0, 0], [0, 0], [padding_height_top, padding_height_bottom], [padding_width_left, padding_width_right]]``
+       - 当 ``data_format`` 为 "NHWC" 时为：
+         ``[[0, 0], [padding_height_top, padding_height_bottom], [padding_width_left, padding_width_right], [0, 0]]``
 
-    2. **包含 4 个整数值**  
-       格式为：  
-       ``[padding_height_top, padding_height_bottom, padding_width_left, padding_width_right]``  
+    2. **包含 4 个整数值**
 
-    3. **包含 2 个整数值**  
-       格式为：  
-       ``[padding_height, padding_width]``  
-       此时：  
-       ``padding_height_top = padding_height_bottom = padding_height``  
-       ``padding_width_left = padding_width_right = padding_width``  
+       格式为：
+       ``[padding_height_top, padding_height_bottom, padding_width_left, padding_width_right]``
 
-    若为一个整数，表示：  
-    ``padding_height = padding_width = padding``。  
+    3. **包含 2 个整数值**
+
+       格式为：
+       ``[padding_height, padding_width]``
+
+       此时：
+       ``padding_height_top = padding_height_bottom = padding_height``
+       ``padding_width_left = padding_width_right = padding_width``
+
+    若为一个整数，表示：
+    ``padding_height = padding_width = padding``
 
     默认值：0。
-
   - **output_padding** (int|list|tuple，可选) - 输出形状上一侧额外添加的大小。默认值：0。
   - **dilation** (int|list|tuple，可选) - 空洞大小。空洞卷积时会使用该参数，卷积核对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息。如果空洞大小为列表或元组，则必须包含两个整型数：（dilation_height,dilation_width）。若为一个整数，dilation_height = dilation_width = dilation。默认值：1。
   - **groups** (int，可选) - 二维卷积层的组数。根据 Alex Krizhevsky 的深度卷积神经网络（CNN）论文中的成组卷积：当 group=n，输入和卷积核分别根据通道数量平均分为 n 组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算，……，第 n 组卷积核和第 n 组输入进行卷积计算。默认值：1。
