@@ -23,7 +23,7 @@ logger.setLevel(logging.INFO)
 # check file's api_label
 def check_api_label(rootdir, file):
     real_file = Path(rootdir) / file
-    with open(real_file, "r", encoding="utf-8") as f:
+    with real_file.open("r", encoding="utf-8") as f:
         first_line = f.readline().strip()
     return first_line == generate_en_label_by_path(file)
 
@@ -53,13 +53,13 @@ def find_all_api_labels_in_dir(rootdir):
 # api_labels in a file
 def find_api_labels_in_one_file(file_path):
     api_labels_in_one_file = []
-    with open(file_path, "r", encoding="utf-8") as f:
+    with file_path.open("r", encoding="utf-8") as f:
         lines = f.readlines()
         for line in lines:
-            line = re.search(".. _([a-zA-Z0-9_]+)", line)
-            if not line:
+            match = re.search(".. _([a-zA-Z0-9_]+)", line)
+            if not match:
                 continue
-            api_labels_in_one_file.append(line.group(1))
+            api_labels_in_one_file.append(match.group(1))
     return api_labels_in_one_file
 
 
@@ -84,7 +84,7 @@ def run_cn_api_label_checking(rootdir, files):
     for file in files:
         if not file.endswith(".rst"):
             continue
-        with open(Path(rootdir) / file, "r", encoding="utf-8") as f:
+        with (Path(rootdir) / file).open("r", encoding="utf-8") as f:
             pattern = f.read()
         matches = re.findall(r":ref:`([^`]+)`", pattern)
         for match in matches:
