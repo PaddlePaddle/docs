@@ -42,7 +42,7 @@ sequence_mask
 
 返回
 :::::::::
-mask Tensor，Tensor，形状为 ``[d_1, d_2，… ，d_n, maxlen]``，数据类型由 ``dtype`` 指定，支持 float32、float64、int32 和 int64，默认为 int64。
+mask Tensor，Tensor，形状为 ``[d_1, d_2，… ，d_n, maxlen]``，数据类型由 ``dtype`` 指定，支持 float32、float64、int32 或 int64，默认为 int64。
 
 代码示例
 :::::::::

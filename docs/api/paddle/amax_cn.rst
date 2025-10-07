@@ -15,7 +15,7 @@ amax
 
 参数
 :::::::::
-   - **x** (Tensor) - Tensor，支持数据类型为 float32、float64、int32、int64，维度不超过 4 维。
+   - **x** (Tensor) - Tensor，支持数据类型为 float32、float64、int32 或 int64，维度不超过 4 维。
      ``别名：input``
    - **axis** (int|list|tuple，可选) - 求最大值运算的维度。如果为 None，则计算所有元素的最大值并返回包含单个元素的 Tensor 变量，否则必须在 :math:`[-x.ndim, x.ndim]` 范围内。如果 :math:`axis[i] <0`，则维度将变为 :math:`x.ndim+axis[i]`，默认值为 None。
      ``别名：dim``
