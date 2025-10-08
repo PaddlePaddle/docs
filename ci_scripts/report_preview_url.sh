@@ -30,11 +30,11 @@ done
 
 if [ ${#output_lines[@]} -gt 0 ]; then
     cat <<-EOF
-> [!CAUTION]
-> 如果你不清楚这个 pr 的修改内容（特别是修改了 \`report_preview_url.sh\` 或 \`preview-url-generate.yml\`），请不要随便点击链接！！！
+> [!NOTE]
+> 请等待 \`Docs-NEW\` 流水线运行完成后再点击预览链接，否则可能会看到旧版本内容或遇到链接无法访问的情况。
 
 <details>
-<summary>📚 本次 PR 文档预览链接 (点击展开)</summary>
+<summary>📚 本次 PR 文档预览链接（点击展开）</summary>
 
 以下是本次 PR 中变更文档的预览链接：
 
