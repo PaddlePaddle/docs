@@ -11,7 +11,7 @@ def get_pytorch_url(torch_api: str) -> str:
     根据PyTorch API名称生成其官方文档URL
 
     Args:
-        api_name: PyTorch API的全限定名（如'torch.add', 'torch.nn.Linear', 'torch.Tensor.add'）
+        torch_api: PyTorch API的全限定名（如'torch.add', 'torch.nn.Linear', 'torch.Tensor.add'）
 
     Returns:
         对应API的官方文档URL字符串
@@ -19,44 +19,55 @@ def get_pytorch_url(torch_api: str) -> str:
     Rules:
     1. Tensor相关API指向tensors.html
     2. 顶层函数（torch.xxx）指向torch.html
-    3. 类/独立函数指向generated/[name].html
-    4. 类方法指向父类页面#锚点
-    5. 特殊处理torchvision等子库的URL结构
+    3. 模块级函数/常量指向模块名.html（如nn.init.html）
+    4. 类/独立函数指向generated/[name].html
+    5. 类方法指向父类页面#锚点
+    6. 特殊处理torchvision等子库的URL结构
     """
     base_url = "https://pytorch.org/docs/stable/"
     api_name = torch_api.replace(r"\_", "_")
-    # 1. 处理Tensor相关API（特殊页面）
+
+    # 特殊子库处理（torchvision）
+    if api_name.startswith("torchvision."):
+        vision_base = "https://pytorch.org/vision/stable/"
+        if api_name == "torchvision.models":
+            return f"{vision_base}models.html"
+        return f"{vision_base}generated/{api_name}.html#{api_name}"
+
+    # 1. 处理Tensor相关API
     if api_name.startswith("torch.Tensor") or api_name == "torch.Tensor":
         return f"{base_url}tensors.html#{api_name}"
 
-    parts = api_name.split(".")
-
     # 2. 处理顶层函数（无子模块）
-    if len(parts) == 2 and parts[0] == "torch":
+    if len(api_name.split(".")) == 2 and api_name.startswith("torch."):
         return f"{base_url}torch.html#{api_name}"
 
-    # 3. 识别类名首字母大写的部分（PyTorch命名规范）
-    base_parts = []
-    found_class = False
-    for part in parts:
-        if part and part[0].isupper():  # 检测类名（首字母大写）
-            found_class = True
-        base_parts.append(part)
-        if found_class:
-            break  # 定位到最近的类名
+    # 分割API路径
+    parts = api_name.split(".")
+    module_path = ".".join(parts[:-1])  # 模块路径
+    item_name = parts[-1]  # 最后一项名称
 
-    # 4. 根据不同情况生成URL
-    if found_class:
-        base_name = ".".join(base_parts)
-        # 处理torchvision等子库
-        if api_name.startswith("torchvision."):
-            return f"https://pytorch.org/vision/stable/generated/{base_name}.html#{api_name}"
-        return f"{base_url}generated/{base_name}.html#{api_name}"
-    else:
-        # 5. 处理独立函数
-        if api_name.startswith("torchvision."):
-            return f"https://pytorch.org/vision/stable/generated/{api_name}.html#{api_name}"
+    # 3. 处理模块级函数/常量
+    if parts[0] == "torch" and not parts[-1][0].isupper():
+        # 特殊模块映射（基于官方文档结构）
+        module_map = {
+            "torch.nn.init": "nn.init",
+            "torch.nn.functional": "nn.functional",
+            "torch.cuda.amp": "amp",
+            "torch.distributions": "distributions",
+        }
+        module_key = ".".join(parts[:-1])
+        module_slug = module_map.get(
+            module_key, module_key.replace("torch.", "")
+        )
+        return f"{base_url}{module_slug}.html#{api_name}"
+
+    # 4. 处理类/独立函数
+    if parts[-1][0].isupper() or len(parts) == 1:
         return f"{base_url}generated/{api_name}.html#{api_name}"
+
+    # 5. 默认处理（类方法）
+    return f"{base_url}generated/{module_path}.html#{api_name}"
 
 
 def escape_underscores_in_api(api_name):

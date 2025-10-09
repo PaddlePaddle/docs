@@ -1,10 +1,18 @@
 import argparse
+import concurrent.futures
 import os
 import re
 from collections import defaultdict
+from urllib.parse import urlparse
+
+import requests
+from tqdm import tqdm  # 用于显示进度条
 
 # 默认文件路径
 DEFAULT_FILE_PATH = "/workspace/paddleDocs/docs/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.md"
+
+# 用户代理头，模拟浏览器访问
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
 
 
 def parse_toc(lines):
@@ -305,6 +313,142 @@ def extract_all_urls(categories):
     return urls_with_context
 
 
+def is_valid_url(url):
+    """
+    检查URL是否有效
+    """
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except ValueError:
+        return False
+
+
+def check_url_exists(url_info):
+    """
+    检查URL是否存在（是否返回404）
+    返回状态码和错误信息
+    """
+    url = url_info["url"]
+
+    # 检查URL是否有效
+    if not is_valid_url(url):
+        return {
+            "status": "invalid",
+            "status_code": None,
+            "error": "无效的URL格式",
+            "url_info": url_info,
+        }
+
+    # 设置请求头
+    headers = {"User-Agent": USER_AGENT}
+
+    try:
+        # 发送HEAD请求（更快，节省带宽）
+        response = requests.head(
+            url, headers=headers, timeout=10, allow_redirects=True
+        )
+        status_code = response.status_code
+
+        # 如果HEAD请求不被支持（405错误），则尝试GET请求
+        if status_code == 405:
+            response = requests.get(
+                url, headers=headers, timeout=10, allow_redirects=True
+            )
+            status_code = response.status_code
+
+        # 根据状态码判断URL是否存在
+        if status_code == 200:
+            return {
+                "status": "ok",
+                "status_code": status_code,
+                "error": None,
+                "url_info": url_info,
+            }
+        elif status_code == 404:
+            return {
+                "status": "not_found",
+                "status_code": status_code,
+                "error": "页面不存在",
+                "url_info": url_info,
+            }
+        elif 400 <= status_code < 500:
+            return {
+                "status": "client_error",
+                "status_code": status_code,
+                "error": "客户端错误",
+                "url_info": url_info,
+            }
+        elif 500 <= status_code < 600:
+            return {
+                "status": "server_error",
+                "status_code": status_code,
+                "error": "服务器错误",
+                "url_info": url_info,
+            }
+        else:
+            return {
+                "status": "other_error",
+                "status_code": status_code,
+                "error": f"HTTP状态码: {status_code}",
+                "url_info": url_info,
+            }
+
+    except requests.exceptions.RequestException as e:
+        return {
+            "status": "request_error",
+            "status_code": None,
+            "error": str(e),
+            "url_info": url_info,
+        }
+
+
+def check_urls_exist(urls_with_context, max_workers=10):
+    """
+    使用多线程检查所有URL是否存在（是否返回404）
+    返回警告列表
+    """
+    warnings = []
+    total_urls = len(urls_with_context)
+
+    print(
+        f"开始使用多线程检查 {total_urls} 个URL的存在性（线程数：{max_workers}）..."
+    )
+
+    with (
+        tqdm(total=total_urls, desc="检查URL") as pbar,
+        concurrent.futures.ThreadPoolExecutor(
+            max_workers=max_workers
+        ) as executor,
+    ):
+        # 提交所有任务
+        future_to_url = {
+            executor.submit(check_url_exists, url_info): url_info
+            for url_info in urls_with_context
+        }
+
+        # 处理完成的任务
+        for future in concurrent.futures.as_completed(future_to_url):
+            result = future.result()
+
+            # 更新进度条
+            pbar.update(1)
+
+            # 如果不是200状态码，则添加到警告列表
+            if result["status"] != "ok":
+                warning_msg = (
+                    f"URL访问错误: {result['error']}\n"
+                    f"URL: {result['url_info']['url']}\n"
+                    f"上下文: {result['url_info']['context']}\n"
+                )
+                if result["status_code"]:
+                    warning_msg += f"状态码: {result['status_code']}\n"
+                warnings.append(warning_msg)
+
+    print(f"URL检查完成，发现 {len(warnings)} 个问题")
+    return warnings
+
+
 def main():
     parser = argparse.ArgumentParser(description="Markdown 文件校验工具")
     parser.add_argument(
@@ -313,6 +457,12 @@ def main():
         help="要校验的 Markdown 文件路径",
         default=DEFAULT_FILE_PATH,
     )
+    parser.add_argument(
+        "--skip-url-check",
+        action="store_true",
+        help="跳过URL存在性检查（避免网络请求）",
+    )
+
     args = parser.parse_args()
 
     current_script_path = os.path.abspath(__file__)
@@ -354,12 +504,12 @@ def main():
     print(f"找到 {len(toc)} 个目录条目")
     print(f"找到 {len(categories)} 个类别")
 
-    # 执行三个校验
+    # 执行三个基本校验
     toc_warnings = check_toc_consistency(toc, categories)
     unique_warnings = check_unique_torch_apis(categories)
     link_warnings = check_links_exist(categories)
 
-    # 输出警告到文件（保存在 tools_dir 路径下）
+    # 输出警告到文件
     if toc_warnings:
         output_path = os.path.join(tools_dir, "toc_warnings.txt")
         with open(output_path, "w", encoding="utf-8") as f:
@@ -381,8 +531,34 @@ def main():
             f.writelines(warning + "\n" for warning in link_warnings)
         print(f"生成 {output_path}，包含 {len(link_warnings)} 个警告")
 
+    # 执行URL存在性检查（除非明确跳过）
+    url_warnings = []
+    if not args.skip_url_check:
+        # 提取所有URL
+        urls_with_context = extract_all_urls(categories)
+        print(f"找到 {len(urls_with_context)} 个URL需要检查")
+
+        # 检查URL存在性（使用多线程）
+        url_warnings = check_urls_exist(
+            urls_with_context, max(os.cpu_count() - 4, 1)
+        )
+
+        if url_warnings:
+            output_path = os.path.join(tools_dir, "url_warnings.txt")
+            with open(output_path, "w", encoding="utf-8") as f:
+                f.write("URL存在性校验警告:\n")
+                f.writelines(warning + "\n" for warning in url_warnings)
+            print(f"生成 {output_path}，包含 {len(url_warnings)} 个警告")
+    else:
+        print("跳过URL存在性检查")
+
     # 如果没有警告，输出成功信息
-    if not toc_warnings and not unique_warnings and not link_warnings:
+    if (
+        not toc_warnings
+        and not unique_warnings
+        and not link_warnings
+        and not url_warnings
+    ):
         print("所有校验通过，没有发现警告!")
 
 
