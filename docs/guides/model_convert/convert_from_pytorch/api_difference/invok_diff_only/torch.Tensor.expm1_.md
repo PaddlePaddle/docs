@@ -1,4 +1,4 @@
-## [ 无参数 ] torch.Tensor.expm1_
+## [仅 API 调用方式不一致] torch.Tensor.expm1_
 
 ### [torch.Tensor.expm1_](https://pytorch.org/docs/stable/generated/torch.Tensor.expm1_.html)
 

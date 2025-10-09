@@ -1,4 +1,4 @@
-## [ 无参数 ]torchvision.transforms.InterpolationMode.BICUBIC
+## [仅 API 调用方式不一致]torchvision.transforms.InterpolationMode.BICUBIC
 
 ### [torchvision.transforms.InterpolationMode.BICUBIC](https://pytorch.org/vision/stable/index.html)
 

@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.optim.Optimizer.state_dict
+## [仅 API 调用方式不一致]torch.optim.Optimizer.state_dict
 
 ### [torch.optim.Optimizer.state_dict](https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.state_dict.html?highlight=torch+optim+optimizer+state_dict#torch.optim.Optimizer.state_dict)
 

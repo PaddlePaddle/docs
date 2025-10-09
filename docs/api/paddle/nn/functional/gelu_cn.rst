@@ -22,19 +22,19 @@ gelu 激活层（GELU Activation Operator）
 其中，:math:`x` 为输入的 Tensor。
 
 .. note::
-    别名支持: 参数名  ``input``  可替代  ``x`` 。
+    别名支持: 参数名 ``input`` 可替代 ``x``。
 
 参数
 ::::::::::::
- - **x** (Tensor) - 输入的  ``Tensor`` ，数据类型为：float32、float64。
-   别名：  ``input`` 。
+ - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
+   别名： ``input``。
  - **approximate** (str | bool，可选) - 是否使用近似计算，默认值为 False，表示不使用近似计算。
-   当  ``approximate``  为  ``none``  时等价于 False；为  ``tanh``  时等价于 True；为其他字符串时会报错。
+   当 ``approximate`` 为 ``none`` 时等价于 False；为 ``tanh`` 时等价于 True；为其他字符串时会报错。
  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::
-     ``Tensor`` ，数据类型和形状同  ``x``  一致。
+    ``Tensor``，数据类型和形状同 ``x`` 一致。
 
 代码示例
 ::::::::::

@@ -1,4 +1,4 @@
-## [ 无参数 ]torchvision.transforms.InterpolationMode.NEAREST_EXACT
+## [仅 API 调用方式不一致]torchvision.transforms.InterpolationMode.NEAREST_EXACT
 
 ### [torchvision.transforms.InterpolationMode.NEAREST_EXACT](https://pytorch.org/vision/stable/index.html)
 

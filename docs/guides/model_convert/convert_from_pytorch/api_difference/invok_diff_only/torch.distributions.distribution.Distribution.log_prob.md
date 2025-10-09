@@ -1,4 +1,4 @@
-## [ 参数完全一致 ]torch.distributions.distribution.Distribution.log_prob
+## [仅 API 调用方式不一致]torch.distributions.distribution.Distribution.log_prob
 
 ### [torch.distributions.distribution.Distribution.log\_prob](https://pytorch.org/docs/stable/distributions.html#torch.distributions.distribution.Distribution.log_prob)
 
@@ -14,9 +14,3 @@ paddle.distribution.Distribution.log_prob(value)
 
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| PyTorch | PaddlePaddle | 备注         |
-| ------- | ------------ | ------------ |
-| value   | value        | 输入 Tensor。 |

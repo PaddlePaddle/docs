@@ -1,4 +1,4 @@
-## [ 参数完全一致 ] torch.nn.AdaptiveAvgPool1d
+## [仅 API 调用方式不一致] torch.nn.AdaptiveAvgPool1d
 
 ### [torch.nn.AdaptiveAvgPool1d](https://pytorch.org/docs/stable/generated/torch.nn.AdaptiveAvgPool1d.html)
 
@@ -13,9 +13,3 @@ paddle.nn.AdaptiveAvgPool1D(output_size, name=None)
 ```
 
 两者功能一致，参数完全一致。
-
-### 参数映射
-
-| PyTorch       | PaddlePaddle | 备注                                                   |
-| ------------- | ------------ | ------------------------------------------------------ |
-| output_size   | output_size  | 表示输出 Tensor 的 size 。                              |

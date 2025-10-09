@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.autograd.function.FunctionCtx
+## [仅 API 调用方式不一致]torch.autograd.function.FunctionCtx
 
 ### [torch.autograd.function.FunctionCtx]()
 

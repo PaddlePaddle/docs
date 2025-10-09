@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.nn.Module.train
+## [仅 API 调用方式不一致]torch.nn.Module.train
 
 ### [torch.nn.Module.train](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.train)
 

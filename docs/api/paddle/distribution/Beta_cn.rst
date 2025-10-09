@@ -26,10 +26,10 @@ Beta
 :::::::::
 
 - **alpha** (float|Tensor) - 即上述公式中 :math:`\alpha` 参数，大于零，支持 Broadcast
-  语义。当参数类型为 Tensor 时，表示批量创建多个不同参数的分布， ``batch_shape``  (参考 :ref:`cn_api_paddle_distribution_Distribution` 基类) 为参数
+  语义。当参数类型为 Tensor 时，表示批量创建多个不同参数的分布，``batch_shape`` (参考 :ref:`cn_api_paddle_distribution_Distribution` 基类) 为参数
   Broadcast 后的形状。
 - **beta** (float|Tensor) - 即上述公式中 :math:`\beta` 参数，大于零，支持 Broadcast 语
-  义。当参数类型为 Tensor 时，表示批量创建多个不同参数的分布， ``batch_shape``  (参考 :ref:`cn_api_paddle_distribution_Distribution` 基类) 为参数 Broadcast
+  义。当参数类型为 Tensor 时，表示批量创建多个不同参数的分布，``batch_shape`` (参考 :ref:`cn_api_paddle_distribution_Distribution` 基类) 为参数 Broadcast
   后的形状。
 
 代码示例
@@ -87,7 +87,7 @@ sample(shape=[])
 
 **参数**
 
-- **shape** (Sequence[int]，可选)：采样次数。最终生成样本形状为  ``shape+batch_shape``  。
+- **shape** (Sequence[int]，可选)：采样次数。最终生成样本形状为 ``shape+batch_shape`` 。
 
 **返回**
 

@@ -1,4 +1,4 @@
-## [ 无参数 ]torchvision.transforms.InterpolationMode.LANCZOS
+## [仅 API 调用方式不一致]torchvision.transforms.InterpolationMode.LANCZOS
 
 ### [torchvision.transforms.InterpolationMode.LANCZOS](https://pytorch.org/vision/stable/index.html)
 

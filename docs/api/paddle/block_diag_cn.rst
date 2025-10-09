@@ -15,7 +15,7 @@ block_diag
 返回
 :::::::::
 
-Tensor， 与  ``inputs``  数据类型相同。
+Tensor， 与 ``inputs`` 数据类型相同。
 
 代码示例
 :::::::::

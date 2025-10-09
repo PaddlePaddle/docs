@@ -18,7 +18,7 @@ load
 返回
 :::::::::
 
- ``Tuple[paddle.Tensor, int]`` ，音频数据值，采样率。
+``Tuple[paddle.Tensor, int]``，音频数据值，采样率。
 
 代码示例
 :::::::::

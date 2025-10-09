@@ -8,11 +8,11 @@ is_complex
 判断输入 tensor 的数据类型是否为复数类型(complex64 或者 complex128)。
 
 .. note::
-   别名支持: 参数名  ``input``  可替代  ``x`` ，如  ``input=tensor_x``  等价于  ``x=tensor_x`` 。
+   别名支持: 参数名 ``input`` 可替代 ``x``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``。
 
 参数
 :::::::::
-   - **x** (Tensor) - 输入 Tensor。别名：  ``input`` 。
+   - **x** (Tensor) - 输入 Tensor。别名： ``input``。
 
 
 返回

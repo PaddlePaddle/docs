@@ -23,18 +23,18 @@ RandomAffine
         如果 shear 为 4 个值的 sequence 类型，则与 x 轴平行方向范围 (shear[2], shear[1]) 内进行剪切，与 y 轴平行方向范围 (shear[2], shear[3]) 内进行剪切；
         默认值为 None ，表示不会进行剪切。
     - interpolation (str，可选) - 插值的方法。
-        如果这个参数没有设定或者输入图像为单通道，则该参数会根据使用的后端，被设置为  ``PIL.Image.NEAREST``  或者  ``cv2.INTER_NEAREST``  。
-        当使用  ``pil``  作为后端时, 支持的插值方法如下:
+        如果这个参数没有设定或者输入图像为单通道，则该参数会根据使用的后端，被设置为 ``PIL.Image.NEAREST`` 或者 ``cv2.INTER_NEAREST`` 。
+        当使用 ``pil`` 作为后端时, 支持的插值方法如下:
             - "nearest": Image.NEAREST
             - "bilinear": Image.BILINEAR
             - "bicubic": Image.BICUBIC
-        当使用  ``cv2``  作为后端时, 支持的插值方法如下:
+        当使用 ``cv2`` 作为后端时, 支持的插值方法如下:
             - "nearest": cv2.INTER_NEAREST
             - "bilinear": cv2.INTER_LINEAR
             - "bicubic": cv2.INTER_CUBIC
     - fill (int|list|tuple，可选) - 对图像扩展时填充的像素值，默认值： 0 ，如果只设定一个数字则所有通道上像素值均为该值。
     - center (2-tuple，可选) - 仿射变换的中心点坐标，原点是图片左上角，默认值是图像的中心点。
-    - keys (list[str]|tuple[str]，可选) - 与  ``BaseTransform``  定义一致。默认值： None 。
+    - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值： None 。
 
 形状
 :::::::::
@@ -45,7 +45,7 @@ RandomAffine
 返回
 :::::::::
 
-    计算  ``RandomAffine``  的可调用对象。
+    计算 ``RandomAffine`` 的可调用对象。
 
 代码示例
 :::::::::

@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.distributed.ReduceOp.PRODUCT
+## [仅 API 调用方式不一致]torch.distributed.ReduceOp.PRODUCT
 
 ### [torch.distributed.ReduceOp.PRODUCT](https://pytorch.org/docs/stable/distributed.html#torch.distributed.ReduceOp)
 

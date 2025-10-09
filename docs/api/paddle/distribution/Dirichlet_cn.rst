@@ -29,8 +29,8 @@ Gamma 函数。
 
 - **concentration** (Tensor) - 浓度参数，即上述公式 :math:`\alpha` 参数。当
   concentration 维度大于 1 时，最后一维表示参数，参数形状
-   ``event_shape=concentration.shape[-1:]`` ，其余维为 Batch 维，
-   ``batch_shape=concentration.shape[:-1]``  .
+  ``event_shape=concentration.shape[-1:]``，其余维为 Batch 维，
+  ``batch_shape=concentration.shape[:-1]`` .
 
 
 代码示例
@@ -88,7 +88,7 @@ sample(shape=[])
 
 **参数**
 
-- **shape** (Sequence[int]，可选) - 采样次数，最终生成样本形状为  ``shape+batch_shape+event_shape``  。
+- **shape** (Sequence[int]，可选) - 采样次数，最终生成样本形状为 ``shape+batch_shape+event_shape`` 。
 
 **返回**
 

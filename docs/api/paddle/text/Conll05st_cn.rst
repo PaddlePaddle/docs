@@ -23,7 +23,7 @@ Conll05st
 
 返回值
 :::::::::
- ``Dataset`` ，conll05st 数据集实例。
+``Dataset``，conll05st 数据集实例。
 
 代码示例
 :::::::::

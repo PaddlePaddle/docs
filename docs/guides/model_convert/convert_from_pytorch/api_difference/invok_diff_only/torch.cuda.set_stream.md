@@ -1,4 +1,4 @@
-## [参数完全一致]torch.cuda.set_stream
+## [仅 API 调用方式不一致]torch.cuda.set_stream
 
 ### [torch.cuda.set_stream](https://pytorch.org/docs/stable/generated/torch.cuda.set_stream.html#torch.cuda.set_stream)
 
@@ -13,9 +13,3 @@ paddle.device.set_stream(stream=None)
 ```
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| PyTorch | PaddlePaddle | 备注                |
-| ------- | ------------ | ------------------- |
-| stream  | stream       | 希望设置的 stream。 |

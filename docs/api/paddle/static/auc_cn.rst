@@ -27,7 +27,7 @@ auc
 
     - **input** (Tensor) - 数据类型为 float32、float64。浮点二维变量，值的范围为[0,1]。每一行降序排列。该输入为网络预测值，通常代表每个标签的概率。
     - **label** (Tensor) - 数据类型为 int32、int64。二维整型变量，为训练数据的标签，第一维大小代表 batch size，第二维大小为 1。
-    - **curve** (str，可选) - 曲线类型，可以为  ``ROC``  或  ``PR`` ，默认  ``ROC`` 。
+    - **curve** (str，可选) - 曲线类型，可以为 ``ROC`` 或 ``PR``，默认 ``ROC``。
     - **num_thresholds** (int，可选) - 将 roc 曲线离散化时使用的临界值数。默认 4095。
     - **topk** (int，可选) -  取 topk 的输出值用于计算。
     - **slide_steps** (int，可选) - 当计算 batch auc 时，不仅用当前步也用于先前步。slide_steps=1，表示用当前步；slide_steps = 3 表示用当前步和前两步；slide_steps = 0，则用所有步。默认值为 1。

@@ -1,4 +1,4 @@
-## [无参数]torch.Tensor.conj_physical
+## [仅 API 调用方式不一致]torch.Tensor.conj_physical
 ### [torch.Tensor.conj_physical](https://pytorch.org/docs/stable/generated/torch.Tensor.conj_physical.html#torch.Tensor.conj_physical)
 
 ```python

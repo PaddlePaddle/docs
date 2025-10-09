@@ -197,12 +197,12 @@ C_Status (*get_multi_process)(const C_Device device, size_t* multi_process);
 
 ### 接口说明
 
-获取设备上的MultiProcessor数量。
+获取设备上的 MultiProcessor 数量。
 
 ### 参数
 
-device - 需要获取MultiProcessor数量的设备。
-multi_process - 存储MultiProcessor数量。
+device - 需要获取 MultiProcessor 数量的设备。
+multi_process - 存储 MultiProcessor 数量。
 
 ## get_max_threads_per_mp 【optional】
 
@@ -214,12 +214,12 @@ C_Status (*get_max_threads_per_mp)(const C_Device device, size_t* threads_per_mp
 
 ### 接口说明
 
-获取设备每个MultiProcessor上的最大线程数。
+获取设备每个 MultiProcessor 上的最大线程数。
 
 ### 参数
 
-device - 需要获取每个MultiProcessor上的最大线程数的设备。
-threads_per_mp - 存储MultiProcessor上最大线程数。
+device - 需要获取每个 MultiProcessor 上的最大线程数的设备。
+threads_per_mp - 存储 MultiProcessor 上最大线程数。
 
 ## get_max_threads_per_block 【optional】
 
@@ -231,12 +231,12 @@ C_Status (*get_max_threads_per_block)(const C_Device device, size_t* threads_per
 
 ### 接口说明
 
-获取设备每个Block能够运行的最大线程数。
+获取设备每个 Block 能够运行的最大线程数。
 
 ### 参数
 
-device - 需要获取每个Block能够运行的最大线程数的设备。
-threads_per_block - 存储Block上最大线程数。
+device - 需要获取每个 Block 能够运行的最大线程数的设备。
+threads_per_block - 存储 Block 上最大线程数。
 
 ## get_max_grid_dim_size 【optional】
 
@@ -268,14 +268,14 @@ C_Status (*init_eigen_device)(C_Place place,
 
 ### 接口说明
 
-初始化Eigen GPU设备对象。
+初始化 Eigen GPU 设备对象。
 
 ### 参数
 
-place - 使用的设备的place对象。
-eigen_device - 存储Eigen GPU设备对象。
-stream - Custom Context中stream对象。
-allocator - Custom Context中的分配器对象。
+place - 使用的设备的 place 对象。
+eigen_device - 存储 Eigen GPU 设备对象。
+stream - Custom Context 中 stream 对象。
+allocator - Custom Context 中的分配器对象。
 
 ## destroy_eigen_device 【optional】
 
@@ -288,9 +288,9 @@ C_Status (*destroy_eigen_device)(const C_Device device,
 
 ### 接口说明
 
-销毁Eigen GPU设备对象。
+销毁 Eigen GPU 设备对象。
 
 ### 参数
 
 device - 使用的设备对象。
-eigen_device - 需要销毁的Eigen GPU设备对象。
+eigen_device - 需要销毁的 Eigen GPU 设备对象。

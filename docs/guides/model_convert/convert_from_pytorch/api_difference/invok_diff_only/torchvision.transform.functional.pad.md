@@ -1,4 +1,4 @@
-## [参数完全一致]torchvision.transforms.functional.pad
+## [仅 API 调用方式不一致]torchvision.transforms.functional.pad
 
 ### [torchvision.transforms.functional.pad](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.pad.html)
 
@@ -23,12 +23,3 @@ paddle.vision.transforms.pad(
 ```
 
 功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| torchvision      | PaddlePaddle| 备注                                                         |
-| ---------------- | ---------------------------------------------------- | ------------------------------------------------------------ |
-| img              | img            | 被填充的图像。|
-| padding          | padding        | 在图像边界上进行填充的范围。                 |
-| fill             | fill           | 用于填充的像素值。         |
-| padding_mode     | padding_mode   | 填充模式。|

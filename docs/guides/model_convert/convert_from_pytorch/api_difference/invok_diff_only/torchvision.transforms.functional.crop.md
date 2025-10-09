@@ -1,4 +1,4 @@
-## [参数完全一致]torchvision.transforms.functional.crop
+## [仅 API 调用方式不一致]torchvision.transforms.functional.crop
 
 ### [torchvision.transforms.functional.crop](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.crop.html)
 
@@ -25,13 +25,3 @@ paddle.vision.transforms.crop(
 ```
 
 两者功能一致，参数完全一致，具体如下：
-
-### 参数映射
-
-| torchvision | PaddlePaddle | 备注                         |
-| ----------- | ------------ | ---------------------------- |
-| img         | img     | 输入图片。 |
-| top         | top     | 要裁剪的矩形框左上方的坐标点的垂直方向的值。 |
-| left        | left    | 要裁剪的矩形框左上方的坐标点的水平方向的值。 |
-| height      | height  | 要裁剪的矩形框的高度值。 |
-| width       | width   | 要裁剪的矩形框的宽度值。 |
