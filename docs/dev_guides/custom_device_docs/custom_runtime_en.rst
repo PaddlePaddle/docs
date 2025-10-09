@@ -154,9 +154,9 @@ Collective communication APIs
 +-------------------------+---------------------------------------------------------+----------+
 | xccl_get_unique_id      | Get unique_id object                                    | N        |
 +-------------------------+---------------------------------------------------------+----------+
-| xccl_comm_init_rank     | To initialize  communicator。                           | N        |
+| xccl_comm_init_rank     | To initialize communicator                              | N        |
 +-------------------------+---------------------------------------------------------+----------+
-| xccl_destroy_comm       | To destroy  communicator。                              | N        |
+| xccl_destroy_comm       | To destroy communicator                                 | N        |
 +-------------------------+---------------------------------------------------------+----------+
 | xccl_all_reduce         | Collective communication AllReduce operation            | N        |
 +-------------------------+---------------------------------------------------------+----------+
