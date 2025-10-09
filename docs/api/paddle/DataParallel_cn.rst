@@ -18,7 +18,7 @@ DataParallel
 
 2. 使用 ``paddle.distributed.launch`` 方法启动，例如：
 
-``python -m paddle.distributed.launch –selected_gpus=0,1 demo.py``
+ ``python -m paddle.distributed.launch –selected_gpus=0,1 demo.py`` 
 
 其中 ``demo.py`` 脚本的代码可以是下面的示例代码。
 
@@ -33,7 +33,7 @@ DataParallel
 
 返回
 ::::::::::::
-支持数据并行的 ``Layer``。
+支持数据并行的 ``Layer`` 。
 
 代码示例
 ::::::::::::
@@ -64,7 +64,7 @@ state_dict(destination=None, include_sublayers=True)
 
 **参数**
 
-    - **destination** (dict，可选) - 如果提供 ``destination``，则所有参数和持久的 buffers 都将存放在 ``destination`` 中。默认值：None。
+    - **destination** (dict，可选) - 如果提供 ``destination`` ，则所有参数和持久的 buffers 都将存放在 ``destination`` 中。默认值：None。
     - **include_sublayers** (bool，可选) - 如果设置为 True，则包括子层的参数和 buffers。默认值：True。
 
 **返回**
