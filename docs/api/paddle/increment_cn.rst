@@ -27,3 +27,4 @@ Tensor，形状和数据类型同输入 ``x`` 。
 ::::::::::::
 
 COPY-FROM: paddle.increment
+
