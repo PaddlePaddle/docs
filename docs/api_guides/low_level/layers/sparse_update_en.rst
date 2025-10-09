@@ -17,4 +17,4 @@ As shown in the figure: two rows in a Tensor are not 0. In the process of forwar
 Example
 --------------------------
 
-API reference `paddle.nn.functional.embedding <cn_api_paddle_nn_functional_embedding>` . 
+API reference `paddle.nn.functional.embedding <cn_api_paddle_nn_functional_embedding>` .

@@ -232,7 +232,7 @@ COPY-FROM: paddle.distributed.fleet.DistributedStrategy.amp_configs
 dgc
 '''''''''
 
-是否启用深度梯度压缩训练。更多信息请参考[Deep Gradient Compression](https://arxiv.org/abs/1712.01887)。默认值：False
+是否启用深度梯度压缩训练。更多信息请参考 `Deep Gradient Compression https://arxiv.org/abs/1712.01887`_ 。默认值：False
 
 **代码示例**
 
@@ -267,7 +267,7 @@ COPY-FROM: paddle.distributed.fleet.DistributedStrategy.fp16_allreduce
 sharding
 '''''''''
 
-是否开启 sharding 策略。sharding 实现了[ZeRO: Memory Optimizations Toward Training Trillion Parameter Models](https://arxiv.org/abs/1910.02054)
+是否开启 sharding 策略。sharding 实现了 `ZeRO: Memory Optimizations Toward Training Trillion Parameter Models https://arxiv.org/abs/1910.02054`_
 中 ZeRO-DP 类似的功能，其通过将模型的参数和优化器状态在 ranks 间分片来支持更大模型的训练。
 
 目前在混合并行(Hybrid parallelism) 模式下，sharding config 作为混合并行设置的统一入口来设置混合并行相关参数。
