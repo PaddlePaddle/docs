@@ -22,7 +22,7 @@ FLAGS_use_ngraph
 *******************************************
 (since 1.4.0)
 
-Give a choice to run with Intel nGraph(https://github.com/NervanaSystems/ngraph) engine on inference or training. This will obtain much performance boost on Intel Xeon CPU.
+Give a choice to run with Intel `nGraph <https://github.com/NervanaSystems/ngraph>`_ engine on inference or training. This will obtain much performance boost on Intel Xeon CPU.
 
 Values accepted
 ---------------
@@ -34,4 +34,4 @@ FLAGS_use_ngraph=True will enable running with nGraph support.
 
 Note
 -------
-Intel nGraph is only supported in few models yet. We have only verified [ResNet-50](https://github.com/PaddlePaddle/models/blob/develop/PaddleCV/image_classification/README_ngraph.md) training and inference.
+Intel nGraph is only supported in few models yet. We have only verified `ResNet-50 <https://github.com/PaddlePaddle/models/blob/develop/PaddleCV/image_classification/README_ngraph.md>`_ training and inference.

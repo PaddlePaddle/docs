@@ -18,7 +18,7 @@ affine_grid
 
 返回
 ::::::::::::
- Tensor。Shape 为 ``[N, H, W, 2]`` 的 4-D Tensor 或``[N, D, H, W, 3]``的 5-D Tensor，表示仿射变换前后的坐标的映射关系。输出为 4-D Tensor 时，N、H、W 分别为仿射变换中输出 feature map 的 batch size、高和宽，输出为 5D Tensor 时，N、D、H、W 分别为仿射变换中输出 feature map 的 batch size、深度、高和宽。数据类型与 ``theta`` 一致。
+ Tensor。Shape 为 ``[N, H, W, 2]`` 的 4-D Tensor 或 ``[N, D, H, W, 3]`` 的 5-D Tensor，表示仿射变换前后的坐标的映射关系。输出为 4-D Tensor 时，N、H、W 分别为仿射变换中输出 feature map 的 batch size、高和宽，输出为 5D Tensor 时，N、D、H、W 分别为仿射变换中输出 feature map 的 batch size、深度、高和宽。数据类型与 ``theta`` 一致。
 
 
 代码示例

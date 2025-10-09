@@ -75,7 +75,7 @@ apply(executor=None, need_restore=True)
 **参数**
 
     - **executor** (Executor) - 静态图模式下当前网络的执行器；动态图模式下默认值为 None。
-    - **need_restore** (bool) - 恢复标志变量；设为 True 时，执行完成后会将网络的 ``Parameters``恢复为网络默认的值，设为 False 将不会恢复。默认值为 True。
+    - **need_restore** (bool) - 恢复标志变量；设为 True 时，执行完成后会将网络的 ``Parameters`` 恢复为网络默认的值，设为 False 将不会恢复。默认值为 True。
 
 **代码示例**
 

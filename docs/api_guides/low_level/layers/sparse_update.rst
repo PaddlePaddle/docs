@@ -14,4 +14,4 @@
 .. image:: ../../../design/dist_train/src/lookup_table_training.png
    :scale: 50 %
 
-API 详细使用方法参考 `paddle.nn.functional.embedding <cn_api_paddle_nn_functional_embedding>` 
+API 详细使用方法参考 `paddle.nn.functional.embedding <cn_api_paddle_nn_functional_embedding>`
