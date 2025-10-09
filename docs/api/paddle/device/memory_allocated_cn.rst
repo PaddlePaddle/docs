@@ -22,4 +22,10 @@ memory_allocated
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.device.custom_device.memory_allocated
+.. code-block:: python
+
+    >>> import paddle
+    >>> paddle.device.memory_allocated('npu:0')
+    >>> paddle.device.memory_allocated('npu')
+    >>> paddle.device.memory_allocated(0)
+    >>> paddle.device.memory_allocated(Paddle.CustomPlace('npu',0))

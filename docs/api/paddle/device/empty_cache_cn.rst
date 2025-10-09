@@ -9,4 +9,10 @@ empty_cache
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.device.custom_device.empty_cache
+.. code-block:: python
+
+    import paddle
+
+    x = paddle.randn([1000, 1000])
+    del x
+    paddle.device.empty_cache()

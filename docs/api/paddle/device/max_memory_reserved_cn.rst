@@ -19,4 +19,10 @@ max_memory_reserved
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.device.custom_device.max_memory_reserved
+.. code-block:: python
+
+    >>> import paddle
+    >>> paddle.device.max_memory_reserved('npu:0')
+    >>> paddle.device.max_memory_reserved('npu')
+    >>> paddle.device.max_memory_reserved(0)
+    >>> paddle.device.max_memory_reserved(Paddle.CustomPlace('npu',0))
