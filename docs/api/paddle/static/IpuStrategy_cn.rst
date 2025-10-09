@@ -7,7 +7,7 @@ IpuStrategy
 .. py:class:: paddle.static.IpuStrategy()
 
 
-``IpuStrategy`` 使用户能更精准地控制 :ref:`cn_api_paddle_static_IpuCompiledProgram` 中计算图的建造方法。
+``IpuStrategy`` 使用户能更精准地控制 :ref:`cn_api_paddle_static_IpuCompiledProgram<https://github.com/WanRui37/docs/blob/a8a3ccf47e1022776f44a1b7dcfa50bdacbdc168/docs/api/paddle/static/IpuCompiledProgram_cn.rst>` 中计算图的建造方法。
 
 
 返回
