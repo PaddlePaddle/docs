@@ -18,7 +18,7 @@ DataParallel
 
 2. 使用 ``paddle.distributed.launch`` 方法启动，例如：
 
-``python -m paddle.distributed.launch –selected_gpus=0,1 demo.py``  
+``python -m paddle.distributed.launch –selected_gpus=0,1 demo.py``
 
 其中 ``demo.py`` 脚本的代码可以是下面的示例代码。
 
