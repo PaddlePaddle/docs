@@ -4,7 +4,7 @@
 
 * **macOS 版本 10.x/11.x/12.x/13.x/14.x/15.x (64 bit) (不支持 GPU 版本)**
 * **Python 版本 3.9/3.10/3.11/3.12/3.13 (64 bit)**
-* **注意：Docker 编译方式仅支持 x86_64 架构，生成的 x86_64 whl 包无法在 Apple Silicon (M系列芯片) Mac 上安装**
+* **注意：Docker 编译方式仅支持 x86_64 架构，生成的 x86_64 whl 包无法在 Apple Silicon (M 系列芯片) Mac 上安装**
 
 ## 选择 CPU/GPU
 
@@ -16,7 +16,7 @@
 * [Docker 源码编译](#compile_from_docker) - 仅适用于 Intel Mac (x86_64)
 * [本机源码编译](#compile_from_host) - 推荐用于 Apple Silicon Mac (ARM64)
 
-**注意：** Docker 编译方式仅支持 x86_64 架构，生成的 x86_64 whl 包无法在 Apple Silicon (M系列芯片) Mac 上安装。如果您使用的是 Apple Silicon Mac，请使用本机编译方式。
+**注意：** Docker 编译方式仅支持 x86_64 架构，生成的 x86_64 whl 包无法在 Apple Silicon (M 系列芯片) Mac 上安装。如果您使用的是 Apple Silicon Mac，请使用本机编译方式。
 
 <a name="mac_docker"></a>
 ### <span id="compile_from_docker">**使用 Docker 编译**</span>
@@ -151,7 +151,7 @@ pip3.10 install -U [whl 包的名字]
 
 **请严格按照以下指令顺序执行**
 
-**重要提示：** 如果您使用的是 Apple Silicon (M系列芯片) Mac，请确保使用本机编译方式，并在 cmake 命令中添加 `-DWITH_ARM=ON` 参数。
+**重要提示：** 如果您使用的是 Apple Silicon (M 系列芯片) Mac，请确保使用本机编译方式，并在 cmake 命令中添加 `-DWITH_ARM=ON` 参数。
 
 #### 1. 检查您的计算机和操作系统是否符合我们支持的编译标准：
 ```
