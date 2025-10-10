@@ -3,7 +3,7 @@
 memory_reserved
 ---------------
 
-:: paddle.cuda.memory_reserved(device=None)
+.. py:function:: paddle.cuda.memory_reserved(device=None)
 
 返回当前设备上由缓存分配器管理的内存总量。
 

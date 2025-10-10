@@ -3,7 +3,7 @@
 memory_allocated
 ---------------
 
-:: paddle.cuda.memory_allocated(device=None)
+.. py:function:: paddle.cuda.memory_allocated(device=None)
 
 返回给定设备上当前分配给 Tensor 的显存大小。
 

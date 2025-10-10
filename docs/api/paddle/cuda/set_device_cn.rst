@@ -3,7 +3,7 @@
 set_device
 ----------
 
-:: paddle.cuda.set_device(device)
+.. py:function:: paddle.cuda.set_device(device)
 
 设置当前设备。
 

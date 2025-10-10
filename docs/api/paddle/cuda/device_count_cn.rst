@@ -3,7 +3,7 @@
 device_count
 ------------
 
-:: paddle.cuda.device_count()
+.. py:function:: paddle.cuda.device_count()
 
 返回可用的计算卡设备数量。
 
