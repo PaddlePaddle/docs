@@ -17,57 +17,165 @@ def get_pytorch_url(torch_api: str) -> str:
         对应API的官方文档URL字符串
 
     Rules:
-    1. Tensor相关API指向tensors.html
-    2. 顶层函数（torch.xxx）指向torch.html
-    3. 模块级函数/常量指向模块名.html（如nn.init.html）
-    4. 类/独立函数指向generated/[name].html
-    5. 类方法指向父类页面#锚点
-    6. 特殊处理torchvision等子库的URL结构
+    1. 优先检查特殊映射
+    2. 优先检查是否有专门的generated页面
+    3. 类方法指向父类页面#锚点
+    4. 模块级函数/常量指向模块名.html
+    5. Tensor相关API指向tensors.html
+    6. 顶层函数（torch.xxx）指向torch.html
+    7. 特殊处理torchvision等子库的URL结构
     """
     base_url = "https://pytorch.org/docs/stable/"
-    api_name = torch_api.replace(r"\_", "_")
+    torch_api = torch_api.replace(r"\_", "_")
+
+    # 特殊映射：手动指定已知问题API的正确URL
+    special_mappings = {
+        "torch.cuda.check_error": "generated/torch.cuda.cudart.html",
+        "torch.cuda.mem_get_info": "generated/torch.cuda.memory.mem_get_info.html",
+        "torch.nn.attention.sdpa_kernel": "generated/torch.nn.attention.sdpa_kernel.html",
+        "torch.torch.int32": "tensors.html#torch.int32",
+        "torch.nn.attention._cur_sdpa_kernel_backends": "nn.attention.html#torch.nn.attention.sdpa_kernel",
+        "torch.cuda.memory_reserved": "generated/torch.cuda.memory.memory_reserved.html",
+        "torch.cuda.memory_allocated": "generated/torch.cuda.memory.memory_allocated.html",
+        "torch.cuda.empty_cache": "generated/torch.cuda.memory.empty_cache.html",
+    }
+
+    # 检查特殊映射
+    if torch_api in special_mappings:
+        return f"{base_url}{special_mappings[torch_api]}"
+
+    # 优先检查是否有专门的generated页面
+    generated_apis = {
+        "torch.pow": "generated/torch.pow.html",
+        "torch.nn.utils.parameters_to_vector": "generated/torch.nn.utils.parameters_to_vector.html",
+        "torch.nn.utils.vector_to_parameters": "generated/torch.nn.utils.vector_to_parameters.html",
+        "torch.nn.Module": "generated/torch.nn.Module.html",
+    }
+
+    if torch_api in generated_apis:
+        return f"{base_url}{generated_apis[torch_api]}"
+
+    # 特殊处理：类方法（如torch.nn.Module.to）
+    if torch_api.startswith("torch.nn.Module."):
+        return f"{base_url}generated/torch.nn.Module.html#{torch_api}"
+
+    if torch_api.startswith("torch.linalg.") or torch_api.startswith(
+        "torch.cuda."
+    ):
+        return f"{base_url}generated/{torch_api}.html#{torch_api}"
 
     # 特殊子库处理（torchvision）
-    if api_name.startswith("torchvision."):
+    if torch_api.startswith("torchvision."):
         vision_base = "https://pytorch.org/vision/stable/"
-        if api_name == "torchvision.models":
+        if torch_api == "torchvision.models":
             return f"{vision_base}models.html"
-        return f"{vision_base}generated/{api_name}.html#{api_name}"
+        return f"{vision_base}generated/{torch_api}.html#{torch_api}"
+
+    # 特殊处理：torch.__version__相关
+    if torch_api.startswith("torch.__version__"):
+        return base_url  # 版本信息通常在首页
+
+    # 特殊处理：torch.distributed.ReduceOp枚举值
+    if torch_api.startswith("torch.distributed.ReduceOp."):
+        return f"{base_url}distributed.html#{torch_api}"
+
+    # 特殊处理：torch.autograd.Function
+    if torch_api == "torch.autograd.Function":
+        return f"{base_url}autograd.html#{torch_api}"
+
+    # 特殊处理：torch.utils.cpp_extension
+    if torch_api.startswith("torch.utils.cpp_extension"):
+        return f"{base_url}cpp_extension.html#{torch_api}"
 
     # 1. 处理Tensor相关API
-    if api_name.startswith("torch.Tensor") or api_name == "torch.Tensor":
-        return f"{base_url}tensors.html#{api_name}"
+    if torch_api.startswith("torch.Tensor") or torch_api == "torch.Tensor":
+        return f"{base_url}tensors.html#{torch_api}"
 
     # 2. 处理顶层函数（无子模块）
-    if len(api_name.split(".")) == 2 and api_name.startswith("torch."):
-        return f"{base_url}torch.html#{api_name}"
+    if len(torch_api.split(".")) == 2 and torch_api.startswith("torch."):
+        # 检查是否有专门的generated页面
+        generated_check = [
+            "torch.pow",
+            "torch.abs",
+            "torch.add",
+            "torch.sub",
+            "torch.mul",
+            "torch.div",
+            "torch.exp",
+            "torch.log",
+            "torch.sin",
+            "torch.cos",
+            "torch.tan",
+            "torch.sigmoid",
+        ]
+
+        if any(torch_api.startswith(prefix) for prefix in generated_check):
+            return f"{base_url}generated/{torch_api}.html"
+        return f"{base_url}torch.html#{torch_api}"
 
     # 分割API路径
-    parts = api_name.split(".")
+    parts = torch_api.split(".")
     module_path = ".".join(parts[:-1])  # 模块路径
     item_name = parts[-1]  # 最后一项名称
+
+    # 特殊处理：torch.functional函数
+    if parts[0] == "torch" and parts[1] == "functional":
+        return f"{base_url}torch.html#{torch_api}"
 
     # 3. 处理模块级函数/常量
     if parts[0] == "torch" and not parts[-1][0].isupper():
         # 特殊模块映射（基于官方文档结构）
         module_map = {
-            "torch.nn.init": "nn.init",
-            "torch.nn.functional": "nn.functional",
-            "torch.cuda.amp": "amp",
-            "torch.distributions": "distributions",
+            "torch.nn.init": "nn.init.html",
+            "torch.nn.functional": "nn.functional.html",
+            "torch.cuda.amp": "amp.html",
+            "torch.distributions": "distributions.html",
+            "torch.nn.utils": "nn.utils.html",
+            "torch.optim": "optim.html",
+            "torch.random": "random.html",
+            "torch.special": "special.html",
+            "torch.distributed": "distributed.html",
+            "torch.utils.data": "data.html",
         }
         module_key = ".".join(parts[:-1])
-        module_slug = module_map.get(
-            module_key, module_key.replace("torch.", "")
-        )
-        return f"{base_url}{module_slug}.html#{api_name}"
+        module_slug = module_map.get(module_key, f"generated/{module_key}.html")
+
+        # 检查是否是应该指向generated目录的API
+        generated_modules = [
+            "torch.nn.utils.parameters_to_vector",
+            "torch.nn.utils.vector_to_parameters",
+        ]
+
+        if torch_api in generated_modules:
+            return f"{base_url}generated/{torch_api}.html"
+
+        return f"{base_url}{module_slug}#{torch_api}"
 
     # 4. 处理类/独立函数
     if parts[-1][0].isupper() or len(parts) == 1:
-        return f"{base_url}generated/{api_name}.html#{api_name}"
+        # 特殊类映射
+        class_map = {
+            "torch.autograd.Function": "autograd.html",
+            "torch.utils.cpp_extension.BuildExtension": "cpp_extension.html",
+            "torch.nn.Module": "generated/torch.nn.Module.html",
+        }
+        if torch_api in class_map:
+            return f"{base_url}{class_map[torch_api]}#{torch_api}"
+        return f"{base_url}generated/{torch_api}.html#{torch_api}"
 
     # 5. 默认处理（类方法）
-    return f"{base_url}generated/{module_path}.html#{api_name}"
+    # 特殊处理类方法
+    class_method_map = {
+        "torch.nn.Module": "generated/torch.nn.Module.html",
+        "torch.utils.cpp_extension.BuildExtension": "cpp_extension.html",
+    }
+
+    for class_name, page_name in class_method_map.items():
+        if module_path == class_name:
+            return f"{base_url}{page_name}#{torch_api}"
+
+    # 默认情况下，尝试生成到generated目录
+    return f"{base_url}generated/{module_path}.html#{torch_api}"
 
 
 def escape_underscores_in_api(api_name):

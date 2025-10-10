@@ -1,18 +1,40 @@
 import argparse
 import concurrent.futures
 import os
+import random
 import re
+import time
 from collections import defaultdict
 from urllib.parse import urlparse
 
 import requests
+from requests.adapters import HTTPAdapter
 from tqdm import tqdm  # 用于显示进度条
+from urllib3.util.retry import Retry
 
 # 默认文件路径
 DEFAULT_FILE_PATH = "/workspace/paddleDocs/docs/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.md"
 
 # 用户代理头，模拟浏览器访问
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+
+# 重试策略配置
+RETRY_STRATEGY = Retry(
+    total=3,
+    backoff_factor=0.5,
+    status_forcelist=[429, 500, 502, 503, 504],
+    allowed_methods=["HEAD", "GET"],
+)
+
+
+def create_session():
+    """创建带有重试机制的会话"""
+    session = requests.Session()
+    adapter = HTTPAdapter(max_retries=RETRY_STRATEGY)
+    session.mount("http://", adapter)
+    session.mount("https://", adapter)
+    session.headers.update({"User-Agent": USER_AGENT})
+    return session
 
 
 def parse_toc(lines):
@@ -324,7 +346,7 @@ def is_valid_url(url):
         return False
 
 
-def check_url_exists(url_info):
+def check_url_exists(url_info, session=None):
     """
     检查URL是否存在（是否返回404）
     返回状态码和错误信息
@@ -340,21 +362,21 @@ def check_url_exists(url_info):
             "url_info": url_info,
         }
 
-    # 设置请求头
-    headers = {"User-Agent": USER_AGENT}
+    # 添加随机延迟，避免请求过于频繁
+    time.sleep(random.uniform(0.5, 1.5))
+
+    # 创建会话（如果未提供）
+    if session is None:
+        session = create_session()
 
     try:
         # 发送HEAD请求（更快，节省带宽）
-        response = requests.head(
-            url, headers=headers, timeout=10, allow_redirects=True
-        )
+        response = session.head(url, timeout=10, allow_redirects=True)
         status_code = response.status_code
 
         # 如果HEAD请求不被支持（405错误），则尝试GET请求
         if status_code == 405:
-            response = requests.get(
-                url, headers=headers, timeout=10, allow_redirects=True
-            )
+            response = session.get(url, timeout=10, allow_redirects=True)
             status_code = response.status_code
 
         # 根据状态码判断URL是否存在
@@ -409,6 +431,9 @@ def check_urls_exist(urls_with_context, max_workers=10):
     返回警告列表
     """
     warnings = []
+
+    urls_with_context = urls_with_context[-700:]
+
     total_urls = len(urls_with_context)
 
     print(
@@ -421,11 +446,16 @@ def check_urls_exist(urls_with_context, max_workers=10):
             max_workers=max_workers
         ) as executor,
     ):
+        # 为每个线程创建一个会话
+        sessions = [create_session() for _ in range(max_workers)]
+
         # 提交所有任务
-        future_to_url = {
-            executor.submit(check_url_exists, url_info): url_info
-            for url_info in urls_with_context
-        }
+        future_to_url = {}
+        for i, url_info in enumerate(urls_with_context):
+            # 分配会话给任务（轮询方式）
+            session = sessions[i % max_workers]
+            future = executor.submit(check_url_exists, url_info, session)
+            future_to_url[future] = url_info
 
         # 处理完成的任务
         for future in concurrent.futures.as_completed(future_to_url):
@@ -444,6 +474,10 @@ def check_urls_exist(urls_with_context, max_workers=10):
                 if result["status_code"]:
                     warning_msg += f"状态码: {result['status_code']}\n"
                 warnings.append(warning_msg)
+
+    # 关闭所有会话
+    for session in sessions:
+        session.close()
 
     print(f"URL检查完成，发现 {len(warnings)} 个问题")
     return warnings
@@ -479,7 +513,7 @@ def main():
     # 检查文件是否存在
     if not os.path.exists(md_file_path):
         print(f"错误: 文件 '{md_file_path}' 不存在")
-        print("请使用 --file 参数指定正确的文件路径")
+        print("请使用 --file 参数指定文件路径")
         return
 
     # 读取文件所有行
