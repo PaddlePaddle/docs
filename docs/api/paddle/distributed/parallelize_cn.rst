@@ -9,7 +9,7 @@ parallelize
 
 
 .. note::
-    如果提供的 ``config`` 的键中不包含 ``dp_config``，``mp_config`` 与 ``pp_config`` 中的任何字段，则本函数会直接返回 model 与 optimizer。
+    如果提供的 ``config`` 的键中不包含 ``dp_config`` ， ``mp_config`` 与 ``pp_config`` 中的任何字段，则本函数会直接返回 model 与 optimizer。
 
 
 参数
@@ -20,13 +20,13 @@ parallelize
     - **mesh** (paddle.distributed.ProcessMesh，可选) - 模型与优化器（如提供）并行所发生的进程空间。最佳用法：在调用本 API 之前，通过
       调用 ``paddle.distributed.set_mesh`` 方法来配置 mesh 信息，并将本 API 的 mesh 参数设置为 None。注意，如果您通过本 API 传递
       了 mesh 信息，传入的 mesh 会覆盖外部设置的 mesh。
-    - **config** (dict，可选) - 用来指导并行化的配置。该配置是一个字典，键的值可以从``dp_config``，``mp_config`` 与
+    - **config** (dict，可选) - 用来指导并行化的配置。该配置是一个字典，键的值可以从 ``dp_config`` ， ``mp_config`` 与
       ``pp_config`` 中进行选择，分别来指导数据并行、模型并行与流水线并行的并行化。一个合法的 config 可以是： ``{"dp_config":
       请参考本文档 dp_config 部分以获取更多内容, "mp_config": 请参考本文档 mp_config 部分以获取更多内容,
-      "pp_config": 请参考本文档 pp_config 部分以获取更多内容}``。
+      "pp_config": 请参考本文档 pp_config 部分以获取更多内容}`` 。
 
       dp_config (dict)：指导数据并行的配置。该配置是一个字典，字典的键为 ``sharding_level`` 对应的值可以从 ``0/1/2/3`` 中选择。
-      分别代表数据并行、sharding 并行 stage 1/2/3。一个合法的 dp_config 可以是：``{"sharding_level": 2}``.
+      分别代表数据并行、sharding 并行 stage 1/2/3。一个合法的 dp_config 可以是：``{"sharding_level": 2}`` .
 
       mp_config (dict)：指导模型并行的配置。该配置是一个字典，字典的键为 ``parallelize_plan`` 对应值仍然为一个字典，将标识的 Layer 的
       名字或一个参数的名字与对应的策略进行映射。注意：这里被标识的 Layer 的名字可以按照正则字符串的格式来书写。注意：如果将一个参数的名字与
@@ -34,7 +34,7 @@ parallelize
       ``SequenceParallelBegin``，``SequenceParallelDisable``，``SequenceParallelEnable``，``SequenceParallelEnd``，
       ``PrepareLayerInput`` 和 ``PrepareLayerOutput``。一个合法的 mp_config 可以是： ``{"parallelize_plan":
       {"llama.embed_tokens": ColWiseParallel(), "llama.norm": SequenceParallelEnable(),
-      "lm_head.weight": ColWiseParallel()}}``。
+      "lm_head.weight": ColWiseParallel()}}`` 。
 
       pp_config (dict)：指导流水线并行的配置。该配置是一个字典，字典的键为 ``split_spec`` 与 ``global_spec`` （可选）。``split_spec``
       可以是一个字典或者是一个字符串。如果 ``split_spec`` 是一个字典，它将标识的 Layer 的名字与一个 ``SplitPoint`` 的值进行映射。
