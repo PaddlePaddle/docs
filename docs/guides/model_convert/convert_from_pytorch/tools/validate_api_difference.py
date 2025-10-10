@@ -15,8 +15,7 @@ from urllib3.util.retry import Retry
 # 默认文件路径
 DEFAULT_FILE_PATH = "/workspace/paddleDocs/docs/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.md"
 
-# 用户代理头，模拟浏览器访问
-USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+USER_AGENT = ""
 
 # 重试策略配置
 RETRY_STRATEGY = Retry(
@@ -33,7 +32,6 @@ def create_session():
     adapter = HTTPAdapter(max_retries=RETRY_STRATEGY)
     session.mount("http://", adapter)
     session.mount("https://", adapter)
-    session.headers.update({"User-Agent": USER_AGENT})
     return session
 
 
