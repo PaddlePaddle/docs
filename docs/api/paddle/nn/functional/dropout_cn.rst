@@ -101,7 +101,7 @@ axis 参数的默认值为 None。当 ``axis=None`` 时，dropout 的功能为�
      点积所得结果为：
      [[1 0 3]
       [4 0 6]]
-   (3) 若 axis=[0, 1] ，则表示在第 0 维和第 1 维上做 dropout。此时与默认设置 ``axis=None`` 的作用一致。
+   (3) 若 axis=[0, 1] ，则表示在第 0 维和第 1 维上做 dropout。此时与默认设置 axis=None 的作用一致。
 
 若输入 x 为 4 维 Tensor，形状为 `NCHW`，其中 N 是批尺寸，C 是通道数，H 是特征高度，W 是特征宽度，当设置 ``axis=[0,1]`` 时，则只会在通道 `N` 和 `C` 上做 dropout，通道 `H` 和 `W` 的元素是绑定在一起的，即：``paddle.nn.functional.dropout(x, p, axis=[0,1])`` ，此时对 4 维 Tensor 中的某个 2 维特征图（形状为 `HW`），或者全部置 0，或者全部保留，这便是 dropout2d 的实现。详情参考 :ref:`cn_api_paddle_nn_functional_dropout2d` 。
 
