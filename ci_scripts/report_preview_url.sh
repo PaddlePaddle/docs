@@ -44,13 +44,17 @@ done
 
 if [ ${#output_lines[@]} -gt 0 ]; then
     cat <<-EOF
-> [!NOTE]
-> 请等待 \`Docs-NEW\` 流水线运行完成后再点击预览链接，否则可能会看到旧版本内容或遇到链接无法访问的情况。
-
 <details>
 <summary>📚 本次 PR 文档预览链接（点击展开）</summary>
 
-以下是本次 PR 中变更文档的预览链接：
+<table>
+<tr>
+<td>
+ℹ️ <b>预览提醒</b><br>
+请等待 <code>Docs-NEW</code> 流水线运行完成后再点击预览链接，否则可能会看到旧版本内容或遇到链接无法访问的情况。
+</td>
+</tr>
+</table>
 
 $(printf '%s\n' "${output_lines[@]}")
 
