@@ -183,3 +183,111 @@ It gets the driver version.
 ### Parameter
 
 version - the version of the stored driver
+
+## get_multi_process 【optional】
+
+### Definition
+
+```c++
+C_Status (*get_multi_process)(const C_Device device, size_t* multi_process);
+```
+
+### Description
+
+Get the number of MultiProcessors on the device.
+
+### Parameter
+
+device - the device to query.
+multi_process - to store the number of MultiProcessors.
+
+## get_max_threads_per_mp 【optional】
+
+### Definition
+
+```c++
+C_Status (*get_max_threads_per_mp)(const C_Device device, size_t* threads_per_mp);
+```
+
+### Description
+
+Get the maximum number of threads per MultiProcessor on the device.
+
+### Parameter
+
+device - the device to query.
+threads_per_mp - to store the maximum threads per MultiProcessor.
+
+## get_max_threads_per_block 【optional】
+
+### Definition
+
+```c++
+C_Status (*get_max_threads_per_block)(const C_Device device, size_t* threads_per_block);
+```
+
+### Description
+
+Get the maximum number of threads per block that can run on the device.
+
+### Parameter
+
+device - the device to query.
+threads_per_block - to store the maximum threads per block.
+
+## get_max_grid_dim_size 【optional】
+
+### Definition
+
+```c++
+C_Status (*get_max_grid_dim_size)(const C_Device device, std::array<unsigned int, 3>* grid_dim_size);
+```
+
+### Description
+
+Get the maximum grid dimension size of the device.
+
+### Parameter
+
+device - the device to query.
+grid_dim_size - to store the maximum grid dimension size.
+
+## init_eigen_device 【optional】
+
+### Definition
+
+```c++
+C_Status (*init_eigen_device)(C_Place place,
+                              C_EigenDevice* eigen_device,
+                              C_Stream stream,
+                              C_Allocator allocator);
+```
+
+### Description
+
+Initialize the Eigen GPU device object.
+
+### Parameter
+
+place - the place object of the device to use.
+eigen_device - to store the Eigen GPU device object.
+stream - the stream object in Custom Context.
+allocator - the allocator object in Custom Context.
+
+## destroy_eigen_device 【optional】
+
+### Definition
+
+```c++
+C_Status (*destroy_eigen_device)(const C_Device device,
+                                   C_EigenDevice* eigen_device);
+```
+
+### Description
+
+Destroy the Eigen GPU device object.
+
+### Parameter
+
+device - the device object to use.
+eigen_device - the Eigen GPU device object to be destroyed.
