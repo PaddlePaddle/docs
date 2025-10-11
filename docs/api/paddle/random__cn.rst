@@ -21,8 +21,3 @@ random_ 为 Inplace 版本实现，对输入 `x` 采用 Inplace 策略。
 ::::::::::::
 
 Tensor：数值服从范围[``from``, ``to`` - 1]内均匀分布的随机 Tensor。
-
-代码示例
-::::::::::::
-
-COPY-FROM: paddle.random_
