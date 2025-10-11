@@ -1219,7 +1219,7 @@ REGISTER_OPERATOR(sign, ops::SignOp, ops::SignOpMaker<float>,
  * The infrt declare like:
  *
  * def PDKEL_Reshape_to_CPU : Pat<
- *     (PD_ReshapeOp $x, $shape_tensor， $shape_attr), // OpMaker arguements
+ *     (PD_ReshapeOp $x, $shape_tensor， $shape_attr), // OpMaker arguments
  *     (PDKEL_ReshapeKernelAttr $x, fn($shape_attr)>;  // Kernel arguments
  * def PDKEL_Reshape_to_CPU : Pat<
  *     (PD_ReshapeOp $x, $shape_tensor， $shape_attr),
