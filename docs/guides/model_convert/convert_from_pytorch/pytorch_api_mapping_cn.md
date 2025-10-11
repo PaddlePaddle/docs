@@ -6,671 +6,821 @@
 
 欢迎你向我们贡献代码，关于如何编写 API 映射关系，为保证文档格式统一性与可读性，请严格参照 [API 映射关系-格式与模板](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_format_cn.md) 来编写。
 
-## API 映射表目录
+## API 映射分类
 
-|类别|简介|
-|-|-|
-|API 完全一致|此类 API 功能和使用方法一致，此类 API 无需转换，只需要 ``import paddle as torch``，或者将前缀 ``torch.``替换为 ``paddle.``即可。|
-|仅 API 调用方式不一致|参数一致，但 API 调用方式不一致。此类 API 需要转换，但转换成本较低，只需要对 API 调用方式进行改写，无需处理 API 参数部分。包括：API 名称不同、API 路径不同、Tensor 类方法改成普通方法、Tensor 方法改成属性、Tensor 属性改成方法 等情况。|
-|仅参数名不一致|​  此类 API 功能相同，但部分参数名称不同|
-|paddle 参数更多|此类 API 在 PaddlePaddle 中提供了更多可选参数|
-|参数默认值不一致|此类 API 功能相同，但某些参数的默认值不同|
-|torch 参数更多|​此类 API 在 PyTorch 中提供了更多参数|
-|输入参数用法不一致|此类 API 对输入参数的处理方式不同|
-|输入参数类型不一致|此类 API 要求的输入数据类型不同|
-|返回参数类型不一致|​此类 API 返回值的类型或结构不同|
-|组合替代实现|此类功能在 PaddlePaddle 中没有直接对应的单一 API，需要通过多个 PaddlePaddle API 组合来实现|
-|可删除|此类 PyTorch API 在 PaddlePaddle 中可以直接删除|
-|功能缺失|此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现|
+根据 PyTorch API 与 Paddle API 两者之间的映射差异，将映射关系分为以下 13 类
 
-## API 完全一致
+| 序号 | 类别 | 简介 |
+| ---- | ---- | ---- |
+| 1 |API 完全一致|**此类 API 能极大降低代码迁移成本，其使用方式完全一致，** 只需要将代码中所有前缀 `torch.`替换为 `paddle.`即可。（或者只需在文件最上方插入一行 `import paddle as torch`即可）|
+| 2 |仅 API 调用方式不一致|参数一致，但 API 调用方式不一致。此类 API 需要转换，但转换成本较低，只需要对 API 调用方式进行改写，无需处理 API 参数部分。包括：API 名称不同、API 路径不同、Tensor 类方法改成普通方法、Tensor 方法改成属性、Tensor 属性改成方法 等情况。|
+| 3 |仅参数名不一致|此类 API 功能相同，但部分参数名称不同|
+| 4 |paddle 参数更多|此类 API 在 PaddlePaddle 中提供了更多可选参数|
+| 5 |参数默认值不一致|此类 API 功能相同，但某些参数的默认值不同|
+| 6 |torch 参数更多|此类 API 在 PyTorch 中提供了更多参数|
+| 7 |输入参数用法不一致|此类 API 对输入参数的处理方式不同|
+| 8 |输入参数类型不一致|此类 API 要求的输入数据类型不同|
+| 9 |返回参数类型不一致|此类 API 返回值的类型或结构不同|
+| 10 |组合替代实现|此类功能在 PaddlePaddle 中没有直接对应的单一 API，需要通过多个 PaddlePaddle API 组合来实现|
+| 11 |可删除|此类 PyTorch API 在 PaddlePaddle 中可以直接删除|
+| 12| API 别名|此类 PyTorch API 是其他 Pytorch API 的别名|
+| 13 |功能缺失|此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现|
+
+### 1. API 完全一致
 **分类简介**
-此类 API 功能和使用方法一致，此类 API 无需转换，只需要 ``import paddle as torch``，或者将前缀 ``torch.``替换为 ``paddle.``即可。
+
+**此类 API 能极大降低代码迁移成本，其使用方式完全一致，** 只需要将代码中所有前缀 `torch.`替换为 `paddle.`即可。（或者只需在文件最上方插入一行 `import paddle as torch`即可）
+
+
 **转写示例**
 ```python
 # PyTorch 写法
-x = torch.eye(5)
+torch.eye(5)
 torch.einsum('ii->i', x)
-model = torch.nn.Softplus(beta=0.5, threshold=15)
+torch.nn.Softplus(beta=0.5, threshold=15)
 
 # Paddle 写法
-x = paddle.eye(5)
+paddle.eye(5)
 paddle.einsum('ii->i', x)
-model = paddle.nn.Softplus(beta=0.5, threshold=15)
+paddle.nn.Softplus(beta=0.5, threshold=15)
 ```
+
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-| 1 | [torch.Tensor.bfloat16](https://pytorch.org/docs/stable/generated/torch.Tensor.bfloat16.html#torch.Tensor.bfloat16) | paddle.Tensor.bfloat16 | - |
-| 2 | [torch.Tensor.bool](https://pytorch.org/docs/stable/generated/torch.Tensor.bool.html#torch.Tensor.bool) | paddle.Tensor.bool | - |
-| 3 | [torch.Tensor.byte](https://pytorch.org/docs/stable/generated/torch.Tensor.byte.html#torch.Tensor.byte) | paddle.Tensor.byte | - |
-| 4 | [torch.Tensor.char](https://pytorch.org/docs/stable/generated/torch.Tensor.char.html#torch.Tensor.char) | paddle.Tensor.char | - |
-| 5 | [torch.Tensor.double](https://pytorch.org/docs/stable/generated/torch.Tensor.double.html#torch-Tensor-double) | paddle.Tensor.double | - |
-| 6 | [torch.Tensor.float](https://pytorch.org/docs/stable/generated/torch.Tensor.float.html?highlight=float#torch.Tensor.float) | paddle.Tensor.float | - |
-| 7 | [torch.Tensor.half](https://pytorch.org/docs/stable/generated/torch.Tensor.half.html#torch.Tensor.half) | paddle.Tensor.half | - |
-| 8 | [torch.Tensor.int](https://pytorch.org/docs/stable/generated/torch.Tensor.int.html?highlight=int#torch.Tensor.int) | paddle.Tensor.int | - |
-| 9 | [torch.Tensor.long](https://pytorch.org/docs/stable/generated/torch.Tensor.long.html#torch.Tensor.long) | paddle.Tensor.long | - |
-| 10 | [torch.Tensor.short](https://pytorch.org/docs/stable/generated/torch.Tensor.short.html#torch.Tensor.short) | paddle.Tensor.short | - |
-| 11 | [torch.Tensor.cfloat](https://pytorch.org/docs/stable/generated/torch.Tensor.cfloat.html?highlight=torch+tensor+cfloat#torch.Tensor.cfloat) | paddle.Tensor.cfloat | - |
-| 12 | [torch.Tensor.cdouble](https://pytorch.org/docs/stable/generated/torch.Tensor.cdouble.html?highlight=torch+tensor+cdouble#torch.Tensor.cdouble) | paddle.Tensor.cdouble | - |
-| 13 | [torch.nn.init.calculate_gain](https://pytorch.org/docs/stable/nn.init.html?highlight=gain#torch.nn.init.calculate_gain) | paddle.nn.init.calculate_gain | - |
-| 14 | [torch.nn.init.constant_](https://pytorch.org/docs/stable/nn.init.html?highlight=constant_#torch.nn.init.constant_) | paddle.nn.init.constant_ | - |
-| 15 | [torch.nn.init.dirac_](https://pytorch.org/docs/stable/nn.init.html?highlight=dirac_#torch.nn.init.dirac_) | paddle.nn.init.dirac_ | - |
-| 16 | [torch.nn.init.eye_](https://pytorch.org/docs/stable/nn.init.html?highlight=eye_#torch.nn.init.eye_) | paddle.nn.init.eye_ | - |
-| 17 | [torch.nn.init.kaiming_normal_](https://pytorch.org/docs/stable/nn.init.html?highlight=kaiming_normal_#torch.nn.init.kaiming_normal_) | paddle.nn.init.kaiming_normal_ | - |
-| 18 | [torch.nn.init.kaiming_uniform_](https://pytorch.org/docs/stable/nn.init.html?highlight=kaiming_uniform_#torch.nn.init.kaiming_uniform_) | paddle.nn.init.kaiming_uniform_ | - |
-| 19 | [torch.nn.init.normal_](https://pytorch.org/docs/stable/nn.init.html?highlight=normal_#torch.nn.init.normal_) | paddle.nn.init.normal_ | - |
-| 20 | torch.nn.init.ones | paddle.nn.init.ones | - |
-| 21 | [torch.nn.init.orthogonal_](https://pytorch.org/docs/stable/nn.init.html?highlight=orthogonal_#torch.nn.init.orthogonal_) | paddle.nn.init.orthogonal_ | - |
-| 22 | [torch.nn.init.trunc_normal_](https://pytorch.org/docs/stable/nn.init.html#torch.nn.init.trunc_normal_) | paddle.nn.init.trunc_normal_ | - |
-| 23 | [torch.nn.init.uniform_](https://pytorch.org/docs/stable/nn.init.html?highlight=uniform_#torch.nn.init.uniform_) | paddle.nn.init.uniform_ | - |
-| 24 | [torch.nn.init.xavier_normal_](https://pytorch.org/docs/stable/nn.init.html?highlight=xavier_normal_#torch.nn.init.xavier_normal_) | paddle.nn.init.xavier_normal_ | - |
-| 25 | [torch.nn.init.xavier_uniform_](https://pytorch.org/docs/stable/nn.init.html?highlight=xavier_uniform_#torch.nn.init.xavier_uniform_) | paddle.nn.init.xavier_uniform_ | - |
-| 26 | [torch.nn.init.zeros_](https://pytorch.org/docs/stable/nn.init.html?highlight=zeros_#torch.nn.init.zeros_) | paddle.nn.init.zeros_ | - |
-| 27 | [torch.nn.Conv1d](https://pytorch.org/docs/stable/generated/torch.nn.Conv1d.html?highlight=conv1d#torch.nn.Conv1d) | paddle.nn.Conv1d | - |
-| 28 | [torch.nn.Conv2d](https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html?highlight=conv2d#torch.nn.Conv2d) | paddle.nn.Conv2d | - |
-| 29 | [torch.nn.Conv3d](https://pytorch.org/docs/stable/generated/torch.nn.Conv3d.html?highlight=conv3d#torch.nn.Conv3d) | paddle.nn.Conv3d | - |
-| 30 | [torch.nn.Embedding](https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html?highlight=embedding#torch.nn.Embedding) | [paddle.nn.Embedding](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Embedding_cn.html#embedding) | - |
-| 31 | [torch.complex](https://pytorch.org/docs/stable/generated/torch.complex.html) | [paddle.complex](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/complex_cn.html#complex) | - |
-| 32 | [torch.polar](https://pytorch.org/docs/stable/generated/torch.polar.html#torch.polar) | [paddle.polar](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/polar_cn.html) | - |
-| 33 | [torch.cat](https://pytorch.org/docs/stable/generated/torch.cat.html?highlight=cat#torch.cat) | paddle.cat | - |
-| 34 | [torch.stack](https://pytorch.org/docs/stable/generated/torch.stack.html#torch.stack) | [paddle.stack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/stack_cn.html) | - |
-| 35 | [torch.swapaxes](https://pytorch.org/docs/stable/generated/torch.swapaxes.html#torch.swapaxes) | paddle.swapaxes | - |
-| 36 | [torch.swapdims](https://pytorch.org/docs/stable/generated/torch.swapdims.html#torch.swapdims) | paddle.swapdims | - |
-| 37 | [torch.where](https://pytorch.org/docs/stable/generated/torch.where.html) | [paddle.where](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/where_cn.html) | - |
-| 38 | [torch.clamp](https://pytorch.org/docs/stable/generated/torch.clamp.html#torch-clamp) | paddle.clamp | - |
-| 39 | torch.clip | [paddle.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/clip_cn.html#clip) | - |
-| 40 | [torch.cos](https://pytorch.org/docs/stable/generated/torch.cos.html#torch-cos) | [paddle.cos](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cos_cn.html#cos) | - |
-| 41 | [torch.floor](https://pytorch.org/docs/stable/generated/torch.floor.html?highlight=torch+floor#torch.floor) | [paddle.floor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/floor_cn.html#floor) | - |
-| 42 | [torch.log](https://pytorch.org/docs/stable/generated/torch.log.html?highlight=log#torch.log) | [paddle.log](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/log_cn.html#log) | - |
-| 43 | [torch.mul](https://pytorch.org/docs/stable/generated/torch.mul.html?highlight=torch+mul#torch.mul) | paddle.mul | - |
-| 44 | torch.multiply | [paddle.multiply](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/multiply_cn.html) | - |
-| 45 | [torch.pow](https://pytorch.org/docs/stable/generated/torch.pow.html?highlight=pow#torch.pow) | [paddle.pow](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/pow_cn.html) | - |
-| 46 | [torch.rsqrt](https://pytorch.org/docs/stable/generated/torch.rsqrt.html?highlight=rsqrt#torch.rsqrt) | [paddle.rsqrt](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/rsqrt_cn.html#rsqrt) | - |
-| 47 | [torch.sign](https://pytorch.org/docs/stable/generated/torch.sign.html?highlight=sign#torch.sign) | [paddle.sign](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sign_cn.html#sign) | - |
-| 48 | [torch.sin](https://pytorch.org/docs/stable/generated/torch.sin.html?highlight=sin#torch.sin) | [paddle.sin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sin_cn.html#sin) | - |
-| 49 | [torch.eq](https://pytorch.org/docs/stable/generated/torch.eq.html) | paddle.eq | - |
-| 50 | [torch.gt](https://pytorch.org/docs/stable/generated/torch.gt.html) | paddle.gt | - |
-| 51 | [torch.view_as_real](https://pytorch.org/docs/stable/generated/torch.view_as_real.html?highlight=view_as_real#torch.view_as_real) | paddle.view_as_real | - |
-| 52 | [torch.view_as_complex](https://pytorch.org/docs/stable/generated/torch.view_as_complex.html?highlight=view_as_complex#torch.view_as_complex) | paddle.view_as_complex | - |
-| 53 | [torch.ger](https://pytorch.org/docs/stable/generated/torch.ger.html?highlight=ger#torch.ger) | paddle.ger | - |
-| 54 | [torch.Tensor.mul_](https://pytorch.org/docs/stable/generated/torch.Tensor.mul_.html) | paddle.Tensor.mul_ | - |
-| 55 | [torch.Tensor.swapaxes](https://pytorch.org/docs/stable/generated/torch.Tensor.swapaxes.html#torch.Tensor.swapaxes) | paddle.Tensor.swapaxes | - |
-| 56 | [torch.Tensor.swapdims](https://pytorch.org/docs/stable/generated/torch.Tensor.swapdims.html#torch.Tensor.swapdims) | paddle.Tensor.swapdims | - |
-| 57 | [torch.autograd.Function](https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function) | paddle.autograd.Function | - |
-| 58 | [torch.take_along_dim](https://pytorch.org/docs/stable/generated/torch.take_along_dim.html?highlight=torch+take_along_dim#torch.take_along_dim) | paddle.take_along_dim | - |
-| 59 | [torch.Tensor.take_along_dim](https://pytorch.org/docs/stable/generated/torch.Tensor.take_along_dim.html?highlight=torch+tensor+take_along_dim#torch.Tensor.take_along_dim) | paddle.Tensor.take_along_dim | - |
-| 60 | [torch.special.logsumexp](https://pytorch.org/docs/stable/special.html#torch.special.logsumexp) | paddle.special.logsumexp | - |
-| 61 | [torch.argwhere](https://pytorch.org/docs/stable/generated/torch.argwhere.html#torch.argwhere) | paddle.argwhere | - |
-| 62 | torch.concatenate | paddle.concatenate | - |
-| 63 | torch.is_autocast_enabled | paddle.is_autocast_enabled | - |
-| 64 | torch.get_autocast_gpu_dtype | paddle.get_autocast_gpu_dtype | - |
-| 65 | [torch.cumsum](https://pytorch.org/docs/stable/generated/torch.cumsum.html?highlight=cumsum#torch.cumsum) | [paddle.cumsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cumsum_cn.html#cumsum) | - |
-| 66 | [torch.diff](https://pytorch.org/docs/stable/generated/torch.diff.html?highlight=diff#torch.diff) | [paddle.diff](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diff_cn.html#diff) | - |
-| 67 | [torch.nn.functional.dropout1d](https://pytorch.org/docs/stable/generated/torch.nn.functional.dropout1d.html#torch.nn.functional.dropout1d) | paddle.nn.functional.dropout1d | - |
-| 68 | [torch.nn.parameter.Parameter](https://pytorch.org/docs/stable/generated/torch.nn.parameter.Parameter.html?highlight=torch%20nn%20parameter#torch.nn.parameter.Parameter) | paddle.nn.parameter.Parameter | - |
-| 69 | [torch.add](https://pytorch.org/docs/stable/generated/torch.add.html?highlight=add#torch.add) | [paddle.add](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/add_cn.html#add) | - |
-| 70 | [torch.div](https://pytorch.org/docs/stable/generated/torch.div.html#torch.div) | paddle.div | - |
-| 71 | torch.divide | [paddle.divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/divide_cn.html) | - |
-| 72 | [torch.true_divide](https://pytorch.org/docs/stable/generated/torch.true_divide.html) | paddle.true_divide | - |
-| 73 | [torch.Tensor.add](https://pytorch.org/docs/stable/generated/torch.Tensor.add.html#torch.Tensor.add) | [paddle.Tensor.add](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#add-y-name-none) | - |
-| 74 | [torch.Tensor.add_](https://pytorch.org/docs/stable/generated/torch.Tensor.add_.html#torch.Tensor.add_) | [paddle.Tensor.add_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id3) | - |
-| 75 | [torch.Tensor.div](https://pytorch.org/docs/stable/generated/torch.Tensor.div.html#torch.Tensor.div) | paddle.Tensor.div | - |
-| 76 | [torch.Tensor.div_](https://pytorch.org/docs/stable/generated/torch.Tensor.div_.html) | paddle.Tensor.div_ | - |
-| 77 | torch.Tensor.divide | [paddle.Tensor.divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#divide-y-name-none) | - |
-| 78 | torch.Tensor.divide_ | paddle.Tensor.divide_ | - |
-| 79 | [torch.Tensor.true_divide](https://pytorch.org/docs/stable/generated/torch.Tensor.true_divide.html#torch.Tensor.true_divide) | paddle.Tensor.true_divide | - |
-| 80 | [torch.range](https://pytorch.org/docs/stable/generated/torch.range.html?highlight=range#torch.range) | paddle.range | - |
-| 81 | [torch.arange](https://pytorch.org/docs/stable/generated/torch.arange.html?highlight=arange#torch.arange) | [paddle.arange](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/arange_cn.html) | - |
-| 82 | [torch.randn](https://pytorch.org/docs/stable/generated/torch.randn.html?highlight=randn#torch.randn) | [paddle.randn](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/randn_cn.html#randn) | - |
-| 83 | [torch.zeros](https://pytorch.org/docs/stable/generated/torch.zeros.html?highlight=zeros#torch.zeros) | [paddle.zeros](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/zeros_cn.html) | - |
-| 84 | [torch.ones](https://pytorch.org/docs/stable/generated/torch.ones.html?highlight=ones#torch.ones) | [paddle.ones](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/ones_cn.html) | - |
-| 85 | [torch.full](https://pytorch.org/docs/stable/generated/torch.full.html?highlight=ful#torch.full) | [paddle.full](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/full_cn.html) | - |
-| 86 | [torch.empty](https://pytorch.org/docs/stable/generated/torch.empty.html?highlight=empty#torch.empty) | [paddle.empty](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/empty_cn.html) | - |
-| 87 | [torch.zeros_like](https://pytorch.org/docs/stable/generated/torch.zeros_like.html?highlight=zeros_like#torch.zeros_like) | [paddle.zeros_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/zeros_like_cn.html) | - |
-| 88 | [torch.ones_like](https://pytorch.org/docs/stable/generated/torch.ones_like.html?highlight=ones_like#torch.ones_like) | [paddle.ones_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/ones_like_cn.html) | - |
-| 89 | [torch.full_like](https://pytorch.org/docs/stable/generated/torch.full_like.html?highlight=full_like#torch.full_like) | [paddle.full_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/full_like_cn.html#full-like) | - |
-| 90 | [torch.empty_like](https://pytorch.org/docs/stable/generated/torch.empty_like.html?highlight=empty_like#torch.empty_like) | [paddle.empty_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/empty_like_cn.html) | - |
-| 91 | [torch.Tensor.new_zeros](https://pytorch.org/docs/stable/generated/torch.Tensor.new_zeros.html#torch-tensor-new-zeros) | paddle.Tensor.new_zeros | - |
-| 92 | [torch.Tensor.new_ones](https://pytorch.org/docs/stable/generated/torch.Tensor.new_ones.html#torch-tensor-new-ones) | paddle.Tensor.new_ones | - |
-| 93 | [torch.Tensor.new_full](https://pytorch.org/docs/stable/generated/torch.Tensor.new_full.html#torch-tensor-new-full) | paddle.Tensor.new_full | - |
-| 94 | [torch.Tensor.new_empty](https://pytorch.org/docs/stable/generated/torch.Tensor.new_empty.html#torch-tensor-new-empty) | paddle.Tensor.new_empty | - |
-| 95 | [torch.eye](https://pytorch.org/docs/stable/generated/torch.eye.html?highlight=eye#torch.eye) | [paddle.eye](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/eye_cn.html) | - |
-| 96 | [torch.permute](https://pytorch.org/docs/stable/generated/torch.permute.html?highlight=permute#torch.permute) | paddle.permute | - |
-| 97 | [torch.Tensor.permute](https://pytorch.org/docs/stable/generated/torch.Tensor.permute.html) | paddle.Tensor.permute | - |
-| 98 | [torch.repeat_interleave](https://pytorch.org/docs/stable/generated/torch.repeat_interleave.html#torch-repeat-interleave) | [paddle.repeat_interleave](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/repeat_interleave_cn.html#repeat-interleave) | - |
-| 99 | [torch.Tensor.repeat_interleave](https://pytorch.org/docs/stable/generated/torch.Tensor.repeat_interleave.html#torch.Tensor.repeat_interleave) | [paddle.Tensor.repeat_interleave](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#repeat-interleave-repeats-axis-none-name-none) | - |
-| 100 | [torch.Tensor.repeat](https://pytorch.org/docs/stable/generated/torch.Tensor.repeat.html) | paddle.Tensor.repeat | - |
-| 101 | [torch.maximum](https://pytorch.org/docs/stable/generated/torch.maximum.html#torch.maximum) | [paddle.maximum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/maximum_cn.html) | - |
-| 102 | [torch.minimum](https://pytorch.org/docs/stable/generated/torch.minimum.html#torch.minimum) | [paddle.minimum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/minimum_cn.html) | - |
-| 103 | [torch.topk](https://pytorch.org/docs/stable/generated/torch.topk.html?highlight=topk#torch.topk) | [paddle.topk](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/topk_cn.html#paddle.topk) | - |
-| 104 | [torch.sqrt](https://pytorch.org/docs/stable/generated/torch.sqrt.html?highlight=sqrt#torch.sqrt) | [paddle.sqrt](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sqrt_cn.html#sqrt) | - |
-| 105 | [torch.amin](https://pytorch.org/docs/stable/generated/torch.amin.html) | [paddle.amin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amin_cn.html#amin) | - |
-| 106 | [torch.amax](https://pytorch.org/docs/stable/generated/torch.amax.html) | [paddle.amax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amax_cn.html#amax) | - |
-| 107 | [torch.as_tensor](https://pytorch.org/docs/stable/generated/torch.as_tensor.html#torch.as_tensor) | paddle.as_tensor | - |
-| 108 | [torch.tensor](https://pytorch.org/docs/stable/generated/torch.tensor.html?highlight=tensor#torch.tensor) | paddle.tensor | - |
-| 109 | [torch.Tensor.copy_](https://pytorch.org/docs/stable/generated/torch.Tensor.copy_.html#torch.Tensor.copy_) | paddle.Tensor.copy_ | - |
-| 110 | [torch.Tensor.norm](https://pytorch.org/docs/stable/generated/torch.Tensor.norm.html#torch.Tensor.norm) | [paddle.Tensor.norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#norm-p-fro-axis-none-keepdim-false-name-none) | - |
-| 111 | [torch.Tensor](https://pytorch.org/docs/stable/tensors.html) | paddle.Tensor | - |
-| 112 | [torch.FloatTensor](https://pytorch.org/docs/stable/tensors.html) | paddle.FloatTensor | - |
-| 113 | [torch.DoubleTensor](https://pytorch.org/docs/stable/tensors.html) | paddle.DoubleTensor | - |
-| 114 | [torch.HalfTensor](https://pytorch.org/docs/stable/tensors.html) | paddle.HalfTensor | - |
-| 115 | torch.BFloat16Tensor | paddle.BFloat16Tensor | - |
-| 116 | [torch.ByteTensor](https://pytorch.org/docs/stable/tensors.html) | paddle.ByteTensor | - |
-| 117 | torch.CharTensor | paddle.CharTensor | - |
-| 118 | [torch.ShortTensor](https://pytorch.org/docs/stable/tensors.html) | paddle.ShortTensor | - |
-| 119 | [torch.IntTensor](https://pytorch.org/docs/stable/tensors.html) | paddle.IntTensor | - |
-| 120 | [torch.LongTensor](https://pytorch.org/docs/stable/tensors.html) | paddle.LongTensor | - |
-| 121 | [torch.BoolTensor](https://pytorch.org/docs/stable/tensors.html) | paddle.BoolTensor | - |
-| 122 | [torch.norm](https://pytorch.org/docs/stable/generated/torch.norm.html) | paddle.norm | - |
-| 123 | [torch.linalg.norm](https://pytorch.org/docs/stable/generated/torch.linalg.norm.html#torch.linalg.norm) | [paddle.linalg.norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/norm_cn.html#norm) | - |
-| 124 | [torch.multinomial](https://pytorch.org/docs/stable/generated/torch.multinomial.html#torch.multinomial) | [paddle.multinomial](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/multinomial_cn.html) | - |
-| 125 | [torch.var](https://pytorch.org/docs/stable/generated/torch.var.html) | [paddle.var](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/var_cn.html#var) | - |
-| 126 | [torch.rand_like](https://pytorch.org/docs/stable/generated/torch.rand_like.html#torch.rand_like) | paddle.rand_like | - |
-| 127 | [torch.mean](https://pytorch.org/docs/stable/generated/torch.mean.html) | [paddle.mean](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mean_cn.html#mean) | - |
-| 128 | [torch.Tensor.mean](https://pytorch.org/docs/stable/generated/torch.Tensor.mean.html) | [paddle.Tensor.mean](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#mean-axis-none-keepdim-false-name-none) | - |
-| 129 | [torch.msort](https://pytorch.org/docs/stable/generated/torch.msort.html#torch.msort) | paddle.msort | - |
-| 130 | [torch.Tensor.msort](https://pytorch.org/docs/stable/generated/torch.Tensor.msort.html#torch.Tensor.msort) | paddle.Tensor.msort | - |
-| 131 | [torch.Tensor.ravel](https://pytorch.org/docs/stable/generated/torch.Tensor.ravel.html#torch.Tensor.ravel) | paddle.Tensor.ravel | - |
-| 132 | [torch.ravel](https://pytorch.org/docs/stable/generated/torch.ravel.html?highlight=ravel#torch.ravel) | paddle.ravel | - |
-| 133 | [torch.Tensor.scatter_add](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter_add.html#torch.Tensor.scatter_add) | paddle.Tensor.scatter_add | - |
-| 134 | [torch.scatter_add](https://pytorch.org/docs/stable/generated/torch.scatter_add.html#torch.scatter_add) | paddle.scatter_add | - |
-| 135 | [torch.Tensor.scatter_add_](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter_add_.html#torch.Tensor.scatter_add_) | paddle.Tensor.scatter_add_ | - |
-| 136 | [torch.Tensor.tril](https://pytorch.org/docs/stable/generated/torch.Tensor.tril.html#torch.Tensor.tril) | paddle.Tensor.tril | - |
-| 137 | [torch.tril](https://pytorch.org/docs/stable/generated/torch.tril.html?highlight=tril#torch.tril) | [paddle.tril](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/tril_cn.html) | - |
-| 138 | [torch.Tensor.triu](https://pytorch.org/docs/stable/generated/torch.Tensor.triu.html#torch.Tensor.triu) | paddle.Tensor.triu | - |
-| 139 | [torch.triu](https://pytorch.org/docs/stable/generated/torch.triu.html?highlight=triu#torch.triu) | [paddle.triu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/triu_cn.html) | - |
-| 140 | [torch.bmm](https://pytorch.org/docs/stable/generated/torch.bmm.html?highlight=bmm#torch.bmm) | [paddle.bmm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bmm_cn.html) | - |
-| 141 | [torch.Tensor.bmm](https://pytorch.org/docs/stable/generated/torch.Tensor.bmm.html) | [paddle.Tensor.bmm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#bmm-y-name-none) | - |
-| 142 | [torch.nn.GELU](https://pytorch.org/docs/stable/generated/torch.nn.GELU.html#torch.nn.GELU) | [paddle.nn.GELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GELU_cn.html) | - |
-| 143 | [torch.broadcast_shapes](https://pytorch.org/docs/stable/generated/torch.broadcast_shapes.html#torch.broadcast_shapes) | paddle.broadcast_shapes | - |
-| 144 | [torch.Tensor.scatter_reduce](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter_reduce.html#torch-tensor-scatter-reduce) | paddle.Tensor.scatter_reduce | - |
-| 145 | [torch.scatter_reduce](https://pytorch.org/docs/stable/generated/torch.scatter_reduce.html#torch-scatter-reduce) | paddle.scatter_reduce | - |
-| 146 | [torch.nn.functional.silu](https://pytorch.org/docs/stable/generated/torch.nn.functional.silu.html) | [paddle.nn.functional.silu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/silu_cn.html#silu) | - |
-| 147 | [torch.Tensor.softmax](https://pytorch.org/docs/stable/generated/torch.Tensor.softmax.html?highlight=softmax#torch.Tensor.softmax) | paddle.Tensor.softmax | - |
-| 148 | [torch.special.softmax](https://pytorch.org/docs/stable/special.html#torch.special.softmax) | paddle.special.softmax | - |
-| 149 | [torch.softmax](https://pytorch.org/docs/stable/generated/torch.softmax.html) | paddle.softmax | - |
-| 150 | [torch.Tensor.clamp](https://pytorch.org/docs/stable/generated/torch.Tensor.clamp.html?highlight=clamp#torch.Tensor.clamp) | paddle.Tensor.clamp | - |
-| 151 | [torch.Tensor.itemsize](https://pytorch.org/docs/stable/generated/torch.Tensor.itemsize.html) | paddle.Tensor.itemsize | - |
-| 152 | [torch.get_default_dtype](https://pytorch.org/docs/stable/generated/torch.get_default_dtype.html#torch-get-default-dtype) | [paddle.get_default_dtype](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/get_default_dtype_cn.html#get-default-dtype) | - |
-| 153 | [torch.einsum](https://pytorch.org/docs/stable/generated/torch.einsum.html#torch.einsum) | [paddle.einsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/einsum_cn.html) | - |
-| 154 | [torch.nn.Identity](https://pytorch.org/docs/stable/generated/torch.nn.Identity.html#identity) | [paddle.nn.Identity](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Identity_cn.html#cn-api-paddle-nn-layer-common-identity) | - |
-| 155 | [torch.Tensor.ndim](https://pytorch.org/docs/stable/generated/torch.Tensor.ndim.html) | [paddle.Tensor.ndim](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#ndim) | - |
-| 156 | [torch.Tensor.T](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.T) | [paddle.Tensor.T](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tensor) | - |
-| 157 | [torch.Tensor.abs](https://pytorch.org/docs/stable/generated/torch.Tensor.abs.html#torch.Tensor.abs) | [paddle.Tensor.abs](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#abs-name-none) | - |
-| 158 | [torch.Tensor.cos](https://pytorch.org/docs/stable/generated/torch.Tensor.cos.html?highlight=cos#torch.Tensor.cos) | [paddle.Tensor.cos](paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cos-name-none) | - |
-| 159 | [torch.Tensor.detach](https://pytorch.org/docs/stable/generated/torch.Tensor.detach.html?highlight=detach#torch.Tensor.detach) | [paddle.Tensor.detach](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#detach) | - |
-| 160 | [torch.Tensor.dim](https://pytorch.org/docs/stable/generated/torch.Tensor.dim.html?highlight=dim#torch.Tensor.dim) | [paddle.Tensor.dim](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#dim) | - |
-| 161 | [torch.Tensor.fill_](https://pytorch.org/docs/stable/generated/torch.Tensor.fill_.html?highlight=fill_#torch.Tensor.fill_) | [paddle.Tensor.fill_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#fill-x-value-name-none) | - |
-| 162 | [torch.Tensor.isnan](https://pytorch.org/docs/stable/generated/torch.Tensor.isnan.html) | [paddle.Tensor.isnan](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#isnan-name-none) | - |
-| 163 | [torch.Tensor.item](https://pytorch.org/docs/stable/generated/torch.Tensor.item.html#torch-tensor-item) | [paddle.Tensor.item](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#item-args) | - |
-| 164 | [torch.Tensor.log](https://pytorch.org/docs/stable/generated/torch.Tensor.log.html) | [paddle.Tensor.log](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#log-name-none) | - |
-| 165 | [torch.Tensor.masked_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_scatter.html?highlight=masked_scatter#torch.Tensor.masked_scatter) | [paddle.Tensor.masked_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#masked-scatter-mask-value-name-non) | - |
-| 166 | [torch.Tensor.masked_fill_](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_fill_.html?highlight=masked_fill_#torch.Tensor.masked_fill_) | paddle.Tensor.masked_fill_ | - |
-| 167 | [torch.Tensor.masked_fill](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_fill.html?highlight=masked_fill#torch.Tensor.masked_fill) | [paddle.Tensor.masked_fill](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#masked-fill-mask-value-name-non) | - |
-| 168 | [torch.Tensor.nonzero](https://pytorch.org/docs/stable/generated/torch.Tensor.nonzero.html?highlight=nonzero#torch.Tensor.nonzero) | [paddle.Tensor.nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#nonzero-as-tuple-false) | - |
-| 169 | [torch.Tensor.normal_](https://pytorch.org/docs/stable/generated/torch.Tensor.normal_.html#torch-tensor-normal) | paddle.Tensor.normal_ | - |
-| 170 | [torch.Tensor.sigmoid](https://pytorch.org/docs/stable/generated/torch.Tensor.sigmoid) | paddle.Tensor.sigmoid | - |
-| 171 | [torch.Tensor.sin](https://pytorch.org/docs/stable/generated/torch.Tensor.sin) | [paddle.Tensor.sin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#sin-name-none) | - |
-| 172 | [torch.Tensor.square](https://pytorch.org/docs/stable/generated/torch.Tensor.square.html#torch-tensor-square) | [paddle.Tensor.square](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#square-name-none) | - |
-| 173 | [torch.Tensor.tolist](https://pytorch.org/docs/stable/generated/torch.Tensor.tolist.html#torch.Tensor.tolist) | [paddle.Tensor.tolist](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tolist) | - |
-| 174 | [torch.Tensor.zero_](https://pytorch.org/docs/stable/generated/torch.Tensor.zero_.html#torch.Tensor.zero_) | [paddle.Tensor.zero_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#zero-x-name-none) | - |
-| 175 | [torch.distributed.get_rank](https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_rank) | [paddle.distributed.get_rank](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/get_rank_cn.html) | - |
-| 176 | [torch.distributed.get_world_size](https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_world_size) | [paddle.distributed.get_world_size](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/get_world_size_cn.html) | - |
-| 177 | [torch.Tensor.shape](https://pytorch.org/docs/stable/generated/torch.Tensor.shape.html) | [paddle.Tensor.shape](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#shape) | - |
-| 178 | [torch.float32](https://github.com/pytorch/pytorch/tree/main/torch) | [paddle.float32](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/framework/dtype.pyi#L28) | - |
-| 179 | torch.long | paddle.long | - |
-| 180 | [torch.int32](https://github.com/pytorch/pytorch/tree/main/torch) | [paddle.int32](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/framework/dtype.pyi#L25) | - |
-| 181 | [torch.bfloat16](https://github.com/pytorch/pytorch/tree/main/torch) | [paddle.bfloat16](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/framework/dtype.pyi#L31) | - |
-| 182 | [torch.int64](https://github.com/pytorch/pytorch/tree/main/torch) | [paddle.int64](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/framework/dtype.pyi#L26) | - |
-| 183 | [torch.bool](https://github.com/pytorch/pytorch/tree/main/torch) | [paddle.bool](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/framework/dtype.pyi#L36) | - |
-| 184 | [torch.uint8](https://github.com/pytorch/pytorch/tree/main/torch) | [paddle.uint8](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/framework/dtype.pyi#L22) | - |
-| 185 | [torch.Tensor.abs_](https://pytorch.org/docs/stable/generated/torch.Tensor.abs_.html) | paddle.Tensor.abs_ | - |
-| 186 | [torch.Tensor.acos](https://pytorch.org/docs/stable/generated/torch.Tensor.acos.html) | paddle.Tensor.acos | - |
-| 187 | [torch.Tensor.acos_](https://pytorch.org/docs/stable/generated/torch.Tensor.acos_.html) | paddle.Tensor.acos_ | - |
-| 188 | [torch.Tensor.acosh](https://pytorch.org/docs/stable/generated/torch.Tensor.acosh.html?highlight=acosh#torch.Tensor.acosh) | paddle.Tensor.acosh | - |
-| 189 | [torch.Tensor.acosh_](https://pytorch.org/docs/stable/generated/torch.Tensor.acosh_.html) | paddle.Tensor.acosh_ | - |
-| 190 | [torch.Tensor.angle](https://pytorch.org/docs/stable/generated/torch.Tensor.angle.html) | [paddle.Tensor.angle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#angle-name-none) | - |
-| 191 | [torch.Tensor.apply_](https://pytorch.org/docs/stable/generated/torch.Tensor.apply_.html) | paddle.Tensor.apply_ | - |
-| 192 | [torch.Tensor.asin](https://pytorch.org/docs/stable/generated/torch.Tensor.asin.html) | [paddle.Tensor.asin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#asin-name-none) | - |
-| 193 | [torch.Tensor.asin_](https://pytorch.org/docs/stable/generated/torch.Tensor.asin_.html) | paddle.Tensor.asin_ | - |
-| 194 | [torch.Tensor.asinh](https://pytorch.org/docs/stable/generated/torch.Tensor.asinh) | paddle.Tensor.asinh | - |
-| 195 | [torch.Tensor.asinh_](https://pytorch.org/docs/stable/generated/torch.Tensor.asinh_) | paddle.Tensor.asinh_ | - |
-| 196 | [torch.Tensor.atan](https://pytorch.org/docs/stable/generated/torch.Tensor.atan.html) | [paddle.Tensor.atan](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#atan-name-none) | - |
-| 197 | [torch.Tensor.atan_](https://pytorch.org/docs/stable/generated/torch.Tensor.atan_.html) | paddle.Tensor.atan_ | - |
-| 198 | [torch.Tensor.atanh](https://pytorch.org/docs/stable/generated/torch.Tensor.atanh.html#torch.Tensor.atanh) | paddle.Tensor.atanh | - |
-| 199 | [torch.Tensor.atanh_](https://pytorch.org/docs/stable/generated/torch.Tensor.atanh_.html#torch.Tensor.atanh_) | paddle.Tensor.atanh_ | - |
-| 200 | [torch.Tensor.bincount](https://pytorch.org/docs/stable/generated/torch.Tensor.bincount.html) | [paddle.Tensor.bincount](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#bincount-weights-none-minlength-0) | - |
-| 201 | [torch.Tensor.bitwise_not](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_not.html) | paddle.Tensor.bitwise_not | - |
-| 202 | [torch.Tensor.bitwise_not_](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_not_.html) | paddle.Tensor.bitwise_not_ | - |
-| 203 | [torch.Tensor.ceil](https://pytorch.org/docs/stable/generated/torch.Tensor.ceil.html) | [paddle.Tensor.ceil](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#ceil-name-none) | - |
-| 204 | [torch.Tensor.ceil_](https://pytorch.org/docs/stable/generated/torch.Tensor.ceil_.html) | [paddle.Tensor.ceil_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id7) | - |
-| 205 | [torch.Tensor.cholesky](https://pytorch.org/docs/stable/generated/torch.Tensor.cholesky.html) | [paddle.Tensor.cholesky](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cholesky-upper-false-name-none) | - |
-| 206 | [torch.Tensor.cholesky_inverse](https://pytorch.org/docs/stable/generated/torch.cholesky_inverse.html#torch.cholesky_inverse) | [paddle.Tensor.cholesky_inverse](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html) | - |
-| 207 | [torch.Tensor.clip](https://pytorch.org/docs/stable/generated/torch.Tensor.clip.html?highlight=clip#torch.Tensor.clip) | [paddle.Tensor.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#clip-min-none-max-none-name-none) | - |
-| 208 | [torch.Tensor.clip_](https://pytorch.org/docs/stable/generated/torch.Tensor.clip_.html?highlight=clip_#torch.Tensor.clip_) | [paddle.Tensor.clip_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id6) | - |
-| 209 | [torch.Tensor.coalesce](https://pytorch.org/docs/stable/generated/torch.Tensor.coalesce.html#torch-tensor-coalesce) | [paddle.Tensor.coalesce](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/paddle/Tensor/coalesce_en.html) | - |
-| 210 | [torch.Tensor.conj](https://pytorch.org/docs/stable/generated/torch.Tensor.conj.html?highlight=conj#torch.Tensor.conj) | [paddle.Tensor.conj](paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#conj-name-none) | - |
-| 211 | [torch.Tensor.cos_](https://pytorch.org/docs/stable/generated/torch.Tensor.cos_.html) | paddle.Tensor.cos_ | - |
-| 212 | [torch.Tensor.cosh](https://pytorch.org/docs/stable/generated/torch.Tensor.cosh.html?highlight=cosh#torch.Tensor.cosh) | [paddle.Tensor.cosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cosh-name-none) | - |
-| 213 | [torch.Tensor.cosh_](https://pytorch.org/docs/stable/generated/torch.Tensor.cosh_.html) | paddle.Tensor.cosh_ | - |
-| 214 | [torch.Tensor.cumprod](https://pytorch.org/docs/stable/generated/torch.Tensor.cumprod.html?highlight=cumprod#torch.Tensor.cumprod) | [paddle.Tensor.cumprod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cumprod_cn.html#cumprod) | - |
-| 215 | [torch.Tensor.cumprod_](https://pytorch.org/docs/stable/generated/torch.Tensor.cumprod_.html) | paddle.Tensor.cumprod_ | - |
-| 216 | [torch.Tensor.data_ptr](https://pytorch.org/docs/stable/generated/torch.Tensor.data_ptr.html) | [paddle.Tensor.data_ptr](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html) | - |
-| 217 | [torch.Tensor.deg2rad](https://pytorch.org/docs/stable/generated/torch.Tensor.deg2rad.html?highlight=deg2rad#torch.Tensor.deg2rad) | [paddle.Tensor.deg2rad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#deg2rad-x-name-none) | - |
-| 218 | [torch.Tensor.dense_dim](https://pytorch.org/docs/stable/generated/torch.Tensor.dense_dim.html#torch.Tensor.dense_dim) | [paddle.Tensor.dense_dim](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html) | - |
-| 219 | [torch.Tensor.detach_](https://pytorch.org/docs/stable/generated/torch.Tensor.detach_.html) | paddle.Tensor.detach_ | - |
-| 220 | [torch.Tensor.diag_embed](https://pytorch.org/docs/stable/generated/torch.Tensor.diag_embed.html) | paddle.Tensor.diag_embed | - |
-| 221 | [torch.Tensor.diagflat](https://pytorch.org/docs/stable/generated/torch.Tensor.diagflat.html?highlight=diagflat#torch.Tensor.diagflat) | paddle.Tensor.diagflat | - |
-| 222 | [torch.Tensor.digamma](https://pytorch.org/docs/stable/generated/torch.Tensor.digamma.html?highlight=digamma#torch.Tensor.digamma) | [paddle.Tensor.digamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#digamma-name-none) | - |
-| 223 | [torch.Tensor.digamma_](https://pytorch.org/docs/stable/generated/torch.Tensor.digamma_.html) | paddle.Tensor.digamma_ | - |
-| 224 | [torch.Tensor.dtype](https://pytorch.org/docs/stable/generated/torch.Tensor.type.html#torch-tensor-type) | [paddle.Tensor.dtype](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#dtype) | - |
-| 225 | [torch.Tensor.erf](https://pytorch.org/docs/stable/generated/torch.Tensor.erf.html?highlight=erf#torch.Tensor.erf) | [paddle.Tensor.erf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#erf-name-none) | - |
-| 226 | [torch.Tensor.erfinv](https://pytorch.org/docs/stable/generated/torch.Tensor.erfinv.html?highlight=erfinv#torch.Tensor.erfinv) | [paddle.Tensor.erfinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#erfinv-x-name-none) | - |
-| 227 | [torch.Tensor.erfinv_](https://pytorch.org/docs/stable/generated/torch.Tensor.erfinv_.html?highlight=erfinv_#torch.Tensor.erfinv_) | paddle.Tensor.erfinv_ | - |
-| 228 | [torch.Tensor.exp](https://pytorch.org/docs/stable/generated/torch.Tensor.exp.html?highlight=exp#torch.Tensor.exp) | [paddle.Tensor.exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#exp-name-none) | - |
-| 229 | [torch.Tensor.exp_](https://pytorch.org/docs/stable/generated/torch.Tensor.exp_.html?highlight=exp_#torch.Tensor.exp_) | [paddle.Tensor.exp_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id7) | - |
-| 230 | [torch.Tensor.expm1](https://pytorch.org/docs/stable/generated/torch.Tensor.expm1.html#torch.Tensor.expm1) | paddle.Tensor.expm1 | - |
-| 231 | [torch.Tensor.floor](https://pytorch.org/docs/stable/generated/torch.Tensor.floor.html?highlight=floor#torch.Tensor.floor) | [paddle.Tensor.floor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/floor_cn.html#floor) | - |
-| 232 | [torch.Tensor.floor_](https://pytorch.org/docs/stable/generated/torch.Tensor.floor_.html?highlight=floor_#torch.Tensor.floor_) | [paddle.Tensor.floor_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id10) | - |
-| 233 | [torch.Tensor.frac](https://pytorch.org/docs/stable/generated/torch.Tensor.frac.html?highlight=frac#torch.Tensor.frac) | [paddle.Tensor.frac](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#frac-name-none) | - |
-| 234 | [torch.Tensor.frac_](https://pytorch.org/docs/stable/generated/torch.Tensor.frac_.html) | paddle.Tensor.frac_ | - |
-| 235 | [torch.Tensor.frexp](https://pytorch.org/docs/stable/generated/torch.Tensor.frexp.html#torch-tensor-frexp) | [paddle.Tensor.frexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#frexp-x) | - |
-| 236 | [torch.Tensor.grad](https://pytorch.org/docs/stable/generated/torch.Tensor.grad.html) | [paddle.Tensor.grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#grad) | - |
-| 237 | [torch.Tensor.i0](https://pytorch.org/docs/stable/generated/torch.Tensor.i0.html?highlight=i0#torch.Tensor.i0) | [paddle.Tensor.i0](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#i0-x-name-none) | - |
-| 238 | [torch.Tensor.i0_](https://pytorch.org/docs/stable/generated/torch.Tensor.i0_.html) | paddle.Tensor.i0_ | - |
-| 239 | [torch.Tensor.indices](https://pytorch.org/docs/stable/generated/torch.Tensor.indices.html#torch.Tensor.indices) | [paddle.Tensor.indices](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/Overview_cn.html) | - |
-| 240 | [torch.Tensor.inverse](https://pytorch.org/docs/stable/generated/torch.Tensor.inverse.html) | paddle.Tensor.inverse | - |
-| 241 | [torch.Tensor.is_complex](https://pytorch.org/docs/stable/generated/torch.Tensor.is_complex.html) | [paddle.Tensor.is_complex](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#is-complex) | - |
-| 242 | [torch.Tensor.is_floating_point](https://pytorch.org/docs/stable/generated/torch.Tensor.is_floating_point.html) | [paddle.Tensor.is_floating_point](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#is-floating-point-x) | - |
-| 243 | [torch.Tensor.is_leaf](https://pytorch.org/docs/stable/generated/torch.Tensor.is_leaf.html) | [paddle.Tensor.is_leaf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#is-leaf) | - |
-| 244 | [torch.Tensor.isfinite](https://pytorch.org/docs/stable/generated/torch.Tensor.isfinite.html) | [paddle.Tensor.isfinite](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#isfinite-name-none) | - |
-| 245 | [torch.Tensor.isinf](https://pytorch.org/docs/stable/generated/torch.Tensor.isinf.html) | [paddle.Tensor.isinf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#isinf-name-none) | - |
-| 246 | [torch.Tensor.isneginf](https://pytorch.org/docs/stable/generated/torch.Tensor.isneginf.html#torch.Tensor.isneginf) | [paddle.Tensor.isneginf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#isneginf-name-none) | - |
-| 247 | [torch.Tensor.isposinf](https://pytorch.org/docs/stable/generated/torch.Tensor.isposinf.html#torch.Tensor.isposinf) | [paddle.Tensor.isposinf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#isposinf-name-none) | - |
-| 248 | [torch.Tensor.isreal](https://pytorch.org/docs/stable/generated/torch.Tensor.isreal.html#torch.Tensor.isreal) | [paddle.Tensor.isreal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#isreal-name-none) | - |
-| 249 | [torch.Tensor.istft](https://pytorch.org/docs/stable/generated/torch.Tensor.istft.html#torch.Tensor.istft) | paddle.Tensor.istft | - |
-| 250 | [torch.Tensor.lgamma](https://pytorch.org/docs/stable/generated/torch.lgamma.html#torch.lgamma) | [paddle.Tensor.lgamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/lgamma_cn.html) | - |
-| 251 | [torch.Tensor.lgamma_](https://pytorch.org/docs/stable/generated/torch.Tensor.lgamma_.html) | paddle.Tensor.lgamma_ | - |
-| 252 | [torch.Tensor.log10](https://pytorch.org/docs/stable/generated/torch.Tensor.log10.html#torch.Tensor.log10) | [paddle.Tensor.log10](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#log10-name-none) | - |
-| 253 | [torch.Tensor.log10_](https://pytorch.org/docs/stable/generated/torch.Tensor.log10_.html) | [paddle.Tensor.log10_](e) | - |
-| 254 | [torch.Tensor.log1p](https://pytorch.org/docs/stable/generated/torch.Tensor.log1p.html#torch.Tensor.log1p) | [paddle.Tensor.log1p](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#log1p-name-none) | - |
-| 255 | [torch.Tensor.log1p_](https://pytorch.org/docs/stable/generated/torch.Tensor.log1p_.html) | paddle.Tensor.log1p_ | - |
-| 256 | [torch.Tensor.log2](https://pytorch.org/docs/stable/generated/torch.Tensor.log2.html#torch.Tensor.log2) | [paddle.Tensor.log2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#log2-name-none) | - |
-| 257 | [torch.Tensor.log2_](https://pytorch.org/docs/stable/generated/torch.Tensor.log2_.html) | paddle.Tensor.log2_ | - |
-| 258 | [torch.Tensor.log_](https://pytorch.org/docs/stable/generated/torch.Tensor.log_.html) | paddle.Tensor.log_ | - |
-| 259 | [torch.Tensor.logit](https://pytorch.org/docs/stable/generated/torch.Tensor.logit.html) | [paddle.Tensor.logit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#logit-eps-none-name-none) | - |
-| 260 | [torch.Tensor.logit_](https://pytorch.org/docs/stable/generated/torch.Tensor.logit_.html) | [paddle.Tensor.logit_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logit_cn.html) | - |
-| 261 | [torch.Tensor.lu](https://pytorch.org/docs/stable/generated/torch.Tensor.lu.html) | paddle.Tensor.lu | - |
-| 262 | [torch.Tensor.mT](https://pytorch.org/docs/stable/tensors.html?#torch.Tensor.mT) | [paddle.Tensor.mT](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/base/dygraph/math_op_patch.py#L208) | - |
-| 263 | [torch.Tensor.masked_scatter_](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_scatter_.html?highlight=masked_scatter#torch.Tensor.masked_scatter_) | paddle.Tensor.masked_scatter_ | - |
-| 264 | [torch.Tensor.masked_select](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_select.html?highlight=masked_select#torch.Tensor.masked_select) | [paddle.Tensor.masked_select](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#masked-select-mask-name-none) | - |
-| 265 | [torch.Tensor.matrix_power](https://pytorch.org/docs/stable/generated/torch.Tensor.matrix_power.html) | [paddle.Tensor.matrix_power](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#matrix-power-x-n-name-none) | - |
-| 266 | [torch.Tensor.mm](https://pytorch.org/docs/stable/generated/torch.Tensor.mm.html) | [paddle.Tensor.mm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#mm-mat2-name-none) | - |
-| 267 | [torch.Tensor.moveaxis](https://pytorch.org/docs/stable/generated/torch.Tensor.moveaxis.html) | [paddle.Tensor.moveaxis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/moveaxis_cn.html) | - |
-| 268 | [torch.Tensor.mv](https://pytorch.org/docs/stable/generated/torch.Tensor.mv.html) | [paddle.Tensor.mv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#mv-vec-name-none) | - |
-| 269 | [torch.Tensor.nan_to_num](https://pytorch.org/docs/stable/generated/torch.Tensor.nan_to_num.html#torch.Tensor.nan_to_num) | [paddle.Tensor.nan_to_num](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#nan-to-num) | - |
-| 270 | [torch.Tensor.nan_to_num_](https://pytorch.org/docs/stable/generated/torch.Tensor.nan_to_num_.html#torch.Tensor.nan_to_num_) | paddle.Tensor.nan_to_num_ | - |
-| 271 | [torch.Tensor.ndimension](https://pytorch.org/docs/stable/generated/torch.Tensor.ndimension.html?highlight=ndimension#torch.Tensor.ndimension) | [paddle.Tensor.ndimension](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#ndimension) | - |
-| 272 | [torch.Tensor.neg](https://pytorch.org/docs/stable/generated/torch.Tensor.neg.html?highlight=neg#torch.Tensor.neg) | [paddle.Tensor.neg](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#neg-name-none) | - |
-| 273 | [torch.Tensor.neg_](https://pytorch.org/docs/stable/generated/torch.Tensor.neg_.html) | paddle.Tensor.neg_ | - |
-| 274 | [torch.Tensor.pin_memory](https://pytorch.org/docs/stable/generated/torch.Tensor.pin_memory.html?highlight=pin_mem#torch.Tensor.pin_memory) | [paddle.Tensor.pin_memory](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#pin-memory-y-name-none) | - |
-| 275 | [torch.Tensor.polygamma](https://pytorch.org/docs/stable/generated/torch.Tensor.polygamma.html?highlight=tensor+polygamma#torch.Tensor.polygamma) | [paddle.Tensor.polygamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/polygamma_cn.html#polygamma) | - |
-| 276 | [torch.Tensor.polygamma_](https://pytorch.org/docs/stable/generated/torch.Tensor.polygamma_.html) | paddle.Tensor.polygamma_ | - |
-| 277 | [torch.Tensor.rad2deg](https://pytorch.org/docs/stable/generated/torch.Tensor.rad2deg.html#torch-tensor-rad2deg) | [paddle.Tensor.rad2deg](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#rad2deg-x-name-none) | - |
-| 278 | [torch.Tensor.reciprocal](https://pytorch.org/docs/stable/generated/torch.Tensor.reciprocal.html?highlight=torch+tensor+reciprocal#torch.Tensor.reciprocal) | paddle.Tensor.reciprocal | - |
-| 279 | [torch.Tensor.reciprocal_](https://pytorch.org/docs/stable/generated/torch.Tensor.reciprocal_.html?highlight=torch+tensor+reciprocal_#torch.Tensor.reciprocal_) | [paddle.Tensor.reciprocal_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id11) | - |
-| 280 | [torch.Tensor.register_hook](https://pytorch.org/docs/stable/generated/torch.Tensor.register_hook.html#torch-tensor-register-hook) | [paddle.Tensor.register_hook](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#register-hook-hook) | - |
-| 281 | [torch.Tensor.rsqrt](https://pytorch.org/docs/stable/generated/torch.Tensor.rsqrt) | [paddle.Tensor.rsqrt](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#rsqrt-name-none) | - |
-| 282 | [torch.Tensor.rsqrt_](https://pytorch.org/docs/stable/generated/torch.Tensor.rsqrt_) | [paddle.Tensor.rsqrt_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id15) | - |
-| 283 | [torch.Tensor.sgn](https://pytorch.org/docs/stable/generated/torch.Tensor.sgn.html#torch.Tensor.sgn) | [paddle.Tensor.sgn](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#sgn-name-none) | - |
-| 284 | [torch.Tensor.sigmoid_](https://pytorch.org/docs/stable/generated/torch.Tensor.sigmoid_) | paddle.Tensor.sigmoid_ | - |
-| 285 | [torch.Tensor.sign](https://pytorch.org/docs/stable/generated/torch.Tensor.sign) | [paddle.Tensor.sign](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#sign-name-none) | - |
-| 286 | [torch.Tensor.signbit](https://pytorch.org/docs/stable/generated/torch.Tensor.signbit.html#torch-signbit) | [paddle.Tensor.signbit](https://github.com/PaddlePaddle/Paddle/blob/9ce3a54f456011c664c70fbcd318f2e1af0a7d81/python/paddle/tensor/math.py#L7175) | - |
-| 287 | [torch.Tensor.sin_](https://pytorch.org/docs/stable/generated/torch.Tensor.sin_.html) | paddle.Tensor.sin_ | - |
-| 288 | [torch.Tensor.sinc](https://pytorch.org/docs/stable/generated/torch.Tensor.sinc.html#torch.Tensor.sinc) | [paddle.Tensor.sinc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sinc_cn.html#sinc) | - |
-| 289 | [torch.Tensor.sinc_](https://pytorch.org/docs/stable/generated/torch.Tensor.sinc_.html#torch-tensor-sinc) | [paddle.Tensor.sinc_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sinc__cn.html#sinc) | - |
-| 290 | [torch.Tensor.sinh](https://pytorch.org/docs/stable/generated/torch.Tensor.sinh.html?highlight=torch+tensor+sinh#torch.Tensor.sinh) | [paddle.Tensor.sinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#sinh-name-none) | - |
-| 291 | [torch.Tensor.sinh_](https://pytorch.org/docs/stable/generated/torch.Tensor.sinh_.html) | paddle.Tensor.sinh_ | - |
-| 292 | [torch.Tensor.sparse_dim](https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_dim.html#torch.Tensor.sparse_dim) | [paddle.Tensor.sparse_dim](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html) | - |
-| 293 | [torch.Tensor.sqrt](https://pytorch.org/docs/stable/generated/torch.sqrt.html) | [paddle.Tensor.sqrt](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#sqrt-name-none) | - |
-| 294 | [torch.Tensor.sqrt_](https://pytorch.org/docs/stable/generated/torch.Tensor.sqrt_.html?highlight=torch+tensor+sqrt_#torch.Tensor.sqrt_) | [paddle.Tensor.sqrt_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id18) | - |
-| 295 | [torch.Tensor.t](https://pytorch.org/docs/stable/generated/torch.Tensor.t.html#torch.Tensor.t) | [paddle.Tensor.t](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#t-name-none) | - |
-| 296 | [torch.Tensor.t_](https://pytorch.org/docs/stable/generated/torch.Tensor.t_.html#torch.Tensor.t_) | paddle.Tensor.t_ | - |
-| 297 | [torch.Tensor.tan](https://pytorch.org/docs/stable/generated/torch.Tensor.tan.html#torch.Tensor.tan) | paddle.Tensor.tan | - |
-| 298 | [torch.Tensor.tan_](https://pytorch.org/docs/stable/generated/torch.Tensor.tan_.html) | paddle.Tensor.tan_ | - |
-| 299 | [torch.Tensor.tanh](https://pytorch.org/docs/stable/generated/torch.Tensor.tanh.html#torch.Tensor.tanh) | [paddle.Tensor.tanh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tanh-name-none) | - |
-| 300 | [torch.Tensor.tanh_](https://pytorch.org/docs/stable/generated/torch.Tensor.tanh_.html#torch.Tensor.tanh_) | [paddle.Tensor.tanh_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id22) | - |
-| 301 | [torch.Tensor.to_dense](https://pytorch.org/docs/stable/generated/torch.Tensor.to_dense.html#torch-tensor-to-dense) | [paddle.Tensor.to_dense](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/to_dense_en.html#to-dense) | - |
-| 302 | [torch.Tensor.tril_](https://pytorch.org/docs/stable/generated/torch.Tensor.tril_.html#torch.Tensor.tril_) | paddle.Tensor.tril_ | - |
-| 303 | [torch.Tensor.triu_](https://pytorch.org/docs/stable/generated/torch.Tensor.triu_.html#torch.Tensor.triu_) | paddle.Tensor.triu_ | - |
-| 304 | [torch.Tensor.trunc](https://pytorch.org/docs/stable/generated/torch.Tensor.trunc.html#torch.Tensor.trunc) | [paddle.Tensor.trunc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#trunc-name-none) | - |
-| 305 | [torch.Tensor.trunc_](https://pytorch.org/docs/stable/generated/torch.Tensor.trunc_.html) | paddle.Tensor.trunc_ | - |
-| 306 | [torch.Tensor.values](https://pytorch.org/docs/stable/generated/torch.Tensor.values.html?highlight=torch+tensor+values#torch.Tensor.values) | [paddle.Tensor.values](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/Overview_cn.html) | - |
-| 307 | torch.__version__ | paddle.__version__ | - |
-| 308 | torch.__version__.split | [paddle.__version__.split](https://github.com/PaddlePaddle/Paddle/tree/develop) | - |
-| 309 | [torch.diag_embed](https://pytorch.org/docs/stable/generated/torch.diag_embed.html) | [paddle.diag_embed](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/diag_embed_cn.html) | - |
-| 310 | [torch.distributed.ReduceOp.MAX](https://pytorch.org/docs/stable/distributed.html#torch.distributed.ReduceOp) | [paddle.distributed.ReduceOp.MAX](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/ReduceOp_cn.html#reduceop) | - |
-| 311 | [torch.distributed.ReduceOp.MIN](https://pytorch.org/docs/stable/distributed.html#torch.distributed.ReduceOp) | [paddle.distributed.ReduceOp.MIN](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/ReduceOp_cn.html#reduceop) | - |
-| 312 | [torch.distributed.ReduceOp.SUM](https://pytorch.org/docs/stable/distributed.html#torch.distributed.ReduceOp) | [paddle.distributed.ReduceOp.SUM](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/ReduceOp_cn.html#reduceop) | - |
-| 313 | [torch.distributed.batch_isend_irecv](https://pytorch.org/docs/stable/distributed.html#torch.distributed.batch_isend_irecv) | [paddle.distributed.batch_isend_irecv](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/distributed/communication/batch_isend_irecv.py#L134) | - |
-| 314 | [torch.distributed.get_backend](https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_backend) | [paddle.distributed.get_backend](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/get_backend_cn.html#get-backend) | - |
-| 315 | [torch.distributed.is_available](https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_available) | [paddle.distributed.is_available](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/is_available_cn.html#cn-api-paddle-distributed-is-available) | - |
-| 316 | [torch.distributed.is_initialized](https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_initialized) | [paddle.distributed.is_initialized](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/is_initialized_cn.html#is-initialized) | - |
-| 317 | [torch.e](https://github.com/pytorch/pytorch/blob/main/torch/__init__.py#L1815) | [paddle.e](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/__init__.py#L787) | - |
-| 318 | [torch.enable_grad](https://pytorch.org/docs/stable/generated/torch.enable_grad.html?highlight=enable_grad#torch.enable_grad) | [paddle.enable_grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/enable_grad.html#enable-grad) | - |
-| 319 | [torch.inf](https://github.com/pytorch/pytorch/blob/main/torch/__init__.py#L1815) | [paddle.inf](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/__init__.py#L784) | - |
-| 320 | [torch.is_grad_enabled](https://pytorch.org/docs/stable/generated/torch.is_grad_enabled.html?highlight=torch+is_grad_enabled#torch.is_grad_enabled) | [paddle.is_grad_enabled](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/is_grad_enabled_cn.html#is-grad-enabled) | - |
-| 321 | [torch.nan](https://github.com/pytorch/pytorch/blob/main/torch/__init__.py#L1815) | [paddle.nan](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/__init__.py#L785) | - |
-| 322 | [torch.newaxis](https://github.com/pytorch/pytorch/blob/main/torch/__init__.py#L1814) | [paddle.newaxis](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/__init__.py#L783) | - |
-| 323 | [torch.nn.LogSigmoid](https://pytorch.org/docs/stable/generated/torch.nn.LogSigmoid.html) | [paddle.nn.LogSigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LogSigmoid_cn.html#logsigmoid) | - |
-| 324 | [torch.nn.Sigmoid](https://pytorch.org/docs/stable/generated/torch.nn.Sigmoid.html) | [paddle.nn.Sigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Sigmoid_cn.html#sigmoid) | - |
-| 325 | [torch.nn.Softplus](https://pytorch.org/docs/stable/generated/torch.nn.Softplus.html) | [paddle.nn.Softplus](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Softplus_cn.html) | - |
-| 326 | [torch.nn.Softsign](https://pytorch.org/docs/stable/generated/torch.nn.Softsign.html) | [paddle.nn.Softsign](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Softsign_cn.html) | - |
-| 327 | [torch.nn.Tanh](https://pytorch.org/docs/stable/generated/torch.nn.Tanh.html) | [paddle.nn.Tanh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Tanh_cn.html) | - |
-| 328 | [torch.nn.Tanhshrink](https://pytorch.org/docs/stable/generated/torch.nn.Tanhshrink.html) | [paddle.nn.Tanhshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Tanhshrink_cn.html) | - |
-| 329 | [torch.nn.TransformerDecoder](https://pytorch.org/docs/stable/generated/torch.nn.TransformerDecoder.html#transformerdecoder) | [paddle.nn.TransformerDecoder](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/TransformerDecoder_cn.html) | - |
-| 330 | [torch.nn.TripletMarginWithDistanceLoss](https://pytorch.org/docs/stable/generated/torch.nn.TripletMarginWithDistanceLoss.html) | [paddle.nn.TripletMarginWithDistanceLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/TripletMarginWithDistanceLoss_cn.html#tripletmarginwithdistanceloss) | - |
-| 331 | [torch.nn.utils.parameters_to_vector](https://pytorch.org/docs/stable/generated/torch.nn.utils.parameters_to_vector.html#torch-nn-utils-parameters-to-vector) | [paddle.nn.utils.parameters_to_vector](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/utils/parameters_to_vector_cn.html#parameters-to-vector) | - |
-| 332 | [torch.nn.utils.vector_to_parameters](https://pytorch.org/docs/stable/generated/torch.nn.utils.vector_to_parameters.html#torch-nn-utils-vector-to-parameters) | [paddle.nn.utils.vector_to_parameters](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/utils/vector_to_parameters_cn.html#vector-to-parameters) | - |
-| 333 | [torch.pi](https://github.com/pytorch/pytorch) | [paddle.pi](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/__init__.py#L786) | - |
-| 334 | [torch.set_default_dtype](https://pytorch.org/docs/stable/generated/torch.set_default_dtype.html) | [paddle.set_default_dtype](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/set_default_dtype_cn.html) | - |
-| 335 | [torch.t](https://pytorch.org/docs/stable/generated/torch.t.html) | [paddle.t](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/t_cn.html) | - |
-| 336 | [torch.utils.cpp_extension.BuildExtension](https://pytorch.org/docs/stable/cpp_extension.html?highlight=cpp_extension#torch.utils.cpp_extension.BuildExtension) | paddle.utils.cpp_extension.BuildExtension | - |
-| 337 | torch.utils.cpp_extension.BuildExtension.with_options | paddle.utils.cpp_extension.BuildExtension.with_options | - |
-| 338 | [torch.nn.init.ones_](https://pytorch.org/docs/stable/nn.init.html?highlight=ones_#torch.nn.init.ones_) | paddle.nn.init.ones_ | - |
-| 339 | [torch.Tensor.element_size](https://pytorch.org/docs/stable/generated/torch.Tensor.element_size.html?highlight=element_size#torch.Tensor.element_size) | [paddle.Tensor.element_size](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#element-size) | - |
-| 340 | [torch.Tensor.view_as](https://pytorch.org/docs/stable/generated/torch.Tensor.view_as.html?highlight=view_as#torch.Tensor.view_as) | [paddle.Tensor.view_as](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#view-as-x-other-name-none) | - |
-| 341 | torch.dtype | paddle.dtype | - |
-| 342 | torch.Tensor.__and__ | paddle.Tensor.__and__ | - |
-| 343 | torch.Tensor.__array__ | paddle.Tensor.__array__ | - |
-| 344 | torch.Tensor.__bool__ | paddle.Tensor.__bool__ | - |
-| 345 | torch.Tensor.__eq__ | paddle.Tensor.__eq__ | - |
-| 346 | torch.Tensor.__format__ | paddle.Tensor.__format__ | - |
-| 347 | torch.Tensor.__getitem__ | paddle.Tensor.__getitem__ | - |
-| 348 | torch.Tensor.__index__ | paddle.Tensor.__index__ | - |
-| 349 | torch.Tensor.__invert__ | paddle.Tensor.__invert__ | - |
-| 350 | torch.Tensor.__len__ | paddle.Tensor.__len__ | - |
-| 351 | torch.Tensor.__or__ | paddle.Tensor.__or__ | - |
-| 352 | torch.Tensor.__rpow__ | paddle.Tensor.__rpow__ | - |
-| 353 | torch.Tensor.__rsub__ | paddle.Tensor.__rsub__ | - |
-| 354 | torch.Tensor.__rtruediv__ | paddle.Tensor.__rtruediv__ | - |
-| 355 | torch.Tensor.__setitem__ | paddle.Tensor.__setitem__ | - |
-| 356 | [torch.matmul](https://pytorch.org/docs/stable/generated/torch.matmul.html?highlight=matmul#torch.matmul) | [paddle.matmul](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/matmul_cn.html) | - |
-| 357 | torch.linalg.matmul | paddle.linalg.matmul | - |
-| 358 | [torch.Tensor.matmul](https://pytorch.org/docs/stable/generated/torch.Tensor.matmul.html) | [paddle.Tensor.matmul](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#matmul-y-transpose-x-false-transpose-y-false-name-none) | - |
-| 359 | torch.Tensor.multiply | [paddle.Tensor.multiply](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#multiply-y-axis-1-name-none) | - |
-| 360 | [torch.Tensor.amax](https://pytorch.org/docs/stable/generated/torch.Tensor.amax.html) | [paddle.Tensor.amax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#amax-axis-none-keepdim-false-name-none) | - |
-| 361 | [torch.Tensor.amin](https://pytorch.org/docs/stable/generated/torch.Tensor.amin.html) | [paddle.Tensor.amin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#amin-axis-none-keepdim-false-name-none) | - |
-| 362 | [torch.log2](https://pytorch.org/docs/stable/generated/torch.log2.html?highlight=log2#torch.log2) | [paddle.log2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/log2_cn.html#log2) | - |
-| 363 | [torch.broadcast_to](https://pytorch.org/docs/stable/generated/torch.broadcast_to.html?highlight=broadcast_to#torch.broadcast_to) | [paddle.broadcast_to](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/broadcast_to_cn.html#broadcast-to) | - |
-| 364 | [torch.nn.functional.embedding](https://pytorch.org/docs/stable/generated/torch.nn.functional.embedding.html) | [paddle.nn.functional.embedding](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/embedding_cn.html#embedding) | - |
-| 365 | [torch.no_grad](https://pytorch.org/docs/stable/generated/torch.no_grad.html) | [paddle.no_grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/no_grad_cn.html) | - |
-| 366 | [torch.reshape](https://pytorch.org/docs/stable/generated/torch.reshape.html?highlight=reshape#torch.reshape) | [paddle.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/reshape_cn.html#reshape) | - |
-| 367 | [torch.Tensor.bitwise_or_](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_or_.html) | paddle.Tensor.bitwise_or_ | - |
-| 368 | [torch.Tensor.view](https://pytorch.org/docs/stable/generated/torch.Tensor.view.html?highlight=view#torch.Tensor.view) | [paddle.Tensor.view](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#view-x-shape-or-dtype-name-none) | - |
-| 369 | [torch.unique_consecutive](https://pytorch.org/docs/stable/generated/torch.unique_consecutive.html?highlight=unique_consecutive#torch.unique_consecutive) | [paddle.unique_consecutive](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/unique_consecutive_cn.html#unique-consecutive) | - |
-| 370 | [torch.Tensor.cumsum](https://pytorch.org/docs/stable/generated/torch.Tensor.cumsum.html?highlight=cumsum#torch.Tensor.cumsum) | [paddle.Tensor.cumsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cumsum-axis-none-dtype-none-name-none) | - |
-| 371 | [torch.Tensor.expand](https://pytorch.org/docs/stable/generated/torch.Tensor.expand.html?highlight=expand#torch.Tensor.expand) | [paddle.Tensor.expand](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#expand-shape-name-none) | - |
-| 372 | [torch.isfinite](https://pytorch.org/docs/stable/generated/torch.isfinite.html?highlight=isfinite#torch.isfinite) | [paddle.isfinite](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isfinite_cn.html#isfinite) | - |
-| 373 | [torch.isinf](https://pytorch.org/docs/stable/generated/torch.isinf.html?highlight=isinf#torch.isinf) | [paddle.isinf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isinf_cn.html#isinf) | - |
-| 374 | [torch.isnan](https://pytorch.org/docs/stable/generated/torch.isnan.html?highlight=isnan#torch.isnan) | [paddle.isnan](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isnan_cn.html#isnan) | - |
-| 375 | [torch.flatten](https://pytorch.org/docs/stable/generated/torch.flatten.html?highlight=flatten#torch.flatten) | [paddle.flatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/flatten_cn.html#flatten) | - |
-| 376 | [torch.Tensor.flatten](https://pytorch.org/docs/stable/generated/torch.Tensor.flatten.html?highlight=flatten#torch.Tensor.flatten) | [paddle.Tensor.flatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#flatten-start-axis-0-stop-axis-1-name-none) | - |
-| 377 | [torch.roll](https://pytorch.org/docs/stable/generated/torch.roll.html?highlight=roll#torch.roll) | [paddle.roll](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/roll_cn.html#roll) | - |
-| 378 | [torch.Tensor.sum](https://pytorch.org/docs/stable/generated/torch.Tensor.sum.html) | [paddle.Tensor.sum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#sum-axis-none-dtype-none-keepdim-false-name-none) | - |
-| 379 | [torch.sum](https://pytorch.org/docs/stable/generated/torch.sum.html?highlight=sum#torch.sum) | [paddle.sum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sum_cn.html#sum) | - |
-| 380 | [torch.prod](https://pytorch.org/docs/stable/generated/torch.prod.html?highlight=prod#torch.prod) | [paddle.prod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/prod_cn.html#prod) | - |
-| 381 | [torch.finfo](https://pytorch.org/docs/stable/type_info.html#torch-finfo) | [paddle.finfo](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/finfo_cn.html) | - |
-| 382 | [torch.is_complex](https://pytorch.org/docs/stable/generated/torch.is_complex.html?highlight=is_complex#torch.is_complex) | [paddle.is_complex](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/is_complex_cn.html#is-complex) | - |
-| 383 | torch.concat | [paddle.concat](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/concat_cn.html#concat) | - |
-| 384 | [torch.nonzero](https://pytorch.org/docs/stable/generated/torch.nonzero.html#torch.nonzero) | [paddle.nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nonzero_cn.html#nonzero) | - |
-| 385 | [torch.Tensor.pow](https://pytorch.org/docs/stable/generated/torch.Tensor.pow.html?highlight=pow#torch.Tensor.pow) | paddle.Tensor.pow | - |
-| 386 | [torch.Tensor.prod](https://pytorch.org/docs/stable/generated/torch.prod.html#torch.prod) | [paddle.Tensor.prod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/prod_cn.html) | - |
-| 387 | [torch.Tensor.reshape](https://pytorch.org/docs/stable/generated/torch.Tensor.reshape.html) | [paddle.Tensor.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#reshape-shape-name-none) | - |
-| 388 | [torch.argsort](https://pytorch.org/docs/stable/generated/torch.argsort.html#torch.argsort) | [paddle.argsort](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/argsort_cn.html#argsort) | - |
-| 389 | [torch.Tensor.argsort](https://pytorch.org/docs/stable/generated/torch.Tensor.argsort.html) | [paddle.Tensor.argsort](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#argsort-axis-1-descending-false-name-none) | - |
-| 390 | [torch.Tensor.squeeze](https://pytorch.org/docs/stable/generated/torch.Tensor.squeeze.html#torch.Tensor.squeeze) | [paddle.Tensor.squeeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#squeeze-axis-none-name-none) | - |
-| 391 | [torch.chunk](https://pytorch.org/docs/stable/generated/torch.chunk.html?highlight=chunk#torch.chunk) | [paddle.chunk](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/chunk_cn.html#chunk) | - |
-| 392 | [torch.Tensor.chunk](https://pytorch.org/docs/stable/generated/torch.Tensor.chunk.html?highlight=chunk#torch.Tensor.chunk) | [paddle.Tensor.chunk](paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#chunk-chunks-axis-0-name-none) | - |
-| 393 | [torch.any](https://pytorch.org/docs/stable/generated/torch.any.html?highlight=any#torch.any) | [paddle.any](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/any_cn.html#any) | - |
-| 394 | [torch.nn.functional.one_hot](https://pytorch.org/docs/stable/generated/torch.nn.functional.one_hot.html?highlight=one_hot#torch.nn.functional.one_hot) | [paddle.nn.functional.one_hot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/one_hot_cn.html) | - |
-| 395 | [torch.unbind](https://pytorch.org/docs/stable/generated/torch.unbind.html?highlight=unbind#torch.unbind) | [paddle.unbind](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/unbind_cn.html#unbind) | - |
-| 396 | torch.Tensor.unbindtorch.Tensor.expand_as | paddle.Tensor.unbindpaddle.Tensor.expand_as | - |
-| 397 | torch.logsumexp | [paddle.logsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logsumexp_cn.html) | - |
-| 398 | [torch.Tensor.logsumexp](https://pytorch.org/docs/stable/generated/torch.Tensor.logsumexp.html) | [paddle.Tensor.logsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#logsumexp-axis-none-keepdim-false-name-none) | - |
-| 399 | [torch.argmax](https://pytorch.org/docs/stable/generated/torch.argmax.html?highlight=argmax#torch.argmax) | [paddle.argmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/argmax_cn.html#argmax) | - |
-| 400 | [torch.Tensor.argmax](https://pytorch.org/docs/stable/generated/torch.Tensor.argmax.html) | [paddle.Tensor.argmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#argmax-axis-none-keepdim-false-dtype-int64-name-none) | - |
-| 401 | [torch.argmin](https://pytorch.org/docs/stable/generated/torch.argmin.html?highlight=argmin#torch.argmin) | [paddle.argmin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/argmin_cn.html#argmin) | - |
-| 402 | [torch.Tensor.argmin](https://pytorch.org/docs/stable/generated/torch.Tensor.argmin.html) | [paddle.Tensor.argmin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#argmin-axis-none-keepdim-false-dtype-int64-name-none) | - |
-| 403 | [torch.all](https://pytorch.org/docs/stable/generated/torch.all.html?highlight=all#torch.all) | [paddle.all](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/all_cn.html#all) | - |
-| 404 | [torch.Tensor.all](https://pytorch.org/docs/stable/generated/torch.Tensor.all.html?highlight=torch+tensor+all#torch.Tensor.all) | [paddle.Tensor.all](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#all-axis-none-keepdim-false-name-none) | - |
-| 405 | [torch.Tensor.any](https://pytorch.org/docs/stable/generated/torch.Tensor.any.html?highlight=torch+tensor+any#torch.Tensor.any) | [paddle.Tensor.any](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#any-axis-none-keepdim-false-name-none) | - |
-| 406 | [torch.tensor_split](https://pytorch.org/docs/stable/generated/torch.tensor_split.html) | [paddle.tensor_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/tensor_split_cn.html) | - |
-| 407 | [torch.logical_not](https://pytorch.org/docs/stable/generated/torch.logical_not.html?highlight=logical_not#torch.logical_not) | [paddle.logical_not](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logical_not_cn.html#logical-not) | - |
-| 408 | [torch.Tensor.logical_not](https://pytorch.org/docs/stable/generated/torch.Tensor.logical_not.html) | [paddle.Tensor.logical_not](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#logical-not-out-none-name-none) | - |
-| 409 | [torch.logical_and](https://pytorch.org/docs/stable/generated/torch.logical_and.html?highlight=logical_and#torch.logical_and) | [paddle.logical_and](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logical_and_cn.html#logical-and) | - |
-| 410 | [torch.Tensor.logical_and](https://pytorch.org/docs/stable/generated/torch.Tensor.logical_and.html) | [paddle.Tensor.logical_and](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#logical-and-y-out-none-name-none) | - |
-| 411 | [torch.logical_or](https://pytorch.org/docs/stable/generated/torch.logical_or.html?highlight=logical_or#torch.logical_or) | [paddle.logical_or](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logical_or_cn.html#logical-or) | - |
-| 412 | [torch.Tensor.logical_or](https://pytorch.org/docs/stable/generated/torch.Tensor.logical_or.html) | [paddle.Tensor.logical_or](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#logical-or-y-out-none-name-none) | - |
-| 413 | [torch.logical_xor](https://pytorch.org/docs/stable/generated/torch.logical_xor.html?highlight=torch+logical_xor#torch.logical_xor) | [paddle.logical_xor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logical_xor_cn.html) | - |
-| 414 | [torch.Tensor.logical_xor](https://pytorch.org/docs/stable/generated/torch.Tensor.logical_xor.html) | paddle.Tensor.logical_xor | - |
-| 415 | [torch.index_select](https://www.paddlepaddle.org.cn/documentation/docs/stable/develop/api/paddle/index_select_cn.html#index-select) | [paddle.index_select](https://www.paddlepaddle.org.cn/documentation/docs/stable/develop/api/paddle/index_select_cn.html#index-select) | - |
-| 416 | [torch.Tensor.index_select](https://pytorch.org/docs/stable/generated/torch.Tensor.index_select.html) | [paddle.Tensor.index_select](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#index-select-index-axis-0-name-none) | - |
-| 417 | [torch.dot](https://pytorch.org/docs/stable/generated/torch.dot.html?highlight=dot#torch.dot) | [paddle.dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/dot_cn.html#dot) | - |
-| 418 | [torch.Tensor.dot](https://pytorch.org/docs/stable/generated/torch.Tensor.dot.html?highlight=dot#torch.Tensor.dot) | [paddle.Tensor.dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#dot-y-name-none) | - |
-| 419 | [torch.complex128](https://github.com/pytorch/pytorch/tree/main/torch) | [paddle.complex128](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/framework/dtype.pyi#L34) | - |
-| 420 | [torch.complex64](https://github.com/pytorch/pytorch/tree/main/torch) | [paddle.complex64](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/framework/dtype.pyi#L33) | - |
-| 421 | [torch.float64](https://github.com/pytorch/pytorch/tree/main/torch) | [paddle.float64](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/framework/dtype.pyi#L29) | - |
-| 422 | [torch.float16](https://github.com/pytorch/pytorch/tree/main/torch) | [paddle.float16](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/framework/dtype.pyi#L30) | - |
-| 423 | [torch.int16](https://github.com/pytorch/pytorch/tree/main/torch) | [paddle.int16](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/framework/dtype.pyi#L24) | - |
-| 424 | [torch.int8](https://github.com/pytorch/pytorch/tree/main/torch) | [paddle.int8](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/framework/dtype.pyi#L23) | - |
-| 425 | [torch.Tensor.narrow](https://pytorch.org/docs/stable/generated/torch.Tensor.narrow.html#torch.Tensor.narrow) | paddle.Tensor.narrow | - |
-| 426 | [torch.narrow](https://pytorch.org/docs/stable/generated/torch.narrow.html?highlight=narrow#torch.narrow) | paddle.narrow | - |
-| 427 | [torch.Tensor.type_as](https://pytorch.org/docs/stable/generated/torch.Tensor.type_as.html) | paddle.Tensor.type_as | - |
-| 428 | [torch.nn.Sequential](https://pytorch.org/docs/stable/generated/torch.nn.Sequential.html#torch.nn.Sequential) | [paddle.nn.Sequential](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Sequential_cn.html) | - |
-| 429 | [torch.transpose](https://pytorch.org/docs/stable/generated/torch.transpose.html?highlight=transpose#torch.transpose) | [paddle.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/transpose_cn.html#transpose) | - |
-| 430 | [torch.Tensor.transpose](https://pytorch.org/docs/stable/generated/torch.Tensor.transpose.html) | [paddle.Tensor.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#transpose-perm-name-none) | - |
-| 431 | [torch.unsqueeze](https://pytorch.org/docs/stable/generated/torch.unsqueeze.html?highlight=unsqueeze#torch.unsqueeze) | [paddle.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/unsqueeze_cn.html#unsqueeze) | - |
-| 432 | [torch.Tensor.unsqueeze](https://pytorch.org/docs/stable/generated/torch.Tensor.unsqueeze.html#torch.Tensor.unsqueeze) | [paddle.Tensor.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#unsqueeze-axis-name-none) | - |
-| 433 | torch.sigmoid | paddle.sigmoid | - |
-| 434 | [torch.Tensor.topk](https://pytorch.org/docs/stable/generated/torch.Tensor.topk.html#torch.Tensor.topk) | [paddle.Tensor.topk](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#topk-k-axis-none-largest-true-sorted-true-name-none) | - |
-| 435 | [torch.outer](https://pytorch.org/docs/stable/generated/torch.outer.html#torch.outer) | [paddle.outer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/outer_cn.html) | - |
-| 436 | [torch.nn.functional.sigmoid](https://pytorch.org/docs/stable/generated/torch.nn.functional.sigmoid.html?highlight=sigmoid#torch.nn.functional.sigmoid) | [paddle.nn.functional.sigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/sigmoid_cn.html) | - |
-| 437 | [torch.Tensor.requires_grad](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.requires_grad.html#torch-tensor-requires-grad) | paddle.Tensor.requires_grad | - |
-| 438 | [torch.Tensor.data](https://pytorch.org/docs/stable/tensors.html#torch-tensor) | [paddle.Tensor.data](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#data) | - |
-| 439 | [torch.is_tensor](https://pytorch.org/docs/stable/generated/torch.is_tensor.html?highlight=is_tensor#torch.is_tensor) | [paddle.is_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/is_tensor_cn.html#is-tensor) | - |
-| 440 | [torch.gather](https://pytorch.org/docs/stable/generated/torch.gather.html?highlight=gather#torch.gather) | paddle.gather | - |
-| 441 | [torch.Tensor.gather](https://pytorch.org/docs/stable/generated/torch.Tensor.gather.html?highlight=gather#torch.Tensor.gather) | paddle.Tensor.gather | - |
-| 442 | [torch.Tensor.scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter.html#torch.Tensor.scatter) | paddle.Tensor.scatter | - |
-| 443 | [torch.Tensor.scatter_](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter.html#torch.Tensor.scatter_) | paddle.Tensor.scatter_ | - |
-| 444 | [torch.scatter](https://pytorch.org/docs/2.0/generated/torch.scatter.html?highlight=torch+scatter#torch.scatter) | paddle.scatter | - |
 
-## 仅 API 调用方式不一致
+### 2. 仅 API 调用方式不一致
 **分类简介**
+
 参数一致，但 API 调用方式不一致。
 此类 API 需要转换，但转换成本较低，只需要对 API 调用方式进行改写，无需处理 API 参数部分。
 包括：API 名称不同、API 路径不同、Tensor 类方法改成普通方法、Tensor 方法改成属性、Tensor 属性改成方法 等情况。
 
-| 序号 | Pytorch 最新 release | Paddle develop | 备注 |
-|------|-------------------|---------------|------|
-| 1 | [torch.Tensor.clamp](https://pytorch.org/docs/stable/generated/torch.Tensor.clamp.html?highlight=clamp#torch.Tensor.clamp) | [paddle.Tensor.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#clip-min-none-max-none-name-none) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.clamp.md) |
-| 2 | [torch.Tensor.clamp_](https://pytorch.org/docs/stable/generated/torch.Tensor.clamp_.html?highlight=clamp_#torch.Tensor.clamp_) | [paddle.Tensor.clip_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id6) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.clamp_.md) |
-| 3 | [torch.Tensor.col_indices](https://pytorch.org/docs/stable/generated/torch.Tensor.col_indices.html) | paddle.Tensor.cols | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.col_indices.md) |
-| 4 | [torch.Tensor.conj_physical](https://pytorch.org/docs/stable/generated/torch.Tensor.conj_physical.html#torch.Tensor.conj_physical) | [paddle.Tensor.conj](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#conj-name-none) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.conj_physical.md) |
-| 5 | [torch.Tensor.crow_indices](https://pytorch.org/docs/stable/generated/torch.Tensor.crow_indices.html) | paddle.Tensor.crows | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.crow_indices.md) |
-| 6 | [torch.Tensor.det](https://pytorch.org/docs/stable/generated/torch.Tensor.det.html?highlight=det#torch.Tensor.det) | [paddle.linalg.det](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/det_cn.html#det) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.det.md) |
-| 7 | [torch.Tensor.device](https://pytorch.org/docs/stable/generated/torch.Tensor.device.html) | [paddle.Tensor.place](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#place) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.device.md) |
-| 8 | [torch.Tensor.erf_](https://pytorch.org/docs/stable/generated/torch.Tensor.erf_.html) | paddle.erf_ | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.erf_.md) |
-| 9 | [torch.Tensor.expm1_](https://pytorch.org/docs/stable/generated/torch.Tensor.expm1_.html) | paddle.expm1_ | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.expm1_.md) |
-| 10 | [torch.Tensor.fix](https://pytorch.org/docs/stable/generated/torch.Tensor.fix.html?highlight=fix#torch.Tensor.fix) | [paddle.Tensor.trunc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#trunc-name-none) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.fix.md) |
-| 11 | [torch.Tensor.fix_](https://pytorch.org/docs/stable/generated/torch.Tensor.fix_.html) | paddle.Tensor.trunc_ | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.fix_.md) |
-| 12 | [torch.Tensor.get_device](https://pytorch.org/docs/stable/generated/torch.Tensor.get_device.html?highlight=torch+tensor+get_device#torch.Tensor.get_device) | paddle.Tensor.place.gpu_device_id | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.get_device.md) |
-| 13 | [torch.Tensor.itemsize](https://pytorch.org/docs/stable/generated/torch.Tensor.itemsize.html) | [paddle.Tensor.element_size](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#element-size) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.itemsize.md) |
-| 14 | [torch.Tensor.matrix_exp](https://pytorch.org/docs/stable/generated/torch.Tensor.matrix_exp.html#torch-tensor-matrix-exp) | [paddle.linalg.matrix_exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/matrix_exp_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.matrix_exp.md) |
-| 15 | [torch.Tensor.movedim](https://pytorch.org/docs/stable/generated/torch.Tensor.movedim.html) | [paddle.Tensor.moveaxis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/moveaxis_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.movedim.md) |
-| 16 | [torch.Tensor.mvlgamma](https://pytorch.org/docs/stable/generated/torch.Tensor.mvlgamma.html#torch-tensor-mvlgamma) | [paddle.Tensor.multigammaln](https://github.com/PaddlePaddle/Paddle/blob/be090bd0bc9ac7a8595296c316b3a6ed3dc60ba6/python/paddle/tensor/math.py#L5099) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.mvlgamma.md) |
-| 17 | [torch.Tensor.mvlgamma_](https://pytorch.org/docs/stable/generated/torch.Tensor.mvlgamma_.html#torch-tensor-mvlgamma) | [paddle.Tensor.multigammaln_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/multigammaln__cn.html#multigammaln) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.mvlgamma_.md) |
-| 18 | [torch.Tensor.negative](https://pytorch.org/docs/stable/generated/torch.negative.html#torch.negative) | [paddle.Tensor.neg](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/neg_cn.html#cn-api-paddle-neg) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.negative.md) |
-| 19 | [torch.Tensor.negative_](https://pytorch.org/docs/stable/generated/torch.Tensor.negative_.html) | paddle.Tensor.neg_ | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.negative_.md) |
-| 20 | [torch.Tensor.positive](https://pytorch.org/docs/stable/generated/torch.Tensor.positive.html#torch.Tensor.positive) | [paddle.positive](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/positive_cn.html#positive) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.positive.md) |
-| 21 | [torch.Tensor.retain_grad](https://pytorch.org/docs/stable/generated/torch.Tensor.retain_grad.html) | [paddle.Tensor.retain_grads](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Overview_cn.html#paddle) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.retain_grad.md) |
-| 22 | [torch.Tensor.sparse_mask](https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_mask.html) | [paddle.sparse.mask_as](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sparse/mask_as_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.sparse_mask.md) |
-| 23 | [torch.Tensor.square_](https://pytorch.org/docs/stable/generated/torch.Tensor.square_.html) | paddle.square_ | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.square_.md) |
-| 24 | [torch.Tensor.to_sparse](https://pytorch.org/docs/stable/generated/torch.Tensor.to_sparse.html#torch.Tensor.to_sparse) | paddle.Tensor.to_sparse_coo | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.to_sparse.md) |
-| 25 | [torch.autograd.Function.forward](https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward) | [paddle.autograd.PyLayer.forward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayer_cn.html#forward-ctx-args-kwargs) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.autograd.Function.forward.md) |
-| 26 | [torch.autograd.enable_grad](https://pytorch.org/docs/stable/generated/torch.enable_grad.html#enable-grad) | [paddle.enable_grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/enable_grad.html#enable-grad) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.autograd.enable_grad.md) |
-| 27 | torch.autograd.function.FunctionCtx | [paddle.autograd.PyLayerContext](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext_cn.html#pylayercontext) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.autograd.function.FunctionCtx.md) |
-| 28 | [torch.autograd.function.FunctionCtx.save_for_backward](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.save_for_backward.html#torch.autograd.function.FunctionCtx.save_for_backward) | [paddle.autograd.PyLayerContext.save_for_backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext_cn.html#save-for-backward-tensors) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.autograd.function.FunctionCtx.save_for_backward.md) |
-| 29 | [torch.autograd.function.FunctionCtx.set_materialize_grads](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.set_materialize_grads.html#torch.autograd.function.FunctionCtx.set_materialize_grads) | [paddle.autograd.PyLayerContext.set_materialize_grads](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext_cn.html#set-materialize-grads-self-value) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.autograd.function.FunctionCtx.set_materialize_grads.md) |
-| 30 | [torch.autograd.grad_mode.set_grad_enabled](https://docs.pytorch.org/docs/stable/generated/torch.autograd.grad_mode.set_grad_enabled.html#torch.autograd.grad_mode.set_grad_enabled) | [paddle.set_grad_enabled](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/set_grad_enabled_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.autograd.grad_mode.set_grad_enabled.md) |
-| 31 | [torch.autograd.graph.saved_tensors_hooks](https://pytorch.org/docs/stable/autograd.html?highlight=saved_tensors_hooks#torch.autograd.graph.saved_tensors_hooks) | [paddle.autograd.saved_tensors_hooks](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/saved_tensors_hooks_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.autograd.graph.saved_tensors_hooks.md) |
-| 32 | [torch.backends.cuda.is_built](https://pytorch.org/docs/stable/backends.html?highlight=torch+backends+cudnn+is_available#torch.backends.cuda.is_built) | [paddle.device.is_compiled_with_cuda](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/is_compiled_with_cuda_cn.html#is-compiled-with-cuda) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.backends.cuda.is_built.md) |
-| 33 | [torch.backends.cudnn.version](https://pytorch.org/docs/stable/generated/torch.backends.cudnn.version.html) | [paddle.device.get_cudnn_version](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/get_cudnn_version_cn.html#get-cudnn-version) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.backends.cudnn.version.md) |
-| 34 | [torch.cpu.current_device](https://pytorch.org/docs/stable/generated/torch.cpu.current_device.html) | [paddle.get_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/get_device_cn.html#get-device) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.cpu.current_device.md) |
-| 35 | [torch.cuda.Event](https://pytorch.org/docs/stable/generated/torch.cuda.Event.html#torch.cuda.Event) | [paddle.device.cuda.Event](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/Event_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.Event.md) |
-| 36 | [torch.cuda.StreamContext](https://pytorch.org/docs/stable/generated/torch.cuda.StreamContext.html#torch.cuda.StreamContext) | [paddle.device.stream_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/stream_guard_cn.html#stream-guard) | - |
-| 37 | [torch.cuda.current_device](https://pytorch.org/docs/stable/generated/torch.cuda.current_device.html#torch.cuda.current_device) | [paddle.device.get_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/get_device_cn.html#get-device) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.current_device.md) |
-| 38 | [torch.cuda.device_count](https://pytorch.org/docs/stable/generated/torch.cuda.device_count.html#torch.cuda.device_count) | [paddle.device.cuda.device_count](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/device_count_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.device_count.md) |
-| 39 | [torch.cuda.empty_cache](https://pytorch.org/docs/stable/generated/torch.cuda.empty_cache.html#torch.cuda.empty_cache) | [paddle.device.cuda.empty_cache](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/empty_cache_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.empty_cache.md) |
-| 40 | [torch.cuda.get_device_capability](https://pytorch.org/docs/stable/generated/torch.cuda.get_device_capability.html#torch.cuda.get_device_capability) | [paddle.device.cuda.get_device_capability](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/get_device_capability_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.get_device_capability.md) |
-| 41 | [torch.cuda.get_device_name](https://pytorch.org/docs/stable/generated/torch.cuda.get_device_name.html) | [paddle.device.cuda.get_device_name](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/get_device_name_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.get_device_name.md) |
-| 42 | [torch.cuda.is_bf16_supported](https://pytorch.org/docs/stable/cuda.html) | [paddle.amp.is_bfloat16_supported](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/is_bfloat16_supported_cn.html#is-bfloat16-supported) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.is_bf16_supported.md) |
-| 43 | [torch.cuda.is_initialized](https://docs.pytorch.org/docs/stable/generated/torch.cuda.is_initialized.html#torch-cuda-is-initialized) | [paddle.is_compiled_with_cuda](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/base/framework.py#L980) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.is_initialized.md) |
-| 44 | [torch.cuda.manual_seed_all](https://pytorch.org/docs/2.0/generated/torch.cuda.manual_seed_all.html#torch.cuda.manual_seed_all) | [paddle.seed](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/seed_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.manual_seed_all.md) |
-| 45 | [torch.cuda.max_memory_allocated](https://pytorch.org/docs/stable/generated/torch.cuda.max_memory_allocated.html#torch.cuda.max_memory_allocated) | [paddle.device.cuda.max_memory_allocated](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/max_memory_allocated_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.max_memory_allocated.md) |
-| 46 | [torch.cuda.max_memory_reserved](https://pytorch.org/docs/stable/generated/torch.cuda.max_memory_reserved.html#torch.cuda.max_memory_reserved) | [paddle.device.cuda.max_memory_reserved](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/max_memory_reserved_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.max_memory_reserved.md) |
-| 47 | [torch.cuda.memory_allocated](https://pytorch.org/docs/stable/generated/torch.cuda.memory_allocated.html#torch.cuda.memory_allocated) | [paddle.device.cuda.memory_allocated](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/memory_allocated_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.memory_allocated.md) |
-| 48 | [torch.cuda.memory_reserved](https://pytorch.org/docs/stable/generated/torch.cuda.memory_reserved.html#torch.cuda.memory_reserved) | [paddle.device.cuda.memory_reserved](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/memory_reserved_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.memory_reserved.md) |
-| 49 | [torch.cuda.nvtx.range_pop](https://pytorch.org/docs/stable/generated/torch.cuda.nvtx.range_pop.html#torch.cuda.nvtx.range_pop) | [paddle.framework.core.nvprof_nvtx_pop](https://github.com/PaddlePaddle/Paddle/blob/645dfb4040a15712cea9ccfed4dcb0655aeeb0ea/paddle/fluid/pybind/pybind.cc#L2468) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.nvtx.range_pop.md) |
-| 50 | [torch.cuda.reset_max_memory_allocated](https://pytorch.org/docs/stable/generated/torch.cuda.reset_max_memory_allocated.html#torch.cuda.reset_max_memory_allocated) | [paddle.device.cuda.reset_max_memory_allocated](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/reset_max_memory_allocated_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.reset_max_memory_allocated.md) |
-| 51 | [torch.cuda.reset_max_memory_cached](https://docs.pytorch.org/docs/stable/generated/torch.cuda.reset_max_memory_cached.html#torch-cuda-reset-max-memory-cached) | [paddle.device.cuda.reset_max_memory_reserved](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/reset_max_memory_reserved_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.reset_max_memory_cached.md) |
-| 52 | [torch.cuda.set_stream](https://pytorch.org/docs/stable/generated/torch.cuda.set_stream.html#torch.cuda.set_stream) | [paddle.device.set_stream](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/set_stream_cn.html#set-stream) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.set_stream.md) |
-| 53 | [torch.cuda.stream](https://pytorch.org/docs/stable/generated/torch.cuda.stream.html) | [paddle.device.stream_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/stream_guard_cn.html#stream-guard) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/cuda/torch.cuda.stream.md) |
-| 54 | [torch.distributed.ReduceOp.PRODUCT](https://pytorch.org/docs/stable/distributed.html#torch.distributed.ReduceOp) | [paddle.distributed.ReduceOp.PROD](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/ReduceOp_cn.html#reduceop) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.distributed.ReduceOp.PRODUCT.md) |
-| 55 | [torch.distributed.is_nccl_available](https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_nccl_available) | [paddle.core.is_compiled_with_nccl](https://github.com/PaddlePaddle/Paddle/blob/61de6003525166856157b6220205fe53df638376/python/paddle/jit/sot/utils/paddle_api_config.py#L159) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributed/torch.distributed.is_nccl_available.md) |
-| 56 | [torch.distributions.constraints.Constraint](https://pytorch.org/docs/stable/distributions.html#module-torch.distributions.constraints) | [paddle.distribution.constraint.Constraint](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/distribution/constraint.py) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.constraints.Constraint.md) |
-| 57 | [torch.distributions.distribution.Distribution.log_prob](https://pytorch.org/docs/stable/distributions.html#torch.distributions.distribution.Distribution.log_prob) | [paddle.distribution.Distribution.log_prob](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Distribution_cn.html#log-prob-value) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.distribution.Distribution.log_prob.md) |
-| 58 | [torch.distributions.kl.kl_divergence](https://pytorch.org/docs/stable/distributions.html?highlight=torch+distributions+kl+kl_divergence#torch.distributions.kl.kl_divergence) | [paddle.distribution.kl_divergence](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/kl_divergence_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/distributions/torch.distributions.kl.kl_divergence.md) |
-| 59 | [torch.get_default_device](https://pytorch.org/docs/stable/generated/torch.get_default_device.html#torch-get-default-device) | [paddle.device.get_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/get_device_cn.html#get-device) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.get_default_device.md) |
-| 60 | [torch.manual_seed](https://pytorch.org/docs/stable/generated/torch.manual_seed.html#torch-manual-seed) | [paddle.seed](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/seed_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.manual_seed.md) |
-| 61 | [torch.nn.AdaptiveAvgPool1d](https://pytorch.org/docs/stable/generated/torch.nn.AdaptiveAvgPool1d.html) | [paddle.nn.AdaptiveAvgPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/AdaptiveAvgPool1D_cn.html#adaptiveavgpool1d) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.AdaptiveAvgPool1d.md) |
-| 62 | [torch.nn.HuberLoss](https://pytorch.org/docs/stable/generated/torch.nn.HuberLoss.html#torch.nn.HuberLoss) | [paddle.nn.SmoothL1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SmoothL1Loss_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.HuberLoss.md) |
-| 63 | [torch.nn.Module.apply](https://pytorch.org/docs/stable/generated/torch.nn.Module.html?highlight=torch+nn+module+apply#torch.nn.Module.apply) | [paddle.nn.Layer.apply](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Module.apply.md) |
-| 64 | [torch.nn.Module.children](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.children) | [paddle.nn.Layer.children](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#children) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Module.children.md) |
-| 65 | [torch.nn.Module.eval](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.eval) | [paddle.nn.Layer.eval](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#eval) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Module.eval.md) |
-| 66 | [torch.nn.Module.named_children](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.named_children) | [paddle.nn.Layer.named_children](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#named-children) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Module.named_children.md) |
-| 67 | [torch.nn.Module.train](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.train) | [paddle.nn.Layer.train](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#train) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Module.train.md) |
-| 68 | [torch.nn.init.calculate_gain](https://pytorch.org/docs/stable/nn.init.html?highlight=gain#torch.nn.init.calculate_gain) | [paddle.nn.initializer.calculate_gain](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/initializer/calculate_gain_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/init/torch.nn.init.calculate_gain.md) |
-| 69 | [torch.optim.Optimizer.add_param_group](https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.add_param_group.html?highlight=torch+optim+optimizer+add_param_group#torch.optim.Optimizer.add_param_group) | paddle.optimizer.Optimizer._add_param_group | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/others/torch.optim.Optimizer.add_param_group.md) |
-| 70 | [torch.optim.Optimizer.load_state_dict](https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.load_state_dict.html#torch.optim.Optimizer.load_state_dict) | [paddle.optimizer.Optimizer.load_state_dict](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Optimizer_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/optimizer/torch.optim.Optimizer.load_state_dict.md) |
-| 71 | [torch.optim.Optimizer.state_dict](https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.state_dict.html?highlight=torch+optim+optimizer+state_dict#torch.optim.Optimizer.state_dict) | [paddle.optimizer.Optimizer.state_dict](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Optimizer_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/optimizer/torch.optim.Optimizer.state_dict.md) |
-| 72 | torch.utils.cpp_extension.CUDA_HOME | paddle.utils.cpp_extension.cpp_extension.CUDA_HOME | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.cpp_extension.CUDA_HOME.md) |
-| 73 | [torch.utils.data.ChainDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.ChainDataset) | [paddle.io.ChainDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/ChainDataset_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.ChainDataset.md) |
-| 74 | [torch.utils.data.ConcatDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.ConcatDataset) | [paddle.io.ConcatDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/ConcatDataset_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.ConcatDataset.md) |
-| 75 | [torch.utils.data.Dataset](https://pytorch.org/docs/stable/data.html?highlight=torch%20utils%20data%20dataset#torch.utils.data.Dataset) | [paddle.io.Dataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/Dataset_cn.html#dataset) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.Dataset.md) |
-| 76 | [torch.utils.data.IterableDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset) | [paddle.io.IterableDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/IterableDataset_cn.html#iterabledataset) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.IterableDataset.md) |
-| 77 | [torch.utils.data.Sampler](https://pytorch.org/docs/stable/data.html#torch.utils.data.Sampler) | [paddle.io.Sampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/Sampler_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.Sampler.md) |
-| 78 | [torch.utils.data.SequentialSampler](https://pytorch.org/docs/stable/generated/torch.utils.data.SequentialSampler.html) | [paddle.io.SequenceSampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/SequenceSampler_cn.html#sequencesampler) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.utils.data.SequentialSampler.md) |
-| 79 | [torch.utils.data.Subset](https://pytorch.org/docs/stable/data.html#torch.utils.data.Subset) | [paddle.io.Subset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/Subset_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.Subset.md) |
-| 80 | [torch.utils.data.get_worker_info](https://pytorch.org/docs/stable/data.html#torch.utils.data.get_worker_info) | [paddle.io.get_worker_info](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/get_worker_info_cn.html#get-worker-info) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.get_worker_info.md) |
-| 81 | [torch.utils.data.random_split](https://pytorch.org/docs/stable/data.html?highlight=torch+utils+data+random_split#torch.utils.data.random_split) | [paddle.io.random_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/random_split_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.utils.data.random_split.md) |
-| 82 | [torchvision.ops.RoIPool](https://pytorch.org/vision/main/generated/torchvision.ops.RoIPool.html) | [paddle.vision.ops.RoIPool](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/ops/RoIPool_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.ops.RoIPool.md) |
-| 83 | [torchvision.transforms.Compose](https://pytorch.org/vision/main/generated/torchvision.transforms.Compose.html) | [paddle.vision.transforms.Compose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Compose_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.Compose.md) |
-| 84 | [torchvision.transforms.InterpolationMode.BICUBIC](https://pytorch.org/vision/stable/index.html) | 'bicubic' | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.InterpolationMode.BICUBIC.md) |
-| 85 | [torchvision.transforms.InterpolationMode.BILINEAR](https://pytorch.org/vision/stable/index.html) | 'bilinear' | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.InterpolationMode.BILINEAR.md) |
-| 86 | [torchvision.transforms.InterpolationMode.BOX](https://pytorch.org/vision/stable/index.html) | 'box' | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.InterpolationMode.BOX.md) |
-| 87 | [torchvision.transforms.InterpolationMode.HAMMING](https://pytorch.org/vision/stable/index.html) | 'hamming' | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.InterpolationMode.HAMMING.md) |
-| 88 | [torchvision.transforms.InterpolationMode.LANCZOS](https://pytorch.org/vision/stable/index.html) | 'lanczos' | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.InterpolationMode.LANCZOS.md) |
-| 89 | [torchvision.transforms.InterpolationMode.NEAREST](https://pytorch.org/vision/stable/index.html) | 'nearest' | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.InterpolationMode.NEAREST.md) |
-| 90 | [torchvision.transforms.InterpolationMode.NEAREST_EXACT](https://pytorch.org/vision/stable/index.html) | 'nearest_exact' | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.InterpolationMode.NEAREST_EXACT.md) |
-| 91 | [torchvision.transforms.functional.adjust_brightness](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.adjust_brightness.html) | [paddle.vision.transforms.adjust_brightness](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/adjust_brightness_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.functional.adjust_brightness.md) |
-| 92 | [torchvision.transforms.functional.adjust_contrast](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.adjust_contrast.html) | [paddle.vision.transforms.adjust_contrast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/adjust_contrast_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.functional.adjust_contrast.md) |
-| 93 | [torchvision.transforms.functional.adjust_hue](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.adjust_hue.html) | [paddle.vision.transforms.adjust_hue](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/adjust_hue_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.functional.adjust_hue.md) |
-| 94 | [torchvision.transforms.functional.center_crop](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.center_crop.html) | [paddle.vision.transforms.center_crop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/center_crop_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.functional.center_crop.md) |
-| 95 | [torchvision.transforms.functional.crop](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.crop.html) | [paddle.vision.transforms.crop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/crop_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.functional.crop.md) |
-| 96 | [torchvision.transforms.functional.erase](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.erase.html?highlight=erase#torchvision.transforms.functional.erase) | [paddle.vision.transforms.erase](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/erase_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.functional.erase.md) |
-| 97 | [torchvision.transforms.functional.hflip](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.hflip.html) | [paddle.vision.transforms.hflip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/hflip_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.functional.hflip.md) |
-| 98 | [torchvision.transforms.functional.pad](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.pad.html) | [paddle.vision.transforms.pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/pad_cn.html) | - |
-| 99 | [torchvision.transforms.functional.to_grayscale](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.to_grayscale.html?highlight=to_grayscale#torchvision.transforms.functional.to_grayscale) | [paddle.vision.transforms.to_grayscale](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/to_grayscale_cn.html#to-grayscale) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.functional.to_grayscale.md) |
-| 100 | [torchvision.transforms.functional.vflip](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.vflip.html) | [paddle.vision.transforms.vflip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/vflip_cn.html) | [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference_third_party/torchvision/torchvision.transforms.functional.vflip.md) |
-
-## 仅参数名不一致
-**分类简介**
-此类 API 功能相同，但部分参数名称不同
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-新增中......
 
-## paddle 参数更多
+### 3. 仅参数名不一致
 **分类简介**
-此类 API 在 PaddlePaddle 中提供了更多可选参数
+
+此类 API 功能相同，但部分参数名称不同。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-新增中......
 
-## 参数默认值不一致
+### 4. paddle 参数更多
 **分类简介**
+
+此类 API 在 PaddlePaddle 中提供了更多可选参数。
+
+
+| 序号 | Pytorch 最新 release | Paddle develop | 备注 |
+|------|-------------------|---------------|------|
+
+### 5. 参数默认值不一致
+**分类简介**
+
 此类 API 功能相同，但某些参数的默认值不同
 
+
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-新增中......
 
-## torch 参数更多
+
+### 6. torch 参数更多
 **分类简介**
-此类 API 在 PyTorch 中提供了更多参数
+
+此类 API 在 PyTorch 中提供了更多参数。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-新增中......
 
-## 输入参数用法不一致
+### 7. 输入参数用法不一致
 **分类简介**
-此类 API 对输入参数的处理方式不同
+
+此类 API 对输入参数的处理方式不同。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-新增中......
 
-## 输入参数类型不一致
+### 8. 输入参数类型不一致
 **分类简介**
-此类 API 要求的输入数据类型不同
+
+此类 API 要求的输入数据类型不同。
+
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-新增中......
 
-## 返回参数类型不一致
+### 9. 返回参数类型不一致
 **分类简介**
-​此类 API 返回值的类型或结构不同
+
+​此类 API 返回值的类型或结构不同。
+
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-新增中......
 
-## 组合替代实现
+### 10. 组合替代实现
 **分类简介**
-此类功能在 PaddlePaddle 中没有直接对应的单一 API，需要通过多个 PaddlePaddle API 组合来实现
+
+此类功能在 PaddlePaddle 中没有直接对应的单一 API，需要通过多个 PaddlePaddle API 组合来实现。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-新增中......
 
-## 可删除
+
+### 11. 可删除
 **分类简介**
-此类 PyTorch API 在 PaddlePaddle 中可以直接删除
+
+此类 PyTorch API 在 PaddlePaddle 中可以直接删除。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-新增中......
 
-## 功能缺失
+
+### 12. API 别名
 **分类简介**
-此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现
+
+此类 PyTorch API 是其他 Pytorch API 的别名
 
 | 序号 | Pytorch 最新 release | Paddle develop | 备注 |
 |------|-------------------|---------------|------|
-新增中......
+
+
+### 13. 功能缺失
+**分类简介**
+
+此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现。
+
+
+| 序号 | Pytorch 最新 release | Paddle develop | 备注 |
+|------|-------------------|---------------|------|
+| 1 | [torch.Tensor.rename](https://pytorch.org/docs/stable/named_tensor.html#torch.Tensor.rename) | - | 实验阶段不稳定 API ，无需新增 |
+| 2 | [torch.nn.utils.rnn.pad_sequence](https://pytorch.org/docs/stable/generated/torch.nn.utils.rnn.pad_sequence.html#torch-nn-utils-rnn-pad-sequence) | - | 可新增，且框架底层有相关设计，成本低 |
+| 3 | [torch.compile](https://pytorch.org/docs/stable/generated/torch.compile.html#torch-compile) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 4 | [torch.jit.freeze](https://pytorch.org/docs/stable/generated/torch.jit.freeze.html#torch-jit-freeze) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 5 | [torch.export.export](https://pytorch.org/docs/stable/export.html#torch.export.export) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 6 | [torch.Tensor.dequantize](https://pytorch.org/docs/stable/generated/torch.Tensor.dequantize.html#torch-tensor-dequantize) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 7 | [torch.xpu.synchronize](https://pytorch.org/docs/stable/generated/torch.xpu.synchronize.html#torch-xpu-synchronize) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 8 | [torch.vmap](https://pytorch.org/docs/stable/generated/torch.vmap.html#torch-vmap) | - | 可新增，且框架底层有相关设计，成本低 |
+| 9 | [torch.fx.symbolic_trace](https://pytorch.org/docs/stable/fx.html#torch.fx.symbolic_trace) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 10 | [torch.jit.annotate](https://pytorch.org/docs/stable/generated/torch.jit.annotate.html#torch-jit-annotate) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 11 | [torch.quantize\_per\_tensor](https://pytorch.org/docs/stable/generated/torch.quantize_per_tensor.html#torch-quantize-per-tensor) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 12 | [torch.Tensor.to_mkldnn](https://pytorch.org/docs/stable/generated/torch.Tensor.to_mkldnn.html#torch-tensor-to-mkldnn) | - | 可新增，但框架底层无相关设计，成本高 |
+| 13 | [torch.nn.utils.rnn.pack\_padded\_sequence](https://pytorch.org/docs/stable/generated/torch.nn.utils.rnn.pack_padded_sequence.html#torch-nn-utils-rnn-pack-padded-sequence) | - | 可新增，且框架底层有相关设计，成本低 |
+| 14 | [torch.nn.utils.rnn.pad\_packed\_sequence](https://pytorch.org/docs/stable/generated/torch.nn.utils.rnn.pad_packed_sequence.html#torch-nn-utils-rnn-pad-packed-sequence) | - | 可新增，且框架底层有相关设计，成本低 |
+| 15 | [torch.Tensor.record_stream](https://pytorch.org/docs/stable/generated/torch.Tensor.record_stream.html#torch-tensor-record-stream) | - | 可新增，且框架底层有相关设计，成本低 |
+| 16 | [torch.xpu.empty_cache](https://pytorch.org/docs/stable/generated/torch.xpu.empty_cache.html#torch-xpu-empty-cache) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 17 | [torch.library.impl](https://pytorch.org/docs/stable/library.html#torch.library.impl) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 18 | [torch.BFloat16Storage](https://pytorch.org/docs/stable/storage.html#torch.BFloat16Storage) | - | 废弃 API ，无需新增 |
+| 19 | [torch.BoolStorage](https://pytorch.org/docs/stable/storage.html#torch.BoolStorage) | - | 废弃 API ，无需新增 |
+| 20 | [torch.ByteStorage](https://pytorch.org/docs/stable/storage.html#torch.ByteStorage) | - | 废弃 API ，无需新增 |
+| 21 | [torch.CharStorage](https://pytorch.org/docs/stable/storage.html#torch.CharStorage) | - | 废弃 API ，无需新增 |
+| 22 | [torch.ComplexDoubleStorage](https://pytorch.org/docs/stable/storage.html#torch.ComplexDoubleStorage) | - | 废弃 API ，无需新增 |
+| 23 | [torch.ComplexFloatStorage](https://pytorch.org/docs/stable/storage.html#torch.ComplexFloatStorage) | - | 废弃 API ，无需新增 |
+| 24 | [torch.distributed.reduce_op](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce_op) | - | 废弃 API ，无需新增 |
+| 25 | [torch.DoubleStorage](https://pytorch.org/docs/stable/storage.html#torch.DoubleStorage) | - | 废弃 API ，无需新增 |
+| 26 | [torch.FloatStorage](https://pytorch.org/docs/stable/storage.html#torch.FloatStorage) | - | 废弃 API ，无需新增 |
+| 27 | [torch.HalfStorage](https://pytorch.org/docs/stable/storage.html#torch.HalfStorage) | - | 废弃 API ，无需新增 |
+| 28 | [torch.IntStorage](https://pytorch.org/docs/stable/storage.html#torch.IntStorage) | - | 废弃 API ，无需新增 |
+| 29 | [torch.LongStorage](https://pytorch.org/docs/stable/storage.html#torch.LongStorage) | - | 废弃 API ，无需新增 |
+| 30 | [torch.nn.utils.stateless.functional_call](https://pytorch.org/docs/stable/generated/torch.nn.utils.stateless.functional_call.html#torch-nn-utils-stateless-functional-call) | - | 废弃 API ，无需新增 |
+| 31 | [torch.QInt32Storage](https://pytorch.org/docs/stable/storage.html#torch.QInt32Storage) | - | 废弃 API ，无需新增 |
+| 32 | [torch.QInt8Storage](https://pytorch.org/docs/stable/storage.html#torch.QInt8Storage) | - | 废弃 API ，无需新增 |
+| 33 | [torch.QUInt2x4Storage](https://pytorch.org/docs/stable/storage.html#torch.QUInt2x4Storage) | - | 废弃 API ，无需新增 |
+| 34 | [torch.QUInt4x2Storage](https://pytorch.org/docs/stable/storage.html#torch.QUInt4x2Storage) | - | 废弃 API ，无需新增 |
+| 35 | [torch.QUInt8Storage](https://pytorch.org/docs/stable/storage.html#torch.QUInt8Storage) | - | 废弃 API ，无需新增 |
+| 36 | [torch.ShortStorage](https://pytorch.org/docs/stable/storage.html#torch.ShortStorage) | - | 废弃 API ，无需新增 |
+| 37 | [torch.Tensor.storage](https://pytorch.org/docs/stable/generated/torch.Tensor.storage.html#torch-tensor-storage) | - | 废弃 API ，无需新增 |
+| 38 | [torch.TypedStorage](https://pytorch.org/docs/stable/storage.html#torch.TypedStorage) | - | 废弃 API ，无需新增 |
+| 39 | [torch.use\_deterministic\_algorithms](https://pytorch.org/docs/stable/generated/torch.use_deterministic_algorithms.html#torch-use-deterministic-algorithms) | - | 可新增，但框架底层无相关设计，成本高 |
+| 40 | [torch.nn.utils.parametrize.register_parametrization](https://pytorch.org/docs/stable/generated/torch.nn.utils.parametrize.register_parametrization.html#torch-nn-utils-parametrize-register-parametrization) | - | 可新增，且框架底层有相关设计，成本低 |
+| 41 | [torch.package.PackageImporter](https://pytorch.org/docs/stable/package.html#torch.package.PackageImporter) | - | 可新增，但框架底层无相关设计，成本高 |
+| 42 | [torch.nn.EmbeddingBag](https://pytorch.org/docs/stable/generated/torch.nn.EmbeddingBag.html#torch.nn.EmbeddingBag) | - | 可新增，且框架底层有相关设计，成本低 |
+| 43 | [torch.fx.GraphModule](https://pytorch.org/docs/stable/fx.html#torch.fx.GraphModule) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 44 | [torch.Tensor.share\_memory\_](https://pytorch.org/docs/stable/generated/torch.Tensor.share_memory_.html#torch-tensor-share-memory) | - | 可新增，且框架底层有相关设计，成本低 |
+| 45 | [torch.nn.utils.parametrize.remove_parametrizations](https://pytorch.org/docs/stable/generated/torch.nn.utils.parametrize.remove_parametrizations.html#torch-nn-utils-parametrize-remove-parametrizations) | - | 可新增，且框架底层有相关设计，成本低 |
+| 46 | [torch.Tensor.is_shared](https://pytorch.org/docs/stable/generated/torch.Tensor.is_shared.html#torch-tensor-is-shared) | - | 可新增，且框架底层有相关设计，成本低 |
+| 47 | [torch.Tensor.storage_offset](https://pytorch.org/docs/stable/generated/torch.Tensor.storage_offset.html#torch-tensor-storage-offset) | - | 可新增，但框架底层无相关设计，成本高 |
+| 48 | [torch.library.Library](https://pytorch.org/docs/stable/library.html#torch.library.Library) | - | 可新增，但框架底层无相关设计，成本高 |
+| 49 | [torch.futures.Future](https://pytorch.org/docs/stable/futures.html#torch.futures.Future) | - | 可新增，但框架底层无相关设计，成本高 |
+| 50 | [torch.jit.Attribute](https://pytorch.org/docs/stable/generated/torch.jit.Attribute.html#torch.jit.Attribute) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 51 | [torch.quantize\_per\_channel](https://pytorch.org/docs/stable/generated/torch.quantize_per_channel.html#torch-quantize-per-channel) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 52 | [torch.Tensor.untyped_storage](https://pytorch.org/docs/stable/generated/torch.Tensor.untyped_storage.html#torch-tensor-untyped-storage) | - | 可新增，但框架底层无相关设计，成本高 |
+| 53 | [torch.Tensor.as_subclass](https://pytorch.org/docs/stable/generated/torch.Tensor.as_subclass.html#torch-tensor-as-subclass) | - | 可新增，且框架底层有相关设计，成本低 |
+| 54 | [torch.Tensor.q_scale](https://pytorch.org/docs/stable/generated/torch.Tensor.q_scale.html#torch-tensor-q-scale) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 55 | [torch.set\_float32\_matmul\_precision](https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch-set-float32-matmul-precision) | - | 可新增，且框架底层有相关设计，成本低 |
+| 56 | [torch.Tensor.q\_zero\_point](https://pytorch.org/docs/stable/generated/torch.Tensor.q_zero_point.html#torch-tensor-q-zero-point) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 57 | [torch.cuda.memory_stats](https://pytorch.org/docs/stable/generated/torch.cuda.memory_stats.html#torch-cuda-memory-stats) | - | 可新增，且框架底层有相关设计，成本低 |
+| 58 | [torch.distributed.pipeline.sync.Pipe](https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.Pipe) | - | 废弃 API ，无需新增 |
+| 59 | [torch.cuda.set\_rng\_state](https://pytorch.org/docs/stable/generated/torch.cuda.set_rng_state.html#torch-cuda-set-rng-state) | - | 可新增，且框架底层有相关设计，成本低 |
+| 60 | [torch.linalg.tensorinv](https://pytorch.org/docs/stable/generated/torch.linalg.tensorinv.html#torch-linalg-tensorinv) | - | 可新增，且框架底层有相关设计，成本低 |
+| 61 | [torch.distributed.fsdp.FullStateDictConfig](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.FullStateDictConfig) | - | 可新增，且框架底层有相关设计，成本低 |
+| 62 | [torch.cuda.CUDAGraph](https://pytorch.org/docs/stable/generated/torch.cuda.CUDAGraph.html#torch.cuda.CUDAGraph) | - | 实验阶段不稳定 API ，无需新增 |
+| 63 | [torch.nn.utils.remove\_spectral\_norm](https://pytorch.org/docs/stable/generated/torch.nn.utils.remove_spectral_norm.html#torch-nn-utils-remove-spectral-norm) | - | 可新增，且框架底层有相关设计，成本低 |
+| 64 | [torch.utils.benchmark.Timer](https://pytorch.org/docs/stable/benchmark_utils.html#torch.utils.benchmark.Timer) | - | 可新增，且框架底层有相关设计，成本低 |
+| 65 | [torch.utils.mobile\_optimizer.optimize\_for\_mobile](https://pytorch.org/docs/stable/mobile_optimizer.html#torch.utils.mobile_optimizer.optimize_for_mobile) | - | 可新增，且框架底层有相关设计，成本低 |
+| 66 | [torch.distributed.fsdp.MixedPrecision](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.MixedPrecision) | - | 可新增，且框架底层有相关设计，成本低 |
+| 67 | [torch.nn.utils.rnn.PackedSequence](https://pytorch.org/docs/stable/generated/torch.nn.utils.rnn.PackedSequence.html#torch.nn.utils.rnn.PackedSequence) | - | 可新增，且框架底层有相关设计，成本低 |
+| 68 | [torch.Tensor.qscheme](https://pytorch.org/docs/stable/generated/torch.Tensor.qscheme.html#torch-tensor-qscheme) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 69 | [torch.fx.wrap](https://pytorch.org/docs/stable/fx.html#torch.fx.wrap) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 70 | [torch.autograd.set\_detect\_anomaly](https://pytorch.org/docs/stable/autograd.html#torch.autograd.set_detect_anomaly) | - | 可新增，且框架底层有相关设计，成本低 |
+| 71 | [torch.empty_strided](https://pytorch.org/docs/stable/generated/torch.empty_strided.html#torch-empty-strided) | - | 可新增，且框架底层有相关设计，成本低 |
+| 72 | [torch.fx.Graph](https://pytorch.org/docs/stable/fx.html#torch.fx.Graph) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 73 | [torch.futures.wait_all](https://pytorch.org/docs/stable/futures.html#torch.futures.wait_all) | - | 可新增，但框架底层无相关设计，成本高 |
+| 74 | [torch.nn.utils.prune.l1_unstructured](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.l1_unstructured.html#torch-nn-utils-prune-l1-unstructured) | - | 可新增，且框架底层有相关设计，成本低 |
+| 75 | [torch.cuda.ipc_collect](https://pytorch.org/docs/stable/generated/torch.cuda.ipc_collect.html#torch-cuda-ipc-collect) | - | 可新增，但框架底层无相关设计，成本高 |
+| 76 | [torch.distributed.optim.ZeroRedundancyOptimizer](https://pytorch.org/docs/stable/distributed.optim.html#torch.distributed.optim.ZeroRedundancyOptimizer) | - | 可新增，且框架底层有相关设计，成本低 |
+| 77 | [torch.mps.profiler.start](https://pytorch.org/docs/stable/generated/torch.mps.profiler.start.html#torch-mps-profiler-start) | - | 可新增，但框架底层无相关设计，成本高 |
+| 78 | [torch.fx.Proxy](https://pytorch.org/docs/stable/fx.html#torch.fx.Proxy) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 79 | [torch.mps.profiler.stop](https://pytorch.org/docs/stable/generated/torch.mps.profiler.stop.html#torch-mps-profiler-stop) | - | 可新增，但框架底层无相关设计，成本高 |
+| 80 | [torch.Tensor.refine_names](https://pytorch.org/docs/stable/named_tensor.html#torch.Tensor.refine_names) | - | 实验阶段不稳定 API ，无需新增 |
+| 81 | [torch.cuda.init](https://pytorch.org/docs/stable/generated/torch.cuda.init.html#torch-cuda-init) | - | 可新增，但框架底层无相关设计，成本高 |
+| 82 | [torch.distributed.rpc.TensorPipeRpcBackendOptions](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.TensorPipeRpcBackendOptions) | - | 可新增，且框架底层有相关设计，成本低 |
+| 83 | [torch.cuda.default_stream](https://pytorch.org/docs/stable/generated/torch.cuda.default_stream.html#torch-cuda-default-stream) | - | 可新增，且框架底层有相关设计，成本低 |
+| 84 | [torch.Tensor.resolve_conj](https://pytorch.org/docs/stable/generated/torch.Tensor.resolve_conj.html#torch-tensor-resolve-conj) | - | 可新增，但框架底层无相关设计，成本高 |
+| 85 | [torch.mps.synchronize](https://pytorch.org/docs/stable/generated/torch.mps.synchronize.html#torch-mps-synchronize) | - | 可新增，但框架底层无相关设计，成本高 |
+| 86 | [torch.nn.utils.skip_init](https://pytorch.org/docs/stable/generated/torch.nn.utils.skip_init.html#torch-nn-utils-skip-init) | - | 可新增，且框架底层有相关设计，成本低 |
+| 87 | [torch.Tensor.row_indices](https://pytorch.org/docs/stable/generated/torch.Tensor.row_indices.html#torch-tensor-row-indices) | - | 可新增，且框架底层有相关设计，成本低 |
+| 88 | [torch.jit.trace_module](https://pytorch.org/docs/stable/generated/torch.jit.trace_module.html#torch-jit-trace-module) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 89 | [torch.distributed.fsdp.CPUOffload](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.CPUOffload) | - | 可新增，且框架底层有相关设计，成本低 |
+| 90 | [torch.quasirandom.SobolEngine](https://pytorch.org/docs/stable/generated/torch.quasirandom.SobolEngine.html#torch.quasirandom.SobolEngine) | - | 可新增，但框架底层无相关设计，成本高 |
+| 91 | [torch.Tensor.names](https://pytorch.org/docs/stable/named_tensor.html#torch.Tensor.names) | - | 实验阶段不稳定 API ，无需新增 |
+| 92 | [torch.Tensor.q\_per\_channel\_zero\_points](https://pytorch.org/docs/stable/generated/torch.Tensor.q_per_channel_zero_points.html#torch-tensor-q-per-channel-zero-points) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 93 | [torch.jit.export](https://pytorch.org/docs/stable/jit.html#torch.jit.export) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 94 | [torch.nn.utils.prune.remove](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.remove.html#torch-nn-utils-prune-remove) | - | 可新增，且框架底层有相关设计，成本低 |
+| 95 | [torch.nn.utils.rnn.pack_sequence](https://pytorch.org/docs/stable/generated/torch.nn.utils.rnn.pack_sequence.html#torch-nn-utils-rnn-pack-sequence) | - | 可新增，且框架底层有相关设计，成本低 |
+| 96 | [torch.Tensor.ccol_indices](https://pytorch.org/docs/stable/generated/torch.Tensor.ccol_indices.html#torch-tensor-ccol-indices) | - | 可新增，且框架底层有相关设计，成本低 |
+| 97 | [torch.Tensor.is\_set\_to](https://pytorch.org/docs/stable/generated/torch.Tensor.is_set_to.html#torch-tensor-is-set-to) | - | 可新增，且框架底层有相关设计，成本低 |
+| 98 | [torch.Tensor.put_](https://pytorch.org/docs/stable/generated/torch.Tensor.put_.html#torch-tensor-put) | - | 可新增，且框架底层有相关设计，成本低 |
+| 99 | [torch.Tensor.q\_per\_channel\_axis](https://pytorch.org/docs/stable/generated/torch.Tensor.q_per_channel_axis.html#torch-tensor-q-per-channel-axis) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 100 | [torch.Tensor.q\_per\_channel\_scales](https://pytorch.org/docs/stable/generated/torch.Tensor.q_per_channel_scales.html#torch-tensor-q-per-channel-scales) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 101 | [torch.Tensor.sign_](https://pytorch.org/docs/stable/generated/torch.Tensor.sign_.html#torch-tensor-sign) | - | 可新增，且框架底层有相关设计，成本低 |
+| 102 | [torch.hub.get_dir](https://pytorch.org/docs/stable/hub.html#torch.hub.get_dir) | - | 可新增，且框架底层有相关设计，成本低 |
+| 103 | [torch.hub.set_dir](https://pytorch.org/docs/stable/hub.html#torch.hub.set_dir) | - | 可新增，且框架底层有相关设计，成本低 |
+| 104 | [torch.Tensor.is_conj](https://pytorch.org/docs/stable/generated/torch.Tensor.is_conj.html#torch-tensor-is-conj) | - | 可新增，但框架底层无相关设计，成本高 |
+| 105 | [torch.result_type](https://pytorch.org/docs/stable/generated/torch.result_type.html#torch-result-type) | - | 可新增，且框架底层有相关设计，成本低 |
+| 106 | [torch.cuda.comm.broadcast_coalesced](https://pytorch.org/docs/stable/generated/torch.cuda.comm.broadcast_coalesced.html#torch-cuda-comm-broadcast-coalesced) | - | 可新增，且框架底层有相关设计，成本低 |
+| 107 | [torch.optim.SparseAdam](https://pytorch.org/docs/stable/generated/torch.optim.SparseAdam.html#torch.optim.SparseAdam) | - | 可新增，且框架底层有相关设计，成本低 |
+| 108 | [torch.fake\_quantize\_per\_channel\_affine](https://pytorch.org/docs/stable/generated/torch.fake_quantize_per_channel_affine.html#torch-fake-quantize-per-channel-affine) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 109 | [torch.fake\_quantize\_per\_tensor\_affine](https://pytorch.org/docs/stable/generated/torch.fake_quantize_per_tensor_affine.html#torch-fake-quantize-per-tensor-affine) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 110 | [torch.Tensor.to\_sparse\_csc](https://pytorch.org/docs/stable/generated/torch.Tensor.to_sparse_csc.html#torch-tensor-to-sparse-csc) | - | 可新增，且框架底层有相关设计，成本低 |
+| 111 | [torch.mps.empty_cache](https://pytorch.org/docs/stable/generated/torch.mps.empty_cache.html#torch-mps-empty-cache) | - | 可新增，但框架底层无相关设计，成本高 |
+| 112 | [torch.autograd.profiler.record_function](https://pytorch.org/docs/stable/generated/torch.autograd.profiler.record_function.html#torch.autograd.profiler.record_function) | - | 可新增，但框架底层无相关设计，成本高 |
+| 113 | [torch.Tensor.index_copy](https://pytorch.org/docs/stable/generated/torch.Tensor.index_copy.html#torch-tensor-index-copy) | - | 可新增，且框架底层有相关设计，成本低 |
+| 114 | [torch.utils.cpp\_extension.load\_inline](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.load_inline) | - | 可新增，且框架底层有相关设计，成本低 |
+| 115 | [torch.jit.set\_fusion\_strategy](https://pytorch.org/docs/stable/generated/torch.jit.set_fusion_strategy.html#torch-jit-set-fusion-strategy) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 116 | [torch.distributed.TCPStore](https://pytorch.org/docs/stable/distributed.html#torch.distributed.TCPStore) | - | 可新增，但框架底层无相关设计，成本高 |
+| 117 | [torch.optim.lr_scheduler.SequentialLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.SequentialLR.html#torch.optim.lr_scheduler.SequentialLR) | - | 可新增，且框架底层有相关设计，成本低 |
+| 118 | [torch.sparse.sampled_addmm](https://pytorch.org/docs/stable/generated/torch.sparse.sampled_addmm.html#torch-sparse-sampled-addmm) | - | 可新增，且框架底层有相关设计，成本低 |
+| 119 | [torch.nested.nested_tensor](https://pytorch.org/docs/stable/nested.html#torch.nested.nested_tensor) | - | 实验阶段不稳定 API ，无需新增 |
+| 120 | [torch.Tensor.align_to](https://pytorch.org/docs/stable/named_tensor.html#torch.Tensor.align_to) | - | 实验阶段不稳定 API ，无需新增 |
+| 121 | [torch.promote_types](https://pytorch.org/docs/stable/generated/torch.promote_types.html#torch-promote-types) | - | 可新增，且框架底层有相关设计，成本低 |
+| 122 | [torch.distributed.tensor.parallel.ColwiseParallel](https://pytorch.org/docs/stable/distributed.tensor.parallel.html#torch.distributed.tensor.parallel.ColwiseParallel) | - | 可新增，且框架底层有相关设计，成本低 |
+| 123 | [torch.Tensor.to\_sparse\_bsr](https://pytorch.org/docs/stable/generated/torch.Tensor.to_sparse_bsr.html#torch-tensor-to-sparse-bsr) | - | 可新增，且框架底层有相关设计，成本低 |
+| 124 | [torch.xpu.device_count](https://pytorch.org/docs/stable/generated/torch.xpu.device_count.html#torch-xpu-device-count) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 125 | [torch.fx.Node](https://pytorch.org/docs/stable/fx.html#torch.fx.Node) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 126 | [torch.jit.fork](https://pytorch.org/docs/stable/generated/torch.jit.fork.html#torch-jit-fork) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 127 | [torch.library.impl_abstract](https://pytorch.org/docs/stable/library.html#torch.library.impl_abstract) | - | 可新增，但框架底层无相关设计，成本高 |
+| 128 | [torch.linalg.tensorsolve](https://pytorch.org/docs/stable/generated/torch.linalg.tensorsolve.html#torch-linalg-tensorsolve) | - | 可新增，且框架底层有相关设计，成本低 |
+| 129 | [torch.nn.functional.embedding_bag](https://pytorch.org/docs/stable/generated/torch.nn.functional.embedding_bag.html#torch-nn-functional-embedding-bag) | - | 可新增，且框架底层有相关设计，成本低 |
+| 130 | [torch.Tensor.map_](https://pytorch.org/docs/stable/generated/torch.Tensor.map_.html#torch-tensor-map) | - | 可新增，且框架底层有相关设计，成本低 |
+| 131 | [torch.Tensor.rename_](https://pytorch.org/docs/stable/named_tensor.html#torch.Tensor.rename_) | - | 实验阶段不稳定 API ，无需新增 |
+| 132 | [torch.Tensor.scatter\_reduce\_](https://pytorch.org/docs/stable/generated/torch.Tensor.scatter_reduce_.html#torch-tensor-scatter-reduce) | - | 可新增，且框架底层有相关设计，成本低 |
+| 133 | [torch.set\_flush\_denormal](https://pytorch.org/docs/stable/generated/torch.set_flush_denormal.html#torch-set-flush-denormal) | - | 可新增，且框架底层有相关设计，成本低 |
+| 134 | [torch.kaiser_window](https://pytorch.org/docs/stable/generated/torch.kaiser_window.html#torch-kaiser-window) | - | 可新增，且框架底层有相关设计，成本低 |
+| 135 | [torch.distributed.device\_mesh.init\_device\_mesh](https://pytorch.org/docs/stable/distributed.html#torch.distributed.device_mesh.init_device_mesh) | - | 可新增，且框架底层有相关设计，成本低 |
+| 136 | [torch.distributed.fsdp.FullyShardedDataParallel](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.FullyShardedDataParallel) | - | 可新增，且框架底层有相关设计，成本低 |
+| 137 | [torch.distributed.tensor.parallel.parallelize_module](https://pytorch.org/docs/stable/distributed.tensor.parallel.html#torch.distributed.tensor.parallel.parallelize_module) | - | 可新增，且框架底层有相关设计，成本低 |
+| 138 | [torch.distributed.tensor.parallel.RowwiseParallel](https://pytorch.org/docs/stable/distributed.tensor.parallel.html#torch.distributed.tensor.parallel.RowwiseParallel) | - | 可新增，且框架底层有相关设计，成本低 |
+| 139 | [torch.are\_deterministic\_algorithms\_enabled](https://pytorch.org/docs/stable/generated/torch.are_deterministic_algorithms_enabled.html#torch-are-deterministic-algorithms-enabled) | - | 可新增，但框架底层无相关设计，成本高 |
+| 140 | [torch.is\_deterministic\_algorithms\_warn\_only\_enabled](https://pytorch.org/docs/stable/generated/torch.is_deterministic_algorithms_warn_only_enabled.html#torch-is-deterministic-algorithms-warn-only-enabled) | - | 可新增，但框架底层无相关设计，成本高 |
+| 141 | [torch.backends.mps.is_available](https://pytorch.org/docs/stable/backends.html#torch.backends.mps.is_available) | - | 可新增，但框架底层无相关设计，成本高 |
+| 142 | [torch.fx.Tracer](https://pytorch.org/docs/stable/fx.html#torch.fx.Tracer) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 143 | [torch.jit.enable\_onednn\_fusion](https://pytorch.org/docs/stable/generated/torch.jit.enable_onednn_fusion.html#torch-jit-enable-onednn-fusion) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 144 | [torch.cuda.comm.reduce_add](https://pytorch.org/docs/stable/generated/torch.cuda.comm.reduce_add.html#torch-cuda-comm-reduce-add) | - | 可新增，且框架底层有相关设计，成本低 |
+| 145 | [torch.distributed.checkpoint.state\_dict.get\_optimizer\_state\_dict](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_optimizer_state_dict) | - | 可新增，且框架底层有相关设计，成本低 |
+| 146 | [torch.nn.utils.parametrizations.orthogonal](https://pytorch.org/docs/stable/generated/torch.nn.utils.parametrizations.orthogonal.html#torch-nn-utils-parametrizations-orthogonal) | - | 可新增，且框架底层有相关设计，成本低 |
+| 147 | [torch.nn.utils.prune.L1Unstructured](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.L1Unstructured.html#torch.nn.utils.prune.L1Unstructured) | - | 可新增，且框架底层有相关设计，成本低 |
+| 148 | [torch.nn.utils.prune.random_unstructured](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.random_unstructured.html#torch-nn-utils-prune-random-unstructured) | - | 可新增，且框架底层有相关设计，成本低 |
+| 149 | [torch.special.zeta](https://pytorch.org/docs/stable/special.html#torch.special.zeta) | - | 可新增，且框架底层有相关设计，成本低 |
+| 150 | [torch.xpu.current_device](https://pytorch.org/docs/stable/generated/torch.xpu.current_device.html#torch-xpu-current-device) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 151 | [torch.xpu.get\_device\_properties](https://pytorch.org/docs/stable/generated/torch.xpu.get_device_properties.html#torch-xpu-get-device-properties) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 152 | [torch.gradient](https://pytorch.org/docs/stable/generated/torch.gradient.html#torch-gradient) | - | 可新增，且框架底层有相关设计，成本低 |
+| 153 | [torch.Tensor.sparse\_resize\_](https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_resize_.html#torch-tensor-sparse-resize) | - | 可新增，且框架底层有相关设计，成本低 |
+| 154 | [torch.autograd.profiler.profile](https://pytorch.org/docs/stable/autograd.html#torch.autograd.profiler.profile) | - | 可新增，但框架底层无相关设计，成本高 |
+| 155 | [torch.backends.cuda.enable\_math\_sdp](https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.enable_math_sdp) | - | 可新增，且框架底层有相关设计，成本低 |
+| 156 | [torch.backends.cuda.enable\_mem\_efficient\_sdp](https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.enable_mem_efficient_sdp) | - | 可新增，且框架底层有相关设计，成本低 |
+| 157 | [torch.jit.ScriptModule](https://pytorch.org/docs/stable/generated/torch.jit.ScriptModule.html#torch.jit.ScriptModule) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 158 | [torch.cuda.ExternalStream](https://pytorch.org/docs/stable/generated/torch.cuda.ExternalStream.html#torch.cuda.ExternalStream) | - | 可新增，但框架底层无相关设计，成本高 |
+| 159 | [torch.cuda.memory.\_record\_memory\_history](https://pytorch.org/docs/stable/torch_cuda_memory.html#torch.cuda.memory._record_memory_history) | - | 可新增，且框架底层有相关设计，成本低 |
+| 160 | [torch.cuda.memory_summary](https://pytorch.org/docs/stable/generated/torch.cuda.memory_summary.html#torch-cuda-memory-summary) | - | 可新增，且框架底层有相关设计，成本低 |
+| 161 | [torch.distributed.checkpoint.state\_dict.get\_model\_state\_dict](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_model_state_dict) | - | 可新增，且框架底层有相关设计，成本低 |
+| 162 | [torch.distributed.checkpoint.state_dict.StateDictOptions](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.StateDictOptions) | - | 可新增，且框架底层有相关设计，成本低 |
+| 163 | [torch.optim.lr_scheduler.ChainedScheduler](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ChainedScheduler.html#torch.optim.lr_scheduler.ChainedScheduler) | - | 可新增，且框架底层有相关设计，成本低 |
+| 164 | [torch.futures.collect_all](https://pytorch.org/docs/stable/futures.html#torch.futures.collect_all) | - | 可新增，但框架底层无相关设计，成本高 |
+| 165 | [torch.sparse\_compressed\_tensor](https://pytorch.org/docs/stable/generated/torch.sparse_compressed_tensor.html#torch-sparse-compressed-tensor) | - | 可新增，且框架底层有相关设计，成本低 |
+| 166 | [torch.mps.current\_allocated\_memory](https://pytorch.org/docs/stable/generated/torch.mps.current_allocated_memory.html#torch-mps-current-allocated-memory) | - | 可新增，但框架底层无相关设计，成本高 |
+| 167 | [torch.profiler.tensorboard\_trace\_handler](https://pytorch.org/docs/stable/profiler.html#torch.profiler.tensorboard_trace_handler) | - | 可新增，且框架底层有相关设计，成本低 |
+| 168 | [torch.xpu.is_available](https://pytorch.org/docs/stable/generated/torch.xpu.is_available.html#torch-xpu-is-available) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 169 | [torch.xpu.set_device](https://pytorch.org/docs/stable/generated/torch.xpu.set_device.html#torch-xpu-set-device) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 170 | [torch.distributed.rpc.WorkerInfo](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.WorkerInfo) | - | 可新增，且框架底层有相关设计，成本低 |
+| 171 | [torch.bartlett_window](https://pytorch.org/docs/stable/generated/torch.bartlett_window.html#torch-bartlett-window) | - | 可新增，且框架底层有相关设计，成本低 |
+| 172 | [torch.signal.windows.kaiser](https://pytorch.org/docs/stable/generated/torch.signal.windows.kaiser.html#torch-signal-windows-kaiser) | - | 可新增，且框架底层有相关设计，成本低 |
+| 173 | [torch.cuda.graph\_pool\_handle](https://pytorch.org/docs/stable/generated/torch.cuda.graph_pool_handle.html#torch-cuda-graph-pool-handle) | - | 可新增，但框架底层无相关设计，成本高 |
+| 174 | [torch.library.define](https://pytorch.org/docs/stable/library.html#torch.library.define) | - | 可新增，但框架底层无相关设计，成本高 |
+| 175 | [torch.monitor.log_event](https://pytorch.org/docs/stable/monitor.html#torch.monitor.log_event) | - | 实验阶段不稳定 API ，无需新增 |
+| 176 | [torch.nn.init.sparse_](https://pytorch.org/docs/stable/nn.init.html#torch.nn.init.sparse_) | - | 可新增，且框架底层有相关设计，成本低 |
+| 177 | [torch.nn.modules.module.register\_module\_backward\_hook](https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_backward_hook.html#torch-nn-modules-module-register-module-backward-hook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 178 | [torch.nn.utils.prune.global_unstructured](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.global_unstructured.html#torch-nn-utils-prune-global-unstructured) | - | 可新增，且框架底层有相关设计，成本低 |
+| 179 | [torch.nn.utils.prune.ln_structured](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.ln_structured.html#torch-nn-utils-prune-ln-structured) | - | 可新增，且框架底层有相关设计，成本低 |
+| 180 | [torch.special.log_ndtr](https://pytorch.org/docs/stable/special.html#torch.special.log_ndtr) | - | 可新增，且框架底层有相关设计，成本低 |
+| 181 | [torch.Tensor.align_as](https://pytorch.org/docs/stable/named_tensor.html#torch.Tensor.align_as) | - | 实验阶段不稳定 API ，无需新增 |
+| 182 | [torch.xpu.get\_device\_name](https://pytorch.org/docs/stable/generated/torch.xpu.get_device_name.html#torch-xpu-get-device-name) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 183 | [torch.xpu.manual_seed](https://pytorch.org/docs/stable/generated/torch.xpu.manual_seed.html#torch-xpu-manual-seed) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 184 | [torch.set\_warn\_always](https://pytorch.org/docs/stable/generated/torch.set_warn_always.html#torch-set-warn-always) | - | 可新增，且框架底层有相关设计，成本低 |
+| 185 | [torch.backends.cuda.enable\_flash\_sdp](https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.enable_flash_sdp) | - | 可新增，且框架底层有相关设计，成本低 |
+| 186 | [torch.backends.cuda.preferred\_linalg\_library](https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.preferred_linalg_library) | - | 可新增，且框架底层有相关设计，成本低 |
+| 187 | [torch.UntypedStorage](https://pytorch.org/docs/stable/storage.html#torch.UntypedStorage) | - | 可新增，但框架底层无相关设计，成本高 |
+| 188 | [torch.fx.Interpreter](https://pytorch.org/docs/stable/fx.html#module-torch.fx.interpreter) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 189 | [torch.jit.optimize\_for\_inference](https://pytorch.org/docs/stable/generated/torch.jit.optimize_for_inference.html#torch-jit-optimize-for-inference) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 190 | [torch.jit.wait](https://pytorch.org/docs/stable/generated/torch.jit.wait.html#torch-jit-wait) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 191 | [torch.distributed.autograd.backward](https://pytorch.org/docs/stable/rpc.html#torch.distributed.autograd.backward) | - | 可新增，且框架底层有相关设计，成本低 |
+| 192 | [torch.distributions.transforms.LowerCholeskyTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.LowerCholeskyTransform) | - | 可新增，且框架底层有相关设计，成本低 |
+| 193 | [torch.overrides.resolve_name](https://pytorch.org/docs/stable/torch.overrides.html#torch.overrides.resolve_name) | - | 可新增，但框架底层无相关设计，成本高 |
+| 194 | [torch.sparse.log_softmax](https://pytorch.org/docs/stable/generated/torch.sparse.log_softmax.html#torch-sparse-log-softmax) | - | 可新增，且框架底层有相关设计，成本低 |
+| 195 | [torch.monitor.register\_event\_handler](https://pytorch.org/docs/stable/monitor.html#torch.monitor.register_event_handler) | - | 实验阶段不稳定 API ，无需新增 |
+| 196 | [torch.monitor.Stat](https://pytorch.org/docs/stable/monitor.html#torch.monitor.Stat) | - | 实验阶段不稳定 API ，无需新增 |
+| 197 | [torch.monitor.unregister\_event\_handler](https://pytorch.org/docs/stable/monitor.html#torch.monitor.unregister_event_handler) | - | 实验阶段不稳定 API ，无需新增 |
+| 198 | [torch.Tensor.register\_post\_accumulate\_grad\_hook](https://pytorch.org/docs/stable/generated/torch.Tensor.register_post_accumulate_grad_hook.html#torch-tensor-register-post-accumulate-grad-hook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 199 | [torch.Tensor.sspaddmm](https://pytorch.org/docs/stable/generated/torch.Tensor.sspaddmm.html#torch-tensor-sspaddmm) | - | 可新增，且框架底层有相关设计，成本低 |
+| 200 | [torch.Tensor.sum\_to\_size](https://pytorch.org/docs/stable/generated/torch.Tensor.sum_to_size.html#torch-tensor-sum-to-size) | - | 可新增，且框架底层有相关设计，成本低 |
+| 201 | [torch.\_\_config\_\_.parallel\_info](https://pytorch.org/docs/stable/config_mod.html#torch.__config__.parallel_info) | - | 可新增，且框架底层有相关设计，成本低 |
+| 202 | [torch.cuda.amp.custom_bwd](https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.custom_bwd) | - | 可新增，且框架底层有相关设计，成本低 |
+| 203 | [torch.cuda.amp.custom_fwd](https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.custom_fwd) | - | 废弃 API ，无需新增 |
+| 204 | [torch.\_\_config\_\_.show](https://pytorch.org/docs/stable/config_mod.html#torch.__config__.show) | - | 可新增，且框架底层有相关设计，成本低 |
+| 205 | [torch.from_file](https://pytorch.org/docs/stable/generated/torch.from_file.html#torch-from-file) | - | 可新增，且框架底层有相关设计，成本低 |
+| 206 | [torch.\_\_future\_\_.set\_overwrite\_module\_params\_on\_conversion](https://pytorch.org/docs/stable/future_mod.html#torch.__future__.set_overwrite_module_params_on_conversion) | - | 可新增，但框架底层无相关设计，成本高 |
+| 207 | [torch.autograd.gradcheck.gradcheck](https://pytorch.org/docs/stable/generated/torch.autograd.gradcheck.gradcheck.html#torch-autograd-gradcheck-gradcheck) | - | 可新增，且框架底层有相关设计，成本低 |
+| 208 | [torch.backends.cuda.sdp_kernel](https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.sdp_kernel) | - | 可新增，且框架底层有相关设计，成本低 |
+| 209 | [torch.backends.mkl.is_available](https://pytorch.org/docs/stable/backends.html#torch.backends.mkl.is_available) | - | 可新增，且框架底层有相关设计，成本低 |
+| 210 | [torch.signal.windows.bartlett](https://pytorch.org/docs/stable/generated/torch.signal.windows.bartlett.html#torch-signal-windows-bartlett) | - | 可新增，且框架底层有相关设计，成本低 |
+| 211 | [torch.Tensor.storage_type](https://pytorch.org/docs/stable/generated/torch.Tensor.storage_type.html#torch-tensor-storage-type) | - | 可新增，但框架底层无相关设计，成本高 |
+| 212 | [torch.cuda.can\_device\_access\_peer](https://pytorch.org/docs/stable/generated/torch.cuda.can_device_access_peer.html#torch-cuda-can-device-access-peer) | - | 可新增，且框架底层有相关设计，成本低 |
+| 213 | [torch.cuda.jiterator.\_create\_jit\_fn](https://pytorch.org/docs/stable/generated/torch.cuda.jiterator._create_jit_fn.html#torch-cuda-jiterator-create-jit-fn) | - | 可新增，且框架底层有相关设计，成本低 |
+| 214 | [torch.cuda.set\_sync\_debug\_mode](https://pytorch.org/docs/stable/generated/torch.cuda.set_sync_debug_mode.html#torch-cuda-set-sync-debug-mode) | - | 可新增，且框架底层有相关设计，成本低 |
+| 215 | [torch.distributed.fsdp.FullOptimStateDictConfig](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.FullOptimStateDictConfig) | - | 可新增，且框架底层有相关设计，成本低 |
+| 216 | [torch.distributions.transforms.CorrCholeskyTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.CorrCholeskyTransform) | - | 可新增，且框架底层有相关设计，成本低 |
+| 217 | [torch.overrides.get\_testing\_overrides](https://pytorch.org/docs/stable/torch.overrides.html#torch.overrides.get_testing_overrides) | - | 可新增，但框架底层无相关设计，成本高 |
+| 218 | [torch.sparse\_bsr\_tensor](https://pytorch.org/docs/stable/generated/torch.sparse_bsr_tensor.html#torch-sparse-bsr-tensor) | - | 可新增，且框架底层有相关设计，成本低 |
+| 219 | [torch.sparse\_csc\_tensor](https://pytorch.org/docs/stable/generated/torch.sparse_csc_tensor.html#torch-sparse-csc-tensor) | - | 可新增，且框架底层有相关设计，成本低 |
+| 220 | [torch.Tensor.to\_sparse\_bsc](https://pytorch.org/docs/stable/generated/torch.Tensor.to_sparse_bsc.html#torch-tensor-to-sparse-bsc) | - | 可新增，且框架底层有相关设计，成本低 |
+| 221 | [torch.linalg.ldl\_factor\_ex](https://pytorch.org/docs/stable/generated/torch.linalg.ldl_factor_ex.html#torch-linalg-ldl-factor-ex) | - | 实验阶段不稳定 API ，无需新增 |
+| 222 | [torch.monitor.Event](https://pytorch.org/docs/stable/monitor.html#torch.monitor.Event) | - | 实验阶段不稳定 API ，无需新增 |
+| 223 | [torch.nn.utils.rnn.unpad_sequence](https://pytorch.org/docs/stable/generated/torch.nn.utils.rnn.unpad_sequence.html#torch-nn-utils-rnn-unpad-sequence) | - | 可新增，且框架底层有相关设计，成本低 |
+| 224 | [torch.xpu.set\_rng\_state](https://pytorch.org/docs/stable/generated/torch.xpu.set_rng_state.html#torch-xpu-set-rng-state) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 225 | [torch.cuda.max\_memory\_cached](https://pytorch.org/docs/stable/generated/torch.cuda.max_memory_cached.html#torch-cuda-max-memory-cached) | - | 废弃 API ，无需新增 |
+| 226 | [torch.cuda.get\_arch\_list](https://pytorch.org/docs/stable/generated/torch.cuda.get_arch_list.html#torch-cuda-get-arch-list) | - | 可新增，且框架底层有相关设计，成本低 |
+| 227 | [torch.Tensor.resolve_neg](https://pytorch.org/docs/stable/generated/torch.Tensor.resolve_neg.html#torch-tensor-resolve-neg) | - | 可新增，但框架底层无相关设计，成本高 |
+| 228 | [torch.compiled\_with\_cxx11\_abi](https://pytorch.org/docs/stable/generated/torch.compiled_with_cxx11_abi.html#torch-compiled-with-cxx11-abi) | - | 可新增，且框架底层有相关设计，成本低 |
+| 229 | [torch.cuda.memory_cached](https://pytorch.org/docs/stable/generated/torch.cuda.memory_cached.html#torch-cuda-memory-cached) | - | 废弃 API ，无需新增 |
+| 230 | [torch.is\_warn\_always\_enabled](https://pytorch.org/docs/stable/generated/torch.is_warn_always_enabled.html#torch-is-warn-always-enabled) | - | 可新增，且框架底层有相关设计，成本低 |
+| 231 | [torch.autograd.detect_anomaly](https://pytorch.org/docs/stable/autograd.html#torch.autograd.detect_anomaly) | - | 可新增，且框架底层有相关设计，成本低 |
+| 232 | [torch.autograd.forward\_ad.make\_dual](https://pytorch.org/docs/stable/generated/torch.autograd.forward_ad.make_dual.html#torch-autograd-forward-ad-make-dual) | - | 实验阶段不稳定 API ，无需新增 |
+| 233 | [torch.cuda.nvtx.mark](https://pytorch.org/docs/stable/generated/torch.cuda.nvtx.mark.html#torch-cuda-nvtx-mark) | - | 可新增，且框架底层有相关设计，成本低 |
+| 234 | [torch.autograd.forward\_ad.unpack\_dual](https://pytorch.org/docs/stable/generated/torch.autograd.forward_ad.unpack_dual.html#torch-autograd-forward-ad-unpack-dual) | - | 实验阶段不稳定 API ，无需新增 |
+| 235 | [torch.autograd.graph.save\_on\_cpu](https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.save_on_cpu) | - | 可新增，且框架底层有相关设计，成本低 |
+| 236 | [torch.autograd.profiler.load_nvprof](https://pytorch.org/docs/stable/generated/torch.autograd.profiler.load_nvprof.html#torch-autograd-profiler-load-nvprof) | - | 可新增，但框架底层无相关设计，成本高 |
+| 237 | [torch.autograd.profiler.profile.key_averages](https://pytorch.org/docs/stable/generated/torch.autograd.profiler.profile.key_averages.html#torch-autograd-profiler-profile-key-averages) | - | 可新增，但框架底层无相关设计，成本高 |
+| 238 | [torch.autograd.profiler_util.MemRecordsAcc](https://pytorch.org/docs/stable/generated/torch.autograd.profiler_util.MemRecordsAcc.html#torch.autograd.profiler_util.MemRecordsAcc) | - | 可新增，但框架底层无相关设计，成本高 |
+| 239 | [torch.backends.mps.is_built](https://pytorch.org/docs/stable/backends.html#torch.backends.mps.is_built) | - | 可新增，但框架底层无相关设计，成本高 |
+| 240 | [torch.backends.nnpack.set_flags](https://pytorch.org/docs/stable/backends.html#torch.backends.nnpack.set_flags) | - | 可新增，但框架底层无相关设计，成本高 |
+| 241 | [torch.export.ExportedProgram](https://pytorch.org/docs/stable/export.html#torch.export.ExportedProgram) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 242 | [torch.export.graph_signature.InputSpec](https://pytorch.org/docs/stable/export.html#torch.export.graph_signature.InputSpec) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 243 | [torch.export.load](https://pytorch.org/docs/stable/export.html#torch.export.load) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 244 | [torch.fx.replace_pattern](https://pytorch.org/docs/stable/fx.html#torch.fx.replace_pattern) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 245 | [torch.fx.Transformer](https://pytorch.org/docs/stable/fx.html#torch.fx.Transformer) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 246 | [torch.jit.isinstance](https://pytorch.org/docs/stable/generated/torch.jit.isinstance.html#torch-jit-isinstance) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 247 | [torch.jit.script\_if\_tracing](https://pytorch.org/docs/stable/generated/torch.jit.script_if_tracing.html#torch-jit-script-if-tracing) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 248 | [torch.cuda.caching\_allocator\_alloc](https://pytorch.org/docs/stable/generated/torch.cuda.caching_allocator_alloc.html#torch-cuda-caching-allocator-alloc) | - | 可新增，但框架底层无相关设计，成本高 |
+| 249 | [torch.cuda.caching\_allocator\_delete](https://pytorch.org/docs/stable/generated/torch.cuda.caching_allocator_delete.html#torch-cuda-caching-allocator-delete) | - | 可新增，但框架底层无相关设计，成本高 |
+| 250 | [torch.cuda.get\_allocator\_backend](https://pytorch.org/docs/stable/generated/torch.cuda.get_allocator_backend.html#torch-cuda-get-allocator-backend) | - | 可新增，但框架底层无相关设计，成本高 |
+| 251 | [torch.cuda.get\_sync\_debug\_mode](https://pytorch.org/docs/stable/generated/torch.cuda.get_sync_debug_mode.html#torch-cuda-get-sync-debug-mode) | - | 可新增，但框架底层无相关设计，成本高 |
+| 252 | [torch.cuda.list\_gpu\_processes](https://pytorch.org/docs/stable/generated/torch.cuda.list_gpu_processes.html#torch-cuda-list-gpu-processes) | - | 可新增，且框架底层有相关设计，成本低 |
+| 253 | [torch.cuda.memory_snapshot](https://pytorch.org/docs/stable/generated/torch.cuda.memory_snapshot.html#torch-cuda-memory-snapshot) | - | 可新增，且框架底层有相关设计，成本低 |
+| 254 | [torch.cuda.seed](https://pytorch.org/docs/stable/generated/torch.cuda.seed.html#torch-cuda-seed) | - | 可新增，且框架底层有相关设计，成本低 |
+| 255 | [torch.cuda.seed_all](https://pytorch.org/docs/stable/generated/torch.cuda.seed_all.html#torch-cuda-seed-all) | - | 可新增，且框架底层有相关设计，成本低 |
+| 256 | [torch.cuda.utilization](https://pytorch.org/docs/stable/generated/torch.cuda.utilization.html#torch-cuda-utilization) | - | 可新增，且框架底层有相关设计，成本低 |
+| 257 | [torch.distributed.algorithms.ddp\_comm\_hooks.powerSGD\_hook.PowerSGDState](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.algorithms.ddp_comm_hooks.powerSGD_hook.PowerSGDState) | - | 可新增，但框架底层无相关设计，成本高 |
+| 258 | [torch.distributed.checkpoint.planner.WriteItem](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.planner.WriteItem) | - | 可新增，且框架底层有相关设计，成本低 |
+| 259 | [torch.distributed.checkpoint.state\_dict.set\_model\_state\_dict](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.set_model_state_dict) | - | 可新增，且框架底层有相关设计，成本低 |
+| 260 | [torch.distributed.checkpoint.state\_dict.set\_optimizer\_state\_dict](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.set_optimizer_state_dict) | - | 可新增，且框架底层有相关设计，成本低 |
+| 261 | [torch.distributed.FileStore](https://pytorch.org/docs/stable/distributed.html#torch.distributed.FileStore) | - | 可新增，但框架底层无相关设计，成本高 |
+| 262 | [torch.distributed.PrefixStore](https://pytorch.org/docs/stable/distributed.html#torch.distributed.PrefixStore) | - | 可新增，但框架底层无相关设计，成本高 |
+| 263 | [torch.distributed.fsdp.LocalStateDictConfig](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.LocalStateDictConfig) | - | 可新增，且框架底层有相关设计，成本低 |
+| 264 | [torch.optim.lr_scheduler.PolynomialLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.PolynomialLR.html#torch.optim.lr_scheduler.PolynomialLR) | - | 可新增，且框架底层有相关设计，成本低 |
+| 265 | [torch.distributions.relaxed_bernoulli.RelaxedBernoulli](https://pytorch.org/docs/stable/distributions.html#torch.distributions.relaxed_bernoulli.RelaxedBernoulli) | - | 可新增，且框架底层有相关设计，成本低 |
+| 266 | [torch.overrides.get\_overridable\_functions](https://pytorch.org/docs/stable/torch.overrides.html#torch.overrides.get_overridable_functions) | - | 可新增，但框架底层无相关设计，成本高 |
+| 267 | [torch.overrides.has\_torch\_function](https://pytorch.org/docs/stable/torch.overrides.html#torch.overrides.has_torch_function) | - | 可新增，但框架底层无相关设计，成本高 |
+| 268 | [torch.overrides.is\_tensor\_like](https://pytorch.org/docs/stable/torch.overrides.html#torch.overrides.is_tensor_like) | - | 可新增，但框架底层无相关设计，成本高 |
+| 269 | [torch.overrides.wrap\_torch\_function](https://pytorch.org/docs/stable/torch.overrides.html#torch.overrides.wrap_torch_function) | - | 可新增，但框架底层无相关设计，成本高 |
+| 270 | [torch.sparse\_bsc\_tensor](https://pytorch.org/docs/stable/generated/torch.sparse_bsc_tensor.html#torch-sparse-bsc-tensor) | - | 可新增，且框架底层有相关设计，成本低 |
+| 271 | [torch.library.get_ctx](https://pytorch.org/docs/stable/library.html#torch.library.get_ctx) | - | 可新增，但框架底层无相关设计，成本高 |
+| 272 | [torch.linalg.ldl_factor](https://pytorch.org/docs/stable/generated/torch.linalg.ldl_factor.html#torch-linalg-ldl-factor) | - | 可新增，且框架底层有相关设计，成本低 |
+| 273 | [torch.linalg.ldl_solve](https://pytorch.org/docs/stable/generated/torch.linalg.ldl_solve.html#torch-linalg-ldl-solve) | - | 可新增，且框架底层有相关设计，成本低 |
+| 274 | [torch.lobpcg](https://pytorch.org/docs/stable/generated/torch.lobpcg.html#torch-lobpcg) | - | 可新增，且框架底层有相关设计，成本低 |
+| 275 | [torch.mps.manual_seed](https://pytorch.org/docs/stable/generated/torch.mps.manual_seed.html#torch-mps-manual-seed) | - | 可新增，但框架底层无相关设计，成本高 |
+| 276 | [torch.nn.utils.prune.identity](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.identity.html#torch-nn-utils-prune-identity) | - | 可新增，且框架底层有相关设计，成本低 |
+| 277 | [torch.nn.utils.prune.PruningContainer](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.PruningContainer.html#torch.nn.utils.prune.PruningContainer) | - | 可新增，且框架底层有相关设计，成本低 |
+| 278 | [torch.nn.utils.prune.random_structured](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.random_structured.html#torch-nn-utils-prune-random-structured) | - | 可新增，且框架底层有相关设计，成本低 |
+| 279 | [torch.nn.utils.prune.RandomStructured](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.RandomStructured.html#torch.nn.utils.prune.RandomStructured) | - | 可新增，且框架底层有相关设计，成本低 |
+| 280 | [torch.Tensor.chalf](https://pytorch.org/docs/stable/generated/torch.Tensor.chalf.html#torch-tensor-chalf) | - | 可新增，且框架底层有相关设计，成本低 |
+| 281 | [torch.Tensor.index_reduce](https://pytorch.org/docs/stable/generated/torch.Tensor.index_reduce.html#torch-tensor-index-reduce) | - | 可新增，且框架底层有相关设计，成本低 |
+| 282 | [torch.Tensor.index\_reduce\_](https://pytorch.org/docs/stable/generated/torch.Tensor.index_reduce_.html#torch-tensor-index-reduce) | - | 可新增，且框架底层有相关设计，成本低 |
+| 283 | [torch.Tensor.sgn_](https://pytorch.org/docs/stable/generated/torch.Tensor.sgn_.html#torch-tensor-sgn) | - | 可新增，且框架底层有相关设计，成本低 |
+| 284 | [torch.utils.cpp\_extension.verify\_ninja\_availability](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.verify_ninja_availability) | - | 可新增，且框架底层有相关设计，成本低 |
+| 285 | [torch.utils.data._utils.collate.collate](https://pytorch.org/docs/stable/data.html#torch.utils.data._utils.collate.collate) | - | 可新增，且框架底层有相关设计，成本低 |
+| 286 | [torch.utils.data.StackDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.StackDataset) | - | 可新增，且框架底层有相关设计，成本低 |
+| 287 | [torch.utils.swap_tensors](https://pytorch.org/docs/stable/generated/torch.utils.swap_tensors.html#torch-utils-swap-tensors) | - | 可新增，且框架底层有相关设计，成本低 |
+| 288 | [torch.xpu.get\_rng\_state](https://pytorch.org/docs/stable/generated/torch.xpu.get_rng_state.html#torch-xpu-get-rng-state) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 289 | [torch.xpu.get\_rng\_state\_all](https://pytorch.org/docs/stable/generated/torch.xpu.get_rng_state_all.html#torch-xpu-get-rng-state-all) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 290 | [torch.xpu.manual\_seed\_all](https://pytorch.org/docs/stable/generated/torch.xpu.manual_seed_all.html#torch-xpu-manual-seed-all) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 291 | [torch.xpu.set\_rng\_state\_all](https://pytorch.org/docs/stable/generated/torch.xpu.set_rng_state_all.html#torch-xpu-set-rng-state-all) | - | 有对应相近功能但设计差异大无法映射，一般无需新增 |
+| 292 | [torch.utils.cpp\_extension.include\_paths](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.include_paths) | - | 可新增，且框架底层有相关设计，成本低 |
+| 293 | [torch.special.entr](https://pytorch.org/docs/stable/special.html#torch.special.entr) | - | 可新增，且框架底层有相关设计，成本低 |
+| 294 | [torch.\_logging.set\_logs](https://pytorch.org/docs/stable/generated/torch._logging.set_logs.html#torch-logging-set-logs) | - | 可新增，且框架底层有相关设计，成本低 |
+| 295 | [torch.cond](https://pytorch.org/docs/stable/generated/torch.cond.html#torch-cond) | - | 可新增，且框架底层有相关设计，成本低 |
+| 296 | [torch.get\_float32\_matmul\_precision](https://pytorch.org/docs/stable/generated/torch.get_float32_matmul_precision.html#torch-get-float32-matmul-precision) | - | 可新增，且框架底层有相关设计，成本低 |
+| 297 | [torch.index_reduce](https://pytorch.org/docs/stable/generated/torch.index_reduce.html#torch-index-reduce) | - | 可新增，且框架底层有相关设计，成本低 |
+| 298 | [torch.is\_inference\_mode\_enabled](https://pytorch.org/docs/stable/generated/torch.is_inference_mode_enabled.html#torch-is-inference-mode-enabled) | - | 可新增，且框架底层有相关设计，成本低 |
+| 299 | [torch.is_storage](https://pytorch.org/docs/stable/generated/torch.is_storage.html#torch-is-storage) | - | 可新增，但框架底层无相关设计，成本高 |
+| 300 | [torch.random.fork_rng](https://pytorch.org/docs/stable/random.html#torch.random.fork_rng) | - | 可新增，且框架底层有相关设计，成本低 |
+| 301 | [torch.Tag](https://pytorch.org/docs/stable/torch.html#torch.Tag) | - | 可新增，且框架底层有相关设计，成本低 |
+| 302 | [torch.unravel_index](https://pytorch.org/docs/stable/generated/torch.unravel_index.html#torch-unravel-index) | - | 可新增，且框架底层有相关设计，成本低 |
+| 303 | [torch.\_\_future\_\_.get\_overwrite\_module\_params\_on\_conversion](https://pytorch.org/docs/stable/future_mod.html#torch.__future__.get_overwrite_module_params_on_conversion) | - | 可新增，但框架底层无相关设计，成本高 |
+| 304 | [torch.\_\_future\_\_.get\_swap\_module\_params\_on\_conversion](https://pytorch.org/docs/stable/future_mod.html#torch.__future__.get_swap_module_params_on_conversion) | - | 可新增，但框架底层无相关设计，成本高 |
+| 305 | [torch.\_\_future\_\_.set\_swap\_module\_params\_on\_conversion](https://pytorch.org/docs/stable/future_mod.html#torch.__future__.set_swap_module_params_on_conversion) | - | 可新增，但框架底层无相关设计，成本高 |
+| 306 | [torch.autograd.forward\_ad.dual\_level](https://pytorch.org/docs/stable/generated/torch.autograd.forward_ad.dual_level.html#torch.autograd.forward_ad.dual_level) | - | 实验阶段不稳定 API ，无需新增 |
+| 307 | [torch.autograd.forward\_ad.enter\_dual\_level](https://pytorch.org/docs/stable/generated/torch.autograd.forward_ad.enter_dual_level.html#torch-autograd-forward-ad-enter-dual-level) | - | 实验阶段不稳定 API ，无需新增 |
+| 308 | [torch.autograd.forward\_ad.exit\_dual\_level](https://pytorch.org/docs/stable/generated/torch.autograd.forward_ad.exit_dual_level.html#torch-autograd-forward-ad-exit-dual-level) | - | 实验阶段不稳定 API ，无需新增 |
+| 309 | [torch.autograd.forward_ad.UnpackedDualTensor](https://pytorch.org/docs/stable/generated/torch.autograd.forward_ad.UnpackedDualTensor.html#torch.autograd.forward_ad.UnpackedDualTensor) | - | 实验阶段不稳定 API ，无需新增 |
+| 310 | [torch.autograd.function.BackwardCFunction](https://pytorch.org/docs/stable/generated/torch.autograd.function.BackwardCFunction.html#torch.autograd.function.BackwardCFunction) | - | 可新增，且框架底层有相关设计，成本低 |
+| 311 | [torch.autograd.function.InplaceFunction](https://pytorch.org/docs/stable/generated/torch.autograd.function.InplaceFunction.html#torch.autograd.function.InplaceFunction) | - | 可新增，且框架底层有相关设计，成本低 |
+| 312 | [torch.autograd.function.NestedIOFunction](https://pytorch.org/docs/stable/generated/torch.autograd.function.NestedIOFunction.html#torch.autograd.function.NestedIOFunction) | - | 可新增，且框架底层有相关设计，成本低 |
+| 313 | [torch.autograd.function.once_differentiable](https://pytorch.org/docs/stable/generated/torch.autograd.function.once_differentiable.html#torch-autograd-function-once-differentiable) | - | 可新增，且框架底层有相关设计，成本低 |
+| 314 | [torch.autograd.Function.vmap](https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch-autograd-function-vmap) | - | 可新增，且框架底层有相关设计，成本低 |
+| 315 | [torch.autograd.functional.hvp](https://pytorch.org/docs/stable/generated/torch.autograd.functional.hvp.html#torch-autograd-functional-hvp) | - | 可新增，且框架底层有相关设计，成本低 |
+| 316 | [torch.autograd.functional.vhp](https://pytorch.org/docs/stable/generated/torch.autograd.functional.vhp.html#torch-autograd-functional-vhp) | - | 可新增，且框架底层有相关设计，成本低 |
+| 317 | [torch.autograd.grad\_mode.inference\_mode](https://pytorch.org/docs/stable/generated/torch.autograd.grad_mode.inference_mode.html#torch.autograd.grad_mode.inference_mode) | - | 可新增，且框架底层有相关设计，成本低 |
+| 318 | [torch.autograd.grad\_mode.set\_multithreading\_enabled](https://pytorch.org/docs/stable/generated/torch.autograd.grad_mode.set_multithreading_enabled.html#torch.autograd.grad_mode.set_multithreading_enabled) | - | 可新增，且框架底层有相关设计，成本低 |
+| 319 | [torch.autograd.gradcheck.GradcheckError](https://pytorch.org/docs/stable/generated/torch.autograd.gradcheck.GradcheckError.html#torch-autograd-gradcheck-gradcheckerror) | - | 可新增，且框架底层有相关设计，成本低 |
+| 320 | [torch.autograd.gradcheck.gradgradcheck](https://pytorch.org/docs/stable/generated/torch.autograd.gradcheck.gradgradcheck.html#torch-autograd-gradcheck-gradgradcheck) | - | 可新增，且框架底层有相关设计，成本低 |
+| 321 | [torch.autograd.graph.allow\_mutation\_on\_saved\_tensors](https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.allow_mutation_on_saved_tensors) | - | 可新增，且框架底层有相关设计，成本低 |
+| 322 | [torch.autograd.graph.disable\_saved\_tensors\_hooks](https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.disable_saved_tensors_hooks) | - | 可新增，且框架底层有相关设计，成本低 |
+| 323 | [torch.autograd.graph.get\_gradient\_edge](https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.get_gradient_edge) | - | 可新增，且框架底层有相关设计，成本低 |
+| 324 | [torch.autograd.graph.GradientEdge](https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.GradientEdge) | - | 可新增，且框架底层有相关设计，成本低 |
+| 325 | [torch.autograd.graph.increment_version](https://pytorch.org/docs/stable/generated/torch.autograd.graph.increment_version.html#torch-autograd-graph-increment-version) | - | 可新增，且框架底层有相关设计，成本低 |
+| 326 | [torch.autograd.graph.register\_multi\_grad\_hook](https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.register_multi_grad_hook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 327 | [torch.autograd.profiler.emit_itt](https://pytorch.org/docs/stable/autograd.html#torch.autograd.profiler.emit_itt) | - | 可新增，但框架底层无相关设计，成本高 |
+| 328 | [torch.autograd.profiler.emit_nvtx](https://pytorch.org/docs/stable/autograd.html#torch.autograd.profiler.emit_nvtx) | - | 可新增，但框架底层无相关设计，成本高 |
+| 329 | [torch.autograd.profiler.EnforceUnique](https://pytorch.org/docs/stable/generated/torch.autograd.profiler.EnforceUnique.html#torch.autograd.profiler.EnforceUnique) | - | 可新增，但框架底层无相关设计，成本高 |
+| 330 | [torch.autograd.profiler.KinetoStepTracker](https://pytorch.org/docs/stable/generated/torch.autograd.profiler.KinetoStepTracker.html#torch.autograd.profiler.KinetoStepTracker) | - | 可新增，但框架底层无相关设计，成本高 |
+| 331 | [torch.autograd.profiler.parse\_nvprof\_trace](https://pytorch.org/docs/stable/generated/torch.autograd.profiler.parse_nvprof_trace.html#torch-autograd-profiler-parse-nvprof-trace) | - | 可新增，但框架底层无相关设计，成本高 |
+| 332 | [torch.autograd.profiler.profile.total_average](https://pytorch.org/docs/stable/generated/torch.autograd.profiler.profile.total_average.html#torch-autograd-profiler-profile-total-average) | - | 可新增，但框架底层无相关设计，成本高 |
+| 333 | [torch.autograd.profiler_util.Interval](https://pytorch.org/docs/stable/generated/torch.autograd.profiler_util.Interval.html#torch.autograd.profiler_util.Interval) | - | 可新增，但框架底层无相关设计，成本高 |
+| 334 | [torch.autograd.profiler_util.Kernel](https://pytorch.org/docs/stable/generated/torch.autograd.profiler_util.Kernel.html#torch.autograd.profiler_util.Kernel) | - | 可新增，但框架底层无相关设计，成本高 |
+| 335 | [torch.autograd.profiler_util.StringTable](https://pytorch.org/docs/stable/generated/torch.autograd.profiler_util.StringTable.html#torch.autograd.profiler_util.StringTable) | - | 可新增，但框架底层无相关设计，成本高 |
+| 336 | [torch.backends.cuda.can\_use\_efficient\_attention](https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.can_use_efficient_attention) | - | 可新增，且框架底层有相关设计，成本低 |
+| 337 | [torch.backends.cuda.cudnn\_sdp\_enabled](https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.cudnn_sdp_enabled) | - | 可新增，且框架底层有相关设计，成本低 |
+| 338 | [torch.backends.cuda.enable\_cudnn\_sdp](https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.enable_cudnn_sdp) | - | 可新增，且框架底层有相关设计，成本低 |
+| 339 | [torch.backends.cuda.flash\_sdp\_enabled](https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.flash_sdp_enabled) | - | 可新增，且框架底层有相关设计，成本低 |
+| 340 | [torch.backends.cuda.math\_sdp\_enabled](https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.math_sdp_enabled) | - | 可新增，且框架底层有相关设计，成本低 |
+| 341 | [torch.backends.cuda.mem\_efficient\_sdp\_enabled](https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.mem_efficient_sdp_enabled) | - | 可新增，且框架底层有相关设计，成本低 |
+| 342 | [torch.backends.cuda.SDPAParams](https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.SDPAParams) | - | 可新增，且框架底层有相关设计，成本低 |
+| 343 | [torch.backends.mha.get\_fastpath\_enabled](https://pytorch.org/docs/stable/backends.html#torch.backends.mha.get_fastpath_enabled) | - | 可新增，但框架底层无相关设计，成本高 |
+| 344 | [torch.backends.mha.set\_fastpath\_enabled](https://pytorch.org/docs/stable/backends.html#torch.backends.mha.set_fastpath_enabled) | - | 可新增，但框架底层无相关设计，成本高 |
+| 345 | [torch.backends.mkl.verbose](https://pytorch.org/docs/stable/backends.html#torch.backends.mkl.verbose) | - | 可新增，但框架底层无相关设计，成本高 |
+| 346 | [torch.backends.mkldnn.is_available](https://pytorch.org/docs/stable/backends.html#torch.backends.mkldnn.is_available) | - | 可新增，且框架底层有相关设计，成本低 |
+| 347 | [torch.backends.mkldnn.verbose](https://pytorch.org/docs/stable/backends.html#torch.backends.mkldnn.verbose) | - | 可新增，但框架底层无相关设计，成本高 |
+| 348 | [torch.backends.nnpack.flags](https://pytorch.org/docs/stable/backends.html#torch.backends.nnpack.flags) | - | 可新增，但框架底层无相关设计，成本高 |
+| 349 | [torch.backends.nnpack.is_available](https://pytorch.org/docs/stable/backends.html#torch.backends.nnpack.is_available) | - | 可新增，但框架底层无相关设计，成本高 |
+| 350 | [torch.backends.openmp.is_available](https://pytorch.org/docs/stable/backends.html#torch.backends.openmp.is_available) | - | 可新增，且框架底层有相关设计，成本低 |
+| 351 | [torch.backends.opt\_einsum.get\_opt\_einsum](https://pytorch.org/docs/stable/backends.html#torch.backends.opt_einsum.get_opt_einsum) | - | 可新增，且框架底层有相关设计，成本低 |
+| 352 | [torch.backends.opt\_einsum.is\_available](https://pytorch.org/docs/stable/backends.html#torch.backends.opt_einsum.is_available) | - | 可新增，且框架底层有相关设计，成本低 |
+| 353 | [torch.signal.windows.nuttall](https://pytorch.org/docs/stable/generated/torch.signal.windows.nuttall.html#torch-signal-windows-nuttall) | - | 可新增，且框架底层有相关设计，成本低 |
+| 354 | [torch.export.dims](https://pytorch.org/docs/stable/export.html#torch.export.dims) | - | 可新增，且框架底层有相关设计，成本低 |
+| 355 | [torch.export.dynamic_shapes.Dim](https://pytorch.org/docs/stable/export.html#torch.export.dynamic_shapes.Dim) | - | 可新增，且框架底层有相关设计，成本低 |
+| 356 | [torch.export.dynamic\_shapes.dynamic\_dim](https://pytorch.org/docs/stable/export.html#torch.export.dynamic_shapes.dynamic_dim) | - | 可新增，且框架底层有相关设计，成本低 |
+| 357 | [torch.export.ExportBackwardSignature](https://pytorch.org/docs/stable/export.html#torch.export.ExportBackwardSignature) | - | 可新增，且框架底层有相关设计，成本低 |
+| 358 | [torch.export.ExportGraphSignature](https://pytorch.org/docs/stable/export.html#torch.export.ExportGraphSignature) | - | 可新增，且框架底层有相关设计，成本低 |
+| 359 | [torch.export.graph_signature.CustomObjArgument](https://pytorch.org/docs/stable/export.html#torch.export.graph_signature.CustomObjArgument) | - | 可新增，且框架底层有相关设计，成本低 |
+| 360 | [torch.export.graph_signature.ExportGraphSignature](https://pytorch.org/docs/stable/export.html#torch.export.graph_signature.ExportGraphSignature) | - | 可新增，且框架底层有相关设计，成本低 |
+| 361 | [torch.export.graph_signature.InputKind](https://pytorch.org/docs/stable/export.html#torch.export.graph_signature.InputKind) | - | 可新增，且框架底层有相关设计，成本低 |
+| 362 | [torch.export.graph_signature.OutputKind](https://pytorch.org/docs/stable/export.html#torch.export.graph_signature.OutputKind) | - | 可新增，且框架底层有相关设计，成本低 |
+| 363 | [torch.export.graph_signature.OutputSpec](https://pytorch.org/docs/stable/export.html#torch.export.graph_signature.OutputSpec) | - | 可新增，且框架底层有相关设计，成本低 |
+| 364 | [torch.export.ModuleCallEntry](https://pytorch.org/docs/stable/export.html#torch.export.ModuleCallEntry) | - | 可新增，且框架底层有相关设计，成本低 |
+| 365 | [torch.export.ModuleCallSignature](https://pytorch.org/docs/stable/export.html#torch.export.ModuleCallSignature) | - | 可新增，且框架底层有相关设计，成本低 |
+| 366 | [torch.export.register_dataclass](https://pytorch.org/docs/stable/export.html#torch.export.register_dataclass) | - | 可新增，且框架底层有相关设计，成本低 |
+| 367 | [torch.export.save](https://pytorch.org/docs/stable/export.html#torch.export.save) | - | 可新增，且框架底层有相关设计，成本低 |
+| 368 | [torch.export.unflatten.FlatArgsAdapter](https://pytorch.org/docs/stable/export.html#torch.export.unflatten.FlatArgsAdapter) | - | 可新增，且框架底层有相关设计，成本低 |
+| 369 | [torch.export.unflatten.InterpreterModule](https://pytorch.org/docs/stable/export.html#torch.export.unflatten.InterpreterModule) | - | 可新增，且框架底层有相关设计，成本低 |
+| 370 | [torch.export.unflatten.unflatten](https://pytorch.org/docs/stable/export.html#torch.export.unflatten.unflatten) | - | 可新增，且框架底层有相关设计，成本低 |
+| 371 | [torch.fx.experimental.symbolic\_shapes.canonicalize\_bool\_expr](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.canonicalize_bool_expr.html#torch-fx-experimental-symbolic-shapes-canonicalize-bool-expr) | - | 可新增，且框架底层有相关设计，成本低 |
+| 372 | [torch.fx.experimental.symbolic\_shapes.constrain\_range](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.constrain_range.html#torch-fx-experimental-symbolic-shapes-constrain-range) | - | 可新增，且框架底层有相关设计，成本低 |
+| 373 | [torch.fx.experimental.symbolic\_shapes.constrain\_unify](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.constrain_unify.html#torch-fx-experimental-symbolic-shapes-constrain-unify) | - | 可新增，且框架底层有相关设计，成本低 |
+| 374 | [torch.fx.experimental.symbolic\_shapes.definitely\_false](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.definitely_false.html#torch-fx-experimental-symbolic-shapes-definitely-false) | - | 可新增，且框架底层有相关设计，成本低 |
+| 375 | [torch.fx.experimental.symbolic\_shapes.definitely\_true](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.definitely_true.html#torch-fx-experimental-symbolic-shapes-definitely-true) | - | 可新增，且框架底层有相关设计，成本低 |
+| 376 | [torch.fx.experimental.symbolic_shapes.DimConstraints](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.DimConstraints.html#torch.fx.experimental.symbolic_shapes.DimConstraints) | - | 可新增，且框架底层有相关设计，成本低 |
+| 377 | [torch.fx.experimental.symbolic_shapes.DimDynamic](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.DimDynamic.html#torch.fx.experimental.symbolic_shapes.DimDynamic) | - | 可新增，且框架底层有相关设计，成本低 |
+| 378 | [torch.fx.experimental.symbolic_shapes.EqualityConstraint](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.EqualityConstraint.html#torch.fx.experimental.symbolic_shapes.EqualityConstraint) | - | 可新增，且框架底层有相关设计，成本低 |
+| 379 | [torch.fx.experimental.symbolic\_shapes.guard\_size\_oblivious](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.guard_size_oblivious.html#torch-fx-experimental-symbolic-shapes-guard-size-oblivious) | - | 可新增，且框架底层有相关设计，成本低 |
+| 380 | [torch.fx.experimental.symbolic\_shapes.has\_free\_symbols](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.has_free_symbols.html#torch-fx-experimental-symbolic-shapes-has-free-symbols) | - | 可新增，且框架底层有相关设计，成本低 |
+| 381 | [torch.fx.experimental.symbolic\_shapes.hint\_int](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.hint_int.html#torch-fx-experimental-symbolic-shapes-hint-int) | - | 可新增，且框架底层有相关设计，成本低 |
+| 382 | [torch.fx.experimental.symbolic\_shapes.is\_concrete\_bool](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.is_concrete_bool.html#torch-fx-experimental-symbolic-shapes-is-concrete-bool) | - | 可新增，且框架底层有相关设计，成本低 |
+| 383 | [torch.fx.experimental.symbolic\_shapes.is\_concrete\_int](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.is_concrete_int.html#torch-fx-experimental-symbolic-shapes-is-concrete-int) | - | 可新增，且框架底层有相关设计，成本低 |
+| 384 | [torch.fx.experimental.symbolic\_shapes.parallel\_and](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.parallel_and.html#torch-fx-experimental-symbolic-shapes-parallel-and) | - | 可新增，且框架底层有相关设计，成本低 |
+| 385 | [torch.fx.experimental.symbolic\_shapes.parallel\_or](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.parallel_or.html#torch-fx-experimental-symbolic-shapes-parallel-or) | - | 可新增，且框架底层有相关设计，成本低 |
+| 386 | [torch.fx.experimental.symbolic_shapes.RelaxedUnspecConstraint](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.RelaxedUnspecConstraint.html#torch.fx.experimental.symbolic_shapes.RelaxedUnspecConstraint) | - | 可新增，且框架底层有相关设计，成本低 |
+| 387 | [torch.fx.experimental.symbolic_shapes.ShapeEnv](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.ShapeEnv.html#torch.fx.experimental.symbolic_shapes.ShapeEnv) | - | 可新增，且框架底层有相关设计，成本低 |
+| 388 | [torch.fx.experimental.symbolic_shapes.StatefulSymbolicContext](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.StatefulSymbolicContext.html#torch.fx.experimental.symbolic_shapes.StatefulSymbolicContext) | - | 可新增，且框架底层有相关设计，成本低 |
+| 389 | [torch.fx.experimental.symbolic_shapes.StatelessSymbolicContext](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.StatelessSymbolicContext.html#torch.fx.experimental.symbolic_shapes.StatelessSymbolicContext) | - | 可新增，且框架底层有相关设计，成本低 |
+| 390 | [torch.fx.experimental.symbolic\_shapes.statically\_known\_true](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.statically_known_true.html#torch-fx-experimental-symbolic-shapes-statically-known-true) | - | 可新增，且框架底层有相关设计，成本低 |
+| 391 | [torch.fx.experimental.symbolic_shapes.StrictMinMaxConstraint](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.StrictMinMaxConstraint.html#torch.fx.experimental.symbolic_shapes.StrictMinMaxConstraint) | - | 可新增，且框架底层有相关设计，成本低 |
+| 392 | [torch.fx.experimental.symbolic_shapes.SubclassSymbolicContext](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.SubclassSymbolicContext.html#torch.fx.experimental.symbolic_shapes.SubclassSymbolicContext) | - | 可新增，且框架底层有相关设计，成本低 |
+| 393 | [torch.fx.experimental.symbolic\_shapes.sym\_eq](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.sym_eq.html#torch-fx-experimental-symbolic-shapes-sym-eq) | - | 可新增，且框架底层有相关设计，成本低 |
+| 394 | [torch.fx.experimental.symbolic_shapes.SymbolicContext](https://pytorch.org/docs/stable/generated/torch.fx.experimental.symbolic_shapes.SymbolicContext.html#torch.fx.experimental.symbolic_shapes.SymbolicContext) | - | 可新增，且框架底层有相关设计，成本低 |
+| 395 | [torch.jit.interface](https://pytorch.org/docs/stable/generated/torch.jit.interface.html#torch-jit-interface) | - | 可新增，且框架底层有相关设计，成本低 |
+| 396 | [torch.jit.onednn\_fusion\_enabled](https://pytorch.org/docs/stable/generated/torch.jit.onednn_fusion_enabled.html#torch-jit-onednn-fusion-enabled) | - | 可新增，且框架底层有相关设计，成本低 |
+| 397 | [torch.jit.ScriptFunction](https://pytorch.org/docs/stable/generated/torch.jit.ScriptFunction.html#torch.jit.ScriptFunction) | - | 可新增，且框架底层有相关设计，成本低 |
+| 398 | [torch.jit.strict_fusion](https://pytorch.org/docs/stable/generated/torch.jit.strict_fusion.html#torch.jit.strict_fusion) | - | 可新增，且框架底层有相关设计，成本低 |
+| 399 | [torch.sym_float](https://pytorch.org/docs/stable/generated/torch.sym_float.html#torch-sym-float) | - | 可新增，且框架底层有相关设计，成本低 |
+| 400 | [torch.sym_int](https://pytorch.org/docs/stable/generated/torch.sym_int.html#torch-sym-int) | - | 可新增，且框架底层有相关设计，成本低 |
+| 401 | [torch.sym_ite](https://pytorch.org/docs/stable/generated/torch.sym_ite.html#torch-sym-ite) | - | 可新增，且框架底层有相关设计，成本低 |
+| 402 | [torch.sym_max](https://pytorch.org/docs/stable/generated/torch.sym_max.html#torch-sym-max) | - | 可新增，且框架底层有相关设计，成本低 |
+| 403 | [torch.sym_min](https://pytorch.org/docs/stable/generated/torch.sym_min.html#torch-sym-min) | - | 可新增，且框架底层有相关设计，成本低 |
+| 404 | [torch.sym_not](https://pytorch.org/docs/stable/generated/torch.sym_not.html#torch-sym-not) | - | 可新增，且框架底层有相关设计，成本低 |
+| 405 | [torch.SymBool](https://pytorch.org/docs/stable/torch.html#torch.SymBool) | - | 可新增，且框架底层有相关设计，成本低 |
+| 406 | [torch.SymFloat](https://pytorch.org/docs/stable/torch.html#torch.SymFloat) | - | 可新增，且框架底层有相关设计，成本低 |
+| 407 | [torch.SymInt](https://pytorch.org/docs/stable/torch.html#torch.SymInt) | - | 可新增，且框架底层有相关设计，成本低 |
+| 408 | [torch.cpu.current_stream](https://pytorch.org/docs/stable/generated/torch.cpu.current_stream.html#torch.cpu.current_stream) | - | 可新增，但框架底层无相关设计，成本高 |
+| 409 | [torch.cpu.device_count](https://pytorch.org/docs/stable/generated/torch.cpu.device_count.html#torch-cpu-device-count) | - | 可新增，但框架底层无相关设计，成本高 |
+| 410 | [torch.cpu.is_available](https://pytorch.org/docs/stable/generated/torch.cpu.is_available.html#torch-cpu-is-available) | - | 可新增，但框架底层无相关设计，成本高 |
+| 411 | [torch.cpu.stream](https://pytorch.org/docs/stable/generated/torch.cpu.stream.html#torch-cpu-stream) | - | 可新增，但框架底层无相关设计，成本高 |
+| 412 | [torch.cpu.Stream](https://pytorch.org/docs/stable/generated/torch.cpu.Stream.html#torch.cpu.Stream) | - | 可新增，但框架底层无相关设计，成本高 |
+| 413 | [torch.cpu.StreamContext](https://pytorch.org/docs/stable/generated/torch.cpu.StreamContext.html#torch.cpu.StreamContext) | - | 可新增，但框架底层无相关设计，成本高 |
+| 414 | [torch.cpu.synchronize](https://pytorch.org/docs/stable/generated/torch.cpu.synchronize.html#torch-cpu-synchronize) | - | 可新增，但框架底层无相关设计，成本高 |
+| 415 | [torch.cuda.change\_current\_allocator](https://pytorch.org/docs/stable/generated/torch.cuda.change_current_allocator.html#torch-cuda-change-current-allocator) | - | 可新增，但框架底层无相关设计，成本高 |
+| 416 | [torch.cuda.clock_rate](https://pytorch.org/docs/stable/generated/torch.cuda.clock_rate.html#torch-cuda-clock-rate) | - | 可新增，且框架底层有相关设计，成本低 |
+| 417 | [torch.cuda.CUDAPluggableAllocator](https://pytorch.org/docs/stable/generated/torch.cuda.CUDAPluggableAllocator.html#torch.cuda.CUDAPluggableAllocator) | - | 可新增，但框架底层无相关设计，成本高 |
+| 418 | [torch.cuda.current\_blas\_handle](https://pytorch.org/docs/stable/generated/torch.cuda.current_blas_handle.html#torch-cuda-current-blas-handle) | - | 可新增，且框架底层有相关设计，成本低 |
+| 419 | [torch.cuda.get\_gencode\_flags](https://pytorch.org/docs/stable/generated/torch.cuda.get_gencode_flags.html#torch-cuda-get-gencode-flags) | - | 可新增，且框架底层有相关设计，成本低 |
+| 420 | [torch.cuda.graph](https://pytorch.org/docs/stable/cuda.html#module-torch.cuda.graphs) | - | 可新增，但框架底层无相关设计，成本高 |
+| 421 | [torch.cuda.jiterator.\_create\_multi\_output\_jit\_fn](https://pytorch.org/docs/stable/generated/torch.cuda.jiterator._create_multi_output_jit_fn.html#torch-cuda-jiterator-create-multi-output-jit-fn) | - | 可新增，且框架底层有相关设计，成本低 |
+| 422 | [torch.cuda.make\_graphed\_callables](https://pytorch.org/docs/stable/generated/torch.cuda.make_graphed_callables.html#torch-cuda-make-graphed-callables) | - | 可新增，且框架底层有相关设计，成本低 |
+| 423 | [torch.cuda.memory.\_dump\_snapshot](https://pytorch.org/docs/stable/torch_cuda_memory.html#torch.cuda.memory._dump_snapshot) | - | 可新增，且框架底层有相关设计，成本低 |
+| 424 | [torch.cuda.memory._snapshot](https://pytorch.org/docs/stable/torch_cuda_memory.html#torch.cuda.memory._snapshot) | - | 可新增，且框架底层有相关设计，成本低 |
+| 425 | [torch.cuda.power_draw](https://pytorch.org/docs/stable/generated/torch.cuda.power_draw.html#torch-cuda-power-draw) | - | 可新增，但框架底层无相关设计，成本高 |
+| 426 | [torch.cuda.temperature](https://pytorch.org/docs/stable/generated/torch.cuda.temperature.html#torch-cuda-temperature) | - | 可新增，且框架底层有相关设计，成本低 |
+| 427 | [torch.distributed.algorithms.ddp\_comm\_hooks.debugging\_hooks.noop\_hook](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.algorithms.ddp_comm_hooks.debugging_hooks.noop_hook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 428 | [torch.distributed.algorithms.ddp\_comm\_hooks.default\_hooks.allreduce\_hook](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.algorithms.ddp_comm_hooks.default_hooks.allreduce_hook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 429 | [torch.distributed.algorithms.ddp\_comm\_hooks.default\_hooks.bf16\_compress\_hook](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.algorithms.ddp_comm_hooks.default_hooks.bf16_compress_hook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 430 | [torch.distributed.algorithms.ddp\_comm\_hooks.default\_hooks.bf16\_compress\_wrapper](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.algorithms.ddp_comm_hooks.default_hooks.bf16_compress_wrapper) | - | 可新增，且框架底层有相关设计，成本低 |
+| 431 | [torch.distributed.algorithms.ddp\_comm\_hooks.default\_hooks.fp16\_compress\_hook](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.algorithms.ddp_comm_hooks.default_hooks.fp16_compress_hook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 432 | [torch.distributed.algorithms.ddp\_comm\_hooks.default\_hooks.fp16\_compress\_wrapper](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.algorithms.ddp_comm_hooks.default_hooks.fp16_compress_wrapper) | - | 可新增，且框架底层有相关设计，成本低 |
+| 433 | [torch.distributed.algorithms.ddp\_comm\_hooks.powerSGD\_hook.batched\_powerSGD\_hook](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.algorithms.ddp_comm_hooks.powerSGD_hook.batched_powerSGD_hook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 434 | [torch.distributed.algorithms.ddp\_comm\_hooks.powerSGD\_hook.powerSGD\_hook](https://pytorch.org/docs/stable/distributed.html#module-torch.distributed.algorithms.ddp_comm_hooks.powerSGD_hook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 435 | [torch.distributed.GradBucket](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.GradBucket) | - | 可新增，且框架底层有相关设计，成本低 |
+| 436 | [torch.distributed.GradBucket.buffer](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.GradBucket.buffer) | - | 可新增，且框架底层有相关设计，成本低 |
+| 437 | [torch.distributed.GradBucket.gradients](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.GradBucket.gradients) | - | 可新增，且框架底层有相关设计，成本低 |
+| 438 | [torch.distributed.GradBucket.index](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.GradBucket.index) | - | 可新增，且框架底层有相关设计，成本低 |
+| 439 | [torch.distributed.GradBucket.is_last](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.GradBucket.is_last) | - | 可新增，且框架底层有相关设计，成本低 |
+| 440 | [torch.distributed.GradBucket.parameters](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.GradBucket.parameters) | - | 可新增，且框架底层有相关设计，成本低 |
+| 441 | [torch.distributed.GradBucket.set_buffer](https://pytorch.org/docs/stable/ddp_comm_hooks.html#torch.distributed.GradBucket.set_buffer) | - | 可新增，且框架底层有相关设计，成本低 |
+| 442 | [torch.distributed.algorithms.Join](https://pytorch.org/docs/stable/distributed.algorithms.join.html#torch.distributed.algorithms.Join) | - | 可新增，且框架底层有相关设计，成本低 |
+| 443 | [torch.distributed.algorithms.Joinable](https://pytorch.org/docs/stable/distributed.algorithms.join.html#torch.distributed.algorithms.Joinable) | - | 可新增，且框架底层有相关设计，成本低 |
+| 444 | [torch.distributed.algorithms.JoinHook](https://pytorch.org/docs/stable/distributed.algorithms.join.html#torch.distributed.algorithms.JoinHook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 445 | [torch.distributed.autograd.context](https://pytorch.org/docs/stable/rpc.html#torch.distributed.autograd.context) | - | 可新增，且框架底层有相关设计，成本低 |
+| 446 | [torch.distributed.autograd.get_gradients](https://pytorch.org/docs/stable/rpc.html#torch.distributed.autograd.get_gradients) | - | 可新增，且框架底层有相关设计，成本低 |
+| 447 | [torch.distributed.breakpoint](https://pytorch.org/docs/stable/distributed.html#torch.distributed.breakpoint) | - | 可新增，且框架底层有相关设计，成本低 |
+| 448 | [torch.distributed.DistBackendError](https://pytorch.org/docs/stable/distributed.html#torch.distributed.DistBackendError) | - | 可新增，且框架底层有相关设计，成本低 |
+| 449 | [torch.distributed.DistError](https://pytorch.org/docs/stable/distributed.html#torch.distributed.DistError) | - | 可新增，且框架底层有相关设计，成本低 |
+| 450 | [torch.distributed.DistNetworkError](https://pytorch.org/docs/stable/distributed.html#torch.distributed.DistNetworkError) | - | 可新增，且框架底层有相关设计，成本低 |
+| 451 | [torch.distributed.DistStoreError](https://pytorch.org/docs/stable/distributed.html#torch.distributed.DistStoreError) | - | 可新增，且框架底层有相关设计，成本低 |
+| 452 | [torch.distributed.checkpoint.DefaultLoadPlanner](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.DefaultLoadPlanner) | - | 可新增，且框架底层有相关设计，成本低 |
+| 453 | [torch.distributed.checkpoint.DefaultSavePlanner](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.DefaultSavePlanner) | - | 可新增，且框架底层有相关设计，成本低 |
+| 454 | [torch.distributed.checkpoint.filesystem.FileSystemReader](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.FileSystemReader) | - | 可新增，且框架底层有相关设计，成本低 |
+| 455 | [torch.distributed.checkpoint.filesystem.FileSystemWriter](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.FileSystemWriter) | - | 可新增，且框架底层有相关设计，成本低 |
+| 456 | [torch.distributed.checkpoint.format_utils.BroadcastingTorchSaveReader](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.format_utils.BroadcastingTorchSaveReader) | - | 可新增，且框架底层有相关设计，成本低 |
+| 457 | [torch.distributed.checkpoint.format\_utils.dcp\_to\_torch\_save](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.format_utils.dcp_to_torch_save) | - | 可新增，且框架底层有相关设计，成本低 |
+| 458 | [torch.distributed.checkpoint.format_utils.DynamicMetaLoadPlanner](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.format_utils.DynamicMetaLoadPlanner) | - | 可新增，且框架底层有相关设计，成本低 |
+| 459 | [torch.distributed.checkpoint.format\_utils.torch\_save\_to\_dcp](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.format_utils.torch_save_to_dcp) | - | 可新增，且框架底层有相关设计，成本低 |
+| 460 | [torch.distributed.checkpoint.fsspec.FsspecReader](https://pytorch.org/docs/2.3/distributed.checkpoint.html#torch.distributed.checkpoint.fsspec.FsspecReader) | - | 废弃 API ，无需新增 |
+| 461 | [torch.distributed.checkpoint.fsspec.FsspecWriter](https://pytorch.org/docs/2.3/distributed.checkpoint.html#torch.distributed.checkpoint.fsspec.FsspecWriter) | - | 废弃 API ，无需新增 |
+| 462 | [torch.distributed.checkpoint.LoadPlan](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.LoadPlan) | - | 可新增，且框架底层有相关设计，成本低 |
+| 463 | [torch.distributed.checkpoint.LoadPlanner](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.LoadPlanner) | - | 可新增，且框架底层有相关设计，成本低 |
+| 464 | [torch.distributed.checkpoint.ReadItem](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.ReadItem) | - | 可新增，且框架底层有相关设计，成本低 |
+| 465 | [torch.distributed.checkpoint.SavePlan](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.SavePlan) | - | 可新增，且框架底层有相关设计，成本低 |
+| 466 | [torch.distributed.checkpoint.SavePlanner](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.SavePlanner) | - | 可新增，且框架底层有相关设计，成本低 |
+| 467 | [torch.distributed.checkpoint.state\_dict.get\_state\_dict](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict) | - | 可新增，且框架底层有相关设计，成本低 |
+| 468 | [torch.distributed.checkpoint.state\_dict.set\_state\_dict](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.set_state_dict) | - | 可新增，且框架底层有相关设计，成本低 |
+| 469 | [torch.distributed.checkpoint.state\_dict\_loader.load](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict_loader.load) | - | 可新增，且框架底层有相关设计，成本低 |
+| 470 | [torch.distributed.checkpoint.state\_dict\_loader.load\_state\_dict](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict_loader.load_state_dict) | - | 可新增，且框架底层有相关设计，成本低 |
+| 471 | [torch.distributed.checkpoint.state\_dict\_saver.async\_save](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict_saver.async_save) | - | 可新增，且框架底层有相关设计，成本低 |
+| 472 | [torch.distributed.checkpoint.state\_dict\_saver.save](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict_saver.save) | - | 可新增，且框架底层有相关设计，成本低 |
+| 473 | [torch.distributed.checkpoint.state\_dict\_saver.save\_state\_dict](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict_saver.save_state_dict) | - | 可新增，且框架底层有相关设计，成本低 |
+| 474 | [torch.distributed.checkpoint.stateful.Stateful](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.stateful.Stateful) | - | 可新增，且框架底层有相关设计，成本低 |
+| 475 | [torch.distributed.checkpoint.StorageReader](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.StorageReader) | - | 可新增，且框架底层有相关设计，成本低 |
+| 476 | [torch.distributed.checkpoint.StorageWriter](https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.StorageWriter) | - | 可新增，且框架底层有相关设计，成本低 |
+| 477 | [torch.distributed.is\_mpi\_available](https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_mpi_available) | - | 可新增，且框架底层有相关设计，成本低 |
+| 478 | [torch.distributed.is\_torchelastic\_launched](https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_torchelastic_launched) | - | 可新增，且框架底层有相关设计，成本低 |
+| 479 | [torch.distributed.Work](https://pytorch.org/docs/stable/distributed.html#torch.distributed.Work) | - | 可新增，且框架底层有相关设计，成本低 |
+| 480 | [torch.distributed.HashStore](https://pytorch.org/docs/stable/distributed.html#torch.distributed.HashStore) | - | 可新增，且框架底层有相关设计，成本低 |
+| 481 | [torch.distributed.Store](https://pytorch.org/docs/stable/distributed.html#torch.distributed.Store) | - | 可新增，且框架底层有相关设计，成本低 |
+| 482 | [torch.distributed.Store.add](https://pytorch.org/docs/stable/distributed.html#torch.distributed.Store.add) | - | 可新增，且框架底层有相关设计，成本低 |
+| 483 | [torch.distributed.Store.compare_set](https://pytorch.org/docs/stable/distributed.html#torch.distributed.Store.compare_set) | - | 可新增，且框架底层有相关设计，成本低 |
+| 484 | [torch.distributed.Store.delete_key](https://pytorch.org/docs/stable/distributed.html#torch.distributed.Store.delete_key) | - | 可新增，且框架底层有相关设计，成本低 |
+| 485 | [torch.distributed.Store.get](https://pytorch.org/docs/stable/distributed.html#torch.distributed.Store.get) | - | 可新增，且框架底层有相关设计，成本低 |
+| 486 | [torch.distributed.Store.num_keys](https://pytorch.org/docs/stable/distributed.html#torch.distributed.Store.num_keys) | - | 可新增，且框架底层有相关设计，成本低 |
+| 487 | [torch.distributed.Store.set](https://pytorch.org/docs/stable/distributed.html#torch.distributed.Store.set) | - | 可新增，且框架底层有相关设计，成本低 |
+| 488 | [torch.distributed.Store.set_timeout](https://pytorch.org/docs/stable/distributed.html#torch.distributed.Store.set_timeout) | - | 可新增，且框架底层有相关设计，成本低 |
+| 489 | [torch.distributed.Store.wait](https://pytorch.org/docs/stable/distributed.html#torch.distributed.Store.wait) | - | 可新增，且框架底层有相关设计，成本低 |
+| 490 | [torch.distributed.fsdp.BackwardPrefetch](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.BackwardPrefetch) | - | 可新增，且框架底层有相关设计，成本低 |
+| 491 | [torch.distributed.fsdp.LocalOptimStateDictConfig](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.LocalOptimStateDictConfig) | - | 可新增，且框架底层有相关设计，成本低 |
+| 492 | [torch.distributed.fsdp.OptimStateDictConfig](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.OptimStateDictConfig) | - | 可新增，且框架底层有相关设计，成本低 |
+| 493 | [torch.distributed.fsdp.ShardedOptimStateDictConfig](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.ShardedOptimStateDictConfig) | - | 可新增，且框架底层有相关设计，成本低 |
+| 494 | [torch.distributed.fsdp.ShardedStateDictConfig](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.ShardedStateDictConfig) | - | 可新增，且框架底层有相关设计，成本低 |
+| 495 | [torch.distributed.fsdp.ShardingStrategy](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.ShardingStrategy) | - | 可新增，且框架底层有相关设计，成本低 |
+| 496 | [torch.distributed.fsdp.StateDictConfig](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.StateDictConfig) | - | 可新增，且框架底层有相关设计，成本低 |
+| 497 | [torch.distributed.fsdp.StateDictSettings](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.StateDictSettings) | - | 可新增，且框架底层有相关设计，成本低 |
+| 498 | [torch.distributed.nn.api.remote_module.RemoteModule](https://pytorch.org/docs/stable/rpc.html#torch.distributed.nn.api.remote_module.RemoteModule) | - | 可新增，且框架底层有相关设计，成本低 |
+| 499 | [torch.distributed.rpc.BackendType](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.BackendType) | - | 可新增，且框架底层有相关设计，成本低 |
+| 500 | [torch.distributed.rpc.PyRRef](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.PyRRef) | - | 可新增，且框架底层有相关设计，成本低 |
+| 501 | [torch.distributed.rpc.RpcBackendOptions](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.RpcBackendOptions) | - | 可新增，且框架底层有相关设计，成本低 |
+| 502 | [torch.distributed.optim.PostLocalSGDOptimizer](https://pytorch.org/docs/stable/distributed.optim.html#torch.distributed.optim.PostLocalSGDOptimizer) | - | 可新增，且框架底层有相关设计，成本低 |
+| 503 | [torch.distributed.pipeline.sync.skip.skippable.pop](https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.skip.skippable.pop) | - | 废弃 API ，无需新增 |
+| 504 | [torch.distributed.pipeline.sync.skip.skippable.skippable](https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.skip.skippable.skippable) | - | 废弃 API ，无需新增 |
+| 505 | [torch.distributed.pipeline.sync.skip.skippable.stash](https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.skip.skippable.stash) | - | 废弃 API ，无需新增 |
+| 506 | [torch.distributed.pipeline.sync.skip.skippable.verify_skippables](https://pytorch.org/docs/2.3/pipeline.html#torch.distributed.pipeline.sync.skip.skippable.verify_skippables) | - | 废弃 API ，无需新增 |
+| 507 | [torch.distributed.tensor.parallel.loss_parallel](https://pytorch.org/docs/stable/distributed.tensor.parallel.html#torch.distributed.tensor.parallel.loss_parallel) | - | 可新增，且框架底层有相关设计，成本低 |
+| 508 | [torch.distributed.tensor.parallel.PrepareModuleInput](https://pytorch.org/docs/stable/distributed.tensor.parallel.html#torch.distributed.tensor.parallel.PrepareModuleInput) | - | 可新增，且框架底层有相关设计，成本低 |
+| 509 | [torch.distributed.tensor.parallel.PrepareModuleOutput](https://pytorch.org/docs/stable/distributed.tensor.parallel.html#torch.distributed.tensor.parallel.PrepareModuleOutput) | - | 可新增，且框架底层有相关设计，成本低 |
+| 510 | [torch.distributed.tensor.parallel.SequenceParallel](https://pytorch.org/docs/stable/distributed.tensor.parallel.html#torch.distributed.tensor.parallel.SequenceParallel) | - | 可新增，且框架底层有相关设计，成本低 |
+| 511 | [torch.distributions.fishersnedecor.FisherSnedecor](https://pytorch.org/docs/stable/distributions.html#torch.distributions.fishersnedecor.FisherSnedecor) | - | 可新增，且框架底层有相关设计，成本低 |
+| 512 | [torch.distributions.half_cauchy.HalfCauchy](https://pytorch.org/docs/stable/distributions.html#torch.distributions.half_cauchy.HalfCauchy) | - | 可新增，且框架底层有相关设计，成本低 |
+| 513 | [torch.distributions.half_normal.HalfNormal](https://pytorch.org/docs/stable/distributions.html#torch.distributions.half_normal.HalfNormal) | - | 可新增，且框架底层有相关设计，成本低 |
+| 514 | [torch.distributions.inverse_gamma.InverseGamma](https://pytorch.org/docs/stable/distributions.html#torch.distributions.inverse_gamma.InverseGamma) | - | 可新增，且框架底层有相关设计，成本低 |
+| 515 | [torch.distributions.kumaraswamy.Kumaraswamy](https://pytorch.org/docs/stable/distributions.html#torch.distributions.kumaraswamy.Kumaraswamy) | - | 可新增，且框架底层有相关设计，成本低 |
+| 516 | [torch.distributions.lowrank\_multivariate\_normal.LowRankMultivariateNormal](https://pytorch.org/docs/stable/distributions.html#torch.distributions.lowrank_multivariate_normal.LowRankMultivariateNormal) | - | 可新增，且框架底层有相关设计，成本低 |
+| 517 | [torch.distributions.mixture\_same\_family.MixtureSameFamily](https://pytorch.org/docs/stable/distributions.html#torch.distributions.mixture_same_family.MixtureSameFamily) | - | 可新增，且框架底层有相关设计，成本低 |
+| 518 | [torch.distributions.negative_binomial.NegativeBinomial](https://pytorch.org/docs/stable/distributions.html#torch.distributions.negative_binomial.NegativeBinomial) | - | 可新增，且框架底层有相关设计，成本低 |
+| 519 | [torch.distributions.pareto.Pareto](https://pytorch.org/docs/stable/distributions.html#torch.distributions.pareto.Pareto) | - | 可新增，且框架底层有相关设计，成本低 |
+| 520 | [torch.distributions.relaxed_bernoulli.LogitRelaxedBernoulli](https://pytorch.org/docs/stable/distributions.html#torch.distributions.relaxed_bernoulli.LogitRelaxedBernoulli) | - | 可新增，且框架底层有相关设计，成本低 |
+| 521 | [torch.distributions.relaxed_categorical.RelaxedOneHotCategorical](https://pytorch.org/docs/stable/distributions.html#torch.distributions.relaxed_categorical.RelaxedOneHotCategorical) | - | 可新增，且框架底层有相关设计，成本低 |
+| 522 | [torch.distributions.von_mises.VonMises](https://pytorch.org/docs/stable/distributions.html#torch.distributions.von_mises.VonMises) | - | 可新增，且框架底层有相关设计，成本低 |
+| 523 | [torch.distributions.weibull.Weibull](https://pytorch.org/docs/stable/distributions.html#torch.distributions.weibull.Weibull) | - | 可新增，且框架底层有相关设计，成本低 |
+| 524 | [torch.distributions.wishart.Wishart](https://pytorch.org/docs/stable/distributions.html#torch.distributions.wishart.Wishart) | - | 可新增，且框架底层有相关设计，成本低 |
+| 525 | [torch.dequantize](https://pytorch.org/docs/stable/generated/torch.dequantize.html#torch-dequantize) | - | 可新增，且框架底层有相关设计，成本低 |
+| 526 | [torch.quantized\_batch\_norm](https://pytorch.org/docs/stable/generated/torch.quantized_batch_norm.html#torch-quantized-batch-norm) | - | 可新增，且框架底层有相关设计，成本低 |
+| 527 | [torch.quantized\_max\_pool1d](https://pytorch.org/docs/stable/generated/torch.quantized_max_pool1d.html#torch-quantized-max-pool1d) | - | 可新增，且框架底层有相关设计，成本低 |
+| 528 | [torch.quantized\_max\_pool2d](https://pytorch.org/docs/stable/generated/torch.quantized_max_pool2d.html#torch-quantized-max-pool2d) | - | 可新增，且框架底层有相关设计，成本低 |
+| 529 | [torch.overrides.get\_ignored\_functions](https://pytorch.org/docs/stable/torch.overrides.html#torch.overrides.get_ignored_functions) | - | 可新增，但框架底层无相关设计，成本高 |
+| 530 | [torch.overrides.handle\_torch\_function](https://pytorch.org/docs/stable/torch.overrides.html#torch.overrides.handle_torch_function) | - | 可新增，但框架底层无相关设计，成本高 |
+| 531 | [torch.overrides.is\_tensor\_method\_or\_property](https://pytorch.org/docs/stable/torch.overrides.html#torch.overrides.is_tensor_method_or_property) | - | 可新增，但框架底层无相关设计，成本高 |
+| 532 | [torch.package.Directory](https://pytorch.org/docs/stable/package.html#torch.package.Directory) | - | 可新增，但框架底层无相关设计，成本高 |
+| 533 | [torch.package.EmptyMatchError](https://pytorch.org/docs/stable/package.html#torch.package.EmptyMatchError) | - | 可新增，但框架底层无相关设计，成本高 |
+| 534 | [torch.package.PackageExporter](https://pytorch.org/docs/stable/package.html#torch.package.PackageExporter) | - | 可新增，但框架底层无相关设计，成本高 |
+| 535 | [torch.package.PackagingError](https://pytorch.org/docs/stable/package.html#torch.package.PackagingError) | - | 可新增，且框架底层有相关设计，成本低 |
+| 536 | [torch.hspmm](https://pytorch.org/docs/stable/generated/torch.hspmm.html#torch-hspmm) | - | 可新增，且框架底层有相关设计，成本低 |
+| 537 | [torch.smm](https://pytorch.org/docs/stable/generated/torch.smm.html#torch-smm) | - | 可新增，且框架底层有相关设计，成本低 |
+| 538 | [torch.sparse.as\_sparse\_gradcheck](https://pytorch.org/docs/stable/generated/torch.sparse.as_sparse_gradcheck.html#torch-sparse-as-sparse-gradcheck) | - | 可新增，且框架底层有相关设计，成本低 |
+| 539 | [torch.sparse.check\_sparse\_tensor\_invariants](https://pytorch.org/docs/stable/generated/torch.sparse.check_sparse_tensor_invariants.html#torch.sparse.check_sparse_tensor_invariants) | - | 可新增，且框架底层有相关设计，成本低 |
+| 540 | [torch.sparse.spdiags](https://pytorch.org/docs/stable/generated/torch.sparse.spdiags.html#torch-sparse-spdiags) | - | 可新增，且框架底层有相关设计，成本低 |
+| 541 | [torch.sspaddmm](https://pytorch.org/docs/stable/generated/torch.sspaddmm.html#torch-sspaddmm) | - | 可新增，且框架底层有相关设计，成本低 |
+| 542 | [torch.library.fallthrough_kernel](https://pytorch.org/docs/stable/library.html#torch.library.fallthrough_kernel) | - | 可新增，且框架底层有相关设计，成本低 |
+| 543 | [torch.linalg.solve_ex](https://pytorch.org/docs/stable/generated/torch.linalg.solve_ex.html#torch-linalg-solve-ex) | - | 可新增，且框架底层有相关设计，成本低 |
+| 544 | [torch.monitor.Aggregation](https://pytorch.org/docs/stable/monitor.html#torch.monitor.Aggregation) | - | 实验阶段不稳定 API ，无需新增 |
+| 545 | [torch.monitor.data\_value\_t](https://pytorch.org/docs/stable/monitor.html#torch.monitor.data_value_t) | - | 实验阶段不稳定 API ，无需新增 |
+| 546 | [torch.monitor.EventHandlerHandle](https://pytorch.org/docs/stable/monitor.html#torch.monitor.EventHandlerHandle) | - | 实验阶段不稳定 API ，无需新增 |
+| 547 | [torch.monitor.TensorboardEventHandler](https://pytorch.org/docs/stable/monitor.html#torch.monitor.TensorboardEventHandler) | - | 实验阶段不稳定 API ，无需新增 |
+| 548 | [torch.nested.as\_nested\_tensor](https://pytorch.org/docs/stable/nested.html#torch.nested.as_nested_tensor) | - | 实验阶段不稳定 API ，无需新增 |
+| 549 | [torch.nested.to\_padded\_tensor](https://pytorch.org/docs/stable/nested.html#torch.nested.to_padded_tensor) | - | 实验阶段不稳定 API ，无需新增 |
+| 550 | [torch.mps.driver\_allocated\_memory](https://pytorch.org/docs/stable/generated/torch.mps.driver_allocated_memory.html#torch-mps-driver-allocated-memory) | - | 可新增，但框架底层无相关设计，成本高 |
+| 551 | [torch.mps.event.Event](https://pytorch.org/docs/stable/generated/torch.mps.event.Event.html#torch.mps.event.Event) | - | 可新增，但框架底层无相关设计，成本高 |
+| 552 | [torch.mps.get\_rng\_state](https://pytorch.org/docs/stable/generated/torch.mps.get_rng_state.html#torch-mps-get-rng-state) | - | 可新增，但框架底层无相关设计，成本高 |
+| 553 | [torch.mps.profiler.profile](https://pytorch.org/docs/stable/generated/torch.mps.profiler.profile.html#torch-mps-profiler-profile) | - | 可新增，但框架底层无相关设计，成本高 |
+| 554 | [torch.mps.seed](https://pytorch.org/docs/stable/generated/torch.mps.seed.html#torch-mps-seed) | - | 可新增，但框架底层无相关设计，成本高 |
+| 555 | [torch.mps.set\_per\_process\_memory\_fraction](https://pytorch.org/docs/stable/generated/torch.mps.set_per_process_memory_fraction.html#torch-mps-set-per-process-memory-fraction) | - | 可新增，但框架底层无相关设计，成本高 |
+| 556 | [torch.mps.set\_rng\_state](https://pytorch.org/docs/stable/generated/torch.mps.set_rng_state.html#torch-mps-set-rng-state) | - | 可新增，但框架底层无相关设计，成本高 |
+| 557 | [torch.nn.attention.bias](https://pytorch.org/docs/stable/nn.attention.bias.html#module-torch.nn.attention.bias) | - | 可新增，且框架底层有相关设计，成本低 |
+| 558 | [torch.nn.CircularPad1d](https://pytorch.org/docs/stable/generated/torch.nn.CircularPad1d.html#torch.nn.CircularPad1d) | - | 可新增，且框架底层有相关设计，成本低 |
+| 559 | [torch.nn.CircularPad2d](https://pytorch.org/docs/stable/generated/torch.nn.CircularPad2d.html#torch.nn.CircularPad2d) | - | 可新增，且框架底层有相关设计，成本低 |
+| 560 | [torch.nn.functional.lp_pool3d](https://pytorch.org/docs/stable/generated/torch.nn.functional.lp_pool3d.html#torch-nn-functional-lp-pool3d) | - | 可新增，且框架底层有相关设计，成本低 |
+| 561 | [torch.nn.LPPool3d](https://pytorch.org/docs/stable/generated/torch.nn.LPPool3d.html#torch.nn.LPPool3d) | - | 可新增，且框架底层有相关设计，成本低 |
+| 562 | [torch.nn.modules.lazy.LazyModuleMixin](https://pytorch.org/docs/stable/generated/torch.nn.modules.lazy.LazyModuleMixin.html#torch.nn.modules.lazy.LazyModuleMixin) | - | 可新增，且框架底层有相关设计，成本低 |
+| 563 | [torch.nn.modules.module.register\_module\_buffer\_registration\_hook](https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_buffer_registration_hook.html#torch-nn-modules-module-register-module-buffer-registration-hook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 564 | [torch.nn.modules.module.register\_module\_full\_backward\_hook](https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_full_backward_hook.html#torch-nn-modules-module-register-module-full-backward-hook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 565 | [torch.nn.modules.module.register\_module\_full\_backward\_pre\_hook](https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_full_backward_pre_hook.html#torch-nn-modules-module-register-module-full-backward-pre-hook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 566 | [torch.nn.modules.module.register\_module\_module\_registration\_hook](https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_module_registration_hook.html#torch-nn-modules-module-register-module-module-registration-hook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 567 | [torch.nn.modules.module.register\_module\_parameter\_registration\_hook](https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_parameter_registration_hook.html#torch-nn-modules-module-register-module-parameter-registration-hook) | - | 可新增，且框架底层有相关设计，成本低 |
+| 568 | [torch.nn.utils.parametrize.cached](https://pytorch.org/docs/stable/generated/torch.nn.utils.parametrize.cached.html#torch-nn-utils-parametrize-cached) | - | 可新增，且框架底层有相关设计，成本低 |
+| 569 | [torch.nn.utils.parametrize.ParametrizationList](https://pytorch.org/docs/stable/generated/torch.nn.utils.parametrize.ParametrizationList.html#torch.nn.utils.parametrize.ParametrizationList) | - | 可新增，且框架底层有相关设计，成本低 |
+| 570 | [torch.nn.utils.prune.BasePruningMethod](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.BasePruningMethod.html#torch.nn.utils.prune.BasePruningMethod) | - | 可新增，且框架底层有相关设计，成本低 |
+| 571 | [torch.nn.utils.prune.custom\_from\_mask](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.custom_from_mask.html#torch-nn-utils-prune-custom-from-mask) | - | 可新增，且框架底层有相关设计，成本低 |
+| 572 | [torch.nn.utils.prune.CustomFromMask](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.CustomFromMask.html#torch.nn.utils.prune.CustomFromMask) | - | 可新增，且框架底层有相关设计，成本低 |
+| 573 | [torch.nn.utils.prune.Identity](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.identity.html#torch-nn-utils-prune-identity) | - | 可新增，且框架底层有相关设计，成本低 |
+| 574 | [torch.nn.utils.prune.is_pruned](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.is_pruned.html#torch-nn-utils-prune-is-pruned) | - | 可新增，且框架底层有相关设计，成本低 |
+| 575 | [torch.nn.utils.prune.LnStructured](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.LnStructured.html#torch.nn.utils.prune.LnStructured) | - | 可新增，且框架底层有相关设计，成本低 |
+| 576 | [torch.nn.utils.prune.RandomUnstructured](https://pytorch.org/docs/stable/generated/torch.nn.utils.prune.RandomUnstructured.html#torch.nn.utils.prune.RandomUnstructured) | - | 可新增，且框架底层有相关设计，成本低 |
+| 577 | [torch.nn.utils.rnn.unpack_sequence](https://pytorch.org/docs/stable/generated/torch.nn.utils.rnn.unpack_sequence.html#torch-nn-utils-rnn-unpack-sequence) | - | 可新增，且框架底层有相关设计，成本低 |
+| 578 | [torch.nn.ZeroPad1d](https://pytorch.org/docs/stable/generated/torch.nn.ZeroPad1d.html#torch.nn.ZeroPad1d) | - | 可新增，且框架底层有相关设计，成本低 |
+| 579 | [torch.nn.ZeroPad3d](https://pytorch.org/docs/stable/generated/torch.nn.ZeroPad3d.html#torch.nn.ZeroPad3d) | - | 可新增，且框架底层有相关设计，成本低 |
+| 580 | [torch.profiler._KinetoProfile](https://pytorch.org/docs/stable/profiler.html#torch.profiler._KinetoProfile) | - | 可新增，且框架底层有相关设计，成本低 |
+| 581 | [torch.profiler.itt.is_available](https://pytorch.org/docs/stable/profiler.html#torch.profiler.itt.is_available) | - | 可新增，且框架底层有相关设计，成本低 |
+| 582 | [torch.profiler.itt.mark](https://pytorch.org/docs/stable/profiler.html#torch.profiler.itt.mark) | - | 可新增，且框架底层有相关设计，成本低 |
+| 583 | [torch.profiler.itt.range_pop](https://pytorch.org/docs/stable/profiler.html#torch.profiler.itt.range_pop) | - | 可新增，且框架底层有相关设计，成本低 |
+| 584 | [torch.profiler.itt.range_push](https://pytorch.org/docs/stable/profiler.html#torch.profiler.itt.range_push) | - | 可新增，且框架底层有相关设计，成本低 |
+| 585 | [torch.special.airy_ai](https://pytorch.org/docs/stable/special.html#torch.special.airy_ai) | - | 可新增，且框架底层有相关设计，成本低 |
+| 586 | [torch.special.bessel_j0](https://pytorch.org/docs/stable/special.html#torch.special.bessel_j0) | - | 可新增，且框架底层有相关设计，成本低 |
+| 587 | [torch.special.bessel_j1](https://pytorch.org/docs/stable/special.html#torch.special.bessel_j1) | - | 可新增，且框架底层有相关设计，成本低 |
+| 588 | [torch.special.scaled\_modified\_bessel\_k0](https://pytorch.org/docs/stable/special.html#torch.special.scaled_modified_bessel_k0) | - | 可新增，且框架底层有相关设计，成本低 |
+| 589 | [torch.special.scaled\_modified\_bessel\_k1](https://pytorch.org/docs/stable/special.html#torch.special.scaled_modified_bessel_k1) | - | 可新增，且框架底层有相关设计，成本低 |
+| 590 | [torch.special.spherical\_bessel\_j0](https://pytorch.org/docs/stable/special.html#torch.special.spherical_bessel_j0) | - | 可新增，且框架底层有相关设计，成本低 |
+| 591 | [torch.Tensor.conj\_physical\_](https://pytorch.org/docs/stable/generated/torch.Tensor.conj_physical_.html#torch-tensor-conj-physical) | - | 可新增，且框架底层有相关设计，成本低 |
+| 592 | [torch.Tensor.is_meta](https://pytorch.org/docs/stable/generated/torch.Tensor.is_meta.html#torch-tensor-is-meta) | - | 可新增，且框架底层有相关设计，成本低 |
+| 593 | [torch.Tensor.is_quantized](https://pytorch.org/docs/stable/generated/torch.Tensor.is_quantized.html#torch-tensor-is-quantized) | - | 可新增，且框架底层有相关设计，成本低 |
+| 594 | [torch.Tensor.module_load](https://pytorch.org/docs/stable/generated/torch.Tensor.module_load.html#torch-tensor-module-load) | - | 可新增，但框架底层无相关设计，成本高 |
+| 595 | [torch.Tensor.nextafter_](https://pytorch.org/docs/stable/generated/torch.Tensor.nextafter_.html#torch-tensor-nextafter) | - | 可新增，且框架底层有相关设计，成本低 |
+| 596 | [torch.Tensor.retains_grad](https://pytorch.org/docs/stable/generated/torch.Tensor.retains_grad.html#torch-tensor-retains-grad) | - | 可新增，且框架底层有相关设计，成本低 |
+| 597 | [torch.Tensor.smm](https://pytorch.org/docs/stable/generated/torch.Tensor.smm.html#torch-tensor-smm) | - | 可新增，且框架底层有相关设计，成本低 |
+| 598 | [torch.utils.benchmark.CallgrindStats](https://pytorch.org/docs/stable/benchmark_utils.html#torch.utils.benchmark.CallgrindStats) | - | 可新增，且框架底层有相关设计，成本低 |
+| 599 | [torch.utils.benchmark.FunctionCounts](https://pytorch.org/docs/stable/benchmark_utils.html#torch.utils.benchmark.FunctionCounts) | - | 可新增，且框架底层有相关设计，成本低 |
+| 600 | [torch.utils.benchmark.Measurement](https://pytorch.org/docs/stable/benchmark_utils.html#torch.utils.benchmark.Measurement) | - | 可新增，且框架底层有相关设计，成本低 |
+| 601 | [torch.utils.checkpoint.set\_checkpoint\_debug\_enabled](https://pytorch.org/docs/stable/checkpoint.html#torch.utils.checkpoint.set_checkpoint_debug_enabled) | - | 可新增，且框架底层有相关设计，成本低 |
+| 602 | [torch.utils.cpp\_extension.get\_compiler\_abi\_compatibility\_and\_version](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.get_compiler_abi_compatibility_and_version) | - | 可新增，且框架底层有相关设计，成本低 |
+| 603 | [torch.utils.cpp\_extension.is\_ninja\_available](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.is_ninja_available) | - | 可新增，且框架底层有相关设计，成本低 |
+| 604 | [torch.utils.data.default_convert](https://pytorch.org/docs/stable/data.html#torch.utils.data.default_convert) | - | 可新增，且框架底层有相关设计，成本低 |
+| 605 | [torch.utils.generate\_methods\_for\_privateuse1\_backend](https://pytorch.org/docs/stable/generated/torch.utils.generate_methods_for_privateuse1_backend.html#torch-utils-generate-methods-for-privateuse1-backend) | - | 可新增，且框架底层有相关设计，成本低 |
+| 606 | [torch.utils.get\_cpp\_backtrace](https://pytorch.org/docs/stable/generated/torch.utils.get_cpp_backtrace.html#torch-utils-get-cpp-backtrace) | - | 可新增，且框架底层有相关设计，成本低 |
+| 607 | [torch.utils.rename\_privateuse1\_backend](https://pytorch.org/docs/stable/generated/torch.utils.rename_privateuse1_backend.html#torch-utils-rename-privateuse1-backend) | - | 可新增，且框架底层有相关设计，成本低 |
+| 608 | [torch.xpu.current_stream](https://pytorch.org/docs/stable/generated/torch.xpu.current_stream.html#torch-xpu-current-stream) | - | 可新增，且框架底层有相关设计，成本低 |
+| 609 | [torch.xpu.device](https://pytorch.org/docs/stable/generated/torch.xpu.device.html#torch.xpu.device) | - | 可新增，且框架底层有相关设计，成本低 |
+| 610 | [torch.xpu.device_of](https://pytorch.org/docs/stable/generated/torch.xpu.device_of.html#torch.xpu.device_of) | - | 可新增，且框架底层有相关设计，成本低 |
+| 611 | [torch.xpu.Event](https://pytorch.org/docs/stable/generated/torch.xpu.Event.html#torch.xpu.Event) | - | 可新增，且框架底层有相关设计，成本低 |
+| 612 | [torch.xpu.get\_device\_capability](https://pytorch.org/docs/stable/generated/torch.xpu.get_device_capability.html#torch-xpu-get-device-capability) | - | 可新增，且框架底层有相关设计，成本低 |
+| 613 | [torch.xpu.init](https://pytorch.org/docs/stable/generated/torch.xpu.init.html#torch-xpu-init) | - | 可新增，且框架底层有相关设计，成本低 |
+| 614 | [torch.xpu.initial_seed](https://pytorch.org/docs/stable/generated/torch.xpu.initial_seed.html#torch-xpu-initial-seed) | - | 可新增，且框架底层有相关设计，成本低 |
+| 615 | [torch.xpu.is_initialized](https://pytorch.org/docs/stable/generated/torch.xpu.is_initialized.html#torch-xpu-is-initialized) | - | 可新增，且框架底层有相关设计，成本低 |
+| 616 | [torch.xpu.seed](https://pytorch.org/docs/stable/generated/torch.xpu.seed.html#torch-xpu-seed) | - | 可新增，且框架底层有相关设计，成本低 |
+| 617 | [torch.xpu.seed_all](https://pytorch.org/docs/stable/generated/torch.xpu.seed_all.html#torch-xpu-seed-all) | - | 可新增，且框架底层有相关设计，成本低 |
+| 618 | [torch.xpu.set_stream](https://pytorch.org/docs/stable/generated/torch.xpu.set_stream.html#torch-xpu-set-stream) | - | 可新增，且框架底层有相关设计，成本低 |
+| 619 | [torch.xpu.stream](https://pytorch.org/docs/stable/generated/torch.xpu.stream.html#torch-xpu-stream) | - | 可新增，且框架底层有相关设计，成本低 |
+| 620 | [torch.xpu.Stream](https://pytorch.org/docs/stable/generated/torch.xpu.Stream.html#torch.xpu.Stream) | - | 可新增，且框架底层有相关设计，成本低 |
+| 621 | [torch.xpu.StreamContext](https://pytorch.org/docs/stable/generated/torch.xpu.StreamContext.html#torch.xpu.StreamContext) | - | 可新增，且框架底层有相关设计，成本低 |
+| 622 | [torch.geqrf](https://pytorch.org/docs/stable/generated/torch.geqrf.html#torch-geqrf) | - | 可新增，且框架底层有相关设计，成本低 |
+| 623 | [torch.Tensor.geqrf](https://pytorch.org/docs/stable/generated/torch.Tensor.geqrf.html#torch-tensor-geqrf) | - | 可新增，且框架底层有相关设计，成本低 |
+| 624 | [torch.distributions.constraint_registry.ConstraintRegistry](https://pytorch.org/docs/stable/distributions.html#torch.distributions.constraint_registry.ConstraintRegistry) | - | 可新增，且框架底层有相关设计，成本低 |
+| 625 | [torch.distributed.rpc.functions.async_execution](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.functions.async_execution) | - | 可新增，且框架底层有相关设计，成本低 |
+| 626 | [torch.Tensor.sparse\_resize\_and\_clear\_](https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_resize_and_clear_.html#torch-tensor-sparse-resize-and-clear) | - | 可新增，且框架底层有相关设计，成本低 |
+| 627 | [torch.nn.utils.parametrize.is_parametrized](https://pytorch.org/docs/stable/generated/torch.nn.utils.parametrize.is_parametrized.html#torch-nn-utils-parametrize-is-parametrized) | - | 可新增，且框架底层有相关设计，成本低 |
+| 628 | [torch.autograd.profiler.profile.self\_cpu\_time\_total](https://pytorch.org/docs/stable/generated/torch.autograd.profiler.profile.self_cpu_time_total.html#torch-autograd-profiler-profile-self-cpu-time-total) | - | 可新增，且框架底层有相关设计，成本低 |
+| 629 | [torch.profiler.ProfilerActivity](https://pytorch.org/docs/stable/profiler.html#torch.profiler.ProfilerActivity) | - | 可新增，且框架底层有相关设计，成本低 |
+| 630 | [torch.profiler.ProfilerAction](https://pytorch.org/docs/stable/profiler.html#torch.profiler.ProfilerAction) | - | 可新增，且框架底层有相关设计，成本低 |
+| 631 | [torch.resolve_conj](https://pytorch.org/docs/stable/generated/torch.resolve_conj.html#torch.resolve_conj) | - | 可新增，但框架底层无相关设计，成本高 |
+| 632 | [torch.resolve_neg](https://pytorch.org/docs/stable/generated/torch.resolve_neg.html#torch-resolve-neg) | - | 可新增，但框架底层无相关设计，成本高 |
+| 633 | [torch.autograd.function.FunctionCtx.mark_dirty](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.mark_dirty.html#torch-autograd-function-functionctx-mark-dirty) | - | 可新增，且框架底层有相关设计，成本低 |
+| 634 | [torch.is_conj](https://pytorch.org/docs/stable/generated/torch.is_conj.html#torch-is-conj) | - | 可新增，但框架底层无相关设计，成本高 |
+| 635 | [torch.cuda.memory_usage](https://pytorch.org/docs/stable/generated/torch.cuda.memory_usage.html#torch-cuda-memory-usage) | - | 可新增，且框架底层有相关设计，成本低 |
+| 636 | [torch.layout](https://pytorch.org/docs/stable/tensor_attributes.html#torch.layout) | - | 可新增，但框架底层无相关设计，成本高 |
+| 637 | [torch.cuda.is\_current\_stream\_capturing](https://pytorch.org/docs/stable/generated/torch.cuda.is_current_stream_capturing.html#torch-cuda-is-current-stream-capturing) | - | 可新增，且框架底层有相关设计，成本低 |
+| 638 | [torch.cuda.device_of](https://pytorch.org/docs/stable/generated/torch.cuda.device_of.html) | - | 可新增，且框架底层有相关设计，成本低 |
+| 639 | [torch.distributed.gather_object](https://pytorch.org/docs/stable/distributed.html#torch.distributed.gather_object) | - | 可新增，且框架底层有相关设计，成本低 |
+| 640 | [torch.jit.trace](https://pytorch.org/docs/stable/generated/torch.jit.trace.html#torch-jit-trace) | - | 可新增，但框架底层无相关设计，成本高 |
+| 641 | [torch.jit.unused](https://pytorch.org/docs/stable/generated/torch.jit.unused.html#torch-jit-unused) | - | 可新增，但框架底层无相关设计，成本高 |
+| 642 | [torch.utils.checkpoint.checkpoint_sequential](https://pytorch.org/docs/stable/checkpoint.html#torch.utils.checkpoint.checkpoint_sequential) | - | 可新增，但框架底层无相关设计，成本高 |
+| 643 | [torch.nn.parameter.UninitializedBuffer](https://pytorch.org/docs/stable/generated/torch.nn.parameter.UninitializedBuffer.html#torch.nn.parameter.UninitializedBuffer) | - | 可新增，且框架底层有相关设计，成本低 |
+| 644 | [torch.memory_format](https://pytorch.org/docs/stable/tensor_attributes.html#torch.memory_format) | - | 可新增，但框架底层无相关设计，成本高 |
+| 645 | [torch.distributed.is\_gloo\_available](https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_gloo_available) | - | 可新增，且框架底层有相关设计，成本低 |
+| 646 | [torch.distributed.get\_group\_rank](https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_group_rank) | - | 可新增，且框架底层有相关设计，成本低 |
+| 647 | [torch.distributed.get\_global\_rank](https://pytorch.org/docs/stable/distributed.html#torch.distributed.get_process_group_ranks) | - | 可新增，且框架底层有相关设计，成本低 |
+| 648 | [torch.set\_deterministic\_debug\_mode](https://pytorch.org/docs/stable/generated/torch.set_deterministic_debug_mode.html#torch-set-deterministic-debug-mode) | - | 可新增，但框架底层无相关设计，成本高 |
+| 649 | [torch.get\_deterministic\_debug\_mode](https://pytorch.org/docs/stable/generated/torch.get_deterministic_debug_mode.html#torch-get-deterministic-debug-mode) | - | 可新增，但框架底层无相关设计，成本高 |
+| 650 | [torch.autograd.graph.Node.name](https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.name.html#torch-autograd-graph-node-name) | - | 可新增，但框架底层无相关设计，成本高 |
+| 651 | [torch.autograd.graph.Node.metadata](https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.metadata.html#torch-autograd-graph-node-metadata) | - | 可新增，但框架底层无相关设计，成本高 |
+| 652 | [torch.autograd.graph.Node.next_functions](https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.next_functions.html#torch-autograd-graph-node-next-functions) | - | 可新增，但框架底层无相关设计，成本高 |
+| 653 | [torch.autograd.graph.Node.register_hook](https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.register_hook.html#torch-autograd-graph-node-register-hook) | - | 可新增，但框架底层无相关设计，成本高 |
+| 654 | [torch.autograd.graph.Node.register_prehook](https://pytorch.org/docs/stable/generated/torch.autograd.graph.Node.register_prehook.html#torch-autograd-graph-node-register-prehook) | - | 可新增，但框架底层无相关设计，成本高 |
+| 655 | [torch.cuda.OutOfMemoryError](https://pytorch.org/docs/stable/generated/torch.cuda.OutOfMemoryError.html#torch-cuda-outofmemoryerror) | - | 可新增，且框架底层有相关设计，成本低 |
+| 656 | [torch.backends.cpu.get\_cpu\_capability](https://pytorch.org/docs/stable/backends.html#torch.backends.cpu.get_cpu_capability) | - | 可新增，但框架底层无相关设计，成本高 |
+| 657 | [torch.nn.utils.fuse\_conv\_bn\_eval](https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_conv_bn_eval.html#torch-nn-utils-fuse-conv-bn-eval) | - | 可新增，且框架底层有相关设计，成本低 |
+| 658 | [torch.nn.utils.fuse\_conv\_bn\_weights](https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_conv_bn_weights.html#torch-nn-utils-fuse-conv-bn-weights) | - | 可新增，且框架底层有相关设计，成本低 |
+| 659 | [torch.nn.utils.fuse\_linear\_bn\_eval](https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_linear_bn_eval.html#torch-nn-utils-fuse-linear-bn-eval) | - | 可新增，且框架底层有相关设计，成本低 |
+| 660 | [torch.nn.utils.fuse\_linear\_bn\_weights](https://pytorch.org/docs/stable/generated/torch.nn.utils.fuse_linear_bn_weights.html#torch-nn-utils-fuse-linear-bn-weights) | - | 可新增，且框架底层有相关设计，成本低 |
+| 661 | [torch.nn.utils.convert\_conv2d\_weight\_memory\_format](https://pytorch.org/docs/stable/generated/torch.nn.utils.convert_conv2d_weight_memory_format.html#torch-nn-utils-convert-conv2d-weight-memory-format) | - | 可新增，且框架底层有相关设计，成本低 |
+| 662 | [torch.nn.utils.convert\_conv3d\_weight\_memory\_format](https://pytorch.org/docs/stable/generated/torch.nn.utils.convert_conv3d_weight_memory_format.html#torch-nn-utils-convert-conv3d-weight-memory-format) | - | 可新增，且框架底层有相关设计，成本低 |
+| 663 | [torch.utils.tensorboard.writer.SummaryWriter](https://pytorch.org/docs/stable/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter) | - | 可新增，但框架底层无相关设计，成本高 |
+| 664 | [torch.backends.cuda.can\_use\_flash\_attention](https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.can_use_flash_attention) | - | 可新增，且框架底层有相关设计，成本低 |
+| 665 | [torch.distributed.device_mesh.DeviceMesh](https://pytorch.org/docs/stable/distributed.html#torch.distributed.device_mesh.DeviceMesh) | - | 可新增，且框架底层有相关设计，成本低 |
+| 666 | [torch.cuda.comm.scatter](https://pytorch.org/docs/stable/generated/torch.cuda.comm.scatter.html#torch-cuda-comm-scatter) | - | 可新增，且框架底层有相关设计，成本低 |
+| 667 | [torch.cuda.comm.gather](https://pytorch.org/docs/stable/generated/torch.cuda.comm.gather.html#torch-cuda-comm-gather) | - | 可新增，且框架底层有相关设计，成本低 |
+| 668 | [torch.autograd.Function.jvp](https://pytorch.org/docs/stable/generated/torch.autograd.Function.jvp.html#torch-autograd-function-jvp) | - | 可新增，且框架底层有相关设计，成本低 |

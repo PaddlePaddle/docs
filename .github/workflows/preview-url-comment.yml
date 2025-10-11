@@ -1,0 +1,58 @@
+name: Comment Preview URLs
+
+on:
+  workflow_run:
+    workflows: ["Generate Preview URLs"]
+    types:
+      - completed
+
+jobs:
+  comment:
+    name: Post Preview URLs Comment
+    runs-on: ubuntu-latest
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+    permissions:
+      pull-requests: write
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Read PR metadata
+        id: pr-metadata
+        run: |
+          PR_NUMBER=$(find . -name "pr_number.txt" -exec cat {} \;)
+          PR_SHA=$(find . -name "pr_sha.txt" -exec cat {} \;)
+          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "pr_sha=$PR_SHA" >> $GITHUB_OUTPUT
+
+      - name: Read preview URLs
+        id: preview-urls
+        run: |
+          PREVIEW_CONTENT=$(find . -name "preview_urls.txt" -exec cat {} \;)
+          {
+            echo 'content<<EOF'
+            echo "$PREVIEW_CONTENT"
+            echo EOF
+          } >> $GITHUB_OUTPUT
+
+      - name: Find existing comment
+        uses: peter-evans/find-comment@v4
+        id: fc
+        with:
+          issue-number: ${{ steps.pr-metadata.outputs.pr_number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: '本次 PR 文档预览链接'
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ steps.pr-metadata.outputs.pr_number }}
+          body: ${{ steps.preview-urls.outputs.content }}
+          edit-mode: replace

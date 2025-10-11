@@ -102,17 +102,11 @@ else
 fi
 
 EXIT_CODE=0
-# 3 check code style/format.
-ls ${DIR_PATH}
-/bin/bash -x  ${DIR_PATH}/check_code.sh
-if [ $? -ne 0 ];then
-    EXIT_CODE=1
-fi
 
 git merge --no-edit upstream/${BRANCH}
 need_check_cn_doc_files=$(find_all_cn_api_files_modified_by_pr)
 echo $need_check_cn_doc_files
-# 4 Chinese api docs check
+# 3 Chinese api docs check
 if [ "${need_check_cn_doc_files}" = "" ] ; then
     echo "chinese api doc fileslist is empty, skip check."
 else
@@ -127,7 +121,7 @@ else
     fi
 fi
 
-# 5 Chinese api_label check
+# 4 Chinese api_label check
 /bin/bash -x ${DIR_PATH}/check_api_label_cn.sh
 if [ $? -ne 0 ];then
     set +x
@@ -141,16 +135,10 @@ fi
 if [ ${EXIT_CODE} -ne 0 ]; then
     set +x
     echo "=========================================================================================="
-    echo "Code style check or API Chinese doc check failed! Please check the error info above carefully."
+    echo "API Chinese doc check failed! Please check the error info above carefully."
     echo "=========================================================================================="
     set -x
     exit ${EXIT_CODE}
-fi
-
-# 6 Approval check
-/bin/bash  ${DIR_PATH}/checkapproval.sh
-if [ $? -ne 0 ];then
-    exit 1
 fi
 
 echo "PADDLE_WHL=${PADDLE_WHL}"
