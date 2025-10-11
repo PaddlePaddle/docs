@@ -15,7 +15,9 @@ extend-ignore-re = [
 
 [default.extend-words]
 # PaddlePaddle specific words
-
+CANN = "CANN"
+Clas = "Clas"
+arange = "arange"
 
 # These words need to be fixed
 Accuray = "Accuray"
@@ -25,8 +27,6 @@ Asynchoronous = "Asynchoronous"
 Attrbute = "Attrbute"
 Attribtue = "Attribtue"
 Bounary = "Bounary"
-CANN = "CANN"
-Clas = "Clas"
 Classfication = "Classfication"
 Comparision = "Comparision"
 Contructing = "Contructing"
@@ -87,7 +87,6 @@ accracy = "accracy"
 acutal = "acutal"
 apporach = "apporach"
 apporaches = "apporaches"
-arange = "arange"
 arguements = "arguements"
 arguemnts = "arguemnts"
 assgin = "assgin"
@@ -102,7 +101,6 @@ benckmark = "benckmark"
 boradcast = "boradcast"
 brodcast = "brodcast"
 caculate = "caculate"
-cann = "cann"
 cantains = "cantains"
 choosen = "choosen"
 classfication = "classfication"
