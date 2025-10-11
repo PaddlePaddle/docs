@@ -8,7 +8,7 @@ logical_or
 逐元素的对 ``X`` 和 ``Y`` 进行逻辑或运算。
 
 .. math::
-        Out = X || Y
+        Out = X||Y
 
 .. note::
     ``paddle.logical_or`` 遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
