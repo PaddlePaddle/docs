@@ -7,7 +7,7 @@ FLAGS_conv_workspace_size_limit
 *******************************************
 (since 0.13.0)
 
-The workspace limit size in MB unit for choosing cuDNN convolution algorithms. The inner funciton of cuDNN obtain the fastest suited algorithm that fits within this memory limit. Usually, large workspace size may lead to choose faster algorithms, but significant increasing memory workspace. Users need to trade-off between memory and speed.
+The workspace limit size in MB unit for choosing cuDNN convolution algorithms. The inner function of cuDNN obtain the fastest suited algorithm that fits within this memory limit. Usually, large workspace size may lead to choose faster algorithms, but significant increasing memory workspace. Users need to trade-off between memory and speed.
 
 Values accepted
 ---------------
@@ -60,7 +60,7 @@ FLAGS_cudnn_exhaustive_search
 *******************************************
 (since 1.2.0)
 
-Whether to use exhaustive search method to choose convolution algorithms. There are two search methods, heuristic search and exhaustive search in cuDNN. The exhaustive search attempts all cuDNN algorithms to choose the fastest algorithm. This method is time-consuming, the choosed algorithm will be cached for the given layer specifications. Once the layer specifications (like batch size, feature map size) are changed, it will search again.
+Whether to use exhaustive search method to choose convolution algorithms. There are two search methods, heuristic search and exhaustive search in cuDNN. The exhaustive search attempts all cuDNN algorithms to choose the fastest algorithm. This method is time-consuming, the chosen algorithm will be cached for the given layer specifications. Once the layer specifications (like batch size, feature map size) are changed, it will search again.
 
 Values accepted
 ---------------

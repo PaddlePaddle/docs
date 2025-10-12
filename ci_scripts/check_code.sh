@@ -22,17 +22,22 @@ set +x
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 cd $SCRIPT_DIR/..
 
-# use pre-commit 2.17
-if ! [[ $(pre-commit --version) == *"2.17.0"* ]]; then
-    pip install pre-commit==2.17.0 1>nul
-fi
-
 diff_files=$(git diff --name-only --diff-filter=ACMR ${BRANCH})
 num_diff_files=$(echo "$diff_files" | wc -l)
 echo -e "diff files between pr and ${BRANCH}:\n${diff_files}"
 
+PRE_COMMIT_EXE="pre-commit"
+# Use prek to replace pre-commit if prek is installed
+if command -v prek &> /dev/null
+then
+    echo "Detected prek, use prek to check code style for better performance."
+    PRE_COMMIT_EXE="prek"
+else
+    echo "prek not found, use pre-commit to check code style."
+fi
+
 echo "Checking code style by pre-commit ..."
-pre-commit run --files ${diff_files};check_error=$?
+$PRE_COMMIT_EXE run --files ${diff_files};check_error=$?
 
 if test ! -z "$(git diff)"; then
     echo -e '\n************************************************************************************'
@@ -47,7 +52,7 @@ if [ ${check_error} != 0 ];then
     echo "Your PR code style check failed."
     echo "Please install pre-commit locally and set up git hook scripts:"
     echo ""
-    echo "    pip install pre-commit==2.17.0"
+    echo "    pip install pre-commit"
     echo "    pre-commit install"
     echo ""
     if [[ $num_diff_files -le 100 ]];then

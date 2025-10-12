@@ -161,7 +161,7 @@ blocks {
   idx: 1
   parent_idx: 0
   ...
-  // Fill a tensor with the case index (ie: 0,1,2,3,ect.)
+  // Fill a tensor with the case index (ie: 0,1,2,3,etc.)
   ops {
     outputs {
       parameter: "Out"
