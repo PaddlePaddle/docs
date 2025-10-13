@@ -122,7 +122,7 @@ The data processing process is as follows:</br>
 
 > T: Element type. </br>
 > NX: Each thread reads NX columns data continuously. </br>
-> NY: Each thread reads NY rows data, Ony NY = 1 was supported. </br>
+> NY: Each thread reads NY rows data, Only NY = 1 was supported. </br>
 > BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, this parameter is not currently supported. </br>
 > Rank: The dimension of the original output data. </br>
 > IsBoundary: Identifies whether to fetch memory boundary judgment. When the total number of data processed by the Block is less than NX * NY * blockDim.x, boundary judgment is required to avoid memory access crossing the boundary. </br>
