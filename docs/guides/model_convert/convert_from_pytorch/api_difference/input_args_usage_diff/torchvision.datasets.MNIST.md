@@ -1,13 +1,10 @@
-## [输入参数用法不一致]torchvision.datasets.MNIST
-
+## [ 输入参数用法不一致 ]torchvision.datasets.MNIST
 ### [torchvision.datasets.MNIST](https://pytorch.org/vision/main/generated/torchvision.datasets.MNIST.html)
-
 ```python
 torchvision.datasets.MNIST(root: Union[str, Path], train: bool = True, transform: Optional[Callable] = None, target_transform: Optional[Callable] = None, download: bool = False)
 ```
 
 ### [paddle.vision.datasets.MNIST](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/MNIST_cn.html)
-
 ```python
 paddle.vision.datasets.MNIST(image_path: str = None, label_path: str = None, mode: str = 'train', transform: Callable = None, download: bool = True, backend: str = None)
 ```
@@ -15,7 +12,6 @@ paddle.vision.datasets.MNIST(image_path: str = None, label_path: str = None, mod
 两者功能一致，指定数据集文件路径的参数 `root` 与指定训练集的参数 `train` 的用法不一致，具体如下：
 
 ### 参数映射
-
 | torchvision | PaddlePaddle | 备注 |
 | -------------------------------- | ---------------------------------- | ---- |
 | root                   | image_path, label_path| 指定数据集目录，Paddle 使用 image_path 和 label_path，等价的实现 PyTorch 的 root 的功能，需要转写。|
@@ -37,8 +33,7 @@ train_dataset = paddle.vision.datasets.MNIST(
     label_path='./data/MNIST/raw/train-labels-idx1-ubyte.gz')
 ```
 
-#### train: 训练集或数据集
-训练集
+#### train: 训练集或数据集训练集
 ```python
 # PyTorch 写法
 train_dataset = torchvision.datasets.MNIST(root='./data', train=True)

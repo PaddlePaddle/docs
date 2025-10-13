@@ -1,6 +1,5 @@
 ## [ paddle 参数更多 ]torch.utils.data.BatchSampler
 ### [torch.utils.data.BatchSampler](https://pytorch.org/docs/stable/data.html?highlight=batchsampler#torch.utils.data.BatchSampler)
-
 ```python
 torch.utils.data.BatchSampler(sampler,
                               batch_size,
@@ -8,7 +7,6 @@ torch.utils.data.BatchSampler(sampler,
 ```
 
 ### [paddle.io.BatchSampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/BatchSampler_cn.html#batchsampler)
-
 ```python
 paddle.io.BatchSampler(dataset=None,
                        sampler=None,
@@ -19,7 +17,6 @@ paddle.io.BatchSampler(dataset=None,
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注    |
 | --------- | -------------| ---------- |
 | sampler       | sampler      | 底层取样器，可为 Sampler 或 Iterable 数据类型。 |

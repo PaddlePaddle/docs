@@ -1,6 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.AvgPool3d
 ### [torch.nn.AvgPool3d](https://pytorch.org/docs/stable/generated/torch.nn.AvgPool3d.html?highlight=avgpool3d#torch.nn.AvgPool3d)
-
 ```python
 torch.nn.AvgPool3d(kernel_size,
                    stride=None,
@@ -11,7 +10,6 @@ torch.nn.AvgPool3d(kernel_size,
 ```
 
 ### [paddle.nn.AvgPool3D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/AvgPool3D_cn.html#avgpool3d)
-
 ```python
 paddle.nn.AvgPool3D(kernel_size,
                     stride=None,
@@ -25,7 +23,6 @@ paddle.nn.AvgPool3D(kernel_size,
 
 其中 PyTorch 的 count_include_pad 与 Paddle 的 exclusive 用法不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | kernel_size          | kernel_size         | 表示池化核的尺寸大小 。                                     |

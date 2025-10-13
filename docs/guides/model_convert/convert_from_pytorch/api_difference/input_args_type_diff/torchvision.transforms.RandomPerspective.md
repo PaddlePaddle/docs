@@ -1,7 +1,5 @@
-## [输入参数类型不一致]torchvision.transforms.RandomPerspective
-
+## [ 输入参数类型不一致 ]torchvision.transforms.RandomPerspective
 ### [torchvision.transforms.RandomPerspective](https://pytorch.org/vision/main/generated/torchvision.transforms.RandomPerspective.html?highlight=randomperspective#torchvision.transforms.RandomPerspective)
-
 ```python
 torchvision.transforms.RandomPerspective(
     distortion_scale: float = 0.5,
@@ -12,7 +10,6 @@ torchvision.transforms.RandomPerspective(
 ```
 
 ### [paddle.vision.transforms.RandomPerspective](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomPerspective_cn.html)
-
 ```python
 paddle.vision.transforms.RandomPerspective(
     prob: float = 0.5,
@@ -26,7 +23,6 @@ paddle.vision.transforms.RandomPerspective(
 两者功能一致，但参数类型不一致。
 
 ### 参数映射
-
 | torchvision | PaddlePaddle | 备注                  |
 | ----------------- | ------------------ | ----------- |
 | distortion_scale  | distortion_scale  | 控制失真程度。                       |

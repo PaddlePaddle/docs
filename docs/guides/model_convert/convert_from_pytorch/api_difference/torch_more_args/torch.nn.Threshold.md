@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.nn.Threshold
-
+## [ torch 参数更多 ]torch.nn.Threshold
 ### [torch.nn.Threshold](https://pytorch.org/docs/stable/generated/torch.nn.Threshold.html#torch.nn.Threshold)
-
 ```python
 torch.nn.Threshold(threshold, value, inplace=False)
 ```
 
 ### [paddle.nn.ThresholdedReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ThresholdedReLU_cn.html)
-
 ```python
 paddle.nn.ThresholdedReLU(threshold=1.0, value=0.0, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.nn.ThresholdedReLU(threshold=1.0, value=0.0, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch   | PaddlePaddle | 备注                                                                                                            |
 | --------- | ------------ | --------------------------------------------------------------------------------------------------------------- |
 | threshold | threshold    | ThresholdedReLU 激活计算公式中的 threshold 值。                                                                 |

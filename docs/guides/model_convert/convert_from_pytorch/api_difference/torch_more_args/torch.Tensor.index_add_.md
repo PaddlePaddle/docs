@@ -1,12 +1,10 @@
 ## [ torch 参数更多 ]torch.Tensor.index_add_
 ### [torch.Tensor.index_add_](https://pytorch.org/docs/stable/generated/torch.Tensor.index_add_.html#torch.Tensor.index_add_)
-
 ```python
 torch.Tensor.index_add_(dim, index, source, *, alpha=1)
 ```
 
 ### [paddle.Tensor.index_add_]()
-
 ```python
 paddle.Tensor.index_add_(index, axis, value)
 ```
@@ -14,7 +12,6 @@ paddle.Tensor.index_add_(index, axis, value)
 其中 PyTorch 与 Paddle 参数有差异，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> dim </font> | <font color='red'> axis </font> | 表示进行运算的轴，仅参数名不一致。  |

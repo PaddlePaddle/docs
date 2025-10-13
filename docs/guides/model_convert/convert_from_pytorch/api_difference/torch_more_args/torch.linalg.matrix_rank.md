@@ -1,4 +1,4 @@
-## [torch 参数更多 ]torch.linalg.matrix_rank
+## [ torch 参数更多 ]torch.linalg.matrix_rank
 ### [torch.linalg.matrix_rank](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_rank.html?highlight=matrix_rank#torch.linalg.matrix_rank)
 ```python
 torch.linalg.matrix_rank(A, *, atol=None, rtol=None ,hermitian=False, out=None)
@@ -12,7 +12,6 @@ paddle.linalg.matrix_rank(x, tol=None, hermitian=False, atol=None, rtol=None, na
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | A             | x            | 输入的 Tensor ，仅参数名不一致。                         |

@@ -1,7 +1,5 @@
-## [torch 参数更多]torch.nn.functional.kl_div
-
+## [ torch 参数更多 ]torch.nn.functional.kl_div
 ### [torch.nn.functional.kl_div](https://pytorch.org/docs/stable/generated/torch.nn.functional.kl_div.html?highlight=kl_div#torch.nn.functional.kl_div)
-
 ```python
 torch.nn.functional.kl_div(input,
                target,
@@ -12,7 +10,6 @@ torch.nn.functional.kl_div(input,
 ```
 
 ### [paddle.nn.functional.kl_div](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/kl_div_cn.html)
-
 ```python
 paddle.nn.functional.kl_div(input,
                 label,
@@ -23,7 +20,6 @@ paddle.nn.functional.kl_div(input,
 其中 PyTorch 相比 Paddle 支持更多的参数，具体如下：
 
 ### 参数映射
-
 | PyTorch      | PaddlePaddle | 备注                                                   |
 | ------------ | ------------ | ------------------------------------------------------ |
 | size_average | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。           |
@@ -32,7 +28,6 @@ paddle.nn.functional.kl_div(input,
 | log_target   | log_target   | 指定目标是否属于 log 空间。                            |
 
 ### 转写示例
-
 #### size_average：是否对损失进行平均或求和
 ```python
 # PyTorch 写法 (size_average 为‘True’时)

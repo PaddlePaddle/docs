@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.fmod
+## [ torch 参数更多 ]torch.fmod
 ### [torch.fmod](https://pytorch.org/docs/stable/generated/torch.fmod.html?highlight=fmod#torch.fmod)
-
 ```python
 torch.fmod(input,
            other,
@@ -9,7 +8,6 @@ torch.fmod(input,
 ```
 
 ### [paddle.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mod_cn.html#mod)
-
 ```python
 paddle.mod(x,
            y,
@@ -18,7 +16,6 @@ paddle.mod(x,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的被除数 ，仅参数名不一致。  |

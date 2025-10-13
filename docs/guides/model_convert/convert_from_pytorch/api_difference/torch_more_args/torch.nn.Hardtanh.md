@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.nn.Hardtanh
-
+## [ torch 参数更多 ]torch.nn.Hardtanh
 ### [torch.nn.Hardtanh](https://pytorch.org/docs/stable/generated/torch.nn.Hardtanh.html#torch.nn.Hardtanh)
-
 ```python
 torch.nn.Hardtanh(min_val=- 1.0, max_val=1.0, inplace=False)
 ```
 
 ### [paddle.nn.Hardtanh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Hardtanh_cn.html)
-
 ```python
 paddle.nn.Hardtanh(min=- 1.0, max=1.0, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.nn.Hardtanh(min=- 1.0, max=1.0, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle | 备注                                                                                                        |
 | ------- | ------------ | ----------------------------------------------------------------------------------------------------------- |
 | min_val | min          | Hardtanh 激活计算公式中的 min 值，仅参数名不一致。                                                          |

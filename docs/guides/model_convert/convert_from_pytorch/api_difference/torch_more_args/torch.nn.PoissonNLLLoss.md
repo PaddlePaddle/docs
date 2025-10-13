@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.nn.PoissonNLLLoss
-
+## [ torch 参数更多 ]torch.nn.PoissonNLLLoss
 ### [torch.nn.PoissonNLLLoss](https://pytorch.org/docs/stable/generated/torch.nn.PoissonNLLLoss)
-
 ```python
 torch.nn.PoissonNLLLoss(log_input=True, full=False, size_average=None, eps=1e-08, reduce=None, reduction='mean')
 ```
 
 ### [paddle.nn.PoissonNLLLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/PoissonNLLLoss_cn.html)
-
 ```python
 paddle.nn.PoissonNLLLoss(log_input=True, full=False, epsilon=1e-8, reduction='mean', name=None)
 ```
@@ -15,7 +12,6 @@ paddle.nn.PoissonNLLLoss(log_input=True, full=False, epsilon=1e-8, reduction='me
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch            | PaddlePaddle       | 备注                                                                               |
 | ------------------ | ------------------ | ---------------------------------------------------------------------------------- |
 | log_input          | log_input          | 输入是否为对数函数映射后结果。                                                       |
@@ -26,7 +22,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction          | reduction          | 指定应用于输出结果的计算方式，可选值有 `none`、`mean` 和 `sum`。默认为 `mean`，计算 mini-batch loss 均值。设置为 `sum` 时，计算 mini-batch loss 的总和。设置为 `none` 时，则返回 loss Tensor。默认值下为 `mean`。两者完全一致。   |
 
 ### 转写示例
-
 ```python
 # PyTorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
 if size_average is None:

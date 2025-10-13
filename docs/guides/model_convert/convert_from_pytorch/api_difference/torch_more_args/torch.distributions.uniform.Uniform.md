@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.distributions.uniform.Uniform
-
+## [ torch 参数更多 ]torch.distributions.uniform.Uniform
 ### [torch.distributions.uniform.Uniform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.uniform.Uniform)
-
 ```python
 torch.distributions.uniform.Uniform(low, high, validate_args=None)
 ```
 
 ### [paddle.distribution.Uniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Uniform_cn.html)
-
 ```python
 paddle.distribution.Uniform(low, high, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.distribution.Uniform(low, high, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                          |
 | ------------- | ------------ | --------------------------------------------- |
 | low           | low          | 均匀分布的下边界。                            |

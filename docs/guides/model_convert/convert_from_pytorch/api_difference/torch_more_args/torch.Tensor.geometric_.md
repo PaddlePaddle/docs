@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.Tensor.geometric_
-
 ### [torch.Tensor.geometric_](https://pytorch.org/docs/stable/generated/torch.Tensor.geometric_.html)
-
 ```python
 torch.Tensor.geometric_(p, *, generator=None)
 ```
 
 ### [paddle.Tensor.geometric_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html)
-
 ```python
 paddle.Tensor.geometric_(probs, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.Tensor.geometric_(probs, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle | 备注                          |
 | ------- | ------------ | ----------------------------- |
 | p   | probs            | 每次伯努利试验中成功的概率，仅参数名不一致。 |

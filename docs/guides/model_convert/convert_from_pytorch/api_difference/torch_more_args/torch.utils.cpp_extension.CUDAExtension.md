@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.utils.cpp_extension.CUDAExtension
 ### [torch.utils.cpp_extension.CUDAExtension](https://pytorch.org/docs/stable/cpp_extension.html?highlight=torch+utils+cpp_extension+cudaextension#torch.utils.cpp_extension.CUDAExtension)
-
 ```python
 torch.utils.cpp_extension.CUDAExtension(name,
                                     sources,
@@ -9,7 +8,6 @@ torch.utils.cpp_extension.CUDAExtension(name,
 ```
 
 ### [paddle.utils.cpp_extension.CUDAExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/cpp_extension/CUDAExtension_cn.html)
-
 ```python
 paddle.utils.cpp_extension.CUDAExtension(sources,
                                     *args,
@@ -18,7 +16,6 @@ paddle.utils.cpp_extension.CUDAExtension(sources,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | name          | -            | 参数 name，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |

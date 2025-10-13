@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.distributions.continuous_bernoulli.ContinuousBernoulli
-
+## [ torch 参数更多 ]torch.distributions.continuous_bernoulli.ContinuousBernoulli
 ### [torch.distributions.continuous_bernoulli.ContinuousBernoulli](https://pytorch.org/docs/stable/distributions.html)
-
 ```python
 torch.distributions.continuous_bernoulli.ContinuousBernoulli(probs=None,
                                         logits=None,
@@ -10,7 +8,6 @@ torch.distributions.continuous_bernoulli.ContinuousBernoulli(probs=None,
 ```
 
 ### [paddle.distribution.ContinuousBernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/distribution/ContinuousBernoulli_cn.html#continuousbernoulli)
-
 ```python
 paddle.distribution.ContinuousBernoulli(probs,
                                         lims=(0.499, 0.501))
@@ -19,7 +16,6 @@ paddle.distribution.ContinuousBernoulli(probs,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                         |
 | ------------- | ------ | ------------------------------------------------------------ |
 | probs           | probs      | 参数化分布的 (0,1) 值。         |

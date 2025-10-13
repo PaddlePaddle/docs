@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.jit.script
-
+## [ torch 参数更多 ]torch.jit.script
 ### [torch.jit.script](https://pytorch.org/docs/stable/generated/torch.jit.script.html#torch-jit-script)
-
 ```python
 torch.jit.script(obj, optimize=None, _frames_up=0, _rcb=None, example_inputs=None)
 ```
 
 ### [paddle.jit.to_static](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/to_static_cn.html#paddle.jit.to_static)
-
 ```python
 paddle.jit.to_static(function, input_spec=None, build_strategy=None, backend=None, **kwargs)
 ```
@@ -15,7 +12,6 @@ paddle.jit.to_static(function, input_spec=None, build_strategy=None, backend=Non
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                                |
 | ------------- | ------------ | ------------------------------------------------------------------- |
 | obj             | function         | 待转换的函数，仅参数名不一致。                       |

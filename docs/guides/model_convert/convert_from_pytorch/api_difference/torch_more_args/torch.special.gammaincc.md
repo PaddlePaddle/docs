@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.special.gammaincc
-
 ### [torch.special.gammaincc](https://pytorch.org/docs/stable/special.html#torch.special.gammaincc)
-
 ```python
 torch.special.gammaincc(input,
                         other,
@@ -10,7 +8,6 @@ torch.special.gammaincc(input,
 ```
 
 ### [paddle.gammaincc](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/index_cn.html)
-
 ```python
 paddle.gammaincc(x,
                  y)
@@ -19,7 +16,6 @@ paddle.gammaincc(x,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                         |
 | ------------- | ------ | ------------------------------------------------------------ |
 | input           | x      |  第一个非负输入张量，仅参数名不一致。         |

@@ -1,13 +1,10 @@
-## [ torch 参数更多]torch.addmm
-
+## [ torch 参数更多 ]torch.addmm
 ### [torch.addmm](https://pytorch.org/docs/stable/generated/torch.addmm.html?highlight=addmm#torch.addmm)
-
 ```python
 torch.addmm(input,mat1,mat2,*,beta=1,alpha=1,out=None)
 ```
 
 ### [paddle.addmm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/addmm_cn.html)
-
 ```python
 paddle.addmm(input,x,y,alpha=1.0,beta=1.0,name=None)
 ```
@@ -15,7 +12,6 @@ paddle.addmm(input,x,y,alpha=1.0,beta=1.0,name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------- | ------- |
 | input | input | 表示输入的 Tensor 。 |
@@ -26,9 +22,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | out | - | 表示输出的 Tensor ， Paddle 无此参数，需要转写。 |
 
 ### 转写示例
-
 #### out: 输出的 Tensor
-
 ```python
 # PyTorch 写法
 torch.addmm(input,x,y,beta,alpha,out=output)

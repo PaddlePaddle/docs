@@ -1,4 +1,4 @@
-## [ paddle 参数更多 ] torch.nn.functional.upsample
+## [ paddle 参数更多 ]torch.nn.functional.upsample
 
 ### [torch.nn.functional.upsample](https://pytorch.org/docs/stable/generated/torch.nn.functional.upsample.html?highlight=upsample#torch.nn.functional.upsample)
 
@@ -11,7 +11,6 @@ torch.nn.functional.upsample(input,
 ```
 
 ### [paddle.nn.functional.upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/upsample_cn.html#upsample)
-
 ```python
 paddle.nn.functional.upsample(x,
                         size=None,
@@ -25,7 +24,6 @@ paddle.nn.functional.upsample(x,
 
 两者功能一致，其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           | x           | 表示输入 Tensor，仅参数名不一致。      |

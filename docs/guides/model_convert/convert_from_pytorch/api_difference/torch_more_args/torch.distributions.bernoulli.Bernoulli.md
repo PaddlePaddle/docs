@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.distributions.bernoulli.Bernoulli
-
+## [ torch 参数更多 ]torch.distributions.bernoulli.Bernoulli
 ### [torch.distributions.bernoulli.Bernoulli](https://pytorch.org/docs/stable/distributions.html#torch.distributions.bernoulli.Bernoulli)
-
 ```python
 torch.distributions.bernoulli.Bernoulli(probs=None, logits=None, validate_args=None)
 ```
 
 ### [paddle.distribution.Bernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Bernoulli_cn.html#bernoulli)
-
 ```python
 paddle.distribution.Bernoulli(probs, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.distribution.Bernoulli(probs, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                                    |
 | ------------- | ------------ | ----------------------------------------------------------------------- |
 | probs         | probs        | 伯努利分布的概率输入。                                                  |

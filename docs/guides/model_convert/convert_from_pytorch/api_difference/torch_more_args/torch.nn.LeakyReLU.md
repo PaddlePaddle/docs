@@ -1,13 +1,11 @@
 ## [ torch 参数更多 ]torch.nn.LeakyReLU
 ### [torch.nn.LeakyReLU](https://pytorch.org/docs/stable/generated/torch.nn.LeakyReLU.html?highlight=leakyrelu#torch.nn.LeakyReLU)
-
 ```python
 torch.nn.LeakyReLU(negative_slope=0.01,
                    inplace=False)
 ```
 
 ### [paddle.nn.LeakyReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LeakyReLU_cn.html#leakyrelu)
-
 ```python
 paddle.nn.LeakyReLU(negative_slope=0.01,
                     name=None)
@@ -15,7 +13,6 @@ paddle.nn.LeakyReLU(negative_slope=0.01,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | negative_slope        | negative_slope            | 表示 x<0 时的斜率。  |

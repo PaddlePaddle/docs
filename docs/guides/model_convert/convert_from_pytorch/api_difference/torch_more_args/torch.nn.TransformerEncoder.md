@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.nn.TransformerEncoder
-
+## [ torch 参数更多 ]torch.nn.TransformerEncoder
 ### [torch.nn.TransformerEncoder](https://pytorch.org/docs/stable/generated/torch.nn.TransformerEncoder.html#torch.nn.TransformerEncoder)
-
 ```python
 torch.nn.TransformerEncoder(encoder_layer, num_layers, norm=None, enable_nested_tensor=True, mask_check=True)
 ```
 
 ### [paddle.nn.TransformerEncoder](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/TransformerEncoder_cn.html)
-
 ```python
 paddle.nn.TransformerEncoder(encoder_layer, num_layers, norm=None)
 ```
@@ -15,7 +12,6 @@ paddle.nn.TransformerEncoder(encoder_layer, num_layers, norm=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch              | PaddlePaddle  | 备注                                       |
 | -------------------- | ------------- | ------------------------------------------ |
 | encoder_layer        | encoder_layer | TransformerEncoderLayer 的一个实例。       |

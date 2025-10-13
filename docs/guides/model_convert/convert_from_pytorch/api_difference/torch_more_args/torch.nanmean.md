@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.nanmean
-
 ### [torch.nanmean](https://pytorch.org/docs/stable/generated/torch.nanmean.html?highlight=nanmean#torch.nanmean)
-
 ```python
 torch.nanmean(input,
               dim=None,
@@ -11,7 +9,6 @@ torch.nanmean(input,
 ```
 
 ### [paddle.nanmean](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nanmean_cn.html)
-
 ```python
 paddle.nanmean(x,
                axis=None,
@@ -21,7 +18,6 @@ paddle.nanmean(x,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | x         | 表示输入的 Tensor，仅参数名不一致。                                     |
@@ -31,9 +27,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | out       | -        | 表示输出的 Tensor,可选项，Paddle 无此参数，需要转写。 |
 
 ### 转写示例
-
 #### dytpe：指定数据类型
-
 ```python
 # PyTorch 写法
 torch.nanmean(x, dim=-1, dtype=torch.float32,out=y)
@@ -43,7 +37,6 @@ paddle.assign(paddle.nanmean(x.astype('float32'),dim=-1),y)
 ```
 
 #### out：指定输出
-
 ```python
 # PyTorch 写法
 torch.nanmean(t, dim=1，out=y)

@@ -1,12 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.Module.register_buffer
 ### [torch.nn.Module.register_buffer](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_buffer)
-
 ```python
 torch.nn.Module.register_buffer(name, tensor, persistent=True)
 ```
 
 ### [paddle.nn.Layer.register_buffer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#register-buffer-name-tensor-persistable-true)
-
 ```python
 paddle.nn.Layer.register_buffer(name, tensor, persistable=True)
 ```

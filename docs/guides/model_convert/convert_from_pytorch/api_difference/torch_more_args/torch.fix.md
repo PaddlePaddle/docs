@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.fix
 ### [torch.fix](https://pytorch.org/docs/stable/generated/torch.fix.html?highlight=torch+fix#torch.fix)
-
 ```python
 torch.fix(input,
           *,
@@ -8,7 +7,6 @@ torch.fix(input,
 ```
 
 ### [paddle.trunc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/trunc_cn.html)
-
 ```python
 paddle.trunc(input,
              name=None)
@@ -16,7 +14,6 @@ paddle.trunc(input,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 |   input       |  input  | 表示输入的 Tensor。  |

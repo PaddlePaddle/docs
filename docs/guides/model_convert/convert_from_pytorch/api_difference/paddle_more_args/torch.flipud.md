@@ -1,19 +1,16 @@
 ## [ paddle 参数更多 ]torch.flipud
 ### [torch.flipud](https://pytorch.org/docs/stable/generated/torch.flipud.html?highlight=flipud#torch.flipud)
-
 ```python
 torch.flipud(input)
 ```
 
 ### [paddle.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/flip_cn.html#flip)
-
 ```python
 paddle.flip(x, axis, name=None)
 ```
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |

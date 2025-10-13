@@ -11,7 +11,6 @@ paddle.nn.SimpleRNNCell(input_size, hidden_size, activation='tanh', weight_ih_at
 
 两者功能一致但输入参数用法不一致，且返回参数个数不同，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input_size          | input_size            | 表示输入 x 的大小。  |

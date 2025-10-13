@@ -1,7 +1,5 @@
-## [ torch 参数更多]torch.searchsorted
-
+## [ torch 参数更多 ]torch.searchsorted
 ### [torch.searchsorted](https://pytorch.org/docs/stable/generated/torch.searchsorted.html#torch-searchsorted)
-
 ```python
 torch.searchsorted(sorted_sequence,
                    values,
@@ -14,7 +12,6 @@ torch.searchsorted(sorted_sequence,
 ```
 
 ### [paddle.searchsorted](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/searchsorted_cn.html#searchsorted)
-
 ```python
 paddle.searchsorted(sorted_sequence,
                     values,
@@ -26,7 +23,6 @@ paddle.searchsorted(sorted_sequence,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle | 备注                                                |
 | ------- | ------------ | --------------------------------------------------- |
 | sorted_sequence   | sorted_sequence            | 表示待查找的 Tensor 。          |
@@ -39,7 +35,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 转写示例
 #### side：指定查找对应的上边界或下边界
-
 ```python
 # PyTorch 写法
 torch.searchsorted(x,y, side='right')
@@ -49,7 +44,6 @@ paddle.searchsorted(x,y,right=True)
 ```
 
 #### out：指定输出
-
 ```python
 # PyTorch 写法
 torch.searchsorted(x,y, out=output)
@@ -59,7 +53,6 @@ paddle.assign(paddle.searchsorted(x,y), output)
 ```
 
 #### sorter: 提供 sorted_sequence 为无序 Tensor 时，相对应的升序索引
-
 ```python
 # PyTorch 写法
 torch.searchsorted(x,y, sorter=sorter)

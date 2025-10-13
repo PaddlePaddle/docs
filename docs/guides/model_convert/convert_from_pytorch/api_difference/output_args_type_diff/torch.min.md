@@ -1,9 +1,7 @@
-## [ 返回参数类型不一致 ]torch.min
-输入一个 Tensor 对应 paddle.min，输入两个 Tensor 对应 paddle.minimum，因此有两组差异分析，分别如下：
+## [ 返回参数类型不一致 ]torch.min 输入一个 Tensor 对应 paddle.min，输入两个 Tensor 对应 paddle.minimum，因此有两组差异分析，分别如下：
 
 --------------------------------------------------------------------------------------------------
 ### [torch.min](https://pytorch.org/docs/stable/generated/torch.min.html?highlight=min#torch.min)
-
 ```python
 torch.min(input,
           dim=None,
@@ -13,7 +11,6 @@ torch.min(input,
 ```
 
 ### [paddle.min](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/min_cn.html#min)
-
 ```python
 paddle.min(x,
            axis=None,
@@ -23,7 +20,6 @@ paddle.min(x,
 
 其中 PyTorch 与 Paddle 指定 `dim` 后返回值不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor ，仅参数名不一致。                                      |
@@ -56,7 +52,6 @@ result = torch.min(a, dim=1), torch.argmin(a, dim=1)
 --------------------------------------------------------------------------------------------------
 
 ### [torch.min](https://pytorch.org/docs/stable/generated/torch.min.html?highlight=min#torch.min)
-
 ```python
 torch.min(input,
           other,
@@ -65,7 +60,6 @@ torch.min(input,
 ```
 
 ### [paddle.minimum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/minimum_cn.html#minimum)
-
 ```python
 paddle.minimum(x,
                y,
@@ -74,7 +68,6 @@ paddle.minimum(x,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor。                                      |

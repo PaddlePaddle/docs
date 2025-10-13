@@ -1,7 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.functional.bilinear
-
 ### [torch.nn.functional.bilinear](https://pytorch.org/docs/stable/generated/torch.nn.functional.bilinear.html?highlight=bilinear#torch.nn.functional.bilinear)
-
 ```python
 torch.nn.functional.bilinear(input1,
                              input2,
@@ -10,7 +8,6 @@ torch.nn.functional.bilinear(input1,
 ```
 
 ### [paddle.nn.functional.bilinear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/bilinear_cn.html)
-
 ```python
 paddle.nn.functional.bilinear(x1,
                               x2,
@@ -21,7 +18,6 @@ paddle.nn.functional.bilinear(x1,
 
 两者功能一致，参数 `bias` 的 `shape` 不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input1          | x1         | 表示第一个输入的 Tensor ，仅参数名不一致。                                     |

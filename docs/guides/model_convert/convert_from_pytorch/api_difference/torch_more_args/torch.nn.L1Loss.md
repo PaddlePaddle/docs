@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.L1Loss
 ### [torch.nn.L1Loss](https://pytorch.org/docs/stable/generated/torch.nn.L1Loss.html?highlight=l1loss#torch.nn.L1Loss)
-
 ```python
 torch.nn.L1Loss(size_average=None,
                 reduce=None,
@@ -8,7 +7,6 @@ torch.nn.L1Loss(size_average=None,
 ```
 
 ### [paddle.nn.L1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/L1Loss_cn.html#l1loss)
-
 ```python
 paddle.nn.L1Loss(reduction='mean',
                  name=None)
@@ -16,7 +14,6 @@ paddle.nn.L1Loss(reduction='mean',
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | size_average  | -            | 已弃用。  |

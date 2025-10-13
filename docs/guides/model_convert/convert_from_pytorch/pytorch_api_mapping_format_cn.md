@@ -196,7 +196,6 @@ paddle.nn.ZeroPad2D(padding,
 | -             | data_format  | 指定输入的 format， PyTorch 无此参数， Paddle 保持默认即可。 |
 
 
-
 ## 分类 5：参数默认值不一致
 
 ### [ 参数默认值不一致 ]torch.linalg.diagonal

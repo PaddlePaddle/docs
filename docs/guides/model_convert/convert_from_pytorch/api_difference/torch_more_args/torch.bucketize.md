@@ -1,19 +1,16 @@
-## [torch 参数更多 ] torch.bucketize
+## [ torch 参数更多 ]torch.bucketize
 ### [torch.bucketize](https://pytorch.org/docs/stable/generated/torch.bucketize.html#torch.bucketize)
-
 ```python
 torch.bucketize(input, boundaries, *, out_int32=False, right=False, out=None)
 ```
 
 ### [paddle.bucketize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bucketize_cn.html#paddle-bucketize)
-
 ```python
 paddle.bucketize(x, sorted_sequence, out_int32=False, right=False, name=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input| x | 表示输入的 Tensor ，仅参数名不一致。  |

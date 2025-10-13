@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.fft.hfft
-
+## [ torch 参数更多 ]torch.fft.hfft
 ### [torch.fft.hfft](https://pytorch.org/docs/stable/generated/torch.fft.hfft.html?highlight=hfft#torch.fft.hfft)
-
 ```python
 torch.fft.hfft(input,
                 n=None,
@@ -12,7 +10,6 @@ torch.fft.hfft(input,
 ```
 
 ### [paddle.fft.hfft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/hfft_cn.html)
-
 ```python
 paddle.fft.hfft(x,
                 n=None,
@@ -23,7 +20,6 @@ paddle.fft.hfft(x,
 
 其中，PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入 Tensor，仅参数名不一致。                            |

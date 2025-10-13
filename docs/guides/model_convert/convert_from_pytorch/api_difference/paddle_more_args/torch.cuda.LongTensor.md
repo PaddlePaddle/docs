@@ -1,13 +1,10 @@
-## [ paddle 参数更多 ] torch.cuda.LongTensor
-
+## [ paddle 参数更多 ]torch.cuda.LongTensor
 ### [torch.cuda.LongTensor](https://pytorch.org/docs/stable/tensors.html)
-
 ```python
 torch.cuda.LongTensor(data)
 ```
 
 ### [paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/to_tensor_cn.html#to-tensor)
-
 ```python
 paddle.to_tensor(data, dtype='int64', place='gpu', stop_gradient=True)
 ```
@@ -15,7 +12,6 @@ paddle.to_tensor(data, dtype='int64', place='gpu', stop_gradient=True)
 Paddle 比 PyTorch 支持更多参数，具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle | 备注                                                        |
 | ------- | ------------ | ----------------------------------------------------------- |
 | data    | data         | 要转换的数据。 |

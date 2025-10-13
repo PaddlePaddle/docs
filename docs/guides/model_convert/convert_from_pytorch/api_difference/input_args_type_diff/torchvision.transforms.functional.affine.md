@@ -1,7 +1,5 @@
-## [输入参数类型不一致]torchvision.transforms.functional.affine
-
+## [ 输入参数类型不一致 ]torchvision.transforms.functional.affine
 ### [torchvision.transforms.functional.affine](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.affine.html)
-
 ```python
 torchvision.transforms.functional.affine(img: Tensor,
                                         angle: float,
@@ -14,7 +12,6 @@ torchvision.transforms.functional.affine(img: Tensor,
 ```
 
 ### [paddle.vision.transforms.affine](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/affine_cn.html)
-
 ```python
 paddle.vision.transforms.affine(
     img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor],
@@ -31,7 +28,6 @@ paddle.vision.transforms.affine(
 两者功能一致，但输入参数类型不一致，具体如下：
 
 ### 参数映射
-
 | torchvision | PaddlePaddle | 备注                                                         |
 | ----------- | ------------ | ------------------------------------------------------------ |
 | img               | img           | 输入图片。 |

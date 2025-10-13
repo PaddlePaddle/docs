@@ -1,7 +1,5 @@
-## [torch 参数更多 ]torch.load
-
+## [ torch 参数更多 ]torch.load
 ### [torch.load](https://pytorch.org/docs/stable/generated/torch.load.html?highlight=load#torch.load)
-
 ```python
 torch.load(f,
            map_location=None,
@@ -13,7 +11,6 @@ torch.load(f,
 ```
 
 ### [paddle.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/load_cn.html#load)
-
 ```python
 paddle.load(path,
             **configs)
@@ -22,7 +19,6 @@ paddle.load(path,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch          | PaddlePaddle | 备注                                                         |
 | ---------------- | ------------ | ------------------------------------------------------------ |
 | f                | path         | 载入目标对象实例的路径/内存对象， 仅参数名不一致。           |

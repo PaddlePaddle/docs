@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.BCEWithLogitsLoss
 ### [torch.nn.BCEWithLogitsLoss](https://pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html#bcewithlogitsloss)
-
 ```python
 torch.nn.BCEWithLogitsLoss(weight=None,
                            size_average=None,
@@ -10,7 +9,6 @@ torch.nn.BCEWithLogitsLoss(weight=None,
 ```
 
 ### [paddle.nn.BCEWithLogitsLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BCEWithLogitsLoss_cn.html#bcewithlogitsloss)
-
 ```python
 paddle.nn.BCEWithLogitsLoss(weight=None,
                             reduction='mean',
@@ -20,7 +18,6 @@ paddle.nn.BCEWithLogitsLoss(weight=None,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | weight           | weight      | 表示每个 batch 二值交叉熵的权重。                                     |
@@ -30,8 +27,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | pos_weight  | pos_weight            | 表示正类的权重。  |
 
 ### 转写示例
-#### size_average
-size_average 为 True
+#### size_averagesize_average 为 True
 ```python
 # PyTorch 写法
 torch.nn.BCEWithLogitsLoss(weight=w, size_average=True)
@@ -49,8 +45,7 @@ torch.nn.BCEWithLogitsLoss(weight=w, size_average=False)
 paddle.nn.BCEWithLogitsLoss(weight=w, reduction='sum')
 ```
 
-#### reduce
-reduce 为 True
+#### reducereduce 为 True
 ```python
 # PyTorch 写法
 torch.nn.BCEWithLogitsLoss(weight=w, reduce=True)
@@ -68,8 +63,7 @@ torch.nn.BCEWithLogitsLoss(weight=w, reduce=False)
 paddle.nn.BCEWithLogitsLoss(weight=w, reduction='none')
 ```
 
-#### reduction
-reduction 为'none'
+#### reductionreduction 为'none'
 ```python
 # PyTorch 写法
 torch.nn.BCEWithLogitsLoss(weight=w, reduction='none')

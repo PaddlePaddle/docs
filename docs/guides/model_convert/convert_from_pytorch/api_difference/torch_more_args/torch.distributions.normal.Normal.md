@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.distributions.normal.Normal
-
+## [ torch 参数更多 ]torch.distributions.normal.Normal
 ### [torch.distributions.normal.Normal](https://pytorch.org/docs/stable/distributions.html#torch.distributions.normal.Normal)
-
 ```python
 torch.distributions.normal.Normal(loc, scale, validate_args=None)
 ```
 
 ### [paddle.distribution.Normal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Normal_cn.html)
-
 ```python
 paddle.distribution.Normal(loc, scale, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.distribution.Normal(loc, scale, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                          |
 | ------------- | ------------ | --------------------------------------------- |
 | loc           | loc          | 正态分布平均值。                              |

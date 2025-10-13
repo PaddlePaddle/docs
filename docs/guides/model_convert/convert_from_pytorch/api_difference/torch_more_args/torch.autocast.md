@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.autocast
-
+## [ torch 参数更多 ]torch.autocast
 ### [torch.autocast](https://pytorch.org/docs/stable/amp.html?highlight=autocast#torch.autocast)
-
 ```python
 torch.autocast(device_type, dtype=None, enabled=True, cache_enabled=None)
 ```
 
 ### [paddle.amp.auto_cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/auto_cast_cn.html)
-
 ```python
 paddle.amp.auto_cast(enable=True, custom_white_list=None, custom_black_list=None, level='O1', dtype='float16', use_promote=True)
 ```
@@ -15,7 +12,6 @@ paddle.amp.auto_cast(enable=True, custom_white_list=None, custom_black_list=None
 其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle      | 备注                                                                                                                                                                                  |
 | ------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | device_type   | -                 | 设备类型，Paddle 不区分设备，可直接删除。                                                                                                                                                  |

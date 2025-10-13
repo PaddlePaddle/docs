@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.square
+## [ torch 参数更多 ]torch.square
 ### [torch.square](https://pytorch.org/docs/stable/generated/torch.square.html?highlight=square#torch.square)
-
 ```python
 torch.square(input,
              *,
@@ -8,7 +7,6 @@ torch.square(input,
 ```
 
 ### [paddle.square](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/square_cn.html)
-
 ```python
 paddle.square(x,
               name=None)
@@ -16,7 +14,6 @@ paddle.square(x,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |

@@ -1,7 +1,5 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.CyclicLR
-
 ### [torch.optim.lr_scheduler.CyclicLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CyclicLR.html)
-
 ```python
 torch.optim.lr_scheduler.CyclicLR(optimizer,
                                 base_lr,
@@ -20,7 +18,6 @@ torch.optim.lr_scheduler.CyclicLR(optimizer,
 ```
 
 ### [paddle.optimizer.lr.CyclicLR](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/CyclicLR_cn.html)
-
 ```python
 paddle.optimizer.lr.CyclicLR(base_learning_rate,
                             max_learning_rate,
@@ -37,7 +34,6 @@ paddle.optimizer.lr.CyclicLR(base_learning_rate,
 两者 API 功能一致, 参数用法不一致，PyTorch 是 Scheduler 实例持有 Optimizer 实例，Paddle 是 Optimizer 实例持有 Scheduler 实例。由于持有关系相反，因此 Paddle 使用 Optimizer.set_lr_scheduler 来设置这种持有关系。具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle | 备注                                                                                       |
 | ------- | ------------ | ------------------------------------------------------------------------------------------ |
 | optimizer     | -       | PyTorch 的是 torch.optim.Optimizer 类，Paddle 无对应参数。 |

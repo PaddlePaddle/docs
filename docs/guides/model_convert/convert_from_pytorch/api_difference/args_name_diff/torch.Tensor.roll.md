@@ -1,12 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.roll
 ### [torch.Tensor.roll](https://pytorch.org/docs/stable/generated/torch.Tensor.roll.html?highlight=torch+tensor+roll#torch.Tensor.roll)
-
 ```python
 torch.Tensor.roll(shifts, dims)
 ```
 
 ### [paddle.Tensor.roll](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/roll_cn.html#roll)
-
 ```python
 paddle.Tensor.roll(shifts, axis=None)
 ```

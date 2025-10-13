@@ -1,13 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.functional.upsample_nearest
-
 ### [torch.nn.functional.upsample_nearest](https://pytorch.org/docs/stable/generated/torch.nn.functional.upsample_nearest.html#torch.nn.functional.upsample_nearest)
-
 ```python
 torch.nn.functional.upsample_nearest(input, size=None, scale_factor=None)
 ```
 
 ### [paddle.nn.functional.upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/upsample_cn.html#upsample)
-
 ```python
 paddle.nn.functional.upsample(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format='NCHW', name=None)
 ```
@@ -15,7 +12,6 @@ paddle.nn.functional.upsample(x, size=None, scale_factor=None, mode='nearest', a
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |

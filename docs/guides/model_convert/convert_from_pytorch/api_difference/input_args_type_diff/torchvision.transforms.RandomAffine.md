@@ -1,7 +1,5 @@
-## [输入参数类型不一致] torchvision.transforms.RandomAffine
-
+## [ 输入参数类型不一致 ]torchvision.transforms.RandomAffine
 ### [torchvision.transforms.RandomAffine](https://pytorch.org/vision/main/generated/torchvision.transforms.RandomAffine.html)
-
 ```python
 torchvision.transforms.RandomAffine(
     degrees: Union[List[float], Tuple[float, ...], float],
@@ -15,7 +13,6 @@ torchvision.transforms.RandomAffine(
 ```
 
 ### [paddle.vision.transforms.RandomAffine](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomAffine_cn.html)
-
 ```python
 paddle.vision.transforms.RandomAffine(
     degrees: Union[Tuple[float, float], float, int],
@@ -32,7 +29,6 @@ paddle.vision.transforms.RandomAffine(
 两者功能一致但参数类型不一致，具体如下：
 
 ### 参数映射
-
 | torchvision        | PaddlePaddle    | 备注                      |
 | ------------------ | ---------------- | ------------------------ |
 | degrees           | degrees           | 随机旋转变换的角度大小。 |
@@ -47,7 +43,6 @@ paddle.vision.transforms.RandomAffine(
 
 ### 转写示例
 #### interpolation：插值的方法
-
 ```python
 # PyTorch 写法
 transform = torchvision.transforms.RandomAffine(degrees=30, translate=(0.1, 0.2), scale=(0.8, 1.2), shear=10, interpolation=torchvision.transforms.InterpolationMode.BILINEAR, fill=0, center=(100, 100))

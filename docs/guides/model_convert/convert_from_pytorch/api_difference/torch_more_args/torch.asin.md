@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.asin
+## [ torch 参数更多 ]torch.asin
 ### [torch.asin](https://pytorch.org/docs/stable/generated/torch.asin.html#torch.asin)
-
 ```python
 torch.asin(input,
            *,
@@ -8,7 +7,6 @@ torch.asin(input,
 ```
 
 ### [paddle.asin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/asin_cn.html#asin)
-
 ```python
 paddle.asin(x,
             name=None)
@@ -16,7 +14,6 @@ paddle.asin(x,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input | x | 表示输入的 Tensor ，仅参数名不一致。  |

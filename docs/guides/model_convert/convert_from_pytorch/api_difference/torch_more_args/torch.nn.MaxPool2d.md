@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.MaxPool2d
 ### [torch.nn.MaxPool2d](https://pytorch.org/docs/stable/generated/torch.nn.MaxPool2d.html?highlight=maxpool2d#torch.nn.MaxPool2d)
-
 ```python
 torch.nn.MaxPool2d(kernel_size,
                    stride=None,
@@ -11,7 +10,6 @@ torch.nn.MaxPool2d(kernel_size,
 ```
 
 ### [paddle.nn.MaxPool2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MaxPool2D_cn.html#maxpool2d)
-
 ```python
 paddle.nn.MaxPool2D(kernel_size,
                     stride=None,
@@ -23,7 +21,6 @@ paddle.nn.MaxPool2D(kernel_size,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | kernel_size          | kernel_size            | 表示池化核大小。                           |

@@ -1,12 +1,10 @@
-## [ paddle 参数更多 ] torch.nn.Module.state_dict
+## [ paddle 参数更多 ]torch.nn.Module.state_dict
 ### [torch.nn.Module.state_dict](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.state_dict)
-
 ```python
 torch.nn.Module.state_dict(destination, prefix='', keep_vars=False)
 ```
 
 ### [paddle.nn.Layer.state_dict](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#state-dict-destination-none-include-sublayers-true-use-hook-true)
-
 ```python
 paddle.nn.Layer.state_dict(destination=None, include_sublayers=True, structured_name_prefix='', use_hook=True, keep_vars=True)
 ```
@@ -14,7 +12,6 @@ paddle.nn.Layer.state_dict(destination=None, include_sublayers=True, structured_
 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | destination         | destination        | 所有参数和可持久性 buffers 都将存放在 destination 中 。     |

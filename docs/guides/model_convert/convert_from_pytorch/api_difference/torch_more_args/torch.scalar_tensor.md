@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.scalar_tensor
+## [ torch 参数更多 ]torch.scalar_tensor
 ### [torch.scalar_tensor]
-
 ```python
 torch.scalar_tensor(s,
              dtype=torch.float32,
@@ -11,7 +10,6 @@ torch.scalar_tensor(s,
 ```
 
 ### [paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/to_tensor_cn.html#to-tensor)
-
 ```python
 paddle.to_tensor(data,
                  dtype=None,
@@ -21,7 +19,6 @@ paddle.to_tensor(data,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | s        | data        | 表示输入的数据。                   |

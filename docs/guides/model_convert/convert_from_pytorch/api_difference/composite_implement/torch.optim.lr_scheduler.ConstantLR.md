@@ -1,7 +1,5 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.ConstantLR
-
 ### [torch.optim.lr_scheduler.ConstantLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ConstantLR.html)
-
 ```python
 torch.optim.lr_scheduler.ConstantLR(optimizer,
                                 factor=0.3333333333333333,
@@ -11,7 +9,6 @@ torch.optim.lr_scheduler.ConstantLR(optimizer,
 ```
 
 ### [paddle.optimizer.lr.PiecewiseDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/PiecewiseDecay_cn.html)
-
 ```python
 paddle.optimizer.lr.PiecewiseDecay(boundaries,
                                 values,
@@ -22,7 +19,6 @@ paddle.optimizer.lr.PiecewiseDecay(boundaries,
 两者 API 功能一致, 参数用法不一致，PyTorch 是 Scheduler 实例持有 Optimizer 实例，Paddle 是 Optimizer 实例持有 Scheduler 实例。由于持有关系相反，因此 Paddle 使用 Optimizer.set_lr_scheduler 来设置这种持有关系。具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle | 备注                                                                                       |
 | ------- | ------------ | ------------------------------------------------------------------------------------------ |
 | optimizer     | -       | torch.optim.Optimizer 类，Paddle 无此参数。 |

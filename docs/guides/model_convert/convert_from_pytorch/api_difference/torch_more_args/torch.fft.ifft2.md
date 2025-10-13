@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.fft.ifft2
-
+## [ torch 参数更多 ]torch.fft.ifft2
 ### [torch.fft.ifft2](https://pytorch.org/docs/stable/generated/torch.fft.ifft2.html?highlight=ifft2#torch.fft.ifft2)
-
 ```python
 torch.fft.ifft2(input,
                 s=None,
@@ -12,7 +10,6 @@ torch.fft.ifft2(input,
 ```
 
 ### [paddle.fft.ifft2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/ifft2_cn.html)
-
 ```python
 paddle.fft.ifft2(x,
                 s=None,
@@ -23,7 +20,6 @@ paddle.fft.ifft2(x,
 
 其中，PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            |输入 Tensor，仅参数名不一致。                            |

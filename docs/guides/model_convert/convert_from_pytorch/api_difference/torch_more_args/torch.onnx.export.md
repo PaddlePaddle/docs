@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.onnx.export
-
+## [ torch 参数更多 ]torch.onnx.export
 ### [torch.onnx.export](https://pytorch.org/docs/stable/onnx.html#torch.onnx.export)
-
 ```python
 torch.onnx.export(model, args, f, export_params=True, verbose=False, training=<TrainingMode.EVAL: 0>, input_names=None, output_names=None, operator_export_type=<OperatorExportTypes.ONNX: 0>, opset_version=None, do_constant_folding=True, dynamic_axes=None, keep_initializers_as_inputs=None, custom_opsets=None, export_modules_as_functions=False)
 ```
 
 ### [paddle.onnx.export](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/onnx/export_cn.html)
-
 ```python
 paddle.onnx.export(layer, path, input_spec=None, opset_version=9, **configs)
 ```
@@ -15,7 +12,6 @@ paddle.onnx.export(layer, path, input_spec=None, opset_version=9, **configs)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch                     | PaddlePaddle  | 备注                                                                                                                                 |
 | --------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | model                       | layer         | 导出的模型，PyTorch 类型为 torch.nn.Module, torch.jit.ScriptModule 或 torch.jit.ScriptFunction，Paddle 为 Layer 对象，需要转写。 |
@@ -37,9 +33,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | -                           | configs       | 其他用于兼容的存储配置选项，PyTorch 无此参数，Paddle 保持默认即可。                                                                  |
 
 ### 转写示例
-
 #### 参数类型不同
-
 ```python
 # PyTorch 写法
 torch.onnx.export(

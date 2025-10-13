@@ -1,7 +1,5 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.local_response_norm
-
 ### [torch.nn.functional.local_response_norm](https://pytorch.org/docs/stable/generated/torch.nn.functional.local_response_norm.html?highlight=local_response_norm#torch.nn.functional.local_response_norm)
-
 ```python
 torch.nn.functional.local_response_norm(input,
                                         size,
@@ -11,7 +9,6 @@ torch.nn.functional.local_response_norm(input,
 ```
 
 ### [paddle.nn.functional.local_response_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/local_response_norm_cn.html)
-
 ```python
 paddle.nn.functional.local_response_norm(x,
                                          size,
@@ -24,7 +21,6 @@ paddle.nn.functional.local_response_norm(x,
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | x         | 表示输入的 Tensor ，仅参数名不一致。                                     |

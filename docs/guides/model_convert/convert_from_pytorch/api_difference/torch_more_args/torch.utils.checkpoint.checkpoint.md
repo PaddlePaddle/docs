@@ -1,12 +1,10 @@
 ## [ torch 参数更多 ]torch.utils.checkpoint.checkpoint
 ### [torch.utils.checkpoint.checkpoint](https://pytorch.org/docs/stable/checkpoint.html#torch.utils.checkpoint.checkpoint)
-
 ```python
 torch.utils.checkpoint.checkpoint(function, *args, use_reentrant=None, context_fn=<function noop_context_fn>, determinism_check='default', debug=False, preserve_rng_state=True, **kwargs)
 ```
 
 ### [paddle.distributed.fleet.utils.recompute](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/cpp_extension/CppExtension_cn.html)
-
 ```python
 paddle.distributed.fleet.utils.recompute(function, preserve_rng_state=True, use_reentrant=True, *args, **kwargs)
 ```
@@ -14,7 +12,6 @@ paddle.distributed.fleet.utils.recompute(function, preserve_rng_state=True, use_
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | function          | function            | 模型前向传播的部分连续的层函数组成的序列。  |

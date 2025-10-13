@@ -1,7 +1,5 @@
 ## [ 仅参数名不一致 ]torch.bincount
-
 ### [torch.bincount](https://pytorch.org/docs/stable/generated/torch.bincount.html?highlight=bincount#torch.bincount)
-
 ```python
 torch.bincount(input,
                weights=None,
@@ -9,7 +7,6 @@ torch.bincount(input,
 ```
 
 ### [paddle.bincount](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bincount_cn.html#bincount)
-
 ```python
 paddle.bincount(x,
                 weights=None,
@@ -19,7 +16,6 @@ paddle.bincount(x,
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input| x | 表示输入的 Tensor ，仅参数名不一致。  |

@@ -1,13 +1,10 @@
-## [ 仅参数名不一致 ] torch.Tensor.nanquantile
-
+## [ 仅参数名不一致 ]torch.Tensor.nanquantile
 ### [torch.Tensor.nanquantile](https://pytorch.org/docs/stable/generated/torch.nanquantile.html#torch.nanquantile)
-
 ```python
 torch.Tensor.nanquantile(q, dim=None, keepdim=False, *, interpolation='linear')
 ```
 
 ### [paddle.Tensor.nanquantile](https://github.com/PaddlePaddle/Paddle/pull/41343)
-
 ```python
 paddle.Tensor.nanquantile(q, axis=None, keepdim=False, interpolation='linear')
 ```
@@ -15,7 +12,6 @@ paddle.Tensor.nanquantile(q, axis=None, keepdim=False, interpolation='linear')
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                                                                                                |
 | ------------- | ------------ |-----------------------------------------------------------------------------------------------------------------------------------|
 | q             | q            | 待计算的分位数。|

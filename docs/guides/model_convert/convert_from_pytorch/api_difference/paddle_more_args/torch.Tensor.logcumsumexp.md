@@ -1,13 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.logcumsumexp
-
 ### [torch.Tensor.logcumsumexp](https://pytorch.org/docs/stable/generated/torch.Tensor.logcumsumexp.html?highlight=logcumsumexp#torch.Tensor.logcumsumexp)
-
 ```python
 torch.Tensor.logcumsumexp(dim)
 ```
 
 ### [paddle.Tensor.logcumsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logcumsumexp_cn.html#logcumsumexp)
-
 ```python
 paddle.Tensor.logcumsumexp(axis=None, dtype=None, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.Tensor.logcumsumexp(axis=None, dtype=None, name=None)
 两者功能一致，其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle | 备注                                                                                                                                           |
 | ------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | dim     | axis         | 指明需要计算的维，仅参数名不一致。 paddle 中默认 None。                                                                                          |

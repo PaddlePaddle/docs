@@ -1,13 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.distributed.all_to_all_single
-
 ### [torch.distributed.all_to_all_single](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_to_all_single)
-
 ```python
 torch.distributed.all_to_all_single(output, input, output_split_sizes=None, input_split_sizes=None, group=None, async_op=False)
 ```
 
 ### [paddle.distributed.alltoall_single](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/alltoall_single_cn.html#alltoall-single)
-
 ```python
 paddle.distributed.alltoall_single(out_tensor, in_tensor, in_split_sizes=None, out_split_sizes=None, group=None, sync_op=True)
 ```
@@ -15,7 +12,6 @@ paddle.distributed.alltoall_single(out_tensor, in_tensor, in_split_sizes=None, o
 其中 PyTorch 和 Paddle 功能一致，参数用法不一致，具体如下：
 
 ### 参数映射
-
 | PyTorch            | PaddlePaddle    | 备注                                                            |
 | ------------------ | --------------- | --------------------------------------------------------------- |
 | output | out_tensor | 用于保存操作结果的 Tensor，仅参数名不一致。               |
@@ -28,7 +24,6 @@ paddle.distributed.alltoall_single(out_tensor, in_tensor, in_split_sizes=None, o
 
 ### 转写示例
 #### async_op：是否为异步操作
-
 ```python
 # PyTorch 写法:
 torch.distributed.all_to_all_single(output=output, input=input, async_op=True)

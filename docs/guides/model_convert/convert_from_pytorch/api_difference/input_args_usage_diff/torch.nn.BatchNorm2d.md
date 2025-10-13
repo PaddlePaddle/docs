@@ -1,7 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.BatchNorm2d
-
 ### [torch.nn.BatchNorm2d](https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html?highlight=batchnorm2d#torch.nn.BatchNorm2d)
-
 ```python
 torch.nn.BatchNorm2d(num_features,
                      eps=1e-05,
@@ -13,7 +11,6 @@ torch.nn.BatchNorm2d(num_features,
 ```
 
 ### [paddle.nn.BatchNorm2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BatchNorm2D_cn.html#batchnorm2d)
-
 ```python
 paddle.nn.BatchNorm2D(num_features,
                       momentum=0.9,
@@ -28,7 +25,6 @@ paddle.nn.BatchNorm2D(num_features,
 两者功能一致但参数不一致，部分参数名不同，具体如下：
 
 ### 参数映射
-
 | PyTorch             | PaddlePaddle     | 备注                                                                                                                  |
 |---------------------|------------------|---------------------------------------------------------------------------------------------------------------------|
 | num_features        | num_features     | 表示输入 Tensor 通道数。                                                                                                    |
@@ -43,9 +39,7 @@ paddle.nn.BatchNorm2D(num_features,
 | dtype         | -            | 指定权重参数属性的对象，一般对网络训练结果影响不大，可直接删除。 |
 
 ### 转写示例
-
 #### affine：是否进行反射变换
-
 ```python
 affine = False
 时，表示不更新：
@@ -67,7 +61,6 @@ m = paddle.nn.BatchNorm2D(24)
 ```
 
 #### momentum：
-
 ```python
 # PyTorch 写法
 m = torch.nn.BatchNorm2D(24, momentum=0.2)
@@ -77,7 +70,6 @@ m = paddle.nn.BatchNorm2D(24, momentum=0.8)
 ```
 
 #### track_running_stats：指示是否使用全局均值和方差
-
 ```python
 track_running_stats=None 时:
 # PyTorch 写法

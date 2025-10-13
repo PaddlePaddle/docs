@@ -1,13 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.distributed.scatter
-
 ### [torch.distributed.scatter](https://pytorch.org/docs/stable/distributed.html#torch.distributed.scatter)
-
 ```python
 torch.distributed.scatter(tensor, scatter_list=None, src=0, group=None, async_op=False)
 ```
 
 ### [paddle.distributed.scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/scatter_cn.html)
-
 ```python
 paddle.distributed.scatter(tensor, tensor_list=None, src=0, group=None, sync_op=True)
 ```
@@ -15,7 +12,6 @@ paddle.distributed.scatter(tensor, tensor_list=None, src=0, group=None, sync_op=
 其中 PyTorch 和 Paddle 功能一致，参数用法不一致，具体如下：
 
 ### 参数映射
-
 | PyTorch      | PaddlePaddle | 备注                                                            |
 | ------------ | ------------ | --------------------------------------------------------------- |
 | tensor       | tensor       | 操作的输出 Tensor。                                             |

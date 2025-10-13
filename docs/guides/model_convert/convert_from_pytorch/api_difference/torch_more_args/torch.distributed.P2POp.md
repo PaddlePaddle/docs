@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.distributed.P2POp
-
+## [ torch 参数更多 ]torch.distributed.P2POp
 ### [torch.distributed.P2POp](https://pytorch.org/docs/stable/distributed.html#torch.distributed.P2POp)
-
 ```python
 torch.distributed.P2POp(op, tensor, peer, group=None, tag=0)
 ```
 
 ### [paddle.distributed.P2POp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/Overview_cn.html#paddle-distributed)
-
 ```python
 paddle.distributed.P2POp(op, tensor, peer, group=None)
 ```
@@ -15,7 +12,6 @@ paddle.distributed.P2POp(op, tensor, peer, group=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle    | 备注                                                              |
 | ------- | --------------- | ----------------------------------------------------------------- |
 | op  | op          | 表示操作类型。                                               |

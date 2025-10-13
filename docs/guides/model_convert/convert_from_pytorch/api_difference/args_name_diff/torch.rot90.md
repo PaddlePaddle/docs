@@ -1,5 +1,4 @@
-## [仅参数名不一致]torch.rot90
-
+## [ 仅参数名不一致 ]torch.rot90
 ### [torch.rot90](https://pytorch.org/docs/stable/generated/torch.rot90.html?highlight=torch+rot90#torch.rot90)
 ```python
 torch.rot90(input,
@@ -8,7 +7,6 @@ torch.rot90(input,
 ```
 
 ### [paddle.rot90](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/rot90_cn.html#rot90)
-
 ```python
 paddle.rot90(x,
              k=1,
@@ -18,7 +16,6 @@ paddle.rot90(x,
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor ，仅参数名不一致。                   |

@@ -1,13 +1,10 @@
-## [ torch 参数更多 ] torch.svd
-
+## [ torch 参数更多 ]torch.svd
 ### [torch.svd](https://pytorch.org/docs/stable/generated/torch.svd.html?highlight=torch+svd#torch.svd)
-
 ```python
 torch.svd(input, some=True, compute_uv=True, *, out=None)
 ```
 
 ### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/svd_cn.html#svd)
-
 ```python
 paddle.linalg.svd(x, full_matrics=False, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.linalg.svd(x, full_matrics=False, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | x            | 输入 Tensor ，仅参数名不一致。                           |

@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.unique
+## [ torch 参数更多 ]torch.unique
 ### [torch.unique](https://pytorch.org/docs/stable/generated/torch.unique.html?highlight=unique#torch.unique)
-
 ```python
 torch.unique(input,
              sorted,
@@ -10,7 +9,6 @@ torch.unique(input,
 ```
 
 ### [paddle.unique](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/unique_cn.html#unique)
-
 ```python
 paddle.unique(x,
               return_index=False,

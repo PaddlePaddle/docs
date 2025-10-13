@@ -1,13 +1,11 @@
 ## [ 仅参数名不一致 ]torch.nn.AdaptiveMaxPool1d
 ### [torch.nn.AdaptiveMaxPool1d](https://pytorch.org/docs/stable/generated/torch.nn.AdaptiveMaxPool1d.html?highlight=adaptivemaxpool1d#torch.nn.AdaptiveMaxPool1d)
-
 ```python
 torch.nn.AdaptiveMaxPool1d(output_size,
                            return_indices=False)
 ```
 
 ### [paddle.nn.AdaptiveMaxPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/AdaptiveMaxPool1D_cn.html#adaptivemaxpool1d)
-
 ```python
 paddle.nn.AdaptiveMaxPool1D(output_size,
                             return_mask=False,
@@ -16,7 +14,6 @@ paddle.nn.AdaptiveMaxPool1D(output_size,
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | output_size | output_size  | 表示输出 Tensor 的大小。 |

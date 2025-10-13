@@ -1,13 +1,10 @@
-## [输入参数类型不一致]torchvision.models.resnet50
-
+## [ 输入参数类型不一致 ]torchvision.models.resnet50
 ### [torchvision.models.resnet50](https://pytorch.org/vision/stable/models/generated/torchvision.models.resnet50.html)
-
 ```python
 torchvision.models.resnet50(*, weights: Optional[ResNet50_Weights] = None, progress: bool = True, **kwargs: Any)
 ```
 
 ### [paddle.vision.models.resnet50](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/resnet50_cn.html)
-
 ```python
 paddle.vision.models.resnet50(pretrained=False, **kwargs)
 ```
@@ -16,7 +13,6 @@ paddle.vision.models.resnet50(pretrained=False, **kwargs)
 在使用模型转换工具 PaConvert 时，无论用户在 PyTorch 中选择使用哪种预训练权重类型，均会统一转换为 PaddlePaddle 中的 pretrained=True 参数配置。
 
 ### 参数映射
-
 | torchvision | PaddlePaddle | 备注 |
 | ----------- | ------------ | ---- |
 | weights     | pretrained   | 预训练权重，PyTorch 参数 weights 为 ResNet50_Weights 枚举类或 String 类型，Paddle 参数 pretrained 为 bool 类型，需要转写。|

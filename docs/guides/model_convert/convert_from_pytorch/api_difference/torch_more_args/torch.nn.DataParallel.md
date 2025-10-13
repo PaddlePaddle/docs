@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.DataParallel
 ### [torch.nn.DataParallel](https://pytorch.org/docs/stable/generated/torch.nn.DataParallel.html?highlight=dataparallel#torch.nn.DataParallel)
-
 ```python
 torch.nn.DataParallel(module,
                       device_ids=None,
@@ -9,7 +8,6 @@ torch.nn.DataParallel(module,
 ```
 
 ### [paddle.DataParallel](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/DataParallel_cn.html#dataparallel)
-
 ```python
 paddle.DataParallel(layers,
                     strategy=None,
@@ -21,7 +19,6 @@ paddle.DataParallel(layers,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | module        | layers       | 需要通过数据并行方式执行的模型。  |
@@ -34,7 +31,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | -             | find_unused_parameters |  是否在模型 forward 函数的返回值的所有张量中，遍历整个向后图，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 ### 转写示例
-
 #### device_ids：指定使用哪些 GPU 训练
 ``` python
 # PyTorch 写法:

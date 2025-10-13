@@ -1,7 +1,5 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.fold
-
 ### [torch.nn.functional.fold](https://pytorch.org/docs/stable/generated/torch.nn.functional.fold.html?highlight=functional+fold#torch.nn.functional.fold)
-
 ```python
 torch.nn.functional.fold(input,
                          output_size,
@@ -12,7 +10,6 @@ torch.nn.functional.fold(input,
 ```
 
 ### [paddle.nn.functional.fold](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/fold_cn.html)
-
 ```python
 paddle.nn.functional.fold(x,
                          output_sizes,
@@ -25,7 +22,6 @@ paddle.nn.functional.fold(x,
 
 两者功能一致，仅参数名不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           | x           | 表示输入的 Tensor 。               |

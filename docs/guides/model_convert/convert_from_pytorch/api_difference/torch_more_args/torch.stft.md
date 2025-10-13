@@ -1,7 +1,5 @@
-## [torch 参数更多 ]torch.stft
-
+## [ torch 参数更多 ]torch.stft
 ### [torch.stft](https://pytorch.org/docs/stable/generated/torch.stft.html?highlight=stft#torch.stft)
-
 ```python
 torch.stft(input,
            n_fft,
@@ -16,7 +14,6 @@ torch.stft(input,
 ```
 
 ### [paddle.signal.stft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/signal/stft_cn.html#paddle.signal.stft)
-
 ```python
 paddle.signal.stft(x,
                    n_fft,
@@ -33,7 +30,6 @@ paddle.signal.stft(x,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的数据，是维度为 1D 或者 2D 的 Tensor， 数据类型可为复数（复信号），仅参数名不一致。   |

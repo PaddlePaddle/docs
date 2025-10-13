@@ -1,13 +1,10 @@
-## [仅 API 调用方式不一致] torch.Tensor.numel
-
+## [ 仅 API 调用方式不一致 ]torch.Tensor.numel
 ### [torch.Tensor.numel](https://pytorch.org/docs/stable/generated/torch.numel.html?highlight=numel#torch.numel)
-
 ```python
 torch.Tensor.numel()
 ```
 
 ### [paddle.Tensor.size](https://www.paddlepaddle.org.cn/documentation/docs/guides/beginner/tensor_cn.html#tensor-shape)
-
 ```python
 paddle.Tensor.size
 ```

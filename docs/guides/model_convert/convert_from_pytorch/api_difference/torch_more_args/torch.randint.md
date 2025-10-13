@@ -1,4 +1,4 @@
-## [torch 参数更多 ]torch.randint
+## [ torch 参数更多 ]torch.randint
 ### [torch.randint](https://pytorch.org/docs/stable/generated/torch.randint.html?highlight=randint#torch.randint)
 ```python
 torch.randint(low=0,
@@ -25,7 +25,6 @@ paddle.randint(low=0,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | low          | low        | 表示生成的随机值范围的下限(区间一般包含)。 |

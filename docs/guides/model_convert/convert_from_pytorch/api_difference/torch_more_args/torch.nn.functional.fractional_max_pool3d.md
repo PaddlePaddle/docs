@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.fractional_max_pool3d
-
 ### [torch.nn.functional.fractional_max_pool3d](https://pytorch.org/docs/stable/generated/torch.nn.functional.fractional_max_pool3d.html#torch-nn-functional-fractional-max-pool3d)
-
 ```python
 torch.nn.functional.fractional_max_pool3d(input, kernel_size, output_size=None, output_ratio=None, return_indices=False, _random_samples=None)
 ```
 
 ### [paddle.nn.functional.fractional_max_pool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/fractional_max_pool3d_cn.html)
-
 ```python
 paddle.nn.functional.fractional_max_pool3d(x, output_size, kernel_size=None, random_u=None, return_mask=False, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.nn.functional.fractional_max_pool3d(x, output_size, kernel_size=None, ran
 PyTorch 参数更多，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 表示输入的 Tensor 。仅参数名不一致。                        |
@@ -26,9 +22,7 @@ PyTorch 参数更多，具体如下：
 | _random_samples | random_u   | 表示随机数。PyTorch 以列表形式的 Tensor 方式传入，Paddle 以 float 的方式传入，如果 PyTorch 的多个随机数相同，需要转写，如果 PyTorch 的多个随机数不同，暂无转写方式。  |
 
 ### 转写示例
-
 #### output_ratio:目标输出比例
-
 ```python
 # 假设 intput 的 depth=7, with=7, height=7，
 # output_ratio = 0.75, 则目标 output 的 depth = int(7*0.75) = 5, width = int(7*0.75) = 5, height = int(7*0.75) = 5
@@ -40,7 +34,6 @@ paddle.nn.functional.fractional_max_pool3d(x, output_size=[5, 5, 5], kernel_size
 ```
 
 #### _random_samples:随机数
-
 ```python
 # Pytorch 写法
 torch.nn.functional.fractional_max_pool3d(input, 2, output_size=[3, 3, 3], return_indices=True, _random_samples=torch.tensor([[[0.3, 0.3, 0.3]]]))

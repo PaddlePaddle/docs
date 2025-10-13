@@ -1,5 +1,4 @@
 ## [ 返回参数类型不一致 ]torch.nn.GRUCell
-
 ### [torch.nn.GRUCell](https://pytorch.org/docs/stable/generated/torch.nn.GRUCell.html#torch.nn.GRUCell)
 ```python
 torch.nn.GRUCell(input_size, hidden_size, bias=True, device=None, dtype=None)
@@ -12,7 +11,6 @@ paddle.nn.GRUCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=N
 
 两者功能一致但输入参数用法不一致，且返回参数个数不同，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input_size          | input_size            | 表示输入 x 的大小。  |

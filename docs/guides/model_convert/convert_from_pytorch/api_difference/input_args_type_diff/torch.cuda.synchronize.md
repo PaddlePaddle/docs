@@ -1,13 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.cuda.synchronize
-
 ### [torch.cuda.synchronize](https://pytorch.org/docs/stable/generated/torch.cuda.synchronize.html#torch.cuda.synchronize)
-
 ```python
 torch.cuda.synchronize(device)
 ```
 
 ### [paddle.device.synchronize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/synchronize_cn.html)
-
 ```python
 paddle.device.synchronize(device)
 ```
@@ -15,14 +12,12 @@ paddle.device.synchronize(device)
 两者功能一致但参数类型不一致，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                                    |
 | ------------- | ------------ |-----------------------------------------------------------------------|
 | device        | device            | PyTorch 支持 torch.device 和 int。 PaddlePaddle 支持 paddle.CUDAPlace、int 、str，需要转写 |
 
 ### 转写示例
 #### device: 特定的运行设备
-
 ```python
 # PyTorch 写法
 torch.cuda.synchronize('cuda:0')

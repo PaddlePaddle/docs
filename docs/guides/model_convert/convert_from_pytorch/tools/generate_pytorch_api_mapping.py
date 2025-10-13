@@ -111,7 +111,8 @@ def get_pytorch_url(torch_api: str) -> str:
 
         if any(torch_api.startswith(prefix) for prefix in generated_check):
             return f"{base_url}generated/{torch_api}.html"
-        return f"{base_url}torch.html#{torch_api}"
+        # return f"{base_url}torch.html#{torch_api}"
+        return f"{base_url}generated/{torch_api}.html"
 
     # 分割API路径
     parts = torch_api.split(".")

@@ -1,13 +1,10 @@
-## [返回参数类型不一致]torch.triangular_solve
-
+## [ 返回参数类型不一致 ]torch.triangular_solve
 ### [torch.triangular_solve](https://pytorch.org/docs/stable/generated/torch.triangular_solve.html#torch.triangular_solve)
-
 ```python
 torch.triangular_solve(input, A, upper=True, transpose=False, unitriangular=False, *, out=None)
 ```
 
 ### [paddle.linalg.triangular_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/triangular_solve_cn.html)
-
 ```python
 paddle.linalg.triangular_solve(x, y, upper=True, transpose=False, unitriangular=False, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.linalg.triangular_solve(x, y, upper=True, transpose=False, unitriangular=
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle  | 备注                                                        |
 | ------------- | ------------- | ----------------------------------------------------------- |
 | input         | y             | 线性方程组左边的系数方阵，仅参数名不一致。                  |
@@ -33,8 +29,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.triangular_solve(b, A)
 
 # Paddle 写法:
-## 注：Paddle 将 A 与 b 交换
-tuple(paddle.linalg.triangular_solve(A, b), A)
+## 注：Paddle 将 A 与 b 交换 tuple(paddle.linalg.triangular_solve(A, b), A)
 ```
 
 #### out 参数：输出的 Tensor

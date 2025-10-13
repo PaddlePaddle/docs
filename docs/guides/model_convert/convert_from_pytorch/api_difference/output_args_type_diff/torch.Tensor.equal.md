@@ -1,13 +1,10 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.equal
-
 ### [torch.Tensor.equal](https://pytorch.org/docs/stable/generated/torch.Tensor.equal.html?highlight=equal#torch.Tensor.equal)
-
 ```python
 torch.Tensor.equal(other)
 ```
 
 ### [paddle.Tensor.equal_all](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#equal-all-y-name-none)
-
 ```python
 paddle.Tensor.equal_all(y, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.Tensor.equal_all(y, name=None)
 两者功能一致但返回参数类型不同，具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle | 备注                          |
 | ------- | ------------ | ----------------------------- |
 | other   | y            | 输入 Tensor，仅参数名不一致。 |

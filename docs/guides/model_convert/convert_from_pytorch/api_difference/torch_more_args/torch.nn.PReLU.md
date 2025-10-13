@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.PReLU
 ### [torch.nn.PReLU](https://pytorch.org/docs/stable/generated/torch.nn.PReLU.html?highlight=prelu#torch.nn.PReLU)
-
 ```python
 torch.nn.PReLU(num_parameters=1,
                init=0.25,
@@ -9,7 +8,6 @@ torch.nn.PReLU(num_parameters=1,
 ```
 
 ### [paddle.nn.PReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/PReLU_cn.html#prelu)
-
 ```python
 paddle.nn.PReLU(num_parameters=1,
                 init=0.25,
@@ -20,7 +18,6 @@ paddle.nn.PReLU(num_parameters=1,
 
 其中 PyTorch 与 Paddle 均支持更多其它参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | num_parameters        | num_parameters            | 表示可训练 `weight` 的数量。  |

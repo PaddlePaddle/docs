@@ -1,13 +1,10 @@
-## [输入参数用法不一致]torch.distributed.rpc.rpc_sync
-
+## [ 输入参数用法不一致 ]torch.distributed.rpc.rpc_sync
 ### [torch.distributed.rpc.rpc_sync](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.rpc_sync)
-
 ```python
 torch.distributed.rpc.rpc_sync(to, func, args=None, kwargs=None, timeout=- 1.0)
 ```
 
 ### [paddle.distributed.rpc.rpc_sync](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/rpc_sync_cn.html)
-
 ```python
 paddle.distributed.rpc.rpc_sync(to, fn, args=None, kwargs=None, timeout=- 1)
 ```
@@ -15,7 +12,6 @@ paddle.distributed.rpc.rpc_sync(to, fn, args=None, kwargs=None, timeout=- 1)
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle | 备注                               |
 | ------- | ------------ | ---------------------------------- |
 | to      | to           | 目标 worker 的名字。               |

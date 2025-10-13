@@ -1,7 +1,5 @@
 ## [ paddle 参数更多 ]torch.nn.functional.conv_transpose2d
-
 ### [torch.nn.functional.conv_transpose2d](https://pytorch.org/docs/stable/generated/torch.nn.functional.conv_transpose2d.html?highlight=conv_#torch.nn.functional.conv_transpose2d)
-
 ```python
 torch.nn.functional.conv_transpose2d(input,
                                     weight,
@@ -14,7 +12,6 @@ torch.nn.functional.conv_transpose2d(input,
 ```
 
 ### [paddle.nn.functional.conv2d_transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/conv2d_transpose_cn.html)
-
 ```python
 paddle.nn.functional.conv2d_transpose(x,
                                     weight,
@@ -31,7 +28,6 @@ paddle.nn.functional.conv2d_transpose(x,
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           | x           | 表示输入的 Tensor 。               |

@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.autograd.functional.hessian
-
+## [ torch 参数更多 ]torch.autograd.functional.hessian
 ### [torch.autograd.functional.hessian](https://pytorch.org/docs/stable/generated/torch.autograd.functional.hessian.html#torch.autograd.functional.hessian)
-
 ```python
 torch.autograd.functional.hessian(func, inputs, create_graph=False, strict=False, vectorize=False, outer_jacobian_strategy='reverse-mode')
 ```
 
 ### [paddle.incubate.autograd.Hessian](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/incubate/autograd/Hessian_cn.html)
-
 ```python
 paddle.incubate.autograd.Hessian(func, xs, is_batched=False)
 ```
@@ -15,7 +12,6 @@ paddle.incubate.autograd.Hessian(func, xs, is_batched=False)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch                 | PaddlePaddle | 备注                                                                |
 | ----------------------- | ------------ | ------------------------------------------------------------------- |
 | func                    | func         | Python 函数。                                                       |

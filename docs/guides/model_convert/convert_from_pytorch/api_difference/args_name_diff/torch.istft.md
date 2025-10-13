@@ -1,6 +1,5 @@
 ## [ 仅参数名不一致 ]torch.istft
 ### [torch.istft](https://pytorch.org/docs/stable/generated/torch.istft.html?highlight=istft#torch.istft)
-
 ```python
 torch.istft(input,
             n_fft,
@@ -15,7 +14,6 @@ torch.istft(input,
 ```
 
 ### [paddle.signal.istft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/signal/istft_cn.html#istft)
-
 ```python
 paddle.signal.istft(x,
                     n_fft,
@@ -32,7 +30,6 @@ paddle.signal.istft(x,
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 表示输入的 Tensor ，仅参数名不一致。                   |

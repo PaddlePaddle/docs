@@ -1,13 +1,10 @@
-## [torch 参数更多]fairscale.nn.model_parallel.layers.RowParallelLinear
-
+## [ torch 参数更多 ]fairscale.nn.model_parallel.layers.RowParallelLinear
 ### [fairscale.nn.model_parallel.layers.RowParallelLinear](https://github.com/facebookresearch/fairscale/blob/164cc0f3170b4a3951dd84dda29c3e1504ac4d6e/fairscale/nn/model_parallel/layers.py#L299)
-
 ```python
 fairscale.nn.model_parallel.layers.RowParallelLinear(in_features: int, out_features: int, bias: bool = True, input_is_parallel: bool = False, init_method: Callable[[torch.Tensor], torch.Tensor] = init.xavier_normal_, stride: int = 1, keep_master_weight_for_test: bool = False)
 ```
 
 ### [paddle.distributed.fleet.meta_parallel.RowParallelLinear](https://github.com/PaddlePaddle/Paddle/blob/016766cc89fabc10181453ce70b701dd8ed019f6/python/paddle/distributed/fleet/layers/mpu/mp_layers.py#L291)
-
 ```python
 paddle.distributed.fleet.meta_parallel.RowParallelLinear(in_features, out_features, weight_attr=None, has_bias=True, input_is_parallel=False, fuse_matmul_bias=False, mp_group=None, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.distributed.fleet.meta_parallel.RowParallelLinear(in_features, out_featur
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | fairscale                   | PaddlePaddle     | 备注      |
 | ----------------------------| ---------------- | -------- |
 | in_features                 | in_features      | 输入特征数。 |

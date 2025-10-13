@@ -1,14 +1,11 @@
 ## [ torch 参数更多 ]torch.nn.functional.mish
-
 ### [torch.nn.functional.mish](https://pytorch.org/docs/stable/generated/torch.nn.functional.mish.html?highlight=torch+nn+functional+mish#torch.nn.functional.mish)
-
 ```python
 torch.nn.functional.mish(input,
                          inplace=False)
 ```
 
 ### [paddle.nn.functional.mish](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/mish_cn.html)
-
 ```python
 paddle.nn.functional.mish(x,
                          name=None)
@@ -16,7 +13,6 @@ paddle.nn.functional.mish(x,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | x         | 表示输入的 Tensor ，仅参数名不一致。                                     |

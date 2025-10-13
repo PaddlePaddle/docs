@@ -1,13 +1,10 @@
-## [输入参数用法不一致]torchvision.datasets.Flowers102
-
+## [ 输入参数用法不一致 ]torchvision.datasets.Flowers102
 ### [torchvision.datasets.Flowers102](https://pytorch.org/vision/main/generated/torchvision.datasets.Flowers102.html)
-
 ```python
 torchvision.datasets.Flowers102(root: Union[str, Path], split: str = 'train', transform: Optional[Callable] = None, target_transform: Optional[Callable] = None, download: bool = False)
 ```
 
 ### [paddle.vision.datasets.Flowers](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/Flowers_cn.html)
-
 ```python
 paddle.vision.datasets.Flowers(data_file=None, label_file=None, setid_file=None, mode='train', transform=None, download=True, backend=None)
 ```
@@ -15,7 +12,6 @@ paddle.vision.datasets.Flowers(data_file=None, label_file=None, setid_file=None,
 两者功能一致，指定数据集文件路径的参数 `root` 与指定训练集的参数 `split` 的用法不一致，具体如下：
 
 ### 参数映射
-
 | torchvision        | PaddlePaddle           | 备注                                                       |
 | ---------------------- | --------------------- | ---------------------------------------------------------- |
 | root                   | data_file, label_file, setid_file| 指定数据集目录，Paddle 使用 data_file、label_file 和 setid_file，等价的实现 PyTorch 的 root 的功能，需要转写。  |
@@ -35,8 +31,7 @@ train_dataset = torchvision.datasets.Flowers102(root='./data', split='train')
 train_dataset = paddle.vision.datasets.Flowers(data_file='./data/flowers-102/102flowers.tgz', label_file='./data/flowers-102/imagelabels.mat', setid_file='./data/flowers-102/setid.mat', mode='train')
 ```
 
-#### split: 训练集或数据集
-验证集
+#### split: 训练集或数据集验证集
 ```python
 # PyTorch 写法
 train_dataset = torchvision.datasets.Flowers102(root='./data', split='val')

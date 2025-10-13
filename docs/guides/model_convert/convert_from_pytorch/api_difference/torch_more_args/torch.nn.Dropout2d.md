@@ -1,5 +1,4 @@
-## [ torch 参数更多 ] torch.nn.Dropout2d
-
+## [ torch 参数更多 ]torch.nn.Dropout2d
 ### [torch.nn.Dropout2d](https://pytorch.org/docs/stable/generated/torch.nn.Dropout2d.html?highlight=dropout2d#torch.nn.Dropout2d)
 ```python
 torch.nn.Dropout2d(p=0.5,
@@ -15,7 +14,6 @@ paddle.nn.Dropout2D(p=0.5,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | p             | p         | 表示丢弃概率。        |

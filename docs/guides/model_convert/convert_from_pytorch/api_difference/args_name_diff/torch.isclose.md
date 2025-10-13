@@ -1,6 +1,5 @@
 ## [ 仅参数名不一致 ]torch.isclose
 ### [torch.isclose](https://pytorch.org/docs/stable/generated/torch.isclose.html?highlight=isclose#torch.isclose)
-
 ```python
 torch.isclose(input,
               other,
@@ -10,7 +9,6 @@ torch.isclose(input,
 ```
 
 ### [paddle.isclose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isclose_cn.html#isclose)
-
 ```python
 paddle.isclose(x,
                y,
@@ -22,7 +20,6 @@ paddle.isclose(x,
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |

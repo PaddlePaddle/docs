@@ -1,12 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.nn.ReplicationPad3d
 ### [torch.nn.ReplicationPad3d](https://pytorch.org/docs/stable/generated/torch.nn.ReplicationPad3d.html?highlight=pad#torch.nn.ReplicationPad3d)
-
 ```python
 torch.nn.ReplicationPad3d(padding)
 ```
 
 ### [paddle.nn.Pad3D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Pad3D_cn.html#pad3d)
-
 ```python
 paddle.nn.Pad3D(padding,
                 mode='constant',

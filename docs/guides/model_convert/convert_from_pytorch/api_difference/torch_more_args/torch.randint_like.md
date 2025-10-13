@@ -1,7 +1,5 @@
-## [torch 参数更多 ]torch.randint_like
-
+## [ torch 参数更多 ]torch.randint_like
 ### [torch.randint_like](https://pytorch.org/docs/stable/generated/torch.randint_like.html?highlight=randint_like#torch.randint_like)
-
 ```python
 torch.randint_like(input,
                    low=0,
@@ -17,7 +15,6 @@ torch.randint_like(input,
 ```
 
 ### [paddle.randint_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/randint_like_cn.html)
-
 ```python
 paddle.randint_like(x,
                     low=0,
@@ -29,7 +26,6 @@ paddle.randint_like(x,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                         |
 | ------------- | ------------ | ------------------------------------------------------------ |
 | input         | x            | 表示输入的 Tensor ，仅参数名不一致。                         |
@@ -45,9 +41,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 
 ### 转写示例
-
 #### device: Tensor 的设备
-
 ```python
 # PyTorch 写法
 torch.randint_like(x, 10, device=torch.device('cpu'))
@@ -58,7 +52,6 @@ y.cpu()
 ```
 
 #### requires_grad：是否求梯度
-
 ```python
 # PyTorch 写法
 x = torch.randint_like(x, 10, requires_grad=True)
@@ -69,7 +62,6 @@ x.stop_gradient = False
 ```
 
 #### pin_memory：是否分配到固定内存上
-
 ```python
 # PyTorch 写法
 x = torch.randint_like(x, 10, pin_memory=True)

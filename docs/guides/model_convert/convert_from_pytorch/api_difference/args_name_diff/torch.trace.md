@@ -1,11 +1,9 @@
 ## [ 仅参数名不一致 ]torch.trace
 ### [torch.trace](https://pytorch.org/docs/stable/generated/torch.trace.html?highlight=trace#torch.trace)
-
 ```python
 torch.trace(input)
 ```
 ### [paddle.trace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/trace_cn.html)
-
 ```python
 paddle.trace(x,
              offset=0,
@@ -16,7 +14,6 @@ paddle.trace(x,
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 表示输入的 Tensor ，仅参数名不一致。               |

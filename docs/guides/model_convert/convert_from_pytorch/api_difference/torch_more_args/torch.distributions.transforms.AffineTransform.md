@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.transforms.AffineTransform
-
 ### [torch.distributions.transforms.AffineTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.AffineTransform)
-
 ```python
 torch.distributions.transforms.AffineTransform(loc, scale, event_dim=0, cache_size=0)
 ```
 
 ### [paddle.distribution.AffineTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/AffineTransform_cn.html#affinetransform)
-
 ```python
 paddle.distribution.AffineTransform(loc, scale)
 ```
@@ -15,7 +12,6 @@ paddle.distribution.AffineTransform(loc, scale)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch    | PaddlePaddle | 备注 |
 | ---------- | ------------ | -- |
 | loc        | loc          | 偏置参数。 |

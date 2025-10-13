@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.log10
+## [ torch 参数更多 ]torch.log10
 ### [torch.log10](https://pytorch.org/docs/stable/generated/torch.log10.html?highlight=log10#torch.log10)
-
 ```python
 torch.log10(input,
             *,
@@ -8,7 +7,6 @@ torch.log10(input,
 ```
 
 ### [paddle.log10](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/log10_cn.html#log10)
-
 ```python
 paddle.log10(x,
              name=None)

@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.distributed.recv
-
+## [ torch 参数更多 ]torch.distributed.recv
 ### [torch.distributed.recv](https://pytorch.org/docs/stable/distributed.html#torch.distributed.recv)
-
 ```python
 torch.distributed.recv(tensor, src=None, group=None, tag=0)
 ```
 
 ### [paddle.distributed.recv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/recv_cn.html)
-
 ```python
 paddle.distributed.recv(tensor, src=0, group=None, sync_op=True)
 ```
@@ -15,7 +12,6 @@ paddle.distributed.recv(tensor, src=0, group=None, sync_op=True)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle    | 备注                                                              |
 | ------- | --------------- | ----------------------------------------------------------------- |
 | tensor  | tensor          | 表示用于接收数据的 Tensor。                                               |

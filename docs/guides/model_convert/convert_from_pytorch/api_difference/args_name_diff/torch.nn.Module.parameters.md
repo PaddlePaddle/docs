@@ -1,12 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.Module.parameters
 ### [torch.nn.Module.parameters](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.parameters)
-
 ```python
 torch.nn.Module.parameters(recurse=True)
 ```
 
 ### [paddle.nn.Layer.parameters](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#parameters-include-sublayers-true)
-
 ```python
 paddle.nn.Layer.parameters(include_sublayers=True)
 ```

@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.nanquantile
-
 ### [torch.nanquantile](https://pytorch.org/docs/stable/generated/torch.nanquantile.html?highlight=nanquantile#torch.nanquantile)
-
 ```python
 torch.nanquantile(input,
                q,
@@ -13,7 +11,6 @@ torch.nanquantile(input,
 ```
 
 ### [paddle.nanquantile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nanquantile_cn.html#nanquantile)
-
 ```python
 paddle.nanquantile(x,
                    q,
@@ -26,7 +23,6 @@ paddle.nanquantile(x,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input |  x  | 表示输入的 Tensor，仅参数名不一致。  |

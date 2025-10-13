@@ -1,7 +1,5 @@
 ## [ paddle 参数更多 ]torch.nn.functional.group_norm
-
 ### [torch.nn.functional.group_norm](https://pytorch.org/docs/stable/generated/torch.nn.functional.group_norm.html#torch.nn.functional.group_norm)
-
 ```python
 torch.nn.functional.group_norm(input, num_groups, weight=None, bias=None, eps=1e-05)
 ```
@@ -14,7 +12,6 @@ paddle.nn.functional.group_norm(x, num_groups, epsilon=1e-05, weight=None, bias=
 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 表示输入的 Tensor ，仅参数名不一致。                      |

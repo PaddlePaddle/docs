@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.utils.clip_grad_norm_
 ### [torch.nn.utils.clip_grad_norm_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html?highlight=clip_grad_norm_#torch.nn.utils.clip_grad_norm_)
-
 ```python
 torch.nn.utils.clip_grad_norm_(parameters,
                                 max_norm,
@@ -10,7 +9,6 @@ torch.nn.utils.clip_grad_norm_(parameters,
 ```
 
 ### [paddle.nn.utils.clip_grad_norm_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/utils/clip_grad_norm__cn.html)
-
 ```python
 paddle.nn.utils.clip_grad_norm_(parameters,
                                 max_norm,
@@ -21,7 +19,6 @@ paddle.nn.utils.clip_grad_norm_(parameters,
 paddle 参数和 torch 参数完全一致，具体如下：
 
 ### 参数映射
-
 | PyTorch     | PaddlePaddle | 备注                                   |
 | ----------- | ------------ | -------------------------------------- |
 | parameters  | parameters  | 需要参与梯度裁剪的一个 Tensor 或者多个 Tensor。 |

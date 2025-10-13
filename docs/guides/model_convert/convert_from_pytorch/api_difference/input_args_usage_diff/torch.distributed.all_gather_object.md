@@ -1,13 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.distributed.all_gather_object
-
 ### [torch.distributed.all_gather_object](https://pytorch.org/docs/stable/distributed.html?highlight=all_gather_object#torch.distributed.all_gather_object)
-
 ```python
 torch.distributed.all_gather_object(object_list, obj, group=None)
 ```
 
 ### [paddle.distributed.all_gather_object](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/all_gather_object_cn.html)
-
 ```python
 paddle.distributed.all_gather_object(object_list, obj, group=None)
 ```
@@ -15,7 +12,6 @@ paddle.distributed.all_gather_object(object_list, obj, group=None)
 功能一致，参数几乎完全一致。但`object_list`的初始化方式不同。具体如下：
 
 ### 参数映射
-
 | PyTorch  | PaddlePaddle | 备注                                          |
 | -------- | ------------ | --------------------------------------------- |
 | object_list |      object_list       | 表示用于保存聚合结果的列表。PyTorch 需初始化成与 `group` 等长的列表, Paddle 需初始化为空列表，需要转写。 |
