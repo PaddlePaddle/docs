@@ -519,12 +519,12 @@ def generate_category2_table(
         ):
             continue
         # 检查条件：mapping_type为"无参数"或"参数完全一致"，src_api包含"torch"，替换后与dst_api不等
-        if mapping_type in ["无参数", "参数完全一致", "仅 API 调用方式不一致"]:
-            print(src_api)
+        # if mapping_type in ["无参数", "参数完全一致", "仅 API 调用方式不一致"]:
+        #     print(src_api)
 
-            # 生成备注列的超链接
-            # remark_link = get_mapping_doc_url(src_api, base_dir)
-            # rows.append((src_api, col2, col3, remark_link))
+        # 生成备注列的超链接
+        # remark_link = get_mapping_doc_url(src_api, base_dir)
+        # rows.append((src_api, col2, col3, remark_link))
 
     # 生成Markdown表格字符串
     table_lines = [

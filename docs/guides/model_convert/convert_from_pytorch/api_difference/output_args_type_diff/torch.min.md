@@ -1,4 +1,5 @@
-## [ 返回参数类型不一致 ]torch.min 输入一个 Tensor 对应 paddle.min，输入两个 Tensor 对应 paddle.minimum，因此有两组差异分析，分别如下：
+## [ 返回参数类型不一致 ]torch.min
+输入一个 Tensor 对应 paddle.min，输入两个 Tensor 对应 paddle.minimum，因此有两组差异分析，分别如下：
 
 --------------------------------------------------------------------------------------------------
 ### [torch.min](https://pytorch.org/docs/stable/generated/torch.min.html?highlight=min#torch.min)

@@ -1,7 +1,10 @@
-## [ 仅参数名不一致 ]torch.vsplitapi 存在重载情况，分别如下：
+## [ 仅参数名不一致 ]torch.vsplit
+api 存在重载情况，分别如下：
 
 -------------------------------------------------------------------------------------------------
+
 ### [torch.vsplit](https://pytorch.org/docs/stable/generated/torch.vsplit.html#torch.vsplit)
+
 ```python
 torch.vsplit(input,
         sections)
