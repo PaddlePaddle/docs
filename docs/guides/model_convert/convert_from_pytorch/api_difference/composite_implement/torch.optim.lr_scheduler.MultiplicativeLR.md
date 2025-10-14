@@ -1,7 +1,5 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.MultiplicativeLR
-
 ### [torch.optim.lr_scheduler.MultiplicativeLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.MultiplicativeLR.html)
-
 ```python
 torch.optim.lr_scheduler.MultiplicativeLR(optimizer,
                                 lr_lambda,
@@ -10,7 +8,6 @@ torch.optim.lr_scheduler.MultiplicativeLR(optimizer,
 ```
 
 ### [paddle.optimizer.lr.MultiplicativeDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/MultiplicativeDecay_cn.html)
-
 ```python
 paddle.optimizer.lr.MultiplicativeDecay(learning_rate,
                                 lr_lambda,
@@ -21,7 +18,6 @@ paddle.optimizer.lr.MultiplicativeDecay(learning_rate,
 两者 API 功能一致, 参数用法不一致，PyTorch 是 Scheduler 实例持有 Optimizer 实例，Paddle 是 Optimizer 实例持有 Scheduler 实例。由于持有关系相反，因此 Paddle 使用 Optimizer.set_lr_scheduler 来设置这种持有关系。具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle | 备注                                                                                       |
 | ------- | ------------ | ------------------------------------------------------------------------------------------ |
 | optimizer     | learning_rate       | PyTorch 的 optimizer 类型是 torch.optim.Optimizer，Paddle 的 learning_rate 类型是 float，两者功能上不直接一致，但可通过设置 leaning_rate = optimizer.get_lr() 来对应一致。  |

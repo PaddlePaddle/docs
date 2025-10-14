@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.hub.list
-
+## [ torch 参数更多 ]torch.hub.list
 ### [torch.hub.list](https://pytorch.org/docs/stable/hub.html?highlight=hub+list#torch.hub.list)
-
 ```python
 torch.hub.list(github,
                 force_reload=False,
@@ -10,7 +8,6 @@ torch.hub.list(github,
 ```
 
 ### [paddle.hub.list](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hub/list_cn.html)
-
 ```python
 paddle.hub.list(repo_dir,
                 source='github',
@@ -21,7 +18,6 @@ paddle.hub.list(repo_dir,
 其中，PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | github        | repo_dir      |repo 地址，支持 git 地址形式和 local 地址，仅参数名不一致。|

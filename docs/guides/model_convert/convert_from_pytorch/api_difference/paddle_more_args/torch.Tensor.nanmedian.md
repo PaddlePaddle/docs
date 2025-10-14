@@ -1,13 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.nanmedian
-
 ### [torch.Tensor.nanmedian](https://pytorch.org/docs/stable/generated/torch.Tensor.nanmedian.html)
-
 ```python
 torch.Tensor.nanmedian(dim=None, keepdim=False)
 ```
 
 ### [paddle.Tensor.nanmedian](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#nanmedian-axis-none-keepdim-true-name-none)
-
 ```python
 paddle.Tensor.nanmedian(axis=None, keepdim=False, mode='avg', name=None)
 ```
@@ -15,7 +12,6 @@ paddle.Tensor.nanmedian(axis=None, keepdim=False, mode='avg', name=None)
 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
 | dim     | axis         | 指定对 x 进行计算的轴，仅参数名不一致。 |

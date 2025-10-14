@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.mm
 ### [torch.mm](https://pytorch.org/docs/stable/generated/torch.mm.html?highlight=torch+mm#torch.mm)
-
 ```python
 torch.mm(input,
          mat2,
@@ -9,7 +8,6 @@ torch.mm(input,
 ```
 
 ### [paddle.mm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mm_cn.html)
-
 ```python
 paddle.mm(input, mat2, name=None)
 ```
@@ -17,7 +15,6 @@ paddle.mm(input, mat2, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，Paddle 多余参数保持默认即可，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | input            | 表示输入的第一个 Tensor。               |

@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.exp
 ### [torch.exp](https://pytorch.org/docs/stable/generated/torch.exp.html?highlight=torch+exp#torch.exp)
-
 ```python
 torch.exp(input,
           *,
@@ -8,7 +7,6 @@ torch.exp(input,
 ```
 
 ### [paddle.exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/exp_cn.html#exp)
-
 ```python
 paddle.exp(x,
            name=None)
@@ -16,7 +14,6 @@ paddle.exp(x,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 |  input  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |

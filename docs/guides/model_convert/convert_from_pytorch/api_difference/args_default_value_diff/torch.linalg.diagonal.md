@@ -1,12 +1,10 @@
 ## [ 参数默认值不一致 ]torch.linalg.diagonal
 ### [torch.linalg.diagonal](https://pytorch.org/docs/stable/generated/torch.linalg.diagonal.html#torch.linalg.diagonal)
-
 ```python
 torch.linalg.diagonal(A, *, offset=0, dim1=-2, dim2=-1)
 ```
 
 ### [paddle.diagonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagonal_cn.html#diagonal)
-
 ```python
 paddle.diagonal(x,
                 offset=0,
@@ -18,7 +16,6 @@ paddle.diagonal(x,
 两者功能一致且参数用法一致，参数默认值不一致，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> A </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |

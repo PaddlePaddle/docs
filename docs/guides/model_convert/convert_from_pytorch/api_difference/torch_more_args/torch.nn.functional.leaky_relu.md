@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.nn.functional.leaky_relu
-
+## [ torch 参数更多 ]torch.nn.functional.leaky_relu
 ### [torch.nn.functional.leaky_relu](https://pytorch.org/docs/stable/generated/torch.nn.functional.leaky_relu.html#torch.nn.functional.leaky_relu)
-
 ```python
 torch.nn.functional.leaky_relu(input, negative_slope=0.01, inplace=False)
 ```
 
 ### [paddle.nn.functional.leaky_relu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/leaky_relu_cn.html)
-
 ```python
 paddle.nn.functional.leaky_relu(x, negative_slope=0.01, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.nn.functional.leaky_relu(x, negative_slope=0.01, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch        | PaddlePaddle   | 备注                                                                                                            |
 | -------------- | -------------- | --------------------------------------------------------------------------------------------------------------- |
 | input          | x              | 输入的 Tensor，仅参数名不一致。                                                                                 |

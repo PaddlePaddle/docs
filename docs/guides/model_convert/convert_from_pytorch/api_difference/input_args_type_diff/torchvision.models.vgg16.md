@@ -1,13 +1,10 @@
-## [输入参数类型不一致]torchvision.models.vgg16
-
+## [ 输入参数类型不一致 ]torchvision.models.vgg16
 ### [torchvision.models.vgg16](https://pytorch.org/vision/main/models/generated/torchvision.models.vgg16.html)
-
 ```python
 torchvision.models.vgg16(*, weights: Optional[VGG16_Weights] = None, progress: bool = True, **kwargs: Any)
 ```
 
 ### [paddle.vision.models.vgg16](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/vgg16_cn.html)
-
 ```python
 paddle.vision.models.vgg16(pretrained=False, batch_norm=False, **kwargs)
 ```
@@ -16,7 +13,6 @@ paddle.vision.models.vgg16(pretrained=False, batch_norm=False, **kwargs)
 在使用模型转换工具 PaConvert 时，无论用户在 PyTorch 中选择使用哪种预训练权重类型，均会统一转换为 PaddlePaddle 中的 pretrained=True 参数配置。
 
 ### 参数映射
-
 | torchvision | PaddlePaddle | 备注 |
 | ----------- | ------------ | ---- |
 | weights     | pretrained   | 预训练权重，PyTorch 参数 weights 为 VGG16_Weights 枚举类或 String 类型，Paddle 参数 pretrained 为 bool 类型，需要转写。|

@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.lgamma
+## [ torch 参数更多 ]torch.lgamma
 ### [torch.lgamma](https://pytorch.org/docs/stable/generated/torch.lgamma.html?highlight=lgamma#torch.lgamma)
-
 ```python
 torch.lgamma(input,
               *,
@@ -8,7 +7,6 @@ torch.lgamma(input,
 ```
 
 ### [paddle.lgamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/lgamma_cn.html#lgamma)
-
 ```python
 paddle.lgamma(x
               , name=None)

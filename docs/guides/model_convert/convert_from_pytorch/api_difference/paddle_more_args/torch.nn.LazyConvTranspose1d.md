@@ -1,6 +1,5 @@
 ## [ paddle 参数更多 ]torch.nn.LazyConvTranspose1d
 ### [torch.nn.LazyConvTranspose1d](https://pytorch.org/docs/stable/generated/torch.nn.LazyConvTranspose1d.html)
-
 ```python
 torch.nn.LazyConvTranspose1d(out_channels, kernel_size, stride=1, padding=0, output_padding=0, groups=1, bias=True, dilation=1, padding_mode='zeros', device=None, dtype=None)
 ```
@@ -22,7 +21,6 @@ paddle.nn.Conv1DTranspose(in_channels,
 
 其中，Paddle 不支持 `in_channels` 参数的延迟初始化，PyTorch 的 `bias` 与 Paddle 的 `bias_attr` 用法不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | -             | in_channels   | 表示输入 Tensor 通道数，PyTorch 无此参数，Paddle 需要根据实际输入 Tensor 的通道数进行设置。   |
@@ -42,9 +40,7 @@ paddle.nn.Conv1DTranspose(in_channels,
 | -             | data_format  | 输入和输出的数据格式，PyTorch 无此参数，Paddle 保持默认即可。              |
 
 ### 转写示例
-
-#### in_channels: 输入通道数
-在 PyTorch 中，使用 `LazyConvTranspose1d` 时可以不指定 `in_channels`，它会在第一次前向传播时根据输入 Tensor 的形状自动确定；而在 Paddle 中，创建 `Conv1DTranspose` 时必须明确指定 `in_channels` 参数，其值应与输入 Tensor 的通道数保持一致。
+#### in_channels: 输入通道数在 PyTorch 中，使用 `LazyConvTranspose1d` 时可以不指定 `in_channels`，它会在第一次前向传播时根据输入 Tensor 的形状自动确定；而在 Paddle 中，创建 `Conv1DTranspose` 时必须明确指定 `in_channels` 参数，其值应与输入 Tensor 的通道数保持一致。
 ```python
 # PyTorch 写法
 conv = torch.nn.LazyConvTranspose1d(out_channels=16, kernel_size=3)

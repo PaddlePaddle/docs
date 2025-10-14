@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.fft.irfftn
-
+## [ torch 参数更多 ]torch.fft.irfftn
 ### [torch.fft.irfftn](https://pytorch.org/docs/stable/generated/torch.fft.irfftn.html?highlight=irfftn#torch.fft.irfftn)
-
 ```python
 torch.fft.irfftn(input,
                 s=None,
@@ -12,7 +10,6 @@ torch.fft.irfftn(input,
 ```
 
 ### [paddle.fft.irfftn](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/irfftn_cn.html)
-
 ```python
 paddle.fft.irfftn(x,
                 s=None,
@@ -23,7 +20,6 @@ paddle.fft.irfftn(x,
 
 其中，PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            |输入 Tensor，仅参数名不一致。                            |

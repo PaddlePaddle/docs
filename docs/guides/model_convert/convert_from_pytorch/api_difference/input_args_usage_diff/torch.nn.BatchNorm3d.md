@@ -1,6 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.BatchNorm3d
 ### [torch.nn.BatchNorm3d](https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm3d.html?highlight=torch%20nn%20batchnorm3d#torch.nn.BatchNorm3d)
-
 ```python
 torch.nn.BatchNorm3d(num_features,
                      eps=1e-05,
@@ -12,7 +11,6 @@ torch.nn.BatchNorm3d(num_features,
 ```
 
 ### [paddle.nn.BatchNorm3D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BatchNorm3D_cn.html#batchnorm3d)
-
 ```python
 paddle.nn.BatchNorm3D(num_features,
                       momentum=0.9,
@@ -26,7 +24,6 @@ paddle.nn.BatchNorm3D(num_features,
 
 两者功能一致但参数不一致，部分参数名不同，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | num_features           | num_features      | 表示输入 Tensor 通道数。                                     |
@@ -69,7 +66,6 @@ m = torch.nn.BatchNorm3D(24, momentum=0.2)
 m = paddle.nn.BatchNorm3D(24, momentum=0.8)
 ```
 #### track_running_stats：指示是否使用全局均值和方差
-
 ```python
 track_running_stats=None 时:
 # PyTorch 写法

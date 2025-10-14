@@ -1,7 +1,5 @@
-## [输入参数类型不一致]torchvision.transforms.functional.perspective
-
+## [ 输入参数类型不一致 ]torchvision.transforms.functional.perspective
 ### [torchvision.transforms.functional.perspective](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.perspective.html#perspective)
-
 ```python
 torchvision.transforms.functional.perspective(
     img: Tensor,
@@ -13,7 +11,6 @@ torchvision.transforms.functional.perspective(
 ```
 
 ### [paddle.vision.transforms.perspective](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/perspective_cn.html#cn-api-paddle-vision-transforms-perspective)
-
 ```python
 paddle.vision.transforms.perspective(
     img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor],
@@ -27,7 +24,6 @@ paddle.vision.transforms.perspective(
 两者功能一致，但参数类型不一致。
 
 ### 参数映射
-
 | torchvision       | PaddlePaddle | 备注              |
 | ----------------- | ----------------- | ------------ |
 | img               | img               | 输入图片。    |

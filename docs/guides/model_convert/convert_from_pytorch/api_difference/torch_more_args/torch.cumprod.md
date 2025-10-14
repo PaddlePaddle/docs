@@ -1,7 +1,5 @@
-## [torch 参数更多 ]torch.cumprod
-
+## [ torch 参数更多 ]torch.cumprod
 ### [torch.cumprod](https://pytorch.org/docs/stable/generated/torch.cumprod.html?highlight=cumprod#torch.cumprod)
-
 ```python
 torch.cumprod(input,
               dim,
@@ -11,7 +9,6 @@ torch.cumprod(input,
 ```
 
 ### [paddle.cumprod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cumprod_cn.html#cumprod)
-
 ```python
 paddle.cumprod(x,
                dim=None,
@@ -22,7 +19,6 @@ paddle.cumprod(x,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------|
 | input         | x            | 输入的 Tensor ，仅参数名不一致。                          |

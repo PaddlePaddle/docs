@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.diff
-
 ### [torch.Tensor.diff](https://pytorch.org/docs/stable/generated/torch.Tensor.diff.html?highlight=diff#torch.Tensor.diff)
-
 ```python
 torch.Tensor.diff(n=1, dim=- 1, prepend=None, append=None)
 ```
 
 ### [paddle.Tensor.diff](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diff_cn.html#diff)
-
 ```python
 paddle.Tensor.diff(n=1, axis=-1, prepend=None, append=None, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.Tensor.diff(n=1, axis=-1, prepend=None, append=None, name=None)
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle | 备注                                                                                                                                                 |
 | ------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | n       | n            | 需要计算前向差值的次数，支持任意正整数，默认值为 1。                                                                                                 |

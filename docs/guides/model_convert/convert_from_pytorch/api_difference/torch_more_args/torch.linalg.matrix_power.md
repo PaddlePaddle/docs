@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.linalg.matrix_power
 ### [torch.linalg.matrix_power](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_power.html?highlight=torch+linalg+matrix_power#torch.linalg.matrix_power)
-
 ```python
 torch.linalg.matrix_power(input,
                         n,
@@ -9,7 +8,6 @@ torch.linalg.matrix_power(input,
 ```
 
 ### [paddle.linalg.matrix_power](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/matrix_power_cn.html)
-
 ```python
 paddle.linalg.matrix_power(x,
                         n,
@@ -18,7 +16,6 @@ paddle.linalg.matrix_power(x,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          |  x           | 输入的欲进行 n 次幂运算的一个或一批方阵，类型为 Tensor，仅参数名不一致。  |

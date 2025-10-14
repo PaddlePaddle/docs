@@ -1,7 +1,5 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.adaptive_max_pool3d
-
 ### [torch.nn.functional.adaptive_max_pool3d](https://pytorch.org/docs/stable/generated/torch.nn.functional.adaptive_max_pool3d.html?highlight=adaptive_max_pool3d#torch.nn.functional.adaptive_max_pool3d)
-
 ```python
 torch.nn.functional.adaptive_max_pool3d(input,
                                         output_size,
@@ -9,7 +7,6 @@ torch.nn.functional.adaptive_max_pool3d(input,
 ```
 
 ### [paddle.nn.functional.adaptive_max_pool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/adaptive_max_pool3d_cn.html)
-
 ```python
 paddle.nn.functional.adaptive_max_pool3d(x,
                                         output_size,
@@ -19,7 +16,6 @@ paddle.nn.functional.adaptive_max_pool3d(x,
 
 两者功能一致，仅参数名不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           | x           |  表示输入的 Tensor ，仅参数名不一致。               |

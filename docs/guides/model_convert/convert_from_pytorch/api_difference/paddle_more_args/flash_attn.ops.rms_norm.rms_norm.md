@@ -1,13 +1,11 @@
-## [paddle 参数更多]flash_attn.ops.rms_norm.rms_norm
+## [ paddle 参数更多 ]flash_attn.ops.rms_norm.rms_norm
 
 ### [flash_attn.ops.rms_norm.rms_norm](https://github.com/Dao-AILab/flash-attention/blob/d0787acc16c3667156b51ce5b01bdafc7594ed39/flash_attn/ops/rms_norm.py#L14)
-
 ```python
 flash_attn.ops.rms_norm.rms_norm(x, weight, epsilon)
 ```
 
 ### [paddle.incubate.nn.functional.fused_rms_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/incubate/nn/functional/fused_rms_norm_cn.html)
-
 ```python
 paddle.incubate.nn.functional.fused_rms_norm(x, norm_weight, norm_bias, epsilon, begin_norm_axis, bias=None, residual=None, quant_scale=- 1, quant_round_type=0, quant_max_bound=0, quant_min_bound=0)
 ```
@@ -15,7 +13,6 @@ paddle.incubate.nn.functional.fused_rms_norm(x, norm_weight, norm_bias, epsilon,
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | flash_attn           | PaddlePaddle      | 备注                |
 | ----------------- | ----------------- | ------------------------------------------------------------ |
 | x                 | x                 |  输入 Tensor。|

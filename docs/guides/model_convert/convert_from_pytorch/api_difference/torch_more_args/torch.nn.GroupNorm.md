@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.GroupNorm
 ### [torch.nn.GroupNorm](https://pytorch.org/docs/stable/generated/torch.nn.GroupNorm.html?highlight=groupnorm#torch.nn.GroupNorm)
-
 ```python
 torch.nn.GroupNorm(num_groups,
                    num_channels,
@@ -11,7 +10,6 @@ torch.nn.GroupNorm(num_groups,
 ```
 
 ### [paddle.nn.GroupNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GroupNorm_cn.html#groupnorm)
-
 ```python
 paddle.nn.GroupNorm(num_groups,
                     num_channels,
@@ -25,7 +23,6 @@ paddle.nn.GroupNorm(num_groups,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | eps           | epsilon      | 为了数值稳定加在分母上的值。                                     |

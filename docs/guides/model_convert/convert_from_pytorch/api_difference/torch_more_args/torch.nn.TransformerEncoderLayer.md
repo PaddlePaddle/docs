@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.nn.TransformerEncoderLayer
-
+## [ torch 参数更多 ]torch.nn.TransformerEncoderLayer
 ### [torch.nn.TransformerEncoderLayer](https://pytorch.org/docs/stable/generated/torch.nn.TransformerEncoderLayer.html#torch.nn.TransformerEncoderLayer)
-
 ```python
 torch.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward=2048, dropout=0.1, activation=<function relu>, layer_norm_eps=1e-05, batch_first=False, norm_first=False, bias=True, device=None, dtype=None)
 ```
 
 ### [paddle.nn.TransformerEncoderLayer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/TransformerEncoderLayer_cn.html)
-
 ```python
 paddle.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward, dropout=0.1, activation='relu', attn_dropout=None, act_dropout=None, normalize_before=False, weight_attr=None, bias_attr=None, layer_norm_eps=1e-05)
 ```
@@ -15,7 +12,6 @@ paddle.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward, dropout=0.1, 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch         | PaddlePaddle     | 备注                                                                                |
 | --------------- | ---------------- | ----------------------------------------------------------------------------------- |
 | d_model         | d_model          | 输入输出的维度。                                                                    |
@@ -34,9 +30,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | -               | weight_attr      | 指定权重参数属性的对象，PyTorch 无此参数，Paddle 保持默认即可。                     |
 
 ### 转写示例
-
 #### device：Tensor 的设备
-
 ```python
 # PyTorch 写法
 m = torch.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward，device=torch.device('cpu'))
@@ -48,7 +42,6 @@ y = m(x).cpu()
 ```
 
 #### dtype：Tensor 的数据类型
-
 ```python
 # PyTorch 写法
 m = torch.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward，dtype=torch.float32)

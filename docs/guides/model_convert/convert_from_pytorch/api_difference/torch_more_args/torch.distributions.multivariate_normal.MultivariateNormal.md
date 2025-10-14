@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.distributions.multivariate_normal.MultivariateNormal
-
+## [ torch 参数更多 ]torch.distributions.multivariate_normal.MultivariateNormal
 ### [torch.distributions.multivariate_normal.MultivariateNormal](https://pytorch.org/docs/stable/distributions.html#multivariatenormal)
-
 ```python
 torch.distributions.multivariate_normal.MultivariateNormal(loc,
                                        covariance_matrix=None,
@@ -11,7 +9,6 @@ torch.distributions.multivariate_normal.MultivariateNormal(loc,
 ```
 
 ### [paddle.distribution.MultivariateNormal](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/distribution/MultivariateNormal_cn.html#multivariatenormal)
-
 ```python
 paddle.distribution.MultivariateNormal(loc,
                                        covariance_matrix=None,
@@ -22,7 +19,6 @@ paddle.distribution.MultivariateNormal(loc,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                         |
 | ------------- | ------ | ------------------------------------------------------------ |
 | loc           | loc      |  MultivariateNormal 的均值向量。         |

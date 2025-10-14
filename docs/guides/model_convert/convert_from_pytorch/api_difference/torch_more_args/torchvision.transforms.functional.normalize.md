@@ -1,13 +1,10 @@
-## [torch 参数更多]torchvision.transforms.functional.normalize
-
+## [ torch 参数更多 ]torchvision.transforms.functional.normalize
 ### [torchvision.transforms.functional.normalize](https://pytorch.org/vision/stable/generated/torchvision.transforms.functional.normalize.html)
-
 ```python
 torchvision.transforms.functional.normalize(tensor, mean, std, inplace = False)
 ```
 
 ### [paddle.vision.transforms.normalize](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/normalize_cn.html)
-
 ```python
 paddle.vision.transforms.normalize(img, mean = 0.0, std = 1.0, data_format = 'CHW', to_rgb = False)
 ```
@@ -15,7 +12,6 @@ paddle.vision.transforms.normalize(img, mean = 0.0, std = 1.0, data_format = 'CH
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | torchvision | PaddlePaddle | 备注                                              |
 | --------- | ---------- | ---------------------------------------------------- |
 | tensor    | img        | 用于归一化的数据，仅参数名不一致。 |

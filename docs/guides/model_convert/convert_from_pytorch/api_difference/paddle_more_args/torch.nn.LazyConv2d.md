@@ -1,12 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.LazyConv2d
 ### [torch.nn.LazyConv2d](https://pytorch.org/docs/stable/generated/torch.nn.LazyConv2d.html)
-
 ```python
 torch.nn.LazyConv2d(out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros', device=None, dtype=None)
 ```
 
 ### [paddle.nn.Conv2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Conv2D_cn.html#conv2d)
-
 ```python
 paddle.nn.Conv2D(in_channels,
                  out_channels,
@@ -23,7 +21,6 @@ paddle.nn.Conv2D(in_channels,
 
 其中，Paddle 不支持 `in_channels` 参数的延迟初始化，PyTorch 的 `bias` 与 Paddle 的 `bias_attr` 用法不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | -             | in_channels            | 表示输入 Tensor 通道数，PyTorch 无此参数，Paddle 需要根据实际输入 Tensor 的通道数进行设置。                           |
@@ -43,9 +40,7 @@ paddle.nn.Conv2D(in_channels,
 
 
 ### 转写示例
-
-#### in_channels: 输入通道数
-在 PyTorch 中，使用 `LazyConv2d` 时可以不指定 `in_channels`，它会在第一次前向传播时根据输入 Tensor 的形状自动确定；而在 Paddle 中，创建 `Conv2D` 时必须明确指定 `in_channels` 参数，其值应与输入 Tensor 的通道数保持一致。
+#### in_channels: 输入通道数在 PyTorch 中，使用 `LazyConv2d` 时可以不指定 `in_channels`，它会在第一次前向传播时根据输入 Tensor 的形状自动确定；而在 Paddle 中，创建 `Conv2D` 时必须明确指定 `in_channels` 参数，其值应与输入 Tensor 的通道数保持一致。
 ```python
 # PyTorch 写法
 conv = torch.nn.LazyConv2d(out_channels=16, kernel_size=3)

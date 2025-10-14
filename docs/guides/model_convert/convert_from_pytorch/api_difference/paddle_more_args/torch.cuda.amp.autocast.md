@@ -1,13 +1,10 @@
 ## [ paddle 参数更多 ]torch.cuda.amp.autocast
-
 ### [torch.cuda.amp.autocast](https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.autocast)
-
 ```python
 torch.cuda.amp.autocast(enabled=True, dtype=torch.float16, cache_enabled=True)
 ```
 
 ### [paddle.amp.auto_cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/auto_cast_cn.html)
-
 ```python
 paddle.amp.auto_cast(enable=True, custom_white_list=None, custom_black_list=None, level='O1', dtype='float16', use_promote=True)
 ```
@@ -15,7 +12,6 @@ paddle.amp.auto_cast(enable=True, custom_white_list=None, custom_black_list=None
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle      | 备注                                                         |
 | ------------- | ----------------- | ------------------------------------------------------------ |
 | enabled       | enable            | 是否开启自动混合精度。                                       |

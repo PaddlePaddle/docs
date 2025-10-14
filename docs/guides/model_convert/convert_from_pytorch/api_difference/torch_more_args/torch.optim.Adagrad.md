@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.Adagrad
-
 ### [torch.optim.Adagrad](https://pytorch.org/docs/stable/generated/torch.optim.Adagrad.html)
-
 ```python
 torch.optim.Adagrad(params,
              lr=1e-2,
@@ -15,7 +13,6 @@ torch.optim.Adagrad(params,
 ```
 
 ### [paddle.optimizer.Adagrad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Adagrad_cn.html)
-
 ```python
 paddle.optimizer.Adagrad(learning_rate,
                           epsilon=1e-06,
@@ -29,7 +26,6 @@ paddle.optimizer.Adagrad(learning_rate,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch                             | PaddlePaddle | 备注                                                                    |
 | ----------------------------------- | ------------ | ----------------------------------------------------------------------- |
 | params     | parameters           | 表示指定优化器需要优化的参数，仅参数名不一致。                      |

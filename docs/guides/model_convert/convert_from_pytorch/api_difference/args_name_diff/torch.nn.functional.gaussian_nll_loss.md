@@ -1,13 +1,10 @@
-## [仅参数名不一致]torch.nn.functional.gaussian_nll_loss
-
+## [ 仅参数名不一致 ]torch.nn.functional.gaussian_nll_loss
 ### [torch.nn.functional.gaussian_nll_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.gaussian_nll_loss.html#torch.nn.functional.gaussian_nll_loss)
-
 ```python
 torch.nn.functional.gaussian_nll_loss(input, target, var, full=False, eps=1e-06, reduction='mean')
 ```
 
 ### [paddle.nn.functional.gaussian_nll_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/gaussian_nll_loss_cn.html#gaussian-nll-loss)
-
 ```python
 paddle.nn.functional.gaussian_nll_loss(input, label, variance, full=False, epsilon=1e-6, reduction='mean', name=None)
 ```
@@ -15,7 +12,6 @@ paddle.nn.functional.gaussian_nll_loss(input, label, variance, full=False, epsil
 两者功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
-
 | PyTorch   | PaddlePaddle | 备注                                                              |
 | --------- | ------------ | ----------------------------------------------------------------- |
 | input     | input        | 输入 Tensor。                                                     |

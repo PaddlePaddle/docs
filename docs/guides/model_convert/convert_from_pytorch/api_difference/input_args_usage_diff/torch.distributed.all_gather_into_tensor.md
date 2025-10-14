@@ -1,14 +1,11 @@
 ## [ 输入参数用法不一致 ]torch.distributed.all_gather_into_tensor
-
 ### [torch.distributed.all_gather_into_tensor](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.all_gather_into_tensor)
-
 ```python
 torch.distributed.all_gather_into_tensor(output_tensor, input_tensor, group=None, async_op=False)
 
 ```
 
 ### [paddle.distributed.all_gather](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/all_gather_cn.html#all-gather)
-
 ```python
 paddle.distributed.all_gather(tensor_list, tensor, group=None, sync_op=True)
 ```
@@ -16,7 +13,6 @@ paddle.distributed.all_gather(tensor_list, tensor, group=None, sync_op=True)
 其中 PyTorch 和 Paddle 功能一致，参数用法不一致，具体如下：
 
 ### 参数映射
-
 | PyTorch  | PaddlePaddle | 备注                                          |
 | -------- | ------------ | --------------------------------------------- |
 | output_tensor |      tensor_list       | 表示用于保存聚合结果的张量，torch 为 Tensor， Paddle 为 list，需要转写。 |

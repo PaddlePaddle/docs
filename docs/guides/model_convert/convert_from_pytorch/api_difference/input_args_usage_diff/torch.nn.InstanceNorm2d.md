@@ -1,7 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.InstanceNorm2d
-
 ### [torch.nn.InstanceNorm2d](https://pytorch.org/docs/stable/generated/torch.nn.InstanceNorm2d.html#torch.nn.InstanceNorm2d)
-
 ```python
 torch.nn.InstanceNorm2d(num_features, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False, device=None, dtype=None)
 ```
@@ -13,7 +11,6 @@ paddle.nn.InstanceNorm2D(num_features, epsilon=1e-05, momentum=0.9, weight_attr=
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 |  num_features    |  num_features    | 指明输入的通道数量。               |

@@ -1,7 +1,5 @@
 ## [ paddle 参数更多 ]torch.optim.LBFGS
-
 ### [torch.optim.LBFGS](https://pytorch.org/docs/stable/generated/torch.optim.LBFGS.html)
-
 ```python
 torch.optim.LBFGS(params,
                 lr=1,
@@ -14,7 +12,6 @@ torch.optim.LBFGS(params,
 ```
 
 ### [paddle.optimizer.LBFGS](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/LBFGS_cn.html)
-
 ```python
 paddle.optimizer.LBFGS(learning_rate=1.0,
                         max_iter=20,
@@ -32,7 +29,6 @@ paddle.optimizer.LBFGS(learning_rate=1.0,
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch                             | PaddlePaddle | 备注                                                                    |
 | ----------------------------------- | ------------ | ----------------------------------------------------------------------- |
 | params     | parameters           | 表示指定优化器需要优化的参数，仅参数名不一致。                      |

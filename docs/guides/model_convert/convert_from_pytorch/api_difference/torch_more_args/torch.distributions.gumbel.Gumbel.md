@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.distributions.gumbel.Gumbel
-
+## [ torch 参数更多 ]torch.distributions.gumbel.Gumbel
 ### [torch.distributions.gumbel.Gumbel](https://pytorch.org/docs/stable/distributions.html#torch.distributions.gumbel.Gumbel)
-
 ```python
 torch.distributions.gumbel.Gumbel(loc, scale, validate_args=None)
 ```
 
 ### [paddle.distribution.Gumbel](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Gumbel_cn.html#gumbel)
-
 ```python
 paddle.distribution.Gumbel(loc, scale)
 ```
@@ -15,7 +12,6 @@ paddle.distribution.Gumbel(loc, scale)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                                    |
 | ------------- | ------------ | ----------------------------------------------------------------------- |
 | loc           | loc          | 耿贝尔分布位置参数。                                                    |

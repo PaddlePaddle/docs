@@ -1,5 +1,4 @@
 ## [ 组合替代实现 ]torch.Tensor.addcmul_
-
 ### [torch.Tensor.addcmul_](https://pytorch.org/docs/stable/generated/torch.Tensor.addcmul_.html#torch-tensor-addcmul)
 ```python
 torch.Tensor.addcmul_(tensor1, tensor2, *, value=1)
@@ -11,8 +10,7 @@ $ out =  input + value *  tensor1 * tensor2 $
 
 PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 
-###  转写示例
-
+### 转写示例
 ```python
 # PyTorch 写法
 input.addcmul_(tensor1, tensor2, value=value)

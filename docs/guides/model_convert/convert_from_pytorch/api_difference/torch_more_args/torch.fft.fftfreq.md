@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.fft.fftfreq
-
+## [ torch 参数更多 ]torch.fft.fftfreq
 ### [torch.fft.fftfreq](https://pytorch.org/docs/stable/generated/torch.fft.fftfreq.html?highlight=fftfreq#torch.fft.fftfreq)
-
 ```python
 torch.fft.fftfreq(n,
                 d=1.0,
@@ -14,7 +12,6 @@ torch.fft.fftfreq(n,
 ```
 
 ### [paddle.fft.fftfreq](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/fftfreq_cn.html)
-
 ```python
 paddle.fft.fftfreq(n,
                     d=1.0,
@@ -24,7 +21,6 @@ paddle.fft.fftfreq(n,
 
 其中，PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | n             | n            | 窗长度（傅里叶变换点数）。                        |

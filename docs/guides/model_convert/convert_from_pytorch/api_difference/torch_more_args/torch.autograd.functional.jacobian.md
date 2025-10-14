@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.autograd.functional.jacobian
-
+## [ torch 参数更多 ]torch.autograd.functional.jacobian
 ### [torch.autograd.functional.jacobian](https://pytorch.org/docs/stable/generated/torch.autograd.functional.jacobian.html#torch.autograd.functional.jacobian)
-
 ```python
 torch.autograd.functional.jacobian(func, inputs, create_graph=False, strict=False, vectorize=False, strategy='reverse-mode')
 ```
 
 ### [paddle.incubate.autograd.Jacobian](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/incubate/autograd/Jacobian_cn.html)
-
 ```python
 paddle.incubate.autograd.Jacobian(func, xs, is_batched=False)
 ```
@@ -15,7 +12,6 @@ paddle.incubate.autograd.Jacobian(func, xs, is_batched=False)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch      | PaddlePaddle | 备注                                                                |
 | ------------ | ------------ | ------------------------------------------------------------------- |
 | func         | func         | Python 函数。                                                       |

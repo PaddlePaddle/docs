@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.utils.cpp_extension.load
 ### [torch.utils.cpp_extension.load](https://pytorch.org/docs/stable/cpp_extension.html?highlight=torch+utils+cpp_extension+load#torch.utils.cpp_extension.load)
-
 ```python
 torch.utils.cpp_extension.load(name,
                             sources,
@@ -17,7 +16,6 @@ torch.utils.cpp_extension.load(name,
 ```
 
 ### [paddle.utils.cpp_extension.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/cpp_extension/load_cn.html)
-
 ```python
 paddle.utils.cpp_extension.load(name,
                             sources,
@@ -31,7 +29,6 @@ paddle.utils.cpp_extension.load(name,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch                     | PaddlePaddle            | 备注                                                   |
 | -------------               | ------------            | ------------------------------------------------------ |
 | name                        | name                    |  用于指定编译自定义 OP 时，生成的动态链接库的名字。                                    |

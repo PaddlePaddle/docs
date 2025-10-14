@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.distributions.binomial.Binomial
-
+## [ torch 参数更多 ]torch.distributions.binomial.Binomial
 ### [torch.distributions.binomial.Binomial](https://pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial)
-
 ```python
 torch.distributions.binomial.Binomial(total_count=1,
                              probs=None,
@@ -10,7 +8,6 @@ torch.distributions.binomial.Binomial(total_count=1,
 ```
 
 ### [paddle.distribution.Binomial](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/distribution/Binomial_cn.html#binomial)
-
 ```python
 paddle.distribution.Binomial(total_count,
                              probs)
@@ -19,7 +16,6 @@ paddle.distribution.Binomial(total_count,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                         |
 | ------------- | ------ | ------------------------------------------------------------ |
 | total_count        | total_count      | 样本大小，当 torch 不指定时，Paddle 应设置该值为 1。                         |

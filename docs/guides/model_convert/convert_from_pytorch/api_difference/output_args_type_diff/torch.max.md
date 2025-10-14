@@ -4,7 +4,6 @@
 -------------------------------------------------------------------------------------------------
 
 ### [torch.max](https://pytorch.org/docs/stable/generated/torch.max.html?highlight=max#torch.max)
-
 ```python
 torch.max(input,
           dim=None,
@@ -14,7 +13,6 @@ torch.max(input,
 ```
 
 ### [paddle.max](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/max_cn.html#max)
-
 ```python
 paddle.max(x,
            axis=None,
@@ -24,7 +22,6 @@ paddle.max(x,
 
 其中 PyTorch 与 Paddle 指定 `dim` 后返回值不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor ，仅参数名不一致。                                      |
@@ -58,7 +55,6 @@ result = paddle.max(a, axis=1), paddle.argmax(a, axis=1)
 --------------------------------------------------------------------------------------------------
 
 ### [torch.max](https://pytorch.org/docs/stable/generated/torch.max.html?highlight=max#torch.max)
-
 ```python
 torch.max(input,
           other,
@@ -67,7 +63,6 @@ torch.max(input,
 ```
 
 ### [paddle.maximum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/minimum_cn.html#minimum)
-
 ```python
 paddle.maximum(x,
                y,
@@ -76,7 +71,6 @@ paddle.maximum(x,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor ，仅参数名不一致。                                      |

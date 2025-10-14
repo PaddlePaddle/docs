@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.cummin
-
 ### [torch.cummin](https://pytorch.org/docs/stable/generated/torch.cummin.html)
-
 ```python
 torch.cummin(input,
           dim,
@@ -10,7 +8,6 @@ torch.cummin(input,
 ```
 
 ### [paddle.cummin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cummin_cn.html)
-
 ```python
 paddle.cummin(x,
             axis=None,
@@ -21,7 +18,6 @@ paddle.cummin(x,
 两者功能一致，torch 参数更多，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | x          | 表示输入的 Tensor，仅参数名不一致。                        |
@@ -31,7 +27,6 @@ paddle.cummin(x,
 
 ### 转写示例
 #### out：指定输出
-
 ```python
 # PyTorch 写法
 torch.cummin(x,1, out=(values, indices))

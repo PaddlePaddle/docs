@@ -1,19 +1,16 @@
 ## [ torch 参数更多 ]torch.index_add
 ### [torch.index_add](https://pytorch.org/docs/stable/generated/torch.index_add.html#torch.index_add)
-
 ```python
 torch.index_add(input, dim, index, source, *, alpha=1, out=None)
 ```
 
 ### [paddle.index_add](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/index_add_cn.html#index-add)
-
 ```python
 paddle.index_add(x, index, axis, value, name=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |

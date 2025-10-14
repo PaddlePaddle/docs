@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.asinh
+## [ torch 参数更多 ]torch.asinh
 ### [torch.asinh](https://pytorch.org/docs/stable/generated/torch.asinh.html#torch.asinh)
-
 ```python
 torch.asinh(input,
            *,
@@ -8,7 +7,6 @@ torch.asinh(input,
 ```
 
 ### [paddle.asinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/asinh_cn.html)
-
 ```python
 paddle.asinh(x,
             name=None)
@@ -16,7 +14,6 @@ paddle.asinh(x,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input | x | 表示输入的 Tensor ，仅参数名不一致。  |

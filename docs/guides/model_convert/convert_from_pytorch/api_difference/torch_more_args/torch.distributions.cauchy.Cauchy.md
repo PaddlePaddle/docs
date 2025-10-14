@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.distributions.cauchy.Cauchy
-
+## [ torch 参数更多 ]torch.distributions.cauchy.Cauchy
 ### [torch.distributions.cauchy.Cauchy](https://pytorch.org/docs/stable/distributions.html#torch.distributions.cauchy.Cauchy)
-
 ```python
 torch.distributions.cauchy.Cauchy(loc, scale, validate_args=None)
 ```
 
 ### [paddle.distribution.Cauchy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Cauchy_cn.html)
-
 ```python
 paddle.distribution.Cauchy(loc, scale, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.distribution.Cauchy(loc, scale, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                                    |
 | ------------- | ------------ | ----------------------------------------------------------------------- |
 | loc           | loc          | 定义分布峰值位置的位置参数。                                            |

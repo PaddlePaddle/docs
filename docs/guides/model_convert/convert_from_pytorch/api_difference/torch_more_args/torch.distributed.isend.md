@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.distributed.isend
-
+## [ torch 参数更多 ]torch.distributed.isend
 ### [torch.distributed.isend](https://pytorch.org/docs/stable/distributed.html#torch.distributed.isend)
-
 ```python
 torch.distributed.isend(tensor, dst, group=None, tag=0)
 ```
 
 ### [paddle.distributed.isend](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/isend_cn.html)
-
 ```python
 paddle.distributed.isend(tensor, dst=0, group=None)
 ```
@@ -15,7 +12,6 @@ paddle.distributed.isend(tensor, dst=0, group=None)
 其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle    | 备注                                                              |
 | ------- | --------------- | ----------------------------------------------------------------- |
 | tensor  | tensor          | 表示待发送的 Tensor。                                               |

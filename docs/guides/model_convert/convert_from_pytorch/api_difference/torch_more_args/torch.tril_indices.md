@@ -1,13 +1,10 @@
-## [ torch 参数更多]torch.tril_indices
-
+## [ torch 参数更多 ]torch.tril_indices
 ### [torch.tril_indices](https://pytorch.org/docs/stable/generated/torch.tril_indices.html?highlight=tril_indices#torch.tril_indices)
-
 ```python
 torch.tril_indices(row,col,offset=0,*,dtype=torch.long,device='cpu',layout=torch.strided)
 ```
 
 ### [paddle.tril_indices](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/tril_indices_cn.html)
-
 ```python
 paddle.tril_indices(row,col,offset=0,dtype='int64')
 ```
@@ -15,7 +12,6 @@ paddle.tril_indices(row,col,offset=0,dtype='int64')
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------- | ------- |
 | row | row | 表示输入 Tensor 的行数。 |
@@ -26,9 +22,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | layout | - | 表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 
 ### 转写示例
-
 #### device: Tensor 的设备
-
 ```python
 # PyTorch 写法
 torch.tril_indices(row,col,offset,dtype,device=torch.device('cpu'))

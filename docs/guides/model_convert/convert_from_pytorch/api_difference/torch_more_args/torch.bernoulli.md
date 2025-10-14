@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.bernoulli
-
 ### [torch.bernoulli](https://pytorch.org/docs/stable/generated/torch.bernoulli.html#torch.bernoulli)
-
 ```python
 torch.bernoulli(input,
                 p=None,
@@ -11,7 +9,6 @@ torch.bernoulli(input,
 ```
 
 ### [paddle.bernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bernoulli_cn.html)
-
 ```python
 paddle.bernoulli(x,
                  p=None,
@@ -21,7 +18,6 @@ paddle.bernoulli(x,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input      | x  | 伯努利参数 Tensor，仅参数名不一致。  |

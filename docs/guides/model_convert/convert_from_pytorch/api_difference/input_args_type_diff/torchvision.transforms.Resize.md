@@ -1,7 +1,5 @@
-## [输入参数类型不一致]torchvision.transforms.Resize
-
+## [ 输入参数类型不一致 ]torchvision.transforms.Resize
 ### [torchvision.transforms.Resize](https://pytorch.org/vision/stable/generated/torchvision.transforms.Resize.html#torchvision.transforms.Resize)
-
 ```python
 torchvision.transforms.Resize(
     size: Optional[Union[int, List[int], Tuple[int, ...]]],
@@ -12,7 +10,6 @@ torchvision.transforms.Resize(
 ```
 
 ### [paddle.vision.transforms.Resize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Resize__upper_cn.html#resize)
-
 ```python
 paddle.vision.transforms.Resize(
     size: Union[int, List[int], Tuple[int, ...]],
@@ -24,7 +21,6 @@ paddle.vision.transforms.Resize(
 两者功能一致，但输入参数类型不一致。
 
 ### 参数映射
-
 | torchvision | PaddlePaddle | 备注                                                         |
 | ------------- | --------------- | ------------------------------------------------------------ |
 | size           | size             | 输出图像大小。                       |

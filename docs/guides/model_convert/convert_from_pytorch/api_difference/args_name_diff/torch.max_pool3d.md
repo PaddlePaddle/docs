@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.max_pool3d
-
 ### [torch.max\_pool3d](https://pytorch.org/docs/stable/jit_builtin_functions.html#supported-pytorch-functions)
-
 ```python
 torch.max_pool3d(input, kernel_size, stride=[], padding=[0, 0, 0], dilation=[1, 1, 1], ceil_mode=False)
 ```
 
 ### [paddle.nn.functional.max_pool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/max_pool3d_cn.html)
-
 ```python
 paddle.nn.functional.max_pool3d(x, kernel_size, stride=None, padding=0, ceil_mode=False, return_mask=False, data_format="NCDHW", name=None)
 ```
@@ -15,7 +12,6 @@ paddle.nn.functional.max_pool3d(x, kernel_size, stride=None, padding=0, ceil_mod
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch        | PaddlePaddle | 备注                                                          |
 | -------------- | ------------ | ------------------------------------------------------------- |
 | input          | x            | 输入的 Tensor，仅参数名不一致。                               |

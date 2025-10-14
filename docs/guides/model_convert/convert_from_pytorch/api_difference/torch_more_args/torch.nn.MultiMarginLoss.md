@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.nn.MultiMarginLoss
-
+## [ torch 参数更多 ]torch.nn.MultiMarginLoss
 ### [torch.nn.MultiMarginLoss](https://pytorch.org/docs/stable/generated/torch.nn.MultiMarginLoss)
-
 ```python
 torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=None, size_average=None, reduce=None, reduction='mean')
 ```
 
 ### [paddle.nn.MultiMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MultiMarginLoss_cn.html)
-
 ```python
 paddle.nn.MultiMarginLoss(p: int = 1, margin: float = 1.0, weight=None, reduction: str = 'mean', name: str = None)
 ```
@@ -15,7 +12,6 @@ paddle.nn.MultiMarginLoss(p: int = 1, margin: float = 1.0, weight=None, reductio
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch            | PaddlePaddle       | 备注                                                                               |
 | ------------------ | ------------------ | ---------------------------------------------------------------------------------- |
 | p                  | p                  | 手动指定幂次方指数大小，默认为 1。                                                   |
@@ -26,7 +22,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction          | reduction          | 指定应用于输出结果的计算方式，可选值有 `none`、`mean` 和 `sum`。默认为 `mean`，计算 mini-batch loss 均值。设置为 `sum` 时，计算 mini-batch loss 的总和。设置为 `none` 时，则返回 loss Tensor。默认值下为 `mean`。   |
 
 ### 转写示例
-
 ```python
 # PyTorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
 if size_average is None:

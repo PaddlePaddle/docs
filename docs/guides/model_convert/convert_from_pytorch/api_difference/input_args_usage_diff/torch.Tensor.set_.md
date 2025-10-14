@@ -1,12 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.Tensor.set_
 ### [torch.Tensor.set_](https://pytorch.org/docs/stable/generated/torch.Tensor.set_.html)
-
 ```python
 torch.Tensor.set_(source=None, storage_offset=0, size=None, stride=None)
 ```
 
 ### [paddle.Tensor.set_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#set-source-none-shape-none-stride-none-offset-0-name-none)
-
 ```python
 paddle.Tensor.set_(source=None, shape=None, stride=None, offset=0, name=None)
 ```
@@ -14,7 +12,6 @@ paddle.Tensor.set_(source=None, shape=None, stride=None, offset=0, name=None)
 其中 PyTorch 的 `storage_offset` 与 Paddle 的 `offset` 用法不一致，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | source         | source      | 设置的目标 Tensor。                    |
@@ -24,7 +21,6 @@ paddle.Tensor.set_(source=None, shape=None, stride=None, offset=0, name=None)
 
 
 ### 转写示例
-
 #### storage_offset 参数：float32 偏移量设置
 ``` python
 # PyTorch 写法:

@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.Adadelta
-
 ### [torch.optim.Adadelta](https://pytorch.org/docs/stable/generated/torch.optim.Adadelta.html)
-
 ```python
 torch.optim.Adadelta(params,
              lr=1.0,
@@ -14,7 +12,6 @@ torch.optim.Adadelta(params,
 ```
 
 ### [paddle.optimizer.Adadelta](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Adadelta_cn.html#cn-api-paddle-optimizer-adadelta)
-
 ```python
 paddle.optimizer.Adadelta(learning_rate=0.001,
                           epsilon=1e-06,
@@ -28,7 +25,6 @@ paddle.optimizer.Adadelta(learning_rate=0.001,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch                             | PaddlePaddle | 备注                                                                    |
 | ----------------------------------- | ------------ | ----------------------------------------------------------------------- |
 | params     | parameters           | 表示指定优化器需要优化的参数，仅参数名不一致。                         |

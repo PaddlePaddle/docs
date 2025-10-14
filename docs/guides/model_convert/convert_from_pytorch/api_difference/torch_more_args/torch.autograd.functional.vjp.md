@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.autograd.functional.vjp
-
+## [ torch 参数更多 ]torch.autograd.functional.vjp
 ### [torch.autograd.functional.vjp](https://pytorch.org/docs/stable/generated/torch.autograd.functional.vjp.html#torch.autograd.functional.vjp)
-
 ```python
 torch.autograd.functional.vjp(func, inputs, v=None, create_graph=False, strict=False)
 ```
 
 ### [paddle.incubate.autograd.vjp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/incubate/autograd/vjp_cn.html)
-
 ```python
 paddle.incubate.autograd.vjp(func, xs, v=None)
 ```
@@ -15,7 +12,6 @@ paddle.incubate.autograd.vjp(func, xs, v=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch      | PaddlePaddle | 备注                                                                |
 | ------------ | ------------ | ------------------------------------------------------------------- |
 | func         | func         | Python 函数。                                                       |

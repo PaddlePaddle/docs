@@ -1,6 +1,5 @@
-## [torch 参数更多]torch.nanmedian
+## [ torch 参数更多 ]torch.nanmedian
 ### [torch.nanmedian](https://pytorch.org/docs/stable/generated/torch.nanmedian.html?highlight=nanmedian#torch.nanmedian)
-
 ```python
 torch.nanmedian(input,
                 dim=-1,
@@ -10,7 +9,6 @@ torch.nanmedian(input,
 ```
 
 ### [paddle.nanmedian](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nanmedian_cn.html#nanmedian)
-
 ```python
 paddle.nanmedian(x, axis=None, keepdim=False, mode='avg', name=None)
 ```
@@ -28,7 +26,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 
 ### 转写示例
-
 #### out：指定输出
 ```python
 # PyTorch 写法

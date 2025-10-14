@@ -1,6 +1,5 @@
 ## [ 仅参数名不一致 ]torch.movedim
 ### [torch.movedim](https://pytorch.org/docs/stable/generated/torch.movedim.html?highlight=movedim#torch.movedim)
-
 ```python
 torch.movedim(input,
               source,
@@ -8,7 +7,6 @@ torch.movedim(input,
 ```
 
 ### [paddle.moveaxis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/moveaxis_cn.html#moveaxis)
-
 ```python
 paddle.moveaxis(x,
                 source,

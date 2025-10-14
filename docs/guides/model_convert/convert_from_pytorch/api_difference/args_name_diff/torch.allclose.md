@@ -1,7 +1,5 @@
 ## [ 仅参数名不一致 ]torch.allclose
-
 ### [torch.allclose](https://pytorch.org/docs/stable/generated/torch.allclose.html?highlight=allclose#torch.allclose)
-
 ```python
 torch.allclose(input,
                other,
@@ -11,7 +9,6 @@ torch.allclose(input,
 ```
 
 ### [paddle.allclose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/allclose_cn.html#allclose)
-
 ```python
 paddle.allclose(x,
                 y,
@@ -24,7 +21,6 @@ paddle.allclose(x,
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 |  input          |  x             | 输入的 Tensor ，仅参数名不一致。                   |

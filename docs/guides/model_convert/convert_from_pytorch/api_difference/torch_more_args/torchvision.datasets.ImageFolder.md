@@ -1,7 +1,5 @@
-## [torch 参数更多]torchvision.datasets.ImageFolder
-
+## [ torch 参数更多 ]torchvision.datasets.ImageFolder
 ### [torchvision.datasets.ImageFolder](https://pytorch.org/vision/main/generated/torchvision.datasets.ImageFolder.html)
-
 ```python
 torchvision.datasets.ImageFolder(root: Union[str, pathlib.Path],
                                  transform: Optional[Callable] = None,
@@ -12,7 +10,6 @@ torchvision.datasets.ImageFolder(root: Union[str, pathlib.Path],
 ```
 
 ### [paddle.vision.datasets.ImageFolder](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/ImageFolder_cn.html)
-
 ```python
 paddle.vision.datasets.ImageFolder(root: str,
                                    loader: Optional[Callable] = None,
@@ -24,7 +21,6 @@ paddle.vision.datasets.ImageFolder(root: str,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | torchvision | PaddlePaddle | 备注                                      |
 | -------------------------------- | ---------------------------------- | ----------------------------------------- |
 | root                             | root                               | 根目录路径。                                |

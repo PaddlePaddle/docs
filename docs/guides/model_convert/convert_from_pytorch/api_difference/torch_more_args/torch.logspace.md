@@ -1,7 +1,5 @@
-## [torch 参数更多]torch.logspace
-
-###  [torch.logspace](https://pytorch.org/docs/stable/generated/torch.logspace.html?highlight=logspace#torch.logspace)
-
+## [ torch 参数更多 ]torch.logspace
+### [torch.logspace](https://pytorch.org/docs/stable/generated/torch.logspace.html?highlight=logspace#torch.logspace)
 ```python
 torch.logspace(start,
                end,
@@ -15,8 +13,7 @@ torch.logspace(start,
                requires_grad=False)
 ```
 
-###  [paddle.logspace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logspace_cn.html)
-
+### [paddle.logspace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logspace_cn.html)
 ```python
 paddle.logspace(start,
                 stop,
@@ -29,7 +26,6 @@ paddle.logspace(start,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                         |
 | ------------- | ------------ | ------------------------------------------------------------ |
 | start         | start        | 表示区间开始值以 base 为底的指数。                            |
@@ -43,9 +39,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | requires_grad | -            | 表示是否计算梯度，Paddle 无此参数，需要转写。            |
 
 ### 转写示例
-
 #### out：指定输出
-
 ```python
 # PyTorch 写法
 torch.logspace(0, 10, 5, 2, out=y)
@@ -55,7 +49,6 @@ paddle.assign(paddle.logspace(0, 10, 5, 2), y)
 ```
 
 #### device: Tensor 的设备
-
 ```python
 # PyTorch 写法
 y = torch.logspace(0, 10, 5, 2, device=torch.device('cpu'))
@@ -66,7 +59,6 @@ y.cpu()
 ```
 
 #### requires_grad：是否求梯度
-
 ```python
 # PyTorch 写法
 y = torch.logspace(0, 10, 5, 2, requires_grad=True)

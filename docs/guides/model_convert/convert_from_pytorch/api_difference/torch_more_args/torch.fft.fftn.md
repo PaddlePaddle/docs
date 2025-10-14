@@ -1,20 +1,16 @@
-## [ torch 参数更多 ] torch.fft.fftn
-
+## [ torch 参数更多 ]torch.fft.fftn
 ### [torch.fft.fftn](https://pytorch.org/docs/stable/generated/torch.fft.fftn.html?highlight=fftn#torch.fft.fftn)
-
 ```python
 torch.fft.fftn(input, s=None, dim=None, norm='backward', *, out=None)
 ```
 
 ### [paddle.fft.fftn](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/fftn_cn.html)
-
 ```python
 paddle.fft.fftn(x, s=None, axes=None, norm='backward', name=None)
 ```
 
 其中，PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入 Tensor，仅参数名不一致。                            |

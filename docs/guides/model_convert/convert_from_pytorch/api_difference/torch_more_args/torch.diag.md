@@ -1,6 +1,6 @@
-## [torch 参数更多 ]torch.diag
-### [torch.diag](https://pytorch.org/docs/stable/generated/torch.diag.html?highlight=diag#torch.diag)
+## [ torch 参数更多 ]torch.diag
 
+### [torch.diag](https://pytorch.org/docs/stable/generated/torch.diag.html?highlight=diag#torch.diag)
 ```python
 torch.diag(input,
            diagonal=0,
@@ -9,7 +9,6 @@ torch.diag(input,
 ```
 
 ### [paddle.diag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diag_cn.html)
-
 ```python
 paddle.diag(x,
             offset=0,
@@ -20,7 +19,6 @@ paddle.diag(x,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |

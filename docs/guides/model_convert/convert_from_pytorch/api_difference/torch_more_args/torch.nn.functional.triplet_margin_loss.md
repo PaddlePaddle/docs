@@ -1,7 +1,5 @@
-## [torch 参数更多 ] torch.nn.functional.triplet_margin_loss
-
+## [ torch 参数更多 ]torch.nn.functional.triplet_margin_loss
 ### [torch.nn.functional.triplet_margin_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.triplet_margin_loss.html?highlight=triplet_margin_loss#torch.nn.functional.triplet_margin_loss)
-
 ```python
 torch.nn.functional.triplet_margin_loss(anchor,
                 positive,
@@ -16,7 +14,6 @@ torch.nn.functional.triplet_margin_loss(anchor,
 ```
 
 ### [paddle.nn.functional.triplet_margin_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/triplet_margin_loss_cn.html)
-
 ```python
 paddle.nn.functional.triplet_margin_loss(input,
                 positive,
@@ -31,7 +28,6 @@ paddle.nn.functional.triplet_margin_loss(input,
 
 其中 PyTorch 相⽐ Paddle ⽀持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | anchor          | input         | 输入 Tensor，仅参数名不一致。                        |

@@ -1,13 +1,11 @@
-## [paddle 参数更多]torchvision.transforms.Grayscale
+## [ paddle 参数更多 ]torchvision.transforms.Grayscale
 
 ### [torchvision.transforms.Grayscale](https://pytorch.org/vision/main/generated/torchvision.transforms.Grayscale.html)
-
 ```python
 torchvision.transforms.Grayscale(num_output_channels: int = 1)
 ```
 
 ### [paddle.vision.transforms.Grayscale](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Grayscale_cn.html)
-
 ```python
 paddle.vision.transforms.Grayscale(
     num_output_channels: int = 1,
@@ -18,7 +16,6 @@ paddle.vision.transforms.Grayscale(
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | torchvision | PaddlePaddle | 备注    |
 | --------------------------- | ------------------------------ | --------------------- |
 | num_output_channels         | num_output_channels            | 输出图像的通道数。       |

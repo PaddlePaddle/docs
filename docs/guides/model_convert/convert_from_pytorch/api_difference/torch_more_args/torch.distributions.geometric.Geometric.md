@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.distributions.geometric.Geometric
-
+## [ torch 参数更多 ]torch.distributions.geometric.Geometric
 ### [torch.distributions.geometric.Geometric](https://pytorch.org/docs/stable/distributions.html#torch.distributions.geometric.Geometric)
-
 ```python
 torch.distributions.geometric.Geometric(probs=None, logits=None, validate_args=None)
 ```
 
 ### [paddle.distribution.Geometric](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Geometric_cn.html#geometric)
-
 ```python
 paddle.distribution.Geometric(probs)
 ```
@@ -15,7 +12,6 @@ paddle.distribution.Geometric(probs)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                                    |
 | ------------- | ------------ | ----------------------------------------------------------------------- |
 | probs         | probs        | 几何分布成功概率参数。                                                  |

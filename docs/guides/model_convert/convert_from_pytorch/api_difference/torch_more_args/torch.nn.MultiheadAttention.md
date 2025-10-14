@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.nn.MultiheadAttention
-
+## [ torch 参数更多 ]torch.nn.MultiheadAttention
 ### [torch.nn.MultiheadAttention](https://pytorch.org/docs/stable/generated/torch.nn.MultiheadAttention.html#torch.nn.MultiheadAttention)
-
 ```python
 torch.nn.MultiheadAttention(embed_dim, num_heads, dropout=0.0, bias=True, add_bias_kv=False, add_zero_attn=False, kdim=None, vdim=None, batch_first=False, device=None, dtype=None)
 ```
 
 ### [paddle.nn.MultiHeadAttention](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MultiHeadAttention_cn.html)
-
 ```python
 paddle.nn.MultiHeadAttention(embed_dim, num_heads, dropout=0.0, kdim=None, vdim=None, need_weights=False, weight_attr=None, bias_attr=None)
 ```
@@ -15,7 +12,6 @@ paddle.nn.MultiHeadAttention(embed_dim, num_heads, dropout=0.0, kdim=None, vdim=
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                                      |
 | ------------- | ------------ | ------------------------------------------------------------------------- |
 | embed_dim     | embed_dim    | 输入输出的维度。                                                          |

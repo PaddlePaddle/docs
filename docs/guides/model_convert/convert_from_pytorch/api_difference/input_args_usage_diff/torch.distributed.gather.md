@@ -1,13 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.distributed.gather
-
 ### [torch.distributed.gather](https://pytorch.org/docs/stable/distributed.html#torch.distributed.gather)
-
 ```python
 torch.distributed.gather(tensor, gather_list=None, dst=0, group=None, async_op=False)
 ```
 
 ### [paddle.distributed.gather](https://github.com/PaddlePaddle/Paddle/blob/c8ccc9b154632ef41ade1b8e97b87d54fde7e8f8/python/paddle/distributed/communication/gather.py#L20C71-L20C71)
-
 ```python
 paddle.distributed.gather(tensor, gather_list=None, dst=0, group=None, sync_op=True)
 ```
@@ -15,7 +12,6 @@ paddle.distributed.gather(tensor, gather_list=None, dst=0, group=None, sync_op=T
 其中 PyTorch 和 Paddle 功能一致，参数用法不一致，具体如下：
 
 ### 参数映射
-
 | PyTorch     | PaddlePaddle | 备注                                                            |
 | ----------- | ------------ | --------------------------------------------------------------- |
 | tensor      | tensor       | 操作的输入 Tensor。                                             |

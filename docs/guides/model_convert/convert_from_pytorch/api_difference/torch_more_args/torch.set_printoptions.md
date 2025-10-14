@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.set_printoptions
-
 ### [torch.set_printoptions](https://pytorch.org/docs/stable/generated/torch.set_printoptions.html?highlight=torch+set_printoptions#torch.set_printoptions)
-
 ```python
 torch.set_printoptions(precision=None, threshold=None, edgeitems=None, linewidth=None, profile=None, sci_mode=None)
 ```
 
 ### [paddle.set_printoptions](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/set_printoptions_cn.html)
-
 ```python
 paddle.set_printoptions(precision=None, threshold=None, edgeitems=None, sci_mode=None, linewidth=None)
 ```
@@ -15,7 +12,6 @@ paddle.set_printoptions(precision=None, threshold=None, edgeitems=None, sci_mode
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch   | PaddlePaddle | 备注                                                         |
 | --------- | ------------ | ------------------------------------------------------------ |
 | precision | precision    | 浮点数的小数位数, PyTorch 默认值为 4，Paddle 默认为 8。      |
@@ -26,9 +22,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | profile   | -            | 预设风格，支持 `default`, `short`, `full`。 Paddle 无此参数， 需要转写。 |
 
 ### 转写示例
-
 #### profile:预设风格，设置为 `default`。
-
 ```python
 # PyTorch 写法
 torch.set_printoptions(profile='default')
@@ -38,7 +32,6 @@ paddle.set_printoptions(precision=4, threshold=1000, edgeitems=3, linewidth=80)
 ```
 
 #### profile:预设风格，设置为 `short`。
-
 ```python
 # PyTorch 写法
 torch.set_printoptions(profile='short')
@@ -48,7 +41,6 @@ paddle.set_printoptions(precision=2, threshold=1000, edgeitems=2, linewidth=80)
 ```
 
 #### profile:预设风格，设置为 `full`。
-
 ```python
 # PyTorch 写法
 torch.set_printoptions(profile='full')

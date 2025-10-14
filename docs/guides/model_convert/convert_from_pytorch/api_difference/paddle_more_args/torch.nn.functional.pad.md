@@ -1,7 +1,5 @@
 ## [ paddle 参数更多 ]torch.nn.functional.pad
-
 ### [torch.nn.functional.pad](https://pytorch.org/docs/stable/generated/torch.nn.functional.pad.html)
-
 ```python
 torch.nn.functional.pad(input,
                             pad,
@@ -10,7 +8,6 @@ torch.nn.functional.pad(input,
 ```
 
 ### [paddle.nn.functional.pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/pad_cn.html#pad)
-
 ```python
 paddle.nn.functional.pad(x,
                             pad,
@@ -24,7 +21,6 @@ paddle.nn.functional.pad(x,
 两者功能一致，其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | x         | 表示输入的 Tensor，仅参数名不一致。                                     |

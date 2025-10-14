@@ -1,7 +1,5 @@
 ## [ paddle 参数更多 ]torch.nn.LPPool2d
-
 ### [torch.nn.LPPool2d](https://pytorch.org/docs/stable/generated/torch.nn.LPPool2d.html#lppool2d)
-
 ```python
 torch.nn.LPPool2d(norm_type, kernel_size, stride=None, ceil_mode=False)
 ```
@@ -14,7 +12,6 @@ paddle.nn.LPPool2D(norm_type, kernel_size, stride=None, padding=0, ceil_mode=Fal
 其中 Paddle 参数更多，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | norm_type     | norm_type    | 幂平均池化的指数，不可以为 0 。 |

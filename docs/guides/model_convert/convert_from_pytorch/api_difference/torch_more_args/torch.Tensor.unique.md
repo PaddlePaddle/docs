@@ -1,12 +1,10 @@
-## [torch 参数更多] torch.Tensor.unique
+## [ torch 参数更多 ]torch.Tensor.unique
 ### [torch.Tensor.unique](https://pytorch.org/docs/stable/generated/torch.Tensor.unique.html?highlight=unique#torch.Tensor.unique)
-
 ```python
 torch.Tensor.unique(sorted=True, return_inverse=False, return_counts=False, dim=None)
 ```
 
 ### [paddle.Tensor.unique](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#unique-return-index-false-return-inverse-false-return-counts-false-axis-none-dtype-int64-name-none)
-
 ```python
 paddle.Tensor.unique(return_index=False, return_inverse=False, return_counts=False, axis=None, dtype='int64', name=None)
 ```

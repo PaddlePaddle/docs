@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.atan
+## [ torch 参数更多 ]torch.atan
 ### [torch.atan](https://pytorch.org/docs/stable/generated/torch.atan.html#torch.atan)
-
 ```python
 torch.atan(input,
            *,
@@ -8,7 +7,6 @@ torch.atan(input,
 ```
 
 ### [paddle.atan](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atan_cn.html#atan)
-
 ```python
 paddle.atan(x,
             name=None)
@@ -17,7 +15,6 @@ paddle.atan(x,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input | x | 表示输入的 Tensor ，仅参数名不一致。  |

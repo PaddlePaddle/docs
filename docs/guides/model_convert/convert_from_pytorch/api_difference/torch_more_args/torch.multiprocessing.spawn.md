@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.multiprocessing.spawn
-
+## [ torch 参数更多 ]torch.multiprocessing.spawn
 ### [torch.multiprocessing.spawn](https://pytorch.org/docs/stable/multiprocessing.html#torch.multiprocessing.spawn)
-
 ```python
 torch.multiprocessing.spawn(fn, args=(), nprocs=1, join=True, daemon=False, start_method='spawn')
 ```
 
 ### [paddle.distributed.spawn](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/spawn_cn.html#spawn)
-
 ```python
 paddle.distributed.spawn(func, args=(), nprocs=- 1, join=True, daemon=False, **options)
 ```
@@ -15,7 +12,6 @@ paddle.distributed.spawn(func, args=(), nprocs=- 1, join=True, daemon=False, **o
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch      | PaddlePaddle | 备注                                                                |
 | ------------ | ------------ | ------------------------------------------------------------------- |
 | fn         | func         | Python 函数。                                                       |

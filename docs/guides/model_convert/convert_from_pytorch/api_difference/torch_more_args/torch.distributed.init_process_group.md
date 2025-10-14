@@ -1,12 +1,10 @@
-## [ torch 参数更多 ] torch.distributed.init_process_group
+## [ torch 参数更多 ]torch.distributed.init_process_group
 ### [torch.distributed.init_process_group](https://pytorch.org/docs/stable/distributed.html?highlight=init_process#torch.distributed.init_process_group)
-
 ```python
 torch.distributed.init_process_group(backend='nccl', init_method=None, timeout=datetime.timedelta(seconds=1800), world_size=-1, rank=-1, store=None, group_name='', pg_options=None)
 ```
 
 ### [paddle.distributed.init_parallel_env](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/init_parallel_env_cn.html)
-
 ```python
 paddle.distributed.init_parallel_env()
 ```
@@ -14,7 +12,6 @@ paddle.distributed.init_parallel_env()
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | backend       | -        | backend 配置，paddle 无此参数，暂无转写方式。                   |

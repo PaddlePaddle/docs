@@ -1,7 +1,5 @@
-## [ 仅参数名不一致 ] torch.nn.functional.triplet_margin_with_distance_loss
-
+## [ 仅参数名不一致 ]torch.nn.functional.triplet_margin_with_distance_loss
 ### [torch.nn.functional.triplet_margin_with_distance_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.triplet_margin_with_distance_loss.html?highlight=triplet_margin_with_distance_loss#torch.nn.functional.triplet_margin_with_distance_loss)
-
 ```python
 torch.nn.functional.triplet_margin_with_distance_loss(anchor,
                             positive,
@@ -13,7 +11,6 @@ torch.nn.functional.triplet_margin_with_distance_loss(anchor,
 ```
 
 ### [paddle.nn.functional.triplet_margin_with_distance_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/triplet_margin_with_distance_loss_cn.html)
-
 ```python
 paddle.nn.functional.triplet_margin_with_distance_loss(input,
                             positive,
@@ -27,7 +24,6 @@ paddle.nn.functional.triplet_margin_with_distance_loss(input,
 
 两者功能一致，仅参数名不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | anchor          | input         | 输入 Tensor，仅参数名不一致。                   |

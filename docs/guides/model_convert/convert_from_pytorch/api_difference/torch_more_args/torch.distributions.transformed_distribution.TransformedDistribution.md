@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.distributions.transformed_distribution.TransformedDistribution
-
+## [ torch 参数更多 ]torch.distributions.transformed_distribution.TransformedDistribution
 ### [torch.distributions.transformed_distribution.TransformedDistribution](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transformed_distribution.TransformedDistribution)
-
 ```python
 torch.distributions.transformed_distribution.TransformedDistribution(base_distribution, transforms, validate_args=None)
 ```
 
 ### [paddle.distribution.TransformedDistribution](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/TransformedDistribution_cn.html#transformeddistribution)
-
 ```python
 paddle.distribution.TransformedDistribution(base, transforms)
 ```
@@ -15,7 +12,6 @@ paddle.distribution.TransformedDistribution(base, transforms)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch           | PaddlePaddle | 备注                                                                    |
 | ----------------- | ------------ | ----------------------------------------------------------------------- |
 | base_distribution | base         | 基础分布，仅参数名不一致。                                              |

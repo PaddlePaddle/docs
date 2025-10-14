@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.NAdam
-
 ### [torch.optim.NAdam](https://pytorch.org/docs/stable/generated/torch.optim.NAdam.html#torch.optim.NAdam)
-
 ```python
 torch.optim.NAdam(params,
                 lr=0.002,
@@ -17,7 +15,6 @@ torch.optim.NAdam(params,
 ```
 
 ### [paddle.optimizer.NAdam](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/NAdam_cn.html#nadam)
-
 ```python
 paddle.optimizer.NAdam(learning_rate=0.002,
                     beta1=0.9,
@@ -33,7 +30,6 @@ paddle.optimizer.NAdam(learning_rate=0.002,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch                             | PaddlePaddle | 备注                                                                    |
 | ----------------------------------- | ------------ | ----------------------------------------------------------------------- |
 | params                              | parameters   | 表示指定优化器需要优化的参数，仅参数名不一致。                      |

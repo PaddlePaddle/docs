@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.linalg.lu_factor_ex
-
 ### [torch.linalg.lu_factor_ex](https://pytorch.org/docs/stable/generated/torch.linalg.lu_factor_ex.html?highlight=lu_factor_ex#torch.linalg.lu_factor_ex)
-
 ```python
 torch.linalg.lu_factor_ex(A, *, pivot=True, check_errors=False, out=None)
 ```
 
 ### [paddle.linalg.lu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_cn.html)
-
 ```python
 paddle.linalg.lu(x, pivot=True, get_infos=True, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.linalg.lu(x, pivot=True, get_infos=True, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch      | PaddlePaddle | 备注                                                                                                  |
 | ------------ | ------------ | ----------------------------------------------------------------------------------------------------- |
 | A            | x            | 表示需要进行 LU 分解的输入 Tensor ，仅参数名不一致。                                                  |
@@ -26,9 +22,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | 返回值       | 返回值       | 表示返回的 Tensor 元组 ，PyTorch 返回 info 的 shape 为[]，Paddle 返回 info 的 shape 为[1]，需要转写。 |
 
 ### 转写示例
-
 #### out：指定输出
-
 ```python
 # PyTorch 写法
 torch.linalg.lu_factor_ex(A, out=(LU, pivots, info))
@@ -40,7 +34,6 @@ paddle.assign(y[0], out[0]), paddle.assign(y[1], out[1]), paddle.assign(y[2], ou
 ```
 
 #### 返回值
-
 ```python
 # PyTorch 写法
 y = torch.linalg.lu_factor_ex(A)

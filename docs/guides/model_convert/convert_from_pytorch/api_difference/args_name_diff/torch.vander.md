@@ -1,7 +1,5 @@
 ## [ 仅参数名不一致 ]torch.vander
-
 ### [torch.vander](https://pytorch.org/docs/stable/generated/torch.vander.html?highlight=vander#torch.vander)
-
 ```python
 torch.vander(x,
           N,
@@ -9,7 +7,6 @@ torch.vander(x,
 ```
 
 ### [paddle.vander](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vander_cn.html#vander)
-
 ```python
 paddle.vander(x,
           n,
@@ -19,7 +16,6 @@ paddle.vander(x,
 两者功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | x          | x          | 表示输入的 Tensor。                      |

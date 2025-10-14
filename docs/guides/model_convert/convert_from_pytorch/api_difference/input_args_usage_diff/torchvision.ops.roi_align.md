@@ -1,13 +1,10 @@
-## [输入参数用法不一致]torchvision.ops.roi_align
-
+## [ 输入参数用法不一致 ]torchvision.ops.roi_align
 ### [torchvision.ops.roi_align](https://pytorch.org/vision/main/generated/torchvision.ops.roi_align.html)
-
 ```python
 torchvision.ops.roi_align(input: Tensor, boxes: Union[Tensor, List[Tensor]], output_size: None, spatial_scale: float = 1.0, sampling_ratio: int = - 1, aligned: bool = False)
 ```
 
 ### [paddle.vision.ops.roi_align](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/ops/roi_align_cn.html)
-
 ```python
 paddle.vision.ops.roi_align(x, boxes, boxes_num, output_size, spatial_scale=1.0, sampling_ratio=- 1, aligned=True, name=None)
 ```
@@ -29,7 +26,6 @@ paddle.vision.ops.roi_align(x, boxes, boxes_num, output_size, spatial_scale=1.0,
 2. boxes_num: 一个形状为 (batch_size) 的 Tensor，用于指定每个样本中包含的 ROI 数量。
 
 ### 参数映射
-
 | torchvision                           | PaddlePaddle       | 备注      |
 | ------------------------------------- | ------------------ | -------- |
 | input                                 | x                  | 输入特征图，仅参数名不一致。|
@@ -40,8 +36,7 @@ paddle.vision.ops.roi_align(x, boxes, boxes_num, output_size, spatial_scale=1.0,
 | aligned                               | aligned            | 像素移动框是否将其坐标移动-0.5。|
 
 ### 转写示例
-#### boxes：待执行池化的 ROIs 的框坐标
-boxes 是一个形状为 (K, 5) 的二维 Tensor 时
+#### boxes：待执行池化的 ROIs 的框坐标 boxes 是一个形状为 (K, 5) 的二维 Tensor 时
 ```python
 # PyTorch 写法
 boxes = torch.tensor([[0, 4, 4, 7, 7], [1, 5, 5, 10, 10]], dtype=torch.float32)

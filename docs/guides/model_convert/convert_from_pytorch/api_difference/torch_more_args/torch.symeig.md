@@ -1,14 +1,11 @@
-## [ torch 参数更多 ] torch.symeig
-
+## [ torch 参数更多 ]torch.symeig
 ### [torch.symeig](https://pytorch.org/docs/stable/generated/torch.symeig.html?highlight=torch+symeig#torch.symeig)
-
 ```python
 # pytorch1.9 以上版本不支持
 torch.symeig(input, eigenvectors=False, upper=True, *, out=None)
 ```
 
 ### [paddle.linalg.eigh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eigh_cn.html#eigh)
-
 ```python
 # eigenvectors 为 True
 paddle.linalg.eigh(x, UPLO='L', name=None)
@@ -20,7 +17,6 @@ paddle.linalg.eigvalsh(x, UPLO='L', name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | x            | 输入的对称 Tensor，仅参数名不一致。                           |
@@ -29,7 +25,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | out          | -            | 表示输出的 Tensor 元组， Paddle 无此参数，需要转写。                           |
 
 ### 转写示例
-
 #### eigenvectors：表示是否计算特征向量
 ```python
 # PyTorch 写法，eigenvectors 为 False

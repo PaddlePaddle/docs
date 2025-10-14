@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.nn.functional.ctc_loss
-
+## [ torch 参数更多 ]torch.nn.functional.ctc_loss
 ### [torch.nn.functional.ctc_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.ctc_loss.html#torch.nn.functional.ctc_loss)
-
 ```python
 torch.nn.functional.ctc_loss(log_probs, targets, input_lengths, target_lengths, blank=0, reduction='mean', zero_infinity=False)
 ```
 
 ### [paddle.nn.functional.ctc_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/ctc_loss_cn.html)
-
 ```python
 paddle.nn.functional.ctc_loss(log_probs, labels, input_lengths, label_lengths, blank=0, reduction='mean')
 ```
@@ -15,7 +12,6 @@ paddle.nn.functional.ctc_loss(log_probs, labels, input_lengths, label_lengths, b
 其中 torch 的 log_softmax+ctc_loss 相当于 paddle 的 ctc_loss，是一个二对一的情况，暂时无法转写。PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 | PyTorch        | PaddlePaddle  | 备注                                                               |
 | -------------- | ------------- | ------------------------------------------------------------------ |
 | log_probs      | log_probs     | 经过 padding 的概率序列。                                          |

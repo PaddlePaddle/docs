@@ -1,12 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.LazyLinear
 ### [torch.nn.LazyLinear](https://pytorch.org/docs/stable/generated/torch.nn.LazyLinear.html)
-
 ```python
 torch.nn.LazyLinear(out_features, bias=True, device=None, dtype=None)
 ```
 
 ### [paddle.nn.Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Linear_cn.html#linear)
-
 ```python
 paddle.nn.Linear(in_features,
                  out_features,
@@ -17,7 +15,6 @@ paddle.nn.Linear(in_features,
 
 其中，Paddle 不支持 `in_features` 参数的延迟初始化，PyTorch 的 `bias` 与 Paddle 的 `bias_attr` 用法不一致，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | -             | in_features   | 表示线性变换层输入单元的数目，PyTorch 无此参数，Paddle 需要根据实际输入 Tensor 的单元的数目进行设置。   |
@@ -29,9 +26,7 @@ paddle.nn.Linear(in_features,
 | -             | bias_attr    | 指定偏置参数的属性, 当`bias_attr`设置为 bool 类型时与 PyTorch 的作用一致。 |
 
 ### 转写示例
-
-#### in_channels: 输入通道数
-在 PyTorch 中，使用 `LazyConvTranspose3d` 时可以不指定 `in_channels`，它会在第一次前向传播时根据输入 Tensor 的形状自动确定；而在 Paddle 中，创建 `Conv3DTranspose` 时必须明确指定 `in_channels` 参数，其值应与输入 Tensor 的通道数保持一致。
+#### in_channels: 输入通道数在 PyTorch 中，使用 `LazyConvTranspose3d` 时可以不指定 `in_channels`，它会在第一次前向传播时根据输入 Tensor 的形状自动确定；而在 Paddle 中，创建 `Conv3DTranspose` 时必须明确指定 `in_channels` 参数，其值应与输入 Tensor 的通道数保持一致。
 ```python
 # PyTorch 写法
 linear = torch.nn.LazyLinear(out_features=10)

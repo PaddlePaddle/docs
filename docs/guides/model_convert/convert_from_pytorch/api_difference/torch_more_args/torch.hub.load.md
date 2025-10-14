@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.hub.load
-
+## [ torch 参数更多 ]torch.hub.load
 ### [torch.hub.load](https://pytorch.org/docs/stable/hub.html?highlight=hub+load#torch.hub.load)
-
 ```python
 torch.hub.load(repo_or_dir,
                 model,
@@ -15,7 +13,6 @@ torch.hub.load(repo_or_dir,
 ```
 
 ### [paddle.hub.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hub/load_cn.html)
-
 ```python
 paddle.hub.load(repo_dir,
                 model,
@@ -26,7 +23,6 @@ paddle.hub.load(repo_dir,
 
 其中，PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
-
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | repo_or_dir   |repo_dir      |repo 地址，支持 git 地址形式和 local 地址，仅参数名不同。|

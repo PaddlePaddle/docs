@@ -1,14 +1,11 @@
 ## [ paddle 参数更多 ]torch.optim.Optimizer
-
 ### [torch.optim.Optimizer](https://pytorch.org/docs/stable/optim.html#torch.optim.Optimizer)
-
 ```python
 torch.optim.Optimizer(params,
                     defaults)
 ```
 
 ### [paddle.optimizer.Optimizer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Optimizer_cn.html)
-
 ```python
 paddle.optimizer.Optimizer(learning_rate=0.001,
                         epsilon=1e-08,
@@ -21,7 +18,6 @@ paddle.optimizer.Optimizer(learning_rate=0.001,
 PyTorch 相比 Paddle 支持更多其他参数，其 `defaults` 可以支持各种参数，但一般只会转写 API 名称，不会转写参数。
 
 ### 参数映射
-
 | PyTorch                             | PaddlePaddle | 备注                                                                    |
 | ----------------------------------- | ------------ | ----------------------------------------------------------------------- |
 | params     | parameters           | 表示指定优化器需要优化的参数，仅参数名不一致。                      |

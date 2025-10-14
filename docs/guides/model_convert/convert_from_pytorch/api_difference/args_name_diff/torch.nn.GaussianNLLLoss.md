@@ -1,13 +1,10 @@
-## [仅参数名不一致]torch.nn.GaussianNLLLoss
-
+## [ 仅参数名不一致 ]torch.nn.GaussianNLLLoss
 ### [torch.nn.GaussianNLLLoss](https://pytorch.org/docs/stable/generated/torch.nn.GaussianNLLLoss)
-
 ```python
 torch.nn.GaussianNLLLoss(*, full=False, eps=1e-06, reduction='mean')
 ```
 
 ### [paddle.nn.GaussianNLLLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GaussianNLLLoss_cn.html)
-
 ```python
 paddle.nn.GaussianNLLLoss(full=False, epsilon=1e-6, reduction='mean', name=None)
 ```
@@ -15,7 +12,6 @@ paddle.nn.GaussianNLLLoss(full=False, epsilon=1e-6, reduction='mean', name=None)
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
-
 | PyTorch            | PaddlePaddle       | 备注                                                                               |
 | ------------------ | ------------------ | ---------------------------------------------------------------------------------- |
 | full               | full               | 是否在损失计算中包括常数项。默认情况下为 False，表示忽略最后的常数项。                 |
