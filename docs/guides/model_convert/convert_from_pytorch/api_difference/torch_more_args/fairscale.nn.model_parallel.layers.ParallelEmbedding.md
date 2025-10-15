@@ -11,6 +11,7 @@ paddle.distributed.fleet.meta_parallel.VocabParallelEmbedding(num_embeddings, em
 两者功能大体一致，但内部实现细节不一样，ParallelEmbedding 的切分方向沿着 embedding 方向，VocabParallelEmbedding 的切分方向沿着 vocab(词汇表)方向，故在多卡训练时，load 参数时需手动修改以匹配参数切分方式的不同。
 
 ### 参数映射
+
 | fairscale                    | PaddlePaddle   | 备注      |
 | ---------------------------- | -------------- | -------- |
 | num_embeddings               | num_embeddings | 词汇表大小。  |

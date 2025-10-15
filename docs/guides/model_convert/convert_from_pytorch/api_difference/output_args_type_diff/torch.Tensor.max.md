@@ -16,6 +16,7 @@ paddle.Tensor.max(axis=None, keepdim=False, name=None)
 其中 PyTorch 与 Paddle 指定 `dim` 后返回值不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | dim           | axis         | 求最大值运算的维度， 仅参数名不一致。                                      |
@@ -47,6 +48,7 @@ paddle.Tensor.maximum(y)
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch           | PaddlePaddle           | 备注                                 |
 | ----------------- | ---------------------- | ------------------------------------ |
 |  other            |             y          | 输⼊ Tensor ，仅参数名不一致。         |

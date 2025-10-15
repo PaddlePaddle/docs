@@ -12,6 +12,7 @@ paddle.profiler.Profiler(*, targets=None, scheduler=None, on_trace_ready=None, r
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch             | PaddlePaddle   | 备注                                                                                                                         |
 | ------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | activities          | targets        | 指定性能分析所要分析的设备，PyTorch 为 torch.profiler.ProfilerActivity 类型，Paddle 为 paddle.profiler.ProfilerTarget 类型。 |

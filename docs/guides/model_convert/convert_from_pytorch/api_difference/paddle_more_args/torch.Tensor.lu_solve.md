@@ -12,6 +12,7 @@ paddle.linalg.lu_solve(b, lu, pivots, trans="N", name=None)
 Pytorch 为 Tensor 类方法，Paddle 为普通函数，另外 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | self  |   b   | 表示欲进行线性方程组求解的右值 Tensor ，调用 torch.Tensor 类方法的 self Tensor 传入。 |

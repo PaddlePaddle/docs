@@ -12,6 +12,7 @@ paddle.distribution.Laplace(loc, scale)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                                    |
 | ------------- | ------------ | ----------------------------------------------------------------------- |
 | loc           | loc          | 拉普拉斯分布位置参数。                                                  |

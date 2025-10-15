@@ -12,6 +12,7 @@ paddle.nn.Layer.add_parameter(name, parameter)
 两者功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                             |
 | ------- | ------------ | -------------------------------- |
 | name    | name         | 参数名。                         |

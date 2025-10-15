@@ -12,6 +12,7 @@ paddle.jit.load(path, **configs)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                                |
 | ------------- | ------------ | ------------------------------------------------------------------- |
 | f             | path         | PyTorch 为文件对象或文件名包含后缀，Paddle 为文件名不包含后缀，读取 .pdiparams，.pdmodel 等后缀文件。                       |

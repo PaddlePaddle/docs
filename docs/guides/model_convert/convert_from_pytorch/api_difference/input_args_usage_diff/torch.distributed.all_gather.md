@@ -12,6 +12,7 @@ paddle.distributed.all_gather(tensor_list, tensor, group=None, sync_op=True)
 其中 PyTorch 和 Paddle 功能一致，参数用法不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch     | PaddlePaddle | 备注                                                            |
 | ----------- | ------------ | --------------------------------------------------------------- |
 | tensor_list | tensor_list  | 操作的输出 Tensor 列表。                                        |

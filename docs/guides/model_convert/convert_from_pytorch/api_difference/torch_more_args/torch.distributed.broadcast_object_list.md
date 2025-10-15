@@ -12,6 +12,7 @@ paddle.distributed.broadcast_object_list(object_list, src, group=None)
 其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle    | 备注                                                              |
 | ------- | --------------- | ----------------------------------------------------------------- |
 | object_list  | object_list  | 表示在目标进程上为待广播的 object 列表，在其他进程上为用于接收广播结果的 object 列表。 |

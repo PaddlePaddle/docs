@@ -24,6 +24,7 @@ paddle.vision.transforms.perspective(
 两者功能一致，但参数类型不一致。
 
 ### 参数映射
+
 | torchvision       | PaddlePaddle | 备注              |
 | ----------------- | ----------------- | ------------ |
 | img               | img               | 输入图片。    |

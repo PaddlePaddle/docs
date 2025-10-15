@@ -12,6 +12,7 @@ paddle.combinations(x, r=2, with_replacement=False, name=None)
 两者功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch          | PaddlePaddle     | 备注                          |
 | ---------------- | ---------------- | ----------------------------- |
 | input            | x                | 输入 Tensor，仅参数名不一致。 |

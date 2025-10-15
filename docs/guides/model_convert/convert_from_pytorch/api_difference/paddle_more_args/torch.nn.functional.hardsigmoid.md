@@ -12,6 +12,7 @@ paddle.nn.functional.hardsigmoid(x, slope=0.1666667, offset=0.5, name=None)
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
 | input   | x            | 输入 Tensor，仅参数名不一致。 |

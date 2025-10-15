@@ -12,6 +12,7 @@ paddle.where(condition, x=None, y=None, name=None)
 Pytorch 为 Tensor 类方法，Paddle 为普通函数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | condition     | condition    | 判断条件。|

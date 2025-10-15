@@ -10,6 +10,7 @@ paddlenlp.transformers.PreTrainedTokenizer.encode(text, **kwargs)
 ```
 
 ### 参数映射
+
 | transformers  | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | text          | text         | 输入的编码文本。  |

@@ -12,6 +12,7 @@ paddle.DataParallel(layers, strategy=None, comm_buffer_size=25, last_comm_buffer
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch                 | PaddlePaddle           | 备注                                                                                     |
 | ----------------------- | ---------------------- | ---------------------------------------------------------------------------------------- |
 | module                  | layers                 | 需要通过数据并行方式执行的模型，仅参数名不一致。                                         |

@@ -12,6 +12,7 @@ paddle.Tensor.take(index, mode='raise', name=None)
 两者功能一致，仅参数名不一致，其中 Paddle 相比 PyTorch 支持更多其他参数,具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                         |
 | ------- | ------------ | ------------------------------------------------------------ |
 | index   | index        | 表示输入 tensor 的索引，参数完全一致。                     |

@@ -13,6 +13,7 @@ max_seqlen_q, max_seqlen_k, scale,dropout=0.0, causal=False, return_softmax=Fals
 其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | flash_attn        | PaddlePaddle      | 备注                |
 | ----------------- | ----------------- | ------------------------------------------------------------ |
 | q                 | query             | 注意力模块的 query Tensor。|

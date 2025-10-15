@@ -13,6 +13,7 @@ Pytorch 为 Tensor 类方法，Paddle 为普通函数，另外 PyTorch 相比 Pa
 
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                    |
 | ------------- | ------------ | ----------------------------------------------------------------------------- |
 | self      | x  | 伯努利参数 Tensor，将调用 torch.Tensor 类方法的 self Tensor 传入。  |

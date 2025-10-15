@@ -12,6 +12,7 @@ paddle.distributed.rpc.shutdown()
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch  | PaddlePaddle | 备注                                          |
 | -------- | ------------ | --------------------------------------------- |
 | graceful | -            | 是否优雅关闭，Paddle 无此参数，暂无转写方式。 |

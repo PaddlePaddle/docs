@@ -12,6 +12,7 @@ paddlenlp.transformers.AddedToken(content: str = field(default_factory=str), sin
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | transformers | PaddlePaddle | 备注                   |
 | ------------ | ------------ | ---------------------- |
 | content      | content      | 待添加的 Token 内容。  |

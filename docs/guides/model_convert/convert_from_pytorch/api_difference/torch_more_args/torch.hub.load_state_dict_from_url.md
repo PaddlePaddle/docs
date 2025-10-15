@@ -11,6 +11,7 @@ paddle.hub.load_state_dict_from_url(url, model_dir=None, check_hash=False, file_
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | url | url |  要下载对象的 URL 地址。 |

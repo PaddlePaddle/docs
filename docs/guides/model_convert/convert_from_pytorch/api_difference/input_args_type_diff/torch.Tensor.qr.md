@@ -12,6 +12,7 @@ paddle.Tensor.qr(mode='reduced')
 其中，PyTorch 的 `some` 和 PaddlePaddle 的 `mode` 参数所支持的数据类型不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                                     |
 |---------|--------------|------------------------------------------------------------------------|
 | some    | mode         | 表示 QR 分解的行为。PyTorch 支持布尔类型的输入，PaddlePaddle 支持字符串类型的输入。 两者使用方式不一致，需要转写。 |

@@ -12,6 +12,7 @@ paddle.set_rng_state(state_list, device='gpu')
 其中 PyTorch 与 Paddle 的参数类型不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch    | PaddlePaddle | 备注                                                                                                            |
 | ---------- | ------------ | --------------------------------------------------------------------------------------------------------------- |
 | new_states | state_list   | 表示每个设备需要的状态，PyTorch 类型为 torch.ByteTensor 列表，Paddle 类型为 GeneratorState 列表，需要转写。 |

@@ -23,6 +23,7 @@ paddle.vision.transforms.RandomPerspective(
 两者功能一致，但参数类型不一致。
 
 ### 参数映射
+
 | torchvision | PaddlePaddle | 备注                  |
 | ----------------- | ------------------ | ----------- |
 | distortion_scale  | distortion_scale  | 控制失真程度。                       |

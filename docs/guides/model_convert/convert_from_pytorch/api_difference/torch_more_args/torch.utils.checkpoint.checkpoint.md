@@ -12,6 +12,7 @@ paddle.distributed.fleet.utils.recompute(function, preserve_rng_state=True, use_
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | function          | function            | 模型前向传播的部分连续的层函数组成的序列。  |

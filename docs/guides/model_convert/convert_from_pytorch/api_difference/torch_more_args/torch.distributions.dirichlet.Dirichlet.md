@@ -12,6 +12,7 @@ paddle.distribution.Dirichlet(concentration)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle  | 备注                                          |
 | ------------- | ------------- | --------------------------------------------- |
 | concentration | concentration | 浓度参数，即公式中 α 参数。                   |

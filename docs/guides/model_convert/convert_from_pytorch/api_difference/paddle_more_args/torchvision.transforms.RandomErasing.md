@@ -21,6 +21,7 @@ paddle.vision.transforms.RandomErasing(prob = 0.5,
 两者功能基本一致，但 Paddle 相比 torchvision 支持更多参数，具体如下：
 
 ### 参数映射
+
 | torchvision   | PaddlePaddle     | 备注           |
 | ------------- | -------------- | --------------- |
 | p             | prob          | 输入数据被执行擦除操作的概率，仅参数名不一致。 |

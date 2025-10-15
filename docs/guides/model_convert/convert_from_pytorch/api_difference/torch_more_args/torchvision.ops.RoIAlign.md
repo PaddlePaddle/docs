@@ -12,6 +12,7 @@ paddle.vision.ops.RoIAlign(output_size, spatial_scale=1.0)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | torchvision                           | PaddlePaddle       | 备注      |
 | ------------------------------------- | ------------------ | -------- |
 | output_size                           | output_size        | 池化后输出的尺寸。|

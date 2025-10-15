@@ -12,6 +12,7 @@ paddle.Tensor.remainder_(y, name=None)
 其中 Paddle 与 PyTorch 运算除数参数所支持的类型不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | other         | y            | 除数，PyTorch 可为 Tensor or Scalar，Paddle 仅可为 Tensor，需要转写。   |

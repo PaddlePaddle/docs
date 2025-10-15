@@ -12,6 +12,7 @@ paddle.vision.datasets.Flowers(data_file=None, label_file=None, setid_file=None,
 两者功能一致，指定数据集文件路径的参数 `root` 与指定训练集的参数 `split` 的用法不一致，具体如下：
 
 ### 参数映射
+
 | torchvision        | PaddlePaddle           | 备注                                                       |
 | ---------------------- | --------------------- | ---------------------------------------------------------- |
 | root                   | data_file, label_file, setid_file| 指定数据集目录，Paddle 使用 data_file、label_file 和 setid_file，等价的实现 PyTorch 的 root 的功能，需要转写。  |

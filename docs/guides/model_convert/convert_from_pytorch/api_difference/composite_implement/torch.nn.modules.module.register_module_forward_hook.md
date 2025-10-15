@@ -11,6 +11,7 @@ paddle.nn.Layer.register_forward_post_hook(hook)
 
 其中，PyTorch 为给全局所有 module 注册 hook,而 Paddle 为给单个 Layer 注册 hook。PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | hook  | hook       | 被注册为 forward post-hook 的函数。 |

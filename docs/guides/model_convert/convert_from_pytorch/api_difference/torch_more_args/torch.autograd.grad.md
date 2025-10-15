@@ -12,6 +12,7 @@ paddle.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch          | PaddlePaddle | 备注                                                         |
 | ---------------- | ------------ | ------------------------------------------------------------ |
 | outputs          | outputs      | 用于计算梯度的图的输出变量。                                 |

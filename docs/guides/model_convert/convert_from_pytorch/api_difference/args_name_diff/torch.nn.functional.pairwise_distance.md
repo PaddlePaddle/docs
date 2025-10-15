@@ -12,6 +12,7 @@ paddle.nn.functional.pairwise_distance(x, y, p=2., epsilon=1e-6, keepdim=False, 
 其中 PyTorch 和 Paddle 功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
 | x1      | x            | 输入 Tensor，仅参数名不一致。 |

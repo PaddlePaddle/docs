@@ -29,6 +29,7 @@ paddle.vision.transforms.RandomAffine(
 两者功能一致但参数类型不一致，具体如下：
 
 ### 参数映射
+
 | torchvision        | PaddlePaddle    | 备注                      |
 | ------------------ | ---------------- | ------------------------ |
 | degrees           | degrees           | 随机旋转变换的角度大小。 |

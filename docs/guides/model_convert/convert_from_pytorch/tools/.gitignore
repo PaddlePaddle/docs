@@ -4,6 +4,8 @@ generated.tmp.md
 tmp_check.md
 no_implement.md
 download_files_from_paconvert.sh
+test
+tmp_*
 
 # files will be used in PaConvert
 docs_mappings.json

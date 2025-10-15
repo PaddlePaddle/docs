@@ -12,6 +12,7 @@ paddle.amp.auto_cast(enable=True, custom_white_list=None, custom_black_list=None
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle      | 备注                                                         |
 | ------------- | ----------------- | ------------------------------------------------------------ |
 | enabled       | enable            | 是否开启自动混合精度。                                       |

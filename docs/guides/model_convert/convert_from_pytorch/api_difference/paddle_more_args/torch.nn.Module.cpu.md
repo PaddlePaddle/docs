@@ -12,6 +12,7 @@ paddle.nn.Layer.to(device=None, dtype=None, blocking=None)
 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                              |
 | ------- | ------------ | --------------------------------- |
 | -       | device       | 移动到的设备，PyTorch 无此参数，Paddle 设置为 "cpu"。 |

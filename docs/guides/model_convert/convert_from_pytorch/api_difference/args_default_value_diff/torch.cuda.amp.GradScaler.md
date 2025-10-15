@@ -13,6 +13,7 @@ paddle.amp.GradScaler(enable=True, init_loss_scaling=65536.0, incr_ratio=2.0, de
 其中 Paddle 相比 PyTorch 支持更多其他参数且参数默认值不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch         | PaddlePaddle             | 备注                                                                          |
 | --------------- | ------------------------ |-----------------------------------------------------------------------------|
 | init_scale      | init_loss_scaling        | 初始 loss scaling 因子。Paddle 与 PyTorch 默认值不同，Paddle 应设置为 65536.0。   |

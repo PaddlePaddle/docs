@@ -12,6 +12,7 @@ paddlenlp.generation.StoppingCriteriaList(input_ids: paddle.Tensor, scores: padd
 两者功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | transformers      | PaddlePaddle      | 备注                                     |
 | ----------------- | ----------------- | --------------------------------------- |
 | input_ids         | input_ids         | 输入(tokens) 的 id 组成的 Tensor。 |

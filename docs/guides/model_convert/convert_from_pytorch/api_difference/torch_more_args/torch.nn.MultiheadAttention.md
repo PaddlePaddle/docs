@@ -12,6 +12,7 @@ paddle.nn.MultiHeadAttention(embed_dim, num_heads, dropout=0.0, kdim=None, vdim=
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                                      |
 | ------------- | ------------ | ------------------------------------------------------------------------- |
 | embed_dim     | embed_dim    | 输入输出的维度。                                                          |

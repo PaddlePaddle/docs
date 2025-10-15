@@ -12,6 +12,7 @@ paddle.nn.functional.rrelu(x, lower=1./8, upper=1./3, training=True, name=None)
 其中 PyTorch 和 Paddle 功能一致，参数名与参数默认值不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch  | PaddlePaddle | 备注                                      |
 | -------- | ------------ | ----------------------------------------- |
 | input    | x            | 输入的 Tensor，仅参数名不一致。               |

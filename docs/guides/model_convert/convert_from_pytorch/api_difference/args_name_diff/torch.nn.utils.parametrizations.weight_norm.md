@@ -12,6 +12,7 @@ paddle.nn.utils.weight_norm(layer, name='weight', dim=0)
 其中，PyTorch 和 Paddle 仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | module        | layer        | 要添加权重归一化的层，仅参数名不一致。|

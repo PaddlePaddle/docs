@@ -12,6 +12,7 @@ paddle.nn.functional.lp_pool1d(x, norm_type, kernel_size, stride=None, padding=0
 其中 Paddle 参数更多，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 表示输入的 Tensor ，仅参数名不一致。  |

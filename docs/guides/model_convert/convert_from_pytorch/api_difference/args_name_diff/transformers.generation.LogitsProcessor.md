@@ -12,6 +12,7 @@ paddlenlp.generation.LogitsProcessor(input_ids: paddle.Tensor, scores: paddle.Te
 两者功能一致但参数名不一致，部分参数名不同，具体如
 
 ### 参数映射
+
 | transformers      | PaddlePaddle      | 备注                                     |
 | ----------------- | ----------------- | --------------------------------------- |
 | input_ids         | input_ids         | 输入(tokens) 的 id 组成的 Tensor。 |

@@ -12,6 +12,7 @@ paddle.linalg.lu_solve(b, lu, pivots, trans="N", name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                  |
 | ------- | ------------ | ----------------------------------------------------- |
 | LU      | lu           | 表示 LU 分解结果矩阵，由 L、U 拼接组成，仅参数名不一致。  |

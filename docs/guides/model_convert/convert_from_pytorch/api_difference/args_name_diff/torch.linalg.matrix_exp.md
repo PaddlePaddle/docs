@@ -12,6 +12,7 @@ paddle.linalg.matrix_exp(x, name=None)
 PyTorch 相比 Paddle 仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | A          |  x           | 输入的方阵，类型为 Tensor,仅参数名不一致。  |

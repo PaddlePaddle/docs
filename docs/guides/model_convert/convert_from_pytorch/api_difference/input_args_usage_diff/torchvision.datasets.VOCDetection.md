@@ -12,6 +12,7 @@ paddle.vision.datasets.VOC2012(data_file: Optional[str] = None, mode: str = 'tra
 指定数据集文件路径的参数 `root` 与指定训练集的参数 `image_set` 的用法不一致，Paddle 只支持 2012 年数据集，但 PyTorch 支持 2007 和 2012 年数据集，具体如下：
 
 ### 参数映射
+
 | torchvision        | PaddlePaddle           | 备注                                                       |
 | ---------------------- | --------------------- | ---------------------------------------------------------- |
 | root                   | data_file             | 数据集文件路径，Paddle 参数 data_file 需含完整的文件名，如 PyTorch 参数 `./data`，对应 Paddle 参数 `./data/voc2012/VOCtrainval_11-May-2012.tar`，需要转写。         |

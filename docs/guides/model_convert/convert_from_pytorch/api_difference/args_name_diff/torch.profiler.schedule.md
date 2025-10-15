@@ -12,6 +12,7 @@ paddle.profiler.make_scheduler(*, closed, ready, record, repeat=0, skip_first=0)
 两者功能一致，参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch    | PaddlePaddle | 备注                                                                |
 | ---------- | ------------ | ------------------------------------------------------------------- |
 | wait       | closed       | 处于 wait/ProfilerState.CLOSED 状态的 step 数量，仅参数名不一致。   |

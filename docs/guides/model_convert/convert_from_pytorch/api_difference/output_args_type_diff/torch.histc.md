@@ -12,6 +12,7 @@ paddle.histogram(input, bins=100, min=0, max=0, name=None)
 其中 PyTorch 与 Paddle 的返回值类型不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                |
 | ------- | ------------ | --------------------------------------------------- |
 | input   | input        | 表示输入的 Tensor。                                  |

@@ -12,6 +12,7 @@ paddle.distribution.ExponentialFamily(batch_shape, event_shape)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle  | 备注                                          |
 | ------------- | ------------- | --------------------------------------------- |
 | batch_shape   | batch_shape | 概率分布参数批量形状。                        |

@@ -15,6 +15,7 @@ paddle.nn.utils.clip_grad_value_(parameters,
 paddle 参数和 torch 参数完全一致，具体如下：
 
 ### 参数映射
+
 | PyTorch     | PaddlePaddle | 备注                                   |
 | ----------- | ------------ | -------------------------------------- |
 | parameters  | parameters  | 需要参与梯度裁剪的一个 Tensor 或者多个 Tensor。 |

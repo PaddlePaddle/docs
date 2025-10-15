@@ -12,6 +12,7 @@ paddle.distributed.alltoall_single(out_tensor, in_tensor, in_split_sizes=None, o
 其中 PyTorch 和 Paddle 功能一致，参数用法不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch            | PaddlePaddle    | 备注                                                            |
 | ------------------ | --------------- | --------------------------------------------------------------- |
 | output | out_tensor | 用于保存操作结果的 Tensor，仅参数名不一致。               |

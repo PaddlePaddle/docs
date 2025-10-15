@@ -12,6 +12,7 @@ paddle.nn.MultiMarginLoss(p: int = 1, margin: float = 1.0, weight=None, reductio
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch            | PaddlePaddle       | 备注                                                                               |
 | ------------------ | ------------------ | ---------------------------------------------------------------------------------- |
 | p                  | p                  | 手动指定幂次方指数大小，默认为 1。                                                   |

@@ -12,6 +12,7 @@ paddle.Tensor.histogram(bins=100, min=0.0, max=0.0, weight=None, density=False)
 其中 PyTorch 的 `range` 与 Paddle 用法不一致，需要转写；且返回参数 Tensor 数量不一致，需要通过 paddle.Tensor.histogram 和 paddle.Tensor.histogram_bin_edges 组合实现。具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                                                               |
 | ------- | ------------ | -------------------------------------------------------------------------------------------------- |
 | bins    | bins         | 直方图 bins(直条)的个数。                                                                          |

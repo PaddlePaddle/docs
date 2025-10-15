@@ -11,6 +11,7 @@ paddle.nn.InstanceNorm1D(num_features, epsilon=1e-05, momentum=0.9, weight_attr=
 
 其中，Paddle 不支持 `num_features` 参数的延迟初始化，部分参数名不同，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | -             | num_features   | 表示输入 Tensor 通道数，PyTorch 无此参数，Paddle 需要根据实际输入 Tensor 的通道数进行设置。  |

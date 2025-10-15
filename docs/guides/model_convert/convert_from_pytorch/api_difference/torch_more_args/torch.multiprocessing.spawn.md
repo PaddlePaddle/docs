@@ -12,6 +12,7 @@ paddle.distributed.spawn(func, args=(), nprocs=- 1, join=True, daemon=False, **o
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch      | PaddlePaddle | 备注                                                                |
 | ------------ | ------------ | ------------------------------------------------------------------- |
 | fn         | func         | Python 函数。                                                       |

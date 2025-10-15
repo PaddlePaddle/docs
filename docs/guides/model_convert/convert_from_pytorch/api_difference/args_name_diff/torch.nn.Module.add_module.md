@@ -12,6 +12,7 @@ paddle.nn.Layer.add_sublayer(name, sublayer)
 两者功能一致，仅参数名不一致。
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle |                     备注                     |
 | ----- | ----- | ------------------------------------------ |
 |  name   |     name     |                 表示子层名。                 |

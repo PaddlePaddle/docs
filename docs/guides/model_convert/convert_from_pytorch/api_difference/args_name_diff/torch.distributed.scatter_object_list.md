@@ -12,6 +12,7 @@ paddle.distributed.scatter_object_list(out_object_list, in_object_list, src=0, g
 其中 PyTorch 和 Paddle 功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch                    | PaddlePaddle    | 备注                                         |
 | -------------------------- | --------------- | -------------------------------------------- |
 | scatter_object_output_list | out_object_list | 用于接收数据的 object 列表，仅参数名不一致。 |

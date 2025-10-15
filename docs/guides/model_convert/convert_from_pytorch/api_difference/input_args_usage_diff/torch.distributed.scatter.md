@@ -12,6 +12,7 @@ paddle.distributed.scatter(tensor, tensor_list=None, src=0, group=None, sync_op=
 其中 PyTorch 和 Paddle 功能一致，参数用法不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch      | PaddlePaddle | 备注                                                            |
 | ------------ | ------------ | --------------------------------------------------------------- |
 | tensor       | tensor       | 操作的输出 Tensor。                                             |

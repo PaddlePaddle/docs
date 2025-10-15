@@ -12,6 +12,7 @@ paddle.distribution.Beta(alpha, beta)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                     |
 | ------- | ------------ | -------------------------------------------------------- |
 | concentration1   | alpha            | 表示输入的参数 ，仅参数名不一致。                     |

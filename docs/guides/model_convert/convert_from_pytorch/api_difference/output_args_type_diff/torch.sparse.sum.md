@@ -12,6 +12,7 @@ paddle.sparse.sum(x, axis=None, dtype=None, keepdim=False, name=None)
 输入参数不一致和返回类型不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch |  PaddlePaddle |  备注|
 | -------- |  ------------- | ------|
 | input | x|         输入的 Tensor，仅参数名不一致。|

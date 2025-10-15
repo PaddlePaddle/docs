@@ -12,6 +12,7 @@ paddle.to_tensor(data, dtype='bool', place='gpu', stop_gradient=True)
 Paddle 比 PyTorch 支持更多参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                        |
 | ------- | ------------ | ----------------------------------------------------------- |
 | data    | data         | 要转换的数据。 |

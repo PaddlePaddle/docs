@@ -13,6 +13,7 @@ paddle.distribution.Exponential(rate)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                         |
 | ------------- | ------ | ------------------------------------------------------------ |
 | rate           | rate      | 分布的速率参数。         |

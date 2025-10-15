@@ -10,6 +10,7 @@ paddlenlp.transformers.PreTrainedModel.generate(input_ids, **kwargs)
 ```
 
 ### 参数映射
+
 | transformers  | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | input_ids    | token 的 id 组成的 Tensor，仅参数名不一致。。 |

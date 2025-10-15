@@ -12,6 +12,7 @@ paddle.distributed.recv(tensor, src=0, group=None, sync_op=True)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle    | 备注                                                              |
 | ------- | --------------- | ----------------------------------------------------------------- |
 | tensor  | tensor          | 表示用于接收数据的 Tensor。                                               |

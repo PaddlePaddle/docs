@@ -17,6 +17,7 @@ paddle.nn.HingeEmbeddingLoss(margin=1.0,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch      | PaddlePaddle | 备注                                                         |
 | ------------ | ------------ | ------------------------------------------------------------ |
 | margin       | margin       | 当 label 为-1 时，该值决定了小于 margin 的 input 才需要纳入 hinge embedding loss 的计算。 |

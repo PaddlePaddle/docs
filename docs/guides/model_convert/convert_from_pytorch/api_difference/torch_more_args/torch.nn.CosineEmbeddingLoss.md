@@ -12,6 +12,7 @@ paddle.nn.CosineEmbeddingLoss(margin=0, reduction='mean', name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch      | PaddlePaddle | 备注                                           |
 | ------------ | ------------ | ---------------------------------------------- |
 | margin       | margin       | 可以设置的范围为[-1, 1]。                      |

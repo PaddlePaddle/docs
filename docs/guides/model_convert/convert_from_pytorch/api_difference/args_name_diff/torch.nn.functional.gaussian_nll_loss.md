@@ -12,6 +12,7 @@ paddle.nn.functional.gaussian_nll_loss(input, label, variance, full=False, epsil
 两者功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch   | PaddlePaddle | 备注                                                              |
 | --------- | ------------ | ----------------------------------------------------------------- |
 | input     | input        | 输入 Tensor。                                                     |

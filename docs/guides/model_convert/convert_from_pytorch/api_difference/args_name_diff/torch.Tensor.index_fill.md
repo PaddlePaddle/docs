@@ -12,6 +12,7 @@ paddle.Tensor.index_fill(index, axis, value, name=None)
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> dim </font> | <font color='red'> axis </font> | 表示进行运算的轴，仅参数名不一致。  |

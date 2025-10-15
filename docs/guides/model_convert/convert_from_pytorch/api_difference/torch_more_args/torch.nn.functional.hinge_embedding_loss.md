@@ -12,6 +12,7 @@ paddle.nn.functional.hinge_embedding_loss(input, label, margin=1.0, reduction='m
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch      | PaddlePaddle | 备注                                                                                       |
 | ------------ | ------------ | ------------------------------------------------------------------------------------------ |
 | input        | input        | 输入的 Tensor。                                                                            |

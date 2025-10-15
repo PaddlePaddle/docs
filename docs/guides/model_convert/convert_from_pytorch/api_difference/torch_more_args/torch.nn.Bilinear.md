@@ -12,6 +12,7 @@ paddle.nn.Bilinear(in1_features, in2_features, out_features, weight_attr=None, b
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch      | PaddlePaddle | 备注                                                            |
 | ------------ | ------------ | --------------------------------------------------------------- |
 | in1_features | in1_features | 每个 x1 元素的维度。                                            |

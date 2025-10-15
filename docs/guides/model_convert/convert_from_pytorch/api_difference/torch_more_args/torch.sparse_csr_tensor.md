@@ -22,6 +22,7 @@ paddle.sparse.sparse_csr_tensor(crows, cols, values, shape=None, dtype=None, pla
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch          | PaddlePaddle  | 备注                                                                                |
 | ---------------- | ------------- | ----------------------------------------------------------------------------------- |
 | crow_indices     | crows         | 每行第一个非零元素在 values 的起始位置，仅参数名不一致。                            |

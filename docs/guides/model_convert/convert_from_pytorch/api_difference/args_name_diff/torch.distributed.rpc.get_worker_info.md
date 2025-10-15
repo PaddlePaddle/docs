@@ -12,6 +12,7 @@ paddle.distributed.rpc.get_worker_info(name)
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch     | PaddlePaddle | 备注                            |
 | ----------- | ------------ | ------------------------------- |
 | worker_name | name         | worker 的名字，仅参数名不一致。 |

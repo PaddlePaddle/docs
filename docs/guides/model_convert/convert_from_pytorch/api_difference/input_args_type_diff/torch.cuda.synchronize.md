@@ -12,6 +12,7 @@ paddle.device.synchronize(device)
 两者功能一致但参数类型不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                                    |
 | ------------- | ------------ |-----------------------------------------------------------------------|
 | device        | device            | PyTorch 支持 torch.device 和 int。 PaddlePaddle 支持 paddle.CUDAPlace、int 、str，需要转写 |

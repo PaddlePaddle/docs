@@ -12,6 +12,7 @@ paddle.block_diag(inputs, name=None)
 二者功能一致但参数类型不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch  | PaddlePaddle | 备注                                                         |
 | -------- | ------------ | ------------------------------------------------------------ |
 | *tensors | inputs       | 一组输入 Tensor，PyTorch 参数 tensors 为可变参数，Paddle 参数 inputs 为 list(Tensor) 或 tuple(Tensor) 的形式。 |

@@ -12,6 +12,7 @@ paddle.autograd.backward(tensors, grad_tensors=None, retain_graph=False)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch        | PaddlePaddle | 备注                                  |
 | -------------- | ------------ | ------------------------------------- |
 | tensors        | tensors      | 将要计算梯度的 Tensors 列表。         |

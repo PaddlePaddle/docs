@@ -12,6 +12,7 @@ paddle.nn.functional.gumbel_softmax(x, temperature=1.0, hard=False, axis=- 1, na
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                                                              |
 | ------- | ------------ | ------------------------------------------------------------------------------------------------- |
 | logits  | x            | 一个 N-D Tensor，前 N-1 维用于独立分布 batch 的索引，最后一维表示每个类别的概率，仅参数名不一致。 |

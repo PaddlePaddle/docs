@@ -12,6 +12,7 @@ paddle.jit.to_static(function, input_spec=None, build_strategy=None, backend=Non
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                                |
 | ------------- | ------------ | ------------------------------------------------------------------- |
 | obj             | function         | 待转换的函数，仅参数名不一致。                       |

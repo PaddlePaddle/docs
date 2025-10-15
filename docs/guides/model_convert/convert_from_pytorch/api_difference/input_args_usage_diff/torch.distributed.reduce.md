@@ -12,6 +12,7 @@ paddle.distributed.reduce(tensor, dst, op=ReduceOp.SUM, group=None, sync_op=True
 两者功能一致但参数不一致，其中 PyTorch 的 async_op 与 Paddle 的 sync_op 用法不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch  | PaddlePaddle | 备注                                          |
 | -------- | ------------ | --------------------------------------------- |
 | tensor   | tensor       | 表示操作的输入 Tensor。                           |

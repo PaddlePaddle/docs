@@ -12,6 +12,7 @@ paddle.vision.datasets.FashionMNIST(image_path: str = None, label_path: str = No
 两者功能一致，指定数据集文件路径的参数 `root` 与指定训练集的参数 `train` 的用法不一致，具体如下：
 
 ### 参数映射
+
 | torchvision | PaddlePaddle | 备注 |
 | -------------------------------- | ---------------------------------- | ---- |
 | root                   | image_path, label_path| 指定数据集目录，Paddle 使用 image_path 和 label_path，等价的实现 PyTorch 的 root 的功能，需要转写。|

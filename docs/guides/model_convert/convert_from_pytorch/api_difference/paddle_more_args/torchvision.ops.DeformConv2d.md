@@ -12,6 +12,7 @@ paddle.vision.ops.DeformConv2D(in_channels, out_channels, kernel_size, stride=1,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | torchvision | PaddlePaddle | 备注    |
 | --------------------------- | ------------------------------ | --------------------- |
 | in_channels      | in_channels            | 输入通道数。|

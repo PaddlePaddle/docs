@@ -12,6 +12,7 @@ paddle.Tensor.geometric_(probs, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                          |
 | ------- | ------------ | ----------------------------- |
 | p   | probs            | 每次伯努利试验中成功的概率，仅参数名不一致。 |

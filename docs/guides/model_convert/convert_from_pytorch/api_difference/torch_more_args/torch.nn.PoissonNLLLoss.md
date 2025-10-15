@@ -12,6 +12,7 @@ paddle.nn.PoissonNLLLoss(log_input=True, full=False, epsilon=1e-8, reduction='me
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch            | PaddlePaddle       | 备注                                                                               |
 | ------------------ | ------------------ | ---------------------------------------------------------------------------------- |
 | log_input          | log_input          | 输入是否为对数函数映射后结果。                                                       |

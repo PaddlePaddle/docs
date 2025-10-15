@@ -12,6 +12,7 @@ paddle.vision.transforms.ToTensor(data_format: str = 'CHW', keys: List[str] | Tu
 两者功能基本一致，但 Paddle 相比 torchvision 支持更多参数，具体如下：
 
 ### 参数映射
+
 | torchvision | PaddlePaddle          | 备注                                   |
 |-------------- |-------------------- |----------------------------------- |
 | -              | data_format         | 返回 Tensor 的格式，PyTorch 无此参数，Paddle 保持默认即可。 |

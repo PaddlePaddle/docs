@@ -25,6 +25,7 @@ paddle.vision.transforms.RandomRotation(
 两者功能一致，但输入参数类型不一致。
 
 ### 参数映射
+
 | torchvision | PaddlePaddle | 备注                                                         |
 | ------------------- | ------------------ | ----------------------------------------------- |
 | degrees               | degrees           | 旋转角度范围。                   |

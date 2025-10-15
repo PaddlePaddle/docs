@@ -16,6 +16,7 @@ paddle.utils.download.get_weights_path_from_url(url,
 其中，PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 |url            |url           |下载的链接。|

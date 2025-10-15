@@ -12,6 +12,7 @@ paddle.distributed.rpc.init_rpc(name, rank=None, world_size=None, master_endpoin
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch             | PaddlePaddle        | 备注 |
 | ------------------- | ------------------- | -- |
 | name                | name                | worker 名字。 |

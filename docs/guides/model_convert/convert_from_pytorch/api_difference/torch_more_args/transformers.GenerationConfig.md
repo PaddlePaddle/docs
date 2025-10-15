@@ -12,6 +12,7 @@ paddlenlp.generation.GenerationConfig(*kwargs)
 两者功能一致，但 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | transformers                         | PaddlePaddle        | 备注      |
 | -------------------------------------| ------------------- | -------- |
 | max_length                           | max_length          | 最大生成长度。 |

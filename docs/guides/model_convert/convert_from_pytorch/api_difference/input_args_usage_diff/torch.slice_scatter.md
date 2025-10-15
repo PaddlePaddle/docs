@@ -12,6 +12,7 @@ paddle.slice_scatter(x, value, axes, starts, ends, strides, name=None)
 两者功能一致，参数不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的目标矩阵, 仅参数名不一致。 |

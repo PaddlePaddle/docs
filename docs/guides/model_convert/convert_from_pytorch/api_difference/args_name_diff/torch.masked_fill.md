@@ -12,6 +12,7 @@ paddle.masked_fill(x, mask, value, name=None)
 两者功能一致，参数完全一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                            |
 | ------- | ------------ | ------------------------------- |
 | input   | x            | 输入的 Tensor，仅参数名不一致。 |

@@ -12,6 +12,7 @@ paddle.onnx.export(layer, path, input_spec=None, opset_version=9, **configs)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch                     | PaddlePaddle  | 备注                                                                                                                                 |
 | --------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | model                       | layer         | 导出的模型，PyTorch 类型为 torch.nn.Module, torch.jit.ScriptModule 或 torch.jit.ScriptFunction，Paddle 为 Layer 对象，需要转写。 |

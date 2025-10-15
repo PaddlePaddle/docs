@@ -12,6 +12,7 @@ paddle.nn.Layer.set_state_dict(state_dict, use_structured_name=True)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | state_dict    | state_dict   | 包含所有参数和可持久性 buffers 的 dict。     |

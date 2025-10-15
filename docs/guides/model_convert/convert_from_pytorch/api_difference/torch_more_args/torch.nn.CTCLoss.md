@@ -15,6 +15,7 @@ paddle.nn.CTCLoss(blank=0,
 其中，torch 的 log_softmax+ctc_loss 相当于 paddle 的 ctc_loss，是一个二对一的情况，暂时无法转写，且 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                         |
 | ------------- | ------------ | ------------------------------------------------------------ |
 | blank         | blank        | 空格标记的 ID 值。                                           |

@@ -12,6 +12,7 @@ paddle.Tensor.lerp_(y, weight, name=None)
 其中 PyTorch 和 Paddle 功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
 | end     | y            | 输入的 Tensor，作为线性插值结束的点，仅参数名不一致。 |

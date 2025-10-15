@@ -11,6 +11,7 @@ paddle.audio.functional.get_window(window, win_length, fftbins=True, dtype='floa
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | - | window |  窗函数类型，Pytorch 无此参数，Paddle 需设置为 `cosine`。 |

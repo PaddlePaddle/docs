@@ -12,6 +12,7 @@ paddle.nn.functional.rrelu(x, lower=1./8., upper=1./3., training=True, name=None
 其中 PyTorch 和 Paddle 功能基本一致，前者会在不变更变量内存地址的情况下，直接改变变量的值，一般对网络训练结果影响不大。参数名与参数默认值不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch  | PaddlePaddle | 备注 |
 | -------- | ------------ | -- |
 | input    | x            | 输入的 Tensor，仅参数名不一致。                                                                                 |

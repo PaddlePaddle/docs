@@ -12,6 +12,7 @@ paddle.Tensor.nanmedian(axis=None, keepdim=False, mode='avg', name=None)
 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
 | dim     | axis         | 指定对 x 进行计算的轴，仅参数名不一致。 |

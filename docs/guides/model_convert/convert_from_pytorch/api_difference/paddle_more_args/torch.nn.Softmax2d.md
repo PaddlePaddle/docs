@@ -12,6 +12,7 @@ paddle.nn.Softmax(axis=-1)
 其中 Paddle 并没有 torch.nn.Softmax2d 此 api ，可通过 paddle.nn.Softmax 设置参数 axis 为 -3 实现同样的效果：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                           |
 | ------- | ------------ | ------------------------------ |
 | -       | axis         | 指定对输入 Tensor 进行运算的轴。 |

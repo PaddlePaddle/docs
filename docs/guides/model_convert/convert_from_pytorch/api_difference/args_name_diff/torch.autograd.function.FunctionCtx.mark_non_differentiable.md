@@ -12,6 +12,7 @@ paddle.autograd.PyLayerContext.mark_non_differentiable(*tensors)
 两者功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                          |
 | ------- | ------------ | ----------------------------- |
 | args    | tensors      | 需要标记不需要反向的 Tensor。 |

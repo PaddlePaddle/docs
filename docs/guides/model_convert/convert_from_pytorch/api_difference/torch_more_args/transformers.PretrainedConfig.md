@@ -12,6 +12,7 @@ paddlenlp.transformers.PretrainedConfig(*kwargs)
 两者功能一致，但 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | transformers                         | PaddlePaddle                   | 备注      |
 | -------------------------------------| ------------------------------ | -------- |
 | name_or_path                         | name_or_path                   | 传递给 from_pretrained 的模型名称或模型所在路径。 |

@@ -12,6 +12,7 @@ paddle.Tensor.index_put(indices, value, accumulate=False, name=None)
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | indices | indices | 包含用来索引的 tensors 的元组。数据类型为 int32，int64，bool。 |

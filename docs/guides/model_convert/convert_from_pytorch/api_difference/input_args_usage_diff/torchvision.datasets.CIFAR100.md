@@ -12,6 +12,7 @@ paddle.vision.datasets.Cifar100(data_file: Optional[str] = None, mode: str = 'tr
 两者功能一致，指定数据集文件路径的参数 `root` 与指定训练集的参数 `train` 的用法不一致，具体如下：
 
 ### 参数映射
+
 | torchvision        | PaddlePaddle           | 备注                                                       |
 | ---------------------- | --------------------- | ---------------------------------------------------------- |
 | root                   | data_file             | 数据集文件路径，Paddle 参数 data_file 需含完整的文件名，如 PyTorch 参数 `/path/to/data`，对应 Paddle 参数 `/path/to/data/cifar-100-python.tar.gz`，需要转写。         |

@@ -12,6 +12,7 @@ paddle.Tensor.cummin(axis=None, dtype=None, name=None)
 两者功能一致，其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                           |
 | ------- | ------------ | ------------------------------ |
 | dim     | axis         | 需要累加的维度，仅参数名不一致。 |

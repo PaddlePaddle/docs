@@ -12,6 +12,7 @@ paddle.framework.core.nvprof_nvtx_push(arg0)
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                       |
 | ------- | ------------ | ------------------------------------------ |
 | msg     | arg0         | 关联 range 的 ASCII 消息，仅参数名不一致。 |

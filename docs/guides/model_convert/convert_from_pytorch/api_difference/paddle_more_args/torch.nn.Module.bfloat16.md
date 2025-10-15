@@ -12,6 +12,7 @@ paddle.nn.Layer.to(dtype=paddle.bfloat16)
 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                      |
 | ------- | ------------ | --------------------------------------------------------- |
 | -       | dtype        | 转换的数据类型，Paddle 为 paddle.bfloat16，需要转写。 |

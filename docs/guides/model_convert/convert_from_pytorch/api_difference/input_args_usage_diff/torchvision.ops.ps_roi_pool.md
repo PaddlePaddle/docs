@@ -26,6 +26,7 @@ paddle.vision.ops.psroi_pool(x, boxes, boxes_num, output_size, spatial_scale=1.0
 2. boxes_num: 一个形状为 (batch_size) 的 Tensor，用于指定每个样本中包含的 ROI 数量。
 
 ### 参数映射
+
 | torchvision                           | PaddlePaddle       | 备注      |
 | ------------------------------------- | ------------------ | -------- |
 | input                                 | x                  | 输入特征图，仅参数名不一致。|

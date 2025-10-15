@@ -15,6 +15,7 @@ paddle.vision.transforms.RandomHorizontalFlip(
 两者功能一致，但 Paddle 相比 torchvision 支持更多参数，具体如下：
 
 ### 参数映射
+
 | torchvision | PaddlePaddle | 备注                    |
 | ------------- | ------------- | --------------------- |
 | p             | prob          | 翻转概率，仅参数名不一致。        |

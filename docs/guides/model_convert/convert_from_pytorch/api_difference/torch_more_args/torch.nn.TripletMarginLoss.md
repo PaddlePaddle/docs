@@ -12,6 +12,7 @@ paddle.nn.TripletMarginLoss(margin=1.0, p=2., epsilon=1e-6, swap=False, reductio
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch      | PaddlePaddle | 备注                                           |
 | ------------ | ------------ | ---------------------------------------------- |
 | margin       | margin       | 手动指定间距。                                 |

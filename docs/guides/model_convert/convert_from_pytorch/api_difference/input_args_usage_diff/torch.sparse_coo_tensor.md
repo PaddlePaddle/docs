@@ -12,6 +12,7 @@ paddle.sparse.sparse_coo_tensor(indices, values, shape=None, dtype=None, place=N
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 |    PyTorch    | PaddlePaddle  |                    备注                     |
 |  -----------  |  -----------  |  ----------------------------------------- |
 |    indices    |    indices    |         表示初始化 tensor 的数据。          |

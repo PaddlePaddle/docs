@@ -12,6 +12,7 @@ paddle.vision.transforms.normalize(img, mean = 0.0, std = 1.0, data_format = 'CH
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | torchvision | PaddlePaddle | 备注                                              |
 | --------- | ---------- | ---------------------------------------------------- |
 | tensor    | img        | 用于归一化的数据，仅参数名不一致。 |

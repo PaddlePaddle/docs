@@ -16,6 +16,7 @@ paddle.distribution.Binomial(total_count,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                         |
 | ------------- | ------ | ------------------------------------------------------------ |
 | total_count        | total_count      | 样本大小，当 torch 不指定时，Paddle 应设置该值为 1。                         |

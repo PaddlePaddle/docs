@@ -12,6 +12,7 @@ paddle.nn.FractionalMaxPool2D(output_size, kernel_size=None, random_u=None, retu
 PyTorch 参数更多，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | kernel_size   | kernel_size  | 表示核大小。参数完全一致。                                 |

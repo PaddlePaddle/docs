@@ -147,9 +147,6 @@ def main():
 
             # 7. 检查总结行
             expected_summary = summary_map[category_dir]
-            # if current_index >= len(lines) or lines[current_index] != expected_summary:
-            #     error_found = True
-            #     errors.append(f"文件格式错误: {file_path} - 总结行应为 '{expected_summary}'")
             while current_index < len(lines) and not lines[
                 current_index
             ].startswith("#"):
@@ -196,22 +193,6 @@ def main():
                         f"文件格式错误: {file_path} - 转写示例代码块开始错误"
                     )
                 current_index += 1
-
-                # 9.3 转写内容 (必须包含PyTorch和Paddle示例)
-                # if current_index + 1 >= len(lines):
-                #     error_found = True
-                #     errors.append(f"文件格式错误: {file_path} - 转写示例内容缺失")
-                # else:
-                #     pytorch_line = lines[current_index]
-                #     paddle_line = lines[current_index + 1]
-                #     if not ('# PyTorch' in pytorch_line and '# Paddle' in paddle_line):
-                #         error_found = True
-                #         errors.append(f"文件格式错误: {file_path} - 转写示例内容缺失PyTorch/Paddle标记")
-
-                #     # 检查内容中不能包含四级标题
-                #     if '####' in pytorch_line or '####' in paddle_line:
-                #         error_found = True
-                #         errors.append(f"文件格式错误: {file_path} - 转写示例内容不应包含四级标题")
 
                 while (
                     current_index < len(lines) and lines[current_index] != "```"

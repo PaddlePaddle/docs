@@ -12,6 +12,7 @@ paddle.distribution.Categorical(logits, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                          |
 | ------------- | ------------ | --------------------------------------------- |
 | probs         | -            | 事件概率，Paddle 无此参数，暂无转写方式。           |

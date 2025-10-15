@@ -14,6 +14,7 @@ paddle.distributed.ReduceOp
 其中，规约操作对应如下：
 
 ### 参数映射
+
 |  PyTorch   | PaddlePaddle  | 备注 |
 |  ----  | ----  | --- |
 | SUM  | SUM | |

@@ -12,6 +12,7 @@ paddle.nn.ThresholdedReLU(threshold=1.0, value=0.0, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch   | PaddlePaddle | 备注                                                                                                            |
 | --------- | ------------ | --------------------------------------------------------------------------------------------------------------- |
 | threshold | threshold    | ThresholdedReLU 激活计算公式中的 threshold 值。                                                                 |

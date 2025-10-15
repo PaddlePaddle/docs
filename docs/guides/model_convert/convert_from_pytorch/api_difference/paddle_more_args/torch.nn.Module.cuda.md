@@ -12,6 +12,7 @@ paddle.nn.Layer.to(device="gpu")
 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                       |
 | ------- | ------------ | ---------------------------------------------------------- |
 | device  | device       | PyTorch 为设备编号，Paddle 为 gpu:设备编号，需要转写。 |

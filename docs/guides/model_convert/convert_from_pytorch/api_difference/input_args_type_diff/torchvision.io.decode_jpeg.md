@@ -12,6 +12,7 @@ paddle.vision.ops.decode_jpeg(x, mode='unchanged', name=None)
 两者功能一致，但输入参数类型不一致，具体如下：
 
 ### 参数映射
+
 | torchvision                           | PaddlePaddle       | 备注      |
 | ------------------------------------- | ------------------ | -------- |
 | input                                 | x                  | 包含 JPEG 图像原始字节，仅参数名不一致。 |

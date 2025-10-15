@@ -12,6 +12,7 @@ paddle.nn.functional.scaled_dot_product_attention(query, key, value, attn_mask=N
 两者功能基本一致，参数不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch   | PaddlePaddle | 备注                                                                                                            |
 | --------- | ------------ | --------------------------------------------------------------------------------------------------------------- |
 | query     | query        | 注意力模块中的查询张量。                                                                                        |

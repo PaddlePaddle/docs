@@ -12,6 +12,7 @@ paddle.nn.layer.norm._BatchNormBase(num_features, momentum=0.9, epsilon=1e-05, w
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch             | PaddlePaddle                 | 备注       |
 | ------------------- | ---------------------------- | --------- |
 | num_features        | num_features                 | 特征数量。 |

@@ -12,6 +12,7 @@ paddle.bitwise_left_shift(x, y, is_arithmetic=True, out=None, name=None)
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle  | 备注                                                                |
 | ------- | ------------- | ------------------------------------------------------------------- |
 | input   | x             | 表示输入的 Tensor ，仅参数名不一致。                                |

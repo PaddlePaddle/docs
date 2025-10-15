@@ -12,6 +12,7 @@ paddle.vision.transforms.ColorJitter(brightness=0, contrast=0, saturation=0, hue
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | torchvision | PaddlePaddle | 备注    |
 | --------------------------- | ------------------------------ | --------------------- |
 | brightness     | brightness     | 亮度调整范围大小。       |

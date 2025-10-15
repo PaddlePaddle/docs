@@ -12,6 +12,7 @@ paddle.distributed.reduce_scatter(tensor, tensor_list, op=ReduceOp.SUM, group=No
 其中 PyTorch 和 Paddle 功能一致，参数类型不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch    | PaddlePaddle | 备注                                                                   |
 | ---------- | ------------ | ---------------------------------------------------------------------- |
 | output     | tensor       | 用于接收数据的 tensor，仅参数名不一致。                                |

@@ -12,6 +12,7 @@ paddle.Tensor.stft(n_fft, hop_length=None, win_length=None, window=None, center=
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch    | PaddlePaddle | 备注 |
 | ---------- | ------------ | ------- |
 | n_fft      | n_fft        | 离散傅里叶变换的样本点个数。 |

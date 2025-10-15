@@ -13,6 +13,7 @@ paddle.sparse.matmul(x, y, name=None)
 两者功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle |  备注 |
 | ------- | ------------ | ------ |
 | sparse  | x            | 输入的 Tensor，仅参数名不一致。 |

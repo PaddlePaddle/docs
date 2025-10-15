@@ -12,6 +12,7 @@ paddle.Tensor.set_(source=None, shape=None, stride=None, offset=0, name=None)
 其中 PyTorch 的 `storage_offset` 与 Paddle 的 `offset` 用法不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | source         | source      | 设置的目标 Tensor。                    |

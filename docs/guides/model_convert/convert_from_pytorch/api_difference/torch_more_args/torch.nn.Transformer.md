@@ -12,6 +12,7 @@ paddle.nn.Transformer(d_model=512, nhead=8, num_encoder_layers=6, num_decoder_la
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch            | PaddlePaddle       | 备注                                                                                |
 | ------------------ | ------------------ | ----------------------------------------------------------------------------------- |
 | d_model            | d_model            | 编码器和解码器的输入输出的维度。                                                    |

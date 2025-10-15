@@ -12,6 +12,7 @@ paddle.distribution.ReshapeTransform(in_event_shape, out_event_shape)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch    | PaddlePaddle    | 备注                                        |
 | ---------- | --------------- | ------------------------------------------- |
 | in_shape   | in_event_shape  | Reshape 前的事件形状，仅参数名不一致。      |

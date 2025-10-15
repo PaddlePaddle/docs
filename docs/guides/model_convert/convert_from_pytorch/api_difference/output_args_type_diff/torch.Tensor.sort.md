@@ -12,6 +12,7 @@ paddle.Tensor.sort(axis=-1, descending=False, stable=False)
 两者功能一致但返回参数类型不同，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | dim           | axis         | 指定对输入 Tensor 进行运算的轴。默认值为-1, 仅参数名不一致。 |

@@ -12,6 +12,7 @@ paddle.nansum(x, axis=None, dtype=None, keepdim=False, name=None)
 Paddle 比 PyTorch 支持更多参数，具体如下：
 
 ### 参数映射
+
 | PyTorch     | PaddlePaddle | 备注                                                                                      |
 | ----------- | ------------ | ----------------------------------------------------------------------------------------- |
 | input       | x            | 输入的 Tensor，数据类型为：float16、float32、float64、int32 或 int64。仅参数名不一致。       |

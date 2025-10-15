@@ -11,6 +11,7 @@ paddle.distributed.fleet.meta_parallel.ColumnParallelLinear(in_features, out_fea
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | fairscale                   | PaddlePaddle      | 备注      |
 | ----------------------------| ----------------  | -------- |
 | in_features                 | in_features       | 输入特征数。 |

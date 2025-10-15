@@ -25,6 +25,7 @@ paddle.vision.transforms.RandomCrop(
 两者功能一致，但 Paddle 相比 torchvision 支持更多参数，具体如下：
 
 ### 参数映射
+
 | torchvision | PaddlePaddle | 备注                                                         |
 | ------------- | -------------- | -------------------------------------------------------- |
 | size          | size          | 裁剪后的图片大小。                                           |

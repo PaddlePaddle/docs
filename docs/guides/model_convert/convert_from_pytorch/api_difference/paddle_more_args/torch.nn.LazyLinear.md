@@ -15,6 +15,7 @@ paddle.nn.Linear(in_features,
 
 其中，Paddle 不支持 `in_features` 参数的延迟初始化，PyTorch 的 `bias` 与 Paddle 的 `bias_attr` 用法不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | -             | in_features   | 表示线性变换层输入单元的数目，PyTorch 无此参数，Paddle 需要根据实际输入 Tensor 的单元的数目进行设置。   |

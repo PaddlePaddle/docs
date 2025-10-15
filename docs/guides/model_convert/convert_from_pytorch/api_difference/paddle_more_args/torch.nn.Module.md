@@ -13,6 +13,7 @@ paddle.nn.Layer(name_scope=None, dtype='float32')
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle |                  备注                  |
 |  -----  |  ----------  |  ------------------------------------ |
 |    -    |  name_scope  | PyTorch 无此参数，Paddle 保持默认即可。 |

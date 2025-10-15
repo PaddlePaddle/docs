@@ -20,6 +20,7 @@ paddle.diagonal_scatter(x,
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                               |
 |---------|--------------| -------------------------------------------------- |
 | <font color='red'> input </font>     | <font color='red'> x </font>          | 输入张量，被嵌入的张量，仅参数名不一致。    |

@@ -12,6 +12,7 @@ paddle.Tensor.isclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 其中 PyTorch 和 Paddle 功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch   | PaddlePaddle | 备注 |
 | --------- | ------------ | -- |
 | other     | y            | 输入的 Tensor，仅参数名不一致。 |

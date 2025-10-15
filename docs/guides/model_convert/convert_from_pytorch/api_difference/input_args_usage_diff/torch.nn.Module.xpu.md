@@ -12,6 +12,7 @@ paddle.nn.Layer.to(device="xpu")
 两者参数用法不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                       |
 | ------- | ------------ | ---------------------------------------------------------- |
 | device  | device       | PyTorch 为设备编号，Paddle 为 xpu:设备编号，需要转写。 |

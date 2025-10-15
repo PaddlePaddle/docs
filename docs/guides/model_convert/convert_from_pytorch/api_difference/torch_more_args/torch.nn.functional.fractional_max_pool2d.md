@@ -12,6 +12,7 @@ paddle.nn.functional.fractional_max_pool2d(x, output_size, kernel_size=None, ran
 PyTorch 参数更多，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 表示输入的 Tensor 。仅参数名不一致。                        |

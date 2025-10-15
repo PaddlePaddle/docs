@@ -12,6 +12,7 @@ paddle.nn.Layer.astype(dtype=None)
 两者参数用法不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch  | PaddlePaddle | 备注                                                                                    |
 | -------- | ------------ | --------------------------------------------------------------------------------------- |
 | dst_type | dtype        | PyTorch 为字符串或 PyTorch 数据类型，Paddle 为 字符串或 Paddle 数据类型，需要转写。 |

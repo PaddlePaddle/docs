@@ -12,6 +12,7 @@ paddle.Tensor.cumsum_(axis=None, dtype=None)
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                           |
 | ------- | ------------ | ------------------------------ |
 | dim     | axis         | 需要累加的维度，仅参数名不一致。 |

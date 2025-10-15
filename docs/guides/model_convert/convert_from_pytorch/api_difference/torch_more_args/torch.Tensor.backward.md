@@ -12,6 +12,7 @@ paddle.Tensor.backward(grad_tensor=None, retain_graph=False)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                                                |
 | ------------- | ------------ | ----------------------------------------------------------------------------------- |
 | gradient | grad_tensor            | 当前 Tensor 的初始梯度值。仅参数名不一致。    |

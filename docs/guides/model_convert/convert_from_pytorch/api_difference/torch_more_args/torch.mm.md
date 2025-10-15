@@ -15,6 +15,7 @@ paddle.mm(input, mat2, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，Paddle 多余参数保持默认即可，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | input            | 表示输入的第一个 Tensor。               |

@@ -13,6 +13,7 @@ paddle.incubate.nn.functional.fused_rms_norm(x, norm_weight, norm_bias, epsilon,
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | flash_attn           | PaddlePaddle      | 备注                |
 | ----------------- | ----------------- | ------------------------------------------------------------ |
 | x                 | x                 |  输入 Tensor。|

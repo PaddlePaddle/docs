@@ -12,6 +12,7 @@ paddle.vision.ops.nms(boxes, iou_threshold=0.3, scores=None, category_idxs=None,
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | torchvision | PaddlePaddle | 备注    |
 | --------------------------- | ------------------------------ | --------------------- |
 | boxes                       | boxes                            | 待进行计算的框坐标。       |

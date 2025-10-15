@@ -19,6 +19,7 @@ paddle.distribution.MultivariateNormal(loc,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                         |
 | ------------- | ------ | ------------------------------------------------------------ |
 | loc           | loc      |  MultivariateNormal 的均值向量。         |

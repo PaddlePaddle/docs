@@ -21,6 +21,7 @@ paddle.vision.datasets.ImageFolder(root: str,
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | torchvision | PaddlePaddle | 备注                                      |
 | -------------------------------- | ---------------------------------- | ----------------------------------------- |
 | root                             | root                               | 根目录路径。                                |

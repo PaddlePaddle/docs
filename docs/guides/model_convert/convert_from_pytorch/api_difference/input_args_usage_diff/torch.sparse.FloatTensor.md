@@ -12,6 +12,7 @@ paddle.sparse.sparse_coo_tensor(indices, values, shape=None, dtype=None, place=N
 其中 PyTorch 与 Paddle 参数不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                         |
 | ------- | ------------ | ------------------------------------------------------------ |
 | indices  | indices       | 初始化 tensor 的数据。 |

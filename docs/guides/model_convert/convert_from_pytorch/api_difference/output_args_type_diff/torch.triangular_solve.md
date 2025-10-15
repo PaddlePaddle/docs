@@ -12,6 +12,7 @@ paddle.linalg.triangular_solve(x, y, upper=True, transpose=False, unitriangular=
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle  | 备注                                                        |
 | ------------- | ------------- | ----------------------------------------------------------- |
 | input         | y             | 线性方程组左边的系数方阵，仅参数名不一致。                  |

@@ -11,6 +11,7 @@ paddle.nn.functional.batch_norm(x, running_mean, running_var, weight, bias, trai
 
 其中 PyTorch 与 Paddle 参数不一致，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input |  x | 表示输入的 Tensor ，仅参数名不一致。  |

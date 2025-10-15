@@ -12,6 +12,7 @@ paddle.distribution.Geometric(probs)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                                    |
 | ------------- | ------------ | ----------------------------------------------------------------------- |
 | probs         | probs        | 几何分布成功概率参数。                                                  |

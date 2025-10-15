@@ -12,6 +12,7 @@ paddle.linalg.ormqr(x, tau, y, left=True, transpose=False)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch   | PaddlePaddle | 备注                                           |
 | --------- | ------------ | ---------------------------------------------- |
 | input     | x            | 输入的参数，用于表示矩阵 Q ，仅参数名不一致 |

@@ -12,6 +12,7 @@ paddle.vander(x, n=None, increasing=False, name=None)
 其中 Paddle 相比 PyTorch 支持更多参数，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                               |
 | ------- | ------------ | ------------------------------------------------------------------ |
 | x       | x            | 输入的 Tensor。                                                    |

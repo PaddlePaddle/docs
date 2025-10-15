@@ -12,6 +12,7 @@ paddle.Tensor.kthvalue(k, axis=None, keepdim=False, name=None)
 其中 PyTorch 和 Paddle 功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注 |
 | ------- | ------------ | -- |
 | k       | k            | 需要沿轴查找的第 k 小，所对应的 k 值。 |

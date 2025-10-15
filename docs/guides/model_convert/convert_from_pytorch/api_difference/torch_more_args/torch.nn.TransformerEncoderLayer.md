@@ -12,6 +12,7 @@ paddle.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward, dropout=0.1, 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch         | PaddlePaddle     | 备注                                                                                |
 | --------------- | ---------------- | ----------------------------------------------------------------------------------- |
 | d_model         | d_model          | 输入输出的维度。                                                                    |

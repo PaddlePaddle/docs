@@ -12,6 +12,7 @@ paddle.nn.functional.cosine_embedding_loss(input1, input2, label, margin=0, redu
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch      | PaddlePaddle | 备注                                           |
 | ------------ | ------------ | ---------------------------------------------- |
 | input1       | input1       | 输入的 Tensor。                                |

@@ -12,6 +12,7 @@ paddle.linalg.triangular_solve(x, y, upper=True, transpose=False, unitriangular=
 Pytorch 为 Tensor 类方法，Paddle 为普通函数，另外两者的返回 Tensor 个数不同。参数对应关系如下表所示：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle  | 备注                                                        |
 | ------------- | ------------- | ----------------------------------------------------------- |
 | A             | x             | 线性方程组系数矩阵。                                             |

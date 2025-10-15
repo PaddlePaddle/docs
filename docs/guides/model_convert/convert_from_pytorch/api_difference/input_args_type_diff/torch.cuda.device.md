@@ -12,6 +12,7 @@ paddle.device._convert_to_place(device)
 其中 PyTorch 与 Paddle 的参数支持类型不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle | 备注                                                                             |
 | ------- | ------------ | -------------------------------------------------------------------------------- |
 | device  | device           | GPU 的设备 ID, PyTorch 支持 torch.device 和 int，Paddle 支持 str，需要转写。 |

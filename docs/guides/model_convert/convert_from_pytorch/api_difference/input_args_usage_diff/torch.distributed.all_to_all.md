@@ -12,6 +12,7 @@ paddle.distributed.alltoall(in_tensor_list, out_tensor_list, group=None, sync_op
 其中 PyTorch 和 Paddle 功能一致，参数用法不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch            | PaddlePaddle    | 备注                                                            |
 | ------------------ | --------------- | --------------------------------------------------------------- |
 | output_tensor_list | out_tensor_list | 包含所有输出 Tensors 的一个列表，仅参数名不一致。               |

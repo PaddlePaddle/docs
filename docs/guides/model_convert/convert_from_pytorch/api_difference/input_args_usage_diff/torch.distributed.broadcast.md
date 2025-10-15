@@ -12,6 +12,7 @@ paddle.distributed.broadcast(tensor, src, group=None, sync_op=True)
 其中 PyTorch 和 Paddle 功能一致，参数用法不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch  | PaddlePaddle | 备注                                                                                                   |
 | -------- | ------------ | ------------------------------------------------------------------------------------------------------ |
 | tensor   | tensor       | 如果当前进程编号是源，那么这个 Tensor 变量将被发送给其他进程，否则这个 Tensor 将接收源发送过来的数据。 |

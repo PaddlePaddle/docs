@@ -12,6 +12,7 @@ paddle.nn.LayerDict(sublayers=None)
 两者功能一致，参数名不一致，具体如下：
 
 ### 参数映射
+
 | PyTorch | PaddlePaddle |                             备注                             |
 |  -----  |  ----------  |  ---------------------------------------------------------- |
 | modules |  sublayers   | 键值对的可迭代对象，值的类型为 paddle.nn.Layer ，参数名不一致。 |

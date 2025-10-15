@@ -12,6 +12,7 @@ paddle.jit.save(layer, path, input_spec=None, **configs)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                                |
 | ------------- | ------------ | ------------------------------------------------------------------- |
 | m             | layer         | 需要存储的的函数/Module，仅参数名不一致。                       |

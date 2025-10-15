@@ -12,6 +12,7 @@ paddle.Tensor.unique_consecutive(return_inverse=False, return_counts=False, axis
 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
+
 |    PyTorch     |  PaddlePaddle  |                             备注                             |
 | -------------- | -------------- | ------------------------------------------------------------ |
 | return_inverse | return_inverse | 表示输入 Tensor 的元素对应在连续不重复元素中的索引。参数完全一致。 |
