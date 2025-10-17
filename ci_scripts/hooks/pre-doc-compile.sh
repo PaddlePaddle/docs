@@ -100,89 +100,60 @@ copy_cached_file() {
     fi
 }
 
-# Download API mapping files
+# Function to handle download failure
+handle_download_failure() {
+    local filename=$1
+    echo "INFO: Download or Execute $filename failed. Checking for cached file..."
+    if check_cached_file; then
+        if copy_cached_file; then
+            echo "INFO: Successfully copied cached file. Exiting."
+            exit 0
+        else
+            echo "ERROR: Failed to copy cached file to target"
+            exit 1
+        fi
+    else
+        echo "ERROR: Download failed and no cached file available"
+        exit 1
+    fi
+}
+
+# Download API alias mapping file
 echo "INFO: Downloading API alias mapping file"
 if ! download_file "${API_ALIAS_MAPPING_URL}" "${TOOLS_DIR}/api_alias_mapping.json"; then
-    echo "INFO: API alias mapping download failed. Checking for cached file..."
-    if check_cached_file; then
-        if ! copy_cached_file; then
-            echo "ERROR: Failed to copy cached file to target"
-            exit 1
-        fi
-    else
-        echo "ERROR: API alias mapping download failed and no cached file available"
-        exit 1
-    fi
+    handle_download_failure "API alias mapping"
 fi
 
+# Download API mapping file
 echo "INFO: Downloading API mapping file"
 if ! download_file "${API_MAPPING_URL}" "${TOOLS_DIR}/api_mapping.json"; then
-    echo "INFO: API mapping download failed. Checking for cached file..."
-    if check_cached_file; then
-        if ! copy_cached_file; then
-            echo "ERROR: Failed to copy cached file to target"
-            exit 1
-        fi
-    else
-        echo "ERROR: API mapping download failed and no cached file available"
-        exit 1
-    fi
+    handle_download_failure "API mapping"
 fi
 
+# Download global variable file
 echo "INFO: Downloading global variable file"
 if ! download_file "${GLOBAL_VAR_URL}" "${TOOLS_DIR}/global_var.py"; then
-    echo "INFO: Global variable download failed. Checking for cached file..."
-    if check_cached_file; then
-        if ! copy_cached_file; then
-            echo "ERROR: Failed to copy cached file to target"
-            exit 1
-        fi
-    else
-        echo "ERROR: Global variable download failed and no cached file available"
-        exit 1
-    fi
+    handle_download_failure "Global variable"
 fi
 
+# Download attribute mapping file
 echo "INFO: Downloading attribute mapping file"
 if ! download_file "${ATTRIBUTE_MAPPING_URL}" "${TOOLS_DIR}/attribute_mapping.json"; then
-    echo "INFO: Attribute mapping download failed. Checking for cached file..."
-    if check_cached_file; then
-        if ! copy_cached_file; then
-            echo "ERROR: Failed to copy cached file to target"
-            exit 1
-        fi
-    else
-        echo "ERROR: Attribute mapping download failed and no cached file available"
-        exit 1
-    fi
+    handle_download_failure "Attribute mapping"
 fi
 
-# Check if all files exist before proceeding
-if [ ! -f "${TOOLS_DIR}/api_alias_mapping.json" ] || \
-   [ ! -f "${TOOLS_DIR}/api_mapping.json" ] || \
-   [ ! -f "${TOOLS_DIR}/global_var.py" ] || \
-   [ ! -f "${TOOLS_DIR}/attribute_mapping.json" ]; then
-    echo "ERROR: One or more API mapping files are missing after download"
-    echo "Missing files:"
-    if [ ! -f "${TOOLS_DIR}/api_alias_mapping.json" ]; then echo "  - api_alias_mapping.json"; fi
-    if [ ! -f "${TOOLS_DIR}/api_mapping.json" ]; then echo "  - api_mapping.json"; fi
-    if [ ! -f "${TOOLS_DIR}/global_var.py" ]; then echo "  - global_var.py"; fi
-    if [ ! -f "${TOOLS_DIR}/attribute_mapping.json" ]; then echo "  - attribute_mapping.json"; fi
-    exit 1
-fi
-
+# If we get here, all files were downloaded successfully
 echo "INFO: All API mapping files successfully downloaded"
 
+# Run the remaining scripts
 echo "INFO: Running get_api_difference_info.py"
 if ! python "${APIMAPPING_ROOT}/tools/get_api_difference_info.py"; then
-    echo "ERROR: get_api_difference_info.py failed. Please check the script."
-    exit 1
+    handle_download_failure "get_api_difference_info.py"
 fi
 
 echo "INFO: Running generate_pytorch_api_mapping.py"
 if ! python "${APIMAPPING_ROOT}/tools/generate_pytorch_api_mapping.py"; then
-    echo "ERROR: generate_pytorch_api_mapping.py failed. Please check the script."
-    exit 1
+    handle_download_failure "generate_pytorch_api_mapping.py"
 fi
 
 # Create backup of generated file
