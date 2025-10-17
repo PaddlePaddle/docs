@@ -1,13 +1,10 @@
-## [仅 API 调用方式不一致] torch.Tensor.sparse_mask
-
+## [ 仅 API 调用方式不一致 ]torch.Tensor.sparse_mask
 ### [torch.Tensor.sparse_mask](https://pytorch.org/docs/stable/generated/torch.Tensor.sparse_mask.html)
-
 ```python
 torch.Tensor.sparse_mask(mask)
 ```
 
 ### [paddle.sparse.mask_as](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sparse/mask_as_cn.html)
-
 ```python
 paddle.sparse.mask_as(x, mask, name=None)
 ```

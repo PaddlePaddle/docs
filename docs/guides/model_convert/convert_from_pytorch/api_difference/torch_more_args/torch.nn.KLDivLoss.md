@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.nn.KLDivLoss
+## [ torch 参数更多 ]torch.nn.KLDivLoss
 ### [torch.nn.KLDivLoss](https://pytorch.org/docs/stable/generated/torch.nn.KLDivLoss.html?highlight=kldivloss#torch.nn.KLDivLoss)
-
 ```python
 torch.nn.KLDivLoss(size_average=None,
                    reduce=None,
@@ -9,7 +8,6 @@ torch.nn.KLDivLoss(size_average=None,
 ```
 
 ### [paddle.nn.KLDivLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/KLDivLoss_cn.html#kldivloss)
-
 ```python
 paddle.nn.KLDivLoss(reduction='mean',
                     log_target=False)
@@ -17,6 +15,7 @@ paddle.nn.KLDivLoss(reduction='mean',
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | size_average  | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。            |

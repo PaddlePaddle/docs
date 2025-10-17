@@ -1,7 +1,5 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.ConstantLR
-
 ### [torch.optim.lr_scheduler.ConstantLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ConstantLR.html)
-
 ```python
 torch.optim.lr_scheduler.ConstantLR(optimizer,
                                 factor=0.3333333333333333,
@@ -11,7 +9,6 @@ torch.optim.lr_scheduler.ConstantLR(optimizer,
 ```
 
 ### [paddle.optimizer.lr.PiecewiseDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/PiecewiseDecay_cn.html)
-
 ```python
 paddle.optimizer.lr.PiecewiseDecay(boundaries,
                                 values,

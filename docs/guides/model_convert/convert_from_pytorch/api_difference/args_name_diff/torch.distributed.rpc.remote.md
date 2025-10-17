@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.distributed.rpc.remote
-
 ### [torch.distributed.rpc.remote](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.remote)
-
 ```python
 torch.distributed.rpc.remote(to, func, args=None, kwargs=None, timeout=-1.0)
 ```
 
 ### [paddle.distributed.rpc.rpc_async](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/rpc_async_cn.html#rpc-async)
-
 ```python
 paddle.distributed.rpc.rpc_async(to, fn, args=None, kwargs=None, timeout=-1)
 ```
@@ -15,7 +12,6 @@ paddle.distributed.rpc.rpc_async(to, fn, args=None, kwargs=None, timeout=-1)
 两者功能一致且参数用法一致，仅参数名不一致，同时 `remote` 使用 `to_here` 获取 `func` 执行结果，而 `rpc_async` 使用 `wait` 获取结果，具体如下：
 
 ### 参数映射
-
 
 | PyTorch | PaddlePaddle | 备注                               |
 | ------- | ------------ | ---------------------------------- |

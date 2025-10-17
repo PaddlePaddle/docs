@@ -1,13 +1,10 @@
-## [输入参数用法不一致]torch.distributed.rpc.rpc_async
-
+## [ 输入参数用法不一致 ]torch.distributed.rpc.rpc_async
 ### [torch.distributed.rpc.rpc_async](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.rpc_async)
-
 ```python
 torch.distributed.rpc.rpc_async(to, func, args=None, kwargs=None, timeout=- 1.0)
 ```
 
 ### [paddle.distributed.rpc.rpc_async](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/rpc_async_cn.html#rpc-async)
-
 ```python
 paddle.distributed.rpc.rpc_async(to, fn, args=None, kwargs=None, timeout=- 1)
 ```

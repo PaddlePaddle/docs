@@ -1,7 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.InstanceNorm1d
-
 ### [torch.nn.InstanceNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.InstanceNorm1d.html#torch.nn.InstanceNorm1d)
-
 ```python
 torch.nn.InstanceNorm1d(num_features, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False, device=None, dtype=None)
 ```

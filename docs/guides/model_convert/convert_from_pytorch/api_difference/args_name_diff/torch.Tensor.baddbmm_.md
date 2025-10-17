@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.baddbmm_
-
 ### [torch.Tensor.baddbmm_](https://pytorch.org/docs/stable/generated/torch.Tensor.baddbmm_.html#torch.Tensor.baddbmm_)
-
 ```python
 torch.Tensor.baddbmm_(batch1, batch2, *, beta=1, alpha=1)
 ```
 
 ### [paddle.Tensor.baddbmm_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tensor)
-
 ```python
 paddle.Tensor.baddbmm_(x, y, beta=1, alpha=1, name=None)
 ```

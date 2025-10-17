@@ -881,10 +881,10 @@ def evaluate(image, labels, model, acc, tag, reprod_logger):
     model.eval()
     output = model(image)
 
-    accracy = acc(output, labels, topk=(1, 5))
+    accuracy = acc(output, labels, topk=(1, 5))
 
-    reprod_logger.add("acc_top1", np.array(accracy[0]))
-    reprod_logger.add("acc_top5", np.array(accracy[1]))
+    reprod_logger.add("acc_top1", np.array(accuracy[0]))
+    reprod_logger.add("acc_top5", np.array(accuracy[1]))
 
     reprod_logger.save("./result/metric_{}.npy".format(tag))
 ```

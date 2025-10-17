@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.functional.cross_entropy
-
 ### [torch.nn.functional.cross_entropy](https://pytorch.org/docs/stable/generated/torch.nn.functional.cross_entropy.html?highlight=cross_#torch.nn.functional.cross_entropy)
-
 ```python
 torch.nn.functional.cross_entropy(input,
                                  target,
@@ -14,7 +12,6 @@ torch.nn.functional.cross_entropy(input,
 ```
 
 ### [paddle.nn.functional.cross_entropy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/cross_entropy_cn.html)
-
 ```python
 paddle.nn.functional.cross_entropy(input,
                                    label,
@@ -47,7 +44,6 @@ paddle.nn.functional.cross_entropy(input,
 
 ### 转写示例
 #### size_average
-
 size_average 为 True
 
 ```python
@@ -69,7 +65,6 @@ paddle.nn.functional.cross_entropy(x,y,reduction='sum')
 ```
 
 #### reduce
-
 reduce 为 True
 
 ```python
@@ -91,7 +86,6 @@ paddle.nn.BCEWithLogitsLoss(reduction='none')
 ```
 
 #### reduction
-
 reduction 为'none'
 
 ```python

@@ -1,13 +1,10 @@
-## [输入参数类型不一致]torchvision.models.resnet152
-
+## [ 输入参数类型不一致 ]torchvision.models.resnet152
 ### [torchvision.models.resnet152](https://pytorch.org/vision/stable/models/generated/torchvision.models.resnet152.html)
-
 ```python
 torchvision.models.resnet152(*, weights: Optional[ResNet152_Weights] = None, progress: bool = True, **kwargs: Any)
 ```
 
 ### [paddle.vision.models.resnet152](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/resnet152_cn.html)
-
 ```python
 paddle.vision.models.resnet152(pretrained=False, **kwargs)
 ```

@@ -1,13 +1,10 @@
-## [输入参数类型不一致]torchvision.models.vgg19
-
+## [ 输入参数类型不一致 ]torchvision.models.vgg19
 ### [torchvision.models.vgg19](https://pytorch.org/vision/main/models/generated/torchvision.models.vgg19.html)
-
 ```python
 torchvision.models.vgg19(*, weights: Optional[VGG19_Weights] = None, progress: bool = True, **kwargs: Any)
 ```
 
 ### [paddle.vision.models.vgg19](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/vgg19_cn.html)
-
 ```python
 paddle.vision.models.vgg19(pretrained=False, batch_norm=False, **kwargs)
 ```

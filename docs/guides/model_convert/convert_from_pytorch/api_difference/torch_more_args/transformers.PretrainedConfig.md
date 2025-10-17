@@ -1,13 +1,10 @@
-## [torch 参数更多]transformers.PretrainedConfig
-
+## [ torch 参数更多 ]transformers.PretrainedConfig
 ### [transformers.PretrainedConfig](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/configuration#transformers.PretrainedConfig)
-
 ```python
 transformers.PretrainedConfig(*kwargs)
 ```
 
 ### [paddlenlp.transformers.PretrainedConfig](https://github.com/PaddlePaddle/PaddleNLP/blob/57000fa12ce67024238f0b56a6fde63c592c54ce/paddlenlp/transformers/configuration_utils.py#L317)
-
 ```python
 paddlenlp.transformers.PretrainedConfig(*kwargs)
 ```

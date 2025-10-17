@@ -1,6 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.split
 ### [torch.split](https://pytorch.org/docs/stable/generated/torch.split.html?highlight=torch%20split#torch.split)
-
 ```python
 torch.split(tensor,
             split_size_or_sections,
@@ -8,7 +7,6 @@ torch.split(tensor,
 ```
 
 ### [paddle.split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/split_cn.html#split)
-
 ```python
 paddle.split(x,
              num_or_sections,

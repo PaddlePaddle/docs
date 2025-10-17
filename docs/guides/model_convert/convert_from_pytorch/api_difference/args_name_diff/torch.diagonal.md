@@ -1,6 +1,5 @@
 ## [ 仅参数名不一致 ]torch.diagonal
 ### [torch.diagonal](https://pytorch.org/docs/stable/generated/torch.diagonal.html?highlight=diagonal#torch.diagonal)
-
 ```python
 torch.diagonal(input,
                offset=0,
@@ -9,7 +8,6 @@ torch.diagonal(input,
 ```
 
 ### [paddle.diagonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagonal_cn.html#diagonal)
-
 ```python
 paddle.diagonal(x,
                 offset=0,

@@ -1,13 +1,10 @@
-## [ 仅参数名不一致 ] torch.Tensor.pow_
-
+## [ 仅参数名不一致 ]torch.Tensor.pow_
 ### [torch.Tensor.pow_](https://pytorch.org/docs/stable/generated/torch.Tensor.pow_.html)
-
 ```python
 torch.Tensor.pow_(exponent)
 ```
 
 ### [paddle.Tensor.pow_]()
-
 ```python
 paddle.Tensor.pow_(y)
 ```

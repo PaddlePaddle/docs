@@ -1,13 +1,10 @@
-## [仅参数名不一致]torch.nn.Module.named_buffers
-
+## [ 仅参数名不一致 ]torch.nn.Module.named_buffers
 ### [torch.nn.Module.named_buffers](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.named_buffers)
-
 ```python
 torch.nn.Module.named_buffers(prefix='', recurse=True, remove_duplicate=True)
 ```
 
 ### [paddle.nn.Layer.named_buffers](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#named-buffers-prefix-include-sublayers-true)
-
 ```python
 paddle.nn.Layer.named_buffers(prefix='', include_sublayers=True, remove_duplicate=True)
 ```

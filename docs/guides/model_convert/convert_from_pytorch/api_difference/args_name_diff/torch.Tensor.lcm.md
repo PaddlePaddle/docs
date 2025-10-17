@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.lcm
-
 ### [torch.Tensor.lcm](https://pytorch.org/docs/stable/generated/torch.Tensor.lcm.html)
-
 ```python
 torch.Tensor.lcm(other)
 ```
 
 ### [paddle.Tensor.lcm]()
-
 ```python
 paddle.Tensor.lcm(y)
 ```

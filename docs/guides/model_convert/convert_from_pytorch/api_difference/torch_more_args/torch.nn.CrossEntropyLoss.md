@@ -1,6 +1,5 @@
-## [torch 参数更多]torch.nn.CrossEntropyLoss
+## [ torch 参数更多 ]torch.nn.CrossEntropyLoss
 ### [torch.nn.CrossEntropyLoss](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss)
-
 ```python
 torch.nn.CrossEntropyLoss(weight=None,
                           size_average=None,
@@ -11,7 +10,6 @@ torch.nn.CrossEntropyLoss(weight=None,
 ```
 
 ### [paddle.nn.CrossEntropyLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/CrossEntropyLoss_cn.html#crossentropyloss)
-
 ```python
 paddle.nn.CrossEntropyLoss(weight=None,
                            ignore_index=-100,
@@ -38,8 +36,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | -             | axis       | 进行 softmax 计算的维度索引，PyTorch 无此参数，Paddle 保持默认即可。   |
 
 ### 转写示例
-#### size_average
-size_average 为 True
+#### size_averagesize_average 为 True
 ```python
 # PyTorch 写法
 torch.nn.CrossEntropyLoss(weight=w, size_average=True)
@@ -57,8 +54,7 @@ torch.nn.CrossEntropyLoss(weight=w, size_average=False)
 paddle.nn.CrossEntropyLoss(weight=w, reduction='sum')
 ```
 
-#### reduce
-reduce 为 True
+#### reducereduce 为 True
 ```python
 # PyTorch 写法
 torch.nn.CrossEntropyLoss(weight=w, reduce=True)
@@ -76,8 +72,7 @@ torch.nn.CrossEntropyLoss(weight=w, reduce=False)
 paddle.nn.CrossEntropyLoss(weight=w, reduction='none')
 ```
 
-#### reduction
-reduction 为'none'
+#### reductionreduction 为'none'
 ```python
 # PyTorch 写法
 torch.nn.CrossEntropyLoss(weight=w, reduction='none')

@@ -1,12 +1,11 @@
 ## [ paddle 参数更多 ]torch.Tensor.pinverse
-### [torch.Tensor.pinverse](https://pytorch.org/docs/stable/generated/torch.Tensor.pinverse.html#torch.Tensor.pinverse)
 
+### [torch.Tensor.pinverse](https://pytorch.org/docs/stable/generated/torch.Tensor.pinverse.html#torch.Tensor.pinverse)
 ```python
 torch.Tensor.pinverse()
 ```
 
 ### [paddle.Tensor.pinv]()
-
 ```python
 paddle.Tensor.pinv(rcond=1e-15,
                    hermitian=False,

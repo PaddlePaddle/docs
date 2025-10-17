@@ -1,7 +1,5 @@
 ## [ 返回参数类型不一致 ]torch.sort
-
 ### [torch.sort](https://pytorch.org/docs/stable/generated/torch.sort.html?highlight=sort#torch.sort)
-
 ```python
 torch.sort(input,
            dim=-1,
@@ -12,7 +10,6 @@ torch.sort(input,
 ```
 
 ### [paddle.sort](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sort_cn.html#paddle.sort)
-
 ```python
 paddle.sort(x,
             axis=-1,

@@ -1,13 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.unique_consecutive
-
 ### [torch.Tensor.unique_consecutive](https://pytorch.org/docs/stable/generated/torch.Tensor.unique_consecutive.html#torch.Tensor.unique_consecutive)
-
 ```python
 torch.Tensor.unique_consecutive(return_inverse=False, return_counts=False, dim=None)
 ```
 
 ### [paddle.Tensor.unique_consecutive]()
-
 ```python
 paddle.Tensor.unique_consecutive(return_inverse=False, return_counts=False, axis=None, dtype='int64', name=None)
 ```

@@ -1,7 +1,5 @@
-## [torch 参数更多]torch.nn.CTCLoss
-
+## [ torch 参数更多 ]torch.nn.CTCLoss
 ### [torch.nn.CTCLoss](https://pytorch.org/docs/stable/generated/torch.nn.CTCLoss.html#torch.nn.CTCLoss)
-
 ```python
 torch.nn.CTCLoss(blank=0,
                  reduction='mean',
@@ -9,7 +7,6 @@ torch.nn.CTCLoss(blank=0,
 ```
 
 ### [paddle.nn.CTCLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/CTCLoss_cn.html#ctcloss)
-
 ```python
 paddle.nn.CTCLoss(blank=0,
                   reduction='mean')

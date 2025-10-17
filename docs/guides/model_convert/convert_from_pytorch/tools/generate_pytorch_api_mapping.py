@@ -111,7 +111,8 @@ def get_pytorch_url(torch_api: str) -> str:
 
         if any(torch_api.startswith(prefix) for prefix in generated_check):
             return f"{base_url}generated/{torch_api}.html"
-        return f"{base_url}torch.html#{torch_api}"
+        # return f"{base_url}torch.html#{torch_api}"
+        return f"{base_url}generated/{torch_api}.html"
 
     # 分割API路径
     parts = torch_api.split(".")
@@ -506,24 +507,6 @@ def generate_category2_table(
             rows.append((src_api, col2, col3, remark_link))
             used_apis.add(src_api)  # 标记该API已处理
             existing_apis.add(src_api)
-
-    # 遍历docs_mapping，查找mapping_type为"无参数"或"参数完全一致"，且src_api替换后与dst_api不等的API
-    for src_api, item in docs_mapping.items():
-        mapping_type = item.get("mapping_type", "")
-        dst_api = item.get("dst_api", "")
-        if (
-            src_api in whitelist_skip
-            or src_api in no_need_convert_list
-            or src_api in used_apis
-        ):
-            continue
-        # 检查条件：mapping_type为"无参数"或"参数完全一致"，src_api包含"torch"，替换后与dst_api不等
-        if mapping_type in ["无参数", "参数完全一致", "仅 API 调用方式不一致"]:
-            print(src_api)
-
-            # 生成备注列的超链接
-            # remark_link = get_mapping_doc_url(src_api, base_dir)
-            # rows.append((src_api, col2, col3, remark_link))
 
     # 生成Markdown表格字符串
     table_lines = [

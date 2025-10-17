@@ -1,7 +1,5 @@
-## [torch 参数更多 ]torch.nn.functional.normalize
-
+## [ torch 参数更多 ]torch.nn.functional.normalize
 ### [torch.nn.functional.normalize](https://pytorch.org/docs/stable/generated/torch.nn.functional.normalize.html?highlight=normalize#torch.nn.functional.normalize)
-
 ```python
 torch.nn.functional.normalize(input,
                              p=2.0,
@@ -11,7 +9,6 @@ torch.nn.functional.normalize(input,
 ```
 
 ### [paddle.nn.functional.normalize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/normalize_cn.html)
-
 ```python
 paddle.nn.functional.normalize(x,
                                p=2,
@@ -32,7 +29,7 @@ paddle.nn.functional.normalize(x,
 | out           | -            | 表示输出 Tensor 。               |
 
 ### 转写示例
-####  out: 指定输出
+#### out: 指定输出
 ```python
 # PyTorch 写法
 torch.nn.functional.normalize(x, out=y)

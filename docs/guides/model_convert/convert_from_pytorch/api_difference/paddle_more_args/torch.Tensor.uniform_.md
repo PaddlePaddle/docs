@@ -1,13 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.uniform_
-
 ### [torch.Tensor.uniform_](https://pytorch.org/docs/stable/generated/torch.Tensor.uniform_.html#torch-tensor-uniform)
-
 ```python
 torch.Tensor.uniform_(from=0, to=1)
 ```
 
 ### [paddle.Tensor.uniform_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#uniform-min-1-0-max-1-0-seed-0-name-none)
-
 ```python
 paddle.Tensor.uniform_(min=- 1.0, max=1.0, seed=0, name=None)
 ```

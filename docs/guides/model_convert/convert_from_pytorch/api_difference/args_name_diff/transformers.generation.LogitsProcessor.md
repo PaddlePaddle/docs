@@ -1,13 +1,10 @@
-## [仅参数名不一致]transformers.generation.LogitsProcessor
-
+## [ 仅参数名不一致 ]transformers.generation.LogitsProcessor
 ### [transformers.generation.LogitsProcessor](https://hf-mirror.com/docs/transformers/v4.42.0/en/internal/generation_utils#logitsprocessor)
-
 ```python
 transformers.generation.LogitsProcessor(input_ids: torch.LongTensor, scores: torch.FloatTensor)
 ```
 
 ### [paddlenlp.generation.LogitsProcessor](https://github.com/PaddlePaddle/PaddleNLP/blob/e336e78c338d2514ee6c937982ce5d8c960b85ff/paddlenlp/generation/logits_process.py#L26)
-
 ```python
 paddlenlp.generation.LogitsProcessor(input_ids: paddle.Tensor, scores: paddle.Tensor)
 ```

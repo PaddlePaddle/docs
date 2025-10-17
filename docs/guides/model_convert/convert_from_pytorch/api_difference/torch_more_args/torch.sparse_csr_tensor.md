@@ -1,7 +1,5 @@
-## [torch 参数更多]torch.sparse_csr_tensor
-
+## [ torch 参数更多 ]torch.sparse_csr_tensor
 ### [torch.sparse_csr_tensor](https://pytorch.org/docs/stable/generated/torch.sparse_csr_tensor.html#torch.sparse_csr_tensor)
-
 ```python
 torch.sparse_csr_tensor(crow_indices,
                         col_indices,
@@ -17,7 +15,6 @@ torch.sparse_csr_tensor(crow_indices,
 ```
 
 ### [paddle.sparse.sparse_csr_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/sparse_csr_tensor_cn.html#sparse-csr-tensor)
-
 ```python
 paddle.sparse.sparse_csr_tensor(crows, cols, values, shape=None, dtype=None, place=None, stop_gradient=True)
 ```
@@ -40,9 +37,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | check_invariants | -             | 是否检查稀疏 Tensor 变量，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 
 ### 转写示例
-
 #### requires_grad 参数：是否阻断 Autograd 的梯度传导
-
 ```python
 # PyTorch 写法
 crows = [0, 2, 3, 5]

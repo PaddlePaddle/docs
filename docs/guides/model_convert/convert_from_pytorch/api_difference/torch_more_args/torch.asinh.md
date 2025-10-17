@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.asinh
+## [ torch 参数更多 ]torch.asinh
 ### [torch.asinh](https://pytorch.org/docs/stable/generated/torch.asinh.html#torch.asinh)
-
 ```python
 torch.asinh(input,
            *,
@@ -8,7 +7,6 @@ torch.asinh(input,
 ```
 
 ### [paddle.asinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/asinh_cn.html)
-
 ```python
 paddle.asinh(x,
             name=None)
