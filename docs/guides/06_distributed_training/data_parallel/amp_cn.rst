@@ -126,8 +126,8 @@
    start_timer() # 获取训练开始时间
 
    for epoch in range(epochs):
-      datas = zip(train_data, labels)
-      for i, (data, label) in enumerate(datas):
+      data = zip(train_data, labels)
+      for i, (data, label) in enumerate(data):
 
          output = model(data)
          loss = mse(output, label)
@@ -177,8 +177,8 @@
    start_timer() # 获取训练开始时间
 
    for epoch in range(epochs):
-      datas = zip(train_data, labels)
-      for i, (data, label) in enumerate(datas):
+      data = zip(train_data, labels)
+      for i, (data, label) in enumerate(data):
 
          # Step2：创建 AMP 上下文环境，开启自动混合精度训练
          with paddle.amp.auto_cast():

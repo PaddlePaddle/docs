@@ -26,7 +26,7 @@ Some essential concepts that our API have to provide include:
 
 As a summarization
 of
-[our disucssion](https://github.com/PaddlePaddle/Paddle/issues/1315),
+[our discussion](https://github.com/PaddlePaddle/Paddle/issues/1315),
 let us present two examples here:
 
 
