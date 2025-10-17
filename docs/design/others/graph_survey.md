@@ -168,9 +168,9 @@ Expression pred = W * in;
 Expression loss = square(pred - label);
 ```
 
-The input data and parameter are also represented by Expression. Every basci Expression corresponds to a Node. And input data is also a Node.
+The input data and parameter are also represented by Expression. Every basic Expression corresponds to a Node. And input data is also a Node.
 
-Expression has a data member ComputationGraph, and ComputationGraph will be modified in users' configuring process. Expression can be a running target, beacuse Expression contains all dependency.
+Expression has a data member ComputationGraph, and ComputationGraph will be modified in users' configuring process. Expression can be a running target, because Expression contains all dependency.
 
 
 Here is a detailed example:

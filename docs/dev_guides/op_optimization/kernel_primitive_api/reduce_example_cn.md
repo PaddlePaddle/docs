@@ -84,7 +84,7 @@ __global__ void ReduceHigherDimKernel(const Tx* x, Ty* y, ReduceOp reducer,
 
   } else {
 
-    // The remaining data is smaller than blockdim.x, IsBounary must be true
+    // The remaining data is smaller than blockdim.x, IsBoundary must be true
     HigherDimImpl<Tx, Ty, MPType, AddFunctor<Tx, Ty>, IdentityFunctor<Tx, Ty>, true>(
         x, y, AddFunctor<Tx, Ty>(), IdentityFunctor<Tx, Ty>(), init, reduce_num, left_num, blocking_num);
 
