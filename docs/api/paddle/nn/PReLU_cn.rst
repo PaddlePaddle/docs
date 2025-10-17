@@ -12,7 +12,7 @@ PReLU 激活层（PReLU Activation Operator）。计算公式如下：
 
     PReLU(x) = max(0, x) + weight * min(0, x)
 
-其中，:math: ``x`` 为输入的 Tensor。
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::
