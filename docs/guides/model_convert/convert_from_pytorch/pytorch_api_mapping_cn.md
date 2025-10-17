@@ -12,8 +12,8 @@
 
 | 序号 | 类别 | 简介 |
 | ---- | ---- | ---- |
-| 1 |API 完全一致|**此类 API 能极大降低代码迁移成本，其使用方式完全一致，** 只需要将代码中所有前缀 `torch.`替换为 `paddle.`即可。（或者只需在文件最上方插入一行 `import paddle as torch`即可）|
-| 2 |仅 API 调用方式不一致|参数一致，但 API 调用方式不一致。此类 API 需要转换，但转换成本较低，只需要对 API 调用方式进行改写，无需处理 API 参数部分。包括：API 名称不同、API 路径不同、Tensor 类方法改成普通方法、Tensor 方法改成属性、Tensor 属性改成方法 等情况。|
+| 1 |API 完全一致| **此类 API 没有转写成本，两者用法完全一致，** 只需将代码中所有前缀 ``torch.`` 替换为 ``paddle.`` 即可。（也可只在文件最上方插入一行 ``import paddle as torch``）|
+| 2 |仅 API 调用方式不一致|此类 API 的转写成本较低，只需对 API 调用方式进行改写，无需转写 API 参数部分|
 | 3 |仅参数名不一致|此类 API 功能相同，但部分参数名称不同|
 | 4 |paddle 参数更多|此类 API 在 PaddlePaddle 中提供了更多可选参数|
 | 5 |参数默认值不一致|此类 API 功能相同，但某些参数的默认值不同|
@@ -27,11 +27,9 @@
 | 13 |功能缺失|此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现|
 
 ### 1. API 完全一致
-**分类简介**
 
-此类 API 只需要将代码中所有前缀 `torch.`替换为 `paddle.`即可。（或者只需在文件最上方插入一行 `import paddle as torch`即可）
+**简介：此类 API 没有转写成本，两者用法完全一致，** 只需将代码中所有前缀 ``torch.`` 替换为 ``paddle.`` 即可。（也可只在文件最上方插入一行 ``import paddle as torch``）。示例如下。
 
-**转写示例**
 ```python
 # PyTorch 写法
 torch.eye(5)
@@ -49,63 +47,67 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 |------|-------------------|---------------|----------|------|
 
 ### 2. 仅 API 调用方式不一致
-**分类简介**
 
-此类 API 需要转换，但转换成本较低，只需要对 API 调用方式进行改写，无需处理 API 参数部分。
+**简介：** 此类 API 的转写成本较低，只需对 API 调用方式进行改写，无需转写 API 参数部分。示例如下。
 
+```python
+# PyTorch 写法
+torch.numel(x)
+out = x.matrix_exp()
+out = x.to_sparse(1)
+out = x.clamp_(-0.5, 0.5)
+
+# Paddle 写法
+x.size
+out = paddle.linalg.matrix_exp(x)
+out = x.to_sparse_coo(1)
+out = x.clip_(-0.5, 0.5)
+```
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |
 |------|-------------------|---------------|----------|------|
 
 ### 3. 仅参数名不一致
-**分类简介**
 
-此类 API 功能相同，但部分参数名称不同。
+**简介：** 此类 API 功能相同，但部分参数名称不同。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |
 |------|-------------------|---------------|----------|------|
 
 ### 4. paddle 参数更多
-**分类简介**
 
-此类 API 在 PaddlePaddle 中提供了更多可选参数。
-
+**简介：** 此类 API 在 PaddlePaddle 中提供了更多可选参数。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |
 |------|-------------------|---------------|----------|------|
 
 
 ### 5. 参数默认值不一致
-**分类简介**
 
-此类 API 功能相同，但某些参数的默认值不同
-
+**简介：** 此类 API 功能相同，但某些参数的默认值不同
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |
 |------|-------------------|---------------|----------|------|
 
 
 ### 6. torch 参数更多
-**分类简介**
 
-此类 API 在 PyTorch 中提供了更多参数。
+**简介：** 此类 API 在 PyTorch 中提供了更多参数。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |
 |------|-------------------|---------------|----------|------|
 
 
 ### 7. 输入参数用法不一致
-**分类简介**
 
-此类 API 对输入参数的处理方式不同。
+**简介：** 此类 API 对输入参数的处理方式不同。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |
 |------|-------------------|---------------|----------|------|
 
 ### 8. 输入参数类型不一致
-**分类简介**
 
-此类 API 要求的输入数据类型不同。
+**简介：** 此类 API 要求的输入数据类型不同。
 
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |
@@ -113,9 +115,8 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 
 
 ### 9. 返回参数类型不一致
-**分类简介**
 
-​此类 API 返回值的类型或结构不同。
+**简介：** ​此类 API 返回值的类型或结构不同。
 
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |
@@ -123,36 +124,32 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 
 
 ### 10. 组合替代实现
-**分类简介**
 
-此类功能在 PaddlePaddle 中没有直接对应的单一 API，需要通过多个 PaddlePaddle API 组合来实现。
+**简介：** 此类功能在 PaddlePaddle 中没有直接对应的单一 API，需要通过多个 PaddlePaddle API 组合来实现。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |
 |------|-------------------|---------------|----------|------|
 
 
 ### 11. 可删除
-**分类简介**
 
-此类 PyTorch API 在 PaddlePaddle 中可以直接删除。
+**简介：** 此类 PyTorch API 在 PaddlePaddle 中可以直接删除。
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |
 |------|-------------------|---------------|----------|------|
 
 
 ### 12. API 别名
-**分类简介**
 
-此类 PyTorch API 是其他 Pytorch API 的别名
+**简介：** 此类 PyTorch API 是其他 Pytorch API 的别名
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |
 |------|-------------------|---------------|----------|------|
 
 
 ### 13. 功能缺失
-**分类简介**
 
-此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现。
+**简介：** 此类 PyTorch API 的功能在 PaddlePaddle 中暂时没有等效实现。
 
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |
