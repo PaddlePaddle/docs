@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.functional.mse_loss
-
 ### [torch.nn.functional.mse_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.mse_loss.html?highlight=mse_loss#torch.nn.functional.mse_loss)
-
 ```python
 torch.nn.functional.mse_loss(input,
                              target,
@@ -11,7 +9,6 @@ torch.nn.functional.mse_loss(input,
 ```
 
 ### [paddle.nn.functional.mse_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/mse_loss_cn.html)
-
 ```python
 paddle.nn.functional.mse_loss(input,
                               label,

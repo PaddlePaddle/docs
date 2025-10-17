@@ -1,13 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.bitwise_right_shift
-
 ### [torch.Tensor.bitwise_right_shift](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_right_shift.html#torch-tensor-bitwise-right-shift)
-
 ```python
 torch.Tensor.bitwise_right_shift(other)
 ```
 
 ### [paddle.Tensor.bitwise_right_shift]()
-
 ```python
 paddle.Tensor.bitwise_right_shift(y, is_arithmetic=True)
 ```
@@ -20,13 +17,3 @@ paddle.Tensor.bitwise_right_shift(y, is_arithmetic=True)
 | ------- | ------------- | ------------------------------------------------------------------- |
 | other   | y             | 表示输入的 Tensor ，仅参数名不一致。                                |
 | -       | is_arithmetic | 用于表明是否执行算术位移， PyTorch 无此参数， Paddle 保持默认即可。 |
-
-### 转写示例
-
-```python
-# PyTorch 写法
-out = x.bitwise_right_shift(y)
-
-# Paddle 写法
-out = x.bitwise_right_shift(y)
-```

@@ -1,4 +1,4 @@
-## [torch 参数更多 ]torch.randint
+## [ torch 参数更多 ]torch.randint
 ### [torch.randint](https://pytorch.org/docs/stable/generated/torch.randint.html?highlight=randint#torch.randint)
 ```python
 torch.randint(low=0,

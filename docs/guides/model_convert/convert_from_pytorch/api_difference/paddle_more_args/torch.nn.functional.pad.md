@@ -1,7 +1,5 @@
 ## [ paddle 参数更多 ]torch.nn.functional.pad
-
 ### [torch.nn.functional.pad](https://pytorch.org/docs/stable/generated/torch.nn.functional.pad.html)
-
 ```python
 torch.nn.functional.pad(input,
                             pad,
@@ -10,7 +8,6 @@ torch.nn.functional.pad(input,
 ```
 
 ### [paddle.nn.functional.pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/pad_cn.html#pad)
-
 ```python
 paddle.nn.functional.pad(x,
                             pad,

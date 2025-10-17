@@ -1,13 +1,10 @@
-## [torch 参数更多 ]torch.fmin
-
+## [ torch 参数更多 ]torch.fmin
 ### [torch.fmin](https://pytorch.org/docs/stable/generated/torch.fmin.html#torch.fmin)
-
 ```python
 torch.fmin(input, other, *, out=None)
 ```
 
 ### [paddle.fmin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fmin_cn.html)
-
 ```python
 paddle.fmin(x, y, name=None)
 ```

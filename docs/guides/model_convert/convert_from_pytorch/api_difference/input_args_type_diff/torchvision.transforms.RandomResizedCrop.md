@@ -1,7 +1,5 @@
-## [输入参数类型不一致]torchvision.transforms.RandomResizedCrop
-
+## [ 输入参数类型不一致 ]torchvision.transforms.RandomResizedCrop
 ### [torchvision.transforms.RandomResizedCrop](https://pytorch.org/vision/main/generated/torchvision.transforms.RandomResizedCrop.html)
-
 ```python
 torchvision.transforms.RandomResizedCrop(
     size: Union[int, List[int], Tuple[int, ...]],
@@ -13,7 +11,6 @@ torchvision.transforms.RandomResizedCrop(
 ```
 
 ### [paddle.vision.transforms.RandomResizedCrop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomResizedCrop_cn.html)
-
 ```python
 paddle.vision.transforms.RandomResizedCrop(
     size: Union[int, List[int], Tuple[int, ...]],

@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.atan
+## [ torch 参数更多 ]torch.atan
 ### [torch.atan](https://pytorch.org/docs/stable/generated/torch.atan.html#torch.atan)
-
 ```python
 torch.atan(input,
            *,
@@ -8,7 +7,6 @@ torch.atan(input,
 ```
 
 ### [paddle.atan](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atan_cn.html#atan)
-
 ```python
 paddle.atan(x,
             name=None)

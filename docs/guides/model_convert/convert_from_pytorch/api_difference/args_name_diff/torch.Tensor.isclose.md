@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.isclose
-
 ### [torch.Tensor.isclose](https://pytorch.org/docs/stable/generated/torch.Tensor.isclose.html)
-
 ```python
 torch.Tensor.isclose(other, rtol=1e-05, atol=1e-08, equal_nan=False)
 ```
 
 ### [paddle.Tensor.isclose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#isclose-x-y-rtol-1e-05-atol-1e-08-equal-nan-false-name-none)
-
 ```python
 paddle.Tensor.isclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 ```

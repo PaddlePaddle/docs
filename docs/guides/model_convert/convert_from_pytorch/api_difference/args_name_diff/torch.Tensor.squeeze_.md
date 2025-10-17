@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.squeeze_
-
 ### [torch.Tensor.squeeze_](https://pytorch.org/docs/stable/generated/torch.Tensor.squeeze_.html#torch-tensor-squeeze)
-
 ```python
 torch.Tensor.squeeze_(dim=None)
 ```
 
 ### [paddle.Tensor.squeeze_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id19)
-
 ```python
 paddle.Tensor.squeeze_(axis=None)
 ```

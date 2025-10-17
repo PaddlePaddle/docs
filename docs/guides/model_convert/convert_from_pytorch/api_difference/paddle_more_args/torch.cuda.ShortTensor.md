@@ -1,13 +1,10 @@
-## [ paddle 参数更多 ] torch.cuda.ShortTensor
-
+## [ paddle 参数更多 ]torch.cuda.ShortTensor
 ### [torch.cuda.ShortTensor](https://pytorch.org/docs/stable/tensors.html)
-
 ```python
 torch.cuda.ShortTensor(data)
 ```
 
 ### [paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/to_tensor_cn.html#to-tensor)
-
 ```python
 paddle.to_tensor(data, dtype='int16', place='gpu')
 ```

@@ -1,7 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.rand
-
 ### [torch.rand](https://pytorch.org/docs/stable/generated/torch.rand.html?highlight=rand#torch.rand)
-
 ```python
 torch.rand(*size,
            *,
@@ -15,7 +13,6 @@ torch.rand(*size,
 ```
 
 ### [paddle.rand](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/rand_cn.html#rand)
-
 ```python
 paddle.rand(shape,
             dtype=None,

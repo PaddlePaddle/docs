@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.distributed.irecv
-
+## [ torch 参数更多 ]torch.distributed.irecv
 ### [torch.distributed.irecv](https://pytorch.org/docs/stable/distributed.html?highlight=send#torch.distributed.irecv)
-
 ```python
 torch.distributed.irecv(tensor, src=None, group=None, tag=0)
 ```
 
 ### [paddle.distributed.irecv](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/irecv_cn.html)
-
 ```python
 paddle.distributed.irecv(tensor, src=0, group=None)
 ```

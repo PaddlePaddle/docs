@@ -78,7 +78,7 @@ We hope to be able to achieve the same three-layer arguments of Python API -> Op
   - The initial construction of the PHI operator library paid more attention to Kernel "migration". Due to the consideration of time and labor costs, the original OpKernel logic migration is not forced to be upgraded to "combined" writing for the time being, and the same is true for the forward and backward Kernels
   - The "combined Kernel extension development" capability provided by the PHI operator library initially serves the new operators of subsequent increments, and the existing operators still maintain their original coding implementation, reducing the cost of migration
   - The "new hardware expansion capability" provided by the PHI operator library is initially only provided within the scope of the new hardware itself. For example, the XPU has implemented 50 Kernels, and then it can combine new Kernels based on 50 Kernels, but this is only limited to the XPU Within the scope, its implementation is not common with CPU, CUDA, etc.
-  - The PHI operator library project focuses on the work of "Kernel functionalization & Op normalization", Kernel is changed to functional format, C++ API and Op naming and arguemnts list are gradually normalized to Python API under the premise of ensuring compatibility as much as possible
+  - The PHI operator library project focuses on the work of "Kernel functionalization & Op normalization", Kernel is changed to functional format, C++ API and Op naming and arguments list are gradually normalized to Python API under the premise of ensuring compatibility as much as possible
 
 
 ## 2. Design Overview
@@ -1219,7 +1219,7 @@ At present, the `ArgumentMapping` function mapping is designed. In the `phi/ops/
  * The infrt declare like:
  *
  * def PDKEL_Reshape_to_CPU : Pat<
- *     (PD_ReshapeOp $x, $shape_tensor， $shape_attr), // OpMaker arguements
+ *     (PD_ReshapeOp $x, $shape_tensor， $shape_attr), // OpMaker arguments
  *     (PDKEL_ReshapeKernelAttr $x, fn($shape_attr)>;  // Kernel arguments
  * def PDKEL_Reshape_to_CPU : Pat<
  *     (PD_ReshapeOp $x, $shape_tensor， $shape_attr),

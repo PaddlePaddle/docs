@@ -1,14 +1,11 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.hardshrink
-
 ### [torch.nn.functional.hardshrink](https://pytorch.org/docs/stable/generated/torch.nn.functional.hardshrink.html?highlight=hardshrink#torch.nn.functional.hardshrink)
-
 ```python
 torch.nn.functional.hardshrink(input,
                                lambd=0.5)
 ```
 
 ### [paddle.nn.functional.hardshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/hardshrink_cn.html)
-
 ```python
 paddle.nn.functional.hardshrink(x,
                                 threshold=0.5,

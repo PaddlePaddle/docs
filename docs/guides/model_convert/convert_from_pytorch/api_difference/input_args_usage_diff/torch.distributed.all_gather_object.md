@@ -1,13 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.distributed.all_gather_object
-
 ### [torch.distributed.all_gather_object](https://pytorch.org/docs/stable/distributed.html?highlight=all_gather_object#torch.distributed.all_gather_object)
-
 ```python
 torch.distributed.all_gather_object(object_list, obj, group=None)
 ```
 
 ### [paddle.distributed.all_gather_object](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/all_gather_object_cn.html)
-
 ```python
 paddle.distributed.all_gather_object(object_list, obj, group=None)
 ```

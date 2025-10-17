@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.Adamax
-
 ### [torch.optim.Adamax](https://pytorch.org/docs/stable/generated/torch.optim.Adamax.html)
-
 ```python
 torch.optim.Adamax(params,
                 lr=0.002,
@@ -14,7 +12,6 @@ torch.optim.Adamax(params,
 ```
 
 ### [paddle.optimizer.Adamax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Adamax_cn.html)
-
 ```python
 paddle.optimizer.Adamax(learning_rate=0.001,
                         beta1=0.9,

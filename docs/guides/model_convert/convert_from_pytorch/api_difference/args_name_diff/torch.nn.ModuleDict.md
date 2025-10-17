@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.ModuleDict
-
 ### [torch.nn.ModuleDict](https://pytorch.org/docs/stable/generated/torch.nn.ModuleDict.html?highlight=torch+nn+moduledict#torch.nn.ModuleDict)
-
 ```python
 torch.nn.ModuleDict(modules=None)
 ```
 
 ### [paddle.nn.LayerDict](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LayerDict_cn.html)
-
 ```python
 paddle.nn.LayerDict(sublayers=None)
 ```

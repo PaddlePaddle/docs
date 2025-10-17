@@ -1,6 +1,5 @@
 ## [ 仅参数名不一致 ]torch.dist
 ### [torch.dist](https://pytorch.org/docs/stable/generated/torch.dist.html?highlight=dist#torch.dist)
-
 ```python
 torch.dist(input,
            other,
@@ -8,7 +7,6 @@ torch.dist(input,
 ```
 
 ### [paddle.dist](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/dist_cn.html#dist)
-
 ```python
 paddle.dist(x,
             y,

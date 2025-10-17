@@ -1,7 +1,5 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.MultiStepLR
-
 ### [torch.optim.lr_scheduler.MultiStepLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.MultiStepLR.html)
-
 ```python
 torch.optim.lr_scheduler.MultiStepLR(optimizer,
                                 milestones,
@@ -11,7 +9,6 @@ torch.optim.lr_scheduler.MultiStepLR(optimizer,
 ```
 
 ### [paddle.optimizer.lr.MultiStepDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/MultiStepDecay_cn.html)
-
 ```python
 paddle.optimizer.lr.MultiStepDecay(learning_rate,
                                 milestones,

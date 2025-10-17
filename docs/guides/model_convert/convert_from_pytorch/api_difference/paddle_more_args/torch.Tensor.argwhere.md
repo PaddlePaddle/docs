@@ -1,12 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.argwhere
 ### [torch.Tensor.argwhere](https://pytorch.org/docs/stable/generated/torch.Tensor.argwhere.html#torch.Tensor.argwhere)
-
 ```python
 torch.Tensor.argwhere()
 ```
 
 ### [paddle.Tensor.nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#nonzero-as-tuple-false)
-
 ```python
 paddle.Tensor.nonzero(as_tuple=False)
 ```

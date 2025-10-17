@@ -1,7 +1,5 @@
-## [仅 API 调用方式不一致]torchvision.transforms.functional.crop
-
+## [ 仅 API 调用方式不一致 ]torchvision.transforms.functional.crop
 ### [torchvision.transforms.functional.crop](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.crop.html)
-
 ```python
 torchvision.transforms.functional.crop(
     img: Union[PIL.Image.Image, torch.Tensor],
@@ -13,7 +11,6 @@ torchvision.transforms.functional.crop(
 ```
 
 ### [paddle.vision.transforms.crop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/crop_cn.html)
-
 ```python
 paddle.vision.transforms.crop(
     img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor],

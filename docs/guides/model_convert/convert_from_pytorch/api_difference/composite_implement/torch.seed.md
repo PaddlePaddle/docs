@@ -1,5 +1,4 @@
 ## [ 组合替代实现 ]torch.seed
-
 ### [torch.seed](https://pytorch.org/docs/stable/generated/torch.seed.html#torch.seed)
 ```python
 torch.seed()
@@ -9,7 +8,7 @@ torch.seed()
 
 PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 
-###  转写示例
+### 转写示例
 ```python
 # PyTorch 写法
 torch.seed()

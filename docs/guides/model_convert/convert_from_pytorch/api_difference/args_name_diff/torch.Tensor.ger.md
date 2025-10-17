@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.ger
-
 ### [torch.Tensor.ger](https://pytorch.org/docs/stable/generated/torch.Tensor.ger.html?highlight=torch+tensor+ger#torch.Tensor.ger)
-
 ```python
 torch.Tensor.ger(vec2)
 ```
 
 ### [paddle.Tensor.outer]()
-
 ```python
 paddle.Tensor.outer(y, name=None)
 ```

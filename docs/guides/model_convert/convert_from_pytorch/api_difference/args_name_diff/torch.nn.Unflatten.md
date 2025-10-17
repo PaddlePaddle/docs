@@ -1,12 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.Unflatten
 ### [torch.nn.Unflatten](https://pytorch.org/docs/stable/generated/torch.nn.Unflatten.html?highlight=torch+nn+unflatten#torch.nn.Unflatten)
-
 ```python
 torch.nn.Unflatten(dim, unflattened_size)
 ```
 
 ### [paddle.nn.Unflatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Unflatten_cn.html#unflatten)
-
 ```python
 paddle.nn.Unflatten(axis, shape, name=None)
 ```

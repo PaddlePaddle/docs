@@ -3,7 +3,6 @@
 
 --------------------------------------------------------------------------------------------------
 ### [torch.min](https://pytorch.org/docs/stable/generated/torch.min.html?highlight=min#torch.min)
-
 ```python
 torch.min(input,
           dim=None,
@@ -13,7 +12,6 @@ torch.min(input,
 ```
 
 ### [paddle.min](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/min_cn.html#min)
-
 ```python
 paddle.min(x,
            axis=None,
@@ -56,7 +54,6 @@ result = torch.min(a, dim=1), torch.argmin(a, dim=1)
 --------------------------------------------------------------------------------------------------
 
 ### [torch.min](https://pytorch.org/docs/stable/generated/torch.min.html?highlight=min#torch.min)
-
 ```python
 torch.min(input,
           other,
@@ -65,7 +62,6 @@ torch.min(input,
 ```
 
 ### [paddle.minimum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/minimum_cn.html#minimum)
-
 ```python
 paddle.minimum(x,
                y,

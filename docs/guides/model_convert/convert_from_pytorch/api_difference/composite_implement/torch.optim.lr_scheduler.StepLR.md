@@ -1,7 +1,5 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.StepLR
-
 ### [torch.optim.lr_scheduler.StepLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.StepLR.html)
-
 ```python
 torch.optim.lr_scheduler.StepLR(optimizer,
                                 step_size,
@@ -11,7 +9,6 @@ torch.optim.lr_scheduler.StepLR(optimizer,
 ```
 
 ### [paddle.optimizer.lr.StepDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/StepDecay_cn.html)
-
 ```python
 paddle.optimizer.lr.StepDecay(learning_rate,
                                 step_size,
