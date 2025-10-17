@@ -11,6 +11,12 @@ from utils import (
     parse_md_files,
 )
 
+# 全局表格表头模板，避免重复定义
+TABLE_HEADER_LINES = [
+    "| 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |",
+    "|------|-------------------|---------------|----------|------|",
+]
+
 
 def get_mapping_doc_url(torch_api, base_dir):
     """
@@ -87,8 +93,6 @@ def generate_category1_table(
     """
     生成类别1（API完全一致）的Markdown表格
     """
-    white_list = []
-
     no_need_convert_list = extract_no_need_convert_list(
         no_need_convert_file_path
     )
@@ -112,16 +116,20 @@ def generate_category1_table(
         # 构建第二列和第三列的字符串内容，包含URL（如果存在）
         col2 = f"[{torch_api}]({src_url})" if src_url else torch_api
         col3 = f"[{paddle_api}]({dst_url})" if dst_url else paddle_api
-        rows.append((torch_api, col2, col3, "-"))
+
+        # 添加映射分类列（类别1的中文名称）
+        mapping_category = "API 完全一致"
+        rows.append((torch_api, col2, col3, mapping_category, "-"))
 
     # 生成Markdown表格字符串
-    table_lines = [
-        "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
-        "|------|-------------------|---------------|------|",
-    ]
+    table_lines = TABLE_HEADER_LINES.copy()
 
-    for idx, (_, col2, col3, remark) in enumerate(rows, start=1):
-        table_lines.append(f"| {idx} | {col2} | {col3} | {remark} |")
+    for idx, (_, col2, col3, mapping_category, remark) in enumerate(
+        rows, start=1
+    ):
+        table_lines.append(
+            f"| {idx} | {col2} | {col3} | {mapping_category} | {remark} |"
+        )
 
     return "\n".join(table_lines)
 
@@ -199,18 +207,22 @@ def generate_category2_table(
 
             # 生成备注列的超链接
             remark_link = get_mapping_doc_url(src_api, base_dir)
-            rows.append((src_api, col2, col3, remark_link))
+
+            # 添加映射分类列（类别2的中文名称）
+            mapping_category = "仅 API 调用方式不一致"
+            rows.append((src_api, col2, col3, mapping_category, remark_link))
             used_apis.add(src_api)  # 标记该API已处理
             existing_apis.add(src_api)
 
     # 生成Markdown表格字符串
-    table_lines = [
-        "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
-        "|------|-------------------|---------------|------|",
-    ]
+    table_lines = TABLE_HEADER_LINES.copy()
 
-    for idx, (_, col2, col3, remark) in enumerate(rows, start=1):
-        table_lines.append(f"| {idx} | {col2} | {col3} | {remark} |")
+    for idx, (_, col2, col3, mapping_category, remark) in enumerate(
+        rows, start=1
+    ):
+        table_lines.append(
+            f"| {idx} | {col2} | {col3} | {mapping_category} | {remark} |"
+        )
 
     return "\n".join(table_lines)
 
@@ -261,21 +273,26 @@ def generate_api_alias_table(
         # 构建备注列，格式为"{torch_api_alias}别名+[差异对比]{url}"
         remark = f"``{torch_api_alias_display}`` 别名， {get_mapping_doc_url(torch_api_alias, base_dir)}"
 
+        # 添加映射分类列（类别12的中文名称）
+        mapping_category = "API 别名"
         # 添加表格行
-        rows.append((torch_api, torch_display, paddle_display, remark))
+        rows.append(
+            (torch_api, torch_display, paddle_display, mapping_category, remark)
+        )
         used_apis.add(torch_api)
         used_apis.add(torch_api_alias)
         existing_apis.add(torch_api)
         existing_apis.add(torch_api_alias)
 
     # 生成Markdown表格字符串
-    table_lines = [
-        "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
-        "|------|-------------------|---------------|------|",
-    ]
+    table_lines = TABLE_HEADER_LINES.copy()
 
-    for idx, (_, col2, col3, remark) in enumerate(rows, start=1):
-        table_lines.append(f"| {idx} | {col2} | {col3} | {remark} |")
+    for idx, (_, col2, col3, mapping_category, remark) in enumerate(
+        rows, start=1
+    ):
+        table_lines.append(
+            f"| {idx} | {col2} | {col3} | {mapping_category} | {remark} |"
+        )
 
     return "\n".join(table_lines)
 
@@ -296,7 +313,8 @@ def generate_no_implement_table(
     section_content = match.group(1)
 
     # 解析表格内容
-    table_pattern = r"\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n([\s\S]*?)(?=\n\n|\Z)"
+    # table_pattern = r"\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n([\s\S]*?)(?=\n\n|\Z)"
+    table_pattern = r"\| 序号 \| Pytorch 最新 release \| Paddle develop \| 映射分类 \| 备注 \|\n\|[-\| ]+\|\n([\s\S]*?)(?=\n\n|\Z)"
     table_match = re.search(table_pattern, section_content)
     if not table_match:
         return ""
@@ -350,17 +368,28 @@ def generate_no_implement_table(
         )
 
         # 保留原备注内容
-        rows.append((torch_api, torch_display, paddle_display, remark_cell))
+        # 添加映射分类列（类别13的中文名称）
+        mapping_category = "功能缺失"
+        rows.append(
+            (
+                torch_api,
+                torch_display,
+                paddle_display,
+                mapping_category,
+                remark_cell,
+            )
+        )
         existing_apis.add(torch_api)
 
     # 生成Markdown表格字符串
-    table_lines = [
-        "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
-        "|------|-------------------|---------------|------|",
-    ]
+    table_lines = TABLE_HEADER_LINES.copy()
 
-    for idx, (_, col2, col3, remark) in enumerate(rows, start=1):
-        table_lines.append(f"| {idx} | {col2} | {col3} | {remark} |")
+    for idx, (_, col2, col3, mapping_category, remark) in enumerate(
+        rows, start=1
+    ):
+        table_lines.append(
+            f"| {idx} | {col2} | {col3} | {mapping_category} | {remark} |"
+        )
 
     return "\n".join(table_lines)
 
@@ -423,30 +452,24 @@ def update_mapping_table(
 
         # 添加表格行，并使用有效序号
         table_rows.append(
-            f"| {valid_idx} | {torch_display} | {paddle_display} | {remark} |"
+            f"| {valid_idx} | {torch_display} | {paddle_display} | {category} | {remark} |"
         )
         valid_idx += 1  # 序号递增
 
     # 构建完整的表格内容
-
     if len(table_rows) > 0:  # 如果存在有效行
-        table_content = [
-            "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
-            "|------|-------------------|---------------|------|",
-            *table_rows,
-        ]
+        table_content = TABLE_HEADER_LINES.copy()
+        table_content.extend(table_rows)
     else:
-        table_content = [
-            "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
-            "|------|-------------------|---------------|------|",
-            "新增中......",
-        ]
+        table_content = TABLE_HEADER_LINES.copy()
+        table_content.append("| 1 | 新增中 | ... | ... | ... |")
 
     table_content_str = "\n".join(table_content)
 
     # 替换原内容中的表格（考虑可能有序号的标题）
     # 添加额外的换行符确保格式正确
-    pattern = rf"(### \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=### \d*\.?\s*|\Z)"
+    # pattern = rf"(### \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=### \d*\.?\s*|\Z)"
+    pattern = rf"(### \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 映射分类 \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=### \d*\.?\s*|\Z)"
     replacement = rf"\1{table_content_str}\n\n"
     return re.sub(pattern, replacement, md_content, flags=re.MULTILINE)
 
@@ -470,7 +493,8 @@ def update_special_category_table(md_content, category, table_content):
     更新特殊类别（1和2）的表格内容
     """
     # 更精确的正则表达式，确保只匹配特定类别的表格
-    pattern = rf"(### \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=### \d*\.?\s*|\Z)"
+    # pattern = rf"(### \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=### \d*\.?\s*|\Z)"
+    pattern = rf"(### \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 映射分类 \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=### \d*\.?\s*|\Z)"
     # 替换为：标题 + 新表格内容
     replacement = rf"\1{table_content}\n\n"
     return re.sub(pattern, replacement, md_content, flags=re.MULTILINE)
