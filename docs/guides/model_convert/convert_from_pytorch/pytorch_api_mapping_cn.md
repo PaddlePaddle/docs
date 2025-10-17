@@ -31,15 +31,10 @@
 **简介：此类 API 没有转写成本，两者用法完全一致，** 只需将代码中所有前缀 ``torch.`` 替换为 ``paddle.`` 即可。（也可只在文件最上方插入一行 ``import paddle as torch``）。示例如下。
 
 ```python
-# PyTorch 写法
-torch.eye(5)
-torch.einsum('ii->i', x)
-torch.nn.Softplus(beta=0.5, threshold=15)
-
-# Paddle 写法
-paddle.eye(5)
-paddle.einsum('ii->i', x)
-paddle.nn.Softplus(beta=0.5, threshold=15)
+# PyTorch 写法 -> Paddle 写法
+torch.eye(5) -> paddle.eye(5)
+torch.einsum('ii->i', x) -> paddle.einsum('ii->i', x)
+torch.nn.Softplus(beta=0.5, threshold=15) -> paddle.nn.Softplus(beta=0.5, threshold=15)
 ```
 
 
@@ -51,17 +46,12 @@ paddle.nn.Softplus(beta=0.5, threshold=15)
 **简介：** 此类 API 的转写成本较低，只需对 API 调用方式进行改写，无需转写 API 参数部分。示例如下。
 
 ```python
-# PyTorch 写法
-torch.numel(x)
-out = x.matrix_exp()
-out = x.to_sparse(1)
-out = x.clamp_(-0.5, 0.5)
+# PyTorch 写法 -> Paddle 写法
+torch.numel(x) -> x.size # Tensor 方法转属性
+out = x.matrix_exp() -> paddle.linalg.matrix_exp(x) # 函数转方法
+out = x.to_sparse(1) -> x.to_sparse_coo(1) # 函数名不同
+out = x.clamp_(-0.5, 0.5) -> x.clip_(-0.5, 0.5) # 函数名不同
 
-# Paddle 写法
-x.size
-out = paddle.linalg.matrix_exp(x)
-out = x.to_sparse_coo(1)
-out = x.clip_(-0.5, 0.5)
 ```
 
 | 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |
