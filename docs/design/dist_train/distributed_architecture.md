@@ -118,7 +118,7 @@ Below are the steps that are followed :
       DataParallelism type for example, it removes the optimization operators and add a `send` OP to the
       "trainer" role, then add the optimization operators to the parameter server role within the `recv` OP.
 1. Dispatch the partitioned graph to different `RemoteExecutor` in the cluster.
-1. `RemoteExecutor` on each node run the received `ProgramDesc` utill the end.
+1. `RemoteExecutor` on each node run the received `ProgramDesc` until the end.
 
 
 ### RemoteExecutor
