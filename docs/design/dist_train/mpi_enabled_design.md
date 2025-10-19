@@ -8,7 +8,7 @@ When we do distribute multi GPU training, the communication overhead between ser
 
 We will use OpenMPI API to PaddlePaddle, which can bring two benefits to PaddlePaddle:
 1. Enable RDMA with PaddlePaddle, which bring high-performance low latency networks.
-2. Enable GPUDriect with PaddlePaddle, which bring the highest throughput and lowest latency GPU read and write.
+2. Enable GPUDirect with PaddlePaddle, which bring the highest throughput and lowest latency GPU read and write.
 
 # Change list
 * Compile args: Need add compile args to enable MPI support.

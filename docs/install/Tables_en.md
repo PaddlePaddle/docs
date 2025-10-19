@@ -277,7 +277,7 @@ PaddePaddle implements references to various BLAS/CUDA/cuDNN libraries by specif
     <thead>
     <tr>
         <th> Version Number </th>
-        <th> Release Discription </th>
+        <th> Release Description </th>
     </tr>
     </thead>
     <tbody>

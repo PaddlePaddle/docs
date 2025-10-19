@@ -10,7 +10,7 @@ torch.utils.data.BatchSampler(sampler,
 ```python
 paddle.io.BatchSampler(dataset=None,
                        sampler=None,
-                       shuffle=Fasle,
+                       shuffle=False,
                        batch_size=1,
                        drop_last=False)
 ```

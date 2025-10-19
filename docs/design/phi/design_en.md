@@ -1134,7 +1134,7 @@ Then, in order to transplant the functional `InferMeta` back to the Op architect
 Normalize the function form through the `PT_INFER_META` macro, and then wrap `PT_INFER_META(***InferMeta)` into a functor. The functor first converts the `InferShapeContext` to `InferMetaContext`, then calls the corresponding `InferMeta` function, and manages the code uniformly through a macro.
 
 ```
-##define DELCARE_INFER_SHAPE_FUNCTOR(op_type, functor_name, fn)      \
+##define DECLARE_INFER_SHAPE_FUNCTOR(op_type, functor_name, fn)      \
   struct functor_name : public paddle::framework::InferShapeBase {  \
     void operator()(                                                \
         paddle::framework::InferShapeContext* ctx) const override { \
@@ -1176,7 +1176,7 @@ class SignOp : public framework::OperatorWithKernel {
   using framework::OperatorWithKernel::OperatorWithKernel;
 };
 
-DELCARE_INFER_SHAPE_FUNCTOR(
+DECLARE_INFER_SHAPE_FUNCTOR(
     sign, SignInferShapeFunctor, PT_INFER_META(phi::UnchangedInferMetaNew));
 REGISTER_OPERATOR(sign, ops::SignOp, ops::SignOpMaker<float>,
                   ops::SignGradMaker<paddle::framework::OpDesc>,
