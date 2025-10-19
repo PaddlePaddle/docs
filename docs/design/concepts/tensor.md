@@ -161,7 +161,7 @@ Please reference the section of `Learn from Majel` for more details.
 
 `ArrayView` is an encapsulation of `Array`， which introduces extra iterator methods, such as `begin()` and `end()`. The `begin()` method returns an iterator pointing to the first element in the ArrayView. And the `end()` method returns an iterator pointing to the pass-the-end element in the ArrayView.
 
-`ArrayView` make the visting and manipulating an array more efficiently, flexibly and safely.
+`ArrayView` make the visiting and manipulating an array more efficiently, flexibly and safely.
 
 
 A global function `make_view` is provided to transform an array to corresponding arrayview.
