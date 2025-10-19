@@ -12,7 +12,7 @@ nce
 计算并返回噪音对比估计损失值（ noise-contrastive estimation training loss）。该层默认使用均匀分布进行抽样。
 
 论文参考：`Noise-contrastive estimation: A new estimation principle for unnormalized statistical models
-<http://www.jmlr.org/proceedings/papers/v9/gutmann10a/gutmann10a.pdf>`_
+<http://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf>`_
 
 
 参数
