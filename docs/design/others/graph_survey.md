@@ -28,7 +28,7 @@ def get_symbol(num_classes=10, **kwargs):
 
 
 
-Varible here is actually a Symbol. Every basic Symbol will correspond to one Node, and every Node has its own AnyAttr. There is a op field in AnyAttr class, when a Symbol represents Variable(often input data), the op field is null.
+Variable here is actually a Symbol. Every basic Symbol will correspond to one Node, and every Node has its own AnyAttr. There is a op field in AnyAttr class, when a Symbol represents Variable(often input data), the op field is null.
 
 Symbol contains a data member, std::vector<NodeEntry> outputs, and NodeEntry cantains a poniter to Node. We can follow the Node pointer to get all the Graph.
 
@@ -168,9 +168,9 @@ Expression pred = W * in;
 Expression loss = square(pred - label);
 ```
 
-The input data and parameter are also represented by Expression. Every basci Expression corresponds to a Node. And input data is also a Node.
+The input data and parameter are also represented by Expression. Every basic Expression corresponds to a Node. And input data is also a Node.
 
-Expression has a data member ComputationGraph, and ComputationGraph will be modified in users' configuring process. Expression can be a running target, beacuse Expression contains all dependency.
+Expression has a data member ComputationGraph, and ComputationGraph will be modified in users' configuring process. Expression can be a running target, because Expression contains all dependency.
 
 
 Here is a detailed example:

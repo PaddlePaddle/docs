@@ -253,7 +253,7 @@ enum class Backend : uint8_t {
   NUM_BACKENDS,
 
   /**
-   * [ Why we need ALL in baisc kernel key member? ]
+   * [ Why we need ALL in basic kernel key member? ]
    *
    * For Tensor, ALL represents an illegal Backend, but for Kernel, some
    * kernels may be device-independent by nature, such as reshape;
@@ -382,7 +382,7 @@ enum class DataType {
   BFLOAT16,
 
   NUM_DATA_TYPES,
-  // See Note [ Why we need ALL in baisc kernel key member? ]
+  // See Note [ Why we need ALL in basic kernel key member? ]
   ALL_DTYPE = UNDEFINED,
 };
 ```
@@ -1134,7 +1134,7 @@ class CompatMetaTensor : public phi::MetaTensor {
 通过前面介绍的 PT_INFER_META 宏归一化函数形式，然后将`PT_INFER_META(***InferMeta)`包装到一个 functor 中，functor 中先将 InferShapeContext 转换为 InferMetaContext，再调用相应 InferMeta 函数，通过一个宏统一管理代码
 
 ```
-##define DELCARE_INFER_SHAPE_FUNCTOR(op_type, functor_name, fn)      \
+##define DECLARE_INFER_SHAPE_FUNCTOR(op_type, functor_name, fn)      \
   struct functor_name : public paddle::framework::InferShapeBase {  \
     void operator()(                                                \
         paddle::framework::InferShapeContext* ctx) const override { \
@@ -1176,7 +1176,7 @@ class SignOp : public framework::OperatorWithKernel {
   using framework::OperatorWithKernel::OperatorWithKernel;
 };
 
-DELCARE_INFER_SHAPE_FUNCTOR(
+DECLARE_INFER_SHAPE_FUNCTOR(
     sign, SignInferShapeFunctor, PT_INFER_META(phi::UnchangedInferMetaNew));
 REGISTER_OPERATOR(sign, ops::SignOp, ops::SignOpMaker<float>,
                   ops::SignGradMaker<paddle::framework::OpDesc>,

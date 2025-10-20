@@ -77,7 +77,7 @@ __device__ void ReadDataBc(T* dst, const T* src,
 
 ### Description
 
-Read the 2D data that needs to be brodcast from the global memory src into the register dst according to the T type, where src is the original input data pointer, calculate the input data coordinates corresponding to the current output data according to config, and read the data corresponding to the coordinates to the register. </br>
+Read the 2D data that needs to be broadcast from the global memory src into the register dst according to the T type, where src is the original input data pointer, calculate the input data coordinates corresponding to the current output data according to config, and read the data corresponding to the coordinates to the register. </br>
 The data processing process is as follows:</br>
 ![ReadDataBc](./images/io_read_data_broadcast_stride.png)
 
@@ -114,7 +114,7 @@ __device__ void ReadDataBc(T* dst, const T* src,
 
 ### Description
 
-Read the 1D data that needs to be brodcast from the global memory src into the register dst according to the T type, where src is the original input data pointer, calculate the input data coordinates corresponding to the current output data according to config, and read the data corresponding to the coordinates to the register. </br>
+Read the 1D data that needs to be broadcast from the global memory src into the register dst according to the T type, where src is the original input data pointer, calculate the input data coordinates corresponding to the current output data according to config, and read the data corresponding to the coordinates to the register. </br>
 The data processing process is as follows:</br>
 ![ReadDataBc](./images/io_read_data_broadcast.png)
 

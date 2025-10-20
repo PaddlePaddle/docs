@@ -58,7 +58,7 @@ class DCGAN:
     self.D_b0 = pd.Variable(np.zeros(128)) # variable also support initialization using a  numpy data
     self.D_W1 = pd.Variable(shape=[784, 128], data=pd.gaussian_normal_randomizer())
     self.D_b1 = pd.Variable(np.zeros(128)) # variable also support initialization using a  numpy data
-    self.D_W2 = pd.Varialble(np.random.rand(128, 1))
+    self.D_W2 = pd.Variable(np.random.rand(128, 1))
     self.D_b2 = pd.Variable(np.zeros(128))
     self.theta_D = [self.D_W0, self.D_b0, self.D_W1, self.D_b1, self.D_W2, self.D_b2]
 
@@ -67,7 +67,7 @@ class DCGAN:
     self.G_b0 = pd.Variable(np.zeros(128)) # variable also support initialization using a  numpy data
     self.G_W1 = pd.Variable(shape=[784, 128], data=pd.gaussian_normal_randomizer())
     self.G_b1 = pd.Variable(np.zeros(128)) # variable also support initialization using a  numpy data
-    self.G_W2 = pd.Varialble(np.random.rand(128, 1))
+    self.G_W2 = pd.Variable(np.random.rand(128, 1))
     self.G_b2 = pd.Variable(np.zeros(128))
     self.theta_G = [self.G_W0, self.G_b0, self.G_W1, self.G_b1, self.G_W2, self.G_b2]
 ```
