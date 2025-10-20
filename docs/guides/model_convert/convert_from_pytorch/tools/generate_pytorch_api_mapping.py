@@ -334,7 +334,7 @@ def generate_no_implement_table(
         # 提取各列内容
         torch_api_cell = parts[2].strip()
         paddle_api_cell = parts[3].strip()
-        remark_cell = parts[4].strip()
+        remark_cell = parts[5].strip()
 
         # 提取Torch API名称（处理超链接）
         torch_api_match = re.match(r"\[(.*?)\]\(.*?\)", torch_api_cell)
