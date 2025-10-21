@@ -21,12 +21,3 @@ paddle.vision.transforms.Pad(
 ```
 
 两者功能一致，但 Paddle 相比 torchvision 支持更多参数，具体如下：
-
-### 参数映射
-
-| torchvision   | PaddlePaddle  | 备注                           |
-| ------------- | ------------- | ----------------------------- |
-| padding       | padding       | 在图像边界上进行填充的范围。     |
-| fill          | fill          | 多通道图像填充。                |
-| padding_mode  | padding_mode  | 填充模式。|
-| -             | keys          | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。     |

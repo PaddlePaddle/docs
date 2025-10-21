@@ -22,24 +22,3 @@ paddle.vision.transforms.perspective(
 ```
 
 两者功能一致，但参数类型不一致。
-
-### 参数映射
-
-| torchvision       | PaddlePaddle | 备注              |
-| ----------------- | ----------------- | ------------ |
-| img               | img               | 输入图片。    |
-| startpoints       | startpoints       | 在原图上的四个角（左上、右上、右下、左下）的坐标。      |
-| endpoints         | endpoints         | 在原图上的四个角（左上、右上、右下、左下）的坐标。      |
-| interpolation     | interpolation     | 插值的方法，两者类型不一致，PyTorch 为 InterpolationMode 枚举类, Paddle 为 int 或 string，需要转写。    |
-| fill              | fill              | 对图像扩展时填充的像素值。             |
-
-
-### 转写示例
-#### interpolation：插值的方法
-```python
-# PyTorch 写法
-processed_img = torchvision.transforms.functional.perspective(img, startpoints, endpoints, interpolation=torchvision.transforms.InterpolationMode.BILINEAR, fill=[0, 0, 0])
-
-# Paddle 写法
-processed_img = paddle.vision.transforms.perspective(img=img, startpoints=startpoints, endpoints=endpoints, interpolation='bilinear', fill=[0, 0, 0])
-```

@@ -17,12 +17,3 @@ paddle.nn.Unfold(kernel_sizes=[3, 3],
 ```
 
 其中功能一致, 仅参数名不一致，具体如下：
-
-### 参数映射
-
-| PyTorch       | PaddlePaddle | 备注                                                   |
-| ------------- | ------------ | ------------------------------------------------------ |
-| kernel_size   | kernel_sizes  | 卷积核的尺寸。                    |
-| dilation      | dilations     | 卷积膨胀。                        |
-| padding       | paddings     | 每个维度的扩展，仅参数名不一致。  |
-| stride        | strides      | 卷积步长，仅参数名不一致。        |

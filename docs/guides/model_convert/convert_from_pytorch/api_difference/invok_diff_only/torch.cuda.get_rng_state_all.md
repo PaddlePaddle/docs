@@ -11,13 +11,6 @@ paddle.get_rng_state(device='gpu')
 
 paddle 参数更多，并且 torch 与 paddle 的返回参数类型不一致，具体如下：
 
-### 参数映射
-
-| PyTorch | PaddlePaddle | 备注                                                                                               |
-| ------- | ------------ | -------------------------------------------------------------------------------------------------- |
-| -       | device       | 返回随机数生成器状态的设备，PyTorch 无此参数，Paddle 需设置为'gpu' 。           |
-| 返回值  | 返回值       | 返回参数类型不一致, PyTorch 返回 torch.ByteTensor，Paddle 返回 GeneratorState 对象。 |
-
 ### 转写示例
 #### 返回参数类型不同
 ```python

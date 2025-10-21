@@ -23,26 +23,3 @@ paddle.vision.transforms.RandomRotation(
 ```
 
 两者功能一致，但输入参数类型不一致。
-
-### 参数映射
-
-| torchvision | PaddlePaddle | 备注                                                         |
-| ------------------- | ------------------ | ----------------------------------------------- |
-| degrees               | degrees           | 旋转角度范围。                   |
-| interpolation         | interpolation     | 插值的方法，两者类型不一致，PyTorch 为 InterpolationMode 枚举类, Paddle 为 int 或 string，需要转写。 |
-| expand                | expand            | 是否扩展图像尺寸。                    |
-| center                | center            | 旋转的中心点坐标。             |
-| fill                  | fill              | 对图像扩展时填充的值。               |
-| -                     | keys              | 输入的类型，PyTorch 无此参数，Paddle 保持默认即可。     |
-
-### 转写示例
-#### interpolation：插值的方法
-```python
-# PyTorch 写法
-transform = torchvision.transforms.RandomRotation(degrees=45, interpolation=torchvision.transforms.InterpolationMode.BILINEAR, expand=True, center=(100, 100), fill=(255, 0, 0))
-rotated_img = transform(img)
-
-# Paddle 写法
-transform = paddle.vision.transforms.RandomRotation(degrees=45, interpolation='bilinear', expand=True, center=(100, 100), fill=(255, 0, 0))
-rotated_img = transform(img)
-```
