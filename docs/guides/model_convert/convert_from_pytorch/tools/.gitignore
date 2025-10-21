@@ -6,6 +6,8 @@ no_implement.md
 download_files_from_paconvert.sh
 test
 tmp_*
+generate_api_mapping.err
+generate_api_mapping.log
 
 # files will be used in PaConvert
 docs_mappings.json
