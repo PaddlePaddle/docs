@@ -24,7 +24,7 @@ $$ q = \left \lfloor \frac{x}{M} * (n - 1) \right \rceil $$
 where, $x$ is the float value to be quantized, $M$ is maximum absolute value. $\left \lfloor \right \rceil$ denotes rounding to the nearest integer.  For 8 bit quantization, $n=2^{8}=256$. $q$ is the quantized integer.
 
 
-Wether the *min-max* quantization or *max-abs* quantization, they also can be represent:
+Whether the *min-max* quantization or *max-abs* quantization, they also can be represent:
 
 $q = scale * r + b$
 

@@ -227,6 +227,6 @@ digraph G {
 
 Actually, Symbol/Tensor/Expression in Mxnet/TensorFlow/Dynet are the same level concepts. We use a unified name Expression here, this level concept has following features:
 
-- Users wirte topoloy with symbolic API, and all return value is Expression, including input data and parameter.
+- Users write topoloy with symbolic API, and all return value is Expression, including input data and parameter.
 - Expression corresponds with a global Graph, and Expression can also be composed.
 - Expression tracks all dependency and can be taken as a run target
