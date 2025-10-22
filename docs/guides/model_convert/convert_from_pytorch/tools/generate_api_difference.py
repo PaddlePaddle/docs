@@ -500,74 +500,112 @@ def generate_invok_diff_only_docs(
     # 记录所有临时文件路径
     temp_files = []
 
-    # 生成文档
+    # 定义三类需要特殊处理的 Matcher
+    special_matchers = {
+        "TensorFunc2PaddleFunc",
+        "Func2Attribute",
+        "Attribute2Func",
+    }
+
     for torch_api, mapping in api_mapping.items():
-        if (
-            mapping.get("Matcher") in invok_diff_matchers
-            and torch_api not in whitelist_api
-            and torch_api not in no_need_list
-        ):
-            paddle_api = mapping["paddle_api"]
-            print(f"Processing: {torch_api} -> {paddle_api}")
-            # 生成文件名
-            base_name = torch_api.replace(".", "_")
-            file_name = f"{torch_api}.md"
-            file_path = os.path.join(test_output_dir, file_name)
-            if overwrite:
-                file_path = os.path.join(actually_output_dir, file_name)
+        matcher = mapping.get("Matcher")
 
-            try:
-                # 获取URL
-                torch_url = get_pytorch_url(torch_api)
-                paddle_url = get_paddle_url(paddle_api)
+        # 判断是否属于目标 Matcher 集合
+        if matcher not in invok_diff_matchers:
+            continue
+        if torch_api in whitelist_api or torch_api in no_need_list:
+            continue
 
-                # 获取函数签名
-                torch_signature = get_function_signature(
-                    torch_api, torch_api.split(".")[0]
+        # 如果是特殊三类 Matcher，需要进一步分类
+        if matcher in special_matchers:
+            has_unsupport_args = "unsupport_args" in mapping
+            has_kwargs_change = "kwargs_change" in mapping
+            has_paddle_default_kwargs = "paddle_default_kwargs" in mapping
+
+            if has_unsupport_args:
+                print(
+                    f"type error: [torch_more_args] {torch_api} -> {mapping.get('paddle_api', 'N/A')}"
                 )
-                paddle_signature = get_function_signature(paddle_api, "paddle")
-
-                # 生成转写示例
-                torch_example = get_torch_example(torch_api, paconvert_dir)
-                paddle_example = get_conversion_example(
-                    torch_example, torch_api, paddle_api, paconvert_dir
+                continue
+            elif has_kwargs_change:
+                print(
+                    f"type error: [args_name_diff] {torch_api} -> {mapping.get('paddle_api', 'N/A')}"
                 )
-
-                # 生成文档内容
-                content = f"## [ 仅 API 调用方式不一致 ]{torch_api}\n\n"
-                content += f"### [{torch_api}]({torch_url})\n\n"
-                content += "```python\n"
-                content += f"{torch_signature}\n"
-                content += "```\n\n"
-                content += f"### [{paddle_api}]({paddle_url})\n\n"
-                content += "```python\n"
-                content += f"{paddle_signature}\n"
-                content += "```\n\n"
-                content += "两者功能一致，但调用方式不一致，具体如下：\n\n"
-                content += "### 转写示例\n\n"
-                content += "```python\n"
-                content += f"# PyTorch 写法\n{torch_example}\n\n"
-                content += f"# Paddle 写法\n{paddle_example}\n"
-                content += "```\n"
-
-                # 保存文件
-                with open(file_path, "w", encoding="utf-8") as f:
-                    f.write(content)
-
-                print(f"Generated: {file_path}")
-
-                # 记录临时文件
-                temp_files.append(f"temp_{base_name}_torch_code.py")
-                temp_files.append(f"temp_{base_name}_torch_code_complete.py")
-                temp_files.append(f"temp_{base_name}_paddle_code.py")
-
-            except APIConversionError as e:
-                print(f"ERROR: {e}", file=sys.stderr)
                 continue
-            except Exception as e:
-                print(f"UNEXPECTED ERROR: {e} for {torch_api}", file=sys.stderr)
+            elif has_paddle_default_kwargs:
+                print(
+                    f"type error: [paddle_more_args_or_default_diff] {torch_api} -> {mapping.get('paddle_api', 'N/A')}"
+                )
                 continue
+            else:
+                # 属于 invok_diff_only，继续后续处理
+                pass  # 继续执行下面的文档生成逻辑
+        else:
+            # 非特殊三类 Matcher（如 NumelMatcher、Is_InferenceMatcher 等），按原逻辑处理
+            pass
 
+        # === 以下为原逻辑：仅处理 invok_diff_only 情况 ===
+        paddle_api = mapping["paddle_api"]
+        print(f"Processing: {torch_api} -> {paddle_api}")
+
+        # 生成文件名
+        base_name = torch_api.replace(".", "_")
+        file_name = f"{torch_api}.md"
+        file_path = os.path.join(test_output_dir, file_name)
+        if overwrite:
+            file_path = os.path.join(actually_output_dir, file_name)
+
+        try:
+            # 获取URL
+            torch_url = get_pytorch_url(torch_api)
+            paddle_url = get_paddle_url(paddle_api)
+
+            # 获取函数签名
+            torch_signature = get_function_signature(
+                torch_api, torch_api.split(".")[0]
+            )
+            paddle_signature = get_function_signature(paddle_api, "paddle")
+
+            # 生成转写示例
+            torch_example = get_torch_example(torch_api, paconvert_dir)
+            paddle_example = get_conversion_example(
+                torch_example, torch_api, paddle_api, paconvert_dir
+            )
+
+            # 生成文档内容
+            content = f"## [ 仅 API 调用方式不一致 ]{torch_api}\n\n"
+            content += f"### [{torch_api}]({torch_url})\n\n"
+            content += "```python\n"
+            content += f"{torch_signature}\n"
+            content += "```\n\n"
+            content += f"### [{paddle_api}]({paddle_url})\n\n"
+            content += "```python\n"
+            content += f"{paddle_signature}\n"
+            content += "```\n\n"
+            content += "两者功能一致，但调用方式不一致，具体如下：\n\n"
+            content += "### 转写示例\n\n"
+            content += "```python\n"
+            content += f"# PyTorch 写法\n{torch_example}\n\n"
+            content += f"# Paddle 写法\n{paddle_example}\n"
+            content += "```\n"
+
+            # 保存文件
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(content)
+
+            print(f"Generated: {file_path}")
+
+            # 记录临时文件
+            temp_files.append(f"temp_{base_name}_torch_code.py")
+            temp_files.append(f"temp_{base_name}_torch_code_complete.py")
+            temp_files.append(f"temp_{base_name}_paddle_code.py")
+
+        except APIConversionError as e:
+            print(f"ERROR: {e}", file=sys.stderr)
+            continue
+        except Exception as e:
+            print(f"UNEXPECTED ERROR: {e} for {torch_api}", file=sys.stderr)
+            continue
     # 删除临时文件（如果需要）
     if delete_temp_file:
         for file in temp_files:
