@@ -181,6 +181,40 @@ def generate_category2_table(
             "NumelMatcher",
             "Is_InferenceMatcher",
         ]:
+            special_matchers = {
+                "TensorFunc2PaddleFunc",
+                "Func2Attribute",
+                "Attribute2Func",
+            }
+            if matcher in special_matchers:
+                has_unsupport_args = "unsupport_args" in mapping_info
+                has_kwargs_change = "kwargs_change" in mapping_info
+                has_paddle_default_kwargs = (
+                    "paddle_default_kwargs" in mapping_info
+                )
+
+                if has_unsupport_args:
+                    print(
+                        f"[torch_more_args] {src_api} -> {mapping_info.get('paddle_api', 'N/A')}"
+                    )
+                    continue
+                elif has_kwargs_change:
+                    print(
+                        f"[args_name_diff] {src_api} -> {mapping_info.get('paddle_api', 'N/A')}"
+                    )
+                    continue
+                elif has_paddle_default_kwargs:
+                    print(
+                        f"[paddle_more_args_or_default_diff] {src_api} -> {mapping_info.get('paddle_api', 'N/A')}"
+                    )
+                    continue
+                else:
+                    # 属于 invok_diff_only，继续后续处理
+                    pass  # 继续执行下面的文档生成逻辑
+            else:
+                # 非特殊三类 Matcher（如 NumelMatcher、Is_InferenceMatcher 等），按原逻辑处理
+                pass
+
             # 在docs_mapping中查找当前src_api对应的信息
             docs_mapping_info = docs_mapping.get(src_api, {})
             src_url = docs_mapping_info.get("src_api_url")

@@ -393,11 +393,13 @@ def get_torch_example(torch_api: str, paconvert_dir: str) -> str:
         with open(complete_file, "w") as f:
             f.writelines(lines)
 
-        # 6. 查找包含API调用的行
+        # 6. 使用AST提取包含API调用的代码块
         with open(complete_file, "r") as f:
-            for line in f:
-                if torch_api.split(".")[-1] in line:
-                    return line.strip()
+            complete_code = f.read()
+
+        example_code = extract_api_code_block(complete_code, torch_api)
+        if example_code:
+            return example_code.strip()
 
     except subprocess.CalledProcessError as e:
         raise APIConversionError(
@@ -424,9 +426,7 @@ def get_conversion_example(
                 "python3.10",
                 os.path.join(paconvert_dir, "paconvert", "main.py"),
                 "-i",
-                "temp_"
-                + base_name
-                + "_torch_code_complete.py",  # 使用已创建的complete_file
+                "temp_" + base_name + "_torch_code_complete.py",
                 "-o",
                 paddle_file,
             ],
@@ -434,11 +434,13 @@ def get_conversion_example(
             capture_output=True,
         )
 
-        # 3. 查找包含API调用的行
+        # 3. 使用AST提取包含API调用的代码块
         with open(paddle_file, "r") as f:
-            for line in f:
-                if paddle_api.split(".")[-1] in line:
-                    return line.strip()
+            paddle_code = f.read()
+
+        example_code = extract_api_code_block(paddle_code, paddle_api)
+        if example_code:
+            return example_code.strip()
 
     except subprocess.CalledProcessError as e:
         raise APIConversionError(
@@ -451,6 +453,445 @@ def get_conversion_example(
         f"paddle API call not found in converted code for {torch_api}",
         torch_api,
     )
+
+
+def extract_api_code_block(code: str, api: str) -> str | None:
+    """
+    使用AST提取包含API调用的完整代码块
+
+    Args:
+        code: 完整的Python代码字符串
+        api: 要查找的API名称（如"torch.nn.AdaptiveAvgPool2d"）
+
+    Returns:
+        包含API调用的完整代码块，如果没有找到则返回None
+    """
+    try:
+        tree = ast.parse(code)
+        add_parent_links(tree)  # 添加父节点链接
+    except SyntaxError:
+        # 如果代码有语法错误，回退到简单匹配
+        return find_api_line_fallback(code, api)
+
+    api_base_name = api.split(".")[-1]
+
+    # 首先检查完整API是否出现在一个完整的语句中
+    full_api_statement = find_full_api_statement(tree, code, api)
+    if full_api_statement:
+        return full_api_statement
+
+    # 如果完整API不在完整语句内，查找包含基础名称的代码块
+    api_nodes = find_api_nodes(tree, api, api_base_name)
+
+    if not api_nodes:
+        return None
+
+    # 选择最合适的节点
+    target_node = select_best_node(api_nodes, api)
+
+    # 提取包含该节点的代码块
+    code_block = extract_node_code_block(code, target_node, api)
+
+    return code_block
+
+
+def find_full_api_statement(tree: ast.AST, code: str, api: str) -> str | None:
+    """
+    检查完整API是否出现在一个完整的语句中
+
+    Args:
+        tree: AST树
+        code: 完整的代码字符串
+        api: 要查找的API
+
+    Returns:
+        如果完整API出现在一个完整语句中，返回该语句；否则返回None
+    """
+    # 查找包含完整API的节点
+    api_nodes = []
+
+    class FullApiVisitor(ast.NodeVisitor):
+        def visit_Call(self, node: ast.Call) -> None:
+            # 检查函数调用
+            if is_full_api_in_call(node, api):
+                api_nodes.append(node)
+            self.generic_visit(node)
+
+        def visit_Attribute(self, node: ast.Attribute) -> None:
+            # 检查属性访问
+            if is_full_api_in_attribute(node, api):
+                api_nodes.append(node)
+            self.generic_visit(node)
+
+        def visit_ClassDef(self, node: ast.ClassDef) -> None:
+            # 检查类定义
+            if any(api in base for base in get_base_classes(node)):
+                api_nodes.append(node)
+            self.generic_visit(node)
+
+    visitor = FullApiVisitor()
+    visitor.visit(tree)
+
+    if not api_nodes:
+        return None
+
+    # 选择最合适的节点
+    target_node = select_best_node(api_nodes, api)
+
+    # 提取包含该节点的完整语句
+    statement_node = find_complete_statement(target_node)
+    if statement_node:
+        return extract_source_segment(code, statement_node)
+
+    return None
+
+
+def is_full_api_in_call(node: ast.Call, full_api: str) -> bool:
+    """检查函数调用节点是否包含完整的目标API"""
+    if isinstance(node.func, ast.Attribute):
+        # 构建完整的调用路径
+        call_path = get_attribute_path(node.func)
+        return call_path == full_api
+    return False
+
+
+def is_full_api_in_attribute(node: ast.Attribute, full_api: str) -> bool:
+    """检查属性访问节点是否包含完整的目标API"""
+    attr_path = get_attribute_path(node)
+    return attr_path == full_api
+
+
+def find_complete_statement(node: ast.AST) -> ast.AST | None:
+    """查找包含当前节点的完整语句"""
+    # 向上遍历，直到找到语句级别的节点
+    current = node
+    while current and not is_statement_node(current):
+        if hasattr(current, "parent"):
+            current = current.parent
+        else:
+            break
+
+    return current if is_statement_node(current) else None
+
+
+def is_statement_node(node: ast.AST) -> bool:
+    """检查节点是否是语句级别的节点"""
+    return isinstance(
+        node,
+        (
+            ast.Assign,
+            ast.Expr,
+            ast.Return,
+            ast.AugAssign,
+            ast.Call,
+            ast.ClassDef,
+            ast.FunctionDef,
+            ast.Import,
+            ast.ImportFrom,
+        ),
+    )
+
+
+def find_api_nodes(
+    tree: ast.AST, full_api: str, base_name: str
+) -> list[ast.AST]:
+    """
+    在AST中查找包含API的所有相关节点
+
+    Returns:
+        包含API的节点列表，按相关性排序
+    """
+    nodes = []
+
+    class ApiVisitor(ast.NodeVisitor):
+        def visit_Call(self, node: ast.Call) -> None:
+            # 检查函数调用
+            if is_api_in_call(node, full_api, base_name):
+                nodes.append(node)
+            self.generic_visit(node)
+
+        def visit_Attribute(self, node: ast.Attribute) -> None:
+            # 检查属性访问（如torch.nn.AdaptiveAvgPool2d）
+            if is_api_in_attribute(node, full_api, base_name):
+                nodes.append(node)
+            self.generic_visit(node)
+
+        def visit_ClassDef(self, node: ast.ClassDef) -> None:
+            # 检查类定义
+            if base_name in node.name or any(
+                full_api in base for base in get_base_classes(node)
+            ):
+                nodes.append(node)
+            self.generic_visit(node)
+
+        def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
+            # 检查函数定义
+            if base_name in node.name:
+                nodes.append(node)
+            self.generic_visit(node)
+
+        def visit_ImportFrom(self, node: ast.ImportFrom) -> None:
+            # 检查import语句
+            for alias in node.names:
+                if base_name in alias.name or full_api.endswith(alias.name):
+                    nodes.append(node)
+            self.generic_visit(node)
+
+    visitor = ApiVisitor()
+    visitor.visit(tree)
+    return nodes
+
+
+def is_api_in_call(node: ast.Call, full_api: str, base_name: str) -> bool:
+    """检查函数调用节点是否包含目标API"""
+    if isinstance(node.func, ast.Name):
+        return node.func.id == base_name
+    elif isinstance(node.func, ast.Attribute):
+        # 构建完整的调用路径
+        call_path = get_attribute_path(node.func)
+        return full_api in call_path or base_name in call_path
+    return False
+
+
+def is_api_in_attribute(
+    node: ast.Attribute, full_api: str, base_name: str
+) -> bool:
+    """检查属性访问节点是否包含目标API"""
+    attr_path = get_attribute_path(node)
+    return full_api in attr_path or base_name in attr_path
+
+
+def get_attribute_path(node: ast.AST) -> str:
+    """获取属性访问的完整路径"""
+    if isinstance(node, ast.Name):
+        return node.id
+    elif isinstance(node, ast.Attribute):
+        return f"{get_attribute_path(node.value)}.{node.attr}"
+    return ""
+
+
+def get_base_classes(node: ast.ClassDef) -> list[str]:
+    """获取类的基类列表"""
+    bases = []
+    for base in node.bases:
+        if isinstance(base, ast.Name):
+            bases.append(base.id)
+        elif isinstance(base, ast.Attribute):
+            bases.append(get_attribute_path(base))
+    return bases
+
+
+def select_best_node(nodes: list[ast.AST], api: str) -> ast.AST:
+    """从多个节点中选择最合适的一个"""
+    if len(nodes) == 1:
+        return nodes[0]
+
+    # 优先选择包含完整API的节点
+    for node in nodes:
+        if hasattr(node, "func") and isinstance(node.func, ast.Attribute):
+            if api in get_attribute_path(node.func):
+                return node
+
+    # 否则返回第一个节点
+    return nodes[0]
+
+
+def extract_node_code_block(code: str, node: ast.AST, api: str) -> str:
+    """
+    提取包含节点的完整代码块
+
+    根据节点类型提取不同范围的代码：
+    - 类定义：提取整个类
+    - 函数定义：提取整个函数
+    - 调用/赋值：提取所在语句块
+    """
+    # 如果节点是类或函数定义，直接提取整个定义
+    if isinstance(node, (ast.ClassDef, ast.FunctionDef)):
+        return extract_source_segment(code, node)
+
+    # 对于其他节点，找到包含API路径的最近容器
+    container = find_api_container_node(node, api)
+    if container:
+        return extract_source_segment(code, container)
+    else:
+        # 如果没有找到特定容器，提取单个语句
+        statement = find_complete_statement(node)
+        return (
+            extract_source_segment(code, statement)
+            if statement
+            else extract_source_segment(code, node)
+        )
+
+
+def find_api_container_node(node: ast.AST, api: str) -> ast.AST | None:
+    """
+    查找包含API路径的最近容器节点
+
+    例如，对于api="torch.autograd.Function"，查找包含该路径的类定义
+    """
+    # 获取API的父路径（去掉最后一部分）
+    api_parts = api.split(".")
+    if len(api_parts) > 1:
+        parent_api = ".".join(api_parts[:-1])
+    else:
+        parent_api = None
+
+    # 向上遍历父节点，查找包含父API的容器
+    current = node
+    while hasattr(current, "parent") and current.parent:
+        if isinstance(current.parent, (ast.ClassDef, ast.FunctionDef)):
+            # 检查类或函数名是否包含父API
+            if parent_api and (
+                parent_api in current.parent.name
+                or any(
+                    parent_api in base
+                    for base in get_base_classes(current.parent)
+                    if isinstance(current.parent, ast.ClassDef)
+                )
+            ):
+                return current.parent
+            # 如果没有匹配的父API，返回最近的类或函数
+            return current.parent
+        current = current.parent
+
+    return None
+
+
+def extract_source_segment(code: str, node: ast.AST) -> str:
+    """提取节点的源代码段"""
+    if not hasattr(node, "lineno") or not hasattr(node, "end_lineno"):
+        # 如果没有行号信息，尝试获取单行
+        if hasattr(node, "lineno"):
+            lines = code.split("\n")
+            return lines[node.lineno - 1]
+        return ""
+
+    lines = code.split("\n")
+    start_line = node.lineno - 1
+    end_line = node.end_lineno
+    return "\n".join(lines[start_line:end_line])
+
+
+def find_api_line_fallback(code: str, api: str) -> str | None:
+    """
+    回退方法：当AST解析失败时使用简单的行匹配
+    """
+    api_base_name = api.split(".")[-1]
+    lines = code.split("\n")
+
+    # 首先尝试完整API匹配
+    for i, line in enumerate(lines):
+        if api in line and is_valid_api_occurrence(line, api):
+            # 尝试获取完整的语句（可能跨越多行）
+            statement_lines = get_complete_statement_lines(lines, i)
+            return "\n".join(statement_lines)
+
+    # 然后尝试基础名称匹配
+    for i, line in enumerate(lines):
+        if api_base_name in line:
+            # 尝试获取完整的语句（可能跨越多行）
+            statement_lines = get_complete_statement_lines(lines, i)
+            return "\n".join(statement_lines)
+
+    return None
+
+
+def is_valid_api_occurrence(line: str, api: str) -> bool:
+    """
+    检查API在行中的出现是否是有效的（不是注释或字符串的一部分）
+
+    Args:
+        line: 代码行
+        api: API名称
+
+    Returns:
+        如果是有效的API出现返回True，否则返回False
+    """
+    # 简单的检查：确保API前后不是字母数字或下划线（避免部分匹配）
+    index = line.find(api)
+    if index == -1:
+        return False
+
+    # 检查前一个字符
+    if index > 0 and line[index - 1].isalnum():
+        return False
+
+    # 检查后一个字符
+    end_index = index + len(api)
+    if end_index < len(line) and line[end_index].isalnum():
+        return False
+
+    # 检查是否在注释中
+    comment_index = line.find("#")
+    if comment_index != -1 and index > comment_index:
+        return False
+
+    return True
+
+
+def get_complete_statement_lines(
+    lines: list[str], start_line: int
+) -> list[str]:
+    """
+    尝试获取完整的语句（可能跨越多行）
+
+    Args:
+        lines: 所有代码行的列表
+        start_line: 起始行索引
+
+    Returns:
+        完整语句的行列表
+    """
+    # 简单的括号匹配算法来找到语句的结束
+    open_brackets = 0
+    open_parens = 0
+    open_braces = 0
+
+    result_lines = []
+
+    for i in range(start_line, len(lines)):
+        line = lines[i]
+        result_lines.append(line)
+
+        # 统计括号数量
+        for char in line:
+            if char == "[":
+                open_brackets += 1
+            elif char == "]":
+                open_brackets -= 1
+            elif char == "(":
+                open_parens += 1
+            elif char == ")":
+                open_parens -= 1
+            elif char == "{":
+                open_braces += 1
+            elif char == "}":
+                open_braces -= 1
+
+        # 检查是否所有括号都已关闭，并且行以语句结束符结尾
+        if (
+            open_brackets == 0
+            and open_parens == 0
+            and open_braces == 0
+            and (
+                line.endswith(":")
+                or any(
+                    line.rstrip().endswith(end)
+                    for end in [",", "\\", "(", "[", "{"]
+                )
+                is False
+            )
+        ):
+            break
+
+    return result_lines
+
+
+def add_parent_links(tree: ast.AST) -> None:
+    """为AST节点添加父节点链接"""
+    for node in ast.walk(tree):
+        for child in ast.iter_child_nodes(node):
+            child.parent = node
 
 
 def generate_invok_diff_only_docs(
@@ -554,7 +995,6 @@ def generate_invok_diff_only_docs(
         file_path = os.path.join(test_output_dir, file_name)
         if overwrite:
             file_path = os.path.join(actually_output_dir, file_name)
-
         try:
             # 获取URL
             torch_url = get_pytorch_url(torch_api)
@@ -602,10 +1042,17 @@ def generate_invok_diff_only_docs(
 
         except APIConversionError as e:
             print(f"ERROR: {e}", file=sys.stderr)
+            temp_files.append(f"temp_{base_name}_torch_code.py")
+            temp_files.append(f"temp_{base_name}_torch_code_complete.py")
+            temp_files.append(f"temp_{base_name}_paddle_code.py")
             continue
         except Exception as e:
             print(f"UNEXPECTED ERROR: {e} for {torch_api}", file=sys.stderr)
+            temp_files.append(f"temp_{base_name}_torch_code.py")
+            temp_files.append(f"temp_{base_name}_torch_code_complete.py")
+            temp_files.append(f"temp_{base_name}_paddle_code.py")
             continue
+
     # 删除临时文件（如果需要）
     if delete_temp_file:
         for file in temp_files:
@@ -643,6 +1090,8 @@ def main():
     )
 
     args = parser.parse_args()
+
+    print(args.delete_temp_file)
 
     # 生成文档
     generate_invok_diff_only_docs(
