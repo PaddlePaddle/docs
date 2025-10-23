@@ -312,30 +312,8 @@ def get_paddle_url(paddle_api: str) -> str:
     rst_path = os.path.join(root_dir, "api", url_path.replace(".html", ".rst"))
 
     # 如果RST文件不存在，尝试查找同名文件并移动
-    # if not os.path.exists(rst_path):
-    # # 提取文件名（不含路径）
-    # file_name = os.path.basename(rst_path)
-    # api_dir = os.path.join(root_dir, "api")
-
-    # # 在api目录下查找同名文件
-    # matches = []
-    # for root, _, files in os.walk(api_dir):
-    #     for file in files:
-    #         if file == file_name:
-    #             matches.append(os.path.join(root, file))
-
-    # if len(matches) == 0:
-    #     print(f"Error: RST file '{file_name}' not found in {api_dir}")
-    # elif len(matches) > 1:
-    #     print(
-    #         f"Warning: Multiple files named '{file_name}' found in {api_dir}. Not moving any."
-    #     )
-    # else:
-    #     source = matches[0]
-    #     target_dir = os.path.dirname(rst_path)
-    #     os.makedirs(target_dir, exist_ok=True)
-    #     shutil.move(source, rst_path)
-    #     print(f"Successfully moved {source} to {rst_path}")
+    if not os.path.exists(rst_path):
+        print(f"Warning: RST file '{url_path}' not found.")
 
     # 添加锚点
     anchor = url_path.replace(
