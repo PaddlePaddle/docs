@@ -5,13 +5,13 @@ bitwise_invert
 
 .. py:function:: paddle.bitwise_invert(x, out=None, name=None)
 
-对 Tensor  ``x``  逐元素进行  ``按位取反``  运算。
+对 Tensor ``x`` 逐元素进行 ``按位取反`` 运算。
 
 .. math::
        Out = \sim X
 
 .. note::
-        ``bitwise_invert``  和  ``bitwise_not``  执行相同的操作，功能等效。
+       ``bitwise_invert`` 和 ``bitwise_not`` 执行相同的操作，功能等效。
 
 参数
 ::::::::::::
@@ -22,7 +22,7 @@ bitwise_invert
 
 返回
 ::::::::::::
-  ``按位取反``  运算后的结果  ``Tensor`` ，数据类型与  ``x``  相同。
+ ``按位取反`` 运算后的结果 ``Tensor``，数据类型与 ``x`` 相同。
 
 代码示例
 ::::::::::::

@@ -75,19 +75,19 @@ rsample(shape=[], temperature=1.0)
 
 重参数化采样，生成指定维度的样本。
 
- ``rsample``  是连续近似的伯努利分布重参数化样本方法。
+``rsample`` 是连续近似的伯努利分布重参数化样本方法。
 
 [1] Chris J. Maddison, Andriy Mnih, and Yee Whye Teh. The Concrete Distribution: A Continuous Relaxation of Discrete Random Variables. 2016.
 
 [2] Eric Jang, Shixiang Gu, and Ben Poole. Categorical Reparameterization with Gumbel-Softmax. 2016.
 
 .. note::
-    ``rsample``  后面需要跟一个  ``sigmoid`` ，从而将样本的值转换为单位间隔 :math:`(0, 1)`。
+   ``rsample`` 后面需要跟一个 ``sigmoid``，从而将样本的值转换为单位间隔 :math:`(0, 1)`。
 
 **参数**
 
     - **shape** (Sequence[int]，可选) - 指定生成样本的维度。
-    - **temperature** (float) -  ``rsample``  的温度，必须为正值。
+    - **temperature** (float) - ``rsample`` 的温度，必须为正值。
 
 **返回**
 
@@ -100,7 +100,7 @@ COPY-FROM: paddle.distribution.Bernoulli.rsample
 cdf(value)
 '''''''''
 
- ``value``  的累积分布函数 （CDF）
+``value`` 的累积分布函数 （CDF）
 
 .. math::
 
@@ -117,7 +117,7 @@ cdf(value)
 
 **返回**
 
-Tensor，  ``value``  的累积分布函数。
+Tensor， ``value`` 的累积分布函数。
 
 **代码示例**
 
@@ -134,7 +134,7 @@ log_prob(value)
 
 **返回**
 
-Tensor，  ``value``  的对数概率密度函数。
+Tensor， ``value`` 的对数概率密度函数。
 
 **代码示例**
 
@@ -143,7 +143,7 @@ COPY-FROM: paddle.distribution.Bernoulli.log_prob
 prob(value)
 '''''''''
 
- ``value``  的概率密度函数。
+``value`` 的概率密度函数。
 
 .. math::
 
@@ -159,7 +159,7 @@ prob(value)
 
 **返回**
 
-Tensor，  ``value``  的概率密度函数。
+Tensor， ``value`` 的概率密度函数。
 
 **代码示例**
 
@@ -197,7 +197,7 @@ kl_divergence(other)
 
 **参数**
 
-    - **other** (Bernoulli) -  ``Bernoulli``  的实例。
+    - **other** (Bernoulli) - ``Bernoulli`` 的实例。
 
 **返回**
 

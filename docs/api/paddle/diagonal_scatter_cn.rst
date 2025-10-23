@@ -6,11 +6,11 @@ diagonal_scatter
 .. py:function:: paddle.diagonal_scatter(x, y, offset=0, axis1=0, axis2=1, name=None)
 
 
-根据参数  ``offset`` 、 ``axis1`` 、 ``axis2`` ，将张量  ``y``  填充到张量  ``x``  的对应位置。
+根据参数 ``offset``、``axis1``、``axis2``，将张量 ``y`` 填充到张量 ``x`` 的对应位置。
 
-这个函数将会返回一个新的  ``Tensor`` 。
+这个函数将会返回一个新的 ``Tensor``。
 
-参数  ``offset``  确定从指定的二维平面中获取对角线的位置：
+参数 ``offset`` 确定从指定的二维平面中获取对角线的位置：
 
     - 如果 offset = 0，则嵌入主对角线。
     - 如果 offset > 0，则嵌入主对角线右上的对角线。
@@ -34,7 +34,7 @@ diagonal_scatter
 
 返回
 ::::::::::::
- ``Tensor`` ，返回一个根据给定的轴  ``axis``  和偏移量  ``offset`` ，将张量  ``y``  填充到张量  ``x``  对应位置的新  ``Tensor`` 。
+``Tensor``，返回一个根据给定的轴 ``axis`` 和偏移量 ``offset``，将张量 ``y`` 填充到张量 ``x`` 对应位置的新 ``Tensor``。
 
 
 代码示例

@@ -32,7 +32,7 @@ LogMelSpectrogram
 返回
 :::::::::
 
-计算  ``LogMelSpectrogram``  的可调用对象。
+计算 ``LogMelSpectrogram`` 的可调用对象。
 
 代码示例
 :::::::::

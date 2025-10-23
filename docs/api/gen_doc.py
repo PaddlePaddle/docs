@@ -696,15 +696,15 @@ def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
     """
     osp_join = os.path.join
     osp_exists = os.path.exists
-    with open(diff_file, "w") as fo:
+    with open(diff_file, "w") as f:
         tmpl = "{}\t{}\n"
-        fo.write(tmpl.format("exist", "not_exits"))
+        f.write(tmpl.format("exist", "not_exits"))
         for root, dirs, files in os.walk(path):
             for file in files:
                 if file.endswith(en_suffix):
                     cf = file.replace(en_suffix, cn_suffix)
                     if not osp_exists(osp_join(root, cf)):
-                        fo.write(
+                        f.write(
                             tmpl.format(
                                 osp_join(root, file), osp_join(root, cf)
                             )
@@ -712,7 +712,7 @@ def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
                 elif file.endswith(cn_suffix):
                     ef = file.replace(cn_suffix, en_suffix)
                     if not osp_exists(osp_join(root, ef)):
-                        fo.write(
+                        f.write(
                             tmpl.format(
                                 osp_join(root, file), osp_join(root, ef)
                             )
@@ -943,7 +943,7 @@ def get_shortest_api(api_list):
 
 def insert_suggested_names():
     """
-    add suggested_name field, updte the doc_filename, and sort the all_names and api_sketch_names.
+    add suggested_name field, update the doc_filename, and sort the all_names and api_sketch_names.
     """
 
     def sort_name_list(api_names):

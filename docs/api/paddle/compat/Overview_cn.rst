@@ -34,4 +34,4 @@ PyTorch 兼容模块
     :header: "类名称", "类功能"
     :widths: 10, 30
 
-    " :ref:`Unfold <cn_api_paddle_compat_Unfold>` ", "允许 Tensor 输入的  ``paddle.nn.Unfold``  兼容版本"
+    " :ref:`Unfold <cn_api_paddle_compat_Unfold>` ", "允许 Tensor 输入的 ``paddle.nn.Unfold`` 兼容版本"

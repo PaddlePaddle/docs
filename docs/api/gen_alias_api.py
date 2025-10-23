@@ -166,7 +166,7 @@ class AliasAPIGen:
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Useage:")
+        print("Usage:")
         print("python3 gen_alias_api.py path-to-paddle-root")
         sys.exit(1)
     else:

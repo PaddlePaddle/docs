@@ -128,7 +128,7 @@ TensorFlow 的文档规划，比较直接地匹配了本文所介绍的分类标
     - Customize what happens in Model.fit
     - Writing a training loop from scratch
     - Recurrent Neural Networks(RNN) with Keras
-    - Masking and padding wiht Keras
+    - Masking and padding with Keras
     - Writing your own callbacks
     - Transfer learning and fine-tuning
     - Training Keras models with TensorFlow Cloud
@@ -191,7 +191,7 @@ TensorFlow 的文档规划，比较直接地匹配了本文所介绍的分类标
     - The Fundamentals of Autograd
     - Building Models with PyTorch
     - PyTorch TensorBoard Support
-    - Traning wiht PyTorch
+    - Traning with PyTorch
     - Model Understanding with Captum
 - Learning PyTorch
     - Deep Learning with PyTorch: A 60 Minute Blitz
@@ -548,8 +548,8 @@ MindSpore 的有自己独立的文档分类标准和风格，所以硬套本文�
 | 基本数据（Tensor）和基本算子 | Tensors Variables Tensor slicing Ragged tensor Sparse tensor DTensor concepts | 6    | Tensors Transforms Introduction to PyTorch Tensors           | 3    | 张量 Tensor                                                  | 1    | Tensor 概念介绍                                               | 1      |
 | 数据加载与预处理             | Images CSV Numpy pandas.DataFrame TFRecord and tf.Example Additional formats with tf.io Text More text loading Classifying structured data with preprocessing layers Classfication on imbalanced data Time series forecasting Decision forest models | 13   | Datasets & Dataloaders                                       | 1    | 数据处理 数据处理（进阶） 自动数据增强 轻量化数据处理 单节点数据缓存 优化数据处理 | 6    | 数据集的定义和加载 数据预处理                                | 2      |
 | 如何组网                     | Modules, layers, and models                                  | 1    | Build the Neural Network Building Models with PyTorch What is torch.nn really? Learing PyTorch with Examples | 4    | 创建网络 网络构建                                            | 2    | 模型组网 飞桨高层 API 使用指南 层与模型                      | 3      |
-| 如何训练                     | Training loops NumPy API Checkpoint SavedModel               | 4    | Optimization Model Parameters Traning wiht PyTorch           | 2    | 模型训练 训练与评估                                          | 2    | 训练与预测验证 自定义指标                                    | 2      |
-| 保存与加载模型               | Save and load Save and load(Distrbuted Training)             | 2    | Save and Load the Model                                      | 1    | 保存与加载                                                   | 1    | 模型保存与载入 模型保存及加载（应用实践）                    | 2      |
+| 如何训练                     | Training loops NumPy API Checkpoint SavedModel               | 4    | Optimization Model Parameters Traning with PyTorch           | 2    | 模型训练 训练与评估                                          | 2    | 训练与预测验证 自定义指标                                    | 2      |
+| 保存与加载模型               | Save and load Save and load(Distributed Training)             | 2    | Save and Load the Model                                      | 1    | 保存与加载                                                   | 1    | 模型保存与载入 模型保存及加载（应用实践）                    | 2      |
 | 可视化、调优技巧             | Overfit and underfit Tune hyperprameters with Keras Tuner Better performance with tf.function Profile TensorFlow performance Graph optimizaition Optimize GPU Performance Mixed precision | 7    | PyTorch TensorBoard Support Model Understanding with Captum Visualizing Models, Data, and Training with TensorBoard Profiling your PyTorch Module PyTorch Profiler with TensorBoard Hyperparameter tuning with Ray Tune Optimizing Vision Transformer Model for Deployment Parametrization Tutorial Pruning Tutorial Grokking PyTorch Intel CPU performance from first principles | 11   | 查看中间文件 Dump 功能调试 自定义调试信息 调用自定义类 算子增量编译 算子调优工具 自动数据加速 固定随机性以复现脚本运行结果 | 8    | VisualDL 工具简介 VisualDL 使用指南 飞桨模型量化             | 3      |
 | 自动微分                     | Automatic differentiation Advanced autodiff                  | 2    | Automatic Differentiation with torch.autograd The Fundamentals of Autograd | 2    | 自动微分                                                     | 1    | 自动微分                                                     | 1      |
 | 动态图与静态图               | Graphs and functions                                         | 1    | （torchscript 其实是静态图，不过归类到部署中了）             | 0    | 动态图与静态图                                               | 1    | 使用样例 转换原理 支持语法 案例解析 报错调试 动态图 使用动转静完成以图搜图 | 7      |

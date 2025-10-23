@@ -8,7 +8,7 @@ is_compiled_with_xpu
 
 
 
-检查  ``whl``  包是否可以被用来在 Baidu Kunlun XPU 上运行模型。
+检查 ``whl`` 包是否可以被用来在 Baidu Kunlun XPU 上运行模型。
 
 返回
 ::::::::::::

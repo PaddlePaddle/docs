@@ -5,7 +5,7 @@ ifftshift
 
 .. py:function:: paddle.fft.ifftshift(x, axes=None, name=None)
 
- ``fftshift``  的逆变换。
+``fftshift`` 的逆变换。
 
 参数
 :::::::::
@@ -17,7 +17,7 @@ ifftshift
 返回
 :::::::::
 
-Tensor，形状和数据类型与输入 Tensor 相同，沿着  ``axes``  移动后的输出。
+Tensor，形状和数据类型与输入 Tensor 相同，沿着 ``axes`` 移动后的输出。
 
 代码示例
 :::::::::

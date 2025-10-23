@@ -5,13 +5,13 @@ bitwise_not
 
 .. py:function:: paddle.bitwise_not(x, out=None, name=None)
 
-对 Tensor  ``x``  逐元素进行  ``按位取反``  运算。
+对 Tensor ``x`` 逐元素进行 ``按位取反`` 运算。
 
 .. math::
        Out = \sim X
 
 .. note::
-     ``paddle.bitwise_not``  遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
+    ``paddle.bitwise_not`` 遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
 
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
@@ -24,7 +24,7 @@ bitwise_not
 
 返回
 ::::::::::::
-  ``按位取反``  运算后的结果  ``Tensor`` ，数据类型与  ``x``  相同。
+ ``按位取反`` 运算后的结果 ``Tensor``，数据类型与 ``x`` 相同。
 
 代码示例
 ::::::::::::

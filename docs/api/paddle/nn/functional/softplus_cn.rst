@@ -18,7 +18,7 @@ softplus 激活层
 参数
 ::::::::::::
 
- - **x** (Tensor) - 输入的  ``Tensor`` ，数据类型为 float32 或 float64。
+ - **x** (Tensor) - 输入的 ``Tensor``，数据类型为 float32 或 float64。
  - **beta** (float，可选) - Softplus 激活计算公式中的 :math:`\beta` 值。默认值为 1。
  - **threshold** (float，可选) - Softplus 激活计算公式中的 :math:`\varepsilon` 值。默认值为 20。
  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
@@ -26,7 +26,7 @@ softplus 激活层
 返回
 ::::::::::
 
-     ``Tensor`` ，数据类型和形状同 :attr:`x` 一致。
+    ``Tensor``，数据类型和形状同 :attr:`x` 一致。
 
 代码示例
 ::::::::::

@@ -1,6 +1,6 @@
 Fixed-point quantization uses lower bits, for example, 2-bit, 3-bit or 8-bit fixed point to represent weights and activations, which usually are in singe-precision float-point with 32 bits. The fixed-point representation has advantages in reducing memory bandwidth, lowering power consumption and computational resources as well as the model storage requirements.  It is especially important for the inference in embedded-device deployment.
 
-According to some experiments, the apporach to quantize the model trained in float point directly works effectively on the large models, like the VGG model having many parameters. But the accuracy drops a lot for the small model. In order to improve the tradeoff between accuracy and latency, many quantized training apporaches are proposed.
+According to some experiments, the approach to quantize the model trained in float point directly works effectively on the large models, like the VGG model having many parameters. But the accuracy drops a lot for the small model. In order to improve the tradeoff between accuracy and latency, many quantized training approaches are proposed.
 
 This document is to design a quantized training framework on Fluid. The first part will introduce how to quantize, The second part will describe the quantized training framework. The last part will illustrate how to calculate the quantization scale.
 
@@ -24,7 +24,7 @@ $$ q = \left \lfloor \frac{x}{M} * (n - 1) \right \rceil $$
 where, $x$ is the float value to be quantized, $M$ is maximum absolute value. $\left \lfloor \right \rceil$ denotes rounding to the nearest integer.  For 8 bit quantization, $n=2^{8}=256$. $q$ is the quantized integer.
 
 
-Wether the *min-max* quantization or *max-abs* quantization, they also can be represent:
+Whether the *min-max* quantization or *max-abs* quantization, they also can be represent:
 
 $q = scale * r + b$
 

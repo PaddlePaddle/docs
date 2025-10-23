@@ -17,7 +17,7 @@ Chi2
 参数
 ::::::::::::
 
-    - **df** (float|Tensor) - 参数表示自由度，该值必须大于零。支持 Broadcast 语义。当参数类型为 Tensor 时，表示批量创建多个不同参数的分布， ``batch_shape``  (参考 :ref:`cn_api_paddle_distribution_Distribution` 基类) 为参数。
+    - **df** (float|Tensor) - 参数表示自由度，该值必须大于零。支持 Broadcast 语义。当参数类型为 Tensor 时，表示批量创建多个不同参数的分布，``batch_shape`` (参考 :ref:`cn_api_paddle_distribution_Distribution` 基类) 为参数。
 
 代码示例
 ::::::::::::
