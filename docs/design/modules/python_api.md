@@ -225,7 +225,7 @@ A mechanism to reuse code between layer functions is necessary. It will be aroun
 
 
 
-### Comparision between global functions and helper class
+### Comparison between global functions and helper class
 
 The `FullyConnected` layer will be as follow when we provide global functions:
 
