@@ -12,4 +12,10 @@ torch.Tensor.hardshrink(lambd=0.5)
 paddle.nn.functional.hardshrink(x, threshold=0.5, name=None)
 ```
 
-两者功能一致，仅参数名不一致
+两者功能一致，仅参数名不一致，具体如下：
+
+### 参数映射
+
+| PyTorch | PaddlePaddle | 备注                          |
+| ------- | ------------ | ----------------------------- |
+| lambd   | threshold     | 阈值，仅参数名不一致，功能一致 |
