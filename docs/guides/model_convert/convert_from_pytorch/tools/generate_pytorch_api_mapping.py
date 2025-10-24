@@ -167,20 +167,47 @@ def generate_category2_table(
     rows = []  # 存储表格行数据的列表
     used_apis = set()  # 用于记录已处理的API，避免重复
 
+    invok_diff_matchers = {
+        "ChangeAPIMatcher",
+        "NumelMatcher",
+        "Is_InferenceMatcher",
+    }
+
+    special_matchers = {
+        "TensorFunc2PaddleFunc",
+        "Func2Attribute",
+        "Attribute2Func",
+    }
+
     # 处理api_mapping中Matcher为"UnchangeMatcher"且不在no_need_convert_list中的API
     for src_api, mapping_info in api_mapping_data.items():
         if src_api in whitelist_skip or src_api in no_need_convert_list:
             continue
         matcher = mapping_info.get("Matcher", "")
+        valid = False
         # ChangeAPIMatcher、TensorFunc2PaddleFunc、Func2Attribute、Attribute2Func类别
-        if matcher in [
-            "ChangeAPIMatcher",
-            "TensorFunc2PaddleFunc",
-            "Func2Attribute",
-            "Attribute2Func",
-            "NumelMatcher",
-            "Is_InferenceMatcher",
-        ]:
+        if matcher in special_matchers:
+            has_unsupport_args = "unsupport_args" in mapping_info
+            has_kwargs_change = "kwargs_change" in mapping_info
+            has_paddle_default_kwargs = "paddle_default_kwargs" in mapping_info
+            if has_unsupport_args:
+                print(
+                    f"[torch_more_args] {src_api} -> {mapping_info.get('paddle_api', 'N/A')}"
+                )
+                continue
+            elif has_kwargs_change:
+                print(
+                    f"[args_name_diff] {src_api} -> {mapping_info.get('paddle_api', 'N/A')}"
+                )
+                continue
+            elif has_paddle_default_kwargs:
+                print(
+                    f"[paddle_more_args_or_default_diff] {src_api} -> {mapping_info.get('paddle_api', 'N/A')}"
+                )
+                continue
+            valid = True
+
+        if matcher in invok_diff_matchers or valid:
             # 在docs_mapping中查找当前src_api对应的信息
             docs_mapping_info = docs_mapping.get(src_api, {})
             src_url = docs_mapping_info.get("src_api_url")

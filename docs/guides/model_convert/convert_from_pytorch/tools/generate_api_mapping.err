@@ -1,0 +1,345 @@
+APIConversionError: API Conversion Error for None: Failed to extract signature line for paddle.Tensor.stop_gradient from help output Help on getset descriptor paddle.Tensor.stop_gradient:
+    "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
+    "|------|-------------------|---------------|------|",
+stop_gradient
+    stop_gradient
+
+    Tensor's stop_gradient.
+
+    Returns:
+        bool: Tensor's stop_gradient.
+
+    Examples:
+        .. code-block:: python
+
+            >>> import paddle
+
+            >>> x = paddle.to_tensor(1.)
+            >>> print(x.stop_gradient)
+            True
+
+            >>> x.stop_gradient = False
+            >>> print(x.stop_gradient)
+            False
+
+
+UNEXPECTED ERROR for torch.Tensor.lu_solve: Failed to parse API path: module 'paddle.linalg' has no attribute 'lu_solve'
+UNEXPECTED ERROR for torch.Tensor.matrix_exp: Failed to parse API path: module 'paddle.linalg' has no attribute 'matrix_exp'
+APIConversionError: API Conversion Error for None: Failed to extract signature line for paddle.Tensor.size from help output Help on property:
+
+
+
+APIConversionError: API Conversion Error for None: Failed to extract signature line for paddle.Tensor.size from help output Help on property:
+
+
+
+UNEXPECTED ERROR for torch.Tensor.ormqr: Failed to parse API path: module 'paddle.linalg' has no attribute 'ormqr'
+UNEXPECTED ERROR for torch.Tensor.positive: Failed to parse API path: module 'paddle' has no attribute 'positive'
+UNEXPECTED ERROR for torch.Tensor.sparse_mask: Failed to parse API path: module 'paddle.sparse' has no attribute 'mask_as'
+UNEXPECTED ERROR for torch.autograd.Function.forward: name 'param' is not defined
+APIConversionError: API Conversion Error for torch.autograd.function.FunctionCtx: torch API call not found in converted code for torch.autograd.function.FunctionCtx
+UNEXPECTED ERROR for torch.autograd.function.FunctionCtx.mark_non_differentiable: name 'param' is not defined
+UNEXPECTED ERROR for torch.autograd.function.FunctionCtx.save_for_backward: name 'param' is not defined
+APIConversionError: API Conversion Error for torch.autograd.grad_mode.set_grad_enabled: Test file not found for torch.autograd.grad_mode.set_grad_enabled
+UNEXPECTED ERROR for torch.cuda.reset_max_memory_allocated: Failed to parse API path: module 'paddle.device.cuda' has no attribute 'reset_max_memory_allocated'
+UNEXPECTED ERROR for torch.cuda.reset_max_memory_cached: Failed to parse API path: module 'paddle.device.cuda' has no attribute 'reset_max_memory_reserved'
+APIConversionError: API Conversion Error for torch.distributed.ReduceOp: Test file not found for torch.distributed.ReduceOp
+APIConversionError: API Conversion Error for torch.distributions.distribution.Distribution.log_prob: Test file not found for torch.distributions.distribution.Distribution.log_prob
+APIConversionError: API Conversion Error for None: Failed to extract signature line for paddle.Tensor.stop_gradient from help output Help on getset descriptor paddle.Tensor.stop_gradient:
+
+stop_gradient
+    stop_gradient
+
+    Tensor's stop_gradient.
+
+    Returns:
+        bool: Tensor's stop_gradient.
+
+    Examples:
+        .. code-block:: python
+
+            >>> import paddle
+
+            >>> x = paddle.to_tensor(1.)
+            >>> print(x.stop_gradient)
+            True
+
+            >>> x.stop_gradient = False
+            >>> print(x.stop_gradient)
+            False
+
+
+UNEXPECTED ERROR for torch.max: Failed to parse API path: module 'paddle' has no attribute 'compat'
+UNEXPECTED ERROR for torch.median: Failed to parse API path: module 'paddle' has no attribute 'compat'
+UNEXPECTED ERROR for torch.min: Failed to parse API path: module 'paddle' has no attribute 'compat'
+UNEXPECTED ERROR for torch.nanmedian: Failed to parse API path: module 'paddle' has no attribute 'compat'
+UNEXPECTED ERROR for torch.nn.Unfold: Failed to parse API path: module 'paddle' has no attribute 'compat'
+UNEXPECTED ERROR for torch.nn.functional.pad: Failed to parse API path: module 'paddle' has no attribute 'compat'
+UNEXPECTED ERROR for torch.nn.functional.softmax: Failed to parse API path: module 'paddle' has no attribute 'compat'
+APIConversionError: API Conversion Error for None: Failed to extract signature line for paddle.Tensor.size from help output Help on property:
+
+
+
+APIConversionError: API Conversion Error for /workspace/PaConvert/tests/test_optim_Optimizer_add_param_group.py: Test case not found in /workspace/PaConvert/tests/test_optim_Optimizer_add_param_group.py
+UNEXPECTED ERROR for torch.optim.Optimizer.load_state_dict: Failed to parse API path: type object 'Optimizer' has no attribute 'load_state_dict'
+UNEXPECTED ERROR for torch.sort: Failed to parse API path: module 'paddle' has no attribute 'compat'
+UNEXPECTED ERROR for torch.split: Failed to parse API path: module 'paddle' has no attribute 'compat'
+APIConversionError: API Conversion Error for /workspace/PaConvert/tests/test_utils_data_Subset.py: Test case not found in /workspace/PaConvert/tests/test_utils_data_Subset.py
+UNEXPECTED ERROR for torchvision.io.ImageReadMode.GRAY: Failed to parse API path: module 'torch' has no attribute 'io'
+UNEXPECTED ERROR for torchvision.io.ImageReadMode.RGB: Failed to parse API path: module 'torch' has no attribute 'io'
+UNEXPECTED ERROR for torchvision.io.ImageReadMode.UNCHANGED: Failed to parse API path: module 'torch' has no attribute 'io'
+UNEXPECTED ERROR for torchvision.models.AlexNet_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.AlexNet_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.DenseNet121_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.DenseNet121_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.DenseNet161_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.DenseNet161_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.DenseNet169_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.DenseNet169_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.DenseNet201_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.DenseNet201_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.GoogLeNet_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.GoogLeNet_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.Inception_V3_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.Inception_V3_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.MobileNet_V2_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.MobileNet_V2_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.MobileNet_V2_Weights.IMAGENET1K_V2: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.MobileNet_V3_Large_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.MobileNet_V3_Large_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.MobileNet_V3_Large_Weights.IMAGENET1K_V2: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.MobileNet_V3_Small_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.MobileNet_V3_Small_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.MobileNet_V3_Small_Weights.IMAGENET1K_V2: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNeXt50_32X4D_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNeXt50_32X4D_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNeXt50_32X4D_Weights.IMAGENET1K_V2: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet101_64x4d_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet101_64x4d_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet101_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet101_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet101_Weights.IMAGENET1K_V2: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet152_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet152_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet152_Weights.IMAGENET1K_V2: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet18_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet18_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet34_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet34_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet50_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet50_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ResNet50_Weights.IMAGENET1K_V2: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ShuffleNet_V2_X0_5_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ShuffleNet_V2_X0_5_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ShuffleNet_V2_X1_0_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ShuffleNet_V2_X1_0_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ShuffleNet_V2_X1_5_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ShuffleNet_V2_X1_5_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ShuffleNet_V2_X2_0_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.ShuffleNet_V2_X2_0_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.SqueezeNet1_0_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.SqueezeNet1_0_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.SqueezeNet1_1_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.SqueezeNet1_1_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG11_BN_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG11_BN_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG11_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG11_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG13_BN_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG13_BN_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG13_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG13_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG16_BN_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG16_BN_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG16_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG16_Weights.IMAGENET1K_FEATURES: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG16_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG19_BN_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG19_BN_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG19_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.VGG19_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.Wide_ResNet101_2_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.Wide_ResNet101_2_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.Wide_ResNet101_2_Weights.IMAGENET1K_V2: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.Wide_ResNet50_2_Weights.DEFAULT: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.Wide_ResNet50_2_Weights.IMAGENET1K_V1: Failed to parse API path: module 'torch' has no attribute 'models'
+UNEXPECTED ERROR for torchvision.models.Wide_ResNet50_2_Weights.IMAGENET1K_V2: Failed to parse API path: module 'torch' has no attribute 'models'
+APIConversionError: API Conversion Error for None: Failed to extract signature line for torchvision.ops.RoIPool from help output Help on module torch.ops.RoIPool in torch.ops:
+
+NAME
+    torch.ops.RoIPool
+
+DATA
+    name = 'RoIPool'
+
+FILE
+    /workspace/paddleDocs/torch.ops
+
+
+
+UNEXPECTED ERROR for torchvision.transforms.CenterCrop: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.ColorJitter: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.Compose: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.Grayscale: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.InterpolationMode.BICUBIC: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.InterpolationMode.BILINEAR: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.InterpolationMode.BOX: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.InterpolationMode.HAMMING: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.InterpolationMode.LANCZOS: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.InterpolationMode.NEAREST: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.InterpolationMode.NEAREST_EXACT: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.Pad: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.RandomAffine: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.RandomCrop: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.RandomRotation: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.ToTensor: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.functional.adjust_brightness: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.functional.adjust_contrast: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.functional.adjust_hue: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.functional.affine: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.functional.center_crop: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.functional.crop: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.functional.erase: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.functional.hflip: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.functional.pad: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.functional.perspective: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.functional.rotate: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.functional.to_grayscale: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.functional.to_tensor: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for torchvision.transforms.functional.vflip: Failed to parse API path: module 'torch' has no attribute 'transforms'
+UNEXPECTED ERROR for transformers.LogitsProcessorList: Failed to parse API path: module 'torch' has no attribute 'LogitsProcessorList'
+UNEXPECTED ERROR for transformers.StoppingCriteriaList: Failed to parse API path: module 'torch' has no attribute 'StoppingCriteriaList'
+UNEXPECTED ERROR for transformers.generation.utils.GenerateOutput: Failed to parse API path: module 'torch' has no attribute 'generation'
+UNEXPECTED ERROR for transformers.modeling_outputs.BaseModelOutputWithPast: Failed to parse API path: module 'torch' has no attribute 'modeling_outputs'
+UNEXPECTED ERROR for transformers.modeling_outputs.CausalLMOutputWithPast: Failed to parse API path: module 'torch' has no attribute 'modeling_outputs'
+UNEXPECTED ERROR for transformers.utils.add_start_docstrings_to_model_forward: Failed to parse API path: module 'torch.utils' has no attribute 'add_start_docstrings_to_model_forward'
+APIConversionError: API Conversion Error for None: Failed to extract signature line for torch.Tensor.device from help output Help on getset descriptor torch._C.TensorBase.device:
+
+device
+    Is the :class:`torch.device` where this Tensor is.
+
+
+APIConversionError: API Conversion Error for None: Failed to extract signature line for torch.Tensor.imag from help output Help on getset descriptor torch._C.TensorBase.imag:
+
+imag
+    Returns a new tensor containing imaginary values of the :attr:`self` tensor.
+    The returned tensor and :attr:`self` share the same underlying storage.
+
+    .. warning::
+        :func:`imag` is only supported for tensors with complex dtypes.
+
+    Example::
+
+        >>> x=torch.randn(4, dtype=torch.cfloat)
+        >>> x
+        tensor([(0.3100+0.3553j), (-0.5445-0.7896j), (-1.6492-0.0633j), (-0.0638-0.8119j)])
+        >>> x.imag
+        tensor([ 0.3553, -0.7896, -0.0633, -0.8119])
+
+
+APIConversionError: API Conversion Error for None: Failed to extract signature line for torch.Tensor.is_sparse from help output Help on getset descriptor torch._C.TensorBase.is_sparse:
+
+is_sparse
+    Is ``True`` if the Tensor uses sparse COO storage layout, ``False`` otherwise.
+
+
+APIConversionError: API Conversion Error for None: Failed to extract signature line for torch.Tensor.is_sparse_csr from help output Help on getset descriptor torch._C.TensorBase.is_sparse_csr:
+
+is_sparse_csr
+    Is ``True`` if the Tensor uses sparse CSR storage layout, ``False`` otherwise.
+
+
+APIConversionError: API Conversion Error for None: Failed to extract signature line for torch.Tensor.real from help output Help on getset descriptor torch._C.TensorBase.real:
+
+real
+    Returns a new tensor containing real values of the :attr:`self` tensor for a complex-valued input tensor.
+    The returned tensor and :attr:`self` share the same underlying storage.
+
+    Returns :attr:`self` if :attr:`self` is a real-valued tensor tensor.
+
+    Example::
+
+        >>> x=torch.randn(4, dtype=torch.cfloat)
+        >>> x
+        tensor([(0.3100+0.3553j), (-0.5445-0.7896j), (-1.6492-0.0633j), (-0.0638-0.8119j)])
+        >>> x.real
+        tensor([ 0.3100, -0.5445, -1.6492, -0.0638])
+
+
+UNEXPECTED ERROR for torch.autograd.function.FunctionCtx.saved_tensors: Failed to parse API path: type object 'FunctionCtx' has no attribute 'saved_tensors'
+APIConversionError: API Conversion Error for None: Failed to extract signature line for torch.distributed.ReduceOp.PRODUCT from help output Help on RedOpType in module torch._C._distributed_c10d object:
+
+class RedOpType(pybind11_builtins.pybind11_object)
+ |  Method resolution order:
+ |      RedOpType
+ |      pybind11_builtins.pybind11_object
+ |      builtins.object
+ |
+ |  Methods defined here:
+ |
+ |  __eq__(...)
+ |      __eq__(self: object, other: object) -> bool
+ |
+ |  __getstate__(...)
+ |      __getstate__(self: object) -> int
+ |
+ |  __hash__(...)
+ |      __hash__(self: object) -> int
+ |
+ |  __index__(...)
+ |      __index__(self: torch._C._distributed_c10d.ReduceOp.RedOpType) -> int
+ |
+ |  __init__(...)
+ |      __init__(self: torch._C._distributed_c10d.ReduceOp.RedOpType, value: int) -> None
+ |
+ |  __int__(...)
+ |      __int__(self: torch._C._distributed_c10d.ReduceOp.RedOpType) -> int
+ |
+ |  __ne__(...)
+ |      __ne__(self: object, other: object) -> bool
+ |
+ |  __repr__(...)
+ |      __repr__(self: object) -> str
+ |
+ |  __setstate__(...)
+ |      __setstate__(self: torch._C._distributed_c10d.ReduceOp.RedOpType, state: int) -> None
+ |
+ |  __str__(...)
+ |      __str__(self: object) -> str
+ |
+ |  ----------------------------------------------------------------------
+ |  Readonly properties defined here:
+ |
+ |  __members__
+ |
+ |  name
+ |      name(self: object) -> str
+ |
+ |  value
+ |
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |
+ |  AVG = <RedOpType.AVG: 1>
+ |
+ |  BAND = <RedOpType.BAND: 5>
+ |
+ |  BOR = <RedOpType.BOR: 6>
+ |
+ |  BXOR = <RedOpType.BXOR: 7>
+ |
+ |  MAX = <RedOpType.MAX: 4>
+ |
+ |  MIN = <RedOpType.MIN: 3>
+ |
+ |  PREMUL_SUM = <RedOpType.PREMUL_SUM: 8>
+ |
+ |  PRODUCT = <RedOpType.PRODUCT: 2>
+ |
+ |  SUM = <RedOpType.SUM: 0>
+ |
+ |  ----------------------------------------------------------------------
+ |  Static methods inherited from pybind11_builtins.pybind11_object:
+ |
+ |  __new__(*args, **kwargs) from pybind11_builtins.pybind11_type
+ |      Create and return a new object.  See help(type) for accurate signature.
