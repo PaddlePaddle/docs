@@ -365,12 +365,25 @@ def gen_functions_args_str(node):
     str_args_list = []
     if isinstance(node, ast.FunctionDef):
         # 'args', 'defaults', 'kw_defaults', 'kwarg', 'kwonlyargs', 'posonlyargs', 'vararg'
+        if node.args.posonlyargs is not None:
+            for arg in node.args.posonlyargs:
+                if not arg.arg == "self":
+                    str_args_list.append(arg.arg)
+            str_args_list.append("/")
+
         for arg in node.args.args:
             if not arg.arg == "self":
                 str_args_list.append(arg.arg)
 
         defarg_ind_start = len(str_args_list) - len(node.args.defaults)
+        if node.args.posonlyargs is not None and len(node.args.defaults) > len(
+            node.args.args
+        ):
+            defarg_ind_start -= 1
+
         for defarg_ind in range(len(node.args.defaults)):
+            if str_args_list[defarg_ind_start + defarg_ind] == "/":
+                defarg_ind_start += 1
             if isinstance(node.args.defaults[defarg_ind], ast.Name):
                 str_args_list[defarg_ind_start + defarg_ind] += "=" + str(
                     node.args.defaults[defarg_ind].id
