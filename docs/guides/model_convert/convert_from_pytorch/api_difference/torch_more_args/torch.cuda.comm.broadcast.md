@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.cuda.comm.broadcast
-
+## [ torch 参数更多 ]torch.cuda.comm.broadcast
 ### [torch.cuda.comm.broadcast](https://pytorch.org/docs/stable/generated/torch.cuda.comm.broadcast.html#torch.cuda.comm.broadcast)
-
 ```python
 torch.cuda.comm.broadcast(tensor, devices=None, *, out=None)
 ```
 
 ### [paddle.distributed.broadcast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/broadcast_cn.html)
-
 ```python
 paddle.distributed.broadcast(tensor, src, group=None, sync_op=True)
 ```
@@ -25,7 +22,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | -       | sync_op      | 该操作是否为同步操作。默认为 True，即同步操作。PyTorch 无此参数，Paddle 保持默认即可。    |
 
 ### 转写示例
-
 #### out 参数：指定输出
 ``` python
 # PyTorch 写法:

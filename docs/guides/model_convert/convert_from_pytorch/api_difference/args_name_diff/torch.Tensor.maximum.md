@@ -1,13 +1,10 @@
-## [ 仅参数名不一致 ] torch.Tensor.maximum
-
+## [ 仅参数名不一致 ]torch.Tensor.maximum
 ### [torch.Tensor.maximum](https://pytorch.org/docs/stable/generated/torch.Tensor.maximum.html#torch.Tensor.maximum)
-
 ```python
 torch.Tensor.maximum(other)
 ```
 
 ### [paddle.Tensor.maximum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#maximum-y-axis-1-name-none)
-
 ```python
 paddle.Tensor.maximum(y)
 ```

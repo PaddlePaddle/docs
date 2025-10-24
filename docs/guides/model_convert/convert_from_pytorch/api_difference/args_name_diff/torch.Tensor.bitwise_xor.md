@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.bitwise_xor
-
 ### [torch.Tensor.bitwise_xor](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_xor.html)
-
 ```python
 torch.Tensor.bitwise_xor(other)
 ```
 
 ### [paddle.Tensor.bitwise_xor]()
-
 ```python
 paddle.Tensor.bitwise_xor(y)
 ```

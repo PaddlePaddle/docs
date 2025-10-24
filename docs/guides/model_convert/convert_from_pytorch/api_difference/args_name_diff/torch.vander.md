@@ -1,7 +1,5 @@
 ## [ 仅参数名不一致 ]torch.vander
-
 ### [torch.vander](https://pytorch.org/docs/stable/generated/torch.vander.html?highlight=vander#torch.vander)
-
 ```python
 torch.vander(x,
           N,
@@ -9,7 +7,6 @@ torch.vander(x,
 ```
 
 ### [paddle.vander](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vander_cn.html#vander)
-
 ```python
 paddle.vander(x,
           n,

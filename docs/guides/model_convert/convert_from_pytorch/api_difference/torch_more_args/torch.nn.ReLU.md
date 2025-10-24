@@ -1,12 +1,10 @@
-## [torch 参数更多 ]torch.nn.ReLU
+## [ torch 参数更多 ]torch.nn.ReLU
 ### [torch.nn.ReLU](https://pytorch.org/docs/stable/generated/torch.nn.ReLU.html?highlight=relu#torch.nn.ReLU)
-
 ```python
 torch.nn.ReLU(inplace=False)
 ```
 
 ### [paddle.nn.ReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ReLU_cn.html#relu)
-
 ```python
 paddle.nn.ReLU(name=None)
 ```

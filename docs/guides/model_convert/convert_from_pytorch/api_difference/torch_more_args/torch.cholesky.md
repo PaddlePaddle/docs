@@ -1,13 +1,10 @@
-## [ torch 参数更多]torch.cholesky
-
+## [ torch 参数更多 ]torch.cholesky
 ### [torch.cholesky](https://pytorch.org/docs/stable/generated/torch.cholesky.html?highlight=cholesky#torch.cholesky)
-
 ```python
 torch.cholesky(input,upper=False,*,out=None)
 ```
 
 ### [paddle.linalg.cholesky](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/cholesky_cn.html)
-
 ```python
 paddle.linalg.cholesky(x,upper=False,name=None)
 ```
@@ -23,9 +20,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | out | - | 表示输出的 Tensor， Paddle 无此参数，需要转写。 |
 
 ### 转写示例
-
 #### out：输出的 Tensor
-
 ```python
 # PyTorch 写法
 torch.cholesky(x, upper=False, out=output)

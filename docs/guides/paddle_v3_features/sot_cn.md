@@ -16,14 +16,14 @@
 ```python
 # 一个简单的 Case 如下：
 @paddle.jit.to_static()
-def unsupport_func(x):
+def unsupported_func(x):
     x = 2 * x
     t = x.numpy() # t 依赖了 x 的值，依赖静态图的执行结果
     t = np.ones(t)
     return paddle.to_tensor(t)
 
 x = paddle.to_tensor([2])
-unsupport_func(x)  # raise error
+unsupported_func(x)  # raise error
 ```
 
 这里的 `np.ones` 因为动转静的使用，上述的 `x` 和 `t` 其实都是 `pir.Value` 类型（即 PIR 中的组网占位符），传入到 `np.ones` 中是无法获取到具体的值的，因此调用 `.numpy()` 接口时会报错。而这样的 Case 也是 AST 动转静理论上无法解决的问题，本质原因是，AST 必须要求转写的函数可以**被整图的**静态图 IR 表示。

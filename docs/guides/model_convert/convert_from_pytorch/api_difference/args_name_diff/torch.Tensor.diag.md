@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.diag
-
 ### [torch.Tensor.diag](https://pytorch.org/docs/stable/generated/torch.Tensor.diag.html?highlight=diag#torch.Tensor.diag)
-
 ```python
 torch.Tensor.diag(diagonal=0)
 ```
 
 ### [paddle.Tensor.diag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diag_cn.html#diag)
-
 ```python
 paddle.Tensor.diag(offset=0, padding_value=0, name=None)
 ```

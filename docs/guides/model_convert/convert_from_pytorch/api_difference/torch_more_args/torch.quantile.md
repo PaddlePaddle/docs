@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.quantile
-
 ### [torch.quantile](https://pytorch.org/docs/stable/generated/torch.quantile.html?highlight=quantile#torch.quantile)
-
 ```python
 torch.quantile(input,
                q,
@@ -13,7 +11,6 @@ torch.quantile(input,
 ```
 
 ### [paddle.quantile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/quantile_cn.html)
-
 ```python
 paddle.quantile(x,
                 q,

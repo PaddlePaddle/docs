@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.special.gammaln
-
+## [ torch 参数更多 ]torch.special.gammaln
 ### [torch.special.gammaln](https://pytorch.org/docs/stable/special.html#torch.special.gammaln)
-
 ```python
 torch.special.gammaln(input, *, out=None)
 ```
 
 ### [paddle.gammaln](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/gammaln_cn.html#gammaln)
-
 ```python
 paddle.gammaln(x, name=None)
 ```
@@ -22,9 +19,7 @@ paddle.gammaln(x, name=None)
 | out     | -            | 表示输出的 Tensor ， Paddle 无此参数，需要转写。 |
 
 ### 转写示例
-
 #### out：指定输出
-
 ```python
 # PyTorch 写法
 torch.special.gammaln(x, out=y)

@@ -1,13 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.Tensor.split
-
 ### [torch.Tensor.split](https://pytorch.org/docs/stable/generated/torch.Tensor.split.html)
-
 ```python
 torch.Tensor.split(split_size, dim=0)
 ```
 
 ### [paddle.Tensor.split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#split-num-or-sections-axis-0-name-none)
-
 ```python
 paddle.Tensor.split(num_or_sections, axis=0, name=None)
 ```

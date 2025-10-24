@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.sgn
+## [ torch 参数更多 ]torch.sgn
 ### [torch.sgn](https://pytorch.org/docs/stable/generated/torch.sgn.html?highlight=torch+sgn#torch.sgn)
-
 ```python
 torch.sgn(input,
           *,
@@ -8,7 +7,6 @@ torch.sgn(input,
 ```
 
 ### [paddle.sgn](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sgn_cn.html)
-
 ```python
 paddle.sgn(x,
             name=None)

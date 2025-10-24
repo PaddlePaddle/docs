@@ -1,7 +1,5 @@
 ## [ 仅参数名不一致 ]torch.dropout
-
 ### [torch.dropout](https://pytorch.org/docs/stable/jit_builtin_functions.html#supported-pytorch-functions)
-
 ```python
 torch.dropout(input,
               p,
@@ -9,7 +7,6 @@ torch.dropout(input,
 ```
 
 ### [paddle.nn.functional.dropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/dropout_cn.html#dropout)
-
 ```python
 paddle.nn.functional.dropout(x, p=0.5, axis=None, training=True, mode='upscale_in_train', name=None)
 ```

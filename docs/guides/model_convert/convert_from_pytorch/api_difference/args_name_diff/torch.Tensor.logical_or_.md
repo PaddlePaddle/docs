@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.logical_or_
-
 ### [torch.Tensor.logical_or_](https://pytorch.org/docs/stable/generated/torch.Tensor.logical_or_.html)
-
 ```python
 torch.Tensor.logical_or_(other)
 ```
 
 ### [paddle.Tensor.logical_or_]()
-
 ```python
 paddle.Tensor.logical_or_(y)
 ```

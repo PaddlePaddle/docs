@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.Tensor.stft
-
+## [ torch 参数更多 ]torch.Tensor.stft
 ### [torch.Tensor.stft](https://pytorch.org/docs/stable/generated/torch.Tensor.stft.html#torch.Tensor.stft)
-
 ```python
 torch.Tensor.stft(n_fft, hop_length=None, win_length=None, window=None, center=True, pad_mode='reflect', normalized=False, onesided=None, return_complex=None)
 ```
 
 ### [paddle.Tensor.stft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/signal/stft_cn.html)
-
 ```python
 paddle.Tensor.stft(n_fft, hop_length=None, win_length=None, window=None, center=True, pad_mode='reflect', normalized=False, onesided=True, name=None)
 ```

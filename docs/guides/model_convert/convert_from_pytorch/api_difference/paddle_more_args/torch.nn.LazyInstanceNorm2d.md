@@ -1,12 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.LazyInstanceNorm2d
 ### [torch.nn.LazyInstanceNorm2d](https://pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm2d.html)
-
 ```python
 torch.nn.LazyInstanceNorm2d(eps=1e-05, momentum=0.1, affine=True, track_running_stats=True, device=None, dtype=None)
 ```
 
 ### [paddle.nn.InstanceNorm2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/InstanceNorm2D_cn.html)
-
 ```python
 paddle.nn.InstanceNorm2D(num_features, epsilon=1e-05, momentum=0.9, weight_attr=None, bias_attr=None, data_format="NCL", name=None)
 ```
@@ -27,9 +25,7 @@ paddle.nn.InstanceNorm2D(num_features, epsilon=1e-05, momentum=0.9, weight_attr=
 | -             |  data_format  | 指定输入数据格式。 PyTorch 无此参数。 |
 
 ### 转写示例
-
-#### num_features: 输入通道数
-在 PyTorch 中，使用 `LazyInstanceNorm2d` 时可以不指定 `num_features`，它会在第一次前向传播时根据输入 Tensor 的形状自动确定；而在 Paddle 中，创建 `InstanceNorm2D` 时必须明确指定 `num_features` 参数，其值应与输入 Tensor 的通道数保持一致。
+#### num_features: 输入通道数在 PyTorch 中，使用 `LazyInstanceNorm2d` 时可以不指定 `num_features`，它会在第一次前向传播时根据输入 Tensor 的形状自动确定；而在 Paddle 中，创建 `InstanceNorm2D` 时必须明确指定 `num_features` 参数，其值应与输入 Tensor 的通道数保持一致。
 ```python
 # PyTorch 写法
 bn = torch.nn.LazyInstanceNorm2d()

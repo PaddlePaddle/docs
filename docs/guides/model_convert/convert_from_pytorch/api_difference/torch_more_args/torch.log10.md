@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.log10
+## [ torch 参数更多 ]torch.log10
 ### [torch.log10](https://pytorch.org/docs/stable/generated/torch.log10.html?highlight=log10#torch.log10)
-
 ```python
 torch.log10(input,
             *,
@@ -8,7 +7,6 @@ torch.log10(input,
 ```
 
 ### [paddle.log10](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/log10_cn.html#log10)
-
 ```python
 paddle.log10(x,
              name=None)
@@ -16,6 +14,7 @@ paddle.log10(x,
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |

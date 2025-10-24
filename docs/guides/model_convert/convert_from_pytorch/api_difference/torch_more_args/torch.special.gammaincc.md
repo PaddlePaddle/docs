@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.special.gammaincc
-
 ### [torch.special.gammaincc](https://pytorch.org/docs/stable/special.html#torch.special.gammaincc)
-
 ```python
 torch.special.gammaincc(input,
                         other,
@@ -10,7 +8,6 @@ torch.special.gammaincc(input,
 ```
 
 ### [paddle.gammaincc](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/index_cn.html)
-
 ```python
 paddle.gammaincc(x,
                  y)

@@ -1,7 +1,5 @@
-## [torch 参数更多 ]torch.cumprod
-
+## [ torch 参数更多 ]torch.cumprod
 ### [torch.cumprod](https://pytorch.org/docs/stable/generated/torch.cumprod.html?highlight=cumprod#torch.cumprod)
-
 ```python
 torch.cumprod(input,
               dim,
@@ -11,7 +9,6 @@ torch.cumprod(input,
 ```
 
 ### [paddle.cumprod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cumprod_cn.html#cumprod)
-
 ```python
 paddle.cumprod(x,
                dim=None,

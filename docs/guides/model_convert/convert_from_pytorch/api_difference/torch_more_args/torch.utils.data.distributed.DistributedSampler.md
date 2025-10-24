@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.utils.data.distributed.DistributedSampler
 ### [torch.utils.data.distributed.DistributedSampler](https://docs.pytorch.org/docs/stable/data.html#torch.utils.data.distributed.DistributedSampler)
-
 ```python
 torch.utils.data.distributed.DistributedSampler(dataset,
                                     num_replicas=None,
@@ -11,7 +10,6 @@ torch.utils.data.distributed.DistributedSampler(dataset,
 ```
 
 ### [paddle.io.DistributedBatchSampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/DistributedBatchSampler_cn.html#distributedbatchsampler)
-
 ```python
 paddle.io.DistributedBatchSampler(dataset=None,
                                     batch_size,
@@ -23,6 +21,7 @@ paddle.io.DistributedBatchSampler(dataset=None,
 
 PyTorch 参数更多，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ----- | ---------- | ---------- |
 | dataset             | dataset   | 被采样的数据集。                   |

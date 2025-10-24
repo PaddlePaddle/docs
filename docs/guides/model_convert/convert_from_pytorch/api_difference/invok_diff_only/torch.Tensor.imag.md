@@ -1,13 +1,10 @@
-## [仅 API 调用方式不一致] torch.Tensor.imag
-
+## [ 仅 API 调用方式不一致 ]torch.Tensor.imag
 ### [torch.Tensor.imag](https://pytorch.org/docs/stable/generated/torch.Tensor.imag.html)
-
 ```python
 torch.Tensor.imag
 ```
 
 ### [paddle.Tensor.imag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#imag-name-none)
-
 ```python
 paddle.Tensor.imag
 ```

@@ -1,7 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.functional.batch_norm
-
 ### [torch.nn.functional.batch_norm](https://pytorch.org/docs/stable/generated/torch.nn.functional.batch_norm.html#torch.nn.functional.batch_norm)
-
 ```python
 torch.nn.functional.batch_norm(input, running_mean, running_var, weight=None, bias=None, training=False, momentum=0.1, eps=1e-05)
 ```

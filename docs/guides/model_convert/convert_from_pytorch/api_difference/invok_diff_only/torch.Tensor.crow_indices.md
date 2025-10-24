@@ -1,13 +1,10 @@
-## [仅 API 调用方式不一致] torch.Tensor.crow_indices
-
+## [ 仅 API 调用方式不一致 ]torch.Tensor.crow_indices
 ### [torch.Tensor.crow_indices](https://pytorch.org/docs/stable/generated/torch.Tensor.crow_indices.html)
-
 ```python
 torch.Tensor.crow_indices()
 ```
 
 ### [paddle.Tensor.crows]()
-
 ```python
 paddle.Tensor.crows()
 ```

@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.gcd_
-
 ### [torch.Tensor.gcd_](https://pytorch.org/docs/stable/generated/torch.Tensor.gcd_.html)
-
 ```python
 torch.Tensor.gcd_(other)
 ```
 
 ### [paddle.Tensor.gcd_]()
-
 ```python
 paddle.Tensor.gcd_(y)
 ```

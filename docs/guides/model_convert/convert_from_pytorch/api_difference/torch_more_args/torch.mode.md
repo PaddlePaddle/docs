@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.mode
-
 ### [torch.mode](https://pytorch.org/docs/stable/generated/torch.mode.html)
-
 ```python
 torch.mode(input, dim=-1, keepdim=False, *, out=None)
 ```
 
 ### [paddle.mode](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/mode_cn.html#mode)
-
 ```python
 paddle.mode(x, axis=-1, keepdim=False, name=None)
 ```
@@ -23,7 +20,7 @@ paddle.mode(x, axis=-1, keepdim=False, name=None)
 | keepdim | keepdim      | 是否保留指定的轴。 |
 | out     | -            | 表示输出的 Tensor ， Paddle 无此参数，需要转写。     |
 
-###  转写示例
+### 转写示例
 #### out：指定输出
 ```python
 # PyTorch 写法

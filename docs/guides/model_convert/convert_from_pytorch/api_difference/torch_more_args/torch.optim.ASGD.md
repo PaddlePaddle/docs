@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.ASGD
-
 ### [torch.optim.ASGD](https://pytorch.org/docs/stable/generated/torch.optim.ASGD.html)
-
 ```python
 torch.optim.ASGD(params,
                 lr=0.01,
@@ -15,7 +13,6 @@ torch.optim.ASGD(params,
 ```
 
 ### [paddle.optimizer.ASGD](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/ASGD_cn.html#cn-api-paddle-optimizer-asgd)
-
 ```python
 paddle.optimizer.ASGD(learning_rate=0.001,
                     batch_num=1,
@@ -48,13 +45,11 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | -             | name                | 一般情况下无需设置。 PyTorch 无此参数，Paddle 保持默认即可                                                                  |
 
 ### 相关问题
-
 torch 当前版本的 ASGD 实现并不完善。转换过来的 paddle ASGD 会与 torch 的不一致（不影响收敛），但是可以正常使用。如果强需求保证转换前后一致，可以自行尝试其他优化器。
 
 如果后续 torch 有代码更新，可以联系 @WintersMontagne10335 作 API 调整与对接。
 
 #### torch 现存问题
-
 在 `_single_tensor_asgd` 中，对 `axs, ax` 进行了更新，但是它们却并没有参与到 `params` 中。 `axs, ax` 完全没有作用。
 
 调研到的比较可信的原因是，目前 `ASGD` 的功能并不完善， `axs, ax` 是预留给以后的版本的。
@@ -69,7 +64,6 @@ torch 当前版本的 ASGD 实现并不完善。转换过来的 paddle ASGD 会�
 - https://github.com/pytorch/pytorch/issues/74884
 
 #### paddle 实现思路
-
 主要参照 [`ASGD` 论文: Minimizing Finite Sums with the Stochastic Average Gradient](https://inria.hal.science/hal-00860051v2)
 
 核心步骤为：

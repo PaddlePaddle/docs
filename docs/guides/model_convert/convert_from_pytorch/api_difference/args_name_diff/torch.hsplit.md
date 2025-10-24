@@ -4,14 +4,12 @@ api 存在重载情况，分别如下：
 -------------------------------------------------------------------------------------------------
 
 ### [torch.hsplit](https://pytorch.org/docs/stable/generated/torch.hsplit.html#torch.hsplit)
-
 ```python
 torch.hsplit(input,
         sections)
 ```
 
 ### [paddle.hsplit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hsplit_cn.html)
-
 ```python
 paddle.hsplit(x,
         num_or_indices,
@@ -30,14 +28,12 @@ paddle.hsplit(x,
 -------------------------------------------------------------------------------------------------
 
 ### [torch.hsplit](https://pytorch.org/docs/stable/generated/torch.hsplit.html#torch.hsplit)
-
 ```python
 torch.hsplit(input,
         indices)
 ```
 
 ### [paddle.hsplit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hsplit_cn.html)
-
 ```python
 paddle.hsplit(x,
         num_or_indices,

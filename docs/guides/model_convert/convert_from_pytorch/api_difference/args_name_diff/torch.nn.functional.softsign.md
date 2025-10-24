@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.softsign
-
 ### [torch.nn.functional.softsign](https://pytorch.org/docs/stable/generated/torch.nn.functional.softsign.html?highlight=softsign#torch.nn.functional.softsign)
-
 ```python
 torch.nn.functional.softsign(input)
 ```
 
 ### [paddle.nn.functional.softsign](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/softsign_cn.html)
-
 ```python
 paddle.nn.functional.softsign(x,
                               name=None)

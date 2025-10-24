@@ -1,6 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.Linear
 ### [torch.nn.Linear](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html?highlight=linear#torch.nn.Linear)
-
 ```python
 torch.nn.Linear(in_features,
                 out_features,
@@ -10,7 +9,6 @@ torch.nn.Linear(in_features,
 ```
 
 ### [paddle.nn.Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Linear_cn.html#linear)
-
 ```python
 paddle.nn.Linear(in_features,
                  out_features,
