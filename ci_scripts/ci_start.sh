@@ -74,7 +74,6 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
         python3 BosClient.py ${OUTPUTDIR}/zh/${VERSIONSTR} ${BOSBUCKET}/documentation/zh/${PREVIEW_JOB_NAME} ${OUTPUTDIR}/zh/${VERSIONSTR}/_sources/
         # print preview url
         PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: http://${PREVIEW_JOB_NAME}.${PREVIEW_SITE:-preview.paddlepaddle.org}/documentation/docs/zh/api/index_cn.html"
-    sleep 3d
     fi
 fi
 
