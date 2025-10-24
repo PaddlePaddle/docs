@@ -67,7 +67,7 @@ sequence_pool
 :::::::::
     - **input** (Tensor) - 类型为 Tensor 的输入序列，仅支持 lod_level 不超过 2 的 Tensor，数据类型为 float32。
     - **pool_type** (str) - 池化类型，支持 average，sum，sqrt，max，last 和 first 池化操作。
-    - **is_test** (bool，可选) - 仅在 pool_type 取值为 max 时生效。当 is_test 为 False 时，则在池化操作过程中会创建 maxIndex 临时 Tenosr，以记录最大特征值对应的索引信息，用于训练阶段的反向梯度计算。默认为 False。
+    - **is_test** (bool，可选) - 仅在 pool_type 取值为 max 时生效。当 is_test 为 False 时，则在池化操作过程中会创建 maxIndex 临时 Tensor，以记录最大特征值对应的索引信息，用于训练阶段的反向梯度计算。默认为 False。
     - **pad_value** (float，可选) - 用于填充输入序列为空时的池化结果，默认为 0.0。
 
 返回

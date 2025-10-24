@@ -61,7 +61,7 @@ adam.set_state_dict(opti_state_dict)
 + 答复：
   1. 对于``state_dict``保存方式与 paddle2.0 完全相同，我们将``Tensor``转化为``numpy.ndarray``保存。
 
-  2. 对于其他形式的包含``Tensor``的对象（``Layer``对象，单个``Tensor``以及包含``Tensor``的嵌套``list``、``tuple``、``dict``），在动态图中，将``Tensor``转化为``tuple(Tensor.name, Tensor.numpy())``;在静态图中，将``Tensor``直接转化为``numpy.ndarray``。之所以这样做，是因为当在静态图中使用动态保存的模型时，有时需要``Tensor``的名字因此将名字保存下来，同时，在``load``时区分这个``numpy.ndarray``是由 Tenosr 转化而来还是本来就是``numpy.ndarray``；保存静态图的``Tensor``时，通常通过``Variable.get_value``得到``Tensor``再使用``paddle.save``保存``Tensor``，此时，``Variable``是有名字的，这个``Tensor``是没有名字的，因此将静态图``Tensor``直接转化为``numpy.ndarray``保存。
+  2. 对于其他形式的包含``Tensor``的对象（``Layer``对象，单个``Tensor``以及包含``Tensor``的嵌套``list``、``tuple``、``dict``），在动态图中，将``Tensor``转化为``tuple(Tensor.name, Tensor.numpy())``;在静态图中，将``Tensor``直接转化为``numpy.ndarray``。之所以这样做，是因为当在静态图中使用动态保存的模型时，有时需要``Tensor``的名字因此将名字保存下来，同时，在``load``时区分这个``numpy.ndarray``是由 Tensor 转化而来还是本来就是``numpy.ndarray``；保存静态图的``Tensor``时，通常通过``Variable.get_value``得到``Tensor``再使用``paddle.save``保存``Tensor``，此时，``Variable``是有名字的，这个``Tensor``是没有名字的，因此将静态图``Tensor``直接转化为``numpy.ndarray``保存。
     > 此处动态图 Tensor 和静态图 Tensor 是不相同的，动态图 Tensor 有 name、stop_gradient 等属性；而静态图的 Tensor 是比动态图 Tensor 轻量级的，只包含 place 等基本信息，不包含名字等。
 
 ##### 问题：将 Tensor 转换为 numpy.ndarray 或者 tuple(Tensor.name, Tensor.numpy())不是惟一可译编码，为什么还要做这样的转换呢？
