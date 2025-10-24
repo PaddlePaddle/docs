@@ -1,14 +1,11 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.LRScheduler
-
 ### [torch.optim.lr_scheduler.LRScheduler](https://docs.pytorch.org/docs/2.7/generated/torch.optim.lr_scheduler.LRScheduler.html#torch.optim.lr_scheduler.LRScheduler)
-
 ```python
 torch.optim.lr_scheduler.LRScheduler(optimizer,
                                 last_epoch=-1)
 ```
 
 ### [paddle.optimizer.lr.LRScheduler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/LRScheduler_cn.html#lrscheduler)
-
 ```python
 paddle.optimizer.lr.LRScheduler(learning_rate=0.1,
                                 last_epoch=-1,
@@ -26,7 +23,6 @@ paddle.optimizer.lr.LRScheduler(learning_rate=0.1,
 | -     | verbose       | 如果是 True，则在每一轮更新时在标准输出 stdout 输出一条信息。|
 
 ### 转写示例
-
 ```python
 # PyTorch 写法
 linear = torch.nn.Linear(10, 10)

@@ -1,13 +1,10 @@
-## [输入参数类型不一致]torchvision.models.resnet34
-
+## [ 输入参数类型不一致 ]torchvision.models.resnet34
 ### [torchvision.models.resnet34](https://pytorch.org/vision/stable/models/generated/torchvision.models.resnet34.html)
-
 ```python
 torchvision.models.resnet34(*, weights: Optional[ResNet34_Weights] = None, progress: bool = True, **kwargs: Any)
 ```
 
 ### [paddle.vision.models.resnet34](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/resnet34_cn.html)
-
 ```python
 paddle.vision.models.resnet34(pretrained=False, **kwargs)
 ```

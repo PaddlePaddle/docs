@@ -1,13 +1,10 @@
-## [输入参数类型不一致]torchvision.models.resnext101_64x4d
-
+## [ 输入参数类型不一致 ]torchvision.models.resnext101_64x4d
 ### [torchvision.models.resnext101_64x4d](https://pytorch.org/vision/main/models/generated/torchvision.models.resnext101_64x4d.html)
-
 ```python
 torchvision.models.resnext101_64x4d(*, weights: Optional[ResNeXt101_64X4D_Weights] = None, progress: bool = True, **kwargs: Any)
 ```
 
 ### [paddle.vision.models.resnext101_64x4d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/resnext101_64x4d_cn.html)
-
 ```python
 paddle.vision.models.resnext101_64x4d(pretrained=False, **kwargs)
 ```

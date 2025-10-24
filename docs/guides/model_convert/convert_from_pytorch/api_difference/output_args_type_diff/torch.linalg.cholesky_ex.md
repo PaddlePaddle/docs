@@ -1,13 +1,10 @@
 ## [ 返回参数类型不一致 ]torch.linalg.cholesky_ex
-
 ### [torch.linalg.cholesky_ex](https://pytorch.org/docs/stable/generated/torch.linalg.cholesky_ex.html)
-
 ```python
 torch.linalg.cholesky_ex(input, *, upper=False, check_errors=False, out=None)
 ```
 
 ### [paddle.linalg.cholesky](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/cholesky_cn.html)
-
 ```python
 paddle.linalg.cholesky(x, upper=False, name=None)
 ```
@@ -25,9 +22,7 @@ paddle.linalg.cholesky(x, upper=False, name=None)
 | 返回值       | 返回值       | Pytorch 返回两个 out 与 info，Paddle 仅返回一个 Tensor：out，需转写。                                                                                |
 
 ### 转写示例
-
 #### 返回值
-
 ```python
 # PyTorch 写法
 torch.linalg.cholesky_ex(x, upper=False)
@@ -37,7 +32,6 @@ torch.linalg.cholesky_ex(x, upper=False)
 ```
 
 #### out: 输出的 Tensor
-
 ```python
 # PyTorch 写法
 torch.linalg.cholesky_ex(x, upper=False, out=output)

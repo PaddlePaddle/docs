@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.nn.LayerNorm
+## [ torch 参数更多 ]torch.nn.LayerNorm
 ### [torch.nn.LayerNorm](https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html?highlight=layernorm#torch.nn.LayerNorm)
-
 ```python
 torch.nn.LayerNorm(normalized_shape,
                    eps=1e-05,
@@ -10,7 +9,6 @@ torch.nn.LayerNorm(normalized_shape,
 ```
 
 ### [paddle.nn.LayerNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LayerNorm_cn.html#layernorm)
-
 ```python
 paddle.nn.LayerNorm(normalized_shape,
                     epsilon=1e-05,
@@ -21,6 +19,7 @@ paddle.nn.LayerNorm(normalized_shape,
 
 两者功能一致但参数不一致，torch 参数更多，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | elementwise_affine        | -            | 是否进行仿射变换，Paddle 无此参数，需要转写。         |

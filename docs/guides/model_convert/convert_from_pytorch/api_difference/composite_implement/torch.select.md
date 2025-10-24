@@ -1,7 +1,5 @@
 ## [ 组合替代实现 ]torch.select
-
 ### [torch.select](https://pytorch.org/docs/stable/generated/torch.select.html#torch.select)
-
 ```python
 torch.select(input, dim, index)
 ```
@@ -9,7 +7,6 @@ torch.select(input, dim, index)
 Paddle 无此 API，需要组合实现。
 
 ### 转写示例
-
 ```python
 # PyTorch 写法
 y = torch.select(a, dim=dim, index=index)

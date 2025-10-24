@@ -1,12 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.Softmax
 ### [torch.nn.Softmax](https://pytorch.org/docs/stable/generated/torch.nn.Softmax.html?highlight=nn+softmax#torch.nn.Softmax)
-
 ```python
 torch.nn.Softmax(dim=None)
 ```
 
 ### [paddle.nn.Softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Softmax_cn.html#softmax)
-
 ```python
 paddle.nn.Softmax(axis=- 1,
                   name=None)

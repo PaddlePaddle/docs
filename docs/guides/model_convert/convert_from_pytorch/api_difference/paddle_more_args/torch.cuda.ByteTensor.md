@@ -1,13 +1,10 @@
-## [ paddle 参数更多 ] torch.cuda.ByteTensor
-
+## [ paddle 参数更多 ]torch.cuda.ByteTensor
 ### [torch.cuda.ByteTensor](https://pytorch.org/docs/stable/tensors.html)
-
 ```python
 torch.cuda.ByteTensor(data)
 ```
 
 ### [paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/to_tensor_cn.html#to-tensor)
-
 ```python
 paddle.to_tensor(data, dtype='uint8', place='gpu', stop_gradient=True)
 ```

@@ -943,7 +943,7 @@ def get_shortest_api(api_list):
 
 def insert_suggested_names():
     """
-    add suggested_name field, updte the doc_filename, and sort the all_names and api_sketch_names.
+    add suggested_name field, update the doc_filename, and sort the all_names and api_sketch_names.
     """
 
     def sort_name_list(api_names):

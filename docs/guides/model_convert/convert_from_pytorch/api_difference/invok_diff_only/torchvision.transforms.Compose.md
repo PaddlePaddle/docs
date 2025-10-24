@@ -1,7 +1,5 @@
-## [仅 API 调用方式不一致]torchvision.transforms.Compose
-
+## [ 仅 API 调用方式不一致 ]torchvision.transforms.Compose
 ### [torchvision.transforms.Compose](https://pytorch.org/vision/main/generated/torchvision.transforms.Compose.html)
-
 ```python
 torchvision.transforms.Compose(
     transforms: List[Transform]
@@ -9,7 +7,6 @@ torchvision.transforms.Compose(
 ```
 
 ### [paddle.vision.transforms.Compose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Compose_cn.html)
-
 ```python
 paddle.vision.transforms.Compose(
     transforms: Union[List[Transform], Tuple[Transform, ...]]

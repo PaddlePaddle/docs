@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.square
+## [ torch 参数更多 ]torch.square
 ### [torch.square](https://pytorch.org/docs/stable/generated/torch.square.html?highlight=square#torch.square)
-
 ```python
 torch.square(input,
              *,
@@ -8,7 +7,6 @@ torch.square(input,
 ```
 
 ### [paddle.square](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/square_cn.html)
-
 ```python
 paddle.square(x,
               name=None)

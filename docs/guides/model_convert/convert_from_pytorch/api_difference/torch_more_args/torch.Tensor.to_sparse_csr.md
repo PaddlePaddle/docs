@@ -1,13 +1,10 @@
-## [ torch 参数更多 ] torch.Tensor.to_sparse_csr
-
+## [ torch 参数更多 ]torch.Tensor.to_sparse_csr
 ### [torch.Tensor.to_sparse_csr](https://pytorch.org/docs/stable/generated/torch.Tensor.to_sparse_csr.html#torch-tensor-to-sparse-csr)
-
 ```python
 torch.Tensor.to_sparse_csr(dense_dim=None)
 ```
 
 ### [paddle.Tensor.to_sparse_csr](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tensor)
-
 ```python
 paddle.Tensor.to_sparse_csr()
 ```

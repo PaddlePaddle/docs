@@ -1,14 +1,11 @@
-## [ 仅参数名不一致 ] torch.sparse.mm
-
+## [ 仅参数名不一致 ]torch.sparse.mm
 ### [torch.sparse.mm](https://pytorch.org/docs/stable/generated/torch.sparse.mm.html?highlight=torch+sparse+mm#torch.sparse.mm)
-
 ```python
 # PyTorch 文档有误，测试 PyTorch 参数名为 sparse, dense
 torch.sparse.mm(sparse, dense)
 ```
 
 ### [paddle.sparse.matmul](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/matmul_cn.html)
-
 ```python
 paddle.sparse.matmul(x, y, name=None)
 ```

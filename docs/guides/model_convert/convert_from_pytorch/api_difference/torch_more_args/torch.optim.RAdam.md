@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.RAdam
-
 ### [torch.optim.RAdam](https://pytorch.org/docs/stable/generated/torch.optim.RAdam.html#torch.optim.RAdam)
-
 ```python
 torch.optim.RAdam(params,
                 lr=0.001,
@@ -16,7 +14,6 @@ torch.optim.RAdam(params,
 ```
 
 ### [paddle.optimizer.RAdam](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/RAdam_cn.html#radam)
-
 ```python
 paddle.optimizer.RAdam(learning_rate=0.001,
                     beta1=0.9,

@@ -1,13 +1,11 @@
-## [ paddle 参数更多 ] torch.nn.Module
+## [ paddle 参数更多 ]torch.nn.Module
 
 ### [torch.nn.Module](https://pytorch.org/docs/stable/generated/torch.nn.Module.html?highlight=torch+nn+module#torch.nn.Module)
-
 ```python
 torch.nn.Module(*args, **kwargs)
 ```
 
 ### [paddle.nn.Layer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html)
-
 ```python
 paddle.nn.Layer(name_scope=None, dtype='float32')
 ```

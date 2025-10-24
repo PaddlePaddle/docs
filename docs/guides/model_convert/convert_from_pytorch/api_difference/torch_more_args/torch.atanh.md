@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.atanh
+## [ torch 参数更多 ]torch.atanh
 ### [torch.atanh](https://pytorch.org/docs/stable/generated/torch.atanh.html#torch.atanh)
-
 ```python
 torch.atanh(input,
            *,
@@ -8,7 +7,6 @@ torch.atanh(input,
 ```
 
 ### [paddle.atanh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atanh_cn.html)
-
 ```python
 paddle.atanh(x,
             name=None)

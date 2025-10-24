@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.cosh
-### [torch.cosh](https://pytorch.org/docs/stable/generated/torch.cosh.html#torch.cosh)
 
+### [torch.cosh](https://pytorch.org/docs/stable/generated/torch.cosh.html#torch.cosh)
 ```python
 torch.cosh(input,
            *,
@@ -8,7 +8,6 @@ torch.cosh(input,
 ```
 
 ### [paddle.cosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cosh_cn.html#cosh)
-
 ```python
 paddle.cosh(x,
             name=None)

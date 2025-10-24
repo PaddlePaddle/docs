@@ -1,13 +1,10 @@
-## [仅 API 调用方式不一致]torchvision.transforms.functional.adjust_hue
-
+## [ 仅 API 调用方式不一致 ]torchvision.transforms.functional.adjust_hue
 ### [torchvision.transforms.functional.adjust_hue](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.adjust_hue.html)
-
 ```python
 torchvision.transforms.functional.adjust_hue(img: Tensor, hue_factor: float)
 ```
 
 ### [paddle.vision.transforms.adjust_hue](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/adjust_hue_cn.html)
-
 ```python
 paddle.vision.transforms.adjust_hue(
     img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor],

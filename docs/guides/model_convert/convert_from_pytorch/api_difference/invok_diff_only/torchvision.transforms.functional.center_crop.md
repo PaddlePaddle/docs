@@ -1,13 +1,10 @@
-## [仅 API 调用方式不一致]torchvision.transforms.functional.center_crop
-
+## [ 仅 API 调用方式不一致 ]torchvision.transforms.functional.center_crop
 ### [torchvision.transforms.functional.center_crop](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.center_crop.html)
-
 ```python
 torchvision.transforms.functional.center_crop(img: Tensor, output_size: List[int])
 ```
 
 ### [paddle.vision.transforms.center_crop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/center_crop_cn.html)
-
 ```python
 paddle.vision.transforms.center_crop(
     img: Union[PIL.Image.Image, paddle.Tensor, np.ndarray],

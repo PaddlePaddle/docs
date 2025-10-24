@@ -1,13 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.Tensor.fmod
-
 ### [torch.Tensor.fmod](https://pytorch.org/docs/stable/generated/torch.Tensor.fmod.html#torch.Tensor.fmod)
-
 ```python
 torch.Tensor.fmod(other)
 ```
 
 ### [paddle.Tensor.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#mod-y-name-none)
-
 ```python
 paddle.Tensor.mod(y, name=None)
 ```

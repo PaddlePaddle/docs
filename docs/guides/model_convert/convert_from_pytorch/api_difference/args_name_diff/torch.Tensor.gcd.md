@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.gcd
-
 ### [torch.Tensor.gcd](https://pytorch.org/docs/stable/generated/torch.Tensor.gcd.html?highlight=torch+tensor+gcd#torch.Tensor.gcd)
-
 ```python
 torch.Tensor.gcd(other)
 ```
 
 ### [paddle.Tensor.gcd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#gcd-x-y-name-none)
-
 ```python
 paddle.Tensor.gcd(y, name=None)
 ```

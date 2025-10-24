@@ -1,13 +1,10 @@
-## [输入参数类型不一致]torchvision.models.densenet201
-
+## [ 输入参数类型不一致 ]torchvision.models.densenet201
 ### [torchvision.models.densenet201](https://pytorch.org/vision/main/models/generated/torchvision.models.densenet201.html)
-
 ```python
 torchvision.models.densenet201(*, weights: Optional[DenseNet201_Weights] = None, progress: bool = True, **kwargs: Any)
 ```
 
 ### [paddle.vision.models.densenet201](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/densenet201_cn.html)
-
 ```python
 paddle.vision.models.densenet201(pretrained=False, **kwargs)
 ```

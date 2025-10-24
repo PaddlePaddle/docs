@@ -1,13 +1,10 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.LinearLR
-
 ### [torch.optim.lr_scheduler.LinearLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.LinearLR.html)
-
 ```python
 torch.optim.lr_scheduler.LinearLR(optimizer, start_factor=0.3333333333333333, end_factor=1.0, total_iters=5, last_epoch=-1, verbose=False)
 ```
 
 ### [paddle.optimizer.lr.LinearLR](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/LinearLR_cn.html#linearlr)
-
 ```python
 paddle.optimizer.lr.LinearLR(learning_rate, total_steps, start_factor=1. / 3, end_factor=1.0, last_epoch=- 1, verbose=False)
 ```
@@ -26,7 +23,6 @@ paddle.optimizer.lr.LinearLR(learning_rate, total_steps, start_factor=1. / 3, en
 | verbose      | verbose       | 如果是 True，则在每一轮更新时在标准输出 stdout 输出一条信息。                                                                                                              |
 
 ### 转写示例
-
 ```python
 # PyTorch 写法
 linear = torch.nn.Linear(10, 10)

@@ -1,12 +1,11 @@
-## [ torch 参数更多 ] torch.distributed.barrier
-### [torch.distributed.barrier](https://pytorch.org/docs/stable/distributed.html?highlight=barrier#torch.distributed.barrier)
+## [ torch 参数更多 ]torch.distributed.barrier
 
+### [torch.distributed.barrier](https://pytorch.org/docs/stable/distributed.html?highlight=barrier#torch.distributed.barrier)
 ```python
 torch.distributed.barrier(group=None, async_op=False, device_ids=None)
 ```
 
 ### [paddle.distributed.barrier](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/barrier_cn.html)
-
 ```python
 paddle.distributed.barrier(group=None)
 ```

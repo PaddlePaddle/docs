@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.RMSprop
-
 ### [torch.optim.RMSprop](https://pytorch.org/docs/stable/generated/torch.optim.RMSprop.html)
-
 ```python
 torch.optim.RMSprop(params,
                 lr=0.01,
@@ -16,7 +14,6 @@ torch.optim.RMSprop(params,
 ```
 
 ### [paddle.optimizer.RMSProp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/RMSProp_cn.html)
-
 ```python
 paddle.optimizer.RMSProp(learning_rate,
                     rho=0.95,

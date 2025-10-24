@@ -1,13 +1,10 @@
-## [输入参数类型不一致]torchvision.models.inception_v3
-
+## [ 输入参数类型不一致 ]torchvision.models.inception_v3
 ### [torchvision.models.inception_v3](https://pytorch.org/vision/main/models/generated/torchvision.models.inception_v3.html)
-
 ```python
 torchvision.models.inception_v3(*, weights: Optional[Inception_V3_Weights] = None, progress: bool = True, **kwargs: Any)
 ```
 
 ### [paddle.vision.models.inception_v3](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/inception_v3_cn.html)
-
 ```python
 paddle.vision.models.inception_v3(pretrained=False, **kwargs)
 ```

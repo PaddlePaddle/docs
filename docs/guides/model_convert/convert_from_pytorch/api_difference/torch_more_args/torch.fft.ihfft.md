@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.fft.ihfft
-
+## [ torch 参数更多 ]torch.fft.ihfft
 ### [torch.fft.ihfft](https://pytorch.org/docs/stable/generated/torch.fft.ihfft.html?highlight=ihfft#torch.fft.ihfft)
-
 ```python
 torch.fft.ihfft(input,
                 n=None,
@@ -12,7 +10,6 @@ torch.fft.ihfft(input,
 ```
 
 ### [paddle.fft.ihfft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/ihfft_cn.html)
-
 ```python
 paddle.fft.ihfft(x,
                 n=None,

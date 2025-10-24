@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.Adam
-
 ### [torch.optim.Adam](https://pytorch.org/docs/stable/generated/torch.optim.Adam.html)
-
 ```python
 torch.optim.Adam(params,
                 lr=0.001,
@@ -17,7 +15,6 @@ torch.optim.Adam(params,
 ```
 
 ### [paddle.optimizer.Adam](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Adam_cn.html)
-
 ```python
 paddle.optimizer.Adam(learning_rate=0.001,
                     beta1=0.9,

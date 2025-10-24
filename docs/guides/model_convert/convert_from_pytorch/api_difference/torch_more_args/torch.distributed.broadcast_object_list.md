@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.distributed.broadcast_object_list
-
+## [ torch 参数更多 ]torch.distributed.broadcast_object_list
 ### [torch.distributed.broadcast_object_list](https://pytorch.org/docs/stable/distributed.html?highlight=broadcast_object_list#torch.distributed.broadcast_object_list)
-
 ```python
 torch.distributed.broadcast_object_list(object_list, src=0, group=None, device=None)
 ```
 
 ### [paddle.distributed.broadcast_object_list](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/broadcast_object_list_cn.html)
-
 ```python
 paddle.distributed.broadcast_object_list(object_list, src, group=None)
 ```
