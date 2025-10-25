@@ -1,13 +1,10 @@
-## [输入参数类型不一致]torchvision.models.resnet18
-
+## [ 输入参数类型不一致 ]torchvision.models.resnet18
 ### [torchvision.models.resnet18](https://pytorch.org/vision/stable/models/generated/torchvision.models.resnet18.html)
-
 ```python
 torchvision.models.resnet18(*, weights: Optional[ResNet18_Weights] = None, progress: bool = True, **kwargs: Any)
 ```
 
 ### [paddle.vision.models.resnet18](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/resnet18_cn.html)
-
 ```python
 paddle.vision.models.resnet18(pretrained=False, **kwargs)
 ```

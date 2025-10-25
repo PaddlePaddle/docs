@@ -1,13 +1,10 @@
-## [仅参数名不一致]torch.nn.Module.named_parameters
-
+## [ 仅参数名不一致 ]torch.nn.Module.named_parameters
 ### [torch.nn.Module.named_parameters](https://pytorch.org/docs/stable/generated/torch.nn.Module.html?highlight=torch+nn+module+named_parameters#torch.nn.Module.named_parameters)
-
 ```python
 torch.nn.Module.named_parameters(prefix='', recurse=True, remove_duplicate=True)
 ```
 
 ### [paddle.nn.Layer.named_parameters](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#named-parameters-prefix-include-sublayers-true)
-
 ```python
 paddle.nn.Layer.named_parameters(prefix='', include_sublayers=True, remove_duplicate=True)
 ```

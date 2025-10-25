@@ -1,13 +1,11 @@
 ## [ 仅参数名不一致 ]torch.squeeze
 ### [torch.squeeze](https://pytorch.org/docs/stable/generated/torch.squeeze.html?highlight=squeeze#torch.squeeze)
-
 ```python
 torch.squeeze(input,
               dim=None)
 ```
 
 ### [paddle.squeeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/squeeze_cn.html#squeeze)
-
 ```python
 paddle.squeeze(x,
                axis=None,

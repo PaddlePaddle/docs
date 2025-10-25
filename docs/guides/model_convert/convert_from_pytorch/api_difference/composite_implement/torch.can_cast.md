@@ -1,7 +1,5 @@
-## [组合替代实现]torch.can_cast
-
+## [ 组合替代实现 ]torch.can_cast
 ### [torch.can_cast](https://pytorch.org/docs/stable/generated/torch.can_cast.html#torch-can-cast)
-
 ```python
 torch.can_cast(from_, to)
 ```
@@ -11,7 +9,6 @@ torch.can_cast(from_, to)
 Paddle 无此 API，需要组合实现。
 
 ### 转写示例
-
 ```python
 # PyTorch 写法
 torch.can_cast(x, y)

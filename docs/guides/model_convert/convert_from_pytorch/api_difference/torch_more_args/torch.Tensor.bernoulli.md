@@ -1,13 +1,10 @@
-## [ torch 参数更多 ] torch.Tensor.bernoulli
-
+## [ torch 参数更多 ]torch.Tensor.bernoulli
 ### [torch.Tensor.bernoulli](https://pytorch.org/docs/stable/generated/torch.Tensor.bernoulli.html#torch.Tensor.bernoulli)
-
 ```python
 torch.Tensor.bernoulli(p=None, *, generator=None)
 ```
 
 ### [paddle.bernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bernoulli_cn.html#bernoulli)
-
 ```python
 paddle.bernoulli(x, p=None, name=None)
 ```

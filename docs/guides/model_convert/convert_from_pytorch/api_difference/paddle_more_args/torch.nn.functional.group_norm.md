@@ -1,7 +1,5 @@
 ## [ paddle 参数更多 ]torch.nn.functional.group_norm
-
 ### [torch.nn.functional.group_norm](https://pytorch.org/docs/stable/generated/torch.nn.functional.group_norm.html#torch.nn.functional.group_norm)
-
 ```python
 torch.nn.functional.group_norm(input, num_groups, weight=None, bias=None, eps=1e-05)
 ```

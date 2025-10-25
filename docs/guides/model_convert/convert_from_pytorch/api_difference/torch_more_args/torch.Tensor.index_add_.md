@@ -1,12 +1,10 @@
 ## [ torch 参数更多 ]torch.Tensor.index_add_
 ### [torch.Tensor.index_add_](https://pytorch.org/docs/stable/generated/torch.Tensor.index_add_.html#torch.Tensor.index_add_)
-
 ```python
 torch.Tensor.index_add_(dim, index, source, *, alpha=1)
 ```
 
 ### [paddle.Tensor.index_add_]()
-
 ```python
 paddle.Tensor.index_add_(index, axis, value)
 ```

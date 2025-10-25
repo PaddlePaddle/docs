@@ -1,13 +1,10 @@
-## [仅 API 调用方式不一致]torch.distributed.ReduceOp.PRODUCT
-
+## [ 仅 API 调用方式不一致 ]torch.distributed.ReduceOp.PRODUCT
 ### [torch.distributed.ReduceOp.PRODUCT](https://pytorch.org/docs/stable/distributed.html#torch.distributed.ReduceOp)
-
 ```python
 torch.distributed.ReduceOp.PRODUCT
 ```
 
 ### [paddle.distributed.ReduceOp.PROD](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/ReduceOp_cn.html#reduceop)
-
 ```python
 paddle.distributed.ReduceOp.PROD
 ```

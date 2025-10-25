@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.inner
-
 ### [torch.Tensor.inner](https://pytorch.org/docs/stable/generated/torch.Tensor.inner.html)
-
 ```python
 torch.Tensor.inner(other)
 ```
 
 ### [paddle.Tensor.inner]()
-
 ```python
 paddle.Tensor.inner(y, name=None)
 ```

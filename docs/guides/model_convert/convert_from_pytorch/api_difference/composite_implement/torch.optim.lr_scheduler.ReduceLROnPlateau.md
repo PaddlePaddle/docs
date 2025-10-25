@@ -1,7 +1,5 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.ReduceLROnPlateau
-
 ### [torch.optim.lr_scheduler.ReduceLROnPlateau](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html)
-
 ```python
 torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer,
                                         mode='min',
@@ -16,7 +14,6 @@ torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer,
 ```
 
 ### [paddle.optimizer.lr.ReduceOnPlateau](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/ReduceOnPlateau_cn.html)
-
 ```python
 paddle.optimizer.lr.ReduceOnPlateau(learning_rate,
                                 mode='min',

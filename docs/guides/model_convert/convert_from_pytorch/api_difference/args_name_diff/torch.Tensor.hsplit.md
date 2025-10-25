@@ -4,13 +4,11 @@ api 存在重载情况，分别如下：
 -------------------------------------------------------------------------------------------------
 
 ### [torch.Tensor.hsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.hsplit.html)
-
 ```python
 torch.Tensor.hsplit(sections)
 ```
 
 ### [paddle.Tensor.hsplit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#hsplit-num_or_indices-name-none)
-
 ```python
 paddle.Tensor.hsplit(num_or_indices, name=None)
 ```
@@ -26,13 +24,11 @@ paddle.Tensor.hsplit(num_or_indices, name=None)
 -------------------------------------------------------------------------------------------------
 
 ### [torch.Tensor.hsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.hsplit.html)
-
 ```python
 torch.Tensor.hsplit(indices)
 ```
 
 ### [paddle.Tensor.hsplit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#hsplit-num_or_indices-name-none)
-
 ```python
 paddle.Tensor.hsplit(num_or_indices, name=None)
 ```

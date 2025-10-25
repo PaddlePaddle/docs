@@ -1,7 +1,5 @@
 ## [ paddle 参数更多 ]torch.nn.LPPool2d
-
 ### [torch.nn.LPPool2d](https://pytorch.org/docs/stable/generated/torch.nn.LPPool2d.html#lppool2d)
-
 ```python
 torch.nn.LPPool2d(norm_type, kernel_size, stride=None, ceil_mode=False)
 ```

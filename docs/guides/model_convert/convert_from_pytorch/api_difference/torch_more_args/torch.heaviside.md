@@ -1,12 +1,10 @@
 ## [ torch 参数更多 ]torch.heaviside
 ### [torch.heaviside](https://pytorch.org/docs/stable/generated/torch.heaviside.html#torch.heaviside)
-
 ```python
 torch.heaviside(input, values, *, out=None)
 ```
 
 ### [paddle.heaviside](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/heaviside_cn.html#heaviside)
-
 ```python
 paddle.heaviside(x, y, name=None)
 ```

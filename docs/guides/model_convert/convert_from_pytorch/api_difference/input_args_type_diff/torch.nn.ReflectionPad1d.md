@@ -1,12 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.nn.ReflectionPad1d
 ### [torch.nn.ReflectionPad1d](https://pytorch.org/docs/stable/generated/torch.nn.ReflectionPad1d.html?highlight=pad#torch.nn.ReflectionPad1d)
-
 ```python
 torch.nn.ReflectionPad1d(padding)
 ```
 
 ### [paddle.nn.Pad1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Pad1D_cn.html#pad1d)
-
 ```python
 paddle.nn.Pad1D(padding,
                 mode='constant',

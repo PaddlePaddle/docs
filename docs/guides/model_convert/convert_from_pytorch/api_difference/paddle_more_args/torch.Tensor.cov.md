@@ -1,12 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.cov
 ### [torch.Tensor.cov](https://pytorch.org/docs/stable/generated/torch.Tensor.cov.html#torch.Tensor.cov)
-
 ```python
 torch.Tensor.cov(*, correction=1, fweights=None, aweights=None)
 ```
 
 ### [paddle.Tensor.cov]()
-
 ```python
 paddle.Tensor.cov(rowvar=True,
                   ddof=True,

@@ -1,13 +1,10 @@
-## [仅参数名不一致]torch.nn.functional.leaky_relu_
-
+## [ 仅参数名不一致 ]torch.nn.functional.leaky_relu_
 ### [torch.nn.functional.leaky_relu_](https://pytorch.org/docs/stable/jit_builtin_functions.html#supported-tensor-methods)
-
 ```python
 torch.nn.functional.leaky_relu_(input, negative_slope=0.01)
 ```
 
 ### [paddle.nn.functional.leaky_relu_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/leaky_relu_cn.html)
-
 ```python
 paddle.nn.functional.leaky_relu_(x, negative_slope=0.01)
 ```

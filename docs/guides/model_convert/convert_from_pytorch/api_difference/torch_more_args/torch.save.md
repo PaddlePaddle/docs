@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.save
+## [ torch 参数更多 ]torch.save
 ### [torch.save](https://pytorch.org/docs/stable/generated/torch.save.html?highlight=save#torch.save)
-
 ```python
 torch.save(obj,
            f,
@@ -10,7 +9,6 @@ torch.save(obj,
 ```
 
 ### [paddle.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/save_cn.html#save)
-
 ```python
 paddle.save(obj,
             path,

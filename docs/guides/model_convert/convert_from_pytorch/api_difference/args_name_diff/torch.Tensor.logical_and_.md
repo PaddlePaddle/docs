@@ -1,13 +1,10 @@
-## [ 仅参数名不一致 ] torch.Tensor.logical_and_
-
+## [ 仅参数名不一致 ]torch.Tensor.logical_and_
 ### [torch.Tensor.logical_and_](https://pytorch.org/docs/stable/generated/torch.Tensor.logical_and_.html)
-
 ```python
 torch.Tensor.logical_and_(other)
 ```
 
 ### [paddle.Tensor.logical_and_]()
-
 ```python
 paddle.Tensor.logical_and_(y)
 ```

@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.transforms.PowerTransform
-
 ### [torch.distributions.transforms.PowerTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.SigmoidTransform)
-
 ```python
 torch.distributions.transforms.PowerTransform(exponent, cache_size=0)
 ```
 
 ### [paddle.distribution.PowerTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/PowerTransform_cn.html#powertransform)
-
 ```python
 paddle.distribution.PowerTransform(power)
 ```

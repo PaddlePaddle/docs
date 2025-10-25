@@ -1,5 +1,4 @@
-## [ torch 参数更多 ] torch.nn.Dropout2d
-
+## [ torch 参数更多 ]torch.nn.Dropout2d
 ### [torch.nn.Dropout2d](https://pytorch.org/docs/stable/generated/torch.nn.Dropout2d.html?highlight=dropout2d#torch.nn.Dropout2d)
 ```python
 torch.nn.Dropout2d(p=0.5,

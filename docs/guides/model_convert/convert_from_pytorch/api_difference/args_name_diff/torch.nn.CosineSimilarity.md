@@ -1,13 +1,11 @@
 ## [ 仅参数名不一致 ]torch.nn.CosineSimilarity
 ### [torch.nn.CosineSimilarity](https://pytorch.org/docs/stable/generated/torch.nn.CosineSimilarity.html?highlight=nn+cosinesimilarity#torch.nn.CosineSimilarity)
-
 ```python
 torch.nn.CosineSimilarity(dim=1,
                             eps=1e-08)
 ```
 
 ### [paddle.nn.CosineSimilarity](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/CosineSimilarity_cn.html#cosinesimilarity)
-
 ```python
 paddle.nn.CosineSimilarity(axis=1,
                             eps=1e-8)

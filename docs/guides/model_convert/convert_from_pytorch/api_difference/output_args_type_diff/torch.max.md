@@ -4,7 +4,6 @@
 -------------------------------------------------------------------------------------------------
 
 ### [torch.max](https://pytorch.org/docs/stable/generated/torch.max.html?highlight=max#torch.max)
-
 ```python
 torch.max(input,
           dim=None,
@@ -14,7 +13,6 @@ torch.max(input,
 ```
 
 ### [paddle.max](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/max_cn.html#max)
-
 ```python
 paddle.max(x,
            axis=None,
@@ -58,7 +56,6 @@ result = paddle.max(a, axis=1), paddle.argmax(a, axis=1)
 --------------------------------------------------------------------------------------------------
 
 ### [torch.max](https://pytorch.org/docs/stable/generated/torch.max.html?highlight=max#torch.max)
-
 ```python
 torch.max(input,
           other,
@@ -67,7 +64,6 @@ torch.max(input,
 ```
 
 ### [paddle.maximum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/minimum_cn.html#minimum)
-
 ```python
 paddle.maximum(x,
                y,

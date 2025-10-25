@@ -1,13 +1,11 @@
 ## [ 仅参数名不一致 ]torch.pinverse
 ### [torch.pinverse](https://pytorch.org/docs/stable/generated/torch.pinverse.html?highlight=pinverse#torch.pinverse)
-
 ```python
 torch.pinverse(input,
                rcond=1e-15)
 ```
 
 ### [paddle.linalg.pinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/pinv_cn.html#pinv)
-
 ```python
 paddle.linalg.pinv(x,
                    rcond=1e-15,

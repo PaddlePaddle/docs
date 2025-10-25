@@ -1,12 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.LogSoftmax
 ### [torch.nn.LogSoftmax](https://pytorch.org/docs/stable/generated/torch.nn.LogSoftmax.html?highlight=nn+logsoftmax#torch.nn.LogSoftmax)
-
 ```python
 torch.nn.LogSoftmax(dim=None)
 ```
 
 ### [paddle.nn.LogSoftmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LogSoftmax_cn.html#logsoftmax)
-
 ```python
 paddle.nn.LogSoftmax(axis=- 1, name=None)
 ```

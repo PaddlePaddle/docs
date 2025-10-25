@@ -1,5 +1,4 @@
 ## [ 组合替代实现 ]torch.autograd.Variable
-
 ### [torch.autograd.Variable](https://pytorch.org/docs/stable/autograd.html#variable-deprecated)
 ```python
 torch.autograd.Variable(data, requires_grad=False)
@@ -9,8 +8,7 @@ torch.autograd.Variable(data, requires_grad=False)
 
 PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 
-###  转写示例
-
+### 转写示例
 ```python
 # PyTorch 写法
 torch.autograd.Variable(data, requires_grad=False)

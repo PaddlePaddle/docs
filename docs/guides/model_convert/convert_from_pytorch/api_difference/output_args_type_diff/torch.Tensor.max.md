@@ -1,17 +1,14 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.max
-
 该 api 有两组参数列表重载，因此有两组差异分析。
 
 -----------------------------------------------
 
 ### [torch.Tensor.max](https://pytorch.org/docs/stable/generated/torch.Tensor.max.html)
-
 ```python
 torch.Tensor.max(dim=None, keepdim=False)
 ```
 
 ### [paddle.Tensor.max](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#max-axis-none-keepdim-false-name-none)
-
 ```python
 paddle.Tensor.max(axis=None, keepdim=False, name=None)
 ```
@@ -27,7 +24,6 @@ paddle.Tensor.max(axis=None, keepdim=False, name=None)
 | 返回值           | 返回值            | 表示返回结果，当指定 dim 后，PyTorch 会返回比较结果和元素索引， Paddle 不会返回元素索引，需要转写。               |
 
 ### 转写示例
-
 #### 指定 dim 后的返回值
 ```python
 # PyTorch 写法
@@ -40,13 +36,11 @@ result = x.max(dim=1), x.argmax(dim=1)
 --------------------------------------------------------------
 
 ### [torch.Tensor.max](https://pytorch.org/docs/stable/generated/torch.Tensor.max.html)
-
 ```python
 torch.Tensor.max(other)
 ```
 
 ### [paddle.Tensor.maximum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#maximum-y-axis-1-name-none)
-
 ```python
 paddle.Tensor.maximum(y)
 ```

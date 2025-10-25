@@ -225,7 +225,7 @@ _________________________
 - 输入数据不支持可变形状写法，如[None, 1]、[-1, 1]。如果训练数据形状是变化的，一种可行 Workaround 方案是根据不同数据形状创建不同网络，即在组网阶段将形状固定，具体参考附 1 代码。
 - 我们尚未在 windows 平台进行完整验证和支持。
 - 目前只支持使用 default_main_program 和 default_startup_program。
-- boradcast 语意尚未完整支持。
+- broadcast 语意尚未完整支持。
 
 
 .. _autograd_design_details:

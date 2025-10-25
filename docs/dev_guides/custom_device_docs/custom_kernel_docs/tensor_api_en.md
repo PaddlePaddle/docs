@@ -107,7 +107,7 @@ All element data of `DenseTensor` are stored in contiguous memory, and you can r
   // Return：bool categorical variable
   bool valid() const noexcept override;
 
-  // Check wether the tensor is initialized
+  // Check whether the tensor is initialized
   // Parameter：None
   // Return：bool categorical variable
   bool initialized() const override;

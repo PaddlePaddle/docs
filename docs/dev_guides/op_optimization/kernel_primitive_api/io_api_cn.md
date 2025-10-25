@@ -79,7 +79,7 @@ __device__ void ReadDataBc(T* dst, const T* src,
 
 ### 函数说明
 
-将需要进行 brodcast 的 2D 数据按照 T 类型从全局内存 src 中读取到寄存器 dst 中，其中 src 为原始输入数据指针，根据 config 计算当前输出数据对应的输入数据坐标，并将坐标对应的数据读取到寄存器中。</br>
+将需要进行 broadcast 的 2D 数据按照 T 类型从全局内存 src 中读取到寄存器 dst 中，其中 src 为原始输入数据指针，根据 config 计算当前输出数据对应的输入数据坐标，并将坐标对应的数据读取到寄存器中。</br>
 数据处理过程如下：</br>
 ![ReadDataBc](./images/io_read_data_broadcast_stride.png)
 
@@ -116,7 +116,7 @@ __device__ void ReadDataBc(T* dst, const T* src,
 
 ### 函数说明
 
-将需要进行 brodcast 的 1D 数据按照 T 类型从全局内存 src 中读取到寄存器 dst 中，其中 src 为原始输入数据指针，根据 config 计算当前输出数据对应的输入数据坐标，并将坐标对应的数据读取到寄存器中。</br>
+将需要进行 broadcast 的 1D 数据按照 T 类型从全局内存 src 中读取到寄存器 dst 中，其中 src 为原始输入数据指针，根据 config 计算当前输出数据对应的输入数据坐标，并将坐标对应的数据读取到寄存器中。</br>
 数据处理过程如下：</br>
 ![ReadDataBc](./images/io_read_data_broadcast.png)
 

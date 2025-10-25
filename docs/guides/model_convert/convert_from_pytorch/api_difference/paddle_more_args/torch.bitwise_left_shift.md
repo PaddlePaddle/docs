@@ -1,13 +1,10 @@
 ## [ paddle 参数更多 ]torch.bitwise_left_shift
-
 ### [torch.bitwise_left_shift](https://pytorch.org/docs/stable/generated/torch.bitwise_left_shift.html)
-
 ```python
 torch.bitwise_left_shift(input, other, *, out=None)
 ```
 
 ### [paddle.bitwise_left_shift](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/bitwise_left_shift_cn.html#bitwise-left-shift)
-
 ```python
 paddle.bitwise_left_shift(x, y, is_arithmetic=True, out=None, name=None)
 ```

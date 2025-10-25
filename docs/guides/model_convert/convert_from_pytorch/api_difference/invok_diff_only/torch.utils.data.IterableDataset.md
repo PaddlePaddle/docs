@@ -1,13 +1,10 @@
-## [仅 API 调用方式不一致]torch.utils.data.IterableDataset
-
+## [ 仅 API 调用方式不一致 ]torch.utils.data.IterableDataset
 ### [torch.utils.data.IterableDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset)
-
 ```python
 torch.utils.data.IterableDataset()
 ```
 
 ### [paddle.io.IterableDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/IterableDataset_cn.html#iterabledataset)
-
 ```python
 paddle.io.IterableDataset()
 ```

@@ -1,13 +1,10 @@
-## [ torch 参数更多]torch.logcumsumexp
-
+## [ torch 参数更多 ]torch.logcumsumexp
 ### [torch.logcumsumexp](https://pytorch.org/docs/stable/generated/torch.logcumsumexp.html#torch-logcumsumexp)
-
 ```python
 torch.logcumsumexp(input, dim, *, out=None)
 ```
 
 ### [paddle.logcumsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logcumsumexp_cn.html#logcumsumexp)
-
 ```python
 paddle.logcumsumexp(x, axis=None, dtype=None, name=None)
 ```
@@ -24,9 +21,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | -       | dtype        | 表示输出 Tensor 的数据类型，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 ### 转写示例
-
 #### out：指定输出
-
 ```python
 # PyTorch 写法
 torch.logcumsumexp(x,dim=0, out=output)
