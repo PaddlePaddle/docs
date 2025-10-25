@@ -156,7 +156,7 @@
 .. code:: ipython3
 
     linear = paddle.nn.Linear(10, 10)
-    clip = paddle.nn.ClipGradByGloabalNorm(clip_norm=1.0)
+    clip = paddle.nn.ClipGradByGlobalNorm(clip_norm=1.0)
     sdg = paddle.optimizer.SGD(learning_rate=0.1, parameters=linear.parameters(), grad_clip=clip)
 
 如果仅需裁剪部分参数，用法如下：

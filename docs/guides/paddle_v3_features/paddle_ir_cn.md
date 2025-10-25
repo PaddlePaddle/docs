@@ -98,7 +98,7 @@ print(out)
 ### 1.灵活的基础组件
 飞桨提供了 Trait 和 Interface 两种重要机制实现了对算子 Op 的特征和接口的抽象标记。 比如 InplaceTrait 表示一个 Op 具有 Inplace 特征，  InferShapeInterface 表示一个算子定义了 InferShape 函数接口等，这二者都是可以任意扩展的，只要派生自相应的基类、遵循相应的实现规则即可；并对算子体系下核心概念抽出 Type、Attrbute、Op，这三者是基于 Trait 和 Interface 进行定义的。它们会对关联自己所拥有的相应 Trait 和 Interface ；Dialect 用来对 Type、Attribtue、Op 做模块化管理， 比如 BuiltinDialect、PaddleDialect、CinnDialect 等等。一个 Dialect 里面包含了一系列的 Type、Attribtue、Op 的定义。相应的，每个 Type、Attribtue、Op 都是定义在某个唯一的 Dialect 里面。对整个 IR 框架而言， Dialect 是可以随意插拔的，也是可以任意扩展的。
 
-这一层是 IR 适应多种场景的基础。这一层的每一个要素都是可定制化扩展的，一般情况下，针对一个具体的场景，比如分布式、编译器。都需要定义自己需要用到的 Trait、Interfce，然后定义自己的 Dialect，在自己的 Dialect 里面，定义自己需要用到的 Type、Attribute、Op。
+这一层是 IR 适应多种场景的基础。这一层的每一个要素都是可定制化扩展的，一般情况下，针对一个具体的场景，比如分布式、编译器。都需要定义自己需要用到的 Trait、Interface，然后定义自己的 Dialect，在自己的 Dialect 里面，定义自己需要用到的 Type、Attribute、Op。
 
 ### 2.多层级的 Dialect
 
