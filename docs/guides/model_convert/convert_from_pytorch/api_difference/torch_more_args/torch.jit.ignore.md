@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.jit.ignore
-
+## [ torch 参数更多 ]torch.jit.ignore
 ### [torch.jit.ignore](https://pytorch.org/docs/stable/generated/torch.jit.ignore.html#torch-jit-ignore)
-
 ```python
 torch.jit.ignore(drop=False, **kwargs)
 ```
 
 ### [paddle.jit.not_to_static](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/not_to_static_cn.html#not-to-static)
-
 ```python
 paddle.jit.not_to_static()
 ```
@@ -22,7 +19,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 
 ### 转写示例
-
 ```python
 # PyTorch 写法:
 class MyModule(nn.Module):

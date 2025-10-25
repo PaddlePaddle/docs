@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.clamp_max
-### [torch.clamp_max]()
 
+### [torch.clamp_max]()
 ```python
 torch.clamp_max(input,
             max=None,
@@ -9,7 +9,6 @@ torch.clamp_max(input,
 ```
 
 ### [paddle.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/clip_cn.html#clip)
-
 ```python
 paddle.clip(x,
             min=None,

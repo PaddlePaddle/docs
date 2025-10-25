@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.combinations
-
 ### [torch.combinations](https://pytorch.org/docs/stable/generated/torch.combinations.html#torch.combinations)
-
 ```python
 torch.combinations(input, r=2, with_replacement=False)
 ```
 
 ### [paddle.combinations](https://github.com/PaddlePaddle/Paddle/blob/8932f1c5e26788ab1eed226e70fafb1ea67ce737/python/paddle/tensor/math.py#L7099)
-
 ```python
 paddle.combinations(x, r=2, with_replacement=False, name=None)
 ```

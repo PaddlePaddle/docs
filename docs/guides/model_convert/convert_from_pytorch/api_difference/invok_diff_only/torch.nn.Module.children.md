@@ -1,13 +1,10 @@
-## [仅 API 调用方式不一致]torch.nn.Module.children
-
+## [ 仅 API 调用方式不一致 ]torch.nn.Module.children
 ### [torch.nn.Module.children](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.children)
-
 ```python
 torch.nn.Module.children()
 ```
 
 ### [paddle.nn.Layer.children](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#children)
-
 ```python
 paddle.nn.Layer.children()
 ```

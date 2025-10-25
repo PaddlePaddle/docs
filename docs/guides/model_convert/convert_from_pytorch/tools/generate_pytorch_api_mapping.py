@@ -1,298 +1,27 @@
 import argparse
-import ast
-import json
 import os
 import re
-from collections import defaultdict
 
+from utils import (
+    escape_underscores_in_api,
+    extract_no_need_convert_list,
+    get_base_dir,
+    get_pytorch_url,
+    load_mapping_json,
+    parse_md_files,
+)
 
-def get_pytorch_url(torch_api: str) -> str:
-    """
-    根据PyTorch API名称生成其官方文档URL
-
-    Args:
-        torch_api: PyTorch API的全限定名（如'torch.add', 'torch.nn.Linear', 'torch.Tensor.add'）
-
-    Returns:
-        对应API的官方文档URL字符串
-
-    Rules:
-    1. 优先检查特殊映射
-    2. 优先检查是否有专门的generated页面
-    3. 类方法指向父类页面#锚点
-    4. 模块级函数/常量指向模块名.html
-    5. Tensor相关API指向tensors.html
-    6. 顶层函数（torch.xxx）指向torch.html
-    7. 特殊处理torchvision等子库的URL结构
-    """
-    base_url = "https://pytorch.org/docs/stable/"
-    torch_api = torch_api.replace(r"\_", "_")
-
-    # 特殊映射：手动指定已知问题API的正确URL
-    special_mappings = {
-        "torch.cuda.check_error": "generated/torch.cuda.cudart.html",
-        "torch.cuda.mem_get_info": "generated/torch.cuda.memory.mem_get_info.html",
-        "torch.nn.attention.sdpa_kernel": "generated/torch.nn.attention.sdpa_kernel.html",
-        "torch.torch.int32": "tensors.html#torch.int32",
-        "torch.nn.attention._cur_sdpa_kernel_backends": "nn.attention.html#torch.nn.attention.sdpa_kernel",
-        "torch.cuda.memory_reserved": "generated/torch.cuda.memory.memory_reserved.html",
-        "torch.cuda.memory_allocated": "generated/torch.cuda.memory.memory_allocated.html",
-        "torch.cuda.empty_cache": "generated/torch.cuda.memory.empty_cache.html",
-    }
-
-    # 检查特殊映射
-    if torch_api in special_mappings:
-        return f"{base_url}{special_mappings[torch_api]}"
-
-    # 优先检查是否有专门的generated页面
-    generated_apis = {
-        "torch.pow": "generated/torch.pow.html",
-        "torch.nn.utils.parameters_to_vector": "generated/torch.nn.utils.parameters_to_vector.html",
-        "torch.nn.utils.vector_to_parameters": "generated/torch.nn.utils.vector_to_parameters.html",
-        "torch.nn.Module": "generated/torch.nn.Module.html",
-    }
-
-    if torch_api in generated_apis:
-        return f"{base_url}{generated_apis[torch_api]}"
-
-    # 特殊处理：类方法（如torch.nn.Module.to）
-    if torch_api.startswith("torch.nn.Module."):
-        return f"{base_url}generated/torch.nn.Module.html#{torch_api}"
-
-    if torch_api.startswith("torch.linalg.") or torch_api.startswith(
-        "torch.cuda."
-    ):
-        return f"{base_url}generated/{torch_api}.html#{torch_api}"
-
-    # 特殊子库处理（torchvision）
-    if torch_api.startswith("torchvision."):
-        vision_base = "https://pytorch.org/vision/stable/"
-        if torch_api == "torchvision.models":
-            return f"{vision_base}models.html"
-        return f"{vision_base}generated/{torch_api}.html#{torch_api}"
-
-    # 特殊处理：torch.__version__相关
-    if torch_api.startswith("torch.__version__"):
-        return base_url  # 版本信息通常在首页
-
-    # 特殊处理：torch.distributed.ReduceOp枚举值
-    if torch_api.startswith("torch.distributed.ReduceOp."):
-        return f"{base_url}distributed.html#{torch_api}"
-
-    # 特殊处理：torch.autograd.Function
-    if torch_api == "torch.autograd.Function":
-        return f"{base_url}autograd.html#{torch_api}"
-
-    # 特殊处理：torch.utils.cpp_extension
-    if torch_api.startswith("torch.utils.cpp_extension"):
-        return f"{base_url}cpp_extension.html#{torch_api}"
-
-    # 1. 处理Tensor相关API
-    if torch_api.startswith("torch.Tensor") or torch_api == "torch.Tensor":
-        return f"{base_url}tensors.html#{torch_api}"
-
-    # 2. 处理顶层函数（无子模块）
-    if len(torch_api.split(".")) == 2 and torch_api.startswith("torch."):
-        # 检查是否有专门的generated页面
-        generated_check = [
-            "torch.pow",
-            "torch.abs",
-            "torch.add",
-            "torch.sub",
-            "torch.mul",
-            "torch.div",
-            "torch.exp",
-            "torch.log",
-            "torch.sin",
-            "torch.cos",
-            "torch.tan",
-            "torch.sigmoid",
-        ]
-
-        if any(torch_api.startswith(prefix) for prefix in generated_check):
-            return f"{base_url}generated/{torch_api}.html"
-        return f"{base_url}torch.html#{torch_api}"
-
-    # 分割API路径
-    parts = torch_api.split(".")
-    module_path = ".".join(parts[:-1])  # 模块路径
-    item_name = parts[-1]  # 最后一项名称
-
-    # 特殊处理：torch.functional函数
-    if parts[0] == "torch" and parts[1] == "functional":
-        return f"{base_url}torch.html#{torch_api}"
-
-    # 3. 处理模块级函数/常量
-    if parts[0] == "torch" and not parts[-1][0].isupper():
-        # 特殊模块映射（基于官方文档结构）
-        module_map = {
-            "torch.nn.init": "nn.init.html",
-            "torch.nn.functional": "nn.functional.html",
-            "torch.cuda.amp": "amp.html",
-            "torch.distributions": "distributions.html",
-            "torch.nn.utils": "nn.utils.html",
-            "torch.optim": "optim.html",
-            "torch.random": "random.html",
-            "torch.special": "special.html",
-            "torch.distributed": "distributed.html",
-            "torch.utils.data": "data.html",
-        }
-        module_key = ".".join(parts[:-1])
-        module_slug = module_map.get(module_key, f"generated/{module_key}.html")
-
-        # 检查是否是应该指向generated目录的API
-        generated_modules = [
-            "torch.nn.utils.parameters_to_vector",
-            "torch.nn.utils.vector_to_parameters",
-        ]
-
-        if torch_api in generated_modules:
-            return f"{base_url}generated/{torch_api}.html"
-
-        return f"{base_url}{module_slug}#{torch_api}"
-
-    # 4. 处理类/独立函数
-    if parts[-1][0].isupper() or len(parts) == 1:
-        # 特殊类映射
-        class_map = {
-            "torch.autograd.Function": "autograd.html",
-            "torch.utils.cpp_extension.BuildExtension": "cpp_extension.html",
-            "torch.nn.Module": "generated/torch.nn.Module.html",
-        }
-        if torch_api in class_map:
-            return f"{base_url}{class_map[torch_api]}#{torch_api}"
-        return f"{base_url}generated/{torch_api}.html#{torch_api}"
-
-    # 5. 默认处理（类方法）
-    # 特殊处理类方法
-    class_method_map = {
-        "torch.nn.Module": "generated/torch.nn.Module.html",
-        "torch.utils.cpp_extension.BuildExtension": "cpp_extension.html",
-    }
-
-    for class_name, page_name in class_method_map.items():
-        if module_path == class_name:
-            return f"{base_url}{page_name}#{torch_api}"
-
-    # 默认情况下，尝试生成到generated目录
-    return f"{base_url}generated/{module_path}.html#{torch_api}"
-
-
-def escape_underscores_in_api(api_name):
-    r"""
-    处理PyTorch API名称中的下划线转义。
-
-    参数:
-        api_name (str): 待处理的API名称字符串
-
-    返回:
-        str: 处理后的字符串。如果下划线出现次数>=2，则所有下划线被替换为'\_'；
-             否则返回原字符串。
-    """
-    # 统计下划线在字符串中出现的次数
-    underscore_count = api_name.count("_")
-
-    # 如果下划线出现次数大于等于2，则进行替换
-    if underscore_count >= 2:
-        return api_name.replace("_", r"\_")
-    else:
-        return api_name
-
-
-def get_base_dir():
-    """
-    动态获取基础目录路径，确保代码可在任意位置执行
-    """
-    current_script_path = os.path.abspath(__file__)
-    tools_dir = os.path.dirname(current_script_path)
-    base_dir = os.path.dirname(tools_dir)  # 上一级目录
-    return base_dir
-
-
-def parse_md_files(directories):
-    """
-    递归扫描目录中的所有.md文件，解析第一行获取类别和API名称
-    忽略标题中的序号（如"1. "），只提取纯类别名称
-    """
-    category_api_map = defaultdict(list)
-
-    for directory in directories:
-        for root, _, files in os.walk(directory):
-            for file in files:
-                if file.endswith(".md"):
-                    md_path = os.path.join(root, file)
-                    try:
-                        with open(md_path, "r", encoding="utf-8") as f:
-                            first_line = f.readline().strip()
-
-                        # 解析第一行格式：## [类别]API名称，忽略可能存在的序号
-                        match = re.match(
-                            r"##\s*\d*\.?\s*\[(.*?)\](.*)", first_line
-                        )
-                        if match:
-                            category = match.group(1).strip()
-                            api_name = match.group(2).strip()
-                            # 只处理3-12类，前两类从主文档表格中提取
-                            if category not in [
-                                "API 完全一致",
-                                "仅 API 调用方式不一致",
-                            ]:
-                                category_api_map[category].append(
-                                    {
-                                        "api_name": api_name.replace(
-                                            r"\_", "_"
-                                        ),
-                                        "file_path": md_path,
-                                    }
-                                )
-                        else:
-                            print(
-                                f"警告: 无法解析文件 {md_path} 的第一行: {first_line}"
-                            )
-                    except Exception as e:
-                        print(f"错误: 读取文件 {md_path} 时出错: {e!s}")
-
-    return category_api_map
-
-
-def load_mapping_json(json_path):
-    """
-    加载docs_mapping.json文件
-    """
-    try:
-        with open(json_path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception as e:
-        print(f"错误: 读取JSON文件 {json_path} 时出错: {e!s}")
-        return []
-
-
-def convert_to_github_url(local_path, base_dir):
-    """
-    将本地文件路径转换为GitHub URL
-    """
-    # 查找convert_from_pytorch在路径中的位置
-    pattern = r".*(docs/guides/model_convert/convert_from_pytorch/.*)"
-    match = re.search(pattern, local_path)
-    if match:
-        relative_path = match.group(1)
-        return (
-            f"https://github.com/PaddlePaddle/docs/tree/develop/{relative_path}"
-        )
-
-    # 如果正则匹配失败，尝试基于基础目录构建相对路径
-    try:
-        relative_path = os.path.relpath(local_path, base_dir)
-        return f"https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/{relative_path}"
-    except:
-        return ""
+# 全局表格表头模板，避免重复定义
+TABLE_HEADER_LINES = [
+    "| 序号 | Pytorch 最新 release | Paddle develop | 映射分类 | 备注 |",
+    "|------|-------------------|---------------|----------|------|",
+]
 
 
 def get_mapping_doc_url(torch_api, base_dir):
     """
     根据torch_api名称，递归查找对应的差异对比文档，并返回Markdown格式的超链接字符串。
     """
-    # mapping_url_head = "https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/"
     mapping_url_head = "https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/"
     # 定义两个可能的文档目录路径
     api_difference_dirs = [
@@ -358,37 +87,12 @@ def parse_special_category_apis(md_content, category):
     return apis
 
 
-def extract_no_need_convert_list(file_path):
-    with open(file_path, "r", encoding="utf-8") as file:
-        content = file.read()
-
-    tree = ast.parse(content)
-    no_need_list = None
-
-    for node in ast.walk(tree):
-        if isinstance(node, ast.ClassDef) and node.name == "GlobalManager":
-            for class_node in node.body:
-                if isinstance(class_node, ast.Assign) and any(
-                    target.id == "NO_NEED_CONVERT_LIST"
-                    for target in class_node.targets
-                ):
-                    # 提取列表字面量
-                    list_source = ast.get_source_segment(
-                        content, class_node.value
-                    )
-                    no_need_list = ast.literal_eval(list_source)
-                    break
-    return no_need_list
-
-
 def generate_category1_table(
     docs_mapping, no_need_convert_file_path, base_dir, existing_apis
 ):
     """
     生成类别1（API完全一致）的Markdown表格
     """
-    white_list = []
-
     no_need_convert_list = extract_no_need_convert_list(
         no_need_convert_file_path
     )
@@ -412,16 +116,20 @@ def generate_category1_table(
         # 构建第二列和第三列的字符串内容，包含URL（如果存在）
         col2 = f"[{torch_api}]({src_url})" if src_url else torch_api
         col3 = f"[{paddle_api}]({dst_url})" if dst_url else paddle_api
-        rows.append((torch_api, col2, col3, "-"))
+
+        # 添加映射分类列（类别1的中文名称）
+        mapping_category = "API 完全一致"
+        rows.append((torch_api, col2, col3, mapping_category, "-"))
 
     # 生成Markdown表格字符串
-    table_lines = [
-        "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
-        "|------|-------------------|---------------|------|",
-    ]
+    table_lines = TABLE_HEADER_LINES.copy()
 
-    for idx, (_, col2, col3, remark) in enumerate(rows, start=1):
-        table_lines.append(f"| {idx} | {col2} | {col3} | {remark} |")
+    for idx, (_, col2, col3, mapping_category, remark) in enumerate(
+        rows, start=1
+    ):
+        table_lines.append(
+            f"| {idx} | {col2} | {col3} | {mapping_category} | {remark} |"
+        )
 
     return "\n".join(table_lines)
 
@@ -452,31 +160,54 @@ def generate_category2_table(
     )
 
     # 加载api_mapping.json文件
-    with open(api_mapping_file_path, "r", encoding="utf-8") as f:
-        api_mapping_data = json.load(f)
-
-    with open(attribute_mapping_file_path, "r", encoding="utf-8") as f:
-        attribute_mapping_data = json.load(f)
-
+    api_mapping_data = load_mapping_json(api_mapping_file_path)
+    attribute_mapping_data = load_mapping_json(attribute_mapping_file_path)
     api_mapping_data = api_mapping_data | attribute_mapping_data
 
     rows = []  # 存储表格行数据的列表
     used_apis = set()  # 用于记录已处理的API，避免重复
+
+    invok_diff_matchers = {
+        "ChangeAPIMatcher",
+        "NumelMatcher",
+        "Is_InferenceMatcher",
+    }
+
+    special_matchers = {
+        "TensorFunc2PaddleFunc",
+        "Func2Attribute",
+        "Attribute2Func",
+    }
 
     # 处理api_mapping中Matcher为"UnchangeMatcher"且不在no_need_convert_list中的API
     for src_api, mapping_info in api_mapping_data.items():
         if src_api in whitelist_skip or src_api in no_need_convert_list:
             continue
         matcher = mapping_info.get("Matcher", "")
+        valid = False
         # ChangeAPIMatcher、TensorFunc2PaddleFunc、Func2Attribute、Attribute2Func类别
-        if matcher in [
-            "ChangeAPIMatcher",
-            "TensorFunc2PaddleFunc",
-            "Func2Attribute",
-            "Attribute2Func",
-            "NumelMatcher",
-            "Is_InferenceMatcher",
-        ]:
+        if matcher in special_matchers:
+            has_unsupport_args = "unsupport_args" in mapping_info
+            has_kwargs_change = "kwargs_change" in mapping_info
+            has_paddle_default_kwargs = "paddle_default_kwargs" in mapping_info
+            if has_unsupport_args:
+                print(
+                    f"[torch_more_args] {src_api} -> {mapping_info.get('paddle_api', 'N/A')}"
+                )
+                continue
+            elif has_kwargs_change:
+                print(
+                    f"[args_name_diff] {src_api} -> {mapping_info.get('paddle_api', 'N/A')}"
+                )
+                continue
+            elif has_paddle_default_kwargs:
+                print(
+                    f"[paddle_more_args_or_default_diff] {src_api} -> {mapping_info.get('paddle_api', 'N/A')}"
+                )
+                continue
+            valid = True
+
+        if matcher in invok_diff_matchers or valid:
             # 在docs_mapping中查找当前src_api对应的信息
             docs_mapping_info = docs_mapping.get(src_api, {})
             src_url = docs_mapping_info.get("src_api_url")
@@ -503,36 +234,22 @@ def generate_category2_table(
 
             # 生成备注列的超链接
             remark_link = get_mapping_doc_url(src_api, base_dir)
-            rows.append((src_api, col2, col3, remark_link))
+
+            # 添加映射分类列（类别2的中文名称）
+            mapping_category = "仅 API 调用方式不一致"
+            rows.append((src_api, col2, col3, mapping_category, remark_link))
             used_apis.add(src_api)  # 标记该API已处理
             existing_apis.add(src_api)
 
-    # 遍历docs_mapping，查找mapping_type为"无参数"或"参数完全一致"，且src_api替换后与dst_api不等的API
-    for src_api, item in docs_mapping.items():
-        mapping_type = item.get("mapping_type", "")
-        dst_api = item.get("dst_api", "")
-        if (
-            src_api in whitelist_skip
-            or src_api in no_need_convert_list
-            or src_api in used_apis
-        ):
-            continue
-        # 检查条件：mapping_type为"无参数"或"参数完全一致"，src_api包含"torch"，替换后与dst_api不等
-        if mapping_type in ["无参数", "参数完全一致", "仅 API 调用方式不一致"]:
-            print(src_api)
-
-            # 生成备注列的超链接
-            # remark_link = get_mapping_doc_url(src_api, base_dir)
-            # rows.append((src_api, col2, col3, remark_link))
-
     # 生成Markdown表格字符串
-    table_lines = [
-        "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
-        "|------|-------------------|---------------|------|",
-    ]
+    table_lines = TABLE_HEADER_LINES.copy()
 
-    for idx, (_, col2, col3, remark) in enumerate(rows, start=1):
-        table_lines.append(f"| {idx} | {col2} | {col3} | {remark} |")
+    for idx, (_, col2, col3, mapping_category, remark) in enumerate(
+        rows, start=1
+    ):
+        table_lines.append(
+            f"| {idx} | {col2} | {col3} | {mapping_category} | {remark} |"
+        )
 
     return "\n".join(table_lines)
 
@@ -544,14 +261,7 @@ def generate_api_alias_table(
     生成类别12（API 别名映射）的Markdown表格
     """
     # 读取api_alias_mapping.json文件
-    try:
-        with open(api_alias_mapping_path, "r", encoding="utf-8") as f:
-            api_alias_data = json.load(f)
-    except Exception as e:
-        print(
-            f"错误: 读取API别名映射文件 {api_alias_mapping_path} 时出错: {e!s}"
-        )
-        return ""
+    api_alias_data = load_mapping_json(api_alias_mapping_path)
 
     rows = []  # 存储表格行数据的列表
     used_apis = set()  # 用于记录已处理的API，避免重复
@@ -590,21 +300,26 @@ def generate_api_alias_table(
         # 构建备注列，格式为"{torch_api_alias}别名+[差异对比]{url}"
         remark = f"``{torch_api_alias_display}`` 别名， {get_mapping_doc_url(torch_api_alias, base_dir)}"
 
+        # 添加映射分类列（类别12的中文名称）
+        mapping_category = "API 别名"
         # 添加表格行
-        rows.append((torch_api, torch_display, paddle_display, remark))
+        rows.append(
+            (torch_api, torch_display, paddle_display, mapping_category, remark)
+        )
         used_apis.add(torch_api)
         used_apis.add(torch_api_alias)
         existing_apis.add(torch_api)
         existing_apis.add(torch_api_alias)
 
     # 生成Markdown表格字符串
-    table_lines = [
-        "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
-        "|------|-------------------|---------------|------|",
-    ]
+    table_lines = TABLE_HEADER_LINES.copy()
 
-    for idx, (_, col2, col3, remark) in enumerate(rows, start=1):
-        table_lines.append(f"| {idx} | {col2} | {col3} | {remark} |")
+    for idx, (_, col2, col3, mapping_category, remark) in enumerate(
+        rows, start=1
+    ):
+        table_lines.append(
+            f"| {idx} | {col2} | {col3} | {mapping_category} | {remark} |"
+        )
 
     return "\n".join(table_lines)
 
@@ -625,7 +340,8 @@ def generate_no_implement_table(
     section_content = match.group(1)
 
     # 解析表格内容
-    table_pattern = r"\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n([\s\S]*?)(?=\n\n|\Z)"
+    # table_pattern = r"\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n([\s\S]*?)(?=\n\n|\Z)"
+    table_pattern = r"\| 序号 \| Pytorch 最新 release \| Paddle develop \| 映射分类 \| 备注 \|\n\|[-\| ]+\|\n([\s\S]*?)(?=\n\n|\Z)"
     table_match = re.search(table_pattern, section_content)
     if not table_match:
         return ""
@@ -645,7 +361,7 @@ def generate_no_implement_table(
         # 提取各列内容
         torch_api_cell = parts[2].strip()
         paddle_api_cell = parts[3].strip()
-        remark_cell = parts[4].strip()
+        remark_cell = parts[5].strip()
 
         # 提取Torch API名称（处理超链接）
         torch_api_match = re.match(r"\[(.*?)\]\(.*?\)", torch_api_cell)
@@ -679,17 +395,28 @@ def generate_no_implement_table(
         )
 
         # 保留原备注内容
-        rows.append((torch_api, torch_display, paddle_display, remark_cell))
+        # 添加映射分类列（类别13的中文名称）
+        mapping_category = "功能缺失"
+        rows.append(
+            (
+                torch_api,
+                torch_display,
+                paddle_display,
+                mapping_category,
+                remark_cell,
+            )
+        )
         existing_apis.add(torch_api)
 
     # 生成Markdown表格字符串
-    table_lines = [
-        "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
-        "|------|-------------------|---------------|------|",
-    ]
+    table_lines = TABLE_HEADER_LINES.copy()
 
-    for idx, (_, col2, col3, remark) in enumerate(rows, start=1):
-        table_lines.append(f"| {idx} | {col2} | {col3} | {remark} |")
+    for idx, (_, col2, col3, mapping_category, remark) in enumerate(
+        rows, start=1
+    ):
+        table_lines.append(
+            f"| {idx} | {col2} | {col3} | {mapping_category} | {remark} |"
+        )
 
     return "\n".join(table_lines)
 
@@ -752,30 +479,24 @@ def update_mapping_table(
 
         # 添加表格行，并使用有效序号
         table_rows.append(
-            f"| {valid_idx} | {torch_display} | {paddle_display} | {remark} |"
+            f"| {valid_idx} | {torch_display} | {paddle_display} | {category} | {remark} |"
         )
         valid_idx += 1  # 序号递增
 
     # 构建完整的表格内容
-
     if len(table_rows) > 0:  # 如果存在有效行
-        table_content = [
-            "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
-            "|------|-------------------|---------------|------|",
-            *table_rows,
-        ]
+        table_content = TABLE_HEADER_LINES.copy()
+        table_content.extend(table_rows)
     else:
-        table_content = [
-            "| 序号 | Pytorch 最新 release | Paddle develop | 备注 |",
-            "|------|-------------------|---------------|------|",
-            "新增中......",
-        ]
+        table_content = TABLE_HEADER_LINES.copy()
+        table_content.append("| 1 | 新增中 | ... | ... | ... |")
 
     table_content_str = "\n".join(table_content)
 
     # 替换原内容中的表格（考虑可能有序号的标题）
     # 添加额外的换行符确保格式正确
-    pattern = rf"(### \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=### \d*\.?\s*|\Z)"
+    # pattern = rf"(### \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=### \d*\.?\s*|\Z)"
+    pattern = rf"(### \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 映射分类 \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=### \d*\.?\s*|\Z)"
     replacement = rf"\1{table_content_str}\n\n"
     return re.sub(pattern, replacement, md_content, flags=re.MULTILINE)
 
@@ -799,7 +520,8 @@ def update_special_category_table(md_content, category, table_content):
     更新特殊类别（1和2）的表格内容
     """
     # 更精确的正则表达式，确保只匹配特定类别的表格
-    pattern = rf"(### \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=### \d*\.?\s*|\Z)"
+    # pattern = rf"(### \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=### \d*\.?\s*|\Z)"
+    pattern = rf"(### \d*\.?\s*{re.escape(category)}[\s\S]*?)(\| 序号 \| Pytorch 最新 release \| Paddle develop \| 映射分类 \| 备注 \|\n\|[-\| ]+\|\n)[\s\S]*?(?=### \d*\.?\s*|\Z)"
     # 替换为：标题 + 新表格内容
     replacement = rf"\1{table_content}\n\n"
     return re.sub(pattern, replacement, md_content, flags=re.MULTILINE)

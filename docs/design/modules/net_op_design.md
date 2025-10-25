@@ -90,7 +90,7 @@ class PlainNet : public Net {
   // Create a network describe by `def`.  NetDesc is the definition of a network.
   PlainNet(const NetDesc &def);
 
-  // Infer all the operators' input and output varialbes' shapes, will be called before every mini-batch
+  // Infer all the operators' input and output variables' shapes, will be called before every mini-batch
   training.
   virtual Error InferShape(Scope *scope) override;
 

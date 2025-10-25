@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.ldexp_
-
 ### [torch.Tensor.ldexp_](https://pytorch.org/docs/stable/generated/torch.Tensor.ldexp_.html)
-
 ```python
 torch.Tensor.ldexp_(other)
 ```
 
 ### [paddle.Tensor.ldexp_]()
-
 ```python
 paddle.Tensor.ldexp_(y)
 ```

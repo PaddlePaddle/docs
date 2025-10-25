@@ -1,13 +1,10 @@
-## [输入参数用法不一致]torchvision.datasets.CIFAR100
-
+## [ 输入参数用法不一致 ]torchvision.datasets.CIFAR100
 ### [torchvision.datasets.CIFAR100](https://pytorch.org/vision/main/generated/torchvision.datasets.CIFAR100.html)
-
 ```python
 torchvision.datasets.CIFAR100(root: Union[str, Path], train: bool = True, transform: Optional[Callable] = None, target_transform: Optional[Callable] = None, download: bool = False)
 ```
 
 ### [paddle.vision.datasets.Cifar100](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/Cifar100_cn.html)
-
 ```python
 paddle.vision.datasets.Cifar100(data_file: Optional[str] = None, mode: str = 'train', transform: Optional[Callable] = None, download: bool = True, backend: Optional[str] = None)
 ```
@@ -35,8 +32,7 @@ train_dataset = torchvision.datasets.CIFAR100(root='/path/to/data', train=True)
 train_dataset = paddle.vision.datasets.Cifar100(data_file='/path/to/data/cifar-100-python.tar.gz', mode='train')
 ```
 
-#### train: 训练集或数据集
-训练集
+#### train: 训练集或数据集训练集
 ```python
 # PyTorch 写法
 train_dataset = torchvision.datasets.CIFAR100(root='/path/to/data', train=True, download=True)

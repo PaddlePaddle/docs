@@ -1,13 +1,10 @@
-## [ 仅参数名不一致 ] torch.Tensor.minimum
-
+## [ 仅参数名不一致 ]torch.Tensor.minimum
 ### [torch.Tensor.minimum](https://pytorch.org/docs/stable/generated/torch.Tensor.minimum.html)
-
 ```python
 torch.Tensor.minimum(other)
 ```
 
 ### [paddle.Tensor.minimum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#minimum-y-axis-1-name-none)
-
 ```python
 paddle.Tensor.minimum(y)
 ```

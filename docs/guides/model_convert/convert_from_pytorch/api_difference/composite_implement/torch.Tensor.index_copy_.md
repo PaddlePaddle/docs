@@ -1,7 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.index_copy_
-
 ### [torch.Tensor.index_copy_](https://pytorch.org/docs/stable/generated/torch.Tensor.index_copy_.html)
-
 ```python
 torch.Tensor.index_copy_(dim, index, source)
 ```
@@ -9,7 +7,6 @@ torch.Tensor.index_copy_(dim, index, source)
 Paddle 无此 API，需要组合实现。
 
 ### 转写示例
-
 ```python
 # PyTorch 写法，dim=0
 y = x.index_copy_(0, index, source)

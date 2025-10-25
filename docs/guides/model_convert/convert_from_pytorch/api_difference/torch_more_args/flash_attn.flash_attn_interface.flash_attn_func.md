@@ -1,13 +1,10 @@
-## [torch 参数更多]flash_attn.flash_attn_interface.flash_attn_func
-
+## [ torch 参数更多 ]flash_attn.flash_attn_interface.flash_attn_func
 ### [flash_attn.flash_attn_interface.flash_attn_func](https://github.com/Dao-AILab/flash-attention/blob/72e27c6320555a37a83338178caa25a388e46121/flash_attn/flash_attn_interface.py#L808)
-
 ```python
 flash_attn.flash_attn_interface.flash_attn_func(q, k, v,dropout_p=0.0, softmax_scale=None, causal=False, window_size=(-1, -1), softcap=0.0, alibi_slopes=None, deterministic=False, return_attn_probs=False)
 ```
 
 ### [paddle.nn.functional.flash_attention.flash_attention](https://github.com/PaddlePaddle/Paddle/blob/900d27c40ef4567d7ea6342f3f0eedd394885ecb/python/paddle/nn/functional/flash_attention.py#L248)
-
 ```python
 paddle.nn.functional.flash_attention.flash_attention(query, key, value, dropout=0.0, causal=False，return_softmax=False, *, fixed_seed_offset=None, rng_name="", training=True)
 ```

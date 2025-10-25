@@ -1,13 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.Tensor.lt_
-
 ### [torch.Tensor.lt_](https://pytorch.org/docs/stable/generated/torch.Tensor.lt_.html)
-
 ```python
 torch.Tensor.lt_(other)
 ```
 
 ### [paddle.Tensor.less_than_]()
-
 ```python
 paddle.Tensor.less_than_(y)
 ```

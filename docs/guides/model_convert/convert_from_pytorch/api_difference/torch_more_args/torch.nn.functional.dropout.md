@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.dropout
-
 ### [torch.nn.functional.dropout](https://pytorch.org/docs/stable/generated/torch.nn.functional.dropout.html)
-
 ```python
 torch.nn.functional.dropout(input, p=0.5, training=True, inplace=False)
 ```
 
 ### [paddle.nn.functional.dropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/dropout_cn.html#dropout)
-
 ```python
 paddle.nn.functional.dropout(x, p=0.5, axis=None, training=True, mode='upscale_in_train', name=None)
 ```

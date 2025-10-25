@@ -1,13 +1,10 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.CosineAnnealingWarmRestarts
-
 ### [torch.optim.lr_scheduler.CosineAnnealingWarmRestarts](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingWarmRestarts.html)
-
 ```python
 torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0, T_mult=1, eta_min=0, last_epoch=-1, verbose=False)
 ```
 
 ### [paddle.optimizer.lr.CosineAnnealingWarmRestarts](https://github.com/PaddlePaddle/Paddle/blob/d6ea911bd1bfda5604807eeb18318e71b395ac58/python/paddle/optimizer/lr.py#L2371)
-
 ```python
 paddle.optimizer.lr.CosineAnnealingWarmRestarts(learning_rate,
                                         T_0,
@@ -31,7 +28,6 @@ paddle.optimizer.lr.CosineAnnealingWarmRestarts(learning_rate,
 | verbose    | verbose       | 如果是 True，则在每一轮更新时在标准输出 stdout 输出一条信息。                                                                                                              |
 
 ### 转写示例
-
 ```python
 # PyTorch 写法
 linear = torch.nn.Linear(10, 10)

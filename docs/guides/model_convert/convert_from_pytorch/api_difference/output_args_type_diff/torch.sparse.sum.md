@@ -1,13 +1,10 @@
-## [ 返回参数类型不一致 ] torch.sparse.sum
-
+## [ 返回参数类型不一致 ]torch.sparse.sum
 ### [torch.sparse.sum](https://pytorch.org/docs/stable/generated/torch.sparse.sum.html?highlight=sparse+sum#torch.sparse.sum)
-
 ```python
 torch.sparse.sum(input, dim=None, dtype=None)
 ```
 
 ### [paddle.sparse.sum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/sum_cn.html#sum)
-
 ```python
 paddle.sparse.sum(x, axis=None, dtype=None, keepdim=False, name=None)
 ```

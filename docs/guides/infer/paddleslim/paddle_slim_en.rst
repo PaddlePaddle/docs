@@ -3,7 +3,7 @@ Model Compression
 
 PaddleSlim is a toolkit for model compression. It contains a collection of compression strategies, such as pruning, fixed point quantization, knowledge distillation, hyperparameter searching and neural architecture search.
 
-PaddleSlim provides solutions of compression on computer vision models, such as image classification, object detection and semantic segmentation. Meanwhile, PaddleSlim Keeps exploring advanced compression strategies for language model. Furthermore, benckmark of compression strategies on some open tasks is available for your reference.
+PaddleSlim provides solutions of compression on computer vision models, such as image classification, object detection and semantic segmentation. Meanwhile, PaddleSlim Keeps exploring advanced compression strategies for language model. Furthermore, benchmark of compression strategies on some open tasks is available for your reference.
 
 PaddleSlim also provides auxiliary and primitive API for developer and researcher to survey, implement and apply the method in latest papers. PaddleSlim will support developer in ability of framework and technology consulting.
 

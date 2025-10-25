@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.Tensor.round_
-
+## [ torch 参数更多 ]torch.Tensor.round_
 ### [torch.Tensor.round_](https://pytorch.org/docs/stable/generated/torch.Tensor.round_.html#torch.Tensor.round_)
-
 ```python
 torch.Tensor.round_(decimals=0)
 ```
 
 ### [paddle.Tensor.round_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#round-name-none)
-
 ```python
 paddle.Tensor.round_(name=None)
 ```

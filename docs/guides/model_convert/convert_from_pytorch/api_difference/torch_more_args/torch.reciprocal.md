@@ -1,7 +1,5 @@
-## [torch 参数更多]torch.reciprocal
-
+## [ torch 参数更多 ]torch.reciprocal
 ### [torch.reciprocal](https://pytorch.org/docs/stable/generated/torch.reciprocal.html?highlight=torch+reciprocal#torch.reciprocal)
-
 ```python
 torch.reciprocal(input,
                  *,
@@ -9,7 +7,6 @@ torch.reciprocal(input,
 ```
 
 ### [paddle.reciprocal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/reciprocal_cn.html)
-
 ```python
 paddle.reciprocal(x,
                   name=None)

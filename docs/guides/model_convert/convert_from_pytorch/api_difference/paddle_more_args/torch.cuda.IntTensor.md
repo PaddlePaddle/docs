@@ -1,13 +1,10 @@
-## [ paddle 参数更多 ] torch.cuda.IntTensor
-
+## [ paddle 参数更多 ]torch.cuda.IntTensor
 ### [torch.cuda.IntTensor](https://pytorch.org/docs/stable/tensors.html)
-
 ```python
 torch.cuda.IntTensor(data)
 ```
 
 ### [paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/to_tensor_cn.html#to-tensor)
-
 ```python
 paddle.to_tensor(data, dtype='int32', place='gpu', stop_gradient=True)
 ```

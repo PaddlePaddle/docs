@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.max_pool1d
-
 ### [torch.max\_pool1d](https://pytorch.org/docs/stable/jit_builtin_functions.html#supported-pytorch-functions)
-
 ```python
 torch.max_pool1d(input,  kernel_size, stride=[], padding=[0], dilation=[1], ceil_mode=False)
 ```
 
 ### [paddle.nn.functional.max_pool1d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/max_pool1d_cn.html)
-
 ```python
 paddle.nn.functional.max_pool1d(x, kernel_size, stride=None, padding=0, return_mask=False, ceil_mode=False, name=None)
 ```

@@ -1,13 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.distributed.optim.DistributedOptimizer
-
 ### [torch.distributed.optim.DistributedOptimizer](https://pytorch.org/docs/stable/distributed.optim.html)
-
 ```python
 torch.distributed.optim.DistributedOptimizer(optimizer_class, params_rref, *args, **kwargs)
 ```
 
 ### [paddle.distributed.fleet.distributed_optimizer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/fleet/Fleet_cn.html#cn-api-paddle-distributed-fleet-fleet)
-
 ```python
 paddle.distributed.fleet.distributed_optimizer(optimizer, strategy=None)
 ```
@@ -15,7 +12,6 @@ paddle.distributed.fleet.distributed_optimizer(optimizer, strategy=None)
 其中 PyTorch 和 Paddle 功能一致，参数用法不一致，具体如下：
 
 ### 参数映射
-
 
 | PyTorch         | PaddlePaddle | 备注                                                                  |
 | --------------- | ------------ | --------------------------------------------------------------------- |

@@ -1,7 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.functional.instance_norm
-
 ### [torch.nn.functional.instance_norm](https://pytorch.org/docs/stable/generated/torch.nn.functional.instance_norm.html#torch.nn.functional.instance_norm)
-
 ```python
 torch.nn.functional.instance_norm(input, running_mean=None, running_var=None, weight=None, bias=None, use_input_stats=True, momentum=0.1, eps=1e-05)
 ```

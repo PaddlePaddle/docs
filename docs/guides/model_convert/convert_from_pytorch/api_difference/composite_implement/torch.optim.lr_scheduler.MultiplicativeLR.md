@@ -1,7 +1,5 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.MultiplicativeLR
-
 ### [torch.optim.lr_scheduler.MultiplicativeLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.MultiplicativeLR.html)
-
 ```python
 torch.optim.lr_scheduler.MultiplicativeLR(optimizer,
                                 lr_lambda,
@@ -10,7 +8,6 @@ torch.optim.lr_scheduler.MultiplicativeLR(optimizer,
 ```
 
 ### [paddle.optimizer.lr.MultiplicativeDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/MultiplicativeDecay_cn.html)
-
 ```python
 paddle.optimizer.lr.MultiplicativeDecay(learning_rate,
                                 lr_lambda,

@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.distributions.log_normal.LogNormal
-
+## [ torch 参数更多 ]torch.distributions.log_normal.LogNormal
 ### [torch.distributions.log_normal.LogNormal](https://pytorch.org/docs/stable/distributions.html#torch.distributions.log_normal.LogNormal)
-
 ```python
 torch.distributions.log_normal.LogNormal(loc, scale, validate_args=None)
 ```
 
 ### [paddle.distribution.LogNormal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/LogNormal_cn.html#lognormal)
-
 ```python
 paddle.distribution.LogNormal(loc, scale, name=None)
 ```

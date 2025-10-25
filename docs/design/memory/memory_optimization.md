@@ -79,7 +79,7 @@ In former control flow graph, the out-edges of node 5 are 5 --> 6 and 5 --> 2, a
 
 - Uses and Defs
 
-An assignmemt to a variable or temporary defines that variable. An occurence of a variable on the right-hand side of an assginment(or in other expressions) uses the variable. We can define the *def* of a variable as the set of graph nodes that define it; or the *def* of a graph node as the set of variables that it defines; and the similarly for the *use* of a variable or graph node. In former control flow graph, *def(3)* = {c}, *use(3)* = {b, c}.
+An assignmemt to a variable or temporary defines that variable. An occurence of a variable on the right-hand side of an assignment(or in other expressions) uses the variable. We can define the *def* of a variable as the set of graph nodes that define it; or the *def* of a graph node as the set of variables that it defines; and the similarly for the *use* of a variable or graph node. In former control flow graph, *def(3)* = {c}, *use(3)* = {b, c}.
 
 - Liveness
 

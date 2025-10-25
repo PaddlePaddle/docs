@@ -1,14 +1,11 @@
 ## [ paddle 参数更多 ]torch.nn.functional.channel_shuffle
-
 ### [torch.nn.functional.channel_shuffle](https://pytorch.org/docs/stable/generated/torch.nn.ChannelShuffle.html)
-
 ```python
 torch.nn.functional.channel_shuffle(input,
                                     groups)
 ```
 
 ### [paddle.nn.functional.channel_shuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/channel_shuffle_cn.html#channel-shuffle)
-
 ```python
 paddle.nn.functional.channel_shuffle(x,
                                     groups,

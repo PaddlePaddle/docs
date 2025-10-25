@@ -176,7 +176,7 @@ if TYPE_CHECKING:
     from paddle import Tensor
 
 # TensorLike 定义如下
-# TensorLike: TypeAlias = Union[npt.NDArray[Any], "Tensor", Numberic]
+# TensorLike: TypeAlias = Union[npt.NDArray[Any], "Tensor", Numeric]
 
 def add(a: Tensor, b: TensorLike) -> Tensor:
     if isinstance(b, np.ndarray):
@@ -184,10 +184,10 @@ def add(a: Tensor, b: TensorLike) -> Tensor:
     elif isinstance(b, paddle.Tensor):
         return dispatch_paddle_add(a, b)
     else:
-        return dispatch_numberic_add(a, b)
+        return dispatch_numeric_add(a, b)
 ```
 
-这里 `TensorLike` 是一个通用类型，包含了 `np.ndarray`、`paddle.Tensor`、`Numberic` 三种类型，因此在实现中也应该考虑到这三种类型的输入。
+这里 `TensorLike` 是一个通用类型，包含了 `np.ndarray`、`paddle.Tensor`、`Numeric` 三种类型，因此在实现中也应该考虑到这三种类型的输入。
 
 ### 使用更加明确的类型以提供更好的提示效果
 

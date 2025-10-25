@@ -629,7 +629,7 @@
 | 最近邻回归 | nearest neighbor regression | |
 | 最近邻 | nearest neighbor | |
 | 验证集 | validation set | |
-| 基准 | bechmark | |
+| 基准 | benchmark | |
 | 基准 | baseline | |
 | 点估计 | point estimator | |
 | 估计量 | estimator | |

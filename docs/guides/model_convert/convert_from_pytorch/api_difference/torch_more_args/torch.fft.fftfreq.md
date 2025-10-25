@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.fft.fftfreq
-
+## [ torch 参数更多 ]torch.fft.fftfreq
 ### [torch.fft.fftfreq](https://pytorch.org/docs/stable/generated/torch.fft.fftfreq.html?highlight=fftfreq#torch.fft.fftfreq)
-
 ```python
 torch.fft.fftfreq(n,
                 d=1.0,
@@ -14,7 +12,6 @@ torch.fft.fftfreq(n,
 ```
 
 ### [paddle.fft.fftfreq](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/fftfreq_cn.html)
-
 ```python
 paddle.fft.fftfreq(n,
                     d=1.0,

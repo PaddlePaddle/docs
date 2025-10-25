@@ -1,12 +1,10 @@
-## [ torch 参数更多 ] torch.nn.Module.load_state_dict
+## [ torch 参数更多 ]torch.nn.Module.load_state_dict
 ### [torch.nn.Module.load_state_dict](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.load_state_dict)
-
 ```python
 torch.nn.Module.load_state_dict(state_dict, strict=True)
 ```
 
 ### [paddle.nn.Layer.set_state_dict](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#set-state-dict-state-dict-use-structured-name-true)
-
 ```python
 paddle.nn.Layer.set_state_dict(state_dict, use_structured_name=True)
 ```

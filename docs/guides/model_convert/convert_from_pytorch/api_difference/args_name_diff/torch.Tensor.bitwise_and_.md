@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.bitwise_and_
-
 ### [torch.Tensor.bitwise_and_](https://pytorch.org/docs/stable/generated/torch.Tensor.bitwise_and_.html)
-
 ```python
 torch.Tensor.bitwise_and_(other)
 ```
 
 ### [paddle.Tensor.bitwise_and_]()
-
 ```python
 paddle.Tensor.bitwise_and_(y)
 ```

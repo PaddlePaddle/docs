@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.logical_xor_
-
 ### [torch.Tensor.logical_xor_](https://pytorch.org/docs/stable/generated/torch.Tensor.logical_xor_.html)
-
 ```python
 torch.Tensor.logical_xor_(other)
 ```
 
 ### [paddle.Tensor.logical_xor_]()
-
 ```python
 paddle.Tensor.logical_xor_(y)
 ```

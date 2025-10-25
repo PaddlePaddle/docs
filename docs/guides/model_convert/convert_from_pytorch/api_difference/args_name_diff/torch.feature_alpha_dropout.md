@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.feature_alpha_dropout
-
 ### [torch.feature\_alpha\_dropout](https://pytorch.org/docs/stable/jit_builtin_functions.html)
-
 ```python
 torch.feature_alpha_dropout(input, p, training)
 ```
 
 ### [paddle.nn.functional.feature\_alpha\_dropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/feature_alpha_dropout_cn.html#feature_alpha-dropout)
-
 ```python
 paddle.nn.functional.feature_alpha_dropout(x, p=0.5, training=True, name=None)
 ```

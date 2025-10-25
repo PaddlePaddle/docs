@@ -1,14 +1,11 @@
-## [ torch 参数更多 ] torch.distributions.exponential.Exponential
-
+## [ torch 参数更多 ]torch.distributions.exponential.Exponential
 ### [torch.distributions.exponential.Exponential](https://pytorch.org/docs/stable/distributions.html#torch.distributions.exponential.Exponential.arg_constraints)
-
 ```python
 torch.distributions.exponential.Exponential(rate,
                                 validate_args=None)
 ```
 
 ### [paddle.distribution.Exponential](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/distribution/ExponentialFamily_cn.html#exponential)
-
 ```python
 paddle.distribution.Exponential(rate)
 ```

@@ -1,13 +1,10 @@
-## [paddle 参数更多]torch.nn.Module.named_modules
-
+## [ paddle 参数更多 ]torch.nn.Module.named_modules
 ### [torch.nn.Module.named_modules](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.named_modules)
-
 ```python
 torch.nn.Module.named_modules(memo=None, prefix='', remove_duplicate=True)
 ```
 
 ### [paddle.nn.Layer.named_sublayers](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#named-sublayers-prefix-include-self-false-layers-set-none)
-
 ```python
 paddle.nn.Layer.named_sublayers(prefix='', include_self=False, layers_set=None, remove_duplicate=True)
 ```

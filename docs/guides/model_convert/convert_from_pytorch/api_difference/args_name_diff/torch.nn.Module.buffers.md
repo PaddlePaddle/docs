@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.Module.buffers
-
 ### [torch.nn.Module.buffers](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.buffers)
-
 ```python
 torch.nn.Module.buffers(recurse=True)
 ```
 
 ### [paddle.nn.Layer.buffers](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#buffers-include-sublayers-true)
-
 ```python
 paddle.nn.Layer.buffers(include_sublayers=True)
 ```

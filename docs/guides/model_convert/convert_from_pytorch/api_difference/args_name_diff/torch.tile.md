@@ -1,13 +1,11 @@
 ## [ 仅参数名不一致 ]torch.tile
 ### [torch.tile](https://pytorch.org/docs/stable/generated/torch.tile.html?highlight=tile#torch.tile)
-
 ```python
 torch.tile(input,
            dims)
 ```
 
 ### [paddle.tile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/tile_cn.html#tile)
-
 ```python
 paddle.tile(x,
             repeat_times,

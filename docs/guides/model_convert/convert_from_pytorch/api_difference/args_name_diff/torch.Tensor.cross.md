@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.cross
-
 ### [torch.Tensor.cross](https://pytorch.org/docs/stable/generated/torch.Tensor.cross.html?highlight=cross#torch.Tensor.cross)
-
 ```python
 torch.Tensor.cross(other, dim=None)
 ```
 
 ### [paddle.Tensor.cross](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cross-y-axis-none-name-none)
-
 ```python
 paddle.Tensor.cross(y, axis=None, name=None)
 ```

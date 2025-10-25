@@ -30,7 +30,7 @@ C_Status (*xccl_get_unique_id)(C_CCLRootId* unique_id)
 
 ### 参数
 
-unique_id - 插件需要填充的 unqiue_id 对象。
+unique_id - 插件需要填充的 unique_id 对象。
 
 ## xccl_comm_init_rank 【optional】
 
