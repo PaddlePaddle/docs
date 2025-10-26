@@ -96,7 +96,7 @@ So the quantization transipler will change some inputs of the corresponding back
 
 There are two strategies to calculate quantization scale, we call them dynamic and static strategy. The dynamic strategy calculates the quantization scale value each iteration. The static strategy keeps the quantization scale for different inputs.
 
-For weights, we apply the dynamic strategy in the training, that is to say, the quantization scale will be recalculated during each iteration until the traning is finished.
+For weights, we apply the dynamic strategy in the training, that is to say, the quantization scale will be recalculated during each iteration until the training is finished.
 
 For activations, the quantization scales are estimated during training, then used in inference. There are several different ways to estimate them:
 
