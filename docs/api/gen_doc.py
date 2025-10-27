@@ -401,7 +401,7 @@ def gen_function_args_string(fn_node: ast.FunctionDef) -> str:
         if jump == -1 and defaults_start_index + i > posonlyargs_count:
             jump = 0
         arg_index = defaults_start_index + i + jump
-        arg_name = fn_node.args.args[arg_index].arg
+        arg_name = arg_list[arg_index]
         default_value_str = _gen_default_value_string(default)
         arg_list[arg_index] = f"{arg_name}={default_value_str}"
     # vararg
