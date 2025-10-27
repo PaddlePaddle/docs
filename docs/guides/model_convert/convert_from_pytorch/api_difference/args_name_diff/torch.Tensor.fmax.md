@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.fmax
-
 ### [torch.Tensor.fmax](https://pytorch.org/docs/stable/generated/torch.Tensor.fmax.html?highlight=fmax#torch.Tensor.fmax)
-
 ```python
 torch.Tensor.fmax(other)
 ```
 
 ### [paddle.Tensor.fmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fmax_cn.html#fmax)
-
 ```python
 paddle.Tensor.fmax(y, name=None)
 ```

@@ -1,12 +1,10 @@
 ## [ paddle 参数更多 ]torch.count_nonzero
 ### [torch.count_nonzero](https://pytorch.org/docs/stable/generated/torch.count_nonzero.html?highlight=count_nonzero#torch.count_nonzero)
-
 ```python
 torch.count_nonzero(input, dim=None)
 ```
 
 ### [paddle.count_nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/count_nonzero_cn.html#count-nonzero)
-
 ```python
 paddle.count_nonzero(x,
                     axis=None,

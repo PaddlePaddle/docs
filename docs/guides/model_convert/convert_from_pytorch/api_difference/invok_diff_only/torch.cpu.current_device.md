@@ -1,13 +1,10 @@
-## [仅 API 调用方式不一致]torch.cpu.current_device
-
+## [ 仅 API 调用方式不一致 ]torch.cpu.current_device
 ### [torch.cpu.current_device](https://pytorch.org/docs/stable/generated/torch.cpu.current_device.html)
-
 ```python
 torch.cpu.current_device()
 ```
 
 ### [paddle.get_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/get_device_cn.html#get-device)
-
 ```python
 paddle.get_device()
 ```

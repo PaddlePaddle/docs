@@ -341,10 +341,10 @@ Demo 6. text demo program [GitHub](https://github.com/PaddlePaddle/VisualDL/blob
 from visualdl import LogWriter
 
 # create a LogWriter instance
-log_writter = LogWriter("./log", sync_cycle=10)
+log_writer = LogWriter("./log", sync_cycle=10)
 
 # Create a TextWriter instance
-with log_writter.mode("train") as logger:
+with log_writer.mode("train") as logger:
     vdl_text_comp = logger.text(tag="test")
 
 # Use member function add_record() to add data
@@ -443,11 +443,11 @@ def read_audio_data(audio_path):
 
 
 # Create a LogWriter instance
-log_writter = LogWriter("./log", sync_cycle=10)
+log_writer = LogWriter("./log", sync_cycle=10)
 
 # Create an AudioWriter instance
 ns = 2
-with log_writter.mode("train") as logger:
+with log_writer.mode("train") as logger:
     input_audio = logger.audio(tag="test", num_samples=ns)
 
 # The variable sample_num is used to record the number of audio data that have been sampled

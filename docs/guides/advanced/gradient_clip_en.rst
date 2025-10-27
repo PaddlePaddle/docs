@@ -124,7 +124,7 @@ By default, Gradients of all parameters in SGD optimizer will be clipped:
 .. code:: ipython3
 
     linear = paddle.nn.Linear(10, 10)
-    clip = paddle.nn.ClipGradByGloabalNorm(clip_norm=1.0)
+    clip = paddle.nn.ClipGradByGlobalNorm(clip_norm=1.0)
     sdg = paddle.optimizer.SGD(learning_rate=0.1, parameters=linear.parameters(), grad_clip=clip)
 
 You can also clip gradients of a part of parameters as follow:

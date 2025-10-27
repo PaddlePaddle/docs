@@ -6,6 +6,7 @@
 # virtualenv
 venv/
 ENV/
+.venv/
 
 # Compiled Python files
 __pycache__/

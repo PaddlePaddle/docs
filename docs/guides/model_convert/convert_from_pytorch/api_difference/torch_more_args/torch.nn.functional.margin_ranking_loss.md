@@ -1,7 +1,5 @@
-## [torch 参数更多 ]torch.nn.functional.margin_ranking_loss
-
+## [ torch 参数更多 ]torch.nn.functional.margin_ranking_loss
 ### [torch.nn.functional.margin_ranking_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.margin_ranking_loss.html?highlight=margin_ranking_loss#torch.nn.functional.margin_ranking_loss)
-
 ```python
 torch.nn.functional.margin_ranking_loss(input1,
                                         input2,
@@ -13,7 +11,6 @@ torch.nn.functional.margin_ranking_loss(input1,
 ```
 
 ### [paddle.nn.functional.margin_ranking_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/margin_ranking_loss_cn.html)
-
 ```python
 paddle.nn.functional.margin_ranking_loss(input,
                                          other,

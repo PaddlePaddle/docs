@@ -1,13 +1,10 @@
-## [torch 参数更多 ]torch.inverse
-
+## [ torch 参数更多 ]torch.inverse
 ### [torch.inverse](https://pytorch.org/docs/stable/generated/torch.inverse.html?highlight=inverse#torch.inverse)
-
 ```python
 torch.inverse(input, *, out=None)
 ```
 
 ### [paddle.linalg.inv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/inv_cn.html)
-
 ```python
 paddle.linalg.inv(x, name=None)
 ```
@@ -23,7 +20,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 
 ### 转写示例
-
 #### out：指定输出
 ```python
 # PyTorch 写法

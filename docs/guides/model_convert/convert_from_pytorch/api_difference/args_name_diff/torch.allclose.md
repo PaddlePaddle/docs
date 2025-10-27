@@ -1,7 +1,5 @@
 ## [ 仅参数名不一致 ]torch.allclose
-
 ### [torch.allclose](https://pytorch.org/docs/stable/generated/torch.allclose.html?highlight=allclose#torch.allclose)
-
 ```python
 torch.allclose(input,
                other,
@@ -11,7 +9,6 @@ torch.allclose(input,
 ```
 
 ### [paddle.allclose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/allclose_cn.html#allclose)
-
 ```python
 paddle.allclose(x,
                 y,

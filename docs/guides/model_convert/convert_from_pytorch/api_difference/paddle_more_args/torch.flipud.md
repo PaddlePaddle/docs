@@ -1,12 +1,10 @@
 ## [ paddle 参数更多 ]torch.flipud
 ### [torch.flipud](https://pytorch.org/docs/stable/generated/torch.flipud.html?highlight=flipud#torch.flipud)
-
 ```python
 torch.flipud(input)
 ```
 
 ### [paddle.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/flip_cn.html#flip)
-
 ```python
 paddle.flip(x, axis, name=None)
 ```

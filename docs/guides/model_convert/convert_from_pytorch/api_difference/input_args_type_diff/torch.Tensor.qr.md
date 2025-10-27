@@ -1,13 +1,10 @@
-## [ 输入参数类型不一致 ] torch.Tensor.qr
-
+## [ 输入参数类型不一致 ]torch.Tensor.qr
 ### [torch.Tensor.qr](https://pytorch.org/docs/stable/generated/torch.Tensor.qr.html?highlight=torch+tensor+qr#torch.Tensor.qr)
-
 ```python
 torch.Tensor.qr(some=True)
 ```
 
 ### [paddle.Tensor.qr](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/qr_cn.html#qr)
-
 ```python
 paddle.Tensor.qr(mode='reduced')
 ```

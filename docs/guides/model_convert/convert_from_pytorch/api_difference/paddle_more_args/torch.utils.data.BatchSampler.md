@@ -1,6 +1,5 @@
 ## [ paddle 参数更多 ]torch.utils.data.BatchSampler
 ### [torch.utils.data.BatchSampler](https://pytorch.org/docs/stable/data.html?highlight=batchsampler#torch.utils.data.BatchSampler)
-
 ```python
 torch.utils.data.BatchSampler(sampler,
                               batch_size,
@@ -8,11 +7,10 @@ torch.utils.data.BatchSampler(sampler,
 ```
 
 ### [paddle.io.BatchSampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/BatchSampler_cn.html#batchsampler)
-
 ```python
 paddle.io.BatchSampler(dataset=None,
                        sampler=None,
-                       shuffle=Fasle,
+                       shuffle=False,
                        batch_size=1,
                        drop_last=False)
 ```

@@ -1,13 +1,10 @@
-## [仅参数名不一致]torch.Tensor.var
-
+## [ 仅参数名不一致 ]torch.Tensor.var
 ### [torch.Tensor.var](https://pytorch.org/docs/stable/generated/torch.Tensor.var.html#torch.Tensor.var)
-
 ```python
 torch.Tensor.var(dim, unbiased=True, keepdim=False)
 ```
 
 ### [paddle.Tensor.var](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#var-axis-none-unbiased-true-keepdim-false-name-none)
-
 ```python
 paddle.Tensor.var(axis=None, unbiased=True, keepdim=False, name=None)
 ```

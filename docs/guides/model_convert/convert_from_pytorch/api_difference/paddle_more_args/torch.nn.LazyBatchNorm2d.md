@@ -1,12 +1,11 @@
 ## [ paddle 参数更多 ]torch.nn.LazyBatchNorm2d
-### [torch.nn.LazyBatchNorm2d](https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm2d.html)
 
+### [torch.nn.LazyBatchNorm2d](https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm2d.html)
 ```python
 torch.nn.LazyBatchNorm2d(eps=1e-05, momentum=0.1, affine=True, track_running_stats=True, device=None, dtype=None)
 ```
 
 ### [paddle.nn.BatchNorm2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BatchNorm2D_cn.html#batchnorm2d)
-
 ```python
 paddle.nn.BatchNorm2D(num_features,
                       momentum=0.9,
@@ -35,9 +34,7 @@ paddle.nn.BatchNorm2D(num_features,
 | dtype         | -            | 指定权重参数属性的对象，一般对网络训练结果影响不大，可直接删除。 |
 
 ### 转写示例
-
-#### num_features: 输入通道数
-在 PyTorch 中，使用 `LazyBatchNorm2d` 时可以不指定 `num_features`，它会在第一次前向传播时根据输入 Tensor 的形状自动确定；而在 Paddle 中，创建 `BatchNorm2D` 时必须明确指定 `num_features` 参数，其值应与输入 Tensor 的通道数保持一致。
+#### num_features: 输入通道数在 PyTorch 中，使用 `LazyBatchNorm2d` 时可以不指定 `num_features`，它会在第一次前向传播时根据输入 Tensor 的形状自动确定；而在 Paddle 中，创建 `BatchNorm2D` 时必须明确指定 `num_features` 参数，其值应与输入 Tensor 的通道数保持一致。
 ```python
 # PyTorch 写法
 bn = torch.nn.LazyBatchNorm2d()
@@ -79,7 +76,6 @@ m = paddle.nn.BatchNorm2D(num_features=24, momentum=0.8) # num_features 需要�
 ```
 
 #### track_running_stats：指示是否使用全局均值和方差
-
 ```python
 track_running_stats=None 时:
 # PyTorch 写法

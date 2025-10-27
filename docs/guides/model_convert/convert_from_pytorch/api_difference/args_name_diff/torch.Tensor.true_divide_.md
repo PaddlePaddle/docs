@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.true_divide_
-
 ### [torch.Tensor.true_divide_](https://pytorch.org/docs/stable/generated/torch.Tensor.true_divide_.html)
-
 ```python
 torch.Tensor.true_divide_(other)
 ```
 
 ### [paddle.Tensor.divide_]()
-
 ```python
 paddle.Tensor.divide_(y)
 ```

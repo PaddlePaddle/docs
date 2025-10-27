@@ -46,7 +46,7 @@ set_pipelining_config(self, enable_pipelining, batches_per_step, enable_gradient
 
     - **enable_pipelining** (bool，可选)- 是否使能子图之间的数据流水线。仅支持当 enable_manual_shard=True 时，enable_pipelining 可以置为 True。默认值为 False，表示不使能该功能。
     - **batches_per_step** (int，可选)- 指定数据流水线每次运算多少个 batch 的数据。默认值为 1，表示不使能数据流水线功能。
-    - **enable_gradient_accumulation** (bool，可选)- 是否使能梯度累积，只用于训练模式。默认值为 Flase，表示不使能梯度累积功能。
+    - **enable_gradient_accumulation** (bool，可选)- 是否使能梯度累积，只用于训练模式。默认值为 False，表示不使能梯度累积功能。
     - **accumulation_factor** (int，可选)- 指定累积运算多少个 batch 更新一次权重。默认值为 1，表示不使能权重累积更新功能。
 
 **代码示例**

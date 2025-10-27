@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.cholesky_solve
-
 ### [torch.Tensor.cholesky_solve](https://pytorch.org/docs/stable/generated/torch.Tensor.cholesky_solve.html#torch-tensor-cholesky-solve)
-
 ```python
 torch.Tensor.cholesky_solve(input2, upper=False)
 ```
 
 ### [paddle.Tensor.cholesky_solve]()
-
 ```python
 paddle.Tensor.cholesky_solve(y, upper=False, name=None)
 ```

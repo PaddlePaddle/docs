@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.functional.nll_loss
-
 ### [torch.nn.functional.nll_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.nll_loss.html#torch-nn-functional-nll-loss)
-
 ```python
 torch.nn.functional.nll_loss(input,
                     target,
@@ -13,7 +11,6 @@ torch.nn.functional.nll_loss(input,
 ```
 
 ### [paddle.nn.functional.nll_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/nll_loss_cn.html#nll-loss)
-
 ```python
 paddle.nn.functional.nll_loss(input,
                     label,

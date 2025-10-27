@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.Tensor.geometric_
-
 ### [torch.Tensor.geometric_](https://pytorch.org/docs/stable/generated/torch.Tensor.geometric_.html)
-
 ```python
 torch.Tensor.geometric_(p, *, generator=None)
 ```
 
 ### [paddle.Tensor.geometric_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html)
-
 ```python
 paddle.Tensor.geometric_(probs, name=None)
 ```

@@ -1,13 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.Tensor.gt_
-
 ### [torch.Tensor.gt_](https://pytorch.org/docs/stable/generated/torch.Tensor.gt_.html)
-
 ```python
 torch.Tensor.gt_(other)
 ```
 
 ### [paddle.Tensor.greater_than_]()
-
 ```python
 paddle.Tensor.greater_than_(y)
 ```

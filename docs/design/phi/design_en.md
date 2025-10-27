@@ -78,7 +78,7 @@ We hope to be able to achieve the same three-layer arguments of Python API -> Op
   - The initial construction of the PHI operator library paid more attention to Kernel "migration". Due to the consideration of time and labor costs, the original OpKernel logic migration is not forced to be upgraded to "combined" writing for the time being, and the same is true for the forward and backward Kernels
   - The "combined Kernel extension development" capability provided by the PHI operator library initially serves the new operators of subsequent increments, and the existing operators still maintain their original coding implementation, reducing the cost of migration
   - The "new hardware expansion capability" provided by the PHI operator library is initially only provided within the scope of the new hardware itself. For example, the XPU has implemented 50 Kernels, and then it can combine new Kernels based on 50 Kernels, but this is only limited to the XPU Within the scope, its implementation is not common with CPU, CUDA, etc.
-  - The PHI operator library project focuses on the work of "Kernel functionalization & Op normalization", Kernel is changed to functional format, C++ API and Op naming and arguemnts list are gradually normalized to Python API under the premise of ensuring compatibility as much as possible
+  - The PHI operator library project focuses on the work of "Kernel functionalization & Op normalization", Kernel is changed to functional format, C++ API and Op naming and arguments list are gradually normalized to Python API under the premise of ensuring compatibility as much as possible
 
 
 ## 2. Design Overview
@@ -253,7 +253,7 @@ enum class Backend : uint8_t {
   NUM_BACKENDS,
 
   /**
-   * [ Why we need ALL in baisc kernel key member? ]
+   * [ Why we need ALL in basic kernel key member? ]
    *
    * For Tensor, ALL represents an illegal Backend, but for Kernel, some
    * kernels may be device-independent by nature, such as reshape;
@@ -382,7 +382,7 @@ enum class DataType {
   BFLOAT16,
 
   NUM_DATA_TYPES,
-  // See Note [ Why we need ALL in baisc kernel key member? ]
+  // See Note [ Why we need ALL in basic kernel key member? ]
   ALL_DTYPE = UNDEFINED,
 };
 ```
@@ -1134,7 +1134,7 @@ Then, in order to transplant the functional `InferMeta` back to the Op architect
 Normalize the function form through the `PT_INFER_META` macro, and then wrap `PT_INFER_META(***InferMeta)` into a functor. The functor first converts the `InferShapeContext` to `InferMetaContext`, then calls the corresponding `InferMeta` function, and manages the code uniformly through a macro.
 
 ```
-##define DELCARE_INFER_SHAPE_FUNCTOR(op_type, functor_name, fn)      \
+##define DECLARE_INFER_SHAPE_FUNCTOR(op_type, functor_name, fn)      \
   struct functor_name : public paddle::framework::InferShapeBase {  \
     void operator()(                                                \
         paddle::framework::InferShapeContext* ctx) const override { \
@@ -1176,7 +1176,7 @@ class SignOp : public framework::OperatorWithKernel {
   using framework::OperatorWithKernel::OperatorWithKernel;
 };
 
-DELCARE_INFER_SHAPE_FUNCTOR(
+DECLARE_INFER_SHAPE_FUNCTOR(
     sign, SignInferShapeFunctor, PT_INFER_META(phi::UnchangedInferMetaNew));
 REGISTER_OPERATOR(sign, ops::SignOp, ops::SignOpMaker<float>,
                   ops::SignGradMaker<paddle::framework::OpDesc>,
@@ -1219,7 +1219,7 @@ At present, the `ArgumentMapping` function mapping is designed. In the `phi/ops/
  * The infrt declare like:
  *
  * def PDKEL_Reshape_to_CPU : Pat<
- *     (PD_ReshapeOp $x, $shape_tensor， $shape_attr), // OpMaker arguements
+ *     (PD_ReshapeOp $x, $shape_tensor， $shape_attr), // OpMaker arguments
  *     (PDKEL_ReshapeKernelAttr $x, fn($shape_attr)>;  // Kernel arguments
  * def PDKEL_Reshape_to_CPU : Pat<
  *     (PD_ReshapeOp $x, $shape_tensor， $shape_attr),

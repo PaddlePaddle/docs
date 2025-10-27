@@ -1,7 +1,5 @@
-## [仅 API 调用方式不一致]torchvision.transforms.functional.erase
-
+## [ 仅 API 调用方式不一致 ]torchvision.transforms.functional.erase
 ### [torchvision.transforms.functional.erase](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.erase.html?highlight=erase#torchvision.transforms.functional.erase)
-
 ```python
 torchvision.transforms.functional.erase(
     img: Tensor,
@@ -15,7 +13,6 @@ torchvision.transforms.functional.erase(
 ```
 
 ### [paddle.vision.transforms.erase](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/erase_cn.html)
-
 ```python
 paddle.vision.transforms.erase(
     img: Union[paddle.Tensor, np.ndarray, PIL.Image.Image],

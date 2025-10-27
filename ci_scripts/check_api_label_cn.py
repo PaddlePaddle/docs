@@ -77,7 +77,7 @@ def run_cn_api_label_checking(rootdir, files):
     for file in files:
         if should_test(file) and not check_api_label(rootdir, file):
             logger.error(
-                f"The first line in {rootdir}/{file} is not avaiable, please re-check it!"
+                f"The first line in {rootdir}/{file} is not available, please re-check it!"
             )
             sys.exit(1)
     valid_api_labels = find_all_api_labels_in_dir(rootdir)

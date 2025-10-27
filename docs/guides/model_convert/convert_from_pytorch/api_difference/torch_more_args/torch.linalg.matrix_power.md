@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.linalg.matrix_power
 ### [torch.linalg.matrix_power](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_power.html?highlight=torch+linalg+matrix_power#torch.linalg.matrix_power)
-
 ```python
 torch.linalg.matrix_power(input,
                         n,
@@ -9,7 +8,6 @@ torch.linalg.matrix_power(input,
 ```
 
 ### [paddle.linalg.matrix_power](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/matrix_power_cn.html)
-
 ```python
 paddle.linalg.matrix_power(x,
                         n,

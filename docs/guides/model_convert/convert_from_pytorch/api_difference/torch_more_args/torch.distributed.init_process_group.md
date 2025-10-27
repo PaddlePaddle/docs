@@ -1,12 +1,10 @@
-## [ torch 参数更多 ] torch.distributed.init_process_group
+## [ torch 参数更多 ]torch.distributed.init_process_group
 ### [torch.distributed.init_process_group](https://pytorch.org/docs/stable/distributed.html?highlight=init_process#torch.distributed.init_process_group)
-
 ```python
 torch.distributed.init_process_group(backend='nccl', init_method=None, timeout=datetime.timedelta(seconds=1800), world_size=-1, rank=-1, store=None, group_name='', pg_options=None)
 ```
 
 ### [paddle.distributed.init_parallel_env](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/init_parallel_env_cn.html)
-
 ```python
 paddle.distributed.init_parallel_env()
 ```

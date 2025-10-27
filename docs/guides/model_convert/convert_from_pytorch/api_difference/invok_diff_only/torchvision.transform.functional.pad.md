@@ -1,7 +1,5 @@
-## [仅 API 调用方式不一致]torchvision.transforms.functional.pad
-
+## [ 仅 API 调用方式不一致 ]torchvision.transforms.functional.pad
 ### [torchvision.transforms.functional.pad](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.pad.html)
-
 ```python
 torchvision.transforms.functional.pad(
     img: Union[PIL.Image.Image, torch.Tensor],
@@ -12,7 +10,6 @@ torchvision.transforms.functional.pad(
 ```
 
 ### [paddle.vision.transforms.pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/pad_cn.html)
-
 ```python
 paddle.vision.transforms.pad(
     img: Union[PIL.Image.Image, np.ndarray, paddle.Tensor],

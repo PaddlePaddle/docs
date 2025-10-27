@@ -1,13 +1,10 @@
-## [仅 API 调用方式不一致]torch.cuda.reset_max_memory_allocated
-
+## [ 仅 API 调用方式不一致 ]torch.cuda.reset_max_memory_allocated
 ### [torch.cuda.reset_max_memory_allocated](https://pytorch.org/docs/stable/generated/torch.cuda.reset_max_memory_allocated.html#torch.cuda.reset_max_memory_allocated)
-
 ```python
 torch.cuda.reset_max_memory_allocated(device)
 ```
 
 ### [paddle.device.cuda.reset_max_memory_allocated](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/reset_max_memory_allocated_cn.html)
-
 ```python
 paddle.device.cuda.reset_max_memory_allocated(device)
 ```

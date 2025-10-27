@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.nextafter
-
 ### [torch.nextafter](https://pytorch.org/docs/stable/generated/torch.nextafter.html?highlight=nextafter#torch.nextafter)
-
 ```python
 torch.nextafter(input,
                 other,
@@ -10,7 +8,6 @@ torch.nextafter(input,
 ```
 
 ### [paddle.nextafter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nextafter_cn.html)
-
 ```python
 paddle.nextafter(x,
                  y,
