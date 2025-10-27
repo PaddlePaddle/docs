@@ -382,28 +382,24 @@ def gen_function_args_string(fn_node: ast.FunctionDef) -> str:
         return ""
     arg_list = []
     posonlyargs_count = len(fn_node.args.posonlyargs)
-    # posonlyargs
-    for i, arg in enumerate(fn_node.args.posonlyargs):
-        if _is_self_arg(arg):
+    # posonlyargs and args
+    defaults_start_index = (
+        len(fn_node.args.args)
+        + len(fn_node.args.posonlyargs)
+        - len(fn_node.args.defaults)
+    )
+    for i, arg in enumerate(fn_node.args.posonlyargs + fn_node.args.args):
+        if _is_self_arg(arg) and i == 0:
             continue
-        arg_list.append(arg.arg)
-    if posonlyargs_count > 0:
-        arg_list.append("/")
-    # args
-    for i, arg in enumerate(fn_node.args.args):
-        if _is_self_arg(arg):
-            continue
-        arg_list.append(arg.arg)
-    # assign default values
-    defaults_start_index = len(arg_list) - len(fn_node.args.defaults)
-    jump = 0 if defaults_start_index > posonlyargs_count else -1
-    for i, default in enumerate(fn_node.args.defaults):
-        if jump == -1 and defaults_start_index + i > posonlyargs_count:
-            jump = 0
-        arg_index = defaults_start_index + i + jump
-        arg_name = arg_list[arg_index]
-        default_value_str = _gen_default_value_string(default)
-        arg_list[arg_index] = f"{arg_name}={default_value_str}"
+        if i == posonlyargs_count and posonlyargs_count > 0:
+            arg_list.append("/")
+        if i >= defaults_start_index:
+            default_value_str = _gen_default_value_string(
+                fn_node.args.defaults[i - defaults_start_index]
+            )
+            arg_list.append(f"{arg.arg}={default_value_str}")
+        else:
+            arg_list.append(arg.arg)
     # vararg
     if fn_node.args.vararg:
         arg_list.append(f"*{fn_node.args.vararg.arg}")
