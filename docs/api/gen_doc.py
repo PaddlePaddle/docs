@@ -412,7 +412,9 @@ def gen_function_args_string(fn_node: ast.FunctionDef) -> str:
         arg_list.append("*")
     for i, kwonlyarg in enumerate(fn_node.args.kwonlyargs):
         kwdefault = fn_node.args.kw_defaults[i]
-        if kwdefault is not None:
+        if kwdefault is None:
+            arg_list.append(kwonlyarg.arg)
+        else:
             default_value_str = _gen_default_value_string(kwdefault)
             arg_list.append(f"{kwonlyarg.arg}={default_value_str}")
     # kwarg
