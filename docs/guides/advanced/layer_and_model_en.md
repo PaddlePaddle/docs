@@ -27,7 +27,7 @@ class Model(paddle.nn.Layer):
         return y
 ```
 
-Here we contructed a ``Model`` which inherited from ``paddle.nn.Layer``. This model only holds a single layer of ``paddle.nn.Flatten``, which flattens the input variables **inputs** upon execution.
+Here we constructed a ``Model`` which inherited from ``paddle.nn.Layer``. This model only holds a single layer of ``paddle.nn.Flatten``, which flattens the input variables **inputs** upon execution.
 
 ## Sublayers
 

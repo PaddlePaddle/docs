@@ -99,7 +99,7 @@ At last, we take basic strategy and liveness analysis techniques learning from c
 In-place is a built-in attribute of an operator. Since we treat in-place and other operators differently, we have to add an in-place attribute for every operator.
 
 
-#### contruct control flow graph
+#### construct control flow graph
 
 Following is the ProgramDesc protobuf of [machine translation](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/book/test_machine_translation.py) example.
 
