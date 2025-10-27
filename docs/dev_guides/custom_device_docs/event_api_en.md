@@ -12,7 +12,7 @@ C_Status (*create_event)(const C_Device device, C_Event* event)
 
 It creates an event, which is used to synchronize tasks of different streams within the framework. When the device does not support asynchronous execution, empty implementation of the API is required.
 
-### Paremeter
+### Parameter
 
 device - the device to be used
 

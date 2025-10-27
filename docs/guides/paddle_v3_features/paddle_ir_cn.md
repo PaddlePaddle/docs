@@ -102,7 +102,7 @@ print(out)
 
 ### 2.多层级的 Dialect
 
-飞桨通过不同层级的 Dialect 来管理框架内不同领域的算子体系，比如 Built-in 下的 Shape Dialect 和 Control Flow Dialect，分别用户形状符号推导和控制流表示、与 PHI 算子库执行体系相关的 Operator Dialect 和 Kernel Dialect、与神经网络编译器领域相关的 CINN  Dialect 等。在飞桨神经网络编译器中，主要以计算图 Operator Dialect 为输入，经过组合算子和 Pass Pipline 后，会转换为 CINN Dialect，并附加 Shape Dialect 中的符号信息，最后会 Lowering 成编译器的 AST IR。
+飞桨通过不同层级的 Dialect 来管理框架内不同领域的算子体系，比如 Built-in 下的 Shape Dialect 和 Control Flow Dialect，分别用户形状符号推导和控制流表示、与 PHI 算子库执行体系相关的 Operator Dialect 和 Kernel Dialect、与神经网络编译器领域相关的 CINN  Dialect 等。在飞桨神经网络编译器中，主要以计算图 Operator Dialect 为输入，经过组合算子和 Pass Pipeline 后，会转换为 CINN Dialect，并附加 Shape Dialect 中的符号信息，最后会 Lowering 成编译器的 AST IR。
 上述这些多层级的 Dialect 内的算子 Op 会组成 Program ，并用来表示一个具体的模型。它包含两部分：计算图 和 权重 。
 * Value、Operation 用来对计算图进行抽象。Value 表示计算图中的有向边，他用来将两个 Operaton 关联起来，描述了程序中的 UD 链 ，Operation 表示计算图中的节点。一个 Operation 表示一个算子，它里面包含了零个或多个 Region 。Region 表示一个闭包，它里面包含了零个或多个 Block。Block 表示一个符合 SSA 的基本块，里面包含了零个或多个 Operation 。三者循环嵌套，可以实现任意复杂的语法结构。
 * Weight 用来对模型的权重参数进行单独存储，这也是深度学习框架和传统编译器不一样的地方。传统编译器会将数据段内嵌到程序里面。这是因为传统编译器里面，数据和代码是强绑定的，不可分割。但是对神经网络而言，一个计算图的每个 epoch 都会存在一份权重参数，多个计算图也有可能共同一份权重参数，二者不是强绑定的

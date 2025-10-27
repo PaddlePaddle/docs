@@ -256,7 +256,7 @@ def filter_user(user: list[User], type: UserType) -> list[User]: ...
 
 ### 参数应尽可能使用抽象类型，返回值应尽可能使用具体类型
 
-对于函数输入参数，如果允许，我们应该尽可能使用 [Protocal](https://docs.python.org/3/library/typing.html#typing.Protocol)，如 [Sequence](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)、[Mapping](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping) 、[Iterable](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable) 等抽象类型，以提高函数的通用性。而对于函数返回值，我们应该尽可能使用具体类型，以确保下游使用时能得到更好的提示效果。
+对于函数输入参数，如果允许，我们应该尽可能使用 [Protocol](https://docs.python.org/3/library/typing.html#typing.Protocol)，如 [Sequence](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)、[Mapping](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping) 、[Iterable](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable) 等抽象类型，以提高函数的通用性。而对于函数返回值，我们应该尽可能使用具体类型，以确保下游使用时能得到更好的提示效果。
 
 比如相比于如下写法：
 

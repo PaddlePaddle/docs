@@ -95,7 +95,7 @@ class PlainNet : public Net {
   virtual Error InferShape(Scope *scope) override;
 
   // Run all the operators with the `scope`, if no scope is provided, default
-  // scope will be used instead. If no OpContext is provicded, default context will be used.
+  // scope will be used instead. If no OpContext is provided, default context will be used.
   virtual Error Run(Scope *scope = nullptr, OpContext *context=nullptr, OpIndex begin = -1,
                    OpIndex end = -1) const override;
 

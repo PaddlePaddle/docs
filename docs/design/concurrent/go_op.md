@@ -27,7 +27,7 @@ The go operator can be accessed by using the fluid.Go() control flow.  This
 will create a new sub block, where the user can add additional operators
 to be ran on the thread.
 
-**Note:** Since back propegation is currently not support in the go_op, users
+**Note:** Since back propagation is currently not support in the go_op, users
 should ensure that operators in the go block does not require gradient
 calculations.
 
@@ -225,7 +225,7 @@ when spawning these threads.  For the first version of CSP, we only support
 OS threads.
 
 
-#### Backward Propegation:
+#### Backward Propagation:
 
 go_op currently does not support backwards propagation.  Please use go_op with
 non training operators.

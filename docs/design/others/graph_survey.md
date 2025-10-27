@@ -30,7 +30,7 @@ def get_symbol(num_classes=10, **kwargs):
 
 Variable here is actually a Symbol. Every basic Symbol will correspond to one Node, and every Node has its own AnyAttr. There is a op field in AnyAttr class, when a Symbol represents Variable(often input data), the op field is null.
 
-Symbol contains a data member, std::vector<NodeEntry> outputs, and NodeEntry cantains a poniter to Node. We can follow the Node pointer to get all the Graph.
+Symbol contains a data member, std::vector<NodeEntry> outputs, and NodeEntry cantains a pointer to Node. We can follow the Node pointer to get all the Graph.
 
 And Symbol can be saved to a JSON file.
 

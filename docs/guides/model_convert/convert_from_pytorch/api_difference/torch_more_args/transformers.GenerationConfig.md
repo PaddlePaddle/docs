@@ -16,9 +16,9 @@ paddlenlp.generation.GenerationConfig(*kwargs)
 | transformers                         | PaddlePaddle        | 备注      |
 | -------------------------------------| ------------------- | -------- |
 | max_length                           | max_length          | 最大生成长度。 |
-| max_new_tokens                       | -                   | 最大生成长度(忽略 promot)，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
+| max_new_tokens                       | -                   | 最大生成长度(忽略 prompt)，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
 | min_length                           | min_length          | 最小生成长度。 |
-| min_new_tokens                       | -                   | 最小生成长度(忽略 promot)，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
+| min_new_tokens                       | -                   | 最小生成长度(忽略 prompt)，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | early_stopping                       | early_stopping      | 早停是否开启。 |
 | max_time                             | -                   | 最大允许计算运行时间，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | do_sample                            | do_sample           | 是否进行采样。 |
