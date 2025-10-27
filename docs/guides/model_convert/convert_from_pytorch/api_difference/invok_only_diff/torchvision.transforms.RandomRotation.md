@@ -19,6 +19,7 @@ paddle.vision.transforms.RandomRotation(degrees, interpolation, expand, center, 
 ```python
 # PyTorch 写法
 rotation = torchvision.transforms.RandomRotation(degrees=degrees)
+
 # Paddle 写法
 rotation = paddle.vision.transforms.RandomRotation(degrees=degrees)
 ```

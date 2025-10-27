@@ -19,6 +19,7 @@ paddle.device.cuda.reset_max_memory_allocated(device=None)
 ```python
 # PyTorch 写法
 result = torch.cuda.reset_max_memory_allocated()
+
 # Paddle 写法
 result = paddle.device.cuda.reset_max_memory_allocated()
 ```

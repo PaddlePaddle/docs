@@ -24,6 +24,7 @@ class TheModelClass(torch.nn.Module):
 
 model = TheModelClass()
 model.eval()
+
 # Paddle 写法
 class TheModelClass(paddle.nn.Layer):
     def forward(self, x):

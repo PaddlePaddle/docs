@@ -19,6 +19,7 @@ paddle.core.is_compiled_with_nccl()
 ```python
 # PyTorch 写法
 result = torch.distributed.is_nccl_available()
+
 # Paddle 写法
 result = paddle.core.is_compiled_with_nccl()
 ```

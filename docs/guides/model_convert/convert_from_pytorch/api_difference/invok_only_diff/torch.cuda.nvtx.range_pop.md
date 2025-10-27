@@ -19,6 +19,7 @@ paddle.framework.core.nvprof_nvtx_pop()
 ```python
 # PyTorch 写法
 result = torch.cuda.nvtx.range_pop()
+
 # Paddle 写法
 result = paddle.framework.core.nvprof_nvtx_pop()
 ```

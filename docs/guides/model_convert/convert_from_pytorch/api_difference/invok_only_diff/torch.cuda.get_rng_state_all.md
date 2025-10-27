@@ -19,6 +19,7 @@ paddle.get_rng_state(device=None)
 ```python
 # PyTorch 写法
 result = torch.cuda.get_rng_state_all()
+
 # Paddle 写法
 result = paddle.get_rng_state()
 ```

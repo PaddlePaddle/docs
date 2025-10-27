@@ -19,6 +19,7 @@ paddle.Tensor.stop_gradient
 ```python
 # PyTorch 写法
 result = x.is_inference()
+
 # Paddle 写法
 result = x.stop_gradient
 ```

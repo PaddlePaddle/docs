@@ -19,6 +19,7 @@ paddle.vision.transforms.Pad(padding, fill, padding_mode, keys)
 ```python
 # PyTorch 写法
 pad = torchvision.transforms.Pad(padding=2, fill=0, padding_mode="constant")
+
 # Paddle 写法
 pad = paddle.vision.transforms.Pad(padding=2, fill=0, padding_mode="constant")
 ```

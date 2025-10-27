@@ -20,6 +20,7 @@ paddle.device.stream_guard(stream)
 # PyTorch 写法
 with torch.cuda.StreamContext(stream=s1):
     result = a + b
+
 # Paddle 写法
 with paddle.device.stream_guard(stream=s1):
     result = a + b

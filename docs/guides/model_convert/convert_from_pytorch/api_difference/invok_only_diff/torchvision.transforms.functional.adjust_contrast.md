@@ -19,6 +19,7 @@ paddle.vision.transforms.adjust_contrast(img, contrast_factor)
 ```python
 # PyTorch 写法
 result = torchvision.transforms.functional.adjust_contrast(img, contrast_factor)
+
 # Paddle 写法
 result = paddle.vision.transforms.adjust_contrast(img, contrast_factor)
 ```

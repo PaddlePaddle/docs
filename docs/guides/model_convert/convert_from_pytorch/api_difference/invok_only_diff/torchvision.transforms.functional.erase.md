@@ -19,6 +19,7 @@ paddle.vision.transforms.erase(img, i, j, h, w, v, inplace)
 ```python
 # PyTorch 写法
 result = torchvision.transforms.functional.erase(img, i, j, h, w, v, inplace)
+
 # Paddle 写法
 result = paddle.vision.transforms.erase(img, i, j, h, w, v, inplace)
 ```

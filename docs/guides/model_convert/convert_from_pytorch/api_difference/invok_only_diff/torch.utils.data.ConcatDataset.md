@@ -19,6 +19,7 @@ paddle.io.ConcatDataset(datasets)
 ```python
 # PyTorch 写法
 dataset = torch.utils.data.ConcatDataset([RandomDataset(2), RandomDataset(2)])
+
 # Paddle 写法
 dataset = paddle.io.ConcatDataset([RandomDataset(2), RandomDataset(2)])
 

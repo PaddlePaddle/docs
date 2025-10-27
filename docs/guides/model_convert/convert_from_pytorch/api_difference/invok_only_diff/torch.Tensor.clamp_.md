@@ -9,7 +9,7 @@ torch.Tensor.clamp_(min=None, max=None)
 ### [paddle.Tensor.clip_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/clip__cn.html#paddle/Tensor/clip__cn#cn-api-paddle-Tensor-clip_)
 
 ```python
-paddle.Tensor.clip_(x, min=None, max=None, name=None)
+paddle.Tensor.clip_(min=None, max=None, name=None)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：

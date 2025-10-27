@@ -18,6 +18,7 @@ paddle.device.cuda.max_memory_allocated(device=None)
 ```python
 # PyTorch 写法
 result = torch.cuda.max_memory_allocated()
+
 # Paddle 写法
 result = paddle.device.cuda.max_memory_allocated()
 ```

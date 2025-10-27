@@ -19,6 +19,7 @@ paddle.vision.transforms.RandomCrop(size, padding, pad_if_needed, fill, padding_
 ```python
 # PyTorch 写法
 crop = torchvision.transforms.RandomCrop(size=size)
+
 # Paddle 写法
 crop = paddle.vision.transforms.RandomCrop(size=size)
 ```

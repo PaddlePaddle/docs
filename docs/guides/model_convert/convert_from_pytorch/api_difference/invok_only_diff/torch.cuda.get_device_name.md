@@ -19,6 +19,7 @@ paddle.device.cuda.get_device_name(device)
 ```python
 # PyTorch 写法
 result = torch.cuda.get_device_name(current_device)
+
 # Paddle 写法
 result = paddle.device.cuda.get_device_name(current_device)
 ```

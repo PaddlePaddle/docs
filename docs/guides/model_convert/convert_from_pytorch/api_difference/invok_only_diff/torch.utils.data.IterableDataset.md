@@ -27,6 +27,7 @@ class MyIterableDataset(torch.utils.data.IterableDataset):
 
     def __iter__(self):
         return iter(range(self.start, self.end))
+
 # Paddle 写法
 class MyIterableDataset(paddle.io.IterableDataset):
     def __init__(self, start, end):

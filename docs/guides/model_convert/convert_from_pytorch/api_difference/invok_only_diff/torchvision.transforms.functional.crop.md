@@ -19,6 +19,7 @@ paddle.vision.transforms.crop(img, top, left, height, width)
 ```python
 # PyTorch 写法
 result = torchvision.transforms.functional.crop(img, top, left, height, width)
+
 # Paddle 写法
 result = paddle.vision.transforms.crop(img, top, left, height, width)
 ```

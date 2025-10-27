@@ -9,7 +9,7 @@ torch.Tensor.fix_()
 ### [paddle.Tensor.trunc_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/trunc__cn.html#paddle/Tensor/trunc__cn#cn-api-paddle-Tensor-trunc_)
 
 ```python
-paddle.Tensor.trunc_(input, name=None)
+paddle.Tensor.trunc_(name=None)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：

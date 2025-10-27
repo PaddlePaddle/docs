@@ -21,6 +21,7 @@ paddle.vision.transforms.ColorJitter(brightness=0, contrast=0, saturation=0, hue
 jitter = torchvision.transforms.ColorJitter(
     brightness=0.2, contrast=0.3, saturation=0.4, hue=0
 )
+
 # Paddle 写法
 jitter = paddle.vision.transforms.ColorJitter(
     brightness=0.2, contrast=0.3, saturation=0.4, hue=0

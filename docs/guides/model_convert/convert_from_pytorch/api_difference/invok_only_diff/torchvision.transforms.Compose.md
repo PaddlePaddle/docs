@@ -19,6 +19,7 @@ paddle.vision.transforms.Compose(transforms)
 ```python
 # PyTorch 写法
 composed = torchvision.transforms.Compose(transforms=process)
+
 # Paddle 写法
 composed = paddle.vision.transforms.Compose(transforms=process)
 ```

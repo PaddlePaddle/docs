@@ -19,6 +19,7 @@ paddle.amp.is_bfloat16_supported(device)
 ```python
 # PyTorch 写法
 result = torch.cuda.is_bf16_supported()
+
 # Paddle 写法
 result = paddle.amp.is_bfloat16_supported()
 ```

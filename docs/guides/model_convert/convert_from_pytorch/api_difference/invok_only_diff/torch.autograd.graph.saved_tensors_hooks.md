@@ -20,6 +20,7 @@ paddle.autograd.saved_tensors_hooks(pack_hook, unpack_hook)
 # PyTorch 写法
 with torch.autograd.graph.saved_tensors_hooks(pack_hook, unpack_hook):
     y = torch.mul(a, b)
+
 # Paddle 写法
 with paddle.autograd.saved_tensors_hooks(pack_hook, unpack_hook):
     y = paddle.mul(a, b)

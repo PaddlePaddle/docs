@@ -19,6 +19,7 @@ paddle.nn.ZeroPad2D(padding, data_format='NCHW', name=None)
 ```python
 # PyTorch 写法
 model = torch.nn.ZeroPad2d(1)
+
 # Paddle 写法
 model = paddle.nn.ZeroPad2D(1)
 ```

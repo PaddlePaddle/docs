@@ -19,6 +19,7 @@ paddle.device.is_compiled_with_cuda()
 ```python
 # PyTorch 写法
 result = torch.backends.cuda.is_built()
+
 # Paddle 写法
 result = paddle.device.is_compiled_with_cuda()
 ```

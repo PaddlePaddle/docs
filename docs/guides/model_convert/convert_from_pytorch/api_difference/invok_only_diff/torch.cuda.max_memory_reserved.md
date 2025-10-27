@@ -19,6 +19,7 @@ paddle.device.cuda.max_memory_reserved(device=None)
 ```python
 # PyTorch 写法
 result = torch.cuda.max_memory_reserved()
+
 # Paddle 写法
 result = paddle.device.cuda.max_memory_reserved()
 ```

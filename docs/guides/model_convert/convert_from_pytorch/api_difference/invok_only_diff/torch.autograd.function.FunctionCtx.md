@@ -29,6 +29,7 @@ class MyFunction(torch.autograd.Function):
         x = ctx.x
         grad_input = grad_output * 2
         return grad_input
+
 # Paddle 写法
 class MyFunction(paddle.autograd.Function):
     @staticmethod

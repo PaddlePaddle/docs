@@ -9,7 +9,7 @@ torch.Tensor.conj_physical()
 ### [paddle.Tensor.conj](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/conj_cn.html#paddle/Tensor/conj_cn#cn-api-paddle-Tensor-conj)
 
 ```python
-paddle.Tensor.conj(x, name=None)
+paddle.Tensor.conj(name=None)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：

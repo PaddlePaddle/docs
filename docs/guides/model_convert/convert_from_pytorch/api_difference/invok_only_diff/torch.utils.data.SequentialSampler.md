@@ -19,6 +19,7 @@ paddle.io.SequenceSampler(data_source)
 ```python
 # PyTorch 写法
 s = torch.utils.data.SequentialSampler(MyDataset())
+
 # Paddle 写法
 s = paddle.io.SequenceSampler(MyDataset())
 ```

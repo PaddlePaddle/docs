@@ -19,6 +19,7 @@ paddle.vision.transforms.to_grayscale(img, num_output_channels)
 ```python
 # PyTorch 写法
 result = torchvision.transforms.functional.to_grayscale(img, num_output_channels=1)
+
 # Paddle 写法
 result = paddle.vision.transforms.to_grayscale(img, num_output_channels=1)
 ```

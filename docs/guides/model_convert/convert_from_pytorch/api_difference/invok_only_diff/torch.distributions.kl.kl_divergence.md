@@ -19,6 +19,7 @@ paddle.distribution.kl_divergence(p, q)
 ```python
 # PyTorch 写法
 result = torch.distributions.kl.kl_divergence(m, n)
+
 # Paddle 写法
 result = paddle.distribution.kl_divergence(m, n)
 ```

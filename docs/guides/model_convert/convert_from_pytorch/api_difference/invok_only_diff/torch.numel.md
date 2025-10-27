@@ -19,6 +19,7 @@ paddle.Tensor.size
 ```python
 # PyTorch 写法
 result = torch.numel(a)
+
 # Paddle 写法
 result = a.size
 ```

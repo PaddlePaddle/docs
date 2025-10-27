@@ -9,7 +9,7 @@ torch.Tensor.mvlgamma(p)
 ### [paddle.Tensor.multigammaln](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/multigammaln_cn.html#paddle/Tensor/multigammaln_cn#cn-api-paddle-Tensor-multigammaln)
 
 ```python
-paddle.Tensor.multigammaln(x, p, name=None)
+paddle.Tensor.multigammaln(p, name=None)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：

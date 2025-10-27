@@ -19,6 +19,7 @@ paddle.nn.UpsamplingBilinear2D(size=None, scale_factor=None, data_format='NCHW',
 ```python
 # PyTorch 写法
 model = torch.nn.UpsamplingBilinear2d(scale_factor=2)
+
 # Paddle 写法
 model = paddle.nn.UpsamplingBilinear2D(scale_factor=2)
 ```

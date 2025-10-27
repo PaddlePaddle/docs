@@ -19,6 +19,7 @@ paddle.vision.transforms.CenterCrop(size, keys)
 ```python
 # PyTorch 写法
 center_crop = torchvision.transforms.CenterCrop(size)
+
 # Paddle 写法
 center_crop = paddle.vision.transforms.CenterCrop(size)
 ```

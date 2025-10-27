@@ -19,6 +19,7 @@ paddle.vision.transforms.center_crop(img, output_size)
 ```python
 # PyTorch 写法
 result = torchvision.transforms.functional.center_crop(img, output_size)
+
 # Paddle 写法
 result = paddle.vision.transforms.center_crop(img, output_size)
 

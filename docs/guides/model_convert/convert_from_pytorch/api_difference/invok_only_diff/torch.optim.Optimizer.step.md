@@ -20,6 +20,7 @@ paddle.optimizer.Optimizer.step()
 # PyTorch 写法
 optim = torch.optim.Optimizer([theta], defaults={"learning_rate": 1.0})
 result = type(optim.step)
+
 # Paddle 写法
 optim = paddle.optimizer.Optimizer(parameters=[theta], **{"learning_rate": 1.0})
 result = type(optim.step)

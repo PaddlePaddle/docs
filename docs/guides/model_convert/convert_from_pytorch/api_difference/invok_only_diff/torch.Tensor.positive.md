@@ -19,6 +19,7 @@ paddle.positive(x)
 ```python
 # PyTorch 写法
 result = x.positive()
+
 # Paddle 写法
 result = paddle.positive(x)
 ```

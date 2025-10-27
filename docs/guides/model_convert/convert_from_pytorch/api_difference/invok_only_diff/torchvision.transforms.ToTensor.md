@@ -19,6 +19,7 @@ paddle.vision.transforms.ToTensor(data_format, keys)
 ```python
 # PyTorch 写法
 transform = torchvision.transforms.ToTensor()
+
 # Paddle 写法
 transform = paddle.vision.transforms.ToTensor()
 ```

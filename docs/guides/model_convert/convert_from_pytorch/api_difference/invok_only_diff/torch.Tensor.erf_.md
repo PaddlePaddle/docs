@@ -19,6 +19,7 @@ paddle.erf_(x, name=None)
 ```python
 # PyTorch 写法
 a.erf_()
+
 # Paddle 写法
 paddle.erf_(a)
 ```

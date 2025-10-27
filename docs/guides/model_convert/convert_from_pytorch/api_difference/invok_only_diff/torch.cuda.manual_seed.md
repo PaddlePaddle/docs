@@ -19,6 +19,7 @@ paddle.seed(seed)
 ```python
 # PyTorch 写法
 torch.cuda.manual_seed(123)
+
 # Paddle 写法
 paddle.seed(123)
 ```

@@ -22,6 +22,7 @@ net = torch.nn.Sequential(l, l)
 result = torch.Tensor([0, 0])
 for i, j in enumerate(net.children()):
     result = j(result)
+
 # Paddle 写法
 net = paddle.nn.Sequential(l, l)
 result = paddle.Tensor([0, 0])

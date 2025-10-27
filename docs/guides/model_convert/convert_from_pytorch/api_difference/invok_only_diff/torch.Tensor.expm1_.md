@@ -19,6 +19,7 @@ paddle.expm1_(x, name=None)
 ```python
 # PyTorch 写法
 a.expm1_()
+
 # Paddle 写法
 paddle.expm1_(a)
 ```

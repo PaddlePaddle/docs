@@ -9,7 +9,7 @@ torch.Tensor.negative_()
 ### [paddle.Tensor.neg_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/neg__cn.html#paddle/Tensor/neg__cn#cn-api-paddle-Tensor-neg_)
 
 ```python
-paddle.Tensor.neg_(x, name=None)
+paddle.Tensor.neg_(name=None)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：

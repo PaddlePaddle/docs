@@ -19,6 +19,7 @@ paddle.nn.AdaptiveAvgPool1D(output_size, name=None)
 ```python
 # PyTorch 写法
 model = torch.nn.AdaptiveAvgPool1d(5)
+
 # Paddle 写法
 model = paddle.nn.AdaptiveAvgPool1D(5)
 ```

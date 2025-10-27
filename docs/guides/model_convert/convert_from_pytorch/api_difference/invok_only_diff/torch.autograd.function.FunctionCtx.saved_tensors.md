@@ -30,6 +30,7 @@ class cus_tanh(torch.autograd.Function):
         x, y = ctx.saved_tensors
         grad = y + dy + 1
         return grad
+
 # Paddle 写法
 class cus_tanh(paddle.autograd.Function):
     @staticmethod

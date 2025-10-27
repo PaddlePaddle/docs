@@ -19,6 +19,7 @@ paddle.nn.MaxUnPool3D(kernel_size, stride=None, padding=0, data_format='NCDHW', 
 ```python
 # PyTorch 写法
 unpool = torch.nn.MaxUnpool3d(3, stride=2)
+
 # Paddle 写法
 unpool = paddle.nn.MaxUnPool3D(3, stride=2)
 ```

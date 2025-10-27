@@ -30,6 +30,7 @@ class cus_func(torch.autograd.Function):
     def backward(ctx, grad_a, grad_b):
         grad_x = 3 * grad_b
         return grad_x
+
 # Paddle 写法
 class cus_func(paddle.autograd.Function):
     @staticmethod

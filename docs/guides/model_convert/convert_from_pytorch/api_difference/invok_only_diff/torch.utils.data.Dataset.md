@@ -27,6 +27,7 @@ class Data(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.x)
+
 # Paddle 写法
 class Data(paddle.io.Dataset):
     def __init__(self):

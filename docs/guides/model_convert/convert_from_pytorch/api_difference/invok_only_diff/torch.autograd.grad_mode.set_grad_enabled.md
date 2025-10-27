@@ -20,6 +20,7 @@ paddle.set_grad_enabled(mode)
 # PyTorch 写法
 with torch.autograd.grad_mode.set_grad_enabled(is_train):
     y = x * 2
+
 # Paddle 写法
 with paddle.set_grad_enabled(is_train):
     y = x * 2

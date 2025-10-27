@@ -19,6 +19,7 @@ paddle.get_device()
 ```python
 # PyTorch 写法
 result = torch.cpu.current_device()
+
 # Paddle 写法
 result = paddle.get_device()
 ```

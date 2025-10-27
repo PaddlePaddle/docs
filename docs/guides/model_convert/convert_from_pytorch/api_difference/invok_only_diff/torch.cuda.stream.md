@@ -19,6 +19,7 @@ paddle.device.stream_guard(stream)
 ```python
 # PyTorch 写法
 context = torch.cuda.stream(stream=s)
+
 # Paddle 写法
 context = paddle.device.stream_guard(stream=s)
 ```

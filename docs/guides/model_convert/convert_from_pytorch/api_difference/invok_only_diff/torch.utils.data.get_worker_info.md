@@ -19,6 +19,7 @@ paddle.io.get_worker_info()
 ```python
 # PyTorch 写法
 result = torch.utils.data.get_worker_info()
+
 # Paddle 写法
 result = paddle.io.get_worker_info()
 ```

@@ -19,6 +19,7 @@ paddle.io.dataloader.collate.default_collate_fn(batch)
 ```python
 # PyTorch 写法
 result = torch.tensor(torch.utils.data.default_collate([0, 1, 2, 3]))
+
 # Paddle 写法
 result = paddle.tensor(paddle.io.dataloader.collate.default_collate_fn([0, 1, 2, 3]))
 ```

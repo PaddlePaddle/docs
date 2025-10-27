@@ -9,7 +9,7 @@ torch.Tensor.real
 ### [paddle.Tensor.real](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/real_cn.html#paddle/Tensor/real_cn#cn-api-paddle-Tensor-real)
 
 ```python
-paddle.Tensor.real(x, name=None)
+paddle.Tensor.real(name=None)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：
@@ -19,6 +19,7 @@ paddle.Tensor.real(x, name=None)
 ```python
 # PyTorch 写法
 result = src.real
+
 # Paddle 写法
 result = src.real()
 ```

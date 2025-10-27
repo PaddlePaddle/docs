@@ -33,6 +33,7 @@ class Data(torch.utils.data.Dataset):
 
 data = Data()
 datasets = torch.utils.data.random_split(data, [3, 7])
+
 # Paddle 写法
 class Data(paddle.io.Dataset):
     def __init__(self):

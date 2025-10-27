@@ -19,6 +19,7 @@ paddle.square_(x, name=None)
 ```python
 # PyTorch 写法
 x.square_()
+
 # Paddle 写法
 paddle.square_(x)
 ```

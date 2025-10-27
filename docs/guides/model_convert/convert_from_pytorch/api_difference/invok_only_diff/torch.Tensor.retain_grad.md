@@ -19,6 +19,7 @@ paddle.Tensor.retain_grads()
 ```python
 # PyTorch 写法
 result.retain_grad()
+
 # Paddle 写法
 result.retain_grads()
 ```

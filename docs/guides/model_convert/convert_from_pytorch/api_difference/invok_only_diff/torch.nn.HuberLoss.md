@@ -19,6 +19,7 @@ paddle.nn.SmoothL1Loss(reduction='mean', delta=1.0, name=None)
 ```python
 # PyTorch 写法
 loss = torch.nn.HuberLoss()
+
 # Paddle 写法
 loss = paddle.nn.SmoothL1Loss()
 ```

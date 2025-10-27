@@ -19,6 +19,7 @@ paddle.Tensor.is_sparse()
 ```python
 # PyTorch 写法
 result = a.is_sparse
+
 # Paddle 写法
 result = a.is_sparse()
 ```

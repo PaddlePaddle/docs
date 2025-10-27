@@ -19,6 +19,7 @@ paddle.distribution.constraint.Constraint(*args, **kwargs)
 ```python
 # PyTorch 写法
 result = torch.distributions.constraints.Constraint().check(1)
+
 # Paddle 写法
 result = paddle.distribution.constraint.Constraint().check(1)
 ```

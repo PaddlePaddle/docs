@@ -19,6 +19,7 @@ paddle.device.cuda.Event(enable_timing=False, blocking=False, interprocess=False
 ```python
 # PyTorch 写法
 result = torch.cuda.Event(enable_timing=True)
+
 # Paddle 写法
 result = paddle.device.cuda.Event(enable_timing=True)
 ```

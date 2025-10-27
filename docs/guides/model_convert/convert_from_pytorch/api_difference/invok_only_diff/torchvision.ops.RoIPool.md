@@ -19,6 +19,7 @@ paddle.vision.ops.RoIPool(output_size, spatial_scale)
 ```python
 # PyTorch 写法
 roi_pool = torchvision.ops.RoIPool(output_size=(7, 7), spatial_scale=1.0)
+
 # Paddle 写法
 roi_pool = paddle.vision.ops.RoIPool(output_size=(7, 7), spatial_scale=1.0)
 ```

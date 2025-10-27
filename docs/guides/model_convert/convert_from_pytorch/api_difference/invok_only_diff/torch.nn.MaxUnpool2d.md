@@ -19,6 +19,7 @@ paddle.nn.MaxUnPool2D(kernel_size, stride=None, padding=0, data_format='NCHW', o
 ```python
 # PyTorch 写法
 unpool = torch.nn.MaxUnpool2d(2, stride=2)
+
 # Paddle 写法
 unpool = paddle.nn.MaxUnPool2D(2, stride=2)
 ```

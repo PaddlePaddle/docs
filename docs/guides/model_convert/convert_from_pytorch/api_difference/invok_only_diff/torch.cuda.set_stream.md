@@ -19,6 +19,7 @@ paddle.device.set_stream(stream)
 ```python
 # PyTorch 写法
 result = torch.cuda.set_stream(stream)
+
 # Paddle 写法
 result = paddle.device.set_stream(stream)
 ```

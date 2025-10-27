@@ -19,6 +19,7 @@ paddle.vision.transforms.adjust_brightness(img, brightness_factor)
 ```python
 # PyTorch 写法
 result = torchvision.transforms.functional.adjust_brightness(img, factor)
+
 # Paddle 写法
 result = paddle.vision.transforms.adjust_brightness(img, factor)
 ```

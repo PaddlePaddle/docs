@@ -19,6 +19,7 @@ paddle.Tensor.place
 ```python
 # PyTorch 写法
 result = src.device
+
 # Paddle 写法
 result = src.place
 ```
