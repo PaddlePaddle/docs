@@ -239,7 +239,7 @@ class MyNet(paddle.nn.Layer):
                                       kernel_size=(3,3),
                                       stride=2)
 
-        self.gloabl_pool = paddle.nn.AdaptiveAvgPool2D((1,1))
+        self.global_pool = paddle.nn.AdaptiveAvgPool2D((1,1))
 
         self.fc1 = paddle.nn.Linear(in_features=128, out_features=8)
 
@@ -250,7 +250,7 @@ class MyNet(paddle.nn.Layer):
         x = F.relu(x)
         x = self.conv3(x)
         x = F.relu(x)
-        x = self.gloabl_pool(x)
+        x = self.global_pool(x)
         x = paddle.squeeze(x, axis=[2, 3])
         x = self.fc1(x)
         x = x / paddle.norm(x, axis=1, keepdim=True)
@@ -356,8 +356,8 @@ x_test_t = paddle.to_tensor(x_test)
 test_images_embeddings = model(x_test_t)
 similarities_matrix = paddle.matmul(test_images_embeddings, test_images_embeddings, transpose_y=True)
 
-indicies = paddle.argsort(similarities_matrix, descending=True)
-indicies = indicies.numpy()
+indices = paddle.argsort(similarities_matrix, descending=True)
+indices = indices.numpy()
 
 examples = np.empty(
     (
@@ -375,7 +375,7 @@ for row_idx in range(num_classes):
     anchor_idx = random.choice(examples_for_class)
 
     examples[row_idx, 0] = x_test[anchor_idx]
-    anchor_near_neighbours = indicies[anchor_idx][1:near_neighbours_per_example+1]
+    anchor_near_neighbours = indices[anchor_idx][1:near_neighbours_per_example+1]
     for col_idx, nn_idx in enumerate(anchor_near_neighbours):
         examples[row_idx, col_idx + 1] = x_test[nn_idx]
 
@@ -459,7 +459,7 @@ class MyNet2(paddle.nn.Layer):
                                       kernel_size=(3,3),
                                       stride=2)
 
-        self.gloabl_pool = paddle.nn.AdaptiveAvgPool2D((1,1))
+        self.global_pool = paddle.nn.AdaptiveAvgPool2D((1,1))
 
         self.fc1 = paddle.nn.Linear(in_features=128, out_features=8)
 
@@ -472,7 +472,7 @@ class MyNet2(paddle.nn.Layer):
         x = F.relu(x)
         x = self.conv3(x)
         x = F.relu(x)
-        x = self.gloabl_pool(x)
+        x = self.global_pool(x)
         x = paddle.squeeze(x, axis=[2, 3])
         x = self.fc1(x)
         x = x / paddle.norm(x, axis=1, keepdim=True)
@@ -799,8 +799,8 @@ x_test_t = paddle.to_tensor(x_test)
 test_images_embeddings = model_2(x_test_t)
 similarities_matrix = paddle.matmul(test_images_embeddings, test_images_embeddings, transpose_y=True)
 
-indicies = paddle.argsort(similarities_matrix, descending=True)
-indicies = indicies.numpy()
+indices = paddle.argsort(similarities_matrix, descending=True)
+indices = indices.numpy()
 
 examples = np.empty(
     (
@@ -818,7 +818,7 @@ for row_idx in range(num_classes):
     anchor_idx = random.choice(examples_for_class)
 
     examples[row_idx, 0] = x_test[anchor_idx]
-    anchor_near_neighbours = indicies[anchor_idx][1:near_neighbours_per_example+1]
+    anchor_near_neighbours = indices[anchor_idx][1:near_neighbours_per_example+1]
     for col_idx, nn_idx in enumerate(anchor_near_neighbours):
         examples[row_idx, col_idx + 1] = x_test[nn_idx]
 
@@ -836,7 +836,7 @@ show_collage(examples)
     报错信息可读性差比较好，比如：
     Traceback (most recent call last):
       File "D:\Postgraduate\deep_learning\jiaoliu\pp\train.py", line 191, in <module>
-        indicies = paddle.argsort(similarities_matrix, descending=True)
+        indices = paddle.argsort(similarities_matrix, descending=True)
       File "F:\Users\ASUS\anaconda3\envs\paddlepaddle-gpu\lib\site-packages\paddle\tensor\search.py", line 92, in argsort
         _, ids = _C_ops.argsort(x, 'axis', axis, 'descending', descending)
     SystemError: (Fatal) Operator argsort raises an struct paddle::memory::allocation::BadAlloc exception.

@@ -35,7 +35,7 @@ paddle.distribution 目录下包含飞桨框架支持的随机变量的概率分
     " :ref:`MultivariateNormal <cn_api_paddle_distribution_MultivariateNormal>` ", "MultivariateNormal 概率分布类"
     " :ref:`Multinomial <cn_api_paddle_distribution_Multinomial>` ", "Multinomial 概率分布类"
     " :ref:`Independent <cn_api_paddle_distribution_Independent>` ", "Independent 概率分布类"
-    " :ref:`TransfomedDistribution <cn_api_paddle_distribution_TransformedDistribution>` ", "TransformedDistribution 概率分布类"
+    " :ref:`TransformedDistribution <cn_api_paddle_distribution_TransformedDistribution>` ", "TransformedDistribution 概率分布类"
     " :ref:`Laplace <cn_api_paddle_distribution_Laplace>`", "Laplace 概率分布类"
     " :ref:`LKJCholesky <cn_api_paddle_distribution_LKJCholesky>`", "LKJCholesky 概率分布类"
     " :ref:`LogNormal <cn_api_paddle_distribution_LogNormal>` ", "LogNormal 概率分布类"

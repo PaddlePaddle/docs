@@ -116,7 +116,7 @@ Before writing code, please make sure you already look through Majel Source Code
 
 
 ### Memory Management
-`Allocation` manages a block of memory in device(CPU/GPU). We use `Place` to decribe memory location. The details of memory allocation and deallocation are implememted in `Allocator` and `DeAllocator`. Related low-level API such as `hl_malloc_device()` and `hl_malloc_host()` are provided by Paddle.
+`Allocation` manages a block of memory in device(CPU/GPU). We use `Place` to decribe memory location. The details of memory allocation and deallocation are implemented in `Allocator` and `DeAllocator`. Related low-level API such as `hl_malloc_device()` and `hl_malloc_host()` are provided by Paddle.
 
 ### Dim and Array
 #### Dim

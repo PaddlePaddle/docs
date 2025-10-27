@@ -232,7 +232,7 @@ dst - the address of destination device memory
 
 src - the address of source host memory
 
-size - the size of memory neeeded to be copied (in byte)
+size - the size of memory needed to be copied (in byte)
 
 ## async_memory_copy_d2h 【optional】
 
