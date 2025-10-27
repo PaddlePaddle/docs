@@ -6,7 +6,6 @@ accept = [
   "429"
 ]
 
-
 # Exclude links
 exclude = [
     "zhuanlan.zhihu.com",
