@@ -6,7 +6,7 @@ In golang, the [**select**](https://golang.org/ref/spec#Select_statements)
 statement lets a goroutine wait on multiple communication operations at the
 same time. The **select** blocks until one of its cases can run, then
 executes the case.  If multiple cases are ready to run, then one case is
-choosen at random to be executed.
+chosen at random to be executed.
 
 With the introduction of CSP for Paddle, we mimic this behavior by
 creating a ***select_op***.

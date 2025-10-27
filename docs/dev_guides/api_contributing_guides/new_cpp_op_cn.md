@@ -956,7 +956,7 @@ class TestTraceOp(OpTest):
     - 第二个参数`'Out'` : 指定前向网络最终的输出目标变量`Out`。
     - 第三个参数`check_pir` : `check_pir=True` 表示开启 PIR 模式单测（默认为 `False`，需手动开启），`check_dygraph` 默认为 `True`, 表示默认开启动态图单测。
   - 对于存在多个输入的反向算子测试，需要指定只计算部分输入梯度的 case
-    - 例如，[test_elementwise_sub_op.py](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/test_elementwise_sub_op.py) 中的 `test_check_grad_ignore_x` 和 `test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况
+    - 例如，[test_elementwise_sub_op.py](https://github.com/PaddlePaddle/Paddle/tree/develop/test/legacy_test/test_elementwise_sub_op.py) 中的 `test_check_grad_ignore_x` 和 `test_check_grad_ignore_y`分支用来测试只需要计算一个输入梯度的情况
     - 此处第三个参数 `max_relative_error` ：指定检测梯度时能容忍的最大相对误差值。
 
   ```python

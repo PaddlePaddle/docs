@@ -325,13 +325,13 @@ class TestElementwiseSPMDRule(unittest.TestCase):
         result_dist_attrs = self.binary_rule.infer_forward(
             self.x_dist_tensor_spec, self.y_dist_tensor_spec
         )
-        infered_input_dist_attrs = result_dist_attrs[0] # 推导得到的 input dims mapping
-        infered_output_dist_attrs = result_dist_attrs[1] # 推导得到的 output dims mapping
+        inferred_input_dist_attrs = result_dist_attrs[0] # 推导得到的 input dims mapping
+        inferred_output_dist_attrs = result_dist_attrs[1] # 推导得到的 output dims mapping
 
         # 检查结果是否正确
-        self.assertEqual(infered_input_dist_attrs[0].dims_mapping, [0, -1])
-        self.assertEqual(infered_input_dist_attrs[1].dims_mapping, [0, -1])
-        self.assertEqual(infered_output_dist_attrs[0].dims_mapping, [0, -1])
+        self.assertEqual(inferred_input_dist_attrs[0].dims_mapping, [0, -1])
+        self.assertEqual(inferred_input_dist_attrs[1].dims_mapping, [0, -1])
+        self.assertEqual(inferred_output_dist_attrs[0].dims_mapping, [0, -1])
 
     # 逆向推导单测
     def test_backward_multi_mesh_dim(self):
@@ -351,16 +351,16 @@ class TestElementwiseSPMDRule(unittest.TestCase):
             self.y_dist_tensor_spec,
             self.out_dist_tensor_spec,
         )
-        infered_input_dist_attrs = resulted_dist_attrs[0]
-        infered_output_dist_attrs = resulted_dist_attrs[1]
+        inferred_input_dist_attrs = resulted_dist_attrs[0]
+        inferred_output_dist_attrs = resulted_dist_attrs[1]
 
         self.assertEqual(len(resulted_dist_attrs), 2)
-        self.assertEqual(len(infered_input_dist_attrs), 2)
-        self.assertEqual(len(infered_output_dist_attrs), 1)
+        self.assertEqual(len(inferred_input_dist_attrs), 2)
+        self.assertEqual(len(inferred_output_dist_attrs), 1)
 
-        self.assertEqual(infered_input_dist_attrs[0].dims_mapping, [0, 1, -1])
-        self.assertEqual(infered_input_dist_attrs[1].dims_mapping, [0, 1, -1])
-        self.assertEqual(infered_output_dist_attrs[0].dims_mapping, [0, 1, -1])
+        self.assertEqual(inferred_input_dist_attrs[0].dims_mapping, [0, 1, -1])
+        self.assertEqual(inferred_input_dist_attrs[1].dims_mapping, [0, 1, -1])
+        self.assertEqual(inferred_output_dist_attrs[0].dims_mapping, [0, 1, -1])
 ```
 
 ## 三、自定义算子

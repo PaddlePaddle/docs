@@ -314,7 +314,7 @@ Move a block's location under a loop. Examples are as follows：
 Move the position of a Tensor calculation.
 The main difference between SimpleComputeAt and ComputeAt is that:
 - ComputeAt requires that the Tensor being moved is subsequently used, e.g. `B = A + 1`, `C = B + 1`, then moving B to a certain loop of C satisfies the requirement (B is used by C), while SimpleComputeAt does not have this requirement.
-- When SimpleComputeAt moves B to the n-th loop of C, it needs the range of first n loops of B and C to be indentical. For example, if B moves to the 3rd loop of C, then the range of the first 3 loops of B and C must be the same, while ComputeAt does not have this requirement (because it automatically inherits the transformations of C's loops).
+- When SimpleComputeAt moves B to the n-th loop of C, it needs the range of first n loops of B and C to be identical. For example, if B moves to the 3rd loop of C, then the range of the first 3 loops of B and C must be the same, while ComputeAt does not have this requirement (because it automatically inherits the transformations of C's loops).
 Examples are as follows.
 
 ```c
