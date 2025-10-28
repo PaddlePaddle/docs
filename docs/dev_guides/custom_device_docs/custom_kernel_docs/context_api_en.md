@@ -1,7 +1,7 @@
 # Context APIs
 
 ## CustomContext
-`CustomContext` is the acutal parameter of the template parameter Context of the custom kernel function. For details, please refer to [custom_context.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/custom/custom_context.h).
+`CustomContext` is the actual parameter of the template parameter Context of the custom kernel function. For details, please refer to [custom_context.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/custom/custom_context.h).
 
 ```c++
   // Constructor

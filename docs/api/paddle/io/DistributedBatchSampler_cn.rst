@@ -37,7 +37,7 @@ COPY-FROM: paddle.io.DistributedBatchSampler
 set_epoch(epoch)
 '''''''''
 
-设置 epoch 数。当设置``shuffle=True``时，此 epoch 被用作随机种子。默认情况下，用户可以不用此接口设置，每个 epoch 时，所有的进程(workers)使用不同的顺序。如果每个 epoch 设置相同的数字，每个 epoch 数据的读取顺序将会相同。
+设置 epoch 数。当设置 ``shuffle=True`` 时，此 epoch 被用作随机种子。默认情况下，用户可以不用此接口设置，每个 epoch 时，所有的进程(workers)使用不同的顺序。如果每个 epoch 设置相同的数字，每个 epoch 数据的读取顺序将会相同。
 
 **参数**
 

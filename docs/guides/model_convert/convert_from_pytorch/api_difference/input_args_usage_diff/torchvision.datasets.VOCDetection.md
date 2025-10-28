@@ -1,13 +1,10 @@
-## [输入参数用法不一致]torchvision.datasets.VOCDetection
-
+## [ 输入参数用法不一致 ]torchvision.datasets.VOCDetection
 ### [torchvision.datasets.VOCDetection](https://pytorch.org/vision/main/generated/torchvision.datasets.VOCDetection.html)
-
 ```python
 torchvision.datasets.VOCDetection(root: Union[str, Path], year: str = '2012', image_set: str = 'train', download: bool = False, transform: Optional[Callable] = None, target_transform: Optional[Callable] = None, transforms: Optional[Callable] = None)
 ```
 
 ### [paddle.vision.datasets.VOC2012](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/VOC2012_cn.html)
-
 ```python
 paddle.vision.datasets.VOC2012(data_file: Optional[str] = None, mode: str = 'train', transform: Optional[Callable] = None, download: bool = True, backend: Optional[str] = None)
 ```
@@ -37,8 +34,7 @@ train_dataset = torchvision.datasets.VOCDetection(root='./data', image_set='trai
 train_dataset = paddle.vision.datasets.VOC2012(data_file='./data/voc2012/VOCtrainval_11-May-2012.tar', mode='train')
 ```
 
-#### image_set: 数据集
-数据集 imaget_set 为 'trainval'
+#### image_set: 数据集数据集 imaget_set 为 'trainval'
 ```python
 # PyTorch 写法
 train_dataset = torchvision.datasets.VOCDetection(root='./data', image_set='trainval')

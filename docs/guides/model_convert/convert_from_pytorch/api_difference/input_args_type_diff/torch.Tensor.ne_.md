@@ -1,12 +1,10 @@
-## [ 输入参数类型不一致 ] torch.Tensor.ne_
+## [ 输入参数类型不一致 ]torch.Tensor.ne_
 ### [torch.Tensor.ne_](https://pytorch.org/docs/stable/generated/torch.Tensor.ne_.html)
-
 ```python
 torch.Tensor.ne_(other)
 ```
 
 ### [paddle.Tensor.not_equal_]()
-
 ```python
 paddle.Tensor.not_equal_(y)
 ```

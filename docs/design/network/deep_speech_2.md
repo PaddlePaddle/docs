@@ -137,7 +137,7 @@ Key ingredients about the layers:
     - Bi-direcitional + without row convolution: if we don't care about the inference latency.
 - **Row convolution**:
     - For looking only a few steps ahead into the feature, instead of looking into a whole sequence in bi-directional RNNs.
-    - Not nessesary if with bi-direcitional RNNs.
+    - Not necessary if with bi-direcitional RNNs.
     - "**Row**" means convolutions are done within each frequency dimension (row), and no convolution kernels shared across.
 - **Batch Normalization Layers**:
    - Added to all above layers (except for data and loss layer).

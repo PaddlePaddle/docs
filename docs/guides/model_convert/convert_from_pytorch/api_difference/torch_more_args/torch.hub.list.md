@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.hub.list
-
+## [ torch 参数更多 ]torch.hub.list
 ### [torch.hub.list](https://pytorch.org/docs/stable/hub.html?highlight=hub+list#torch.hub.list)
-
 ```python
 torch.hub.list(github,
                 force_reload=False,
@@ -10,7 +8,6 @@ torch.hub.list(github,
 ```
 
 ### [paddle.hub.list](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hub/list_cn.html)
-
 ```python
 paddle.hub.list(repo_dir,
                 source='github',

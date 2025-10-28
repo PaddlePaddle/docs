@@ -1,13 +1,10 @@
-## [ paddle 参数更多 ] torch.cuda.DoubleTensor
-
+## [ paddle 参数更多 ]torch.cuda.DoubleTensor
 ### [torch.cuda.DoubleTensor](https://pytorch.org/docs/stable/tensors.html)
-
 ```python
 torch.cuda.DoubleTensor(data)
 ```
 
 ### [paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/to_tensor_cn.html#to-tensor)
-
 ```python
 paddle.to_tensor(data, dtype='float64', place='gpu')
 ```

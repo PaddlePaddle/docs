@@ -1,13 +1,10 @@
-## [ torch 参数更多]torch.triu_indices
-
+## [ torch 参数更多 ]torch.triu_indices
 ### [torch.triu_indices](https://pytorch.org/docs/stable/generated/torch.triu_indices.html?highlight=triu_indices#torch.triu_indices)
-
 ```python
 torch.triu_indices(row,col,offset=0,*,dtype=torch.long,device='cpu',layout=torch.strided)
 ```
 
 ### [paddle.triu_indices](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/triu_indices_cn.html)
-
 ```python
 paddle.triu_indices(row,col=None,offset=0,dtype='int64')
 ```
@@ -26,9 +23,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | layout | - | 表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 
 ### 转写示例
-
 #### device: Tensor 的设备
-
 ```python
 # PyTorch 写法
 y = torch.triu_indices(row,col,offset,dtype,device=torch.device('cpu'))

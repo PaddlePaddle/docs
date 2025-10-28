@@ -1,13 +1,10 @@
-## [仅 API 调用方式不一致]torch.Tensor.fix_
-
+## [ 仅 API 调用方式不一致 ]torch.Tensor.fix_
 ### [torch.Tensor.fix_](https://pytorch.org/docs/stable/generated/torch.Tensor.fix_.html)
-
 ```python
 torch.Tensor.fix_()
 ```
 
 ### [paddle.Tensor.trunc_]()
-
 ```python
 paddle.Tensor.trunc_()
 ```

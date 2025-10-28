@@ -1,5 +1,4 @@
 ## [ torch 参数更多 ]torch.poisson
-
 ### [torch.poisson](https://pytorch.org/docs/stable/generated/torch.poisson.html#torch.poisson)
 ```python
 torch.poisson(input,

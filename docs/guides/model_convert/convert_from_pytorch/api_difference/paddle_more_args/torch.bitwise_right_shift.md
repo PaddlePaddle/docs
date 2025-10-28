@@ -1,13 +1,10 @@
 ## [ paddle 参数更多 ]torch.bitwise_right_shift
-
 ### [torch.bitwise_right_shift](https://pytorch.org/docs/stable/generated/torch.bitwise_right_shift.html)
-
 ```python
 torch.bitwise_right_shift(input, other, *, out=None)
 ```
 
 ### [paddle.bitwise_right_shift](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/bitwise_right_shift_cn.html#bitwise-right-shift)
-
 ```python
 paddle.bitwise_right_shift(x, y, is_arithmetic=True, out=None, name=None)
 ```

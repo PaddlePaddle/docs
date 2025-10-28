@@ -90,12 +90,12 @@ class PlainNet : public Net {
   // Create a network describe by `def`.  NetDesc is the definition of a network.
   PlainNet(const NetDesc &def);
 
-  // Infer all the operators' input and output varialbes' shapes, will be called before every mini-batch
+  // Infer all the operators' input and output variables' shapes, will be called before every mini-batch
   training.
   virtual Error InferShape(Scope *scope) override;
 
   // Run all the operators with the `scope`, if no scope is provided, default
-  // scope will be used instead. If no OpContext is provicded, default context will be used.
+  // scope will be used instead. If no OpContext is provided, default context will be used.
   virtual Error Run(Scope *scope = nullptr, OpContext *context=nullptr, OpIndex begin = -1,
                    OpIndex end = -1) const override;
 

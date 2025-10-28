@@ -1,7 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.functional.avg_pool2d
-
 ### [torch.nn.functional.avg_pool2d](https://pytorch.org/docs/stable/generated/torch.nn.functional.avg_pool2d.html#torch.nn.functional.avg_pool2d)
-
 ```python
 torch.nn.functional.avg_pool2d(input, kernel_size, stride=None, padding=0, ceil_mode=False, count_include_pad=True, divisor_override=None)
 ```

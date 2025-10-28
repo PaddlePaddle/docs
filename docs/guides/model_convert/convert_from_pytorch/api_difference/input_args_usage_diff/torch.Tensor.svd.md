@@ -1,7 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.Tensor.svd
-
 ### [torch.Tensor.svd](https://pytorch.org/docs/stable/generated/torch.Tensor.svd.html#torch.Tensor.svd)
-
 ```python
 torch.Tensor.svd(some=True, compute_uv=True)
 ```

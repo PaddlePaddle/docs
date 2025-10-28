@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.scaled_dot_product_attention
-
 ### [torch.nn.functional.scaled_dot_product_attention](https://pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html#torch-nn-functional-scaled-dot-product-attention)
-
 ```python
 torch.nn.functional.scaled_dot_product_attention(query, key, value, attn_mask=None, dropout_p=0.0, is_causal=False, scale=None, enable_gqa=False)
 ```
 
 ### [paddle.nn.functional.scaled_dot_product_attention](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/scaled_dot_product_attention_cn.html#scaled-dot-product-attention)
-
 ```python
 paddle.nn.functional.scaled_dot_product_attention(query, key, value, attn_mask=None, dropout_p=0.0, is_causal=False, training=True, name=None)
 ```

@@ -1,13 +1,10 @@
-## [仅参数名不一致]torch.pca_lowrank
-
+## [ 仅参数名不一致 ]torch.pca_lowrank
 ### [torch.pca_lowrank](https://pytorch.org/docs/stable/generated/torch.pca_lowrank.html#torch.pca_lowrank)
-
 ```python
 torch.pca_lowrank(A, q=None, center=True, niter=2)
 ```
 
 ### [paddle.linalg.pca_lowrank](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/pca_lowrank_cn.html)
-
 ```python
 paddle.linalg.pca_lowrank(x, q=None, center=True, niter=2, name=None)
 ```

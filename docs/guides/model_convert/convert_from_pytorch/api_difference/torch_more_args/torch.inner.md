@@ -1,13 +1,10 @@
-## [torch 参数更多 ]torch.inner
-
+## [ torch 参数更多 ]torch.inner
 ### [torch.inner](https://pytorch.org/docs/stable/generated/torch.inner.html?highlight=inner#torch.inner)
-
 ```python
 torch.inner(input, other, *, out=None)
 ```
 
 ### [paddle.inner](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/inner_cn.html)
-
 ```python
 paddle.inner(x, y, name=None)
 ```
@@ -24,7 +21,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 
 ### 转写示例
-
 #### out：指定输出
 ```python
 # PyTorch 写法

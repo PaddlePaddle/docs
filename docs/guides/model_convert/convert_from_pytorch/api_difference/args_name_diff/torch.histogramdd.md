@@ -1,13 +1,10 @@
-## [仅参数名不一致]torch.histogramdd
-
+## [ 仅参数名不一致 ]torch.histogramdd
 ### [torch.histogramdd](https://pytorch.org/docs/stable/generated/torch.histogramdd.html#torch-histogramdd)
-
 ```python
 torch.histogramdd(input, bins, *, range=None, weight=None, density=False)
 ```
 
 ### [paddle.histogramdd](https://github.com/PaddlePaddle/Paddle/blob/a19227d9ee0e351363a4bb27b50b1becbec58a6c/python/paddle/tensor/linalg.py#L3875)
-
 ```python
 paddle.histogramdd(x, bins=10, ranges=None, density=False, weights=None, name=None)
 ```

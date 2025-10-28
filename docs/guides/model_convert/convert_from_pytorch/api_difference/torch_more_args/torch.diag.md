@@ -1,6 +1,6 @@
-## [torch 参数更多 ]torch.diag
-### [torch.diag](https://pytorch.org/docs/stable/generated/torch.diag.html?highlight=diag#torch.diag)
+## [ torch 参数更多 ]torch.diag
 
+### [torch.diag](https://pytorch.org/docs/stable/generated/torch.diag.html?highlight=diag#torch.diag)
 ```python
 torch.diag(input,
            diagonal=0,
@@ -9,7 +9,6 @@ torch.diag(input,
 ```
 
 ### [paddle.diag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diag_cn.html)
-
 ```python
 paddle.diag(x,
             offset=0,

@@ -1,7 +1,5 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.adaptive_max_pool1d
-
 ### [torch.nn.functional.adaptive_max_pool1d](https://pytorch.org/docs/stable/generated/torch.nn.functional.adaptive_max_pool1d.html?highlight=torch+nn+functional+adaptive_max_pool1d#torch.nn.functional.adaptive_max_pool1d)
-
 ```python
 torch.nn.functional.adaptive_max_pool1d(input,
                                         output_size,
@@ -9,7 +7,6 @@ torch.nn.functional.adaptive_max_pool1d(input,
 ```
 
 ### [paddle.nn.functional.adaptive_max_pool1d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/adaptive_max_pool1d_cn.html#adaptive-max-pool1d)
-
 ```python
 paddle.nn.functional.adaptive_max_pool1d(x,
                                         output_size,

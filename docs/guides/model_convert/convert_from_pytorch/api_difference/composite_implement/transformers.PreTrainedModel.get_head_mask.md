@@ -1,7 +1,5 @@
-## [组合替代实现]transformers.PreTrainedModel.get_head_mask
-
+## [ 组合替代实现 ]transformers.PreTrainedModel.get_head_mask
 ### [transformers.PreTrainedModel.get_head_mask](https://hf-mirror.com/docs/transformers/v4.42.0/en/main_classes/model#transformers.modeling_utils.ModuleUtilsMixin.get_head_mask)
-
 ```python
 transformers.PreTrainedModel.get_head_mask(head_mask: Optional, num_hidden_layers: int, is_attention_chunked: bool = False)
 ```
@@ -9,7 +7,6 @@ transformers.PreTrainedModel.get_head_mask(head_mask: Optional, num_hidden_layer
 Paddle 无此 API，需要组合实现。
 
 ### 转写示例
-
 ```python
 # Pytorch 写法
 head_mask_output = transformers.PreTrainedModel.get_head_mask(head_mask = x, num_hidden_layers, is_attention_chunked)

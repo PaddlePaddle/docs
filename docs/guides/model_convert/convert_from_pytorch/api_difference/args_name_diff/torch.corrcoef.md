@@ -1,12 +1,10 @@
-## [仅参数名不一致]torch.corrcoef
+## [ 仅参数名不一致 ]torch.corrcoef
 ### [torch.corrcoef](https://pytorch.org/docs/stable/generated/torch.corrcoef.html?highlight=corrcoef#torch.corrcoef)
-
 ```python
 torch.corrcoef(input)
 ```
 
 ### [paddle.linalg.corrcoef](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/corrcoef_cn.html#corrcoef)
-
 ```python
 paddle.linalg.corrcoef(x,
                        rowvar=True,

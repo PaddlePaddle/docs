@@ -1,5 +1,4 @@
 ## [ 组合替代实现 ]torch.initial_seed
-
 ### [torch.initial_seed](https://pytorch.org/docs/stable/generated/torch.initial_seed.html?highlight=initial_seed)
 ```python
 torch.initial_seed()
@@ -9,7 +8,7 @@ torch.initial_seed()
 
 PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 
-###  转写示例
+### 转写示例
 ```python
 # PyTorch 写法
 torch.initial_seed()

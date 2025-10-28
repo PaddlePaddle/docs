@@ -1,7 +1,5 @@
-## [输入参数类型不一致]torchvision.transforms.RandomRotation
-
+## [ 输入参数类型不一致 ]torchvision.transforms.RandomRotation
 ### [torchvision.transforms.RandomRotation](https://pytorch.org/vision/main/generated/torchvision.transforms.RandomRotation.html)
-
 ```python
 torchvision.transforms.RandomRotation(
     degrees: Union[int, List[float], Tuple[float, ...]],
@@ -13,7 +11,6 @@ torchvision.transforms.RandomRotation(
 ```
 
 ### [paddle.vision.transforms.RandomRotation](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomRotation_cn.html)
-
 ```python
 paddle.vision.transforms.RandomRotation(
     degrees: Union[int, List[float], Tuple[float, ...]],

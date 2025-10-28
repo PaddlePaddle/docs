@@ -1,13 +1,10 @@
-## [ 输入参数用法不一致 ] torch.set_rng_state
-
+## [ 输入参数用法不一致 ]torch.set_rng_state
 ### [torch.set_rng_state](https://pytorch.org/docs/stable/generated/torch.set_rng_state.html#torch.set_rng_state)
-
 ```python
 torch.set_rng_state(new_state)
 ```
 
 ### [paddle.set_rng_state]()
-
 ```python
 paddle.set_rng_state(state_list)
 ```
@@ -23,7 +20,6 @@ paddle.set_rng_state(state_list)
 
 
 ### 转写示例
-
 #### new_state: 指定输入
 ```python
 # PyTorch 写法

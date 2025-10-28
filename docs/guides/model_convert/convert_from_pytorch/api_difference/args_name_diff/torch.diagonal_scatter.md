@@ -1,7 +1,5 @@
-## [ 仅参数名不一致 ] torch.diagonal_scatter
-
+## [ 仅参数名不一致 ]torch.diagonal_scatter
 ### [torch.diagonal_scatter](https://pytorch.org/docs/stable/generated/torch.diagonal_scatter.html?highlight=diagonal_scatter#torch.diagonal_scatter)
-
 ```python
 torch.diagonal_scatter(input,
                        src,
@@ -11,7 +9,6 @@ torch.diagonal_scatter(input,
 ```
 
 ### [paddle.diagonal_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagonal_scatter_cn.html)
-
 ```python
 paddle.diagonal_scatter(x,
                         y,

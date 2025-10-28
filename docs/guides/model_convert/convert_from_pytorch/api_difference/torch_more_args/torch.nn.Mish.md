@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.Mish
-
 ### [torch.nn.Mish](https://pytorch.org/docs/stable/generated/torch.nn.Mish.html?highlight=torch+nn+mish)
-
 ```python
 torch.nn.Mish(inplace=False)
 ```
 
 ### [paddle.nn.Mish](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Mish_cn.html)
-
 ```python
 paddle.nn.Mish(name=None)
 ```

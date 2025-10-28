@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.amp.autocast
-
+## [ torch 参数更多 ]torch.amp.autocast
 ### [torch.amp.autocast](https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.autocast)
-
 ```python
 torch.amp.autocast(device_type,
                    dtype=None,
@@ -10,7 +8,6 @@ torch.amp.autocast(device_type,
 ```
 
 ### [paddle.amp.auto_cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/auto_cast_cn.html#auto-cast)
-
 ```python
 paddle.amp.auto_cast(enable=True,
                      custom_white_list=None,

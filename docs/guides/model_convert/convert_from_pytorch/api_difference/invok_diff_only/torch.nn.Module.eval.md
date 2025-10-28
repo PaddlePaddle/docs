@@ -1,13 +1,10 @@
-## [仅 API 调用方式不一致]torch.nn.Module.eval
-
+## [ 仅 API 调用方式不一致 ]torch.nn.Module.eval
 ### [torch.nn.Module.eval](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.eval)
-
 ```python
 torch.nn.Module.eval()
 ```
 
 ### [paddle.nn.Layer.eval](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#eval)
-
 ```python
 paddle.nn.Layer.eval()
 ```

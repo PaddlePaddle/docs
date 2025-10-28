@@ -1,13 +1,10 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.sort
-
 ### [torch.Tensor.sort](https://pytorch.org/docs/stable/generated/torch.Tensor.sort.html#torch-tensor-sort)
-
 ```python
 torch.Tensor.sort(dim=-1, descending=False, stable=False)
 ```
 
 ### [paddle.Tensor.sort](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sort_cn.html#sort)
-
 ```python
 paddle.Tensor.sort(axis=-1, descending=False, stable=False)
 ```
@@ -26,9 +23,7 @@ paddle.Tensor.sort(axis=-1, descending=False, stable=False)
 注：PyTorch 返回 (Tensor, LongTensor)，Paddle 返回 Tensor 。
 
 ### 转写示例
-
 #### 返回值
-
 ```python
 # 若要返回排序后的元素和元素索引，需要结合 argsort 进行转写
 # PyTorch 写法

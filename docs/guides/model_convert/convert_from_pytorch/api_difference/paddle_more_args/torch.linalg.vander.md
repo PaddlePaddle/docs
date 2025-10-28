@@ -1,13 +1,10 @@
 ## [ paddle 参数更多 ]torch.linalg.vander
-
 ### [torch.linalg.vander](https://pytorch.org/docs/stable/generated/torch.linalg.vander.html#torch.linalg.vander)
-
 ```python
 torch.linalg.vander(x, N=None)
 ```
 
 ### [paddle.vander](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vander_cn.html)
-
 ```python
 paddle.vander(x, n=None, increasing=False, name=None)
 ```
@@ -23,9 +20,7 @@ paddle.vander(x, n=None, increasing=False, name=None)
 | -       | increasing   | 列的幂次顺序，PyTorch 无此参数，Paddle 设置为 True，需要转写。 |
 
 ### 转写示例
-
 #### increasing：列的幂次顺序
-
 ```python
 # PyTorch 写法
 torch.linalg.vander(x)

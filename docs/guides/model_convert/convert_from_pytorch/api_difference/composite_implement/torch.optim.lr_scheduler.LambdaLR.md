@@ -1,7 +1,5 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.LambdaLR
-
 ### [torch.optim.lr_scheduler.LambdaLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.LambdaLR.html)
-
 ```python
 torch.optim.lr_scheduler.LambdaLR(optimizer,
                                 lr_lambda,
@@ -10,7 +8,6 @@ torch.optim.lr_scheduler.LambdaLR(optimizer,
 ```
 
 ### [paddle.optimizer.lr.LambdaDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/LambdaDecay_cn.html)
-
 ```python
 paddle.optimizer.lr.LambdaDecay(learning_rate,
                                 lr_lambda,

@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.glu
-
 ### [torch.nn.functional.glu](https://pytorch.org/docs/stable/generated/torch.nn.functional.glu.html?highlight=glu#torch.nn.functional.glu)
-
 ```python
 torch.nn.functional.glu(input, dim=- 1)
 ```
 
 ### [paddle.nn.functional.glu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/glu_cn.html)
-
 ```python
 paddle.nn.functional.glu(x, axis=- 1, name=None)
 ```

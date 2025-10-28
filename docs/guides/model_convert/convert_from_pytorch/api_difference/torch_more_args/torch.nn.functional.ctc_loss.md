@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.nn.functional.ctc_loss
-
+## [ torch 参数更多 ]torch.nn.functional.ctc_loss
 ### [torch.nn.functional.ctc_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.ctc_loss.html#torch.nn.functional.ctc_loss)
-
 ```python
 torch.nn.functional.ctc_loss(log_probs, targets, input_lengths, target_lengths, blank=0, reduction='mean', zero_infinity=False)
 ```
 
 ### [paddle.nn.functional.ctc_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/ctc_loss_cn.html)
-
 ```python
 paddle.nn.functional.ctc_loss(log_probs, labels, input_lengths, label_lengths, blank=0, reduction='mean')
 ```

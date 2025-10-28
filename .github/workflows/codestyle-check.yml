@@ -1,0 +1,56 @@
+name: Codestyle Check
+
+on:
+  pull_request:
+    branches: ["develop"]
+
+jobs:
+  check-bypass:
+    name: Check bypass
+    if: ${{ inputs.can-skip != 'true' }}
+    uses: ./.github/workflows/check-bypass.yml
+    with:
+      workflow-name: "codestyle"
+    secrets:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  check-codestyle:
+    name: Run codestyle check
+    needs: check-bypass
+    if: ${{ github.repository_owner == 'PaddlePaddle' && needs.check-bypass.outputs.can-skip != 'true' }}
+    runs-on: ubuntu-latest
+    env:
+      PR_ID: ${{ github.event.pull_request.number }}
+      BRANCH: develop
+
+    steps:
+      - name: Cleanup
+        run: |
+          rm -rf * .[^.]*
+
+      - name: Checkout base repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          fetch-depth: 200
+
+      - name: Merge PR to test branch
+        run: |
+          git fetch origin pull/${PR_ID}/merge
+          git checkout -b test FETCH_HEAD
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.13"
+          enable-cache: true
+
+      - name: Install prek
+        run: |
+          uv tool install prek
+
+      - name: Run prek
+        run: |
+          set +e
+          bash -x ci_scripts/check_code.sh;EXCODE=$?
+          exit $EXCODE

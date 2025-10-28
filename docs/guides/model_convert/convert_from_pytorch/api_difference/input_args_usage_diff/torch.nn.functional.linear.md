@@ -1,7 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.functional.linear
-
 ### [torch.nn.functional.linear](https://pytorch.org/docs/stable/generated/torch.nn.functional.linear.html?highlight=linear#torch.nn.functional.linear)
-
 ```python
 torch.nn.functional.linear(input,
                            weight,
@@ -9,7 +7,6 @@ torch.nn.functional.linear(input,
 ```
 
 ### [paddle.nn.functional.linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/linear_cn.html)
-
 ```python
 paddle.nn.functional.linear(x,
                             weight,

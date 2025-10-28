@@ -24,7 +24,7 @@ program(method_name='forward'):
 
 **参数**
 
-    - **method_name** (string) - 要获取的 Porgram 对应的方法名。默认值为"forward"。
+    - **method_name** (string) - 要获取的 Program 对应的方法名。默认值为"forward"。
 
 **返回**
 Program

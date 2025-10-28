@@ -1,7 +1,5 @@
-## [paddle 参数更多]torchvision.transforms.RandomCrop
-
+## [ paddle 参数更多 ]torchvision.transforms.RandomCrop
 ### [torchvision.transforms.RandomCrop](https://pytorch.org/vision/main/generated/torchvision.transforms.RandomCrop.html)
-
 ```python
 torchvision.transforms.RandomCrop(
     size: Union[int, List[int], Tuple[int, ...]],
@@ -13,7 +11,6 @@ torchvision.transforms.RandomCrop(
 ```
 
 ### [paddle.vision.transforms.RandomCrop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomCrop_cn.html)
-
 ```python
 paddle.vision.transforms.RandomCrop(
     size: Union[int, List[int], Tuple[int, ...]],

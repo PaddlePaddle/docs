@@ -1,13 +1,10 @@
-## [输入参数类型不一致]torchvision.models.shufflenet_v2_x2_0
-
+## [ 输入参数类型不一致 ]torchvision.models.shufflenet_v2_x2_0
 ### [torchvision.models.shufflenet_v2_x2_0](https://pytorch.org/vision/main/models/generated/torchvision.models.shufflenet_v2_x2_0.html)
-
 ```python
 torchvision.models.shufflenet_v2_x2_0(*, weights: Optional[ShuffleNet_V2_X2_0_Weights] = None, progress: bool = True, **kwargs: Any)
 ```
 
 ### [paddle.vision.models.shufflenet_v2_x2_0](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/shufflenet_v2_x2_0_cn.html)
-
 ```python
 paddle.vision.models.shufflenet_v2_x2_0(pretrained=False, **kwargs)
 ```

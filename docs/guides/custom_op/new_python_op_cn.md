@@ -269,7 +269,7 @@ def tanh(x):
     # 可以直接将 Tensor 作为 np.tanh 的输入参数
     return np.tanh(x)
 
-# 前向函数 2：将两个 2-D Tenosr 相加，输入多个 Tensor 以 list[Tensor]或 tuple(Tensor)形式
+# 前向函数 2：将两个 2-D Tensor 相加，输入多个 Tensor 以 list[Tensor]或 tuple(Tensor)形式
 def element_wise_add(x, y):
     # 必须先手动将 Tensor 转换为 numpy 数组，否则无法支持 numpy 的 shape 操作
     x = np.array(x)

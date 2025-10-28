@@ -1,13 +1,10 @@
-## [torch 参数更多 ]torch.distributions.studentT.StudentT
-
+## [ torch 参数更多 ]torch.distributions.studentT.StudentT
 ### [torch.distributions.studentT.StudentT](https://pytorch.org/docs/stable/distributions.html#studentt)
-
 ```python
 torch.distributions.studentT.StudentT(df, loc=0.0, scale=1.0, validate_args=None)
 ```
 
 ### [paddle.distribution.StudentT](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/StudentT_cn.html)
-
 ```python
 paddle.distribution.StudentT(df, loc, scale, name=None)
 ```
@@ -15,7 +12,6 @@ paddle.distribution.StudentT(df, loc, scale, name=None)
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-
 
 | PyTorch       | PaddlePaddle | 备注                                                                                  |
 | ------------- | ------------ | ------------------------------------------------------------------------------------- |

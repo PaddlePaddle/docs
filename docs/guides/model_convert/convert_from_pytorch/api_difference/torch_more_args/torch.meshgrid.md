@@ -1,18 +1,17 @@
-## [torch 参数更多]torch.meshgrid
+## [ torch 参数更多 ]torch.meshgrid
 ### [torch.meshgrid](https://pytorch.org/docs/stable/generated/torch.meshgrid.html?highlight=meshgrid#torch.meshgrid)
-
 ```python
 torch.meshgrid(*tensors, indexing=None)
 ```
 
 ### [paddle.meshgrid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/meshgrid_cn.html#meshgrid)
-
 ```python
 paddle.meshgrid(*args, **kargs)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | tensors       | args         | 输入的 Tensor 列表，仅参数名不一致。                                      |

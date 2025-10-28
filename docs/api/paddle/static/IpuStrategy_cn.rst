@@ -46,7 +46,7 @@ set_pipelining_config(self, enable_pipelining, batches_per_step, enable_gradient
 
     - **enable_pipelining** (bool，可选)- 是否使能子图之间的数据流水线。仅支持当 enable_manual_shard=True 时，enable_pipelining 可以置为 True。默认值为 False，表示不使能该功能。
     - **batches_per_step** (int，可选)- 指定数据流水线每次运算多少个 batch 的数据。默认值为 1，表示不使能数据流水线功能。
-    - **enable_gradient_accumulation** (bool，可选)- 是否使能梯度累积，只用于训练模式。默认值为 Flase，表示不使能梯度累积功能。
+    - **enable_gradient_accumulation** (bool，可选)- 是否使能梯度累积，只用于训练模式。默认值为 False，表示不使能梯度累积功能。
     - **accumulation_factor** (int，可选)- 指定累积运算多少个 batch 更新一次权重。默认值为 1，表示不使能权重累积更新功能。
 
 **代码示例**
@@ -137,7 +137,7 @@ COPY-FROM: paddle.static.IpuStrategy.disable_pattern
 register_patch(self)
 '''''''''
 
-注册 patch function 以支持 IPU 上的动转静功能。该函数仅应在 IPU 动转静时使用，注册的函数会影响原动转静的逻辑，可通过``release_patch``释放注册的函数。
+注册 patch function 以支持 IPU 上的动转静功能。该函数仅应在 IPU 动转静时使用，注册的函数会影响原动转静的逻辑，可通过 ``release_patch`` 释放注册的函数。
 
 **代码示例**
 
@@ -183,19 +183,19 @@ COPY-FROM: paddle.static.IpuStrategy.parse_optimizer
 num_ipus
 '''''''''
 
-返回 IpuStrategy 实例中的 IPU 设备个数，类型为 ``Int``。
+返回 IpuStrategy 实例中的 IPU 设备个数，类型为 ``Int`` 。
 
 is_training
 '''''''''
 
-返回 IpuStrategy 实例中的计算模式是训练模式或推理模式，类型为 ``Bool``。
+返回 IpuStrategy 实例中的计算模式是训练模式或推理模式，类型为 ``Bool`` 。
 
 enable_pipelining
 '''''''''
 
-返回 IpuStrategy 实例中是否使能数据流水线功能，类型为 ``Bool``。
+返回 IpuStrategy 实例中是否使能数据流水线功能，类型为 ``Bool`` 。
 
 enable_fp16
 '''''''''
 
-返回 IpuStrategy 实例中是否使能 float16 计算图，类型为 ``Bool``。
+返回 IpuStrategy 实例中是否使能 float16 计算图，类型为 ``Bool`` 。
