@@ -9,7 +9,7 @@ torch.Tensor.argwhere()
 ### [paddle.Tensor.nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/nonzero_cn.html#paddle/Tensor/nonzero_cn#cn-api-paddle-Tensor-nonzero)
 
 ```python
-paddle.Tensor.nonzero(x, as_tuple=False)
+paddle.Tensor.nonzero(as_tuple=False)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：
