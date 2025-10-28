@@ -319,7 +319,7 @@ def parse_module_file(mod):
                                 )
                             if isinstance(node, ast.FunctionDef):
                                 api_info_dict[obj_id]["args"] = (
-                                    gen_functions_args_str(node)
+                                    gen_function_args_string(node)
                                 )
                             elif isinstance(node, ast.ClassDef):
                                 for n in node.body:
@@ -328,7 +328,7 @@ def parse_module_file(mod):
                                         and n.name == "__init__"
                                     ):
                                         api_info_dict[obj_id]["args"] = (
-                                            gen_functions_args_str(n)
+                                            gen_function_args_string(n)
                                         )
                                         break
                         else:
@@ -361,39 +361,62 @@ def parse_module_file(mod):
                             logger.debug("%s omitted", obj_full_name)
 
 
-def gen_functions_args_str(node):
-    str_args_list = []
-    if isinstance(node, ast.FunctionDef):
-        # 'args', 'defaults', 'kw_defaults', 'kwarg', 'kwonlyargs', 'posonlyargs', 'vararg'
-        for arg in node.args.args:
-            if not arg.arg == "self":
-                str_args_list.append(arg.arg)
+def gen_function_args_string(fn_node: ast.FunctionDef) -> str:
+    def _gen_default_value_string(default_node: ast.expr) -> str:
+        if isinstance(default_node, ast.Constant):
+            default_value = default_node.value
+            if isinstance(default_value, str):
+                return f"'{default_value}'"
+            return str(default_value)
+        elif isinstance(default_node, ast.Name):
+            return default_node.id
+        return "..."
 
-        defarg_ind_start = len(str_args_list) - len(node.args.defaults)
-        for defarg_ind in range(len(node.args.defaults)):
-            if isinstance(node.args.defaults[defarg_ind], ast.Name):
-                str_args_list[defarg_ind_start + defarg_ind] += "=" + str(
-                    node.args.defaults[defarg_ind].id
-                )
-            elif isinstance(node.args.defaults[defarg_ind], ast.Constant):
-                defarg_val = str(node.args.defaults[defarg_ind].value)
-                if isinstance(node.args.defaults[defarg_ind].value, str):
-                    defarg_val = f"'{defarg_val}'"
-                str_args_list[defarg_ind_start + defarg_ind] += "=" + defarg_val
-        if node.args.vararg is not None:
-            str_args_list.append("*" + node.args.vararg.arg)
-        if len(node.args.kwonlyargs) > 0:
-            if node.args.vararg is None:
-                str_args_list.append("*")
-            for kwoarg, d in zip(node.args.kwonlyargs, node.args.kw_defaults):
-                if isinstance(d, ast.Constant):
-                    str_args_list.append(f"{kwoarg.arg}={d.value}")
-                elif isinstance(d, ast.Name):
-                    str_args_list.append(f"{kwoarg.arg}={d.id}")
-        if node.args.kwarg is not None:
-            str_args_list.append("**" + node.args.kwarg.arg)
+    def _is_self_arg(arg: ast.arg) -> bool:
+        return arg.arg == "self"
 
-    return ", ".join(str_args_list)
+    if not isinstance(fn_node, ast.FunctionDef):
+        logger.warning(
+            "The provided node %s is not a FunctionDef.", ast.unparse(fn_node)
+        )
+        return ""
+    arg_list = []
+    posonlyargs_count = len(fn_node.args.posonlyargs)
+    # posonlyargs and args
+    defaults_start_index = (
+        len(fn_node.args.args)
+        + len(fn_node.args.posonlyargs)
+        - len(fn_node.args.defaults)
+    )
+    for i, arg in enumerate(fn_node.args.posonlyargs + fn_node.args.args):
+        if _is_self_arg(arg) and i == 0:
+            continue
+        if i == posonlyargs_count and posonlyargs_count > 0:
+            arg_list.append("/")
+        if i >= defaults_start_index:
+            default_value_str = _gen_default_value_string(
+                fn_node.args.defaults[i - defaults_start_index]
+            )
+            arg_list.append(f"{arg.arg}={default_value_str}")
+        else:
+            arg_list.append(arg.arg)
+    # vararg
+    if fn_node.args.vararg:
+        arg_list.append(f"*{fn_node.args.vararg.arg}")
+    # kwonlyargs
+    if fn_node.args.kwonlyargs:
+        arg_list.append("*")
+    for i, kwonlyarg in enumerate(fn_node.args.kwonlyargs):
+        kwdefault = fn_node.args.kw_defaults[i]
+        if kwdefault is None:
+            arg_list.append(kwonlyarg.arg)
+        else:
+            default_value_str = _gen_default_value_string(kwdefault)
+            arg_list.append(f"{kwonlyarg.arg}={default_value_str}")
+    # kwarg
+    if fn_node.args.kwarg:
+        arg_list.append(f"**{fn_node.args.kwarg.arg}")
+    return ", ".join(arg_list)
 
 
 # step 2 fill field : `display`
