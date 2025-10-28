@@ -3,7 +3,7 @@
 ### [torch.Tensor.to_sparse](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.to_sparse)
 
 ```python
-torch.Tensor.to_sparse(sparseDims)
+torch.Tensor.to_sparse(sparse_dim)
 ```
 
 ### [paddle.Tensor.to_sparse_coo](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/to_sparse_coo_cn.html#paddle/Tensor/to_sparse_coo_cn#cn-api-paddle-Tensor-to_sparse_coo)

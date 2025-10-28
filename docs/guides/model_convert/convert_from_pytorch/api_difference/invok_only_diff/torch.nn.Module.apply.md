@@ -18,12 +18,16 @@ paddle.nn.Layer.apply(fn)
 
 ```python
 # PyTorch 写法
+def init_weights(m):
+    pass
 net = torch.nn.Sequential(
     torch.nn.Linear(2, 2, bias=False), torch.nn.Linear(2, 2, bias=False)
 )
 net.apply(init_weights)
 
 # Paddle 写法
+def init_weights(m):
+    pass
 net = paddle.nn.Sequential(
     paddle.nn.Linear(in_features=2, out_features=2, bias_attr=False),
     paddle.nn.Linear(in_features=2, out_features=2, bias_attr=False),

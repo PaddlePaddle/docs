@@ -18,18 +18,10 @@ paddle.nn.Layer.eval()
 
 ```python
 # PyTorch 写法
-class TheModelClass(torch.nn.Module):
-    def forward(self, x):
-        return x
-
-model = TheModelClass()
+model = torch.nn.Linear(10, 10)
 model.eval()
 
 # Paddle 写法
-class TheModelClass(paddle.nn.Layer):
-    def forward(self, x):
-        return x
-
-model = TheModelClass()
+model = paddle.nn.Linear(10, 10)
 model.eval()
 ```

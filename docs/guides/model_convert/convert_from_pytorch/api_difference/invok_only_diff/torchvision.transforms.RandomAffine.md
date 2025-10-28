@@ -34,9 +34,9 @@ transform = paddle.vision.transforms.RandomAffine(
     (0.1, 0.1),
     (0.5, 1.5),
     20,
-    torchvision.transforms.InterpolationMode.BILINEAR,
+    "bilinear",
     255,
-    (2, 2),
+    (2, 2)
 )
 
 ```

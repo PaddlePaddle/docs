@@ -18,10 +18,18 @@ paddle.optimizer.Optimizer.step()
 
 ```python
 # PyTorch 写法
-optim = torch.optim.Optimizer([theta], defaults={"learning_rate": 1.0})
-result = type(optim.step)
+sgd = torch.optim.SGD(
+    params=linear.parameters(),
+    lr=0.1,
+    weight_decay=0.01
+)
+sgd.step()
 
 # Paddle 写法
-optim = paddle.optimizer.Optimizer(parameters=[theta], **{"learning_rate": 1.0})
-result = type(optim.step)
+sgd = paddle.optimizer.SGD(
+     learning_rate=0.1,
+     parameters=linear.parameters(),
+     weight_decay=0.01
+)
+sgd.step()
 ```

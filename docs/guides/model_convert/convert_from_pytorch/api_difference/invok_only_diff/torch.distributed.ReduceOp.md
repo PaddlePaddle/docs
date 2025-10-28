@@ -3,13 +3,13 @@
 ### [torch.distributed.ReduceOp](https://pytorch.org/docs/stable/generated/torch.distributed.ReduceOp.html#torch.distributed.ReduceOp)
 
 ```python
-torch.distributed.ReduceOp(pybind11_builtins.pybind11_object)
+torch.distributed.ReduceOp
 ```
 
 ### [paddle.distributed.ReduceOp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/ReduceOp_cn.html#paddle/distributed/ReduceOp_cn#cn-api-paddle-distributed-ReduceOp)
 
 ```python
-paddle.distributed.ReduceOp(*args, **kwargs)
+paddle.distributed.ReduceOp
 ```
 
 两者功能一致，但调用方式不一致，具体如下：
@@ -18,8 +18,8 @@ paddle.distributed.ReduceOp(*args, **kwargs)
 
 ```python
 # PyTorch 写法
-dist.init_process_group(backend="nccl")
-print(dist.ReduceOp)
+torch.distributed.init_process_group(backend="nccl")
+print(torch.distributed.ReduceOp)
 
 # Paddle 写法
 paddle.distributed.init_parallel_env()

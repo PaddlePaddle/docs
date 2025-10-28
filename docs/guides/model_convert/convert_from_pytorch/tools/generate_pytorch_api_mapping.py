@@ -122,6 +122,7 @@ def generate_category1_table(
         rows.append((torch_api, col2, col3, mapping_category, "-"))
 
     # 生成Markdown表格字符串
+    rows = sorted(rows, key=lambda x: x[1].replace(r"\_", "_"))
     table_lines = TABLE_HEADER_LINES.copy()
 
     for idx, (_, col2, col3, mapping_category, remark) in enumerate(
@@ -242,6 +243,7 @@ def generate_category2_table(
             existing_apis.add(src_api)
 
     # 生成Markdown表格字符串
+    rows = sorted(rows, key=lambda x: x[1].replace(r"\_", "_"))
     table_lines = TABLE_HEADER_LINES.copy()
 
     for idx, (_, col2, col3, mapping_category, remark) in enumerate(
@@ -311,6 +313,7 @@ def generate_api_alias_table(
         existing_apis.add(torch_api)
 
     # 生成Markdown表格字符串
+    rows = sorted(rows, key=lambda x: x[1].replace(r"\_", "_"))
     table_lines = TABLE_HEADER_LINES.copy()
 
     for idx, (_, col2, col3, mapping_category, remark) in enumerate(
@@ -409,6 +412,7 @@ def generate_no_implement_table(
         existing_apis.add(torch_api)
 
     # 生成Markdown表格字符串
+    rows = sorted(rows, key=lambda x: x[1].replace(r"\_", "_"))
     table_lines = TABLE_HEADER_LINES.copy()
 
     for idx, (torch_api, col2, col3, mapping_category, remark) in enumerate(

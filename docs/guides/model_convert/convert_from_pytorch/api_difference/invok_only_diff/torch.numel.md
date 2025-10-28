@@ -3,7 +3,7 @@
 ### [torch.numel](https://pytorch.org/docs/stable/generated/torch.numel.html)
 
 ```python
-torch.numel()
+torch.numel(input)
 ```
 
 ### [paddle.Tensor.size](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/size_cn.html#paddle/Tensor/size_cn#cn-api-paddle-Tensor-size)

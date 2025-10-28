@@ -19,13 +19,11 @@ paddle.nn.Layer.named_children()
 ```python
 # PyTorch 写法
 model = torch.nn.Sequential(OrderedDict([("wfs", l), ("wfs1", l1)]))
-result = torch.Tensor([0, 0])
 for name, module in model.named_children():
-    result = module(result)
+    print(name, module)
 
 # Paddle 写法
 model = paddle.nn.Sequential(OrderedDict([("wfs", l), ("wfs1", l1)]))
-result = paddle.Tensor([0, 0])
 for name, module in model.named_children():
-    result = module(result)
+    print(name, module)
 ```

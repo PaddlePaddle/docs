@@ -18,14 +18,12 @@ paddle.nn.Layer.sublayers(include_self=False)
 
 ```python
 # PyTorch 写法
-net = torch.nn.Sequential(l, l)
-result = torch.Tensor([0, 0])
-for i, j in enumerate(net.modules()):
-    result = j(result)
+model = torch.nn.Sequential(net1, net2)
+for layer in model.modules():
+    print(layer)
 
 # Paddle 写法
-net = paddle.nn.Sequential(l, l)
-result = paddle.Tensor([0, 0])
-for i, j in enumerate(net.sublayers()):
-    result = j(result)
+model = paddle.nn.Sequential(net1, net2)
+for layer in model.sublayers():
+    print(layer)
 ```

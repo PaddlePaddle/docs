@@ -31,7 +31,7 @@ class MyFunction(torch.autograd.Function):
         return grad_input
 
 # Paddle 写法
-class MyFunction(paddle.autograd.Function):
+class MyFunction(paddle.autograd.PyLayer):
     @staticmethod
     def forward(ctx, x):
         ctx.x = x

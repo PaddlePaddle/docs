@@ -32,7 +32,7 @@ class cus_func(torch.autograd.Function):
         return grad_x
 
 # Paddle 写法
-class cus_func(paddle.autograd.Function):
+class cus_func(paddle.autograd.PyLayer):
     @staticmethod
     def forward(ctx, x):
         a = x + x

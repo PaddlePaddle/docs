@@ -31,7 +31,7 @@ class cus_tanh(torch.autograd.Function):
         return grad
 
 # Paddle 写法
-class cus_tanh(paddle.autograd.Function):
+class cus_tanh(paddle.autograd.PyLayer):
     @staticmethod
     def forward(ctx, x, func=paddle.square):
         ctx.func = func

@@ -18,8 +18,11 @@ paddle.device.stream_guard(stream)
 
 ```python
 # PyTorch 写法
-context = torch.cuda.stream(stream=s)
+with torch.cuda.stream(stream=s):
+    result = data1 + data2
 
 # Paddle 写法
-context = paddle.device.stream_guard(stream=s)
+with paddle.device.stream_guard(stream=s):
+    result = data1 + data2
+
 ```
