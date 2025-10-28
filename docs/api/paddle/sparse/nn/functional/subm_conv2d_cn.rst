@@ -32,7 +32,7 @@ subm_conv2d
     - stride (int|list|tuple, optional): 步长大小， 意味着卷积的步长。如果步长为 list/tuple, 它必须包含两个整数 (stride_height, stride_width)。否则, stride_height = stride_width = stride。stride 的默认值为 1。
     - padding (string|int|list|tuple, optional): 填充大小。它表示零填充在每个维度的两侧的数量。
       如果 'padding' 是字符串，则 'VALID' 或 'SAME' 是填充算法。
-      如果填充大小是元组或列表，它可以有三种形式：'[pad_heigh, pad_width]' 或 '[pad_height_top, pad_height_bottom, pad_width_left, pad_width_right]'。
+      如果填充大小是元组或列表，它可以有三种形式：'[pad_height, pad_width]' 或 '[pad_height_top, pad_height_bottom, pad_width_left, pad_width_right]'。
       当 'data_format' 为 'NHWC' 时, 'padding' 可以采用以下形式 '[[0,0], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right], [0,0]]'。padding 的默认值为 0。
     - dilation (int|list|tuple, optional): 空洞大小。它表示内核点之间的间距。
       如果 dilation 是列表/元组，则它必须包含两个整数 (dilation_height、dilation_width)。

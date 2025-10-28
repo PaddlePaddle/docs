@@ -16,7 +16,7 @@ Currently, every operation is expressed in the graph. We divide the evaluator pr
 
 ## Implementation
 This design is shown in the Python API.
-Each metric operator needs to caculate the metric statistic and return the batch-aware states. Python side is responsible for accumulating the states for each pass.
+Each metric operator needs to calculate the metric statistic and return the batch-aware states. Python side is responsible for accumulating the states for each pass.
 
 
 ```python
@@ -37,7 +37,7 @@ class Evaluator:
 
     def _update_ops(self, input, label, **kwargs)
        """
-       Add mini-batch evaluator caculate operators to the main_program.
+       Add mini-batch evaluator calculate operators to the main_program.
        Add increment operator to accumulate the metric states.
        """
 

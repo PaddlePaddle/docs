@@ -3,36 +3,36 @@ description: 反馈一个官网文档错误。 Report an issue related to https:
 labels: []
 
 body:
-- type: markdown
-  attributes:
-    value: >
-      #### 请确认反馈的问题来自PaddlePaddle官网文档：https://www.paddlepaddle.org.cn/ 。
+  - type: markdown
+    attributes:
+      value: >
+        #### 请确认反馈的问题来自PaddlePaddle官网文档：https://www.paddlepaddle.org.cn/ 。
 
-      #### Before submitting a Documentation Issue, Please make sure that issue is related to https://www.paddlepaddle.org.cn/.
+        #### Before submitting a Documentation Issue, Please make sure that issue is related to https://www.paddlepaddle.org.cn/.
 
-- type: textarea
-  id: link
-  attributes:
-    label: 文档链接&描述 Document Links & Description
-    description: |
-      请说明有问题的文档链接以及该文档存在的问题。
-      Please fill in the link to the document and describe the question.
-  validations:
-    required: true
+  - type: textarea
+    id: link
+    attributes:
+      label: 文档链接&描述 Document Links & Description
+      description: |
+        请说明有问题的文档链接以及该文档存在的问题。
+        Please fill in the link to the document and describe the question.
+    validations:
+      required: true
 
 
-- type: textarea
-  id: error
-  attributes:
-    label: 请提出你的建议/提个PR修复这个问题 Please give your suggestion/update a PR to fix it
-    description: |
-      请告诉我们，你希望如何改进这个文档。
-      Please tell us how you would like to improve this document.
+  - type: textarea
+    id: error
+    attributes:
+      label: 请提出你的建议/提个PR修复这个问题 Please give your suggestion/update a PR to fix it
+      description: |
+        请告诉我们，你希望如何改进这个文档。
+        Please tell us how you would like to improve this document.
 
-  validations:
-    required: false
+    validations:
+      required: false
 
-- type: markdown
-  attributes:
-    value: >
-      感谢你的贡献 🎉！Thanks for your contribution 🎉!
+  - type: markdown
+    attributes:
+      value: >
+        感谢你的贡献 🎉！Thanks for your contribution 🎉!

@@ -14,7 +14,7 @@ DistributedBatchSampler
 参数
 ::::::::::::
 
-    - **dataset** (Dataset) - 此参数必须是 :ref:`cn_api_paddle_io_Dataset` 的一个子类实例或实现了  ``__len__``  的 Python 对象，用于生成样本下标。
+    - **dataset** (Dataset) - 此参数必须是 :ref:`cn_api_paddle_io_Dataset` 的一个子类实例或实现了 ``__len__`` 的 Python 对象，用于生成样本下标。
     - **batch_size** (int) - 每 mini-batch 中包含的样本数。
     - **num_replicas** (int，可选) - 分布式训练时的进程个数。如果是 None，会依据 :ref:`cn_api_paddle_distributed_ParallelEnv` 获取值。默认是 None。
     - **rank** (int，可选) - num_replicas 个进程中的进程序号。如果是 None，会依据 :ref:`cn_api_paddle_distributed_ParallelEnv` 获取值。默认是 None。

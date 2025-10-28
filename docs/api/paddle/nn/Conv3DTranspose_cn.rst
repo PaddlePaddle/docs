@@ -22,9 +22,9 @@ Conv3DTranspose
     -  :math:`X`：输入，具有 NCDHW 或 NDHWC 格式的 5-D Tensor
     -  :math:`W`：卷积核，具有 NCDHW 格式的 5-D Tensor
     -  :math:`*`：卷积操作（**注意**：转置卷积本质上的计算还是卷积）
-    -  :math:`b`：偏置（bias），1-D Tensor，形状为  ``[M]`` 
+    -  :math:`b`：偏置（bias），1-D Tensor，形状为 ``[M]``
     -  :math:`σ`：激活函数
-    -  :math:`Out`：输出值，NCDHW 或 NDHWC 格式的 5-D Tensor，和  ``X``  的形状可能不同
+    -  :math:`Out`：输出值，NCDHW 或 NDHWC 格式的 5-D Tensor，和 ``X`` 的形状可能不同
 
 
 .. note::
@@ -40,8 +40,8 @@ Conv3DTranspose
   - **in_channels** (int) - 输入图像的通道数。
   - **out_channels** (int) - 卷积核的个数，和输出特征图个数相同。
   - **kernel_size** (int|list|tuple) - 卷积核大小。可以为单个整数或包含三个整数的元组或列表，分别表示卷积核的深度，高和宽。如果为单个整数，表示卷积核的深度，高和宽都等于该整数。output_size 和 kernel_size 不能同时为 None。
-  - **stride** (int|tuple，可选) - 步长大小。如果  ``stride``  为元组或列表，则必须包含三个整型数，分别表示深度，垂直和水平滑动步长。否则，表示深度，垂直和水平滑动步长均为  ``stride`` 。默认值为 1。
-  - **padding** (int|tuple，可选) - 填充大小。如果  ``padding``  为元组或列表，则必须包含三个整型数，分别表示深度，竖直和水平边界填充大小。否则，表示深度，竖直和水平边界填充大小均为  ``padding`` 。如果它是一个字符串，可以是 "VALID" 或者 "SAME" ，表示填充算法，计算细节可参考下方形状  ``padding``  = "SAME" 或   ``padding``  = "VALID" 时的计算公式。默认值为 0。
+  - **stride** (int|tuple，可选) - 步长大小。如果 ``stride`` 为元组或列表，则必须包含三个整型数，分别表示深度，垂直和水平滑动步长。否则，表示深度，垂直和水平滑动步长均为 ``stride``。默认值为 1。
+  - **padding** (int|tuple，可选) - 填充大小。如果 ``padding`` 为元组或列表，则必须包含三个整型数，分别表示深度，竖直和水平边界填充大小。否则，表示深度，竖直和水平边界填充大小均为 ``padding``。如果它是一个字符串，可以是 "VALID" 或者 "SAME" ，表示填充算法，计算细节可参考下方形状 ``padding`` = "SAME" 或  ``padding`` = "VALID" 时的计算公式。默认值为 0。
   - **output_padding** (int|list|tuple，可选) - 输出形状上一侧额外添加的大小。默认值为 0。
   - **groups** (int，可选) - 二维卷积层的组数。根据 `Alex Krizhevsky 的 Deep CNN 论文 <https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf>`_ 中的分组卷积：当 groups = 2，卷积核的前一半仅和输入特征图的前一半连接。卷积核的后一半仅和输入特征图的后一半连接。默认值为 1。
   - **dilation** (int|tuple，可选) - 空洞大小。可以为单个整数或包含三个整数的元组或列表，分别表示卷积核中的元素沿着深度，高和宽的空洞。如果为单个整数，表示深度，高和宽的空洞都等于该整数。默认值为 1。
@@ -71,14 +71,14 @@ Conv3DTranspose
         H_{out} &\in [ H^\prime_{out}, H^\prime_{out} + strides[1] ] \\
         W_{out} &\in [ W^\prime_{out}, W^\prime_{out} + strides[2] ] \\
 
-    如果  ``padding``  = "SAME":
+    如果 ``padding`` = "SAME":
 
     .. math::
         & D'_{out} = \frac{(D_{in} + stride[0] - 1)}{stride[0]}\\
         & H'_{out} = \frac{(H_{in} + stride[1] - 1)}{stride[1]}\\
         & W'_{out} = \frac{(W_{in} + stride[2] - 1)}{stride[2]}\\
 
-    如果  ``padding``  = "VALID":
+    如果 ``padding`` = "VALID":
 
     .. math::
         & D'_{out} = (D_{in}-1)*strides[0] + dilations[0]*(kernel\_size[0]-1)+1\\

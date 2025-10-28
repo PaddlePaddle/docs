@@ -5,7 +5,7 @@ require_version
 
 .. py:function:: paddle.utils.require_version(min_version, max_version=None)
 
-检查 PaddlePaddle 的安装版本是否在区间  ``[min_version, max_version]``  内，如果安装版本低于 min_version 或高于 max_version ，将抛出异常，如果安装版本满足则没有返回值。
+检查 PaddlePaddle 的安装版本是否在区间 ``[min_version, max_version]`` 内，如果安装版本低于 min_version 或高于 max_version ，将抛出异常，如果安装版本满足则没有返回值。
 
 参数
 ::::::::::::

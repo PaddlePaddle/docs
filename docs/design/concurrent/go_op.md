@@ -3,7 +3,7 @@
 ## Introduction
 
 The **go_op** allows user's of PaddlePaddle to run program blocks on a detached
-thread.  It works in conjuction with CSP operators (channel_send,
+thread.  It works in conjunction with CSP operators (channel_send,
 channel_receive, channel_open, channel_close, and select) to allow users to
 concurrently process data and communicate easily between different threads.
 
@@ -27,7 +27,7 @@ The go operator can be accessed by using the fluid.Go() control flow.  This
 will create a new sub block, where the user can add additional operators
 to be ran on the thread.
 
-**Note:** Since back propegation is currently not support in the go_op, users
+**Note:** Since back propagation is currently not support in the go_op, users
 should ensure that operators in the go block does not require gradient
 calculations.
 
@@ -225,7 +225,7 @@ when spawning these threads.  For the first version of CSP, we only support
 OS threads.
 
 
-#### Backward Propegation:
+#### Backward Propagation:
 
 go_op currently does not support backwards propagation.  Please use go_op with
 non training operators.

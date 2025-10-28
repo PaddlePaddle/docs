@@ -21,7 +21,7 @@ erase
 返回
 :::::::::
 
-     ``paddle.Tensor``  或  ``numpy.array``  或  ``PIL.Image`` ，擦除后的图像，类型与输入图像的类型一致。
+    ``paddle.Tensor`` 或 ``numpy.array`` 或 ``PIL.Image``，擦除后的图像，类型与输入图像的类型一致。
 
 代码示例
 :::::::::

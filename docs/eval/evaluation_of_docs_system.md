@@ -28,7 +28,7 @@ TensorFlow 的文档规划，比较直接地匹配了本文所介绍的分类标
 - Quickstart for beginners
 - Quickstart for experts
 - ML basics with Keras
-    - Basic image classfication
+    - Basic image classification
     - Basic text classification
     - Text classification with TF Hub
     - Regression
@@ -48,7 +48,7 @@ TensorFlow 的文档规划，比较直接地匹配了本文所介绍的分类标
 - Customization
     - Tensors and operations
     - Custom layers
-    - Custom traning: walkthrough
+    - Custom training: walkthrough
 - Distributed training
     - Distributed training with Kereas
     - Distributed training with DTensors
@@ -81,7 +81,7 @@ TensorFlow 的文档规划，比较直接地匹配了本文所介绍的分类标
     - Generate music with an RNN
 - Structured data
     - Classifying structured data with preprocessing layers
-    - Classfication on imbalanced data
+    - Classification on imbalanced data
     - Time series forecasting
     - Decision forest models
     - Recommenders
@@ -128,7 +128,7 @@ TensorFlow 的文档规划，比较直接地匹配了本文所介绍的分类标
     - Customize what happens in Model.fit
     - Writing a training loop from scratch
     - Recurrent Neural Networks(RNN) with Keras
-    - Masking and padding wiht Keras
+    - Masking and padding with Keras
     - Writing your own callbacks
     - Transfer learning and fine-tuning
     - Training Keras models with TensorFlow Cloud
@@ -191,7 +191,7 @@ TensorFlow 的文档规划，比较直接地匹配了本文所介绍的分类标
     - The Fundamentals of Autograd
     - Building Models with PyTorch
     - PyTorch TensorBoard Support
-    - Traning wiht PyTorch
+    - Training with PyTorch
     - Model Understanding with Captum
 - Learning PyTorch
     - Deep Learning with PyTorch: A 60 Minute Blitz
@@ -203,7 +203,7 @@ TensorFlow 的文档规划，比较直接地匹配了本文所介绍的分类标
     - Transfer Learning for Computer Vision Tutorial
     - Adversarial Example Generation
     - DCGAN Tutorial
-    - Spatial Tansformer Networks Tutorial
+    - Spatial Transformer Networks Tutorial
     - Optimizaing Vision Transformer Model for Deployment
 - Audio
     - Audio I/O
@@ -261,13 +261,13 @@ TensorFlow 的文档规划，比较直接地匹配了本文所介绍的分类标
     - Single-Machine Model Parallel Best Practices
     - Getting Started with Distributed Data Parallel
     - Writing Distributed Applications with PyTorch
-    - Getting Started with Fully Sharded Data Prallel
+    - Getting Started with Fully Sharded Data Parallel
     - Customize Process Group Backends Using Cpp Extension
     - Getting Started with Distributed RPC Framework
     - Implementing a Parameter Server Using Distributed RPC Framework
     - Distributed Pipeline Parallelsim using RPC
     - Implementing Batch RPC Processing Using Asynchronous Executions
-    - Combining Distributed DataPrallel with Distributed RPC Framework
+    - Combining Distributed DataParallel with Distributed RPC Framework
     - Training Transformer models using Pipeline Parallelism
     - Training Transformer models using Distributed Data Parallel and Pipeline Parallelism
     - Distributed Training with Uneven Inputs Using the Join Context Manager
@@ -546,23 +546,23 @@ MindSpore 的有自己独立的文档分类标准和风格，所以硬套本文�
 |                              | TensorFlow                                                   | 数量 | PyTorch                                                      | 数量 | MindSpore                                                    | 数量 | PaddlePaddle                                                 | 数量   |
 | ---------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ | ------ |
 | 基本数据（Tensor）和基本算子 | Tensors Variables Tensor slicing Ragged tensor Sparse tensor DTensor concepts | 6    | Tensors Transforms Introduction to PyTorch Tensors           | 3    | 张量 Tensor                                                  | 1    | Tensor 概念介绍                                               | 1      |
-| 数据加载与预处理             | Images CSV Numpy pandas.DataFrame TFRecord and tf.Example Additional formats with tf.io Text More text loading Classifying structured data with preprocessing layers Classfication on imbalanced data Time series forecasting Decision forest models | 13   | Datasets & Dataloaders                                       | 1    | 数据处理 数据处理（进阶） 自动数据增强 轻量化数据处理 单节点数据缓存 优化数据处理 | 6    | 数据集的定义和加载 数据预处理                                | 2      |
+| 数据加载与预处理             | Images CSV Numpy pandas.DataFrame TFRecord and tf.Example Additional formats with tf.io Text More text loading Classifying structured data with preprocessing layers Classification on imbalanced data Time series forecasting Decision forest models | 13   | Datasets & Dataloaders                                       | 1    | 数据处理 数据处理（进阶） 自动数据增强 轻量化数据处理 单节点数据缓存 优化数据处理 | 6    | 数据集的定义和加载 数据预处理                                | 2      |
 | 如何组网                     | Modules, layers, and models                                  | 1    | Build the Neural Network Building Models with PyTorch What is torch.nn really? Learing PyTorch with Examples | 4    | 创建网络 网络构建                                            | 2    | 模型组网 飞桨高层 API 使用指南 层与模型                      | 3      |
-| 如何训练                     | Training loops NumPy API Checkpoint SavedModel               | 4    | Optimization Model Parameters Traning wiht PyTorch           | 2    | 模型训练 训练与评估                                          | 2    | 训练与预测验证 自定义指标                                    | 2      |
-| 保存与加载模型               | Save and load Save and load(Distrbuted Training)             | 2    | Save and Load the Model                                      | 1    | 保存与加载                                                   | 1    | 模型保存与载入 模型保存及加载（应用实践）                    | 2      |
+| 如何训练                     | Training loops NumPy API Checkpoint SavedModel               | 4    | Optimization Model Parameters Training with PyTorch           | 2    | 模型训练 训练与评估                                          | 2    | 训练与预测验证 自定义指标                                    | 2      |
+| 保存与加载模型               | Save and load Save and load(Distributed Training)             | 2    | Save and Load the Model                                      | 1    | 保存与加载                                                   | 1    | 模型保存与载入 模型保存及加载（应用实践）                    | 2      |
 | 可视化、调优技巧             | Overfit and underfit Tune hyperprameters with Keras Tuner Better performance with tf.function Profile TensorFlow performance Graph optimizaition Optimize GPU Performance Mixed precision | 7    | PyTorch TensorBoard Support Model Understanding with Captum Visualizing Models, Data, and Training with TensorBoard Profiling your PyTorch Module PyTorch Profiler with TensorBoard Hyperparameter tuning with Ray Tune Optimizing Vision Transformer Model for Deployment Parametrization Tutorial Pruning Tutorial Grokking PyTorch Intel CPU performance from first principles | 11   | 查看中间文件 Dump 功能调试 自定义调试信息 调用自定义类 算子增量编译 算子调优工具 自动数据加速 固定随机性以复现脚本运行结果 | 8    | VisualDL 工具简介 VisualDL 使用指南 飞桨模型量化             | 3      |
 | 自动微分                     | Automatic differentiation Advanced autodiff                  | 2    | Automatic Differentiation with torch.autograd The Fundamentals of Autograd | 2    | 自动微分                                                     | 1    | 自动微分                                                     | 1      |
 | 动态图与静态图               | Graphs and functions                                         | 1    | （torchscript 其实是静态图，不过归类到部署中了）             | 0    | 动态图与静态图                                               | 1    | 使用样例 转换原理 支持语法 案例解析 报错调试 动态图 使用动转静完成以图搜图 | 7      |
 | 部署相关                     | https://www.tensorflow.org/tfx/tutorials 下的 21 篇文章 https://www.tensorflow.org/tfx/guide 下的 30+文章 | 50+  | Deploying PyTorch in Python via a REST API with Flask Introduction to TorchScript Loading a TorchScript Model in C++ (optional) Exporting a Model from PyTorch to ONNX and Running it using ONNX Runtime Real Time Inference on Raspberry Pi 4 | 6    | 推理与部署 模型推理总览 GPU/CPU 推理 Ascend 910 AI 处理器上推理 Ascend 310 AI 处理器上使用 MindIR 模型进行推理 Ascend 310 AI 处理器上使用 AIR 模型进行推理 | 7    | 服务器部署 移动端/嵌入式部署 模型压缩 https://www.paddlepaddle.org.cn/lite/v2.10/guide/introduction.html 下 50+ 篇文章 | 50+    |
-| CV 领域相关                  | Basic image classfication Convolutional Neural Network Image classification Transfer learning and fine-tuning Transfer learning with TF Hub Data Augmentaion Image segmentation Object detection with TF Hub Neural style transfer DeepDream DCGAN Pix2Pix CycleGAN Adversarial FGSM Intro to Autoencoders Variational Autoencoder | 16   | TorchVision Object Detection Finetuning Tutorial Transfer Learning for Computer Vision Tutorial Adversarial Example Generation DCGAN Tutorial Spatial Tansformer Networks Tutorial Optimizaing Vision Transformer Model for Deployment Quantized Transfer Learning for Computer Vision Tutorial | 7    | ResNet50 网络进行图像分类 图像分类迁移学习 模型对抗攻击 生成式对抗网络 | 4    | 使用 LeNet 在 MNIST 数据集实现图像分类 使用卷积神经网络进行图像分类 基于图片相似度的图片搜索 基于 U-Net 卷积神经网络实现宠物图像分割 通过 OCR 实现验证码识别 通过 Sub-Pixel 实现图像超分辨率 人脸关键点检测 点云处理：实现 PointNet 点云分类 | 7      |
+| CV 领域相关                  | Basic image classification Convolutional Neural Network Image classification Transfer learning and fine-tuning Transfer learning with TF Hub Data Augmentaion Image segmentation Object detection with TF Hub Neural style transfer DeepDream DCGAN Pix2Pix CycleGAN Adversarial FGSM Intro to Autoencoders Variational Autoencoder | 16   | TorchVision Object Detection Finetuning Tutorial Transfer Learning for Computer Vision Tutorial Adversarial Example Generation DCGAN Tutorial Spatial Transformer Networks Tutorial Optimizaing Vision Transformer Model for Deployment Quantized Transfer Learning for Computer Vision Tutorial | 7    | ResNet50 网络进行图像分类 图像分类迁移学习 模型对抗攻击 生成式对抗网络 | 4    | 使用 LeNet 在 MNIST 数据集实现图像分类 使用卷积神经网络进行图像分类 基于图片相似度的图片搜索 基于 U-Net 卷积神经网络实现宠物图像分割 通过 OCR 实现验证码识别 通过 Sub-Pixel 实现图像超分辨率 人脸关键点检测 点云处理：实现 PointNet 点云分类 | 7      |
 | NLP 领域相关                 | Basic text classification Text classification with TF Hub Word embeddings Word2Vec Text classification with an RNN classify Text with BERT Solve GLUE tasks using BERT on TPU Neural machine translation with attention Image captioning | 9    | Language Modeling with nn.Transformer and TorchText NLP From Scratch: Classifying Names with a Character-Level RNN NLP From Scratch: Generating Names with a Character-Level RNN NLP From Scratch: Translation with a Sequence to Sequence Network and Attention Text classification with the torchtext library Language Translation with nn.Transformer and torchtext Dynamic Quantization on an LSTM Word Language Model Dynamic Quantization on BERT | 8    | 使用 RNN 实现情感分类 LSTM+CRF 实现序列标注                  | 2    | 用 N-Gram 模型在莎士比亚文集中训练 word embedding IMDB 数据集使用 BOW 网络的文本分类 使用预训练的词向量完成文本分类任务 使用注意力机制的 LSTM 的机器翻译 使用序列到序列模型完成数字加法 | 5      |
 | 语音领域相关                 |                                                              |      | Audio I/O Audio Resampling Audio Data Augmentation Audio Feature Extractions Audio Feature Augmentation Audio Datasets Speech Recognition with Wav2Vec2 Speech Command Classification with torchaudio Text-to-speech with torchaudio Forced Alignment with Wav2Vec2 | 10   |                                                              | 0    |                                                              | 0      |
 | 推荐领域相关                 | Recommenders                                                 | 1    | Introduction to TorchRec                                     | 1    |                                                              | 0    | 使用协同过滤实现电影推荐                                     | 1      |
 | 强化学习领域相关             | Actor-Critic method TensorFlow agents                        | 2    | 0                                                            | 0    |                                                              | 0    | 强化学习——Actor Critic Method 强化学习——Advantage Actor-Critic(A2C) 强化学习——Deep Deterministic Policy Gradient (DDPG) | 3      |
 | 移动端相关                   | 独立的栏目 https://www.tensorflow.org/lite                   | 10+  | Image Segmentation DeepLabV3 on iOS Image Segmentation DeepLabV3 on Android | 2    |                                                              | 0    | Paddle Lite 中独立存在                                       | 未统计 |
 | 框架之间的迁移相关           |                                                              |      |                                                              | 0    | 概述 准备工作 网络脚本分析 网络脚本开发 网络调试 精度调试 性能调试 推理执行 网络迁移调试实例 常见问题 | 10   | Paddle 1.8 与 Paddle 2.0 API 映射表 PyTorch-PaddlePaddle API 映射表 版本迁移工具 | 3      |
-| 自定义算子                   | Tensors and operations Custom layers Custom traning: walkthrough Create an op Extension types | 5    | Double Backward with Custom Functions Fusing Convolution and Batch Norm using Custom Function Custom C++ and CUDA Extensions Extending TorchScript with Custom C++ Operators Extending TorchScript with Custom C++ Classes Registering a Dispatched Operator in C++ Extending dispatcher for a new backend in C++ | 7    | 算子分类 运算重载 自定义算子（CPU） 自定义算子（GPU） 自定义算子（Ascend） 自定义算子（基于 Custom 表达） | 6    | 自定义原生算子 原生算子开发注意事项 自定义外部算子 自定义 Python 算子 API 介绍 API 示例 本地开发指南 提交 PR 注意事项 FAQ | 9      |
-| 分布式训练                   | Distributed training with Kereas Distributed training with DTensors Using DTensors with Keras Custom training loops Multi-worker training with Keras Multi-worker training with CTL Parameter Server Training Distributed input Distributed training | 9    | PyTorch Distributed Overview Single-Machine Model Parallel Best PracticesGetting Started with Distributed Data Parallel Writing Distributed Applications with PyTorch Getting Started with Fully Sharded Data Prallel Customize Process Group Backends Using Cpp Extension Getting Started with Distributed RPC Framework Implementing a Parameter Server Using Distributed RPC Framework Distributed Pipeline Parallelsim using RPC Implementing Batch RPC Processing Using Asynchronous Executions Combining Distributed DataPrallel with Distributed RPC Framework Training Transformer models using Pipeline Parallelism Training Transformer models using Distributed Data Parallel and Pipeline Parallelism Distributed Training with Uneven Inputs Using the Join Context Manager | 16   | 分布式并行总览 分布式集合通信原语 分布式并行训练基础样例（Ascend） 分布式并行训练基础样例（GPU） 分布式推理 保存和加载模型（HyBrid Parallel 模式） 分布式并行训练 Transformer 模型 鹏程·盘古模型网络多维度混合并行解析 分布式故障恢复 | 9    | 单机多卡训练 分布式训练开始 使用 FleetAPI 进行分布式训练     | 3      |
+| 自定义算子                   | Tensors and operations Custom layers Custom training: walkthrough Create an op Extension types | 5    | Double Backward with Custom Functions Fusing Convolution and Batch Norm using Custom Function Custom C++ and CUDA Extensions Extending TorchScript with Custom C++ Operators Extending TorchScript with Custom C++ Classes Registering a Dispatched Operator in C++ Extending dispatcher for a new backend in C++ | 7    | 算子分类 运算重载 自定义算子（CPU） 自定义算子（GPU） 自定义算子（Ascend） 自定义算子（基于 Custom 表达） | 6    | 自定义原生算子 原生算子开发注意事项 自定义外部算子 自定义 Python 算子 API 介绍 API 示例 本地开发指南 提交 PR 注意事项 FAQ | 9      |
+| 分布式训练                   | Distributed training with Kereas Distributed training with DTensors Using DTensors with Keras Custom training loops Multi-worker training with Keras Multi-worker training with CTL Parameter Server Training Distributed input Distributed training | 9    | PyTorch Distributed Overview Single-Machine Model Parallel Best PracticesGetting Started with Distributed Data Parallel Writing Distributed Applications with PyTorch Getting Started with Fully Sharded Data Parallel Customize Process Group Backends Using Cpp Extension Getting Started with Distributed RPC Framework Implementing a Parameter Server Using Distributed RPC Framework Distributed Pipeline Parallelsim using RPC Implementing Batch RPC Processing Using Asynchronous Executions Combining Distributed DataParallel with Distributed RPC Framework Training Transformer models using Pipeline Parallelism Training Transformer models using Distributed Data Parallel and Pipeline Parallelism Distributed Training with Uneven Inputs Using the Join Context Manager | 16   | 分布式并行总览 分布式集合通信原语 分布式并行训练基础样例（Ascend） 分布式并行训练基础样例（GPU） 分布式推理 保存和加载模型（HyBrid Parallel 模式） 分布式并行训练 Transformer 模型 鹏程·盘古模型网络多维度混合并行解析 分布式故障恢复 | 9    | 单机多卡训练 分布式训练开始 使用 FleetAPI 进行分布式训练     | 3      |
 | 框架设计文档                 | Random number generation                                     | 1    | 分散在 API 文档、源码中，其实比较丰富。30+                   | 30+  | 设计白皮书 全场景统一 函数式微分编程 动静态图结合 异构并行训练 分布式并行 中间表达 MindIR 高性能数据处理引擎 图算融合加速引擎 二阶优化 可视化调试调优 安全可信 术语 | 13   |                                                              | 0      |
 | 其它                         | Integrated gradients Uncertainty quantification with SNGP Probabilistic regression Keras 一级标题下的 13 篇文章 Thinking in TensorFlow 2 Data input pipelines 一级标题下的 3 篇 GPU TPU | 20   | Learn the Basics Quickstart Deep Learning with PyTorch: A 60 Minute Blitz Building a Convolution/Batch Norm fuser in FX Building a Simple CPU Performance Profiler with FX Channels Last Memory Format in PyTorch Forward-mode Automatic Differentiation Using the PyTorch C++ Frontend Dynamic Parallelism in TorchScript Autograd in C++ Frontend Static Quantization with Eager Model in PyTorch | 11   | 基本介绍 快速入门 进阶案例：线性拟合 混合精度 梯度累积算法 自适应梯度求和算法 降维训练算法 | 7    | 10 分钟快速上手飞桨 使用线性回归预测波士顿房价 模型导出 ONNX 协议 飞桨产品硬件支持表 昆仑芯 XPU 芯片运行飞桨 海光 DCU 芯片运行飞桨 昇腾 NPU 芯片运行飞桨 环境变量 FLAGS 下 9 篇 hello paddle：从普通程序走向机器学习程序 通过 AutoEncoder 实现时序数据异常检测 广播介绍 自动混合精度训练 梯度裁剪 升级指南 | 20+    |
 

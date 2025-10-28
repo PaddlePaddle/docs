@@ -7,12 +7,12 @@ scale
 
 对输入 Tensor 进行缩放和偏置，其公式如下：
 
- ``bias_after_scale``  为 True:
+``bias_after_scale`` 为 True:
 
 .. math::
                         Out=scale*X+bias
 
- ``bias_after_scale``  为 False:
+``bias_after_scale`` 为 False:
 
 .. math::
                         Out=scale*(X+bias)

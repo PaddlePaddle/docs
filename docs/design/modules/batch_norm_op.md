@@ -72,7 +72,7 @@ cudnn provides APIs to finish the whole series of computation, we can use them i
 
 ### Python
 
-`batch_norm_op` is warpped as a layer in Python:
+`batch_norm_op` is wrapped as a layer in Python:
 
 ```python
 def batch_norm_layer(net,

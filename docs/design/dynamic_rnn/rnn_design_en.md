@@ -1,4 +1,4 @@
-# Varient Length supported RNN Design
+# Variable Length supported RNN Design
 For the learning of variable length sequences, the existing mainstream frameworks such as tensorflow, pytorch, caffe2, mxnet and so on all use padding.
 
 Different-length sequences in a mini-batch will be padded with zeros and transformed to same length.

@@ -28,9 +28,9 @@ def get_symbol(num_classes=10, **kwargs):
 
 
 
-Varible here is actually a Symbol. Every basic Symbol will correspond to one Node, and every Node has its own AnyAttr. There is a op field in AnyAttr class, when a Symbol represents Variable(often input data), the op field is null.
+Variable here is actually a Symbol. Every basic Symbol will correspond to one Node, and every Node has its own AnyAttr. There is a op field in AnyAttr class, when a Symbol represents Variable(often input data), the op field is null.
 
-Symbol contains a data member, std::vector<NodeEntry> outputs, and NodeEntry cantains a poniter to Node. We can follow the Node pointer to get all the Graph.
+Symbol contains a data member, std::vector<NodeEntry> outputs, and NodeEntry cantains a pointer to Node. We can follow the Node pointer to get all the Graph.
 
 And Symbol can be saved to a JSON file.
 
@@ -168,9 +168,9 @@ Expression pred = W * in;
 Expression loss = square(pred - label);
 ```
 
-The input data and parameter are also represented by Expression. Every basci Expression corresponds to a Node. And input data is also a Node.
+The input data and parameter are also represented by Expression. Every basic Expression corresponds to a Node. And input data is also a Node.
 
-Expression has a data member ComputationGraph, and ComputationGraph will be modified in users' configuring process. Expression can be a running target, beacuse Expression contains all dependency.
+Expression has a data member ComputationGraph, and ComputationGraph will be modified in users' configuring process. Expression can be a running target, because Expression contains all dependency.
 
 
 Here is a detailed example:
@@ -227,6 +227,6 @@ digraph G {
 
 Actually, Symbol/Tensor/Expression in Mxnet/TensorFlow/Dynet are the same level concepts. We use a unified name Expression here, this level concept has following features:
 
-- Users wirte topoloy with symbolic API, and all return value is Expression, including input data and parameter.
+- Users write topoloy with symbolic API, and all return value is Expression, including input data and parameter.
 - Expression corresponds with a global Graph, and Expression can also be composed.
 - Expression tracks all dependency and can be taken as a run target

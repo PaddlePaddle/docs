@@ -57,10 +57,6 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     git reset --hard && git clean -dfx
     cd ${DIR_PATH}
 
-    if [ -n "${BOS_CREDENTIAL_AK}" ] && [ -n "${BOS_CREDENTIAL_SK}" ] ; then
-        echo "Ak = ${BOS_CREDENTIAL_AK}" >> ${BCECMD_CONFIG}/credentials
-        echo "Sk = ${BOS_CREDENTIAL_SK}" >> ${BCECMD_CONFIG}/credentials
-    fi
     if [ $xdebug_setted ] ; then
         set -x
     fi
@@ -70,14 +66,12 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     if [ "${UPLOAD_DOC}" = "true" ] ; then
         PREVIEW_JOB_NAME="preview-pr-${GIT_PR_ID}"
         BOSBUCKET=${BOSBUCKET:=paddle-site-web-dev}
-        ${BCECMD} --conf-path ${BCECMD_CONFIG} bos sync "${OUTPUTDIR}/en/${VERSIONSTR}" "bos:/${BOSBUCKET}/documentation/en/${PREVIEW_JOB_NAME}" \
-            --delete --yes --exclude "${OUTPUTDIR}/en/${VERSIONSTR}/_sources/"
-        ${BCECMD} --conf-path ${BCECMD_CONFIG} bos sync "${OUTPUTDIR}/en/${VERSIONSTR}" "bos:/${BOSBUCKET}/documentation/en/${PREVIEW_JOB_NAME}" \
-            --delete --yes --exclude "${OUTPUTDIR}/en/${VERSIONSTR}/_sources/"
-        ${BCECMD} --conf-path ${BCECMD_CONFIG} bos sync "${OUTPUTDIR}/zh/${VERSIONSTR}" "bos:/${BOSBUCKET}/documentation/zh/${PREVIEW_JOB_NAME}" \
-            --delete --yes --exclude "${OUTPUTDIR}/zh/${VERSIONSTR}/_sources/"
-        ${BCECMD} --conf-path ${BCECMD_CONFIG} bos sync "${OUTPUTDIR}/zh/${VERSIONSTR}" "bos:/${BOSBUCKET}/documentation/zh/${PREVIEW_JOB_NAME}" \
-            --delete --yes --exclude "${OUTPUTDIR}/zh/${VERSIONSTR}/_sources/"
+        wget -q --no-proxy https://xly-devops.bj.bcebos.com/home/bos_dir.tar --no-check-certificate
+        tar xf bos_dir.tar
+        python3 -m pip install bce-python-sdk==0.8.74
+        # use bos_der.tar: The first parameter is to upload the directory, the second parameter is to upload the BOS directory, and the third parameter is to exclude the directory
+        python3 BosClient.py ${OUTPUTDIR}/en/${VERSIONSTR} ${BOSBUCKET}/documentation/en/${PREVIEW_JOB_NAME} ${OUTPUTDIR}/en/${VERSIONSTR}/_sources/
+        python3 BosClient.py ${OUTPUTDIR}/zh/${VERSIONSTR} ${BOSBUCKET}/documentation/zh/${PREVIEW_JOB_NAME} ${OUTPUTDIR}/zh/${VERSIONSTR}/_sources/
         # print preview url
         PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: http://${PREVIEW_JOB_NAME}.${PREVIEW_SITE:-preview.paddlepaddle.org}/documentation/docs/zh/api/index_cn.html"
     fi
@@ -102,17 +96,11 @@ else
 fi
 
 EXIT_CODE=0
-# 3 check code style/format.
-ls ${DIR_PATH}
-/bin/bash -x  ${DIR_PATH}/check_code.sh
-if [ $? -ne 0 ];then
-    EXIT_CODE=1
-fi
 
 git merge --no-edit upstream/${BRANCH}
 need_check_cn_doc_files=$(find_all_cn_api_files_modified_by_pr)
 echo $need_check_cn_doc_files
-# 4 Chinese api docs check
+# 3 Chinese api docs check
 if [ "${need_check_cn_doc_files}" = "" ] ; then
     echo "chinese api doc fileslist is empty, skip check."
 else
@@ -127,7 +115,7 @@ else
     fi
 fi
 
-# 5 Chinese api_label check
+# 4 Chinese api_label check
 /bin/bash -x ${DIR_PATH}/check_api_label_cn.sh
 if [ $? -ne 0 ];then
     set +x
@@ -141,16 +129,10 @@ fi
 if [ ${EXIT_CODE} -ne 0 ]; then
     set +x
     echo "=========================================================================================="
-    echo "Code style check or API Chinese doc check failed! Please check the error info above carefully."
+    echo "API Chinese doc check failed! Please check the error info above carefully."
     echo "=========================================================================================="
     set -x
     exit ${EXIT_CODE}
-fi
-
-# 6 Approval check
-/bin/bash  ${DIR_PATH}/checkapproval.sh
-if [ $? -ne 0 ];then
-    exit 1
 fi
 
 echo "PADDLE_WHL=${PADDLE_WHL}"

@@ -517,7 +517,7 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.sigmoid_focal_loss <cn_api_paddle_nn_functional_sigmoid_focal_loss>` ", "用于计算分类任务中前景类-背景类数量不均衡问题的损失"
     " :ref:`paddle.nn.functional.smooth_l1_loss <cn_api_paddle_nn_functional_smooth_l1_loss>` ", "用于计算平滑 L1 损失"
     " :ref:`paddle.nn.functional.softmax_with_cross_entropy <cn_api_paddle_nn_functional_softmax_with_cross_entropy>` ", "将 softmax 操作、交叉熵损失函数的计算过程进行合并"
-    " :ref:`paddle.nn.functional.margin_cross_entropy <cn_api_paddle_nn_functional_margin_cross_entropy>` ", "支持  ``Arcface`` ， ``Cosface`` ， ``Sphereface``  的结合 Margin 损失函数"
+    " :ref:`paddle.nn.functional.margin_cross_entropy <cn_api_paddle_nn_functional_margin_cross_entropy>` ", "支持 ``Arcface``，``Cosface``，``Sphereface`` 的结合 Margin 损失函数"
     " :ref:`paddle.nn.functional.soft_margin_loss <cn_api_paddle_nn_functional_soft_margin_loss>` ", "用于计算 soft margin loss 损失函数"
     " :ref:`paddle.nn.functional.triplet_margin_loss <cn_api_paddle_nn_functional_triplet_margin_loss>` ", "用于计算 TripletMarginLoss"
     " :ref:`paddle.nn.functional.triplet_margin_with_distance_loss <cn_api_paddle_nn_functional_triplet_margin_with_distance_loss>` ", "用户自定义距离函数用于计算 triplet margin loss 损失"

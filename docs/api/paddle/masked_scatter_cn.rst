@@ -5,7 +5,7 @@ masked_scatter
 
 .. py:function:: paddle.masked_scatter(x, mask, value, name=None)
 
-返回一个 N-D 的 Tensor，Tensor 的值是根据  ``mask``  信息，将  ``value``  中的值逐个填充到  ``x``  中  ``mask``  对应为  ``True``  的位置， ``mask``  的数据类型是 bool。
+返回一个 N-D 的 Tensor，Tensor 的值是根据 ``mask`` 信息，将 ``value`` 中的值逐个填充到 ``x`` 中 ``mask`` 对应为 ``True`` 的位置，``mask`` 的数据类型是 bool。
 
 
 **示例图解说明**：
@@ -30,7 +30,7 @@ masked_scatter
 
 返回
 ::::::::::::
-返回一个根据  ``mask``  将对应位置逐个填充  ``value``  中的 Tensor，数据类型与  ``x``  相同。
+返回一个根据 ``mask`` 将对应位置逐个填充 ``value`` 中的 Tensor，数据类型与 ``x`` 相同。
 
 
 代码示例

@@ -62,7 +62,7 @@ All element data of `DenseTensor` are stored in contiguous memory, and you can r
   // Return：int64_t categorical variable
   int64_t numel() const override;
 
-  // Acquire the dims of tbe tensor
+  // Acquire the dims of the tensor
   // Parameter：None
   // Return：DDim object
   const DDim& dims() const noexcept override;
@@ -107,7 +107,7 @@ All element data of `DenseTensor` are stored in contiguous memory, and you can r
   // Return：bool categorical variable
   bool valid() const noexcept override;
 
-  // Check wether the tensor is initialized
+  // Check whether the tensor is initialized
   // Parameter：None
   // Return：bool categorical variable
   bool initialized() const override;
