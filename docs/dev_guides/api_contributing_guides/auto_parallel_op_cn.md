@@ -107,7 +107,7 @@ SpmdInfo ElementwiseBinaryInferSpmd(const DistMetaTensor& x,
   std::string x_axes, y_axes, out_axes;
   GetBinaryNotations(x_shape, y_shape, &x_axes, &y_axes, &out_axes);
 
-  // Step2: Sharding Propogation
+  // Step2: Sharding Propagation
   // Step2.1: 合并输入的 dims mapping，得到每一维度对应的 dims mapping 值。
   // 调用 ShardingMergeForTensors 可以对输入 dims mapping 进行合并，返回的 map 即为
   // 每一维度对应的 dims mapping 值。

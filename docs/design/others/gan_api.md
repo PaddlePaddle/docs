@@ -42,7 +42,7 @@ build the whole GAN model, define training loss for both generator and discrimat
 To be more detailed, we introduce our design of DCGAN as following:
 
 ### Class member Function: Initializer
-- Set up hyper-parameters, including condtional dimension, noise dimension, batch size and so forth.
+- Set up hyper-parameters, including conditional dimension, noise dimension, batch size and so forth.
 - Declare and define all the model variables. All the discriminator parameters are included in the list self.theta_D and all the generator parameters are included in the list self.theta_G.
 ```python
 class DCGAN:

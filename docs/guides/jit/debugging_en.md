@@ -58,7 +58,7 @@ The C++ error stack is hidden by default. You can set the C++ environment variab
 ## 2、Debugging Method
 Before debugging, **please ensure that the dynamic graph code before conversion can run successfully**. The following introduces several debugging methods recommended in Dynamic-to-Static.
 ### 2.1 Pdb Debugging
-pdb is a module in Python that defines an interactive Pyhton source code debugger. It supports setting breakpoints and single stepping between source lines, listing source code and variables, running Python code, etc.
+pdb is a module in Python that defines an interactive Python source code debugger. It supports setting breakpoints and single stepping between source lines, listing source code and variables, running Python code, etc.
 #### 2.1.1 Debugging steps
 
 - step1: Insert `import pdb; pdb.set_trace()` before the code where you want to enable pdb debugging.
