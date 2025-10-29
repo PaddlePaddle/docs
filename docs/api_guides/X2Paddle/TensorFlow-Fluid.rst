@@ -97,7 +97,7 @@ TensorFlow-Paddle 常用接口对应表
     "85", "`tf.nn.tanh <https://github.com/tensorflow/docs/blob/r1.13/site/en/api_docs/python/tf/math/tanh.md>`_", ":ref:`cn_api_paddle_tanh`", "功能一致"
     "86", "`tf.one_hot <https://github.com/tensorflow/docs/blob/r1.13/site/en/api_docs/python/tf/one_hot.md>`_", ":ref:`cn_api_paddle_one_hot`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.one_hot.md>`_"
     "87", "`tf.ones <https://github.com/tensorflow/docs/blob/r1.13/site/en/api_docs/python/tf/ones.md>`_", ":ref:`cn_api_paddle_ones`", "功能一致"
-    "88", "`tf.intializers.ones <https://www.tensorflow.org/versions/r1.14/api_docs/python/tf/initializers/ones.md>`_", ":ref:`cn_api_fluid_initializer_Constant`", "功能一致"
+    "88", "`tf.keras.intializers.ones <https://github.com/tensorflow/docs/blob/r1.13/site/en/api_docs/python/tf/keras/initializers/Ones.md>`_", ":ref:`cn_api_fluid_initializer_Constant`", "功能一致"
     "89", "`tf.pad <https://github.com/tensorflow/docs/blob/r1.13/site/en/api_docs/python/tf/pad.md>`_", ":ref:`cn_api_paddle_pad`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.pad.md>`_"
     "90", "`tf.placeholder <https://github.com/tensorflow/docs/blob/r1.13/site/en/api_docs/python/tf/placeholder.md>`_", ":ref:`cn_api_paddle_data`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.placeholder.md>`_"
     "91", "`tf.pow <https://github.com/tensorflow/docs/blob/r1.13/site/en/api_docs/python/tf/math/pow.md>`_", ":ref:`cn_api_paddle_pow`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.pow.md>`_"
