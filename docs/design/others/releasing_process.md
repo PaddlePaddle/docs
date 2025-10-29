@@ -43,7 +43,7 @@ PaddlePaddle 开发过程使用[git-flow](http://nvie.com/posts/a-successful-git
 * 其他用户的 fork 版本库并不需要严格遵守[git-flow](http://nvie.com/posts/a-successful-git-branching-model/)分支规范，但所有 fork 的版本库的所有分支都相当于特性分支。
     * 建议，开发者 fork 的版本库使用`develop`分支同步主版本库的`develop`分支
     * 建议，开发者 fork 的版本库中，再基于`develop`版本 fork 出自己的功能分支。
-    * 当功能分支开发完毕后，向 PaddlePaddle 的主版本库提交`Pull Reuqest`，进而进行代码评审。
+    * 当功能分支开发完毕后，向 PaddlePaddle 的主版本库提交`Pull Request`，进而进行代码评审。
         * 在评审过程中，开发者修改自己的代码，可以继续在自己的功能分支提交代码。
 
 * BugFix 分支也是在开发者自己的 fork 版本库维护，与功能分支不同的是，BugFix 分支需要分别给主版本库的`master`、`develop`与可能有的`release/版本号`分支，同时提起`Pull Request`。

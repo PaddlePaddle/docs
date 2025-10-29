@@ -48,7 +48,7 @@
    -- Found lapack in OpenBLAS (include: /usr/include)
    ```
 
-5. 根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装 Python 依赖库，注意在申威系统中一般无法直接使用 pip 或源码编译安装 python 依赖包，建议使用源的方式安装，如果遇到部分依赖包无法安装的情况，请联系操作系统服务商提供支持。此外也可以通过 pip 安装的时候加--no-deps 的方式来避免依赖包的安装，但该种方式可能导致包由于缺少依赖不可用。
+5. 根据[requirements.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装 Python 依赖库，注意在申威系统中一般无法直接使用 pip 或源码编译安装 python 依赖包，建议使用源的方式安装，如果遇到部分依赖包无法安装的情况，请联系操作系统服务商提供支持。此外也可以通过 pip 安装的时候加--no-deps 的方式来避免依赖包的安装，但该种方式可能导致包由于缺少依赖不可用。
 
 6. 请创建并进入一个叫 build 的目录下：
 

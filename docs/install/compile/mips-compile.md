@@ -76,7 +76,7 @@
     cd Paddle
     ```
 
-6. 根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装 Python 依赖库。
+6. 根据[requirements.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装 Python 依赖库。
 
 
 7. 切换到`develop`分支下进行编译：
