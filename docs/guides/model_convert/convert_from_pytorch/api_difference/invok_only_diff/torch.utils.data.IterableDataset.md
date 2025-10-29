@@ -21,7 +21,6 @@ paddle.io.IterableDataset()
 class MyIterableDataset(torch.utils.data.IterableDataset):
     def __init__(self, start, end):
         super(MyIterableDataset).__init__()
-        assert end > start, "this example code only works with end >= start"
         self.start = start
         self.end = end
 
@@ -32,7 +31,6 @@ class MyIterableDataset(torch.utils.data.IterableDataset):
 class MyIterableDataset(paddle.io.IterableDataset):
     def __init__(self, start, end):
         super(MyIterableDataset).__init__()
-        assert end > start, "this example code only works with end >= start"
         self.start = start
         self.end = end
 

@@ -15,46 +15,16 @@ PADDLE_DOCS_BASE_URL = "https://github.com/PaddlePaddle/docs/tree/develop/docs/g
 validate_whitelist = []
 
 mapping_type_levels = [
-    # type 0
-    ["UNDEFINED_MAPPING_TYPE_0"],
-    # type 1
     [
-        "无参数",
-        "参数完全一致",
         "仅 API 调用方式不一致",
         "仅参数名不一致",
         "paddle 参数更多",
         "参数默认值不一致",
-    ],
-    # type 2
-    [
-        "torch 参数更多",
-    ],
-    # type 3
-    [
         "返回参数类型不一致",
         "输入参数类型不一致",
         "输入参数用法不一致",
-    ],
-    # type 4
-    [
+        "torch 参数更多",
         "组合替代实现",
-    ],
-    # type 5
-    [
-        "涉及上下文修改",
-    ],
-    # type 6
-    [
-        "对应 API 不在主框架",
-    ],
-    # type 7
-    [
-        "功能缺失",
-    ],
-    # delete
-    [
-        "可删除",
     ],
 ]
 
@@ -477,7 +447,7 @@ def get_meta_from_diff_file(
                 )
 
     # 允许没有参数映射列表
-    if mapping_type in ["无参数", "组合替代实现", "仅 API 调用方式不一致"]:
+    if mapping_type in ["组合替代实现", "仅 API 调用方式不一致"]:
         if state == ParserState.wait_for_args:
             state = ParserState.end
     # 必须有参数映射列表，但是可以随时停止
@@ -491,8 +461,8 @@ def get_meta_from_diff_file(
         )
 
     # 允许的终止状态，解析完了 dst_api 或者只有 src_api
-    # 映射类型前三个级别必须要有对应的 dst_api
-    if mapping_type_to_level[mapping_type] <= 3:
+    # 映射类型除了 "组合替代实现" 和 "仅 API 调用方式不一致" 之外，其他的都必须有 dst_api
+    if mapping_type not in ["组合替代实现", "仅 API 调用方式不一致"]:
         if state != ParserState.end:
             print(state)
             raise Exception(

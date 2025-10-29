@@ -3,13 +3,13 @@
 ### [torchvision.transforms.RandomAffine](https://pytorch.org/vision/stable/generated/torchvision.transforms.RandomAffine.html#torchvision.transforms.RandomAffine)
 
 ```python
-torchvision.transforms.RandomAffine(degrees, translate, scale, shear, interpolation, fill, center)
+torchvision.transforms.RandomAffine(degrees, translate=None, scale=None, shear=None, interpolation=torchvision.transforms.InterpolationMode.InterpolationMode.NEAREST, fill=0, center=None)
 ```
 
 ### [paddle.vision.transforms.RandomAffine](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomAffine_cn.html#paddle/vision/transforms/RandomAffine_cn#cn-api-paddle-vision-transforms-RandomAffine)
 
 ```python
-paddle.vision.transforms.RandomAffine(degrees, translate, scale, shear, interpolation, fill, center, keys)
+paddle.vision.transforms.RandomAffine(degrees, translate=None, scale=None, shear=None, interpolation='nearest', fill=0, center=None, keys=None)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：

@@ -9,7 +9,7 @@ torch.Tensor.pinverse()
 ### [paddle.Tensor.pinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/pinv_cn.html#paddle/Tensor/pinv_cn#cn-api-paddle-Tensor-pinv)
 
 ```python
-paddle.Tensor.pinv(x, rcond=1e-15, hermitian=False, name=None)
+paddle.Tensor.pinv(rcond=1e-15, hermitian=False, name=None)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：

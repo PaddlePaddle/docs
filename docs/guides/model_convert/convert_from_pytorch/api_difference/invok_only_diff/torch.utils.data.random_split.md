@@ -3,13 +3,13 @@
 ### [torch.utils.data.random_split](https://pytorch.org/docs/stable/data.html#torch.utils.data.random_split)
 
 ```python
-torch.utils.data.random_split(dataset, lengths, generator)
+torch.utils.data.random_split(dataset, lengths, generator=<torch._C.Generator object>)
 ```
 
 ### [paddle.io.random_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/random_split_cn.html#paddle/io/random_split_cn#cn-api-paddle-io-random_split)
 
 ```python
-paddle.io.random_split(dataset, lengths, generator)
+paddle.io.random_split(dataset, lengths, generator=None)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：
@@ -18,9 +18,6 @@ paddle.io.random_split(dataset, lengths, generator)
 
 ```python
 # PyTorch 写法
-import torch
-
-
 class Data(torch.utils.data.Dataset):
     def __init__(self):
         self.x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]

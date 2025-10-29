@@ -9,7 +9,7 @@ torchvision.transforms.CenterCrop(size)
 ### [paddle.vision.transforms.CenterCrop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/CenterCrop_cn.html#paddle/vision/transforms/CenterCrop_cn#cn-api-paddle-vision-transforms-CenterCrop)
 
 ```python
-paddle.vision.transforms.CenterCrop(size, keys)
+paddle.vision.transforms.CenterCrop(size, keys=None)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：

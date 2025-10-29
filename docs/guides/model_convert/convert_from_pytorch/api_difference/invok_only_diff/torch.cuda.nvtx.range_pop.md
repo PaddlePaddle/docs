@@ -6,10 +6,10 @@
 torch.cuda.nvtx.range_pop()
 ```
 
-### [paddle.framework.core.nvprof_nvtx_pop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/framework/core/nvprof_nvtx_pop_cn.html#paddle/framework/core/nvprof_nvtx_pop_cn#cn-api-paddle-framework-core-nvprof_nvtx_pop)
+### [paddle.core.nvprof_nvtx_pop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/framework/core/nvprof_nvtx_pop_cn.html#paddle/core/nvprof_nvtx_pop_cn#cn-api-paddle-core-nvprof_nvtx_pop)
 
 ```python
-paddle.framework.core.nvprof_nvtx_pop()
+paddle.core.nvprof_nvtx_pop()
 ```
 
 两者功能一致，但调用方式不一致，具体如下：
@@ -21,5 +21,5 @@ paddle.framework.core.nvprof_nvtx_pop()
 result = torch.cuda.nvtx.range_pop()
 
 # Paddle 写法
-result = paddle.framework.core.nvprof_nvtx_pop()
+result = paddle.core.nvprof_nvtx_pop()
 ```

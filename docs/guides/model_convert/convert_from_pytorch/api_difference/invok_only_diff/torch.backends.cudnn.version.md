@@ -18,9 +18,9 @@ paddle.device.get_cudnn_version()
 
 ```python
 # PyTorch 写法
-result = torch.backends.cudnn.version() == torch.backends.cudnn.version()
+result = torch.backends.cudnn.version()
 
 # Paddle 写法
-result = paddle.device.get_cudnn_version() == paddle.device.get_cudnn_version()
+result = paddle.device.get_cudnn_version()
 
 ```

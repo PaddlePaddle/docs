@@ -3,13 +3,13 @@
 ### [torchvision.transforms.Pad](https://pytorch.org/vision/stable/generated/torchvision.transforms.Pad.html#torchvision.transforms.Pad)
 
 ```python
-torchvision.transforms.Pad(padding, fill, padding_mode)
+torchvision.transforms.Pad(padding, fill=0, padding_mode='constant')
 ```
 
 ### [paddle.vision.transforms.Pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Pad_cn.html#paddle/vision/transforms/Pad_cn#cn-api-paddle-vision-transforms-Pad)
 
 ```python
-paddle.vision.transforms.Pad(padding, fill, padding_mode, keys)
+paddle.vision.transforms.Pad(padding, fill=0, padding_mode='constant', keys=None)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：

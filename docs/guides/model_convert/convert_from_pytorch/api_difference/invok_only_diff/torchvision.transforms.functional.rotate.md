@@ -3,13 +3,13 @@
 ### [torchvision.transforms.functional.rotate](https://pytorch.org/vision/stable/generated/torchvision.transforms.functional.rotate.html#torchvision.transforms.functional.rotate)
 
 ```python
-torchvision.transforms.functional.rotate(img, angle, interpolation, expand, center, fill)
+torchvision.transforms.functional.rotate(img, angle, interpolation=torchvision.transforms.functional.InterpolationMode.NEAREST, expand=False, center=None, fill=None)
 ```
 
 ### [paddle.vision.transforms.rotate](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/rotate_cn.html#paddle/vision/transforms/rotate_cn#cn-api-paddle-vision-transforms-rotate)
 
 ```python
-paddle.vision.transforms.rotate(img, angle, interpolation, expand, center, fill)
+paddle.vision.transforms.rotate(img, angle, interpolation='nearest', expand=False, center=None, fill=0)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：
