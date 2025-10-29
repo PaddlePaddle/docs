@@ -15,9 +15,14 @@ export DOCROOT
 
 # install paddle if not installed yet.
 # PADDLE_WHL is defined in ci_start.sh
-pip3 list --disable-pip-version-check | grep paddlepaddle > /dev/null
-if [ $? -ne 0 ] ; then
+if ! pip3 list --disable-pip-version-check | grep paddlepaddle; then
+  echo "Paddle is not found, attempting to install from ${PADDLE_WHL}..."
   pip3 install --no-cache-dir -q --progress-bar off -i https://pypi.tuna.tsinghua.edu.cn/simple ${PADDLE_WHL}
+  if [ $? -ne 0 ]; then
+    echo -e "\e[31mError: Failed to install paddle from ${PADDLE_WHL}\e[0m"
+    exit 1
+  fi
+  echo "Paddle installed successfully."
 fi
 
 
