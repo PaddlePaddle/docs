@@ -1,0 +1,27 @@
+## [ 仅 API 调用方式不一致 ]torch.optim.Optimizer.state_dict
+
+### [torch.optim.Optimizer.state_dict](https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.html#torch.optim.Optimizer.state_dict)
+
+```python
+torch.optim.Optimizer.state_dict()
+```
+
+### [paddle.optimizer.Optimizer.state_dict](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Optimizer/state_dict_cn.html#paddle/optimizer/Optimizer/state_dict_cn#cn-api-paddle-optimizer-Optimizer-state_dict)
+
+```python
+paddle.optimizer.Optimizer.state_dict()
+```
+
+两者功能一致，但调用方式不一致，具体如下：
+
+### 转写示例
+
+```python
+# PyTorch 写法
+optim = torch.optim.Optimizer([theta], defaults={"learning_rate": 1.0})
+result = optim.state_dict()
+
+# Paddle 写法
+optim = paddle.optimizer.Optimizer(parameters=[theta], **{"learning_rate": 1.0})
+result = optim.state_dict()
+```
