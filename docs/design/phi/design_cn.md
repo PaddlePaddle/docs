@@ -1670,7 +1670,7 @@ Fc(const Context& dev_ctx, const Tensor& x, const Tensor& w, const Tensor& b, Te
     phi::add<T, Context>(phi::mul<T，Context>(x, w), b, out);
 }
 
-PT_REGISTE_KERNEL("fc", Fc, ...)
+PT_REGISTER_KERNEL("fc", Fc, ...)
 ```
 
 mul 和 add 操作的拼接，代码量很少，再加一个注册声明。

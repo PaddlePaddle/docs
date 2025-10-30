@@ -252,6 +252,11 @@ def parse_md_files(directories):
                     except Exception as e:
                         print(f"错误: 读取文件 {md_path} 时出错: {e!s}")
 
+    for category, apis in category_api_map.items():
+        category_api_map[category] = sorted(
+            apis, key=lambda x: x["api_name"].replace(r"\_", "_")
+        )
+
     return category_api_map
 
 
