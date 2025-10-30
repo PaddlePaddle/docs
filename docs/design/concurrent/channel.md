@@ -114,13 +114,13 @@ current thread under two conditions:
 #### Channel Send
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/channel_send.png"/><br/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/blob/develop/docs/design/concurrent/images/channel_send.png"/><br/>
 </p>
 
 #### Channel Receive
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/channel_recv.png"/><br/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/blob/develop/docs/design/concurrent/images/channel_recv.png"/><br/>
 </p>
 
 ## Limitations and Considerations
