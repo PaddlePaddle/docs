@@ -268,7 +268,8 @@ def check_api_parameters(rstfiles, apiinfo):
 if __name__ == "__main__":
     args = parse_args()
     rstfiles = [fn for fn in args.rst_files.split(" ") if fn]
-    apiinfo = json.load(open(args.api_info_file))
+    with open(args.api_info_file) as f:
+        apiinfo = json.load(f)
     check_passed, check_failed, api_notfound = check_api_parameters(
         rstfiles=rstfiles, apiinfo=apiinfo
     )
