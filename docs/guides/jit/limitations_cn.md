@@ -351,7 +351,7 @@ TypeError: In transformed code:
             out.append(i)
         return out
 
-TypeError: All values in `initialized_list` should be Variable, but recevied <class 'list'>.
+TypeError: All values in `initialized_list` should be Variable, but received <class 'list'>.
 ```
 
 **修改建议**：推荐将 [1,2] 和 [2,3] 转为 tensor，变为单层 list。如下面写法：

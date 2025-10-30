@@ -121,7 +121,7 @@ class AliasAPIGen:
         return api
 
     # find the shortest path api which not starts with paddle.fluid
-    def _choose_recomment_api(self, api_list):
+    def _choose_recommend_api(self, api_list):
         min_len = len(api_list[0].split("."))
         rec_api = api_list[0]
         for api in api_list:
@@ -135,7 +135,7 @@ class AliasAPIGen:
         real_api = self._choose_real_api(api_list)
         api_list.remove(real_api)
 
-        rec_api = self._choose_recomment_api(api_list)
+        rec_api = self._choose_recommend_api(api_list)
         api_list.remove(rec_api)
 
         # sort others api by path length

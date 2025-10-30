@@ -304,7 +304,7 @@ Differences include:
 1. The name of the registered macro is different, here is `PD_REGISTER_PLUGIN_KERNEL`.
 2. The name of the Backend is the name of the CustomDevice registered by the user, here is `ascend`.
 
-The kernel that registerd by REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE in Fluid is also registered using `PD_REGISTER_KERNEL` or `PD_REGISTER_PLUGIN_KERNEL` in PHI. It should be noted that if there are two types of kernel template parameters registered in fluid, since the kernel registered in PHI only supports one type, the first type is used in PHI registration. For example, the example under fluid:
+The kernel that registered by REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE in Fluid is also registered using `PD_REGISTER_KERNEL` or `PD_REGISTER_PLUGIN_KERNEL` in PHI. It should be noted that if there are two types of kernel template parameters registered in fluid, since the kernel registered in PHI only supports one type, the first type is used in PHI registration. For example, the example under fluid:
 
 ```c++
 
