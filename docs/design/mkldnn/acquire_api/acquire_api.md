@@ -70,7 +70,7 @@ Having memory objects and computational primitive we may trigger its execution .
 #### 5. Registering MKL-DNN memory format in corresponding Tensor
 Last step is to register MKL-DNN output memory object format inside of Output tensor eg. set Tensor::format_ to MKL-DNN enum that corresponds the way Tensor data is arranged (NCHW, NCHW16C etc.) This enum can be taken from dst memory object (wrapper to Output tensor) in Forward pass or from diff_src memory object (wrapper to X_grad Tensor).
 
-Example of registring MKL-DNN format in output tensor:
+Example of registering MKL-DNN format in output tensor:
 
     out->set_layout(framework::DataLayout::kMKLDNN);
     out->set_format(platform::GetMKLDNNFormat(*dst_memory));
