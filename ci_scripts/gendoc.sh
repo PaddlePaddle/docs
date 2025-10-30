@@ -29,7 +29,7 @@ if ! pip3 list --disable-pip-version-check | grep paddlepaddle; then
       exit 1
     fi
     echo "Installing local wheel file..."
-    pip3 install --no-cache-dir -q --progress-bar off /tmp/paddle.whl
+    pip3 install --no-cache-dir -q --progress-bar off -i https://pypi.tuna.tsinghua.edu.cn/simple /tmp/paddle.whl
   else
     echo "Using pip install directly..."
     pip3 install --no-cache-dir -q --progress-bar off -i https://pypi.tuna.tsinghua.edu.cn/simple ${PADDLE_WHL}
