@@ -9,7 +9,7 @@ torch.nn.Unfold(kernel_size, dilation=1, padding=0, stride=1)
 ### [paddle.compat.Unfold](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/Unfold_cn.html#paddle/compat/Unfold_cn#cn-api-paddle-compat-Unfold)
 
 ```python
-pyaddle.compat.Unfold(kernel_size, dilation=1, padding=0, stride=1)
+paddle.compat.Unfold(kernel_size, dilation=1, padding=0, stride=1)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：

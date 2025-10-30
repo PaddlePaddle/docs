@@ -3,13 +3,13 @@
 ### [torch.optim.Optimizer.load_state_dict](https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.html#torch.optim.Optimizer.load_state_dict)
 
 ```python
-torch.optim.Optimizer.load_state_dict(self, state_dict)
+torch.optim.Optimizer.load_state_dict(state_dict)
 ```
 
 ### [paddle.optimizer.Optimizer.load_state_dict](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Optimizer/load_state_dict_cn.html#paddle/optimizer/Optimizer/load_state_dict_cn#cn-api-paddle-optimizer-Optimizer-load_state_dict)
 
 ```python
-
+paddle.optimizer.Optimizer.load_state_dict(state_dict)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：
