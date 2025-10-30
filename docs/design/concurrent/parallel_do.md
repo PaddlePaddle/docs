@@ -113,7 +113,7 @@ We can avoid this step by making each device have a copy of the parameter. This 
 1. In the backward, allreduce param@grad at different devices, this requires
     1. `backward.py` add `allreduce` operators at parallel_do_grad
     1. `allreduce` operators need to be called in async mode to achieve maximum throughput
-1. apply gradients related op(i.e. cliping, normalization, decay, sgd) on different devices in parallel
+1. apply gradients related op(i.e. clipping, normalization, decay, sgd) on different devices in parallel
 
 By doing so, we also avoided "backward: accumulate param@grad from different devices to the first device".
 And the ProgramDesc looks like the following

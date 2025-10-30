@@ -41,7 +41,7 @@ Proof:
 PaddlePaddle allows user to choose activation functions for update/reset gate and output gate. However, oneDNN supports only default `sigmoid` activation for gates and `tanh` for output. Currently oneDNN operator throws an error when user tries to execute it with other activations.
 
 ## oneDNN GRU operator
-oneDNN `GRU` operator is based on Paddle Paddle `fusion_gru` operator. It uses primitive/memory caching mechanism called `AcquireAPI`. Handler containg 2 caching key, one dependent on sentence length used in caching input/output and primitive. The other key (`memory_key`) depends only on other, not changing during inference, parameters and is used to cache weights and bias memory.
+oneDNN `GRU` operator is based on Paddle Paddle `fusion_gru` operator. It uses primitive/memory caching mechanism called `AcquireAPI`. Handler containing 2 caching key, one dependent on sentence length used in caching input/output and primitive. The other key (`memory_key`) depends only on other, not changing during inference, parameters and is used to cache weights and bias memory.
 
 ### Dimensions in oneDNN RNN primitives
 
