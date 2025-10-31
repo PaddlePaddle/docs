@@ -365,6 +365,19 @@ Please note that: in the commands, <code> paddlepaddle-gpu==3.2.1 </code> will i
         paddlepaddle_gpu-3.2.1-cp313-cp313-linux_x86_64.whl</a></td>
     </tr>
     <tr>
+        <td> cuda13.0-cudnn9.13-mkl-gcc13.1-avx </td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu130/paddlepaddle-gpu/paddlepaddle_gpu-3.2.1-cp39-cp39-linux_x86_64.whl">
+        paddlepaddle_gpu-3.2.1-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu130/paddlepaddle-gpu/paddlepaddle_gpu-3.2.1-cp310-cp310-linux_x86_64.whl">
+        paddlepaddle_gpu-3.2.1-cp310-cp310-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu130/paddlepaddle-gpu/paddlepaddle_gpu-3.2.1-cp311-cp311-linux_x86_64.whl">
+        paddlepaddle_gpu-3.2.1-cp311-cp311-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu130/paddlepaddle-gpu/paddlepaddle_gpu-3.2.1-cp312-cp312-linux_x86_64.whl">
+        paddlepaddle_gpu-3.2.1-cp312-cp312-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu130/paddlepaddle-gpu/paddlepaddle_gpu-3.2.1-cp313-cp313-linux_x86_64.whl">
+        paddlepaddle_gpu-3.2.1-cp313-cp313-linux_x86_64.whl</a></td>
+    </tr>
+    <tr>
         <td> macos-cpu-arm </td>
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cpu/paddlepaddle/paddlepaddle-3.2.1-cp39-cp39-macosx_11_0_arm64.whl">
         paddlepaddle-3.2.1-cp39-cp39-macosx_11_0_arm64.whl</a></td>

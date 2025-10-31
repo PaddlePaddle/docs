@@ -39,6 +39,9 @@
     ```
     docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.2.1-gpu-cuda12.9-cudnn9.9
     ```
+    ```
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.2.1-gpu-cuda13.0-cudnn9.13
+    ```
 
 如果您的机器不在中国大陆地区，可以直接从 DockerHub 拉取镜像：
 
@@ -61,6 +64,9 @@
     ```
     ```
     docker pull paddlepaddle/paddle:3.2.1-gpu-cuda12.9-cudnn9.9
+    ```
+    ```
+    docker pull paddlepaddle/paddle:3.2.1-gpu-cuda13.0-cudnn9.13
     ```
 
 您还可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取更多镜像。
@@ -164,6 +170,10 @@
     <tr>
         <td> ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.2.1-gpu-cuda12.9-cudnn9.9 </td>
         <td> 安装了 3.2.1 版本 paddle 的 GPU 镜像，cuda 版本为 12.9，cudnn 版本为 9.9 </td>
+    </tr>
+    <tr>
+        <td> ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.2.1-gpu-cuda13.0-cudnn9.13 </td>
+        <td> 安装了 3.2.1 版本 paddle 的 GPU 镜像，cuda 版本为 13.0，cudnn 版本为 9.13 </td>
     </tr>
    </tbody>
 </table>

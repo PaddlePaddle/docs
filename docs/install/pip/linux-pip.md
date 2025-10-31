@@ -98,6 +98,13 @@
   python3 -m pip install paddlepaddle-gpu==3.2.1 -i https://www.paddlepaddle.org.cn/packages/stable/cu129/
   ```
 
+2.2.4 CUDA13.0 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT10.5.0.18)
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==3.2.1 -i https://www.paddlepaddle.org.cn/packages/stable/cu130/
+  ```
+
 
 注：
 
