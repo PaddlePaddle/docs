@@ -9,7 +9,7 @@ torch.min(*args, **kwargs)
 ### [paddle.compat.min](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/min_cn.html#paddle/compat/min_cn#cn-api-paddle-compat-min)
 
 ```python
-paddle.compat.min(input, *args, out=None, **kwargs)
+paddle.compat.min(*args, **kwargs)
 ```
 
 torch.min 有多种签名与用法，均只需修改 torch 前缀为 paddle.compat，具体如下：

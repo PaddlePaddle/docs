@@ -9,7 +9,7 @@ torch.median(*args, **kwargs)
 ### [paddle.compat.median](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/median_cn.html#paddle/compat/median_cn#cn-api-paddle-compat-median)
 
 ```python
-paddle.compat.median(input, dim=None, keepdim=False, *, out=None)
+paddle.compat.median(*args, **kwargs)
 ```
 
 torch.median 有多种签名与用法，均只需修改 torch 前缀为 paddle.compat，具体如下：

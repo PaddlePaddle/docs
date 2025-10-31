@@ -6,10 +6,10 @@
 torch.nn.functional.softmax(input, dim=None, _stacklevel=3, dtype=None)
 ```
 
-### [paddle.compat.softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/softmax_cn.html#paddle/compat/softmax_cn#cn-api-paddle-compat-softmax)
+### [paddle.compat.nn.softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/nn/softmax_cn.html#paddle/compat/nn/softmax_cn#cn-api-paddle-compat-nn-softmax)
 
 ```python
-paddle.compat.softmax(input, dim=None, _stacklevel=3, dtype=None, out=None)
+paddle.compat.nn.softmax(input, dim=None, _stacklevel=3, dtype=None, out=None)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：
@@ -21,6 +21,6 @@ paddle.compat.softmax(input, dim=None, _stacklevel=3, dtype=None, out=None)
 result = torch.nn.functional.softmax(x, -1)
 
 # Paddle 写法
-result = paddle.compat.softmax(x, -1)
+result = paddle.compat.nn.softmax(x, -1)
 
 ```

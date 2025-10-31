@@ -6,10 +6,10 @@
 torch.nn.functional.pad(input, pad, mode="constant", value=None)
 ```
 
-### [paddle.compat.pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/pad_cn.html#paddle/compat/pad_cn#cn-api-paddle-compat-pad)
+### [paddle.compat.nn.pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/nn/pad_cn.html#paddle/compat/nn/pad_cn#cn-api-paddle-compat-nn-pad)
 
 ```python
-paddle.compat.pad(input, pad, mode="constant", value=0.0)
+paddle.compat.nn.pad(input, pad, mode="constant", value=0.0)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：
@@ -21,6 +21,6 @@ paddle.compat.pad(input, pad, mode="constant", value=0.0)
 result = torch.nn.functional.pad(x, [0, 0, 0, 0, 0, 1, 2, 3], value=1)
 
 # Paddle 写法
-result = paddle.compat.pad(x, [0, 0, 0, 0, 0, 1, 2, 3], value=1)
+result = paddle.compat.nn.pad(x, [0, 0, 0, 0, 0, 1, 2, 3], value=1)
 
 ```

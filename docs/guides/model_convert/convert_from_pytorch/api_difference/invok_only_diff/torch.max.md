@@ -9,7 +9,7 @@ torch.max(*args, **kwargs)
 ### [paddle.compat.max](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/max_cn.html#paddle/compat/max_cn#cn-api-paddle-compat-max)
 
 ```python
-paddle.compat.max(input, *, out=None)
+paddle.compat.max(*args, **kwargs)
 ```
 
 torch.max 有多种签名与用法，均只需修改 torch 前缀为 paddle.compat，具体如下：

@@ -6,10 +6,10 @@
 torch.nn.Unfold(kernel_size, dilation=1, padding=0, stride=1)
 ```
 
-### [paddle.compat.Unfold](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/Unfold_cn.html#paddle/compat/Unfold_cn#cn-api-paddle-compat-Unfold)
+### [paddle.compat.nn.Unfold](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/nn/Unfold_cn.html#paddle/compat/nn/Unfold_cn#cn-api-paddle-compat-nn-Unfold)
 
 ```python
-paddle.compat.Unfold(kernel_size, dilation=1, padding=0, stride=1)
+paddle.compat.nn.Unfold(kernel_size, dilation=1, padding=0, stride=1)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：
@@ -21,6 +21,6 @@ paddle.compat.Unfold(kernel_size, dilation=1, padding=0, stride=1)
 unfold = torch.nn.Unfold(kernel_size=(2, 2))
 
 # Paddle 写法
-unfold = paddle.compat.Unfold(kernel_size=(2, 2))
+unfold = paddle.compat.nn.Unfold(kernel_size=(2, 2))
 
 ```
