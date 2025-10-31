@@ -1,8 +1,8 @@
-.. _cn_api_paddle_nn_ReflectionPad1d:
+.. _cn_api_paddle_nn_ReflectionPad1D:
 
-ReflectionPad1d
+ReflectionPad1D
 -------------------------------
-.. py:class:: paddle.nn.ReflectionPad1d(padding, data_format="NCL", name=None)
+.. py:class:: paddle.nn.ReflectionPad1D(padding, data_format="NCL", name=None)
 
 使用输入边界的反射来填充输入张量的边界。
 
@@ -20,4 +20,4 @@ Tensor，填充后的张量。
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.nn.ReflectionPad1d
+COPY-FROM: paddle.nn.ReflectionPad1D
