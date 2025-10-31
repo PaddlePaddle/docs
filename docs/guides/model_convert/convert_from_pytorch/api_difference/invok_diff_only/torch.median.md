@@ -3,7 +3,7 @@
 ### [torch.median](https://pytorch.org/docs/stable/generated/torch.median.html)
 
 ```python
-torch.median(input)
+torch.median(*args, **kwargs)
 ```
 
 ### [paddle.compat.median](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/median_cn.html#paddle/compat/median_cn#cn-api-paddle-compat-median)
@@ -12,7 +12,7 @@ torch.median(input)
 paddle.compat.median(input, dim=None, keepdim=False, *, out=None)
 ```
 
-两者功能一致，但调用方式不一致，具体如下：
+torch.median 有多种签名与用法，均只需修改 torch 前缀为 paddle.compat，具体如下：
 
 ### 转写示例
 

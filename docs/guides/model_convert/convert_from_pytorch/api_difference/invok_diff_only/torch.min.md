@@ -3,7 +3,7 @@
 ### [torch.min](https://pytorch.org/docs/stable/generated/torch.min.html)
 
 ```python
-torch.min(input, *, out=None)
+torch.min(*args, **kwargs)
 ```
 
 ### [paddle.compat.min](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/min_cn.html#paddle/compat/min_cn#cn-api-paddle-compat-min)
@@ -12,7 +12,7 @@ torch.min(input, *, out=None)
 paddle.compat.min(input, *args, out=None, **kwargs)
 ```
 
-两者功能一致，但调用方式不一致，具体如下：
+torch.min 有多种签名与用法，均只需修改 torch 前缀为 paddle.compat，具体如下：
 
 ### 转写示例
 

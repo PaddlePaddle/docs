@@ -9,7 +9,7 @@ torch.nn.functional.softmax(input, dim=None, _stacklevel=3, dtype=None)
 ### [paddle.compat.softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/softmax_cn.html#paddle/compat/softmax_cn#cn-api-paddle-compat-softmax)
 
 ```python
-paddle.compat.softmax(input, dim=None, dtype, *, out=None)
+paddle.compat.softmax(input, dim=None, _stacklevel=3, dtype=None, out=None)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：

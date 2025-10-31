@@ -3,7 +3,7 @@
 ### [torch.max](https://pytorch.org/docs/stable/generated/torch.max.html)
 
 ```python
-torch.max(input, *, out=None)
+torch.max(*args, **kwargs)
 ```
 
 ### [paddle.compat.max](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/max_cn.html#paddle/compat/max_cn#cn-api-paddle-compat-max)
@@ -12,7 +12,7 @@ torch.max(input, *, out=None)
 paddle.compat.max(input, *, out=None)
 ```
 
-两者功能一致，但调用方式不一致，具体如下：
+torch.max 有多种签名与用法，均只需修改 torch 前缀为 paddle.compat，具体如下：
 
 ### 转写示例
 
