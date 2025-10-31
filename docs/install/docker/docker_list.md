@@ -44,6 +44,13 @@
         <td> 2.26.5 </td>
         <td> 11.4 </td>
     </tr>
+    <tr>
+        <td> ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda130-dev </td>
+        <td> 13.0 </td>
+        <td> 9.13 </td>
+        <td> 2.28.3 </td>
+        <td> 13.1 </td>
+    </tr>
     </tbody>
 </table>
 </p>
