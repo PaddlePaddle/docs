@@ -18,5 +18,5 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch    | PaddlePaddle | 备注 |
 | ---------- | ------------ | -- |
-| including_emulation | - | 是否包含软件模拟支持，暂无转写方式 |
-| - | device | 查询的设备类型，转写时 Paddle 保持默认 |
+| including_emulation | - | 是否包含软件模拟支持，暂无转写方式。 |
+| - | device | 查询的设备类型, PyTorch 无此参数，Paddle 保持默认即可。|
