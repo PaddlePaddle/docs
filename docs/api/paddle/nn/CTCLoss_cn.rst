@@ -21,7 +21,6 @@ CTCLoss
     - **input_lengths** (Tensor) - 表示输入 ``log_probs`` 数据中每个序列的长度，shape 为 [batch_size]。数据类型支持 int64。
     - **label_lengths** (Tensor) - 表示 label 中每个序列的长度，shape 为 [batch_size]。数据类型支持 int64。
     - **norm_by_times** (bool，可选) - 是否根据序列长度对梯度进行正则化。数据类型支持 bool。默认值为 False。
-    - **zero_infinity** (bool，可选） - 防止梯度出现无限，将其重置为 0，以免训练时发生爆炸。通常情况下，初始化后便不再需要重新设置 ``forward`` 的 ``zero_infinity``
 
 返回
 :::::::::
