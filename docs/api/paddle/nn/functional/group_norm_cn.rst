@@ -3,7 +3,10 @@
 group_norm
 -------------------------------
 
-.. py:function:: paddle.nn.functional.group_norm(x, num_groups, epsilon=1e-05, weight=None, bias=None, data_format='NCHW', name=None)
+.. py:function:: paddle.nn.functional.group_norm(x, num_groups, weight=None, bias=None, epsilon=1e-05, data_format='NCHW', name=None)
+
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x``，如 ``group_norm(input=tensor_x, ...)`` 等价于 ``group_norm(x=tensor_x, ...)`` 。
 
 对输入 ``x`` 进行组归一化， 计算公式如下：
 
@@ -19,10 +22,11 @@ group_norm
 ::::::::::::
 
     - **x** (Tensor) - 输入 Tensor，形状为 [批大小，通道数，\*]。
+        ``别名: input``
     - **num_groups** (int) - 从通道中分离出来的 ``group`` 的数目。
-    - **epsilon** (float，可选) - 为防止方差除零，增加一个很小的值。默认值：1e-05。
     - **weight** (Tensor，可选) - 权重的 Tensor，形状为 [通道数]，默认为 None。
     - **bias** (Tensor，可选) - 偏置的 Tensor，形状为 [通道数]，默认为 None。
+    - **epsilon** (float，可选) - 为防止方差除零，增加一个很小的值。默认值：1e-05。
     - **data_format** (string，可选) - 支持 “NCL”，“NCHW”，“NCDHW”，“NLC”，“NHWC”，“NDHWC” 格式。默认值：“NCHW”。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
