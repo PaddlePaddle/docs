@@ -9,7 +9,7 @@ torch.Tensor.bernoulli(generator=None)
 ### [paddle.bernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bernoulli_cn.html#paddle/bernoulli_cn#cn-api-paddle-bernoulli)
 
 ```python
-paddle.bernoulli(x, name=None)
+paddle.bernoulli(x, p=None, name=None)
 ```
 
 两者功能一致，但调用方式不一致，具体如下：
