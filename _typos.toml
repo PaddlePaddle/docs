@@ -1,6 +1,9 @@
 [files]
 # The following files will be excluded from spell check during commits
-extend-exclude = []
+extend-exclude = [
+     # Skip `Accuray ` check in these files
+    "docs/practices/cv/3D_image_classification_from_CT_scans.ipynb",
+]
 
 [default]
 # Ignore 1-3 letter words, refer to https://github.com/crate-ci/typos/issues/1079
@@ -22,7 +25,6 @@ unsupport = "unsupport"
 Nervana = "Nervana"
 
 # These words need to be fixed
-Accuray = "Accuray"
 Creenshot = "Creenshot"
 Embeddding = "Embeddding"
 Embeding = "Embeding"
