@@ -10,7 +10,7 @@ def main():
 
     # 定义类别映射：英文目录名 -> 中文类别名称
     category_map = {
-        "invok_diff_only": "仅 API 调用方式不一致",
+        "invok_only_diff": "仅 API 调用方式不一致",
         "args_name_diff": "仅参数名不一致",
         "paddle_more_args": "paddle 参数更多",
         "args_default_value_diff": "参数默认值不一致",
@@ -23,7 +23,7 @@ def main():
 
     # 定义每个类别的总结语句
     summary_map = {
-        "invok_diff_only": "两者功能一致，但调用方式不一致，具体如下：",
+        "invok_only_diff": "两者功能一致，但调用方式不一致，具体如下：",
         "args_name_diff": "两者功能一致且参数用法一致，仅参数名不一致，具体如下：",
         "paddle_more_args": "其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：",
         "args_default_value_diff": "两者功能一致且参数用法一致，参数默认值不一致，具体如下：",
@@ -153,7 +153,7 @@ def main():
                 current_index += 1
 
             # 8. 检查参数映射表格 (非2和10类)
-            if category_dir not in ["invok_diff_only", "composite_implement"]:
+            if category_dir not in ["invok_only_diff", "composite_implement"]:
                 # 8.1 参数映射标题
                 if (
                     current_index >= len(lines)
@@ -171,7 +171,7 @@ def main():
                     current_index += 1
 
             # 9. 检查转写示例
-            if category_dir in ["invok_diff_only", "composite_implement"]:
+            if category_dir in ["invok_only_diff", "composite_implement"]:
                 # 9.1 转写示例标题
                 if (
                     current_index >= len(lines)
