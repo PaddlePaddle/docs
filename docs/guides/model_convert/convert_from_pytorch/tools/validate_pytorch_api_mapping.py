@@ -17,7 +17,7 @@ DEFAULT_FILE_PATH = "/workspace/paddleDocs/docs/guides/model_convert/convert_fro
 
 # 类别映射关系
 CATEGORY_MAP = {
-    "invok_diff_only": "仅 API 调用方式不一致",
+    "invok_only_diff": "仅 API 调用方式不一致",
     "args_name_diff": "仅参数名不一致",
     "paddle_more_args": "paddle 参数更多",
     "args_default_value_diff": "参数默认值不一致",

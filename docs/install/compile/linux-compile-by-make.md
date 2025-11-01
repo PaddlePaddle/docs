@@ -3,9 +3,9 @@
 ## 环境准备
 
 * **Linux 版本 (64 bit)**
-    * **Ubuntu 20.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
-    * **Ubuntu 22.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
-    * **Ubuntu 24.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
+    * **Ubuntu 20.04 (GPU 版本支持 CUDA 11.8 - 13.0)**
+    * **Ubuntu 22.04 (GPU 版本支持 CUDA 11.8 - 13.0)**
+    * **Ubuntu 24.04 (GPU 版本支持 CUDA 11.8 - 13.0)**
 * **Python 版本 3.9/3.10/3.11/3.12/3.13 (64 bit)**
 
 ## 选择 CPU/GPU
@@ -448,7 +448,7 @@ pip3.10 install -r /paddle/python/requirements.txt
     > 请注意 PY_VERSION 参数更换为您需要的 python 版本
 
 
-* 对于需要编译**GPU 版本 PaddlePaddle**的用户：(** CUDA11.8 - CUDA12.9 **)
+* 对于需要编译**GPU 版本 PaddlePaddle**的用户：(** CUDA11.8 - CUDA13.0 **)
 
     1. 请确保您已经正确安装 nccl2，或者按照以下指令安装 nccl2（这里提供的是 CUDA11.8，cuDNN8 下 nccl2 的安装指令，更多版本的安装信息请参考 NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 

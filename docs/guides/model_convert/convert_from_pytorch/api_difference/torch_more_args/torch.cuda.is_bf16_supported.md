@@ -1,4 +1,4 @@
-## [ 仅 API 调用方式不一致 ]torch.cuda.is_bf16_supported
+## [ torch 参数更多  ]torch.cuda.is_bf16_supported
 
 ### [torch.cuda.is_bf16_supported](https://pytorch.org/docs/stable/generated/torch.cuda.is_bf16_supported.html#torch.cuda.is_bf16_supported)
 
@@ -12,14 +12,11 @@ torch.cuda.is_bf16_supported(including_emulation=True)
 paddle.amp.is_bfloat16_supported(device=None)
 ```
 
-两者功能一致，但调用方式不一致，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
-### 转写示例
+### 参数映射
 
-```python
-# PyTorch 写法
-result = torch.cuda.is_bf16_supported()
-
-# Paddle 写法
-result = paddle.amp.is_bfloat16_supported()
-```
+| PyTorch    | PaddlePaddle | 备注 |
+| ---------- | ------------ | -- |
+| including_emulation | - | 是否包含软件模拟支持，暂无转写方式。 |
+| - | device | 查询的设备类型, PyTorch 无此参数，Paddle 保持默认即可。|

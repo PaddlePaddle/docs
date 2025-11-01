@@ -1,4 +1,4 @@
-## [ 仅 API 调用方式不一致 ]torch.nn.Module.train
+## [ torch 参数更多 ]torch.nn.Module.train
 
 ### [torch.nn.Module.train](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.train)
 
@@ -12,16 +12,10 @@ torch.nn.Module.train(mode=True)
 paddle.nn.Layer.train()
 ```
 
-两者功能一致，但调用方式不一致，具体如下：
+PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
-### 转写示例
+### 参数映射
 
-```python
-# PyTorch 写法
-model = torch.nn.Linear(10, 20)
-model.train()
-
-# Paddle 写法
-model = paddle.nn.Linear(10, 20)
-model.train()
-```
+| PyTorch    | PaddlePaddle | 备注 |
+| ---------- | ------------ | -- |
+| `mode`     | 无           | 设置训练模式，Paddle 无此参数，暂无转写方式。|
