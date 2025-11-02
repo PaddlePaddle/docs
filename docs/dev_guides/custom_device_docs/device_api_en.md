@@ -50,7 +50,7 @@ C_Status (*deinit_device)(const C_Device device)
 
 ### Description
 
-It finalizes the designated device, and deallocate resources allocated to all devices. The API is inovked during the exit. If not implemented, it will not be inovked and it is invoked before finalization.
+It finalizes the designated device, and deallocate resources allocated to all devices. The API is invoked during the exit. If not implemented, it will not be invoked and it is invoked before finalization.
 
 ### Parameter
 
