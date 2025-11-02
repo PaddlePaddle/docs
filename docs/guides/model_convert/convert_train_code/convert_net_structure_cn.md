@@ -360,7 +360,7 @@ https://www.paddlepaddle.org.cn/modelbase。
 
 仍然以 LeNet 模型为例，手工转化的具体操作如下。
 
-1. 通过阅读 PyTorch 源码可知，构建 LeNet 使用到的 PyTorch API 有：`nn.Module`, `nn.Squential`, `nn.Conv2d`, `nn.ReLU`, `nn.MaxPool2d`, `nn.Linear`以及`torch.flatten`。
+1. 通过阅读 PyTorch 源码可知，构建 LeNet 使用到的 PyTorch API 有：`nn.Module`, `nn.Sequential`, `nn.Conv2d`, `nn.ReLU`, `nn.MaxPool2d`, `nn.Linear`以及`torch.flatten`。
 2. 通过查找 [PyTorch-飞桨 API 映射表](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/model_convert/pytorch_api_mapping_cn.html)，找到对应的飞桨 API：
 
     | **PyTorch**         | **飞桨**             | 差异对比                                                     |
