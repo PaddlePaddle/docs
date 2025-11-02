@@ -39,7 +39,7 @@ ROCm 软件栈本身具备较高的成熟度与完备性，用户根据 ROCm 提
    - 数据类型支持：除通用数据类型外，还需适配 Paddle 支持的特殊数据类型包括 [float16.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/float16.h#L144) [complex.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/complex.h#L88) [bfloat16.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/bfloat16.h#L65) 等
    - 数学库支持：通过 ROCm 的 rocBLAS 库，实现 Paddle 在 [blas.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/funcs/blas/blas.h) 中定义的 BLAS 函数，代码位于 [blas_impl.hip.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/funcs/blas/blas_impl.hip.h)
    - Kernel 算子注册：根据 [operators.cmake](https://github.com/PaddlePaddle/Paddle/blob/develop/cmake/operators.cmake#L98) 的修改，可以大部分复用 Paddle 框架下的 CUDA 已有算子 Kernel 文件，存在部分 Kernel 实现在 CUDA 与 ROCm 平台下有所区别，例如线程数、WarpSize 以及 thurst 库等；此类区别需要针对具体的算子实现进行相应的调整，通过 Paddle 自身的算子单测用例以及模型验证测试可以对此类问题进行定位并修复
-   - MIOpen 算子注册：MIOpen 与 cuDNN 的接口与类型设计较为类似，但在实际执行中还是存在一定区别，因为对于此类算子需根据 MIOpen API 进行适配，甚至对于差异较大的算子例如 [rnn_op.cu.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/operators/rnn_op.cu.cc#L506) 需要进行 weight 数据重排
+   - MIOpen 算子注册：MIOpen 与 cuDNN 的接口与类型设计较为类似，但在实际执行中还是存在一定区别，因为对于此类算子需根据 MIOpen API 进行适配，甚至对于差异较大的算子例如 [rnn_op.cu.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/tensorrt/convert/rnn_op.cc) 需要进行 weight 数据重排
 4. Python API 兼容适配：当前 Paddle ROCm 兼容所有 Paddle CUDA 相关的 Python API，这意味着对于所有目前 Paddle 可以支持 CUDA 的模型，无需修改任意代码可以直接运行在 C86 加速卡 上
 
 经过以上几个步骤的适配工作，用户可以无需修改任意代码就将之前在 Paddle CUDA 平台上的程序运行在 C86 加速卡 的环境下，在保持用户已有的基于 Paddle CUDA 的编程习惯的同时，也减少了 Paddle 已有的模型套件在 CUDA 平台与 ROCm 平台之间的迁移工作。
