@@ -186,4 +186,4 @@ ViewIterator<ArrayView<T, D>> make_iterator(const Array<T, D>& in, Dim<D> idx) {
 
 The operations that manipulate DArray are defined as global functions, such as `ones`, `zeros`, `reshape`, `gemm` and so on.
 
-An array will be trasformed into an arrayview and then passed to the operation launching on a specific device(CPU/GPU).
+An array will be transformed into an arrayview and then passed to the operation launching on a specific device(CPU/GPU).
