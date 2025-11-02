@@ -41,7 +41,7 @@ Proof:
 PaddlePaddle allows user to choose activation functions for update/reset gate and output gate. However, oneDNN supports only default `sigmoid` activation for gates and `tanh` for output. Currently oneDNN operator throws an error when user tries to execute it with other activations.
 
 ## oneDNN GRU operator
-oneDNN `GRU` operator is based on Paddle Paddle `fusion_gru` operator. It uses primitive/memory caching mechanism called `AcquireAPI`. Handler containg 2 caching key, one dependent on sentence length used in caching input/output and primitive. The other key (`memory_key`) depends only on other, not changing during inference, parameters and is used to cache weights and bias memory.
+oneDNN `GRU` operator is based on Paddle Paddle `fusion_gru` operator. It uses primitive/memory caching mechanism called `AcquireAPI`. Handler containing 2 caching key, one dependent on sentence length used in caching input/output and primitive. The other key (`memory_key`) depends only on other, not changing during inference, parameters and is used to cache weights and bias memory.
 
 ### Dimensions in oneDNN RNN primitives
 
@@ -95,7 +95,7 @@ oneDNN `GRU` operator is based on Paddle Paddle `fusion_gru` operator. It uses p
 * PaddlePaddle Input LoD -> oneDNN TNC/NTC\
 Every time before executing `GRU`, each batch represented by PP tensor has to be converted into oneDNN tensor representation. It is done first by calculating length of the longest sentence in a batch to get `T` dimension and then creating oneDNN memory (or getting it from oneDNN cache). After that, based on the memory format chosen by oneDNN GRU primitive: `TNC` or `NTC` correct custom reorder is called.\
 \
-Because oneDNN assumes that all sentences are of equal length, before reorder, whole memory is set to 0 to add padding. Placement of this padding depends also on computation direction that is defined by `is_reverse` attribute. To get correct resuts, if computation is performed from left to right, the padding has to be on the right side of words. Otherwise, for right to left computation, it has to be on the left side.
+Because oneDNN assumes that all sentences are of equal length, before reorder, whole memory is set to 0 to add padding. Placement of this padding depends also on computation direction that is defined by `is_reverse` attribute. To get correct results, if computation is performed from left to right, the padding has to be on the right side of words. Otherwise, for right to left computation, it has to be on the left side.
 ![](images/input_is_reverse.svg)
 
 * PaddlePaddle WeightX -> oneDNN WeightX\

@@ -58,7 +58,7 @@ As most C++ operators do, `batch_norm_op` is defined by inputs, outputs, attribu
 #### Attributes
 
 - `is_infer`: *bool*. If true, run `batch_norm_op` in inferencing mode.
-- `use_global_est`: *bool*. If true, use `saved_mean` and `saved_var` instead of `E[x]` and `STD[x]` in trainning.
+- `use_global_est`: *bool*. If true, use `saved_mean` and `saved_var` instead of `E[x]` and `STD[x]` in training.
 - `epsilon`: *float*. The epsilon value to avoid division by zero.
 - `momentum`: *float*. Factor used in `estimated_mean` and `estimated_var` updating. The usage is shown above.
 
