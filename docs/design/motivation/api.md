@@ -54,7 +54,7 @@ def f(in):
     return o
 
 # Create 3 topologies (subnets), they share parameters because all
-# correspoinding layers have the same parameter names.
+# corresponding layers have the same parameter names.
 fA = f(paddle.layer.data(input_name="A"))
 fB = f(paddle.layer.data(input_name="B"))
 fQ = f(paddle.layer.data(input_name="Q"))

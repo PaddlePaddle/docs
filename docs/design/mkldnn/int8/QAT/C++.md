@@ -51,7 +51,7 @@ To download other Quant models, set the `QUANT_MODEL_NAME` variable to on of the
 - `ResNet50_qat_channelwise`, with input/output scales in `fake_quantize_range_abs_max` operators and the `out_threshold` attributes, with weight scales in `fake_channel_wise_dequantize_max_abs` operators
 
 
-### Model convertion
+### Model conversion
 
 To run this quantiozation approach, first you need to set `AnalysisConfig` first and use `EnableMkldnnInt8` function that converts fake-quant model to INT8 OneDNN one.
 Examples:
