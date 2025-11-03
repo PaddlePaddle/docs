@@ -990,7 +990,7 @@ class TestTraceOp(OpTest):
 
 Python API 也需要编写相关的单测进行测试，详见 [开发 API Python 端](new_python_api_cn.html)。
 
-其他有关单元测试添加的注意事项请参考 [Op 开发手册](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index) 及 [API 单测开发及验收规范](api_accpetance_criteria_cn.html)。
+其他有关单元测试添加的注意事项请参考 [Op 开发手册](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index) 及 [API 单测开发及验收规范](api_acceptance_criteria_cn.html)。
 
 ### 6.3 运行单元测试
 

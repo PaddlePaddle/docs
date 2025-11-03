@@ -117,7 +117,7 @@ The classical DS2 network contains 15 layers (from bottom to top):
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/ds2_network.png" width=350><br/>
-Figure 1. Archetecture of Deep Speech 2 Network.
+Figure 1. Architecture of Deep Speech 2 Network.
 </div>
 
 We don't have to persist on this 2-3-7-1-1-1 depth \[[2](#references)\]. Similar networks with different depths might also work well. As in \[[1](#references)\], authors use a different depth (e.g. 2-2-3-1-1-1) for final experiments.
