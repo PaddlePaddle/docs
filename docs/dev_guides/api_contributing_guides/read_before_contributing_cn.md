@@ -46,5 +46,5 @@
 
 - [代码风格规范](../git_guides/codestyle_check_guide_cn.html)
 - [API 设计和命名规范](api_design_guidelines_standard_cn.html)
-- [API 单元测试及验收规范](api_accpetance_criteria_cn.html)
+- [API 单元测试及验收规范](api_acceptance_criteria_cn.html)
 - [Paddle CI 测试详解](../git_guides/paddle_ci_manual_cn.html)

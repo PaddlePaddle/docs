@@ -122,6 +122,7 @@ def generate_category1_table(
         rows.append((torch_api, col2, col3, mapping_category, "-"))
 
     # 生成Markdown表格字符串
+    rows = sorted(rows, key=lambda x: x[1].replace(r"\_", "_"))
     table_lines = TABLE_HEADER_LINES.copy()
 
     for idx, (_, col2, col3, mapping_category, remark) in enumerate(
@@ -242,6 +243,7 @@ def generate_category2_table(
             existing_apis.add(src_api)
 
     # 生成Markdown表格字符串
+    rows = sorted(rows, key=lambda x: x[1].replace(r"\_", "_"))
     table_lines = TABLE_HEADER_LINES.copy()
 
     for idx, (_, col2, col3, mapping_category, remark) in enumerate(
@@ -269,7 +271,7 @@ def generate_api_alias_table(
     # 遍历api_alias_data，为每个别名映射生成表格行
     for torch_api, torch_api_alias in api_alias_data.items():
         # 检查API是否已经在前面的类别中处理过
-        if torch_api in existing_apis or torch_api_alias in existing_apis:
+        if torch_api in existing_apis:
             continue
 
         # 在docs_mapping中查找torch_api_alias对应的Paddle API
@@ -309,9 +311,9 @@ def generate_api_alias_table(
         used_apis.add(torch_api)
         used_apis.add(torch_api_alias)
         existing_apis.add(torch_api)
-        existing_apis.add(torch_api_alias)
 
     # 生成Markdown表格字符串
+    rows = sorted(rows, key=lambda x: x[1].replace(r"\_", "_"))
     table_lines = TABLE_HEADER_LINES.copy()
 
     for idx, (_, col2, col3, mapping_category, remark) in enumerate(
@@ -370,6 +372,7 @@ def generate_no_implement_table(
         )
 
         # 检查API是否已经在前面的类别中处理过
+        torch_api = torch_api.replace(r"\_", "_")
         if torch_api in existing_apis:
             continue
 
@@ -409,9 +412,10 @@ def generate_no_implement_table(
         existing_apis.add(torch_api)
 
     # 生成Markdown表格字符串
+    rows = sorted(rows, key=lambda x: x[1].replace(r"\_", "_"))
     table_lines = TABLE_HEADER_LINES.copy()
 
-    for idx, (_, col2, col3, mapping_category, remark) in enumerate(
+    for idx, (torch_api, col2, col3, mapping_category, remark) in enumerate(
         rows, start=1
     ):
         table_lines.append(
@@ -449,6 +453,7 @@ def update_mapping_table(
         if api_name in existing_apis:
             continue
 
+        existing_apis.add(api_name)
         mapping_info = api_mapping_dict.get(api_name, {})
         dst_api = mapping_info.get("dst_api", "-")
 

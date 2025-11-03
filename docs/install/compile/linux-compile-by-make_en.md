@@ -3,9 +3,9 @@
 ## Environment preparation
 
 * **Linux version (64 bit)**
-    * **Ubuntu 20.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
-    * **Ubuntu 22.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
-    * **Ubuntu 24.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
+    * **Ubuntu 20.04 (GPU 版本支持 CUDA 11.8 - 13.0)**
+    * **Ubuntu 22.04 (GPU 版本支持 CUDA 11.8 - 13.0)**
+    * **Ubuntu 24.04 (GPU 版本支持 CUDA 11.8 - 13.0)**
 * **Python 版本 3.9/3.10/3.11/3.12/3.13 (64 bit)**
 
 ## Choose CPU/GPU

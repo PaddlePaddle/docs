@@ -106,7 +106,7 @@ class PlainNet : public Net {
   virtual Error AddBackwardOps() override;
 
  protected:
-  // Create operators accordding to `def`, will be called by the constructor.
+  // Create operators according to `def`, will be called by the constructor.
   Error BuildNet(const NetDesc &def);
 
   // Add a operator which is identified as `type` and has attributes described
