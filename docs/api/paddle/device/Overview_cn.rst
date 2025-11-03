@@ -98,7 +98,6 @@ Stream 与 Event 相关 API
     " :ref:`device_guard <cn_api_paddle_device_device_guard>` ", "切换当前的 device 为输入指定的 device，该 API 目前仅支持动态图模式"
     " :ref:`synchronize <cn_api_paddle_device_synchronize>` ", "等待给定的设备上的计算完成"
 
-
 .. _cn_device_cuda:
 
 CUDA 相关
