@@ -132,6 +132,13 @@ Padding 层
     " :ref:`paddle.nn.ReplicationPad2d <cn_api_paddle_nn_ReplicationPad2d_compat>` ", "二维复制填充层（与前一 API 仅大小写不一致）"
     " :ref:`paddle.nn.ReplicationPad3D <cn_api_paddle_nn_ReplicationPad3D>` ", "三维复制填充层"
     " :ref:`paddle.nn.ReplicationPad3d <cn_api_paddle_nn_ReplicationPad3d_compat>` ", "三维复制填充层（与前一 API 仅大小写不一致）"
+    " :ref:`paddle.nn.CircularPad1D <cn_api_paddle_nn_CircularPad1D>` ", "一维循环填充层"
+    " :ref:`paddle.nn.CircularPad1d <cn_api_paddle_nn_CircularPad1d_compat>` ", "一维循环填充层（与前一 API 仅大小写不一致）"
+    " :ref:`paddle.nn.CircularPad2D <cn_api_paddle_nn_CircularPad2D>` ", "二维循环填充层"
+    " :ref:`paddle.nn.CircularPad2d <cn_api_paddle_nn_CircularPad2d_compat>` ", "二维循环填充层（与前一 API 仅大小写不一致）"
+    " :ref:`paddle.nn.CircularPad3D <cn_api_paddle_nn_CircularPad3D>` ", "三维循环填充层"
+    " :ref:`paddle.nn.CircularPad3d <cn_api_paddle_nn_CircularPad3d_compat>` ", "三维循环填充层（与前一 API 仅大小写不一致）"
+
 
 .. _activation_layers:
 

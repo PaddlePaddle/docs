@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_ReflectionPad2d:
+.. _cn_api_paddle_nn_ReflectionPad2d_compat:
 
 ReflectionPad2d
 -------------------------------

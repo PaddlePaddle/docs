@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_ReplicationPad1d:
+.. _cn_api_paddle_nn_ReplicationPad1d_compat:
 
 ReplicationPad1d
 -------------------------------

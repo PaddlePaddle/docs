@@ -20,4 +20,4 @@ Tensor，填充后的张量。
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.nn.ReplicationPad2d
+COPY-FROM: paddle.nn.ReplicationPad2D

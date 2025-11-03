@@ -1,10 +1,10 @@
-.. _cn_api_paddle_nn_ReplicationPad1d:
+.. _cn_api_paddle_nn_CircularPad1D:
 
-ReplicationPad1d
+CircularPad1D
 -------------------------------
-.. py:class:: paddle.nn.ReplicationPad1d(padding, data_format="NCL", name=None)
+.. py:class:: paddle.nn.CircularPad1D(padding, data_format="NCL", name=None)
 
-通过复制边缘值来填充输入张量的边界。
+使用循环填充的方式来填充输入张量的边界。
 
 参数
 ::::::::::::
@@ -20,4 +20,4 @@ Tensor，填充后的张量。
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.nn.ReplicationPad1D
+COPY-FROM: paddle.nn.CircularPad1D

@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_ConstantPad1d:
+.. _cn_api_paddle_nn_ConstantPad1d_compat:
 
 ConstantPad1d
 -------------------------------
