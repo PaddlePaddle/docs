@@ -9,7 +9,7 @@ is_current_stream_capturing
 
 返回
 :::::::::
-bool: 如果当前流正在捕获则返回True，否则返回False。
+bool: 如果当前流正在捕获则返回 True，否则返回 False。
 
 代码示例
 ::::::::::::

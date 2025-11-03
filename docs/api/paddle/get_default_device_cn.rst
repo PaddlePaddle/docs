@@ -9,13 +9,13 @@ get_default_device
 
 返回一个表示当前设备的字符串，格式可能是：
 - 'cpu'
-- 'gpu:x' (CUDA设备)
-- 'xpu:x' (XPU设备) 
-- 'npu:x' (NPU设备)
+- 'gpu:x' (CUDA 设备)
+- 'xpu:x' (XPU 设备)
+- 'npu:x' (NPU 设备)
 
 如果全局设备未明确设置，将根据以下规则返回：
-- 当CUDA可用时返回'gpu:x'
-- 当CUDA不可用时返回'cpu'
+- 当 CUDA 可用时返回'gpu:x'
+- 当 CUDA 不可用时返回'cpu'
 
 返回
 :::::::::
