@@ -35,7 +35,7 @@ generate_proposals
         - **post_nms_top_n** (int，可选) - 每个图在 NMS 后要保留的总框数。默认值为 1000。
         - **nms_thresh** (float，可选) - NMS 中的阈值。默认值为 0.5。
         - **min_size** (float，可选) - 根据宽和高过滤候选框的阈值，宽或高小于该阈值的候选框将被过滤掉。默认值为 0.1。
-        - **eta** (float，可选) - 自适应阈值的衰减系数。仅在自适应 NMS 中且自适应阈值大于 0.5 时生效，在每次迭代中 ``adaptive_threshold = adaptive_treshold * eta`` 。默认值为 1.0。
+        - **eta** (float，可选) - 自适应阈值的衰减系数。仅在自适应 NMS 中且自适应阈值大于 0.5 时生效，在每次迭代中 ``adaptive_threshold = adaptive_threshold * eta`` 。默认值为 1.0。
         - **pixel_offset** (bool, 可选）- 是否有像素偏移。如果是 True, ``img_size`` 在计算时会偏移 1。默认值为 False。
         - **return_rois_num** (bool，可选) - 是否返回 ``rpn_rois_num`` 。当设定为 True 时会返回一个形状为[N,]的 1-D 的 Tensor，包含该 Batch 中每一张图片包含的 RoI 的数目。 N 是批大小和图片数量。默认值为 False。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
