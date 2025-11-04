@@ -53,7 +53,7 @@ public:
   LODTensor LODSliceShared(int level, int elem_begin, int elem_end) const;
 
   // copy other's lod_start_pos_, to share LOD info.
-  // NOTE the LOD info sould not be changed.
+  // NOTE the LOD info could not be changed.
   void ShareConstLODFrom(const LODTensor &other) {
     lod_start_pos_ = other.lod_start_pos_;
   }
