@@ -41,9 +41,8 @@ paddle.device 目录下包含 cuda 目录和 xpu 目录， cuda 目录中存放 
     " :ref:`reset_max_memory_reserved <cn_api_paddle_device_reset_max_memory_reserved>` ", "重置给定设备上由内存分配器管理的内存峰值统计"
     " :ref:`set_device <cn_api_paddle_device_set_device>` ", "指定 OP 运行的全局设备"
     " :ref:`get_device <cn_api_paddle_device_get_device>` ", "获得 OP 运行的全局设备"
-    " :ref:`get_device_properties <cn_api_paddle_device_get_device_properties>` ", "获取设备属性信息"
     " :ref:`is_available <cn_api_paddle_device_is_available>` ", "检查设备是否可用"
-    " :ref:`get_rng_state <cn_api_paddle_device_cuda_get_rng_state>` ", "获取随机数生成器状态"
+    " :ref:`get_rng_state <cn_api_paddle_device_get_rng_state>` ", "获取随机数生成器状态"
     " :ref:`manual_seed_all <cn_api_paddle_device_cuda_manual_seed_all>` ", "设置全局随机种子"
     " :ref:`set_rng_state <cn_api_paddle_device_cuda_set_rng_state>` ", "设置随机数生成器状态"
 
