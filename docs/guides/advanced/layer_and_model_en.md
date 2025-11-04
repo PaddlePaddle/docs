@@ -264,7 +264,7 @@ Tensor(shape=[10, 1], dtype=float32, place=CPUPlace, stop_gradient=True,
        ...
 ```
 
-Here we first set the execution mode to **eval**, and soon after to **train**. The two execution modes are exlusive therefore the latter mode will override the former.
+Here we first set the execution mode to **eval**, and soon after to **train**. The two execution modes are exclusive therefore the latter mode will override the former.
 
 ### Perform an execution
 

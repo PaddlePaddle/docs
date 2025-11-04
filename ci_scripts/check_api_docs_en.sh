@@ -13,7 +13,7 @@ function check_system_message(){
     fi
 }
 
-echo "RUN Engish API Docs Checks"
+echo "RUN English API Docs Checks"
 jsonfn=$1
 output_path=$2
 need_check_api_py_files="${3}"
