@@ -103,7 +103,6 @@ Stream 与 Event 相关 API
     " :ref:`synchronize <cn_api_paddle_device_synchronize>` ", "等待给定的设备上的计算完成"
     " :ref:`is_current_stream_capturing <cn_api_paddle_device_is_current_stream_capturing>` ", "检查当前流是否处于捕获状态"
 
-
 .. _cn_device_cuda:
 
 CUDA 相关
