@@ -64,7 +64,7 @@ message OpProto {
 To generate Python code automatically:
 
 ```python
-def create_python_ops_creatation_functions():
+def create_python_ops_creation_functions():
     op_protos = paddle.framework.OpRegistry.get_all_op_proto()
     for type_name in op_protos:
         op_proto = op_protos[type_name]
@@ -77,7 +77,7 @@ def create_python_ops_creatation_functions():
         __impl__.__doc__ = create_doc_string(op_proto)
         globals()[type_name] = __impl__
 
-create_python_ops_creatation_functions()
+create_python_ops_creation_functions()
 ```
 
 ### Message from Python to C++

@@ -61,7 +61,7 @@ fQ = f(paddle.layer.data(input_name="Q"))
 
 topology = paddle.layer.less_than(
                paddle.layer.cross_entropy(fA, fQ),
-               paddle.layer.corss_entropy(fB, fQ))
+               paddle.layer.cross_entropy(fB, fQ))
 
 # Derive parameters required in topology and create them in model.
 parameters = paddle.parameters.create(topology)

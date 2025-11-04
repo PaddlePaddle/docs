@@ -354,7 +354,7 @@ A：有的，例如：
 下面以 BERT 模型为例介绍转换的过程：
 
 - 如果 PyTorch repo 中已经提供权重，那么可以直接下载并进行后续的转换。huggingface 的 transformers 中提供了大部分模型参数，使用模型权重名称`model_name_or_path`即可加载（如`bert-base-uncased`）。或者从 huggingface 官网直接下载：https://huggingface.co/bert-base-uncased/tree/main
-- 如果没有提供，则可以基于 PyTorch 代码，随机生成一个初始化权重(定义完 model 以后，使用`torch.save()` API 保存模型权重)，然后将生成的 PyTorch 权重 (`bert_sequence_classfy.pth`) 转换为飞桨模型权重。
+- 如果没有提供，则可以基于 PyTorch 代码，随机生成一个初始化权重(定义完 model 以后，使用`torch.save()` API 保存模型权重)，然后将生成的 PyTorch 权重 (`bert_sequence_classify.pth`) 转换为飞桨模型权重。
 
 ```python
 from transformers import BertModel
@@ -366,7 +366,7 @@ PATH = './torch_weight.bin'
 torch.save(hf_model.state_dict(), PATH)
 ```
 
-然后将生成的 PyTorch 权重 (`bert_sequence_classfy.pth`) 转换为飞桨模型权重，转换代码如下（代码解释详见代码后的 FAQ）
+然后将生成的 PyTorch 权重 (`bert_sequence_classify.pth`) 转换为飞桨模型权重，转换代码如下（代码解释详见代码后的 FAQ）
 
 ```python
 def convert_pytorch_checkpoint_to_paddle(
