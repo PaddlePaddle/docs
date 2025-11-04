@@ -159,7 +159,7 @@ void LogSoftmaxKernel(const Context& dev_ctx,
 | `auto* ptr = out->mutbale_data()` | `auto* ptr = out->data()` |
 | `out->mutbale_data(dims, place)` | `out->Resize(dims); dev_ctx.template Alloc(out)` |
 | `out->mutbale_data(place, dtype)` | `dev_ctx.Alloc(out, dtype)` |
-| `platform::erros::XXX` | `phi::erros::XXX` |
+| `platform::errors::XXX` | `phi::errors::XXX` |
 | `platform::float16/bfloat16/complex64/complex128` | `dtype::float16/bfloat16/complex64/complex128` |
 | `framework::Eigen***` | `Eigen***` |
 | `platform::XXXPlace` | `phi::XXXPlace` |
