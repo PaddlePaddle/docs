@@ -68,7 +68,7 @@ Tensor(shape=[2, 2, 5], dtype=int64, place=Place(gpu:0), stop_gradient=True,
 ```
 The visual representation of the **Tensor* above is:
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png?raw=true" width="800" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/beginner/images/Tensor_2.0.png?raw=true" width="800" ></center>
 <br><center>Figure1. Visual representation of Tensor with different dimensions</center>
 
 **Tensor** must be "rectangular" -- that is, along each dimension, the number of elements must be equal. For example:
@@ -127,7 +127,7 @@ Create a 4-D **Tensor**, and visualize it to represents the relationship between
 ndim_4_tensor = paddle.ones([2, 3, 4, 5])
 ```
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Axis_2.0.png?raw=true" width="800" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/beginner/images/Axis_2.0.png?raw=true" width="800" ></center>
 <br><center>Figure2. The relationship between Tensor shape, axis, dimension and ndim</center>
 
 ```python

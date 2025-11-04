@@ -254,8 +254,9 @@ only one case will be executed.
 ### select_op flow
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/select_op_workflow.png"/><br/>
+<img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concurrent/images/select_op_workflow.png?raw=true"/><br/>
 </p>
+
 
 The select algorithm is inspired by golang's select routine.  Please refer to
 http://www.tapirgames.com/blog/golang-concurrent-select-implementation for more information.

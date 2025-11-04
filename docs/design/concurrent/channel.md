@@ -103,9 +103,9 @@ current thread under two conditions:
   2. The channel is unbuffered and does not have a receiver
 
 - **recvq**:  This queue holds the QueueMessage of any pending receivers of a
-channel.  When a thread performs a channel_recv operation on the channel, the
-channel_recv operation will put a new QueueMessage on the recvq and block the
-current thread under two conditions:
+  channel.  When a thread performs a channel_recv operation on the channel, the
+  channel_recv operation will put a new QueueMessage on the recvq and block the
+  current thread under two conditions:
   1. The channel is buffered and there is no data on the buff_
   2. The channel is unbuffered and does not have a sender
 
@@ -114,14 +114,16 @@ current thread under two conditions:
 #### Channel Send
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/channel_send.png"/><br/>
+<img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concurrent/images/channel_recv.png?raw=true"/><br/>
 </p>
+
 
 #### Channel Receive
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/channel_recv.png"/><br/>
+<img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concurrent/images/channel_send.png?raw=true"/><br/>
 </p>
+
 
 ## Limitations and Considerations
 
