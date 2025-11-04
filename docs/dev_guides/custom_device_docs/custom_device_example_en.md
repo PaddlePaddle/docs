@@ -10,7 +10,7 @@ In this section we will walk through the steps required to extend a fake hardwar
 
 **InitPlugin**
 
-As a custom runtime entry function, InitPlugin is required to be implemented by the plug-in. The parameter in InitPlugin should also be checked, device information should be filled in, and the runtime API should be registered. In the initialization, PaddlePaddle loads the plug-in and invokes InitPlugin to initialize it, and register runtime (The whole process can be done automatically by the framework, only if the dynamic-link library is in site-packages/paddle-plugins/ or the designated directory of the enviornment variable of CUSTOM_DEVICE_ROOT).
+As a custom runtime entry function, InitPlugin is required to be implemented by the plug-in. The parameter in InitPlugin should also be checked, device information should be filled in, and the runtime API should be registered. In the initialization, PaddlePaddle loads the plug-in and invokes InitPlugin to initialize it, and register runtime (The whole process can be done automatically by the framework, only if the dynamic-link library is in site-packages/paddle-plugins/ or the designated directory of the environment variable of CUSTOM_DEVICE_ROOT).
 
 Example:
 

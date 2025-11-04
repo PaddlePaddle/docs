@@ -3,7 +3,7 @@
 CTCLoss
 -------------------------------
 
-.. py:class:: paddle.nn.CTCLoss(blank=0, reduction='mean')
+.. py:class:: paddle.nn.CTCLoss(blank=0, reduction='mean', zero_infinity=False)
 
 计算 CTC loss。该接口的底层调用了第三方 baidu-research::warp-ctc 的实现。
 也可以叫做 softmax with CTC，因为 Warp-CTC 库中插入了 softmax 激活函数来对输入的值进行归一化。
@@ -12,6 +12,7 @@ CTCLoss
 :::::::::
     - **blank** (int，可选) - 空格标记的 ID 值，其取值范围为 [0, num_classes + 1)。数据类型支持 int32。默认值为 0。
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有：``'none'``, ``'mean'``, ``'sum'``。设置为 ``'mean'`` 时，对 loss 值除以 label_lengths，并返回所得商的均值；设置为 ``'sum'`` 时，返回 loss 值的总和；设置为 ``'none'`` 时，则直接返回输出的 loss 值。默认值为 ``'mean'``。
+    - **zero_infinity** (bool，可选) - 如果为 ``true``，则将 ``loss`` 中无限的值设置为 ``0``。默认值为 False。
 
 形状
 :::::::::
