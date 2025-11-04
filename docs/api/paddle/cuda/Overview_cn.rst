@@ -20,7 +20,6 @@ PyTorch 兼容函数
     " :ref:`get_device_properties <cn_api_paddle_cuda_get_device_properties>` ", "获取 CUDA 设备属性"
     " :ref:`get_rng_state <cn_api_paddle_cuda_get_rng_state>` ", "获取随机数生成器状态"
     " :ref:`is_available <cn_api_paddle_cuda_is_available>` ", "检查 CUDA 是否可用"
-    " :ref:`is_current_stream_capturing <cn_api_paddle_cuda_is_current_stream_capturing>` ", "检查当前流是否处于捕获状态"
     " :ref:`is_initialized <cn_api_paddle_cuda_is_initialized>` ", "判断 CUDA 是否已经初始化"
     " :ref:`manual_seed_all <cn_api_paddle_cuda_manual_seed_all>` ", "设置全局随机种子"
     " :ref:`mem_get_info <cn_api_paddle_cuda_mem_get_info>` ", "获取指定设备上的全局空闲显存和显存总量"
