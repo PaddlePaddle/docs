@@ -20,7 +20,7 @@ SubmConv2D
 
     - :math:`X` : 输入值, NDHWC 格式的 Tencer。
     - :math:`W` : 卷积核值, NDHWC 格式的 Tencer。
-    - :math:`\\ast` : 子流形卷积运算, 参考论文: https://arxiv.org/abs/1706.01307。
+    - :math:`\\ast` : 子流形卷积运算, 参考论文: `Submanifold Sparse Convolutional Networks <https://arxiv.org/abs/1706.01307>`_ 。
     - :math:`b` : 偏置值, 形状为[M]的 1-D Tencer。
     - :math:`Out` : 输出值, :math:`Out` 和 :math:`X` 的形状可能不同。
 
