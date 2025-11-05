@@ -3,6 +3,13 @@
 extend-exclude = [
      # Skip `Accuray ` check in these files
     "docs/practices/cv/3D_image_classification_from_CT_scans.ipynb",
+    # Skip `datas ` check in these files
+    "docs/practices/time_series/autoencoder.ipynb",
+    "docs/practices/nlp/transformer_in_English-to-Spanish.ipynb",
+    "docs/guides/06_distributed_training/data_parallel/amp_cn.rst",
+    "docs/practices/nlp/addition_rnn.ipynb",
+    "docs/practices/cv/pointnet.ipynb"
+
 ]
 
 [default]
@@ -36,11 +43,6 @@ Similarily = "Similarily"
 Simle = "Simle"
 Sovler = "Sovler"
 Successed = "Successed"
-dafault = "dafault"
-datas = "datas"
-decribe = "decribe"
-decribes = "decribes"
-deocder = "deocder"
 desgin = "desgin"
 desginated = "desginated"
 desigin = "desigin"
