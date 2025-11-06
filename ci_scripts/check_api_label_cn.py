@@ -25,7 +25,8 @@ def check_api_label(rootdir, file):
     real_file = Path(rootdir) / file
     with real_file.open("r", encoding="utf-8") as f:
         first_line = f.readline().strip()
-    return first_line == generate_en_label_by_path(file)
+    expected_label = generate_en_label_by_path(file)
+    return first_line == expected_label, first_line, expected_label
 
 
 # path -> api_label (the first line's style)
@@ -74,12 +75,25 @@ def should_test(file):
 
 
 def run_cn_api_label_checking(rootdir, files):
+    pass_check = True
     for file in files:
-        if should_test(file) and not check_api_label(rootdir, file):
-            logger.error(
-                f"The first line in {rootdir}/{file} is not available, please re-check it!"
-            )
-            sys.exit(1)
+        if should_test(file):
+            check, actual, expected = check_api_label(rootdir, file)
+            if not check:
+                logger.error(
+                    f"❌ First Line API Label Mismatch\n"
+                    f"  File: {file}\n"
+                    f"  🔥 Actual:   `{actual}`\n"
+                    f"  ✅ Expected: `{expected}`\n\n"
+                    f"  (Note: The 'Expected' label is auto-generated based on the file path.\n"
+                    f"   Please check if the filename is correct or update the first line of the file to match.)"
+                )
+                pass_check = False
+    if pass_check:
+        logger.info("All First Line API Label Check Passed !")
+    else:
+        logger.error("Some First Line API Label Check Failed !")
+        sys.exit(1)
     valid_api_labels = find_all_api_labels_in_dir(rootdir)
     for file in files:
         if not file.endswith(".rst"):
