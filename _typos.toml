@@ -3,12 +3,6 @@
 extend-exclude = [
      # Skip `Accuray ` check in these files
     "docs/practices/cv/3D_image_classification_from_CT_scans.ipynb",
-    # Skip `datas ` check in these files
-    "docs/practices/time_series/autoencoder.ipynb",
-    "docs/practices/nlp/transformer_in_English-to-Spanish.ipynb",
-    "docs/guides/06_distributed_training/data_parallel/amp_cn.rst",
-    "docs/practices/nlp/addition_rnn.ipynb",
-    "docs/practices/cv/pointnet.ipynb"
 
 ]
 
@@ -30,6 +24,7 @@ Clas = "Clas"
 arange = "arange"
 unsupport = "unsupport"
 Nervana = "Nervana"
+datas = "datas"
 
 # These words need to be fixed
 Creenshot = "Creenshot"
