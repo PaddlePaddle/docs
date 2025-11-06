@@ -98,5 +98,3 @@ torch.nn.HingeEmbeddingLoss(weight=w, reduction='sum')
 # Paddle 写法
 paddle.nn.HingeEmbeddingLoss(weight=w, reduction='sum')
 ```
-reduction = 'none'
-```

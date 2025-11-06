@@ -96,5 +96,3 @@ torch.nn.TripletMarginLoss(weight=w, reduction='sum')
 # Paddle 写法
 paddle.nn.TripletMarginLoss(weight=w, reduction='sum')
 ```
-reduction = 'none'
-```

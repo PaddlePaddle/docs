@@ -95,5 +95,3 @@ torch.nn.MultiMarginLoss(weight=w, reduction='sum')
 # Paddle 写法
 paddle.nn.MultiMarginLoss(weight=w, reduction='sum')
 ```
-reduction = 'none'
-```
