@@ -127,7 +127,7 @@ Key ingredients about the layers:
 - **Data Layers**:
    - Frame sequences data of audio **spectrogram** (with FFT).
    - Token sequences data of **transcription** text (labels).
-   - These two type of sequences do not have the same lengthes, thus a CTC-loss layer is required.
+   - These two type of sequences do not have the same lengths, thus a CTC-loss layer is required.
 - **2D Convolution Layers**:
    - Not only temporal convolution, but also **frequency convolution**. Like a 2D image convolution, but with a variable dimension (i.e. temporal dimension).
    - With striding for only the first convlution layer.
