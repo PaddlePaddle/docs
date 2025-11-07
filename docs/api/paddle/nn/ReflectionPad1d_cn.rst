@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_ReflectionPad1D__upper:
+.. _cn_api_paddle_nn_ReflectionPad1d:
 
 ReflectionPad1D
 -------------------------------

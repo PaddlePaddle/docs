@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_ReplicationPad1D__upper:
+.. _cn_api_paddle_nn_ReplicationPad1d:
 
 ReplicationPad1d
 -------------------------------
