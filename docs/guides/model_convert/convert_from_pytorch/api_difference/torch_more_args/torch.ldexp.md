@@ -20,6 +20,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 |  out  |  -  | 表示输出的 Tensor，Paddle 无此参数，需要转写。    |
 
 ### 转写示例
+#### out：输出的 Tensor
 ```python
 # PyTorch 写法
 torch.ldexp(a, b, out=output)

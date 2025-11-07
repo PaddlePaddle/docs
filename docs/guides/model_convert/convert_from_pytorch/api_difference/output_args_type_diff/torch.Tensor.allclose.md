@@ -19,7 +19,7 @@ paddle.Tensor.allclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 | rtol      | rtol         | 相对容差。 |
 | atol      | atol         | 绝对容差。 |
 | equal_nan | equal_nan    | 如果设置为 True，则两个 NaN 数值将被视为相等。 |
-| 返回值    | 返回值        | PyTorch 返回值为标量， Paddle 返回值 0D Tensor。|
+| 返回值    | 返回值        | PyTorch 返回值为标量， Paddle 返回值 0D Tensor。需要转写。|
 
 ### 转写示例
 #### 返回值

@@ -24,8 +24,8 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction    | reduction    | 指定应用于输出结果的计算方式。                 |
 
 ### 转写示例
+#### size_average 和 reduce 参数转 reduction 参数
 ```python
-# PyTorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
 if size_average is None:
     size_average = True
 if reduce is None:

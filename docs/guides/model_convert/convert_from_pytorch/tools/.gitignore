@@ -27,3 +27,4 @@ link_warnings.txt
 url_warnings.txt
 api_difference_error.txt
 diff_doc_warnings.txt
+validate_api_difference_error.txt

@@ -32,15 +32,15 @@ paddle.nn.functional.triplet_margin_loss(input,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | anchor          | input         | 输入 Tensor，仅参数名不一致。                        |
-| positive          | positive         | 输入正样本                                 |
-| negative          | negative         | 输入负样本                                     |
-| margin          | margin         |  手动指定间距                                  |
-| p          | p         | 指定范数                                 |
-| eps          | epsilon         | 防止除数为零的常数                                  |
-| swap          | swap         | 是否进行交换                                  |
-| size_average          | -         | 已弃用                                      |
-| reduce          | -         | 已弃用                                     |
-| reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'             |
+| positive          | positive         | 输入正样本。                                 |
+| negative          | negative         | 输入负样本。                                     |
+| margin          | margin         |  手动指定间距。                                  |
+| p          | p         | 指定范数。                                 |
+| eps          | epsilon         | 防止除数为零的常数。                                  |
+| swap          | swap         | 是否进行交换。                                  |
+| size_average          | -         | 已弃用。                                      |
+| reduce          | -         | 已弃用。                                     |
+| reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'。             |
 
 ### 转写示例
 #### size_average

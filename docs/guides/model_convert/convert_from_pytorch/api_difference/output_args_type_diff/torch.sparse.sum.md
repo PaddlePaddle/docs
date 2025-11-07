@@ -19,10 +19,10 @@ paddle.sparse.sum(x, axis=None, dtype=None, keepdim=False, name=None)
 | dim   |      axis   |输入的第二个 Tensor，仅参数名不一致。|
 | dtype   |      dtype   |输出数据的类型。|
 | -  |      keepdim   |是否留减少的维度， PyTorch 无此参数， Paddle 保持默认即可。|
-| 返回值  |      返回值   |当不指定 dim 时，PyTorch 返回 0D Tensor， Paddle 返回 Sparse Tensor。|
+| 返回值  |      返回值   |当不指定 dim 时，PyTorch 返回 0D Tensor， Paddle 返回 Sparse Tensor。需要转写。|
 
 ### 转写示例
-#### 返回类型：当不指定 dim 时，PyTorch 返回 0D Tensor， Paddle 返回 Sparse Tensor。
+#### 返回值：当不指定 dim 时，PyTorch 返回 0D Tensor， Paddle 返回 Sparse Tensor。
 ```Python
 # PyTorch 写法
 y = torch.sparse.sum(x)

@@ -14,4 +14,4 @@ paddle.Tensor.heaviside(y, name=None)
 
 | PyTorch                           | PaddlePaddle                 | 备注                                                   |
 |-----------------------------------|------------------------------| ------------------------------------------------------ |
-| <font color='red'> values </font> | <font color='red'> y </font> | 输入的 Tensor ，仅参数名不一致。                                     |
+|  values  |  y  | 输入的 Tensor ，仅参数名不一致。                                     |

@@ -19,7 +19,7 @@ paddle.Tensor.qr(mode='reduced')
 
 
 ### 转写示例
-### some：控制 QR 分解的行为
+#### some：控制 QR 分解的行为
 ```python
 # 当进行完整的 QR 分解时
 # PyTorch 写法

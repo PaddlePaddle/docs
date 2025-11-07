@@ -23,8 +23,8 @@ paddle.nn.functional.soft_margin_loss(input,
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | input         | 输入 Tensor 。                                    |
 | target          | label         | 输入 Tensor 对应的标签值，仅参数名不一致。               |
-| size_average          | -         | 已弃用                                      |
-| reduce          | -         | 已弃用                                     |
+| size_average          | -         | 已弃用。                                      |
+| reduce          | -         | 已弃用。                                     |
 | reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'。        |
 
 ### 转写示例

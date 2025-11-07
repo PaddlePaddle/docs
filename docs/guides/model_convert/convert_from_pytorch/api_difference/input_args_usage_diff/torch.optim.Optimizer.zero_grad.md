@@ -15,9 +15,10 @@ PyTorch 的 `Optimizer.zero_grad` 参数与 Paddle 的 `Optimizer.clear_gradient
 
 | PyTorch     | PaddlePaddle | 备注                                             |
 | ----------- | ------------ | ------------------------------------------------ |
-| set_to_none | set_to_zero  | 设置如何清空梯度，PyTorch 默认 set_to_none 为 True，Paddle 默认 set_to_zero 为 True，两者功能刚好相反，Paddle 需设置为 False。 |
+| set_to_none | set_to_zero  | 设置如何清空梯度，PyTorch 默认 set_to_none 为 True，Paddle 默认 set_to_zero 为 True，两者功能刚好相反，Paddle 需设置为 False。需要转写。 |
 
 ### 转写示例
+#### set_to_none 转写为 set_to_zero
 ```python
 # PyTorch 写法
 torch.optim.Optimizer.zero_grad(set_to_none=True)

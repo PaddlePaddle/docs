@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.scalar_tensor
-### [torch.scalar_tensor]
+### [torch.scalar_tensor](https://docs.pytorch.org/executorch/stable/extension-tensor.html#:~:text=scalar%20tensor%20with-,scalar_tensor,-().)
 ```python
 torch.scalar_tensor(s,
              dtype=torch.float32,

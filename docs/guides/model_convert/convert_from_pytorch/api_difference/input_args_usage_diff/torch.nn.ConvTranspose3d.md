@@ -44,7 +44,7 @@ paddle.nn.Conv3DTranspose(in_channels,
 | padding          | padding            | 表示填充大小。                           |
 | output_padding          | output_padding            | 表示输出 Tensor 额外添加的大小。                           |
 | groups          | groups            | 表示分组数。                           |
-| bias         | -            | 是否在输出中添加可学习的 bias。                             |
+| bias         | -            | 是否在输出中添加可学习的 bias。需要转写。                             |
 | dilation          | dilation            | 表示空洞大小。                           |
 | padding_mode  | -            | 填充模式，Paddle 无此参数，暂无转写方式。        |
 | device        | -            | 指定 Tensor 的设备，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。   |
