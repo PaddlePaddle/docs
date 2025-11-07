@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_ConstantPad3d:
+.. _cn_api_paddle_nn_ConstantPad3D__upper:
 
 ConstantPad3d
 -------------------------------

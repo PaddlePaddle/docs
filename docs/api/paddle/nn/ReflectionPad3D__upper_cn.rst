@@ -1,8 +1,8 @@
-.. _cn_api_paddle_nn_ReflectionPad3d:
+.. _cn_api_paddle_nn_ReflectionPad3D__upper:
 
-ReflectionPad3d
+ReflectionPad3D
 -------------------------------
-.. py:class:: paddle.nn.ReflectionPad3d(padding, data_format="NCDHW", name=None)
+.. py:class:: paddle.nn.ReflectionPad3D(padding, data_format="NCDHW", name=None)
 
 使用输入边界的反射来填充输入张量的边界。
 

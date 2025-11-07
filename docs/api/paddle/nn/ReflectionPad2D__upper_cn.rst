@@ -1,8 +1,8 @@
-.. _cn_api_paddle_nn_ReflectionPad2d:
+.. _cn_api_paddle_nn_ReflectionPad2D__upper:
 
-ReflectionPad2d
+ReflectionPad2D
 -------------------------------
-.. py:class:: paddle.nn.ReflectionPad2d(padding, data_format="NCHW", name=None)
+.. py:class:: paddle.nn.ReflectionPad2D(padding, data_format="NCHW", name=None)
 
 使用输入边界的反射来填充输入张量的边界。
 

@@ -1,8 +1,8 @@
-.. _cn_api_paddle_nn_ReplicationPad3d:
+.. _cn_api_paddle_nn_ReplicationPad3D__upper:
 
-ReplicationPad3d
+ReplicationPad3D
 -------------------------------
-.. py:class:: paddle.nn.ReplicationPad3d(padding, data_format="NCDHW", name=None)
+.. py:class:: paddle.nn.ReplicationPad3D(padding, data_format="NCDHW", name=None)
 
 通过复制边缘值来填充输入张量的边界。
 

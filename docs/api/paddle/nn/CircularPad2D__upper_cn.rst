@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_CircularPad2D:
+.. _cn_api_paddle_nn_CircularPad2D__upper:
 
 CircularPad2D
 -------------------------------
