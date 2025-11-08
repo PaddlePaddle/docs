@@ -12,7 +12,7 @@ Pruning need to support both variables and operators being evaluation targets. C
 different situations.
 
 ```python
-# Case 1: run foward pass.
+# Case 1: run forward pass.
 cost_np = session.run(target=cost)
 # Case 2: run backward passing.
 opts_np, _ = session.run(target=[cost, opt])

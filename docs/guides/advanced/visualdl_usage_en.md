@@ -614,7 +614,7 @@ exe.run(fluid.default_startup_program())
 # save the result to "./paddle_lenet_5_model"
 fluid.io.save_inference_model(
     "./paddle_lenet_5_model",
-    feeded_var_names=[image.name],
+    fed_var_names=[image.name],
     target_vars=[predition],
     executor=exe)
 ```
