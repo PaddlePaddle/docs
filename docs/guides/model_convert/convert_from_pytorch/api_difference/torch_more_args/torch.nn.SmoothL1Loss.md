@@ -28,7 +28,15 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 转写示例
 #### size_average
-size_average 为 True
+```python
+# Paddle 写法
+torch.nn.SmoothL1Loss(size_average=True)
+
+# Paddle 写法
+paddle.nn.SmoothL1Loss(reduction='mean')
+```
+
+#### size_averagesize_average 为 True
 ```python
 # PyTorch 写法
 torch.nn.SmoothL1Loss(size_average=True)
@@ -46,8 +54,7 @@ torch.nn.SmoothL1Loss(size_average=False)
 paddle.nn.SmoothL1Loss(reduction='sum')
 ```
 
-#### reduce
-reduce 为 True
+#### reducereduce 为 True
 ```python
 # PyTorch 写法
 torch.nn.SmoothL1Loss(reduce=True)
@@ -65,8 +72,7 @@ torch.nn.SmoothL1Loss(reduce=False)
 paddle.nn.SmoothL1Loss(reduction='none')
 ```
 
-#### reduction
-reduction 为'none'
+#### reductionreduction 为'none'
 ```python
 # PyTorch 写法
 torch.nn.SmoothL1Loss(reduction='none')

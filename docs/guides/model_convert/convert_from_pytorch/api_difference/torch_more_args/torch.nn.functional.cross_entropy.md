@@ -33,9 +33,9 @@ paddle.nn.functional.cross_entropy(input,
 | input          | input         | 表示预测的 Tensor 。                                     |
 | target          | label         | 表示真实的 Tensor，仅参数名不同。                                     |
 | weight          | weight         | 表示权重。                                     |
-| size_average    | -         | 已弃用 。                                     |
+| size_average    | -         | 已弃用 。 需要转写。                                    |
 | ignore_index          | ignore_index         | 表示忽略的标签值 。                                     |
-| reduce          | -         | 已弃用 。                                     |
+| reduce          | -         | 已弃用 。 需要转写。                                    |
 | reduction          | reduction         | 表示应用于输出结果的计算方式 。                                     |
 | label_smoothing | label_smoothing     | 指定计算损失时的平滑量，参数完全一致。|
 | -               | soft_label | 指明 label 是否为软标签， PyTorch 无此参数， Paddle 保持默认即可。|

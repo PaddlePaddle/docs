@@ -14,8 +14,8 @@ torch 参数更多，具体如下：
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> A </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| <font color='red'> out </font> | <font color='red'> - </font> | 表示输出 Tensor， Paddle 无此参数，需要转写。  |
+|  A  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
+|  out  |  -  | 表示输出 Tensor， Paddle 无此参数，需要转写。  |
 
 ### 转写示例
 #### out：指定输出

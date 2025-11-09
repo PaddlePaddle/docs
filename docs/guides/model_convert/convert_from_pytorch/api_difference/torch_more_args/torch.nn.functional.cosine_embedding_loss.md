@@ -19,8 +19,8 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | input2       | input2       | 输入的 Tensor。                                |
 | target       | label        | 标签，仅参数名不一致。                                         |
 | margin       | margin       | 可以设置的范围为[-1, 1]。                      |
-| size_average | -            | 已废弃，和 reduce 组合决定损失计算方式。       |
-| reduce       | -            | 已废弃，和 size_average 组合决定损失计算方式。 |
+| size_average | -            | 已废弃，和 reduce 组合决定损失计算方式。 需要转写。      |
+| reduce       | -            | 已废弃，和 size_average 组合决定损失计算方式。需要转写。 |
 | reduction    | reduction    | 指定应用于输出结果的计算方式。                 |
 
 ### 转写示例

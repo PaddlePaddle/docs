@@ -29,14 +29,13 @@ paddle.nn.functional.margin_ranking_loss(input,
 | input2          | other         | 表示第二个输入的 Tensor ，仅参数名不一致。                                     |
 | target          | label         | 表示训练数据的标签 Tensor ，仅参数名不一致。                                     |
 | margin          | margin         | 表示用于加和的 margin 值 。                                     |
-| size_average          | -         | 已弃用 。                                     |
-| reduce          | -         | 已弃用 。                                     |
+| size_average          | -         | 已弃用 。需要转写。                                     |
+| reduce          | -         | 已弃用 。需要转写。                                     |
 | reduction          | reduction         | 表示应用于输出结果的计算方式 。                                     |
 
 ### 转写示例
-#### size_average
+#### size_average、reduce 参数转为 Paddle 的 reduction 参数
 ```python
-# PyTorch 的 size_average、 reduce 参数转为 Paddle 的 reduction 参数
 if size_average is None:
     size_average = True
 if reduce is None:
