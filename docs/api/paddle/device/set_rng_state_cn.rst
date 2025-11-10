@@ -9,10 +9,10 @@ set_rng_state
 
 参数
 :::::::::
-- **new_state** (core.GeneratorState) - 要设置的 RNG 状态对象，通常从``get_rng_state()``获取
+- **new_state** (core.GeneratorState) - 要设置的 RNG 状态对象，通常从 ``get_rng_state()`` 获取
 - **device** (DeviceLike, 可选) - 要设置 RNG 状态的设备:
 
-  - 如果不指定，则使用当前默认设备(由``paddle.framework._current_expected_place_()``返回)
+  - 如果不指定，则使用当前默认设备(由 ``paddle.framework._current_expected_place_()`` 返回)
   - 可以是设备对象、整数设备 ID 或设备字符串
 
 返回
