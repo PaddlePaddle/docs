@@ -16,4 +16,6 @@ reset_peak_memory_stats
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.cuda.reset_peak_memory_stats
+.. code-block:: python
+        >>> import paddle
+        >>> paddle.cuda.reset_peak_memory_stats(0)

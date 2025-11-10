@@ -15,4 +15,4 @@ reset_peak_memory_stats
 ::::::::::::
     .. code-block:: python
         >>> import paddle
-        >>> paddle.device.reset_max_memory_allocated(0)
+        >>> paddle.device.reset_peak_memory_stats(0)
