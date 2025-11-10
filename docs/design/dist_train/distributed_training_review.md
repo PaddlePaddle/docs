@@ -30,7 +30,7 @@ Synchronous training usually faces scalability and performance issues, if not ca
 Similar to asynchronous training, the benefit of synchronous training diminishes quickly. Depending on the models, increasing the number of trainers (effectively batch size) beyond a point won’t delivers faster converge time or better final model quality.
 
 # Codistillation
-Codistillation is a technique that tries to scale the training further. A few training instance (each training instance can be distributed) are performed during the same period. Each training instance has extra losses that comes from the prediction of other training instances. (likey teacher and student) The training process converges faster and usually converge to a better model quality. [4]
+Codistillation is a technique that tries to scale the training further. A few training instance (each training instance can be distributed) are performed during the same period. Each training instance has extra losses that comes from the prediction of other training instances. (likely teacher and student) The training process converges faster and usually converge to a better model quality. [4]
 
 
 # Reference

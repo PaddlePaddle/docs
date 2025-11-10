@@ -265,7 +265,7 @@ def sort_list(x, y):
 
 - Don't support get shape after a reshape operators. You may get a -1 in shape value.
 
-For example, `x = reshape(x, shape=shape_tensor)` , then use `x.shape[0]` to do other operation. Due to the difference between dynamic and static graph, it is okay in dynamic but it will fail in static graph. The reason is that APIs return computation result in dynamic graph mode, so x.shape has deterministic value after calling reshape . However, static graph doesn’t have the value shape_tensor during building network, so PaddlePaddle doesn’t know the value of x.shape after calling reshape. PaddlePaddle static graph will set -1 to represent unknown shape value for each dimension of x.shape in this case, not the expected value. Similarily, calling the shape of the output tensor of those APIs which change the shape, such as expend, cannot be converted into static graph properly.
+For example, `x = reshape(x, shape=shape_tensor)` , then use `x.shape[0]` to do other operation. Due to the difference between dynamic and static graph, it is okay in dynamic but it will fail in static graph. The reason is that APIs return computation result in dynamic graph mode, so x.shape has deterministic value after calling reshape . However, static graph doesn’t have the value shape_tensor during building network, so PaddlePaddle doesn’t know the value of x.shape after calling reshape. PaddlePaddle static graph will set -1 to represent unknown shape value for each dimension of x.shape in this case, not the expected value. Similarly, calling the shape of the output tensor of those APIs which change the shape, such as expend, cannot be converted into static graph properly.
 
 #### examples :
 
