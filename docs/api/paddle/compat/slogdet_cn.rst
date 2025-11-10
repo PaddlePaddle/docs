@@ -9,7 +9,7 @@ PyTorch 兼容的 :ref:`cn_api_paddle_slogdet` 版本，计算方阵或批量方
 
 使用前请详细参考：`【返回参数类型不一致】torch.slogdet`_ 以确定是否使用此模块。
 
-.. _【返回参数类型不一致】torch.slogdet: https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.slogdet.html
+.. _【返回参数类型不一致】torch.slogdet: https://www.paddlepaddle.org.cn/documentation/docs/en/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.slogdet.html
 
 
 参数

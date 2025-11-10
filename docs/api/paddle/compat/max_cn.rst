@@ -9,7 +9,7 @@ max
 
     使用前请详细参考：`【返回参数类型不一致】torch.max`_ 以确定是否使用此模块。
 
-.. _【返回参数类型不一致】torch.max: https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.max.html
+.. _【返回参数类型不一致】torch.max: https://www.paddlepaddle.org.cn/documentation/docs/en/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.max.html
 
 
 .. caution::
