@@ -33,7 +33,7 @@ paddle.device 目录下包含 cuda 目录和 xpu 目录， cuda 目录中存放 
     " :ref:`get_available_device <cn_api_paddle_device_get_available_device>` ", "获得所有可用的设备"
     " :ref:`get_cudnn_version <cn_api_paddle_device_get_cudnn_version>` ", "获得 cudnn 的版本"
     " :ref:`get_device_properties <cn_api_paddle_device_get_device_properties>` ", "返回指定设备的属性"
-    " :ref:`get_device_type <cn_api_paddle_device_get_device_capability:>` ", "返回指定设备的计算能力"
+    " :ref:`get_device_capability <cn_api_paddle_device_get_device_capability>` ", "返回指定设备的计算能力"
     " :ref:`max_memory_allocated <cn_api_paddle_device_max_memory_allocated>` ", "返回给定设备上分配给 Tensor 的内存峰值统计"
     " :ref:`max_memory_reserved <cn_api_paddle_device_max_memory_reserved>` ", "返回给定设备上由内存分配器管理的内存峰值统计"
     " :ref:`memory_allocated <cn_api_paddle_device_memory_allocated>` ", "返回给定设备上当前分配给 Tensor 的内存大小"
