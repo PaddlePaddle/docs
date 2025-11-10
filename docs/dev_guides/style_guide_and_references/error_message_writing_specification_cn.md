@@ -266,7 +266,7 @@ PADDLE_ENFORCE_EQ(
 
 ```c++
 PADDLE_ENFORCE(
-    tmp == *data_type || *data_type == dafault_data_type,
+    tmp == *data_type || *data_type == default_data_type,
     phi::errors::InvalidArgument(
         "The DataType of %s Op's duplicable Variable %s must be "
         "consistent. The current variable type is (%s), but the "

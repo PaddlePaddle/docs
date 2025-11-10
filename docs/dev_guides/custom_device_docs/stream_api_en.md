@@ -10,7 +10,7 @@ C_Status (*create_stream)(const C_Device device, C_Stream* stream)
 
 ### Description
 
-It creats a stream, which is used to execute asynchronous tasks within the framework. In the stream, tasks are done in order. When the device does not support asynchronous execution, the API is required to be implemented with an empty method.
+It creates a stream, which is used to execute asynchronous tasks within the framework. In the stream, tasks are done in order. When the device does not support asynchronous execution, the API is required to be implemented with an empty method.
 
 ### Parameter
 
