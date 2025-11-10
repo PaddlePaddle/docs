@@ -26,7 +26,7 @@ fake_quantize_abs_max {
 
 ### 1.2 静态量化
 
-与动态量化不同，静态量化的量化 scale 是在量化训练时通过**窗口滑动平均**或者**窗口绝对值最大值**等方法计算求得的。静态量化主要通过`fake_quantize_moving_average_abs_max`op 或者`fake_quantize_range_abs_max`op 实现，它们利用输入的量化 scale 将输入 tensor 量化到-127～127 值域范围内。`fake_quantize_moving_average_abs_max`op 和`fake_quantize_range_abs_max`op 的输入和输出格式都是一样的，不同点在于 op 内部计算量化 scale 时使用的策略不同。`fake_quantize_moving_average_abs_max`op 使用一个窗口内绝对值最大值的滑动平均值作为量化 sacle，而`fake_quantize_range_abs_max`op 使用一个窗口内绝对值最大值的最大值作为量化 sacle。下面以`fake_quantize_moving_average_abs_max`op 为例，对其进行整体描述：
+与动态量化不同，静态量化的量化 scale 是在量化训练时通过**窗口滑动平均**或者**窗口绝对值最大值**等方法计算求得的。静态量化主要通过`fake_quantize_moving_average_abs_max`op 或者`fake_quantize_range_abs_max`op 实现，它们利用输入的量化 scale 将输入 tensor 量化到-127～127 值域范围内。`fake_quantize_moving_average_abs_max`op 和`fake_quantize_range_abs_max`op 的输入和输出格式都是一样的，不同点在于 op 内部计算量化 scale 时使用的策略不同。`fake_quantize_moving_average_abs_max`op 使用一个窗口内绝对值最大值的滑动平均值作为量化 scale，而`fake_quantize_range_abs_max`op 使用一个窗口内绝对值最大值的最大值作为量化 scale。下面以`fake_quantize_moving_average_abs_max`op 为例，对其进行整体描述：
 
 ```
 fake_quantize_moving_average_abs_max {

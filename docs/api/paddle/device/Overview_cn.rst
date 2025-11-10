@@ -41,6 +41,9 @@ paddle.device 目录下包含 cuda 目录和 xpu 目录， cuda 目录中存放 
     " :ref:`reset_max_memory_reserved <cn_api_paddle_device_reset_max_memory_reserved>` ", "重置给定设备上由内存分配器管理的内存峰值统计"
     " :ref:`set_device <cn_api_paddle_device_set_device>` ", "指定 OP 运行的全局设备"
     " :ref:`get_device <cn_api_paddle_device_get_device>` ", "获得 OP 运行的全局设备"
+    " :ref:`is_available <cn_api_paddle_device_is_available>` ", "检查设备是否可用"
+    " :ref:`get_rng_state <cn_api_paddle_device_get_rng_state>` ", "获取随机数生成器状态"
+    " :ref:`set_rng_state <cn_api_paddle_device_set_rng_state>` ", "设置随机数生成器状态"
 
 .. _cn_device_compile:
 
@@ -97,6 +100,7 @@ Stream 与 Event 相关 API
     " :ref:`stream_guard <cn_api_paddle_device_stream_guard>` ", "切换当前的 stream 为输入指定的 stream，该 API 目前仅支持动态图模式"
     " :ref:`device_guard <cn_api_paddle_device_device_guard>` ", "切换当前的 device 为输入指定的 device，该 API 目前仅支持动态图模式"
     " :ref:`synchronize <cn_api_paddle_device_synchronize>` ", "等待给定的设备上的计算完成"
+    " :ref:`is_current_stream_capturing <cn_api_paddle_device_is_current_stream_capturing>` ", "检查当前流是否处于捕获状态"
 
 .. _cn_device_cuda:
 
