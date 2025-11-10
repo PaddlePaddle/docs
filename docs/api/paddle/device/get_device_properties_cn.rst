@@ -4,7 +4,6 @@ get_device_properties
 ---------------------
 
 .. py:function:: paddle.device.get_device_properties(device=None)
-
 返回指定设备的属性。
 
 参数
