@@ -37,4 +37,4 @@ PyTorch 兼容函数
     " :ref:`manual_seed <cn_api_paddle_cuda_manual_seed>` ", "设置设备随机种子"
     " :ref:`max_memory_allocated <cn_api_paddle_cuda_max_memory_allocated>` ", "获取最大内存分配量"
     " :ref:`reset_peak_memory_stats <cn_api_paddle_cuda_reset_peak_memory_stats>` ", "重置峰值内存统计"
-    " :ref:`get_device_type <cn_api_paddle_device_get_cuda_capability:>` ", "返回指定设备的计算能力"
+    " :ref:`get_device_type <cn_api_paddle_cuda_get_cuda_capability:>` ", "返回指定设备的计算能力"
