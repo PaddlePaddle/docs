@@ -94,4 +94,4 @@ replace this original name in all of next op instances.
 
 \* oneDNN gelu kernel is able to perform in-place execution, but currently gelu op does not support in-place execution.
 
-\*\* sum kernel is using oneDNN sum primitive that does not provide in-place exection, so in-place computation is done faked through external buffer. So it was not added into oneDNN inplace pass.
+\*\* sum kernel is using oneDNN sum primitive that does not provide in-place execution, so in-place computation is done faked through external buffer. So it was not added into oneDNN inplace pass.

@@ -20,9 +20,6 @@ get_device_module
 :::::::::
 module: 对应的 Paddle 设备模块 (例如 paddle.cuda, paddle.device.xpu)
 
-异常
-:::::::::
-- RuntimeError: 如果设备类型是 CPU(Paddle 不暴露`paddle.cpu`模块)或找不到匹配的设备模块
 
 代码示例
 :::::::::

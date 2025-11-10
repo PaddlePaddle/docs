@@ -22,15 +22,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 转写示例
 #### size_average
-```python
-# Paddle 写法
-torch.nn.MSELoss(size_average=True)
-
-# Paddle 写法
-paddle.nn.MSELoss(reduction='mean')
-```
-
-#### size_average
 size_average 为 True
 
 ```python

@@ -31,5 +31,5 @@ paddle.nn.functional.avg_pool3d(x, kernel_size, stride=None, padding=0, ceil_mod
 torch.nn.functional.avg_pool3d(input=input, kernel_size=2, stride=2, padding=1, ceil_mode=True, count_include_pad=False)
 
 # Paddle 写法
-paddle.nn.functional.avg_pool3d(x=input, kernel_size=2, stride=2, padding=1, ceil_mode=True, exlusive=True)
+paddle.nn.functional.avg_pool3d(x=input, kernel_size=2, stride=2, padding=1, ceil_mode=True, exclusive=True)
 ```
