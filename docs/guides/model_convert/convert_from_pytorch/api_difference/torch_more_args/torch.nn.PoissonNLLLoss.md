@@ -23,20 +23,75 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction          | reduction          | 指定应用于输出结果的计算方式，可选值有 `none`、`mean` 和 `sum`。默认为 `mean`，计算 mini-batch loss 均值。设置为 `sum` 时，计算 mini-batch loss 的总和。设置为 `none` 时，则返回 loss Tensor。默认值下为 `mean`。两者完全一致。   |
 
 ### 转写示例
-```python
-# PyTorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
-if size_average is None:
-    size_average = True
-if reduce is None:
-    reduce = True
-if size_average and reduce:
-    reduction = 'mean'
-elif reduce:
-    reduction = 'sum'
-else:
-    reduction = 'none'
+#### size_average
+size_average 为 True
 
-# 如果 PyTorch 存在 reduction 参数，则直接覆盖
-if 'reduction' not in kwargs:
-    kwargs['reduction'] = reduction
+```python
+# PyTorch 写法
+torch.nn.PoissonNLLLoss(weight=w, size_average=True)
+
+# Paddle 写法
+paddle.nn.PoissonNLLLoss(weight=w, reduction='mean')
+```
+
+size_average 为 False
+
+```python
+# PyTorch 写法
+torch.nn.PoissonNLLLoss(weight=w, size_average=False)
+
+# Paddle 写法
+paddle.nn.PoissonNLLLoss(weight=w, reduction='sum')
+```
+
+#### reduce
+reduce 为 True
+
+```python
+# PyTorch 写法
+torch.nn.PoissonNLLLoss(weight=w, reduce=True)
+
+# Paddle 写法
+paddle.nn.PoissonNLLLoss(weight=w, reduction='mean')
+```
+
+reduce 为 False
+
+```python
+# PyTorch 写法
+torch.nn.PoissonNLLLoss(weight=w, reduce=False)
+
+# Paddle 写法
+paddle.nn.PoissonNLLLoss(weight=w, reduction='none')
+```
+
+#### reduction
+reduction 为'none'
+
+```python
+# PyTorch 写法
+torch.nn.PoissonNLLLoss(weight=w, reduction='none')
+
+# Paddle 写法
+paddle.nn.PoissonNLLLoss(weight=w, reduction='none')
+```
+
+reduction 为'mean'
+
+```python
+# PyTorch 写法
+torch.nn.PoissonNLLLoss(weight=w, reduction='mean')
+
+# Paddle 写法
+paddle.nn.PoissonNLLLoss(weight=w, reduction='mean')
+```
+
+reduction 为'sum'
+
+```python
+# PyTorch 写法
+torch.nn.PoissonNLLLoss(weight=w, reduction='sum')
+
+# Paddle 写法
+paddle.nn.PoissonNLLLoss(weight=w, reduction='sum')
 ```
