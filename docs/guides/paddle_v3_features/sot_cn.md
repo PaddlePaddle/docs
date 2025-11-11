@@ -130,7 +130,7 @@ import paddle
 import numpy as np
 import random
 
-# set seed for determinated output
+# set seed for determined output
 paddle.seed(2025)
 np.random.seed(2025)
 random.seed(2025)
@@ -172,7 +172,7 @@ import paddle
 import numpy as np
 import random
 
-# set seed for determinated output
+# set seed for determined output
 paddle.seed(2025)
 np.random.seed(2025)
 random.seed(2025)
