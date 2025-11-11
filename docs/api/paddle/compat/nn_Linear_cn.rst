@@ -6,6 +6,7 @@ Linear
 .. py:class:: paddle.compat.nn.Linear(in_features, out_features, bias, device=None, dtype=None)
 
 PyTorch 兼容的 :ref:`cn_api_paddle_nn_Linear` 版本：
+
     - 与 PyTorch 一致的数学意义：
 
     .. math::
