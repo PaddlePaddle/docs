@@ -197,7 +197,7 @@ After op1, we can process variable b and variable c; After op2, we can process v
 
 #### memory sharing policy
 
-A memory pool will be mantained in the stage of memory optimization. Each operator node will be scanned to determine memory optimization is done or not. If an operator satisfies the requirement, following policy will be taken to handle input/output variables.
+A memory pool will be maintained in the stage of memory optimization. Each operator node will be scanned to determine memory optimization is done or not. If an operator satisfies the requirement, following policy will be taken to handle input/output variables.
 
 ```
 if op.support_inplace():
