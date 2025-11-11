@@ -262,7 +262,7 @@ stop_worker()
 COPY-FROM: paddle.distributed.fleet.Fleet.stop_worker
 
 
-save_inference_model(executor, dirname, fed_var_names, target_vars, main_program=None, export_for_deployment=True)
+save_inference_model(executor, dirname, feeded_var_names, target_vars, main_program=None, export_for_deployment=True)
 '''''''''
 
 修剪指定的 ``main_program`` 以构建一个专门用于预测的 ``Inference Program`` （ ``Program`` 含义详见 :ref:`api_guide_Program` ）。所得到的 ``Inference Program`` 及其对应的所>有相关参数均被保存到 ``dirname`` 指定的目录中。
@@ -272,7 +272,7 @@ save_inference_model(executor, dirname, fed_var_names, target_vars, main_program
 
   - **executor** (Executor) –  用于保存预测模型的 ``executor``，详见 :ref:`api_guide_executor` 。
   - **dirname** (str) – 指定保存预测模型结构和参数的文件目录。
-  - **fed_var_names** (list[str]) – 字符串列表，包含着 Inference Program 预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
+  - **feeded_var_names** (list[str]) – 字符串列表，包含着 Inference Program 预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
   - **target_vars** (list[Tensor]) – ``Tensor`` （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
   - **main_program** (Program，可选) – 通过该参数指定的 ``main_program`` 可构建一个专门用于预测的 ``Inference Program``。若为 None，则使用全局默认的  ``_main_program_`` 。>默认值为 None。
   - **export_for_deployment** (bool，可选) – 若为 True，则 ``main_program`` 指定的 Program 将被修改为只支持直接预测部署的 Program。否则，将存储更多的信息，方便优化和再训练。目前
