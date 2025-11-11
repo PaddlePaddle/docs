@@ -25,7 +25,6 @@ arange = "arange"
 unsupport = "unsupport"
 Nervana = "Nervana"
 datas = "datas"
-processer = "processer"
 
 # These words need to be fixed
 Learing = "Learing"
