@@ -477,14 +477,14 @@ def get_meta_from_diff_file(
     return meta_data
 
 
-def process_mapping_index(index_path, item_processer, context={}):
+def process_mapping_index(index_path, item_processor, context={}):
     """
     线性处理 `pytorch_api_mapping_cn.md` 文件
     - index_path: 该 md 文件路径
-    - item_processer: 对文件每行的处理方式，输入参数 (line, line_idx, state, output, context)。
+    - item_processor: 对文件每行的处理方式，输入参数 (line, line_idx, state, output, context)。
                       如果处理出错则返回 False，否则返回 True。
     - context: 用于存储处理过程中的上下文信息
-               - output: 使用 context["output"] 初始化，如果不调用 item_processer，直接加入原文件对应行，否则 item_processer 处理 output 逻辑。
+               - output: 使用 context["output"] 初始化，如果不调用 item_processor，直接加入原文件对应行，否则 item_processor 处理 output 逻辑。
     - 返回值：是否成功处理，成功返回 0。
     """
     if not os.path.exists(index_path):
@@ -528,7 +528,7 @@ def process_mapping_index(index_path, item_processer, context={}):
             column_names.extend([c.strip() for c in columns])
             column_count = len(column_names)
 
-            if not item_processer(line, i, state, output, context):
+            if not item_processor(line, i, state, output, context):
                 break
 
             if column_names == expect_column_names:
@@ -547,7 +547,7 @@ def process_mapping_index(index_path, item_processer, context={}):
                 raise Exception(
                     f"Table seperator not match at line {i + 1}: {line}"
                 )
-            if not item_processer(line, i, state, output, context):
+            if not item_processor(line, i, state, output, context):
                 break
             state = IndexParserState.table_row_ignore
         elif state == IndexParserState.table_sep:
@@ -558,16 +558,16 @@ def process_mapping_index(index_path, item_processer, context={}):
                 raise Exception(
                     f"Table seperator not match at line {i + 1}: {line}"
                 )
-            if not item_processer(line, i, state, output, context):
+            if not item_processor(line, i, state, output, context):
                 break
             state = IndexParserState.table_row
         elif state == IndexParserState.table_row_ignore:
-            if not item_processer(line, i, state, output, context):
+            if not item_processor(line, i, state, output, context):
                 break
         elif state == IndexParserState.table_row:
             try:
                 context["columns"] = columns
-                if not item_processer(line, i, state, output, context):
+                if not item_processor(line, i, state, output, context):
                     break
                 context["table_row_idx"] += 1
             except Exception as e:

@@ -34,17 +34,4 @@ paddle.nn.functional.nll_loss(input,
 | reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'。                         |
 
 ### 转写示例
-#### size_average、reduce 参数转 reduction 参数
-```python
-if size_average is None:
-    size_average = True
-if reduce is None:
-    reduce = True
-
-if size_average and reduce:
-    reduction = 'mean'
-elif reduce:
-    reduction = 'sum'
-else:
-    reduction = 'none'
-```
+/workspace/paddleDocs/docs/guides/model_convert/convert_from_pytorch/api_difference/torch_more_args/torch.nn.functional.nll_loss.md

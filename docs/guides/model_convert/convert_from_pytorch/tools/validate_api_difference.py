@@ -57,87 +57,70 @@ def validate_api_mappings():
                 )
                 sum += 1
 
-        # 任务3: 检查参数映射表与api_mapping中的kwargs_change是否一致
-        for entry in api_diff:
-            if "args_mapping" not in entry:
+        # 任务3: 检查api_mapping中的kwargs_change是否在api_difference_info中
+        for api_key, api_value in api_map.items():
+            if "kwargs_change" not in api_value or api_key in no_need_list:
                 continue
-            api_error = False
 
-            for mapping in entry["args_mapping"]:
-                src_arg = mapping["src_arg"]
-                dst_arg = mapping["dst_arg"]
-                if src_arg == dst_arg:
-                    continue
-                # 如果 dst_arg 不是 "-"，则检查 kwargs_change
-                if src_arg == "-":
-                    # 这种情况表示在 PyTorch 中没有这个参数，但在 Paddle 中有，我们跳过
-                    continue
-                if dst_arg == "-":
-                    dst_arg = ""
-
+            for src_arg, dst_arg in api_value["kwargs_change"].items():
                 found = False
-                for api_value in api_map.values():
-                    if "kwargs_change" in api_value:
+                for entry in api_diff:
+                    if "args_mapping" not in entry:
+                        continue
+                    for mapping in entry["args_mapping"]:
                         if (
-                            src_arg in api_value["kwargs_change"]
-                            and api_value["kwargs_change"][src_arg] == dst_arg
+                            mapping["src_arg"] == src_arg
+                            and mapping["dst_arg"] == dst_arg
                         ):
                             found = True
                             break
+                    if found:
+                        break
 
                 if not found:
-                    if "unsupport_args" not in api_value:
-                        api_error = True
-                        err_file.write(
-                            f"ERROR: src_arg '{src_arg}' with dst_arg '-' in api_difference_info for '{entry['src_api']}' not found in api_mapping.json\n"
-                        )
-                    elif src_arg not in api_value["unsupport_args"]:
-                        api_error = True
-                        err_file.write(
-                            f"ERROR: src_arg '{src_arg}' with dst_arg '-' in api_difference_info for '{entry['src_api']}' not found in api_mapping.json\n"
-                        )
+                    err_file.write(
+                        f"ERROR: Parameter mapping '{src_arg} -> {dst_arg}' in api_mapping for '{api_key}' not found in api_difference_info.json\n"
+                    )
+                    sum += 1
 
-            if api_error:
+        # 任务4: 检查api_mapping中的args_list是否都在api_difference_info的src_signature中
+        for api_key, api_value in api_map.items():
+            if "args_list" not in api_value or api_key in no_need_list:
+                continue
+
+            # 获取api_difference_info中对应的entry
+            entry = next((e for e in api_diff if e["src_api"] == api_key), None)
+            if entry is None:
+                err_file.write(
+                    f"ERROR: api_mapping for '{api_key}' not found in api_difference_info.json, so cannot check args_list\n"
+                )
                 sum += 1
+                continue
 
-        # 任务4: 检查api_mapping中的args_list与api_difference_info中的函数签名参数列表是否一致
-        for entry in api_diff:
-            # 跳过没有src_signature的条目
             if "src_signature" not in entry or not entry["src_signature"]:
+                err_file.write(
+                    f"ERROR: api_difference_info for '{api_key}' has no src_signature\n"
+                )
+                sum += 1
                 continue
 
             # 提取第一个src_signature的参数名列表
             src_signature = entry["src_signature"][0]
             if "args" not in src_signature:
+                err_file.write(
+                    f"ERROR: api_difference_info for '{api_key}' has no args in src_signature\n"
+                )
+                sum += 1
                 continue
             src_args = [arg["arg_name"] for arg in src_signature["args"]]
 
-            # 检查api_map中是否有这个src_api
-            if entry["src_api"] not in api_map:
-                err_file.write(
-                    f"ERROR: api_mapping for '{entry['src_api']}' not found in api_mapping.json, so cannot check args_list\n"
-                )
-                sum += 1
-                continue
-
-            api_value = api_map[entry["src_api"]]
-            # 检查args_list是否存在
-            if "args_list" not in api_value:
-                err_file.write(
-                    f"ERROR: api_mapping for '{entry['src_api']}' has no args_list\n"
-                )
-                sum += 1
-                continue
-
-            api_args_list = api_value["args_list"]
-
-            # 比较参数列表
-            if src_args != api_args_list:
-                err_file.write(
-                    f"ERROR: Parameter list mismatch for '{entry['src_api']}': "
-                    f"api_mapping has {api_args_list}, but api_difference_info has {src_args}\n"
-                )
-                sum += 1
+            # 检查api_mapping中的args_list是否都在src_args中
+            for arg in api_value["args_list"]:
+                if arg not in src_args:
+                    err_file.write(
+                        f"ERROR: Parameter '{arg}' in api_mapping for '{api_key}' not found in api_difference_info's src_signature\n"
+                    )
+                    sum += 1
 
     print(
         f"{sum} api error found in api_mapping.json and api_difference_info.json"

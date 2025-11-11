@@ -119,13 +119,13 @@ API 别名表的生成逻辑与单个 API 项映射类似，实现于 `apply_ref
 
 生成工具读取时，当遇到符合预期的表格表头即进入准备读取的状态，随后跳过表格的分隔线，开始对预处理命令的读取状态，直到所在行不是预处理命令时回到普通状态。
 
-由于该读取逻辑可复用，因此将这部分逻辑实现在验证工具的 `process_mapping_index` 方法，通过传入 `item_processer` 回调和 `context` 上下文来控制行为，使用 `IndexParserState` 状态集来控制读取状态。
+由于该读取逻辑可复用，因此将这部分逻辑实现在验证工具的 `process_mapping_index` 方法，通过传入 `item_processor` 回调和 `context` 上下文来控制行为，使用 `IndexParserState` 状态集来控制读取状态。
 
 两次读取中，第一次读取用于分析表格匹配条件，第二次读取进行实际的预处理命令替换。
 
 第一次读取时使用 `reference_table_scanner` 方法作为回调，收集所有的 API 表引用项，记录其参数作为 API 分类的条件。随后在生成工具的 `get_c2a_dict` 方法中对所有条件按照优先 `prefix` 长度降序，次优 `max_depth` 升序的顺序进行排序，并对所有映射文件元数据按照条件进行匹配。
 
-第二次读取时使用 `reference_mapping_item_processer` 方法作为回调，对于所有需要处理的表格行进行转换，将转换结果写回 `context` 的 `output` 项中。
+第二次读取时使用 `reference_mapping_item_processor` 方法作为回调，对于所有需要处理的表格行进行转换，将转换结果写回 `context` 的 `output` 项中。
 
 完成读取后，检查是否有 API 重复出现，如果重复出现则输出重复出现的 API 名称和所在行，不写回源文件并进行 CI 报错。
 
