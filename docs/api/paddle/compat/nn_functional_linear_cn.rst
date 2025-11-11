@@ -6,6 +6,7 @@ linear
 .. py:function:: paddle.compat.nn.functional.linear(input, weight, bias=None)
 
 PyTorch 兼容的线性函数版本：
+
     - 与 PyTorch 一致的数学意义：
 
     .. math::
