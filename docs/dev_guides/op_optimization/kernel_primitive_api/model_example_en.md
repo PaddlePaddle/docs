@@ -41,7 +41,7 @@ nohup python tools/train.py \
 -c ppcls/configs/ImageNet/ResNet/ResNet50.yaml \
 -o Global.device=xpu > ResNet50_xpu2.log &
 ```
-+ 5. Creenshot is as follows: </br>
++ 5. Screenshot is as follows: </br>
 ![Model](./images/example_model.png)
 
 ### XPU2 Kernel Primitive API Model List
