@@ -773,7 +773,7 @@ class APIDifferenceValidator:
             if self.total_files > 0
             else "N/A"
         )
-        print(f"accuracy: {acc}")
+        print(f"accuracy:\n{acc}")
 
 
 def main():

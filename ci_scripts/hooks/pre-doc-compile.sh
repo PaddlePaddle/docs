@@ -120,3 +120,39 @@ else
     echo "ERROR: Generated API mapping file not found at $GENERATED_FILE"
     handle_failure
 fi
+
+echo "INFO: Validating API difference format "
+VALIDATION_OUTPUT=$(python "${APIMAPPING_ROOT}/tools/validate_api_difference_format.py" 2>&1)
+VALIDATION_EXIT_CODE=$?
+
+# Check if validation output contains "100.00%"
+if [[ "$VALIDATION_EXIT_CODE" -eq 0 && "$VALIDATION_OUTPUT" == *"100.00%"* ]]; then
+    echo "INFO: Validation passed successfully (100.00%)"
+else
+    echo "ERROR: API difference validation failed. Expected 100.00%, got: '$VALIDATION_OUTPUT'"
+    exit 1
+fi
+
+echo "INFO: Validating PyTorch API mapping with --skip-url-check"
+VALIDATE_CMD="python ${APIMAPPING_ROOT}/tools/validate_pytorch_api_mapping.py --skip-url-check"
+VALIDATION_OUTPUT=$(eval "$VALIDATE_CMD" 2>&1)
+VALIDATION_EXIT_CODE=$?
+
+# Check if script execution failed
+if [ $VALIDATION_EXIT_CODE -ne 0 ]; then
+    echo "ERROR: validate_pytorch_api_mapping.py execution failed with exit code $VALIDATION_EXIT_CODE"
+    echo "ERROR: Script output:"
+    echo "$VALIDATION_OUTPUT"
+    exit 1
+else
+    # Get last line of output
+    LAST_LINE=$(echo "$VALIDATION_OUTPUT" | tail -n 1)
+
+    # Check if last line matches error string
+    if [ "$LAST_LINE" = "VALIDATE PYTORCH_API_MAPPING ERROR!" ]; then
+        echo "ERROR: Validation detected error: $LAST_LINE"
+        exit 1
+    else
+        echo "INFO: API mapping validation passed successfully"
+    fi
+fi

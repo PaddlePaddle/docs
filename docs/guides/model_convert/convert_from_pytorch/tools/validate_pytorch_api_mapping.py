@@ -709,11 +709,21 @@ def main():
     # 执行基本校验
     toc_warnings = check_toc_consistency(toc, categories)
     unique_warnings = check_unique_torch_apis(categories)
-    link_warnings = check_links_exist(categories)
     mapping_category_warnings = check_mapping_category_consistency(categories)
     diff_doc_warnings = check_diff_doc_consistency(categories, base_dir)
 
-    # 输出警告到文件
+    # 初始化 link_warnings 和 url_warnings（在 skip-url-check 时跳过）
+    link_warnings = []
+    url_warnings = []
+    if not args.skip_url_check:
+        link_warnings = check_links_exist(categories)
+        urls_with_context = extract_all_urls(categories)
+        print(f"找到 {len(urls_with_context)} 个URL需要检查")
+        url_warnings = check_urls_exist(
+            urls_with_context, max(os.cpu_count() - 4, 1)
+        )
+
+    # 输出警告到文件和标准输出
     warning_files = [
         ("toc_warnings.txt", "目录一致性校验警告:", toc_warnings),
         ("unique_warnings.txt", "Torch API 唯一性校验警告:", unique_warnings),
@@ -728,42 +738,37 @@ def main():
 
     for filename, description, warnings in warning_files:
         if warnings:
+            # 同时输出到标准输出和文件
+            print(f"\n{description}")
+            for warning in warnings:
+                print(warning)
+
             output_path = os.path.join(tools_dir, filename)
             with open(output_path, "w", encoding="utf-8") as f:
                 f.write(f"{description}\n")
                 f.writelines(warning + "\n" for warning in warnings)
-            print(f"生成 {output_path}，包含 {len(warnings)} 个警告")
+            # print(f"生成 {output_path}，包含 {len(warnings)} 个警告")
 
-    # 执行URL存在性检查（除非明确跳过）
-    url_warnings = []
-    if not args.skip_url_check:
-        # 提取所有URL
-        urls_with_context = extract_all_urls(categories)
-        print(f"找到 {len(urls_with_context)} 个URL需要检查")
+    # 处理 URL 警告（单独处理，因为不在 warning_files 中）
+    if url_warnings:
+        print("\nURL存在性校验警告:")
+        for warning in url_warnings:
+            print(warning)
+        output_path = os.path.join(tools_dir, "url_warnings.txt")
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write("URL存在性校验警告:\n")
+            f.writelines(warning + "\n" for warning in url_warnings)
+        print(f"生成 {output_path}，包含 {len(url_warnings)} 个警告")
 
-        # 检查URL存在性（使用多线程）
-        url_warnings = check_urls_exist(
-            urls_with_context, max(os.cpu_count() - 4, 1)
-        )
-
-        if url_warnings:
-            output_path = os.path.join(tools_dir, "url_warnings.txt")
-            with open(output_path, "w", encoding="utf-8") as f:
-                f.write("URL存在性校验警告:\n")
-                f.writelines(warning + "\n" for warning in url_warnings)
-            print(f"生成 {output_path}，包含 {len(url_warnings)} 个警告")
-    else:
-        print("跳过URL存在性检查")
-
-    # 汇总统计
-    total_warnings = (
+    # 汇总统计（不包括 diff_doc_warnings，因为它是警告不是错误）
+    total_errors = (
         len(toc_warnings)
         + len(unique_warnings)
         + len(link_warnings)
         + len(mapping_category_warnings)
-        + len(diff_doc_warnings)
         + len(url_warnings)
     )
+    total_warnings = total_errors + len(diff_doc_warnings)
 
     if total_warnings == 0:
         print("所有校验通过，没有发现警告!")
@@ -771,6 +776,8 @@ def main():
         print(
             f"校验完成，共发现 {total_warnings} 个警告，请查看生成的警告文件。"
         )
+        if total_errors > 0:
+            print("VALIDATE PYTORCH_API_MAPPING ERROR!")
 
 
 if __name__ == "__main__":

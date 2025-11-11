@@ -66,10 +66,14 @@ def validate_api_mappings():
             for mapping in entry["args_mapping"]:
                 src_arg = mapping["src_arg"]
                 dst_arg = mapping["dst_arg"]
+                if src_arg == dst_arg:
+                    continue
+                # 如果 dst_arg 不是 "-"，则检查 kwargs_change
+                if src_arg == "-":
+                    # 这种情况表示在 PyTorch 中没有这个参数，但在 Paddle 中有，我们跳过
+                    continue
                 if dst_arg == "-":
                     dst_arg = ""
-                if src_arg == "-":
-                    break
 
                 found = False
                 for api_value in api_map.values():
@@ -82,10 +86,17 @@ def validate_api_mappings():
                             break
 
                 if not found:
-                    api_error = True
-                    err_file.write(
-                        f"ERROR: Parameter mapping '{src_arg} -> {dst_arg}' in api_difference_info for '{entry['src_api']}' not found in api_mapping.json\n"
-                    )
+                    if "unsupport_args" not in api_value:
+                        api_error = True
+                        err_file.write(
+                            f"ERROR: src_arg '{src_arg}' with dst_arg '-' in api_difference_info for '{entry['src_api']}' not found in api_mapping.json\n"
+                        )
+                    elif src_arg not in api_value["unsupport_args"]:
+                        api_error = True
+                        err_file.write(
+                            f"ERROR: src_arg '{src_arg}' with dst_arg '-' in api_difference_info for '{entry['src_api']}' not found in api_mapping.json\n"
+                        )
+
             if api_error:
                 sum += 1
 
