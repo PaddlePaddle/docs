@@ -18,7 +18,7 @@ typedef enum {
 
 C_SUCCESS - The returned value when the execution of the function is a success
 
-C_WARNING - The returned value when the performance of the funtion falls short of expectations. For example, the asynchronous API is actually synchronous.
+C_WARNING - The returned value when the performance of the function falls short of expectations. For example, the asynchronous API is actually synchronous.
 
 C_FAILED - Resources runs out or the request fails.
 
