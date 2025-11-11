@@ -9,7 +9,6 @@ from urllib.parse import urlparse
 
 import requests
 from requests.adapters import HTTPAdapter
-from tqdm import tqdm  # 用于显示进度条
 from urllib3.util.retry import Retry
 
 # 默认文件路径
@@ -608,12 +607,10 @@ def check_urls_exist(urls_with_context, max_workers=10):
         f"开始使用多线程检查 {total_urls} 个URL的存在性（线程数：{max_workers}）..."
     )
 
-    with (
-        tqdm(total=total_urls, desc="检查URL") as pbar,
-        concurrent.futures.ThreadPoolExecutor(
-            max_workers=max_workers
-        ) as executor,
-    ):
+    processed = 0
+    with concurrent.futures.ThreadPoolExecutor(
+        max_workers=max_workers
+    ) as executor:
         # 为每个线程创建一个会话
         sessions = [create_session() for _ in range(max_workers)]
 
@@ -629,8 +626,14 @@ def check_urls_exist(urls_with_context, max_workers=10):
         for future in concurrent.futures.as_completed(future_to_url):
             result = future.result()
 
-            # 更新进度条
-            pbar.update(1)
+            # 更新进度计数
+            processed += 1
+            if processed % 10 == 0 or processed == len(urls_with_context):
+                print(
+                    f"\r检查URL进度: {processed}/{len(urls_with_context)}",
+                    end="",
+                    flush=True,
+                )
 
             # 如果不是200状态码，则添加到警告列表
             if result["status"] != "ok":
@@ -647,7 +650,8 @@ def check_urls_exist(urls_with_context, max_workers=10):
     for session in sessions:
         session.close()
 
-    print(f"URL检查完成，发现 {len(warnings)} 个问题")
+    # 打印最终进度
+    print(f"\r检查URL完成，发现 {len(warnings)} 个问题")
     return warnings
 
 
