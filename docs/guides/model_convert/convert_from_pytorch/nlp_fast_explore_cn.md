@@ -280,14 +280,14 @@ PyTorch 模块通常继承`torch.nn.Module`，飞桨模块通常继承`paddle.nn
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ymyjl/docs/torch_migrate/docs/guides/model_convert/pictures/embedding.png"   align="middle"  width="500" />
+  <img src="../pictures/embedding.png"   align="middle"  width="500" />
 </p>
 
 
 - [EncoderLayer](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/transformer.py#:~:text=class%20TransformerEncoderLayer)：继承自 `torch.nn.Layer`，是 Bert 网络中基本模块，由 MultiHeadAttention、FeedForward 组成。后者由 LayerNorm，Dropout，Linear 层和激活函数构成。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ymyjl/docs/torch_migrate/docs/guides/model_convert/pictures/encoder.png" align="middle"  width="500" />
+  <img src="../pictures/encoder.png" align="middle"  width="500" />
 </p>
 
 
@@ -295,14 +295,14 @@ PyTorch 模块通常继承`torch.nn.Module`，飞桨模块通常继承`paddle.nn
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ymyjl/docs/torch_migrate/docs/guides/model_convert/pictures/kqv.png" align="middle"  width="500" />
+  <img src="../pictures/kqv.png" align="middle"  width="500" />
 </p>
 
 
 - [MultiHeadAttention](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/transformer.py#:~:text=class%20MultiHeadAttention)：由 SelfAttention 层和 Softmax 函数构成。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ymyjl/docs/torch_migrate/docs/guides/model_convert/pictures/malti-head.png" align="middle"  width="500" />
+  <img src="../pictures/malti-head.png" align="middle"  width="500" />
 </p>
 
 
