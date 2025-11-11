@@ -265,7 +265,7 @@ def apply_reference_to_row_ex(line, metadata_dict, context, line_idx):
         return [line]
 
 
-def reference_mapping_item_processer(line, line_idx, state, output, context):
+def reference_mapping_item_processor(line, line_idx, state, output, context):
     if not line.startswith("|"):
         output.append(line)
         return True
@@ -365,7 +365,7 @@ if __name__ == "__main__":
 
     # 第二遍正式读，读并处理
     ret_code = reference_mapping_item(
-        mapping_index_file, reference_mapping_item_processer, reference_context
+        mapping_index_file, reference_mapping_item_processor, reference_context
     )
 
     # 检查是否重复出现
