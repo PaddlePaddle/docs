@@ -23,7 +23,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | module        | layers       | 需要通过数据并行方式执行的模型。  |
-| device_ids    | -            | 表示训练在哪几块 GPU 上，Paddle 无此参数，一般对网络训练结果影响不大，需要转写。  |
+| device_ids    | -            | 表示训练在哪几块 GPU 上，Paddle 无此参数，需要转写。  |
 | output_device | -            | 表示结果输出在哪一块 GPU 上，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
 | dim           | -            | 表示哪一维度上的数据进行划分，Paddle 无此参数。暂无转写方式。  |
 | -             | strategy     |  PaddlePaddle 即将废弃参数。 |

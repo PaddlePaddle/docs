@@ -111,8 +111,8 @@ class APIDifferenceValidator:
             ):
                 if pytorch_param != "-":
                     requires_rewrite_params.add(pytorch_param)
-                else:
-                    requires_rewrite_params.add(paddle_param)
+                # else:
+                #     requires_rewrite_params.add(paddle_param)
 
         return requires_rewrite_params, errors
 
