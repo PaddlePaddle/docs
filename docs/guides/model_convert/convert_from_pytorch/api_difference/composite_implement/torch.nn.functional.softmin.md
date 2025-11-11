@@ -12,5 +12,5 @@ Paddle 无此 API，需要组合实现。
 torch.nn.functional.softmin(input, dim=1)
 
 # Paddle 写法
-paddle.nn.functinal.softmax(-input, axis=1)
+paddle.nn.functional.softmax(-input, axis=1)
 ```
