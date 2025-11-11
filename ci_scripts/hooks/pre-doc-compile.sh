@@ -121,38 +121,26 @@ else
     handle_failure
 fi
 
-echo "INFO: Validating API difference format "
-VALIDATION_OUTPUT=$(python "${APIMAPPING_ROOT}/tools/validate_api_difference_format.py" 2>&1)
-VALIDATION_EXIT_CODE=$?
+python "${APIMAPPING_ROOT}/tools/validate_api_difference_format.py"
 
-# Check if validation output contains "100.00%"
-if [[ "$VALIDATION_EXIT_CODE" -eq 0 && "$VALIDATION_OUTPUT" == *"100.00%"* ]]; then
-    echo "INFO: Validation passed successfully (100.00%)"
+# 获取上一条命令的退出状态码
+exit_code=$?
+
+# 根据退出状态码决定后续操作
+if [ $exit_code -eq 0 ]; then
+    echo "API DIFFERENCE FORMAT VALIDATE SUCCESS!"
+    # 在这里继续添加您需要执行的命令
 else
-    echo "ERROR: API difference validation failed. Expected 100.00%, got: '$VALIDATION_OUTPUT'"
+    echo "ERROR: API DIFFERENCE FORMAT VALIDATE FAILURE! error code: $exit_code" >&2
     exit 1
 fi
 
-echo "INFO: Validating PyTorch API mapping with --skip-url-check"
-VALIDATE_CMD="python ${APIMAPPING_ROOT}/tools/validate_pytorch_api_mapping.py --skip-url-check"
-VALIDATION_OUTPUT=$(eval "$VALIDATE_CMD" 2>&1)
-VALIDATION_EXIT_CODE=$?
+python "${APIMAPPING_ROOT}/tools/validate_pytorch_api_mapping.py" --skip-url-check
+exit_code=$?
 
-# Check if script execution failed
-if [ $VALIDATION_EXIT_CODE -ne 0 ]; then
-    echo "ERROR: validate_pytorch_api_mapping.py execution failed with exit code $VALIDATION_EXIT_CODE"
-    echo "ERROR: Script output:"
-    echo "$VALIDATION_OUTPUT"
-    exit 1
+if [ $exit_code -eq 0 ]; then
+    echo "PYTORCH API MAPPING VALIDATE SUCCESS!"
 else
-    # Get last line of output
-    LAST_LINE=$(echo "$VALIDATION_OUTPUT" | tail -n 1)
-
-    # Check if last line matches error string
-    if [ "$LAST_LINE" = "VALIDATE PYTORCH_API_MAPPING ERROR!" ]; then
-        echo "ERROR: Validation detected error: $LAST_LINE"
-        exit 1
-    else
-        echo "INFO: API mapping validation passed successfully"
-    fi
+    echo "ERROR: PYTORCH API MAPPING VALIDATE FAILURE! error code: $exit_code" >&2
+    exit 1
 fi

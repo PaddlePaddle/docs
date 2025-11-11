@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 import re
+import sys
 import traceback
 
 
@@ -798,12 +799,14 @@ def main():
                     print(error)
                     f.write(f"{error}\n")
         print(f"error log saved to: {error_file}")
+        validator.print_results()
+        return 1
     else:
         if os.path.exists(error_file):
             os.remove(error_file)
-
-    validator.print_results()
+        validator.print_results()
+        return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

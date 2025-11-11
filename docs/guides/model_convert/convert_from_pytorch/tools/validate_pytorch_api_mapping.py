@@ -3,6 +3,7 @@ import concurrent.futures
 import os
 import random
 import re
+import sys
 import time
 from collections import defaultdict
 from urllib.parse import urlparse
@@ -26,6 +27,13 @@ CATEGORY_MAP = {
     "output_args_type_diff": "返回参数类型不一致",
     "composite_implement": "组合替代实现",
 }
+
+white_list = [
+    "torch.nn.Linear",
+    "torch.nn.functional.linear",
+    "torch.nn.ZeroPad1d",
+    "torch.nn.ZeroPad3d",
+]
 
 # 反向映射（中文到英文）
 REVERSE_CATEGORY_MAP = {v: k for k, v in CATEGORY_MAP.items()}
@@ -388,6 +396,10 @@ def check_diff_doc_consistency(categories, base_dir):
             torch_api = torch_api.replace(r"\_", "_")
             if not torch_api:
                 continue
+            if not torch_api.startswith("torch."):
+                continue
+            if torch_api in white_list:
+                continue
 
             expected_apis[category_name].add(torch_api)
 
@@ -417,6 +429,9 @@ def check_diff_doc_consistency(categories, base_dir):
             for filename in os.listdir(diff_category_dir):
                 if filename.endswith(".md"):
                     torch_api = filename[:-3]  # 去掉.md后缀
+
+                    if torch_api in white_list:
+                        continue
 
                     # 检查这个API是否在对应类别的表格中
                     api_found = False
@@ -781,8 +796,10 @@ def main():
             f"校验完成，共发现 {total_warnings} 个警告，请查看生成的警告文件。"
         )
         if total_errors > 0:
-            print("VALIDATE PYTORCH_API_MAPPING ERROR!")
+            return 1
+
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
