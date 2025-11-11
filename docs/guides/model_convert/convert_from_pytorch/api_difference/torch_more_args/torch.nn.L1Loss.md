@@ -22,17 +22,64 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction        | reduction            | 表示对输出结果的计算方式。  |
 
 ### 转写示例
-#### size_average、reduce 参数转为 reduction 参数
-```python
-if size_average is None:
-    size_average = True
-if reduce is None:
-    reduce = True
 
-if size_average and reduce:
-    reduction = 'mean'
-elif reduce:
-    reduction = 'sum'
-else:
-    reduction = 'none'
+#### size_average
+size_average 为 True
+```python
+# PyTorch 写法
+torch.nn.L1Loss(size_average=True)
+
+# Paddle 写法
+paddle.nn.L1Loss(reduction='mean')
+```
+
+size_average 为 False
+```python
+# PyTorch 写法
+torch.nn.L1Loss(size_average=False)
+
+# Paddle 写法
+paddle.nn.L1Loss(reduction='sum')
+```
+#### reduce
+reduce 为 True
+```python
+# PyTorch 写法
+torch.nn.L1Loss(size_average=False)
+
+# Paddle 写法
+paddle.nn.L1Loss(reduction='sum')
+```
+reduce 为 False
+```python
+# PyTorch 写法
+torch.nn.L1Loss(reduce=False)
+
+# Paddle 写法
+paddle.nn.L1Loss(reduction='none')
+```
+#### reduction
+reduction 为'none'
+```python
+# PyTorch 写法
+torch.nn.L1Loss(reduction='none')
+
+# Paddle 写法
+paddle.nn.L1Loss(reduction='none')
+```
+reduction 为'mean'
+```python
+# PyTorch 写法
+torch.nn.L1Loss(reduction='mean')
+
+# Paddle 写法
+paddle.nn.L1Loss(reduction='mean')
+```
+reduction 为'sum'
+```python
+# PyTorch 写法
+torch.nn.L1Loss(reduction='sum')
+
+# Paddle 写法
+paddle.nn.L1Loss(reduction='sum')
 ```

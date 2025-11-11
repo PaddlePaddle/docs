@@ -29,60 +29,64 @@ paddle.nn.functional.kl_div(input,
 | log_target   | log_target   | 指定目标是否属于 log 空间。                            |
 
 ### 转写示例
-#### size_average：是否对损失进行平均或求和
+
+#### size_average
+size_average 为 True
 ```python
-# PyTorch 写法 (size_average 为‘True’时)
-torch.nn.functional.kl_div(a, target, size_average=True)
+# PyTorch 写法
+torch.nn.functional.kl_div(size_average=True)
 
 # Paddle 写法
-paddle.nn.functional.kl_div(logit=a, label=target,
-    reduction='mean')
-
-# PyTorch 写法 (size_average 为‘False’时)
-torch.nn.functional.kl_div(a, target, size_average=False)
-
-# Paddle 写法
-paddle.nn.functional.kl_div(logit=a, label=target,
-    reduction='sum')
+paddle.nn.functional.kl_div(reduction='mean')
 ```
 
-#### reduce：是否对损失进行平均或求和
+size_average 为 False
 ```python
-# PyTorch 写法 (reduce 为‘True’时)
-torch.nn.functional.kl_div(a, target, reduce=True)
+# PyTorch 写法
+torch.nn.functional.kl_div(size_average=False)
 
 # Paddle 写法
-paddle.nn.functional.kl_div(logit=a, label=target,
-    reduction='mean')
-
-# PyTorch 写法 (reduce 为‘False’时)
-torch.nn.functional.kl_div(a, target, reduce=False)
-
-# Paddle 写法
-paddle.nn.functional.kl_div(logit=a, label=target,
-    reduction='sum')
+paddle.nn.functional.kl_div(reduction='sum')
 ```
-
-#### reduction：输出结果的计算方式
+#### reduce
+reduce 为 True
 ```python
-# PyTorch 写法 (reduction 为‘none’时)
-torch.nn.functional.kl_div(a, target, reduction='none')
+# PyTorch 写法
+torch.nn.functional.kl_div(size_average=False)
 
 # Paddle 写法
-paddle.nn.functional.kl_div(logit=a, label=target,
-    reduction='none')
-
-# PyTorch 写法 (reduction 为‘mean’时)
-torch.nn.functional.kl_div(a, target, reduction='mean')
-
-# Paddle 写法
-paddle.nn.functional.kl_div(logit=a, label=target,
-    reduction='mean')
-
-# PyTorch 写法 (reduction 为‘sum’时)
-torch.nn.functional.kl_div(a, target, reduction='sum')
+paddle.nn.functional.kl_div(reduction='sum')
+```
+reduce 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.kl_div(reduce=False)
 
 # Paddle 写法
-paddle.nn.functional.kl_div(logit=a, label=target,
-    reduction='sum')
+paddle.nn.functional.kl_div(reduction='none')
+```
+#### reduction
+reduction 为'none'
+```python
+# PyTorch 写法
+torch.nn.functional.kl_div(reduction='none')
+
+# Paddle 写法
+paddle.nn.functional.kl_div(reduction='none')
+```
+reduction 为'mean'
+```python
+# PyTorch 写法
+torch.nn.functional.kl_div(reduction='mean')
+
+# Paddle 写法
+paddle.nn.functional.kl_div(reduction='mean')
+```
+reduction 为'sum'
+```python
+# PyTorch 写法
+torch.nn.functional.kl_div(reduction='sum')
+
+# Paddle 写法
+paddle.nn.functional.kl_div(reduction='sum')
 ```

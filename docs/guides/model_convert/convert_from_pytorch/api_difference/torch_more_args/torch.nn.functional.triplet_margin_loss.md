@@ -43,17 +43,64 @@ paddle.nn.functional.triplet_margin_loss(input,
 | reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'。             |
 
 ### 转写示例
-#### size_average、 reduce 参数转为 Paddle 的 reduction 参数
-```python
-if size_average is None:
-    size_average = True
-if reduce is None:
-    reduce = True
 
-if size_average and reduce:
-    reduction = 'mean'
-elif reduce:
-    reduction = 'sum'
-else:
-    reduction = 'none'
+#### size_average
+size_average 为 True
+```python
+# PyTorch 写法
+torch.nn.functional.triplet_margin_loss(size_average=True)
+
+# Paddle 写法
+paddle.nn.functional.triplet_margin_loss(reduction='mean')
+```
+
+size_average 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.triplet_margin_loss(size_average=False)
+
+# Paddle 写法
+paddle.nn.functional.triplet_margin_loss(reduction='sum')
+```
+#### reduce
+reduce 为 True
+```python
+# PyTorch 写法
+torch.nn.functional.triplet_margin_loss(size_average=False)
+
+# Paddle 写法
+paddle.nn.functional.triplet_margin_loss(reduction='sum')
+```
+reduce 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.triplet_margin_loss(reduce=False)
+
+# Paddle 写法
+paddle.nn.functional.triplet_margin_loss(reduction='none')
+```
+#### reduction
+reduction 为'none'
+```python
+# PyTorch 写法
+torch.nn.functional.triplet_margin_loss(reduction='none')
+
+# Paddle 写法
+paddle.nn.functional.triplet_margin_loss(reduction='none')
+```
+reduction 为'mean'
+```python
+# PyTorch 写法
+torch.nn.functional.triplet_margin_loss(reduction='mean')
+
+# Paddle 写法
+paddle.nn.functional.triplet_margin_loss(reduction='mean')
+```
+reduction 为'sum'
+```python
+# PyTorch 写法
+torch.nn.functional.triplet_margin_loss(reduction='sum')
+
+# Paddle 写法
+paddle.nn.functional.triplet_margin_loss(reduction='sum')
 ```

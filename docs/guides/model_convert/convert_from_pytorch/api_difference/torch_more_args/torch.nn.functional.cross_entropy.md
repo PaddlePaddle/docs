@@ -43,75 +43,64 @@ paddle.nn.functional.cross_entropy(input,
 | -                  | use_softmax | 指定是否对 input 进行 softmax 归一化， PyTorch 无此参数， Paddle 保持默认即可。|
 
 ### 转写示例
+
 #### size_average
 size_average 为 True
-
 ```python
 # PyTorch 写法
-torch.nn.functional.cross_entropy(x,y,size_average=True)
+torch.nn.functional.cross_entropy(size_average=True)
 
 # Paddle 写法
-paddle.nn.functional.cross_entropy(x,y,reduction='mean')
+paddle.nn.functional.cross_entropy(reduction='mean')
 ```
 
 size_average 为 False
-
 ```python
 # PyTorch 写法
-torch.nn.functional.cross_entropy(x,y,size_average=False)
+torch.nn.functional.cross_entropy(size_average=False)
 
 # Paddle 写法
-paddle.nn.functional.cross_entropy(x,y,reduction='sum')
+paddle.nn.functional.cross_entropy(reduction='sum')
 ```
-
 #### reduce
 reduce 为 True
-
 ```python
 # PyTorch 写法
-torch.nn.functional.cross_entropy(x,y,reduce=True)
+torch.nn.functional.cross_entropy(size_average=False)
 
 # Paddle 写法
-paddle.nn.BCEWithLogitsLoss(reduction='mean')
+paddle.nn.functional.cross_entropy(reduction='sum')
 ```
-
 reduce 为 False
-
 ```python
 # PyTorch 写法
-torch.nn.functional.cross_entropy(x,y,reduce=False)
+torch.nn.functional.cross_entropy(reduce=False)
 
 # Paddle 写法
-paddle.nn.BCEWithLogitsLoss(reduction='none')
+paddle.nn.functional.cross_entropy(reduction='none')
 ```
-
 #### reduction
 reduction 为'none'
-
 ```python
 # PyTorch 写法
-torch.nn.functional.cross_entropy(x,y,reduction='none')
+torch.nn.functional.cross_entropy(reduction='none')
 
 # Paddle 写法
-paddle.nn.functional.cross_entropy(x,y,reduction='none')
+paddle.nn.functional.cross_entropy(reduction='none')
 ```
-
 reduction 为'mean'
-
 ```python
 # PyTorch 写法
-torch.nn.functional.cross_entropy(x,y,reduction='mean')
+torch.nn.functional.cross_entropy(reduction='mean')
 
 # Paddle 写法
-paddle.nn.functional.cross_entropy(x,y,reduction='mean')
+paddle.nn.functional.cross_entropy(reduction='mean')
 ```
-
 reduction 为'sum'
-
 ```python
 # PyTorch 写法
-torch.nn.functional.cross_entropy(x,y,reduction='sum')
+torch.nn.functional.cross_entropy(reduction='sum')
 
 # Paddle 写法
-paddle.nn.functional.cross_entropy(x,y,reduction='sum')
+paddle.nn.functional.cross_entropy(reduction='sum')
 ```
