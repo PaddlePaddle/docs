@@ -7,6 +7,7 @@ Unfold
 
 
 PyTorch 兼容的 :ref:`cn_api_paddle_nn_Unfold` 版本：
+
     - 关键字参数使用单数形式（例如：``kernel_size`` 而非 kernel_sizes）
     - ``padding`` 仅支持输入长度为 1（整数）或 2 的列表，禁止使用 Size4 格式。如需更灵活的输入版本，请使用 :ref:`cn_api_paddle_nn_Unfold`
     - 所有输入参数支持 ``Tensor`` 或 ``pir.Value`` 类型（将自动转换为列表）
