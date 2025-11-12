@@ -24,60 +24,64 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | pos_weight    | pos_weight   | 正类的权重。                                              |
 
 ### 转写示例
-#### size_average：是否对损失进行平均或求和
+
+#### size_average
+size_average 为 True
 ```python
-# PyTorch 写法 (size_average 为‘True’时)
-torch.nn.functional.binary_cross_entropy_with_logits(a, target, size_average=True)
+# PyTorch 写法
+torch.nn.functional.binary_cross_entropy_with_logits(size_average=True)
 
 # Paddle 写法
-paddle.nn.functional.binary_cross_entropy_with_logits(logit=a, label=target,
-    reduction='mean')
-
-# PyTorch 写法 (size_average 为‘False’时)
-torch.nn.functional.binary_cross_entropy_with_logits(a, target, size_average=False)
-
-# Paddle 写法
-paddle.nn.functional.binary_cross_entropy_with_logits(logit=a, label=target,
-    reduction='sum')
+paddle.nn.functional.binary_cross_entropy_with_logits(reduction='mean')
 ```
 
-#### reduce：是否对损失进行平均或求和
+size_average 为 False
 ```python
-# PyTorch 写法 (reduce 为‘True’时)
-torch.nn.functional.binary_cross_entropy_with_logits(a, target, reduce=True)
+# PyTorch 写法
+torch.nn.functional.binary_cross_entropy_with_logits(size_average=False)
 
 # Paddle 写法
-paddle.nn.functional.binary_cross_entropy_with_logits(logit=a, label=target,
-    reduction='mean')
-
-# PyTorch 写法 (reduce 为‘False’时)
-torch.nn.functional.binary_cross_entropy_with_logits(a, target, reduce=False)
-
-# Paddle 写法
-paddle.nn.functional.binary_cross_entropy_with_logits(logit=a, label=target,
-    reduction='sum')
+paddle.nn.functional.binary_cross_entropy_with_logits(reduction='sum')
 ```
-
-#### reduction：输出结果的计算方式
+#### reduce
+reduce 为 True
 ```python
-# PyTorch 写法 (reduction 为‘none’时)
-torch.nn.functional.binary_cross_entropy_with_logits(a, target, reduction='none')
+# PyTorch 写法
+torch.nn.functional.binary_cross_entropy_with_logits(size_average=False)
 
 # Paddle 写法
-paddle.nn.functional.binary_cross_entropy_with_logits(logit=a, label=target,
-    reduction='none')
-
-# PyTorch 写法 (reduction 为‘mean’时)
-torch.nn.functional.binary_cross_entropy_with_logits(a, target, reduction='mean')
-
-# Paddle 写法
-paddle.nn.functional.binary_cross_entropy_with_logits(logit=a, label=target,
-    reduction='mean')
-
-# PyTorch 写法 (reduction 为‘sum’时)
-torch.nn.functional.binary_cross_entropy_with_logits(a, target, reduction='sum')
+paddle.nn.functional.binary_cross_entropy_with_logits(reduction='sum')
+```
+reduce 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.binary_cross_entropy_with_logits(reduce=False)
 
 # Paddle 写法
-paddle.nn.functional.binary_cross_entropy_with_logits(logit=a, label=target,
-    reduction='sum')
+paddle.nn.functional.binary_cross_entropy_with_logits(reduction='none')
+```
+#### reduction
+reduction 为'none'
+```python
+# PyTorch 写法
+torch.nn.functional.binary_cross_entropy_with_logits(reduction='none')
+
+# Paddle 写法
+paddle.nn.functional.binary_cross_entropy_with_logits(reduction='none')
+```
+reduction 为'mean'
+```python
+# PyTorch 写法
+torch.nn.functional.binary_cross_entropy_with_logits(reduction='mean')
+
+# Paddle 写法
+paddle.nn.functional.binary_cross_entropy_with_logits(reduction='mean')
+```
+reduction 为'sum'
+```python
+# PyTorch 写法
+torch.nn.functional.binary_cross_entropy_with_logits(reduction='sum')
+
+# Paddle 写法
+paddle.nn.functional.binary_cross_entropy_with_logits(reduction='sum')
 ```

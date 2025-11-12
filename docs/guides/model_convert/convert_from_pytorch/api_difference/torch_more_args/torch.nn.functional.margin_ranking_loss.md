@@ -29,23 +29,69 @@ paddle.nn.functional.margin_ranking_loss(input,
 | input2          | other         | 表示第二个输入的 Tensor ，仅参数名不一致。                                     |
 | target          | label         | 表示训练数据的标签 Tensor ，仅参数名不一致。                                     |
 | margin          | margin         | 表示用于加和的 margin 值 。                                     |
-| size_average          | -         | 已弃用 。                                     |
-| reduce          | -         | 已弃用 。                                     |
+| size_average          | -         | 已弃用 。需要转写。                                     |
+| reduce          | -         | 已弃用 。需要转写。                                     |
 | reduction          | reduction         | 表示应用于输出结果的计算方式 。                                     |
 
 ### 转写示例
-#### size_average
-```python
-# PyTorch 的 size_average、 reduce 参数转为 Paddle 的 reduction 参数
-if size_average is None:
-    size_average = True
-if reduce is None:
-    reduce = True
 
-if size_average and reduce:
-    reduction = 'mean'
-elif reduce:
-    reduction = 'sum'
-else:
-    reduction = 'none'
+#### size_average
+size_average 为 True
+```python
+# PyTorch 写法
+torch.nn.functional.margin_ranking_loss(size_average=True)
+
+# Paddle 写法
+paddle.nn.functional.margin_ranking_loss(reduction='mean')
+```
+
+size_average 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.margin_ranking_loss(size_average=False)
+
+# Paddle 写法
+paddle.nn.functional.margin_ranking_loss(reduction='sum')
+```
+#### reduce
+reduce 为 True
+```python
+# PyTorch 写法
+torch.nn.functional.margin_ranking_loss(size_average=False)
+
+# Paddle 写法
+paddle.nn.functional.margin_ranking_loss(reduction='sum')
+```
+reduce 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.margin_ranking_loss(reduce=False)
+
+# Paddle 写法
+paddle.nn.functional.margin_ranking_loss(reduction='none')
+```
+#### reduction
+reduction 为'none'
+```python
+# PyTorch 写法
+torch.nn.functional.margin_ranking_loss(reduction='none')
+
+# Paddle 写法
+paddle.nn.functional.margin_ranking_loss(reduction='none')
+```
+reduction 为'mean'
+```python
+# PyTorch 写法
+torch.nn.functional.margin_ranking_loss(reduction='mean')
+
+# Paddle 写法
+paddle.nn.functional.margin_ranking_loss(reduction='mean')
+```
+reduction 为'sum'
+```python
+# PyTorch 写法
+torch.nn.functional.margin_ranking_loss(reduction='sum')
+
+# Paddle 写法
+paddle.nn.functional.margin_ranking_loss(reduction='sum')
 ```

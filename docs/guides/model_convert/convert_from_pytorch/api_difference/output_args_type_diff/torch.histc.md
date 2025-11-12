@@ -23,7 +23,7 @@ paddle.histogram(input, bins=100, min=0, max=0, name=None)
 | 返回值     | 返回值           | 表示返回值，PyTorch 的返回值类型为 float32，Paddle 的返回值类型为 int64 ， 需要转写。 |
 
 ### 转写示例
-#### out：指定输出
+#### out：指定输出、返回值类型转换
 ```python
 # PyTorch 写法
 torch.histc(x, out=y)

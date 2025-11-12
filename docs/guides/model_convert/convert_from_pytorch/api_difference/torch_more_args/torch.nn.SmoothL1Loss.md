@@ -27,6 +27,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | -          | is_huber         | 控制 huber_loss 与 smooth_l1_loss 的开关，Paddle 需设置为 False 。                    |
 
 ### 转写示例
+
 #### size_average
 size_average 为 True
 ```python
@@ -45,17 +46,15 @@ torch.nn.SmoothL1Loss(size_average=False)
 # Paddle 写法
 paddle.nn.SmoothL1Loss(reduction='sum')
 ```
-
 #### reduce
 reduce 为 True
 ```python
 # PyTorch 写法
-torch.nn.SmoothL1Loss(reduce=True)
+torch.nn.SmoothL1Loss(size_average=False)
 
 # Paddle 写法
-paddle.nn.SmoothL1Loss(reduction='mean')
+paddle.nn.SmoothL1Loss(reduction='sum')
 ```
-
 reduce 为 False
 ```python
 # PyTorch 写法
@@ -64,7 +63,6 @@ torch.nn.SmoothL1Loss(reduce=False)
 # Paddle 写法
 paddle.nn.SmoothL1Loss(reduction='none')
 ```
-
 #### reduction
 reduction 为'none'
 ```python
@@ -74,7 +72,6 @@ torch.nn.SmoothL1Loss(reduction='none')
 # Paddle 写法
 paddle.nn.SmoothL1Loss(reduction='none')
 ```
-
 reduction 为'mean'
 ```python
 # PyTorch 写法
@@ -83,7 +80,6 @@ torch.nn.SmoothL1Loss(reduction='mean')
 # Paddle 写法
 paddle.nn.SmoothL1Loss(reduction='mean')
 ```
-
 reduction 为'sum'
 ```python
 # PyTorch 写法
@@ -91,16 +87,4 @@ torch.nn.SmoothL1Loss(reduction='sum')
 
 # Paddle 写法
 paddle.nn.SmoothL1Loss(reduction='sum')
-```
-
-#### beta
-```python
-# PyTorch 的 beta 参数转化为 delta 参数
-beta=0.8
-
-# PyTorch 写法
-torch.nn.SmoothL1Loss(beta=beta)
-
-# Paddle 写法
-paddle.nn.SmoothL1Loss(delta=beta, is_huber=False)
 ```

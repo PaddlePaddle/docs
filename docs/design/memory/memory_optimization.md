@@ -53,7 +53,7 @@ In compilers, the front end of the compiler translates programs into an intermed
 
 Therefore, the compiler needs to analyze the intermediate-representation program to determine which temporary variables are in use at the same time. We say a variable is "live" if it holds a value that may be needed in the future, so this analysis is called liveness analysis.
 
-We can leran these techniques from compilers. There are mainly two stages to make live variable analysis:
+We can learn these techniques from compilers. There are mainly two stages to make live variable analysis:
 
 - construct a control flow graph
 - solve the dataflow equations

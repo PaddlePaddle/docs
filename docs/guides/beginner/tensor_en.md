@@ -514,7 +514,7 @@ Note that no copies happened while broadcasting.
 
 In PaddlePaddle, tensors are broadcastable when following rulrs hold(ref [Numpy Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting)):
 
-1. there should be at least one dimention in each tensor
+1. there should be at least one dimension in each tensor
 2. when comparing their shapes element-wise from backward to forward, two dimensions are compatible when
    they are equal, or one of them is 1, or one of them does not exist.
 
@@ -532,10 +532,10 @@ x = paddle.ones((2, 3, 1, 5))
 y = paddle.ones((3, 4, 1))
 
 # compare from backward to forward：
-# 1st step：y's dimention is 1
-# 2nd step：x's dimention is 1
-# 3rd step：two dimentions are the same
-# 4st step：y's dimention does not exist
+# 1st step：y's dimension is 1
+# 2nd step：x's dimension is 1
+# 3rd step：two dimensions are the same
+# 4st step：y's dimension does not exist
 # So, x and y are broadcastable
 z = x + y
 print(z.shape)
@@ -544,7 +544,7 @@ print(z.shape)
 # In Compare
 x = paddle.ones((2, 3, 4))
 y = paddle.ones((2, 3, 6))
-# x and y are not broadcastable because in first step form tail, x's dimention 4 is not equal to y's dimention 6
+# x and y are not broadcastable because in first step form tail, x's dimension 4 is not equal to y's dimension 6
 # z = x, y
 # ValueError: (InvalidArgument) Broadcast dimension mismatch.
 ```

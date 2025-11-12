@@ -36,68 +36,64 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | -             | axis       | 进行 softmax 计算的维度索引，PyTorch 无此参数，Paddle 保持默认即可。   |
 
 ### 转写示例
+
 #### size_average
 size_average 为 True
 ```python
 # PyTorch 写法
-torch.nn.CrossEntropyLoss(weight=w, size_average=True)
+torch.nn.CrossEntropyLoss(size_average=True)
 
 # Paddle 写法
-paddle.nn.CrossEntropyLoss(weight=w, reduction='mean')
+paddle.nn.CrossEntropyLoss(reduction='mean')
 ```
 
 size_average 为 False
 ```python
 # PyTorch 写法
-torch.nn.CrossEntropyLoss(weight=w, size_average=False)
+torch.nn.CrossEntropyLoss(size_average=False)
 
 # Paddle 写法
-paddle.nn.CrossEntropyLoss(weight=w, reduction='sum')
+paddle.nn.CrossEntropyLoss(reduction='sum')
 ```
-
 #### reduce
 reduce 为 True
 ```python
 # PyTorch 写法
-torch.nn.CrossEntropyLoss(weight=w, reduce=True)
+torch.nn.CrossEntropyLoss(size_average=False)
 
 # Paddle 写法
-paddle.nn.CrossEntropyLoss(weight=w, reduction='mean')
+paddle.nn.CrossEntropyLoss(reduction='sum')
 ```
-
 reduce 为 False
 ```python
 # PyTorch 写法
-torch.nn.CrossEntropyLoss(weight=w, reduce=False)
+torch.nn.CrossEntropyLoss(reduce=False)
 
 # Paddle 写法
-paddle.nn.CrossEntropyLoss(weight=w, reduction='none')
+paddle.nn.CrossEntropyLoss(reduction='none')
 ```
-
 #### reduction
 reduction 为'none'
 ```python
 # PyTorch 写法
-torch.nn.CrossEntropyLoss(weight=w, reduction='none')
+torch.nn.CrossEntropyLoss(reduction='none')
 
 # Paddle 写法
-paddle.nn.CrossEntropyLoss(weight=w, reduction='none')
+paddle.nn.CrossEntropyLoss(reduction='none')
 ```
-
 reduction 为'mean'
 ```python
 # PyTorch 写法
-torch.nn.CrossEntropyLoss(weight=w, reduction='mean')
+torch.nn.CrossEntropyLoss(reduction='mean')
 
 # Paddle 写法
-paddle.nn.CrossEntropyLoss(weight=w, reduction='mean')
+paddle.nn.CrossEntropyLoss(reduction='mean')
 ```
-
 reduction 为'sum'
 ```python
 # PyTorch 写法
-torch.nn.CrossEntropyLoss(weight=w, reduction='sum')
+torch.nn.CrossEntropyLoss(reduction='sum')
 
 # Paddle 写法
-paddle.nn.CrossEntropyLoss(weight=w, reduction='sum')
+paddle.nn.CrossEntropyLoss(reduction='sum')
 ```

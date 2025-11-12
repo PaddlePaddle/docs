@@ -19,7 +19,7 @@ paddle.set_rng_state(state_list, device='gpu')
 | -          | device       | 返回随机数生成器状态的设备，Paddle 取值 gpu。                                                           |
 
 ### 转写示例
-#### 参数类型不同
+#### new_states 参数
 ```python
 # PyTorch 写法
 x = torch.cuda.get_rng_state_all()

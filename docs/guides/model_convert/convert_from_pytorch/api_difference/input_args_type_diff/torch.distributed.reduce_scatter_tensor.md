@@ -35,3 +35,11 @@ else:
     input_list = paddle.split(input, num_or_sections=world_size, axis=0)
 paddle.distributed.reduce_scatter(output, input_list)
 ```
+#### async_op 参数：异步操作
+```python
+# PyTorch 写法:
+torch.distributed.reduce_scatter_tensor(output, input, async_op=True)
+
+# Paddle 写法:
+paddle.distributed.reduce_scatter(output, input_list, sync_op=False)
+```

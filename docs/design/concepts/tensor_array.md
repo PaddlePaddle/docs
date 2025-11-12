@@ -218,7 +218,7 @@ Since each step of RNN can only take a tensor-represented batch of data as input
 some preprocess should be taken on the inputs such as sorting the sentences by their length in descending order and cut each word and pack to new batches.
 
 Such cut-like operations can be embedded into `TensorArray` as general methods called `unpack` and `pack`,
-these two operations are similar to `stack` and `unstack` except that they operate on variable-length sequences formated as a LoD tensor rather than a tensor.
+these two operations are similar to `stack` and `unstack` except that they operate on variable-length sequences formatted as a LoD tensor rather than a tensor.
 
 Some definitions are like
 

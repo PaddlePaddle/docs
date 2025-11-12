@@ -3,7 +3,7 @@
 ## Introduction
 
 A Channel is a data structure that allows for synchronous interprocess
-communication via message passing.  It is a fundemental component of CSP
+communication via message passing.  It is a fundamental component of CSP
 (communicating sequential processes), and allows for users to pass data
 between threads without having to worry about synchronization.
 

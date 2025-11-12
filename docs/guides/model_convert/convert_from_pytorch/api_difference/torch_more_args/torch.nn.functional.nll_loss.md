@@ -25,26 +25,73 @@ paddle.nn.functional.nll_loss(input,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input          | input         | 输入 Tensor                                     |
-| target          | label         | 输入 Tensor 对应的标签值,仅参数名不一致。            |
-| size_average          | -         | 已弃用                                      |
-| weight          | weight  | 手动指定每个类别的权重                          |
-| ignore_index          | ignore_index  |  指定一个忽略的标签值，此标签值不参与计算                   |
-| reduce          | -         | 已弃用                                     |
-| reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'                         |
+| input          | input         | 输入 Tensor。                                     |
+| target          | label         | 输入 Tensor 对应的标签值,仅参数名不一致。        |
+| size_average          | -         | 已弃用，需要转写。                                      |
+| weight          | weight  | 手动指定每个类别的权重。                          |
+| ignore_index          | ignore_index  |  指定一个忽略的标签值，此标签值不参与计算。                   |
+| reduce          | -         | 已弃用，需要转写。                                     |
+| reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'。                         |
 
 ### 转写示例
-```python
-# PyTorch 的 size_average、 reduce 参数转为 Paddle 的 reduction 参数
-if size_average is None:
-    size_average = True
-if reduce is None:
-    reduce = True
 
-if size_average and reduce:
-    reduction = 'mean'
-elif reduce:
-    reduction = 'sum'
-else:
-    reduction = 'none'
+#### size_average
+size_average 为 True
+```python
+# PyTorch 写法
+torch.nn.functional.nll_loss(size_average=True)
+
+# Paddle 写法
+paddle.nn.functional.nll_loss(reduction='mean')
+```
+
+size_average 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.nll_loss(size_average=False)
+
+# Paddle 写法
+paddle.nn.functional.nll_loss(reduction='sum')
+```
+#### reduce
+reduce 为 True
+```python
+# PyTorch 写法
+torch.nn.functional.nll_loss(size_average=False)
+
+# Paddle 写法
+paddle.nn.functional.nll_loss(reduction='sum')
+```
+reduce 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.nll_loss(reduce=False)
+
+# Paddle 写法
+paddle.nn.functional.nll_loss(reduction='none')
+```
+#### reduction
+reduction 为'none'
+```python
+# PyTorch 写法
+torch.nn.functional.nll_loss(reduction='none')
+
+# Paddle 写法
+paddle.nn.functional.nll_loss(reduction='none')
+```
+reduction 为'mean'
+```python
+# PyTorch 写法
+torch.nn.functional.nll_loss(reduction='mean')
+
+# Paddle 写法
+paddle.nn.functional.nll_loss(reduction='mean')
+```
+reduction 为'sum'
+```python
+# PyTorch 写法
+torch.nn.functional.nll_loss(reduction='sum')
+
+# Paddle 写法
+paddle.nn.functional.nll_loss(reduction='sum')
 ```

@@ -20,4 +20,4 @@ paddle 参数和 torch 参数完全一致，具体如下：
 | ----------- | ------------ | -------------------------------------- |
 | parameters  | parameters  | 需要参与梯度裁剪的一个 Tensor 或者多个 Tensor。 |
 | clip_value  | clip_value  | 裁剪的指定值（非负数）。 |
-| foreach     | -           | 是否使用优化器的 foreach 实现。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除                                         |
+| foreach     | -           | 是否使用优化器的 foreach 实现。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                                         |

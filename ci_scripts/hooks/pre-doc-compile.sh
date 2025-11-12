@@ -120,3 +120,27 @@ else
     echo "ERROR: Generated API mapping file not found at $GENERATED_FILE"
     handle_failure
 fi
+
+python "${APIMAPPING_ROOT}/tools/validate_api_difference_format.py"
+
+# 获取上一条命令的退出状态码
+exit_code=$?
+
+# 根据退出状态码决定后续操作
+if [ $exit_code -eq 0 ]; then
+    echo "API DIFFERENCE FORMAT VALIDATE SUCCESS!"
+    # 在这里继续添加您需要执行的命令
+else
+    echo "ERROR: API DIFFERENCE FORMAT VALIDATE FAILURE! error code: $exit_code" >&2
+    exit 1
+fi
+
+python "${APIMAPPING_ROOT}/tools/validate_pytorch_api_mapping.py" --skip-url-check
+exit_code=$?
+
+if [ $exit_code -eq 0 ]; then
+    echo "PYTORCH API MAPPING VALIDATE SUCCESS!"
+else
+    echo "ERROR: PYTORCH API MAPPING VALIDATE FAILURE! error code: $exit_code" >&2
+    exit 1
+fi

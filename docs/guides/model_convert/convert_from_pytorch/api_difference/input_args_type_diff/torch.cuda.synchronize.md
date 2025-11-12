@@ -15,7 +15,7 @@ paddle.device.synchronize(device)
 
 | PyTorch       | PaddlePaddle | 备注                                                                    |
 | ------------- | ------------ |-----------------------------------------------------------------------|
-| device        | device            | PyTorch 支持 torch.device 和 int。 PaddlePaddle 支持 paddle.CUDAPlace、int 、str，需要转写 |
+| device        | device            | PyTorch 支持 torch.device 和 int。 PaddlePaddle 支持 paddle.CUDAPlace、int 、str，需要转写。 |
 
 ### 转写示例
 #### device: 特定的运行设备

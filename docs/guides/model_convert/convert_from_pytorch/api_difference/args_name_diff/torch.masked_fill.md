@@ -16,5 +16,5 @@ paddle.masked_fill(x, mask, value, name=None)
 | PyTorch | PaddlePaddle | 备注                            |
 | ------- | ------------ | ------------------------------- |
 | input   | x            | 输入的 Tensor，仅参数名不一致。 |
-| mask    | mask         | 布尔张量，表示要填充的位置      |
-| value   | value        | 用于填充目标张量的值            |
+| mask    | mask         | 布尔张量，表示要填充的位置。      |
+| value   | value        | 用于填充目标张量的值。            |

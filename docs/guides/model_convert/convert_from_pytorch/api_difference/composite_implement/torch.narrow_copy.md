@@ -7,7 +7,7 @@ torch.narrow_copy(input, dim, start, length, *, out=None)
 Paddle 目前无此 API，需要组合替代实现
 
 ### 转写示例
-``` python
+```python
 # PyTorch 写法：
 torch.narrow_copy(x, 0, 1, 2)
 

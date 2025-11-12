@@ -3,13 +3,13 @@ import concurrent.futures
 import os
 import random
 import re
+import sys
 import time
 from collections import defaultdict
 from urllib.parse import urlparse
 
 import requests
 from requests.adapters import HTTPAdapter
-from tqdm import tqdm  # 用于显示进度条
 from urllib3.util.retry import Retry
 
 # 默认文件路径
@@ -27,6 +27,13 @@ CATEGORY_MAP = {
     "output_args_type_diff": "返回参数类型不一致",
     "composite_implement": "组合替代实现",
 }
+
+white_list = [
+    "torch.nn.Linear",
+    "torch.nn.functional.linear",
+    "torch.nn.ZeroPad1d",
+    "torch.nn.ZeroPad3d",
+]
 
 # 反向映射（中文到英文）
 REVERSE_CATEGORY_MAP = {v: k for k, v in CATEGORY_MAP.items()}
@@ -389,6 +396,10 @@ def check_diff_doc_consistency(categories, base_dir):
             torch_api = torch_api.replace(r"\_", "_")
             if not torch_api:
                 continue
+            if not torch_api.startswith("torch."):
+                continue
+            if torch_api in white_list:
+                continue
 
             expected_apis[category_name].add(torch_api)
 
@@ -418,6 +429,9 @@ def check_diff_doc_consistency(categories, base_dir):
             for filename in os.listdir(diff_category_dir):
                 if filename.endswith(".md"):
                     torch_api = filename[:-3]  # 去掉.md后缀
+
+                    if torch_api in white_list:
+                        continue
 
                     # 检查这个API是否在对应类别的表格中
                     api_found = False
@@ -608,12 +622,10 @@ def check_urls_exist(urls_with_context, max_workers=10):
         f"开始使用多线程检查 {total_urls} 个URL的存在性（线程数：{max_workers}）..."
     )
 
-    with (
-        tqdm(total=total_urls, desc="检查URL") as pbar,
-        concurrent.futures.ThreadPoolExecutor(
-            max_workers=max_workers
-        ) as executor,
-    ):
+    processed = 0
+    with concurrent.futures.ThreadPoolExecutor(
+        max_workers=max_workers
+    ) as executor:
         # 为每个线程创建一个会话
         sessions = [create_session() for _ in range(max_workers)]
 
@@ -629,8 +641,14 @@ def check_urls_exist(urls_with_context, max_workers=10):
         for future in concurrent.futures.as_completed(future_to_url):
             result = future.result()
 
-            # 更新进度条
-            pbar.update(1)
+            # 更新进度计数
+            processed += 1
+            if processed % 10 == 0 or processed == len(urls_with_context):
+                print(
+                    f"\r检查URL进度: {processed}/{len(urls_with_context)}",
+                    end="",
+                    flush=True,
+                )
 
             # 如果不是200状态码，则添加到警告列表
             if result["status"] != "ok":
@@ -647,7 +665,8 @@ def check_urls_exist(urls_with_context, max_workers=10):
     for session in sessions:
         session.close()
 
-    print(f"URL检查完成，发现 {len(warnings)} 个问题")
+    # 打印最终进度
+    print(f"\r检查URL完成，发现 {len(warnings)} 个问题")
     return warnings
 
 
@@ -709,11 +728,21 @@ def main():
     # 执行基本校验
     toc_warnings = check_toc_consistency(toc, categories)
     unique_warnings = check_unique_torch_apis(categories)
-    link_warnings = check_links_exist(categories)
     mapping_category_warnings = check_mapping_category_consistency(categories)
     diff_doc_warnings = check_diff_doc_consistency(categories, base_dir)
 
-    # 输出警告到文件
+    # 初始化 link_warnings 和 url_warnings（在 skip-url-check 时跳过）
+    link_warnings = []
+    url_warnings = []
+    if not args.skip_url_check:
+        link_warnings = check_links_exist(categories)
+        urls_with_context = extract_all_urls(categories)
+        print(f"找到 {len(urls_with_context)} 个URL需要检查")
+        url_warnings = check_urls_exist(
+            urls_with_context, max(os.cpu_count() - 4, 1)
+        )
+
+    # 输出警告到文件和标准输出
     warning_files = [
         ("toc_warnings.txt", "目录一致性校验警告:", toc_warnings),
         ("unique_warnings.txt", "Torch API 唯一性校验警告:", unique_warnings),
@@ -728,42 +757,37 @@ def main():
 
     for filename, description, warnings in warning_files:
         if warnings:
+            # 同时输出到标准输出和文件
+            print(f"\n{description}")
+            for warning in warnings:
+                print(warning)
+
             output_path = os.path.join(tools_dir, filename)
             with open(output_path, "w", encoding="utf-8") as f:
                 f.write(f"{description}\n")
                 f.writelines(warning + "\n" for warning in warnings)
-            print(f"生成 {output_path}，包含 {len(warnings)} 个警告")
+            # print(f"生成 {output_path}，包含 {len(warnings)} 个警告")
 
-    # 执行URL存在性检查（除非明确跳过）
-    url_warnings = []
-    if not args.skip_url_check:
-        # 提取所有URL
-        urls_with_context = extract_all_urls(categories)
-        print(f"找到 {len(urls_with_context)} 个URL需要检查")
+    # 处理 URL 警告（单独处理，因为不在 warning_files 中）
+    if url_warnings:
+        print("\nURL存在性校验警告:")
+        for warning in url_warnings:
+            print(warning)
+        output_path = os.path.join(tools_dir, "url_warnings.txt")
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write("URL存在性校验警告:\n")
+            f.writelines(warning + "\n" for warning in url_warnings)
+        print(f"生成 {output_path}，包含 {len(url_warnings)} 个警告")
 
-        # 检查URL存在性（使用多线程）
-        url_warnings = check_urls_exist(
-            urls_with_context, max(os.cpu_count() - 4, 1)
-        )
-
-        if url_warnings:
-            output_path = os.path.join(tools_dir, "url_warnings.txt")
-            with open(output_path, "w", encoding="utf-8") as f:
-                f.write("URL存在性校验警告:\n")
-                f.writelines(warning + "\n" for warning in url_warnings)
-            print(f"生成 {output_path}，包含 {len(url_warnings)} 个警告")
-    else:
-        print("跳过URL存在性检查")
-
-    # 汇总统计
-    total_warnings = (
+    # 汇总统计（不包括 diff_doc_warnings，因为它是警告不是错误）
+    total_errors = (
         len(toc_warnings)
         + len(unique_warnings)
         + len(link_warnings)
         + len(mapping_category_warnings)
-        + len(diff_doc_warnings)
         + len(url_warnings)
     )
+    total_warnings = total_errors + len(diff_doc_warnings)
 
     if total_warnings == 0:
         print("所有校验通过，没有发现警告!")
@@ -771,7 +795,11 @@ def main():
         print(
             f"校验完成，共发现 {total_warnings} 个警告，请查看生成的警告文件。"
         )
+        if total_errors > 0:
+            return 1
+
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

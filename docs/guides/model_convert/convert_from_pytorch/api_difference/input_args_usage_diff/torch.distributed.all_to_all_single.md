@@ -20,7 +20,7 @@ paddle.distributed.alltoall_single(out_tensor, in_tensor, in_split_sizes=None, o
 | output_split_sizes              | out_split_sizes           | 对输出 Tensor 的 dim[0] 进行切分的大小，仅参数名不一致。 |
 | input_split_sizes           | in_split_sizes         | 对输入 Tensor 的 dim[0] 进行切分的大小，仅参数名不一致。  |
 | group              | group           | new_group 返回的 Group 实例，或者设置为 None 表示默认地全局组。 |
-| async_op           | sync_op         | torch 为是否异步操作，Paddle 为是否同步操作，转写方式取反即可。 |
+| async_op           | sync_op         | torch 为是否异步操作，Paddle 为是否同步操作，需要转写，转写方式取反即可。 |
 
 
 ### 转写示例

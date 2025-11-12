@@ -26,4 +26,4 @@ paddle 参数和 torch 参数完全一致，具体如下：
 | max_norm    | max_norm    | 梯度的最大范数。 |
 | norm_type   | norm_type   | 所用 p-范数类型。可以是无穷范数的`inf`。 |
 | error_if_nonfinite | error_if_nonfinite  | 如果为 True，且如果来自：attr:parameters`的梯度的总范数为`nan、inf`或-inf`，则抛出错误。 |
-| foreach     | -           | 是否使用优化器的 foreach 实现。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除                                         |
+| foreach     | -           | 是否使用优化器的 foreach 实现。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                                         |
