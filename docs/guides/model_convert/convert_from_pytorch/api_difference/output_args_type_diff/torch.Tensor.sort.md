@@ -9,7 +9,7 @@ torch.Tensor.sort(dim=-1, descending=False, stable=False)
 paddle.Tensor.sort(axis=-1, descending=False, stable=False)
 ```
 
-两者功能一致但返回参数类型不同，具体如下：
+两者功能一致但返回参数类型不同，PyTorch 返回 (Tensor, LongTensor)，Paddle 返回 Tensor 。具体如下：
 
 ### 参数映射
 
@@ -19,8 +19,6 @@ paddle.Tensor.sort(axis=-1, descending=False, stable=False)
 | descending    | descending   | 指定算法排序的方向, 参数完全一致。     |
 | stable        | stable       | 是否使用稳定排序。  |
 | 返回值        | 返回值        | 表示以(Tensor, LongTensor)输出的元组，含义是排序后的返回值和对应元素索引。Paddle 无此参数，若返回排序后的元素，需要转写；若需要返回元素和元素索引，需要结合 argsort 进行转写。      |
-
-注：PyTorch 返回 (Tensor, LongTensor)，Paddle 返回 Tensor 。
 
 ### 转写示例
 #### 返回值

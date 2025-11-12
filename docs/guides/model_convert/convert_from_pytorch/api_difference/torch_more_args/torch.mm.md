@@ -20,7 +20,7 @@ PyTorch 相比 Paddle 支持更多其他参数，Paddle 多余参数保持默认
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | input            | 表示输入的第一个 Tensor。               |
 | mat2          | mat2            | 表示输入的第二个 Tensor。             |
-| <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要转写。    |
+|  out  | -  | 表示输出的 Tensor ， Paddle 无此参数，需要转写。    |
 
 
 ### 转写示例

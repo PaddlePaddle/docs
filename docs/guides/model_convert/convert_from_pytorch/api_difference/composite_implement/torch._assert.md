@@ -9,8 +9,8 @@ Paddle 无此 API，需要组合实现。
 ### 转写示例
 ```python
 # PyTorch 写法
-torch._assert(condition=1==2, message='error messege')
+torch._assert(condition=1==2, message='error message')
 
 # Paddle 写法
-assert 1==2, 'error messege'
+assert 1==2, 'error message'
 ```

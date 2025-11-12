@@ -218,7 +218,7 @@ for more details.
 
 #### Green Threads
 
-Golang utilizes `green threads`, which is a mechnism for the runtime library to
+Golang utilizes `green threads`, which is a mechanism for the runtime library to
 manage multiple threads (instead of natively by the OS).  Green threads usually
 allows for faster thread creation and switching, as there is less overhead
 when spawning these threads.  For the first version of CSP, we only support

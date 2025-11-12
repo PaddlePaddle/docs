@@ -24,20 +24,10 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | check_invariants | -             | 是否检查稀疏 Tensor 变量，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 
 ### 转写示例
+#### requires_grad 参数
 ```python
-# PyTorch 写法
-import torch
-
-indices = [[0, 1, 2], [1, 2, 0]]
-values = [1.0, 2.0, 3.0]
-dense_shape = [3, 3]
 coo = torch.sparse_coo_tensor(indices, values, dense_shape，requires_grad=False)
 
 # Paddle 写法
-import paddle
-
-indices = [[0, 1, 2], [1, 2, 0]]
-values = [1.0, 2.0, 3.0]
-dense_shape = [3, 3]
 coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape，stop_gradient=True)
 ```

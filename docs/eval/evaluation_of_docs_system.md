@@ -271,7 +271,7 @@ TensorFlow 的文档规划，比较直接地匹配了本文所介绍的分类标
     - Training Transformer models using Pipeline Parallelism
     - Training Transformer models using Distributed Data Parallel and Pipeline Parallelism
     - Distributed Training with Uneven Inputs Using the Join Context Manager
-- Moible
+- Mobile
     - Image Segmentation DeepLabV3 on iOS
     - Image Segmentation DeepLabV3 on Android
 - Recommendation Systems

@@ -26,75 +26,64 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction    | reduction    | 表示应用于输出结果的计算方式。               |
 
 ### 转写示例
+
 #### size_average
 size_average 为 True
-
 ```python
 # PyTorch 写法
-torch.nn.MarginRankingLoss(weight=w, size_average=True)
+torch.nn.MarginRankingLoss(size_average=True)
 
 # Paddle 写法
-paddle.nn.MarginRankingLoss(weight=w, reduction='mean')
+paddle.nn.MarginRankingLoss(reduction='mean')
 ```
 
 size_average 为 False
-
 ```python
 # PyTorch 写法
-torch.nn.MarginRankingLoss(weight=w, size_average=False)
+torch.nn.MarginRankingLoss(size_average=False)
 
 # Paddle 写法
-paddle.nn.MarginRankingLoss(weight=w, reduction='sum')
+paddle.nn.MarginRankingLoss(reduction='sum')
 ```
-
 #### reduce
 reduce 为 True
-
 ```python
 # PyTorch 写法
-torch.nn.MarginRankingLoss(weight=w, reduce=True)
+torch.nn.MarginRankingLoss(size_average=False)
 
 # Paddle 写法
-paddle.nn.MarginRankingLoss(weight=w, reduction='mean')
+paddle.nn.MarginRankingLoss(reduction='sum')
 ```
-
 reduce 为 False
-
 ```python
 # PyTorch 写法
-torch.nn.MarginRankingLoss(weight=w, reduce=False)
+torch.nn.MarginRankingLoss(reduce=False)
 
 # Paddle 写法
-paddle.nn.MarginRankingLoss(weight=w, reduction='none')
+paddle.nn.MarginRankingLoss(reduction='none')
 ```
-
 #### reduction
 reduction 为'none'
-
 ```python
 # PyTorch 写法
-torch.nn.MarginRankingLoss(weight=w, reduction='none')
+torch.nn.MarginRankingLoss(reduction='none')
 
 # Paddle 写法
-paddle.nn.MarginRankingLoss(weight=w, reduction='none')
+paddle.nn.MarginRankingLoss(reduction='none')
 ```
-
 reduction 为'mean'
-
 ```python
 # PyTorch 写法
-torch.nn.MarginRankingLoss(weight=w, reduction='mean')
+torch.nn.MarginRankingLoss(reduction='mean')
 
 # Paddle 写法
-paddle.nn.MarginRankingLoss(weight=w, reduction='mean')
+paddle.nn.MarginRankingLoss(reduction='mean')
 ```
-
 reduction 为'sum'
-
 ```python
 # PyTorch 写法
-torch.nn.MarginRankingLoss(weight=w, reduction='sum')
+torch.nn.MarginRankingLoss(reduction='sum')
 
 # Paddle 写法
-paddle.nn.MarginRankingLoss(weight=w, reduction='sum')
+paddle.nn.MarginRankingLoss(reduction='sum')
 ```

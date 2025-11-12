@@ -17,6 +17,7 @@ paddlenlp.transformers.PreTrainedModel.generate(input_ids, **kwargs)
 | 返回值         | 返回值        | PyTorch 返回类型为 Tensor，由 input 和生成的 ids(Tensor) 拼接而成，Paddle 返回类型为 tuple，由生成的 ids(Tensor) 和对应的 scores (Tensor)组成，需要转写。|
 
 ### 转写示例
+#### 返回值
 ```python
 # Pytorch 写法
 res = transformers.PreTrainedModel.generate(input = input_x)

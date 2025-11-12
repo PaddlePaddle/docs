@@ -19,4 +19,4 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor ，仅参数名不一致。                          |
-| memory_format | -            | 返回张量的所需内存格式，默认为 torch.preserve_format 。Paddle 无此参数，一般对训练结果影响不大，直接删除即可。            |
+| memory_format | -            | 返回张量的所需内存格式，默认为 torch.preserve_format 。Paddle 无此参数，一般对训练结果影响不大，可直接删除。            |

@@ -14,4 +14,4 @@ paddle.Tensor.gcd(y, name=None)
 
 | PyTorch                          | PaddlePaddle                 | 备注                                                   |
 |----------------------------------|------------------------------| ------------------------------------------------------ |
-| <font color='red'> other </font> | <font color='red'> y </font> | 输入的 Tensor ，仅参数名不一致。                                     |
+|  other  |  y  | 输入的 Tensor ，仅参数名不一致。                                     |

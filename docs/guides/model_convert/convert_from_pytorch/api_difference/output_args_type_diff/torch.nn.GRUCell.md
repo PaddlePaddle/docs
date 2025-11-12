@@ -37,7 +37,7 @@ torch.nn.GRUCell(16, 32, bias=False)
 # Paddle 写法
 paddle.nn.GRUCell(16, 32, bias_ih_attr=False, bias_hh_attr=False)
 ```
-#### forward 类方法：前向传播
+#### forward 类方法返回值：前向传播
 ```python
 # 返回值个数不一致，Paddle 返回值比 Pytorch 多一个
 # PyTorch 写法

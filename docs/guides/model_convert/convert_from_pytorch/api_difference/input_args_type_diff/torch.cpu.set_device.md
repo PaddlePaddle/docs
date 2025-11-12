@@ -14,7 +14,7 @@ paddle.device.set_device(device)
 
 | PyTorch       | PaddlePaddle | 备注                                             |
 | ------------- | ------------ |------------------------------------------------|
-| device        | device            | PyTorch 支持 torch.device 。PaddlePaddle 支持 str。 |
+| device        | device            | PyTorch 支持 torch.device 。PaddlePaddle 支持 str。需要转写。 |
 
 
 ### 转写示例

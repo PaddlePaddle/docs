@@ -17,5 +17,5 @@ paddle.flip(x,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| - | <font color='red'> axis </font> | 表示进行运算的轴，PyTorch 无此参数，Paddle 需设置为 1 。  |
+|  input  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
+| - |  axis  | 表示进行运算的轴，PyTorch 无此参数，Paddle 需设置为 1 。  |

@@ -28,68 +28,64 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | pos_weight  | pos_weight            | 表示正类的权重。  |
 
 ### 转写示例
+
 #### size_average
 size_average 为 True
 ```python
 # PyTorch 写法
-torch.nn.BCEWithLogitsLoss(weight=w, size_average=True)
+torch.nn.BCEWithLogitsLoss(size_average=True)
 
 # Paddle 写法
-paddle.nn.BCEWithLogitsLoss(weight=w, reduction='mean')
+paddle.nn.BCEWithLogitsLoss(reduction='mean')
 ```
 
 size_average 为 False
 ```python
 # PyTorch 写法
-torch.nn.BCEWithLogitsLoss(weight=w, size_average=False)
+torch.nn.BCEWithLogitsLoss(size_average=False)
 
 # Paddle 写法
-paddle.nn.BCEWithLogitsLoss(weight=w, reduction='sum')
+paddle.nn.BCEWithLogitsLoss(reduction='sum')
 ```
-
 #### reduce
 reduce 为 True
 ```python
 # PyTorch 写法
-torch.nn.BCEWithLogitsLoss(weight=w, reduce=True)
+torch.nn.BCEWithLogitsLoss(size_average=False)
 
 # Paddle 写法
-paddle.nn.BCEWithLogitsLoss(weight=w, reduction='mean')
+paddle.nn.BCEWithLogitsLoss(reduction='sum')
 ```
-
 reduce 为 False
 ```python
 # PyTorch 写法
-torch.nn.BCEWithLogitsLoss(weight=w, reduce=False)
+torch.nn.BCEWithLogitsLoss(reduce=False)
 
 # Paddle 写法
-paddle.nn.BCEWithLogitsLoss(weight=w, reduction='none')
+paddle.nn.BCEWithLogitsLoss(reduction='none')
 ```
-
 #### reduction
 reduction 为'none'
 ```python
 # PyTorch 写法
-torch.nn.BCEWithLogitsLoss(weight=w, reduction='none')
+torch.nn.BCEWithLogitsLoss(reduction='none')
 
 # Paddle 写法
-paddle.nn.BCEWithLogitsLoss(weight=w, reduction='none')
+paddle.nn.BCEWithLogitsLoss(reduction='none')
 ```
-
 reduction 为'mean'
 ```python
 # PyTorch 写法
-torch.nn.BCEWithLogitsLoss(weight=w, reduction='mean')
+torch.nn.BCEWithLogitsLoss(reduction='mean')
 
 # Paddle 写法
-paddle.nn.BCEWithLogitsLoss(weight=w, reduction='mean')
+paddle.nn.BCEWithLogitsLoss(reduction='mean')
 ```
-
 reduction 为'sum'
 ```python
 # PyTorch 写法
-torch.nn.BCEWithLogitsLoss(weight=w, reduction='sum')
+torch.nn.BCEWithLogitsLoss(reduction='sum')
 
 # Paddle 写法
-paddle.nn.BCEWithLogitsLoss(weight=w, reduction='sum')
+paddle.nn.BCEWithLogitsLoss(reduction='sum')
 ```

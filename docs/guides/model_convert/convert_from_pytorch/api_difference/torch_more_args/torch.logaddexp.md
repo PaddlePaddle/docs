@@ -21,6 +21,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 
 ### 转写示例
+#### out: 输出的 Tensor
 ```python
 # PyTorch 写法
 torch.logaddexp(a, b, out=output)

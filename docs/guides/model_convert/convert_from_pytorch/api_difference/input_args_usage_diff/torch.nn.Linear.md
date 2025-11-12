@@ -24,7 +24,7 @@ paddle.nn.Linear(in_features,
 | ------------- | ------------ | ------------------------------------------------------ |
 | in_features          | in_features            | 表示线性变换层输入单元的数目。                             |
 | out_features          | out_features            | 表示线性变换层输出单元的数目。                             |
-| bias          | -            | 是否在输出中添加可学习的 bias。                             |
+| bias          | -            | 是否在输出中添加可学习的 bias。 需要转写。                            |
 | device        | -            | 指定 Tensor 的设备，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。   |
 | dtype         | -            | Tensor 的所需数据类型，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
 | -             | weight_attr  | 指定权重参数的属性，PyTorch 无此参数，Paddle 保持默认即可。 |

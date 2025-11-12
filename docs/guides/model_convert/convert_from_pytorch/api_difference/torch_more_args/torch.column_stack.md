@@ -17,3 +17,16 @@ paddle.column_stack(x, name=None)
 | ------------- | ------------ | ------------------------------------------------------  |
 | tensors       | x            | 表示输入的 Tensor ，仅参数名不一致。                      |
 | out           | -            | 表示输出的 Tensor ，Paddle 无此参数，需要转写。          |
+
+### 转写示例
+#### out 参数转写
+```python
+# PyTorch 写法
+out = torch.tensor([[4, 5, 6], [1, 2, 3]])
+result = torch.column_stack((a,b), out=out)
+
+# Paddle 写法
+out = paddle.tensor([[4, 5, 6], [1, 2, 3]])
+result = paddle.assign(paddle.column_stack(x=(a, b)), output=out)
+
+```

@@ -18,7 +18,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | input   | x            | 输入的 Tensor，仅参数名不一致。                   |
 | out     | -            | 表示输出的 Tensor ， Paddle 无此参数，需要转写。 |
 
-### 转写实例
+### 转写示例
 #### out 参数：指定输出
 ```python
 # Pytorch 写法

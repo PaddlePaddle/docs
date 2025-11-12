@@ -15,7 +15,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch  | PaddlePaddle | 备注 |
 | -------- | ------- | ------- |
-| decimals | -       | 舍入小数位数 |
+| decimals | -       | 舍入小数位数。需要转写。 |
 
 ### 转写示例
 #### decimals：要舍入到的小数位数

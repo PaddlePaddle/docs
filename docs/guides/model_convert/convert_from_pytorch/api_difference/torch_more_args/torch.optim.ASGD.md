@@ -30,19 +30,19 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch       | PaddlePaddle        | 备注                                                                                                                    |
 | ------------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| params        | parameters          | 表示指定优化器需要优化的参数，仅参数名不一致                                                                                |
-| lr            | learning_rate       | 学习率，用于参数更新的计算。参数默认值不一致, Pytorch 默认为 `0.0001`， Paddle 默认为 `0.001`，Paddle 需保持与 Pytorch 一致    |
-| lambd         | -                   | 衰变项，与 weight_decay 功能重叠，可直接删除                                                                               |
-| alpha         | -                   | eta 更新的 power，可直接删除                                                                                              |
-| t0            | -                   | 开始求平均值的点，可直接删除                                                                                               |
-| weight_decay  | weight_decay        | 权重衰减。参数默认值不一致, Pytorch 默认为 `0`， Paddle 默认为 `None`，Paddle 需保持与 Pytorch 一致                           |
-| foreach       | -                   | 是否使用优化器的 foreach 实现。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除                                         |
-| maximize      | -                   | 根据目标最大化参数，而不是最小化。Paddle 无此参数，暂无转写方式                                                               |
-| differentiable| -                   | 是否应通过训练中的优化器步骤进行自动微分。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除                                |
-| -             | batch_num           | 完成一个 epoch 所需迭代的次数。 PyTorch 无此参数。假设样本总数为 all_size，Paddle 需将 batch_num 设置为 all_size / batch_size |
-| -             | grad_clip           | 梯度裁剪的策略。 PyTorch 无此参数，Paddle 保持默认即可                                                                      |
-| -             | multi_precision     | 在基于 GPU 设备的混合精度训练场景中，该参数主要用于保证梯度更新的数值稳定性。 PyTorch 无此参数，Paddle 保持默认即可              |
-| -             | name                | 一般情况下无需设置。 PyTorch 无此参数，Paddle 保持默认即可                                                                  |
+| params        | parameters          | 表示指定优化器需要优化的参数，仅参数名不一致。                                                                                |
+| lr            | learning_rate       | 学习率，用于参数更新的计算。参数默认值不一致, Pytorch 默认为 `0.0001`， Paddle 默认为 `0.001`，Paddle 需保持与 Pytorch 一致。    |
+| lambd         | -                   | 衰变项，与 weight_decay 功能重叠，可直接删除。                                                                               |
+| alpha         | -                   | eta 更新的 power，可直接删除。                                                                                              |
+| t0            | -                   | 开始求平均值的点，可直接删除。                                                                                               |
+| weight_decay  | weight_decay        | 权重衰减。参数默认值不一致, Pytorch 默认为 `0`， Paddle 默认为 `None`，Paddle 需保持与 Pytorch 一致。                           |
+| foreach       | -                   | 是否使用优化器的 foreach 实现。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                                         |
+| maximize      | -                   | 根据目标最大化参数，而不是最小化。Paddle 无此参数，暂无转写方式。                                                               |
+| differentiable| -                   | 是否应通过训练中的优化器步骤进行自动微分。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                                |
+| -             | batch_num           | 完成一个 epoch 所需迭代的次数。 PyTorch 无此参数。假设样本总数为 all_size，Paddle 需将 batch_num 设置为 all_size / batch_size。 |
+| -             | grad_clip           | 梯度裁剪的策略。 PyTorch 无此参数，Paddle 保持默认即可。                                                                      |
+| -             | multi_precision     | 在基于 GPU 设备的混合精度训练场景中，该参数主要用于保证梯度更新的数值稳定性。 PyTorch 无此参数，Paddle 保持默认即可。              |
+| -             | name                | 一般情况下无需设置。 PyTorch 无此参数，Paddle 保持默认即可。                                                                  |
 
 ### 相关问题
 torch 当前版本的 ASGD 实现并不完善。转换过来的 paddle ASGD 会与 torch 的不一致（不影响收敛），但是可以正常使用。如果强需求保证转换前后一致，可以自行尝试其他优化器。
