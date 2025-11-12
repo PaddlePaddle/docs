@@ -29,6 +29,7 @@ paddle.nn.functional.soft_margin_loss(input,
 
 ### 转写示例
 
+
 #### size_average
 size_average 为 True
 ```python
@@ -51,7 +52,7 @@ paddle.nn.functional.soft_margin_loss(reduction='sum')
 reduce 为 True
 ```python
 # PyTorch 写法
-torch.nn.functional.soft_margin_loss(size_average=False)
+torch.nn.functional.soft_margin_loss(reduce=True)
 
 # Paddle 写法
 paddle.nn.functional.soft_margin_loss(reduction='sum')

@@ -30,6 +30,7 @@ paddle.nn.functional.kl_div(input,
 
 ### 转写示例
 
+
 #### size_average
 size_average 为 True
 ```python
@@ -52,7 +53,7 @@ paddle.nn.functional.kl_div(reduction='sum')
 reduce 为 True
 ```python
 # PyTorch 写法
-torch.nn.functional.kl_div(size_average=False)
+torch.nn.functional.kl_div(reduce=True)
 
 # Paddle 写法
 paddle.nn.functional.kl_div(reduction='sum')

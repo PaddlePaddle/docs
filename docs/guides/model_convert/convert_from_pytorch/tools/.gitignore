@@ -4,8 +4,6 @@ generated.tmp.md
 tmp_check.md
 no_implement.md
 download_files_from_paconvert.sh
-test
-tmp_*
 
 # files will be used in PaConvert
 docs_mappings.json
@@ -25,6 +23,7 @@ toc_warnings.txt
 unique_warnings.txt
 link_warnings.txt
 url_warnings.txt
-api_difference_error.txt
 diff_doc_warnings.txt
-validate_api_difference_error.txt
+
+validate_api_difference_consistency_error.txt
+validate_api_difference_format_error.txt

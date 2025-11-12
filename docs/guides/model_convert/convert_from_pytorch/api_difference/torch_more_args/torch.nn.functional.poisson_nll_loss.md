@@ -26,6 +26,7 @@ paddle.nn.functional.poisson_nll_loss(input, label, log_input=True, full=False, 
 
 ### 转写示例
 
+
 #### size_average
 size_average 为 True
 ```python
@@ -48,7 +49,7 @@ paddle.nn.functional.poisson\_nll\_loss(reduction='sum')
 reduce 为 True
 ```python
 # PyTorch 写法
-torch.nn.functional.poisson_nll_loss(size_average=False)
+torch.nn.functional.poisson_nll_loss(reduce=True)
 
 # Paddle 写法
 paddle.nn.functional.poisson\_nll\_loss(reduction='sum')

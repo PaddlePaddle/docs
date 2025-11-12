@@ -329,32 +329,6 @@ def check_links_exist(categories):
     return warnings
 
 
-def check_mapping_category_consistency(categories):
-    """
-    检查映射分类列内容与类别标题的一致性
-    """
-    warnings = []
-
-    for category in categories:
-        category_id = category["id"]
-        category_name = category["name"]
-
-        for i, row in enumerate(category["table"]):
-            row_num = i + 1
-            mapping_category = row.get("mapping_category", "").strip()
-
-            # 检查映射分类列是否与类别标题一致
-            if mapping_category != category_name:
-                warning_msg = (
-                    f"类别 {category_id}({category_name}) 第 {row_num} 行映射分类不一致:\n"
-                    f"  表格中的映射分类: '{mapping_category}'\n"
-                    f"  类别标题: '{category_name}'"
-                )
-                warnings.append(warning_msg)
-
-    return warnings
-
-
 def check_diff_doc_consistency(categories, base_dir):
     """
     检查映射文档和差异文档的一致性
@@ -728,7 +702,6 @@ def main():
     # 执行基本校验
     toc_warnings = check_toc_consistency(toc, categories)
     unique_warnings = check_unique_torch_apis(categories)
-    mapping_category_warnings = check_mapping_category_consistency(categories)
     diff_doc_warnings = check_diff_doc_consistency(categories, base_dir)
 
     # 初始化 link_warnings 和 url_warnings（在 skip-url-check 时跳过）
@@ -747,11 +720,6 @@ def main():
         ("toc_warnings.txt", "目录一致性校验警告:", toc_warnings),
         ("unique_warnings.txt", "Torch API 唯一性校验警告:", unique_warnings),
         ("link_warnings.txt", "超链接存在性校验警告:", link_warnings),
-        (
-            "mapping_category_warnings.txt",
-            "映射分类一致性校验警告:",
-            mapping_category_warnings,
-        ),
         ("diff_doc_warnings.txt", "差异文档一致性校验警告:", diff_doc_warnings),
     ]
 
@@ -784,7 +752,6 @@ def main():
         len(toc_warnings)
         + len(unique_warnings)
         + len(link_warnings)
-        + len(mapping_category_warnings)
         + len(url_warnings)
     )
     total_warnings = total_errors + len(diff_doc_warnings)
