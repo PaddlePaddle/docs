@@ -44,6 +44,7 @@ paddle.nn.functional.cross_entropy(input,
 
 ### 转写示例
 
+
 #### size_average
 size_average 为 True
 ```python
@@ -66,7 +67,7 @@ paddle.nn.functional.cross_entropy(reduction='sum')
 reduce 为 True
 ```python
 # PyTorch 写法
-torch.nn.functional.cross_entropy(size_average=False)
+torch.nn.functional.cross_entropy(reduce=True)
 
 # Paddle 写法
 paddle.nn.functional.cross_entropy(reduction='sum')

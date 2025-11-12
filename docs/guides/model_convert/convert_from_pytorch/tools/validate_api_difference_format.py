@@ -786,7 +786,9 @@ def main():
     validator.run_validation()
 
     # 保存错误信息
-    error_file = os.path.join(script_dir, "api_difference_error.txt")
+    error_file = os.path.join(
+        script_dir, "validate_api_difference_format_error.txt"
+    )
     if validator.errors:
         with open(error_file, "w", encoding="utf-8") as f:
             for error in validator.errors:

@@ -1,8 +1,7 @@
-import json
 import os
 from pathlib import Path
 
-from utils import extract_no_need_convert_list
+from utils import extract_no_need_convert_list, load_mapping_json
 
 
 def validate_api_mappings():
@@ -11,21 +10,21 @@ def validate_api_mappings():
     current_dir = Path(os.path.dirname(os.path.abspath(__file__)))
 
     # 加载API差异数据
-    with open(
-        current_dir / "api_difference_info.json", "r", encoding="utf-8"
-    ) as f:
-        api_diff = json.load(f)
+    api_diff = load_mapping_json(current_dir / "api_difference_info.json")
 
     # 加载API映射数据
-    with open(current_dir / "api_mapping.json", "r", encoding="utf-8") as f:
-        api_map = json.load(f)
+    api_map = load_mapping_json(current_dir / "api_mapping.json")
+
+    attr_map = load_mapping_json(current_dir / "attribute_mapping.json")
+
+    api_map = api_map | attr_map
 
     no_need_list = extract_no_need_convert_list(
         str(current_dir) + "/global_var.py"
     )
 
     # 准备错误报告文件
-    error_file = current_dir / "validate_api_difference_error.txt"
+    error_file = current_dir / "validate_api_difference_consistency_error.txt"
 
     # 任务1: 检查api_mapping中存在Matcher的条目是否在差异文档中有对应
     with open(error_file, "w", encoding="utf-8") as err_file:
@@ -68,6 +67,15 @@ def validate_api_mappings():
                     if "args_mapping" not in entry:
                         continue
                     for mapping in entry["args_mapping"]:
+                        if mapping["dst_arg"] == "-":
+                            mapping["dst_arg"] = ""
+                        if "," in mapping["dst_arg"]:
+                            mapping["dst_arg"] = (
+                                mapping["dst_arg"]
+                                .replace(" ", "")
+                                .replace("\t", "")
+                                .split(",")
+                            )
                         if (
                             mapping["src_arg"] == src_arg
                             and mapping["dst_arg"] == dst_arg
