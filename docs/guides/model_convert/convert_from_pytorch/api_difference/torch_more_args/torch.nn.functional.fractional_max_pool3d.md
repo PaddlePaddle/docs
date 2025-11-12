@@ -25,7 +25,7 @@ PyTorch 参数更多，具体如下：
 ### 转写示例
 #### output_ratio:目标输出比例
 ```python
-# 假设 intput 的 depth=7, with=7, height=7，
+# 假设 input 的 depth=7, with=7, height=7，
 # output_ratio = 0.75, 则目标 output 的 depth = int(7*0.75) = 5, width = int(7*0.75) = 5, height = int(7*0.75) = 5
 # Pytorch 写法
 torch.nn.functional.fractional_max_pool3d(input, 2, output_ratio=[0.75, 0.75, 0.75], return_indices=True)
