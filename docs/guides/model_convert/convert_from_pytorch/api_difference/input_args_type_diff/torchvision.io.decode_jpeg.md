@@ -30,7 +30,7 @@ torchvision.io.decode_jpeg(input=image_bytes, mode=torchvision.io.ImageReadMode.
 paddle.vision.ops.decode_jpeg(x=image_bytes, mode='RGB')
 ```
 
-### device：解码后的图像将被存储到的设备
+#### device：解码后的图像将被存储到的设备
 ```python
 # PyTorch 写法
 y = torchvision.io.decode_jpeg(input=image_bytes, device=torch.device('cpu'))

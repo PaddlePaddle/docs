@@ -23,7 +23,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | pad_mode   | pad_mode     | 当 center 为 True 时，确定 padding 的模式。 |
 | normalized | normalized   | 是否将傅里叶变换的结果乘以值为 1/sqrt(n) 的缩放系数。 |
 | onesided   | onesided     | 当输入为实信号时，选择是否只返回傅里叶变换结果的一半的频点值。 |
-| return_complex | -        | 表示当输入为复数时，是否以复数形式返回，还是将实部与虚部分开以实数形式返回。Paddle 目前只支持返回复数，分开返回实部与虚部的情况，需要使用 as_real 进行转写。 |
+| return_complex | -        | 表示当输入为复数时，是否以复数形式返回，还是将实部与虚部分开以实数形式返回。Paddle 目前只支持返回复数，分开返回实部与虚部的情况，需要转写。 |
 
 ### 转写示例
 #### return_complex：是否返回复数

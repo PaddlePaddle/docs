@@ -19,8 +19,8 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | in2_features | in2_features | 每个 x2 元素的维度。                                            |
 | out_features | out_features | 输出张量的维度。                                                |
 | bias         | bias_attr    | 指定偏置参数属性的对象，Paddle 支持更多功能，同时支持 bool 用法。   |
-| device       | -            | Tensor 的设备，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
-| dtype        | -            | Tensor 的数据类型，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除 |
+| device       | -            | Tensor 的设备，Paddle 无此参数，一般对网络训练结果影响不大，需要转写。 |
+| dtype        | -            | Tensor 的数据类型，Paddle 无此参数，一般对网络训练结果影响不大，需要转写。 |
 | -            | weight_attr  | 指定权重参数属性的对象，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 ### 转写示例

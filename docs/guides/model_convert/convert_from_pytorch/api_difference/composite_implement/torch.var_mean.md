@@ -10,9 +10,9 @@ torch.var_mean(input,
                keepdim=False,
                unbiased=True)
 ```
+用于实现返回 Tensor 的方差和均值，PaddlePaddle 目前暂无对应 API，可使用如下代码组合实现该 API。
 
-### 功能介绍用于实现返回 Tensor 的方差和均值，PaddlePaddle 目前暂无对应 API，可使用如下代码组合实现该 API。
-
+### 转写示例
 ```python
 # PyTorch 写法
 var, mean = torch.var_mean(x, dim=1)

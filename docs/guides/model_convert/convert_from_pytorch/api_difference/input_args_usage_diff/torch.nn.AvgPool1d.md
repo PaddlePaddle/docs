@@ -27,7 +27,7 @@ paddle.nn.AvgPool1D(kernel_size,
 | stride          | stride         | 表示步长 。                                     |
 | padding          | padding         | 表示填充大小 。                                     |
 | ceil_mode          | ceil_mode         | 表示是否用 ceil 函数计算输出的 height 和 width 。                                     |
-| count_include_pad | -         | 是否使用额外 padding 的值计算平均池化结果，默认为 True 。  |
+| count_include_pad | -         | 是否使用额外 padding 的值计算平均池化结果，默认为 True 。需要转写。  |
 | -             | exclusive    | 是否不使用额外 padding 的值计算平均池化结果，默认为 True 。        |
 
 ### 转写示例

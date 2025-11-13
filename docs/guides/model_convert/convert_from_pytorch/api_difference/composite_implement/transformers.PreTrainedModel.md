@@ -8,5 +8,3 @@ transformers.PreTrainedModel(config: PretrainedConfig, *inputs, **kwargs)
 ```python
 paddlenlp.transformers.PreTrainedModel(*args, **kwargs)
 ```
-
-两者功能和参数均一致。

@@ -354,7 +354,7 @@ Tensor(shape=[1, 2, 3, 4], dtype=int64, place=Place(cpu), stop_gradient=True,
           [16, 17, 18, 19],
           [20, 21, 22, 23]]]])
 
->>> b = a[:, [0,0,1], [1,2,0],:] # the new dimention is at axis 1
+>>> b = a[:, [0,0,1], [1,2,0],:] # the new dimension is at axis 1
 >>> b
 Tensor(shape=[1, 3, 4], dtype=int64, place=Place(cpu), stop_gradient=True,
        [[[4 , 5 , 6 , 7 ],
@@ -369,7 +369,7 @@ Tensor(shape=[1, 3], dtype=int64, place=Place(cpu), stop_gradient=True,
 #### 场景 2-高级索引位置不相邻
 当高级索引位置不相邻时，则`index`对应产生最终的输出结果会放到第一维上。
 ```python
->>> d = a[:, [1], :, [2,1,0]] # advanced indexes are not adjacent, the new dimention is at axis 0
+>>> d = a[:, [1], :, [2,1,0]] # advanced indexes are not adjacent, the new dimension is at axis 0
 >>> d
 Tensor(shape=[3, 1, 3], dtype=int64, place=Place(cpu), stop_gradient=True,
        [[[14, 18, 22]],

@@ -16,7 +16,7 @@ paddle.distributed.fleet.distributed_optimizer(optimizer, strategy=None)
 | PyTorch         | PaddlePaddle | 备注                                                                  |
 | --------------- | ------------ | --------------------------------------------------------------------- |
 | optimizer_class | optimizer    | 优化器，PyTorch 输入为 class, Paddle 输入为实例化的 optimizer。                                         |
-| params_rref     | -            | 远程引用（ RRef ）列表，为 RRef 类型，代表要优化的参数。而 Paddle 在实例化 optimizer 时传入，为 Tensor 类型 |
+| params_rref     | -            | 远程引用（ RRef ）列表，为 RRef 类型，代表要优化的参数。而 Paddle 在实例化 optimizer 时传入，为 Tensor 类型。 |
 | args            | -            | 优化器实例化参数， Paddle 在实例化 optimizer 时传入。                      |
 | kwargs          | -            | 优化器实例化字典参数， Paddle 在实例化 optimizer 时传入。                  |
 | -               | strategy     | 用于切分优化器状态，PyTorch 无此参数，Paddle 保持默认即可。           |

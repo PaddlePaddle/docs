@@ -59,8 +59,8 @@ paddle.io.DataLoader(dataset,
 | prefetch_factor | -          | 表示每个 worker 预先加载的数据数量，Paddle 无此参数，暂无转写方式。  |
 | persistent_workers | -       | 表示数据集使用一次后，数据加载器将会不会关闭工作进程，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
 | pin_memory_device  | -       | 数据加载器是否在返回 Tensor 之前将 Tensor 复制到设备固定存储器中，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
-| -             | feed_list    | 表示 feed 变量列表，PyTorch 无此参数，Paddle 保持默认即可                   |
-| -             | places       | 数据需要放置到的 Place 列表，PyTorch 无此参数，Paddle 保持默认即可                   |
-| -             | return_list  | 每个设备上的数据是否以 list 形式返回，PyTorch 无此参数，Paddle 保持默认即可                   |
-| -             | use_buffer_reader | 表示是否使用缓存读取器，PyTorch 无此参数，Paddle 保持默认即可                   |
-| -             | use_shared_memory | 表示是否使用共享内存来提升子进程将数据放入进程间队列的速度，PyTorch 无此参数，Paddle 保持默认即可   |
+| -             | feed_list    | 表示 feed 变量列表，PyTorch 无此参数，Paddle 保持默认即可。                   |
+| -             | places       | 数据需要放置到的 Place 列表，PyTorch 无此参数，Paddle 保持默认即可。                   |
+| -             | return_list  | 每个设备上的数据是否以 list 形式返回，PyTorch 无此参数，Paddle 保持默认即可。                   |
+| -             | use_buffer_reader | 表示是否使用缓存读取器，PyTorch 无此参数，Paddle 保持默认即可。                   |
+| -             | use_shared_memory | 表示是否使用共享内存来提升子进程将数据放入进程间队列的速度，PyTorch 无此参数，Paddle 保持默认即可。   |

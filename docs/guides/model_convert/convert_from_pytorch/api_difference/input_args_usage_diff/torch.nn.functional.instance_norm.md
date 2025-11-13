@@ -15,12 +15,12 @@ paddle.nn.functional.instance_norm(x, running_mean=None, running_var=None, weigh
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 |  input  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
-|  running_mean    |  running_mean    | 均值的 Tensor               |
-|  running_var    |  running_var    | 方差的 Tensor               |
-|  weight   | weight    | 权重的 Tensor               |
-|  bias    |  bias    | 偏置的 Tensor               |
-|  eps           |     eps           | 为了数值稳定加在分母上的值             |
-|  momentum              |  momentum   | 此值用于计算 moving_mean 和 moving_var, 值的大小 Paddle = 1 - PyTorch，需要转写               |
+|  running_mean    |  running_mean    | 均值的 Tensor。               |
+|  running_var    |  running_var    | 方差的 Tensor。               |
+|  weight   | weight    | 权重的 Tensor。               |
+|  bias    |  bias    | 偏置的 Tensor。               |
+|  eps           |     eps           | 为了数值稳定加在分母上的值。             |
+|  momentum              |  momentum   | 此值用于计算 moving_mean 和 moving_var, 值的大小 Paddle = 1 - PyTorch，需要转写。               |
 | -           |   training            | 是否可训练。 PyTorch 无此参数。保持默认即可。 |
 | -           |   data_format             | 指定输入数据格式。 PyTorch 无此参数。保持默认即可。 |
 

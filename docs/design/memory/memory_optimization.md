@@ -53,7 +53,7 @@ In compilers, the front end of the compiler translates programs into an intermed
 
 Therefore, the compiler needs to analyze the intermediate-representation program to determine which temporary variables are in use at the same time. We say a variable is "live" if it holds a value that may be needed in the future, so this analysis is called liveness analysis.
 
-We can leran these techniques from compilers. There are mainly two stages to make live variable analysis:
+We can learn these techniques from compilers. There are mainly two stages to make live variable analysis:
 
 - construct a control flow graph
 - solve the dataflow equations
@@ -197,7 +197,7 @@ After op1, we can process variable b and variable c; After op2, we can process v
 
 #### memory sharing policy
 
-A memory pool will be mantained in the stage of memory optimization. Each operator node will be scanned to determine memory optimization is done or not. If an operator satifies the requirement, following policy will be taken to handle input/output variables.
+A memory pool will be maintained in the stage of memory optimization. Each operator node will be scanned to determine memory optimization is done or not. If an operator satisfies the requirement, following policy will be taken to handle input/output variables.
 
 ```
 if op.support_inplace():

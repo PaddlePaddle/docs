@@ -93,7 +93,7 @@ To support the above features, two fundamental conversion functions are provided
 float16 float_to_half_rn(float f);  // convert to half precision in round-to-nearest-even mode
 float half_to_float(float16 h);
 ```
-which provides one-to-one conversion between float32 and float16. These twos functions will do different conversion routines based on the current hardware. CUDA/ARM instrinsics will be used when the corresponding hardware is available. If the hardware or compiler level does not support float32 to float16 conversion, software emulation will be performed to do the conversion.
+which provides one-to-one conversion between float32 and float16. These twos functions will do different conversion routines based on the current hardware. CUDA/ARM intrinsics will be used when the corresponding hardware is available. If the hardware or compiler level does not support float32 to float16 conversion, software emulation will be performed to do the conversion.
 
 ## float16 inference
 In Fluid, a neural network is represented as a protobuf message called [ProgramDesc](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/program.md), whose Python wrapper is a [Program](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/modules/python_api.md#program). The basic structure of a program is some nested [blocks](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/modules/python_api.md#block), where each block consists of some [variable](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/modules/python_api.md#variable) definitions and a sequence of [operators](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/modules/python_api.md#operator). An [executor](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/executor.md) will run a given program desc by executing the sequence of operators in the entrance block of the program one by one.
@@ -130,7 +130,7 @@ fp16_tensor.set(tensor.astype(numpy.float16).view(numpy.uint16), GPUPlace)
 ```
 
 ### Consistent API requirement
-The basic inference in float16 mode requires users to feed input and obtain output both of float16 data type. However, in this way, the inference APIs are not consistent between float16 mode and float mode, and users may find it confusing and diffcult to use float16 inference since they need to do extra steps to provide float16 input data and convert float16 output data back to float. To have consistent API for different inference modes, we need to transpile the program desc in some way so that we can run float16 inference by feeding and fetching variables of float data type.
+The basic inference in float16 mode requires users to feed input and obtain output both of float16 data type. However, in this way, the inference APIs are not consistent between float16 mode and float mode, and users may find it confusing and difficult to use float16 inference since they need to do extra steps to provide float16 input data and convert float16 output data back to float. To have consistent API for different inference modes, we need to transpile the program desc in some way so that we can run float16 inference by feeding and fetching variables of float data type.
 
 This problem can be solved by introducing a type-casting operator which takes an input variable of certain data type, cast it to another specified data type, and put the casted data into the output variable. Insert cast operator where needed can make a program internally run in float16 mode.
 

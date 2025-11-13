@@ -79,7 +79,7 @@ From these formulas, dequantization also can be moved before GEMM, do dequantiza
 Figure 2. Equivalent forward in training with simulated quantization.
 </p>
 
-We use this equivalent workflow in the training. In our desigin, there is a quantization transpiler to insert the quantization operator and the de-quantization operator in the Fluid `ProgramDesc`. Since the outputs of quantization and de-quantization operator are still in floating point, they are called faked quantization and de-quantization operator. And the training framework is called simulated quantization.
+We use this equivalent workflow in the training. In our design, there is a quantization transpiler to insert the quantization operator and the de-quantization operator in the Fluid `ProgramDesc`. Since the outputs of quantization and de-quantization operator are still in floating point, they are called faked quantization and de-quantization operator. And the training framework is called simulated quantization.
 
 #### Backward pass
 

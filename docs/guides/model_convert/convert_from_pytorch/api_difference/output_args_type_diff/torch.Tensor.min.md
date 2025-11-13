@@ -1,7 +1,7 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.min
 该 api 有两组参数列表重载，因此有两组差异分析。
 
------------------------------------------------
+-------------------------------------------------------------------------------------------------
 
 ### [torch.Tensor.min](https://pytorch.org/docs/stable/generated/torch.Tensor.min.html)
 ```python
@@ -33,7 +33,7 @@ result = x.min(dim=1)
 result = x.min(dim=1), x.argmin(dim=1)
 ```
 
---------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
 
 ### [torch.Tensor.min](https://pytorch.org/docs/stable/generated/torch.Tensor.min.html)
 ```python

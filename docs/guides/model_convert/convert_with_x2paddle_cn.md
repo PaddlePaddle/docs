@@ -332,14 +332,14 @@ try:
             if relative_diff >= 1e-05:
                 is_successd = False
     if is_successd:
-        f.write("Dygraph Successed\n")
+        f.write("Dygraph Succeeded\n")
     else:
         f.write("!!!!!Dygraph Failed\n")
 except:
     f.write("!!!!!Failed\n")
 ```
 
-最终比较结果写在 result.txt 当中，若显示 Dygraph Successed 表示成功，验证通过后，则可使用 [Paddle Inference](https://www.paddlepaddle.org.cn/inference/product_introduction/inference_intro.html) 部署该模型。
+最终比较结果写在 result.txt 当中，若显示 Dygraph Succeeded 表示成功，验证通过后，则可使用 [Paddle Inference](https://www.paddlepaddle.org.cn/inference/product_introduction/inference_intro.html) 部署该模型。
 
 ## 三、迁移 ONNX 模型示例
 
