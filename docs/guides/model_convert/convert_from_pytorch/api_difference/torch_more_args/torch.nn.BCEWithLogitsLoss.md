@@ -28,65 +28,35 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | pos_weight  | pos_weight            | 表示正类的权重。  |
 
 ### 转写示例
-
-
-#### size_average
-size_average 为 True
+#### reduction 为 sum
 ```python
 # PyTorch 写法
-torch.nn.BCEWithLogitsLoss(size_average=True)
+torch.nn.BCEWithLogitsLoss(weight=w, size_average=False, reduce=True)
+torch.nn.BCEWithLogitsLoss(weight=w, size_average=Flase)
 
 # Paddle 写法
-paddle.nn.BCEWithLogitsLoss(reduction='mean')
+paddle.nn.BCEWithLogitsLoss(weight=w, reduction='sum')
 ```
 
-size_average 为 False
+#### reduction 为 mean
 ```python
 # PyTorch 写法
-torch.nn.BCEWithLogitsLoss(size_average=False)
+torch.nn.BCEWithLogitsLoss(weight=w, size_average=True, reduce=True)
+torch.nn.BCEWithLogitsLoss(weight=w, reduce=True)
+torch.nn.BCEWithLogitsLoss(weight=w, size_average=True)
+torch.nn.BCEWithLogitsLoss(weight=w)
 
 # Paddle 写法
-paddle.nn.BCEWithLogitsLoss(reduction='sum')
+paddle.nn.BCEWithLogitsLoss(weight=w, reduction='mean')
 ```
-#### reduce
-reduce 为 True
+
+#### reduction 为 None
 ```python
 # PyTorch 写法
-torch.nn.BCEWithLogitsLoss(reduce=True)
+torch.nn.BCEWithLogitsLoss(weight=w, size_average=True, reduce=False)
+torch.nn.BCEWithLogitsLoss(weight=w, size_average=False, reduce=False)
+torch.nn.BCEWithLogitsLoss(weight=w, reduce=False)
 
 # Paddle 写法
-paddle.nn.BCEWithLogitsLoss(reduction='sum')
-```
-reduce 为 False
-```python
-# PyTorch 写法
-torch.nn.BCEWithLogitsLoss(reduce=False)
-
-# Paddle 写法
-paddle.nn.BCEWithLogitsLoss(reduction='none')
-```
-#### reduction
-reduction 为'none'
-```python
-# PyTorch 写法
-torch.nn.BCEWithLogitsLoss(reduction='none')
-
-# Paddle 写法
-paddle.nn.BCEWithLogitsLoss(reduction='none')
-```
-reduction 为'mean'
-```python
-# PyTorch 写法
-torch.nn.BCEWithLogitsLoss(reduction='mean')
-
-# Paddle 写法
-paddle.nn.BCEWithLogitsLoss(reduction='mean')
-```
-reduction 为'sum'
-```python
-# PyTorch 写法
-torch.nn.BCEWithLogitsLoss(reduction='sum')
-
-# Paddle 写法
-paddle.nn.BCEWithLogitsLoss(reduction='sum')
+paddle.nn.BCEWithLogitsLoss(weight=w, reduction='None')
 ```

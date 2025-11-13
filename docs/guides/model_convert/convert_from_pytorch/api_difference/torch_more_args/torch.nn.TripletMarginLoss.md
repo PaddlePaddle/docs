@@ -24,65 +24,37 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction    | reduction    | 指定应用于输出结果的计算方式。                 |
 
 ### 转写示例
-
-
-#### size_average
-size_average 为 True
+#### reduction 为 sum
 ```python
 # PyTorch 写法
-torch.nn.TripletMarginLoss(size_average=True)
+torch.nn.TripletMarginLoss(margin=m, size_average=False, reduce=True)
+torch.nn.TripletMarginLoss(margin=m, size_average=Flase)
 
 # Paddle 写法
-paddle.nn.TripletMarginLoss(reduction='mean')
+paddle.nn.TripletMarginLoss(margin=m, reduction='sum')
 ```
 
-size_average 为 False
+#### reduction 为 mean
 ```python
 # PyTorch 写法
-torch.nn.TripletMarginLoss(size_average=False)
+torch.nn.TripletMarginLoss(margin=m, size_average=True, reduce=True)
+torch.nn.TripletMarginLoss(margin=m, reduce=True)
+torch.nn.TripletMarginLoss(margin=m, size_average=True)
+torch.nn.TripletMarginLoss(margin=m)
 
 # Paddle 写法
-paddle.nn.TripletMarginLoss(reduction='sum')
+paddle.nn.TripletMarginLoss(margin=m, reduction='mean')
 ```
-#### reduce
-reduce 为 True
+
+#### reduction 为 None
 ```python
 # PyTorch 写法
-torch.nn.TripletMarginLoss(reduce=True)
+torch.nn.TripletMarginLoss(margin=m, size_average=True, reduce=False)
+torch.nn.TripletMarginLoss(margin=m, size_average=False, reduce=False)
+torch.nn.TripletMarginLoss(margin=m, reduce=False)
 
 # Paddle 写法
-paddle.nn.TripletMarginLoss(reduction='sum')
+paddle.nn.TripletMarginLoss(margin=m, reduction='None')
 ```
-reduce 为 False
-```python
-# PyTorch 写法
-torch.nn.TripletMarginLoss(reduce=False)
 
-# Paddle 写法
-paddle.nn.TripletMarginLoss(reduction='none')
-```
-#### reduction
-reduction 为'none'
-```python
-# PyTorch 写法
-torch.nn.TripletMarginLoss(reduction='none')
 
-# Paddle 写法
-paddle.nn.TripletMarginLoss(reduction='none')
-```
-reduction 为'mean'
-```python
-# PyTorch 写法
-torch.nn.TripletMarginLoss(reduction='mean')
-
-# Paddle 写法
-paddle.nn.TripletMarginLoss(reduction='mean')
-```
-reduction 为'sum'
-```python
-# PyTorch 写法
-torch.nn.TripletMarginLoss(reduction='sum')
-
-# Paddle 写法
-paddle.nn.TripletMarginLoss(reduction='sum')
-```

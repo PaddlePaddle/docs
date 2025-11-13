@@ -21,65 +21,35 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction    | reduction    | 指定应用于输出结果的计算方式。                 |
 
 ### 转写示例
-
-
-#### size_average
-size_average 为 True
+#### reduction 为 sum
 ```python
 # PyTorch 写法
-torch.nn.MultiLabelSoftMarginLoss(size_average=True)
+torch.nn.MultiLabelSoftMarginLoss(weight=w, size_average=False, reduce=True)
+torch.nn.MultiLabelSoftMarginLoss(weight=w, size_average=False)
 
 # Paddle 写法
-paddle.nn.MultiLabelSoftMarginLoss(reduction='mean')
+paddle.nn.MultiLabelSoftMarginLoss(weight=w, reduction='sum')
 ```
 
-size_average 为 False
+#### reduction 为 mean
 ```python
 # PyTorch 写法
-torch.nn.MultiLabelSoftMarginLoss(size_average=False)
+torch.nn.MultiLabelSoftMarginLoss(weight=w, size_average=True, reduce=True)
+torch.nn.MultiLabelSoftMarginLoss(weight=w, reduce=True)
+torch.nn.MultiLabelSoftMarginLoss(weight=w, size_average=True)
+torch.nn.MultiLabelSoftMarginLoss(weight=w)
 
 # Paddle 写法
-paddle.nn.MultiLabelSoftMarginLoss(reduction='sum')
+paddle.nn.MultiLabelSoftMarginLoss(weight=w, reduction='mean')
 ```
-#### reduce
-reduce 为 True
+
+#### reduction 为 None
 ```python
 # PyTorch 写法
-torch.nn.MultiLabelSoftMarginLoss(reduce=True)
+torch.nn.MultiLabelSoftMarginLoss(weight=w, size_average=True, reduce=False)
+torch.nn.MultiLabelSoftMarginLoss(weight=w, size_average=False, reduce=False)
+torch.nn.MultiLabelSoftMarginLoss(weight=w, reduce=False)
 
 # Paddle 写法
-paddle.nn.MultiLabelSoftMarginLoss(reduction='sum')
-```
-reduce 为 False
-```python
-# PyTorch 写法
-torch.nn.MultiLabelSoftMarginLoss(reduce=False)
-
-# Paddle 写法
-paddle.nn.MultiLabelSoftMarginLoss(reduction='none')
-```
-#### reduction
-reduction 为'none'
-```python
-# PyTorch 写法
-torch.nn.MultiLabelSoftMarginLoss(reduction='none')
-
-# Paddle 写法
-paddle.nn.MultiLabelSoftMarginLoss(reduction='none')
-```
-reduction 为'mean'
-```python
-# PyTorch 写法
-torch.nn.MultiLabelSoftMarginLoss(reduction='mean')
-
-# Paddle 写法
-paddle.nn.MultiLabelSoftMarginLoss(reduction='mean')
-```
-reduction 为'sum'
-```python
-# PyTorch 写法
-torch.nn.MultiLabelSoftMarginLoss(reduction='sum')
-
-# Paddle 写法
-paddle.nn.MultiLabelSoftMarginLoss(reduction='sum')
+paddle.nn.MultiLabelSoftMarginLoss(weight=w, reduction='None')
 ```

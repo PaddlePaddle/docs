@@ -23,65 +23,35 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction          | reduction          | 指定应用于输出结果的计算方式，可选值有 `none`、`mean` 和 `sum`。默认为 `mean`，计算 mini-batch loss 均值。设置为 `sum` 时，计算 mini-batch loss 的总和。设置为 `none` 时，则返回 loss Tensor。默认值下为 `mean`。两者完全一致。   |
 
 ### 转写示例
-
-
-#### size_average
-size_average 为 True
+#### reduction 为 sum
 ```python
 # PyTorch 写法
-torch.nn.PoissonNLLLoss(size_average=True)
+torch.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, size_average=False, reduce=True)
+torch.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, size_average=False)
 
 # Paddle 写法
-paddle.nn.PoissonNLLLoss(reduction='mean')
+paddle.nn.PoissonNLLLoss(log_input=True, full=False, epsilon=1e-8, reduction='sum')
 ```
 
-size_average 为 False
+#### reduction 为 mean
 ```python
 # PyTorch 写法
-torch.nn.PoissonNLLLoss(size_average=False)
+torch.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, size_average=True, reduce=True)
+torch.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, reduce=True)
+torch.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, size_average=True)
+torch.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8)
 
 # Paddle 写法
-paddle.nn.PoissonNLLLoss(reduction='sum')
+paddle.nn.PoissonNLLLoss(log_input=True, full=False, epsilon=1e-8, reduction='mean')
 ```
-#### reduce
-reduce 为 True
+
+#### reduction 为 None
 ```python
 # PyTorch 写法
-torch.nn.PoissonNLLLoss(reduce=True)
+torch.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, size_average=True, reduce=False)
+torch.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, size_average=False, reduce=False)
+torch.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, reduce=False)
 
 # Paddle 写法
-paddle.nn.PoissonNLLLoss(reduction='sum')
-```
-reduce 为 False
-```python
-# PyTorch 写法
-torch.nn.PoissonNLLLoss(reduce=False)
-
-# Paddle 写法
-paddle.nn.PoissonNLLLoss(reduction='none')
-```
-#### reduction
-reduction 为'none'
-```python
-# PyTorch 写法
-torch.nn.PoissonNLLLoss(reduction='none')
-
-# Paddle 写法
-paddle.nn.PoissonNLLLoss(reduction='none')
-```
-reduction 为'mean'
-```python
-# PyTorch 写法
-torch.nn.PoissonNLLLoss(reduction='mean')
-
-# Paddle 写法
-paddle.nn.PoissonNLLLoss(reduction='mean')
-```
-reduction 为'sum'
-```python
-# PyTorch 写法
-torch.nn.PoissonNLLLoss(reduction='sum')
-
-# Paddle 写法
-paddle.nn.PoissonNLLLoss(reduction='sum')
+paddle.nn.PoissonNLLLoss(log_input=True, full=False, epsilon=1e-8, reduction='None')
 ```

@@ -20,65 +20,36 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction    | reduction    | 指定应用于输出结果的计算方式。                 |
 
 ### 转写示例
-
-
-#### size_average
-size_average 为 True
+#### reduction 为 sum
 ```python
 # PyTorch 写法
-torch.nn.MultiLabelMarginLoss(size_average=True)
-
-# Paddle 写法
-paddle.nn.MultiLabelMarginLoss(reduction='mean')
-```
-
-size_average 为 False
-```python
-# PyTorch 写法
+torch.nn.MultiLabelMarginLoss(size_average=False, reduce=True)
 torch.nn.MultiLabelMarginLoss(size_average=False)
 
 # Paddle 写法
 paddle.nn.MultiLabelMarginLoss(reduction='sum')
 ```
-#### reduce
-reduce 为 True
+
+#### reduction 为 mean
 ```python
 # PyTorch 写法
+torch.nn.MultiLabelMarginLoss(size_average=True, reduce=True)
 torch.nn.MultiLabelMarginLoss(reduce=True)
-
-# Paddle 写法
-paddle.nn.MultiLabelMarginLoss(reduction='sum')
-```
-reduce 为 False
-```python
-# PyTorch 写法
-torch.nn.MultiLabelMarginLoss(reduce=False)
-
-# Paddle 写法
-paddle.nn.MultiLabelMarginLoss(reduction='none')
-```
-#### reduction
-reduction 为'none'
-```python
-# PyTorch 写法
-torch.nn.MultiLabelMarginLoss(reduction='none')
-
-# Paddle 写法
-paddle.nn.MultiLabelMarginLoss(reduction='none')
-```
-reduction 为'mean'
-```python
-# PyTorch 写法
-torch.nn.MultiLabelMarginLoss(reduction='mean')
+torch.nn.MultiLabelMarginLoss(size_average=True)
+torch.nn.MultiLabelMarginLoss()
 
 # Paddle 写法
 paddle.nn.MultiLabelMarginLoss(reduction='mean')
 ```
-reduction 为'sum'
+
+#### reduction 为 None
 ```python
 # PyTorch 写法
-torch.nn.MultiLabelMarginLoss(reduction='sum')
+torch.nn.MultiLabelMarginLoss(size_average=True, reduce=False)
+torch.nn.MultiLabelMarginLoss(size_average=False, reduce=False)
+torch.nn.MultiLabelMarginLoss(reduce=False)
 
 # Paddle 写法
-paddle.nn.MultiLabelMarginLoss(reduction='sum')
+paddle.nn.MultiLabelMarginLoss(reduction='None')
 ```
+

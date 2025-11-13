@@ -21,65 +21,35 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction    | reduction    | 指定应用于输出结果的计算方式。                 |
 
 ### 转写示例
-
-
-#### size_average
-size_average 为 True
+#### reduction 为 sum
 ```python
 # PyTorch 写法
-torch.nn.CosineEmbeddingLoss(size_average=True)
+torch.nn.CosineEmbeddingLoss(margin=m, size_average=False, reduce=True)
+torch.nn.CosineEmbeddingLoss(margin=m, size_average=Flase)
 
 # Paddle 写法
-paddle.nn.CosineEmbeddingLoss(reduction='mean')
+paddle.nn.CosineEmbeddingLoss(margin=m, reduction='sum')
 ```
 
-size_average 为 False
+#### reduction 为 mean
 ```python
 # PyTorch 写法
-torch.nn.CosineEmbeddingLoss(size_average=False)
+torch.nn.CosineEmbeddingLoss(margin=m, size_average=True, reduce=True)
+torch.nn.CosineEmbeddingLoss(margin=m, reduce=True)
+torch.nn.CosineEmbeddingLoss(margin=m, size_average=True)
+torch.nn.CosineEmbeddingLoss(margin=m)
 
 # Paddle 写法
-paddle.nn.CosineEmbeddingLoss(reduction='sum')
+paddle.nn.CosineEmbeddingLoss(margin=m, reduction='mean')
 ```
-#### reduce
-reduce 为 True
+
+#### reduction 为 None
 ```python
 # PyTorch 写法
-torch.nn.CosineEmbeddingLoss(reduce=True)
+torch.nn.CosineEmbeddingLoss(margin=m, size_average=True, reduce=False)
+torch.nn.CosineEmbeddingLoss(margin=m, size_average=False, reduce=False)
+torch.nn.CosineEmbeddingLoss(margin=m, reduce=False)
 
 # Paddle 写法
-paddle.nn.CosineEmbeddingLoss(reduction='sum')
-```
-reduce 为 False
-```python
-# PyTorch 写法
-torch.nn.CosineEmbeddingLoss(reduce=False)
-
-# Paddle 写法
-paddle.nn.CosineEmbeddingLoss(reduction='none')
-```
-#### reduction
-reduction 为'none'
-```python
-# PyTorch 写法
-torch.nn.CosineEmbeddingLoss(reduction='none')
-
-# Paddle 写法
-paddle.nn.CosineEmbeddingLoss(reduction='none')
-```
-reduction 为'mean'
-```python
-# PyTorch 写法
-torch.nn.CosineEmbeddingLoss(reduction='mean')
-
-# Paddle 写法
-paddle.nn.CosineEmbeddingLoss(reduction='mean')
-```
-reduction 为'sum'
-```python
-# PyTorch 写法
-torch.nn.CosineEmbeddingLoss(reduction='sum')
-
-# Paddle 写法
-paddle.nn.CosineEmbeddingLoss(reduction='sum')
+paddle.nn.CosineEmbeddingLoss(margin=m, reduction='None')
 ```

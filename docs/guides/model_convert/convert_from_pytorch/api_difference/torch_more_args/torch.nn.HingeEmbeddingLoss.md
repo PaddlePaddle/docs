@@ -26,65 +26,36 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction    | reduction    | 表示应用于输出结果的计算方式。                               |
 
 ### 转写示例
-
-
-#### size_average
-size_average 为 True
+#### reduction 为 sum
 ```python
 # PyTorch 写法
-torch.nn.HingeEmbeddingLoss(size_average=True)
+torch.nn.HingeEmbeddingLoss(margin=m, size_average=False, reduce=True)
+torch.nn.HingeEmbeddingLoss(margin=m, size_average=Flase)
 
 # Paddle 写法
-paddle.nn.HingeEmbeddingLoss(reduction='mean')
+paddle.nn.HingeEmbeddingLoss(margin=m, reduction='sum')
 ```
 
-size_average 为 False
+#### reduction 为 mean
 ```python
 # PyTorch 写法
-torch.nn.HingeEmbeddingLoss(size_average=False)
+torch.nn.HingeEmbeddingLoss(margin=m, size_average=True, reduce=True)
+torch.nn.HingeEmbeddingLoss(margin=m, reduce=True)
+torch.nn.HingeEmbeddingLoss(margin=m, size_average=True)
+torch.nn.HingeEmbeddingLoss(margin=m)
 
 # Paddle 写法
-paddle.nn.HingeEmbeddingLoss(reduction='sum')
+paddle.nn.HingeEmbeddingLoss(margin=m, reduction='mean')
 ```
-#### reduce
-reduce 为 True
+
+#### reduction 为 None
 ```python
 # PyTorch 写法
-torch.nn.HingeEmbeddingLoss(reduce=True)
+torch.nn.HingeEmbeddingLoss(margin=m, size_average=True, reduce=False)
+torch.nn.HingeEmbeddingLoss(margin=m, size_average=False, reduce=False)
+torch.nn.HingeEmbeddingLoss(margin=m, reduce=False)
 
 # Paddle 写法
-paddle.nn.HingeEmbeddingLoss(reduction='sum')
+paddle.nn.HingeEmbeddingLoss(margin=m, reduction='None')
 ```
-reduce 为 False
-```python
-# PyTorch 写法
-torch.nn.HingeEmbeddingLoss(reduce=False)
 
-# Paddle 写法
-paddle.nn.HingeEmbeddingLoss(reduction='none')
-```
-#### reduction
-reduction 为'none'
-```python
-# PyTorch 写法
-torch.nn.HingeEmbeddingLoss(reduction='none')
-
-# Paddle 写法
-paddle.nn.HingeEmbeddingLoss(reduction='none')
-```
-reduction 为'mean'
-```python
-# PyTorch 写法
-torch.nn.HingeEmbeddingLoss(reduction='mean')
-
-# Paddle 写法
-paddle.nn.HingeEmbeddingLoss(reduction='mean')
-```
-reduction 为'sum'
-```python
-# PyTorch 写法
-torch.nn.HingeEmbeddingLoss(reduction='sum')
-
-# Paddle 写法
-paddle.nn.HingeEmbeddingLoss(reduction='sum')
-```

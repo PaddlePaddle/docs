@@ -24,65 +24,37 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | log_target    | log_target   | 指定目标是否属于 log 空间。                            |
 
 ### 转写示例
-
-
-#### size_average
-size_average 为 True
+#### reduction 为 sum
 ```python
 # PyTorch 写法
+torch.nn.KLDivLoss(size_average=False, reduce=True)
+torch.nn.KLDivLoss(size_average=Flase)
+
+# Paddle 写法
+paddle.nn.KLDivLoss(reduction='sum')
+```
+
+#### reduction 为 mean
+```python
+# PyTorch 写法
+torch.nn.KLDivLoss(size_average=True, reduce=True)
+torch.nn.KLDivLoss(reduce=True)
 torch.nn.KLDivLoss(size_average=True)
+torch.nn.KLDivLoss()
 
 # Paddle 写法
 paddle.nn.KLDivLoss(reduction='mean')
 ```
 
-size_average 为 False
+#### reduction 为 None
 ```python
 # PyTorch 写法
-torch.nn.KLDivLoss(size_average=False)
-
-# Paddle 写法
-paddle.nn.KLDivLoss(reduction='sum')
-```
-#### reduce
-reduce 为 True
-```python
-# PyTorch 写法
-torch.nn.KLDivLoss(reduce=True)
-
-# Paddle 写法
-paddle.nn.KLDivLoss(reduction='sum')
-```
-reduce 为 False
-```python
-# PyTorch 写法
+torch.nn.KLDivLoss(size_average=True, reduce=False)
+torch.nn.KLDivLoss(size_average=False, reduce=False)
 torch.nn.KLDivLoss(reduce=False)
 
 # Paddle 写法
-paddle.nn.KLDivLoss(reduction='none')
+paddle.nn.KLDivLoss(reduction='None')
 ```
-#### reduction
-reduction 为'none'
-```python
-# PyTorch 写法
-torch.nn.KLDivLoss(reduction='none')
 
-# Paddle 写法
-paddle.nn.KLDivLoss(reduction='none')
-```
-reduction 为'mean'
-```python
-# PyTorch 写法
-torch.nn.KLDivLoss(reduction='mean')
 
-# Paddle 写法
-paddle.nn.KLDivLoss(reduction='mean')
-```
-reduction 为'sum'
-```python
-# PyTorch 写法
-torch.nn.KLDivLoss(reduction='sum')
-
-# Paddle 写法
-paddle.nn.KLDivLoss(reduction='sum')
-```

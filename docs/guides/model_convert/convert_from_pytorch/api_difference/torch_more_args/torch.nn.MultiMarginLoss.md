@@ -23,65 +23,35 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction          | reduction          | 指定应用于输出结果的计算方式，可选值有 `none`、`mean` 和 `sum`。默认为 `mean`，计算 mini-batch loss 均值。设置为 `sum` 时，计算 mini-batch loss 的总和。设置为 `none` 时，则返回 loss Tensor。默认值下为 `mean`。   |
 
 ### 转写示例
-
-
-#### size_average
-size_average 为 True
+#### reduction 为 sum
 ```python
 # PyTorch 写法
-torch.nn.MultiMarginLoss(size_average=True)
+torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, size_average=False, reduce=True)
+torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, size_average=False)
 
 # Paddle 写法
-paddle.nn.MultiMarginLoss(reduction='mean')
+paddle.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, reduction='sum')
 ```
 
-size_average 为 False
+#### reduction 为 mean
 ```python
 # PyTorch 写法
-torch.nn.MultiMarginLoss(size_average=False)
+torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, size_average=True, reduce=True)
+torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, reduce=True)
+torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, size_average=True)
+torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=w)
 
 # Paddle 写法
-paddle.nn.MultiMarginLoss(reduction='sum')
+paddle.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, reduction='mean')
 ```
-#### reduce
-reduce 为 True
+
+#### reduction 为 None
 ```python
 # PyTorch 写法
-torch.nn.MultiMarginLoss(reduce=True)
+torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, size_average=True, reduce=False)
+torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, size_average=False, reduce=False)
+torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, reduce=False)
 
 # Paddle 写法
-paddle.nn.MultiMarginLoss(reduction='sum')
-```
-reduce 为 False
-```python
-# PyTorch 写法
-torch.nn.MultiMarginLoss(reduce=False)
-
-# Paddle 写法
-paddle.nn.MultiMarginLoss(reduction='none')
-```
-#### reduction
-reduction 为'none'
-```python
-# PyTorch 写法
-torch.nn.MultiMarginLoss(reduction='none')
-
-# Paddle 写法
-paddle.nn.MultiMarginLoss(reduction='none')
-```
-reduction 为'mean'
-```python
-# PyTorch 写法
-torch.nn.MultiMarginLoss(reduction='mean')
-
-# Paddle 写法
-paddle.nn.MultiMarginLoss(reduction='mean')
-```
-reduction 为'sum'
-```python
-# PyTorch 写法
-torch.nn.MultiMarginLoss(reduction='sum')
-
-# Paddle 写法
-paddle.nn.MultiMarginLoss(reduction='sum')
+paddle.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, reduction='None')
 ```
