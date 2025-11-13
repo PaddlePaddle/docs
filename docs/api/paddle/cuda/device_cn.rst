@@ -5,7 +5,7 @@ device
 
 .. py:function:: paddle.cuda.device(device=None)
 
-获取或设置当前 CUDA 设备。本函数与 paddle.device.device 功能一致
+获取或设置当前 CUDA 设备。本函数与 :ref:`cn_api_paddle_device_device` 功能一致
 
 参数
 ::::::::::::
