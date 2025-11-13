@@ -11,7 +11,7 @@ custom device stream 的句柄。
 ::::::::::::
 
     - **device** (paddle.CUDAPlace|paddle.CustomPlace|str) - 希望分配 stream 的设备或设备类型。如果为 None，则为当前期望的 place。默认值为 None。
-    - **priority** (int|None，可选) - stream 的优先级。优先级可以为 1（高优先级）或者 2（正常优先级）。如果优先级为 None，优先级为 2（正常优先级）。默认值为 None。
+    - **priority** (int|None，可选) - (int, 可选) - 流的优先级，默认为 None; 可以是 1 或-1（高优先级）或 0 或 2（低优先级）。默认情况下，流具有优先级 0。
     - **blocking** (bool|None，可选) - stream 是否同步执行。默认值为 False。
 
 
