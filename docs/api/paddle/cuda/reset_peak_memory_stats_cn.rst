@@ -8,7 +8,7 @@ reset_peak_memory_stats
 重置所有设备的峰值内存统计信息。
 此方法重置程序执行期间为每个设备记录的峰值内存使用情况。
 它将所有设备的峰值内存使用率设置为零。
-与 paddle.device.reset_peak_memory_stats 功能一致
+与 :ref:`cn_api_paddle_device_reset_peak_memory_stats` 功能一致
 
 参数
 ::::::::::::
