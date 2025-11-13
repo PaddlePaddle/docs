@@ -9,7 +9,7 @@ max_memory_allocated
 
 .. note::
     Paddle 中分配给 Tensor 的显存块大小会进行 256 字节对齐，因此可能大于 Tensor 实际需要的显存大小。例如，一个 shape 为[1]的 float32 类型 Tensor 会占用 256 字节的显存，即使存储一个 float32 类型数据实际只需要 4 字节。
-    与 paddle.device.max_memory_allocated 功能一致
+    与 :ref:`cn_api_paddle_device_max_memory_allocated` 功能一致
 
 参数
 ::::::::::::
