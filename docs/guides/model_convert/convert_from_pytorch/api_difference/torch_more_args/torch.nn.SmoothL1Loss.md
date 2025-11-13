@@ -49,7 +49,7 @@ torch.nn.SmoothL1Loss()
 paddle.nn.SmoothL1Loss(reduction='mean',is_huber=False)
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.SmoothL1Loss(size_average=True, reduce=False)
@@ -57,5 +57,5 @@ torch.nn.SmoothL1Loss(size_average=False, reduce=False)
 torch.nn.SmoothL1Loss(reduce=False)
 
 # Paddle 写法
-paddle.nn.SmoothL1Loss(reduction='None',is_huber=False)
+paddle.nn.SmoothL1Loss(reduction='none',is_huber=False)
 ```

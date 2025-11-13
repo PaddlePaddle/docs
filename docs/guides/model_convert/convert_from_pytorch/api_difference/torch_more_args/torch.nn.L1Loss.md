@@ -44,7 +44,7 @@ torch.nn.L1Loss()
 paddle.nn.L1Loss(reduction='mean')
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.L1Loss(size_average=True, reduce=False)
@@ -52,5 +52,5 @@ torch.nn.L1Loss(size_average=False, reduce=False)
 torch.nn.L1Loss(reduce=False)
 
 # Paddle 写法
-paddle.nn.L1Loss(reduction='None')
+paddle.nn.L1Loss(reduction='none')
 ```

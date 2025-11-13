@@ -25,7 +25,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ```python
 # PyTorch 写法
 torch.nn.CosineEmbeddingLoss(margin=m, size_average=False, reduce=True)
-torch.nn.CosineEmbeddingLoss(margin=m, size_average=Flase)
+torch.nn.CosineEmbeddingLoss(margin=m, size_average=False)
 
 # Paddle 写法
 paddle.nn.CosineEmbeddingLoss(margin=m, reduction='sum')
@@ -43,7 +43,7 @@ torch.nn.CosineEmbeddingLoss(margin=m)
 paddle.nn.CosineEmbeddingLoss(margin=m, reduction='mean')
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.CosineEmbeddingLoss(margin=m, size_average=True, reduce=False)
@@ -51,5 +51,5 @@ torch.nn.CosineEmbeddingLoss(margin=m, size_average=False, reduce=False)
 torch.nn.CosineEmbeddingLoss(margin=m, reduce=False)
 
 # Paddle 写法
-paddle.nn.CosineEmbeddingLoss(margin=m, reduction='None')
+paddle.nn.CosineEmbeddingLoss(margin=m, reduction='none')
 ```

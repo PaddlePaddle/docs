@@ -43,7 +43,7 @@ torch.nn.MSELoss()
 paddle.nn.MSELoss(reduction='mean')
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.MSELoss(size_average=True, reduce=False)
@@ -51,5 +51,5 @@ torch.nn.MSELoss(size_average=False, reduce=False)
 torch.nn.MSELoss(reduce=False)
 
 # Paddle 写法
-paddle.nn.MSELoss(reduction='None')
+paddle.nn.MSELoss(reduction='none')
 ```

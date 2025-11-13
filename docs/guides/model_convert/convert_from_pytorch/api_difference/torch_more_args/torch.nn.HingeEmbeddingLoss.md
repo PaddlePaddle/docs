@@ -30,7 +30,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ```python
 # PyTorch 写法
 torch.nn.HingeEmbeddingLoss(margin=m, size_average=False, reduce=True)
-torch.nn.HingeEmbeddingLoss(margin=m, size_average=Flase)
+torch.nn.HingeEmbeddingLoss(margin=m, size_average=False)
 
 # Paddle 写法
 paddle.nn.HingeEmbeddingLoss(margin=m, reduction='sum')
@@ -48,7 +48,7 @@ torch.nn.HingeEmbeddingLoss(margin=m)
 paddle.nn.HingeEmbeddingLoss(margin=m, reduction='mean')
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.HingeEmbeddingLoss(margin=m, size_average=True, reduce=False)
@@ -56,6 +56,5 @@ torch.nn.HingeEmbeddingLoss(margin=m, size_average=False, reduce=False)
 torch.nn.HingeEmbeddingLoss(margin=m, reduce=False)
 
 # Paddle 写法
-paddle.nn.HingeEmbeddingLoss(margin=m, reduction='None')
+paddle.nn.HingeEmbeddingLoss(margin=m, reduction='none')
 ```
-

@@ -45,7 +45,7 @@ torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=w)
 paddle.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, reduction='mean')
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, size_average=True, reduce=False)
@@ -53,5 +53,5 @@ torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, size_average=False, reduce=F
 torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, reduce=False)
 
 # Paddle 写法
-paddle.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, reduction='None')
+paddle.nn.MultiMarginLoss(p=1, margin=1.0, weight=w, reduction='none')
 ```

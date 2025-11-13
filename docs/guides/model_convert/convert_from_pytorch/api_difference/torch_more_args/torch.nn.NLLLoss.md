@@ -51,7 +51,7 @@ torch.nn.NLLLoss(weight=w, ignore_index=-100)
 paddle.nn.NLLLoss(weight=w, ignore_index=-100, reduction='mean')
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.NLLLoss(weight=w, ignore_index=-100, size_average=True, reduce=False)
@@ -59,5 +59,5 @@ torch.nn.NLLLoss(weight=w, ignore_index=-100, size_average=False, reduce=False)
 torch.nn.NLLLoss(weight=w, ignore_index=-100, reduce=False)
 
 # Paddle 写法
-paddle.nn.NLLLoss(weight=w, ignore_index=-100, reduction='None')
+paddle.nn.NLLLoss(weight=w, ignore_index=-100, reduction='none')
 ```

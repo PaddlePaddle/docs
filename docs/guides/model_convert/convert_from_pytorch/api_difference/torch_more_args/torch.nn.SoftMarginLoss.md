@@ -45,7 +45,7 @@ torch.nn.SoftMarginLoss()
 paddle.nn.SoftMarginLoss(reduction='mean')
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.SoftMarginLoss(size_average=True, reduce=False)
@@ -53,5 +53,5 @@ torch.nn.SoftMarginLoss(size_average=False, reduce=False)
 torch.nn.SoftMarginLoss(reduce=False)
 
 # Paddle 写法
-paddle.nn.SoftMarginLoss(reduction='None')
+paddle.nn.SoftMarginLoss(reduction='none')
 ```

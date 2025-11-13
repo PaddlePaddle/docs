@@ -45,7 +45,7 @@ torch.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8)
 paddle.nn.PoissonNLLLoss(log_input=True, full=False, epsilon=1e-8, reduction='mean')
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, size_average=True, reduce=False)
@@ -53,5 +53,5 @@ torch.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, size_average=False
 torch.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-8, reduce=False)
 
 # Paddle 写法
-paddle.nn.PoissonNLLLoss(log_input=True, full=False, epsilon=1e-8, reduction='None')
+paddle.nn.PoissonNLLLoss(log_input=True, full=False, epsilon=1e-8, reduction='none')
 ```

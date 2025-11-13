@@ -48,7 +48,7 @@ torch.nn.MarginRankingLoss(margin=m)
 paddle.nn.MarginRankingLoss(margin=m, reduction='mean')
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.MarginRankingLoss(margin=m, size_average=True, reduce=False)
@@ -56,5 +56,5 @@ torch.nn.MarginRankingLoss(margin=m, size_average=False, reduce=False)
 torch.nn.MarginRankingLoss(margin=m, reduce=False)
 
 # Paddle 写法
-paddle.nn.MarginRankingLoss(margin=m, reduction='None')
+paddle.nn.MarginRankingLoss(margin=m, reduction='none')
 ```

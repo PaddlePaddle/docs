@@ -40,7 +40,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ```python
 # PyTorch 写法
 torch.nn.CrossEntropyLoss(weight=w, size_average=False, reduce=True)
-torch.nn.CrossEntropyLoss(weight=w, size_average=Flase)
+torch.nn.CrossEntropyLoss(weight=w, size_average=False)
 
 # Paddle 写法
 paddle.nn.CrossEntropyLoss(weight=w, reduction='sum')
@@ -58,7 +58,7 @@ torch.nn.CrossEntropyLoss(weight=w)
 paddle.nn.CrossEntropyLoss(weight=w, reduction='mean')
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.CrossEntropyLoss(weight=w, size_average=True, reduce=False)
@@ -66,6 +66,5 @@ torch.nn.CrossEntropyLoss(weight=w, size_average=False, reduce=False)
 torch.nn.CrossEntropyLoss(weight=w, reduce=False)
 
 # Paddle 写法
-paddle.nn.CrossEntropyLoss(weight=w, reduction='None')
+paddle.nn.CrossEntropyLoss(weight=w, reduction='none')
 ```
-

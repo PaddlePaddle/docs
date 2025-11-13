@@ -43,7 +43,7 @@ torch.nn.MultiLabelSoftMarginLoss(weight=w)
 paddle.nn.MultiLabelSoftMarginLoss(weight=w, reduction='mean')
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.MultiLabelSoftMarginLoss(weight=w, size_average=True, reduce=False)
@@ -51,5 +51,5 @@ torch.nn.MultiLabelSoftMarginLoss(weight=w, size_average=False, reduce=False)
 torch.nn.MultiLabelSoftMarginLoss(weight=w, reduce=False)
 
 # Paddle 写法
-paddle.nn.MultiLabelSoftMarginLoss(weight=w, reduction='None')
+paddle.nn.MultiLabelSoftMarginLoss(weight=w, reduction='none')
 ```

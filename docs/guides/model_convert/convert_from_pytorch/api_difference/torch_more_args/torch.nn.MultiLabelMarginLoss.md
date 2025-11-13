@@ -42,7 +42,7 @@ torch.nn.MultiLabelMarginLoss()
 paddle.nn.MultiLabelMarginLoss(reduction='mean')
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.MultiLabelMarginLoss(size_average=True, reduce=False)
@@ -50,6 +50,5 @@ torch.nn.MultiLabelMarginLoss(size_average=False, reduce=False)
 torch.nn.MultiLabelMarginLoss(reduce=False)
 
 # Paddle 写法
-paddle.nn.MultiLabelMarginLoss(reduction='None')
+paddle.nn.MultiLabelMarginLoss(reduction='none')
 ```
-

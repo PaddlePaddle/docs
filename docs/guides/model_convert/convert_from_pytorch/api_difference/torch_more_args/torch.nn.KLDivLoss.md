@@ -28,7 +28,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ```python
 # PyTorch 写法
 torch.nn.KLDivLoss(size_average=False, reduce=True)
-torch.nn.KLDivLoss(size_average=Flase)
+torch.nn.KLDivLoss(size_average=False)
 
 # Paddle 写法
 paddle.nn.KLDivLoss(reduction='sum')
@@ -46,7 +46,7 @@ torch.nn.KLDivLoss()
 paddle.nn.KLDivLoss(reduction='mean')
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.KLDivLoss(size_average=True, reduce=False)
@@ -54,7 +54,5 @@ torch.nn.KLDivLoss(size_average=False, reduce=False)
 torch.nn.KLDivLoss(reduce=False)
 
 # Paddle 写法
-paddle.nn.KLDivLoss(reduction='None')
+paddle.nn.KLDivLoss(reduction='none')
 ```
-
-

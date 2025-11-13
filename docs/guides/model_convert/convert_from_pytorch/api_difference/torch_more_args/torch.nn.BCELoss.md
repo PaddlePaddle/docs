@@ -29,7 +29,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ```python
 # PyTorch 写法
 torch.nn.BCELoss(weight=w, size_average=False, reduce=True)
-torch.nn.BCELoss(weight=w, size_average=Flase)
+torch.nn.BCELoss(weight=w, size_average=False)
 
 # Paddle 写法
 paddle.nn.BCELoss(weight=w, reduction='sum')
@@ -47,7 +47,7 @@ torch.nn.BCELoss(weight=w)
 paddle.nn.BCELoss(weight=w, reduction='mean')
 ```
 
-#### reduction 为 None
+#### reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.BCELoss(weight=w, size_average=True, reduce=False)
@@ -55,5 +55,5 @@ torch.nn.BCELoss(weight=w, size_average=False, reduce=False)
 torch.nn.BCELoss(weight=w, reduce=False)
 
 # Paddle 写法
-paddle.nn.BCELoss(weight=w, reduction='None')
+paddle.nn.BCELoss(weight=w, reduction='none')
 ```
