@@ -17,7 +17,7 @@ if [ -z "${PADDLE_WHL}" ] ; then
     if [ -n "${paddle_pr_id}" ] ; then
         paddle_pr_info=$(get_repo_pr_info "PaddlePaddle/Paddle" ${paddle_pr_id})
         paddle_pr_latest_commit=$(get_latest_commit_from_pr_info ${paddle_pr_info})
-        paddle_whl_tmp="https://xly-devops.bj.bcebos.com/PR/build_whl/${paddle_pr_id}/${paddle_pr_latest_commit}/paddlepaddle_gpu-0.0.0-cp310-cp310-linux_x86_64.whl"
+        paddle_whl_tmp="https://paddle-github-action.bj.bcebos.com/PR/build_whl/${paddle_pr_id}/${paddle_pr_latest_commit}/paddlepaddle_gpu-0.0.0-cp310-cp310-linux_x86_64.whl"
 
         retry_count=3
         echo -e "${GREEN}开始检查whl包可用性：${paddle_whl_tmp}${NC}"
