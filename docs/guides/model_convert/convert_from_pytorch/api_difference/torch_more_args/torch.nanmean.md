@@ -28,7 +28,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | out       | -        | 表示输出的 Tensor,可选项，Paddle 无此参数，需要转写。 |
 
 ### 转写示例
-#### dytpe：指定数据类型
+#### dtype：指定数据类型
 ```python
 # PyTorch 写法
 torch.nanmean(x, dim=-1, dtype=torch.float32,out=y)

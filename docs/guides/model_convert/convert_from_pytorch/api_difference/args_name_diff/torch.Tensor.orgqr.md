@@ -15,4 +15,4 @@ paddle.Tensor.householder_product(tau, name=None)
 
 | PyTorch | PaddlePaddle | 备注                           |
 | ------- | ------------ | ------------------------------ |
-| input2  | tau          | 用于计算矩阵乘积，仅参数名不同 |
+| input2  | tau          | 用于计算矩阵乘积，仅参数名不同。 |

@@ -243,7 +243,7 @@ def py_func(func, x, out, backward_func=None, skip_vars_in_backward_input=None):
 
 若前向函数的输入为 `x_1`, `x_2`, ..., `x_n` ，输出为`y_1`, `y_2`, ..., `y_m`，则前向函数的定义格式为：
 ```Python
-def foward_func(x_1, x_2, ..., x_n):
+def forward_func(x_1, x_2, ..., x_n):
     ...
     return y_1, y_2, ..., y_m
 ```

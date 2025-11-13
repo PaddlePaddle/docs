@@ -1,7 +1,7 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.max
 该 api 有两组参数列表重载，因此有两组差异分析。
 
------------------------------------------------
+-------------------------------------------------------------------------------------------------
 
 ### [torch.Tensor.max](https://pytorch.org/docs/stable/generated/torch.Tensor.max.html)
 ```python
@@ -33,7 +33,7 @@ result = x.max(dim=1)
 result = x.max(dim=1), x.argmax(dim=1)
 ```
 
---------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
 
 ### [torch.Tensor.max](https://pytorch.org/docs/stable/generated/torch.Tensor.max.html)
 ```python

@@ -15,8 +15,8 @@ paddle.linalg.slogdet(x)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> A </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| <font color='red'> out </font> | - | 表示输出 Tensor，Paddle 无此参数，需要转写。  |
+|  A  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
+|  out  | - | 表示输出 Tensor，Paddle 无此参数，需要转写。  |
 | 返回值 | 返回值 | PyTorch 返回两个 Tensor，Paddle 返回一个 Tensor，需要转写。  |
 
 

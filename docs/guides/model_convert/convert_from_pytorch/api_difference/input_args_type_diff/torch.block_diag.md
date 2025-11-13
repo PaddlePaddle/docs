@@ -15,7 +15,7 @@ paddle.block_diag(inputs, name=None)
 
 | PyTorch  | PaddlePaddle | 备注                                                         |
 | -------- | ------------ | ------------------------------------------------------------ |
-| *tensors | inputs       | 一组输入 Tensor，PyTorch 参数 tensors 为可变参数，Paddle 参数 inputs 为 list(Tensor) 或 tuple(Tensor) 的形式。 |
+| *tensors | inputs       | 一组输入 Tensor，PyTorch 参数 tensors 为可变参数，Paddle 参数 inputs 为 list(Tensor) 或 tuple(Tensor) 的形式。需要转写。 |
 
 ### 转写示例
 #### *tensors：一组输入 Tensor

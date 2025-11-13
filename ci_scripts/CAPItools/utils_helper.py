@@ -219,7 +219,7 @@ class class_helper:
         # 避免空函数解析
         self.init_func = self.class_name
 
-        self.functions_infor = []
+        self.functions_info = []
         # Note: 未来可能在private也有函数
         # Note: 函数内构造函数可能解析有问题，需要后期查验
         self.class_function_number = len(self.class_dict["methods"]["public"])
@@ -267,7 +267,7 @@ class class_helper:
                             "param_intro"
                         ][param_name]
 
-            self.functions_infor.append(
+            self.functions_info.append(
                 {
                     "name": function_name,
                     "doxygen": funcs_intro,
@@ -322,46 +322,48 @@ class class_helper:
                 )
                 f.write(class_function_head_text)
 
-                for fun_infor in self.functions_infor:
-                    if fun_infor["template"] == "":
+                for fun_info in self.functions_info:
+                    if fun_info["template"] == "":
                         fun_name_and_intro_text = ""
                     else:
-                        fun_name_and_intro_text = f"{fun_infor['template']}\n"
+                        fun_name_and_intro_text = f"{fun_info['template']}\n"
                     fun_name_and_intro_text += (
-                        f"{fun_infor['name']}\n"
+                        f"{fun_info['name']}\n"
                         + "'''''''''''\n"
-                        + f"{fun_infor['doxygen']}\n"
+                        + f"{fun_info['doxygen']}\n"
                         + "\n"
                     )
                     f.write(fun_name_and_intro_text)
 
-                    if fun_infor["note"] != "":
+                    if fun_info["note"] != "":
                         fun_note_text = (
-                            "..note::\n" + f"\t{fun_infor['note']}\n" + "\n"
+                            "..note::\n" + f"\t{fun_info['note']}\n" + "\n"
                         )
                         f.write(fun_note_text)
 
-                    if len(fun_infor["parameter"]) != 0:
+                    if len(fun_info["parameter"]) != 0:
                         parameters_text = "**参数**\n" + "'''''''''''\n"
                         f.write(parameters_text)
-                        for param in fun_infor["parameter"].keys():
+                        for param in fun_info["parameter"].keys():
                             param_text = f"\t- **{param}**"
-                            if fun_infor["parameter"][param]["type"] != "":
-                                param_text += f" ({fun_infor['parameter'][param]['type']})"
-                            if fun_infor["parameter"][param]["intro"] != "":
-                                param_text += f" - {fun_infor['parameter'][param]['intro']}"
+                            if fun_info["parameter"][param]["type"] != "":
+                                param_text += (
+                                    f" ({fun_info['parameter'][param]['type']})"
+                                )
+                            if fun_info["parameter"][param]["intro"] != "":
+                                param_text += f" - {fun_info['parameter'][param]['intro']}"
                             param_text += "\n"
                             f.write(param_text)
                     f.write("\n")
 
                     if (
-                        fun_infor["returns"] != ""
-                        and "void" not in fun_infor["returns"]
+                        fun_info["returns"] != ""
+                        and "void" not in fun_info["returns"]
                     ):
                         fun_return_text = (
                             "**返回**\n"
                             + "'''''''''''\n"
-                            + f"{fun_infor['returns']}\n"
+                            + f"{fun_info['returns']}\n"
                             + "\n"
                         )
                         f.write(fun_return_text)
@@ -399,46 +401,48 @@ class class_helper:
                 )
                 f.write(class_function_head_text)
 
-                for fun_infor in self.functions_infor:
-                    if fun_infor["template"] == "":
+                for fun_info in self.functions_info:
+                    if fun_info["template"] == "":
                         fun_name_and_intro_text = ""
                     else:
-                        fun_name_and_intro_text = f"{fun_infor['template']}\n"
+                        fun_name_and_intro_text = f"{fun_info['template']}\n"
                     fun_name_and_intro_text += (
-                        f"{fun_infor['name']}\n"
+                        f"{fun_info['name']}\n"
                         + "'''''''''''\n"
-                        + f"{fun_infor['doxygen']}\n"
+                        + f"{fun_info['doxygen']}\n"
                         + "\n"
                     )
                     f.write(fun_name_and_intro_text)
 
-                    if fun_infor["note"] != "":
+                    if fun_info["note"] != "":
                         fun_note_text = (
-                            "..note::\n" + f"\t{fun_infor['note']}\n" + "\n"
+                            "..note::\n" + f"\t{fun_info['note']}\n" + "\n"
                         )
                         f.write(fun_note_text)
 
-                    if len(fun_infor["parameter"]) != 0:
+                    if len(fun_info["parameter"]) != 0:
                         parameters_text = "**Parameters**\n" + "'''''''''''\n"
                         f.write(parameters_text)
-                        for param in fun_infor["parameter"].keys():
+                        for param in fun_info["parameter"].keys():
                             param_text = f"\t- **{param}**"
-                            if fun_infor["parameter"][param]["type"] != "":
-                                param_text += f" ({fun_infor['parameter'][param]['type']})"
-                            if fun_infor["parameter"][param]["intro"] != "":
-                                param_text += f" - {fun_infor['parameter'][param]['intro']}"
+                            if fun_info["parameter"][param]["type"] != "":
+                                param_text += (
+                                    f" ({fun_info['parameter'][param]['type']})"
+                                )
+                            if fun_info["parameter"][param]["intro"] != "":
+                                param_text += f" - {fun_info['parameter'][param]['intro']}"
                             param_text += "\n"
                             f.write(param_text)
                     f.write("\n")
 
                     if (
-                        fun_infor["returns"] != ""
-                        and "void" not in fun_infor["returns"]
+                        fun_info["returns"] != ""
+                        and "void" not in fun_info["returns"]
                     ):
                         fun_return_text = (
                             "**Returns**\n"
                             + "'''''''''''\n"
-                            + f"{fun_infor['returns']}\n"
+                            + f"{fun_info['returns']}\n"
                             + "\n"
                         )
                         f.write(fun_return_text)

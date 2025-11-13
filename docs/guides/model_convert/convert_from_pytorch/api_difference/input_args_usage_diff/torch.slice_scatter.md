@@ -17,12 +17,13 @@ paddle.slice_scatter(x, value, axes, starts, ends, strides, name=None)
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的目标矩阵, 仅参数名不一致。 |
 | src           | value        | 嵌入的值，仅参数名不一致。 |
-| dim           | axes         | 嵌入的维度，PyTorch 为 int 类型，Paddle 为 list of int。 |
-| start         | starts       | 嵌入起始索引，PyTorch 为 int 类型，Paddle 为 list of int。 |
-| end           | ends         | 嵌入截至索引，PyTorch 为 int 类型，Paddle 为 list of int。 |
-| step          | strides      | 嵌入步长，PyTorch 为 int 类型，Paddle 为 list of int。 |
+| dim           | axes         | 嵌入的维度，PyTorch 为 int 类型，Paddle 为 list of int。需要转写。 |
+| start         | starts       | 嵌入起始索引，PyTorch 为 int 类型，Paddle 为 list of int。需要转写。 |
+| end           | ends         | 嵌入截至索引，PyTorch 为 int 类型，Paddle 为 list of int。需要转写。 |
+| step          | strides      | 嵌入步长，PyTorch 为 int 类型，Paddle 为 list of int。需要转写。 |
 
 ### 转写示例
+#### src、dim、start、end、step 转写
 ```python
 # PyTorch 写法
 torch.slice_scatter(input, src, dim=0, start=1, end=5, step=2)

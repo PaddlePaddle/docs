@@ -76,7 +76,7 @@ conv3d
 ::::::::::::
 
     - **input** (Tensor) - 形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的 5-D Tensor，N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度，数据类型为 float16, float32 或 float64。
-    - **num_fliters** (int) - 滤波器（卷积核）的个数。和输出图像通道相同。
+    - **num_filters** (int) - 滤波器（卷积核）的个数。和输出图像通道相同。
     - **filter_size** (int|list|tuple) - 滤波器大小。如果它是一个列表或元组，则必须包含三个整数值：（filter_size_depth, filter_size_height，filter_size_width）。若为一个整数，则 filter_size_depth = filter_size_height = filter_size_width = filter_size。
     - **stride** (int|list|tuple，可选) - 步长大小。滤波器和输入进行卷积计算时滑动的步长。如果它是一个列表或元组，则必须包含三个整型数：（stride_depth, stride_height, stride_width）。若为一个整数，stride_depth = stride_height = stride_width = stride。默认值：1。
     - **padding** (int|list|tuple|str，可选) - 填充大小。如果它是一个字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考上述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。如果它是一个元组或列表，它可以有 3 种格式：

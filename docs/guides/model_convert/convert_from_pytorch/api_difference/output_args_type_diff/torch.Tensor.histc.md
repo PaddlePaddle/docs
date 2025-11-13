@@ -15,11 +15,13 @@ paddle.Tensor.histogram(bins=100, min=0, max=0, name=None)
 
 | PyTorch                           | PaddlePaddle                 | 备注                                                   |
 |-----------------------------------|------------------------------| ------------------------------------------------------ |
-| <font color='red'> bins </font> | <font color='red'> bins </font> | 直方图 bins(直条)的个数，默认为 100。                                     |
-| <font color='red'> min </font> | <font color='red'> min </font> | range 的下边界(包含)，默认为 0。                                     |
-| <font color='red'> max </font> | <font color='red'> max </font> | range 的上边界(包含)，默认为 0。                                     |
+|  bins  |  bins  | 直方图 bins(直条)的个数，默认为 100。                                     |
+|  min  |  min  | range 的下边界(包含)，默认为 0。                                     |
+|  max  |  max  | range 的上边界(包含)，默认为 0。                                     |
+|  返回值  |  返回值  | 返回 Tensor 的数据类型不一致，需要转写。                                     |
 
 ### 转写示例
+#### 返回值
 ```python
 # PyTorch 写法
 y = a.histc(bins=3, min=2, max=4)

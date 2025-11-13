@@ -40,7 +40,7 @@ paddle.nn.LSTM(input_size,
 | bias          | bias_ih_attr, bias_hh_attr  | 是否使用偏置， Paddle 的 bias_ih_attr, bias_hh_attr 参数均需与 PyTorch 设置一致，需要转写。   |
 | batch_first   | time_major   | PyTorch 表示 batch size 是否为第一维，PaddlePaddle 表示 time steps 是否为第一维，它们的意义相反。需要转写。 |
 | dropout   | dropout   | 表示 dropout 概率。  |
-| bidirectional | direction    | PyTorch 表示是否进行双向，Paddle 使用字符串表示是双向 LSTM（`bidirectional`）还是单向 LSTM（`forward`）|
+| bidirectional | direction    | PyTorch 表示是否进行双向，Paddle 使用字符串表示是双向 LSTM（`bidirectional`）还是单向 LSTM（`forward`）。|
 | proj_size     | proj_size            | 表示 LSTM 后将 `hidden state` 映射到对应的大小。 |
 | device   | -   | 指定 Tensor 的设备，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
 | dtype   | -   | Tensor 的所需数据类型，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |

@@ -21,7 +21,7 @@ paddle.diagonal(x,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
+|  input  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
 | offset | offset | 表示对角线偏移量。  |
-| <font color='red'> dim1 </font>          | <font color='red'> axis1 </font>        | 获取对角线的二维平面的第一维，仅参数名不一致。        |
-| <font color='red'> dim2 </font>          | <font color='red'> axis2 </font>        | 获取对角线的二维平面的第二维，仅参数名不一致。        |
+|  dim1           |  axis1         | 获取对角线的二维平面的第一维，仅参数名不一致。        |
+|  dim2           |  axis2         | 获取对角线的二维平面的第二维，仅参数名不一致。        |

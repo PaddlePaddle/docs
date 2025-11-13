@@ -10,16 +10,9 @@ Paddle 无此 API，需要组合实现。
 ```python
 # PyTorch 写法
 torch.float_power(x, y)
-
-# Paddle 写法
-paddle.pow(x.cast(paddle.float64), y)
-```
-
-#### out：指定输出
-```python
-# PyTorch 写法
 torch.float_power(x, y, out=out)
 
 # Paddle 写法
+paddle.pow(x.cast(paddle.float64), y)
 paddle.assign(paddle.pow(x.cast(paddle.float64), y), out)
 ```

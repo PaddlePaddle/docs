@@ -18,6 +18,6 @@ paddle.dist(x,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| <font color='red'> other </font> | <font color='red'> y </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| p | p | 表示需要计算的范数 |
+|  input  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
+|  other  |  y  | 表示输入的 Tensor ，仅参数名不一致。  |
+| p | p | 表示需要计算的范数。 |

@@ -5,11 +5,11 @@ slogdet
 
 .. py:function:: paddle.compat.slogdet(x, out=None)
 
-PyTorch 兼容的 :ref:`cn_api_paddle_slogdet` 版本，计算方阵或批量方阵行列式的符号与绝对值的自然对数，行列式的值可以通过 ``sign * exp(logabsdet)`` 复原。
+PyTorch 兼容的 :ref:`cn_api_paddle_linalg_slogdet` 版本，计算方阵或批量方阵行列式的符号与绝对值的自然对数，行列式的值可以通过 ``sign * exp(logabsdet)`` 复原。
 
 使用前请详细参考：`【返回参数类型不一致】torch.slogdet`_ 以确定是否使用此模块。
 
-.. _【返回参数类型不一致】torch.slogdet: https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.slogdet.html
+.. _【返回参数类型不一致】torch.slogdet: https://www.paddlepaddle.org.cn/documentation/docs/en/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.slogdet.html
 
 
 参数

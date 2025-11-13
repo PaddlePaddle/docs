@@ -28,7 +28,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | -                   | timer_only     | 如果设置为 True，将只统计模型的数据读取和每一个迭代所消耗的时间，而不进行性能分析，PyTorch 无此参数，Paddle 保持默认即可。   |
 
 ### 转写示例
-#### 参数类型不同
 ```python
 # PyTorch 写法:
 with torch.profiler.profile(

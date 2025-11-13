@@ -19,5 +19,5 @@ paddle.sparse.addmm(input, x, y, beta=1.0, alpha=1.0, name=None)
 |input | input|         输入 Tensor。|
 |mat1 |      x   |输入 Tensor，仅参数名不一致。|
 |mat2|y| 输入 Tensor，仅参数名不一致。|
-|beta|beta| input 的系数，默认 1.0。两者完全一致|
-|alpha|alpha|  x * y 的系数，默认 1.0。两者完全一致|
+|beta|beta| input 的系数，默认 1.0。两者完全一致。|
+|alpha|alpha|  x * y 的系数，默认 1.0。两者完全一致。|
