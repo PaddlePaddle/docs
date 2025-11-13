@@ -1,8 +1,8 @@
-.. _cn_api_paddle_compat_softmax:
+.. _cn_api_paddle_compat_nn_functional_softmax:
 
 softmax
 -------------------------------
-.. py:function:: paddle.compat.softmax(input, dim=None, dtype=None, *, out=None)
+.. py:function:: paddle.compat.nn.functional.softmax(input, dim=None, dtype=None, *, out=None)
 
 实现 softmax 层。计算过程如下：
 
@@ -97,4 +97,4 @@ softmax
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.compat.softmax
+COPY-FROM: paddle.compat.nn.functional.softmax
