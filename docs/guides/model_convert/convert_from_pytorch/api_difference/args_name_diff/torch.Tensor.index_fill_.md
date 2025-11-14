@@ -15,6 +15,6 @@ paddle.Tensor.index_fill_(index, axis, value, name=None)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> dim </font> | <font color='red'> axis </font> | 表示进行运算的轴，仅参数名不一致。  |
-| <font color='red'> index </font> | <font color='red'> index </font> | 包含索引下标的 1-D Tensor。  |
-| <font color='red'> value </font> | <font color='red'> value </font> | 填充的值。  |
+|  dim  |  axis  | 表示进行运算的轴，仅参数名不一致。  |
+|  index  |  index  | 包含索引下标的 1-D Tensor。  |
+|  value  |  value  | 填充的值。  |

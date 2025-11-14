@@ -53,6 +53,7 @@ paddle.optimizer.lr.OneCycleLR(max_learning_rate,
 | verbose     | verbose       | 如果是 True，则在每一轮更新时在标准输出 stdout 输出一条信息。参数完全一致。  |
 
 ### 转写示例
+#### total_steps, epochs, steps_per_epoch 参数转写
 ```python
 # PyTorch 写法
 linear = torch.nn.Linear(10, 10)

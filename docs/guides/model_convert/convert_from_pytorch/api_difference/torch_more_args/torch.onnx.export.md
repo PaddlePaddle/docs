@@ -34,25 +34,50 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | -                           | configs       | 其他用于兼容的存储配置选项，PyTorch 无此参数，Paddle 保持默认即可。                                                                  |
 
 ### 转写示例
-#### 参数类型不同
+#### f、model 参数转写
 ```python
 # PyTorch 写法
-torch.onnx.export(
-    model,
-    (
-        x,
-        {y: z},
-        {}
-    ),
-    "test.onnx.pb"
-)
+class SimpleModel(nn.Module):
+    def __init__(self):
+        super(SimpleModel, self).__init__()
+        self.fc1 = nn.Linear(3, 3)
+        self.fc2 = nn.Linear(3, 1)
 
+    def forward(self, x):
+        x = torch.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
+
+model = SimpleModel()
+x = torch.randn(1, 3)
+a = torch.onnx.export(
+    model,
+    f="simple_model.onnx",
+)
 # Paddle 写法
-model = Logic()
-x = paddle.to_tensor([1])
-y = paddle.to_tensor([2])
-# Static and run model.
-paddle.jit.to_static(model)
-out = model(x, y, z=True)
-paddle.onnx.export(model, 'pruned', input_spec=[x], output_spec=[out])
+def onnx_export(model,f):
+    model = Logic()
+    paddle.jit.to_static(model)
+    last_dot_index = filename.rfind('.')
+    if last_dot_index == -1:
+        path = f
+    else:
+        path = f[:last_dot_index]
+    return paddle.onnx.export(model, path)
+
+class SimpleModel(paddle.nn.Layer):
+    def __init__(self):
+        super(SimpleModel, self).__init__()
+        self.fc1 = paddle.nn.Linear(in_features=3, out_features=3)
+        self.fc2 = paddle.nn.Linear(in_features=3, out_features=1)
+
+    def forward(self, x):
+        x = paddle.nn.functional.relu(x=self.fc1(x))
+        x = self.fc2(x)
+        return x
+
+
+model = SimpleModel()
+x = paddle.randn(1, 3)
+a = onnx_export(model, "simple_model.onnx")
 ```

@@ -15,7 +15,7 @@ paddle.broadcast_tensors(input,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-|  *tensors       |  input       | 一组输入 Tensor ， PyTorch 参数 tensors 为可变参, Paddle 参数 inputs 为 list(Tensor) 或 tuple(Tensor) 的形式。   |
+|  *tensors       |  input       | 一组输入 Tensor ， PyTorch 参数 tensors 为可变参, Paddle 参数 inputs 为 list(Tensor) 或 tuple(Tensor) 的形式。 需要转写。 |
 
 
 ### 转写示例

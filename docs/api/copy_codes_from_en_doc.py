@@ -237,7 +237,7 @@ def find_codeblock_needed(cf_info):
         return None
 
 
-def instert_codes_into_cn_rst_if_need(cnrstfilename):
+def insert_codes_into_cn_rst_if_need(cnrstfilename):
     """
     Analyse the cn rst file, if need, extract code-blocks from en docstring.
     """
@@ -290,7 +290,7 @@ def instert_codes_into_cn_rst_if_need(cnrstfilename):
 
 
 def filter_all_files(
-    rootdir, ext="_cn.rst", action=instert_codes_into_cn_rst_if_need
+    rootdir, ext="_cn.rst", action=insert_codes_into_cn_rst_if_need
 ):
     """
     find all the _en.html file, and do the action.

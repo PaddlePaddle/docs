@@ -26,7 +26,7 @@ paddle.nn.functional.normalize(x,
 | p          | p         | 表示范数公式中的指数值 。                                     |
 | dim          | axis         | 表示要进行归一化的轴 。                                     |
 | eps          | epsilon         | 表示添加到分母上的值 。                                     |
-| out           | -            | 表示输出 Tensor 。               |
+| out           | -            | 表示输出 Tensor，需要转写。               |
 
 ### 转写示例
 #### out: 指定输出

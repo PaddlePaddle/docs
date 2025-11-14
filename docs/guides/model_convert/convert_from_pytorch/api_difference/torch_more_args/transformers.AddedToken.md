@@ -19,5 +19,5 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | single_word  | single_word  | token 是否视为独立的词。 |
 | lstrip       | lstrip       | 是否移除左侧空白符。    |
 | rstrip       | rstrip       | 是否移除左侧空白符。    |
-| special      | -      | 是否有特殊的处理方式，Paddle 暂不支持该参数.  |
+| special      | -      | 是否有特殊的处理方式，Paddle 暂不支持该参数。  |
 | normalized   | normalized  | 是否进行规范化处理。  |

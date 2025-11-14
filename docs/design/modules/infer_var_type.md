@@ -10,7 +10,7 @@ The variable type will be constant at runtime. Every variable's type can either 
 
 ## Proposed Solution
 
-The `InferVarType` is a compile-time function which is registered to each operator. The inferface of that function is:
+The `InferVarType` is a compile-time function which is registered to each operator. The interface of that function is:
 
 
 ```c++

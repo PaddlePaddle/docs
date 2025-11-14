@@ -6,9 +6,9 @@ torch.std_mean(input, unbiased=True)
 # 用法二：
 torch.std_mean(input, dim, unbiased=True, keepdim=False)
 ```
+用于实现返回 Tensor 的标准差和均值，PaddlePaddle 目前暂无对应 API，可使用如下代码组合实现该 API。
 
-### 功能介绍用于实现返回 Tensor 的标准差和均值，PaddlePaddle 目前暂无对应 API，可使用如下代码组合实现该 API。
-
+### 转写示例
 ```python
 # PyTorch 写法
 std, mean = torch.std_mean(x, dim=1)

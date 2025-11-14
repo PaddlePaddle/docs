@@ -1,12 +1,13 @@
-.. _cn_api_paddle_compat_Unfold:
+.. _cn_api_paddle_compat_nn_Unfold:
 
 Unfold
 -------------------------------
 
-.. py:class:: paddle.compat.Unfold(kernel_size, dilation=1, padding=0, stride=1)
+.. py:class:: paddle.compat.nn.Unfold(kernel_size, dilation=1, padding=0, stride=1)
 
 
 PyTorch 兼容的 :ref:`cn_api_paddle_nn_Unfold` 版本：
+
     - 关键字参数使用单数形式（例如：``kernel_size`` 而非 kernel_sizes）
     - ``padding`` 仅支持输入长度为 1（整数）或 2 的列表，禁止使用 Size4 格式。如需更灵活的输入版本，请使用 :ref:`cn_api_paddle_nn_Unfold`
     - 所有输入参数支持 ``Tensor`` 或 ``pir.Value`` 类型（将自动转换为列表）
@@ -14,7 +15,7 @@ PyTorch 兼容的 :ref:`cn_api_paddle_nn_Unfold` 版本：
 
 使用前请详细参考：`【仅参数名不一致】torch.nn.Unfold`_ 以确定是否使用此模块。
 
-.. _【仅参数名不一致】torch.nn.Unfold: https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Unfold.html
+.. _【仅参数名不一致】torch.nn.Unfold: https://www.paddlepaddle.org.cn/documentation/docs/en/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.Unfold.html
 
 **样例**：
 
@@ -45,10 +46,10 @@ PyTorch 兼容的 :ref:`cn_api_paddle_nn_Unfold` 版本：
 形状
 :::::::::
  - **输入** : 4-D Tensor，形状为[N, C, H, W]，数据类型为 float32 或者 float64
- - **输出**：形状如上面所描述的[N, Cout, Lout]，Cout 每一个滑动 block 里面覆盖的元素个数，Lout 是滑动 block 的个数，数据类型与 ``x`` 相同
+ - **输出** : 形状如上面所描述的[N, Cout, Lout]，Cout 每一个滑动 block 里面覆盖的元素个数，Lout 是滑动 block 的个数，数据类型与 ``x`` 相同
 
 
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.compat.Unfold
+COPY-FROM: paddle.compat.nn.Unfold

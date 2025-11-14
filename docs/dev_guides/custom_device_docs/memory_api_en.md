@@ -180,7 +180,7 @@ It copies synchronous memory in the device.
 
 device - the device to be used
 
-dst - the address of the destination device memroy
+dst - the address of the destination device memory
 
 src - the address of the source device memory
 

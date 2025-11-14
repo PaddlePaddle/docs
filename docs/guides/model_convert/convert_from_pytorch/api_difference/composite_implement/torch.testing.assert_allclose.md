@@ -9,8 +9,8 @@ Paddle 无此 API，需要组合实现。
 ### 转写示例
 ```python
 # PyTorch 写法
-torch.testing.assert_allclose(actual, expected, rtol=rtol, atol=atol, equal_nan=True, msg='error messege')
+torch.testing.assert_allclose(actual, expected, rtol=rtol, atol=atol, equal_nan=True, msg='error message')
 
 # Paddle 写法
-assert paddle.allclose(actual, expected, rtol=rtol, atol=atol, equal_nan=True).item(), 'error messege'
+assert paddle.allclose(actual, expected, rtol=rtol, atol=atol, equal_nan=True).item(), 'error message'
 ```

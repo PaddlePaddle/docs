@@ -20,7 +20,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | out          | -            | 表示输出的 Tensor 元组。 Paddle 无此参数，需要转写。                           |
 
 ### 转写示例
-### some：控制 QR 分解的行为
+#### some：控制 QR 分解的行为
 ```python
 # 当进行完整的 QR 分解时
 # PyTorch 写法

@@ -16,7 +16,7 @@
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ymyjl/docs/torch_migrate/docs/guides/model_convert/pictures/porcess.png" align="middle"  width="500" />
+  <img src="../pictures/process.png" align="middle"  width="500" />
 </p>
 
 
@@ -1137,7 +1137,7 @@ paddle.where(b, paddle.zeros(c.shape), c)
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ymyjl/docs/torch_migrate/docs/guides/model_convert/pictures/information.png" align="middle"  width="500" />
+  <img src="../pictures/information.png" align="middle"  width="500" />
 </p>
 
 **【可能原因】**

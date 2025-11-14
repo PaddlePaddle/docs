@@ -15,4 +15,4 @@ paddle.Tensor.gammainc_(y, name=None)
 
 | PyTorch | PaddlePaddle | 备注                        |
 | ------- | ------------ | --------------------------- |
-| other   | y            | 正参数 Tensor，仅参数名不同 |
+| other   | y            | 正参数 Tensor，仅参数名不同。 |

@@ -15,7 +15,7 @@ paddle.set_rng_state(state_list)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> new_state </font>         | <font color='red'> state_list </font>            | 表示需要设置的新状态，PyTorch 输入类型为 torch.ByteTensor, Paddle 为 list[GeneratorState]                               |
+|  new_state          |  state_list             | 表示需要设置的新状态，PyTorch 输入类型为 torch.ByteTensor, Paddle 为 list[GeneratorState]。  需要转写。                             |
 
 
 

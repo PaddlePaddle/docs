@@ -1,4 +1,4 @@
-## [ torch 参数更多  ]torch.cuda.is_bf16_supported
+## [ torch 参数更多 ]torch.cuda.is_bf16_supported
 
 ### [torch.cuda.is_bf16_supported](https://pytorch.org/docs/stable/generated/torch.cuda.is_bf16_supported.html#torch.cuda.is_bf16_supported)
 

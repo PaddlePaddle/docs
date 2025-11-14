@@ -8,7 +8,7 @@
 
 ##### 问题：请问`paddle.matmul`和`paddle.multiply`有什么区别？
 
-+ 答复：`matmul`支持的两个 tensor 的矩阵乘操作。`muliply`是支持两个 tensor 进行逐元素相乘。
++ 答复：`matmul`支持的两个 tensor 的矩阵乘操作。`multiply`是支持两个 tensor 进行逐元素相乘。
 
 ----------
 
