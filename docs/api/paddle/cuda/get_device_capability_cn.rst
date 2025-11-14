@@ -3,7 +3,7 @@
 get_device_capability
 ---------------------
 
-.. py:function:: paddle.device.get_device_capability(device=None)
+.. py:function:: paddle.cuda.get_device_capability(device=None)
 
 获取设备计算能力。
 

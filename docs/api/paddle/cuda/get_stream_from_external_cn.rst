@@ -6,7 +6,6 @@ get_stream_from_external
 .. py:function:: paddle.cuda.get_stream_from_external(data_ptr, device=None)
 
 从外部创建的 CUDA 流创建 Paddle 流对象。
-本函数与 :ref:`cn_api_paddle_device_get_stream_from_external` 功能一致
 
 参数
 ::::::::::::
