@@ -155,10 +155,10 @@ Secondly, it is necessary to replace some of the types or functions that were on
 | `framework::DenseTensor` | `DenseTensor` |
 | template parameter `DeviceContext` | template parameter `Context` |
 | `platform::XXXDeviceContext` | `XXXContext` |
-| `out->mutbale_data(ctx.GetPlace()/place)` | `dev_ctx.template Alloc(out)` |
-| `auto* ptr = out->mutbale_data()` | `auto* ptr = out->data()` |
-| `out->mutbale_data(dims, place)` | `out->Resize(dims); dev_ctx.template Alloc(out)` |
-| `out->mutbale_data(place, dtype)` | `dev_ctx.Alloc(out, dtype)` |
+| `out->mutable_data(ctx.GetPlace()/place)` | `dev_ctx.template Alloc(out)` |
+| `auto* ptr = out->mutable_data()` | `auto* ptr = out->data()` |
+| `out->mutable_data(dims, place)` | `out->Resize(dims); dev_ctx.template Alloc(out)` |
+| `out->mutable_data(place, dtype)` | `dev_ctx.Alloc(out, dtype)` |
 | `platform::errors::XXX` | `phi::errors::XXX` |
 | `platform::float16/bfloat16/complex64/complex128` | `dtype::float16/bfloat16/complex64/complex128` |
 | `framework::Eigen***` | `Eigen***` |
