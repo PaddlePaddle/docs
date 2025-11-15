@@ -33,18 +33,22 @@ paddle.device 目录下包含 cuda 目录和 xpu 目录， cuda 目录中存放 
     " :ref:`get_available_device <cn_api_paddle_device_get_available_device>` ", "获得所有可用的设备"
     " :ref:`get_cudnn_version <cn_api_paddle_device_get_cudnn_version>` ", "获得 cudnn 的版本"
     " :ref:`get_device_properties <cn_api_paddle_device_get_device_properties>` ", "返回指定设备的属性"
+    " :ref:`get_device_capability <cn_api_paddle_device_get_device_capability>` ", "返回指定设备的计算能力"
     " :ref:`max_memory_allocated <cn_api_paddle_device_max_memory_allocated>` ", "返回给定设备上分配给 Tensor 的内存峰值统计"
     " :ref:`max_memory_reserved <cn_api_paddle_device_max_memory_reserved>` ", "返回给定设备上由内存分配器管理的内存峰值统计"
     " :ref:`memory_allocated <cn_api_paddle_device_memory_allocated>` ", "返回给定设备上当前分配给 Tensor 的内存大小"
     " :ref:`memory_reserved <cn_api_paddle_device_memory_reserved>` ", "返回给定设备上当前由内存分配器管理的内存大小"
     " :ref:`reset_max_memory_allocated <cn_api_paddle_device_reset_max_memory_allocated>` ", "重置给定设备上分配给 Tensor 的内存峰值统计"
     " :ref:`reset_max_memory_reserved <cn_api_paddle_device_reset_max_memory_reserved>` ", "重置给定设备上由内存分配器管理的内存峰值统计"
+    " :ref:`reset_peak_memory_stats <cn_api_paddle_device_reset_peak_memory_stats>` ", "重置峰值内存统计"
     " :ref:`set_device <cn_api_paddle_device_set_device>` ", "指定 OP 运行的全局设备"
     " :ref:`get_device <cn_api_paddle_device_get_device>` ", "获得 OP 运行的全局设备"
     " :ref:`is_available <cn_api_paddle_device_is_available>` ", "检查设备是否可用"
     " :ref:`get_rng_state <cn_api_paddle_device_get_rng_state>` ", "获取随机数生成器状态"
     " :ref:`set_rng_state <cn_api_paddle_device_set_rng_state>` ", "设置随机数生成器状态"
-
+    " :ref:`device <_cn_api_paddle_device_device>` ", "临时使用设备"
+    " :ref:`get_device_name <cn_api_paddle_device_get_device_name>` ", "返回指定设备的名称"
+    " :ref:`manual_seed <_cn_api_paddle_device_manual_seed>` ", "设置当前设备的随机数种子"
 .. _cn_device_compile:
 
 编译环境检测
