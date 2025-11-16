@@ -29,7 +29,7 @@ load
    from paddle.utils.cpp_extension import load
 
    custom_op_module = load(
-       name="op_shared_libary_name",                # 生成动态链接库的名称
+       name="op_shared_library_name",                # 生成动态链接库的名称
        sources=['relu_op.cc', 'relu_op.cu'],        # 自定义 OP 的源码文件列表
        extra_cxx_cflags=['-g', '-w'],               # 可选，指定编译。cc/.cpp 文件时额外的编译选项
        extra_cuda_cflags=['-O2'],                   # 可选，指定编译。cu 文件时额外的编译选项
