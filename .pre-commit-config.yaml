@@ -23,15 +23,15 @@ repos:
     hooks:
       - id: typos
         args: [--force-exclude]
+  # Document hooks
   - repo: https://github.com/PFCCLab/dochooks
-    # Document hooks
     rev: v0.6.0
     hooks:
       - id: insert-whitespace-between-cn-and-en-char
         files: \.md$|\.rst$
       - id: check-case-conflict
+  # For Python files
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    # For Python files
     rev: v0.13.0
     hooks:
       - id: ruff-check
@@ -39,8 +39,8 @@ repos:
         types_or: [python, pyi]
       - id: ruff-format
         types_or: [python, pyi, jupyter]
+  # For YAML files
   - repo: https://github.com/PFCCLab/yamlfmt-pre-commit-mirror.git
-    # For YAML files
     rev: v0.16.0
     hooks:
       - id: yamlfmt
