@@ -101,7 +101,7 @@ In Fluid, a neural network is represented as a protobuf message called [ProgramD
 ### Operator level requirement
 Each operator has many kernels for different data types, devices, and library types. The operator will select the appropriate kernel to run based on, among other things, the data type of the input variables. By default, every Fluid operator has a float data type kernel that takes float variables as input and generates float output.
 
-This means that if we provide float input to the first operator in a program, then each opeartor will use float kernel to compute float output and send it as input to the next operator to trigger the float kernel. Overall, the program will run in float mode and give us a final output of float data type.
+This means that if we provide float input to the first operator in a program, then each operator will use float kernel to compute float output and send it as input to the next operator to trigger the float kernel. Overall, the program will run in float mode and give us a final output of float data type.
 
 The same principle applies if we want a program to run in float16 mode. We provide input variable of float16 data type to the first operator, and then one by one, each operator in the program will run the float16 kernel (provided that each operator in this program has float16 kernels registered) until we finally obtain a float16 output variable.
 

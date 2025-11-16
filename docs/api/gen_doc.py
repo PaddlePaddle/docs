@@ -35,7 +35,7 @@ CALLED_APIS_IN_THE_DOCS = (
 #   "short_name":"",  # without module name
 #   "module_name":"",  # the module of the real api belongs to
 #   "display":True/Flase, # consider the not_display_doc_list and the display_doc_list
-#   "has_overwrited_doc":True/False  #
+#   "has_overwritten_doc":True/False  #
 #   "doc_filename"  # document filename without suffix
 #   "suggested_name":"",  # the shortest name in all_names
 # }

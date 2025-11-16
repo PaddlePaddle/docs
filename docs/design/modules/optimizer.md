@@ -72,7 +72,7 @@ class Optimizer:
           parameters_and_grads: a list of (variable, gradient) pair to update.
 
         Returns:
-          optmization_op_list: a list of optimization operator that will update parameter using gradient.
+          optimization_op_list: a list of optimization operator that will update parameter using gradient.
         """
         return None
 

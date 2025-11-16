@@ -13,7 +13,7 @@
 飞桨的新一代的 IR 表示坚持 SSA（静态单赋值）原则，模型等价于一个有向无环图。并以 Value、Operation 对计算图进行抽象， Operation 为节点，Value 为边。
 
 * Operation 表示计算图中的节点：一个 Operation 表示一个算子，它里面包含了零个或多个 Region；Region 表示一个闭包，它里面包含了零个或多个 Block；Block 表示一个符合 SSA 的基本块，里面包含了零个或多个 Operation；三者循环嵌套，可以实现任意复杂的语法结构
-* Value 表示计算图中的有向边：用来将两个 Operaton 关联起来，描述了程序中的 UD 链（即 Use-Define 链）；OpResult 表示定义端，定义了一个 Value，OpOperand 表示使用端，描述了对一个 Value 的使用。
+* Value 表示计算图中的有向边：用来将两个 Operation 关联起来，描述了程序中的 UD 链（即 Use-Define 链）；OpResult 表示定义端，定义了一个 Value，OpOperand 表示使用端，描述了对一个 Value 的使用。
 
 ## 二、设计初衷
 计算图中间表示（Intermediate Representation，即 IR）是深度学习框架性能优化、推理部署、编译器等方向的重要基石。近些年来，越来越多的框架和研究者将编译器技术引入到深度学习的神经网络模型优化中，并在此基础上借助编译器的理念、技术和工具对神经网络进行自动优化和代码生成。飞桨历史上在架构层面并存着多套不同的中间表示体系，其表达能力各不相同、Pass 开发维护成本较高，代码复用性较差，缺乏统一规范，存在严重的框架稳定性问题。
@@ -104,7 +104,7 @@ print(out)
 
 飞桨通过不同层级的 Dialect 来管理框架内不同领域的算子体系，比如 Built-in 下的 Shape Dialect 和 Control Flow Dialect，分别用户形状符号推导和控制流表示、与 PHI 算子库执行体系相关的 Operator Dialect 和 Kernel Dialect、与神经网络编译器领域相关的 CINN  Dialect 等。在飞桨神经网络编译器中，主要以计算图 Operator Dialect 为输入，经过组合算子和 Pass Pipeline 后，会转换为 CINN Dialect，并附加 Shape Dialect 中的符号信息，最后会 Lowering 成编译器的 AST IR。
 上述这些多层级的 Dialect 内的算子 Op 会组成 Program ，并用来表示一个具体的模型。它包含两部分：计算图 和 权重 。
-* Value、Operation 用来对计算图进行抽象。Value 表示计算图中的有向边，他用来将两个 Operaton 关联起来，描述了程序中的 UD 链 ，Operation 表示计算图中的节点。一个 Operation 表示一个算子，它里面包含了零个或多个 Region 。Region 表示一个闭包，它里面包含了零个或多个 Block。Block 表示一个符合 SSA 的基本块，里面包含了零个或多个 Operation 。三者循环嵌套，可以实现任意复杂的语法结构。
+* Value、Operation 用来对计算图进行抽象。Value 表示计算图中的有向边，他用来将两个 Operation 关联起来，描述了程序中的 UD 链 ，Operation 表示计算图中的节点。一个 Operation 表示一个算子，它里面包含了零个或多个 Region 。Region 表示一个闭包，它里面包含了零个或多个 Block。Block 表示一个符合 SSA 的基本块，里面包含了零个或多个 Operation 。三者循环嵌套，可以实现任意复杂的语法结构。
 * Weight 用来对模型的权重参数进行单独存储，这也是深度学习框架和传统编译器不一样的地方。传统编译器会将数据段内嵌到程序里面。这是因为传统编译器里面，数据和代码是强绑定的，不可分割。但是对神经网络而言，一个计算图的每个 epoch 都会存在一份权重参数，多个计算图也有可能共同一份权重参数，二者不是强绑定的
 
 ### 3.功能完善的 Pass 体系

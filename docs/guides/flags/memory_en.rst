@@ -204,7 +204,7 @@ FLAGS_initial_gpu_memory_in_mb=4096 will allocate 4 GB as initial GPU chunk.
 
 Note
 -------
-If you set this flag, the memory size set by FLAGS_fraction_of_gpu_memory_to_use will be overrided by this flag, PaddlePaddle will allocate the initial gpu memory with size specified by this flag.
+If you set this flag, the memory size set by FLAGS_fraction_of_gpu_memory_to_use will be overridden by this flag, PaddlePaddle will allocate the initial gpu memory with size specified by this flag.
 If you don't set this flag, the default value 0 will disable this GPU memory strategy. PaddlePaddle will use FLAGS_fraction_of_gpu_memory_to_use to allocate the initial GPU chunk.
 
 
@@ -245,7 +245,7 @@ FLAGS_reallocate_gpu_memory_in_mb=1024 will re-allocate 1 GB if run out of GPU m
 
 Note
 -------
-If this flag is set, the memory size set by FLAGS_fraction_of_gpu_memory_to_use will be overrided by this flag, PaddlePaddle will re-allocate the gpu memory with size specified by this flag.
+If this flag is set, the memory size set by FLAGS_fraction_of_gpu_memory_to_use will be overridden by this flag, PaddlePaddle will re-allocate the gpu memory with size specified by this flag.
 If you don't set this flag, the default value 0 will disable this GPU memory strategy. PaddlePaddle will use FLAGS_fraction_of_gpu_memory_to_use to re-allocate GPU memory.
 
 
