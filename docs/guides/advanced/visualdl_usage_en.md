@@ -466,7 +466,7 @@ if audio_sample_num == 0:
         audio_path = "test.wav"
         audio_shape, audio_data = read_audio_data(audio_path)
 
-        # Add data through member function set_samle()
+        # Add data through member function set_sample()
         input_audio.set_sample(idx, audio_shape, audio_data)
         audio_sample_num += 1
 
