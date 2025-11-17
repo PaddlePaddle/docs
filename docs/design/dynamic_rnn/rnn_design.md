@@ -198,7 +198,7 @@ std::vector<SortedSeqItem> SortBySeqLen(const LODTensor& tensor);
 由于输入序列的顺序变化，以下现有的接口需要针对性地修改：
 
 - InitMemories, memory 需要根据 `sorted_seqs` 重新排列
-- SetmentInputs
+- SegmentInputs
 - ConcatOutputs
 
 此外，由于 `sorted_seqs` 需要被 `RecurrentGradientOp` 复用，因此会变成 `RecurrentOp` 一个新的 output 输出，

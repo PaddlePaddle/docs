@@ -15,7 +15,7 @@ AddOutput(kOutputs, "Outputs needed to be merged from different devices").AsDupl
 AddOutput(kParallelScopes,
           "Scopes for all local variables in forward pass. One scope for each device");
 AddAttr<framework::BlockDesc *>(kParallelBlock,
-                                "List of operaters to be executed in parallel");
+                                "List of operators to be executed in parallel");
 ```
 
 A vanilla implementation of parallel_do can be shown as the following (`|` means single thread and
@@ -94,7 +94,7 @@ There are serial places we can make this parallel_do faster.
 
 ### forward: split input onto different devices
 
-If the input of the parallel_do is independent from any prior opeartors, we can avoid this step by
+If the input of the parallel_do is independent from any prior operators, we can avoid this step by
 prefetching the input onto different devices in a separate background thread. And the python code
 looks like this.
 ```python

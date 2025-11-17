@@ -38,7 +38,7 @@ In this design, we propose a high-level API that automatically derives the optim
 2. Users create a certain kind of Optimizer with some argument.
 
     ```python
-    optimizer = AdagradOptimizer(learing_rate=0.001)
+    optimizer = AdagradOptimizer(learning_rate=0.001)
     ```
 
 3. Users use the optimizer to `minimize` a certain `cost` through updating parameters in parameter_list.
@@ -72,7 +72,7 @@ class Optimizer:
           parameters_and_grads: a list of (variable, gradient) pair to update.
 
         Returns:
-          optmization_op_list: a list of optimization operator that will update parameter using gradient.
+          optimization_op_list: a list of optimization operator that will update parameter using gradient.
         """
         return None
 

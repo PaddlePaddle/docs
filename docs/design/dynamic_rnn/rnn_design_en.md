@@ -136,7 +136,7 @@ std::vector<SortedSeqItem> SortBySeqLen(const LODTensor& tensor);
 Due to the sequence of input sequences, the following existing interfaces need to be modified:
 
 - InitMemories, memory needs to be rearranged according to `sorted_seqs`
-- SetmentInputs
+- SegmentInputs
 - ConcatOutputs
 
 In addition, because `sorted_seqs` needs to be multiplexed with `RecurrentGradientOp`, it will become a new output of `RecurrentOp`.
