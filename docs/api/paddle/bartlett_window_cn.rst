@@ -9,8 +9,8 @@ bartlett_window
     *,
     dtype: str = 'float64',
     layout: str | None = None,
-    device: str | None = None,
-    pin_memory: None | bool = None,
+    device: PlaceLike | None = None,
+    pin_memory: bool = False,
     requires_grad: bool = False,
 )
 
@@ -22,9 +22,9 @@ bartlett_window
     - **periodic** (bool, 可选): 如果为 True，返回一个周期性的窗口；如果为 False，返回一个对称性的窗口。默认值为 True。
     - **dtype** (str, 可选): 返回的 Tensor 的数据类型。默认值为 'float64'。
     - **layout** (str, 可选): 仅用于 API 一致性，Paddle 中忽略。默认值为 None。
-    - **device** (str, 可选): 返回的 Tensor 存放的设备位置。默认值为 None（使用默认设备）。
-    - **pin_memory** (bool, 可选): 如果为 True，返回的 Tensor 会分配在 pinned 内存中；否则不会。仅适用于 CPU Tensor。默认值为 None。
-    - **requires_grad** (bool, 可选): 如果为 True，则返回的张量上的操作会被 autograd 追踪，用于计算梯度,否则不会。默认值为 False。
+    - **device** (PlaceLike|None, 可选): 返回的 Tensor 所在的设备。如果为 None，则使用当前默认设备（参考 paddle.device.set_device()）。对于 CPU Tensor，设备为 CPU；对于 CUDA Tensor，设备为当前 CUDA 设备。默认值为 None。
+    - **pin_memory** (bool, 可选): 如果设置为 True，返回的 Tensor 将被分配在固定内存（pinned memory）中。仅对 CPU Tensor 生效。默认值为 False。
+    - **requires_grad** (bool, 可选): 是否在 autograd 中记录返回 Tensor 的操作。默认值为 False。
 
 
 返回
