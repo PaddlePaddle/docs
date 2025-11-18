@@ -3,6 +3,14 @@
 group_norm
 -------------------------------
 
+.. caution::
+
+    本接口根据输入参数的不同，包含两种不同的参数。
+
+    下面列举的两种参数输入方式 **互斥**，混用非公共的参数输入方法将会导致报错，请谨慎使用。
+
+=====
+
 .. py:function:: paddle.nn.functional.group_norm(x, num_groups, epsilon=1e-05, weight=None, bias=None, data_format='NCHW', name=None)
 
 对输入 ``x`` 进行组归一化， 计算公式如下：
@@ -35,3 +43,21 @@ group_norm
 ::::::::::::
 
 COPY-FROM: paddle.nn.functional.group_norm
+
+=====
+
+.. py:function:: paddle.nn.functional.group_norm(input, num_groups, weight=None, bias=None, eps=1e-05)
+
+PyTorch 兼容的 ``group_norm``，对输入 ``x`` 进行组归一化，与上一种接口形式的计算公式一致，仅参数 ``epsilon`` 更换为 ``eps``。
+
+参数
+::::::::::::
+    - **input** (Tensor) - 输入 Tensor，支持的数据类型包括 int32、int64、float32、float64、int16、uint8、float16（GPU）以及 bfloat16（GPU） 。
+    - **num_groups** (int) - 从通道中分离出来的 ``group`` 的数目。
+    - **weight** (Tensor，可选) - 权重的 Tensor，形状为 [通道数]，默认为 None。
+    - **bias** (Tensor，可选) - 偏置的 Tensor，形状为 [通道数]，默认为 None。
+    - **eps** (float，可选) - 为防止方差除零，增加一个很小的值。默认值：1e-05。
+
+返回
+::::::::::::
+    ``Tensor``，输出形状与 ``x`` 一致。
