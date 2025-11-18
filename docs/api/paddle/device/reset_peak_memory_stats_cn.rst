@@ -13,6 +13,4 @@ reset_peak_memory_stats
 
 代码示例
 ::::::::::::
-    .. code-block:: python
-        >>> import paddle
-        >>> paddle.device.reset_peak_memory_stats(0)
+COPY-FROM: paddle.device.reset_peak_memory_stats
