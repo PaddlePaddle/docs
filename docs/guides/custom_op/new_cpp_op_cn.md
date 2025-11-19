@@ -1459,6 +1459,8 @@ setup(
 
 执行 `python setup_cpu.py install` 或者 `python setup_cuda.py install` 即可一键完成自定义算子的编译和安装。
 
+> 注：在当前目录只有一个 `setup.py` 文件时，可以使用 `pip install . --no-build-isolation` 这种现代化的方式进行构建。
+
 以 `python setup_cpu.py install` 为例，执行日志如下 (省略日志时间，以及 setuptools 版本相关警告等信息)：
 
 ```
@@ -1601,24 +1603,23 @@ __bootstrap__()
 随后，可以直接在构建模型过程中导入使用，简单示例如下：
 
 ```python
-In [1]: import paddle
-   ...: from custom_setup_ops import custom_relu
-   ...: paddle.set_device('cpu')
-   ...:
-   ...: x = paddle.randn([4, 10], dtype='float32')
-   ...: relu_out = custom_relu(x)
+import paddle
+from custom_setup_ops import custom_relu
+paddle.set_device('cpu')
 
-In [2]: relu_out
-Out[2]:
-Tensor(shape=[4, 10], dtype=float32, place=Place(cpu), stop_gradient=True,
-       [[0.02314972, 0.65578228, 0.        , 0.        , 0.18305063, 0.        ,
-         0.67343038, 0.        , 1.16782570, 1.71236455],
-        [0.        , 0.60349381, 0.        , 0.        , 0.        , 0.        ,
-         0.14162211, 0.        , 0.        , 0.33964530],
-        [0.        , 0.        , 0.12062856, 0.18853758, 0.54154527, 0.73217475,
-         0.        , 0.        , 0.        , 0.        ],
-        [0.04105225, 0.        , 0.67857188, 0.95838499, 1.08346415, 2.47209001,
-         0.        , 0.        , 0.22969440, 1.08237624]])
+x = paddle.randn([4, 10], dtype='float32')
+relu_out = custom_relu(x)
+
+# `relu_out` should be like:
+# Tensor(shape=[4, 10], dtype=float32, place=Place(cpu), stop_gradient=True,
+#        [[0.02314972, 0.65578228, 0.        , 0.        , 0.18305063, 0.        ,
+#          0.67343038, 0.        , 1.16782570, 1.71236455],
+#         [0.        , 0.60349381, 0.        , 0.        , 0.        , 0.        ,
+#          0.14162211, 0.        , 0.        , 0.33964530],
+#         [0.        , 0.        , 0.12062856, 0.18853758, 0.54154527, 0.73217475,
+#          0.        , 0.        , 0.        , 0.        ],
+#         [0.04105225, 0.        , 0.67857188, 0.95838499, 1.08346415, 2.47209001,
+#          0.        , 0.        , 0.22969440, 1.08237624]])
 ```
 
 > 注：`setuptools` 的封装是为了简化自定义算子编译和使用流程，即使不依赖于 `setuptools`，也可以自行编译生成动态库，并封装相应的 python API，然后在基于 `PaddlePaddle` 实现的模型中使用
