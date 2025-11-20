@@ -124,9 +124,11 @@ def extract_code_blocks_from_file(filename):
     r = os.path.splitext(filename)
     ext = r[1].lower()
     if ext == ".md":
-        return extract_code_blocks_from_md(open(filename, "r").read())
+        with open(filename, "r") as f:
+            return extract_code_blocks_from_md(f.read())
     elif ext == ".rst":
-        return extract_code_blocks_from_rst(open(filename, "r").read())
+        with open(filename, "r") as f:
+            return extract_code_blocks_from_rst(f.read())
     else:
         return []
 

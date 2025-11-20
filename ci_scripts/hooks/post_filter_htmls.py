@@ -28,7 +28,8 @@ def insert_header_and_anchor_for_method(htmlfile):
     """
     insert a hide h3 tag and a anchor for every class method.
     """
-    soup = BeautifulSoup(open(htmlfile, "r"), "lxml")
+    with open(htmlfile, "r") as f:
+        soup = BeautifulSoup(f, "lxml")
     method_title_tags = soup.find_all("dl", class_="method")
     for mtt in method_title_tags:
         dt = mtt.find("dt")

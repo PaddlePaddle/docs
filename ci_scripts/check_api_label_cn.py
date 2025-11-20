@@ -45,8 +45,8 @@ def find_all_api_labels_in_dir(rootdir):
             path = str(real_path).removeprefix(rootdir)
             if not should_test(path):
                 continue
-            for label in find_api_labels_in_one_file(real_path):
-                all_api_labels.append(label)
+            # Use extend instead of repeated append for better performance
+            all_api_labels.extend(find_api_labels_in_one_file(real_path))
     return all_api_labels
 
 
@@ -80,7 +80,8 @@ def run_cn_api_label_checking(rootdir, files):
                 f"The first line in {rootdir}/{file} is not available, please re-check it!"
             )
             sys.exit(1)
-    valid_api_labels = find_all_api_labels_in_dir(rootdir)
+    # Convert to set for O(1) membership tests
+    valid_api_labels = set(find_all_api_labels_in_dir(rootdir))
     for file in files:
         if not file.endswith(".rst"):
             continue

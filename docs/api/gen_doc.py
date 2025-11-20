@@ -264,7 +264,8 @@ def parse_module_file(mod):
         if len(mod_name) >= 6 and mod_name[:6] == "paddle":
             fn_splited = os.path.splitext(src_file)
             if len(fn_splited) > 1 and fn_splited[1].lower() == ".py":
-                mod_ast = ast.parse(open(src_file, "r").read())
+                with open(src_file, "r") as f:
+                    mod_ast = ast.parse(f.read())
                 for node in mod_ast.body:
                     short_names = []
                     if (
@@ -425,16 +426,14 @@ def set_display_attr_of_apis():
     set the display attr
     """
     if os.path.exists(NOT_DISPLAY_DOC_LIST_FILENAME):
-        display_none_apis = {
-            line.strip() for line in open(NOT_DISPLAY_DOC_LIST_FILENAME, "r")
-        }
+        with open(NOT_DISPLAY_DOC_LIST_FILENAME, "r") as f:
+            display_none_apis = {line.strip() for line in f}
     else:
         logger.warning("file not exists: %s", NOT_DISPLAY_DOC_LIST_FILENAME)
         display_none_apis = set()
     if os.path.exists(DISPLAY_DOC_LIST_FILENAME):
-        display_yes_apis = {
-            line.strip() for line in open(DISPLAY_DOC_LIST_FILENAME, "r")
-        }
+        with open(DISPLAY_DOC_LIST_FILENAME, "r") as f:
+            display_yes_apis = {line.strip() for line in f}
     else:
         logger.warning("file not exists: %s", DISPLAY_DOC_LIST_FILENAME)
         display_yes_apis = set()
@@ -447,21 +446,17 @@ def set_display_attr_of_apis():
     # file the same apis
     for id_api in api_info_dict:
         all_names = api_info_dict[id_api]["all_names"]
-        display_yes = False
-        for n in all_names:
-            if n in display_yes_apis:
-                display_yes = True
-                break
+        # Check if any name is in display_yes_apis (O(1) lookup with set)
+        display_yes = any(n in display_yes_apis for n in all_names)
+
         if display_yes:
             api_info_dict[id_api]["display"] = True
         else:
+            # Check if any name starts with any display_none prefix
             display_yes = True
             for n in all_names:
-                for dn in display_none_apis:
-                    if n.startswith(dn):
-                        display_yes = False
-                        break
-                if not display_yes:
+                if any(n.startswith(dn) for dn in display_none_apis):
+                    display_yes = False
                     break
             if not display_yes:
                 api_info_dict[id_api]["display"] = False
@@ -570,17 +565,22 @@ def set_api_sketch():
         for api in apis:
             all_api_found[f"{m}.{api}"] = False
 
+    # Create a reverse mapping from API name to api_info_dict keys for O(1) lookup
+    name_to_id_map = {}
+    for id_api, api_info in api_info_dict.items():
+        if "all_names" in api_info:
+            for name in api_info["all_names"]:
+                name_to_id_map[name] = id_api
+
+    # Use the reverse mapping for efficient lookups
     for api in all_api_found.keys():
-        for id_api in api_info_dict.keys():
-            if ("all_names" in api_info_dict[id_api]) and (
-                api in api_info_dict[id_api]["all_names"]
-            ):
-                all_api_found[api] = True
-                api_info_dict[id_api]["in_api_sketch"] = True
-                if "api_sketch_names" not in api_info_dict[id_api]:
-                    api_info_dict[id_api]["api_sketch_names"] = []
-                api_info_dict[id_api]["api_sketch_names"].append(api)
-                break
+        if api in name_to_id_map:
+            id_api = name_to_id_map[api]
+            all_api_found[api] = True
+            api_info_dict[id_api]["in_api_sketch"] = True
+            if "api_sketch_names" not in api_info_dict[id_api]:
+                api_info_dict[id_api]["api_sketch_names"] = []
+            api_info_dict[id_api]["api_sketch_names"].append(api)
 
     api_not_in_dict = [api for api in all_api_found if not all_api_found[api]]
     if api_not_in_dict:
@@ -1114,6 +1114,7 @@ if __name__ == "__main__":
                 check_cn_en_match()
 
         filter_out_object_of_api_info_dict()
-        json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
+        with open(jsonfn, "w") as f:
+            json.dump(api_info_dict, f, indent=4)
 
     logger.info("done")
