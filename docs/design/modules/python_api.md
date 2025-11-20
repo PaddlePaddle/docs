@@ -116,7 +116,7 @@ class Operator:
                  block,  # Block
                  type,   # string
                  inputs, # dict<string, Variable>
-                 outputs,# dict<stirng, Variable>
+                 outputs,# dict<string, Variable>
                  attrs   # dict<string, Any>
                  ):
         self.desc = core.NewOpDesc(block.desc, type, inputs, outputs, attrs)

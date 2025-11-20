@@ -242,7 +242,7 @@
    |  paddle2.0 之前  | pytorch |  numpy   | tensorflow  |   paddle2.0 之后   |
    | :------------- | :----- | :------ | :--------- | :--------------- |
    | elementwise_add |   add   |   add    |     add     |        add        |
-   | elementwise_sub |   sub   | subtract |  subtract   |      subract      |
+   | elementwise_sub |   sub   | subtract |  subtract   |      subtract      |
    | elementwise_mul |   mul   | multiply |  multiply   |     multiply      |
    | elementwise_div |   div   |  divide  |   divide    | divide |
    | elementwise_min |   min   | minimum  |   minimum   |      minimum      |
