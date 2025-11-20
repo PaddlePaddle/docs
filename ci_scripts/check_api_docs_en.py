@@ -14,7 +14,7 @@ arguments = [
         "py_files",
         str,
         None,
-        "api python files, sperated by space",
+        "api python files, separated by space",
     ],
     [
         "--api_info_file",

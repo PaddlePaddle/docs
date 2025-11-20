@@ -527,7 +527,7 @@ def process_mapping_index(index_path, item_processor, context={}):
 
     column_names = []
     column_count = -1
-    table_seperator_pattern = re.compile(r"^ *\|(?P<group> *-+ *\|)+ *$")
+    table_separator_pattern = re.compile(r"^ *\|(?P<group> *-+ *\|)+ *$")
 
     expect_column_names = [
         "序号",
@@ -571,22 +571,22 @@ def process_mapping_index(index_path, item_processor, context={}):
 
         elif state == IndexParserState.table_sep_ignore:
             if (
-                not table_seperator_pattern.match(line)
+                not table_separator_pattern.match(line)
                 or len(columns) != column_count
             ):
                 raise Exception(
-                    f"Table seperator not match at line {i + 1}: {line}"
+                    f"Table separator not match at line {i + 1}: {line}"
                 )
             if not item_processor(line, i, state, output, context):
                 break
             state = IndexParserState.table_row_ignore
         elif state == IndexParserState.table_sep:
             if (
-                not table_seperator_pattern.match(line)
+                not table_separator_pattern.match(line)
                 or len(columns) != column_count
             ):
                 raise Exception(
-                    f"Table seperator not match at line {i + 1}: {line}"
+                    f"Table separator not match at line {i + 1}: {line}"
                 )
             if not item_processor(line, i, state, output, context):
                 break

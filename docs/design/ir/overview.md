@@ -15,7 +15,7 @@ Usually, the `gap` is bridged by
 * Has a simple way to verify and debug each transformation.
 
 * Flexible to add, remove or customize transformations to fit
-the requirements of various algorithms (models) and hardware secenarios.
+the requirements of various algorithms (models) and hardware scenarios.
 
 Some other events also push us to a better unified pattern.
 

@@ -33,7 +33,7 @@ from extract_api_from_docs import extract_params_desc_from_rst_file
 
 arguments = [
     # flags, dest, type, default, help
-    ["--rst-files", "rst_files", str, None, "api rst files, sperated by space"],
+    ["--rst-files", "rst_files", str, None, "api rst files, separated by space"],
     ["--api-info", "api_info_file", str, None, "api_info_all.json filename"],
 ]
 

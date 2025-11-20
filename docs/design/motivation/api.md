@@ -71,7 +71,7 @@ paddle.train(topology, parameters, reader=read_ranking_model_data)
 
 # Inference using fA (or fB or fC, as they share their parameters).
 [testA, testB, testQ] = read_ranking_model_data()
-print "The sematic-vector of testA: ", paddle.infer(fA, parameters, testA)
+print "The semantic-vector of testA: ", paddle.infer(fA, parameters, testA)
 ```
 
 
