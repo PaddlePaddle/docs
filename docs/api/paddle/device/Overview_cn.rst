@@ -49,6 +49,8 @@ paddle.device 目录下包含 cuda 目录和 xpu 目录， cuda 目录中存放 
     " :ref:`device <_cn_api_paddle_device_device>` ", "临时使用设备"
     " :ref:`get_device_name <cn_api_paddle_device_get_device_name>` ", "返回指定设备的名称"
     " :ref:`manual_seed <_cn_api_paddle_device_manual_seed>` ", "设置当前设备的随机数种子"
+    " :ref:`is_bf16_supported <_cn_api_paddle_device_is_bf16_supported>` ", "判断当前设备是否具有 BF16 类型运算的硬件加速能力"
+    " :ref:`get_stream_from_external <_cn_api_paddle_device_get_stream_from_external>` ", "从外部获取一个 Stream 对象，并返回一个 Paddle Stream 对象"
 .. _cn_device_compile:
 
 编译环境检测
