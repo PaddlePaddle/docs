@@ -19,7 +19,7 @@ reset_max_memory_allocated
 
 代码示例
 ::::::::::::
-.. code-block:: python-console
+.. code-block:: pycon
 
     >>> import paddle
     >>> paddle.device.reset_max_memory_allocated('npu:0')
