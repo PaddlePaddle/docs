@@ -19,7 +19,7 @@ memory_reserved
 
 代码示例
 ::::::::::::
-.. code-block:: python
+.. code-block:: python-console
 
     >>> import paddle
     >>> paddle.device.memory_reserved('npu:0')

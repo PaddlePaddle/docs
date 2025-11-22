@@ -55,7 +55,9 @@ def extract_code_blocks_from_rst(docstr):
     ds_list = docstr.expandtabs(tabsize=4).split("\n")
     lastlineindex = len(ds_list) - 1
     cb_started = False
-    cb_start_pat = re.compile(r"((code)|(code-block))::\s*i?python[23]?")
+    cb_start_pat = re.compile(
+        r"((code)|(code-block))::\s*i?(python|python-console|pycon)"
+    )
     cb_cur = []
     cb_cur_indent = -1
     for lineno, linecont in enumerate(ds_list):
