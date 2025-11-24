@@ -3,7 +3,7 @@
 
 ## Problem
 
-In a lecture from Andrew Ng, he attributes the recent sucess of AI due to a combination of these:
+In a lecture from Andrew Ng, he attributes the recent success of AI due to a combination of these:
 
 - Availability of Big Data
 - Supercomputing power to process this Big Data over very large neural networks
@@ -74,7 +74,7 @@ A simple way to perform data-flow analysis of programs is to set up dataflow equ
 
 - Flow Graph Terminology
 
-A flow graph node has out-edges that lead to sucessor nodes, and in-edges that come from predecessor nodes. The set *pred[n]* is all the predecessors of node n, and *succ[n]* is the set of sucessors.
+A flow graph node has out-edges that lead to successor nodes, and in-edges that come from predecessor nodes. The set *pred[n]* is all the predecessors of node n, and *succ[n]* is the set of successors.
 In former control flow graph, the out-edges of node 5 are 5 --> 6 and 5 --> 2, and *succ[5]* = {2, 6}. The in-edges of 2 are 5 --> 2 and 1 --> 2, and *pred[2]* = {1, 5}.
 
 - Uses and Defs
@@ -147,7 +147,7 @@ We can transfer all the operators and variables in ProgramDesc to build a contro
 ```python
 class ControlFlowGraph:
     def __init__(self, Program):
-        self._sucessors = defaultdict(set)
+        self._successors = defaultdict(set)
         self._presucessors = defaultdict(set)
         self._uses = defaultdict(set)
         self._defs = defaultdict(set)

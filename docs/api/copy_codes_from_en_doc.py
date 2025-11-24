@@ -105,7 +105,7 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
 
     lastlineindex = len(docstr_list) - 1
 
-    cb_start_pat = re.compile(r"code-block::\s*python")
+    cb_start_pat = re.compile(r"code-block::\s*(python|python-console|pycon)")
     cb_param_pat = re.compile(r"^\s*:(\w+):\s*(\S*)\s*$")
 
     cb_info = {}
@@ -261,7 +261,7 @@ def insert_codes_into_cn_rst_if_need(cnrstfilename):
         cb_new = []
         indent = cf_info["indent"]
         cb_new.append("")  # insert a empty line in the frontend
-        cb_new.append(" " * indent + ".. code-block:: python")
+        cb_new.append(" " * indent + ".. code-block:: pycon")
         if cf_info["cb_name"]:
             cb_new.append(" " * (indent + 3) + ":name: " + cf_info["cb_name"])
         cb_new.append("")

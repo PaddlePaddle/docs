@@ -230,7 +230,7 @@ Number | API | Tensor-to-Tensor | Tensor-to-Scalar |
 31 | huber_loss | Common Rule | - |
 32 | mse_loss | Common Rule | - |
 
-There are two specail rules in this table above:
+There are two special rules in this table above:
 
 -  Divide Rule: For divide API, it will not return dtype smaller than float. Such as int32 / Scalar returns float32.
 

@@ -27,9 +27,9 @@
 | AI 加速卡 | XPU | 昆仑芯 | P800 | [使用指南](https://github.com/PaddlePaddle/FastDeploy/tree/develop/docs/get_started/installation/kunlunxin_xpu.md) |
 | AI 加速卡 | | 燧原 | S60 | [使用指南](https://github.com/PaddlePaddle/FastDeploy/tree/develop/docs/get_started/installation/Enflame_gcu.md)  |
 | AI 加速卡 | GPGPU | 天数 | 天垓 150 | [使用指南](https://github.com/PaddlePaddle/FastDeploy/tree/develop/docs/get_started/installation/iluvatar_gpu.md) |
-| AI 加速卡 | GPGPU | 海光 | K100_AI | 适配中 |
-| AI 加速卡 | 达芬奇 | 昇腾 | 910 系列 | 适配中 |
-| AI 加速卡 | GPGPU | 沐曦 | 曦云 C 系列 | 适配中 |
+| AI 加速卡 | GPGPU | 海光 | K100_AI | [使用指南](https://github.com/PaddlePaddle/FastDeploy/blob/develop/docs/get_started/installation/hygon_dcu.md) |
+| AI 加速卡 | GPGPU | 沐曦 | 曦云 C 系列 | [使用指南](https://github.com/PaddlePaddle/FastDeploy/blob/develop/docs/get_started/installation/metax_gpu.md) |
+| AI 加速卡 | Gaudi | Intel | Gaudi 2 | [使用指南](https://github.com/PaddlePaddle/FastDeploy/blob/develop/docs/get_started/installation/intel_gaudi.md) |
 
 
 ## Paddle Inference

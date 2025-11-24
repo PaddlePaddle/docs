@@ -52,7 +52,7 @@
             N-D Tensor. A location into which the result is stored. It’s dimension equals with :attr:`x`.
 
         Examples:
-            .. code-block:: python
+            .. code-block:: pycon
 
                 >>> import paddle
 
@@ -305,7 +305,7 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
 def api():
     """
     Examples:
-        .. code-block:: python
+        .. code-block:: pycon
 
             示例代码位置
 
@@ -318,12 +318,12 @@ def api():
 def api():
     """
     Examples:
-        .. code-block:: python
+        .. code-block:: pycon
             :name: example-1
 
             示例代码位置
 
-        .. code-block:: python
+        .. code-block:: pycon
             :name: example-2
 
             示例代码位置 (存在多个示例代码)
@@ -336,7 +336,7 @@ def api():
 def multiply(x, y, axis=-1, name=None):
     """
     Examples:
-        .. code-block:: python
+        .. code-block:: pycon
 
             >>> import paddle
 

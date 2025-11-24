@@ -262,8 +262,8 @@ def parse_module_file(mod):
             return
         logger.debug("parsing %s:%s", mod_name, src_file)
         if len(mod_name) >= 6 and mod_name[:6] == "paddle":
-            fn_splited = os.path.splitext(src_file)
-            if len(fn_splited) > 1 and fn_splited[1].lower() == ".py":
+            fn_split = os.path.splitext(src_file)
+            if len(fn_split) > 1 and fn_split[1].lower() == ".py":
                 mod_ast = ast.parse(open(src_file, "r").read())
                 for node in mod_ast.body:
                     short_names = []
