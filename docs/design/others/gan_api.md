@@ -153,7 +153,7 @@ class DCGAN:
     self.d_loss_fake = pd.reduce_mean(pd.cross_entropy(self.D_f, np.zeros(self.batch_size))
     self.d_loss = self.d_loss_real + self.d_loss_fake
 
-    self.g_loss = pd.reduce_mean(pd.cross_entropy(self.D_f, np.ones(self.batch_szie))
+    self.g_loss = pd.reduce_mean(pd.cross_entropy(self.D_f, np.ones(self.batch_size))
 ```
 
 If we do not have dependency engine but blocks, the module building our GAN model will be like this:
@@ -175,7 +175,7 @@ class DCGAN:
       else: # original version of GAN
         self.G = self.generator(self.z)
         self.D_g = self.discriminator(self.G, self.y)
-      self.g_loss = pd.reduce_mean(pd.cross_entropy(self.D_g, np.ones(self.batch_szie))
+      self.g_loss = pd.reduce_mean(pd.cross_entropy(self.D_g, np.ones(self.batch_size))
 
     with pd.default_block().d_block():
       if self.y_dim: # if conditional GAN, includes label

@@ -14,7 +14,7 @@ creating a ***select_op***.
 ## How to use it
 
 The **select_op** is available as a c++ operator.  However most users
-will prefer to use the much simplier Python API.
+will prefer to use the much simpler Python API.
 
 - **fluid.Select()**: Creates a select operator and adds it to the current
 block within the main program.  Also creates a sub block and adds it to the
