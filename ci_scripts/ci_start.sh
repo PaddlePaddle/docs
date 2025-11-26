@@ -4,6 +4,12 @@ export DIR_PATH=${PWD}
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
 set +x
+#define color
+RED='\033[0;31m'
+YELLOW='\033[0;33m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
 # 1 decide PADDLE_WHL if not setted.
 if [ -z "${PADDLE_WHL}" ] ; then
     docs_pr_info=$(get_repo_pr_info "PaddlePaddle/docs" ${GIT_PR_ID})
@@ -11,13 +17,36 @@ if [ -z "${PADDLE_WHL}" ] ; then
     if [ -n "${paddle_pr_id}" ] ; then
         paddle_pr_info=$(get_repo_pr_info "PaddlePaddle/Paddle" ${paddle_pr_id})
         paddle_pr_latest_commit=$(get_latest_commit_from_pr_info ${paddle_pr_info})
-        paddle_whl_tmp="https://xly-devops.bj.bcebos.com/PR/build_whl/${paddle_pr_id}/${paddle_pr_latest_commit}/paddlepaddle_gpu-0.0.0-cp310-cp310-linux_x86_64.whl"
-        http_code=$(curl -sIL -w "%{http_code}" -o /dev/null -X GET -k ${paddle_whl_tmp})
-        if [ "${http_code}" = "200" ] ; then
-            PADDLE_WHL=${paddle_whl_tmp}
-        else
-            echo "curl -I ${paddle_whl_tmp} got http_code=${http_code}"
+        paddle_whl_tmp="https://paddle-github-action.bj.bcebos.com/PR/build_whl/${paddle_pr_id}/${paddle_pr_latest_commit}/paddlepaddle_gpu-0.0.0-cp310-cp310-linux_x86_64.whl"
+
+        retry_count=3
+        echo -e "${GREEN}开始检查whl包可用性：${paddle_whl_tmp}${NC}"
+        while [ $retry_count -gt 0 ]; do
+            curl_exit_code=0
+            http_code=$(curl -sIL -w "%{http_code}" -o /dev/null -X GET -k ${paddle_whl_tmp} || { curl_exit_code=$?; echo "000"; })
+
+            if [ ${curl_exit_code} -ne 0 ]; then
+                echo -e "${RED}curl请求执行失败（错误码: ${curl_exit_code}），请检查链接格式！${NC}"
+                exit 1
+            fi
+
+            if [ "${http_code}" = "200" ]; then
+                PADDLE_WHL=${paddle_whl_tmp}
+                echo -e "${GREEN}✅ whl包已生成：${PADDLE_WHL}${NC}"
+                break
+            else
+                echo -e "${YELLOW}第 $((3 - retry_count + 1)) 次检查：whl包未生成（HTTP状态码: ${http_code}），30秒后重试...${NC}"
+                sleep 30
+                retry_count=$((retry_count - 1))
+            fi
+        done
+        if [ -z "${PADDLE_WHL}" ]; then
+            echo -e "${RED}错误：whl包多次检查仍未生成，请确认Paddle仓库的构建流程！${NC}"
+            echo -e "${RED}建议操作：检查Paddle仓库PR #${paddle_pr_id} 的构建状态，确认whl包是否触发生成。${NC}"
+            exit 1
         fi
+    else
+        echo "未获取到Paddle PR ID，跳过whl包动态检查"
     fi
     if [ -z "${PADDLE_WHL}" ] ; then
         # as there are two pipelines now, only change the test pipeline's version to py3.7
