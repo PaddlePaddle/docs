@@ -27,7 +27,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | -          | is_huber         | 控制 huber_loss 与 smooth_l1_loss 的开关，Paddle 需设置为 False 。                    |
 
 ### 转写示例
-#### reduction 为 sum
+#### size_average/reduce：对应到 reduction 为 sum
 ```python
 # PyTorch 写法
 torch.nn.SmoothL1Loss(beta=1.0, size_average=False, reduce=True)
@@ -37,7 +37,7 @@ torch.nn.SmoothL1Loss(beta=1.0, size_average=False)
 paddle.nn.SmoothL1Loss(reduction='sum', is_huber=False)
 ```
 
-#### reduction 为 mean
+#### size_average/reduce：对应到 reduction 为 mean
 ```python
 # PyTorch 写法
 torch.nn.SmoothL1Loss(size_average=True, reduce=True)
@@ -49,7 +49,7 @@ torch.nn.SmoothL1Loss()
 paddle.nn.SmoothL1Loss(reduction='mean',is_huber=False)
 ```
 
-#### reduction 为 none
+#### size_average/reduce：对应到 reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.SmoothL1Loss(size_average=True, reduce=False)

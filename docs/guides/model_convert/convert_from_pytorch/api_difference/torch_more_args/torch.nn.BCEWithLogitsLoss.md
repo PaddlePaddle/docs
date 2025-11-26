@@ -28,7 +28,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | pos_weight  | pos_weight            | 表示正类的权重。  |
 
 ### 转写示例
-#### reduction 为 sum
+#### size_average/reduce：对应到 reduction 为 sum
 ```python
 # PyTorch 写法
 torch.nn.BCEWithLogitsLoss(weight=w, size_average=False, reduce=True)
@@ -38,7 +38,7 @@ torch.nn.BCEWithLogitsLoss(weight=w, size_average=False)
 paddle.nn.BCEWithLogitsLoss(weight=w, reduction='sum')
 ```
 
-#### reduction 为 mean
+#### size_average/reduce：对应到 reduction 为 mean
 ```python
 # PyTorch 写法
 torch.nn.BCEWithLogitsLoss(weight=w, size_average=True, reduce=True)
@@ -50,7 +50,7 @@ torch.nn.BCEWithLogitsLoss(weight=w)
 paddle.nn.BCEWithLogitsLoss(weight=w, reduction='mean')
 ```
 
-#### reduction 为 none
+#### size_average/reduce：对应到 reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.BCEWithLogitsLoss(weight=w, size_average=True, reduce=False)

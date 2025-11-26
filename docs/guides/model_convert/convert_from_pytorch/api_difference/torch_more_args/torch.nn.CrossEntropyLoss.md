@@ -36,7 +36,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | -             | axis       | 进行 softmax 计算的维度索引，PyTorch 无此参数，Paddle 保持默认即可。   |
 
 ### 转写示例
-#### reduction 为 sum
+#### size_average/reduce：对应到 reduction 为 sum
 ```python
 # PyTorch 写法
 torch.nn.CrossEntropyLoss(weight=w, size_average=False, reduce=True)
@@ -46,7 +46,7 @@ torch.nn.CrossEntropyLoss(weight=w, size_average=False)
 paddle.nn.CrossEntropyLoss(weight=w, reduction='sum')
 ```
 
-#### reduction 为 mean
+#### size_average/reduce：对应到 reduction 为 mean
 ```python
 # PyTorch 写法
 torch.nn.CrossEntropyLoss(weight=w, size_average=True, reduce=True)
@@ -58,7 +58,7 @@ torch.nn.CrossEntropyLoss(weight=w)
 paddle.nn.CrossEntropyLoss(weight=w, reduction='mean')
 ```
 
-#### reduction 为 none
+#### size_average/reduce：对应到 reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.CrossEntropyLoss(weight=w, size_average=True, reduce=False)

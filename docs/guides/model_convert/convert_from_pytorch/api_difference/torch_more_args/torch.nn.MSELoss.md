@@ -21,7 +21,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction        | reduction            | 表示对输出结果的计算方式。  |
 
 ### 转写示例
-#### reduction 为 sum
+#### size_average/reduce：对应到 reduction 为 sum
 ```python
 # PyTorch 写法
 torch.nn.MSELoss(size_average=False, reduce=True)
@@ -31,7 +31,7 @@ torch.nn.MSELoss(size_average=False)
 paddle.nn.MSELoss(reduction='sum')
 ```
 
-#### reduction 为 mean
+#### size_average/reduce：对应到 reduction 为 mean
 ```python
 # PyTorch 写法
 torch.nn.MSELoss(size_average=True, reduce=True)
@@ -43,7 +43,7 @@ torch.nn.MSELoss()
 paddle.nn.MSELoss(reduction='mean')
 ```
 
-#### reduction 为 none
+#### size_average/reduce：对应到 reduction 为 none
 ```python
 # PyTorch 写法
 torch.nn.MSELoss(size_average=True, reduce=False)
