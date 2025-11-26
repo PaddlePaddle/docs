@@ -54,6 +54,9 @@ step 2：
     output = wn * d_e * d_s + en * d_w * d_s
            + ws * d_e * d_n + es * d_w * d_n
 
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x``。
+
 参数
 ::::::::::::
 
