@@ -667,3 +667,14 @@ device 相关
 
     " :ref:`paddle.get_flags <cn_api_paddle_get_flags>` ", "获取指定的 Paddle 环境变量 FLAGS 状态。详情请查看 :ref:`cn_guides_flags_flags`"
     " :ref:`paddle.set_flags <cn_api_paddle_set_flags>` ", "设置 Paddle 环境变量 FLAGS，详情请查看 :ref:`cn_guides_flags_flags`"
+
+.. _about_amp:
+
+AMP 相关 API
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`autocast <cn_api_paddle_autocast>` ", "创建 AMP 上下文环境"

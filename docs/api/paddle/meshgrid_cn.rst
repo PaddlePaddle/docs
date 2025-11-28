@@ -8,7 +8,7 @@ meshgrid
 
 
 
-对每个 Tensor 做扩充操作。输入是 Tensor 或者包含 Tensor 的列表，包含 k 个一维 Tensor，输出 k 个 k 维 Tensor。
+对每个 Tensor 做扩充操作。输入是 Tensor 或者包含 Tensor 的列表，包含 k 个一维 Tensor，输出 k 个 k 维 Tensor。别名：``paddle.functional.meshgrid``。
 
 参数
 ::::::::::::
