@@ -413,6 +413,7 @@ Padding 相关函数
     " :ref:`paddle.nn.functional.leaky_relu <cn_api_paddle_nn_functional_leaky_relu>` ", "leaky_relu 激活函数"
     " :ref:`paddle.nn.functional.leaky_relu_ <cn_api_paddle_nn_functional_leaky_relu_>` ", "Inplace 版本的 :ref:`cn_api_paddle_nn_functional_leaky_relu` API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.log_sigmoid <cn_api_paddle_nn_functional_log_sigmoid>` ", "log_sigmoid 激活函数"
+    " :ref:`paddle.nn.functional.logsigmoid <cn_api_paddle_nn_functional_logsigmoid>` ", "log_sigmoid 激活函数"
     " :ref:`paddle.nn.functional.log_softmax <cn_api_paddle_nn_functional_log_softmax>` ", "log_softmax 激活函数"
     " :ref:`paddle.nn.functional.maxout <cn_api_paddle_nn_functional_maxout>` ", "maxout 激活函数"
     " :ref:`paddle.nn.functional.prelu <cn_api_paddle_nn_functional_prelu>` ", "prelu 激活函数"

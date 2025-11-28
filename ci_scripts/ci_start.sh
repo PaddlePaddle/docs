@@ -4,7 +4,7 @@ export DIR_PATH=${PWD}
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
 set +x
-# 1 decide PADDLE_WHL if not setted.
+# 1 decide PADDLE_WHL if not set.
 if [ -z "${PADDLE_WHL}" ] ; then
     docs_pr_info=$(get_repo_pr_info "PaddlePaddle/docs" ${GIT_PR_ID})
     paddle_pr_id=$(get_paddle_pr_num_from_docs_pr_info ${docs_pr_info})
@@ -48,8 +48,8 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     fi
 
     is_shell_attribute_set x
-    xdebug_setted=$?
-    if [ $xdebug_setted ] ; then
+    xdebug_set=$?
+    if [ $xdebug_set ] ; then
         set +x
     fi
     # clean git workspace
@@ -57,7 +57,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     git reset --hard && git clean -dfx
     cd ${DIR_PATH}
 
-    if [ $xdebug_setted ] ; then
+    if [ $xdebug_set ] ; then
         set -x
     fi
 

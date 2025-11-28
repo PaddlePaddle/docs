@@ -100,6 +100,7 @@ Methods
     clear_gradient
     clip
     clip_
+    clamp_
     clone
     combinations
     concat
