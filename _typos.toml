@@ -12,9 +12,11 @@ extend-ignore-words-re = ["^[a-zA-Z]{1,3}$"]
 # refer to https://github.com/crate-ci/typos/blob/master/docs/reference.md#example-configurations
 extend-ignore-re = [
     # Ignore lines by `# typos: disable-line`
-    "(?Rm)^.*(#|//)\\s*typos:\\s*disable-line$",
+    "(?Rm)^.*(#|//|<!--)\\s*typos:\\s*disable-line\\s*(?:-->)?$",
     # Ignore block by `# typos: off` and `# typos: on`
-    "(?s)(#|//)\\s*typos:\\s*off.*?\\n\\s*(#|//)\\s*typos:\\s*on"
+    "(?s)(#|//)\\s*typos:\\s*off.*?\\n\\s*(#|//)\\s*typos:\\s*on",
+    # Next-line ignore # typos:ignore-next-line
+    "(#|//|<!--)\\s*typos:ignore-next-line\\s*(?:-->)?\\n.*"
 ]
 
 [default.extend-words]
@@ -23,16 +25,14 @@ CANN = "CANN"
 Clas = "Clas"
 arange = "arange"
 unsupport = "unsupport"
-Nervana = "Nervana"
 datas = "datas"
 feeded = "feeded"
+splitted = "splitted"
 
 # These words need to be fixed
 setted = "setted"
 shoule = "shoule"
 similary = "similary"
 simplier = "simplier"
-softwares = "softwares"
 sperated = "sperated"
-splitted = "splitted"
 szie = "szie"
