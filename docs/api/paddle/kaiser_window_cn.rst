@@ -3,17 +3,7 @@
 kaiser_window
 -------------------------------
 
-.. py:function:: paddle.kaiser_window(
-    window_length: int,
-    periodic: bool = True,
-    beta: float = 12.0,
-    *,
-    dtype: str = 'float32',
-    layout: str | None = None,
-    device: PlaceLike | None = None,
-    pin_memory: bool = False,
-    requires_grad: bool = False,
-)
+.. py:function:: paddle.kaiser_window(window_length, periodic=True, beta=12.0, dtype='float32', layout=None, device=None, pin_memory=False, requires_grad=False)
 
 计算一个 Kaiser 窗。
 

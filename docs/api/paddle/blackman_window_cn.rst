@@ -3,16 +3,7 @@
 blackman_window
 -------------------------------
 
-.. py:function:: paddle.blackman_window(
-    window_length: int,
-    periodic: bool = True,
-    *,
-    dtype: str = 'float32',
-    layout: str | None = None,
-    device: PlaceLike | None = None,
-    pin_memory: bool = False,
-    requires_grad: bool = False,
-)
+.. py:function:: paddle.blackman_window(window_length, periodic=True, dtype='float32', layout=None, device=None, pin_memory=False, requires_grad=False)
 
 计算一个 Blackman 窗。
 

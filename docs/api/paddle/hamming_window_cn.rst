@@ -3,18 +3,7 @@
 hamming_window
 -------------------------------
 
-.. py:function:: paddle.hamming_window(
-    window_length: int,
-    periodic: bool = True,
-    alpha: float = 0.54,
-    beta: float = 0.46,
-    *,
-    dtype: str = 'float32',
-    layout: str | None = None,
-    device: PlaceLike | None = None,
-    pin_memory: bool = False,
-    requires_grad: bool = False,
-)
+.. py:function:: paddle.hamming_window(window_length, periodic=True, alpha=0.54, beta=0.46, dtype='float32', layout=None, device=None, pin_memory=False, requires_grad=False)
 
 计算一个广义的汉明窗。
 
