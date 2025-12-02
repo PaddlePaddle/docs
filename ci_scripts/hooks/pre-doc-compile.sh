@@ -8,6 +8,9 @@ DOCROOT=${FLUIDDOCDIR}/docs
 APIMAPPING_ROOT=${DOCROOT}/guides/model_convert/convert_from_pytorch
 TOOLS_DIR=${APIMAPPING_ROOT}/tools
 
+TARGET_FILE=${APIMAPPING_ROOT}/pytorch_api_mapping_cn.md
+CACHED_FILE=${APIMAPPING_ROOT}/cached_pytorch_api_mapping_cn.md
+
 # Create tools directory if not exists
 if [ ! -d "${TOOLS_DIR}" ]; then
     echo "INFO: Creating tools directory at ${TOOLS_DIR}"
@@ -47,16 +50,13 @@ fi
 
 # Handle failure: copy cached file and exit
 handle_failure() {
-    local cached_file="${APIMAPPING_ROOT}/cached_pytorch_api_mapping_cn.md"
-    local target_file="${APIMAPPING_ROOT}/pytorch_api_mapping_cn.md"
-
-    if [ -f "$cached_file" ]; then
-        echo "INFO: Copying cached file to target: $cached_file -> $target_file"
-        cp "$cached_file" "$target_file"
-        echo "INFO: Successfully copied cached file to $target_file"
+    if [ -f "$CACHED_FILE" ]; then
+        echo "INFO: Copying cached file to target: $CACHED_FILE -> $TARGET_FILE"
+        cp "$CACHED_FILE" "$TARGET_FILE"
+        echo "INFO: Successfully copied cached file to $TARGET_FILE"
         exit 0
     else
-        echo "ERROR: Cached file not found at $cached_file"
+        echo "ERROR: Cached file not found at $CACHED_FILE"
         exit 1
     fi
 }
@@ -80,7 +80,7 @@ download_file() {
             return 0
         else
             echo "WARNING: Failed to download ${filename} from ${url} (attempt $retry_count)"
-            sleep 2  # Wait for 2 seconds before next retry
+            sleep 3  # Wait for 2 seconds before next retry
         fi
     done
 
@@ -99,48 +99,45 @@ echo "INFO: All API mapping files successfully downloaded"
 # Run the remaining scripts with failure handling
 echo "INFO: Running get_api_difference_info.py"
 if ! python "${APIMAPPING_ROOT}/tools/get_api_difference_info.py"; then
+    echo "ERROR: Failed to run get_api_difference_info.py"
     handle_failure
 fi
 
 echo "INFO: Running generate_pytorch_api_mapping.py"
 if ! python "${APIMAPPING_ROOT}/tools/generate_pytorch_api_mapping.py"; then
+    echo "ERROR: Failed to run generate_pytorch_api_mapping.py"
     handle_failure
 fi
 
 # Create backup of generated file
-BACKUP_FILE="${APIMAPPING_ROOT}/cached_pytorch_api_mapping_cn.md"
-GENERATED_FILE="${APIMAPPING_ROOT}/pytorch_api_mapping_cn.md"
-
-if [ -f "$GENERATED_FILE" ]; then
-    echo "INFO: Generated API mapping file successfully created at $GENERATED_FILE"
-    echo "INFO: Creating backup file: $BACKUP_FILE"
-    cp "$GENERATED_FILE" "$BACKUP_FILE"
-    echo "INFO: Successfully created backup file at $BACKUP_FILE"
+if [ -f "$TARGET_FILE" ]; then
+    echo "INFO: Target API mapping file found successfully at $TARGET_FILE"
+    echo "INFO: Copying target file to cached: $TARGET_FILE -> $CACHED_FILE"
+    cp "$TARGET_FILE" "$CACHED_FILE"
+    echo "INFO: Successfully created cached file at $CACHED_FILE"
 else
-    echo "ERROR: Generated API mapping file not found at $GENERATED_FILE"
+    echo "ERROR: Target API mapping file not found at $TARGET_FILE"
     handle_failure
 fi
 
+
+
+echo "INFO: Running validate_api_difference_format.py"
 python "${APIMAPPING_ROOT}/tools/validate_api_difference_format.py"
-
-# 获取上一条命令的退出状态码
-exit_code=$?
-
-# 根据退出状态码决定后续操作
-if [ $exit_code -eq 0 ]; then
-    echo "API DIFFERENCE FORMAT VALIDATE SUCCESS!"
-    # 在这里继续添加您需要执行的命令
+if [ $? -eq 0 ]; then
+    echo "INFO: API DIFFERENCE FORMAT VALIDATE SUCCESS!"
 else
-    echo "ERROR: API DIFFERENCE FORMAT VALIDATE FAILURE! error code: $exit_code" >&2
+    echo "ERROR: API DIFFERENCE FORMAT VALIDATE FAILURE!"
     exit 1
 fi
 
-python "${APIMAPPING_ROOT}/tools/validate_pytorch_api_mapping.py" --skip-url-check
-exit_code=$?
 
-if [ $exit_code -eq 0 ]; then
-    echo "PYTORCH API MAPPING VALIDATE SUCCESS!"
+echo "INFO: Running validate_pytorch_api_mapping.py"
+python "${APIMAPPING_ROOT}/tools/validate_pytorch_api_mapping.py" --skip-url-check --file "${TARGET_FILE}"
+if [ $? -eq 0 ]; then
+    echo "INFO: PYTORCH API MAPPING VALIDATE SUCCESS!"
+    exit 0
 else
-    echo "ERROR: PYTORCH API MAPPING VALIDATE FAILURE! error code: $exit_code" >&2
+    echo "ERROR: PYTORCH API MAPPING VALIDATE FAILURE!"
     exit 1
 fi
