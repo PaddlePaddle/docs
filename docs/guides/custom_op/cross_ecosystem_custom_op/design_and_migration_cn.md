@@ -1,14 +1,10 @@
-# 跨生态自定义算子接入
+## 原理和迁移方式
 
-## 概述
-
-随着大模型的兴起，在深度学习框架之上构建自定义算子（Custom Operator）已成为提升模型性能和功能的关键手段。而目前 PyTorch 作为深度学习领域的主流框架之一，拥有大量的自定义算子实现。为了帮助用户更好地将现有的 PyTorch 自定义算子迁移至 PaddlePaddle 框架，我们提供了自定义算子兼容机制，旨在降低迁移成本，提升开发效率。
-
-## 方案介绍
+### 实现原理
 
 为了方便 PyTorch 自定义算子快速接入 PaddlePaddle 框架，我们提供了如下图所示的兼容机制：
 
-![PyTorch 自定义算子兼容机制示意图](./images/pytorch-op-compatible.drawio.png)
+![跨生态自定义算子兼容机制示意图](./images/cross-ecosystem-custom-op-compatible.drawio.png)
 
 正如图上所示，我们自底向上提供了如下几层支持：
 
@@ -24,23 +20,3 @@
 ## 迁移步骤
 
 下面我们以一个简单的 PyTorch 自定义算子为例，介绍如何将其迁移至 PaddlePaddle 框架。
-
-## 已迁移算子库
-
-### FlashInfer
-
-### FlashMLA
-
-### DeepGEMM
-
-### TileLang
-
-### Triton
-
-### TorchCodec
-
-### DeepEP
-
-coming soon...
-
-## 参考资料
