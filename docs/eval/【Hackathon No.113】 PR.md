@@ -105,13 +105,13 @@ else:
 ```python
 if self._nranks > 1:
     dist.init_parallel_env()
-    stradegy = fluid.dygraph.parallel.ParallelStrategy()
-    stradegy.nranks = ParallelEnv().nranks
-    stradegy.local_rank = ParallelEnv().local_rank
-    stradegy.trainer_endpoints = ParallelEnv().trainer_endpoints
-    stradegy.current_endpoint = ParallelEnv().current_endpoint
+    strategy = fluid.dygraph.parallel.ParallelStrategy()
+    strategy.nranks = ParallelEnv().nranks
+    strategy.local_rank = ParallelEnv().local_rank
+    strategy.trainer_endpoints = ParallelEnv().trainer_endpoints
+    strategy.current_endpoint = ParallelEnv().current_endpoint
     self.ddp_model = fluid.dygraph.parallel.DataParallel(
-        self.model.network, stradegy)
+        self.model.network, strategy)
 
 ```
 这样的话，分布式的环境与分布式的模型就已经在 paddle.Model 内的内部构建完成了。

@@ -24,6 +24,7 @@ paddle.linalg 目录下包含飞桨框架支持的线性代数相关 API。具�
     " :ref:`paddle.linalg.slogdet <cn_api_paddle_linalg_slogdet>` ", "计算方阵行列式的符号、绝对值的自然对数"
     " :ref:`paddle.linalg.cond <cn_api_paddle_linalg_cond>` ", "根据矩阵的范数，来计算矩阵的条件数"
     " :ref:`paddle.linalg.norm <cn_api_paddle_linalg_norm>` ", "计算矩阵范数或向量范数"
+    " :ref:`paddle.linalg.vector_norm <cn_api_paddle_linalg_vector_norm>` ", "计算向量范数"
     " :ref:`paddle.linalg.matrix_rank <cn_api_paddle_linalg_matrix_rank>` ", "计算矩阵的秩"
 
 
@@ -44,6 +45,7 @@ paddle.linalg 目录下包含飞桨框架支持的线性代数相关 API。具�
     " :ref:`paddle.linalg.cov <cn_api_paddle_linalg_cov>` ", "计算矩阵的协方差矩阵"
     " :ref:`paddle.linalg.matrix_exp <cn_api_paddle_linalg_matrix_exp>` ", "计算方阵的矩阵指数"
     " :ref:`paddle.linalg.matrix_transpose <cn_api_paddle_linalg_matrix_transpose>` ", "计算矩阵的转置"
+    " :ref:`paddle.linalg.matmul <cn_api_paddle_linalg_matmul>` ", "计算两个矩阵的矩阵乘法"
 
 
 .. _about_matrix_decompositions:

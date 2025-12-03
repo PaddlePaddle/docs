@@ -48,7 +48,7 @@ The training process of asynchronous training can be:
     2. Trainer gets all parameters back from pserver.
 
 ### Note:
-There are also some conditions that need to consider. For exmaple:
+There are also some conditions that need to consider. For example:
 
 1. If trainer needs to wait for the pserver to apply it's gradient and then get back the parameters back.
 1. If we need a lock between parameter update and parameter fetch.

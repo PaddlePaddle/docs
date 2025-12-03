@@ -9,7 +9,7 @@ PyTorch 兼容的 :ref:`cn_api_paddle_sort` 版本，同时返回排序的值结
 
 使用前请详细参考：`【返回参数类型不一致】torch.sort`_ 以确定是否使用此模块。
 
-.. _【返回参数类型不一致】torch.sort: https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.sort.html
+.. _【返回参数类型不一致】torch.sort: https://www.paddlepaddle.org.cn/documentation/docs/en/guides/model_convert/convert_from_pytorch/api_difference/torch/torch.sort.html
 
 
 参数

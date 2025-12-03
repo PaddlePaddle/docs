@@ -15,7 +15,7 @@ Currently assumption is that if operator can have in-place processing then all i
 - gelu*
 - sum**
 
-Adventages of in-place computation are:
+Advantages of in-place computation are:
 * lower memory usage
 * improved performance of operators
 
@@ -56,7 +56,7 @@ Pattern is restricted so that in-placed to be op is of oneDNN type. Due to fact 
 more than one input and their output may be consumed by more than one operator it is expected that pattern
 maybe detected multiple times for the same operator e.g. once for one input, then for second input etc..
 
-Just having oneDNN operator capable of in-place is not enough to have in-place execution enabled, hence follwing rules
+Just having oneDNN operator capable of in-place is not enough to have in-place execution enabled, hence following rules
 are checked by oneDNN in-place pass:
 1. If input node to in-place operator is also an input to different operator, then in-place computation cannot be performed, as there is a risk that other operator consuming in-placed op operator will be executed after in-placed operator and therefore get invalid input data (overwritten by in-place computation).
 2. If after in-placed operator there is another operator that is reusing in-place op's input var then in-place cannot happen unless next op can perform in-place computation. Next picture presents the idea.
@@ -94,4 +94,4 @@ replace this original name in all of next op instances.
 
 \* oneDNN gelu kernel is able to perform in-place execution, but currently gelu op does not support in-place execution.
 
-\*\* sum kernel is using oneDNN sum primitive that does not provide in-place exection, so in-place computation is done faked through external buffer. So it was not added into oneDNN inplace pass.
+\*\* sum kernel is using oneDNN sum primitive that does not provide in-place execution, so in-place computation is done faked through external buffer. So it was not added into oneDNN inplace pass.

@@ -1,0 +1,30 @@
+[files]
+# The following files will be excluded from spell check during commits
+extend-exclude = [
+     # Skip `Accuray ` check in these files
+    "docs/practices/cv/3D_image_classification_from_CT_scans.ipynb",
+
+]
+
+[default]
+# Ignore 1-3 letter words, refer to https://github.com/crate-ci/typos/issues/1079
+extend-ignore-words-re = ["^[a-zA-Z]{1,3}$"]
+# refer to https://github.com/crate-ci/typos/blob/master/docs/reference.md#example-configurations
+extend-ignore-re = [
+    # Ignore lines by `# typos: disable-line`
+    "(?Rm)^.*(#|//|<!--)\\s*typos:\\s*disable-line\\s*(?:-->)?$",
+    # Ignore block by `# typos: off` and `# typos: on`
+    "(?s)(#|//)\\s*typos:\\s*off.*?\\n\\s*(#|//)\\s*typos:\\s*on",
+    # Next-line ignore # typos:ignore-next-line
+    "(#|//|<!--)\\s*typos:ignore-next-line\\s*(?:-->)?\\n.*"
+]
+
+[default.extend-words]
+# PaddlePaddle specific words
+CANN = "CANN"
+Clas = "Clas"
+arange = "arange"
+unsupport = "unsupport"
+datas = "datas"
+feeded = "feeded"
+splitted = "splitted"

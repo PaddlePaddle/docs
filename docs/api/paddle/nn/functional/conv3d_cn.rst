@@ -34,10 +34,14 @@ conv3d
 
   输出形状：:math:`(N, C_{out}, D_{out}, H_{out}, W_{out})`
 
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x``。
+
 参数
 ::::::::::::
 
     - **x** (Tensor) - 输入是形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的 5-D Tensor，N 是批尺寸，C 是通道数，D 是特征层深度，H 是特征高度，W 是特征宽度，数据类型为 float16, float32 或 float64。
+      别名： ``input``。
     - **weight** (Tensor) - 形状为 :math:`[M, C/g, kH, kW]` 的卷积核（卷积核）。 M 是输出通道数，g 是分组的个数，kH 是卷积核的高度，kW 是卷积核的宽度。
     - **bias** (int|list|tuple，可选) - 偏置项，形状为：:math:`[M,]` 。
     - **stride** (int|list|tuple，可选) - 步长大小。卷积核和输入进行卷积计算时滑动的步长。如果它是一个列表或元组，则必须包含两个整型数：（stride_height,stride_width）。若为一个整数，stride_height = stride_width = stride。默认值：1。

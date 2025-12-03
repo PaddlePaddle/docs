@@ -212,13 +212,13 @@ class TensorArray:
 ```
 
 ## DenseTensor-related Supports
-The `RecurrentGradientMachine` in Paddle serves as a flexible RNN layer; it takes varience-length sequences as input, and output sequences too.
+The `RecurrentGradientMachine` in Paddle serves as a flexible RNN layer; it takes variable-length sequences as input, and output sequences too.
 
 Since each step of RNN can only take a tensor-represented batch of data as input,
 some preprocess should be taken on the inputs such as sorting the sentences by their length in descending order and cut each word and pack to new batches.
 
 Such cut-like operations can be embedded into `TensorArray` as general methods called `unpack` and `pack`,
-these two operations are similar to `stack` and `unstack` except that they operate on variable-length sequences formated as a LoD tensor rather than a tensor.
+these two operations are similar to `stack` and `unstack` except that they operate on variable-length sequences formatted as a LoD tensor rather than a tensor.
 
 Some definitions are like
 
@@ -244,10 +244,10 @@ def pack(level, indices_map):
     pass
 ```
 
-With these two methods, a varience-length sentence supported RNN can be implemented like
+With these two methods, a variable-length sentence supported RNN can be implemented like
 
 ```c++
-// input is the varient-length data
+// input is the variable-length data
 LodTensor sentence_input(xxx);
 TensorArray ta;
 Tensor indice_map;
@@ -268,4 +268,4 @@ for (int step = 0; step = ta.size(); step++) {
 DenseTensor rnn_output = ta.pack(ta, indice_map);
 ```
 the code above shows that by embedding the DenseTensor-related preprocess operations into `TensorArray`,
-the implementation of a RNN that supports varient-length sentences is far more concise than `RecurrentGradientMachine` because the latter mixes all the codes together, hard to read and extend.
+the implementation of a RNN that supports variable-length sentences is far more concise than `RecurrentGradientMachine` because the latter mixes all the codes together, hard to read and extend.

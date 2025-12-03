@@ -16,7 +16,7 @@
 1.1 GroupSharded
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-GroupSharded 实现了类似 ZeRO-DP 的训练策略，将模型状态包括：模型参数（parameter）、参数梯度（gradient）、参数对应的优化器状态（以 Adam 为例 moment 和 varience）切分到每一张 GPU 上。让模型参数部分所占的显存随并行卡数的增加而减少。
+GroupSharded 实现了类似 ZeRO-DP 的训练策略，将模型状态包括：模型参数（parameter）、参数梯度（gradient）、参数对应的优化器状态（以 Adam 为例 moment 和 variance）切分到每一张 GPU 上。让模型参数部分所占的显存随并行卡数的增加而减少。
 通过 paddle.distributed.sharding.group_sharded_parallel 提供的简单易用接口, 用户只需要添加几行代码就可将策略加入到原有的训练中。
 
 模型训练过程中的显存消耗主要由两大部分组成：模型参数及优化器状态、训练产生的中间变量（activations）。

@@ -1,6 +1,6 @@
 # Guide of submitting PR to GitHub
 
-## Tthe submit of Pull Request
+## The submit of Pull Request
 
 - Please note the number of commit:
 

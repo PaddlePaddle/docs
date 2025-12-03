@@ -1,0 +1,24 @@
+## [ paddle 参数更多 ]torch.nn.functional.upsample_nearest
+### [torch.nn.functional.upsample_nearest](https://pytorch.org/docs/stable/generated/torch.nn.functional.upsample_nearest.html#torch.nn.functional.upsample_nearest)
+```python
+torch.nn.functional.upsample_nearest(input, size=None, scale_factor=None)
+```
+
+### [paddle.nn.functional.upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/upsample_cn.html#upsample)
+```python
+paddle.nn.functional.upsample(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format='NCHW', name=None)
+```
+
+其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
+
+### 参数映射
+
+| PyTorch       | PaddlePaddle | 备注                                                   |
+| ------------- | ------------ | ------------------------------------------------------ |
+|  input  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
+|  size              |  size   | 输出 Tensor 的大小。               |
+|  scale_factor    |  scale_factor    | 输入的高度或宽度的乘数因子。              |
+| -  |  mode    | 插值方法。 PyTorch 无此参数，Paddle 默认为 `’nearest‘`。             |
+| -  |     align_corners           | 是否将输入和输出张量的 4 个角落像素的中心对齐，并保留角点像素的值。PyTorch 无此参数。            |
+| -  |     align_mode           | 双线性插值的可选项。PyTorch 无此参数。Paddle 保持默认即可。            |
+| -  |     data_format           | 指定输入的数据格式。PyTorch 无此参数。Paddle 保持默认即可。            |

@@ -412,6 +412,7 @@ Padding 相关函数
     " :ref:`paddle.nn.functional.leaky_relu <cn_api_paddle_nn_functional_leaky_relu>` ", "leaky_relu 激活函数"
     " :ref:`paddle.nn.functional.leaky_relu_ <cn_api_paddle_nn_functional_leaky_relu_>` ", "Inplace 版本的 :ref:`cn_api_paddle_nn_functional_leaky_relu` API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.log_sigmoid <cn_api_paddle_nn_functional_log_sigmoid>` ", "log_sigmoid 激活函数"
+    " :ref:`paddle.nn.functional.logsigmoid <cn_api_paddle_nn_functional_logsigmoid>` ", "log_sigmoid 激活函数"
     " :ref:`paddle.nn.functional.log_softmax <cn_api_paddle_nn_functional_log_softmax>` ", "log_softmax 激活函数"
     " :ref:`paddle.nn.functional.maxout <cn_api_paddle_nn_functional_maxout>` ", "maxout 激活函数"
     " :ref:`paddle.nn.functional.prelu <cn_api_paddle_nn_functional_prelu>` ", "prelu 激活函数"
@@ -473,8 +474,9 @@ Dropout 方法
     " :ref:`paddle.nn.functional.alpha_dropout <cn_api_paddle_nn_functional_alpha_dropout>` ", "一种具有自归一化性质的 dropout"
     " :ref:`paddle.nn.functional.feature_alpha_dropout <cn_api_paddle_nn_functional_feature_alpha_dropout>` ", "一种具有自归一化性质的 dropout ，屏蔽整个通道"
     " :ref:`paddle.nn.functional.dropout <cn_api_paddle_nn_functional_dropout>` ", "Dropout"
-    " :ref:`paddle.nn.functional.dropout2d <cn_api_paddle_nn_functional_dropout2d>` ", "一维 Dropout"
-    " :ref:`paddle.nn.functional.dropout3d <cn_api_paddle_nn_functional_dropout3d>` ", "二维 Dropout"
+    " :ref:`paddle.nn.functional.dropout1d <cn_api_paddle_nn_functional_dropout1d>` ", "一维 Dropout"
+    " :ref:`paddle.nn.functional.dropout2d <cn_api_paddle_nn_functional_dropout2d>` ", "二维 Dropout"
+    " :ref:`paddle.nn.functional.dropout3d <cn_api_paddle_nn_functional_dropout3d>` ", "三维 Dropout"
 
 .. _embedding_functional:
 
@@ -556,6 +558,7 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.upsample <cn_api_paddle_nn_functional_upsample>` ", "用于调整一个 batch 中图片的大小"
     " :ref:`paddle.nn.functional.class_center_sample <cn_api_paddle_nn_functional_class_center_sample>` ", "用于 PartialFC 类别中心采样"
     " :ref:`paddle.nn.functional.channel_shuffle <cn_api_paddle_nn_functional_channel_shuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的 Tensor 按通道分成 g 组，得到形为[N, g, C/g, H, W]或[N, H, W, g, C/g]的 Tensor，然后转置为[N, C/g, g, H, W]或[N, H, W, C/g, g]的形状，最后重新排列为原来的形状"
+    " :ref:`paddle.nn.parameter.Parameter <cn_api_paddle_nn_parameter_Parameter>` ", "用于创建可训练参数，作为模型的一部分参与梯度更新"
 
 .. _about_initializer:
 
@@ -569,17 +572,30 @@ Embedding 相关函数
     " :ref:`paddle.nn.initializer.Assign <cn_api_paddle_nn_initializer_Assign>` ", "使用 Numpy 数组、Python 列表、Tensor 来初始化参数"
     " :ref:`paddle.nn.initializer.Bilinear <cn_api_paddle_nn_Bilinear>` ", "该接口为参数初始化函数，用于转置卷积函数中"
     " :ref:`paddle.nn.initializer.Constant <cn_api_paddle_nn_initializer_Constant>` ", "用于权重初始化，通过输入的 value 值初始化输入变量"
+    " :ref:`paddle.nn.init.constant_ <cn_api_paddle_nn_init_constant_>` ", "函数式版本的 :ref:`paddle.nn.initializer.Constant <cn_api_paddle_nn_initializer_Constant>` API"
     " :ref:`paddle.nn.initializer.KaimingNormal <cn_api_paddle_nn_initializer_KaimingNormal>` ", "实现 Kaiming 正态分布方式的权重初始化"
+    " :ref:`paddle.nn.init.kaiming_normal_ <cn_api_paddle_nn_init_kaiming_normal_>` ", "函数式版本的 :ref:`paddle.nn.initializer.KaimingNormal <cn_api_paddle_nn_initializer_KaimingNormal>` API"
     " :ref:`paddle.nn.initializer.KaimingUniform <cn_api_paddle_nn_initializer_KaimingUniform>` ", "实现 Kaiming 均匀分布方式的权重初始化"
+    " :ref:`paddle.nn.init.kaiming_uniform_ <cn_api_paddle_nn_init_kaiming_uniform_>` ", "函数式版本的 :ref:`paddle.nn.initializer.KaimingUniform <cn_api_paddle_nn_initializer_KaimingUniform>` API"
     " :ref:`paddle.nn.initializer.Normal <cn_api_paddle_nn_initializer_Normal>` ", "随机正态（高斯）分布初始化函数"
+    " :ref:`paddle.nn.init.normal_ <cn_api_paddle_nn_init_normal_>` ", "函数式版本的 :ref:`paddle.nn.initializer.Normal <cn_api_paddle_nn_initializer_Normal>` API"
     " :ref:`paddle.nn.initializer.set_global_initializer <cn_api_paddle_nn_initializer_set_global_initializer>` ", "用于设置 Paddle 框架中全局的参数初始化方法"
     " :ref:`paddle.nn.initializer.calculate_gain <cn_api_paddle_nn_initializer_calculate_gain>` ", "获取某些激活函数的推荐增益值（增益值可用于对某些初始化 API 进行设置，以调整初始化值）"
     " :ref:`paddle.nn.initializer.Dirac <cn_api_paddle_nn_initializer_Dirac>` ", "通过狄拉克 delta 函数来初始化 3D/4D/5D Tensor，一般用于卷积层，能最大程度保留卷积层输入的特性"
+    " :ref:`paddle.nn.init.dirac_ <cn_api_paddle_nn_init_dirac_>` ", "函数式版本的 :ref:`paddle.nn.initializer.Dirac <cn_api_paddle_nn_initializer_Dirac>` API"
     " :ref:`paddle.nn.initializer.Orthogonal <cn_api_paddle_nn_initializer_Orthogonal>` ", "正交矩阵初始化方式，被初始化的参数为（半）正交的"
+    " :ref:`paddle.nn.init.orthogonal_ <cn_api_paddle_nn_init_orthogonal_>` ", "函数式版本的 :ref:`paddle.nn.initializer.Orthogonal <cn_api_paddle_nn_initializer_Orthogonal>` API"
     " :ref:`paddle.nn.initializer.TruncatedNormal <cn_api_paddle_nn_initializer_TruncatedNormal>` ", "随机截断正态（高斯）分布初始化函数"
+    " :ref:`paddle.nn.init.trunc_normal_ <cn_api_paddle_nn_init_trunc_normal_>` ", "函数式版本的 :ref:`paddle.nn.initializer.TruncatedNormal <cn_api_paddle_nn_initializer_TruncatedNormal>` API"
     " :ref:`paddle.nn.initializer.Uniform <cn_api_paddle_nn_initializer_Uniform>` ", "随机均匀分布初始化函数"
+    " :ref:`paddle.nn.init.uniform_ <cn_api_paddle_nn_init_uniform_>` ", "函数式版本的 :ref:`paddle.nn.initializer.Uniform <cn_api_paddle_nn_initializer_Uniform>` API"
     " :ref:`paddle.nn.initializer.XavierNormal <cn_api_paddle_nn_initializer_XavierNormal>` ", "实现 Xavier 权重初始化方法（ Xavier weight initializer）"
+    " :ref:`paddle.nn.init.xavier_normal_ <cn_api_paddle_nn_init_xavier_normal_>` ", "函数式版本的 :ref:`paddle.nn.initializer.XavierNormal <cn_api_paddle_nn_initializer_XavierNormal>` API"
     " :ref:`paddle.nn.initializer.XavierUniform <cn_api_paddle_nn_initializer_XavierUniform>` ", "实现 Xavier 权重初始化方法（ Xavier weight initializer）"
+    " :ref:`paddle.nn.init.xavier_uniform_ <cn_api_paddle_nn_init_xavier_uniform_>` ", "函数式版本的 :ref:`paddle.nn.initializer.XavierUniform <cn_api_paddle_nn_initializer_XavierUniform>` API"
+    " :ref:`paddle.nn.init.eye_ <cn_api_paddle_nn_init_eye_>` ", "将二维输入张量的值设置为单位矩阵"
+    " :ref:`paddle.nn.init.ones_ <cn_api_paddle_nn_init_ones_>` ", "将输入张量的值设置为 1"
+    " :ref:`paddle.nn.init.zeros_ <cn_api_paddle_nn_init_zeros_>` ", "将输入张量的值设置为 0"
 
 .. _about_quantization:
 

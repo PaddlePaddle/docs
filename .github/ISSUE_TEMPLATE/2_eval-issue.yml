@@ -3,84 +3,84 @@ description: 文档评估工作小组。 Document evaluation working group.
 labels: [eval]
 
 body:
-- type: markdown
-  attributes:
-    value: >
-      #### 此模板用于文档评估工作小组成员向飞桨团队反馈文档问题，如非工作小组成员，请使用「📚 文档」模板，感谢配合~
+  - type: markdown
+    attributes:
+      value: >
+        #### 此模板用于文档评估工作小组成员向飞桨团队反馈文档问题，如非工作小组成员，请使用「📚 文档」模板，感谢配合~
 
-      #### This template is used by members of the document evaluation working group to report documentation issues to the Paddle Team. If you are not a member of the working group, please use the "📚 Documentation Issue" template, thank you for your cooperation~
+        #### This template is used by members of the document evaluation working group to report documentation issues to the Paddle Team. If you are not a member of the working group, please use the "📚 Documentation Issue" template, thank you for your cooperation~
 
-- type: textarea
-  id: link
-  attributes:
-    label: 文档中英文链接
-    description: |
-      请输入你评估的文档链接（需含中英文两个链接）。请注意评估文档要是develop版本。
-  validations:
-    required: true
+  - type: textarea
+    id: link
+    attributes:
+      label: 文档中英文链接
+      description: |
+        请输入你评估的文档链接（需含中英文两个链接）。请注意评估文档要是develop版本。
+    validations:
+      required: true
 
-- type: textarea
-  id: eval1
-  attributes:
-    label: 红线问题
-    description: |
-      请按照如下维度评估本篇文档，如有红线问题，请在以下文本框中说明。
-      - API文档对该API的描述，是否与API的行为保持一致？
-      - API文档提供的示例代码能否跑通？
-      - 中英文API文档的内容是否严格一致？
-  validations:
-    required: false
+  - type: textarea
+    id: eval1
+    attributes:
+      label: 红线问题
+      description: |
+        请按照如下维度评估本篇文档，如有红线问题，请在以下文本框中说明。
+        - API文档对该API的描述，是否与API的行为保持一致？
+        - API文档提供的示例代码能否跑通？
+        - 中英文API文档的内容是否严格一致？
+    validations:
+      required: false
 
-- type: textarea
-  id: eval2
-  attributes:
-    label: 结构问题
-    description: |
-      请评估本篇文档，是否按API文档推荐的结构书写，并且没有遗漏（无需写的部分可以省略）？
-      如有结构问题，请在以下文本框中说明。
+  - type: textarea
+    id: eval2
+    attributes:
+      label: 结构问题
+      description: |
+        请评估本篇文档，是否按API文档推荐的结构书写，并且没有遗漏（无需写的部分可以省略）？
+        如有结构问题，请在以下文本框中说明。
 
-      API文档推荐的书写结构：API名称、API功能描述、API参数、API返回、API代码示例、API属性(class)、API方法(methods)
-  validations:
-    required: false
+        API文档推荐的书写结构：API名称、API功能描述、API参数、API返回、API代码示例、API属性(class)、API方法(methods)
+    validations:
+      required: false
 
-- type: textarea
-  id: eval3
-  attributes:
-    label: 内容问题
-    description: |
-      请按照如下维度评估本篇文档，如有内容问题，请在以下文本框中说明。
-      - 全文语句通畅、准确、易理解。
-      - API描述部分是否描述清楚，在什么场景下使用该API？
-      - API参数，是否描述清楚不同参数下，API的行为区别？
-      - 示例代码是否以注释给出了运行结果?
-      - 没有死链、错字、错误标点等低级错误。
-  validations:
-    required: false
+  - type: textarea
+    id: eval3
+    attributes:
+      label: 内容问题
+      description: |
+        请按照如下维度评估本篇文档，如有内容问题，请在以下文本框中说明。
+        - 全文语句通畅、准确、易理解。
+        - API描述部分是否描述清楚，在什么场景下使用该API？
+        - API参数，是否描述清楚不同参数下，API的行为区别？
+        - 示例代码是否以注释给出了运行结果?
+        - 没有死链、错字、错误标点等低级错误。
+    validations:
+      required: false
 
-- type: textarea
-  id: eval4
-  attributes:
-    label: 格式问题
-    description: |
-      请按照如下维度评估本篇文档，如有格式问题，请在以下文本框中说明。
-      - 是否使用深度学习领域通用的词汇和说法？
-      - API文档格式是否满足格式规范？
-      - 示例代码是否仅使用Paddle API，没有使用numpy等创建输入？
-  validations:
-    required: false
+  - type: textarea
+    id: eval4
+    attributes:
+      label: 格式问题
+      description: |
+        请按照如下维度评估本篇文档，如有格式问题，请在以下文本框中说明。
+        - 是否使用深度学习领域通用的词汇和说法？
+        - API文档格式是否满足格式规范？
+        - 示例代码是否仅使用Paddle API，没有使用numpy等创建输入？
+    validations:
+      required: false
 
-- type: textarea
-  id: eval_fix
-  attributes:
-    label: 主观评价
-    description: |
-      请在此给出你对本篇文档的主观评价，API文档是否足够好，能够有效的帮助自己了解并使用这个API？
-      加分项：是否有图来协助说明，让本篇API文档更加易于理解？
-      如你已经发现了文档的错误并且判断其容易被修复，欢迎你为[Paddle](https://github.com/PaddlePaddle/Paddle/pulls)与[docs](https://github.com/PaddlePaddle/docs/pulls)提PR，直接修复此文档，并将PR链接贴在以下文本框中~
-  validations:
-    required: true
+  - type: textarea
+    id: eval_fix
+    attributes:
+      label: 主观评价
+      description: |
+        请在此给出你对本篇文档的主观评价，API文档是否足够好，能够有效的帮助自己了解并使用这个API？
+        加分项：是否有图来协助说明，让本篇API文档更加易于理解？
+        如你已经发现了文档的错误并且判断其容易被修复，欢迎你为[Paddle](https://github.com/PaddlePaddle/Paddle/pulls)与[docs](https://github.com/PaddlePaddle/docs/pulls)提PR，直接修复此文档，并将PR链接贴在以下文本框中~
+    validations:
+      required: true
 
-- type: markdown
-  attributes:
-    value: >
-      感谢你的贡献 🎉！Thanks for your contribution 🎉!
+  - type: markdown
+    attributes:
+      value: >
+        感谢你的贡献 🎉！Thanks for your contribution 🎉!

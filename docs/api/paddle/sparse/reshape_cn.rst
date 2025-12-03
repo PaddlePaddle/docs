@@ -30,7 +30,7 @@ reshape
 :::::::::
 
   - **x** (Tensor) - ``sparse tensor``，数据类型为 ``float32``、 ``float64``、 ``int32``、 ``int64`` 或者 ``bool``。
-  - **input** - ``x`` 的别名，行为完全一致。
+    别名： ``input``
   - **shape** (list|tuple) - 数据类型是 ``int32``。定义目标形状。目标形状最多只能有一个维度为 -1 。
   - **name** (str ，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None 。
 

@@ -33,7 +33,13 @@ from extract_api_from_docs import extract_params_desc_from_rst_file
 
 arguments = [
     # flags, dest, type, default, help
-    ["--rst-files", "rst_files", str, None, "api rst files, sperated by space"],
+    [
+        "--rst-files",
+        "rst_files",
+        str,
+        None,
+        "api rst files, separated by space",
+    ],
     ["--api-info", "api_info_file", str, None, "api_info_all.json filename"],
 ]
 
@@ -107,7 +113,7 @@ def _check_params_in_description(rstfilename, paramstr):
                 )
             else:
                 info = f"The number of params in title does not match the params in description: {len(params_in_title)} != {len(items)}."
-            print(f"check failed (parammeters description): {rstfilename}")
+            print(f"check failed (parameters description): {rstfilename}")
         else:
             for i in range(len(items)):
                 pname_in_title = params_in_title[i].split("=")[0].strip()
@@ -120,13 +126,13 @@ def _check_params_in_description(rstfilename, paramstr):
                         flag = False
                         info = f"the following param in title does not match the param in description: {pname_in_title} != {pname_indesc}."
                         print(
-                            f"check failed (parammeters description): {rstfilename}, {pname_in_title} != {pname_indesc}"
+                            f"check failed (parameters description): {rstfilename}, {pname_in_title} != {pname_indesc}"
                         )
                 else:
                     flag = False
                     info = f"param name '{pname_in_title}' not matched in description line{i + 1}, check it please."
                     print(
-                        f"check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph."
+                        f"check failed (parameters description): {rstfilename}, param name not found in {i} paragraph."
                     )
     else:
         if params_in_title:
@@ -148,8 +154,8 @@ def _check_params_in_description_with_fullargspec(rstfilename, funcname):
         params_inspec = funcspec.args
         if len(items) != len(params_inspec):
             flag = False
-            info = f"check_with_fullargspec failed (parammeters description): {rstfilename}"
-            print(f"check failed (parammeters description): {rstfilename}")
+            info = f"check_with_fullargspec failed (parameters description): {rstfilename}"
+            print(f"check failed (parameters description): {rstfilename}")
         else:
             for i in range(len(items)):
                 pname_in_title = params_inspec[i]
@@ -162,13 +168,13 @@ def _check_params_in_description_with_fullargspec(rstfilename, funcname):
                         flag = False
                         info = f"the following param in title does not match the param in description: {pname_in_title} != {pname_indesc}."
                         print(
-                            f"check failed (parammeters description): {rstfilename}, {pname_in_title} != {pname_indesc}"
+                            f"check failed (parameters description): {rstfilename}, {pname_in_title} != {pname_indesc}"
                         )
                 else:
                     flag = False
                     info = f"param name '{pname_in_title}' not matched in description line{i + 1}, check it please."
                     print(
-                        f"check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph."
+                        f"check failed (parameters description): {rstfilename}, param name not found in {i} paragraph."
                     )
     else:
         if funcspec.args:
@@ -184,7 +190,7 @@ def check_api_parameters(rstfiles, apiinfo):
     """check function's parameters same as its origin definition.
 
     TODO:
-    1. All the documents of classes are skiped now. As
+    1. All the documents of classes are skipped now. As
         (1) there ars many class methods in documents, may break the scripts.
         (2) parameters of Class should be checked with its `__init__` method.
     2. Some COMPLICATED annotations may break the scripts.

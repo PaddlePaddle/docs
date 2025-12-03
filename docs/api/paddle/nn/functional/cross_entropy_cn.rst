@@ -82,7 +82,7 @@ cross_entropy
 参数
 :::::::::
     - **input** (Tensor) - 维度为 :math:`[N_1, N_2, ..., N_k, C]` 的多维 Tensor，其中最后一维 C 是类别数目。数据类型为 float32 或 float64。它需要未缩放的 ``input``。该 OP 不应该对 softmax 运算的输出进行操作，否则会产生错误的结果。
-    - **label** (Tensor) - 输入 input 对应的标签值。若 soft_label=False，要求 label 维度为 :math:`[N_1, N_2, ..., N_k]` 或 :math:`[N_1, N_2, ..., N_k, 1]`，数据类型为'int32', 'int64', 'float32', 'float64'，且值必须大于等于 0 且小于 C；若 soft_label=True 且没有指定 label_smoothing ，要求 label 的维度、数据类型与 input 相同，且每个样本各软标签的总和为 1；若指定了 label_smoothing (label_smoothing > 0.0) 时，无论 soft_label 是什么值，label 的维度和数据类型可以是前面两种情况中的任意一种。换句话说，如果 label_smoothing > 0.0，label 可以是独热标签或整数标签。
+    - **label** (Tensor) - 输入 input 对应的标签值。若 soft_label=False，要求 label 维度为 :math:`[N_1, N_2, ..., N_k]` 或 :math:`[N_1, N_2, ..., N_k, 1]`，数据类型为'int32', 'int64', 'float32', 'float64'，且值必须大于等于 0 且小于 C；若 soft_label=True 且没有指定 label_smoothing ，要求 label 的维度、数据类型与 input 相同，且每个样本各软标签的总和为 1；若指定了 label_smoothing (label_smoothing > 0.0) 时，无论 soft_label 是什么值，label 的维度和数据类型可以是前面两种情况中的任意一种。换句话说，如果 label_smoothing > 0.0，label 可以是独热标签或整数标签。``target`` 为 ``label`` 的别名，行为完全一致。
     - **weight** (Tensor，可选) - 权重 Tensor，需要手动给每个类调整权重，形状是（C）。它的维度与类别相同，数据类型为 float32，float64。默认值为 None。
     - **ignore_index** (int) - 指定一个忽略的标签值，此标签值不参与计算，负值表示无需忽略任何标签值。仅在 soft_label=False 时有效。默认值为-100。
     - **reduction** (str，可选) - 指示如何按批次大小平均损失，可选值为"none","mean","sum"，如果选择是"mean"，则返回 reduce 后的平均损失；如果选择是"sum"，则返回 reduce 后的总损失。如果选择是"none"，则返回没有 reduce 的损失。默认值是“mean”。

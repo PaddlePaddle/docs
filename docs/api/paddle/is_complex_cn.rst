@@ -12,8 +12,7 @@ is_complex
 
 参数
 :::::::::
-   - **x** (Tensor) - 输入 Tensor
-   - **input** - ``x`` 的别名，行为完全一致。
+   - **x** (Tensor) - 输入 Tensor。别名： ``input``。
 
 
 返回

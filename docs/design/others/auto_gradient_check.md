@@ -3,7 +3,7 @@
 ## Background：
 - Generally, it is easy to check whether the forward computation of an Operator is correct or not. However, backpropagation is a notoriously difficult algorithm to debug and get right because of the following challenges:
   1. The formula for backpropagation formula should be correct according to the forward computation.
-  2. The Implementation of the above shoule be correct in CPP.
+  2. The Implementation of the above should be correct in CPP.
   3. It is difficult to prepare an unbiased test data.
 
 - Auto gradient checking gets a numerical gradient using forward Operator and uses it as a reference for the backward Operator's result. It has several advantages:

@@ -52,6 +52,7 @@ tensor 数学操作
     " :ref:`paddle.atan2 <cn_api_paddle_atan2>` ", "arctangent2 函数"
     " :ref:`paddle.baddbmm <cn_api_paddle_baddbmm>` ", "对两个批量矩阵 x 和 y 进行乘法运算，将结果乘以标量 alpha，再加上 input 与 beta 的乘积，得到输出"
     " :ref:`paddle.ceil <cn_api_paddle_ceil>` ", "向上取整运算函数"
+    " :ref:`paddle.clamp <cn_api_paddle_clamp>` ", "将输入的所有元素进行剪裁，使得输出元素限制在[min, max]内"
     " :ref:`paddle.clip <cn_api_paddle_clip>` ", "将输入的所有元素进行剪裁，使得输出元素限制在[min, max]内"
     " :ref:`paddle.conj <cn_api_paddle_conj>` ", "逐元素计算 Tensor 的共轭运算"
     " :ref:`paddle.cos <cn_api_paddle_cos>` ", "余弦函数"
@@ -63,7 +64,9 @@ tensor 数学操作
     " :ref:`paddle.cummin <cn_api_paddle_cummin>` ", "沿给定 axis 计算 Tensor x 的累计最小值"
     " :ref:`paddle.cumprod <cn_api_paddle_cumprod>` ", "沿给定 dim 计算 Tensor x 的累乘"
     " :ref:`paddle.digamma <cn_api_paddle_digamma>` ", "逐元素计算输入 x 的 digamma 函数值"
+    " :ref:`paddle.div <cn_api_paddle_div>` ", "逐元素相除算子"
     " :ref:`paddle.divide <cn_api_paddle_divide>` ", "逐元素相除算子"
+    " :ref:`paddle.eq <cn_api_paddle_eq>` ", "返回 x==y 逐元素比较 x 和 y 是否相等，相同位置的元素相同则返回 True，否则返回 False"
     " :ref:`paddle.equal <cn_api_paddle_equal>` ", "返回 x==y 逐元素比较 x 和 y 是否相等，相同位置的元素相同则返回 True，否则返回 False"
     " :ref:`paddle.equal_all <cn_api_paddle_equal_all>` ", "如果所有相同位置的元素相同返回 True，否则返回 False"
     " :ref:`paddle.erf <cn_api_paddle_erf>` ", "逐元素计算 Erf 激活函数"
@@ -77,6 +80,7 @@ tensor 数学操作
     " :ref:`paddle.gammainc <cn_api_paddle_gammainc>` ", "计算正则化下不完全伽玛函数"
     " :ref:`paddle.gammaln <cn_api_paddle_gammaln>` ", "逐元素计算输入 x 的伽马函数的绝对值的自然对数"
     " :ref:`paddle.greater_equal <cn_api_paddle_greater_equal>` ", "逐元素地返回 x>=y 的逻辑值"
+    " :ref:`paddle.gt <cn_api_paddle_gt>` ", "逐元素地返回 x>y 的逻辑值"
     " :ref:`paddle.greater_than <cn_api_paddle_greater_than>` ", "逐元素地返回 x>y 的逻辑值"
     " :ref:`paddle.heaviside <cn_api_paddle_heaviside>` ", "逐元素地对 x 计算由 y 中的对应元素决定的赫维赛德阶跃函数"
     " :ref:`paddle.increment <cn_api_paddle_increment>` ", "在控制流程中用来让 x 的数值增加 value"
@@ -114,6 +118,8 @@ tensor 数学操作
     " :ref:`paddle.mm <cn_api_paddle_mm>` ", "用于两个输入矩阵的相乘"
     " :ref:`paddle.inner <cn_api_paddle_inner>` ", "计算两个输入矩阵的内积"
     " :ref:`paddle.outer <cn_api_paddle_outer>` ", "计算两个输入矩阵的外积"
+    " :ref:`paddle.ger <cn_api_paddle_ger>` ", "计算两个输入矩阵的外积"
+    " :ref:`paddle.mul <cn_api_paddle_mul>` ", "逐元素相乘算子"
     " :ref:`paddle.multiplex <cn_api_paddle_multiplex>` ", "从每个输入 Tensor 中选择特定行构造输出 Tensor"
     " :ref:`paddle.multiply <cn_api_paddle_multiply>` ", "逐元素相乘算子"
     " :ref:`paddle.ldexp <cn_api_paddle_ldexp>` ", "计算 x 乘以 2 的 y 次幂"
@@ -138,22 +144,26 @@ tensor 数学操作
     " :ref:`paddle.sin <cn_api_paddle_sin>` ", "计算输入的正弦值"
     " :ref:`paddle.sinc <cn_api_paddle_sinc>` ", "计算输入的归一化 sinc 值"
     " :ref:`paddle.sinh <cn_api_paddle_sinh>` ", "双曲正弦函数"
+    " :ref:`paddle.softmax <cn_api_paddle_softmax>` ", "softmax 函数"
     " :ref:`paddle.sqrt <cn_api_paddle_sqrt>` ", "计算输入的算数平方根"
     " :ref:`paddle.square <cn_api_paddle_square>` ", "逐元素取平方运算"
     " :ref:`paddle.stanh <cn_api_paddle_stanh>` ", "stanh 激活函数"
     " :ref:`paddle.std <cn_api_paddle_std>` ", "沿给定的轴 axis 计算 x 中元素的标准差"
     " :ref:`paddle.subtract <cn_api_paddle_subtract>` ", "逐元素相减算子"
+    " :ref:`paddle.sub <cn_api_paddle_sub>` ", "逐元素相减算子"
     " :ref:`paddle.remainder <cn_api_paddle_remainder>` ", "逐元素取模算子"
     " :ref:`paddle.sum <cn_api_paddle_sum>` ", "对指定维度上的 Tensor 元素进行求和运算"
     " :ref:`paddle.tan <cn_api_paddle_tan>` ", "三角函数 tangent"
     " :ref:`paddle.tanh <cn_api_paddle_tanh>` ", "tanh 激活函数"
     " :ref:`paddle.trace <cn_api_paddle_trace>` ", "计算输入 Tensor 在指定平面上的对角线元素之和"
+    " :ref:`paddle.true_divide <cn_api_paddle_true_divide>` ", "逐元素相除算子，输入 x 与输入 y 逐元素相除，保留完整精度并返回浮点结果"
     " :ref:`paddle.var <cn_api_paddle_var>` ", "沿给定的轴 axis 计算 x 中元素的方差"
     " :ref:`paddle.diagonal <cn_api_paddle_diagonal>` ", "根据给定的轴 axis 返回输入 Tensor 的局部视图"
     " :ref:`paddle.trunc <cn_api_paddle_trunc>` ", "对输入 Tensor 每个元素的小数部分进行截断"
     " :ref:`paddle.frac <cn_api_paddle_frac>` ", "得到输入 Tensor 每个元素的小数部分"
     " :ref:`paddle.log1p <cn_api_paddle_log1p>` ", "计算 Log1p（加一的自然对数）结果"
     " :ref:`paddle.take_along_axis <cn_api_paddle_take_along_axis>` ", "根据 axis 和 index 获取输入 Tensor 的对应元素"
+    " :ref:`paddle.take_along_dim <cn_api_paddle_take_along_dim>` ", "根据 axis 和 index 获取输入 Tensor 的对应元素"
     " :ref:`paddle.put_along_axis <cn_api_paddle_put_along_axis>` ", "根据 axis 和 index 放置 value 值至输入 Tensor"
     " :ref:`paddle.lerp <cn_api_paddle_lerp>` ", "基于给定的 weight 计算 x 与 y 的线性插值"
     " :ref:`paddle.diff <cn_api_paddle_diff>` ", "沿着指定维度对输入 Tensor 计算 n 阶的前向差值"
@@ -210,6 +220,7 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.cumprod_ <cn_api_paddle_cumprod_>` ", "Inplace 版本的 cumprod API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.cumsum_ <cn_api_paddle_cumsum_>` ", "Inplace 版本的 cumsum API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.digamma_ <cn_api_paddle_digamma_>` ", "Inplace 版本的 digamma API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.div_ <cn_api_paddle_div_>` ", "Inplace 版本的 div API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.divide_ <cn_api_paddle_divide_>` ", "Inplace 版本的 divide API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.exp_ <cn_api_paddle_exp_>` ", "Inplace 版本的 exp API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.expm1_ <cn_api_paddle_expm1_>` ", "Inplace 版本的 expm1 API，对输入 x 采用 Inplace 策略"
@@ -235,11 +246,13 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.sinc_ <cn_api_paddle_sinc_>` ", "Inplace 版本的 sinc API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.sinh_ <cn_api_paddle_sinh_>` ", "Inplace 版本的 sinh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.subtract_ <cn_api_paddle_subtract_>` ", "Inplace 版本的 subtract API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.sub_ <cn_api_paddle_sub_>` ", "Inplace 版本的 sub API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.tan_ <cn_api_paddle_tan_>` ", "Inplace 版本的 tan API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.cos_ <cn_api_paddle_cos_>` ", "Inplace 版本的 cos API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.atan_ <cn_api_paddle_atan_>` ", "Inplace 版本的 atan API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.acos_ <cn_api_paddle_acos_>` ", "Inplace 版本的 acos API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.uniform_ <cn_api_paddle_uniform_>` ", "Inplace 版本的 uniform API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.random_ <cn_api_paddle_random_>` ", "Inplace 版本的 random API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.lerp_ <cn_api_paddle_lerp_>` ", "Inplace 版本的 lerp API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.hypot_ <cn_api_paddle_hypot_>` ", "Inplace 版本的 hypot API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.multigammaln_ <cn_api_paddle_multigammaln_>` ", "Inplace 版本的 multigammaln API，对输入 x 采用 Inplace 策略"
@@ -319,7 +332,9 @@ tensor 属性相关
     " :ref:`paddle.is_complex <cn_api_paddle_is_complex>` ", "判断输入 tensor 的数据类型是否为复数类型"
     " :ref:`paddle.is_integer <cn_api_paddle_is_integer>` ", "判断输入 tensor 的数据类型是否为整数类型"
     " :ref:`paddle.broadcast_shape <cn_api_paddle_broadcast_shape>` ", "返回对 x_shape 大小的 Tensor 和 y_shape 大小的 Tensor 做 broadcast 操作后得到的 shape"
+    " :ref:`paddle.broadcast_shapes <cn_api_paddle_broadcast_shapes>` ", "返回对多个 shape 做 broadcast 操作后得到的 shape"
     " :ref:`paddle.is_floating_point <cn_api_paddle_is_floating_point>` ", "判断输入 Tensor 的数据类型是否为浮点类型"
+    " :ref:`paddle.Size <cn_api_paddle_Size__upper>` ", "tuple 的子类, paddle.Tensor.size() 的返回类型，用于描述张量的维度大小。"
 
 .. _tensor_creation:
 
@@ -344,8 +359,9 @@ tensor 创建相关
     " :ref:`paddle.numel <cn_api_paddle_numel>` ", "返回一个长度为 1 并且元素值为输入 x 元素个数的 Tensor"
     " :ref:`paddle.ones <cn_api_paddle_ones>` ", "创建形状为 shape 、数据类型为 dtype 且值全为 1 的 Tensor"
     " :ref:`paddle.ones_like <cn_api_paddle_ones_like>` ", "返回一个和 x 具有相同形状的数值都为 1 的 Tensor"
-    " :ref:`paddle.Tensor <cn_api_paddle_Tensor>` ", "Paddle 中最为基础的数据结构"
-    " :ref:`paddle.to_tensor <cn_api_paddle_vision_transforms_to_tensor>` ", "通过已知的 data 来创建一个 tensor"
+    " :ref:`paddle.Tensor <cn_api_paddle_Tensor__upper>` ", "Paddle 中最为基础的数据结构"
+    " :ref:`paddle.to_tensor <cn_api_paddle_to_tensor>` ", "通过已知的 data 来创建一个 tensor"
+    " :ref:`paddle.tensor <cn_api_paddle_tensor>` ", "通过已知的 data 来创建一个 tensor, 与 torch.tensor 参数和功能对齐"
     " :ref:`paddle.tolist <cn_api_paddle_tolist>` ", "将 paddle Tensor 转化为 python list"
     " :ref:`paddle.zeros <cn_api_paddle_zeros>` ", "创建形状为 shape 、数据类型为 dtype 且值全为 0 的 Tensor"
     " :ref:`paddle.zeros_like <cn_api_paddle_zeros_like>` ", "返回一个和 x 具有相同的形状的全零 Tensor，数据类型为 dtype 或者和 x 相同"
@@ -354,6 +370,7 @@ tensor 创建相关
     " :ref:`paddle.clone <cn_api_paddle_clone>` ", "对输入 Tensor ``x`` 进行拷贝，并返回一个新的 Tensor，并且该操作提供梯度回传"
     " :ref:`paddle.batch <cn_api_paddle_batch>` ", "一个 reader 的装饰器。返回的 reader 将输入 reader 的数据打包成指定的 batch_size 大小的批处理数据（不推荐使用）"
     " :ref:`paddle.polar <cn_api_paddle_polar>`", "对于给定的模 ``abs`` 和相位角 ``angle``，返回一个对应复平面上的坐标复数 Tensor"
+    " :ref:`paddle.range <cn_api_paddle_range>` ，返回一个 1-D Tensor，包含在区间 [start, end] 内按给定步长 step 均匀排列的数值，数据类型为 dtype。"
     " :ref:`paddle.vander <cn_api_paddle_vander>` ", "生成范德蒙德矩阵。"
 
 .. _tensor_search:
@@ -373,7 +390,9 @@ tensor 元素查找相关
     " :ref:`paddle.kthvalue <cn_api_paddle_kthvalue>` ", "在指定的轴上查找第 k 小的元素和其对应所在的索引信息"
     " :ref:`paddle.masked_select <cn_api_paddle_masked_select>` ", "返回一个 1-D 的 Tensor, Tensor 的值是根据 mask 对输入 x 进行选择的"
     " :ref:`paddle.nonzero <cn_api_paddle_nonzero>` ", "返回输入 x 中非零元素的坐标"
+    " :ref:`paddle.argwhere <cn_api_paddle_argwhere>` ", "返回输入 x 中非零元素的坐标"
     " :ref:`paddle.sort <cn_api_paddle_sort>` ", "对输入变量沿给定轴进行排序，输出排序好的数据，其维度和输入相同"
+    " :ref:`paddle.msort <cn_api_paddle_msort>` ", "对输入变量沿第 0 轴进行升序排序，输出排序好的数据，其维度和输入相同"
     " :ref:`paddle.searchsorted <cn_api_paddle_searchsorted>` ", "将根据给定的 values 在 sorted_sequence 的最后一个维度查找合适的索引"
     " :ref:`paddle.bucketize <cn_api_paddle_bucketize>` ", "将根据给定的一维 Tensor sorted_sequence 返回输入 x 对应的桶索引。"
     " :ref:`paddle.topk <cn_api_paddle_topk>` ", "沿着可选的 axis 查找 topk 最大或者最小的结果和结果所在的索引信息"
@@ -420,6 +439,7 @@ tensor random 相关
     " :ref:`paddle.randint_like <cn_api_paddle_randint_like>` ", "返回一个和 x 具有相同形状的服从均匀分布的、范围在[low, high)的随机 Tensor，数据类型为 dtype 或者和 x 相同。"
     " :ref:`paddle.randn <cn_api_paddle_randn>` ", "返回符合标准正态分布（均值为 0，标准差为 1 的正态随机分布）的随机 Tensor"
     " :ref:`paddle.randn_like <cn_api_paddle_randn_like>` ", "返回一个和 x 具有相同形状的服从标准正态分布（均值为 0，标准差为 1 的正态随机分布）的随机 Tensor，数据类型为 dtype 或者和 x 相同。"
+    " :ref:`paddle.rand_like <cn_api_paddle_rand_like>` ", "返回一个和 x 具有相同形状的服从均匀分布的、范围在[0, 1)的随机 Tensor，数据类型为 dtype 或者和 x 相同。"
     " :ref:`paddle.randperm <cn_api_paddle_randperm>` ", "返回一个数值在 0 到 n-1、随机排列的 1-D Tensor"
     " :ref:`paddle.seed <cn_api_paddle_seed>` ", "设置全局默认 generator 的随机种子"
     " :ref:`paddle.uniform <cn_api_paddle_uniform>` ", "返回数值服从范围[min, max)内均匀分布的随机 Tensor"
@@ -484,12 +504,15 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.cartesian_prod <cn_api_paddle_cartesian_prod>` ", "对输入 Tensor 序列进行笛卡尔积操作"
     " :ref:`paddle.cast <cn_api_paddle_cast>` ", "将输入的 x 的数据类型转换为 dtype 并输出"
     " :ref:`paddle.chunk <cn_api_paddle_chunk>` ", "将输入 Tensor 分割成多个子 Tensor"
+    " :ref:`paddle.cat <cn_api_paddle_cat>` ", "对输入沿 axis 轴进行联结，返回一个新的 Tensor"
     " :ref:`paddle.concat <cn_api_paddle_concat>` ", "对输入沿 axis 轴进行联结，返回一个新的 Tensor"
+    " :ref:`paddle.concatenate <cn_api_paddle_concatenate>` ", "对输入沿 axis 轴进行联结，返回一个新的 Tensor"
     " :ref:`paddle.crop <cn_api_paddle_crop>` ", "根据偏移量（offsets）和形状（shape），裁剪输入（x）Tensor"
     " :ref:`paddle.expand <cn_api_paddle_expand>` ", "根据 shape 指定的形状扩展 x ，扩展后， x 的形状和 shape 指定的形状一致"
     " :ref:`paddle.expand_as <cn_api_paddle_expand_as>` ", "根据 y 的形状扩展 x ，扩展后， x 的形状和 y 的形状相同"
     " :ref:`paddle.flatten <cn_api_paddle_flatten>` ", "根据给定的 start_axis 和 stop_axis 将连续的维度展平"
     " :ref:`paddle.flip <cn_api_paddle_flip>` ", "沿指定轴反转 n 维 tensor"
+    " :ref:`paddle.ravel <cn_api_paddle_ravel>` ", "返回一个连续的展平的 tensor"
     " :ref:`paddle.rot90 <cn_api_paddle_rot90>` ", "沿 axes 指定的平面将 n 维 tensor 旋转 90 度 k 次"
     " :ref:`paddle.gather <cn_api_paddle_gather>` ", "根据索引 index 获取输入 x 的指定 axis 维度的条目，并将它们拼接在一起"
     " :ref:`paddle.gather_nd <cn_api_paddle_gather_nd>` ", "paddle.gather 的高维推广"
@@ -514,6 +537,8 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.strided_slice <cn_api_paddle_strided_slice>` ", "沿多个轴生成 x 的切片"
     " :ref:`paddle.tile <cn_api_paddle_tile>` ", "根据参数 repeat_times 对输入 x 的各维度进行复制"
     " :ref:`paddle.transpose <cn_api_paddle_transpose>` ", "根据 perm 对输入的多维 Tensor 进行数据重排"
+    " :ref:`paddle.swapaxes <cn_api_paddle_swapaxes>` ", "根据 perm 对输入的多维 Tensor 进行数据重排"
+    " :ref:`paddle.swapdims <cn_api_paddle_swapdims>` ", "根据 perm 对输入的多维 Tensor 进行数据重排"
     " :ref:`paddle.moveaxis <cn_api_paddle_moveaxis>` ", "移动 Tensor 的轴，根据移动之后的轴对输入的多维 Tensor 进行数据重排"
     " :ref:`paddle.tensordot <cn_api_paddle_tensordot>`  ", "沿多个轴对输入的 x 和 y 进行 Tensor 缩并操作"
     " :ref:`paddle.unbind <cn_api_paddle_unbind>` ", "将输入 Tensor 按照指定的维度分割成多个子 Tensor"
@@ -523,6 +548,8 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.unstack <cn_api_paddle_unstack>` ", "将单个 dim 为 D 的 Tensor 沿 axis 轴 unpack 为 num 个 dim 为 (D-1) 的 Tensor"
     " :ref:`paddle.as_complex <cn_api_paddle_as_complex>` ", "将实数 Tensor 转为复数 Tensor"
     " :ref:`paddle.as_real <cn_api_paddle_as_real>` ", "将复数 Tensor 转为实数 Tensor"
+    " :ref:`paddle.view_as_complex <cn_api_paddle_view_as_complex>` ", "从实数 Tensor 获取复数 Tensor 视图"
+    " :ref:`paddle.view_as_real <cn_api_paddle_view_as_real>` ", "从复数 Tensor 获取实数 Tensor 视图"
     " :ref:`paddle.repeat_interleave <cn_api_paddle_repeat_interleave>` ", "沿 axis 轴对输入 x 的元素进行复制"
     " :ref:`paddle.index_add <cn_api_paddle_index_add>` ", "沿着指定轴 axis 将 index 中指定位置的 x 与 value 相加，并写入到结果 Tensor 中的对应位置"
     " :ref:`paddle.index_put <cn_api_paddle_index_put>` ", "构造一个与 x 完全相同的 Tensor，并依据 indices 中指定的索引将 value 的值对应的放置其中，随后输出"
@@ -540,6 +567,7 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.hstack <cn_api_paddle_hstack>` ", "沿水平轴堆叠输入 x 中的所有张量。"
     " :ref:`paddle.vstack <cn_api_paddle_vstack>` ", "沿垂直轴堆叠输入 x 中的所有张量。"
     " :ref:`paddle.dstack <cn_api_paddle_dstack>` ", "沿深度轴堆叠输入 x 中的所有张量。"
+    " :ref:`paddle.narrow <cn_api_paddle_narrow>` ", "沿指定维度 dim 对输入 x 进行切片。"
 
 .. _tensor_manipulation_inplace:
 
@@ -612,6 +640,8 @@ device 相关
 
     " :ref:`paddle.get_cuda_rng_state <cn_api_paddle_get_cuda_rng_state>` ", "获取 cuda 随机数生成器的状态信息"
     " :ref:`paddle.set_cuda_rng_state <cn_api_paddle_set_cuda_rng_state>` ", "设置 cuda 随机数生成器的状态信息"
+    " :ref:`paddle.get_default_device <cn_api_paddle_get_default_device>` ", "获取当前默认设备信息"
+    " :ref:`paddle.get_device_module <cn_api_paddle_get_device_module>` ", "获取指定设备对应的模块"
 
 .. _about_hapi:
 
@@ -637,3 +667,14 @@ device 相关
 
     " :ref:`paddle.get_flags <cn_api_paddle_get_flags>` ", "获取指定的 Paddle 环境变量 FLAGS 状态。详情请查看 :ref:`cn_guides_flags_flags`"
     " :ref:`paddle.set_flags <cn_api_paddle_set_flags>` ", "设置 Paddle 环境变量 FLAGS，详情请查看 :ref:`cn_guides_flags_flags`"
+
+.. _about_amp:
+
+AMP 相关 API
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`autocast <cn_api_paddle_autocast>` ", "创建 AMP 上下文环境"

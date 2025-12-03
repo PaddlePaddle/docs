@@ -116,7 +116,7 @@ clang-format.......................................(no files to check)Skipped
  create mode 100644 233
 ```
 
-可以看到，在执行`git commit`后，输出了一些额外的信息。这是使用`pre-commmit`进行代码风格检查的结果，关于代码风格检查的使用问题请参考[代码风格检查指南](./codestyle_check_guide_cn.html)。
+可以看到，在执行`git commit`后，输出了一些额外的信息。这是使用`pre-commit`进行代码风格检查的结果，关于代码风格检查的使用问题请参考[代码风格检查指南](./codestyle_check_guide_cn.html)。
 
 ## 保持本地仓库最新
 

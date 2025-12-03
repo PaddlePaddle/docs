@@ -7,8 +7,8 @@
 ### [分类名称] api 全称
 
 由于 API 映射关系的复杂性，为了保证文档格式的规范性，我们将所有 API 映射关系分为 12 类，并制定了统一的 **分类名称**：
-1. 无参数
-2. 参数完全一致
+1. API 完全一致
+2. 仅 API 调用方式不一致
 3. 仅参数名不一致
 4. paddle 参数更多
 5. 参数默认值不一致
@@ -18,7 +18,8 @@
 9. 返回参数类型不一致
 10. 组合替代实现
 11. 可删除
-12. 功能缺失
+12. API 别名
+13. 功能缺失
 
 > 注意：
 > 1. 分类的优先级依次递增，例如：如果同时 `仅参数名不一致` + `paddle 参数更多`，则分类为后者 `paddle 参数更多` ，如果同时 `paddle 参数更多` + `torch 参数更多`，则分类为后者 `torch 参数更多`。
@@ -45,9 +46,9 @@ Paddle API 签名
 
 参数映射以表格的形式呈现，表格的第 1 列是`PyTorch` 所有参数，第 2 列是`Paddle`对应参数，表格顺序按第 1 列 `PyTorch` 的参数顺序来。
 
-1. **无参数**：无需参数映射与转写示例。
+1. **API 完全一致**：无需映射文档。
 
-2. **参数完全一致**：无需转写示例。
+2. **仅 API 调用方式不一致**：对每个不一致的调用方式都需要**转写示例**。
 
 3. **仅参数名不一致**：无需转写示例，但需要在备注列里注明哪些参数 `仅参数名不一致`。
 
@@ -85,72 +86,57 @@ torch.xxx()
 paddle.xxx()
 ```
 
-是否需要 **参数映射** 与 **转写示例** 可查阅表格：
+是否需要 **差异对比文档** 可查阅表格：
 
-第 1、10 类不需要参数映射，其他类均需要写参数映射。第 1-5 类不需要转写示例，第 6-10 类需要写转写示例。第 11-12 类则无需新建文档，仅标注即可。
-
-| 分类序号 |    分类名称            |    参数映射      |    转写示例      |
-| ------- | -----------------    | --------------- | --------------- |
-| 1       | 无参数                | ❌              |  ❌              |
-| 2       | 参数完全一致           | ✅              |  ❌              |
-| 3       | 仅参数名不一致         | ✅              |  ❌              |
-| 4       | paddle 参数更多       | ✅              |  ❌              |
-| 5       | 参数默认值不一致       | ✅              |  ❌              |
-| 6       | torch 参数更多        | ✅              |  ✅              |
-| 7       | 输入参数用法不一致      | ✅              |  ✅              |
-| 8       | 输入参数类型不一致      | ✅              |  ✅              |
-| 9       | 返回参数类型不一致      | ✅              |  ✅              |
-| 10      | 组合替代实现           | ❌              |  ✅              |
-
---------------------------------------------------------
+| 分类序号 |    分类名称            |    差异对比文档    |
+| ------- | -----------------    | --------------- |
+| 1       | API 完全一致          | ❌              |
+| 2       | 仅 API 调用方式不一致  | ✅            |
+| 3       | 仅参数名不一致         | ✅              |
+| 4       | paddle 参数更多       | ✅              |
+| 5       | 参数默认值不一致       | ✅              |
+| 6       | torch 参数更多        | ✅              |
+| 7       | 输入参数用法不一致      | ✅              |
+| 8       | 输入参数类型不一致      | ✅              |
+| 9       | 返回参数类型不一致      | ✅              |
+| 10      | 组合替代实现           | ✅               |
+| 11      | 可删除                | ❌              |
+| 12      | API 别名               | ❌              |
+| 13      | 功能缺失               | ❌              |
+-----------------------------------------------------
 
 # API 映射关系文档 - 模板
+## 分类 1：API 完全一致
 
+此类 API 无需编写映射文档。
 
-## 分类 1：无参数
+## 分类 2：仅 API 调用方式不一致
 
-### [ 无参数 ] torch.Tensor.t
+### [ 仅 API 调用方式不一致 ]torch.Tensor.det
 
-### [torch.Tensor.t](https://pytorch.org/docs/stable/generated/torch.Tensor.t.html#torch.Tensor.t)
-
-```python
-torch.Tensor.t()
-```
-
-### [paddle.Tensor.t](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#t-name-none)
+### [torch.Tensor.det](https://pytorch.org/docs/stable/generated/torch.Tensor.det.html?highlight=det#torch.Tensor.det)
 
 ```python
-paddle.Tensor.t()
+torch.Tensor.det()
 ```
 
-两者功能一致，无参数。
-
-
-## 分类 2：参数完全一致
-
-### [ 参数完全一致 ] torch.Tensor.clip
-
-### [torch.Tensor.clip](https://pytorch.org/docs/stable/generated/torch.Tensor.clip.html?highlight=clip#torch.Tensor.clip)
+### [paddle.linalg.det](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/det_cn.html#det)
 
 ```python
-torch.Tensor.clip(min=None, max=None)
+paddle.linalg.det(x, name=None)
 ```
 
-### [paddle.Tensor.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#clip-min-none-max-none-name-none)
+两者功能一致，但调用方式不一致，具体如下：
 
-```python
-paddle.Tensor.clip(min=None, max=None, name=None)
+### 转写示例
+
+``` python
+# PyTorch 写法:
+x.det()
+
+# Paddle 写法:
+paddle.linalg.det(x)
 ```
-
-两者功能一致，参数完全一致，具体如下：
-### 参数映射
-
-| PyTorch | PaddlePaddle | 备注                                               |
-|---------|--------------| -------------------------------------------------- |
-| min     | min          | 裁剪的最小值，输入中小于该值的元素将由该元素代替。            |
-| max     | max          | 裁剪的最大值，输入中大于该值的元素将由该元素代替。            |
-
-
 
 ## 分类 3：仅参数名不一致
 
@@ -173,6 +159,7 @@ paddle.dist(x,
 ```
 
 两者功能一致且参数用法一致，仅参数名不一致，具体如下：
+
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -180,7 +167,6 @@ paddle.dist(x,
 | input         | x            | 表示输入的 Tensor ，仅参数名不一致。  |
 | other         | y            | 表示输入的 Tensor ，仅参数名不一致。  |
 | p             | p            | 表示需要计算的范数 |
-
 
 
 ## 分类 4：paddle 参数更多
@@ -201,13 +187,13 @@ paddle.nn.ZeroPad2D(padding,
 ```
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
+
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | padding       | padding      | 表示填充大小。                             |
 | -             | data_format  | 指定输入的 format， PyTorch 无此参数， Paddle 保持默认即可。 |
-
 
 
 ## 分类 5：参数默认值不一致
@@ -273,7 +259,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：（注：这里�
 | device        | -      | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。    |
 | requires_grad | -      | 表示是否计算梯度， Paddle 无此参数，需要转写。           |
 | memory_format | -      | 表示内存格式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
-| pin_memeory   | -      | 表示是否使用锁页内存， Paddle 无此参数，需要转写。       |
+| pin_memory   | -      | 表示是否使用锁页内存， Paddle 无此参数，需要转写。       |
 | generator     | -      | 用于采样的伪随机数生成器， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | size_average  | -      | PyTorch 已弃用， Paddle 无此参数，需要转写。                  |
 | reduce        | -      | PyTorch 已弃用， Paddle 无此参数，需要转写。                  |

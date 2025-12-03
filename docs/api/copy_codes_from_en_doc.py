@@ -105,7 +105,7 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
 
     lastlineindex = len(docstr_list) - 1
 
-    cb_start_pat = re.compile(r"code-block::\s*python")
+    cb_start_pat = re.compile(r"code-block::\s*(python|python-console|pycon)")
     cb_param_pat = re.compile(r"^\s*:(\w+):\s*(\S*)\s*$")
 
     cb_info = {}
@@ -237,7 +237,7 @@ def find_codeblock_needed(cf_info):
         return None
 
 
-def instert_codes_into_cn_rst_if_need(cnrstfilename):
+def insert_codes_into_cn_rst_if_need(cnrstfilename):
     """
     Analyse the cn rst file, if need, extract code-blocks from en docstring.
     """
@@ -261,7 +261,7 @@ def instert_codes_into_cn_rst_if_need(cnrstfilename):
         cb_new = []
         indent = cf_info["indent"]
         cb_new.append("")  # insert a empty line in the frontend
-        cb_new.append(" " * indent + ".. code-block:: python")
+        cb_new.append(" " * indent + ".. code-block:: pycon")
         if cf_info["cb_name"]:
             cb_new.append(" " * (indent + 3) + ":name: " + cf_info["cb_name"])
         cb_new.append("")
@@ -290,7 +290,7 @@ def instert_codes_into_cn_rst_if_need(cnrstfilename):
 
 
 def filter_all_files(
-    rootdir, ext="_cn.rst", action=instert_codes_into_cn_rst_if_need
+    rootdir, ext="_cn.rst", action=insert_codes_into_cn_rst_if_need
 ):
     """
     find all the _en.html file, and do the action.

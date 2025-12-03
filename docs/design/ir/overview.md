@@ -15,7 +15,7 @@ Usually, the `gap` is bridged by
 * Has a simple way to verify and debug each transformation.
 
 * Flexible to add, remove or customize transformations to fit
-the requirements of various algorithms (models) and hardware secenarios.
+the requirements of various algorithms (models) and hardware scenarios.
 
 Some other events also push us to a better unified pattern.
 
@@ -57,7 +57,7 @@ each other via inputs and outputs.
 TODO: Better definitions for the graph.
 
 `Graph` can also contain `Attribute`s. `Attribute`s
-can be `any` thing. For example, it can be a list of "wraper"
+can be `any` thing. For example, it can be a list of "wrapper"
 nodes. The `wrapper` nodes compose `Node`s and provide
 helper method for execution or transformation. `Attribute`
 can also contain other things that describe some properties of

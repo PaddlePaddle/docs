@@ -22,7 +22,7 @@ FLAGS_use_mkldnn
 *******************************************
 (始于 0.13.0)
 
-在预测或训练过程中，可以通过该选项选择使用 Intel MKL-DNN（https://github.com/intel/mkl-dnn）库运行。
+在预测或训练过程中，可以通过该选项选择使用 `Intel MKL-DNN <https://github.com/intel/mkl-dnn>`_ 库运行。
 “用于深度神经网络的英特尔（R）数学核心库（Intel(R) MKL-DNN）”是一个用于深度学习应用程序的开源性能库。该库加速了英特尔（R）架构上的深度学习应用程序和框架。Intel MKL-DNN 包含矢量化和线程化构建建块，您可以使用它们来实现具有 C 和 C ++接口的深度神经网络（DNN）。
 
 取值范围

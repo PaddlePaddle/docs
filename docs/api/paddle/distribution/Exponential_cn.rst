@@ -7,11 +7,11 @@ Exponential
 
 指数分布
 
-指数分布的概率密度满足一下公式：
+指数分布的概率密度满足以下公式：
 
 .. math::
 
-    f(x; \theta) =  \theta e^{- \theta x },  (x \ge 0) $$
+    f(x; \theta) =  \theta e^{- \theta x },  (x \ge 0)
 
 上面数学公式中：
 
@@ -53,9 +53,10 @@ prob(value)
     - **value** (float|Tensor) - 输入值。
 
 数学公式：
+
 .. math::
 
-    f(x; \theta) =  \theta e^{- \theta x },  (x \ge 0) $$
+    f(x; \theta) =  \theta e^{- \theta x },  (x \ge 0)
 
 上面数学公式中：
 
@@ -63,7 +64,7 @@ prob(value)
 
 **返回**
 
-    - **Tensor** - value 对应的概率密度。
+    - Tensor: value 对应的概率密度。
 
 
 log_prob(value)
@@ -76,7 +77,7 @@ log_prob(value)
 
 **返回**
 
-    - **Tensor** - value 对应的对数概率密度。
+    - Tensor: value 对应的对数概率密度。
 
 entropy()
 '''''''''
@@ -86,7 +87,7 @@ entropy()
 
     - Tensor: 信息熵。
 
-cdf(k)
+cdf(value)
 '''''''''
 指数分布的累积分布函数。
 
@@ -108,7 +109,7 @@ cdf(k)
 
     - Tensor: value 对应的累积分布。
 
-icdf(k)
+icdf(value)
 '''''''''
 指数分布的逆累积分布函数。
 
@@ -120,7 +121,8 @@ icdf(k)
 
 .. math::
 
-    icdf(x; \theta) = -\frac{ 1 }{ \theta } ln(1 + x), (x \ge 0)
+    icdf(x; \theta) = -\frac{ 1 }{ \theta } ln(1 - x), (0 < x < 1)
+
 
 上面的数学公式中：
 
@@ -137,7 +139,7 @@ kl_divergence(other)
 
 **参数**
 
-    - **other** (Geometric) - Exponential 的实例。
+    - **other** (Exponential) - Exponential 的实例。
 
 **返回**
 
@@ -154,7 +156,7 @@ sample(shape=[])
 
 **返回**
 
-    - **Tensor** - 指定维度的样本数据。数据类型为 float32。
+    - Tensor: 指定维度的样本数据。数据类型为 float32。
 
 
 rsample(shape=[])
@@ -167,4 +169,4 @@ rsample(shape=[])
 
 **返回**
 
-    - **Tensor** - 指定维度的样本数据。数据类型为 float32。
+    - Tensor: 指定维度的样本数据。数据类型为 float32。

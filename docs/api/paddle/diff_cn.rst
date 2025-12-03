@@ -3,7 +3,7 @@
 diff
 -------------------------------
 
-.. py:function:: paddle.diff(x, n=1, axis=-1, prepend=None, append=None, name=None)
+.. py:function:: paddle.diff(x, n=1, axis=-1, prepend=None, append=None, name=None, *, out=None)
 
 沿着指定轴计算输入 Tensor 的 n 阶前向差值，一阶的前向差值计算公式如下：
 
@@ -19,14 +19,17 @@ diff
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 待计算前向差值的输入 `Tensor`，支持 bool、int32、int64、float16、float32、float64 数据类型。
-    - **input** - ``x`` 的别名，行为完全一致。
+    - **x** (Tensor) - 待计算前向差值的输入 `Tensor`，支持 bool、int32、int64、float16、float32、float64 数据类型。别名 ``input``。
     - **n** (int，可选) - 需要计算前向差值的次数，`n`的值支持任意正整数，默认值为 1。
-    - **axis** (int，可选) - 沿着哪一维度计算前向差值，默认值为-1，也即最后一个维度。
-    - **dim** - ``axis`` 的别名，行为完全一致。
+    - **axis** (int，可选) - 沿着哪一维度计算前向差值，默认值为-1，也即最后一个维度。别名 ``dim``。
     - **prepend** (Tensor，可选) - 在计算前向差值之前，沿着指定维度 axis 附加到输入 x 的前面，它的维度需要和输入一致，并且除了 axis 维外，其他维度的形状也要和输入一致，默认值为 None。
     - **append** (Tensor，可选) - 在计算前向差值之前，沿着指定维度 axis 附加到输入 x 的后面，它的维度需要和输入一致，并且除了 axis 维外，其他维度的形状也要和输入一致，默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+:::::::::
+
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 :::::::::

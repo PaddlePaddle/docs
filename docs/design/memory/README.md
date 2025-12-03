@@ -116,7 +116,7 @@ I got inspiration from Majel and Caffe2, though above design look different from
 
 ### Caffe2
 
-In Caffe2, `Tensor<Context>::mutable_data()` allocates the memroy.  In particular, [`Tensor<Context>::mutable_data`](https://github.com/caffe2/caffe2/blob/v0.7.0/caffe2/core/tensor.h#L523) calls [`Tensor<Context>::raw_mutable_data`](https://github.com/caffe2/caffe2/blob/v0.7.0/caffe2/core/tensor.h#L459), which in turn calls [`Context::New`](https://github.com/caffe2/caffe2/blob/v0.7.0/caffe2/core/tensor.h#L479).
+In Caffe2, `Tensor<Context>::mutable_data()` allocates the memory.  In particular, [`Tensor<Context>::mutable_data`](https://github.com/caffe2/caffe2/blob/v0.7.0/caffe2/core/tensor.h#L523) calls [`Tensor<Context>::raw_mutable_data`](https://github.com/caffe2/caffe2/blob/v0.7.0/caffe2/core/tensor.h#L459), which in turn calls [`Context::New`](https://github.com/caffe2/caffe2/blob/v0.7.0/caffe2/core/tensor.h#L479).
 
 There are two implementations of `Context`:
 

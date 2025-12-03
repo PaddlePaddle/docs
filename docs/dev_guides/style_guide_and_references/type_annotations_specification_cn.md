@@ -176,7 +176,7 @@ if TYPE_CHECKING:
     from paddle import Tensor
 
 # TensorLike 定义如下
-# TensorLike: TypeAlias = Union[npt.NDArray[Any], "Tensor", Numberic]
+# TensorLike: TypeAlias = Union[npt.NDArray[Any], "Tensor", Numeric]
 
 def add(a: Tensor, b: TensorLike) -> Tensor:
     if isinstance(b, np.ndarray):
@@ -184,10 +184,10 @@ def add(a: Tensor, b: TensorLike) -> Tensor:
     elif isinstance(b, paddle.Tensor):
         return dispatch_paddle_add(a, b)
     else:
-        return dispatch_numberic_add(a, b)
+        return dispatch_numeric_add(a, b)
 ```
 
-这里 `TensorLike` 是一个通用类型，包含了 `np.ndarray`、`paddle.Tensor`、`Numberic` 三种类型，因此在实现中也应该考虑到这三种类型的输入。
+这里 `TensorLike` 是一个通用类型，包含了 `np.ndarray`、`paddle.Tensor`、`Numeric` 三种类型，因此在实现中也应该考虑到这三种类型的输入。
 
 ### 使用更加明确的类型以提供更好的提示效果
 
@@ -256,7 +256,7 @@ def filter_user(user: list[User], type: UserType) -> list[User]: ...
 
 ### 参数应尽可能使用抽象类型，返回值应尽可能使用具体类型
 
-对于函数输入参数，如果允许，我们应该尽可能使用 [Protocal](https://docs.python.org/3/library/typing.html#typing.Protocol)，如 [Sequence](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)、[Mapping](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping) 、[Iterable](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable) 等抽象类型，以提高函数的通用性。而对于函数返回值，我们应该尽可能使用具体类型，以确保下游使用时能得到更好的提示效果。
+对于函数输入参数，如果允许，我们应该尽可能使用 [Protocol](https://docs.python.org/3/library/typing.html#typing.Protocol)，如 [Sequence](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)、[Mapping](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping) 、[Iterable](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable) 等抽象类型，以提高函数的通用性。而对于函数返回值，我们应该尽可能使用具体类型，以确保下游使用时能得到更好的提示效果。
 
 比如相比于如下写法：
 

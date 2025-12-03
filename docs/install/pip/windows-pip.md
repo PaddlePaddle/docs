@@ -57,7 +57,7 @@
 
 
   ```
-  python -m pip install paddlepaddle==3.1.1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+  python -m pip install paddlepaddle==3.2.2 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
 
 
@@ -67,25 +67,25 @@
 2.2.1 CUDA11.8 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT8.5.1.7)
 
   ```
-  python -m pip install paddlepaddle-gpu==3.1.1 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
+  python -m pip install paddlepaddle-gpu==3.2.2 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
 2.2.2 CUDA12.6 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT10.5.0.18)
 
   ```
-  python -m pip install paddlepaddle-gpu==3.1.1 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
+  python -m pip install paddlepaddle-gpu==3.2.2 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
   ```
 2.2.3 CUDA12.9 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT10.5.0.18)
 
   ```
-  python -m pip install paddlepaddle-gpu==3.1.1 -i https://www.paddlepaddle.org.cn/packages/stable/cu129/
+  python -m pip install paddlepaddle-gpu==3.2.2 -i https://www.paddlepaddle.org.cn/packages/stable/cu129/
   ```
 
 注：
 
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 
-* 上述命令默认安装`avx`、`mkl`的包。判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。飞桨不再支持`noavx`指令集的安装包。
+* 上述命令默认安装`avx`、`mkl`的包。判断你的机器是否支持`avx`，可以安装 [CPU-Z](https://www.cpuid.com/softwares/cpu-z.html) 工具查看“处理器-指令集”。飞桨不再支持`noavx`指令集的安装包。
 
 
 ## **三、验证安装**

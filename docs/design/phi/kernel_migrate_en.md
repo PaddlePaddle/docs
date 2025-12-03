@@ -155,11 +155,11 @@ Secondly, it is necessary to replace some of the types or functions that were on
 | `framework::DenseTensor` | `DenseTensor` |
 | template parameter `DeviceContext` | template parameter `Context` |
 | `platform::XXXDeviceContext` | `XXXContext` |
-| `out->mutbale_data(ctx.GetPlace()/place)` | `dev_ctx.template Alloc(out)` |
-| `auto* ptr = out->mutbale_data()` | `auto* ptr = out->data()` |
-| `out->mutbale_data(dims, place)` | `out->Resize(dims); dev_ctx.template Alloc(out)` |
-| `out->mutbale_data(place, dtype)` | `dev_ctx.Alloc(out, dtype)` |
-| `platform::erros::XXX` | `phi::erros::XXX` |
+| `out->mutable_data(ctx.GetPlace()/place)` | `dev_ctx.template Alloc(out)` |
+| `auto* ptr = out->mutable_data()` | `auto* ptr = out->data()` |
+| `out->mutable_data(dims, place)` | `out->Resize(dims); dev_ctx.template Alloc(out)` |
+| `out->mutable_data(place, dtype)` | `dev_ctx.Alloc(out, dtype)` |
+| `platform::errors::XXX` | `phi::errors::XXX` |
 | `platform::float16/bfloat16/complex64/complex128` | `dtype::float16/bfloat16/complex64/complex128` |
 | `framework::Eigen***` | `Eigen***` |
 | `platform::XXXPlace` | `phi::XXXPlace` |
@@ -304,7 +304,7 @@ Differences include:
 1. The name of the registered macro is different, here is `PD_REGISTER_PLUGIN_KERNEL`.
 2. The name of the Backend is the name of the CustomDevice registered by the user, here is `ascend`.
 
-The kernel that registerd by REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE in Fluid is also registered using `PD_REGISTER_KERNEL` or `PD_REGISTER_PLUGIN_KERNEL` in PHI. It should be noted that if there are two types of kernel template parameters registered in fluid, since the kernel registered in PHI only supports one type, the first type is used in PHI registration. For example, the example under fluid:
+The kernel that registered by REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE in Fluid is also registered using `PD_REGISTER_KERNEL` or `PD_REGISTER_PLUGIN_KERNEL` in PHI. It should be noted that if there are two types of kernel template parameters registered in fluid, since the kernel registered in PHI only supports one type, the first type is used in PHI registration. For example, the example under fluid:
 
 ```c++
 

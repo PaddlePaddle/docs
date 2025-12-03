@@ -1,0 +1,52 @@
+name: Generate Preview URLs
+
+on:
+  pull_request:
+    branches: ["develop"]
+    paths:
+      - 'docs/**.rst'
+      - 'docs/**.md'
+
+jobs:
+  generate-urls:
+    name: Generate Preview URLs
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch base branch
+        run: |
+          git fetch origin develop:develop
+
+      - name: Generate preview URLs
+        id: generate
+        run: |
+          chmod +x ci_scripts/report_preview_url.sh
+          ./ci_scripts/report_preview_url.sh ${{ github.event.pull_request.number }} > preview_urls.txt
+
+      - name: Upload preview URLs as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-urls-${{ github.event.pull_request.number }}
+          path: preview_urls.txt
+          retention-days: 1
+
+      - name: Save PR metadata
+        run: |
+          echo "${{ github.event.pull_request.number }}" > pr_number.txt
+          echo "${{ github.event.pull_request.head.sha }}" > pr_sha.txt
+
+      - name: Upload PR metadata
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-metadata-${{ github.event.pull_request.number }}
+          path: |
+            pr_number.txt
+            pr_sha.txt
+          retention-days: 1
