@@ -2,9 +2,11 @@
 
 ## 概述
 
-随着大模型的兴起，在深度学习框架之上构建自定义算子（Custom Operator）已成为提升模型性能和功能的关键手段。而目前 PyTorch 作为深度学习领域的主流框架之一，拥有大量的自定义算子实现。为了帮助用户更好地将现有的 PyTorch 等生态的自定义算子迁移至 PaddlePaddle 框架，我们提供了自定义算子兼容机制，旨在降低迁移成本，提升开发效率。
+随着大模型技术的快速发展，自定义算子（Custom Operator）已成为优化模型性能、扩展框架功能的关键手段。目前，PyTorch 生态中积累了大量高质量的自定义算子库和基于 Kernel DSL（如 Triton、TileLang）的算子实现。为了打破生态壁垒，帮助用户低成本地将这些优质算子资源迁移至 PaddlePaddle 框架，我们推出了一套跨生态自定义算子兼容机制。该机制支持用户在 PaddlePaddle 中直接使用 PyTorch 生态的自定义算子库和 Kernel DSL，从而大幅降低迁移成本，提升开发效率。
 
-## 使用步骤
+## 自定义算子库
+
+目前 PyTorch 生态中存在大量高质量的自定义算子库（如 FlashInfer、FlashMLA 等），这些算子库通常基于 CUDA/C++ 编写并封装为 Python 扩展。为了复用这些现有的算子库，我们提供了兼容性支持，使得用户可以直接在 PaddlePaddle 中安装并使用这些库，而无需进行繁琐的代码移植。
 
 ### 安装方式
 
@@ -72,7 +74,7 @@ y = flashinfer.norm.rmsnorm(x, w, enable_pdl=False)
 np.testing.assert_allclose(y_ref, y, rtol=1e-3, atol=1e-3)
 ```
 
-## 已支持的算子库
+### 已支持的算子库
 
 PaddlePaddle 官方协同社区已经对社区中主流的跨生态自定义算子库进行了适配和测试，用户可以直接使用这些算子库而无需进行额外的修改。
 
@@ -88,11 +90,13 @@ PaddlePaddle 官方协同社区已经对社区中主流的跨生态自定义算�
 | DeepEP | [PFCCLab/DeepEP](https://github.com/PFCCLab/DeepEP) | - |
 | TorchCodec | [PFCCLab/paddlecodec](https://github.com/PFCCLab/paddlecodec) | [paddlecodec](https://pypi.org/project/paddlecodec/) |
 
-## Kernel DSL 生态支持
+## Kernel DSL
 
-除去自定义算子外，编写自定义算子的方式也在不断演进，涌现出了诸如 Kernel DSL（如 Triton、TileLang）等新兴的编写方式。这些新兴的编写方式在实现中往往或多或少依赖于特定深度学习框架的状态管理接口，从而导致跨生态迁移的难度加大。为此，我们也致力于提升这些新兴编写方式的跨生态兼容性，帮助用户更好地将其迁移至 PaddlePaddle 框架。
+除去封装好的自定义算子库外，使用 Kernel DSL（Domain Specific Language，如 Triton、TileLang）直接编写算子也是一种常见的开发方式。这些 DSL 通常提供了更高级的抽象，使得用户能够更方便地编写高性能的算子。然而，这些 DSL 在实现中往往依赖于特定深度学习框架的状态管理接口，导致跨生态迁移困难。为此，我们也致力于提升这些新兴编写方式的跨生态兼容性，帮助用户更好地将其迁移至 PaddlePaddle 框架。
 
-我们目前已经支持的 Kernel DSL 生态包括 Triton 和 TileLang。安装方式分别如下：
+我们目前已经支持的 Kernel DSL 生态包括 [Triton](https://github.com/triton-lang/triton) 和 [TileLang](https://github.com/PFCCLab/tilelang-paddle)。
+
+### 安装方式
 
 ```bash
 # Triton 直接安装官方包即可
@@ -100,6 +104,8 @@ pip install triton
 # TileLang 目前仍需要安装我们适配后的版本
 pip install tilelang-paddle
 ```
+
+### 使用方式
 
 与其他自定义算子库相同，用户同样需要在导入对应的 Kernel DSL 库之前，先启用 PaddlePaddle 的 PyTorch 代理层。下面以 TileLang 为例说明使用方式：
 
