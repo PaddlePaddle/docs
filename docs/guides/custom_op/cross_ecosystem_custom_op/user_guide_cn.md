@@ -4,30 +4,32 @@
 
 随着大模型技术的快速发展，自定义算子（Custom Operator）已成为优化模型性能、扩展框架功能的关键手段。目前，PyTorch 生态中积累了大量高质量的自定义算子库和基于 Kernel DSL（如 Triton、TileLang）的算子实现。为了打破生态壁垒，帮助用户低成本地将这些优质算子资源迁移至 PaddlePaddle 框架，我们推出了一套跨生态自定义算子兼容机制。该机制支持用户在 PaddlePaddle 中直接使用 PyTorch 生态的自定义算子库和 Kernel DSL，从而大幅降低迁移成本，提升开发效率。
 
-## 自定义算子库
+## 外部算子库
 
 目前 PyTorch 生态中存在大量高质量的自定义算子库（如 FlashInfer、FlashMLA 等），这些算子库通常基于 CUDA/C++ 编写并封装为 Python 扩展。为了复用这些现有的算子库，我们提供了兼容性支持，使得用户可以直接在 PaddlePaddle 中安装并使用这些库，而无需进行繁琐的代码移植。
 
 ### 安装方式
 
-对于使用基于兼容性方案的跨生态自定义算子库，一般情况下只需要 clone 后通过 pip 安装对应的算子库即可使用。下面以 `FlashInfer` 为例说明安装方式：
+对于使用基于兼容性方案的跨生态自定义算子库，一般情况分为两种安装方式：源码安装和 PyPI 安装。大部分算子库都托管在 GitHub 上，用户可以根据具体算子库的安装说明进行安装。下面以两个典型的算子库为例，介绍安装方式：
 
-```bash
-pip install paddlepaddle_gpu  # Install PaddlePaddle with GPU support, refer to https://www.paddlepaddle.org.cn/install/quick for more details
-git clone https://github.com/PFCCLab/flashinfer.git
-cd flashinfer
-git submodule update --init
-pip install apache-tvm-ffi>=0.1.2  # Use TVM FFI 0.1.2 or above
-pip install filelock jinja2  # Install tools for jit compilation
-# Install FlashInfer
-pip install --no-build-isolation . -v
-```
+- 源码安装（以 `FlashInfer` 为例）：
 
-对于部分已经发布到 PyPI 的自定义算子库，也可以直接通过 pip 安装。下面以 `TorchCodec` 为例：
+    ```bash
+    pip install paddlepaddle_gpu  # Install PaddlePaddle with GPU support, refer to https://www.paddlepaddle.org.cn/install/quick for more details
+    git clone https://github.com/PFCCLab/flashinfer.git
+    cd flashinfer
+    git submodule update --init
+    pip install apache-tvm-ffi>=0.1.2  # Use TVM FFI 0.1.2 or above
+    pip install filelock jinja2  # Install tools for jit compilation
+    # Install FlashInfer
+    pip install --no-build-isolation . -v
+    ```
 
-```bash
-pip install paddlecodec
-```
+- PyPI 安装（以 `TorchCodec` 为例）：
+
+    ```bash
+    pip install paddlecodec
+    ```
 
 个别算子库可能会有特殊的安装方式，请参考对应算子库 repo 中的 `README.md` 进行安装。
 
@@ -115,6 +117,10 @@ import paddle
 
 # 限定生效范围在 TileLang 模块
 paddle.compat.enable_torch_proxy(scope={"tilelang"})
+
+import tilelang
+import tilelang.language as T
+import numpy as np
 
 # 之后使用方式与官方 PyTorch 生态下保持一致
 @tilelang.jit
