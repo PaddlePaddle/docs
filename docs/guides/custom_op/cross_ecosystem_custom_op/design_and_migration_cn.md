@@ -43,7 +43,7 @@ python test.py
 
 ### 清理 PyTorch 环境
 
-在迁移之前，建议先卸载 PyTorch 相关的包，或者者新建一个干净的虚拟环境来进行迁移工作，以避免潜在的包冲突问题，并安装 PaddlePaddle 框架，具体命令可参考 [PaddlePaddle 安装指南](https://www.paddlepaddle.org.cn/install/quick)。
+在迁移之前，建议先卸载 PyTorch 相关的包，或者新建一个干净的虚拟环境来进行迁移工作，以避免潜在的包冲突问题，并安装 PaddlePaddle 框架，具体命令可参考 [PaddlePaddle 安装指南](https://www.paddlepaddle.org.cn/install/quick)。
 
 ### 理解源码结构
 
@@ -276,8 +276,8 @@ at::Tensor reshaped_tensor = x.reshape(sizes);
 // 替换为 PaddlePaddle 等效实现
 at::IntArrayRef sizes = {2, 3, 4};
 auto paddle_tensor = x._PD_GetInner();  // 获取内部 paddle::Tensor
-auto paddle_sizes = shape._PD_ToPaddleIntArray();  // 转换为 paddle::IntArray
-auto paddle_reshaped_tensor = paddle::experimental::reshape(paddle_tensor, sizes);  // 使用 PaddlePaddle reshape API
+auto paddle_sizes = sizes._PD_ToPaddleIntArray();  // 转换为 paddle::IntArray
+auto paddle_reshaped_tensor = paddle::experimental::reshape(paddle_tensor, paddle_sizes);  // 使用 PaddlePaddle reshape API
 at::Tensor reshaped_tensor(paddle_reshaped_tensor);  // 包装回 at::Tensor
 ```
 

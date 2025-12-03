@@ -85,7 +85,7 @@ PaddlePaddle 官方协同社区已经对社区中主流的跨生态自定义算�
 | FlashInfer | [PFCCLab/flashinfer](https://github.com/PFCCLab/flashinfer) | - |
 | FlashMLA | [PFCCLab/FlashMLA](https://github.com/PFCCLab/FlashMLA) | - |
 | DeepGEMM | [PFCCLab/DeepGEMM](https://github.com/PFCCLab/DeepGEMM) | - |
-| DeepEP | [PFCCLab/DeepGEMM](https://github.com/PFCCLab/DeepEP) | - |
+| DeepEP | [PFCCLab/DeepEP](https://github.com/PFCCLab/DeepEP) | - |
 | TorchCodec | [PFCCLab/paddlecodec](https://github.com/PFCCLab/paddlecodec) | [paddlecodec](https://pypi.org/project/paddlecodec/) |
 
 ## Kernel DSL 生态支持
