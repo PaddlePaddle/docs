@@ -81,10 +81,10 @@ bias
     如果 ``padding`` = "SAME":
 
     .. math::
-        H_{out} = \frac{(H_{in} + stride[0] - 1)}{stride[0]}
+        H_{out} = \lceil \frac{H_{in}}{stride[0]} \rceil
 
     .. math::
-        W_{out} = \frac{(W_{in} + stride[1] - 1)}{stride[1]}
+        W_{out} = \lceil \frac{W_{in}}{stride[1]} \rceil
 
     如果 ``padding`` = "VALID":
 
