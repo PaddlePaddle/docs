@@ -15,7 +15,7 @@ use_torch_proxy_guard
 :::::::::
     - **enable** (bool，可选) - 是否在上下文中启用或禁用 PyTorch 代理。默认为 ``True``。
     - **scope** (str|Iterable[str]，可选) - 指定启用 PyTorch 代理的模块或模块列表。如果为 ``None``，则使用全局范围。默认为 ``None``。
-    - **silent** (bool，可选) - 如果为 True，则抑制有关范围更改的警告。默认为 ``False``。
+    - **silent** (bool，可选) - 如果为 ``True``，则抑制有关范围更改的警告。默认为 ``False``。
 
 代码示例
 :::::::::
