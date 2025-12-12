@@ -10,8 +10,8 @@ enable_torch_proxy
 
 参数
 :::::::::
-    - **scope** (str|Iterable[str]，可选) - 指定启用 PyTorch 代理的模块或模块列表。如果为 None，则全局启用 PyTorch 代理。默认为 None。
-    - **silent** (bool，可选) - 如果为 True，则抑制有关范围更改的警告。默认为 False。
+    - **scope** (str|Iterable[str]，可选) - 指定启用 PyTorch 代理的模块或模块列表。如果为 ``None``，则全局启用 PyTorch 代理。默认为 ``None``。
+    - **silent** (bool，可选) - 如果为 True，则抑制有关范围更改的警告。默认为 ``False``。
 
 返回
 :::::::::

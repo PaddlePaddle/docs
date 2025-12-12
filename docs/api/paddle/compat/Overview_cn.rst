@@ -16,7 +16,7 @@ PyTorch 兼容代理
 
     " :ref:`disable_torch_proxy <cn_api_paddle_compat_disable_torch_proxy>` ", "禁用 PyTorch 代理"
     " :ref:`enable_torch_proxy <cn_api_paddle_compat_enable_torch_proxy>` ", "启用 PyTorch 代理"
-    " :ref:`extend_torch_proxy_blocked_modules <cn_api_paddle_compat_extend_torch_proxy_blocked_modules>` ", "将模块添加到 PyTorch 代理阻止列表中"
+    " :ref:`extend_torch_proxy_blocked_modules <cn_api_paddle_compat_extend_torch_proxy_blocked_modules>` ", "将模块添加到 PyTorch 代理禁用列表中"
     " :ref:`use_torch_proxy_guard <cn_api_paddle_compat_use_torch_proxy_guard>` ", "用于临时启用或禁用 PyTorch 代理的上下文管理器"
 
 
