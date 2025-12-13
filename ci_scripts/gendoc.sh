@@ -40,6 +40,12 @@ if ! pip3 list --disable-pip-version-check | grep paddlepaddle; then
     echo -e "\e[31mError: Failed to install paddle from ${PADDLE_WHL}\e[0m"
     exit 1
   fi
+
+  python3 -c "import paddle; print('Installed paddle version commit:', paddle.version.commit)"
+  if [ $? -ne 0 ]; then
+    echo -e "\e[31mError: Could not import paddle after installation.\e[0m"
+    exit 1
+  fi
   echo "Paddle installed successfully."
 fi
 
