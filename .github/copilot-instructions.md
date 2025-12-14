@@ -22,15 +22,15 @@
   - 英文文档中 `PaddlePaddle，is a deep learning framework。` 应写为 `PaddlePaddle, is a deep learning framework.`。
   - 中文文档中 `PaddlePaddle, 是一个深度学习框架.` 应写为 `PaddlePaddle，是一个深度学习框架。`。
 - 在 Markdown 中应当适当为变量名、代码片段等添加反引号（`` ` ``）标记以示区分，比如：
-  - `使用 paddle.to_tensor 创建张量` 应写为 ``使用 `paddle.to_tensor` 创建张量``。
-  - `变量 x 的值为 10` 应写为 ``变量 `x` 的值为 10``。
+  - `使用 paddle.to_tensor 创建张量` 应写为 `` 使用 `paddle.to_tensor` 创建张量 ``。
+  - `变量 x 的值为 10` 应写为 `` 变量 `x` 的值为 10 ``。
 - 所有链接应该严格有效，避免出现死链，比如：
   - 对于 reStructuredText 文件，请尽可能使用 label。如 `` :ref:`paddle.abs <cn_api_paddle_abs>` ``。
   - 对于 Markdown 文件，请使用相对路径或绝对路径链接到有效页面，如 `[安装指南](./getting_started/install_cn.md)`。
 
 ### API 文档规范
 
-API 文档应当遵守 [API 文档书写规范](docs/dev_guides/api_contributing_guides/api_docs_guidelines_cn.md)中的要求，以下几点应当严格遵守：
+API 文档应当遵守 [API 文档书写规范](../docs/dev_guides/api_contributing_guides/api_docs_guidelines_cn.md)中的要求，以下几点应当严格遵守：
 
 - 中文 API 文档应当与 docstring 中的英文内容严格保持语义一致（特别是 API 签名），允许适当调整表达以符合中文习惯，但不得遗漏任何参数、返回值或异常等关键信息，不得遗漏关键语句。
 - 中文 API 文档中的示例代码应该使用 `COPY-FROM` 标记从英文文档中复制，确保示例代码一致，非必要不允许单独编写。
@@ -52,7 +52,7 @@ prek run --all-files
 ### PR 标题检查
 
 - PR 标题应尽可能使用 `[<type>] <description>` 的格式，其中 `<type>` 包括但不限于 `Docs`、`CI`、`API`、`CodeStyle` 等，便于快速识别 PR 类型。
-- PR 标题应简洁明了地描述所做更改，避免使用模糊或通用的标题，如 `Update docs` 或 `Fix typos`，可以考虑改为 ``[Typos] Fix typos (`liunx` -> `linux`) in installation guide``。  <!-- typos: disable-line -->
+- PR 标题应简洁明了地描述所做更改，避免使用模糊或通用的标题，如 `Update docs` 或 `Fix typos`，可以考虑改为 `` [Typos] Fix typos (`liunx` -> `linux`) in installation guide ``。 <!-- typos: disable-line -->
 - 如果 PR 涉及多个方面的更改，建议拆分为多个 PR，每个 PR 专注于一个主题，以便于审查和合并。
 - 具体 PR 具体分析，请为每个 PR 提供参考的 PR 标题，标题尽可能保持纯英文。
 
@@ -64,8 +64,9 @@ prek run --all-files
 ### 回复方式
 
 - 审查时请尽量使用中文回复，确保所有审查者都能理解评论内容，但在涉及具体代码片段或技术术语时，可以适当使用英文以确保准确表达。
+- 保持评论简洁明了，避免冗长的解释，确保重点突出，便于作者快速理解和修改，并且尽可能给出具体的修改建议或示例代码。
 
 ### 风格检查
 
 - 请重点检查文档书写规范和 API 文档规范部分提到的内容，确保所有更改均符合规范要求。
-- 建议运行 `prek run --all-files` 来检查文档质量，确保没有遗漏任何问题，该命令同样会在 [codestyle-check](.github/workflows/codestyle-check.yml) 流水线中运行，如果流水线失败，请提示作者根据日志修复相关问题。
+- 建议运行 `prek run --all-files` 来检查文档质量，确保没有遗漏任何问题，该命令同样会在 [codestyle-check](./workflows/codestyle-check.yml) 流水线中运行，如果流水线失败，请提示作者根据日志修复相关问题。
