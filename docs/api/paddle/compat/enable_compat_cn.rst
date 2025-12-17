@@ -3,7 +3,7 @@
 enable_compat
 -------------------------------
 
-.. py:function:: paddle.enable_compat(*, scope=None, silent=False)
+.. py:function:: paddle.enable_compat(*, scope=None, blocked_modules=None, backend='torch', silent=False)
 
 通过将 ``TorchProxyMetaFinder`` 添加到 ``sys.meta_path`` 来启用 PyTorch 兼容代理。
 这允许导入实际上是 PaddlePaddle 代理的 ``torch`` 模块。
