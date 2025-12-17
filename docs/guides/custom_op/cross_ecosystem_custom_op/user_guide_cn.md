@@ -43,7 +43,7 @@
 import paddle
 
 # scope 为限定代理层生效的模块名称空间，避免影响其他模块的使用
-paddle.compat.enable_torch_proxy(scope={"flashinfer"})
+paddle.enable_compat(scope={"flashinfer"})
 
 # 之后即可导入并使用 flashinfer 库
 import flashinfer
@@ -116,7 +116,7 @@ pip install tilelang-paddle
 import paddle
 
 # 限定生效范围在 TileLang 模块
-paddle.compat.enable_torch_proxy(scope={"tilelang"})
+paddle.enable_compat(scope={"tilelang"})
 
 import tilelang
 import tilelang.language as T

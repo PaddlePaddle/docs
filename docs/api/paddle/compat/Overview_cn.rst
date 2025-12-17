@@ -5,21 +5,6 @@ paddle.compat
 
 paddle.compat 目录下包含飞桨框架支持的 PyTorch 兼容函数与模块接口
 
-.. _about_compat_proxy:
-
-PyTorch 兼容代理
-::::::::::::::::::::::
-
-.. csv-table::
-    :header: "API 名称", "API 功能"
-    :widths: 10, 30
-
-    " :ref:`disable_torch_proxy <cn_api_paddle_compat_disable_torch_proxy>` ", "禁用 PyTorch 代理"
-    " :ref:`enable_torch_proxy <cn_api_paddle_compat_enable_torch_proxy>` ", "启用 PyTorch 代理"
-    " :ref:`extend_torch_proxy_blocked_modules <cn_api_paddle_compat_extend_torch_proxy_blocked_modules>` ", "将模块添加到 PyTorch 代理禁用列表中"
-    " :ref:`use_torch_proxy_guard <cn_api_paddle_compat_use_torch_proxy_guard>` ", "用于临时启用或禁用 PyTorch 代理的上下文管理器"
-
-
 .. _about_compat_funcs:
 
 PyTorch 兼容函数

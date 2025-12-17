@@ -678,3 +678,15 @@ AMP 相关 API
     :widths: 10, 30
 
     " :ref:`autocast <cn_api_paddle_autocast>` ", "创建 AMP 上下文环境"
+
+.. _about_compat_proxy:
+
+PyTorch 兼容代理 API
+::::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`disable_compat <cn_api_paddle_disable_compat>` ", "禁用 PyTorch 兼容代理"
+    " :ref:`enable_compat <cn_api_paddle_enable_compat>` ", "启用 PyTorch 兼容代理"

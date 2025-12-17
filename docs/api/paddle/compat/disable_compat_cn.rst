@@ -1,9 +1,9 @@
-.. _cn_api_paddle_compat_disable_torch_proxy:
+.. _cn_api_paddle_disable_compat:
 
-disable_torch_proxy
+disable_compat
 -------------------------------
 
-.. py:function:: paddle.compat.disable_torch_proxy()
+.. py:function:: paddle.disable_compat()
 
 通过从 ``sys.meta_path`` 中移除 ``TorchProxyMetaFinder`` 来禁用 PyTorch 代理。
 这可以防止 ``torch`` 导入被代理到 PaddlePaddle。
@@ -15,4 +15,4 @@ disable_torch_proxy
 代码示例
 :::::::::
 
-COPY-FROM: paddle.compat.disable_torch_proxy
+COPY-FROM: paddle.disable_compat
