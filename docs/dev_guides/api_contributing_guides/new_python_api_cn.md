@@ -479,11 +479,9 @@ ctest -R test_logsumexp
 - 文档写作的详细指导可以参考 [文档贡献指南](../docs_contributing_guides_cn.html)，包括文件存放位置、文档修改和提交方法等。
 - 文档写作的规范可以参考 [API 文档书写规范](api_docs_guidelines_cn.html)，包括中英文 API 文档的模板、写作规范、测试要求等。
 
-提前 PR 后，GitHub 上的 paddle-bot 会给出根据所提交的中文文档所生成的官网文档的预览链接，可以点进去查看新增的文档所渲染出的页面效果，看是否符合预期。尤其需要注意检查是否有错别字、数学公式、示例代码渲染是否正确等问题。例如：
+提 PR 后，GitHub 上的 `github-actions` bot 会给出根据所提交的中文文档所生成的官网文档的预览链接，可以点进去查看新增的文档所渲染出的页面效果，看是否符合预期。尤其需要注意检查是否有错别字、数学公式、示例代码渲染是否正确等问题。例如：
 
-https://github.com/PaddlePaddle/docs/pull/4418
-
-<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/docs-review.png?raw=true" width="1000px" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/docs-preview.png?raw=true" width="1000px" ></center>
 
 ## 五、确保通过 CI 测试
 

@@ -60,7 +60,7 @@ Red cross after the tests means your commit hasn't passed certain unit test.Plea
 
 We can delete branches of remote repository in PR page after your PR is successfully merged into master repository.
 
-![delete_branch](../guides/10_contribution/img/delete_branch.png)
+![delete_branch](../images/delete_branch.png)
 
 We can also delete the branch of remote repository with `git push origin :the_branch_name`,such as:
 
