@@ -241,13 +241,13 @@ upstream    https://github.com/PaddlePaddle/Paddle.git (push)
 
 具体签署方式如下：
 
-- 请你查看 Pull Request 中的 Check 部分，找到 license/cla，并点击右侧 `Details`，进入 CLA 网站。
+- 请你查看 Pull Request 中的 Check 部分，找到 `license/cla`，并点击右侧 `Details`，进入 CLA 网站。
 
-![img](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.1/doc/fluid/advanced_usage/development/contribute_to_paddle/img/cla_unsigned.png?raw=true)
+![img](./images/cla-unsigned.png)
 
 - 请阅读协议内容后单击 `Sign in with GitHub to agree`，页面将跳转回 Pull Request 页面。
 
-![img](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.1/doc/fluid/advanced_usage/development/contribute_to_paddle/img/sign_cla.png?raw=true)
+![img](./images/sign_cla.png)
 
 <span id="CItest">（6）确保通过 CI 测试</span>
 
