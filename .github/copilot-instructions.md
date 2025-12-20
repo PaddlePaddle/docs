@@ -19,8 +19,8 @@
   - `飞桨PaddlePaddle` 应写为 `飞桨 PaddlePaddle`。 <!-- dochooks: skip-line -->
   - `[飞桨](https://www.paddlepaddle.org.cn)PaddlePaddle` 应写为 `[飞桨](https://www.paddlepaddle.org.cn) PaddlePaddle`。
 - 中文文档中尽量避免使用英文标点符号，如逗号、句号、引号等，均应使用中文标点符号，英文文档中则相反，比如：
-  - 英文文档中 `PaddlePaddle，is a deep learning framework。` 应写为 `PaddlePaddle, is a deep learning framework.`。
-  - 中文文档中 `PaddlePaddle, 是一个深度学习框架.` 应写为 `PaddlePaddle，是一个深度学习框架。`。
+  - 英文文档中 `PaddlePaddle，is a deep learning framework，it supports multiple operating systems (Linux、macOS、Windows、etc.)。` 应写为 `PaddlePaddle, is a deep learning framework, it supports multiple operating systems (Linux, macOS, Windows, etc.).`。
+  - 中文文档中 `PaddlePaddle, 是一个深度学习框架, 它支持多种操作系统 (Linux, macOS, Windows 等).` 应写为 `PaddlePaddle，是一个深度学习框架，它支持多种操作系统（Linux、macOS、Windows 等）。`。
 - 在 Markdown 中应当适当为变量名、代码片段等添加反引号（`` ` ``）标记以示区分，比如：
   - `使用 paddle.to_tensor 创建张量` 应写为 `` 使用 `paddle.to_tensor` 创建张量 ``。
   - `变量 x 的值为 10` 应写为 `` 变量 `x` 的值为 10 ``。
