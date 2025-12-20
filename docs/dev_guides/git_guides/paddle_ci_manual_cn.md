@@ -6,7 +6,7 @@
 
 - 是否签署 CLA 协议。
 - PR 描述是否符合规范。
-- 是否通过不同平台`（Linux/Mac/Windows/XPU/DCU 等）`的编译与单测（单元测试）。
+- 是否通过不同平台（Linux/Mac/Windows/XPU/DCU 等）的编译与单测（单元测试）。
 - 是否通过静态代码扫描工具的检测。
 
 CI 测试包含的具体测试任务和执行顺序如下图所示：
@@ -14,8 +14,6 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 ![ci_exec_order.png](../images/ci_exec_order.png)
 
 如上图所示，CI 测试任务将从左向右逐层执行，同一层任务并发执行。
-
-> 说明：如果 PR 中仅修改了文档内容，可在 `git commit` 时在描述信息中添加 `'test=document_fix'`关键字，如 `git commit -m 'message, test=document_fix',`即可只触发 PR-CI-Static-Check，仅检查文档是否符合规范，不做其他代码检查。
 
 提交 PR 后，请关注 PR 页面的 CI 测试进程，一般会在几个小时内完成。
 
@@ -40,14 +38,14 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【条目描述】** 检查 PR 描述信息是否按照模板填写，模板如下：
 
 ```md
-### PR types
-<!-- One of [ New features | Bug fixes | Function optimization | Performance optimization | Breaking changes | Others ] -->
+### PR Category
+<!-- One of [ User Experience | Execute Infrastructure | Operator Mechanism | CINN | Custom Device | Performance Optimization | Distributed Strategy | Parameter Server | Communication Library | Auto Parallel | Inference | Environment Adaptation ] -->
+(必填)从上述选项中，选择并填写 PR 分类
+### PR Types
+<!-- One of [ New features | Bug fixes | Improvements | Performance | BC Breaking | Deprecations | Docs | Devs | Not User Facing | Security | Others ] -->
 (必填)从上述选项中，选择并填写 PR 类型
-### PR changes
-<!-- One of [ OPs | APIs | Docs | Others ] -->
-(必填)从上述选项中，选择并填写 PR 所修改的内容
-### Describe
-<!-- Describe what this PR does -->
+### Description
+<!-- Describe what you’ve done -->
 (必填)请填写 PR 的具体修改内容
 ```
 
@@ -131,17 +129,15 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【执行脚本】** `paddle/scripts/paddle_build.sh cicheck_py37`
 - **【触发条件】** `PR-CI-Clone`通过后自动触发。
 
-#### PR-CI-Py3-PIR
+#### Coverage
 
-- **【条目描述】** 检查 PR 在 PIR 模式下单测执行情况（test/deprecated 目录中的单测不进行测试)
-- **【执行脚本】** `paddle/scripts/paddle_build.sh cicheck_py37_pir`
-- **【触发条件】** `PR-CI-Py3`通过后自动触发。
+- **【条目描述】** 检测当前 PR 在 GPU、Python3 版本的编译与单测是否通过，同时增量代码需满足行覆盖率大于 90% 的要求。当 CI 完成后，`codecov-commeneter` 机器人会自动在 PR 下发表评论，展示当前 PR 的代码覆盖率情况，如下图所示：
 
-#### PR-CI-Coverage
+![codecov-comment.png](../images/codecov-comment.png)
 
-- **【条目描述】** 检测当前 PR 在 GPU、Python3 版本的编译与单测是否通过，同时增量代码需满足行覆盖率大于 90% 的要求。可在 PR 页面点击该 CI 后的 details 查看覆盖率，如下图所示：
+可点击跳转到 Codecov 网站查看更详细的覆盖率报告，如下图所示：
 
-![ci-coverage.png](../images/ci-coverage.png)
+![codecov-report.png](../images/codecov-report.png)
 
 - **【执行脚本】**
   - 编译脚本：`paddle/scripts/paddle_build.sh cpu_cicheck_coverage`
@@ -179,63 +175,6 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【执行脚本】** `paddle/scripts/paddle_build.sh assert_file_approvals`
 - **【触发条件】** `PR-CI-Clone`通过后自动触发。
 - **【注意事项】** 在其他 CI 项通过前，无需过多关注该 CI，其他 CI 通过后飞桨相关开发者会进行审批。
-
-#### PR-CI-CINN-GPU
-
-- **【条目描述】** 检测当前 PR 在 Linux GPU 环境下编译与单测是否通过，不同于 PR-CI-CINN，该 CI 只编译 CINN，并且只测试 CINN 模块的单测，不会测试 PaddleWithCINN 相关单测。
-- **【执行脚本】** `bash tools/cinn/build.sh gpu_on ci`
-- **【触发条件】**
-  - `PR-CI-CINN-Build`通过后自动触发。
-  - 必须修改下面路径中的文件才会触发
-    ```bash  CMakeLists.txt
-        cmake
-        paddle/cinn
-        python/cinn
-        python/CMakeLists.txt
-        python/setup_cinn.py.in
-        test/CMakeLists.txt
-        test/cinn
-        test/cpp/cinn
-        tools/cinn
-    ```
-
-#### PR-CI-CINN-GPU-CUDNN-OFF
-
-- **【条目描述】** 检测当前 PR 在 Linux GPU 环境下编译与单测是否通过，编译时不会依赖 CUDNN 库。不同于 PR-CI-CINN，该 CI 只编译 CINN，并且只测试 CINN 模块的单测，不会测试 PaddleWithCINN 相关单测。
-- **【执行脚本】** `bash tools/cinn/build.sh gpu_on cudnn_off ci`
-- **【触发条件】**
-  - `PR-CI-Clone`通过后自动触发。
-  - 必须修改下面路径中的文件才会触发
-    ```bash  CMakeLists.txt
-        cmake
-        paddle/cinn
-        python/cinn
-        python/CMakeLists.txt
-        python/setup_cinn.py.in
-        test/CMakeLists.txt
-        test/cinn
-        test/cpp/cinn
-        tools/cinn
-    ```
-
-#### PR-CI-CINN-X86
-
-- **【条目描述】** 检测当前 PR 在 Linux X86 环境下编译与单测是否通过，不同于 PR-CI-CINN ，该 CI 只编译 CINN ，并且只测试 CINN 模块的单测，不会测试 PaddleWithCINN 相关单测。
-- **【执行脚本】** `bash tools/cinn/build.sh ci`
-- **【触发条件】**
-  - `PR-CI-Clone`通过后自动触发。
-  - 必须修改下面路径中的文件才会触发
-    ```bash  CMakeLists.txt
-        cmake
-        paddle/cinn
-        python/cinn
-        python/CMakeLists.txt
-        python/setup_cinn.py.in
-        test/CMakeLists.txt
-        test/cinn
-        test/cpp/cinn
-        tools/cinn
-    ```
 
 #### PR-CI-SOT
 
@@ -315,7 +254,7 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 
 - **【条目描述】** 检测 PR 中的修改能否在海光 DCU 芯片上编译通过。
 - **【执行脚本】** `paddle/scripts/musl_build/build_paddle.sh build_only`
-- **【触发条件】** `PR-CI-Clone`通过后自动触发。
+- **【触发条件】** `PR-CI-Clone` 通过后自动触发。
 
 ## 三、CI 失败如何处理
 
@@ -343,13 +282,7 @@ git config --local user.name 你的 GitHub 名字
 
 ### 3.3 其他 CI 失败
 
-当 PR 中 CI 失败时，`paddle-bot`会在 PR 页面发出一条评论，同时 GitHub 会发送到你的邮箱，让你第一时间感知到 PR 的状态变化。
-
-> 注意：只有 PR 中第一条 CI 失败的时候会发邮件，之后失败的 CI 项只会更新在 PR 页面的评论中。
-
-可通过点击`paddle-bot`评论中的 CI 名称，也可通过点击 CI 列表中的`Details`来查看 CI 的运行日志，如下图所示。
-
-![paddle-bot-comment.png](../images/paddle-bot-comment.png)
+当 PR 中 CI 失败时，你可以通过点击 CI 列表标题来查看 CI 的运行日志，如下图所示。
 
 ![ci-details.png](../images/ci-details.png)
 
@@ -361,9 +294,17 @@ Paddle 编译、测试时需要下载一些第三方依赖，由于网络原因�
 
 ![network_error.png](../images/network_error.png)
 
-因此由于网络代理、机器不稳定等原因，遇到 timeout 、访问 503 等情况 ，可以尝试 重新构建此 CI 即可（需要将你的 GitHub 授权于效率云 CI 平台），如下图所示。
+因此由于网络代理、机器不稳定等原因，遇到 timeout 、访问 503 等情况 ，可以尝试「Re-run failed jobs」即可。
+
+对于有 write 权限的用户，你可以直接点击流水线内的「Re-run failed jobs」按钮重新执行失败的 CI 任务，如下图所示：
 
 ![rerun.png](../images/rerun.png)
+
+如果你没有 write 权限，可以在 PR 中回复一条 comment，内容为 `/re-run all-failed`，也可以达到重新执行失败 CI 任务的目的，如下图所示：
+
+![rerun-via-comment.png](../images/rerun-via-comment.png)
+
+> 注意：受限于 GitHub Actions 的机制，只有在同一 Workflow 中没有正在执行的任务时，才可以重新执行失败的任务。如果当前 Workflow 中有任务正在执行，则需要等待所有任务执行完成后，才能重新执行失败的任务。比如 `Linux-CPU` 和 `Mac-CPU` 同属 `CI` Workflow，如果 `Linux-CPU` 失败，而 `Mac-CPU` 还在执行中，则需要等待 `Mac-CPU` 执行完成后，才能重新执行 `Linux-CPU`。
 
 #### (2) 合并代码失败
 
@@ -375,18 +316,16 @@ Paddle 编译、测试时需要下载一些第三方依赖，由于网络原因�
 
 每条 CI 任务都设置有超时时间，如果任务失败并且页面显示灰色，应该是任务被取消。取消情况有三种:
 
-    1.超时取消；
-
-    2.当前 PR 有提交新的 commit ，在运行或排队中的，旧 commit 任务全部取消；
-
-    3.关联流水线取消，比如 PR-CI-Py3 任务失败会取消 PR-CI-Coverage 等关联流水线。
+1. 超时取消；
+2. 当前 PR 有提交新的 commit，在运行或排队中的，旧 commit 任务全部取消；
+3. 关联流水线取消，比如 `Linux-CPU` 任务失败会取消 `Linux-NPU` 等关联流水线。
 
 解决办法：
 
-第 1 种原因需要先排查是否是代码修改导致，确定不是代码原因导致的可以`重新构建`此 CI 。
+第 1 种原因需要先排查是否是代码修改导致，确定不是代码原因导致的可以 rerun 此 CI 。
 
 第 2 种无需要关心旧的 commit，新提交 commit 会继续执行 CI 任务，只需关心最新 commit 即可。
 
-第 3 种需要排查 PR-CI-Py3 任务失败原因，确定不是代码原因导致的可以`重新构建`所有失败 CI 。
+第 3 种需要排查 `Linux-CPU` 任务失败原因，确定不是代码原因导致的可以 rerun 所有失败 CI。
 
 ![cancel.png](../images/cancel.png)
