@@ -40,13 +40,13 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 ```md
 ### PR Category
 <!-- One of [ User Experience | Execute Infrastructure | Operator Mechanism | CINN | Custom Device | Performance Optimization | Distributed Strategy | Parameter Server | Communication Library | Auto Parallel | Inference | Environment Adaptation ] -->
-(必填)从上述选项中，选择并填写 PR 分类
+（必填）从上述选项中，选择并填写 PR 分类
 ### PR Types
 <!-- One of [ New features | Bug fixes | Improvements | Performance | BC Breaking | Deprecations | Docs | Devs | Not User Facing | Security | Others ] -->
-(必填)从上述选项中，选择并填写 PR 类型
+（必填）从上述选项中，选择并填写 PR 类型
 ### Description
 <!-- Describe what you’ve done -->
-(必填)请填写 PR 的具体修改内容
+（必填）请填写 PR 的具体修改内容
 ```
 
 - **【触发条件】** 自动触发。
