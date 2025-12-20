@@ -39,20 +39,11 @@ For the first time to submit Pull Request,you need to sign CLA(Contributor Licen
 
 - Please check the Check in PR to find license/cla and click detail on the right to change into CLA website.
 
-<div align="center">
+![cla-unsigned.png](../images/cla-unsigned.png)
 
-<img src="https://github.com/PaddlePaddle/FluidDoc/blob/release/1.1/doc/fluid/advanced_usage/development/contribute_to_paddle/img/cla_unsigned.png?raw=true"  height="40" width="500">
+- Please click “Sign in with GitHub to agree” in CLA website. It will change into your Pull Request page after the click.
 
- </div>
-
-- Please click “Sign in with GitHub to agree” in CLA website.It will change into your Pull Request page after the click.
-
-<div align="center">
-
-<img src="https://github.com/PaddlePaddle/FluidDoc/blob/release/1.1/doc/fluid/advanced_usage/development/contribute_to_paddle/img/sign_cla.png?raw=true"  height="330" width="400">
-
- </div>
-
+![sign_cla.png](../images/sign_cla.png)
 
 ### Pass unit tests
 
