@@ -267,7 +267,7 @@ Paddle 编译、测试时需要下载一些第三方依赖，由于网络原因�
 
 ![network_error.png](../images/network_error.png)
 
-因此由于网络代理、机器不稳定等原因，遇到 timeout 、访问 503 等情况 ，可以尝试 rerun 失败的流水线即可。
+因此由于网络代理、机器不稳定等原因，遇到 Timeout、访问 503 等情况 ，可以尝试 rerun 失败的流水线即可。
 
 对于有 write 权限的开发者，你可以直接点击流水线内的「`Re-run failed jobs`」按钮重新执行失败的 CI 任务，如下图所示：
 
@@ -281,7 +281,7 @@ Paddle 编译、测试时需要下载一些第三方依赖，由于网络原因�
 
 #### (2) 合并代码失败
 
-如果提交的代码较陈旧，可能会存在与其他 PR 修改同一文件同一行情况，存在冲突，导致 CI 无法进行 Merge develop ，进而导致 CI 任务失败（如下图所示）。遇到该情况请本地执行 `git merge upstream develop` 再重新提交代码。
+如果提交的代码较陈旧，可能会存在与其他 PR 修改同一文件同一行情况，存在冲突，导致 CI 无法进行 Merge develop，进而导致 CI 任务失败（如下图所示）。遇到该情况请本地执行 `git merge upstream develop` 再重新提交代码。
 
 ![merge_develop.png](../images/merge_develop.png)
 
