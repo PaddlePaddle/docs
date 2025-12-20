@@ -2,7 +2,7 @@
 
 整洁、规范的代码风格，能够保证代码的可读性、易用性和健壮性。Paddle 使用 [pre-commit](http://pre-commit.com/) 工具进行代码风格检查。它可以帮助检查提交代码的不规范问题并格式化（当前会检查 C++、Python 和 CMake 语言的代码）。诸如 ruff、cpplint 等工具能提前发现代码的潜在静态逻辑错误，提高开发效率。
 
-在 Paddle CI 中，由 PR-CI-Codestyle-Check 流水线对提交的 PR 进行代码风格检查，若该流水线执行失败，PR 将**无法合入**到 Paddle 仓库。此时需要根据流水线日志的报错信息，在本地修改代码，再次提交。一般情况下，本地使用 `pre-commit` 进行代码风格检查的结果和 PR-CI-Codestyle-Check 流水线结果是一致的。下面介绍 `pre-commit` 的本地安装与使用方法。
+在 Paddle CI 中，由 `Codestyle-Check` 流水线对提交的 PR 进行代码风格检查，若该流水线执行失败，PR 将**无法合入**到 Paddle 仓库。此时需要根据流水线日志的报错信息，在本地修改代码，再次提交。一般情况下，本地使用 `pre-commit` 进行代码风格检查的结果和 `Codestyle-Check` 流水线结果是一致的。下面介绍 `pre-commit` 的本地安装与使用方法。
 
 Paddle 目前使用的 pre-commit 版本是 2.17.0。首先安装并在当前目录运行它：
 

@@ -326,7 +326,7 @@ from .tensor.math import trace
 
 请遵循飞桨的 [API 单测开发及验收规范](api_acceptance_criteria_cn.html)，需提前阅读。
 
-> 特别注意：单元测试要求新增代码单元测试行覆盖率达到 90%，可在 [CI 测试](../git_guides/paddle_ci_manual_cn.html) 的 PR-CI-Coverage 测试项中查看覆盖率。
+> 特别注意：单元测试要求新增代码单元测试行覆盖率达到 90%，可在 [CI 测试](../git_guides/paddle_ci_manual_cn.html) 的 `Coverage` 测试项中查看覆盖率。
 
 **（3）Python API 单元测试的开发指导**
 
@@ -491,7 +491,7 @@ https://github.com/PaddlePaddle/docs/pull/4418
 
 当添加新的 API 时需要通过 CI 中所有的 `Required` 的测试项通过才能合入代码。
 
-> 注意：其中 `PR-CI-APPROVAL`  和 `PR-CI-Static-Check` 这两个 CI 测试项需要飞桨相关开发者 approve 才能通过，除了这两个之外的 CI 测试项通过后，可以联系飞桨开发者提醒他们评审代码。
+> 注意：其中 `Approval`  和 `Static-Check` 这两个 CI 测试项需要飞桨相关开发者 approve 才能通过，除了这两个之外的 CI 测试项通过后，可以联系飞桨开发者提醒他们评审代码。
 
 ## 六、其他注意事项
 
