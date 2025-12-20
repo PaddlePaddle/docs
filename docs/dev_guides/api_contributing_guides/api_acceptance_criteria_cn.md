@@ -37,7 +37,7 @@ API 单测的验收包含两方面，一方面是要验收是否符合上述的�
 - **耗时规范**：
    - 新增单测的执行不允许超过 15s，`Coverage` 有相应的检查，检查逻辑可见 `tools/check_added_ut.sh`。如果你新增的单测无法在 15s 内执行完成，可以尝试减少数据维度（可见[链接](https://github.com/PaddlePaddle/Paddle/pull/42267/commits/17344408d69f10e9fe5cf3200be1e381bc454694#diff-02f1ef59dfd03557054d7b20c9128ac9828735fc1f8be9e44d0587a96a06f685L236)）或通过在[CMakeLists.txt](https://github.com/PaddlePaddle/Paddle/blob/19a8f0aa263a8d0595f7e328077cc2f48eca547f/test/legacy_test/CMakeLists.txt#L564-L565)指定该单测的 Timeout 时间。如果你通过修改 Timeout 时间，你需要在 PR 描述中说明原因，同时会有相关同学 review 后进行 approve 后才能合入。原则上 Timeout 设定时间不能超过 120s。
    ![add_ut.png](./images/add_ut.png)
-   - 现有单测的修改原则上不允许超过 120s，`Coverage`有相应的检查，若有特殊情况可修改[CMakeLists.txt](https://github.com/PaddlePaddle/Paddle/blob/19a8f0aa263a8d0595f7e328077cc2f48eca547f/test/legacy_test/CMakeLists.txt#L564-L565)文件中该单测的 Timeout 时间，处理逻辑同上诉新增单测超过 15s 一致。
+   - 现有单测的修改原则上不允许超过 120s，`Coverage` 有相应的检查，若有特殊情况可修改[CMakeLists.txt](https://github.com/PaddlePaddle/Paddle/blob/19a8f0aa263a8d0595f7e328077cc2f48eca547f/test/legacy_test/CMakeLists.txt#L564-L565)文件中该单测的 Timeout 时间，处理逻辑同上诉新增单测超过 15s 一致。
 - **单测 retry 机制**：为提高单测执行效率，所有的单测均以一定的并发度执行，而这样的策略可能会引起单测随机挂。因此对失败的单测设定了 retry 机制，一共 retry 四次，如果成功率未达到 50%，就认为该单测可能存在问题，CI 失败。
 
 ## 交流与改进

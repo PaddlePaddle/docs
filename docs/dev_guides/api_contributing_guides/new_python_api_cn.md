@@ -489,7 +489,7 @@ ctest -R test_logsumexp
 
 当添加新的 API 时需要通过 CI 中所有的 `Required` 的测试项通过才能合入代码。
 
-> 注意：其中 `Approval`  和 `Static-Check` 这两个 CI 测试项需要飞桨相关开发者 approve 才能通过，除了这两个之外的 CI 测试项通过后，可以联系飞桨开发者提醒他们评审代码。
+> 注意：其中 `Approval` 和 `Static-Check` 这两个 CI 测试项需要飞桨相关开发者 approve 才能通过，除了这两个之外的 CI 测试项通过后，可以联系飞桨开发者提醒他们评审代码。
 
 ## 六、其他注意事项
 
