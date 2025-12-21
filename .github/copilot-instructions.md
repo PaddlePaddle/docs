@@ -35,6 +35,7 @@ API 文档应当遵守 [API 文档书写规范](../docs/dev_guides/api_contribut
 - 中文 API 文档应当与 docstring 中的英文内容严格保持语义一致（特别是 API 签名），允许适当调整表达以符合中文习惯，但不得遗漏任何参数、返回值或异常等关键信息，不得遗漏关键语句。
 - 中文 API 文档中的示例代码应该使用 `COPY-FROM` 标记从英文文档中复制，确保示例代码一致，非必要不允许单独编写。
 - 应当注意中文 API 文档使用语法为 ReStructuredText（`.rst`），而非 Markdown（`.md`）。请遵守 ReStructuredText 的语法规范。
+- 中文 API 的目录层级结构应当和 API 名一一对应，例如 `paddle.compat.nn.functional.linear` 对应的文档路径应为 `docs/api/paddle/compat/nn/functional/linear_cn.rst`。对于由于大小写敏感而导致冲突的文件名，应当修改大写文件名的命名添加后缀 `__upper`，例如 `paddle.vision.models.GoogleNet` 和 `paddle.vision.models.googlenet` 分别对应 `docs/api/paddle/vision/models/GoogleNet__upper_cn.rst` 和 `docs/api/paddle/vision/models/googlenet_cn.rst`。
 
 ## 项目检查
 
