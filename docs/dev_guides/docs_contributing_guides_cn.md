@@ -175,7 +175,7 @@ upstream
 
 ## 五、review & merge
 
-提交 PR 后，可以指定 Paddle 的同学进行 Review。目前 Paddle 负责文档的同学是 [@sunzhongkai588](https://github.com/sunzhongkai588)、[@Ligoml](https://github.com/Ligoml)、[@jzhang533](https://github.com/jzhang533) 等 。
+提交 PR 后，可以指定 Paddle 的同学进行 Review。目前 Paddle 负责文档的同学是 [@mattheliu](https://github.com/mattheliu)、[@sunzhongkai588](https://github.com/sunzhongkai588)、、[@jzhang533](https://github.com/jzhang533) 等。
 
 
 ## CI
