@@ -3,7 +3,7 @@
 nextafter
 -------------------------------
 
-.. py:function:: paddle.nextafter(x, y, name=None)
+.. py:function:: paddle.nextafter(x, y, name=None, *, out=None)
 
 
 
@@ -14,9 +14,13 @@ nextafter
 
 参数
 :::::::::
-    - **x** (Tensor) - 输入的 Tensor，数据类型为：float32、float64。
-    - **y** (Tensor) - 输入的 Tensor，数据类型为：float32、float64。
+    - **x** (Tensor) - 输入的 Tensor，数据类型为：float32、float64。别名 ``input``。
+    - **y** (Tensor) - 输入的 Tensor，数据类型为：float32、float64。别名 ``other``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+:::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 :::::::::
