@@ -14,7 +14,7 @@
 - **C++ API 兼容层**：该层实现了常用 PyTorch C++ API 的兼容接口，用户仍然可以通过调用 PyTorch 风格的 `at::*`、`torch::*`、`c10::*` 等命名空间下的函数和类来实现自定义算子逻辑，从而最大限度地复用现有代码，使迁移工作量降至最低。
 - **算子注册兼容层**：对于使用 pybind11 进行算子注册的 PyTorch 自定义算子，PaddlePaddle 无需额外修改注册代码；而对于使用 `TORCH_LIBRARY` 宏进行注册并通过 `torch.ops` 调用的算子，我们提供了同名的注册接口，用户无需修改注册代码即可完成迁移。
 - **Python 接口兼容层**：对于 Python 端自定义算子封装部分，会不可避免地调用一些 PyTorch 内的 Python 组网 API。为此，我们正在致力于提升 Python 端 API 与 PyTorch 的兼容性，力求让用户在迁移过程中无需修改 Python 端代码。
-- **Python API 代理层**：在 Python 端，即便 API 能够完全兼容，用户仍然需要将 `import torch` 替换为 `import paddle`。为此，我们提供了一个轻量级的代理层，用户只需在迁移后的代码开头添加一行 `import paddle.compat.enable_torch_proxy`，后续的 `torch` 下的模块将被重定向至 `paddle` 下的模块，从而实现无缝迁移。
+- **Python API 代理层**：在 Python 端，即便 API 能够完全兼容，用户仍然需要将 `import torch` 替换为 `import paddle`。为此，我们提供了一个轻量级的代理层，用户只需在迁移后的代码开头添加一行 `paddle.enable_compat()`，后续的 `torch` 下的模块将被重定向至 `paddle` 下的模块，从而实现无缝迁移。
 
 通过以上几层兼容机制，用户可以在最大程度上复用现有的 PyTorch 自定义算子代码，从而大幅降低迁移成本。
 
@@ -170,11 +170,11 @@ python test.py
 
 由于原本的构建脚本是基于 PyTorch 的 `torch.utils.cpp_extension` 模块来完成编译的，因此我们需要将其替换为 PaddlePaddle 提供的自定义算子编译方式。
 
-由于我们提供了 `paddle.compat.enable_torch_proxy()` 代理层来兼容 PyTorch 的 C++ API，因此我们可以使用该 API 实现 torch API 的一键兼容调用。
+由于我们提供了 `paddle.enable_compat()` 代理层来兼容 PyTorch 的 C++ API，因此我们可以使用该 API 实现 torch API 的一键兼容调用。
 
 ```diff
 +import paddle
-+paddle.compat.enable_torch_proxy()  # Enable torch proxy globally
++paddle.enable_compat()  # Enable torch proxy globally
 
 from setuptools import setup, find_packages
 # 如下的 torch extension 已经被 PaddlePaddle 的同等功能替代（即 paddle.utils.cpp_extension）
@@ -302,7 +302,7 @@ at::Tensor result(paddle_result);  // 将 Paddle Tensor 包装为 PyTorch Tensor
 
 ```python
 import paddle
-paddle.compat.enable_torch_proxy(scope={"extension"})  # 仅启用 extension 包的 torch 代理
+paddle.enable_compat(scope={"extension"})  # 仅启用 extension 包的 torch 代理
 import extension
 
 x = paddle.tensor([1.0, 2.0, 3.0])

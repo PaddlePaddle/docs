@@ -241,13 +241,13 @@ upstream    https://github.com/PaddlePaddle/Paddle.git (push)
 
 具体签署方式如下：
 
-- 请你查看 Pull Request 中的 Check 部分，找到 license/cla，并点击右侧 `Details`，进入 CLA 网站。
+- 请你查看 Pull Request 中的 Check 部分，找到 `license/cla`，并点击其文本，进入 CLA 网站。
 
-![img](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.1/doc/fluid/advanced_usage/development/contribute_to_paddle/img/cla_unsigned.png?raw=true)
+![img](./images/cla-unsigned.png)
 
 - 请阅读协议内容后单击 `Sign in with GitHub to agree`，页面将跳转回 Pull Request 页面。
 
-![img](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.1/doc/fluid/advanced_usage/development/contribute_to_paddle/img/sign_cla.png?raw=true)
+![img](./images/sign_cla.png)
 
 <span id="CItest">（6）确保通过 CI 测试</span>
 
@@ -258,7 +258,7 @@ upstream    https://github.com/PaddlePaddle/Paddle.git (push)
 - 测试项后出现绿色的对勾，表示本条测试项通过。
 - 测试项后出现红色的叉号，并且后面显示 `Required`，则表示本条测试项不通过（不显示 `Required` 的任务未通过，也不影响代码合入，可不处理）。在这种情况下，请点击 `detail` 查看报错详情，优先自行解决报错问题，无法解决的情况，以评论的方式添加到评论区中，飞桨开发者将和你一起查看。
 
-> 注意：`PR-CI-APPROVAL` 和 `PR-CI-Static-Check` 这两个 CI 测试项可能需要飞桨相关开发者 approve 才能通过，除此之外请确保其他每一项都通过，如果没有通过，请通过报错信息自查代码。
+> 注意：`Approval` 和 `Static-Check` 这两个 CI 测试项可能需要飞桨相关开发者 approve 才能通过，除此之外请确保其他每一项都通过，如果没有通过，请通过报错信息自查代码。
 
 CI 测试通过后，接下来请等待 Code Review，一般会在三个工作日内回复。但是若 CI 测试不通过，评审人一般不做评审。
 

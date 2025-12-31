@@ -21,15 +21,16 @@ if ! pip3 list --disable-pip-version-check | grep paddlepaddle; then
   # Install logic:
   # - If PADDLE_WHL is a .whl file URL: download and install locally
   # - Otherwise: install directly via pip (supports package names and other URLs)
-  if [[ "${PADDLE_WHL}" == *.whl ]]; then
+  if [[ "${PADDLE_WHL}" == 'http'*'.whl' ]]; then
     echo "Downloading wheel file: ${PADDLE_WHL}"
-    wget -q ${PADDLE_WHL} -O /tmp/paddle.whl
+    WHL_NAME=$(basename ${PADDLE_WHL})
+    wget -q ${PADDLE_WHL} -O /tmp/${WHL_NAME}
     if [ $? -ne 0 ]; then
       echo -e "\e[31mError: Failed to download wheel file from ${PADDLE_WHL}\e[0m"
       exit 1
     fi
     echo "Installing local wheel file..."
-    pip3 install --no-cache-dir -q --progress-bar off -i https://pypi.tuna.tsinghua.edu.cn/simple /tmp/paddle.whl
+    pip3 install --no-cache-dir -q --progress-bar off -i https://pypi.tuna.tsinghua.edu.cn/simple /tmp/${WHL_NAME}
   else
     echo "Using pip install directly..."
     pip3 install --no-cache-dir -q --progress-bar off -i https://pypi.tuna.tsinghua.edu.cn/simple ${PADDLE_WHL}
@@ -37,6 +38,12 @@ if ! pip3 list --disable-pip-version-check | grep paddlepaddle; then
 
   if [ $? -ne 0 ]; then
     echo -e "\e[31mError: Failed to install paddle from ${PADDLE_WHL}\e[0m"
+    exit 1
+  fi
+
+  python3 -c "import paddle; print('Installed paddle version commit:', paddle.version.commit)"
+  if [ $? -ne 0 ]; then
+    echo -e "\e[31mError: Could not import paddle after installation.\e[0m"
     exit 1
   fi
   echo "Paddle installed successfully."
