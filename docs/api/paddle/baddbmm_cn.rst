@@ -24,9 +24,9 @@ baddbmm
 
     - **input** (Tensor) - 输入 Tensor input，必须是一个 2 维或 3 维张量，数据类型支持 bfloat16、float16、float32、float64。
     - **x** (Tensor) - 输入 Tensor x，必须是一个形状为 [b, n, p] 的 3 维张量，数据类型支持 bfloat16、float16、float32、float64。
-        别名：**batch1**。
+      ``别名：batch1``
     - **y** (Tensor) - 输入 Tensor y，必须是一个形状为 [b, p, m] 的 3 维张量，数据类型支持 bfloat16、float16、float32、float64。
-        别名：**batch2**。
+      ``别名：batch2``
     - **beta** (float，可选) - 乘以 input 的标量，数据类型支持 float，默认值为 1.0。
     - **alpha** (float，可选) - 乘以 x*y 的标量，数据类型支持 float，默认值为 1.0。
     - **out_dtype** (paddle.dtype, 可选) - 输出数据类型，默认值为 None，表示输出数据类型与输入 input 数据类型一致。支持设置为以下数据类型：float16、bfloat16、float32、float64。
