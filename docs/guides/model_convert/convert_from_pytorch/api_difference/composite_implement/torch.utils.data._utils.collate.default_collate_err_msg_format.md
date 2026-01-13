@@ -1,4 +1,4 @@
-## [ 组合替代实现 ]torch.utils.data.\_utils.collate.default\_collate\_err\_ms\_format
+## [ 组合替代实现 ]torch.utils.data.\_utils.collate.default\_collate\_err\_msg\_format
 ### [torch.utils.data.\_utils.collate.default\_collate\_err\_msg\_format](https://github.com/pytorch/pytorch/blob/2f023bf7b962e69c0de01b89af197388d9df27cc/torch/utils/data/_utils/collate.py#L112)
 ```python
 torch.utils.data._utils.collate.default_collate_err_msg_format

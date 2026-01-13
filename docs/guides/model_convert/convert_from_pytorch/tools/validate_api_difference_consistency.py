@@ -281,6 +281,8 @@ ALLOW_MISSING_DIFF_DOCS = [
     "torch.backends.cudnn.benchmark",
     "torch.backends.cudnn.deterministic",
     "torch.backends.cudnn.enabled",
+    # 不支持转换的 API
+    "torch.Tensor.rename",
 ]
 
 
@@ -299,6 +301,9 @@ def validate_api_mappings():
     attr_map = load_mapping_json(current_dir / "attribute_mapping.json")
 
     api_map = api_map | attr_map
+
+    for api in ALLOW_MISSING_DIFF_DOCS:
+        api_map.pop(api, None)
 
     no_need_list = extract_no_need_convert_list(
         str(current_dir) + "/global_var.py"
