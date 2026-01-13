@@ -3,7 +3,7 @@
 angle
 -------------------------------
 
-.. py:function:: paddle.angle(x, name=None)
+.. py:function:: paddle.angle(x, name=None, *, out=None)
 
 
 逐元素计算复数的相位角。对于非负实数，相位角为 0，而对于负实数，相位角为 :math:`\pi`。
@@ -14,8 +14,12 @@ angle
 
 参数
 :::::::::
-    - **x** (Tensor) - 输入的 Tensor，数据类型为：complex64, complex128 或 float32, float64。
+    - **x** (Tensor) - 输入的 Tensor，数据类型为：complex64, complex128 或 float32, float64。别名 ``input``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+:::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 :::::::::
