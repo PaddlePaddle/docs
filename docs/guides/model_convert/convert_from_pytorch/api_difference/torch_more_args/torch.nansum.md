@@ -1,7 +1,7 @@
 ## [ torch 参数更多 ]torch.nansum
 ### [torch.nansum](https://pytorch.org/docs/stable/generated/torch.nansum.html)
 ```python
-torch.nansum(input, dim=None, keep_dim=False, *, dtype=None, out=None)
+torch.nansum(input, dim=None, keepdim=False, *, dtype=None, out=None)
 ```
 
 ### [paddle.nansum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nansum_cn.html)

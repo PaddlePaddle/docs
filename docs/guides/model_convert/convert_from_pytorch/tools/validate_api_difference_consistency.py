@@ -10,14 +10,14 @@ from utils import extract_no_need_convert_list, load_mapping_json
 OVERLOADED_APIS = {
     "torch.Tensor.dsplit": {
         "src_args": [
-            ("sections"),
-            ("indices"),
+            ("sections",),
+            ("indices",),
         ]
     },
     "torch.Tensor.hsplit": {
         "src_args": [
-            ("sections"),
-            ("indices"),
+            ("sections",),
+            ("indices",),
         ]
     },
     "torch.dsplit": {
@@ -38,16 +38,22 @@ OVERLOADED_APIS = {
             ("input", "indices"),
         ]
     },
+    "torch.Tensor.vsplit": {
+        "src_args": [
+            ("sections",),
+            ("indices",),
+        ]
+    },
     "torch.Tensor.max": {
         "src_args": [
             ("dim", "keepdim"),
-            ("other"),
+            ("other",),
         ]
     },
     "torch.Tensor.min": {
         "src_args": [
             ("dim", "keepdim"),
-            ("other"),
+            ("other",),
         ]
     },
     "torch.linalg.matrix_rank": {
@@ -337,25 +343,56 @@ def validate_api_mappings():
                     sum += 1
 
         # 任务2: 检查差异文档中的dst_api是否与api_mapping中paddle_api一致
-        for entry in api_diff:
-            if "dst_api" not in entry:
+        for diff_entry in api_diff:
+            # 如果文档里没写目标 API（可能是组合实现），跳过
+            if "dst_api" not in diff_entry:
                 continue
 
-            found = False
-            for api_key, api_value in api_map.items():
-                if api_value.get("paddle_api") == entry["dst_api"]:
-                    found = True
-                    break
+            torch_api = diff_entry["src_api"]
+            doc_target = diff_entry["dst_api"]  # 文档里的目标
 
-            if not found:
+            # 1. 检查代码规则库里有没有这个 torch_api
+            # 注意：这里要查 api_map (规则)，而不是 api_diff_map (文档自己)
+            if torch_api not in api_map:
+                # 这种情况（文档有，规则无）通常不在这里处理，或者仅作为 Info
+                continue
+
+            rule_entry = api_map[torch_api]
+
+            # 2. 获取代码规则里的目标 API
+            # 注意：api_mapping.json 里的键名是 'paddle_api'
+            code_target = rule_entry.get("paddle_api")
+
+            # 3. 如果代码里有明确的目标 API，检查是否一致
+            if code_target and code_target != doc_target:
                 err_file.write(
-                    f"WARNING: api_difference_info entry '{entry['src_api']}' has dst_api '{entry['dst_api']}' not found in api_mapping.json\n"
+                    f"ERROR: Mapping Conflict for '{torch_api}':\n"
+                    f"    Document says -> {doc_target}\n"
+                    f"    Code rule says -> {code_target}\n"
                 )
                 sum += 1
+
+        # for entry in api_diff:
+        #     if "dst_api" not in entry:
+        #         continue
+
+        #     found = False
+        #     for api_key, api_value in api_map.items():
+        #         if api_value.get("paddle_api") == entry["dst_api"]:
+        #             found = True
+        #             break
+
+        #     if not found:
+        #         err_file.write(
+        #             f"WARNING: api_difference_info entry '{entry['src_api']}' has dst_api '{entry['dst_api']}' not found in api_mapping.json\n"
+        #         )
+        #         sum += 1
 
         # 任务3: 检查api_mapping中的kwargs_change是否在api_difference_info中
         for api_key, api_value in api_map.items():
             if "kwargs_change" not in api_value or api_key in no_need_list:
+                continue
+            if api_key in OVERLOADED_APIS:  # 重载暂不支持解析 diff 文档
                 continue
             entry = api_diff_map.get(api_key)
             if entry is None:
@@ -392,21 +429,75 @@ def validate_api_mappings():
                     )
                     sum += 1
 
+        # -----------------------------------------------------------------
         # 任务4: 检查api_mapping中的args_list是否都在api_difference_info的src_signature中
+        #       (支持 OVERLOADED_APIS)
+        # -----------------------------------------------------------------
+        # -----------------------------------------------------------------
+        # 任务4: 检查api_mapping中的args_list是否都在api_difference_info的src_signature中
+        #       (支持 OVERLOADED_APIS，且双方统一清洗参数名)
+        # -----------------------------------------------------------------
         for api_key, api_value in api_map.items():
+            # 跳过无需检查的情况
             if "args_list" not in api_value or api_key in no_need_list:
                 continue
 
-            # 获取api_difference_info中对应的entry
+            args_list_in_mapping = api_value["args_list"]
+
+            # 定义清洗函数：去掉参数名前的 * 或 **，保留纯参数名
+            def normalize_param_name(name):
+                if name == "*":
+                    return "*"
+                return name.lstrip("*")
+
+            # -------------------------------------------
+            # 分支 A：硬编码的重载 API 检查
+            # -------------------------------------------
+            if api_key in OVERLOADED_APIS:
+                valid_signatures_groups = OVERLOADED_APIS[api_key].get(
+                    "src_args", []
+                )
+
+                # 1. 生成全集 (Reference): 清洗定义中的参数
+                allowed_args_superset = set()
+                for group in valid_signatures_groups:
+                    current_group = (
+                        (group,) if isinstance(group, str) else group
+                    )
+                    cleaned_group = {
+                        normalize_param_name(arg) for arg in current_group
+                    }
+                    allowed_args_superset.update(cleaned_group)
+
+                # 2. 准备检查对象 (Target): 清洗 Mapping 中的参数 【修复点】
+                mapping_args_set = {
+                    normalize_param_name(arg) for arg in args_list_in_mapping
+                }
+
+                # 3. 集合求差
+                unknown_args = mapping_args_set - allowed_args_superset
+
+                if unknown_args:
+                    err_file.write(
+                        f"ERROR: Args list {args_list_in_mapping} in api_mapping for OVERLOADED API '{api_key}' "
+                        f"contains arguments (normalized: {unknown_args}) which are NOT found in any signature defined in OVERLOADED_APIS.\n"
+                    )
+                    sum += 1
+                continue
+
+            # -------------------------------------------
+            # 分支 B：基于 JSON 文档的普通 API 检查
+            # -------------------------------------------
             entry = api_diff_map.get(api_key)
             if entry is None:
                 err_file.write(
-                    f"ERROR: api_mapping for '{api_key}' not found in api_difference_info.json, so cannot check args_list\n"
+                    f"ERROR: api_mapping for '{api_key}' not found in api_difference_info.json\n"
                 )
                 sum += 1
                 continue
-            if entry["mapping_type"] == "组合替代实现":
-                continue  # 组合替代实现不记录参数信息
+
+            if entry.get("mapping_type") == "组合替代实现":
+                continue
 
             if "src_signature" not in entry or not entry["src_signature"]:
                 err_file.write(
@@ -415,7 +506,7 @@ def validate_api_mappings():
                 sum += 1
                 continue
 
-            # 提取第一个src_signature的参数名列表
+            # 1. 提取并清洗文档中的签名 (Reference)
             src_signature = entry["src_signature"][0]
             if "args" not in src_signature:
                 err_file.write(
@@ -423,16 +514,23 @@ def validate_api_mappings():
                 )
                 sum += 1
                 continue
-            src_args = [arg["arg_name"] for arg in src_signature["args"]]
 
-            # 检查api_mapping中的args_list是否都在src_args中
-            for arg in api_value["args_list"]:
-                if arg not in src_args:
+            src_args = [
+                normalize_param_name(arg["arg_name"])
+                for arg in src_signature["args"]
+            ]
+
+            # 2. 逐个检查 Mapping 中的参数 (Target)
+            for arg in args_list_in_mapping:
+                # 【修复点】：先清洗，再比较
+                normalized_arg = normalize_param_name(arg)
+
+                if normalized_arg not in src_args:
                     err_file.write(
-                        f"ERROR: Parameter '{arg}' in api_mapping for '{api_key}' not found in api_difference_info's src_signature\n"
+                        f"ERROR: Parameter '{arg}' (normalized: '{normalized_arg}') in api_mapping for '{api_key}' "
+                        f"not found in api_difference_info's src_signature: {src_args}\n"
                     )
                     sum += 1
-
     print(
         f"{sum} api error found in api_mapping.json and api_difference_info.json"
     )

@@ -4,9 +4,9 @@
 torch.nn.Module.register_forward_hook(hook, *, prepend=False, with_kwargs=False, always_call=False)
 ```
 
-### [paddle.nn.Layer.register_forward_post_hook](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#register-forward-post-hook-hook)
+### [paddle.nn.Module.register_forward_post_hook](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#register-forward-post-hook-hook)
 ```python
-paddle.nn.Layer.register_forward_post_hook(hook)
+paddle.nn.Module.register_forward_post_hook(hook)
 ```
 PyTorch 参数更多，具体如下：
 

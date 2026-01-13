@@ -1,7 +1,7 @@
 ## [ 仅参数名不一致 ]torch.Tensor.var
 ### [torch.Tensor.var](https://pytorch.org/docs/stable/generated/torch.Tensor.var.html#torch.Tensor.var)
 ```python
-torch.Tensor.var(dim, unbiased=True, *, correction=1, corrkeepdim=False)
+torch.Tensor.var(dim, unbiased=True, *, correction=1, keepdim=False)
 ```
 
 ### [paddle.Tensor.var](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#var-axis-none-unbiased-true-keepdim-false-name-none)

@@ -4,9 +4,9 @@
 torch.inverse(input, *, out=None)
 ```
 
-### [paddle.linalg.inv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/inv_cn.html)
+### [paddle.inverse](https://github.com/PaddlePaddle/Paddle/blob/5721d267e434c18fa64ff2b99839c7cb6d4cc04d/python/paddle/tensor/math.py#L2900)
 ```python
-paddle.linalg.inv(x, name=None)
+paddle.inverse(x, name=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
