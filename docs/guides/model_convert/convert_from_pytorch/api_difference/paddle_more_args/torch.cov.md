@@ -2,6 +2,7 @@
 ### [torch.cov](https://pytorch.org/docs/stable/generated/torch.cov.html?highlight=cov#torch.cov)
 ```python
 torch.cov(input,
+          *,
           correction=1,
           fweights=None,
           aweights=None)

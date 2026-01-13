@@ -1,7 +1,7 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.sort
 ### [torch.Tensor.sort](https://pytorch.org/docs/stable/generated/torch.Tensor.sort.html#torch-tensor-sort)
 ```python
-torch.Tensor.sort(dim=-1, descending=False, stable=False)
+torch.Tensor.sort(dim=-1, descending=False, *, stable=False)
 ```
 
 ### [paddle.Tensor.sort](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sort_cn.html#sort)

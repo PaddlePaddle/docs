@@ -2,7 +2,7 @@
 ### [torch.linalg.matrix_rank](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_rank.html?highlight=matrix_rank#torch.linalg.matrix_rank)
 ```python
 torch.linalg.matrix_rank(A, *, atol=None, rtol=None ,hermitian=False, out=None)
-torch.linalg.matrix_rank(x, tol=None, hermitian=False, *, name=None)
+torch.linalg.matrix_rank(x, tol=None, hermitian=False, *, out=None)
 ```
 
 ### [paddle.linalg.matrix_rank](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/matrix_rank_cn.html)

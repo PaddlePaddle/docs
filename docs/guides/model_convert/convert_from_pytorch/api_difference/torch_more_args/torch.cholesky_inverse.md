@@ -1,7 +1,7 @@
 ## [ torch 参数更多 ]torch.cholesky_inverse
 ### [torch.cholesky_inverse](https://pytorch.org/docs/stable/generated/torch.cholesky_inverse.html?highlight=cholesky_inverse#torch.cholesky_inverse)
 ```python
-torch.cholesky_inverse(input, upper=False, out=None)
+torch.cholesky_inverse(input, upper=False, *, out=None)
 ```
 
 ### [paddle.linalg.cholesky_inverse](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/cholesky_inverse_cn.html#cholesky-inverse)

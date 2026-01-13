@@ -2,6 +2,7 @@
 ### [torch.linalg.multi_dot](https://pytorch.org/docs/stable/generated/torch.linalg.multi_dot.html?highlight=torch+linalg+multi_dot#torch.linalg.multi_dot)
 ```python
 torch.linalg.multi_dot(tensors,
+                       *,
                        out=None)
 ```
 

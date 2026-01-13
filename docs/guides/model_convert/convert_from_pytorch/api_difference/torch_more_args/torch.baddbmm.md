@@ -1,7 +1,7 @@
 ## [ torch 参数更多 ]torch.baddbmm
 ### [torch.baddbmm](https://pytorch.org/docs/stable/generated/torch.baddbmm.html?highlight=baddbmm#torch.baddbmm)
 ```python
-torch.baddbmm(input, batch1, batch2, beta=1, alpha=1, out=None)
+torch.baddbmm(input, batch1, batch2, beta=1, alpha=1, *, out=None)
 ```
 
 ### [paddle.baddbmm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/baddbmm_cn.html)

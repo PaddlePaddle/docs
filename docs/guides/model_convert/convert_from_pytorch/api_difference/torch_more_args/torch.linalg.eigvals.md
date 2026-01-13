@@ -2,6 +2,7 @@
 ### [torch.linalg.eigvals](https://pytorch.org/docs/stable/generated/torch.linalg.eigvals.html?highlight=torch+linalg+eigvals#torch.linalg.eigvals)
 ```python
 torch.linalg.eigvals(input,
+                     *,
                      out=None)
 ```
 

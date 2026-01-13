@@ -3,7 +3,7 @@
 ### [torch.Tensor.bernoulli](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.bernoulli)
 
 ```python
-torch.Tensor.bernoulli(generator=None)
+torch.Tensor.bernoulli(p=0.5, *, generator=None)
 ```
 
 ### [paddle.bernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bernoulli_cn.html#paddle/bernoulli_cn#cn-api-paddle-bernoulli)

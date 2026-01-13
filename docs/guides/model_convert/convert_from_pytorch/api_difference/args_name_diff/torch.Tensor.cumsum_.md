@@ -1,7 +1,7 @@
 ## [ 仅参数名不一致 ]torch.Tensor.cumsum_
 ### [torch.Tensor.cumsum_](https://pytorch.org/docs/stable/generated/torch.Tensor.cumsum_.html)
 ```python
-torch.Tensor.cumsum_(dim, dtype=None)
+torch.Tensor.cumsum_(dim, *, dtype=None)
 ```
 
 ### [paddle.Tensor.cumsum_]()

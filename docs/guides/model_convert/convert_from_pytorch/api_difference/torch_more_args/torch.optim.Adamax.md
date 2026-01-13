@@ -7,8 +7,10 @@ torch.optim.Adamax(params,
                 eps=1e-08,
                 weight_decay=0,
                 foreach=None,
+                *,
                 maximize=False,
-                differentiable=False)
+                differentiable=False,
+                capturable=False)
 ```
 
 ### [paddle.optimizer.Adamax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Adamax_cn.html)
@@ -37,4 +39,5 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | foreach           | -     | 是否使用优化器的 foreach 实现。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
 | maximize           | -     | 根据目标最大化参数，而不是最小化。Paddle 无此参数，暂无转写方式。         |
 | differentiable      | -     | 是否应通过训练中的优化器步骤进行自动微分。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。      |
+| capturable          | -     | 是否捕获优化器步骤的中间值。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。      |
 | -          | grad_clip            | 梯度裁剪的策略。 PyTorch 无此参数，Paddle 保持默认即可。       |
