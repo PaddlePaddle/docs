@@ -22,3 +22,4 @@ result = torch.equal(a, b)
 
 # Paddle 写法
 result = paddle.compat.equal(a, b)
+```

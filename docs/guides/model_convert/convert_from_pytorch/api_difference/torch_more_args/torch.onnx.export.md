@@ -31,7 +31,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | custom_opsets               | -             | 自定义 opset，Paddle 无此参数，暂无转写方式。                                                                                        |
 | export_modules_as_functions | -             | 是否导出模型为 functions，Paddle 无此参数，暂无转写方式。                                                                            |
 | -                           | input_spec    | 描述存储模型 forward 方法的输入，PyTorch 无此参数，Paddle 保持默认即可。                                                             |
-| -                           | configs       | 其他用于兼容的存储配置选项，PyTorch 无此参数，Paddle 保持默认即可。                                                                  |
+| -                           | **configs       | 其他用于兼容的存储配置选项，PyTorch 无此参数，Paddle 保持默认即可。                                                                  |
 
 ### 转写示例
 #### f、model 参数转写

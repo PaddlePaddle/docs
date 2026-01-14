@@ -22,3 +22,4 @@ layer = torch.nn.Softmax()
 
 # Paddle 写法
 layer = paddle.compat.nn.Softmax()
+```

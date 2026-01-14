@@ -13,3 +13,13 @@ paddle.Tensor.logical_not_()
 ```
 
 两者功能一致，无参数。
+
+### 转写示例
+
+```python
+# PyTorch 写法
+x.logical_not_()
+
+# Paddle 写法
+x.logical_not_()
+```

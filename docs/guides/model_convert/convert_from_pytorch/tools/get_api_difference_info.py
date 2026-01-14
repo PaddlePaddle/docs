@@ -80,6 +80,12 @@ def unescape_api(api):
     return api.replace(r"\_", "_")
 
 
+def safe_remove_var_arg_start(arg: str) -> str:
+    if arg == "*":
+        return arg
+    return arg.lstrip("*")
+
+
 def split_args(args_str):
     """
     按逗号分割参数字符串，忽略括号内的逗号
@@ -428,8 +434,10 @@ def get_meta_from_diff_file(
                         torch_arg, paddle_arg, note = args_table_content
                         meta_data["args_mapping"].append(
                             {
-                                "src_arg": torch_arg,
-                                "dst_arg": paddle_arg,
+                                "src_arg": safe_remove_var_arg_start(torch_arg),
+                                "dst_arg": safe_remove_var_arg_start(
+                                    paddle_arg
+                                ),
                                 "note": note,
                             }
                         )

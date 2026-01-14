@@ -22,3 +22,4 @@ result = torch.unique(x)
 
 # Paddle 写法
 result = paddle.compat.unique(x)
+```

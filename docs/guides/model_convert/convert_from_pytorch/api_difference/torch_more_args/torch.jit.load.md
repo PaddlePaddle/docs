@@ -18,7 +18,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | f             | path         | PyTorch 为文件对象或文件名包含后缀，Paddle 为文件名不包含后缀，读取 .pdiparams，.pdmodel 等后缀文件。需要转写。                       |
 | map_location  | -            | 存储位置，Paddle 无此参数，暂无转写方式。    |
 | \_extra_files | -            | 额外加载的文件，Paddle 无此参数，暂无转写方式。    |
-| -             | configs      | 其他用于兼容的载入配置选项，PyTorch 无此参数，Paddle 保持默认即可。 |
+| -             | **configs      | 其他用于兼容的载入配置选项，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 ### 转写示例
 #### f 参数用法不同

@@ -14,4 +14,14 @@ paddle.io.WeightedRandomSampler(weights,
                 replacement=True)
 ```
 
-两者参数完全一致，具体如下：
+两者参数完全一致。
+
+### 转写示例
+
+```python
+# PyTorch 写法
+sampler = torch.utils.data.WeightedRandomSampler([0.5, 0.5], 20, True)
+
+# Paddle 写法
+sampler = paddle.io.WeightedRandomSampler([0.5, 0.5], 20, True)
+```

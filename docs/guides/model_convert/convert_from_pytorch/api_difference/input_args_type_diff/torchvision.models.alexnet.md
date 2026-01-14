@@ -1,11 +1,7 @@
 ## [ 输入参数类型不一致 ]torchvision.models.alexnet
 ### [torchvision.models.alexnet](https://pytorch.org/vision/stable/models/generated/torchvision.models.alexnet.html)
 ```python
-# 用法一 torchvision >= 0.13
-torchvision.models.alexnet(*, weights: Optional[AlexNet_Weights] = None, progress: bool = True, **kwargs: Any)
-
-# 用法二 torchvision < 0.13
-torchvision.models.alexnet(pretrained: bool=False, progress: bool = True,**kwargs)
+torchvision.models.alexnet(pretrained: bool = False, progress: bool = True, *, weights: Optional[AlexNet_Weights] = None, **kwargs: Any)
 ```
 
 ### [paddle.vision.models.alexnet](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/alexnet_cn.html)
@@ -22,7 +18,7 @@ paddle.vision.models.alexnet(pretrained=False, **kwargs)
 | weights     | pretrained   | 预训练权重，PyTorch 参数 weights 为 AlexNet_Weights 枚举类或 String 类型，Paddle 参数 pretrained 为 bool 类型，需要转写。|
 | pretrained  | pretrained            | 是否加载预训练权重。torchvision 在 0.13+ 弃用此参数|
 | progress    | -            | 是否显示下载进度条，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
-| kwargs      | kwargs       | 附加的关键字参数。|
+| **kwargs      | **kwargs       | 附加的关键字参数。|
 
 ### 转写示例
 #### weights: 预训练权重

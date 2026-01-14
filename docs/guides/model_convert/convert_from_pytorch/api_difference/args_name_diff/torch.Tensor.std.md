@@ -1,7 +1,7 @@
 ## [ 仅参数名不一致 ]torch.Tensor.std
 ### [torch.Tensor.std](https://pytorch.org/docs/stable/generated/torch.Tensor.std.html?highlight=torch+tensor+std#torch.Tensor.std)
 ```python
-torch.Tensor.std(dim=None, unbiased=True, *, correction=1, keepdim=False)
+torch.Tensor.std(dim=None, unbiased=True, keepdim=False, *, correction=1)
 ```
 
 ### [paddle.Tensor.std](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#std-axis-none-unbiased-true-keepdim-false-name-none)

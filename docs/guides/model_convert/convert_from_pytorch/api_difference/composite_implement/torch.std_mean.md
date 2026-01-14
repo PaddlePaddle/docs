@@ -1,12 +1,7 @@
 ## [ 组合替代实现 ]torch.std_mean
 ### [torch.std_mean](https://pytorch.org/docs/stable/generated/torch.std_mean.html?highlight=std_mean#torch.std_mean)
 ```python
-# 用法一：
-torch.std_mean(input, unbiased=True)
-# 用法二：
-torch.std_mean(input, dim, unbiased=True, keepdim=False)
-# 用法三：
-torch.std_mean(input, dim, correction=1, keepdim=False)
+torch.std_mean(input, dim=None, unbiased=True, keepdim=False, *, correction=None)
 ```
 用于实现返回 Tensor 的标准差和均值，PaddlePaddle 目前暂无对应 API，可使用如下代码组合实现该 API。
 
@@ -14,6 +9,7 @@ torch.std_mean(input, dim, correction=1, keepdim=False)
 ```python
 # PyTorch 写法
 std, mean = torch.std_mean(x, dim=1)
+std, mean = torch.std_mean(x, True) # torch 支持 unbiased 以第二个位置参数的形式传入
 
 # Paddle 写法
 std = paddle.std(x, axis=1)

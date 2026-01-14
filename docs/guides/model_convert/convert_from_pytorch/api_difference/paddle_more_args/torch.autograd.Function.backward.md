@@ -16,4 +16,4 @@ Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 | PyTorch      | PaddlePaddle | 备注                                                                |
 | ------------ | ------------ | ------------------------------------------------------------------- |
 | ctx          | ctx          | 上下文对象。                                                        |
-| grad_outputs | kwargs         | forward 输出 Tensor 的梯度，仅参数名不一致。                        |
+| *grad_outputs | *args         | forward 输出 Tensor 的梯度，仅参数名不一致。                        |
