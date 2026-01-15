@@ -9,3 +9,13 @@ fairscale.nn.model_parallel.initialize.get_model_parallel_world_size()
 paddle.distributed.fleet.base.topology._HYBRID_PARALLEL_GROUP._mp_degree
 ```
 两者功能一致，均无参数。
+
+### 转写示例
+
+```python
+# PyTorch 写法
+world_size = fairscale.nn.model_parallel.initialize.get_model_parallel_world_size()
+
+# Paddle 写法
+world_size = paddle.distributed.fleet.base.topology._HYBRID_PARALLEL_GROUP._mp_degree
+```

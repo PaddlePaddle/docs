@@ -12,7 +12,7 @@ torch.nn.AvgPool3d(kernel_size, stride=None, padding=0, ceil_mode=False, count_i
 paddle.compat.nn.AvgPool3d(kernel_size, stride=None, padding=0, ceil_mode=False, count_include_pad=True)
 ```
 
-两者功能一致，但调用方式不一致，具体如下：
+两者功能和用法一致，但 API 路径不一致，只需修改 torch 前缀为 paddle.compat，具体如下：
 
 ### 转写示例
 
@@ -21,5 +21,5 @@ paddle.compat.nn.AvgPool3d(kernel_size, stride=None, padding=0, ceil_mode=False,
 layer = torch.nn.AvgPool3d(4, stride=None, padding=0, ceil_mode=False, count_include_pad=True)
 
 # Paddle 写法
-layer = paddle.compat.AvgPool3d(4, stride=None, padding=0, ceil_mode=False, count_include_pad=True)
+layer = paddle.compat.nn.AvgPool3d(4, stride=None, padding=0, ceil_mode=False, count_include_pad=True)
 ```

@@ -11,7 +11,7 @@ torch.nn.functional.linear(input, weight, bias=None)
 paddle.compat.nn.functional.linear(input, weight, bias=None)
 ```
 
-两者功能一致，但调用方式不一致，具体如下：
+两者功能和用法一致，但 API 路径不一致，只需修改 torch 前缀为 paddle.compat，具体如下：
 
 ### 转写示例
 

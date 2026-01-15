@@ -1,4 +1,4 @@
-##  [ 输入参数用法不一致 ]torch.nn.functional.smooth_l1_loss
+##  [ torch 参数更多 ]torch.nn.functional.smooth_l1_loss
 
 ### [torch.nn.functional.smooth_l1_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.smooth_l1_loss.html)
 
@@ -72,21 +72,38 @@ $$
 
 ### 转写示例
 
-#### size_average
-
-
+### 转写示例
+#### size_average/reduce：对应到 reduction 为 sum
 ```python
-# PyTorch 的 size_average、 reduce 参数转为 Paddle 的 reduction 参数
-if size_average is None:
-    size_average = True
-if reduce is None:
-    reduce = True
-if size_average and reduce:
-    reduction = 'mean'
-elif reduce:
-    reduction = 'sum'
-else:
-    reduction = 'none'
+# PyTorch 写法
+torch.nn.functional.smooth_l1_loss(input, label, size_average=False, reduce=True)
+torch.nn.functional.smooth_l1_loss(input, label, size_average=False)
+
+# Paddle 写法
+paddle.nn.functional.smooth_l1_loss(input, label, reduction='sum')
+```
+
+#### size_average/reduce：对应到 reduction 为 mean
+```python
+# PyTorch 写法
+torch.nn.functional.smooth_l1_loss(input, label, size_average=True, reduce=True)
+torch.nn.functional.smooth_l1_loss(input, label, reduce=True)
+torch.nn.functional.smooth_l1_loss(input, label, size_average=True)
+torch.nn.functional.smooth_l1_loss(input, label)
+
+# Paddle 写法
+paddle.nn.functional.smooth_l1_loss(input, label, reduction='mean')
+```
+
+#### size_average/reduce：对应到 reduction 为 none
+```python
+# PyTorch 写法
+torch.nn.functional.smooth_l1_loss(input, label, size_average=True, reduce=False)
+torch.nn.functional.smooth_l1_loss(input, label, size_average=False, reduce=False)
+torch.nn.functional.smooth_l1_loss(input, label, reduce=False)
+
+# Paddle 写法
+paddle.nn.functional.smooth_l1_loss(input, label, reduction='none')
 ```
 
 #### beta

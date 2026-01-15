@@ -12,7 +12,7 @@ torch.unique(input, sorted=True, return_inverse=False, return_counts=False, dim=
 paddle.compat.unique(input, sorted=True, return_inverse=False, return_counts=False, dim=None)
 ```
 
-两者功能一致，无差异。
+两者功能和用法一致，但 API 路径不一致，只需修改 torch 前缀为 paddle.compat，具体如下：
 
 ### 转写示例
 

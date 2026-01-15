@@ -9,4 +9,13 @@ flash_attn.__version__.split(sep=None, maxsplit=-1)
 paddle.__version__.split(sep=None, maxsplit=-1)
 ```
 
-两者功能一致，参数完全一致，具体如下：
+### 转写示例
+
+```python
+# PyTorch 写法
+version = flash_attn.__version__
+
+# Paddle 写法
+version = paddle.__version__
+world_size = paddle.distributed.fleet.base.topology._HYBRID_PARALLEL_GROUP._mp_degree
+```
