@@ -18,7 +18,6 @@ paddle.Tensor.bitwise_and_(y, name=None)
 | other     | y    | 按位与的另一个输入。|
 
 ### 转写示例
-#### other 参数
 ```python
 # torch 写法
 a.bitwise_and_(other=b)

@@ -1,4 +1,4 @@
-##  [ torch 参数更多 ]torch.nn.functional.smooth_l1_loss
+## [ torch 参数更多 ]torch.nn.functional.smooth_l1_loss
 
 ### [torch.nn.functional.smooth_l1_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.smooth_l1_loss.html)
 
@@ -21,20 +21,6 @@ paddle.nn.functional.smooth_l1_loss(input,
                     is_huber=True,
                     name=None)
 ```
-
-两者功能一致，但 Paddle 的 `delta` 和 PyTorch 的 `beta` 参数在公式中用法不一致，具体如下：
-
-### 参数映射
-
-| PyTorch       | PaddlePaddle | 备注                                                   |
-| ------------- | ------------ | ------------------------------------------------------ |
-| input          | input         | 输入 Tensor                                     |
-| target          | label         | 输入 Tensor 对应的标签，仅参数名不一致。                                |
-| size_average          | -         | 已弃用                                      |
-| reduce          | -         | 已弃用                                     |
-| reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'   |
-| beta          | delta         | SmoothL1Loss 损失的阈值参数                       |
-| -          | is_huber         | 控制 huber_loss 与 smooth_l1_loss 的开关，Paddle 需设置为 False 。                     |
 
 Torch 中 Smooth L1 loss 的计算方式:
 
@@ -70,7 +56,22 @@ $$
 当 $is\_huber$ 参数为 False 时，PyTorch 和 Paddle 计算过程一致，均为 huber 损失除以 $delta$ 值。
 
 
-### 转写示例
+两者功能一致，但 Paddle 的 `delta` 和 PyTorch 的 `beta` 参数在公式中用法不一致，具体如下：
+
+### 参数映射
+
+| PyTorch       | PaddlePaddle | 备注                                                   |
+| ------------- | ------------ | ------------------------------------------------------ |
+| input          | input         | 输入 Tensor。                                     |
+| target          | label         | 输入 Tensor 对应的标签，仅参数名不一致。                                |
+| size_average          | -         | 已弃用，需要转写。                                      |
+| reduce          | -         | 已弃用，需要转写。                                     |
+| reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'。   |
+| beta          | delta         | SmoothL1Loss 损失的阈值参数。                       |
+| -          | is_huber         | 控制 huber_loss 与 smooth_l1_loss 的开关，Paddle 需设置为 False 。                     |
+
+
+
 
 ### 转写示例
 #### size_average/reduce：对应到 reduction 为 sum
