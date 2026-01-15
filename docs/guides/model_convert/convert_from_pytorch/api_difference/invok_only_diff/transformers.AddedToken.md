@@ -9,4 +9,14 @@ transformers.AddedToken(content: str, single_word=False, lstrip=False, rstrip=Fa
 paddleformers.transformers.AddedToken(content: str, single_word=False, lstrip=False, rstrip=False, special=False, normalized=None)
 ```
 
-两者功能一致。
+两者功能一致，但调用方式不一致，具体如下：
+
+### 转写示例
+
+```python
+# PyTorch 写法
+transformers.AddedToken("newToken", single_word=True)
+
+# Paddle 写法
+paddleformers.transformers.AddedToken("newToken", single_word=True)
+```

@@ -14,7 +14,7 @@ paddle.io.WeightedRandomSampler(weights,
                 replacement=True)
 ```
 
-两者参数完全一致。
+两者功能一致，但调用方式不一致，具体如下：
 
 ### 转写示例
 
