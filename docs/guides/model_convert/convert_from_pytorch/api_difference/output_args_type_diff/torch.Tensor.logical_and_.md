@@ -23,7 +23,7 @@ paddle.Tensor.logical_and_(y)
 
 
 ### 转写示例
-
+#### other/返回值
 ```python
 # PyTorch 写法
 x.logical_and_(tensor_y)

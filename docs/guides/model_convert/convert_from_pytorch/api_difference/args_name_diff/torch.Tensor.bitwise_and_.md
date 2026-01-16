@@ -16,12 +16,3 @@ paddle.Tensor.bitwise_and_(y, name=None)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | other     | y    | 按位与的另一个输入。|
-
-### 转写示例
-```python
-# torch 写法
-a.bitwise_and_(other=b)
-
-# paddle 写法
-a.bitwise_and_(y=b)
-```

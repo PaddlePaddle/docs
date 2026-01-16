@@ -23,7 +23,7 @@ paddle.Tensor.logical_or_(y)
 
 
 ### 转写示例
-
+#### other/返回值
 ```python
 # PyTorch 写法
 x.logical_or_(tensor_y)

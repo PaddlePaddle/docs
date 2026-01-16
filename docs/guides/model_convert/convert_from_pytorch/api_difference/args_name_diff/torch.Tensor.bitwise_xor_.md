@@ -16,12 +16,3 @@ paddle.Tensor.bitwise_xor_(y, name=None)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | other     | y    | 按位 y 异或的另一个输入。|
-
-### 转写示例
-```python
-# torch 写法
-a.bitwise_xor_(other=b)
-
-# paddle 写法
-a.bitwise_xor_(y=b)
-```
