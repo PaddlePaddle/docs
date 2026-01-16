@@ -1,4 +1,4 @@
-## [ 输入参数用法不一致 ]torch.Tensor.bitwise_and_
+## [ 仅参数名不一致 ]torch.Tensor.bitwise_and_
 ### [torch.Tensor.bitwise_and_](https://docs.pytorch.org/docs/stable/generated/torch.bitwise_and.html)
 ```python
 torch.Tensor.bitwise_and_(other)

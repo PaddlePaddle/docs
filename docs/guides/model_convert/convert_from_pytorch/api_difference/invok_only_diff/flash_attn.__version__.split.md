@@ -17,5 +17,4 @@ version = flash_attn.__version__
 
 # Paddle 写法
 version = paddle.__version__
-world_size = paddle.distributed.fleet.base.topology._HYBRID_PARALLEL_GROUP._mp_degree
 ```

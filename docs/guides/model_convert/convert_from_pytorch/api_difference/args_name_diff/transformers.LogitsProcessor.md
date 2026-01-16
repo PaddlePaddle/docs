@@ -9,7 +9,7 @@ transformers.LogitsProcessor(input_ids: torch.LongTensor, scores: torch.FloatTen
 paddleformers.generation.LogitsProcessor(input_ids: paddle.Tensor, scores: paddle.Tensor)
 ```
 
-两者功能一致但参数名不一致，部分参数名不同，具体如
+两者功能一致但参数名不一致，部分参数名不同，具体如下：
 
 ### 参数映射
 

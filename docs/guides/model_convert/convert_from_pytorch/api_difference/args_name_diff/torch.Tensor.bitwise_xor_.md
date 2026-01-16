@@ -1,4 +1,4 @@
-## [ 输入参数用法不一致 ]torch.Tensor.bitwise_xor_
+## [ 仅参数名不一致 ]torch.Tensor.bitwise_xor_
 ### [torch.Tensor.bitwise_xor_](https://docs.pytorch.org/docs/stable/generated/torch.bitwise_xor.html)
 ```python
 torch.Tensor.bitwise_xor_(other)
