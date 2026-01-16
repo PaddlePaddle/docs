@@ -7,62 +7,18 @@ from utils import extract_no_need_convert_list, load_mapping_json
 # functions currently. Currently, we hard code the check of overloaded functions
 # in this file.
 
+TENSOR_SPLIT_SIG_ARGS = [("sections",), ("indices",)]
+SPLIT_SIG_ARGS = [("input", "sections"), ("input", "indices")]
+REDUCE_ARGS = [("dim", "keepdim"), ("other",)]
 OVERLOADED_APIS = {
-    "torch.Tensor.dsplit": {
-        "src_args": [
-            ("sections",),
-            ("indices",),
-        ]
-    },
-    "torch.Tensor.hsplit": {
-        "src_args": [
-            ("sections",),
-            ("indices",),
-        ]
-    },
-    "torch.dsplit": {
-        "src_args": [
-            ("input", "sections"),
-            ("input", "indices"),
-        ]
-    },
-    "torch.hsplit": {
-        "src_args": [
-            ("input", "sections"),
-            ("input", "indices"),
-        ]
-    },
-    "torch.vsplit": {
-        "src_args": [
-            ("input", "sections"),
-            ("input", "indices"),
-        ]
-    },
-    "torch.Tensor.vsplit": {
-        "src_args": [
-            ("sections",),
-            ("indices",),
-        ]
-    },
-    "torch.Tensor.max": {
-        "src_args": [
-            ("dim", "keepdim"),
-            ("other",),
-        ]
-    },
-    "torch.Tensor.min": {
-        "src_args": [
-            ("dim", "keepdim"),
-            ("other",),
-        ]
-    },
-    "torch.linalg.matrix_rank": {
-        "src_args": [
-            ("A", "*", "atol", "rtol", "hermitian", "out"),
-            ("input", "*", "atol", "rtol", "hermitian", "out"),
-            ("input", "tol", "hermitian", "*", "out"),
-        ]
-    },
+    "torch.Tensor.dsplit": {"src_args": TENSOR_SPLIT_SIG_ARGS},
+    "torch.Tensor.hsplit": {"src_args": TENSOR_SPLIT_SIG_ARGS},
+    "torch.dsplit": {"src_args": SPLIT_SIG_ARGS},
+    "torch.hsplit": {"src_args": SPLIT_SIG_ARGS},
+    "torch.vsplit": {"src_args": SPLIT_SIG_ARGS},
+    "torch.Tensor.vsplit": {"src_args": TENSOR_SPLIT_SIG_ARGS},
+    "torch.Tensor.max": {"src_args": REDUCE_ARGS},
+    "torch.Tensor.min": {"src_args": REDUCE_ARGS},
 }
 
 
