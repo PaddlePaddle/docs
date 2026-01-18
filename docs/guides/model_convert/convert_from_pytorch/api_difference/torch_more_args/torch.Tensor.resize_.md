@@ -1,6 +1,6 @@
-## [ torch 参数更多 ]torch.Tensor.resize_
+## [ torch 参数更多 ]torch.Tensor.resize\_
 
-### [torch.Tensor.resize_](https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html)
+### [torch.Tensor.resize\_](https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html)
 ```python
 torch.Tensor.resize_(*sizes, memory_format=torch.contiguous_format)
 ```

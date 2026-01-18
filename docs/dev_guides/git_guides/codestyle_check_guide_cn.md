@@ -4,14 +4,16 @@
 
 在 Paddle CI 中，由 `Codestyle-Check` 流水线对提交的 PR 进行代码风格检查，若该流水线执行失败，PR 将**无法合入**到 Paddle 仓库。此时需要根据流水线日志的报错信息，在本地修改代码，再次提交。一般情况下，本地使用 `pre-commit` 进行代码风格检查的结果和 `Codestyle-Check` 流水线结果是一致的。下面介绍 `pre-commit` 的本地安装与使用方法。
 
-Paddle 目前使用的 pre-commit 版本是 2.17.0。首先安装并在当前目录运行它：
+你可以通过在本地仓库运行如下命令来安装 `pre-commit`，并将其 hook 注册到该仓库中：
 
 ```bash
-➜  pip install pre-commit==2.17.0
+➜  pip install pre-commit
 ➜  pre-commit install
 ```
 
 > 注：通过 `pip install pre-commit` 和 `conda install -c conda-forge pre-commit` 安装的 `pre-commit` 稍有不同，Paddle 开发人员使用的是 `pip install pre-commit`。
+>
+> 如果你本地已经安装过 [`uv`](https://github.com/astral-sh/uv)，更建议使用 `uv tool install prek` 安装更加实用的 `prek` 作为 `pre-commit` 的替代品，使用时只需将命令中的 `pre-commit` 替换为 `prek` 即可。
 
 在使用 `git commit` 提交修改时，pre-commit 将自动检查修改文件的代码规范，并对不符合规范的文件进行格式化。此时，`git commit` 并未执行成功，需要将 pre-commit 对文件的修改添加到暂存区，再次 commit，直到 pre-commit 代码检查通过后，本次提交才算完成。
 例如，对 `Paddle/paddle/phi/kernels/abs_kernel.h` 修改后，提交 commit，通过 `git diff` 查看，会发现 clang-format 修改了该文件，需要添加修改后，再次 `git commit`，完成本次提交。
@@ -82,12 +84,12 @@ Date:   xxx
 
 | 检查工具名称 | 作用 | 当前版本 |
 |---|---|---|
-| [pre-commit](https://github.com/pre-commit/pre-commit) | hook 管理工具 | 2.17.0 |
+| [pre-commit](https://github.com/pre-commit/pre-commit) | hook 管理工具 | >=2.17.0 |
 | [pre-commit/pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks) | pre-commit 官方支持的 hook，执行一些通用检查 | 4.4.0 |
 | [Lucas-C/pre-commit-hooks](https://github.com/Lucas-C/pre-commit-hooks.git) | 社区维护的一些通用的 hook，含将 CRLF 改为 LF、移除 Tab 等 hook | 1.5.1 |
 | [copyright_checker](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/codestyle/copyright.hook) | Copyright 检查 | 本地脚本 |
-| [typos](https://github.com/crate-ci/typos) | 拼写错误检查 | 1.30.2 |
-| [ruff](https://github.com/astral-sh/ruff) | Python 代码风格检查 | 0.13.0 |
+| [typos](https://github.com/crate-ci/typos) | 拼写错误检查 | 1.42.0 |
+| [ruff](https://github.com/astral-sh/ruff) | Python 代码风格检查 | 0.14.4 |
 | [clang-format](https://github.com/llvm/llvm-project/tree/main/clang/tools/clang-format) | C++ 代码格式化 | 13.0.0 |
 | [cpplint](https://github.com/cpplint/cpplint) | C++ 代码风格检查 | 1.6.0 |
 | [clang-tidy](https://github.com/llvm/llvm-project/tree/main/clang-tools-extra/clang-tidy) | C++ 代码风格检查 | 15.0.2.1 |
@@ -98,9 +100,10 @@ Date:   xxx
 > 注：这些工具可能会更新，详细配置请查看：[https://github.com/PaddlePaddle/Paddle/blob/develop/.pre-commit-config.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/.pre-commit-config.yaml)。
 
 ## FAQ
-1. pre-commit==2.17.0 要求 Python>=3.6.1，建议使用较高版本的 Python。
-2. 在首次 commit 时，pre-commit 需要初始化环境，执行时间会稍长一些，大概在 3min 左右。
-3. 在首次 commit 前，请先升级 pip，并使用 pypi 官方镜像源，否则，可能会导致 clang-format 或者 cmake-lint 安装失败。命令如下：
+
+1. 在首次 commit 时，pre-commit 需要初始化环境，执行时间会稍长一些，大概在 3min 左右。
+2. 在首次 commit 前，请先升级 pip，并使用 PyPI 官方镜像源，否则，可能会导致 clang-format 或者 cpplint 安装失败。命令如下：
+
 ```bash
 ➜  pip install --upgrade pip
 ➜  pip config set global.index-url https://pypi.python.org/simple

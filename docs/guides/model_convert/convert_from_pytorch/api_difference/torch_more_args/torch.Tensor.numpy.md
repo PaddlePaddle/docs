@@ -1,7 +1,7 @@
 ## [ torch 参数更多 ]torch.Tensor.numpy
 ### [torch.Tensor.numpy](https://pytorch.org/docs/stable/generated/torch.Tensor.numpy.html?highlight=numpy#torch.Tensor.numpy)
 ```python
-torch.Tensor.numpy(force=False)
+torch.Tensor.numpy(*, force=False)
 ```
 
 ### [paddle.Tensor.numpy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#numpy)

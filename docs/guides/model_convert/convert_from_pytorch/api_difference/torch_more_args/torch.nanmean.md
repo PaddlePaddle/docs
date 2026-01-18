@@ -4,6 +4,7 @@
 torch.nanmean(input,
               dim=None,
               keepdim=False,
+              *,
               dtype=None,
               out=None)
 ```

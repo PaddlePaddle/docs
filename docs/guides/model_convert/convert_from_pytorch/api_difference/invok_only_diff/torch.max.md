@@ -12,7 +12,7 @@ torch.max(*args, **kwargs)
 paddle.compat.max(*args, **kwargs)
 ```
 
-torch.max 有多种签名与用法，均只需修改 torch 前缀为 paddle.compat，具体如下：
+两者功能和用法一致，但 API 路径不一致，只需修改 torch 前缀为 paddle.compat，具体如下：
 
 ### 转写示例
 

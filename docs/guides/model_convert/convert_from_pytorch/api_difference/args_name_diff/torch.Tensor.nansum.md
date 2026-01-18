@@ -3,6 +3,7 @@
 ```python
 torch.Tensor.nansum(dim=None,
                     keepdim=False,
+                    *,
                     dtype=None)
 ```
 

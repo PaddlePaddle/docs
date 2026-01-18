@@ -7,11 +7,13 @@ torch.optim.Adam(params,
                 eps=1e-08,
                 weight_decay=0,
                 amsgrad=False,
+                *,
                 foreach=None,
                 maximize=False,
                 capturable=False,
                 differentiable=False,
-                fused=None)
+                fused=None,
+                decoupled_weight_decay=False)
 ```
 
 ### [paddle.optimizer.Adam](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Adam_cn.html)
@@ -47,6 +49,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | capturable           | -     | 在 CUDA 图中捕获此实例是否安全。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
 | differentiable      | -     | 是否应通过训练中的优化器步骤进行自动微分。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
 | fused      | -     | 是否使用融合实现（仅限 CUDA）。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
+| decoupled_weight_decay           | -     | 是否使用解耦权重衰减。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
 | -          | grad_clip            | 梯度裁剪的策略。 PyTorch 无此参数，Paddle 保持默认即可。       |
 | -          | lazy_mode            | 设为 True 时，仅更新当前具有梯度的元素。PyTorch 无此参数，Paddle 保持默认即可。       |
 | -          | multi_precision            | 是否在权重更新期间使用 multi-precision。PyTorch 无此参数，Paddle 保持默认即可。       |

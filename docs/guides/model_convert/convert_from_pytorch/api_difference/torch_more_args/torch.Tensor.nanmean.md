@@ -3,6 +3,7 @@
 ```python
 torch.Tensor.nanmean(dim=None,
                      keepdim=False,
+                     *,
                      dtype=None)
 ```
 

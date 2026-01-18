@@ -14,7 +14,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| tensors       | args         | 输入的 Tensor 列表，仅参数名不一致。                                      |
+| *tensors       | *args         | 输入的 Tensor 列表，仅参数名不一致。                                      |
 | indexing      | -            | tensor 的组合模式。Paddle 无此参数，需要转写。                                        |
 
 ### 转写示例

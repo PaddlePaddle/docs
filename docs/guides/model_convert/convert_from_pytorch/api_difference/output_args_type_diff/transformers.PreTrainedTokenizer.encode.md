@@ -4,9 +4,9 @@
 transformers.PreTrainedTokenizer.encode(text, **kwargs)
 ```
 
-### [paddlenlp.transformers.PreTrainedTokenizer.encode](https://github.com/PaddlePaddle/PaddleNLP/blob/88d4b19bc6865fb28c11d2ce83d07c3b4b8dc423/paddlenlp/transformers/tokenizer_utils_base.py#L2369)
+### [paddleformers.transformers.PreTrainedTokenizer.encode](https://github.com/PaddlePaddle/PaddleNLP/blob/88d4b19bc6865fb28c11d2ce83d07c3b4b8dc423/paddlenlp/transformers/tokenizer_utils_base.py#L2369)
 ```python
-paddlenlp.transformers.PreTrainedTokenizer.encode(text, **kwargs)
+paddleformers.transformers.PreTrainedTokenizer.encode(text, **kwargs)
 ```
 
 ### 参数映射
@@ -23,5 +23,5 @@ paddlenlp.transformers.PreTrainedTokenizer.encode(text, **kwargs)
 transformers.PreTrainedTokenizer.encode(text)
 
 # Paddle 写法
-paddlenlp.transformers.PreTrainedTokenizer.encode(text)["input_ids"]
+paddleformers.transformers.PreTrainedTokenizer.encode(text)["input_ids"]
 ```

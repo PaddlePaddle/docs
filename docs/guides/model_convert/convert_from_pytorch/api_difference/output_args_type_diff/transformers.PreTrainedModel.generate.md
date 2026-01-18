@@ -4,9 +4,9 @@
 transformers.PreTrainedModel.generate(input, **kwargs)
 ```
 
-### [paddlenlp.transformers.PreTrainedModel.generate](https://github.com/PaddlePaddle/PaddleNLP/blob/88d4b19bc6865fb28c11d2ce83d07c3b4b8dc423/paddlenlp/generation/utils.py#L604)
+### [paddleformers.transformers.PretrainedModel.generate](https://github.com/PaddlePaddle/PaddleNLP/blob/88d4b19bc6865fb28c11d2ce83d07c3b4b8dc423/paddlenlp/generation/utils.py#L604)
 ```python
-paddlenlp.transformers.PreTrainedModel.generate(input_ids, **kwargs)
+paddleformers.transformers.PretrainedModel.generate(input_ids, **kwargs)
 ```
 
 ### 参数映射
@@ -23,6 +23,5 @@ paddlenlp.transformers.PreTrainedModel.generate(input_ids, **kwargs)
 res = transformers.PreTrainedModel.generate(input = input_x)
 
 # Paddle 写法
-temp_res = paddlenlp.transformers.PreTrainedModel.generate(input_ids = input_x)
+temp_res = paddleformers.transformers.PretrainedModel.generate(input_ids = input_x)
 res = paddle.concat((input_x,temp_res[0]),axis=-1)
-```

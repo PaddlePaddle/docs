@@ -2,7 +2,7 @@
 ### [torch.sparse.addmm](https://pytorch.org/docs/stable/generated/torch.sparse.addmm.html?highlight=addmm#torch.sparse.addmm)
 ```python
 # PyTorch 文档有误，测试 PyTorch 第一个参数名为 input
-torch.sparse.addmm(input, mat1, mat2, beta=1.0, alpha=1.0)
+torch.sparse.addmm(input, mat1, mat2, *, beta=1.0, alpha=1.0)
 ```
 
 ### [paddle.sparse.addmm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/addmm_cn.html)

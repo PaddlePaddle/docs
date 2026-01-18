@@ -80,6 +80,12 @@ def unescape_api(api):
     return api.replace(r"\_", "_")
 
 
+def safe_remove_var_arg_start(arg: str) -> str:
+    if arg == "*":
+        return arg
+    return arg.lstrip("*")
+
+
 def split_args(args_str):
     """
     按逗号分割参数字符串，忽略括号内的逗号
@@ -428,8 +434,10 @@ def get_meta_from_diff_file(
                         torch_arg, paddle_arg, note = args_table_content
                         meta_data["args_mapping"].append(
                             {
-                                "src_arg": torch_arg,
-                                "dst_arg": paddle_arg,
+                                "src_arg": safe_remove_var_arg_start(torch_arg),
+                                "dst_arg": safe_remove_var_arg_start(
+                                    paddle_arg
+                                ),
                                 "note": note,
                             }
                         )
@@ -626,40 +634,78 @@ def get_table_header_by_prefix(prefix):
 
 
 def discover_all_metas(cfp_basedir):
-    # 获取 api_difference/ 下的 api 映射文档
-    diff_3rd_basedir = os.path.join(cfp_basedir, "api_difference")
-
-    diff_srcs = [("api_difference", "torch.", "paddle.")]
-    diff_srcs += [
-        ("api_difference", "fairscale.", "paddle."),
-        ("api_difference", "flash_attn.", "paddle."),
-        ("api_difference", "transformers.", "paddlenlp."),
-        ("api_difference", "torchvision.", ""),
-    ]
-
-    diff_files = []
-    for diff_src, api_prefix, dst_prefix in diff_srcs:
-        basedir = os.path.join(cfp_basedir, diff_src)
-        files = discover_markdown_files(basedir, api_prefix)
-
-        # 新增过滤逻辑：跳过包含"others"的文件路径
-        filtered_files = [f for f in files if "others" not in f]
-        diff_files.append(((api_prefix, dst_prefix), filtered_files))
+    """
+    递归扫描 api_difference 目录下所有的 .md 文件，无视目录结构，
+    根据文件名自动推断所属库并解析。
+    """
+    search_root = os.path.join(cfp_basedir, "api_difference")
+    if not os.path.exists(search_root):
+        print(f"Error: Directory not found: {search_root}")
+        return []
 
     metas = []
-    for prefixs, files in diff_files:
-        s, d = prefixs
-        sh = get_table_header_by_prefix(s)
-        for f in files:
-            # 确保文件路径中不包含"others"才处理
-            if "others" not in f:
-                metas.append(
-                    get_meta_from_diff_file(f, s, d, src_argmap_title=sh)
+    print(f"Recursively scanning all .md files in: {search_root} ...")
+
+    for root, dirs, files in os.walk(search_root):
+        for filename in files:
+            # 1. 基础过滤：只看 md 文件，且忽略 README
+            if not filename.endswith(".md") or filename.lower() == "readme.md":
+                continue
+
+            # 2. 根据文件名推断 src_prefix 和 dst_prefix
+            # 逻辑：文件名通常是 "库名.模块.API.md"
+            src_prefix = ""
+            dst_prefix = ""
+
+            if filename.startswith("torchvision."):
+                src_prefix = "torchvision."
+                dst_prefix = ""  # torchvision 映射通常留空或视具体情况而定
+            elif filename.startswith("transformers."):
+                src_prefix = "transformers."
+                dst_prefix = "paddleformers."
+            elif filename.startswith("fairscale."):
+                src_prefix = "fairscale."
+                dst_prefix = "paddle."
+            elif filename.startswith("flash_attn."):
+                src_prefix = "flash_attn."
+                dst_prefix = "paddle."
+            elif filename.startswith("torch."):
+                src_prefix = "torch."
+                dst_prefix = "paddle."
+            elif filename.startswith("os."):
+                src_prefix = "os."
+                dst_prefix = "paddle."
+            elif filename.startswith("setuptools."):
+                src_prefix = "setuptools."
+                dst_prefix = "paddle."
+            else:
+                # 如果文件名不符合任何已知前缀，打印警告但尝试按 torch 处理（或跳过）
+                # 这里选择跳过，防止解析非 API 文档报错
+                print(f"Skipping unrecognized file prefix: {filename}")
+                continue
+
+            filepath = os.path.join(root, filename)
+
+            # 3. 解析文件
+            try:
+                src_header = get_table_header_by_prefix(src_prefix)
+
+                # 调用原有的解析函数
+                meta = get_meta_from_diff_file(
+                    filepath,
+                    src_prefix,
+                    dst_prefix,
+                    src_argmap_title=src_header,
                 )
+                metas.append(meta)
+            except Exception as e:
+                # 打印错误但不中断整个流程，方便排查具体坏文件
+                print(f"Warning: Failed to parse {filepath}")
+                print(f"  Error: {e}")
 
     metas.sort(key=lambda x: x["src_api"])
     print(
-        f"extracted {len(metas)} mapping metas data (excluding 'others' files)."
+        f"Successfully extracted {len(metas)} mapping metas data (No filtering)."
     )
     return metas
 

@@ -2,6 +2,7 @@
 ### [torch.frexp](https://pytorch.org/docs/stable/generated/torch.frexp.html?highlight=frexp#torch.frexp)
 ```python
 torch.frexp(input,
+            *,
             out=None)
 ```
 

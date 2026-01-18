@@ -23,6 +23,7 @@ paddle.nn.functional.kl_div(input,
 
 | PyTorch      | PaddlePaddle | 备注                                                   |
 | ------------ | ------------ | ------------------------------------------------------ |
+| target       | label        | 与 input 对应的标签值，仅参数名不一致。               |
 | size_average | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。           |
 | reduce       | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。           |
 | reduction    | reduction    | 表示对输出结果的计算方式。                             |
