@@ -195,7 +195,7 @@ def fc_layer(input, size, with_bias, activation):
     return act_output;
 ```
 
-### Low Leval API
+### Low Level API
 
 In above sample, `fc_op` and `sigmod_op` are low-level API. They build `OpDesc` and invoke corresponding C++ code.
 
