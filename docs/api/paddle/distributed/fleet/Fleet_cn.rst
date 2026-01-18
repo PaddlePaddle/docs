@@ -357,7 +357,7 @@ qat_init(place, scope, test_program=None)
         strategy.qat = True
         optimizer = fleet.distributed_optimizer(optimizer, strategy=strategy)
         # 3. Apply the strategies by distributed optimizer
-        # If you don't use the default_startup_program(), you sholud pass
+        # If you don't use the default_startup_program(), you should pass
         # your defined `startup_program` into `minimize`.
         optimizer.minimize(loss)
         exe.run(paddle.static.default_startup_program())

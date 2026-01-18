@@ -46,7 +46,7 @@ Paddle 开发人员使用 [pre-commit](https://pre-commit.com/) 工具来管理 
 pre-commit 测试是 CI 流水线中测试的一部分，不满足钩子的 PR 不能被提交到 Paddle，首先安装并在当前目录运行它：
 
 ```
-➜  pip install pre-commit==2.17.0
+➜  pip install pre-commit
 ➜  pre-commit install
 ```
 
