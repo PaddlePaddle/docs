@@ -66,7 +66,7 @@
     <tr>
         <td> Blackwell </td>
         <td> sm_120 </td>
-        <td> NVIDIA TX 5090, RTX 5080, RTX 5070 </td>
+        <td> NVIDIA RTX 5090, RTX 5080, RTX 5070 </td>
         <td> CUDA12.9（推荐）、CUDA13.0 </td>
     </tr>
     </tbody>
@@ -90,7 +90,7 @@
     <tbody>
     <tr>
         <td> CMake </td>
-        <td> 3.18, 3.19(推荐),4.0 </td>
+        <td> 3.18、3.19(推荐)、4.0 </td>
         <td>  </td>
         <td>  </td>
     </tr>
