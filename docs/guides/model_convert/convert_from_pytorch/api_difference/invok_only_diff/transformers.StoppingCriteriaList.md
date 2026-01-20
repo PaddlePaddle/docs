@@ -3,14 +3,14 @@
 ### [transformers.StoppingCriteriaList](https://github.com/huggingface/transformers/blob/d625294d79341662784495551abdf45e6cb9372f/src/transformers/generation/stopping_criteria.py#L503)
 
 ```python
-transformers.StoppingCriteriaList()
+transformers.StoppingCriteriaList(*args)
 
 ```
 
 ### [paddleformers.generation.StoppingCriteriaList](https://github.com/PaddlePaddle/PaddleFormers/blob/ca66f8dd619a6b2e17fa901042277501b2ed3230/paddleformers/generation/stopping_criteria.py#L72)
 
 ```python
-paddleformers.generation.StoppingCriteriaList()
+paddleformers.generation.StoppingCriteriaList(*args)
 
 ```
 
