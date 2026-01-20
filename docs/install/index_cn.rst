@@ -9,7 +9,7 @@
   重要更新
 -----------
 
-* 支持用户安装 paddle 不依赖 CUDA 和 cuDNN，Paddle 自动处理 CUDA 和 cuDNN 的安装，只要本地的 GPU 驱动满足要求即可，驱动要求可以参考`[这里] <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html>`_ 。
+* 支持用户安装 paddle 不依赖 CUDA 和 cuDNN，Paddle 自动处理 CUDA 和 cuDNN 的安装，只要本地的 GPU 驱动满足要求即可，驱动要求可以参考 `这里 <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html>`_ 。
 
 -----------
   安装说明

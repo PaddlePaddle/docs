@@ -9,7 +9,7 @@
   Important updates
 ----------------------
 
-* Paddle supports user installation without depending on CUDA and cuDNN, and automatically handles the installation of CUDA and cuDNN.You only need to ensure that the local GPU driver meets the requirements; please refer to this link for details[here](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html).
+* Paddle supports user installation without depending on CUDA and cuDNN, and automatically handles the installation of CUDA and cuDNN.You only need to ensure that the local GPU driver meets the requirements; please refer to this link for details `here <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html>`_.
 
 
 ------------------------
