@@ -337,7 +337,7 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
     </tr>
     <tr>
         <td> paddlepaddle-gpu==[版本号] 例如 paddlepaddle-gpu==3.3.0,GPU 的包都放在 paddle 自建源上</td>
-        <td> 具体安装方式版本请参见<a href=https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/linux-pip.html></a> </td>
+        <td> 具体安装方式版本请参见<a href="https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/linux-pip.html">这里</a> </td>
     </tr>
    </tbody>
 </table>
@@ -465,6 +465,7 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.3.0-cp312-cp312-win_amd64.whl"> paddlepaddle_gpu-3.3.0-cp312-cp312-win_amd64.whl</a></td>
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu126/paddlepaddle-gpu/paddlepaddle_gpu-3.3.0-cp313-cp313-win_amd64.whl"> paddlepaddle_gpu-3.3.0-cp313-cp313-win_amd64.whl</a></td>
     </tr>
+    <tr>
         <td> win-cuda12.9-cudnn9.9-mkl-vs2019-avx </td>
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu129/paddlepaddle-gpu/paddlepaddle_gpu-3.3.0-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-3.3.0-cp39-cp39-win_amd64.whl</a></td>
         <td> <a href="https://paddle-whl.bj.bcebos.com/stable/cu129/paddlepaddle-gpu/paddlepaddle_gpu-3.3.0-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-3.3.0-cp310-cp310-win_amd64.whl</a></td>
@@ -527,7 +528,7 @@ platform tag: 类似 'linux_x86_64', 'any'
 cd /home/work
 ```
 ```
-docker run -it -v $PWD:ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.3.0-gpu-cuda12.9-cudnn9.9 /work/train.py
+docker run -it -v $PWD:/work ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.3.0-gpu-cuda12.9-cudnn9.9 /work/train.py
 ```
 
 上述命令中，`-it` 参数说明容器已交互式运行；`-v $PWD:/work`

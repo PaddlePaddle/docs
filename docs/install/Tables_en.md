@@ -67,7 +67,7 @@
     <tr>
         <td> Blackwell </td>
         <td> sm_120 </td>
-        <td> NVIDIA TX 5090, RTX 5080, RTX 5070 </td>
+        <td> NVIDIA RTX 5090, RTX 5080, RTX 5070 </td>
         <td> CUDA12.9（Recommend） CUDA13.0 </td>
     </tr>
     </tbody>
@@ -329,7 +329,7 @@ PaddePaddle implements references to various BLAS/CUDA/cuDNN libraries by specif
     </tr>
     <tr>
         <td> paddlepaddle-gpu==[version code], such as paddlepaddle-gpu==3.3.0 </td>
-        <td> For specific installation methods and versions, please refer to<a href=https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/linux-pip.html></a> </td></td>
+        <td> For specific installation methods and versions, please refer to<a href="https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/linux-pip.html">here</a>. </td>
     </tr>
    </tbody>
 </table>
@@ -523,7 +523,7 @@ Suppose you have written a PaddlePaddle program in the current directory (such a
 cd /home/work
 ```
 ```
-docker run -it -v $PWD:ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.3.0-gpu-cuda12.9-cudnn9.9 /work/train.py
+docker run -it -v $PWD:/work ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.3.0-gpu-cuda12.9-cudnn9.9 /work/train.py
 ```
 
 
