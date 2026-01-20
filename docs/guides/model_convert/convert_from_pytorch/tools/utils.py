@@ -1,4 +1,3 @@
-import ast
 import json
 import os
 import re
@@ -269,7 +268,7 @@ def load_mapping_json(json_path):
             return json.load(f)
     except Exception as e:
         print(f"错误: 读取JSON文件 {json_path} 时出错: {e!s}")
-        return []
+        return {}
 
 
 def convert_to_github_url(local_path, base_dir):
@@ -331,24 +330,20 @@ def get_paddle_url(paddle_api: str) -> str:
     return url + "#" + anchor
 
 
-def extract_no_need_convert_list(file_path):
+def extract_no_need_convert_list():
+    file_path = os.path.join(os.path.dirname(__file__), "api_mapping.json")
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(
+            f"api_mapping.json should exist at {file_path} to extract no_need_convert_list"
+        )
     with open(file_path, "r", encoding="utf-8") as file:
-        content = file.read()
+        api_mapping_json = json.load(file)
 
-    tree = ast.parse(content)
-    no_need_list = None
-
-    for node in ast.walk(tree):
-        if isinstance(node, ast.ClassDef) and node.name == "GlobalManager":
-            for class_node in node.body:
-                if isinstance(class_node, ast.Assign) and any(
-                    target.id == "NO_NEED_CONVERT_LIST"
-                    for target in class_node.targets
-                ):
-                    # 提取列表字面量
-                    list_source = ast.get_source_segment(
-                        content, class_node.value
-                    )
-                    no_need_list = ast.literal_eval(list_source)
-                    break
+    no_need_list = [
+        k
+        for k, v in api_mapping_json.items()
+        if v.get("Matcher") == "ChangePrefixMatcher"
+    ]
+    if len(no_need_list) == 0:
+        raise ValueError("no_need_list is empty")
     return no_need_list
