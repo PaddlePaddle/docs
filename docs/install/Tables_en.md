@@ -177,7 +177,7 @@
         <td> opt_einsum </td>
         <td> </td>
         <td> </td>
-        <td> <code> pip install opt_eisum==3.3.0 </code> </td>
+        <td> <code> pip install opt_einsum==3.3.0 </code> </td>
     </tr>
     <tr>
         <td> protobuf </td>
