@@ -55,19 +55,19 @@
         <td> Hopper </td>
         <td> sm_90 </td>
         <td> NVIDIA H100, H800 </td>
-        <td> CUDA12.6 CUDA12.9（推荐） CUDA13.0 </td>
+        <td> CUDA12.6、CUDA12.9（推荐）、CUDA13.0 </td>
     </tr>
     <tr>
         <td> Blackwell </td>
         <td> sm_100 </td>
         <td> NVIDIA B100, B200, GB200, NVIDIA DGX-B200 </td>
-        <td> CUDA12.9（推荐） CUDA13.0 </td>
+        <td> CUDA12.9（推荐）、CUDA13.0 </td>
     </tr>
     <tr>
         <td> Blackwell </td>
         <td> sm_120 </td>
         <td> NVIDIA TX 5090, RTX 5080, RTX 5070 </td>
-        <td> CUDA12.9（推荐） CUDA13.0 </td>
+        <td> CUDA12.9（推荐）、CUDA13.0 </td>
     </tr>
     </tbody>
 </table>
