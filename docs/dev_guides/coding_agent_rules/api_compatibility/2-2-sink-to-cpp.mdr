@@ -8,9 +8,7 @@ alwaysApply: false
 
 你擅长《Paddle API对齐PyTorch项目》中的**C++下沉方案**的代码开发。通过将Python API下沉至C++层，可以减少Python装饰器带来的性能开销，提升API调度效率。
 
-**重要提示**：
-
-## 核心优势
+**特点**：
 - **性能提升**：消除Python层逻辑开销
 - **参数解析**：在C++层高效解析位置参数和关键字参数
 - **参数映射**：自动完成Paddle与Torch API参数别名的映射转换
@@ -72,6 +70,7 @@ add_doc_and_signature(
     Calculates the log to the base 2 of the given input tensor, element-wise.
 
     .. math::
+
         Out = \log_2x
 
     Args:
@@ -83,17 +82,43 @@ add_doc_and_signature(
         Tensor: The log to the base 2 of the input Tensor computed element-wise.
 
     Examples:
-        .. code-block:: python
+
+        .. code-block:: pycon
 
             >>> import paddle
+
+            >>> # example 1: x is a float
             >>> x_i = paddle.to_tensor([[1.0], [2.0]])
             >>> res = paddle.log2(x_i)
             >>> res
             Tensor(shape=[2, 1], dtype=float32, place=Place(cpu), stop_gradient=True,
             [[0.],
              [1.]])
-    """,
-    "def log2(x: Tensor, name: str | None = None, *, out: Tensor | None = None) -> Tensor",
+
+            >>> # example 2: x is float32
+            >>> x_i = paddle.full(shape=[1], fill_value=2, dtype='float32')
+            >>> paddle.to_tensor(x_i)
+            >>> res = paddle.log2(x_i)
+            >>> res
+            Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
+            [1.])
+
+            >>> # example 3: x is float64
+            >>> x_i = paddle.full(shape=[1], fill_value=2, dtype='float64')
+            >>> paddle.to_tensor(x_i)
+            >>> res = paddle.log2(x_i)
+            >>> res
+            Tensor(shape=[1], dtype=float64, place=Place(cpu), stop_gradient=True,
+            [1.])
+""",
+    """
+def log2(
+    x: Tensor,
+    name: str | None = None,
+    *,
+    out: Tensor | None = None,
+) -> Tensor
+""",
 )
 ```
 
@@ -135,34 +160,38 @@ class TestLog2API_Compatibility(unittest.TestCase):
 
     def test_dygraph_Compatibility(self):
         paddle.disable_static()
-        x = paddle.to_tensor(self.np_input)
         paddle_dygraph_out = []
 
-        # 位置参数 (args)
+        # Positional arguments (args)
         out1 = paddle.log2(x)
         paddle_dygraph_out.append(out1)
 
-        # Paddle关键字参数 (kwargs)
+        # Paddle keyword arguments (kwargs)
         out2 = paddle.log2(x=x)
         paddle_dygraph_out.append(out2)
 
-        # Torch关键字参数
+        # Torch keyword arguments
         out3 = paddle.log2(input=x)
         paddle_dygraph_out.append(out3)
 
-        # 测试out参数
+        # Test out parameter
         out4 = paddle.empty([])
         paddle.log2(x, out=out4)
         paddle_dygraph_out.append(out4)
 
-        # Tensor方法 - kwargs
+        # Tensor method - kwargs
         out5 = x.log2()
         paddle_dygraph_out.append(out5)
 
-        # Numpy参考输出
+        # Test out parameter
+        out6 = paddle.empty([])
+        paddle.log2(x, out=out6)
+        paddle_dygraph_out.append(out6)
+
+        # Numpy reference output
         ref_out = np.log2(self.np_input)
 
-        # 验证所有输出
+        # Verify all outputs
         for out in paddle_dygraph_out:
             np.testing.assert_allclose(ref_out, out.numpy())
         paddle.enable_static()
@@ -174,13 +203,13 @@ class TestLog2API_Compatibility(unittest.TestCase):
         with base.program_guard(main, startup):
             x = paddle.static.data(name="x", shape=self.shape, dtype=self.dtype)
 
-            # 位置参数
+            # Positional arguments
             out1 = paddle.log2(x)
-            # Paddle关键字参数
+            # Paddle keyword arguments
             out2 = paddle.log2(x=x)
-            # Torch关键字参数
+            # Torch keyword arguments
             out3 = paddle.log2(input=x)
-            # Tensor方法
+            # Tensor method
             out4 = x.log2()
 
             exe = base.Executor(paddle.CPUPlace())
@@ -304,7 +333,6 @@ void LogsumexpPreProcess(pir::Value *x, std::vector<int> *axis, bool *reduce_all
 - 直接翻译Python前处理逻辑到C++
 
 ### Step 3~6：参考场景一的Step 2~5
-
 
 ## 2.3 场景三：复杂参数映射（最复杂）
 
@@ -529,35 +557,9 @@ void ArgMaxMinMapper(PyObject* args,
 | **示例API** | log2 | logsumexp | argmax, argmin |
 
 
-# 三、通用注意事项
+# 三、单元测试规范
 
-## 3.1 文档相关
-
-### 支持out参数的文档修改
-若API需支持`out`参数，必须：
-- **英文文档**：直接修改`add_doc_and_signature`中的字符串，增加out参数
-
-### 静态检查误报
-示例代码若涉及多种数据类型，可能触发类型检查误报，添加注释忽略：
-```python
-.. code-block:: python
-    >>> # type: ignore
-    >>> import paddle
-    >>> x = paddle.to_tensor([1.0, 2.0])
-```
-
-## 3.2 参数顺序特殊情况
-若Python API参数顺序与`_C_ops` API不同，属于特殊情况，Cpp下沉方案无法实现，需要使用Python装饰器方案。
-
-## 3.3 注意事项
-- **静态图代码生成**：cmake阶段
-- **动态图代码生成**：make阶段
-- **重要**：修改YAML后需重新执行`cmake`和`make`
-
-
-# 四、单元测试规范
-
-## 4.1 传参方式兼容性测试
+## 3.1 传参方式兼容性测试
 ```python
 # 位置参数
 out1 = paddle.api(x, arg1, arg2)
@@ -572,7 +574,7 @@ out3 = paddle.api(input=x, dim=arg1, keepdim=arg2)
 out4 = paddle.api(x, dim=arg1, keepdim=arg2)
 ```
 
-## 4.2 Tensor方法测试
+## 3.2 Tensor方法测试
 ```python
 # 方法调用 - 位置参数
 out5 = x.api(arg1, arg2)
@@ -581,7 +583,7 @@ out5 = x.api(arg1, arg2)
 out6 = x.api(dim=arg1, keepdim=arg2)
 ```
 
-## 4.3 异常参数测试
+## 3.3 异常参数测试
 ```python
 # 参数缺失
 with self.assertRaises(ValueError):
@@ -596,28 +598,28 @@ with self.assertRaises(TypeError):
     paddle.api(x, wrong_key=value)
 ```
 
-## 4.4 文档绑定测试
+## 3.4 文档绑定测试
 ```python
 def test_docstring(self):
     self.assertIsNotNone(paddle.api.__doc__)
     self.assertIn("Args:", paddle.api.__doc__)
 ```
 
-## 4.5 动态图和静态图测试
+## 3.5 动态图和静态图测试
 必须分别测试动态图（eager mode）和静态图（static graph）两种模式。
 
-# 五、异常处理
+# 四、异常处理
 
-## 5.1 处理流程
+## 4.1 处理流程
 当遇到错误时，建议按照以下步骤处理，确保代码能运行通过：
 1. **定位错误**：仔细阅读错误信息，确定错误类型和位置
 2. **分析原因**：根据错误信息分析具体问题，例如参数错误、类型不匹配
 3. **修改代码**：根据错误信息与分析结果，调整代码
 4. **验证修复**：重新运行测试确认问题解决
 
-## 5.2 常见错误及解决方案
+## 4.2 常见错误及解决方案
 
-### 5.2.1 静态图兼容性问题
+### 静态图兼容性问题
 **错误现象**：
 ```python
 TypeError: (InvalidType) all(): argument (position 1) must be Value, but got Variable
@@ -638,7 +640,7 @@ API下沉后使用了新的Value类型系统，但测试代码仍在使用旧的
    ```
 3. 检查并更新所有引用这些测试的代码
 
-### 5.2.2 参数解析错误
+### 参数解析错误
 **错误现象**：
 ```python
 TypeError: argmax() got an unexpected keyword argument 'invalid_param'
@@ -648,7 +650,7 @@ TypeError: argmax() got an unexpected keyword argument 'invalid_param'
 1. 检查参数名称拼写
 2. 确认是否支持该参数
 
-### 5.2.3 类型转换错误
+### 类型转换错误
 **错误现象**：
 ```python
 TypeError: expected Tensor as argument, got numpy.ndarray
@@ -662,9 +664,9 @@ TypeError: expected Tensor as argument, got numpy.ndarray
 2. 检查数据类型是否匹配
 
 
-# 六、技术背景知识
+# 五、技术背景知识
 
-## 6.1 工具函数速查
+## 5.1 工具函数速查
 
 ```cpp
 // 获取Tensor参数（支持别名）
@@ -690,4 +692,16 @@ std::vector<int> CastPyArg2Ints(PyObject* obj, const std::string& op_name, int a
 // 检查函数
 void CheckParamsCount(int nargs, int remaining_kwargs, int max_args);
 void CheckRemainingParamsValidity(PyObject* args, PyObject* kwargs, int remaining_kwargs, int nargs);
+```
+
+# 六、注意事项
+1. 若Python API参数顺序与`_C_ops` API不同，属于特殊情况，Cpp下沉方案无法实现，需要使用Python装饰器方案。
+2. 代码中不允许提交中文，代码注释采用英文
+3. 若API需支持`out`参数，必须修改`add_doc_and_signature`中的字符串，增加out参数
+4. 示例代码若涉及多种数据类型，可能触发类型检查误报，添加注释忽略：
+```python
+  .. code-block:: pycon
+      >>> # type: ignore
+      >>> import paddle
+      >>> x = paddle.to_tensor([1.0, 2.0])
 ```

@@ -8,7 +8,7 @@ alwaysApply: false
 
 你是《Paddle API对齐PyTorch项目》的**主控智能体**，负责统筹全流程的工作，调用多个子智能体，最终完成输入的所有API对齐。
 
-## 核心职责
+**核心职责**：
 1. 接收待对齐的Pytorch API列表
 2. 为对应的Paddle API决策改动方案
 3. 执行具体的Paddle API修改
@@ -70,7 +70,7 @@ torch.logsumexp
 |Paddle API兼容性单测位置|`test_api_compatibility.py`|Paddle/test/legacy_test/test_api_compatibility.py||
 |Pytorch API单测位置|`test_{api_name}.py`|PaConvert/tests/|PaConvert/tests/test_tan.py||
 
-## 4.2 Paddle API架构（5层调用栈）
+## 4.3 Paddle API架构（5层调用栈）
 
 Paddle API从上到下由5层组成（本项目直接修改第1、5层，对于第2~4层通常是修改yaml配置文件，例如python_api_info.yaml）：
 
@@ -100,7 +100,7 @@ Tensor atan(const Tensor& x, ...)
 void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 ```
 
-## 4.3 专业术语表
+## 4.4 专业术语表
 
 | 术语 | 定义 | 备注 |
 |------|------|------|
@@ -119,20 +119,20 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 
 # 五、代码修改规范
 
-## 1. 代码注释规范
+## 5.1 代码注释规范
 - ✅ 改动的位置如果方便注释，可以注释`# Edit by AI Agent`，表明这是你完成的工作
 
-## 2. 代码质量规范
+## 5.2 代码质量规范
 - ✅ 保持代码风格与项目一致
 - ✅ 不破坏现有功能
 - ✅ 确保向后兼容性
 
-## 3. 测试规范
+## 5.3 测试规范
 - ✅ 修改后必须通过原有测试
 - ✅ 必须添加新的单元测试
 - ✅ 必须通过PyTorch对齐验证
 
-## 4. 文档规范
+## 5.4 文档规范
 - ✅ 同步更新中文文档
 - ✅ 文档格式符合Paddle规范
 - ✅ 准确描述API功能和参数
@@ -155,7 +155,7 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
    - Step4：对**所有API**更新文档
 3. **流程推进的豁免与放弃条件**：
    - **豁免条件**（跳过后续步骤，但记录决策结果）：
-     * 非方案2：若决策不为方案2，则该API跳过后续Step2~4，无需自行处理
+     * 若决策不为方案1/2，则该API跳过后续Step2~4，无需自行处理
    - **放弃策略**（合理分配精力，最大化成功率）：
      * **放弃判断标准**：
        - 当某个API在Step2或Step3经过多次尝试（建议3次）仍无法通过验证
@@ -179,7 +179,7 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 
 **执行步骤**：
 1. 输入：需要对齐的PyTorch API列表（如 `torch.atan`、`torch.asinh`）
-2. 调用 `API改动方案决策智能体`
+2. 严格执行1-scheme-decision.mdr，如果你找不到该文件，请直接结束会话，并告知我异常
 3. 输出：方案类型、对应Paddle API、差异分类、决策依据
 
 **方案类型**：
@@ -197,7 +197,7 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 **执行步骤**：
 1. 输入：方案类型、对应Paddle API（如 `paddle.atan`、`paddle.asinh`）、差异分类、决策依据
 2. 根据方案类型，调用对应的子智能体，每个子智能体批量处理其所负责的API：
-   - 方案1 → `Python装饰器智能体`（豁免）
+   - 方案1 → `Python装饰器智能体`
    - 方案2 → `Cpp下沉智能体`
    - 方案3 → `修改API智能体`（豁免）
    - 方案4 → `新增API智能体`（豁免）
@@ -234,8 +234,6 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 
 ## 6.3 重要约束 ⚠️
 
-### 执行原则
-
 1. **流程正向推进原则**
    - 正常情况下必须遵循 Step1 → Step2 → Step3 → Step4 的顺序
    - 每个步骤完成并验证通过后，才能进入下一步骤
@@ -270,11 +268,10 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 
 | 序号 | 智能体名称 | 负责步骤 | 主要职责 | 对应方案 |
 |------|-----------|---------|---------|---------|
-| 1 | **API改动方案决策智能体** | Step 1 | 通过API差异分析，决策API的兼容修改方案 | - |
-| 2 | **Python装饰器智能体**(暂未实现) | Step 2 | 通过装饰器对齐参数签名 | 方案1：Python装饰器 |
-| 3 | **Cpp下沉智能体** | Step 2 | 将API从Python层下沉到C++层 | 方案2：C++下沉 |
-| 4 | **修改API智能体**(暂未实现) | Step 2 | 修改现有API实现 | 方案3：修改API方案 |
-| 5 | **新增API智能体**(暂未实现) | Step 2 | 新增缺失的API | 方案4：新增API方案 |
-| 6 | **新增compat类型API智能体**(暂未实现) | Step 2 | 添加兼容性API | 方案5：新增compat方案 |
-| 7 | **Pytorch对齐验证智能体** | Step 3 | 验证修改后的Paddle API能与PyTorch API完全对齐 | - |
-| 8 | **API文档修改智能体** | Step 4 | 更新Paddle API中文文档 | - |
+| 1 | **Python装饰器智能体** | Step 2 | 通过装饰器对齐参数签名 | 方案1：Python装饰器 |
+| 2 | **Cpp下沉智能体** | Step 2 | 将API从Python层下沉到C++层 | 方案2：C++下沉 |
+| 3 | **修改API智能体**(暂未实现) | Step 2 | 修改现有API实现 | 方案3：修改API方案 |
+| 4 | **新增API智能体**(暂未实现) | Step 2 | 新增缺失的API | 方案4：新增API方案 |
+| 5 | **新增compat类型API智能体**(暂未实现) | Step 2 | 添加兼容性API | 方案5：新增compat方案 |
+| 6 | **Pytorch对齐验证智能体** | Step 3 | 验证修改后的Paddle API能与PyTorch API完全对齐 | - |
+| 7 | **API文档修改智能体** | Step 4 | 更新Paddle API中文文档 | - |
