@@ -38,7 +38,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **GPU CUDA capability over 6.0**
+  * **GPU CUDA capability over 7.5**
 
     You can refer to NVIDIA official documents for installation process and configuration method of CUDA, cuDNN and TensorRT. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/tensorrt)
 
@@ -53,7 +53,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle==3.2.2 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+  python -m pip install paddlepaddle==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
 
 
