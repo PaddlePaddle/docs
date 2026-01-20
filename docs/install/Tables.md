@@ -555,7 +555,7 @@ python train.py
 
 为了保证 GPU 驱动能够在镜像里面正常运行，我们推荐使用
 [nvidia-docker](https://github.com/NVIDIA/nvidia-docker)来运行镜像。
-请不要忘记提前在物理机上安装 GPU 最新驱动，驱动要求可以参考[这里](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html)。
+请不要忘记提前在物理机上安装 GPU 最新驱动，驱动要求可以参考[这里](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html) 。
 
 ```
 nvidia-docker run -it -v $PWD:/work ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:3.3.0-gpu-cuda12.9-cudnn9.9 /bin/bash
