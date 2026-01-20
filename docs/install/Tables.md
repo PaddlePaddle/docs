@@ -336,7 +336,6 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
         <td> 只支持 CPU 对应版本的 PaddlePaddle，具体版本请参见<a href=https://pypi.org/project/paddlepaddle/#history>Pypi</a> </td>
     </tr>
     <tr>
-
         <td> 具体安装方式版本请参见<a href=https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/linux-pip.html>这里</a> </td>
     </tr>
    </tbody>
