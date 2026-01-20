@@ -322,26 +322,6 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
 </br></br>
 ## **安装包列表**
 
-<p align="center">
-<table>
-    <thead>
-    <tr>
-        <th> 版本号 </th>
-        <th> 版本说明 </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td> paddlepaddle==[版本号] 例如 paddlepaddle==3.3.0 </td>
-        <td> 只支持 CPU 对应版本的 PaddlePaddle，具体版本请参见<a href=https://pypi.org/project/paddlepaddle/#history>Pypi</a> </td>
-    </tr>
-    <tr>
-        <td> 具体安装方式版本请参见<a href=https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/linux-pip.html>这里</a> </td>
-    </tr>
-   </tbody>
-</table>
-</p>
-
 您可以在以下飞桨官方路径中根据您的 CUDA 环境查找并下载对应的 PaddlePaddle-gpu 发行版本：
 
 * [CUDA 11.8 环境安装包](https://www.paddlepaddle.org.cn/packages/stable/cu118/)
