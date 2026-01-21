@@ -8,8 +8,8 @@ METAX GPGPU 芯片
 
 飞桨框架支持基于沐曦曦云芯片的训练和推理，请参考以下内容快速体验：
 
-- `沐曦 曦云 C 系列 安装说明 <./install_cn.html>`_ : 沐曦 曦云 C 系列 安装说明
-- `沐曦 曦云 C 系列 基于框架的使用指南 <./paddle_tutorial_cn.html>`_ : 沐曦 曦云 C 系列 基于框架的使用指南
+- `沐曦 曦云 C 系列 安装说明 <./install_cn.md>`_ : 沐曦 曦云 C 系列 安装说明
+- `沐曦 曦云 C 系列 基于框架的使用指南 <./paddle_tutorial_cn.md>`_ : 沐曦 曦云 C 系列 基于框架的使用指南
 
 ..  toctree::
     :hidden:
