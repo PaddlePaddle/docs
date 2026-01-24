@@ -175,7 +175,3 @@ pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 恭喜！至此您已完成 PaddlePaddle 在龙芯环境下的源码编译和安装。
 
 ---
-
-**文档版本**：1.0
-**最后更新**：2024
-**适用版本**：PaddlePaddle release/3.3
