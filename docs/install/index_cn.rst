@@ -9,8 +9,7 @@
   重要更新
 -----------
 
-* 支持用户安装 paddle 不依赖 cuda 和 cudnn，Paddle 自动处理 CUDA 和 cuDNN 的安装
-
+* 支持用户安装 paddle 不依赖 CUDA 和 cuDNN，Paddle 自动处理 CUDA 和 cuDNN 的安装，只要本地的 GPU 驱动满足要求即可，驱动要求可以参考 `这里 <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html>`_ 。
 
 -----------
   安装说明
@@ -20,8 +19,8 @@
 
 **1. 操作系统要求：**
 
-* Windows 7 / 8 / 10 / 11，专业版 / 企业版
-* Ubuntu 20.04 / 22.04
+* Windows 10 / 11，专业版 / 企业版
+* Ubuntu 20.04 / 22.04 / 24.04
 * almalinux 8
 * macOS 12.x/13.x/14.x/15.x
 * 操作系统要求是 64 位版本
@@ -88,30 +87,30 @@
 
 7. 如果您希望使用 `pip <https://pypi.org/project/pip/>`_ 进行安装 PaddlePaddle 可以直接使用以下命令:
 
-     注意:
-
-       * 如果你想要安装 paddlepaddle，该版本要求 libstdc++.so.6 的版本大于 3.4.25。为了满足此要求，您可以选择安装 GCC 8 或者更高的 GCC 版本，或者单独升级 libstdc++库。
-
     (1). **CPU 版本** ：如果您只是想安装 CPU 版本请参考如下命令安装
 
         安装 CPU 版本的命令为：
         ::
 
-            python -m pip install --pre paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
+            python -m pip install paddlepaddle==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 
     (2). **GPU 版本** ：如果您想使用 GPU 版本请参考如下命令安装
 
-        安装 GPU cuda12.s96 版本的命令为：
+        安装 GPU cuda13.0 版本的命令为：
         ::
-            python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu129/
+            python -m pip install paddlepaddle-gpu==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu130/
+
+        安装 GPU cuda12.9 版本的命令为：
+        ::
+            python -m pip install paddlepaddle-gpu==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu129/
 
         安装 GPU cuda12.6 版本的命令为：
         ::
-            python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu126/
+            python -m pip install paddlepaddle-gpu==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
 
         安装 GPU cuda11.8 版本的命令为：
         ::
-            python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu118/
+            python -m pip install --pre paddlepaddle-gpu==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
 
     请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 
