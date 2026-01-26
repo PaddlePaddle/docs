@@ -14,8 +14,8 @@ cdist
 参数
 ::::::::::::
 
-  - **x** (Tensor) - 形状为 :math:`B \times P \times M` 的 Tensor。Alias: ``x1``。
-  - **y** (Tensor) - 形状为 :math:`B \times R \times M` 的 Tensor。Alias: ``x2``。
+  - **x** (Tensor) - 形状为 :math:`B \times P \times M` 的 Tensor。别名 ``x1``。
+  - **y** (Tensor) - 形状为 :math:`B \times R \times M` 的 Tensor。别名 ``x2``。
   - **p** (float, 可选) - 计算每个向量对之间的 p 范数距离的值。默认值为 :math:`2.0`。
   - **compute_mode** (str, 可选) - 选择计算模式。
 

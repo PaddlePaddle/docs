@@ -22,7 +22,7 @@ alwaysApply: false
 
 ## 2.1 场景一：仅参数名不一致（最简单）
 
-**适用条件：**
+**适用条件（需全部满足）：**
 - Paddle Python API与`ops.yaml`中参数**类型或数量一致**
 - Paddle API和PyTorch API仅参数名称不一致
 - Python端调用`_C_ops`前**无任何前处理逻辑**
@@ -123,7 +123,7 @@ def log2(
 ```
 
 **注意事项：**
-- 如果API支持`out`参数，必须在文档中添加`out`参数说明
+- 如果API支持`out`参数，必须在_paddle_docs.py中添加`out`参数说明
 - 使用 `# type: ignore` 忽略静态检查误报（多类型输入场景）
 
 ### Step 3：替换Python实现
@@ -142,96 +142,106 @@ from paddle._C_ops import log2  # noqa: F401
 #     ...
 ```
 
-### Step 4：添加兼容单测到 `test_api_compatibility.py`
+### Step 4：添加测试用例到 `test_api_compatibility.py`
 
 不要新建任何测试文件，直接在 `test/legacy_test/test_api_compatibility.py` 中添加测试：
 
 ```python
-class TestLog2API_Compatibility(unittest.TestCase):
+class Test<APIName>(unittest.TestCase):
     def setUp(self):
-        np.random.seed(123)
-        paddle.enable_static()
-        self.shape = [5, 6]
+        np.random.seed(2025)
+        self.places = get_devices()
+        self.shape = [...]
         self.dtype = 'float32'
         self.init_data()
 
     def init_data(self):
-        self.np_input = np.random.randint(0, 8, self.shape).astype(self.dtype)
+        self.np_x = np.random.rand(*self.shape).astype(self.dtype)
+        # Other initializations...
 
     def test_dygraph_Compatibility(self):
         paddle.disable_static()
-        paddle_dygraph_out = []
+        x = paddle.to_tensor(self.np_x)
 
-        # Positional arguments (args)
-        out1 = paddle.log2(x)
-        paddle_dygraph_out.append(out1)
+        # 1. Paddle Positional arguments
+        out1 = paddle.<api_name>(x, ...)
 
-        # Paddle keyword arguments (kwargs)
-        out2 = paddle.log2(x=x)
-        paddle_dygraph_out.append(out2)
+        # 2. Paddle keyword arguments
+        out2 = paddle.<api_name>(x=x, ...)
 
-        # Torch keyword arguments
-        out3 = paddle.log2(input=x)
-        paddle_dygraph_out.append(out3)
+        # 3. Pytorch Positional arguments (if different with paddle args)
+        out3 = paddle.<api_name>(x, ...)
 
-        # Test out parameter
-        out4 = paddle.empty([])
-        paddle.log2(x, out=out4)
-        paddle_dygraph_out.append(out4)
+        # 4. PyTorch keyword arguments (alias)
+        out4 = paddle.<api_name>(input=x, dim=...)
 
-        # Tensor method - kwargs
-        out5 = x.log2()
-        paddle_dygraph_out.append(out5)
+        # 5. Mixed arguments
+        out5 = paddle.<api_name>(x, axis=...)
 
-        # Test out parameter
-        out6 = paddle.empty([])
-        paddle.log2(x, out=out6)
-        paddle_dygraph_out.append(out6)
+        # 6. out parameter test (if supported)
+        if hasattr(self, 'supports_out') and self.supports_out():
+            out6 = paddle.empty_like(x)
+            out7 = paddle.<api_name>(x, ..., out=out5)
 
-        # Numpy reference output
-        ref_out = np.log2(self.np_input)
+        # 7. Tensor method - args
+        out8 = x.<api_name>(...)
+
+        # 8. Tensor method - kwargs
+        out9 = x.<api_name>(axis=...)
 
         # Verify all outputs
-        for out in paddle_dygraph_out:
-            np.testing.assert_allclose(ref_out, out.numpy())
+        for out in [out1, out2, out3, out4, out5, out6, out7, out8, out9]:
+            np.testing.assert_allclose(out.numpy(), ...)
+
         paddle.enable_static()
 
     def test_static_Compatibility(self):
         paddle.enable_static()
         main = paddle.static.Program()
         startup = paddle.static.Program()
-        with base.program_guard(main, startup):
+        with paddle.static.program_guard(main, startup):
             x = paddle.static.data(name="x", shape=self.shape, dtype=self.dtype)
 
-            # Positional arguments
-            out1 = paddle.log2(x)
-            # Paddle keyword arguments
-            out2 = paddle.log2(x=x)
-            # Torch keyword arguments
-            out3 = paddle.log2(input=x)
-            # Tensor method
-            out4 = x.log2()
+            # Create multiple outputs
+            out1 = paddle.<api_name>(x, ...)
+            out2 = paddle.<api_name>(x=x, ...)
+            out3 = paddle.<api_name>(input=x, dim=...)
 
-            exe = base.Executor(paddle.CPUPlace())
+            exe = paddle.static.Executor()
             fetches = exe.run(
                 main,
-                feed={"x": self.np_input},
-                fetch_list=[out1, out2, out3, out4],
+                feed={"x": self.np_x},
+                fetch_list=[out1, out2, out3],
             )
-            ref_out = np.log2(self.np_input)
+
+            # Verify all outputs
             for out in fetches:
-                np.testing.assert_allclose(out, ref_out)
+                np.testing.assert_allclose(out, ...)
 ```
 
-### Step 5：运行兼容单测
+必须覆盖的场景：
+1. ✅ Paddle位置参数（全部位置参数）
+2. ✅ Paddle关键字参数（全部关键字参数）
+3. ✅ PyTorch位置参数（如与Paddle位置参数不同）
+4. ✅ PyTorch关键字参数（使用别名）
+5. ✅ 混合参数（位置+关键字）
+6. ✅ out参数（如API支持）
+7. ✅ 类方法调用（位置参数）
+8. ✅ 类方法调用（关键字参数）
+9. ✅ 动态图和静态图两种模式
+10. ✅ 异常参数（参数缺失、类型错误、关键字名错误）
 
-完成单测编写后，需验证代码能正确执行，直接按以下命令执行（不要修改命令）：
+完整测试示例，请参考 `Paddle/test/legacy_test/test_api_compatibility.py` 中已有的测试类结构。
+
+### Step 5：编译并运行
+
+每次修改 Paddle 源码后，必须重新编译方可生效。单测编写完成后，请按以下命令验证执行（不可修改）：
 
 1. **重新编译项目**：
    ```bash
    cd /workspace/Paddle/build
-   cmake .. > cmake.log 2>&1
-   make -j$(nproc) > make.log 2>&1
+   cmake ..
+   make -j$(nproc)
    ```
 
 2. **运行单测文件**：
@@ -244,10 +254,10 @@ class TestLog2API_Compatibility(unittest.TestCase):
 
 ## 2.2 场景二：具有前处理逻辑（中等复杂度）
 
-**适用条件：**
+**适用条件（全部满足）：**
 - Paddle Python API与`ops.yaml`中参数**类型或数量一致**
 - Paddle API和PyTorch API仅参数名称不一致
-- Python端在调用`_C_ops`前**有前处理逻辑**需要下沉
+- Python端在调用`_C_ops`前**有其他前处理逻辑**
 
 **典型示例：** `paddle.logsumexp`
 
@@ -272,6 +282,7 @@ class TestLog2API_Compatibility(unittest.TestCase):
 
 ### Step 2：实现前处理函数
 
+将Python端在调用`_C_ops`前的**其他前处理逻辑**，修改为C++的实现。
 在 `paddle/fluid/pybind/arg_pre_process.h` 声明：
 
 ```cpp
@@ -336,7 +347,7 @@ void LogsumexpPreProcess(pir::Value *x, std::vector<int> *axis, bool *reduce_all
 
 ## 2.3 场景三：复杂参数映射（最复杂）
 
-**适用条件：**
+**适用条件（全部满足）：**
 - Paddle Python API与`ops.yaml`中参数**类型或数量不一致**
 - 需要复杂的自定义参数解析逻辑，来匹配Paddle Python API与`ops.yaml`的参数差异
 
@@ -360,6 +371,8 @@ void LogsumexpPreProcess(pir::Value *x, std::vector<int> *axis, bool *reduce_all
 - Mapper需要手动解析所有参数，包括参数别名支持
 
 ### Step 2：实现自定义Mapper
+
+将Python API与`ops.yaml`中参数**类型或数量不一致**的差异，通过C++自定义Mapper来进行匹配与转换。
 
 在 `paddle/fluid/pybind/args_mapper.h` 声明：
 
@@ -557,67 +570,16 @@ void ArgMaxMinMapper(PyObject* args,
 | **示例API** | log2 | logsumexp | argmax, argmin |
 
 
-# 三、单元测试规范
+# 三、异常处理
 
-## 3.1 传参方式兼容性测试
-```python
-# 位置参数
-out1 = paddle.api(x, arg1, arg2)
-
-# Paddle关键字参数
-out2 = paddle.api(x=x, axis=arg1, keepdim=arg2)
-
-# Torch关键字参数
-out3 = paddle.api(input=x, dim=arg1, keepdim=arg2)
-
-# 混合参数
-out4 = paddle.api(x, dim=arg1, keepdim=arg2)
-```
-
-## 3.2 Tensor方法测试
-```python
-# 方法调用 - 位置参数
-out5 = x.api(arg1, arg2)
-
-# 方法调用 - 关键字参数
-out6 = x.api(dim=arg1, keepdim=arg2)
-```
-
-## 3.3 异常参数测试
-```python
-# 参数缺失
-with self.assertRaises(ValueError):
-    paddle.api(x)  # 缺少必需参数
-
-# 参数类型错误
-with self.assertRaises(TypeError):
-    paddle.api(x, "invalid_type")
-
-# 关键字名错误
-with self.assertRaises(TypeError):
-    paddle.api(x, wrong_key=value)
-```
-
-## 3.4 文档绑定测试
-```python
-def test_docstring(self):
-    self.assertIsNotNone(paddle.api.__doc__)
-    self.assertIn("Args:", paddle.api.__doc__)
-```
-
-## 3.5 动态图和静态图测试
-必须分别测试动态图（eager mode）和静态图（static graph）两种模式。
-
-# 四、异常处理
-
-## 4.1 处理流程
+## 3.1 处理流程
 当遇到错误时，建议按照以下步骤处理，确保代码能运行通过：
 1. **定位错误**：仔细阅读错误信息，确定错误类型和位置
 2. **分析原因**：根据错误信息分析具体问题，例如参数错误、类型不匹配
 3. **修改代码**：根据错误信息与分析结果，调整代码
 4. **验证修复**：重新运行测试确认问题解决
 
-## 4.2 常见错误及解决方案
+## 3.2 常见错误及解决方案
 
 ### 静态图兼容性问题
 **错误现象**：
@@ -664,9 +626,9 @@ TypeError: expected Tensor as argument, got numpy.ndarray
 2. 检查数据类型是否匹配
 
 
-# 五、技术背景知识
+# 四、技术背景知识
 
-## 5.1 工具函数速查
+## 4.1 工具函数速查
 
 ```cpp
 // 获取Tensor参数（支持别名）
@@ -694,7 +656,7 @@ void CheckParamsCount(int nargs, int remaining_kwargs, int max_args);
 void CheckRemainingParamsValidity(PyObject* args, PyObject* kwargs, int remaining_kwargs, int nargs);
 ```
 
-# 六、注意事项
+# 五、注意事项
 1. 若Python API参数顺序与`_C_ops` API不同，属于特殊情况，Cpp下沉方案无法实现，需要使用Python装饰器方案。
 2. 代码中不允许提交中文，代码注释采用英文
 3. 若API需支持`out`参数，必须修改`add_doc_and_signature`中的字符串，增加out参数

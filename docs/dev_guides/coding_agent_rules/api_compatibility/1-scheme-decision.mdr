@@ -70,9 +70,9 @@ alwaysApply: false
 
 **方案2不适用场景（满足其一则不适用）**：
 - ❌ API差异涉及参数顺序或个数差异
-- ❌ API Python实现里调用了其他API，如x.flatten、paddle.flatten(x)等
+- ❌ Python实现里调用了其他**Paddle API**，如x.flatten、paddle.flatten(x)等
 - ❌ 包含多个 `_C_ops.xxx` 调用
-- ❌ `_C_ops.xxx` 前面的**前处理逻辑**较多，不容易被改写为C++
+- ❌ `_C_ops.xxx` 前面的**前处理逻辑**较为复杂，不容易被改写为C++
 
 **优点**：性能最优
 **缺点**：仅支持参数名不同的情况
@@ -120,7 +120,7 @@ alwaysApply: false
 ## Step 1: 分析差异文档
 
 ### 1.1 获取差异文档
-务必找到每个PyTorch API对应的API差异文档（`torch.{api_name}.md`），如果实在无法找到差异文档，则差异分类直接视作『API完全一致』。
+务必查阅每个PyTorch API对应的API差异文档（`torch.{api_name}.md`，位于docs/docs/guides/model_convert/convert_from_pytorch/api_difference/目录下），如果实在无法找到差异文档，则说明该API已经实现了对齐一致，差异分类直接视作『API完全一致』，无需再查询其他内容。
 
 ### 1.2 差异分类定义
 差异分类共13类，具体如下：
@@ -148,8 +148,12 @@ alwaysApply: false
 | 项目 | 内容  |
 |------|------|
 | API映射 | PyTorch API vs 对应的Paddle API（可能为空）|
-| 参数映射 | 参数对应关系和差异说明（忽略paddle的 `name` 参数，`name` 参数无意义） |
+| 参数映射 | 参数对应关系和差异说明 |
 | 转写示例 | 代码转换示例 |
+
+注意以下参数直接忽略，不视作差异信息：
+1. 忽略第1列的generator、memory_format、layout参数
+1. 忽略第2列的name参数
 
 ## Step 2: 方案决策
 

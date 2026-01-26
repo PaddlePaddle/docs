@@ -167,15 +167,22 @@ class CustomAPIBase(APIBase):
 ```
 
 ## Step 3: 运行单元测试
-**目的：** 在补充完测试用例后，确保能通过所有用例，运行通过则表明完全对齐一致
 
-**操作Step：**
+在补充完测试用例后，确保能通过所有用例，请按以下命令验证执行（不可修改）：
+
 1. 本地执行以下命令：
    ```bash
    cd /workspace/PaConvert/
    python -m pytest tests/test_<API名称>.py
    ```
-2. 确保所有测试用例通过
+2. 根据报错信息修改代码，确保所有测试用例通过
+
+注意：每次修改 Paddle 源码后，必须重新编译方可生效。
+```bash
+cd /workspace/Paddle/build
+cmake ..
+make -j$(nproc)
+```
 
 # 三、异常处理
 

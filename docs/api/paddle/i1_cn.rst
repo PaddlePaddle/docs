@@ -3,7 +3,7 @@
 i1
 -------------------------------
 
-.. py:function:: paddle.i1(x, name=None)
+.. py:function:: paddle.i1(x, name=None, *, out=None)
 对于给定 ``x`` 计算其每个元素的第一类一阶修正贝塞尔曲线函数，其中输入 ``x`` 大小无特殊限制。返回第一类一阶修正贝塞尔函数对应输出 Tensor。
 
 .. math::
@@ -12,7 +12,11 @@ i1
 参数
 ::::::::::
     - **x** (Tensor) – 输入是一个多维的 Tensor，它的数据类型可以是 float32，float64。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 ``None``。
+
+关键字参数
+:::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 ::::::::::

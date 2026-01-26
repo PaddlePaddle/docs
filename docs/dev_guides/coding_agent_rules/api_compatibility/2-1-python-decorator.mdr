@@ -55,6 +55,8 @@ Paddle现有装饰器统一位于 `Paddle/python/paddle/utils/decorator_utils.py
 - 2个参数 → `param_two_alias`
 - 3个及以上参数 → `ParamAliasDecorator`
 
+> 存量代码可能有不规范使用，请根据个数来选择，勿参考存量代码
+
 **使用示例**：
 ```python
 # 单个参数别名
@@ -186,7 +188,7 @@ def custom_decorator():
 
 **关键实现要点**：
 
-1. **处理参数别名**
+1. **关键字参数别名**
 ```python
 if "input" in kwargs and "x" not in kwargs:
     kwargs["x"] = kwargs.pop("input")
@@ -195,7 +197,7 @@ if "input" in kwargs and "x" not in kwargs:
 2. **位置参数类型检测**（用于判断参数顺序）
 ```python
 if len(args) >= 2 and isinstance(args[1], int):
-    # 检测第二个位置参数是否为int，从而判断参数顺序为torch用法还是paddle用法，并调整用法
+    # 检测args第2个值是否为int，从而判断是torch用法还是paddle用法，并根据不同的args顺序统一匹配为kwargs
     ## torch.index_select(input, dim, index)
     ## paddle.index_select(x, index, axis)
     kwargs["x"] = args[0]
@@ -211,6 +213,29 @@ if len(args) >= 2 and all(isinstance(arg, int) for arg in args[1:]):
     args = args[:1]
 ```
 
+4. **overload注解**
+为避免添加装饰器后原API的签名可读性差的问题，需要针对Pytorch签名、Paddle签名分别添加overload注解：
+```python
+# Paddle Usage
+@overload
+def gather(
+    x: Tensor,
+    index: Tensor,
+    axis: Tensor | int | None = None,
+    name: str | None = None,
+    out: Tensor | None = None,
+) -> Tensor: ...
+
+# Pytorch Usage
+@overload
+def gather(
+    input: Tensor,
+    dim: int,
+    index: Tensor,
+    out: Tensor | None = None,
+) -> Tensor: ...
+```
+
 **完整示例**：
 ```python
 def index_select_decorator():
@@ -223,7 +248,7 @@ def index_select_decorator():
             if "dim" in kwargs and "axis" not in kwargs:
                 kwargs["axis"] = kwargs.pop("dim")
 
-            # 2. PyTorch参数顺序转换
+            # 2. PyTorch参数顺序匹配：识别不同的args顺序，统一处理为kwargs
             if len(args) >= 2 and isinstance(args[1], int):
                 # PyTorch顺序: (input, dim, index) → Paddle顺序: (x, index, axis)
                 kwargs["x"] = args[0]
@@ -240,9 +265,9 @@ def index_select_decorator():
     return decorator
 ```
 
-**开发参考资料**：
-可参考 `Paddle/python/paddle/utils/decorator_utils.py` 来实现，该文件包含了项目中全部专有装饰器的实现（如 `reshape_decorator`, `transpose_decorator` 等）。
-
+**注意事项**：
+1. 可参考 `Paddle/python/paddle/utils/decorator_utils.py` 来实现，该文件包含了项目中全部专有装饰器的实现。
+2. 如果两者API对应参数的顺序不同，则装饰器需要通过位置参数(args)类型检测来区分两者，并分别匹配不同的参数顺序。
 
 ## Step 3: 添加out参数支持（如需要）
 
@@ -305,7 +330,7 @@ def func(x, axis=None, name=None, *, out: Tensor | None = None):
 
 注意`out`参数需与Pytorch用法一致，一般情况下均是keyword-only参数（使用`*,`分隔）
 
-## Step 4: 更新文档
+## Step 4: 更新函数文档字符串
 
 在函数文档字符串中为有别名的参数添加Alias Support说明和out说明：
 
@@ -332,14 +357,12 @@ def func(x, axis=None, name=None, *, out=None):
 - 多个Alias别名描述为: `Alias: ``input`` or ``data``.`
 - out参数使用关键字参数来描述
 
-## Step 5: 添加兼容单测
+## Step 5: 添加测试用例
 
-所有兼容性单测代码都统一添加到文件：`Paddle/test/legacy_test/test_api_compatibility.py`。
-
-### 单测类模板
+不要新建任何测试文件，直接在 `test/legacy_test/test_api_compatibility.py` 中添加测试：
 
 ```python
-class Test<APIName>API_Compatibility(unittest.TestCase):
+class Test<APIName>(unittest.TestCase):
     def setUp(self):
         np.random.seed(2025)
         self.places = get_devices()
@@ -354,33 +377,35 @@ class Test<APIName>API_Compatibility(unittest.TestCase):
     def test_dygraph_Compatibility(self):
         paddle.disable_static()
         x = paddle.to_tensor(self.np_x)
-        paddle_dygraph_out = []
 
-        # 1. Positional arguments
+        # 1. Paddle Positional arguments
         out1 = paddle.<api_name>(x, ...)
-        paddle_dygraph_out.append(out1)
 
         # 2. Paddle keyword arguments
         out2 = paddle.<api_name>(x=x, ...)
-        paddle_dygraph_out.append(out2)
 
-        # 3. PyTorch keyword arguments (alias)
-        out3 = paddle.<api_name>(input=x, dim=...)
-        paddle_dygraph_out.append(out3)
+        # 3. Pytorch Positional arguments (if different with paddle args)
+        out3 = paddle.<api_name>(x, ...)
 
-        # 4. Mixed arguments
-        out4 = paddle.<api_name>(x, axis=...)
-        paddle_dygraph_out.append(out4)
+        # 4. PyTorch keyword arguments (alias)
+        out4 = paddle.<api_name>(input=x, dim=...)
 
-        # 5. out parameter test (if supported)
+        # 5. Mixed arguments
+        out5 = paddle.<api_name>(x, axis=...)
+
+        # 6. out parameter test (if supported)
         if hasattr(self, 'supports_out') and self.supports_out():
-            out5 = paddle.empty_like(x)
-            out6 = paddle.<api_name>(x, ..., out=out5)
-            paddle_dygraph_out.append(out5)
-            paddle_dygraph_out.append(out6)
+            out6 = paddle.empty_like(x)
+            out7 = paddle.<api_name>(x, ..., out=out5)
+
+        # 7. Tensor method - args
+        out8 = x.<api_name>(...)
+
+        # 8. Tensor method - kwargs
+        out9 = x.<api_name>(axis=...)
 
         # Verify all outputs
-        for out in paddle_dygraph_out:
+        for out in [out1, out2, out3, out4, out5, out6, out7, out8, out9]:
             np.testing.assert_allclose(out.numpy(), ...)
 
         paddle.enable_static()
@@ -389,7 +414,7 @@ class Test<APIName>API_Compatibility(unittest.TestCase):
         paddle.enable_static()
         main = paddle.static.Program()
         startup = paddle.static.Program()
-        with paddle.base.program_guard(main, startup):
+        with paddle.static.program_guard(main, startup):
             x = paddle.static.data(name="x", shape=self.shape, dtype=self.dtype)
 
             # Create multiple outputs
@@ -397,7 +422,7 @@ class Test<APIName>API_Compatibility(unittest.TestCase):
             out2 = paddle.<api_name>(x=x, ...)
             out3 = paddle.<api_name>(input=x, dim=...)
 
-            exe = paddle.base.Executor(paddle.CPUPlace())
+            exe = paddle.static.Executor()
             fetches = exe.run(
                 main,
                 feed={"x": self.np_x},
@@ -409,31 +434,29 @@ class Test<APIName>API_Compatibility(unittest.TestCase):
                 np.testing.assert_allclose(out, ...)
 ```
 
-### 测试覆盖要求
-
 必须覆盖的场景：
-1. ✅ Paddle位置参数
-2. ✅ Paddle关键字参数
-3. ✅ PyTorch位置参数
+1. ✅ Paddle位置参数（全部位置参数）
+2. ✅ Paddle关键字参数（全部关键字参数）
+3. ✅ PyTorch位置参数（如与Paddle位置参数不同）
 4. ✅ PyTorch关键字参数（使用别名）
 5. ✅ 混合参数（位置+关键字）
 6. ✅ out参数（如API支持）
-7. ✅ 动态图和静态图两种模式
-8. ✅ 异常参数（参数缺失、类型错误、关键字名错误）
+7. ✅ 类方法调用（位置参数）
+8. ✅ 类方法调用（关键字参数）
+9. ✅ 动态图和静态图两种模式
+10. ✅ 异常参数（参数缺失、类型错误、关键字名错误）
 
-### 完整测试示例
+完整测试示例，请参考 `Paddle/test/legacy_test/test_api_compatibility.py` 中已有的测试类结构。
 
-请参考 `Paddle/test/legacy_test/test_api_compatibility.py` 中已有的测试类结构。
+## Step 6: 编译与运行
 
-## Step 6: 运行兼容单测
-
-完成单测编写后，需验证代码能正确执行，直接按以下命令执行（不要修改命令）：
+每次修改 Paddle 源码后，必须重新编译方可生效。单测编写完成后，请按以下命令验证执行（不可修改）：
 
 1. **重新编译项目**：
    ```bash
    cd /workspace/Paddle/build
-   cmake .. > cmake.log 2>&1
-   make -j$(nproc) > make.log 2>&1
+   cmake ..
+   make -j$(nproc)
    ```
 
 2. **运行单测文件**：
@@ -534,12 +557,6 @@ def decorator(func):
 ```python
 if "input" in kwargs and "x" not in kwargs:
     kwargs["x"] = kwargs.pop("input")
-```
-
-**避免参数冲突**
-```python
-if "x" in kwargs and "input" in kwargs:
-    raise ValueError("Cannot specify both 'x' and 'input'")
 ```
 
 **位置参数类型检测**

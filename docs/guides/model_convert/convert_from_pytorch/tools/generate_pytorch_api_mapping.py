@@ -87,15 +87,11 @@ def parse_special_category_apis(md_content, category):
     return apis
 
 
-def generate_category1_table(
-    docs_mapping, no_need_convert_file_path, base_dir, existing_apis
-):
+def generate_category1_table(existing_apis):
     """
     生成类别1（API完全一致）的Markdown表格
     """
-    no_need_convert_list = extract_no_need_convert_list(
-        no_need_convert_file_path
-    )
+    no_need_convert_list = extract_no_need_convert_list()
 
     rows = []  # 存储表格行数据的列表
     used_apis = set()  # 用于记录已处理的API，避免重复
@@ -138,7 +134,6 @@ def generate_category1_table(
 def generate_category2_table(
     docs_mapping,
     api_mapping_file_path,
-    no_need_convert_file_path,
     base_dir,
     existing_apis,
     attribute_mapping_file_path,
@@ -156,9 +151,7 @@ def generate_category2_table(
         # "torch.utils.data.RandomSampler",
     ]
 
-    no_need_convert_list = extract_no_need_convert_list(
-        no_need_convert_file_path
-    )
+    no_need_convert_list = extract_no_need_convert_list()
 
     # 加载api_mapping.json文件
     api_mapping_data = load_mapping_json(api_mapping_file_path)
@@ -549,17 +542,11 @@ def main():
     json_file_path = os.path.join(
         os.path.dirname(__file__), "api_difference_info.json"
     )
-    no_need_convert_path = os.path.join(
-        os.path.dirname(__file__), "global_var.py"
-    )
     api_mapping_path = os.path.join(
         os.path.dirname(__file__), "api_mapping.json"
     )
     api_alias_mapping_path = os.path.join(
         os.path.dirname(__file__), "api_alias_mapping.json"
-    )
-    no_implement_path = os.path.join(
-        os.path.dirname(__file__), "no_implement.md"
     )
     attribute_mapping_path = os.path.join(
         os.path.dirname(__file__), "attribute_mapping.json"
@@ -606,13 +593,10 @@ def main():
 
     # 生成类别1和类别2的表格
     existing_apis = set()
-    category1_table = generate_category1_table(
-        docs_mapping, no_need_convert_path, base_dir, existing_apis
-    )
+    category1_table = generate_category1_table(existing_apis)
     category2_table = generate_category2_table(
         docs_mapping,
         api_mapping_path,
-        no_need_convert_path,
         base_dir,
         existing_apis,
         attribute_mapping_path,

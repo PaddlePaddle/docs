@@ -116,11 +116,75 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 | API差异文档 | 中文描述了Pytorch API与Paddle API两者的行为差异 | 位于docs/docs/guides/model_convert/convert_from_pytorch/api_difference/下的一级子目录，命名类似torch.tan.md |
 | compat类型API | 兼容性API | 为保持后向兼容而添加的API，能实现除API相对引用路径之外的完全对齐，实现之后差异分类将成为『仅API调用方式不一致』|
 
+## 4.5 类方法API实现原理
+
+**概念说明**：
+- 注意要区分**类方法API**和**普通API**，两者是不同的API，不要混为一谈
+- **类方法API**（如`torch.Tensor.abs`）：`torch.Tensor`类方法
+- **普通API**（如`torch.abs`）：普通方法
+
+Paddle的Tensor类方法通过**patch机制**实现，即将普通方法动态添加到`paddle.Tensor`（即`core.eager.Tensor`）类上成为类方法。
+
+**实现机制**（参考`Paddle/python/paddle/base/dygraph/math_op_patch.py`）：
+
+```python
+# 从paddle.tensor模块获取方法定义
+import paddle.tensor
+
+# 将普通方法patch到core.eager.Tensor类上
+for method_name in paddle.tensor.tensor_method_func:
+    if hasattr(core.eager.Tensor, method_name):
+        continue
+    method_impl = getattr(paddle.tensor, method_name, None)
+    if method_impl:
+        setattr(core.eager.Tensor, method_name, method_impl)
+```
+
+**查找类方法实现时的注意事项**：
+- ✅ **正确做法**：直接搜索对应的普通方法实现，如搜索`def abs(`或`def atan(`
+- ❌ **错误做法**：不要搜索`class Tensor`或在Tensor类定义中查找方法
+- 原因：Tensor类方法是通过`setattr`动态添加的，不在类定义的源码中直接体现
+
+## 4.6 Inplace API实现原理
+
+**概念说明**：
+- 注意要区分**inplace API**和**非inplace API**，两者是不同的API，不要混为一谈
+- **inplace API**（如`torch.abs_`）：原地操作，直接修改输入Tensor，其不应有out参数，如有out需删除
+- **非inplace API**（如`torch.abs`）：返回新Tensor，不修改输入Tensor
+- Inplace API无需测试静态图，只需测试动态图
+
+**示例对比**：
+```python
+y = paddle.abs(x)  # 非inplace：返回新Tensor，x不变
+x.abs_()           # inplace：原地修改x
+```
+
+**自动生成机制**：
+Paddle支持自动生成inplace API，无需在`ops.yaml`中单独配置。当定义了`inplace: (x -> out)`字段后，系统自动生成对应的inplace版本，复用原API的Kernel实现。
+
+**配置示例**：
+1. **OP配置**（`ops.yaml`，第10-22行）：
+```yaml
+- op : abs
+  args : (Tensor x)
+  output : Tensor(out)
+  inplace: (x -> out)  # 关键字段：指定x和out可以in-place
+  backward : abs_grad
+```
+
+2. **Python API配置**（`python_api_info.yaml`，第6-9行）：
+   - ⚠️ **仅在C++下沉（方案2）时需要配置**
+```yaml
+- op : abs_
+  name : [paddle.abs_, paddle.Tensor.abs_]
+  args_alias :
+    use_default_mapping : True
+```
 
 # 五、代码修改规范
 
 ## 5.1 代码注释规范
-- ✅ 改动的位置如果方便注释，可以注释`# Edit by AI Agent`，表明这是你完成的工作
+- ✅ 改动位置如果方便注释，可以注释`# Edit by AI Agent`，表明这是你完成的工作
 
 ## 5.2 代码质量规范
 - ✅ 保持代码风格与项目一致
@@ -145,6 +209,36 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 ```
 输入API列表 → Step1:所有API方案决策 → Step2:所有API代码修改 → Step3:所有API对齐验证 → Step4:所有API文档更新 → 全部完成（流程全自动推进，不用询问）
 ```
+
+具体如下：
+### Step 1：方案决策
+    Step 1.1: 分析差异文档
+    Step 1.2: 方案决策
+
+### Step 2：代码修改
+#### Python装饰器方案
+    Step 2.1: 差异分析与选择装饰器
+    Step 2.2: 应用或开发装饰器
+    Step 2.3: 添加out参数支持
+    Step 2.4: 更新函数文档字符串
+    Step 2.5: 添加测试用例
+    Step 2.6: 编译并运行
+#### C++下沉方案
+    Step 2.1: 配置python_api_info.yaml
+    Step 2.2: 迁移文档到_paddle_docs.py
+    Step 2.3: 替换Python实现
+    Step 2.4: 添加测试用例
+    Step 2.5: 编译并运行
+
+### Step 3：对齐验证
+    Step 3.1: 标记已对齐的API
+    Step 3.2: 补充测试用例
+    Step 3.3: 运行单元测试
+
+### Step 4：文档更新
+    Step 4.1: 获取代码变更信息
+    Step 4.2: 更新API中文文档
+    Step 4.3: 删除API差异文档
 
 **执行逻辑**：
 1. 接收用户输入的待对齐API列表（如：`torch.argmax`, `torch.log2`, `torch.logsumexp`）
@@ -275,3 +369,8 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 | 5 | **新增compat类型API智能体**(暂未实现) | Step 2 | 添加兼容性API | 方案5：新增compat方案 |
 | 6 | **Pytorch对齐验证智能体** | Step 3 | 验证修改后的Paddle API能与PyTorch API完全对齐 | - |
 | 7 | **API文档修改智能体** | Step 4 | 更新Paddle API中文文档 | - |
+
+
+# 八、注意事项
+1. 复盘记忆中的历史易错点，避免重复犯错
+2. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤

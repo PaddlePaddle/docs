@@ -9,7 +9,7 @@
 
 | 要求类型 |   要求内容   |
 | --------- | -------- |
-| 芯片型号 | 天数智芯 系列芯片，包括 BI150 |
+| 芯片型号 | 天数智芯 系列芯片，包括 BI150/BI150s |
 | 操作系统 | Linux 操作系统，包括 CentOS、Ubuntu、KylinV10 等 |
 
 ## 运行环境准备
@@ -18,7 +18,7 @@
 
 ```bash
 # 拉取镜像
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-ixuca:latest
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-ixuca:3.3.0
 ```
 
 ```bash
@@ -31,7 +31,7 @@ bash corex-driver-linux64-4.3.0.rc.9.20250624_x86_64_10.2.run
 # 启动容器
 docker run -itd --name paddle-ixuca-dev -v /usr/src:/usr/src -v /lib/modules:/lib/modules \
     -v /dev:/dev -v /home:/home --privileged --cap-add=ALL --pid=host \
-    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-ixuca:latest
+    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-ixuca:3.3.0
 docker exec -it paddle-ixuca-dev bash
 ```
 
@@ -77,6 +77,17 @@ ixsmi
 
 iluvatar-gpu 支持插件式安装，需先安装飞桨 CPU 安装包，再安装飞桨 iluvatar-gpu 插件包。在启动的 docker 容器中，执行以下命令：
 
+3.3.0 稳定版：
+```bash
+# 先安装飞桨 CPU 安装包
+python -m pip install paddlepaddle==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+
+# 再安装飞桨 iluvatar-gpu 插件包
+python -m pip install paddle-iluvatar-gpu==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/ixuca/
+```
+
+nightly 版：
+⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性，建议使用稳定版。
 ```bash
 # 先安装飞桨 CPU 安装包
 python -m pip install  --pre paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
@@ -84,7 +95,7 @@ python -m pip install  --pre paddlepaddle -i https://www.paddlepaddle.org.cn/pac
 # 再安装飞桨 iluvatar-gpu 插件包
 python -m pip install --pre paddle-iluvatar-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/ixuca/
 ```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.1 版本:https://www.paddlepaddle.org.cn/packages/stable/ixuca/
+
 ### 安装方式二：源代码编译安装
 
 在启动的 docker 容器中，先安装飞桨 CPU 安装包，再下载 PaddleCustomDevice 源码编译得到飞桨 iluvatar-gpu 插件包。

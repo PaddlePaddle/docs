@@ -53,9 +53,7 @@ def validate_api_mappings():
     for api in ALLOW_MISSING_DIFF_DOCS:
         api_map.pop(api, None)
 
-    no_need_list = extract_no_need_convert_list(
-        str(current_dir) + "/global_var.py"
-    )
+    no_need_list = extract_no_need_convert_list()
 
     # 准备错误报告文件
     error_file = current_dir / "validate_api_difference_consistency_error.txt"
