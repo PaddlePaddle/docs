@@ -15,17 +15,18 @@ alwaysApply: false
 请严格按以下Step依次执行，不要自行修改或跳过Step：
 
 ## Step 1: 标记已对齐的API
-**目的：** 将已对齐的 PyTorch API 全部添加到白名单。注意torch.atan与torch.Tensor.atan是不同API。
+**目的：** 将已对齐的 PyTorch API 的Matcher设置为`ChangePrefixMatcher`。
 
-**操作Step：**
-1. 定位文件：`PaConvert/paconvert/global_var.py`
-2. 找到 `NO_NEED_CONVERT_LIST` 列表（约在第80行附近）
-3. 在列表中添加已对齐的 PyTorch API 完整路径，例如：
+> 注意torch.atan与torch.Tensor.atan是两个不同API。
+
+**操作步骤：**
+1. 定位文件：`PaConvert/paconvert/api_mapping.json`
+2. 找到已对齐的Pytorch API的key
+3. 将该Pytorch API配置为`ChangePrefixMatcher`，其他字段全部清理掉，例如：
    ```python
-   # Edit by AI Agent (放到该行下面)
-   "torch.complex",
-   "torch.atan",
-   "torch.asinh",
+    "torch.cdist": {
+        "Matcher": "ChangePrefixMatcher"
+    }
    ```
 
 ## Step 2: 补充测试用例
