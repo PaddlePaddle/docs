@@ -204,7 +204,9 @@ def generate_category2_table(
         if matcher in invok_diff_matchers or valid:
             # 在docs_mapping中查找当前src_api对应的信息
             docs_mapping_info = docs_mapping.get(src_api, {})
-            src_url = docs_mapping_info.get("src_api_url")
+            src_url = get_pytorch_url(src_api) or docs_mapping_info.get(
+                "src_api_url"
+            )
 
             # 获取paddle_api，可能来自api_mapping或docs_mapping
             paddle_api = mapping_info.get("paddle_api")

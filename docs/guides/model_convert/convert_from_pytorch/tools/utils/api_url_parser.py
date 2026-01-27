@@ -21,6 +21,11 @@ class ApiUrlParserBase(ABC):
         raise NotImplementedError
 
 
+class EmptyApiUrlParser(ApiUrlParserBase):
+    def get_api_url(self, api: str) -> str | None:
+        return None
+
+
 class InventoryUrlParser(ApiUrlParserBase):
     def __init__(self, inventory_path_or_url: str, base_url: str) -> None:
         self._do_init(inventory_path_or_url, base_url)
@@ -40,7 +45,6 @@ class InventoryUrlParser(ApiUrlParserBase):
                     )
                 else:
                     self._inv[v["name"]] = urljoin(base_url, v["uri"])
-        print(f"Successfully load {len(self._inv)} apis from inventory")
 
     def get_api_url(self, api: str) -> str | None:
         """
@@ -123,13 +127,13 @@ _parser = {}
 def get_parser(name: str) -> ApiUrlParserBase:
     if name in _parser:
         return _parser[name]
-    if name in ("torch", "pytorch"):
+    elif name in ("torch", "pytorch"):
         _parser[name] = InventoryUrlParser(
             "https://docs.pytorch.org/docs/stable/objects.inv",
             "https://pytorch.org/docs/stable/",
         )
         return _parser[name]
-    if name in ("paddle", "paddlepaddle"):
+    elif name in ("paddle", "paddlepaddle"):
         _parser[name] = PaddleInventoryUrlParser(
             "https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/objects.inv",
             "https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/",
@@ -137,4 +141,26 @@ def get_parser(name: str) -> ApiUrlParserBase:
             "https://www.paddlepaddle.org.cn/documentation/docs/en/develop/",
         )
         return _parser[name]
+    elif name == "torchvision":
+        _parser[name] = InventoryUrlParser(
+            "https://pytorch.org/vision/stable/objects.inv",
+            "https://pytorch.org/vision/stable/",
+        )
+        return _parser[name]
+    elif name == "transformers":
+        _parser[name] = InventoryUrlParser(
+            "https://huggingface.co/docs/transformers/main/en/objects.inv",
+            "https://huggingface.co/docs/transformers/main/en/",
+        )
+        return _parser[name]
+    elif name == "fairscale":
+        _parser[name] = InventoryUrlParser(
+            "https://fairscale.readthedocs.io/en/latest/objects.inv",
+            "https://fairscale.readthedocs.io/en/latest/",
+        )
+        return _parser[name]
+    elif name == "flash_attn":
+        _parser[name] = EmptyApiUrlParser()
+        return _parser[name]
+
     raise ValueError(f"Unknown name {name}")
