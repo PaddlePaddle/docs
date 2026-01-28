@@ -1560,7 +1560,7 @@ fill_diagonal_(x, value, offset=0, wrap=False, name=None)
 
 参数：
     - **x** (Tensor) - 需要修改对角线元素值的原始 Tensor。
-    - **value** (float) - 以输入 value 值修改原始 Tensor 对角线元素。
+    - **value** (float) - 以输入 value 值修改原始 Tensor 对角线元素。别名 ``fill_value``。
     - **offset** (int，可选) - 所选取对角线相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为 0。
     - **wrap** (bool，可选) - 对于 2 维 Tensor，height>width 时是否循环填充，默认为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
@@ -1573,6 +1573,10 @@ fill_diagonal_(x, value, offset=0, wrap=False, name=None)
         import paddle
         x = paddle.ones((4, 3))
         x.fill_diagonal_(2)
+        print(x.tolist())   #[[2.0, 1.0, 1.0], [1.0, 2.0, 1.0], [1.0, 1.0, 2.0], [1.0, 1.0, 1.0]]
+
+        x = paddle.ones((4, 3))
+        x.fill_diagonal_(fill_value=2)
         print(x.tolist())   #[[2.0, 1.0, 1.0], [1.0, 2.0, 1.0], [1.0, 1.0, 2.0], [1.0, 1.0, 1.0]]
 
         x = paddle.ones((7, 3))
