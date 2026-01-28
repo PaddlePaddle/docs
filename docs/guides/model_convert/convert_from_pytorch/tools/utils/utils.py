@@ -12,30 +12,13 @@ from .api_url_parser import get_parser
 
 
 def get_url(api_name: str, package: str | None = None) -> str:
+    api_name = api_name.replace(r"\_", "_")
     if package is None:
         package = api_name.split(".")[0]
     url = get_parser(package).get_api_url(api_name) or ""
     if url == "":
         logger.warning("Missing api {} in {}", api_name, package)
     return url
-
-
-def get_pytorch_url(api_name: str) -> str:
-    return get_url(api_name)
-    api_name = api_name.replace(r"\_", "_")
-    ret = get_parser("torch").get_api_url(api_name)
-    if ret is None:
-        logger.warning("Missing PyTorch api: {}", api_name)
-    return ret or ""
-
-
-def get_paddle_url(api_name: str) -> str:
-    return get_url(api_name, "paddle")
-    api_name = api_name.replace(r"\_", "_")
-    ret = get_parser("paddle").get_api_url(api_name)
-    if ret is None:
-        logger.warning("Missing Paddle api: {}", api_name)
-    return ret or ""
 
 
 def escape_underscores_in_api(api_name):
