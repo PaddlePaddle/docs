@@ -64,8 +64,8 @@ class PaddleInventoryUrlParser(ApiUrlParserBase):
         self, zh_url: str, zh_base_url: str, en_url: str, en_base_url: str
     ):
         """
-        Two rules:
-        1. Zh inventory first,  en second.
+        Rules:
+        1. zh docs priority to en, if not found in zh docs, fall back to en version.
         2. Only search "py" domain, except items start with "/api/paddle/tensor__upper_cn.rst"
            in "std" domain, for "paddle.Tensor.xxx" exists in these items.
 
@@ -81,7 +81,7 @@ class PaddleInventoryUrlParser(ApiUrlParserBase):
         """
         self._inv = {}
 
-        def add_inv(inv, base_url):
+        def add_inv(inv, base_url, ignore_duplicate=False):
             for _, v in inv.json_dict(expand=True, contract=False).items():
                 if not isinstance(v, dict):
                     continue
@@ -89,6 +89,8 @@ class PaddleInventoryUrlParser(ApiUrlParserBase):
                 domain = v.get("domain", "")
                 if v.get("domain") == "py":
                     if v["name"] in self._inv:
+                        if ignore_duplicate:
+                            continue
                         raise ValueError(
                             f"Duplicated api name {v['name']} found"
                         )
@@ -115,7 +117,7 @@ class PaddleInventoryUrlParser(ApiUrlParserBase):
         inv_en = Inventory(url=en_url)  # type: ignore
 
         add_inv(inv_zh, zh_base_url)
-        add_inv(inv_en, en_base_url)
+        add_inv(inv_en, en_base_url, ignore_duplicate=True)
 
     def get_api_url(self, api: str) -> str | None:
         return self._inv.get(api, None)
