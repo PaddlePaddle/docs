@@ -96,7 +96,7 @@ download_file "${ATTRIBUTE_MAPPING_URL}" "${TOOLS_DIR}/attribute_mapping.json"
 
 echo "INFO: All API mapping files successfully downloaded"
 
-python -m pip install loguru sphobjinv
+python -m pip install loguru sphobjinv -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 # Run the remaining scripts with failure handling
 echo "INFO: Running get_api_difference_info.py"
