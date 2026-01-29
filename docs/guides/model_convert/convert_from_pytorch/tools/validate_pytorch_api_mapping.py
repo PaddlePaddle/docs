@@ -6,6 +6,7 @@ import re
 import sys
 import time
 from collections import defaultdict
+from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
@@ -13,7 +14,9 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 # 默认文件路径
-DEFAULT_FILE_PATH = "/workspace/paddleDocs/docs/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.md"
+DEFAULT_FILE_PATH = (
+    Path(__file__).parent.parent / "pytorch_api_mapping_cn.md"
+).as_posix()
 
 # 类别映射关系
 CATEGORY_MAP = {

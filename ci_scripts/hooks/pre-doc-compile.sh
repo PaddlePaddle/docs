@@ -96,6 +96,8 @@ download_file "${ATTRIBUTE_MAPPING_URL}" "${TOOLS_DIR}/attribute_mapping.json"
 
 echo "INFO: All API mapping files successfully downloaded"
 
+python -m pip install loguru sphobjinv
+
 # Run the remaining scripts with failure handling
 echo "INFO: Running get_api_difference_info.py"
 if ! python "${APIMAPPING_ROOT}/tools/get_api_difference_info.py"; then
