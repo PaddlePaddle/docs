@@ -2,7 +2,7 @@ import argparse
 import os
 import re
 
-from utils.utils import (
+from utils import (
     escape_underscores_in_api,
     extract_no_need_convert_list,
     get_base_dir,

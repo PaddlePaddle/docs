@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from utils.utils import extract_no_need_convert_list, load_mapping_json
+from utils import extract_no_need_convert_list, load_mapping_json
 
 # Note(littleherozzzx): get_api_difference_info.py not support parse overloaded
 # functions currently. Currently, we hard code the check of overloaded functions
