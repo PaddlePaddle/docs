@@ -13,8 +13,8 @@ cauchy\_
 ::::::::::::
 
     - **x** (Tensor) - 输入的 Tensor，支持的数据类型为：float32、float64。
-    - **loc** (scalar，可选) - 分布峰值的位置参数，数据类型为 float32 或 float64。默认值为 0，对应标准柯西分布。
-    - **scale** (scalar，可选) - 表示分布峰值一半高度处的半宽度（HWHM），控制曲线的陡峭程度。必须为正数，数据类型为 float32 或 float64。默认值为 1，对应标准柯西分布。
+    - **loc** (scalar，可选) - 分布峰值的位置参数，数据类型为 float32 或 float64。默认值为 0，对应标准柯西分布。参数别名：median。
+    - **scale** (scalar，可选) - 表示分布峰值一半高度处的半宽度（HWHM），控制曲线的陡峭程度。必须为正数，数据类型为 float32 或 float64。默认值为 1，对应标准柯西分布。参数别名：sigma。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
