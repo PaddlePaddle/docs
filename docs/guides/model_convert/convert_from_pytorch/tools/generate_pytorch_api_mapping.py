@@ -6,7 +6,7 @@ from utils import (
     escape_underscores_in_api,
     extract_no_need_convert_list,
     get_base_dir,
-    get_pytorch_url,
+    get_url,
     load_mapping_json,
     parse_md_files,
 )
@@ -107,8 +107,8 @@ def generate_category1_table(existing_apis):
         used_apis.add(torch_api)  # 标记该API已处理
         existing_apis.add(torch_api)
 
-        src_url = get_pytorch_url(torch_api)
-        dst_url = None
+        src_url = get_url(torch_api)
+        dst_url = get_url(paddle_api)
         # 构建第二列和第三列的字符串内容，包含URL（如果存在）
         col2 = f"[{torch_api}]({src_url})" if src_url else torch_api
         col3 = f"[{paddle_api}]({dst_url})" if dst_url else paddle_api
@@ -202,21 +202,22 @@ def generate_category2_table(
             valid = True
 
         if matcher in invok_diff_matchers or valid:
-            # 在docs_mapping中查找当前src_api对应的信息
+            # 获取 src_url, 优先使用来自 inventory 的链接
             docs_mapping_info = docs_mapping.get(src_api, {})
-            src_url = docs_mapping_info.get("src_api_url")
+            src_url = get_url(src_api) or docs_mapping_info.get("src_api_url")
 
             # 获取paddle_api，可能来自api_mapping或docs_mapping
             paddle_api = mapping_info.get("paddle_api")
             if not paddle_api:
                 paddle_api = docs_mapping_info.get("dst_api", "")
 
-            # 查找paddle_api对应的dst_api_url（可能需要遍历docs_mapping的值）
-            dst_url = None
-            for item in docs_mapping.values():
-                if item.get("dst_api") == paddle_api:
-                    dst_url = item.get("dst_api_url")
-                    break
+            # 查找paddle_api对应的 dst_api_url（可能需要遍历docs_mapping的值）, 优先使用来自 inventory 的链接
+            dst_url = get_url(paddle_api, "paddle")
+            if dst_url == "":
+                for item in docs_mapping.values():
+                    if item.get("dst_api") == paddle_api:
+                        dst_url = item.get("dst_api_url")
+                        break
 
             src_api_display = escape_underscores_in_api(src_api)
             paddle_api_display = escape_underscores_in_api(paddle_api)
