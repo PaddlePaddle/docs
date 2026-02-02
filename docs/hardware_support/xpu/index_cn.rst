@@ -12,10 +12,6 @@
 
 飞桨框架支持基于昆仑芯 XPU 芯片的训练和推理，请参考以下内容快速体验：
 
-- `昆仑芯 XPU 安装说明 <./xpu-gen2_install_cn.html>`_: 昆仑芯 XPU 二代芯片安装说明
-- `昆仑芯 XPU 基于框架的使用指南 <./xpu-gen2_paddle_tutorial_cn.html>`_ : 昆仑芯 XPU 二代芯片基于框架的使用指南
-- `昆仑芯 XPU 基于套件的使用指南 <./xpu-gen2_paddlex_tutorial_cn.html>`_ : 昆仑芯 XPU 二代芯片基于套件的使用指南
-- `昆仑芯 XPU 支持模型 <./xpu-gen2_support_cn.html>`_ : 昆仑芯 XPU 二代芯片支持模型
 - `昆仑芯 XPU 安装说明 <./xpu-p800_install_cn.html>`_: 昆仑芯 XPU P800 安装说明
 - `昆仑芯 XPU 基于框架的使用指南 <./xpu-p800_paddle_tutorial_cn.html>`_ : 昆仑芯 XPU P800 基于框架的使用指南
 - `昆仑芯 XPU 基于套件的使用指南 <./xpu-p800_paddlex_tutorial_cn.html>`_ : 昆仑芯 XPU P800 基于套件的使用指南
@@ -24,10 +20,6 @@
 ..  toctree::
     :hidden:
 
-    xpu-gen2_install_cn.md
-    xpu-gen2_paddle_tutorial_cn.md
-    xpu-gen2_paddlex_tutorial_cn.md
-    xpu-gen2_support_cn.md
     xpu-p800_install_cn.md
     xpu-p800_paddle_tutorial_cn.md
     xpu-p800_paddlex_tutorial_cn.md

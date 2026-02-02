@@ -30,11 +30,7 @@ docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-xpu:ubuntu20-x86_
 ```
 ```bash
 # 参考如下命令，启动容器
-docker run -it --name paddle-xpu-dev -v $(pwd):/work \
-  -v /usr/local/bin/xpu-smi:/usr/local/bin/xpu-smi \
-  -w=/work --shm-size=128G --network=host --privileged  \
-  --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
-  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-xpu:ubuntu20-x86_64-gcc84-py310 /bin/bash
+docker run -it --privileged=true  --net host --shm-size '256gb' --device=/dev/xpu0:/dev/xpu0 --device=/dev/xpu1:/dev/xpu1 --device=/dev/xpu2:/dev/xpu2 --device=/dev/xpu3:/dev/xpu3 --device=/dev/xpu4:/dev/xpu4 --device=/dev/xpu5:/dev/xpu5 --device=/dev/xpu6:/dev/xpu6 --device=/dev/xpu7:/dev/xpu7 --device=/dev/xpuctrl:/dev/xpuctrl --name paddle-xpu-dev -v $(pwd):/work -w=/work -v xxx ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-xpu:ubuntu20-x86_64-gcc84-py310 /bin/bash
 ```
 #### 选项说明及可调整参数
 
@@ -48,11 +44,10 @@ docker run -it --name paddle-xpu-dev -v $(pwd):/work \
 - **可调整**：
   - 可以修改 `$(pwd)` 为实际路径，例如 `-v /data/projects:/work`，让容器访问宿主机的数据。
 
-##### ③ `--shm-size=128G`
+##### ③ `--shm-size '256gb'`
 - **作用**：设置共享内存大小，影响数据处理和计算效率。
 - **可调整**：
   - 若内存有限，可降低，如 `--shm-size=32G`，但可能影响大规模训练。
-  - 若训练任务需要更大共享内存，可提高，如 `--shm-size=256G`。
 ```bash
 # 检查容器内是否可以正常识别昆仑芯 XPU 设备
 xpu-smi
@@ -84,14 +79,27 @@ cd Paddle
 mkdir build && cd build
 
 # cmake 编译命令
-cmake .. -DPY_VERSION=3.10 -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=OFF -DWITH_XPU=ON -DON_INFER=ON \
-    -DWITH_PYTHON=ON -DWITH_MKL=OFF -DWITH_XPU_BKCL=ON -DWITH_TESTING=ON -DWITH_DISTRIBUTE=ON -DWITH_XPU_XRE5=ON -DWITH_XCCL_RDMA=ON
+cmake .. -DPY_VERSION=3.10 \
+-DCMAKE_BUILD_TYPE=Release \
+-DWITH_GPU=OFF \
+-DWITH_XPU=ON \
+-DON_INFER=OFF \
+-DWITH_PYTHON=ON \
+-DWITH_XPU_XRE5=ON \
+-DWITH_MKL=OFF \
+-DWITH_XPU_BKCL=ON \
+-DWITH_TESTING=ON \
+-DWITH_XCCL_RDMA=ON \
+-DWITH_XPU_XHPC=ON \
+-DBUILD_WHL_PACKAGE=ON \
+-DWITH_DISTRIBUTE=ON \
+-DARCH_BIN_CONTAINS_90=1
 
 # make 编译命令
-make -j50 TARGET=HASWELL
+make -j$(nproc) TARGET=HASWELL
 
 # 编译产出在 build/python/dist/ 路径下，使用 pip 安装即可
-pip install -U paddlepaddle_xpu-0.0.0-cp310-cp310-linux_x86_64.whl
+pip install -U paddlepaddle_xpu-3.3.0.dev20251226-cp310-cp310-linux_x86_64.whl
 ```
 ⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
 ## 基础功能检查
@@ -104,13 +112,14 @@ python -c "import paddle; paddle.version.show()"
 ```
 ```bash
 # 预期得到输出如下
-commit: 606d18c011a706c41b08b595821bbb835c44d637
+commit: cbf3469113cd76b7d5f4cba7b8d7d5f55d9e9911
 cuda: False
 cudnn: False
+hip: None
 nccl: 0
-xpu_xre: 5.0.21.15
-xpu_xccl: 3.0.2.3
-xpu_xhpc: dev/20250220
+xpu_xre: 5.7.0.0
+xpu_xccl: 3.0.4.7
+xpu_xhpc: dev/20251213
 cinn: False
 tensorrt: None
 cuda_archs: []
@@ -121,8 +130,6 @@ python -c "import paddle; paddle.utils.run_check()"
 ```
 ```bash
 # 预期得到输出如下
-Running verify PaddlePaddle program ...
-PaddlePaddle works well on 1 XPU.
 PaddlePaddle works well on 8 XPUs.
 PaddlePaddle is installed successfully! Let's start deep learning with PaddlePaddle now.
 ```
