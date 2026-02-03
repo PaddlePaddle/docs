@@ -17,22 +17,17 @@ alwaysApply: false
 
 # 二、工作目录说明
 
-## 2.1 文档路径规范
+涉及以下文档的修改：
 
-### 2.1.1 API概览文档
-- **位置**：`docs/api/paddle/Overview_cn.rst`
-- **作用**：API索引目录，新增API时需要更新
-
-### 2.1.2 API中文文档
-- **文件命名规则**：`{api_name}_cn.rst`
-
-### 2.1.3 API差异文档（需删除）
-- **文件命名规则**：`torch.{api_name}.md`
-
+| 编号 | 文档类型 | 文件命名 | 改动点 |
+|------|----------|----------|----------|
+| 2.1 | API概览文档 | `docs/api/paddle/Overview_cn.rst` | API索引目录，新增API时需要更新 |
+| 2.2 | API中文文档 | `{api_name}_cn.rst` | 针对API功能改动点，修改文档 |
+| 2.3 | API差异文档 | `torch.{api_name}.md` | 由于API已实现用法完全一致，不存在差异，需删除 |
 
 # 三、标准工作流程
 
-## 步骤 1: 获取代码变更信息 🔍
+## Step 1: 获取代码变更信息 🔍
 
 **目标**：分析Paddle仓库的API代码变更，明确需要同步到文档的修改点
 
@@ -43,11 +38,11 @@ alwaysApply: false
    - 新增API签名
    - 修改API签名：新增参数、删除参数、支持参数别名
 
-## 步骤 2: 更新API中文文档 📝
+## Step 2: 更新API中文文档 📝
 
 **目标**：根据代码变更同步更新`{api_name}_cn.rst`文档
 
-### 1. 常见修改模式
+### 常见修改模式
 
 #### 模式1：添加参数别名说明
 
@@ -144,7 +139,7 @@ api_name
 COPY-FROM: paddle.api_name
 ```
 
-### 2. 文档格式规范
+### 文档格式规范
 
 **必须遵守的规范**：
 1. ✅ 使用rst格式，严格遵循缩进规则
@@ -158,7 +153,7 @@ COPY-FROM: paddle.api_name
 - ✅ 修改文档无需添加 `# Edit by AI Agent` 注释
 
 
-## 步骤 3: 删除API差异文档 🗑️
+## Step 3: 删除API差异文档 🗑️
 
 **目标**：删除已完全对齐API的差异文档
 
@@ -242,9 +237,6 @@ list[int]，广播后的结果 shape。
 
 COPY-FROM: paddle.broadcast_shapes
 ```
-
-
-
 
 # 五、常见问题处理
 
