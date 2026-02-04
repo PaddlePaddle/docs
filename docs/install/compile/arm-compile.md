@@ -2,16 +2,16 @@
 
 ## 环境准备
 
-* **处理器：FT2000+/Kunpeng 920 2426SK**
+* **处理器：飞腾 S5000C-64/Kunpeng 920 2426SK**
 * **操作系统：麒麟 v10/UOS**
 * **Python 版本 3.8/3.9/3.10 (64 bit)**
 * **pip 或 pip3 版本 9.0.1+ (64 bit)**
 
-飞腾 FT2000+和鲲鹏 920 处理器均为 ARMV8 架构，在该架构上编译 Paddle 的方式一致，本文以 FT2000+为例，介绍 Paddle 的源码编译。
+飞腾 S5000C-64 和鲲鹏 920 处理器均为 ARMV8 架构，在该架构上编译 Paddle 的方式一致，本文以飞腾 S5000C-64 为例，介绍 Paddle 的源码编译。
 
 ## 安装步骤
 
-目前在 FT2000+处理器加国产化操作系统（麒麟 UOS）上安装 Paddle，只支持源码编译的方式，接下来详细介绍各个步骤。
+目前在飞腾 S5000C-64 处理器加国产化操作系统（麒麟 UOS）上安装 Paddle，只支持源码编译的方式，接下来详细介绍各个步骤。
 
 <a name="arm_source"></a>
 ### **源码编译**
@@ -64,10 +64,10 @@
     cd Paddle
     ```
 
-5. 切换到`develop`分支下进行编译：
+5. 切换到`v3.3.0`分支下进行编译：
 
     ```
-    git checkout develop
+    git checkout v3.3.0
     ```
 
 6. 并且请创建并进入一个叫 build 的目录下：
@@ -88,8 +88,9 @@
 
     For Python3:
     ```
-    cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_ARM=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_XBYAK=OFF
+    cmake .. -DPY_VERSION=3.10 -DPYTHON_EXECUTABLE=`which python3` -DWITH_ARM=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_XBYAK=OFF
     ```
+    >-DPY_VERSION 应与自己的 python 版本对应
 
 9. 使用以下命令来编译，注意，因为处理器为 ARM 架构，如果不加`TARGET=ARMV8`则会在编译的时候报错。
 
