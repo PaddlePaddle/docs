@@ -6,7 +6,7 @@ torch.dropout(input,
               train)
 ```
 
-### [paddle.nn.functional.dropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/dropout_cn.html#dropout)
+### [paddle.nn.functional.dropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/dropout_cn.html#paddle.nn.functional.dropout)
 ```python
 paddle.nn.functional.dropout(x, p=0.5, axis=None, training=True, mode='upscale_in_train', name=None)
 ```

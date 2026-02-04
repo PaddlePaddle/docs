@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.Bilinear
-### [torch.nn.Bilinear](https://pytorch.org/docs/stable/generated/torch.nn.Bilinear.html#torch.nn.Bilinear)
+### [torch.nn.Bilinear](https://docs.pytorch.org/docs/stable/generated/torch.nn.Bilinear.html#torch.nn.Bilinear)
 ```python
 torch.nn.Bilinear(in1_features, in2_features, out_features, bias=True, device=None, dtype=None)
 ```
 
-### [paddle.nn.Bilinear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Bilinear_cn.html)
+### [paddle.nn.Bilinear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Bilinear_cn.html#paddle.nn.Bilinear)
 ```python
 paddle.nn.Bilinear(in1_features, in2_features, out_features, weight_attr=None, bias_attr=None, name=None)
 ```

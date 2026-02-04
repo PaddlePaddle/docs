@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.functional.upsample_nearest
-### [torch.nn.functional.upsample_nearest](https://pytorch.org/docs/stable/generated/torch.nn.functional.upsample_nearest.html#torch.nn.functional.upsample_nearest)
+### [torch.nn.functional.upsample\_nearest](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.upsample_nearest.html#torch.nn.functional.upsample_nearest)
 ```python
 torch.nn.functional.upsample_nearest(input, size=None, scale_factor=None)
 ```
 
-### [paddle.nn.functional.upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/upsample_cn.html#upsample)
+### [paddle.nn.functional.upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/upsample_cn.html#paddle.nn.functional.upsample)
 ```python
 paddle.nn.functional.upsample(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format='NCHW', name=None)
 ```

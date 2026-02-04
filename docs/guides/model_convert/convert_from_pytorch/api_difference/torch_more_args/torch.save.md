@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.save
-### [torch.save](https://pytorch.org/docs/stable/generated/torch.save.html?highlight=save#torch.save)
+### [torch.save](https://docs.pytorch.org/docs/stable/generated/torch.save.html#torch.save)
 ```python
 torch.save(obj,
            f,
@@ -8,7 +8,7 @@ torch.save(obj,
            _use_new_zipfile_serialization=True)
 ```
 
-### [paddle.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/save_cn.html#save)
+### [paddle.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/save_cn.html#paddle.save)
 ```python
 paddle.save(obj,
             path,

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributed.monitored_barrier
-### [torch.distributed.monitored_barrier](https://pytorch.org/docs/stable/distributed.html#torch.distributed.monitored_barrier)
+### [torch.distributed.monitored\_barrier](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.monitored_barrier)
 ```python
 torch.distributed.monitored_barrier(group=None, timeout=None, wait_all_ranks=False)
 ```
 
-### [paddle.distributed.barrier](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/barrier_cn.html)
+### [paddle.distributed.barrier](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/barrier_cn.html#paddle.distributed.barrier)
 ```python
 paddle.distributed.barrier(group=None)
 ```

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.signal.windows.general_hamming
-### [torch.signal.windows.general_hamming](https://pytorch.org/docs/stable/generated/torch.signal.windows.general_hamming.html)
+### [torch.signal.windows.general\_hamming](https://docs.pytorch.org/docs/stable/generated/torch.signal.windows.general_hamming.html#torch.signal.windows.general_hamming)
 ```python
 torch.signal.windows.general_hamming(M, *, alpha=0.54, sym=True, dtype=None, layout=torch.strided, device=None, requires_grad=False)
 ```
 
-### [paddle.audio.functional.get_window](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/audio/functional/get_window_cn.html#get-window)
+### [paddle.audio.functional.get\_window](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/audio/functional/get_window_cn.html#paddle.audio.functional.get_window)
 ```python
 paddle.audio.functional.get_window(window, win_length, fftbins=True, dtype='float64')
 ```

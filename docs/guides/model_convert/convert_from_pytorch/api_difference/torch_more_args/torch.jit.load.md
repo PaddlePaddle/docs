@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.jit.load
-### [torch.jit.load](https://pytorch.org/docs/stable/generated/torch.jit.load.html#torch.jit.load)
+### [torch.jit.load](https://docs.pytorch.org/docs/stable/generated/torch.jit.load.html#torch.jit.load)
 ```python
 torch.jit.load(f, map_location=None, _extra_files=None)
 ```
 
-### [paddle.jit.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/load_cn.html)
+### [paddle.jit.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/load_cn.html#paddle.jit.load)
 ```python
 paddle.jit.load(path, **configs)
 ```

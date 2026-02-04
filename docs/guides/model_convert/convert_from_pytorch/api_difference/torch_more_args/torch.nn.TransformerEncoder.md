@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.TransformerEncoder
-### [torch.nn.TransformerEncoder](https://pytorch.org/docs/stable/generated/torch.nn.TransformerEncoder.html#torch.nn.TransformerEncoder)
+### [torch.nn.TransformerEncoder](https://docs.pytorch.org/docs/stable/generated/torch.nn.TransformerEncoder.html#torch.nn.TransformerEncoder)
 ```python
 torch.nn.TransformerEncoder(encoder_layer, num_layers, norm=None, enable_nested_tensor=True, mask_check=True)
 ```
 
-### [paddle.nn.TransformerEncoder](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/TransformerEncoder_cn.html)
+### [paddle.nn.TransformerEncoder](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/TransformerEncoder_cn.html#paddle.nn.TransformerEncoder)
 ```python
 paddle.nn.TransformerEncoder(encoder_layer, num_layers, norm=None)
 ```

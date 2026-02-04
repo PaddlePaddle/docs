@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.isreal
-### [torch.isreal](https://pytorch.org/docs/stable/generated/torch.isreal.html#torch-isreal)
+### [torch.isreal](https://docs.pytorch.org/docs/stable/generated/torch.isreal.html#torch.isreal)
 ```python
 torch.isreal(input)
 ```
 
-### [paddle.isreal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isreal_cn.html)
+### [paddle.isreal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isreal_cn.html#paddle.isreal)
 ```python
 paddle.isreal(x, name=None)
 ```

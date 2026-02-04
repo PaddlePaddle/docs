@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torchvision.io.read_file
-### [torchvision.io.read_file](https://pytorch.org/vision/main/generated/torchvision.io.read_file.html)
+### [torchvision.io.read\_file](https://pytorch.org/vision/stable/generated/torchvision.io.read_file.html#torchvision.io.read_file)
 ```python
 torchvision.io.read_file(path)
 ```
 
-### [paddle.vision.ops.read_file](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/ops/read_file_cn.html#cn-api-paddle-vision-ops-read-file)
+### [paddle.vision.ops.read\_file](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/ops/read_file_cn.html#paddle.vision.ops.read_file)
 ```python
 paddle.vision.ops.read_file(filename, name=None)
 ```

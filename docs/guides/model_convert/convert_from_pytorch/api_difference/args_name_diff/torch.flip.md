@@ -1,11 +1,11 @@
 ## [ 仅参数名不一致 ]torch.flip
-### [torch.flip](https://pytorch.org/docs/stable/generated/torch.flip.html?highlight=flip#torch.flip)
+### [torch.flip](https://docs.pytorch.org/docs/stable/generated/torch.flip.html#torch.flip)
 ```python
 torch.flip(input,
            dims)
 ```
 
-### [paddle.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/flip_cn.html#flip)
+### [paddle.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/flip_cn.html#paddle.flip)
 ```python
 paddle.flip(x,
             axis,

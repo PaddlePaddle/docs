@@ -6,7 +6,7 @@
 torchvision.transforms.functional.perspective(img, startpoints, endpoints, interpolation=torchvision.transforms.functional.InterpolationMode.BILINEAR, fill=None)
 ```
 
-### [paddle.vision.transforms.perspective](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/perspective_cn.html#paddle/vision/transforms/perspective_cn#cn-api-paddle-vision-transforms-perspective)
+### [paddle.vision.transforms.perspective](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/perspective_cn.html#paddle.vision.transforms.perspective)
 
 ```python
 paddle.vision.transforms.perspective(img, startpoints, endpoints, interpolation='nearest', fill=0)

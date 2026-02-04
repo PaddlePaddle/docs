@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nansum
-### [torch.nansum](https://pytorch.org/docs/stable/generated/torch.nansum.html)
+### [torch.nansum](https://docs.pytorch.org/docs/stable/generated/torch.nansum.html#torch.nansum)
 ```python
 torch.nansum(input, dim=None, keepdim=False, *, dtype=None, out=None)
 ```
 
-### [paddle.nansum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nansum_cn.html)
+### [paddle.nansum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nansum_cn.html#paddle.nansum)
 ```python
 paddle.nansum(x, axis=None, dtype=None, keepdim=False, name=None)
 ```

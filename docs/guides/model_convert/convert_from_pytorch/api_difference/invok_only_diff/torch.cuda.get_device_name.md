@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.cuda.get_device_name
 
-### [torch.cuda.get_device_name](https://pytorch.org/docs/stable/generated/torch.cuda.get_device_name.html#torch.cuda.get_device_name)
+### [torch.cuda.get\_device\_name](https://docs.pytorch.org/docs/stable/generated/torch.cuda.get_device_name.html#torch.cuda.get_device_name)
 
 ```python
 torch.cuda.get_device_name(device)
 ```
 
-### [paddle.device.cuda.get_device_name](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/get_device_name_cn.html#paddle/device/cuda/get_device_name_cn#cn-api-paddle-device-cuda-get_device_name)
+### [paddle.device.cuda.get\_device\_name](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/get_device_name_cn.html#paddle.device.cuda.get_device_name)
 
 ```python
 paddle.device.cuda.get_device_name(device)

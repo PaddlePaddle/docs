@@ -4,7 +4,7 @@
 torch.feature_alpha_dropout(input, p, training)
 ```
 
-### [paddle.nn.functional.feature\_alpha\_dropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/feature_alpha_dropout_cn.html#feature_alpha-dropout)
+### [paddle.nn.functional.feature\_alpha\_dropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/feature_alpha_dropout_cn.html#paddle.nn.functional.feature_alpha_dropout)
 ```python
 paddle.nn.functional.feature_alpha_dropout(x, p=0.5, training=True, name=None)
 ```

@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.utils.data.random_split
 
-### [torch.utils.data.random_split](https://pytorch.org/docs/stable/data.html#torch.utils.data.random_split)
+### [torch.utils.data.random\_split](https://docs.pytorch.org/docs/stable/data.html#torch.utils.data.random_split)
 
 ```python
 torch.utils.data.random_split(dataset, lengths, generator=<torch._C.Generator object>)
 ```
 
-### [paddle.io.random_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/random_split_cn.html#paddle/io/random_split_cn#cn-api-paddle-io-random_split)
+### [paddle.io.random\_split](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/random_split_cn.html#paddle.io.random_split)
 
 ```python
 paddle.io.random_split(dataset, lengths, generator=None)

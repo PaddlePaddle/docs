@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.take
-### [torch.take](https://pytorch.org/docs/stable/generated/torch.take.html?highlight=torch+take#torch.take)
+### [torch.take](https://docs.pytorch.org/docs/stable/generated/torch.take.html#torch.take)
 ```python
 torch.take(input, index)
 ```
 
-### [paddle.take](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/take_cn.html#take)
+### [paddle.take](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/take_cn.html#paddle.take)
 ```python
 paddle.take(x, index, mode='raise', name=None)
 ```

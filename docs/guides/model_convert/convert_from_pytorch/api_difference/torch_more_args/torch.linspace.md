@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.linspace
-### [torch.linspace](https://pytorch.org/docs/stable/generated/torch.linspace.html?highlight=linspace#torch.linspace)
+### [torch.linspace](https://docs.pytorch.org/docs/stable/generated/torch.linspace.html#torch.linspace)
 ```python
 torch.linspace(start,
                end,
@@ -12,7 +12,7 @@ torch.linspace(start,
                requires_grad=False)
 ```
 
-### [paddle.linspace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linspace_cn.html)
+### [paddle.linspace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linspace_cn.html#paddle.linspace)
 ```python
 paddle.linspace(start,
                 stop,

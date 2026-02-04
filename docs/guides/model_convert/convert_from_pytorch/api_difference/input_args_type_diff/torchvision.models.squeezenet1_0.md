@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torchvision.models.squeezenet1_0
-### [torchvision.models.squeezenet1_0](https://pytorch.org/vision/main/models/generated/torchvision.models.squeezenet1_0.html)
+### [torchvision.models.squeezenet1\_0](https://pytorch.org/vision/stable/models/generated/torchvision.models.squeezenet1_0.html#torchvision.models.squeezenet1_0)
 ```python
 torchvision.models.squeezenet1_0(pretrained: bool = False, progress: bool = True, *, weights: Optional[SqueezeNet1_0_Weights] = None, **kwargs: Any)
 ```
 
-### [paddle.vision.models.squeezenet1_0](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/squeezenet1_0_cn.html)
+### [paddle.vision.models.squeezenet1\_0](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/models/squeezenet1_0_cn.html#paddle.vision.models.squeezenet1_0)
 ```python
 paddle.vision.models.squeezenet1_0(pretrained=False, **kwargs)
 ```

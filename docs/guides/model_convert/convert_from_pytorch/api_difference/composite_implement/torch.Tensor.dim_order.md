@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.dim_order
-### [torch.Tensor.dim_order](https://pytorch.org/docs/stable/generated/torch.Tensor.dim_order.html?highlight=dim_order#torch.Tensor.dim_order)
+### [torch.Tensor.dim\_order](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.dim_order.html#torch.Tensor.dim_order)
 ```python
 torch.Tensor.dim_order()
 ```

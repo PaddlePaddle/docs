@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.ldexp_
-### [torch.Tensor.ldexp_](https://pytorch.org/docs/stable/generated/torch.Tensor.ldexp_.html)
+### [torch.Tensor.ldexp\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.ldexp_.html#torch.Tensor.ldexp_)
 ```python
 torch.Tensor.ldexp_(other)
 ```

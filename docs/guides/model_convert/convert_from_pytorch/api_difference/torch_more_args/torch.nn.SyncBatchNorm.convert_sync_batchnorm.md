@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.SyncBatchNorm.convert_sync_batchnorm
-### [torch.nn.SyncBatchNorm.convert_sync_batchnorm](https://pytorch.org/docs/stable/generated/torch.nn.SyncBatchNorm.html?highlight=convert_sync_batchnorm#torch.nn.SyncBatchNorm.convert_sync_batchnorm)
+### [torch.nn.SyncBatchNorm.convert\_sync\_batchnorm](https://docs.pytorch.org/docs/stable/generated/torch.nn.SyncBatchNorm.html#torch.nn.SyncBatchNorm.convert_sync_batchnorm)
 ```python
 torch.nn.SyncBatchNorm.convert_sync_batchnorm(module, process_group=None)
 ```

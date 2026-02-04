@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.linalg.det
-### [torch.linalg.det](https://pytorch.org/docs/stable/generated/torch.linalg.det.html#torch.linalg.det)
+### [torch.linalg.det](https://docs.pytorch.org/docs/stable/generated/torch.linalg.det.html#torch.linalg.det)
 ```python
 torch.linalg.det(A, *, out=None)
 ```
 
-### [paddle.linalg.det](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/det_cn.html#det)
+### [paddle.linalg.det](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/det_cn.html#paddle.linalg.det)
 ```python
 paddle.linalg.det(x)
 ```

@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.Tensor.nanmean
-### [torch.Tensor.nanmean](https://pytorch.org/docs/stable/generated/torch.Tensor.nanmean.html?highlight=nanmean#torch.Tensor.nanmean)
+### [torch.Tensor.nanmean](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.nanmean.html#torch.Tensor.nanmean)
 ```python
 torch.Tensor.nanmean(dim=None,
                      keepdim=False,

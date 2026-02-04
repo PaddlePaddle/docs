@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.distributions.distribution.Distribution.log_prob
 
-### [torch.distributions.distribution.Distribution.log_prob](https://pytorch.org/docs/stable/generated/torch.distributions.distribution.Distribution.html#torch.distributions.distribution.Distribution.log_prob)
+### [torch.distributions.distribution.Distribution.log\_prob](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.distribution.Distribution.log_prob)
 
 ```python
 torch.distributions.distribution.Distribution.log_prob(value)

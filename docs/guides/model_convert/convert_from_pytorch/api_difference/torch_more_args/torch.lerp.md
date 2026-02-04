@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.lerp
-### [torch.lerp](https://pytorch.org/docs/stable/generated/torch.lerp.html?highlight=lerp#torch.lerp)
+### [torch.lerp](https://docs.pytorch.org/docs/stable/generated/torch.lerp.html#torch.lerp)
 ```python
 torch.lerp(input,
           end,
@@ -8,7 +8,7 @@ torch.lerp(input,
           out=None)
 ```
 
-### [paddle.lerp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/lerp_cn.html#lerp)
+### [paddle.lerp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/lerp_cn.html#paddle.lerp)
 ```python
 paddle.lerp(x,
             y,

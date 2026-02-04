@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.CosineEmbeddingLoss
-### [torch.nn.CosineEmbeddingLoss](https://pytorch.org/docs/stable/generated/torch.nn.CosineEmbeddingLoss.html#torch.nn.CosineEmbeddingLoss)
+### [torch.nn.CosineEmbeddingLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.CosineEmbeddingLoss.html#torch.nn.CosineEmbeddingLoss)
 ```python
 torch.nn.CosineEmbeddingLoss(margin=0.0, size_average=None, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.CosineEmbeddingLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/CosineEmbeddingLoss_cn.html)
+### [paddle.nn.CosineEmbeddingLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/CosineEmbeddingLoss_cn.html#paddle.nn.CosineEmbeddingLoss)
 ```python
 paddle.nn.CosineEmbeddingLoss(margin=0, reduction='mean', name=None)
 ```

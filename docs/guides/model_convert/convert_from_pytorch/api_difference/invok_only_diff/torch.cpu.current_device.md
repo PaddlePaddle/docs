@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.cpu.current_device
 
-### [torch.cpu.current_device](https://pytorch.org/docs/stable/generated/torch.cpu.html#torch.cpu.current_device)
+### [torch.cpu.current\_device](https://docs.pytorch.org/docs/stable/generated/torch.cpu.current_device.html#torch.cpu.current_device)
 
 ```python
 torch.cpu.current_device()

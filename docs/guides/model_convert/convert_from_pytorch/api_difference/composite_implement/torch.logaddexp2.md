@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.logaddexp2
-### [torch.logaddexp2](https://pytorch.org/docs/stable/generated/torch.logaddexp2.html#torch.logaddexp2)
+### [torch.logaddexp2](https://docs.pytorch.org/docs/stable/generated/torch.logaddexp2.html#torch.logaddexp2)
 ```python
 torch.logaddexp2(input, other, *, out=None)
 ```

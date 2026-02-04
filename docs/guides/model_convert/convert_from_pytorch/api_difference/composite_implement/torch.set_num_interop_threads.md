@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.set_num_interop_threads
-### [torch.set_num_interop_threads](https://pytorch.org/docs/stable/generated/torch.set_num_interop_threads.html)
+### [torch.set\_num\_interop\_threads](https://docs.pytorch.org/docs/stable/generated/torch.set_num_interop_threads.html#torch.set_num_interop_threads)
 ```python
 torch.set_num_interop_threads(nthreads)
 ```

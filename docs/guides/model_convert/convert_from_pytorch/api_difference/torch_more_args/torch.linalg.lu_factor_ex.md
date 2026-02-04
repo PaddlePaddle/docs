@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.linalg.lu_factor_ex
-### [torch.linalg.lu_factor_ex](https://pytorch.org/docs/stable/generated/torch.linalg.lu_factor_ex.html?highlight=lu_factor_ex#torch.linalg.lu_factor_ex)
+### [torch.linalg.lu\_factor\_ex](https://docs.pytorch.org/docs/stable/generated/torch.linalg.lu_factor_ex.html#torch.linalg.lu_factor_ex)
 ```python
 torch.linalg.lu_factor_ex(A, *, pivot=True, check_errors=False, out=None)
 ```
 
-### [paddle.linalg.lu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_cn.html)
+### [paddle.linalg.lu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_cn.html#paddle.linalg.lu)
 ```python
 paddle.linalg.lu(x, pivot=True, get_infos=True, name=None)
 ```

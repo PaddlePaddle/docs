@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.Softshrink
-### [torch.nn.Softshrink](https://pytorch.org/docs/stable/generated/torch.nn.Softshrink.html?highlight=nn+softshrink#torch.nn.Softshrink)
+### [torch.nn.Softshrink](https://docs.pytorch.org/docs/stable/generated/torch.nn.Softshrink.html#torch.nn.Softshrink)
 ```python
 torch.nn.Softshrink(lambd=0.5)
 ```
 
-### [paddle.nn.Softshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Softshrink_cn.html#softshrink)
+### [paddle.nn.Softshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Softshrink_cn.html#paddle.nn.Softshrink)
 ```python
 paddle.nn.Softshrink(threshold=0.5,
                         name=None)

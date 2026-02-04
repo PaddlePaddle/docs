@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.nn.UpsamplingBilinear2d
 
-### [torch.nn.UpsamplingBilinear2d](https://pytorch.org/docs/stable/generated/torch.nn.UpsamplingBilinear2d.html#torch.nn.UpsamplingBilinear2d)
+### [torch.nn.UpsamplingBilinear2d](https://docs.pytorch.org/docs/stable/generated/torch.nn.UpsamplingBilinear2d.html#torch.nn.UpsamplingBilinear2d)
 
 ```python
 torch.nn.UpsamplingBilinear2d(size=None, scale_factor=None)
 ```
 
-### [paddle.nn.UpsamplingBilinear2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/UpsamplingBilinear2D_cn.html#paddle/nn/UpsamplingBilinear2D_cn#cn-api-paddle-nn-UpsamplingBilinear2D)
+### [paddle.nn.UpsamplingBilinear2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/UpsamplingBilinear2D_cn.html#paddle.nn.UpsamplingBilinear2D)
 
 ```python
 paddle.nn.UpsamplingBilinear2D(size=None, scale_factor=None, data_format='NCHW', name=None)

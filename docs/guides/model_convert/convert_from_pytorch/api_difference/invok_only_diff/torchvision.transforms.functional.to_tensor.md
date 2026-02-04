@@ -6,7 +6,7 @@
 torchvision.transforms.functional.to_tensor(pic)
 ```
 
-### [paddle.vision.transforms.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/to_tensor_cn.html#paddle/vision/transforms/to_tensor_cn#cn-api-paddle-vision-transforms-to_tensor)
+### [paddle.vision.transforms.to\_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/to_tensor_cn.html#paddle.vision.transforms.to_tensor)
 
 ```python
 paddle.vision.transforms.to_tensor(pic, data_format='CHW')

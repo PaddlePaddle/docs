@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.special.polygamma
-### [torch.special.polygamma](https://pytorch.org/docs/stable/special.html#torch.special.polygamma)
+### [torch.special.polygamma](https://docs.pytorch.org/docs/stable/special.html#torch.special.polygamma)
 ```python
 torch.special.polygamma(n, input, *, out=None)
 ```

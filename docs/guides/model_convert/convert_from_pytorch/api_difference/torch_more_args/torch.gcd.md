@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.gcd
-### [torch.gcd](https://pytorch.org/docs/stable/generated/torch.gcd.html#torch-gcd)
+### [torch.gcd](https://docs.pytorch.org/docs/stable/generated/torch.gcd.html#torch.gcd)
 ```python
 torch.gcd(input, other, *, out=None)
 ```
 
-### [paddle.gcd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/gcd_cn.html#gcd)
+### [paddle.gcd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/gcd_cn.html#paddle.gcd)
 ```python
 paddle.gcd(x, y, name=None)
 ```

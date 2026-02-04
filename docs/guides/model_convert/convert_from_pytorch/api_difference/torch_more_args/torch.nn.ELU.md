@@ -1,11 +1,11 @@
 ## [ torch 参数更多 ]torch.nn.ELU
-### [torch.nn.ELU](https://pytorch.org/docs/stable/generated/torch.nn.ELU.html?highlight=elu#torch.nn.ELU)
+### [torch.nn.ELU](https://docs.pytorch.org/docs/stable/generated/torch.nn.ELU.html#torch.nn.ELU)
 ```python
 torch.nn.ELU(alpha=1.0,
              inplace=False)
 ```
 
-### [paddle.nn.ELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ELU_cn.html#elu)
+### [paddle.nn.ELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ELU_cn.html#paddle.nn.ELU)
 ```python
 paddle.nn.ELU(alpha=1.0,
               name=None)

@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.initial_seed
-### [torch.initial_seed](https://pytorch.org/docs/stable/generated/torch.initial_seed.html?highlight=initial_seed)
+### [torch.initial\_seed](https://docs.pytorch.org/docs/stable/generated/torch.initial_seed.html#torch.initial_seed)
 ```python
 torch.initial_seed()
 ```

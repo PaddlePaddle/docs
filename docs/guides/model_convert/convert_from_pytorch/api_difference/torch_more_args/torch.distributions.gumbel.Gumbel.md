@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.gumbel.Gumbel
-### [torch.distributions.gumbel.Gumbel](https://pytorch.org/docs/stable/distributions.html#torch.distributions.gumbel.Gumbel)
+### [torch.distributions.gumbel.Gumbel](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.gumbel.Gumbel)
 ```python
 torch.distributions.gumbel.Gumbel(loc, scale, validate_args=None)
 ```
 
-### [paddle.distribution.Gumbel](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Gumbel_cn.html#gumbel)
+### [paddle.distribution.Gumbel](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Gumbel_cn.html#paddle.distribution.Gumbel)
 ```python
 paddle.distribution.Gumbel(loc, scale)
 ```

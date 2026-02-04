@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.nn.MaxUnpool1d
 
-### [torch.nn.MaxUnpool1d](https://pytorch.org/docs/stable/generated/torch.nn.MaxUnpool1d.html#torch.nn.MaxUnpool1d)
+### [torch.nn.MaxUnpool1d](https://docs.pytorch.org/docs/stable/generated/torch.nn.MaxUnpool1d.html#torch.nn.MaxUnpool1d)
 
 ```python
 torch.nn.MaxUnpool1d(kernel_size, stride=None, padding=0)
 ```
 
-### [paddle.nn.MaxUnPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MaxUnPool1D_cn.html#paddle/nn/MaxUnPool1D_cn#cn-api-paddle-nn-MaxUnPool1D)
+### [paddle.nn.MaxUnPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MaxUnPool1D_cn.html#paddle.nn.MaxUnPool1D)
 
 ```python
 paddle.nn.MaxUnPool1D(kernel_size, stride=None, padding=0, data_format='NCL', output_size=None, name=None)

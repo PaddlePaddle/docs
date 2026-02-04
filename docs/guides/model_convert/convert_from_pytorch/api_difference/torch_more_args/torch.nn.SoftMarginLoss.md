@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.nn.SoftMarginLoss
-### [torch.nn.SoftMarginLoss](https://pytorch.org/docs/stable/generated/torch.nn.SoftMarginLoss.html#torch.nn.SoftMarginLoss)
+### [torch.nn.SoftMarginLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.SoftMarginLoss.html#torch.nn.SoftMarginLoss)
 ```python
 torch.nn.SoftMarginLoss(size_average=None,
                         reduce=None,
                         reduction='mean')
 ```
 
-### [paddle.nn.SoftMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SoftMarginLoss_cn.html#softmarginloss)
+### [paddle.nn.SoftMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SoftMarginLoss_cn.html#paddle.nn.SoftMarginLoss)
 ```python
 paddle.nn.SoftMarginLoss(reduction='mean',
                          name=None)

@@ -4,7 +4,7 @@
 torch.nn.Unflatten(dim, unflattened_size)
 ```
 
-### [paddle.nn.Unflatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Unflatten_cn.html#unflatten)
+### [paddle.nn.Unflatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Unflatten_cn.html#paddle.nn.Unflatten)
 ```python
 paddle.nn.Unflatten(axis, shape, name=None)
 ```

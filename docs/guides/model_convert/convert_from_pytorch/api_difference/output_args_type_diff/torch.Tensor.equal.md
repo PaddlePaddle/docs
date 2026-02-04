@@ -1,10 +1,10 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.equal
-### [torch.Tensor.equal](https://pytorch.org/docs/stable/generated/torch.Tensor.equal.html?highlight=equal#torch.Tensor.equal)
+### [torch.Tensor.equal](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.equal.html#torch.Tensor.equal)
 ```python
 torch.Tensor.equal(other)
 ```
 
-### [paddle.Tensor.equal_all](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#equal-all-y-name-none)
+### [paddle.Tensor.equal\_all](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#equal-all-y-name-none)
 ```python
 paddle.Tensor.equal_all(y, name=None)
 ```

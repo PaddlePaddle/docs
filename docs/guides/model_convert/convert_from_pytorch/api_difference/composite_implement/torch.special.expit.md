@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.special.expit
-### [torch.special.expit](https://pytorch.org/docs/stable/special.html#torch.special.expit)
+### [torch.special.expit](https://docs.pytorch.org/docs/stable/special.html#torch.special.expit)
 ```python
 torch.special.expit(input, *, out=None)
 ```

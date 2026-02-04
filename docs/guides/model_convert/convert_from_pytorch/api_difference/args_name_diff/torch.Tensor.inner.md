@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.inner
-### [torch.Tensor.inner](https://pytorch.org/docs/stable/generated/torch.Tensor.inner.html)
+### [torch.Tensor.inner](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.inner.html#torch.Tensor.inner)
 ```python
 torch.Tensor.inner(other)
 ```

@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.huber_loss
-### [torch.nn.functional.huber_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.huber_loss.html#torch.nn.functional.huber_loss)
+### [torch.nn.functional.huber\_loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.huber_loss.html#torch.nn.functional.huber_loss)
 ```python
 torch.nn.functional.huber_loss(input, target, reduction='mean', delta=1.0)
 ```
 
-### [paddle.nn.functional.smooth_l1_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/smooth_l1_loss_cn.html)
+### [paddle.nn.functional.smooth\_l1\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/smooth_l1_loss_cn.html#paddle.nn.functional.smooth_l1_loss)
 ```python
 paddle.nn.functional.smooth_l1_loss(input, label, reduction='mean', delta=1.0, name=None)
 ```

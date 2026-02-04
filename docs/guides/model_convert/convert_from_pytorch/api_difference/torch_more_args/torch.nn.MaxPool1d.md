@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.MaxPool1d
-### [torch.nn.MaxPool1d](https://pytorch.org/docs/stable/generated/torch.nn.MaxPool1d.html?highlight=maxpool1d#torch.nn.MaxPool1d)
+### [torch.nn.MaxPool1d](https://docs.pytorch.org/docs/stable/generated/torch.nn.MaxPool1d.html#torch.nn.MaxPool1d)
 ```python
 torch.nn.MaxPool1d(kernel_size,
                    stride=None,
@@ -9,7 +9,7 @@ torch.nn.MaxPool1d(kernel_size,
                    ceil_mode=False)
 ```
 
-### [paddle.nn.MaxPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MaxPool1D_cn.html#maxpool1d)
+### [paddle.nn.MaxPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MaxPool1D_cn.html#paddle.nn.MaxPool1D)
 ```python
 paddle.nn.MaxPool1D(kernel_size,
                     stride=None,

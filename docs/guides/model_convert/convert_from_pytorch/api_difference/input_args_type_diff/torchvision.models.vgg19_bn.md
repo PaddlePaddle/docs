@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torchvision.models.vgg19_bn
-### [torchvision.models.vgg19_bn](https://pytorch.org/vision/main/models/generated/torchvision.models.vgg19_bn.html)
+### [torchvision.models.vgg19\_bn](https://pytorch.org/vision/stable/models/generated/torchvision.models.vgg19_bn.html#torchvision.models.vgg19_bn)
 ```python
 torchvision.models.vgg19_bn(pretrained: bool = False, progress: bool = True, *, weights: Optional[VGG19_BN_Weights] = None, **kwargs: Any)
 ```
 
-### [paddle.vision.models.vgg19](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/vgg19_cn.html)
+### [paddle.vision.models.vgg19](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/models/vgg19_cn.html#paddle.vision.models.vgg19)
 ```python
 paddle.vision.models.vgg19(pretrained=False, batch_norm=False, **kwargs)
 ```

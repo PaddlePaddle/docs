@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.index_copy_
-### [torch.Tensor.index_copy_](https://pytorch.org/docs/stable/generated/torch.Tensor.index_copy_.html)
+### [torch.Tensor.index\_copy\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.index_copy_.html#torch.Tensor.index_copy_)
 ```python
 torch.Tensor.index_copy_(dim, index, source)
 ```

@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.gcd_
-### [torch.Tensor.gcd_](https://pytorch.org/docs/stable/generated/torch.Tensor.gcd_.html)
+### [torch.Tensor.gcd\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.gcd_.html#torch.Tensor.gcd_)
 ```python
 torch.Tensor.gcd_(other)
 ```

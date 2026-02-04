@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.Tensor.geometric_
-### [torch.Tensor.geometric_](https://pytorch.org/docs/stable/generated/torch.Tensor.geometric_.html)
+### [torch.Tensor.geometric\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.geometric_.html#torch.Tensor.geometric_)
 ```python
 torch.Tensor.geometric_(p, *, generator=None)
 ```

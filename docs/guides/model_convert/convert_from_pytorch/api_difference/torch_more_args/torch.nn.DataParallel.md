@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.DataParallel
-### [torch.nn.DataParallel](https://pytorch.org/docs/stable/generated/torch.nn.DataParallel.html?highlight=dataparallel#torch.nn.DataParallel)
+### [torch.nn.DataParallel](https://docs.pytorch.org/docs/stable/generated/torch.nn.DataParallel.html#torch.nn.DataParallel)
 ```python
 torch.nn.DataParallel(module,
                       device_ids=None,
@@ -7,7 +7,7 @@ torch.nn.DataParallel(module,
                       dim=0)
 ```
 
-### [paddle.DataParallel](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/DataParallel_cn.html#dataparallel)
+### [paddle.DataParallel](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/DataParallel_cn.html#paddle.DataParallel)
 ```python
 paddle.DataParallel(layers,
                     strategy=None,

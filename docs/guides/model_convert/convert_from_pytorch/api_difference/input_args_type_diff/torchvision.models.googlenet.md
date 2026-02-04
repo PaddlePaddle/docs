@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torchvision.models.googlenet
-### [torchvision.models.googlenet](https://pytorch.org/vision/main/models/generated/torchvision.models.googlenet.html)
+### [torchvision.models.googlenet](https://pytorch.org/vision/stable/models/generated/torchvision.models.googlenet.html#torchvision.models.googlenet)
 ```python
 torchvision.models.googlenet(pretrained: bool = False, progress: bool = True, *, weights: Optional[GoogLeNet_Weights] = None, **kwargs: Any)
 ```
 
-### [paddle.vision.models.googlenet](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/googlenet_cn.html)
+### [paddle.vision.models.googlenet](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/models/googlenet_cn.html#paddle.vision.models.googlenet)
 ```python
 paddle.vision.models.googlenet(pretrained=False, **kwargs)
 ```

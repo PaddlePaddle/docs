@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.laplace.Laplace
-### [torch.distributions.laplace.Laplace](https://pytorch.org/docs/stable/distributions.html#torch.distributions.laplace.Laplace)
+### [torch.distributions.laplace.Laplace](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.laplace.Laplace)
 ```python
 torch.distributions.laplace.Laplace(loc, scale, validate_args=None)
 ```
 
-### [paddle.distribution.Laplace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Laplace_cn.html#laplace)
+### [paddle.distribution.Laplace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Laplace_cn.html#paddle.distribution.Laplace)
 ```python
 paddle.distribution.Laplace(loc, scale)
 ```

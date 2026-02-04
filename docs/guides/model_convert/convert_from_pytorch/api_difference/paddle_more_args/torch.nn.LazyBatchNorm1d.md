@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.LazyBatchNorm1d
-### [torch.nn.LazyBatchNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm1d.html)
+### [torch.nn.LazyBatchNorm1d](https://docs.pytorch.org/docs/stable/generated/torch.nn.LazyBatchNorm1d.html#torch.nn.LazyBatchNorm1d)
 ```python
 torch.nn.LazyBatchNorm1d(eps=1e-05, momentum=0.1, affine=True, track_running_stats=True, device=None, dtype=None)
 ```
 
-### [paddle.nn.BatchNorm1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BatchNorm1D_cn.html#batchnorm1d)
+### [paddle.nn.BatchNorm1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BatchNorm1D_cn.html#paddle.nn.BatchNorm1D)
 ```python
 paddle.nn.BatchNorm1D(num_features,
                       momentum=0.9,

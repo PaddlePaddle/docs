@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.nn.functional.batch_norm
-### [torch.nn.functional.batch_norm](https://pytorch.org/docs/stable/generated/torch.nn.functional.batch_norm.html#torch.nn.functional.batch_norm)
+### [torch.nn.functional.batch\_norm](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.batch_norm.html#torch.nn.functional.batch_norm)
 ```python
 torch.nn.functional.batch_norm(input, running_mean, running_var, weight=None, bias=None, training=False, momentum=0.1, eps=1e-05)
 ```
 
-### [paddle.nn.functional.batch_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/batch_norm_cn.html#batch-norm)
+### [paddle.nn.functional.batch\_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/batch_norm_cn.html#paddle.nn.functional.batch_norm)
 ```python
 paddle.nn.functional.batch_norm(x, running_mean, running_var, weight, bias, training=False, momentum=0.9, epsilon=1e-05, data_format='NCHW', name=None)
 ```

@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.distributed.scatter_object_list
-### [torch.distributed.scatter_object_list](https://pytorch.org/docs/stable/distributed.html#torch.distributed.scatter_object_list)
+### [torch.distributed.scatter\_object\_list](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.scatter_object_list)
 ```python
 torch.distributed.scatter_object_list(scatter_object_output_list, scatter_object_input_list, src=0, group=None)
 ```
 
-### [paddle.distributed.scatter_object_list](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/scatter_object_list_cn.html#scatter-object-list)
+### [paddle.distributed.scatter\_object\_list](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/scatter_object_list_cn.html#paddle.distributed.scatter_object_list)
 ```python
 paddle.distributed.scatter_object_list(out_object_list, in_object_list, src=0, group=None)
 ```

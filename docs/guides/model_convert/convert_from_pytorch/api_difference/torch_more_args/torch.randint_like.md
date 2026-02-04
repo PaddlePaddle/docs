@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.randint_like
-### [torch.randint_like](https://pytorch.org/docs/stable/generated/torch.randint_like.html?highlight=randint_like#torch.randint_like)
+### [torch.randint\_like](https://docs.pytorch.org/docs/stable/generated/torch.randint_like.html#torch.randint_like)
 ```python
 torch.randint_like(input,
                    low=0,
@@ -14,7 +14,7 @@ torch.randint_like(input,
                    )
 ```
 
-### [paddle.randint_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/randint_like_cn.html)
+### [paddle.randint\_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/randint_like_cn.html#paddle.randint_like)
 ```python
 paddle.randint_like(x,
                     low=0,

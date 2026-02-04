@@ -6,7 +6,7 @@
 torchvision.transforms.functional.to_grayscale(img, num_output_channels=1)
 ```
 
-### [paddle.vision.transforms.to_grayscale](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/to_grayscale_cn.html#paddle/vision/transforms/to_grayscale_cn#cn-api-paddle-vision-transforms-to_grayscale)
+### [paddle.vision.transforms.to\_grayscale](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/to_grayscale_cn.html#paddle.vision.transforms.to_grayscale)
 
 ```python
 paddle.vision.transforms.to_grayscale(img, num_output_channels=1)

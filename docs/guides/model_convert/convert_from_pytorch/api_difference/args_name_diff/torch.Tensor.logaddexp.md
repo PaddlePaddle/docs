@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.logaddexp
-### [torch.Tensor.logaddexp](https://pytorch.org/docs/stable/generated/torch.Tensor.logaddexp.html#torch.Tensor.logaddexp)
+### [torch.Tensor.logaddexp](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.logaddexp.html#torch.Tensor.logaddexp)
 ```python
 torch.Tensor.logaddexp(other)
 ```

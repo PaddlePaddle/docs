@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.adaptive_avg_pool1d
-### [torch.nn.functional.adaptive_avg_pool1d](https://pytorch.org/docs/stable/generated/torch.nn.functional.adaptive_avg_pool1d.html?highlight=adaptive_avg_pool1d#torch.nn.functional.adaptive_avg_pool1d)
+### [torch.nn.functional.adaptive\_avg\_pool1d](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.adaptive_avg_pool1d.html#torch.nn.functional.adaptive_avg_pool1d)
 ```python
 torch.nn.functional.adaptive_avg_pool1d(input, output_size)
 ```
 
-### [paddle.nn.functional.adaptive_avg_pool1d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/adaptive_avg_pool1d_cn.html)
+### [paddle.nn.functional.adaptive\_avg\_pool1d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/adaptive_avg_pool1d_cn.html#paddle.nn.functional.adaptive_avg_pool1d)
 ```python
 paddle.nn.functional.adaptive_avg_pool1d(x, output_size, name=None)
 ```

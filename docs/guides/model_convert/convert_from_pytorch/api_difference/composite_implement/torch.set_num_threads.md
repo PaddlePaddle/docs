@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.set_num_threads
-### [torch.set_num_threads](https://pytorch.org/docs/stable/generated/torch.set_num_threads.html)
+### [torch.set\_num\_threads](https://docs.pytorch.org/docs/stable/generated/torch.set_num_threads.html#torch.set_num_threads)
 ```python
 torch.set_num_threads(int)
 ```

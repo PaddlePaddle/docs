@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.jit.script
-### [torch.jit.script](https://pytorch.org/docs/stable/generated/torch.jit.script.html#torch-jit-script)
+### [torch.jit.script](https://docs.pytorch.org/docs/stable/generated/torch.jit.script.html#torch.jit.script)
 ```python
 torch.jit.script(obj, optimize=None, _frames_up=0, _rcb=None, example_inputs=None)
 ```

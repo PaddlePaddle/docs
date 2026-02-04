@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.uniform.Uniform
-### [torch.distributions.uniform.Uniform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.uniform.Uniform)
+### [torch.distributions.uniform.Uniform](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.uniform.Uniform)
 ```python
 torch.distributions.uniform.Uniform(low, high, validate_args=None)
 ```
 
-### [paddle.distribution.Uniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Uniform_cn.html)
+### [paddle.distribution.Uniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Uniform_cn.html#paddle.distribution.Uniform)
 ```python
 paddle.distribution.Uniform(low, high, name=None)
 ```

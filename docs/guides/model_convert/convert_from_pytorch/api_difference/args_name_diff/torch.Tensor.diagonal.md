@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.diagonal
-### [torch.Tensor.diagonal](https://pytorch.org/docs/stable/generated/torch.Tensor.diagonal.html?highlight=diagonal#torch.Tensor.diagonal)
+### [torch.Tensor.diagonal](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.diagonal.html#torch.Tensor.diagonal)
 ```python
 torch.Tensor.diagonal(offset=0, dim1=0, dim2=1)
 ```
 
-### [paddle.Tensor.diagonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#diagonal-offset-0-axis1-0-axis2-1-name-none)
+### [paddle.Tensor.diagonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#diagonal-offset-0-axis1-0-axis2-1-name-none)
 ```python
 paddle.Tensor.diagonal(offset=0, axis1=0, axis2=1, name=None)
 ```

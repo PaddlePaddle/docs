@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.Tensor.exponential\_
-### [torch.Tensor.exponential\_](https://pytorch.org/docs/stable/generated/torch.Tensor.exponential_.html#torch.Tensor.exponential_)
+### [torch.Tensor.exponential\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.exponential_.html#torch.Tensor.exponential_)
 ```python
 torch.Tensor.exponential_(lambd=1, *, generator=None)
 ```
 
-### [paddle.Tensor.exponential\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#exponential-lam-1-0-name-none)
+### [paddle.Tensor.exponential\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#exponential-lam-1-0-name-none)
 ```python
 paddle.Tensor.exponential_(lam=1.0, name=None)
 ```

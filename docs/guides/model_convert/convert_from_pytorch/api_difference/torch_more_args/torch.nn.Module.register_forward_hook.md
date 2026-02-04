@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.Module.register_forward_hook
-### [torch.nn.Module.register_forward_hook](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_forward_hook)
+### [torch.nn.Module.register\_forward\_hook](https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_forward_hook)
 ```python
 torch.nn.Module.register_forward_hook(hook, *, prepend=False, with_kwargs=False, always_call=False)
 ```

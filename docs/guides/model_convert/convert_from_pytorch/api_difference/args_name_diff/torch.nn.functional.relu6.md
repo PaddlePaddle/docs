@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.relu6
-### [torch.nn.functional.relu6](https://pytorch.org/docs/stable/generated/torch.nn.functional.relu6.html?highlight=relu6#torch.nn.functional.relu6)
+### [torch.nn.functional.relu6](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.relu6.html#torch.nn.functional.relu6)
 ```python
 torch.nn.functional.relu6(input, inplace=False)
 ```
 
-### [paddle.nn.functional.relu6](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/relu6_cn.html)
+### [paddle.nn.functional.relu6](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/relu6_cn.html#paddle.nn.functional.relu6)
 ```python
 paddle.nn.functional.relu6(x, name=None)
 ```

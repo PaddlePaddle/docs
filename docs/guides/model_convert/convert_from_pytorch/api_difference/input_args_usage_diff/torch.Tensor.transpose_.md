@@ -1,5 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.Tensor.transpose_
-### [torch.Tensor.transpose_](https://pytorch.org/docs/stable/generated/torch.Tensor.transpose_.html)
+### [torch.Tensor.transpose\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.transpose_.html#torch.Tensor.transpose_)
 ```python
 torch.Tensor.transpose_(dim0, dim1)
 ```

@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.cuda.synchronize
-### [torch.cuda.synchronize](https://pytorch.org/docs/stable/generated/torch.cuda.synchronize.html#torch.cuda.synchronize)
+### [torch.cuda.synchronize](https://docs.pytorch.org/docs/stable/generated/torch.cuda.synchronize.html#torch.cuda.synchronize)
 ```python
 torch.cuda.synchronize(device)
 ```
 
-### [paddle.device.synchronize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/synchronize_cn.html)
+### [paddle.device.synchronize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/synchronize_cn.html#paddle.device.synchronize)
 ```python
 paddle.device.synchronize(device)
 ```

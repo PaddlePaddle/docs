@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.special.erfc
-### [torch.special.erfc](https://pytorch.org/docs/stable/special.html#torch.special.erfc)
+### [torch.special.erfc](https://docs.pytorch.org/docs/stable/special.html#torch.special.erfc)
 ```python
 torch.special.erfc(input, *, out=None)
 ```

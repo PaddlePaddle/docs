@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_atan
-### [torch.\_foreach_atan](https://pytorch.org/docs/stable/generated/torch._foreach_atan.html#torch-foreach-atan)
+### [torch.\_foreach\_atan](https://docs.pytorch.org/docs/stable/generated/torch._foreach_atan.html#torch._foreach_atan)
 ```python
 torch._foreach_atan(self)
 ```

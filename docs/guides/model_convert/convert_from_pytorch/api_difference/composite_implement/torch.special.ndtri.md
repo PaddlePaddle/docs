@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.special.ndtri
-### [torch.special.ndtri](https://pytorch.org/docs/stable/special.html#torch.special.ndtri)
+### [torch.special.ndtri](https://docs.pytorch.org/docs/stable/special.html#torch.special.ndtri)
 ```python
 torch.special.ndtri(input, *, out=None)
 ```

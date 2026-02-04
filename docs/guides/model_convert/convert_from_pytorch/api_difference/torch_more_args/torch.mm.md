@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.mm
-### [torch.mm](https://pytorch.org/docs/stable/generated/torch.mm.html?highlight=torch+mm#torch.mm)
+### [torch.mm](https://docs.pytorch.org/docs/stable/generated/torch.mm.html#torch.mm)
 ```python
 torch.mm(input,
          mat2,
@@ -7,7 +7,7 @@ torch.mm(input,
          out=None)
 ```
 
-### [paddle.mm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mm_cn.html)
+### [paddle.mm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mm_cn.html#paddle.mm)
 ```python
 paddle.mm(input, mat2, name=None)
 ```

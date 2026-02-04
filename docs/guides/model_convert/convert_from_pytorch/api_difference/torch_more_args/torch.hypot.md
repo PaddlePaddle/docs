@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.hypot
-### [torch.hypot](https://pytorch.org/docs/stable/generated/torch.hypot.html#torch.hypot)
+### [torch.hypot](https://docs.pytorch.org/docs/stable/generated/torch.hypot.html#torch.hypot)
 ```python
 torch.hypot(input, other, *, out=None)
 ```
 
-### [paddle.hypot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hypot_cn.html)
+### [paddle.hypot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hypot_cn.html#paddle.hypot)
 ```python
 paddle.hypot(x, y, name=None)
 ```

@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.GaussianNLLLoss
-### [torch.nn.GaussianNLLLoss](https://pytorch.org/docs/stable/generated/torch.nn.GaussianNLLLoss)
+### [torch.nn.GaussianNLLLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.GaussianNLLLoss.html#torch.nn.GaussianNLLLoss)
 ```python
 torch.nn.GaussianNLLLoss(*, full=False, eps=1e-06, reduction='mean')
 ```
 
-### [paddle.nn.GaussianNLLLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GaussianNLLLoss_cn.html)
+### [paddle.nn.GaussianNLLLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GaussianNLLLoss_cn.html#paddle.nn.GaussianNLLLoss)
 ```python
 paddle.nn.GaussianNLLLoss(full=False, epsilon=1e-6, reduction='mean', name=None)
 ```

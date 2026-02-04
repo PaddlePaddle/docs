@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.narrow_copy
-### [torch.Tensor.narrow_copy](https://pytorch.org/docs/stable/generated/torch.Tensor.narrow_copy.html#torch.Tensor.narrow_copy)
+### [torch.Tensor.narrow\_copy](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.narrow_copy.html#torch.Tensor.narrow_copy)
 ```python
 torch.Tensor.narrow_copy(dimension, start, length)
 ```

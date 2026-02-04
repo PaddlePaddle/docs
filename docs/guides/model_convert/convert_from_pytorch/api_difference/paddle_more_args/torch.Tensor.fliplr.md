@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.fliplr
-### [torch.Tensor.fliplr](https://pytorch.org/docs/stable/generated/torch.Tensor.fliplr.html?highlight=fliplr#torch.Tensor.fliplr)
+### [torch.Tensor.fliplr](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.fliplr.html#torch.Tensor.fliplr)
 ```python
 torch.Tensor.fliplr()
 ```
 
-### [paddle.Tensor.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#flip-axis-name-none)
+### [paddle.Tensor.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#flip-axis-name-none)
 ```python
 paddle.Tensor.flip(axis, name=None)
 ```

@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torchvision.datasets.VOCDetection
-### [torchvision.datasets.VOCDetection](https://pytorch.org/vision/main/generated/torchvision.datasets.VOCDetection.html)
+### [torchvision.datasets.VOCDetection](https://pytorch.org/vision/stable/generated/torchvision.datasets.VOCDetection.html#torchvision.datasets.VOCDetection)
 ```python
 torchvision.datasets.VOCDetection(root: Union[str, Path], year: str = '2012', image_set: str = 'train', download: bool = False, transform: Optional[Callable] = None, target_transform: Optional[Callable] = None, transforms: Optional[Callable] = None)
 ```
 
-### [paddle.vision.datasets.VOC2012](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/VOC2012_cn.html)
+### [paddle.vision.datasets.VOC2012](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/datasets/VOC2012_cn.html#paddle.vision.datasets.VOC2012)
 ```python
 paddle.vision.datasets.VOC2012(data_file: Optional[str] = None, mode: str = 'train', transform: Optional[Callable] = None, download: bool = True, backend: Optional[str] = None)
 ```

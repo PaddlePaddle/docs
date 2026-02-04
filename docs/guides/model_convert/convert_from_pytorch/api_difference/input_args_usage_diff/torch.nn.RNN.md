@@ -1,5 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.RNN
-### [torch.nn.RNN](https://pytorch.org/docs/stable/generated/torch.nn.RNN.html#torch.nn.RNN)
+### [torch.nn.RNN](https://docs.pytorch.org/docs/stable/generated/torch.nn.RNN.html#torch.nn.RNN)
 ```python
 torch.nn.RNN(input_size,
              hidden_size,
@@ -13,7 +13,7 @@ torch.nn.RNN(input_size,
              dtype=None)
 ```
 
-### [paddle.nn.SimpleRNN](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SimpleRNN_cn.html#simplernn)
+### [paddle.nn.SimpleRNN](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SimpleRNN_cn.html#paddle.nn.SimpleRNN)
 ```python
 paddle.nn.SimpleRNN(input_size, hidden_size, num_layers=1, activation='tanh', direction='forward', dropout=0., time_major=False, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None)
 ```

@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.movedim
 
-### [torch.Tensor.movedim](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.movedim)
+### [torch.Tensor.movedim](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.movedim.html#torch.Tensor.movedim)
 
 ```python
 torch.Tensor.movedim(source, destination)

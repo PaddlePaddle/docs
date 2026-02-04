@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torchvision.datasets.FashionMNIST
-### [torchvision.datasets.FashionMNIST](https://pytorch.org/vision/main/generated/torchvision.datasets.FashionMNIST.html)
+### [torchvision.datasets.FashionMNIST](https://pytorch.org/vision/stable/generated/torchvision.datasets.FashionMNIST.html#torchvision.datasets.FashionMNIST)
 ```python
 torchvision.datasets.FashionMNIST(root: Union[str, Path], train: bool = True, transform: Optional[Callable] = None, target_transform: Optional[Callable] = None, download: bool = False)
 ```
 
-### [paddle.vision.datasets.FashionMNIST](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/FashionMNIST_cn.html)
+### [paddle.vision.datasets.FashionMNIST](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/datasets/FashionMNIST_cn.html#paddle.vision.datasets.FashionMNIST)
 ```python
 paddle.vision.datasets.FashionMNIST(image_path: str = None, label_path: str = None, mode: str = 'train', transform: Callable = None, download: bool = True, backend: str = None)
 ```

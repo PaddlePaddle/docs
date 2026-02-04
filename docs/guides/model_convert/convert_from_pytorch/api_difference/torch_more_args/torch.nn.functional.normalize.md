@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.functional.normalize
-### [torch.nn.functional.normalize](https://pytorch.org/docs/stable/generated/torch.nn.functional.normalize.html?highlight=normalize#torch.nn.functional.normalize)
+### [torch.nn.functional.normalize](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.normalize.html#torch.nn.functional.normalize)
 ```python
 torch.nn.functional.normalize(input,
                              p=2.0,
@@ -8,7 +8,7 @@ torch.nn.functional.normalize(input,
                              out=None)
 ```
 
-### [paddle.nn.functional.normalize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/normalize_cn.html)
+### [paddle.nn.functional.normalize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/normalize_cn.html#paddle.nn.functional.normalize)
 ```python
 paddle.nn.functional.normalize(x,
                                p=2,

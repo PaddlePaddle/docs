@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.utils.data.default_collate
 
-### [torch.utils.data.default_collate](https://pytorch.org/docs/stable/data.html#torch.utils.data.default_collate)
+### [torch.utils.data.default\_collate](https://docs.pytorch.org/docs/stable/data.html#torch.utils.data.default_collate)
 
 ```python
 torch.utils.data.default_collate(batch)

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.poisson.Poisson
-### [torch.distributions.poisson.Poisson](https://pytorch.org/docs/stable/distributions.html#poisson)
+### [torch.distributions.poisson.Poisson](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.poisson.Poisson)
 ```python
 torch.distributions.poisson.Poisson(rate, validate_args=None)
 ```
 
-### [paddle.distribution.Poisson](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/Poisson_cn.html)
+### [paddle.distribution.Poisson](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Poisson_cn.html#paddle.distribution.Poisson)
 ```python
 paddle.distribution.Poisson(rate)
 ```

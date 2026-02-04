@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.autograd.graph.saved_tensors_hooks
 
-### [torch.autograd.graph.saved_tensors_hooks](https://pytorch.org/docs/stable/generated/torch.autograd.graph.html#torch.autograd.graph.saved_tensors_hooks)
+### [torch.autograd.graph.saved\_tensors\_hooks](https://docs.pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks)
 
 ```python
 torch.autograd.graph.saved_tensors_hooks(pack_hook, unpack_hook)
 ```
 
-### [paddle.autograd.saved_tensors_hooks](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/saved_tensors_hooks_cn.html#paddle/autograd/saved_tensors_hooks_cn#cn-api-paddle-autograd-saved_tensors_hooks)
+### [paddle.autograd.saved\_tensors\_hooks](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/saved_tensors_hooks_cn.html#paddle.autograd.saved_tensors_hooks)
 
 ```python
 paddle.autograd.saved_tensors_hooks(pack_hook, unpack_hook)

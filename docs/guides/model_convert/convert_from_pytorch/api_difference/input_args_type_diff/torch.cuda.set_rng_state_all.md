@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.cuda.set_rng_state_all
-### [torch.cuda.set_rng_state_all](https://pytorch.org/docs/stable/generated/torch.cuda.set_rng_state_all.html#torch.cuda.set_rng_state_all)
+### [torch.cuda.set\_rng\_state\_all](https://docs.pytorch.org/docs/stable/generated/torch.cuda.set_rng_state_all.html#torch.cuda.set_rng_state_all)
 ```python
 torch.cuda.set_rng_state_all(new_states)
 ```
 
-### [paddle.set_rng_state]()
+### [paddle.set\_rng\_state](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/set_rng_state_cn.html#paddle.set_rng_state)
 ```python
 paddle.set_rng_state(state_list, device='gpu')
 ```

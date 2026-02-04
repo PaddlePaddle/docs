@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.distributions.distribution.Distribution.rsample
-### [torch.distributions.distribution.Distribution.rsample](https://pytorch.org/docs/stable/distributions.html#torch.distributions.distribution.Distribution.rsample)
+### [torch.distributions.distribution.Distribution.rsample](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.distribution.Distribution.rsample)
 ```python
 torch.distributions.distribution.Distribution.rsample(sample_shape=torch.Size([]))
 ```

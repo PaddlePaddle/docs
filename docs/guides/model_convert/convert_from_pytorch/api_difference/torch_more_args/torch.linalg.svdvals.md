@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.linalg.svdvals
-### [torch.linalg.svdvals](https://pytorch.org/docs/stable/generated/torch.linalg.svdvals.html#torch.linalg.svdvals)
+### [torch.linalg.svdvals](https://docs.pytorch.org/docs/stable/generated/torch.linalg.svdvals.html#torch.linalg.svdvals)
 ```python
 torch.linalg.svdvals(A, *, driver=None, out=None)
 ```
 
-### [paddle.linalg.svdvals](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/linalg.py#L3019)
+### [paddle.linalg.svdvals](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/svdvals_cn.html#paddle.linalg.svdvals)
 ```python
 paddle.linalg.svdvals(x, name=None)
 ```

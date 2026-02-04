@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.lu_solve
-### [torch.Tensor.lu_solve](https://pytorch.org/docs/stable/generated/torch.Tensor.lu_solve.html#torch-tensor-lu-solve)
+### [torch.Tensor.lu\_solve](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.lu_solve.html#torch.Tensor.lu_solve)
 ```python
 torch.Tensor.lu_solve(LU_data, LU_pivots)
 ```
 
-### [paddle.linalg.lu_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_solve_cn.html)
+### [paddle.linalg.lu\_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_solve_cn.html#paddle.linalg.lu_solve)
 ```python
 paddle.linalg.lu_solve(b, lu, pivots, trans="N", name=None)
 ```

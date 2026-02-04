@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.LazyConv1d
-### [torch.nn.LazyConv1d](https://pytorch.org/docs/stable/generated/torch.nn.LazyConv1d.html)
+### [torch.nn.LazyConv1d](https://docs.pytorch.org/docs/stable/generated/torch.nn.LazyConv1d.html#torch.nn.LazyConv1d)
 ```python
 torch.nn.LazyConv1d(out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros', device=None, dtype=None)
 ```
 
-### [paddle.nn.Conv1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Conv1D_cn.html#conv1d)
+### [paddle.nn.Conv1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Conv1D_cn.html#paddle.nn.Conv1D)
 ```python
 paddle.nn.Conv1D(in_channels,
                  out_channels,

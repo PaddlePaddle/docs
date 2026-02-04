@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.NAdam
-### [torch.optim.NAdam](https://pytorch.org/docs/stable/generated/torch.optim.NAdam.html#torch.optim.NAdam)
+### [torch.optim.NAdam](https://docs.pytorch.org/docs/stable/generated/torch.optim.NAdam.html#torch.optim.NAdam)
 ```python
 torch.optim.NAdam(params,
                 lr=0.002,
@@ -15,7 +15,7 @@ torch.optim.NAdam(params,
                 differentiable=False)
 ```
 
-### [paddle.optimizer.NAdam](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/NAdam_cn.html#nadam)
+### [paddle.optimizer.NAdam](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/NAdam_cn.html#paddle.optimizer.NAdam)
 ```python
 paddle.optimizer.NAdam(learning_rate=0.002,
                     beta1=0.9,

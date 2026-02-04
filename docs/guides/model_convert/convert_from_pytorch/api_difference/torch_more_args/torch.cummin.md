@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.cummin
-### [torch.cummin](https://pytorch.org/docs/stable/generated/torch.cummin.html)
+### [torch.cummin](https://docs.pytorch.org/docs/stable/generated/torch.cummin.html#torch.cummin)
 ```python
 torch.cummin(input,
           dim,
@@ -7,7 +7,7 @@ torch.cummin(input,
           out=None)
 ```
 
-### [paddle.cummin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cummin_cn.html)
+### [paddle.cummin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cummin_cn.html#paddle.cummin)
 ```python
 paddle.cummin(x,
             axis=None,

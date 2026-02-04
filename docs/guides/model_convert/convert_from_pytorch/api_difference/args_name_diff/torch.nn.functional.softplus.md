@@ -1,12 +1,12 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.softplus
-### [torch.nn.functional.softplus](https://pytorch.org/docs/stable/generated/torch.nn.functional.softplus.html?highlight=softplus#torch.nn.functional.softplus)
+### [torch.nn.functional.softplus](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.softplus.html#torch.nn.functional.softplus)
 ```python
 torch.nn.functional.softplus(input,
                              beta=1,
                              threshold=20)
 ```
 
-### [paddle.nn.functional.softplus](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/softplus_cn.html)
+### [paddle.nn.functional.softplus](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/softplus_cn.html#paddle.nn.functional.softplus)
 ```python
 paddle.nn.functional.softplus(x,
                               beta=1,
