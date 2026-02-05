@@ -29,7 +29,7 @@ common_args_en = """
     force_cpu (bool, optional): Whether force to store the output tensor in CPU memory. If force_cpu is False, the output tensor will be stored in running device memory, otherwise it will be stored  to the CPU memory. Default is False.
     data_format (str, optional): Specify the input data format, the output data format will be consistent with the input, which can be ``NCHW`` or ``NHWC`` . N is batch size, C is channels, H is height, and W is width. Default is ``NCHW`` .
     grad_clip (GradientClipBase, optional): Gradient clipping strategy, it's an instance of some derived class of ``GradientClipBase`` . There are three clipping strategies ( :ref:`api_fluid_clip_GradientClipByGlobalNorm` , :ref:`api_fluid_clip_GradientClipByNorm` , :ref:`api_fluid_clip_GradientClipByValue` ). Default is None, meaning there is no gradient clipping.
-    num_filters (int): The number of filter. It is as same as the output channals numbers.
+    num_filters (int): The number of filter. It is as same as the output channels numbers.
     dim (int, optional): A dimension along which to operate. Default is 0.
     is_sparse (bool, optional): Whether use sparse updating. For more information, please refer to :ref:`api_guide_sparse_update_en` . If it's True, it will use sparse updating.
     place (paddle.CPUPlace()|paddle.CUDAPlace(N)|None): This parameter represents which device the executor runs on, and N means the GPU's id. When this parameter is None, PaddlePaddle will set the default device according to its installation version. If Paddle is CPU version, the default device would be set to CPUPlace(). If Paddle is GPU version, the default device would be set to CUDAPlace(0). Default is None.
