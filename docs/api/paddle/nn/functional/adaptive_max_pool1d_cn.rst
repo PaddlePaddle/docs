@@ -11,7 +11,7 @@ adaptive_max_pool1d
 
 ..  note::
     别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``return_indices`` 可替代 ``return_mask``。
- 
+
     详细请参考对应的 `Class` 请参考：:ref:`cn_api_paddle_nn_AdaptiveMaxPool1D` 。
 
 
