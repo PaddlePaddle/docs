@@ -1,6 +1,7 @@
 # IDE settings
 *.DS_Store
 .vscode
+.comate
 .idea
 
 # virtualenv
@@ -14,5 +15,3 @@ __pycache__/
 # Build and output directories
 build
 output/
-
-.comate
