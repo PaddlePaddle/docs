@@ -15,5 +15,5 @@ paddle.nn.functional.pixel_shuffle(x, upscale_factor, data_format='NCHW', name=N
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           | x           | 表示输入的 Tensor，仅参数名不一致。               |
-| downscale_factor           | downscale_factor           |   减小空间分辨率的减小因子。               |
+| upscale_factor           | upscale_factor           |   增加空间分辨率的增加因子。               |
 | -           | data_format           |   指定输入张量格式, PyTorch 无此参数， Paddle 保持默认即可 。             |

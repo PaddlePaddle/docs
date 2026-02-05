@@ -14,7 +14,8 @@ PyTorch 的 `dim0, dim1` 与 Paddle 的 `perm` 用法不同，具体如下：
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| dim0, dim1 | perm | torch 的 dim0 与 dim1 表示要交换的两个维度, 为整数。 paddle 的 perm 表示重排的维度序列，为 list/tuple 。需要转写。|
+| dim0 | perm | torch 的 dim0 与 dim1 表示要交换的两个维度, 为整数。 paddle 的 perm 表示重排的维度序列，为 list/tuple 。需要转写。|
+| dim1 | perm | torch 的 dim0 与 dim1 表示要交换的两个维度, 为整数。 paddle 的 perm 表示重排的维度序列，为 list/tuple 。需要转写。|
 
 ### 转写示例
 #### dim0, dim1: 表示要交换的两个维度

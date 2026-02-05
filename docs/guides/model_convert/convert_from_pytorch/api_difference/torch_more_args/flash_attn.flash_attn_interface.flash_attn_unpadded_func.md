@@ -28,10 +28,10 @@ max_seqlen_q, max_seqlen_k, scale,dropout=0.0, causal=False, return_softmax=Fals
 | causal            | causal            | 是否应用因果注意力 mask。  |
 | window_size       | -                 | 滑动窗口局部注意力，Paddle 无此参数，暂无转写方式。 |
 | softcap           | -                 | 软封顶注意力，Paddle 无此参数，暂无转写方式。    |
-| deterministic     | -                 | 是否应用确定性实现，Paddle 无此参数，暂无转写方式。 |
 | alibi_slopes      | -                 | 用于注意力得分间的 bias，Paddle 无此参数，暂无转写方式。 |
-| block_table       | -                 | block 表，用于 paged KV cache，Paddle 无此参数，暂无转写方式。 |
+| deterministic     | -                 | 是否应用确定性实现，Paddle 无此参数，暂无转写方式。 |
 | return_attn_probs | return_softmax    | 是否返回注意力概率。 |
+| block_table       | -                 | block 表，用于 paged KV cache，Paddle 无此参数，暂无转写方式。 |
 |          -        | fixed_seed_offset | 为 dropout mask 固定 sedd, offset，PyTorch 无此参数，Paddle 保持默认即可。 |
 |         -         | rng_name          | 选定 rng Generator，PyTorch 无此参数，Paddle 保持默认即可。 |
 |       -           | training          | 是否在训练阶段，PyTorch 无此参数，Paddle 保持默认即可。 |
