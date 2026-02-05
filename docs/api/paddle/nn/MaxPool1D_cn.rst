@@ -13,6 +13,9 @@ MaxPool1D
 
     Output(N_i, C_i, l) =  max(Input[N_i, C_i, stride \times l:stride \times l+k])
 
+..  note::
+    别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``return_indices`` 可替代 ``return_mask``。
+
 参数
 :::::::::
     - **kernel_size** (int|list|tuple) - 池化核的尺寸大小。如果 kernel_size 为 list 或 tuple 类型，其必须包含一个整数，最终池化核的大小为该数值。
@@ -20,6 +23,7 @@ MaxPool1D
     - **padding** (str|int|list|tuple，可选) - 池化补零的方式。如果 padding 是一个字符串，则必须为 `SAME` 或者 `VALID`。如果是 tuple 或者 list 类型，若其长度为 1，则会在输入的两端都填充上长度为 padding[0] 的 0，若其长度为 2，则应是 `[pad_before, pad_after]` 形式。如果 padding 是一个非 0 整数，那么表示会在输入的两端都填充上同样长度的 0。如果 padding 是长度为 2 的序列组成的 list 或 tuple，则其中的每个元素表示在相应维度上的填充长度。注意：在 batch_size 维度和通道维度应该设置为 [0, 0] 或 (0, 0)。默认值为 0。
     - **dilation** (int|list|tuple，可选) - 空洞池化步长，如果 dilation 为 list 或 tuple 类型，其必须包含一个整数。默认值为 1。
     - **return_mask** (bool，可选) - 是否返回最大值的索引，默认为 False。
+      ``别名：return_indices``
     - **ceil_mode** (bool，可选) - 是否用 ceil 函数计算输出的 height 和 width，如果设置为 False，则使用 floor 函数来计算，默认为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
@@ -27,6 +31,7 @@ MaxPool1D
 形状
 :::::::::
     - **x** (Tensor) ：默认形状为（批大小，通道数，长度），即 NCL 格式的 3-D Tensor。其数据类型为 float32 或 float64。
+      ``别名：input``
     - **output** (Tensor) ：默认形状为（批大小，通道数，输出特征长度），即 NCL 格式的 3-D Tensor。其数据类型与输入 x 相同。
 
 返回
