@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.is_signed
-### [torch.Tensor.is_signed](https://pytorch.org/docs/stable/generated/torch.Tensor.is_signed.html#torch.Tensor.is_signed)
+### [torch.Tensor.is\_signed](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.is_signed.html#torch.Tensor.is_signed)
 ```python
 torch.Tensor.is_signed()
 ```

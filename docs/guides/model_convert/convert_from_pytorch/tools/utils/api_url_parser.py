@@ -132,7 +132,7 @@ def get_parser(name: str) -> ApiUrlParserBase:
     elif name in ("torch", "pytorch"):
         _parser[name] = InventoryUrlParser(
             "https://docs.pytorch.org/docs/stable/objects.inv",
-            "https://pytorch.org/docs/stable/",
+            "https://docs.pytorch.org/docs/stable/",
         )
         return _parser[name]
     elif name in ("paddle", "paddlepaddle"):
@@ -161,7 +161,7 @@ def get_parser(name: str) -> ApiUrlParserBase:
             "https://fairscale.readthedocs.io/en/latest/",
         )
         return _parser[name]
-    elif name == "flash_attn":
+    elif name in ["flash_attn", "os", "setuptools"]:
         _parser[name] = EmptyApiUrlParser()
         return _parser[name]
 

@@ -6,7 +6,7 @@
 torch.cuda.reset_max_memory_allocated(device=None)
 ```
 
-### [paddle.device.cuda.reset_max_memory_allocated](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/reset_max_memory_allocated_cn.html#paddle/device/cuda/reset_max_memory_allocated_cn#cn-api-paddle-device-cuda-reset_max_memory_allocated)
+### [paddle.device.cuda.reset\_max\_memory\_allocated](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/cuda/reset_max_memory_allocated_cn.html#paddle.device.cuda.reset_max_memory_allocated)
 
 ```python
 paddle.device.cuda.reset_max_memory_allocated(device=None)

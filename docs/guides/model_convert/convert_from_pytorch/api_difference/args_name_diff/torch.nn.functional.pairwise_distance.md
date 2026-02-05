@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.pairwise_distance
-### [torch.nn.functional.pairwise\_distance](https://pytorch.org/docs/stable/generated/torch.nn.functional.pairwise_distance.html)
+### [torch.nn.functional.pairwise\_distance](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.pairwise_distance.html#torch.nn.functional.pairwise_distance)
 ```python
 torch.nn.functional.pairwise_distance(x1, x2, p=2.0, eps=1e-6, keepdim=False)
 ```
 
-### [paddle.nn.functional.pairwise\_distance](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/pairwise_distance_cn.html#pairwise-distance)
+### [paddle.nn.functional.pairwise\_distance](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/pairwise_distance_cn.html#paddle.nn.functional.pairwise_distance)
 ```python
 paddle.nn.functional.pairwise_distance(x, y, p=2., epsilon=1e-6, keepdim=False, name=None)
 ```

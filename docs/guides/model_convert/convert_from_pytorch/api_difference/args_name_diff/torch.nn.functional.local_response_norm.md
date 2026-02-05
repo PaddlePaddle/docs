@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.local_response_norm
-### [torch.nn.functional.local_response_norm](https://pytorch.org/docs/stable/generated/torch.nn.functional.local_response_norm.html?highlight=local_response_norm#torch.nn.functional.local_response_norm)
+### [torch.nn.functional.local\_response\_norm](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.local_response_norm.html#torch.nn.functional.local_response_norm)
 ```python
 torch.nn.functional.local_response_norm(input,
                                         size,
@@ -8,7 +8,7 @@ torch.nn.functional.local_response_norm(input,
                                         k=1.0)
 ```
 
-### [paddle.nn.functional.local_response_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/local_response_norm_cn.html)
+### [paddle.nn.functional.local\_response\_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/local_response_norm_cn.html#paddle.nn.functional.local_response_norm)
 ```python
 paddle.nn.functional.local_response_norm(x,
                                          size,

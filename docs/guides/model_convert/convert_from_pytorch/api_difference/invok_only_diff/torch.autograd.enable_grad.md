@@ -6,7 +6,7 @@
 torch.autograd.enable_grad(*args, **kwargs)
 ```
 
-### [paddle.enable_grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/enable_grad_cn.html#paddle/enable_grad_cn#cn-api-paddle-enable_grad)
+### [paddle.enable\_grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/enable_grad_cn.html#paddle.enable_grad)
 
 ```python
 paddle.enable_grad(*args, **kwargs)

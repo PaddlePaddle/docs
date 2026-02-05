@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.dist
-### [torch.Tensor.dist](https://pytorch.org/docs/stable/generated/torch.Tensor.dist.html?highlight=dist#torch.Tensor.dist)
+### [torch.Tensor.dist](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.dist.html#torch.Tensor.dist)
 ```python
 torch.Tensor.dist(other, p=2)
 ```
 
-### [paddle.Tensor.dist](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#dist-y-p-2)
+### [paddle.Tensor.dist](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#dist-y-p-2)
 ```python
 paddle.Tensor.dist(y, p=2)
 ```

@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.mode
-### [torch.Tensor.mode](https://pytorch.org/docs/stable/generated/torch.Tensor.mode.html)
+### [torch.Tensor.mode](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.mode.html#torch.Tensor.mode)
 ```python
 torch.Tensor.mode(dim=None, keepdim=False)
 ```
 
-### [paddle.Tensor.mode](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#mode-axis-1-keepdim-false-name-none)
+### [paddle.Tensor.mode](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#mode-axis-1-keepdim-false-name-none)
 ```python
 paddle.Tensor.mode(axis=-1, keepdim=False, name=None)
 ```

@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.set_default_device
-### [torch.set_default_device](https://pytorch.org/docs/stable/generated/torch.set_default_device.html#torch-set-default-device)
+### [torch.set\_default\_device](https://docs.pytorch.org/docs/stable/generated/torch.set_default_device.html#torch.set_default_device)
 ```python
 torch.set_default_device(device)
 ```
 
-### [paddle.device.set_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/set_device_cn.html#set-device)
+### [paddle.device.set\_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/set_device_cn.html#paddle.device.set_device)
 ```python
 paddle.device.set_device(device)
 ```

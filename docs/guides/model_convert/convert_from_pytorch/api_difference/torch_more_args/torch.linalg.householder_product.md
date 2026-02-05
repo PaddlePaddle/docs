@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.linalg.householder_product
-### [torch.linalg.householder_product](https://pytorch.org/docs/stable/generated/torch.linalg.householder_product.html#torch.linalg.householder_product)
+### [torch.linalg.householder\_product](https://docs.pytorch.org/docs/stable/generated/torch.linalg.householder_product.html#torch.linalg.householder_product)
 ```python
 torch.linalg.householder_product(input, tau, *, out=None)
 ```
 
-### [paddle.linalg.householder_product](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/householder_product_cn.html#householder-product)
+### [paddle.linalg.householder\_product](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/householder_product_cn.html#paddle.linalg.householder_product)
 ```python
 paddle.linalg.householder_product(x, tau, name=None)
 ```

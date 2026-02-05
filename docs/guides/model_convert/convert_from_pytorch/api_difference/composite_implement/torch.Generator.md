@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Generator
-### [torch.Generator](https://pytorch.org/docs/stable/generated/torch.Generator.html#generator)
+### [torch.Generator](https://docs.pytorch.org/docs/stable/generated/torch.Generator.html#torch.Generator)
 ```python
 torch.Generator(device='cpu')
 ```

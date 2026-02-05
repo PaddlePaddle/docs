@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.MarginRankingLoss
-### [torch.nn.MarginRankingLoss](https://pytorch.org/docs/stable/generated/torch.nn.MarginRankingLoss.html#marginrankingloss)
+### [torch.nn.MarginRankingLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.MarginRankingLoss.html#torch.nn.MarginRankingLoss)
 ```python
 torch.nn.MarginRankingLoss(margin=0.0,
                            size_average=None,
@@ -7,7 +7,7 @@ torch.nn.MarginRankingLoss(margin=0.0,
                            reduction='mean')
 ```
 
-### [paddle.nn.MarginRankingLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MarginRankingLoss_cn.html#marginrankingloss)
+### [paddle.nn.MarginRankingLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MarginRankingLoss_cn.html#paddle.nn.MarginRankingLoss)
 ```python
 paddle.nn.MarginRankingLoss(margin=0.0,
                             reduction='mean',

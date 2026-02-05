@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.cartesian_prod
-### [torch.cartesian_prod](https://pytorch.org/docs/stable/generated/torch.cartesian_prod.html#torch-cartesian-prod)
+### [torch.cartesian\_prod](https://docs.pytorch.org/docs/stable/generated/torch.cartesian_prod.html#torch.cartesian_prod)
 ```python
 torch.cartesian_prod(*tensors)
 ```
 
-### [paddle.cartesian_prod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cartesian_prod_cn.html)
+### [paddle.cartesian\_prod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cartesian_prod_cn.html#paddle.cartesian_prod)
 ```python
 paddle.cartesian_prod(x, name=None)
 ```

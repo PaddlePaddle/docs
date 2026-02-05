@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.interpolate
-### [torch.nn.functional.interpolate](https://pytorch.org/docs/stable/generated/torch.nn.functional.interpolate.html#torch.nn.functional.interpolate)
+### [torch.nn.functional.interpolate](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.interpolate.html#torch.nn.functional.interpolate)
 ```python
 torch.nn.functional.interpolate(input, size=None, scale_factor=None, mode='nearest', align_corners=None, recompute_scale_factor=None, antialias=False)
 ```
 
-### [paddle.nn.functional.interpolate](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/interpolate_cn.html)
+### [paddle.nn.functional.interpolate](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/interpolate_cn.html#paddle.nn.functional.interpolate)
 ```python
 paddle.nn.functional.interpolate(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format=None, recompute_scale_factor=None, name=None)
 ```

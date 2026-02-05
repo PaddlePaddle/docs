@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.special.xlog1py
-### [torch.special.xlog1py](https://pytorch.org/docs/stable/special.html#torch.special.xlog1py)
+### [torch.special.xlog1py](https://docs.pytorch.org/docs/stable/special.html#torch.special.xlog1py)
 ```python
 torch.special.xlog1py(input, other, *, out=None)
 ```

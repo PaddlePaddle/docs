@@ -1,5 +1,5 @@
 ## [ 输入参数类型不一致 ]torch.Tensor.floor_divide_
-### [torch.Tensor.floor_divide_](https://pytorch.org/docs/stable/generated/torch.Tensor.floor_divide_.html)
+### [torch.Tensor.floor\_divide\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.floor_divide_.html#torch.Tensor.floor_divide_)
 ```python
 torch.Tensor.floor_divide_(other)
 ```

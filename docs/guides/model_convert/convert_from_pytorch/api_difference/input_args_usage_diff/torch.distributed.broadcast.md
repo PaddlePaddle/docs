@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.distributed.broadcast
-### [torch.distributed.broadcast](https://pytorch.org/docs/stable/distributed.html#torch.distributed.broadcast)
+### [torch.distributed.broadcast](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.broadcast)
 ```python
 torch.distributed.broadcast(tensor, src, group=None, async_op=False)
 ```
 
-### [paddle.distributed.broadcast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/broadcast_cn.html)
+### [paddle.distributed.broadcast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/broadcast_cn.html#paddle.distributed.broadcast)
 ```python
 paddle.distributed.broadcast(tensor, src, group=None, sync_op=True)
 ```

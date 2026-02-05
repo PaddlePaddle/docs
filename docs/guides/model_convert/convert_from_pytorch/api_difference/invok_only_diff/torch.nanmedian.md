@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.nanmedian
 
-### [torch.nanmedian](https://pytorch.org/docs/stable/generated/torch.nanmedian.html)
+### [torch.nanmedian](https://docs.pytorch.org/docs/stable/generated/torch.nanmedian.html#torch.nanmedian)
 
 ```python
 torch.nanmedian(*args, **kwargs)
 ```
 
-### [paddle.compat.nanmedian](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/nanmedian_cn.html#paddle/compat/nanmedian_cn#cn-api-paddle-compat-nanmedian)
+### [paddle.compat.nanmedian](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/nanmedian_cn.html#paddle.compat.nanmedian)
 
 ```python
 paddle.compat.nanmedian(*args, **kwargs)

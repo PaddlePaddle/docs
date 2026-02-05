@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.sinh
-### [torch.sinh](https://pytorch.org/docs/stable/generated/torch.sinh.html?highlight=sinh#torch.sinh)
+### [torch.sinh](https://docs.pytorch.org/docs/stable/generated/torch.sinh.html#torch.sinh)
 ```python
 torch.sinh(input,
            *,
            out=None)
 ```
 
-### [paddle.sinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sinh_cn.html#sinh)
+### [paddle.sinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sinh_cn.html#paddle.sinh)
 ```python
 paddle.sinh(x,
             name=None)

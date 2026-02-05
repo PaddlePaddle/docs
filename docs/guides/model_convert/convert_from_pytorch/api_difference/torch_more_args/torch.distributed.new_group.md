@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributed.new_group
-### [torch.distributed.new_group](https://pytorch.org/docs/stable/distributed.html#torch.distributed.new_group)
+### [torch.distributed.new\_group](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.new_group)
 ```python
 torch.distributed.new_group(ranks=None, timeout=datetime.timedelta(seconds=1800), backend=None, pg_options=None)
 ```
 
-### [paddle.distributed.new_group](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/new_group_cn.html)
+### [paddle.distributed.new\_group](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/new_group_cn.html#paddle.distributed.new_group)
 ```python
 paddle.distributed.new_group(ranks=None, backend=None)
 ```

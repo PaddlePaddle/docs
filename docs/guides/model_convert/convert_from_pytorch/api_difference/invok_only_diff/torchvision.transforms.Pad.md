@@ -6,7 +6,7 @@
 torchvision.transforms.Pad(padding, fill=0, padding_mode='constant')
 ```
 
-### [paddle.vision.transforms.Pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Pad_cn.html#paddle/vision/transforms/Pad_cn#cn-api-paddle-vision-transforms-Pad)
+### [paddle.vision.transforms.Pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Pad__upper_cn.html#paddle.vision.transforms.Pad)
 
 ```python
 paddle.vision.transforms.Pad(padding, fill=0, padding_mode='constant', keys=None)

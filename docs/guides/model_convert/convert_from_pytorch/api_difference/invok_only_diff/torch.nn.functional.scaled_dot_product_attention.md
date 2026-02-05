@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.nn.functional.scaled_dot_product_attention
 
-### [torch.nn.functional.scaled_dot_product_attention](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html)
+### [torch.nn.functional.scaled\_dot\_product\_attention](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html#torch.nn.functional.scaled_dot_product_attention)
 ```python
 torch.nn.functional.scaled_dot_product_attention(
     query, key, value, attn_mask=None, dropout_p=0.0, is_causal=False, scale=None, enable_gqa=False

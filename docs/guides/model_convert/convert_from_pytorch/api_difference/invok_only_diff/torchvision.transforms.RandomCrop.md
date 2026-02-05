@@ -6,7 +6,7 @@
 torchvision.transforms.RandomCrop(size, padding=None, pad_if_needed=False, fill=0, padding_mode='constant')
 ```
 
-### [paddle.vision.transforms.RandomCrop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomCrop_cn.html#paddle/vision/transforms/RandomCrop_cn#cn-api-paddle-vision-transforms-RandomCrop)
+### [paddle.vision.transforms.RandomCrop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomCrop_cn.html#paddle.vision.transforms.RandomCrop)
 
 ```python
 paddle.vision.transforms.RandomCrop(size, padding=None, pad_if_needed=False, fill=0, padding_mode='constant', keys=None)

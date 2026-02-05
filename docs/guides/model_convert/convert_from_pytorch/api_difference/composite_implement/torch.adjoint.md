@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.adjoint
-### [torch.adjoint](https://pytorch.org/docs/stable/generated/torch.adjoint.html#torch.adjoint)
+### [torch.adjoint](https://docs.pytorch.org/docs/stable/generated/torch.adjoint.html#torch.adjoint)
 ```python
 torch.adjoint(input)
 ```

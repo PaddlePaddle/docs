@@ -4,7 +4,7 @@
 torch.iinfo(type)
 ```
 
-### [paddle.iinfo](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/iinfo_cn.html)
+### [paddle.iinfo](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/iinfo_cn.html#paddle.iinfo)
 ```python
 paddle.iinfo(dtype)
 ```

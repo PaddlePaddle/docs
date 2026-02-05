@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.pow_
-### [torch.Tensor.pow_](https://pytorch.org/docs/stable/generated/torch.Tensor.pow_.html)
+### [torch.Tensor.pow\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.pow_.html#torch.Tensor.pow_)
 ```python
 torch.Tensor.pow_(exponent)
 ```

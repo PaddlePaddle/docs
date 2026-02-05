@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.narrow_copy
-### [torch.narrow_copy](https://pytorch.org/docs/stable/generated/torch.narrow_copy.html#torch.narrow_copy)
+### [torch.narrow\_copy](https://docs.pytorch.org/docs/stable/generated/torch.narrow_copy.html#torch.narrow_copy)
 ```python
 torch.narrow_copy(input, dim, start, length, *, out=None)
 ```

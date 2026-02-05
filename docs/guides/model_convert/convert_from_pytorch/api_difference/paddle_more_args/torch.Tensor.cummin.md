@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.cummin
-### [torch.Tensor.cummin](https://pytorch.org/docs/stable/generated/torch.Tensor.cummin.html?highlight=cummin#torch.Tensor.cummin)
+### [torch.Tensor.cummin](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.cummin.html#torch.Tensor.cummin)
 ```python
 torch.Tensor.cummin(dim)
 ```
 
-### [paddle.Tensor.cummin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cummin-x-axis-none-dtype-int64-name-none)
+### [paddle.Tensor.cummin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#cummin-x-axis-none-dtype-int64-name-none)
 ```python
 paddle.Tensor.cummin(axis=None, dtype=None, name=None)
 ```

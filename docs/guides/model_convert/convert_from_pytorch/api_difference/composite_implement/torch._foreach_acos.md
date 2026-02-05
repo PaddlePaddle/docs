@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_acos
-### [torch.\_foreach_acos](https://pytorch.org/docs/stable/generated/torch._foreach_acos.html#torch-foreach-acos)
+### [torch.\_foreach\_acos](https://docs.pytorch.org/docs/stable/generated/torch._foreach_acos.html#torch._foreach_acos)
 ```python
 torch._foreach_acos(self)
 ```

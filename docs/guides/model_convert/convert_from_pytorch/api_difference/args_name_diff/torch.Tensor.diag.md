@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.diag
-### [torch.Tensor.diag](https://pytorch.org/docs/stable/generated/torch.Tensor.diag.html?highlight=diag#torch.Tensor.diag)
+### [torch.Tensor.diag](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.diag.html#torch.Tensor.diag)
 ```python
 torch.Tensor.diag(diagonal=0)
 ```

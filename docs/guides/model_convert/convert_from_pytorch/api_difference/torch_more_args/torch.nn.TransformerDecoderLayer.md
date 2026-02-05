@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.TransformerDecoderLayer
-### [torch.nn.TransformerDecoderLayer](https://pytorch.org/docs/stable/generated/torch.nn.TransformerDecoderLayer.html?highlight=transformerdecoderlayer#torch.nn.TransformerDecoderLayer)
+### [torch.nn.TransformerDecoderLayer](https://docs.pytorch.org/docs/stable/generated/torch.nn.TransformerDecoderLayer.html#torch.nn.TransformerDecoderLayer)
 ```python
 torch.nn.TransformerDecoderLayer(d_model,
                                  nhead,
@@ -13,7 +13,7 @@ torch.nn.TransformerDecoderLayer(d_model,
                                  device=None,
                                  dtype=None)
 ```
-### [paddle.nn.TransformerDecoderLayer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/TransformerDecoderLayer_cn.html#transformerdecoderlayer)
+### [paddle.nn.TransformerDecoderLayer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/TransformerDecoderLayer_cn.html#paddle.nn.TransformerDecoderLayer)
 ```python
 paddle.nn.TransformerDecoderLayer(d_model,
                                   nhead,

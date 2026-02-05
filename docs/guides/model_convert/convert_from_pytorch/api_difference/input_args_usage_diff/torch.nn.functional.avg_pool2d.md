@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.nn.functional.avg_pool2d
-### [torch.nn.functional.avg_pool2d](https://pytorch.org/docs/stable/generated/torch.nn.functional.avg_pool2d.html#torch.nn.functional.avg_pool2d)
+### [torch.nn.functional.avg\_pool2d](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.avg_pool2d.html#torch.nn.functional.avg_pool2d)
 ```python
 torch.nn.functional.avg_pool2d(input, kernel_size, stride=None, padding=0, ceil_mode=False, count_include_pad=True, divisor_override=None)
 ```
 
-### [paddle.nn.functional.avg_pool2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/avg_pool2d_cn.html#avg-pool2d)
+### [paddle.nn.functional.avg\_pool2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/avg_pool2d_cn.html#paddle.nn.functional.avg_pool2d)
 ```python
 paddle.nn.functional.avg_pool2d(x, kernel_size, stride=None, padding=0, ceil_mode=False, exclusive=True, divisor_override=None, data_format='NCHW', name=None)
 ```

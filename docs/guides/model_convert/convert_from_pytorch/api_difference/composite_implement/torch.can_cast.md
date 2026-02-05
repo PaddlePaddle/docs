@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.can_cast
-### [torch.can_cast](https://pytorch.org/docs/stable/generated/torch.can_cast.html#torch-can-cast)
+### [torch.can\_cast](https://docs.pytorch.org/docs/stable/generated/torch.can_cast.html#torch.can_cast)
 ```python
 torch.can_cast(from_, to)
 ```

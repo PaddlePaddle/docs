@@ -1,5 +1,5 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.ge_
-### [torch.Tensor.ge_](https://pytorch.org/docs/stable/ge_nerated/torch.Tensor.ge_.html)
+### [torch.Tensor.ge\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.ge_.html#torch.Tensor.ge_)
 ```python
 torch.Tensor.ge_(other)
 ```

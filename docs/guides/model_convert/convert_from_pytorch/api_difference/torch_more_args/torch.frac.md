@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.frac
-### [torch.frac](https://pytorch.org/docs/stable/generated/torch.frac.html?highlight=frac#torch.frac)
+### [torch.frac](https://docs.pytorch.org/docs/stable/generated/torch.frac.html#torch.frac)
 ```python
 torch.frac(input,
             *,
             out=None)
 ```
 
-### [paddle.frac](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/frac_cn.html#frac)
+### [paddle.frac](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/frac_cn.html#paddle.frac)
 ```python
 paddle.frac(x,
             name=None)

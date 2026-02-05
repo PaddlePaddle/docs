@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.cummax
-### [torch.Tensor.cummax](https://pytorch.org/docs/stable/generated/torch.Tensor.cummax.html?highlight=cummax#torch.Tensor.cummax)
+### [torch.Tensor.cummax](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.cummax.html#torch.Tensor.cummax)
 ```python
 torch.Tensor.cummax(dim)
 ```
 
-### [paddle.Tensor.cummax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cummax-x-axis-none-dtype-int64-name-none)
+### [paddle.Tensor.cummax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#cummax-x-axis-none-dtype-int64-name-none)
 ```python
 paddle.Tensor.cummax(axis=None, dtype=None, name=None)
 ```

@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.Tensor.tile
-### [torch.Tensor.tile](https://pytorch.org/docs/stable/generated/torch.Tensor.tile.html#torch.Tensor.tile)
+### [torch.Tensor.tile](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.tile.html#torch.Tensor.tile)
 ```python
 torch.Tensor.tile(*dims)
 ```
 
-### [paddle.Tensor.tile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tile-repeat-times-name-none)
+### [paddle.Tensor.tile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#tile-repeat-times-name-none)
 ```python
 paddle.Tensor.tile(repeat_times, name=None)
 ```

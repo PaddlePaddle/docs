@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.clone
-### [torch.clone](https://pytorch.org/docs/stable/generated/torch.clone.html?highlight=clone#torch.clone)
+### [torch.clone](https://docs.pytorch.org/docs/stable/generated/torch.clone.html#torch.clone)
 ```python
 torch.clone(input,
             *,
             memory_format=torch.preserve_format)
 ```
 
-### [paddle.clone](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/clone_cn.html#clone)
+### [paddle.clone](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/clone_cn.html#paddle.clone)
 ```python
 paddle.clone(x,
              name=None)

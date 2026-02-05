@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.real
 
-### [torch.Tensor.real](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.real)
+### [torch.Tensor.real](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.real.html#torch.Tensor.real)
 
 ```python
 torch.Tensor.real
 ```
 
-### [paddle.Tensor.real](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/real_cn.html#paddle/Tensor/real_cn#cn-api-paddle-Tensor-real)
+### [paddle.Tensor.real](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#real-name-none)
 
 ```python
 paddle.Tensor.real(name=None)

@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.functional.nll_loss
-### [torch.nn.functional.nll_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.nll_loss.html#torch-nn-functional-nll-loss)
+### [torch.nn.functional.nll\_loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.nll_loss.html#torch.nn.functional.nll_loss)
 ```python
 torch.nn.functional.nll_loss(input,
                     target,
@@ -10,7 +10,7 @@ torch.nn.functional.nll_loss(input,
                     reduction='mean')
 ```
 
-### [paddle.nn.functional.nll_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/nll_loss_cn.html#nll-loss)
+### [paddle.nn.functional.nll\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/nll_loss_cn.html#paddle.nn.functional.nll_loss)
 ```python
 paddle.nn.functional.nll_loss(input,
                     label,

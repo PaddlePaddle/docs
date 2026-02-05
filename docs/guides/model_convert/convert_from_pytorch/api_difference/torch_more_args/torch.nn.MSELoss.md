@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.nn.MSELoss
-### [torch.nn.MSELoss](https://pytorch.org/docs/stable/generated/torch.nn.MSELoss.html?highlight=mseloss#torch.nn.MSELoss)
+### [torch.nn.MSELoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.MSELoss.html#torch.nn.MSELoss)
 ```python
 torch.nn.MSELoss(size_average=None,
                  reduce=None,
                  reduction='mean')
 ```
 
-### [paddle.nn.MSELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MSELoss_cn.html#mseloss)
+### [paddle.nn.MSELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MSELoss_cn.html#paddle.nn.MSELoss)
 ```python
 paddle.nn.MSELoss(reduction='mean')
 ```

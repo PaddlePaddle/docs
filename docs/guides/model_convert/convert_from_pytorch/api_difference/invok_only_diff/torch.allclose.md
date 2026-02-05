@@ -1,5 +1,5 @@
 ## [ 仅 API 调用方式不一致 ]torch.allclose
-### [torch.allclose](https://pytorch.org/docs/stable/generated/torch.allclose.html?highlight=allclose#torch.allclose)
+### [torch.allclose](https://docs.pytorch.org/docs/stable/generated/torch.allclose.html#torch.allclose)
 ```python
 torch.allclose(input,
                other,

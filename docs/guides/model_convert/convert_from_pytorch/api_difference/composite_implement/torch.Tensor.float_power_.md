@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.float_power_
-### [torch.Tensor.float_power_](https://pytorch.org/docs/stable/generated/torch.Tensor.float_power_.html#torch.Tensor.float_power_)
+### [torch.Tensor.float\_power\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.float_power_.html#torch.Tensor.float_power_)
 ```python
 torch.Tensor.float_power_(exponent)
 ```

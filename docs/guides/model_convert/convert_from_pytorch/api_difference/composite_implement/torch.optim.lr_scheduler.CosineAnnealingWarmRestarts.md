@@ -1,10 +1,10 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.CosineAnnealingWarmRestarts
-### [torch.optim.lr_scheduler.CosineAnnealingWarmRestarts](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingWarmRestarts.html)
+### [torch.optim.lr\_scheduler.CosineAnnealingWarmRestarts](https://docs.pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingWarmRestarts.html#torch.optim.lr_scheduler.CosineAnnealingWarmRestarts)
 ```python
 torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0, T_mult=1, eta_min=0, last_epoch=-1, verbose=False)
 ```
 
-### [paddle.optimizer.lr.CosineAnnealingWarmRestarts](https://github.com/PaddlePaddle/Paddle/blob/d6ea911bd1bfda5604807eeb18318e71b395ac58/python/paddle/optimizer/lr.py#L2371)
+### [paddle.optimizer.lr.CosineAnnealingWarmRestarts](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/CosineAnnealingWarmRestarts_cn.html#paddle.optimizer.lr.CosineAnnealingWarmRestarts)
 ```python
 paddle.optimizer.lr.CosineAnnealingWarmRestarts(learning_rate,
                                         T_0,

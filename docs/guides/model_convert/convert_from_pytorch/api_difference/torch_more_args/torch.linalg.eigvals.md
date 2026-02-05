@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.linalg.eigvals
-### [torch.linalg.eigvals](https://pytorch.org/docs/stable/generated/torch.linalg.eigvals.html?highlight=torch+linalg+eigvals#torch.linalg.eigvals)
+### [torch.linalg.eigvals](https://docs.pytorch.org/docs/stable/generated/torch.linalg.eigvals.html#torch.linalg.eigvals)
 ```python
 torch.linalg.eigvals(input,
                      *,
                      out=None)
 ```
 
-### [paddle.linalg.eigvals](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eigvals_cn.html)
+### [paddle.linalg.eigvals](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eigvals_cn.html#paddle.linalg.eigvals)
 ```python
 paddle.linalg.eigvals(x,
                       name=None)

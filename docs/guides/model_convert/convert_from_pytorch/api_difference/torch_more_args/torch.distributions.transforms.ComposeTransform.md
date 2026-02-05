@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.transforms.ComposeTransform
-### [torch.distributions.transforms.ComposeTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.ComposeTransform)
+### [torch.distributions.transforms.ComposeTransform](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.ComposeTransform)
 ```python
 torch.distributions.transforms.ComposeTransform(parts, cache_size=0)
 ```
 
-### [paddle.distribution.ChainTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/ChainTransform_cn.html)
+### [paddle.distribution.ChainTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/ChainTransform_cn.html#paddle.distribution.ChainTransform)
 ```python
 paddle.distribution.ChainTransform(transforms)
 ```

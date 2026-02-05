@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.rot90
-### [torch.Tensor.rot90](https://pytorch.org/docs/stable/generated/torch.Tensor.rot90.html?highlight=torch+tensor+rot90#torch.Tensor.rot90)
+### [torch.Tensor.rot90](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.rot90.html#torch.Tensor.rot90)
 ```python
 torch.Tensor.rot90(k, dims)
 ```
 
-### [paddle.Tensor.rot90]()
+### [paddle.Tensor.rot90](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#rot90-k-1-axis-0-1-name-none)
 ```python
 paddle.Tensor.rot90(k=1, axes=[0, 1])
 ```

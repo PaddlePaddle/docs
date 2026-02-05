@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.beta.Beta
-### [torch.distributions.beta.Beta](https://pytorch.org/docs/stable/distributions.html#torch.distributions.beta.Beta)
+### [torch.distributions.beta.Beta](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.beta.Beta)
 ```python
 torch.distributions.beta.Beta(concentration1, concentration0, validate_args=None)
 ```
 
-### [paddle.distribution.Beta](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Beta_cn.html#beta)
+### [paddle.distribution.Beta](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Beta_cn.html#paddle.distribution.Beta)
 ```python
 paddle.distribution.Beta(alpha, beta)
 ```

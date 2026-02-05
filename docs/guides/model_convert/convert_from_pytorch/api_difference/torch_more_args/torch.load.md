@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.load
-### [torch.load](https://pytorch.org/docs/stable/generated/torch.load.html?highlight=load#torch.load)
+### [torch.load](https://docs.pytorch.org/docs/stable/generated/torch.load.html#torch.load)
 ```python
 torch.load(f,
            map_location=None,
@@ -10,7 +10,7 @@ torch.load(f,
            **pickle_load_args)
 ```
 
-### [paddle.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/load_cn.html#load)
+### [paddle.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/load_cn.html#paddle.load)
 ```python
 paddle.load(path,
             **configs)

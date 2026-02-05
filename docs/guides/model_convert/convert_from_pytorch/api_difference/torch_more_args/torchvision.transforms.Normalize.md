@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torchvision.transforms.Normalize
-### [torchvision.transforms.Normalize](https://pytorch.org/vision/main/generated/torchvision.transforms.Normalize.html)
+### [torchvision.transforms.Normalize](https://pytorch.org/vision/stable/generated/torchvision.transforms.Normalize.html#torchvision.transforms.Normalize)
 ```python
 torchvision.transforms.Normalize(
     mean: Union[List[float], Tuple[float, ...]],
@@ -8,7 +8,7 @@ torchvision.transforms.Normalize(
 )
 ```
 
-### [paddle.vision.transforms.Normalize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Normalize__upper_cn.html#normalize)
+### [paddle.vision.transforms.Normalize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Normalize__upper_cn.html#paddle.vision.transforms.Normalize)
 ```python
 paddle.vision.transforms.Normalize(
     mean: Union[int, float, List[float], Tuple[float, ...]] = 0.0,

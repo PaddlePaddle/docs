@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_sqrt
-### [torch.\_foreach_sqrt](https://pytorch.org/docs/stable/generated/torch._foreach_sqrt.html#torch-foreach-sqrt)
+### [torch.\_foreach\_sqrt](https://docs.pytorch.org/docs/stable/generated/torch._foreach_sqrt.html#torch._foreach_sqrt)
 ```python
 torch._foreach_sqrt(self)
 ```

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.vdot
-### [torch.vdot](https://pytorch.org/docs/stable/generated/torch.vdot.html#torch.vdot)
+### [torch.vdot](https://docs.pytorch.org/docs/stable/generated/torch.vdot.html#torch.vdot)
 ```python
 torch.vdot(input, other, *, out=None)
 ```
 
-### [paddle.dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/dot_cn.html#dot)
+### [paddle.dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/dot_cn.html#paddle.dot)
 ```python
 paddle.dot(x, y, name=None)
 ```

@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.get_num_interop_threads
-### [torch.get_num_interop_threads](https://pytorch.org/docs/stable/generated/torch.get_num_interop_threads.html)
+### [torch.get\_num\_interop\_threads](https://docs.pytorch.org/docs/stable/generated/torch.get_num_interop_threads.html#torch.get_num_interop_threads)
 ```python
 torch.get_num_interop_threads()
 ```

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.rad2deg
-### [torch.rad2deg](https://pytorch.org/docs/stable/generated/torch.rad2deg.html?highlight=torch+rad2deg#torch.rad2deg)
+### [torch.rad2deg](https://docs.pytorch.org/docs/stable/generated/torch.rad2deg.html#torch.rad2deg)
 ```python
 torch.rad2deg(input, *, out=None)
 ```
 
-### [paddle.rad2deg](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/rad2deg_cn.html)
+### [paddle.rad2deg](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/rad2deg_cn.html#paddle.rad2deg)
 ```python
 paddle.rad2deg(x, name=None)
 ```

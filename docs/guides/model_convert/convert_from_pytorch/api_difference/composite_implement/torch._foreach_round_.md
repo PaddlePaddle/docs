@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_round_
-### [torch.\_foreach_round_](https://pytorch.org/docs/stable/generated/torch._foreach_round_.html#torch-foreach-round)
+### [torch.\_foreach\_round\_](https://docs.pytorch.org/docs/stable/generated/torch._foreach_round_.html#torch._foreach_round_)
 ```python
 torch._foreach_round_(self)
 ```

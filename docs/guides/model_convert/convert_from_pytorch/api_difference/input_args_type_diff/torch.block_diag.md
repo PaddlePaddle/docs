@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.block_diag
-### [torch.block_diag](https://pytorch.org/docs/stable/generated/torch.block_diag.html#torch-block-diag)
+### [torch.block\_diag](https://docs.pytorch.org/docs/stable/generated/torch.block_diag.html#torch.block_diag)
 ```python
 torch.block_diag(*tensors)
 ```
 
-### [paddle.block_diag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/block_diag_cn.html)
+### [paddle.block\_diag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/block_diag_cn.html#paddle.block_diag)
 ```python
 paddle.block_diag(inputs, name=None)
 ```

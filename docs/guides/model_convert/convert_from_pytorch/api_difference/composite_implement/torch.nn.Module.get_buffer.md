@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.nn.Module.get_buffer
-### [torch.nn.Module.get_buffer](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.get_buffer)
+### [torch.nn.Module.get\_buffer](https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.get_buffer)
 ```python
 torch.nn.Module.get_buffer(target)
 ```

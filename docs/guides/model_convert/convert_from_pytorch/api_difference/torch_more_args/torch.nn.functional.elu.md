@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.elu
-### [torch.nn.functional.elu](https://pytorch.org/docs/stable/generated/torch.nn.functional.elu.html#torch.nn.functional.elu)
+### [torch.nn.functional.elu](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.elu.html#torch.nn.functional.elu)
 ```python
 torch.nn.functional.elu(input, alpha=1.0, inplace=False)
 ```
 
-### [paddle.nn.functional.elu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/elu_cn.html)
+### [paddle.nn.functional.elu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/elu_cn.html#paddle.nn.functional.elu)
 ```python
 paddle.nn.functional.elu(x, alpha=1.0, name=None)
 ```

@@ -1,9 +1,12 @@
 from __future__ import annotations
 
+import argparse
 import os
 import re
 import sys
 import traceback
+
+from utils import get_url
 
 
 class APIDifferenceValidator:
@@ -33,11 +36,14 @@ class APIDifferenceValidator:
     # 有效的备注结尾
     VALID_REMARKS = ["需要转写", "暂无转写方式", "可直接删除"]
 
-    def __init__(self, api_difference_dir: str):
+    def __init__(self, api_difference_dir: str, fix_url: bool = False):
         self.api_difference_dir = api_difference_dir
         self.total_files = 0
         self.valid_files = 0
         self.errors = []
+        self.fix_url = fix_url
+        self.url_errors = []
+        self.url_fixed_count = 0
 
     def log_error_with_details(
         self,
@@ -424,6 +430,13 @@ class APIDifferenceValidator:
                 f"文件格式错误: {file_path} - 应为torch超链接: '{current_line}'"
             )
             return False
+
+        self._validate_api_url(
+            section_lines[current_index],
+            torch_api_name,
+            file_path,
+            errors,
+        )
         return True
 
     def _validate_code_block(
@@ -522,6 +535,14 @@ class APIDifferenceValidator:
         composite_implement: bool,
     ) -> tuple[bool, bool, int, bool]:
         """处理可选的paddle部分"""
+        paddle_line = section_lines[current_index]
+        paddle_api_match = re.search(r"\[(.*?)\]", paddle_line)
+        if paddle_api_match:
+            paddle_api_name = paddle_api_match.group(1)
+            self._validate_api_url(
+                paddle_line, paddle_api_name, file_path, errors
+            )
+
         current_index += 1
         if not self._validate_code_block(
             section_lines,
@@ -562,6 +583,14 @@ class APIDifferenceValidator:
                 f"文件格式错误: {file_path} - 应为paddle超链接，当前行: '{current_line}'"
             )
             return composite_implement, False, current_index, False
+
+        paddle_line = section_lines[current_index]
+        paddle_api_match = re.search(r"\[(.*?)\]", paddle_line)
+        if paddle_api_match:
+            paddle_api_name = paddle_api_match.group(1)
+            self._validate_api_url(
+                paddle_line, paddle_api_name, file_path, errors
+            )
 
         current_index += 1
         if not self._validate_code_block(
@@ -614,6 +643,81 @@ class APIDifferenceValidator:
             )
             return False
         return True
+
+    def _validate_api_url(
+        self,
+        line: str,
+        api_name: str,
+        file_path: str,
+        errors: list[str],
+    ) -> None:
+        """验证API URL是否正确"""
+        # 提取当前URL
+        match = re.search(r"\]\((.*?)\)", line)
+        if not match:
+            return
+
+        current_url = match.group(1)
+        # 获取标准URL
+        standard_url = get_url(api_name, disable_warning=True)
+
+        if not standard_url:
+            # 如果获取不到标准URL，跳过验证
+            return
+
+        if current_url != standard_url:
+            error_msg = (
+                f"URL 链接错误: {file_path}\n"
+                f"  API: {api_name}\n"
+                f"  当前 URL: {current_url}\n"
+                f"  预期 URL: {standard_url}"
+            )
+            self.url_errors.append(
+                {
+                    "file_path": file_path,
+                    "api_name": api_name,
+                    "line": line,
+                    "current_url": current_url,
+                    "standard_url": standard_url,
+                }
+            )
+            errors.append(error_msg)
+
+    def _fix_url_in_file(self, file_path: str, url_fixes: list[dict]) -> bool:
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                content = f.read()
+
+            original_content = content
+            for fix in url_fixes:
+                api_name = fix["api_name"]
+                current_url = fix["current_url"]
+                standard_url = fix["standard_url"]
+
+                escaped_name = re.escape(api_name)
+                pattern_name = escaped_name.replace(r"\_", "_").replace(
+                    r"_", r"(?:_|\\_)"
+                )
+
+                escaped_current_url = re.escape(current_url)
+
+                pattern = f"\\[{pattern_name}\\]\\({escaped_current_url}\\)"
+
+                escaped_output_name = api_name.replace("_", r"\_")
+                replacement = f"[{escaped_output_name}]({standard_url})"
+                content = re.sub(pattern, replacement, content, count=1)
+
+            if content != original_content:
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(content)
+                return True
+            return False
+        except Exception as e:
+            print(f"修复文件 {file_path} 时出错: {e}")
+            import traceback
+
+            traceback.print_exc()
+            return False
 
     def process_file(self, file_path: str, category_dir: str) -> bool:
         """处理单个文件"""
@@ -776,19 +880,66 @@ class APIDifferenceValidator:
         )
         print(f"accuracy:\n{acc}")
 
+        if self.url_errors:
+            print(f"\nURL错误数量: {len(self.url_errors)}")
+            if self.fix_url:
+                print(f"已修复的文件数量: {self.url_fixed_count}")
+
+    def fix_urls(self) -> int:
+        """修复所有URL错误"""
+        if not self.url_errors:
+            return 0
+
+        file_fixes = {}
+        for error in self.url_errors:
+            file_path = error["file_path"]
+            if file_path not in file_fixes:
+                file_fixes[file_path] = []
+            file_fixes[file_path].append(error)
+
+        fixed_count = 0
+        for file_path, fixes in file_fixes.items():
+            if self._fix_url_in_file(file_path, fixes):
+                fixed_count += 1
+                print(f"已修复: {file_path}")
+
+        self.url_fixed_count = fixed_count
+        return fixed_count
+
 
 def main():
     """主函数"""
+    parser = argparse.ArgumentParser(description="验证API差异文档格式")
+    parser.add_argument(
+        "--fix-url", action="store_true", help="自动修复错误的API URL"
+    )
+    args = parser.parse_args()
+
     script_dir = os.path.dirname(os.path.abspath(__file__))
     api_difference_dir = os.path.join(script_dir, "../api_difference")
 
-    validator = APIDifferenceValidator(api_difference_dir)
+    validator = APIDifferenceValidator(api_difference_dir, fix_url=args.fix_url)
     validator.run_validation()
+
+    if args.fix_url and validator.url_errors:
+        print("\n开始修复URL错误...")
+        fixed_count = validator.fix_urls()
+        print(f"\n总共修复了 {fixed_count} 个文件的URL错误")
 
     # 保存错误信息
     error_file = os.path.join(
         script_dir, "validate_api_difference_format_error.txt"
     )
+    if validator.url_errors:
+        print("\n" + "=" * 80)
+        print("❌ 检测到 API 文档链接校验失败！")
+        print("部分 API 的超链接与标准文档链接不一致。")
+        print("\n🚀 快速修复方案：请在本地运行以下命令自动修正：")
+        print(
+            "   python docs/guides/model_convert/convert_from_pytorch/tools/validate_api_difference_format.py --fix-url"
+        )
+        print("\n或者根据上方的错误日志手动修改。")
+        print("=" * 80 + "\n")
     if validator.errors:
         with open(error_file, "w", encoding="utf-8") as f:
             for error in validator.errors:
@@ -800,6 +951,7 @@ def main():
                 else:
                     print(error)
                     f.write(f"{error}\n")
+
         print(f"error log saved to: {error_file}")
         validator.print_results()
         return 1

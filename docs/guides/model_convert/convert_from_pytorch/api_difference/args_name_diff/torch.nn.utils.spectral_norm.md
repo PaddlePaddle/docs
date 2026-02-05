@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.nn.utils.spectral_norm
-### [torch.nn.utils.spectral_norm](https://pytorch.org/docs/stable/generated/torch.nn.utils.spectral_norm.html?highlight=nn+utils+spectral_norm#torch.nn.utils.spectral_norm)
+### [torch.nn.utils.spectral\_norm](https://docs.pytorch.org/docs/stable/generated/torch.nn.utils.spectral_norm.html#torch.nn.utils.spectral_norm)
 ```python
 torch.nn.utils.spectral_norm(module,
                                 name='weight',
@@ -8,7 +8,7 @@ torch.nn.utils.spectral_norm(module,
                                 dim=None)
 ```
 
-### [paddle.nn.utils.spectral_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/utils/spectral_norm_cn.html#spectral-norm)
+### [paddle.nn.utils.spectral\_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/utils/spectral_norm_cn.html#paddle.nn.utils.spectral_norm)
 ```python
 paddle.nn.utils.spectral_norm(layer,
                                 name='weight',

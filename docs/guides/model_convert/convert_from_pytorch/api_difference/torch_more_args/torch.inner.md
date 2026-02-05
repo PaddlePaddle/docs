@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.inner
-### [torch.inner](https://pytorch.org/docs/stable/generated/torch.inner.html?highlight=inner#torch.inner)
+### [torch.inner](https://docs.pytorch.org/docs/stable/generated/torch.inner.html#torch.inner)
 ```python
 torch.inner(input, other, *, out=None)
 ```
 
-### [paddle.inner](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/inner_cn.html)
+### [paddle.inner](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/inner_cn.html#paddle.inner)
 ```python
 paddle.inner(x, y, name=None)
 ```

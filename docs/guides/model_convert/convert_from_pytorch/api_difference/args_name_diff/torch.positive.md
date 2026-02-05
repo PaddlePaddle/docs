@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.positive
-### [torch.positive](https://pytorch.org/docs/stable/generated/torch.positive.html#torch-positive)
+### [torch.positive](https://docs.pytorch.org/docs/stable/generated/torch.positive.html#torch.positive)
 ```python
 torch.positive(input)
 ```
 
-### [paddle.positive](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/positive_cn.html#positive)
+### [paddle.positive](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/positive_cn.html#paddle.positive)
 ```python
 paddle.positive(x)
 ```

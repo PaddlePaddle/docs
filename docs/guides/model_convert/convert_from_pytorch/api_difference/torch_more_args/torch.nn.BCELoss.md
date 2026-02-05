@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.BCELoss
-### [torch.nn.BCELoss](https://pytorch.org/docs/stable/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss)
+### [torch.nn.BCELoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.BCELoss.html#torch.nn.BCELoss)
 ```python
 torch.nn.BCELoss(weight=None,
                  size_average=None,
@@ -7,7 +7,7 @@ torch.nn.BCELoss(weight=None,
                  reduction='mean')
 ```
 
-### [paddle.nn.BCELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BCELoss_cn.html#bceloss)
+### [paddle.nn.BCELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BCELoss_cn.html#paddle.nn.BCELoss)
 ```python
 paddle.nn.BCELoss(weight=None,
                   reduction='mean',

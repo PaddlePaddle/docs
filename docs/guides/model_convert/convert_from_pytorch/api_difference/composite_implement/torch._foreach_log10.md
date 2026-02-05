@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_log10
-### [torch.\_foreach_log10](https://pytorch.org/docs/stable/generated/torch._foreach_log10.html#torch-foreach-log10)
+### [torch.\_foreach\_log10](https://docs.pytorch.org/docs/stable/generated/torch._foreach_log10.html#torch._foreach_log10)
 ```python
 torch._foreach_log10(self)
 ```

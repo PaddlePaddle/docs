@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.autograd.grad
-### [torch.autograd.grad](https://pytorch.org/docs/stable/generated/torch.autograd.grad.html#torch.autograd.grad)
+### [torch.autograd.grad](https://docs.pytorch.org/docs/stable/generated/torch.autograd.grad.html#torch.autograd.grad)
 ```python
 torch.autograd.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, is_grads_batched=False, materialize_grads=False)
 ```
 
-### [paddle.grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/grad_cn.html)
+### [paddle.grad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/grad_cn.html#paddle.grad)
 ```python
 paddle.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None)
 ```

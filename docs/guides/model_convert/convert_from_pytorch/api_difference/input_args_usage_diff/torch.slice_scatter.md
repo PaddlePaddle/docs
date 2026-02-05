@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.slice_scatter
-### [torch.slice_scatter](https://pytorch.org/docs/stable/generated/torch.slice_scatter.html#torch.slice_scatter)
+### [torch.slice\_scatter](https://docs.pytorch.org/docs/stable/generated/torch.slice_scatter.html#torch.slice_scatter)
 ```python
 torch.slice_scatter(input, src, dim=0, start=None, end=None, step=1)
 ```
 
-### [paddle.slice_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/slice_scatter.html)
+### [paddle.slice\_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/slice_scatter_cn.html#paddle.slice_scatter)
 ```python
 paddle.slice_scatter(x, value, axes, starts, ends, strides, name=None)
 ```

@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_sin
-### [torch.\_foreach_sin](https://docs.pytorch.org/docs/stable/generated/torch._foreach_sin.html#torch-foreach-sin)
+### [torch.\_foreach\_sin](https://docs.pytorch.org/docs/stable/generated/torch._foreach_sin.html#torch._foreach_sin)
 ```python
 torch._foreach_sin(self)
 ```

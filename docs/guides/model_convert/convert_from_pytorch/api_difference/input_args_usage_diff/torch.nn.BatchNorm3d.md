@@ -1,5 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.BatchNorm3d
-### [torch.nn.BatchNorm3d](https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm3d.html?highlight=torch%20nn%20batchnorm3d#torch.nn.BatchNorm3d)
+### [torch.nn.BatchNorm3d](https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm3d.html#torch.nn.BatchNorm3d)
 ```python
 torch.nn.BatchNorm3d(num_features,
                      eps=1e-05,
@@ -10,7 +10,7 @@ torch.nn.BatchNorm3d(num_features,
                      dtype=None)
 ```
 
-### [paddle.nn.BatchNorm3D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BatchNorm3D_cn.html#batchnorm3d)
+### [paddle.nn.BatchNorm3D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BatchNorm3D_cn.html#paddle.nn.BatchNorm3D)
 ```python
 paddle.nn.BatchNorm3D(num_features,
                       momentum=0.9,

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.signal.windows.exponential
-### [torch.signal.windows.exponential](https://pytorch.org/docs/stable/generated/torch.signal.windows.exponential.html)
+### [torch.signal.windows.exponential](https://docs.pytorch.org/docs/stable/generated/torch.signal.windows.exponential.html#torch.signal.windows.exponential)
 ```python
 torch.signal.windows.exponential(M, *, center=None, tau=1.0, sym=True, dtype=None, layout=torch.strided, device=None, requires_grad=False)
 ```
 
-### [paddle.audio.functional.get_window](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/audio/functional/get_window_cn.html#get-window)
+### [paddle.audio.functional.get\_window](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/audio/functional/get_window_cn.html#paddle.audio.functional.get_window)
 ```python
 paddle.audio.functional.get_window(window, win_length, fftbins=True, dtype='float64')
 ```

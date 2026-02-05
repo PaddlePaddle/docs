@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.linalg.eigvalsh
-### [torch.linalg.eigvalsh](https://pytorch.org/docs/stable/generated/torch.linalg.eigvalsh.html#torch.linalg.eigvalsh)
+### [torch.linalg.eigvalsh](https://docs.pytorch.org/docs/stable/generated/torch.linalg.eigvalsh.html#torch.linalg.eigvalsh)
 ```python
 torch.linalg.eigvalsh(input, UPLO='L', *, out=None)
 ```
 
-### [paddle.linalg.eigvalsh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eigvalsh_cn.html)
+### [paddle.linalg.eigvalsh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eigvalsh_cn.html#paddle.linalg.eigvalsh)
 ```python
 paddle.linalg.eigvalsh(x, UPLO='L', name=None)
 ```

@@ -1,10 +1,10 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.allclose
-### [torch.Tensor.allclose](https://pytorch.org/docs/stable/generated/torch.Tensor.allclose.html)
+### [torch.Tensor.allclose](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.allclose.html#torch.Tensor.allclose)
 ```python
 torch.Tensor.allclose(other, rtol=1e-05, atol=1e-08, equal_nan=False)
 ```
 
-### [paddle.Tensor.allclose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#allclose-y-rtol-1e-05-atol-1e-08-equal-nan-false-name-none)
+### [paddle.Tensor.allclose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#allclose-y-rtol-1e-05-atol-1e-08-equal-nan-false-name-none)
 ```python
 paddle.Tensor.allclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 ```

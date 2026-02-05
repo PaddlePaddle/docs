@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.fft.ihfft2
-### [torch.fft.ihfft2](https://pytorch.org/docs/stable/generated/torch.fft.ihfft2.html?highlight=torch+fft+ihfft2#torch.fft.ihfft2)
+### [torch.fft.ihfft2](https://docs.pytorch.org/docs/stable/generated/torch.fft.ihfft2.html#torch.fft.ihfft2)
 ```python
 torch.fft.ihfft2(input, s=None, dim=(- 2, - 1), norm='backward', *, out=None)
 ```
 
-### [paddle.fft.ihfft2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/ihfft2_cn.html)
+### [paddle.fft.ihfft2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/ihfft2_cn.html#paddle.fft.ihfft2)
 ```python
 paddle.fft.ihfft2(x, s=None, axes=(- 2, - 1), norm='backward', name=None)
 ```

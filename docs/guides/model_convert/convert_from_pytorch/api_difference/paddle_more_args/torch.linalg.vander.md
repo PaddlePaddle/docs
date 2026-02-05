@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.linalg.vander
-### [torch.linalg.vander](https://pytorch.org/docs/stable/generated/torch.linalg.vander.html#torch.linalg.vander)
+### [torch.linalg.vander](https://docs.pytorch.org/docs/stable/generated/torch.linalg.vander.html#torch.linalg.vander)
 ```python
 torch.linalg.vander(x, *, N=None)
 ```
 
-### [paddle.vander](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vander_cn.html)
+### [paddle.vander](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vander_cn.html#paddle.vander)
 ```python
 paddle.vander(x, n=None, increasing=False, name=None)
 ```

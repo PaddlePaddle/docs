@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.GroupNorm
-### [torch.nn.GroupNorm](https://pytorch.org/docs/stable/generated/torch.nn.GroupNorm.html?highlight=groupnorm#torch.nn.GroupNorm)
+### [torch.nn.GroupNorm](https://docs.pytorch.org/docs/stable/generated/torch.nn.GroupNorm.html#torch.nn.GroupNorm)
 ```python
 torch.nn.GroupNorm(num_groups,
                    num_channels,
@@ -9,7 +9,7 @@ torch.nn.GroupNorm(num_groups,
                    dtype=None)
 ```
 
-### [paddle.nn.GroupNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GroupNorm_cn.html#groupnorm)
+### [paddle.nn.GroupNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GroupNorm_cn.html#paddle.nn.GroupNorm)
 ```python
 paddle.nn.GroupNorm(num_groups,
                     num_channels,

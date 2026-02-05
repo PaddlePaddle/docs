@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributed.rpc.init_rpc
-### [torch.distributed.rpc.init\_rpc](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.init_rpc)
+### [torch.distributed.rpc.init\_rpc](https://docs.pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.init_rpc)
 ```python
 torch.distributed.rpc.init_rpc(name, backend=None, rank=-1, world_size=None, rpc_backend_options=None)
 ```
 
-### [paddle.distributed.rpc.init\_rpc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/init_rpc_cn.html#init-rpc)
+### [paddle.distributed.rpc.init\_rpc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/init_rpc_cn.html#paddle.distributed.rpc.init_rpc)
 ```python
 paddle.distributed.rpc.init_rpc(name, rank=None, world_size=None, master_endpoint=None)
 ```

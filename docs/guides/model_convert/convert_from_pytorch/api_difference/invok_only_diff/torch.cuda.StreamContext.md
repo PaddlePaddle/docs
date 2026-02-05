@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.cuda.StreamContext
 
-### [torch.cuda.StreamContext](https://pytorch.org/docs/stable/generated/torch.cuda.StreamContext.html#torch.cuda.StreamContext)
+### [torch.cuda.StreamContext](https://docs.pytorch.org/docs/stable/generated/torch.cuda.StreamContext.html#torch.cuda.StreamContext)
 
 ```python
 torch.cuda.StreamContext(stream)
 ```
 
-### [paddle.device.stream_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/stream_guard_cn.html#paddle/device/stream_guard_cn#cn-api-paddle-device-stream_guard)
+### [paddle.device.stream\_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/stream_guard_cn.html#paddle.device.stream_guard)
 
 ```python
 paddle.device.stream_guard(stream)

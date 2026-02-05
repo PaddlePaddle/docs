@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.lerp_
-### [torch.Tensor.lerp\_](https://pytorch.org/docs/stable/generated/torch.Tensor.lerp_.html)
+### [torch.Tensor.lerp\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.lerp_.html#torch.Tensor.lerp_)
 ```python
 torch.Tensor.lerp_(end, weight)
 ```
 
-### [paddle.Tensor.lerp\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#lerp-x-y-weight-name-none)
+### [paddle.Tensor.lerp\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#lerp-y-weight-name-none)
 ```python
 paddle.Tensor.lerp_(y, weight, name=None)
 ```

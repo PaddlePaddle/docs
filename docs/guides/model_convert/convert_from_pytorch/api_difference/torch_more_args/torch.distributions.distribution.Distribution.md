@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.distribution.Distribution
-### [torch.distributions.distribution.Distribution](https://pytorch.org/docs/stable/distributions.html#torch.distributions.distribution.Distribution)
+### [torch.distributions.distribution.Distribution](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.distribution.Distribution)
 ```python
 torch.distributions.distribution.Distribution(batch_shape=torch.Size([]), event_shape=torch.Size([]), validate_args=None)
 ```
 
-### [paddle.distribution.Distribution](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Distribution_cn.html)
+### [paddle.distribution.Distribution](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Distribution_cn.html#paddle.distribution.Distribution)
 ```python
 paddle.distribution.Distribution(batch_shape， event_shape)
 ```

@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torchvision.models.mobilenet_v2
-### [torchvision.models.mobilenet_v2](https://pytorch.org/vision/stable/models/generated/torchvision.models.mobilenet_v2.html)
+### [torchvision.models.mobilenet\_v2](https://pytorch.org/vision/stable/models/generated/torchvision.models.mobilenet_v2.html#torchvision.models.mobilenet_v2)
 ```python
 torchvision.models.mobilenet_v2(pretrained: bool = False, progress: bool = True, *, weights: Optional[MobileNet_V2_Weights] = None, **kwargs: Any)
 ```
 
-### [paddle.vision.models.mobilenet_v2](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/mobilenet_v2_cn.html)
+### [paddle.vision.models.mobilenet\_v2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/models/mobilenet_v2_cn.html#paddle.vision.models.mobilenet_v2)
 ```python
 paddle.vision.models.mobilenet_v2(pretrained=False, scale=1.0, **kwargs)
 ```

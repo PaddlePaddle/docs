@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.nn.functional.softmin
-### [torch.nn.functional.softmin](https://pytorch.org/docs/stable/generated/torch.nn.functional.softmin.html#torch.nn.functional.softmin)
+### [torch.nn.functional.softmin](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.softmin.html#torch.nn.functional.softmin)
 ```python
 torch.nn.functional.softmin(input, dim=None, _stacklevel=3, dtype=None)
 ```

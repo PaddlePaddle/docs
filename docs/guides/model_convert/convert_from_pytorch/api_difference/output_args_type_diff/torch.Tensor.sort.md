@@ -1,10 +1,10 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.sort
-### [torch.Tensor.sort](https://pytorch.org/docs/stable/generated/torch.Tensor.sort.html#torch-tensor-sort)
+### [torch.Tensor.sort](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.sort.html#torch.Tensor.sort)
 ```python
 torch.Tensor.sort(dim=-1, descending=False, *, stable=False)
 ```
 
-### [paddle.Tensor.sort](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sort_cn.html#sort)
+### [paddle.Tensor.sort](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#sort-axis-1-descending-false-name-none)
 ```python
 paddle.Tensor.sort(axis=-1, descending=False, stable=False)
 ```

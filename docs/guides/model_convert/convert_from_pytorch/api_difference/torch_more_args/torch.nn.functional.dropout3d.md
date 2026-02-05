@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.dropout3d
-### [torch.nn.functional.dropout3d](https://pytorch.org/docs/stable/generated/torch.nn.functional.dropout3d.html#torch.nn.functional.dropout3d)
+### [torch.nn.functional.dropout3d](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.dropout3d.html#torch.nn.functional.dropout3d)
 ```python
 torch.nn.functional.dropout3d(input, p=0.5, training=True, inplace=False)
 ```
 
-### [paddle.nn.functional.dropout3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/dropout3d_cn.html)
+### [paddle.nn.functional.dropout3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/dropout3d_cn.html#paddle.nn.functional.dropout3d)
 ```python
 paddle.nn.functional.dropout3d(x, p=0.5, training=True, name=None)
 ```

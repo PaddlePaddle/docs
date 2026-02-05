@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.autograd.backward
-### [torch.autograd.backward](https://pytorch.org/docs/stable/generated/torch.autograd.backward.html#torch.autograd.backward)
+### [torch.autograd.backward](https://docs.pytorch.org/docs/stable/generated/torch.autograd.backward.html#torch.autograd.backward)
 ```python
 torch.autograd.backward(tensors, grad_tensors=None, retain_graph=None, create_graph=False, grad_variables=None, inputs=None)
 ```
 
-### [paddle.autograd.backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/backward_cn.html)
+### [paddle.autograd.backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/backward_cn.html#paddle.autograd.backward)
 ```python
 paddle.autograd.backward(tensors, grad_tensors=None, retain_graph=False)
 ```

@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.asin
-### [torch.asin](https://pytorch.org/docs/stable/generated/torch.asin.html#torch.asin)
+### [torch.asin](https://docs.pytorch.org/docs/stable/generated/torch.asin.html#torch.asin)
 ```python
 torch.asin(input,
            *,
            out=None)
 ```
 
-### [paddle.asin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/asin_cn.html#asin)
+### [paddle.asin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/asin_cn.html#paddle.asin)
 ```python
 paddle.asin(x,
             name=None)

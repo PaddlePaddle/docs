@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.utils.data.TensorDataset
-### [torch.utils.data.TensorDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.TensorDataset)
+### [torch.utils.data.TensorDataset](https://docs.pytorch.org/docs/stable/data.html#torch.utils.data.TensorDataset)
 ```python
 torch.utils.data.TensorDataset(*tensors)
 ```
 
-### [paddle.io.TensorDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/TensorDataset_cn.html)
+### [paddle.io.TensorDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/TensorDataset_cn.html#paddle.io.TensorDataset)
 ```python
 paddle.io.TensorDataset(tensors)
 ```

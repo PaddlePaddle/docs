@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributed.send
-### [torch.distributed.send](https://pytorch.org/docs/stable/distributed.html#torch.distributed.send)
+### [torch.distributed.send](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.send)
 ```python
 torch.distributed.send(tensor, dst, group=None, tag=0)
 ```
 
-### [paddle.distributed.send](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/send_cn.html)
+### [paddle.distributed.send](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/send_cn.html#paddle.distributed.send)
 ```python
 paddle.distributed.send(tensor, dst=0, group=None, sync_op=True)
 ```

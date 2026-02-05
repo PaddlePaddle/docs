@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.Hardshrink
-### [torch.nn.Hardshrink](https://pytorch.org/docs/stable/generated/torch.nn.Hardshrink.html?highlight=hardshrink#torch.nn.Hardshrink)
+### [torch.nn.Hardshrink](https://docs.pytorch.org/docs/stable/generated/torch.nn.Hardshrink.html#torch.nn.Hardshrink)
 ```python
 torch.nn.Hardshrink(lambd=0.5)
 ```
 
-### [paddle.nn.Hardshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Hardshrink_cn.html#hardshrink)
+### [paddle.nn.Hardshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Hardshrink_cn.html#paddle.nn.Hardshrink)
 ```python
 paddle.nn.Hardshrink(threshold=0.5,
                         name=None)

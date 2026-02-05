@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.functional.lp_pool2d
-### [torch.nn.functional.lp_pool2d](https://pytorch.org/docs/stable/generated/torch.nn.functional.lp_pool2d.html#torch.nn.functional.lp_pool2d)
+### [torch.nn.functional.lp\_pool2d](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.lp_pool2d.html#torch.nn.functional.lp_pool2d)
 ```python
 torch.nn.functional.lp_pool2d(input, norm_type, kernel_size, stride=None, ceil_mode=False)
 ```
 
-### [paddle.nn.functional.lp_pool2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/lp_pool2d_cn.html#lp-pool2d)
+### [paddle.nn.functional.lp\_pool2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/lp_pool2d_cn.html#paddle.nn.functional.lp_pool2d)
 ```python
 paddle.nn.functional.lp_pool2d(x, norm_type, kernel_size, stride=None, padding=0, ceil_mode=False, data_format="NCWH", name=None)
 ```

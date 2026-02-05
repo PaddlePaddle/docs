@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.column_stack
-### [torch.column_stack](https://pytorch.org/docs/stable/generated/torch.column_stack.html#torch.column_stack)
+### [torch.column\_stack](https://docs.pytorch.org/docs/stable/generated/torch.column_stack.html#torch.column_stack)
 ```python
 torch.column_stack(tensors, *, out=None)
 ```
 
-### [paddle.column_stack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/column_stack_cn.html)
+### [paddle.column\_stack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/column_stack_cn.html#paddle.column_stack)
 ```python
 paddle.column_stack(x, name=None)
 ```

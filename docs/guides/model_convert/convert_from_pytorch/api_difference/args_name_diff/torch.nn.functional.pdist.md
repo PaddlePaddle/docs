@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.pdist
-### [torch.nn.functional.pdist](https://pytorch.org/docs/stable/generated/torch.nn.functional.pdist.html#torch.nn.functional.pdist)
+### [torch.nn.functional.pdist](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.pdist.html#torch.nn.functional.pdist)
 ```python
 torch.nn.functional.pdist(input, p=2)
 ```
 
-### [paddle.pdist](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/pdist_cn.html)
+### [paddle.pdist](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/pdist_cn.html#paddle.pdist)
 ```python
 paddle.pdist(x, p=2.0)
 ```

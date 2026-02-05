@@ -6,7 +6,7 @@
 torchvision.transforms.functional.affine(img, angle, translate, scale, shear, interpolation=torchvision.transforms.functional.NEREAST, fill=None, center=None)
 ```
 
-### [paddle.vision.transforms.affine](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/affine_cn.html#paddle/vision/transforms/affine_cn#cn-api-paddle-vision-transforms-affine)
+### [paddle.vision.transforms.affine](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/affine_cn.html#paddle.vision.transforms.affine)
 
 ```python
 paddle.vision.transforms.affine(img, angle, translate, scale, shear, interpolation='nearst', fill=0, center=None)

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.TripletMarginLoss
-### [torch.nn.TripletMarginLoss](https://pytorch.org/docs/stable/generated/torch.nn.TripletMarginLoss.html#torch.nn.TripletMarginLoss)
+### [torch.nn.TripletMarginLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.TripletMarginLoss.html#torch.nn.TripletMarginLoss)
 ```python
 torch.nn.TripletMarginLoss(margin=1.0, p=2.0, eps=1e-06, swap=False, size_average=None, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.TripletMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/TripletMarginLoss_cn.html)
+### [paddle.nn.TripletMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/TripletMarginLoss_cn.html#paddle.nn.TripletMarginLoss)
 ```python
 paddle.nn.TripletMarginLoss(margin=1.0, p=2., epsilon=1e-6, swap=False, reduction='mean', name=None)
 ```

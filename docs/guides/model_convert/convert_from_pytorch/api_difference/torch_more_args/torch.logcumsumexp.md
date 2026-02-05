@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.logcumsumexp
-### [torch.logcumsumexp](https://pytorch.org/docs/stable/generated/torch.logcumsumexp.html#torch-logcumsumexp)
+### [torch.logcumsumexp](https://docs.pytorch.org/docs/stable/generated/torch.logcumsumexp.html#torch.logcumsumexp)
 ```python
 torch.logcumsumexp(input, dim, *, out=None)
 ```
 
-### [paddle.logcumsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logcumsumexp_cn.html#logcumsumexp)
+### [paddle.logcumsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logcumsumexp_cn.html#paddle.logcumsumexp)
 ```python
 paddle.logcumsumexp(x, axis=None, dtype=None, name=None)
 ```

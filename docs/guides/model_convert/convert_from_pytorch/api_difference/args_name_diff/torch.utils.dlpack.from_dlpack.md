@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.utils.dlpack.from_dlpack
-### [torch.utils.dlpack.from_dlpack](https://pytorch.org/docs/stable/dlpack.html?highlight=torch+utils+dlpack+from_dlpack#torch.utils.dlpack.from_dlpack)
+### [torch.utils.dlpack.from\_dlpack](https://docs.pytorch.org/docs/stable/dlpack.html#torch.utils.dlpack.from_dlpack)
 ```python
 torch.utils.dlpack.from_dlpack(ext_tensor)
 ```

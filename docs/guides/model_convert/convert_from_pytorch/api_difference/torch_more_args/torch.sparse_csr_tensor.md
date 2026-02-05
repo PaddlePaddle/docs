@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.sparse_csr_tensor
-### [torch.sparse_csr_tensor](https://pytorch.org/docs/stable/generated/torch.sparse_csr_tensor.html#torch.sparse_csr_tensor)
+### [torch.sparse\_csr\_tensor](https://docs.pytorch.org/docs/stable/generated/torch.sparse_csr_tensor.html#torch.sparse_csr_tensor)
 ```python
 torch.sparse_csr_tensor(crow_indices,
                         col_indices,
@@ -14,7 +14,7 @@ torch.sparse_csr_tensor(crow_indices,
                         check_invariants=None)
 ```
 
-### [paddle.sparse.sparse_csr_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/sparse_csr_tensor_cn.html#sparse-csr-tensor)
+### [paddle.sparse.sparse\_csr\_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/sparse_csr_tensor_cn.html#paddle.sparse.sparse_csr_tensor)
 ```python
 paddle.sparse.sparse_csr_tensor(crows, cols, values, shape=None, dtype=None, place=None, stop_gradient=True)
 ```

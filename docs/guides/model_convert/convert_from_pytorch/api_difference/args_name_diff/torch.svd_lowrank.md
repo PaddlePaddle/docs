@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.svd_lowrank
-### [torch.svd_lowrank](https://pytorch.org/docs/stable/generated/torch.svd_lowrank.html?highlight=torch+svd_lowrank#torch.svd_lowrank)
+### [torch.svd\_lowrank](https://docs.pytorch.org/docs/stable/generated/torch.svd_lowrank.html#torch.svd_lowrank)
 ```python
 torch.svd_lowrank(A, q=6, niter=2, M=None)
 ```
 
-### [paddle.linalg.svd_lowrank](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/svd_lowrank_cn.html)
+### [paddle.linalg.svd\_lowrank](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/svd_lowrank_cn.html#paddle.linalg.svd_lowrank)
 ```python
 paddle.linalg.svd_lowrank(x, q=None, niter=2, M=None, name=None)
 ```

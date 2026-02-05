@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.linalg.qr
-### [torch.linalg.qr](https://pytorch.org/docs/stable/generated/torch.linalg.qr.html#torch.linalg.qr)
+### [torch.linalg.qr](https://docs.pytorch.org/docs/stable/generated/torch.linalg.qr.html#torch.linalg.qr)
 ```python
 torch.linalg.qr(A, mode='reduced', *, out=None)
 ```
 
-### [paddle.linalg.qr](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/qr_cn.html)
+### [paddle.linalg.qr](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/qr_cn.html#paddle.linalg.qr)
 ```python
 paddle.linalg.qr(x, mode='reduced', name=None)
 ```

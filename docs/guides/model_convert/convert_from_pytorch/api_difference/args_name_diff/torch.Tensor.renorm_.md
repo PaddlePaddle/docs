@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.renorm_
-### [torch.Tensor.renorm_](https://pytorch.org/docs/stable/generated/torch.Tensor.renorm_.html#torch-tensor-renorm_)
+### [torch.Tensor.renorm\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.renorm_.html#torch.Tensor.renorm_)
 ```python
 torch.Tensor.renorm_(p, dim, maxnorm)
 ```

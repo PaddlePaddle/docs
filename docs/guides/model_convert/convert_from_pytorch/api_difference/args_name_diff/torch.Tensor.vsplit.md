@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.vsplit
-### [torch.Tensor.vsplit](https://pytorch.org/docs/stable/generated/torch.Tensor.vsplit.html)
+### [torch.Tensor.vsplit](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.vsplit.html#torch.Tensor.vsplit)
 ```python
 torch.Tensor.vsplit(split_size_or_sections)
 ```
 
-### [paddle.Tensor.vsplit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#vsplit-num_or_indices-name-none)
+### [paddle.Tensor.vsplit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#vsplit-num-or-indices-name-none)
 ```python
 paddle.Tensor.vsplit(num_or_indices, name=None)
 ```

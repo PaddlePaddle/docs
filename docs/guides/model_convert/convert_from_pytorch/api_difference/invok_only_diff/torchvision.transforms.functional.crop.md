@@ -6,7 +6,7 @@
 torchvision.transforms.functional.crop(img, top, left, height, width)
 ```
 
-### [paddle.vision.transforms.crop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/crop_cn.html#paddle/vision/transforms/crop_cn#cn-api-paddle-vision-transforms-crop)
+### [paddle.vision.transforms.crop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/crop_cn.html#paddle.vision.transforms.crop)
 
 ```python
 paddle.vision.transforms.crop(img, top, left, height, width)

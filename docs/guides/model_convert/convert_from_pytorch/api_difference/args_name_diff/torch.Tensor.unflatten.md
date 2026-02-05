@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.unflatten
-### [torch.Tensor.unflatten](https://pytorch.org/docs/stable/generated/torch.Tensor.unflatten.html#torch.Tensor.unflatten)
+### [torch.Tensor.unflatten](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.unflatten.html#torch.Tensor.unflatten)
 ```python
 torch.Tensor.unflatten(dim, sizes)
 ```
 
-### [paddle.Tensor.unflatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#unflatten-axis-shape-name-none)
+### [paddle.Tensor.unflatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#unflatten-axis-shape-name-none)
 ```python
 paddle.Tensor.unflatten(axis, shape, name=None)
 ```

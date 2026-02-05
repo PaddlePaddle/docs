@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.cauchy.Cauchy
-### [torch.distributions.cauchy.Cauchy](https://pytorch.org/docs/stable/distributions.html#torch.distributions.cauchy.Cauchy)
+### [torch.distributions.cauchy.Cauchy](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.cauchy.Cauchy)
 ```python
 torch.distributions.cauchy.Cauchy(loc, scale, validate_args=None)
 ```
 
-### [paddle.distribution.Cauchy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Cauchy_cn.html)
+### [paddle.distribution.Cauchy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Cauchy_cn.html#paddle.distribution.Cauchy)
 ```python
 paddle.distribution.Cauchy(loc, scale, name=None)
 ```

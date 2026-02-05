@@ -5,7 +5,7 @@
 flash_attn.ops.rms_norm.rms_norm(x, weight, epsilon)
 ```
 
-### [paddle.incubate.nn.functional.fused_rms_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/incubate/nn/functional/fused_rms_norm_cn.html)
+### [paddle.incubate.nn.functional.fused\_rms\_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/incubate/nn/functional/fused_rms_norm_cn.html#paddle.incubate.nn.functional.fused_rms_norm)
 ```python
 paddle.incubate.nn.functional.fused_rms_norm(x, norm_weight, norm_bias, epsilon, begin_norm_axis, bias=None, residual=None, quant_scale=- 1, quant_round_type=0, quant_max_bound=0, quant_min_bound=0)
 ```

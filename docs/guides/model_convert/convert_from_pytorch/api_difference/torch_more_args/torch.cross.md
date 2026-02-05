@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.cross
-### [torch.cross](https://pytorch.org/docs/stable/generated/torch.cross.html?highlight=cross#torch.cross)
+### [torch.cross](https://docs.pytorch.org/docs/stable/generated/torch.cross.html#torch.cross)
 ```python
 torch.cross(input,
             other,
@@ -8,7 +8,7 @@ torch.cross(input,
             out=None)
 ```
 
-### [paddle.cross](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cross_cn.html#cross)
+### [paddle.cross](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cross_cn.html#paddle.cross)
 ```python
 paddle.cross(x,
              y,

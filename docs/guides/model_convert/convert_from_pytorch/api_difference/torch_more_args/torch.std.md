@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.std
-### [torch.std](https://pytorch.org/docs/stable/generated/torch.std.html)
+### [torch.std](https://docs.pytorch.org/docs/stable/generated/torch.std.html#torch.std)
 ```python
 torch.std(input, dim=None, unbiased=True, keepdim=False, *, correction=1, out=None)
 ```
 
-### [paddle.std](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/std_cn.html#std)
+### [paddle.std](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/std_cn.html#paddle.std)
 ```python
 paddle.std(x, axis=None, unbiased=True, keepdim=False, name=None)
 ```

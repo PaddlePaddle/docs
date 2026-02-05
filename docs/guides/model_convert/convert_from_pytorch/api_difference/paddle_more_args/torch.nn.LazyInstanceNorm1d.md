@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.LazyInstanceNorm1d
-### [torch.nn.LazyInstanceNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm1d.html)
+### [torch.nn.LazyInstanceNorm1d](https://docs.pytorch.org/docs/stable/generated/torch.nn.LazyInstanceNorm1d.html#torch.nn.LazyInstanceNorm1d)
 ```python
 torch.nn.LazyInstanceNorm1d(eps=1e-05, momentum=0.1, affine=True, track_running_stats=True, device=None, dtype=None)
 ```
 
-### [paddle.nn.InstanceNorm1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/InstanceNorm1D_cn.html#instancenorm1d)
+### [paddle.nn.InstanceNorm1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/InstanceNorm1D_cn.html#paddle.nn.InstanceNorm1D)
 ```python
 paddle.nn.InstanceNorm1D(num_features, epsilon=1e-05, momentum=0.9, weight_attr=None, bias_attr=None, data_format="NCL", name=None)
 ```

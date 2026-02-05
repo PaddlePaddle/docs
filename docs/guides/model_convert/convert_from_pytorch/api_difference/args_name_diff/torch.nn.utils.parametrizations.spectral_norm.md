@@ -1,12 +1,12 @@
 ## [ 仅参数名不一致 ]torch.nn.utils.parametrizations.spectral_norm
 
-### [torch.nn.utils.parametrizations.spectral_norm](https://pytorch.org/docs/stable/generated/torch.nn.utils.parametrizations.spectral_norm.html#torch.nn.utils.parametrizations.spectral_norm)
+### [torch.nn.utils.parametrizations.spectral\_norm](https://docs.pytorch.org/docs/stable/generated/torch.nn.utils.parametrizations.spectral_norm.html#torch.nn.utils.parametrizations.spectral_norm)
 
 ```python
 torch.nn.utils.parametrizations.spectral_norm(module, name='weight', n_power_iterations=1, eps=1e-12, dim=None)
 ```
 
-### [paddle.nn.utils.spectral_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/utils/spectral_norm_cn.html#spectral-norm)
+### [paddle.nn.utils.spectral\_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/utils/spectral_norm_cn.html#paddle.nn.utils.spectral_norm)
 
 ```python
 paddle.nn.utils.spectral_norm(layer, name='weight', n_power_iterations=1, eps=1e-12, dim=None)

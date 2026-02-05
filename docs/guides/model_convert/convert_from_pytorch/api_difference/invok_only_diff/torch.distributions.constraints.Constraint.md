@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.distributions.constraints.Constraint
 
-### [torch.distributions.constraints.Constraint](https://pytorch.org/docs/stable/generated/torch.distributions.constraints.Constraint.html#torch.distributions.constraints.Constraint)
+### [torch.distributions.constraints.Constraint](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.constraints.Constraint)
 
 ```python
 torch.distributions.constraints.Constraint(*args, **kwargs)

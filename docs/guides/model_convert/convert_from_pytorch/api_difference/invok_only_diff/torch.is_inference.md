@@ -6,7 +6,7 @@
 torch.is_inference(input)
 ```
 
-### [paddle.Tensor.stop_gradient](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/stop_gradient_cn.html#paddle/Tensor/stop_gradient_cn#cn-api-paddle-Tensor-stop_gradient)
+### [paddle.Tensor.stop\_gradient](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#stop-gradient)
 
 ```python
 paddle.Tensor.stop_gradient

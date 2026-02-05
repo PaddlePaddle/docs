@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.fft.ifft
-### [torch.fft.ifft](https://pytorch.org/docs/stable/generated/torch.fft.ifft.html?highlight=ifft#torch.fft.ifft)
+### [torch.fft.ifft](https://docs.pytorch.org/docs/stable/generated/torch.fft.ifft.html#torch.fft.ifft)
 ```python
 torch.fft.ifft(input, n=None, dim=- 1, norm='backward', *, out=None)
 ```
 
-### [paddle.fft.ifft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/ifft_cn.html)
+### [paddle.fft.ifft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/ifft_cn.html#paddle.fft.ifft)
 ```python
 paddle.fft.ifft(x, n=None, axis=- 1, norm='backward', name=None)
 ```
