@@ -21,6 +21,7 @@ max_pool2d
                                     & \text{input}(N_i, C_j, \text{stride[0]} \times h + m,
                                                    \text{stride[1]} \times w + n)
 
+
 ..  note::
     别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``return_indices`` 可替代 ``return_mask``。
 

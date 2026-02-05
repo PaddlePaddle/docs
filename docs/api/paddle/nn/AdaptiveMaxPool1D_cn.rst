@@ -19,15 +19,20 @@ AdaptiveMaxPool1D
     Output(i) &= max(Input[lstart:lend])
 
 
+..  note::
+    别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``return_indices`` 可替代 ``return_mask``。
+
 参数
 :::::::::
     - **output_size** (int|list|tuple)：算子输出特征图的长度，其数据类型为 int,list 或 tuple。
     - **return_mask** (bool，可选)：如果设置为 True，则会与输出一起返回最大值的索引，默认为 False。
+      ``别名：return_indices``
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 :::::::::
     - **x** (Tensor)：默认形状为（批大小，通道数，输出特征长度），即 NCL 格式的 3-D Tensor。其数据类型为 float32 或者 float64。
+      ``别名：input``
     - **output** (Tensor)：默认形状为（批大小，通道数，输出特征长度），即 NCL 格式的 3-D Tensor。其数据类型与输入 x 相同。
 
 返回

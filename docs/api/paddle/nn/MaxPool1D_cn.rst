@@ -13,6 +13,7 @@ MaxPool1D
 
     Output(N_i, C_i, l) =  max(Input[N_i, C_i, stride \times l:stride \times l+k])
 
+
 ..  note::
     别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``return_indices`` 可替代 ``return_mask``。
 

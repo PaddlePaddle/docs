@@ -33,6 +33,7 @@ FractionalMaxPool3D
 进而得到论文中的随机序列为 `index_end - index_start = [1, 2, 1, 2, 1]` 。
 由于池化操作的步长与核尺寸相同，同为此随机序列，最终得到池化输出为 `[2, 4, 1, 5, 3]` 。
 
+
 ..  note::
     别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``return_indices`` 可替代 ``return_mask``。
 
