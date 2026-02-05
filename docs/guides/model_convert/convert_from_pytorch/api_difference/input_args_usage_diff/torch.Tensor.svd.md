@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.Tensor.svd
-### [torch.Tensor.svd](https://pytorch.org/docs/stable/generated/torch.Tensor.svd.html#torch.Tensor.svd)
+### [torch.Tensor.svd](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.svd.html#torch.Tensor.svd)
 ```python
 torch.Tensor.svd(some=True, compute_uv=True)
 ```
 
-### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/svd_cn.html#svd)
+### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/svd_cn.html#paddle.linalg.svd)
 ```python
 paddle.linalg.svd(x, full_matrices=False, name=None)
 ```

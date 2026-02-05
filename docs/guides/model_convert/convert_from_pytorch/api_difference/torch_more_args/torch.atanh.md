@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.atanh
-### [torch.atanh](https://pytorch.org/docs/stable/generated/torch.atanh.html#torch.atanh)
+### [torch.atanh](https://docs.pytorch.org/docs/stable/generated/torch.atanh.html#torch.atanh)
 ```python
 torch.atanh(input,
            *,
            out=None)
 ```
 
-### [paddle.atanh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atanh_cn.html)
+### [paddle.atanh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/atanh_cn.html#paddle.atanh)
 ```python
 paddle.atanh(x,
             name=None)

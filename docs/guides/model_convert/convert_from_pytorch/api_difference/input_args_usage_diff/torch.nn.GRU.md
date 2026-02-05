@@ -1,5 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.GRU
-### [torch.nn.GRU](https://pytorch.org/docs/stable/generated/torch.nn.GRU.html?highlight=torch%20nn%20gru#torch.nn.GRU)
+### [torch.nn.GRU](https://docs.pytorch.org/docs/stable/generated/torch.nn.GRU.html#torch.nn.GRU)
 ```python
 torch.nn.GRU(input_size,
              hidden_size,
@@ -12,7 +12,7 @@ torch.nn.GRU(input_size,
              dtype=None)
 ```
 
-### [paddle.nn.GRU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GRU_cn.html#gru)
+### [paddle.nn.GRU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GRU_cn.html#paddle.nn.GRU)
 ```python
 paddle.nn.GRU(input_size,
               hidden_size,

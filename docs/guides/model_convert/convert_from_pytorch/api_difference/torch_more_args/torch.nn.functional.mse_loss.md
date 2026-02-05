@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.functional.mse_loss
-### [torch.nn.functional.mse_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.mse_loss.html?highlight=mse_loss#torch.nn.functional.mse_loss)
+### [torch.nn.functional.mse\_loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.mse_loss.html#torch.nn.functional.mse_loss)
 ```python
 torch.nn.functional.mse_loss(input,
                              target,
@@ -8,7 +8,7 @@ torch.nn.functional.mse_loss(input,
                              reduction='mean')
 ```
 
-### [paddle.nn.functional.mse_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/mse_loss_cn.html)
+### [paddle.nn.functional.mse\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/mse_loss_cn.html#paddle.nn.functional.mse_loss)
 ```python
 paddle.nn.functional.mse_loss(input,
                               label,

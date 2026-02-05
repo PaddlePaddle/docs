@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.count_nonzero
-### [torch.Tensor.count_nonzero](https://pytorch.org/docs/stable/generated/torch.Tensor.count_nonzero.html#torch.Tensor.count_nonzero)
+### [torch.Tensor.count\_nonzero](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.count_nonzero.html#torch.Tensor.count_nonzero)
 ```python
 torch.Tensor.count_nonzero(dim=None)
 ```
 
-### [paddle.Tensor.count_nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#count-nonzero-axis-none-keepdim-false-name-none)
+### [paddle.Tensor.count\_nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#count-nonzero-axis-none-keepdim-false-name-none)
 ```python
 paddle.Tensor.count_nonzero(axis=None, keepdim=False, name=None)
 ```

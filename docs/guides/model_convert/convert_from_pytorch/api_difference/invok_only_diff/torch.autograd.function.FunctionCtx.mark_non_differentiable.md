@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.autograd.function.FunctionCtx.mark_non_differentiable
 
-### [torch.autograd.function.FunctionCtx.mark_non_differentiable](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.html#torch.autograd.function.FunctionCtx.mark_non_differentiable)
+### [torch.autograd.function.FunctionCtx.mark\_non\_differentiable](https://docs.pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.mark_non_differentiable.html#torch.autograd.function.FunctionCtx.mark_non_differentiable)
 
 ```python
 torch.autograd.function.FunctionCtx.mark_non_differentiable(*args)

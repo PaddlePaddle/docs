@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.BCEWithLogitsLoss
-### [torch.nn.BCEWithLogitsLoss](https://pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html#bcewithlogitsloss)
+### [torch.nn.BCEWithLogitsLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html#torch.nn.BCEWithLogitsLoss)
 ```python
 torch.nn.BCEWithLogitsLoss(weight=None,
                            size_average=None,
@@ -8,7 +8,7 @@ torch.nn.BCEWithLogitsLoss(weight=None,
                            pos_weight=None)
 ```
 
-### [paddle.nn.BCEWithLogitsLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BCEWithLogitsLoss_cn.html#bcewithlogitsloss)
+### [paddle.nn.BCEWithLogitsLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BCEWithLogitsLoss_cn.html#paddle.nn.BCEWithLogitsLoss)
 ```python
 paddle.nn.BCEWithLogitsLoss(weight=None,
                             reduction='mean',

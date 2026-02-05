@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.var_mean
-### [torch.var_mean](https://pytorch.org/docs/stable/generated/torch.var_mean.html?highlight=var_mean#torch.var_mean)
+### [torch.var\_mean](https://docs.pytorch.org/docs/stable/generated/torch.var_mean.html#torch.var_mean)
 ```python
 torch.var_mean(input, dim=None, unbiased=True, keepdim=False, *, correction=None)
 ```

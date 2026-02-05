@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.jit.ignore
-### [torch.jit.ignore](https://pytorch.org/docs/stable/generated/torch.jit.ignore.html#torch-jit-ignore)
+### [torch.jit.ignore](https://docs.pytorch.org/docs/stable/generated/torch.jit.ignore.html#torch.jit.ignore)
 ```python
 torch.jit.ignore(drop=False, **kwargs)
 ```
 
-### [paddle.jit.not_to_static](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/not_to_static_cn.html#not-to-static)
+### [paddle.jit.not\_to\_static](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/not_to_static_cn.html#paddle.jit.not_to_static)
 ```python
 paddle.jit.not_to_static()
 ```

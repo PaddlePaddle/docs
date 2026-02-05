@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.hardswish
-### [torch.nn.functional.hardswish](https://pytorch.org/docs/stable/generated/torch.nn.functional.hardswish.html#torch.nn.functional.hardswish)
+### [torch.nn.functional.hardswish](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.hardswish.html#torch.nn.functional.hardswish)
 ```python
 torch.nn.functional.hardswish(input, inplace=False)
 ```
 
-### [paddle.nn.functional.hardswish](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/hardswish_cn.html)
+### [paddle.nn.functional.hardswish](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/hardswish_cn.html#paddle.nn.functional.hardswish)
 ```python
 paddle.nn.functional.hardswish(x, name=None)
 ```

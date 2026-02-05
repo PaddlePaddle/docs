@@ -1,5 +1,5 @@
 ## [ 输入参数类型不一致 ]torch.Tensor.copysign
-### [torch.Tensor.copysign](https://pytorch.org/docs/stable/generated/torch.Tensor.copysign.html#torch.Tensor.copysign)
+### [torch.Tensor.copysign](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.copysign.html#torch.Tensor.copysign)
 ```python
 torch.Tensor.copysign(other)
 ```

@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.xlogy
-### [torch.Tensor.xlogy](https://pytorch.org/docs/stable/generated/torch.Tensor.xlogy.html#torch.Tensor.xlogy)
+### [torch.Tensor.xlogy](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.xlogy.html#torch.Tensor.xlogy)
 ```python
 torch.Tensor.xlogy(other)
 ```

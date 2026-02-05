@@ -1,11 +1,11 @@
 ## [ paddle 参数更多 ]torch.fliplr
 
-### [torch.fliplr](https://pytorch.org/docs/stable/generated/torch.fliplr.html?highlight=fliplr#torch.fliplr)
+### [torch.fliplr](https://docs.pytorch.org/docs/stable/generated/torch.fliplr.html#torch.fliplr)
 ```python
 torch.fliplr(input)
 ```
 
-### [paddle.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/flip_cn.html#flip)
+### [paddle.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/flip_cn.html#paddle.flip)
 ```python
 paddle.flip(x,
             axis,

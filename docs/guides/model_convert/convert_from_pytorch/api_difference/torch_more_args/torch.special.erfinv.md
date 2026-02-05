@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.special.erfinv
-### [torch.special.erfinv](https://pytorch.org/docs/stable/special.html#torch.special.erfinv)
+### [torch.special.erfinv](https://docs.pytorch.org/docs/stable/special.html#torch.special.erfinv)
 ```python
 torch.special.erfinv(input, *, out=None)
 ```
 
-### [paddle.erfinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/erfinv_cn.html)
+### [paddle.erfinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/erfinv_cn.html#paddle.erfinv)
 ```python
 paddle.erfinv(x, name=None)
 ```

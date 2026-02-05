@@ -6,7 +6,7 @@
 torchvision.transforms.RandomRotation(degrees, interpolation=torchvision.transforms.InterpolationMode.NEAREST, expand=False, center=None, fill=0)
 ```
 
-### [paddle.vision.transforms.RandomRotation](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomRotation_cn.html#paddle/vision/transforms/RandomRotation_cn#cn-api-paddle-vision-transforms-RandomRotation)
+### [paddle.vision.transforms.RandomRotation](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomRotation_cn.html#paddle.vision.transforms.RandomRotation)
 
 ```python
 paddle.vision.transforms.RandomRotation(degrees, interpolation='nearest', expand=False, center=None, fill=0, keys=None)

@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.searchsorted
-### [torch.searchsorted](https://pytorch.org/docs/stable/generated/torch.searchsorted.html#torch-searchsorted)
+### [torch.searchsorted](https://docs.pytorch.org/docs/stable/generated/torch.searchsorted.html#torch.searchsorted)
 ```python
 torch.searchsorted(sorted_sequence,
                    values,
@@ -11,7 +11,7 @@ torch.searchsorted(sorted_sequence,
                    sorter=None)
 ```
 
-### [paddle.searchsorted](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/searchsorted_cn.html#searchsorted)
+### [paddle.searchsorted](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/searchsorted_cn.html#paddle.searchsorted)
 ```python
 paddle.searchsorted(sorted_sequence,
                     values,

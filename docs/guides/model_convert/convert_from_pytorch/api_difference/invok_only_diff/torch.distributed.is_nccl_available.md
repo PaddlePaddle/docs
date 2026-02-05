@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.distributed.is_nccl_available
 
-### [torch.distributed.is_nccl_available](https://pytorch.org/docs/stable/distributed.html#torch.distributed.is_nccl_available)
+### [torch.distributed.is\_nccl\_available](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.is_nccl_available)
 
 ```python
 torch.distributed.is_nccl_available()

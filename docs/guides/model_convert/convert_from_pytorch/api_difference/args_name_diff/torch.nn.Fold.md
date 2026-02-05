@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.nn.Fold
-### [torch.nn.Fold](https://pytorch.org/docs/stable/generated/torch.nn.Fold.html?highlight=nn+fold#torch.nn.Fold)
+### [torch.nn.Fold](https://docs.pytorch.org/docs/stable/generated/torch.nn.Fold.html#torch.nn.Fold)
 ```python
 torch.nn.Fold(output_size,
                 kernel_size,
@@ -8,7 +8,7 @@ torch.nn.Fold(output_size,
                 stride=1)
 ```
 
-### [paddle.nn.Fold](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Fold_cn.html#fold)
+### [paddle.nn.Fold](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Fold_cn.html#paddle.nn.Fold)
 ```python
 paddle.nn.Fold(output_sizes,
                 kernel_sizes,

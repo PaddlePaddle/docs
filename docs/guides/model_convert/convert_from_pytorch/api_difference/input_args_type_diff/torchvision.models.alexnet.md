@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torchvision.models.alexnet
-### [torchvision.models.alexnet](https://pytorch.org/vision/stable/models/generated/torchvision.models.alexnet.html)
+### [torchvision.models.alexnet](https://pytorch.org/vision/stable/models/generated/torchvision.models.alexnet.html#torchvision.models.alexnet)
 ```python
 torchvision.models.alexnet(pretrained: bool = False, progress: bool = True, *, weights: Optional[AlexNet_Weights] = None, **kwargs: Any)
 ```
 
-### [paddle.vision.models.alexnet](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/alexnet_cn.html)
+### [paddle.vision.models.alexnet](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/models/alexnet_cn.html#paddle.vision.models.alexnet)
 ```python
 paddle.vision.models.alexnet(pretrained=False, **kwargs)
 ```

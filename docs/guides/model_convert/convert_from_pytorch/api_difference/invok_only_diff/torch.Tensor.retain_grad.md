@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.retain_grad
 
-### [torch.Tensor.retain_grad](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.retain_grad)
+### [torch.Tensor.retain\_grad](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.retain_grad.html#torch.Tensor.retain_grad)
 
 ```python
 torch.Tensor.retain_grad()
 ```
 
-### [paddle.Tensor.retain_grads](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/retain_grads_cn.html#paddle/Tensor/retain_grads_cn#cn-api-paddle-Tensor-retain_grads)
+### [paddle.Tensor.retain\_grads](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#retain-grads)
 
 ```python
 paddle.Tensor.retain_grads()

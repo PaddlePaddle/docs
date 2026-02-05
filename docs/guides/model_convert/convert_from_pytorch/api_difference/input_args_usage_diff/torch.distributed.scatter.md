@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.distributed.scatter
-### [torch.distributed.scatter](https://pytorch.org/docs/stable/distributed.html#torch.distributed.scatter)
+### [torch.distributed.scatter](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.scatter)
 ```python
 torch.distributed.scatter(tensor, scatter_list=None, src=0, group=None, async_op=False)
 ```
 
-### [paddle.distributed.scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/scatter_cn.html)
+### [paddle.distributed.scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/scatter_cn.html#paddle.distributed.scatter)
 ```python
 paddle.distributed.scatter(tensor, tensor_list=None, src=0, group=None, sync_op=True)
 ```

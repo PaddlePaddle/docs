@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.sparse.softmax
-### [torch.sparse.softmax](https://pytorch.org/docs/stable/generated/torch.sparse.softmax.html#torch.sparse.softmax)
+### [torch.sparse.softmax](https://docs.pytorch.org/docs/stable/generated/torch.sparse.softmax.html#torch.sparse.softmax)
 ```python
 torch.sparse.softmax(input, dim, *, dtype=None)
 ```
 
-### [paddle.sparse.nn.functional.softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/nn/functional/softmax_cn.html)
+### [paddle.sparse.nn.functional.softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/nn/functional/softmax_cn.html#paddle.sparse.nn.functional.softmax)
 ```python
 paddle.sparse.nn.functional.softmax(x, axis=-1, name=None)
 ```

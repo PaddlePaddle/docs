@@ -6,7 +6,7 @@
 torchvision.transforms.functional.adjust_hue(img, hue_factor)
 ```
 
-### [paddle.vision.transforms.adjust_hue](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/adjust_hue_cn.html#paddle/vision/transforms/adjust_hue_cn#cn-api-paddle-vision-transforms-adjust_hue)
+### [paddle.vision.transforms.adjust\_hue](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/adjust_hue_cn.html#paddle.vision.transforms.adjust_hue)
 
 ```python
 paddle.vision.transforms.adjust_hue(img, hue_factor)

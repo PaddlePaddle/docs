@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.nn.AvgPool1d
 
-### [torch.nn.AvgPool1d](https://docs.pytorch.org/docs/stable/generated/torch.nn.AvgPool1d.html)
+### [torch.nn.AvgPool1d](https://docs.pytorch.org/docs/stable/generated/torch.nn.AvgPool1d.html#torch.nn.AvgPool1d)
 
 ```python
 torch.nn.AvgPool1d(kernel_size, stride=None, padding=0, ceil_mode=False, count_include_pad=True)

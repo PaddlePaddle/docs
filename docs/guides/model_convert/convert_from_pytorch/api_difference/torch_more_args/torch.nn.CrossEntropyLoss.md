@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.CrossEntropyLoss
-### [torch.nn.CrossEntropyLoss](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss)
+### [torch.nn.CrossEntropyLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss)
 ```python
 torch.nn.CrossEntropyLoss(weight=None,
                           size_average=None,
@@ -9,7 +9,7 @@ torch.nn.CrossEntropyLoss(weight=None,
                           label_smoothing=0.0)
 ```
 
-### [paddle.nn.CrossEntropyLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/CrossEntropyLoss_cn.html#crossentropyloss)
+### [paddle.nn.CrossEntropyLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/CrossEntropyLoss_cn.html#paddle.nn.CrossEntropyLoss)
 ```python
 paddle.nn.CrossEntropyLoss(weight=None,
                            ignore_index=-100,

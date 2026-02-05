@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torchvision.models.wide_resnet101_2
-### [torchvision.models.wide_resnet101_2](https://pytorch.org/vision/stable/models/generated/torchvision.models.wide_resnet101_2.html)
+### [torchvision.models.wide\_resnet101\_2](https://pytorch.org/vision/stable/models/generated/torchvision.models.wide_resnet101_2.html#torchvision.models.wide_resnet101_2)
 ```python
 torchvision.models.wide_resnet101_2(pretrained: bool = False, progress: bool = True, *, weights: Optional[WideResNet101_2_Weights] = None, **kwargs: Any)
 ```
 
-### [paddle.vision.models.wide_resnet101_2](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/wide_resnet101_2_cn.html)
+### [paddle.vision.models.wide\_resnet101\_2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/models/wide_resnet101_2_cn.html#paddle.vision.models.wide_resnet101_2)
 ```python
 paddle.vision.models.wide_resnet101_2(pretrained=False, **kwargs)
 ```

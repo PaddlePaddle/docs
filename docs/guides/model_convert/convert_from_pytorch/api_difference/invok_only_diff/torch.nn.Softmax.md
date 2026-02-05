@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.nn.Softmax
 
-### [torch.nn.Softmax](https://docs.pytorch.org/docs/stable/generated/torch.nn.Softmax.html)
+### [torch.nn.Softmax](https://docs.pytorch.org/docs/stable/generated/torch.nn.Softmax.html#torch.nn.Softmax)
 
 ```python
 torch.nn.Softmax(dim=None)

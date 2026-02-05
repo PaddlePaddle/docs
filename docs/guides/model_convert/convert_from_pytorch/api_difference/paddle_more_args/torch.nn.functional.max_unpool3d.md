@@ -1,5 +1,5 @@
 ## [ paddle 参数更多 ]torch.nn.functional.max_unpool3d
-### [torch.nn.functional.max_unpool3d](https://pytorch.org/docs/stable/generated/torch.nn.functional.max_unpool3d.html?highlight=max_unpool3d#torch.nn.functional.max_unpool3d)
+### [torch.nn.functional.max\_unpool3d](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.max_unpool3d.html#torch.nn.functional.max_unpool3d)
 ```python
 torch.nn.functional.max_unpool3d(input,
                                  indices,
@@ -9,7 +9,7 @@ torch.nn.functional.max_unpool3d(input,
                                  output_size=None)
 ```
 
-### [paddle.nn.functional.max_unpool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/max_unpool3d_cn.html)
+### [paddle.nn.functional.max\_unpool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/max_unpool3d_cn.html#paddle.nn.functional.max_unpool3d)
 ```python
 paddle.nn.functional.max_unpool3d(x,
                                  indices,

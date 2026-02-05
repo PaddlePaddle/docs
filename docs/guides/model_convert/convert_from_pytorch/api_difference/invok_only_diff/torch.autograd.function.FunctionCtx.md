@@ -6,7 +6,7 @@
 torch.autograd.function.FunctionCtx(*args, **kwargs)
 ```
 
-### [paddle.autograd.PyLayerContext](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext_cn.html#paddle/autograd/PyLayerContext_cn#cn-api-paddle-autograd-PyLayerContext)
+### [paddle.autograd.PyLayerContext](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext_cn.html#paddle.autograd.PyLayerContext)
 
 ```python
 paddle.autograd.PyLayerContext(*args, **kwargs)

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.Tensor.new_tensor
-### [torch.Tensor.new_tensor](https://pytorch.org/docs/stable/generated/torch.Tensor.new_tensor.html#torch-tensor-new-tensor)
+### [torch.Tensor.new\_tensor](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.new_tensor.html#torch.Tensor.new_tensor)
 ```python
 torch.Tensor.new_tensor(data, *, dtype=None, device=None, requires_grad=False)
 ```
 
-### [paddle.to_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/to_tensor_cn.html)
+### [paddle.to\_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/to_tensor_cn.html#paddle.to_tensor)
 ```python
 paddle.to_tensor(data, dtype=None, place=None, stop_gradient=True)
 ```

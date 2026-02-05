@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.imag
-### [torch.imag](https://pytorch.org/docs/stable/generated/torch.imag.html?highlight=imag#torch.imag)
+### [torch.imag](https://docs.pytorch.org/docs/stable/generated/torch.imag.html#torch.imag)
 ```python
 torch.imag(input)
 ```
 
-### [paddle.imag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/imag_cn.html#imag)
+### [paddle.imag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/imag_cn.html#paddle.imag)
 ```python
 paddle.imag(x)
 ```

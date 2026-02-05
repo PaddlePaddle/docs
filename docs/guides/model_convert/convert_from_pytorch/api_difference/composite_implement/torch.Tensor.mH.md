@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.mH
-### [torch.Tensor.mH](https://pytorch.org/docs/stable/tensors.html?#torch.Tensor.mH)
+### [torch.Tensor.mH](https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor.mH)
 ```python
 torch.Tensor.mH
 ```

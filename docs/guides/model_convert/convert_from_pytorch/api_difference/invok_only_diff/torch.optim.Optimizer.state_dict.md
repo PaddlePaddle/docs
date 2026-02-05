@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.optim.Optimizer.state_dict
 
-### [torch.optim.Optimizer.state_dict](https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.html#torch.optim.Optimizer.state_dict)
+### [torch.optim.Optimizer.state\_dict](https://docs.pytorch.org/docs/stable/generated/torch.optim.Optimizer.state_dict.html#torch.optim.Optimizer.state_dict)
 
 ```python
 torch.optim.Optimizer.state_dict()

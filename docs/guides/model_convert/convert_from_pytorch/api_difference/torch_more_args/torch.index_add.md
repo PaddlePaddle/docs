@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.index_add
-### [torch.index_add](https://pytorch.org/docs/stable/generated/torch.index_add.html#torch.index_add)
+### [torch.index\_add](https://docs.pytorch.org/docs/stable/generated/torch.index_add.html#torch.index_add)
 ```python
 torch.index_add(input, dim, index, source, *, alpha=1, out=None)
 ```
 
-### [paddle.index_add](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/index_add_cn.html#index-add)
+### [paddle.index\_add](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/index_add_cn.html#paddle.index_add)
 ```python
 paddle.index_add(x, index, axis, value, name=None)
 ```

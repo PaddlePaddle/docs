@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.max
 
-### [torch.max](https://pytorch.org/docs/stable/generated/torch.max.html)
+### [torch.max](https://docs.pytorch.org/docs/stable/generated/torch.max.html#torch.max)
 
 ```python
 torch.max(*args, **kwargs)
 ```
 
-### [paddle.compat.max](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/max_cn.html#paddle/compat/max_cn#cn-api-paddle-compat-max)
+### [paddle.compat.max](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/max_cn.html#id3)
 
 ```python
 paddle.compat.max(*args, **kwargs)

@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.nn.modules.module.register_module_forward_pre_hook
-### [torch.nn.modules.module.register_module_forward_pre_hook](https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_pre_hook.html)
+### [torch.nn.modules.module.register\_module\_forward\_pre\_hook](https://docs.pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_pre_hook.html#torch.nn.modules.module.register_module_forward_pre_hook)
 ```python
 torch.nn.modules.module.register_module_forward_pre_hook(hook)
 ```

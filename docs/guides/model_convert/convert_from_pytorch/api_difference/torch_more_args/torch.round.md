@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.round
-### [torch.round](https://pytorch.org/docs/stable/generated/torch.round.html?highlight=round#torch.round)
+### [torch.round](https://docs.pytorch.org/docs/stable/generated/torch.round.html#torch.round)
 ```python
 torch.round(input,
             *,
@@ -7,7 +7,7 @@ torch.round(input,
             out=None)
 ```
 
-### [paddle.round](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/round_cn.html#round)
+### [paddle.round](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/round_cn.html#paddle.round)
 ```python
 paddle.round(x,
              name=None)

@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.Tensor.slice_scatter
-### [torch.Tensor.slice_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.slice_scatter.html#torch-tensor-slice-scatter)
+### [torch.Tensor.slice\_scatter](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.slice_scatter.html#torch.Tensor.slice_scatter)
 ```python
 torch.Tensor.slice_scatter(src, dim=0, start=None, end=None, step=1)
 ```
 
-### [paddle.Tensor.slice_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#slice_scatter-value-axes-starts-ends-strides-name-none)
+### [paddle.Tensor.slice\_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#slice-scatter-value-axes-starts-ends-strides-name-none)
 ```python
 paddle.Tensor.slice_scatter(value, axes, starts, ends, strides, name=None)
 ```

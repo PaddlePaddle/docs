@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.svd
-### [torch.svd](https://pytorch.org/docs/stable/generated/torch.svd.html?highlight=torch+svd#torch.svd)
+### [torch.svd](https://docs.pytorch.org/docs/stable/generated/torch.svd.html#torch.svd)
 ```python
 torch.svd(input, some=True, compute_uv=True, *, out=None)
 ```
 
-### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/svd_cn.html#svd)
+### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/svd_cn.html#paddle.linalg.svd)
 ```python
 paddle.linalg.svd(x, full_matrices=False, name=None)
 ```

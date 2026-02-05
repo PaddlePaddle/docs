@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.median
 
-### [torch.median](https://pytorch.org/docs/stable/generated/torch.median.html)
+### [torch.median](https://docs.pytorch.org/docs/stable/generated/torch.median.html#torch.median)
 
 ```python
 torch.median(*args, **kwargs)
 ```
 
-### [paddle.compat.median](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/median_cn.html#paddle/compat/median_cn#cn-api-paddle-compat-median)
+### [paddle.compat.median](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/median_cn.html#paddle.compat.median)
 
 ```python
 paddle.compat.median(*args, **kwargs)

@@ -6,7 +6,7 @@
 torchvision.transforms.functional.vflip(img)
 ```
 
-### [paddle.vision.transforms.vflip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/vflip_cn.html#paddle/vision/transforms/vflip_cn#cn-api-paddle-vision-transforms-vflip)
+### [paddle.vision.transforms.vflip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/vflip_cn.html#paddle.vision.transforms.vflip)
 
 ```python
 paddle.vision.transforms.vflip(img)

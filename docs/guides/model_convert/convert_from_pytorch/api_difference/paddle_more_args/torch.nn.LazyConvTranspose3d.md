@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.LazyConvTranspose3d
-### [torch.nn.LazyConvTranspose3d](https://pytorch.org/docs/stable/generated/torch.nn.LazyConvTranspose3d.html)
+### [torch.nn.LazyConvTranspose3d](https://docs.pytorch.org/docs/stable/generated/torch.nn.LazyConvTranspose3d.html#torch.nn.LazyConvTranspose3d)
 ```python
 torch.nn.LazyConvTranspose3d(out_channels, kernel_size, stride=1, padding=0, output_padding=0, groups=1, bias=True, dilation=1, padding_mode='zeros', device=None, dtype=None)
 ```
 
-### [paddle.nn.Conv3DTranspose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Conv3DTranspose_cn.html#conv3dtranspose)
+### [paddle.nn.Conv3DTranspose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Conv3DTranspose_cn.html#paddle.nn.Conv3DTranspose)
 ```python
 paddle.nn.Conv3DTranspose(in_channels,
                           out_channels,

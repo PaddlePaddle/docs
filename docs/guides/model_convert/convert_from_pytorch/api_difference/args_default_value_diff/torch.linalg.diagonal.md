@@ -1,10 +1,10 @@
 ## [ 参数默认值不一致 ]torch.linalg.diagonal
-### [torch.linalg.diagonal](https://pytorch.org/docs/stable/generated/torch.linalg.diagonal.html#torch.linalg.diagonal)
+### [torch.linalg.diagonal](https://docs.pytorch.org/docs/stable/generated/torch.linalg.diagonal.html#torch.linalg.diagonal)
 ```python
 torch.linalg.diagonal(A, *, offset=0, dim1=-2, dim2=-1)
 ```
 
-### [paddle.diagonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagonal_cn.html#diagonal)
+### [paddle.diagonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagonal_cn.html#paddle.diagonal)
 ```python
 paddle.diagonal(x,
                 offset=0,

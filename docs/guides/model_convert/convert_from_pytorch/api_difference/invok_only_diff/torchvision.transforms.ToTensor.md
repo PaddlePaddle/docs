@@ -6,7 +6,7 @@
 torchvision.transforms.ToTensor()
 ```
 
-### [paddle.vision.transforms.ToTensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/ToTensor_cn.html#paddle/vision/transforms/ToTensor_cn#cn-api-paddle-vision-transforms-ToTensor)
+### [paddle.vision.transforms.ToTensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/ToTensor_cn.html#paddle.vision.transforms.ToTensor)
 
 ```python
 paddle.vision.transforms.ToTensor(data_format='CHW', keys=None)

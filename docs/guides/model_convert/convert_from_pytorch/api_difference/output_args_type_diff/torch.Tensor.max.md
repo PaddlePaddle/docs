@@ -3,12 +3,12 @@
 
 -------------------------------------------------------------------------------------------------
 
-### [torch.Tensor.max](https://pytorch.org/docs/stable/generated/torch.Tensor.max.html)
+### [torch.Tensor.max](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.max.html#torch.Tensor.max)
 ```python
 torch.Tensor.max(dim=None, keepdim=False)
 ```
 
-### [paddle.Tensor.max](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#max-axis-none-keepdim-false-name-none)
+### [paddle.Tensor.max](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#max-axis-none-keepdim-false-name-none)
 ```python
 paddle.Tensor.max(axis=None, keepdim=False, name=None)
 ```
@@ -35,12 +35,12 @@ result = x.max(dim=1), x.argmax(dim=1)
 
 -------------------------------------------------------------------------------------------------
 
-### [torch.Tensor.max](https://pytorch.org/docs/stable/generated/torch.Tensor.max.html)
+### [torch.Tensor.max](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.max.html#torch.Tensor.max)
 ```python
 torch.Tensor.max(other)
 ```
 
-### [paddle.Tensor.maximum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#maximum-y-axis-1-name-none)
+### [paddle.Tensor.maximum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#maximum-y-axis-1-name-none-out-none)
 ```python
 paddle.Tensor.maximum(y)
 ```

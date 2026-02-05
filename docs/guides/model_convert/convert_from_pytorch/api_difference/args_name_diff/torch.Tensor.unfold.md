@@ -1,12 +1,12 @@
 ## [ 仅参数名不一致 ]torch.Tensor.unfold
-### [torch.Tensor.unfold](https://pytorch.org/docs/stable/generated/torch.Tensor.unfold.html?highlight=unfold#torch.Tensor.unfold)
+### [torch.Tensor.unfold](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.unfold.html#torch.Tensor.unfold)
 ```python
 torch.Tensor.unfold(dimension,
                 size,
                 step)
 ```
 
-### [paddle.Tensor.unfold](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#unfold-x-axis-size-step-name-none)
+### [paddle.Tensor.unfold](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#unfold-x-axis-size-step-name-none)
 ```python
 paddle.Tensor.unfold(axis,
                 size,

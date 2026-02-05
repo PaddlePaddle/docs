@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.Tensor.type
-### [torch.Tensor.type](https://pytorch.org/docs/stable/generated/torch.Tensor.type.html#torch.Tensor.type)
+### [torch.Tensor.type](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.type.html#torch.Tensor.type)
 ```python
 torch.Tensor.type(dtype=None, non_blocking=False, **kwargs)
 ```
 
-### [paddle.Tensor.astype](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#astype-dtype)
+### [paddle.Tensor.astype](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#astype-dtype)
 ```python
 paddle.Tensor.astype(dtype)
 ```

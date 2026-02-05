@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.ldexp
-### [torch.ldexp](https://pytorch.org/docs/stable/generated/torch.ldexp.html#torch.ldexp)
+### [torch.ldexp](https://docs.pytorch.org/docs/stable/generated/torch.ldexp.html#torch.ldexp)
 ```python
 torch.ldexp(input, other, *, out=None)
 ```
 
-### [paddle.ldexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/ldexp_cn.html#ldexp)
+### [paddle.ldexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/ldexp_cn.html#paddle.ldexp)
 ```python
 paddle.ldexp(x, y, name=None)
 ```

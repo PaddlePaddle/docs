@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.Tensor.remainder_
-### [torch.Tensor.remainder_](https://pytorch.org/docs/stable/generated/torch.Tensor.remainder_.html?highlight=torch+tensor+remainder_#torch.Tensor.remainder_)
+### [torch.Tensor.remainder\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.remainder_.html#torch.Tensor.remainder_)
 ```python
 torch.Tensor.remainder_(other)
 ```
 
-### [paddle.Tensor.remainder_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#id15)
+### [paddle.Tensor.remainder\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#id15)
 ```python
 paddle.Tensor.remainder_(y, name=None)
 ```

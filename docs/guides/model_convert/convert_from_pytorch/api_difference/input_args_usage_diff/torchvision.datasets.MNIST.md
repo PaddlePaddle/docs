@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torchvision.datasets.MNIST
-### [torchvision.datasets.MNIST](https://pytorch.org/vision/main/generated/torchvision.datasets.MNIST.html)
+### [torchvision.datasets.MNIST](https://pytorch.org/vision/stable/generated/torchvision.datasets.MNIST.html#torchvision.datasets.MNIST)
 ```python
 torchvision.datasets.MNIST(root: Union[str, Path], train: bool = True, transform: Optional[Callable] = None, target_transform: Optional[Callable] = None, download: bool = False)
 ```
 
-### [paddle.vision.datasets.MNIST](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/MNIST_cn.html)
+### [paddle.vision.datasets.MNIST](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/datasets/MNIST_cn.html#paddle.vision.datasets.MNIST)
 ```python
 paddle.vision.datasets.MNIST(image_path: str = None, label_path: str = None, mode: str = 'train', transform: Callable = None, download: bool = True, backend: str = None)
 ```

@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_cosh
-### [torch.\_foreach_cosh](https://pytorch.org/docs/stable/generated/torch._foreach_cosh.html#torch-foreach-cosh)
+### [torch.\_foreach\_cosh](https://docs.pytorch.org/docs/stable/generated/torch._foreach_cosh.html#torch._foreach_cosh)
 ```python
 torch._foreach_cosh(self)
 ```

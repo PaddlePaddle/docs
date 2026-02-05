@@ -5,7 +5,7 @@
 torch.symeig(input, eigenvectors=False, upper=True, *, out=None)
 ```
 
-### [paddle.linalg.eigh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eigh_cn.html#eigh)
+### [paddle.linalg.eigh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eigh_cn.html#paddle.linalg.eigh)
 ```python
 # eigenvectors 为 True
 paddle.linalg.eigh(x, UPLO='L', name=None)

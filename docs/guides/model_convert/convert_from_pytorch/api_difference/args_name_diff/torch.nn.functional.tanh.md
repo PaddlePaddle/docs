@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.tanh
-### [torch.nn.functional.tanh](https://pytorch.org/docs/stable/generated/torch.nn.functional.tanh.html)
+### [torch.nn.functional.tanh](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.tanh.html#torch.nn.functional.tanh)
 ```python
 torch.nn.functional.tanh(input)
 ```

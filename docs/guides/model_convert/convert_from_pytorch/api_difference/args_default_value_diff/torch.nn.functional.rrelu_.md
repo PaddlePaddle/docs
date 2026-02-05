@@ -1,10 +1,10 @@
 ## [ 参数默认值不一致 ]torch.nn.functional.rrelu_
-### [torch.nn.functional.rrelu\_](https://pytorch.org/docs/stable/generated/torch.nn.functional.rrelu_.html)
+### [torch.nn.functional.rrelu\_](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.rrelu_.html#torch.nn.functional.rrelu_)
 ```python
 torch.nn.functional.rrelu_(input, lower=1./8, upper=1./3, training=False)
 ```
 
-### [paddle.nn.functional.rrelu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/rrelu_cn.html)
+### [paddle.nn.functional.rrelu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/rrelu_cn.html#paddle.nn.functional.rrelu)
 ```python
 paddle.nn.functional.rrelu(x, lower=1./8., upper=1./3., training=True, name=None)
 ```

@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.functional.pixel_shuffle
-### [torch.nn.functional.pixel_shuffle](https://pytorch.org/docs/stable/generated/torch.nn.functional.pixel_shuffle.html?highlight=pixel_shuffle#torch.nn.functional.pixel_shuffle)
+### [torch.nn.functional.pixel\_shuffle](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.pixel_shuffle.html#torch.nn.functional.pixel_shuffle)
 ```python
 torch.nn.functional.pixel_shuffle(input, upscale_factor)
 ```
 
-### [paddle.nn.functional.pixel_shuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/pixel_shuffle_cn.html)
+### [paddle.nn.functional.pixel\_shuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/pixel_shuffle_cn.html#paddle.nn.functional.pixel_shuffle)
 ```python
 paddle.nn.functional.pixel_shuffle(x, upscale_factor, data_format='NCHW', name=None)
 ```

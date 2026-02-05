@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.OneCycleLR
-### [torch.optim.lr_scheduler.OneCycleLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.OneCycleLR.html)
+### [torch.optim.lr\_scheduler.OneCycleLR](https://docs.pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.OneCycleLR.html#torch.optim.lr_scheduler.OneCycleLR)
 ```python
 torch.optim.lr_scheduler.OneCycleLR(optimizer,
                                     max_lr,
@@ -18,7 +18,7 @@ torch.optim.lr_scheduler.OneCycleLR(optimizer,
                                     verbose=False)
 ```
 
-### [paddle.optimizer.lr.OneCycleLR](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/OneCycleLR_cn.html)
+### [paddle.optimizer.lr.OneCycleLR](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/OneCycleLR_cn.html#paddle.optimizer.lr.OneCycleLR)
 ```python
 paddle.optimizer.lr.OneCycleLR(max_learning_rate,
                             total_steps,

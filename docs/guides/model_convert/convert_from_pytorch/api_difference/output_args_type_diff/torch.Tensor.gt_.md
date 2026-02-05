@@ -1,5 +1,5 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.gt_
-### [torch.Tensor.gt_](https://pytorch.org/docs/stable/generated/torch.Tensor.gt_.html)
+### [torch.Tensor.gt\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.gt_.html#torch.Tensor.gt_)
 ```python
 torch.Tensor.gt_(other)
 ```

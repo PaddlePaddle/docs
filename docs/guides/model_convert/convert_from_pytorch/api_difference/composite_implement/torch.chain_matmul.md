@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.chain_matmul
-### [torch.chain_matmul](https://pytorch.org/docs/stable/generated/torch.chain_matmul.html?highlight=chain_matmul#torch.chain_matmul)
+### [torch.chain\_matmul](https://docs.pytorch.org/docs/stable/generated/torch.chain_matmul.html#torch.chain_matmul)
 ```python
 torch.chain_matmul(*matrices, out=None)
 ```

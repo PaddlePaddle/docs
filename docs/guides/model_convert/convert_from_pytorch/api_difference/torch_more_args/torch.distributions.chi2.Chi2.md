@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.chi2.Chi2
-### [torch.distributions.chi2.Chi2](https://pytorch.org/docs/stable/distributions.html#chi2)
+### [torch.distributions.chi2.Chi2](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.chi2.Chi2)
 ```python
 torch.distributions.chi2.Chi2(df, validate_args=None)
 ```
 
-### [paddle.distribution.Chi2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Chi2_cn.html#prob-value)
+### [paddle.distribution.Chi2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Chi2_cn.html#paddle.distribution.Chi2)
 ```python
 paddle.distribution.Chi2(df)
 ```

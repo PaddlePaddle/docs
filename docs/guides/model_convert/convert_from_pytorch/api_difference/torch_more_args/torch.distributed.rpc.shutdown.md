@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributed.rpc.shutdown
-### [torch.distributed.rpc.shutdown](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.shutdown)
+### [torch.distributed.rpc.shutdown](https://docs.pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.shutdown)
 ```python
 torch.distributed.rpc.shutdown(graceful=True, timeout=0)
 ```
 
-### [paddle.distributed.rpc.shutdown](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/shutdown_cn.html)
+### [paddle.distributed.rpc.shutdown](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/shutdown_cn.html#paddle.distributed.rpc.shutdown)
 ```python
 paddle.distributed.rpc.shutdown()
 ```

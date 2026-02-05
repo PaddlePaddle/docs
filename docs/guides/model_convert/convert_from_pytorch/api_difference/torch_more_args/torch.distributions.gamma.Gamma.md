@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.gamma.Gamma
-### [torch.distributions.gamma.Gamma](https://pytorch.org/docs/stable/distributions.html#gamma)
+### [torch.distributions.gamma.Gamma](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.gamma.Gamma)
 ```python
 torch.distributions.gamma.Gamma(concentration, rate, validate_args=None)
 ```
 
-### [paddle.distribution.Gamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Gamma_cn.html)
+### [paddle.distribution.Gamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Gamma_cn.html#paddle.distribution.Gamma)
 ```python
 paddle.distribution.Gamma(concentration, rate)
 ```

@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.normal
-### [torch.normal](https://pytorch.org/docs/stable/generated/torch.normal.html#torch.normal)
+### [torch.normal](https://docs.pytorch.org/docs/stable/generated/torch.normal.html#torch.normal)
 ```python
 torch.normal(mean,
              std,
@@ -7,7 +7,7 @@ torch.normal(mean,
              generator=None,
              out=None)
 ```
-### [paddle.normal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/normal_cn.html)
+### [paddle.normal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/normal_cn.html#paddle.normal)
 ```python
 paddle.normal(mean=0.0,
               std=1.0,

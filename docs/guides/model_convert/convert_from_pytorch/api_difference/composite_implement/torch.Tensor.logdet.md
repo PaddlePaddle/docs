@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.logdet
-### [torch.Tensor.logdet](https://pytorch.org/docs/stable/generated/torch.Tensor.logdet.html#torch.Tensor.logdet)
+### [torch.Tensor.logdet](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.logdet.html#torch.Tensor.logdet)
 ```python
 torch.Tensor.logdet()
 ```

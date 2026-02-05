@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.utils.data.IterableDataset
 
-### [torch.utils.data.IterableDataset](https://pytorch.org/docs/stable/generated/torch.utils.data.IterableDataset.html#torch.utils.data.IterableDataset)
+### [torch.utils.data.IterableDataset](https://docs.pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset)
 
 ```python
 torch.utils.data.IterableDataset(*args, **kwargs)
 ```
 
-### [paddle.io.IterableDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/IterableDataset_cn.html#paddle/io/IterableDataset_cn#cn-api-paddle-io-IterableDataset)
+### [paddle.io.IterableDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/IterableDataset_cn.html#paddle.io.IterableDataset)
 
 ```python
 paddle.io.IterableDataset()

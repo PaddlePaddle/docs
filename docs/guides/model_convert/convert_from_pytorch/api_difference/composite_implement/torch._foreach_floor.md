@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_floor
-### [torch.\_foreach_floor](https://pytorch.org/docs/stable/generated/torch._foreach_floor.html)
+### [torch.\_foreach\_floor](https://docs.pytorch.org/docs/stable/generated/torch._foreach_floor.html#torch._foreach_floor)
 ```python
 torch._foreach_floor(self)
 ```

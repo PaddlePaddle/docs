@@ -1,12 +1,12 @@
 ## [ 仅参数名不一致 ]torch.vander
-### [torch.vander](https://pytorch.org/docs/stable/generated/torch.vander.html?highlight=vander#torch.vander)
+### [torch.vander](https://docs.pytorch.org/docs/stable/generated/torch.vander.html#torch.vander)
 ```python
 torch.vander(x,
           N,
           increasing)
 ```
 
-### [paddle.vander](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vander_cn.html#vander)
+### [paddle.vander](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vander_cn.html#paddle.vander)
 ```python
 paddle.vander(x,
           n,

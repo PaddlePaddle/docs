@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.profiler.schedule
-### [torch.profiler.schedule](https://pytorch.org/docs/stable/profiler.html#torch.profiler.schedule)
+### [torch.profiler.schedule](https://docs.pytorch.org/docs/stable/profiler.html#torch.profiler.schedule)
 ```python
 torch.profiler.schedule(*, wait, warmup, active, repeat=0, skip_first=0)
 ```
 
-### [paddle.profiler.make_scheduler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/make_scheduler_cn.html)
+### [paddle.profiler.make\_scheduler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/make_scheduler_cn.html#paddle.profiler.make_scheduler)
 ```python
 paddle.profiler.make_scheduler(*, closed, ready, record, repeat=0, skip_first=0)
 ```

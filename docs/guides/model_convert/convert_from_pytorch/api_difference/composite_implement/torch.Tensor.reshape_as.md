@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.reshape_as
-### [torch.Tensor.reshape_as](https://pytorch.org/docs/stable/generated/torch.Tensor.reshape_as.html#torch.Tensor.reshape_as)
+### [torch.Tensor.reshape\_as](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.reshape_as.html#torch.Tensor.reshape_as)
 ```python
 torch.Tensor.reshape_as(other)
 ```

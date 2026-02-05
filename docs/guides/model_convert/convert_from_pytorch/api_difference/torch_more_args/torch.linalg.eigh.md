@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.linalg.eigh
-### [torch.linalg.eigh](https://pytorch.org/docs/stable/generated/torch.linalg.eigh.html#torch.linalg.eigh)
+### [torch.linalg.eigh](https://docs.pytorch.org/docs/stable/generated/torch.linalg.eigh.html#torch.linalg.eigh)
 ```python
 torch.linalg.eigh(input, UPLO='L', *, out=None)
 ```
 
-### [paddle.linalg.eigh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eigh_cn.html)
+### [paddle.linalg.eigh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/eigh_cn.html#paddle.linalg.eigh)
 ```python
 paddle.linalg.eigh(x, UPLO='L', name=None)
 ```

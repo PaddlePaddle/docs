@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.distributed.rpc.remote
-### [torch.distributed.rpc.remote](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.remote)
+### [torch.distributed.rpc.remote](https://docs.pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.remote)
 ```python
 torch.distributed.rpc.remote(to, func, args=None, kwargs=None, timeout=-1.0)
 ```
 
-### [paddle.distributed.rpc.rpc_async](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/rpc_async_cn.html#rpc-async)
+### [paddle.distributed.rpc.rpc\_async](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/rpc_async_cn.html#paddle.distributed.rpc.rpc_async)
 ```python
 paddle.distributed.rpc.rpc_async(to, fn, args=None, kwargs=None, timeout=-1)
 ```

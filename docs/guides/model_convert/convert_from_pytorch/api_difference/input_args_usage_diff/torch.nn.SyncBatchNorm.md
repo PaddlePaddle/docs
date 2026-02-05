@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.nn.SyncBatchNorm
-### [torch.nn.SyncBatchNorm](https://pytorch.org/docs/stable/generated/torch.nn.SyncBatchNorm.html#torch.nn.SyncBatchNorm)
+### [torch.nn.SyncBatchNorm](https://docs.pytorch.org/docs/stable/generated/torch.nn.SyncBatchNorm.html#torch.nn.SyncBatchNorm)
 ```python
 torch.nn.SyncBatchNorm(num_features, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True, process_group=None, device=None, dtype=None)
 ```
 
-### [paddle.nn.SyncBatchNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SyncBatchNorm_cn.html#syncbatchnorm)
+### [paddle.nn.SyncBatchNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SyncBatchNorm_cn.html#paddle.nn.SyncBatchNorm)
 ```python
 paddle.nn.SyncBatchNorm(num_features, epsilon=1e-5, momentum=0.9, weight_attr=None, bias_attr=None, data_format='NCHW', name=None)
 ```

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.threshold
-### [torch.nn.functional.threshold](https://pytorch.org/docs/stable/generated/torch.nn.functional.threshold.html#torch.nn.functional.threshold)
+### [torch.nn.functional.threshold](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.threshold.html#torch.nn.functional.threshold)
 ```python
 torch.nn.functional.threshold(input, threshold, value, inplace=False)
 ```
 
-### [paddle.nn.functional.thresholded_relu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/thresholded_relu_cn.html)
+### [paddle.nn.functional.thresholded\_relu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/thresholded_relu_cn.html#paddle.nn.functional.thresholded_relu)
 ```python
 paddle.nn.functional.thresholded_relu(x, threshold=1.0, value=0.0, name=None)
 ```

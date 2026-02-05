@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.SELU
-### [torch.nn.SELU](https://pytorch.org/docs/stable/generated/torch.nn.SELU.html#torch.nn.SELU)
+### [torch.nn.SELU](https://docs.pytorch.org/docs/stable/generated/torch.nn.SELU.html#torch.nn.SELU)
 ```python
 torch.nn.SELU(inplace=False)
 ```
 
-### [paddle.nn.SELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SELU_cn.html)
+### [paddle.nn.SELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SELU_cn.html#paddle.nn.SELU)
 ```python
 paddle.nn.SELU(scale=1.0507009873554804934193349852946, alpha=1.6732632423543772848170429916717, name=None)
 ```

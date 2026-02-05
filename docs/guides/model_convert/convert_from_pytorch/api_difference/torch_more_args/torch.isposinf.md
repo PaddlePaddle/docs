@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.isposinf
-### [torch.isposinf](https://pytorch.org/docs/stable/generated/torch.isposinf.html#torch-isposinf)
+### [torch.isposinf](https://docs.pytorch.org/docs/stable/generated/torch.isposinf.html#torch.isposinf)
 ```python
 torch.isposinf(input, *, out=None)
 ```
 
-### [paddle.isposinf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isposinf_cn.html)
+### [paddle.isposinf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isposinf_cn.html#paddle.isposinf)
 ```python
 paddle.isposinf(x, name=None)
 ```

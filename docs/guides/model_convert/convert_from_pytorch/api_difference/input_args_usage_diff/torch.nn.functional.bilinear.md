@@ -1,5 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.functional.bilinear
-### [torch.nn.functional.bilinear](https://pytorch.org/docs/stable/generated/torch.nn.functional.bilinear.html?highlight=bilinear#torch.nn.functional.bilinear)
+### [torch.nn.functional.bilinear](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.bilinear.html#torch.nn.functional.bilinear)
 ```python
 torch.nn.functional.bilinear(input1,
                              input2,
@@ -7,7 +7,7 @@ torch.nn.functional.bilinear(input1,
                              bias=None)
 ```
 
-### [paddle.nn.functional.bilinear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/bilinear_cn.html)
+### [paddle.nn.functional.bilinear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/bilinear_cn.html#paddle.nn.functional.bilinear)
 ```python
 paddle.nn.functional.bilinear(x1,
                               x2,

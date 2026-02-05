@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.studentT.StudentT
-### [torch.distributions.studentT.StudentT](https://pytorch.org/docs/stable/distributions.html#studentt)
+### [torch.distributions.studentT.StudentT](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.studentT.StudentT)
 ```python
 torch.distributions.studentT.StudentT(df, loc=0.0, scale=1.0, validate_args=None)
 ```
 
-### [paddle.distribution.StudentT](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/StudentT_cn.html)
+### [paddle.distribution.StudentT](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/StudentT_cn.html#paddle.distribution.StudentT)
 ```python
 paddle.distribution.StudentT(df, loc, scale, name=None)
 ```

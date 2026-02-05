@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.broadcast_tensors
-### [torch.broadcast_tensors](https://pytorch.org/docs/stable/generated/torch.broadcast_tensors.html?highlight=broadcast_tensors#torch.broadcast_tensors)
+### [torch.broadcast\_tensors](https://docs.pytorch.org/docs/stable/generated/torch.broadcast_tensors.html#torch.broadcast_tensors)
 ```python
 torch.broadcast_tensors(*tensors)
 ```
 
-### [paddle.broadcast_tensors](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/broadcast_tensors_cn.html#broadcast-tensors)
+### [paddle.broadcast\_tensors](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/broadcast_tensors_cn.html#paddle.broadcast_tensors)
 ```python
 paddle.broadcast_tensors(input,
                          name=None)

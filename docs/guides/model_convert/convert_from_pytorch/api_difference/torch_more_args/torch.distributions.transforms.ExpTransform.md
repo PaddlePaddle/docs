@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.transforms.ExpTransform
-### [torch.distributions.transforms.ExpTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.ExpTransform)
+### [torch.distributions.transforms.ExpTransform](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.ExpTransform)
 ```python
 torch.distributions.transforms.ExpTransform(cache_size=0)
 ```
 
-### [paddle.distribution.ExpTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/ExpTransform_cn.html#exptransform)
+### [paddle.distribution.ExpTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/ExpTransform_cn.html#paddle.distribution.ExpTransform)
 ```python
 paddle.distribution.ExpTransform()
 ```

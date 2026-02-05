@@ -11,13 +11,15 @@ from loguru import logger
 from .api_url_parser import get_parser
 
 
-def get_url(api_name: str, package: str | None = None) -> str:
+def get_url(
+    api_name: str, package: str | None = None, disable_warning: bool = False
+) -> str:
     api_name = api_name.replace(r"\_", "_")
     if package is None:
         package = api_name.split(".")[0]
     url = get_parser(package).get_api_url(api_name) or ""
-    if url == "":
-        logger.warning("Missing api {} in {}", api_name, package)
+    if url == "" and not disable_warning:
+        logger.warning("Missing api {} in package {}", api_name, package)
     return url
 
 

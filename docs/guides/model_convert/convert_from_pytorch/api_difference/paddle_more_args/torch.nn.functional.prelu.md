@@ -1,11 +1,11 @@
 ## [ paddle 参数更多 ]torch.nn.functional.prelu
-### [torch.nn.functional.prelu](https://pytorch.org/docs/stable/generated/torch.nn.functional.prelu.html?highlight=prelu#torch.nn.functional.prelu)
+### [torch.nn.functional.prelu](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.prelu.html#torch.nn.functional.prelu)
 ```python
 torch.nn.functional.prelu(input,
                           weight)
 ```
 
-### [paddle.nn.functional.prelu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/prelu_cn.html)
+### [paddle.nn.functional.prelu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/prelu_cn.html#paddle.nn.functional.prelu)
 ```python
 paddle.nn.functional.prelu(x,
                            weight,

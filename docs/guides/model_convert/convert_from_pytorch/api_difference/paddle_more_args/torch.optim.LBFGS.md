@@ -1,5 +1,5 @@
 ## [ paddle 参数更多 ]torch.optim.LBFGS
-### [torch.optim.LBFGS](https://pytorch.org/docs/stable/generated/torch.optim.LBFGS.html)
+### [torch.optim.LBFGS](https://docs.pytorch.org/docs/stable/generated/torch.optim.LBFGS.html#torch.optim.LBFGS)
 ```python
 torch.optim.LBFGS(params,
                 lr=1,
@@ -11,7 +11,7 @@ torch.optim.LBFGS(params,
                 line_search_fn=None)
 ```
 
-### [paddle.optimizer.LBFGS](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/LBFGS_cn.html)
+### [paddle.optimizer.LBFGS](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/LBFGS_cn.html#paddle.optimizer.LBFGS)
 ```python
 paddle.optimizer.LBFGS(learning_rate=1.0,
                         max_iter=20,

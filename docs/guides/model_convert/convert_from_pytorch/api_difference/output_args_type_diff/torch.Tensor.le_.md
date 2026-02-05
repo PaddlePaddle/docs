@@ -1,5 +1,5 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.le_
-### [torch.Tensor.le_](https://pytorch.org/docs/stable/generated/torch.Tensor.le_.html)
+### [torch.Tensor.le\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.le_.html#torch.Tensor.le_)
 ```python
 torch.Tensor.le_(other)
 ```

@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nanquantile
-### [torch.nanquantile](https://pytorch.org/docs/stable/generated/torch.nanquantile.html?highlight=nanquantile#torch.nanquantile)
+### [torch.nanquantile](https://docs.pytorch.org/docs/stable/generated/torch.nanquantile.html#torch.nanquantile)
 ```python
 torch.nanquantile(input,
                q,
@@ -10,7 +10,7 @@ torch.nanquantile(input,
                out=None)
 ```
 
-### [paddle.nanquantile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nanquantile_cn.html#nanquantile)
+### [paddle.nanquantile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nanquantile_cn.html#paddle.nanquantile)
 ```python
 paddle.nanquantile(x,
                    q,

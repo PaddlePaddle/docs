@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.transforms.Transform
-### [torch.distributions.transforms.Transform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.Transform)
+### [torch.distributions.transforms.Transform](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.Transform)
 ```python
 torch.distributions.transforms.Transform(cache_size=0)
 ```
 
-### [paddle.distribution.Transform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Transform_cn.html#transform)
+### [paddle.distribution.Transform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Transform_cn.html#paddle.distribution.Transform)
 ```python
 paddle.distribution.Transform()
 ```

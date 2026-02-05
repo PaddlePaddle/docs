@@ -6,7 +6,7 @@
 torchvision.transforms.functional.rotate(img, angle, interpolation=torchvision.transforms.functional.InterpolationMode.NEAREST, expand=False, center=None, fill=None)
 ```
 
-### [paddle.vision.transforms.rotate](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/rotate_cn.html#paddle/vision/transforms/rotate_cn#cn-api-paddle-vision-transforms-rotate)
+### [paddle.vision.transforms.rotate](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/rotate_cn.html#paddle.vision.transforms.rotate)
 
 ```python
 paddle.vision.transforms.rotate(img, angle, interpolation='nearest', expand=False, center=None, fill=0)

@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.conj_physical
 
-### [torch.Tensor.conj_physical](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.conj_physical)
+### [torch.Tensor.conj\_physical](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.conj_physical.html#torch.Tensor.conj_physical)
 
 ```python
 torch.Tensor.conj_physical()
 ```
 
-### [paddle.Tensor.conj](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/conj_cn.html#paddle/Tensor/conj_cn#cn-api-paddle-Tensor-conj)
+### [paddle.Tensor.conj](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#conj-name-none)
 
 ```python
 paddle.Tensor.conj(name=None)

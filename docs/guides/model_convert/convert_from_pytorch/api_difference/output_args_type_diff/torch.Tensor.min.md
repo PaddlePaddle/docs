@@ -3,12 +3,12 @@
 
 -------------------------------------------------------------------------------------------------
 
-### [torch.Tensor.min](https://pytorch.org/docs/stable/generated/torch.Tensor.min.html)
+### [torch.Tensor.min](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.min.html#torch.Tensor.min)
 ```python
 torch.Tensor.min(dim=None, keepdim=False)
 ```
 
-### [paddle.Tensor.min](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#min-axis-none-keepdim-false-name-none)
+### [paddle.Tensor.min](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#min-axis-none-keepdim-false-name-none)
 ```python
 paddle.Tensor.min(axis=None, keepdim=False, name=None)
 ```
@@ -35,12 +35,12 @@ result = x.min(dim=1), x.argmin(dim=1)
 
 -------------------------------------------------------------------------------------------------
 
-### [torch.Tensor.min](https://pytorch.org/docs/stable/generated/torch.Tensor.min.html)
+### [torch.Tensor.min](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.min.html#torch.Tensor.min)
 ```python
 torch.Tensor.min(other)
 ```
 
-### [paddle.Tensor.minimum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#minimum-y-axis-1-name-none)
+### [paddle.Tensor.minimum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#minimum-y-axis-1-name-none-out-none)
 ```python
 paddle.Tensor.minimum(y)
 ```

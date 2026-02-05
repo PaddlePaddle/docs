@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.mode
-### [torch.mode](https://pytorch.org/docs/stable/generated/torch.mode.html)
+### [torch.mode](https://docs.pytorch.org/docs/stable/generated/torch.mode.html#torch.mode)
 ```python
 torch.mode(input, dim=-1, keepdim=False, *, out=None)
 ```
 
-### [paddle.mode](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/mode_cn.html#mode)
+### [paddle.mode](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mode_cn.html#paddle.mode)
 ```python
 paddle.mode(x, axis=-1, keepdim=False, name=None)
 ```

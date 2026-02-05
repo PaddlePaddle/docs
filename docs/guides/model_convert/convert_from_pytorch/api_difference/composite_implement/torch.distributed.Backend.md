@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.distributed.Backend
-### [torch.distributed.Backend](https://pytorch.org/docs/stable/distributed.html#torch.distributed.Backend)
+### [torch.distributed.Backend](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.Backend)
 ```python
 torch.distributed.Backend(name)
 ```

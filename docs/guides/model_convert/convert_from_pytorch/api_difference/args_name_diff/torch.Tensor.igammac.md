@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.igammac
-### [torch.Tensor.igammac](https://pytorch.org/docs/stable/generated/torch.Tensor.igammac.html#torch.Tensor.igammac)
+### [torch.Tensor.igammac](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.igammac.html#torch.Tensor.igammac)
 ```python
 torch.Tensor.igammac(other)
 ```

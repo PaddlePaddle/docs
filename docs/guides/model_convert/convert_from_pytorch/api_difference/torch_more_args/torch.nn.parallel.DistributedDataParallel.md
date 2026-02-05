@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.parallel.DistributedDataParallel
-### [torch.nn.parallel.DistributedDataParallel](https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html#torch.nn.parallel.DistributedDataParallel)
+### [torch.nn.parallel.DistributedDataParallel](https://docs.pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html#torch.nn.parallel.DistributedDataParallel)
 ```python
 torch.nn.parallel.DistributedDataParallel(module, device_ids=None, output_device=None, dim=0, broadcast_buffers=True, process_group=None, bucket_cap_mb=25, find_unused_parameters=False, check_reduction=False, gradient_as_bucket_view=False, static_graph=False)
 ```
 
-### [paddle.DataParallel](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/DataParallel_cn.html)
+### [paddle.DataParallel](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/DataParallel_cn.html#paddle.DataParallel)
 ```python
 paddle.DataParallel(layers, strategy=None, comm_buffer_size=25, last_comm_buffer_size=1, find_unused_parameters=False)
 ```

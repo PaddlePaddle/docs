@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.utils.set_module
-### [torch.utils.set_module](https://docs.pytorch.org/docs/stable/generated/torch.utils.set_module.html#torch-utils-set-module)
+### [torch.utils.set\_module](https://docs.pytorch.org/docs/stable/generated/torch.utils.set_module.html#torch.utils.set_module)
 ```python
 torch.utils.set_module(obj, mod)
 ```

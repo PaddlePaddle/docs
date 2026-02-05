@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_sigmoid
-### [torch.\_foreach_sigmoid](https://pytorch.org/docs/stable/generated/torch._foreach_sigmoid.html#torch-foreach-sigmoid)
+### [torch.\_foreach\_sigmoid](https://docs.pytorch.org/docs/stable/generated/torch._foreach_sigmoid.html#torch._foreach_sigmoid)
 ```python
 torch._foreach_sigmoid(self)
 ```

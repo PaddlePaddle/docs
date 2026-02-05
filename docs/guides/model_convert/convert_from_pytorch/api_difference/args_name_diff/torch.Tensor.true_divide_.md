@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.true_divide_
-### [torch.Tensor.true_divide_](https://pytorch.org/docs/stable/generated/torch.Tensor.true_divide_.html)
+### [torch.Tensor.true\_divide\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.true_divide_.html#torch.Tensor.true_divide_)
 ```python
 torch.Tensor.true_divide_(other)
 ```

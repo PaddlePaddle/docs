@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.diagonal
-### [torch.diagonal](https://pytorch.org/docs/stable/generated/torch.diagonal.html?highlight=diagonal#torch.diagonal)
+### [torch.diagonal](https://docs.pytorch.org/docs/stable/generated/torch.diagonal.html#torch.diagonal)
 ```python
 torch.diagonal(input,
                offset=0,
@@ -7,7 +7,7 @@ torch.diagonal(input,
                dim2=1)
 ```
 
-### [paddle.diagonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagonal_cn.html#diagonal)
+### [paddle.diagonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagonal_cn.html#paddle.diagonal)
 ```python
 paddle.diagonal(x,
                 offset=0,

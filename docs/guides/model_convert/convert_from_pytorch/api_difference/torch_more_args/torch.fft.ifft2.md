@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.fft.ifft2
-### [torch.fft.ifft2](https://pytorch.org/docs/stable/generated/torch.fft.ifft2.html?highlight=ifft2#torch.fft.ifft2)
+### [torch.fft.ifft2](https://docs.pytorch.org/docs/stable/generated/torch.fft.ifft2.html#torch.fft.ifft2)
 ```python
 torch.fft.ifft2(input,
                 s=None,
@@ -9,7 +9,7 @@ torch.fft.ifft2(input,
                 out=None)
 ```
 
-### [paddle.fft.ifft2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/ifft2_cn.html)
+### [paddle.fft.ifft2](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/ifft2_cn.html#paddle.fft.ifft2)
 ```python
 paddle.fft.ifft2(x,
                 s=None,
