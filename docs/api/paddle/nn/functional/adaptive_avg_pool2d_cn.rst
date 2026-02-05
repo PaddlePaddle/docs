@@ -26,7 +26,7 @@ adaptive_avg_pool2d
 参数
 :::::::::
     - **x** (Tensor)：默认形状为（批大小，通道数，高度，宽度），即 NCHW 格式的 4-D Tensor。其数据类型为 float16, float32, float64, int32 或 int64。
-    - **output_size** (int|list|turple)：算子输出特征图的尺寸，如果其是 list 或 turple 类型的数值，必须包含两个元素，H 和 W。H 和 W 既可以是 int 类型值也可以是 None，None 表示与输入特征尺寸相同。
+    - **output_size** (int|list|tuple)：算子输出特征图的尺寸，如果其是 list 或 tuple 类型的数值，必须包含两个元素，H 和 W。H 和 W 既可以是 int 类型值也可以是 None，None 表示与输入特征尺寸相同。
     - **data_format** (str)：输入和输出的数据格式，可以是"NCHW"和"NHWC"。N 是批尺寸，C 是通道数，H 是特征高度，W 是特征宽度。默认值："NCHW"。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
