@@ -161,7 +161,7 @@ def get_parser(name: str) -> ApiUrlParserBase:
             "https://fairscale.readthedocs.io/en/latest/",
         )
         return _parser[name]
-    elif name in ["flash_attn", "os", "setuptools"]:
+    elif name in ["flash_attn", "os", "setuptools", "timm", "paddleformers"]:
         _parser[name] = EmptyApiUrlParser()
         return _parser[name]
 

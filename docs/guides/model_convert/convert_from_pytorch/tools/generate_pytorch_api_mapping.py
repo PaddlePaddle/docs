@@ -270,8 +270,14 @@ def generate_api_alias_table(
             continue
 
         if torch_api_alias in no_need_convert_list:
-            assert torch_api_alias.startswith("torch.")
-            dst_api = torch_api_alias.replace("torch.", "paddle.", 1)
+            if torch_api_alias.startswith("torch."):
+                dst_api = torch_api_alias.replace("torch.", "paddle.", 1)
+            elif torch_api_alias.startswith("transformers."):
+                dst_api = torch_api_alias.replace(
+                    "transformers.", "paddleformers.", 1
+                )
+            else:
+                raise ValueError(f"未知的API前缀: {torch_api_alias}")
         else:
             mapping_info = docs_mapping.get(torch_api_alias, {})
             dst_api = mapping_info.get("paddle_api", "-")
