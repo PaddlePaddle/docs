@@ -295,8 +295,11 @@ def generate_api_alias_table(
             f"[{dst_api_display}]({dst_api_url})" if dst_api_url else dst_api
         )
 
-        # 构建备注列，格式为"{torch_api_alias}别名+[差异对比]{url}"
-        remark = f"``{torch_api_alias_display}`` 别名， {get_mapping_doc_url(torch_api_alias, base_dir)}"
+        if torch_api_alias in no_need_convert_list:
+            remark = f"``{torch_api_alias_display}`` 别名，别名 API 在 Paddle 中已有功能一致的实现，请参考：[API 完全一致](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.html#id1)"
+        else:
+            # 构建备注列，格式为"{torch_api_alias}别名+[差异对比](url)"
+            remark = f"``{torch_api_alias_display}`` 别名， {get_mapping_doc_url(torch_api_alias, base_dir)}"
 
         # 添加映射分类列（类别12的中文名称）
         mapping_category = "API 别名"
