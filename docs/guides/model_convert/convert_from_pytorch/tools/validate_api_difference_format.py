@@ -69,7 +69,7 @@ class APIDifferenceValidator:
 
         # 移除 *, /, self 和 cls
         params = [param for param in params if param not in ["*", "/"]]
-        if params[0] in ["self", "cls"]:
+        if params and params[0] in ["self", "cls"]:
             params = params[1:]
 
         return params
@@ -112,7 +112,7 @@ class APIDifferenceValidator:
         paddle_params: list[str] | None = None,
     ) -> tuple[bool, list[str]]:
         """校验参数映射表格的备注列"""
-        missing_while_list = {
+        missing_white_list = {
             "out",
             "device",
             "dtype",
@@ -211,7 +211,7 @@ class APIDifferenceValidator:
             missing_torch_params = set(torch_params) - set(
                 pytorch_params_in_table
             )
-            if missing_torch_params > missing_while_list:
+            if missing_torch_params > missing_white_list:
                 errors.append(
                     f"参数映射不完整: {file_path} - 缺少 PyTorch 参数: {sorted(missing_torch_params)}"
                 )

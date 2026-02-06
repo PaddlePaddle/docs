@@ -17,7 +17,7 @@ paddle.nn.InstanceNorm3D(num_features, epsilon=1e-05, momentum=0.9, weight_attr=
 | -             | num_features   | 表示输入 Tensor 通道数，PyTorch 无此参数，Paddle 需要根据实际输入 Tensor 的通道数进行设置。  |
 | eps                 | epsilon      | 为了数值稳定加在分母上的值，仅参数名不一致。                    |
 | momentum            | momentum     | 此值用于计算 moving_mean 和 moving_var。                        |
-| affine        | weight_attr, bias_attr                 | 是否进行仿射变换，Paddle 使用 weight_attr, bias_attr 两个参数分别控制权重和偏置控制是否进行放射变换，默认值为 False，PyTorch 使用一个参数统一控制，且默认值为 None，表示不启用。           |
+| affine        | weight_attr, bias_attr                 | 是否进行仿射变换，Paddle 使用 weight_attr, bias_attr 两个参数分别控制权重和偏置控制进行仿射变换，默认值为 False，PyTorch 使用一个参数统一控制，且默认值为 None，表示不启用，需要转写。           |
 | track_running_stats | -            | 是否跟踪运行时的 mean 和 var， Paddle 无此参数。暂无转写方式。         |
 | device              | -            | 表示 Tensor 存放设备位置，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
 | dtype               | -            | 参数类型，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
