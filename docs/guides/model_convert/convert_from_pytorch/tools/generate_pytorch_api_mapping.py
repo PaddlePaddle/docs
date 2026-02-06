@@ -258,6 +258,7 @@ def generate_api_alias_table(
     """
     # 读取api_alias_mapping.json文件
     api_alias_data = load_mapping_json(api_alias_mapping_path)
+    no_need_convert_list = extract_no_need_convert_list()
 
     rows = []  # 存储表格行数据的列表
     used_apis = set()  # 用于记录已处理的API，避免重复
@@ -268,13 +269,12 @@ def generate_api_alias_table(
         if torch_api in existing_apis:
             continue
 
-        # 在docs_mapping中查找torch_api_alias对应的Paddle API
-        mapping_info = docs_mapping.get(torch_api_alias, {})
-        dst_api = mapping_info.get("dst_api", "-")
-        dst_api_url = mapping_info.get("dst_api_url", "")
-
-        # 获取torch_api的URL
-        src_api_url = docs_mapping.get(torch_api, {}).get("src_api_url", "")
+        if torch_api_alias in no_need_convert_list:
+            assert torch_api_alias.startswith("torch.")
+            dst_api = torch_api_alias.replace("torch.", "paddle.", 1)
+        else:
+            mapping_info = docs_mapping.get(torch_api_alias, {})
+            dst_api = mapping_info.get("paddle_api", "-")
 
         # 构建显示的API名称
         torch_api_display = escape_underscores_in_api(torch_api)
@@ -282,6 +282,7 @@ def generate_api_alias_table(
         dst_api_display = escape_underscores_in_api(dst_api)
 
         # 创建Torch API超链接
+        src_api_url = get_url(torch_api)
         torch_display = (
             f"[{torch_api_display}]({src_api_url})"
             if src_api_url
@@ -289,6 +290,7 @@ def generate_api_alias_table(
         )
 
         # 创建Paddle API超链接
+        dst_api_url = get_url(dst_api) if dst_api != "-" else ""
         paddle_display = (
             f"[{dst_api_display}]({dst_api_url})" if dst_api_url else dst_api
         )
