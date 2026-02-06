@@ -1,6 +1,7 @@
 # IDE settings
 *.DS_Store
 .vscode
+.comate
 .idea
 
 # virtualenv
