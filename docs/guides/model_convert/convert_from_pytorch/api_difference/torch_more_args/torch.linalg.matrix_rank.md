@@ -1,7 +1,7 @@
 ## [ torch 参数更多 ]torch.linalg.matrix_rank
 ### [torch.linalg.matrix\_rank](https://docs.pytorch.org/docs/stable/generated/torch.linalg.matrix_rank.html#torch.linalg.matrix_rank)
 ```python
-torch.linalg.matrix_rank(input, tol=None, hermitian = False, *, atol=None, rtol=None ,hermitian=False, out=None)
+torch.linalg.matrix_rank(input, tol=None, hermitian = False, *, atol=None, rtol=None, out=None)
 ```
 
 ### [paddle.linalg.matrix\_rank](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/matrix_rank_cn.html#paddle.linalg.matrix_rank)

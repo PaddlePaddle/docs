@@ -17,8 +17,8 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 |  -----------  |  -----------  |  ----------------------------------------- |
 |    indices    |    indices    |         表示初始化 tensor 的数据。          |
 |    values     |    values     |         表示初始化 tensor 的数据。          |
-|     dtype     |     dtype     |        表示创建 tensor 的数据类型。         |
 |     size      |     shape     |      表示张量的大小，仅参数名不一致。       |
+|     dtype     |     dtype     |        表示创建 tensor 的数据类型。         |
 |    device     |     place     |  表示创建 tensor 的设备位置，仅参数名不一致。 |
 | requires_grad | stop_gradient |     两者参数功能相反，需要转写。      |
 | check_invariants | -             | 是否检查稀疏 Tensor 变量，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
