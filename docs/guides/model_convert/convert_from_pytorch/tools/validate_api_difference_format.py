@@ -45,6 +45,42 @@ class APIDifferenceValidator:
         self.url_errors = []
         self.url_fixed_count = 0
 
+    def parse_parameters_from_signature(self, signature_line: str) -> list[str]:
+        """从函数签名字符串中解析参数列表
+
+        例如: torch.nn.LazyBatchNorm1d(eps=1e-05, momentum=0.1, affine=True)
+        返回: ['eps', 'momentum', 'affine']
+        """
+        # 提取括号内的内容
+        match = re.search(r"\((.*?)\)$", signature_line, re.DOTALL)
+        if not match:
+            return []
+
+        params_str = match.group(1).strip()
+        if not params_str:
+            return []
+
+        params = []
+
+        params = params_str.replace(" ", "").split(",")
+        # 移除类型标注和默认值
+        params = [param.split("=")[0].strip() for param in params]
+        params = [param.split(":")[0].strip() for param in params]
+
+        # 移除 *, /, self 和 cls
+        params = [param for param in params if param not in ["*", "/"]]
+        if params and params[0] in ["self", "cls"]:
+            params = params[1:]
+
+        return params
+
+    def extract_api_name_from_line(self, line: str) -> str | None:
+        """从markdown链接行中提取API名称"""
+        match = re.search(r"### \[(.*?)\]", line)
+        if match:
+            return match.group(1).replace(r"\_", "_")
+        return None
+
     def log_error_with_details(
         self,
         error_file: str,
@@ -72,10 +108,21 @@ class APIDifferenceValidator:
         category_dir: str,
         file_path: str,
         section_index: int,
+        torch_params: list[str] | None = None,
+        paddle_params: list[str] | None = None,
     ) -> tuple[bool, list[str]]:
         """校验参数映射表格的备注列"""
+        missing_white_list = {
+            "out",
+            "device",
+            "dtype",
+        }  # 允许缺少映射方式说明的参数名称
         errors = []
         requires_rewrite_params = set()
+
+        # 从表格中提取参数映射信息
+        pytorch_params_in_table = []
+        paddle_params_in_table = []
 
         # 跳过表头行（前两行）
         for i, line in enumerate(table_lines[2:], start=2):
@@ -88,6 +135,46 @@ class APIDifferenceValidator:
                 continue
 
             pytorch_param, paddle_param, remark = parts[0], parts[1], parts[2]
+
+            # 记录表格中的参数
+            if pytorch_param != "-":
+                pytorch_params_in_table.append(pytorch_param)
+            if paddle_param != "-":
+                # 处理多个 paddle 参数的情况（用逗号分隔）
+                paddle_param_list = [p.strip() for p in paddle_param.split(",")]
+                paddle_params_in_table.extend(paddle_param_list)
+            else:
+                paddle_param_list = []
+
+            # 功能1: 检查参数名称是否出现在对应 API 的参数签名列表中
+            # 跳过返回值相关的行(包含"返回值"关键词的任何参数名)
+            is_pytorch_return = (
+                pytorch_param == "-" or "返回值" in pytorch_param
+            )
+
+            if torch_params is not None and not is_pytorch_return:
+                if pytorch_param not in torch_params and pytorch_param not in [
+                    "self",
+                    "cls",
+                ]:
+                    errors.append(
+                        f"参数映射错误: {file_path} - PyTorch 参数 '{pytorch_param}' 不在 API 参数签名中 (签名参数: {torch_params})"
+                    )
+
+            # 检查 paddle_param 是否包含"返回值"字样（支持各种变体）
+            is_return_value = paddle_param == "-" or "返回值" in paddle_param
+
+            if paddle_params is not None and not is_return_value:
+                for param in paddle_param_list:
+                    # 同样检查每个参数是否包含"返回值"
+                    if (
+                        "返回值" not in param
+                        and param not in paddle_params
+                        and param not in ["self", "cls"]
+                    ):
+                        errors.append(
+                            f"参数映射错误: {file_path} - Paddle 参数 '{param}' 不在 API 参数签名中 (签名参数: {paddle_params})"
+                        )
 
             # 检查备注是否以句号结尾
             if remark and not remark.endswith("。"):
@@ -118,8 +205,33 @@ class APIDifferenceValidator:
             ):
                 if pytorch_param != "-":
                     requires_rewrite_params.add(pytorch_param)
-                # else:
-                #     requires_rewrite_params.add(paddle_param)
+
+        # 功能2: 检查参数映射是否包含 torch 全部参数
+        if torch_params is not None:
+            missing_torch_params = set(torch_params) - set(
+                pytorch_params_in_table
+            )
+            if missing_torch_params > missing_white_list:
+                errors.append(
+                    f"参数映射不完整: {file_path} - 缺少 PyTorch 参数: {sorted(missing_torch_params)}"
+                )
+
+        # 功能3: 检查参数映射的顺序是否与签名中的顺序一致（torch 参数优先级最高）
+        if torch_params is not None and len(pytorch_params_in_table) > 0:
+            torch_params_order = [
+                p for p in pytorch_params_in_table if p in torch_params
+            ]
+
+            expected_order = [
+                p for p in torch_params if p in torch_params_order
+            ]
+
+            if torch_params_order != expected_order:
+                errors.append(
+                    f"参数顺序错误: {file_path} - PyTorch 参数顺序不符合签名顺序\n"
+                    f"  当前顺序: {torch_params_order}\n"
+                    f"  应为顺序: {expected_order}"
+                )
 
         return requires_rewrite_params, errors
 
@@ -302,9 +414,11 @@ class APIDifferenceValidator:
         """校验单个部分（普通部分或重载部分）"""
         errors = []
         current_index = 0
+        torch_params = None
+        paddle_params = None
 
         try:
-            # 1. 检查torch超链接
+            # 1. 检查torch超链接并提取API名称
             if not self._validate_torch_header(
                 section_lines,
                 current_index,
@@ -314,9 +428,11 @@ class APIDifferenceValidator:
                 errors,
             ):
                 return False, errors
+
+            # 提取 torch API 名称
             current_index += 1
 
-            # 2. 检查torch代码块
+            # 2. 检查torch代码块并提取参数
             if not self._validate_code_block(
                 section_lines,
                 current_index,
@@ -327,11 +443,28 @@ class APIDifferenceValidator:
                 "torch",
             ):
                 return False, errors
-            current_index = (
-                self._find_code_block_end(section_lines, current_index) + 1
-            )
 
-            # 3. 检查paddle部分
+            # 从 torch 代码块中提取参数列表（可能是多行）
+            code_start = current_index + 1
+            code_end = self._find_code_block_end(section_lines, current_index)
+            if code_start < code_end:
+                # 提取代码块中的所有行，合并成一个字符串
+                torch_signature_lines = []
+                for idx in range(code_start, code_end):
+                    if idx < len(section_lines):
+                        line = section_lines[idx].strip()
+                        if line:
+                            torch_signature_lines.append(line)
+                if torch_signature_lines:
+                    # 将多行合并，去除换行和多余空格
+                    torch_signature = " ".join(torch_signature_lines)
+                    torch_params = self.parse_parameters_from_signature(
+                        torch_signature
+                    )
+
+            current_index = code_end + 1
+
+            # 3. 检查paddle部分并提取API名称和参数
             composite_implement, have_paddle_section, current_index, success = (
                 self._validate_paddle_section(
                     section_lines,
@@ -342,6 +475,42 @@ class APIDifferenceValidator:
                     errors,
                 )
             )
+
+            # 如果有 paddle 部分，提取 paddle API 名称和参数
+            if have_paddle_section:
+                # 回溯找到 paddle API 行和代码块
+                paddle_api_line_idx = -1
+                for i in range(current_index - 1, -1, -1):
+                    if section_lines[i].startswith("### [") and i > 0:
+                        paddle_api_line_idx = i
+                        break
+
+                # 从 paddle 代码块中提取参数
+                if paddle_api_line_idx >= 0:
+                    # paddle 代码块应该在 API 行之后
+                    paddle_code_start = (
+                        paddle_api_line_idx + 2
+                    )  # 跳过 API 行和 ```python
+                    if paddle_code_start < len(section_lines):
+                        # 可能有多行，需要合并
+                        paddle_signature_lines = []
+                        idx = paddle_code_start
+                        while (
+                            idx < len(section_lines)
+                            and section_lines[idx] != "```"
+                        ):
+                            line = section_lines[idx].strip()
+                            if line:
+                                paddle_signature_lines.append(line)
+                            idx += 1
+                        if paddle_signature_lines:
+                            paddle_signature = " ".join(paddle_signature_lines)
+                            paddle_params = (
+                                self.parse_parameters_from_signature(
+                                    paddle_signature
+                                )
+                            )
+
             if not success:
                 return False, errors
 
@@ -376,7 +545,12 @@ class APIDifferenceValidator:
 
                 rewrite_params, table_errors = (
                     self.validate_parameter_table_remarks(
-                        table_lines, category_dir, file_path, section_index
+                        table_lines,
+                        category_dir,
+                        file_path,
+                        section_index,
+                        torch_params,
+                        paddle_params,
                     )
                 )
                 requires_rewrite_params = rewrite_params

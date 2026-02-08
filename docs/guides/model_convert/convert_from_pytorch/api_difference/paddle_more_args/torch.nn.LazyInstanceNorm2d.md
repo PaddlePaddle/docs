@@ -17,11 +17,9 @@ paddle.nn.InstanceNorm2D(num_features, epsilon=1e-05, momentum=0.9, weight_attr=
 | -             | num_features   | 表示输入 Tensor 通道数，PyTorch 无此参数，Paddle 需要根据实际输入 Tensor 的通道数进行设置。  |
 | eps           | epsilon       | 为了数值稳定加在分母上的值。             |
 | momentum      | momentum      | 此值用于计算 moving_mean 和 moving_var，值的大小 Paddle = 1 - PyTorch，需要转写。        |
-| affine        | -             | 是否使用可学习的仿射参数，Paddle 无此参数。可通过 weight_attr 和 bias_attr 控制。              |
+| affine        | weight_attr, bias_attr                 | 是否进行仿射变换，Paddle 使用 weight_attr, bias_attr 两个参数分别控制权重和偏置是否进行仿射变换，默认值为 False，PyTorch 使用一个参数统一控制，且默认值为 None，表示不启用，需要转写。           |
 | track_running_stats | -       | 是否跟踪运行时的 mean 和 var， Paddle 无此参数。暂无转写方式。  |
 | dtype         |  -            | 输出数据类型， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
-| -             |  weight_attr  | 可学习参数——权重的属性，默认为 None，表示使用默认可学习参数。 PyTorch 无此参数。 |
-| -             |  bias_attr  | 可学习参数——偏差的属性，默认为 None，表示使用默认可学习参数。 PyTorch 无此参数。 |
 | -             |  data_format  | 指定输入数据格式。 PyTorch 无此参数。 |
 
 ### 转写示例

@@ -10,9 +10,9 @@ torch.round(input,
 ### [paddle.round](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/round_cn.html#paddle.round)
 ```python
 paddle.round(x,
+             decimals=0,
              name=None)
 ```
-
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 

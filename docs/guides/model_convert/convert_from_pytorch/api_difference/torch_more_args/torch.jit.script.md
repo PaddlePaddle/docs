@@ -16,9 +16,9 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                                |
 | ------------- | ------------ | ------------------------------------------------------------------- |
 | obj             | function         | 待转换的函数，仅参数名不一致。                       |
-| example_inputs  | input_spec           | 用于指定被装饰函数中输入 Tensor 信息，仅参数名不一致。    |
 | optimize | -            | 控制是否对转换后的模块进行优化，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。    |
-| _rcb             | -      | 控制编译行为，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | _frames_up             | -      | 控制编译时的堆栈帧深度，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
+| _rcb             | -      | 控制编译行为，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
+| example_inputs  | input_spec           | 用于指定被装饰函数中输入 Tensor 信息，仅参数名不一致。    |
 | -    | build_strategy      | 对转换后的计算图进行优化方法，PyTorch 无此参数，Paddle 保持默认即可。 |
 | -             | backend      | 指定后端编译器，PyTorch 无此参数，Paddle 保持默认即可。 |

@@ -19,8 +19,8 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | threshold | threshold    | 打印的元素个数上限，默认值为 1000。                          |
 | edgeitems | edgeitems    | 以缩略形式打印时左右两边的元素个数，默认值为 3。             |
 | linewidth | linewidth    | 每行的字符数，默认值为 80。                                  |
-| sci_mode  | sci_mode     | 是否以科学计数法打印，PyTorch 默认根据网络自动选择， Paddle 默认值为 False。 |
 | profile   | -            | 预设风格，支持 `default`, `short`, `full`。 Paddle 无此参数， 需要转写。 |
+| sci_mode  | sci_mode     | 是否以科学计数法打印，PyTorch 默认根据网络自动选择， Paddle 默认值为 False。 |
 
 ### 转写示例
 #### profile:预设风格，设置为 `default`。

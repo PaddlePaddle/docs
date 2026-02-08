@@ -6,7 +6,7 @@ Conv3DTranspose
 .. py:class:: paddle.nn.Conv3DTranspose(in_channels, out_channels, kernel_size, stride=1, padding=0, output_padding=0, groups=1, dilation=1, weight_attr=None, bias_attr=None, data_format="NCDHW")
 
 
-三维转置卷积层（Convlution3d transpose layer）
+三维转置卷积层（Convolution3d transpose layer）
 
 该层根据输入（input）、卷积核（kernel）和卷积核空洞大小（dilations）、步长（stride）、填充（padding）来计算输出特征层大小或者通过 output_size 指定输出特征层大小。输入（Input）和输出（Output）为 NCDHW 或者 NDHWC 格式。其中 N 为批尺寸，C 为通道数（channel），D 为特征深度，H 为特征层高度，W 为特征层宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 `参考文献`_ 。如果参数 bias_attr 不为 False，转置卷积计算会添加偏置项。
 

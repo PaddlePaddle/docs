@@ -39,7 +39,9 @@ paddle.optimizer.lr.OneCycleLR(max_learning_rate,
 | ------- | ------------ | ------------------------------------------------------------------------------------------ |
 | optimizer     | -       | PyTorch 的是 torch.optim.Optimizer 类，Paddle 无对应参数。 |
 | max_lr     | max_learning_rate       | 表示最大学习率。参数完全一致。           |
-| total_steps, epochs, steps_per_epoch  | total_steps       | 训练过程中总的迭代数。PyTorch 默认 total_steps 为 None，则需要从 PyTorch 的参数 steps_per_epoch 和 epochs 计算得出此参数，计算公式为：total_steps=steps_per_epoch*epochs，需要转写。        |
+| total_steps | total_steps       | 训练过程中总的迭代数。PyTorch 默认 total_steps 为 None，则需要从 PyTorch 的参数 steps_per_epoch 和 epochs 计算得出此参数，计算公式为：total_steps=steps_per_epoch*epochs，需要转写。        |
+| epochs  | total_steps       | 训练过程中总的迭代数。PyTorch 默认 total_steps 为 None，则需要从 PyTorch 的参数 steps_per_epoch 和 epochs 计算得出此参数，计算公式为：total_steps=steps_per_epoch*epochs，需要转写。        |
+| steps_per_epoch  | total_steps       | 训练过程中总的迭代数。PyTorch 默认 total_steps 为 None，则需要从 PyTorch 的参数 steps_per_epoch 和 epochs 计算得出此参数，计算公式为：total_steps=steps_per_epoch*epochs，需要转写。        |
 | pct_start     | phase_pct       | 表示学习率从初始学习率增长到最大学习率所需迭代数占总迭代数的比例。仅参数名不一致。             |
 | anneal_strategy     | anneal_strategy       | 调整学习率的策略。必须是 ( cos , linear )其中之一。参数完全一致。             |
 | cycle_momentum     | -       | 如果“True”，动量反向循环 'base_momentum' 和 'max_momentum' 之间的学习率。Paddle 无此参数，暂无转写方式。             |
