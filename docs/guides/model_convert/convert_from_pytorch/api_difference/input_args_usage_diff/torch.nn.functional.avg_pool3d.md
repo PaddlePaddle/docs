@@ -19,9 +19,9 @@ paddle.nn.functional.avg_pool3d(x, kernel_size, stride=None, padding=0, ceil_mod
 |  stride           |     stride           | 池化操作步长。             |
 |  padding              |  padding   | 池化补零的方式。               |
 |  ceil_mode              |  ceil_mode   | 是否用 `ceil` 函数计算输出的 height 和 width，如果设置为 `False`，则使用 `floor` 函数来计算，默认为 `False`。            |
+|  count_include_pad            |  exclusive             | 是否用额外 padding 的值计算平均池化结果，PyTorch 与 Paddle 的功能相反，需要转写。  |
 |  divisor_override            |  divisor_override             | 如果指定，它将用作除数，否则根据 `kernel_size` 计算除数。默认 `None`。  |
 | -           |  data_format             | 输入和输出的数据格式, PyTorch 无此参数，保持默认即可。 |
-|  count_include_pad            |  exclusive             | 是否用额外 padding 的值计算平均池化结果，PyTorch 与 Paddle 的功能相反，需要转写。  |
 
 
 ### 转写示例

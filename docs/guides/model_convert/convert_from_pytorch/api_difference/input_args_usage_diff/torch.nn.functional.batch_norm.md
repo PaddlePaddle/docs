@@ -19,9 +19,9 @@ paddle.nn.functional.batch_norm(x, running_mean, running_var, weight, bias, trai
 |  running_var    |  running_var   | 方差的 Tensor。 |
 |  weight    |  weight    | 权重的 Tensor。          |
 |  bias    |  bias    | 偏置的 Tensor。              |
-|  eps           |     epsilon           | 为了数值稳定加在分母上的值。       |
-|  momentum              |  momentum   | 此值用于计算 moving_mean 和 moving_var, 值的大小 Paddle = 1 - PyTorch，需要转写。      |
 |  training           |   training           | 是否可训练。 |
+|  momentum              |  momentum   | 此值用于计算 moving_mean 和 moving_var, 值的大小 Paddle = 1 - PyTorch，需要转写。      |
+|  eps           |     epsilon           | 为了数值稳定加在分母上的值。       |
 | -  |   data_format | 指定输入数据格式，PyTorch 无此参数，Paddle 保持默认即可。 |
 
 

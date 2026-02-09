@@ -6,7 +6,7 @@ torch.distributions.distribution.Distribution(batch_shape=torch.Size([]), event_
 
 ### [paddle.distribution.Distribution](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Distribution_cn.html#paddle.distribution.Distribution)
 ```python
-paddle.distribution.Distribution(batch_shape， event_shape)
+paddle.distribution.Distribution(batch_shape, event_shape)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：

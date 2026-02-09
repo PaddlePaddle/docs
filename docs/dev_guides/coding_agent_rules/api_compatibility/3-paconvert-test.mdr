@@ -171,12 +171,16 @@ class CustomAPIBase(APIBase):
    python -m pytest tests/test_<API名称>.py
    ```
 
-2. 根据报错信息，修改代码或测试用例（禁止通过修改api_mapping.json来使单测通过），确保所有测试用例通过。注意每次修改Paddle源码后，必须重新编译方可生效，但不需要重新安装，编译完即可运行。
+2. 根据报错信息，修改代码或测试用例（禁止通过修改api_mapping.json来使单测通过），确保所有测试用例通过。注意每次修改Paddle源码后，必须重新编译方可生效：
 ```bash
 cd /workspace/Paddle/build
 cmake ..
 make -j$(nproc)
 ```
+
+编译注意事项：
+- 编译完成后不需要重新安装，无需执行setup/install等任何安装操作，直接可生效
+- 编译不要删除build目录，否则会导致增量编译失效，编译时间极长
 
 # 三、异常处理
 

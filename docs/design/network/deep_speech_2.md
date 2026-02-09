@@ -130,7 +130,7 @@ Key ingredients about the layers:
    - These two type of sequences do not have the same lengths, thus a CTC-loss layer is required.
 - **2D Convolution Layers**:
    - Not only temporal convolution, but also **frequency convolution**. Like a 2D image convolution, but with a variable dimension (i.e. temporal dimension).
-   - With striding for only the first convlution layer.
+   - With striding for only the first convolution layer.
    - No pooling for all convolution layers.
 - **Uni-directional RNNs**
     - Uni-directional + row convolution: for low-latency inference.
