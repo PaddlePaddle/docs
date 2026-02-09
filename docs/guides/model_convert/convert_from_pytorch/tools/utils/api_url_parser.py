@@ -5,7 +5,14 @@ from pathlib import Path
 from urllib.parse import urljoin
 
 from loguru import logger
-from sphobjinv.inventory import Inventory
+from sphobjinv.inventory import Inventory as BaseInventory
+
+
+class Inventory(BaseInventory):
+    def __init__(self, *args, **kwargs) -> None:
+        logger.info(f"Creating {self.__class__.__name__}")
+        super().__init__(*args, **kwargs)
+        logger.info(f"Created {self.__class__.__name__}")
 
 
 class ApiUrlParserBase(ABC):
