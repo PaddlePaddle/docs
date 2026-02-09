@@ -26,7 +26,7 @@ lspci -d 2057: -n
 
 ```bash
 # 拉取镜像
-docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-xpu:ubuntu20-x86_64-gcc84-py310
+docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddleqa:xpu-ubuntu2204-x86_64-gcc123-py310
 ```
 ```bash
 # 参考如下命令，启动容器
@@ -34,7 +34,7 @@ docker run -it --name paddle-xpu-dev -v $(pwd):/work \
   -v /usr/local/bin/xpu-smi:/usr/local/bin/xpu-smi \
   -w=/work --shm-size=128G --network=host --privileged  \
   --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
-  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-xpu:ubuntu20-x86_64-gcc84-py310 /bin/bash
+  ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddleqa:xpu-ubuntu2204-x86_64-gcc123-py310 /bin/bash
 ```
 #### 选项说明及可调整参数
 
