@@ -4,11 +4,12 @@ import json
 import os
 import re
 from collections import defaultdict
+from logging import getLogger
 from pathlib import Path
 
-from loguru import logger
-
 from .api_url_parser import get_parser
+
+logger = getLogger(__name__)
 
 
 def get_url(
@@ -20,9 +21,9 @@ def get_url(
             package = api_name.split(".")[0]
         url = get_parser(package).get_api_url(api_name) or ""
         if url == "" and not disable_warning:
-            logger.warning("Missing api {} in package {}", api_name, package)
+            logger.warning("Missing api %s in package %s", api_name, package)
     except Exception as e:
-        logger.error("get api {} in package {} error: {}", api_name, package, e)
+        logger.error("get api %s in package %s error: %s", api_name, package, e)
         return ""
     return url
 

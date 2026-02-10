@@ -2,11 +2,13 @@ from __future__ import annotations
 
 import time
 from abc import ABC, abstractmethod
+from logging import getLogger
 from pathlib import Path
 from urllib.parse import urljoin
 
-from loguru import logger
 from sphobjinv.inventory import Inventory as BaseInventory
+
+logger = getLogger(__name__)
 
 
 class Inventory(BaseInventory):
