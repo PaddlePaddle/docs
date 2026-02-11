@@ -59,7 +59,7 @@ COPY-FROM: paddle.gather
 
 .. py:function:: paddle.gather(input, dim, index, out=None)
 
-PyTorch 兼容的 ``gather`` 操作：根据索引 index 获取输入 ``input`` 的指定 ``dim`` 维度的条目，并将它们拼接在一起。行为与 ``cn_api_paddle_take_along_axis`` 在 ``broadcast=False`` 情况下一致。
+PyTorch 兼容的 ``gather`` 操作：根据索引 index 获取输入 ``input`` 的指定 ``dim`` 维度的条目，并将它们拼接在一起。行为与 :ref:`cn_api_paddle_take_along_axis` 在 ``broadcast=False`` 情况下一致。
 
 接口对比可见 `【torch 参数更多】torch.gather`_ 。
 
