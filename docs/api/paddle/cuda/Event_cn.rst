@@ -1,9 +1,9 @@
-.. _cn_api_paddle_device_Event:
+.. _cn_api_paddle_cuda_Event:
 
 Event
 -------------------------------
 
-.. py:class:: paddle.device.Event(enable_timing=False, blocking=False, interprocess=False)
+.. py:class:: paddle.cuda.Event(enable_timing=False, blocking=False, interprocess=False)
 
 event 的句柄。
 
@@ -21,7 +21,7 @@ None
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.device.Event
+COPY-FROM: paddle.cuda.Event
 
 
 方法
@@ -33,11 +33,11 @@ record(stream=None)
 
 **参数**
 
-    - **stream** (paddle.device.Stream，可选) - stream 的句柄。如果为 None，stream 为当前的 stream。默认值为 None。
+    - **stream** (paddle.cuda.Stream，可选) - stream 的句柄。如果为 None，stream 为当前的 stream。默认值为 None。
 
 **代码示例**
 
-COPY-FROM: paddle.device.Event.record
+COPY-FROM: paddle.cuda.Event.record
 
 query()
 '''''''''
@@ -50,7 +50,7 @@ query()
 
 **代码示例**
 
-COPY-FROM: paddle.device.Event.query
+COPY-FROM: paddle.cuda.Event.query
 
 
 synchronize()
@@ -60,4 +60,4 @@ synchronize()
 
 **代码示例**
 
-COPY-FROM: paddle.device.Event.synchronize
+COPY-FROM: paddle.cuda.Event.synchronize

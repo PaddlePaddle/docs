@@ -38,3 +38,6 @@ PyTorch 兼容函数
     " :ref:`max_memory_allocated <cn_api_paddle_cuda_max_memory_allocated>` ", "获取最大内存分配量"
     " :ref:`reset_peak_memory_stats <cn_api_paddle_cuda_reset_peak_memory_stats>` ", "重置峰值内存统计"
     " :ref:`get_device_capability <cn_api_paddle_cuda_get_device_capability>` ", "返回指定设备的计算能力"
+    " :ref:`is_bf16_supported <_cn_api_paddle_cuda_is_bf16_supported>` ", "判断当前设备是否支持 BF16 类型运算"
+    " :ref:`StreamContext <_cn_api_paddle_cuda_StreamContext>` ", "CUDA 流上下文类"
+    " :ref:`Event <_cn_api_paddle_cuda_Event>` ", "CUDA 事件类"
