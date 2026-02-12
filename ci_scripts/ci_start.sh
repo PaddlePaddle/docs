@@ -77,6 +77,18 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     fi
 fi
 
+
+git merge --no-edit upstream/${BRANCH}
+need_check_cn_doc_files=$(find_all_cn_api_files_modified_by_pr)
+echo $need_check_cn_doc_files
+
+# Check for existing stock issues.
+find_cn_rst_files() {
+    local search_dir="$SCRIPT_DIR/../docs/api/paddle"
+    find "$search_dir" -type f -name "*_cn.rst"
+}
+all_api_cn_files=$(find_cn_rst_files)
+
 check_parameters=ON
 if [ "${check_parameters}" = "OFF" ] ; then
     #echo "chinese api doc fileslist is empty, skip check."
@@ -85,7 +97,7 @@ else
     jsonfn=${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output/api_info_all.json
     if [ -f $jsonfn ] ; then
         echo "$jsonfn exists."
-        /bin/bash ${DIR_PATH}/check_api_parameters.sh "${need_check_cn_doc_files}" ${jsonfn}
+        /bin/bash ${DIR_PATH}/check_api_parameters.sh "${all_api_cn_files}" ${jsonfn}
         if [ $? -ne 0 ];then
             exit 1
         fi
@@ -97,9 +109,6 @@ fi
 
 EXIT_CODE=0
 
-git merge --no-edit upstream/${BRANCH}
-need_check_cn_doc_files=$(find_all_cn_api_files_modified_by_pr)
-echo $need_check_cn_doc_files
 # 3 Chinese api docs check
 if [ "${need_check_cn_doc_files}" = "" ] ; then
     echo "chinese api doc fileslist is empty, skip check."
