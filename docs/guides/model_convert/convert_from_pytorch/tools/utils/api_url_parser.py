@@ -1,11 +1,48 @@
 from __future__ import annotations
 
+import time
 from abc import ABC, abstractmethod
+from logging import getLogger
 from pathlib import Path
 from urllib.parse import urljoin
 
-from loguru import logger
-from sphobjinv.inventory import Inventory
+from sphobjinv.inventory import Inventory as BaseInventory
+
+logger = getLogger(__name__)
+
+
+class Inventory(BaseInventory):
+    MAX_RETRIES = 3
+    RETRY_DELAY = 1.0  # seconds
+
+    def __init__(self, *args, **kwargs) -> None:
+        logger.info(f"Creating {self.__class__.__name__}")
+
+        # 网络重试逻辑
+        last_exception = None
+        for attempt in range(1, self.MAX_RETRIES + 1):
+            try:
+                super().__init__(*args, **kwargs)
+                logger.info(f"Created {self.__class__.__name__}")
+                return
+            except Exception as e:
+                last_exception = e
+                if attempt < self.MAX_RETRIES:
+                    logger.warning(
+                        f"Network request failed (attempt {attempt}/{self.MAX_RETRIES}): {e}. "
+                        f"Retrying in {self.RETRY_DELAY} seconds..."
+                    )
+                    time.sleep(self.RETRY_DELAY)
+                else:
+                    logger.error(
+                        f"Network request failed after {self.MAX_RETRIES} attempts: {e}"
+                    )
+
+        # 如果所有重试都失败，抛出网络异常
+        raise ConnectionError(
+            f"Failed to create Inventory after {self.MAX_RETRIES} attempts. "
+            f"Last error: {last_exception}"
+        ) from last_exception
 
 
 class ApiUrlParserBase(ABC):

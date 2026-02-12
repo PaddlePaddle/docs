@@ -8,7 +8,7 @@ vector_norm
 
 
 
-将计算给定 Tensor 的向量范数。具体用法请参见 :ref:`norm <_cn_api_paddle_linalg_norm>`。
+将计算给定 Tensor 的向量范数。具体用法请参见 :ref:`norm <cn_api_paddle_linalg_norm>`。
 
 
 参数
