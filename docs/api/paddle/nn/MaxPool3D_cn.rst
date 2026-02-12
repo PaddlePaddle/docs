@@ -34,7 +34,7 @@ MaxPool3D
       ``别名：return_indices``
     - **ceil_mode** (bool，可选) - 是否用 ceil 函数计算输出高度和宽度。如果是 True，则使用 `ceil` 计算输出形状的大小。默认为 False。
     - **dilation** (int|list|tuple，可选) - 空洞池化步长，如果 dilation 为 list 或 tuple 类型，其必须包含 3 个整数：[dilation_depth, dilation_height, dilation_width]。若为一个整数，则表示 D、H 和 W 维度上均为该值。默认值：1。
-    - **data_format** (str，可选) - 输入和输出的数据格式，可以是"NCDHW"和"NDHWC"。N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度。默认值："NDCHW"。
+    - **data_format** (str，可选) - 输入和输出的数据格式，可以是"NCDHW"和"NDHWC"。N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度。默认值："NCDHW"。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
