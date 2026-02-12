@@ -4,7 +4,7 @@ MaxPool3D
 -------------------------------
 
 .. py:class:: paddle.nn.MaxPool3D(kernel_size, stride=None, padding=0, return_mask=False, ceil_mode=False, dilation=1, data_format="NCDHW", name=None)
-构建 `MaxPool3D` 类的一个可调用对象，其将构建一个二维最大池化层，根据输入参数 `kernel_size`, `stride`,
+构建 `MaxPool3D` 类的一个可调用对象，其将构建一个三维最大池化层，根据输入参数 `kernel_size`, `stride`,
 `padding` 等参数对输入做最大池化操作。
 
 例如：
