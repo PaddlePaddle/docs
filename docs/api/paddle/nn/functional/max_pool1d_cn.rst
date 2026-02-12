@@ -24,7 +24,7 @@ max_pool1d
     - **return_mask** (bool) - 是否返回最大值的索引，默认为 False。
       ``别名：return_indices``
     - **ceil_mode** (bool) - 是否用 ceil 函数计算输出的 height 和 width，如果设置为 False，则使用 floor 函数来计算，默认为 False。
-      **dilation** (int|list|tuple，可选) - 空洞池化步长，如果 dilation 为 list 或 tuple 类型，其必须包含一个整数。默认值为 1。
+    - **dilation** (int|list|tuple，可选) - 空洞池化步长，如果 dilation 为 list 或 tuple 类型，其必须包含一个整数。默认值为 1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
