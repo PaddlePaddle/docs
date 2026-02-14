@@ -3,11 +3,11 @@
 index_add
 -------------------------------
 
-.. py:function:: paddle.index_add(x, index, axis, value, name=None)
+.. py:function:: paddle.index_add(x, index, axis, value, alpha=1, name=None, *, out=None)
 
 
 
-沿着指定轴 ``axis`` 将 ``index`` 中指定位置的 ``x`` 与 ``value`` 相加，并写入到结果 Tensor 中的对应位置。这里 ``index`` 是一个 ``1-D`` Tensor。除 ``axis`` 轴外，返回的 Tensor 其余维度大小和输入 ``x`` 相等， ``axis`` 维度的大小等于 ``index`` 的大小。
+沿着指定轴 ``axis`` 将 ``index`` 中指定位置的 ``x`` 与 ``value`` 乘以标量 ``alpha`` 的结果相加，并写入到结果 Tensor 中的对应位置。这里 ``index`` 是一个 ``1-D`` Tensor。除 ``axis`` 轴外，返回的 Tensor 其余维度大小和输入 ``x`` 相等， ``axis`` 维度的大小等于 ``index`` 的大小。
 
 **示例**
 
@@ -79,11 +79,13 @@ index_add
 参数
 :::::::::
 
-    - **x** （Tensor）– 输入 Tensor。 ``x`` 的数据类型可以是 float16, float32，float64，int32，int64。
-    - **index** （Tensor）– 包含索引下标的 1-D Tensor。数据类型为 int32 或者 int64。
-    - **axis**    (int) – 索引轴。数据类型为 int。
-    - **value** （Tensor）– 与 ``x`` 相加的 Tensor。 ``value`` 的数据类型同 ``x`` 。
+    - **x** (Tensor) – 输入 Tensor。 ``x`` 的数据类型可以是 float16, float32，float64，int32，int64。
+    - **index** (Tensor) – 包含索引下标的 1-D Tensor。数据类型为 int32 或者 int64。
+    - **axis** (int) – 索引轴。数据类型为 int。
+    - **value** (Tensor) – 与 ``x`` 相加的 Tensor。 ``value`` 的数据类型同 ``x`` 。
+    - **alpha** (float|int，可选) - ``value`` 的缩放因子，数据类型支持 float、int，默认值为 1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 :::::::::
