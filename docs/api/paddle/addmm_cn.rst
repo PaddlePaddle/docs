@@ -23,9 +23,6 @@ addmm
     - **beta** (float，可选) - 乘以 input 的标量，数据类型支持 float，默认值为 1.0。
     - **alpha** (float，可选) - 乘以 x*y 的标量，数据类型支持 float，默认值为 1.0。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-
-关键字参数
-:::::::::
     - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
