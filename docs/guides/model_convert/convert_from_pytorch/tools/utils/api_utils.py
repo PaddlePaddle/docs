@@ -15,6 +15,8 @@ logger = getLogger(__name__)
 def get_url(
     api_name: str, package: str | None = None, disable_warning: bool = False
 ) -> str:
+    return ""
+    # TODO(zhwesky2010): Test get_url stability in different environment, will cause instability now
     try:
         api_name = api_name.replace(r"\_", "_")
         if package is None:
