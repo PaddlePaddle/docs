@@ -87,7 +87,7 @@ Image classification models performance was measured using a single thread. The 
 
 Notes:
 
-* Performance FP32 (images/s) values come from [INT8 MKL-DNN post-training quantization](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/tests/api/int8_mkldnn_quantization.md) document.
+* Performance FP32 (images/s) values come from [INT8 MKL-DNN post-training quantization](./PTQ/README.md) document.
 
 ### NLP models benchmark results
 
