@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.nn.Flatten
-### [torch.nn.Flatten](https://pytorch.org/docs/stable/generated/torch.nn.Flatten.html?highlight=nn+flatten#torch.nn.Flatten)
+### [torch.nn.Flatten](https://docs.pytorch.org/docs/stable/generated/torch.nn.modules.flatten.Flatten.html)
 ```python
 torch.nn.Flatten(start_dim=1,
                 end_dim=-1)
