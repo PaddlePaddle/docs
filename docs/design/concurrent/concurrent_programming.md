@@ -4,7 +4,7 @@ With PaddlePaddle Fluid, users describe a program other than a model.  The progr
 
 Many know that when we program TensorFlow, we can specify the device on which each operator runs.  This allows us to create a concurrent/parallel AI application.   An interesting questions is **how does a `ProgramDesc` represents a concurrent program?**
 
-The answer relies on the fact that a `ProgramDesc` is similar to an abstract syntax tree (AST) that describes a program.  So users just program a concurrent program that they do with any concurrent programming language, e.g., [Go](https://golang.org).
+The answer relies on the fact that a `ProgramDesc` is similar to an abstract syntax tree (AST) that describes a program.  So users just program a concurrent program that they do with any concurrent programming language, e.g., [Go](https://go.dev).
 
 ## An Analogy
 
@@ -190,4 +190,4 @@ From the above example, we see that:
 3. `fluid.run` calls `Executor.Run` to run the first block in the `ProgramDesc` message.
 4. `Executor.Run`'s implementation is extremely simple -- it doesn't plan the execution nor create threads; instead, it runs on the current thread and execute intrinsics/operators' `Run` method sequentially as they appear in the `Block.ops` array.
 5. Intrinsics/operators' `Run` method might create threads.  For example, the `ListenAndDo` operator creates a thread to handle each incoming request.
-6. Threads are not necessarily OS thread; instead, they could be [green threads](https://en.wikipedia.org/wiki/Green_threads) managed by ThreadPool.  Multiple green threads might run on the same OS thread.  An example green threads is Go's [goroutines](https://tour.golang.org/concurrency/1).
+6. Threads are not necessarily OS thread; instead, they could be [green threads](https://en.wikipedia.org/wiki/Green_threads) managed by ThreadPool.  Multiple green threads might run on the same OS thread.  An example green threads is Go's [goroutines](https://go.dev/tour/concurrency/1).
