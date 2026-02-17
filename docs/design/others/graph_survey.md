@@ -80,7 +80,7 @@ Attrs:
 
 The core concept of symbolic API is `Tensor`. TensorFlow defines `Tensor` in Python. Please refer to the comments in TensorFlow:
 
-A `Tensor` is a symbolic handle to one of the outputs of an `Operation`. It does not hold the values of that operation's output, but instead provides a means of computing those values in a TensorFlow [Session](https://www.tensorflow.org/api_docs/python/tf/Session).
+A `Tensor` is a symbolic handle to one of the outputs of an `Operation`. It does not hold the values of that operation's output, but instead provides a means of computing those values in a TensorFlow [Session](https://www.tensorflow.org/api_docs/python/tf/compat/v1/Session).
 
 A simple example is as follows:
 
