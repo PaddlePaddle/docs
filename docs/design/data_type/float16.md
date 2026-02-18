@@ -26,7 +26,7 @@ The goal of float16 is to serve as a key for the executor to find and run the co
 
 ### Libraries
 - [Eigen](https://gitlab.com/libeigen/eigen) >= 3.3 supports float16 calculation on both GPU and CPU using the `Eigen::half` class. It is mostly useful for Nvidia GPUs because of the overloaded arithmetic operators using cuda intrinsics. It falls back to using software emulation on CPU for calculation and there is no special treatment to ARM processors.
-- [ARM compute library](https://github.com/ARM-software/ComputeLibrary) >= 17.02.01 supports NEON FP16 kernels (requires ARMv8.2-A CPU). See also [ARM NEON Intrinsics Reference](https://developer.arm.com/architectures/instruction-sets/intrinsics/).
+- [ARM compute library](https://github.com/ARM-software/ComputeLibrary) >= 17.02.01 supports NEON FP16 kernels (requires ARMv8.2-A CPU).
 
 ### CUDA version issue
 There are currently three versions of CUDA that supports `__half` data type, namely, CUDA 7.5, 8.0, and 9.0.
@@ -112,7 +112,7 @@ Operators including convolution and multiplication (used in fully-connected laye
 
 When these operators are running in float16 mode, the float16 kernel requires those parameter variables to contain weights of Fluid float16 data type. Thus, we need a convenient way to convert the original float weights to float16 weights.
 
-In Fluid, we use tensor to hold actual data for a variable on the c++ end. [Pybind](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/pybind/tensor_py.h) is used to bind c++ tensors of certain data type with numpy array of the corresponding numpy data type on the Python end. Each common c++ built-in data type has a corresponding numpy data type of the same name (see [NumPy Data Types](https://numpy.org/doc/stable/user/basics.types.html)). However, since there is no built-in float16 type in c++, we cannot directly bind numpy float16 data type with the Fluid float16 class. Since both Fluid float16 and numpy float16 use uint16 as the internal data storage type, we use c++ built-in type `uint16_t` and the corresponding numpy uint16 data type to bridge the gap via [Pybind](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/pybind/tensor_py.h).
+In Fluid, we use tensor to hold actual data for a variable on the c++ end. [Pybind](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/pybind/tensor_py.h) is used to bind c++ tensors of certain data type with numpy array of the corresponding numpy data type on the Python end. Each common c++ built-in data type has a corresponding numpy data type of the same name. However, since there is no built-in float16 type in c++, we cannot directly bind numpy float16 data type with the Fluid float16 class. Since both Fluid float16 and numpy float16 use uint16 as the internal data storage type, we use c++ built-in type `uint16_t` and the corresponding numpy uint16 data type to bridge the gap via [Pybind](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/pybind/tensor_py.h).
 
 The following code demonstrates how to do the tensor conversion.
 ```Python
