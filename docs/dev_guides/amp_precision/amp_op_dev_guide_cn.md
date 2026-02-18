@@ -378,4 +378,4 @@ __device__ bool __hisnan ( const __half a )
 
 5、[随机舍入介绍](https://nhigham.com/2020/07/07/what-is-stochastic-rounding/)
 
-6、[Nvidia 半精度接口手册](https://docs.nvidia.com/cuda/cuda-math-api/group__CUDA__MATH____HALF__COMPARISON.html)
+6、[Nvidia 半精度接口手册](https://docs.nvidia.com/cuda/archive/13.0.2/cuda-math-api/cuda_math_api/group__CUDA__MATH__INTRINSIC__HALF.html)
