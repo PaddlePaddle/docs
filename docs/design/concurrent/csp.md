@@ -30,8 +30,8 @@ There were many concurrent programming models, implemented in various forms:
 <td> types and functions in standard libraries </td>
 </tr>
 <tr>
-<td> communicating sequential processes (CSP)  </td>
-<td> Go programming language </td>
+<td> [communicating sequential processes (CSP)](https://www.cs.cmu.edu/~crary/819-f09/Hoare78.pdf)  </td>
+<td> [Go programming language](https://go.dev/tour/concurrency/1) </td>
 </tr>
 <tr>
 <td> actor model  </td>
@@ -59,13 +59,13 @@ A well-known implementation of Actor Model is the Erlang programming language.  
 
 Fluid has two fundamental control-flows: *if-else* and *while*.  If we are to implement CSP, we need the following:
 
-1. a new data type: *channel* and operators *send* and *recv*,
-1. *goroutine* or thread, and
+1. a new data type: [*channel*](https://go.dev/ref/spec#Channel_types) and operators *send* and *recv*,
+1. [*goroutine*](https://go.dev/ref/spec#Go_statements) or thread, and
 1. a new control-flow: select.
 
 We also need Python wrappers for the above components.
 
-The type *channel* is conceptually the blocking queue.  In Go, its implemented is a [blocking circular queue](https://github.com/golang/go/blob/68ce117cf17b8debf5754bfd476345779b5b6616/src/runtime/chan.go#L31-L50), which supports send and recv.
+The type *channel* is conceptually the blocking queue.  In Go, its implemented is a [blocking circular queue](https://github.com/golang/go/blob/master/src/runtime/chan.go#L35-L55), which supports send and recv.
 
 The `select` operation has been in OS kernels long before Go language.  All Unix kernels implement system calls *poll* and *select*.  They monitor multiple file descriptors to see if I/O is possible on any of them.  This takes O(N) time.  Since Linux 2.6, a new system call, *epoll*, can do the same in O(1) time.  In BSD systems, there is a similar system call *kqueue*.  Go's Linux implementation uses epoll.
 
@@ -80,9 +80,9 @@ Fluid supports many data types:
 1. LoD Tensor,
 1. Tensor array, etc
 
-Each data type is registered in the [`framework.proto`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/framework/framework.proto#L117-L127) as an enum value.  To add a new type channel, we need to add a new type enum.
+Each data type is registered in the [`framework.proto`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto#L117-L127) as an enum value.  To add a new type channel, we need to add a new type enum.
 
-To expose a C++ type to Python, we need to edit the [`pybind.cc`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/pybind/pybind.cc) file.  [Here](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/pybind/pybind.cc#L120-L164) is an example how we expose C++ class DenseTensor.
+To expose a C++ type to Python, we need to edit the [`pybind.cc`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/pybind/pybind.cc) file.  [Here](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/pybind/pybind.cc#L120-L164) is an example how we expose C++ class DenseTensor.
 
 ## Syntax Design
 
@@ -158,7 +158,7 @@ There are some [axioms with channels](https://dave.cheney.net/2014/03/19/channel
 
 1. A receive from a closed channel returns the residual values and then zeros.
 
-In Fluid, we have [buffered channels](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/framework/details/buffered_channel.h) and [unbuffered channels](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/framework/details/unbuffered_channel.h)
+In Fluid, we have buffered channels and unbuffered channels.
 
 The following program illustrates the Python syntax for accessing Fluid buffers.
 
