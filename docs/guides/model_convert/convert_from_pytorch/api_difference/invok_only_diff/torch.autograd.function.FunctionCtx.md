@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.autograd.function.FunctionCtx
 
-### [torch.autograd.function.FunctionCtx](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.html#torch.autograd.function.FunctionCtx)
+### [torch.autograd.function.FunctionCtx](https://docs.pytorch.org/docs/stable/autograd.html#torch.autograd.function.FunctionCtx)
 
 ```python
 torch.autograd.function.FunctionCtx(*args, **kwargs)

@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.nn.Unflatten
-### [torch.nn.Unflatten](https://pytorch.org/docs/stable/generated/torch.nn.Unflatten.html?highlight=torch+nn+unflatten#torch.nn.Unflatten)
+### [torch.nn.Unflatten](https://docs.pytorch.org/docs/stable/generated/torch.nn.modules.flatten.Unflatten.html)
 ```python
 torch.nn.Unflatten(dim, unflattened_size)
 ```
