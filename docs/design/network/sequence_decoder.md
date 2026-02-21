@@ -198,7 +198,7 @@ Packing the `selected_generation_scores` will get a `DenseTensor`, and each tail
 
 ## LoD and shape changes during decoding
 <p align="center">
-  <img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/LOD-and-shape-changes-during-decoding.jpg"/>
+  <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/refs/heads/develop/docs/design/network/images/LOD-and-shape-changes-during-decoding.jpg"/>
 </p>
 
 According to the image above, the only phase that changes the LoD is beam search.
