@@ -5,7 +5,7 @@ Optimizer
 ###########
 
 Neural network in essence is a `Optimization problem <https://en.wikipedia.org/wiki/Optimization_problem>`_ .
-With `forward computing and back propagation <https://zh.wikipedia.org/zh-hans/backpropagation_algorithm>`_ ,
+With `forward computing and back propagation <https://zh.wikipedia.org/wiki/%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95>`_ ,
 :code:`Optimizer` use back-propagation gradients to optimize parameters in a neural network.
 
 
