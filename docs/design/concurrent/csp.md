@@ -80,9 +80,9 @@ Fluid supports many data types:
 1. LoD Tensor,
 1. Tensor array, etc
 
-Each data type is registered in the [`framework.proto`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/framework/framework.proto#L117-L127) as an enum value.  To add a new type channel, we need to add a new type enum.
+Each data type is registered in the [`framework.proto`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto) as an enum value.  To add a new type channel, we need to add a new type enum.
 
-To expose a C++ type to Python, we need to edit the [`pybind.cc`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/pybind/pybind.cc) file.  [Here](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/pybind/pybind.cc#L120-L164) is an example how we expose C++ class DenseTensor.
+To expose a C++ type to Python, we need to edit the [`pybind.cc`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/pybind/pybind.cc) file.  [Here](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/pybind/pybind.cc#L120-L164) is an example how we expose C++ class DenseTensor.
 
 ## Syntax Design
 
@@ -158,7 +158,7 @@ There are some [axioms with channels](https://dave.cheney.net/2014/03/19/channel
 
 1. A receive from a closed channel returns the residual values and then zeros.
 
-In Fluid, we have [buffered channels](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/framework/details/buffered_channel.h) and [unbuffered channels](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/framework/details/unbuffered_channel.h)
+In Fluid, we have buffered channels and unbuffered channels.
 
 The following program illustrates the Python syntax for accessing Fluid buffers.
 

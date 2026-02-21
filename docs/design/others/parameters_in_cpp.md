@@ -1,6 +1,6 @@
 # Design Doc: The C++ Class `Parameters`
 
-`Parameters` is a concept we designed in PaddlePaddle V2 API. `Parameters` is a container of parameters, which makes PaddlePaddle capable of  sharing parameter between topologies. We described usages of `Parameter` in [api.md](./api.md).
+`Parameters` is a concept we designed in PaddlePaddle V2 API. `Parameters` is a container of parameters, which makes PaddlePaddle capable of  sharing parameter between topologies. We described usages of `Parameter` in [api.md](../motivation/api.md).
 
 We used Python to implement Parameters when designing V2 API before. There are several defects for the current implementation:
 * We just use `memcpy` to share Parameters between topologies, but this is very inefficient.

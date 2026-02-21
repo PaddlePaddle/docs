@@ -6,7 +6,7 @@
 torch.autograd.function.FunctionCtx.save_for_backward(*tensors)
 ```
 
-### [paddle.autograd.PyLayerContext.save_for_backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext/save_for_backward_cn.html#paddle/autograd/PyLayerContext/save_for_backward_cn#cn-api-paddle-autograd-PyLayerContext-save_for_backward)
+### [paddle.autograd.PyLayerContext.save_for_backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext_cn.html#save-for-backward-tensors)
 
 ```python
 paddle.autograd.PyLayerContext.save_for_backward(*tensors)

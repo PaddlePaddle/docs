@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.autograd.enable_grad
 
-### [torch.autograd.enable_grad](https://pytorch.org/docs/stable/generated/torch.autograd.html#torch.autograd.enable_grad)
+### [torch.autograd.enable_grad](https://docs.pytorch.org/docs/stable/generated/torch.enable_grad.html#torch.enable_grad)
 
 ```python
 torch.autograd.enable_grad(*args, **kwargs)
