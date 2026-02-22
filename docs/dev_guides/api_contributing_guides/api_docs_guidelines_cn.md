@@ -11,7 +11,7 @@
 中文时：
 
     形状:
-          -**input** (Tensor)：形状为（批大小，通道数，高度，宽度），即，NCHW 格式的 4-D Tensor。
+          - **input** (Tensor)：形状为（批大小，通道数，高度，宽度），即，NCHW 格式的 4-D Tensor。
           - **output** (Tensor)：形状为（批大小，卷积核个数，输出图像的高度，输出图像的高度）的 4-D Tensor。
 
 英文时：
@@ -19,6 +19,7 @@
     Shape:
           - input: 4-D tensor with shape: (batch, num_channels, height, width), i.e.: NCHW.
           - output: 4-D tensor with shape: (batch, num_filters, new_height, new_width).
+
 
 ## 典型案例
 
@@ -34,34 +35,35 @@
     def add(x, y, name=None):
         """
 
-    Add two tensors element-wise. The equation is:
+        Add two tensors element-wise. The equation is:
 
-    .. math::
+        .. math::
             out = x + y
 
-    Note:``paddle.add`` supports broadcasting. If you want know more about broadcasting, please refer to :ref:`user_guide_broadcasting`.
+        Note:
+            ``paddle.add`` supports broadcasting. If you want know more about broadcasting, please refer to :ref:`user_guide_broadcasting`.
 
-    Args:
+        Args:
             x (Tensor): The input tensor, it's data type should be float32, float64, int32, int64.
             y (Tensor): The input tensor, it's data type should be float32, float64, int32, int64.
             name (str, optional): For details, please refer to :ref:`api_guide_Name`. Generally, no setting is required. Default: None.
 
-    Returns:
+        Returns:
             N-D Tensor. A location into which the result is stored. It’s dimension equals with :attr:`x`.
 
-    Examples:
+        Examples:
             .. code-block:: pycon
 
-    >>> import paddle
+                >>> import paddle
 
-    >>> x = paddle.to_tensor([2, 3, 4], 'float64')
+                >>> x = paddle.to_tensor([2, 3, 4], 'float64')
                 >>> y = paddle.to_tensor([1, 5, 2], 'float64')
                 >>> z = paddle.add(x, y)
                 >>> print(z)
                 Tensor(shape=[3], dtype=float64, place=Place(cpu), stop_gradient=True,
                 [3., 8., 6.])
 
-    """
+        """
 
 ## 中文模板
 
@@ -77,20 +79,22 @@
     .. math::
         out = x + y
 
-    .. note::``paddle.add`` 遵守广播机制，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting`。
+    .. note::
+       ``paddle.add`` 遵守广播机制，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting`。
     ..
       说明：以上为 API 描述部分，只需要尽可能简单的描述出 API 的功能作用即可，要让用户能快速看懂。这个 case 可以拆解为 3 个部分，功能作用 + 计算公式 + 注解部分。
 
     参数
     :::::::::
-        -**x** (Tensor) - 输入的 Tensor，数据类型为 float32、float64、int32 或 int64。
+        - **x** (Tensor) - 输入的 Tensor，数据类型为 float32、float64、int32 或 int64。
         - **y** (Tensor) - 输入的 Tensor，数据类型为 float32、float64、int32 或 int64。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     ..
       说明：API 参数可优先复制常用文档写法中的参数，参数的描述要准确，还要重点描述参数的功能作用及使用场景。
 
     返回
-    :::::::::``Tensor``，维度和数据类型都与 :attr:`x` 相同，存储运算后的结果。
+    :::::::::
+    ``Tensor``，维度和数据类型都与 :attr:`x` 相同，存储运算后的结果。
     ..
       返回为 返回类型 + 描述的格式即可。
 
@@ -113,7 +117,7 @@
 **如 paddle.add**
 
     .. _cn_api_paddle_add:
-其中`api_label` 是 `cn_api_paddle_add`，但在中文文档中，需要在标签 `cn_api_paddle_add` 的前面加上 `.. _` 、 后面加上 `:` （固定格式）
+其中 `api_label` 是 `cn_api_paddle_add`，但在中文文档中，需要在标签 `cn_api_paddle_add` 的前面加上 `.. _` 、 后面加上 `:` （固定格式）
 
 **api_label 设定规范**：
 
@@ -151,13 +155,16 @@ API 功能描述部分只需要尽可能简单的描述出 API 的功能作用�
 
 - 功能作用：描述该 API 文档的功能作用；**由于用户没有对应的背景**，所以需要补充必要的细节，比如是不是逐元素的，如 `paddle.add`：
 
-  输入 :attr:`x` 与输入 :attr:`y` 逐元素相加，并将各个位置的输出元素保存到返回结果中。
+      输入 :attr:`x` 与输入 :attr:`y` 逐元素相加，并将各个位置的输出元素保存到返回结果中。
+
 - 计算公式：给出该 API 的计算公式，由于公式中每个变量都对应 API 的参数，所以不需要做额外的说明，如 `paddle.add`：
 
-  计算公式为：
+      计算公式为：
 
-  .. math::
-  out = x + y
+      .. math::
+          out = x + y
+
+
 - 注解部分：加入 API 有需要特殊说明的部分，可以在注解部分给出，比如：`该 API 与其他 API 功能相似，需要给出该 API 与另一个 API 的使用上的区别`。
 
 **注意事项**：
@@ -170,10 +177,13 @@ API 功能描述部分只需要尽可能简单的描述出 API 的功能作用�
 
 中文：
 
-    .. note::``paddle.add`` 遵守广播机制，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting`。
+    .. note::
+        ``paddle.add`` 遵守广播机制，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting`。
 英文：
 
-    Note:``paddle.add`` supports broadcasting. If you want know more about broadcasting, please refer to :ref:`user_guide_broadcasting`.
+    Note:
+        ``paddle.add`` supports broadcasting. If you want know more about broadcasting, please refer to :ref:`user_guide_broadcasting`.
+
 
 **总结：paddle.add 的描述如下**
 
@@ -181,7 +191,9 @@ API 功能描述部分只需要尽可能简单的描述出 API 的功能作用�
 
     .. math::
         out = x + y
-    .. note::``paddle.add`` 遵守广播机制，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting`。
+    .. note::
+        ``paddle.add`` 遵守广播机制，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting`。
+
 
 ### API 参数（重要）
 
@@ -189,6 +201,7 @@ API 功能描述部分只需要尽可能简单的描述出 API 的功能作用�
 
 - 一些通用的参数说明，直接复制 [**常用文档写法**](https://github.com/PaddlePaddle/docs/blob/develop/docs/templates/common_docs.py) 中的描述即可。
 - 若当前 API 无参数，则不需要填写该板块。
+
 
 API 参数部分，要解释清楚每个参数的意义和使用场景。需要注意以下两点：
 
@@ -222,9 +235,10 @@ API 参数部分，要解释清楚每个参数的意义和使用场景。需要�
 
     参数
     :::::::::
-        -**x** (Tensor) - 输入的 Tensor，数据类型为 float32、float64、int32 或 int64。
+        - **x** (Tensor) - 输入的 Tensor，数据类型为 float32、float64、int32 或 int64。
         - **y** (Tensor) - 输入的 Tensor，数据类型为 float32、float64、int32 或 int64。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
 
 ### API 返回
 
@@ -251,29 +265,31 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
 
 - `>>> `
 
-  表示单行语句，如：
+    表示单行语句，如：
 
-  ```python
-  >>> import paddle
-  >>> x = paddle.to_tensor([[1, 2], [3, 4]])
-  >>> y = paddle.to_tensor([[5, 6], [7, 8]])
-  >>> res = paddle.multiply(x, y)
-  ```
+    ``` python
+    >>> import paddle
+    >>> x = paddle.to_tensor([[1, 2], [3, 4]])
+    >>> y = paddle.to_tensor([[5, 6], [7, 8]])
+    >>> res = paddle.multiply(x, y)
+    ```
+
 - `... `
 
-  表示多行或复合语句，如：
+    表示多行或复合语句，如：
 
-  ```python
-  >>> from paddle import nn
-  >>> class Mnist(nn.Layer):
-  ...     def __init__(self):
-  ...         super().__init__()
-  ...
-  ```
+    ``` python
+    >>> from paddle import nn
+    >>> class Mnist(nn.Layer):
+    ...     def __init__(self):
+    ...         super().__init__()
+    ...
+    ```
 
 为了保证示例代码的正确性，CI 环境会对其进行检查。
 
 更多关于示例代码的书写规范，请参考 [Python 文档示例代码书写规范](../style_guide_and_references/code_example_writing_specification_cn.md) 。
+
 
 **注意事项**
 
@@ -282,9 +298,10 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
 - 原则上，所有提供的 API 都需要提供示例代码，对于 `class member methods`、`abstract API`、`callback` 等情况，可以在提交 PR 时说明相应的使用方法的文档的位置或文档计划后，通过白名单审核机制通过 CI 检查；
 - 对于仅为 GPU 环境提供的 API，当该示例代码在 CPU 上运行时，运行后给出含有 “Not compiled with CUDA” 的错误提示，也可认为该 API 行为正确。
 
+
 英文 API 代码示例如下：
 
-```python
+``` python
 def api():
     """
     Examples:
@@ -297,7 +314,7 @@ def api():
 
 或者
 
-```python
+``` python
 def api():
     """
     Examples:
@@ -315,7 +332,7 @@ def api():
 
 英文格式如 `paddle.multiply`：
 
-```python
+``` python
 def multiply(x, y, axis=-1, name=None):
     """
     Examples:
@@ -343,7 +360,7 @@ def multiply(x, y, axis=-1, name=None):
 
 中文格式如 `paddle.add`：
 
-```reStructuredText
+``` reStructuredText
 代码示例
 ::::::::::
 
@@ -357,8 +374,9 @@ API 的属性用来描述 API 所包含的属性。如果 API 有属性，每个
 - 名称：属性名称直接写属性的名字即可，不需要将全路径写全；
 - 注意：列举出使用该属性时应注意的一些问题，如果没有可以不填；如不同的版本、是否是只读属性、使用的一些 tricks 等等，如 `Program` 的 `rand_seed`：
 
-  .. note::
-  必须在相关 OP 被添加之前设置。
+        .. note::
+            必须在相关 OP 被添加之前设置。
+
 - 描述：API 功能描述部分要求一致；
 - 返回：API 返回部分要求一致；
 - 代码示例：与 API 代码示例部分要求一致。
@@ -381,6 +399,7 @@ API 的属性用来描述 API 所包含的属性。如果 API 有属性，每个
 
     COPY-FROM: paddle.Program.random_seed
 
+
 ### API 方法
 
 API 的方法用来描述 API 所包含的方法，一些类的 API 会有这个内容，没有方法的 API 可以不写此模块。如果有，每个方法需要分为六个部分描述：
@@ -399,11 +418,11 @@ API 的方法用来描述 API 所包含的方法，一些类的 API 会有这个
 
     .. py:function:: paddle.Program.parse_from_string(binary_str_type)
 
-    通过对 protobuf 的反序列化，转换成``Program``
+    通过对 protobuf 的反序列化，转换成 ``Program``
 
     **参数**
 
-    -**binary_str_type** (str) – protobuf 二进制字符串
+    - **binary_str_type** (str) – protobuf 二进制字符串
 
     **返回**
 
@@ -427,7 +446,7 @@ API 的方法用来描述 API 所包含的方法，一些类的 API 会有这个
 英文：
 
     Note:
-        For multi-card tasks, please use`FLAGS_selected_gpus` environment variable to set the visible GPU device.
+        For multi-card tasks, please use `FLAGS_selected_gpus` environment variable to set the visible GPU device.
         The next version will fix the problem with `CUDA_VISIBLE_DEVICES` environment variable.
 
 **例 2 paddle.sqrt**
@@ -468,7 +487,7 @@ API 的方法用来描述 API 所包含的方法，一些类的 API 会有这个
 英文：
 
     Warning:
-        This API must be used after building network, and before``minimize``,
+        This API must be used after building network, and before ``minimize``,
         and it may be removed in future releases, so it is not recommended.
         It is recommended to set ``grad_clip`` when initializing the ``optimizer``,
         this is a better method to clip gradient. There are three clipping strategies:
