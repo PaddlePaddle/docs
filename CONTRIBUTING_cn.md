@@ -30,7 +30,7 @@ API 文档是飞桨框架的 API 文档，包含了飞桨框架 API 的说明介
 
 ### 应用实践
 
-这部分内容存放于 [docs/practices](https://github.com/PaddlePaddle/docs/tree/develop/docs/practices) 目录下。我们非常欢迎你提交基于飞桨框架的实践案例（以 `.ipynb` notebook 格式），包括但不限于计算机视觉、自然语言处理、推荐系统等方向。提交后会直接呈现在[官网文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/index_cn.html)中。具体贡献方式请参考[文档贡献指南](https://github.com/PaddlePaddle/docs/wiki/%E6%96%87%E6%A1%A3%E8%B4%A1%E7%8C%AE%E6%8C%87%E5%8D%97)。
+这部分内容存放于 [docs/practices](https://github.com/PaddlePaddle/docs/tree/develop/docs/practices) 目录下。我们非常欢迎你提交基于飞桨框架的实践案例（以 `.ipynb` notebook 格式），包括但不限于计算机视觉、自然语言处理、推荐系统等方向。提交后会呈现在官方文档的[应用实践](https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/index_cn.html)中。具体贡献方式请参考[文档贡献指南](https://www.paddlepaddle.org.cn/documentation/docs/zh/dev_guides/docs_contributing_guides_cn.html)。
 
 ### API 文档
 
