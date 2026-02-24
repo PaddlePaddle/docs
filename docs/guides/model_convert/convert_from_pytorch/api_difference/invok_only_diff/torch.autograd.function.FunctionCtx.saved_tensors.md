@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.autograd.function.FunctionCtx.saved_tensors
 
-### [torch.autograd.function.FunctionCtx.saved_tensors](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.html#torch.autograd.function.FunctionCtx.saved_tensors)
+### [torch.autograd.function.FunctionCtx.saved_tensors](https://pytorch.org/docs/stable/autograd.html#torch.autograd.function.FunctionCtx.saved_tensors)
 
 ```python
 torch.autograd.function.FunctionCtx.saved_tensors
