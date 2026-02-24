@@ -46,9 +46,9 @@ paddle.device 目录下包含 cuda 目录和 xpu 目录， cuda 目录中存放 
     " :ref:`is_available <cn_api_paddle_device_is_available>` ", "检查设备是否可用"
     " :ref:`get_rng_state <cn_api_paddle_device_get_rng_state>` ", "获取随机数生成器状态"
     " :ref:`set_rng_state <cn_api_paddle_device_set_rng_state>` ", "设置随机数生成器状态"
-    " :ref:`device <_cn_api_paddle_device_device>` ", "临时使用设备"
+    " :ref:`device <cn_api_paddle_device_device>` ", "临时使用设备"
     " :ref:`get_device_name <cn_api_paddle_device_get_device_name>` ", "返回指定设备的名称"
-    " :ref:`manual_seed <_cn_api_paddle_device_manual_seed>` ", "设置当前设备的随机数种子"
+    " :ref:`manual_seed <cn_api_paddle_device_manual_seed>` ", "设置当前设备的随机数种子"
 .. _cn_device_compile:
 
 编译环境检测

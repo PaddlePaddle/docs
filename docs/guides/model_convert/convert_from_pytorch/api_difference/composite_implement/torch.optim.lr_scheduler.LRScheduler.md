@@ -1,11 +1,11 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.LRScheduler
-### [torch.optim.lr_scheduler.LRScheduler](https://docs.pytorch.org/docs/2.7/generated/torch.optim.lr_scheduler.LRScheduler.html#torch.optim.lr_scheduler.LRScheduler)
+### [torch.optim.lr\_scheduler.LRScheduler](https://docs.pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.LRScheduler.html#torch.optim.lr_scheduler.LRScheduler)
 ```python
 torch.optim.lr_scheduler.LRScheduler(optimizer,
                                 last_epoch=-1)
 ```
 
-### [paddle.optimizer.lr.LRScheduler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/LRScheduler_cn.html#lrscheduler)
+### [paddle.optimizer.lr.LRScheduler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/LRScheduler_cn.html#paddle.optimizer.lr.LRScheduler)
 ```python
 paddle.optimizer.lr.LRScheduler(learning_rate=0.1,
                                 last_epoch=-1,

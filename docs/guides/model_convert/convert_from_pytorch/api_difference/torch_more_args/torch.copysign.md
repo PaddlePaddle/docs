@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.copysign
 
-### [torch.copysign](https://pytorch.org/docs/stable/generated/torch.copysign.html#torch.copysign)
+### [torch.copysign](https://docs.pytorch.org/docs/stable/generated/torch.copysign.html#torch.copysign)
 ```python
 torch.copysign(input,
           other,
@@ -8,7 +8,7 @@ torch.copysign(input,
           out=None)
 ```
 
-### [paddle.copysign](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/copysign_cn.html#copysign)
+### [paddle.copysign](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/copysign_cn.html#paddle.copysign)
 ```python
 paddle.copysign(x, y)
 ```

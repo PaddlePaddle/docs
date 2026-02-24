@@ -1,11 +1,11 @@
 ## [ torch 参数更多 ]torch.linalg.solve_triangular
-### [torch.linalg.solve_triangular](https://pytorch.org/docs/stable/generated/torch.linalg.solve_triangular.html?highlight=torch+linalg+solve_triangular#torch.linalg.solve_triangular)
+### [torch.linalg.solve\_triangular](https://docs.pytorch.org/docs/stable/generated/torch.linalg.solve_triangular.html#torch.linalg.solve_triangular)
 ```python
 # PyTorch 文档有误，测试第一个参数为 input
 torch.linalg.solve_triangular(input, B, *, upper, left=True, unitriangular=False, out=None)
 ```
 
-### [paddle.linalg.triangular_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/triangular_solve_cn.html)
+### [paddle.linalg.triangular\_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/triangular_solve_cn.html#paddle.linalg.triangular_solve)
 ```python
 paddle.linalg.triangular_solve(x, y, upper=True, transpose=False, unitriangular=False, name=None)
 ```

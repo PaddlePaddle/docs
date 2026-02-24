@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.backends.cudnn.is_available
-### [torch.backends.cudnn.is_available](https://pytorch.org/docs/stable/backends.html?highlight=torch+backends+cudnn+is_available#torch.backends.cudnn.is_available)
+### [torch.backends.cudnn.is\_available](https://docs.pytorch.org/docs/stable/backends.html#torch.backends.cudnn.is_available)
 ```python
 torch.backends.cudnn.is_available()
 ```

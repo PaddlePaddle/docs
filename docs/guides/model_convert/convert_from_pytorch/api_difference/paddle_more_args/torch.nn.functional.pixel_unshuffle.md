@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.functional.pixel_unshuffle
-### [torch.nn.functional.pixel_unshuffle](https://pytorch.org/docs/stable/generated/torch.nn.functional.pixel_unshuffle.html?highlight=pixel_unshuffle#torch.nn.functional.pixel_unshuffle)
+### [torch.nn.functional.pixel\_unshuffle](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.pixel_unshuffle.html#torch.nn.functional.pixel_unshuffle)
 ```python
 torch.nn.functional.pixel_unshuffle(input, downscale_factor)
 ```
 
-### [paddle.nn.functional.pixel_unshuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/pixel_unshuffle_cn.html)
+### [paddle.nn.functional.pixel\_unshuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/pixel_unshuffle_cn.html#paddle.nn.functional.pixel_unshuffle)
 ```python
 paddle.nn.functional.pixel_unshuffle(x, downscale_factor, data_format='NCHW', name=None)
 ```

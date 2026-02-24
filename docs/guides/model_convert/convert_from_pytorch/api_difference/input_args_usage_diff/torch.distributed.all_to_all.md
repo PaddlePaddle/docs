@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.distributed.all_to_all
-### [torch.distributed.all_to_all](https://pytorch.org/docs/stable/distributed.html#torch.distributed.all_to_all)
+### [torch.distributed.all\_to\_all](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.all_to_all)
 ```python
 torch.distributed.all_to_all(output_tensor_list, input_tensor_list, group=None, async_op=False)
 ```
 
-### [paddle.distributed.alltoall](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/alltoall_cn.html)
+### [paddle.distributed.alltoall](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/alltoall_cn.html#paddle.distributed.alltoall)
 ```python
 paddle.distributed.alltoall(in_tensor_list, out_tensor_list, group=None, sync_op=True)
 ```

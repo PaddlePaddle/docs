@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.Adagrad
-### [torch.optim.Adagrad](https://pytorch.org/docs/stable/generated/torch.optim.Adagrad.html)
+### [torch.optim.Adagrad](https://docs.pytorch.org/docs/stable/generated/torch.optim.Adagrad.html#torch.optim.Adagrad)
 ```python
 torch.optim.Adagrad(params,
              lr=1e-2,
@@ -14,7 +14,7 @@ torch.optim.Adagrad(params,
              fused=None)
 ```
 
-### [paddle.optimizer.Adagrad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Adagrad_cn.html)
+### [paddle.optimizer.Adagrad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Adagrad_cn.html#paddle.optimizer.Adagrad)
 ```python
 paddle.optimizer.Adagrad(learning_rate,
                           epsilon=1e-06,

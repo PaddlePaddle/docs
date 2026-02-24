@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.hub.help
-### [torch.hub.help](https://pytorch.org/docs/stable/hub.html?highlight=hub+help#torch.hub.help)
+### [torch.hub.help](https://docs.pytorch.org/docs/stable/hub.html#torch.hub.help)
 ```python
 torch.hub.help(github,
                 model,
@@ -8,7 +8,7 @@ torch.hub.help(github,
                 trust_repo=None)
 ```
 
-### [paddle.hub.help](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hub/help_cn.html)
+### [paddle.hub.help](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hub/help_cn.html#paddle.hub.help)
 ```python
 paddle.hub.help(repo_dir,
                 model,

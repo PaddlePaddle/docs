@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.tril_indices
-### [torch.tril_indices](https://pytorch.org/docs/stable/generated/torch.tril_indices.html?highlight=tril_indices#torch.tril_indices)
+### [torch.tril\_indices](https://docs.pytorch.org/docs/stable/generated/torch.tril_indices.html#torch.tril_indices)
 ```python
 torch.tril_indices(row,col,offset=0,*,dtype=torch.long,device='cpu',layout=torch.strided)
 ```
 
-### [paddle.tril_indices](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/tril_indices_cn.html)
+### [paddle.tril\_indices](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/tril_indices_cn.html#paddle.tril_indices)
 ```python
 paddle.tril_indices(row,col,offset=0,dtype='int64')
 ```

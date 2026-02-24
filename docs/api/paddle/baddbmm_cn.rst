@@ -3,10 +3,7 @@
 baddbmm
 -------------------------------
 
-.. py:function:: paddle.baddbmm(input, x, y, beta=1.0, alpha=1.0, out_dtype=None, name=None, out=None)
-
-
-
+.. py:function:: paddle.baddbmm(input, x, y, beta=1.0, alpha=1.0, out_dtype=None, name=None, *, out=None)
 
 计算 x 和 y 的批量矩阵乘积，将结果乘以标量 alpha，再加上 input 与标量 beta 的乘积，得到输出。其中 input 与 x、y 乘积的维度必须是可广播的。
 
@@ -21,7 +18,6 @@ baddbmm
 
 参数
 ::::::::::::
-
     - **input** (Tensor) - 输入 Tensor input，必须是一个 2 维或 3 维张量，数据类型支持 bfloat16、float16、float32、float64。
     - **x** (Tensor) - 输入 Tensor x，必须是一个形状为 [b, n, p] 的 3 维张量，数据类型支持 bfloat16、float16、float32、float64。
       ``别名：batch1``
@@ -31,7 +27,10 @@ baddbmm
     - **alpha** (float，可选) - 乘以 x*y 的标量，数据类型支持 float，默认值为 1.0。
     - **out_dtype** (paddle.dtype, 可选) - 输出数据类型，默认值为 None，表示输出数据类型与输入 input 数据类型一致。支持设置为以下数据类型：float16、bfloat16、float32、float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **out** (Tensor, 可选) - 用于存储输出结果的 Tensor，必须是一个形状为 [b, n, m] 的 3 维张量，默认值为 None。若指定该参数，输出结果将存储在该 Tensor 中。
+
+关键字参数
+:::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 ::::::::::::

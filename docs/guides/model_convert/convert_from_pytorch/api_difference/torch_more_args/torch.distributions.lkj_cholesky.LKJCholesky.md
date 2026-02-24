@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.lkj_cholesky.LKJCholesky
-### [torch.distributions.lkj_cholesky.LKJCholesky](https://pytorch.org/docs/stable/distributions.html#torch.distributions.lkj_cholesky.LKJCholesky)
+### [torch.distributions.lkj\_cholesky.LKJCholesky](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.lkj_cholesky.LKJCholesky)
 ```python
 torch.distributions.lkj_cholesky.LKJCholesky(dim, concentration=1.0, validate_args=None)
 ```
 
-### [paddle.distribution.LKJCholesky](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distribution/LKJCholesky_cn.html)
+### [paddle.distribution.LKJCholesky](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/LKJCholesky_cn.html#paddle.distribution.LKJCholesky)
 ```python
 paddle.distribution.LKJCholesky(dim, concentration=1.0, sample_method='onion')
 ```

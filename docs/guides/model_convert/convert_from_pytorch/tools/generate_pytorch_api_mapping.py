@@ -258,6 +258,7 @@ def generate_api_alias_table(
     """
     # 读取api_alias_mapping.json文件
     api_alias_data = load_mapping_json(api_alias_mapping_path)
+    no_need_convert_list = extract_no_need_convert_list()
 
     rows = []  # 存储表格行数据的列表
     used_apis = set()  # 用于记录已处理的API，避免重复
@@ -268,13 +269,18 @@ def generate_api_alias_table(
         if torch_api in existing_apis:
             continue
 
-        # 在docs_mapping中查找torch_api_alias对应的Paddle API
-        mapping_info = docs_mapping.get(torch_api_alias, {})
-        dst_api = mapping_info.get("dst_api", "-")
-        dst_api_url = mapping_info.get("dst_api_url", "")
-
-        # 获取torch_api的URL
-        src_api_url = docs_mapping.get(torch_api, {}).get("src_api_url", "")
+        if torch_api_alias in no_need_convert_list:
+            if torch_api_alias.startswith("torch."):
+                dst_api = torch_api_alias.replace("torch.", "paddle.", 1)
+            elif torch_api_alias.startswith("transformers."):
+                dst_api = torch_api_alias.replace(
+                    "transformers.", "paddleformers.", 1
+                )
+            else:
+                raise ValueError(f"未知的API前缀: {torch_api_alias}")
+        else:
+            mapping_info = docs_mapping.get(torch_api_alias, {})
+            dst_api = mapping_info.get("paddle_api", "-")
 
         # 构建显示的API名称
         torch_api_display = escape_underscores_in_api(torch_api)
@@ -282,6 +288,7 @@ def generate_api_alias_table(
         dst_api_display = escape_underscores_in_api(dst_api)
 
         # 创建Torch API超链接
+        src_api_url = get_url(torch_api)
         torch_display = (
             f"[{torch_api_display}]({src_api_url})"
             if src_api_url
@@ -289,12 +296,16 @@ def generate_api_alias_table(
         )
 
         # 创建Paddle API超链接
+        dst_api_url = get_url(dst_api) if dst_api != "-" else ""
         paddle_display = (
             f"[{dst_api_display}]({dst_api_url})" if dst_api_url else dst_api
         )
 
-        # 构建备注列，格式为"{torch_api_alias}别名+[差异对比]{url}"
-        remark = f"``{torch_api_alias_display}`` 别名， {get_mapping_doc_url(torch_api_alias, base_dir)}"
+        if torch_api_alias in no_need_convert_list:
+            remark = f"``{torch_api_alias_display}`` 别名，别名 API 在 Paddle 中已有功能一致的实现，请参考：[API 完全一致](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.html#id1)"
+        else:
+            # 构建备注列，格式为"{torch_api_alias}别名+[差异对比](url)"
+            remark = f"``{torch_api_alias_display}`` 别名， {get_mapping_doc_url(torch_api_alias, base_dir)}"
 
         # 添加映射分类列（类别12的中文名称）
         mapping_category = "API 别名"

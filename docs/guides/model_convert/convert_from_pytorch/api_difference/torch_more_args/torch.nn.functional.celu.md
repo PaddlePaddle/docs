@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.celu
-### [torch.nn.functional.celu](https://pytorch.org/docs/stable/generated/torch.nn.functional.celu.html#torch.nn.functional.celu)
+### [torch.nn.functional.celu](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.celu.html#torch.nn.functional.celu)
 ```python
 torch.nn.functional.celu(input, alpha=1.0, inplace=False)
 ```
 
-### [paddle.nn.functional.celu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/celu_cn.html)
+### [paddle.nn.functional.celu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/celu_cn.html#paddle.nn.functional.celu)
 ```python
 paddle.nn.functional.celu(x, alpha=1.0, name=None)
 ```

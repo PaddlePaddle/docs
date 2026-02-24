@@ -1,10 +1,10 @@
 ## [ 返回参数类型不一致 ]torch.histc
-### [torch.histc](https://pytorch.org/docs/stable/generated/torch.histc.html#torch-histc)
+### [torch.histc](https://docs.pytorch.org/docs/stable/generated/torch.histc.html#torch.histc)
 ```python
 torch.histc(input, bins=100, min=0, max=0, *, out=None)
 ```
 
-### [paddle.histogram](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/histogram_cn.html#histogram)
+### [paddle.histogram](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/histogram_cn.html#paddle.histogram)
 ```python
 paddle.histogram(input, bins=100, min=0, max=0, name=None)
 ```

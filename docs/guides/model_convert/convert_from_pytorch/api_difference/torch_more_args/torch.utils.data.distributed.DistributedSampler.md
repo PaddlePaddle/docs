@@ -9,7 +9,7 @@ torch.utils.data.distributed.DistributedSampler(dataset,
                                     drop_last=False)
 ```
 
-### [paddle.io.DistributedBatchSampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/DistributedBatchSampler_cn.html#distributedbatchsampler)
+### [paddle.io.DistributedBatchSampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/DistributedBatchSampler_cn.html#paddle.io.DistributedBatchSampler)
 ```python
 paddle.io.DistributedBatchSampler(dataset=None,
                                     batch_size,

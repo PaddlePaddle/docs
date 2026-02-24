@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.linalg.lstsq
-### [torch.linalg.lstsq](https://pytorch.org/docs/stable/generated/torch.linalg.lstsq.html?highlight=lstsq#torch.linalg.lstsq)
+### [torch.linalg.lstsq](https://docs.pytorch.org/docs/stable/generated/torch.linalg.lstsq.html#torch.linalg.lstsq)
 ```python
 torch.linalg.lstsq(input, b, rcond=None, *, driver=None)
 ```
 
-### [paddle.linalg.lstsq](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lstsq_cn.html)
+### [paddle.linalg.lstsq](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lstsq_cn.html#paddle.linalg.lstsq)
 ```python
 paddle.linalg.lstsq(x, y, rcond=None, driver=None, name=None)
 ```

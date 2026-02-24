@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_lgamma
-### [torch.\_foreach_lgamma](https://pytorch.org/docs/stable/generated/torch._foreach_lgamma.html#torch-foreach-lgamma)
+### [torch.\_foreach\_lgamma](https://docs.pytorch.org/docs/stable/generated/torch._foreach_lgamma.html#torch._foreach_lgamma)
 ```python
 torch._foreach_lgamma(self)
 ```

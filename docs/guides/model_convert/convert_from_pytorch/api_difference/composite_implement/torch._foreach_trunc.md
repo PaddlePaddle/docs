@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_trunc
-### [torch.\_foreach_trunc](https://pytorch.org/docs/stable/generated/torch._foreach_trunc.html#torch-foreach-trunc)
+### [torch.\_foreach\_trunc](https://docs.pytorch.org/docs/stable/generated/torch._foreach_trunc.html#torch._foreach_trunc)
 ```python
 torch._foreach_trunc(self)
 ```

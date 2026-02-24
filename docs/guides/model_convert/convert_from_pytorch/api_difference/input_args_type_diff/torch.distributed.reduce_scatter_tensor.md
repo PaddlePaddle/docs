@@ -4,7 +4,7 @@
 torch.distributed.reduce_scatter_tensor(output, input, op=<RedOpType.SUM: 0>, group=None, async_op=False)
 ```
 
-### [paddle.distributed.reduce_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/reduce_scatter_cn.html#reduce-scatter)
+### [paddle.distributed.reduce\_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/reduce_scatter_cn.html#paddle.distributed.reduce_scatter)
 ```python
 paddle.distributed.reduce_scatter(tensor, tensor_list, op=ReduceOp.SUM, group=None, sync_op=True)
 ```

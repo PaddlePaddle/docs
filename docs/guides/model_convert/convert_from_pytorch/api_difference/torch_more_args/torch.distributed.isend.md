@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributed.isend
-### [torch.distributed.isend](https://pytorch.org/docs/stable/distributed.html#torch.distributed.isend)
+### [torch.distributed.isend](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.isend)
 ```python
 torch.distributed.isend(tensor, dst, group=None, tag=0)
 ```
 
-### [paddle.distributed.isend](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/isend_cn.html)
+### [paddle.distributed.isend](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/isend_cn.html#paddle.distributed.isend)
 ```python
 paddle.distributed.isend(tensor, dst=0, group=None)
 ```

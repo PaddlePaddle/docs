@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.special.erf
-### [torch.special.erf](https://pytorch.org/docs/stable/special.html?highlight=torch+special+erf#torch.special.erf)
+### [torch.special.erf](https://docs.pytorch.org/docs/stable/special.html#torch.special.erf)
 ```python
 torch.special.erf(input,
                   *,
                   out=None)
 ```
 
-### [paddle.erf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/erf_cn.html)
+### [paddle.erf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/erf_cn.html#paddle.erf)
 ```python
 paddle.erf(x,
           name=None)

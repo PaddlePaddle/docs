@@ -1,6 +1,6 @@
 ## [ paddle 参数更多 ]torch.nn.functional.upsample
 
-### [torch.nn.functional.upsample](https://pytorch.org/docs/stable/generated/torch.nn.functional.upsample.html?highlight=upsample#torch.nn.functional.upsample)
+### [torch.nn.functional.upsample](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.upsample.html#torch.nn.functional.upsample)
 
 ```python
 torch.nn.functional.upsample(input,
@@ -10,7 +10,7 @@ torch.nn.functional.upsample(input,
                         align_corners=None)
 ```
 
-### [paddle.nn.functional.upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/upsample_cn.html#upsample)
+### [paddle.nn.functional.upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/upsample_cn.html#paddle.nn.functional.upsample)
 ```python
 paddle.nn.functional.upsample(x,
                         size=None,

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.cuda.comm.broadcast
-### [torch.cuda.comm.broadcast](https://pytorch.org/docs/stable/generated/torch.cuda.comm.broadcast.html#torch.cuda.comm.broadcast)
+### [torch.cuda.comm.broadcast](https://docs.pytorch.org/docs/stable/generated/torch.cuda.comm.broadcast.html#torch.cuda.comm.broadcast)
 ```python
 torch.cuda.comm.broadcast(tensor, devices=None, *, out=None)
 ```
 
-### [paddle.distributed.broadcast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/broadcast_cn.html)
+### [paddle.distributed.broadcast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/broadcast_cn.html#paddle.distributed.broadcast)
 ```python
 paddle.distributed.broadcast(tensor, src, group=None, sync_op=True)
 ```

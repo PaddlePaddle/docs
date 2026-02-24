@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.LPPool1d
-### [torch.nn.LPPool1d](https://pytorch.org/docs/stable/generated/torch.nn.LPPool1d.html#lppool1d)
+### [torch.nn.LPPool1d](https://docs.pytorch.org/docs/stable/generated/torch.nn.LPPool1d.html#torch.nn.LPPool1d)
 ```python
 torch.nn.LPPool1d(norm_type, kernel_size, stride=None, ceil_mode=False)
 ```
 
-### [paddle.nn.LPPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LPPool1D_cn.html#lppool1d)
+### [paddle.nn.LPPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LPPool1D_cn.html#paddle.nn.LPPool1D)
 ```python
 paddle.nn.LPPool1D(norm_type, kernel_size, stride=None, padding=0, ceil_mode=False, data_format='NCL', name=None)
 ```

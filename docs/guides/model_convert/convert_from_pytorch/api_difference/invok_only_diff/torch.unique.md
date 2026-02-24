@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.unique
 
-### [torch.unique](https://docs.pytorch.org/docs/stable/generated/torch.unique.html)
+### [torch.unique](https://docs.pytorch.org/docs/stable/generated/torch.unique.html#torch.unique)
 
 ```python
 torch.unique(input, sorted=True, return_inverse=False, return_counts=False, dim=None)

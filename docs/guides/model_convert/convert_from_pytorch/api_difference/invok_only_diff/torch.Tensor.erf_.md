@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.erf_
 
-### [torch.Tensor.erf_](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.erf_)
+### [torch.Tensor.erf\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.erf_.html#torch.Tensor.erf_)
 
 ```python
 torch.Tensor.erf_()
 ```
 
-### [paddle.erf_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/erf__cn.html#paddle/erf__cn#cn-api-paddle-erf_)
+### [paddle.erf\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/erf__cn.html#paddle.erf_)
 
 ```python
 paddle.erf_(x, name=None)

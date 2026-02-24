@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.special.exp2
-### [torch.special.exp2](https://pytorch.org/docs/stable/special.html#torch.special.exp2)
+### [torch.special.exp2](https://docs.pytorch.org/docs/stable/special.html#torch.special.exp2)
 ```python
 torch.special.exp2(input, *, out=None)
 ```

@@ -9,7 +9,7 @@ conv2d_transpose
 
 
 
-二维转置卷积层（Convlution2D transpose layer）
+二维转置卷积层（Convolution2D transpose layer）
 
 该层根据输入（input）、滤波器（filter）和卷积核膨胀比例（dilations）、步长（stride）、填充（padding）来计算输出特征层大小或者通过 output_size 指定输出特征层大小。
 

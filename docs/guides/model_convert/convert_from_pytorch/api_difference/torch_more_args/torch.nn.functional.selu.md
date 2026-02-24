@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.selu
-### [torch.nn.functional.selu](https://pytorch.org/docs/stable/generated/torch.nn.functional.selu.html#torch.nn.functional.selu)
+### [torch.nn.functional.selu](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.selu.html#torch.nn.functional.selu)
 ```python
 torch.nn.functional.selu(input, inplace=False)
 ```
 
-### [paddle.nn.functional.selu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/selu_cn.html)
+### [paddle.nn.functional.selu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/selu_cn.html#paddle.nn.functional.selu)
 ```python
 paddle.nn.functional.selu(x, scale=1.0507009873554804934193349852946, alpha=1.6732632423543772848170429916717, name=None)
 ```

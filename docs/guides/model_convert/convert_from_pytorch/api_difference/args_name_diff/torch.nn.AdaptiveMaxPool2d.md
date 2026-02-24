@@ -1,11 +1,11 @@
 ## [ 仅参数名不一致 ]torch.nn.AdaptiveMaxPool2d
-### [torch.nn.AdaptiveMaxPool2d](https://pytorch.org/docs/stable/generated/torch.nn.AdaptiveMaxPool2d.html?highlight=adaptivemaxpool2d#torch.nn.AdaptiveMaxPool2d)
+### [torch.nn.AdaptiveMaxPool2d](https://docs.pytorch.org/docs/stable/generated/torch.nn.AdaptiveMaxPool2d.html#torch.nn.AdaptiveMaxPool2d)
 ```python
 torch.nn.AdaptiveMaxPool2d(output_size,
                            return_indices=False)
 ```
 
-### [paddle.nn.AdaptiveMaxPool2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/AdaptiveMaxPool2D_cn.html#adaptivemaxpool2d)
+### [paddle.nn.AdaptiveMaxPool2D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/AdaptiveMaxPool2D_cn.html#paddle.nn.AdaptiveMaxPool2D)
 ```python
 paddle.nn.AdaptiveMaxPool2D(output_size,
                             return_mask=False,

@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_frac_
-### [torch.\_foreach_frac_](https://pytorch.org/docs/stable/generated/torch._foreach_frac_.html#torch-foreach-frac)
+### [torch.\_foreach\_frac\_](https://docs.pytorch.org/docs/stable/generated/torch._foreach_frac_.html#torch._foreach_frac_)
 ```python
 torch._foreach_frac_(self)
 ```

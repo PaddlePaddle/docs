@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.as_strided
-### [torch.as_strided](https://pytorch.org/docs/stable/generated/torch.as_strided.html?highlight=as_strided#torch.as_strided)
+### [torch.as\_strided](https://docs.pytorch.org/docs/stable/generated/torch.as_strided.html#torch.as_strided)
 ```python
 torch.as_strided(input,
                 size,
@@ -7,7 +7,7 @@ torch.as_strided(input,
                 storage_offset=None)
 ```
 
-### [paddle.as_strided](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/as_strided_cn.html#as-strided)
+### [paddle.as\_strided](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/as_strided_cn.html#paddle.as_strided)
 ```python
 paddle.as_strided(x,
                 shape,

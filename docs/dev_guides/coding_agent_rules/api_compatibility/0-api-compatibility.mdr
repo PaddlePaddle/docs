@@ -8,7 +8,7 @@ alwaysApply: false
 
 你是《Paddle API对齐PyTorch项目》的**主控智能体**，负责统筹全流程的工作，调用多个子智能体，最终完成输入的所有API对齐。
 
-## 核心职责
+**核心职责**：
 1. 接收待对齐的Pytorch API列表
 2. 为对应的Paddle API决策改动方案
 3. 执行具体的Paddle API修改
@@ -70,7 +70,7 @@ torch.logsumexp
 |Paddle API兼容性单测位置|`test_api_compatibility.py`|Paddle/test/legacy_test/test_api_compatibility.py||
 |Pytorch API单测位置|`test_{api_name}.py`|PaConvert/tests/|PaConvert/tests/test_tan.py||
 
-## 4.2 Paddle API架构（5层调用栈）
+## 4.3 Paddle API架构（5层调用栈）
 
 Paddle API从上到下由5层组成（本项目直接修改第1、5层，对于第2~4层通常是修改yaml配置文件，例如python_api_info.yaml）：
 
@@ -100,7 +100,7 @@ Tensor atan(const Tensor& x, ...)
 void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 ```
 
-## 4.3 专业术语表
+## 4.4 专业术语表
 
 | 术语 | 定义 | 备注 |
 |------|------|------|
@@ -116,23 +116,87 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 | API差异文档 | 中文描述了Pytorch API与Paddle API两者的行为差异 | 位于docs/docs/guides/model_convert/convert_from_pytorch/api_difference/下的一级子目录，命名类似torch.tan.md |
 | compat类型API | 兼容性API | 为保持后向兼容而添加的API，能实现除API相对引用路径之外的完全对齐，实现之后差异分类将成为『仅API调用方式不一致』|
 
+## 4.5 类方法API实现原理
+
+**概念说明**：
+- 注意要区分**类方法API**和**普通API**，两者是不同的API，不要混为一谈
+- **类方法API**（如`torch.Tensor.abs`）：`torch.Tensor`类方法
+- **普通API**（如`torch.abs`）：普通方法
+
+Paddle的Tensor类方法通过**patch机制**实现，即将普通方法动态添加到`paddle.Tensor`（即`core.eager.Tensor`）类上成为类方法。
+
+**实现机制**（参考`Paddle/python/paddle/base/dygraph/math_op_patch.py`）：
+
+```python
+# 从paddle.tensor模块获取方法定义
+import paddle.tensor
+
+# 将普通方法patch到core.eager.Tensor类上
+for method_name in paddle.tensor.tensor_method_func:
+    if hasattr(core.eager.Tensor, method_name):
+        continue
+    method_impl = getattr(paddle.tensor, method_name, None)
+    if method_impl:
+        setattr(core.eager.Tensor, method_name, method_impl)
+```
+
+**查找类方法实现时的注意事项**：
+- ✅ **正确做法**：直接搜索对应的普通方法实现，如搜索`def abs(`或`def atan(`
+- ❌ **错误做法**：不要搜索`class Tensor`或在Tensor类定义中查找方法
+- 原因：Tensor类方法是通过`setattr`动态添加的，不在类定义的源码中直接体现
+
+## 4.6 Inplace API实现原理
+
+**概念说明**：
+- 注意要区分**inplace API**和**非inplace API**，两者是不同的API，不要混为一谈
+- **inplace API**（如`torch.abs_`）：原地操作，直接修改输入Tensor，其不应有out参数，如有out需删除
+- **非inplace API**（如`torch.abs`）：返回新Tensor，不修改输入Tensor
+- Inplace API无需测试静态图，只需测试动态图
+
+**示例对比**：
+```python
+y = paddle.abs(x)  # 非inplace：返回新Tensor，x不变
+x.abs_()           # inplace：原地修改x
+```
+
+**自动生成机制**：
+Paddle支持自动生成inplace API，无需在`ops.yaml`中单独配置。当定义了`inplace: (x -> out)`字段后，系统自动生成对应的inplace版本，复用原API的Kernel实现。
+
+**配置示例**：
+1. **OP配置**（`ops.yaml`，第10-22行）：
+```yaml
+- op : abs
+  args : (Tensor x)
+  output : Tensor(out)
+  inplace: (x -> out)  # 关键字段：指定x和out可以in-place
+  backward : abs_grad
+```
+
+2. **Python API配置**（`python_api_info.yaml`，第6-9行）：
+   - ⚠️ **仅在C++下沉（方案2）时需要配置**
+```yaml
+- op : abs_
+  name : [paddle.abs_, paddle.Tensor.abs_]
+  args_alias :
+    use_default_mapping : True
+```
 
 # 五、代码修改规范
 
-## 1. 代码注释规范
-- ✅ 改动的位置如果方便注释，可以注释`# Edit by AI Agent`，表明这是你完成的工作
+## 5.1 代码注释规范
+- ✅ 改动位置如果方便注释，可以注释`# Edit by AI Agent`，表明这是你完成的工作
 
-## 2. 代码质量规范
+## 5.2 代码质量规范
 - ✅ 保持代码风格与项目一致
 - ✅ 不破坏现有功能
 - ✅ 确保向后兼容性
 
-## 3. 测试规范
+## 5.3 测试规范
 - ✅ 修改后必须通过原有测试
 - ✅ 必须添加新的单元测试
 - ✅ 必须通过PyTorch对齐验证
 
-## 4. 文档规范
+## 5.4 文档规范
 - ✅ 同步更新中文文档
 - ✅ 文档格式符合Paddle规范
 - ✅ 准确描述API功能和参数
@@ -146,6 +210,36 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 输入API列表 → Step1:所有API方案决策 → Step2:所有API代码修改 → Step3:所有API对齐验证 → Step4:所有API文档更新 → 全部完成（流程全自动推进，不用询问）
 ```
 
+具体如下：
+### Step 1：方案决策
+    Step 1.1: 分析差异文档
+    Step 1.2: 方案决策
+
+### Step 2：代码修改
+#### Python装饰器方案
+    Step 2.1: 差异分析与选择装饰器
+    Step 2.2: 应用或开发装饰器
+    Step 2.3: 添加out参数支持
+    Step 2.4: 更新函数文档字符串
+    Step 2.5: 添加测试用例
+    Step 2.6: 编译并运行
+#### C++下沉方案
+    Step 2.1: 配置python_api_info.yaml
+    Step 2.2: 迁移文档到_paddle_docs.py
+    Step 2.3: 替换Python实现
+    Step 2.4: 添加测试用例
+    Step 2.5: 编译并运行
+
+### Step 3：对齐验证
+    Step 3.1: 标记已对齐的API
+    Step 3.2: 补充测试用例
+    Step 3.3: 运行单元测试
+
+### Step 4：文档更新
+    Step 4.1: 获取代码变更信息
+    Step 4.2: 更新API中文文档
+    Step 4.3: 删除API差异文档
+
 **执行逻辑**：
 1. 接收用户输入的待对齐API列表（如：`torch.argmax`, `torch.log2`, `torch.logsumexp`）
 2. **批量处理模式**：按Step顺序依次执行，每个Step处理完所有API后才进入下一个Step
@@ -155,7 +249,7 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
    - Step4：对**所有API**更新文档
 3. **流程推进的豁免与放弃条件**：
    - **豁免条件**（跳过后续步骤，但记录决策结果）：
-     * 非方案2：若决策不为方案2，则该API跳过后续Step2~4，无需自行处理
+     * 若决策不为方案1/2，则该API跳过后续Step2~4，无需自行处理
    - **放弃策略**（合理分配精力，最大化成功率）：
      * **放弃判断标准**：
        - 当某个API在Step2或Step3经过多次尝试（建议3次）仍无法通过验证
@@ -179,7 +273,7 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 
 **执行步骤**：
 1. 输入：需要对齐的PyTorch API列表（如 `torch.atan`、`torch.asinh`）
-2. 调用 `API改动方案决策智能体`
+2. 严格执行1-scheme-decision.mdr，如果你找不到该文件，请直接结束会话，并告知我异常
 3. 输出：方案类型、对应Paddle API、差异分类、决策依据
 
 **方案类型**：
@@ -197,7 +291,7 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 **执行步骤**：
 1. 输入：方案类型、对应Paddle API（如 `paddle.atan`、`paddle.asinh`）、差异分类、决策依据
 2. 根据方案类型，调用对应的子智能体，每个子智能体批量处理其所负责的API：
-   - 方案1 → `Python装饰器智能体`（豁免）
+   - 方案1 → `Python装饰器智能体`
    - 方案2 → `Cpp下沉智能体`
    - 方案3 → `修改API智能体`（豁免）
    - 方案4 → `新增API智能体`（豁免）
@@ -234,8 +328,6 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 
 ## 6.3 重要约束 ⚠️
 
-### 执行原则
-
 1. **流程正向推进原则**
    - 正常情况下必须遵循 Step1 → Step2 → Step3 → Step4 的顺序
    - 每个步骤完成并验证通过后，才能进入下一步骤
@@ -270,11 +362,15 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 
 | 序号 | 智能体名称 | 负责步骤 | 主要职责 | 对应方案 |
 |------|-----------|---------|---------|---------|
-| 1 | **API改动方案决策智能体** | Step 1 | 通过API差异分析，决策API的兼容修改方案 | - |
-| 2 | **Python装饰器智能体**(暂未实现) | Step 2 | 通过装饰器对齐参数签名 | 方案1：Python装饰器 |
-| 3 | **Cpp下沉智能体** | Step 2 | 将API从Python层下沉到C++层 | 方案2：C++下沉 |
-| 4 | **修改API智能体**(暂未实现) | Step 2 | 修改现有API实现 | 方案3：修改API方案 |
-| 5 | **新增API智能体**(暂未实现) | Step 2 | 新增缺失的API | 方案4：新增API方案 |
-| 6 | **新增compat类型API智能体**(暂未实现) | Step 2 | 添加兼容性API | 方案5：新增compat方案 |
-| 7 | **Pytorch对齐验证智能体** | Step 3 | 验证修改后的Paddle API能与PyTorch API完全对齐 | - |
-| 8 | **API文档修改智能体** | Step 4 | 更新Paddle API中文文档 | - |
+| 1 | **Python装饰器智能体** | Step 2 | 通过装饰器对齐参数签名 | 方案1：Python装饰器 |
+| 2 | **Cpp下沉智能体** | Step 2 | 将API从Python层下沉到C++层 | 方案2：C++下沉 |
+| 3 | **修改API智能体**(暂未实现) | Step 2 | 修改现有API实现 | 方案3：修改API方案 |
+| 4 | **新增API智能体**(暂未实现) | Step 2 | 新增缺失的API | 方案4：新增API方案 |
+| 5 | **新增compat类型API智能体**(暂未实现) | Step 2 | 添加兼容性API | 方案5：新增compat方案 |
+| 6 | **Pytorch对齐验证智能体** | Step 3 | 验证修改后的Paddle API能与PyTorch API完全对齐 | - |
+| 7 | **API文档修改智能体** | Step 4 | 更新Paddle API中文文档 | - |
+
+
+# 八、注意事项
+1. 复盘记忆中的历史易错点，避免重复犯错
+2. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤

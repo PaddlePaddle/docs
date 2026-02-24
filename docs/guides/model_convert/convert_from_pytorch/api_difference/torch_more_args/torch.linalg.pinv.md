@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.linalg.pinv
-### [torch.linalg.pinv](https://pytorch.org/docs/stable/generated/torch.linalg.pinv.html#torch.linalg.pinv)
+### [torch.linalg.pinv](https://docs.pytorch.org/docs/stable/generated/torch.linalg.pinv.html#torch.linalg.pinv)
 ```python
 torch.linalg.pinv(input, *, atol=None, rtol=None, hermitian=False, out=None)
 ```
 
-### [paddle.linalg.pinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/pinv_cn.html)
+### [paddle.linalg.pinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/pinv_cn.html#paddle.linalg.pinv)
 ```python
 paddle.linalg.pinv(x, rcond=1e-15, hermitian=False, name=None)
 ```

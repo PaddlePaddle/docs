@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.addbmm_
-### [torch.Tensor.addbmm_](https://pytorch.org/docs/stable/generated/torch.Tensor.addbmm_.html#torch.Tensor.addbmm_)
+### [torch.Tensor.addbmm\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.addbmm_.html#torch.Tensor.addbmm_)
 ```python
 torch.Tensor.addbmm_(batch1, batch2, *, beta=1, alpha=1)
 ```

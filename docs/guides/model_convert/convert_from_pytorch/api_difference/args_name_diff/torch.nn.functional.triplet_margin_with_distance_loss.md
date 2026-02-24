@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.triplet_margin_with_distance_loss
-### [torch.nn.functional.triplet_margin_with_distance_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.triplet_margin_with_distance_loss.html?highlight=triplet_margin_with_distance_loss#torch.nn.functional.triplet_margin_with_distance_loss)
+### [torch.nn.functional.triplet\_margin\_with\_distance\_loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.triplet_margin_with_distance_loss.html#torch.nn.functional.triplet_margin_with_distance_loss)
 ```python
 torch.nn.functional.triplet_margin_with_distance_loss(anchor,
                             positive,
@@ -10,7 +10,7 @@ torch.nn.functional.triplet_margin_with_distance_loss(anchor,
                             reduction='mean')
 ```
 
-### [paddle.nn.functional.triplet_margin_with_distance_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/triplet_margin_with_distance_loss_cn.html)
+### [paddle.nn.functional.triplet\_margin\_with\_distance\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/triplet_margin_with_distance_loss_cn.html#paddle.nn.functional.triplet_margin_with_distance_loss)
 ```python
 paddle.nn.functional.triplet_margin_with_distance_loss(input,
                             positive,

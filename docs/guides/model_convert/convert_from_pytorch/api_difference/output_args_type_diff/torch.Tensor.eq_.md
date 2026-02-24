@@ -1,5 +1,5 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.eq_
-### [torch.Tensor.eq_](https://pytorch.org/docs/stable/generated/torch.Tensor.eq_.html)
+### [torch.Tensor.eq\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.eq_.html#torch.Tensor.eq_)
 ```python
 torch.Tensor.eq_(other)
 ```

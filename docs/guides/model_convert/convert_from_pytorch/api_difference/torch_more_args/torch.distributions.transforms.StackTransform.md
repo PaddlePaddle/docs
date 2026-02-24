@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.transforms.StackTransform
-### [torch.distributions.transforms.StackTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.StackTransform)
+### [torch.distributions.transforms.StackTransform](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.StackTransform)
 ```python
 torch.distributions.transforms.StackTransform(tseq, dim=0, cache_size=0)
 ```
 
-### [paddle.distribution.StackTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/StackTransform_cn.html)
+### [paddle.distribution.StackTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/StackTransform_cn.html#paddle.distribution.StackTransform)
 ```python
 paddle.distribution.StackTransform(transforms, axis=0)
 ```

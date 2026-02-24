@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.cuda.initial_seed
-### [torch.cuda.initial_seed](https://pytorch.org/docs/stable/generated/torch.cuda.initial_seed.html?highlight=torch+cuda+initial_seed#torch.cuda.initial_seed)
+### [torch.cuda.initial\_seed](https://docs.pytorch.org/docs/stable/generated/torch.cuda.initial_seed.html#torch.cuda.initial_seed)
 ```python
 torch.cuda.initial_seed()
 ```

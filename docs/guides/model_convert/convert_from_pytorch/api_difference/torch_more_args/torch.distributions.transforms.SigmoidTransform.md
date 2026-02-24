@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.transforms.SigmoidTransform
-### [torch.distributions.transforms.SigmoidTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.SigmoidTransform)
+### [torch.distributions.transforms.SigmoidTransform](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.SigmoidTransform)
 ```python
 torch.distributions.transforms.SigmoidTransform(cache_size=0)
 ```
 
-### [paddle.distribution.SigmoidTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/SigmoidTransform_cn.html#sigmoidtransform)
+### [paddle.distribution.SigmoidTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/SigmoidTransform_cn.html#paddle.distribution.SigmoidTransform)
 ```python
 paddle.distribution.SigmoidTransform()
 ```

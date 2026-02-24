@@ -1,10 +1,10 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.slogdet
-### [torch.Tensor.slogdet](https://pytorch.org/docs/stable/generated/torch.Tensor.slogdet.html)
+### [torch.Tensor.slogdet](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.slogdet.html#torch.Tensor.slogdet)
 ```python
 torch.Tensor.slogdet()
 ```
 
-### [paddle.linalg.slogdet](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/slogdet_cn.html#slogdet)
+### [paddle.linalg.slogdet](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/slogdet_cn.html#paddle.linalg.slogdet)
 ```python
 paddle.linalg.slogdet(x)
 ```

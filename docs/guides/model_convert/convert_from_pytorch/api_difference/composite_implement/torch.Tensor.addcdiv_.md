@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.addcdiv_
-### [torch.Tensor.addcdiv_](https://pytorch.org/docs/stable/generated/torch.Tensor.addcdiv_.html#torch.Tensor.addcdiv_)
+### [torch.Tensor.addcdiv\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.addcdiv_.html#torch.Tensor.addcdiv_)
 ```python
 torch.Tensor.addcdiv_(tensor1, tensor2, *, value=1)
 ```

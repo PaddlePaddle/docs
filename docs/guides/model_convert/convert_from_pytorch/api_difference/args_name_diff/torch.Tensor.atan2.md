@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.atan2
-### [torch.Tensor.atan2](https://pytorch.org/docs/stable/generated/torch.atan2.html#torch.atan2)
+### [torch.Tensor.atan2](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.atan2.html#torch.Tensor.atan2)
 ```python
 torch.Tensor.atan2(other)
 ```

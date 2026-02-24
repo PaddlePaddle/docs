@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.Tensor.bernoulli_
-### [torch.Tensor.bernoulli_](https://pytorch.org/docs/stable/generated/torch.Tensor.bernoulli_.html#torch.Tensor.bernoulli_)
+### [torch.Tensor.bernoulli\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.bernoulli_.html#torch.Tensor.bernoulli_)
 ```python
 torch.Tensor.bernoulli_(p=0.5, *, generator=None)
 ```
 
-### [paddle.Tensor.bernoulli_](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/tensor.py)
+### [paddle.Tensor.bernoulli\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#bernoulli-p-0-5-name-none)
 ```python
 paddle.Tensor.bernoulli_(p=0.5, name=None)
 ```

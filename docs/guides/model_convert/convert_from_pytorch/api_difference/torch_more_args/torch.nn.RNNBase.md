@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.RNNBase
-### [torch.nn.RNNBase](https://pytorch.org/docs/stable/generated/torch.nn.RNNBase.html#torch.nn.RNNBase)
+### [torch.nn.RNNBase](https://docs.pytorch.org/docs/stable/generated/torch.nn.RNNBase.html#torch.nn.RNNBase)
 ```python
 torch.nn.RNNBase(mode: str, input_size: int, hidden_size: int,
                  num_layers: int = 1, bias: bool = True, batch_first: bool = False,

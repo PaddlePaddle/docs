@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.min
 
-### [torch.min](https://pytorch.org/docs/stable/generated/torch.min.html)
+### [torch.min](https://docs.pytorch.org/docs/stable/generated/torch.min.html#torch.min)
 
 ```python
 torch.min(*args, **kwargs)
 ```
 
-### [paddle.compat.min](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/min_cn.html#paddle/compat/min_cn#cn-api-paddle-compat-min)
+### [paddle.compat.min](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/min_cn.html#id3)
 
 ```python
 paddle.compat.min(*args, **kwargs)

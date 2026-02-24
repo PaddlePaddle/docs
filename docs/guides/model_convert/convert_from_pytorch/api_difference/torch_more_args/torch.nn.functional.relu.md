@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.relu
-### [torch.nn.functional.relu](https://pytorch.org/docs/stable/generated/torch.nn.functional.relu.html#torch.nn.functional.relu)
+### [torch.nn.functional.relu](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.relu.html#torch.nn.functional.relu)
 ```python
 torch.nn.functional.relu(input, inplace=False)
 ```
 
-### [paddle.nn.functional.relu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/relu_cn.html)
+### [paddle.nn.functional.relu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/relu_cn.html#paddle.nn.functional.relu)
 ```python
 paddle.nn.functional.relu(x, name=None)
 ```

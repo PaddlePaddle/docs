@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.distributions.binomial.Binomial
-### [torch.distributions.binomial.Binomial](https://pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial)
+### [torch.distributions.binomial.Binomial](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.binomial.Binomial)
 ```python
 torch.distributions.binomial.Binomial(total_count=1,
                              probs=None,
@@ -7,7 +7,7 @@ torch.distributions.binomial.Binomial(total_count=1,
                              validate_args=None)
 ```
 
-### [paddle.distribution.Binomial](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/distribution/Binomial_cn.html#binomial)
+### [paddle.distribution.Binomial](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Binomial_cn.html#paddle.distribution.Binomial)
 ```python
 paddle.distribution.Binomial(total_count,
                              probs)

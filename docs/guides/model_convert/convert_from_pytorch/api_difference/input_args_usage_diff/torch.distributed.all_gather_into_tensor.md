@@ -5,7 +5,7 @@ torch.distributed.all_gather_into_tensor(output_tensor, input_tensor, group=None
 
 ```
 
-### [paddle.distributed.all_gather](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/all_gather_cn.html#all-gather)
+### [paddle.distributed.all\_gather](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/all_gather_cn.html#paddle.distributed.all_gather)
 ```python
 paddle.distributed.all_gather(tensor_list, tensor, group=None, sync_op=True)
 ```

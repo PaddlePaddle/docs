@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.numel
 
-### [torch.numel](https://pytorch.org/docs/stable/generated/torch.numel.html)
+### [torch.numel](https://docs.pytorch.org/docs/stable/generated/torch.numel.html#torch.numel)
 
 ```python
 torch.numel(input)

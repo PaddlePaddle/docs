@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.meshgrid
-### [torch.meshgrid](https://pytorch.org/docs/stable/generated/torch.meshgrid.html?highlight=meshgrid#torch.meshgrid)
+### [torch.meshgrid](https://docs.pytorch.org/docs/stable/generated/torch.meshgrid.html#torch.meshgrid)
 ```python
 torch.meshgrid(*tensors, indexing=None)
 ```
 
-### [paddle.meshgrid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/meshgrid_cn.html#meshgrid)
+### [paddle.meshgrid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/meshgrid_cn.html#paddle.meshgrid)
 ```python
 paddle.meshgrid(*args, **kargs)
 ```

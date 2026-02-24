@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.addr
-### [torch.addr](https://pytorch.org/docs/stable/generated/torch.addr.html?highlight=addr#torch.addr)
+### [torch.addr](https://docs.pytorch.org/docs/stable/generated/torch.addr.html#torch.addr)
 ```python
 torch.addr(input, vec1, vec2, beta=1, alpha=1, out=None)
 ```

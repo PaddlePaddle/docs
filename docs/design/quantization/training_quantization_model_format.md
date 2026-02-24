@@ -56,7 +56,7 @@ fake_quantize_moving_average_abs_max {
 <img src="./dequant_formula.png" height=108 width=860 hspace='10'/> <br />
 </p>
 
-根据[量化训练的原理](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/tutorial.md#1-quantization-aware-training%E9%87%8F%E5%8C%96%E4%BB%8B%E7%BB%8D)可知，`fake_dequantize_abs_max` op 主要通过公式 1-3-1 进行反量化操作。在实现中，`fake_dequantize_abs_max` op 将激活 scale 作为 Variable（Tensor）进行输入（$X_{scale}$），将公式 1-3-1 中关于 scale 的剩余部分作为 max\_range 属性(即公式 1-3-2)。`fake_dequantize_abs_max` op 的整体描述如下：
+根据[量化训练的原理](https://github.com/PaddlePaddle/PaddleSlim/blob/develop/docs/zh_cn/tutorials/quant/quant_aware_training.md)可知，`fake_dequantize_abs_max` op 主要通过公式 1-3-1 进行反量化操作。在实现中，`fake_dequantize_abs_max` op 将激活 scale 作为 Variable（Tensor）进行输入（$X_{scale}$），将公式 1-3-1 中关于 scale 的剩余部分作为 max\_range 属性(即公式 1-3-2)。`fake_dequantize_abs_max` op 的整体描述如下：
 
 ```
 fake_dequantize_abs_max {

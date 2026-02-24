@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.special.multigammaln
-### [torch.special.multigammaln](https://pytorch.org/docs/stable/special.html#torch.special.multigammaln)
+### [torch.special.multigammaln](https://docs.pytorch.org/docs/stable/special.html#torch.special.multigammaln)
 ```python
 torch.special.multigammaln(input, p, *, out=None)
 ```
 
-### [paddle.multigammaln](https://github.com/PaddlePaddle/Paddle/blob/be090bd0bc9ac7a8595296c316b3a6ed3dc60ba6/python/paddle/tensor/math.py#L5099)
+### [paddle.multigammaln](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/multigammaln_cn.html#paddle.multigammaln)
 ```python
 paddle.multigammaln(x, p, name=None)
 ```

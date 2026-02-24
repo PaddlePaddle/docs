@@ -4,7 +4,7 @@
 torchvision.models.Inception3(num_classes: int = 1000, aux_logits: bool = True, transform_input: bool = False, inception_blocks: Optional[list[Callable[..., nn.Module]]] = None, init_weights: Optional[bool] = None, dropout: float = 0.5)
 ```
 
-### [paddle.vision.models.InceptionV3](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/models/InceptionV3_cn.html)
+### [paddle.vision.models.InceptionV3](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/models/InceptionV3_cn.html#paddle.vision.models.InceptionV3)
 ```python
 paddle.vision.models.InceptionV3(num_classes: int = 1000, with_pool: bool = True)
 ```

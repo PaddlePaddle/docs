@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.categorical.Categorical
-### [torch.distributions.categorical.Categorical](https://pytorch.org/docs/stable/distributions.html#torch.distributions.categorical.Categorical)
+### [torch.distributions.categorical.Categorical](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.categorical.Categorical)
 ```python
 torch.distributions.categorical.Categorical(probs=None, logits=None, validate_args=None)
 ```
 
-### [paddle.distribution.Categorical](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Categorical_cn.html)
+### [paddle.distribution.Categorical](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Categorical_cn.html#paddle.distribution.Categorical)
 ```python
 paddle.distribution.Categorical(logits, name=None)
 ```

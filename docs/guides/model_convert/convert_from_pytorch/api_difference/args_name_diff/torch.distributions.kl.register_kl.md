@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.distributions.kl.register_kl
-### [torch.distributions.kl.register_kl](https://pytorch.org/docs/stable/distributions.html?highlight=register_kl#torch.distributions.kl.register_kl)
+### [torch.distributions.kl.register\_kl](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.kl.register_kl)
 ```python
 torch.distributions.kl.register_kl(type_p, type_q)
 ```
 
-### [paddle.distribution.register_kl](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/register_kl_cn.html)
+### [paddle.distribution.register\_kl](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/register_kl_cn.html#paddle.distribution.register_kl)
 ```python
 paddle.distribution.register_kl(cls_p, cls_q)
 ```

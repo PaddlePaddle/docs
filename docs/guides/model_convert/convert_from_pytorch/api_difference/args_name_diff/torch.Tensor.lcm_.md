@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.lcm_
-### [torch.Tensor.lcm_](https://pytorch.org/docs/stable/generated/torch.Tensor.lcm_.html)
+### [torch.Tensor.lcm\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.lcm_.html#torch.Tensor.lcm_)
 ```python
 torch.Tensor.lcm_(other)
 ```

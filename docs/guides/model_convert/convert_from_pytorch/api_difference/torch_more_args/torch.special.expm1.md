@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.special.expm1
-### [torch.special.expm1](https://pytorch.org/docs/stable/special.html#torch.special.expm1)
+### [torch.special.expm1](https://docs.pytorch.org/docs/stable/special.html#torch.special.expm1)
 ```python
 torch.special.expm1(input,
                 *,
                 out=None)
 ```
 
-### [paddle.expm1](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/expm1_cn.html)
+### [paddle.expm1](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/expm1_cn.html#paddle.expm1)
 ```python
 paddle.expm1(x,
         name=None)

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.log_softmax
-### [torch.nn.functional.log_softmax](https://pytorch.org/docs/stable/generated/torch.nn.functional.log_softmax.html#torch.nn.functional.log_softmax)
+### [torch.nn.functional.log\_softmax](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.log_softmax.html#torch.nn.functional.log_softmax)
 ```python
 torch.nn.functional.log_softmax(input, dim=None, _stacklevel=3, dtype=None)
 ```
 
-### [paddle.nn.functional.log_softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/log_softmax_cn.html)
+### [paddle.nn.functional.log\_softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/log_softmax_cn.html#paddle.nn.functional.log_softmax)
 ```python
 paddle.nn.functional.log_softmax(x, axis=- 1, dtype=None, name=None)
 ```

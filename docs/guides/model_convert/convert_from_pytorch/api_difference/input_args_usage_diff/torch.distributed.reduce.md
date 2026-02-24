@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.distributed.reduce
-### [torch.distributed.reduce](https://pytorch.org/docs/stable/distributed.html#torch.distributed.reduce)
+### [torch.distributed.reduce](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.reduce)
 ```python
 torch.distributed.reduce(tensor, dst, op=<RedOpType.SUM: 0>, group=None, async_op=False)
 ```
 
-### [paddle.distributed.reduce](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/reduce_cn.html)
+### [paddle.distributed.reduce](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/reduce_cn.html#paddle.distributed.reduce)
 ```python
 paddle.distributed.reduce(tensor, dst, op=ReduceOp.SUM, group=None, sync_op=True)
 ```

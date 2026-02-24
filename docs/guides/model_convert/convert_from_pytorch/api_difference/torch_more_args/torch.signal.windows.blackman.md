@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.signal.windows.blackman
-### [torch.signal.windows.blackman](https://pytorch.org/docs/stable/generated/torch.signal.windows.blackman.html)
+### [torch.signal.windows.blackman](https://docs.pytorch.org/docs/stable/generated/torch.signal.windows.blackman.html#torch.signal.windows.blackman)
 ```python
 torch.signal.windows.blackman(M, *, sym=True, dtype=None, layout=torch.strided, device=None, requires_grad=False)
 ```
 
-### [paddle.audio.functional.get_window](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/audio/functional/get_window_cn.html#get-window)
+### [paddle.audio.functional.get\_window](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/audio/functional/get_window_cn.html#paddle.audio.functional.get_window)
 ```python
 paddle.audio.functional.get_window(window, win_length, fftbins=True, dtype='float64')
 ```

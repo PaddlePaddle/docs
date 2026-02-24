@@ -15,17 +15,18 @@ alwaysApply: false
 请严格按以下Step依次执行，不要自行修改或跳过Step：
 
 ## Step 1: 标记已对齐的API
-**目的：** 将已对齐的 PyTorch API 全部添加到白名单。注意torch.atan与torch.Tensor.atan是不同API。
+**目的：** 将已对齐的 PyTorch API 的Matcher设置为`ChangePrefixMatcher`。
 
-**操作Step：**
-1. 定位文件：`PaConvert/paconvert/global_var.py`
-2. 找到 `NO_NEED_CONVERT_LIST` 列表（约在第80行附近）
-3. 在列表中添加已对齐的 PyTorch API 完整路径，例如：
+> 注意torch.atan与torch.Tensor.atan是两个不同API。
+
+**操作步骤：**
+1. 定位文件：`PaConvert/paconvert/api_mapping.json`
+2. 找到已对齐的Pytorch API的key
+3. 将该Pytorch API配置为`ChangePrefixMatcher`，其他字段全部清理掉，例如：
    ```python
-   # Edit by AI Agent (放到该行下面)
-   "torch.complex",
-   "torch.atan",
-   "torch.asinh",
+    "torch.cdist": {
+        "Matcher": "ChangePrefixMatcher"
+    }
    ```
 
 ## Step 2: 补充测试用例
@@ -71,7 +72,7 @@ from apibase import APIBase
 obj = APIBase("torch.target_api")
 
 def test_case_1():
-    """基础用法"""
+    """Basic usage"""
     pytorch_code = textwrap.dedent("""
         import torch
         result = torch.target_api(torch.tensor([1, 2, 3]))
@@ -79,7 +80,7 @@ def test_case_1():
     obj.run(pytorch_code, ["result"])
 
 def test_case_2():
-    """位置参数测试"""
+    """Positional arguments test"""
     pytorch_code = textwrap.dedent("""
         import torch
         x = torch.tensor([1.0, 2.0])
@@ -88,7 +89,7 @@ def test_case_2():
     obj.run(pytorch_code, ["result"])
 
 def test_case_3():
-    """关键字参数测试"""
+    """Keyword arguments test"""
     pytorch_code = textwrap.dedent("""
         import torch
         x = torch.tensor([1.0, 2.0])
@@ -97,7 +98,7 @@ def test_case_3():
     obj.run(pytorch_code, ["result"])
 
 def test_case_4():
-    """关键字参数乱序测试"""
+    """Keyword arguments out of order test"""
     pytorch_code = textwrap.dedent("""
         import torch
         x = torch.tensor([1.0, 2.0])
@@ -106,7 +107,7 @@ def test_case_4():
     obj.run(pytorch_code, ["result"])
 
 def test_case_5():
-    """梯度计算测试"""
+    """Gradient computation test"""
     pytorch_code = textwrap.dedent("""
         import torch
         x = torch.tensor([1., 2.], requires_grad=True)
@@ -114,12 +115,11 @@ def test_case_5():
         y.sum().backward()
         x_grad = x.grad
     """)
-    # 跳过梯度属性检查，因为Paddle的grad.stop_gradient行为与PyTorch不一致，框架机制问题可忽略
+    # Skip gradient attribute check because Paddle's stop_gradient mechanism differs from PyTorch's requires_grad mechanism at the framework level.
     obj.run(pytorch_code, ["y", "x_grad"], check_stop_gradient=False)
 
-
 def test_case_6():
-    """边界条件测试"""
+    """Edge case test"""
     pytorch_code = textwrap.dedent("""
         import torch
         result = torch.target_api(torch.empty(0))
@@ -127,7 +127,7 @@ def test_case_6():
     obj.run(pytorch_code, ["result"])
 
 def test_case_7():
-    """表达式参数测试"""
+    """Expression argument test"""
     pytorch_code = textwrap.dedent("""
         import torch
         result = torch.target_api(torch.tensor([1, 2, 3]), 1 + 1)
@@ -167,42 +167,52 @@ class CustomAPIBase(APIBase):
 ```
 
 ## Step 3: 运行单元测试
-**目的：** 在补充完测试用例后，确保能通过所有用例，运行通过则表明完全对齐一致
 
-**操作Step：**
+在补充完测试用例后，确保能通过所有用例，请按以下命令验证执行（不可修改）：
+
 1. 本地执行以下命令：
    ```bash
    cd /workspace/PaConvert/
    python -m pytest tests/test_<API名称>.py
    ```
-2. 确保所有测试用例通过
+2. 根据报错信息修改代码，确保所有测试用例通过
 
+注意：每次修改 Paddle 源码后，必须重新编译方可生效。
+```bash
+cd /workspace/Paddle/build
+cmake ..
+make -j$(nproc)
+```
 
 # 三、异常处理
 
+## 3.1 异常处理策略
+
 在 PyTorch 对齐验证过程中，需要对不同异常情况进行分类处理。以下是异常处理策略：
 
-## 1. PyTorch 代码执行失败
+### PyTorch 代码执行失败
 - **错误标识**：`Failed to execute pytorch code`
 - **根本原因**：PyTorch 单元测试代码存在问题，无法正常执行
 - **处理策略**：修改 PyTorch 单元测试代码，确保能正确执行 Pytorch 代码
 - **验证标准**：测试代码应该能够在标准的 PyTorch 环境中正常运行
 
-## 2. Paddle 代码执行失败
+### Paddle 代码执行失败
 - **错误标识**：`Failed to execute paddle code`
 - **根本原因**：Pytorch单测正确，但修改后的 Paddle API 实现存在问题，导致代码无法执行
 - **处理策略**：需要返回到前序Step修改，因此结束本Step，将报错信息返回给主控智能体分析
 - **关联任务**：Paddle API需要进一步修改以兼容 PyTorch 接口
 
-## 3. 计算结果不一致
+### 计算结果不一致
 - **错误标识**：`Unable to align results`
 - **根本原因**：Pytorch单测正确，但Paddle API 与 PyTorch API 计算结果存在差异
 - **处理策略**：需要返回到前序Step修改，因此结束本Step，将报错信息返回给主控智能体分析
 - **验证要求**：Paddle API需要进一步修改以兼容 PyTorch 接口，确保数值精度、数据类型、形状等完全一致
 
 
-**常见问题处理：**
-- 如果 Paddle 不支持类型提升或标量输入（已知问题），可以禁用对应测试用例，其他情况不允许禁用单测：
+## 3.2 常见错误及解决方案
+
+### Paddle不支持类型提升
+- 如果报错是因为 Paddle 不支持类型提升或标量输入（已知问题），可以禁用对应测试用例，其他情况不允许禁用单测：
   ```python
   # 将 def test_case_x(): 改为 def _test_case_x():
   # 并添加注释说明原因

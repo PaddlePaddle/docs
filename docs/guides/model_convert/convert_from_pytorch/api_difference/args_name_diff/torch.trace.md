@@ -1,9 +1,9 @@
 ## [ 仅参数名不一致 ]torch.trace
-### [torch.trace](https://pytorch.org/docs/stable/generated/torch.trace.html?highlight=trace#torch.trace)
+### [torch.trace](https://docs.pytorch.org/docs/stable/generated/torch.trace.html#torch.trace)
 ```python
 torch.trace(input)
 ```
-### [paddle.trace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/trace_cn.html)
+### [paddle.trace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/trace_cn.html#paddle.trace)
 ```python
 paddle.trace(x,
              offset=0,

@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.quantile
-### [torch.Tensor.quantile](https://pytorch.org/docs/stable/generated/torch.Tensor.quantile.html#torch.Tensor.quantile)
+### [torch.Tensor.quantile](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.quantile.html#torch.Tensor.quantile)
 ```python
 torch.Tensor.quantile(q, dim=None, keepdim=False, *, interpolation='linear')
 ```
 
-### [paddle.Tensor.quantile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#quantile-q-axis-none-keepdim-false-name-none)
+### [paddle.Tensor.quantile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#quantile-q-axis-none-keepdim-false-interpolation-linear-name-none)
 ```python
 paddle.Tensor.quantile(q, axis=None, keepdim=False, interpolation='linear', name=None)
 ```

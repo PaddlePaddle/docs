@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.functional.group_norm
-### [torch.nn.functional.group_norm](https://pytorch.org/docs/stable/generated/torch.nn.functional.group_norm.html#torch.nn.functional.group_norm)
+### [torch.nn.functional.group\_norm](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.group_norm.html#torch.nn.functional.group_norm)
 ```python
 torch.nn.functional.group_norm(input, num_groups, weight=None, bias=None, eps=1e-05)
 ```
 
-### [paddle.nn.functional.group_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/group_norm_cn.html#group-norm)
+### [paddle.nn.functional.group\_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/group_norm_cn.html#id0)
 ```python
 paddle.nn.functional.group_norm(x, num_groups, epsilon=1e-05, weight=None, bias=None, data_format='NCHW', name=None)
 ```

@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.cpu.amp.autocast
-### [torch.cpu.amp.autocast](https://pytorch.org/docs/stable/amp.html?highlight=autocast#torch.cpu.amp.autocast)
+### [torch.cpu.amp.autocast](https://docs.pytorch.org/docs/stable/amp.html#torch.cpu.amp.autocast)
 ```python
 torch.cpu.amp.autocast(enabled=True, dtype=torch.bfloat16, cache_enabled=True)
 ```
 
-### [paddle.amp.auto_cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/auto_cast_cn.html)
+### [paddle.amp.auto\_cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/auto_cast_cn.html#paddle.amp.auto_cast)
 ```python
 paddle.amp.auto_cast(enable=True, custom_white_list=None, custom_black_list=None, level='O1', dtype='float16', use_promote=True)
 ```

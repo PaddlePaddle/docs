@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torchvision.ops.RoIAlign
-### [torchvision.ops.RoIAlign](https://pytorch.org/vision/main/generated/torchvision.ops.RoIAlign.html)
+### [torchvision.ops.RoIAlign](https://pytorch.org/vision/stable/generated/torchvision.ops.RoIAlign.html#torchvision.ops.RoIAlign)
 ```python
 torchvision.ops.RoIAlign(output_size: None, spatial_scale: float, sampling_ratio: int, aligned: bool = False)
 ```
 
-### [paddle.vision.ops.RoIAlign](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/ops/RoIAlign_cn.html)
+### [paddle.vision.ops.RoIAlign](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/ops/RoIAlign_cn.html#paddle.vision.ops.RoIAlign)
 ```python
 paddle.vision.ops.RoIAlign(output_size, spatial_scale=1.0)
 ```

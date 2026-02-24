@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torchvision.models.shufflenet_v2_x1_5
-### [torchvision.models.shufflenet_v2_x1_5](https://pytorch.org/vision/main/models/generated/torchvision.models.shufflenet_v2_x1_5.html)
+### [torchvision.models.shufflenet\_v2\_x1\_5](https://pytorch.org/vision/stable/models/generated/torchvision.models.shufflenet_v2_x1_5.html#torchvision.models.shufflenet_v2_x1_5)
 ```python
 torchvision.models.shufflenet_v2_x1_5(pretrained: bool = False, progress: bool = True, *, weights: Optional[ShuffleNet_V2_X1_5_Weights] = None, **kwargs: Any)
 ```
 
-### [paddle.vision.models.shufflenet_v2_x1_5](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/models/shufflenet_v2_x1_5_cn.html)
+### [paddle.vision.models.shufflenet\_v2\_x1\_5](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/models/shufflenet_v2_x1_5_cn.html#paddle.vision.models.shufflenet_v2_x1_5)
 ```python
 paddle.vision.models.shufflenet_v2_x1_5(pretrained=False, **kwargs)
 ```
@@ -15,9 +15,9 @@ paddle.vision.models.shufflenet_v2_x1_5(pretrained=False, **kwargs)
 
 | torchvision | PaddlePaddle | 备注 |
 | ----------- | ------------ | ---- |
-| weights     | pretrained   | 预训练权重，PyTorch 参数 weights 为 ShuffleNet_V2_X1_5_Weights 枚举类或 String 类型，Paddle 参数 pretrained 为 bool 类型，需要转写。|
 | pretrained  | pretrained            | 是否加载预训练权重。torchvision 在 0.13+ 弃用此参数。|
 | progress    | -            | 是否显示下载进度条，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
+| weights     | pretrained   | 预训练权重，PyTorch 参数 weights 为 ShuffleNet_V2_X1_5_Weights 枚举类或 String 类型，Paddle 参数 pretrained 为 bool 类型，需要转写。|
 | **kwargs      | **kwargs       | 附加的关键字参数。|
 
 ### 转写示例

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.poisson_nll_loss
-### [torch.nn.functional.poisson\_nll\_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.poisson_nll_loss.html)
+### [torch.nn.functional.poisson\_nll\_loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.poisson_nll_loss.html#torch.nn.functional.poisson_nll_loss)
 ```python
 torch.nn.functional.poisson_nll_loss(input, target, log_input=True, full=False, size_average=None, eps=1e-08, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.functional.poisson\_nll\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/poisson_nll_loss_cn.html#poisson-nll-loss)
+### [paddle.nn.functional.poisson\_nll\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/poisson_nll_loss_cn.html#paddle.nn.functional.poisson_nll_loss)
 ```python
 paddle.nn.functional.poisson_nll_loss(input, label, log_input=True, full=False, epsilon=1e-8, reduction='mean', name=None)
 ```

@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_tan_
-### [torch.\_foreach_tan_](https://pytorch.org/docs/stable/generated/torch._foreach_tan_.html#torch-foreach-tan)
+### [torch.\_foreach\_tan\_](https://docs.pytorch.org/docs/stable/generated/torch._foreach_tan_.html#torch._foreach_tan_)
 ```python
 torch._foreach_tan_(self)
 ```

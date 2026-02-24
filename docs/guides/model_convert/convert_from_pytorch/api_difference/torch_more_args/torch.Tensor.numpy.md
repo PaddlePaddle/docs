@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.Tensor.numpy
-### [torch.Tensor.numpy](https://pytorch.org/docs/stable/generated/torch.Tensor.numpy.html?highlight=numpy#torch.Tensor.numpy)
+### [torch.Tensor.numpy](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.numpy.html#torch.Tensor.numpy)
 ```python
 torch.Tensor.numpy(*, force=False)
 ```
 
-### [paddle.Tensor.numpy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#numpy)
+### [paddle.Tensor.numpy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#numpy)
 ```python
 paddle.Tensor.numpy()
 ```

@@ -19,8 +19,8 @@ paddle.distributed.fleet.meta_parallel.VocabParallelEmbedding(num_embeddings, em
 | padding_idx                  | -              | 填充数值，Paddle 无此参数，暂无转写方式。 |
 | max_norm                     | -              | 范数大于 maxnorm 的数值被设置为 maxnorm, Paddle 无此参数，暂无转写方式。 |
 | norm_type                    | -              | 设置 p 范数，Paddle 无此参数，暂无转写方式。 |
-| sparse                       | -              | 是否为稀疏向量，Paddle 无此参数，暂无转写方式。 |
 | scale_grad_by_freq           | -              | 是否根据 batch 内单词的频数的倒数缩放梯度，Paddle 无此参数，暂无转写方式。|
+| sparse                       | -              | 是否为稀疏向量，Paddle 无此参数，暂无转写方式。 |
 | init_method                  | -              | 参数初始化方法，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | keep_master_weight_for_test  | -              | 返回主参数用于测试，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | -                            | mp_group       | 模型并行组，PyTorch 无此参数，Paddle 保持默认即可。 |

@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.select
-### [torch.select](https://pytorch.org/docs/stable/generated/torch.select.html#torch.select)
+### [torch.select](https://docs.pytorch.org/docs/stable/generated/torch.select.html#torch.select)
 ```python
 torch.select(input, dim, index)
 ```

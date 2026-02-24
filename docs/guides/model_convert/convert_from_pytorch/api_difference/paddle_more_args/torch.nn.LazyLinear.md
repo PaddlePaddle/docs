@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.LazyLinear
-### [torch.nn.LazyLinear](https://pytorch.org/docs/stable/generated/torch.nn.LazyLinear.html)
+### [torch.nn.LazyLinear](https://docs.pytorch.org/docs/stable/generated/torch.nn.LazyLinear.html#torch.nn.LazyLinear)
 ```python
 torch.nn.LazyLinear(out_features, bias=True, device=None, dtype=None)
 ```
 
-### [paddle.nn.Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Linear_cn.html#linear)
+### [paddle.nn.Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Linear_cn.html#paddle.nn.Linear)
 ```python
 paddle.nn.Linear(in_features,
                  out_features,

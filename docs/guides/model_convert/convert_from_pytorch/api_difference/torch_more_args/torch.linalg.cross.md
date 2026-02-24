@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.linalg.cross
-### [torch.linalg.cross](https://pytorch.org/docs/stable/generated/torch.linalg.cross.html?highlight=torch+linalg+cross#torch.linalg.cross)
+### [torch.linalg.cross](https://docs.pytorch.org/docs/stable/generated/torch.linalg.cross.html#torch.linalg.cross)
 ```python
 torch.linalg.cross(input, other, *, dim=- 1, out=None)
 ```
 
-### [paddle.cross](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cross_cn.html)
+### [paddle.cross](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cross_cn.html#paddle.cross)
 ```python
 paddle.cross(x, y, axis=None, name=None)
 ```

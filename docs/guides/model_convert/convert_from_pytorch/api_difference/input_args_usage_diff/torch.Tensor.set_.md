@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.Tensor.set_
-### [torch.Tensor.set_](https://pytorch.org/docs/stable/generated/torch.Tensor.set_.html)
+### [torch.Tensor.set\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.set_.html#torch.Tensor.set_)
 ```python
 torch.Tensor.set_(source=None, storage_offset=0, size=None, stride=None)
 ```
 
-### [paddle.Tensor.set_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#set-source-none-shape-none-stride-none-offset-0-name-none)
+### [paddle.Tensor.set\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#set-source-none-shape-none-stride-none-offset-0-name-none)
 ```python
 paddle.Tensor.set_(source=None, shape=None, stride=None, offset=0, name=None)
 ```

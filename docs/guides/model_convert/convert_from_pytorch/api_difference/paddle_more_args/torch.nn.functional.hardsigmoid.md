@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.functional.hardsigmoid
-### [torch.nn.functional.hardsigmoid](https://pytorch.org/docs/stable/generated/torch.nn.functional.hardsigmoid.html)
+### [torch.nn.functional.hardsigmoid](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.hardsigmoid.html#torch.nn.functional.hardsigmoid)
 ```python
 torch.nn.functional.hardsigmoid(input, inplace=False)
 ```
 
-### [paddle.nn.functional.hardsigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/hardsigmoid_cn.html#hardsigmoid)
+### [paddle.nn.functional.hardsigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/hardsigmoid_cn.html#paddle.nn.functional.hardsigmoid)
 ```python
 paddle.nn.functional.hardsigmoid(x, slope=0.1666667, offset=0.5, name=None)
 ```

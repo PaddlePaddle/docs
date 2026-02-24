@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.lgamma
-### [torch.lgamma](https://pytorch.org/docs/stable/generated/torch.lgamma.html?highlight=lgamma#torch.lgamma)
+### [torch.lgamma](https://docs.pytorch.org/docs/stable/generated/torch.lgamma.html#torch.lgamma)
 ```python
 torch.lgamma(input,
               *,
               out=None)
 ```
 
-### [paddle.lgamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/lgamma_cn.html#lgamma)
+### [paddle.lgamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/lgamma_cn.html#paddle.lgamma)
 ```python
 paddle.lgamma(x
               , name=None)

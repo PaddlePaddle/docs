@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torchvision.datasets.ImageFolder
-### [torchvision.datasets.ImageFolder](https://pytorch.org/vision/main/generated/torchvision.datasets.ImageFolder.html)
+### [torchvision.datasets.ImageFolder](https://pytorch.org/vision/stable/generated/torchvision.datasets.ImageFolder.html#torchvision.datasets.ImageFolder)
 ```python
 torchvision.datasets.ImageFolder(root: Union[str, pathlib.Path],
                                  transform: Optional[Callable] = None,
@@ -9,7 +9,7 @@ torchvision.datasets.ImageFolder(root: Union[str, pathlib.Path],
                                  allow_empty: bool = False)
 ```
 
-### [paddle.vision.datasets.ImageFolder](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/ImageFolder_cn.html)
+### [paddle.vision.datasets.ImageFolder](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/datasets/ImageFolder_cn.html#paddle.vision.datasets.ImageFolder)
 ```python
 paddle.vision.datasets.ImageFolder(root: str,
                                    loader: Optional[Callable] = None,

@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.KLDivLoss
-### [torch.nn.KLDivLoss](https://pytorch.org/docs/stable/generated/torch.nn.KLDivLoss.html?highlight=kldivloss#torch.nn.KLDivLoss)
+### [torch.nn.KLDivLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.KLDivLoss.html#torch.nn.KLDivLoss)
 ```python
 torch.nn.KLDivLoss(size_average=None,
                    reduce=None,
@@ -7,7 +7,7 @@ torch.nn.KLDivLoss(size_average=None,
                    log_target=False)
 ```
 
-### [paddle.nn.KLDivLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/KLDivLoss_cn.html#kldivloss)
+### [paddle.nn.KLDivLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/KLDivLoss_cn.html#paddle.nn.KLDivLoss)
 ```python
 paddle.nn.KLDivLoss(reduction='mean',
                     log_target=False)

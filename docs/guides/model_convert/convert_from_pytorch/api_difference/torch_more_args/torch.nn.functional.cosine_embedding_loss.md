@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.cosine_embedding_loss
-### [torch.nn.functional.cosine_embedding_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.cosine_embedding_loss.html#torch.nn.functional.cosine_embedding_loss)
+### [torch.nn.functional.cosine\_embedding\_loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.cosine_embedding_loss.html#torch.nn.functional.cosine_embedding_loss)
 ```python
 torch.nn.functional.cosine_embedding_loss(input1, input2, target, margin=0, size_average=None, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.functional.cosine_embedding_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/cosine_embedding_loss_cn.html)
+### [paddle.nn.functional.cosine\_embedding\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/cosine_embedding_loss_cn.html#paddle.nn.functional.cosine_embedding_loss)
 ```python
 paddle.nn.functional.cosine_embedding_loss(input1, input2, label, margin=0, reduction='mean', name=None)
 ```

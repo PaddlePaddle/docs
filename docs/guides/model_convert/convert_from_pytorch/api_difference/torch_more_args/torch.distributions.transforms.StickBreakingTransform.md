@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.transforms.StickBreakingTransform
-### [torch.distributions.transforms.StickBreakingTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.StickBreakingTransform)
+### [torch.distributions.transforms.StickBreakingTransform](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.StickBreakingTransform)
 ```python
 torch.distributions.transforms.StickBreakingTransform(cache_size=0)
 ```
 
-### [paddle.distribution.StickBreakingTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/StickBreakingTransform_cn.html)
+### [paddle.distribution.StickBreakingTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/StickBreakingTransform_cn.html#paddle.distribution.StickBreakingTransform)
 ```python
 paddle.distribution.StickBreakingTransform()
 ```

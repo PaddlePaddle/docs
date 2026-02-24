@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.lu
-### [torch.lu](https://pytorch.org/docs/stable/generated/torch.lu.html?highlight=lu#torch.lu)
+### [torch.lu](https://docs.pytorch.org/docs/stable/generated/torch.lu.html#torch.lu)
 ```python
 torch.lu(A, pivot=True, get_infos=False, out)
 ```
 
-### [paddle.linalg.lu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_cn.html)
+### [paddle.linalg.lu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_cn.html#paddle.linalg.lu)
 ```python
 paddle.linalg.lu(x, pivot=True, get_infos=False, name=None)
 ```

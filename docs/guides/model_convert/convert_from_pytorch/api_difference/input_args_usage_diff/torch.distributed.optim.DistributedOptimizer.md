@@ -1,5 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.distributed.optim.DistributedOptimizer
-### [torch.distributed.optim.DistributedOptimizer](https://pytorch.org/docs/stable/distributed.optim.html)
+### [torch.distributed.optim.DistributedOptimizer](https://docs.pytorch.org/docs/stable/distributed.optim.html#torch.distributed.optim.DistributedOptimizer)
 ```python
 torch.distributed.optim.DistributedOptimizer(optimizer_class, params_rref, *args, **kwargs)
 ```

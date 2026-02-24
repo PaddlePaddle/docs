@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.addmv
-### [torch.addmv](https://pytorch.org/docs/stable/generated/torch.addmv.html?highlight=addmv#torch.addmv)
+### [torch.addmv](https://docs.pytorch.org/docs/stable/generated/torch.addmv.html#torch.addmv)
 ```python
 torch.addmv(input, mat, vec, beta=1, alpha=1, out=None)
 ```

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.MultiLabelMarginLoss
-### [torch.nn.MultiLabelMarginLoss](https://pytorch.org/docs/stable/generated/torch.nn.MultiLabelMarginLoss.html#torch.nn.MultiLabelMarginLoss)
+### [torch.nn.MultiLabelMarginLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.MultiLabelMarginLoss.html#torch.nn.MultiLabelMarginLoss)
 ```python
 torch.nn.MultiLabelMarginLoss(size_average=None, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.MultiLabelMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MultiLabelMarginLoss_cn.html)
+### [paddle.nn.MultiLabelMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MultiLabelMarginLoss_cn.html#paddle.nn.MultiLabelMarginLoss)
 ```python
 paddle.nn.MultiLabelMarginLoss(reduction='mean', name=None)
 ```

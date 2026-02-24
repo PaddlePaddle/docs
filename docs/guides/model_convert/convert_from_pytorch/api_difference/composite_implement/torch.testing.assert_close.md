@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.testing.assert_close
-### [torch.testing.assert_close](https://pytorch.org/docs/stable/testing.html?highlight=assert_close#torch.testing.assert_close)
+### [torch.testing.assert\_close](https://docs.pytorch.org/docs/stable/testing.html#torch.testing.assert_close)
 ```python
 torch.testing.assert_close(actual, expected, *, allow_subclasses=True, rtol=None, atol=None, equal_nan=False, check_device=True, check_dtype=True, check_layout=True, check_stride=False, msg=None)
 ```

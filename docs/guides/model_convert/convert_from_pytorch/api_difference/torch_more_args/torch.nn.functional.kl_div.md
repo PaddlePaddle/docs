@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.functional.kl_div
-### [torch.nn.functional.kl_div](https://pytorch.org/docs/stable/generated/torch.nn.functional.kl_div.html?highlight=kl_div#torch.nn.functional.kl_div)
+### [torch.nn.functional.kl\_div](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.kl_div.html#torch.nn.functional.kl_div)
 ```python
 torch.nn.functional.kl_div(input,
                target,
@@ -9,7 +9,7 @@ torch.nn.functional.kl_div(input,
                log_target=False)
 ```
 
-### [paddle.nn.functional.kl_div](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/kl_div_cn.html)
+### [paddle.nn.functional.kl\_div](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/kl_div_cn.html#paddle.nn.functional.kl_div)
 ```python
 paddle.nn.functional.kl_div(input,
                 label,

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.InstanceNorm3d
-### [torch.nn.InstanceNorm3d](https://pytorch.org/docs/stable/generated/torch.nn.InstanceNorm3d.html#torch.nn.InstanceNorm3d)
+### [torch.nn.InstanceNorm3d](https://docs.pytorch.org/docs/stable/generated/torch.nn.InstanceNorm3d.html#torch.nn.InstanceNorm3d)
 ```python
 torch.nn.InstanceNorm3d(num_features, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False, device=None, dtype=None)
 ```
 
-### [paddle.nn.InstanceNorm3D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/InstanceNorm3D_cn.html)
+### [paddle.nn.InstanceNorm3D](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/InstanceNorm3D_cn.html#paddle.nn.InstanceNorm3D)
 ```python
 paddle.nn.InstanceNorm3D(num_features, epsilon=1e-05, momentum=0.9, weight_attr=None, bias_attr=None, data_format="NCDHW", name=None)
 ```

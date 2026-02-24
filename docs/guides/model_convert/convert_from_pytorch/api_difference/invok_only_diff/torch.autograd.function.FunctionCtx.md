@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.autograd.function.FunctionCtx
 
-### [torch.autograd.function.FunctionCtx](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.html#torch.autograd.function.FunctionCtx)
+### [torch.autograd.function.FunctionCtx](https://docs.pytorch.org/docs/stable/autograd.html#torch.autograd.function.FunctionCtx)
 
 ```python
 torch.autograd.function.FunctionCtx(*args, **kwargs)
 ```
 
-### [paddle.autograd.PyLayerContext](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext_cn.html#paddle/autograd/PyLayerContext_cn#cn-api-paddle-autograd-PyLayerContext)
+### [paddle.autograd.PyLayerContext](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext_cn.html#paddle.autograd.PyLayerContext)
 
 ```python
 paddle.autograd.PyLayerContext(*args, **kwargs)

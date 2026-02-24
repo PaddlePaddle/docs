@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.linalg.cholesky
-### [torch.linalg.cholesky](https://pytorch.org/docs/stable/generated/torch.linalg.cholesky.html?highlight=linalg+cholesky#torch.linalg.cholesky)
+### [torch.linalg.cholesky](https://docs.pytorch.org/docs/stable/generated/torch.linalg.cholesky.html#torch.linalg.cholesky)
 ```python
 torch.linalg.cholesky(input, *, upper=False, out=None)
 ```
 
-### [paddle.linalg.cholesky](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/cholesky_cn.html)
+### [paddle.linalg.cholesky](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/cholesky_cn.html#paddle.linalg.cholesky)
 ```python
 paddle.linalg.cholesky(x, upper=False, name=None)
 ```

@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_erf_
-### [torch.\_foreach_erf_](https://pytorch.org/docs/stable/generated/torch._foreach_erf_.html#torch-foreach-erf)
+### [torch.\_foreach\_erf\_](https://docs.pytorch.org/docs/stable/generated/torch._foreach_erf_.html#torch._foreach_erf_)
 ```python
 torch._foreach_erf_(self)
 ```

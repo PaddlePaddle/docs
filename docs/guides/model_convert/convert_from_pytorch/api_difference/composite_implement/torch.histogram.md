@@ -1,10 +1,10 @@
 ## [ 组合替代实现 ]torch.histogram
-### [torch.histogram](https://pytorch.org/docs/stable/generated/torch.histogram.html#torch.histogram)
+### [torch.histogram](https://docs.pytorch.org/docs/stable/generated/torch.histogram.html#torch.histogram)
 ```python
 torch.histogram(input, bins, *, range=None, weight=None, density=False, out=None)
 ```
 
-### [paddle.histogram](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/histogram_cn.html)
+### [paddle.histogram](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/histogram_cn.html#paddle.histogram)
 ```python
 paddle.histogram(input, bins=100, min=0.0, max=0.0, weight=None, density=False, name=None)
 ```

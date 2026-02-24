@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.erfc_
-### [torch.Tensor.erfc_](https://pytorch.org/docs/stable/generated/torch.Tensor.erfc_.html)
+### [torch.Tensor.erfc\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.erfc_.html#torch.Tensor.erfc_)
 ```python
 torch.Tensor.erfc_()
 ```

@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.flip
-### [torch.Tensor.flip](https://pytorch.org/docs/stable/generated/torch.Tensor.flip.html?highlight=flip#torch.Tensor.flip)
+### [torch.Tensor.flip](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.flip.html#torch.Tensor.flip)
 ```python
 torch.Tensor.flip(dims)
 ```
 
-### [paddle.Tensor.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#flip-axis-name-none)
+### [paddle.Tensor.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#flip-axis-name-none)
 ```python
 paddle.Tensor.flip(axis, name=None)
 ```

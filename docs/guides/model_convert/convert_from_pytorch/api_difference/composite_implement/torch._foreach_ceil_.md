@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_ceil_
-### [torch.\_foreach_ceil_](https://pytorch.org/docs/stable/generated/torch._foreach_ceil_.html#torch-foreach-ceil)
+### [torch.\_foreach\_ceil\_](https://docs.pytorch.org/docs/stable/generated/torch._foreach_ceil_.html#torch._foreach_ceil_)
 ```python
 torch._foreach_ceil_(self)
 ```

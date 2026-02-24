@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.nansum
-### [torch.Tensor.nansum](https://pytorch.org/docs/stable/generated/torch.Tensor.nansum.html?highlight=nansum#torch.Tensor.nansum)
+### [torch.Tensor.nansum](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.nansum.html#torch.Tensor.nansum)
 ```python
 torch.Tensor.nansum(dim=None,
                     keepdim=False,

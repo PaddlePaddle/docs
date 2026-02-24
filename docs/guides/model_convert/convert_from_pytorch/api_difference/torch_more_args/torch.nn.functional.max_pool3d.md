@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.max_pool3d
-### [torch.nn.functional.max_pool3d](https://pytorch.org/docs/stable/generated/torch.nn.functional.max_pool3d.html#torch.nn.functional.max_pool3d)
+### [torch.nn.functional.max\_pool3d](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.max_pool3d.html#torch.nn.functional.max_pool3d)
 ```python
 torch.nn.functional.max_pool3d(input, kernel_size, stride=None, padding=0, dilation=1, ceil_mode=False, return_indices=False)
 ```
 
-### [paddle.nn.functional.max_pool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/max_pool3d_cn.html)
+### [paddle.nn.functional.max\_pool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/max_pool3d_cn.html#paddle.nn.functional.max_pool3d)
 ```python
 paddle.nn.functional.max_pool3d(x, kernel_size, stride=None, padding=0, ceil_mode=False, return_mask=False, data_format="NCDHW", name=None)
 ```

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.mv
-### [torch.mv](https://pytorch.org/docs/stable/generated/torch.mv.html?highlight=torch+mv#torch.mv)
+### [torch.mv](https://docs.pytorch.org/docs/stable/generated/torch.mv.html#torch.mv)
 ```python
 torch.mv(input, vec, *, out=None)
 ```
 
-### [paddle.mv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mv_cn.html)
+### [paddle.mv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mv_cn.html#paddle.mv)
 ```python
 paddle.mv(x, vec, name=None)
 ```

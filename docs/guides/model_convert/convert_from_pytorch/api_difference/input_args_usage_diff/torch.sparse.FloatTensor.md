@@ -4,7 +4,7 @@
 torch.sparse.FloatTensor(indices, values, size,  *, device=None)
 ```
 
-### [paddle.sparse.sparse_coo_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/sparse_coo_tensor_cn.html#sparse-coo-tensor)
+### [paddle.sparse.sparse\_coo\_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sparse/sparse_coo_tensor_cn.html#paddle.sparse.sparse_coo_tensor)
 ```python
 paddle.sparse.sparse_coo_tensor(indices, values, shape=None, dtype=None, place=None, stop_gradient=True)
 ```

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.renorm
-### [torch.renorm](https://pytorch.org/docs/stable/generated/torch.renorm.html#torch-renorm)
+### [torch.renorm](https://docs.pytorch.org/docs/stable/generated/torch.renorm.html#torch.renorm)
 ```python
 torch.renorm(input, p, dim, maxnorm, *, out=None)
 ```
 
-### [paddle.renorm]()
+### [paddle.renorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/renorm_cn.html#paddle.renorm)
 ```python
 paddle.renorm(x, p, axis, max_norm)
 ```

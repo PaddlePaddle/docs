@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.functional.upsample_bilinear
-### [torch.nn.functional.upsample_bilinear](https://pytorch.org/docs/stable/generated/torch.nn.functional.upsample_bilinear.html#torch.nn.functional.upsample_bilinear)
+### [torch.nn.functional.upsample\_bilinear](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.upsample_bilinear.html#torch.nn.functional.upsample_bilinear)
 ```python
 torch.nn.functional.upsample_bilinear(input, size=None, scale_factor=None)
 ```
 
-### [paddle.nn.functional.upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/upsample_cn.html#upsample)
+### [paddle.nn.functional.upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/upsample_cn.html#paddle.nn.functional.upsample)
 ```python
 paddle.nn.functional.upsample(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format='NCHW', name=None)
 ```

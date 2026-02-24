@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.independent.Independent
-### [torch.distributions.independent.Independent](https://pytorch.org/docs/stable/distributions.html#torch.distributions.independent.Independent)
+### [torch.distributions.independent.Independent](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.independent.Independent)
 ```python
 torch.distributions.independent.Independent(base_distribution, reinterpreted_batch_ndims, validate_args=None)
 ```
 
-### [paddle.distribution.Independent](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Independent_cn.html)
+### [paddle.distribution.Independent](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Independent_cn.html#paddle.distribution.Independent)
 ```python
 paddle.distribution.Independent(base, reinterpreted_batch_rank)
 ```

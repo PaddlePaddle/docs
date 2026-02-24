@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.MultiMarginLoss
-### [torch.nn.MultiMarginLoss](https://pytorch.org/docs/stable/generated/torch.nn.MultiMarginLoss)
+### [torch.nn.MultiMarginLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.MultiMarginLoss.html#torch.nn.MultiMarginLoss)
 ```python
 torch.nn.MultiMarginLoss(p=1, margin=1.0, weight=None, size_average=None, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.MultiMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MultiMarginLoss_cn.html)
+### [paddle.nn.MultiMarginLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/MultiMarginLoss_cn.html#paddle.nn.MultiMarginLoss)
 ```python
 paddle.nn.MultiMarginLoss(p: int = 1, margin: float = 1.0, weight=None, reduction: str = 'mean', name: str = None)
 ```

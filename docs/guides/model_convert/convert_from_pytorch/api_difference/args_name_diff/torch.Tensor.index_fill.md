@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.index_fill
-### [torch.Tensor.index_fill](https://pytorch.org/docs/stable/generated/torch.Tensor.index_fill.html?highlight=index_fill#torch.Tensor.index_fill)
+### [torch.Tensor.index\_fill](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.index_fill.html#torch.Tensor.index_fill)
 ```python
 torch.Tensor.index_fill(dim, index, value)
 ```

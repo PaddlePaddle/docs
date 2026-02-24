@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.MultiStepLR
-### [torch.optim.lr_scheduler.MultiStepLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.MultiStepLR.html)
+### [torch.optim.lr\_scheduler.MultiStepLR](https://docs.pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.MultiStepLR.html#torch.optim.lr_scheduler.MultiStepLR)
 ```python
 torch.optim.lr_scheduler.MultiStepLR(optimizer,
                                 milestones,
@@ -8,7 +8,7 @@ torch.optim.lr_scheduler.MultiStepLR(optimizer,
                                 verbose=False)
 ```
 
-### [paddle.optimizer.lr.MultiStepDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/MultiStepDecay_cn.html)
+### [paddle.optimizer.lr.MultiStepDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/MultiStepDecay_cn.html#paddle.optimizer.lr.MultiStepDecay)
 ```python
 paddle.optimizer.lr.MultiStepDecay(learning_rate,
                                 milestones,

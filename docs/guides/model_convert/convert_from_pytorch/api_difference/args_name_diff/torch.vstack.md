@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.vstack
-### [torch.vstack](https://pytorch.org/docs/stable/generated/torch.vstack.html#torch.vstack)
+### [torch.vstack](https://docs.pytorch.org/docs/stable/generated/torch.vstack.html#torch.vstack)
 ```python
 torch.vstack(tensors, *, out=None)
 ```
 
-### [paddle.vstack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vstack_cn.html)
+### [paddle.vstack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vstack_cn.html#paddle.vstack)
 ```python
 paddle.vstack(x, name=None)
 ```

@@ -6,7 +6,7 @@
 torchvision.transforms.functional.erase(img, i, j, h, w, v, inplace)
 ```
 
-### [paddle.vision.transforms.erase](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/erase_cn.html#paddle/vision/transforms/erase_cn#cn-api-paddle-vision-transforms-erase)
+### [paddle.vision.transforms.erase](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/erase_cn.html#paddle.vision.transforms.erase)
 
 ```python
 paddle.vision.transforms.erase(img, i, j, h, w, v, inplace)

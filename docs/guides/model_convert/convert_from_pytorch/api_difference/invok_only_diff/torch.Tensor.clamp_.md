@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.clamp_
 
-### [torch.Tensor.clamp_](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.clamp_)
+### [torch.Tensor.clamp\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.clamp_.html#torch.Tensor.clamp_)
 
 ```python
 torch.Tensor.clamp_(min=None, max=None)
 ```
 
-### [paddle.Tensor.clip_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/clip__cn.html#paddle/Tensor/clip__cn#cn-api-paddle-Tensor-clip_)
+### [paddle.Tensor.clip\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#id8)
 
 ```python
 paddle.Tensor.clip_(min=None, max=None, name=None)

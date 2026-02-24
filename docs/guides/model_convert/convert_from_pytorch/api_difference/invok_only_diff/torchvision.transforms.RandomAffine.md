@@ -6,7 +6,7 @@
 torchvision.transforms.RandomAffine(degrees, translate=None, scale=None, shear=None, interpolation=torchvision.transforms.InterpolationMode.InterpolationMode.NEAREST, fill=0, center=None)
 ```
 
-### [paddle.vision.transforms.RandomAffine](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomAffine_cn.html#paddle/vision/transforms/RandomAffine_cn#cn-api-paddle-vision-transforms-RandomAffine)
+### [paddle.vision.transforms.RandomAffine](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomAffine_cn.html#paddle.vision.transforms.RandomAffine)
 
 ```python
 paddle.vision.transforms.RandomAffine(degrees, translate=None, scale=None, shear=None, interpolation='nearest', fill=0, center=None, keys=None)

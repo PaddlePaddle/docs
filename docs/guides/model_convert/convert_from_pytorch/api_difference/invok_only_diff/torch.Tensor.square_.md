@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.square_
 
-### [torch.Tensor.square_](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.square_)
+### [torch.Tensor.square\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.square_.html#torch.Tensor.square_)
 
 ```python
 torch.Tensor.square_()
 ```
 
-### [paddle.square_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/square__cn.html#paddle/square__cn#cn-api-paddle-square_)
+### [paddle.square\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/square__cn.html#paddle.square_)
 
 ```python
 paddle.square_(x, name=None)

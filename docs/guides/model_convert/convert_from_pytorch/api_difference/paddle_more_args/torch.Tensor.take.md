@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.take
-### [torch.Tensor.take](https://pytorch.org/docs/stable/generated/torch.Tensor.take.html#torch.Tensor.take)
+### [torch.Tensor.take](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.take.html#torch.Tensor.take)
 ```python
 torch.Tensor.take(index)
 ```
 
-### [paddle.Tensor.take](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#take-index-mode-raise-name-none)
+### [paddle.Tensor.take](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#take-index-mode-raise-name-none)
 ```python
 paddle.Tensor.take(index, mode='raise', name=None)
 ```

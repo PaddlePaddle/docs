@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.qr
-### [torch.qr](https://pytorch.org/docs/stable/generated/torch.qr.html#torch.qr)
+### [torch.qr](https://docs.pytorch.org/docs/stable/generated/torch.qr.html#torch.qr)
 ```python
 torch.qr(input, some=True, *, out=None)
 ```
 
-### [paddle.linalg.qr](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/qr_cn.html#qr)
+### [paddle.linalg.qr](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/qr_cn.html#paddle.linalg.qr)
 ```python
 paddle.linalg.qr(x, mode='reduced', name=None)
 ```

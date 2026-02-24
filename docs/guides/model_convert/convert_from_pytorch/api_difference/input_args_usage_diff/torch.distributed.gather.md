@@ -1,5 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.distributed.gather
-### [torch.distributed.gather](https://pytorch.org/docs/stable/distributed.html#torch.distributed.gather)
+### [torch.distributed.gather](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.gather)
 ```python
 torch.distributed.gather(tensor, gather_list=None, dst=0, group=None, async_op=False)
 ```

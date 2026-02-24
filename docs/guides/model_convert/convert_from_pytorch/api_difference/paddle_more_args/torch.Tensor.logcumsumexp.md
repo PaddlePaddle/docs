@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.logcumsumexp
-### [torch.Tensor.logcumsumexp](https://pytorch.org/docs/stable/generated/torch.Tensor.logcumsumexp.html?highlight=logcumsumexp#torch.Tensor.logcumsumexp)
+### [torch.Tensor.logcumsumexp](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.logcumsumexp.html#torch.Tensor.logcumsumexp)
 ```python
 torch.Tensor.logcumsumexp(dim)
 ```
 
-### [paddle.Tensor.logcumsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logcumsumexp_cn.html#logcumsumexp)
+### [paddle.Tensor.logcumsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#logcumsumexp-x-axis-none-dtype-none-name-none)
 ```python
 paddle.Tensor.logcumsumexp(axis=None, dtype=None, name=None)
 ```
