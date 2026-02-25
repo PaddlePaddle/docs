@@ -1,13 +1,13 @@
 ## [ 仅 API 调用方式不一致 ]torch.utils.data.Dataset
 
 ### [torch.utils.data.Dataset](https://docs.pytorch.org/docs/stable/data.html#torch.utils.data.Dataset)
-
+                               https://docs.pytorch.org/docs/stable/data.html#torch.utils.data.Dataset 
 ```python
 torch.utils.data.Dataset(*args, **kwargs)
 ```
 
-### [paddle.io.Dataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/Dataset_cn.html#paddle.io.Dataset)
-
+### [paddle.io.Dataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/Dataset_cn.html#paddle.io.Dataset)
+                        
 ```python
 paddle.io.Dataset()
 ```

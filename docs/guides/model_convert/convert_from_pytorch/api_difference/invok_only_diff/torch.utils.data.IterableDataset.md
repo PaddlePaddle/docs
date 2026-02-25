@@ -6,7 +6,7 @@
 torch.utils.data.IterableDataset(*args, **kwargs)
 ```
 
-### [paddle.io.IterableDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/IterableDataset_cn.html#paddle.io.IterableDataset)
+### [paddle.io.IterableDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/IterableDataset_cn.html#paddle.io.IterableDataset)
 
 ```python
 paddle.io.IterableDataset()

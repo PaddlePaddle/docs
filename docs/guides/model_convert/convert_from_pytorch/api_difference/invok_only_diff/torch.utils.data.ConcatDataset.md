@@ -6,8 +6,8 @@
 torch.utils.data.ConcatDataset(datasets)
 ```
 
-### [paddle.io.ConcatDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/ConcatDataset_cn.html#paddle.io.ConcatDataset)
-
+### [paddle.io.ConcatDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/ConcatDataset_cn.html#paddle.io.ConcatDataset)
+                              
 ```python
 paddle.io.ConcatDataset(datasets)
 ```
