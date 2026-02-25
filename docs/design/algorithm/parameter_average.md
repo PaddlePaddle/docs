@@ -5,10 +5,10 @@ In a large scale machine learning setup where the size of the training data is h
 
 Polyak and Juditsky (1992) showed that the test performance of simple average of parameters obtained by Stochastic Gradient Descent (SGD) is as good as that of parameter values that are obtained by training the model over and over again, over the training dataset.
 
-Hence, to accelerate the speed of Stochastic Gradient Descent, Averaged Stochastic Gradient Descent (ASGD) was proposed in Polyak and Juditsky (1992). For ASGD, the running average of parameters obtained by SGD, is used as the estimator for <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/theta_star.gif"/><br/> . The averaging is done as follows:
+Hence, to accelerate the speed of Stochastic Gradient Descent, Averaged Stochastic Gradient Descent (ASGD) was proposed in Polyak and Juditsky (1992). For ASGD, the running average of parameters obtained by SGD, is used as the estimator for <img src="./images/theta_star.gif"/><br/> . The averaging is done as follows:
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/asgd.gif"><br />
+<img src="./images/asgd.gif"><br />
 </p>
 
 We propose averaging for any optimizer similar to how ASGD performs it, as mentioned above.
@@ -49,7 +49,7 @@ In the new design, we propose to create a new operation for averaging parameter 
 - the optimizer
 - the window_size to keep the updates
 
-The ParameterAverageOptimizer op can be like any other operator with its own CPU/GPU implementation either using Eigen or separate CPU and GPU kernels. As the initial implementation, we can implement the kernel using Eigen following the abstraction pattern implemented for [Operators](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/rmsprop_op.h). We also want to support the case when the Trainer/Optimizer runs on the GPU while ParameterAverageOptimizer runs on a CPU.
+The ParameterAverageOptimizer op can be like any other operator with its own CPU/GPU implementation either using Eigen or separate CPU and GPU kernels. As the initial implementation, we can implement the kernel using Eigen following the abstraction pattern implemented for [Operators](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/rmsprop_kernel.h). We also want to support the case when the Trainer/Optimizer runs on the GPU while ParameterAverageOptimizer runs on a CPU.
 
 The idea of building an op for averaging is in sync with the refactored PaddlePaddle philosophy of using operators to represent any computation unit. The way the op will be added to the computation graph will be decided by the [layer functions](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/modules/python_api.md#layer-function) in Python API.
 
@@ -60,7 +60,7 @@ Based on Polyak and Juditsky (1992), we can generalize the averaging of updates 
 - A window size. The op keeps accumulating updated parameter values over a window of N batches and takes an average. Move the averaged value to a buffer when window is full to avoid loss of precision.
 
 Using the ParameterAverageOptimizer op, any user can add the operation to their computation graphs. However, this will require a lot of lines of code and we should design Python APIs that support averaging. As per the PaddlePaddle [Python API design](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/modules/python_api.md), the layer functions are responsible for creating operators, operator parameters and variables. Since ParameterAverageOptimizer will be an operator, it makes sense to create it in the layer functions.
-We will have a wrapper written in Python that will support the functionality and implement the actual core computation in C++ core as we have done for other [Optimizers](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/rmsprop_op.cc)
+We will have a wrapper written in Python that will support the functionality and implement the actual core computation in C++ core as we have done for other [Optimizers](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/rmsprop_kernel.cc)
 
 #### Creation of the ParameterAverageOptimizer operator
 There are two ways for creating the ParameterAverageOptimizer op:

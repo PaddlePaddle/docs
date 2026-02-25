@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torchvision.models.DenseNet161_Weights.DEFAULT
 
-### [torchvision.models.DenseNet161_Weights.DEFAULT](https://pytorch.org/vision/stable/models/generated/DenseNet161_Weights.html#torchvision.models.DenseNet161_Weights.DEFAULT)
+### [torchvision.models.DenseNet161_Weights.DEFAULT](https://docs.pytorch.org/vision/stable/models/generated/torchvision.models.densenet161.html#torchvision.models.DenseNet161_Weights)
 
 ```python
 torchvision.models.DenseNet161_Weights.DEFAULT

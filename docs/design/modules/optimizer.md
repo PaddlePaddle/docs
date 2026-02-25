@@ -32,7 +32,7 @@ In this design, we propose a high-level API that automatically derives the optim
     cost = layer.mse(hidden, labels)
     ```
 
-    The above code snippet will create forward operators in [Block](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/design/block.md).
+    The above code snippet will create forward operators in [Block](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/block.md).
 
 
 2. Users create a certain kind of Optimizer with some argument.

@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torchvision.models.AlexNet_Weights.IMAGENET1K_V1
 
-### [torchvision.models.AlexNet_Weights.IMAGENET1K_V1](https://pytorch.org/vision/stable/models/generated/AlexNet_Weights.html#torchvision.models.AlexNet_Weights.IMAGENET1K_V1)
+### [torchvision.models.AlexNet_Weights.IMAGENET1K_V1](https://docs.pytorch.org/vision/stable/models/generated/torchvision.models.alexnet.html#torchvision.models.AlexNet_Weights)
 
 ```python
 torchvision.models.AlexNet_Weights.IMAGENET1K_V1
