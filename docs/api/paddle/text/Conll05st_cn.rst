@@ -6,8 +6,7 @@ Conll05st
 .. py:class:: paddle.text.Conll05st(data_file=None, word_dict_file=None, verb_dict_file=None, target_dict_file=None, emb_file=None, download=True)
 
 
-该类是对 `Conll05st <https://www.cs.upc.edu/~srlconll/soft.html>`_
-测试数据集的实现。
+该类是对 Conll05st 测试数据集的实现，相关介绍可参阅：https://aclanthology.org/W05-0620.pdf
 
 .. note::
     只支持自动下载公共的 Conll05st 测试数据集。

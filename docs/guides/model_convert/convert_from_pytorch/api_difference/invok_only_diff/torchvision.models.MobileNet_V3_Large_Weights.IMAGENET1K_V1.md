@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torchvision.models.MobileNet_V3_Large_Weights.IMAGENET1K_V1
 
-### [torchvision.models.MobileNet_V3_Large_Weights.IMAGENET1K_V1](https://pytorch.org/vision/stable/models/generated/MobileNet_V3_Large_Weights.html#torchvision.models.MobileNet_V3_Large_Weights.IMAGENET1K_V1)
+### [torchvision.models.MobileNet_V3_Large_Weights.IMAGENET1K_V1](https://docs.pytorch.org/vision/stable/models/generated/torchvision.models.mobilenet_v3_large.html#torchvision.models.MobileNet_V3_Large_Weights)
 
 ```python
 torchvision.models.MobileNet_V3_Large_Weights.IMAGENET1K_V1
