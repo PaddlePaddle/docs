@@ -3,7 +3,7 @@
 copysign
 -------------------------------
 
-.. py:function:: paddle.copysign(x, y, name=None)
+.. py:function:: paddle.copysign(x, y, name=None, *, out=None)
 
 
 按照元素计算两个输入 Tensor 的 copysign 大小，由数值和符号组成，其数值部分来自于第一个 Tensor 中的元素，符号部分来自于第二个 Tensor 中的元素。
@@ -19,9 +19,13 @@ copysign
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入的复数值的 Tensor，数据类型为：bool, uint8, int8, int16, int32, int64, bfloat16, float16, float32, float64。
-    - **y** (Tensor) - 输入的复数值的 Tensor，数据类型为：bool, uint8, int8, int16, int32, int64, bfloat16, float16, float32, float64。
+    - **x** (Tensor) - 输入的复数值的 Tensor，数据类型为：bool, uint8, int8, int16, int32, int64, bfloat16, float16, float32, float64。别名： ``input``。
+    - **y** (Tensor) - 输入的复数值的 Tensor，数据类型为：bool, uint8, int8, int16, int32, int64, bfloat16, float16, float32, float64。别名： ``other``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+:::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 ::::::::::::

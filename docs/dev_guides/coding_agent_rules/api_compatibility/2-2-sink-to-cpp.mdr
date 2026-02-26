@@ -60,8 +60,11 @@ args_alias:
 x : [input]
 axis : [dim]
 ```
+- 注意key和value不要配置反了，Paddle的参数名为key，Pytorch的参数名为value(列表)
 
 ### Step 2：迁移文档到 `_paddle_docs.py`
+
+注意要更新函数文档字符，为有别名的参数添加Alias Support说明，如果有out还需要添加out说明，如下：
 
 ```python
 add_doc_and_signature(
@@ -74,9 +77,12 @@ add_doc_and_signature(
         Out = \log_2x
 
     Args:
-        x (Tensor): Input tensor must be one of the following types: int32, int64, float16, bfloat16, float32, float64, complex64, complex128.
+        x (Tensor): Input tensor must be one of the following types: int32, int64, float16, bfloat16, float32, float64, complex64, complex128. Alias: ``input``.
         name (str|None, optional): Name for the operation (optional, default is None). For more information, please refer to :ref:`api_guide_Name`.
         out (Tensor, optional): The output Tensor. If set, the result will be stored in this Tensor. Default: None.
+
+    Keyword args:
+        out(Tensor, optional): The output tensor.
 
     Returns:
         Tensor: The log to the base 2 of the input Tensor computed element-wise.
@@ -122,9 +128,15 @@ def log2(
 )
 ```
 
-**注意事项：**
+**注意事项**：
 - 如果API支持`out`参数，必须在_paddle_docs.py中添加`out`参数说明
-- 使用 `# type: ignore` 忽略静态检查误报（多类型输入场景）
+- Alias说明应放在参数描述的末尾
+- 使用`Alias: ``alias_name``.格式
+- 多个Alias别名描述为: `Alias: ``input`` or ``data``.`
+- out参数使用关键字参数来描述
+- Tensor类方法（如paddle.Tensor.abs）没有文档，无需处理
+- Inplace方法如果有对应普通方法，则只需更新签名即可，不需要修改文档内容，因为其文档内容一般无实质内容
+- 注意文档格式规范，需符合 `_paddle_docs.py` 当前格式规范
 
 ### Step 3：替换Python实现
 
@@ -235,7 +247,7 @@ class Test<APIName>(unittest.TestCase):
 
 ### Step 5：编译并运行
 
-每次修改 Paddle 源码后，必须重新编译方可生效。单测编写完成后，请按以下命令验证执行（不可修改）：
+单测编写完成后，按以下命令验证执行（不可修改）：
 
 1. **重新编译项目**：
    ```bash
@@ -249,8 +261,11 @@ class Test<APIName>(unittest.TestCase):
    python <所修改的单测文件名>
    ```
 
-3. **问题排查**：根据报错信息调整代码或测试用例，确保所有测试用例通过
+3. **问题排查**：根据报错信息调整代码或测试用例，确保所有测试用例通过。注意每次修改Paddle源码后，必须重新编译方可生效。
 
+编译注意事项：
+- 编译完成后不需要重新安装，无需执行setup/install等任何安装操作，直接可生效
+- 编译不要删除build目录，否则会导致增量编译失效，编译时间极长
 
 ## 2.2 场景二：具有前处理逻辑（中等复杂度）
 
@@ -282,7 +297,8 @@ class Test<APIName>(unittest.TestCase):
 
 ### Step 2：实现前处理函数
 
-将Python端在调用`_C_ops`前的**其他前处理逻辑**，修改为C++的实现。
+将Python端在调用`_C_ops`前的**其他前处理逻辑**，修改为C++的实现。尽可能参考 `arg_pre_process.cc` 中已有的预处理函数来实现，在风格和逻辑上保持尽可能一致。
+
 在 `paddle/fluid/pybind/arg_pre_process.h` 声明：
 
 ```cpp
@@ -372,7 +388,7 @@ void LogsumexpPreProcess(pir::Value *x, std::vector<int> *axis, bool *reduce_all
 
 ### Step 2：实现自定义Mapper
 
-将Python API与`ops.yaml`中参数**类型或数量不一致**的差异，通过C++自定义Mapper来进行匹配与转换。
+将Python API与`ops.yaml`中参数**类型或数量不一致**的差异，通过C++自定义Mapper来进行匹配与转换。尽可能参考 `args_mapper.cc` 中已有的Mapper来实现，在风格和逻辑上保持尽可能一致。
 
 在 `paddle/fluid/pybind/args_mapper.h` 声明：
 
@@ -660,7 +676,8 @@ void CheckRemainingParamsValidity(PyObject* args, PyObject* kwargs, int remainin
 1. 若Python API参数顺序与`_C_ops` API不同，属于特殊情况，Cpp下沉方案无法实现，需要使用Python装饰器方案。
 2. 代码中不允许提交中文，代码注释采用英文
 3. 若API需支持`out`参数，必须修改`add_doc_and_signature`中的字符串，增加out参数
-4. 示例代码若涉及多种数据类型，可能触发类型检查误报，添加注释忽略：
+4. 不要修改`generated_tensor_methods_patch.py`，该文件是自动生成的，修改没有意义，如无法对齐可考虑放弃C++下沉方案而不是改动该文件
+5. 示例代码若涉及多种数据类型，可能触发类型检查误报，添加注释忽略：
 ```python
   .. code-block:: pycon
       >>> # type: ignore

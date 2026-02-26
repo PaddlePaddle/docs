@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.is_inference
 
-### [torch.is_inference](https://pytorch.org/docs/stable/generated/torch.is_inference.html)
+### [torch.is_inference](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.is_inference.html)
 
 ```python
 torch.is_inference(input)

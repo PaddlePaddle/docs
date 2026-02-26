@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.autograd.function.FunctionCtx.saved_tensors
 
-### [torch.autograd.function.FunctionCtx.saved_tensors](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.html#torch.autograd.function.FunctionCtx.saved_tensors)
+### [torch.autograd.function.FunctionCtx.saved_tensors](https://github.com/pytorch/pytorch/blob/c03e1676230434e4d84d997682b2fbe892fb05f1/torch/autograd/function.py#L839-L845)
 
 ```python
 torch.autograd.function.FunctionCtx.saved_tensors
 ```
 
-### [paddle.autograd.PyLayerContext.saved_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext/saved_tensor_cn.html#paddle/autograd/PyLayerContext/saved_tensor_cn#cn-api-paddle-autograd-PyLayerContext-saved_tensor)
+### [paddle.autograd.PyLayerContext.saved_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext_cn.html#saved-tensor)
 
 ```python
 paddle.autograd.PyLayerContext.saved_tensor()

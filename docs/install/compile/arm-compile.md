@@ -2,16 +2,16 @@
 
 ## 环境准备
 
-* **处理器：FT2000+/Kunpeng 920 2426SK**
+* **处理器：飞腾 S5000C-64/Kunpeng 920 2426SK**
 * **操作系统：麒麟 v10/UOS**
 * **Python 版本 3.8/3.9/3.10 (64 bit)**
 * **pip 或 pip3 版本 9.0.1+ (64 bit)**
 
-飞腾 FT2000+和鲲鹏 920 处理器均为 ARMV8 架构，在该架构上编译 Paddle 的方式一致，本文以 FT2000+为例，介绍 Paddle 的源码编译。
+飞腾 S5000C-64 和鲲鹏 920 处理器均为 ARMV8 架构，在该架构上编译 Paddle 的方式一致，本文以飞腾 S5000C-64 为例，介绍 Paddle 的源码编译。
 
 ## 安装步骤
 
-目前在 FT2000+处理器加国产化操作系统（麒麟 UOS）上安装 Paddle，只支持源码编译的方式，接下来详细介绍各个步骤。
+目前在飞腾 S5000C-64 处理器加国产化操作系统（麒麟 UOS）上安装 Paddle，只支持源码编译的方式，接下来详细介绍各个步骤。
 
 <a name="arm_source"></a>
 ### **源码编译**
@@ -64,10 +64,10 @@
     cd Paddle
     ```
 
-5. 切换到`develop`分支下进行编译：
+5. 切换到`v3.3.0`分支下进行编译：
 
     ```
-    git checkout develop
+    git checkout v3.3.0
     ```
 
 6. 并且请创建并进入一个叫 build 的目录下：
@@ -88,8 +88,9 @@
 
     For Python3:
     ```
-    cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_ARM=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_XBYAK=OFF
+    cmake .. -DPY_VERSION=3.10 -DPYTHON_EXECUTABLE=`which python3` -DWITH_ARM=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_XBYAK=OFF
     ```
+    >-DPY_VERSION 应与自己的 python 版本对应
 
 9. 使用以下命令来编译，注意，因为处理器为 ARM 架构，如果不加`TARGET=ARMV8`则会在编译的时候报错。
 
@@ -114,28 +115,6 @@
 
 如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。
 
-在 mobilenetv1 和 resnet50 模型上测试
-
-```
-wget -O profile.tar https://paddle-cetc15.bj.bcebos.com/profile.tar?authorization=bce-auth-v1/4409a3f3dd76482ab77af112631f01e4/2020-10-09T10:11:53Z/-1/host/786789f3445f498c6a1fd4d9cd3897ac7233700df0c6ae2fd78079eba89bf3fb
-```
-```
-tar xf profile.tar && cd profile
-```
-```
-python resnet.py --model_file ResNet50_inference/model --params_file ResNet50_inference/params
-# 正确输出应为：[0.0002414  0.00022418 0.00053661 0.00028639 0.00072682 0.000213
-#              0.00638718 0.00128127 0.00013535 0.0007676 ]
-```
-```
-python mobilenetv1.py --model_file mobilenetv1/model --params_file mobilenetv1/params
-# 正确输出应为：[0.00123949 0.00100392 0.00109539 0.00112206 0.00101901 0.00088412
-#              0.00121536 0.00107679 0.00106071 0.00099605]
-```
-```
-python ernie.py --model_dir ernieL3H128_model/
-# 正确输出应为：[0.49879393 0.5012061 ]
-```
 
 ## **如何卸载**
 请使用以下命令卸载 PaddlePaddle：
