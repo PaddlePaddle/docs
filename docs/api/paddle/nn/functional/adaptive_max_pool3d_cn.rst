@@ -9,18 +9,14 @@ adaptive_max_pool3d
 
 
 ..  note::
-    别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``return_indices`` 可替代 ``return_mask``。
-
     详细请参考对应的 `Class` 请参考：:ref:`cn_api_paddle_nn_AdaptiveMaxPool3D` 。
 
 
 参数
 :::::::::
-    - **x** (Tensor)：当前算子的输入，其是一个形状为 `[N, C, D, H, W]` 的 5-D Tensor。其中 `N` 是 batch size, `C` 是通道数，`D` , `H` , `W` 是输入特征的深度，高度，宽度。其数据类型为 float32 或者 float64。
-      ``别名：input``
+    - **x** (Tensor)：当前算子的输入，其是一个形状为 `[N, C, D, H, W]` 的 5-D Tensor。其中 `N` 是 batch size, `C` 是通道数，`D` , `H` , `W` 是输入特征的深度，高度，宽度。其数据类型为 float32 或者 float64。别名 ``input``。
     - **output_size** (int|list|tuple)：算子输出特征图的长度，其数据类型为 int 或 list，tuple。
-    - **return_mask** (bool，可选)：如果设置为 True，则会与输出一起返回最大值的索引，默认为 False。
-      ``别名：return_indices``
+    - **return_mask** (bool，可选)：如果设置为 True，则会与输出一起返回最大值的索引，默认为 False。别名 ``return_indices``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
