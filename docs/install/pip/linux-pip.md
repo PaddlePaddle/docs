@@ -69,7 +69,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+  python3 -m pip install paddlepaddle==3.1.1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
   ```
 
 
@@ -80,7 +80,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
+  python3 -m pip install paddlepaddle-gpu==3.1.1 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
   ```
 
 
@@ -88,14 +88,14 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
+  python3 -m pip install paddlepaddle-gpu==3.1.1 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
   ```
 
 2.2.3 CUDA12.9 的 PaddlePaddle(如果需要使用 TensorRT 可自行安装 TensorRT10.5.0.18)
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==3.1.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu129/
+  python3 -m pip install paddlepaddle-gpu==3.1.1 -i https://www.paddlepaddle.org.cn/packages/stable/cu129/
   ```
 
 
