@@ -15,7 +15,8 @@ PaddlePaddle 的文档存储于 [PaddlePaddle/docs](https://github.com/PaddlePad
 ## 一、修改前的准备工作
 
 ### 1.1 Fork
-先跳转到 [PaddlePaddle/docs](https://github.com/PaddlePaddle/docs) GitHub 首页，然后单击 Fork 按钮，生成自己仓库下的目录，比如你的 GitHub 用户名为 USERNAME，则生成： https://github.com/USERNAME/docs。
+先跳转到 [PaddlePaddle/docs](https://github.com/PaddlePaddle/docs) GitHub 首页，然后单击 Fork 按钮，生成自己仓库下的目录。例如你的 GitHub 用户名为 USERNAME，会生成如下仓库地址：
+`https://github.com/USERNAME/docs`
 
 ![fork repo](https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/images/docs-contributing-guides-fork-repo.png?raw=true)
 
@@ -131,7 +132,7 @@ ruff-format..............................................................Passed
 
 ### 3.2 确保本地仓库是最新的
 
-在准备发起 Pull Request 之前，需要同步原仓库（https://github.com/PaddlePaddle/docs）最新的代码。
+在准备发起 Pull Request 之前，需要同步原仓库（[https://github.com/PaddlePaddle/docs](https://github.com/PaddlePaddle/docs)）最新的代码。
 
 首先通过 `git remote` 查看当前远程仓库的名字。
 
@@ -161,7 +162,7 @@ upstream
 
 ### 3.3 Push 到远程仓库
 
-将本地的修改推送到 GitHub 上，也就是 https://github.com/USERNAME/docs。
+将本地的修改推送到 GitHub 上，也就是 `https://github.com/USERNAME/docs`。
 
 ```
 # 推送到远程仓库 origin 的 my-cool-stuff 分支上
