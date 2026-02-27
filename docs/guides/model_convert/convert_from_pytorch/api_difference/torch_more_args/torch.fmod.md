@@ -1,6 +1,5 @@
-## [torch 参数更多 ]torch.fmod
-### [torch.fmod](https://pytorch.org/docs/stable/generated/torch.fmod.html?highlight=fmod#torch.fmod)
-
+## [ torch 参数更多 ]torch.fmod
+### [torch.fmod](https://docs.pytorch.org/docs/stable/generated/torch.fmod.html#torch.fmod)
 ```python
 torch.fmod(input,
            other,
@@ -8,8 +7,7 @@ torch.fmod(input,
            out=None)
 ```
 
-### [paddle.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mod_cn.html#mod)
-
+### [paddle.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mod_cn.html#paddle.mod)
 ```python
 paddle.mod(x,
            y,
@@ -21,9 +19,9 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的被除数 ，仅参数名不一致。  |
-| <font color='red'> other </font> | <font color='red'> y </font> | 表示输入的除数， PyTorch 可以为 Tensor 或 scalar，Paddle 只能为 Tensor 。  |
-| <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要转写。    |
+|  input  |  x  | 表示输入的被除数 ，仅参数名不一致。  |
+|  other  |  y  | 表示输入的除数， PyTorch 可以为 Tensor 或 scalar，Paddle 只能为 Tensor 。  |
+|  out  | -  | 表示输出的 Tensor ， Paddle 无此参数，需要转写。    |
 
 
 ### 转写示例

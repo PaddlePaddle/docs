@@ -1,13 +1,10 @@
 ## [ 组合替代实现 ]torch.nn.modules.module.register_module_forward_pre_hook
-
-### [torch.nn.modules.module.register_module_forward_pre_hook](https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_pre_hook.html)
-
+### [torch.nn.modules.module.register\_module\_forward\_pre\_hook](https://docs.pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_pre_hook.html#torch.nn.modules.module.register_module_forward_pre_hook)
 ```python
 torch.nn.modules.module.register_module_forward_pre_hook(hook)
 ```
 
 ### [paddle.nn.Layer.register_forward_pre_hook](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#register-forward-pre-hook-hook)
-
 ```python
 paddle.nn.Layer.register_forward_pre_hook(hook)
 ```
@@ -21,7 +18,6 @@ paddle.nn.Layer.register_forward_pre_hook(hook)
 | hook  | hook       | 被注册为 forward pre-hook 的函数。 |
 
 ### 转写示例
-
 ```python
 # PyTorch 写法
 Linear = torch.nn.Linear(2, 4)

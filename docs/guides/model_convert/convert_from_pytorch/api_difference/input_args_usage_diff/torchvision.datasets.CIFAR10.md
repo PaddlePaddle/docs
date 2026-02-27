@@ -1,13 +1,10 @@
-## [输入参数用法不一致]torchvision.datasets.CIFAR10
-
-### [torchvision.datasets.CIFAR10](https://pytorch.org/vision/main/generated/torchvision.datasets.CIFAR10.html)
-
+## [ 输入参数用法不一致 ]torchvision.datasets.CIFAR10
+### [torchvision.datasets.CIFAR10](https://pytorch.org/vision/stable/generated/torchvision.datasets.CIFAR10.html#torchvision.datasets.CIFAR10)
 ```python
 torchvision.datasets.CIFAR10(root: Union[str, Path], train: bool = True, transform: Optional[Callable] = None, target_transform: Optional[Callable] = None, download: bool = False)
 ```
 
-### [paddle.vision.datasets.Cifar10](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/Cifar10_cn.html)
-
+### [paddle.vision.datasets.Cifar10](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/datasets/Cifar10_cn.html#paddle.vision.datasets.Cifar10)
 ```python
 paddle.vision.datasets.Cifar10(data_file: Optional[str] = None, mode: str = 'train', transform: Optional[Callable] = None, download: bool = True, backend: Optional[str] = None)
 ```
@@ -35,8 +32,7 @@ train_dataset = torchvision.datasets.CIFAR10(root='/path/to/data', train=True)
 train_dataset = paddle.vision.datasets.Cifar10(data_file='/path/to/data/cifar-10-python.tar.gz', mode='train')
 ```
 
-#### train: 训练集或数据集
-训练集
+#### train: 训练集或数据集训练集
 ```python
 # PyTorch 写法
 train_dataset = torchvision.datasets.CIFAR10(root='/path/to/data', train=True, download=True)

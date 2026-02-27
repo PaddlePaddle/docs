@@ -1,10 +1,10 @@
 ## [ 返回参数类型不一致 ]torch.nn.RNNCell
-### [torch.nn.RNNCell](https://pytorch.org/docs/stable/generated/torch.nn.RNNCell.html#torch.nn.RNNCell)
+### [torch.nn.RNNCell](https://docs.pytorch.org/docs/stable/generated/torch.nn.RNNCell.html#torch.nn.RNNCell)
 ```python
 torch.nn.RNNCell(input_size, hidden_size, bias=True, nonlinearity='tanh', device=None, dtype=None)
 ```
 
-### [paddle.nn.SimpleRNNCell](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SimpleRNNCell_cn.html#simplernncell)
+### [paddle.nn.SimpleRNNCell](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SimpleRNNCell_cn.html#paddle.nn.SimpleRNNCell)
 ```python
 paddle.nn.SimpleRNNCell(input_size, hidden_size, activation='tanh', weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
 ```
@@ -36,7 +36,7 @@ torch.nn.RNNCell(16, 32, bias=False)
 # Paddle 写法
 paddle.nn.SimpleRNNCell(16, 32, bias_ih_attr=False, bias_hh_attr=False)
 ```
-#### forward 类方法：前向传播
+#### forward 类方法返回值：前向传播
 ```python
 # 返回值个数不一致，Paddle 返回值比 Pytorch 多一个
 # PyTorch 写法

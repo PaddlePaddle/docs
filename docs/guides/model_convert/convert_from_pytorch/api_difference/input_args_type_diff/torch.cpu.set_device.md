@@ -1,13 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.cpu.set_device
-
-### [torch.cpu.set_device](https://pytorch.org/docs/stable/generated/torch.cpu.set_device.html)
-
+### [torch.cpu.set\_device](https://docs.pytorch.org/docs/stable/generated/torch.cpu.set_device.html#torch.cpu.set_device)
 ```python
 torch.cpu.set_device(device)
 ```
 
-### [paddle.device.set_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/set_device_cn.html#set-device)
-
+### [paddle.device.set\_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/set_device_cn.html#paddle.device.set_device)
 ```python
 paddle.device.set_device(device)
 ```
@@ -17,12 +14,11 @@ paddle.device.set_device(device)
 
 | PyTorch       | PaddlePaddle | 备注                                             |
 | ------------- | ------------ |------------------------------------------------|
-| device        | device            | PyTorch 支持 torch.device 。PaddlePaddle 支持 str。 |
+| device        | device            | PyTorch 支持 torch.device 。PaddlePaddle 支持 str。需要转写。 |
 
 
 ### 转写示例
 #### device: 特定的运行设备
-
 ```python
 # PyTorch 写法
 torch.cpu.set_device('cpu:0')

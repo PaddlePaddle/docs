@@ -1,18 +1,17 @@
 ## [ torch 参数更多 ]torch.nn.Module.register_forward_pre_hook
-### [torch.nn.Module.register_forward_pre_hook](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_forward_pre_hook)
-
+### [torch.nn.Module.register\_forward\_pre\_hook](https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.register_forward_pre_hook)
 ```python
 torch.nn.Module.register_forward_pre_hook(hook, *, prepend=False, with_kwargs=False)
 ```
 
-### [paddle.nn.Layer.register_forward_pre_hook](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#register-forward-pre-hook-hook)
-
+### [paddle.nn.Module.register_forward_pre_hook](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#register-forward-pre-hook-hook)
 ```python
-paddle.nn.Layer.register_forward_pre_hook(hook)
+paddle.nn.Module.register_forward_pre_hook(hook)
 ```
 PyTorch 参数更多，具体如下：
 
 ### 参数映射
+
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | hook       | hook    |  被注册的 hook。                   |

@@ -6,7 +6,7 @@ In golang, the [**select**](https://golang.org/ref/spec#Select_statements)
 statement lets a goroutine wait on multiple communication operations at the
 same time. The **select** blocks until one of its cases can run, then
 executes the case.  If multiple cases are ready to run, then one case is
-choosen at random to be executed.
+chosen at random to be executed.
 
 With the introduction of CSP for Paddle, we mimic this behavior by
 creating a ***select_op***.
@@ -14,7 +14,7 @@ creating a ***select_op***.
 ## How to use it
 
 The **select_op** is available as a c++ operator.  However most users
-will prefer to use the much simplier Python API.
+will prefer to use the much simpler Python API.
 
 - **fluid.Select()**: Creates a select operator and adds it to the current
 block within the main program.  Also creates a sub block and adds it to the
@@ -161,7 +161,7 @@ blocks {
   idx: 1
   parent_idx: 0
   ...
-  // Fill a tensor with the case index (ie: 0,1,2,3,ect.)
+  // Fill a tensor with the case index (ie: 0,1,2,3,etc.)
   ops {
     outputs {
       parameter: "Out"
@@ -254,8 +254,9 @@ only one case will be executed.
 ### select_op flow
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/select_op_workflow.png"/><br/>
+<img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concurrent/images/select_op_workflow.png?raw=true"/><br/>
 </p>
+
 
 The select algorithm is inspired by golang's select routine.  Please refer to
 http://www.tapirgames.com/blog/golang-concurrent-select-implementation for more information.

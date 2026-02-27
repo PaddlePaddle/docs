@@ -1,6 +1,5 @@
 ## [ 仅参数名不一致 ]torch.isclose
-### [torch.isclose](https://pytorch.org/docs/stable/generated/torch.isclose.html?highlight=isclose#torch.isclose)
-
+### [torch.isclose](https://docs.pytorch.org/docs/stable/generated/torch.isclose.html#torch.isclose)
 ```python
 torch.isclose(input,
               other,
@@ -9,8 +8,7 @@ torch.isclose(input,
               equal_nan=False)
 ```
 
-### [paddle.isclose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isclose_cn.html#isclose)
-
+### [paddle.isclose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isclose_cn.html#paddle.isclose)
 ```python
 paddle.isclose(x,
                y,
@@ -25,8 +23,8 @@ paddle.isclose(x,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| <font color='red'> other </font> | <font color='red'> y </font> | 表示输入的 Tensor ，仅参数名不一致。  |
+|  input  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
+|  other  |  y  | 表示输入的 Tensor ，仅参数名不一致。  |
 | rtol | rtol | 表示相对容忍误差。 |
 | atol | atol | 表示绝对容忍误差。 |
 | equal_nan | equal_nan | 表示是否将两个 NaN 数值视为相等。 |

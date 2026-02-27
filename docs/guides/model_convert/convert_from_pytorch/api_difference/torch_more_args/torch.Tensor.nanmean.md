@@ -1,15 +1,13 @@
 ## [ torch 参数更多 ]torch.Tensor.nanmean
-
-### [torch.Tensor.nanmean](https://pytorch.org/docs/stable/generated/torch.Tensor.nanmean.html?highlight=nanmean#torch.Tensor.nanmean)
-
+### [torch.Tensor.nanmean](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.nanmean.html#torch.Tensor.nanmean)
 ```python
 torch.Tensor.nanmean(dim=None,
                      keepdim=False,
+                     *,
                      dtype=None)
 ```
 
 ### [paddle.Tensor.nanmean](暂无对应文档)
-
 ```python
 paddle.Tensor.nanmean(axis=None,
                       keepdim=False,
@@ -27,9 +25,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | dtype | - | 指定输出数据类型，可选项，PyTorch 默认值为 None，Paddle 无此参数，需要转写。 |
 
 ### 转写示例
-
-#### dytpe：指定数据类型
-
+#### dtype：指定数据类型
 ```python
 # PyTorch 写法
 x.nanmean(dim=-1, dtype=torch.float32)

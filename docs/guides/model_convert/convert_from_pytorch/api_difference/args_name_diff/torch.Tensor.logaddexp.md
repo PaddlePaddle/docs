@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.logaddexp
-
-### [torch.Tensor.logaddexp](https://pytorch.org/docs/stable/generated/torch.Tensor.logaddexp.html#torch.Tensor.logaddexp)
-
+### [torch.Tensor.logaddexp](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.logaddexp.html#torch.Tensor.logaddexp)
 ```python
 torch.Tensor.logaddexp(other)
 ```
 
 ### [paddle.Tensor.logaddexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#tensor)
-
 ```python
 paddle.Tensor.logaddexp(y)
 ```

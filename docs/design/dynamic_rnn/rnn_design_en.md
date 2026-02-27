@@ -1,4 +1,4 @@
-# Varient Length supported RNN Design
+# Variable Length supported RNN Design
 For the learning of variable length sequences, the existing mainstream frameworks such as tensorflow, pytorch, caffe2, mxnet and so on all use padding.
 
 Different-length sequences in a mini-batch will be padded with zeros and transformed to same length.
@@ -53,7 +53,7 @@ public:
   LODTensor LODSliceShared(int level, int elem_begin, int elem_end) const;
 
   // copy other's lod_start_pos_, to share LOD info.
-  // NOTE the LOD info sould not be changed.
+  // NOTE the LOD info could not be changed.
   void ShareConstLODFrom(const LODTensor &other) {
     lod_start_pos_ = other.lod_start_pos_;
   }
@@ -136,7 +136,7 @@ std::vector<SortedSeqItem> SortBySeqLen(const LODTensor& tensor);
 Due to the sequence of input sequences, the following existing interfaces need to be modified:
 
 - InitMemories, memory needs to be rearranged according to `sorted_seqs`
-- SetmentInputs
+- SegmentInputs
 - ConcatOutputs
 
 In addition, because `sorted_seqs` needs to be multiplexed with `RecurrentGradientOp`, it will become a new output of `RecurrentOp`.

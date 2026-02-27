@@ -1,13 +1,10 @@
-## [输入参数类型不一致]torch.block_diag
-
-### [torch.block_diag](https://pytorch.org/docs/stable/generated/torch.block_diag.html#torch-block-diag)
-
+## [ 输入参数类型不一致 ]torch.block_diag
+### [torch.block\_diag](https://docs.pytorch.org/docs/stable/generated/torch.block_diag.html#torch.block_diag)
 ```python
 torch.block_diag(*tensors)
 ```
 
-### [paddle.block_diag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/block_diag_cn.html)
-
+### [paddle.block\_diag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/block_diag_cn.html#paddle.block_diag)
 ```python
 paddle.block_diag(inputs, name=None)
 ```
@@ -18,12 +15,10 @@ paddle.block_diag(inputs, name=None)
 
 | PyTorch  | PaddlePaddle | 备注                                                         |
 | -------- | ------------ | ------------------------------------------------------------ |
-| *tensors | inputs       | 一组输入 Tensor，PyTorch 参数 tensors 为可变参数，Paddle 参数 inputs 为 list(Tensor) 或 tuple(Tensor) 的形式。 |
+| *tensors | inputs       | 一组输入 Tensor，PyTorch 参数 tensors 为可变参数，Paddle 参数 inputs 为 list(Tensor) 或 tuple(Tensor) 的形式。需要转写。 |
 
 ### 转写示例
-
 #### *tensors：一组输入 Tensor
-
 ```python
 # PyTorch 写法
 torch.block_diag(x, y, z)

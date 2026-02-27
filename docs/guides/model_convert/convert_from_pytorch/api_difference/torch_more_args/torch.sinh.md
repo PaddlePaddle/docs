@@ -1,14 +1,12 @@
-## [torch 参数更多 ]torch.sinh
-### [torch.sinh](https://pytorch.org/docs/stable/generated/torch.sinh.html?highlight=sinh#torch.sinh)
-
+## [ torch 参数更多 ]torch.sinh
+### [torch.sinh](https://docs.pytorch.org/docs/stable/generated/torch.sinh.html#torch.sinh)
 ```python
 torch.sinh(input,
            *,
            out=None)
 ```
 
-### [paddle.sinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sinh_cn.html#sinh)
-
+### [paddle.sinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sinh_cn.html#paddle.sinh)
 ```python
 paddle.sinh(x,
             name=None)
@@ -19,8 +17,8 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要转写。    |
+|  input  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
+|  out  | -  | 表示输出的 Tensor ， Paddle 无此参数，需要转写。    |
 
 
 ### 转写示例

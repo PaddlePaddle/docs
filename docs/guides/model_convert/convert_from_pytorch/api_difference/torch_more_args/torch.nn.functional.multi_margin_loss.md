@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.multi_margin_loss
-
-### [torch.nn.functional.multi\_margin\_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.multi_margin_loss.html)
-
+### [torch.nn.functional.multi\_margin\_loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.multi_margin_loss.html#torch.nn.functional.multi_margin_loss)
 ```python
 torch.nn.functional.multi_margin_loss(input, target, p=1, margin=1, weight=None, size_average=None, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.functional.multi\_margin\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/multi_margin_loss_cn.html#multi-margin-loss)
-
+### [paddle.nn.functional.multi\_margin\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/multi_margin_loss_cn.html#paddle.nn.functional.multi_margin_loss)
 ```python
 paddle.nn.functional.multi_margin_loss(input, label, p=1, margin=1.0, weight=None, reduction='mean', name=None)
 ```
@@ -29,18 +26,64 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 转写示例
 
-#### size_average、reduce
-```python
-# PyTorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
-if size_average is None:
-    size_average = True
-if reduce is None:
-    reduce = True
 
-if size_average and reduce:
-    reduction = 'mean'
-elif reduce:
-    reduction = 'sum'
-else:
-    reduction = 'none'
+#### size_average
+size_average 为 True
+```python
+# PyTorch 写法
+torch.nn.functional.multi_margin_loss(size_average=True)
+
+# Paddle 写法
+paddle.nn.functional.multi\_margin\_loss(reduction='mean')
+```
+
+size_average 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.multi_margin_loss(size_average=False)
+
+# Paddle 写法
+paddle.nn.functional.multi\_margin\_loss(reduction='sum')
+```
+#### reduce
+reduce 为 True
+```python
+# PyTorch 写法
+torch.nn.functional.multi_margin_loss(reduce=True)
+
+# Paddle 写法
+paddle.nn.functional.multi\_margin\_loss(reduction='sum')
+```
+reduce 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.multi_margin_loss(reduce=False)
+
+# Paddle 写法
+paddle.nn.functional.multi\_margin\_loss(reduction='none')
+```
+#### reduction
+reduction 为'none'
+```python
+# PyTorch 写法
+torch.nn.functional.multi_margin_loss(reduction='none')
+
+# Paddle 写法
+paddle.nn.functional.multi\_margin\_loss(reduction='none')
+```
+reduction 为'mean'
+```python
+# PyTorch 写法
+torch.nn.functional.multi_margin_loss(reduction='mean')
+
+# Paddle 写法
+paddle.nn.functional.multi\_margin\_loss(reduction='mean')
+```
+reduction 为'sum'
+```python
+# PyTorch 写法
+torch.nn.functional.multi_margin_loss(reduction='sum')
+
+# Paddle 写法
+paddle.nn.functional.multi\_margin\_loss(reduction='sum')
 ```

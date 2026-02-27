@@ -1,13 +1,10 @@
-## [ 输入参数类型不一致 ] torch.Tensor.copysign_
-
-### [torch.Tensor.copysign_](https://pytorch.org/docs/stable/generated/torch.Tensor.copysign_.html#torch.Tensor.copysign_)
-
+## [ 输入参数类型不一致 ]torch.Tensor.copysign_
+### [torch.Tensor.copysign\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.copysign_.html#torch.Tensor.copysign_)
 ```python
 torch.Tensor.copysign_(other)
 ```
 
 ### [paddle.Tensor.copysign_]()
-
 ```python
 paddle.Tensor.copysign_(y, name=None)
 ```

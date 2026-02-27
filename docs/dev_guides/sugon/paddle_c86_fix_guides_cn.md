@@ -46,7 +46,7 @@ data_type[float]:data_layout[Undefined(AnyLayout)]:place[Place(cpu)]:library_typ
 
 ![图片](../images/sugon_paddle_with_hip.png)
 
-根据注释，是由于初始适配时 ROCm 下的 rocSolver 库未曾适配导致的，需参考 cuSovler 代码以及 [hipSOLVER](https://github.com/ROCmSoftwarePlatform/hipSOLVER) 中 rocSovler 和 cuSolver 的 API 封装示例修改代码使改算子可以在 HIP 环境下正确运行。
+根据注释，是由于初始适配时 ROCm 下的 rocSolver 库未曾适配导致的，需参考 cuSolver 代码以及 [hipSOLVER](https://github.com/ROCmSoftwarePlatform/hipSOLVER) 中 rocSolver 和 cuSolver 的 API 封装示例修改代码使改算子可以在 HIP 环境下正确运行。
 
 ### 情况 2：算子 GPU Kernel 存在，少了某个 LibraryType 下的 Kernel
 

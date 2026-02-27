@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.cummax
-
-### [torch.cummax](https://pytorch.org/docs/stable/generated/torch.cummax.html?highlight=cummax#torch.cummax)
-
+### [torch.cummax](https://docs.pytorch.org/docs/stable/generated/torch.cummax.html#torch.cummax)
 ```python
 torch.cummax(input,
           dim,
@@ -9,8 +7,7 @@ torch.cummax(input,
           out=None)
 ```
 
-### [paddle.cummax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cummax_cn.html#cummax)
-
+### [paddle.cummax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cummax_cn.html#paddle.cummax)
 ```python
 paddle.cummax(x,
             axis=None,
@@ -31,7 +28,6 @@ paddle.cummax(x,
 
 ### 转写示例
 #### out：指定输出
-
 ```python
 # PyTorch 写法
 torch.cummax(x,1, out=(values, indices))

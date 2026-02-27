@@ -32,13 +32,13 @@ In this design, we propose a high-level API that automatically derives the optim
     cost = layer.mse(hidden, labels)
     ```
 
-    The above code snippet will create forward operators in [Block](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/design/block.md).
+    The above code snippet will create forward operators in [Block](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/block.md).
 
 
 2. Users create a certain kind of Optimizer with some argument.
 
     ```python
-    optimizer = AdagradOptimizer(learing_rate=0.001)
+    optimizer = AdagradOptimizer(learning_rate=0.001)
     ```
 
 3. Users use the optimizer to `minimize` a certain `cost` through updating parameters in parameter_list.
@@ -72,7 +72,7 @@ class Optimizer:
           parameters_and_grads: a list of (variable, gradient) pair to update.
 
         Returns:
-          optmization_op_list: a list of optimization operator that will update parameter using gradient.
+          optimization_op_list: a list of optimization operator that will update parameter using gradient.
         """
         return None
 

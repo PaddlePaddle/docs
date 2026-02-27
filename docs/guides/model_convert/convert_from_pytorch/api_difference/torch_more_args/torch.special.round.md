@@ -1,14 +1,11 @@
-## [torch 参数更多]torch.special.round
-
-### [torch.special.round](https://pytorch.org/docs/stable/special.html#torch.special.round)
-
+## [ torch 参数更多 ]torch.special.round
+### [torch.special.round](https://docs.pytorch.org/docs/stable/special.html#torch.special.round)
 ```python
 # torch.special.round 为 torch.round 别名，参数和 torch.round 相同
 torch.special.round(input, *, decimals=0, out=None)
 ```
 
-### [paddle.round](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/round_cn.html)
-
+### [paddle.round](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/round_cn.html#paddle.round)
 ```python
 paddle.round(x, name=None)
 ```
@@ -24,7 +21,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | out     | -            | 表示输出的 Tensor，Paddle 无此参数，需要转写。 |
 
 ### 转写示例
-
 #### decimals：要舍入到的小数位数
 ```python
 # PyTorch 写法
@@ -37,7 +33,6 @@ paddle.round(1e2 * x) / 1e2
 ```
 
 #### out 参数：输出的 Tensor
-
 ```python
 # PyTorch 写法:
 torch.special.round(x, out=y)

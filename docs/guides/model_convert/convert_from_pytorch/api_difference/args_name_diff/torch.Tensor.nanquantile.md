@@ -1,13 +1,10 @@
-## [ 仅参数名不一致 ] torch.Tensor.nanquantile
-
-### [torch.Tensor.nanquantile](https://pytorch.org/docs/stable/generated/torch.nanquantile.html#torch.nanquantile)
-
+## [ 仅参数名不一致 ]torch.Tensor.nanquantile
+### [torch.Tensor.nanquantile](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.nanquantile.html#torch.Tensor.nanquantile)
 ```python
 torch.Tensor.nanquantile(q, dim=None, keepdim=False, *, interpolation='linear')
 ```
 
 ### [paddle.Tensor.nanquantile](https://github.com/PaddlePaddle/Paddle/pull/41343)
-
 ```python
 paddle.Tensor.nanquantile(q, axis=None, keepdim=False, interpolation='linear')
 ```

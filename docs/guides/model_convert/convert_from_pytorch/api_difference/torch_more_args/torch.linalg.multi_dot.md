@@ -1,14 +1,12 @@
 ## [ torch 参数更多 ]torch.linalg.multi_dot
-
-### [torch.linalg.multi_dot](https://pytorch.org/docs/stable/generated/torch.linalg.multi_dot.html?highlight=torch+linalg+multi_dot#torch.linalg.multi_dot)
-
+### [torch.linalg.multi\_dot](https://docs.pytorch.org/docs/stable/generated/torch.linalg.multi_dot.html#torch.linalg.multi_dot)
 ```python
 torch.linalg.multi_dot(tensors,
+                       *,
                        out=None)
 ```
 
-### [paddle.linalg.multi_dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/multi_dot_cn.html)
-
+### [paddle.linalg.multi\_dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/multi_dot_cn.html#paddle.linalg.multi_dot)
 ```python
 paddle.linalg.multi_dot(x,
                        name=None)
@@ -23,9 +21,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | out       | -       | 表示输出的 Tensor ， Paddle 无此参数，需要转写。 |
 
 ### 转写示例
-
 #### out：指定输出
-
 ```python
 # PyTorch 写法
 torch.linalg.multi_dot(x, out=y)

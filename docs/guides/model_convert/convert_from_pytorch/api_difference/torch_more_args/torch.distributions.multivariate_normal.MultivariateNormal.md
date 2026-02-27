@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.distributions.multivariate_normal.MultivariateNormal
-
-### [torch.distributions.multivariate_normal.MultivariateNormal](https://pytorch.org/docs/stable/distributions.html#multivariatenormal)
-
+## [ torch 参数更多 ]torch.distributions.multivariate_normal.MultivariateNormal
+### [torch.distributions.multivariate\_normal.MultivariateNormal](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.multivariate_normal.MultivariateNormal)
 ```python
 torch.distributions.multivariate_normal.MultivariateNormal(loc,
                                        covariance_matrix=None,
@@ -10,8 +8,7 @@ torch.distributions.multivariate_normal.MultivariateNormal(loc,
                                        validate_args=None)
 ```
 
-### [paddle.distribution.MultivariateNormal](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/distribution/MultivariateNormal_cn.html#multivariatenormal)
-
+### [paddle.distribution.MultivariateNormal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/MultivariateNormal_cn.html#paddle.distribution.MultivariateNormal)
 ```python
 paddle.distribution.MultivariateNormal(loc,
                                        covariance_matrix=None,

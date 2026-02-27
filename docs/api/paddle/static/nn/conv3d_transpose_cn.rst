@@ -9,7 +9,7 @@ conv3d_transpose
 
 
 
-三维转置卷积层（Convlution3D transpose layer)
+三维转置卷积层（Convolution3D transpose layer)
 
 该层根据输入（input）、滤波器（filter）和卷积核膨胀比例（dilations）、步长（stride）、填充（padding）来计算输出特征层大小或者通过 output_size 指定输出特征层大小。
 

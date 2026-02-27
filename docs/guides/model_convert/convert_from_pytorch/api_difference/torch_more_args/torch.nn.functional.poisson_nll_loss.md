@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.poisson_nll_loss
-
-### [torch.nn.functional.poisson\_nll\_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.poisson_nll_loss.html)
-
+### [torch.nn.functional.poisson\_nll\_loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.poisson_nll_loss.html#torch.nn.functional.poisson_nll_loss)
 ```python
 torch.nn.functional.poisson_nll_loss(input, target, log_input=True, full=False, size_average=None, eps=1e-08, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.functional.poisson\_nll\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/poisson_nll_loss_cn.html#poisson-nll-loss)
-
+### [paddle.nn.functional.poisson\_nll\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/poisson_nll_loss_cn.html#paddle.nn.functional.poisson_nll_loss)
 ```python
 paddle.nn.functional.poisson_nll_loss(input, label, log_input=True, full=False, epsilon=1e-8, reduction='mean', name=None)
 ```
@@ -29,18 +26,64 @@ paddle.nn.functional.poisson_nll_loss(input, label, log_input=True, full=False, 
 
 ### 转写示例
 
-#### size_average、reduce
-```python
-# PyTorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
-if size_average is None:
-    size_average = True
-if reduce is None:
-    reduce = True
 
-if size_average and reduce:
-    reduction = 'mean'
-elif reduce:
-    reduction = 'sum'
-else:
-    reduction = 'none'
+#### size_average
+size_average 为 True
+```python
+# PyTorch 写法
+torch.nn.functional.poisson_nll_loss(size_average=True)
+
+# Paddle 写法
+paddle.nn.functional.poisson\_nll\_loss(reduction='mean')
+```
+
+size_average 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.poisson_nll_loss(size_average=False)
+
+# Paddle 写法
+paddle.nn.functional.poisson\_nll\_loss(reduction='sum')
+```
+#### reduce
+reduce 为 True
+```python
+# PyTorch 写法
+torch.nn.functional.poisson_nll_loss(reduce=True)
+
+# Paddle 写法
+paddle.nn.functional.poisson\_nll\_loss(reduction='sum')
+```
+reduce 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.poisson_nll_loss(reduce=False)
+
+# Paddle 写法
+paddle.nn.functional.poisson\_nll\_loss(reduction='none')
+```
+#### reduction
+reduction 为'none'
+```python
+# PyTorch 写法
+torch.nn.functional.poisson_nll_loss(reduction='none')
+
+# Paddle 写法
+paddle.nn.functional.poisson\_nll\_loss(reduction='none')
+```
+reduction 为'mean'
+```python
+# PyTorch 写法
+torch.nn.functional.poisson_nll_loss(reduction='mean')
+
+# Paddle 写法
+paddle.nn.functional.poisson\_nll\_loss(reduction='mean')
+```
+reduction 为'sum'
+```python
+# PyTorch 写法
+torch.nn.functional.poisson_nll_loss(reduction='sum')
+
+# Paddle 写法
+paddle.nn.functional.poisson\_nll\_loss(reduction='sum')
 ```

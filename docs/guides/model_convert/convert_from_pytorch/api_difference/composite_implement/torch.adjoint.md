@@ -1,6 +1,5 @@
 ## [ 组合替代实现 ]torch.adjoint
-
-### [torch.adjoint](https://pytorch.org/docs/stable/generated/torch.adjoint.html#torch.adjoint)
+### [torch.adjoint](https://docs.pytorch.org/docs/stable/generated/torch.adjoint.html#torch.adjoint)
 ```python
 torch.adjoint(input)
 ```
@@ -8,7 +7,6 @@ torch.adjoint(input)
 Paddle 无此 API，需要组合实现。
 
 ### 转写示例
-
 ```python
 # PyTorch 写法
 y = torch.adjoint(input)

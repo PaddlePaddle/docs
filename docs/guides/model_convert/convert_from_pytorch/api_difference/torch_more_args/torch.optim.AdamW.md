@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.AdamW
-
-### [torch.optim.AdamW](https://pytorch.org/docs/stable/generated/torch.optim.AdamW.html)
-
+### [torch.optim.AdamW](https://docs.pytorch.org/docs/stable/generated/torch.optim.AdamW.html#torch.optim.AdamW)
 ```python
 torch.optim.AdamW(params,
                 lr=0.001,
@@ -9,6 +7,7 @@ torch.optim.AdamW(params,
                 eps=1e-08,
                 weight_decay=0.01,
                 amsgrad=False,
+                *,
                 maximize=False,
                 foreach=None,
                 capturable=False,
@@ -16,8 +15,7 @@ torch.optim.AdamW(params,
                 fused=None)
 ```
 
-### [paddle.optimizer.AdamW](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/AdamW_cn.html)
-
+### [paddle.optimizer.AdamW](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/AdamW_cn.html#paddle.optimizer.AdamW)
 ```python
 paddle.optimizer.AdamW(learning_rate=0.001,
                     beta1=0.9,
@@ -45,7 +43,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | betas     | beta1, beta2       | 一阶矩估计的指数衰减率。PyTorch 为元祖形式，Paddle 为分开的两个参数。默认值分别一致。                          |
 | eps       | epsilon        | 保持数值稳定性的短浮点类型值。仅参数名不一致。                           |
 | weight_decay           | weight_decay     | 表示权重衰减系数。参数名和默认值均一致。         |
-| amsgrad   | -    | 是否使用该算法的 AMSGrad 变体。参数一致。                     |
+| amsgrad   | amsgrad    | 是否使用该算法的 AMSGrad 变体。参数一致。                     |
 | maximize           | -     | 根据目标最大化参数，而不是最小化。Paddle 无此参数，暂无转写方式。         |
 | foreach           | -     | 是否使用优化器的 foreach 实现。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
 | capturable           | -     | 在 CUDA 图中捕获此实例是否安全。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |

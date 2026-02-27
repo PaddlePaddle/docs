@@ -9,7 +9,7 @@
   Important updates
 ----------------------
 
-* Paddle supports user installation without depending on CUDA and cuDNN, and automatically handles the installation of CUDA and cuDNN.
+* Paddle supports user installation without depending on CUDA and cuDNN, and automatically handles the installation of CUDA and cuDNN.You only need to ensure that the local GPU driver meets the requirements; please refer to this link for details `here <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html>`_.
 
 
 ------------------------
@@ -20,22 +20,19 @@
 The manuals will guide you to build and install PaddlePaddle on your 64-bit desktop or laptop.
 
 1. Operating system requirements:
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-* Windows 7 / 8 / 10 / 11, Pro/Enterprise
-* Ubuntu 20.04 / 22.04
+* Windows 10 / 11, Pro/Enterprise
+* Ubuntu 20.04 / 22.04 / 24.04
 * almalinux 8
 * macOS 12.x/13.x/14.x/15.x
 * 64-bit operating system is required
 
 2. Processor requirements:
->>>>>>>>>>>>>>>>>>>>>>>>>>
 
 * Processor supports MKL
 * The processor architecture is x86_64(or called x64, Intel 64, AMD64). Currently, PaddlePaddle does not support arm64.
 
 3. Version requirements of python and pip:
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 * Python requires version 3.9/3.10/3.11/3.12/3.13
 * Python needs pip, and pip requires version 20.2.2 or above
@@ -89,29 +86,29 @@ This section will introduce the installation method using pip.
 
 7.If you want to use pip <https://pypi.org/project/pip/>_ to install PaddlePaddle, you can directly use the following command:
 
-    Note:
-
-      * If you want to install paddlepaddle, the version requires libstdc++.so.6 version greater than 3.4.25. To meet this requirement, you can choose to install GCC 8 or a higher GCC version, or upgrade the libstdc++ library separately. *
-
     (1). **CPU version** : If you just want to install the CPU version, please refer to the following command for installation
 
          The command to install the CPU version is:
          ::
-               python -m pip install --pre paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
+               python -m pip install paddlepaddle==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 
     (2). **GPU version** : If you want to use the GPU version, please refer to the following command for installation
 
+         The command to install the GPU cuda13.0 version is:
+         ::
+               python -m pip install paddlepaddle-gpu==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu130/
+
          The command to install the GPU cuda12.9 version is:
          ::
-               python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu129/
+               python -m pip install paddlepaddle-gpu==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu129/
 
          The command to install the GPU cuda12.6 version is:
          ::
-               python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu126/
+               python -m pip install paddlepaddle-gpu==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
 
          The command to install the GPU cuda11.8 version is:
          ::
-               python -m pip install --pre paddlepaddle-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/cu118/
+               python -m pip install paddlepaddle-gpu==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu118/
 
       Please make sure that the Python where you need to install PaddlePaddle is in the expected location, as your computer may have multiple Pythons. Depending on your environment, you may need to replace all python in the command line in the instructions with the specific Python path.
 

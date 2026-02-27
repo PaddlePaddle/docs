@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.hypot_
-
-### [torch.Tensor.hypot_](https://pytorch.org/docs/stable/generated/torch.Tensor.hypot_.html#torch.Tensor.hypot_)
-
+### [torch.Tensor.hypot\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.hypot_.html#torch.Tensor.hypot_)
 ```python
 torch.Tensor.hypot_(other)
 ```
 
 ### [paddle.Tensor.hypot_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hypot__cn.html)
-
 ```python
 paddle.Tensor.hypot_(y)
 ```

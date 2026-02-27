@@ -14,7 +14,7 @@ DataParallel
 
 1. 使用 ``paddle.distributed.spawn`` 方法启动，例如：
 
- ``python demo.py`` (spawn need to be called in ``__main__`` method)
+``python demo.py`` (spawn need to be called in ``__main__`` method)
 
 2. 使用 ``paddle.distributed.launch`` 方法启动，例如：
 

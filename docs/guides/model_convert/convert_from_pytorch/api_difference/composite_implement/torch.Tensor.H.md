@@ -1,7 +1,5 @@
-## [ 组合替代实现 ] torch.Tensor.H
-
-### [torch.Tensor.H](https://pytorch.org/docs/stable/tensors.html?#torch.Tensor.H)
-
+## [ 组合替代实现 ]torch.Tensor.H
+### [torch.Tensor.H](https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor.H)
 ```python
 torch.Tensor.H
 ```
@@ -11,7 +9,6 @@ PyTorch 中等于 x.transpose(0, 1).conj()，Paddle 中 transpose 参数 perm �
 该 API 仅针对 2D。
 
 ### 转写示例
-
 ```python
 # PyTorch 写法
 y = x.H

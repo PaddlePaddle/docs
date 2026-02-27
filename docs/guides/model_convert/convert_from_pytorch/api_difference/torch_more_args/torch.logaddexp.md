@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.logaddexp
-
-### [torch.logaddexp](https://pytorch.org/docs/stable/generated/torch.logaddexp.html#torch.logaddexp)
-
+### [torch.logaddexp](https://docs.pytorch.org/docs/stable/generated/torch.logaddexp.html#torch.logaddexp)
 ```python
 torch.logaddexp(input, other, *, out=None)
 ```
 
-### [paddle.logaddexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logaddexp_cn.html#logaddexp)
-
+### [paddle.logaddexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logaddexp_cn.html#paddle.logaddexp)
 ```python
 paddle.logaddexp(x, y, name=None)
 ```
@@ -24,7 +21,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 
 ### 转写示例
-
+#### out: 输出的 Tensor
 ```python
 # PyTorch 写法
 torch.logaddexp(a, b, out=output)

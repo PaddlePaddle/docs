@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.BCEWithLogitsLoss
-### [torch.nn.BCEWithLogitsLoss](https://pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html#bcewithlogitsloss)
-
+### [torch.nn.BCEWithLogitsLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html#torch.nn.BCEWithLogitsLoss)
 ```python
 torch.nn.BCEWithLogitsLoss(weight=None,
                            size_average=None,
@@ -9,8 +8,7 @@ torch.nn.BCEWithLogitsLoss(weight=None,
                            pos_weight=None)
 ```
 
-### [paddle.nn.BCEWithLogitsLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BCEWithLogitsLoss_cn.html#bcewithlogitsloss)
-
+### [paddle.nn.BCEWithLogitsLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BCEWithLogitsLoss_cn.html#paddle.nn.BCEWithLogitsLoss)
 ```python
 paddle.nn.BCEWithLogitsLoss(weight=None,
                             reduction='mean',
@@ -30,68 +28,35 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | pos_weight  | pos_weight            | 表示正类的权重。  |
 
 ### 转写示例
-#### size_average
-size_average 为 True
+#### size_average/reduce：对应到 reduction 为 sum
 ```python
 # PyTorch 写法
-torch.nn.BCEWithLogitsLoss(weight=w, size_average=True)
-
-# Paddle 写法
-paddle.nn.BCEWithLogitsLoss(weight=w, reduction='mean')
-```
-
-size_average 为 False
-```python
-# PyTorch 写法
+torch.nn.BCEWithLogitsLoss(weight=w, size_average=False, reduce=True)
 torch.nn.BCEWithLogitsLoss(weight=w, size_average=False)
 
 # Paddle 写法
 paddle.nn.BCEWithLogitsLoss(weight=w, reduction='sum')
 ```
 
-#### reduce
-reduce 为 True
+#### size_average/reduce：对应到 reduction 为 mean
 ```python
 # PyTorch 写法
+torch.nn.BCEWithLogitsLoss(weight=w, size_average=True, reduce=True)
 torch.nn.BCEWithLogitsLoss(weight=w, reduce=True)
+torch.nn.BCEWithLogitsLoss(weight=w, size_average=True)
+torch.nn.BCEWithLogitsLoss(weight=w)
 
 # Paddle 写法
 paddle.nn.BCEWithLogitsLoss(weight=w, reduction='mean')
 ```
 
-reduce 为 False
+#### size_average/reduce：对应到 reduction 为 none
 ```python
 # PyTorch 写法
+torch.nn.BCEWithLogitsLoss(weight=w, size_average=True, reduce=False)
+torch.nn.BCEWithLogitsLoss(weight=w, size_average=False, reduce=False)
 torch.nn.BCEWithLogitsLoss(weight=w, reduce=False)
 
 # Paddle 写法
 paddle.nn.BCEWithLogitsLoss(weight=w, reduction='none')
-```
-
-#### reduction
-reduction 为'none'
-```python
-# PyTorch 写法
-torch.nn.BCEWithLogitsLoss(weight=w, reduction='none')
-
-# Paddle 写法
-paddle.nn.BCEWithLogitsLoss(weight=w, reduction='none')
-```
-
-reduction 为'mean'
-```python
-# PyTorch 写法
-torch.nn.BCEWithLogitsLoss(weight=w, reduction='mean')
-
-# Paddle 写法
-paddle.nn.BCEWithLogitsLoss(weight=w, reduction='mean')
-```
-
-reduction 为'sum'
-```python
-# PyTorch 写法
-torch.nn.BCEWithLogitsLoss(weight=w, reduction='sum')
-
-# Paddle 写法
-paddle.nn.BCEWithLogitsLoss(weight=w, reduction='sum')
 ```

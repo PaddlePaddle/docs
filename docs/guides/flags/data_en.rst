@@ -21,7 +21,7 @@ FLAGS_use_mkldnn
 *******************************************
 (since 0.13.0)
 
-Give a choice to run with Intel MKL-DNN (https://github.com/intel/mkl-dnn) library on inference or training.
+Give a choice to run with `Intel MKL-DNN <https://github.com/intel/mkl-dnn>`_ library on inference or training.
 
 Intel(R) Math Kernel Library for Deep Neural Networks (Intel(R) MKL-DNN) is an open-source performance library for deep-learning applications. The library accelerates deep-learning applications and frameworks on Intel(R) architecture. Intel MKL-DNN contains vectorized and threaded building blocks that you can use to implement deep neural networks (DNN) with C and C++ interfaces.
 

@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.gcd_
-
-### [torch.Tensor.gcd_](https://pytorch.org/docs/stable/generated/torch.Tensor.gcd_.html)
-
+### [torch.Tensor.gcd\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.gcd_.html#torch.Tensor.gcd_)
 ```python
 torch.Tensor.gcd_(other)
 ```
 
 ### [paddle.Tensor.gcd_]()
-
 ```python
 paddle.Tensor.gcd_(y)
 ```
@@ -17,4 +14,4 @@ paddle.Tensor.gcd_(y)
 
 | PyTorch                          | PaddlePaddle                 | 备注                                                   |
 |----------------------------------|------------------------------| ------------------------------------------------------ |
-| <font color='red'> other </font> | <font color='red'> y </font> | 输入的 Tensor ，仅参数名不一致。                                     |
+|  other  |  y  | 输入的 Tensor ，仅参数名不一致。                                     |

@@ -10,7 +10,7 @@ In this section we will walk through the steps required to extend a fake hardwar
 
 **InitPlugin**
 
-As a custom runtime entry function, InitPlugin is required to be implemented by the plug-in. The parameter in InitPlugin should also be checked, device information should be filled in, and the runtime API should be registered. In the initialization, PaddlePaddle loads the plug-in and invokes InitPlugin to initialize it, and register runtime (The whole process can be done automatically by the framework, only if the dynamic-link library is in site-packages/paddle-plugins/ or the designated directory of the enviornment variable of CUSTOM_DEVICE_ROOT).
+As a custom runtime entry function, InitPlugin is required to be implemented by the plug-in. The parameter in InitPlugin should also be checked, device information should be filled in, and the runtime API should be registered. In the initialization, PaddlePaddle loads the plug-in and invokes InitPlugin to initialize it, and register runtime (The whole process can be done automatically by the framework, only if the dynamic-link library is in site-packages/paddle-plugins/ or the designated directory of the environment variable of CUSTOM_DEVICE_ROOT).
 
 Example:
 
@@ -281,7 +281,7 @@ add_custom_command(TARGET ${PLUGIN_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/python/
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/python/paddle-plugins/
     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_BINARY_DIR}/lib${PLUGIN_NAME}.so ${CMAKE_CURRENT_BINARY_DIR}/python/paddle-plugins/
-    COMMENT "Creating plugin dirrectories------>>>"
+    COMMENT "Creating plugin directories------>>>"
 )
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/python/.timestamp

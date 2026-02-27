@@ -41,7 +41,7 @@ Proof:
 PaddlePaddle allows user to choose activation functions for update/reset gate and output gate. However, oneDNN supports only default `sigmoid` activation for gates and `tanh` for output. Currently oneDNN operator throws an error when user tries to execute it with other activations.
 
 ## oneDNN GRU operator
-oneDNN `GRU` operator is based on Paddle Paddle `fusion_gru` operator. It uses primitive/memory caching mechanism called `AcquireAPI`. Handler containg 2 caching key, one dependent on sentence length used in caching input/output and primitive. The other key (`memory_key`) depends only on other, not changing during inference, parameters and is used to cache weights and bias memory.
+oneDNN `GRU` operator is based on Paddle Paddle `fusion_gru` operator. It uses primitive/memory caching mechanism called `AcquireAPI`. Handler containing 2 caching key, one dependent on sentence length used in caching input/output and primitive. The other key (`memory_key`) depends only on other, not changing during inference, parameters and is used to cache weights and bias memory.
 
 ### Dimensions in oneDNN RNN primitives
 
@@ -95,16 +95,16 @@ oneDNN `GRU` operator is based on Paddle Paddle `fusion_gru` operator. It uses p
 * PaddlePaddle Input LoD -> oneDNN TNC/NTC\
 Every time before executing `GRU`, each batch represented by PP tensor has to be converted into oneDNN tensor representation. It is done first by calculating length of the longest sentence in a batch to get `T` dimension and then creating oneDNN memory (or getting it from oneDNN cache). After that, based on the memory format chosen by oneDNN GRU primitive: `TNC` or `NTC` correct custom reorder is called.\
 \
-Because oneDNN assumes that all sentences are of equal length, before reorder, whole memory is set to 0 to add padding. Placement of this padding depends also on computation direction that is defined by `is_reverse` attribute. To get correct resuts, if computation is performed from left to right, the padding has to be on the right side of words. Otherwise, for right to left computation, it has to be on the left side.
+Because oneDNN assumes that all sentences are of equal length, before reorder, whole memory is set to 0 to add padding. Placement of this padding depends also on computation direction that is defined by `is_reverse` attribute. To get correct results, if computation is performed from left to right, the padding has to be on the right side of words. Otherwise, for right to left computation, it has to be on the left side.
 ![](images/input_is_reverse.svg)
 
 * PaddlePaddle WeightX -> oneDNN WeightX\
-WeightX does not need custom reorders because memory arrangement is the same for both PP and oneDNN. However, it has to be modified if `origin_mode==false` by mulitplying update gate part by `-1`. At the end, oneDNN reorder is called to convert weights to correct type and strides selected by primitive.
+WeightX does not need custom reorders because memory arrangement is the same for both PP and oneDNN. However, it has to be modified if `origin_mode==false` by multiplying update gate part by `-1`. At the end, oneDNN reorder is called to convert weights to correct type and strides selected by primitive.
 * PaddlePaddle WeightH -> oneDNN WeightH\
 WeightH tensor has different representation in PP and oneDNN. PaddlePaddle stores it as 2 connected blocks of memory, where first contains reset and update gate recurrent weights, and second stores output gate recurrent weights. In oneDNN, these weights are stored in a single memory block of size `[OC, 3, OC]`. Therefore, custom reorder is needed here. After that, if `origin_mode==false`, update gate part is multiplied by `-1`. At the end, oneDNN reorder is called to convert weights to correct type and strides selected by primitive.
 ![](images/different_tensor_memory_arrangement.svg)
 * PaddlePaddle Bias -> oneDNN Bias\
-Bias does not require reorder from PP to oneDNN. However, if it is not provided by user, it has to be created and filled with `0.0f` because oneDNN requires it. If it was provided, it has to be modified when `origin_mode==false` by mulitplying update gate part by `-1`. Note: bias is always of `float` data type, even in `int8` and `bfloat16` kernels.
+Bias does not require reorder from PP to oneDNN. However, if it is not provided by user, it has to be created and filled with `0.0f` because oneDNN requires it. If it was provided, it has to be modified when `origin_mode==false` by multiplying update gate part by `-1`. Note: bias is always of `float` data type, even in `int8` and `bfloat16` kernels.
 * oneDNN TNC/NTC -> PaddlePaddle Output LoD\
 After execution of oneDNN GRU primitive, output tensor has to be converted back to PP representation. It is done in the same way as input reorder but in a reverse manner.
 

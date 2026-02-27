@@ -12,7 +12,7 @@ Pruning need to support both variables and operators being evaluation targets. C
 different situations.
 
 ```python
-# Case 1: run foward pass.
+# Case 1: run forward pass.
 cost_np = session.run(target=cost)
 # Case 2: run backward passing.
 opts_np, _ = session.run(target=[cost, opt])
@@ -45,7 +45,7 @@ If an operator needs to be run, it must fall into one of the following cases:
 1. It is the target.
 2. It is depended by some other ops, meaning its output is some other op's input.
 
-The first case can be checked by `op_desc.is_traget()` . The second case can be implement as
+The first case can be checked by `op_desc.is_target()` . The second case can be implement as
 
 ```c++
 bool HasDependentVar(const OpDesc& op_desc, const std::set<string>& dependent_vars) {

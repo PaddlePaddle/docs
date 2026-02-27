@@ -26,7 +26,7 @@ fake_quantize_abs_max {
 
 ### 1.2 静态量化
 
-与动态量化不同，静态量化的量化 scale 是在量化训练时通过**窗口滑动平均**或者**窗口绝对值最大值**等方法计算求得的。静态量化主要通过`fake_quantize_moving_average_abs_max`op 或者`fake_quantize_range_abs_max`op 实现，它们利用输入的量化 scale 将输入 tensor 量化到-127～127 值域范围内。`fake_quantize_moving_average_abs_max`op 和`fake_quantize_range_abs_max`op 的输入和输出格式都是一样的，不同点在于 op 内部计算量化 scale 时使用的策略不同。`fake_quantize_moving_average_abs_max`op 使用一个窗口内绝对值最大值的滑动平均值作为量化 sacle，而`fake_quantize_range_abs_max`op 使用一个窗口内绝对值最大值的最大值作为量化 sacle。下面以`fake_quantize_moving_average_abs_max`op 为例，对其进行整体描述：
+与动态量化不同，静态量化的量化 scale 是在量化训练时通过**窗口滑动平均**或者**窗口绝对值最大值**等方法计算求得的。静态量化主要通过`fake_quantize_moving_average_abs_max`op 或者`fake_quantize_range_abs_max`op 实现，它们利用输入的量化 scale 将输入 tensor 量化到-127～127 值域范围内。`fake_quantize_moving_average_abs_max`op 和`fake_quantize_range_abs_max`op 的输入和输出格式都是一样的，不同点在于 op 内部计算量化 scale 时使用的策略不同。`fake_quantize_moving_average_abs_max`op 使用一个窗口内绝对值最大值的滑动平均值作为量化 scale，而`fake_quantize_range_abs_max`op 使用一个窗口内绝对值最大值的最大值作为量化 scale。下面以`fake_quantize_moving_average_abs_max`op 为例，对其进行整体描述：
 
 ```
 fake_quantize_moving_average_abs_max {
@@ -56,7 +56,7 @@ fake_quantize_moving_average_abs_max {
 <img src="./dequant_formula.png" height=108 width=860 hspace='10'/> <br />
 </p>
 
-根据[量化训练的原理](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/tutorial.md#1-quantization-aware-training%E9%87%8F%E5%8C%96%E4%BB%8B%E7%BB%8D)可知，`fake_dequantize_abs_max` op 主要通过公式 1-3-1 进行反量化操作。在实现中，`fake_dequantize_abs_max` op 将激活 scale 作为 Variable（Tensor）进行输入（$X_{scale}$），将公式 1-3-1 中关于 scale 的剩余部分作为 max\_range 属性(即公式 1-3-2)。`fake_dequantize_abs_max` op 的整体描述如下：
+根据[量化训练的原理](https://github.com/PaddlePaddle/PaddleSlim/blob/develop/docs/zh_cn/tutorials/quant/quant_aware_training.md)可知，`fake_dequantize_abs_max` op 主要通过公式 1-3-1 进行反量化操作。在实现中，`fake_dequantize_abs_max` op 将激活 scale 作为 Variable（Tensor）进行输入（$X_{scale}$），将公式 1-3-1 中关于 scale 的剩余部分作为 max\_range 属性(即公式 1-3-2)。`fake_dequantize_abs_max` op 的整体描述如下：
 
 ```
 fake_dequantize_abs_max {

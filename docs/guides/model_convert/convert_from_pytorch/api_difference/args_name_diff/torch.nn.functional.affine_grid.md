@@ -1,15 +1,12 @@
-## [ 仅参数名不一致 ] torch.nn.functional.affine_grid
-
-### [torch.nn.functional.affine_grid](https://pytorch.org/docs/stable/generated/torch.nn.functional.affine_grid.html?highlight=affine_grid#torch.nn.functional.affine_grid)
-
+## [ 仅参数名不一致 ]torch.nn.functional.affine_grid
+### [torch.nn.functional.affine\_grid](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.affine_grid.html#torch.nn.functional.affine_grid)
 ```python
 torch.nn.functional.affine_grid(theta,
             size,
             align_corners=None)
 ```
 
-### [paddle.nn.functional.affine_grid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/affine_grid_cn.html)
-
+### [paddle.nn.functional.affine\_grid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/affine_grid_cn.html#paddle.nn.functional.affine_grid)
 ```python
 paddle.nn.functional.affine_grid(theta,
             out_shape,
@@ -22,6 +19,6 @@ paddle.nn.functional.affine_grid(theta,
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| theta          | theta         | 指定仿射变换矩阵        |
+| theta          | theta         | 指定仿射变换矩阵。        |
 | size          | out_shape         | 表示指定目标输出图像大小，仅参数名不一致。     |
-| align_corners          | align_corners         | 指定是否是像素中心对齐               |
+| align_corners          | align_corners         | 指定是否是像素中心对齐。               |

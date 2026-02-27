@@ -66,7 +66,7 @@
 
 在 PR 被 merge 进主仓库后，我们可以在 PR 的页面删除远程仓库的分支。
 
-![delete_branch](../../guides/10_contribution/img/delete_branch.png)
+![delete_branch](../images/delete_branch.png)
 
 也可以使用 `git push origin :分支名` 删除远程分支，如：
 

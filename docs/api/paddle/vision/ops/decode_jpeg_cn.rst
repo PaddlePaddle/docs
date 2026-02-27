@@ -19,7 +19,7 @@ decode_jpeg
 返回
 :::::::::
 
-    具有形状（imge_channels、image_height、image_width）的解码图像 Tensor。
+    具有形状（image_channels、image_height、image_width）的解码图像 Tensor。
 
 代码示例
 :::::::::

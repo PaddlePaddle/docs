@@ -1,13 +1,10 @@
 ## [ 返回参数类型不一致 ]torch.histc
-
-### [torch.histc](https://pytorch.org/docs/stable/generated/torch.histc.html#torch-histc)
-
+### [torch.histc](https://docs.pytorch.org/docs/stable/generated/torch.histc.html#torch.histc)
 ```python
 torch.histc(input, bins=100, min=0, max=0, *, out=None)
 ```
 
-### [paddle.histogram](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/histogram_cn.html#histogram)
-
+### [paddle.histogram](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/histogram_cn.html#paddle.histogram)
 ```python
 paddle.histogram(input, bins=100, min=0, max=0, name=None)
 ```
@@ -26,9 +23,7 @@ paddle.histogram(input, bins=100, min=0, max=0, name=None)
 | 返回值     | 返回值           | 表示返回值，PyTorch 的返回值类型为 float32，Paddle 的返回值类型为 int64 ， 需要转写。 |
 
 ### 转写示例
-
-#### out：指定输出
-
+#### out：指定输出、返回值类型转换
 ```python
 # PyTorch 写法
 torch.histc(x, out=y)

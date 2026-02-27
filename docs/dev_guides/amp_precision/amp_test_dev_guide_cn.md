@@ -73,7 +73,7 @@
 
    首先需要对输入数据进行计算，对于复杂一些的计算，可能会使得 setUp 函数过分冗长，可以写成额外的函数， **如代码 1-1 的第 13 行** 。
 
-   outpus 部分需要传入由 numpy 计算出的参考结果。
+   outputs 部分需要传入由 numpy 计算出的参考结果。
 
 **代码 1-1**
 
@@ -283,7 +283,7 @@ BF16 在传入输入和输入参考值时需要调用**convert_float_to_uint16**
 
 3. 设置 self.outputs。**如代码 2-1 的第 15 行所示。**
 
-   outpus 部分需要传入 Uint16 格式的参考结果。可使用**convert_float_to_uint16**完成转换。
+   outputs 部分需要传入 Uint16 格式的参考结果。可使用**convert_float_to_uint16**完成转换。
 
 **代码 2-1**
 

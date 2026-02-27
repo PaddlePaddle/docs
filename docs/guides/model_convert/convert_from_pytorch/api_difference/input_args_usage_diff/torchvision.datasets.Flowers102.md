@@ -1,13 +1,10 @@
-## [输入参数用法不一致]torchvision.datasets.Flowers102
-
-### [torchvision.datasets.Flowers102](https://pytorch.org/vision/main/generated/torchvision.datasets.Flowers102.html)
-
+## [ 输入参数用法不一致 ]torchvision.datasets.Flowers102
+### [torchvision.datasets.Flowers102](https://pytorch.org/vision/stable/generated/torchvision.datasets.Flowers102.html#torchvision.datasets.Flowers102)
 ```python
 torchvision.datasets.Flowers102(root: Union[str, Path], split: str = 'train', transform: Optional[Callable] = None, target_transform: Optional[Callable] = None, download: bool = False)
 ```
 
-### [paddle.vision.datasets.Flowers](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/datasets/Flowers_cn.html)
-
+### [paddle.vision.datasets.Flowers](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/datasets/Flowers_cn.html#paddle.vision.datasets.Flowers)
 ```python
 paddle.vision.datasets.Flowers(data_file=None, label_file=None, setid_file=None, mode='train', transform=None, download=True, backend=None)
 ```
@@ -35,8 +32,7 @@ train_dataset = torchvision.datasets.Flowers102(root='./data', split='train')
 train_dataset = paddle.vision.datasets.Flowers(data_file='./data/flowers-102/102flowers.tgz', label_file='./data/flowers-102/imagelabels.mat', setid_file='./data/flowers-102/setid.mat', mode='train')
 ```
 
-#### split: 训练集或数据集
-验证集
+#### split: 训练集或数据集验证集
 ```python
 # PyTorch 写法
 train_dataset = torchvision.datasets.Flowers102(root='./data', split='val')

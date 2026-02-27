@@ -1,13 +1,10 @@
-## [torch 参数更多 ]torch.lu
-
-### [torch.lu](https://pytorch.org/docs/stable/generated/torch.lu.html?highlight=lu#torch.lu)
-
+## [ torch 参数更多 ]torch.lu
+### [torch.lu](https://docs.pytorch.org/docs/stable/generated/torch.lu.html#torch.lu)
 ```python
 torch.lu(A, pivot=True, get_infos=False, out)
 ```
 
-### [paddle.linalg.lu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_cn.html)
-
+### [paddle.linalg.lu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_cn.html#paddle.linalg.lu)
 ```python
 paddle.linalg.lu(x, pivot=True, get_infos=False, name=None)
 ```
@@ -18,13 +15,12 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> A </font>         | <font color='red'> x </font>            | 输入的 Tensor ，仅参数名不一致。                                     |
-| <font color='red'> pivot </font>    | <font color='red'> pivot </font>        | 输入的 bool ，参数完全一致。                                     |
-| <font color='red'> get_infos </font> | <font color='red'> get_infos </font>    | 输入的 bool ，参数完全一致。                                     |
-| <font color='red'> out </font>       | -                                       | 表示输出的 Tensor，Paddle 无此参数，需要转写。             |
+|  A          |  x             | 输入的 Tensor ，仅参数名不一致。                                     |
+|  pivot     |  pivot         | 输入的 bool ，参数完全一致。                                     |
+|  get_infos  |  get_infos     | 输入的 bool ，参数完全一致。                                     |
+|  out        | -                                       | 表示输出的 Tensor，Paddle 无此参数，需要转写。             |
 
 ### 转写示例
-
 #### out：指定输出
 ```python
 # PyTorch 写法

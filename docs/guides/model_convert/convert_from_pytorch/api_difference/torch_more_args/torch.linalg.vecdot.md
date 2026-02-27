@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.linalg.vecdot
-
-### [torch.linalg.vecdot](https://pytorch.org/docs/stable/generated/torch.linalg.vecdot.html)
-
+## [ torch 参数更多 ]torch.linalg.vecdot
+### [torch.linalg.vecdot](https://docs.pytorch.org/docs/stable/generated/torch.linalg.vecdot.html#torch.linalg.vecdot)
 ```python
 torch.linalg.vecdot(x, y, *, dim=-1, out=None)
 ```
 
-### [paddle.linalg.vecdot](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/linalg.py#L1881)
-
+### [paddle.linalg.vecdot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/vecdot_cn.html#paddle.linalg.vecdot)
 ```python
 paddle.linalg.vecdot(x, y, axis=-1, name=None)
 ```
@@ -24,9 +21,7 @@ paddle.linalg.vecdot(x, y, axis=-1, name=None)
 | out     | -            | 表示输出的 Tensor ， Paddle 无此参数，需要转写。                                |
 
 ### 转写示例
-
 #### out：指定输出
-
 ```python
 # PyTorch 写法
 torch.linalg.vecdot(x=a, y=b, out=out)

@@ -7,7 +7,7 @@ psroi_pool
 
 位置敏感的兴趣区域池化（也称为 PSROIPooling），是在指定输入的感兴趣区域上执行位置敏感的平均池化。它在非均匀大小的输入上执行并获得固定大小的特征图。
 
-PSROIPooling 由 R-FCN 提出。更多详细信息，请参阅 https://arxiv.org/abs/1605.06409。
+PSROIPooling 由 R-FCN 提出。更多详细信息，请参阅 `R-FCN: Object Detection via Region-based Fully Convolutional Networks <https://arxiv.org/abs/1605.06409>`_ 。
 
 参数
 :::::::::

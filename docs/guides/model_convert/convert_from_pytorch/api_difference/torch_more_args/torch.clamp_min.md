@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.clamp_min
-### [torch.clamp_min]()
 
+### [torch.clamp_min]()
 ```python
 torch.clamp_min(input,
             min=None,
@@ -8,8 +8,7 @@ torch.clamp_min(input,
             out=None)
 ```
 
-### [paddle.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/clip_cn.html#clip)
-
+### [paddle.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/clip_cn.html#paddle.clip)
 ```python
 paddle.clip(x,
             min=None,

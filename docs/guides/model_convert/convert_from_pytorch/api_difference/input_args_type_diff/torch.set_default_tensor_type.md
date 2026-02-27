@@ -1,13 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.set_default_tensor_type
-
-### [torch.set\_default\_tensor\_type](https://pytorch.org/docs/stable/generated/torch.set_default_tensor_type.html)
-
+### [torch.set\_default\_tensor\_type](https://docs.pytorch.org/docs/stable/generated/torch.set_default_tensor_type.html#torch.set_default_tensor_type)
 ```python
 torch.set_default_tensor_type(t)
 ```
 
-### [paddle.set\_default\_dtype](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/set_default_dtype_cn.html#set-default-dtype)
-
+### [paddle.set\_default\_dtype](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/set_default_dtype_cn.html#paddle.set_default_dtype)
 ```python
 paddle.set_default_dtype(d)
 ```
@@ -21,9 +18,7 @@ paddle.set_default_dtype(d)
 | t       | d            | 浮点张量类型或其名称。PyTorch 支持 `torch.FloatTensor` 或 "torch.FloatTensor"，Paddle 只支持 `dtype`（如 `paddle.float32`），需要转写。 |
 
 ### 转写示例
-
 #### t 浮点张量类型或其名称
-
 ```python
 # PyTorch
 torch.set_default_tensor_type(torch.FloatTensor)

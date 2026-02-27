@@ -1,13 +1,10 @@
 ## [ 组合替代实现 ]torch.Tensor.histogram
-
-### [torch.Tensor.histogram](https://pytorch.org/docs/stable/generated/torch.Tensor.histogram.html#torch.Tensor.histogram)
-
+### [torch.Tensor.histogram](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.histogram.html#torch.Tensor.histogram)
 ```python
 torch.Tensor.histogram(bins, *, range=None, weight=None, density=False)
 ```
 
-### [paddle.Tensor.histogram](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#histogram-bins-100-min-0-max-0)
-
+### [paddle.Tensor.histogram](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#histogram-bins-100-min-0-max-0)
 ```python
 paddle.Tensor.histogram(bins=100, min=0.0, max=0.0, weight=None, density=False)
 ```
@@ -25,9 +22,7 @@ paddle.Tensor.histogram(bins=100, min=0.0, max=0.0, weight=None, density=False)
 | 返回值  | 返回值       | PyTorch 返回 hist 和 bin_edges，返回值 dtype 类型与 self 一致，paddle.Tensor.histogram 返回 hist，返回值 dtype 类型为 int64 或 float32，paddle.Tensor.histogram_bin_edges 返回 bin_edges，返回值 dtype 类型为 float32，需要转写。                                 |
 
 ### 转写示例
-
 #### range 参数：bins 的范围
-
 ```python
 # PyTorch 写法:
 x = torch.tensor([1., 2, 1])
@@ -39,7 +34,6 @@ hist = x.histogram(bins=5, min=0., max=3.)
 ```
 
 #### 返回值：数量
-
 ```python
 # PyTorch 写法:
 x = torch.tensor([1., 2, 1])
@@ -51,7 +45,6 @@ hist, bin_edges = x.histogram(x, bins=5), x.histogram_bin_edges(x, bins=5)
 ```
 
 #### 返回值：dtype 类型
-
 ```python
 # PyTorch 写法:
 x = torch.tensor([1., 2, 1])

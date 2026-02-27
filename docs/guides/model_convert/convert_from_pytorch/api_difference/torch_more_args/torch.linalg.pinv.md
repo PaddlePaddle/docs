@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.linalg.pinv
-
-### [torch.linalg.pinv](https://pytorch.org/docs/stable/generated/torch.linalg.pinv.html#torch.linalg.pinv)
-
+## [ torch 参数更多 ]torch.linalg.pinv
+### [torch.linalg.pinv](https://docs.pytorch.org/docs/stable/generated/torch.linalg.pinv.html#torch.linalg.pinv)
 ```python
 torch.linalg.pinv(input, *, atol=None, rtol=None, hermitian=False, out=None)
 ```
 
-### [paddle.linalg.pinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/pinv_cn.html)
-
+### [paddle.linalg.pinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/pinv_cn.html#paddle.linalg.pinv)
 ```python
 paddle.linalg.pinv(x, rcond=1e-15, hermitian=False, name=None)
 ```
@@ -25,9 +22,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | out       | -            | 表示输出的 Tensor，Paddle 无此参数，需要转写。                      |
 
 ### 转写示例
-
 #### out 参数：输出的 Tensor
-
 ```python
 # PyTorch 写法:
 torch.linalg.pinv(x, out=y)

@@ -1,15 +1,12 @@
-## [torch 参数更多 ]torch.inverse
-
-### [torch.inverse](https://pytorch.org/docs/stable/generated/torch.inverse.html?highlight=inverse#torch.inverse)
-
+## [ torch 参数更多 ]torch.inverse
+### [torch.inverse](https://docs.pytorch.org/docs/stable/generated/torch.inverse.html#torch.inverse)
 ```python
 torch.inverse(input, *, out=None)
 ```
 
-### [paddle.linalg.inv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/inv_cn.html)
-
+### [paddle.inverse](https://github.com/PaddlePaddle/Paddle/blob/5721d267e434c18fa64ff2b99839c7cb6d4cc04d/python/paddle/tensor/math.py#L2900)
 ```python
-paddle.linalg.inv(x, name=None)
+paddle.inverse(x, name=None)
 ```
 
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -18,12 +15,11 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font>         | <font color='red'> x </font>            | 输入的 Tensor ，仅参数名不一致。                                     |
-| <font color='red'> out </font>           | -                                       | 表示输出的 Tensor，Paddle 无此参数，需要转写。              |
+|  input          |  x             | 输入的 Tensor ，仅参数名不一致。                                     |
+|  out            | -                                       | 表示输出的 Tensor，Paddle 无此参数，需要转写。              |
 
 
 ### 转写示例
-
 #### out：指定输出
 ```python
 # PyTorch 写法

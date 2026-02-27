@@ -1,12 +1,10 @@
 ## [ 返回参数类型不一致 ]torch.slogdet
-### [torch.slogdet](https://pytorch.org/docs/stable/generated/torch.slogdet.html?highlight=slogdet#torch.slogdet)
-
+### [torch.slogdet](https://docs.pytorch.org/docs/stable/generated/torch.slogdet.html#torch.slogdet)
 ```python
 torch.slogdet(input, *, out=None)
 ```
 
-### [paddle.linalg.slogdet](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/slogdet_cn.html#slogdet)
-
+### [paddle.linalg.slogdet](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/slogdet_cn.html#paddle.linalg.slogdet)
 ```python
 paddle.linalg.slogdet(x)
 ```
@@ -17,14 +15,13 @@ paddle.linalg.slogdet(x)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| <font color='red'> out </font> | - | 表示输出的 Tuple ，Paddle 无此参数，需要转写。  |
+|  input  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
+|  out  | - | 表示输出的 Tuple ，Paddle 无此参数，需要转写。  |
 | 返回值 | 返回值 | PyTorch 返回两个 Tesnor，Paddle 返回一个 Tensor，需要转写。 |
 
 
 
 ### 转写示例
-
 #### 返回值
 ```python
 # PyTorch 写法

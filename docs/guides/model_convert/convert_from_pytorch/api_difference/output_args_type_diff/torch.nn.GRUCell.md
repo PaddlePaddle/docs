@@ -1,11 +1,10 @@
 ## [ 返回参数类型不一致 ]torch.nn.GRUCell
-
-### [torch.nn.GRUCell](https://pytorch.org/docs/stable/generated/torch.nn.GRUCell.html#torch.nn.GRUCell)
+### [torch.nn.GRUCell](https://docs.pytorch.org/docs/stable/generated/torch.nn.GRUCell.html#torch.nn.GRUCell)
 ```python
 torch.nn.GRUCell(input_size, hidden_size, bias=True, device=None, dtype=None)
 ```
 
-### [paddle.nn.GRUCell](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GRUCell_cn.html#grucell)
+### [paddle.nn.GRUCell](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GRUCell_cn.html#paddle.nn.GRUCell)
 ```python
 paddle.nn.GRUCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
 ```
@@ -38,7 +37,7 @@ torch.nn.GRUCell(16, 32, bias=False)
 # Paddle 写法
 paddle.nn.GRUCell(16, 32, bias_ih_attr=False, bias_hh_attr=False)
 ```
-#### forward 类方法：前向传播
+#### forward 类方法返回值：前向传播
 ```python
 # 返回值个数不一致，Paddle 返回值比 Pytorch 多一个
 # PyTorch 写法

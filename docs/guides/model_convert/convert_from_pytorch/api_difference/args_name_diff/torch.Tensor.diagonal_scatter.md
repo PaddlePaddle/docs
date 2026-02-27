@@ -1,13 +1,10 @@
-## [ 仅参数名不一致 ] torch.Tensor.diagonal_scatter
-
-### [torch.Tensor.diagonal_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.diagonal_scatter.html?highlight=diagonal_scatter#torch.Tensor.diagonal_scatter)
-
+## [ 仅参数名不一致 ]torch.Tensor.diagonal_scatter
+### [torch.Tensor.diagonal\_scatter](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.diagonal_scatter.html#torch.Tensor.diagonal_scatter)
 ```python
 torch.Tensor.diagonal_scatter(src, offset=0, dim1=0, dim2=1)
 ```
 
 ### [paddle.Tensor.diagonal_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#diagonal-scatter-x-y-offset-0-axis1-0-axis2-1-name-none)
-
 ```python
 paddle.Tensor.diagonal_scatter(y, offset=0, axis1=0, axis2=1)
 ```

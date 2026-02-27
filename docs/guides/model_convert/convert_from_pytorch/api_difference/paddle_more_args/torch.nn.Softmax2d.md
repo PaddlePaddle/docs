@@ -1,13 +1,10 @@
 ## [ paddle 参数更多 ]torch.nn.Softmax2d
-
-### [torch.nn.Softmax2d](https://pytorch.org/docs/stable/generated/torch.nn.Softmax2d.html?highlight=softmax2d#torch.nn.Softmax2d)
-
+### [torch.nn.Softmax2d](https://docs.pytorch.org/docs/stable/generated/torch.nn.Softmax2d.html#torch.nn.Softmax2d)
 ```python
 torch.nn.Softmax2d()
 ```
 
-### [paddle.nn.Softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Softmax_cn.html#softmax)
-
+### [paddle.nn.Softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Softmax_cn.html#paddle.nn.Softmax)
 ```python
 paddle.nn.Softmax(axis=-1)
 ```
@@ -21,7 +18,6 @@ paddle.nn.Softmax(axis=-1)
 | -       | axis         | 指定对输入 Tensor 进行运算的轴。 |
 
 ### 转写示例
-
 ```python
 # PyTorch 写法
 cri = torch.nn.Softmax2d()

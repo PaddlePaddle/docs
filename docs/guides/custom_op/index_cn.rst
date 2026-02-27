@@ -8,11 +8,12 @@
 2. C++扩展：可将 C++ 类绑定至 Python，支持调用无 Tensor 参数的 C++ 函数。不涉及框架的调度开销
 3. Python 算子：使用 Python 编写实现前向（forward）和反向（backward）方法，在模型组网中使用的自定义 API
 
+此外还会介绍如何将其他深度学习框架算子生态的自定义算子迁移至飞桨框架。
+
 - `自定义 C++算子 <./new_cpp_op_cn.html>`_
-
 - `自定义 C++ 扩展 <./cpp_extension_cn.html>`_
-
 - `自定义 Python 算子 <./new_python_op_cn.html>`_
+- `跨生态自定义算子接入 <./cross_ecosystem_custom_op/index_cn.html>`_
 
 
 .. toctree::
@@ -21,3 +22,4 @@
    new_cpp_op_cn.md
    cpp_extension_cn.md
    new_python_op_cn.md
+   cross_ecosystem_custom_op/index_cn.rst

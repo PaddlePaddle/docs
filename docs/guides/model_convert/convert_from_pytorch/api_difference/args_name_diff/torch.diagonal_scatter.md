@@ -1,7 +1,5 @@
-## [ 仅参数名不一致 ] torch.diagonal_scatter
-
-### [torch.diagonal_scatter](https://pytorch.org/docs/stable/generated/torch.diagonal_scatter.html?highlight=diagonal_scatter#torch.diagonal_scatter)
-
+## [ 仅参数名不一致 ]torch.diagonal_scatter
+### [torch.diagonal\_scatter](https://docs.pytorch.org/docs/stable/generated/torch.diagonal_scatter.html#torch.diagonal_scatter)
 ```python
 torch.diagonal_scatter(input,
                        src,
@@ -10,8 +8,7 @@ torch.diagonal_scatter(input,
                        dim2=1)
 ```
 
-### [paddle.diagonal_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagonal_scatter_cn.html)
-
+### [paddle.diagonal\_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagonal_scatter_cn.html#paddle.diagonal_scatter)
 ```python
 paddle.diagonal_scatter(x,
                         y,
@@ -26,8 +23,8 @@ paddle.diagonal_scatter(x,
 
 | PyTorch | PaddlePaddle | 备注                                               |
 |---------|--------------| -------------------------------------------------- |
-| <font color='red'> input </font>     | <font color='red'> x </font>          | 输入张量，被嵌入的张量，仅参数名不一致。    |
-| <font color='red'> src </font>     | <font color='red'> y </font>          | 用于嵌入的张量，仅参数名不一致。    |
-| <font color='red'> offset </font>     | <font color='red'> offset </font>          | 从指定的二维平面嵌入对角线的位置，默认值为 0，即主对角线。    |
-| <font color='red'> dim1 </font>     | <font color='red'> axis1 </font>          | 对角线的第一个维度，默认值为 0，仅参数名不一致。    |
-| <font color='red'> dim2 </font>     | <font color='red'> axis2 </font>          | 对角线的第二个维度，默认值为 1，仅参数名不一致。    |
+|  input      |  x           | 输入张量，被嵌入的张量，仅参数名不一致。    |
+|  src      |  y           | 用于嵌入的张量，仅参数名不一致。    |
+|  offset      |  offset           | 从指定的二维平面嵌入对角线的位置，默认值为 0，即主对角线。    |
+|  dim1      |  axis1           | 对角线的第一个维度，默认值为 0，仅参数名不一致。    |
+|  dim2      |  axis2           | 对角线的第二个维度，默认值为 1，仅参数名不一致。    |

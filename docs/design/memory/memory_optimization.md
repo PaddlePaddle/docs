@@ -3,7 +3,7 @@
 
 ## Problem
 
-In a lecture from Andrew Ng, he attributes the recent sucess of AI due to a combination of these:
+In a lecture from Andrew Ng, he attributes the recent success of AI due to a combination of these:
 
 - Availability of Big Data
 - Supercomputing power to process this Big Data over very large neural networks
@@ -49,18 +49,18 @@ It's not enough to only have some basic strategies. The pre-requisite of memory 
 
 In our design, the neural network topology is defined as a program. Luckily, [live variable analysis](https://en.wikipedia.org/wiki/Live_variable_analysis) is a classic problem in compilers which can be used in many stages, such as register allocation.
 
-In compilers, the front end of the compiler translates programs into an intermediate language with an unbounded number of temporary variables. This program must run on a machine with a bounded number of registers. Two temporary variables a and b can fit into the same register, if a and b are never "in use" at the same time. Thus, many temporary variables can fit in few registers; if they don't all fit, the excess tempory variables can be kept in memory.
+In compilers, the front end of the compiler translates programs into an intermediate language with an unbounded number of temporary variables. This program must run on a machine with a bounded number of registers. Two temporary variables a and b can fit into the same register, if a and b are never "in use" at the same time. Thus, many temporary variables can fit in few registers; if they don't all fit, the excess temporary variables can be kept in memory.
 
 Therefore, the compiler needs to analyze the intermediate-representation program to determine which temporary variables are in use at the same time. We say a variable is "live" if it holds a value that may be needed in the future, so this analysis is called liveness analysis.
 
-We can leran these techniques from compilers. There are mainly two stages to make live variable analysis:
+We can learn these techniques from compilers. There are mainly two stages to make live variable analysis:
 
 - construct a control flow graph
 - solve the dataflow equations
 
 
 #### Control Flow Graph
-To perform analysis on a program, it is often useful to make a control flow graph. A [control flow graph](https://en.wikipedia.org/wiki/Control_flow_graph) (CFG) in computer science is a representation, using graph notation, of all paths that might be traversed through a program during its execution. Each statement in the program is a node in the flow graph; if statemment x can be followed by statement y, there is an egde from x to y.
+To perform analysis on a program, it is often useful to make a control flow graph. A [control flow graph](https://en.wikipedia.org/wiki/Control_flow_graph) (CFG) in computer science is a representation, using graph notation, of all paths that might be traversed through a program during its execution. Each statement in the program is a node in the flow graph; if statemment x can be followed by statement y, there is an edge from x to y.
 
 Following is the flow graph for a simple loop.
 
@@ -74,12 +74,12 @@ A simple way to perform data-flow analysis of programs is to set up dataflow equ
 
 - Flow Graph Terminology
 
-A flow graph node has out-edges that lead to sucessor nodes, and in-edges that come from predecessor nodes. The set *pred[n]* is all the predecessors of node n, and *succ[n]* is the set of sucessors.
+A flow graph node has out-edges that lead to successor nodes, and in-edges that come from predecessor nodes. The set *pred[n]* is all the predecessors of node n, and *succ[n]* is the set of successors.
 In former control flow graph, the out-edges of node 5 are 5 --> 6 and 5 --> 2, and *succ[5]* = {2, 6}. The in-edges of 2 are 5 --> 2 and 1 --> 2, and *pred[2]* = {1, 5}.
 
 - Uses and Defs
 
-An assignmemt to a variable or temporary defines that variable. An occurence of a variable on the right-hand side of an assginment(or in other expressions) uses the variable. We can define the *def* of a variable as the set of graph nodes that define it; or the *def* of a graph node as the set of variables that it defines; and the similarly for the *use* of a variable or graph node. In former control flow graph, *def(3)* = {c}, *use(3)* = {b, c}.
+An assignmemt to a variable or temporary defines that variable. An occurrence of a variable on the right-hand side of an assignment(or in other expressions) uses the variable. We can define the *def* of a variable as the set of graph nodes that define it; or the *def* of a graph node as the set of variables that it defines; and the similarly for the *use* of a variable or graph node. In former control flow graph, *def(3)* = {c}, *use(3)* = {b, c}.
 
 - Liveness
 
@@ -99,7 +99,7 @@ At last, we take basic strategy and liveness analysis techniques learning from c
 In-place is a built-in attribute of an operator. Since we treat in-place and other operators differently, we have to add an in-place attribute for every operator.
 
 
-#### contruct control flow graph
+#### construct control flow graph
 
 Following is the ProgramDesc protobuf of [machine translation](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/book/test_machine_translation.py) example.
 
@@ -147,7 +147,7 @@ We can transfer all the operators and variables in ProgramDesc to build a contro
 ```python
 class ControlFlowGraph:
     def __init__(self, Program):
-        self._sucessors = defaultdict(set)
+        self._successors = defaultdict(set)
         self._presucessors = defaultdict(set)
         self._uses = defaultdict(set)
         self._defs = defaultdict(set)
@@ -197,7 +197,7 @@ After op1, we can process variable b and variable c; After op2, we can process v
 
 #### memory sharing policy
 
-A memory pool will be mantained in the stage of memory optimization. Each operator node will be scanned to determine memory optimization is done or not. If an operator satifies the requirement, following policy will be taken to handle input/output variables.
+A memory pool will be maintained in the stage of memory optimization. Each operator node will be scanned to determine memory optimization is done or not. If an operator satisfies the requirement, following policy will be taken to handle input/output variables.
 
 ```
 if op.support_inplace():

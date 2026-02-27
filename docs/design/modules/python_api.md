@@ -116,7 +116,7 @@ class Operator:
                  block,  # Block
                  type,   # string
                  inputs, # dict<string, Variable>
-                 outputs,# dict<stirng, Variable>
+                 outputs,# dict<string, Variable>
                  attrs   # dict<string, Any>
                  ):
         self.desc = core.NewOpDesc(block.desc, type, inputs, outputs, attrs)
@@ -225,7 +225,7 @@ A mechanism to reuse code between layer functions is necessary. It will be aroun
 
 
 
-### Comparision between global functions and helper class
+### Comparison between global functions and helper class
 
 The `FullyConnected` layer will be as follow when we provide global functions:
 

@@ -87,7 +87,7 @@ class Linear(...):
 
             # ... forward_post_hook 逻辑
 
-            return outpus
+            return outputs
     ```
 
 + ``Block.append_op`` 函数中，生成 ``Op`` 之前

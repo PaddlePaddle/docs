@@ -1,7 +1,5 @@
-## [torch 参数更多]torch.nn.functional.kl_div
-
-### [torch.nn.functional.kl_div](https://pytorch.org/docs/stable/generated/torch.nn.functional.kl_div.html?highlight=kl_div#torch.nn.functional.kl_div)
-
+## [ torch 参数更多 ]torch.nn.functional.kl_div
+### [torch.nn.functional.kl\_div](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.kl_div.html#torch.nn.functional.kl_div)
 ```python
 torch.nn.functional.kl_div(input,
                target,
@@ -11,8 +9,7 @@ torch.nn.functional.kl_div(input,
                log_target=False)
 ```
 
-### [paddle.nn.functional.kl_div](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/kl_div_cn.html)
-
+### [paddle.nn.functional.kl\_div](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/kl_div_cn.html#paddle.nn.functional.kl_div)
 ```python
 paddle.nn.functional.kl_div(input,
                 label,
@@ -26,6 +23,7 @@ paddle.nn.functional.kl_div(input,
 
 | PyTorch      | PaddlePaddle | 备注                                                   |
 | ------------ | ------------ | ------------------------------------------------------ |
+| target       | label        | 与 input 对应的标签值，仅参数名不一致。               |
 | size_average | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。           |
 | reduce       | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。           |
 | reduction    | reduction    | 表示对输出结果的计算方式。                             |
@@ -33,60 +31,64 @@ paddle.nn.functional.kl_div(input,
 
 ### 转写示例
 
-#### size_average：是否对损失进行平均或求和
+
+#### size_average
+size_average 为 True
 ```python
-# PyTorch 写法 (size_average 为‘True’时)
-torch.nn.functional.kl_div(a, target, size_average=True)
+# PyTorch 写法
+torch.nn.functional.kl_div(size_average=True)
 
 # Paddle 写法
-paddle.nn.functional.kl_div(logit=a, label=target,
-    reduction='mean')
-
-# PyTorch 写法 (size_average 为‘False’时)
-torch.nn.functional.kl_div(a, target, size_average=False)
-
-# Paddle 写法
-paddle.nn.functional.kl_div(logit=a, label=target,
-    reduction='sum')
+paddle.nn.functional.kl_div(reduction='mean')
 ```
 
-#### reduce：是否对损失进行平均或求和
+size_average 为 False
 ```python
-# PyTorch 写法 (reduce 为‘True’时)
-torch.nn.functional.kl_div(a, target, reduce=True)
+# PyTorch 写法
+torch.nn.functional.kl_div(size_average=False)
 
 # Paddle 写法
-paddle.nn.functional.kl_div(logit=a, label=target,
-    reduction='mean')
-
-# PyTorch 写法 (reduce 为‘False’时)
-torch.nn.functional.kl_div(a, target, reduce=False)
-
-# Paddle 写法
-paddle.nn.functional.kl_div(logit=a, label=target,
-    reduction='sum')
+paddle.nn.functional.kl_div(reduction='sum')
 ```
-
-#### reduction：输出结果的计算方式
+#### reduce
+reduce 为 True
 ```python
-# PyTorch 写法 (reduction 为‘none’时)
-torch.nn.functional.kl_div(a, target, reduction='none')
+# PyTorch 写法
+torch.nn.functional.kl_div(reduce=True)
 
 # Paddle 写法
-paddle.nn.functional.kl_div(logit=a, label=target,
-    reduction='none')
-
-# PyTorch 写法 (reduction 为‘mean’时)
-torch.nn.functional.kl_div(a, target, reduction='mean')
-
-# Paddle 写法
-paddle.nn.functional.kl_div(logit=a, label=target,
-    reduction='mean')
-
-# PyTorch 写法 (reduction 为‘sum’时)
-torch.nn.functional.kl_div(a, target, reduction='sum')
+paddle.nn.functional.kl_div(reduction='sum')
+```
+reduce 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.kl_div(reduce=False)
 
 # Paddle 写法
-paddle.nn.functional.kl_div(logit=a, label=target,
-    reduction='sum')
+paddle.nn.functional.kl_div(reduction='none')
+```
+#### reduction
+reduction 为'none'
+```python
+# PyTorch 写法
+torch.nn.functional.kl_div(reduction='none')
+
+# Paddle 写法
+paddle.nn.functional.kl_div(reduction='none')
+```
+reduction 为'mean'
+```python
+# PyTorch 写法
+torch.nn.functional.kl_div(reduction='mean')
+
+# Paddle 写法
+paddle.nn.functional.kl_div(reduction='mean')
+```
+reduction 为'sum'
+```python
+# PyTorch 写法
+torch.nn.functional.kl_div(reduction='sum')
+
+# Paddle 写法
+paddle.nn.functional.kl_div(reduction='sum')
 ```

@@ -42,7 +42,7 @@ gather
 ::::::::::::
         - **x** (Tensor) - 输入 Tensor，秩 ``rank >= 1``，支持的数据类型包括 int32、int64、float32、float64、complex64、complex128 和 uint8 (CPU)、float16（GPU） 。
         - **index** (Tensor) - 索引 Tensor，秩 ``rank = 0`` 或者 ``rank = 1``，数据类型为 int32 或 int64。
-        - **axis** (Tensor) - 指定 index 获取输入的维度，``axis`` 的类型可以是 int 或者 Tensor，当 ``axis`` 为 Tensor 的时候其数据类型为 int32 或者 int64。默认值为 None，当``axis``为 None 的时候其值为 0。
+        - **axis** (Tensor) - 指定 index 获取输入的维度，``axis`` 的类型可以是 int 或者 Tensor，当 ``axis`` 为 Tensor 的时候其数据类型为 int32 或者 int64。默认值为 None，当 ``axis`` 为 None 的时候其值为 0。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
@@ -59,7 +59,7 @@ COPY-FROM: paddle.gather
 
 .. py:function:: paddle.gather(input, dim, index, out=None)
 
-PyTorch 兼容的 ``gather`` 操作：根据索引 index 获取输入 ``input`` 的指定 ``dim`` 维度的条目，并将它们拼接在一起。行为与 ``cn_api_paddle_take_along_axis`` 在 ``broadcast=False`` 情况下一致。
+PyTorch 兼容的 ``gather`` 操作：根据索引 index 获取输入 ``input`` 的指定 ``dim`` 维度的条目，并将它们拼接在一起。行为与 :ref:`cn_api_paddle_take_along_axis` 在 ``broadcast=False`` 情况下一致。
 
 接口对比可见 `【torch 参数更多】torch.gather`_ 。
 

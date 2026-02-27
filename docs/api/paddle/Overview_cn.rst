@@ -150,6 +150,7 @@ tensor 数学操作
     " :ref:`paddle.stanh <cn_api_paddle_stanh>` ", "stanh 激活函数"
     " :ref:`paddle.std <cn_api_paddle_std>` ", "沿给定的轴 axis 计算 x 中元素的标准差"
     " :ref:`paddle.subtract <cn_api_paddle_subtract>` ", "逐元素相减算子"
+    " :ref:`paddle.sub <cn_api_paddle_sub>` ", "逐元素相减算子"
     " :ref:`paddle.remainder <cn_api_paddle_remainder>` ", "逐元素取模算子"
     " :ref:`paddle.sum <cn_api_paddle_sum>` ", "对指定维度上的 Tensor 元素进行求和运算"
     " :ref:`paddle.tan <cn_api_paddle_tan>` ", "三角函数 tangent"
@@ -245,11 +246,13 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.sinc_ <cn_api_paddle_sinc_>` ", "Inplace 版本的 sinc API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.sinh_ <cn_api_paddle_sinh_>` ", "Inplace 版本的 sinh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.subtract_ <cn_api_paddle_subtract_>` ", "Inplace 版本的 subtract API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.sub_ <cn_api_paddle_sub_>` ", "Inplace 版本的 sub API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.tan_ <cn_api_paddle_tan_>` ", "Inplace 版本的 tan API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.cos_ <cn_api_paddle_cos_>` ", "Inplace 版本的 cos API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.atan_ <cn_api_paddle_atan_>` ", "Inplace 版本的 atan API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.acos_ <cn_api_paddle_acos_>` ", "Inplace 版本的 acos API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.uniform_ <cn_api_paddle_uniform_>` ", "Inplace 版本的 uniform API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.random_ <cn_api_paddle_random_>` ", "Inplace 版本的 random API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.lerp_ <cn_api_paddle_lerp_>` ", "Inplace 版本的 lerp API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.hypot_ <cn_api_paddle_hypot_>` ", "Inplace 版本的 hypot API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.multigammaln_ <cn_api_paddle_multigammaln_>` ", "Inplace 版本的 multigammaln API，对输入 x 采用 Inplace 策略"
@@ -331,6 +334,7 @@ tensor 属性相关
     " :ref:`paddle.broadcast_shape <cn_api_paddle_broadcast_shape>` ", "返回对 x_shape 大小的 Tensor 和 y_shape 大小的 Tensor 做 broadcast 操作后得到的 shape"
     " :ref:`paddle.broadcast_shapes <cn_api_paddle_broadcast_shapes>` ", "返回对多个 shape 做 broadcast 操作后得到的 shape"
     " :ref:`paddle.is_floating_point <cn_api_paddle_is_floating_point>` ", "判断输入 Tensor 的数据类型是否为浮点类型"
+    " :ref:`paddle.Size <cn_api_paddle_Size__upper>` ", "tuple 的子类, paddle.Tensor.size() 的返回类型，用于描述张量的维度大小。"
 
 .. _tensor_creation:
 
@@ -636,6 +640,8 @@ device 相关
 
     " :ref:`paddle.get_cuda_rng_state <cn_api_paddle_get_cuda_rng_state>` ", "获取 cuda 随机数生成器的状态信息"
     " :ref:`paddle.set_cuda_rng_state <cn_api_paddle_set_cuda_rng_state>` ", "设置 cuda 随机数生成器的状态信息"
+    " :ref:`paddle.get_default_device <cn_api_paddle_get_default_device>` ", "获取当前默认设备信息"
+    " :ref:`paddle.get_device_module <cn_api_paddle_get_device_module>` ", "获取指定设备对应的模块"
 
 .. _about_hapi:
 
@@ -661,3 +667,26 @@ device 相关
 
     " :ref:`paddle.get_flags <cn_api_paddle_get_flags>` ", "获取指定的 Paddle 环境变量 FLAGS 状态。详情请查看 :ref:`cn_guides_flags_flags`"
     " :ref:`paddle.set_flags <cn_api_paddle_set_flags>` ", "设置 Paddle 环境变量 FLAGS，详情请查看 :ref:`cn_guides_flags_flags`"
+
+.. _about_amp:
+
+AMP 相关 API
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`autocast <cn_api_paddle_autocast>` ", "创建 AMP 上下文环境"
+
+.. _about_compat_proxy:
+
+PyTorch 兼容代理 API
+::::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`disable_compat <cn_api_paddle_disable_compat>` ", "禁用 PyTorch 兼容代理"
+    " :ref:`enable_compat <cn_api_paddle_enable_compat>` ", "启用 PyTorch 兼容代理"

@@ -1,7 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.Adagrad
-
-### [torch.optim.Adagrad](https://pytorch.org/docs/stable/generated/torch.optim.Adagrad.html)
-
+### [torch.optim.Adagrad](https://docs.pytorch.org/docs/stable/generated/torch.optim.Adagrad.html#torch.optim.Adagrad)
 ```python
 torch.optim.Adagrad(params,
              lr=1e-2,
@@ -10,12 +8,13 @@ torch.optim.Adagrad(params,
              initial_accumulator_value=0,
              eps=1e-10,
              foreach=None,
+             *,
              maximize=False,
-             differentiable=False)
+             differentiable=False,
+             fused=None)
 ```
 
-### [paddle.optimizer.Adagrad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Adagrad_cn.html)
-
+### [paddle.optimizer.Adagrad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Adagrad_cn.html#paddle.optimizer.Adagrad)
 ```python
 paddle.optimizer.Adagrad(learning_rate,
                           epsilon=1e-06,
@@ -41,4 +40,5 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | foreach           | -     | 是否使用优化器的 foreach 实现。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。         |
 | maximize           | -     | 根据目标最大化参数，而不是最小化。Paddle 无此参数，暂无转写方式。         |
 | differentiable      | -     | 是否应通过训练中的优化器步骤进行自动微分。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。       |
+| fused   | -       | 表示是否使用 fused 的实现方式。Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。   |
 | -          | grad_clip            | 梯度裁剪的策略。 PyTorch 无此参数，Paddle 保持默认即可。       |

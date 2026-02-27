@@ -102,7 +102,7 @@ Issue for each task will be created later. Contributions, discussions and commen
 
 ### Overview
 
-Traditional **ASR** (Automatic Speech Recognition) pipelines require great human efforts devoted to elaborately tuning multiple hand-engineered components (e.g. audio feature design, accoustic model, pronuncation model and language model etc.). **Deep Speech 2** (**DS2**) \[[1](#references)\], however, trains such ASR models in an end-to-end manner, replacing most intermediate modules with only a single deep network architecture. With scaling up both the data and model sizes, DS2 achieves a very significant performance boost.
+Traditional **ASR** (Automatic Speech Recognition) pipelines require great human efforts devoted to elaborately tuning multiple hand-engineered components (e.g. audio feature design, acoustic model, pronuncation model and language model etc.). **Deep Speech 2** (**DS2**) \[[1](#references)\], however, trains such ASR models in an end-to-end manner, replacing most intermediate modules with only a single deep network architecture. With scaling up both the data and model sizes, DS2 achieves a very significant performance boost.
 
 Please read Deep Speech 2 \[[1](#references),[2](#references)\] paper for more background knowledge.
 
@@ -117,7 +117,7 @@ The classical DS2 network contains 15 layers (from bottom to top):
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/ds2_network.png" width=350><br/>
-Figure 1. Archetecture of Deep Speech 2 Network.
+Figure 1. Architecture of Deep Speech 2 Network.
 </div>
 
 We don't have to persist on this 2-3-7-1-1-1 depth \[[2](#references)\]. Similar networks with different depths might also work well. As in \[[1](#references)\], authors use a different depth (e.g. 2-2-3-1-1-1) for final experiments.
@@ -127,17 +127,17 @@ Key ingredients about the layers:
 - **Data Layers**:
    - Frame sequences data of audio **spectrogram** (with FFT).
    - Token sequences data of **transcription** text (labels).
-   - These two type of sequences do not have the same lengthes, thus a CTC-loss layer is required.
+   - These two type of sequences do not have the same lengths, thus a CTC-loss layer is required.
 - **2D Convolution Layers**:
    - Not only temporal convolution, but also **frequency convolution**. Like a 2D image convolution, but with a variable dimension (i.e. temporal dimension).
-   - With striding for only the first convlution layer.
+   - With striding for only the first convolution layer.
    - No pooling for all convolution layers.
 - **Uni-directional RNNs**
     - Uni-directional + row convolution: for low-latency inference.
     - Bi-direcitional + without row convolution: if we don't care about the inference latency.
 - **Row convolution**:
     - For looking only a few steps ahead into the feature, instead of looking into a whole sequence in bi-directional RNNs.
-    - Not nessesary if with bi-direcitional RNNs.
+    - Not necessary if with bi-direcitional RNNs.
     - "**Row**" means convolutions are done within each frequency dimension (row), and no convolution kernels shared across.
 - **Batch Normalization Layers**:
    - Added to all above layers (except for data and loss layer).

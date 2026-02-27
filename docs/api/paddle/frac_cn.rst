@@ -3,7 +3,7 @@
 frac
 -------------------------------
 
-.. py:function:: paddle.frac(x, name=None)
+.. py:function:: paddle.frac(x, name=None, *, out=None)
 
 
 得到输入 `Tensor` 的小数部分。
@@ -13,6 +13,7 @@ frac
 :::::::::
     - **x** (Tensor)：输入变量，类型为 Tensor，支持 int32、int64、float32、float64 数据类型。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **out** (Tensor，可选)- 输出的结果。该参数为仅关键字参数，默认值为 None。
 
 返回
 :::::::::

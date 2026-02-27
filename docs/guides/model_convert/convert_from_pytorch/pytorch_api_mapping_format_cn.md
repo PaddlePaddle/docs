@@ -48,7 +48,7 @@ Paddle API 签名
 
 1. **API 完全一致**：无需映射文档。
 
-2. **仅 API 调用方式不一致**：对每个不一致的调用方式都需要**转写示例**，同时需要在备注列里注明 `[不一致的用法说明]，需要转写`。
+2. **仅 API 调用方式不一致**：对每个不一致的调用方式都需要**转写示例**。
 
 3. **仅参数名不一致**：无需转写示例，但需要在备注列里注明哪些参数 `仅参数名不一致`。
 
@@ -196,7 +196,6 @@ paddle.nn.ZeroPad2D(padding,
 | -             | data_format  | 指定输入的 format， PyTorch 无此参数， Paddle 保持默认即可。 |
 
 
-
 ## 分类 5：参数默认值不一致
 
 ### [ 参数默认值不一致 ]torch.linalg.diagonal
@@ -260,7 +259,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：（注：这里�
 | device        | -      | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。    |
 | requires_grad | -      | 表示是否计算梯度， Paddle 无此参数，需要转写。           |
 | memory_format | -      | 表示内存格式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
-| pin_memeory   | -      | 表示是否使用锁页内存， Paddle 无此参数，需要转写。       |
+| pin_memory   | -      | 表示是否使用锁页内存， Paddle 无此参数，需要转写。       |
 | generator     | -      | 用于采样的伪随机数生成器， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | size_average  | -      | PyTorch 已弃用， Paddle 无此参数，需要转写。                  |
 | reduce        | -      | PyTorch 已弃用， Paddle 无此参数，需要转写。                  |

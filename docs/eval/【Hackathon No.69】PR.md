@@ -97,7 +97,7 @@ torch.tensor(data,
 
 在 paddle.to_tensor 中，stop_gradient 表示是否阻断梯度传导，PyTorch 的 requires_grad 表示是否不阻断梯度传导。
 
-在 torch.tensor 中，pin_memeory 表示是否使用锁页内存，而 PaddlePaddle 却无此参数。
+在 torch.tensor 中，pin_memory 表示是否使用锁页内存，而 PaddlePaddle 却无此参数。
 
 ------
 

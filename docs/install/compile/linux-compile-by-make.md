@@ -3,9 +3,9 @@
 ## 环境准备
 
 * **Linux 版本 (64 bit)**
-    * **Ubuntu 20.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
-    * **Ubuntu 22.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
-    * **Ubuntu 24.04 (GPU 版本支持 CUDA 11.8 - 12.9)**
+    * **Ubuntu 20.04 (GPU 版本支持 CUDA 11.8 - 12.x)**
+    * **Ubuntu 22.04 (GPU 版本支持 CUDA 11.8 - 13.0)**
+    * **Ubuntu 24.04 (GPU 版本支持 CUDA 11.8 - 13.0)**
 * **Python 版本 3.9/3.10/3.11/3.12/3.13 (64 bit)**
 
 ## 选择 CPU/GPU
@@ -15,7 +15,7 @@
 * 如果您的计算机有 NVIDIA® GPU，请确保满足以下条件以编译 GPU 版 PaddlePaddle
 
     * **CUDA 工具包配合 cuDNN 8(如需多卡支持，需配合 NCCL2.7 及更高)**
-    * **GPU 运算能力超过 6.0 的硬件设备**
+    * **GPU 运算能力超过 7.5 的硬件设备**
 
     您可参考 NVIDIA 官方文档了解 CUDA 和 CUDNN 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
@@ -45,7 +45,7 @@ Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机�
 #### 1. 请首先选择您希望储存 PaddlePaddle 的路径，然后在该路径下使用以下命令将 PaddlePaddle 的源码从 github 克隆到本地当前目录下名为 Paddle 的文件夹中：
 
 ```
-git clone https://github.com/PaddlePaddle/Paddle.git
+git clone --recursive https://github.com/PaddlePaddle/Paddle.git
 ```
 
 #### 2. 进入 Paddle 目录下：
@@ -63,9 +63,13 @@ cd Paddle
     docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev
     ```
 
-* GPU 版的 PaddlePaddle：
+* GPU 版的 PaddlePaddle， 可选 cuda11.8，cuda12.6，cuda12.9，cuda13.0：
     ```
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda118-dev
     docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda126-dev
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda129-dev
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda130-dev
+
     ```
 
 如果您的机器不在中国大陆地区，可以直接从 [DockerHub 中的 paddle 镜像仓库](https://hub.docker.com/r/paddlepaddle/paddle/tags) 拉取镜像：
@@ -177,8 +181,6 @@ pip3.10 install -r /paddle/python/requirements.txt
 
 - 请注意修改参数`-DPY_VERSION`为您希望编译使用的 python 版本,  例如`-DPY_VERSION=3.10`表示 python 版本为 3.10
 
-- 我们目前不支持 CentOS 6 下使用 Docker 编译 GPU 版本的 PaddlePaddle
-
 #### 10. 执行编译：
 
 使用多核编译
@@ -221,7 +223,7 @@ uname -m && cat /etc/*release
 
 #### 2. 更新系统源
 
-* CentOS 环境
+* AlmaLinux 环境
 
     更新`yum`的源：
 
@@ -404,7 +406,7 @@ workon paddle-venv
 #### 8. 将 PaddlePaddle 的源码 clone 在当下目录下的 Paddle 的文件夹中，并进入 Padde 目录下：
 
 ```
-git clone https://github.com/PaddlePaddle/Paddle.git
+git clone --recursive https://github.com/PaddlePaddle/Paddle.git
 ```
 
 ```
@@ -448,7 +450,7 @@ pip3.10 install -r /paddle/python/requirements.txt
     > 请注意 PY_VERSION 参数更换为您需要的 python 版本
 
 
-* 对于需要编译**GPU 版本 PaddlePaddle**的用户：(** CUDA11.8 - CUDA12.9 **)
+* 对于需要编译**GPU 版本 PaddlePaddle**的用户：(** CUDA11.8 - CUDA13.0 **)
 
     1. 请确保您已经正确安装 nccl2，或者按照以下指令安装 nccl2（这里提供的是 CUDA11.8，cuDNN8 下 nccl2 的安装指令，更多版本的安装信息请参考 NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 

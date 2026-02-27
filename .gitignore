@@ -1,11 +1,13 @@
 # IDE settings
 *.DS_Store
 .vscode
+.comate
 .idea
 
 # virtualenv
 venv/
 ENV/
+.venv/
 
 # Compiled Python files
 __pycache__/

@@ -67,7 +67,7 @@ In order to make the API organization more concise and clear, the original direc
 
 ### API alias rule
 
-- APIs are created with aliases in different paths for better convinience:
+- APIs are created with aliases in different paths for better convenience:
     - All APIs under device, framework, and tensor directories are aliased in the paddle root directory; all APIs are not aliased in the paddle root directory except a few special APIs.
     - All APIs in the paddle.nn directory except for the functional directory have aliases in the paddle.nn directory; all APIs in the functional directory have no aliases in the paddle.nn directory.
 - ** **It is recommended to give preference to aliases with shorter paths**, for example `paddle.add -> paddle.tensor.add`;  `paddle.add` is recommended.

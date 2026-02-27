@@ -1423,7 +1423,7 @@ PD_BUILD_GRAD_OP(custom_add)
 
 ### 使用 `setuptools` 编译
 
-该方式是对 `python` 内建库中的 `setuptools.setup` 接口的进一步封装，能够自动地生成 Python API 并以 Module 的形式安装到 `site-packages` 目录。编译完成后，支持通过 `import` 语句导入使用。
+该方式是对 `python` 内建库中的 `setuptools.setup` 接口的进一步封装，能够自动地生成 Python API 并以 Module 的形式安装到 `site-packages` 或者 `dist-packages` 目录。编译完成后，支持通过 `import` 语句导入使用。
 
 您需要编写 `setup.py` 文件， 配置自定义算子的编译规则。
 
@@ -1459,68 +1459,85 @@ setup(
 
 执行 `python setup_cpu.py install` 或者 `python setup_cuda.py install` 即可一键完成自定义算子的编译和安装。
 
-以 `python setup_cuda.py install` 为例，执行日志如下：
+> 注：在当前目录只有一个 `setup.py` 文件时，可以使用 `pip install . --no-build-isolation` 这种现代化的方式进行构建。
+
+以 `python setup_cpu.py install` 为例，执行日志如下 (省略日志时间，以及 setuptools 版本相关警告等信息)：
 
 ```
-running install
-running bdist_egg
-running egg_info
-writing custom_setup_ops.egg-info/PKG-INFO
-writing dependency_links to custom_setup_ops.egg-info/dependency_links.txt
-writing top-level names to custom_setup_ops.egg-info/top_level.txt
-reading manifest file 'custom_setup_ops.egg-info/SOURCES.txt'
-writing manifest file 'custom_setup_ops.egg-info/SOURCES.txt'
-installing library code to build/custom_setup_ops/bdist.linux-x86_64/egg
-running install_lib
-running build_ext
-/usr/local/lib/python3.7/site-packages/paddle/fluid/layers/utils.py:77: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
-  return (isinstance(seq, collections.Sequence) and
+[    INFO] dist.py:1018 - running install
+[    INFO] dist.py:1018 - running build
+[    INFO] dist.py:1018 - running build_ext
 Compiling user custom op, it will cost a few seconds.....
-creating build/custom_setup_ops/bdist.linux-x86_64/egg
-copying build/custom_setup_ops/lib.linux-x86_64-3.7/version.txt -> build/custom_setup_ops/bdist.linux-x86_64/egg
-copying build/custom_setup_ops/lib.linux-x86_64-3.7/relu_cpu.o -> build/custom_setup_ops/bdist.linux-x86_64/egg
-copying build/custom_setup_ops/lib.linux-x86_64-3.7/relu_cuda.o -> build/custom_setup_ops/bdist.linux-x86_64/egg
-copying build/custom_setup_ops/lib.linux-x86_64-3.7/relu_cuda.cu.o -> build/custom_setup_ops/bdist.linux-x86_64/egg
-copying build/custom_setup_ops/lib.linux-x86_64-3.7/custom_setup_ops.so -> build/custom_setup_ops/bdist.linux-x86_64/egg
-creating stub loader for custom_setup_ops.so
-byte-compiling build/custom_setup_ops/bdist.linux-x86_64/egg/custom_setup_ops.py to custom_setup_ops.cpython-37.pyc
-creating build/custom_setup_ops/bdist.linux-x86_64/egg/EGG-INFO
-copying custom_setup_ops.egg-info/PKG-INFO -> build/custom_setup_ops/bdist.linux-x86_64/egg/EGG-INFO
-copying custom_setup_ops.egg-info/SOURCES.txt -> build/custom_setup_ops/bdist.linux-x86_64/egg/EGG-INFO
-copying custom_setup_ops.egg-info/dependency_links.txt -> build/custom_setup_ops/bdist.linux-x86_64/egg/EGG-INFO
-copying custom_setup_ops.egg-info/not-zip-safe -> build/custom_setup_ops/bdist.linux-x86_64/egg/EGG-INFO
-copying custom_setup_ops.egg-info/top_level.txt -> build/custom_setup_ops/bdist.linux-x86_64/egg/EGG-INFO
-writing build/custom_setup_ops/bdist.linux-x86_64/egg/EGG-INFO/native_libs.txt
-creating 'dist/custom_setup_ops-0.0.0-py3.7-linux-x86_64.egg' and adding 'build/custom_setup_ops/bdist.linux-x86_64/egg' to it
-removing 'build/custom_setup_ops/bdist.linux-x86_64/egg' (and everything under it)
-Processing custom_setup_ops-0.0.0-py3.7-linux-x86_64.egg
-creating /usr/local/lib/python3.7/site-packages/custom_setup_ops-0.0.0-py3.7-linux-x86_64.egg
-Extracting custom_setup_ops-0.0.0-py3.7-linux-x86_64.egg to /usr/local/lib/python3.7/site-packages
-Adding custom-setup-ops 0.0.0 to easy-install.pth file
-
-Installed /usr/local/lib/python3.7/site-packages/custom_setup_ops-0.0.0-py3.7-linux-x86_64.egg
-Processing dependencies for custom-setup-ops==0.0.0
-Finished processing dependencies for custom-setup-ops==0.0.0
+[    INFO] build_ext.py:538 - building 'custom_setup_ops' extension
+[    INFO] dir_util.py:58 - creating /paddle/Paddle/build/tmp_setuptools/build/custom_setup_ops/lib.linux-x86_64-cpython-39/build/custom_setup_ops/temp.linux-x86_64-cpython-39
+[    INFO] spawn.py:77 - x86_64-linux-gnu-g++ -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -fPIC -I/usr/local/lib/python3.9/dist-packages/paddle/include -I/usr/local/lib/python3.9/dist-packages/paddle/include/third_party -I/usr/local/lib/python3.9/dist-packages/paddle/include/paddle/phi/api/include/compat -I/usr/local/lib/python3.9/dist-packages/paddle/include/paddle/phi/api/include/compat/torch/csrc/api/include -I/usr/include/python3.9 -I/usr/include/python3.9 -c /paddle/Paddle/build/tmp_setuptools/relu_cpu.cc -o /paddle/Paddle/build/tmp_setuptools/build/custom_setup_ops/lib.linux-x86_64-cpython-39/build/custom_setup_ops/temp.linux-x86_64-cpython-39/relu_cpu.o -w -DPADDLE_WITH_CUSTOM_KERNEL -DPADDLE_EXTENSION_NAME=custom_setup_ops -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17
+/paddle/Paddle/build/tmp_setuptools/build/custom_setup_ops/lib.linux-x86_64-cpython-39/build/custom_setup_ops/temp.linux-x86_64-cpython-39/relu_cpu.o is compiled
+[    INFO] spawn.py:77 - x86_64-linux-gnu-g++ -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -shared -Wl,-O1 -Wl,-Bsymbolic-functions /paddle/Paddle/build/tmp_setuptools/build/custom_setup_ops/lib.linux-x86_64-cpython-39/build/custom_setup_ops/temp.linux-x86_64-cpython-39/relu_cpu.o -L/usr/local/lib/python3.9/dist-packages/paddle/libs -L/usr/local/lib/python3.9/dist-packages/paddle/base -L/usr/lib/x86_64-linux-gnu -Wl,--enable-new-dtags,-rpath,/usr/local/lib/python3.9/dist-packages/paddle/libs -Wl,--enable-new-dtags,-rpath,/usr/local/lib/python3.9/dist-packages/paddle/base -o build/custom_setup_ops/lib.linux-x86_64-cpython-39/custom_setup_ops.so -l:libpaddle.so
+Received len(custom_op) = 1, using custom operator
+Removed: build/custom_setup_ops/lib.linux-x86_64-cpython-39/build/custom_setup_ops/temp.linux-x86_64-cpython-39/relu_cpu.o
+[    INFO] dist.py:1018 - running install_lib
+[    INFO] file_util.py:130 - copying build/custom_setup_ops/lib.linux-x86_64-cpython-39/version.txt -> /usr/local/lib/python3.9/dist-packages
+[    INFO] file_util.py:130 - copying build/custom_setup_ops/lib.linux-x86_64-cpython-39/custom_setup_ops.py -> /usr/local/lib/python3.9/dist-packages
+[    INFO] file_util.py:130 - copying build/custom_setup_ops/lib.linux-x86_64-cpython-39/custom_setup_ops.so -> /usr/local/lib/python3.9/dist-packages
+[    INFO] util.py:485 - byte-compiling /usr/local/lib/python3.9/dist-packages/custom_setup_ops.py to custom_setup_ops.cpython-39.pyc
+[    INFO] dist.py:1018 - running install_egg_info
+[    INFO] dist.py:1018 - running egg_info
+[    INFO] dir_util.py:58 - creating custom_setup_ops.egg-info
+[    INFO] egg_info.py:651 - writing custom_setup_ops.egg-info/PKG-INFO
+[    INFO] egg_info.py:279 - writing dependency_links to custom_setup_ops.egg-info/dependency_links.txt
+[    INFO] egg_info.py:279 - writing top-level names to custom_setup_ops.egg-info/top_level.txt
+[    INFO] util.py:332 - writing manifest file 'custom_setup_ops.egg-info/SOURCES.txt'
+[    INFO] sdist.py:203 - reading manifest file 'custom_setup_ops.egg-info/SOURCES.txt'
+[    INFO] util.py:332 - writing manifest file 'custom_setup_ops.egg-info/SOURCES.txt'
+[    INFO] util.py:332 - Copying custom_setup_ops.egg-info to /usr/local/lib/python3.9/dist-packages/custom_setup_ops-0.0.0-py3.9.egg-info
+[    INFO] dist.py:1018 - running install_scripts
 ```
 
-执行成功后，如日志所示，自定义算子模块 `custom_setup_ops` 被安装至如下目录：
+执行成功后，如日志所示，自定义算子模块 `custom_setup_ops` 的安装信息如下：
 
-`/usr/local/lib/python3.7/site-packages/custom_setup_ops-0.0.0-py3.7-linux-x86_64.egg`
+``` shell
 
-`custom_setup_ops-0.0.0-py3.7-linux-x86_64.egg` 目录中内容如下：
+> pip show custom_setup_ops
+Name: custom_setup_ops
+Version: 0.0.0
+Summary:
+Home-page:
+Author:
+Author-email:
+License:
+Location: /usr/local/lib/python3.9/dist-packages
+Requires:
+Required-by:
 
 ```
-custom_setup_ops_pd_.so  EGG-INFO/     relu_cpu.o      relu_cuda.o
-custom_setup_ops.py      __pycache__/  relu_cuda.cu.o  version.txt
+
+其目录结构如下：
+
+``` shell
+
+> tree /usr/local/lib/python3.9/dist-packages/custom_setup_ops*
+/usr/local/lib/python3.9/dist-packages/custom_setup_ops
+|-- __init__.py
+`-- custom_setup_ops_pd_.so
+/usr/local/lib/python3.9/dist-packages/custom_setup_ops-0.0.0-py3.9.egg-info
+|-- PKG-INFO
+|-- SOURCES.txt
+|-- dependency_links.txt
+|-- not-zip-safe
+`-- top_level.txt
+
 ```
 
-其中 `custom_setup_ops_pd_.so` 为自定义算子编译生成的动态库，`custom_setup_ops.py` 为根据 `PaddlePaddle` 接口的定义规则，自动生成的自定义算子 python 模块源码，其示例内容为（自动生成的代码后续可能会更新，生成结果可能与示例代码不一致）：
+其中 `custom_setup_ops_pd_.so` 为自定义算子编译生成的动态库，`custom_setup_ops/__init__.py` 为根据 `PaddlePaddle` 接口的定义规则，自动生成的自定义算子 python 模块源码，其示例内容为（自动生成的代码后续可能会更新，生成结果可能与示例代码不一致）：
 
 ```python
+
 from paddle import _C_ops
 from paddle.framework import in_dynamic_or_pir_mode
 from paddle.base.layer_helper import LayerHelper
+from paddle.jit.marker import unified
 
+@unified
 def custom_relu(x):
     # The output variable's dtype use default value 'float32',
     # and the actual dtype of output variable will be inferred in runtime.
@@ -1588,9 +1605,21 @@ __bootstrap__()
 ```python
 import paddle
 from custom_setup_ops import custom_relu
+paddle.set_device('cpu')
 
 x = paddle.randn([4, 10], dtype='float32')
 relu_out = custom_relu(x)
+
+# `relu_out` should be like:
+# Tensor(shape=[4, 10], dtype=float32, place=Place(cpu), stop_gradient=True,
+#        [[0.02314972, 0.65578228, 0.        , 0.        , 0.18305063, 0.        ,
+#          0.67343038, 0.        , 1.16782570, 1.71236455],
+#         [0.        , 0.60349381, 0.        , 0.        , 0.        , 0.        ,
+#          0.14162211, 0.        , 0.        , 0.33964530],
+#         [0.        , 0.        , 0.12062856, 0.18853758, 0.54154527, 0.73217475,
+#          0.        , 0.        , 0.        , 0.        ],
+#         [0.04105225, 0.        , 0.67857188, 0.95838499, 1.08346415, 2.47209001,
+#          0.        , 0.        , 0.22969440, 1.08237624]])
 ```
 
 > 注：`setuptools` 的封装是为了简化自定义算子编译和使用流程，即使不依赖于 `setuptools`，也可以自行编译生成动态库，并封装相应的 python API，然后在基于 `PaddlePaddle` 实现的模型中使用

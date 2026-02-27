@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.profiler.profile
-
-### [torch.profiler.profile](https://pytorch.org/docs/stable/profiler.html#torch.profiler.profile)
-
+## [ torch 参数更多 ]torch.profiler.profile
+### [torch.profiler.profile](https://docs.pytorch.org/docs/stable/profiler.html#torch.profiler.profile)
 ```python
 torch.profiler.profile(*, activities=None, schedule=None, on_trace_ready=None, record_shapes=False, profile_memory=False, with_stack=False, with_flops=False, with_modules=False, experimental_config=None, use_cuda=None)
 ```
 
-### [paddle.profiler.Profiler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/Profiler_cn.html)
-
+### [paddle.profiler.Profiler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/Profiler_cn.html#paddle.profiler.Profiler)
 ```python
 paddle.profiler.Profiler(*, targets=None, scheduler=None, on_trace_ready=None, record_shapes=False, profile_memory=False, timer_only=False)
 ```
@@ -31,9 +28,6 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | -                   | timer_only     | 如果设置为 True，将只统计模型的数据读取和每一个迭代所消耗的时间，而不进行性能分析，PyTorch 无此参数，Paddle 保持默认即可。   |
 
 ### 转写示例
-
-#### 参数类型不同
-
 ```python
 # PyTorch 写法:
 with torch.profiler.profile(

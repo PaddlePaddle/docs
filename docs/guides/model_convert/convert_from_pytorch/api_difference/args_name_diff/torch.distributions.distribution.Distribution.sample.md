@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.distributions.distribution.Distribution.sample
-
-### [torch.distributions.distribution.Distribution.sample](https://pytorch.org/docs/stable/distributions.html#torch.distributions.distribution.Distribution.sample)
-
+### [torch.distributions.distribution.Distribution.sample](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.distribution.Distribution.sample)
 ```python
 torch.distributions.distribution.Distribution.sample(sample_shape=torch.Size([]))
 ```
 
 ### [paddle.distribution.Distribution.sample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Distribution_cn.html#sample)
-
 ```python
 paddle.distribution.Distribution.sample(shape=())
 ```

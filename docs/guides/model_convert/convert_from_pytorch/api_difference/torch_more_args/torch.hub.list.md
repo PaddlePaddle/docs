@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.hub.list
-
-### [torch.hub.list](https://pytorch.org/docs/stable/hub.html?highlight=hub+list#torch.hub.list)
-
+## [ torch 参数更多 ]torch.hub.list
+### [torch.hub.list](https://docs.pytorch.org/docs/stable/hub.html#torch.hub.list)
 ```python
 torch.hub.list(github,
                 force_reload=False,
@@ -9,8 +7,7 @@ torch.hub.list(github,
                 trust_repo=None)
 ```
 
-### [paddle.hub.list](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hub/list_cn.html)
-
+### [paddle.hub.list](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hub/list_cn.html#paddle.hub.list)
 ```python
 paddle.hub.list(repo_dir,
                 source='github',
@@ -28,4 +25,4 @@ paddle.hub.list(repo_dir,
 | force_reload   | force_reload |指定是否强制拉取，默认值: False。             |
 | skip_validation| -            |检查由 github 参数指定的分支或提交是否属于存储库所有者，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
 | trust_repo     | -            |在 v1.14 中被移除；Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
-| -              |source        |指定 repo 托管的位置，PyTorch 无此参数，Paddle 保持默认即可|
+| -              |source        |指定 repo 托管的位置，PyTorch 无此参数，Paddle 保持默认即可。|

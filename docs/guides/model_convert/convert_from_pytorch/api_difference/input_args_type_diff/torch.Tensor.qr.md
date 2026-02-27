@@ -1,13 +1,10 @@
-## [ 输入参数类型不一致 ] torch.Tensor.qr
-
-### [torch.Tensor.qr](https://pytorch.org/docs/stable/generated/torch.Tensor.qr.html?highlight=torch+tensor+qr#torch.Tensor.qr)
-
+## [ 输入参数类型不一致 ]torch.Tensor.qr
+### [torch.Tensor.qr](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.qr.html#torch.Tensor.qr)
 ```python
 torch.Tensor.qr(some=True)
 ```
 
 ### [paddle.Tensor.qr](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/qr_cn.html#qr)
-
 ```python
 paddle.Tensor.qr(mode='reduced')
 ```
@@ -22,7 +19,7 @@ paddle.Tensor.qr(mode='reduced')
 
 
 ### 转写示例
-### some：控制 QR 分解的行为
+#### some：控制 QR 分解的行为
 ```python
 # 当进行完整的 QR 分解时
 # PyTorch 写法

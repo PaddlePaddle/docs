@@ -8,11 +8,11 @@
 
 * 考虑到环境差异性，我们推荐使用教程提供的标准镜像完成环境准备：
 
-  * 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-gcu:topsrider3.2.109-ubuntu20-x86_64-gcc84
+  * 镜像链接：ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-gcu:topsrider3.5.102-ubuntu20-x86_64-gcc84
 
-  * 镜像中已经默认安装了燧原软件栈 TopsRider-3.2.109
+  * 镜像中已经默认安装了燧原软件栈 TopsRider-3.5.102
 
-* 燧原软件栈驱动版本为 1.2.0.301
+* 燧原软件栈驱动版本为 1.5.0.601
 
 ### 环境安装
 

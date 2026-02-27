@@ -1,7 +1,5 @@
-## [torch 参数更多 ]torch.nn.functional.normalize
-
-### [torch.nn.functional.normalize](https://pytorch.org/docs/stable/generated/torch.nn.functional.normalize.html?highlight=normalize#torch.nn.functional.normalize)
-
+## [ torch 参数更多 ]torch.nn.functional.normalize
+### [torch.nn.functional.normalize](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.normalize.html#torch.nn.functional.normalize)
 ```python
 torch.nn.functional.normalize(input,
                              p=2.0,
@@ -10,8 +8,7 @@ torch.nn.functional.normalize(input,
                              out=None)
 ```
 
-### [paddle.nn.functional.normalize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/normalize_cn.html)
-
+### [paddle.nn.functional.normalize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/normalize_cn.html#paddle.nn.functional.normalize)
 ```python
 paddle.nn.functional.normalize(x,
                                p=2,
@@ -29,10 +26,10 @@ paddle.nn.functional.normalize(x,
 | p          | p         | 表示范数公式中的指数值 。                                     |
 | dim          | axis         | 表示要进行归一化的轴 。                                     |
 | eps          | epsilon         | 表示添加到分母上的值 。                                     |
-| out           | -            | 表示输出 Tensor 。               |
+| out           | -            | 表示输出 Tensor，需要转写。               |
 
 ### 转写示例
-####  out: 指定输出
+#### out: 指定输出
 ```python
 # PyTorch 写法
 torch.nn.functional.normalize(x, out=y)

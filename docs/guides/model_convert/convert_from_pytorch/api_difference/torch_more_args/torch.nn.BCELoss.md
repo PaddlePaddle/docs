@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.BCELoss
-### [torch.nn.BCELoss](https://pytorch.org/docs/stable/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss)
-
+### [torch.nn.BCELoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.BCELoss.html#torch.nn.BCELoss)
 ```python
 torch.nn.BCELoss(weight=None,
                  size_average=None,
@@ -8,8 +7,7 @@ torch.nn.BCELoss(weight=None,
                  reduction='mean')
 ```
 
-### [paddle.nn.BCELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BCELoss_cn.html#bceloss)
-
+### [paddle.nn.BCELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/BCELoss_cn.html#paddle.nn.BCELoss)
 ```python
 paddle.nn.BCELoss(weight=None,
                   reduction='mean',
@@ -27,68 +25,35 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | reduction  | reduction            | 表示应用于输出结果的计算方式。  |
 
 ### 转写示例
-#### size_average
-size_average 为 True
+#### size_average/reduce：对应到 reduction 为 sum
 ```python
 # PyTorch 写法
-torch.nn.BCELoss(weight=w, size_average=True)
-
-# Paddle 写法
-paddle.nn.BCELoss(weight=w, reduction='mean')
-```
-
-size_average 为 False
-```python
-# PyTorch 写法
+torch.nn.BCELoss(weight=w, size_average=False, reduce=True)
 torch.nn.BCELoss(weight=w, size_average=False)
 
 # Paddle 写法
 paddle.nn.BCELoss(weight=w, reduction='sum')
 ```
 
-#### reduce
-reduce 为 True
+#### size_average/reduce：对应到 reduction 为 mean
 ```python
 # PyTorch 写法
+torch.nn.BCELoss(weight=w, size_average=True, reduce=True)
 torch.nn.BCELoss(weight=w, reduce=True)
+torch.nn.BCELoss(weight=w, size_average=True)
+torch.nn.BCELoss(weight=w)
 
 # Paddle 写法
 paddle.nn.BCELoss(weight=w, reduction='mean')
 ```
 
-reduce 为 False
+#### size_average/reduce：对应到 reduction 为 none
 ```python
 # PyTorch 写法
+torch.nn.BCELoss(weight=w, size_average=True, reduce=False)
+torch.nn.BCELoss(weight=w, size_average=False, reduce=False)
 torch.nn.BCELoss(weight=w, reduce=False)
 
 # Paddle 写法
 paddle.nn.BCELoss(weight=w, reduction='none')
-```
-
-#### reduction
-reduction 为'none'
-```python
-# PyTorch 写法
-torch.nn.BCELoss(weight=w, reduction='none')
-
-# Paddle 写法
-paddle.nn.BCELoss(weight=w, reduction='none')
-```
-
-reduction 为'mean'
-```python
-# PyTorch 写法
-torch.nn.BCELoss(weight=w, reduction='mean')
-
-# Paddle 写法
-paddle.nn.BCELoss(weight=w, reduction='mean')
-```
-
-reduction 为'sum'
-```python
-# PyTorch 写法
-torch.nn.BCELoss(weight=w, reduction='sum')
-
-# Paddle 写法
-paddle.nn.BCELoss(weight=w, reduction='sum')
 ```

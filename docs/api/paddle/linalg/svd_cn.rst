@@ -26,9 +26,9 @@ svd
 返回
 ::::::::::::
 
-    - Tensor U，奇异值分解的 U 矩阵。如果 full_matrics 设置为 False，则 Shape 为 ``[*, M, K]``，如果 full_metrices 设置为 True，那么 Shape 为 ``[*, M, M]``。其中 K 为 M 和 N 的最小值。
+    - Tensor U，奇异值分解的 U 矩阵。如果 full_matrices 设置为 False，则 Shape 为 ``[*, M, K]``，如果 full_matrices 设置为 True，那么 Shape 为 ``[*, M, M]``。其中 K 为 M 和 N 的最小值。
     - Tensor S，奇异值向量，Shape 为 ``[*, K]`` 。
-    - Tensor VH，奇异值分解的 VH 矩阵。如果 full_matrics 设置为 False，则 Shape 为 ``[*, K, N]``，如果 full_metrices 设置为 True，那么 Shape 为 ``[*, N, N]``。其中 K 为 M 和 N 的最小值。
+    - Tensor VH，奇异值分解的 VH 矩阵。如果 full_matrices 设置为 False，则 Shape 为 ``[*, K, N]``，如果 full_matrices 设置为 True，那么 Shape 为 ``[*, N, N]``。其中 K 为 M 和 N 的最小值。
 
 代码示例
 ::::::::::

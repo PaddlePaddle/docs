@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.ger
-
-### [torch.Tensor.ger](https://pytorch.org/docs/stable/generated/torch.Tensor.ger.html?highlight=torch+tensor+ger#torch.Tensor.ger)
-
+### [torch.Tensor.ger](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.ger.html#torch.Tensor.ger)
 ```python
 torch.Tensor.ger(vec2)
 ```
 
 ### [paddle.Tensor.outer]()
-
 ```python
 paddle.Tensor.outer(y, name=None)
 ```
@@ -17,4 +14,4 @@ paddle.Tensor.outer(y, name=None)
 
 | PyTorch                        | PaddlePaddle                 | 备注                                                   |
 |--------------------------------|------------------------------| ------------------------------------------------------ |
-| <font color='red'> vec2 </font> | <font color='red'> y </font> | 输入的 Tensor ，仅参数名不一致。                                     |
+|  vec2  |  y  | 输入的 Tensor ，仅参数名不一致。                                     |

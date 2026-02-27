@@ -66,7 +66,7 @@
     - `C++ OP 开发指南 <../api_contributing_guides/new_cpp_op_cn.html>`_
     - `OP Benchmark 使用指南 <https://github.com/PaddlePaddle/benchmark/blob/master/api>`_
     - `算子性能优化 优化方法 <./op_optimization_method_introduction_cn.html>`_
-    - `算子性能优化 验收规范 <./op_optimization_accpetance_criteria_cn.html>`_
+    - `算子性能优化 验收规范 <./op_optimization_acceptance_criteria_cn.html>`_
     ", "`Github 飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
 
 
@@ -98,5 +98,5 @@
     :hidden:
 
     op_optimization_method_introduction_cn.md
-    op_optimization_accpetance_criteria_cn.md
+    op_optimization_acceptance_criteria_cn.md
     kernel_primitive_api/index_cn.rst

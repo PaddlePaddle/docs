@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.special.logit
-
-### [torch.special.logit](https://pytorch.org/docs/stable/special.html#torch.special.logit)
-
+## [ torch 参数更多 ]torch.special.logit
+### [torch.special.logit](https://docs.pytorch.org/docs/stable/special.html#torch.special.logit)
 ```python
 torch.special.logit(input, eps=None, *, out=None)
 ```
 
-### [paddle.logit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logit_cn.html)
-
+### [paddle.logit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logit_cn.html#paddle.logit)
 ```python
 paddle.logit(x, eps=None, name=None)
 ```
@@ -23,9 +20,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | out     | -            | 表示输出的 Tensor，Paddle 无此参数，需要转写。 |
 
 ### 转写示例
-
 #### out：指定输出
-
 ```python
 # PyTorch 写法
 torch.special.logit(x, out=y)

@@ -1,12 +1,10 @@
 ## [ 组合替代实现 ]torch.nn.modules.module.register_module_forward_hook
-### [torch.nn.modules.module.register_module_forward_hook](https://pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_hook.html)
-
+### [torch.nn.modules.module.register\_module\_forward\_hook](https://docs.pytorch.org/docs/stable/generated/torch.nn.modules.module.register_module_forward_hook.html#torch.nn.modules.module.register_module_forward_hook)
 ```python
 torch.nn.modules.module.register_module_forward_hook(hook, *, always_call=False)
 ```
 
 ### [paddle.nn.Layer.register_forward_post_hook](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Layer_cn.html#register-forward-post-hook-hook)
-
 ```python
 paddle.nn.Layer.register_forward_post_hook(hook)
 ```
@@ -20,7 +18,6 @@ paddle.nn.Layer.register_forward_post_hook(hook)
 | always_call        | -       | 是否强制调用钩子，Paddle 无此参数，一般对训练结果影响不大，可直接删除。  |
 
 ### 转写示例
-
 ```python
 # PyTorch 写法
 Linear = torch.nn.Linear(2, 4)

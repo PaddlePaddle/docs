@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.transforms.AbsTransform
-
-### [torch.distributions.transforms.AbsTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.AbsTransform)
-
+### [torch.distributions.transforms.AbsTransform](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.AbsTransform)
 ```python
 torch.distributions.transforms.AbsTransform(cache_size=0)
 ```
 
 ### [paddle.distribution.AbsTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/AbsTransform_cn.html#paddle.distribution.AbsTransform)
-
 ```python
 paddle.distribution.AbsTransform()
 ```

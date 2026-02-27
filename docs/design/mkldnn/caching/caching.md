@@ -83,7 +83,7 @@ Also MKL-DNN caching mechanism is used for transferring whole MKL-DNN memory all
 
 ##### Note on multi threading execution scenario
 PaddlePaddle's program(models) can be executed by single thread as well as multiple threads. Graph's operators can be executed by different threads . In particular forward kernel of given operator may be executed by different thread
-than backward kernel of the same instance of operator. In that situation hashing keys used for transferring MKL-DNN primitive descriptors cannot contain Thread ID specific values as key has to be shared among forward and backward kernel. Hence primitive descriptors (to be transfered to backward kernel) are using hashing key that does not contain any thread ID based value. As a result thread safety mechanics (critical section etc.) was employed to
+than backward kernel of the same instance of operator. In that situation hashing keys used for transferring MKL-DNN primitive descriptors cannot contain Thread ID specific values as key has to be shared among forward and backward kernel. Hence primitive descriptors (to be transferred to backward kernel) are using hashing key that does not contain any thread ID based value. As a result thread safety mechanics (critical section etc.) was employed to
 ensure MKL-DNN cache consistency.
 
 ### 4. Store once created MKL-DNN objects in order To avoid MKL-DNN recreation

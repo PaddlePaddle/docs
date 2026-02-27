@@ -1,13 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.linalg.lu_solve
-
-### [torch.linalg.lu_solve](https://pytorch.org/docs/stable/generated/torch.linalg.lu_solve.html#torch.linalg.lu_solve)
-
+### [torch.linalg.lu\_solve](https://docs.pytorch.org/docs/stable/generated/torch.linalg.lu_solve.html#torch.linalg.lu_solve)
 ```python
 torch.linalg.lu_solve(LU, pivots, B, *, left=True, adjoint=False, out=None)
 ```
 
-### [paddle.linalg.lu_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_solve_cn.html)
-
+### [paddle.linalg.lu\_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_solve_cn.html#paddle.linalg.lu_solve)
 ```python
 paddle.linalg.lu_solve(b, lu, pivots, trans="N", name=None)
 ```
@@ -26,9 +23,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | out     | -            | 表示输出的 Tensor 元组 ， Paddle 无此参数，需要转写。    |
 
 ### 转写示例
-
 #### out：指定输出
-
 ```python
 # PyTorch 写法
 torch.linalg.lu_solve(LU, pivots, B, out=A)

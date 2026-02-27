@@ -1,0 +1,24 @@
+# For all options, see <https://lychee.cli.rs/usage/config/>
+# Accept 200 (OK) and 403 (Forbidden) responses as valid
+accept = [
+  "200",
+  "403",
+  "429"
+]
+
+# Exclude links
+exclude = [
+    "zhuanlan.zhihu.com",
+    "demo.doctrp.top",
+    "127.0.0.1",
+    "localhost"
+]
+
+# Don't check any links to private addresses
+exclude_all_private = true
+
+# Avoid rate limits by limiting concurrency of checks
+max_concurrency = 10
+
+# Redirected links can eventually become broken links
+max_redirects = 0

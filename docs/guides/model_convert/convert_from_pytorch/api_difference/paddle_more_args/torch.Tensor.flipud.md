@@ -1,13 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.flipud
-
-### [torch.Tensor.flipud](https://pytorch.org/docs/stable/generated/torch.Tensor.flipud.html?highlight=flipud#torch.Tensor.flipud)
-
+### [torch.Tensor.flipud](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.flipud.html#torch.Tensor.flipud)
 ```python
 torch.Tensor.flipud()
 ```
 
-### [paddle.Tensor.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#flip-axis-name-none)
-
+### [paddle.Tensor.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#flip-axis-name-none)
 ```python
 paddle.Tensor.flip(axis, name=None)
 ```
@@ -21,7 +18,6 @@ paddle.Tensor.flip(axis, name=None)
 | -       | axis         | 指定进行翻转的轴，PyTorch 无此参数，Paddle 中可以指定 `axis=0` 来对应 PyTorch。|
 
 ### 转写示例
-
 ```Python
 # torch 版本直接向上/下翻转张量
 torch_x = torch.randn(3, 4)

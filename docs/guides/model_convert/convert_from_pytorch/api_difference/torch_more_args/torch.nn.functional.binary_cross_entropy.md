@@ -1,13 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.binary_cross_entropy
-
-### [torch.nn.functional.binary\_cross\_entropy](https://pytorch.org/docs/stable/generated/torch.nn.functional.binary_cross_entropy.html)
-
+### [torch.nn.functional.binary\_cross\_entropy](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.binary_cross_entropy.html#torch.nn.functional.binary_cross_entropy)
 ```python
 torch.nn.functional.binary_cross_entropy(input, target, weight=None, size_average=None, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.functional.binary\_cross\_entropy](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/binary_cross_entropy_cn.html#binary-cross-entropy)
-
+### [paddle.nn.functional.binary\_cross\_entropy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/binary_cross_entropy_cn.html#paddle.nn.functional.binary_cross_entropy)
 ```python
 paddle.nn.functional.binary_cross_entropy(input, label, weight=None, reduction='mean', name=None)
 ```
@@ -27,18 +24,64 @@ paddle.nn.functional.binary_cross_entropy(input, label, weight=None, reduction='
 
 ### 转写示例
 
-#### size_average、reduce
-```python
-# PyTorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
-if size_average is None:
-    size_average = True
-if reduce is None:
-    reduce = True
 
-if size_average and reduce:
-    reduction = 'mean'
-elif reduce:
-    reduction = 'sum'
-else:
-    reduction = 'none'
+#### size_average
+size_average 为 True
+```python
+# PyTorch 写法
+torch.nn.functional.binary_cross_entropy(size_average=True)
+
+# Paddle 写法
+paddle.nn.functional.binary\_cross\_entropy(reduction='mean')
+```
+
+size_average 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.binary_cross_entropy(size_average=False)
+
+# Paddle 写法
+paddle.nn.functional.binary\_cross\_entropy(reduction='sum')
+```
+#### reduce
+reduce 为 True
+```python
+# PyTorch 写法
+torch.nn.functional.binary_cross_entropy(reduce=True)
+
+# Paddle 写法
+paddle.nn.functional.binary\_cross\_entropy(reduction='sum')
+```
+reduce 为 False
+```python
+# PyTorch 写法
+torch.nn.functional.binary_cross_entropy(reduce=False)
+
+# Paddle 写法
+paddle.nn.functional.binary\_cross\_entropy(reduction='none')
+```
+#### reduction
+reduction 为'none'
+```python
+# PyTorch 写法
+torch.nn.functional.binary_cross_entropy(reduction='none')
+
+# Paddle 写法
+paddle.nn.functional.binary\_cross\_entropy(reduction='none')
+```
+reduction 为'mean'
+```python
+# PyTorch 写法
+torch.nn.functional.binary_cross_entropy(reduction='mean')
+
+# Paddle 写法
+paddle.nn.functional.binary\_cross\_entropy(reduction='mean')
+```
+reduction 为'sum'
+```python
+# PyTorch 写法
+torch.nn.functional.binary_cross_entropy(reduction='sum')
+
+# Paddle 写法
+paddle.nn.functional.binary\_cross\_entropy(reduction='sum')
 ```

@@ -11,7 +11,7 @@ In this guide, you will learn how to define and make use of models in Paddle, an
 
 In Paddle, most models consist of a series of layers. Layer serves as the foundamental logical unit of a model, composed of two parts: the variable that participates in the computation and the operator(s) that actually perform the execution.
 
-Contructing a model from scratch could be painful, with tons of nested codes to write and maintain. To make life easier, Paddle provides foundamental data structure ``paddle.nn.Layer`` to simplify the contruction of layer or model. One may easily inherit from ``paddle.nn.Layer`` to define thier custom layers or models. In addition, since both model and layer are essentially inherited from ``paddle.nn.Layer``, model is nothing but a special layer in Paddle.
+Constructing a model from scratch could be painful, with tons of nested codes to write and maintain. To make life easier, Paddle provides foundamental data structure ``paddle.nn.Layer`` to simplify the construction of layer or model. One may easily inherit from ``paddle.nn.Layer`` to define their custom layers or models. In addition, since both model and layer are essentially inherited from ``paddle.nn.Layer``, model is nothing but a special layer in Paddle.
 
 Now let us construct a model using ``paddle.nn.Layer``:
 
@@ -27,7 +27,7 @@ class Model(paddle.nn.Layer):
         return y
 ```
 
-Here we contructed a ``Model`` which inherited from ``paddle.nn.Layer``. This model only holds a single layer of ``paddle.nn.Flatten``, which flattens the input variables **inputs** upon execution.
+Here we constructed a ``Model`` which inherited from ``paddle.nn.Layer``. This model only holds a single layer of ``paddle.nn.Flatten``, which flattens the input variables **inputs** upon execution.
 
 ## Sublayers
 
@@ -264,7 +264,7 @@ Tensor(shape=[10, 1], dtype=float32, place=CPUPlace, stop_gradient=True,
        ...
 ```
 
-Here we first set the execution mode to **eval**, and soon after to **train**. The two execution modes are exlusive therefore the latter mode will override the former.
+Here we first set the execution mode to **eval**, and soon after to **train**. The two execution modes are exclusive therefore the latter mode will override the former.
 
 ### Perform an execution
 

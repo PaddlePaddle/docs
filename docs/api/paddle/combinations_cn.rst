@@ -6,7 +6,7 @@ combinations
 .. py:function:: paddle.combinations(x, r=2, with_replacement=False, name=None)
 
 对输入 Tensor 计算长度为 r 的情况下的所有组合，当 `with_replacement` 设为 False，可类比 python 内置 API `itertools.combinations` 。
-当 `with_replacement` 设为 True，可类比 python 内置 API `itertools.combinations_with_replacement(with_replacement=Ture)`。
+当 `with_replacement` 设为 True，可类比 python 内置 API `itertools.combinations_with_replacement(with_replacement=True)`。
 
 参数
 ::::::::::

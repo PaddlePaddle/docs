@@ -1,13 +1,10 @@
-## [ torch 参数更多 ] torch.qr
-
-### [torch.qr](https://pytorch.org/docs/stable/generated/torch.qr.html#torch.qr)
-
+## [ torch 参数更多 ]torch.qr
+### [torch.qr](https://docs.pytorch.org/docs/stable/generated/torch.qr.html#torch.qr)
 ```python
 torch.qr(input, some=True, *, out=None)
 ```
 
-### [paddle.linalg.qr](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/qr_cn.html#qr)
-
+### [paddle.linalg.qr](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/qr_cn.html#paddle.linalg.qr)
 ```python
 paddle.linalg.qr(x, mode='reduced', name=None)
 ```
@@ -23,7 +20,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | out          | -            | 表示输出的 Tensor 元组。 Paddle 无此参数，需要转写。                           |
 
 ### 转写示例
-### some：控制 QR 分解的行为
+#### some：控制 QR 分解的行为
 ```python
 # 当进行完整的 QR 分解时
 # PyTorch 写法

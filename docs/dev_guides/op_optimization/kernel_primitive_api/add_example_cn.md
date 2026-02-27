@@ -39,7 +39,7 @@ __device__ void ElementwiseAddImpl(InT *in0, InT * in1, OutT * out, OpFunc func,
   ReadData<InT, InT, VecSize, 1, 1, IsBoundary>(arg0, in0, num);
   ReadData<InT, InT, VecSize, 1, 1, IsBoundary>(arg1, in1, num);
 
-  // compute resut[i] = args[i] + arg1[i]
+  // compute result[i] = args[i] + arg1[i]
   ElementwiseBinary<InT, OutT, VecSize, 1, 1, OpFunc>(result, arg0, arg1, func);
 
   // write data

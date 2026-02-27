@@ -1,13 +1,10 @@
-## [torch 参数更多]torch.mvlgamma
-
-### [torch.mvlgamma](https://pytorch.org/docs/stable/generated/torch.mvlgamma.html)
-
+## [ torch 参数更多 ]torch.mvlgamma
+### [torch.mvlgamma](https://docs.pytorch.org/docs/stable/generated/torch.mvlgamma.html#torch.mvlgamma)
 ```python
 torch.mvlgamma(input, p, *, out=None)
 ```
 
-### [paddle.multigammaln](https://github.com/PaddlePaddle/Paddle/blob/be090bd0bc9ac7a8595296c316b3a6ed3dc60ba6/python/paddle/tensor/math.py#L5099)
-
+### [paddle.multigammaln](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/multigammaln_cn.html#paddle.multigammaln)
 ```python
 paddle.multigammaln(x, p, name=None)
 ```
@@ -23,9 +20,7 @@ paddle.multigammaln(x, p, name=None)
 | out     | -            | 表示输出的 Tensor， Paddle 无此参数，需要转写。 |
 
 ### 转写示例
-
 #### out：指定输出
-
 ```python
 # PyTorch 写法
 torch.mvlgamma(x, p, out=y)

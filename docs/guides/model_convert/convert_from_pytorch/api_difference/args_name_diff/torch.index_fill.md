@@ -1,13 +1,10 @@
 ## [ 仅参数名不一致 ]torch.index_fill
-
 ### [torch.index_fill](https://pytorch.org/docs/stable/generated/torch.Tensor.index_fill.html#torch.Tensor.index_fill)
-
 ```python
 torch.index_fill(input, dim, index, value)
 ```
 
-### [paddle.index_fill](https://github.com/PaddlePaddle/Paddle/blob/1e3761d119643af19cb6f8a031a77f315d782409/python/paddle/tensor/manipulation.py#L5900)
-
+### [paddle.index\_fill](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/index_fill_cn.html#paddle.index_fill)
 ```python
 paddle.index_fill(x, index, axis, value, name=None)
 ```

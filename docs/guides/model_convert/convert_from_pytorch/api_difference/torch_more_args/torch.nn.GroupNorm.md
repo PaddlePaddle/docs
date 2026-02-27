@@ -1,6 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.GroupNorm
-### [torch.nn.GroupNorm](https://pytorch.org/docs/stable/generated/torch.nn.GroupNorm.html?highlight=groupnorm#torch.nn.GroupNorm)
-
+### [torch.nn.GroupNorm](https://docs.pytorch.org/docs/stable/generated/torch.nn.GroupNorm.html#torch.nn.GroupNorm)
 ```python
 torch.nn.GroupNorm(num_groups,
                    num_channels,
@@ -10,8 +9,7 @@ torch.nn.GroupNorm(num_groups,
                    dtype=None)
 ```
 
-### [paddle.nn.GroupNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GroupNorm_cn.html#groupnorm)
-
+### [paddle.nn.GroupNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GroupNorm_cn.html#paddle.nn.GroupNorm)
 ```python
 paddle.nn.GroupNorm(num_groups,
                     num_channels,
@@ -30,8 +28,8 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | ------------- | ------------ | ------------------------------------------------------ |
 | eps           | epsilon      | 为了数值稳定加在分母上的值。                                     |
 | affine        | -            | 是否进行仿射变换，Paddle 无此参数，需要转写。         |
-| device        | -            | 设备类型，Paddle 无此参数。         |
-| dtype         | -            | 参数类型，Paddle 无此参数。         |
+| device        | -            | 设备类型，Paddle 无此参数。暂无转写方式。         |
+| dtype         | -            | 参数类型，Paddle 无此参数。暂无转写方式。         |
 | -             | weight_attr  | 指定权重参数属性的对象。如果为 False, 则表示每个通道的伸缩固定为 1，不可改变。默认值为 None，表示使用默认的权重参数属性。 |
 | -             | bias_attr    | 指定偏置参数属性的对象。如果为 False, 则表示每一个通道的偏移固定为 0，不可改变。默认值为 None，表示使用默认的偏置参数属性。 |
 | -             | data_format  | 指定输入数据格式，PyTorch 无此参数，Paddle 保持默认即可。 |

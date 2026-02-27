@@ -1,7 +1,5 @@
-## [ torch 参数更多 ] torch.amp.autocast
-
+## [ torch 参数更多 ]torch.amp.autocast
 ### [torch.amp.autocast](https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.autocast)
-
 ```python
 torch.amp.autocast(device_type,
                    dtype=None,
@@ -9,8 +7,7 @@ torch.amp.autocast(device_type,
                    cache_enabled=None)
 ```
 
-### [paddle.amp.auto_cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/auto_cast_cn.html#auto-cast)
-
+### [paddle.amp.auto\_cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/auto_cast_cn.html#paddle.amp.auto_cast)
 ```python
 paddle.amp.auto_cast(enable=True,
                      custom_white_list=None,
@@ -27,7 +24,7 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                         |
 | ------------- | ------ | ------------------------------------------------------------ |
 | device_type         | -      | 指定设备类型,Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。                         |
-| dtype           | dtype      | 指定自动混合精度的计算类型         |
+| dtype           | dtype      | 指定自动混合精度的计算类型。         |
 | enabled         | enable  | 是否启用自动混合精度。 |
 | cache_enabled        | -      | 启用或禁用 CUDA 图形缓存 Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | -        | custom_white_list      | 白名单，通常不需要设置。PyTorch 无此参数，Paddle 保持默认即可。 |

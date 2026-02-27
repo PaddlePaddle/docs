@@ -15,46 +15,16 @@ PADDLE_DOCS_BASE_URL = "https://github.com/PaddlePaddle/docs/tree/develop/docs/g
 validate_whitelist = []
 
 mapping_type_levels = [
-    # type 0
-    ["UNDEFINED_MAPPING_TYPE_0"],
-    # type 1
     [
-        "无参数",
-        "参数完全一致",
         "仅 API 调用方式不一致",
         "仅参数名不一致",
         "paddle 参数更多",
         "参数默认值不一致",
-    ],
-    # type 2
-    [
-        "torch 参数更多",
-    ],
-    # type 3
-    [
         "返回参数类型不一致",
         "输入参数类型不一致",
         "输入参数用法不一致",
-    ],
-    # type 4
-    [
+        "torch 参数更多",
         "组合替代实现",
-    ],
-    # type 5
-    [
-        "涉及上下文修改",
-    ],
-    # type 6
-    [
-        "对应 API 不在主框架",
-    ],
-    # type 7
-    [
-        "功能缺失",
-    ],
-    # delete
-    [
-        "可删除",
     ],
 ]
 
@@ -108,6 +78,12 @@ class ParserState(IntEnum):
 
 def unescape_api(api):
     return api.replace(r"\_", "_")
+
+
+def safe_remove_var_arg_start(arg: str) -> str:
+    if arg == "*":
+        return arg
+    return arg.lstrip("*")
 
 
 def split_args(args_str):
@@ -458,8 +434,10 @@ def get_meta_from_diff_file(
                         torch_arg, paddle_arg, note = args_table_content
                         meta_data["args_mapping"].append(
                             {
-                                "src_arg": torch_arg,
-                                "dst_arg": paddle_arg,
+                                "src_arg": safe_remove_var_arg_start(torch_arg),
+                                "dst_arg": safe_remove_var_arg_start(
+                                    paddle_arg
+                                ),
                                 "note": note,
                             }
                         )
@@ -477,7 +455,7 @@ def get_meta_from_diff_file(
                 )
 
     # 允许没有参数映射列表
-    if mapping_type in ["无参数", "组合替代实现", "仅 API 调用方式不一致"]:
+    if mapping_type in ["组合替代实现", "仅 API 调用方式不一致"]:
         if state == ParserState.wait_for_args:
             state = ParserState.end
     # 必须有参数映射列表，但是可以随时停止
@@ -491,8 +469,8 @@ def get_meta_from_diff_file(
         )
 
     # 允许的终止状态，解析完了 dst_api 或者只有 src_api
-    # 映射类型前三个级别必须要有对应的 dst_api
-    if mapping_type_to_level[mapping_type] <= 3:
+    # 映射类型除了 "组合替代实现" 和 "仅 API 调用方式不一致" 之外，其他的都必须有 dst_api
+    if mapping_type not in ["组合替代实现", "仅 API 调用方式不一致"]:
         if state != ParserState.end:
             print(state)
             raise Exception(
@@ -507,14 +485,14 @@ def get_meta_from_diff_file(
     return meta_data
 
 
-def process_mapping_index(index_path, item_processer, context={}):
+def process_mapping_index(index_path, item_processor, context={}):
     """
     线性处理 `pytorch_api_mapping_cn.md` 文件
     - index_path: 该 md 文件路径
-    - item_processer: 对文件每行的处理方式，输入参数 (line, line_idx, state, output, context)。
+    - item_processor: 对文件每行的处理方式，输入参数 (line, line_idx, state, output, context)。
                       如果处理出错则返回 False，否则返回 True。
     - context: 用于存储处理过程中的上下文信息
-               - output: 使用 context["output"] 初始化，如果不调用 item_processer，直接加入原文件对应行，否则 item_processer 处理 output 逻辑。
+               - output: 使用 context["output"] 初始化，如果不调用 item_processor，直接加入原文件对应行，否则 item_processor 处理 output 逻辑。
     - 返回值：是否成功处理，成功返回 0。
     """
     if not os.path.exists(index_path):
@@ -527,7 +505,7 @@ def process_mapping_index(index_path, item_processer, context={}):
 
     column_names = []
     column_count = -1
-    table_seperator_pattern = re.compile(r"^ *\|(?P<group> *-+ *\|)+ *$")
+    table_separator_pattern = re.compile(r"^ *\|(?P<group> *-+ *\|)+ *$")
 
     expect_column_names = [
         "序号",
@@ -558,7 +536,7 @@ def process_mapping_index(index_path, item_processer, context={}):
             column_names.extend([c.strip() for c in columns])
             column_count = len(column_names)
 
-            if not item_processer(line, i, state, output, context):
+            if not item_processor(line, i, state, output, context):
                 break
 
             if column_names == expect_column_names:
@@ -571,33 +549,33 @@ def process_mapping_index(index_path, item_processer, context={}):
 
         elif state == IndexParserState.table_sep_ignore:
             if (
-                not table_seperator_pattern.match(line)
+                not table_separator_pattern.match(line)
                 or len(columns) != column_count
             ):
                 raise Exception(
-                    f"Table seperator not match at line {i + 1}: {line}"
+                    f"Table separator not match at line {i + 1}: {line}"
                 )
-            if not item_processer(line, i, state, output, context):
+            if not item_processor(line, i, state, output, context):
                 break
             state = IndexParserState.table_row_ignore
         elif state == IndexParserState.table_sep:
             if (
-                not table_seperator_pattern.match(line)
+                not table_separator_pattern.match(line)
                 or len(columns) != column_count
             ):
                 raise Exception(
-                    f"Table seperator not match at line {i + 1}: {line}"
+                    f"Table separator not match at line {i + 1}: {line}"
                 )
-            if not item_processer(line, i, state, output, context):
+            if not item_processor(line, i, state, output, context):
                 break
             state = IndexParserState.table_row
         elif state == IndexParserState.table_row_ignore:
-            if not item_processer(line, i, state, output, context):
+            if not item_processor(line, i, state, output, context):
                 break
         elif state == IndexParserState.table_row:
             try:
                 context["columns"] = columns
-                if not item_processer(line, i, state, output, context):
+                if not item_processor(line, i, state, output, context):
                     break
                 context["table_row_idx"] += 1
             except Exception as e:
@@ -656,40 +634,78 @@ def get_table_header_by_prefix(prefix):
 
 
 def discover_all_metas(cfp_basedir):
-    # 获取 api_difference/ 下的 api 映射文档
-    diff_3rd_basedir = os.path.join(cfp_basedir, "api_difference")
-
-    diff_srcs = [("api_difference", "torch.", "paddle.")]
-    diff_srcs += [
-        ("api_difference", "fairscale.", "paddle."),
-        ("api_difference", "flash_attn.", "paddle."),
-        ("api_difference", "transformers.", "paddlenlp."),
-        ("api_difference", "torchvision.", ""),
-    ]
-
-    diff_files = []
-    for diff_src, api_prefix, dst_prefix in diff_srcs:
-        basedir = os.path.join(cfp_basedir, diff_src)
-        files = discover_markdown_files(basedir, api_prefix)
-
-        # 新增过滤逻辑：跳过包含"others"的文件路径
-        filtered_files = [f for f in files if "others" not in f]
-        diff_files.append(((api_prefix, dst_prefix), filtered_files))
+    """
+    递归扫描 api_difference 目录下所有的 .md 文件，无视目录结构，
+    根据文件名自动推断所属库并解析。
+    """
+    search_root = os.path.join(cfp_basedir, "api_difference")
+    if not os.path.exists(search_root):
+        print(f"Error: Directory not found: {search_root}")
+        return []
 
     metas = []
-    for prefixs, files in diff_files:
-        s, d = prefixs
-        sh = get_table_header_by_prefix(s)
-        for f in files:
-            # 确保文件路径中不包含"others"才处理
-            if "others" not in f:
-                metas.append(
-                    get_meta_from_diff_file(f, s, d, src_argmap_title=sh)
+    print(f"Recursively scanning all .md files in: {search_root} ...")
+
+    for root, dirs, files in os.walk(search_root):
+        for filename in files:
+            # 1. 基础过滤：只看 md 文件，且忽略 README
+            if not filename.endswith(".md") or filename.lower() == "readme.md":
+                continue
+
+            # 2. 根据文件名推断 src_prefix 和 dst_prefix
+            # 逻辑：文件名通常是 "库名.模块.API.md"
+            src_prefix = ""
+            dst_prefix = ""
+
+            if filename.startswith("torchvision."):
+                src_prefix = "torchvision."
+                dst_prefix = ""  # torchvision 映射通常留空或视具体情况而定
+            elif filename.startswith("transformers."):
+                src_prefix = "transformers."
+                dst_prefix = "paddleformers."
+            elif filename.startswith("fairscale."):
+                src_prefix = "fairscale."
+                dst_prefix = "paddle."
+            elif filename.startswith("flash_attn."):
+                src_prefix = "flash_attn."
+                dst_prefix = "paddle."
+            elif filename.startswith("torch."):
+                src_prefix = "torch."
+                dst_prefix = "paddle."
+            elif filename.startswith("os."):
+                src_prefix = "os."
+                dst_prefix = "paddle."
+            elif filename.startswith("setuptools."):
+                src_prefix = "setuptools."
+                dst_prefix = "paddle."
+            else:
+                # 如果文件名不符合任何已知前缀，打印警告但尝试按 torch 处理（或跳过）
+                # 这里选择跳过，防止解析非 API 文档报错
+                print(f"Skipping unrecognized file prefix: {filename}")
+                continue
+
+            filepath = os.path.join(root, filename)
+
+            # 3. 解析文件
+            try:
+                src_header = get_table_header_by_prefix(src_prefix)
+
+                # 调用原有的解析函数
+                meta = get_meta_from_diff_file(
+                    filepath,
+                    src_prefix,
+                    dst_prefix,
+                    src_argmap_title=src_header,
                 )
+                metas.append(meta)
+            except Exception as e:
+                # 打印错误但不中断整个流程，方便排查具体坏文件
+                print(f"Warning: Failed to parse {filepath}")
+                print(f"  Error: {e}")
 
     metas.sort(key=lambda x: x["src_api"])
     print(
-        f"extracted {len(metas)} mapping metas data (excluding 'others' files)."
+        f"Successfully extracted {len(metas)} mapping metas data (No filtering)."
     )
     return metas
 

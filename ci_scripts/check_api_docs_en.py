@@ -14,7 +14,7 @@ arguments = [
         "py_files",
         str,
         None,
-        "api python files, sperated by space",
+        "api python files, separated by space",
     ],
     [
         "--api_info_file",
@@ -124,6 +124,6 @@ if __name__ == "__main__":
     if error_files:
         print("error files: ", error_files)
         print(
-            "ERROR: these docs exsits System Message: WARNING/ERROR, please check and fix them"
+            "ERROR: these docs exists System Message: WARNING/ERROR, please check and fix them"
         )
         sys.exit(1)
