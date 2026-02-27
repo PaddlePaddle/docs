@@ -6,7 +6,7 @@
 torch.autograd.function.FunctionCtx.set_materialize_grads(value)
 ```
 
-### [paddle.autograd.PyLayerContext.set_materialize_grads](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext/set_materialize_grads_cn.html#paddle/autograd/PyLayerContext/set_materialize_grads_cn#cn-api-paddle-autograd-PyLayerContext-set_materialize_grads)
+### [paddle.autograd.PyLayerContext.set_materialize_grads](https://github.com/PaddlePaddle/Paddle/blob/7763841cacc6f3235e97c0cacd0a7381860e044c/python/paddle/autograd/py_layer.py#L286-L292)
 
 ```python
 paddle.autograd.PyLayerContext.set_materialize_grads(value)
