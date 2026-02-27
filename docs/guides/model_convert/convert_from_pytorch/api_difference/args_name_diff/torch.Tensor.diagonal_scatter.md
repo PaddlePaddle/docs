@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.diagonal_scatter
-### [torch.Tensor.diagonal_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.diagonal_scatter.html?highlight=diagonal_scatter#torch.Tensor.diagonal_scatter)
+### [torch.Tensor.diagonal\_scatter](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.diagonal_scatter.html#torch.Tensor.diagonal_scatter)
 ```python
 torch.Tensor.diagonal_scatter(src, offset=0, dim1=0, dim2=1)
 ```

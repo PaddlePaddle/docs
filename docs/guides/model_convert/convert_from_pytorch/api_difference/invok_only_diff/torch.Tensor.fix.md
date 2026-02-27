@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.fix
 
-### [torch.Tensor.fix](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.fix)
+### [torch.Tensor.fix](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.fix.html#torch.Tensor.fix)
 
 ```python
 torch.Tensor.fix()
 ```
 
-### [paddle.Tensor.trunc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/trunc_cn.html#paddle/Tensor/trunc_cn#cn-api-paddle-Tensor-trunc)
+### [paddle.Tensor.trunc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#trunc-name-none)
 
 ```python
 paddle.Tensor.trunc(name=None)

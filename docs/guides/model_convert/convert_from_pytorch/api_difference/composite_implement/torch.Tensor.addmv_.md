@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.addmv_
-### [torch.Tensor.addmv_](https://pytorch.org/docs/stable/generated/torch.Tensor.addmv_.html#torch.Tensor.addmv_)
+### [torch.Tensor.addmv\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.addmv_.html#torch.Tensor.addmv_)
 ```python
 torch.Tensor.addmv_(mat, vec, beta=1, alpha=1, out=None)
 ```

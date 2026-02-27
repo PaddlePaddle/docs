@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.transforms.TanhTransform
-### [torch.distributions.transforms.TanhTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.TanhTransform)
+### [torch.distributions.transforms.TanhTransform](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.TanhTransform)
 ```python
 torch.distributions.transforms.TanhTransform(cache_size=0)
 ```
 
-### [paddle.distribution.TanhTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/TanhTransform_cn.html#tanhtransform)
+### [paddle.distribution.TanhTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/TanhTransform_cn.html#paddle.distribution.TanhTransform)
 ```python
 paddle.distribution.TanhTransform()
 ```

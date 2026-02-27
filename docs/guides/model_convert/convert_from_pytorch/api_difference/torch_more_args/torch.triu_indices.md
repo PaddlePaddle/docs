@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.triu_indices
-### [torch.triu_indices](https://pytorch.org/docs/stable/generated/torch.triu_indices.html?highlight=triu_indices#torch.triu_indices)
+### [torch.triu\_indices](https://docs.pytorch.org/docs/stable/generated/torch.triu_indices.html#torch.triu_indices)
 ```python
 torch.triu_indices(row,col,offset=0,*,dtype=torch.long,device='cpu',layout=torch.strided)
 ```
 
-### [paddle.triu_indices](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/triu_indices_cn.html)
+### [paddle.triu\_indices](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/triu_indices_cn.html#paddle.triu_indices)
 ```python
 paddle.triu_indices(row,col=None,offset=0,dtype='int64')
 ```

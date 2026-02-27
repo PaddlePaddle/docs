@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.multinomial.Multinomial
-### [torch.distributions.multinomial.Multinomial](https://pytorch.org/docs/stable/distributions.html#torch.distributions.multinomial.Multinomial)
+### [torch.distributions.multinomial.Multinomial](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.multinomial.Multinomial)
 ```python
 torch.distributions.multinomial.Multinomial(total_count=1, probs=None, logits=None, validate_args=None)
 ```
 
-### [paddle.distribution.Multinomial](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Multinomial_cn.html)
+### [paddle.distribution.Multinomial](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Multinomial_cn.html#paddle.distribution.Multinomial)
 ```python
 paddle.distribution.Multinomial(total_count, probs)
 ```

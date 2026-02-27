@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.select_scatter
-### [torch.select_scatter](https://pytorch.org/docs/stable/generated/torch.select_scatter.html#torch-select-scatter)
+### [torch.select\_scatter](https://docs.pytorch.org/docs/stable/generated/torch.select_scatter.html#torch.select_scatter)
 ```python
 torch.select_scatter(input, src, dim, index)
 ```
 
-### [paddle.select_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/select_scatter_cn.html)
+### [paddle.select\_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/select_scatter_cn.html#paddle.select_scatter)
 ```python
 paddle.select_scatter(x, values, axis, index, name=None)
 ```

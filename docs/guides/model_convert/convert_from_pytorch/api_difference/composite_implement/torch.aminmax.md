@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.aminmax
-### [torch.aminmax](https://pytorch.org/docs/stable/generated/torch.aminmax.html#torch.aminmax)
+### [torch.aminmax](https://docs.pytorch.org/docs/stable/generated/torch.aminmax.html#torch.aminmax)
 ```python
 torch.aminmax(input, *, dim=None, keepdim=False, out=None)
 ```

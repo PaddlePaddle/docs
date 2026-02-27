@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_cos
-### [torch.\_foreach_cos](https://pytorch.org/docs/stable/generated/torch._foreach_cos.html#torch-foreach-cos)
+### [torch.\_foreach\_cos](https://docs.pytorch.org/docs/stable/generated/torch._foreach_cos.html#torch._foreach_cos)
 ```python
 torch._foreach_cos(self)
 ```

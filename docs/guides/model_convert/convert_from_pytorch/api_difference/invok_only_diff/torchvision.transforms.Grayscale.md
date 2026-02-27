@@ -6,7 +6,7 @@
 torchvision.transforms.Grayscale(num_output_channels)
 ```
 
-### [paddle.vision.transforms.Grayscale](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Grayscale_cn.html#paddle/vision/transforms/Grayscale_cn#cn-api-paddle-vision-transforms-Grayscale)
+### [paddle.vision.transforms.Grayscale](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Grayscale_cn.html#paddle.vision.transforms.Grayscale)
 
 ```python
 paddle.vision.transforms.Grayscale(num_output_channels, keys=None)

@@ -6,7 +6,7 @@ from utils import (
     escape_underscores_in_api,
     extract_no_need_convert_list,
     get_base_dir,
-    get_pytorch_url,
+    get_url,
     load_mapping_json,
     parse_md_files,
 )
@@ -87,15 +87,11 @@ def parse_special_category_apis(md_content, category):
     return apis
 
 
-def generate_category1_table(
-    docs_mapping, no_need_convert_file_path, base_dir, existing_apis
-):
+def generate_category1_table(existing_apis):
     """
     生成类别1（API完全一致）的Markdown表格
     """
-    no_need_convert_list = extract_no_need_convert_list(
-        no_need_convert_file_path
-    )
+    no_need_convert_list = extract_no_need_convert_list()
 
     rows = []  # 存储表格行数据的列表
     used_apis = set()  # 用于记录已处理的API，避免重复
@@ -111,8 +107,8 @@ def generate_category1_table(
         used_apis.add(torch_api)  # 标记该API已处理
         existing_apis.add(torch_api)
 
-        src_url = get_pytorch_url(torch_api)
-        dst_url = None
+        src_url = get_url(torch_api)
+        dst_url = get_url(paddle_api)
         # 构建第二列和第三列的字符串内容，包含URL（如果存在）
         col2 = f"[{torch_api}]({src_url})" if src_url else torch_api
         col3 = f"[{paddle_api}]({dst_url})" if dst_url else paddle_api
@@ -138,7 +134,6 @@ def generate_category1_table(
 def generate_category2_table(
     docs_mapping,
     api_mapping_file_path,
-    no_need_convert_file_path,
     base_dir,
     existing_apis,
     attribute_mapping_file_path,
@@ -156,9 +151,7 @@ def generate_category2_table(
         # "torch.utils.data.RandomSampler",
     ]
 
-    no_need_convert_list = extract_no_need_convert_list(
-        no_need_convert_file_path
-    )
+    no_need_convert_list = extract_no_need_convert_list()
 
     # 加载api_mapping.json文件
     api_mapping_data = load_mapping_json(api_mapping_file_path)
@@ -209,21 +202,22 @@ def generate_category2_table(
             valid = True
 
         if matcher in invok_diff_matchers or valid:
-            # 在docs_mapping中查找当前src_api对应的信息
+            # 获取 src_url, 优先使用来自 inventory 的链接
             docs_mapping_info = docs_mapping.get(src_api, {})
-            src_url = docs_mapping_info.get("src_api_url")
+            src_url = get_url(src_api) or docs_mapping_info.get("src_api_url")
 
             # 获取paddle_api，可能来自api_mapping或docs_mapping
             paddle_api = mapping_info.get("paddle_api")
             if not paddle_api:
                 paddle_api = docs_mapping_info.get("dst_api", "")
 
-            # 查找paddle_api对应的dst_api_url（可能需要遍历docs_mapping的值）
-            dst_url = None
-            for item in docs_mapping.values():
-                if item.get("dst_api") == paddle_api:
-                    dst_url = item.get("dst_api_url")
-                    break
+            # 查找paddle_api对应的 dst_api_url（可能需要遍历docs_mapping的值）, 优先使用来自 inventory 的链接
+            dst_url = get_url(paddle_api, "paddle")
+            if dst_url == "":
+                for item in docs_mapping.values():
+                    if item.get("dst_api") == paddle_api:
+                        dst_url = item.get("dst_api_url")
+                        break
 
             src_api_display = escape_underscores_in_api(src_api)
             paddle_api_display = escape_underscores_in_api(paddle_api)
@@ -264,6 +258,7 @@ def generate_api_alias_table(
     """
     # 读取api_alias_mapping.json文件
     api_alias_data = load_mapping_json(api_alias_mapping_path)
+    no_need_convert_list = extract_no_need_convert_list()
 
     rows = []  # 存储表格行数据的列表
     used_apis = set()  # 用于记录已处理的API，避免重复
@@ -274,13 +269,18 @@ def generate_api_alias_table(
         if torch_api in existing_apis:
             continue
 
-        # 在docs_mapping中查找torch_api_alias对应的Paddle API
-        mapping_info = docs_mapping.get(torch_api_alias, {})
-        dst_api = mapping_info.get("dst_api", "-")
-        dst_api_url = mapping_info.get("dst_api_url", "")
-
-        # 获取torch_api的URL
-        src_api_url = docs_mapping.get(torch_api, {}).get("src_api_url", "")
+        if torch_api_alias in no_need_convert_list:
+            if torch_api_alias.startswith("torch."):
+                dst_api = torch_api_alias.replace("torch.", "paddle.", 1)
+            elif torch_api_alias.startswith("transformers."):
+                dst_api = torch_api_alias.replace(
+                    "transformers.", "paddleformers.", 1
+                )
+            else:
+                raise ValueError(f"未知的API前缀: {torch_api_alias}")
+        else:
+            mapping_info = docs_mapping.get(torch_api_alias, {})
+            dst_api = mapping_info.get("paddle_api", "-")
 
         # 构建显示的API名称
         torch_api_display = escape_underscores_in_api(torch_api)
@@ -288,6 +288,7 @@ def generate_api_alias_table(
         dst_api_display = escape_underscores_in_api(dst_api)
 
         # 创建Torch API超链接
+        src_api_url = get_url(torch_api)
         torch_display = (
             f"[{torch_api_display}]({src_api_url})"
             if src_api_url
@@ -295,12 +296,16 @@ def generate_api_alias_table(
         )
 
         # 创建Paddle API超链接
+        dst_api_url = get_url(dst_api) if dst_api != "-" else ""
         paddle_display = (
             f"[{dst_api_display}]({dst_api_url})" if dst_api_url else dst_api
         )
 
-        # 构建备注列，格式为"{torch_api_alias}别名+[差异对比]{url}"
-        remark = f"``{torch_api_alias_display}`` 别名， {get_mapping_doc_url(torch_api_alias, base_dir)}"
+        if torch_api_alias in no_need_convert_list:
+            remark = f"``{torch_api_alias_display}`` 别名，别名 API 在 Paddle 中已有功能一致的实现，请参考：[API 完全一致](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.html#id1)"
+        else:
+            # 构建备注列，格式为"{torch_api_alias}别名+[差异对比](url)"
+            remark = f"``{torch_api_alias_display}`` 别名， {get_mapping_doc_url(torch_api_alias, base_dir)}"
 
         # 添加映射分类列（类别12的中文名称）
         mapping_category = "API 别名"
@@ -549,17 +554,11 @@ def main():
     json_file_path = os.path.join(
         os.path.dirname(__file__), "api_difference_info.json"
     )
-    no_need_convert_path = os.path.join(
-        os.path.dirname(__file__), "global_var.py"
-    )
     api_mapping_path = os.path.join(
         os.path.dirname(__file__), "api_mapping.json"
     )
     api_alias_mapping_path = os.path.join(
         os.path.dirname(__file__), "api_alias_mapping.json"
-    )
-    no_implement_path = os.path.join(
-        os.path.dirname(__file__), "no_implement.md"
     )
     attribute_mapping_path = os.path.join(
         os.path.dirname(__file__), "attribute_mapping.json"
@@ -606,13 +605,10 @@ def main():
 
     # 生成类别1和类别2的表格
     existing_apis = set()
-    category1_table = generate_category1_table(
-        docs_mapping, no_need_convert_path, base_dir, existing_apis
-    )
+    category1_table = generate_category1_table(existing_apis)
     category2_table = generate_category2_table(
         docs_mapping,
         api_mapping_path,
-        no_need_convert_path,
         base_dir,
         existing_apis,
         attribute_mapping_path,

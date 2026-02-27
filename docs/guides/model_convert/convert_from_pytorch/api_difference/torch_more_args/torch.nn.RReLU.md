@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.RReLU
-### [torch.nn.RReLU](https://pytorch.org/docs/stable/generated/torch.nn.RReLU.html#torch.nn.RReLU)
+### [torch.nn.RReLU](https://docs.pytorch.org/docs/stable/generated/torch.nn.RReLU.html#torch.nn.RReLU)
 ```python
 torch.nn.RReLU(lower=0.125, upper=0.3333333333333333, inplace=False)
 ```
 
-### [paddle.nn.RReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/RReLU_cn.html)
+### [paddle.nn.RReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/RReLU_cn.html#paddle.nn.RReLU)
 ```python
 paddle.nn.RReLU(lower=1. / 8., upper=1. / 3., name=None)
 ```

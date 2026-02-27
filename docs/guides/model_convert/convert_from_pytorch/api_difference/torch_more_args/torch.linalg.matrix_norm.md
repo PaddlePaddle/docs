@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.linalg.matrix_norm
-### [torch.linalg.matrix_norm](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_norm.html#torch.linalg.matrix_norm)
+### [torch.linalg.matrix\_norm](https://docs.pytorch.org/docs/stable/generated/torch.linalg.matrix_norm.html#torch.linalg.matrix_norm)
 ```python
 torch.linalg.matrix_norm(input, ord='fro', dim=(-2, -1), keepdim=False, *, dtype=None, out=None)
 ```
 
-### [paddle.linalg.matrix_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/matrix_norm_cn.html)
+### [paddle.linalg.matrix\_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/matrix_norm_cn.html#paddle.linalg.matrix_norm)
 ```python
 paddle.linalg.matrix_norm(x, p='fro', axis=[-2,-1], keepdim=False, name=None)
 ```

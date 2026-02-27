@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.get_num_threads
-### [torch.get_num_threads](https://pytorch.org/docs/stable/generated/torch.get_num_threads.html)
+### [torch.get\_num\_threads](https://docs.pytorch.org/docs/stable/generated/torch.get_num_threads.html#torch.get_num_threads)
 ```python
 torch.get_num_threads()
 ```

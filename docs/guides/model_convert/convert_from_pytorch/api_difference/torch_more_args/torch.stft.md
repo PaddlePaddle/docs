@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.stft
-### [torch.stft](https://pytorch.org/docs/stable/generated/torch.stft.html?highlight=stft#torch.stft)
+### [torch.stft](https://docs.pytorch.org/docs/stable/generated/torch.stft.html#torch.stft)
 ```python
 torch.stft(input,
            n_fft,

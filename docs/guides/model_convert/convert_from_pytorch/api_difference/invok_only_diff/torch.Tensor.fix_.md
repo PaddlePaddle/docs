@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.fix_
 
-### [torch.Tensor.fix_](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.fix_)
+### [torch.Tensor.fix\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.fix_.html#torch.Tensor.fix_)
 
 ```python
 torch.Tensor.fix_()

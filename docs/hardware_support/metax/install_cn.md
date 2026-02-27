@@ -13,9 +13,36 @@
 | 芯片型号 | 沐曦曦云 C 系列芯片，包括 C500 |
 | 操作系统 | Linux 操作系统，包括 CentOS、Ubuntu、KylinV10 等 |
 
+## 拉取镜像
+
+推荐使用沐曦开发镜像。
+```bash
+# 拉取镜像
+docker pull cr.metax-tech.com/public-ai-release/maca/paddle-metax:3.3.0-maca.ai3.3.0.10-py310-ubuntu22.04-amd64
+```
+
+```bash
+# 考如下命令启动容器，ASCEND_RT_VISIBLE_DEVICES 可指定可见的 NPU 卡号
+docker run
+ -it --device=/dev/dri --device=/dev/mxcd --device=/dev/infiniband --group-add video \
+ --name <container_name> --network=host --uts=host --ipc=host --privileged=true \
+ --security-opt seccomp=unconfined --security-opt apparmor=unconfined \
+ --shm-size '500gb' --ulimit memlock=-1 -v /sw_home/:/sw_home/  -v /pde_ai/:/pde_ai/ \
+ -v /mxstorage/:/mxstorage/ mxcr.io/ai-release/maca/paddle-metax:3.3.0-maca.ai3.3.0.0-py310-ubuntu22.04-amd64 /bin/bash
+```
 
 ## 安装飞桨框架
+
 ### 安装方式一：wheel 包安装
+沐曦曦云 C500 支持插件式安装，需先安装飞桨 CPU 安装包，再安装飞桨 沐曦 插件包：
+```bash
+# 先安装飞桨 CPU 安装包
+python -m pip install paddlepaddle==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+# 再安装飞桨 曦云 C500 插件包
+python -m pip install paddle-metax-gpu==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/maca/
+```
+
+### 安装方式二：wheel 包（nightly）安装
 沐曦曦云 C500 支持插件式安装，需先安装飞桨 CPU 安装包，再安装飞桨 沐曦 插件包：
 ```bash
 # 先安装飞桨 CPU 安装包
@@ -23,8 +50,9 @@ python -m pip install  --pre paddlepaddle -i https://www.paddlepaddle.org.cn/pac
 # 再安装飞桨 曦云 C500 插件包
 python -m pip install --pre paddle-metax-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/maca/
 ```
+⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如无新合入特性需求，建议使用 方式一 3.3 版本。
 
-### 安装方式二：源代码编译安装
+### 安装方式三：源代码编译安装
 在启动的 docker 容器中，先安装飞桨 CPU 安装包，再下载 PaddleCustomDevice 源码编译得到飞桨 C500 插件包。
 
 ```bash

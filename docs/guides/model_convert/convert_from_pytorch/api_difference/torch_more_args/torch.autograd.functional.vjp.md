@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.autograd.functional.vjp
-### [torch.autograd.functional.vjp](https://pytorch.org/docs/stable/generated/torch.autograd.functional.vjp.html#torch.autograd.functional.vjp)
+### [torch.autograd.functional.vjp](https://docs.pytorch.org/docs/stable/generated/torch.autograd.functional.vjp.html#torch.autograd.functional.vjp)
 ```python
 torch.autograd.functional.vjp(func, inputs, v=None, create_graph=False, strict=False)
 ```
 
-### [paddle.incubate.autograd.vjp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/incubate/autograd/vjp_cn.html)
+### [paddle.incubate.autograd.vjp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/incubate/autograd/vjp_cn.html#paddle.incubate.autograd.vjp)
 ```python
 paddle.incubate.autograd.vjp(func, xs, v=None)
 ```

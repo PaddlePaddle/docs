@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.is_pinned
-### [torch.Tensor.is_pinned](https://pytorch.org/docs/stable/generated/torch.Tensor.is_pinned.html?highlight=is_pinned#torch.Tensor.is_pinned)
+### [torch.Tensor.is\_pinned](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.is_pinned.html#torch.Tensor.is_pinned)
 ```python
 torch.Tensor.is_pinned()
 ```

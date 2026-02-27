@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.isneginf
-### [torch.isneginf](https://pytorch.org/docs/stable/generated/torch.isneginf.html#torch-isneginf)
+### [torch.isneginf](https://docs.pytorch.org/docs/stable/generated/torch.isneginf.html#torch.isneginf)
 ```python
 torch.isneginf(input, *, out=None)
 ```
 
-### [paddle.isneginf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isneginf_cn.html)
+### [paddle.isneginf](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/isneginf_cn.html#paddle.isneginf)
 ```python
 paddle.isneginf(x, name=None)
 ```

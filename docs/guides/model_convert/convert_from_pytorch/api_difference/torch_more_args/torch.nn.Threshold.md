@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.Threshold
-### [torch.nn.Threshold](https://pytorch.org/docs/stable/generated/torch.nn.Threshold.html#torch.nn.Threshold)
+### [torch.nn.Threshold](https://docs.pytorch.org/docs/stable/generated/torch.nn.Threshold.html#torch.nn.Threshold)
 ```python
 torch.nn.Threshold(threshold, value, inplace=False)
 ```
 
-### [paddle.nn.ThresholdedReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ThresholdedReLU_cn.html)
+### [paddle.nn.ThresholdedReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ThresholdedReLU_cn.html#paddle.nn.ThresholdedReLU)
 ```python
 paddle.nn.ThresholdedReLU(threshold=1.0, value=0.0, name=None)
 ```

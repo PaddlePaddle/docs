@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.autograd.grad_mode.set_grad_enabled
 
-### [torch.autograd.grad_mode.set_grad_enabled](https://pytorch.org/docs/stable/generated/torch.autograd.grad_mode.html#torch.autograd.grad_mode.set_grad_enabled)
+### [torch.autograd.grad\_mode.set\_grad\_enabled](https://docs.pytorch.org/docs/stable/generated/torch.autograd.grad_mode.set_grad_enabled.html#torch.autograd.grad_mode.set_grad_enabled)
 
 ```python
 torch.autograd.grad_mode.set_grad_enabled(mode)
 ```
 
-### [paddle.set_grad_enabled](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/set_grad_enabled_cn.html#paddle/set_grad_enabled_cn#cn-api-paddle-set_grad_enabled)
+### [paddle.set\_grad\_enabled](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/set_grad_enabled_cn.html#paddle.set_grad_enabled)
 
 ```python
 paddle.set_grad_enabled(mode)

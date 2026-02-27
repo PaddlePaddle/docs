@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.autograd.function.FunctionCtx.set_materialize_grads
 
-### [torch.autograd.function.FunctionCtx.set_materialize_grads](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.html#torch.autograd.function.FunctionCtx.set_materialize_grads)
+### [torch.autograd.function.FunctionCtx.set\_materialize\_grads](https://docs.pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.set_materialize_grads.html#torch.autograd.function.FunctionCtx.set_materialize_grads)
 
 ```python
 torch.autograd.function.FunctionCtx.set_materialize_grads(value)

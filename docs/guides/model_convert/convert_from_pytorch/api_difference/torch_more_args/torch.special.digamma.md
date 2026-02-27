@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.special.digamma
-### [torch.special.digamma](https://pytorch.org/docs/stable/special.html#torch.special.digamma)
+### [torch.special.digamma](https://docs.pytorch.org/docs/stable/special.html#torch.special.digamma)
 ```python
 torch.special.digamma(input,
               *,
               out=None)
 ```
 
-### [paddle.digamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/special.digamma_cn.html)
+### [paddle.digamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/digamma_cn.html#paddle.digamma)
 ```python
 paddle.digamma(x,
                name=None)

@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torchvision.models.Inception_V3_Weights.IMAGENET1K_V1
 
-### [torchvision.models.Inception_V3_Weights.IMAGENET1K_V1](https://pytorch.org/vision/stable/models/generated/Inception_V3_Weights.html#torchvision.models.Inception_V3_Weights.IMAGENET1K_V1)
+### [torchvision.models.Inception_V3_Weights.IMAGENET1K_V1](https://docs.pytorch.org/vision/stable/models/generated/torchvision.models.inception_v3.html#torchvision.models.Inception_V3_Weights)
 
 ```python
 torchvision.models.Inception_V3_Weights.IMAGENET1K_V1

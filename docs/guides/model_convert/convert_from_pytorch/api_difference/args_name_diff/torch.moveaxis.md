@@ -1,12 +1,12 @@
 ## [ 仅参数名不一致 ]torch.moveaxis
-### [torch.moveaxis](https://pytorch.org/docs/stable/generated/torch.moveaxis.html?highlight=moveaxis#torch.moveaxis)
+### [torch.moveaxis](https://docs.pytorch.org/docs/stable/generated/torch.moveaxis.html#torch.moveaxis)
 ```python
 torch.moveaxis(input,
                source,
                destination)
 ```
 
-### [paddle.moveaxis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/moveaxis_cn.html#moveaxis)
+### [paddle.moveaxis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/moveaxis_cn.html#paddle.moveaxis)
 ```python
 paddle.moveaxis(x,
                 source,

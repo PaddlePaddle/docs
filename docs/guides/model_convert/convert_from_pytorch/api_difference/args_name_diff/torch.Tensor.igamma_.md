@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.igamma_
-### [torch.Tensor.igamma_](https://pytorch.org/docs/stable/generated/torch.Tensor.igamma_.html#torch.Tensor.igamma_)
+### [torch.Tensor.igamma\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.igamma_.html#torch.Tensor.igamma_)
 ```python
 torch.Tensor.igamma_(other)
 ```

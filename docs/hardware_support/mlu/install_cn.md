@@ -87,6 +87,17 @@ cnmon
 
 寒武纪支持插件式安装，需先安装飞桨 CPU 安装包，再安装飞桨 MLU 插件包。在启动的 docker 容器中，执行以下命令：
 
+3.3.0 稳定版:
+```bash
+# 先安装飞桨 CPU 安装包
+python -m pip install paddlepaddle==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+
+# 再安装飞桨 MLU 插件包
+python -m pip install paddle-custom-mlu==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/mlu/
+```
+
+nightly 版本:
+⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.3.0 版本。
 ```bash
 # 先安装飞桨 CPU 安装包
 pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
@@ -94,7 +105,7 @@ pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu
 # 再安装飞桨 MLU 插件包
 pip install paddle-custom-mlu -i https://www.paddlepaddle.org.cn/packages/nightly/mlu
 ```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.0-rc 版本。
+
 ### 安装方式二：源代码编译安装
 
 在启动的 docker 容器中，先安装飞桨 CPU 安装包，再下载 PaddleCustomDevice 源码编译得到飞桨 MLU 插件包。

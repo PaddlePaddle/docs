@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.hinge_embedding_loss
-### [torch.nn.functional.hinge_embedding_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.hinge_embedding_loss.html#torch.nn.functional.hinge_embedding_loss)
+### [torch.nn.functional.hinge\_embedding\_loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.hinge_embedding_loss.html#torch.nn.functional.hinge_embedding_loss)
 ```python
 torch.nn.functional.hinge_embedding_loss(input, target, margin=1.0, size_average=None, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.functional.hinge_embedding_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/hinge_embedding_loss_cn.html)
+### [paddle.nn.functional.hinge\_embedding\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/hinge_embedding_loss_cn.html#paddle.nn.functional.hinge_embedding_loss)
 ```python
 paddle.nn.functional.hinge_embedding_loss(input, label, margin=1.0, reduction='mean', name=None)
 ```

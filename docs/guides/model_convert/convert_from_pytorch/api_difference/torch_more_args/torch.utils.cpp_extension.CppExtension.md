@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.utils.cpp_extension.CppExtension
-### [torch.utils.cpp_extension.CppExtension](https://pytorch.org/docs/stable/cpp_extension.html?highlight=torch+utils+cpp_extension+cppextension#torch.utils.cpp_extension.CppExtension)
+### [torch.utils.cpp\_extension.CppExtension](https://docs.pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.CppExtension)
 ```python
 torch.utils.cpp_extension.CppExtension(name,
                                     sources,
@@ -7,7 +7,7 @@ torch.utils.cpp_extension.CppExtension(name,
                                     **kwargs)
 ```
 
-### [paddle.utils.cpp_extension.CppExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/cpp_extension/CppExtension_cn.html)
+### [paddle.utils.cpp\_extension.CppExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/cpp_extension/CppExtension_cn.html#paddle.utils.cpp_extension.CppExtension)
 ```python
 paddle.utils.cpp_extension.CppExtension(sources,
                                     *args,

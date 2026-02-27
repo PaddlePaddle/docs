@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torchvision.ops.nms
-### [torchvision.ops.nms](https://pytorch.org/vision/main/generated/torchvision.ops.nms.html)
+### [torchvision.ops.nms](https://pytorch.org/vision/stable/generated/torchvision.ops.nms.html#torchvision.ops.nms)
 ```python
 torchvision.ops.nms(boxes: Tensor, scores: Tensor, iou_threshold: float)
 ```
 
-### [paddle.vision.ops.nms](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/ops/nms_cn.html)
+### [paddle.vision.ops.nms](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/ops/nms_cn.html#paddle.vision.ops.nms)
 ```python
 paddle.vision.ops.nms(boxes, iou_threshold=0.3, scores=None, category_idxs=None, categories=None, top_k=None)
 ```

@@ -1,10 +1,10 @@
 ## [ 返回参数类型不一致 ]torch.nn.GRUCell
-### [torch.nn.GRUCell](https://pytorch.org/docs/stable/generated/torch.nn.GRUCell.html#torch.nn.GRUCell)
+### [torch.nn.GRUCell](https://docs.pytorch.org/docs/stable/generated/torch.nn.GRUCell.html#torch.nn.GRUCell)
 ```python
 torch.nn.GRUCell(input_size, hidden_size, bias=True, device=None, dtype=None)
 ```
 
-### [paddle.nn.GRUCell](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GRUCell_cn.html#grucell)
+### [paddle.nn.GRUCell](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GRUCell_cn.html#paddle.nn.GRUCell)
 ```python
 paddle.nn.GRUCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
 ```

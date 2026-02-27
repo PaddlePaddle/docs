@@ -1,6 +1,6 @@
 ## [ 组合替代实现 ]torch.nn.Module.get_parameter
 
-### [torch.nn.Module.get_parameter](https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.get_parameter)
+### [torch.nn.Module.get\_parameter](https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.get_parameter)
 
 ```python
 torch.nn.Module.get_parameter(target)

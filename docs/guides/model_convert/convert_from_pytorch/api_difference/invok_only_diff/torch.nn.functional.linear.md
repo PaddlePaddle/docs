@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.nn.functional.linear
 
-### [torch.nn.functional.linear](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.linear.html)
+### [torch.nn.functional.linear](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.linear.html#torch.nn.functional.linear)
 
 ```python
 torch.nn.functional.linear(input, weight, bias=None)
 ```
 
-### [paddle.compat.nn.functional.linear](https://github.com/PaddlePaddle/Paddle/blob/5721d267e434c18fa64ff2b99839c7cb6d4cc04d/python/paddle/compat/nn/functional/__init__.py#L204)
+### [paddle.compat.nn.functional.linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/nn/functional/linear_cn.html#paddle.compat.nn.functional.linear)
 ```python
 paddle.compat.nn.functional.linear(input, weight, bias=None)
 ```

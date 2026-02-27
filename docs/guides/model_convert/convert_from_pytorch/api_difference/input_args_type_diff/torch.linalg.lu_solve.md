@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.linalg.lu_solve
-### [torch.linalg.lu_solve](https://pytorch.org/docs/stable/generated/torch.linalg.lu_solve.html#torch.linalg.lu_solve)
+### [torch.linalg.lu\_solve](https://docs.pytorch.org/docs/stable/generated/torch.linalg.lu_solve.html#torch.linalg.lu_solve)
 ```python
 torch.linalg.lu_solve(LU, pivots, B, *, left=True, adjoint=False, out=None)
 ```
 
-### [paddle.linalg.lu_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_solve_cn.html)
+### [paddle.linalg.lu\_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_solve_cn.html#paddle.linalg.lu_solve)
 ```python
 paddle.linalg.lu_solve(b, lu, pivots, trans="N", name=None)
 ```

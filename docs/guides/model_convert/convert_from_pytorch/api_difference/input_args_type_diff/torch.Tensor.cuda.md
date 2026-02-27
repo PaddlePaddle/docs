@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torch.Tensor.cuda
-### [torch.Tensor.cuda](https://pytorch.org/docs/stable/generated/torch.Tensor.cuda.html#torch.Tensor.cuda)
+### [torch.Tensor.cuda](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.cuda.html#torch.Tensor.cuda)
 ```python
 torch.Tensor.cuda(device=None, non_blocking=False, memory_format=torch.preserve_format)
 ```
 
-### [paddle.Tensor.cuda](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cuda-device-id-none-blocking-false)
+### [paddle.Tensor.cuda](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#cuda-device-id-none-blocking-false)
 ```python
 paddle.Tensor.cuda(device_id=None, blocking=False)
 ```

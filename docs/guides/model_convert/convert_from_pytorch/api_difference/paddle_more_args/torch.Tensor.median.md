@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.median
-### [torch.Tensor.median](https://pytorch.org/docs/stable/generated/torch.Tensor.median.html)
+### [torch.Tensor.median](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.median.html#torch.Tensor.median)
 ```python
 torch.Tensor.median(dim=None, keepdim=False)
 ```
 
-### [paddle.Tensor.median](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#median-axis-none-keepdim-false-name-none)
+### [paddle.Tensor.median](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#median-axis-none-keepdim-false-name-none)
 ```python
 paddle.Tensor.median(axis=None, keepdim=False, mode='avg', name=None)
 ```

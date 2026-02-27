@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.logspace
-### [torch.logspace](https://pytorch.org/docs/stable/generated/torch.logspace.html?highlight=logspace#torch.logspace)
+### [torch.logspace](https://docs.pytorch.org/docs/stable/generated/torch.logspace.html#torch.logspace)
 ```python
 torch.logspace(start,
                end,
@@ -13,7 +13,7 @@ torch.logspace(start,
                requires_grad=False)
 ```
 
-### [paddle.logspace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logspace_cn.html)
+### [paddle.logspace](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/logspace_cn.html#paddle.logspace)
 ```python
 paddle.logspace(start,
                 stop,

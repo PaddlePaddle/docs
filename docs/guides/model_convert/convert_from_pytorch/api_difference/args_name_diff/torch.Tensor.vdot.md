@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.vdot
-### [torch.Tensor.vdot](https://pytorch.org/docs/stable/generated/torch.Tensor.vdot.html#torch.Tensor.vdot)
+### [torch.Tensor.vdot](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.vdot.html#torch.Tensor.vdot)
 ```python
 torch.Tensor.vdot(other)
 ```
 
-### [paddle.Tensor.dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#dot-y-name-none)
+### [paddle.Tensor.dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#dot-y-name-none)
 ```python
 paddle.Tensor.dot(y, name=None)
 ```

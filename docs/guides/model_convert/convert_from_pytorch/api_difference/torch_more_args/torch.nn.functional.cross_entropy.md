@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.functional.cross_entropy
-### [torch.nn.functional.cross_entropy](https://pytorch.org/docs/stable/generated/torch.nn.functional.cross_entropy.html?highlight=cross_#torch.nn.functional.cross_entropy)
+### [torch.nn.functional.cross\_entropy](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.cross_entropy.html#torch.nn.functional.cross_entropy)
 ```python
 torch.nn.functional.cross_entropy(input,
                                  target,
@@ -11,7 +11,7 @@ torch.nn.functional.cross_entropy(input,
                                  label_smoothing=0.0)
 ```
 
-### [paddle.nn.functional.cross_entropy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/cross_entropy_cn.html)
+### [paddle.nn.functional.cross\_entropy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/cross_entropy_cn.html#paddle.nn.functional.cross_entropy)
 ```python
 paddle.nn.functional.cross_entropy(input,
                                    label,

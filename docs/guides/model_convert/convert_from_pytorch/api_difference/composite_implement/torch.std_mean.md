@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.std_mean
-### [torch.std_mean](https://pytorch.org/docs/stable/generated/torch.std_mean.html?highlight=std_mean#torch.std_mean)
+### [torch.std\_mean](https://docs.pytorch.org/docs/stable/generated/torch.std_mean.html#torch.std_mean)
 ```python
 torch.std_mean(input, dim=None, unbiased=True, keepdim=False, *, correction=None)
 ```

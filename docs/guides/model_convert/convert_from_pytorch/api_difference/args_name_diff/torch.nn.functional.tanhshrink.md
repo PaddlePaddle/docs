@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.tanhshrink
-### [torch.nn.functional.tanhshrink](https://pytorch.org/docs/stable/generated/torch.nn.functional.tanhshrink.html?highlight=tanhshri#torch.nn.functional.tanhshrink)
+### [torch.nn.functional.tanhshrink](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.tanhshrink.html#torch.nn.functional.tanhshrink)
 ```python
 torch.nn.functional.tanhshrink(input)
 ```
 
-### [paddle.nn.functional.tanhshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/tanhshrink_cn.html)
+### [paddle.nn.functional.tanhshrink](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/tanhshrink_cn.html#paddle.nn.functional.tanhshrink)
 ```python
 paddle.nn.functional.tanhshrink(x,
                                 name=None)

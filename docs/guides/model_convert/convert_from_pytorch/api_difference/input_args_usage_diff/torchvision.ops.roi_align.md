@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torchvision.ops.roi_align
-### [torchvision.ops.roi_align](https://pytorch.org/vision/main/generated/torchvision.ops.roi_align.html)
+### [torchvision.ops.roi\_align](https://pytorch.org/vision/stable/generated/torchvision.ops.roi_align.html#torchvision.ops.roi_align)
 ```python
 torchvision.ops.roi_align(input: Tensor, boxes: Union[Tensor, List[Tensor]], output_size: None, spatial_scale: float = 1.0, sampling_ratio: int = - 1, aligned: bool = False)
 ```
 
-### [paddle.vision.ops.roi_align](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/ops/roi_align_cn.html)
+### [paddle.vision.ops.roi\_align](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/ops/roi_align_cn.html#paddle.vision.ops.roi_align)
 ```python
 paddle.vision.ops.roi_align(x, boxes, boxes_num, output_size, spatial_scale=1.0, sampling_ratio=- 1, aligned=True, name=None)
 ```

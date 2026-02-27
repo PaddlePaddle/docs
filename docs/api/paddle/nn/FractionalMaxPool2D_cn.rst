@@ -34,6 +34,9 @@ FractionalMaxPool2D
 由于池化操作的步长与核尺寸相同，同为此随机序列，最终得到池化输出为 `[2, 4, 1, 5, 3]` 。
 
 
+..  note::
+    别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``return_indices`` 可替代 ``return_mask``。
+
 参数
 :::::::::
 
@@ -41,12 +44,14 @@ FractionalMaxPool2D
     - **kernel_size** (int|list|tuple, 可选) - 池化核大小。如果它是一个元组或列表，它必须包含两个整数值，(pool_size_Height, pool_size_Width)。若为一个整数，则表示 H 和 W 维度上均为该值，比如若 pool_size=2，则池化核大小为 [2,2]。默认为 `None`，表示使用 `disjoint` (`non-overlapping`) 模式。
     - **random_u** (float)：分数阶池化操作的浮点随机数，取值范围为 `(0, 1)` 。默认为 `None` ，由框架随机生成，可以使用 `paddle.seed` 设置随机种子。
     - **return_mask** (bool，可选)：如果设置为 `True` ，则会与输出一起返回最大值的索引，默认为 `False`。
+      ``别名：return_indices``
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 `None`。
 
 形状
 :::::::::
 
     - **x** (Tensor)：默认形状为（批大小，通道数，输出特征长度，宽度），即 NCHW 格式的 4-D Tensor。其数据类型为 float16, bfloat16, float32, float64。
+      ``别名：input``
     - **output** (Tensor)：默认形状为（批大小，通道数，输出特征长度，宽度），即 NCHW 格式的 4-D Tensor。其数据类型与输入 x 相同。
 
 返回

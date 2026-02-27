@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.row_stack
-### [torch.row_stack](https://pytorch.org/docs/stable/generated/torch.row_stack.html#torch.row_stack)
+### [torch.row\_stack](https://docs.pytorch.org/docs/stable/generated/torch.row_stack.html#torch.row_stack)
 ```python
 torch.row_stack(tensors, *, out=None)
 ```
 
-### [paddle.row_stack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/row_stack_cn.html)
+### [paddle.row\_stack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/row_stack_cn.html#paddle.row_stack)
 ```python
 paddle.row_stack(x, name=None)
 ```

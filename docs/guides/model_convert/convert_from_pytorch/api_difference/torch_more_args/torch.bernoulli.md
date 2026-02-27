@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.bernoulli
-### [torch.bernoulli](https://pytorch.org/docs/stable/generated/torch.bernoulli.html#torch.bernoulli)
+### [torch.bernoulli](https://docs.pytorch.org/docs/stable/generated/torch.bernoulli.html#torch.bernoulli)
 ```python
 torch.bernoulli(input,
                 p=None,
@@ -8,7 +8,7 @@ torch.bernoulli(input,
                 out=None)
 ```
 
-### [paddle.bernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bernoulli_cn.html)
+### [paddle.bernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bernoulli_cn.html#paddle.bernoulli)
 ```python
 paddle.bernoulli(x,
                  p=None,

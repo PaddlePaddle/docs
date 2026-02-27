@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributed.recv
-### [torch.distributed.recv](https://pytorch.org/docs/stable/distributed.html#torch.distributed.recv)
+### [torch.distributed.recv](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.recv)
 ```python
 torch.distributed.recv(tensor, src=None, group=None, tag=0)
 ```
 
-### [paddle.distributed.recv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/recv_cn.html)
+### [paddle.distributed.recv](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/recv_cn.html#paddle.distributed.recv)
 ```python
 paddle.distributed.recv(tensor, src=0, group=None, sync_op=True)
 ```

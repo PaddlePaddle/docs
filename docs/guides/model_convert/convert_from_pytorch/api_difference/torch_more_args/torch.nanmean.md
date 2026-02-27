@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nanmean
-### [torch.nanmean](https://pytorch.org/docs/stable/generated/torch.nanmean.html?highlight=nanmean#torch.nanmean)
+### [torch.nanmean](https://docs.pytorch.org/docs/stable/generated/torch.nanmean.html#torch.nanmean)
 ```python
 torch.nanmean(input,
               dim=None,
@@ -9,7 +9,7 @@ torch.nanmean(input,
               out=None)
 ```
 
-### [paddle.nanmean](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nanmean_cn.html)
+### [paddle.nanmean](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nanmean_cn.html#paddle.nanmean)
 ```python
 paddle.nanmean(x,
                axis=None,

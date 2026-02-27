@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.nn.functional.unfold
 
-### [torch.nn.functional.unfold](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.unfold.html)
+### [torch.nn.functional.unfold](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.unfold.html#torch.nn.functional.unfold)
 
 ```python
 torch.nn.functional.unfold(input, kernel_size, dilation=1, padding=0, stride=1)

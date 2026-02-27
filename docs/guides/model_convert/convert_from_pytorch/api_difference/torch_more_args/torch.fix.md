@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.fix
-### [torch.fix](https://pytorch.org/docs/stable/generated/torch.fix.html?highlight=torch+fix#torch.fix)
+### [torch.fix](https://docs.pytorch.org/docs/stable/generated/torch.fix.html#torch.fix)
 ```python
 torch.fix(input,
           *,
           out=None)
 ```
 
-### [paddle.trunc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/trunc_cn.html)
+### [paddle.trunc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/trunc_cn.html#paddle.trunc)
 ```python
 paddle.trunc(input,
              name=None)

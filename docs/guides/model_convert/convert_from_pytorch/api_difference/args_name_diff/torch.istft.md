@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.istft
-### [torch.istft](https://pytorch.org/docs/stable/generated/torch.istft.html?highlight=istft#torch.istft)
+### [torch.istft](https://docs.pytorch.org/docs/stable/generated/torch.istft.html#torch.istft)
 ```python
 torch.istft(input,
             n_fft,
@@ -13,7 +13,7 @@ torch.istft(input,
             return_complex=False)
 ```
 
-### [paddle.signal.istft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/signal/istft_cn.html#istft)
+### [paddle.signal.istft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/signal/istft_cn.html#paddle.signal.istft)
 ```python
 paddle.signal.istft(x,
                     n_fft,

@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.Rprop
-### [torch.optim.Rprop](https://pytorch.org/docs/stable/generated/torch.optim.Rprop.html)
+### [torch.optim.Rprop](https://docs.pytorch.org/docs/stable/generated/torch.optim.Rprop.html#torch.optim.Rprop)
 ```python
 torch.optim.Rprop(params,
              lr=0.01,
@@ -10,7 +10,7 @@ torch.optim.Rprop(params,
              differentiable=False)
 ```
 
-### [paddle.optimizer.Rprop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Rprop_cn.html#cn-api-paddle-optimizer-rprop)
+### [paddle.optimizer.Rprop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Rprop_cn.html#paddle.optimizer.Rprop)
 ```python
 paddle.optimizer.Rprop(learning_rate=0.001,
                           learning_rate_range=(1e-5, 50),

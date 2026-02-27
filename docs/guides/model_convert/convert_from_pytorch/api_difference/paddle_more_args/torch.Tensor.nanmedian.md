@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torch.Tensor.nanmedian
-### [torch.Tensor.nanmedian](https://pytorch.org/docs/stable/generated/torch.Tensor.nanmedian.html)
+### [torch.Tensor.nanmedian](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.nanmedian.html#torch.Tensor.nanmedian)
 ```python
 torch.Tensor.nanmedian(dim=None, keepdim=False)
 ```
 
-### [paddle.Tensor.nanmedian](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#nanmedian-axis-none-keepdim-true-name-none)
+### [paddle.Tensor.nanmedian](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#nanmedian-axis-none-keepdim-false-name-none)
 ```python
 paddle.Tensor.nanmedian(axis=None, keepdim=False, mode='avg', name=None)
 ```

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.linalg.solve
-### [torch.linalg.solve](https://pytorch.org/docs/stable/generated/torch.linalg.solve.html#torch.linalg.solve)
+### [torch.linalg.solve](https://docs.pytorch.org/docs/stable/generated/torch.linalg.solve.html#torch.linalg.solve)
 ```python
 torch.linalg.solve(A, B, *, left=True, out=None)
 ```
 
-### [paddle.linalg.solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/solve_cn.html)
+### [paddle.linalg.solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/solve_cn.html#paddle.linalg.solve)
 ```python
 paddle.linalg.solve(x, y, left=True, name=None)
 ```

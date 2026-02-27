@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.nbytes
-### [torch.Tensor.nbytes](https://pytorch.org/docs/stable/generated/torch.Tensor.nbytes.html)
+### [torch.Tensor.nbytes](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.nbytes.html#torch.Tensor.nbytes)
 ```python
 torch.Tensor.nbytes
 ```

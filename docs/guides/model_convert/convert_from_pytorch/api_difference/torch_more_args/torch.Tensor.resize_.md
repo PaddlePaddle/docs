@@ -1,11 +1,11 @@
 ## [ torch 参数更多 ]torch.Tensor.resize\_
 
-### [torch.Tensor.resize\_](https://pytorch.org/docs/stable/generated/torch.Tensor.resize_.html)
+### [torch.Tensor.resize\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.resize_.html#torch.Tensor.resize_)
 ```python
 torch.Tensor.resize_(*sizes, memory_format=torch.contiguous_format)
 ```
 
-### [paddle.Tensor.resize_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#resize-shape-fill-zero-false-name-none)
+### [paddle.Tensor.resize\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#resize-shape-fill-zero-false-name-none)
 ```python
 paddle.Tensor.resize_(shape, fill_zero=False, name=None)
 ```

@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.autograd.function.FunctionCtx.save_for_backward
 
-### [torch.autograd.function.FunctionCtx.save_for_backward](https://pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.html#torch.autograd.function.FunctionCtx.save_for_backward)
+### [torch.autograd.function.FunctionCtx.save\_for\_backward](https://docs.pytorch.org/docs/stable/generated/torch.autograd.function.FunctionCtx.save_for_backward.html#torch.autograd.function.FunctionCtx.save_for_backward)
 
 ```python
 torch.autograd.function.FunctionCtx.save_for_backward(*tensors)
 ```
 
-### [paddle.autograd.PyLayerContext.save_for_backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext/save_for_backward_cn.html#paddle/autograd/PyLayerContext/save_for_backward_cn#cn-api-paddle-autograd-PyLayerContext-save_for_backward)
+### [paddle.autograd.PyLayerContext.save_for_backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayerContext_cn.html#save-for-backward-tensors)
 
 ```python
 paddle.autograd.PyLayerContext.save_for_backward(*tensors)

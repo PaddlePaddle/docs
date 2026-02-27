@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.sgn
-### [torch.sgn](https://pytorch.org/docs/stable/generated/torch.sgn.html?highlight=torch+sgn#torch.sgn)
+### [torch.sgn](https://docs.pytorch.org/docs/stable/generated/torch.sgn.html#torch.sgn)
 ```python
 torch.sgn(input,
           *,
           out=None)
 ```
 
-### [paddle.sgn](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sgn_cn.html)
+### [paddle.sgn](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sgn_cn.html#paddle.sgn)
 ```python
 paddle.sgn(x,
             name=None)

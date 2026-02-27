@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.orgqr
-### [torch.Tensor.orgqr](https://pytorch.org/docs/stable/generated/torch.Tensor.orgqr.html#torch.Tensor.orgqr)
+### [torch.Tensor.orgqr](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.orgqr.html#torch.Tensor.orgqr)
 ```python
 torch.Tensor.orgqr(input2)
 ```

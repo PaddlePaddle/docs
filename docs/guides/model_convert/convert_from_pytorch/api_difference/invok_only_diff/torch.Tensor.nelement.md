@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.nelement
 
-### [torch.Tensor.nelement](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.nelement)
+### [torch.Tensor.nelement](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.nelement.html#torch.Tensor.nelement)
 
 ```python
 torch.Tensor.nelement()

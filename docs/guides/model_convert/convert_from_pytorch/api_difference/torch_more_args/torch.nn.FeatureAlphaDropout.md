@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.FeatureAlphaDropout
-### [torch.nn.FeatureAlphaDropout](https://pytorch.org/docs/stable/generated/torch.nn.FeatureAlphaDropout.html#torch.nn.FeatureAlphaDropout)
+### [torch.nn.FeatureAlphaDropout](https://docs.pytorch.org/docs/stable/generated/torch.nn.FeatureAlphaDropout.html#torch.nn.FeatureAlphaDropout)
 ```python
 torch.nn.FeatureAlphaDropout(p=0.5, inplace=False)
 ```
 
-### [paddle.nn.FeatureAlphaDropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/FeatureAlphaDropout_cn.html)
+### [paddle.nn.FeatureAlphaDropout](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/FeatureAlphaDropout_cn.html#paddle.nn.FeatureAlphaDropout)
 ```python
 paddle.nn.FeatureAlphaDropout(p=0.5, name=None)
 ```

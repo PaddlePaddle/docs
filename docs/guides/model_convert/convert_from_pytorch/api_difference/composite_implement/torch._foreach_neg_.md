@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_neg_
-### [torch.\_foreach_neg_](https://pytorch.org/docs/stable/generated/torch._foreach_neg_.html#torch-foreach-neg)
+### [torch.\_foreach\_neg\_](https://docs.pytorch.org/docs/stable/generated/torch._foreach_neg_.html#torch._foreach_neg_)
 ```python
 torch._foreach_neg_(self)
 ```

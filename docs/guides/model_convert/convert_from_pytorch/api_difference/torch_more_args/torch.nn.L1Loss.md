@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.nn.L1Loss
-### [torch.nn.L1Loss](https://pytorch.org/docs/stable/generated/torch.nn.L1Loss.html?highlight=l1loss#torch.nn.L1Loss)
+### [torch.nn.L1Loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.L1Loss.html#torch.nn.L1Loss)
 ```python
 torch.nn.L1Loss(size_average=None,
                 reduce=None,
                 reduction='mean')
 ```
 
-### [paddle.nn.L1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/L1Loss_cn.html#l1loss)
+### [paddle.nn.L1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/L1Loss_cn.html#paddle.nn.L1Loss)
 ```python
 paddle.nn.L1Loss(reduction='mean',
                  name=None)

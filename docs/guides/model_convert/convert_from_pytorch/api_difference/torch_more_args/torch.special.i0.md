@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.special.i0
-### [torch.special.i0](https://pytorch.org/docs/stable/special.html#torch.special.i0)
+### [torch.special.i0](https://docs.pytorch.org/docs/stable/special.html#torch.special.i0)
 ```python
 torch.special.i0(input, *, out=None)
 ```
 
-### [paddle.i0](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/i0_cn.html)
+### [paddle.i0](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/i0_cn.html#paddle.i0)
 ```python
 paddle.i0(x, name=None)
 ```

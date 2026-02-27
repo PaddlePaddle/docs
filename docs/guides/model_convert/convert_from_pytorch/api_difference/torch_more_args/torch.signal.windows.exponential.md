@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.signal.windows.exponential
-### [torch.signal.windows.exponential](https://pytorch.org/docs/stable/generated/torch.signal.windows.exponential.html)
+### [torch.signal.windows.exponential](https://docs.pytorch.org/docs/stable/generated/torch.signal.windows.exponential.html#torch.signal.windows.exponential)
 ```python
 torch.signal.windows.exponential(M, *, center=None, tau=1.0, sym=True, dtype=None, layout=torch.strided, device=None, requires_grad=False)
 ```
 
-### [paddle.audio.functional.get_window](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/audio/functional/get_window_cn.html#get-window)
+### [paddle.audio.functional.get\_window](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/audio/functional/get_window_cn.html#paddle.audio.functional.get_window)
 ```python
 paddle.audio.functional.get_window(window, win_length, fftbins=True, dtype='float64')
 ```
@@ -16,9 +16,9 @@ PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 | ------------- | ------------ | ------------------------------------------------------ |
 | - | window |  窗函数类型，Pytorch 无此参数，Paddle 需设置为 `exponential`。 |
 | M  | win_length            | 输入窗口的长度，也是采样点数，仅参数名不一致。 |
-| sym        | fftbins       | 判断是否返回适用于过滤器设计的对称窗口，功能相反，Pytorch 默认值为 True 时，Paddle 须设置为 False，需要转写。  |
 | center         | -       | 窗口的中心位置，Paddle 无此参数，暂无转写方式。 |
 | tau           | -       | 窗口的半衰期，Paddle 无此参数，需要转写。 |
+| sym        | fftbins       | 判断是否返回适用于过滤器设计的对称窗口，功能相反，Pytorch 默认值为 True 时，Paddle 须设置为 False，需要转写。  |
 | dtype        | dtype | 返回 Tensor 的数据类型，支持 float32、float64。PyTorch 若参数为空，返回数据类型默认为 `float32`。 Paddle 若参数为空，返回数据类型默认为 `float64` ，需要转写。|
 | layout | -   | 表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 | device | -   | 表示 Tensor 存放设备位置，Paddle 无此参数，需要转写。 |

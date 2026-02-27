@@ -1,11 +1,11 @@
 ## [ 参数默认值不一致 ]torch.cuda.amp.GradScaler
 
-### [torch.cuda.amp.GradScaler](https://pytorch.org/docs/stable/amp.html#torch.cuda.amp.GradScaler)
+### [torch.cuda.amp.GradScaler](https://docs.pytorch.org/docs/stable/amp.html#torch.cuda.amp.GradScaler)
 ```python
 torch.cuda.amp.GradScaler(init_scale=65536.0, growth_factor=2.0, backoff_factor=0.5, growth_interval=2000, enabled=True)
 ```
 
-### [paddle.amp.GradScaler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/GradScaler_cn.html)
+### [paddle.amp.GradScaler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/GradScaler_cn.html#paddle.amp.GradScaler)
 ```python
 paddle.amp.GradScaler(enable=True, init_loss_scaling=65536.0, incr_ratio=2.0, decr_ratio=0.5, incr_every_n_steps=2000, decr_every_n_nan_or_inf=2, use_dynamic_loss_scaling=True)
 ```

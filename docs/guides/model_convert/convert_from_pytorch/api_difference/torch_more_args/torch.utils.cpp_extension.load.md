@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.utils.cpp_extension.load
-### [torch.utils.cpp_extension.load](https://pytorch.org/docs/stable/cpp_extension.html?highlight=torch+utils+cpp_extension+load#torch.utils.cpp_extension.load)
+### [torch.utils.cpp\_extension.load](https://docs.pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.load)
 ```python
 torch.utils.cpp_extension.load(name,
                             sources,
@@ -15,7 +15,7 @@ torch.utils.cpp_extension.load(name,
                             keep_intermediates=True)
 ```
 
-### [paddle.utils.cpp_extension.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/cpp_extension/load_cn.html)
+### [paddle.utils.cpp\_extension.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/cpp_extension/load_cn.html#paddle.utils.cpp_extension.load)
 ```python
 paddle.utils.cpp_extension.load(name,
                             sources,

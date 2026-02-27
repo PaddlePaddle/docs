@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_zero_
-### [torch.\_foreach_zero_](https://pytorch.org/docs/stable/generated/torch._foreach_zero_.html#torch-foreach-zero)
+### [torch.\_foreach\_zero\_](https://docs.pytorch.org/docs/stable/generated/torch._foreach_zero_.html#torch._foreach_zero_)
 ```python
 torch._foreach_zero_(self)
 ```

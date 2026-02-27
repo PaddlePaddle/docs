@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.signbit
-### [torch.signbit](https://pytorch.org/docs/stable/generated/torch.signbit.html#torch-signbit)
+### [torch.signbit](https://docs.pytorch.org/docs/stable/generated/torch.signbit.html#torch.signbit)
 ```python
 torch.signbit(input, *, out=None)
 ```
 
-### [paddle.signbit](https://github.com/PaddlePaddle/Paddle/blob/9ce3a54f456011c664c70fbcd318f2e1af0a7d81/python/paddle/tensor/math.py#L7175)
+### [paddle.signbit](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/signbit_cn.html#paddle.signbit)
 ```python
 paddle.signbit(x, name=None)
 ```

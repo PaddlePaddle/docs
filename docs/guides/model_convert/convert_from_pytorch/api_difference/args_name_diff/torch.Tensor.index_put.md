@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.index_put
-### [torch.Tensor.index_put](https://pytorch.org/docs/stable/generated/torch.Tensor.index_put.html?highlight=index_put#torch.Tensor.index_put)
+### [torch.Tensor.index\_put](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.index_put.html#torch.Tensor.index_put)
 ```python
 torch.Tensor.index_put(indices, values, accumulate=False)
 ```
 
-### [paddle.Tensor.index_put](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/index_put_cn.html#index-put)
+### [paddle.Tensor.index\_put](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#index-put-indices-value-accumulate-false-name-none)
 ```python
 paddle.Tensor.index_put(indices, value, accumulate=False, name=None)
 ```

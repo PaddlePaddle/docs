@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.nn.Linear
 
-### [torch.nn.Linear](https://docs.pytorch.org/docs/stable/generated/torch.nn.Linear.html)
+### [torch.nn.Linear](https://docs.pytorch.org/docs/stable/generated/torch.nn.Linear.html#torch.nn.Linear)
 
 ```python
 torch.nn.Linear(in_features, out_features, bias=True, device=None, dtype=None)
 ```
 
-### [paddle.compat.nn.Linear](https://github.com/PaddlePaddle/Paddle/blob/5721d267e434c18fa64ff2b99839c7cb6d4cc04d/python/paddle/compat/nn/__init__.py#L470)
+### [paddle.compat.nn.Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/nn/Linear_cn.html#paddle.compat.nn.Linear)
 
 ```python
 paddle.compat.nn.Linear(in_features, out_features, bias=True, device=None, dtype=None)

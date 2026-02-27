@@ -2,7 +2,7 @@
 
 ## Environment preparation
 
-* **Windows 7/8/10 Pro/Enterprise(64bit)**
+* **Windows 10/11 Pro/Enterprise(64bit)**
 * **GPU Version support CUDA 11.0 - 12.0, and only support single GPU**
 * **Python version 3.9+/3.10+/3.11+/3.12+/3.13+ (64bit)**
 * **pip version 20.2.2 or above (64bit)**

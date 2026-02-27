@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.linalg.lu
-### [torch.linalg.lu](https://pytorch.org/docs/stable/generated/torch.linalg.lu.html?highlight=torch+linalg+lu#torch.linalg.lu)
+### [torch.linalg.lu](https://docs.pytorch.org/docs/stable/generated/torch.linalg.lu.html#torch.linalg.lu)
 ```python
 torch.linalg.lu(A, *, pivot=True, out=None)
 ```

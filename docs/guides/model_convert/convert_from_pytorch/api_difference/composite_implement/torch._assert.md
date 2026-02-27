@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch._assert
-### [torch._assert](https://pytorch.org/docs/stable/generated/torch._assert.html)
+### [torch.\_assert](https://docs.pytorch.org/docs/stable/generated/torch._assert.html#torch._assert)
 ```python
 torch._assert(condition, message)
 ```

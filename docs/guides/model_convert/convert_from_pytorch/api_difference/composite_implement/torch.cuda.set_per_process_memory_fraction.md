@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.cuda.set_per_process_memory_fraction
-### [torch.cuda.set_per_process_memory_fraction](https://pytorch.org/docs/stable/generated/torch.cuda.set_per_process_memory_fraction.html)
+### [torch.cuda.set_per_process_memory_fraction](https://docs.pytorch.org/docs/stable/generated/torch.cuda.memory.set_per_process_memory_fraction.html)
 ```python
 torch.cuda.set_per_process_memory_fraction(fraction, device=None)
 ```

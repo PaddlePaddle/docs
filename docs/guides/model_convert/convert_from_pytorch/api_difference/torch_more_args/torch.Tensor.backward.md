@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.Tensor.backward
-### [torch.Tensor.backward](https://pytorch.org/docs/stable/generated/torch.Tensor.backward.html#torch.Tensor.backward)
+### [torch.Tensor.backward](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.backward.html#torch.Tensor.backward)
 ```python
 torch.Tensor.backward(gradient=None, retain_graph=None, create_graph=False, inputs=None)
 ```
 
-### [paddle.Tensor.backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#backward-grad-tensor-none-retain-graph-false)
+### [paddle.Tensor.backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#backward-grad-tensor-none-retain-graph-false)
 ```python
 paddle.Tensor.backward(grad_tensor=None, retain_graph=False)
 ```

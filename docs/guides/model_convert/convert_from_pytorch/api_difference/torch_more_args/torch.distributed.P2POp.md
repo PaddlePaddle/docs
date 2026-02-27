@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.distributed.P2POp
-### [torch.distributed.P2POp](https://pytorch.org/docs/stable/distributed.html#torch.distributed.P2POp)
+### [torch.distributed.P2POp](https://docs.pytorch.org/docs/stable/distributed.html#torch.distributed.P2POp)
 ```python
 torch.distributed.P2POp(op, tensor, peer, group=None, tag=0)
 ```

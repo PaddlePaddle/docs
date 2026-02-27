@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_erfc_
-### [torch.\_foreach_erfc_](https://pytorch.org/docs/stable/generated/torch._foreach_erfc_.html#torch-foreach-erfc)
+### [torch.\_foreach\_erfc\_](https://docs.pytorch.org/docs/stable/generated/torch._foreach_erfc_.html#torch._foreach_erfc_)
 ```python
 torch._foreach_erfc_(self)
 ```

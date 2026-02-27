@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.PReLU
-### [torch.nn.PReLU](https://pytorch.org/docs/stable/generated/torch.nn.PReLU.html?highlight=prelu#torch.nn.PReLU)
+### [torch.nn.PReLU](https://docs.pytorch.org/docs/stable/generated/torch.nn.PReLU.html#torch.nn.PReLU)
 ```python
 torch.nn.PReLU(num_parameters=1,
                init=0.25,
@@ -7,7 +7,7 @@ torch.nn.PReLU(num_parameters=1,
                dtype=None)
 ```
 
-### [paddle.nn.PReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/PReLU_cn.html#prelu)
+### [paddle.nn.PReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/PReLU_cn.html#paddle.nn.PReLU)
 ```python
 paddle.nn.PReLU(num_parameters=1,
                 init=0.25,

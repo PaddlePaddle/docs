@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.distributions.kl.kl_divergence
 
-### [torch.distributions.kl.kl_divergence](https://pytorch.org/docs/stable/generated/torch.distributions.kl.html#torch.distributions.kl.kl_divergence)
+### [torch.distributions.kl.kl\_divergence](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.kl.kl_divergence)
 
 ```python
 torch.distributions.kl.kl_divergence(p, q)
 ```
 
-### [paddle.distribution.kl_divergence](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/kl_divergence_cn.html#paddle/distribution/kl_divergence_cn#cn-api-paddle-distribution-kl_divergence)
+### [paddle.distribution.kl\_divergence](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/kl_divergence_cn.html#paddle.distribution.kl_divergence)
 
 ```python
 paddle.distribution.kl_divergence(p, q)

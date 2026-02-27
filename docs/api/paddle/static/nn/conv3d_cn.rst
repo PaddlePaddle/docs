@@ -13,7 +13,7 @@ conv3d
 
 输入和输出是 NCDHW 或 NDHWC 格式，其中 N 是批尺寸，C 是通道数，D 是特征层深度，H 是特征层高度，W 是特征层宽度。
 
-三维卷积（Convlution3D）和二维卷积（Convlution2D）相似，但多了一维深度信息（depth）。
+三维卷积（Convolution3D）和二维卷积（Convolution2D）相似，但多了一维深度信息（depth）。
 
 如果 bias_attr 不为 False，卷积计算会添加偏置项。如果指定了激活函数类型，相应的激活函数会作用在最终结果上。
 

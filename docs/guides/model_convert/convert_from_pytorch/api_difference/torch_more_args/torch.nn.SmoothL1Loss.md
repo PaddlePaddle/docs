@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.SmoothL1Loss
-### [torch.nn.SmoothL1Loss](https://pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html?highlight=smoothl1loss#torch.nn.SmoothL1Loss)
+### [torch.nn.SmoothL1Loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html#torch.nn.SmoothL1Loss)
 ```python
 torch.nn.SmoothL1Loss(size_average=None,
                       reduce=None,
@@ -7,7 +7,7 @@ torch.nn.SmoothL1Loss(size_average=None,
                       beta=1.0)
 ```
 
-### [paddle.nn.SmoothL1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SmoothL1Loss_cn.html#smoothl1loss)
+### [paddle.nn.SmoothL1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/SmoothL1Loss_cn.html#paddle.nn.SmoothL1Loss)
 ```python
 paddle.nn.SmoothL1Loss(reduction='mean',
                        delta=1.0,

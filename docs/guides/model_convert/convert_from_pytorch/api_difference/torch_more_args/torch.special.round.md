@@ -1,11 +1,11 @@
 ## [ torch 参数更多 ]torch.special.round
-### [torch.special.round](https://pytorch.org/docs/stable/special.html#torch.special.round)
+### [torch.special.round](https://docs.pytorch.org/docs/stable/special.html#torch.special.round)
 ```python
 # torch.special.round 为 torch.round 别名，参数和 torch.round 相同
 torch.special.round(input, *, decimals=0, out=None)
 ```
 
-### [paddle.round](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/round_cn.html)
+### [paddle.round](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/round_cn.html#paddle.round)
 ```python
 paddle.round(x, name=None)
 ```

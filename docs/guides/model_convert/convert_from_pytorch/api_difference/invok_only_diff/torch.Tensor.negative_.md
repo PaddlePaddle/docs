@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.negative_
 
-### [torch.Tensor.negative_](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.negative_)
+### [torch.Tensor.negative\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.negative_.html#torch.Tensor.negative_)
 
 ```python
 torch.Tensor.negative_()

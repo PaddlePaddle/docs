@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.mvlgamma_
 
-### [torch.Tensor.mvlgamma_](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.mvlgamma_)
+### [torch.Tensor.mvlgamma\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.mvlgamma_.html#torch.Tensor.mvlgamma_)
 
 ```python
 torch.Tensor.mvlgamma_(p)

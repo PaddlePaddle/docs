@@ -1,12 +1,12 @@
 ## [ 仅参数名不一致 ]torch.Tensor.as_strided
-### [torch.Tensor.as_strided](https://pytorch.org/docs/stable/generated/torch.Tensor.as_strided.html?highlight=as_strided#torch.Tensor.as_strided)
+### [torch.Tensor.as\_strided](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.as_strided.html#torch.Tensor.as_strided)
 ```python
 torch.Tensor.as_strided(size,
                         stride,
                         storage_offset=None)
 ```
 
-### [paddle.Tensor.as_strided](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#as-strided-x-shape-stride-offset-0-name-none)
+### [paddle.Tensor.as\_strided](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#as-strided-x-shape-stride-offset-0-name-none)
 ```python
 paddle.Tensor.as_strided(shape,
                          stride,

@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.optim.Optimizer.add_param_group
 
-### [torch.optim.Optimizer.add_param_group](https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.html#torch.optim.Optimizer.add_param_group)
+### [torch.optim.Optimizer.add\_param\_group](https://docs.pytorch.org/docs/stable/generated/torch.optim.Optimizer.add_param_group.html#torch.optim.Optimizer.add_param_group)
 
 ```python
 torch.optim.Optimizer.add_param_group(param_group)

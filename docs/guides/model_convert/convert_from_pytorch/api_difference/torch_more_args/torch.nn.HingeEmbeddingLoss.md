@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.HingeEmbeddingLoss
-### [torch.nn.HingeEmbeddingLoss](https://pytorch.org/docs/stable/generated/torch.nn.HingeEmbeddingLoss.html#hingeembeddingloss)
+### [torch.nn.HingeEmbeddingLoss](https://docs.pytorch.org/docs/stable/generated/torch.nn.HingeEmbeddingLoss.html#torch.nn.HingeEmbeddingLoss)
 ```python
 torch.nn.HingeEmbeddingLoss(margin=1.0,
                             size_average=None,
@@ -7,7 +7,7 @@ torch.nn.HingeEmbeddingLoss(margin=1.0,
                             reduction='mean')
 ```
 
-### [paddle.nn.HingeEmbeddingLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/HingeEmbeddingLoss_cn.html#hingeembeddingloss)
+### [paddle.nn.HingeEmbeddingLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/HingeEmbeddingLoss_cn.html#paddle.nn.HingeEmbeddingLoss)
 ```python
 paddle.nn.HingeEmbeddingLoss(margin=1.0,
                              reduction='mean',

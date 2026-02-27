@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.leaky_relu
-### [torch.nn.functional.leaky_relu](https://pytorch.org/docs/stable/generated/torch.nn.functional.leaky_relu.html#torch.nn.functional.leaky_relu)
+### [torch.nn.functional.leaky\_relu](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.leaky_relu.html#torch.nn.functional.leaky_relu)
 ```python
 torch.nn.functional.leaky_relu(input, negative_slope=0.01, inplace=False)
 ```
 
-### [paddle.nn.functional.leaky_relu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/leaky_relu_cn.html)
+### [paddle.nn.functional.leaky\_relu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/leaky_relu_cn.html#paddle.nn.functional.leaky_relu)
 ```python
 paddle.nn.functional.leaky_relu(x, negative_slope=0.01, name=None)
 ```

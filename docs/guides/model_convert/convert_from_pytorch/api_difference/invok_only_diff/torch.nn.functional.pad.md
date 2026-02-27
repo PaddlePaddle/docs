@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.nn.functional.pad
 
-### [torch.nn.functional.pad](https://pytorch.org/docs/stable/nn.functional.html#torch.nn.functional.pad)
+### [torch.nn.functional.pad](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.pad.html#torch.nn.functional.pad)
 
 ```python
 torch.nn.functional.pad(input, pad, mode="constant", value=None)
 ```
 
-### [paddle.compat.nn.functional.pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/nn/functional/pad_cn.html#paddle/compat/nn/pad_cn#cn-api-paddle-compat-nn-pad)
+### [paddle.compat.nn.functional.pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/compat/nn/functional/pad_cn.html#paddle.compat.nn.functional.pad)
 
 ```python
 paddle.compat.nn.functional.pad(input, pad, mode="constant", value=0.0)

@@ -1,10 +1,10 @@
 ## [ 输入参数类型不一致 ]torchvision.io.decode_jpeg
-### [torchvision.io.decode_jpeg](https://pytorch.org/vision/main/generated/torchvision.io.decode_jpeg.html)
+### [torchvision.io.decode\_jpeg](https://pytorch.org/vision/stable/generated/torchvision.io.decode_jpeg.html#torchvision.io.decode_jpeg)
 ```python
 torchvision.io.decode_jpeg(input: Union[Tensor, List[Tensor]], mode: ImageReadMode = ImageReadMode.UNCHANGED, device: Union[str, device] = 'cpu', apply_exif_orientation: bool = False)
 ```
 
-### [paddle.vision.ops.decode_jpeg](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/ops/decode_jpeg_cn.html)
+### [paddle.vision.ops.decode\_jpeg](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/ops/decode_jpeg_cn.html#paddle.vision.ops.decode_jpeg)
 ```python
 paddle.vision.ops.decode_jpeg(x, mode='unchanged', name=None)
 ```

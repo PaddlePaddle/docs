@@ -1,5 +1,5 @@
 ## [ paddle 参数更多 ]torch.cov
-### [torch.cov](https://pytorch.org/docs/stable/generated/torch.cov.html?highlight=cov#torch.cov)
+### [torch.cov](https://docs.pytorch.org/docs/stable/generated/torch.cov.html#torch.cov)
 ```python
 torch.cov(input,
           *,
@@ -8,7 +8,7 @@ torch.cov(input,
           aweights=None)
 ```
 
-### [paddle.linalg.cov](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/cov_cn.html#cov)
+### [paddle.linalg.cov](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/cov_cn.html#paddle.linalg.cov)
 ```python
 paddle.linalg.cov(x,
                   rowvar=True,

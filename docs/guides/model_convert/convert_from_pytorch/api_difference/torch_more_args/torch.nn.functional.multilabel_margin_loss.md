@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.multilabel_margin_loss
-### [torch.nn.functional.multilabel\_margin\_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.multilabel_margin_loss.html)
+### [torch.nn.functional.multilabel\_margin\_loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.multilabel_margin_loss.html#torch.nn.functional.multilabel_margin_loss)
 ```python
 torch.nn.functional.multilabel_margin_loss(input, target, size_average=None, reduce=None, reduction='mean')
 ```
 
-### [paddle.nn.functional.multi\_label\_margin\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/multi_label_margin_loss_cn.html#multi-label-margin-loss)
+### [paddle.nn.functional.multi\_label\_margin\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/multi_label_margin_loss_cn.html#paddle.nn.functional.multi_label_margin_loss)
 ```python
 paddle.nn.functional.multi_label_margin_loss(input, label, reduction='mean', name=None)
 ```

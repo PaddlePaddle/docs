@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.utils.data.SubsetRandomSampler
-### [torch.utils.data.SubsetRandomSampler](https://pytorch.org/docs/stable/data.html#torch.utils.data.SubsetRandomSampler)
+### [torch.utils.data.SubsetRandomSampler](https://docs.pytorch.org/docs/stable/data.html#torch.utils.data.SubsetRandomSampler)
 ```python
 torch.utils.data.SubsetRandomSampler(indices, generator=None)
 ```

@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.numel
 
-### [torch.Tensor.numel](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.numel)
+### [torch.Tensor.numel](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.numel.html#torch.Tensor.numel)
 
 ```python
 torch.Tensor.numel()

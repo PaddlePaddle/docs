@@ -3,7 +3,7 @@
 ## Environment preparation
 
 * **Linux version (64 bit)**
-    * **Ubuntu 20.04 (GPU 版本支持 CUDA 11.8 - 13.0)**
+    * **Ubuntu 20.04 (GPU 版本支持 CUDA 11.8 - 12.x)**
     * **Ubuntu 22.04 (GPU 版本支持 CUDA 11.8 - 13.0)**
     * **Ubuntu 24.04 (GPU 版本支持 CUDA 11.8 - 13.0)**
 * **Python 版本 3.9/3.10/3.11/3.12/3.13 (64 bit)**
@@ -15,7 +15,7 @@
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
 
     * **CUDA toolkit with cuDNN cuDNN 8(for multi card support, NCCL2.7 or higher)**
-    * **Hardware devices with GPU computing power over 6.0**
+    * **Hardware devices with GPU computing power over 7.5**
 
     You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
@@ -44,7 +44,7 @@ Please follow the steps below to install:
 #### 1. First select the path where you want to store PaddlePaddle, then use the following command to clone PaddlePaddle's source code from github to a folder named Paddle in the local current directory:
 
 ```
-git clone https://github.com/PaddlePaddle/Paddle.git
+git clone --recursive https://github.com/PaddlePaddle/Paddle.git
 ```
 
 #### 2. Go to the Paddle directory:
@@ -61,9 +61,13 @@ For domestic users, when downloading docker is slow due to network problems, you
     docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:latest-dev
     ```
 
-* GPU version of PaddlePaddle：
+* GPU version of PaddlePaddle supports CUDA 11.8, 12.6, 12.9, and 13.0：
     ```
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda118-dev
     docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda126-dev
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda129-dev
+    docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:cuda130-dev
+
     ```
 
 If your machine is not in mainland China, you can pull the image directly from DockerHub:
@@ -195,8 +199,6 @@ pip3.10 install -r /paddle/python/requirements.txt
 
 - Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.10` means the version of python is 3.10
 
-- We currently do not support the compilation of the GPU version PaddlePaddle under CentOS 6.
-
 #### 10. Execute compilation:
 
 Use multicore compilation
@@ -236,7 +238,7 @@ uname -m && cat /etc/*release
 
 #### 2. Update the system source
 
-* CentOS system
+* AlmaLinux system
 
     Update the source of `yum`: `yum update`, and add the necessary yum source:
     ```
@@ -255,7 +257,7 @@ uname -m && cat /etc/*release
 * If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under CUDA11.8 and cuDNN8. For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl)):
 
 
-    * **CentOS system can refer to the following commands**
+    * **AlmaLinux system can refer to the following commands**
 
         ```
         wget -q https://nccl2-deb.cdn.bcebos.com/nccl_2.16.2-1+cuda11.8_x86_64.txz --no-check-certificate --no-proxy
@@ -416,7 +418,7 @@ workon paddle-venv
 #### 8. Put the PaddlePaddle source cloned in the Paddle folder in the current directory and go to the Paddle directory:
 
 ```
-git clone https://github.com/PaddlePaddle/Paddle.git
+git clone --recursive https://github.com/PaddlePaddle/Paddle.git
 ```
 
 ```

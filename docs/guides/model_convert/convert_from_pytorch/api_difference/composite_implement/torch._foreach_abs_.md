@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_abs_
-### [torch.\_foreach_abs_](https://pytorch.org/docs/stable/generated/torch._foreach_abs_.html#torch-foreach-abs)
+### [torch.\_foreach\_abs\_](https://docs.pytorch.org/docs/stable/generated/torch._foreach_abs_.html#torch._foreach_abs_)
 ```python
 torch._foreach_abs_(self)
 ```
