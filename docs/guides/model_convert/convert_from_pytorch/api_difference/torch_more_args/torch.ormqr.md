@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.ormqr
-### [torch.ormqr](https://pytorch.org/docs/stable/generated/torch.ormqr.html#torch.ormqr)
+### [torch.ormqr](https://docs.pytorch.org/docs/stable/generated/torch.ormqr.html#torch.ormqr)
 ```python
 torch.ormqr(input, input2, input3, left=True, transpose=False, *, out=None)
 ```
 
-### [paddle.linalg.ormqr](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/ormqr_cn.html#ormqr)
+### [paddle.linalg.ormqr](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/ormqr_cn.html#paddle.linalg.ormqr)
 ```python
 paddle.linalg.ormqr(x, tau, y, left=True, transpose=False)
 ```

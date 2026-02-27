@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.fmod
-### [torch.fmod](https://pytorch.org/docs/stable/generated/torch.fmod.html?highlight=fmod#torch.fmod)
+### [torch.fmod](https://docs.pytorch.org/docs/stable/generated/torch.fmod.html#torch.fmod)
 ```python
 torch.fmod(input,
            other,
@@ -7,7 +7,7 @@ torch.fmod(input,
            out=None)
 ```
 
-### [paddle.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mod_cn.html#mod)
+### [paddle.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/mod_cn.html#paddle.mod)
 ```python
 paddle.mod(x,
            y,

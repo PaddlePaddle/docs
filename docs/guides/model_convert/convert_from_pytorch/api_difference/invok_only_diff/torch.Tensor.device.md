@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.device
 
-### [torch.Tensor.device](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.device)
+### [torch.Tensor.device](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.device.html#torch.Tensor.device)
 
 ```python
 torch.Tensor.device
 ```
 
-### [paddle.Tensor.place](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/place_cn.html#paddle/Tensor/place_cn#cn-api-paddle-Tensor-place)
+### [paddle.Tensor.place](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#place)
 
 ```python
 paddle.Tensor.place

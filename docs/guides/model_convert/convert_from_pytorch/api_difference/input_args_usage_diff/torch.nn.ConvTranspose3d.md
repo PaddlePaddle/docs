@@ -1,5 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.ConvTranspose3d
-### [torch.nn.ConvTranspose3d](https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose3d.html?highlight=convtranspose3d#torch.nn.ConvTranspose3d)
+### [torch.nn.ConvTranspose3d](https://docs.pytorch.org/docs/stable/generated/torch.nn.ConvTranspose3d.html#torch.nn.ConvTranspose3d)
 ```python
 torch.nn.ConvTranspose3d(in_channels,
                          out_channels,
@@ -15,7 +15,7 @@ torch.nn.ConvTranspose3d(in_channels,
                          dtype=None)
 ```
 
-### [paddle.nn.Conv3DTranspose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Conv3DTranspose_cn.html#conv3dtranspose)
+### [paddle.nn.Conv3DTranspose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/Conv3DTranspose_cn.html#paddle.nn.Conv3DTranspose)
 ```python
 paddle.nn.Conv3DTranspose(in_channels,
                           out_channels,

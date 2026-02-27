@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.transforms.IndependentTransform
-### [torch.distributions.transforms.IndependentTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.IndependentTransform)
+### [torch.distributions.transforms.IndependentTransform](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.IndependentTransform)
 ```python
 torch.distributions.transforms.IndependentTransform(base_transform, reinterpreted_batch_ndims, cache_size=0)
 ```
 
-### [paddle.distribution.IndependentTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/IndependentTransform_cn.html#independenttransform)
+### [paddle.distribution.IndependentTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/IndependentTransform_cn.html#paddle.distribution.IndependentTransform)
 ```python
 paddle.distribution.IndependentTransform(base, reinterpreted_batch_rank)
 ```

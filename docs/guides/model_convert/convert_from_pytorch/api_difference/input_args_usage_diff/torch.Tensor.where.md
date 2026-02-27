@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.Tensor.where
-### [torch.Tensor.where](https://pytorch.org/docs/stable/generated/torch.Tensor.where.html#torch.Tensor.where)
+### [torch.Tensor.where](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.where.html#torch.Tensor.where)
 ```python
 torch.Tensor.where(condition, other)
 ```
 
-### [paddle.where](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/where_cn.html)
+### [paddle.where](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/where_cn.html#paddle.where)
 ```python
 paddle.where(condition, x=None, y=None, name=None)
 ```

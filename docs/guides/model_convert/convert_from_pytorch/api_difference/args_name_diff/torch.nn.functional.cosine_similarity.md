@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.cosine_similarity
-### [torch.nn.functional.cosine_similarity](https://pytorch.org/docs/stable/generated/torch.nn.functional.cosine_similarity.html?highlight=cosine#torch.nn.functional.cosine_similarity)
+### [torch.nn.functional.cosine\_similarity](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.cosine_similarity.html#torch.nn.functional.cosine_similarity)
 ```python
 torch.nn.functional.cosine_similarity(x1,
                                       x2,
@@ -9,7 +9,7 @@ torch.nn.functional.cosine_similarity(x1,
                                       axis)
 ```
 
-### [paddle.nn.functional.cosine_similarity](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/cosine_similarity_cn.html)
+### [paddle.nn.functional.cosine\_similarity](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/cosine_similarity_cn.html#paddle.nn.functional.cosine_similarity)
 ```python
 paddle.nn.functional.cosine_similarity(x1,
                                        x2,

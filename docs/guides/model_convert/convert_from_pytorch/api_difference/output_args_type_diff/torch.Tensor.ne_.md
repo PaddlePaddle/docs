@@ -1,5 +1,5 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.ne_
-### [torch.Tensor.ne_](https://pytorch.org/docs/stable/generated/torch.Tensor.ne_.html)
+### [torch.Tensor.ne\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.ne_.html#torch.Tensor.ne_)
 ```python
 torch.Tensor.ne_(other)
 ```

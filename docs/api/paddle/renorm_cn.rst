@@ -10,10 +10,10 @@ renorm
 
 参数
 ::::::::::::
-    - **x** (Tensor) - 输入张量
+    - **x** (Tensor) - 输入张量。别名 ``input``。
     - **p** (float) - 范数运算的幂。
-    - **axis** (int) - 对张量进行切片的维度。
-    - **max_norm** (float) - 最大范数限制。
+    - **axis** (int) - 对张量进行切片的维度。别名 ``dim``。
+    - **max_norm** (float) - 最大范数限制。别名 ``maxnorm``。
 
 返回
 :::::::::

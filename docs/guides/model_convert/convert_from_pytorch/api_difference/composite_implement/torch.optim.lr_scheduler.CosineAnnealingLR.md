@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.CosineAnnealingLR
-### [torch.optim.lr_scheduler.CosineAnnealingLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingLR.html)
+### [torch.optim.lr\_scheduler.CosineAnnealingLR](https://docs.pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingLR.html#torch.optim.lr_scheduler.CosineAnnealingLR)
 ```python
 torch.optim.lr_scheduler.CosineAnnealingLR(optimizer,
                                 T_max,
@@ -8,7 +8,7 @@ torch.optim.lr_scheduler.CosineAnnealingLR(optimizer,
                                 verbose=False)
 ```
 
-### [paddle.optimizer.lr.CosineAnnealingDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/CosineAnnealingDecay_cn.html)
+### [paddle.optimizer.lr.CosineAnnealingDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/CosineAnnealingDecay_cn.html#paddle.optimizer.lr.CosineAnnealingDecay)
 ```python
 paddle.optimizer.lr.CosineAnnealingDecay(learning_rate,
                                 T_max,

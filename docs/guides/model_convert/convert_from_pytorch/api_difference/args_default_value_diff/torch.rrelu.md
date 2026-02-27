@@ -4,7 +4,7 @@
 torch.rrelu(input, lower=1./8, upper=1./3, training=False)
 ```
 
-### [paddle.nn.functional.rrelu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/rrelu_cn.html)
+### [paddle.nn.functional.rrelu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/rrelu_cn.html#paddle.nn.functional.rrelu)
 ```python
 paddle.nn.functional.rrelu(x, lower=1./8, upper=1./3, training=True, name=None)
 ```

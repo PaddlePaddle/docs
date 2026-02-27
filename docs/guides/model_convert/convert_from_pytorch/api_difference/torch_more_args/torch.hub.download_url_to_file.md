@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.hub.download_url_to_file
-### [torch.hub.download_url_to_file](https://pytorch.org/docs/stable/hub.html?highlight=download#torch.hub.download_url_to_file)
+### [torch.hub.download\_url\_to\_file](https://docs.pytorch.org/docs/stable/hub.html#torch.hub.download_url_to_file)
 ```python
 torch.hub.download_url_to_file(url,
                                 dst,
@@ -7,7 +7,7 @@ torch.hub.download_url_to_file(url,
                                 progress=True)
 ```
 
-### [paddle.utils.download.get_weights_path_from_url](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/download/get_weights_path_from_url_cn.html)
+### [paddle.utils.download.get\_weights\_path\_from\_url](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/utils/download/get_weights_path_from_url_cn.html#paddle.utils.download.get_weights_path_from_url)
 ```python
 paddle.utils.download.get_weights_path_from_url(url,
                                                 md5sum=None)

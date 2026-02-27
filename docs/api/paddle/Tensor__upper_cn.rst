@@ -76,10 +76,6 @@ clear_grad
         linear.weight.clear_grad()
         print("After clear_grad, linear.weight.grad: {}".format(linear.weight.grad))
 
-clear_gradient
-:::::::::
-
-与 clear_grad 功能相同，请参考：clear_grad
 
 dtype
 :::::::::
@@ -367,16 +363,6 @@ COPY-FROM: paddle.Tensor.reconstruct_from_
 
 
 
-clone()
-:::::::::
-
-返回：克隆的新的 Tensor
-
-返回类型：Tensor
-
-**代码示例**
-COPY-FROM: paddle.Tensor.clone
-
 
 
 retain_grads()
@@ -459,18 +445,6 @@ is_dist()
 **代码示例**
 COPY-FROM: paddle.Tensor.is_dist
 
-
-
-
-data_ptr()
-:::::::::
-
-返回：返回本 Tensor 第一个元素的数据地址。
-
-返回类型：int
-
-**代码示例**
-COPY-FROM: paddle.Tensor.data_ptr
 
 
 

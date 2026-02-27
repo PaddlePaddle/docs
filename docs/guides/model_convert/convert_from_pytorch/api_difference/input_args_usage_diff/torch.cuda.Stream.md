@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.cuda.Stream
-### [torch.cuda.Stream](https://pytorch.org/docs/stable/generated/torch.cuda.Stream.html#torch.cuda.Stream)
+### [torch.cuda.Stream](https://docs.pytorch.org/docs/stable/generated/torch.cuda.Stream_class.html#torch.cuda.Stream)
 ```python
 torch.cuda.Stream(device=None, priority=0, **kwargs)
 ```
 
-### [paddle.device.Stream](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/Stream_cn.html#stream)
+### [paddle.device.Stream](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/Stream_cn.html#paddle.device.Stream)
 ```python
 paddle.device.Stream(device=None, priority=None)
 ```

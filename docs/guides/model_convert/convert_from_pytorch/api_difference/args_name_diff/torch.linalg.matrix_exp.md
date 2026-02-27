@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.linalg.matrix_exp
-### [torch.linalg.matrix_exp](https://pytorch.org/docs/stable/generated/torch.linalg.matrix_exp.html#torch.linalg.matrix_exp)
+### [torch.linalg.matrix\_exp](https://docs.pytorch.org/docs/stable/generated/torch.linalg.matrix_exp.html#torch.linalg.matrix_exp)
 ```python
 torch.linalg.matrix_exp(A)
 ```
 
-### [paddle.linalg.matrix_exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/matrix_exp_cn.html)
+### [paddle.linalg.matrix\_exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/matrix_exp_cn.html#paddle.linalg.matrix_exp)
 ```python
 paddle.linalg.matrix_exp(x, name=None)
 ```

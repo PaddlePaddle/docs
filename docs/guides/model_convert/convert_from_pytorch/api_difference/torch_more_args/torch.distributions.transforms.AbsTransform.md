@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.distributions.transforms.AbsTransform
-### [torch.distributions.transforms.AbsTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.AbsTransform)
+### [torch.distributions.transforms.AbsTransform](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.AbsTransform)
 ```python
 torch.distributions.transforms.AbsTransform(cache_size=0)
 ```

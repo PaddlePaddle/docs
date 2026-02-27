@@ -6,7 +6,7 @@
 torchvision.ops.RoIPool(output_size, spatial_scale)
 ```
 
-### [paddle.vision.ops.RoIPool](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/ops/RoIPool_cn.html#paddle/vision/ops/RoIPool_cn#cn-api-paddle-vision-ops-RoIPool)
+### [paddle.vision.ops.RoIPool](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/ops/RoIPool_cn.html#paddle.vision.ops.RoIPool)
 
 ```python
 paddle.vision.ops.RoIPool(output_size, spatial_scale)

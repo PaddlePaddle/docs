@@ -6,7 +6,7 @@
 torchvision.transforms.functional.center_crop(img, output_size)
 ```
 
-### [paddle.vision.transforms.center_crop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/center_crop_cn.html#paddle/vision/transforms/center_crop_cn#cn-api-paddle-vision-transforms-center_crop)
+### [paddle.vision.transforms.center\_crop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/center_crop_cn.html#paddle.vision.transforms.center_crop)
 
 ```python
 paddle.vision.transforms.center_crop(img, output_size)

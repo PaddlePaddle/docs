@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.special.gammaln
-### [torch.special.gammaln](https://pytorch.org/docs/stable/special.html#torch.special.gammaln)
+### [torch.special.gammaln](https://docs.pytorch.org/docs/stable/special.html#torch.special.gammaln)
 ```python
 torch.special.gammaln(input, *, out=None)
 ```
 
-### [paddle.gammaln](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/gammaln_cn.html#gammaln)
+### [paddle.gammaln](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/gammaln_cn.html#paddle.gammaln)
 ```python
 paddle.gammaln(x, name=None)
 ```

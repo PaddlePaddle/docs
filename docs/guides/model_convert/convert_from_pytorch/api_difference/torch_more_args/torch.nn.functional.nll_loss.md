@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.functional.nll_loss
-### [torch.nn.functional.nll_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.nll_loss.html#torch-nn-functional-nll-loss)
+### [torch.nn.functional.nll\_loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.nll_loss.html#torch.nn.functional.nll_loss)
 ```python
 torch.nn.functional.nll_loss(input,
                     target,
@@ -10,7 +10,7 @@ torch.nn.functional.nll_loss(input,
                     reduction='mean')
 ```
 
-### [paddle.nn.functional.nll_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/nll_loss_cn.html#nll-loss)
+### [paddle.nn.functional.nll\_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/nll_loss_cn.html#paddle.nn.functional.nll_loss)
 ```python
 paddle.nn.functional.nll_loss(input,
                     label,
@@ -27,8 +27,8 @@ paddle.nn.functional.nll_loss(input,
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | input         | 输入 Tensor。                                     |
 | target          | label         | 输入 Tensor 对应的标签值,仅参数名不一致。        |
-| size_average          | -         | 已弃用，需要转写。                                      |
 | weight          | weight  | 手动指定每个类别的权重。                          |
+| size_average          | -         | 已弃用，需要转写。                                      |
 | ignore_index          | ignore_index  |  指定一个忽略的标签值，此标签值不参与计算。                   |
 | reduce          | -         | 已弃用，需要转写。                                     |
 | reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'。                         |

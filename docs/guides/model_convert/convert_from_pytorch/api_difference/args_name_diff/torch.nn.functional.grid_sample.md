@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.grid_sample
-### [torch.nn.functional.grid_sample](https://pytorch.org/docs/stable/generated/torch.nn.functional.grid_sample.html?highlight=grid_sample#torch.nn.functional.grid_sample)
+### [torch.nn.functional.grid\_sample](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.grid_sample.html#torch.nn.functional.grid_sample)
 ```python
 torch.nn.functional.grid_sample(input,
                         grid,
@@ -8,7 +8,7 @@ torch.nn.functional.grid_sample(input,
                         align_corners=None)
 ```
 
-### [paddle.nn.functional.grid_sample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/grid_sample_cn.html)
+### [paddle.nn.functional.grid\_sample](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/grid_sample_cn.html#paddle.nn.functional.grid_sample)
 ```python
 paddle.nn.functional.grid_sample(x,
                         grid,

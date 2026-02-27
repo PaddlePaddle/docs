@@ -1,5 +1,5 @@
 ## [ paddle 参数更多 ]torch.autograd.Function.backward
-### [torch.autograd.Function.backward](https://pytorch.org/docs/stable/generated/torch.autograd.Function.backward.html#torch.autograd.Function.backward)
+### [torch.autograd.Function.backward](https://docs.pytorch.org/docs/stable/generated/torch.autograd.Function.backward.html#torch.autograd.Function.backward)
 ```python
 torch.autograd.Function.backward(ctx, *grad_outputs)
 ```

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.hub.load_state_dict_from_url
-### [torch.hub.load_state_dict_from_url](https://pytorch.org/docs/stable/hub.html#torch.hub.load_state_dict_from_url)
+### [torch.hub.load\_state\_dict\_from\_url](https://docs.pytorch.org/docs/stable/hub.html#torch.hub.load_state_dict_from_url)
 ```python
 torch.hub.load_state_dict_from_url(url, model_dir=None, map_location=None, progress=True, check_hash=False, file_name=None, weights_only=False)
 ```
 
-### [paddle.hub.load_state_dict_from_url](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hub/load_state_dict_from_url_cn.html#load-state-dict-from-url)
+### [paddle.hub.load\_state\_dict\_from\_url](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hub/load_state_dict_from_url_cn.html#paddle.hub.load_state_dict_from_url)
 ```python
 paddle.hub.load_state_dict_from_url(url, model_dir=None, check_hash=False, file_name=None, map_location=None)
 ```

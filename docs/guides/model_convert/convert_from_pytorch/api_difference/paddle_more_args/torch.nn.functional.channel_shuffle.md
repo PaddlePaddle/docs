@@ -5,7 +5,7 @@ torch.nn.functional.channel_shuffle(input,
                                     groups)
 ```
 
-### [paddle.nn.functional.channel_shuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/channel_shuffle_cn.html#channel-shuffle)
+### [paddle.nn.functional.channel\_shuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/channel_shuffle_cn.html#paddle.nn.functional.channel_shuffle)
 ```python
 paddle.nn.functional.channel_shuffle(x,
                                     groups,

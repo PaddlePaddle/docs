@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.transforms.AffineTransform
-### [torch.distributions.transforms.AffineTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.AffineTransform)
+### [torch.distributions.transforms.AffineTransform](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.AffineTransform)
 ```python
 torch.distributions.transforms.AffineTransform(loc, scale, event_dim=0, cache_size=0)
 ```
 
-### [paddle.distribution.AffineTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/AffineTransform_cn.html#affinetransform)
+### [paddle.distribution.AffineTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/AffineTransform_cn.html#paddle.distribution.AffineTransform)
 ```python
 paddle.distribution.AffineTransform(loc, scale)
 ```

@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_sinh
-### [torch.\_foreach_sinh](https://pytorch.org/docs/stable/generated/torch._foreach_sinh.html#torch-foreach-sinh)
+### [torch.\_foreach\_sinh](https://docs.pytorch.org/docs/stable/generated/torch._foreach_sinh.html#torch._foreach_sinh)
 ```python
 torch._foreach_sinh(self)
 ```

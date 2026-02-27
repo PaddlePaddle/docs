@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.bucketize
-### [torch.bucketize](https://pytorch.org/docs/stable/generated/torch.bucketize.html#torch.bucketize)
+### [torch.bucketize](https://docs.pytorch.org/docs/stable/generated/torch.bucketize.html#torch.bucketize)
 ```python
 torch.bucketize(input, boundaries, *, out_int32=False, right=False, out=None)
 ```
 
-### [paddle.bucketize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bucketize_cn.html#paddle-bucketize)
+### [paddle.bucketize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/bucketize_cn.html#paddle.bucketize)
 ```python
 paddle.bucketize(x, sorted_sequence, out_int32=False, right=False, name=None)
 ```

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nan_to_num
-### [torch.nan_to_num](https://pytorch.org/docs/stable/generated/torch.nan_to_num.html?highlight=nan_to_num#torch.nan_to_num)
+### [torch.nan\_to\_num](https://docs.pytorch.org/docs/stable/generated/torch.nan_to_num.html#torch.nan_to_num)
 ```python
 torch.nan_to_num(input, nan=0.0, posinf=None, neginf=None, *, out=None)
 ```
 
-### [paddle.nan_to_num](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nan_to_num_cn.html#nan-to-num)
+### [paddle.nan\_to\_num](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nan_to_num_cn.html#paddle.nan_to_num)
 ```python
 paddle.nan_to_num(x, nan=0.0, posinf=None, neginf=None, name=None)
 ```

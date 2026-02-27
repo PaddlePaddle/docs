@@ -1,11 +1,11 @@
 ## [ 仅参数名不一致 ]torch.diagflat
-### [torch.diagflat](https://pytorch.org/docs/stable/generated/torch.diagflat.html?highlight=diagflat#torch.diagflat)
+### [torch.diagflat](https://docs.pytorch.org/docs/stable/generated/torch.diagflat.html#torch.diagflat)
 ```python
 torch.diagflat(input,
                offset=0)
 ```
 
-### [paddle.diagflat](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagflat_cn.html#diagflat)
+### [paddle.diagflat](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diagflat_cn.html#paddle.diagflat)
 ```python
 paddle.diagflat(x,
                 offset=0,

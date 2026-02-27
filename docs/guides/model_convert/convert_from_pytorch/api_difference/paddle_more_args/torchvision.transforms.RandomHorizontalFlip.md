@@ -1,10 +1,10 @@
 ## [ paddle 参数更多 ]torchvision.transforms.RandomHorizontalFlip
-### [torchvision.transforms.RandomHorizontalFlip](https://pytorch.org/vision/main/generated/torchvision.transforms.RandomHorizontalFlip.html?highlight=randomhorizontalflip#torchvision.transforms.RandomHorizontalFlip)
+### [torchvision.transforms.RandomHorizontalFlip](https://pytorch.org/vision/stable/generated/torchvision.transforms.RandomHorizontalFlip.html#torchvision.transforms.RandomHorizontalFlip)
 ```python
 torchvision.transforms.RandomHorizontalFlip(p: float = 0.5)
 ```
 
-### [paddle.vision.transforms.RandomHorizontalFlip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomHorizontalFlip_cn.html)
+### [paddle.vision.transforms.RandomHorizontalFlip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomHorizontalFlip_cn.html#paddle.vision.transforms.RandomHorizontalFlip)
 ```python
 paddle.vision.transforms.RandomHorizontalFlip(
     prob: float = 0.5,

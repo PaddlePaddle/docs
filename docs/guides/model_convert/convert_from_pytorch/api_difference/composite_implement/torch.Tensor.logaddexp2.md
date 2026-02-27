@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.logaddexp2
-### [torch.Tensor.logaddexp2](https://pytorch.org/docs/stable/generated/torch.Tensor.logaddexp2.html#torch.Tensor.logaddexp2)
+### [torch.Tensor.logaddexp2](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.logaddexp2.html#torch.Tensor.logaddexp2)
 ```python
 torch.Tensor.logaddexp2(other)
 ```

@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.utils.data.Subset
 
-### [torch.utils.data.Subset](https://pytorch.org/docs/stable/generated/torch.utils.data.Subset.html#torch.utils.data.Subset)
+### [torch.utils.data.Subset](https://docs.pytorch.org/docs/stable/data.html#torch.utils.data.Subset)
 
 ```python
 torch.utils.data.Subset(dataset, indices)
 ```
 
-### [paddle.io.Subset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/Subset_cn.html#paddle/io/Subset_cn#cn-api-paddle-io-Subset)
+### [paddle.io.Subset](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/io/Subset_cn.html#paddle.io.Subset)
 
 ```python
 paddle.io.Subset(dataset, indices)

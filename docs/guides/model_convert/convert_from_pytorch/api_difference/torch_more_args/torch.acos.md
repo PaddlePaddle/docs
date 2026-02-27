@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.acos
-### [torch.acos](https://pytorch.org/docs/stable/generated/torch.acos.html?highlight=acos#torch.acos)
+### [torch.acos](https://docs.pytorch.org/docs/stable/generated/torch.acos.html#torch.acos)
 ```python
 torch.acos(input,
            *,
            out=None)
 ```
 
-### [paddle.acos](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/acos_cn.html#acos)
+### [paddle.acos](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/acos_cn.html#paddle.acos)
 ```python
 paddle.acos(x,
             name=None)

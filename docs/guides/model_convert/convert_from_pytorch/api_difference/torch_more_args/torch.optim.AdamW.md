@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.AdamW
-### [torch.optim.AdamW](https://pytorch.org/docs/stable/generated/torch.optim.AdamW.html)
+### [torch.optim.AdamW](https://docs.pytorch.org/docs/stable/generated/torch.optim.AdamW.html#torch.optim.AdamW)
 ```python
 torch.optim.AdamW(params,
                 lr=0.001,
@@ -15,7 +15,7 @@ torch.optim.AdamW(params,
                 fused=None)
 ```
 
-### [paddle.optimizer.AdamW](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/AdamW_cn.html)
+### [paddle.optimizer.AdamW](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/AdamW_cn.html#paddle.optimizer.AdamW)
 ```python
 paddle.optimizer.AdamW(learning_rate=0.001,
                     beta1=0.9,

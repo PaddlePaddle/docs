@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ]torch.optim.Optimizer.step
 
-### [torch.optim.Optimizer.step](https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.html#torch.optim.Optimizer.step)
+### [torch.optim.Optimizer.step](https://docs.pytorch.org/docs/stable/generated/torch.optim.Optimizer.step.html#torch.optim.Optimizer.step)
 
 ```python
 torch.optim.Optimizer.step(closure=None)

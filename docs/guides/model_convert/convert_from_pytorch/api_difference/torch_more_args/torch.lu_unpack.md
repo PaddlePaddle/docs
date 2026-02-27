@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.lu_unpack
-### [torch.lu_unpack](https://pytorch.org/docs/stable/generated/torch.lu_unpack.html?highlight=lu_unpack#torch.lu_unpack)
+### [torch.lu\_unpack](https://docs.pytorch.org/docs/stable/generated/torch.lu_unpack.html#torch.lu_unpack)
 ```python
 torch.lu_unpack(LU_data, LU_pivots, unpack_data=True, unpack_pivots=True, *, out=None)
 ```
 
-### [paddle.linalg.lu_unpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_unpack_cn.html)
+### [paddle.linalg.lu\_unpack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/lu_unpack_cn.html#paddle.linalg.lu_unpack)
 ```python
 paddle.linalg.lu_unpack(x, y, unpack_ludata=True, unpack_pivots=True, name=None)
 ```

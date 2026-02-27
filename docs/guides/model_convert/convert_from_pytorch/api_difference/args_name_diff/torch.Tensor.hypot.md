@@ -1,5 +1,5 @@
 ## [ 仅参数名不一致 ]torch.Tensor.hypot
-### [torch.Tensor.hypot](https://pytorch.org/docs/stable/generated/torch.Tensor.hypot.html#torch.Tensor.hypot)
+### [torch.Tensor.hypot](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.hypot.html#torch.Tensor.hypot)
 ```python
 torch.Tensor.hypot(other)
 ```

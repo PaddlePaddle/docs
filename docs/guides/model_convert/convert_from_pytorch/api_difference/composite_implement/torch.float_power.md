@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.float_power
-### [torch.float_power](https://pytorch.org/docs/stable/generated/torch.float_power.html#torch-float-power)
+### [torch.float\_power](https://docs.pytorch.org/docs/stable/generated/torch.float_power.html#torch.float_power)
 ```python
 torch.float_power(input, exponent, *, out=None)
 ```

@@ -1,5 +1,5 @@
 ## [ paddle 参数更多 ]torchvision.transforms.RandomErasing
-### [torchvision.transforms.RandomErasing](https://pytorch.org/vision/main/generated/torchvision.transforms.RandomErasing.html?highlight=randomerasing#torchvision.transforms.RandomErasing)
+### [torchvision.transforms.RandomErasing](https://pytorch.org/vision/stable/generated/torchvision.transforms.RandomErasing.html#torchvision.transforms.RandomErasing)
 ```python
 torchvision.transforms.RandomErasing(p = 0.5,
                                      scale = (0.02, 0.33),
@@ -8,7 +8,7 @@ torchvision.transforms.RandomErasing(p = 0.5,
                                      inplace = False)
 ```
 
-### [paddle.vision.transforms.RandomErasing](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomErasing_cn.html)
+### [paddle.vision.transforms.RandomErasing](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/RandomErasing_cn.html#paddle.vision.transforms.RandomErasing)
 ```python
 paddle.vision.transforms.RandomErasing(prob = 0.5,
                                        scale = (0.02, 0.33),

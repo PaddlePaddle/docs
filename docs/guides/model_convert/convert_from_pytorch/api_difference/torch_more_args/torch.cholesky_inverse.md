@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.cholesky_inverse
-### [torch.cholesky_inverse](https://pytorch.org/docs/stable/generated/torch.cholesky_inverse.html?highlight=cholesky_inverse#torch.cholesky_inverse)
+### [torch.cholesky\_inverse](https://docs.pytorch.org/docs/stable/generated/torch.cholesky_inverse.html#torch.cholesky_inverse)
 ```python
 torch.cholesky_inverse(input, upper=False, *, out=None)
 ```
 
-### [paddle.linalg.cholesky_inverse](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/cholesky_inverse_cn.html#cholesky-inverse)
+### [paddle.linalg.cholesky\_inverse](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/cholesky_inverse_cn.html#paddle.linalg.cholesky_inverse)
 ```python
 paddle.linalg.cholesky_inverse(x, upper=False, name=None)
 ```

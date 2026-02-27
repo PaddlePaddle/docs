@@ -1,6 +1,6 @@
 ## [ 返回参数类型不一致 ]torch.Tensor.logical_and_
 
-### [torch.Tensor.logical_and_](https://pytorch.org/docs/stable/generated/torch.Tensor.logical_and_.html)
+### [torch.Tensor.logical\_and\_](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.logical_and_.html#torch.Tensor.logical_and_)
 
 ```python
 torch.Tensor.logical_and_(other)

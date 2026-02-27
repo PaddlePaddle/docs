@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.distributions.continuous_bernoulli.ContinuousBernoulli
-### [torch.distributions.continuous_bernoulli.ContinuousBernoulli](https://pytorch.org/docs/stable/distributions.html)
+### [torch.distributions.continuous\_bernoulli.ContinuousBernoulli](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.continuous_bernoulli.ContinuousBernoulli)
 ```python
 torch.distributions.continuous_bernoulli.ContinuousBernoulli(probs=None,
                                         logits=None,
@@ -7,7 +7,7 @@ torch.distributions.continuous_bernoulli.ContinuousBernoulli(probs=None,
                                         validate_args=None)
 ```
 
-### [paddle.distribution.ContinuousBernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/paddle/distribution/ContinuousBernoulli_cn.html#continuousbernoulli)
+### [paddle.distribution.ContinuousBernoulli](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/ContinuousBernoulli_cn.html#paddle.distribution.ContinuousBernoulli)
 ```python
 paddle.distribution.ContinuousBernoulli(probs,
                                         lims=(0.499, 0.501))

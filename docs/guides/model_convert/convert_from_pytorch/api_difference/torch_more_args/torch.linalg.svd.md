@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.linalg.svd
-### [torch.linalg.svd](https://pytorch.org/docs/stable/generated/torch.linalg.svd.html?highlight=svd#torch.linalg.svd)
+### [torch.linalg.svd](https://docs.pytorch.org/docs/stable/generated/torch.linalg.svd.html#torch.linalg.svd)
 ```python
 torch.linalg.svd(A, full_matrices=True, *, driver=None, out=None)
 ```
 
-### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/svd_cn.html)
+### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/svd_cn.html#paddle.linalg.svd)
 ```python
 paddle.linalg.svd(x, full_matrices=False, name=None)
 ```

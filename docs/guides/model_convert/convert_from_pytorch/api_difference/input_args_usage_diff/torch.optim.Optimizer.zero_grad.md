@@ -1,5 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.optim.Optimizer.zero_grad
-### [torch.optim.Optimizer.zero_grad](https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.zero_grad.html)
+### [torch.optim.Optimizer.zero\_grad](https://docs.pytorch.org/docs/stable/generated/torch.optim.Optimizer.zero_grad.html#torch.optim.Optimizer.zero_grad)
 ```python
 torch.optim.Optimizer.zero_grad(set_to_none=True)
 ```

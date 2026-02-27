@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_expm1
-### [torch.\_foreach_expm1](https://pytorch.org/docs/stable/generated/torch._foreach_expm1.html#torch-foreach-expm1)
+### [torch.\_foreach\_expm1](https://docs.pytorch.org/docs/stable/generated/torch._foreach_expm1.html#torch._foreach_expm1)
 ```python
 torch._foreach_expm1(self)
 ```

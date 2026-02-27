@@ -1,5 +1,5 @@
 ## [ 输入参数用法不一致 ]torch.nn.LSTM
-### [torch.nn.LSTM](https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html?highlight=lstm#torch.nn.LSTM)
+### [torch.nn.LSTM](https://docs.pytorch.org/docs/stable/generated/torch.nn.LSTM.html#torch.nn.LSTM)
 ```python
 torch.nn.LSTM(input_size,
               hidden_size,
@@ -13,7 +13,7 @@ torch.nn.LSTM(input_size,
               dtype=None)
 ```
 
-### [paddle.nn.LSTM](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LSTM_cn.html#lstm)
+### [paddle.nn.LSTM](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LSTM_cn.html#paddle.nn.LSTM)
 ```python
 paddle.nn.LSTM(input_size,
                hidden_size,

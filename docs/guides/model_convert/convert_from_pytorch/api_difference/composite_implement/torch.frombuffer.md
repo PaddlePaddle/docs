@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.frombuffer
-### [torch.frombuffer](https://pytorch.org/docs/stable/generated/torch.frombuffer.html)
+### [torch.frombuffer](https://docs.pytorch.org/docs/stable/generated/torch.frombuffer.html#torch.frombuffer)
 ```python
 torch.frombuffer(buffer, *, dtype, count=-1, offset=0, requires_grad=False)
 ```

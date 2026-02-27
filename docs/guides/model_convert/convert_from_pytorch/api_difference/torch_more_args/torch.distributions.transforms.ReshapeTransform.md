@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.transforms.ReshapeTransform
-### [torch.distributions.transforms.ReshapeTransform](https://pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.ReshapeTransform)
+### [torch.distributions.transforms.ReshapeTransform](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.ReshapeTransform)
 ```python
 torch.distributions.transforms.ReshapeTransform(in_shape, out_shape, cache_size=0)
 ```
 
-### [paddle.distribution.ReshapeTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/ReshapeTransform_cn.html)
+### [paddle.distribution.ReshapeTransform](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/ReshapeTransform_cn.html#paddle.distribution.ReshapeTransform)
 ```python
 paddle.distribution.ReshapeTransform(in_event_shape, out_event_shape)
 ```

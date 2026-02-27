@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.SGD
-### [torch.optim.SGD](https://pytorch.org/docs/stable/generated/torch.optim.SGD.html)
+### [torch.optim.SGD](https://docs.pytorch.org/docs/stable/generated/torch.optim.SGD.html#torch.optim.SGD)
 ```python
 torch.optim.SGD(params,
                 lr=1e-3,
@@ -14,7 +14,7 @@ torch.optim.SGD(params,
                 fused=None)
 ```
 
-### [paddle.optimizer.SGD](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/SGD_cn.html)
+### [paddle.optimizer.SGD](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/SGD_cn.html#paddle.optimizer.SGD)
 ```python
 paddle.optimizer.SGD(learning_rate=0.001,
                     parameters=None,

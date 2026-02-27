@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.trapezoid
-### [torch.trapezoid](https://pytorch.org/docs/stable/generated/torch.trapezoid.html#torch.trapezoid)
+### [torch.trapezoid](https://docs.pytorch.org/docs/stable/generated/torch.trapezoid.html#torch.trapezoid)
 ```python
 torch.trapezoid(y, x=None, *, dx=None, dim=- 1)
 ```
 
-### [paddle.trapezoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/trapezoid_cn.html#trapezoid)
+### [paddle.trapezoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/trapezoid_cn.html#paddle.trapezoid)
 ```python
 paddle.trapezoid(y, x=None, dx=None, axis=- 1, name=None)
 ```

@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.addcmul
-### [torch.Tensor.addcmul](https://pytorch.org/docs/stable/generated/torch.Tensor.addcmul.html#torch.Tensor.addcmul)
+### [torch.Tensor.addcmul](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.addcmul.html#torch.Tensor.addcmul)
 ```python
 torch.Tensor.addcmul(tensor1, tensor2, *, value=1)
 ```

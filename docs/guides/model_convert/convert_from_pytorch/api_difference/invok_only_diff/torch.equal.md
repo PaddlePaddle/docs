@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.equal
 
-### [torch.equal](https://docs.pytorch.org/docs/stable/generated/torch.equal.html)
+### [torch.equal](https://docs.pytorch.org/docs/stable/generated/torch.equal.html#torch.equal)
 
 ```python
 torch.equal(input, other)

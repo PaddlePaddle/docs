@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.imag
 
-### [torch.Tensor.imag](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.imag)
+### [torch.Tensor.imag](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.imag.html#torch.Tensor.imag)
 
 ```python
 torch.Tensor.imag
 ```
 
-### [paddle.Tensor.imag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/imag_cn.html#paddle/Tensor/imag_cn#cn-api-paddle-Tensor-imag)
+### [paddle.Tensor.imag](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#imag-name-none)
 
 ```python
 paddle.Tensor.imag(name=None)

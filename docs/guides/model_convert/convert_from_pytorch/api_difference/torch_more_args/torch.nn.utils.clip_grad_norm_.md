@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.nn.utils.clip_grad_norm_
-### [torch.nn.utils.clip_grad_norm_](https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html?highlight=clip_grad_norm_#torch.nn.utils.clip_grad_norm_)
+### [torch.nn.utils.clip\_grad\_norm\_](https://docs.pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_norm_.html#torch.nn.utils.clip_grad_norm_)
 ```python
 torch.nn.utils.clip_grad_norm_(parameters,
                                 max_norm,
@@ -8,7 +8,7 @@ torch.nn.utils.clip_grad_norm_(parameters,
                                 foreach=None)
 ```
 
-### [paddle.nn.utils.clip_grad_norm_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/utils/clip_grad_norm__cn.html)
+### [paddle.nn.utils.clip\_grad\_norm\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/utils/clip_grad_norm__cn.html#paddle.nn.utils.clip_grad_norm_)
 ```python
 paddle.nn.utils.clip_grad_norm_(parameters,
                                 max_norm,

@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.exp
-### [torch.exp](https://pytorch.org/docs/stable/generated/torch.exp.html?highlight=torch+exp#torch.exp)
+### [torch.exp](https://docs.pytorch.org/docs/stable/generated/torch.exp.html#torch.exp)
 ```python
 torch.exp(input,
           *,
           out=None)
 ```
 
-### [paddle.exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/exp_cn.html#exp)
+### [paddle.exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/exp_cn.html#paddle.exp)
 ```python
 paddle.exp(x,
            name=None)

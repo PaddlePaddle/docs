@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.profiler.profile
-### [torch.profiler.profile](https://pytorch.org/docs/stable/profiler.html#torch.profiler.profile)
+### [torch.profiler.profile](https://docs.pytorch.org/docs/stable/profiler.html#torch.profiler.profile)
 ```python
 torch.profiler.profile(*, activities=None, schedule=None, on_trace_ready=None, record_shapes=False, profile_memory=False, with_stack=False, with_flops=False, with_modules=False, experimental_config=None, use_cuda=None)
 ```
 
-### [paddle.profiler.Profiler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/Profiler_cn.html)
+### [paddle.profiler.Profiler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/Profiler_cn.html#paddle.profiler.Profiler)
 ```python
 paddle.profiler.Profiler(*, targets=None, scheduler=None, on_trace_ready=None, record_shapes=False, profile_memory=False, timer_only=False)
 ```

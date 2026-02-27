@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.jit.save
-### [torch.jit.save](https://pytorch.org/docs/stable/generated/torch.jit.save.html#torch-jit-save)
+### [torch.jit.save](https://docs.pytorch.org/docs/stable/generated/torch.jit.save.html#torch.jit.save)
 ```python
 torch.jit.save(m, f, _extra_files=None)
 ```
 
-### [paddle.jit.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/save_cn.html#cn-api-paddle-jit-save)
+### [paddle.jit.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/save_cn.html#paddle.jit.save)
 ```python
 paddle.jit.save(layer, path, input_spec=None, **configs)
 ```

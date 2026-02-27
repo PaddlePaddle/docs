@@ -6,7 +6,7 @@
 torchvision.transforms.functional.hflip(img)
 ```
 
-### [paddle.vision.transforms.hflip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/hflip_cn.html#paddle/vision/transforms/hflip_cn#cn-api-paddle-vision-transforms-hflip)
+### [paddle.vision.transforms.hflip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/hflip_cn.html#paddle.vision.transforms.hflip)
 
 ```python
 paddle.vision.transforms.hflip(img)

@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.special.gammainc
-### [torch.special.gammainc](https://pytorch.org/docs/stable/special.html#torch.special.gammainc)
+### [torch.special.gammainc](https://docs.pytorch.org/docs/stable/special.html#torch.special.gammainc)
 ```python
 torch.special.gammainc(input,
                        other,
@@ -7,7 +7,7 @@ torch.special.gammainc(input,
                        out=None)
 ```
 
-### [paddle.gammainc](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/api/index_cn.html)
+### [paddle.gammainc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/gammainc_cn.html#paddle.gammainc)
 ```python
 paddle.gammainc(x,
                 y)

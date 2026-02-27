@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_asin_
-### [torch.\_foreach_asin_](https://pytorch.org/docs/stable/generated/torch._foreach_asin_.html#torch-foreach-asin)
+### [torch.\_foreach\_asin\_](https://docs.pytorch.org/docs/stable/generated/torch._foreach_asin_.html#torch._foreach_asin_)
 ```python
 torch._foreach_asin_(self)
 ```

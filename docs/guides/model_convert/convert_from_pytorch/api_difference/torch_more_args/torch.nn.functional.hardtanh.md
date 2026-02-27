@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.hardtanh
-### [torch.nn.functional.hardtanh](https://pytorch.org/docs/stable/generated/torch.nn.functional.hardtanh.html#torch.nn.functional.hardtanh)
+### [torch.nn.functional.hardtanh](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.hardtanh.html#torch.nn.functional.hardtanh)
 ```python
 torch.nn.functional.hardtanh(input, min_val=- 1.0, max_val=1.0, inplace=False)
 ```
 
-### [paddle.nn.functional.hardtanh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/hardtanh_cn.html)
+### [paddle.nn.functional.hardtanh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/hardtanh_cn.html#paddle.nn.functional.hardtanh)
 ```python
 paddle.nn.functional.hardtanh(x, min=-1.0, max=1.0, name=None)
 ```

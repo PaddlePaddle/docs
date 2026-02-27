@@ -1,12 +1,12 @@
 ## [ 仅参数名不一致 ]torch.rot90
-### [torch.rot90](https://pytorch.org/docs/stable/generated/torch.rot90.html?highlight=torch+rot90#torch.rot90)
+### [torch.rot90](https://docs.pytorch.org/docs/stable/generated/torch.rot90.html#torch.rot90)
 ```python
 torch.rot90(input,
             k=1,
             dims=[0, 1])
 ```
 
-### [paddle.rot90](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/rot90_cn.html#rot90)
+### [paddle.rot90](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/rot90_cn.html#paddle.rot90)
 ```python
 paddle.rot90(x,
              k=1,

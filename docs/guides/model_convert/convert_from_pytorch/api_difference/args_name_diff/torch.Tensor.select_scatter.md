@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.Tensor.select_scatter
-### [torch.Tensor.select_scatter](https://pytorch.org/docs/stable/generated/torch.Tensor.select_scatter.html#torch-select-scatter)
+### [torch.Tensor.select\_scatter](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.select_scatter.html#torch.Tensor.select_scatter)
 ```python
 torch.Tensor.select_scatter(src, dim, index)
 ```
 
-### [paddle.Tensor.select_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#)
+### [paddle.Tensor.select\_scatter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#select-scatter-x-values-axis-index-name-none)
 ```python
 paddle.Tensor.select_scatter(values, axis, index, name=None)
 ```

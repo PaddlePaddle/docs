@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.ExponentialLR
-### [torch.optim.lr_scheduler.ExponentialLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ExponentialLR.html)
+### [torch.optim.lr\_scheduler.ExponentialLR](https://docs.pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ExponentialLR.html#torch.optim.lr_scheduler.ExponentialLR)
 ```python
 torch.optim.lr_scheduler.ExponentialLR(optimizer,
                                 gamma,
@@ -7,7 +7,7 @@ torch.optim.lr_scheduler.ExponentialLR(optimizer,
                                 verbose=False)
 ```
 
-### [paddle.optimizer.lr.ExponentialDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/ExponentialDecay_cn.html)
+### [paddle.optimizer.lr.ExponentialDecay](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/ExponentialDecay_cn.html#paddle.optimizer.lr.ExponentialDecay)
 ```python
 paddle.optimizer.lr.ExponentialDecay(learning_rate,
                                 gamma,

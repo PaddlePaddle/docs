@@ -1,12 +1,12 @@
 ## [ 仅参数名不一致 ]torch.nn.functional.adaptive_max_pool3d
-### [torch.nn.functional.adaptive_max_pool3d](https://pytorch.org/docs/stable/generated/torch.nn.functional.adaptive_max_pool3d.html?highlight=adaptive_max_pool3d#torch.nn.functional.adaptive_max_pool3d)
+### [torch.nn.functional.adaptive\_max\_pool3d](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.adaptive_max_pool3d.html#torch.nn.functional.adaptive_max_pool3d)
 ```python
 torch.nn.functional.adaptive_max_pool3d(input,
                                         output_size,
                                         return_indices=False)
 ```
 
-### [paddle.nn.functional.adaptive_max_pool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/adaptive_max_pool3d_cn.html)
+### [paddle.nn.functional.adaptive\_max\_pool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/adaptive_max_pool3d_cn.html#paddle.nn.functional.adaptive_max_pool3d)
 ```python
 paddle.nn.functional.adaptive_max_pool3d(x,
                                         output_size,

@@ -6,7 +6,7 @@
 torchvision.transforms.Compose(transforms)
 ```
 
-### [paddle.vision.transforms.Compose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Compose_cn.html#paddle/vision/transforms/Compose_cn#cn-api-paddle-vision-transforms-Compose)
+### [paddle.vision.transforms.Compose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Compose_cn.html#paddle.vision.transforms.Compose)
 
 ```python
 paddle.vision.transforms.Compose(transforms)

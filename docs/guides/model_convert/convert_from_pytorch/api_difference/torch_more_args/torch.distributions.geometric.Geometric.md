@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.geometric.Geometric
-### [torch.distributions.geometric.Geometric](https://pytorch.org/docs/stable/distributions.html#torch.distributions.geometric.Geometric)
+### [torch.distributions.geometric.Geometric](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.geometric.Geometric)
 ```python
 torch.distributions.geometric.Geometric(probs=None, logits=None, validate_args=None)
 ```
 
-### [paddle.distribution.Geometric](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Geometric_cn.html#geometric)
+### [paddle.distribution.Geometric](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Geometric_cn.html#paddle.distribution.Geometric)
 ```python
 paddle.distribution.Geometric(probs)
 ```

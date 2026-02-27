@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torchvision.ops.ps_roi_pool
-### [torchvision.ops.ps_roi_pool](https://pytorch.org/vision/main/generated/torchvision.ops.ps_roi_pool.html)
+### [torchvision.ops.ps\_roi\_pool](https://pytorch.org/vision/stable/generated/torchvision.ops.ps_roi_pool.html#torchvision.ops.ps_roi_pool)
 ```python
 torchvision.ops.ps_roi_pool(input: Tensor, boxes: Tensor, output_size: int, spatial_scale: float = 1.0)
 ```
 
-### [paddle.vision.ops.psroi_pool](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/ops/psroi_pool_cn.html)
+### [paddle.vision.ops.psroi\_pool](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/ops/psroi_pool_cn.html#paddle.vision.ops.psroi_pool)
 ```python
 paddle.vision.ops.psroi_pool(x, boxes, boxes_num, output_size, spatial_scale=1.0, name=None)
 ```

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.negative
-### [torch.negative](https://pytorch.org/docs/stable/generated/torch.negative.html?highlight=torch+negative#torch.negative)
+### [torch.negative](https://docs.pytorch.org/docs/stable/generated/torch.negative.html#torch.negative)
 ```python
 torch.negative(input, *, out=None)
 ```
 
-### [paddle.neg](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/neg_cn.html)
+### [paddle.neg](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/neg_cn.html#paddle.neg)
 ```python
 paddle.neg(x, name=None)
 ```

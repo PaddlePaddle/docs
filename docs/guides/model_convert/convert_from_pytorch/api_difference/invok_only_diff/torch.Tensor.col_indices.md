@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.Tensor.col_indices
 
-### [torch.Tensor.col_indices](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.col_indices)
+### [torch.Tensor.col\_indices](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.col_indices.html#torch.Tensor.col_indices)
 
 ```python
 torch.Tensor.col_indices()
 ```
 
-### [paddle.Tensor.cols](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/cols_cn.html#paddle/Tensor/cols_cn#cn-api-paddle-Tensor-cols)
+### [paddle.Tensor.cols](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor__upper_cn.html#cols)
 
 ```python
 paddle.Tensor.cols()

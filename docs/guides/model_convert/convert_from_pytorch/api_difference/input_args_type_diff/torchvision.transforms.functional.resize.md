@@ -1,5 +1,5 @@
 ## [ 输入参数类型不一致 ]torchvision.transforms.functional.resize
-### [torchvision.transforms.functional.resize](https://pytorch.org/vision/main/generated/torchvision.transforms.functional.resize.html)
+### [torchvision.transforms.functional.resize](https://pytorch.org/vision/stable/generated/torchvision.transforms.functional.resize.html#torchvision.transforms.functional.resize)
 ```python
 torchvision.transforms.functional.resize(img: Tensor, size: Optional[Union[int, Sequence[int]]],
                              interpolation: Union[InterpolationMode, int] = InterpolationMode.BILINEAR,
@@ -7,7 +7,7 @@ torchvision.transforms.functional.resize(img: Tensor, size: Optional[Union[int, 
                              antialias: Optional[bool] = True)
 ```
 
-### [paddle.vision.transforms.resize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/resize_cn.html)
+### [paddle.vision.transforms.resize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/resize_cn.html#paddle.vision.transforms.resize)
 ```python
 paddle.vision.transforms.resize(
     img: Union[np.ndarray, paddle.Tensor, PIL.Image.Image],

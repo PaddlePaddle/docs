@@ -17,8 +17,8 @@ bitwise_right_shift
 参数
 ::::::::::::
 
-        - **x** （Tensor）- 输入的 N-D `Tensor`，数据类型为：uint8，int8，int16，int32，int64。
-        - **y** （Tensor）- 输入的 N-D `Tensor`，数据类型为：uint8，int8，int16，int32，int64。
+        - **x** （Tensor）- 输入的 N-D `Tensor`，数据类型为：uint8，int8，int16，int32，int64。别名 ``input``。
+        - **y** （Tensor）- 输入的 N-D `Tensor`，数据类型为：uint8，int8，int16，int32，int64。别名 ``other``。
         - **is_arithmetic** （bool） - 用于表明是否执行算术位移，True 表示算术位移，False 表示逻辑位移。默认值为 True，表示算术位移。
         - **out** （Tensor，可选）- 输出的结果 `Tensor`，是与输入数据类型相同的 N-D `Tensor`。默认值为 None，此时将创建新的 Tensor 来保存输出结果。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

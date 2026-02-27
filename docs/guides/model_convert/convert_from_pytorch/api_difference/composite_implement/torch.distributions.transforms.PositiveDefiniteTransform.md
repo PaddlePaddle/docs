@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.distributions.transforms.PositiveDefiniteTransform
-### [torch.distributions.transforms.PositiveDefiniteTransform](https://pytorch.org/docs/stable/distributions.html#module-torch.distributions.transforms)
+### [torch.distributions.transforms.PositiveDefiniteTransform](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.transforms.PositiveDefiniteTransform)
 ```python
 torch.distributions.transforms.PositiveDefiniteTransform(cache_size=0)
 ```

@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.fft.irfft
-### [torch.fft.irfft](https://pytorch.org/docs/stable/generated/torch.fft.irfft.html#torch-fft-irfft)
+### [torch.fft.irfft](https://docs.pytorch.org/docs/stable/generated/torch.fft.irfft.html#torch.fft.irfft)
 ```python
 torch.fft.irfft(input, n=None, dim=- 1, norm='backward', *, out=None)
 ```
 
-### [paddle.fft.irfft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/irfft_cn.html#irfft)
+### [paddle.fft.irfft](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fft/irfft_cn.html#paddle.fft.irfft)
 ```python
 paddle.fft.irfft(x, n=None, axis=- 1, norm='backward', name=None)
 ```

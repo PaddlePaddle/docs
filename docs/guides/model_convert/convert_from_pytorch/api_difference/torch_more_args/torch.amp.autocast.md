@@ -7,7 +7,7 @@ torch.amp.autocast(device_type,
                    cache_enabled=None)
 ```
 
-### [paddle.amp.auto_cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/auto_cast_cn.html#auto-cast)
+### [paddle.amp.auto\_cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/amp/auto_cast_cn.html#paddle.amp.auto_cast)
 ```python
 paddle.amp.auto_cast(enable=True,
                      custom_white_list=None,

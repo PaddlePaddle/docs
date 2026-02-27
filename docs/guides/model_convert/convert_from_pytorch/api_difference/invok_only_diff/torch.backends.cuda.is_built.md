@@ -1,12 +1,12 @@
 ## [ 仅 API 调用方式不一致 ]torch.backends.cuda.is_built
 
-### [torch.backends.cuda.is_built](https://pytorch.org/docs/stable/generated/torch.backends.cuda.html#torch.backends.cuda.is_built)
+### [torch.backends.cuda.is\_built](https://docs.pytorch.org/docs/stable/backends.html#torch.backends.cuda.is_built)
 
 ```python
 torch.backends.cuda.is_built()
 ```
 
-### [paddle.device.is_compiled_with_cuda](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/is_compiled_with_cuda_cn.html#paddle/device/is_compiled_with_cuda_cn#cn-api-paddle-device-is_compiled_with_cuda)
+### [paddle.device.is\_compiled\_with\_cuda](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/device/is_compiled_with_cuda_cn.html#paddle.device.is_compiled_with_cuda)
 
 ```python
 paddle.device.is_compiled_with_cuda()

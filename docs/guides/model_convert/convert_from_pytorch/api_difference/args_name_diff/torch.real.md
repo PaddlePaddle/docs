@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.real
-### [torch.real](https://pytorch.org/docs/stable/generated/torch.real.html?highlight=real#torch.real)
+### [torch.real](https://docs.pytorch.org/docs/stable/generated/torch.real.html#torch.real)
 ```python
 torch.real(input)
 ```
 
-### [paddle.real](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/real_cn.html#real)
+### [paddle.real](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/real_cn.html#paddle.real)
 ```python
 paddle.real(x)
 ```

@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.Tensor.addr
-### [torch.Tensor.addr](https://pytorch.org/docs/stable/generated/torch.Tensor.addr.html#torch.Tensor.addr)
+### [torch.Tensor.addr](https://docs.pytorch.org/docs/stable/generated/torch.Tensor.addr.html#torch.Tensor.addr)
 ```python
 torch.Tensor.addr(vec1, vec2, beta=1, alpha=1)
 ```

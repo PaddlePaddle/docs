@@ -1,5 +1,5 @@
 ## [ 仅 API 调用方式不一致 ]torch.utils.data.RandomSampler
-### [torch.utils.data.RandomSampler](https://pytorch.org/docs/stable/data.html#torch.utils.data.RandomSampler)
+### [torch.utils.data.RandomSampler](https://docs.pytorch.org/docs/stable/data.html#torch.utils.data.RandomSampler)
 ```python
 torch.utils.data.RandomSampler(data_source, replacement=False, num_samples=None, generator=None)
 ```

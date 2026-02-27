@@ -1,10 +1,10 @@
 ## [ 仅参数名不一致 ]torch.nn.GLU
-### [torch.nn.GLU](https://pytorch.org/docs/stable/generated/torch.nn.GLU.html#torch.nn.GLU)
+### [torch.nn.GLU](https://docs.pytorch.org/docs/stable/generated/torch.nn.GLU.html#torch.nn.GLU)
 ```python
 torch.nn.GLU(dim=-1)
 ```
 
-### [paddle.nn.GLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GLU_cn.html)
+### [paddle.nn.GLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/GLU_cn.html#paddle.nn.GLU)
 ```python
 paddle.nn.GLU(axis=-1, name=None)
 ```

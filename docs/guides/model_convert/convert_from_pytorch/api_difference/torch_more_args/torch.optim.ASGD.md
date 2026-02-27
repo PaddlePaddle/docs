@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.ASGD
-### [torch.optim.ASGD](https://pytorch.org/docs/stable/generated/torch.optim.ASGD.html)
+### [torch.optim.ASGD](https://docs.pytorch.org/docs/stable/generated/torch.optim.ASGD.html#torch.optim.ASGD)
 ```python
 torch.optim.ASGD(params,
                 lr=0.01,
@@ -12,7 +12,7 @@ torch.optim.ASGD(params,
                 differentiable=False)
 ```
 
-### [paddle.optimizer.ASGD](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/ASGD_cn.html#cn-api-paddle-optimizer-asgd)
+### [paddle.optimizer.ASGD](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/ASGD_cn.html#paddle.optimizer.ASGD)
 ```python
 paddle.optimizer.ASGD(learning_rate=0.001,
                     batch_num=1,

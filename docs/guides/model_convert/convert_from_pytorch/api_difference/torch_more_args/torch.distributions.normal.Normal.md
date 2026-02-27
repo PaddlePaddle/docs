@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.distributions.normal.Normal
-### [torch.distributions.normal.Normal](https://pytorch.org/docs/stable/distributions.html#torch.distributions.normal.Normal)
+### [torch.distributions.normal.Normal](https://docs.pytorch.org/docs/stable/distributions.html#torch.distributions.normal.Normal)
 ```python
 torch.distributions.normal.Normal(loc, scale, validate_args=None)
 ```
 
-### [paddle.distribution.Normal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Normal_cn.html)
+### [paddle.distribution.Normal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Normal_cn.html#paddle.distribution.Normal)
 ```python
 paddle.distribution.Normal(loc, scale, name=None)
 ```

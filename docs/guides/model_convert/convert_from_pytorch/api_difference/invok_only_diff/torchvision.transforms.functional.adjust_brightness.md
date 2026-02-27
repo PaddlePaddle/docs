@@ -6,7 +6,7 @@
 torchvision.transforms.functional.adjust_brightness(img, brightness_factor)
 ```
 
-### [paddle.vision.transforms.adjust_brightness](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/adjust_brightness_cn.html#paddle/vision/transforms/adjust_brightness_cn#cn-api-paddle-vision-transforms-adjust_brightness)
+### [paddle.vision.transforms.adjust\_brightness](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/adjust_brightness_cn.html#paddle.vision.transforms.adjust_brightness)
 
 ```python
 paddle.vision.transforms.adjust_brightness(img, brightness_factor)

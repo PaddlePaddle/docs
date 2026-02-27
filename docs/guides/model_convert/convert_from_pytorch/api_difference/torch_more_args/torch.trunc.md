@@ -1,12 +1,12 @@
 ## [ torch 参数更多 ]torch.trunc
-### [torch.trunc](https://pytorch.org/docs/stable/generated/torch.trunc.html?highlight=torch+trunc#torch.trunc)
+### [torch.trunc](https://docs.pytorch.org/docs/stable/generated/torch.trunc.html#torch.trunc)
 ```python
 torch.trunc(input,
           *,
           out=None)
 ```
 
-### [paddle.trunc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/trunc_cn.html)
+### [paddle.trunc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/trunc_cn.html#paddle.trunc)
 ```python
 paddle.trunc(input,
              name=None)

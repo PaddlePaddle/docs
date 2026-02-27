@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.optim.lr_scheduler.CyclicLR
-### [torch.optim.lr_scheduler.CyclicLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CyclicLR.html)
+### [torch.optim.lr\_scheduler.CyclicLR](https://docs.pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CyclicLR.html#torch.optim.lr_scheduler.CyclicLR)
 ```python
 torch.optim.lr_scheduler.CyclicLR(optimizer,
                                 base_lr,
@@ -17,7 +17,7 @@ torch.optim.lr_scheduler.CyclicLR(optimizer,
                                 verbose=False)
 ```
 
-### [paddle.optimizer.lr.CyclicLR](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/CyclicLR_cn.html)
+### [paddle.optimizer.lr.CyclicLR](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/lr/CyclicLR_cn.html#paddle.optimizer.lr.CyclicLR)
 ```python
 paddle.optimizer.lr.CyclicLR(base_learning_rate,
                             max_learning_rate,

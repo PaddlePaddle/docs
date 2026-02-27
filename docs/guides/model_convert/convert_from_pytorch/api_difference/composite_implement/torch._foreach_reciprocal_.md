@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.\_foreach_reciprocal_
-### [torch.\_foreach_reciprocal_](https://pytorch.org/docs/stable/generated/torch._foreach_reciprocal_.html#torch-foreach-reciprocal)
+### [torch.\_foreach\_reciprocal\_](https://docs.pytorch.org/docs/stable/generated/torch._foreach_reciprocal_.html#torch._foreach_reciprocal_)
 ```python
 torch._foreach_reciprocal_(self)
 ```

@@ -9,7 +9,7 @@ torchvision.transforms.Resize(
 )
 ```
 
-### [paddle.vision.transforms.Resize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Resize__upper_cn.html#resize)
+### [paddle.vision.transforms.Resize](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/Resize__upper_cn.html#paddle.vision.transforms.Resize)
 ```python
 paddle.vision.transforms.Resize(
     size: Union[int, List[int], Tuple[int, ...]],

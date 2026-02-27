@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.special.xlogy
-### [torch.special.xlogy](https://pytorch.org/docs/stable/special.html#torch.special.xlogy)
+### [torch.special.xlogy](https://docs.pytorch.org/docs/stable/special.html#torch.special.xlogy)
 ```python
 torch.special.xlogy(input, other, *, out=None)
 ```

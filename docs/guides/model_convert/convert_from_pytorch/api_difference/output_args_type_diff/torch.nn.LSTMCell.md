@@ -1,10 +1,10 @@
 ## [ 返回参数类型不一致 ]torch.nn.LSTMCell
-### [torch.nn.LSTMCell](https://pytorch.org/docs/stable/generated/torch.nn.LSTMCell.html#torch.nn.LSTMCell)
+### [torch.nn.LSTMCell](https://docs.pytorch.org/docs/stable/generated/torch.nn.LSTMCell.html#torch.nn.LSTMCell)
 ```python
 torch.nn.LSTMCell(input_size, hidden_size, bias=True, device=None, dtype=None)
 ```
 
-### [paddle.nn.LSTMCell](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LSTMCell_cn.html#lstmcell)
+### [paddle.nn.LSTMCell](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/LSTMCell_cn.html#paddle.nn.LSTMCell)
 ```python
 paddle.nn.LSTMCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, proj_size=0, name=None)
 ```

@@ -1,5 +1,5 @@
 ## [ paddle 参数更多 ]torch.nn.functional.conv_transpose3d
-### [torch.nn.functional.conv_transpose3d](https://pytorch.org/docs/stable/generated/torch.nn.functional.conv_transpose3d.html?highlight=conv_#torch.nn.functional.conv_transpose3d)
+### [torch.nn.functional.conv\_transpose3d](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.conv_transpose3d.html#torch.nn.functional.conv_transpose3d)
 ```python
 torch.nn.functional.conv_transpose3d(input,
                                     weight,
@@ -11,7 +11,7 @@ torch.nn.functional.conv_transpose3d(input,
                                     dilation=1)
 ```
 
-### [paddle.nn.functional.conv3d_transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/conv3d_transpose_cn.html)
+### [paddle.nn.functional.conv3d\_transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/conv3d_transpose_cn.html#paddle.nn.functional.conv3d_transpose)
 ```python
 paddle.nn.functional.conv3d_transpose(x,
                                     weight,

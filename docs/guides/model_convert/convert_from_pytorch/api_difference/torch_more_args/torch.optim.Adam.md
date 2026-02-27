@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.optim.Adam
-### [torch.optim.Adam](https://pytorch.org/docs/stable/generated/torch.optim.Adam.html)
+### [torch.optim.Adam](https://docs.pytorch.org/docs/stable/generated/torch.optim.Adam.html#torch.optim.Adam)
 ```python
 torch.optim.Adam(params,
                 lr=0.001,

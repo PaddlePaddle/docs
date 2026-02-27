@@ -6,7 +6,7 @@
 torchvision.transforms.ColorJitter(brightness=0, contrast=0, saturation=0, hue=0)
 ```
 
-### [paddle.vision.transforms.ColorJitter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/ColorJitter_cn.html#paddle/vision/transforms/ColorJitter_cn#cn-api-paddle-vision-transforms-ColorJitter)
+### [paddle.vision.transforms.ColorJitter](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/ColorJitter_cn.html#paddle.vision.transforms.ColorJitter)
 
 ```python
 paddle.vision.transforms.ColorJitter(brightness=0, contrast=0, saturation=0, hue=0, keys=None)

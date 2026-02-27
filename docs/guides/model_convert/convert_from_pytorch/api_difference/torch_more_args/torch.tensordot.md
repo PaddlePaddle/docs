@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.tensordot
-### [torch.tensordot](https://pytorch.org/docs/stable/generated/torch.tensordot.html?highlight=tensordot#torch.tensordot)
+### [torch.tensordot](https://docs.pytorch.org/docs/stable/generated/torch.tensordot.html#torch.tensordot)
 ```python
 torch.tensordot(a,b,dims=2,out=None)
 ```
 
-### [paddle.tensordot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/tensordot_cn.html)
+### [paddle.tensordot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/tensordot_cn.html#paddle.tensordot)
 ```python
 paddle.tensordot(x,y,axes=2,name=None)
 ```

@@ -1,11 +1,11 @@
 ## [ paddle 参数更多 ]torch.optim.Optimizer
-### [torch.optim.Optimizer](https://pytorch.org/docs/stable/optim.html#torch.optim.Optimizer)
+### [torch.optim.Optimizer](https://docs.pytorch.org/docs/stable/optim.html#torch.optim.Optimizer)
 ```python
 torch.optim.Optimizer(params,
                     defaults)
 ```
 
-### [paddle.optimizer.Optimizer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Optimizer_cn.html)
+### [paddle.optimizer.Optimizer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/optimizer/Optimizer_cn.html#paddle.optimizer.Optimizer)
 ```python
 paddle.optimizer.Optimizer(learning_rate=0.001,
                         epsilon=1e-08,

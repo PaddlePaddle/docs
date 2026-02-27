@@ -6,7 +6,7 @@
 torchvision.transforms.functional.adjust_contrast(img, contrast_factor)
 ```
 
-### [paddle.vision.transforms.adjust_contrast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/adjust_contrast_cn.html#paddle/vision/transforms/adjust_contrast_cn#cn-api-paddle-vision-transforms-adjust_contrast)
+### [paddle.vision.transforms.adjust\_contrast](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/transforms/adjust_contrast_cn.html#paddle.vision.transforms.adjust_contrast)
 
 ```python
 paddle.vision.transforms.adjust_contrast(img, contrast_factor)

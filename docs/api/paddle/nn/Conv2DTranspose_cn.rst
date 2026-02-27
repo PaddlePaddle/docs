@@ -6,7 +6,7 @@ Conv2DTranspose
 .. py:class:: paddle.nn.Conv2DTranspose(in_channels, out_channels, kernel_size, stride=1, padding=0, output_padding=0, groups=1, dilation=1, weight_attr=None, bias_attr=None, data_format="NCHW")
 
 
-二维转置卷积层（Convlution2d transpose layer）
+二维转置卷积层（Convolution2d transpose layer）
 
 该层根据输入（input）、卷积核（kernel）和空洞大小（dilations）、步长（stride）、填充（padding）来计算输出特征层大小或者通过 output_size 指定输出特征层大小。输入(Input)和输出(Output)为 NCHW 或 NHWC 格式，其中 N 为批尺寸（batch size），C 为通道数（channel），H 为特征层高度，W 为特征层宽度。卷积核是 MCHW 格式，M 是输出图像通道数，C 是输入图像通道数，H 是卷积核高度，W 是卷积核宽度。如果组数大于 1，C 等于输入图像通道数除以组数的结果。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解转置卷积层细节，请参考下面的说明和 `参考文献 <https://arxiv.org/pdf/1603.07285.pdf>`_。如果参数 bias_attr 不为 False，转置卷积计算会添加偏置项。
 

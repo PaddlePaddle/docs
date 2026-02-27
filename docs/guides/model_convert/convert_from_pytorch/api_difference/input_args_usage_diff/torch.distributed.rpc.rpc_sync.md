@@ -1,10 +1,10 @@
 ## [ 输入参数用法不一致 ]torch.distributed.rpc.rpc_sync
-### [torch.distributed.rpc.rpc_sync](https://pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.rpc_sync)
+### [torch.distributed.rpc.rpc\_sync](https://docs.pytorch.org/docs/stable/rpc.html#torch.distributed.rpc.rpc_sync)
 ```python
 torch.distributed.rpc.rpc_sync(to, func, args=None, kwargs=None, timeout=- 1.0)
 ```
 
-### [paddle.distributed.rpc.rpc_sync](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/rpc_sync_cn.html)
+### [paddle.distributed.rpc.rpc\_sync](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distributed/rpc/rpc_sync_cn.html#paddle.distributed.rpc.rpc_sync)
 ```python
 paddle.distributed.rpc.rpc_sync(to, fn, args=None, kwargs=None, timeout=- 1)
 ```

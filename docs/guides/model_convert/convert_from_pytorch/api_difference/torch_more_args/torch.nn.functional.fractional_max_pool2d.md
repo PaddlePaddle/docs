@@ -1,10 +1,10 @@
 ## [ torch 参数更多 ]torch.nn.functional.fractional_max_pool2d
-### [torch.nn.functional.fractional_max_pool2d](https://pytorch.org/docs/stable/generated/torch.nn.functional.fractional_max_pool2d.html#torch-nn-functional-fractional-max-pool2d)
+### [torch.nn.functional.fractional\_max\_pool2d](https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.fractional_max_pool2d.html#torch.nn.functional.fractional_max_pool2d)
 ```python
 torch.nn.functional.fractional_max_pool2d(input, kernel_size, output_size=None, output_ratio=None, return_indices=False, _random_samples=None)
 ```
 
-### [paddle.nn.functional.fractional_max_pool2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/fractional_max_pool2d_cn.html)
+### [paddle.nn.functional.fractional\_max\_pool2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/functional/fractional_max_pool2d_cn.html#paddle.nn.functional.fractional_max_pool2d)
 ```python
 paddle.nn.functional.fractional_max_pool2d(x, output_size, kernel_size=None, random_u=None, return_mask=False, name=None)
 ```
