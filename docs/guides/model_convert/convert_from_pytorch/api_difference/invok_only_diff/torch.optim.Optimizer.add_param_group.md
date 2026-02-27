@@ -6,7 +6,7 @@
 torch.optim.Optimizer.add_param_group(param_group)
 ```
 
-### [paddle.optimizer.Optimizer._add_param_group](https://github.com/PaddlePaddle/Paddle/blob/7763841cacc6f3235e97c0cacd0a7381860e044c/python/paddle/optimizer/optimizer.py#L2093-L2123)
+### [paddle.optimizer.Optimizer._add_param_group](https://github.com/PaddlePaddle/Paddle/blob/7763841cacc6f3235e97c0cacd0a7381860e044c/python/paddle/optimizer/optimizer.py#L2093-L2134)
 
 ```python
 paddle.optimizer.Optimizer._add_param_group(param_group)
