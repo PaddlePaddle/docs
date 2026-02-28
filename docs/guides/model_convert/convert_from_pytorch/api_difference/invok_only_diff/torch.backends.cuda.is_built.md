@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.backends.cuda.is_built
 
-### [torch.backends.cuda.is\_built](https://docs.pytorch.org/docs/stable/backends.html#torch.backends.cuda.is_built)
+### [torch.backends.cuda.is\_built](https://pytorch.org/docs/stable/backends.html#torch.backends.cuda.is_built)
 
 ```python
 torch.backends.cuda.is_built()
