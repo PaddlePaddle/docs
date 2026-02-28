@@ -11,7 +11,7 @@ dsplit
 .. note::
    请确保使用 ``paddle.dsplit`` 进行变换的 Tensor 维度数量不少于 3。
 
-如下图，Tenser ``x`` 的 shape 为[4, 4, 4]，经过 ``paddle.dsplit(x, num_or_indices=2)`` 变换后，得到 ``out0`` 和 ``out1`` 两个 shape 均为[4, 4, 2]的子 Tensor :
+如下图，Tensor ``x`` 的 shape 为[4, 4, 4]，经过 ``paddle.dsplit(x, num_or_indices=2)`` 变换后，得到 ``out0`` 和 ``out1`` 两个 shape 均为[4, 4, 2]的子 Tensor：
 
 .. image:: ../../images/api_legend/dsplit/dsplit.png
    :alt: dsplit 图例

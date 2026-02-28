@@ -9,7 +9,7 @@ QueueDataset
 
 
 
-QueueyDataset 是流式处理数据使用 Dataset 类。与 InmemoryDataset 继承自同一父类，用于单机训练，不支持分布式大规模参数服务器相关配置和 shuffle。此类由 paddle.distributed.QueueDataset 直接创建。
+QueueDataset 是流式处理数据使用 Dataset 类。与 InMemoryDataset 继承自同一父类，用于单机训练，不支持分布式大规模参数服务器相关配置和 shuffle。此类由 paddle.distributed.QueueDataset 直接创建。
 
 代码示例
 ::::::::::::

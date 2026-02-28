@@ -25,4 +25,4 @@ memory_reserved
     >>> paddle.device.memory_reserved('npu:0')
     >>> paddle.device.memory_reserved('npu')
     >>> paddle.device.memory_reserved(0)
-    >>> paddle.device.memory_reserved(Paddle.CustomPlace('npu',0))
+    >>> paddle.device.memory_reserved(paddle.CustomPlace('npu', 0))
