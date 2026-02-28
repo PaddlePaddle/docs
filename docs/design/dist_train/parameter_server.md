@@ -41,11 +41,11 @@ We will need these OPs: *Send*, *Recv*, *Enqueue*, *Dequeue*.
 Below is an example of converting the user defined graph to the
 subgraphs for the trainer and the parameter server:
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/local-graph.png" width="300"/>
+<img src="src/local-graph.png" width="300"/>
 
 After converting:
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/dist-graph.png" width="700"/>
+<img src="src/dist-graph.png" width="700"/>
 
 1. The parameter variable W and its optimizer program are placed on the parameter server.
 1. Operators are added to the program.
@@ -69,7 +69,7 @@ In Fluid, we introduce [SelectedRows](https://github.com/PaddlePaddle/docs/blob/
 non-zero gradient data. So when we do parameter optimization both locally and remotely,
 we only need to send those non-zero rows to the optimizer operators:
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/sparse_update.png" width="700" />
+<img src="src/sparse_update.png" width="700" />
 ### Benefits
 
 - Model parallelism becomes easier to implement: it is an extension to
