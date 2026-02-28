@@ -8,8 +8,8 @@ divide
 逐元素相除算子，输入 ``x`` 与输入 ``y`` 逐元素相除，并将各个位置的输出元素保存到返回结果中。
 
 .. note::
-    别名支持: 参数名 ``input`` 可替代 ``x``，参数名 ``other`` 可替代 ``y`` ，如 ``divide(input=tensor_x, other=tensor_y, ...)`` 等价于 ``divide(x=tensor_x, y=tensor_y, ...)`` 。
-    输入 ``x`` 与输入 ``y`` 必须和广播为相同形状，关于广播规则，请参见 `Tensor 介绍`_ .
+    别名支持：参数名 ``input`` 可替代 ``x``，参数名 ``other`` 可替代 ``y`` ，如 ``divide(input=tensor_x, other=tensor_y, ...)`` 等价于 ``divide(x=tensor_x, y=tensor_y, ...)`` 。
+    输入 ``x`` 与输入 ``y`` 必须和广播为相同形状，关于广播规则，请参见 `Tensor 介绍`_ 。
 
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
