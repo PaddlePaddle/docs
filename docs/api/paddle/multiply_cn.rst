@@ -17,7 +17,7 @@ multiply
 - :math:`X`：多维 Tensor。
 - :math:`Y`：维度必须小于等于 X 维度的 Tensor。
 
-对于这个运算算子有 2 种情况：
+对于这个运算算子有 3 种情况：
 
         1. :math:`Y` 的 ``shape`` 与 :math:`X` 相同。
         2. :math:`Y` 的 ``shape`` 是 :math:`X` 的连续子序列。
@@ -37,7 +37,6 @@ multiply
         - **y** （Tensor）- 多维 ``Tensor``。数据类型为 ``bfloat16`` 、 ``float16`` 、 ``float32`` 、 ``float64`` 、 ``int32`` 、 ``int64``、 ``bool``、 ``complex64`` 或  ``complex128``。
           ``别名：other``
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-        - **out** (Tensor，可选)- 输出的结果。该参数为仅关键字参数，默认值为 None。
 
 关键字参数
 :::::::::
