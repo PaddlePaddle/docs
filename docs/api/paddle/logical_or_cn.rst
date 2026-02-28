@@ -11,7 +11,7 @@ logical_or
         Out = X || Y
 
 .. note::
-    ``paddle.logical_or`` 遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
+    ``paddle.logical_or`` 遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_。
 
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
