@@ -5,7 +5,7 @@ square
 
 .. py:function:: paddle.square(x, name=None, *, out=None)
 
-对输入参数 x 进行逐元素取平方运算。
+对输入参数 ``x`` 进行逐元素取平方运算。
 
 .. math::
     out = x^2
