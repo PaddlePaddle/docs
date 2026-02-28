@@ -5,7 +5,7 @@ manual_seed
 
 .. py:function:: paddle.cuda.manual_seed(seed)
 
-为当前设备置随机种子。与 :ref:`cn_api_paddle_device_manual_seed` 功能一致。
+为当前设备设置随机种子。与 :ref:`cn_api_paddle_device_manual_seed` 功能一致。
 
 参数
 ::::::::::::
