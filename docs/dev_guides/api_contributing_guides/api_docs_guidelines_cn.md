@@ -288,7 +288,7 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
 
 为了保证示例代码的正确性，CI 环境会对其进行检查。
 
-更多关于示例代码的书写规范，请参考 [Python 文档示例代码书写规范](../style_guide_and_references/code_example_writing_specification_cn.html) 。
+更多关于示例代码的书写规范，请参考 [Python 文档示例代码书写规范](../style_guide_and_references/code_example_writing_specification_cn.md) 。
 
 
 **注意事项**

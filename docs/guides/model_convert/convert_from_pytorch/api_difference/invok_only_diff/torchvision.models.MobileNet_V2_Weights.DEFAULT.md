@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torchvision.models.MobileNet_V2_Weights.DEFAULT
 
-### [torchvision.models.MobileNet_V2_Weights.DEFAULT](https://pytorch.org/vision/stable/models/generated/MobileNet_V2_Weights.html#torchvision.models.MobileNet_V2_Weights.DEFAULT)
+### [torchvision.models.MobileNet_V2_Weights.DEFAULT](https://docs.pytorch.org/vision/stable/models/generated/torchvision.models.mobilenet_v2.html#torchvision.models.MobileNet_V2_Weights)
 
 ```python
 torchvision.models.MobileNet_V2_Weights.DEFAULT

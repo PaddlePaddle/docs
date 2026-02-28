@@ -7,13 +7,13 @@ embedding
 
 
 
-嵌入层(Embedding Layer)，根据 x 中的 id 信息从 embedding 矩阵中查询对应 embedding 信息，并会根据输入的 size (vocab_size, emb_size)和 dtype 自动构造一个二维 embedding 矩阵。
+根据 ``x`` 中的 id 信息从 ``weight`` 矩阵中查询对应的嵌入向量。
 
-输出的 Tensor 的 shape 是将输入 Tensor shape 后追加一维 emb_size。
+输出的 Tensor 的 shape 是将输入 Tensor 的 shape 后追加一维 embedding size（即 weight.shape[1]）。
 
 .. note::
 
-   x 中的 id 必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出。
+    x 中的 id 必须满足 ``0 <= id < weight.shape[0]``，否则程序会抛出异常并退出。
 
 .. note::
     别名支持: 参数名 ``input`` 可替代 ``x``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``。
@@ -26,7 +26,7 @@ embedding
                 x.data = [[1, 3], [2, 4], [4, 127]]
                 x.shape = [3, 2]
                 weight.shape = [128, 16]
-            输出是 Tensor:
+            输出是 Tensor：
                 out.shape = [3, 2, 16]
                 out.data = [[[0.129435295, 0.244512452, ..., 0.436322452],
                             [0.345421456, 0.524563927, ..., 0.144534654]],
@@ -42,20 +42,20 @@ embedding
 ::::::::::::
 
 
-    - **x** (Tensor) - 存储 id 信息的 Tensor，数据类型必须为：int32/int64。input 中的 id 必须满足 ``0 =< id < size[0]`` 。
-      别名： ``input``
-    - **weight** (Tensor) - 存储词嵌入权重参数的 Tensor，形状为(num_embeddings, embedding_dim)。
-    - **padding_idx** (int|long|None，可选) - padding_idx 的配置区间为 ``[-weight.shape[0], weight.shape[0]``，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。如果 padding_idx < 0 ，则 padding_idx 将自动转换到 ``weight.shape[0] + padding_idx`` 。如果设置为 "None"，则不会对输出产生影响。默认值：None。
+    - **x** (Tensor) - 存储 id 信息的 Tensor，数据类型必须为：int32/int64。输入中的 id 必须满足 ``0 <= id < weight.shape[0]``。
+      别名：``input``
+    - **weight** (Tensor) - 存储词嵌入权重参数的 Tensor，形状为 (num_embeddings, embedding_dim) 。
+    - **padding_idx** (int|long|None，可选) - padding_idx 的配置区间为 ``[-weight.shape[0], weight.shape[0])``，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。如果 padding_idx < 0 ，则 padding_idx 将自动转换到 ``weight.shape[0] + padding_idx``。如果设置为 None，则不会对输出产生影响。默认值为 None。
     - **max_norm** (float，可选) - 若声明，会将范数大于此值的词嵌入向量重新归一化，使其范数等于此值。在动态图模式下会对 ``weight`` 产生 inplace 修改。默认值为 None。
-    - **norm_type** (float) - 应用 ``max_norm`` 时所计算的 p 阶范数的 p 值。默认值 2.0。
-    - **sparse** (bool，可选) - 是否使用稀疏更新，在词嵌入权重较大的情况下，使用稀疏更新（即设置为 True）能够获得更快的训练速度及更小的内存/显存占用。但是一些优化器不支持稀疏更新，例如 :ref:`cn_api_paddle_optimizer_Adadelta` ， :ref:`cn_api_paddle_optimizer_Adamax` ， :ref:`cn_api_paddle_optimizer_Lamb` 。在这些情况下，稀疏必须为 False。默认值：False。
-    - **scale_grad_by_freq** (bool，可选) - 是否根据单词在 mini-batch 中出现频率的倒数缩放梯度。默认值 False。
+    - **norm_type** (float) - 应用 ``max_norm`` 时所计算的 p 阶范数的 p 值。默认值为 2.0。
+    - **sparse** (bool，可选) - 是否使用稀疏更新，在词嵌入权重较大的情况下，使用稀疏更新（即设置为 True）能够获得更快的训练速度及更小的内存/显存占用。但是一些优化器不支持稀疏更新，例如 :ref:`cn_api_paddle_optimizer_Adadelta` ， :ref:`cn_api_paddle_optimizer_Adamax` ， :ref:`cn_api_paddle_optimizer_Lamb` 。在这些情况下，稀疏必须为 False。默认值为 False。
+    - **scale_grad_by_freq** (bool，可选) - 是否根据单词在 mini-batch 中出现频率的倒数缩放梯度。默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回
 ::::::::::::
-Tensor, x 映射后得到的 Embedding Tensor，数据类型和权重定义的类型一致。
+Tensor，x 映射后得到的 Embedding Tensor，数据类型和权重定义的类型一致。
 
 
 代码示例
