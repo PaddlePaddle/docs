@@ -4,6 +4,7 @@ bucketize
 -------------------------------
 
 .. py:function:: paddle.bucketize(x, sorted_sequence, out_int32=False, right=False, name=None)
+
 将根据给定的一维 Tensor ``sorted_sequence`` 返回输入 ``x`` 对应的桶索引。
 
 参数
