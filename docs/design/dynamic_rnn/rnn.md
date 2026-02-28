@@ -93,7 +93,7 @@ For example, we could have a 2-level RNN, where the top level corresponds to par
 The following figure illustrates feeding in text into the lower level, one sentence at a step, and the feeding in step outputs to the top level. The final top level output is about the whole text.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/images/rnn.jpg"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/images/rnn.png"/>
 </p>
 
 ```python
