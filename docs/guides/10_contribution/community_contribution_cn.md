@@ -15,7 +15,7 @@
 
 作为深度学习爱好者的交流平台，包含原创博客、精品问答、产品交流等内容，为开发者提供纯粹、高质的技术交流平台。
 
-[前往论坛](https://aistudio.baidu.com/paddle/forum)
+[前往论坛](https://pfcc.blog/)
 
 ## 开源协作
 
@@ -36,7 +36,7 @@ GitHub: [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle)、Gitee：
 
 论坛介绍：作为深度学习爱好者的交流平台，包含原创博客、精品问答、产品交流等内容，为开发者提供纯粹、高质的技术交流平台。
 
-[前往论坛](https://aistudio.baidu.com/paddle/forum)
+[前往论坛](https://pfcc.blog/)
 
 ## 技术布道
 
@@ -58,7 +58,7 @@ GitHub: [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle)、Gitee：
 - 怎么做（How）
     - 做事情要有始有终，文章也一样需要有一个好的 ending，结尾要包括项目的效果
 
-[前往飞桨开发者说文章](https://mp.weixin.qq.com/mp/homepage?__biz=Mzg2OTEzODA5MA==&hid=16&sn=0561fc80d64fc079892454aafeb47bc4&scene=18)
+[前往飞桨开发者说文章](https://pfcc.blog/?category=developer-story)
 
 ### 飞桨开发者说 Live 直播
 
