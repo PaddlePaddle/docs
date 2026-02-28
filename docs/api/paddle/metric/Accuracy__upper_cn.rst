@@ -6,7 +6,7 @@ Accuracy
 .. py:class:: paddle.metric.Accuracy(topk=(1, ), name=None, *args, **kwargs)
 
 
-计算准确率(accuracy)。
+计算准确率（accuracy）。
 
 参数：
 :::::::::
@@ -33,12 +33,12 @@ compute(pred, label, *args)
 
 **参数**
 
-    - **pred** (Tensor) - 预测结果为是 float64 或 float32 类型的 Tensor。shape 为[batch_size, d0, ..., dN].
-    - **label** (Tensor) - 真实的标签值是一个 int64 类型的 Tensor，shape 为[batch_size, d0, ..., 1] 或 one hot 表示的形状[batch_size, d0, ..., num_classes].
+    - **pred** (Tensor) - 预测结果为是 float64 或 float32 类型的 Tensor。shape 为[batch_size, d0, ..., dN]。
+    - **label** (Tensor) - 真实的标签值是一个 int64 类型的 Tensor，shape 为[batch_size, d0, ..., 1] 或 one hot 表示的形状[batch_size, d0, ..., num_classes]。
 
 **返回**
 
-Tensor，shape 是[batch_size, d0, ..., topk], 值为 0 或 1，1 表示预测正确.
+Tensor，shape 是[batch_size, d0, ..., topk]，值为 0 或 1，1 表示预测正确。
 
 
 update(correct, *args)
