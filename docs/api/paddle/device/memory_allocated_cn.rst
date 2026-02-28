@@ -28,4 +28,4 @@ memory_allocated
     >>> paddle.device.memory_allocated('npu:0')
     >>> paddle.device.memory_allocated('npu')
     >>> paddle.device.memory_allocated(0)
-    >>> paddle.device.memory_allocated(Paddle.CustomPlace('npu',0))
+    >>> paddle.device.memory_allocated(paddle.CustomPlace('npu', 0))
