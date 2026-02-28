@@ -6,7 +6,7 @@
 torch.optim.Optimizer.state_dict()
 ```
 
-### [paddle.optimizer.Optimizer.state_dict](https://www.paddlepaddle.org.cn/documentation/docs/en/api/paddle/optimizer/Optimizer_en.html#state_dict)
+### [paddle.optimizer.Optimizer.state_dict](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/Optimizer_cn.html#state-dict)
 
 ```python
 paddle.optimizer.Optimizer.state_dict()
