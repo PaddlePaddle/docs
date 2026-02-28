@@ -19,7 +19,7 @@ alwaysApply: false
 
 Paddle现有装饰器统一位于 `Paddle/python/paddle/utils/decorator_utils.py`，按功能分为两类：
 
-## 2.1 通用参数别名装饰器
+## 2.1 通用别名装饰器
 
 | 装饰器 | 支持参数数量 | 性能 | 使用场景 | 优先级 |
 |---------|-------------|------|----------|--------|
@@ -54,8 +54,6 @@ Paddle现有装饰器统一位于 `Paddle/python/paddle/utils/decorator_utils.py
 - 1个参数 → `param_one_alias`
 - 2个参数 → `param_two_alias`
 - 3个及以上参数 → `ParamAliasDecorator`
-
-> 存量代码可能有不规范使用，请根据个数来选择，勿参考存量代码
 
 **使用示例**：
 ```python
@@ -213,28 +211,6 @@ if len(args) >= 2 and all(isinstance(arg, int) for arg in args[1:]):
     args = args[:1]
 ```
 
-4. **overload注解**
-为避免添加装饰器后原API的签名可读性差的问题，需要针对Pytorch签名、Paddle签名分别添加overload注解：
-```python
-# Paddle Usage
-@overload
-def gather(
-    x: Tensor,
-    index: Tensor,
-    axis: Tensor | int | None = None,
-    name: str | None = None,
-    out: Tensor | None = None,
-) -> Tensor: ...
-
-# Pytorch Usage
-@overload
-def gather(
-    input: Tensor,
-    dim: int,
-    index: Tensor,
-    out: Tensor | None = None,
-) -> Tensor: ...
-```
 
 **完整示例**：
 ```python
@@ -266,8 +242,28 @@ def index_select_decorator():
 ```
 
 **注意事项**：
-1. 可参考 `Paddle/python/paddle/utils/decorator_utils.py` 来实现，该文件包含了项目中全部专有装饰器的实现。
-2. 如果两者API对应参数的顺序不同，则装饰器需要通过位置参数(args)类型检测来区分两者，并分别匹配不同的参数顺序。
+1. 尽可能参考 `Paddle/python/paddle/utils/decorator_utils.py` 中已有的专用装饰器来实现，在风格和逻辑上保持尽可能一致
+2. 如果两者API对应参数的顺序不同，则装饰器需要通过位置参数(args)类型检测来区分两者，并分别匹配不同的参数顺序
+3. 专用装饰器应该尽可能逻辑简单，只假定存在Paddle签名+Pytorch签名两种用法，其他情况不做判断，提升性能
+4. overload注解：为避免添加专用装饰器后原API签名可读性差的问题，需要针对Paddle原签名、Pytorch新签名分别添加overload注解（Paddle在前，Pytorch在后）
+```python
+@overload
+def gather(
+    x: Tensor,
+    index: Tensor,
+    axis: Tensor | int | None = None,
+    name: str | None = None,
+    out: Tensor | None = None,
+) -> Tensor: ...
+
+@overload
+def gather(
+    input: Tensor,
+    dim: int,
+    index: Tensor,
+    out: Tensor | None = None,
+) -> Tensor: ...
+```
 
 ## Step 3: 添加out参数支持（如需要）
 
@@ -332,22 +328,62 @@ def func(x, axis=None, name=None, *, out: Tensor | None = None):
 
 ## Step 4: 更新函数文档字符串
 
-在函数文档字符串中为有别名的参数添加Alias Support说明和out说明：
+如果使用的是通用别名装饰器，则在函数文档字符串中为有别名的参数添加Alias Support说明和out说明，如下：
 
 ```python
-def func(x, axis=None, name=None, *, out=None):
+@param_two_alias(["x", "input"], ["axis", "dim"])
+def fft(
+    x: Tensor,
+    n: int | None = None,
+    axis: int = -1,
+    norm: _NormalizeMode = "backward",
+    name: str | None = None,
+    *,
+    out: Tensor | None = None,
+) -> Tensor:
     """
-    Compute the cumulative sum of elements in the input tensor along the given axis.
+    Calculate one-dimensional discrete Fourier transform.
 
     Args:
-        x (Tensor): The input tensor needed to be cumsumed.
+        x (Tensor): The input data. It's a Tensor type. It's a complex.
             Alias: ``input``.
-        axis (int, optional): The dimension to accumulate along.
+        n (int|None, optional): The length of the output transform axis.
+        axis (int, optional): Axis used to calculate FFT.
             Alias: ``dim``.
-        name (str|None, optional): Name for operation.
+        norm (str, optional): Indicates which direction to scale the `forward` or `backward` transform
+            pair and what normalization factor to use.
+        name (str|None, optional): The default value is None.
 
     Keyword args:
         out(Tensor, optional): The output tensor.
+    """
+```
+
+如果使用的是专用装饰器，则表明API支持了签名重载，需要分别描述两种签名，可以参考代码中的@overload注解，如下：
+
+```python
+@overload
+def broadcast_tensors(input: Sequence[Tensor], name: str | None = None) -> list[Tensor]: ...
+
+@overload
+def broadcast_tensors(*tensors: Tensor) -> list[Tensor]: ...
+
+@variadic_tensor_decorator('input')
+def broadcast_tensors(input: Sequence[Tensor], name: str | None = None) -> list[Tensor]:
+    """
+    This API has two signatures:
+
+    1. ``paddle.broadcast_tensors(input, name=None)`` (Paddle-style):
+        Broadcast a list of tensors following broadcast semantics.
+
+    2. ``paddle.broadcast_tensors(*tensors)`` (PyTorch-style):
+        Broadcast variadic tensor arguments following broadcast semantics.
+
+    Args:
+        ...
+
+    Returns:
+        ...
     """
 ```
 
@@ -356,6 +392,9 @@ def func(x, axis=None, name=None, *, out=None):
 - 使用`Alias: ``alias_name``.格式
 - 多个Alias别名描述为: `Alias: ``input`` or ``data``.`
 - out参数使用关键字参数来描述
+- Tensor类方法（如paddle.Tensor.abs）没有英文文档，无需处理
+- Inplace方法如果有对应普通方法，则只需更新签名即可，不需要修改文档内容，因为其文档内容一般无实质内容
+- overload签名重载情况下，只需在文档正文阐述两种签名（Paddle在前，Pytorch在后），其他位置如Args/Returns仍以Paddle风格签名为准。
 
 ## Step 5: 添加测试用例
 
@@ -450,7 +489,7 @@ class Test<APIName>(unittest.TestCase):
 
 ## Step 6: 编译与运行
 
-每次修改 Paddle 源码后，必须重新编译方可生效。单测编写完成后，请按以下命令验证执行（不可修改）：
+单测编写完成后，按以下命令验证执行（不可修改）：
 
 1. **重新编译项目**：
    ```bash
@@ -464,8 +503,11 @@ class Test<APIName>(unittest.TestCase):
    python <所修改的单测文件名>
    ```
 
-3. **问题排查**：根据报错信息调整代码或测试用例，确保所有测试用例通过
+3. **问题排查**：根据报错信息调整代码或测试用例，确保所有测试用例通过。注意每次修改Paddle源码后，必须重新编译方可生效。
 
+编译注意事项：
+- 编译完成后不需要重新安装，无需执行setup/install等任何安装操作，直接可生效
+- 编译不要删除build目录，否则会导致增量编译失效，编译时间极长
 
 # 四、异常处理
 

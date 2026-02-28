@@ -27,17 +27,18 @@ AdaptiveMaxPool2D
 
     Output(i ,j) &= max(Input[hstart:hend, wstart:wend])
 
+
 参数
 :::::::::
 
     - **output_size** (int|list|tuple)：算子输出特征图的高和宽大小，其数据类型为 int,list 或 tuple。
-    - **return_mask** (bool，可选)：如果设置为 True，则会与输出一起返回最大值的索引，默认为 False。
+    - **return_mask** (bool，可选)：如果设置为 True，则会与输出一起返回最大值的索引，默认为 False。别名 ``return_indices``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 :::::::::
 
-    - **x** (Tensor)：默认形状为（批大小，通道数，输出特征长度，宽度），即 NCHW 格式的 4-D Tensor。其数据类型为 float32 或者 float64。
+    - **x** (Tensor)：默认形状为（批大小，通道数，输出特征长度，宽度），即 NCHW 格式的 4-D Tensor。其数据类型为 float32 或者 float64。别名 ``input``。
     - **output** (Tensor)：默认形状为（批大小，通道数，输出特征长度，宽度），即 NCHW 格式的 4-D Tensor。其数据类型与输入 x 相同。
 
 返回

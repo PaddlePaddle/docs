@@ -55,7 +55,7 @@ index_add
         输出：
             out.shape = [3, 3]
             out.data = [[2., 1., 2.],
-                        [1., 1., 1.],
+                        [2., 1., 2.],
                         [2., 1., 2.]]
 
 **示例 1 图解说明**
@@ -79,10 +79,10 @@ index_add
 参数
 :::::::::
 
-    - **x** （Tensor）– 输入 Tensor。 ``x`` 的数据类型可以是 float16, float32，float64，int32，int64。
-    - **index** （Tensor）– 包含索引下标的 1-D Tensor。数据类型为 int32 或者 int64。
-    - **axis**    (int) – 索引轴。数据类型为 int。
-    - **value** （Tensor）– 与 ``x`` 相加的 Tensor。 ``value`` 的数据类型同 ``x`` 。
+    - **x** (Tensor) - 输入 Tensor。 ``x`` 的数据类型可以是 float16，float32，float64，int32，int64。
+    - **index** (Tensor) - 包含索引下标的 1-D Tensor。数据类型为 int32 或者 int64。
+    - **axis** (int) - 索引轴。数据类型为 int。
+    - **value** (Tensor) - 与 ``x`` 相加的 Tensor。 ``value`` 的数据类型同 ``x`` 。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

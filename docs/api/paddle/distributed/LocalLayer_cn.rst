@@ -5,12 +5,12 @@ LocalLayer
 
 .. py:class:: paddle.distributed.LocalLayer(out_dist_attrs)
 
-LocalLayer 用于在分布式训练中实现局部计算操作。在自动并行训练中,某些操作(如带 mask 的 loss 计算、MoE 相关计算等)需要在每张卡上独立进行局部计算,而不是直接在全局分布式张量上计算。LocalLayer 通过自动处理张量转换,使得用户可以像编写单卡代码一样实现这些局部操作。
+LocalLayer 用于在分布式训练中实现局部计算操作。在自动并行训练中，某些操作（如带 mask 的 loss 计算、MoE 相关计算等）需要在每张卡上独立进行局部计算，而不是直接在全局分布式张量上计算。LocalLayer 通过自动处理张量转换，使得用户可以像编写单卡代码一样实现这些局部操作。
 
 参数
 :::::::::
 
-    - **out_dist_attrs** (list[tuple[ProcessMesh, list[Placement]]]) - 指定输出张量的分布策略。每个元素是一个元组,包含:
+    - **out_dist_attrs** (list[tuple[ProcessMesh, list[Placement]]]) - 指定输出张量的分布策略。每个元素是一个元组，包含：
 
       - ProcessMesh: 计算设备网格,定义计算资源的拓扑结构
       - list[Placement]: 张量分布方式的列表,描述如何将局部计算结果转换回分布式张量
@@ -90,17 +90,17 @@ __call__()
 
 **使用场景**
 
-LocalLayer 可以用于但不限于以下场景:
+LocalLayer 可以用于但不限于以下场景：
 
-1. 带 mask 的 loss 计算:需要在每张卡上独立计算 masked token 的 loss
-2. MoE (混合专家模型)相关计算:
-  - aux_loss 计算:基于每张卡上专家分配到的局部 token 数进行计算
-  - z_loss 计算:对每张卡上的 logits 独立计算 z_loss
-  - 张量 reshape 操作:在局部维度上进行 shape 变换
+1. 带 mask 的 loss 计算：需要在每张卡上独立计算 masked token 的 loss
+2. MoE（混合专家模型）相关计算：
+  - aux_loss 计算：基于每张卡上专家分配到的局部 token 数进行计算
+  - z_loss 计算：对每张卡上的 logits 独立计算 z_loss
+  - 张量 reshape 操作：在局部维度上进行 shape 变换
 3. 其他需要保持局部计算语义的场景
 
 **注意事项**
 
-1. LocalLayer 的输出必须指定正确的分布策略,以确保结果的正确性
-2. 在 forward 方法中编写计算逻辑时,可以像单卡编程一样使用常规的 tensor 操作
-3. 局部计算结果会自动根据分布策略进行聚合,无需手动添加通信操作
+1. LocalLayer 的输出必须指定正确的分布策略，以确保结果的正确性
+2. 在 forward 方法中编写计算逻辑时，可以像单卡编程一样使用常规的 tensor 操作
+3. 局部计算结果会自动根据分布策略进行聚合，无需手动添加通信操作
