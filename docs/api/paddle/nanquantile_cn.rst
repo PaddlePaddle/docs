@@ -5,7 +5,7 @@ nanquantile
 
 .. py:function:: paddle.nanquantile(x, q, axis=None, keepdim=False, interpolation='linear', name=None)
 
-沿给定的轴 ``axis`` 计算 ``x`` 中元素的分位数, 忽略元素中的 ``NaN`` 。
+沿给定的轴 ``axis`` 计算 ``x`` 中元素的分位数，忽略元素中的 ``NaN`` 。
 
 参数
 ::::::::::

@@ -15,7 +15,7 @@ random_ 为 Inplace 版本实现，对输入 `x` 采用 Inplace 策略。
     - **x** (Tensor) - 输入多维 Tensor，可选的数据类型为 'int32'、'int64'、'float32'、'float64'、'float16'、'bfloat16'。
     - **from** (int，可选) - 生成随机值的范围下限，默认为 0。。
     - **to** (int|None，可选) - 生成随机值的范围上限（开区间），默认为 None。
-    - **generator** (None) - 随机数生成器的占位参数,当前未实现，保留未来使用。
+    - **generator** (None) - 随机数生成器的占位参数，当前未实现，保留未来使用。
 
 返回
 ::::::::::::
