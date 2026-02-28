@@ -6,7 +6,7 @@
 torch.autograd.grad_mode.set_grad_enabled(mode)
 ```
 
-### [paddle.set\_grad\_enabled](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/set_grad_enabled_cn.html#paddle.set_grad_enabled)
+### [paddle.set\_grad\_enabled](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/set_grad_enabled_cn.html#paddle.set_grad_enabled)
 
 ```python
 paddle.set_grad_enabled(mode)
