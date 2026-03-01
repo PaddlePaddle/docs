@@ -11,7 +11,7 @@ get_rng_state
 :::::::::
 - **device** (DeviceLike, 可选) - 要获取 RNG 状态的设备:
 
-  - 如果不指定，则使用当前默认设备(由 paddle.framework._current_expected_place_()返回)
+  - 如果不指定，则使用当前默认设备(由 paddle.framework._current_expected_place_() 返回)
   - 可以是设备对象、整数设备 ID 或设备字符串
 
 返回
