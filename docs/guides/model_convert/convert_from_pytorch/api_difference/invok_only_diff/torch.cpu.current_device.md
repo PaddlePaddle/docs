@@ -6,7 +6,7 @@
 torch.cpu.current_device()
 ```
 
-### [paddle.get_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/get_device_cn.html#paddle/get_device_cn#cn-api-paddle-get_device)
+### [paddle.get_device](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/get_device_cn.html)
 
 ```python
 paddle.get_device()
