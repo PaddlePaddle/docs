@@ -6,12 +6,12 @@
 - 代码注释请遵守 [Doxygen](http://www.doxygen.nl/) 的样式。
 - 所有代码必须具有单元测试。
 - 通过所有单元测试。
-- 请遵守[提交代码的一些约定](./code_review_cn.html)。
+- 请遵守[提交代码的一些约定](./code_review_cn.md)。
 
 以下教程将指导你提交代码。
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
-跳转到[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) GitHub 首页，然后单击 `Fork` 按钮，生成自己目录下的仓库，比如 <https://github.com/USERNAME/Paddle>。
+跳转到[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) GitHub 首页，然后单击 `Fork` 按钮，生成自己目录下的仓库，比如 `https://github.com/your_github_username/Paddle`。
 
 ## 克隆（Clone）
 
@@ -62,7 +62,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 ## 编译
 
-关于编译 PaddlePaddle 的源码，请参见[从源码编译](../../../install/compile/fromsource.html) 选择对应的操作系统。
+关于编译 PaddlePaddle 的源码，请参见[从源码编译](../../../install/compile/fromsource.rst) 选择对应的操作系统。
 
 ## 单测
 
@@ -116,7 +116,7 @@ clang-format.......................................(no files to check)Skipped
  create mode 100644 233
 ```
 
-可以看到，在执行`git commit`后，输出了一些额外的信息。这是使用`pre-commit`进行代码风格检查的结果，关于代码风格检查的使用问题请参考[代码风格检查指南](./codestyle_check_guide_cn.html)。
+可以看到，在执行`git commit`后，输出了一些额外的信息。这是使用`pre-commit`进行代码风格检查的结果，关于代码风格检查的使用问题请参考[代码风格检查指南](./codestyle_check_guide_cn.md)。
 
 ## 保持本地仓库最新
 
@@ -150,7 +150,7 @@ upstream
 
 ## Push 到远程仓库
 
-将本地的修改推送到 GitHub 上，也就是 https://github.com/USERNAME/Paddle。
+将本地的修改推送到 GitHub 上，也就是 `https://github.com/your_github_username/Paddle`。
 
 ```bash
 # 推送到远程仓库 origin 的 my-cool-stuff 分支上
