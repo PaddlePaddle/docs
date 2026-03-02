@@ -56,7 +56,7 @@
 - Built-in 硬件在初始化时会构造对应 CpuDevice、 CudaDevice 对象注册到 DeviceManager。
 - Plugin 硬件在初始化时会构造一个 CustomDevice 对象注册到 DeviceManager。
 
-CustomDevice 的 Runtime 函数接口分为 5 类，设备管理，Stream 管理，Event 管理，内存管理和信息查询，详细介绍请参见 [API 参考文档](./custom_runtime_cn.html)。
+CustomDevice 的 Runtime 函数接口分为 5 类，设备管理，Stream 管理，Event 管理，内存管理和信息查询，详细介绍请参见 [API 参考文档](./custom_runtime_cn.rst)。
 
 ## **三、自定义 Kernel 注册模块的设计**
 
@@ -76,7 +76,7 @@ Python API 执行时会进入到 C++ 端由框架进行调度并执行相应的�
 
 Python API 到算子 InferMeta 函数和 Kernel 调用之间的框架调度部分的逻辑代码主要通过算子 Yaml 配置中的信息自动生成，也可以理解为算子 Yaml 配置的作用是通过自动代码生成将上层 Python API 与底层算子的 Kernel 建立连接。
 
-Custom Kernel 定义的标准接口，详细请参见 [API 参考文档](./custom_kernel_cn.html)。
+Custom Kernel 定义的标准接口，详细请参见 [API 参考文档](./custom_kernel_cn.rst)。
 
 ## **四、自定义 CCL 注册模块的设计**
 
@@ -100,6 +100,6 @@ Custom Kernel 定义的标准接口，详细请参见 [API 参考文档](./custo
 ProcessGroupCustom 继承自 ProcessGroup，是实现动态图模式下通信与计算、通信间的依赖关系管理的重要模块，其中的集合通信操作接口通过 CustomCCL 开放出去；静态图模式下，则是通过调用 Collective Ops / Collective Kernels，由静态图执行器调度执行。
 
 - ProcessGroup 用于描述建立在指定后端上的通信组和该通信组内可以执行的通信方法，是对通信操作所涉及范围的一个逻辑和物理划分，在同一个通信组中的进程会在指定后端上执行对应的通信操作。在复杂的混合并行策略中，会根据不同的并行策略，创建多个通信组。在建立通信前，同一个通信组中的进程需要交换通信相关的信息（和具体硬件相关，比如 ncclUniqueID），并根据唯一 ID 创建对应通信组唯一 Comm（如 ncclComm），之后的所有在该通信组中的通信操作，都会在对应的通信 Comm 上进行。
-- ProcessGroup 中包含一系列集合通信操作的接口（如 [AllReduce](../../api/paddle/distributed/all_reduce_cn.html#all-reduce)、[AllGather](../../api/paddle/distributed/all_gather_cn.html#all-gather) 等），用于做流间依赖管理的 Task 机制（Event、Stream）。其中集合通信操作的实现会调用 CustomCCL 对应的集合通信 API，进而由 CustomCCL 根据硬件类型，通过 device_manager 选择正确的硬件和对应的计算实现。
+- ProcessGroup 中包含一系列集合通信操作的接口（如 [AllReduce](../../api/paddle/distributed/all_reduce_cn.rst#all-reduce)、[AllGather](../../api/paddle/distributed/all_gather_cn.rst#all-gather) 等），用于做流间依赖管理的 Task 机制（Event、Stream）。其中集合通信操作的实现会调用 CustomCCL 对应的集合通信 API，进而由 CustomCCL 根据硬件类型，通过 device_manager 选择正确的硬件和对应的计算实现。
 
-CustomCCL 定义的标准接口，详细请参见 [API 参考文档](./ccl_api_cn.html)。
+CustomCCL 定义的标准接口，详细请参见 [API 参考文档](./ccl_api_cn.md)。

@@ -58,7 +58,7 @@ void InitPlugin(CustomRuntimeParams *params) {
 - params->device_type ： 硬件后端名，具有同名的插件已经注册时，则不会注册 Runtime 。
 - params->sub_device_type ： 硬件后端子类型名。
 
-最后，插件需要填充 params->interface 中的回调接口（至少实现 Required 接口，否则 Runtime 不会被注册），完成自定义 Runtime 的初始化。具体 API 的说明详见[自定义 Runtime 文档](./custom_runtime_cn.html)。
+最后，插件需要填充 params->interface 中的回调接口（至少实现 Required 接口，否则 Runtime 不会被注册），完成自定义 Runtime 的初始化。具体 API 的说明详见[自定义 Runtime 文档](./custom_runtime_cn.rst)。
 
 ```c++
 #include <malloc.h>
