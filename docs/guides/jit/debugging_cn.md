@@ -54,7 +54,7 @@ os.environ["TRANSLATOR_DISABLE_NEW_ERROR"] = '1'
 #### 1.2.2 C++报错栈
 默认会隐藏 C++报错栈，你可设置 C++端的环境变量 `FLAGS_call_stack_level=2` 来显示 C++ 报错栈信息。如可以在终端输入`export FLAGS_call_stack_level=2`来进行设置，之后可以看到 C++端的报错栈：
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/c%2B%2B_error_log.png" style="zoom:45%" />
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/cpp_error_log.png" style="zoom:45%" />
 
 ## 二、调试方法
 在调试前**请确保转换前的动态图代码能够成功运行**，下面介绍动转静中推荐的几种调试方法。
