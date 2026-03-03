@@ -53,7 +53,7 @@ You can get the following error message:
 #### 1.2.2 C++ error stack
 The C++ error stack is hidden by default. You can set the C++ environment variable `FLAGS_call_stack_level=2` to display the C++ error stack information. For example, you can enter `export FLAGS_call_stack_level=2` in the terminal to set it, and then you can see the error stack on the C++ side:
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/c%2B%2B_error_log.png" style="zoom:45%" />
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/cpp_error_log.png" style="zoom:45%" />
 
 ## 2、Debugging Method
 Before debugging, **please ensure that the dynamic graph code before conversion can run successfully**. The following introduces several debugging methods recommended in Dynamic-to-Static.
