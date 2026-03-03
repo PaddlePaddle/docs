@@ -5,7 +5,8 @@ masked_fill
 
 .. py:function:: paddle.masked_fill(x, mask, value, name=None)
 
-
+.. note::
+    该 API 同时支持 ``input`` 作为 ``x`` 的别名关键字参数，与 PyTorch 用法兼容。
 
 返回一个 1-D 的 Tensor，Tensor 的值是根据 ``mask`` 信息，将 ``value`` 中的值填充到 ``x`` 中 ``mask`` 对应为 ``True`` 的位置，``mask`` 的数据类型是 bool。
 
