@@ -18,10 +18,10 @@ as_strided
 :::::::::
 
     - **x** (Tensor) - 输入多维 Tensor，可选的数据类型为 'float16'、'float32'、'float64'、'int16'、'int32'、'int64'、'bool'、'uint16'。
-    - **shape** (list|tuple) - 指定的新的 shape。
+    - **shape** (list|tuple) - 指定的新的 shape。别名 ``size``。
     - **stride** (list|tuple) - 指定的新的 stride。
-    - **offset** (int) - 指定的新的 offset。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **offset** (int) - 指定的新的 offset。别名 ``storage_offset``。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 ``None``。
 
 返回
 :::::::::

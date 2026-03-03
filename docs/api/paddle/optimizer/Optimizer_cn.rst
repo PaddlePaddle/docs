@@ -124,6 +124,53 @@ set_lr_scheduler(scheduler)
 
 COPY-FROM: paddle.optimizer.Optimizer.set_lr_scheduler
 
+state_dict()
+'''''''''
+
+获取优化器的状态字典信息。包含优化器使用的所有 Tensor。对于 Adam 优化器，包含 beta1、beta2、momentum 等。如果使用了 LRScheduler，状态字典中还会包含 global_step。如果优化器从未被调用过（minimize 函数），则状态字典为空。
+
+**返回**
+
+dict[str, Tensor]，包含优化器使用的所有 Tensor 的字典。
+
+**代码示例**
+
+COPY-FROM: paddle.optimizer.Optimizer.state_dict
+
+set_state_dict(state_dict)
+'''''''''
+
+加载优化器的状态字典。对于 Adam 优化器，包含 beta1、beta2、momentum 等。如果使用了 LRScheduler，global_step 也将被更新。
+
+**参数**
+
+    - **state_dict** (dict) - 包含优化器所需的所有 Tensor 的字典。
+
+**返回**
+
+无。
+
+**代码示例**
+
+COPY-FROM: paddle.optimizer.Optimizer.set_state_dict
+
+load_state_dict(state_dict)
+'''''''''
+
+加载优化器的状态字典。对于 Adam 优化器，包含 beta1、beta2、momentum 等。如果使用了 LRScheduler，global_step 也将被更新。
+
+**参数**
+
+    - **state_dict** (dict) - 包含优化器所需的所有 Tensor 的字典。
+
+**返回**
+
+无。
+
+**代码示例**
+
+COPY-FROM: paddle.optimizer.Optimizer.load_state_dict
+
 get_lr()
 '''''''''
 

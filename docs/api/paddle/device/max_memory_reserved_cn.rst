@@ -25,4 +25,4 @@ max_memory_reserved
     >>> paddle.device.max_memory_reserved('npu:0')
     >>> paddle.device.max_memory_reserved('npu')
     >>> paddle.device.max_memory_reserved(0)
-    >>> paddle.device.max_memory_reserved(Paddle.CustomPlace('npu',0))
+    >>> paddle.device.max_memory_reserved(paddle.CustomPlace('npu', 0))

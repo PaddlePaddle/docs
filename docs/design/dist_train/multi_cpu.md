@@ -8,11 +8,11 @@ Op graph to a multi-CPU Op graph, and run `ParallelDo` Op to run the graph.
 
 ## Transpiler
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/single-thread@3x.png" width="300">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/a69a584b0c5be42bb75bec5966ac1faf385a5b36/doc/fluid/images/single-thread%403x.png" width="300">
 
 After converted:
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/multi-threads@3x.png" width="1000">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/a69a584b0c5be42bb75bec5966ac1faf385a5b36/doc/fluid/images/multi-threads%403x.png" width="1000">
 
 ## Implement
 

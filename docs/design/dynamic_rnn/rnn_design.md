@@ -233,9 +233,9 @@ x    x
 - 将每个序列 concat 为规则的 mini-batch 表示
 
 ## 参考文献
-[TensorFlow Bucketing](https://www.tensorflow.org/versions/r0.12/api_docs/python/contrib.training/bucketing)
+[TensorFlow Bucketing](https://www.tensorflow.org/api_docs/python/tf/data/experimental/bucket_by_sequence_length)
 
-[mxnet Bucketing](http://mxnet.io/how_to/bucketing.html)
+[mxnet Bucketing](https://mxnet.apache.org/versions/1.6/api/python/docs/api/module/index.html#mxnet.module.BucketingModule)
 
 [variable length input in RNN scenario](https://discuss.pytorch.org/t/about-the-variable-length-input-in-rnn-scenario/345/5)
 
