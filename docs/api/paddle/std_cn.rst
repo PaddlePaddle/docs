@@ -7,6 +7,14 @@ std
 
 沿给定的轴 ``axis`` 计算 ``x`` 中元素的标准差。
 
+本 API 支持两种调用方式：
+
+1. **Paddle 风格**： ``paddle.std(x, axis=None, unbiased=None, keepdim=False, name=None, *, correction=1, out=None)``
+   ``keepdim`` 作为位置参数传入。
+
+2. **PyTorch 风格**： ``paddle.std(input, dim=None, *, correction=1, keepdim=False, out=None)``
+   ``keepdim`` 作为仅关键字参数传入。
+
 参数
 ::::::::::
     - **x** (Tensor) - 输入的 Tensor，数据类型为：float16、float32、float64。别名： ``input``。
