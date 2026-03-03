@@ -5,6 +5,9 @@ mish
 
 .. py:function:: paddle.nn.functional.mish(x, name=None)
 
+.. note::
+    别名支持: 参数名 ``input`` 可替代 ``x`` 。
+
 mish 激活层。计算公式如下：
 
 .. math::
