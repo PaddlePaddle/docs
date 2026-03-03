@@ -11,14 +11,14 @@ You will learn how to develop programs in local environment under the guidelines
 The following guidiance tells you how to submit code.
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
-Transfer to the home page of GitHub [PaddlePaddle](https://github.com/PaddlePaddle/Paddle) ,and then click button `Fork`  to generate the git under your own file directory,such as `https://github.com/your-github-username/Paddle`.
+Transfer to the home page of GitHub [PaddlePaddle](https://github.com/PaddlePaddle/Paddle) ,and then click button `Fork`  to generate the git under your own file directory,such as `https://github.com/USERNAME/Paddle`.
 
 ## Clone
 
 Clone remote git to local:
 
 ```bash
-➜  git clone https://github.com/your-github-username/Paddle
+➜  git clone https://github.com/USERNAME/Paddle
 ➜  cd Paddle
 ```
 
@@ -138,8 +138,8 @@ Check the name of current remote repository with `git remote`.
 ➜  git remote
 origin
 ➜  git remote -v
-origin    https://github.com/your-github-username/Paddle (fetch)
-origin    https://github.com/your-github-username/Paddle (push)
+origin    https://github.com/USERNAME/Paddle (fetch)
+origin    https://github.com/USERNAME/Paddle (push)
 ```
 
 origin is the name of remote repository that we clone,which is also the Paddle under your own account. Next we create a remote host of an original Paddle and name it upstream.
@@ -160,7 +160,7 @@ Get the latest code of upstream and update current branch.
 
 ## Push to remote repository
 
-Push local modification to GitHub (`https://github.com/your-github-username/Paddle`).
+Push local modification to GitHub (`https://github.com/USERNAME/Paddle`).
 
 ```bash
 # submit it to remote git the branch my-cool-stuff of origin
