@@ -53,7 +53,7 @@
 
 ### 通过单元测试
 
-你在 Pull Request 中每提交一次新的 commit 后，会触发 CI 单元测试，请确认你的 commit message 中已加入必要的说明，请见[提交（commit）](./local_dev_guide_cn.html#commit)
+你在 Pull Request 中每提交一次新的 commit 后，会触发 CI 单元测试，请确认你的 commit message 中已加入必要的说明，请见[提交（commit）](./local_dev_guide_cn.html#提交 commit)
 
 请你关注你 Pull Request 中的 CI 单元测试进程，它将会在几个小时内完成
 
