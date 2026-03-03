@@ -6,7 +6,7 @@
 torch.distributions.constraints.Constraint(*args, **kwargs)
 ```
 
-### [paddle.distribution.constraint.Constraint](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/constraint/Constraint_cn.html#paddle/distribution/constraint/Constraint_cn#cn-api-paddle-distribution-constraint-Constraint)
+### [paddle.distribution.constraint.Constraint](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/distribution/constraint.py#L24-L31)
 
 ```python
 paddle.distribution.constraint.Constraint(*args, **kwargs)

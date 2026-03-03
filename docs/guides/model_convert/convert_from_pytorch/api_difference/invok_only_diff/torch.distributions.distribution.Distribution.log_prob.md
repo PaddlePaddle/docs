@@ -6,7 +6,7 @@
 torch.distributions.distribution.Distribution.log_prob(value)
 ```
 
-### [paddle.distribution.Distribution.log_prob](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/distribution/Distribution/log_prob_cn.html#paddle/distribution/Distribution/log_prob_cn#cn-api-paddle-distribution-Distribution-log_prob)
+### [paddle.distribution.Distribution.log_prob](https://github.com/PaddlePaddle/Paddle/blob/e6b0ae75d5a7a47100e0e13f34a6ddd61c14b450/python/paddle/distribution/distribution.py#L122-L124)
 
 ```python
 paddle.distribution.Distribution.log_prob(value)
