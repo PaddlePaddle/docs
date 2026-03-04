@@ -212,6 +212,6 @@ else:
 
 ## Reference
 
-- [Lecture Notes From Artificial Intelligence Is The New Electricity By Andrew Ng](https://manavsehgal.com/lecture-notes-from-artificial-intelligence-is-the-new-electricity-by-andrew-ng)
+- [Lecture Notes From Artificial Intelligence Is The New Electricity By Andrew Ng](https://manavsehgal.com/lecture-notes-from-artificial-intelligence-is-the-new-electricity-by-andrew-ng-4712dcbf26e5)
 - Modern compiler implementation in ML, by Andrew W. Appel
 - [Optimizing Memory Consumption in Deep learning](https://web.archive.org/web/20180905150035/http://mxnet.incubator.apache.org/architecture/note_memory.html)
