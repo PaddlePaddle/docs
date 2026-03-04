@@ -15,7 +15,7 @@ LBFGS 具体原理参考书籍 Jorge Nocedal, Stephen J. Wright, Numerical Optim
 使用方法
 :::::::::
 - LBFGS 优化器此实现为类形式，与 Paddle 现有 SGD、Adam 优化器相似。
-  通过调用 backward()计算梯度，并使用 step(closure)更新网络参数，其中 closure 为需要优化的闭包函数。
+  通过调用 backward() 计算梯度，并使用 step(closure) 更新网络参数，其中 closure 为需要优化的闭包函数。
 
 
 .. warning::

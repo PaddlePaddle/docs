@@ -87,7 +87,7 @@ Date:   xxx
 | [pre-commit](https://github.com/pre-commit/pre-commit) | hook 管理工具 | >=2.17.0 |
 | [pre-commit/pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks) | pre-commit 官方支持的 hook，执行一些通用检查 | 4.4.0 |
 | [Lucas-C/pre-commit-hooks](https://github.com/Lucas-C/pre-commit-hooks.git) | 社区维护的一些通用的 hook，含将 CRLF 改为 LF、移除 Tab 等 hook | 1.5.1 |
-| [copyright_checker](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/codestyle/copyright.hook) | Copyright 检查 | 本地脚本 |
+| [copyright_checker](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/codestyle/copyright.py) | Copyright 检查 | 本地脚本 |
 | [typos](https://github.com/crate-ci/typos) | 拼写错误检查 | 1.43.1 |
 | [ruff](https://github.com/astral-sh/ruff) | Python 代码风格检查 | 0.15.0 |
 | [clang-format](https://github.com/llvm/llvm-project/tree/main/clang/tools/clang-format) | C++ 代码格式化 | 13.0.0 |
