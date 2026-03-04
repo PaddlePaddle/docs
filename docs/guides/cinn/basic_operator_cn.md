@@ -28,7 +28,7 @@
 |:-----------------:|:--------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------:|
 |    Convolution    | dnnl::convolution_forward / dnnl::convolution_backward_weights / dnnl::convolution_backward_data 等 | cudnnConvolutionForward / cudnnConvolutionBackwardFilter / cudnnConvolutionBackwardData 等                            |
 |        Dot        | cblas_sgemm / cblas_sgemm_batch 等                                                                  | cublasSgemm / cublasSgemmBatched / cublasGemmEx 等                                                                    |
-| BatchNormalzation | dnnl::batch_normalization_forward / dnnl::batch_normalization_backward 等                           | cudnnBatchNormalizationForwardInference / cudnnBatchNormalizationForwardTraining / cudnnBatchNormalizationBackward 等 |
+| BatchNormalization | dnnl::batch_normalization_forward / dnnl::batch_normalization_backward 等                           | cudnnBatchNormalizationForwardInference / cudnnBatchNormalizationForwardTraining / cudnnBatchNormalizationBackward 等 |
 
 ## 基础算子分类
 
