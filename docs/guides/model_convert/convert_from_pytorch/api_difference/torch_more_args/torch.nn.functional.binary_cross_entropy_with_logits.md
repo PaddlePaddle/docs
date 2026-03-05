@@ -9,14 +9,16 @@ torch.nn.functional.binary_cross_entropy_with_logits(input, target, weight=None,
 paddle.nn.functional.binary_cross_entropy_with_logits(logit, label, weight=None, reduction='mean', pos_weight=None, name=None)
 ```
 
+其中 `input` 是 Paddle 参数 `logit` 的别名，`target` 是 Paddle 参数 `label` 的别名。
+
 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | logit        | 表示输入的 Tensor。                                       |
-| target        | label        | 标签，和 input 具有相同的维度，仅参数名不一致。                                                   |
+| input         | logit        | 表示输入的 Tensor。Paddle 兼容 `input` 别名，无需改写。                                       |
+| target        | label        | 标签，和 input 具有相同的维度。Paddle 兼容 `target` 别名，无需改写。                                                   |
 | weight        | weight       | 类别权重。                                                |
 | size_average  | -            | 已废弃，和 reduce 组合决定损失计算方式。 Paddle 无此参数，需要转写。                      |
 | reduce        | -            | 已废弃，和 size_average 组合决定损失计算方式。 Paddle 无此参数，需要转写。                |
