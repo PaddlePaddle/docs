@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.cuda.reset_max_memory_allocated
 
-### [torch.cuda.reset_max_memory_allocated](https://pytorch.org/docs/stable/generated/torch.cuda.reset_max_memory_allocated.html#torch.cuda.reset_max_memory_allocated)
+### [torch.cuda.reset_max_memory_allocated](https://docs.pytorch.org/docs/stable/generated/torch.cuda.memory.reset_max_memory_allocated.html#torch.cuda.reset_max_memory_allocated)
 
 ```python
 torch.cuda.reset_max_memory_allocated(device=None)

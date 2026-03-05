@@ -1,5 +1,5 @@
 ## [ 组合替代实现 ]torch.inference_mode
-### [torch.inference_mode](https://pytorch.org/docs/stable/generated/torch.inference_mode.html#torch.inference_mode)
+### [torch.inference_mode](https://docs.pytorch.org/docs/stable/generated/torch.autograd.grad_mode.inference_mode.html#torch.inference_mode)
 ```python
 torch.inference_mode(mode=True)
 ```
