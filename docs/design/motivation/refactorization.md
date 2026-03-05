@@ -189,7 +189,7 @@ Maintaining a map, whose key is the type name and the value is the corresponding
 ## Related Concepts
 
 ### Op_Maker
-It's constructor takes `proto` and `checker`. They are completed during Op_Maker's construction. ([scale op definition](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/ops.yaml#L4792))
+It's constructor takes `proto` and `checker`. They are completed during Op_Maker's construction. ([ScaleOpMaker](https://github.com/PaddlePaddle/Paddle/blob/release/2.0/paddle/fluid/operators/scale_op.cc#L37))
 
 ### Register Macros
 ```cpp
