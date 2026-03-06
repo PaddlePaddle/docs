@@ -5,7 +5,7 @@
 1. 不需要开发新的 C++ 算子，可以用其他 Python API 组合得到新的 API，只写 Python 代码即可。
 2. 需要开发新的 C++ 算子，需要用 C++ 开发算子实现代码、再封装 Python API 代码。
 
-针对第二种情况，可参考本文完成 C++ 算子的开发，并参考 [开发 API Python 端](new_python_api_cn.html) 章节完成 Python 端的开发。
+针对第二种情况，可参考本文完成 C++ 算子的开发，并参考 [开发 API Python 端](new_python_api_cn.md) 章节完成 Python 端的开发。
 
 > 注：飞桨 C++ 算子的开发范式正处在重构升级后的上线初期，如果在开发过程中遇到问题欢迎通过 [Issue](https://github.com/PaddlePaddle/Paddle/issues) 向我们反馈。
 
@@ -15,11 +15,11 @@
 
 - 已签署 [贡献者许可协议（Contributor License Agreement，CLA）](https://cla-assistant.io/PaddlePaddle/Paddle)；
 
-- 已阅读 [代码贡献流程](..\code_contributing_path_cn.html)、[贡献前阅读](read_before_contributing_cn.html) 和相关代码规范；
+- 已阅读 [代码贡献流程](..\code_contributing_path_cn.md)、[贡献前阅读](read_before_contributing_cn.md) 和相关代码规范；
 
-- 已根据 [API 设计和命名规范](api_design_guidelines_standard_cn.html) 确定了新增 API 的名称和存放位置；
+- 已根据 [API 设计和命名规范](api_design_guidelines_standard_cn.md) 确定了新增 API 的名称和存放位置；
 
-- 已提交 [API 设计文档](read_before_contributing_cn.html#apiDesignDoc) 并通过评审；
+- 已提交 [API 设计文档](read_before_contributing_cn.md#apiDesignDoc) 并通过评审；
 
 - 已将 [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 仓库的代码获取到本地，准备好了 Paddle 开发环境。
 
@@ -56,7 +56,7 @@ Python API、算子 Yaml 配置、算子 InferMeta 函数 和算子 Kernel 之�
 Python API 到算子 InferMeta 函数和 Kernel 调用之间的框架调度部分的逻辑代码主要通过算子 Yaml 配置中的信息自动生成，也可以理解为算子 Yaml 配置的作用是通过自动代码生成将上层 Python API 与底层算子的 Kernel 建立连接。
 
 
-接下来以 trace 算子操作，计算输入 Tensor 在指定平面上的对角线元素之和，并输出相应的计算结果，即以 [paddle.trace](../../api/paddle/trace_cn.html#trace) 为例来介绍如何新增算子。
+接下来以 trace 算子操作，计算输入 Tensor 在指定平面上的对角线元素之和，并输出相应的计算结果，即以 [paddle.trace](../../api/paddle/trace_cn.rst#trace) 为例来介绍如何新增算子。
 
 
 | **内容**       | **trace 示例代码仓库链接**                                             |
@@ -74,7 +74,7 @@ Python API 到算子 InferMeta 函数和 Kernel 调用之间的框架调度部�
 
 ### 3.1 算子 Yaml 文件配置
 
-在 `paddle/phi/ops/yaml/ops.yaml` 和 `paddle/phi/ops/yaml/backward.yaml` 文件中对算子进行描述及定义，在框架编译时会根据 YAML 文件中的配置自动生成 C++ 端的相关代码接口以及内部实现（详见下文 [8.1 Paddle 基于 Yaml 配置自动生成算子代码的逻辑解读](#paddleyaml) 小节的介绍），下面主要以 [paddle.trace](../../api/paddle/trace_cn.html#trace) 为例介绍算子的 Yaml 配置规则：
+在 `paddle/phi/ops/yaml/ops.yaml` 和 `paddle/phi/ops/yaml/backward.yaml` 文件中对算子进行描述及定义，在框架编译时会根据 YAML 文件中的配置自动生成 C++ 端的相关代码接口以及内部实现（详见下文 [8.1 Paddle 基于 Yaml 配置自动生成算子代码的逻辑解读](#paddleyaml) 小节的介绍），下面主要以 [paddle.trace](../../api/paddle/trace_cn.rst#trace) 为例介绍算子的 Yaml 配置规则：
 
 [paddle/phi/ops/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/ops.yaml) 中 trace 相关配置：
 
@@ -755,14 +755,14 @@ PD_REGISTER_KERNEL(trace,
 
 实现完算子 kernel 之后，建议先编译测试一下，编译成功之后，再继续后面的步骤。
 
-详细的编译环境准备和执行流程可参考 [从源码编译](../../install/compile/fromsource.html)，下面简单介绍几个主要步骤。
+详细的编译环境准备和执行流程可参考 [从源码编译](../../install/compile/fromsource.rst)，下面简单介绍几个主要步骤。
 在 `Paddle` 代码目录下创建并切换到 build 目录：
 
 ```plain
 mkdir build && cd build
 ```
 
-执行`cmake`命令，具体选项可参考 [从源码编译](../../install/compile/fromsource.html) 中的介绍，下面的命令为编译 Python3.10，GPU 版本，带测试，Release 版本的 Paddle。
+执行`cmake`命令，具体选项可参考 [从源码编译](../../install/compile/fromsource.rst) 中的介绍，下面的命令为编译 Python3.10，GPU 版本，带测试，Release 版本的 Paddle。
 
 ```plain
 cmake .. -DPY_VERSION=3.10 -DWITH_GPU=ON -DWITH_TESTING=ON -DCMAKE_BUILD_TYPE=Release
@@ -883,7 +883,7 @@ def trace(
         return out
 ```
 
-- Python API 实现要点（详见 [开发 API Python 端](./new_python_api_cn.html)）
+- Python API 实现要点（详见 [开发 API Python 端](./new_python_api_cn.md)）
   - 对输入参数进行合法性检查，即 `__check_input(input, offset, axis1, axis2)`
   - 添加飞桨新架构下动静统一分支的调用，通过 `if in_dynamic_or_pir_mode` 进入动态图及 PIR 分支
   - 动静统一分支后剩余的代码，为旧架构遗留的静态图分支
@@ -988,9 +988,9 @@ class TestTraceOp(OpTest):
 
 ### 6.2 Python API 单元测试
 
-Python API 也需要编写相关的单测进行测试，详见 [开发 API Python 端](new_python_api_cn.html)。
+Python API 也需要编写相关的单测进行测试，详见 [开发 API Python 端](new_python_api_cn.md)。
 
-其他有关单元测试添加的注意事项请参考 [Op 开发手册](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index) 及 [API 单测开发及验收规范](api_acceptance_criteria_cn.html)。
+其他有关单元测试添加的注意事项请参考 [Op 开发手册](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index) 及 [API 单测开发及验收规范](api_acceptance_criteria_cn.md)。
 
 ### 6.3 运行单元测试
 
@@ -1051,7 +1051,7 @@ PADDLE_ENFORCE_EQ(比较对象 A, 比较对象 B, 错误提示信息)
 #### 7.3.1 为可原位计算的算子注册 inplace
 有些算子的计算逻辑中，输出可以复用输入的显存空间，也可称为原位计算。例如[reshape](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/reshape_kernel.cc)中，输出`out`可以复用输入`x`的显存空间，因为该算子的计算逻辑不会改变`x`的实际数据，只是修改它的 shape，输出和输入复用同一块显存空间不影响结果。对于这类算子，可以注册`inlace`，从而让框架在运行时自动地进行显存优化。
 
-注册方式为在算子的 YAML 配置中添加`inplace`配置项，格式如：`(x -> out)`，详见[YAML 配置规则](new_cpp_op_cn.html#yaml)。示例：
+注册方式为在算子的 YAML 配置中添加`inplace`配置项，格式如：`(x -> out)`，详见[YAML 配置规则](new_cpp_op_cn.md#yaml)。示例：
 
 ```yaml
 - op : reshape
@@ -1062,12 +1062,12 @@ PADDLE_ENFORCE_EQ(比较对象 A, 比较对象 B, 错误提示信息)
 ```
 
 #### 7.3.2 减少反向算子中的无关变量
-通常反向算子会依赖于前向算子的某些输入、输出 Tensor，以供反向算子计算使用。但有些情况下，反向算子不需要前向算子的所有输入和输出；有些情况下，反向算子只需要前向算子的部分输入和输出；有些情况下，反向算子只需要使用前向算子中输入和输出变量的 Shape 和 [LoD](new_cpp_op_cn.html#lod) 信息。若开发者在注册反向算子时，将不必要的前向算子输入和输出作为反向算子的输入，会导致这部分显存无法被框架现有的显存优化策略优化，从而导致模型显存占用过高。
+通常反向算子会依赖于前向算子的某些输入、输出 Tensor，以供反向算子计算使用。但有些情况下，反向算子不需要前向算子的所有输入和输出；有些情况下，反向算子只需要前向算子的部分输入和输出；有些情况下，反向算子只需要使用前向算子中输入和输出变量的 Shape 和 [LoD](new_cpp_op_cn.md#lod) 信息。若开发者在注册反向算子时，将不必要的前向算子输入和输出作为反向算子的输入，会导致这部分显存无法被框架现有的显存优化策略优化，从而导致模型显存占用过高。
 
 所以在定义反向算子时需要注意以下几点：
 
 - 如果反向不需要前向的某些输入或输出参数，则无需在 args 中设置。
-- 如果有些反向算子需要依赖前向算子的输入或输出变量的的 Shape 或 [LoD](new_cpp_op_cn.html#lod)，但不依赖于变量中 Tensor 的内存 Buffer 数据，且不能根据其他变量推断出该 Shape 和 [LoD](new_cpp_op_cn.html#lod)，则可以通过 `no_need_buffer` 对该变量进行配置，详见[YAML 配置规则](new_cpp_op_cn.html#yaml)。示例：
+- 如果有些反向算子需要依赖前向算子的输入或输出变量的的 Shape 或 [LoD](new_cpp_op_cn.md#lod)，但不依赖于变量中 Tensor 的内存 Buffer 数据，且不能根据其他变量推断出该 Shape 和 [LoD](new_cpp_op_cn.md#lod)，则可以通过 `no_need_buffer` 对该变量进行配置，详见[YAML 配置规则](new_cpp_op_cn.md#yaml)。示例：
 ```yaml
 - backward_op : trace_grad
   forward : trace (Tensor x, int offset, int axis1, int axis2) -> Tensor(out)
@@ -1088,7 +1088,7 @@ PADDLE_ENFORCE_EQ(比较对象 A, 比较对象 B, 错误提示信息)
 
 减少 CPU 与 GPU 之间的拷贝和同步操作的次数。比如 fetch 操作，在每个迭代之后都会对模型参数进行更新并得到一个 loss，并且数据从 GPU 端到没有页锁定的 CPU 端的拷贝是同步的，所以频繁的 fetch 多个参数会导致模型训练速度变慢。
 
-更多算子性能优化方法，请参考 [算子性能优化 方法介绍](../op_optimization/op_optimization_method_introduction_cn.html)。
+更多算子性能优化方法，请参考 [算子性能优化 方法介绍](../op_optimization/op_optimization_method_introduction_cn.md)。
 
 ### 7.5 稀疏梯度参数更新方法
 目前稀疏梯度在做更新的时候会先对梯度做 merge，即对相同参数的梯度做累加，然后做参数以及附加参数（如 velocity）的更新。
@@ -1159,7 +1159,7 @@ The following device operations are asynchronous with respect to the host:
 
   - 改变：适用于部分 LoD-Based 算子。在实现 OpKernel 时需考虑输出 LoD 的正确计算，真实的 LoD 在前向计算结束后才能确定，此时仍需要在`InferMeta` 中调用 `ShareLoD()`，以确保 CompileTime 时对 LoD Level 做了正确的传导，可参考 [sequence_expand_op](https://github.com/PaddlePaddle/Paddle/blob/565d30950138b9f831caa33904d9016cf53c6c2e/paddle/fluid/operators/sequence_ops/sequence_expand_op.cc)；
 
-  - 消失：适用于输出不再是序列数据的 LoD-Based 算子。此时不用再考虑前向的 LoD 传导问题，可参考 [sequence_pool_op](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/sequence_ops/sequence_pool_op.cc)；
+  - 消失：适用于输出不再是序列数据的 LoD-Based 算子。此时不用再考虑前向的 LoD 传导问题，可参考 [sequence_pool_op](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/sequence_ops/sequence_mask_op.cc)；
 
 其它重要的注意事项：
 
@@ -1182,7 +1182,7 @@ Paddle 支持动态图和静态图两种模式，在 YAML 配置文件中完成�
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/code_gen_by_yaml.png?raw=true" width="700px" ></center>
 
-如前文所述，算子开发时通过 YAML 配置文件对算子进行描述及定义，包括前向 [paddle/phi/api/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/ops.yaml) 和反向 [paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml)。动态图和静态图两种模式的执行流程不同，具体如下所示：
+如前文所述，算子开发时通过 YAML 配置文件对算子进行描述及定义，包括前向 [paddle/phi/api/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/api/yaml/ops.yaml) 和反向 [paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/api/yaml/backward.yaml)。动态图和静态图两种模式的执行流程不同，具体如下所示：
 
 - 动态图中自动生成的代码包括从 Python API 到计算 Kernel 间的各层调用接口实现，从底层往上分别为：
   - **C++ API**：一套与 Python API 参数对齐的 C++ 接口（只做逻辑计算，不支持自动微分），内部封装了底层 kernel 的选择和调用等逻辑，供上层灵活使用。
@@ -1195,4 +1195,4 @@ Paddle 支持动态图和静态图两种模式，在 YAML 配置文件中完成�
 
 静态图由于是先组网后计算，Python API 主要负责组网，算子的调度和 kernel 计算由静态图执行器来完成，因此自动生成的代码是将配置文件中的算子信息注册到框架内供执行器调度，主要包括 [OpMaker](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/op_proto_maker.h)（静态图中定义算子的输入、输出以及属性等信息）和`REGISTER_OPERATOR`（将算子名称以及 OpMaker 等信息进行注册）等静态图算子注册组件，具体的代码逻辑可参考 `paddle/fluid/operators/generated_op.cc`。
 
-> **注意：由于代码自动生成在编译时进行，所以查看上述生成代码需要先完成** [**框架的编译**](../../install/compile/fromsource.html)**。**
+> **注意：由于代码自动生成在编译时进行，所以查看上述生成代码需要先完成** [**框架的编译**](../../install/compile/fromsource.rst)**。**
