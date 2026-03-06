@@ -101,7 +101,7 @@ In-place is a built-in attribute of an operator. Since we treat in-place and oth
 
 #### construct control flow graph
 
-Following is the ProgramDesc protobuf of [machine translation](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/book/test_machine_translation.py) example.
+Following is the ProgramDesc protobuf of [machine translation](https://github.com/PaddlePaddle/Paddle/blob/release/1.8/python/paddle/fluid/tests/book/test_machine_translation.py) example.
 
 - Block0:
 
@@ -214,4 +214,4 @@ else:
 
 - [Lecture Notes From Artificial Intelligence Is The New Electricity By Andrew Ng](https://manavsehgal.com/lecture-notes-from-artificial-intelligence-is-the-new-electricity-by-andrew-ng-4712dcbf26e5)
 - Modern compiler implementation in ML, by Andrew W. Appel
-- [Optimizing Memory Consumption in Deep learning](https://mxnet.incubator.apache.org/architecture/note_memory.html)
+- [Optimizing Memory Consumption in Deep learning](https://web.archive.org/web/20180905150035/http://mxnet.incubator.apache.org/architecture/note_memory.html)

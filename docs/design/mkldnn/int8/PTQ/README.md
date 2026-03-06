@@ -1,6 +1,6 @@
 # INT8 OneDNN post-training quantization
 
-This document is based on a previously created document [post-training quantization](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/tests/api/int8_mkldnn_quantization.md) and it describes how to use Paddle inference Engine to convert the FP32 models to INT8 models using INT8 MKL-DNN post-training quantization. We provide the instructions on enabling INT8 MKL-DNN quantization in Paddle inference and show the accuracy and performance results of the quantized models, including 7 image classification models: GoogleNet, MobileNet-V1, MobileNet-V2, ResNet-101, ResNet-50, VGG16, VGG19, and 1 object detection model Mobilenet-SSD.
+This document is based on a previously created document [post-training quantization](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/mkldnn/int8/README.md) and it describes how to use Paddle inference Engine to convert the FP32 models to INT8 models using INT8 MKL-DNN post-training quantization. We provide the instructions on enabling INT8 MKL-DNN quantization in Paddle inference and show the accuracy and performance results of the quantized models, including 7 image classification models: GoogleNet, MobileNet-V1, MobileNet-V2, ResNet-101, ResNet-50, VGG16, VGG19, and 1 object detection model Mobilenet-SSD.
 
 ## 0. Install PaddlePaddle
 
@@ -13,7 +13,7 @@ cmake ..  -DWITH_TESTING=ON -WITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_MKL=ON -DW
 Note: MKL-DNN and MKL are required.
 ## 1. Enable INT8 MKL-DNN quantization
 
-For reference, please examine the code of unit test enclosed in [analyzer_int8_image_classification_tester.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/tests/api/analyzer_int8_image_classification_tester.cc) and [analyzer_int8_object_detection_tester.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/tests/api/analyzer_int8_object_detection_tester.cc).
+For reference, please examine the code of unit test enclosed in [analyzer_int8_image_classification_tester.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/test/cpp/inference/api/analyzer_quant_image_classification_tester.cc) and [analyzer_int8_object_detection_tester.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/test/cpp/inference/api/analyzer_detect_tester.cc).
 
 * ### Create Analysis config
 
