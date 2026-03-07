@@ -15,7 +15,7 @@
 
 - 已签署 [贡献者许可协议（Contributor License Agreement，CLA）](https://cla-assistant.io/PaddlePaddle/Paddle)；
 
-- 已阅读 [代码贡献流程](..\code_contributing_path_cn.html)、[贡献前阅读](read_before_contributing_cn.html) 和相关代码规范；
+- 已阅读 [代码贡献流程](../code_contributing_path_cn.html)、[贡献前阅读](read_before_contributing_cn.html) 和相关代码规范；
 
 - 已根据 [API 设计和命名规范](api_design_guidelines_standard_cn.html) 确定了新增 API 的名称和存放位置；
 
@@ -36,7 +36,7 @@
 
 | **内容**       | **新增文件位置**                                             |
 | -------------- | ------------------------------------------------------------ |
-| 算子描述及定义 | 前向算子定义：[paddle/phi/api/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/ops.yaml) <br/>反向算子定义：[paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/backward.yaml) |
+| 算子描述及定义 | 前向算子定义：[paddle/phi/ops/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/ops.yaml) <br/>反向算子定义：[paddle/phi/ops/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/backward.yaml) |
 | 算子 InferMeta | [paddle/phi/infermeta](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/infermeta) 目录下的相应文件中 |
 | 算子 Kernel    | [paddle/phi/kernels](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/kernels) 目录下的如下文件：（一般情况）<br/>xxx_kernel.h<br/>xxx_kernel.cc<br/>xxx_grad_kernel.h<br/>xxx_grad_kernel.cc |
 | Python API     | [python/paddle](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle) 目录下的相应子目录中的 .py 文件，遵循相似功能的 API 放在同一文件夹的原则 |
@@ -61,7 +61,7 @@ Python API 到算子 InferMeta 函数和 Kernel 调用之间的框架调度部�
 
 | **内容**       | **trace 示例代码仓库链接**                                             |
 | -------------- | ------------------------------------------------------------ |
-| 算子描述及定义 | [paddle/phi/api/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/ops.yaml) <br/>[paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/backward.yaml) |
+| 算子描述及定义 | [paddle/phi/ops/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/ops.yaml) <br/>[paddle/phi/ops/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/backward.yaml) |
 | 算子 InferMeta | [paddle/phi/infermeta/unary.cc](https://github.com/PaddlePaddle/Paddle/blob/befa78ea3fa9d0dae096a7de91f626b0c31daee8/paddle/phi/infermeta/unary.cc#L721) |
 | 算子 Kernel    | [paddle/phi/kernels](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/kernels) 目录下的如下文件：<br/>[/trace_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_kernel.h)<br/>[/cpu/trace_kernel.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/trace_kernel.cc)<br/>[/gpu/trace_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_kernel.cu)<br/>[/trace_grad_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_kernel.h)<br/>[/cpu/trace_grad_kernel.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/trace_grad_kernel.cc)<br/>[/gpu/trace_grad_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_grad_kernel.cu) |
 | Python API     | [python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/bd4dc3be34584f9b273ecec07297fb05e1cf4c52/python/paddle/tensor/math.py#L2277) |
@@ -1159,7 +1159,7 @@ The following device operations are asynchronous with respect to the host:
 
   - 改变：适用于部分 LoD-Based 算子。在实现 OpKernel 时需考虑输出 LoD 的正确计算，真实的 LoD 在前向计算结束后才能确定，此时仍需要在`InferMeta` 中调用 `ShareLoD()`，以确保 CompileTime 时对 LoD Level 做了正确的传导，可参考 [sequence_expand_op](https://github.com/PaddlePaddle/Paddle/blob/565d30950138b9f831caa33904d9016cf53c6c2e/paddle/fluid/operators/sequence_ops/sequence_expand_op.cc)；
 
-  - 消失：适用于输出不再是序列数据的 LoD-Based 算子。此时不用再考虑前向的 LoD 传导问题，可参考 [sequence_pool_op](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/sequence_ops/sequence_pool_op.cc)；
+  - 消失：适用于输出不再是序列数据的 LoD-Based 算子。此时不用再考虑前向的 LoD 传导问题，可参考 [sequence_pool_op](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/sequence_ops/sequence_mask_op.cc)；
 
 其它重要的注意事项：
 
@@ -1182,7 +1182,7 @@ Paddle 支持动态图和静态图两种模式，在 YAML 配置文件中完成�
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/code_gen_by_yaml.png?raw=true" width="700px" ></center>
 
-如前文所述，算子开发时通过 YAML 配置文件对算子进行描述及定义，包括前向 [paddle/phi/api/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/ops.yaml) 和反向 [paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml)。动态图和静态图两种模式的执行流程不同，具体如下所示：
+如前文所述，算子开发时通过 YAML 配置文件对算子进行描述及定义，包括前向 [paddle/phi/ops/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/ops/yaml/ops.yaml) 和反向 [paddle/phi/ops/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/ops/yaml/backward.yaml)。动态图和静态图两种模式的执行流程不同，具体如下所示：
 
 - 动态图中自动生成的代码包括从 Python API 到计算 Kernel 间的各层调用接口实现，从底层往上分别为：
   - **C++ API**：一套与 Python API 参数对齐的 C++ 接口（只做逻辑计算，不支持自动微分），内部封装了底层 kernel 的选择和调用等逻辑，供上层灵活使用。
