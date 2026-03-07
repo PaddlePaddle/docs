@@ -1,6 +1,6 @@
 # Paddle 框架下 ROCm(HIP)算子单测修复指导
 
-进行 ROCm(HIP)算子修复之前，请先仔细阅读 [曙光智算平台-Paddle 源码编译和单测执行](./compile_and_test_cn.html) 并按照其中步骤准备好编译和单测环境。并阅读 [Paddle 适配 C86 加速卡详解](./paddle_c86_cn.html) 文档了解当前 Paddle 与 ROCm(HIP)的适配方案和具体的代码修改。
+进行 ROCm(HIP)算子修复之前，请先仔细阅读 [曙光智算平台-Paddle 源码编译和单测执行](./compile_and_test_cn.html) 并按照其中步骤准备好编译和单测环境。并阅读 [Paddle 适配 C86 加速卡详解](./paddle_c86_cn.md) 文档了解当前 Paddle 与 ROCm(HIP)的适配方案和具体的代码修改。
 
 常见的 HIP 算子问题已经修复办法如下，也可以在[PaddlePR](https://github.com/PaddlePaddle/Paddle/pulls?q=is%3Apr+%5BROCm%5D)中搜索`[ROCm]`关键字查看 ROCm(HIP)相关的代码修改，更多问题请自行探索解决方法。
 
@@ -42,7 +42,7 @@ data_type[float]:data_layout[Undefined(AnyLayout)]:place[Place(cpu)]:library_typ
 
 ![图片](../images/sugon_find_source_code.png)
 
-移除的原因可以打开具体的源码文件进行查看，例如打开[lu_op.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/lu_op.cu#L15), 可见如下结果：
+移除的原因可以打开具体的源码文件进行查看，例如打开[lu_op.cu](https://github.com/PaddlePaddle/Paddle/blob/release/2.3/paddle/fluid/operators/lu_op.cu#L15), 可见如下结果：
 
 ![图片](../images/sugon_paddle_with_hip.png)
 
@@ -68,7 +68,7 @@ data_type[float]:data_layout[Undefined(AnyLayout)]:place[Place(gpu:0)]:library_t
 data_type[double]:data_layout[Undefined(AnyLayout)]:place[Place(cpu)]:library_type[PLAIN]
 ```
 
-查看对应算子源码文件 [pool_cudnn_op.cu.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/pool_cudnn_op.cu.cc#L555) 可知对应的`pool2d_grad_grad`只在 CUDA 平台下注册了 CUDNN 的`pool2d_grad_grad`算子，但是没有在 HIP 平台下注册，因此修改代码在 HIP 平台下进行注册即可。
+查看对应算子源码文件 [pool_cudnn_op.cu.cc](https://github.com/PaddlePaddle/Paddle/blob/release/2.0/paddle/fluid/operators/pool_cudnn_op.cu.cc#L341) 可知对应的`pool2d_grad_grad`只在 CUDA 平台下注册了 CUDNN 的`pool2d_grad_grad`算子，但是没有在 HIP 平台下注册，因此修改代码在 HIP 平台下进行注册即可。
 
 ![图片](../images/sugon_register_op_kernel.png)
 

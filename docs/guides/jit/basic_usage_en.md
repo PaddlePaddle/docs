@@ -32,7 +32,7 @@ net = paddle.jit.to_static(net)  # 动静转换
 
 基本执行流程如下：
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_train.png" style="zoom:50%" />
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/to_static_train.png" style="zoom:50%" />
 
 
 ### 1.1 动态图 layer 生成 Program
@@ -251,7 +251,7 @@ def add_two(x, y):
 + **只有**控制流的判断条件**依赖了 ``Tensor`` **（如 ``shape`` 或 ``value`` ），才会转写为对应 Op
 
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/convert_cond.png" style="zoom:50%" />
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/convert_cond.png" style="zoom:50%" />
 
 
 

@@ -42,7 +42,7 @@ Agreement：
     - `DataLayout` Please refer to [layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/common/layout.h)
     - `Place` Please refer to [place.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/place.h)
     - `const std::vector<int64_t>&`
-    - `const ScalarArray&` Please refer to [scalar_array.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/scalar_array.h)
+    - `const IntArray&` Please refer to [int_array.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/int_array.h)
     - `const std::vector<int>&`
     - `const std::string&`
     - `const std::vector<bool>&`

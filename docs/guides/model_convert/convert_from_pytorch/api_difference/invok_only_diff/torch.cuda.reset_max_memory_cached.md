@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torch.cuda.reset_max_memory_cached
 
-### [torch.cuda.reset_max_memory_cached](https://pytorch.org/docs/stable/generated/torch.cuda.reset_max_memory_cached.html#torch.cuda.reset_max_memory_cached)
+### [torch.cuda.reset_max_memory_cached](https://docs.pytorch.org/docs/stable/generated/torch.cuda.memory.reset_max_memory_cached.html#torch.cuda.reset_max_memory_cached)
 
 ```python
 torch.cuda.reset_max_memory_cached(device=None)

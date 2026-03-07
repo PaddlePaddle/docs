@@ -1,6 +1,6 @@
 ## [ 仅 API 调用方式不一致 ]torchvision.models.DenseNet169_Weights.IMAGENET1K_V1
 
-### [torchvision.models.DenseNet169_Weights.IMAGENET1K_V1](https://pytorch.org/vision/stable/models/generated/DenseNet169_Weights.html#torchvision.models.DenseNet169_Weights.IMAGENET1K_V1)
+### [torchvision.models.DenseNet169_Weights.IMAGENET1K_V1](https://docs.pytorch.org/vision/stable/models/generated/torchvision.models.densenet169.html#torchvision.models.DenseNet169_Weights)
 
 ```python
 torchvision.models.DenseNet169_Weights.IMAGENET1K_V1

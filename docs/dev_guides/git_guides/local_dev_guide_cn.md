@@ -11,7 +11,7 @@
 以下教程将指导你提交代码。
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
-跳转到[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) GitHub 首页，然后单击 `Fork` 按钮，生成自己目录下的仓库，比如 <https://github.com/USERNAME/Paddle>。
+跳转到[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) GitHub 首页，然后单击 `Fork` 按钮，生成自己目录下的仓库，比如 `https://github.com/USERNAME/Paddle`。
 
 ## 克隆（Clone）
 
@@ -150,7 +150,7 @@ upstream
 
 ## Push 到远程仓库
 
-将本地的修改推送到 GitHub 上，也就是 https://github.com/USERNAME/Paddle。
+将本地的修改推送到 GitHub 上，也就是 `https://github.com/USERNAME/Paddle`。
 
 ```bash
 # 推送到远程仓库 origin 的 my-cool-stuff 分支上

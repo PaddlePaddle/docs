@@ -39,7 +39,7 @@ _________________________
                 return paddle.tanh(y)
 
 
-第三步：创建网络及声明输入数据，执行前向计算过程。注意，输入数据目前尚不支持可变形状，即类似 paddle.static.data('x', shape=(None, 2), dtype='float32')写法，如果您的输入数据形状会变化可以参考 :ref:`附 1 <autograd_appendix_1>` 写法。
+第三步：创建网络及声明输入数据，执行前向计算过程。注意，输入数据目前尚不支持可变形状，即类似 ``paddle.static.data('x', shape=(None, 2), dtype='float32')`` 写法，如果您的输入数据形状会变化可以参考 :ref:`附 1 <autograd_appendix_1>` 写法。
 
 ..  code-block:: python
 

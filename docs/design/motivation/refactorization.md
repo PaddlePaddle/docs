@@ -85,7 +85,7 @@ The word *graph* is interchangeable with *block* in this document.  A graph cons
 
 1. The invocation of `train` or [`infer`](https://github.com/PaddlePaddle/Paddle/blob/release/1.2/python/paddle/v2/inference.py#L108) methods in the Python program does the following:
 
-   1. Create a new Scope instance in the [scope hierarchy](../../concepts/scope.html) for each run of a block,
+   1. Create a new Scope instance in the [scope hierarchy](../concepts/scope.md) for each run of a block,
       1. realize local variables defined in the BlockDesc message in the new scope,
       1. a scope is similar to the stack frame in programming languages,
 
@@ -189,7 +189,7 @@ Maintaining a map, whose key is the type name and the value is the corresponding
 ## Related Concepts
 
 ### Op_Maker
-It's constructor takes `proto` and `checker`. They are completed during Op_Maker's construction. ([ScaleOpMaker](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/scale_op.cc#L37))
+It's constructor takes `proto` and `checker`. They are completed during Op_Maker's construction. ([ScaleOpMaker](https://github.com/PaddlePaddle/Paddle/blob/release/2.0/paddle/fluid/operators/scale_op.cc#L37))
 
 ### Register Macros
 ```cpp

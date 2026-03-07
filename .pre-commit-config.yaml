@@ -19,7 +19,7 @@ repos:
       - id: remove-tabs
         types: [text]
   - repo: https://github.com/PFCCLab/typos-pre-commit-mirror.git
-    rev: v1.43.1
+    rev: v1.44.0
     hooks:
       - id: typos
         args: [--force-exclude]

@@ -61,7 +61,7 @@ If we want to support new library, a new enumerator need to be added to `Library
 ### DataType
 
 
-`DataType` is defined in [framework.proto](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/framework/framework.proto). Currently, int32/int64/fp32/fp64 are supported.
+`DataType` is defined in [framework.proto](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/framework/framework.proto). Currently, int32/int64/fp32/fp64 are supported.
 
 ### Layout
 

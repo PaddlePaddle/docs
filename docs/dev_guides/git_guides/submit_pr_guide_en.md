@@ -47,7 +47,7 @@ For the first time to submit Pull Request,you need to sign CLA(Contributor Licen
 
 ### Pass unit tests
 
-Every new commit in your Pull Request will trigger CI unit tests,so please make sure that necessary comments have been included in your commit message.Please refer to [commit](./local_dev_guide_cn.html#commit)
+Every new commit in your Pull Request will trigger CI unit tests,so please make sure that necessary comments have been included in your commit message.Please refer to [commit](./local_dev_guide_en.html#commit)
 
 Please note the procedure of CI unit tests in your Pull Request which will be finished in several hours.
 
@@ -60,7 +60,7 @@ Red cross after the tests means your commit hasn't passed certain unit test.Plea
 
 We can delete branches of remote repository in PR page after your PR is successfully merged into master repository.
 
-![delete_branch](../images/delete_branch.png)
+![delete_branch](../../dev_guides/images/delete_branch.png)
 
 We can also delete the branch of remote repository with `git push origin :the_branch_name`,such as:
 
