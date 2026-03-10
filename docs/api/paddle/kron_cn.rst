@@ -3,11 +3,7 @@
 kron
 -------------------------------
 
-.. py:function:: paddle.kron(x, y, out=None, name=None)
-
-
-
-
+.. py:function:: paddle.kron(x, y, name=None, *, out=None)
 
 Kronecker Product 算子。
 
@@ -35,10 +31,14 @@ Kronecker Product 算子。
 参数
 ::::::::::::
 
-  - **x** (Tensor) – Kron OP 的第一个输入。多维 Tensor，数据类型为 bfloat16、float16、float32、float64、int32 或 int64。
-  - **y** (Tensor) – Kron OP 的第二个输入。多维 Tensor，数据类型为 bfloat16、float16、float32、float64、int32 或 int64，与 x 相同。
-  - **out**  (Tensor，可选) -  指定算子输出结果的 Tensor，可以是程序中已经创建的任何 Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。
+  - **x** (Tensor) – Kron OP 的第一个输入。多维 Tensor，数据类型为 bfloat16、float16、float32、float64、int32 或 int64。别名 ``input``。
+  - **y** (Tensor) – Kron OP 的第二个输入。多维 Tensor，数据类型为 bfloat16、float16、float32、float64、int32 或 int64，与 x 相同。别名 ``other``。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+::::::::::::
+
+  - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 ::::::::::::
