@@ -5,19 +5,19 @@ PoissonNLLLoss
 
 .. py:class:: paddle.nn.PoissonNLLLoss(log_input=True, full=False, epsilon=1e-8, reduction='mean', name=None)
 
-该接口可创建一个 PoissonNLLLoss 可调用类，计算输入 :attr:`input` 和标签 :attr:`label` 间的 `Poisson negative log likelihood loss` 损失。该 loss 适用于真实标签服从于泊松分布时，即
+该接口可创建一个 PoissonNLLLoss 可调用类，计算输入 :attr:`input` 和标签 :attr:`label` 间的 ``Poisson negative log likelihood loss`` 损失。该 loss 适用于真实标签服从于泊松分布时，即
 
 .. math::
     \text{label} \sim \mathrm{Poisson}(\text{input})
 
 该损失函数的数学计算公式如下：
-当 `log_input` 设置为 `True` 时，损失函数的数学计算公式为：
+当 ``log_input`` 设置为 ``True`` 时，损失函数的数学计算公式为：
 
 .. math::
     \text{loss}(\text{input}, \text{label}) = \text{input} - \text{label} * \log(\text{input}+\text{epsilon}) + \log(\text{label!})
 
-其中 `epsilon` 是 ``True`` 时使用的常数小量，使得 loss 计算过程中不会导致对 0 求对数情况的出现。
-当 `log_input` 设置为 `False` 时，损失函数的数学计算公式为：
+其中 ``epsilon`` 是 ``True`` 时使用的常数小量，使得 loss 计算过程中不会导致对 0 求对数情况的出现。
+当 ``log_input`` 设置为 ``False`` 时，损失函数的数学计算公式为：
 
 .. math::
     \text{loss}(\text{input}, \text{label}) = \exp(\text{input}) - \text{label} * \text{input} + \log(\text{label!})
@@ -39,13 +39,13 @@ PoissonNLLLoss
 
 形状
 :::::::::
-    - **input** (Tensor) - 输入 `Tensor`，其形状为 :math:`[N, *]` ，其中 :math:`*` 表示任何数量的额外维度。数据类型为 float16， bfloat16， float32 或 float64。
+    - **input** (Tensor) - 输入 ``Tensor``，其形状为 :math:`[N, *]` ，其中 :math:`*` 表示任何数量的额外维度。数据类型为 float16， bfloat16， float32 或 float64。
     - **label** (Tensor) - 标签 :attr:`Tensor`， 形状、数据类型和 :attr:`input` 相同。
 
 返回
 :::::::::
 
-    - **output** (Tensor) - 输入 `input` 和 `label` 间的 `Poisson negative log likelihood loss` 损失。如果 `reduction` 为 `'none'`，则输出 Loss 形状为 `[N, *]`。如果 `reduction` 为 `'sum'` 或者 `'mean'`，则输出 Loss 形状为 `'[]'` 。
+    - **output** (Tensor) - 输入 ``input`` 和 ``label`` 间的 ``Poisson negative log likelihood loss`` 损失。如果 ``reduction`` 为 ``'none'``，则输出 Loss 形状为 ``[N, *]``。如果 ``reduction`` 为 ``'sum'`` 或者 ``'mean'``，则输出 Loss 形状为 ``[]`` 。
 
 代码示例
 :::::::::
