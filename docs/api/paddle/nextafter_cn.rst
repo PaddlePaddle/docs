@@ -10,7 +10,7 @@ nextafter
 
 逐元素将 x 之后的下一个浮点值返回给 y。
 
-输入 `x` 和 `y` 的形状（shape）必须是可广播的（broadcastable）。详情请参考 `Tensor 的广播机制 <../../guides/beginner/tensor_cn.html#id7>`_ 。
+输入 ``x`` 和 ``y`` 的形状（shape）必须是可广播的（broadcastable）。详情请参考 `Tensor 的广播机制 <../../guides/beginner/tensor_cn.html#id7>`_ 。
 
 参数
 :::::::::
