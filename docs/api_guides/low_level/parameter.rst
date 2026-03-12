@@ -37,7 +37,7 @@ Paddle 通过设置 :code:`ParamAttr` 的 :code:`initializer` 属性为单个 pa
 
 常量初始化方法。用于将参数初始化为指定的固定数值，如将偏置初始化为 0。
 
-参数 `value` 指定初始值，默认值为 0.0。
+参数 ``value`` 指定初始值，默认值为 0.0。
 
 API 请参考：:ref:`cn_api_paddle_nn_initializer_Constant`
 
@@ -46,7 +46,7 @@ API 请参考：:ref:`cn_api_paddle_nn_initializer_Constant`
 
 随机正态分布初始化方法。根据正态（高斯）分布生成随机值，适用于大多数神经网络的参数初始化。
 
-参数指定均值 `mean` （默认 0.0）和标准差 `std` （默认 1.0）。
+参数指定均值 ``mean`` （默认 0.0）和标准差 ``std`` （默认 1.0）。
 
 API 请参考：:ref:`cn_api_paddle_nn_initializer_Normal`
 
@@ -55,7 +55,7 @@ API 请参考：:ref:`cn_api_paddle_nn_initializer_Normal`
 
 随机均匀分布初始化方法。在指定区间 [low, high] 内均匀采样生成初始值。
 
-参数 `low` 和 `high` 默认为 -1.0 和 1.0。
+参数 ``low`` 和 ``high`` 默认为 -1.0 和 1.0。
 
 API 请参考：:ref:`cn_api_paddle_nn_initializer_Uniform`
 
@@ -64,7 +64,7 @@ API 请参考：:ref:`cn_api_paddle_nn_initializer_Uniform`
 
 Xavier 均匀分布初始化方法。源自论文 **Understanding the difficulty of training deep feedforward neural networks**，由 Xavier Glorot 和 Yoshua Bengio 提出。
 
-范围由 `fan_in` （输入维度）、 `fan_out` （输出维度）和 `gain` （增益值）决定。
+范围由 ``fan_in`` （输入维度）、 ``fan_out`` （输出维度）和 ``gain`` （增益值）决定。
 
 API 请参考：:ref:`cn_api_paddle_nn_initializer_XavierUniform`
 
@@ -73,7 +73,7 @@ API 请参考：:ref:`cn_api_paddle_nn_initializer_XavierUniform`
 
 Xavier 正态分布初始化方法。源自论文 **Understanding the difficulty of training deep feedforward neural networks**。
 
-均值为 0，标准差由 `fan_in` （输入维度）、 `fan_out` （输出维度） 和 `gain` （增益值） 决定。
+均值为 0，标准差由 ``fan_in`` （输入维度）、 ``fan_out`` （输出维度） 和 ``gain`` （增益值） 决定。
 
 API 请参考：:ref:`cn_api_paddle_nn_initializer_XavierNormal`
 
@@ -82,7 +82,7 @@ API 请参考：:ref:`cn_api_paddle_nn_initializer_XavierNormal`
 
 Kaiming 均匀分布初始化方法。源自论文 **Delving Deep into Rectifiers**，由 Kaiming He 等提出。
 
-范围由 `fan_in` （输入维度）、 `negative_slope` （负斜率，默认 0）和 `nonlinearity` （激活类型，默认 'relu'）决定。
+范围由 ``fan_in`` （输入维度）、 ``negative_slope`` （负斜率，默认 0）和 ``nonlinearity`` （激活类型，默认 'relu'）决定。
 
 API 请参考：:ref:`cn_api_paddle_nn_initializer_KaimingUniform`
 
@@ -91,7 +91,7 @@ API 请参考：:ref:`cn_api_paddle_nn_initializer_KaimingUniform`
 
 Kaiming 正态分布初始化方法。源自论文 **Delving Deep into Rectifiers**。
 
-均值为 0，标准差由 `fan_in` （输入维度）、 `negative_slope` （负斜率，默认 0）和 `nonlinearity` （激活类型，默认 'relu'）决定。
+均值为 0，标准差由 ``fan_in`` （输入维度）、 ``negative_slope`` （负斜率，默认 0）和 ``nonlinearity`` （激活类型，默认 'relu'）决定。
 
 API 请参考：:ref:`cn_api_paddle_nn_initializer_KaimingNormal`
 
@@ -100,7 +100,7 @@ API 请参考：:ref:`cn_api_paddle_nn_initializer_KaimingNormal`
 
 截断正态分布初始化方法。在正态分布基础上，限制生成值在指定范围 [a, b] 内。
 
-参数指定均值 `mean` （默认 0.0）、标准差 `std` （默认 1.0）以及截断边界 `a` 和 `b` （默认 -2.0 和 2.0）。
+参数指定均值 ``mean`` （默认 0.0）、标准差 ``std`` （默认 1.0）以及截断边界 ``a`` 和 ``b`` （默认 -2.0 和 2.0）。
 
 API 请参考：:ref:`cn_api_paddle_nn_initializer_TruncatedNormal`
 
