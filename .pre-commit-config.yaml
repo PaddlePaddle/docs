@@ -1,4 +1,11 @@
 repos:
+  - repo: local
+    hooks:
+      - id: check-rst-single-backticks
+        name: check invalid single backticks in rst
+        entry: python3 ci_scripts/check_rst_single_backticks.py
+        language: system
+        files: \.rst$
   # Common hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0

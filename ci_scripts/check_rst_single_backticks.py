@@ -1,0 +1,75 @@
+import argparse
+import re
+import sys
+from pathlib import Path
+
+SINGLE_BACKTICK_RE = re.compile(r"(?<!`)`([^`\n]+)`(?!`)")
+ROLE_SUFFIX_RE = re.compile(r":[A-Za-z0-9_.:-]+:$")
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="check invalid single-backtick usage in rst files"
+    )
+    parser.add_argument(
+        "files",
+        nargs="*",
+        help="rst files to check",
+    )
+    return parser.parse_args()
+
+
+def should_ignore_match(line, start, end):
+    if end < len(line) and line[end] == "_":
+        return True
+
+    prefix = line[:start].rstrip()
+    if ROLE_SUFFIX_RE.search(prefix):
+        return True
+
+    return False
+
+
+def find_invalid_single_backticks(line):
+    matches = []
+    for match in SINGLE_BACKTICK_RE.finditer(line):
+        start, end = match.span()
+        if should_ignore_match(line, start, end):
+            continue
+        matches.append(match)
+    return matches
+
+
+def check_file(path):
+    has_error = False
+    lines = path.read_text(encoding="utf-8").splitlines()
+    for lineno, line in enumerate(lines, 1):
+        matches = find_invalid_single_backticks(line)
+        for match in matches:
+            has_error = True
+            column = match.start() + 1
+            snippet = match.group(0)
+            print(
+                f"{path}:{lineno}:{column}: invalid single backticks {snippet}; use ``...`` for inline literals or an rst role/link when appropriate."
+            )
+    return has_error
+
+
+def main():
+    args = parse_args()
+    has_error = False
+
+    for file_name in args.files:
+        path = Path(file_name)
+        if path.suffix != ".rst" or not path.exists():
+            continue
+        has_error |= check_file(path)
+
+    if has_error:
+        return 1
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
