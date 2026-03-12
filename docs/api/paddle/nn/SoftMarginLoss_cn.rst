@@ -5,7 +5,7 @@ SoftMarginLoss
 
 .. py:class:: paddle.nn.SoftMarginLoss(reduction='mean', name=None)
 
-生成一个可以计算输入 `input` 和 `label` 间的二分类损失的类。
+生成一个可以计算输入 ``input`` 和 ``label`` 间的二分类损失的类。
 
 
 损失函数按照下列公式计算
@@ -14,7 +14,7 @@ SoftMarginLoss
     \text{loss}(x, y) = \sum_i \frac{\log(1 + \exp(-y[i]*x[i]))}{\text{x.nelement}()}
 
 
-最后，添加 `reduce` 操作到前面的输出 Out 上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，返回输出的均值 :math:`Out = MEAN(Out)` 。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
+最后，添加 ``reduce`` 操作到前面的输出 Out 上。当 ``reduction`` 为 ``none`` 时，直接返回最原始的 ``Out`` 结果。当 ``reduction`` 为 ``mean`` 时，返回输出的均值 :math:`Out = MEAN(Out)` 。当 ``reduction`` 为 ``sum`` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
 
 
 参数
@@ -24,7 +24,7 @@ SoftMarginLoss
 
 形状
 :::::::::
-    - **input** (Tensor) - :math:`[N, *]` , 其中 N 是 batch_size， `*` 是任意其他维度。数据类型是 float32、float64。
+    - **input** (Tensor) - :math:`[N, *]` , 其中 N 是 batch_size， ``*`` 是任意其他维度。数据类型是 float32、float64。
     - **label** (Tensor) - :math:`[N, *]` ，标签 ``label`` 的维度、数据类型与输入 ``input`` 相同。
     - **output** (Tensor) - 输出的 Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]`，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[]` 。
 
