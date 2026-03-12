@@ -9,17 +9,17 @@ mse_loss
 
 对于预测值 input 和目标值 label，公式为：
 
-当 `reduction` 设置为 ``'none'`` 时，
+当 ``reduction`` 设置为 ``'none'`` 时，
 
     .. math::
         Out = (input - label)^2
 
-当 `reduction` 设置为 ``'mean'`` 时，
+当 ``reduction`` 设置为 ``'mean'`` 时，
 
     .. math::
        Out = \operatorname{mean}((input - label)^2)
 
-当 `reduction` 设置为 ``'sum'`` 时，
+当 ``reduction`` 设置为 ``'sum'`` 时，
 
     .. math::
        Out = \operatorname{sum}((input - label)^2)
@@ -39,7 +39,7 @@ mse_loss
 
 返回
 :::::::::
-``Tensor``，输入 ``input`` 和标签 ``label`` 间的 `mse loss` 损失。
+``Tensor``，输入 ``input`` 和标签 ``label`` 间的 ``mse loss`` 损失。
 
 代码示例
 :::::::::
