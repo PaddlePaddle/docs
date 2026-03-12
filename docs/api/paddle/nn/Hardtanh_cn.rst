@@ -4,7 +4,7 @@ Hardtanh
 -------------------------------
 .. py:class:: paddle.nn.Hardtanh(min=-1.0, max=1.0, name=None)
 
-Hardtanh 激活层（Hardtanh Activation Operator）。创建一个 `Hardtanh` 类的可调用对象。计算公式如下：
+Hardtanh 激活层（Hardtanh Activation Operator）。创建一个 ``Hardtanh`` 类的可调用对象。计算公式如下：
 
 .. math::
 
