@@ -9,7 +9,7 @@ adaptive_max_pool3d
 
 
 ..  note::
-    详细请参考对应的 ``Class`` 请参考：:ref:`cn_api_paddle_nn_AdaptiveMaxPool3D` 。
+    详细请参考对应的 ``Class`` ：:ref:`cn_api_paddle_nn_AdaptiveMaxPool3D` 。
 
 
 参数
