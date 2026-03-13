@@ -579,7 +579,7 @@ tensor 元素操作相关原位（inplace）版本
     :widths: 10, 30
 
     " :ref:`paddle.cast_ <cn_api_paddle_cast_>` ", "Inplace 版本的 cast API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.index_add_ <cn_api_paddle_index_add_>` ", "Inplace 版本的 :ref:`cn_api_paddle_index_add` API，对输入 `x` 采用 Inplace 策略"
+    " :ref:`paddle.index_add_ <cn_api_paddle_index_add_>` ", "Inplace 版本的 :ref:`cn_api_paddle_index_add` API，对输入 ``x`` 采用 Inplace 策略"
     " :ref:`paddle.index_put_ <cn_api_paddle_index_put_>` ", "依据索引 ``indices`` ，将指定位置的 ``x`` 重新赋值为 ``value`` "
     " :ref:`paddle.reshape_ <cn_api_paddle_reshape_>` ", "Inplace 版本的 reshape API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.scatter_ <cn_api_paddle_scatter_>` ", "Inplace 版本的 scatter API，对输入 x 采用 Inplace 策略 "

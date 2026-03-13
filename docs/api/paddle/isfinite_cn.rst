@@ -5,7 +5,7 @@ isfinite
 
 .. py:function:: paddle.isfinite(x, name=None)
 
-返回输入 Tensor 的每一个值是否为有限值（既非 `+/-INF` 也非 `+/-NaN` ）。
+返回输入 Tensor 的每一个值是否为有限值（既非 ``+/-INF`` 也非 ``+/-NaN`` ）。
 
 .. note::
     别名支持: 参数名 ``input`` 可替代 ``x``，如 ``input=tensor_x`` 等价于 ``x=tensor_x``。

@@ -36,7 +36,7 @@ heaviside
 返回
 :::::::::
 
-`Tensor`，存储运算后的结果。如果 :attr:`x` 和 :attr:`y` 有不同的形状且是可以广播的，那么返回 Tensor 的形状是 :attr:`x` 和 :attr:`y` 经过广播后的形状。如果 :attr:`x` 和 :attr:`y` 有相同的形状，那么返回 Tensor 的形状与 :attr:`x` 和 :attr:`y` 相同。
+``Tensor``，存储运算后的结果。如果 :attr:`x` 和 :attr:`y` 有不同的形状且是可以广播的，那么返回 Tensor 的形状是 :attr:`x` 和 :attr:`y` 经过广播后的形状。如果 :attr:`x` 和 :attr:`y` 有相同的形状，那么返回 Tensor 的形状与 :attr:`x` 和 :attr:`y` 相同。
 
 
 代码示例

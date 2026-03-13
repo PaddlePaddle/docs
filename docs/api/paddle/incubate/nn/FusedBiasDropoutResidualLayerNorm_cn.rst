@@ -30,7 +30,7 @@ forward(x, residual)
 
 返回
 ::::::::::::
-Tensor|tuple：与 `x` 具有相同数据类型和形状的张量
+Tensor|tuple：与 ``x`` 具有相同数据类型和形状的张量
 
 extra_repr()
 ::::::::::::

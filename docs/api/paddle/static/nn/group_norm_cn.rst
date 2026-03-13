@@ -23,7 +23,7 @@ group_norm
 返回
 :::::::::
 
-Tensor，数据类型和格式与 `input` 一致。
+Tensor，数据类型和格式与 ``input`` 一致。
 
 代码示例
 :::::::::

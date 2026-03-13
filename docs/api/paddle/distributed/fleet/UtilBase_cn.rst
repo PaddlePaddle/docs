@@ -78,7 +78,7 @@ COPY-FROM: paddle.distributed.fleet.UtilBase.get_file_shard
 
 print_on_rank(message, rank_id)
 '''''''''''''''''''''''''''''''''
-在编号为 `rank_id` 的节点上打印指定信息。
+在编号为 ``rank_id`` 的节点上打印指定信息。
 
 **参数**
 

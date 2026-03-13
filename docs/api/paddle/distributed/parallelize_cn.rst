@@ -46,9 +46,9 @@ parallelize
 
 返回
 :::::::::
-Model：一个具有分布式视角的 `Model` 对象。
+Model：一个具有分布式视角的 ``Model`` 对象。
 
-Optimizer：一个具有分布式视角的 `Optimizer` 对象。如果用户为提供优化器对象，则返回 None。
+Optimizer：一个具有分布式视角的 ``Optimizer`` 对象。如果用户为提供优化器对象，则返回 None。
 
 
 代码示例

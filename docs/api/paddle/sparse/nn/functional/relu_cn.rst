@@ -4,7 +4,7 @@ relu
 -------------------------------
 .. py:function:: paddle.sparse.nn.functional.relu(x, name=None)
 
-稀疏 relu 激活函数，要求 输入 :attr:`x` 为 `SparseCooTensor` 或 `SparseCsrTensor` 。
+稀疏 relu 激活函数，要求 输入 :attr:`x` 为 ``SparseCooTensor`` 或 ``SparseCsrTensor`` 。
 
 .. math::
     relu(x) = max(x, 0)

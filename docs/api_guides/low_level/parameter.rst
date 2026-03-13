@@ -5,7 +5,7 @@
 #########
 
 .. note::
-  `paddle.fluid.*` 已废弃，请使用 Paddle 最新版本的 API。
+  ``paddle.fluid.*`` 已废弃，请使用 Paddle 最新版本的 API。
 
 模型参数通常为模型中的 weight 和 bias，在 Paddle 动态图下对应 :code:`EagerParamBase` 类。模型参数是可学习的变量，拥有梯度并且可优化。在 Paddle 中可以通过 :ref:`cn_api_paddle_create_parameter` 来创建自定义参数。
 
@@ -139,7 +139,7 @@ Paddle 通过设置 :code:`ParamAttr` 的 :code:`regularizer` 属性为单个 pa
 
 Paddle 通过设置 :code:`ParamAttr` 的 :code:`do_model_average` 属性为单个 parameter 设置是否进行平均优化。
 
-默认值为 `True` 。
+默认值为 ``True`` 。
 
   .. code-block:: python
 
@@ -163,7 +163,7 @@ Clipping
 
 Paddle 通过设置 :code:`ParamAttr` 的 :code:`need_clip` 属性为单个 parameter 设置是否进行梯度裁剪。
 
-默认值为 `True` 。
+默认值为 ``True`` 。
 
   .. code-block:: python
 
@@ -178,21 +178,21 @@ Paddle 通过设置 :code:`ParamAttr` 的 :code:`need_clip` 属性为单个 para
 1. GradientClipByGlobalNorm
 ---------------------------
 
-将一个 Tensor 列表 `t_list` 中所有 Tensor 的 L2 范数之和，限定在 :code:`clip_norm` 范围内。
+将一个 Tensor 列表 ``t_list`` 中所有 Tensor 的 L2 范数之和，限定在 :code:`clip_norm` 范围内。
 
 API 请参考：:ref:`cn_api_paddle_nn_ClipGradByGlobalNorm`
 
 2. GradientClipByNorm
 ---------------------
 
-将输入的多维 Tensor `X` 的 L2 范数限制在 :code:`clip_norm` 范围之内。
+将输入的多维 Tensor ``X`` 的 L2 范数限制在 :code:`clip_norm` 范围之内。
 
 API 请参考：:ref:`cn_api_paddle_nn_ClipGradByNorm`
 
 3. GradientClipByValue
 ----------------------
 
-将输入的多维 Tensor `X` 的值限制在 [min, max] 范围之内。
+将输入的多维 Tensor ``X`` 的值限制在 [min, max] 范围之内。
 
 API 请参考：:ref:`cn_api_paddle_nn_ClipGradByValue`
 

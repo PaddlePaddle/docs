@@ -5,7 +5,7 @@ isposinf
 
 .. py:function:: paddle.isposinf(x, name=None)
 
-返回输入 tensor 的每一个值是否为 `+INF` 。
+返回输入 tensor 的每一个值是否为 ``+INF`` 。
 
 参数
 :::::::::

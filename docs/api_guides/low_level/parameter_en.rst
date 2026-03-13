@@ -5,7 +5,7 @@ Model Parameters
 ##################
 
 .. note::
-  The `paddle.fluid.*` APIs are deprecated. Please use the latest Paddle API versions instead.
+  The ``paddle.fluid.*`` APIs are deprecated. Please use the latest Paddle API versions instead.
 
 Model parameters are usually weights and bias in the model. In Paddle's dynamic graph mode, they correspond to the :code:`EagerParamBase` class. Model parameters are learnable variables that have gradients and can be optimized. In Paddle, custom parameters can be created using :ref:`api_paddle_create_parameter` .
 
@@ -137,7 +137,7 @@ Model Averaging
 
 Paddle determines whether to average a single parameter by setting attributes of :code:`do_model_average` in :code:`ParamAttr` .
 
-- Default value: `True` .
+- Default value: ``True`` .
 
   .. code-block:: python
 
@@ -161,7 +161,7 @@ Clipping
 
 Paddle determines whether gradient clipping is applied to a single parameter by setting attributes of :code:`need_clip` in :code:`ParamAttr` .
 
-- Default value: `True` .
+- Default value: ``True`` .
 
   .. code-block:: python
 
@@ -176,21 +176,21 @@ The following is the clipping method supported by Paddle:
 1. GradientClipByGlobalNorm
 ---------------------------
 
-Limits the sum of the L2 norms of all Tensors in a Tensor list `t_list` to the :code:`clip_norm` range.
+Limits the sum of the L2 norms of all Tensors in a Tensor list ``t_list`` to the :code:`clip_norm` range.
 
 API reference: :ref:`api_paddle_nn_ClipGradByGlobalNorm`
 
 2. GradientClipByNorm
 ---------------------
 
-Limits the L2 norm of a multi-dimensional input Tensor `X` to the :code:`clip_norm` range.
+Limits the L2 norm of a multi-dimensional input Tensor ``X`` to the :code:`clip_norm` range.
 
 API reference: :ref:`api_paddle_nn_ClipGradByNorm`
 
 3. GradientClipByValue
 ----------------------
 
-Limits the values of a multi-dimensional input Tensor `X` to the range [min, max].
+Limits the values of a multi-dimensional input Tensor ``X`` to the range [min, max].
 
 API reference: :ref:`api_paddle_nn_ClipGradByValue`
 
