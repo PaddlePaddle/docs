@@ -75,7 +75,7 @@ def check_file(path):
         if in_literal_block:
             if not stripped:
                 continue
-            if indent > block_indent:
+            if indent >= block_indent:
                 continue
             in_literal_block = False
 
@@ -86,7 +86,8 @@ def check_file(path):
                 continue
             if indent > pending_indent:
                 in_literal_block = True
-                block_indent = pending_indent
+                # Use the first content line indent as block baseline.
+                block_indent = indent
                 continue
             pending_literal_block = False
 
