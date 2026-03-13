@@ -1,0 +1,5 @@
+generated_at_utc: 2026-03-13T01:10:37Z
+rst_files_scanned: 1780
+total_hits: 1088
+affected_files: 283
+checker: ci_scripts/check_rst_single_backticks.py
