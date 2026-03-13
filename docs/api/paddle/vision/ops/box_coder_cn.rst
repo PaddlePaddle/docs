@@ -52,7 +52,7 @@ box_coder
 
 返回
 ::::::::::::
-- **output_box** (Tensor) - 解码或编码结果。数据类型为 float32 或 float64。当 code_type 为 `encode_center_size` 时，形状为 [N, M, 4] 的编码结果， N 为目标框的个数， M 为先验框的个数。当 code_type 为 `decode_center_size` 时，形状为 [N, M, 4] 的解码结果，形状与输入目标框相同。
+- **output_box** (Tensor) - 解码或编码结果。数据类型为 float32 或 float64。当 code_type 为 ``encode_center_size`` 时，形状为 [N, M, 4] 的编码结果， N 为目标框的个数， M 为先验框的个数。当 code_type 为 ``decode_center_size`` 时，形状为 [N, M, 4] 的解码结果，形状与输入目标框相同。
 
 
 代码示例

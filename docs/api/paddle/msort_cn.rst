@@ -5,9 +5,9 @@ msort
 
 .. py:function:: paddle.msort(input: Tensor, *, out: Tensor | None = None)
 
-沿输入 `Tensor` 的第 0 轴（`axis=0`）按升序对元素进行排序。
+沿输入 ``Tensor`` 的第 0 轴（``axis=0``）按升序对元素进行排序。
 
-该函数等价于 `paddle.sort(x, axis=0)`。
+该函数等价于 ``paddle.sort(x, axis=0)``。
 
 参数
 ::::::::::::

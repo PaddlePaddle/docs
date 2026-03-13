@@ -8,7 +8,7 @@ unsqueeze
 向输入 Tensor 的 Shape 中一个或多个位置（axis）插入尺寸为 1 的维度。
 
 请注意，在动态图模式下，输出 Tensor 将与输入 Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。
-如果不希望输入与输出共享数据，请使用 `Tensor.clone`，例如 `unsqueeze_clone_x = x.unsqueeze(-1).clone()` 。
+如果不希望输入与输出共享数据，请使用 ``Tensor.clone``，例如 ``unsqueeze_clone_x = x.unsqueeze(-1).clone()`` 。
 
 下图展示了一个 Shape 为 [2, 3] 的 Tensor 如何使用 ``unsqueeze`` 方法在最后一个位置（axis = 2）增加一个维度，从二维变成三维。
 
