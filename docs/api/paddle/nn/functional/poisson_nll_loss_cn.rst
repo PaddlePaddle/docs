@@ -4,7 +4,7 @@ poisson_nll_loss
 -------------------------------
 .. py:function:: paddle.nn.functional.poisson_nll_loss(input, label, log_input=True, full=False, epsilon=1e-8, reduction='mean', name=None)
 
-返回 `poisson negative log likelihood`。可在 :ref:`cn_api_paddle_nn_PoissonNLLLoss` 查看详情。
+返回 ``poisson negative log likelihood``。可在 :ref:`cn_api_paddle_nn_PoissonNLLLoss` 查看详情。
 
 参数
 :::::::::
@@ -36,7 +36,7 @@ poisson_nll_loss
 
 返回
 :::::::::
-`Tensor`，返回存储表示 `poisson negative log likelihood loss` 的损失值。
+``Tensor``，返回存储表示 ``poisson negative log likelihood loss`` 的损失值。
 
 代码示例
 :::::::::

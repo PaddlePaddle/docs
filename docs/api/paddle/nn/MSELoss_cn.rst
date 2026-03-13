@@ -14,12 +14,12 @@ MSELoss
 .. math::
     Out = (input - label)^2
 
-当`reduction`为`'mean'`时：
+当 ``reduction`` 为 ``'mean'`` 时：
 
 .. math::
     Out = \operatorname{mean}((input - label)^2)
 
-当`reduction`为`'sum'`时：
+当 ``reduction`` 为 ``'sum'`` 时：
 
 .. math::
     Out = \operatorname{sum}((input - label)^2)

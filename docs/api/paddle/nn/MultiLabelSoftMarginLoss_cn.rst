@@ -5,7 +5,7 @@ MultiLabelSoftMarginLoss
 
 .. py:class:: paddle.nn.MultiLabelSoftMarginLoss(weight:Optional=None, reduction: str = 'mean', name:str=None)
 
-创建一个 MultiLabelSoftMarginLoss 的可调用类，MultiLabelSoftMarginLoss 计算输入 `input` 和 `label` 间的 `margin-based loss` 损失。
+创建一个 MultiLabelSoftMarginLoss 的可调用类，MultiLabelSoftMarginLoss 计算输入 ``input`` 和 ``label`` 间的 ``margin-based loss`` 损失。
 
 
 损失函数按照下列公式计算
@@ -19,7 +19,7 @@ MultiLabelSoftMarginLoss
 如果添加权重则再乘以对应的权重值
 
 
-最后，会添加 `reduce` 操作到前面的输出 Out 上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，返回输出的均值 :math:`Out = MEAN(Out)` 。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
+最后，会添加 ``reduce`` 操作到前面的输出 Out 上。当 ``reduction`` 为 ``none`` 时，直接返回最原始的 ``Out`` 结果。当 ``reduction`` 为 ``mean`` 时，返回输出的均值 :math:`Out = MEAN(Out)` 。当 ``reduction`` 为 ``sum`` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
 
 
 参数

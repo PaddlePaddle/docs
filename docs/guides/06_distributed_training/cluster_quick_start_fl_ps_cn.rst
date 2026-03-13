@@ -81,7 +81,7 @@ FL-PS 训练主要包括如下几个部分：
 1.2.2 配置文件
 """"""""""""
 
-所有的配置参数均写在文件 `config_fl.yaml` 里：
+所有的配置参数均写在文件 ``config_fl.yaml`` 里：
 
 .. code-block:: python
 
@@ -231,12 +231,12 @@ FL-PS 训练主要包括如下几个部分：
 1.3.2 Coordinator 模块
 """"""""""""
 
-用户可以基于文件 `coordinator.py https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/distributed/ps/coordinator.py`_ 中定义的相关基类进行继承开发，用户自定义的各种 Client 选择算法均可以用 python 代码实现，从类 `ClientSelectorBase` 继承。
+用户可以基于文件 `coordinator.py https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/distributed/ps/coordinator.py`_ 中定义的相关基类进行继承开发，用户自定义的各种 Client 选择算法均可以用 python 代码实现，从类 ``ClientSelectorBase`` 继承。
 
 1.3.3 构造自定义异构数据集
 """"""""""""
 
-参考脚本 `gen_heter_data.py` 写法。
+参考脚本 ``gen_heter_data.py`` 写法。
 
 
 备注：本教程主要介绍了横向联邦 PS 的使用方法，关于纵向联邦 PS 的使用，请参考 `test_fl_ps.py https://github.com/PaddlePaddle/Paddle/blob/develop/test/ps/test_fl_ps.py`_ ，使用 1.3.1 节的编译命令，再执行下述命令即可

@@ -17,7 +17,7 @@ LKJ 分布通常定义为对相关矩阵 :math:`\Omega` 的分布，其密度函
 其中，:math:`\Omega` 是一个 :math:`n \times n` 的相关矩阵，:math:`\eta` 是分布的形状参数，:math:`|\Omega|` 是矩阵的行列式。参数 :math:`\eta` 调节矩阵元素的分布集中度。
 
 
-相关矩阵的下三角 Choleskey 因子的 LJK 分布支持两种 sample 方法:`onion` 和 `cvine`
+相关矩阵的下三角 Choleskey 因子的 LJK 分布支持两种 sample 方法：``onion`` 和 ``cvine``。
 
 参数
 ::::::::::::

@@ -21,7 +21,7 @@ stft
 - :math:`t`：第 :math:`t` 帧输入信号；
 - :math:`f`：傅里叶变换频域的自变量，如果 ``onesided=False`` , :math:`f`
   取值范围是 :math:`0 \leq f < n\_fft` ,
-  如果 `onesided=True`，取值范围是
+  如果 ``onesided=True``，取值范围是
   :math:`0 \leq f < \lfloor n\_fft / 2 \rfloor + 1`；
 - :math:`N`: ``n_fft`` 参数的值；
 - :math:`H`: ``hop_length`` 参数的值。

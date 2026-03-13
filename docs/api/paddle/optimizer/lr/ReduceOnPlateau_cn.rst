@@ -5,9 +5,9 @@ ReduceOnPlateau
 
 .. py:class:: paddle.optimizer.lr.ReduceOnPlateau(learning_rate, mode='min', factor=0.1, patience=10, threshold=1e-4, threshold_mode='rel', cooldown=0, min_lr=0, epsilon=1e-8, verbose=False)
 
-`loss` 自适应的学习率衰减策略。默认情况下，当 ``loss`` 停止下降时，降低学习率。其思想是：一旦模型表现不再提升，将学习率降低 2-10 倍对模型的训练往往有益。
+``loss`` 自适应的学习率衰减策略。默认情况下，当 ``loss`` 停止下降时，降低学习率。其思想是：一旦模型表现不再提升，将学习率降低 2-10 倍对模型的训练往往有益。
 
-`loss` 是传入到该类方法 ``step`` 中的 ``metrics`` 参数，其可以是 float 或者 shape 为[]的 0-D Tensor 或 numpy\.ndarray。如果 loss 停止下降超过 ``patience`` 个 epoch，学习率将会衰减为 ``learning_rate * factor`` （特殊地，``mode`` 也可以被设置为 ``'max'``，此时逻辑相反）。
+``loss`` 是传入到该类方法 ``step`` 中的 ``metrics`` 参数，其可以是 float 或者 shape 为[]的 0-D Tensor 或 numpy\.ndarray。如果 loss 停止下降超过 ``patience`` 个 epoch，学习率将会衰减为 ``learning_rate * factor`` （特殊地，``mode`` 也可以被设置为 ``'max'``，此时逻辑相反）。
 
 此外，每降低一次学习率后，将会进入一个时长为 ``cooldown`` 个 epoch 的冷静期，在冷静期内，将不会监控 ``loss`` 的变化情况，也不会衰减。在冷静期之后，会继续监控 ``loss`` 的上升或下降。
 
@@ -40,7 +40,7 @@ COPY-FROM: paddle.optimizer.lr.ReduceOnPlateau
 step(metrics, epoch=None)
 '''''''''
 
-step 函数需要在优化器的 `optimizer.step()` 函数之后调用，其根据传入的 metrics 调整 optimizer 中的学习率，调整后的学习率将会在下一个 ``step`` 时生效。
+step 函数需要在优化器的 ``optimizer.step()`` 函数之后调用，其根据传入的 metrics 调整 optimizer 中的学习率，调整后的学习率将会在下一个 ``step`` 时生效。
 
 **参数**
 

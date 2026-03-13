@@ -6,7 +6,7 @@ frac
 .. py:function:: paddle.frac(x, name=None, *, out=None)
 
 
-得到输入 `Tensor` 的小数部分。
+得到输入 ``Tensor`` 的小数部分。
 
 
 参数

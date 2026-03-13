@@ -9,7 +9,7 @@ grad
 .. note::
     该 API 仅支持 **动态图模式**。
 
-对于每个 `inputs`，计算所有 `outputs` 相对于其的梯度和。
+对于每个 ``inputs``，计算所有 ``outputs`` 相对于其的梯度和。
 
 参数
 :::::::::
@@ -26,7 +26,7 @@ grad
 返回
 :::::::::
 
-tuple(Tensor)，其长度等于 `inputs` 中的变量个数，且第 i 个返回的变量是所有 `outputs` 相对于第 i 个 `inputs` 的梯度之和。
+tuple(Tensor)，其长度等于 ``inputs`` 中的变量个数，且第 i 个返回的变量是所有 ``outputs`` 相对于第 i 个 ``inputs`` 的梯度之和。
 
 代码示例 1
 :::::::::

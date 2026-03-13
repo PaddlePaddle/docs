@@ -7,7 +7,7 @@ divide
 
 输入 :attr:`x` 与输入 :attr:`y` 逐元素相除，并将各个位置的输出元素保存到返回结果中。
 
-输入 :attr:`x` 与输入 :attr:`y` 必须为相同形状且为相同稀疏压缩格式（同为 `SparseCooTensor` 或同为 `SparseCsrTensor`），如果同为 `SparseCooTensor` 则 `sparse_dim` 也需要相同。
+输入 :attr:`x` 与输入 :attr:`y` 必须为相同形状且为相同稀疏压缩格式（同为 ``SparseCooTensor`` 或同为 ``SparseCsrTensor``），如果同为 ``SparseCooTensor`` 则 ``sparse_dim`` 也需要相同。
 
 等式为：
 
@@ -25,7 +25,7 @@ divide
 
 返回
 :::::::::
-多维稀疏 Tensor, 数据类型和压缩格式与 :attr:`x` 相同，如果是整数相除则返回数据类型为 `float32`。
+多维稀疏 Tensor, 数据类型和压缩格式与 :attr:`x` 相同，如果是整数相除则返回数据类型为 ``float32``。
 
 
 代码示例

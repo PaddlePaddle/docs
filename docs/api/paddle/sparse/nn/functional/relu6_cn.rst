@@ -4,7 +4,7 @@ relu6
 -------------------------------
 .. py:function:: paddle.sparse.nn.functional.relu6(x, name=None)
 
-稀疏 relu6 激活函数，要求 输入 :attr:`x` 为 `SparseCooTensor` 或 `SparseCsrTensor` 。
+稀疏 relu6 激活函数，要求 输入 :attr:`x` 为 ``SparseCooTensor`` 或 ``SparseCsrTensor`` 。
 
 .. math::
     relu6(x) = min(max(0, x), 6)

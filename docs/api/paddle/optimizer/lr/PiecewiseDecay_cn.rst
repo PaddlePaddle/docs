@@ -6,7 +6,7 @@ PiecewiseDecay
 .. py:class:: paddle.optimizer.lr.PiecewiseDecay(boundaries, values, last_epoch=-1, verbose=False)
 
 
-该接口提供分段设置学习率的策略。`boundaries` 表示学习率变化的边界步数，对应 epoch 的值，`values` 表示学习率变化的值。
+该接口提供分段设置学习率的策略。``boundaries`` 表示学习率变化的边界步数，对应 epoch 的值，``values`` 表示学习率变化的值。
 
 过程可以描述如下：
 
@@ -43,7 +43,7 @@ COPY-FROM: paddle.optimizer.lr.PiecewiseDecay
 step(epoch=None)
 '''''''''
 
-step 函数需要在优化器的 `optimizer.step()` 函数之后调用，调用之后将会根据 epoch 数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
+step 函数需要在优化器的 ``optimizer.step()`` 函数之后调用，调用之后将会根据 epoch 数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
 
 **参数**
 

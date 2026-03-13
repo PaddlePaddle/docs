@@ -6,9 +6,9 @@ addmm
 .. py:function:: paddle.sparse.addmm(input, x, y, beta=1.0, alpha=1.0, name=None)
 
 .. note::
-    该 API 从 `CUDA 11.0` 开始支持。
+    该 API 从 ``CUDA 11.0`` 开始支持。
 
-对输入 :attr:`x` 与输入 :attr:`y` 求稀疏矩阵乘法，并将 `input` 加到计算结果上。
+对输入 :attr:`x` 与输入 :attr:`y` 求稀疏矩阵乘法，并将 ``input`` 加到计算结果上。
 
 数学公式：
 
@@ -27,7 +27,7 @@ addmm
 
      input[DenseTensor] + x[SparseCooTensor] @ y[DenseTensor] -> out[DenseTensor]
 
-该 API 支持反向传播，`input` 、 `x` 、 `y` 的维度相同且>=2D，不支持自动广播。
+该 API 支持反向传播，``input`` 、 ``x`` 、 ``y`` 的维度相同且>=2D，不支持自动广播。
 
 参数
 :::::::::
@@ -40,7 +40,7 @@ addmm
 
 返回
 :::::::::
-SparseTensor|DenseTensor: 其 Tensor 类型、dtype、shape 与 `input` 相同。
+SparseTensor|DenseTensor: 其 Tensor 类型、dtype、shape 与 ``input`` 相同。
 
 
 代码示例

@@ -571,7 +571,7 @@ add(y, name=None, \*, alpha=1, out=None)
 add_(y, name=None, \*, alpha=1, out=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_add` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_add` API，对输入 ``x`` 采用 Inplace 策略。
 
 add_n(inputs, name=None)
 :::::::::
@@ -641,7 +641,7 @@ COPY-FROM: paddle.Tensor.apply
 apply_(callable)
 :::::::::
 
-Inplace 版本的 `apply` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 ``apply`` API，对输入 ``x`` 采用 Inplace 策略。
 
 argmax(axis=None, keepdim=False, dtype=int64, name=None)
 :::::::::
@@ -978,7 +978,7 @@ bincount(weights=None, minlength=0)
 bernoulli_(p=0.5, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_bernoulli` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_bernoulli` API，对输入 ``x`` 采用 Inplace 策略。
 
 bitwise_and(y, out=None, name=None)
 :::::::::
@@ -1072,7 +1072,7 @@ ceil(name=None)
 ceil_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_ceil` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_ceil` API，对输入 ``x`` 采用 Inplace 策略。
 
 cholesky(upper=False, name=None)
 :::::::::
@@ -1123,7 +1123,7 @@ clip(min=None, max=None, name=None)
 clip_(min=None, max=None, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_clip` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_clip` API，对输入 ``x`` 采用 Inplace 策略。
 
 clone()
 :::::::::
@@ -1423,7 +1423,7 @@ exp(name=None)
 exp_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_exp` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_exp` API，对输入 ``x`` 采用 Inplace 策略。
 
 expand(shape, name=None)
 :::::::::
@@ -1583,7 +1583,7 @@ fill_diagonal_tensor(x, y, offset=0, dim1=0, dim2=1, name=None)
 fill_diagonal_tensor_(x, y, offset=0, dim1=0, dim2=1, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_fill_diagonal_tensor` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_fill_diagonal_tensor` API，对输入 ``x`` 采用 Inplace 策略。
 
 **代码示例**
     .. code-block:: python
@@ -1606,7 +1606,7 @@ flatten(start_axis=0, stop_axis=-1, name=None)
 flatten_(start_axis=0, stop_axis=-1, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_flatten` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_flatten` API，对输入 ``x`` 采用 Inplace 策略。
 
 flip(axis, name=None)
 :::::::::
@@ -1638,7 +1638,7 @@ floor(name=None)
 floor_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_floor` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_floor` API，对输入 ``x`` 采用 Inplace 策略。
 
 floor_divide(y, name=None)
 :::::::::
@@ -2055,7 +2055,7 @@ logsumexp(axis=None, keepdim=False, name=None)
 log_normal_(mean=0.0, std=1.0, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_log_normal` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_log_normal` API，对输入 ``x`` 采用 Inplace 策略。
 
 请参考 :ref:`cn_api_paddle_logsumexp`
 
@@ -2385,7 +2385,7 @@ reciprocal(name=None)
 reciprocal_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_reciprocal` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_reciprocal` API，对输入 ``x`` 采用 Inplace 策略。
 
 register_hook(hook)
 :::::::::
@@ -2462,7 +2462,7 @@ remainder_(y, name=None)
 
 返回类型：Tensor
 
-Inplace 版本的 :ref:`cn_api_paddle_remainder` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_remainder` API，对输入 ``x`` 采用 Inplace 策略。
 
 reshape(shape, name=None)
 :::::::::
@@ -2485,7 +2485,7 @@ ravel()
 reshape_(shape, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_reshape` API，对输入 `x` 采用 Inplace 策略
+Inplace 版本的 :ref:`cn_api_paddle_reshape` API，对输入 ``x`` 采用 Inplace 策略
 
 roll(shifts, axis=None, name=None)
 :::::::::
@@ -2508,7 +2508,7 @@ round(name=None)
 round_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_round` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_round` API，对输入 ``x`` 采用 Inplace 策略。
 
 rsqrt(name=None)
 :::::::::
@@ -2522,7 +2522,7 @@ rsqrt(name=None)
 rsqrt_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_rsqrt` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_rsqrt` API，对输入 ``x`` 采用 Inplace 策略。
 
 scale(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 :::::::::
@@ -2536,7 +2536,7 @@ scale(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 scale_(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_scale` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_scale` API，对输入 ``x`` 采用 Inplace 策略。
 
 scatter(index, updates, overwrite=True, name=None)
 :::::::::
@@ -2550,7 +2550,7 @@ scatter(index, updates, overwrite=True, name=None)
 scatter_(index, updates, overwrite=True, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_scatter` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_scatter` API，对输入 ``x`` 采用 Inplace 策略。
 
 scatter_add(index, updates, overwrite=True, name=None)
 :::::::::
@@ -2761,7 +2761,7 @@ sqrt(name=None, \*, out=None)
 sqrt_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_sqrt` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_sqrt` API，对输入 ``x`` 采用 Inplace 策略。
 
 square(name=None)
 :::::::::
@@ -2784,7 +2784,7 @@ squeeze(axis=None, name=None)
 squeeze_(axis=None, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_squeeze` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_squeeze` API，对输入 ``x`` 采用 Inplace 策略。
 
 stack(axis=0, name=None)
 :::::::::
@@ -2834,7 +2834,7 @@ subtract(y, name=None, \*, alpha=1, out=None)
 subtract_(y, name=None, \*, alpha=1)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_subtract` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_subtract` API，对输入 ``x`` 采用 Inplace 策略。
 
 sub(y, name=None, \*, alpha=1, out=None)
 :::::::::
@@ -2848,7 +2848,7 @@ sub(y, name=None, \*, alpha=1, out=None)
 sub_(y, name=None, \*, alpha=1)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_sub` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_sub` API，对输入 ``x`` 采用 Inplace 策略。
 
 sum(axis=None, dtype=None, keepdim=False, name=None)
 :::::::::
@@ -2898,7 +2898,7 @@ tanh(name=None)
 tanh_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tan` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_tan` API，对输入 ``x`` 采用 Inplace 策略。
 
 tile(repeat_times, name=None)
 :::::::::
@@ -3096,7 +3096,7 @@ unsqueeze(axis, name=None)
 unsqueeze_(axis, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_unsqueeze` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_unsqueeze` API，对输入 ``x`` 采用 Inplace 策略。
 
 unstack(axis=0, num=None)
 :::::::::
@@ -3119,16 +3119,16 @@ var(axis=None, unbiased=True, keepdim=False, name=None)
 where(x, y, name=None)
 :::::::::
 
-调用该 `where` 方法的 `Tensor` 作为 `condition` 来选择 `x` 或 `y` 中的对应元素组成新的 `Tensor` 并返回。
+调用该 ``where`` 方法的 ``Tensor`` 作为 ``condition`` 来选择 ``x`` 或 ``y`` 中的对应元素组成新的 ``Tensor`` 并返回。
 
 返回：计算后的 Tensor
 
 返回类型：Tensor
 
 .. note::
-   只有 `bool` 类型的 `Tensor` 才能调用该方法。
+   只有 ``bool`` 类型的 ``Tensor`` 才能调用该方法。
 
-示例：`(x>0).where(x, y)`， 其中 x， y 都是数值 `Tensor`。
+示例：``(x>0).where(x, y)``， 其中 x， y 都是数值 ``Tensor``。
 
 请参考 :ref:`cn_api_paddle_where`
 
@@ -3173,7 +3173,7 @@ lerp(x, y, weight, name=None)
 lerp_(y, weight, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_lerp` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_lerp` API，对输入 ``x`` 采用 Inplace 策略。
 
 
 is_complex()
@@ -3357,7 +3357,7 @@ nnz()
 :::::::::
 
 .. note::
-   只有 `SparseCooTensor` 、`SparseCsrTensor` 才可调用该方法。
+   只有 ``SparseCooTensor`` 、``SparseCsrTensor`` 才可调用该方法。
 
 返回：输入稀疏 Tensor 的非 0 元素的个数
 
@@ -3380,7 +3380,7 @@ indices()
 :::::::::
 
 .. note::
-   只有 `SparseCooTensor` 才可调用该方法。
+   只有 ``SparseCooTensor`` 才可调用该方法。
 
 返回：输入 SparseCooTensor 的非 0 元素的索引
 
@@ -3405,7 +3405,7 @@ values()
 :::::::::
 
 .. note::
-   只有 `SparseCooTensor` 才可调用该方法。
+   只有 ``SparseCooTensor`` 才可调用该方法。
 
 返回：输入 SparseCooTensor 的非 0 元素的值
 
@@ -3430,7 +3430,7 @@ crows()
 :::::::::
 
 .. note::
-   只有 `SparseCsrTensor` 才可调用该方法。
+   只有 ``SparseCsrTensor`` 才可调用该方法。
 
 返回：输入 SparseCsrTensor 的非 0 元素的压缩行信息
 
@@ -3455,7 +3455,7 @@ cols()
 :::::::::
 
 .. note::
-   只有 `SparseCsrTensor` 才可调用该方法。
+   只有 ``SparseCsrTensor`` 才可调用该方法。
 
 返回：输入 SparseCsrTensor 的非 0 元素的列信息
 
@@ -3548,7 +3548,7 @@ to_sparse_csr()
 :::::::::
 
 .. note::
-   只有 `DenseTensor` 、`SparseCooTensor` 才可调用该方法。
+   只有 ``DenseTensor`` 、``SparseCooTensor`` 才可调用该方法。
 
 将输入 Tensor 转换为 SparseCsrTensor。
 
@@ -3689,7 +3689,7 @@ masked_fill(x, mask, value, name=None)
 masked_fill_(x, mask, value, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_masked_fill` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_masked_fill` API，对输入 ``x`` 采用 Inplace 策略。
 
 masked_scatter(x, mask, value, name=None)
 :::::::::
@@ -3702,7 +3702,7 @@ masked_scatter(x, mask, value, name=None)
 masked_scatter_(x, mask, value, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_masked_scatter` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_masked_scatter` API，对输入 ``x`` 采用 Inplace 策略。
 
 atleast_1d(name=None)
 :::::::::
@@ -3751,7 +3751,7 @@ select_scatter(x, values, axis, index, name=None)
 slice_scatter(value, axes, starts, ends, strides, name=None)
 :::::::::
 
-沿着 `axes` 将 `value` 矩阵的值嵌入到 `x` 矩阵。返回一个新的 Tensor 而不是视图。
+沿着 ``axes`` 将 ``value`` 矩阵的值嵌入到 ``x`` 矩阵。返回一个新的 Tensor 而不是视图。
 
 返回：计算后的 Tensor
 
@@ -3773,7 +3773,7 @@ signbit(x, name=None)
 block_diag(inputs, name=None)
 :::::::::
 
-根据 `inputs` 创建对角矩阵。
+根据 ``inputs`` 创建对角矩阵。
 
 返回：对角矩阵 Tensor。
 

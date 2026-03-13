@@ -4,7 +4,7 @@ compare_accuracy
 -------------------------------
 .. py:function:: paddle.amp.debugging.compare_accuracy(dump_path, another_dump_path, output_filename, loss_scale=1, dump_all_tensors=False)
 
-`compare_accuracy` 是一个精度比对的工具，可以用来比较 float16 和 float32 的 log 数据。
+``compare_accuracy`` 是一个精度比对的工具，可以用来比较 float16 和 float32 的 log 数据。
 
 参数
 :::::::::

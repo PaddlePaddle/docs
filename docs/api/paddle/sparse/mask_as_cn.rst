@@ -5,7 +5,7 @@ mask_as
 
 .. py:function:: paddle.sparse.mask_as(x, mask, name=None)
 
-使用稀疏张量 `mask` 的索引过滤输入的稠密张量 `x`，并生成相应格式的稀疏张量。输入的 `x` 和 `mask` 必须具有相同的形状，且返回的稀疏张量具有与 `mask` 相同的索引，即使对应的索引中存在 `零` 值。
+使用稀疏张量 ``mask`` 的索引过滤输入的稠密张量 ``x``，并生成相应格式的稀疏张量。输入的 ``x`` 和 ``mask`` 必须具有相同的形状，且返回的稀疏张量具有与 ``mask`` 相同的索引，即使对应的索引中存在 ``零`` 值。
 
 参数
 :::::::::
@@ -15,7 +15,7 @@ mask_as
 
 返回
 :::::::::
-SparseTensor: 其稀疏格式、dtype、shape 均与 `mask` 相同。
+SparseTensor: 其稀疏格式、dtype、shape 均与 ``mask`` 相同。
 
 
 代码示例

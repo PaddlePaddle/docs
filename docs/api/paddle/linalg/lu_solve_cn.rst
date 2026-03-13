@@ -5,26 +5,26 @@ lu_solve
 
 .. py:function:: paddle.linalg.lu_solve(b, lu, pivots, trans="N", name=None)
 
-给定 `A` 的 LU 分解结果 和列向量 `b` ，求解线性方程组的解 `x`。
+给定 ``A`` 的 LU 分解结果 和列向量 ``b`` ，求解线性方程组的解 ``x``。
 
-记 :math:`A` 为一个或一批方阵，:math:`b` 一个或一批矩阵，当 `trans` 为 `N` 时，公式为：
+记 :math:`A` 为一个或一批方阵，:math:`b` 一个或一批矩阵，当 ``trans`` 为 ``N`` 时，公式为：
 
 .. math::
     b = A * X
 
-当 `trans` 为 `T` 时，公式为：
+当 ``trans`` 为 ``T`` 时，公式为：
 
 .. math::
     b = A ^ {T} * X
 
-当 `trans` 为 `C` 时，公式为：
+当 ``trans`` 为 ``C`` 时，公式为：
 
 .. math::
     b = A ^ {H} * X
 
 .. note::
 
-    `lu` 和 `pivots` 由 ``paddle.linalg.lu`` 得到。
+    ``lu`` 和 ``pivots`` 由 ``paddle.linalg.lu`` 得到。
 
 参数
 ::::::::::::

@@ -5,8 +5,8 @@ cast
 
 .. py:function:: paddle.sparse.cast(x, index_dtype=None, value_dtype=None, name=None)
 
-输入 :attr:`x` 为 `SparseCooTensor` 或 `SparseCsrTensor` 。将稀疏 Tensor 的 index 转换为 `index_dtype` 类型
-（ `SparseCsrTensor` 的 index 指： `crows` 与 `col` ），value 转换为 `value_dtype` 类型，
+输入 :attr:`x` 为 ``SparseCooTensor`` 或 ``SparseCsrTensor`` 。将稀疏 Tensor 的 index 转换为 ``index_dtype`` 类型
+（ ``SparseCsrTensor`` 的 index 指： ``crows`` 与 ``col`` ），value 转换为 ``value_dtype`` 类型，
 
 参数
 :::::::::

@@ -100,7 +100,7 @@ update()
 
 **参数**
 
-    - **modules** (ModuleDict|OrderedDict|list[(key, Module)]) - 键值对的可迭代对象，值的类型为 `paddle.nn.Module` 。
+    - **modules** (ModuleDict|OrderedDict|list[(key, Module)]) - 键值对的可迭代对象，值的类型为 ``paddle.nn.Module`` 。
 
 **代码示例**
 

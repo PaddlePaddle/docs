@@ -6,7 +6,7 @@ tan
 .. py:function:: paddle.tan(x, name=None, *, out=None)
 三角函数 tangent。
 
-输入范围是 `(k*pi-pi/2, k*pi+pi/2)`，输出范围是 `[-inf, inf]` 。
+输入范围是 ``(k*pi-pi/2, k*pi+pi/2)``，输出范围是 ``[-inf, inf]`` 。
 
 .. math::
     out = tan(x)

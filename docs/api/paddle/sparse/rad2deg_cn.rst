@@ -6,7 +6,7 @@ rad2deg
 .. py:function:: paddle.sparse.rad2deg(x, name=None)
 
 
-逐元素将输入 :attr:`x` 从弧度转换为度，要求 输入 :attr:`x` 为 `SparseCooTensor` 或 `SparseCsrTensor` 。
+逐元素将输入 :attr:`x` 从弧度转换为度，要求 输入 :attr:`x` 为 ``SparseCooTensor`` 或 ``SparseCsrTensor`` 。
 
 数学公式：
 

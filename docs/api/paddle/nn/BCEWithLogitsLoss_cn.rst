@@ -5,9 +5,9 @@ BCEWithLogitsLoss
 
 .. py:class:: paddle.nn.BCEWithLogitsLoss(weight=None, reduction='mean', pos_weight=None, name=None)
 
-可用于创建一个 BCEWithLogitsLoss 的可调用类，计算输入的预测值 `logit` 和标签 `label` 间的 `binary cross entropy with logits loss` 损失。
+可用于创建一个 BCEWithLogitsLoss 的可调用类，计算输入的预测值 ``logit`` 和标签 ``label`` 间的 ``binary cross entropy with logits loss`` 损失。
 
-计算方式结合了 `sigmoid` 操作和 :ref:`cn_api_paddle_nn_BCELoss` 操作。或者，我们也可以认为计算方式是 ``sigmoid_cross_entrop_with_logits`` 和一些 `reduce` 操作的组合。
+计算方式结合了 ``sigmoid`` 操作和 :ref:`cn_api_paddle_nn_BCELoss` 操作。或者，我们也可以认为计算方式是 ``sigmoid_cross_entrop_with_logits`` 和一些 ``reduce`` 操作的组合。
 
 该损失函数衡量了在每个类别相互独立的分类任务中的逐元素概率误差。这可以被视为预测数据点的标签，其中标签不是相互排斥的。例如，一篇新闻文章可以同时关于政治，科技，体育或者同时不包含这些内容。
 
@@ -28,7 +28,7 @@ BCEWithLogitsLoss
 
 然后，当 ``weight`` 或 ``pos_weight`` 不为 None 的时候，将会在输出 Out 上乘以相应的权重。Tensor ``weight`` 给 Batch 中的每一条数据赋予不同权重，Tensor ``pos_weight`` 给每一类的正例添加相应的权重。
 
-最后，将会添加 `reduce` 操作到前面的输出 Out 上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，返回输出的均值 :math:`Out = MEAN(Out)`。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
+最后，将会添加 ``reduce`` 操作到前面的输出 Out 上。当 ``reduction`` 为 ``none`` 时，直接返回最原始的 ``Out`` 结果。当 ``reduction`` 为 ``mean`` 时，返回输出的均值 :math:`Out = MEAN(Out)`。当 ``reduction`` 为 ``sum`` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
 
 .. note::
     因为是二分类任务，所以标签值应该是 0 或者 1。

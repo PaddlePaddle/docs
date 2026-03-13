@@ -5,16 +5,16 @@ attention
 .. py:function:: paddle.sparse.nn.functional.attention(query, key, value, sparse_mask, key_padding_mask=None, attn_mask=None, name=None)
 
 .. note::
-    该 API 从 `CUDA 11.7` 开始支持。
+    该 API 从 ``CUDA 11.7`` 开始支持。
 
 稀疏 Attention，该 API 内部使用 SparseCsrTensor 来存储 Transformer 模块中的 attention 矩阵，从而达到减少显存占用、提高性能的目的。
-参数 `sparse_mask` 描述了稀疏矩阵的非 0 元素索引布局。
+参数 ``sparse_mask`` 描述了稀疏矩阵的非 0 元素索引布局。
 
 .. math::
     result = softmax(\frac{ Q * K^T }{\sqrt{d}}) * V
 
-其中：矩阵 `Q` `K` `V` 表示 attention 模块的三个输入 Tensor，其 shape 均为 `[batch_size, num_heads, seq_len, head_dim]` ，
-公式中的 `d` 代表 `head_dim` 。
+其中：矩阵 ``Q`` ``K`` ``V`` 表示 attention 模块的三个输入 Tensor，其 shape 均为 ``[batch_size, num_heads, seq_len, head_dim]`` ，
+公式中的 ``d`` 代表 ``head_dim`` 。
 
 参数
 ::::::::::
@@ -32,7 +32,7 @@ attention
 
 返回
 :::::::::
-DenseTensor: 维度为 4，shape 为 `[batch_size, num_heads, seq_len, head_dim]` ，dtype 与输入相同。
+DenseTensor: 维度为 4，shape 为 ``[batch_size, num_heads, seq_len, head_dim]`` ，dtype 与输入相同。
 
 
 代码示例

@@ -37,7 +37,7 @@ COPY-FROM: paddle.optimizer.lr.InverseTimeDecay
 step(epoch=None)
 '''''''''
 
-step 函数需要在优化器的 `optimizer.step()` 函数之后调用，调用之后将会根据 epoch 数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
+step 函数需要在优化器的 ``optimizer.step()`` 函数之后调用，调用之后将会根据 epoch 数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
 
 **参数**
 

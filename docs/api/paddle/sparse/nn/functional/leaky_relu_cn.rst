@@ -4,7 +4,7 @@ leaky_relu
 -------------------------------
 .. py:function:: paddle.sparse.nn.functional.leaky_relu(x, negative_slope=0.01, name=None)
 
-稀疏 leaky_relu 激活函数，要求 输入 :attr:`x` 为 `SparseCooTensor` 或 `SparseCsrTensor` 。
+稀疏 leaky_relu 激活函数，要求 输入 :attr:`x` 为 ``SparseCooTensor`` 或 ``SparseCsrTensor`` 。
 
 .. math::
     leaky_relu(x)=

@@ -8,7 +8,7 @@
 
 当完成了快速上手的任务后，下面这些模块会阐述如何用飞桨框架 2.0，实现深度学习过程中的每一步。具体包括：
 
-- `Tensor 介绍 <./tensor_cn.html>`_ : 介绍飞桨基本数据类型 `Tensor` 的概念与常见用法。
+- `Tensor 介绍 <./tensor_cn.html>`_ : 介绍飞桨基本数据类型 ``Tensor`` 的概念与常见用法。
 - `数据集定义与加载 <./data_load_cn.html>`_ : 飞桨框架数据加载的方式，主要为\ ``paddle.io.Dataset + paddle.io.DataLoader``\ ，以及飞桨内置数据集的介绍。
 - `数据预处理 <./data_preprocessing_cn.html>`_ : 飞桨框架数据预处理的方法，主要是\ ``paddle.vision.transform.*``\ 。
 - `模型组网 <./model_cn.html>`_ : 飞桨框架组网 API 的介绍，主要是\ ``paddle.nn.*``\ ，然后是飞桨框架组网方式的介绍，即 Sequential 的组网与 SubClass 的组网。
