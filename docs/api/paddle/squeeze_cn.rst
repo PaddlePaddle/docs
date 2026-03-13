@@ -8,7 +8,7 @@ squeeze
 删除输入 Tensor 的 Shape 中尺寸为 1 的维度。如果指定了 axis，则会删除指定 axis 中尺寸为 1 的维度。如果没有指定 axis，那么所有等于 1 的维度都会被删除。
 
 请注意，在动态图模式下，输出 Tensor 将与输入 Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。
-如果不希望输入与输出共享数据，请使用 `Tensor.clone` ，例如 `squeeze_clone_x = x.squeeze().clone()` 。
+如果不希望输入与输出共享数据，请使用 ``Tensor.clone`` ，例如 ``squeeze_clone_x = x.squeeze().clone()`` 。
 
 .. code-block:: text
 

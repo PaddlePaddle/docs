@@ -7,7 +7,7 @@ load
 
 此接口将即时编译（Just-In-Time）传入的自定义 OP 对应的 cpp 和 cuda 源码文件，返回一个包含自定义算子 API 的 ``Module`` 对象。
 
-其通过子进程的方式，在后台隐式地执行源码文件编译、符号链接、动态库生成、组网 API 接口生成等一系列过程。不需要本地预装 CMake 或者 Ninja 等工具命令，仅需必要的编译器命令环境，Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc` ，Windows 下需安装版本不低于 2017 的 Visual Studio；若编译支持 GPU 设备的算子，则需要提前安装 CUDA，其中自带 `nvcc` 编译环境。
+其通过子进程的方式，在后台隐式地执行源码文件编译、符号链接、动态库生成、组网 API 接口生成等一系列过程。不需要本地预装 CMake 或者 Ninja 等工具命令，仅需必要的编译器命令环境，Linux 下需安装版本不低于 5.4 的 GCC，并软链到 ``/usr/bin/cc`` ，Windows 下需安装版本不低于 2017 的 Visual Studio；若编译支持 GPU 设备的算子，则需要提前安装 CUDA，其中自带 ``nvcc`` 编译环境。
 
 在编译前会执行 `ABI 兼容性检查 <https://gcc.gnu.org/onlinedocs/libstdc++/manual/abi.html>`_ ，即检查编译器版本是否与本地安装的 Paddle 一致。如在 Linux 下，对于 CUDA 10.1 以上的 Paddle 默认使用 GCC 8.2 编译，则本地 ``cc`` 对应的编译器版本也需为 8.2，在 Windows 下，Paddle 使用 Visualt Studio 2017 编译，则本地也需安装
 大于 2017 的 Visual Studio，如果不满足，则可能由于 ABI 兼容性原因引发自定义 OP 编译或执行报错。Mac 下默认使用 clang 进行编译，无 ABI 兼容性问题。

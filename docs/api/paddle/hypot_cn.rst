@@ -6,7 +6,7 @@ hypot
 .. py:function:: paddle.hypot(x, y, name=None, *, out=None)
 
 
-`hypot` 函数对于给定直角三角形直角边 `x`, `y` 实现斜边长度求解的计算;
+``hypot`` 函数对于给定直角三角形直角边 ``x``, ``y`` 实现斜边长度求解的计算;
 
 .. math::
     out= \sqrt{x^2 + y^2}
