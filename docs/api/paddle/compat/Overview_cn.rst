@@ -14,9 +14,9 @@ PyTorch 兼容函数
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`max <cn_api_paddle_compat_max>` ", "包含 `amax`、同时返回 values 及 indices 的轴向最大值、`maximum` 三种功能"
+    " :ref:`max <cn_api_paddle_compat_max>` ", "包含 ``amax``、同时返回 values 及 indices 的轴向最大值、``maximum`` 三种功能"
     " :ref:`median <cn_api_paddle_compat_median>` ", "兼容版中位数，支持 dim/keepdim/out 签名"
-    " :ref:`min <cn_api_paddle_compat_min>` ", "包含 `amin`、同时返回 values 及 indices 的轴向最小值、`minimum` 三种功能"
+    " :ref:`min <cn_api_paddle_compat_min>` ", "包含 ``amin``、同时返回 values 及 indices 的轴向最小值、``minimum`` 三种功能"
     " :ref:`nanmedian <cn_api_paddle_compat_nanmedian>` ", "忽略 NaN 的兼容版中位数，支持 dim/keepdim/out 签名"
     " :ref:`slogdet <cn_api_paddle_compat_slogdet>` ", "slogdet 函数"
     " :ref:`sort <cn_api_paddle_compat_sort>` ", "同时返回 values 及 indices 的排序"

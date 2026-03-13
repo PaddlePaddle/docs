@@ -5,7 +5,7 @@ prior_box
 
 .. py:function:: paddle.vision.ops.prior_box(input, image, min_sizes, max_sizes=None, aspect_ratios=[1.], variance=[0.1, 0.1, 0.2, 0.2], flip=False, clip=False, steps=[0.0, 0.0], offset=0.5, min_max_aspect_ratios_order=False, name=None)
 
-为 SSD(Single Shot MultiBox Detector) 系列目标检测算法生成候选框，是在输入的每个位置生成 N 个候选框， N 由 `min_sizes`, `max_sizes` 和 `aspect_ratios` 的数目决定，候选框的尺寸在 (min_size, max_size) 之间，该尺寸根据 `aspect_ratios` 在序列中生成。
+为 SSD(Single Shot MultiBox Detector) 系列目标检测算法生成候选框，是在输入的每个位置生成 N 个候选框， N 由 ``min_sizes``, ``max_sizes`` 和 ``aspect_ratios`` 的数目决定，候选框的尺寸在 (min_size, max_size) 之间，该尺寸根据 ``aspect_ratios`` 在序列中生成。
 
 
 参数

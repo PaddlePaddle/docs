@@ -5,7 +5,7 @@ isnan
 
 .. py:function:: paddle.sparse.isnan(x, name=None)
 
-返回输入 tensor 的每一个值是否为 `+/-NaN`，要求 输入 :attr:`x` 为 `SparseCooTensor` 或 `SparseCsrTensor` 。
+返回输入 tensor 的每一个值是否为 ``+/-NaN``，要求 输入 :attr:`x` 为 ``SparseCooTensor`` 或 ``SparseCsrTensor`` 。
 
 参数
 :::::::::
@@ -14,7 +14,7 @@ isnan
 
 返回
 :::::::::
-多维稀疏 ``Tensor``，每个元素是一个 bool 值，表示输入 :attr:`x` 的每个元素是否为 `+/-NaN`，稀疏格式与 :attr:`x` 相同 。
+多维稀疏 ``Tensor``，每个元素是一个 bool 值，表示输入 :attr:`x` 的每个元素是否为 ``+/-NaN``，稀疏格式与 :attr:`x` 相同 。
 
 
 代码示例

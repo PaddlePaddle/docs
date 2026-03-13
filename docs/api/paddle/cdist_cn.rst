@@ -7,9 +7,9 @@ cdist
 
 计算两组输入集合中每对之间的 p 范数距离。
 
-当 :math:`p \in (0, \infty)` 时，该函数等同于 `scipy.spatial.distance.cdist(input,'minkowski', p=p)` ；
-当 :math:`p = 0` 时，等同于 `scipy.spatial.distance.cdist(input, 'hamming') * M` ；
-当 :math:`p = \infty` 时，最接近的是 `scipy.spatial.distance.cdist(xn, lambda x, y: np.abs(x - y).max())` 。
+当 :math:`p \in (0, \infty)` 时，该函数等同于 ``scipy.spatial.distance.cdist(input,'minkowski', p=p)`` ；
+当 :math:`p = 0` 时，等同于 ``scipy.spatial.distance.cdist(input, 'hamming') * M`` ；
+当 :math:`p = \infty` 时，最接近的是 ``scipy.spatial.distance.cdist(xn, lambda x, y: np.abs(x - y).max())`` 。
 
 参数
 ::::::::::::
@@ -28,7 +28,7 @@ cdist
 
 返回
 ::::::::::::
-Tensor，`dtype` 与输入张量相同。
+Tensor，``dtype`` 与输入张量相同。
 如果 x 的形状为 :math:`B \times P \times M`，y 的形状为 :math:`B \times R \times M`，则输出的形状为 :math:`B \times P \times R`。
 
 代码示例
