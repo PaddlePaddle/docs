@@ -5,21 +5,21 @@ L1Loss
 
 .. py:class:: paddle.nn.L1Loss(reduction='mean', name=None)
 
-创建一个 L1Loss 的可调用类，L1Loss 计算输入 input 和标签 label 间的 `L1 loss` 损失。
+创建一个 L1Loss 的可调用类，L1Loss 计算输入 input 和标签 label 间的 ``L1 loss`` 损失。
 
 该损失函数的数学计算公式如下：
 
-当 `reduction` 设置为 ``'none'`` 时：
+当 ``reduction`` 设置为 ``'none'`` 时：
 
 ..  math::
     Out = \lvert input - label\rvert
 
-当 `reduction` 设置为 ``'mean'`` 时：
+当 ``reduction`` 设置为 ``'mean'`` 时：
 
 ..  math::
     Out = MEAN(\lvert input - label\rvert)
 
-当 `reduction` 设置为 ``'sum'`` 时：
+当 ``reduction`` 设置为 ``'sum'`` 时：
 
 ..  math::
     Out = SUM(\lvert input - label\rvert)

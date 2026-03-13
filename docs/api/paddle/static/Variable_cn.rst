@@ -7,9 +7,9 @@ Variable
 
 
 .. note::
-  1. 请不要直接调用 `Variable` 的构造函数，因为这会造成严重的错误发生！
+  1. 请不要直接调用 ``Variable`` 的构造函数，因为这会造成严重的错误发生！
 
-  2. 在静态图形模式下：请使用 `Block.create_var` 创建一个静态的 `Variable`，该静态的 `Variable` 在使用 :ref:`cn_api_paddle_static_Executor` 执行前是没有实际数据的。
+  2. 在静态图形模式下：请使用 ``Block.create_var`` 创建一个静态的 ``Variable``，该静态的 ``Variable`` 在使用 :ref:`cn_api_paddle_static_Executor` 执行前是没有实际数据的。
 
 在 Paddle 静态图模式中，OP 的每个输入和输出都是 :ref:`api_guide_Variable`。多数情况下，:ref:`api_guide_Variable` 用于保存不同种类的数据或训练标签。
 
@@ -103,7 +103,7 @@ get_value(scope=None)
 
 **参数**
 
-  - scope ( Scope，可选 ) - 从指定的 ``scope`` 中获取 :ref:`api_guide_Variable` 的值。如果 ``scope`` 为 ``None``，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并从中获取 :ref:`api_guide_Variable` 的值；否则，从指定的 ``scope`` 中获取 :ref:`api_guide_Variable` 的值。
+  - scope ( Scope，可选 ) - 从指定的 ``scope`` 中获取 :ref:`api_guide_Variable` 的值。如果 ``scope`` 为 ``None``，通过 ``paddle.static.global_scope()`` 获取全局/默认作用域实例，并从中获取 :ref:`api_guide_Variable` 的值；否则，从指定的 ``scope`` 中获取 :ref:`api_guide_Variable` 的值。
 
 **返回**
 
@@ -121,7 +121,7 @@ set_value(value, scope=None)
 **参数**
 
   - value ( Tensor|ndarray ) - :ref:`api_guide_Variable` 的值。
-  - scope ( Scope，可选 ) - 将 :ref:`api_guide_Variable` 的值设置到指定的 ``scope`` 中。如果 ``scope`` 为 ``None``，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并将 :ref:`api_guide_Variable` 的值设置到这个用域实例中；否则，将 :ref:`api_guide_Variable` 的值设置到指定的 ``scope`` 中。
+  - scope ( Scope，可选 ) - 将 :ref:`api_guide_Variable` 的值设置到指定的 ``scope`` 中。如果 ``scope`` 为 ``None``，通过 ``paddle.static.global_scope()`` 获取全局/默认作用域实例，并将 :ref:`api_guide_Variable` 的值设置到这个用域实例中；否则，将 :ref:`api_guide_Variable` 的值设置到指定的 ``scope`` 中。
 
 **返回**
 

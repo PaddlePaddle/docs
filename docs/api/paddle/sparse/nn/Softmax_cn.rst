@@ -4,11 +4,11 @@ Softmax
 -------------------------------
 .. py:class:: paddle.sparse.nn.Softmax(axis=-1, name=None)
 
-稀疏 Softmax 激活层，输入 :attr:`x` 为 `SparseCooTensor` 或 `SparseCsrTensor` ，创建一个可调用对象以计算输入 `x` 的 `Softmax` 。
+稀疏 Softmax 激活层，输入 :attr:`x` 为 ``SparseCooTensor`` 或 ``SparseCsrTensor`` ，创建一个可调用对象以计算输入 ``x`` 的 ``Softmax`` 。
 
-当输入 `x` 为 `SparseCsrTensor` 时，仅支持 axis=-1，是由于 Csr 稀疏存储格式，更适合按行读取数据。
+当输入 ``x`` 为 ``SparseCsrTensor`` 时，仅支持 axis=-1，是由于 Csr 稀疏存储格式，更适合按行读取数据。
 
-如果将 `x` 从稀疏矩阵转换为稠密矩阵， :math:`i`  代表行数， :math:`j` 代表列数，且 axis=-1 时有如下公式：
+如果将 ``x`` 从稀疏矩阵转换为稠密矩阵， :math:`i`  代表行数， :math:`j` 代表列数，且 axis=-1 时有如下公式：
 
 .. math::
     softmax_ij = \frac{\exp(x_ij - max_j(x_ij))}{\sum_j(exp(x_ij - max_j(x_ij))}

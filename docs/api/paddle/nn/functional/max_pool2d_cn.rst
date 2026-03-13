@@ -4,8 +4,8 @@ max_pool2d
 -------------------------------
 
 .. py:function:: paddle.nn.functional.max_pool2d(x, kernel_size, stride=None, padding=0, return_mask=False, ceil_mode=False, dilation=1, data_format="NCHW", name=None)
-构建 `max_pool2d` 类的一个可调用对象，其将构建一个二维最大池化层，根据输入参数 `kernel_size`, `stride`,
-`padding` 等参数对输入做最大池化操作。
+构建 ``max_pool2d`` 类的一个可调用对象，其将构建一个二维最大池化层，根据输入参数 ``kernel_size``, ``stride``,
+``padding`` 等参数对输入做最大池化操作。
 
 例如：
 

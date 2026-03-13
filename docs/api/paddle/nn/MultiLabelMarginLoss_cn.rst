@@ -5,7 +5,7 @@ MultiLabelMarginLoss
 
 .. py:class:: paddle.nn.MultiLabelMarginLoss(reduction='mean', name=None)
 
-创建一个 MultiLabelMarginLoss 的可调用类。通过计算输入 `input` 和 `label` 间的多类别多分类问题的 `hinge loss (margin-based loss)` 损失。
+创建一个 MultiLabelMarginLoss 的可调用类。通过计算输入 ``input`` 和 ``label`` 间的多类别多分类问题的 ``hinge loss (margin-based loss)`` 损失。
 
 损失函数计算每一个 mini-batch 的 loss 按照下列公式计算
 

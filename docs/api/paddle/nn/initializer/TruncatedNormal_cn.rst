@@ -8,7 +8,7 @@ TruncatedNormal
 截断正态分布（高斯分布）初始化方法。
 
 .. note::
-    在参数设置时建议将 `mean` 设为 :math:`a \le mean \le b`。
+    在参数设置时建议将 ``mean`` 设为 :math:`a \le mean \le b`。
     若 :math:`mean < a - 2 \cdot std` 或 :math:`mean > b + 2 \cdot std`，采样值的分布可能是有误的。
 
 参数

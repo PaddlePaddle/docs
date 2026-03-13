@@ -24,10 +24,10 @@ Program 相关 API
     :widths: 10, 30
 
     " :ref:`append_backward <cn_api_paddle_static_append_backward>` ", "向 main_program 添加反向"
-    " :ref:`default_main_program <cn_api_paddle_static_default_main_program>` ", "获取当前用于存储 OP 和 Tensor 描述信息的 `default main program` "
-    " :ref:`default_startup_program <cn_api_paddle_static_default_startup_program>` ", "获取默认/全局的 `startup program` "
+    " :ref:`default_main_program <cn_api_paddle_static_default_main_program>` ", "获取当前用于存储 OP 和 Tensor 描述信息的 ``default main program`` "
+    " :ref:`default_startup_program <cn_api_paddle_static_default_startup_program>` ", "获取默认/全局的 ``startup program`` "
     " :ref:`Program <cn_api_paddle_static_Program>` ", "飞桨用 Program 动态描述整个计算图"
-    " :ref:`program_guard <cn_api_paddle_static_program_guard>` ", "配合 with 语句将算子和变量添加进指定的 `main program` 和 `startup program` "
+    " :ref:`program_guard <cn_api_paddle_static_program_guard>` ", "配合 with 语句将算子和变量添加进指定的 ``main program`` 和 ``startup program`` "
     " :ref:`set_program_state <cn_api_paddle_static_set_program_state>` ", "设置 Program 的参数和优化器信息"
     " :ref:`normalize_program <cn_api_paddle_static_normalize_program>` ", "根据指定的 feed_vars 和 fetch_vars，优化 program"
 
@@ -125,8 +125,8 @@ io 相关 API
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`cpu_places <cn_api_paddle_static_cpu_places>` ", "创建 `paddle.CPUPlace` 对象"
-    " :ref:`cuda_places <cn_api_paddle_static_cuda_places>` ", "创建 `paddle.CUDAPlace` 对象"
+    " :ref:`cpu_places <cn_api_paddle_static_cpu_places>` ", "创建 ``paddle.CPUPlace`` 对象"
+    " :ref:`cuda_places <cn_api_paddle_static_cuda_places>` ", "创建 ``paddle.CUDAPlace`` 对象"
     " :ref:`device_guard <cn_api_paddle_static_device_guard>` ", "用于指定 OP 运行设备的上下文管理器"
 
 .. _about_metrics:
