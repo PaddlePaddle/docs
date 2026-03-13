@@ -72,7 +72,7 @@ FLAGS_tracer_profile_fname
 *******************************************
 (始于 1.4.0)
 
-FLAGS_tracer_profile_fname 表示由 gperftools 生成的命令式跟踪器的分析器文件名。仅在编译选项选择``WITH_PROFILER = ON``时有效。如果禁用则设为 empty。
+FLAGS_tracer_profile_fname 表示由 gperftools 生成的命令式跟踪器的分析器文件名。仅在编译选项选择 ``WITH_PROFILER = ON`` 时有效。如果禁用则设为 empty。
 
 取值范围
 ---------------
