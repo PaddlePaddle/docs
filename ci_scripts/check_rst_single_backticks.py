@@ -5,7 +5,9 @@ from pathlib import Path
 
 SINGLE_BACKTICK_RE = re.compile(r"(?<!`)`([^`\n]+)`(?!`)")
 ROLE_SUFFIX_RE = re.compile(r":[A-Za-z0-9_.:-]+:$")
-CODE_BLOCK_DIRECTIVE_RE = re.compile(r"^\.\.\s+(code-block|code)::")
+CODE_BLOCK_DIRECTIVE_RE = re.compile(
+    r"^\.\.\s+(code-block|code|parsed-literal)::"
+)
 
 
 def parse_args():
