@@ -9,17 +9,17 @@ mse_loss
 
 对于预测值 input 和目标值 label，公式为：
 
-当 `reduction` 设置为 ``'none'`` 时，
+当 ``reduction`` 设置为 ``'none'`` 时，
 
     .. math::
         Out = (input - label)^2
 
-当 `reduction` 设置为 ``'mean'`` 时，
+当 ``reduction`` 设置为 ``'mean'`` 时，
 
     .. math::
        Out = \operatorname{mean}((input - label)^2)
 
-当 `reduction` 设置为 ``'sum'`` 时，
+当 ``reduction`` 设置为 ``'sum'`` 时，
 
     .. math::
        Out = \operatorname{sum}((input - label)^2)
@@ -28,7 +28,7 @@ mse_loss
 参数
 :::::::::
     - **input** (Tensor) - 预测值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维 Tensor。数据类型为 float32 或 float64。
-    - **label** (Tensor) - 目标值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维 Tensor。数据类型为 float32 或 float64。
+    - **label** (Tensor) - 目标值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维 Tensor。数据类型为 float32 或 float64。别名 ``target``。
     - **reduction** (str, 可选) - 输出的归约方法可以是'none'、'mean'或'sum'。
 
         - 如果 :attr:`reduction` 是 ``'mean'``，则返回减少的平均损失。
@@ -39,7 +39,7 @@ mse_loss
 
 返回
 :::::::::
-``Tensor``，输入 ``input`` 和标签 ``label`` 间的 `mse loss` 损失。
+``Tensor``，输入 ``input`` 和标签 ``label`` 间的 ``mse loss`` 损失。
 
 代码示例
 :::::::::

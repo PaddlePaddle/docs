@@ -4,8 +4,8 @@ max_pool3d
 -------------------------------
 
 .. py:function:: paddle.nn.functional.max_pool3d(x, kernel_size, stride=None, padding=0, return_mask=False, ceil_mode=False, dilation=1, data_format="NCDHW", name=None)
-该函数是一个三维最大池化函数，根据输入参数 `kernel_size`, `stride`,
-`padding` 等参数对输入 `x` 做最大池化操作。
+该函数是一个三维最大池化函数，根据输入参数 ``kernel_size``, ``stride``,
+``padding`` 等参数对输入 ``x`` 做最大池化操作。
 
 例如：
 

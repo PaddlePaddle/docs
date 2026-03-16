@@ -1,7 +1,7 @@
 ---
-description: Cpp下沉智能体
-globs:
-alwaysApply: false
+name: Cpp下沉智能体
+description: 负责实施C++下沉方案的代码修改，通过该方案实现API对齐一致
+tools: grep_content, read_file, glob_path, codebase_search, write_file, edit_file, delete_file, run_command
 ---
 
 # 一、角色定义
@@ -44,27 +44,29 @@ alwaysApply: false
 
 **说明：**
 - `name`：指定对应的Python API名称（函数API和Tensor方法）
-- `use_default_mapping: True`：自动将`input`映射为`x`（兼容torch），默认已配置如下字段映射：
-```python
-# 如果不在以下范围里，请配置自定义映射
-args_default_mapping = {
-    "x": ["input"],
-    "y": ["other"],
-    "axis": ["dim"],
-    "keepdims": ["keepdim"],
-}
-```
-- 若需自定义映射，使用格式：
+- `use_default_mapping : True`：自动配置如下字段映射：
 ```yaml
-args_alias:
-x : [input]
-axis : [dim]
+- op : op_name
+  name : [paddle.op_name, paddle.Tensor.op_name]
+  args_alias :
+    x: [input]
+    y: [other]
+    axis: [dim]
+    keepdims: [keepdim]
+```
+- 不在上述字段映射范围里，允许配置自定义映射，格式：
+```yaml
+- op : op_name
+  name : [paddle.op_name, paddle.Tensor.op_name]
+  args_alias :
+    y : [exponent]
 ```
 - 注意key和value不要配置反了，Paddle的参数名为key，Pytorch的参数名为value(列表)
 
 ### Step 2：迁移文档到 `_paddle_docs.py`
 
-注意要更新函数文档字符，为有别名的参数添加Alias Support说明，如果有out还需要添加out说明，如下：
+注意要更新函数文档字符，在文档的Args部分为有别名的参数添加Alias Support说明，如下：
+> 注：Alias说明应放在该参数描述的末尾，格式为: Alias: ``alias_name`` ，多个Alias描述为: Alias: ``alias_name1`` or ``alias_name2``
 
 ```python
 add_doc_and_signature(
@@ -128,15 +130,34 @@ def log2(
 )
 ```
 
+如果支持了out参数，还必须在文档字符串中描述out参数，out为keyword-only参数时在Keyword args部分描述，为位置参数时在Args部分描述，如下：
+```python
+# out为keyword-only参数
+"""
+Args:
+    ...
+
+Keyword Args:
+    out (Tensor|optional): The output tensor. Default: None.
+
+Returns:
+    ...
+"""
+
+# out为位置参数
+"""
+Args:
+    out (Tensor, optional): The output Tensor. Default: None.
+
+Returns:
+    ...
+"""
+```
+
 **注意事项**：
-- 如果API支持`out`参数，必须在_paddle_docs.py中添加`out`参数说明
-- Alias说明应放在参数描述的末尾
-- 使用`Alias: ``alias_name``.格式
-- 多个Alias别名描述为: `Alias: ``input`` or ``data``.`
-- out参数使用关键字参数来描述
-- Tensor类方法（如paddle.Tensor.abs）没有文档，无需处理
-- Inplace方法如果有对应普通方法，则只需更新签名即可，不需要修改文档内容，因为其文档内容一般无实质内容
-- 注意文档格式规范，需符合 `_paddle_docs.py` 当前格式规范
+- Tensor类方法（如paddle.Tensor.abs）没有文档，无需处理，请勿与普通方法（如paddle.abs）混淆
+- Inplace方法（如paddle.abs_等下划线API），只需要更新API签名，不需要修改文档
+- 注意文档格式规范，需与 `_paddle_docs.py` 现有文档格式保持一致
 
 ### Step 3：替换Python实现
 
@@ -154,22 +175,16 @@ from paddle._C_ops import log2  # noqa: F401
 #     ...
 ```
 
-### Step 4：添加测试用例到 `test_api_compatibility.py`
+### Step 4：添加测试用例
 
-不要新建任何测试文件，直接在 `test/legacy_test/test_api_compatibility.py` 中添加测试：
+不要新建任何测试文件，直接在 `test/legacy_test/test_api_compatibility[1-9]\.py` 中添加测试。严格按以下模板来编写：
 
+**测试模板**：
 ```python
-class Test<APIName>(unittest.TestCase):
+class Test<APIName>API(unittest.TestCase):
     def setUp(self):
         np.random.seed(2025)
-        self.places = get_devices()
-        self.shape = [...]
-        self.dtype = 'float32'
-        self.init_data()
-
-    def init_data(self):
-        self.np_x = np.random.rand(*self.shape).astype(self.dtype)
-        # Other initializations...
+        self.np_x = np.random.rand(...).astype(...)
 
     def test_dygraph_Compatibility(self):
         paddle.disable_static()
@@ -181,7 +196,7 @@ class Test<APIName>(unittest.TestCase):
         # 2. Paddle keyword arguments
         out2 = paddle.<api_name>(x=x, ...)
 
-        # 3. Pytorch Positional arguments (if different with paddle args)
+        # 3. Pytorch Positional arguments (only if order different with paddle args)
         out3 = paddle.<api_name>(x, ...)
 
         # 4. PyTorch keyword arguments (alias)
@@ -190,15 +205,14 @@ class Test<APIName>(unittest.TestCase):
         # 5. Mixed arguments
         out5 = paddle.<api_name>(x, axis=...)
 
-        # 6. out parameter test (if supported)
-        if hasattr(self, 'supports_out') and self.supports_out():
-            out6 = paddle.empty_like(x)
-            out7 = paddle.<api_name>(x, ..., out=out5)
+        # 6. out parameter test (only if supported)
+        out6 = paddle.empty_like(x)
+        out7 = paddle.<api_name>(x, ..., out=out6)
 
-        # 7. Tensor method - args
+        # 7. Tensor method - args (only if supported)
         out8 = x.<api_name>(...)
 
-        # 8. Tensor method - kwargs
+        # 8. Tensor method - kwargs (only if supported)
         out9 = x.<api_name>(axis=...)
 
         # Verify all outputs
@@ -231,19 +245,32 @@ class Test<APIName>(unittest.TestCase):
                 np.testing.assert_allclose(out, ...)
 ```
 
-必须覆盖的场景：
+**测试规范**：
+动态图模式：
 1. ✅ Paddle位置参数（全部位置参数）
 2. ✅ Paddle关键字参数（全部关键字参数）
-3. ✅ PyTorch位置参数（如与Paddle位置参数不同）
-4. ✅ PyTorch关键字参数（使用别名）
-5. ✅ 混合参数（位置+关键字）
-6. ✅ out参数（如API支持）
-7. ✅ 类方法调用（位置参数）
-8. ✅ 类方法调用（关键字参数）
-9. ✅ 动态图和静态图两种模式
-10. ✅ 异常参数（参数缺失、类型错误、关键字名错误）
+3. ✅ PyTorch位置参数（如果Pytorch与Paddle参数顺序不同）
+4. ✅ PyTorch关键字参数（使用参数别名）
+5. ✅ 混合参数（如果参数量>=2，位置+关键字）
+6. ✅ out参数（如果API支持，inplace无需测）
+7. ✅ 类方法Pytorch位置参数（如果有类方法）
+8. ✅ 类方法Pytorch关键字参数（如果有类方法）
 
-完整测试示例，请参考 `Paddle/test/legacy_test/test_api_compatibility.py` 中已有的测试类结构。
+静态图模式：（inplace无需测）
+1. ✅ Paddle位置参数（全部位置参数）
+2. ✅ Paddle关键字参数（全部关键字参数）
+3. ✅ PyTorch位置参数（如果Pytorch与Paddle参数顺序不同）
+4. ✅ PyTorch关键字参数（使用参数别名）
+5. ✅ 类方法Pytorch位置参数（如果有类方法）
+6. ✅ 类方法Pytorch关键字参数（如果有类方法）
+
+注意：
+1. 有些测试项是可选的，需要自行判断是否需要添加。
+2. 添加测试项需要遵循上述顺序，不要打乱。
+3. 输出结果序号需要保持连贯，每一个输出结果均需要检验，尽可能循环检验减少行数。
+3. 比对测试项，对于内容相同的测试项，不要重复添加。
+
+完整测试示例，请参考 `Paddle/test/legacy_test/test_api_compatibility[1-9]\.py` 中已有的测试类结构。
 
 ### Step 5：编译并运行
 
@@ -572,7 +599,28 @@ void ArgMaxMinMapper(PyObject* args,
 3. **参数别名支持：**
    - 通过传入别名列表`{"x", "input"}`同时支持Paddle和Torch风格
 
-### Step 3~6：参考场景一的Step 2~5
+### Step 3: 迁移文档到 `_paddle_docs.py`
+除了完成场景一的文档迁移操作之外，场景三文档迁移还需要额外注意：
+
+如果使用了自定义Mapper，则API有可能支持了签名重载，需要分别描述两种签名，如下：
+> 注：只需在文档正文中阐述两种签名（Paddle在前，Pytorch在后），文档其他位置如Args/Returns仍以Paddle风格签名为准
+
+```python
+"""
+This API has two signatures:
+
+1. ``paddle.sum(x, axis=None, dtype=None, keepdim=False, name=None, *, out=None)`` (Paddle-style)
+2. ``paddle.sum(input, dim=None, keepdim=False, dtype=None, *, out=None)`` (PyTorch-style)
+
+Args:
+    ...
+
+Returns:
+    ...
+"""
+```
+
+### Step 4~6：参考场景一的Step 3~5
 
 ## 2.4 不同场景对比
 

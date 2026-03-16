@@ -5,7 +5,7 @@ bitwise\_not\_
 
 .. py:function:: paddle.bitwise_not_(x, name=None)
 
-Inplace 版本的 :ref:`cn_api_paddle_bitwise_not` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_bitwise_not` API，对输入 ``x`` 采用 Inplace 策略。
 
 参数
 ::::::::::::

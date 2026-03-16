@@ -5,7 +5,7 @@ TripletMarginWithDistanceLoss
 
 .. py:class:: paddle.nn.TripletMarginWithDistanceLoss(distance_function=None, margin: float = 1.0, swap: bool = False, reduction: str = 'mean', name:str=None)
 
-创建一个 TripletMarginWithDistanceLoss 的可调用类，通过计算输入 `input` 和 `positive` 和 `negative` 间的 `triplet margin loss` 损失，测量样本之间，即 `input` 与 `positive examples` 和 `negative examples` 的相对相似性。
+创建一个 TripletMarginWithDistanceLoss 的可调用类，通过计算输入 ``input`` 和 ``positive`` 和 ``negative`` 间的 ``triplet margin loss`` 损失，测量样本之间，即 ``input`` 与 ``positive examples`` 和 ``negative examples`` 的相对相似性。
 
 
 损失函数按照下列公式计算

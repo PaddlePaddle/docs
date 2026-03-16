@@ -5,7 +5,7 @@ equal
 .. py:function:: paddle.equal(x, y, name=None)
 
 
-返回 :math:`x==y` 逐元素比较 x 和 y 是否相等，相同位置的元素相同则返回 True，否则返回 False。使用重载算子 `==` 可以有相同的计算函数效果。
+返回 :math:`x==y` 逐元素比较 x 和 y 是否相等，相同位置的元素相同则返回 True，否则返回 False。使用重载算子 ``==`` 可以有相同的计算函数效果。
 
 .. note::
     输出的结果不返回梯度。

@@ -4,8 +4,8 @@ avg_pool2d
 -------------------------------
 
 .. py:function:: paddle.nn.functional.avg_pool2d(x, kernel_size, stride=None, padding=0, ceil_mode=False, exclusive=True, divisor_override=None, data_format="NCHW", name=None)
-该函数是一个二维平均池化函数，其将构建一个二维平均池化层，根据输入参数 `kernel_size`, `stride`,
-`padding` 等参数对输入做平均池化操作。
+该函数是一个二维平均池化函数，其将构建一个二维平均池化层，根据输入参数 ``kernel_size``, ``stride``,
+``padding`` 等参数对输入做平均池化操作。
 
 例如：
 

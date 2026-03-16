@@ -57,7 +57,7 @@ FLAGS_sync_nccl_allreduce
 *******************************************
 (始于 1.3)
 
-如果 FLAGS_sync_nccl_allreduce 为 True，则会在 allreduce_op_handle 中调用 `cudaStreamSynchronize（nccl_stream）` ，这种模式在某些情况下可以获得更好的性能。
+如果 FLAGS_sync_nccl_allreduce 为 True，则会在 allreduce_op_handle 中调用 ``cudaStreamSynchronize（nccl_stream）`` ，这种模式在某些情况下可以获得更好的性能。
 
 取值范围
 ---------------
@@ -65,14 +65,14 @@ Bool 型，缺省值为 True。
 
 示例
 -------
-FLAGS_sync_nccl_allreduce=True - 在 allreduce_op_handle 中调用 `cudaStreamSynchronize(nccl_stream)` 。
+FLAGS_sync_nccl_allreduce=True - 在 allreduce_op_handle 中调用 ``cudaStreamSynchronize(nccl_stream)`` 。
 
 
 FLAGS_tracer_profile_fname
 *******************************************
 (始于 1.4.0)
 
-FLAGS_tracer_profile_fname 表示由 gperftools 生成的命令式跟踪器的分析器文件名。仅在编译选项选择`WITH_PROFILER = ON`时有效。如果禁用则设为 empty。
+FLAGS_tracer_profile_fname 表示由 gperftools 生成的命令式跟踪器的分析器文件名。仅在编译选项选择 ``WITH_PROFILER = ON`` 时有效。如果禁用则设为 empty。
 
 取值范围
 ---------------

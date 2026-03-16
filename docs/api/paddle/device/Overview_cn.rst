@@ -3,7 +3,7 @@
 paddle.device
 ============================
 
-`paddle.device` 模块提供了一系列与设备相关的 API，用于管理和配置计算设备。具体如下：
+``paddle.device`` 模块提供了一系列与设备相关的 API，用于管理和配置计算设备。具体如下：
 
 -  :ref:`设备设置与属性获取 <cn_device_setting>`
 -  :ref:`编译环境检测 <cn_device_compile>`

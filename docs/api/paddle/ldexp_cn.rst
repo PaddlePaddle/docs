@@ -5,7 +5,7 @@ ldexp
 
 .. py:function:: paddle.ldexp(x, y, name=None)
 
-计算 `x` 乘以 2 的 `y` 次幂
+计算 ``x`` 乘以 2 的 ``y`` 次幂
 
 .. math::
     out = x * 2^{y}

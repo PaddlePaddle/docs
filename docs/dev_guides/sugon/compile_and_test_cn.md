@@ -1,6 +1,6 @@
 # 曙光智算平台-Paddle 源码编译和单测执行
 
-由于[曙光智算](https://www.hpccube.com/ac/home/index.html)环境下网路受限，直接编译飞桨源码会遇到第三方依赖库下载失败从而导致编译失败的问题。因此在曙光智算环境下进行飞桨源码编译与单测需要以下几个步骤：
+由于[曙光智算](https://www.hpccube.com/)环境下网路受限，直接编译飞桨源码会遇到第三方依赖库下载失败从而导致编译失败的问题。因此在曙光智算环境下进行飞桨源码编译与单测需要以下几个步骤：
 
 
 ## 第一章节：本地容器编译 Paddle 源码，并进行 Paddle 目录打包
@@ -42,7 +42,7 @@ tar -zcvf Paddle.tar.gz ./Paddle
 
 ## 第二章节：将打包的 Paddle 源码包上传曙光智算平台个人目录
 
-**第一步**：登录[曙光智算](https://www.hpccube.com/ac/home/index.html) 平台后进入菜单顶部的「文件 -> E-File」环境
+**第一步**：登录[曙光智算](https://www.hpccube.com/) 平台后进入菜单顶部的「文件 -> E-File」环境
 
 ![图片](../images/sugon_login.png)
 
@@ -54,7 +54,7 @@ tar -zcvf Paddle.tar.gz ./Paddle
 
 ## 第三章节：智算平台下启动 Paddle 开发容器，执行编译和单测
 
-**第一步**：登录[曙光智算](https://www.hpccube.com/ac/home/index.html) 平台后进入页面中部的「我的服务 -> 智能计算服务」
+**第一步**：登录[曙光智算](https://www.hpccube.com/) 平台后进入页面中部的「我的服务 -> 智能计算服务」
 
 ![图片](../images/sugon_my_service.png)
 

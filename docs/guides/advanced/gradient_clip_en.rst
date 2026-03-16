@@ -32,10 +32,10 @@ You can also clip gradients of a part of parameters as follow:
 
 **b. Clip a part of gradients**
 
-You can clip a part of gradients by setting `need_clip` of ref:`cn_api_fluid_ParamAttr` . `need_clip` is `True` by default, which represents that its gradient will be clipped. Otherwise, its gradient will not be clipped.
+You can clip a part of gradients by setting ``need_clip`` of :ref:`cn_api_fluid_ParamAttr` . ``need_clip`` is ``True`` by default, which represents that its gradient will be clipped. Otherwise, its gradient will not be clipped.
 
 For example:
-If only clip the gradient of `weight` in `linear`, you should set `bias_attr` as follow:
+If only clip the gradient of ``weight`` in ``linear``, you should set ``bias_attr`` as follow:
 
 .. code:: ipython3
 
@@ -80,10 +80,10 @@ You can also clip gradients of a part of parameters as follow:
 
 **b. Clip a part of gradients**
 
-You can clip a part of gradients by setting `need_clip` of ref:`cn_api_fluid_ParamAttr` . `need_clip` is `True` by default, which represents that its gradient will be clipped. Otherwise, its gradient will not be clipped.
+You can clip a part of gradients by setting ``need_clip`` of :ref:`cn_api_fluid_ParamAttr` . ``need_clip`` is ``True`` by default, which represents that its gradient will be clipped. Otherwise, its gradient will not be clipped.
 
 For example:
-If only clip the gradient of `bias` in `linear`, you should set `weight_attr` as follow:
+If only clip the gradient of ``bias`` in ``linear``, you should set ``weight_attr`` as follow:
 
 .. code:: ipython3
 
@@ -131,4 +131,4 @@ You can also clip gradients of a part of parameters as follow:
 
 **b. Clip a part of gradients**
 
-You can clip a part of gradients by setting `need_clip` of ref:`cn_api_fluid_ParamAttr` . `need_clip` is `True` by default, which represents that its gradient will be clipped. Otherwise, its gradient will not be clipped. Refer to the sample code above.
+You can clip a part of gradients by setting ``need_clip`` of :ref:`cn_api_fluid_ParamAttr` . ``need_clip`` is ``True`` by default, which represents that its gradient will be clipped. Otherwise, its gradient will not be clipped. Refer to the sample code above.

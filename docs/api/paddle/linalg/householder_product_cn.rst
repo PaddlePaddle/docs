@@ -6,11 +6,11 @@ householder_product
 .. py:function:: paddle.linalg.householder_product(x, tau, name=None)
 
 
-计算 Householder 矩阵乘积的前 n 列(输入矩阵为 `[*,m,n]` )。
+计算 Householder 矩阵乘积的前 n 列(输入矩阵为 ``[*,m,n]`` )。
 
 
-该函数可以从矩阵 `x` (m x n) 得到向量 :math:`\omega_{i}`，其中前 `i-1` 个元素为零，第 i 个元素为 `1`，其余元素元素来自 `x` 的第 i 列。
-并且使用向量 `tau` 可以计算 Householder 矩阵乘积的前 n 列。
+该函数可以从矩阵 ``x`` (m x n) 得到向量 :math:`\omega_{i}`，其中前 ``i-1`` 个元素为零，第 i 个元素为 ``1``，其余元素元素来自 ``x`` 的第 i 列。
+并且使用向量 ``tau`` 可以计算 Householder 矩阵乘积的前 n 列。
 
 .. math::
     H_i = I_m - \tau_i \omega_i \omega_i^H

@@ -8,14 +8,14 @@ identity_loss
 
 用于在 IPU 动态图转静态图功能中标记网络的损失值，从而能够在 IPU 上为网络添加反向计算过程。算子以网络的损失值作为输入，并对输入做 reduction:
 
-当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。
+当 ``reduction`` 为 ``none`` 时，直接返回最原始的 ``Out`` 结果。
 
-当 `reduction` 为 `mean` 时，最终的输出结果为：
+当 ``reduction`` 为 ``mean`` 时，最终的输出结果为：
 
 .. math::
   Out = MEAN(Out)
 
-当 `reduction` 为 `sum` 时，最终的输出结果为：
+当 ``reduction`` 为 ``sum`` 时，最终的输出结果为：
 
 .. math::
   Out = SUM(Out)
@@ -28,7 +28,7 @@ identity_loss
 
 返回
 ::::::::::::
-Variable，根据 `reduction` 返回网络损失值的计算结果。
+Variable，根据 ``reduction`` 返回网络损失值的计算结果。
 
 代码示例
 ::::::::::::

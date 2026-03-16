@@ -5,7 +5,7 @@ CosineEmbeddingLoss
 
 .. py:class:: paddle.nn.CosineEmbeddingLoss(margin=0, reduction='mean', name=None)
 
-该函数计算给定的输入 input1, input2 和 label 之间的 `CosineEmbedding` 损失，通常用于学习非线性嵌入或半监督学习
+该函数计算给定的输入 input1, input2 和 label 之间的 ``CosineEmbedding`` 损失，通常用于学习非线性嵌入或半监督学习
 
 如果 label=1，则该损失函数的数学计算公式如下：
 

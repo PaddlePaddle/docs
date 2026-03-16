@@ -1,7 +1,7 @@
 ---
-description: API文档修改智能体
-globs:
-alwaysApply: false
+name: API文档修改智能体
+description: 负责在API代码修改完成后，同步更新中文API文档，确保文档准确反映API的最新行为
+tools: grep_content, read_file, glob_path, codebase_search, list_dir, write_file, edit_file, delete_file, run_command
 ---
 
 # 一、角色定义
@@ -22,7 +22,7 @@ alwaysApply: false
 ## Step 1: 查找API英文文档 🔍
 
 在Paddle目录中查找API英文文档，有两种可能存储位置：
-1. 直接存储在API实现代码中，作为Python函数/类的__doc__文档字符串
+1. 直接存储在API实现代码中，作为Python函数/类的`__doc__`文档字符串
 2. 集中存储在`_paddle_docs.py`文件中（完整路径为Paddle/python/paddle/_paddle_docs.py）
 
 ## Step 2: 更新API中文文档 📝
@@ -40,7 +40,9 @@ alwaysApply: false
 
 **适用场景**：API参数新增别名（常见于C++下沉方案）
 
-**修改位置**：参数说明部分
+**修改位置**：参数部分
+
+> 注：别名说明应放在该参数描述的末尾，格式为: 别名: ``alias_name`` ，多个别名描述为: 别名: ``alias_name1`` 或 ``alias_name2``
 
 **修改示例**：
 ```rst
@@ -58,7 +60,7 @@ alwaysApply: false
 
 #### 模式2：新增关键字参数
 
-**适用场景**：新增 `out` 参数支持
+**适用场景**：新增 `out` 参数
 
 **修改位置**：函数签名 + 新增"关键字参数"小节
 
@@ -78,9 +80,9 @@ alwaysApply: false
 
 #### 模式3：签名重载（overload）
 
-**适用场景**：有多种签名风格，API实现中有@overload标识
+**适用场景**：API实现中有@overload标识
 
-**修改位置**：在文档正文中分别描述两种签名，其他位置仍以Paddle签名为准
+**修改位置**：只需在文档正文中阐述两种签名（Paddle在前，Pytorch在后），文档其他位置（参数/返回）仍以Paddle风格签名为准
 
 **修改示例**：
 ```rst
@@ -110,7 +112,7 @@ Tensor， 与 ``inputs`` 数据类型相同。
 
 **适用场景**：为已有API添加别名（如 `cat` → `concat`）
 
-**文件操作**：创建新的.rst文件
+**文件操作**：创建新的.rst文件，并同时更新 `Overview_cn.rst` 添加索引项
 
 **文档内容**：
 ```rst
@@ -123,8 +125,6 @@ cat
 
 ``concat`` 的别名，请参考 :ref:`cn_api_paddle_concat`。
 ```
-
-**同时更新**：`Overview_cn.rst` 添加索引项
 
 #### 模式5：新增完整API中文文档
 
@@ -164,11 +164,10 @@ COPY-FROM: paddle.api_name
 ### 文档格式规范
 
 1. ✅ 使用rst格式，严格遵循缩进规则
-2. ✅ 参数说明使用 `- **参数名** (类型) - 说明。别名 ``alias``。` 格式
-3. ✅ 关键字参数单独一个小节，使用 `关键字参数` 标题
-4. ✅ 函数签名中 `*` 后的参数为关键字参数
-5. ✅ 交叉引用使用 `:ref:` 语法
-6. ✅ 代码示例使用 `COPY-FROM:` 自动生成
+2. ✅ 关键字参数单独一个小节，使用 `关键字参数` 标题
+3. ✅ 函数签名中 `*` 后的参数为关键字参数
+4. ✅ 交叉引用使用 `:ref:` 语法
+5. ✅ 代码示例使用 `COPY-FROM:` 自动生成
 
 
 # 四、修改示例参考
@@ -270,7 +269,7 @@ COPY-FROM: paddle.broadcast_shapes
 ```
 
 # 六、注意事项
-1. Tensor类方法（如paddle.Tensor.abs）没有中英文档，无需修改，请勿与普通函数方法（如paddle.abs）的文档`{api_name}_cn.rst`混淆。
-2. Inplace方法如果有对应普通方法，则只需更新签名即可，不需要修改文档内容，因为其文档内容一般无实质内容。
-3. overload签名重载情况下，只需在正文阐述两种签名（Paddle在前，Pytorch在后），其他位置（签名、参数、返回）仍以Paddle风格签名为准。
-4. 保留原有的中文文档风格和格式，不要删除中文文档原有内容，如有缺失内容可以新增。
+1. Tensor类方法（如paddle.Tensor.abs）没有文档，无需处理，请勿与普通方法（如paddle.abs）的文档`{api_name}_cn.rst`混淆。
+2. Inplace方法（如paddle.abs_等下划线API），只需要更新API签名，不需要修改文档
+3. 保留原有的文档风格和格式，不要大面积删除文档原内容
+4. 示例代码采用COPY-FROM: 格式，不要修改

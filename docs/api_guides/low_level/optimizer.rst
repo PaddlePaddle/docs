@@ -28,9 +28,7 @@ API Reference 请参考 :ref:`cn_api_paddle_optimizer_SGD`
 3. Momentum
 -------------------------
 :code:`Momentum` 优化器在 :code:`SGD` 基础上引入动量，减少了随机梯度下降过程中存在的噪声问题。
-用户在使用时可以将 :code:`use_nesterov` 参数设置为 False 或 True ，分别对应传统 `Momentum(论文 4.1 节)
-<https://arxiv.org/pdf/1609.04747>`_  算法和 `Nesterov accelerated gradient(论文 4.2 节)
-<https://arxiv.org/pdf/1609.04747>`_ 算法。
+用户在使用时可以将 :code:`use_nesterov` 参数设置为 False 或 True ，分别对应传统 `Momentum(论文 4.1 节) <https://arxiv.org/pdf/1609.04747>`_ 算法和 `Nesterov accelerated gradient(论文 4.2 节) <https://arxiv.org/pdf/1609.04747>`_ 算法。
 
 API Reference 请参考 :ref:`cn_api_paddle_optimizer_Momentum`
 

@@ -5,24 +5,24 @@ MarginRankingLoss
 
 .. py:class:: paddle.nn.MarginRankingLoss(margin=0.0, reduction='mean', name=None)
 
-创建一个 ``MarginRankingLoss`` 的可调用类，计算输入 input，other 和 标签 label 间的 `margin rank loss` 损失。
+创建一个 ``MarginRankingLoss`` 的可调用类，计算输入 input，other 和 标签 label 间的 ``margin rank loss`` 损失。
 
 该损失函数的数学计算公式如下：
 
  .. math::
      margin\_rank\_loss = max(0, -label * (input - other) + margin)
 
-当 `reduction` 设置为 ``'mean'`` 时，
+当 ``reduction`` 设置为 ``'mean'`` 时，
 
     .. math::
        Out = MEAN(margin\_rank\_loss)
 
-当 `reduction` 设置为 ``'sum'`` 时，
+当 ``reduction`` 设置为 ``'sum'`` 时，
 
     .. math::
        Out = SUM(margin\_rank\_loss)
 
-当 `reduction` 设置为 ``'none'`` 时，直接返回最原始的 `margin_rank_loss` 。
+当 ``reduction`` 设置为 ``'none'`` 时，直接返回最原始的 ``margin_rank_loss`` 。
 
 参数
 ::::::::
@@ -32,10 +32,10 @@ MarginRankingLoss
 
 形状
 ::::::::
-    - **input** ：N-D Tensor，维度是[N，*] 其中 N 是 batch size，`*` 是任意数量的额外维度，数据类型为 float32 或 float64。
+    - **input** ：N-D Tensor，维度是[N，*] 其中 N 是 batch size，``*`` 是任意数量的额外维度，数据类型为 float32 或 float64。
     - **other** ：与 input 的形状、数据类型相同。
     - **label** ：与 input 的形状、数据类型相同。
-    - **output** ：如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'``，则形状为 :math:`[]`，否则 shape 和输入 `input` 保持一致。数据类型与 ``input``、 ``other`` 相同。
+    - **output** ：如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'``，则形状为 :math:`[]`，否则 shape 和输入 ``input`` 保持一致。数据类型与 ``input``、 ``other`` 相同。
 
 返回
 ::::::::

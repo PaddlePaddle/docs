@@ -5,7 +5,7 @@ less_equal
 .. py:function:: paddle.less_equal(x, y, name=None)
 
 
-逐元素地返回 :math:`x <= y` 的逻辑值，相同位置前者输入小于等于后者输入则返回 True，否则返回 False。使用重载算子 `<=` 可以有相同的计算函数效果。
+逐元素地返回 :math:`x <= y` 的逻辑值，相同位置前者输入小于等于后者输入则返回 True，否则返回 False。使用重载算子 ``<=`` 可以有相同的计算函数效果。
 
 .. note::
     输出的结果不返回梯度。

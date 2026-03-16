@@ -4,7 +4,7 @@ ReLU
 -------------------------------
 .. py:class:: paddle.sparse.nn.ReLU(name=None)
 
-稀疏 ReLU 激活层，创建一个可调用对象以计算输入 `x` 的 `ReLU` 。
+稀疏 ReLU 激活层，创建一个可调用对象以计算输入 ``x`` 的 ``ReLU`` 。
 
 .. math::
     ReLU(x) = max(x, 0)

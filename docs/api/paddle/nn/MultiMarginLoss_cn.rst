@@ -5,7 +5,7 @@ MultiMarginLoss
 
 .. py:class:: paddle.nn.MultiMarginLoss(p: int = 1, margin: float = 1.0, weight=None, reduction: str = 'mean', name:str=None)
 
-创建一个 MultiMarginLoss 的可调用类。通过计算输入 `input` 和 `label` 间的多分类问题的 `hinge loss (margin-based loss)` 损失。
+创建一个 MultiMarginLoss 的可调用类。通过计算输入 ``input`` 和 ``label`` 间的多分类问题的 ``hinge loss (margin-based loss)`` 损失。
 
 损失函数如果在没有权重下计算每一个 mini-batch 的 loss 按照下列公式计算
 
@@ -15,7 +15,7 @@ MultiMarginLoss
 
 其中 :math:`0 \leq j \leq \text{C}-1`, 且 :math:`j \neq label_i`， :math:`0 \leq i \leq \text{N}-1` N 为 batch 数量, C 为类别数量。
 
-如果含有权重 `weight` 则损失函数按以下公式计算
+如果含有权重 ``weight`` 则损失函数按以下公式计算
 
 .. math::
     \text{loss}(input_i, label_i) = \frac{\sum_{j} \max(0, weight[label_i] * (\text{margin} - input_i[label_i] + input_i[j]))^p}{\text{C}}

@@ -6,7 +6,7 @@ asin
 .. py:function:: paddle.sparse.asin(x, name=None)
 
 
-逐元素计算输入 :attr:`x` 的反正弦，要求 输入 :attr:`x` 为 `SparseCooTensor` 或 `SparseCsrTensor` 。
+逐元素计算输入 :attr:`x` 的反正弦，要求 输入 :attr:`x` 为 ``SparseCooTensor`` 或 ``SparseCsrTensor`` 。
 
 数学公式：
 

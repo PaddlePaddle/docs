@@ -161,8 +161,8 @@ paddle.vision 目录是飞桨在视觉领域的高层 API。具体如下：
     " :ref:`RandomErasing <cn_api_paddle_vision_transforms_RandomErasing>` ", "擦除图像中随机选择的矩形区域内的像素"
     " :ref:`SaturationTransform <cn_api_paddle_vision_transforms_SaturationTransform>` ", "调整图像饱和度"
     " :ref:`to_grayscale <cn_api_paddle_vision_transforms_to_grayscale>` ", "对图像进行灰度化"
-    " :ref:`to_tensor <cn_api_paddle_vision_transforms_to_tensor>` ", "将`PIL.Image`或`numpy.ndarray`转为`paddle.Tensor`"
-    " :ref:`ToTensor <cn_api_paddle_vision_transforms_ToTensor>` ", "将`PIL.Image`或`numpy.ndarray`转为`paddle.Tensor`"
+    " :ref:`to_tensor <cn_api_paddle_vision_transforms_to_tensor>` ", "将 ``PIL.Image`` 或 ``numpy.ndarray`` 转为 ``paddle.Tensor``"
+    " :ref:`ToTensor <cn_api_paddle_vision_transforms_ToTensor>` ", "将 ``PIL.Image`` 或 ``numpy.ndarray`` 转为 ``paddle.Tensor``"
     " :ref:`Transpose <cn_api_paddle_vision_transforms_Transpose>` ", "将输入的图像数据更改为目标格式"
     " :ref:`vflip <cn_api_paddle_vision_transforms_vflip>` ", "垂直翻转图像"
 

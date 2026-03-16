@@ -98,7 +98,7 @@ update()
 
 **参数**
 
-    - **sublayers** (LayerDict|OrderedDict|list[(key, Layer)]) - 键值对的可迭代对象，值的类型为 `paddle.nn.Layer` 。
+    - **sublayers** (LayerDict|OrderedDict|list[(key, Layer)]) - 键值对的可迭代对象，值的类型为 ``paddle.nn.Layer`` 。
 
 **代码示例**
 

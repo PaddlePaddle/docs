@@ -5,14 +5,14 @@ cholesky_inverse
 
 .. py:function:: paddle.linalg.cholesky_inverse(x, upper=False, name=None)
 
-使用 Cholesky 因子 `U` 计算对称正定矩阵的逆矩阵，返回矩阵 `inv`。
-如果 `upper` 是 `False`，则 `U` 为下三角矩阵:
+使用 Cholesky 因子 ``U`` 计算对称正定矩阵的逆矩阵，返回矩阵 ``inv``。
+如果 ``upper`` 是 ``False``，则 ``U`` 为下三角矩阵:
 
     .. math::
 
         inv = (UU^{T})^{-1}
 
-如果 `upper` 是 `True`，则 `U` 为上三角矩阵:
+如果 ``upper`` 是 ``True``，则 ``U`` 为上三角矩阵:
 
     .. math::
 

@@ -5,7 +5,7 @@ sin
 
 .. py:function:: paddle.sparse.sin(x, name=None)
 
-逐元素计算 :attr:`x` 的正弦，要求 输入 :attr:`x` 为 `SparseCooTensor` 或 `SparseCsrTensor` 。
+逐元素计算 :attr:`x` 的正弦，要求 输入 :attr:`x` 为 ``SparseCooTensor`` 或 ``SparseCsrTensor`` 。
 
 数学公式：
 

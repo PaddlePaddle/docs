@@ -4,8 +4,8 @@ avg_pool3d
 -------------------------------
 
 .. py:function:: paddle.nn.functional.avg_pool3d(x, kernel_size, stride=None, padding=0, ceil_mode=False, exclusive=True, divisor_override=None, data_format="NCDHW", name=None)
-该函数是一个三维平均池化函数，根据输入参数 `kernel_size`, `stride`,
-`padding` 等参数对输入做平均池化操作。
+该函数是一个三维平均池化函数，根据输入参数 ``kernel_size``, ``stride``,
+``padding`` 等参数对输入做平均池化操作。
 
 
 例如：

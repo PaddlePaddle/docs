@@ -5,7 +5,7 @@ MaxUnPool2D
 
 .. py:class:: paddle.nn.MaxUnPool2D(kernel_size, stride=None,padding=0,data_format="NCHW",output_size=None,name=None)
 
-构建 `MaxUnPool2D` 类的一个可调用对象，根据输入的 input 和最大值位置计算出池化的逆结果。所有非最大值设置为零。
+构建 ``MaxUnPool2D`` 类的一个可调用对象，根据输入的 input 和最大值位置计算出池化的逆结果。所有非最大值设置为零。
 
 输入：
     X 形状：:math:`(N, C, H_{in}, W_{in})`
@@ -18,7 +18,7 @@ MaxUnPool2D
 .. math::
   W_{out} = (W_{in} - 1) \times \text{stride[1]} - 2 \times \text{padding[1]} + \text{kernel_size[1]}
 
-或由参数 `output_size` 直接指定
+或由参数 ``output_size`` 直接指定
 
 
 

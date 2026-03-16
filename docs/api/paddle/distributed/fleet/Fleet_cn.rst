@@ -58,7 +58,7 @@ COPY-FROM: paddle.distributed.fleet.Fleet.init:code-init-example4
 is_first_worker()
 '''''''''
 
-返回当前节点是否为第一个`worker`节点，判断当前 worker_index 是否为 0，如果为 0 则返回 True，否则返回 False。
+返回当前节点是否为第一个 ``worker`` 节点，判断当前 worker_index 是否为 0，如果为 0 则返回 True，否则返回 False。
 
 **返回**
 True/False
@@ -71,7 +71,7 @@ COPY-FROM: paddle.distributed.fleet.Fleet.is_first_worker
 worker_index()
 '''''''''
 
-返回当前节点的编号，每个`worker`节点被分配[0, worker_num-1]内的唯一的编码 ID
+返回当前节点的编号，每个 ``worker`` 节点被分配[0, worker_num-1]内的唯一的编码 ID
 
 **返回**
 int
@@ -85,7 +85,7 @@ COPY-FROM: paddle.distributed.fleet.Fleet.worker_index
 worker_num()
 '''''''''
 
-返回当前全部训练节点中`worker`节点的个数
+返回当前全部训练节点中 ``worker`` 节点的个数
 
 **返回**
 int
@@ -98,7 +98,7 @@ COPY-FROM: paddle.distributed.fleet.Fleet.worker_num
 is_worker()
 '''''''''
 
-返回当前节点是否为`worker`节点
+返回当前节点是否为 ``worker`` 节点
 
 **返回**
 True/False
@@ -148,7 +148,7 @@ server_index()
   **该参数只在 ParameterServer 模式下生效**
 
 
-返回当前节点的编号，每个`server`节点被分配[0, server_num-1]内的唯一的编码 ID
+返回当前节点的编号，每个 ``server`` 节点被分配[0, server_num-1]内的唯一的编码 ID
 
 **返回**
 int
@@ -187,7 +187,7 @@ is_server()
   **该参数只在 ParameterServer 模式下生效**
 
 
-返回当前节点是否为`server`节点
+返回当前节点是否为 ``server`` 节点
 
 **返回**
 True/False
