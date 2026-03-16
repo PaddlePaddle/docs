@@ -17,11 +17,11 @@ shard_layer
 参数
 :::::::::
 
-    - **layer** (paddle.nn.Layer) - 需要被切分的 `Layer` 对象。
-    - **process_mesh** (paddle.distributed.ProcessMesh) - 执行当前 `Layer` 的 `ProcessMesh` 信息。
-    - **shard_fn** (Callable) - 用于切分当前 `Layer` 参数的函数。如果没有指定，默认地我们将在当前 `ProcessMesh` 上复制所有的参数。
-    - **input_fn** (Callable) - 指定如何切分 `Layer` 的输入。`input_fn` 函数将被注册为 `Layer` 的一个 `forward pre-hook`。默认我们将不会切分 `Layer` 的输入。
-    - **output_fn** (Callable) - 指定如何切分 `Layer` 的输出，或者将 `Layer` 的输出转回不带分布式切分信息的 `Tensor`。`output_fn` 函数将被注册为 `Layer` 的一个 `forward post-hook`。默认我们将不会切分或者转换 `Layer` 的输出。
+    - **layer** (paddle.nn.Layer) - 需要被切分的 ``Layer`` 对象。
+    - **process_mesh** (paddle.distributed.ProcessMesh) - 执行当前 ``Layer`` 的 ``ProcessMesh`` 信息。
+    - **shard_fn** (Callable) - 用于切分当前 ``Layer`` 参数的函数。如果没有指定，默认地我们将在当前 ``ProcessMesh`` 上复制所有的参数。
+    - **input_fn** (Callable) - 指定如何切分 ``Layer`` 的输入。``input_fn`` 函数将被注册为 ``Layer`` 的一个 ``forward pre-hook``。默认我们将不会切分 ``Layer`` 的输入。
+    - **output_fn** (Callable) - 指定如何切分 ``Layer`` 的输出，或者将 ``Layer`` 的输出转回不带分布式切分信息的 ``Tensor``。``output_fn`` 函数将被注册为 ``Layer`` 的一个 ``forward post-hook``。默认我们将不会切分或者转换 ``Layer`` 的输出。
 
 返回
 :::::::::

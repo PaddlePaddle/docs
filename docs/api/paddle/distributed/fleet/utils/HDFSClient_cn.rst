@@ -10,7 +10,7 @@ HDFSClient
 ::::::::::::
 
     - **hadoop_home** (str)：HADOOP HOME 地址。
-    - **configs** (dict): HADOOP 文件系统配置。需包含 `fs.default.name` 和 `hadoop.job.ugi` 这两个字段。
+    - **configs** (dict): HADOOP 文件系统配置。需包含 ``fs.default.name`` 和 ``hadoop.job.ugi`` 这两个字段。
 
 代码示例
 ::::::::::::

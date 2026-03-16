@@ -34,8 +34,8 @@ addmm
     - **input** (SparseTensor|DenseTensor) - 输入 Tensor，可以为 Coo 或 Csr 格式 或 DenseTensor。数据类型为 float32、float64。
     - **x** (SparseTensor) - 输入 Tensor，可以为 Coo 或 Csr 格式。数据类型为 float32、float64。
     - **y** (SparseTensor|DenseTensor) - 输入 Tensor，可以为 Coo 或 Csr 格式 或 DenseTensor。数据类型为 float32、float64。
-    - **beta** (float, 可选) - `input` 的系数。默认：1.0。
-    - **alpha** (float, 可选) - `x * y` 的系数。默认：1.0。
+    - **beta** (float, 可选) - ``input`` 的系数。默认：1.0。
+    - **alpha** (float, 可选) - ``x * y`` 的系数。默认：1.0。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

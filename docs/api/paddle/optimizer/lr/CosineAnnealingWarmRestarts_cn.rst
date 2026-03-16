@@ -25,7 +25,7 @@ SGDR 的训练方法可以参考论文，相关论文：`SGDR: Stochastic Gradie
     - **T_mult** (int，可选) - 重启之后 :math:`T_{i}` 乘积增长因子。默认值 1。
     - **eta_min** (float，可选) - 最小学习率。默认值 0.
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的 epoch 数。默认值为 -1，则为初始学习率。
-    - **verbose** (bool，可选) - 如果是 ``True``，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
+    - **verbose** (bool，可选) - 如果是 ``True``，则在每一轮更新时在标准输出 ``stdout`` 输出一条信息。默认值为 ``False`` 。
 
 返回
 ::::::::::::

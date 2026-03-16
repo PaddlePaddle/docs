@@ -21,7 +21,7 @@ logsumexp
       别名： ``dim``
     - **keepdim** (bool，可选) - 是否在输出 Tensor 中保留减小的维度。如果 ``keepdim`` 为 True，则输出 Tensor 和 ``x`` 具有相同的维度(减少的维度除外，减少的维度的大小为 1)。否则，输出 Tensor 的形状会在 ``axis`` 上进行 squeeze 操作。默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **out** （Tensor，可选） - 指定输出结果的 `Tensor`，默认值为 None。
+    - **out** （Tensor，可选） - 指定输出结果的 ``Tensor``，默认值为 None。
 
 返回
 ::::::::::

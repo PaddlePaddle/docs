@@ -19,7 +19,7 @@ masked_select
       别名： ``input``
     - **mask** (Tensor) - 用于索引的二进制掩码的 Tensor，数据类型为 bool。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **out** （Tensor，可选） - 指定输出结果的 `Tensor`，默认值为 None。
+    - **out** （Tensor，可选） - 指定输出结果的 ``Tensor``，默认值为 None。
 
 返回
 ::::::::::::

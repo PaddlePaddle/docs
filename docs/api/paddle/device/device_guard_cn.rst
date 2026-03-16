@@ -13,7 +13,7 @@ device_guard
 参数
 ::::::::::::
 
-    - **device** (PlaceLike) - 指定的 device，可以是形如 "cpu", "gpu:0" 之类的设备描述字符串，也可以是 `paddle.CUDAPlace(0)`, `paddle.CPUPlace()` 之类的设备实例。
+    - **device** (PlaceLike) - 指定的 device，可以是形如 "cpu", "gpu:0" 之类的设备描述字符串，也可以是 ``paddle.CUDAPlace(0)``, ``paddle.CPUPlace()`` 之类的设备实例。
 
 代码示例
 ::::::::::::

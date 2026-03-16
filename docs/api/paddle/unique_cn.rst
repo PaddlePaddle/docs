@@ -33,7 +33,7 @@ unique
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、int32、int64。
+    - **x** (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64、int32、int64。
     - **return_index** (bool，可选) - 如果为 True，则还返回独有元素在输入 Tensor 中的索引。
     - **return_inverse** (bool，可选) - 如果为 True，则还返回输入 Tensor 的元素对应在独有元素中的索引，该索引可用于重构输入 Tensor。
     - **return_counts** (bool，可选) - 如果为 True，则还返回每个独有元素在输入 Tensor 中的个数。

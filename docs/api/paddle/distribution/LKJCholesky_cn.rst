@@ -24,7 +24,7 @@ LKJ 分布通常定义为对相关矩阵 :math:`\Omega` 的分布，其密度函
 
     - **dim** (int) - 目标相关矩阵的维度。
     - **concentration** (float|Tensor) - 集中参数，这个参数控制了生成的相关矩阵的分布，值必须大于 0。concentration 越大，生成的矩阵越接近单位矩阵。
-    - **sample_method** (str) - 不同采样策略，可选项有：`onion` 和 `cvine`. 这两种 sample 方法都在 `Generating random correlation matrices based on vines and extended onion method <https://www.sciencedirect.com/science/article/pii/S0047259X09000876>`_ 中提出，并且在相关矩阵上提供相同的分布。但是它们在如何生成样本方面是不同的。默认为“onion”。
+    - **sample_method** (str) - 不同采样策略，可选项有：``onion`` 和 ``cvine``. 这两种 sample 方法都在 `Generating random correlation matrices based on vines and extended onion method <https://www.sciencedirect.com/science/article/pii/S0047259X09000876>`_ 中提出，并且在相关矩阵上提供相同的分布。但是它们在如何生成样本方面是不同的。默认为“onion”。
 代码示例
 ::::::::::::
 

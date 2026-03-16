@@ -27,7 +27,7 @@ PiecewiseDecay
     - **boundaries** (list) - 指定学习率的边界值列表。列表的数据元素为 Python int 类型。
     - **values** (list) - 学习率列表。数据元素类型为 Python float 的列表。与边界值列表有对应的关系。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的 epoch 数。默认值为 -1，则为初始学习率。
-    - **verbose** (bool，可选) - 如果是 ``True``，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
+    - **verbose** (bool，可选) - 如果是 ``True``，则在每一轮更新时在标准输出 ``stdout`` 输出一条信息。默认值为 ``False`` 。
 
 返回
 ::::::::::::

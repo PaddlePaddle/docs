@@ -28,7 +28,7 @@ FusedDropoutAdd
 :::::::::
         - x: N-D 张量。
         - y: N-D 张量。
-        - output: N-D 张量，和 `x` 形状相同。
+        - output: N-D 张量，和 ``x`` 形状相同。
 
 
 代码示例

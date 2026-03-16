@@ -18,7 +18,7 @@ all
       别名： ``dim``
     - **keepdim** (bool，可选) - 是否在输出 Tensor 中保留减小的维度。除非 keepdim 为 True，否则输出 Tensor 的维度将比输入 Tensor 小一维，默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **out** （Tensor，可选） - 指定输出结果的 `Tensor`，默认值为 None。
+    - **out** （Tensor，可选） - 指定输出结果的 ``Tensor``，默认值为 None。
 
 返回
 :::::::::

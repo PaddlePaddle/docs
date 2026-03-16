@@ -35,7 +35,7 @@ GaussianNLLLoss
 返回
 :::::::::
 
-    - **output** (Tensor) - 输入 :attr:`input`、 :attr:`variance` 和 :attr:`label` 间的 `GaussianNLLLoss` 损失。如果 `reduction` 为 `'none'`，则输出 Loss 形状与输入相同为 `(N, *)`。如果 `reduction` 为 `'sum'` 或者 `'mean'`，则输出 Loss 形状为 `'(1)'` 。
+    - **output** (Tensor) - 输入 :attr:`input`、 :attr:`variance` 和 :attr:`label` 间的 ``GaussianNLLLoss`` 损失。如果 ``reduction`` 为 ``'none'``，则输出 Loss 形状与输入相同为 ``(N, *)``。如果 ``reduction`` 为 ``'sum'`` 或者 ``'mean'``，则输出 Loss 形状为 ``'(1)'`` 。
 
 
 代码示例

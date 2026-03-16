@@ -30,12 +30,12 @@ MultiLabelSoftMarginLoss
 
 输入
 :::::::::
-    - **input** (Tensor)：输入 Tensor，维度是 [N, *], 其中 N 是 batch size， `*` 是任意数量的额外维度。数据类型为：float32、float64。
+    - **input** (Tensor)：输入 Tensor，维度是 [N, *], 其中 N 是 batch size， ``*`` 是任意数量的额外维度。数据类型为：float32、float64。
     - **label** (Tensor)：标签，维度是 [N, *], 与 ``input`` 相同，Tensor 中的值应该只包含 1 和 -1。数据类型为：float32、float64。
 
 形状
 :::::::::
-    - **input** (Tensor)： :math:`[N, *]` , 其中 N 是 batch_size， `*` 是任意其他维度。数据类型是 float32、float64。
+    - **input** (Tensor)： :math:`[N, *]` , 其中 N 是 batch_size， ``*`` 是任意其他维度。数据类型是 float32、float64。
     - **label** (Tensor)： :math:`[N, *]` ，标签 ``label`` 的维度、数据类型与输入 ``input`` 相同。
     - **output** (Tensor)： 输出的 Tensor。如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 :math:`[N, *]` , 与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``, 则输出的维度为 :math:`[]` 。
 
