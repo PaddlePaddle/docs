@@ -19,7 +19,7 @@ SimpleRNNCell
 
         y_{t} & = h_{t}
 
-其中的 `act` 表示激活函数。
+其中的 ``act`` 表示激活函数。
 
 详情请参考论文：`Finding Structure in Time <https://onlinelibrary.wiley.com/doi/pdf/10.1207/s15516709cog1402_1>`_ 。
 

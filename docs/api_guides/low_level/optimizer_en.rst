@@ -28,9 +28,7 @@ API Reference: :ref:`api_paddle_optimizer_SGD`
 3. Momentum
 ------------------------
 :code:`Momentum` optimizer adds momentum on the basis of :code:`SGD` , reducing noise problem in the process of random gradient descent.
-You can set :code:`use_nesterov` as False or True, respectively corresponding to traditional `Momentum(Section 4.1 in thesis)
-<https://arxiv.org/pdf/1609.04747>`_  algorithm and `Nesterov accelerated gradient(Section 4.2 in thesis)
-<https://arxiv.org/pdf/1609.04747>`_ algorithm.
+You can set :code:`use_nesterov` as False or True, respectively corresponding to traditional `Momentum(Section 4.1 in thesis) <https://arxiv.org/pdf/1609.04747>`_ algorithm and `Nesterov accelerated gradient(Section 4.2 in thesis) <https://arxiv.org/pdf/1609.04747>`_ algorithm.
 
 API Reference: :ref:`api_paddle_optimizer_Momentum`
 

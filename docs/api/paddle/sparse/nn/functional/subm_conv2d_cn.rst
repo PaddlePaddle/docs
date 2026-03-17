@@ -41,8 +41,8 @@ subm_conv2d
     - groups (int, optional): 二维卷积层的组号。根据 Alex Krizhevsky 的 Deep CNN 论文中的卷积分组：
       当 group=2 时，卷积核的前半部分仅连接到前半部分的输入通道，而卷积核的后半部分仅连接到输入通道的后半部分。
       groups 的默认值为 1。目前, 只有 support groups=1。
-    - data_format (str, optional): 指定输入的数据格式和输出的数据格式将与输入一致。即 `"NHWC"` 的可选字符串。默认值为 `"NHWC"`。
-      当它是 `"NHWC"` 时, 数据按以下顺序存储：`[batch_size, input_height, input_width, input_channels]`。
+    - data_format (str, optional): 指定输入的数据格式和输出的数据格式将与输入一致。即 ``"NHWC"`` 的可选字符串。默认值为 ``"NHWC"``。
+      当它是 ``"NHWC"`` 时, 数据按以下顺序存储：``[batch_size, input_height, input_width, input_channels]``。
     - key(str, optional):用于保存或使用相同规则手册的密钥，规则手册的定义和作用是指 https://pdfs.semanticscholar.org/5125/a16039cabc6320c908a4764f32596e018ad3.pdf。默认值为 None。
     - name(str, optional):有关详细信息，请参阅到 :ref:`api_guide_Name`。通常名称是不需要设置的, 并且默认情况下为空。
 

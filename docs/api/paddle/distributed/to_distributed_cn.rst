@@ -26,11 +26,11 @@ to_distributed
 
 返回
 :::::::::
-Model：一个具有分布式信息的 `paddle.nn.Layer` 对象，根据自动选择的最优分布式策略，可能包含分布式化的权重参数。
+Model：一个具有分布式信息的 ``paddle.nn.Layer`` 对象，根据自动选择的最优分布式策略，可能包含分布式化的权重参数。
 
-Optimizer：一个 `Optimizer` 对象，根据自动选择的最优分布式策略，可能包含分布式化的优化器状态。
+Optimizer：一个 ``Optimizer`` 对象，根据自动选择的最优分布式策略，可能包含分布式化的优化器状态。
 
-DataLoader：一个 `ShardDataloader` 对象。能够给后续的分布式训练提供输入数据。
+DataLoader：一个 ``ShardDataloader`` 对象。能够给后续的分布式训练提供输入数据。
 
 
 代码示例

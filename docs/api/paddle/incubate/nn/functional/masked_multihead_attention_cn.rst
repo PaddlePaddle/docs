@@ -32,7 +32,7 @@ masked_multihead_attention
 
 返回
 ::::::::::::
-    - Tensor|tuple：如果 "beam_cache_offset_out" 不为 None，则返回元组 (output, cache_kvs_out, beam_cache_offset_out)，其中 output 是蒙版多头注意力层的输出，cache_kvs_out 与输入 `cache_kvs` 原地更新。如果 "beam_cache_offset_out" 为 None，则返回元组 (output, cache_kvs_out)。
+    - Tensor|tuple：如果 "beam_cache_offset_out" 不为 None，则返回元组 (output, cache_kvs_out, beam_cache_offset_out)，其中 output 是蒙版多头注意力层的输出，cache_kvs_out 与输入 ``cache_kvs`` 原地更新。如果 "beam_cache_offset_out" 为 None，则返回元组 (output, cache_kvs_out)。
 
 形状
 ::::::::::::

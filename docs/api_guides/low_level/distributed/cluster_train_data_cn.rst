@@ -24,12 +24,12 @@
         trainer_id = int(os.getenv("PADDLE_TRAINER_ID", "0"))
         train_reader = cluster_reader(paddle.dataset.mnist.train(), trainers, trainer_id)
 
-上述代码中，`trainers` 和 `trainer_id` 分别是训练进程总数和当前训练进程的序号，可以通过环境变量或者参数的方式传递给 Python 程序。
+上述代码中，``trainers`` 和 ``trainer_id`` 分别是训练进程总数和当前训练进程的序号，可以通过环境变量或者参数的方式传递给 Python 程序。
 
 预先切分训练文件
 -----------------
 
-由于使用 `cluster_reader` 依然会读取全量数据，对于训练进程比较多的任务，会造成 IO 资源的浪费、影响训练性能。另一种方法是可以将训练数据切分成多个小文件，每个进程处理其中的一部分文件,
+由于使用 ``cluster_reader`` 依然会读取全量数据，对于训练进程比较多的任务，会造成 IO 资源的浪费、影响训练性能。另一种方法是可以将训练数据切分成多个小文件，每个进程处理其中的一部分文件,
 例如在 Linux 系统中可以使用 `split <http://man7.org/linux/man-pages/man1/split.1.html>`_ 命令将训练数据切分成多个小文件：
 
   .. code-block:: bash
@@ -61,4 +61,4 @@
 
         my_files = file_dispatcher(files_pattern, triners, trainer_id)
 
-在上述例子中，`files_pattern` 是训练文件的 `glob 表达式 <https://docs.python.org/2.7/library/glob.html>`_，一般可以用通配符来表示。
+在上述例子中，``files_pattern`` 是训练文件的 `glob 表达式 <https://docs.python.org/2.7/library/glob.html>`_，一般可以用通配符来表示。

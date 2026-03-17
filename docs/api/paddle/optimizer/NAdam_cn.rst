@@ -30,7 +30,7 @@ NAdam
 参数
 ::::::::::::
 
-  - **learning_rate** (float|LRScheduler，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个 `LRScheduler` 类。默认值为 0.002。
+  - **learning_rate** (float|LRScheduler，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个 ``LRScheduler`` 类。默认值为 0.002。
   - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
   - **beta1** (float，可选) - 一阶矩估计的指数衰减率，默认值为 0.9。
   - **beta2** (float，可选) - 二阶矩估计的指数衰减率，默认值为 0.999。

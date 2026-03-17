@@ -6,7 +6,7 @@ pow
 .. py:function:: paddle.sparse.pow(x, factor, name=None)
 
 
-逐元素计算 :attr:`x` 的幂函数，幂的系数为 `factor`，要求 输入 :attr:`x` 为 `SparseCooTensor` 或 `SparseCsrTensor` 。
+逐元素计算 :attr:`x` 的幂函数，幂的系数为 ``factor``，要求 输入 :attr:`x` 为 ``SparseCooTensor`` 或 ``SparseCsrTensor`` 。
 
 
 数学公式：

@@ -6,7 +6,7 @@ trunc
 .. py:function:: paddle.trunc(input, name=None)
 
 
-将输入 `Tensor` 的小数部分置 0，返回置 0 后的 `Tensor`，如果输入 `Tensor` 的数据类型为整数，则不做处理。
+将输入 ``Tensor`` 的小数部分置 0，返回置 0 后的 ``Tensor``，如果输入 ``Tensor`` 的数据类型为整数，则不做处理。
 
 
 参数

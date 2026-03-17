@@ -3,7 +3,7 @@
 logcumsumexp
 -------------------------------
 
-.. py:function:: paddle.logcumsumexp(x, axis=None, dtype=None, name=None)
+.. py:function:: paddle.logcumsumexp(x, axis=None, dtype=None, name=None, *, out=None)
 
 计算 x 的指数的前缀和的对数。
 
@@ -18,14 +18,18 @@ logcumsumexp
 
 参数
 :::::::::
-    - **x** (Tensor) - 需要进行操作的 Tensor。
-    - **axis** (int，可选) - 指明需要计算的维度。-1 代表最后一维。默认：None，将输入展开为一维变量再进行计算。
+    - **x** (Tensor) - 需要进行操作的 Tensor，数据类型为 float32、float64、float16、bfloat16、uint8、int8、int16、int32、int64。别名 ``input``。
+    - **axis** (int，可选) - 指明需要计算的维度。-1 代表最后一维。默认：None，将输入展开为一维变量再进行计算。别名 ``dim``。
     - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出 Tensor 的数据类型，支持 float16、float32、float64。如果指定了，那么在执行操作之前，输入 Tensor 将被转换为 dtype。这对于防止数据类型溢出非常有用。默认为：None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
+关键字参数
+:::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
+
 返回
 :::::::::
-    - Tensor (Tensor)，x 的指数的前缀和的对数。
+    - Tensor (Tensor)，x 的指数的前缀和的对数（整数输入类型会自动转换为 float32）。
 
 
 代码示例

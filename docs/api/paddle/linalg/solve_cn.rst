@@ -8,12 +8,12 @@ solve
 
 计算线性方程组的解。
 
-记 :math:`X` 为一个或一批方阵，:math:`Y` 一个或一批矩阵，当 `left` 为 True 时，公式为：
+记 :math:`X` 为一个或一批方阵，:math:`Y` 一个或一批矩阵，当 ``left`` 为 True 时，公式为：
 
 .. math::
     Out = X ^ {-1} * Y
 
-当 `left` 为 False 时，公式为：
+当 ``left`` 为 False 时，公式为：
 
 .. math::
     Out = Y * X ^ {-1}

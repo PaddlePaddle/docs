@@ -5,10 +5,10 @@ max_unpool1d
 
 .. py:function:: paddle.nn.functional.max_unpool1d(x, indices, kernel_size, stride=None, padding=0, data_format="NCL", output_size=None, name=None)
 
-这个 API 实现了 `1D 最大反池化` 操作
+这个 API 实现了 ``1D 最大反池化`` 操作
 
 .. note::
-   更多细节请参考对应的 `Class` 请参考 :ref:`cn_api_paddle_nn_MaxUnPool1D` 。
+   更多细节请参考对应的 ``Class`` 请参考 :ref:`cn_api_paddle_nn_MaxUnPool1D` 。
 
 
 输入：
@@ -19,13 +19,13 @@ max_unpool1d
 .. math::
   L_{out} = (L_{in} - 1) \times \text{stride} - 2 \times \text{padding} + \text{kernel_size}
 
-或由参数 `output_size` 直接指定
+或由参数 ``output_size`` 直接指定
 
 
 参数
 :::::::::
-    - **x** (Tensor) - 形状为 `[N,C,L]` 的 3-D Tensor，N 是批尺寸，C 是通道数，L 是特征长度，数据类型为 float32， float64 或 int64。
-    - **indices** (Tensor) - 形状为 `[N,C,L]` 的 3-D Tensor，N 是批尺寸，C 是通道数，L 是特征长度，数据类型为 int32 或 int64。
+    - **x** (Tensor) - 形状为 ``[N,C,L]`` 的 3-D Tensor，N 是批尺寸，C 是通道数，L 是特征长度，数据类型为 float32， float64 或 int64。
+    - **indices** (Tensor) - 形状为 ``[N,C,L]`` 的 3-D Tensor，N 是批尺寸，C 是通道数，L 是特征长度，数据类型为 int32 或 int64。
     - **kernel_size** (int|list|tuple) - 反池化的滑动窗口大小。
     - **stride** (int|list|tuple，可选) - 池化层的步长。如果它是一个元组或列表，它必须包含一个整数，(pool_stride_Length)，默认值：None。
     - **padding** (str|int|list|tuple，可选) - 池化填充，默认值：0。

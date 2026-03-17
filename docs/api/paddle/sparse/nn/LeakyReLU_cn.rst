@@ -4,7 +4,7 @@ LeakyReLU
 -------------------------------
 .. py:class:: paddle.sparse.nn.LeakyReLU(negative_slope=0.01, name=None)
 
-稀疏 LeakyReLU 激活层，创建一个可调用对象以计算输入 `x` 的 `LeakReLU` 。
+稀疏 LeakyReLU 激活层，创建一个可调用对象以计算输入 ``x`` 的 ``LeakReLU`` 。
 
 .. math::
     LeakyReLU(x)=

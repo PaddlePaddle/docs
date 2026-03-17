@@ -5,7 +5,7 @@ DebugMode
 
 .. py:class:: paddle.amp.debugging.DebugMode()
 
-`DebugMode` 用于标识 `TensorCheckerConfig` 的状态。每个 `DebugMode` 的含义如下:
+``DebugMode`` 用于标识 ``TensorCheckerConfig`` 的状态。每个 ``DebugMode`` 的含义如下:
 
     - **DebugMode.CHECK_NAN_INF_AND_ABORT** - 打印或保存带有 NaN/Inf 的 Tensor 关键信息并中断程序。
 

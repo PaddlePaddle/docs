@@ -21,7 +21,7 @@ FLAGS_cpu_deterministic
 *******************************************
 (since 0.15.0)
 
-This Flag is used for debugging. It indicates whether to make the result of computation deterministic in CPU side. In some case, the result of the different order of summing maybe different，for example, the result of `a+b+c+d` may be different with the result of `c+a+b+d`.
+This Flag is used for debugging. It indicates whether to make the result of computation deterministic in CPU side. In some case, the result of the different order of summing maybe different，for example, the result of ``a+b+c+d`` may be different with the result of ``c+a+b+d``.
 
 Values accepted
 ---------------

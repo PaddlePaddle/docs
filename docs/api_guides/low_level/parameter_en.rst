@@ -5,7 +5,7 @@ Model Parameters
 ##################
 
 .. note::
-  The `paddle.fluid.*` APIs are deprecated. Please use the latest Paddle API versions instead.
+  The ``paddle.fluid.*`` APIs are deprecated. Please use the latest Paddle API versions instead.
 
 Model parameters are usually weights and bias in the model. In Paddle's dynamic graph mode, they correspond to the :code:`EagerParamBase` class. Model parameters are learnable variables that have gradients and can be optimized. In Paddle, custom parameters can be created using :ref:`api_paddle_create_parameter` .
 
@@ -36,7 +36,7 @@ The following is the initialization method supported by Paddle:
 
 The constant initialization method sets parameters to a fixed value, such as initializing biases to 0.
 
-- Parameter: `value` specifies the initial value (default is 0.0).
+- Parameter: ``value`` specifies the initial value (default is 0.0).
 
 API reference: :ref:`api_paddle_nn_initializer_Constant`
 
@@ -45,7 +45,7 @@ API reference: :ref:`api_paddle_nn_initializer_Constant`
 
 The random normal distribution method generates values based on a normal (Gaussian) distribution, suitable for initializing most neural network parameters.
 
-- Parameters: `mean` (default 0.0) and `std` (default 1.0) define the mean and standard deviation.
+- Parameters: ``mean`` (default 0.0) and ``std`` (default 1.0) define the mean and standard deviation.
 
 API reference: :ref:`api_paddle_nn_initializer_Normal`
 
@@ -54,7 +54,7 @@ API reference: :ref:`api_paddle_nn_initializer_Normal`
 
 The random uniform distribution method samples values evenly within a specified range [low, high].
 
-- Parameters: `low` (default -1.0) and `high` (default 1.0) define the range.
+- Parameters: ``low`` (default -1.0) and ``high`` (default 1.0) define the range.
 
 API reference: :ref:`api_paddle_nn_initializer_Uniform`
 
@@ -63,7 +63,7 @@ API reference: :ref:`api_paddle_nn_initializer_Uniform`
 
 The Xavier uniform distribution method, proposed by Xavier Glorot and Yoshua Bengio in the paper **Understanding the difficulty of training deep feedforward neural networks**, initializes parameters based on a uniform distribution.
 
-- Range is determined by `fan_in` (input dimension), `fan_out` (output dimension), and `gain` (scaling factor).
+- Range is determined by ``fan_in`` (input dimension), ``fan_out`` (output dimension), and ``gain`` (scaling factor).
 
 API reference: :ref:`api_paddle_nn_initializer_XavierUniform`
 
@@ -72,7 +72,7 @@ API reference: :ref:`api_paddle_nn_initializer_XavierUniform`
 
 The Xavier normal distribution method, proposed in the paper **Understanding the difficulty of training deep feedforward neural networks**, initializes parameters with a normal distribution.
 
-- Mean is 0, and the standard deviation is determined by `fan_in`, `fan_out`, and `gain` .
+- Mean is 0, and the standard deviation is determined by ``fan_in``, ``fan_out``, and ``gain`` .
 
 API reference: :ref:`api_paddle_nn_initializer_XavierNormal`
 
@@ -81,7 +81,7 @@ API reference: :ref:`api_paddle_nn_initializer_XavierNormal`
 
 The Kaiming uniform distribution method, proposed by Kaiming He et al. in the paper **Delving Deep into Rectifiers**, is designed for networks with specific activation functions.
 
-- Range is determined by `fan_in`, `negative_slope` (default 0), and `nonlinearity` (default 'relu').
+- Range is determined by ``fan_in``, ``negative_slope`` (default 0), and ``nonlinearity`` (default 'relu').
 
 API reference: :ref:`api_paddle_nn_initializer_KaimingUniform`
 
@@ -90,7 +90,7 @@ API reference: :ref:`api_paddle_nn_initializer_KaimingUniform`
 
 The Kaiming normal distribution method, proposed in the paper **Delving Deep into Rectifiers**, uses a normal distribution.
 
-- Mean is 0, and the standard deviation is determined by `fan_in`, `negative_slope` (default 0), and `nonlinearity` (default 'relu').
+- Mean is 0, and the standard deviation is determined by ``fan_in``, ``negative_slope`` (default 0), and ``nonlinearity`` (default 'relu').
 
 API reference: :ref:`api_paddle_nn_initializer_KaimingNormal`
 
@@ -99,7 +99,7 @@ API reference: :ref:`api_paddle_nn_initializer_KaimingNormal`
 
 The truncated normal distribution method limits the generated values from a normal distribution to a specified range [a, b].
 
-- Parameters: `mean` (default 0.0), `std` (default 1.0), and truncation bounds `a` and `b` (default -2.0 and 2.0).
+- Parameters: ``mean`` (default 0.0), ``std`` (default 1.0), and truncation bounds ``a`` and ``b`` (default -2.0 and 2.0).
 
 API reference: :ref:`api_paddle_nn_initializer_TruncatedNormal`
 
@@ -137,7 +137,7 @@ Model Averaging
 
 Paddle determines whether to average a single parameter by setting attributes of :code:`do_model_average` in :code:`ParamAttr` .
 
-- Default value: `True` .
+- Default value: ``True`` .
 
   .. code-block:: python
 
@@ -161,7 +161,7 @@ Clipping
 
 Paddle determines whether gradient clipping is applied to a single parameter by setting attributes of :code:`need_clip` in :code:`ParamAttr` .
 
-- Default value: `True` .
+- Default value: ``True`` .
 
   .. code-block:: python
 
@@ -176,21 +176,21 @@ The following is the clipping method supported by Paddle:
 1. GradientClipByGlobalNorm
 ---------------------------
 
-Limits the sum of the L2 norms of all Tensors in a Tensor list `t_list` to the :code:`clip_norm` range.
+Limits the sum of the L2 norms of all Tensors in a Tensor list ``t_list`` to the :code:`clip_norm` range.
 
 API reference: :ref:`api_paddle_nn_ClipGradByGlobalNorm`
 
 2. GradientClipByNorm
 ---------------------
 
-Limits the L2 norm of a multi-dimensional input Tensor `X` to the :code:`clip_norm` range.
+Limits the L2 norm of a multi-dimensional input Tensor ``X`` to the :code:`clip_norm` range.
 
 API reference: :ref:`api_paddle_nn_ClipGradByNorm`
 
 3. GradientClipByValue
 ----------------------
 
-Limits the values of a multi-dimensional input Tensor `X` to the range [min, max].
+Limits the values of a multi-dimensional input Tensor ``X`` to the range [min, max].
 
 API reference: :ref:`api_paddle_nn_ClipGradByValue`
 

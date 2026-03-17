@@ -5,10 +5,10 @@ matrix_transpose
 
 .. py:function:: paddle.linalg.matrix_transpose(x, name=None)
 
-对输入张量 `x` 的最后两个维度进行转置。
+对输入张量 ``x`` 的最后两个维度进行转置。
 
 .. note::
-       如果 `n` 是 `x` 的维数，则 `paddle.linalg.matrix_transpose(x)` 等同于 `x.transpose([0, 1, ..., n-2, n-1])` 。
+       如果 ``n`` 是 ``x`` 的维数，则 ``paddle.linalg.matrix_transpose(x)`` 等同于 ``x.transpose([0, 1, ..., n-2, n-1])`` 。
 
 参数
 ::::::::::::
@@ -19,7 +19,7 @@ matrix_transpose
 返回
 ::::::::::::
 
- `Tensor`，数据类型与 `x` 相同。
+ ``Tensor``，数据类型与 ``x`` 相同。
 
 代码示例
 ::::::::::::

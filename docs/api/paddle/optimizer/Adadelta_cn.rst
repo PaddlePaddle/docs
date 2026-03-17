@@ -34,7 +34,7 @@ Adadelta 优化器，是对 :ref:`Adagrad <cn_api_paddle_optimizer_Adagrad>` 的
       默认值为 None，此时将不进行梯度裁剪。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-Adadelta 优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxiv.org/pdf/1711.05101.pdf>`，用来解决 Adam 优化器中 L2 正则化失效的问题。
+Adadelta 优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxiv.org/pdf/1711.05101.pdf>`_，用来解决 Adam 优化器中 L2 正则化失效的问题。
 
 
 

@@ -5,7 +5,7 @@ binomial
 
 .. py:function:: paddle.binomial(count, prob, name=None)
 
-以输入参数 ``count`` 和 ``prob`` 分别为二项分布的 `n` 和 `p` 参数，生成一个二项分布的随机数 Tensor ，支持 Tensor 形状广播。输出 Tensor 的 dtype 为 ``int64`` 。
+以输入参数 ``count`` 和 ``prob`` 分别为二项分布的 ``n`` 和 ``p`` 参数，生成一个二项分布的随机数 Tensor ，支持 Tensor 形状广播。输出 Tensor 的 dtype 为 ``int64`` 。
 
 .. math::
 

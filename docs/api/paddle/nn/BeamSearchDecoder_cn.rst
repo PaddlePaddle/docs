@@ -27,7 +27,7 @@ BeamSearchDecoder
 
 返回
 ::::::::::::
-BeamSearchDecoder 的一个实例，可以用于传入 `paddle.nn.dynamic\_decode` 以实现解码过程。
+BeamSearchDecoder 的一个实例，可以用于传入 ``paddle.nn.dynamic\_decode`` 以实现解码过程。
 
 代码示例
 ::::::::::::

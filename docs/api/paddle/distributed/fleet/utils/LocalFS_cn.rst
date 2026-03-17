@@ -15,7 +15,7 @@ COPY-FROM: paddle.distributed.fleet.utils.LocalFS
 ::::::::::::
 ls_dir(fs_path)
 '''''''''
-列出 `fs_path` 路径下所有的文件和子目录。
+列出 ``fs_path`` 路径下所有的文件和子目录。
 
 **参数**
 
@@ -76,7 +76,7 @@ is_file(fs_path)
 
 **返回**
 
-    - Bool：若当前路径存在且是一个文件，返回 `True`，反之则返回 `False` 。
+    - Bool：若当前路径存在且是一个文件，返回 ``True``，反之则返回 ``False`` 。
 
 **代码示例**
 
@@ -92,7 +92,7 @@ is_dir(fs_path)
 
 **返回**
 
-    - Bool：若当前路径存在且是一个目录，返回 `True`，反之则返回 `False` 。
+    - Bool：若当前路径存在且是一个目录，返回 ``True``，反之则返回 ``False`` 。
 
 **代码示例**
 
@@ -108,7 +108,7 @@ is_exist(fs_path)
 
 **返回**
 
-    - Bool：若当前路径存在返回 `True`，反之则返回 `False` 。
+    - Bool：若当前路径存在返回 ``True``，反之则返回 ``False`` 。
 
 **代码示例**
 
@@ -121,7 +121,7 @@ touch(fs_path, exist_ok=True)
 **参数**
 
     - **fs_path** (str)：本地文件路径。
-    - **exist_ok** (bool)：文件路径已存在时程序是否报错。若 `exist_ok = True`，则直接返回，反之则抛出文件存在的异常，默认不抛出异常。
+    - **exist_ok** (bool)：文件路径已存在时程序是否报错。若 ``exist_ok = True``，则直接返回，反之则抛出文件存在的异常，默认不抛出异常。
 
 **代码示例**
 

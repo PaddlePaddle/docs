@@ -5,8 +5,8 @@ LPPool1D
 
 .. py:function:: paddle.nn.LPPool1D(norm_type, kernel_size, stride=None, padding=0, ceil_mode=False, data_format="NCL", name=None)
 
-根据输入 `x` , `kernel_size` 等参数对一个输入 Tensor 计算 1D 的幂平均池化。输入和输出都是 3-D Tensor，
-默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数，`L` 是输入特征的长度。
+根据输入 ``x`` , ``kernel_size`` 等参数对一个输入 Tensor 计算 1D 的幂平均池化。输入和输出都是 3-D Tensor，
+默认是以 ``NCL`` 格式表示的，其中 ``N`` 是 batch size, ``C`` 是通道数，``L`` 是输入特征的长度。
 
 假设输入形状是(N, C, L)，输出形状是 (N, C, L_{out})，卷积核尺寸是 k, 1d 平均池化计算公式如下：
 

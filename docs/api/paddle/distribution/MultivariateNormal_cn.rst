@@ -25,7 +25,7 @@ MultivariateNormal 是一种定义在实数域上的多元连续型概率分布�
 参数
 :::::::::
 
-    - **loc** (int|float|Tensor) - 即上述公式中 :math:`\mu` 参数，是 MultivariateNormal 的均值向量。如果 :attr:`loc` 的输入数据类型是 `int` 或 `float` 则会被转换为数据类型为 paddle 全局默认数据类型的 1-D Tensor。
+    - **loc** (int|float|Tensor) - 即上述公式中 :math:`\mu` 参数，是 MultivariateNormal 的均值向量。如果 :attr:`loc` 的输入数据类型是 ``int`` 或 ``float`` 则会被转换为数据类型为 paddle 全局默认数据类型的 1-D Tensor。
 
     - **covariance_matrix** (Tensor，可选) - 即上述公式中 :math:`\mu` 参数，是 MultivariateNormal 的协方差矩阵。:attr:`covariance_matrix` 的数据类型会被转换为与 :attr:`loc` 相同的类型。默认值为 None。
 
@@ -74,7 +74,7 @@ prob(value)
 
 **返回**
 
-Tensor，:attr:`value` 的概率。数据类型与 `self.loc` 相同。
+Tensor，:attr:`value` 的概率。数据类型与 ``self.loc`` 相同。
 
 
 log_prob(value)
@@ -88,7 +88,7 @@ log_prob(value)
 
 **返回**
 
-Tensor，:attr:`value` 的对数概率。数据类型与 `self.loc` 相同。
+Tensor，:attr:`value` 的对数概率。数据类型与 ``self.loc`` 相同。
 
 
 sample(shape=[])
@@ -102,7 +102,7 @@ sample(shape=[])
 
 **返回**
 
-Tensor，样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape} + \text{event shape}` 。数据类型与 `self.loc` 相同。
+Tensor，样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape} + \text{event shape}` 。数据类型与 ``self.loc`` 相同。
 
 
 rsample(shape=[])
@@ -116,7 +116,7 @@ rsample(shape=[])
 
 **返回**
 
-Tensor，样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape} + \text{event shape}` 。数据类型与 `self.loc` 相同。
+Tensor，样本数据。其维度为 :math:`\text{sample shape} + \text{batch shape} + \text{event shape}` 。数据类型与 ``self.loc`` 相同。
 
 
 entropy()
@@ -130,7 +130,7 @@ entropy()
 
 **返回**
 
-多元正态分布的信息熵，数据类型与 `self.loc` 相同。
+多元正态分布的信息熵，数据类型与 ``self.loc`` 相同。
 
 
 kl_divergence(other)
@@ -148,4 +148,4 @@ kl_divergence(other)
 
 **返回**
 
-相对于另一个多元正态分布的 KL 散度，数据类型与 `self.loc` 相同。
+相对于另一个多元正态分布的 KL 散度，数据类型与 ``self.loc`` 相同。

@@ -64,7 +64,7 @@ sample(shape=[], name=None)
 生成指定维度的样本。
 
 .. note::
-    `sample` 方法没有梯度，如果需要的话，请使用 `rsample` 方法代替。
+    ``sample`` 方法没有梯度，如果需要的话，请使用 ``rsample`` 方法代替。
 
 **参数**
 

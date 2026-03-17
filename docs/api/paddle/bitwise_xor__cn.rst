@@ -5,7 +5,7 @@ bitwise_xor\_
 
 .. py:function:: paddle.bitwise_xor_(x, y, name=None)
 
-Inplace 版本的 :ref:`cn_api_paddle_bitwise_xor` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_bitwise_xor` API，对输入 ``x`` 采用 Inplace 策略。
 
 参数
 ::::::::::::

@@ -6,9 +6,9 @@ mv
 .. py:function:: paddle.sparse.mv(x, vec, name=None)
 
 .. note::
-    该 API 从 `CUDA 11.0` 开始支持。
+    该 API 从 ``CUDA 11.0`` 开始支持。
 
-输入 :attr:`x` 为稀疏矩阵，输入 :attr:`vec` 为稠密向量，对 `x` 与 `vec` 计算矩阵与向量相乘。
+输入 :attr:`x` 为稀疏矩阵，输入 :attr:`vec` 为稠密向量，对 ``x`` 与 ``vec`` 计算矩阵与向量相乘。
 
 输入、输出的格式对应关系如下：
 
@@ -18,8 +18,8 @@ mv
 
      x[SparseCooTensor] @ vec[DenseTensor] -> out[DenseTensor]
 
-该 API 支持反向传播。输入 `x` 的 shape 应该为 `[M, N]` ，输入 `vec` 的 shape 应该为 `[N]` ，输出 `out`
-的 shape 为 `[M]` 。
+该 API 支持反向传播。输入 ``x`` 的 shape 应该为 ``[M, N]`` ，输入 ``vec`` 的 shape 应该为 ``[N]`` ，输出 ``out``
+的 shape 为 ``[M]`` 。
 
 参数
 :::::::::

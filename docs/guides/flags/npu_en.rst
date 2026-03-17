@@ -8,7 +8,7 @@ FLAGS_npu_precision_mode
 *******************************************
 (develop)
 
-FLAGS_npu_precision_mode is used to set the operator precision mode of Ascend Devices. Only valid when compiled `WITH_ASCEND_CL = ON`.
+FLAGS_npu_precision_mode is used to set the operator precision mode of Ascend Devices. Only valid when compiled ``WITH_ASCEND_CL = ON``.
 
 Values accepted
 ---------------

@@ -30,7 +30,7 @@ fused_dropout_add
 
 返回
 :::::::::
-    - 融合 dropout 和 add 的张量具有与 `x` 相同的形状和数据类型。
+    - 融合 dropout 和 add 的张量具有与 ``x`` 相同的形状和数据类型。
 
 
 代码示例
