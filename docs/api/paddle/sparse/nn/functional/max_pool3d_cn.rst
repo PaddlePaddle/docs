@@ -17,7 +17,7 @@ max_pool3d
         - (1)包含 3 个整数值：[pad_depth, pad_height, pad_width]；
         - (2)包含 6 个整数值：[pad_depth_front, pad_depth_back, pad_height_top, pad_height_bottom, pad_width_left, pad_width_right]；
         - (3)包含 5 个二元组：当 data_format 为"NCDHW"时为[[0,0], [0,0], [pad_depth_front, pad_depth_back], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right]]，当 data_format 为"NDHWC"时为[[0,0], [pad_depth_front, pad_depth_back], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right], [0,0]]。若为一个整数，则表示 D、H 和 W 维度上均为该值。默认值：0
-    - **ceil_mode** (bool，可选) - 是否用 ceil 函数计算输出高度和宽度。如果是 True，则使用 `ceil` 计算输出形状的大小。默认为 False
+    - **ceil_mode** (bool，可选) - 是否用 ceil 函数计算输出高度和宽度。如果是 True，则使用 ``ceil`` 计算输出形状的大小。默认为 False
     - **data_format** (str，可选) - 输入和输出的数据格式，可以是"NCDHW"和"NDHWC"。N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度。当前只支持："NDHWC"。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 

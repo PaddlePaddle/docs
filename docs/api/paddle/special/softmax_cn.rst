@@ -86,8 +86,8 @@ softmax
 
     - **input** (Tensor) - 输入的 ``Tensor``，数据类型为 bfloat16 、 float16 、 float32 或 float64。
     - **dim** (int，可选) - 指定对输入 :attr:`input` 进行运算的轴。:attr:`dim` 的有效范围是 :math:`[-D, D)`，:math:`D` 是输入 :attr:`input` 的维度，:attr:`dim` 为负值时与 :math:`dim + D` 等价。默认值为 None。
-    - **dtype** (str，可选) - 输出 `Tensor` 的数据类型，支持 bfloat16、 float16、 float32、float64。
-    - **out** (Tensor，可选) - 指定输出结果的 `Tensor`，默认值为 None。
+    - **dtype** (str，可选) - 输出 ``Tensor`` 的数据类型，支持 bfloat16、 float16、 float32、float64。
+    - **out** (Tensor，可选) - 指定输出结果的 ``Tensor``，默认值为 None。
 
 返回
 ::::::::::

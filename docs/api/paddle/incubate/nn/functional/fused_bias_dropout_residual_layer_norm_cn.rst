@@ -15,11 +15,11 @@ fused_bias_dropout_residual_layer_norm 操作符，包含融合偏置、Dropout 
 
 参数
 ::::::::::::
-    - **x** (Tensor) - 输入张量。其形状为 `[*, embed_dim]`。
+    - **x** (Tensor) - 输入张量。其形状为 ``[*, embed_dim]``。
     - **residual** (Tensor) - 残差张量。其形状与 x 相同。
-    - **bias** (Tensor，可选) - 线性的偏置。其形状为 `[embed_dim]`。默认为 None。
-    - **ln_scale** (Tensor，可选) - 层归一化的权重张量。其形状为 `[embed_dim]`。默认为 None。
-    - **ln_bias** (Tensor，可选) - 层归一化的偏置张量。其形状为 `[embed_dim]`。默认为 None。
+    - **bias** (Tensor，可选) - 线性的偏置。其形状为 ``[embed_dim]``。默认为 None。
+    - **ln_scale** (Tensor，可选) - 层归一化的权重张量。其形状为 ``[embed_dim]``。默认为 None。
+    - **ln_bias** (Tensor，可选) - 层归一化的偏置张量。其形状为 ``[embed_dim]``。默认为 None。
     - **dropout_rate** (float，可选) - 在注意力权重上使用的 Dropout 概率，用于在注意力后的 Dropout 过程中丢弃一些注意力目标。0 表示无 Dropout。默认为 0.5 。
     - **ln_epsilon** (float，可选) - 在层归一化的分母中添加的小浮点数，用于避免除以零。默认为 1e-5。
     - **training** (bool，可选) - 表示是否处于训练阶段的标志。默认为 True。
@@ -38,7 +38,7 @@ fused_bias_dropout_residual_layer_norm 操作符，包含融合偏置、Dropout 
 
 返回
 ::::::::::::
-    - Tensor，输出张量，数据类型和形状与 `x` 相同。
+    - Tensor，输出张量，数据类型和形状与 ``x`` 相同。
 
 
 代码示例

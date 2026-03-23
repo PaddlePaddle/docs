@@ -24,7 +24,7 @@ ReduceOnPlateau
     - **cooldown** (int，可选) - 在学习率每次衰减之后，会进入时长为 ``cooldown`` 个 step 的冷静期。默认：0。
     - **min_lr** (float，可选) - 最小的学习率。衰减后的学习率最低下界限。默认：0。
     - **epsilon** (float，可选) - 如果新旧学习率间的差异小于 epsilon，则不会更新。默认值：1e-8。
-    - **verbose** (bool，可选) - 如果是 `True`，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
+    - **verbose** (bool，可选) - 如果是 ``True``，则在每一轮更新时在标准输出 ``stdout`` 输出一条信息。默认值为 ``False`` 。
 
 返回
 ::::::::::::

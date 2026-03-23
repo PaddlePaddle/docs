@@ -27,7 +27,7 @@ index_select
 关键字参数
 :::::::::
 
-    - **out** （Tensor，可选） - 指定输出结果的 `Tensor`，默认值为 None。
+    - **out** （Tensor，可选） - 指定输出结果的 ``Tensor``，默认值为 None。
 
 返回
 :::::::::

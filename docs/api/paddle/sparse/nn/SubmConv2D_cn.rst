@@ -34,7 +34,7 @@ SubmConv2D
     - **padding** (int|str|tuple|list, 可选): - 填充大小。应为以下几种格式之一；
 
         - (1) 如果它是一个字符串，可以是 "VALID" 或者 "SAME"，计算细节可参考上述 ``padding`` = "SAME" 或  ``padding`` = "VALID" 时的计算公式。
-        - (2) 如果它是一个整数, 则代表它每个 Spartial 维度(depth, height, width) 被 `padding` 的大小填充为零。
+        - (2) 如果它是一个整数, 则代表它每个 Spartial 维度(depth, height, width) 被 ``padding`` 的大小填充为零。
         - (3) 一个 list[int] 或 tuple[int]，其长度是 Spartial 维度的数目，它包含每个 Spartial 维度每侧的填充量。它的形式为 [pad_d1, pad_d2, ...]。
         - (4) 一个 list[int] 或 tuple[int]，其长度为 2 * 部分维数。对于所有局部维度，它的形式为 [pad_before, pad_after, pad_before, pad_after, ...]。
         - (5) 一个整数对的列表或元组。它的形式为 [[pad_before, pad_after], [pad_before, pad_after], ...]。

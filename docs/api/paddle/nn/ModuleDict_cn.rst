@@ -16,7 +16,7 @@ ModuleDict 用于保存子层到有序字典中，它包含的子层将被正确
 参数
 ::::::::::::
 
-    - **modules** (ModuleDict|OrderedDict|list[(key, Module)]，可选) - 键值对的可迭代对象，值的类型为 `paddle.nn.Module` 。
+    - **modules** (ModuleDict|OrderedDict|list[(key, Module)]，可选) - 键值对的可迭代对象，值的类型为 ``paddle.nn.Module`` 。
 
 
 代码示例

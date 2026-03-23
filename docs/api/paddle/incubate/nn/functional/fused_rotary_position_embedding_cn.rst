@@ -23,7 +23,7 @@ fused_rotary_position_embedding
 返回
 ::::::::::
 
-    - out_q/out_k/out_v 表示融合旋转位置嵌入的张量，具有与 `q` 相同的形状和数据类型。
+    - out_q/out_k/out_v 表示融合旋转位置嵌入的张量，具有与 ``q`` 相同的形状和数据类型。
 
 
 代码示例

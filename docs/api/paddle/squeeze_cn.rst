@@ -55,7 +55,7 @@ squeeze
 
 参数
 :::::::::
-        - **x** (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、bool、int8、int32、int64。别名： ``input``。
+        - **x** (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64、bool、int8、int32、int64。别名： ``input``。
         - **axis** (int|list|tuple，可选) - 输入一个或一列整数，代表要压缩的轴。axis 的范围： [−ndim(x), ndim(x)) 。 如果 axis 为负数， 则 axis=axis+ndim(x) 。默认为 None，表示对所有尺寸为 1 的维度进行压缩。别名： ``dim``。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

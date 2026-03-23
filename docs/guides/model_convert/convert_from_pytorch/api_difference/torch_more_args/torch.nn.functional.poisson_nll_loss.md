@@ -13,16 +13,16 @@ paddle.nn.functional.poisson_nll_loss(input, label, log_input=True, full=False, 
 
 ### 参数映射
 
-| PyTorch      | PaddlePaddle | 备注 |
-| ------------ | ------------ | -- |
-| input        | input        | 输入 Tensor。 |
-| target       | label        | 标签 Tensor，仅参数名不一致。 |
-| log_input    | log_input    | 输入是否为对数函数映射后结果。 |
-| full         | full         | 是否在损失计算中包括 Stirling 近似项。 |
-| size_average | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。                  |
-| eps          | epsilon      | 在 log_input 为 True 时使用的常数小量，仅参数名不一致。 |
-| reduce       | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。                  |
-| reduction    | reduction    | 指定应用于输出结果的计算方式。 |
+| PyTorch      | PaddlePaddle | 备注                                                                    |
+| ------------ | ------------ | ----------------------------------------------------------------------- |
+| input        | input        | 输入 Tensor。                                                           |
+| target       | label        | 标签 Tensor，仅参数名不一致，Paddle 同时支持 `target`。                 |
+| log_input    | log_input    | 输入是否为对数函数映射后结果。                                          |
+| full         | full         | 是否在损失计算中包括 Stirling 近似项。                                  |
+| size_average | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。                            |
+| eps          | epsilon      | 在 log_input 为 True 时使用的常数小量，仅参数名不一致，Paddle 同时支持 `eps`。 |
+| reduce       | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。                            |
+| reduction    | reduction    | 指定应用于输出结果的计算方式。                                          |
 
 ### 转写示例
 

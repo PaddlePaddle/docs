@@ -10,8 +10,8 @@ Inplace 版本的 :ref:`cn_api_paddle_bitwise_right_shift` API，对输入 ``x``
 参数
 ::::::::::::
 
-        - **x** （Tensor）- 输入的 N-D `Tensor`，数据类型为：uint8，int8，int16，int32，int64。别名 ``input``。
-        - **y** （Tensor）- 输入的 N-D `Tensor`，数据类型为：uint8，int8，int16，int32，int64。别名 ``other``。
+        - **x** （Tensor）- 输入的 N-D ``Tensor``，数据类型为：uint8，int8，int16，int32，int64。别名 ``input``。
+        - **y** （Tensor）- 输入的 N-D ``Tensor``，数据类型为：uint8，int8，int16，int32，int64。别名 ``other``。
         - **is_arithmetic** （bool） - 用于表明是否执行算术位移，True 表示算术位移，False 表示逻辑位移。默认值为 True，表示算术位移。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
