@@ -1,6 +1,6 @@
 # 天数 GPGPU 安装说明
 
-飞桨框架 iluvatar_gpu 版支持天数 GPGPU 的训练和推理，提供两种安装方式：
+飞桨框架 **Iluvatar** 版支持在天数 GPGPU 上进行训练和推理，提供两种安装方式：
 
 1. 通过飞桨官网发布的 wheel 包安装
 2. 通过源代码编译得到 wheel 包安装
@@ -21,36 +21,45 @@
 docker pull ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-ixuca:3.3.0
 ```
 
+在 **宿主机（host）** 上请先按下述命令安装与当前硬件匹配的驱动，完成后再启动容器。
 ```bash
-# 在 host 上安装 driver
-wget https://ai-rank.bj.bcebos.com/Iluvatar/corex-driver-linux64-4.3.0.rc.9.20250624_x86_64_10.2.run
-bash corex-driver-linux64-4.3.0.rc.9.20250624_x86_64_10.2.run
+wget https://ai-rank.bj.bcebos.com/Iluvatar/corex-driver-linux64-4.3.8-x86_64.run
+bash corex-driver-linux64-4.3.8-x86_64.run
+```
+
+**重要：请确认 KMD 版本符合要求。** 可在宿主机执行：
+
+```bash
+modinfo iluvatar | grep description
+# 示例（以实际输出为准）：
+# description:    Iluvatar Big Island for PCI Express: a66854d130483853556e1a2c3d623cb78bcbab34
 ```
 
 ```bash
 # 启动容器
-docker run -itd --name paddle-ixuca-dev -v /usr/src:/usr/src -v /lib/modules:/lib/modules \
-    -v /dev:/dev -v /home:/home --privileged --cap-add=ALL --pid=host \
-    ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-ixuca:3.3.0
+docker run -itd --name paddle-ixuca-dev --network host -v /usr/src:/usr/src -v /lib/modules:/lib/modules -v /dev:/dev -v /usr/local/corex/bin/ixsmi:/usr/local/corex/bin/ixsmi -v /usr/local/corex/lib64/libcuda.so.1:/usr/local/corex/lib64/libcuda.so.1 -v /usr/local/corex/lib64/libixml.so:/usr/local/corex/lib64/libixml.so -v /usr/local/corex/lib64/libixthunk.so:/usr/local/corex/lib64/libixthunk.so --privileged --cap-add=ALL --pid=host ccr-2vdh3abv-pub.cnc.bj.baidubce.com/device/paddle-ixuca:3.3.0
 docker exec -it paddle-ixuca-dev bash
 ```
 
-#### 选项说明及可调整参数
+⚠️ **注意：** 若镜像内自带的 SDK 与宿主机 KMD 不兼容，可能导致 Paddle 无法识别 Iluvatar 设备。此时需将宿主机上与当前 **corex** 版本匹配的 `ixsmi`、`libcuda.so.1`、`libixml.so`、`libixthunk.so` 等按上例挂载进容器（路径以本机 `corex` 安装目录为准）。
 
-##### ① `--name paddle-ixuca-dev`
+### 选项说明及可调整参数
+
+#### ① `--name paddle-ixuca-dev`
+
 - **作用**：指定容器名称。
-- **可调整**：
-  - 用户可改为其他名称，例如 `paddle-ixuca-test`，方便区分不同实验。
+- **可调整**：可改为其他名称（例如 `paddle-ixuca-test`），便于区分不同实验环境。
 
 ```bash
 # 检查容器内是否正常识别天数 GPGPU 设备
 ixsmi
 ```
 
-```bash
-# 预期输出
+预期输出示例（设备数量与型号以实际环境为准）：
+
+```text
 +-----------------------------------------------------------------------------+
-|  IX-ML: 4.3.0       Driver Version: 4.3.0       CUDA Version: 10.2          |
+|  IX-ML: 4.3.8       Driver Version: 4.3.8       CUDA Version: 10.2          |
 |-------------------------------+----------------------+----------------------|
 | GPU  Name                     | Bus-Id               | Clock-SM  Clock-Mem  |
 | Fan  Temp  Perf  Pwr:Usage/Cap|      Memory-Usage    | GPU-Util  Compute M. |
@@ -68,97 +77,66 @@ ixsmi
 |=============================================================================|
 |  No running processes found                                                 |
 +-----------------------------------------------------------------------------+
-
 ```
 
 ## 安装飞桨框架
 
 ### 安装方式一：wheel 包安装
 
-iluvatar-gpu 支持插件式安装，需先安装飞桨 CPU 安装包，再安装飞桨 iluvatar-gpu 插件包。在启动的 docker 容器中，执行以下命令：
-
-3.3.0 稳定版：
-```bash
-# 先安装飞桨 CPU 安装包
-python -m pip install paddlepaddle==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
-
-# 再安装飞桨 iluvatar-gpu 插件包
-python -m pip install paddle-iluvatar-gpu==3.3.0 -i https://www.paddlepaddle.org.cn/packages/stable/ixuca/
-```
+**iluvatar_gpu** 后端支持通过 wheel 包安装。在已启动的 Docker 容器中执行：
 
 nightly 版：
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性，建议使用稳定版。
 ```bash
-# 先安装飞桨 CPU 安装包
-python -m pip install  --pre paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
-
-# 再安装飞桨 iluvatar-gpu 插件包
-python -m pip install --pre paddle-iluvatar-gpu -i https://www.paddlepaddle.org.cn/packages/nightly/ixuca/
+python -m pip install --pre paddlepaddle-iluvatar -i https://www.paddlepaddle.org.cn/packages/nightly/ixuca/
 ```
 
 ### 安装方式二：源代码编译安装
 
-在启动的 docker 容器中，先安装飞桨 CPU 安装包，再下载 PaddleCustomDevice 源码编译得到飞桨 iluvatar-gpu 插件包。
+在容器中克隆 **Paddle-iluvatar** 源码并编译安装：
 
 ```bash
-# 下载 PaddleCustomDevice 源码
-git clone https://github.com/PaddlePaddle/PaddleCustomDevice
+# 下载 Paddle-iluvatar 源码
+git clone --recurse-submodules https://github.com/PaddlePaddle/Paddle-iluvatar.git
+cd Paddle-iluvatar
 
-# 在 PaddleCUstomDevice 根目录下执行以下指令更新子模块代码
-git submodule sync
-git submodule update --init --recursive
-
-# 进入硬件后端(天数 iluvatar_gpu)目录
-cd backends/iluvatar_gpu
-
-# 先安装飞桨 CPU 安装包
-python -m pip install  --pre paddlepaddle -i https://www.paddlepaddle.org.cn/packages/nightly/cpu/
-
-# 安装编译所需依赖
-cd /tmp
-wget https://github.com/protocolbuffers/protobuf/releases/download/v21.12/protoc-21.12-linux-x86_64.zip
-unzip protoc-21.12-linux-x86_64.zip
-mv bin/protoc /usr/local/bin/
-rm -rf protoc-21.12-linux-x86_64.zip include bin
-cd -
-
-pip install --upgrade setuptools wheel
-
-# 执行编译脚本
+# 执行编译与安装脚本
 bash build_paddle.sh
-
-# 编译产出在 build_pip 路径下，使用安装脚本进行安装
 bash install_paddle.sh
 ```
-⚠️ 注意：nightly 版本为每日构建，可能存在不稳定性。如果需要更稳定的版本，建议使用 3.1 版本。
+
 ## 基础功能检查
 
-安装完成后，在 docker 容器中输入如下命令进行飞桨基础健康功能的检查。
+安装完成后，在容器内执行下列命令做基础健康检查。
 
 ```bash
-# 列出可用硬件后端
-python3 -c "import paddle; print(paddle.device.get_all_custom_device_type())"
+# 列出可用自定义硬件类型
+python -c "import paddle; print(paddle.device.get_all_custom_device_type())"
 ```
-```bash
-# 预期得到如下输出结果
+
+预期输出示例：
+
+```text
 ['iluvatar_gpu']
 ```
+
 ```bash
-# 使用 paddle utils 模块的 `run_check` 功能检查 paddle_iluvatar_gpu 插件和 PaddlePaddle 主框架是否正常安装，需要指定 xccl 的后端为 iluvatar_gpu
-export PADDLE_XCCL_BACKEND=iluvatar_gpu
-python3 -c "import paddle; paddle.utils.run_check()"
+# 使用 paddle.utils.run_check() 做安装自检
+python -c "import paddle; paddle.utils.run_check()"
 ```
-```bash
-# 预期得到输出如下
+
+预期输出示例（**可见 GPU 数量与文案随机器配置变化，以下仅为示例**）：
+
+```text
 Running verify PaddlePaddle program ...
 PaddlePaddle works well on 1 iluvatar_gpu.
-PaddlePaddle works well on 16 iluvatar_gpus.
+PaddlePaddle works well on N iluvatar_gpus.
 PaddlePaddle is installed successfully! Let's start deep learning with PaddlePaddle now.
 ```
+
 ## 如何卸载
 
-请使用以下命令卸载 Paddle:
+使用 pip 卸载：
 
 ```bash
-pip uninstall paddlepaddle paddle-iluvatar-gpu
+pip uninstall paddlepaddle-iluvatar
 ```
