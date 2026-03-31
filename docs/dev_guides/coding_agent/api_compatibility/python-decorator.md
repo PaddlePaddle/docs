@@ -337,7 +337,9 @@ def func(x, axis=None, name=None, *, out: Tensor | None = None):
     return ret1, ret2
 ```
 
-注意在 API 签名中增加 out 参数，`out`参数需与 Pytorch 用法一致，一般情况下 out 均是 keyword-only 参数（使用`*,`分隔），少数情况下 out 是位置参数。
+注意：
+1. 需在 API 签名中增加 out 参数，`out`参数需与 Pytorch 用法一致，一般情况下 out 均是 keyword-only 参数（使用`*,`分隔），少数情况下 out 是位置参数。
+2. 处理 out 参数时，仅需处理 in_dynamic_or_pir_mode()分支下的逻辑，老静态图（LayerHelper）分支无需处理 out 参数。
 
 ## Step 4: 更新函数文档字符串
 
@@ -402,12 +404,13 @@ def broadcast_tensors(input: Sequence[Tensor], name: str | None = None) -> list[
     """
 ```
 
-如果支持了 out 参数，必须在 API 文档中描述 out 参数，out 为 keyword-only 参数时在 Keyword args 部分描述，为位置参数时在 Args 部分描述，如下：
+如果支持了 out 参数，必须在 API 文档中描述 out 参数，out 为 keyword-only 参数（*后面）时注意增加`Keyword Args:`，并在此部分描述。out 为位置参数时直接在 Args 部分描述。如下：
+
 ```python
 # out 为 keyword-only 参数
 def func(x, name=None, *, out=None):
     """
-    func Operator.
+    ...
 
     Args:
         ...
@@ -422,7 +425,7 @@ def func(x, name=None, *, out=None):
 # out 为位置参数
 def func(x, out=None, name=None):
     """
-    func Operator.
+    ...
 
     Args:
         x (Tensor): Input of Atan operator.
@@ -440,12 +443,13 @@ def func(x, out=None, name=None):
 
 ## Step 5: 添加测试用例
 
-不要新建任何测试文件，直接在 `test/legacy_test/test_api_compatibility[1-9]\.py` 中添加测试。严格按以下模板来编写：
+不要新建任何测试文件，直接在 `test/legacy_test/test_api_compatibility[1-9]\.py(数字最大的)` 中添加测试。严格按以下模板来编写：
 
 **测试模板**：
 ```python
 class Test<APIName>API(unittest.TestCase):
     def setUp(self):
+        # If not use random seed, remove setUp
         np.random.seed(2025)
         self.np_x = np.random.rand(...).astype(...)
 
@@ -676,31 +680,6 @@ if len(args) >= 2 and isinstance(args[1], int):
 - 需要注意装饰器的应用顺序
 - 确保装饰器之间不产生冲突
 - 不同装饰器的参数处理逻辑应该兼容
-
-# 六、开发检查清单
-
-完成 API 对齐后，请确认以下清单：
-
-## 代码修改
-- [ ] 已选择合适的装饰器（通用或专用）
-- [ ] 装饰器已正确应用到 API 函数
-- [ ] out 参数已添加（如需要）
-- [ ] out 参数实现方式正确
-- [ ] 函数签名保持正确（包括__signature__设置）
-
-## 文档更新
-- [ ] 所有别名的参数都已添加 Alias Support 说明
-- [ ] out 参数已在文档中说明
-- [ ] 文档格式符合规范
-
-## 测试覆盖
-- [ ] 动态图测试覆盖所有参数组合
-- [ ] 静态图测试覆盖所有参数组合
-- [ ] Paddle 风格的 API 调用
-- [ ] Pytorch 风格的 API 调用
-- [ ] out 参数测试已添加（如支持）
-- [ ] 异常参数测试已添加
-- [ ] 所有测试通过
 
 
 # 七、注意事项

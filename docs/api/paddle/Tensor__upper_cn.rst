@@ -3927,3 +3927,33 @@ new_empty(size, \*, dtype=None, device=None, requires_grad=False, pin_memory=Fal
 **代码示例**
 
 COPY-FROM: paddle.Tensor.new_empty
+
+retain_grad
+:::::::::
+
+启用此 Tensor 在反向传播过程中计算梯度。对于叶子张量（leaf tensor）该方法是无操作（no-op），因为叶子张量默认会保留梯度。
+
+返回：
+    - **None**
+
+**代码示例**
+
+COPY-FROM: paddle.Tensor.retain_grad
+
+sparse_mask
+:::::::::
+
+将当前稠密 Tensor 通过稀疏掩码（sparse mask）进行掩码操作，生成新的稀疏 Tensor。输出稀疏 Tensor 的索引与 ``mask`` 一致，值从当前 Tensor 对应位置提取。
+
+参数：
+    - **mask** (Tensor) - 用于掩码的稀疏 Tensor（``SparseCooTensor`` 或 ``SparseCsrTensor``）。
+
+关键字参数:
+    - **name** (str，可选) - 操作名称（在实现中被忽略，不生效）。默认值为 None。
+
+返回：
+    - **SparseTensor**，新生成的稀疏 Tensor，索引与 ``mask`` 相同，值来自 ``self`` 在掩码位置的元素。
+
+**代码示例**
+
+COPY-FROM: paddle.Tensor.sparse_mask

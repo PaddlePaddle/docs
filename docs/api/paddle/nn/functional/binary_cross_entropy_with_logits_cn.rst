@@ -34,8 +34,8 @@ binary_cross_entropy_with_logits
 
 参数
 :::::::::
-    - **logit** (Tensor) - :math:`[N, *]`，其中 N 是 batch_size， ``*`` 是任意其他维度。输入数据 ``logit`` 一般是线性层的输出，不需要经过 ``sigmoid`` 层。数据类型是 float32、float64。
-    - **label** (Tensor) - :math:`[N, *]`，标签 ``label`` 的维度、数据类型与输入 ``logit`` 相同。
+    - **logit** (Tensor) - :math:`[N, *]`，其中 N 是 batch_size， ``*`` 是任意其他维度。输入数据 ``logit`` 一般是线性层的输出，不需要经过 ``sigmoid`` 层。数据类型是 float32、float64。别名：``input``。
+    - **label** (Tensor) - :math:`[N, *]`，标签 ``label`` 的维度、数据类型与输入 ``logit`` 相同。别名：``target``。
     - **weight** (Tensor，可选) - 手动指定每个 batch 二值交叉熵的权重，如果指定的话，维度必须是一个 batch 的数据的维度。数据类型是 float32, float64。默认值是：None。
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有：``'none'``, ``'mean'``, ``'sum'``。默认为 ``'mean'``，计算 ``BCELoss`` 的均值；设置为 ``'sum'`` 时，计算 ``BCELoss`` 的总和；设置为 ``'none'`` 时，则返回原始 loss。
     - **pos_weight** (Tensor，可选) - 手动指定正类的权重，必须是与类别数相等长度的向量。数据类型是 float32, float64。默认值是：None。

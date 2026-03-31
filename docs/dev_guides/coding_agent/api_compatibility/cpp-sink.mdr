@@ -130,7 +130,8 @@ def log2(
 )
 ```
 
-如果支持了out参数，还必须在文档字符串中描述out参数，out为keyword-only参数时在Keyword args部分描述，为位置参数时在Args部分描述，如下：
+如果支持了out参数，必须在API文档中描述out参数，out为keyword-only参数（*后面）时注意增加`Keyword Args:`，并在此部分描述。out为位置参数时直接在Args部分描述。如下：
+
 ```python
 # out为keyword-only参数
 """
@@ -177,12 +178,13 @@ from paddle._C_ops import log2  # noqa: F401
 
 ### Step 4：添加测试用例
 
-不要新建任何测试文件，直接在 `test/legacy_test/test_api_compatibility[1-9]\.py` 中添加测试。严格按以下模板来编写：
+不要新建任何测试文件，直接在 `test/legacy_test/test_api_compatibility[1-9]\.py(数字最大的)` 中添加测试。严格按以下模板来编写：
 
 **测试模板**：
 ```python
 class Test<APIName>API(unittest.TestCase):
     def setUp(self):
+        # If not use random seed, remove setUp
         np.random.seed(2025)
         self.np_x = np.random.rand(...).astype(...)
 

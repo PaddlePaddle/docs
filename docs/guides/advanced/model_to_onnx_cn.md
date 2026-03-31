@@ -17,7 +17,7 @@ python -m pip install paddle2onnx
 ```
 
 ## 三、获取 Paddle2ONNX 模型库
-[Paddle2ONNX](https://github.com/PaddlePaddle/Paddle2ONNX) 目前提供了包括图像分类、图像分割、目标检测、文字识别四个类别的模型和部署示例代码，供开发者进行参考使用，可以点击[链接](https://github.com/PaddlePaddle/Paddle2ONNX/tree/develop/model_zoo)获取。其他更多的飞桨官方模型套件的各类常用模型，可以到对应的官方 Repo 下进行下载，然后再进行转换。
+[Paddle2ONNX](https://github.com/PaddlePaddle/Paddle2ONNX) 目前提供了包括图像分类、图像分割、目标检测、文字识别四个类别的模型和部署示例代码，供开发者进行参考使用，可以点击[链接](https://github.com/PaddlePaddle/Paddle2ONNX/blob/develop/docs/en/model_zoo.md)获取。其他更多的飞桨官方模型套件的各类常用模型，可以到对应的官方 Repo 下进行下载，然后再进行转换。
 
 ## 四、飞桨转 ONNX 教程
 在本教程中，我们将描述如何将飞桨模型转换为 ONNX 格式，然后使用 ONNXRuntime 运行它。具体操作分以下两种场景：
