@@ -221,7 +221,7 @@ CUDA_VISIBLE_DEVICES=0 python ./image_classification/eval.py --model_dir='Mobile
 
 压缩后模型速度的测试依赖推理库的支持，所以确保安装的是带有 TensorRT 的飞桨框架。以下示例和展示的测试结果是基于 Tesla V100、CUDA 10.2、python3.7 得到的。
 
-使用以下指令查看本地 cuda 版本，并且在[下载链接](https://paddleinference.paddlepaddle.org.cn/master/user_guides/download_lib.html#python)中下载对应 cuda 版本和对应 Python 版本的飞桨框架安装包。
+使用以下指令查看本地 cuda 版本，并且在[下载链接](https://www.paddlepaddle.org.cn/inference/master/guides/install/download_lib.html#python)中下载对应 cuda 版本和对应 Python 版本的飞桨框架安装包。
 
 ```python
 cat /usr/local/cuda/version.txt ### CUDA Version 10.2.89

@@ -3,7 +3,7 @@
 ldexp
 -------------------------------
 
-.. py:function:: paddle.ldexp(x, y, name=None)
+.. py:function:: paddle.ldexp(x, y, name=None, *, out=None)
 
 计算 ``x`` 乘以 2 的 ``y`` 次幂
 
@@ -13,9 +13,13 @@ ldexp
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 多维 Tensor。数据类型为 float32、float64、int32、int64。
-    - **y** (Tensor) - 多维 Tensor。通常为整数。
+    - **x** (Tensor) - 多维 Tensor。数据类型为 float32、float64、int32、int64。别名：``input``。
+    - **y** (Tensor) - 多维 Tensor。通常为整数。别名：``other``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+:::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 ::::::::::::
