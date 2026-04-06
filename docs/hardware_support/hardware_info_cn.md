@@ -36,9 +36,9 @@
 
 |  分类  | 架构 | 公司 | 型号 | 预编译库 | 源码编译 |  完全支持推理 | 支持部分模型 |
 |  ----  | ----  | ---- | ---- |---- | ---- |---- | ---- |
-| 服务端 CPU | x86 | Intel | 常见 CPU 型号如 Xeon、Core 全系列以及 NUC | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
-| 服务端 GPU |  | NVIDIA | Ada Lovelace、Hopper、 Ampere、Turing、 Volta 架构  | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
-| 移动端 GPU |  | NVIDIA | Jetson 系列 | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
+| 服务端 CPU | x86 | Intel | 常见 CPU 型号如 Xeon、Core 全系列以及 NUC | [预编译库](https://www.paddlepaddle.org.cn/inference/master/guides/install/download_lib.html) | [源码编译](https://www.paddlepaddle.org.cn/inference/master/guides/install/compile/source_compile.html) | ✔️ |   |
+| 服务端 GPU |  | NVIDIA | Ada Lovelace、Hopper、 Ampere、Turing、 Volta 架构  | [预编译库](https://www.paddlepaddle.org.cn/inference/master/guides/install/download_lib.html) | [源码编译](https://www.paddlepaddle.org.cn/inference/master/guides/install/compile/source_compile.html) | ✔️ |   |
+| 移动端 GPU |  | NVIDIA | Jetson 系列 | [预编译库](https://www.paddlepaddle.org.cn/inference/master/guides/install/download_lib.html) | [源码编译](https://www.paddlepaddle.org.cn/inference/master/guides/install/compile/source_compile.html) | ✔️ |   |
 | AI 加速芯片 | 达芬奇 | 华为 | 昇腾 910 系列 | | [源码编译](./npu/install_cn.html) |  | ✔️ |
 | AI 加速芯片 | MLU | 寒武纪 | MLU370 系列 | | [源码编译](./mlu/install_cn.html) |  | ✔️ |
 | AI 加速芯片 | MUSA | 摩尔线程 | MTT S 系列 GPU |  |  |  |  |

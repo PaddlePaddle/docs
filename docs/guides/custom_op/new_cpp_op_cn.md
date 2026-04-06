@@ -2267,8 +2267,8 @@ cd build
 
 ### 参考链接汇总
 
-- [Paddle Inference 快速开始](https://paddleinference.paddlepaddle.org.cn/quick_start/workflow.html)
-- [Paddle Inference API 文档](https://paddleinference.paddlepaddle.org.cn/api_reference/cxx_api_index.html)
+- [Paddle Inference 快速开始](https://www.paddlepaddle.org.cn/inference/master/guides/introduction/workflow.html)
+- [Paddle Inference API 文档](https://www.paddlepaddle.org.cn/inference/master/api_reference/cxx_api_doc/cxx_api_index.html)
 - [更多示例代码-自定义算子单元测试](https://github.com/PaddlePaddle/Paddle/tree/develop/test/custom_op)
 
 API 文档：
