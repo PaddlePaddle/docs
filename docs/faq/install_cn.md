@@ -27,7 +27,7 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/conda/lib/
 > Windows: set PATH by `set PATH=XXX;
 + 问题分析：
 
-遇到该问题是因为使用的 paddle 默认开始了 TensorRT，但是本地环境中没有找到 TensorRT 的库，该问题只影响使用[Paddle Inference](https://paddleinference.paddlepaddle.org.cn/master/product_introduction/inference_intro.html)开启 TensorRT 预测的场景，对其它方面均不造成影响。
+遇到该问题是因为使用的 paddle 默认开始了 TensorRT，但是本地环境中没有找到 TensorRT 的库，该问题只影响使用[Paddle Inference](https://www.paddlepaddle.org.cn/inference/master/guides/introduction/index_intro.html)开启 TensorRT 预测的场景，对其它方面均不造成影响。
 
 + 解决办法：
 
