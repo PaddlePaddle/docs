@@ -4,7 +4,8 @@ select_scatter
 -------------------------------
 
 .. py:function:: paddle.select_scatter(x, values, axis, index, name=None)
-将 ``values`` 矩阵的值嵌入到 ``x`` 矩阵的第 ``axis`` 维的 ``index`` 列
+
+将 ``values`` 矩阵的值嵌入到 ``x`` 矩阵的第 ``axis`` 维的 ``index`` 列。
 
 参数
 :::::::::
@@ -17,7 +18,7 @@ select_scatter
 返回
 :::::::::
 
-输出 Tensor， ``x`` 矩阵的第 ``axis`` 维的第 ``index`` 列会被插入 ``value``，与 ``x`` 数据类型相同。
+输出 Tensor， ``x`` 矩阵的第 ``axis`` 维的第 ``index`` 列会被插入 ``values``，与 ``x`` 数据类型相同。
 
 代码示例
 :::::::::

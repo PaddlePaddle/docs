@@ -19,6 +19,9 @@ triu_indices
 
     - **dtype** (str|np.dtype|paddle.dtype，可选) - 指定输出 Tensor 的数据类型，可以是 int32，int64，默认值为 int64。
 
+    .. note::
+        Paddle 不支持 PyTorch 的 ``device`` 和 ``layout`` 参数。若传入这些参数，将被自动忽略。在转换 PyTorch 代码时，这些参数可以安全地传入而不影响功能，但 Paddle 会忽略它们的值。
+
 返回
 :::::::::
 Tensor，返回 row*col 大小矩阵的上三角元素的坐标，其中第一行包含行坐标，第二行包含列坐标

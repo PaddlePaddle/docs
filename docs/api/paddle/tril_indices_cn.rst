@@ -19,6 +19,9 @@ tril_indices
 
     - **dtype** (int，可选) - 指定输出 Tensor 的数据类型，默认值为 int64。
 
+    .. note::
+        Paddle 不支持 PyTorch 的 ``device`` 和 ``layout`` 参数。若传入这些参数，将被自动忽略。在转换 PyTorch 代码时，这些参数可以安全地传入而不影响功能，但 Paddle 会忽略它们的值。
+
 返回
 :::::::::
 Tensor，二维矩阵的下三角矩阵行坐标和列坐标。数据类型和参数 dtype 一致。
