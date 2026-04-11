@@ -41,6 +41,6 @@ repos:
         types_or: [python, pyi, jupyter]
   # For YAML files
   - repo: https://github.com/PFCCLab/yamlfmt-pre-commit-mirror.git
-    rev: v0.16.0
+    rev: v0.21.0
     hooks:
       - id: yamlfmt
