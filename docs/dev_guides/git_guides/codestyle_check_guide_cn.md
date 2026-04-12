@@ -97,7 +97,7 @@ Date:   xxx
 | [clang-tidy](https://github.com/llvm/llvm-project/tree/main/clang-tools-extra/clang-tidy) | C++ 代码风格检查 | 15.0.2.1 |
 | [cmake-format](https://github.com/cheshirekow/cmake-format-precommit) | CMake 代码格式化 | 0.6.13 |
 | [cmake-lint](https://github.com/PFCCLab/cmake-lint-paddle)| CMake 代码风格检查 | 1.5.1 |
-| [yamlfmt](https://github.com/PFCCLab/yamlfmt-pre-commit-mirror.git) | YAML 代码格式化 | 0.16.0 |
+| [yamlfmt](https://github.com/PFCCLab/yamlfmt-pre-commit-mirror.git) | YAML 代码格式化 | 0.21.0 |
 
 > 注：这些工具可能会更新，详细配置请查看：[https://github.com/PaddlePaddle/Paddle/blob/develop/.pre-commit-config.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/.pre-commit-config.yaml)。
 
