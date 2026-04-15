@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout PR branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -31,7 +31,7 @@ jobs:
           ./ci_scripts/report_preview_url.sh ${{ github.event.pull_request.number }} > preview_urls.txt
 
       - name: Upload preview URLs as artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: preview-urls-${{ github.event.pull_request.number }}
           path: preview_urls.txt
@@ -43,7 +43,7 @@ jobs:
           echo "${{ github.event.pull_request.head.sha }}" > pr_sha.txt
 
       - name: Upload PR metadata
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: pr-metadata-${{ github.event.pull_request.number }}
           path: |
