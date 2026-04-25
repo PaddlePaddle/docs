@@ -14,6 +14,19 @@ PyLayerContext
 COPY-FROM: paddle.autograd.PyLayerContext
 
 
+属性
+::::::::::::
+saved_tensors
+'''''''''
+
+获取被 ``save_for_backward`` 暂存的 ``Tensor`` 。此属性是方法 ``saved_tensor()`` 的别名。
+
+
+**返回**
+
+如果调用 ``save_for_backward`` 暂存了一些 ``Tensor``，则返回这些 ``Tensor``，否则，返回 None。
+
+
 方法
 ::::::::::::
 save_for_backward(*tensors)
