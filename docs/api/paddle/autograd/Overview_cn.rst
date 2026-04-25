@@ -35,4 +35,4 @@ paddle.autograd 目录下包含飞桨框架支持的自动微分相关的 API �
     " :ref:`PyLayer <cn_api_paddle_autograd_PyLayer>` ", "通过创建 ``PyLayer`` 子类的方式实现 Python 端自定义算子"
     " :ref:`Function <cn_api_paddle_autograd_Function>` ", "``PyLayer`` 的别名"
     " :ref:`PyLayerContext <cn_api_paddle_autograd_PyLayerContext>` ", "``PyLayerContext`` 对象能够辅助 :ref:`cn_api_paddle_autograd_PyLayer` 实现某些功能"
-    " :ref:`function <cn_api_paddle_autograd_function>` ", "包含 ``PyLayerContext`` 相关的别名"
+    " :ref:`function <cn_api_paddle_autograd_function_alias>` ", "包含 ``PyLayerContext`` 相关的别名"

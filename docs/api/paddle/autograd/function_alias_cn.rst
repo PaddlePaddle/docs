@@ -1,4 +1,4 @@
-.. _cn_api_paddle_autograd_function:
+.. _cn_api_paddle_autograd_function_alias:
 
 function
 -------------------------------
