@@ -339,8 +339,25 @@ is_cuda
         d.is_cuda
 
 
-numpy()
+is_cpu
 :::::::::
+
+如果 Tensor 存储在 CPU 上，则为 True，否则为 False。
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+        d = torch.Tensor([1, 2, 3])
+        d.is_cpu
+
+
+numpy(force=True)
+:::::::::
+
+参数：
+    - **force** (bool, 可选) - 此参数用于 pytorch 兼容，无实际作用，默认为 True。
 
 返回：将 Tensor 转为 numpy 返回
 
@@ -1242,9 +1259,18 @@ cuda(device_id=None, blocking=False)
 
 如果当前 Tensor 已经在 GPU 上，且 device_id 为 None，则不会发生任何拷贝。
 
+本 API 支持两种调用方式：
+
+1. **Paddle 风格**： ``paddle.Tensor.cuda(self, device_id=None, blocking=True)``
+   使用 blocking 参数。
+
+2. **PyTorch 风格**： ``paddle.Tensor.cuda(self, device, non_blocking=False)``
+   使用 non_blocking 参数。device 参数为 str 类型时，默认使用此签名。
+
 参数：
-    - **device_id** (int, 可选) - 目标 GPU 的设备 Id，默认为 None，此时为当前 Tensor 的设备 Id，如果当前 Tensor 不在 GPU 上，则为 0。
+    - **device_id** (int, str, paddle.core.place, 可选) - 目标 GPU 的设备 Id，默认为 None，此时为当前 Tensor 的设备 Id，如果当前 Tensor 不在 GPU 上，则为 0。别名 ``device``。
     - **blocking** (bool, 可选) - 如果为 False 并且当前 Tensor 处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。默认为 False。
+    - **non_blocking** (bool, 可选) - 效果与参数 ``blocking`` 相反。请勿同时指定参数 ``blocking`` 和 ``non_blocking``。 默认为 True。
 
 返回：拷贝到 GPU 上的 Tensor
 
@@ -1532,9 +1558,17 @@ fill_diagonal_(x, value, offset=0, wrap=False, name=None)
 输入 Tensor x 维度至少是 2 维，当维度大于 2 维时要求所有维度值相等。
 当维度等于 2 维时，两个维度可以不等，且此时 wrap 选项生效，详见 wrap 参数说明。
 
+本 API 支持两种调用方式：
+
+1. **Paddle 风格**： ``paddle.Tensor.fill_diagonal_(x, value, offset=0, wrap=False)``
+   使用位置参数 offset。
+
+2. **PyTorch 风格**： ``paddle.Tensor.fill_diagonal_(x, fill_value, wrap=False)``
+   不使用位置参数 offset。
+
 参数：
     - **x** (Tensor) - 需要修改对角线元素值的原始 Tensor。
-    - **value** (float) - 以输入 value 值修改原始 Tensor 对角线元素。
+    - **value** (float) - 以输入 value 值修改原始 Tensor 对角线元素。别名 ``fill_value``。
     - **offset** (int，可选) - 所选取对角线相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为 0。
     - **wrap** (bool，可选) - 对于 2 维 Tensor，height>width 时是否循环填充，默认为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
@@ -2258,6 +2292,13 @@ neg(name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_neg`
+
+nelement()
+:::::::::
+
+返回：Tensor 内元素的数量
+
+返回类型：int
 
 nonzero(as_tuple=False)
 :::::::::
