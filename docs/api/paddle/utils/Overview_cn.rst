@@ -7,6 +7,7 @@ paddle.utils 目录下包含飞桨框架工具类的 API。具体如下：
 
 -  :ref:`自定义 OP 相关 API <about_cpp_extension>`
 -  :ref:`工具类相关 API <about_utils>`
+-  :ref:`别名相关 API <about_alias>`
 
 
 
@@ -46,3 +47,26 @@ paddle.utils 目录下包含飞桨框架工具类的 API。具体如下：
     " :ref:`to_dlpack <cn_api_paddle_utils_dlpack_to_dlpack>` ", "用于将 Tensor 对象转换为 DLPack"
     " :ref:`from_dlpack <cn_api_paddle_utils_dlpack_from_dlpack>` ", "用于从 DLPack 中解码出 Tensor 对象"
     " :ref:`try_import <cn_api_paddle_utils_try_import>` ", "用于尝试导入一个模块并且在失败时提供自定义错误信息"
+
+
+.. _about_alias:
+
+别名相关 API
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 12, 30
+
+    " :ref:`default_collate <cn_api_paddle_utils_data_default_collate>` ", "``paddle.io.dataloader.collate.default_collate_fn`` 的别名"
+    " :ref:`get_worker_info <cn_api_paddle_utils_data_get_worker_info>` ", "``paddle.io.get_worker_info`` 的别名"
+    " :ref:`ChainDataset <cn_api_paddle_utils_data_ChainDataset>` ", "``paddle.io.ChainDataset`` 的别名"
+    " :ref:`ConcatDataset <cn_api_paddle_utils_data_ConcatDataset>` ", "``paddle.io.ConcatDataset`` 的别名"
+    " :ref:`Dataset <cn_api_paddle_utils_data_Dataset>` ", "``paddle.io.Dataset`` 的别名"
+    " :ref:`IterableDataset <cn_api_paddle_utils_data_IterableDataset>` ", "``paddle.io.IterableDataset`` 的别名"
+    " :ref:`Subset <cn_api_paddle_utils_data_Subset>` ", "``paddle.io.Subset`` 的别名"
+    " :ref:`random_split <cn_api_paddle_utils_data_random_split>` ", "``paddle.io.random_split`` 的别名"
+    " :ref:`BatchSampler <cn_api_paddle_utils_data_BatchSampler>` ", "``paddle.io.BatchSampler`` 的别名"
+    " :ref:`RandomSampler <cn_api_paddle_utils_data_RandomSampler>` ", "``paddle.io.RandomSampler`` 的别名"
+    " :ref:`Sampler <cn_api_paddle_utils_data_Sampler>` ", "``paddle.io.Sampler`` 的别名"
+    " :ref:`SequentialSampler <cn_api_paddle_utils_data_SequentialSampler>` ", "``paddle.io.SequenceSampler`` 的别名"
