@@ -29,7 +29,7 @@ COPY-FROM: paddle.optimizer.Optimizer
 
 方法
 ::::::::::::
-step()
+step(closure=None)
 '''''''''
 
 .. note::
@@ -38,9 +38,13 @@ step()
 
     执行一次优化器并进行参数更新。
 
+**参数**
+
+    - **closure** (Callable[[], Tensor], 可选) - 用于评估模型并返回损失的闭包函数。闭包函数应接受 0 个参数并返回 Tensor。适用于需要多次评估损失的优化过程。默认值为 None。
+
 **返回**
 
-无。
+Tensor 或 None。若传入 closure 参数则返回其输出的损失，否则返回 None。
 
 
 **代码示例**
