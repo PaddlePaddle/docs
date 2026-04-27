@@ -2711,12 +2711,12 @@ sigmoid(name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_sigmoid`
+请参考 :ref:`cn_api_paddle_nn_functional_sigmoid`
 
 sigmoid_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_sigmoid` API，对输入 ``x`` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_paddle_nn_functional_sigmoid` API，对输入 ``x`` 采用 Inplace 策略。
 
 
 sign(name=None)
