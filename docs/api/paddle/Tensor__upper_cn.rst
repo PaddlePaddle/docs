@@ -1268,9 +1268,8 @@ cuda(device_id=None, blocking=False)
    使用 non_blocking 参数。device 参数为 str 类型时，默认使用此签名。
 
 参数：
-    - **device_id** (int, str, paddle.core.place, 可选) - 目标 GPU 的设备 Id，默认为 None，此时为当前 Tensor 的设备 Id，如果当前 Tensor 不在 GPU 上，则为 0。别名 ``device``。
+    - **device_id** (int, str, paddle.core.Place, 可选) - Tensor 移动的目标设备。若为 int，则为目标 GPU 的设备 Id。默认为 None，此时为当前 Tensor 的设备 Id，如果当前 Tensor 不在 GPU 上，则为 0。别名 ``device``。
     - **blocking** (bool, 可选) - 如果为 False 并且当前 Tensor 处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。默认为 False。
-    - **non_blocking** (bool, 可选) - 效果与参数 ``blocking`` 相反。请勿同时指定参数 ``blocking`` 和 ``non_blocking``。 默认为 True。
 
 返回：拷贝到 GPU 上的 Tensor
 
