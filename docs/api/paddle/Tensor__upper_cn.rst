@@ -559,6 +559,25 @@ acos(name=None)
 
 请参考 :ref:`cn_api_paddle_acos`
 
+acos_(name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_acos` API，对输入 ``x`` 采用 Inplace 策略。
+
+acosh(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_acosh`
+
+acosh_(name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_acosh` API，对输入 ``x`` 采用 Inplace 策略。
+
 add(y, name=None, \*, alpha=1, out=None)
 :::::::::
 
@@ -678,6 +697,25 @@ asin(name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_asin`
+
+asin_(name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_asin` API，对输入 ``x`` 采用 Inplace 策略。
+
+asinh(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_asinh`
+
+asinh_(name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_asinh` API，对输入 ``x`` 采用 Inplace 策略。
 
 astype(dtype)
 :::::::::
@@ -924,6 +962,25 @@ atan(name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_atan`
+
+atan_(name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_atan` API，对输入 ``x`` 采用 Inplace 策略。
+
+atanh(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_atanh`
+
+atanh_(name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_atanh` API，对输入 ``x`` 采用 Inplace 策略。
 
 backward(grad_tensor=None, retain_graph=False)
 :::::::::
@@ -1183,6 +1240,11 @@ cos(name=None)
 
 请参考 :ref:`cn_api_paddle_cos`
 
+cos_(name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_cos` API，对输入 ``x`` 采用 Inplace 策略。
+
 cosh(name=None)
 :::::::::
 
@@ -1194,6 +1256,11 @@ cosh(name=None)
 
 **代码示例**
 COPY-FROM: paddle.cosh
+
+cosh_(name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_cosh` API，对输入 ``x`` 采用 Inplace 策略。
 
 count_nonzero(axis=None, keepdim=False, name=None)
 :::::::::
@@ -1424,6 +1491,20 @@ exp_(name=None)
 :::::::::
 
 Inplace 版本的 :ref:`cn_api_paddle_exp` API，对输入 ``x`` 采用 Inplace 策略。
+
+expm1(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_expm1`
+
+expm1_(name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_expm1` API，对输入 ``x`` 采用 Inplace 策略。
 
 expand(shape, name=None)
 :::::::::
@@ -2623,6 +2704,21 @@ shard_index(index_num, nshards, shard_id, ignore_value=-1)
 请参考 :ref:`cn_api_paddle_shard_index`
 
 
+sigmoid(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_sigmoid`
+
+sigmoid_(name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_sigmoid` API，对输入 ``x`` 采用 Inplace 策略。
+
+
 sign(name=None)
 :::::::::
 
@@ -2650,6 +2746,11 @@ sin(name=None)
 
 请参考 :ref:`cn_api_paddle_sin`
 
+sin_(name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_sin` API，对输入 ``x`` 采用 Inplace 策略。
+
 sinh(name=None)
 :::::::::
 
@@ -2657,6 +2758,11 @@ sinh(name=None)
 
 **代码示例**
 COPY-FROM: paddle.sinh
+
+sinh_(name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_sinh` API，对输入 ``x`` 采用 Inplace 策略。
 
 slice(axes, starts, ends)
 :::::::::
@@ -2772,6 +2878,11 @@ square(name=None)
 
 请参考 :ref:`cn_api_paddle_square`
 
+square_(name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_square` API，对输入 ``x`` 采用 Inplace 策略。
+
 squeeze(axis=None, name=None)
 :::::::::
 
@@ -2886,6 +2997,20 @@ t(name=None)
 
 请参考 :ref:`cn_api_paddle_t`
 
+tan(name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tan`
+
+tan_(name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_tan` API，对输入 ``x`` 采用 Inplace 策略。
+
 tanh(name=None)
 :::::::::
 
@@ -2902,6 +3027,14 @@ Inplace 版本的 :ref:`cn_api_paddle_tan` API，对输入 ``x`` 采用 Inplace 
 
 tile(repeat_times, name=None)
 :::::::::
+
+本方法支持两种调用方式：
+
+1. **Paddle 风格**： ``x.tile(repeat_times, name=None)``
+   使用张量序列或 Tensor 指定各维度复制次数。
+
+2. **PyTorch 风格**： ``x.tile(*dims)``
+   使用可变数量的整数参数指定各维度复制次数。
 
 返回：计算后的 Tensor
 
