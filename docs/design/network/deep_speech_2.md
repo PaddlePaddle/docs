@@ -116,7 +116,7 @@ The classical DS2 network contains 15 layers (from bottom to top):
 - **One** CTC-loss layer
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/ds2_network.png" width=350><br/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/refs/heads/develop/docs/design/network/images/ds2_network.png" width=350><br/>
 Figure 1. Architecture of Deep Speech 2 Network.
 </div>
 
@@ -208,7 +208,7 @@ TODO by Assignees
 ### Beam Search with CTC and LM
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/beam_search.png" width=600><br/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/refs/heads/develop/docs/design/network/images/beam_search.png" width=600><br/>
 Figure 2. Algorithm for CTC Beam Search Decoder.
 </div>
 
