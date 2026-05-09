@@ -1,18 +1,15 @@
 ---
 name: pytorch-alignment-validator
-description: 仅用于《Paddle API 对齐 PyTorch 项目》，负责 Step3：Pytorch 对齐验证，基于 PaConvert 工具验证 Paddle API 与 PyTorch API 是否用法完全对齐一致
-allowed-tools: Read Grep‌ Glob‌ Write‌ Edit Bash(python *)
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step3：Pytorch 对齐验证，基于 PaConvert 工具验证 Paddle API 与 PyTorch API 是否用法完全对齐一致
 disable-model-invocation: false
 ---
 
 # 一、标准工作流程
 
-> **PaConvert 介绍**：Pytorch->Paddle 代码转换工具，可以搭建起 Pytorch-Paddle API 之间的桥梁。
-
 请严格按以下 Step 依次执行，不要自行修改或跳过 Step：
 
 ## Step 1: 标记已对齐的 API
-1. 定位文件：`PaConvert/paconvert/api_mapping.json`
+1. 定位文件：`${ROOT_DIR}/PaConvert/paconvert/api_mapping.json`
 2. 将已对齐的 PyTorch API 的 Matcher 设置为`ChangePrefixMatcher`，其他字段全部删除掉
 
 > 注意 torch.abs、torch.abs_、torch.Tensor.abs、torch.Tensor.abs_是四个不同的 API
@@ -21,14 +18,13 @@ disable-model-invocation: false
 **目的：** 判断是否满足如下测试规范，如不满足，则需增加测试用例使之符合规范
 
 **修改位置：**
-- Pytorch 单测路径： `PaConvert/tests/`
+- Pytorch 单测路径： `${ROOT_DIR}/PaConvert/tests/`
 - Pytorch 单测文件名： `test_<API 名称>.py`
-- **测试文件命名规范**：API 名称转换为下划线命名法，并在文件名中体现完整的模块路径层级：
+- **测试文件命名规范**：将 API 路径中的 `.` 替换为 `_`，Tensor 类保留大写 `T`，最终加上 `test_` 前缀和 `.py` 后缀
   - `torch.argmax` → `test_argmax.py`（顶层函数）
-  - `torch.Tensor.argmax` → `test_Tensor_argmax.py`（类方法，用大写 T 表示类名）
-  - `torch.linalg.inv` → `test_linalg_inv.py`（子模块函数，用下划线连接模块名）
-  - 从左到右依次将 API 路径中的`.`替换为`_`，类名保留首字母大写，最终加上`test_`前缀和`.py`后缀
-- 注意新增的测试 case 需要放到之前测试 case 的后面，不要删除之前的测试 case
+  - `torch.Tensor.argmax` → `test_Tensor_argmax.py`（类方法）
+  - `torch.linalg.inv` → `test_linalg_inv.py`（子模块）
+- **新增测试 case 策略**：若现有测试不满足规范，应**新增测试 case**（追加到后面），而非修改或删除已有测试
 
 **测试规范：**
 1. **参数覆盖要全面**
@@ -160,7 +156,7 @@ class CustomAPIBase(APIBase):
 
 1. 本地执行以下命令：
    ```bash
-   cd /workspace/PaConvert/
+   cd ${ROOT_DIR}/PaConvert/
    python -m pytest tests/test_<API 名称>.py
    ```
 
@@ -172,42 +168,73 @@ make -j$(nproc)
 ```
 
 编译注意事项：
-- 编译完成后不需要重新安装，无需执行 setup/install 等任何安装操作，直接可生效
-- 编译不要删除 build 目录，否则会导致增量编译失效，编译时间极长
+- 无需重装，直接生效（勿执行 setup/install 等安装操作）
+- 勿删除 build 目录（否则增量编译失效，编译时间极长）
 
-# 二、异常处理
 
-## 2.1 异常处理策略
 
-在 PyTorch 对齐验证过程中，需要对不同异常情况进行分类处理。以下是异常处理策略：
+# 二、注意事项
 
-### a. PyTorch 代码执行失败
-- **错误标识**：`Failed to execute pytorch code`
-- **根本原因**：PyTorch 单元测试代码存在问题，无法正常执行
-- **处理策略**：修改 PyTorch 单元测试代码，确保能正确执行 Pytorch 代码
-- **验证标准**：测试代码应该能够在标准的 PyTorch 环境中正常运行
+1. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤
+2. 所有路径使用 `${ROOT_DIR}` 变量表示根目录，需自行替换为实际路径
+3. 确保测试用例覆盖所有参数组合和边界情况
+4. 验证通过是对齐的金标准，不可跳过
+5. 复盘记忆中的历史易错点，避免重复犯错
+6. **PaConvert 说明**：Pytorch->Paddle 代码转换工具，可以搭建起 Pytorch-Paddle API 之间的桥梁。
 
-### b. Paddle 代码执行失败
-- **错误标识**：`Failed to execute paddle code`
-- **根本原因**：Pytorch 单测正确，但修改后的 Paddle API 实现存在问题，导致代码无法执行
-- **处理策略**：需要返回到前序 Step 修改，因此结束本 Step，将报错信息返回给主控智能体分析
-- **关联任务**：Paddle API 需要进一步修改以兼容 PyTorch 接口
+# 三、常见问题处理
 
-### c. 计算结果不一致
-- **错误标识**：`Unable to align results`
-- **根本原因**：Pytorch 单测正确，但 Paddle API 与 PyTorch API 计算结果存在差异
-- **处理策略**：需要返回到前序 Step 修改，因此结束本 Step，将报错信息返回给主控智能体分析
-- **验证要求**：Paddle API 需要进一步修改以兼容 PyTorch 接口，确保数值精度、数据类型、形状等完全一致
+## Q1：PyTorch 代码执行失败
 
-> 禁止通过配置 api_mapping.json 为非`ChangePrefixMatcher`来使单测通过，本步骤的通过标准为：Matcher 配置为`ChangePrefixMatcher` + 单测运行通过。
+**错误标识**：Failed to execute pytorch code
 
-## 2.2 常见错误及解决方案
+**根本原因**：PyTorch 单元测试代码存在问题，无法正常执行
 
-### Paddle 不支持类型提升
-- 如果报错是因为 Paddle 不支持类型提升或标量输入（已知问题），可以禁用对应测试用例，其他情况不允许禁用单测：
-  ```python
-  # 将 def test_case_x(): 改为 def _test_case_x():
-  # 并添加注释说明原因
-  def _test_case_2():  # Paddle does not support scalar input
-      ...
-  ```
+**处理策略**：修改 PyTorch 单元测试代码，确保能正确执行 Pytorch 代码
+
+**验证标准**：测试代码应该能够在标准的 PyTorch 环境中正常运行
+
+---
+
+## Q2：Paddle 代码执行失败
+
+**错误标识**：Failed to execute paddle code
+
+**根本原因**：Pytorch 单测正确，但修改后的 Paddle API 实现存在问题，导致代码无法执行
+
+**处理策略**：需要返回到前序 Step 修改，因此结束本 Step，将报错信息返回给主控智能体分析
+
+**关联任务**：Paddle API 需要进一步修改以兼容 PyTorch 接口
+
+---
+
+## Q3：计算结果不一致
+
+**错误标识**：Unable to align results
+
+**根本原因**：Pytorch 单测正确，但 Paddle API 与 PyTorch API 计算结果存在差异
+
+**处理策略**：需要返回到前序 Step 修改，因此结束本 Step，将报错信息返回给主控智能体分析
+
+**验证要求**：Paddle API 需要进一步修改以兼容 PyTorch 接口，确保数值精度、数据类型、形状等完全一致
+
+**禁止通过配置 api_mapping.json 为非 ChangePrefixMatcher 来使单测通过**，本步骤的通过标准为：Matcher 配置为 ChangePrefixMatcher + 单测运行通过。
+
+---
+
+## Q4：如何禁用不支持的测试用例
+
+**错误现象**：
+Paddle 因为暂不支持某些功能（如类型提升、标量输入等）而报错
+
+**解决方法**：
+```python
+# 将 def test_case_x(): 改为 def _test_case_x():
+# 并添加注释说明原因
+def _test_case_2():  # Paddle does not support scalar input
+    ...
+```
+
+**注意**：仅允许禁用因已知 Paddle 限制导致的失败用例，其他情况不允许禁用
+
+---

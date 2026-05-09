@@ -1,10 +1,7 @@
 ---
 name: api-docs-updater
-description: 仅用于《Paddle API 对齐 PyTorch 项目》，负责 Step4，在 API 代码修改完成后，同步更新中文 API 文档，确保文档准确反映 API 的最新行为
-allowed-tools: Read Grep Glob‌ Write‌ Edit
-context: fork
-background: true
-verbose: true
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step4：API 文档修改，在 API 代码修改完成后，同步更新中文 API 文档，确保文档准确反映 API 的最新行为
+allowed-tools: Read Grep Glob Write Edit
 disable-model-invocation: false
 ---
 
@@ -14,22 +11,20 @@ disable-model-invocation: false
 
 | 文档类型 | 文件命名 | 改动点 |
 |----------|----------|----------|
-| API 概览文档 | `docs/api/paddle/Overview_cn.rst` | API 索引目录，新增 API 时需要更新 |
+| API 概览文档 | `${ROOT_DIR}/docs/api/paddle/Overview_cn.rst` | API 索引目录，新增 API 时需要更新 |
 | API 中文文档 | `{api_name}_cn.rst` | 针对 API 功能改动点，修改文档 |
 
-# 二、工作流程概述
+# 二、标准工作流程
 
-## 基本流程
-
-1. **查找 API 英文文档** - 在两个位置查找：
+Step 1. **查找 API 英文文档** - 在两个位置查找：
    - 直接存储在 API 实现代码中的 `__doc__` 文档字符串
-   - 集中存储在 `Paddle/python/paddle/_paddle_docs.py` 文件中
+   - 集中存储在 `${ROOT_DIR}/Paddle/python/paddle/_paddle_docs.py` 文件中
 
-2. **对比英文和中文文档** - 识别不一致之处
+Step 2. **对比英文和中文文档** - 识别不一致之处
 
-3. **根据代码修改方案选择对应模式** - 见第三章
+Step 3. **根据代码修改方案选择对应模式** - 见第三章
 
-4. **按照格式规范更新中文文档** - 见第四章
+Step 4. **按照格式规范更新中文文档** - 见第四章
 
 # 三、常见修改模式
 
@@ -50,7 +45,7 @@ disable-model-invocation: false
 **英文文档要求**（代码 docstring）：
 - 格式：`Alias: ` + `` ``别名`` ``
 - 多个别名：`Alias: ` `` ``input`` ` or ` `` ``other`` ``
-- 位置：参数描述末尾
+- 位置：参数描述末尾，**句号前**
 
 ```python
 Args:
@@ -144,7 +139,7 @@ Args:
 keyword-only 形式：
 ```python
 Keyword Args:
-    out (Tensor|None, optional): The output tensor. Default: None.
+    out (Tensor|None, optional): The output Tensor. Default: None.
 ```
 
 位置参数形式：
@@ -245,13 +240,11 @@ Inplace 版本的 :ref:`cn_api_paddle_floor_divide` API，对输入 `x` 采用 I
 ```
 
 
-# 四、格式规范与注意事项
-
-## 格式规范
+# 四、格式规范
 
 | 项目 | 规范 | 示例 |
 |------|------|------|
-| **别名说明位置** | 参数描述末尾，句号前 | `- **x** (Tensor) - 输入的 Tensor。别名 ` ``input``` |
+| **别名说明位置** | 参数描述末尾，**句号前** | `- **x** (Tensor) - 输入的 Tensor。别名 ` ``input``` |
 | **别名格式** | 2 个反单引号+别名+2 个反单引号 | `` ``input`` `` 或 `` ``dim`` `` |
 | **多个别名** | 用"或"连接 | `别名 ` ``input`` ` 或 ` ``other``` |
 | **参数类型** | 可选参数用管道符 | `(float\|None，可选)` 或 `(str\|None，可选)` |
@@ -265,22 +258,24 @@ Inplace 版本的 :ref:`cn_api_paddle_floor_divide` API，对输入 `x` 采用 I
 - 参数类型用 `()` 包裹
 - 别名用反引号包裹：`` ``input`` ``
 
-## 注意事项
 
-1. **Tensor 类方法**（如 `paddle.Tensor.abs`）
+# 五、注意事项
+
+1. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤
+2. 所有路径使用 `${ROOT_DIR}` 变量表示根目录，需自行替换为实际路径
+3. **Tensor 类方法**（如 `paddle.Tensor.abs`）
    - 没有独立文档，无需处理
    - 勿与普通方法（如 `paddle.abs`）混淆
-
-2. **Inplace 方法**（如 `paddle.abs_`）
+4. **Inplace 方法**（如 `paddle.abs_`）
    - 仅更新代码签名，不需修改文档
    - 参数别名支持与原方法一致
-
-3. **文档内容保持**
+5. **文档内容保持**
    - 保留原有的文档风格和格式
    - 不要大面积删除文档原内容
    - 示例代码采用 COPY-FROM: 格式，不要修改
-
-4. **英文文档与中文文档必须对应**
+6. **英文文档与中文文档必须对应**
    - 别名格式完全相同
    - Overload 说明内容对应
    - out 参数描述对齐
+
+# 六、常见问题处理

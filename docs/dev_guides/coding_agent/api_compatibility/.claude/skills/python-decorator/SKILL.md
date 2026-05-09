@@ -1,13 +1,15 @@
 ---
 name: python-decorator
-description: 仅用于《Paddle API 对齐 PyTorch 项目》，负责 Step2：API 代码修改，实施 Python 装饰器的代码开发。通过 Python 装饰器，在 Python 层为 Paddle API 提供参数别名、参数顺序、参数类型和参数用法的兼容转换，实现 PyTorch 风格的 API 调用，并保持 Paddle API 的向后兼容性。
-allowed-tools: Read Grep‌ Glob‌ Edit Bash
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2：API 代码修改，实施 Python 装饰器的代码开发。通过 Python 装饰器，在 Python 层为 Paddle API 提供参数别名、参数顺序、参数类型和参数用法的兼容转换，实现 PyTorch 风格的 API 调用，并保持 Paddle API 的向后兼容性。
+context: fork
+background: false
+verbose: true
 disable-model-invocation: false
 ---
 
 # 一、现有装饰器体系
 
-Paddle 现有装饰器统一位于 `Paddle/python/paddle/utils/decorator_utils.py`，按功能分为两类：
+Paddle 现有装饰器统一位于 `${ROOT_DIR}/Paddle/python/paddle/utils/decorator_utils.py`，按功能分为两类：
 
 ## 1.1 通用别名装饰器
 
@@ -34,9 +36,25 @@ Paddle 现有装饰器统一位于 `Paddle/python/paddle/utils/decorator_utils.p
 
 # 二、标准工作流程
 
+**整体流程**：Step 1 差异分析与选择装饰器 → Step 2 应用或开发装饰器 → Step 3 添加 out 参数支持 → Step 4 更新函数文档 → Step 5 添加测试用例 → Step 6 编译并运行
+
 ## Step 1: 差异分析与选择装饰器
 
-根据 PyTorch API 与 Paddle API 的**差异分析**来区分不同场景：
+根据 PyTorch API 与 Paddle API 的**差异分析**来区分不同场景，选择合适的装饰器方案。
+
+### 场景决策表
+
+| 差异类型 | 参数顺序 | 参数个数 | 参数用法 | 推荐方案 |
+|---------|--------|--------|--------|--------|
+| 仅参数名不同 | 相同 | 相同 | 相同 | ✅ 方式一（通用别名装饰器） |
+| 参数名+参数顺序不同 | 不同 | 相同 | 相同 | ❌ 需要使用方式二（专用装饰器） |
+| 参数名+参数个数不同 | 相同 | 不同 | 相同 | ❌ 需要使用方式二（专用装饰器） |
+| 参数名+参数用法不同 | 相同 | 相同 | 不同 | ❌ 需要使用方式二（专用装饰器） |
+| 其他复杂情况 | 其他 | 其他 | 其他 | ❌ 需要使用方式二（专用装饰器） |
+
+**判断方法**：若上表中任何一列出现"不同"，则需使用方式二开发专用装饰器。
+
+---
 
 ### 1. 仅参数名不同（参数顺序相同）
 
@@ -136,7 +154,7 @@ def cumsum(x, axis=None, dtype=None, name=None):
 
 ### 方式二：开发新的专用装饰器
 
-1. 在`Paddle/python/paddle/utils/decorator_utils.py`中定义新装饰器
+1. 在`${ROOT_DIR}/Paddle/python/paddle/utils/decorator_utils.py`中定义新装饰器
 2. 按照以下模板和要点实现
 3. 在 API 函数上使用新装饰器
 
@@ -231,10 +249,10 @@ def index_select_decorator():
 ```
 
 **注意事项**：
-1. 尽可能参考 `Paddle/python/paddle/utils/decorator_utils.py` 中已有的专用装饰器来实现，在风格和逻辑上保持尽可能一致
+1. 尽可能参考 `${ROOT_DIR}/Paddle/python/paddle/utils/decorator_utils.py` 中已有的专用装饰器来实现，在风格和逻辑上保持尽可能一致
 2. 如果两者 API 对应参数的顺序不同，则装饰器需要通过位置参数(args)类型检测来区分两者，并分别匹配不同的参数顺序
-3. 专用装饰器应该尽可能逻辑简单，只假定存在 Paddle 签名+Pytorch 签名两种用法，其他情况无需判断，提升性能
-4. overload 注解：专有装饰器需添加 overload 注解（通用别名装饰器无需注解），需针对 Paddle 签名、Pytorch 签名分别添加 overload 注解（Paddle 在前，Pytorch 在后）
+3. 专用装饰器应该尽可能逻辑简单（单个函数控制在 30 行以内），只假定存在 Paddle 签名+PyTorch 签名两种用法，其他情况无需判断，提升性能
+4. overload 注解：专用装饰器需添加 overload 注解（通用别名装饰器无需注解），需针对 Paddle 签名、PyTorch 签名分别添加 overload 注解（Paddle 在前，PyTorch 在后）。导入方式：`from typing import overload`
 ```python
 @overload
 def gather(
@@ -527,7 +545,7 @@ class Test<APIName>API(unittest.TestCase):
 3. 输出结果序号需要保持连贯，每一个输出结果均需要检验，尽可能循环检验减少行数。
 3. 比对测试项，对于内容相同的测试项，不要重复添加。
 
-完整测试示例，请参考 `Paddle/test/legacy_test/test_api_compatibility[1-9]\.py` 中已有的测试类结构。
+完整测试示例，请参考 `${ROOT_DIR}/Paddle/test/legacy_test/test_api_compatibility[1-9]\.py` 中已有的测试类结构。
 
 ## Step 6: 编译与运行
 
@@ -535,7 +553,7 @@ class Test<APIName>API(unittest.TestCase):
 
 1. **重新编译项目**：
    ```bash
-   cd /workspace/Paddle/build
+   cd ${ROOT_DIR}/Paddle/build
    cmake ..
    make -j$(nproc)
    ```
@@ -548,56 +566,12 @@ class Test<APIName>API(unittest.TestCase):
 3. **问题排查**：根据报错信息调整代码或测试用例，确保所有测试用例通过。注意每次修改 Paddle 源码后，必须重新编译方可生效。
 
 编译注意事项：
-- 编译完成后不需要重新安装，无需执行 setup/install 等任何安装操作，直接可生效
-- 编译不要删除 build 目录，否则会导致增量编译失效，编译时间极长
+- 无需重装，直接生效（勿执行 setup/install 等安装操作）
+- 勿删除 build 目录（否则增量编译失效，编译时间极长）
 
-# 三、异常处理
+# 三、技术背景知识
 
-## 3.1 标准处理流程
-1. **定位错误**：仔细阅读错误信息，确定错误类型和位置
-2. **分析原因**：根据错误信息分析具体问题（装饰器实现错误、使用错误等）
-3. **修改代码**：根据分析结果调整代码
-4. **验证修复**：重新运行测试确认问题解决
-
-## 3.2 常见错误及解决方案
-
-### 类型转换错误
-
-**错误现象**：
-```python
-TypeError: expected Tensor as argument, got numpy.ndarray
-```
-
-**解决方法**：
-```python
-# 确保输入是 Tensor 类型
-tensor_input = paddle.to_tensor(numpy_input)
-paddle.api(tensor_input, ...)
-```
-
-## 3.3 调试技巧
-
-```python
-# 添加调试日志
-import logging
-logging.basicConfig(level=logging.DEBUG)
-
-# 在装饰器中添加日志
-def wrapper(*args, **kwargs):
-    logging.debug(f"Before: args={args}, kwargs={kwargs}")
-    # 处理逻辑...
-    logging.debug(f"After: args={args}, kwargs={kwargs}")
-    return func(*args, **kwargs)
-
-# 或使用打印调试
-def wrapper(*args, **kwargs):
-    print(f"[DEBUG] args={args}, kwargs={kwargs}")
-    # ...
-```
-
-# 四、技术背景知识
-
-## 4.1 Paddle API 分层结构
+## 3.1 Paddle API 分层结构
 
 **Paddle API 架构（5 层）**：
 1. **Python 层**：Python 函数定义（本方案修改层）
@@ -611,7 +585,7 @@ def wrapper(*args, **kwargs):
 - ❌ 第 2~4 层通过 yaml 配置自动生成，无需手动修改
 - ❌ 第 5 层涉及 C++实现，不在本方案范围内
 
-## 4.2 Python 装饰器原理
+## 3.2 Python 装饰器原理
 
 ### 装饰器基本结构
 
@@ -650,36 +624,68 @@ if len(args) >= 2 and isinstance(args[1], int):
     args = ()
 ```
 
-## 4.3 装饰器特点与注意事项
+## 3.3 装饰器特点与注意事项
 
 ### 装饰器特点
 - **零侵入性**：无需修改 API 的实现代码
 - **适用面广**：支持灵活处理各种 API 签名重载情况，如参数名不同、参数顺序不同、参数个数不同、参数类型不同、参数用法不同等
 - **向后兼容**：保持 Paddle 原有 API 调用方式
 - **开发效率**：相比 C++下沉方案，修改更快速直接
-- **性能开销**：Python 装饰器层会引入轻微性能开销
 
-### 性能开销
+# 四、注意事项
 
-- 装饰器会引入额外的函数调用层级
-- 对于高频调用的 API，装饰器开销可能不可忽略
-- 考虑对性能敏感的 API 使用 C++下沉方案
+1. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤
+2. 所有路径使用 `${ROOT_DIR}` 变量表示根目录，需自行替换为实际路径
+3. 不要修改 sparse 目录下的 API
+4. 确保不破坏现有功能，保持向后兼容性
+5. 开发专用装饰器时参考现有实现
+6. 代码中不允许提交中文，代码注释采用英文
+7. 复盘记忆中的历史易错点，避免重复犯错
 
-### 调试复杂性
+# 五、常见问题处理
 
-- 装饰器增加了调用栈深度
-- 错误追踪时可能需要多跳一层
-- 使用日志辅助调试
+## Q1：类型转换错误
 
-### 与其他装饰器共存
+**错误现象**：
+```python
+TypeError: expected Tensor as argument, got numpy.ndarray
+```
 
-- 需要注意装饰器的应用顺序
-- 确保装饰器之间不产生冲突
-- 不同装饰器的参数处理逻辑应该兼容
+**解决方法**：
+```python
+# 确保输入是 Tensor 类型
+tensor_input = paddle.to_tensor(numpy_input)
+paddle.api(tensor_input, ...)
+```
 
-# 五、注意事项
+---
 
-1. 不要修改 sparse 目录下的 API
-2. 确保不破坏现有功能，保持向后兼容性
-3. 开发专用装饰器时参考现有实现
-4. 代码中不允许提交中文，代码注释采用英文
+## Q2：装饰器参数处理错误
+
+**错误现象**：装饰器内参数转换失败或逻辑异常
+
+**解决方法**：
+1. 检查位置参数（args）与关键字参数（kwargs）的转换逻辑是否正确
+2. 确保参数别名映射完整（包括所有别名情况）
+3. 使用调试技巧进行追踪：
+
+在装饰器中添加日志进行调试：
+
+```python
+import logging
+logging.basicConfig(level=logging.DEBUG)
+
+# 在装饰器中添加日志
+def wrapper(*args, **kwargs):
+    logging.debug(f"Before: args={args}, kwargs={kwargs}")
+    # 处理逻辑...
+    logging.debug(f"After: args={args}, kwargs={kwargs}")
+    return func(*args, **kwargs)
+
+# 或使用打印调试
+def wrapper(*args, **kwargs):
+    print(f"[DEBUG] args={args}, kwargs={kwargs}")
+    # ...
+```
+
+---
