@@ -21,7 +21,7 @@ zeros_like
 ::::::::::::
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``x`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
-    - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
+    - **pin_memory** (bool，可选) - 若为 True，返回的 Tensor 将分配在锁页内存中。默认值为 False。
 
 返回
 ::::::::::

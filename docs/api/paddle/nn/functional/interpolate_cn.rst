@@ -5,7 +5,11 @@ interpolate
 
 .. py:function:: paddle.nn.functional.interpolate(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format=None, recompute_scale_factor=None, antialias=False, name=None)
 
+本函数有两种功能，取决于传入的参数组合（其中 ``input`` 是 ``x`` 的别名，两者等价）：
 
+1. **PyTorch 兼容方式**： ``interpolate(x, size, scale_factor, mode, align_corners, recompute_scale_factor, antialias)``
+
+2. **PaddlePaddle 原始方式**： ``interpolate(x, size, scale_factor, mode, align_corners, align_mode, data_format, recompute_scale_factor, name)``
 
 调整一个 batch 中图片的大小。
 
@@ -141,7 +145,7 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 3-D，4-D 或 5-D Tensor，数据类型为 float32、float64 或 uint8，其数据格式由参数 ``data_format`` 指定。如果没有指定 ``data_format`` 参数，其数据格式将由维度决定，具体请参照 ``data_format`` 参数。
+    - **x** (Tensor) - 3-D，4-D 或 5-D Tensor，数据类型为 float32、float64 或 uint8，其数据格式由参数 ``data_format`` 指定。如果没有指定 ``data_format`` 参数，其数据格式将由维度决定，具体请参照 ``data_format`` 参数。别名 ``input``。
     - **size** (list|tuple|Tensor|None) - 输出 Tensor，输入为 4D Tensor 时，形状为为(out_h, out_w)的 2-D Tensor。输入为 5-D Tensor 时，形状为(out_d, out_h, out_w)的 3-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[]的 Tensor。如果 :code:`out_shape` 是 Tensor，则其为 1D Tensor。默认值为 None。
     - **scale_factor** (float|Tensor|list|tuple|None)-输入的高度或宽度的乘数因子。out_shape 和 scale 至少要设置一个。out_shape 的优先级高于 scale。默认值为 None。如果 scale_factor 是一个 list 或 tuple，它必须与输入的 shape 匹配。
     - **mode** (str，可选) - 插值方法。支持"bilinear"或"trilinear"或"nearest"或"bicubic"或"linear"或"area"。默认值为"nearest"。

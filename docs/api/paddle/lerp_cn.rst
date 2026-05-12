@@ -3,7 +3,7 @@
 lerp
 -------------------------------
 
-.. py:function:: paddle.lerp(x, y, weight, name=None)
+.. py:function:: paddle.lerp(x, y, weight, name=None, *, out=None)
 基于给定的 weight 计算 x 与 y 的线性插值
 
 .. math::
@@ -11,10 +11,14 @@ lerp
 参数
 :::::::::
 
-    - **x**  (Tensor) - 输入的 Tensor，作为线性插值开始的点，数据类型为：bfloat16、float16、float32、float64。
-    - **y**  (Tensor) - 输入的 Tensor，作为线性插值结束的点，数据类型为：bfloat16、float16、float32、float64。
+    - **x**  (Tensor) - 输入的 Tensor，作为线性插值开始的点，数据类型为：bfloat16、float16、float32、float64。别名 ``input``。
+    - **y**  (Tensor) - 输入的 Tensor，作为线性插值结束的点，数据类型为：bfloat16、float16、float32、float64。别名 ``end``。
     - **weight**  (float|Tensor) - 给定的权重值，weight 为 Tensor 时数据类型为：bfloat16、float16、float32、float64。
     - **name**  (str，可选） - 操作的名称(可选，默认值为 None）。更多信息请参见 :ref:`api_guide_Name`。
+
+关键字参数
+:::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 :::::::::

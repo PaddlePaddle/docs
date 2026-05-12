@@ -13,7 +13,7 @@ tan
 
 参数
 :::::::::
-    - **x** (Tensor) - 该 OP 的输入为 Tensor。数据类型为 float32，float64，complex64，complex128。别名 ``input``。
+    - **x** (Tensor) - 该 OP 的输入为 Tensor。数据类型为 float32、float64、float16、bfloat16、uint8、int8、int16、int32、int64、complex64 或 complex128。别名 ``input``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 关键字参数
@@ -22,7 +22,7 @@ tan
 
 返回
 :::::::::
-Tensor - 该 OP 的输出为 Tensor，数据类型为输入一致。
+Tensor - 该 OP 的输出为 Tensor，数据类型与输入一致（整数类型会自动转换为 float32）。
 
 
 代码示例

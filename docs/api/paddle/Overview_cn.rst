@@ -469,6 +469,7 @@ tensor 线性代数相关
     " :ref:`paddle.histogram_bin_edges <cn_api_paddle_histogram_bin_edges>` ", "返回计算 input 的直方图时所使用的 bins 的边界值 bin_edges"
     " :ref:`paddle.histogram <cn_api_paddle_histogram>` ", "计算输入 Tensor 的直方图"
     " :ref:`paddle.histogramdd <cn_api_paddle_histogramdd>` ", "计算输入多维 Tensor 的直方图"
+    " :ref:`paddle.inverse <cn_api_paddle_inverse>` ", "计算方阵的逆矩阵"
     " :ref:`paddle.matmul <cn_api_paddle_matmul>` ", "计算两个 Tensor 的乘积，遵循完整的广播规则"
     " :ref:`paddle.mv <cn_api_paddle_mv>` ", "计算矩阵 x 和向量 vec 的乘积"
     " :ref:`paddle.rank <cn_api_paddle_rank>` ", "计算输入 Tensor 的维度（秩）"
@@ -613,6 +614,7 @@ framework 相关
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`paddle._assert <cn_api_paddle__assert>` ", "对 Python assert 的封装，支持符号追踪"
     " :ref:`paddle.CPUPlace <cn_api_paddle_CPUPlace>` ", "一个设备描述符，指定 CPUPlace 则 Tensor 将被自动分配在该设备上，并且模型将会运行在该设备上"
     " :ref:`paddle.CUDAPinnedPlace <cn_api_paddle_CUDAPinnedPlace>` ", "一个设备描述符，它所指代的页锁定内存由 CUDA 函数 cudaHostAlloc() 在主机内存上分配，主机的操作系统将不会对这块内存进行分页和交换操作，可以通过直接内存访问技术访问，加速主机和 GPU 之间的数据拷贝"
     " :ref:`paddle.CUDAPlace <cn_api_paddle_CUDAPlace>` ", "一个设备描述符，表示一个分配或将要分配 Tensor 的 GPU 设备"

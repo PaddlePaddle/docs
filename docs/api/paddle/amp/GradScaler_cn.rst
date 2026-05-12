@@ -17,14 +17,21 @@ GradScaler 用于动态图模式下的"自动混合精度"的训练。它控制 
 
 通常，GradScaler 和 ``paddle.amp.auto_cast`` 一起使用，来实现动态图模式下的"自动混合精度"。
 
+本 API 支持三种调用方式：
+
+1. ``GradScaler(enable=True, init_loss_scaling=2.0**16, incr_ratio=2.0, decr_ratio=0.5, incr_every_n_steps=2000, decr_every_n_nan_or_inf=1, use_dynamic_loss_scaling=True)``
+
+2. ``GradScaler(device, init_scale=2.0**16, growth_factor=2.0, backoff_factor=0.5, growth_interval=2000, enabled=True)``
+
+3. ``GradScaler(init_scale=2.0**16, growth_factor=2.0, backoff_factor=0.5, growth_interval=2000, enabled=True)``
 
 参数
 :::::::::
-    - **enable** (bool，可选) - 是否使用 loss scaling。默认值为 True。
-    - **init_loss_scaling** (float，可选) - 初始 loss scaling 因子。默认值为 65536.0。
-    - **incr_ratio** (float，可选) - 增大 loss scaling 时使用的乘数。默认值为 2.0。
-    - **decr_ratio** (float，可选) - 减小 loss scaling 时使用的小于 1 的乘数。默认值为 0.5。
-    - **incr_every_n_steps** (int，可选) - 连续 n 个 steps 的梯度都是有限值时，增加 loss scaling。默认值为 2000。
+    - **enable** (bool，可选) - 是否使用 loss scaling。默认值为 True。别名 ``enabled``。
+    - **init_loss_scaling** (float，可选) - 初始 loss scaling 因子。默认值为 65536.0。别名 ``init_scale``。
+    - **incr_ratio** (float，可选) - 增大 loss scaling 时使用的乘数。默认值为 2.0。别名 ``growth_factor``。
+    - **decr_ratio** (float，可选) - 减小 loss scaling 时使用的小于 1 的乘数。默认值为 0.5。别名 ``backoff_factor``。
+    - **incr_every_n_steps** (int，可选) - 连续 n 个 steps 的梯度都是有限值时，增加 loss scaling。默认值为 2000。别名 ``growth_interval``。
     - **decr_every_n_nan_or_inf** (int，可选) - 累计出现 n 个 steps 的梯度为 nan 或者 inf 时，减小 loss scaling。默认值为 1。
     - **use_dynamic_loss_scaling** (bool，可选) - 是否使用动态的 loss scaling。如果不使用，则使用固定的 loss scaling；如果使用，则会动态更新 loss scaling。默认值为 True。
 

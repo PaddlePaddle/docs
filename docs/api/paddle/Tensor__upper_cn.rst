@@ -4020,7 +4020,7 @@ new_full(size, fill_value, \*, dtype=None, device=None, requires_grad=False, pin
     - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
-    - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
+    - **pin_memory** (bool，可选) - 若为 True，返回的 Tensor 将分配在锁页内存中。默认值为 False。
 
 返回：
     - **Tensor**，其形状为 ``shape``，元素值为 ``fill_value``，数据类型为 ``dtype``（若未指定，则与 ``self`` 一致）。
@@ -4044,7 +4044,7 @@ new_ones(size, \*, dtype=None, device=None, requires_grad=False, pin_memory=Fals
     - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
-    - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
+    - **pin_memory** (bool，可选) - 若为 True，返回的 Tensor 将分配在锁页内存中。默认值为 False。
 
 返回：
     - **Tensor**，其形状为 ``shape``，元素值为 ``1``，数据类型为 ``dtype``（若未指定，则与 ``self`` 一致）。
@@ -4068,7 +4068,7 @@ new_zeros(size, \*, dtype=None, device=None, requires_grad=False, pin_memory=Fal
     - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
-    - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
+    - **pin_memory** (bool，可选) - 若为 True，返回的 Tensor 将分配在锁页内存中。默认值为 False。
 
 返回：
     - **Tensor**，其形状为 ``shape``，元素值为 ``0``，数据类型为 ``dtype``（若未指定，则与 ``self`` 一致）。
@@ -4092,7 +4092,7 @@ new_empty(size, \*, dtype=None, device=None, requires_grad=False, pin_memory=Fal
     - **out** (Tensor，可选) - 用于保存输出结果的 Tensor，默认值为 None。
     - **device** (PlaceLike|None，可选) - 期望创建 Tensor 所在的设备。若为 None，则与 ``self`` 保持一致。
     - **requires_grad** (bool，可选) - 是否需要为返回的 Tensor 记录梯度信息。默认值为 False。
-    - **pin_memory** (bool，可选) - 若为 True，返回的 CPU Tensor 将分配在锁页内存中。仅对 CPU Tensor 生效。默认值为 False。
+    - **pin_memory** (bool，可选) - 若为 True，返回的 Tensor 将分配在锁页内存中。默认值为 False。
 
 返回：
     - **Tensor**，其形状为 ``shape``，元素值为 ``0``(一般情况下为 ``0``，但也有可能为随机值)，数据类型为 ``dtype``（若未指定，则与 ``self`` 一致）。

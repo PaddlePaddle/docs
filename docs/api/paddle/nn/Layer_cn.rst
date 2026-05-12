@@ -27,13 +27,17 @@ COPY-FROM: paddle.nn.Layer
 ::::::::::::
 
 
-train()
+train(mode=True)
 '''''''''
 
 将此层及其所有子层设置为训练模式。这只会影响某些模块，如 Dropout 和 BatchNorm。
 
+**参数**
+
+    - **mode** (bool，可选) - 是否设置为训练模式。默认值为 True。
+
 **返回**
-Layer (返回网络层)， self (返回自身)
+Layer (返回网络层)，self (返回自身)
 
 **代码示例**
 
@@ -426,16 +430,37 @@ set_state_dict(state_dict, use_structured_name=True)
 
 COPY-FROM: paddle.nn.Layer.set_state_dict
 
-to(device=None, dtype=None, blocking=None)
+to(device=None, dtype=None, blocking=True, \*, non_blocking=False)
 '''''''''
 
-根据给定的 device、dtype 和 blocking 转换 Layer 中的 parameters 和 buffers。
+移动和/或转换 parameters 和 buffers。
+
+本 API 支持三种调用方式：
+
+1. ``to(device=None, dtype=None, blocking=True, *, non_blocking=False)``：
+    移动和/或转换 parameters 和 buffers。
+
+2. ``to(dtype, blocking=True, *, non_blocking=False)``：
+    等价于 ``self.to(device=None, dtype=dtype, ...)``。
+
+3. ``to(tensor, blocking=True, *, non_blocking=False)``：
+    等价于 ``self.to(device=tensor.place, dtype=tensor.dtype, ...)``。
+
+.. note::
+    此方法为就地（in-place）操作。
 
 **参数**
 
-    - **device** （str|paddle.CPUPlace()|paddle.CUDAPlace()|paddle.CUDAPinnedPlace()|paddle.XPUPlace()|None，可选) - 希望存储 Layer 的设备位置。如果为 None，设备位置和原始的 Tensor 的设备位置一致。如果设备位置是 string 类型，取值可为 ``cpu``, ``gpu:x`` and ``xpu:x``，这里的 ``x`` 是 GPUs 或者 XPUs 的编号。默认值：None。
-    - **dtype** (str|paddle.dtype|np.dtype，可选)- 数据的类型。如果为 None，数据类型和原始的 Tensor 一致。默认值：None。
-    - **blocking** （bool|None，可选）- 如果为 False 并且当前 Tensor 处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。如果为 None，blocking 会被设置为 True。默认为 False。
+    - **device** （str|paddle.CPUPlace()|paddle.CUDAPlace()|paddle.CUDAPinnedPlace()|paddle.XPUPlace()|None，可选) - 希望存储 Layer 的设备位置。如果为 None，设备位置和原始的 Tensor 的设备位置一致。如果设备位置是 string 类型，取值可为 ``cpu``, ``gpu:x`` 和 ``xpu:x``，这里的 ``x`` 是 GPUs 或者 XPUs 的编号。默认值：None。
+    - **dtype** (str|paddle.dtype|np.dtype|None，可选) - 数据的类型。如果为 None，数据类型和原始的 Tensor 一致。默认值：None。
+    - **blocking** （bool，可选）- 如果为 False 并且当前 Tensor 处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。默认值为 True。
+
+**关键字参数**
+
+    - **non_blocking** (bool，可选) - 如果为 True 并且当前 Tensor 处于固定内存上，将会发生主机到设备端的异步拷贝。默认值为 False。``non_blocking`` 和 ``blocking`` 互斥，不能同时设置。
+
+**返回**
+self
 
 **代码示例**
 

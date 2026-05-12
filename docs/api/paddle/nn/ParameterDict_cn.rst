@@ -13,7 +13,7 @@ ParameterDict
 参数
 :::::::::
 
-    - **parameters** (ParameterDict | Mapping[str, Tensor] | Sequence[tuple[str, Tensor]]，可选) - 可迭代的 Parameters，默认值为 None。
+    - **parameters** (ParameterDict | Mapping[str, Tensor] | Sequence[tuple[str, Tensor]]，可选) - 可迭代的 Parameters，默认值为 None。别名 ``values``。
 
 返回
 :::::::::

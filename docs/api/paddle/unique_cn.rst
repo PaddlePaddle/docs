@@ -3,7 +3,7 @@
 unique
 -------------------------------
 
-.. py:function:: paddle.unique(x, return_index=False, return_inverse=False, return_counts=False, axis=None, dtype="int64", name=None)
+.. py:function:: paddle.unique(x, return_index=False, return_inverse=False, return_counts=False, axis=None, dtype="int64", sorted=True, name=None)
 
 返回 Tensor 按升序排序后的独有元素。
 
@@ -33,12 +33,13 @@ unique
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64、int32、int64。
+    - **x** (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64、int32、int64。别名 ``input``。
     - **return_index** (bool，可选) - 如果为 True，则还返回独有元素在输入 Tensor 中的索引。
     - **return_inverse** (bool，可选) - 如果为 True，则还返回输入 Tensor 的元素对应在独有元素中的索引，该索引可用于重构输入 Tensor。
     - **return_counts** (bool，可选) - 如果为 True，则还返回每个独有元素在输入 Tensor 中的个数。
-    - **axis** (int，可选) - 指定选取独有元素的轴。默认值为 None，将输入平铺为 1-D 的 Tensor 后再选取独有元素。
+    - **axis** (int，可选) - 指定选取独有元素的轴。默认值为 None，将输入平铺为 1-D 的 Tensor 后再选取独有元素。别名 ``dim``。
     - **dtype** (str|paddle.dtype|np.dtype，可选) - 用于设置 ``index`` ， ``inverse`` 或者 ``counts`` 的类型，应该为 int32 或者 int64。默认：int64。
+    - **sorted** (bool，可选) - 无论该参数取值如何，返回结果始终按升序排列。该参数仅用于与 PyTorch 签名兼容，不影响实际行为。默认值为 True。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 

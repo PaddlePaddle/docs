@@ -3,7 +3,7 @@
 deg2rad
 -------------------------------
 
-.. py:function:: paddle.deg2rad(x, name=None)
+.. py:function:: paddle.deg2rad(x, name=None, *, out=None)
 
 将元素从度转换为弧度
 
@@ -16,6 +16,10 @@ deg2rad
 
     - **x**  (Tensor) - 输入的 Tensor，数据类型为：int32、int64、float32、float64。
     - **name**  (str，可选) - 操作的名称（可选，默认值为 None）。更多信息请参见 :ref:`api_guide_Name`。
+
+关键字参数
+:::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 :::::::::
