@@ -1,7 +1,9 @@
 ---
 name: cpp-sink
-description: 仅用于《Paddle API 对齐 PyTorch 项目》，负责 Step2：API 代码修改，实施 C++下沉的代码开发。通过将 Python API 下沉至 C++层，可以减少 Python 装饰器带来的性能开销，提升 API 调度效率。
-allowed-tools: Read Grep‌ Glob‌ Edit Bash
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2：API 代码修改，实施 C++下沉的代码开发。通过将 Python API 下沉至 C++层，可以减少 Python 装饰器带来的性能开销，提升 API 调度效率。
+context: fork
+background: false
+verbose: true
 disable-model-invocation: false
 ---
 
@@ -55,7 +57,7 @@ disable-model-invocation: false
 ### Step 2：迁移文档到 `_paddle_docs.py`
 
 注意要更新函数文档字符，在文档的 Args 部分为有别名的参数添加 Alias Support 说明，如下：
-> 注：Alias 说明应放在该参数描述的末尾，格式为: Alias: ``alias_name`` ，多个 Alias 描述为: Alias: ``alias_name1`` or ``alias_name2``
+> 注：Alias 说明应放在该参数描述的末尾，**句号前**，格式为: Alias: ``alias_name`` ，多个 Alias 描述为: Alias: ``alias_name1`` or ``alias_name2``
 
 ```python
 add_doc_and_signature(
@@ -261,7 +263,7 @@ class Test<APIName>API(unittest.TestCase):
 3. 输出结果序号需要保持连贯，每一个输出结果均需要检验，尽可能循环检验减少行数。
 3. 比对测试项，对于内容相同的测试项，不要重复添加。
 
-完整测试示例，请参考 `Paddle/test/legacy_test/test_api_compatibility[1-9]\.py` 中已有的测试类结构。
+完整测试示例，请参考 `${ROOT_DIR}/Paddle/test/legacy_test/test_api_compatibility[1-9]\.py` 中已有的测试类结构。
 
 ### Step 5：编译并运行
 
@@ -269,7 +271,7 @@ class Test<APIName>API(unittest.TestCase):
 
 1. **重新编译项目**：
    ```bash
-   cd /workspace/Paddle/build
+   cd ${ROOT_DIR}/Paddle/build
    cmake ..
    make -j$(nproc)
    ```
@@ -282,8 +284,8 @@ class Test<APIName>API(unittest.TestCase):
 3. **问题排查**：根据报错信息调整代码或测试用例，确保所有测试用例通过。注意每次修改 Paddle 源码后，必须重新编译方可生效。
 
 编译注意事项：
-- 编译完成后不需要重新安装，无需执行 setup/install 等任何安装操作，直接可生效
-- 编译不要删除 build 目录，否则会导致增量编译失效，编译时间极长
+- 无需重装，直接生效（勿执行 setup/install 等安装操作）
+- 勿删除 build 目录（否则增量编译失效，编译时间极长）
 
 ## 场景二: 具有前处理逻辑（中等复杂度）
 
@@ -377,7 +379,21 @@ void LogsumexpPreProcess(pir::Value *x, std::vector<int> *axis, bool *reduce_all
 - 函数通过指针修改参数值
 - 直接翻译 Python 前处理逻辑到 C++
 
-### Step 3~6：参考 Step 1 的 Step 2~5
+### Step 3：迁移文档到 `_paddle_docs.py`
+
+参考场景一的 Step 2 执行相同操作。
+
+### Step 4：替换 Python 实现
+
+参考场景一的 Step 3 执行相同操作。
+
+### Step 5：添加测试用例
+
+参考场景一的 Step 4 执行相同操作。
+
+### Step 6：编译并运行
+
+参考场景一的 Step 5 执行相同操作。
 
 ## 场景三: 复杂参数映射（最复杂）
 
@@ -612,11 +628,21 @@ Returns:
 """
 ```
 
-### Step 4~6：参考场景一的 Step 3~5
+参考场景一的 Step 2 执行文档迁移操作。
+
+### Step 4：替换 Python 实现
+
+参考场景一的 Step 3 执行相同操作。
+
+### Step 5：添加测试用例
+
+参考场景一的 Step 4 执行相同操作。
+
+### Step 6：编译并运行
+
+参考场景一的 Step 5 执行相同操作。
 
 ## 不同场景对比
-
-| 项目 | Step 1: 仅参数名不同 | Step 2: 有前处理逻辑 | Step 3: 复杂参数映射 |
 |------|---------------------|---------------------|---------------------|
 | **YAML 配置** | `args_alias` + `use_default_mapping` | `args_alias` + `pre_process` | `args_mapper` |
 | **C++实现** | 无需额外 C++代码 | `arg_pre_process.h/cc` | `args_mapper.h/cc` |
@@ -626,65 +652,9 @@ Returns:
 | **示例 API** | log2 | logsumexp | argmax, argmin |
 
 
-# 二、异常处理
+# 二、技术背景知识
 
-## 2.1 处理流程
-当遇到错误时，建议按照以下步骤处理，确保代码能运行通过：
-1. **定位错误**：仔细阅读错误信息，确定错误类型和位置
-2. **分析原因**：根据错误信息分析具体问题，例如参数错误、类型不匹配
-3. **修改代码**：根据错误信息与分析结果，调整代码
-4. **验证修复**：重新运行测试确认问题解决
-
-## 2.2 常见错误及解决方案
-
-### 静态图兼容性问题
-**错误现象**：
-```python
-TypeError: (InvalidType) all(): argument (position 1) must be Value, but got Variable
-```
-
-**问题原因**：
-API 下沉后使用了新的 Value 类型系统，但测试代码仍在使用旧的 Variable 类型
-
-**解决方法**：
-1. 删除过时的测试文件：
-   ```bash
-   rm -rf test/deprecated/test_xxx.py
-   ```
-2. 删除`CMakeLists.txt`中涉及的单测配置：
-   ```cmake
-   # 删除相关单测配置
-   # set_tests_properties(test_lbfgs_deprecated PROPERTIES TIMEOUT 100)
-   ```
-3. 检查并更新所有引用这些测试的代码
-
-### 参数解析错误
-**错误现象**：
-```python
-TypeError: argmax() got an unexpected keyword argument 'invalid_param'
-```
-
-**解决方法**：
-1. 检查参数名称拼写
-2. 确认是否支持该参数
-
-### 类型转换错误
-**错误现象**：
-```python
-TypeError: expected Tensor as argument, got numpy.ndarray
-```
-
-**解决方法**：
-1. 确保输入数据是 Tensor 类型：
-   ```python
-   tensor_input = paddle.to_tensor(numpy_input)
-   ```
-2. 检查数据类型是否匹配
-
-
-# 三、技术背景知识
-
-## 3.1 工具函数速查
+## 2.1 工具函数速查
 
 ```cpp
 // 获取 Tensor 参数（支持别名）
@@ -712,16 +682,50 @@ void CheckParamsCount(int nargs, int remaining_kwargs, int max_args);
 void CheckRemainingParamsValidity(PyObject* args, PyObject* kwargs, int remaining_kwargs, int nargs);
 ```
 
-# 四、注意事项
+# 三、注意事项
 
-1. 若 Python API 参数顺序与`_C_ops` API 不同，属于特殊情况，Cpp 下沉方案无法实现，需要使用 Python 装饰器方案。
-2. 代码中不允许提交中文，代码注释采用英文
-3. 若 API 需支持`out`参数，必须修改`add_doc_and_signature`中的字符串，增加 out 参数
-4. 不要修改`generated_tensor_methods_patch.py`，该文件是自动生成的，修改没有意义，如无法对齐可考虑放弃 C++下沉方案而不是改动该文件
-5. 示例代码若涉及多种数据类型，可能触发类型检查误报，添加注释忽略：
+1. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤
+2. 所有路径使用 `${ROOT_DIR}` 变量表示根目录，需自行替换为实际路径
+3. 若 Python API 参数顺序与`_C_ops` API 不同，属于特殊情况，Cpp 下沉方案无法实现，需要使用 Python 装饰器方案
+4. 代码中不允许提交中文，代码注释采用英文
+5. 若 API 需支持`out`参数，必须修改`add_doc_and_signature`中的字符串，增加 out 参数
+6. 不要修改`generated_tensor_methods_patch.py`，该文件是自动生成的，修改没有意义，如无法对齐可考虑放弃 C++下沉方案而不是改动该文件
+7. 示例代码若涉及多种数据类型，可能触发类型检查误报，添加注释忽略：
 ```python
   .. code-block:: pycon
       >>> # type: ignore
       >>> import paddle
       >>> x = paddle.to_tensor([1.0, 2.0])
 ```
+
+# 四、常见问题处理
+
+## Q1：静态图报错"must be Value, but got Variable"
+
+**错误现象**：
+```python
+TypeError: (InvalidType) all(): argument (position 1) must be Value, but got Variable
+```
+
+**解决方法**：
+1. 删除过时的测试文件：
+   ```bash
+   rm -rf test/deprecated/test_xxx.py
+   ```
+2. 删除`CMakeLists.txt`中涉及的单测配置
+3. 检查并更新所有引用这些测试的代码
+
+---
+
+## Q2：参数解析报错"got an unexpected keyword argument"
+
+**错误现象**：
+```python
+TypeError: argmax() got an unexpected keyword argument 'invalid_param'
+```
+
+**解决方法**：
+1. 检查参数名称拼写
+2. 确认是否支持该参数
+
+---

@@ -1,6 +1,7 @@
 ---
 name: api-compatibility
 description: 开展《Paddle API 对齐 PyTorch 项目》，负责项目整体统筹规划，调用多个 skill，完成输入的 API 对齐
+allowed-tools: Read Write Edit Bash Glob Grep Agent Skill WebFetch WebSearch
 disable-model-invocation: true
 ---
 
@@ -45,26 +46,34 @@ torch.logsumexp
 
 # 三、技术背景知识
 
-### 3.1 根目录说明
+### 3.1 工作目录说明
 
-| 目录名称 | 内容说明 | 对应步骤 |
-|---------|---------|---------------|
-| Paddle | 包含所有 Paddle API 的实现 | Step2：代码修改 |
-| PaConvert | 包含所有 Pytorch 单元测试 | Step3：对齐验证 |
-| docs | 包含所有 Paddle API 中文文档 | Step4：文档更新 |
-| Paddle、PaConvert、docs | 代码提交对象 | Step5：代码提交 |
+**ROOT_DIR 变量定义**：
+- `${ROOT_DIR}` 是项目的根工作目录变量，例如 `/workspace`、`/home/user/projects` 等
+- 本项目涉及的三个仓库位于 `${ROOT_DIR}` 下：
+  - `${ROOT_DIR}/Paddle`：Paddle 框架源码仓库
+  - `${ROOT_DIR}/PaConvert`：PyTorch 转换工具仓库
+  - `${ROOT_DIR}/docs`：Paddle 文档仓库
+- 在实际执行时，需自行分析环境并将 `${ROOT_DIR}` 替换为实际路径
+
+| 工作目录 | 完整路径 | 内容说明 | 对应步骤 |
+|---------|---------|---------|---------------|
+| Paddle | `${ROOT_DIR}/Paddle` | 包含所有 Paddle API 的实现 | Step2：代码修改 |
+| PaConvert | `${ROOT_DIR}/PaConvert` | 包含所有 Pytorch 单元测试 | Step3：对齐验证 |
+| docs | `${ROOT_DIR}/docs` | 包含所有 Paddle API 中文文档 | Step4：文档更新 |
+| Paddle、PaConvert、docs | - | 代码修改 Diff | Step5：代码提交 |
 
 ### 3.2 相关文件位置
 
 |**功能模块**|**检索关键字**|**文件路径**|**举例**|**注意**|
 |-|-|-|-|-|
-|API 中文文档|`{api_name}_cn.rst`|docs/docs/api/paddle/|tan_cn.rst||
-|API 差异文档|`torch.{api_name}.md`|docs/docs/guides/model_convert/convert_from_pytorch/api_difference/|torch.tan.md||
-|C++下沉使用|`python_api_info.yaml`、`ops.yaml`|Paddle/paddle/phi/ops/yaml/|python_api_info.yamlops.yaml||
-|C++下沉使用|`_paddle_docs.py`|Paddle/python/paddle/|_paddle_docs.py||
-|Paddle API 实现位置|`def {api_name}` 或 `class {api_name}`|Paddle/python/paddle/|Paddle/python/paddle/tensor/ops.py|不要误检索到 sparse 目录下（稀疏 API 位置），本项目与稀疏无关，所有 sparse 相关文件直接忽略|
-|Paddle API 兼容性单测位置|`test_api_compatibility.py`|Paddle/test/legacy_test/test_api_compatibility.py||
-|Pytorch API 单测位置|`test_{api_name}.py`|PaConvert/tests/|PaConvert/tests/test_tan.py||
+|API 中文文档|`{api_name}_cn.rst`|`${ROOT_DIR}/docs/docs/api/paddle/`|tan_cn.rst||
+|API 差异文档|`torch.{api_name}.md`|`${ROOT_DIR}/docs/docs/guides/model_convert/convert_from_pytorch/api_difference/`下一级目录|torch.tan.md||
+|C++下沉使用|`python_api_info.yaml`、`ops.yaml`|`${ROOT_DIR}/Paddle/paddle/phi/ops/yaml/`|python_api_info.yaml、ops.yaml||
+|C++下沉使用|`_paddle_docs.py`|`${ROOT_DIR}/Paddle/python/paddle/`|_paddle_docs.py||
+|Paddle API 实现位置|`def {api_name}` 或 `class {api_name}`|`${ROOT_DIR}/Paddle/python/paddle/*/`|`${ROOT_DIR}/Paddle/python/paddle/tensor/math.py`|不要误检索到 sparse 目录下（稀疏 API 位置），本项目与稀疏无关，所有 sparse 相关文件直接忽略|
+|Paddle API 兼容性单测位置|`test_api_compatibility_part[1-9]\.py`|`${ROOT_DIR}/Paddle/test/legacy_test/`|test_api_compatibility_part3.py||
+|Pytorch API 单测位置|`test_{api_name}.py`|`${ROOT_DIR}/PaConvert/tests/`|test_tan.py||
 
 ### 3.3 Paddle API 架构（5 层调用栈）
 
@@ -73,10 +82,10 @@ Paddle API 从上到下由 5 层组成（本项目直接修改第 1、5 层，�
 | 层级 | 名称 | 语言 | 文件位置 | 功能说明 | 是否修改 |
 |------|------|------|----------|----------|----------|
 | 1 | Python 层 | Python | `*.py` | API 的 Python 接口定义 | ✅ **修改** |
-| 2 | Pybind 层 | C++ | 根据`*.yaml`自动生成（`paddle/fluid/pybind/eager_op_function.cc`）| Python 与 C++的绑定层 | ✅ **修改 yaml 配置来实现修改** |
-| 3 | Dygraph 层 | C++ | 根据`*.yaml`自动生成（`paddle/fluid/eager/.../dygraph_functions.cc`）| 前反向传播组合 | ❌ 通常不改 |
-| 4 | C++ API 层 | C++ | 根据`*.yaml`自动生成（`paddle/phi/api/lib/api.cc`） | Kernel 选择调度 | ❌ 通常不改 |
-| 5 | Kernel 层 | C++ | `paddle/phi/kernels/` | 实际计算逻辑实现 | ✅ **修改** |
+| 2 | Pybind 层 | C++ | 根据`*.yaml`自动生成（`${ROOT_DIR}/Paddle/paddle/fluid/pybind/eager_op_function.cc`）| Python 与 C++的绑定层 | ✅ **修改 yaml 配置来实现修改** |
+| 3 | Dygraph 层 | C++ | 根据`*.yaml`自动生成（`${ROOT_DIR}/Paddle/paddle/fluid/eager/.../dygraph_functions.cc`）| 前反向传播组合 | ❌ 通常不改 |
+| 4 | C++ API 层 | C++ | 根据`*.yaml`自动生成（`${ROOT_DIR}/Paddle/paddle/phi/api/lib/api.cc`） | Kernel 选择调度 | ❌ 通常不改 |
+| 5 | Kernel 层 | C++ | `${ROOT_DIR}/Paddle/paddle/phi/kernels/` | 实际计算逻辑实现 | ✅ **修改** |
 
 **示例 API 层级**：
 ```python
@@ -108,8 +117,8 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 | PyTorch API | `torch.*` 系列接口 | 约 2000+个 API，是本项目的**对齐标准**|
 | Paddle API | `paddle.*` 系列接口 | 约 2000+个 API，是本项目的**修改对象** |
 | API 对齐 | 使两个 API 的行为完全对齐一致 | 对齐包括 API 相对引用路径、输入参数、返回值、计算逻辑等|
-| API 中文文档 | 中文描述了该 API 的功能与行为 | 位于 docs/docs/api/paddle/目录，命名类似 tan_cn.rst  |
-| API 差异文档 | 中文描述了 Pytorch API 与 Paddle API 两者的行为差异 | 位于 docs/docs/guides/model_convert/convert_from_pytorch/api_difference/下的一级子目录，命名类似 torch.tan.md |
+| API 中文文档 | 中文描述了该 API 的功能与行为 | 位于 `${ROOT_DIR}/docs/docs/api/paddle/` 目录，命名类似 tan_cn.rst  |
+| API 差异文档 | 中文描述了 Pytorch API 与 Paddle API 两者的行为差异 | 位于 `${ROOT_DIR}/docs/docs/guides/model_convert/convert_from_pytorch/api_difference/` 下一级子目录，命名类似 torch.tan.md |
 | compat 类型 API | 兼容性 API | 为保持后向兼容而添加的 API，能实现除 API 相对引用路径之外的完全对齐，实现之后差异分类将成为『仅 API 调用方式不一致』|
 
 ### 3.5 类方法 API 实现原理
@@ -119,9 +128,9 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 - **类方法 API**（如`torch.Tensor.abs`）：`torch.Tensor`类方法
 - **普通 API**（如`torch.abs`）：普通方法
 
-Paddle 的 Tensor 类方法通过**patch 机制**实现，即将普通方法动态添加到`paddle.Tensor`（即`core.eager.Tensor`）类上成为类方法。
+Paddle 的 Tensor 类方法通过**patch 机制**实现，即将普通方法动态添加到`paddle.Tensor`（即`core.eager.Tensor`）类上成为类方法，因此两者虽然是不同 API，但实现一致，合并处理即可。
 
-**实现机制**（参考`Paddle/python/paddle/base/dygraph/math_op_patch.py`）：
+**实现机制**（参考`${ROOT_DIR}/Paddle/python/paddle/base/dygraph/math_op_patch.py`）：
 
 ```python
 # 从 paddle.tensor 模块获取方法定义
@@ -177,9 +186,34 @@ Paddle 支持自动生成 inplace API，无需在`ops.yaml`中单独配置。当
     use_default_mapping : True
 ```
 
-# 四、标准工作流程
+# 四、整体工作流程
 
-## 4.1 流程概览
+## 执行逻辑
+1. 接收用户输入的待对齐 API 列表（如 `torch.argmax`, `torch.log2`, `torch.logsumexp`）
+2. **批量处理模式**：依次执行，每个 Step 结束后才进入下一个 Step
+   - Step1：对**所有 API**进行方案决策，记录每个 API 的方案类型
+   - Step2：对**所有 API**进行代码修改
+   - Step3：对**所有 API**进行对齐验证
+   - Step4：对**所有 API**更新文档
+   - Step5：对**所有 API**进行代码提交
+3. **流程推进的豁免与放弃条件**：
+   - **豁免条件**：
+     * 每一个执行步骤均需调用相应的 skill 来执行
+     * 当前仅支持方案 1、方案 2，若为其他方案，由于无对应 skill，无需处理，直接跳过该 API
+   - **放弃条件**（合理分配精力，最大化成功率）：
+     * **放弃判断标准**：
+       - 当某个 API 在 Step2 或 Step3 经过多次尝试（建议 3 次）仍无法通过验证
+     * **放弃执行要求**：
+       - ⚠️ 必须完整回退该 API 在 Step2 和 Step3 中的所有代码修改
+       - ⚠️ 确保项目处于干净状态，不得保留任何"修改了但没改对"的中间状态
+       - 在最终的对齐结果统计表中标记该 API 为"未对齐"，并简要说明放弃原因
+     * **整体策略原则**：
+       - 目标是最大化 API 列表的整体对齐成功率，而非执着于单个 API
+       - 优先处理更可能成功的 API，避免在困难 API 上消耗过多时间
+       - 放弃是为了提高整体效率的理性决策，不是逃避问题
+4. 所有 API 都完成 5 个步骤（除被豁免或放弃外）后，任务结束
+
+## 流程概览
 
 ```
 输入 API 列表 → Step1:所有 API 方案决策 → Step2:所有 API 代码修改 → Step3:所有 API 对齐验证 → Step4:所有 API 文档更新 → Step5:代码提交 → 全部完成（流程全自动推进，不用询问）
@@ -192,135 +226,87 @@ Paddle 支持自动生成 inplace API，无需在`ops.yaml`中单独配置。当
 
 ### Step 2：代码修改
 #### 方案 1：Python 装饰器（调用 `/python-decorator` skill）
-    Step 2.1: 差异分析与选择装饰器
-    Step 2.2: 应用或开发装饰器
-    Step 2.3: 添加 out 参数支持
-    Step 2.4: 更新函数文档字符串
-    Step 2.5: 添加测试用例
-    Step 2.6: 编译并运行
+    Step 1.1: 差异分析与选择装饰器
+    Step 1.2: 应用或开发装饰器
+    Step 1.3: 添加 out 参数支持
+    Step 1.4: 更新函数文档字符串
+    Step 1.5: 添加测试用例
+    Step 1.6: 编译并运行
 #### 方案 2：C++下沉（调用 `/cpp-sink` skill）
     Step 2.1: 配置 python_api_info.yaml
     Step 2.2: 迁移文档到_paddle_docs.py
     Step 2.3: 替换 Python 实现
     Step 2.4: 添加测试用例
     Step 2.5: 编译并运行
+#### 方案 3~5：无对应 skill，无需处理，直接跳过
 
 ### Step 3：对齐验证（调用 `/pytorch-alignment-validator` skill）
     Step 3.1: 标记已对齐的 API
-    Step 3.2: 补充测试用例
+    Step 3.2: 增加测试用例
     Step 3.3: 运行单元测试
 
 ### Step 4：文档更新（调用 `/api-docs-updater` skill）
-    Step 4.1: 获取代码变更信息
-    Step 4.2: 更新 API 中文文档
 
 ### Step 5：代码提交（调用 `/create-pr` skill）
 
-**执行逻辑**：
-1. 接收用户输入的待对齐 API 列表（如 `torch.argmax`, `torch.log2`, `torch.logsumexp`）
-2. **批量处理模式**：按 Step 顺序依次执行，每个 Step 处理完所有 API 后才进入下一个 Step
-   - Step1：对**所有 API**进行方案决策，记录每个 API 的方案类型
-   - Step2：对**所有 API**进行代码修改
-   - Step3：对**所有 API**进行对齐验证
-   - Step4：对**所有 API**更新文档
-   - Step5：对**所有 API**进行代码提交
-3. **流程推进的豁免与放弃条件**：
-   - **豁免条件**：
-     * 每一个执行步骤均需调用相应的 skill 来执行
-     * 当前仅支持方案 1/2，若决策为其他方案，则该 API 跳过，只需记录决策结果即可，不要自行处理
-   - **放弃策略**（合理分配精力，最大化成功率）：
-     * **放弃判断标准**：
-       - 当某个 API 在 Step2 或 Step3 经过多次尝试（建议 3 次）仍无法通过验证
-       - 经分析判断短期内难以解决，继续投入时间成本过高
-     * **放弃执行要求（必须严格遵守）**：
-       - ⚠️ 必须完整回退该 API 在 Step2 和 Step3 中的所有代码修改
-       - ⚠️ 确保项目处于干净状态，不得保留任何"修改了但没改对"的中间状态
-       - 在最终的对齐结果统计表中标记该 API 为"未对齐"，并简要说明放弃原因
-     * **整体策略原则**：
-       - 目标是最大化 API 列表的整体对齐成功率，而非执着于单个 API
-       - 优先处理更可能成功的 API，避免在困难 API 上消耗过多时间
-       - 放弃是为了提高整体效率的理性决策，不是逃避问题
-4. 所有 API 都完成 5 个步骤（除被豁免或放弃外）后，任务结束
-
-
-## 4.2 详细步骤
+## 详细步骤
 
 ### Step 1: 方案决策 ⚙️
 
-**目标**：确定每个 API 的改动方案
+**调用**：`/api-change-decider` skill
 
-**执行步骤**：
-1. 输入：需要对齐的 PyTorch API 列表（如 `torch.atan`、`torch.asinh`）
-2. 调用 `/api-change-decider` skill
-3. 输出：方案类型、对应 Paddle API、差异分类、决策依据
+**输入**：需要对齐的 PyTorch API 列表（如 `torch.atan`、`torch.asinh`）
 
-**方案类型**：
-- 无需改动
-- 方案 1：Python 装饰器
-- 方案 2：C++下沉
-- 方案 3：修改 API
-- 方案 4：新增 API
-- 方案 5：新增 compat 类型 API
+**输出**：
+- 方案类型（无需改动/方案 1~5）
+- 对应 Paddle API
+- 差异分类
+- 决策依据
 
 ### Step 2: 代码修改 💻
 
-**目标**：根据方案修改 Paddle API 代码
+**根据方案类型调用对应 skill**：
+- 方案 1 → `/python-decorator`
+- 方案 2 → `/cpp-sink`
+- 方案 3/4/5 → 无对应 skill，无需处理，直接跳过
+- 方案 6 → 无需处理，直接跳过
 
-**执行步骤**：
-1. 输入：方案类型、对应 Paddle API（如 `paddle.atan`、`paddle.asinh`）、差异分类、决策依据
-2. 根据方案类型，调用对应的子智能体，每个子智能体批量处理其所负责的 API：
-   - 方案 1 → 调用 `/python-decorator` skill
-   - 方案 2 → 调用 `/cpp-sink` skill
-   - 方案 3 → `/python-decorator`和`/cpp-sink`skill 支持新增 out 参数，其他修改无对应 skill 支持，豁免
-   - 方案 4 → 无对应 skill 支持，豁免
-   - 方案 5 → 无对应 skill 支持，豁免
-3. 输出：是否代码修改无误（即单测运行通过）
+**输出**：代码修改是否完成
 
-**异常处理**：
-- 本步骤多次调试仍异常时，主控智能体根据报错信息评估，是否需要回退到前序步骤：
-  - 是否 Step1 中有 API 的方案决策错误？
-
+**异常处理**：如多次尝试仍失败，需回退到 Step1 重新决策
 
 ### Step 3: 对齐验证 ✅ **（金标准）**
 
-**目标**：验证修改后的 Paddle API 能与 PyTorch API 完全对齐
+**调用**：`/pytorch-alignment-validator` skill
 
-**执行步骤**：
-1. 输入：PyTorch API 列表（如 `torch.atan`、`torch.asinh`）
-2. 调用 `/pytorch-alignment-validator` skill
-3. 输出：是否通过对齐验证（即单测运行通过）
+**输入**：PyTorch API 列表
 
-**异常处理**：
-- 本步骤多次调试仍异常时，主控智能体根据报错信息评估，是否需要回退到前序步骤：
-  - 是否 Step1 中有 API 的方案决策错误？
-  - 是否 Step2 中有 API 的代码实现有误？
+**输出**：验证是否通过
+
+**异常处理**：如多次尝试仍失败，需回退到 Step2 调整实现或 Step1 重新决策
 
 ### Step 4: 文档更新 📝
 
-**目标**：更新 Paddle API 中文文档
+**调用**：`/api-docs-updater` skill
 
-**执行步骤**：
-1. 调用 `/api-docs-updater` skill
+**输入**：已修改的 API 信息
 
-**异常处理**：
-- 文档更新必须与 Step2 中的代码修改保持同步
-- 确保文档准确反映代码的最新行为
+**输出**：文档是否更新完成
 
 ### Step 5: 代码提交 📤
 
-**目标**：提交修改后的代码到 Paddle、PaConvert、Docs 仓库
+**调用**：`/create-pr` skill
 
-**执行步骤**：
-1. 调用 `/create-pr` skill
-2. 在对应的三个仓库分别创建或更新 Pull Request
-3. 包含代码修改、测试用例和文档更新
+**输入**：已修改的代码
 
-## 4.3 重要约束 ⚠️
+**输出**：PR 是否创建成功
+
+## 重要约束 ⚠️
 
 1. **流程正向推进原则**
    - 正常情况下必须遵循 Step1 → Step2 → Step3 → Step4 → Step5 的顺序
    - 每个步骤完成并验证通过后，才能进入下一步骤
-   - 禁止跳过任何步骤（特别是 Step3 对齐验证步骤和 Step5 代码提交步骤）
+   - 禁止跳过任何步骤（特别是 Step3 对齐验证步骤）
 
 2. **异常回溯调整原则**
    - 当 Step2(代码修改)或 Step3(对齐验证)多次尝试仍无法通过时
@@ -335,7 +321,7 @@ Paddle 支持自动生成 inplace API，无需在`ops.yaml`中单独配置。当
    - 所有步骤的产出物（代码、测试、文档、PR）必须齐全
 
 
-## 4.4 工作示例
+## 工作示例
 
 假设待对齐 API 为 `torch.argmax`：
 
@@ -354,7 +340,7 @@ Paddle 支持自动生成 inplace API，无需在`ops.yaml`中单独配置。当
 - ✅ 改动位置如果方便注释，可以注释`# Edit by AI Agent`，但只能注释 1 次
 
 ## 5.2 代码质量规范
-- ✅ 保持代码风格与项目一致
+- ✅ 保持代码风格与原项目一致
 - ✅ 不破坏现有功能
 - ✅ 确保向后兼容性
 
@@ -369,7 +355,54 @@ Paddle 支持自动生成 inplace API，无需在`ops.yaml`中单独配置。当
 - ✅ 文档格式符合 Paddle 规范
 - ✅ 准确描述 API 功能和参数
 
-# 六、注意事项
+# 六、各 Skill 说明
 
-1. 复盘记忆中的历史易错点，避免重复犯错
-2. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤
+| Skill | 对应步骤 | 功能说明 |
+|-------|--------|---------|
+| `/api-change-decider` | Step1：方案决策 | 分析 PyTorch 与 Paddle API 差异，制定改动方案 |
+| `/python-decorator` | Step2：Python 装饰器方案 | 实施 Python 层面的兼容性转换，参数别名、参数顺序、参数类型和参数用法的兼容转换 |
+| `/cpp-sink` | Step2：C++下沉方案 | 实施 C++ 层面的代码下沉，减少 Python 装饰器的性能开销，提升 API 调度效率 |
+| `/pytorch-alignment-validator` | Step3：对齐验证 | 基于 PaConvert 工具验证 Paddle API 与 PyTorch API 是否用法完全对齐一致（金标准） |
+| `/api-docs-updater` | Step4：文档更新 | 同步更新 API 中文文档，确保文档准确反映代码的最新行为 |
+| `/create-pr` | Step5：代码提交 | 在 Paddle、PaConvert、Docs 三个仓库分别创建或更新 Pull Request |
+
+
+# 七、自进化机制
+
+**本项目涉及的所有 skill 均具备自进化能力**，通过持续学习和优化来提升工作质量。
+
+**如何自进化**：
+- 每次交互结束后，自动复盘分析工作过程中的问题、错误和成功经验
+- 结合用户反馈纠偏和运行日志，不断优化描述细节和边界条件
+- 识别重复出现的问题模式和最佳实践
+
+**自进化需要修改哪里**：
+1. **注意事项**章节：补充新发现的注意事项、工作要求
+2. **常见问题处理**章节：补充新发现的问题-解决方案、特殊情况处理方案
+3. 修正或补充 SKILL 中新发现的错误或遗漏内容
+
+**跨会话学习**：
+- 所有优化和改进都写入各 skill 的 SKILL.md 文档，确保知识持久化
+- 后续会话可以复用之前积累的经验和教训
+
+# 八、注意事项
+
+1. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤
+2. 所有路径使用 `${ROOT_DIR}` 变量表示根目录，需自行替换为实际路径
+
+# 九、常见问题处理
+
+### Q1：为什么有些 API 对齐失败？
+
+**常见原因**：
+
+1. **差异分析阶段失败**：未查询到差异文档或转写配置
+2. **方案决策阶段失败**：选择的方案不适用或后向兼容性问题
+3. **代码修改阶段失败**：装饰器实现问题或 C++ 下沉编译错误
+4. **验证阶段失败**：Paddle API 实现与 PyTorch 计算结果不一致
+
+**处理办法**：
+- 查看具体错误信息，返回相应 Step 重新处理
+- 使用调试技巧逐步排查问题
+
+---
