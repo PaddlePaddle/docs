@@ -1,9 +1,6 @@
 ---
 name: cpp-sink
-description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2：API 代码修改，实施 C++下沉的代码开发。通过将 Python API 下沉至 C++层，可以减少 Python 装饰器带来的性能开销，提升 API 调度效率。
-context: fork
-background: false
-verbose: true
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2：API 代码修改，实施『C++下沉』方案。通过将 Python API 下沉至 C++层，可以减少 Python 装饰器带来的性能开销，提升 API 调度效率。
 disable-model-invocation: false
 ---
 
@@ -20,8 +17,6 @@ disable-model-invocation: false
 
 **典型示例：** `paddle.log2`
 
-请严格按以下步骤依次执行，不要自行修改或跳过步骤：
-
 ### Step 1：配置 `python_api_info.yaml`
 
 添加参数别名映射（按 op name 的字典序添加）：
@@ -35,80 +30,45 @@ disable-model-invocation: false
 
 **说明：**
 - `name`：指定对应的 Python API 名称（函数 API 和 Tensor 方法）
-- `use_default_mapping : True`：自动配置如下字段映射：
-```yaml
-- op : op_name
-  name : [paddle.op_name, paddle.Tensor.op_name]
-  args_alias :
-    x: [input]
-    y: [other]
-    axis: [dim]
-    keepdims: [keepdim]
-```
-- 不在上述字段映射范围里，允许配置自定义映射，格式：
-```yaml
-- op : op_name
-  name : [paddle.op_name, paddle.Tensor.op_name]
-  args_alias :
-    y : [exponent]
-```
-- 注意 key 和 value 不要配置反了，Paddle 的参数名为 key，Pytorch 的参数名为 value(列表)
+- `use_default_mapping : True`：自动配置常用字段映射（x→input, y→other, axis→dim, keepdims→keepdim）
+- 不在默认映射范围时，可配置自定义映射：`y: [exponent]`（Paddle 参数名为 key，PyTorch 参数名为 value）
 
 ### Step 2：迁移文档到 `_paddle_docs.py`
 
-注意要更新函数文档字符，在文档的 Args 部分为有别名的参数添加 Alias Support 说明，如下：
-> 注：Alias 说明应放在该参数描述的末尾，**句号前**，格式为: Alias: ``alias_name`` ，多个 Alias 描述为: Alias: ``alias_name1`` or ``alias_name2``
+使用 `add_doc_and_signature` 函数迁移文档，关键要点：
 
+1. **Alias 说明格式**：在 Args 部分为有别名的参数添加 `Alias: ``alias_name```
+2. **out 参数处理**：keyword-only 参数放在 `Keyword Args:` 部分，位置参数放在 `Args:` 部分，如下：
+```python
+# out 为 keyword-only 参数
+"""
+Args:
+    ...
+Keyword Args:
+    out (Tensor|optional): The output tensor. Default: None.
+"""
+
+# out 为位置参数
+"""
+Args:
+    out (Tensor, optional): The output Tensor. Default: None.
+"""
+```
+
+**示例**：
 ```python
 add_doc_and_signature(
     "log2",
     r"""
     Calculates the log to the base 2 of the given input tensor, element-wise.
-
-    .. math::
-
-        Out = \log_2x
-
+    ...
     Args:
-        x (Tensor): Input tensor must be one of the following types: int32, int64, float16, bfloat16, float32, float64, complex64, complex128. Alias: ``input``.
-        name (str|None, optional): Name for the operation (optional, default is None). For more information, please refer to :ref:`api_guide_Name`.
-        out (Tensor, optional): The output Tensor. If set, the result will be stored in this Tensor. Default: None.
-
-    Keyword args:
-        out(Tensor, optional): The output tensor.
-
+        x (Tensor): Input tensor. Alias: ``input``.
+        ...
+    Keyword Args:
+        out (Tensor, optional): The output tensor. Default: None.
     Returns:
-        Tensor: The log to the base 2 of the input Tensor computed element-wise.
-
-    Examples:
-
-        .. code-block:: pycon
-
-            >>> import paddle
-
-            >>> # example 1: x is a float
-            >>> x_i = paddle.to_tensor([[1.0], [2.0]])
-            >>> res = paddle.log2(x_i)
-            >>> res
-            Tensor(shape=[2, 1], dtype=float32, place=Place(cpu), stop_gradient=True,
-            [[0.],
-             [1.]])
-
-            >>> # example 2: x is float32
-            >>> x_i = paddle.full(shape=[1], fill_value=2, dtype='float32')
-            >>> paddle.to_tensor(x_i)
-            >>> res = paddle.log2(x_i)
-            >>> res
-            Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-            [1.])
-
-            >>> # example 3: x is float64
-            >>> x_i = paddle.full(shape=[1], fill_value=2, dtype='float64')
-            >>> paddle.to_tensor(x_i)
-            >>> res = paddle.log2(x_i)
-            >>> res
-            Tensor(shape=[1], dtype=float64, place=Place(cpu), stop_gradient=True,
-            [1.])
+        ...
 """,
     """
 def log2(
@@ -121,32 +81,7 @@ def log2(
 )
 ```
 
-如果支持了 out 参数，必须在 API 文档中描述 out 参数，out 为 keyword-only 参数（*后面）时注意增加`Keyword Args:`，并在此部分描述。out 为位置参数时直接在 Args 部分描述。如下：
-
-```python
-# out 为 keyword-only 参数
-"""
-Args:
-    ...
-
-Keyword Args:
-    out (Tensor|optional): The output tensor. Default: None.
-
-Returns:
-    ...
-"""
-
-# out 为位置参数
-"""
-Args:
-    out (Tensor, optional): The output Tensor. Default: None.
-
-Returns:
-    ...
-"""
-```
-
-**注意事项**：
+**注意**：
 - Tensor 类方法（如 paddle.Tensor.abs）没有文档，无需处理，请勿与普通方法（如 paddle.abs）混淆
 - Inplace 方法（如 paddle.abs_等下划线 API），只需要更新 API 签名，不需要修改文档
 - 注意文档格式规范，需与 `_paddle_docs.py` 现有文档格式保持一致
@@ -167,126 +102,6 @@ from paddle._C_ops import log2  # noqa: F401
 #     ...
 ```
 
-### Step 4：添加测试用例
-
-不要新建任何测试文件，直接在 `test/legacy_test/test_api_compatibility[1-9]\.py(数字最大的)` 中添加测试。严格按以下模板来编写：
-
-**测试模板**：
-```python
-class Test<APIName>API(unittest.TestCase):
-    def setUp(self):
-        # If not use random seed, remove setUp
-        np.random.seed(2025)
-        self.np_x = np.random.rand(...).astype(...)
-
-    def test_dygraph_Compatibility(self):
-        paddle.disable_static()
-        x = paddle.to_tensor(self.np_x)
-
-        # 1. Paddle Positional arguments
-        out1 = paddle.<api_name>(x, ...)
-
-        # 2. Paddle keyword arguments
-        out2 = paddle.<api_name>(x=x, ...)
-
-        # 3. Pytorch Positional arguments (only if order different with paddle args)
-        out3 = paddle.<api_name>(x, ...)
-
-        # 4. PyTorch keyword arguments (alias)
-        out4 = paddle.<api_name>(input=x, dim=...)
-
-        # 5. Mixed arguments
-        out5 = paddle.<api_name>(x, axis=...)
-
-        # 6. out parameter test (only if supported)
-        out6 = paddle.empty_like(x)
-        out7 = paddle.<api_name>(x, ..., out=out6)
-
-        # 7. Tensor method - args (only if supported)
-        out8 = x.<api_name>(...)
-
-        # 8. Tensor method - kwargs (only if supported)
-        out9 = x.<api_name>(axis=...)
-
-        # Verify all outputs
-        for out in [out1, out2, out3, out4, out5, out6, out7, out8, out9]:
-            np.testing.assert_allclose(out.numpy(), ...)
-
-        paddle.enable_static()
-
-    def test_static_Compatibility(self):
-        paddle.enable_static()
-        main = paddle.static.Program()
-        startup = paddle.static.Program()
-        with paddle.static.program_guard(main, startup):
-            x = paddle.static.data(name="x", shape=self.shape, dtype=self.dtype)
-
-            # Create multiple outputs
-            out1 = paddle.<api_name>(x, ...)
-            out2 = paddle.<api_name>(x=x, ...)
-            out3 = paddle.<api_name>(input=x, dim=...)
-
-            exe = paddle.static.Executor()
-            fetches = exe.run(
-                main,
-                feed={"x": self.np_x},
-                fetch_list=[out1, out2, out3],
-            )
-
-            # Verify all outputs
-            for out in fetches:
-                np.testing.assert_allclose(out, ...)
-```
-
-**测试规范**：
-动态图模式：
-1. ✅ Paddle 位置参数（全部位置参数）
-2. ✅ Paddle 关键字参数（全部关键字参数）
-3. ✅ PyTorch 位置参数（如果 Pytorch 与 Paddle 参数顺序不同）
-4. ✅ PyTorch 关键字参数（使用参数别名）
-5. ✅ 混合参数（如果参数量>=2，位置+关键字）
-6. ✅ out 参数（如果 API 支持，inplace 无需测）
-7. ✅ 类方法 Pytorch 位置参数（如果有类方法）
-8. ✅ 类方法 Pytorch 关键字参数（如果有类方法）
-
-静态图模式：（inplace 无需测）
-1. ✅ Paddle 位置参数（全部位置参数）
-2. ✅ Paddle 关键字参数（全部关键字参数）
-3. ✅ PyTorch 位置参数（如果 Pytorch 与 Paddle 参数顺序不同）
-4. ✅ PyTorch 关键字参数（使用参数别名）
-5. ✅ 类方法 Pytorch 位置参数（如果有类方法）
-6. ✅ 类方法 Pytorch 关键字参数（如果有类方法）
-
-注意：
-1. 有些测试项是可选的，需要自行判断是否需要添加。
-2. 添加测试项需要遵循上述顺序，不要打乱。
-3. 输出结果序号需要保持连贯，每一个输出结果均需要检验，尽可能循环检验减少行数。
-3. 比对测试项，对于内容相同的测试项，不要重复添加。
-
-完整测试示例，请参考 `${ROOT_DIR}/Paddle/test/legacy_test/test_api_compatibility[1-9]\.py` 中已有的测试类结构。
-
-### Step 5：编译并运行
-
-单测编写完成后，按以下命令验证执行（不可修改）：
-
-1. **重新编译项目**：
-   ```bash
-   cd ${ROOT_DIR}/Paddle/build
-   cmake ..
-   make -j$(nproc)
-   ```
-
-2. **运行单测文件**：
-   ```bash
-   python <所修改的单测文件名>
-   ```
-
-3. **问题排查**：根据报错信息调整代码或测试用例，确保所有测试用例通过。注意每次修改 Paddle 源码后，必须重新编译方可生效。
-
-编译注意事项：
-- 无需重装，直接生效（勿执行 setup/install 等安装操作）
-- 勿删除 build 目录（否则增量编译失效，编译时间极长）
-
 ## 场景二: 具有前处理逻辑（中等复杂度）
 
 **适用条件（全部满足）：**
@@ -295,8 +110,6 @@ class Test<APIName>API(unittest.TestCase):
 - Python 端在调用`_C_ops`前**有其他前处理逻辑**
 
 **典型示例：** `paddle.logsumexp`
-
-请严格按以下步骤依次执行，不要自行修改或跳过步骤：
 
 ### Step 1：配置 `python_api_info.yaml`
 
@@ -317,67 +130,18 @@ class Test<APIName>API(unittest.TestCase):
 
 ### Step 2：实现前处理函数
 
-将 Python 端在调用`_C_ops`前的**其他前处理逻辑**，修改为 C++的实现。尽可能参考 `arg_pre_process.cc` 中已有的预处理函数来实现，在风格和逻辑上保持尽可能一致。
+将 Python 端在调用`_C_ops`前的**其他前处理逻辑**，修改为 C++的实现。在 `paddle/fluid/pybind/arg_pre_process.h` 声明，在 `arg_pre_process.cc` 实现。
 
-在 `paddle/fluid/pybind/arg_pre_process.h` 声明：
-
-```cpp
-namespace paddle {
-namespace pybind {
-
-// 动态图版本
-void LogsumexpPreProcess(Tensor *x, std::vector<int> *axis, bool *reduce_all);
-
-// 静态图版本
-void LogsumexpPreProcess(pir::Value *x, std::vector<int> *axis, bool *reduce_all);
-
-}  // namespace pybind
-}  // namespace paddle
-```
-
-在 `paddle/fluid/pybind/arg_pre_process.cc` 实现：
-
-```cpp
-#include "paddle/fluid/pybind/arg_pre_process.h"
-#include "paddle/fluid/eager/utils.h"
-#include "paddle/fluid/pir/utils/general_functions.h"
-
-namespace paddle {
-namespace pybind {
-
-// 动态图实现
-void LogsumexpPreProcess(Tensor *x, std::vector<int> *axis, bool *reduce_all) {
-  // Python 原逻辑：
-  // if axis == [] or len(axis) == len(x.shape):
-  //     reduce_all = True
-  // else:
-  //     reduce_all = False
-
-  if (axis->empty() || axis->size() == x->dims().size()) {
-    *reduce_all = true;
-  } else {
-    *reduce_all = false;
-  }
-}
-
-// 静态图实现
-void LogsumexpPreProcess(pir::Value *x, std::vector<int> *axis, bool *reduce_all) {
-  std::vector<int64_t> x_shape = pir::GetShapeFromValue(*x);
-  if (axis->empty() || axis->size() == x_shape.size()) {
-    *reduce_all = true;
-  } else {
-    *reduce_all = false;
-  }
-}
-
-}  // namespace pybind
-}  // namespace paddle
-```
-
-**注意事项：**
-- 必须同时实现动态图和静态图版本
+**关键要点：**
+- 必须同时实现**动态图版本**（参数类型为 `Tensor*`）和**静态图版本**（参数类型为 `pir::Value*`）
 - 函数通过指针修改参数值
-- 直接翻译 Python 前处理逻辑到 C++
+- 参考 `arg_pre_process.cc` 中已有实现，保持风格一致
+
+**声明示例**：
+```cpp
+void LogsumexpPreProcess(Tensor *x, std::vector<int> *axis, bool *reduce_all);      // 动态图
+void LogsumexpPreProcess(pir::Value *x, std::vector<int> *axis, bool *reduce_all);  // 静态图
+```
 
 ### Step 3：迁移文档到 `_paddle_docs.py`
 
@@ -387,14 +151,6 @@ void LogsumexpPreProcess(pir::Value *x, std::vector<int> *axis, bool *reduce_all
 
 参考场景一的 Step 3 执行相同操作。
 
-### Step 5：添加测试用例
-
-参考场景一的 Step 4 执行相同操作。
-
-### Step 6：编译并运行
-
-参考场景一的 Step 5 执行相同操作。
-
 ## 场景三: 复杂参数映射（最复杂）
 
 **适用条件（全部满足）：**
@@ -402,8 +158,6 @@ void LogsumexpPreProcess(pir::Value *x, std::vector<int> *axis, bool *reduce_all
 - 需要复杂的自定义参数解析逻辑，来匹配 Paddle Python API 与`ops.yaml`的参数差异
 
 **典型示例：** `paddle.argmax`/`paddle.argmin`
-
-请严格按以下步骤依次执行，不要自行修改或跳过步骤：
 
 ### Step 1：配置 `python_api_info.yaml`
 
@@ -422,189 +176,30 @@ void LogsumexpPreProcess(pir::Value *x, std::vector<int> *axis, bool *reduce_all
 
 ### Step 2：实现自定义 Mapper
 
-将 Python API 与`ops.yaml`中参数**类型或数量不一致**的差异，通过 C++自定义 Mapper 来进行匹配与转换。尽可能参考 `args_mapper.cc` 中已有的 Mapper 来实现，在风格和逻辑上保持尽可能一致。
+将 Python API 与`ops.yaml`中参数**类型或数量不一致**的差异，通过 C++自定义 Mapper 来进行匹配与转换。在 `paddle/fluid/pybind/args_mapper.h` 声明，在 `args_mapper.cc` 实现。
 
-在 `paddle/fluid/pybind/args_mapper.h` 声明：
+**关键要点：**
+- 必须同时实现**动态图版本**和**静态图版本**
+- 使用 `args_mapper` 时不会生成默认参数解析代码，需手动解析所有参数
+- 参考 `args_mapper.cc` 中已有实现，保持风格一致
 
+**核心工具函数：**
+| 函数 | 用途 |
+|------|------|
+| `GetTensorFromArgsOrKWArgs` | 解析 Tensor 参数，支持别名列表 |
+| `GetItemFromArgsOrKWArgs` | 获取通用 Python 对象 |
+| `CastPyArg2Scalar/Boolean/DataType` | 类型转换 |
+| `CheckParamsCount` / `CheckRemainingParamsValidity` | 参数校验 |
+
+**静态图特殊处理：** 使用 `pir::Value` 代替 `Tensor`，常量需通过 `paddle::dialect::full` 转换为 Value 类型。
+
+**声明示例**：
 ```cpp
-namespace paddle {
-namespace pybind {
-
-// 动态图版本
-void ArgMaxMinMapper(PyObject* args,
-                     PyObject* kwargs,
-                     Tensor* x,
-                     paddle::experimental::Scalar* axis,
-                     bool* keepdims,
-                     bool* flatten,
-                     phi::DataType* dtype);
-
-// 静态图版本
-void ArgMaxMinMapper(PyObject* args,
-                     PyObject* kwargs,
-                     pir::Value* x,
-                     pir::Value* axis,
-                     bool* keepdims,
-                     bool* flatten,
-                     phi::DataType* dtype);
-
-}  // namespace pybind
-}  // namespace paddle
+void ArgMaxMinMapper(PyObject* args, PyObject* kwargs,
+                     Tensor* x, Scalar* axis, bool* keepdims, bool* flatten, DataType* dtype);  // 动态图
+void ArgMaxMinMapper(PyObject* args, PyObject* kwargs,
+                     pir::Value* x, pir::Value* axis, ...);  // 静态图
 ```
-
-在 `paddle/fluid/pybind/args_mapper.cc` 实现：
-
-```cpp
-#include "paddle/fluid/pybind/args_mapper.h"
-#include "paddle/fluid/eager/utils.h"
-#include "paddle/fluid/pir/dialect/operator/ir/pd_api.h"
-#include "paddle/fluid/pybind/eager_utils.h"
-#include "paddle/fluid/pybind/op_function_common.h"
-
-namespace paddle {
-namespace pybind {
-
-// 动态图实现
-void ArgMaxMinMapper(PyObject* args,
-                     PyObject* kwargs,
-                     Tensor* x,
-                     paddle::experimental::Scalar* axis,
-                     bool* keepdims,
-                     bool* flatten,
-                     phi::DataType* dtype) {
-  // Python 参数：(x, axis, keepdim, dtype, name)
-  // C++ _C_ops 参数：(x, axis, keepdim, flatten, dtype)
-
-  int nargs = args ? static_cast<int>(PyTuple_Size(args)) : 0;
-  int remaining_kwargs = kwargs ? static_cast<int>(PyDict_Size(kwargs)) : 0;
-  const int max_args = 4;  // 不包括 name 参数
-  CheckParamsCount(nargs, remaining_kwargs, max_args);
-
-  // 1. 解析 x 参数（支持多个别名）
-  *x = GetTensorFromArgsOrKWArgs("argmax",
-                                 "x",
-                                 args,
-                                 0,
-                                 kwargs,
-                                 {"x", "input"},  // 别名列表
-                                 nargs,
-                                 &remaining_kwargs,
-                                 false);
-
-  // 2. 解析 axis 参数并处理特殊逻辑
-  PyObject* axis_obj = GetItemFromArgsOrKWArgs(
-      args, 1, kwargs, {"axis", "dim"}, nargs, &remaining_kwargs);
-
-  // Python 逻辑：
-  // flatten = False
-  // if axis is None:
-  //     flatten = True
-  //     axis = 0
-  *flatten = false;
-  if (axis_obj == Py_None || axis_obj == nullptr) {
-    *flatten = true;
-    *axis = 0;
-  } else {
-    *axis = CastPyArg2Scalar(axis_obj, "argmax", 1);
-  }
-
-  // 3. 解析 keepdims 参数（支持多个别名）
-  PyObject* keepdims_obj = GetItemFromArgsOrKWArgs(
-      args, 2, kwargs, {"keepdim", "keepdims"}, nargs, &remaining_kwargs);
-  *keepdims = CastPyArg2Boolean(keepdims_obj, "argmax", 2, false);
-
-  // 4. 解析 dtype 参数并验证
-  PyObject* dtype_obj = GetItemFromArgsOrKWArgs(
-      args, 3, kwargs, {"dtype"}, nargs, &remaining_kwargs);
-
-  PADDLE_ENFORCE_NE(
-      dtype_obj,
-      Py_None,
-      phi::errors::InvalidArgument("the value of 'dtype' in argmax and argmin "
-                                   "could not be None, but received None"));
-  *dtype = CastPyArg2DataType(dtype_obj, "argmax", 3, phi::DataType::INT64);
-
-  // 5. 检查剩余参数有效性
-  CheckRemainingParamsValidity(args, kwargs, remaining_kwargs, nargs);
-}
-
-// 静态图实现
-void ArgMaxMinMapper(PyObject* args,
-                     PyObject* kwargs,
-                     pir::Value* x,
-                     pir::Value* axis,
-                     bool* keepdims,
-                     bool* flatten,
-                     phi::DataType* dtype) {
-  int nargs = args ? static_cast<int>(PyTuple_Size(args)) : 0;
-  int remaining_kwargs = kwargs ? static_cast<int>(PyDict_Size(kwargs)) : 0;
-  const int max_args = 4;
-  CheckParamsCount(nargs, remaining_kwargs, max_args);
-
-  // 1. 解析 Value 类型的 x
-  PyObject* x_obj = GetItemFromArgsOrKWArgs(
-      args, 0, kwargs, {"x", "input"}, nargs, &remaining_kwargs);
-  *x = CastPyArg2Value(x_obj, "argmax", 0, false);
-
-  // 2. 解析 axis 并转换为 Value 类型
-  PyObject* axis_obj = GetItemFromArgsOrKWArgs(
-      args, 1, kwargs, {"axis", "dim"}, nargs, &remaining_kwargs);
-
-  *flatten = false;
-  if (axis_obj == Py_None || axis_obj == nullptr) {
-    *flatten = true;
-    // 静态图中 axis 需要是 Value 类型
-    *axis = paddle::dialect::full(
-        std::vector<int64_t>{1}, 0, phi::DataType::INT64, phi::CPUPlace());
-  } else if (PyObject_CheckIRValue(axis_obj)) {
-    *axis = CastPyArg2Value(axis_obj, "argmax", 1);
-  } else {
-    int64_t axis_tmp = CastPyArg2Long(axis_obj, "argmax", 1);
-    *axis = paddle::dialect::full(std::vector<int64_t>{1},
-                                  axis_tmp,
-                                  phi::DataType::INT64,
-                                  phi::CPUPlace());
-  }
-
-  // 3-5. 解析其他参数（同动态图）
-  PyObject* keepdims_obj = GetItemFromArgsOrKWArgs(
-      args, 2, kwargs, {"keepdim", "keepdims"}, nargs, &remaining_kwargs);
-  *keepdims = CastPyArg2Boolean(keepdims_obj, "argmax", 2, false);
-
-  PyObject* dtype_obj = GetItemFromArgsOrKWArgs(
-      args, 3, kwargs, {"dtype"}, nargs, &remaining_kwargs);
-
-  PADDLE_ENFORCE_NE(
-      dtype_obj,
-      Py_None,
-      phi::errors::InvalidArgument("the value of 'dtype' in argmax and argmin "
-                                   "could not be None, but received None"));
-  *dtype = CastPyArg2DataType(dtype_obj, "argmax", 3, phi::DataType::INT64);
-
-  CheckRemainingParamsValidity(args, kwargs, remaining_kwargs, nargs);
-}
-
-}  // namespace pybind
-}  // namespace paddle
-```
-
-**关键技术点：**
-
-1. **参数解析工具函数：**
-   - `GetTensorFromArgsOrKWArgs`：解析 Tensor 参数，支持多个别名
-   - `GetItemFromArgsOrKWArgs`：获取通用 Python 对象
-   - `CastPyArg2Scalar`：转换为 Scalar 类型
-   - `CastPyArg2Boolean`：转换为 bool 类型
-   - `CastPyArg2DataType`：转换为 DataType 枚举
-   - `CheckParamsCount`：检查参数数量
-   - `CheckRemainingParamsValidity`：检查是否有未处理参数
-
-2. **静态图特殊处理：**
-   - 使用`pir::Value`代替`Tensor`
-   - 常量值需转换为`Value`类型：使用`paddle::dialect::full`
-
-3. **参数别名支持：**
-   - 通过传入别名列表`{"x", "input"}`同时支持 Paddle 和 Torch 风格
 
 ### Step 3: 迁移文档到 `_paddle_docs.py`
 
@@ -628,69 +223,19 @@ Returns:
 """
 ```
 
-参考场景一的 Step 2 执行文档迁移操作。
-
 ### Step 4：替换 Python 实现
 
 参考场景一的 Step 3 执行相同操作。
 
-### Step 5：添加测试用例
 
-参考场景一的 Step 4 执行相同操作。
-
-### Step 6：编译并运行
-
-参考场景一的 Step 5 执行相同操作。
-
-## 不同场景对比
-|------|---------------------|---------------------|---------------------|
-| **YAML 配置** | `args_alias` + `use_default_mapping` | `args_alias` + `pre_process` | `args_mapper` |
-| **C++实现** | 无需额外 C++代码 | `arg_pre_process.h/cc` | `args_mapper.h/cc` |
-| **实现难度** | ⭐ 简单 | ⭐⭐ 中等 | ⭐⭐⭐ 复杂 |
-| **参数解析** | 自动生成 | 自动生成 + 前处理 | 完全手动 |
-| **适用情况** | 仅参数名不一致 | 仅参数名不一致+前处理逻辑 | 参数类型/数量不一致 |
-| **示例 API** | log2 | logsumexp | argmax, argmin |
-
-
-# 二、技术背景知识
-
-## 2.1 工具函数速查
-
-```cpp
-// 获取 Tensor 参数（支持别名）
-Tensor GetTensorFromArgsOrKWArgs(
-    const std::string& op_name,
-    const std::string& param_name,
-    PyObject* args, int arg_idx,
-    PyObject* kwargs, const std::vector<std::string>& aliases,
-    int nargs, int* remaining_kwargs, bool required);
-
-// 获取通用 Python 对象
-PyObject* GetItemFromArgsOrKWArgs(
-    PyObject* args, int arg_idx,
-    PyObject* kwargs, const std::vector<std::string>& aliases,
-    int nargs, int* remaining_kwargs);
-
-// 类型转换
-paddle::experimental::Scalar CastPyArg2Scalar(PyObject* obj, const std::string& op_name, int arg_idx);
-bool CastPyArg2Boolean(PyObject* obj, const std::string& op_name, int arg_idx, bool default_value);
-phi::DataType CastPyArg2DataType(PyObject* obj, const std::string& op_name, int arg_idx, phi::DataType default_value);
-std::vector<int> CastPyArg2Ints(PyObject* obj, const std::string& op_name, int arg_idx);
-
-// 检查函数
-void CheckParamsCount(int nargs, int remaining_kwargs, int max_args);
-void CheckRemainingParamsValidity(PyObject* args, PyObject* kwargs, int remaining_kwargs, int nargs);
-```
-
-# 三、注意事项
+# 二、注意事项
 
 1. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤
-2. 所有路径使用 `${ROOT_DIR}` 变量表示根目录，需自行替换为实际路径
-3. 若 Python API 参数顺序与`_C_ops` API 不同，属于特殊情况，Cpp 下沉方案无法实现，需要使用 Python 装饰器方案
-4. 代码中不允许提交中文，代码注释采用英文
-5. 若 API 需支持`out`参数，必须修改`add_doc_and_signature`中的字符串，增加 out 参数
-6. 不要修改`generated_tensor_methods_patch.py`，该文件是自动生成的，修改没有意义，如无法对齐可考虑放弃 C++下沉方案而不是改动该文件
-7. 示例代码若涉及多种数据类型，可能触发类型检查误报，添加注释忽略：
+2. 若 Python API 参数顺序与`_C_ops` API 不同，属于特殊情况，Cpp 下沉方案无法实现，需要使用 Python 装饰器方案
+3. 代码中不允许提交中文，代码注释采用英文
+4. 若 API 需支持`out`参数，必须修改`add_doc_and_signature`中的字符串，增加 out 参数
+5. 不要修改`generated_tensor_methods_patch.py`，该文件是自动生成的，修改没有意义，如无法对齐可考虑放弃 C++下沉方案而不是改动该文件
+6. 示例代码若涉及多种数据类型，可能触发类型检查误报，添加注释忽略：
 ```python
   .. code-block:: pycon
       >>> # type: ignore
@@ -698,7 +243,7 @@ void CheckRemainingParamsValidity(PyObject* args, PyObject* kwargs, int remainin
       >>> x = paddle.to_tensor([1.0, 2.0])
 ```
 
-# 四、常见问题处理
+# 三、常见问题处理
 
 ## Q1：静态图报错"must be Value, but got Variable"
 
@@ -727,5 +272,3 @@ TypeError: argmax() got an unexpected keyword argument 'invalid_param'
 **解决方法**：
 1. 检查参数名称拼写
 2. 确认是否支持该参数
-
----

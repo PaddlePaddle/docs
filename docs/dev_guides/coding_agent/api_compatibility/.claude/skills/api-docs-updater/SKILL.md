@@ -1,7 +1,6 @@
 ---
 name: api-docs-updater
-description: 负责《Paddle API 对齐 PyTorch 项目》中 Step4：API 文档修改，在 API 代码修改完成后，同步更新中文 API 文档，确保文档准确反映 API 的最新行为
-allowed-tools: Read Grep Glob Write Edit
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step5：文档更新，在 API 代码修改完成后，同步更新中文 API 文档，确保文档准确反映 API 的最新行为
 disable-model-invocation: false
 ---
 
@@ -22,13 +21,27 @@ Step 1. **查找 API 英文文档** - 在两个位置查找：
 
 Step 2. **对比英文和中文文档** - 识别不一致之处
 
-Step 3. **根据代码修改方案选择对应模式** - 见第三章
+Step 3. **更新中文文档与英文一致**
 
-Step 4. **按照格式规范更新中文文档** - 见第四章
+# 三、注意事项
 
-# 三、常见修改模式
+1. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤
+2. **Tensor 类方法**（如 `paddle.Tensor.abs`）
+   - 没有独立文档，无需处理
+   - 勿与普通方法（如 `paddle.abs`）混淆
+3. **Inplace 方法**（如 `paddle.abs_`）
+   - 仅更新代码签名，不需修改文档
+   - 参数别名支持与原方法一致
+4. **文档内容保持**
+   - 保留原有的文档风格和格式
+   - 不要大面积删除文档原内容
+   - 示例代码采用 COPY-FROM: 格式，不要修改
+5. **英文文档与中文文档必须对应**
+   - 别名格式完全相同
+   - Overload 说明内容对应
+   - out 参数描述对齐
 
-根据代码修改方案的不同，文档需要采用不同的修改模式。本章覆盖所有常见场景，并提供完整的实战示例。
+# 四、常见修改模式
 
 ## 模式 1：参数别名（通用装饰器）
 
@@ -79,7 +92,6 @@ Args:
     Tensor：计算结果 Tensor。
 ```
 
----
 
 ## 模式 2：Overload 重载（专用装饰器）
 
@@ -104,13 +116,12 @@ Args:
 ```rst
 .. py:function:: paddle.broadcast_tensors(input, name=None)
 
-此 API 有两种调用方式：
-
-1. ``paddle.broadcast_tensors(input, name=None)`` (Paddle 风格)：
-   接收一个 Tensor 序列作为参数
-
-2. ``paddle.broadcast_tensors(*tensors)`` (PyTorch 风格)：
-   接收可变个 Tensor 参数
+.. note::
+    此 API 有两种调用方式：
+    1. ``paddle.broadcast_tensors(input, name=None)`` (Paddle 风格)：
+    接收一个 Tensor 序列作为参数
+    2. ``paddle.broadcast_tensors(*tensors)`` (PyTorch 风格)：
+    接收可变个 Tensor 参数
 
 参数
 :::::::::
@@ -121,8 +132,6 @@ Args:
 :::::::::
     list[Tensor]：广播后的 Tensor 列表。
 ```
-
----
 
 ## 模式 3：out 参数支持
 
@@ -176,19 +185,9 @@ keyword-only 形式：
     - **name** (str，可选) - 操作名称。
 ```
 
----
+**元组形式的 out 参数**：
 
-## 模式 4：返回值为元组的 out 参数
-
-**适用场景**：
-- API 返回多个值（如 `frexp` 返回 mantissa 和 exponent）
-- out 参数也是元组类型
-
-**修改内容**：
-1. 函数签名：添加 `, *, out=None`
-2. 关键字参数：out 类型标注为 `tuple[Tensor, Tensor]`
-
-**完整实战示例 - paddle.frexp**
+当 API 返回多个值（如 `frexp` 返回 mantissa 和 exponent）时，out 参数也是元组类型。
 
 ```rst
 .. py:function:: paddle.frexp(x, name=None, *, out=None)
@@ -210,9 +209,8 @@ mantissa（Tensor）：分解后的尾数，形状和原输入一致。
 exponent（Tensor）：分解后的指数，形状和原输入一致。
 ```
 
----
 
-## 模式 5：Inplace API 的别名说明
+## 模式 4：Inplace API 的别名说明
 
 **适用场景**：
 - Inplace API（函数名以 `_` 结尾，如 `paddle.abs_`、`paddle.floor_divide_`）
@@ -238,44 +236,3 @@ Inplace 版本的 :ref:`cn_api_paddle_floor_divide` API，对输入 `x` 采用 I
 
     别名支持：参数名 ``input`` 可替代 ``x``，参数名 ``other`` 可替代 ``y``，如 ``floor_divide_(input=tensor_x, other=tensor_y)`` 等价于 ``floor_divide_(x=tensor_x, y=tensor_y)``。
 ```
-
-
-# 四、格式规范
-
-| 项目 | 规范 | 示例 |
-|------|------|------|
-| **别名说明位置** | 参数描述末尾，**句号前** | `- **x** (Tensor) - 输入的 Tensor。别名 ` ``input``` |
-| **别名格式** | 2 个反单引号+别名+2 个反单引号 | `` ``input`` `` 或 `` ``dim`` `` |
-| **多个别名** | 用"或"连接 | `别名 ` ``input`` ` 或 ` ``other``` |
-| **参数类型** | 可选参数用管道符 | `(float\|None，可选)` 或 `(str\|None，可选)` |
-| **关键字参数标题** | "关键字参数"后跟冒号行 | `关键字参数` + 换行 + `:::::::::` |
-| **关键字参数缩进** | 4 个空格对齐 | ` ` ` ` `- **out** (Tensor，可选) - ...` |
-| **out 参数模板** | 统一说明 | `输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。` |
-
-**rst 格式**：
-- 代码块使用 `::`
-- 列表项使用 `-` 开头
-- 参数类型用 `()` 包裹
-- 别名用反引号包裹：`` ``input`` ``
-
-
-# 五、注意事项
-
-1. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤
-2. 所有路径使用 `${ROOT_DIR}` 变量表示根目录，需自行替换为实际路径
-3. **Tensor 类方法**（如 `paddle.Tensor.abs`）
-   - 没有独立文档，无需处理
-   - 勿与普通方法（如 `paddle.abs`）混淆
-4. **Inplace 方法**（如 `paddle.abs_`）
-   - 仅更新代码签名，不需修改文档
-   - 参数别名支持与原方法一致
-5. **文档内容保持**
-   - 保留原有的文档风格和格式
-   - 不要大面积删除文档原内容
-   - 示例代码采用 COPY-FROM: 格式，不要修改
-6. **英文文档与中文文档必须对应**
-   - 别名格式完全相同
-   - Overload 说明内容对应
-   - out 参数描述对齐
-
-# 六、常见问题处理
