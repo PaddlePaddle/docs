@@ -1,9 +1,6 @@
 ---
 name: python-decorator
-description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2：API 代码修改，实施 Python 装饰器的代码开发。通过 Python 装饰器，在 Python 层为 Paddle API 提供参数别名、参数顺序、参数类型和参数用法的兼容转换，实现 PyTorch 风格的 API 调用，并保持 Paddle API 的向后兼容性。
-context: fork
-background: false
-verbose: true
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2：API 代码修改，实施『Python 装饰器』方案。通过 Python 装饰器，在 Python 层为 Paddle API 实现参数名称、参数顺序、参数类型和参数用法的重载，实现 PyTorch 风格的 API 调用，并保持 Paddle API 的向后兼容性。
 disable-model-invocation: false
 ---
 
@@ -36,11 +33,13 @@ Paddle 现有装饰器统一位于 `${ROOT_DIR}/Paddle/python/paddle/utils/decor
 
 # 二、标准工作流程
 
-**整体流程**：Step 1 差异分析与选择装饰器 → Step 2 应用或开发装饰器 → Step 3 添加 out 参数支持 → Step 4 更新函数文档 → Step 5 添加测试用例 → Step 6 编译并运行
+**整体流程**：Step 1 差异分析与选择装饰器 → Step 2 应用或开发装饰器 → Step 3 更新函数文档
 
 ## Step 1: 差异分析与选择装饰器
 
 根据 PyTorch API 与 Paddle API 的**差异分析**来区分不同场景，选择合适的装饰器方案。
+
+---
 
 ### 场景决策表
 
@@ -272,84 +271,9 @@ def gather(
 ) -> Tensor: ...
 ```
 
-## Step 3: 添加 out 参数支持
+> **注意**：`out` 参数由方案 3（修改原有 API）负责，本方案不处理 out 参数的新增。
 
-仅支持新增 out 参数，新增其他参数则需方案 3（修改 API 智能体）来开展。
-
-### 方式一：直接指定 out（推荐）
-
-**适用条件**：
-1. 情况 1：API 最后一个逻辑是调用`_C_ops`；情况 2：API 调用了其他 API，调用的最后一个其他 API 也支持 out
-2. out 参数只有一个 Tensor
-
-**示例**：
-```python
-# 情况 1：API 最后一个逻辑是调用`_C_ops`
-@param_two_alias(["x", "input"], ["y", "other"])
-def less_than(x, y, name=None, *, out=None) -> Tensor:
-    """
-    Keyword args:
-        ...
-        out (Tensor|None, optional): The output tensor. Default: None.
-    """
-    if in_dynamic_or_pir_mode():
-        return _C_ops.less_than(x, y, out=out)
-    else:
-        ...
-
-# 情况 2：API 调用的最后一个其他 API 也支持 out
-@param_two_alias(["x", "input"], ["axis", "dim"])
-def fft(x, n=None, axis=-1, norm="backward", name=None, *, out=None) -> Tensor:
-    """
-    Args:
-        ...
-
-    Keyword args:
-        out (Tensor|None, optional): The output tensor. Default: None.
-    """
-    if is_integer(x) or is_floating_point(x):
-        return fft_r2c(
-            x, n, axis, norm, forward=True, onesided=False, name=name, out=out
-        )
-    else:
-        return fft_c2c(x, n, axis, norm, forward=True, name=name, out=out)
-```
-
-### 方式二：通过 assign 实现
-
-**适用条件**：不符合方式一的情况
-
-**示例**：
-```python
-def func(x, axis=None, name=None, *, out: Tensor | None = None):
-    """
-    Args:
-        ...
-
-    Keyword args:
-        out (Tensor|None, optional): The output tensor. Default: None.
-    """
-    # case1: 只有 1 个 out 的情况
-    ret = <计算逻辑>
-    if out is not None:
-        paddle.assign(ret, out)
-        return out
-    return ret
-
-    # case2: 有多个 out 的情况
-    ret1, ret2 = <计算逻辑>
-    if out is not None:
-        paddle.assign(ret1, out[0])
-        paddle.assign(ret2, out[1])
-        return out
-    return ret1, ret2
-```
-
-注意：
-1. 需在 API 签名中增加 out 参数，`out`参数需与 Pytorch 用法一致，一般情况下 out 均是 keyword-only 参数（使用`*,`分隔），少数情况下 out 是位置参数。
-2. 处理 out 参数时，仅需处理 in_dynamic_or_pir_mode()分支下的逻辑，老静态图（LayerHelper）分支无需处理 out 参数。
-
-## Step 4: 更新函数文档字符串
+## Step 3: 更新函数文档字符串
 
 如果使用的是通用别名装饰器，则在文档的 Args 部分为有别名的参数添加 Alias Support 说明，如下：
 > 注：Alias 说明应放在该参数描述的末尾，格式为: Alias: ``alias_name`` ，多个 Alias 描述为: Alias: ``alias_name1`` or ``alias_name2``
@@ -396,13 +320,12 @@ def broadcast_tensors(*tensors: Tensor) -> list[Tensor]: ...
 @variadic_tensor_decorator('input')
 def broadcast_tensors(input: Sequence[Tensor], name: str | None = None) -> list[Tensor]:
     """
-    This API has two signatures:
-
-    1. ``paddle.broadcast_tensors(input, name=None)`` (Paddle-style):
-        Broadcast a list of tensors following broadcast semantics.
-
-    2. ``paddle.broadcast_tensors(*tensors)`` (PyTorch-style):
-        Broadcast variadic tensor arguments following broadcast semantics.
+    Note:
+        This API has two signatures:
+        1. ``paddle.broadcast_tensors(input, name=None)`` (Paddle-style):
+            Broadcast a list of tensors following broadcast semantics.
+        2. ``paddle.broadcast_tensors(*tensors)`` (PyTorch-style):
+            Broadcast variadic tensor arguments following broadcast semantics.
 
     Args:
         ...
@@ -429,147 +352,13 @@ def func(x, name=None, *, out=None):
     Returns:
         ...
     """
-
-# out 为位置参数
-def func(x, out=None, name=None):
-    """
-    ...
-
-    Args:
-        x (Tensor): Input of Atan operator.
-        out (Tensor, optional): The output Tensor. Default: None.
-        name (str|None, optional): Name for the operation.
-
-    Returns:
-        ...
-    """
 ```
 
 **注意事项**：
 - Tensor 类方法（如 paddle.Tensor.abs）没有文档，无需处理，请勿与普通方法（如 paddle.abs）混淆
 - Inplace 方法（如 paddle.abs_等下划线 API），只需要更新 API 签名，不需要修改文档
 
-## Step 5: 添加测试用例
-
-不要新建任何测试文件，直接在 `test/legacy_test/test_api_compatibility[1-9]\.py(数字最大的)` 中添加测试。严格按以下模板来编写：
-
-**测试模板**：
-```python
-class Test<APIName>API(unittest.TestCase):
-    def setUp(self):
-        # If not use random seed, remove setUp
-        np.random.seed(2025)
-        self.np_x = np.random.rand(...).astype(...)
-
-    def test_dygraph_Compatibility(self):
-        paddle.disable_static()
-        x = paddle.to_tensor(self.np_x)
-
-        # 1. Paddle Positional arguments
-        out1 = paddle.<api_name>(x, ...)
-
-        # 2. Paddle keyword arguments
-        out2 = paddle.<api_name>(x=x, ...)
-
-        # 3. Pytorch Positional arguments (only if order different with paddle args)
-        out3 = paddle.<api_name>(x, ...)
-
-        # 4. PyTorch keyword arguments (alias)
-        out4 = paddle.<api_name>(input=x, dim=...)
-
-        # 5. Mixed arguments
-        out5 = paddle.<api_name>(x, axis=...)
-
-        # 6. out parameter test (only if supported)
-        out6 = paddle.empty_like(x)
-        out7 = paddle.<api_name>(x, ..., out=out6)
-
-        # 7. Tensor method - args (only if supported)
-        out8 = x.<api_name>(...)
-
-        # 8. Tensor method - kwargs (only if supported)
-        out9 = x.<api_name>(axis=...)
-
-        # Verify all outputs
-        for out in [out1, out2, out3, out4, out5, out6, out7, out8, out9]:
-            np.testing.assert_allclose(out.numpy(), ...)
-
-        paddle.enable_static()
-
-    def test_static_Compatibility(self):
-        paddle.enable_static()
-        main = paddle.static.Program()
-        startup = paddle.static.Program()
-        with paddle.static.program_guard(main, startup):
-            x = paddle.static.data(name="x", shape=self.shape, dtype=self.dtype)
-
-            # Create multiple outputs
-            out1 = paddle.<api_name>(x, ...)
-            out2 = paddle.<api_name>(x=x, ...)
-            out3 = paddle.<api_name>(input=x, dim=...)
-
-            exe = paddle.static.Executor()
-            fetches = exe.run(
-                main,
-                feed={"x": self.np_x},
-                fetch_list=[out1, out2, out3],
-            )
-
-            # Verify all outputs
-            for out in fetches:
-                np.testing.assert_allclose(out, ...)
-```
-
-**测试规范**：
-动态图模式：
-1. ✅ Paddle 位置参数（全部位置参数）
-2. ✅ Paddle 关键字参数（全部关键字参数）
-3. ✅ PyTorch 位置参数（如果 Pytorch 与 Paddle 参数顺序不同）
-4. ✅ PyTorch 关键字参数（使用参数别名）
-5. ✅ 混合参数（如果参数量>=2，位置+关键字）
-6. ✅ out 参数（如果 API 支持，inplace 无需测）
-7. ✅ 类方法 Pytorch 位置参数（如果有类方法）
-8. ✅ 类方法 Pytorch 关键字参数（如果有类方法）
-
-静态图模式：（inplace 无需测）
-1. ✅ Paddle 位置参数（全部位置参数）
-2. ✅ Paddle 关键字参数（全部关键字参数）
-3. ✅ PyTorch 位置参数（如果 Pytorch 与 Paddle 参数顺序不同）
-4. ✅ PyTorch 关键字参数（使用参数别名）
-5. ✅ 类方法 Pytorch 位置参数（如果有类方法）
-6. ✅ 类方法 Pytorch 关键字参数（如果有类方法）
-
-注意：
-1. 有些测试项是可选的，需要自行判断是否需要添加。
-2. 添加测试项需要遵循上述顺序，不要打乱。
-3. 输出结果序号需要保持连贯，每一个输出结果均需要检验，尽可能循环检验减少行数。
-3. 比对测试项，对于内容相同的测试项，不要重复添加。
-
-完整测试示例，请参考 `${ROOT_DIR}/Paddle/test/legacy_test/test_api_compatibility[1-9]\.py` 中已有的测试类结构。
-
-## Step 6: 编译与运行
-
-单测编写完成后，按以下命令验证执行（不可修改）：
-
-1. **重新编译项目**：
-   ```bash
-   cd ${ROOT_DIR}/Paddle/build
-   cmake ..
-   make -j$(nproc)
-   ```
-
-2. **运行单测文件**：
-   ```bash
-   python <所修改的单测文件名>
-   ```
-
-3. **问题排查**：根据报错信息调整代码或测试用例，确保所有测试用例通过。注意每次修改 Paddle 源码后，必须重新编译方可生效。
-
-编译注意事项：
-- 无需重装，直接生效（勿执行 setup/install 等安装操作）
-- 勿删除 build 目录（否则增量编译失效，编译时间极长）
-
-# 三、技术背景知识
+# 三、背景知识
 
 ## 3.1 Paddle API 分层结构
 
@@ -635,12 +424,11 @@ if len(args) >= 2 and isinstance(args[1], int):
 # 四、注意事项
 
 1. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤
-2. 所有路径使用 `${ROOT_DIR}` 变量表示根目录，需自行替换为实际路径
-3. 不要修改 sparse 目录下的 API
-4. 确保不破坏现有功能，保持向后兼容性
-5. 开发专用装饰器时参考现有实现
-6. 代码中不允许提交中文，代码注释采用英文
-7. 复盘记忆中的历史易错点，避免重复犯错
+2. 不要修改 sparse 目录下的 API
+3. 确保不破坏现有功能，保持向后兼容性
+4. 开发专用装饰器时参考现有实现
+5. 代码中不允许提交中文，代码注释采用英文
+6. 复盘记忆中的历史易错点，避免重复犯错
 
 # 五、常见问题处理
 
