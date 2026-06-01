@@ -3,7 +3,7 @@
 tensordot
 -------------------------------
 
-.. py:function:: paddle.tensordot(x, y, axes=2, name=None)
+.. py:function:: paddle.tensordot(x, y, axes=2, name=None, out=None)
 
 Tensor 缩并运算（Tensor Contraction），即沿着 axes 给定的多个轴对两个 Tensor 对应元素的乘积进行加和操作。
 
@@ -20,9 +20,9 @@ shape = [2,2,3]的 ``res`` 张量为 a,b 两个张量沿着 a 张量的最后一
 参数
 ::::::::::::
 
-    - **x** （Tensor）- 缩并运算操作的左 Tensor，数据类型为 ``float16`` 或 ``float32`` 或 ``float64``。
-    - **y** （Tensor）- 缩并运算操作的右 Tensor，与 ``x`` 具有相同的数据类型。
-    - **axes** （int|tuple|list|Tensor）- 指定对 ``x`` 和 ``y`` 做缩并运算的轴，默认值为整数 2。
+    - **x** （Tensor）- 缩并运算操作的左 Tensor，数据类型为 ``float16`` 或 ``float32`` 或 ``float64``。别名 ``a``。
+    - **y** （Tensor）- 缩并运算操作的右 Tensor，与 ``x`` 具有相同的数据类型。别名 ``b``。
+    - **axes** （int|tuple|list|Tensor）- 指定对 ``x`` 和 ``y`` 做缩并运算的轴，默认值为整数 2。别名 ``dims``。
 
         1. ``axes`` 可以是一个非负整数。若输入的是一个整数 ``n``，则表示对 ``x`` 的后 ``n`` 个轴和对 ``y`` 的前 ``n`` 个轴进行缩并运算。
 
@@ -32,6 +32,7 @@ shape = [2,2,3]的 ``res`` 张量为 a,b 两个张量沿着 a 张量的最后一
 
         4. ``axes`` 可以是一个 Tensor，这种情况下该 Tensor 会被转换成 list，然后应用前述规则确定做缩并运算的轴。请注意，输入 Tensor 类型的 ``axes`` 只在动态图模式下可用。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 ::::::::::::

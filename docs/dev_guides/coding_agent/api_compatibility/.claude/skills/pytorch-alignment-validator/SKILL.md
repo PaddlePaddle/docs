@@ -8,15 +8,15 @@ disable-model-invocation: false
 
 请严格按以下 Step 依次执行，不要自行修改或跳过 Step：
 
-## Step 1: 标记已完成的 API（仅首次执行）
+## Step 1: 标记已完成的 API
 1. 定位文件：`${ROOT_DIR}/PaConvert/paconvert/api_mapping.json`
 2. 将已完成的 PyTorch API 的 Matcher 设置为`ChangePrefixMatcher`，其他字段全部删除掉
 
 **注意**：
 - torch.abs、torch.abs_、torch.Tensor.abs、torch.Tensor.abs_是四个不同的 API，需分别标记为 `ChangePrefixMatcher`。
-- ⚠️ **`ChangePrefixMatcher` 是任务最终验收金标准，不可妥协**：只要 API 已完成代码层面的对齐，就必须标记为 `ChangePrefixMatcher`，**绝对禁止**为了让测试通过而将 Matcher 改为其他类型（如 GenericMatcher、SliceScatterMatcher 等）。
+- ⚠️ **`ChangePrefixMatcher` 是任务最终验收金标准，不可妥协**：只有标记为 `ChangePrefixMatcher`，才能判定API 已完成代码层面的对齐，**绝对禁止**为了让测试通过而将 Matcher 改为其他类型（如 GenericMatcher、SliceScatterMatcher 等）。
 
-## Step 2: 增加测试用例（仅首次执行）
+## Step 2: 增加测试用例
 **目的：** 判断是否满足如下测试规范，如不满足，则需增加测试用例使之符合规范
 
 **修改位置：**

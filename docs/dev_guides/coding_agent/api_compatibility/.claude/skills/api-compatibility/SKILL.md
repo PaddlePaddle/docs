@@ -270,8 +270,8 @@ Paddle 支持自动生成 inplace API，无需在`ops.yaml`中单独配置。当
     Step 3.2: 编译并运行（每次改动均需执行）
 
 ### Step 4：对齐验证（调用 `/pytorch-alignment-validator` skill）
-    Step 4.1: 标记已完成的 API（仅首次执行）
-    Step 4.2: 增加测试用例（仅首次执行）
+    Step 4.1: 标记已完成的 API
+    Step 4.2: 增加测试用例
     Step 4.3: 运行单元测试（每次改动均需执行）
 
 ### Step 5：文档更新（调用 `/api-docs-updater` skill）
