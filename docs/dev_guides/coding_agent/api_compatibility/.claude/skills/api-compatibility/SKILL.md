@@ -6,39 +6,13 @@ allowed-tools: Read Write Edit Bash Glob Grep Agent Skill WebFetch WebSearch
 
 # 一、项目目标
 
-**使 Paddle API 与 PyTorch API 完全对齐**，实现：
+用户提供待对齐的 Pytorch API 列表 $ARGUMENTS，通过调用多个 skill，使 Paddle API 与 PyTorch API 完全对齐，实现：
 - 对于任意 PyTorch API 用法，只需将 `torch.*` 替换为 `paddle.*`
 - 计算结果完全一致（数值精度、行为逻辑）
 
-# 二、输入输出规范
+# 二、背景知识
 
-## 2.1 输入
-
-用户提供待对齐的 Pytorch API 列表，格式如下：
-```markdown
-torch.argmax
-torch.log2
-torch.logsumexp
-```
-
-本轮用户输入的 Pytorch API 为$ARGUMENTS，需对其完成对齐工作。
-
-## 2.2 输出
-
-用户输入列表的对齐情况，格式示例：
-```markdown
-# API 对齐结果统计
-
-|API 名称|对齐状态|改动方案|备注|
-|-|-|-|-|
-|torch.argmax|已对齐|方案 2|-|
-|torch.log2|已对齐|无需改动|<简介为何无需改动>例如：未查询到差异文件，两者 API 完全一致|
-|torch.logsumexp|未对齐|方案 1|<简介失败原因>例如：方案 1 暂不支持修改|
-```
-
-# 三、背景知识
-
-### 3.1 工作目录说明
+### 2.1 工作目录说明
 
 **ROOT_DIR 变量定义**：
 - `${ROOT_DIR}` 表示项目的根工作目录（如 `/workspace`），通常为包含 `Paddle`、`PaConvert`、`docs` 子目录的父目录
@@ -51,7 +25,7 @@ torch.logsumexp
 | docs | `${ROOT_DIR}/docs` | Paddle 文档仓库，包含所有 Paddle API 中文文档 | Step5：文档更新 |
 
 
-### 3.2 相关文件位置
+### 2.2 相关文件位置
 
 |**功能模块**|**检索关键字**|**文件路径**|**举例**|**注意**|
 |-|-|-|-|-|
@@ -63,7 +37,7 @@ torch.logsumexp
 |Paddle API 兼容性单测位置|`test_api_compatibility_part[1-9]\.py`|`${ROOT_DIR}/Paddle/test/legacy_test/`|test_api_compatibility_part3.py||
 |Pytorch API 单测位置|`test_{api_name}.py`|`${ROOT_DIR}/PaConvert/tests/`|test_tan.py||
 
-### 3.3 Paddle API 架构（5 层调用栈）
+### 2.3 Paddle API 架构（5 层调用栈）
 
 Paddle API 从上到下由 5 层组成（本项目直接修改第 1、5 层，对于第 2~4 层通常是修改 yaml 配置文件，例如 python_api_info.yaml）：
 
@@ -93,7 +67,7 @@ Tensor atan(const Tensor& x, ...)
 void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 ```
 
-### 3.4 专业术语表
+### 2.4 专业术语表
 
 | 术语 | 定义 | 备注 |
 |------|------|------|
@@ -109,7 +83,7 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 | API 差异文档 | 中文描述了 Pytorch API 与 Paddle API 两者的行为差异 | 位于 `${ROOT_DIR}/docs/docs/guides/model_convert/convert_from_pytorch/api_difference/` 下一级子目录，命名类似 torch.tan.md |
 | compat 类型 API | 兼容性 API | 为保持后向兼容而添加的 API，能实现除 API 路径之外的完全对齐|
 
-### 3.5 类方法 API 实现原理
+### 2.5 类方法 API 实现原理
 
 **概念**：类方法 API（如 `torch.Tensor.abs`）和普通 API（如 `torch.abs`）是不同 API，但实现一致，合并处理即可。Paddle 通过 patch 机制将方法动态添加到 Tensor 类上。
 
@@ -162,7 +136,7 @@ tensor_method_func = [
 - ✅ 在 patch 文件中搜索，或搜索对应的普通方法 `def abs(`
 - ❌ 不要搜索 `class Tensor`（方法通过 setattr 动态添加，不在类定义中）
 
-### 3.6 API 信息获取方式
+### 2.6 API 信息获取方式
 
 在开展 API 对齐工作过程中，需要获取 PyTorch API 和 Paddle API 的相关信息。
 
@@ -201,7 +175,7 @@ x = paddle.to_tensor([1.0, -2.0, 3.0])
 print(paddle.abs(x))
 ```
 
-### 3.7 Inplace API 实现原理
+### 2.7 Inplace API 实现原理
 
 **概念说明**：
 - 注意要区分**inplace API**和**非 inplace API**，两者是不同的 API，不要混为一谈
@@ -237,7 +211,7 @@ Paddle 支持自动生成 inplace API，无需在`ops.yaml`中单独配置。当
     use_default_mapping : True
 ```
 
-# 四、整体工作流程
+# 三、整体工作流程
 
 ## 流程重要约束
 1. 接收用户输入的待对齐 API 列表（如 `torch.argmax`, `torch.log2`, `torch.logsumexp`）
@@ -314,7 +288,7 @@ Paddle 支持自动生成 inplace API，无需在`ops.yaml`中单独配置。当
 5. Step5: 文档更新 → 修改 docs 目录文件，更新 paddle.argmax 文档
 ```
 
-# 五、编程风格指南
+# 四、编程风格指南
 
 - 最小化注释；保持简洁；代码应当自解释、自文档化。
 - 注释应有实际价值，例如提醒读者一些非显而易见、无法从局部推断的全局背景。
@@ -325,9 +299,9 @@ Paddle 支持自动生成 inplace API，无需在`ops.yaml`中单独配置。当
 - 新增代码注释仅使用 ASCII 字符，不引入 Unicode 字符（如弯引号、破折号、箭头、非 ASCII 字母）。对未改动注释中已有的 Unicode 保持原样，仅对新增或改写的注释执行此规则。
 - 如有不确定，选择更简单、更简洁的实现。
 
-# 六、各 Skill 说明
+# 五、各 Skill 说明
 
-## 6.1 总控 Skill：api-compatibility（本文件）
+## 5.1 总控 Skill：api-compatibility（本文件）
 
 **功能定位**：
 - 本文件（`api-compatibility`）是项目的**总控 skill**，负责整体统筹规划
@@ -343,7 +317,7 @@ Paddle 支持自动生成 inplace API，无需在`ops.yaml`中单独配置。当
 - 本项目专用 skill 为下表所列的子 skill
 - 优先使用本项目专用 skill，确保流程一致性和可控性，除非其无法完成任务，否则**尽量不调用其他 skill**
 
-## 6.2 项目专用 Skill 列表
+## 5.2 项目专用 Skill 列表
 
 | Skill | 对应步骤 |
 |-------|--------|
@@ -357,7 +331,7 @@ Paddle 支持自动生成 inplace API，无需在`ops.yaml`中单独配置。当
 | `/pytorch-alignment-validator` | Step4：对齐验证 |
 | `/api-docs-updater` | Step5：文档更新 |
 
-# 七、自进化机制
+# 六、自进化机制
 
 **本项目涉及的所有 skill 均具备自进化能力**，通过持续学习和优化来提升工作质量。修改的 SKILL 目录为：`${ROOT_DIR}/docs/docs/dev_guides/coding_agent/api_compatibility/.claude/skills`
 
@@ -376,11 +350,11 @@ Paddle 支持自动生成 inplace API，无需在`ops.yaml`中单独配置。当
 - 禁止在 SKILL 中添加任何网络代理的内容，以免安全信息泄露
 - 禁止在代码中编写任何网络代理的内容，以免安全信息泄露
 
-# 八、注意事项
+# 七、注意事项
 
 1. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤
 
-# 九、常见问题处理
+# 八、常见问题处理
 
 ### Q1：为什么有些 API 对齐失败？
 
