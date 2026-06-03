@@ -1,6 +1,7 @@
 ---
 name: cpp-sink
 description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2：API 代码修改，实施『C++下沉』方案。通过将 Python API 下沉至 C++层，可以减少 Python 装饰器带来的性能开销，提升 API 调度效率。
+context: fork
 disable-model-invocation: false
 ---
 

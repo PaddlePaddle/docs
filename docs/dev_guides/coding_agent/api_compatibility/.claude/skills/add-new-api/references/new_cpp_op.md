@@ -4,7 +4,7 @@
 
 ## 一、获取并分析 PyTorch API 信息
 
-若尚未获得 PyTorch API 的相关信息，则自行获取，获取方式请参考`api-compatibility/SKILL.md` 中的「3.6 API 信息获取方式」章节。
+若尚未获得 PyTorch API 的相关信息，则自行获取，获取方式请参考`api-compatibility/SKILL.md` 中的「API 信息获取方式」内容。
 
 
 然后分析 PyTorch API 的功能和行为，在 Paddle 中新增对应的 C++ 算子和 Python API，使其与 PyTorch API 保持一致。具体包括：API 名称、调用路径、参数名及参数功能等。

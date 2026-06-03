@@ -6,7 +6,7 @@ disable-model-invocation: false
 
 # 一、标准工作流程
 
-## Step 1：编写测试用例（仅首次执行）
+## Step 1：编写测试用例
 
 在 `${ROOT_DIR}/Paddle/test/legacy_test/` 目录下找到 `test_api_compatibility[1-9]\.py` 中数字最大的文件，在该文件中添加测试。
 
@@ -125,7 +125,7 @@ if paddle.device.is_compiled_with_cuda():
     out_gpu = paddle.<api_name>(x, device="gpu:0")
 ```
 
-## Step 2：编译并运行单测（每次改动均需执行）
+## Step 2：编译并运行单测（每次修改代码均需执行编译）
 
 单测编写完成后，按以下命令验证执行：
 

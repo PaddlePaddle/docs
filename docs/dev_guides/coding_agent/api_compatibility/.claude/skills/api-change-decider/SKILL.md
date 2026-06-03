@@ -110,38 +110,60 @@ disable-model-invocation: false
 
 ## Step 1: 获取差异信息
 
-按优先级依次查找差异信息，一旦获取完整信息立即停止，这是"三选一"而非"三者都要"。
+两种优先级是"二选一"而非"两者都要"，一旦获取完整信息立即停止：
 
-### 优先级 1：查阅 API 差异文档
-查阅 `${ROOT_DIR}/docs/docs/guides/model_convert/convert_from_pytorch/api_difference/torch.{api_name}.md`。如果文档存在且完整（包含对应 Paddle API、转写示例），则以此为准并停止查找；否则继续优先级 2。
+### 优先级 1：查阅差异文档和转写配置
 
-**注意**：
-- 文档可能有细微错误，当发现问题可自行分析，或结合源码进一步确认
-- 一个 API 可能涉及多种差异，差异文档标题仅反映主要分类，必须通读完整参数映射表提取所有差异，不能仅看标题
-- 忽略参数：torch 侧 `generator`、`memory_format`、`layout`；paddle 侧 `name`。其他参数不可忽略
+包含两个信息源，需要综合两者来提取差异信息：
 
-### 优先级 2：查询转写配置
-查询 `${ROOT_DIR}/PaConvert/paconvert/api_mapping.json` 或 `attribute_mapping.json`，根据 Matcher 类型分析差异分类。如果能直接从配置中提取完整差异信息，则以此为准并停止查找；否则继续优先级 3。
+#### 1.1 查阅差异文档
 
-| 字段 | 对应差异分类 |
-|------|------------|
+**查阅路径**：
+```
+${ROOT_DIR}/docs/docs/guides/model_convert/convert_from_pytorch/api_difference/torch.{api_name}.md
+```
+
+**注意事项**：
+- **文档可能滞后或有误**：发现问题时应自行分析，或结合转写配置/源码进一步确认
+- **标题不代表全部**：一个 API 可能涉及多种差异，文档标题仅反映主要分类，**必须通读完整参数映射表提取所有差异**，不能仅看标题
+- **忽略参数规则**：
+  - torch 侧忽略：`generator`、`memory_format`、`layout`
+  - paddle 侧忽略：`name`
+  - 其他参数不可忽略
+
+#### 1.2 查阅转写配置
+
+**查阅路径**：
+```
+${ROOT_DIR}/PaConvert/paconvert/api_mapping.json
+${ROOT_DIR}/PaConvert/paconvert/attribute_mapping.json
+```
+
+**根据 Matcher 类型分析差异分类**：
+
+| Matcher 类型 | 对应差异分类 |
+|--------------|-------------|
 | `ChangePrefixMatcher` | API 完全一致 |
 | `ChangeAPIMatcher` / `NumelMatcher` / `TensorFunc2PaddleFunc` / `Func2Attribute` / `Attribute2Func` | 仅 API 调用方式不一致（若同时包含 `unsupport_args`、`kwargs_change` 字段，则存在多重差异） |
 | `GenericMatcher` | 参数名不一致 / paddle 参数更多 / 参数默认值不一致 / torch 参数更多 |
+| 其他自定义 Matcher | 参数用法/类型不一致 / 组合替代实现 |
+
+**根据配置字段分析差异**：
+
+| 字段名 | 对应差异分类 |
+|--------|-------------|
 | `paddle_api` | API 映射关系 |
 | `kwargs_change` | 参数名不一致 |
 | `unsupport_args` | torch 参数更多（部分不支持） |
 | `paddle_default_kwargs` | 参数默认值不一致 / paddle 参数更多 |
-| 其他自定义 Matcher | 参数用法/类型不一致 / 组合替代实现 |
 
-**注意**：
-- 更多 Matcher 可参考 `api_matcher.py` 分析。
+**注意**：更多 Matcher 类型可参考 `api_matcher.py` 源码分析。
 
-### 优先级 3：自行获取 API 信息
+### 优先级 2：自行获取 API 信息
 
-当优先级 1 和优先级 2 均无法获取完整差异信息时，通过多种方式自行获取 PyTorch API 和 Paddle API 的信息，进行对比分析。
+当优先级 1 无法获取完整差异信息时，通过多种方式自行获取 PyTorch API 和 Paddle API 的信息，进行对比分析。
 
-获取方式请参考`api-compatibility/SKILL.md` 中的「3.6 API 信息获取方式」章节。
+获取方式请参考`api-compatibility/SKILL.md` 中的「API 信息获取方式」内容。
 
 ## Step 2：提取差异信息
 

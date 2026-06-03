@@ -29,12 +29,3 @@ disable-model-invocation: false
 | `python/paddle/tensor/__init__.py` | `python/paddle/compat/__init__.py` |
 | `python/paddle/nn/__init__.py` | `python/paddle/compat/nn/__init__.py` |
 | `python/paddle/nn/functional/__init__.py` | `python/paddle/compat/nn/functional/__init__.py` |
-
-
-# 更多细节
-
-请参考 **add-new-api** 的 SKILL.md 了解：
-- 三种场景的完整工作流程
-- 背景知识（目录组织结构等）
-- 注意事项
-- 常见问题处理
