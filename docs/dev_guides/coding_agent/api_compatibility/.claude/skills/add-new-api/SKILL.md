@@ -107,7 +107,7 @@ lt = less_than
 
 Paddle 通过 patch 机制将 paddle.tensor 模块中的函数动态 setattr 到 paddle.Tensor，因此只需在此处声明即可自动注入为 Tensor 方法，无需修改 class Tensor 定义。
 
-### 类型二：类方法/属性别名
+### 类型二：类成员方法/属性别名
 
 适用条件：需要对齐类的方法或属性，根据已有实现与目标形式的性质差异，分为三种情况处理。
 
@@ -115,58 +115,112 @@ Paddle 通过 patch 机制将 paddle.tensor 模块中的函数动态 setattr 到
 
 当已有实现与目标形式性质相同时（都是方法或都是属性），直接使用别名赋值即可。
 
-典型示例：
-```python
-# 方法 → 方法
-get_submodule = get_sublayer
-set_submodule = set_sublayer
+**Layer 类示例（方法 → 方法）：**
 
-# 属性 → 属性
-grad = _grad
+```python
+# python/paddle/nn/layer/layers.py
+
+class Layer:
+    def get_sublayer(self, target: str) -> Layer:
+        # original implementation
+        ...
+
+    def set_sublayer(self, target: str, layer: Layer) -> None:
+        # original implementation
+        ...
+
+    # 在类末尾添加别名（对齐 PyTorch 的 get_submodule/set_submodule）
+    get_submodule = get_sublayer
+    set_submodule = set_sublayer
 ```
 
-操作步骤：在目标类中直接添加别名赋值。
+**Tensor 方法示例（以 bar 对齐 torch.Tensor.bar 为例）：**
+
+假设已有方法 `original_bar`，需在注入列表中直接注册别名：
+
+```python
+# python/paddle/base/dygraph/math_op_patch.py
+
+# 在注入列表中直接注册（方法→方法，无需额外实现）
+(
+    'bar',  # 新 API 名称
+    original_bar,  # 指向已有方法
+),
+```
 
 #### 情况二：方法 → 属性
 
 当已有实现是方法（需调用），目标形式是属性（直接访问）时，需使用 `@property` 装饰器包装原有方法。
 
-典型示例：PyLayerContext.saved_tensors（对齐 torch.saved_tensors，原有 saved_tensor() 需加括号调用）
-
+**简单示例：**
 ```python
-# python/paddle/autograd/py_layer.py
-
 class PyLayerContext:
     def saved_tensor(self):
-        # original method implementation
         ...
 
     @property
     def saved_tensors(self):
-        return self.saved_tensor()  # delegate to existing method
+        return self.saved_tensor()
 ```
+
+**Tensor 属性示例：**
+
+假设已有方法 `rank()` 需调用，现改为属性 `ndims` 直接访问：
+
+```python
+# python/paddle/base/dygraph/math_op_patch.py
+
+@property
+def ndims(var: Tensor) -> int:
+    return var.rank()
+```
+
+然后在注入列表中注册为元组形式（属性用元组）：
+```python
+(
+    'ndims',
+    ndims,
+),
+```
+
+这样 `tensor.ndims` 可直接访问，无需括号调用。
 
 #### 情况三：属性 → 方法
 
 当已有实现是属性（直接访问），目标形式是方法（需调用）时，需定义新方法返回属性值。
 
-典型示例：假设 Paddle 有属性 `x.shape`，需对齐 PyTorch 方法 `x.get_shape()`：
-
+**简单示例：**
 ```python
-class Tensor:
+class Layer:
     @property
-    def shape(self):
-        # original property implementation
+    def parameters(self):
         ...
 
-    def get_shape(self):
-        """New method that delegates to the existing property."""
-        return self.shape
+    def get_parameters(self):  # 新增方法形式
+        return list(self.parameters)
 ```
 
-若目标类是 `paddle.Tensor`，由于 Python 层无对应 class 定义，还需额外通过 patch 机制动态注入上述别名。
+**Tensor 方法示例：**
 
-**新增 Tensor 方法的详细说明请参考**：主 SKILL 文档的「3.5 类方法 API 实现原理」章节。
+假设已有属性 `dims` 直接访问，现添加方法 `get_dims` 需调用：
+
+```python
+# python/paddle/base/dygraph/math_op_patch.py
+
+# dims 是已有属性，get_dims 是其方法形式
+def get_dims(var: Tensor) -> list:
+    return list(var.dims)
+```
+
+然后在注入列表中注册：
+```python
+(
+    'get_dims',
+    get_dims,
+),
+```
+
+这样就可以通过 `tensor.get_dims()` 方法调用来获取 dims。
 
 ### 类型三：命名空间别名
 

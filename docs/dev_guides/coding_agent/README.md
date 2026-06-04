@@ -1,18 +1,38 @@
-# AI 编程 Rules 目录
+# AI 编程 Agent 规则目录
 
-## 目录说明
-本目录存放 AI 编程（Agent）专用规则文件（*.mdr），用于指导 Agent 在 Paddle 代码库中的自动化开发任务。
-Rules 文件同时可作为人工开发者的学习参考，但**必须搭配 Agent 使用**，单独执行无效。
+## 什么是 Agent 规则
 
-## 使用须知
-1. Rules 文件仅对 Agent 生效，人类开发者请勿直接运行或依赖其单独完成工作。
-2. 使用前请确保本地环境已正确配置，例如：
-   - 代码目录：Paddle 源码根目录（`Paddle/`）
-   - 知识语料：已准备好的 API 映射表、设计文档、历史 PR 等
-   - 编译环境：本地可编译运行 Paddle 的环境
+Agent 规则是一组预定义的配置文件，用于指导 AI 编程助手（如 Claude Code）在 Paddle 代码库中执行自动化开发任务。
 
-## 贡献与维护
-- Rules 需同步更新，确保其与 Paddle 最新版本保持一致。
-- 欢迎贡献更多 Rules，提升 Agent 的智能化水平。
+**核心组成**：
+- **SKILL.md**：定义 AI 可执行的技能，包含任务流程、操作步骤、注意事项
+- **CLAUDE.md**：定义项目背景信息，自动加载到 AI 上下文中
 
-> 本文档由 AI Agent 自动生成，日期：2025-12-31
+**工作原理**：
+1. 用户通过 `/skill-name` 调用技能
+2. AI 读取 SKILL.md 中的指令
+3. AI 按照预定义流程执行任务
+
+**优势**：
+- 任务流程标准化，减少人工干预
+- 知识沉淀，经验可持续积累
+- 多 Skill 协作，完成复杂任务
+
+## 目录结构
+
+```
+coding_agent/
+├── README.md                           # 本文件
+└── api_compatibility/                  # Paddle API 对齐 PyTorch 项目
+    ├── README.md
+    ├── install.sh
+    └── .claude/
+        ├── CLAUDE.md
+        └── skills/
+```
+
+## 项目列表
+
+| 项目 | 功能 |
+|------|------|
+| [api_compatibility](api_compatibility/) | 自动对齐 Paddle API 与 PyTorch API |

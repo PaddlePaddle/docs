@@ -1,6 +1,7 @@
 ---
 name: python-decorator
 description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2：API 代码修改，实施『Python 装饰器』方案。通过 Python 装饰器，在 Python 层为 Paddle API 实现参数名称、参数顺序、参数类型和参数用法的重载，实现 PyTorch 风格的 API 调用，并保持 Paddle API 的向后兼容性。
+context: fork
 disable-model-invocation: false
 ---
 
@@ -429,6 +430,7 @@ if len(args) >= 2 and isinstance(args[1], int):
 4. 开发专用装饰器时参考现有实现
 5. 代码中不允许提交中文，代码注释采用英文
 6. 复盘记忆中的历史易错点，避免重复犯错
+7. **简单别名优先**：仅参数名不同时，使用通用别名装饰器，无需创建专用装饰器
 
 # 五、常见问题处理
 
