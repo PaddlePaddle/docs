@@ -11,7 +11,7 @@ take
 参数
 :::::::::
 
-    - **x**  (Tensor) - 输入的 Tensor，支持 int32、int64、float32、float64 数据类型。
+    - **x**  (Tensor) - 输入的 Tensor，支持 int32、int64、float32、float64 数据类型。别名 ``input``。
     - **index**  (Tensor) - 索引矩阵，支持 int32、int64 数据类型。
     - **mode**  (str，可选) - 索引越界处理，可选 ``'raise'``，``'wrap'``，``'clip'``，默认为 ``'raise'``。
 
