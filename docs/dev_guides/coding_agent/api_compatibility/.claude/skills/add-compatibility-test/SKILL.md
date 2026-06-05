@@ -182,6 +182,7 @@ self.dtype = np.float32
 3. 不要新建测试文件，直接在已有的 `test_api_compatibility[1-9]\\.py` 中添加
 4. 测试类命名遵循 `Test<APIName>API` 格式，如 `TestArgmaxAPI`
 5. 确保测试覆盖所有新增的参数别名和参数用法
+6. 代码测试覆盖率要求：务必要确保新增所有代码行数都能够在单测中跑到，否则无法通过 CI 检查
 
 # 四、异常回退原则
 
