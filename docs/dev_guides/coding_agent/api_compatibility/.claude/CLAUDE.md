@@ -135,5 +135,5 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 - 代码自解释，最小化注释；注释应有实际价值（提醒非显而易见的全局背景）
 - 不要为只使用一次的简短逻辑创建辅助函数，除非能显著提升可读性
 - 与现有代码风格保持一致
-- 新增注释仅使用 ASCII 字符（不引入 Unicode）；未改动的注释保持原样
+- 新增注释仅使用 ASCII 字符（不引入 Unicode，不能使用中文）；未改动的注释保持原样
 - 不确定时，选择更简单的实现

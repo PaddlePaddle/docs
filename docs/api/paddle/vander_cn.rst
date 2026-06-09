@@ -11,7 +11,7 @@ vander
 参数
 ::::::::::
     - **x** (Tensor) - 输入的 Tensor，必须是 1-D Tensor, 支持的数据类型：int32、int64、float32、float64、complex64、complex128。
-    - **n** (int，可选) - 输出中的列数。如果未指定 n，则返回一个方阵(n = len(x))。
+    - **n** (int，可选) - 输出中的列数。如果未指定 n，则返回一个方阵(n = len(x))。别名 ``N``。
     - **increasing** (bool，可选) - 列的幂次顺序。如果为 True，则幂次从左到右增加，如果为 False（默认值），则幂次顺序相反。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
