@@ -1,6 +1,6 @@
 ---
 name: add-new-api
-description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2：API 代码修改，实施『新增 API』方案。通过新增 Paddle API（新增 API 别名、新增 Python 层 API、新增 C++算子），覆盖 Pytorch API 调用路径，实现与 PyTorch API 行为对齐。
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2 代码修改，实施『新增 API』方案。通过新增 Paddle API（新增 API 别名、新增 Python 层 API、新增 C++算子），覆盖 Pytorch API 调用路径，实现与 PyTorch API 行为对齐。
 context: fork
 disable-model-invocation: false
 ---

@@ -1,6 +1,6 @@
 ---
-name: add-compatibility-test
-description: 负责《Paddle API 对齐 PyTorch 项目》中 Step3：兼容性测试，为已修改的 Paddle API 添加兼容性单测并执行验证，确保 API 的 Paddle 用法与 PyTorch 用法均能正常工作。
+name: compatibility-test
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step3 兼容测试，为已修改的 Paddle API 添加兼容性单测并执行验证，确保 API 的 Paddle 用法与 PyTorch 用法均能正常工作。
 disable-model-invocation: false
 ---
 
@@ -131,7 +131,7 @@ if paddle.device.is_compiled_with_cuda():
 
 ```bash
 cd ${ROOT_DIR}/Paddle/build
-cmake .. && make -j$(nproc)
+cmake .. && make -j$(nproc) > compile.log 2>&1
 python test_xxx.py
 ```
 
@@ -197,7 +197,7 @@ self.dtype = np.float32
    - 回退后再进入本步骤（Step3），则只需执行：编译并运行，其他步骤无需执行
 
 3. **若判断为方案选择错误**（如当前方案不适用、底层不支持等）：
-   - 回退到总步骤 Step1（方案决策）重新决策
+   - 回退到总步骤 Step1（选择方案）重新选择
    - 回退后再进入本步骤（Step3），则只需执行：编译并运行，其他步骤无需执行
 
 # 五、常见问题处理
