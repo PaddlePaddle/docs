@@ -19,6 +19,7 @@ paddle.autograd 目录下包含飞桨框架支持的自动微分相关的 API �
     :widths: 10, 30
 
     " :ref:`backward <cn_api_paddle_autograd_backward>` ", "计算给定的 Tensors 的反向梯度"
+    " :ref:`enable_grad <cn_api_paddle_autograd_enable_grad>` ", "创建启用动态图梯度计算的上下文"
     " :ref:`hessian <cn_api_paddle_autograd_hessian>` ", "计算因变量 ``ys`` 对 自变量 ``xs`` 的海森矩阵"
     " :ref:`jacobian <cn_api_paddle_autograd_jacobian>` ", "计算因变量 ``ys`` 对 自变量 ``xs`` 的雅可比矩阵"
     " :ref:`saved_tensors_hooks <cn_api_paddle_autograd_saved_tensors_hooks>` ", "用于动态图中为保存的 Tensor 注册一对 pack / unpack hook"
