@@ -1,6 +1,6 @@
 ---
 name: add-new-compat-api
-description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2：API 代码修改，实施『新增 compat 类型 API』方案。在 `paddle.compat` 命名空间下新增 API，实现与 PyTorch API 行为对齐。
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2 代码修改，实施『新增 compat 类型 API』方案。在 `paddle.compat` 命名空间下新增 API，实现与 PyTorch API 行为对齐。
 context: fork
 disable-model-invocation: false
 ---

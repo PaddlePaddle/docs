@@ -12,15 +12,15 @@ api_compatibility/                  # 本目录
     ├── CLAUDE.md                   # 项目背景（自动加载）
     └── skills/                     # Skill 定义
         ├── api-compatibility/      # 总控
-        ├── api-change-decider/     # Step1：方案决策
-        ├── python-decorator/       # Step2：Python 装饰器
-        ├── cpp-sink/               # Step2：C++下沉
-        ├── modify-origin-api/      # Step2：修改原有 API
-        ├── add-new-api/            # Step2：新增 API
-        ├── add-new-compat-api/     # Step2：新增 compat API
-        ├── add-compatibility-test/ # Step3：兼容性测试
-        ├── pytorch-alignment-validator/  # Step4：对齐验证
-        ├── api-docs-updater/       # Step5：文档更新
+        ├── select-solution/        # Step1 选择方案
+        ├── python-decorator/       # Step2 Python 装饰器
+        ├── cpp-sink/               # Step2 C++下沉
+        ├── modify-origin-api/      # Step2 修改原有 API
+        ├── add-new-api/            # Step2 新增 API
+        ├── add-new-compat-api/     # Step2 新增 compat API
+        ├── compatibility-test/     # Step3 兼容测试
+        ├── pytorch-test/           # Step4 Pytorch 测试
+        ├── update-docs/            # Step5 更新文档
         └── create-pr/              # 提交 PR
 ```
 
@@ -37,12 +37,12 @@ api_compatibility/                  # 本目录
 ```
 
 ## 安装
+PROJECT_ROOT 需提前下载 `Paddle/`、`PaConvert/`、`docs/` 三个子目录。
 
 ```bash
-./install.sh /path/to/PROJECT_ROOT
+./install.sh ${PROJECT_ROOT}
+export PYTHONPATH="${PROJECT_ROOT}/Paddle/build/python:${env:PYTHONPATH}"
 ```
-
-PROJECT_ROOT 需包含 `Paddle/`、`PaConvert/`、`docs/` 三个子目录。
 
 ## 使用方式
 
@@ -53,18 +53,18 @@ PROJECT_ROOT 需包含 `Paddle/`、`PaConvert/`、`docs/` 三个子目录。
 
 **单独调用 Skill**：
 ```bash
-/api-change-decider torch.atan    # Step1: 方案决策
-/cpp-sink torch.atan              # Step2: 代码修改
-/add-compatibility-test torch.atan # Step3: 兼容测试
-/pytorch-alignment-validator torch.atan  # Step4: 对齐验证
-/api-docs-updater torch.atan      # Step5: 文档更新
-/create-pr torch.atan             # 提交 PR
+/select-solution torch.atan         # Step1: 选择方案
+/cpp-sink torch.atan                # Step2: 代码修改
+/compatibility-test torch.atan      # Step3: 兼容测试
+/pytorch-test torch.atan            # Step4: Pytorch 测试
+/update-docs torch.atan             # Step5: 更新文档
+/create-pr torch.atan               # 提交 PR
 ```
 
 ## 工作流程
 
 ```
-Step1 方案决策 → Step2 代码修改 → Step3 兼容测试 → Step4 对齐验证 → Step5 文档更新
+Step1 选择方案 → Step2 代码修改 → Step3 兼容测试 → Step4 Pytorch 测试 → Step5 更新文档
 ```
 
 ## 详细文档

@@ -140,21 +140,20 @@ x = paddle.to_tensor([1.0, -2.0, 3.0])
 print(paddle.abs(x))
 ```
 
-
 # 三、整体工作流程
 ## 流程概览
 ```
-输入 API 列表 → Step1:所有 API 方案决策 → Step2:所有 API 代码修改 → Step3:所有 API 兼容测试 → Step4:所有 API 对齐验证 → Step5:所有 API 文档更新 → 全部完成（流程全自动推进，不用询问）
+输入 API 列表 → Step1:所有 API 选择方案 → Step2:所有 API 代码修改 → Step3:所有 API 兼容测试 → Step4:所有 API Pytorch 测试 → Step5:所有 API 更新文档 → 全部完成
 ```
 
 具体如下：
-### Step 1：方案决策（调用 `/api-change-decider` skill）
+### Step 1：选择方案（调用 `/select-solution` skill）
     Step 1.1: 获取差异信息
     Step 1.2: 提取差异信息
-    Step 1.3: 方案决策
+    Step 1.3: 选择方案
 
 ### Step 2：代码修改
-根据 Step1 的方案决策结果，**按方案分组**，依次调用对应 skill，同一方案的所有 API 在一个 skill 调用中批量处理。
+根据 Step1 的方案选择结果，**按方案分组**，依次调用对应 skill，同一方案的所有 API 在一个 skill 调用中批量处理。
 
 **各方案步骤**：
 #### 方案 1：Python 装饰器（调用 `/python-decorator` skill）
@@ -172,48 +171,36 @@ print(paddle.abs(x))
 #### 方案 4：新增 API（调用 `/add-new-api` skill）
 #### 方案 5：新增 compat 类型 API（调用 `/add-new-compat-api` skill）
 
-### Step 3：兼容测试（调用 `/add-compatibility-test` skill）
+### Step 3：兼容测试（调用 `/compatibility-test` skill）
     Step 3.1: 编写测试用例
     Step 3.2: 编译并运行单测（每次修改代码均需执行编译）
 
-### Step 4：对齐验证（调用 `/pytorch-alignment-validator` skill）
+### Step 4：Pytorch 测试（调用 `/pytorch-test` skill）
     Step 4.1: 标记已完成的 API
     Step 4.2: 增加测试用例
     Step 4.3: 编译并运行单测（每次修改代码均需执行编译）
 
-### Step 5：文档更新（调用 `/api-docs-updater` skill）
+### Step 5：更新文档（调用 `/update-docs` skill）
 
 ## 流程重要约束
-1. 接收用户输入的待对齐 API 列表（如 `torch.argmax`, `torch.log2`, `torch.logsumexp`）
-2. **批量处理模式**：依次执行，每个 Step 结束后才进入下一个 Step
-   - Step1：对**所有 API**进行方案决策
-   - Step2：对**所有 API**进行代码修改
-   - Step3：对**所有 API**进行兼容测试
-   - Step4：对**所有 API**进行对齐验证
-   - Step5：对**所有 API**进行文档更新
-3. **流程正向推进原则**
-   - 正常情况下必须遵循 Step1 → Step2 → Step3 → Step4 → Step5 的顺序
-   - 每个步骤完成后，才能进入下一步骤，禁止跳过任何步骤
-4. **异常回退原则**
-   - 当 Step3 或 Step4 无法通过时，则需要执行回退（Step3 的通过标准是单测可运行通过，Step4 的通过标准是 API 可配置为 ChangePrefixMatcher）：
-     * 若判断为方案选择错误 → 回退到 Step1 重新决策
-     * 若判断为代码实现有误 → 回退到 Step2 调整实现方式
-   - 回退后需从该步骤重新按流程向前推进，例如回退到 Step2，则重新执行 Step2 → Step3 → Step4 → Step5
-5. **允许放弃部分 API**（合理分配精力，最大化成功率）：
-   - 当某个 API 异常回退 3 次以上仍无法通过，则放弃该 API，在最终对齐结果统计表中标记该 API 为"未对齐"，并简要说明放弃原因
-   - 必须完整回退该 API 的所有修改，确保项目处于干净状态，不得保留任何 API"修改了但没改对"的中间状态
-6. 所有 API 都完成 5 个步骤（除被放弃外）后，任务结束
+1. 批量处理：每个 Step 对**所有 API**完成后才进入下一步
+2. 正向推进：必须按 Step1 → Step2 → Step3 → Step4 → Step5 顺序执行，禁止跳过
+3. 异常回退：
+   - Step3/Step4 无法通过时自动回退（Step3 通过标准：单测可运行通过；Step4 通过标准：API 可配置为 ChangePrefixMatcher）
+   - 选择方案错误 → 回退到 Step1；代码实现有误 → 回退到 Step2
+   - 回退后从该步骤重新向前推进
+4. 放弃规则：某个 API 回退 3 次以上仍失败，标记为"未对齐"并完整回退所有修改
 
 ## 工作示例
 
 假设待对齐 API 为 `torch.argmax`：
 
 ```
-1. Step1: 方案决策 → 得到『方案 2：C++下沉』
+1. Step1: 选择方案 → 得到『方案 2：C++下沉』
 2. Step2: 代码修改 → 修改 Paddle 目录文件，将 paddle.argmax 下沉到 C++
 3. Step3: 兼容测试 → 在 Paddle 目录添加兼容性单测，编译并运行验证
-4. Step4: 对齐验证 → 修改 PaConvert 目录文件，编写 Pytorch 单元测试，对比测试，验证对齐
-5. Step5: 文档更新 → 修改 docs 目录文件，更新 paddle.argmax 文档
+4. Step4: Pytorch 测试 → 修改 PaConvert 目录文件，编写 Pytorch 单元测试，对比测试，验证对齐
+5. Step5: 更新文档 → 修改 docs 目录文件，更新 paddle.argmax 文档
 ```
 
 # 四、各 Skill 说明
@@ -238,15 +225,15 @@ print(paddle.abs(x))
 
 | Skill | 对应步骤 |
 |-------|--------|
-| `/api-change-decider` | Step1：方案决策 |
-| `/python-decorator` | Step2：方案 1 Python 装饰器 |
-| `/cpp-sink` | Step2：方案 2 C++下沉 |
-| `/modify-origin-api` | Step2：方案 3 修改原有 API |
-| `/add-new-api` | Step2：方案 4 新增 API |
-| `/add-new-compat-api` | Step2：方案 5 新增 compat API |
-| `/add-compatibility-test` | Step3：兼容测试 |
-| `/pytorch-alignment-validator` | Step4：对齐验证 |
-| `/api-docs-updater` | Step5：文档更新 |
+| `/select-solution` | Step1 选择方案 |
+| `/python-decorator` | Step2 方案 1 Python 装饰器 |
+| `/cpp-sink` | Step2 方案 2 C++下沉 |
+| `/modify-origin-api` | Step2 方案 3 修改原有 API |
+| `/add-new-api` | Step2 方案 4 新增 API |
+| `/add-new-compat-api` | Step2 方案 5 新增 compat API |
+| `/compatibility-test` | Step3 兼容测试 |
+| `/pytorch-test` | Step4 Pytorch 测试 |
+| `/update-docs` | Step5 更新文档 |
 
 # 五、自进化机制
 
@@ -289,14 +276,4 @@ mod = remainder
 
 ### Q2：Inplace API 如何实现？
 
-内部所有操作都必须使用 inplace 方法（`scale_`、`add_` 等），不能用 `*`、`+` 等非 inplace 操作。
-
-**错误**：
-```python
-mv_result = mv_result * alpha  # 创建新 tensor
-```
-
-**正确**：
-```python
-mv_result.scale_(alpha)  # inplace 修改
-```
+与输入 input 相关的所有操作都必须使用 inplace 方法（`scale_`、`add_` 等），不能用 `*`、`+` 等非 inplace 操作。可以参考 addcdiv_的实现。

@@ -1,6 +1,6 @@
 ---
-name: api-docs-updater
-description: 负责《Paddle API 对齐 PyTorch 项目》中 Step5：文档更新，在 API 代码修改完成后，同步更新中文 API 文档，确保文档准确反映 API 的最新行为
+name: update-docs
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step5 更新文档，在 API 代码修改完成后，同步更新中文 API 文档，确保文档准确反映 API 的最新行为
 disable-model-invocation: false
 ---
 
@@ -41,7 +41,7 @@ Step 3. **更新中文文档与英文一致**
    - Overload 说明内容对应
    - out 参数描述对齐
 6. **文档描述原则**
-   - 不要在文档中特别强调"PyTorch 风格"或"PyTorch 签名"
+   - 不要在文档中强调"PyTorch 风格"、"PyTorch 签名"、"PyTorch 适配"等 Pytorch 相关内容
    - 参数别名说明只需简单注明"别名 xxx"
 
 # 四、常见修改模式
