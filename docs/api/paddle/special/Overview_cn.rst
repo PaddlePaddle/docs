@@ -15,4 +15,6 @@ special 函数
     :widths: 10, 30
 
     " :ref:`softmax <cn_api_paddle_special_softmax>` ", "softmax 函数"
+    " :ref:`erf <cn_api_paddle_special_erf>` ", "erf 函数"
     " :ref:`logsumexp <cn_api_paddle_special_logsumexp>` ", "logsumexp 函数"
+    " :ref:`sinc <cn_api_paddle_special_sinc>` ", "sinc 函数"

@@ -83,7 +83,7 @@ str， Layer 的全名
 
 COPY-FROM: paddle.nn.Layer.full_name
 
-register_forward_pre_hook(hook)
+register_forward_pre_hook(hook, *, prepend=False, with_kwargs=False)
 '''''''''
 
 为 Layer 注册一个 ``forward pre-hook`` 函数，该 ``hook`` 函数将会在 ``forward`` 函数调用之前被调用。
@@ -95,6 +95,8 @@ hook(Layer, input) -> None or modified input
 **参数**
 
     - **hook** (function) - 被注册为 ``forward pre-hook`` 的函数
+    - **prepend** (bool，可选) - 若为 True，则该 hook 会在已有的 ``forward pre-hook`` 之前执行。默认值：False。
+    - **with_kwargs** (bool，可选) - 若为 True，则调用 ``forward`` 时传入的关键字参数也会传递给该 hook。默认值：False。
 
 **返回**
 HookRemoveHelper，可通过调用 ``hook_remove_helper.remove()`` 来删除注册的 hook 函数。
@@ -103,7 +105,7 @@ HookRemoveHelper，可通过调用 ``hook_remove_helper.remove()`` 来删除注�
 
 COPY-FROM: paddle.nn.Layer.register_forward_pre_hook
 
-register_forward_post_hook(hook)
+register_forward_post_hook(hook, *, prepend=False, with_kwargs=False, always_call=False)
 '''''''''
 
 为 Layer 注册一个 ``forward post-hook`` 函数，该 ``hook`` 函数将会在 ``forward`` 函数调用之后被调用。
@@ -115,9 +117,15 @@ hook(Layer, input, output) -> None or modified output
 **参数**
 
     - **hook** (function) - 被注册为 ``forward post-hook`` 的函数
+    - **prepend** (bool，可选) - 若为 True，则该 hook 会在已有的 ``forward post-hook`` 之前执行。默认值：False。
+    - **with_kwargs** (bool，可选) - 若为 True，则调用 ``forward`` 时传入的关键字参数也会传递给该 hook。默认值：False。
+    - **always_call** (bool，可选) - 若为 True，则无论 ``forward`` 是否抛出异常，都会尝试调用该 hook。默认值：False。
 
 **返回**
 HookRemoveHelper，可通过调用 ``hook_remove_helper.remove()`` 来删除注册的 hook 函数。
+
+.. note::
+   ``register_forward_hook`` 是 ``register_forward_post_hook`` 的别名，两者在使用和功能上完全等价。
 
 **代码示例**
 
@@ -411,7 +419,7 @@ dict，包含所有参数和可持久行 buffers 的 dict
 
 COPY-FROM: paddle.nn.Layer.state_dict
 
-set_state_dict(state_dict, use_structured_name=True)
+set_state_dict(state_dict, use_structured_name=True, assign=False)
 '''''''''
 
 根据传入的 ``state_dict`` 设置参数和可持久性 buffers。所有参数和 buffers 将由 ``state_dict`` 中的 ``Tensor`` 设置。
@@ -420,6 +428,7 @@ set_state_dict(state_dict, use_structured_name=True)
 
     - **state_dict** (dict) - 包含所有参数和可持久性 buffers 的 dict。
     - **use_structured_name** (bool，可选) - 如果设置为 True，将使用 Layer 的结构性变量名作为 dict 的 key，否则将使用 Parameter 或者 Buffer 的变量名作为 key。默认值：True。
+    - **assign** (bool，可选) - 若为 False，则保留当前 Layer 中 Tensor 的属性；若为 True，则保留 ``state_dict`` 中 Tensor 的属性。默认值：False。
 
 **返回**
     - **missing_keys** (list) - 没有匹配到的参数名列表
@@ -429,6 +438,23 @@ set_state_dict(state_dict, use_structured_name=True)
 **代码示例**
 
 COPY-FROM: paddle.nn.Layer.set_state_dict
+
+load_state_dict(state_dict, strict=True, assign=False)
+''''''''''
+
+将 ``state_dict`` 中的参数和 buffers 复制到当前 Layer 及其子层中。
+
+若 ``strict`` 为 True，则 ``state_dict`` 中的 key 必须与当前 Layer 的 ``state_dict()`` 返回结果完全一致。
+
+**参数**
+
+    - **state_dict** (dict) - 包含参数和持久化 buffers 的 dict。
+    - **strict** (bool，可选) - 是否严格要求 ``state_dict`` 中的 key 与当前 Layer 的 ``state_dict()`` 返回结果完全一致。默认值：True。
+    - **assign** (bool，可选) - 若为 False，则保留当前 Layer 中 Tensor 的属性；若为 True，则保留 ``state_dict`` 中 Tensor 的属性。对于 ``Parameter`` 的梯度相关属性，以当前 Layer 中的值为准。默认值：False。
+
+**返回**
+    - **missing_keys** (list) - 缺失的参数名列表。
+    - **unexpected_keys** (list) - 传入 ``state_dict`` 中未被当前 Layer 使用的参数名列表。
 
 to(device=None, dtype=None, blocking=True, \*, non_blocking=False)
 '''''''''
