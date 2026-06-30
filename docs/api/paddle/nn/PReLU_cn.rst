@@ -2,7 +2,7 @@
 
 PReLU
 -------------------------------
-.. py:class:: paddle.nn.PReLU(num_parameters=1, init=0.25, weight_attr=None, data_format="NCHW", name=None)
+.. py:class:: paddle.nn.PReLU(num_parameters=1, init=0.25, weight_attr=None, data_format="NCHW", name=None, device=None, dtype=None)
 
 PReLU 激活层（PReLU Activation Operator）。计算公式如下：
 
@@ -21,6 +21,8 @@ PReLU 激活层（PReLU Activation Operator）。计算公式如下：
     - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr`。
     - **data_format** (str，可选) – 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是 "NC", "NCL", "NCHW", "NCDHW", "NLC", "NHWC" 或者 "NDHWC"。默认值："NCHW"。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **device** (PlaceLike，可选) - 参数的设备位置。默认值为 None。
+    - **dtype** (str|paddle.dtype|np.dtype，可选) - 参数的数据类型。默认值为 None。
 
 形状
 ::::::::::

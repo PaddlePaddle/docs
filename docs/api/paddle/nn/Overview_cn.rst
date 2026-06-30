@@ -204,6 +204,8 @@ Transformer 相关
 
 
     " :ref:`paddle.nn.MultiHeadAttention <cn_api_paddle_nn_MultiHeadAttention>` ", "多头注意力机制"
+    " :ref:`paddle.nn.attention.flex_attention.or_masks <cn_api_paddle_nn_attention_flex_attention_or_masks>` ", "组合多个 mask 函数并返回逻辑或结果"
+    " :ref:`paddle.nn.attention.flex_attention.and_masks <cn_api_paddle_nn_attention_flex_attention_and_masks>` ", "组合多个 mask 函数并返回逻辑与结果"
     " :ref:`paddle.nn.functional.scaled_dot_product_attention <cn_api_paddle_nn_functional_scaled_dot_product_attention>` ", "点乘注意力机制，并在此基础上加入了对注意力权重的缩放"
     " :ref:`paddle.nn.functional.sparse_attention <cn_api_paddle_nn_functional_sparse_attention>` ", "稀疏版本的 Attention API，对 Transformer 模块中的 Attention 矩阵进行了稀疏化，从而减少内存消耗和计算量"
     " :ref:`paddle.nn.Transformer <cn_api_paddle_nn_Transformer>` ", "Transformer 模型"

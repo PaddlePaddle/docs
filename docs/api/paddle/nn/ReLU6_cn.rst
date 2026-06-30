@@ -2,7 +2,7 @@
 
 ReLU6
 -------------------------------
-.. py:class:: paddle.nn.ReLU6(name=None)
+.. py:class:: paddle.nn.ReLU6(inplace=False, name=None)
 
 ReLU6 激活层
 
@@ -14,6 +14,7 @@ ReLU6 激活层
 
 参数
 ::::::::::
+    - **inplace** (bool，可选) - 是否使用 inplace 操作。默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状

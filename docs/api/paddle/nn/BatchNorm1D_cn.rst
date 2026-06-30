@@ -3,7 +3,7 @@
 BatchNorm1D
 -------------------------------
 
-.. py:class:: paddle.nn.BatchNorm1D(num_features, momentum=0.9, epsilon=1e-05, weight_attr=None, bias_attr=None, data_format='NCL', use_global_stats=None, name=None)
+.. py:class:: paddle.nn.BatchNorm1D(num_features, momentum=0.9, epsilon=1e-05, weight_attr=None, bias_attr=None, data_format='NCL', use_global_stats=None, name=None, *, affine=True, device=None, dtype=None)
 
 
 构建 ``BatchNorm1D`` 类的一个可调用对象，具体用法参照 ``代码示例``。可以处理 2D 或者 3D 的 Tensor，实现了批归一化层（Batch Normalization Layer）的功能，可用作卷积和全连接操作的批归一化函数，根据当前批次数据按通道计算的均值和方差进行归一化。更多详情请参考：`Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
@@ -40,12 +40,20 @@ BatchNorm1D
 
     - **num_features** (int) - 指明输入 ``Tensor`` 的通道数量。
     - **epsilon** (float，可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
+      ``别名: eps``
     - **momentum** (float，可选) - 此值用于计算 ``moving_mean`` 和 ``moving_var``。默认值：0.9。更新公式如上所示。
     - **weight_attr** (ParamAttr|bool，可选) - 指定权重参数属性的对象。如果为 False，则表示每个通道的伸缩固定为 1，不可改变。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
     - **bias_attr** (ParamAttr|bool，可选) - 指定偏置参数属性的对象。如果为 False，则表示每一个通道的偏移固定为 0，不可改变。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
     - **data_format** (str，可选) - 指定输入数据格式，数据格式可以为 ``"NC"``、``"NCL"`` 或者 ``"NLC"``，其中 N 是批大小，C 是通道数，L 是特征长度。默认值为 ``"NCL"``。
     - **use_global_stats** (bool|None，可选) – 指示是否使用全局均值和方差。若设置为 False，则使用一个 mini-batch 的统计数据。若设置为 True 时，将使用全局统计数据。若设置为 None，则会在测试阶段使用全局统计数据，在训练阶段使用一个 mini-batch 的统计数据。默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+::::::::::::
+
+    - **affine** (bool，可选) - 该模块是否具有可学习的仿射参数（weight 和 bias）。如果设置为 False，将不会创建可学习的参数，无论 ``weight_attr`` 和 ``bias_attr`` 如何设置。默认值：True。
+    - **device** (PlaceLike，可选) - 参数所在的设备。默认值为 None。
+    - **dtype** (DTypeLike，可选) - 参数的数据类型。默认值为 None。
 
 
 返回
