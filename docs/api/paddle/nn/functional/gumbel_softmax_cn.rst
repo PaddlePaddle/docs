@@ -2,7 +2,7 @@
 
 gumbel_softmax
 -------------------------------
-.. py:function:: paddle.nn.functional.gumbel_softmax(x, temperature = 1.0, hard = False, axis = -1, name = None)
+.. py:function:: paddle.nn.functional.gumbel_softmax(x, temperature = 1.0, hard = False, axis = -1, name = None, eps = None)
 
 实现了按 Gumbel-Softmax 分布进行采样的功能，通过 hard 可选择是否离散化。记 temperature 为 ``t``，涉及到的等式如下：
 
@@ -32,6 +32,7 @@ gumbel_softmax
     - **hard** (bool，可选) - 如果是 True，返回离散的 one-hot 向量。如果是 False，返回软样本。默认值：False。
     - **axis** (int，可选) - 按照维度 axis 计算 softmax。默认值：-1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **eps** (float，可选) - 此参数已被废弃，不产生任何作用。默认值为 None。
 
 返回
 ::::::::::
