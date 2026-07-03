@@ -1,75 +1,72 @@
-# 《Paddle API 兼容性》 智能体规则体系
+# Paddle API 对齐 PyTorch 项目
 
-## 一、目录概述
+基于 Claude Code 的 AI Agent 自动对齐 Paddle API 与 PyTorch API。
 
-本目录为《Paddle API 对齐 PyTorch 项目》的 AI 编程规则文件。这些规则文件定义了 AI 智能体在执行 API 对齐任务时的行为准则、工作流程和技术规范。
-
-## 二、设计目标
-
-本规则体系旨在实现以下目标：
-
-1. **自动化 API 对齐**：通过 AI 智能体自动完成 PyTorch API 到 Paddle API 的对齐工作
-2. **标准化工作流程**：建立统一、可复用的 API 对齐流程，确保每次对齐的质量一致性
-3. **知识沉淀与复用**：将人工经验转化为可执行的规则，降低人工干预成本
-4. **可追溯的决策过程**：每个 API 的改动方案都有明确的决策依据，便于审查和优化
-
-## 三、规则文件说明
-
-本目录包含以下规则文件：
-
-| 文件名称 | 角色 | 职责 | 适用阶段 |
-|---------|------|------|---------|
-| `0-api-compatibility.mdr` | 主控智能体 | 统筹全流程，调度子智能体 | 全流程 |
-| `1-scheme-decision.mdr` | 方案决策智能体 | 分析 API 差异，决策改动方案 | Step1 |
-| `2-2-sink-to-cpp.mdr` | Cpp 下沉智能体 | 实施 C++下沉方案 | Step2 |
-| `3-paconvert-test.mdr` | Pytorch 对齐验证智能体 | 验证 API 对齐一致性 | Step3 |
-| `4-modify-docs.mdr` | API 文档修改智能体 | 同步更新 API 中文文档 | Step4 |
-
-## 四、工作流程
-
-规则体系遵循以下标准工作流程，采用**主控智能体调度 + 子智能体执行**的协作模式：
+## 本目录内容
 
 ```
-主控智能体：接收 PyTorch API 列表
-    ↓
-主控智能体 → 调用方案决策智能体 (1-scheme-decision.mdr)
-    ↓
-[决策结果分发，若需 C++下沉] 主控智能体 → 调用 Cpp 下沉智能体 (2-2-sink-to-cpp.mdr)
-    ↓
-主控智能体 → 调用 Pytorch 对齐验证智能体 (3-paconvert-test.mdr)
-    ↓
-[验证通过] 主控智能体 → 调用 API 文档修改智能体 (4-modify-docs.mdr)
-    ↓
-主控智能体：输出对齐结果统计
+api_compatibility/                  # 本目录
+├── README.md                       # 本文件
+├── install.sh                      # 安装脚本
+└── .claude/                        # Claude Code 配置
+    ├── CLAUDE.md                   # 项目背景（自动加载）
+    └── skills/                     # Skill 定义
+        ├── api-compatibility/      # 总控
+        ├── select-solution/        # Step1 选择方案
+        ├── python-decorator/       # Step2 Python 装饰器
+        ├── cpp-sink/               # Step2 C++下沉
+        ├── modify-origin-api/      # Step2 修改原有 API
+        ├── add-new-api/            # Step2 新增 API
+        ├── add-new-compat-api/     # Step2 新增 compat API
+        ├── compatibility-test/     # Step3 兼容测试
+        ├── pytorch-test/           # Step4 Pytorch 测试
+        ├── update-docs/            # Step5 更新文档
+        └── create-pr/              # 提交 PR
 ```
 
-**协作说明**：
-- **主控智能体**：负责任务分解、流程调度、结果汇总和异常处理，确保全流程有序推进
-- **子智能体**：专注各自领域的专业工作（方案决策、代码修改、对齐验证、文档修改），执行具体任务后返回结果
-- **交互方式**：主控智能体通过 subtask 工具调用子智能体，传递必要上下文，接收执行结果并做出下一步决策
+## 项目根目录要求
 
-## 五、设计原则
+项目根目录（PROJECT_ROOT）需提前准备三个仓库：
 
-本规则体系采用**主控智能体 + 子智能体**的协作模式，主控智能体负责任务分解、流程控制和异常处理，子智能体专注具体领域的专业工作。通过决策驱动选择最优改动方案，强调对齐验证的金标准，并要求文档与代码同步更新，确保 API 对齐的高质量和高效率。
+```
+{PROJECT_ROOT}/
+├── Paddle/      # Paddle 框架源码
+├── PaConvert/   # PyTorch 转换工具
+├── docs/        # Paddle 文档
+└── CLAUDE.md    # 安装后生成
+```
 
-## 六、使用方式
+## 安装
+PROJECT_ROOT 需提前下载 `Paddle/`、`PaConvert/`、`docs/` 三个子目录。
 
-本规则文件**不能单独使用**，需要搭配 AI 智能体使用，作为 Agent 的指令。AI 智能体读取规则文件中的角色定义、工作流程、技术规范，根据步骤执行具体任务，并按规则处理异常情况。
+```bash
+./install.sh ${PROJECT_ROOT}
+export PYTHONPATH="${PROJECT_ROOT}/Paddle/build/python:${env:PYTHONPATH}"
+```
 
-同时，规则文件也可作为**人工学习的参考资料**，帮助开发者了解 API 对齐的标准流程，包含技术背景知识、代码示例和最佳实践。
+## 使用方式
 
-## 七、环境配置要求
+**总控 Skill（推荐）**：
+```bash
+/api-compatibility torch.atan torch.asinh
+```
 
-使用本规则体系需配置好代码目录（Paddle、PaConvert、Docs）、知识语料（API 中文文档和差异文档）以及本地已编译好的 Paddle 环境。
+**单独调用 Skill**：
+```bash
+/select-solution torch.atan         # Step1: 选择方案
+/cpp-sink torch.atan                # Step2: 代码修改
+/compatibility-test torch.atan      # Step3: 兼容测试
+/pytorch-test torch.atan            # Step4: Pytorch 测试
+/update-docs torch.atan             # Step5: 更新文档
+/create-pr torch.atan               # 提交 PR
+```
 
-## 八、扩展性设计
+## 工作流程
 
-本规则体系支持扩展，可新增改动方案的规则文件（如 Python 装饰器、修改 API、新增 API 等）、新增其他专业领域的子智能体（如性能优化、兼容性测试、代码审查等）、以及新增其他验证方法（如静态代码分析、性能对比、边界条件验证等）。
+```
+Step1 选择方案 → Step2 代码修改 → Step3 兼容测试 → Step4 Pytorch 测试 → Step5 更新文档
+```
 
-## 九、维护规范
-
-规则文件遵循命名规范（主控智能体：`0-{功能}.mdr`，子智能体：`{序号}-{功能}.mdr`），内容需包含角色定义、输入输出规范、技术背景知识、标准工作流程和异常处理等章节。发现规则不完善或有误时，需及时更新，保持一致性和兼容性，重大修改需经评审和测试。
-
----
-
-> 本文档由 AI Agent 自动生成，日期：2025-12-31，提交：zhwesky2010
+## 详细文档
+- [项目背景](.claude/CLAUDE.md)
+- [总控 Skill 详细流程](.claude/skills/api-compatibility/SKILL.md)

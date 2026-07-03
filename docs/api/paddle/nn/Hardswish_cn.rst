@@ -3,7 +3,7 @@
 Hardswish
 -------------------------------
 
-.. py:class:: paddle.nn.Hardswish(name=None)
+.. py:class:: paddle.nn.Hardswish(inplace=False, name=None)
 
 Hardswish 激活函数。创建一个 ``Hardswish`` 类的可调用对象。在 MobileNetV3 架构中被提出，相较于 :ref:`cn_api_paddle_nn_Swish` 函数，具有数值稳定性好，计算速度快等优点，具体原理请参考：`Searching for MobileNetV3 <https://arxiv.org/pdf/1905.02244.pdf>`_ 。
 
@@ -22,6 +22,7 @@ Hardswish 激活函数。创建一个 ``Hardswish`` 类的可调用对象。在 
 
 参数
 ::::::::::
+    - **inplace** (bool，可选) - 是否使用 inplace 操作。默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状

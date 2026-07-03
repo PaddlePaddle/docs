@@ -1,6 +1,7 @@
 ---
 name: modify-origin-api
-description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2：API 代码修改，实施『修改原有 API』方案。通过修改原有 Paddle API 的实现（新增参数、扩展参数类型/功能），使 Paddle API 与 PyTorch API 行为对齐，同时保持后向兼容性。
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2 代码修改，实施『修改原有 API』方案。通过修改原有 Paddle API 的实现（新增参数、扩展参数类型/功能），使 Paddle API 与 PyTorch API 行为对齐，同时保持后向兼容性。
+context: fork
 disable-model-invocation: false
 ---
 
@@ -17,7 +18,7 @@ disable-model-invocation: false
 
 ## Step 1：修改 API 代码
 
-若尚未获得 PyTorch API 的相关信息，则自行获取，获取方式请参考`api-compatibility/SKILL.md` 中的「3.6 API 信息获取方式」章节。
+若尚未获得 PyTorch API 的相关信息，则自行获取，获取方式请参考`api-compatibility/SKILL.md` 中的「API 信息获取方式」内容。
 
 然后分析 PyTorch API 的功能和行为，以及与 Paddle API 的差异。在 `${ROOT_DIR}/Paddle/python/paddle/` 目录下定位到对应的 API 实现位置，修改 Paddle API 的签名和实现代码。
 
@@ -114,7 +115,7 @@ def func(x, axis=None, name=None, *, out: Tensor | None = None):
 
 **注意事项**：
 1. 需在 API 签名中增加 out 参数，`out`参数需与 Pytorch 用法一致，一般情况下 out 均是 keyword-only 参数（使用`*,`分隔），少数情况下 out 是位置参数
-2. 处理 out 参数时，仅需处理 in_dynamic_or_pir_mode()分支下的逻辑，老静态图（LayerHelper）分支无需处理 out 参数
+2. 处理 out 参数时，仅需处理 dygraph（动态图）模式下的逻辑，PIR 和老静态图（LayerHelper）分支均无需处理 out 参数
 
 #### 新增 `device` 参数
 
@@ -283,6 +284,8 @@ if TYPE_CHECKING:
 2. **后向兼容性是红线**：任何修改都不得破坏现有调用，新参数必须有合理默认值
 3. 若新参数需要透传（如 `randn -> standard_normal -> gaussian`），必须在整个调用链上都添加该参数
 4. `math_op_patch.py` 中的 Tensor 方法必须与对应的普通函数保持参数同步，且需同时修改 dygraph 版和 pir 版两个文件
+5. **无需支持的参数**：`layout` 参数无需支持，直接忽略即可
+6. **name 参数忽略原则**：忽略 `name` 参数，新增参数可作为位置参数放在 `name` 之前，不必考虑 `name` 参数对顺序的影响
 
 # 五、常见问题处理
 

@@ -1,6 +1,6 @@
 ---
-name: pytorch-alignment-validator
-description: 负责《Paddle API 对齐 PyTorch 项目》中 Step4：对齐验证，基于 PaConvert 工具验证 Paddle API 与 PyTorch API 是否用法完全对齐一致
+name: pytorch-test
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step4 Pytorch 测试，基于 PaConvert 工具验证 Paddle API 与 PyTorch API 是否用法完全对齐一致
 disable-model-invocation: false
 ---
 
@@ -8,15 +8,16 @@ disable-model-invocation: false
 
 请严格按以下 Step 依次执行，不要自行修改或跳过 Step：
 
-## Step 1: 标记已完成的 API（仅首次执行）
-1. 定位文件：`${ROOT_DIR}/PaConvert/paconvert/api_mapping.json`
+## Step 1: 标记已完成的 API
+1. 定位文件：`${ROOT_DIR}/PaConvert/paconvert/api_mapping.json` 或 `${ROOT_DIR}/PaConvert/paconvert/attribute_mapping.json`
 2. 将已完成的 PyTorch API 的 Matcher 设置为`ChangePrefixMatcher`，其他字段全部删除掉
 
 **注意**：
 - torch.abs、torch.abs_、torch.Tensor.abs、torch.Tensor.abs_是四个不同的 API，需分别标记为 `ChangePrefixMatcher`。
-- ⚠️ **`ChangePrefixMatcher` 是任务最终验收金标准，不可妥协**：只要 API 已完成代码层面的对齐，就必须标记为 `ChangePrefixMatcher`，**绝对禁止**为了让测试通过而将 Matcher 改为其他类型（如 GenericMatcher、SliceScatterMatcher 等）。
+- ⚠️ **`ChangePrefixMatcher` 是 Step4 通过的标准，不可妥协**：只有标记为 `ChangePrefixMatcher`，才能判定 API 已完成代码层面的对齐，**禁止**为了让测试通过而将 Matcher 改为其他类型（如 GenericMatcher、SliceScatterMatcher 等）。
+- 如果配置为 `ChangePrefixMatcher` 无法运行通过单测，则视作未对齐，需执行回退。
 
-## Step 2: 增加测试用例（仅首次执行）
+## Step 2: 增加测试用例
 **目的：** 判断是否满足如下测试规范，如不满足，则需增加测试用例使之符合规范
 
 **修改位置：**
@@ -121,16 +122,22 @@ def test_case_7():
     obj.run(pytorch_code, ["result"])
 ```
 
-## Step 3: 运行单元测试（每次改动均需执行）
+## Step 3: 编译并运行单测（每次修改代码均需执行编译）
 
-单测补充完成后，按以下命令验证执行：
+单测补充完成后，按以下命令编译并验证执行：
 
 ```bash
+cd ${ROOT_DIR}/Paddle/build
+cmake .. && make -j$(nproc) > compile.log 2>&1
 cd ${ROOT_DIR}/PaConvert/
 python -m pytest tests/test_<API 名称>.py
 ```
 
 根据报错信息修改测试用例或回退，确保所有测试用例通过。每次修改后均需要重新执行本步骤。
+
+**编译注意事项**：
+- 无需重装，直接生效（勿执行 setup/install 等安装操作）
+- 勿删除 build 目录（否则增量编译失效，编译时间极长）
 
 # 二、注意事项
 
@@ -142,7 +149,7 @@ python -m pytest tests/test_<API 名称>.py
 
 # 三、异常回退原则
 
-当本步骤（对齐验证）多次尝试仍无法通过时，需要根据错误信息诊断问题根源：
+本步骤的通过标准是 API 可配置为 `ChangePrefixMatcher`，若无法配置为 `ChangePrefixMatcher`，则需要根据错误信息回退到对应步骤：
 
 1. **若判断为测试用例编写有误**（如 PyTorch 代码语法错误、参数使用错误）：
    - 直接在本步骤修正测试用例
@@ -153,7 +160,7 @@ python -m pytest tests/test_<API 名称>.py
    - 回退后再进入本步骤（Step4），则只需执行：运行单元测试，其他步骤无需执行
 
 3. **若判断为方案选择错误**（如当前方案不适用、底层不支持等）：
-   - 回退到总步骤 Step1（方案决策）重新决策
+   - 回退到总步骤 Step1（选择方案）重新选择
    - 回退后再进入本步骤（Step4），则只需执行：运行单元测试，其他步骤无需执行
 
 # 四、常见问题处理

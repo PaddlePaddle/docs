@@ -3,7 +3,7 @@
 MultivariateNormal
 -------------------------------
 
-.. py:class:: paddle.distribution.MultivariateNormal(loc, covariance_matrix=None, precision_matrix=None, scale_tril=None)
+.. py:class:: paddle.distribution.MultivariateNormal(loc, covariance_matrix=None, precision_matrix=None, scale_tril=None, validate_args=None)
 
 
 MultivariateNormal 是一种定义在实数域上的多元连续型概率分布，参数 :attr:`loc` 表示均值，以及需要传入以下任意一种矩阵描述其方差：
@@ -33,6 +33,8 @@ MultivariateNormal 是一种定义在实数域上的多元连续型概率分布�
 
     - **scale_tril** (Tensor，可选) - 是 MultivariateNormal 协方差矩阵的柯列斯基分解的下三角矩阵。:attr:`scale_tril` 的数据类型会被转换为与 :attr:`loc` 相同的类型。默认值为 None。
 
+    - **validate_args** (bool|None，可选) - 是否对输入参数进行校验。默认值为 None。
+
 
 代码示例
 :::::::::
@@ -59,6 +61,15 @@ MultivariateNormal 分布的方差
 **返回**
 
 Tensor，方差
+
+mode
+'''''''''
+
+MultivariateNormal 分布的众数
+
+**返回**
+
+Tensor，众数
 
 方法
 :::::::::

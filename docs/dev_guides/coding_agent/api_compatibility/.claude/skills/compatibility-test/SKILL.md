@@ -1,12 +1,12 @@
 ---
-name: add-compatibility-test
-description: 负责《Paddle API 对齐 PyTorch 项目》中 Step3：兼容性测试，为已修改的 Paddle API 添加兼容性单测并执行验证，确保 API 的 Paddle 用法与 PyTorch 用法均能正常工作。
+name: compatibility-test
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step3 兼容测试，为已修改的 Paddle API 添加兼容性单测并执行验证，确保 API 的 Paddle 用法与 PyTorch 用法均能正常工作。
 disable-model-invocation: false
 ---
 
 # 一、标准工作流程
 
-## Step 1：编写测试用例（仅首次执行）
+## Step 1：编写测试用例
 
 在 `${ROOT_DIR}/Paddle/test/legacy_test/` 目录下找到 `test_api_compatibility[1-9]\.py` 中数字最大的文件，在该文件中添加测试。
 
@@ -125,13 +125,13 @@ if paddle.device.is_compiled_with_cuda():
     out_gpu = paddle.<api_name>(x, device="gpu:0")
 ```
 
-## Step 2：编译并运行单测（每次改动均需执行）
+## Step 2：编译并运行单测（每次修改代码均需执行编译）
 
 单测编写完成后，按以下命令验证执行：
 
 ```bash
 cd ${ROOT_DIR}/Paddle/build
-cmake .. && make -j$(nproc)
+cmake .. && make -j$(nproc) > compile.log 2>&1
 python test_xxx.py
 ```
 
@@ -182,6 +182,7 @@ self.dtype = np.float32
 3. 不要新建测试文件，直接在已有的 `test_api_compatibility[1-9]\\.py` 中添加
 4. 测试类命名遵循 `Test<APIName>API` 格式，如 `TestArgmaxAPI`
 5. 确保测试覆盖所有新增的参数别名和参数用法
+6. 代码测试覆盖率要求：务必要确保新增所有代码行数都能够在单测中跑到，否则无法通过 CI 检查
 
 # 四、异常回退原则
 
@@ -196,7 +197,7 @@ self.dtype = np.float32
    - 回退后再进入本步骤（Step3），则只需执行：编译并运行，其他步骤无需执行
 
 3. **若判断为方案选择错误**（如当前方案不适用、底层不支持等）：
-   - 回退到总步骤 Step1（方案决策）重新决策
+   - 回退到总步骤 Step1（选择方案）重新选择
    - 回退后再进入本步骤（Step3），则只需执行：编译并运行，其他步骤无需执行
 
 # 五、常见问题处理
