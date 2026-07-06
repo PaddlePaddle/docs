@@ -1,6 +1,6 @@
 ---
 name: python-decorator
-description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2：API 代码修改，实施『Python 装饰器』方案。通过 Python 装饰器，在 Python 层为 Paddle API 实现参数名称、参数顺序、参数类型和参数用法的重载，实现 PyTorch 风格的 API 调用，并保持 Paddle API 的向后兼容性。
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2 代码修改，实施『Python 装饰器』方案。通过 Python 装饰器，在 Python 层为 Paddle API 实现参数名称、参数顺序、参数类型和参数用法的重载，实现 PyTorch 风格的 API 调用，并保持 Paddle API 的向后兼容性。
 context: fork
 disable-model-invocation: false
 ---
@@ -42,7 +42,7 @@ Paddle 现有装饰器统一位于 `${ROOT_DIR}/Paddle/python/paddle/utils/decor
 
 ---
 
-### 场景决策表
+### 场景选择表
 
 | 差异类型 | 参数顺序 | 参数个数 | 参数用法 | 推荐方案 |
 |---------|--------|--------|--------|--------|

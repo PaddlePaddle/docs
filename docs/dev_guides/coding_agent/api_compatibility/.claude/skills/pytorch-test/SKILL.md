@@ -1,6 +1,6 @@
 ---
-name: pytorch-alignment-validator
-description: 负责《Paddle API 对齐 PyTorch 项目》中 Step4：对齐验证，基于 PaConvert 工具验证 Paddle API 与 PyTorch API 是否用法完全对齐一致
+name: pytorch-test
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step4 Pytorch 测试，基于 PaConvert 工具验证 Paddle API 与 PyTorch API 是否用法完全对齐一致
 disable-model-invocation: false
 ---
 
@@ -9,7 +9,7 @@ disable-model-invocation: false
 请严格按以下 Step 依次执行，不要自行修改或跳过 Step：
 
 ## Step 1: 标记已完成的 API
-1. 定位文件：`${ROOT_DIR}/PaConvert/paconvert/api_mapping.json`
+1. 定位文件：`${ROOT_DIR}/PaConvert/paconvert/api_mapping.json` 或 `${ROOT_DIR}/PaConvert/paconvert/attribute_mapping.json`
 2. 将已完成的 PyTorch API 的 Matcher 设置为`ChangePrefixMatcher`，其他字段全部删除掉
 
 **注意**：
@@ -128,7 +128,7 @@ def test_case_7():
 
 ```bash
 cd ${ROOT_DIR}/Paddle/build
-cmake .. && make -j$(nproc)
+cmake .. && make -j$(nproc) > compile.log 2>&1
 cd ${ROOT_DIR}/PaConvert/
 python -m pytest tests/test_<API 名称>.py
 ```
@@ -160,7 +160,7 @@ python -m pytest tests/test_<API 名称>.py
    - 回退后再进入本步骤（Step4），则只需执行：运行单元测试，其他步骤无需执行
 
 3. **若判断为方案选择错误**（如当前方案不适用、底层不支持等）：
-   - 回退到总步骤 Step1（方案决策）重新决策
+   - 回退到总步骤 Step1（选择方案）重新选择
    - 回退后再进入本步骤（Step4），则只需执行：运行单元测试，其他步骤无需执行
 
 # 四、常见问题处理

@@ -1,5 +1,11 @@
 # Paddle API 对齐 PyTorch 项目
 
+## 执行原则（最高优先级）
+
+1. **直接执行**：全程静默执行，禁止向用户询问或讨论，在完成任务前不要停下来等待下一步指令
+2. **自主判断**：分析、判断、选择均由模型独立完成
+3. **自动处理异常**：遇到错误按回退规则自动处理，失败 3 次自动放弃该 API
+
 ## 项目目标
 使 Paddle API 与 PyTorch API 行为完全对齐。对于任意 PyTorch API 用法，只需将 `torch.*` 替换为 `paddle.*`，计算结果完全一致。
 
@@ -11,9 +17,9 @@
 
 | 工作目录 | 完整路径 | 内容说明 | 对应步骤 |
 |---------|---------|---------|---------------|
-| Paddle | `${ROOT_DIR}/Paddle` | Paddle 框架源码仓库，包含所有 Paddle API 的实现 | Step2：代码修改 + Step3：兼容测试 |
-| PaConvert | `${ROOT_DIR}/PaConvert` | PyTorch 转换工具仓库，包含所有 Pytorch 单元测试 | Step4：对齐验证 |
-| docs | `${ROOT_DIR}/docs` | Paddle 文档仓库，包含所有 Paddle API 中文文档 | Step5：文档更新 |
+| Paddle | `${ROOT_DIR}/Paddle` | Paddle 框架源码仓库，包含所有 Paddle API 的实现 | Step2 代码修改 + Step3 兼容测试 |
+| PaConvert | `${ROOT_DIR}/PaConvert` | PyTorch 转换工具仓库，包含所有 Pytorch 单元测试 | Step4 Pytorch 测试 |
+| docs | `${ROOT_DIR}/docs` | Paddle 文档仓库，包含所有 Paddle API 中文文档 | Step5 更新文档 |
 
 ## 常用文件位置
 
@@ -97,34 +103,31 @@ void AtanKernel(const Context& dev_ctx, const DenseTensor& x, DenseTensor* out)
 ## 工作流程
 
 ### 流程概览
-| Step | 名称 | 对应 Skill | 核心任务 |
+| Step | 名称 | 调用对应 Skill | 核心任务 |
 |------|------|-----------|----------|
-| Step1 | 方案决策 | `/api-change-decider` | 分析差异，选择修改方案 |
-| Step2 | 代码修改 | `/python-decorator` `/cpp-sink` `/modify-origin-api` `/add-new-api` `/add-new-compat-api` | 按方案修改 Paddle 代码 |
-| Step3 | 兼容测试 | `/add-compatibility-test` | 添加兼容性单测并运行 |
-| Step4 | 对齐验证 | `/pytorch-alignment-validator` | 编写 PyTorch 单测验证对齐 |
-| Step5 | 文档更新 | `/api-docs-updater` | 更新中文文档和差异文档 |
+| Step1 | 选择方案   | `/select-solution` | 分析差异，选择修改方案 |
+| Step2 | 代码修改   | `/python-decorator` `/cpp-sink` `/modify-origin-api` `/add-new-api` `/add-new-compat-api` | 按方案修改 Paddle 代码 |
+| Step3 | 兼容测试   | `/compatibility-test` | 添加兼容性单测并运行 |
+| Step4 | Pytorch 测试 | `/pytorch-test` | 编写 PyTorch 单测验证对齐 |
+| Step5 | 更新文档   | `/update-docs` | 更新中文文档和差异文档 |
 
 ### 流程重要约束
 1. **批量处理**：每个 Step 对**所有 API** 完成后才进入下一步
 2. **正向推进**：必须按 Step1 → Step2 → Step3 → Step4 → Step5 顺序执行，禁止跳过
-3. **异常回退**：Step3/Step4 失败时回退到对应步骤重新执行
-4. **放弃规则**：回退 3 次以上仍失败，标记为"未对齐"并放弃，需完整回退所有修改
-
-### Step 通过标准
-- Step3：单测可运行通过
-- Step4：API 可配置为 `ChangePrefixMatcher`
-
+3. **异常回退**：Step3/Step4 无法通过时回退到对应步骤重新执行，必须满足以下通过标准：
+   - Step3：单测可运行通过
+   - Step4：API 可配置为 `ChangePrefixMatcher`
+4. **放弃规则**：若某个 API 回退 3 次以上仍失败，标记为"未对齐"并放弃该 API，需完整回退该 API 的所有修改，避免"修改了但没改对"的中间状态
 
 ## 注意事项
-1. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤
-2. 每次修改代码后必须重新编译：在 `${ROOT_DIR}/Paddle/build` 目录下执行编译，否则修改不会生效
+1. 每次修改 Paddle 代码后必须重新编译，否则修改不会生效：
    ```bash
    cd ${ROOT_DIR}/Paddle/build
-   cmake .. && make -j$(nproc)
+   cmake .. && make -j$(nproc) > compile.log 2>&1
    ```
-   - 无需重装，直接生效（勿执行 setup/install 等安装操作）
+   - 无需重装，编译完成直接生效（勿执行 setup/install 等安装操作）
    - 勿删除 build 目录（否则增量编译失效，编译时间极长）
+2.  不要在 API 文档字符串中强调"PyTorch 风格"、"PyTorch 签名"、"PyTorch 适配"等 Pytorch 相关内容
 
 ## 忽略参数规则
 分析差异时，以下参数直接忽略：

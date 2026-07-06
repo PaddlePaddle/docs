@@ -1,6 +1,6 @@
 ---
 name: modify-origin-api
-description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2：API 代码修改，实施『修改原有 API』方案。通过修改原有 Paddle API 的实现（新增参数、扩展参数类型/功能），使 Paddle API 与 PyTorch API 行为对齐，同时保持后向兼容性。
+description: 负责《Paddle API 对齐 PyTorch 项目》中 Step2 代码修改，实施『修改原有 API』方案。通过修改原有 Paddle API 的实现（新增参数、扩展参数类型/功能），使 Paddle API 与 PyTorch API 行为对齐，同时保持后向兼容性。
 context: fork
 disable-model-invocation: false
 ---

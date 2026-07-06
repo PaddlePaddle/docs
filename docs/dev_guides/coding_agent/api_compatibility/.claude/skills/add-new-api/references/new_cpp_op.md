@@ -393,7 +393,7 @@ class TestTraceOp(OpTest):
 
 ```bash
 cd ${ROOT_DIR}/Paddle/build
-cmake .. && make -j$(nproc)
+cmake .. && make -j$(nproc) > compile.log 2>&1
 python test_xxx_op.py
 ```
 
