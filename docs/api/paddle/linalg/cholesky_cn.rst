@@ -3,7 +3,7 @@
 cholesky
 -------------------------------
 
-.. py:function:: paddle.linalg.cholesky(x, upper=False, name=None)
+.. py:function:: paddle.linalg.cholesky(x, upper=False, name=None, *, out=None)
 
 
 
@@ -15,9 +15,13 @@ cholesky
 参数
 ::::::::::::
 
-    - **x** （Tensor）- 输入变量为多维 Tensor，它的维度应该为 ``[*, M, M]``，其中*为零或更大的批次尺寸，并且最里面的两个维度上的矩阵都应为对称的正定矩阵，支持数据类型为 float32、float64。
+    - **x** （Tensor）- 输入变量为多维 Tensor，它的维度应该为 ``[*, M, M]``，其中*为零或更大的批次尺寸，并且最里面的两个维度上的矩阵都应为对称的正定矩阵，支持数据类型为 float32、float64。别名 ``input``。
     - **upper** （bool）- 指示是否返回上三角矩阵或下三角矩阵。默认值：False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+::::::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 ::::::::::::

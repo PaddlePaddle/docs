@@ -3,7 +3,7 @@
 elu
 -------------------------------
 
-.. py:function:: paddle.nn.functional.elu(x, alpha=1.0, name=None)
+.. py:function:: paddle.nn.functional.elu(x, alpha=1.0, inplace=False, name=None)
 
 elu 激活层（ELU Activation Operator）
 
@@ -23,8 +23,9 @@ elu 激活层（ELU Activation Operator）
 
 参数
 ::::::::::
-    - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
+    - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。别名 ``input``。
     - **alpha** (float，可选) - elu 的 alpha 值，默认值为 1.0。
+    - **inplace** (bool，可选) - 是否在不更改变量的内存地址的情况下，直接修改变量的值，默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

@@ -3,7 +3,7 @@
 cross
 -------------------------------
 
-.. py:function:: paddle.cross(x, y, axis=9, name=None)
+.. py:function:: paddle.cross(x, y, axis=-1, name=None, *, out=None)
 
 
 计算 Tensor ``x`` 和 ``y`` 在 ``axis`` 维度上的向量积（叉积）。
@@ -14,8 +14,12 @@ cross
 :::::::::
     - **x** (Tensor) - 第一个输入 Tensor，数据类型为：float16、float32、float64、int32、int64、complex64、complex128。别名 ``input``。
     - **y** (Tensor) - 第二个输入 Tensor，数据类型为：float16、float32、float64、int32、int64、complex64、complex128。别名 ``other``。
-    - **axis** (int，可选) - 沿着此维进行向量积操作。别名 ``dim``。默认值是 9，意思是选取第一个长度为 3 的 ``axis`` 。
+    - **axis** (int，可选) - 沿着此维进行向量积操作。别名 ``dim``。默认值是 -1，意思是选取第一个长度为 3 的 ``axis`` 。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+::::::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 :::::::::

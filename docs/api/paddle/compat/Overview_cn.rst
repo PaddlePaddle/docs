@@ -21,6 +21,7 @@ PyTorch 兼容函数
     " :ref:`slogdet <cn_api_paddle_compat_slogdet>` ", "slogdet 函数"
     " :ref:`sort <cn_api_paddle_compat_sort>` ", "同时返回 values 及 indices 的排序"
     " :ref:`split <cn_api_paddle_compat_split>` ", "允许非整除块大小输入的 Tensor 轴向切分"
+    " :ref:`logical_and_ <cn_api_paddle_compat_logical_and_>` ", "Inplace 版本的逻辑与运算，保留输入 Tensor 数据类型"
 
 
 .. _about_compat_nn:

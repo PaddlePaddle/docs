@@ -6,7 +6,7 @@ torch.hstack(tensors, *, out=None)
 
 ### [paddle.hstack](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/hstack_cn.html#paddle.hstack)
 ```python
-paddle.hstack(x, name=None)
+paddle.hstack(x, name=None, *, out=None)
 ```
 
 其中 Paddle 相比 PyTorch 仅参数名不一致，具体如下：
@@ -16,3 +16,4 @@ paddle.hstack(x, name=None)
 | PyTorch       | PaddlePaddle | 备注                                                    |
 | ------------- | ------------ | ------------------------------------------------------  |
 | tensors         | x            | 表示输入的 Tensor ，仅参数名不一致。                        |
+| out             | out          | 表示输出的 Tensor。                                       |
