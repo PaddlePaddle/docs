@@ -17,11 +17,11 @@ API 作为用户使用飞桨框架的接口，承接着实现用户模型开发�
 
 - 已签署 [贡献者许可协议（Contributor License Agreement，CLA）](https://cla-assistant.io/PaddlePaddle/Paddle)；
 
-- 已阅读 [代码贡献流程](../code_contributing_path_cn.html)、[贡献前阅读](read_before_contributing_cn.html) 和相关代码规范；
+- 已阅读 [代码贡献流程](../code_contributing_path_cn.md)、[贡献前阅读](read_before_contributing_cn.md) 和相关代码规范；
 
-- 已根据 [API 设计和命名规范](api_design_guidelines_standard_cn.html) 确定了新增 API 的名称和存放位置；
+- 已根据 [API 设计和命名规范](api_design_guidelines_standard_cn.md) 确定了新增 API 的名称和存放位置；
 
-- 已提交 [API 设计文档](read_before_contributing_cn.html#apiDesignDoc) 并通过评审；
+- 已提交 [API 设计文档](read_before_contributing_cn.md#apiDesignDoc) 并通过评审；
 
 - 已将 [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 仓库的代码获取到本地，准备好了 Paddle 开发环境。
 
@@ -29,7 +29,7 @@ API 作为用户使用飞桨框架的接口，承接着实现用户模型开发�
 
 ### 2.1 确定文件位置和 API 名称
 
-提交飞桨 API 设计文档时，就需要参考 [API 设计和命名规范](api_design_guidelines_standard_cn.html) 确定 Python API 的代码文件存放位置和 API 名称。按照已有设计，在 [python/paddle](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle) 目录下的相应子目录中添加新的 `.py` 代码文件，遵循相似功能的 API 放在同一文件夹的原则。
+提交飞桨 API 设计文档时，就需要参考 [API 设计和命名规范](api_design_guidelines_standard_cn.md) 确定 Python API 的代码文件存放位置和 API 名称。按照已有设计，在 [python/paddle](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle) 目录下的相应子目录中添加新的 `.py` 代码文件，遵循相似功能的 API 放在同一文件夹的原则。
 
 比如，大部分常用的数组运算 API（在 numpy 中有功能相似的 `numpy.***` API ）都放在 `python/paddle/tensor` 目录下。具体的功能细分如下：
 
@@ -93,7 +93,7 @@ def zeros(
 
 如果 API 的实现中需要调用 C++ 算子，则需要分别实现动态图分支和静态图分支的代码（由于飞桨框架同时支持动态图和静态图两种训练模式，动态图和静态图在执行逻辑上有所差异，需要在 Python 端根据当前的运行模式选择进入到对应的执行分支去处理）。
 
-接下来以 [paddle.trace](../../api/paddle/trace_cn.html) API 的实现代码为例，分别介绍动态图分支和静态图分支的开发要点。
+接下来以 [paddle.trace](../../api/paddle/trace_cn.rst) API 的实现代码为例，分别介绍动态图分支和静态图分支的开发要点。
 
 【代码仓库链接】[trace 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/math.py#L2910)
 
@@ -142,7 +142,7 @@ def trace(
 
   - `_C_ops` 是 [python/paddle/_C_ops.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/_C_ops.py)，其实现了从 Paddle 编译得到的二进制文件中 import  C++ 算子对应的 Python C 函数。
   - `trace` 是算子的 Python C 函数名。Python C 函数的命名直接采用算子名。
-  - 参数 `( x, offset, axis1, axis2 )`需按照 [YAML 配置文件](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/ops.yaml#L5041) 中定义的输入参数顺序传入，C++ 算子的输入、输出和属性等描述是通过 YAML 配置文件定义的，具体可参见 [开发 C++ 算子](new_cpp_op_cn.html) 章节介绍。
+  - 参数 `( x, offset, axis1, axis2 )`需按照 [YAML 配置文件](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/ops/yaml/ops.yaml#L5041) 中定义的输入参数顺序传入，C++ 算子的输入、输出和属性等描述是通过 YAML 配置文件定义的，具体可参见 [开发 C++ 算子](new_cpp_op_cn.md) 章节介绍。
 
 > 注意：由于目前飞桨动态图与 PIR 模式进行了统一, 通过 `in_dynamic_or_pir_mode()` 去使用，**在新增 API 时无需添加老静态图分支代码**。
 
@@ -253,7 +253,7 @@ tensor_method_func = [
 
 **（1）背景介绍**
 
-根据 [API 设计和命名规范](api_design_guidelines_standard_cn.html)，API 的代码开发完成并加入对应目录/文件中后，还有两个开发要点需关注：
+根据 [API 设计和命名规范](api_design_guidelines_standard_cn.md)，API 的代码开发完成并加入对应目录/文件中后，还有两个开发要点需关注：
 
   - 新开发的 API 如果需要公开，需加入公开 API 列表，一般添加到对应目录下 `__init__.py`文件的`__all__` 列表中；非公开 API 不能添加到 `__all__` 列表中。
   - 常用的 API 可以在更高层级建立别名，比如： `paddle.tensor` 目录下的 API，均在 `paddle` 根目录建立别名，其他所有 API 在 `paddle` 根目录下均没有别名。并且有多个别名时需设置一个推荐的名称，作为正式名称。
@@ -309,7 +309,7 @@ from .tensor.math import trace
 
 相关的开发指导和规范可以参考：
 
-  - [C++ 算子开发指南-添加单元测试](new_cpp_op_cn.html#tianjiadanyuanceshi)
+  - [C++ 算子开发指南-添加单元测试](new_cpp_op_cn.md#六添加单元测试)
   - [Op 开发手册(Operator Development Manual)](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index)
 
 在此不作展开，本文主要讲述 Python API 的单元测试。
@@ -324,9 +324,9 @@ from .tensor.math import trace
 
 **（2）Python API 单测开发及验收规范**
 
-请遵循飞桨的 [API 单测开发及验收规范](api_acceptance_criteria_cn.html)，需提前阅读。
+请遵循飞桨的 [API 单测开发及验收规范](api_acceptance_criteria_cn.md)，需提前阅读。
 
-> 特别注意：单元测试要求新增代码单元测试行覆盖率达到 90%，可在 [CI 测试](../git_guides/paddle_ci_manual_cn.html) 的 `Coverage` 测试项中查看覆盖率。
+> 特别注意：单元测试要求新增代码单元测试行覆盖率达到 90%，可在 [CI 测试](../git_guides/paddle_ci_manual_cn.md) 的 `Coverage` 测试项中查看覆盖率。
 
 **（3）Python API 单元测试的开发指导**
 
@@ -448,7 +448,7 @@ class TestHardtanhAPI(unittest.TestCase):
 
 **(1) 本地编译 Paddle**
 
-编译方法请参见 [从源码编译](../../install/compile/fromsource.html) 章节，推荐使用 Docker 编译的方式。Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机编译更便捷。
+编译方法请参见 [从源码编译](../../install/compile/fromsource.rst) 章节，推荐使用 Docker 编译的方式。Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机编译更便捷。
 
 > 注意：编译必须打开 WITH_TESTING 选项（`-DWITH_TESTING=ON`），以确保新增的单元测试文件（`test/legacy_test/` 目录下 `test_*.py` 文件）自动加入工程进行编译。
 
@@ -476,8 +476,8 @@ ctest -R test_logsumexp
 
 前文中说到英文文档直接与 Python API 的代码写在一起，中文文档则写到 [PaddlePaddle/docs](https://github.com/PaddlePaddle/docs) 仓库中。写作指导和规范要求如下：
 
-- 文档写作的详细指导可以参考 [文档贡献指南](../docs_contributing_guides_cn.html)，包括文件存放位置、文档修改和提交方法等。
-- 文档写作的规范可以参考 [API 文档书写规范](api_docs_guidelines_cn.html)，包括中英文 API 文档的模板、写作规范、测试要求等。
+- 文档写作的详细指导可以参考 [文档贡献指南](../docs_contributing_guides_cn.md)，包括文件存放位置、文档修改和提交方法等。
+- 文档写作的规范可以参考 [API 文档书写规范](api_docs_guidelines_cn.md)，包括中英文 API 文档的模板、写作规范、测试要求等。
 
 提 PR 后，GitHub 上的 `github-actions` bot 会给出根据所提交的中文文档所生成的官网文档的预览链接，可以点进去查看新增的文档所渲染出的页面效果，看是否符合预期。尤其需要注意检查是否有错别字、数学公式、示例代码渲染是否正确等问题。例如：
 
@@ -485,7 +485,7 @@ ctest -R test_logsumexp
 
 ## 五、确保通过 CI 测试
 
-提交 PR 后会触发 CI（Continuous Integration，持续集成）测试，并且之后每提交一次代码合入（`git push`）都会触发一次 CI 测试。CI 测试可尽可能保障代码质量，详细测试内容可参见 [Paddle CI 测试详解](../git_guides/paddle_ci_manual_cn.html)，包括 CI 失败的一些处理建议。
+提交 PR 后会触发 CI（Continuous Integration，持续集成）测试，并且之后每提交一次代码合入（`git push`）都会触发一次 CI 测试。CI 测试可尽可能保障代码质量，详细测试内容可参见 [Paddle CI 测试详解](../git_guides/paddle_ci_manual_cn.md)，包括 CI 失败的一些处理建议。
 
 当添加新的 API 时需要通过 CI 中所有的 `Required` 的测试项通过才能合入代码。
 
@@ -506,7 +506,7 @@ Paddle 编译过程中，对于 Python 代码的处理方式是，先把它们�
 ## 七、参考资料
 
 - [Op 开发手册(Operator Development Manual)](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index)
-- [API 的设计和命名规范](api_docs_guidelines_cn.html)
-- [API 单测开发及验收规范](api_acceptance_criteria_cn.html)
-- [文档贡献指南](../docs_contributing_guides_cn.html)
-- [API 文档书写规范](api_docs_guidelines_cn.html)
+- [API 的设计和命名规范](api_design_guidelines_standard_cn.md)
+- [API 单测开发及验收规范](api_acceptance_criteria_cn.md)
+- [文档贡献指南](../docs_contributing_guides_cn.md)
+- [API 文档书写规范](api_docs_guidelines_cn.md)
