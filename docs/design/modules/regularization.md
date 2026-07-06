@@ -6,17 +6,17 @@ A central problem in machine learning is how to design an algorithm that will pe
 ### Parameter Norm Penalties
 Most common regularization approaches in deep learning are based on limiting the capacity of the models by adding a parameter norm penalty to the objective function `J`. This is given as follows:
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/loss_equation.png" align="center"/><br/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/design/modules/images/loss_equation.png" align="center"/><br/>
 
 The parameter `alpha` is a hyperparameter that weights the relative contribution of the norm penalty term, `omega`, relative to the standard objective function `J`.
 
 The most commonly used norm penalties are the L2 norm penalty and the L1 norm penalty. These are given as follows:
 
 ##### L2 Regularization:
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/l2_regularization.png" align="center"/><br/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/design/modules/images/l2_regularization.png" align="center"/><br/>
 
 ##### L1 Regularization
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/l1_regularization.png" align="center"/><br/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/design/modules/images/l1_regularization.png" align="center"/><br/>
 
 A much more detailed mathematical background of regularization can be found [here](http://www.deeplearningbook.org/contents/regularization.html).
 
@@ -32,19 +32,19 @@ In the new design, we propose to create new operations for regularization. For n
 - L2_regularization_op
 - L1_regularization_op
 
-These ops can be like any other ops with their own CPU/GPU implementations either using Eigen or separate CPU and GPU kernels. As the initial implementation, we can implement their kernels using Eigen following the abstraction pattern implemented for [Activation Ops](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/accuracy_op.h). This abstraction pattern can make it very easy to implement new regularization schemes other than L1 and L2 norm penalties.
+These ops can be like any other ops with their own CPU/GPU implementations either using Eigen or separate CPU and GPU kernels. As the initial implementation, we can implement their kernels using Eigen following the abstraction pattern implemented for [Activation Ops](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/accuracy_kernel.h). This abstraction pattern can make it very easy to implement new regularization schemes other than L1 and L2 norm penalties.
 
-The idea of building ops for regularization is in sync with the refactored Paddle philosophy of using operators to represent any computation unit. The way these ops will be added to the computation graph, will be decided by the [layer functions](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/fluid/design/modules/python_api.md#layer-function) in Python API.
+The idea of building ops for regularization is in sync with the refactored Paddle philosophy of using operators to represent any computation unit. The way these ops will be added to the computation graph, will be decided by the [layer functions](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/modules/python_api.md#layer-function) in Python API.
 
 ### Computation Graph
 
 Below is an example of a really simple feed forward neural network.
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/feed_forward.png" align="center"/><br/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/design/modules/images/feed_forward.png" align="center"/><br/>
 
 The Python API will modify this computation graph to add regularization operators. The modified computation graph will look as follows:
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/feed_forward_regularized.png" align="center"/><br/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/design/modules/images/feed_forward_regularized.png" align="center"/><br/>
 
 ### Python API implementation for Regularization
 
@@ -63,4 +63,4 @@ Since we want to create the regularization ops in a lazy manner, the regularizat
 
 #### High-level API
 
-In PaddlePaddle Python API, users will primarily rely on [layer functions](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/modules/python_api.md#layer-function) to create neural network layers. Hence, we also need to provide regularization functionality in layer functions. The design of these APIs can be postponed for later right now. A good reference for these APIs can be found in [Keras](https://keras.io/regularizers/) and also by looking at TensorFlow in [`tf.contrib.layers`](https://www.tensorflow.org/api_guides/python/contrib.layers).
+In PaddlePaddle Python API, users will primarily rely on [layer functions](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/modules/python_api.md#layer-function) to create neural network layers. Hence, we also need to provide regularization functionality in layer functions. The design of these APIs can be postponed for later right now. A good reference for these APIs can be found in [Keras](https://keras.io/regularizers/) and also by looking at TensorFlow in [`tf.contrib.layers`](https://www.tensorflow.org/versions/r1.15/api_docs/python/tf/contrib/layers).
