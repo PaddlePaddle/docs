@@ -3,7 +3,7 @@
 tensordot
 -------------------------------
 
-.. py:function:: paddle.tensordot(x, y, axes=2, name=None)
+.. py:function:: paddle.tensordot(x, y, axes=2, name=None, *, out=None)
 
 Tensor 缩并运算（Tensor Contraction），即沿着 axes 给定的多个轴对两个 Tensor 对应元素的乘积进行加和操作。
 
@@ -32,6 +32,10 @@ shape = [2,2,3]的 ``res`` 张量为 a,b 两个张量沿着 a 张量的最后一
 
         4. ``axes`` 可以是一个 Tensor，这种情况下该 Tensor 会被转换成 list，然后应用前述规则确定做缩并运算的轴。请注意，输入 Tensor 类型的 ``axes`` 只在动态图模式下可用。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+::::::::::::
+    - **out** (Tensor，可选) - 输出 Tensor。默认值为 None。
 
 返回
 ::::::::::::

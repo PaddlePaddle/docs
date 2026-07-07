@@ -31,3 +31,4 @@ x.logical_and_(tensor_y)
 # Paddle 写法
 _x_dtype_ = x.dtype
 x.logical_and_(tensor_y).cast(_x_dtype_)
+```
