@@ -4,8 +4,9 @@
 torch.Tensor.H
 ```
 
-Paddle 现已支持该 API，可直接使用。
-该 API 支持 0D 和 2D Tensor。对于 0D Tensor，返回自身。
+Paddle 无此 API，需要组合实现。
+PyTorch 中等于 x.transpose(0, 1).conj()，Paddle 中 transpose 参数 perm 为转换后的维度位置。
+该 API 仅针对 2D。
 
 ### 转写示例
 ```python
@@ -13,5 +14,5 @@ Paddle 现已支持该 API，可直接使用。
 y = x.H
 
 # Paddle 写法
-y = x.H
+y = x.transpose(perm=[1, 0]).conj()
 ```

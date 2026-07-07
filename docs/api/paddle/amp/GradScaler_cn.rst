@@ -7,7 +7,7 @@ GradScaler
 
 
 
-GradScaler 用于动态图模式下的"自动混合精度"的训练。它控制 loss 的缩放比例，有助于避免浮点数溢出的问题。这个类具有 ``scale()``、 ``unscale_()``、 ``step()``、 ``update()``、 ``minimize()`` 和参数的 ``get()/set()`` 等方法。
+GradScaler 用于动态图模式下的"自动混合精度"的训练。它控制 loss 的缩放比例，有助于避免浮点数溢出的问题。这个类具有 ``scale()``、 ``unscale_()``、 ``minimize()``、 ``step()``、 ``update()`` 和参数的 ``get()/set()`` 共十九个方法。
 
 ``scale()`` 用于让 loss 乘上一个缩放的比例。
 ``unscale_()`` 用于让 loss 除去一个缩放的比例。
@@ -96,10 +96,14 @@ step(optimizer)
 
 COPY-FROM: paddle.amp.GradScaler.step
 
-update()
+update(new_scale=None)
 '''''''''
 
-更新缩放比例。
+更新 loss scaling 比例。
+
+**参数**
+
+- **new_scale** (float，可选) - 新的 loss scaling 因子。如果提供，loss scaling 因子将直接设置为 ``new_scale`` 并重置内部步数计数。默认值为 None。
 
 **代码示例**
 
@@ -301,3 +305,16 @@ load_state_dict(state_dict)
 **代码示例**
 
 COPY-FROM: paddle.amp.GradScaler.load_state_dict
+
+get_scale()
+'''''''''
+
+返回当前的缩放因子，类型为 Python float。如果 loss scaling 未启用，则返回 0.0。
+
+**返回**
+
+float，当前 loss scaling 因子，如果禁用则返回 0.0。
+
+**代码示例**
+
+COPY-FROM: paddle.amp.GradScaler.get_scale

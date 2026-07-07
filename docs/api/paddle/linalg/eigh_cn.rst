@@ -20,8 +20,10 @@ eigh
 返回
 ::::::::::::
 
-    - Tensor out_value，输出矩阵的特征值，输出顺序按照从小到大进行排序。Shape 为 ``[*, M]`` 。
-    - Tensor out_vector，输出矩阵的特征向量，与特征值一一对应，Shape 为 ``[*, M, M]`` 。
+    包含两项的元组：
+
+    - **out_value** (Tensor)：输出矩阵的特征值，输出顺序按照从小到大进行排序。Shape 为 ``[*, N]``，数据类型为 float32 和 float64。
+    - **out_vector** (Tensor)：输出矩阵的特征向量，与特征值一一对应，Shape 为 ``[*, N, N]``，数据类型为 float32、float64、complex64 和 complex128。
 
 代码示例
 ::::::::::

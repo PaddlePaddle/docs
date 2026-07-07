@@ -5,12 +5,9 @@ cholesky
 
 .. py:function:: paddle.linalg.cholesky(x, upper=False, name=None, *, out=None)
 
-
-
-
 计算一个对称正定矩阵或一批对称正定矩阵的 Cholesky 分解。如果 ``upper`` 是 ``True``，
-则分解形式为 :math:`A = U ^ {T} U`，返回的矩阵 U 是上三角矩阵。
-否则，分解形式为 :math:`A = LL ^ {T}`，并返回矩阵 :math:`L` 是下三角矩阵。
+则分解形式为 :math:`A = U^{T}U`，返回的矩阵 U 是上三角矩阵。
+否则，分解形式为 :math:`A = LL^{T}`，并返回矩阵 :math:`L` 是下三角矩阵。
 
 参数
 ::::::::::::

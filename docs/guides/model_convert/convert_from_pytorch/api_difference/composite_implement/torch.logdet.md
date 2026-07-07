@@ -3,7 +3,7 @@
 ```python
 torch.logdet(input)
 ```
-Paddle 现已支持该 API，可直接使用。
+Paddle 无此 API，需要组合实现。
 
 ### 转写示例
 ```python
@@ -11,5 +11,5 @@ Paddle 现已支持该 API，可直接使用。
 y = torch.logdet(input)
 
 # Paddle 写法
-y = paddle.logdet(input)
+y = paddle.log(paddle.linalg.det(input))
 ```

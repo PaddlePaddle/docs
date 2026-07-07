@@ -31,7 +31,4 @@ x.logical_and_(tensor_y)
 # Paddle 写法
 _x_dtype_ = x.dtype
 x.logical_and_(tensor_y).cast(_x_dtype_)
-
-# 也可使用 Paddle 的兼容 API
-paddle.compat.logical_and_(x, y)  # 自动处理返回类型
 ```
