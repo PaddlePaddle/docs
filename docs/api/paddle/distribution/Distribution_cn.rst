@@ -74,7 +74,7 @@ sample(shape=[])
 
 **参数**
 
-    - **shape** (Sequence[int]，可选) - 采样的样本维度。
+    - **shape** (Sequence[int]，可选) - 采样的样本维度。别名 ``sample_shape``。
 
 rsample(shape=[])
 '''''''''
@@ -83,7 +83,16 @@ rsample(shape=[])
 
 **参数**
 
-    - **shape** (Sequence[int]，可选) - 重参数化采样的样本维度。
+    - **shape** (Sequence[int]，可选) - 重参数化采样的样本维度。别名 ``sample_shape``。
+
+sample_n(n)
+''''''''''
+
+从分布中生成 ``n`` 个样本。
+
+**参数**
+
+    - **n** (int) - 采样数量。
 
 sample_n(n)
 ''''''''''
