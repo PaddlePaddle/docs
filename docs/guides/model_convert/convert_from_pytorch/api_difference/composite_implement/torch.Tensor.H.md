@@ -5,7 +5,7 @@ torch.Tensor.H
 ```
 
 Paddle 现已支持该 API，可直接使用。
-该 API 仅针对 2D Tensor。
+该 API 支持 0D 和 2D Tensor。对于 0D Tensor，返回自身。
 
 ### 转写示例
 ```python
