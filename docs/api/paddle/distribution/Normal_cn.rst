@@ -69,7 +69,7 @@ sample(shape=[], seed=0)
 
 **参数**
 
-    - **shape** (Sequence[int], 可选) - 指定生成样本的维度。
+    - **shape** (Sequence[int], 可选) - 指定生成样本的维度。别名 ``sample_shape``。
     - **seed** (int) - 长整型数。
 
 **返回**
@@ -83,7 +83,7 @@ rsample(shape=[])
 
 **参数**
 
-    - **shape** (Sequence[int], 可选) - 指定生成样本的维度。
+    - **shape** (Sequence[int], 可选) - 指定生成样本的维度。别名 ``sample_shape``。
 
 **返回**
 

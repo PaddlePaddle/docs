@@ -43,6 +43,8 @@ Step 3. **更新中文文档与英文一致**
 6. **文档描述原则**
    - 不要在文档中强调"PyTorch 风格"、"PyTorch 签名"、"PyTorch 适配"等 Pytorch 相关内容
    - 参数别名说明只需简单注明"别名 xxx"
+7. 无需修改 `${ROOT_DIR}/docs/guides/model_convert/convert_from_pytorch` 目录中的映射文档
+
 
 # 四、常见修改模式
 

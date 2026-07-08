@@ -36,7 +36,7 @@ disable-model-invocation: false
 
 ### Step 2：迁移文档到 `_paddle_docs.py`
 
-使用 `add_doc_and_signature` 函数迁移文档，关键要点：
+使用 `add_doc_and_signature` 装饰器迁移文档，关键要点：
 
 1. **Alias 说明格式**：在 Args 部分为有别名的参数添加 `Alias: ``alias_name```
 2. **out 参数处理**：keyword-only 参数放在 `Keyword Args:` 部分，位置参数放在 `Args:` 部分，如下：
@@ -58,28 +58,43 @@ Args:
 
 **示例**：
 ```python
-add_doc_and_signature(
-    "log2",
-    r"""
-    Calculates the log to the base 2 of the given input tensor, element-wise.
-    ...
-    Args:
-        x (Tensor): Input tensor. Alias: ``input``.
-        ...
-    Keyword Args:
-        out (Tensor, optional): The output tensor. Default: None.
-    Returns:
-        ...
-""",
-    """
+@add_doc_and_signature
 def log2(
     x: Tensor,
     name: str | None = None,
     *,
     out: Tensor | None = None,
-) -> Tensor
-""",
-)
+) -> Tensor:
+    r"""
+    Calculates the log to the base 2 of the given input tensor, element-wise.
+
+    .. math::
+
+        Out = \log_2x
+
+    Args:
+        x (Tensor): Input tensor must be one of the following types: int32, int64, float16, bfloat16, float32, float64, complex64, complex128.
+        name (str|None, optional): Name for the operation (optional, default is None). For more information, please refer to :ref:`api_guide_Name`.
+        out (Tensor, optional): The output Tensor. If set, the result will be stored in this Tensor. Default: None.
+
+    Returns:
+        Tensor: The log to the base 2 of the input Tensor computed element-wise.
+
+    Examples:
+
+        .. code-block:: pycon
+
+            >>> import paddle
+
+            >>> # example 1: x is a float
+            >>> x_i = paddle.to_tensor([[1.0], [2.0]])
+            >>> res = paddle.log2(x_i)
+            >>> res
+            Tensor(shape=[2, 1], dtype=float32, place=Place(cpu), stop_gradient=True,
+            [[0.],
+             [1.]])
+    """
+    ...
 ```
 
 **注意**：
@@ -95,10 +110,10 @@ def log2(
 2. 直接**删除**原有的 Python 函数实现
 
 ```python
-# 在文件最上方合适位置导入（不要添加注释）
+# 在文件最上方合适位置导入
 from paddle._C_ops import log2  # noqa: F401
 
-# 以下内容全部删除（不要添加注释）
+# 以下内容全部删除
 # def log2(x: Tensor, name: str | None = None) -> Tensor:
 #     ...
 ```
@@ -234,7 +249,7 @@ Returns:
 1. 严格按标准工作流程执行，杜绝自行臆断和跳过步骤
 2. 若 Python API 参数顺序与`_C_ops` API 不同，属于特殊情况，Cpp 下沉方案无法实现，需要使用 Python 装饰器方案
 3. 代码中不允许提交中文，代码注释采用英文
-4. 若 API 需支持`out`参数，必须修改`add_doc_and_signature`中的字符串，增加 out 参数
+4. 若 API 需支持`out`参数，必须在 API 签名中 out 参数
 5. 不要修改`generated_tensor_methods_patch.py`，该文件是自动生成的，修改没有意义，如无法对齐可考虑放弃 C++下沉方案而不是改动该文件
 6. 示例代码若涉及多种数据类型，可能触发类型检查误报，添加注释忽略：
 ```python

@@ -3,8 +3,12 @@
 masked_fill\_
 -------------------------------
 
-.. py:function:: paddle.masked_fill_(x)
+.. py:function:: paddle.masked_fill_(x, mask, value, name=None)
+
 Inplace 版本的 :ref:`cn_api_paddle_masked_fill` API，对输入 x 采用 Inplace 策略。
+
+.. note::
+    别名支持：参数名 ``input`` 可替代 ``x``，如 ``masked_fill_(input=tensor_x, mask=tensor_mask, value=val)`` 等价于 ``masked_fill_(x=tensor_x, mask=tensor_mask, value=val)``。
 
 更多关于 inplace 操作的介绍请参考 `3.1.3 原位（Inplace）操作和非原位操作的区别`_ 了解详情。
 
