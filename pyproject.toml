@@ -1,4 +1,5 @@
 [tool.ruff]
+extend-exclude = ["*.md"]
 line-length = 80
 target-version = "py39"
 
