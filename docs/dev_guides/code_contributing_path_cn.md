@@ -12,16 +12,16 @@
 
 请提前阅读贡献流程、代码规范、单元测试规范等信息，以确保您提交的代码符合飞桨的相关准则，尽可能高效地合入代码。
 
-通常你需要提前阅读本章节，以及通用的 [规范和参考信息](style_guide_and_references/index_cn.html)，然后根据贡献内容阅读对应模块的指南，比如需要贡献一个新的 API，则需阅读 [新增 API 开发&提交流程](api_contributing_guides/api_contributing_guides_cn.html)，后续飞桨也将提供其他的如功能增强、性能优化等相关贡献指南，当然也欢迎开发者贡献这些指南。
+通常你需要提前阅读本章节，以及通用的 [规范和参考信息](style_guide_and_references/index_cn.rst)，然后根据贡献内容阅读对应模块的指南，比如需要贡献一个新的 API，则需阅读 [新增 API 开发&提交流程](api_contributing_guides/api_contributing_guides_cn.rst)，后续飞桨也将提供其他的如功能增强、性能优化等相关贡献指南，当然也欢迎开发者贡献这些指南。
 
-> 说明：文档的贡献流程与代码有所不同，直接阅读 [文档贡献指南](docs_contributing_guides_cn.html) 即可。
+> 说明：文档的贡献流程与代码有所不同，直接阅读 [文档贡献指南](docs_contributing_guides_cn.md) 即可。
 
 ### 1.3 签署 CLA
 
 首次为 [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 仓库贡献时，需要签署 [贡献者许可协议（Contributor License Agreement，CLA）](https://cla-assistant.io/PaddlePaddle/Paddle)，才可以合入代码。签署 CLA 即表明同意许可条款，并保留开发者投稿的所有权利、所有权和利益。
 
 ### 1.4 开发环境
-为了飞桨开发者更便捷地开发，飞桨在 AI Studio 实训社区中提供了 CPU、GPU 计算资源和线上开发环境，飞桨框架开发者可发邮件申请资源：发邮件到 ext_paddle_oss@baidu.com，并附上 github username，aistudio uid，说明用途。
+为了飞桨开发者更便捷地开发，飞桨在 AI Studio 实训社区中提供了 CPU、GPU 计算资源和线上开发环境，飞桨框架开发者可发邮件申请资源：发邮件到 `ext_paddle_oss@baidu.com`，并附上 github username，aistudio uid，说明用途。
 申请通过后，在 AI Studio 上创建项目即可选择框架开发环境。
 
 ## 二、贡献流程
@@ -32,7 +32,7 @@
 
 （1）Fork 仓库
 
-打开 [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) GitHub 首页，单击 `Fork` 按钮，将在你的用户名下创建一个仓库副本，比如 https://github.com/USERNAME/Paddle。
+打开 [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) GitHub 首页，单击 `Fork` 按钮，将在你的用户名下创建一个仓库副本，比如 `https://github.com/USERNAME/Paddle`。
 
 （2）将远程仓库 Clone 到本地
 
@@ -79,7 +79,7 @@
 
 （2）开发代码
 
-可根据贡献内容，参考对应模块的贡献指南开发代码，如 [新增 API 开发&提交流程](api_contributing_guides/api_contributing_guides_cn.html)，包括：
+可根据贡献内容，参考对应模块的贡献指南开发代码，如 [新增 API 开发&提交流程](api_contributing_guides/api_contributing_guides_cn.rst)，包括：
 
 - 功能实现代码
 - 单元测试代码
@@ -113,7 +113,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 （1）本地编译并安装 Paddle
 
-编译方法请参见 [从源码编译](../../../install/compile/fromsource.html) 章节，推荐使用 Docker 编译的方式。Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机编译更便捷。
+编译方法请参见 [从源码编译](../install/compile/fromsource.rst) 章节，推荐使用 Docker 编译的方式。Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机编译更便捷。
 
 > 注意：编译必须打开 `WITH_TESTING` 选项，以确保新增的单元测试文件（如 `test/` 目录下 `test_*.py` 文件）自动加入工程进行编译。
 
@@ -183,7 +183,7 @@ sort-txt-file........................................(no files to check)Skipped
 
 （2）保持本地仓库最新
 
-在向原仓库（https://github.com/PaddlePaddle/Paddle）发起 Pull Request 合入代码之前，需要同步原仓库最新的代码。
+在向原仓库（[PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle)）发起 Pull Request 合入代码之前，需要同步原仓库最新的代码。
 
 首先通过 `git remote` 查看当前远程仓库的名字。
 
@@ -195,7 +195,7 @@ origin    https://github.com/USERNAME/Paddle (push)
 
 这里命名为 origin 的远程仓库是之前 Fork 到自己用户名下的 Paddle 仓库。
 
-接下来需要创建一个原始 Paddle 仓库 （https://github.com/PaddlePaddle/Paddle） 的远程主机，命名为 upstream。
+接下来需要创建一个原始 Paddle 仓库 （[PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle)） 的远程主机，命名为 upstream。
 
 ```bash
 ➜  git remote add upstream https://github.com/PaddlePaddle/Paddle
@@ -215,7 +215,7 @@ upstream    https://github.com/PaddlePaddle/Paddle.git (push)
 
 （3）Push 到远程仓库
 
-将本地的修改推送到 GitHub 上，也就是 （https://github.com/USERNAME/Paddle）。如果遇到冲突问题，可以参考 [GitHub 文档](https://docs.github.com/cn/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line) 来解决。
+将本地的修改推送到 GitHub 上，也就是 （`https://github.com/USERNAME/Paddle`）。如果遇到冲突问题，可以参考 [GitHub 文档](https://docs.github.com/cn/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line) 来解决。
 
 ```bash
 ➜  git push origin my-cool-stuff
@@ -223,7 +223,7 @@ upstream    https://github.com/PaddlePaddle/Paddle.git (push)
 
 （4）提交 Pull Request（PR）合入代码
 
-打开（https://github.com/USERNAME/Paddle）页面，并切换到所建分支，然后单击 `Compare & pull request` 按钮。
+打开（`https://github.com/USERNAME/Paddle`）页面，并切换到所建分支，然后单击 `Compare & pull request` 按钮。
 
 ![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/images/compare_pull_request.png?raw=true)
 
@@ -251,7 +251,7 @@ upstream    https://github.com/PaddlePaddle/Paddle.git (push)
 
 <span id="CItest">（6）确保通过 CI 测试</span>
 
-提交 Pull Request 后会触发 CI（Continuous Integration，持续集成）测试，并且之后每提交一次代码合入（`git push`）都会触发一次 CI 测试。CI 测试可尽可能保障代码质量，详细测试内容可参见 [Paddle CI 测试详解](./git_guides/paddle_ci_manual_cn.html)。
+提交 Pull Request 后会触发 CI（Continuous Integration，持续集成）测试，并且之后每提交一次代码合入（`git push`）都会触发一次 CI 测试。CI 测试可尽可能保障代码质量，详细测试内容可参见 [Paddle CI 测试详解](./git_guides/paddle_ci_manual_cn.md)。
 
 提交 Pull Request 后，请关注 CI 测试进程，一般会在几个小时内完成。
 
