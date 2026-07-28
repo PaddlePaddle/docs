@@ -53,7 +53,7 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/conda/lib/
 
 1. https://pypi.tuna.tsinghua.edu.cn/simple
 2. https://mirrors.aliyun.com/pypi/simple/
-3. https://pypi.douban.com/simple/
+3. https://pypi.mirrors.ustc.edu.cn/simple/
 
 ------
 
@@ -82,8 +82,6 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/conda/lib/
 使用 pip install 时报错，`ERROR: Could not find a version that satisfies the requirement paddlepaddle (from versions: none)`
 
 `ERROR: No matching distribution found for paddlepaddle`
-
-<img src="https://agroup-bos-bj.cdn.bcebos.com/bj-febb18fb78004dc17f18d60a009dc6a8bd907251" alt="图片" />
 
 + 报错分析：
 
