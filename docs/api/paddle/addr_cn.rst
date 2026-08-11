@@ -3,7 +3,7 @@
 addr
 -------------------------------
 
-.. py:function:: paddle.addr(input, vec1, vec2, beta=1, alpha=1, name=None, *, out=None)
+.. py:function:: paddle.addr(input, vec1, vec2, beta=1, alpha=1, *, out=None)
 
 执行向量 ``vec1`` 和向量 ``vec2`` 的外积，并将其加到输入矩阵上。
 
@@ -16,7 +16,6 @@ addr
     - **vec2** (Tensor) - 第二个向量。
     - **beta** (float，可选) - input 的乘数，默认值为 1。
     - **alpha** (float，可选) - 外积的乘数，默认值为 1。
-    - **name** (str，可选) - 操作名称，默认值为 None。
 
 关键字参数
 :::::::::
