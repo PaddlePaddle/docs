@@ -3,7 +3,14 @@
 sum
 -------------------------------
 
-.. py:function:: paddle.sum(x, axis=None, dtype=None, keepdim=False, name=None)
+.. py:function:: paddle.sum(x, axis=None, dtype=None, keepdim=False, name=None, *, out=None)
+
+.. note::
+
+    本 API 支持两种签名：
+
+    1. ``paddle.sum(x, axis=None, dtype=None, keepdim=False, name=None, *, out=None)`` （Paddle 风格）。
+    2. ``paddle.sum(input, dim=None, keepdim=False, dtype=None, *, out=None)`` （PyTorch 风格）。
 
 对指定维度上的 Tensor 元素进行求和运算，并输出相应的计算结果。
 
@@ -21,6 +28,11 @@ sum
     - **dtype** (str|paddle.dtype|np.dtype，可选) - 输出变量的数据类型。若参数为空，则输出变量的数据类型和输入变量相同，默认值为 None。
     - **keepdim** (bool，可选) - 是否在输出 Tensor 中保留减小的维度。如 keepdim 为 true，否则结果 Tensor 的维度将比输入 Tensor 小，默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+:::::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
+
 返回
 ::::::::::::
 
