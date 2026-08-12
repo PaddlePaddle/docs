@@ -3,7 +3,7 @@
 scale
 -------------------------------
 
-.. py:function:: paddle.scale(x, scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
+.. py:function:: paddle.scale(x, scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None, *, out=None)
 
 对输入 Tensor 进行缩放和偏置，其公式如下：
 
@@ -26,6 +26,10 @@ scale
         - **bias_after_scale** (bool) - 判断在缩放之前或之后添加偏置。为 True 时，先缩放再偏置；为 False 时，先偏置再缩放。该参数在某些情况下，对数值稳定性很有用。
         - **act** (str，可选) - 应用于输出的激活函数，如 tanh、softmax、sigmoid、relu 等。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+:::::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 ::::::::::::
