@@ -4,7 +4,7 @@ grad
 -------------------------------
 
 
-.. py:function:: paddle.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None)
+.. py:function:: paddle.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None, *, dump_backward_graph_path=None)
 
 .. note::
     该 API 仅支持 **动态图模式**。
@@ -20,13 +20,18 @@ grad
     - **retain_graph** (bool，可选) - 是否保留计算梯度的前向图。若值为 True，则前向图会保留，用户可对同一张图求两次反向。若值为 False，则前向图会释放。默认值为 None，表示值与 ``create_graph`` 相等。
     - **create_graph** (bool，可选) - 是否创建计算过程中的反向图。若值为 True，则可支持计算高阶导数。若值为 False，则计算过程中的反向图会释放。默认值为 False。
     - **only_inputs** (bool，可选) - 是否只计算 ``inputs`` 的梯度。若值为 False，则图中所有叶节点变量的梯度均会计算，并进行累加。若值为 True，则只会计算 ``inputs`` 的梯度。默认值为 True。only_inputs=False 功能正在开发中，目前尚不支持。
-    - **allow_unused** (bool，可选) - 决定当某些 ``inputs`` 变量不在计算图中时抛出错误还是返回 None。若某些 ``inputs`` 变量不在计算图中（即它们的梯度为 None），则当 allowed_unused=False 时会抛出错误，当 allow_unused=True 时会返回 None 作为这些变量的梯度。默认值为 False。
+    - **allow_unused** (bool，可选) - 决定当某些 ``inputs`` 变量不在计算图中时抛出错误还是返回 None。若某些 ``inputs`` 变量不在计算图中（即它们的梯度为 None），则当 allow_unused=False 时会抛出错误，当 allow_unused=True 时会返回 None 作为这些变量的梯度。默认值为 False。
     - **no_grad_vars** (Tensor|list(Tensor)|tuple(Tensor)|set(Tensor)，可选) - 指明不需要计算梯度的变量。默认值为 None。
+
+关键字参数
+:::::::::
+
+    - **dump_backward_graph_path** (str，可选) - 用于保存调试文件的目录路径。指定该参数后，会在此目录中生成反向相关图（dot 格式）和调试调用栈信息。默认值为 None。
 
 返回
 :::::::::
 
-tuple(Tensor)，其长度等于 ``inputs`` 中的变量个数，且第 i 个返回的变量是所有 ``outputs`` 相对于第 i 个 ``inputs`` 的梯度之和。
+list(Tensor)，其长度等于 ``inputs`` 中的变量个数，且第 i 个返回的变量是所有 ``outputs`` 相对于第 i 个 ``inputs`` 的梯度之和。
 
 代码示例 1
 :::::::::

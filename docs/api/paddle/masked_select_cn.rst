@@ -3,7 +3,7 @@
 masked_select
 -------------------------------
 
-.. py:function:: paddle.masked_select(x, mask, name=None)
+.. py:function:: paddle.masked_select(x, mask, name=None, *, out=None)
 
 
 
@@ -15,11 +15,14 @@ masked_select
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入 Tensor，数据类型为 float32，float64，int32 或者 int64。
+    - **x** (Tensor) - 输入 Tensor，数据类型为 float16、float32、float64、uint16、int32 或 int64。
       别名： ``input``
     - **mask** (Tensor) - 用于索引的二进制掩码的 Tensor，数据类型为 bool。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **out** （Tensor，可选） - 指定输出结果的 ``Tensor``，默认值为 None。
+
+关键字参数
+:::::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 ::::::::::::
