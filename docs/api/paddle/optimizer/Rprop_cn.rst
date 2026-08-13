@@ -3,7 +3,7 @@
 Rprop
 -------------------------------
 
-.. py:class:: paddle.optimizer.Rprop(learning_rate=0.001, learning_rate_range=(1e-5, 50), parameters=None, etas=(0.5, 1.2), grad_clip=None, name=None)
+.. py:class:: paddle.optimizer.Rprop(learning_rate=0.001, learning_rate_range=(1e-5, 50), parameters=None, etas=(0.5, 1.2), grad_clip=None, multi_precision=False, name=None)
 
 
 .. note::
@@ -39,12 +39,13 @@ Rprop 算法的优化器。有关详细信息，请参阅：
 参数
 ::::::::::::
 
-    - **learning_rate** (float|_LRScheduleri，可选) - 初始学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler 类。默认值为 0.001。
+    - **learning_rate** (float|Tensor|LRScheduler，可选) - 初始学习率，用于参数更新的计算。可以是浮点值、浮点类型的 Tensor 或 LRScheduler。默认值为 0.001。
     - **learning_rate_range** (tuple，可选) - 学习率的范围。学习率不能小于元组的第一个元素；学习率不能大于元组的第二个元素。默认值为 (1e-5, 50)。
-    - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
+    - **parameters** (list|tuple|None，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，此时所有参数都将被优化。
     - **etas** (tuple，可选) - 用于更新学习率的元组。元组的第一个元素是乘法递减因子；元组的第二个元素是乘法增加因子。默认值为 (0.5, 1.2)。
     - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_paddle_nn_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_paddle_nn_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_paddle_nn_ClipGradByValue>` 。
       默认值为 None，此时将不进行梯度裁剪。
+    - **multi_precision** (bool，可选) - 在基于 GPU 的混合精度训练中，是否保存与 float16 参数等值的 float32 参数副本以保证梯度更新的数值稳定性。默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
@@ -56,8 +57,8 @@ COPY-FROM: paddle.optimizer.Rprop
 
 方法
 ::::::::::::
-step()
-'''''''''
+step(closure=None)
+''''''''''''''''''''''''''''''''''''''''
 
 .. note::
 
@@ -65,9 +66,13 @@ step()
 
 执行一次优化器并进行参数更新。
 
+**参数**
+
+    - **closure** (Callable[[], Tensor], 可选) - 用于评估模型并返回损失的闭包函数。闭包函数应接受 0 个参数并返回 Tensor。适用于需要多次评估损失的优化过程。默认值为 None。
+
 **返回**
 
-无。
+Tensor 或 None。若传入 closure 参数则返回其输出的损失，否则返回 None。
 
 **代码示例**
 
@@ -94,8 +99,8 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 COPY-FROM: paddle.optimizer.Rprop.minimize
 
-clear_grad()
-'''''''''
+clear_grad(set_to_zero=True)
+''''''''''''''''''''''''''''''''''''''''
 
 .. note::
 
@@ -103,6 +108,10 @@ clear_grad()
 
 
 清除需要优化的参数的梯度。
+
+**参数**
+
+    - **set_to_zero** (bool，可选) - 是否将梯度置零。若为 False，则删除梯度。默认值为 True。
 
 **代码示例**
 
@@ -115,7 +124,7 @@ get_lr()
 
   该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
-获取当前步骤的学习率。当不使用_LRScheduler 时，每次调用的返回值都相同，否则返回当前步骤的学习率。
+获取当前步骤的学习率。当不使用 LRScheduler 时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 
 **返回**
 

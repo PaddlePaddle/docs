@@ -3,7 +3,7 @@
 Adagrad
 -------------------------------
 
-.. py:class:: paddle.optimizer.Adagrad(learning_rate, epsilon=1e-06, parameters=None, weight_decay=None, grad_clip=None, name=None, initial_accumulator_value=0.0)
+.. py:class:: paddle.optimizer.Adagrad(learning_rate, epsilon=1e-06, parameters=None, weight_decay=None, grad_clip=None, name=None, initial_accumulator_value=0.0, *, maximize=False)
 
 
 Adaptive Gradient 优化器（自适应梯度优化器，简称 Adagrad）可以针对不同参数样本数不平均的问题，自适应地为各个参数分配不同的学习率。
@@ -27,14 +27,19 @@ Adaptive Gradient 优化器（自适应梯度优化器，简称 Adagrad）可以
 
     - **learning_rate** (float|Tensor) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的 Tensor。
     - **epsilon** (float，可选) - 维持数值稳定性的浮点型值，默认值为 1e-06。
-    - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
-    - **weight_decay** (float|WeightDecayRegularizer，可选) - 正则化方法。可以是 float 类型的 L2 正则化系数或者正则化策略：:ref:`cn_api_paddle_regularizer_L1Decay` 、
+    - **parameters** (list|tuple|None，可选) - 指定优化器需要优化的参数，可以是待更新 Tensor 的列表或元组；也可以是参数组字典的列表，以为不同参数组指定学习率、权重衰减等选项。参数组中的 ``learning_rate`` 表示基础学习率的缩放比例。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，此时所有参数都将被优化。
+    - **weight_decay** (int|float|WeightDecayRegularizer|None，可选) - 正则化方法。可以是 int 或 float 类型的 L2 正则化系数或者正则化策略：:ref:`cn_api_paddle_regularizer_L1Decay` 、
       :ref:`cn_api_paddle_regularizer_L2Decay`。如果一个参数已经在 :ref:`cn_api_paddle_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
       如果没有在 :ref:`cn_api_paddle_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为 None，表示没有正则化。
     - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_paddle_nn_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_paddle_nn_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_paddle_nn_ClipGradByValue>` 。
       默认值为 None，此时将不进行梯度裁剪。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **initial_accumulator_value** (float，可选) - moment 累加器的初始值，默认值为 0.0。
+
+关键字参数
+::::::::::::
+
+    - **maximize** (bool，可选) - 是否对参数最大化目标函数，而非最小化。默认值为 False。
 
 代码示例
 ::::::::::::

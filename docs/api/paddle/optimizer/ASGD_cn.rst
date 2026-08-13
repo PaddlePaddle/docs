@@ -26,10 +26,10 @@ ASGD 算法的优化器。有关详细信息，请参阅：
 参数
 ::::::::::::
 
-    - **learning_rate** (float|_LRScheduleri，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler 类。默认值为 0.001。
+    - **learning_rate** (float|Tensor|LRScheduler，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值、浮点类型的 Tensor 或 LRScheduler。默认值为 0.001。
     - **batch_num** (int，可选) - 完成一个 epoch 所需迭代的次数。默认值为 1。
-    - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
-    - **weight_decay** (float|Tensor，可选) - 权重衰减系数，是一个 float 类型或者 shape 为[1]，数据类型为 float32 的 Tensor 类型。默认值为 None。
+    - **parameters** (list|tuple|None，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
+    - **weight_decay** (int|float|WeightDecayRegularizer|None，可选) - 权重衰减策略。可以是 int 或 float 类型的 L2 正则化系数，或 :ref:`cn_api_paddle_regularizer_L1Decay`、:ref:`cn_api_paddle_regularizer_L2Decay`。若参数已通过 :ref:`cn_api_paddle_ParamAttr` 设置 regularizer，则该参数的设置会被忽略；否则在优化器中生效。默认值为 None，表示不进行正则化。
     - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_paddle_nn_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_paddle_nn_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_paddle_nn_ClipGradByValue>` 。
       默认值为 None，此时将不进行梯度裁剪。
     - **multi_precision** (bool，可选) – 在基于 GPU 设备的混合精度训练场景中，该参数主要用于保证梯度更新的数值稳定性。设置为 True 时，优化器会针对 FP16 类型参数保存一份与其值相等的 FP32 类型参数备份。梯度更新时，首先将梯度类型提升到 FP32，然后将其更新到 FP32 类型参数备份中。最后，更新后的 FP32 类型值会先转换为 FP16 类型，再赋值给实际参与计算的 FP16 类型参数。默认为 False。
@@ -44,8 +44,8 @@ COPY-FROM: paddle.optimizer.ASGD
 
 方法
 ::::::::::::
-step()
-'''''''''
+step(closure=None)
+''''''''''''''''''''''''''''''''''''''''
 
 .. note::
 
@@ -53,9 +53,13 @@ step()
 
 执行一次优化器并进行参数更新。
 
+**参数**
+
+    - **closure** (Callable[[], Tensor], 可选) - 用于评估模型并返回损失的闭包函数。闭包函数应接受 0 个参数并返回 Tensor。适用于需要多次评估损失的优化过程。默认值为 None。
+
 **返回**
 
-无。
+Tensor 或 None。若传入 closure 参数则返回其输出的损失，否则返回 None。
 
 **代码示例**
 
@@ -82,8 +86,8 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 COPY-FROM: paddle.optimizer.ASGD.minimize
 
-clear_grad()
-'''''''''
+clear_grad(set_to_zero=True)
+''''''''''''''''''''''''''''''''''''''''
 
 .. note::
 
@@ -91,6 +95,10 @@ clear_grad()
 
 
 清除需要优化的参数的梯度。
+
+**参数**
+
+    - **set_to_zero** (bool，可选) - 是否将梯度置零。若为 False，则删除梯度。默认值为 True。
 
 **代码示例**
 
