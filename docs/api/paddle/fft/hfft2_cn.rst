@@ -3,7 +3,7 @@
 hfft2
 -------------------------------
 
-.. py:function:: paddle.fft.hfft2(x, s=None, axes=(-2, -1), norm="backward", name=None)
+.. py:function:: paddle.fft.hfft2(x, s=None, axes=(-2, -1), norm="backward", name=None, *, out=None)
 
 通过快速傅里叶变换（FFT）算法计算二维厄米特(Hermitian)傅里叶变换。
 
@@ -11,10 +11,11 @@ hfft2
 参数
 :::::::::
 
-    - **x** (Tensor) - 输入数据，其数据类型为复数类型。
+    - **x** (Tensor) - 输入数据，其数据类型为复数类型。别名 ``input``。
     - **s** (Sequence[int]，可选) - 输出 Tensor 在傅里叶变换轴的长度（类似一维傅里叶变换中
       的参数 ``n``）。
     - **axes** (Sequence[int]，可选) - 傅里叶变换的轴。如果没有指定，默认使用最后两个轴。
+      别名 ``dim``。
     - **norm** (str，可选) - 傅里叶变换的缩放模式，缩放系数由变换的方向和缩放模式同时决定。取
       值必须是 "forward"，"backward"，"ortho" 之一，默认值为 "backward"。三种缩放模式对应
       的行为如下：
@@ -26,6 +27,10 @@ hfft2
       其中 ``n`` 为 ``s`` 中每个元素连乘。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
+
+关键字参数
+:::::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 :::::::::

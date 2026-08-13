@@ -3,7 +3,7 @@
 ifftn
 -------------------------------
 
-.. py:function:: paddle.fft.ifftn(x, s=None, axes=None, norm="backward", name=None)
+.. py:function:: paddle.fft.ifftn(x, s=None, axes=None, norm="backward", name=None, *, out=None)
 
 N 维离散傅里叶变换的逆变换。在一定的误差范围内，``ifftn(fftn(x)) == x``。
 
@@ -11,7 +11,7 @@ N 维离散傅里叶变换的逆变换。在一定的误差范围内，``ifftn(f
 参数
 :::::::::
 
-    - **x** (Tensor) - 输入 Tensor，数据类型为实数或复数。
+    - **x** (Tensor) - 输入 Tensor，数据类型为实数或复数。别名 ``input``。
     - **s** (Sequence[int]，可选) - 输出 Tensor 在每一个傅里叶变换轴上的长度（类似一维逆向傅
       里叶变换中的参数 ``n``）。对于每一个傅里叶变换的轴，如果 ``s`` 中该轴的长度比输入 Tensor
       中对应轴的长度小，输入 Tensor 会被截断。如果 ``s`` 中该轴的长度比输入 Tensor 中对应轴
@@ -19,6 +19,7 @@ N 维离散傅里叶变换的逆变换。在一定的误差范围内，``ifftn(f
       个轴的长度。
     - **axes** (Sequence[int]，可选) - 傅里叶变换的轴。如果没有指定，默认是使用最后
       ``len(s)`` 个轴，如果 ``s`` 也没有指定则使用输入 Tensor 的全部的轴。
+      别名 ``dim``。
     - **norm** (str，可选) - 傅里叶变换的缩放模式，缩放系数由变换的方向和缩放模式同时决定。取值
       必须是 "forward"，"backward"，"ortho" 之一，默认值为 "backward"。三种缩放模式对
       应的行为如下：
@@ -30,6 +31,10 @@ N 维离散傅里叶变换的逆变换。在一定的误差范围内，``ifftn(f
       其中 ``n`` 为 ``s`` 中每个元素连乘。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
+
+关键字参数
+:::::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 :::::::::
