@@ -3,7 +3,7 @@
 slogdet
 -------------------------------
 
-.. py:function:: paddle.linalg.slogdet(x)
+.. py:function:: paddle.linalg.slogdet(x, name=None)
 计算批量矩阵的行列式值的符号值和行列式值绝对值的自然对数值。
 
 .. note::
@@ -14,6 +14,7 @@ slogdet
 ::::::::::::
 
     - **x** (Tensor)：输入一个或批量矩阵。``x`` 的形状应为 ``[*, M, M]``，其中 ``*`` 为零或更大的批次维度，数据类型支持 float32、float64、complex64、complex128。
+    - **name** (str|None，可选) - 输出名称，用于打印开发调试信息。默认值为 None。具体用法请参见 :ref:`api_guide_Name`。
 
 返回
 ::::::::::::
