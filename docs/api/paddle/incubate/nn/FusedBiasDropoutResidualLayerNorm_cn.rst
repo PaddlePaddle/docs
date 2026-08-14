@@ -1,7 +1,7 @@
 .. _cn_api_paddle_incubate_nn_FusedBiasDropoutResidualLayerNorm:
 
 FusedBiasDropoutResidualLayerNorm
--------------------------------
+----------------------------------
 
 .. py:class:: paddle.incubate.nn.FusedBiasDropoutResidualLayerNorm(embed_dim, dropout_rate=0.5, weight_attr=None, bias_attr=None, epsilon=1e-05, name=None)
 
@@ -11,8 +11,10 @@ FusedBiasDropoutResidualLayerNorm
 ::::::::::::
     - **embed_dim** (int) - 输入和输出中预期的特征大小。
     - **dropout_rate** (float，可选) - 在注意力权重上使用的 Dropout 概率，用于在注意力后的 Dropout 过程中丢弃一些注意力目标。0 表示无 Dropout。默认为 0.5。
+    - **weight_attr** (ParamAttr，可选) - 指定本层可学习权重的属性。默认值为 None，权重初始化为零。具体用法请参见 :ref:`cn_api_paddle_ParamAttr`。
     - **bias_attr** (ParamAttr|bool，可选) - 指定偏置参数的属性。默认为 None，意味着使用默认的偏置参数属性。如果设置为 False，则该层不会有可训练的偏置参数。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
     - **epsilon** (float，可选) - 添加到方差中的小值，以防止除零。默认为 1e-05。
+    - **name** (str，可选) - 一般无需设置。具体用法请参见 :ref:`api_guide_Name`。
 
 代码示例
 ::::::::::::
