@@ -3,7 +3,7 @@
 shard_optimizer
 -------------------------------
 
-.. py:function:: paddle.distributed.shard_optimizer(optimizer, shard_fn=None)
+.. py:function:: paddle.distributed.shard_optimizer(optimizer, shard_fn=None, gradient_accumulation_steps=1)
 
 将单卡视角的优化器转变为分布式视角。可以通过指定 ``shard_fn`` 来定制化优化器状态的切分方式，否则会将参数的分布式信息传递给对应的优化器状态。
 
@@ -15,6 +15,7 @@ shard_optimizer
 
     - **optimizer** (paddle.optimizer.Optimizer) - 单卡视角的优化器。
     - **shard_fn** (Callable，可选) - 用于切分优化器状态函数。如果没有指定，默认地我们将参数的分布式信息传递给对应的优化器状态。
+    - **gradient_accumulation_steps** (int，可选) - 梯度累积步数。默认值为 1。
 
 返回
 :::::::::

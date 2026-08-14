@@ -3,7 +3,7 @@
 LocalLayer
 -------------------------------
 
-.. py:class:: paddle.distributed.LocalLayer(out_dist_attrs)
+.. py:class:: paddle.distributed.LocalLayer(out_dist_attrs, grad_dist_attrs)
 
 LocalLayer 用于在分布式训练中实现局部计算操作。在自动并行训练中，某些操作（如带 mask 的 loss 计算、MoE 相关计算等）需要在每张卡上独立进行局部计算，而不是直接在全局分布式张量上计算。LocalLayer 通过自动处理张量转换，使得用户可以像编写单卡代码一样实现这些局部操作。
 
@@ -15,6 +15,8 @@ LocalLayer 用于在分布式训练中实现局部计算操作。在自动并行
       - ProcessMesh: 计算设备网格,定义计算资源的拓扑结构
       - list[Placement]: 张量分布方式的列表,描述如何将局部计算结果转换回分布式张量
 
+    - **grad_dist_attrs** (list[tuple[ProcessMesh, list[Placement]]]) - 指定梯度 Tensor 的分布策略。列表中的元组可为 None，此时对应梯度 Tensor 的分布属性与对应输入 Tensor 相同。
+
 **代码示例**
 
 .. code-block:: python
@@ -24,8 +26,8 @@ LocalLayer 用于在分布式训练中实现局部计算操作。在自动并行
     from paddle.distributed import Placement, ProcessMesh, LocalLayer
 
     class CustomLayer(dist.LocalLayer):
-        def __init__(self, out_dist_attrs):
-            super().__init__(out_dist_attrs)
+        def __init__(self, out_dist_attrs, grad_dist_attrs):
+            super().__init__(out_dist_attrs, grad_dist_attrs)
             self.local_result = paddle.to_tensor(0.0)
         def forward(self, x):
             mask = paddle.zeros_like(x)
@@ -53,7 +55,7 @@ LocalLayer 用于在分布式训练中实现局部计算操作。在自动并行
         [dist.Shard(0)]
     )
 
-    custom_layer = CustomLayer(out_dist_attrs)
+    custom_layer = CustomLayer(out_dist_attrs, out_dist_attrs)
     output_dist = custom_layer(input_dist)
     local_value = custom_layer.local_result
 
@@ -71,7 +73,7 @@ LocalLayer 用于在分布式训练中实现局部计算操作。在自动并行
 :::::::::
 
 __call__()
-'''''''''
+'''''''''''
 
 执行局部计算的核心方法。该方法会:
 
@@ -94,9 +96,11 @@ LocalLayer 可以用于但不限于以下场景：
 
 1. 带 mask 的 loss 计算：需要在每张卡上独立计算 masked token 的 loss
 2. MoE（混合专家模型）相关计算：
-  - aux_loss 计算：基于每张卡上专家分配到的局部 token 数进行计算
-  - z_loss 计算：对每张卡上的 logits 独立计算 z_loss
-  - 张量 reshape 操作：在局部维度上进行 shape 变换
+
+    - aux_loss 计算：基于每张卡上专家分配到的局部 token 数进行计算
+    - z_loss 计算：对每张卡上的 logits 独立计算 z_loss
+    - 张量 reshape 操作：在局部维度上进行 shape 变换
+
 3. 其他需要保持局部计算语义的场景
 
 **注意事项**

@@ -3,7 +3,7 @@
 shard_dataloader
 -------------------------------
 
-.. py:function:: paddle.distributed.shard_dataloader(dataloader, meshes, input_keys=None, shard_dims=None, is_dataset_splitted=False)
+.. py:function:: paddle.distributed.shard_dataloader(dataloader, meshes, input_keys=None, shard_dims=None, is_dataset_splitted=False, dense_tensor_idx=None)
 
 将单卡视角的数据加载器转变为分布式视角，与普通的 dataloader 相比，其提供了两个能力：
 1. 如果 dataloader 的 shard_dim 不为 None，则按 shard_dim 拆分 dataloader 以进行数据并行。
@@ -15,9 +15,10 @@ shard_dataloader
 
     - **dataloader** (paddle.io.DataLoader) - 单卡视角的 dataloader。
     - **meshes** (ProcessMesh|list|tuple) - 切分 dataloader 使用的 mesh。可以是个 ProcessMesh 或者 list，如果是个 list，则表示不同的输入需要在不同的 mesh 上。
-    - **input_keys** (list|tuple，可选) - 如果 dataloader 的迭代结果是一个张量字典，input_keys 是这个字典的键，标识哪个张量位于哪个 mesh 上，与 meshes 一一对应。默认值 None，表示 dataloader 的迭代结果不是 dict。
+    - **input_keys** (list[str]|tuple[str]，可选) - 如果 dataloader 的迭代结果是一个张量字典，input_keys 是这个字典的键，标识哪个张量位于哪个 mesh 上，与 meshes 一一对应。默认值 None，表示 dataloader 的迭代结果不是 dict。
     - **shard_dims** (str|int|list|tuple，可选) - 对 dataloader 进行分片的 mesh 维度。默认值 None，代表不切分 dataloader，通常使用数据并行的情况下，必须设置此参数。
     - **is_dataset_splitted** (bool，可选) - 数据集是否已根据数据并行的 rank 进行了切分。默认值 False。
+    - **dense_tensor_idx** (list，可选) - 成对的二维列表，指定 dataloader 输出中 dense Tensor 的索引。每对中的第一个元素指定 dataloader 返回的 dense Tensor，第二个元素指定如何切分该 Tensor：数值表示均匀切分，列表表示非均匀切分。默认值为 None，表示所有输出均为分布式 Tensor。
 
 返回
 :::::::::
