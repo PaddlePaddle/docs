@@ -3,7 +3,7 @@
 fused_feedforward
 -------------------------------
 
-.. py:function:: paddle.incubate.nn.functional.fused_feedforward(x, linear1_weight, linear2_weight, linear1_bias=None, linear2_bias=None, ln1_scale=None, ln1_bias=None, ln2_scale=None, ln2_bias=None, dropout1_rate=0.5, dropout2_rate=0.5,activation="relu", ln1_epsilon=1e-5, ln2_epsilon=1e-5, pre_layer_norm=False, training=True, mode='upscale_in_train', name=None)
+.. py:function:: paddle.incubate.nn.functional.fused_feedforward(x, linear1_weight, linear2_weight, linear1_bias=None, linear2_bias=None, ln1_scale=None, ln1_bias=None, ln2_scale=None, ln2_bias=None, dropout1_rate=0.5, dropout2_rate=0.5, activation="relu", ln1_epsilon=1e-5, ln2_epsilon=1e-5, pre_layer_norm=False, training=True, mode='upscale_in_train', ring_id=-1, add_residual=True, name=None)
 
 这是一个融合算子，该算子是对 transformer 模型中 feed forward 层的多个算子进行融合，该算子只支持在 GPU 下运行，该算子与如下伪代码表达一样的功能：
 
@@ -13,7 +13,10 @@ fused_feedforward
     if pre_layer_norm:
         src = layer_norm(src)
     src = linear(dropout(activation(linear(src))))
-    src = residual + dropout(src)
+    if add_residual:
+        src = residual + dropout(src)
+    else:
+        src = dropout(src)
     if not pre_layer_norm:
         src = layer_norm(src)
 
@@ -34,8 +37,8 @@ fused_feedforward
     - **ln1_epsilon** (float，可选) - 一个很小的浮点数，被第一个 layer_norm 算子加到分母，避免出现除零的情况。默认值是 1e-5。
     - **ln2_epsilon** (float，可选) - 一个很小的浮点数，被第二个 layer_norm 算子加到分母，避免出现除零的情况。默认值是 1e-5。
     - **pre_layer_norm** (bool，可选) - 在预处理阶段加上 layer_norm，或者在后处理阶段加上 layer_norm。默认值是 False。
-    - **training** (bool)：标记是否为训练阶段。默认：True。
-    - **mode** (str)：丢弃单元的方式，有两种'upscale_in_train'和'downscale_in_infer'，默认：'upscale_in_train'。计算方法如下：
+    - **training** (bool。可选) - 标记是否为训练阶段。默认：True。
+    - **mode** (str，可选) - 丢弃单元的方式，有两种'upscale_in_train'和'downscale_in_infer'，默认：'upscale_in_train'。计算方法如下：
 
         1. upscale_in_train，在训练时增大输出结果。
 
@@ -47,6 +50,8 @@ fused_feedforward
             - train: out = input * mask
             - inference: out = input * (1.0 - p)
 
+    - **ring_id** (int，可选) - 用于张量模型并行中的分布式前向传播，仅支持 NCCL。默认值为 -1，表示不使用张量并行。
+    - **add_residual** (bool，可选) - 是否在末尾添加残差。默认值为 True。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

@@ -4,7 +4,7 @@ IpuCompiledProgram
 -------------------------------
 
 
-.. py:class:: paddle.static.IpuCompiledProgram(program, scope=None, ipu_strategy=None)
+.. py:class:: paddle.static.IpuCompiledProgram(program=None, scope=None, ipu_strategy=None)
 
 
 IpuCompiledProgram 将输入的 Program 转换和优化成 IPU 所需要的形式，例如：前向图提取、计算图转化、无用的 scale 算子删除等。
@@ -26,8 +26,8 @@ COPY-FROM: paddle.static.IpuCompiledProgram
 
 方法
 ::::::::::::
-compile(self, feed_list, fetch_list)
-'''''''''
+compile(feed_list, fetch_list)
+''''''''''''''''''''''''''''''''''''''
 
 将 Program 进行编译，以便在 ipu 上运行。用户可以通过 ``feed_list`` 、``fetch_list`` 传入计算图输入和输出的名字。
 

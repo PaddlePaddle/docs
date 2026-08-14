@@ -3,7 +3,7 @@
 LogNormal
 -------------------------------
 
-.. py:class:: paddle.distribution.LogNormal(loc, scale, name=None)
+.. py:class:: paddle.distribution.LogNormal(loc, scale)
 
 
 对数正态分布
@@ -33,7 +33,7 @@ LogNormal
 参数
 ::::::::::::
 
-    - **loc** (int|float|list|tuple|numpy.ndarray|Tensor) - 基础正态分布的平均值。
+    - **loc** (int|float|complex|list|tuple|numpy.ndarray|Tensor) - 基础正态分布的平均值。数据类型为 float32、float64、complex64 或 complex128。
     - **scale** (int|float|list|tuple|numpy.ndarray|Tensor) - 基础正态分布的标准差。
 
 代码示例
@@ -60,15 +60,14 @@ variance
 方法
 :::::::::
 
-sample(shape=[], seed=0)
-'''''''''
+sample(shape=[])
+''''''''''''''''''''''''''''''''''''''''
 
 生成指定维度的样本。
 
 **参数**
 
-    - **shape** (Sequence[int], 可选) - 指定生成样本的维度。
-    - **seed** (int) - 长整型数。
+    - **shape** (Sequence[int], 可选) - 指定生成样本的维度。别名 ``sample_shape``。
 
 **返回**
 
@@ -81,7 +80,7 @@ rsample(shape=[])
 
 **参数**
 
-    - **shape** (Sequence[int], 可选) - 指定生成样本的维度。
+    - **shape** (Sequence[int], 可选) - 指定生成样本的维度。别名 ``sample_shape``。
 
 **返回**
 

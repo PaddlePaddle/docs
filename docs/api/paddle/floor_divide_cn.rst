@@ -3,7 +3,7 @@
 floor_divide
 -------------------------------
 
-.. py:function:: paddle.floor_divide(x, y, name=None)
+.. py:function:: paddle.floor_divide(x, y, name=None, *, out=None)
 
 逐元素整除算子，将输入 ``x`` 与输入 ``y`` 逐元素整除（商被朝 -inf 方向舍入到最接近的整数值），并将各个位置的输出元素保存到返回结果中。
 
@@ -26,13 +26,15 @@ floor_divide
 
 参数
 :::::::::
-        - **x** (Tensor) - 多维 Tensor。数据类型为 int8 int16 int32 int64 float32 float64 float16 或 bfloat16。
+        - **x** (Tensor) - 多维 Tensor。数据类型为 uint8、int8、int16、int32、int64、float16、bfloat16、float32 或 float64。
           别名： ``input``
-        - **y** (Tensor) - 多维 Tensor。数据类型为 int8 int16 int32 int64 float32 float64 float16 或 bfloat16。
+        - **y** (Tensor|Number) - 多维 Tensor 或数值标量。数据类型为 uint8、int8、int16、int32、int64、float16、bfloat16、float32 或 float64。
           别名： ``other``
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-        - **out** （Tensor，可选） - 指定输出结果的 ``Tensor``，默认值为 None。
 
+关键字参数
+:::::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 :::::::::

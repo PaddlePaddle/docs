@@ -3,7 +3,7 @@
 svd
 -------------------------------
 
-.. py:function:: paddle.linalg.svd(x, full_matrices=False, name=None)
+.. py:function:: paddle.linalg.svd(x, full_matrices=False, name=None, *, out=None)
 
 
 计算一个或一批矩阵的奇异值分解。
@@ -19,9 +19,13 @@ svd
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入的欲进行奇异值分解的一个或一批方阵，类型为 Tensor。 ``x`` 的形状应为 ``[*, M, N]``，其中 ``*`` 为零或更大的批次维度，数据类型支持 float32， float64， complex64， complex128。
-    - **full_matrices** (bool) - 是否计算完整的 U 和 V 矩阵，类型为 bool 默认为 False。这个参数会影响 U 和 V 生成的 Shape。
+    - **x** (Tensor) - 输入的欲进行奇异值分解的一个或一批矩阵，类型为 Tensor。 ``x`` 的形状应为 ``[*, M, N]``，其中 ``*`` 为零或更大的批次维度，``M`` 和 ``N`` 为任意正整数，数据类型支持 float32、float64、complex64、complex128。
+    - **full_matrices** (bool，可选) - 是否计算完整的 U 和 V 矩阵，类型为 bool 默认为 False。这个参数会影响 U 和 V 生成的 Shape。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+:::::::::::
+    - **out** (tuple[Tensor, Tensor, Tensor]，可选) - 输出 Tensor 元组，若不为 ``None``，计算结果将保存在该 Tensor 元组中，默认值为 ``None``。
 
 返回
 ::::::::::::

@@ -3,7 +3,7 @@
 median
 -------------------------------
 
-.. py:function:: paddle.median(x, axis=None, keepdim=False, mode='avg', name=None)
+.. py:function:: paddle.median(x, axis=None, keepdim=False, mode='avg', name=None, *, out=None)
 
 沿给定的轴 ``axis`` 计算 ``x`` 中元素的中位数。
 
@@ -20,6 +20,10 @@ median
    - **keepdim** (bool，可选) - 是否在输出 Tensor 中保留输入的维度。除非 keepdim 为 True，否则输出 Tensor 的维度将比输入 Tensor 小一维，默认值为 False。
    - **mode** (str，可选) - 当输入 Tensor ``x`` 在 ``axis`` 轴上有偶数个元素时，可选择按照中间两个数的平均值或最小值确定中位数。可选的值是 'avg' 或 'min'。默认为 'avg'。当出现别名替换时， ``mode`` 设置默认参数为 ``min`` 而不是 ``avg``。
    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+:::::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 ::::::::::

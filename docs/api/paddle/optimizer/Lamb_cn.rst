@@ -3,7 +3,7 @@
 Lamb
 -------------------------------
 
-.. py:class:: paddle.optimizer.Lamb(learning_rate=0.001, lamb_weight_decay=0.01, beta1=0.9, beta2=0.999, epsilon=1e-06, parameters=None, grad_clip=None, exclude_from_weight_decay_fn=None, name=None)
+.. py:class:: paddle.optimizer.Lamb(learning_rate=0.001, lamb_weight_decay=0.01, beta1=0.9, beta2=0.999, epsilon=1e-06, parameters=None, grad_clip=None, exclude_from_weight_decay_fn=None, multi_precision=False, always_adapt=False, name=None)
 
 
 
@@ -29,14 +29,16 @@ LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器�
 参数
 ::::::::::::
 
-  - **learning_rate** (float|Tensor，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个 Tensor，默认值为 0.001。
+  - **learning_rate** (float|Tensor，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者数据类型为 float32 的 Tensor，默认值为 0.001。
   - **lamb_weight_decay** (float，可选) – LAMB 权重衰减率。默认值为 0.01。
-  - **beta1** (float，可选) - 第一个动量估计的指数衰减率。默认值为 0.9。
-  - **beta2** (float，可选) - 第二个动量估计的指数衰减率。默认值为 0.999。
-  - **epsilon** (float，可选) - 保持数值稳定性的短浮点类型值，默认值为 1e-06。
-  - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
+  - **beta1** (float|Tensor，可选) - 第一个动量估计的指数衰减率。默认值为 0.9。
+  - **beta2** (float|Tensor，可选) - 第二个动量估计的指数衰减率。默认值为 0.999。
+  - **epsilon** (float|Tensor，可选) - 保持数值稳定性的浮点值，默认值为 1e-06。
+  - **parameters** (list|tuple|None，可选) - 指定优化器需要优化的参数，可以是待更新 Variable 的列表或元组；也可以是参数组字典的列表，以为不同参数组指定学习率、权重衰减等选项。参数组中的 ``learning_rate`` 表示基础学习率的缩放比例。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，此时所有参数都将被优化。
   - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_paddle_nn_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_paddle_nn_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_paddle_nn_ClipGradByValue>`。默认值为 None，此时将不进行梯度裁剪。
-  - **exclude_from_weight_decay_fn** (function) - 当某个参数作为输入该函数返回值为 True 时，为该参数跳过权重衰减。
+  - **exclude_from_weight_decay_fn** (Callable|None，可选) - 当某个参数作为输入该函数返回值为 True 时，为该参数跳过权重衰减。默认值为 None。
+  - **multi_precision** (bool，可选) - 是否在参数更新时使用多精度。默认值为 False。
+  - **always_adapt** (bool，可选) - 是否始终使用逐层学习率自适应。默认情况下，对被排除权重衰减的参数跳过自适应；若为 True，则始终启用学习率自适应。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 .. note::
@@ -49,17 +51,21 @@ COPY-FROM: paddle.optimizer.Lamb
 
 方法
 ::::::::::::
-step()
-'''''''''
+step(closure=None)
+''''''''''''''''''''''''''''''''''''''''
 
 .. note::
     该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 执行一次优化器并进行参数更新。
 
+**参数**
+
+    - **closure** (Callable[[], Tensor], 可选) - 用于评估模型并返回损失的闭包函数。闭包函数应接受 0 个参数并返回 Tensor。适用于需要多次评估损失的优化过程。默认值为 None。
+
 **返回**
 
-无。
+Tensor 或 None。若传入 closure 参数则返回其输出的损失，否则返回 None。
 
 **代码示例**
 
@@ -85,14 +91,18 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 COPY-FROM: paddle.optimizer.Lamb.minimize
 
-clear_grad()
-'''''''''
+clear_grad(set_to_zero=True)
+''''''''''''''''''''''''''''''''''''''''
 
 .. note::
     该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 
 清除需要优化的参数的梯度。
+
+**参数**
+
+    - **set_to_zero** (bool，可选) - 是否将梯度置零。若为 False，则删除梯度。默认值为 True。
 
 **代码示例**
 

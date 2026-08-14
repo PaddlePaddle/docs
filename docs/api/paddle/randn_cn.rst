@@ -3,7 +3,7 @@
 randn
 -------------------------------
 
-.. py:function:: paddle.randn(shape, dtype=None, name=None, *, out=None, device=None, requires_grad=False, pin_memory=False)
+.. py:function:: paddle.randn(shape, dtype=None, name=None, *, out=None, device=None, pin_memory=False, requires_grad=False)
 
 返回符合标准正态分布（均值为 0，标准差为 1 的正态随机分布）的随机 Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
@@ -24,8 +24,8 @@ randn
 ::::::::::::
   - **out** (Tensor，可选) - 用于保存输出结果的 Tensor。默认值为 None。
   - **device** (PlaceLike|None，可选) - 指定返回 Tensor 所在的设备。默认值为 None，表示使用当前全局设备（可通过 ``paddle.device.set_device`` 设置）。
-  - **requires_grad** (bool，可选) - 是否在返回的 Tensor 上记录 autograd 的操作。默认值为 False。
   - **pin_memory** (bool，可选) - 如果设置为 True，返回的 Tensor 会分配在锁页内存中。默认值为 False。
+  - **requires_grad** (bool，可选) - 是否在返回的 Tensor 上记录 autograd 的操作。默认值为 False。
 
 返回
 ::::::::::

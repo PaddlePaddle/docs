@@ -3,7 +3,7 @@
 AdamW
 -------------------------------
 
-.. py:class:: paddle.optimizer.AdamW(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=0.01, lr_ratio=None, apply_decay_param_fun=None, grad_clip=None, lazy_mode=False, multi_precision=False, amsgrad=False, name=None)
+.. py:class:: paddle.optimizer.AdamW(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=0.01, use_lowprecision_moment=False, lr_ratio=None, apply_decay_param_fun=None, grad_clip=None, lazy_mode=False, multi_precision=False, amsgrad=False, name=None, *, maximize=False)
 
 
 
@@ -33,12 +33,13 @@ AdamW 优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION <https://arxiv.org/
 参数
 ::::::::::::
 
-    - **learning_rate** (float|_LRScheduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler 类，默认值为 0.001。
-    - **beta1** (float|Tensor，可选) - 一阶矩估计的指数衰减率，是一个 float 类型或者一个 shape 为[1]，数据类型为 float32 的 Tensor 类型。默认值为 0.9。
-    - **beta2** (float|Tensor，可选) - 二阶矩估计的指数衰减率，是一个 float 类型或者一个 shape 为[1]，数据类型为 float32 的 Tensor 类型。默认值为 0.999。
-    - **epsilon** (float，可选) - 保持数值稳定性的短浮点类型值，默认值为 1e-08。
-    - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
-    - **weight_decay** (float|Tensor，可选) - 权重衰减系数，是一个 float 类型或者 shape 为[1]，数据类型为 float32 的 Tensor 类型。默认值为 0.01。
+    - **learning_rate** (float|LRScheduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler 类，默认值为 0.001。
+    - **beta1** (float|Tensor，可选) - 一阶矩估计的指数衰减率，是一个 float 类型或者形状为 ``[]``、数据类型为 float32 的 0-D Tensor。默认值为 0.9。
+    - **beta2** (float|Tensor，可选) - 二阶矩估计的指数衰减率，是一个 float 类型或者形状为 ``[]``、数据类型为 float32 的 0-D Tensor。默认值为 0.999。
+    - **epsilon** (float|Tensor，可选) - 保持数值稳定性的浮点值。默认值为 1e-08。
+    - **parameters** (list|tuple|None，可选) - 指定优化器需要优化的参数，可以是待更新 Tensor 的列表或元组；也可以是参数组字典的列表，以为不同参数组指定学习率、权重衰减等选项。参数组中的 ``learning_rate`` 表示基础学习率的缩放比例。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，此时所有参数都将被优化。
+    - **weight_decay** (int|float|Tensor，可选) - 权重衰减系数，可以是 int、float 或 Tensor。默认值为 0.01。
+    - **use_lowprecision_moment** (bool，可选) - 对于数据类型为 float16 或 bfloat16 的参数，是否使用低精度的一阶和二阶动量。默认值为 False，此时使用 float32 动量。
     - **lr_ratio** (function|None，可选) – 传入函数时，会为每个参数计算一个权重衰减系数，并使用该系数与学习率的乘积作为新的学习率。否则，使用原学习率。仅支持 GPU 设备，默认值为 None。
     - **apply_decay_param_fun** (function|None，可选)：传入函数时，只有可以使 apply_decay_param_fun(Tensor.name)==True 的 Tensor 会进行 weight decay 更新。只有在想要指定特定需要进行 weight decay 更新的参数时使用。默认值为 None。
     - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_paddle_nn_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_paddle_nn_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_paddle_nn_ClipGradByValue>` 。
@@ -48,6 +49,11 @@ AdamW 优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION <https://arxiv.org/
     - **amsgrad** （bool，可选） - 是否使用该算法的 AMSGrad 变体 :ref:`On the Convergence of Adam and Beyond <https://openreview.net/forum?id=ryQu7f-RZ>`，默认为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
+关键字参数
+::::::::::::
+
+    - **maximize** (bool，可选) - 是否对参数最大化目标函数，而非最小化。默认值为 False。
+
 
 代码示例
 ::::::::::::
@@ -56,17 +62,21 @@ COPY-FROM: paddle.optimizer.AdamW
 
 方法
 ::::::::::::
-step()
-'''''''''
+step(closure=None)
+''''''''''''''''''''''''''''''''''''''''
 
 .. note::
   该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 执行一次优化器并进行参数更新。
 
+**参数**
+
+    - **closure** (Callable[[], Tensor], 可选) - 用于评估模型并返回损失的闭包函数。闭包函数应接受 0 个参数并返回 Tensor。适用于需要多次评估损失的优化过程。默认值为 None。
+
 **返回**
 
-无。
+Tensor 或 None。若传入 closure 参数则返回其输出的损失，否则返回 None。
 
 
 **代码示例**
@@ -94,14 +104,18 @@ tuple(optimize_ops, params_grads)，其中 optimize_ops 为参数优化 OP 列�
 
 COPY-FROM: paddle.optimizer.AdamW.minimize
 
-clear_grad()
-'''''''''
+clear_grad(set_to_zero=True)
+''''''''''''''''''''''''''''''''''''''''
 
 .. note::
   该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 
 清除需要优化的参数的梯度。
+
+**参数**
+
+    - **set_to_zero** (bool，可选) - 是否将梯度置零。若为 False，则删除梯度。默认值为 True。
 
 **代码示例**
 

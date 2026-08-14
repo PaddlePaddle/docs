@@ -3,7 +3,7 @@
 addmv
 -------------------------------
 
-.. py:function:: paddle.addmv(input, mat, vec, beta=1, alpha=1, name=None, *, out=None)
+.. py:function:: paddle.addmv(input, mat, vec, beta=1, alpha=1, *, out=None)
 
 执行矩阵 ``mat`` 和向量 ``vec`` 的矩阵-向量乘法，并将其加到输入 Tensor 上。
 
@@ -16,7 +16,6 @@ addmv
     - **vec** (Tensor) - 待乘的向量。
     - **beta** (float，可选) - input 的乘数，默认值为 1。
     - **alpha** (float，可选) - mat @ vec 的乘数，默认值为 1。
-    - **name** (str，可选) - 操作名称，默认值为 None。
 
 关键字参数
 :::::::::

@@ -3,7 +3,7 @@
 Optimizer
 -------------------------------
 
-.. py:class:: paddle.optimizer.Optimizer(learning_rate, parameters=None, weight_decay=None, grad_clip=None, name=None)
+.. py:class:: paddle.optimizer.Optimizer(learning_rate, parameters=None, weight_decay=None, grad_clip=None, name=None, *, maximize=False)
 
 
 
@@ -12,14 +12,19 @@ Optimizer
 参数
 ::::::::::::
 
-    - **learning_rate** (float|_LRSeduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler 类，默认值为 0.001。
-    - **parameters** (list|tuple，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
-    - **weight_decay** (float|WeightDecayRegularizer，可选) - 正则化方法。可以是 float 类型的 L2 正则化系数或者正则化策略：:ref:`cn_api_paddle_regularizer_L1Decay` 、
+    - **learning_rate** (float|LRScheduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个 LRScheduler 类。
+    - **parameters** (list|tuple|None，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。也可传入参数组字典列表，为不同参数组设置学习率、权重衰减等选项；参数组中的学习率表示基础学习率的缩放比例。
+    - **weight_decay** (int|float|WeightDecayRegularizer|None，可选) - 正则化方法。可以是 int 或 float 类型的 L2 正则化系数或者正则化策略：:ref:`cn_api_paddle_regularizer_L1Decay` 、
       :ref:`cn_api_paddle_regularizer_L2Decay`。如果一个参数已经在 :ref:`cn_api_paddle_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
       如果没有在 :ref:`cn_api_paddle_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为 None，表示没有正则化。
-    - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_paddle_nn_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_paddle_nn_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_paddle_nn_ClipGradByValue>` 。
+    - **grad_clip** (GradientClipBase，可选) - 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_paddle_nn_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_paddle_nn_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_paddle_nn_ClipGradByValue>` 。
       默认值为 None，此时将不进行梯度裁剪。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+::::::::::::
+
+    - **maximize** (bool，可选) - 是否对参数最大化目标函数，而非最小化。默认值为 False。
 
 
 代码示例
@@ -36,7 +41,7 @@ step(closure=None)
 
     该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
-    执行一次优化器并进行参数更新。
+执行一次优化器并进行参数更新。
 
 **参数**
 
@@ -72,15 +77,19 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 COPY-FROM: paddle.optimizer.Optimizer.minimize
 
-clear_grad()
-'''''''''
+clear_grad(set_to_zero=True)
+''''''''''''''''''''''''''''''''''''''''
 
 .. note::
 
     该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 
-    清除需要优化的参数的梯度。
+清除需要优化的参数的梯度。
+
+**参数**
+
+    - **set_to_zero** (bool，可选) - 是否将梯度置零。若为 False，则删除梯度。默认值为 True。
 
 **代码示例**
 

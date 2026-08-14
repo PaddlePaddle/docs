@@ -3,7 +3,7 @@
 fftfreq
 -------------------------------
 
-.. py:function:: paddle.fft.fftfreq(n, d=1.0, dtype=None, name=None)
+.. py:function:: paddle.fft.fftfreq(n, d=1.0, dtype=None, name=None, *, out=None, device=None, requires_grad=False)
 
 返回离散傅里叶变换的频率窗口（frequency bins）中心序列，以 "循环/采样间隔" 为单位。例如，采
 样间隔以秒为单位，则频率的单位是 "循环/秒"。
@@ -22,6 +22,12 @@ fftfreq
       ``paddle.get_default_dtype()`` 返回的类型。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
+
+关键字参数
+:::::::::::
+    - **out** (Tensor，可选) - 输出 Tensor。
+    - **device** (PlaceLike|None，可选) - 返回 Tensor 的期望设备。为 None 时，使用当前默认 Tensor 类型的当前设备。默认值为 None。
+    - **requires_grad** (bool，可选) - 是否由自动微分记录返回 Tensor 上的操作。默认值为 False。
 
 返回
 :::::::::

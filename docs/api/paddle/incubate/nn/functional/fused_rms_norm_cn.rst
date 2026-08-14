@@ -3,7 +3,7 @@
 fused_rms_norm
 -------------------------------
 
-.. py:function:: paddle.incubate.nn.functional.fused_rms_norm(x, norm_weight, norm_bias, epsilon, begin_norm_axis, bias=None, residual=None, quant_scale=- 1, quant_round_type=0, quant_max_bound=0, quant_min_bound=0)
+.. py:function:: paddle.incubate.nn.functional.fused_rms_norm(x, norm_weight, norm_bias, epsilon, begin_norm_axis=1, bias=None, residual=None, quant_scale=-1, quant_round_type=0, quant_max_bound=0, quant_min_bound=0)
 
 应用 Fused RMSNorm 内核，提供了更高的 GPU 利用率。同时，支持模式融合 RMSNorm(bias + residual + x)。
 
@@ -17,13 +17,13 @@ fused_rms_norm 算子目前只支持在 GPU 下运行。
     - **norm_weight** (Tensor) - 用于仿射输出的权重张量。
     - **norm_bias** (Tensor) - 用于仿射输出的偏置张量。
     - **epsilon** (float) - 一个小的浮点数，用于避免除以零。
-    - **begin_norm_axis** (int) - 归一化的起始轴，默认为 1。
+    - **begin_norm_axis** (int，可选) - 归一化的起始轴，默认为 1。
     - **bias** (Tensor，可选) - 前一层的偏置。
     - **residual** (Tensor，可选) - 输入的残差。
-    - **quant_scale** (float) - 量化缩放因子。
-    - **quant_round_type** (float) - 量化四舍五入类型。
-    - **quant_max_bound** (float) - 量化裁剪的最大边界值。
-    - **quant_min_bound** (float) - 量化裁剪的最小边界值。
+    - **quant_scale** (float，可选) - 量化缩放因子。
+    - **quant_round_type** (float，可选) - 量化四舍五入类型。
+    - **quant_max_bound** (float，可选) - 量化裁剪的最大边界值。
+    - **quant_min_bound** (float，可选) - 量化裁剪的最小边界值。
 
 
 返回

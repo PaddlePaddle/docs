@@ -3,7 +3,7 @@
 i0
 -------------------------------
 
-.. py:function:: paddle.i0(x, name=None)
+.. py:function:: paddle.i0(x, name=None, *, out=None)
 
 
 对于给定 ``x`` 计算其每个元素的第一类零阶修正贝塞尔曲线函数，其中输入 ``x`` 大小无特殊限制。返回一个第一类零阶修正贝塞尔曲线函数上的 Tensor。
@@ -13,7 +13,7 @@ i0
 
 参数
 ::::::::::
-    - **x** (Tensor) – 输入是一个多维的 Tensor，它的数据类型可以是 float32，float64。
+    - **x** (Tensor) – 输入是一个多维的 Tensor，它的数据类型可以是 float32、float64、uint8、int8、int16、int32、int64。别名 ``input``。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 ``None``。
 
 关键字参数
@@ -22,7 +22,7 @@ i0
 
 返回
 ::::::::::
-    - ``Tensor`` (Tensor)：在 x 处的第一类零阶修正贝塞尔曲线函数的值。
+    - ``Tensor`` (Tensor)：在 x 处的第一类零阶修正贝塞尔曲线函数的值。整数类型输入会自动转换为 float32。
 
 
 代码示例

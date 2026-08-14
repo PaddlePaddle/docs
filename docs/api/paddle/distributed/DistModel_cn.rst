@@ -3,7 +3,7 @@
 DistModel
 -------------------------------
 
-.. py:class:: paddle.distributed.DistModel()
+.. py:class:: paddle.distributed.DistModel(layer, loader, loss=None, optimizer=None, strategy=None, metrics=None, input_spec=None)
 
 .. note::
     不推荐直接使用这个 API 生成实例，建议使用 ``paddle.distributed.to_static``。
@@ -19,13 +19,17 @@ DistModel 通过自身的 ``__call__`` 方法来执行模型训练、评估和�
 
     - **layer** (paddle.nn.Layer) - 动态图中所使用的 ``paddle.nn.Layer`` 实例，其参数包含由 ``paddle.distributed.shard_tensor`` 生成的分布式张量。
 
-    - **loader** (paddle.io.DataLoader) - 动态图模式下所使用的 ``paddle.io.DataLoader`` 实例，用于生成静态图训练所需要的 ``DistributedDataloader``。
+    - **loader** (ShardDataloader|paddle.io.DataLoader) - 动态图模式下所使用的数据加载器，用于推断输入和标签的规格。
 
     - **loss** (Loss|Callable|None，可选) - 损失函数。可以是 ``paddle.nn.Layer`` 实例或任何可调用函数。如果 loss 不为 None，则 DistModel 会默认设置为 "train"（当 optimizer 不为 None 时）或 "eval" 模式（当 optimizer 为 None 时）。如果 loss 为 None，则 DistModel 会默认设置为 "predict" 模式。默认值：None。
 
     - **optimizer** (paddle.optimizer.Optimizer|None，可选) - 优化器。如果同时设置了 optimizer 和 loss，DistModel 会默认设置为 "train" 模式。默认值：None。
 
     - **strategy** (paddle.distributed.Strategy|None，可选) - 并行策略和优化策略的配置（例如优化器分片、流水线并行等）。默认值：None。
+
+    - **metrics** (list[Metric]|None，可选) - 评估指标列表。默认值为 None。
+
+    - **input_spec** (list[list[paddle.distributed.DistributedInputSpec]]|None，可选) - 自定义输入规格，指定模型输入和标签的形状、数据类型及名称信息。非 None 时，由该参数推断输入和标签规格；其应包含两个子列表，第一个表示输入规格，第二个表示标签规格。默认值为 None。
 
 
 **代码示例**
@@ -104,7 +108,7 @@ serial_startup_program(mode=None)
 
 **参数**
 
-    - **mode** (str|None，可选) - 指定需要返回的 ``startup_program`` 的模式，可以是 "train "、"eval" 或 "predict"，如果未设置，则使用 DistModel 的当前模式。默认值：None。
+    - **mode** (str|None，可选) - 指定需要返回的 ``startup_program`` 的模式，可以是 "train"、"eval" 或 "predict"，如果未设置，则使用 DistModel 的当前模式。默认值：None。
 
 **返回**
 

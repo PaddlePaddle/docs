@@ -3,7 +3,7 @@
 outer
 -------------------------------
 
-.. py:function:: paddle.outer(x, y, name=None)
+.. py:function:: paddle.outer(x, y, name=None, *, out=None)
 
 
 计算两个 Tensor 的外积。
@@ -19,6 +19,10 @@ outer
     - **x** (Tensor) - 一个 N 维 Tensor 或者标量 Tensor。别名： ``input``。
     - **y** (Tensor) - 一个 N 维 Tensor 或者标量 Tensor。别名： ``vec2``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+:::::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 :::::::::

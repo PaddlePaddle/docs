@@ -3,7 +3,7 @@
 sin
 -------------------------------
 
-.. py:function:: paddle.sin(x, name=None, *, out=out)
+.. py:function:: paddle.sin(x, name=None, *, out=None)
 
 计算输入的正弦值。
 
@@ -15,7 +15,7 @@ sin
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 支持任意维度的 Tensor。数据类型为 float32，float64，float16，complex64，complex128。别名 ``input``。
+    - **x** (Tensor) - 支持任意维度的 Tensor。数据类型为 float32、float64、float16、bfloat16、uint8、int8、int16、int32、int64、complex64 或 complex128。别名 ``input``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 关键字参数
@@ -25,7 +25,7 @@ sin
 
 返回
 ::::::::::::
-返回类型为 Tensor，数据类型同输入一致。
+返回类型为 Tensor，形状与输入相同；整数类型输入会自动转换为 float32。
 
 代码示例
 ::::::::::::

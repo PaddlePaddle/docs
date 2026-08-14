@@ -3,7 +3,7 @@
 solve
 -------------------------------
 
-.. py:function:: paddle.linalg.solve(x, y, left=True, name=None)
+.. py:function:: paddle.linalg.solve(x, y, left=True, name=None, *, out=None)
 
 
 计算线性方程组的解。
@@ -25,10 +25,14 @@ solve
 
 参数
 :::::::::
-    - **x** (Tensor) - 输入的欲进行线性方程组求解的一个或一批方阵（系数矩阵），类型为 Tensor。 ``x`` 的形状应为 ``[*, M, M]``，其中 ``*`` 为零或更大的批次维度，数据类型为 float32， float64。
-    - **y** (Tensor) - 输入的欲进行线性方程组求解的右值，类型为 Tensor。 ``y`` 的形状应为 ``[*, M, K]``，其中 ``*`` 为零或更大的批次维度，数据类型和 ``x`` 相同。
+    - **x** (Tensor) - 输入的欲进行线性方程组求解的一个或一批方阵（系数矩阵），类型为 Tensor。 ``x`` 的形状应为 ``[*, M, M]``，其中 ``*`` 为零或更大的批次维度，数据类型为 float32， float64。别名 ``A``。
+    - **y** (Tensor) - 输入的欲进行线性方程组求解的右值，类型为 Tensor。 ``y`` 的形状应为 ``[*, M, K]``，其中 ``*`` 为零或更大的批次维度，数据类型和 ``x`` 相同。别名 ``B``。
     - **left** (bool，可选) - 设置所求解的线性方程组是 :math:`X * Out = Y` 或 :math:`Out * X = Y`。默认值为 True，表示所求解的线性方程组是 :math:`X * Out = Y`。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+关键字参数
+:::::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 ::::::::::::

@@ -3,7 +3,7 @@
 Adadelta
 -------------------------------
 
-.. py:class:: paddle.optimizer.Adadelta(learning_rate=0.001, epsilon=1e-06, rho=0.95, parameters=None, weight_decay=0.01, grad_clip=None, name=None)
+.. py:class:: paddle.optimizer.Adadelta(learning_rate=0.001, epsilon=1e-06, rho=0.95, parameters=None, weight_decay=None, grad_clip=None, name=None)
 
 
 .. note::
@@ -25,18 +25,14 @@ Adadelta 优化器，是对 :ref:`Adagrad <cn_api_paddle_optimizer_Adagrad>` 的
 参数
 ::::::::::::
 
-    - **learning_rate** (float|_LRScheduleri，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler 类，默认值为 0.001。
+    - **learning_rate** (float|Tensor|LRScheduler，可选) - 学习率，用于参数更新的计算。可以是浮点值、浮点类型的 Tensor 或 LRScheduler。默认值为 0.001。
     - **epsilon** (float，可选) - 保持数值稳定性的短浮点类型值，默认值为 1e-06。
     - **rho** (float，可选) - 算法中的衰减率，默认值为 0.95。
-    - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
-    - **weight_decay** (float|Tensor，可选) - 权重衰减系数，是一个 float 类型或者 shape 为[1]，数据类型为 float32 的 Tensor 类型。默认值为 0.01。
+    - **parameters** (list|tuple|None，可选) - 指定优化器需要优化的参数，可以是待更新 Tensor 的列表或元组；也可以是参数组字典的列表，以为不同参数组指定学习率、权重衰减等选项。参数组中的 ``learning_rate`` 表示基础学习率的缩放比例。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，此时所有参数都将被优化。
+    - **weight_decay** (int|float|WeightDecayRegularizer|None，可选) - 正则化方法。可以是 int 或 float 类型的 L2 正则化系数或者正则化策略：:ref:`cn_api_paddle_regularizer_L1Decay` 、:ref:`cn_api_paddle_regularizer_L2Decay`。如果参数已经在 :ref:`cn_api_paddle_ParamAttr` 中设置正则化，这里的设置将被忽略；否则该设置生效。默认值为 None，表示没有正则化。
     - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_paddle_nn_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_paddle_nn_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_paddle_nn_ClipGradByValue>` 。
       默认值为 None，此时将不进行梯度裁剪。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-
-Adadelta 优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxiv.org/pdf/1711.05101.pdf>`_，用来解决 Adam 优化器中 L2 正则化失效的问题。
-
-
 
 代码示例
 ::::::::::::
@@ -46,17 +42,21 @@ COPY-FROM: paddle.optimizer.Adadelta
 
 方法
 ::::::::::::
-step()
-'''''''''
+step(closure=None)
+''''''''''''''''''''''''''''''''''''''''
 
 .. note::
     该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 执行一次优化器并进行参数更新。
 
+**参数**
+
+    - **closure** (Callable[[], Tensor], 可选) - 用于评估模型并返回损失的闭包函数。闭包函数应接受 0 个参数并返回 Tensor。适用于需要多次评估损失的优化过程。默认值为 None。
+
 **返回**
 
-无。
+Tensor 或 None。若传入 closure 参数则返回其输出的损失，否则返回 None。
 
 
 
@@ -83,14 +83,18 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 COPY-FROM: paddle.optimizer.Adadelta.minimize
 
-clear_grad()
-'''''''''
+clear_grad(set_to_zero=True)
+''''''''''''''''''''''''''''''''''''''''
 
 .. note::
     该 API 只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 
 清除需要优化的参数的梯度。
+
+**参数**
+
+    - **set_to_zero** (bool，可选) - 是否将梯度置零。若为 False，则删除梯度。默认值为 True。
 
 **代码示例**
 

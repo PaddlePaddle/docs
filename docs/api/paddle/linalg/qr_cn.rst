@@ -24,7 +24,7 @@ qr
 参数
 ::::::::::::
 
-    - **x** (Tensor)：输入进行正交三角分解的一个或一批方阵，类型为 Tensor。 ``x`` 的形状应为 ``[*, M, N]``，其中 ``*`` 为零或更大的批次维度，数据类型支持 float32、float64、complex64、complex128。别名 ``input``, ``A``。
+    - **x** (Tensor)：输入进行正交三角分解的一个或一批矩阵，类型为 Tensor。 ``x`` 的形状应为 ``[*, M, N]``，其中 ``*`` 为零或更大的批次维度，``M`` 和 ``N`` 为任意正整数，数据类型支持 float32、float64、complex64、complex128。别名 ``input``, ``A``。
     - **mode** (str，可选)：控制正交三角分解的行为，默认是 ``reduced``，假设 ``x`` 形状应为 ``[*, M, N]`` 和 ``K = min(M, N)``：
         如果 ``mode = "reduced"``，则 :math:`Q` 形状为 ``[*, M, K]`` 和 :math:`R` 形状为 ``[*, K, N]``；
         如果 ``mode = "complete"``，则 :math:`Q` 形状为 ``[*, M, M]`` 和 :math:`R` 形状为 ``[*, M, N]``；
