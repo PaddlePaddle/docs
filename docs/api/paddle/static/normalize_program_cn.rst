@@ -4,7 +4,7 @@ normalize_program
 -------------------------------
 
 
-.. py:function:: paddle.static.normalize_program(program, feed_vars, fetch_vars)
+.. py:function:: paddle.static.normalize_program(program, feed_vars, fetch_vars, **kwargs)
 
 
 
@@ -14,9 +14,11 @@ normalize_program
 参数
 ::::::::::::
 
-  - **program** - 指定想要优化的 program。
+  - **program** (Program) - 指定想要优化的 program。
   - **feed_vars** (Variable | list[Variable]) – 模型的输入变量。
   - **fetch_vars** (Variable | list[Variable]) – 模型的输出变量。
+  - **kwargs** - 支持键 ``skip_prune_program``。
+  - **skip_prune_program** (bool，可选) - 是否跳过 program 裁剪。默认值为 False。
 
 返回
 ::::::::::::

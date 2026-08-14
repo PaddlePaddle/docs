@@ -3,7 +3,7 @@
 take_along_axis
 -------------------------------
 
-.. py:function:: paddle.take_along_axis(arr, indices, axis, broadcast=True)
+.. py:function:: paddle.take_along_axis(arr, indices, axis, broadcast=True, *, out=None)
 
 基于输入索引矩阵，沿着指定 axis 从 arr 矩阵里选取 1d 切片。索引矩阵必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
 
@@ -19,6 +19,10 @@ take_along_axis
     - **axis**  (int) - 指定沿着哪个维度获取对应的值，数据类型为：int。
       别名： ``dim``
     - **broadcast** (bool，可选) - 是否广播 ``index`` 矩阵，默认为 ``True``。
+
+关键字参数
+:::::::::::
+    - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 :::::::::
