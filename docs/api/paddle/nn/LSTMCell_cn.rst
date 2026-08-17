@@ -3,7 +3,7 @@
 LSTMCell
 -------------------------------
 
-.. py:class:: paddle.nn.LSTMCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, proj_size=0, name=None)
+.. py:class:: paddle.nn.LSTMCell(input_size, hidden_size, *, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, proj_size=0, bias=True, device=None, dtype=None, name=None)
 
 
 
@@ -41,11 +41,18 @@ LSTMCell
 
     - **input_size** (int) - 输入的大小。
     - **hidden_size** (int) - 隐藏状态大小。
+
+关键字参数
+::::::::::::
+
     - **weight_ih_attr** (ParamAttr，可选) - weight_ih 的参数。默认为 None。
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh 的参数。默认为 None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih 的参数。默认为 None。
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh 的参数。默认为 None。
     - **proj_size** (int，可选) - 若大于 0，则会使用投影层将隐状态隐射到指定大小，其值必须小于 ``hidden_size`` 。默认为 0。
+    - **bias** (bool，可选) - 是否使用偏置权重 ``bias_ih`` 和 ``bias_hh``。若为 False，则不使用偏置权重。默认值为 True。
+    - **device** (str，可选) - 层参数所在设备。默认值为 None。
+    - **dtype** (str，可选) - 层参数的数据类型。默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 变量
@@ -53,6 +60,7 @@ LSTMCell
 
     - **weight_ih** (Parameter) - input 到 hidden 的变换矩阵的权重。形状为（4 * hidden_size, input_size）。对应公式中的 :math:`W_{ii}, W_{if}, W_{ig}, W_{io}`。
     - **weight_hh** (Parameter) - hidden 到 hidden 的变换矩阵的权重。形状为（4 * hidden_size, hidden_size）。对应公式中的 :math:`W_{hi}, W_{hf}, W_{hg}, W_{ho}`。
+    - **weight_ho** (Parameter) - hidden 到 output 的变换矩阵的权重。
     - **bias_ih** (Parameter) - input 到 hidden 的变换矩阵的偏置。形状为（4 * hidden_size, ）。对应公式中的 :math:`b_{ii}, b_{if}, b_{ig}, b_{io}`。
     - **bias_hh** (Parameter) - hidden 到 hidden 的变换矩阵的偏置。形状为（4 * hidden_size, ）。对应公式中的 :math:`b_{hi}, b_{hf}, b_{hg}, b_{ho}`。
 
@@ -60,7 +68,7 @@ LSTMCell
 ::::::::::::
 
     - **inputs** (Tensor) - 输入。形状为[batch_size, input_size]，对应公式中的 :math:`x_t`。
-    - **states** (tuple，可选) - 一个包含两个 Tensor 的元组，每个 Tensor 的形状都为[batch_size, hidden_size]，上一轮的隐藏状态。对应公式中的 :math:`h_{t-1}，c_{t-1}`。当 state 为 None 的时候，初始状态为全 0 矩阵。默认为 None。
+    - **states** (tuple，可选) - 一个包含两个 Tensor 的元组，每个 Tensor 的形状都为[batch_size, hidden_size]，上一轮的隐藏状态。对应公式中的 :math:`h_{t-1}，c_{t-1}`。当 states 为 None 的时候，初始状态为全 0 矩阵。默认为 None。
 
 输出
 ::::::::::::

@@ -3,7 +3,7 @@
 AdaptiveLogSoftmaxWithLoss
 -------------------------------
 
-.. py:class:: paddle.nn.AdaptiveLogSoftmaxWithLoss(in_features, n_classes, cutoffs, div_value=4.0, head_bias=False, name=None)
+.. py:class:: paddle.nn.AdaptiveLogSoftmaxWithLoss(in_features, n_classes, cutoffs, weight_attr=None, bias_attr=None, div_value=4.0, head_bias=False, name=None)
 AdaptiveLogSoftmaxWithLoss 是一种高效的策略，通常用于自然语言处理任务中的语言模型训练，尤其是在处理具有大量词汇且标签分布显著不平衡的语料库时。
 
 AdaptiveLogSoftmaxWithLoss 将标签按照频率划分为多个组，每个组包含的目标数量不同，且在频率较低的标签所在的组中会采用较低维度的嵌入，从而显著减少计算量。
@@ -23,6 +23,8 @@ AdaptiveLogSoftmaxWithLoss 将标签按照频率划分为多个组，每个组�
     - **in_features** (int): 输入 Tensor 的特征数量。
     - **n_classes** (int): 数据集中类型的个数。
     - **cutoffs** (Sequence): 用于将 label 分配到不同存储组的截断值。
+    - **weight_attr** (ParamAttr，可选): 本层可学习权重的属性。默认值为 None；当其 Initializer 未设置时，参数使用 Xavier 初始化。详细信息请参见 :ref:`cn_api_paddle_ParamAttr`。
+    - **bias_attr** (ParamAttr|bool|None，可选): 本层可学习偏置的属性。设为 False 时不添加偏置；设为 None 或 ParamAttr 时，根据 ParamAttr 创建偏置参数。默认值为 None，偏置初始化为零。详细信息请参见 :ref:`cn_api_paddle_ParamAttr`。
     - **div_value** (float, 可选): 用于计算组大小的指数值。默认值：4.0。
     - **head_bias** (bool, 可选): 如果为 ``True``，AdaptiveLogSoftmaxWithLoss 的 ``head`` 添加偏置项。默认值： ``False``.
     - **name** (str, 可选): 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
