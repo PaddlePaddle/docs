@@ -3,7 +3,7 @@
 celu
 -------------------------------
 
-.. py:function:: paddle.nn.functional.celu(x, alpha=1.0, name=None)
+.. py:function:: paddle.nn.functional.celu(x, alpha=1.0, inplace=False, name=None)
 
 celu 激活层（CELU Activation Operator）
 
@@ -11,7 +11,7 @@ celu 激活层（CELU Activation Operator）
 
 .. math::
 
-    celu(x) = max(0, x) + min(0, \alpha * (e^{x/\alpha} − 1))
+    celu(x) = max(0, x) + min(0, \alpha * (e^{x/\alpha} - 1))
 
 其中，:math:`x` 为输入的 Tensor。
 
@@ -19,6 +19,7 @@ celu 激活层（CELU Activation Operator）
 ::::::::::
     - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float16、float32、float64。
     - **alpha** (float，可选) - celu 的 alpha 值，默认值为 1.0。
+    - **inplace** (bool，可选) - 是否使用原地操作。默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
