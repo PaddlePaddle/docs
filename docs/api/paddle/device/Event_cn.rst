@@ -3,21 +3,24 @@
 Event
 -------------------------------
 
-.. py:class:: paddle.device.Event(device=None, enable_timing=False, blocking=False, interprocess=False)
+.. py:class:: paddle.device.Event(enable_timing=False, blocking=False, interprocess=False)
 
 event 的句柄。
 
 参数
 ::::::::::::
 
-    - **device** (paddle.CUDAPlace|paddle.CustomPlace|str) - 希望分配 event 的设备或设备类型。如果为 None，则为当前期望的 place。默认值为 None。
     - **enable_timing** (bool，可选) - event 是否需要统计时间。默认值为 False。
     - **blocking** (bool，可选) - wait()函数是否被阻塞。默认值为 False。
     - **interprocess** (bool，可选) - event 是否能在进程间共享。默认值为 False。
 
 返回
 ::::::::::::
-None
+``Event`` 对象。
+
+.. note::
+
+    ``device`` 参数已移除，Event 始终使用当前设备上下文。``paddle.device.Event`` 与 ``paddle.cuda.Event`` 等价。
 
 代码示例
 ::::::::::::

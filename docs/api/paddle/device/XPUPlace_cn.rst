@@ -3,7 +3,7 @@
 XPUPlace
 -------------------------------
 
-.. py:class:: paddle.device.XPUPlace
+.. py:class:: paddle.device.XPUPlace(dev_id)
 
 
 
@@ -16,7 +16,7 @@ XPUPlace
 参数
 ::::::::::::
 
-  - **id** (int，可选) - XPU 的设备 ID。如果为 ``None``，则默认会使用 id 为 0 的设备。默认值为 ``None``。
+  - **dev_id** (int) - XPU 的设备 ID。
 
 代码示例
 ::::::::::::

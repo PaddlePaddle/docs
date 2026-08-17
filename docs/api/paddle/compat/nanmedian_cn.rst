@@ -3,7 +3,7 @@
 nanmedian
 -------------------------------
 
-.. py:function:: paddle.compat.nanmedian(input, *, dim=None, keepdim=False, *, out=None)
+.. py:function:: paddle.compat.nanmedian(input, dim=None, keepdim=False, *, out=None)
 
 PyTorch 兼容的 :ref:`cn_api_paddle_nanmedian` 版本，提供完全一致的函数签名与行为：
 - 忽略 NaN 元素计算中位数。
@@ -15,10 +15,13 @@ PyTorch 兼容的 :ref:`cn_api_paddle_nanmedian` 版本，提供完全一致的�
 
 参数
 ::::::::::
-- **input** (Tensor) - 输入 N 维 Tensor，支持 bfloat16、float16、float32、float64 数据类型。
+- **input** (Tensor) - 输入 N 维 Tensor，支持 bfloat16、float16、float32、float64、int32、int64 数据类型。
 - **dim** (int，可选) - 指定计算中位数的维度。为 ``None`` 时计算全局中位数。默认 ``None``。
 - **keepdim** (bool，可选) - 是否保留被约简的维度。默认 ``False``。
-- **out** (tuple(Tensor, Tensor)|Tensor，可选) - 关键字参数。当指定 ``dim`` 时，可传入二元组 ``(values, indices)`` 用于原位写回中位数与索引；当未指定 ``dim`` 时，可传入单个 ``Tensor`` 用于写回标量结果。默认 ``None``。
+
+关键字参数
+::::::::::
+- **out** (tuple(Tensor, Tensor)|Tensor，可选) - 当指定 ``dim`` 时，可传入二元组 ``(values, indices)`` 用于原位写回中位数与索引；当未指定 ``dim`` 时，可传入单个 ``Tensor`` 用于写回标量结果。默认 ``None``。
 
 返回
 ::::::::::

@@ -3,7 +3,7 @@
 Linear
 -------------------------------
 
-.. py:class:: paddle.compat.nn.Linear(in_features, out_features, bias, device=None, dtype=None)
+.. py:class:: paddle.compat.nn.Linear(in_features, out_features, bias=True, device=None, dtype=None)
 
 PyTorch 兼容的 :ref:`cn_api_paddle_nn_Linear` 版本：
 
@@ -15,7 +15,7 @@ PyTorch 兼容的 :ref:`cn_api_paddle_nn_Linear` 版本：
 
     其中 :math:`W` 是权重张量， :math:`b` 是偏置张量， :math:`X` 是输入张量
 
-    - 与 PyTorch 一致的默认可视化方法： Kaiming normal 用于权重初始化，平均分布用于偏置初始化
+    - 与 PyTorch 一致的默认可视化方法：权重与偏置均使用均匀分布初始化
     - 支持设定 ``Linear`` 的数据类型以及运行设备
 
 使用前请详细参考：`【仅参数名不一致】torch.nn.Linear`_ 以确定是否使用此模块。

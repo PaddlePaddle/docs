@@ -3,14 +3,14 @@
 get_device_properties
 -------------------------------
 
-.. py:function:: paddle.device.cuda.get_device_properties(device)
+.. py:function:: paddle.device.cuda.get_device_properties(device=None)
 
 返回给定的设备属性。
 
 参数
 ::::::::
 
-    - **device** (paddle.CUDAPlace or int or str) - 设备、设备 ID 和类似于 ``gpu:x`` 的设备名称。如果 ``device`` 为空，则 ``device`` 为当前的设备。默认值为 None。
+    - **device** (paddle.CUDAPlace or int or str，可选) - 设备、设备 ID 和类似于 ``gpu:x`` 的设备名称。如果 ``device`` 为空，则 ``device`` 为当前的设备。默认值为 None。
 
 
 返回

@@ -3,7 +3,7 @@
 DataLoader
 -------------------------------
 
-.. py:class:: paddle.io.DataLoader(dataset, feed_list=None, places=None, return_list=False, batch_sampler=None, batch_size=1, shuffle=False, drop_last=False, collate_fn=None, num_workers=0, use_buffer_reader=True, use_shared_memory=True, prefetch_factor=2, timeout=0, worker_init_fn=None)
+.. py:class:: paddle.io.DataLoader(dataset, feed_list=None, places=None, return_list=True, batch_sampler=None, batch_size=1, shuffle=False, drop_last=False, collate_fn=None, num_workers=0, use_buffer_reader=True, reader_buffer_size=2, prefetch_factor=2, use_shared_memory=True, timeout=0, worker_init_fn=None, persistent_workers=False)
 
 DataLoader 返回一个迭代器，该迭代器根据 ``batch_sampler`` 给定的顺序迭代一次给定的 ``dataset``
 
@@ -30,7 +30,7 @@ DataLoader 当前支持 ``map-style`` 和 ``iterable-style`` 的数据集，``ma
 
     - **dataset** (Dataset) - DataLoader 从此参数给定数据集中加载数据，此参数必须是 ``paddle.io.Dataset`` 或 ``paddle.io.IterableDataset`` 的一个子类实例。
     - **feed_list** (list(Tensor)|tuple(Tensor)，可选) - feed 变量列表，由 ``paddle.static.data()`` 创建。当 ``return_list`` 为 False 时，此参数必须设置。默认值为 None。
-    - **places** (list(Place)|tuple(Place)，可选) - 数据需要放置到的 Place 列表。在静态图和动态图模式中，此参数均必须设置。在动态图模式中，此参数列表长度必须是 1。默认值为 None。
+    - **places** (list(Place)|tuple(Place)|list(str)|None，可选) - 数据需要放置到的 Place 列表。该参数可以为 None；为 None 时，使用默认 Place（CPUPlace 或 CUDAPlace(0)）。如果为字符串列表，字符串可以是 ``"cpu"``、``"gpu:x"`` 或 ``"gpu_pinned"``，其中 ``x`` 为 GPU 索引。默认值为 None。
     - **return_list** (bool，可选) - 每个设备上的数据是否以 list 形式返回。若 return_list = False，每个设备上的返回数据均是 str -> Tensor 的映射表，其中映射表的 key 是每个输入变量的名称。若 return_list = True，则每个设备上的返回数据均是 list(Tensor)。在动态图模式下，此参数必须为 True。默认值为 True。
     - **batch_sampler** (BatchSampler，可选) - ``paddle.io.BatchSampler`` 或其子类的实例，DataLoader 通过 ``batch_sampler`` 产生的 mini-batch 索引列表来 ``dataset`` 中索引样本并组成 mini-batch。默认值为 None。
     - **batch_size** (int|None，可选) - 每 mini-batch 中样本个数，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``paddle.io.BatchSampler``。默认值为 1。
@@ -39,10 +39,12 @@ DataLoader 当前支持 ``map-style`` 和 ``iterable-style`` 的数据集，``ma
     - **collate_fn** (callable，可选) - 通过此参数指定如何将样本列表组合为 mini-batch 数据，当 ``collate_fn`` 为 None 时，默认为将样本个字段在第 0 维上堆叠(同 ``np.stack(..., axis=0)`` )为 mini-batch 的数据。默认值为 None。
     - **num_workers** (int，可选) - 用于加载数据的子进程个数，若为 0 即为不开启子进程，在主进程中进行数据加载。默认值为 0。
     - **use_buffer_reader** (bool，可选) - 是否使用缓存读取器。若 ``use_buffer_reader`` 为 True，DataLoader 会异步地预读取一定数量（默认读取下一个）的 mini-batch 的数据，可加速数据读取过程，但同时会占用少量的 CPU/GPU 存储，即一个 batch 输入数据的存储空间。默认值为 True。
+    - **reader_buffer_size** (int，可选) - 仅当 ``use_buffer_reader`` 为 True 时生效，指定缓存读取器预读取的 batch 数。增大该值会线性增加 CPU 或 GPU 内存占用。默认值为 2。
     - **prefetch_factor** (int，可选) - 缓存的 mini-batch 的个数。若 ``use_buffer_reader`` 为 True，DataLoader 会异步地预读取 ``prefetch_factor`` 个 mini-batch。默认值为 2。
     - **use_shared_memory** (bool，可选) - 是否使用共享内存来提升子进程将数据放入进程间队列的速度，该参数仅在多进程模式下有效(即 ``num_workers > 0`` )，请确认机器上有足够的共享内存空间(如 Linux 系统下 ``/dev/shm/`` 目录空间大小)再设置此参数。默认为 True。
     - **timeout** (int，可选) - 从子进程输出队列获取 mini-batch 数据的超时时间。默认值为 0。
     - **worker_init_fn** (callable，可选) - 子进程初始化函数，此函数会被子进程初始化时被调用，并传递 ``worker id`` 作为参数。默认值为 None。
+    - **persistent_workers** (bool，可选) - 是否保留 DataLoader 中的 worker。默认值为 False。
 
 返回
 ::::::::::::

@@ -3,16 +3,16 @@
 Stream
 -------------------------------
 
-.. py:class:: paddle.device.Stream(device=None, priority=None, blocking=False)
+.. py:class:: paddle.device.Stream(device=None, priority=2, stream_base=None)
 
-custom device stream 的句柄。
+设备 stream 的句柄。``paddle.cuda.Stream()`` 与 ``paddle.device.Stream()`` 等价。
 
 参数
 ::::::::::::
 
     - **device** (paddle.CUDAPlace|paddle.CustomPlace|str) - 希望分配 stream 的设备或设备类型。如果为 None，则为当前期望的 place。默认值为 None。
-    - **priority** (int|None，可选) - (int, 可选) - 流的优先级，默认为 None; 可以是 1 或-1（高优先级）或 0 或 2（低优先级）。默认情况下，流具有优先级 0。
-    - **blocking** (bool|None，可选) - stream 是否同步执行。默认值为 False。
+    - **priority** (int，可选) - 流的优先级，可以是 1 或 -1（高优先级）或 0 或 2（低优先级）。默认值为 2。
+    - **stream_base** (_InitStreamBase|None，可选) - 用于初始化流的底层 StreamBase 对象。默认值为 None。
 
 
 代码示例
@@ -67,20 +67,6 @@ wait_stream(stream)
 
 COPY-FROM: paddle.device.Stream.wait_stream
 
-record_event(event=None)
-'''''''''
-
-记录给定的 event。
-
-**参数**
-
-    - **event** (paddle.device.Event) - 要记录的 event，如果为 None，则新建一个 event。
-
-
-**代码示例**
-
-COPY-FROM: paddle.device.Stream.record_event
-
 query()
 '''''''''
 
@@ -96,7 +82,7 @@ COPY-FROM: paddle.device.Stream.query
 synchronize()
 '''''''''
 
-等待所有的 stream 的任务完成。
+等待当前 stream 中所有 kernel 完成。
 
 **代码示例**
 
