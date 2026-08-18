@@ -25,4 +25,3 @@ PyTorch 风格构造签名的 AdamW 优化器。
     - **capturable** (bool，可选) - 兼容保留参数，当前实现会忽略 True。默认值：False。
     - **differentiable** (bool，可选) - 兼容保留参数，当前实现会忽略 True。默认值：False。
     - **fused** (bool|None，可选) - 兼容保留参数，当前实现会忽略非 None 值。默认值：None。
-

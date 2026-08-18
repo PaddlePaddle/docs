@@ -28,4 +28,3 @@ step(closure=None)
 **返回**
 
 Tensor|None；提供 ``closure`` 时返回其结果，否则返回 None。
-

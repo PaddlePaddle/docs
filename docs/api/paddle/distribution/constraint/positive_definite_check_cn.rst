@@ -16,4 +16,3 @@ positive_definite.check
 :::::::::
 
 Tensor，bool 类型，形状为 ``value.shape[:-2]``，表示每个矩阵是否为对称正定矩阵。
-

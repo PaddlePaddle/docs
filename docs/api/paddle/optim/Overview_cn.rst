@@ -13,4 +13,3 @@ paddle.optim
     " :ref:`AdamW <cn_api_paddle_optim_AdamW>` ", "PyTorch 风格的 AdamW 优化器"
     " :ref:`Optimizer <cn_api_paddle_optim_Optimizer>` ", "PyTorch 风格的优化器基类"
     " :ref:`SGD <cn_api_paddle_optim_SGD>` ", "PyTorch 风格的 SGD 优化器"
-

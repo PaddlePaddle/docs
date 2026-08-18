@@ -22,4 +22,3 @@ bool，形状和全部元素相同时为 True。
 :::::::::
 
 COPY-FROM: paddle.compat.equal
-

@@ -17,4 +17,3 @@ PyTorch 兼容的一维批归一化层。
     - **track_running_stats** (bool，可选) - 是否跟踪运行均值和方差。默认值：True。
     - **device** (PlaceLike|None，可选) - 参数设备。默认值：None。
     - **dtype** (DTypeLike|None，可选) - 参数数据类型。默认值：None。
-

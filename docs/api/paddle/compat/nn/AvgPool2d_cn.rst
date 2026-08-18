@@ -16,4 +16,3 @@ PyTorch 兼容的二维平均池化层。输入和输出采用 NCHW 布局。
     - **ceil_mode** (bool，可选) - 是否使用 ceil 计算输出尺寸。默认值：False。
     - **count_include_pad** (bool，可选) - 计算平均值时是否计入填充元素。默认值：True。
     - **divisor_override** (int|None，可选) - 指定平均值计算的除数。默认值：None。
-

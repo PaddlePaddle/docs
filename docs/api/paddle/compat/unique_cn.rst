@@ -25,4 +25,3 @@ Tensor；当 ``return_inverse`` 或 ``return_counts`` 为 True 时，返回包�
 :::::::::
 
 COPY-FROM: paddle.compat.unique
-

@@ -25,4 +25,3 @@ Tensor，形状为 ``[N, C * kernel_size[0] * kernel_size[1], L]``。
 :::::::::
 
 COPY-FROM: paddle.compat.nn.functional.unfold
-

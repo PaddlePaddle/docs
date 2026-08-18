@@ -23,4 +23,3 @@ log_softmax
 :::::::::
 
 Tensor，形状与 ``input`` 相同。
-

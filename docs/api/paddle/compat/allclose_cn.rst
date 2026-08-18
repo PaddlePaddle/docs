@@ -26,4 +26,3 @@ bool，所有元素均满足容差条件时为 True。
 :::::::::
 
 COPY-FROM: paddle.compat.allclose
-
