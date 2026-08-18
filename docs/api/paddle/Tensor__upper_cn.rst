@@ -353,11 +353,11 @@ is_cpu
         d.is_cpu
 
 
-numpy(force=True)
-:::::::::
+numpy(\*, force=True)
+:::::::::::::::::::::
 
-参数：
-    - **force** (bool, 可选) - 此参数用于 pytorch 兼容，无实际作用，默认为 True。
+关键字参数：
+    - **force** (bool，可选) - PyTorch 兼容参数，当前 Paddle 实现中不改变转换行为。默认值：True。
 
 返回：将 Tensor 转为 numpy 返回
 
@@ -398,7 +398,9 @@ clear_gradient(set_to_zero=True)
 :::::::::
 
 清理 Tensor 的反向梯度。
-参数：
+
+**参数**
+
     - **set_to_zero** (bool) - True 表示将梯度值覆盖为 0。False 则释放梯度持有的存储空间。
 
 返回：None
@@ -886,6 +888,18 @@ type_as(other)
         print("original tensor's dtype is: {}".format(x.dtype))
         print("new tensor's dtype is: {}".format(x_float.dtype))
 
+type(dtype=None, non_blocking=False, \*\*kwargs)
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+未指定 ``dtype`` 时返回包含数据类型、设备及稀疏布局信息的类型名称；指定 ``dtype`` 时将当前 Tensor 转换为目标类型。
+
+参数：
+    - **dtype** (str|paddle.dtype|type|None，可选) - 目标数据类型或 Tensor 类型。默认值：None。
+    - **non_blocking** (bool，可选) - 是否允许异步转换。默认值：False。
+    - **kwargs** (dict，可选) - 兼容参数；支持已弃用的 ``async`` 作为 ``non_blocking`` 的别名。
+
+返回类型：str|Tensor
+
 int()
 :::::::::
 
@@ -999,16 +1013,23 @@ atanh_(name=None)
 
 Inplace 版本的 :ref:`cn_api_paddle_atanh` API，对输入 ``x`` 采用 Inplace 策略。
 
-backward(grad_tensor=None, retain_graph=False)
-:::::::::
+backward(grad_tensor=None, retain_graph=False, create_graph=False, \*, dump_backward_graph_path=None)
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 从当前 Tensor 开始计算反向的神经网络，传导并计算计算图中 Tensor 的梯度。
 
 参数：
-    - **grad_tensor** (Tensor, 可选) - 当前 Tensor 的初始梯度值。如果 ``grad_tensor`` 是 None，当前 Tensor 的初始梯度值将会是值全为 1.0 的 Tensor；如果 ``grad_tensor`` 不是 None，必须和当前 Tensor 有相同的长度。默认值：None。
+    - **grad_tensor** (Tensor, 可选) - 当前 Tensor 的初始梯度值。如果 ``grad_tensor`` 是 None，当前 Tensor 的初始梯度值将会是值全为 1.0 的 Tensor；如果 ``grad_tensor`` 不是 None，必须和当前 Tensor 有相同的形状。默认值：None。别名 ``gradient``。
 
     - **retain_graph** (bool, 可选) - 如果为 False，反向计算图将被释放。如果在 backward()之后继续添加 OP，
       需要设置为 True，此时之前的反向计算图会保留。将其设置为 False 会更加节省内存。默认值：False。
+
+    - **create_graph** (bool, 可选) - 是否创建导数计算图，以便继续计算高阶导数。默认值：False。
+
+关键字参数
+:::::::::::
+
+    - **dump_backward_graph_path** (str|None，可选) - 指定保存反向图调试文件的目录。设置后，会在该目录生成 dot 格式的反向图和调试调用栈信息。默认值：None。
 
 返回：无
 
@@ -1319,8 +1340,8 @@ cross(y, axis=None, name=None)
 
 请参考 :ref:`cn_api_paddle_cross`
 
-cuda(device_id=None, blocking=False)
-:::::::::
+cuda(device_id=None, blocking=True)
+::::::::::::::::::::::::::::::::::::::::
 
 将当前 Tensor 的拷贝到 GPU 上，且返回的 Tensor 不保留在原计算图中。
 
@@ -1336,7 +1357,7 @@ cuda(device_id=None, blocking=False)
 
 参数：
     - **device_id** (int, str, paddle.core.Place, 可选) - Tensor 移动的目标设备。若为 int，则为目标 GPU 的设备 Id。默认为 None，此时为当前 Tensor 的设备 Id，如果当前 Tensor 不在 GPU 上，则为 0。别名 ``device``。
-    - **blocking** (bool, 可选) - 如果为 False 并且当前 Tensor 处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。默认为 False。
+    - **blocking** (bool, 可选) - 是否阻塞执行拷贝。默认值为 True。在 PyTorch 风格调用中对应参数名为 ``non_blocking``，其语义相反，默认值为 False。
 
 返回：拷贝到 GPU 上的 Tensor
 
@@ -1390,6 +1411,26 @@ diagonal(offset=0, axis1=0, axis2=1, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_diagonal`
+
+diag(offset=0, padding_value=0, name=None, \*, out=None)
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+根据输入 Tensor 的维度提取对角线或构造对角矩阵。
+
+参数：
+    - **offset** (int，可选) - 指定对角线相对主对角线的偏移量。默认值：0。别名 ``diagonal``。
+    - **padding_value** (float|int，可选) - 构造二维矩阵时填充非对角线位置的值。默认值：0。
+    - **name** (str|None，可选) - API 名称。默认值：None。
+
+关键字参数
+:::::::::::
+    - **out** (Tensor|None，可选) - 保存结果的 Tensor。默认值：None。
+
+返回：计算后的 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_diag`
 
 digamma(name=None)
 :::::::::
@@ -1916,6 +1957,20 @@ index_add(index, axis, value, name=None)
 
 请参考 :ref:`cn_api_paddle_index_add`
 
+index_copy_(dim, index, source)
+::::::::::::::::::::::::::::::::::
+
+将 ``source`` 沿 ``dim`` 维复制到当前 Tensor 中由 ``index`` 指定的位置，并原地修改当前 Tensor。
+
+参数：
+    - **dim** (int) - 执行索引复制的维度。
+    - **index** (Tensor) - 一维索引 Tensor。
+    - **source** (Tensor) - 要复制的数据 Tensor。
+
+返回：原地修改后的当前 Tensor。
+
+返回类型：Tensor
+
 index_put(indices, value, accumulate=False, name=None)
 :::::::::
 
@@ -2200,14 +2255,15 @@ matrix_power(x, n, name=None)
 
 请参考 :ref:`cn_api_paddle_linalg_matrix_power`
 
-max(axis=None, keepdim=False, name=None)
+max()
 :::::::::
 
-返回：计算后的 Tensor
+返回当前 Tensor 中所有元素的最大值。
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_max`
+.. note::
+   启用 PyTorch 兼容模式后，本方法有三种互斥调用方式：``max(*, out=None)``、``max(dim, keepdim=False, *, out=None)`` 和 ``max(other, *, out=None)``。第二种返回 ``(values, indices)``，第三种执行逐元素最大值。请参考 :ref:`cn_api_paddle_compat_max`。
 
 amax(axis=None, keepdim=False, name=None, \*, out=None)
 :::::::::
@@ -2236,14 +2292,14 @@ mean(axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_mean`
 
-median(axis=None, keepdim=False, name=None)
-:::::::::
+median(dim=None, keepdim=False, \*, out=None)
+::::::::::::::::::::::::::::::::::::::::::::::::
 
-返回：沿着 ``axis`` 进行中位数计算的结果
+返回中位数。``dim`` 为 None 时返回单个 Tensor；指定 ``dim`` 时返回包含 ``values`` 和 ``indices`` 的具名元组。
 
-返回类型：Tensor
+返回类型：Tensor|MedianRetType
 
-请参考 :ref:`cn_api_paddle_median`
+请参考 :ref:`cn_api_paddle_compat_median`
 
 nanmedian(axis=None, keepdim=False, name=None)
 :::::::::
@@ -2254,14 +2310,56 @@ nanmedian(axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_nanmedian`
 
-min(axis=None, keepdim=False, name=None)
-:::::::::
+nanmean(axis=None, keepdim=False, name=None, \*, dtype=None, out=None)
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-返回：计算后的 Tensor
+忽略 NaN 元素，计算当前 Tensor 沿指定维度的平均值。
+
+参数：
+    - **axis** (int|list|tuple|None，可选) - 进行归约的维度，别名 ``dim``。默认值：None。
+    - **keepdim** (bool，可选) - 是否保留归约维度。默认值：False。
+    - **name** (str|None，可选) - API 名称。默认值：None。
+
+关键字参数
+:::::::::::
+    - **dtype** (str|paddle.dtype|None，可选) - 计算和输出的数据类型。默认值：None。
+    - **out** (Tensor|None，可选) - 保存结果的 Tensor。默认值：None。
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_min`
+请参考 :ref:`cn_api_paddle_nanmean`
+
+nansum(axis=None, dtype=None, keepdim=False, name=None, \*, out=None)
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+忽略 NaN 元素，计算当前 Tensor 沿指定维度的总和。
+
+.. note::
+   还支持 PyTorch 风格签名 ``nansum(dim=None, keepdim=False, *, dtype=None, out=None)``。
+
+参数：
+    - **axis** (int|list|tuple|None，可选) - 进行归约的维度，别名 ``dim``。默认值：None。
+    - **dtype** (str|paddle.dtype|None，可选) - 计算和输出的数据类型。默认值：None。
+    - **keepdim** (bool，可选) - 是否保留归约维度。默认值：False。
+    - **name** (str|None，可选) - API 名称。默认值：None。
+
+关键字参数
+:::::::::::
+    - **out** (Tensor|None，可选) - 保存结果的 Tensor。默认值：None。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_nansum`
+
+min()
+:::::::::
+
+返回当前 Tensor 中所有元素的最小值。
+
+返回类型：Tensor
+
+.. note::
+   启用 PyTorch 兼容模式后，本方法有三种互斥调用方式：``min(*, out=None)``、``min(dim, keepdim=False, *, out=None)`` 和 ``min(other, *, out=None)``。第二种返回 ``(values, indices)``，第三种执行逐元素最小值。请参考 :ref:`cn_api_paddle_compat_min`。
 
 amin(axis=None, keepdim=False, name=None, \*, out=None)
 :::::::::
@@ -2271,6 +2369,23 @@ amin(axis=None, keepdim=False, name=None, \*, out=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_amin`
+
+aminmax(axis=None, keepdim=False, \*, out=None)
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+同时计算当前 Tensor 沿指定维度的最小值和最大值。
+
+参数：
+    - **axis** (int|list|tuple|None，可选) - 进行归约的维度，别名 ``dim``。默认值：None，表示归约所有元素。
+    - **keepdim** (bool，可选) - 是否在输出中保留归约维度。默认值：False。
+
+关键字参数
+:::::::::::
+    - **out** (tuple[Tensor, Tensor]|None，可选) - 保存最小值和最大值结果的两个 Tensor。默认值：None。
+
+返回：二元 tuple，第一个 Tensor 为最小值，第二个 Tensor 为最大值。
+
+返回类型：tuple[Tensor, Tensor]
 
 minimum(y, axis=-1, name=None, \*, out=None)
 :::::::::
@@ -2398,6 +2513,13 @@ norm(p=fro, axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_linalg_norm`
 
+nbytes
+:::::::::
+
+当前稠密 Tensor 占用的字节数。稀疏 Tensor 不支持该属性。
+
+返回类型：int
+
 not_equal(y, name=None)
 :::::::::
 
@@ -2407,14 +2529,12 @@ not_equal(y, name=None)
 
 请参考 :ref:`cn_api_paddle_not_equal`
 
-numel(name=None)
+numel()
 :::::::::
 
-返回：计算后的 Tensor
+返回：当前 Tensor 中元素的总数。
 
-返回类型：Tensor
-
-请参考 :ref:`cn_api_paddle_numel`
+返回类型：int
 
 
 pin_memory(y, name=None)
@@ -2593,6 +2713,19 @@ reshape(shape, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_reshape`
+
+reshape_as(other, name=None)
+::::::::::::::::::::::::::::::
+
+将当前 Tensor 重塑为与 ``other`` 相同的形状。
+
+参数：
+    - **other** (Tensor) - 提供目标形状的 Tensor。
+    - **name** (str|None，可选) - API 名称。默认值：None。
+
+返回：重塑后的 Tensor。
+
+返回类型：Tensor
 
 ravel()
 :::::::::
@@ -2955,10 +3088,13 @@ stanh(scale_a=0.67, scale_b=1.7159, name=None)
 
 请参考 :ref:`cn_api_paddle_stanh`
 
-std(axis=None, unbiased=True, keepdim=False, name=None)
-:::::::::
+std(axis=None, unbiased=None, keepdim=False, name=None, \*, correction=1, out=None)
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 返回：计算后的 Tensor
+
+.. note::
+   还支持 PyTorch 风格签名 ``std(dim=None, *, correction=1, keepdim=False, out=None)``。
 
 返回类型：Tensor
 
@@ -3155,6 +3291,14 @@ transpose(perm, name=None)
 
 请参考 :ref:`cn_api_paddle_transpose`
 
+transpose_(perm, name=None)
+::::::::::::::::::::::::::::
+
+原地版本的 :ref:`cn_api_paddle_transpose`，按照 ``perm`` 重新排列当前 Tensor 的维度。
+
+.. note::
+   还支持 PyTorch 风格签名 ``transpose_(dim0, dim1)``，用于交换两个维度。
+
 permute(dims, name=None)
 :::::::::
 
@@ -3248,14 +3392,14 @@ Inplace 版本的 :ref:`cn_api_paddle_uniform`，返回一个从均匀分布采�
         #      [-0.15477282,  0.96190143, -0.05395842, -0.62789059],
         #      [-0.90525085,  0.63603556,  0.06997657, -0.16352385]])
 
-unique(return_index=False, return_inverse=False, return_counts=False, axis=None, dtype=int64, name=None)
-:::::::::
+unique(sorted=True, return_inverse=False, return_counts=False, dim=None)
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-返回：计算后的 Tensor
+返回当前 Tensor 中的唯一元素，并可选返回逆索引和计数。
 
-返回类型：Tensor
+返回类型：Tensor|tuple[Tensor, ...]
 
-请参考 :ref:`cn_api_paddle_unique`
+请参考 :ref:`cn_api_paddle_compat_unique`
 
 unsqueeze(axis, name=None)
 :::::::::
@@ -3649,12 +3793,12 @@ cols()
         # Tensor(shape=[5], dtype=int64, place=Place(gpu:0), stop_gradient=True,
         #        [1, 3, 2, 0, 1])
 
-is_sparse()
+is_sparse
 :::::::::
 
-当输入 SparseCooTensor/SparseCsrTensor 时，返回 True；当输入 DenseTensor 时，返回 False。
+当输入为 COO 布局的稀疏 Tensor 时返回 True，其他情况返回 False。
 
-返回：是否为稀疏 Tensor（包括 SparseCooTensor 和 SparseCsrTensor）
+返回：是否为 COO 布局的稀疏 Tensor。
 
 返回类型：bool
 
@@ -3668,7 +3812,7 @@ is_sparse()
         values = [1.0, 2.0, 3.0]
         dense_shape = [3, 3]
         coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape)
-        coo.is_sparse()
+        coo.is_sparse
         # True
 
 is_sparse_coo()

@@ -3,7 +3,7 @@
 get_worker_info
 -------------------------------
 
-.. py:class:: paddle.io.get_worker_info
+.. py:function:: paddle.io.get_worker_info()
 
 获取 ``paddle.io.DataLoader`` 子进程信息的函数，用于 ``paddle.io.IterableDataset`` 中划分子进程数据。子进程信息包含以下字段：
 

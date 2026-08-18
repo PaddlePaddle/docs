@@ -3,7 +3,7 @@
 mm
 -------------------------------
 
-.. py:function:: paddle.mm(input, mat2, name=None, *, out=None)
+.. py:function:: paddle.mm(input, mat2, name=None, *, out_dtype=None, out=None)
 
 
 
@@ -23,12 +23,13 @@ mm
 
 关键字参数
 ::::::::::::
+    - **out_dtype** (paddle.dtype|None，可选) - 指定输出的数据类型。当前仅支持 CUDA 设备上输入为 float16 或 bfloat16 的二维 Tensor 时将输出类型指定为 ``paddle.float32``，且两个输入的数据类型必须相同。默认值为 ``None``。
     - **out** (Tensor，可选) - 输出 Tensor，若不为 ``None``，计算结果将保存在该 Tensor 中，默认值为 ``None``。
 
 返回
 ::::::::::::
 
-    - Tensor，矩阵相乘后的结果。
+    - Tensor，矩阵相乘后的结果。未指定 ``out_dtype`` 时，其数据类型与输入相同。
 
 
 ::

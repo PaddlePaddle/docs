@@ -333,6 +333,7 @@ tensor 属性相关
 
     " :ref:`paddle.iinfo <cn_api_paddle_iinfo>` ", "返回一个 iinfo 对象，该对象包含了输入的整数类 paddle.dtype 的各种相关的数值信息"
     " :ref:`paddle.finfo <cn_api_paddle_finfo>` ", "返回一个 finfo 对象，该对象包含了输入的整数类 paddle.dtype 的各种相关的数值信息"
+    " :ref:`paddle.float8_e5m2 <cn_api_paddle_float8_e5m2>` ", "E5M2 格式的 8 位浮点数据类型"
     " :ref:`paddle.imag <cn_api_paddle_imag>` ", "返回一个包含输入复数 Tensor 的虚部数值的新 Tensor"
     " :ref:`paddle.real <cn_api_paddle_real>` ", "返回一个包含输入复数 Tensor 的实部数值的新 Tensor"
     " :ref:`paddle.shape <cn_api_paddle_shape>` ", "获得输入 Tensor 或 SelectedRows 的 shape"
@@ -342,6 +343,9 @@ tensor 属性相关
     " :ref:`paddle.broadcast_shapes <cn_api_paddle_broadcast_shapes>` ", "返回对多个 shape 做 broadcast 操作后得到的 shape"
     " :ref:`paddle.is_floating_point <cn_api_paddle_is_floating_point>` ", "判断输入 Tensor 的数据类型是否为浮点类型"
     " :ref:`paddle.Size <cn_api_paddle_Size__upper>` ", "tuple 的子类, paddle.Tensor.size() 的返回类型，用于描述张量的维度大小。"
+    " :ref:`paddle.uint16 <cn_api_paddle_uint16>` ", "16 位无符号整数数据类型"
+    " :ref:`paddle.uint32 <cn_api_paddle_uint32>` ", "32 位无符号整数数据类型"
+    " :ref:`paddle.uint64 <cn_api_paddle_uint64>` ", "64 位无符号整数数据类型"
 
 .. _tensor_creation:
 
@@ -549,6 +553,7 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.swapaxes <cn_api_paddle_swapaxes>` ", "根据 perm 对输入的多维 Tensor 进行数据重排"
     " :ref:`paddle.swapdims <cn_api_paddle_swapdims>` ", "根据 perm 对输入的多维 Tensor 进行数据重排"
     " :ref:`paddle.moveaxis <cn_api_paddle_moveaxis>` ", "移动 Tensor 的轴，根据移动之后的轴对输入的多维 Tensor 进行数据重排"
+    " :ref:`paddle.movedim <cn_api_paddle_movedim>` ", "移动 Tensor 的轴，根据移动之后的轴对输入的多维 Tensor 进行数据重排"
     " :ref:`paddle.tensordot <cn_api_paddle_tensordot>`  ", "沿多个轴对输入的 x 和 y 进行 Tensor 缩并操作"
     " :ref:`paddle.unbind <cn_api_paddle_unbind>` ", "将输入 Tensor 按照指定的维度分割成多个子 Tensor"
     " :ref:`paddle.unique <cn_api_paddle_unique>` ", "返回 Tensor 按升序排序后的独有元素"

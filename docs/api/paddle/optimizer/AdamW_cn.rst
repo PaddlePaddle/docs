@@ -3,7 +3,7 @@
 AdamW
 -------------------------------
 
-.. py:class:: paddle.optimizer.AdamW(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=0.01, lr_ratio=None, apply_decay_param_fun=None, grad_clip=None, lazy_mode=False, multi_precision=False, amsgrad=False, name=None)
+.. py:class:: paddle.optimizer.AdamW(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=0.01, use_lowprecision_moment=False, lr_ratio=None, apply_decay_param_fun=None, grad_clip=None, lazy_mode=False, multi_precision=False, amsgrad=False, name=None, *, maximize=False)
 
 
 
@@ -39,6 +39,7 @@ AdamW 优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION <https://arxiv.org/
     - **epsilon** (float，可选) - 保持数值稳定性的短浮点类型值，默认值为 1e-08。
     - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
     - **weight_decay** (float|Tensor，可选) - 权重衰减系数，是一个 float 类型或者 shape 为[1]，数据类型为 float32 的 Tensor 类型。默认值为 0.01。
+    - **use_lowprecision_moment** (bool，可选) - 是否使用低精度的动量 Tensor。默认值为 False。
     - **lr_ratio** (function|None，可选) – 传入函数时，会为每个参数计算一个权重衰减系数，并使用该系数与学习率的乘积作为新的学习率。否则，使用原学习率。仅支持 GPU 设备，默认值为 None。
     - **apply_decay_param_fun** (function|None，可选)：传入函数时，只有可以使 apply_decay_param_fun(Tensor.name)==True 的 Tensor 会进行 weight decay 更新。只有在想要指定特定需要进行 weight decay 更新的参数时使用。默认值为 None。
     - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_paddle_nn_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_paddle_nn_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_paddle_nn_ClipGradByValue>` 。
@@ -48,6 +49,10 @@ AdamW 优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION <https://arxiv.org/
     - **amsgrad** （bool，可选） - 是否使用该算法的 AMSGrad 变体 :ref:`On the Convergence of Adam and Beyond <https://openreview.net/forum?id=ryQu7f-RZ>`，默认为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
+关键字参数
+::::::::::::
+
+    - **maximize** (bool，可选) - 是否最大化目标函数，而不是最小化目标函数。默认值为 False。
 
 代码示例
 ::::::::::::

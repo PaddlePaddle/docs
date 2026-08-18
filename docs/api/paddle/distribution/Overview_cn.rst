@@ -9,6 +9,7 @@ paddle.distribution 目录下包含飞桨框架支持的随机变量的概率分
 -  :ref:`随机变量的概率分布 <about_distribution>`
 -  :ref:`随机变量的变换 <about_distribution_transform>`
 -  :ref:`KL 散度相关 API <about_distribution_kl>`
+-  :ref:`分布约束相关 API <about_distribution_constraint>`
 
 
 .. _about_distribution:
@@ -80,3 +81,14 @@ KL 散度相关 API
 
     " :ref:`register_kl <cn_api_paddle_distribution_register_kl>` ", "注册 KL 散度"
     " :ref:`kl_divergence <cn_api_paddle_distribution_kl_divergence>` ", "计算 KL 散度"
+
+.. _about_distribution_constraint:
+
+分布约束相关 API
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`positive_definite.check <cn_api_paddle_distribution_constraint_positive_definite_check>` ", "检查矩阵是否为对称正定矩阵"
