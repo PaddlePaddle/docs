@@ -3,22 +3,10 @@
 true_divide_
 -------------------------------
 
-.. py:function:: paddle.true_divide_(input, other, name=None)
+.. py:function:: paddle.true_divide_(x, y, name=None, *, rounding_mode=None)
 
-该 API 是 ``true_divide`` 的 inplace 版本，对输入 Tensor 进行原地除法操作。
+Inplace 版本的 :ref:`cn_api_paddle_divide` API，对输入 ``x`` 采用 Inplace 策略。
 
-参数
-::::::::::::
+更多关于 inplace 操作的介绍请参考 `3.1.3 原位（Inplace）操作和非原位操作的区别`_ 了解详情。
 
-    - **input** (Tensor) - 输入的 Tensor，会被原地修改。
-    - **other** (Tensor) - 输入的 Tensor，作为除数。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-
-返回
-::::::::::::
-Tensor，与 ``input`` 是同一个 Tensor，包含逐元素除法后的结果。
-
-代码示例
-::::::::::::
-
-COPY-FROM: paddle.true_divide_
+.. _3.1.3 原位（Inplace）操作和非原位操作的区别: https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/beginner/tensor_cn.html#id3

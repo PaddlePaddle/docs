@@ -3,7 +3,7 @@
 weight_only_linear
 -------------------------------
 
-.. py:function:: paddle.nn.quant.weight_only_linear(x, weight, bias=None, weight_scale=None, weight_dtype='int8', arch=None)
+.. py:function:: paddle.nn.quant.weight_only_linear(x, weight, bias=None, weight_scale=None, weight_dtype='int8', arch=None, group_size=-1)
 
 应用两个张量的矩阵乘法。若提供了偏置，则进行偏置加法。
 
@@ -17,6 +17,7 @@ weight_only_linear
     - **weight_scale** (Tensor|None) - 提供给权重的输入比例张量，用于反量化。其秩必须为 1。
     - **weight_dtype** (str) - 权重张量的数据类型，必须是 'int8', 'int4' 之一，默认为 'int8'。
     - **arch** (int) - 针对目标设备的计算架构。例如，A100 为 80，v100 为 70，如果您没有指定架构，我们将从您的设备获取架构，默认为 None。
+    - **group_size** (int) - 权重量化的分组大小。-1 表示默认的逐通道模式；目前仅支持 64 或 128。
 
 返回
 ::::::::::::

@@ -3,7 +3,11 @@
 index_add\_
 -------------------------------
 
-.. py:function::  paddle.index_add_(x, index, axis, value, name=None)
+.. py:function::  paddle.index_add_(x, index, axis, value, alpha=1, name=None)
+
+.. note::
+
+    本 API 还支持 PyTorch 风格签名：``paddle.index_add_(input, dim, index, source, *, alpha=1)``。
 
 Inplace 版本的 :ref:`cn_api_paddle_index_add` API，对输入 ``x`` 采用 Inplace 策略。
 

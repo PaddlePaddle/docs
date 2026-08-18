@@ -3,7 +3,7 @@
 flatten\_
 -------------------------------
 
-.. py:function::  paddle.flatten_(x)
+.. py:function::  paddle.flatten_(x, start_axis=0, stop_axis=-1, name=None)
 
 Inplace 版本的 :ref:`cn_api_paddle_flatten` API，对输入 ``x`` 采用 Inplace 策略。
 
