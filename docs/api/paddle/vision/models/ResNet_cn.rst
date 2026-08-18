@@ -3,7 +3,7 @@
 ResNet
 -------------------------------
 
-.. py:class:: paddle.vision.models.ResNet(Block, depth=50, width=64, num_classes=1000, with_pool=True, groups=1)
+.. py:class:: paddle.vision.models.ResNet(block, depth=50, width=64, num_classes=1000, with_pool=True, groups=1)
 
 
 ResNet 模型，来自论文 `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_ 。
@@ -11,7 +11,7 @@ ResNet 模型，来自论文 `"Deep Residual Learning for Image Recognition" <ht
 参数
 :::::::::
 
-  - **Block** (BasicBlock|BottleneckBlock) - 模型的残差模块。
+  - **block** (BasicBlock|BottleneckBlock) - 模型的残差模块。
   - **depth** (int，可选) - ResNet 模型的深度。默认值为 50。
   - **width** (int，可选) - 各个卷积块的每个卷积组基础宽度。默认值为 64。
   - **num_classes** (int，可选) - 最后一个全连接层输出的维度。如果该值小于等于 0，则不定义最后一个全连接层。默认值为 1000。

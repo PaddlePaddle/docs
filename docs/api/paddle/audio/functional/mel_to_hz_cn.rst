@@ -3,7 +3,7 @@
 mel_to_hz
 -------------------------------
 
-.. py:function:: paddle.audio.functional.mel_to_hz(feq, htk=False)
+.. py:function:: paddle.audio.functional.mel_to_hz(mel, htk=False)
 
 转换 Mels 为 Hz。
 

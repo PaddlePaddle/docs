@@ -3,7 +3,7 @@
 Precision
 -------------------------------
 
-.. py:class:: paddle.metric.Precision()
+.. py:class:: paddle.metric.Precision(name='precision')
 
 
 精确率 Precision(也称为 positive predictive value，正预测值)是被预测为正样例中实际为正的比例。该类管理二分类任务的 precision 分数。

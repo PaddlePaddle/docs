@@ -4,7 +4,7 @@ backward
 -------------------------------
 
 
-.. py:function:: paddle.autograd.backward(tensors, grad_tensors=None, retain_graph=False)
+.. py:function:: paddle.autograd.backward(tensors, grad_tensors=None, retain_graph=False, create_graph=False, *, dump_backward_graph_path=None)
 
 计算给定的 Tensors 的反向梯度。
 
@@ -14,6 +14,12 @@ backward
   - **tensors** (list[Tensor]) – 将要计算梯度的 Tensors 列表。Tensors 中不能包含有相同的 Tensor。
   - **grad_tensors** (None|list[Tensor|None]，可选) – ``tensors`` 的初始梯度值。如果非 None，必须和 ``tensors`` 有相同的长度，并且如果其中某一 Tensor 元素为 None，则该初始梯度值为填充 1.0 的默认值；如果是 None，所有的 ``tensors`` 的初始梯度值为填充 1.0 的默认值。默认值：None。
   - **retain_graph** (bool，可选) – 如果为 False，反向计算图将被释放。如果在 backward()之后继续添加 OP，需要设置为 True，此时之前的反向计算图会保留。将其设置为 False 会更加节省内存。默认值：False。
+  - **create_graph** (bool，可选) – 是否创建用于计算梯度的计算图。默认值为 False。
+
+关键字参数
+::::::::::::
+
+  - **dump_backward_graph_path** (str，可选) – 用于保存调试文件的目录路径。指定该参数后，会在此目录中生成反向相关图（dot 格式）和调试调用栈信息。默认值为 None。
 
 
 返回

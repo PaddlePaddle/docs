@@ -3,7 +3,7 @@
 box_coder
 -------------------------------
 
-.. py:function:: paddle.vision.ops.box_coder(prior_box, prior_box_var, target_box, code_type='encode_center_size', box_normalized=True, name=None, axis=0)
+.. py:function:: paddle.vision.ops.box_coder(prior_box, prior_box_var, target_box, code_type='encode_center_size', box_normalized=True, axis=0, name=None)
 
 编码/解码带有先验框信息的目标边界框。
 
