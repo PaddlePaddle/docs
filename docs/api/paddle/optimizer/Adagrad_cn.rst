@@ -3,7 +3,7 @@
 Adagrad
 -------------------------------
 
-.. py:class:: paddle.optimizer.Adagrad(learning_rate, epsilon=1e-06, parameters=None, weight_decay=None, grad_clip=None, name=None, initial_accumulator_value=0.0)
+.. py:class:: paddle.optimizer.Adagrad(learning_rate, epsilon=1e-06, parameters=None, weight_decay=None, grad_clip=None, name=None, initial_accumulator_value=0.0, *, maximize=False)
 
 
 Adaptive Gradient 优化器（自适应梯度优化器，简称 Adagrad）可以针对不同参数样本数不平均的问题，自适应地为各个参数分配不同的学习率。
@@ -35,6 +35,11 @@ Adaptive Gradient 优化器（自适应梯度优化器，简称 Adagrad）可以
       默认值为 None，此时将不进行梯度裁剪。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **initial_accumulator_value** (float，可选) - moment 累加器的初始值，默认值为 0.0。
+
+关键字参数
+::::::::::::
+
+    - **maximize** (bool，可选) - 是否最大化目标函数，而不是最小化目标函数。默认值为 False。
 
 代码示例
 ::::::::::::

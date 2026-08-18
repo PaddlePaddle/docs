@@ -30,10 +30,14 @@ COPY-FROM: paddle.nn.Module
 ::::::::::::
 
 
-train()
-'''''''''
+train(mode=True)
+''''''''''''''''
 
-将此层及其所有子层设置为训练模式。这只会影响某些模块，如 Dropout 和 BatchNorm。
+根据 ``mode`` 设置此层及其所有子层的训练模式。这只会影响某些模块，如 Dropout 和 BatchNorm。
+
+**参数**
+
+    - **mode** (bool，可选) - True 表示训练模式，False 表示预测模式。默认值：True。
 
 **返回**
 Module (返回网络层)， self (返回自身)
@@ -247,7 +251,7 @@ modules()
  Iterator[Module]，一个由所有层组成的列表。
 
 get_submodule(target)
-------------
+'''''''''
 
 返回指定名称的子层。
 
@@ -259,7 +263,7 @@ get_submodule(target)
 Module，指定名称的子层，如果不存在会抛出异常。
 
 set_submodule(target, module, strict=False)
-------------
+'''''''''
 
 设置指定名称的子层。
 
@@ -289,7 +293,7 @@ clear_gradients(set_to_zero=True)
 COPY-FROM: paddle.nn.Module.clear_gradients
 
 requires_grad_(requires_grad=True)
---------------
+'''''''''
 
 设置该层参数是否参与梯度计算。
 
@@ -301,7 +305,7 @@ requires_grad_(requires_grad=True)
 Module，自身实例。
 
 zero_grad(set_to_none=True)
----------
+'''''''''
 
 重置所有模型参数的梯度。
 
@@ -403,7 +407,7 @@ iterator，产出名称和 buffer 的元组的迭代器。
 COPY-FROM: paddle.nn.Module.named_buffers
 
 get_buffer
------------
+'''''''''
 
 返回指定名称的 buffer。
 
@@ -444,6 +448,7 @@ add_parameter(name, parameter)
 '''''''''
 
 添加参数实例。可以通过 self.name 访问该 parameter。
+
 .. note::
    ``register_parameter`` 是 ``add_parameter`` 的别名，两者在使用和功能上完全等价。
 
@@ -476,6 +481,13 @@ dict，包含所有参数和可持久行 buffers 的 dict
 **代码示例**
 
 COPY-FROM: paddle.nn.Module.state_dict
+
+**get_extra_state()**
+
+返回需要一并保存到 ``state_dict`` 中的额外状态。基类未提供默认状态；需要持久化额外状态的子类应重写此方法，并同时重写 ``set_extra_state(state)``。
+
+**返回**
+任意可序列化对象，表示 Module 的额外状态。
 
 set_state_dict(state_dict, use_structured_name=True, assign=False)
 '''''''''
@@ -514,16 +526,29 @@ load_state_dict(state_dict, strict=True, assign=False)
     - **missing_keys** (list) - 缺失的参数名列表。
     - **unexpected_keys** (list) - 传入 ``state_dict`` 中未被当前 Module 使用的参数名列表。
 
-to(device=None, dtype=None, blocking=None)
-'''''''''
+to(\*args, \*\*kwargs)
+''''''''''''''''''''''
 
 根据给定的 device、dtype 和 blocking 转换 Module 中的 parameters 和 buffers。
+
+本方法支持三种调用方式：
+
+1. ``to(device=None, dtype=None, blocking=True, *, non_blocking=False)``；
+2. ``to(dtype, blocking=True, *, non_blocking=False)``；
+3. ``to(tensor, blocking=True, *, non_blocking=False)``。
+
+该方法会原地修改当前 Module。
 
 **参数**
 
     - **device** （str|paddle.CPUPlace()|paddle.CUDAPlace()|paddle.CUDAPinnedPlace()|paddle.XPUPlace()|None，可选) - 希望存储 Module 的设备位置。如果为 None，设备位置和原始的 Tensor 的设备位置一致。如果设备位置是 string 类型，取值可为 ``cpu``, ``gpu:x`` and ``xpu:x``，这里的 ``x`` 是 GPUs 或者 XPUs 的编号。默认值：None。
     - **dtype** （str|numpy.dtype|paddle.dtype|None，可选) - 数据的类型。如果为 None，数据类型和原始的 Tensor 一致。默认值：None。
-    - **blocking** （bool|None，可选）- 如果为 False 并且当前 Tensor 处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。如果为 None，blocking 会被设置为 True。默认为 False。
+    - **tensor** (Tensor，可选) - 作为目标设备和数据类型的参考 Tensor。
+    - **blocking** （bool，可选）- 是否阻塞执行拷贝。默认值：True。
+
+**关键字参数**
+
+    - **non_blocking** (bool，可选) - PyTorch 风格的非阻塞参数，语义与 ``blocking`` 相反。默认值：False。
 
 **代码示例**
 
@@ -546,7 +571,7 @@ astype(dtype=None)
 COPY-FROM: paddle.nn.Module.astype
 
 type(dst_type)
-----
+'''''''''
 
 将所有参数和 buffer 转换为指定数据类型。
 
@@ -604,18 +629,18 @@ bfloat16(excluded_layers=None)
 COPY-FROM: paddle.nn.Module.bfloat16
 
 double()
-------
+'''''''''
 
 将所有浮点型的参数和通过 ``register_buffers()`` 注册的 Buffer 变量转换为 double 数据类型。
 
 
 half()
-----
+'''''''''
 
 将所有浮点型的参数和通过 ``register_buffers()`` 注册的 Buffer 变量转换为 half 数据类型。
 
 cuda(device)
-----
+'''''''''
 
 将所有模型参数和 buffer 移动到 GPU。
 
@@ -628,7 +653,7 @@ Module，自身实例。
 
 
 xpu(device)
----
+'''''''''
 
 将所有模型参数和 buffer 移动到 XPU。
 
@@ -641,7 +666,7 @@ Module，自身实例。
 
 
 cpu()
----
+'''''''''
 
 将所有模型参数和 buffer 移动到 CPU。
 

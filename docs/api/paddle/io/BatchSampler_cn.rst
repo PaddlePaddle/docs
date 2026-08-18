@@ -5,6 +5,8 @@ BatchSampler
 
 .. py:class:: paddle.io.BatchSampler(dataset=None, sampler=None, shuffle=False, batch_size=1, drop_last=False)
 
+本类还支持 PyTorch 风格签名 ``paddle.io.BatchSampler(sampler=None, batch_size=1, drop_last=False)``。两种签名中均必须通过 ``dataset`` 或 ``sampler`` 提供样本来源，且二者不能同时设置。
+
 批采样器的基础实现，用于 ``paddle.io.DataLoader`` 中迭代式获取 mini-batch 的样本下标数组，数组长度与 ``batch_size`` 一致。
 
 所有用于 ``paddle.io.DataLoader`` 中的批采样器都必须是 ``paddle.io.BatchSampler`` 的子类并实现以下方法：

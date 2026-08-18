@@ -3,7 +3,9 @@
 TensorDataset
 -------------------------------
 
-.. py:class:: paddle.io.TensorDataset
+.. py:class:: paddle.io.TensorDataset(tensors)
+
+也支持可变位置参数形式 ``paddle.io.TensorDataset(*tensors)``。
 
 由 Tensor 列表定义的数据集。
 
@@ -12,7 +14,7 @@ TensorDataset
 参数
 ::::::::::::
 
-    - **tensors** (list of Tensors) - Tensor 列表，这些 Tensor 的第一维形状相同
+    - **tensors** (list|tuple[Tensor]) - Tensor 序列，或按可变位置参数逐个传入的 Tensor；这些 Tensor 的第一维形状相同。
 
 返回
 ::::::::::::

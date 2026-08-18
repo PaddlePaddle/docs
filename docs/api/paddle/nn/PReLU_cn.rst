@@ -6,6 +6,12 @@ PReLU
 
 PReLU 激活层（PReLU Activation Operator）。计算公式如下：
 
+该 API 支持以下两种签名：
+
+1. ``PReLU(num_parameters=1, init=0.25, weight_attr=None, data_format="NCHW", name=None, device=None, dtype=None)`` （Paddle 风格）。
+
+2. ``PReLU(num_parameters=1, init=0.25, device=None, dtype=None)`` （PyTorch 风格）。
+
 如果使用近似计算：
 
 .. math::
