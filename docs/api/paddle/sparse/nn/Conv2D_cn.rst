@@ -33,7 +33,7 @@ Conv2D
     - **in_channels** (int) - 输入图像的通道数。
     - **out_channels** (int) - 由卷积操作产生的输出的通道数。
     - **kernel_size** (int|list|tuple) - 卷积核大小。
-    - **stride** (int|list|tuple，可选) - 步长大小。可以为单个整数或包含三个整数的元组或列表，分别表示卷积沿着深度，高和宽的步长。如果为单个整数，表示沿着高和宽的步长都等于该整数。默认值：1。
+    - **stride** (int|list|tuple，可选) - 步长大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积沿着高和宽的步长。如果为单个整数，表示沿着高和宽的步长都等于该整数。默认值：1。
     - **padding** (int|str|tuple|list，可选) - 填充大小。填充可以是以下形式之一：
 
         1. 字符串 ['valid', 'same']。
@@ -43,12 +43,12 @@ Conv2D
         5. 成对整数的列表或元组。形式为 [[pad_before, pad_after], [pad_before, pad_after], ...]。
 
         注意，批量维度和通道维度也包括在内。每对整数对应输入的一个维度的填充量。批量维度和通道维度的填充应为 [0, 0] 或 (0, 0)。默认值为 0。
-    - **dilation** (int|list|tuple，可选) - 空洞大小。可以为单个整数或包含三个整数的元组或列表，分别表示卷积核中的元素沿着深度，高和宽的空洞。如果为单个整数，表示深度，高和宽的空洞都等于该整数。默认值：1。
-    - **groups** (int，可选) - 二维卷积层的组数。根据 Alex Krizhevsky 的深度卷积神经网络（CNN）论文中的成组卷积：当 group=n，输入和卷积核分别根据通道数量平均分为 n 组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算，……，第 n 组卷积核和第 n 组输入进行卷积计算。默认值：1。
-    - **padding_mode** (str，可选) - 填充模式。包括 ``'zeros'``, ``'reflect'``, ``'replicate'`` 或者 ``'circular'``。默认值：``'zeros'`` 。
+    - **dilation** (int|list|tuple，可选) - 空洞大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积核中的元素沿着高和宽的空洞。如果为单个整数，表示高和宽的空洞都等于该整数。默认值：1。
+    - **groups** (int，可选) - 卷积层的组数。当前仅支持 ``groups=1``。默认值：1。
+    - **padding_mode** (str，可选) - 填充模式。当前仅支持 ``'zeros'``。默认值：``'zeros'`` 。
     - **weight_attr** (ParamAttr，可选) - conv2d 的可学习参数/权重的参数属性。如果设置为 None 或 ParamAttr 的一个属性，conv2d 将创建 ParamAttr 作为 param_attr。如果设置为 None，则参数初始化为 :math:`Normal(0.0, std)`，:math:`std` 为 :math:`(\frac{2.0 }{filter\_elem\_num})^{0.5}`。默认值为 None。
     - **bias_attr** (ParamAttr|bool，可选) - conv2d 的偏置参数属性。如果设置为 False，则不会在输出单元中添加偏置。如果设置为 None 或 ParamAttr 的一个属性，conv2d 将创建 ParamAttr 作为 bias_attr。如果 bias_attr 的初始化器未设置，则偏置初始化为零。默认值为 None。
-    - **data_format** (str，可选) - 指定输入的数据格式。可以是 "NCHW" 或 "NHWC"。目前仅支持 "NHWC"。N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度。默认值："NDHWC"。 当前只支持"NDHWC"。
+    - **data_format** (str，可选) - 指定输入的数据格式。当前仅支持 "NHWC"。N 是批尺寸，C 是通道数，H 是特征高度，W 是特征宽度。默认值："NHWC"。
 
 
 属性

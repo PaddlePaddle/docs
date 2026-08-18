@@ -4,7 +4,7 @@ ParamAttr
 -------------------------------
 
 
-.. py:class:: paddle.ParamAttr(name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, do_model_average=False, need_clip=True)
+.. py:class:: paddle.ParamAttr(name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, do_model_average=True, need_clip=True)
 
 
 .. note::

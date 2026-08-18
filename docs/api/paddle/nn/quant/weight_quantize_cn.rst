@@ -2,15 +2,16 @@
 
 weight_quantize
 -------------------------------
-.. py:function:: paddle.nn.quant.weight_quantize(x, algo='weight_only_int8', arch=None)
+.. py:function:: paddle.nn.quant.weight_quantize(x, algo='weight_only_int8', arch=None, group_size=-1)
 
 weight_only 和 llm.int8 权重的量化函数。
 
 参数
 ::::::::::::
     - **x** (Tensor) - 待量化的输入张量，数据类型为 float16 或 bfloat16。
-    - **algo** (str) - 应用于 x 的算法，必须是 '``weight_only_int8``'、'``weight_only_int4``' 和 '``llm.int8``' 中的一个，默认为 '``weight_only_int8``'。
+    - **algo** (str) - 应用于 x 的算法，必须是 '``weight_only_int8``'、'``weight_only_int4``'、'``llm.int8``'、'``w4a8``' 和 '``w4afp8``' 中的一个，默认为 '``weight_only_int8``'。
     - **arch** (int) - 针对目标设备的计算架构。例如，A100 为 80，v100 为 70，如果您没有指定架构，我们将从您的设备获取架构，默认为 None。
+    - **group_size** (int) - 权重量化的分组大小。-1 表示默认的逐通道模式；目前仅支持 64 或 128。
 
 返回
 ::::::::::::

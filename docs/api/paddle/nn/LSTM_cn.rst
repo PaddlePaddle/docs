@@ -3,7 +3,7 @@
 LSTM
 -------------------------------
 
-.. py:class:: paddle.nn.LSTM(input_size, hidden_size, num_layers=1, direction="forward", dropout=0., time_major=False, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, proj_size=0, name=None)
+.. py:class:: paddle.nn.LSTM(input_size, hidden_size, num_layers=1, *, direction="forward", time_major=False, dropout=0., weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, proj_size=0, bias=True, device=None, dtype=None, name=None)
 
 
 
@@ -42,8 +42,12 @@ LSTM
 
     - **input_size** (int) - 输入 :math:`x` 的大小。
     - **hidden_size** (int) - 隐藏状态 :math:`h` 大小。
-    - **num_layers** (int，可选) - 循环网络的层数。例如，将层数设为 2，会将两层 GRU 网络堆叠在一起，第二层的输入来自第一层的输出。默认为 1。
-    - **direction** (str，可选) - 网络迭代方向，可设置为 forward 或 bidirect（或 bidirectional）。forward 指从序列开始到序列结束的单向 GRU 网络方向，bidirectional 指从序列开始到序列结束，又从序列结束到开始的双向 GRU 网络方向。默认为 forward。
+    - **num_layers** (int，可选) - 循环网络的层数。例如，将层数设为 2，会将两层 LSTM 网络堆叠在一起，第二层的输入来自第一层的输出。默认为 1。
+
+关键字参数
+::::::::::::
+
+    - **direction** (str，可选) - 网络迭代方向，可设置为 forward 或 bidirect（或 bidirectional）。forward 指从序列开始到序列结束的单向 LSTM 网络方向，bidirectional 指从序列开始到序列结束，又从序列结束到开始的双向 LSTM 网络方向。默认为 forward。
     - **time_major** (bool，可选) - 指定 input 的第一个维度是否是 time steps。如果 time_major 为 True，则 Tensor 的形状为[time_steps, batch_size, input_size]，否则为[batch_size, time_steps, input_size]。``time_steps`` 指输入序列的长度。默认为 False。
     - **dropout** (float，可选) - dropout 概率，指的是除第一层外每层输入时的 dropout 概率。范围为[0, 1]。默认为 0。
     - **weight_ih_attr** (ParamAttr，可选) - weight_ih 的参数。默认为 None。
@@ -51,13 +55,16 @@ LSTM
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih 的参数。默认为 None。
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh 的参数。默认为 None。
     - **proj_size** (int，可选) - 若大于 0，则会使用投影层将隐状态隐射到指定大小，其值必须小于 ``hidden_size`` 。默认为 0。
+    - **bias** (bool，可选) - 是否使用偏置权重 ``bias_ih`` 和 ``bias_hh``。若为 False，则不使用偏置权重。默认值为 True。
+    - **device** (str，可选) - 层参数所在设备。默认值为 None。
+    - **dtype** (str，可选) - 层参数的数据类型。默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 输入
 ::::::::::::
 
     - **inputs** (Tensor) - 网络输入。如果 time_major 为 True，则 Tensor 的形状为[time_steps,batch_size,input_size]，如果 time_major 为 False，则 Tensor 的形状为[batch_size,time_steps,input_size]。``time_steps`` 指输入序列的长度。
-    - **initial_states** (tuple，可选) - 网络的初始状态，一个包含 h 和 c 的元组，形状为[num_layers * num_directions, batch_size, hidden_size]。如果没有给出则会以全零初始化。
+    - **initial_states** (list|tuple，可选) - 网络的初始状态，一个包含 h 和 c 的列表或元组，形状为[num_layers * num_directions, batch_size, hidden_size]。如果没有给出则会以全零初始化。
     - **sequence_length** (Tensor，可选) - 指定输入序列的实际长度，形状为[batch_size]，数据类型为 int64 或 int32。在输入序列中所有 time step 不小于 sequence_length 的元素都会被当作填充元素处理（状态不再更新）。
 
 输出

@@ -9,21 +9,20 @@ Conv1D
 
 **一维卷积层**
 
-根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilations）一组参数计算输出特征层大小。输入和输出是 NCL 或 NLC 格式，其中 N 是批尺寸，C 是通道数，L 是特征长度。卷积核是 MCL 格式，M 是输出特征通道数，C 是输入特征通道数，L 是卷积核长度度。如果组数(groups)大于 1，C 等于输入图像通道数除以组数的结果。详情请参考 UFLDL's : `卷积 <http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_ 。如果 bias_attr 不为 False，卷积计算会添加偏置项。
+根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilations）一组参数计算输出特征层大小。输入和输出是 NCL 或 NLC 格式，其中 N 是批尺寸，C 是通道数，L 是特征长度。卷积核是 MCK 格式，M 是输出特征通道数，C 是输入特征通道数，K 是卷积核长度。如果组数(groups)大于 1，C 等于输入图像通道数除以组数的结果。详情请参考 UFLDL's : `卷积 <http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_ 。如果 bias_attr 不为 False，卷积计算会添加偏置项。
 
 对每个输入 X，有等式：
 
 .. math::
 
-    Out = \sigma \left ( W * X + b \right )
+    Out = W * X + b
 
 其中：
 
     - :math:`X`：输入值，NCL 或 NLC 格式的 3-D Tensor
-    - :math:`W`：卷积核值，MCL 格式的 3-D Tensor
+    - :math:`W`：卷积核值，MCK 格式的 3-D Tensor
     - :math:`*`：卷积操作
     - :math:`b`：偏置值，1-D Tensor，形状为 ``[M]``
-    - :math:`\sigma`：激活函数
     - :math:`Out`：输出值，NCL 或 NLC 格式的 3-D Tensor，和 ``X`` 的形状可能不同
 
 
@@ -41,8 +40,9 @@ Conv1D
 关键字参数
 ::::::::::::
 
-    - **bias** (bool，可选) - 是否要学习和添加这一层的偏置。如果设置为 False，则不会创建任何偏差，并且 :attr:'bias_attr' 将被忽略。默认值：True。
+    - **bias** (bool，可选) - 是否要学习和添加这一层的偏置。如果设置为 False，则不会创建任何偏差，并且 :attr:``bias_attr`` 将被忽略。默认值：True。
     - **padding_mode** (str，可选) - 填充模式。包括 ``'zeros'``, ``'reflect'``, ``'replicate'`` 或者 ``'circular'``。默认值：``'zeros'`` 。
+    - **device** (PlaceLike，可选) - 执行计算的设备。默认值为 None。
     - **dtype** (str|Tensor.dtype，可选) - 指定权重、偏置的参数类型，默认值为 None。
     - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。
     - **bias_attr** (ParamAttr|bool，可选) - 指定偏置参数属性的对象。若 ``bias_attr`` 为 bool 类型，只支持为 False，表示没有偏置参数。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。

@@ -3,7 +3,7 @@
 NaturalExpDecay
 -------------------------------
 
-.. py:class:: paddle.optimizer.lr.NaturalExpDecay(learning_rate, gama, last_epoch=-1, verbose=False)
+.. py:class:: paddle.optimizer.lr.NaturalExpDecay(learning_rate, gamma, last_epoch=-1, verbose=False)
 
 该接口提供按自然指数衰减学习率的策略。
 
@@ -17,7 +17,7 @@ NaturalExpDecay
 ::::::::::::
 
     - **learning_rate** (float) - 初始学习率，数据类型为 Python float。
-    - **gamma** (float) - 衰减率，gamma 应该大于 0.0，才能使学习率衰减。默认值为 0.1。
+    - **gamma** (float) - 衰减率，gamma 应该大于 0.0，才能使学习率衰减。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的 epoch 数。默认值为 -1，则为初始学习率。
     - **verbose** (bool，可选) - 如果是 ``True``，则在每一轮更新时在标准输出 ``stdout`` 输出一条信息。默认值为 ``False`` 。
 

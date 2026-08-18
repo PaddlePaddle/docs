@@ -20,12 +20,12 @@ LinearWarmup
 
     lr = learning\_rate
 
-其中 learning_rate 为热身之后的学习率，可以是 python 的 float 类型或者 ``_LRScheduler`` 的任意子类。
+其中 learning_rate 为热身之后的学习率，可以是 python 的 float 类型或者 ``LRScheduler`` 的任意子类。
 
 参数
 ::::::::::::
 
-    - **learning rate** (float|_LRScheduler) - 热启训练之后的学习率，可以是 python 的 float 类型或者 ``_LRScheduler`` 的任意子类。
+    - **learning_rate** (float|LRScheduler) - 热启训练之后的学习率，可以是 python 的 float 类型或者 ``LRScheduler`` 的任意子类。
     - **warmup_steps** (int) - 进行 warm up 过程的步数。
     - **start_lr** (float) - warm up 的起始学习率。
     - **end_lr** (float) - warm up 的最终学习率。

@@ -3,7 +3,7 @@
 WMT16
 -------------------------------
 
-.. py:class:: paddle.text.WMT16(data_file = None, mode = 'train', src_dict_size = -1, trg_dict_size = -1, lang = 'ch', download = True)
+.. py:class:: paddle.text.WMT16(data_file = None, mode = 'train', src_dict_size = -1, trg_dict_size = -1, lang = 'en', download = True)
 
 
 该类是对 `WMT16 <http://www.statmt.org/wmt16/>`_ 测试数据集实现。
@@ -14,12 +14,12 @@ http://www.statmt.org/wmt16/multimodal-task.html#task1
 
 参数
 :::::::::
-    - **data_file** （str）- 保存数据集压缩文件的路径，如果参数 :attr:`download` 设置为 True，可设置为 None。默认值为 None。
-    - **mode** （str）- 'train'，'test' 或 'val'。默认为'train'。
-    - **src_dict_size** （int）- 源语言词典大小。默认为-1。
-    - **trg_dict_size** （int) - 目标语言测点大小。默认为-1。
-    - **lang** （str）- 源语言，'en' 或 'de'。默认为 'en'。
-    - **download** （bool）- 如果 :attr:`data_file` 未设置，是否自动下载数据集。默认为 True。
+    - **data_file** (str) - 保存数据集压缩文件的路径，如果参数 :attr:`download` 设置为 True，可设置为 None。默认值为 None。
+    - **mode** (str)- 'train'，'test' 或 'val'。默认为'train'。
+    - **src_dict_size** (int) - 源语言词典大小。默认为-1。
+    - **trg_dict_size** (int) - 目标语言词典大小。默认为-1。
+    - **lang** (str) - 源语言，'en' 或 'de'。默认为 'en'。
+    - **download** (bool) - 如果 :attr:`data_file` 未设置，是否自动下载数据集。默认为 True。
 
 返回值
 :::::::::

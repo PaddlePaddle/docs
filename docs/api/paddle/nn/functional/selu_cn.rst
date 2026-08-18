@@ -3,7 +3,7 @@
 selu
 -------------------------------
 
-.. py:function:: paddle.nn.functional.selu(x, scale=1.0507009873554804934193349852946, alpha=1.6732632423543772848170429916717, name=None)
+.. py:function:: paddle.nn.functional.selu(x, scale=1.0507009873554804934193349852946, alpha=1.6732632423543772848170429916717, inplace=False, name=None)
 
 selu 激活层
 
@@ -22,6 +22,7 @@ selu 激活层
     - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
     - **scale** (float，可选) - selu 激活计算公式中的 scale 值，必须大于 1.0。默认值为 1.0507009873554804934193349852946。
     - **alpha** (float，可选) - selu 激活计算公式中的 alpha 值，必须大于等于零。默认值为 1.6732632423543772848170429916717。
+    - **inplace** (bool，可选) - 是否使用原地操作。默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

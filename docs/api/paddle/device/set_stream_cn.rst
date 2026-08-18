@@ -3,7 +3,7 @@
 set_stream
 -------------------------------
 
-.. py:function:: paddle.device.set_stream(stream=None)
+.. py:function:: paddle.device.set_stream(stream)
 
 设置当前的 stream。
 

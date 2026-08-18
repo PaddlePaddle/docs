@@ -3,7 +3,7 @@
 SpectralNorm
 -------------------------------
 
-.. py:class:: paddle.nn.SpectralNorm(weight_shape, dim=0, power_iters=1, eps=1e-12, name=None, dtype="float32")
+.. py:class:: paddle.nn.SpectralNorm(weight_shape, dim=0, power_iters=1, eps=1e-12, dtype="float32")
 
 
 构建 ``SpectralNorm`` 类的一个可调用对象，具体用法参照 ``代码示例``。其中实现了谱归一化层的功能，用于计算 fc、conv1d、conv2d、conv3d 层的权重参数的谱正则值，输入权重参数应分别为 2-D, 3-D, 4-D, 5-D Tensor，输出 Tensor 与输入 Tensor 维度相同。谱特征值计算方式如下：
@@ -17,7 +17,7 @@ SpectralNorm
     \mathbf{v} &:= \frac{\mathbf{W}^{T} \mathbf{u}}{\|\mathbf{W}^{T} \mathbf{u}\|_2}\\
     \mathbf{u} &:= \frac{\mathbf{W}^{T} \mathbf{v}}{\|\mathbf{W}^{T} \mathbf{v}\|_2}
 
-步骤 3：计算 :math:`\sigma(\mathbf{W})` 并特征值值归一化。
+步骤 3：计算 :math:`\sigma(\mathbf{W})` 并特征值归一化。
 
 .. math::
     \sigma(\mathbf{W}) &= \mathbf{u}^{T} \mathbf{W} \mathbf{v}\\
@@ -32,7 +32,6 @@ SpectralNorm
     - **dim** (int，可选) - 将输入（weight）重塑为矩阵之前应排列到第一个的维度索引，如果 input（weight）是 fc 层的权重，则应设置为 0；如果 input（weight）是 conv 层的权重，则应设置为 1。默认值：0。
     - **power_iters** (int，可选) - 将用于计算的 ``SpectralNorm`` 功率迭代次数，默认值：1。
     - **eps** (float，可选) -  ``eps`` 用于保证计算规范中的数值稳定性，分母会加上 ``eps`` 防止除零。默认值：1e-12。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **dtype** (str|paddle.dtype|np.dtype，可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
 
 形状

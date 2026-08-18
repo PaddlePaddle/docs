@@ -2,7 +2,7 @@
 
 ThresholdedReLU
 -------------------------------
-.. py:class:: paddle.nn.ThresholdedReLU(threshold=1.0, name=None)
+.. py:class:: paddle.nn.ThresholdedReLU(threshold=1.0, value=0.0, name=None)
 
 Thresholded ReLU 激活层
 

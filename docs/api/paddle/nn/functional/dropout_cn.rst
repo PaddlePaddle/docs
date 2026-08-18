@@ -3,16 +3,17 @@
 dropout
 -------------------------------
 
-.. py:function:: paddle.nn.functional.dropout(x, p=0.5, axis=None, training=True, mode="upscale_in_train", name=None)
+.. py:function:: paddle.nn.functional.dropout(x, p=0.5, axis=None, training=True, inplace=False, mode="upscale_in_train", name=None)
 
 Dropout 是一种正则化手段，可根据给定的丢弃概率 ``p``，在训练过程中随机将一些神经元输出设置为 0，通过阻止神经元节点间的相关性来减少过拟合。
 
 参数
 :::::::::
- - **x** (Tensor) - 输入的多维 ``Tensor``，数据类型为：float16、float32、float64。
- - **p** (float，可选) - 将输入节点置 0 的概率，即丢弃概率。默认值为 0.5。
- - **axis** (int|list，可选) - 指定对输入 ``Tensor`` 进行 dropout 操作的轴。默认值为 None。
+ - **x** (Tensor) - 输入的多维 ``Tensor``，数据类型为：float16、float32、float64。别名 ``input``。
+ - **p** (float|int，可选) - 将输入节点置 0 的概率，即丢弃概率。默认值为 0.5。
+ - **axis** (int|list|tuple，可选) - 指定对输入 ``Tensor`` 进行 dropout 操作的轴。默认值为 None。
  - **training** (bool，可选) - 标记是否为训练阶段。默认值为 True。
+ - **inplace** (bool，可选) - 是否使用原地操作。默认值为 False。
  - **mode** (str，可选) - 丢弃单元的方式，有 'upscale_in_train' 和 'downscale_in_infer' 两种可供选择，默认值为 'upscale_in_train'。计算方法如下：
 
     1. upscale_in_train（默认值），在训练时增大输出结果。

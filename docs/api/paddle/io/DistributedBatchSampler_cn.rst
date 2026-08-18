@@ -3,7 +3,7 @@
 DistributedBatchSampler
 -------------------------------
 
-.. py:class:: paddle.io.DistributedBatchSampler(dataset, batch_size, num_replicas=None, rank=None, shuffle=False, drop_last=False)
+.. py:class:: paddle.io.DistributedBatchSampler(dataset, batch_size, num_replicas=None, rank=None, shuffle=False, drop_last=False, seed=0)
 
 分布式批采样器加载数据的一个子集。每个进程可以传递给 DataLoader 一个 DistributedBatchSampler 的实例，每个进程加载原始数据的一个子集。
 
@@ -20,6 +20,7 @@ DistributedBatchSampler
     - **rank** (int，可选) - num_replicas 个进程中的进程序号。如果是 None，会依据 :ref:`cn_api_paddle_distributed_ParallelEnv` 获取值。默认是 None。
     - **shuffle** (bool，可选) - 是否需要在生成样本下标时打乱顺序。默认值为 False。
     - **drop_last** (bool，可选) - 是否需要丢弃最后无法凑整一个 mini-batch 的样本。默认值为 False。
+    - **seed** (int，可选) - 当 ``shuffle=True`` 时用于打乱样本下标的随机种子。该值应在分布式组的所有进程中相同。默认值为 0。
 
 
 返回

@@ -3,7 +3,14 @@
 GRU
 -------------------------------
 
-.. py:class:: paddle.nn.GRU(input_size, hidden_size, num_layers=1, direction="forward", time_major=False, dropout=0.0, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
+.. py:class:: paddle.nn.GRU(input_size, hidden_size, num_layers=1, direction="forward", time_major=False, dropout=0.0, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, *, bias=True, device=None, dtype=None)
+
+.. note::
+
+    本 API 支持两种签名：
+
+    1. ``paddle.nn.GRU(input_size, hidden_size, num_layers=1, direction='forward', time_major=False, dropout=0.0, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, *, bias=True, device=None, dtype=None)`` （Paddle 风格）。
+    2. ``paddle.nn.GRU(input_size, hidden_size, num_layers, bias, batch_first, dropout=0.0, bidirectional=False, device=None, dtype=None)`` （PyTorch 风格）。
 
 
 
@@ -42,7 +49,13 @@ GRU
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh 的参数。默认为 None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih 的参数。默认为 None。
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh 的参数。默认为 None。
-    - **name** (str，可选) - 操作的名称(可选，默认为 None)。欲了解更多信息，请参考 :ref:`api_guide_Name`
+
+关键字参数
+::::::::::::
+
+    - **bias** (bool，可选) - 若为 False，层不使用偏置权重 ``bias_ih`` 和 ``bias_hh``。默认值为 True。
+    - **device** (str，可选) - 层参数所在设备。默认值为 None。
+    - **dtype** (str，可选) - 层参数的数据类型。默认值为 None。
 
 输入
 ::::::::::::

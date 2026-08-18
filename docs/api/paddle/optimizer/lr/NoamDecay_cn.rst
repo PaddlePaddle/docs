@@ -19,7 +19,7 @@ Noam 衰减的计算方式如下：
 参数
 ::::::::::::
 
-    - **d$_{model}$** (int) - 模型的输入、输出向量特征维度，为超参数。数据类型为 Python int。
+    - **d_model** (int) - 模型的输入、输出向量特征维度，为超参数。数据类型为 Python int。
     - **warmup_steps** (int) - 预热步数，为超参数。数据类型为 Python int。
     - **learning_rate** (float) - 初始学习率，数据类型为 Python float。默认值为 1.0。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的 epoch 数。默认值为 -1，则为初始学习率。

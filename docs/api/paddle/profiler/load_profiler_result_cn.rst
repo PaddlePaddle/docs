@@ -3,14 +3,14 @@
 load_profiler_result
 -------------------------------
 
-.. py:function:: paddle.profiler.load_profiler_result(file_name: str)
+.. py:function:: paddle.profiler.load_profiler_result(filename)
 
 载入所保存到 protobuf 文件的性能数据到内存。
 
 参数
 :::::::::
 
-    - **file_name** (str) - protobuf 格式的性能数据文件路径。
+    - **filename** (str) - protobuf 格式的性能数据文件路径。
 
 返回
 :::::::::

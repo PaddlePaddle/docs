@@ -3,7 +3,7 @@
 stream_guard
 -------------------------------
 
-.. py:function:: paddle.device.stream_guard(stream)
+.. py:function:: paddle.device.stream_guard(stream=None)
 
 可以切换当前的 stream 为输入指定的 stream。
 

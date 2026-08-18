@@ -2,7 +2,7 @@
 
 Silu
 -------------------------------
-.. py:class:: paddle.nn.Silu(name=None)
+.. py:class:: paddle.nn.Silu(inplace=False, name=None)
 
 Silu 激活层。计算公式如下：
 
@@ -15,6 +15,7 @@ Silu 激活层。计算公式如下：
 参数
 ::::::::::
 
+    - **inplace** (bool，可选) - 是否使用原地操作。默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状

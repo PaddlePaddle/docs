@@ -3,7 +3,7 @@
 RecordEvent
 ---------------------
 
-.. py:class:: paddle.profiler.RecordEvent(name: str, event_type: TracerEventType=TracerEventType.UserDefined)
+.. py:class:: paddle.profiler.RecordEvent(name, event_type=TracerEventType.PythonUserDefined)
 
 用于用户自定义打点，记录某一段代码运行的时间。
 
@@ -12,7 +12,7 @@ RecordEvent
 :::::::::
 
     - **name** (str) - 记录打点的名字。
-    - **event_type** (TracerEventType，可选) - 可选参数，默认值为 TracerEventType.UserDefined。该参数预留为内部使用，最好不要指定该参数。
+    - **event_type** (TracerEventType，可选) - 可选参数，默认值为 TracerEventType.PythonUserDefined。该参数预留为内部使用，最好不要指定该参数。
 
 代码示例
 ::::::::::

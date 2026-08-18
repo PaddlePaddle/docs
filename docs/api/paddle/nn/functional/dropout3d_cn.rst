@@ -3,7 +3,7 @@
 dropout3d
 -------------------------------
 
-.. py:function:: paddle.nn.functional.dropout3d(x, p=0.5, training=True, name=None)
+.. py:function:: paddle.nn.functional.dropout3d(x, p=0.5, training=True, data_format="NCDHW", name=None)
 
 根据丢弃概率 ``p``，在训练过程中随机将某些通道特征图置 0 (对一个形状为 ``NCDHW`` 的 5 维 Tensor，通道指的是其中的形状为 ``DHW`` 的 3 维特征图)。
 
@@ -15,6 +15,7 @@ dropout3d
  - **x** (Tensor) - 形状为 [N, C, D, H, W] 或 [N, D, H, W, C] 的 5D ``Tensor``，其中 N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度，数据类型只能为 float32 或 float64。
  - **p** (float，可选) - 将输入通道置 0 的概率，即丢弃概率。默认值为 0.5。
  - **training** (bool，可选) - 标记是否为训练阶段。默认值为 True。
+ - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式与输入一致。可选值为 ``"NCDHW"`` 或 ``"NDHWC"``。当其为 ``"NCDHW"`` 时，数据按 [batch_size, input_channels, input_depth, input_height, input_width] 的顺序存储。默认值为 ``"NCDHW"``。
  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
