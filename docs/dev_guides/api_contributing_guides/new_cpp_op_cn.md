@@ -1067,7 +1067,7 @@ PADDLE_ENFORCE_EQ(比较对象 A, 比较对象 B, 错误提示信息)
 所以在定义反向算子时需要注意以下几点：
 
 - 如果反向不需要前向的某些输入或输出参数，则无需在 args 中设置。
-- 如果有些反向算子需要依赖前向算子的输入或输出变量的的 Shape 或 [LoD](new_cpp_op_cn.html#lod)，但不依赖于变量中 Tensor 的内存 Buffer 数据，且不能根据其他变量推断出该 Shape 和 [LoD](new_cpp_op_cn.html#lod)，则可以通过 `no_need_buffer` 对该变量进行配置，详见[YAML 配置规则](new_cpp_op_cn.html#yaml)。示例：
+- 如果有些反向算子需要依赖前向算子的输入或输出变量的 Shape 或 [LoD](new_cpp_op_cn.html#lod)，但不依赖于变量中 Tensor 的内存 Buffer 数据，且不能根据其他变量推断出该 Shape 和 [LoD](new_cpp_op_cn.html#lod)，则可以通过 `no_need_buffer` 对该变量进行配置，详见[YAML 配置规则](new_cpp_op_cn.html#yaml)。示例：
 ```yaml
 - backward_op : trace_grad
   forward : trace (Tensor x, int offset, int axis1, int axis2) -> Tensor(out)
