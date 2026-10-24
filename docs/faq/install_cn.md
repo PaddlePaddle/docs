@@ -46,7 +46,7 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/conda/lib/
 1. 使用如下命令安装 PaddlePaddle。
 
    ```bash
-   pip3 install paddlepaddle -i https://mirror.baidu.com/pypi/simple/
+   pip3 install paddlepaddle -i https://mirrors.aliyun.com/pypi/simple/
    ```
 
 你还可以通过如下三个地址获取 pip 安装包，只需修改 `-i` 后网址即可：
