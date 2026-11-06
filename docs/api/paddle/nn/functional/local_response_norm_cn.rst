@@ -22,7 +22,7 @@ local_response_norm
 
 参数
 :::::::::
- - **x** （Tensor）- 输入的 3-D/4-D/5-D ``Tensor``，数据类型为：float16 或 float32。
+ - **x** （Tensor）- 输入的 3-D/4-D/5-D ``Tensor``，数据类型为：float16 或 float32。别名 ``input``。
  - **size** (int） - 累加的通道数。
  - **alpha** （float，可选）- 缩放参数，正数。默认值为 1e-4。
  - **beta** （float，可选）- 指数，正数。默认值为 0.75。
