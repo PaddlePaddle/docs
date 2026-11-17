@@ -52,10 +52,11 @@ paddle 环境安装
 
 .. code-block::
 
-   $ docker run --name paddle -it --net=host -v $PWD:/paddle ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8 /bin/bash
+   $ docker run --gpus all --name paddle -it --net=host -v "$PWD:/paddle" -v /dev/shm:/dev/shm ccr-2vdh3abv-pub.cnc.bj.baidubce.com/paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8 /bin/bash
 
-* 当使用 gpu 时请配置 nvidia docker runtime 或使用 nvidia-docker 启动容器，进入容器后使用 nvidia-smi 命令确认环境正确
-* 使用分布式时需要添加 --net=host 参数让容器使用主机网络以实现跨机建立连接
+* 使用 GPU 时，先安装并配置 `NVIDIA Container Toolkit <https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html>`_，再通过 ``--gpus all`` 向容器开放 GPU；进入容器后使用 ``nvidia-smi`` 命令确认环境正确。
+* 使用分布式时需要添加 ``--net=host`` 参数，让容器使用主机网络以实现跨机建立连接。
+* 多卡训练需要足够的共享内存。``-v /dev/shm:/dev/shm`` 将主机的共享内存目录挂载到容器，避免容器默认共享内存容量不足导致训练失败。
 
 安装后，运行以下命令
 
