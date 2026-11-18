@@ -28,8 +28,9 @@ Note: English version API docs are generally docstrings in [PaddlePaddle/Paddle]
     ```
     cd docs
     mkdir output
-    bash docs-build.sh -f absolute_path_docs
+    bash docs-build.sh -f "$(pwd)"
     ```
+    Run this from the cloned repository root (the directory containing `docs-build.sh`), not the nested `docs/` directory.
   - step3: preview docs
   The output of docs will be generated in docs/output.
 

@@ -28,8 +28,9 @@
     ```
     cd docs
     mkdir output
-    bash docs-build.sh -f absolute_path_docs
+    bash docs-build.sh -f "$(pwd)"
     ```
+    このコマンドは、リポジトリ内の `docs/` サブディレクトリではなく、`docs-build.sh` があるリポジトリのルートディレクトリで実行してください。
   - step3: preview docs
   docs の出力は docs/output に生成されます。
 

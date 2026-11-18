@@ -27,8 +27,9 @@ docs 是 [PaddlePaddle 官网文档](https://www.paddlepaddle.org.cn/documentati
     ```
     cd docs
     mkdir output
-    bash docs-build.sh -f absolute_path_docs
+    bash docs-build.sh -f "$(pwd)"
     ```
+    请在克隆的仓库根目录（即 `docs-build.sh` 所在目录）运行此命令，不要进入仓库内的 `docs/` 子目录。
   - step3: preview docs
   输出的文件会保存在 docs/output 路径下。
 
